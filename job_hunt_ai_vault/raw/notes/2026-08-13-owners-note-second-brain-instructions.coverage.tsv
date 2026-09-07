@@ -1,0 +1,44 @@
+1	page:the-owners-instructions-note-and-what-was-built-from-it — the document's own title: a configuration to be pasted, not a report
+3	skip:section heading — the verdicts are on the section's units
+4	page:the-owners-instructions-note-and-what-was-built-from-it,journal-vault-brief-each-artefact-has-one-owner — built; the vault's own CLAUDE.md opens with this sentence
+5	page:vault-librarian,the-owners-instructions-note-and-what-was-built-from-it — built; one writer, compiling raw/ into atomic pages
+6	page:the-librarian-writes-unattended,the-owners-instructions-note-and-what-was-built-from-it — built except the verb: contradictions are surfaced and never excluded, because choosing is the owner's
+8	skip:section heading — the verdicts are on the section's units
+9	page:journal-vault-brief-each-artefact-has-one-owner — built; the journal is immutable, and rule 8 of vault-check.sh is the only structural rule reaching inside raw/
+10	page:the-librarian-writes-unattended — built as a convention, not a lock: the guard hook cannot tell who is writing
+11	page:the-wiki-has-no-tasks-folder — built; entities/ is one of the four folders
+12	page:the-wiki-has-no-tasks-folder — built; decisions/ is one of the four folders
+13	page:the-wiki-has-no-tasks-folder — unbuilt, deliberately; task status belongs to the tracker
+14	page:the-index-is-a-map-not-a-catalogue,the-owners-instructions-note-and-what-was-built-from-it — unbuilt twice over: the file is at the vault root and it is a map. CONTRADICTION marked on both pages
+15	page:the-librarian-writes-unattended — built; log.md says why and git diff says what, which is what makes unattended writing reviewable
+16	page:a-sprint-closes-on-its-goal — half built: retired pages move to archive/, handoffs never do
+18	skip:section heading — the verdicts are on the section's units
+19	elsewhere:the vault's own CLAUDE.md — "One entity or one decision per file", built in those words
+20	page:the-owners-instructions-note-and-what-was-built-from-it — diverged and by nobody's recorded decision: no filename carries a category prefix, the folder and type: carry it
+21	page:the-owners-instructions-note-and-what-was-built-from-it — built and outgrown: active is spelled current, six fields were added. The fenced schema at 22-28 is not a unit and carries no verdict of its own
+29	elsewhere:scripts/vault-check.sh — built and enforced: rules 4 and 5 refuse a broken link and an orphan page
+30	page:the-librarian-writes-unattended — the marking is built; the asking was dropped, because an answer given in chat leaves no artefact
+32	skip:section heading — the verdicts are on the section's units
+34	skip:section heading — the verdicts are on the section's units
+35	page:journal-vault-brief-each-artefact-has-one-owner — built with a firmer trigger: a session ends with /handoff, then /ingest
+36	skip:a label introducing the four numbered steps below
+37	page:the-handoff-template-maps-onto-the-categories — built; vault-check.sh rule 8 fails a journal that has dropped one of the eight sections
+38	page:ingest-is-units-and-verdicts — redefined: "update the wiki" became units with verdicts
+39	elsewhere:the vault's own CLAUDE.md, and scripts/vault-check.sh — built, plus the reverse link supersedes:; a deprecated page still in wiki/ is a hard failure
+40	page:the-index-is-a-map-not-a-catalogue — log.md at every ingest; index.md only when the map itself changes
+42	skip:section heading — the verdicts are on the section's units
+43	page:lint-waits-for-an-open-sprint — cadence taken verbatim, and the audit has still never run
+44	skip:a label introducing the three checks below
+45	elsewhere:scripts/vault-check.sh — made mechanical instead of annual: rule 5, on every write
+46	page:lint-waits-for-an-open-sprint,the-owners-instructions-note-and-what-was-built-from-it — the vocabulary is current, not active; "is this still true" is the judgement half and has never run
+47	page:the-owners-instructions-note-and-what-was-built-from-it,lint-waits-for-an-open-sprint — unbuilt: no skill and no script reconciles entities/ against decisions/
+49	skip:section heading — the verdicts are on the section's units
+50	elsewhere:the repository's CLAUDE.md — it carries the trigger: /pre-task before anything non-trivial and before an untouched area
+51	skip:a label introducing the step below
+52	page:one-librarian-behind-every-caller — built differently: the agent dispatches the librarian, which enumerates every decisions/ page; index.md lists no pages to read
+54	skip:section heading — the verdicts are on the section's units
+55	page:a-sprint-closes-on-its-goal — not a label but the trigger: closure is timed to the retrospective. Half of it survived — the retrospective is still the vault's only per-sprint cadence, and /vault-lint is defined against it — and half did not: a sprint closes when the owner declares it closed against the goal, never as a consequence of the retrospective ending, and the librarian closes none
+56	page:journal-vault-brief-each-artefact-has-one-owner — built stronger: an ingest ends every session, not every sprint
+57	page:a-sprint-closes-on-its-goal — rejected by measurement: 31 pages cite raw/handoffs/ and the first close would break all 31
+58	page:the-owners-instructions-note-and-what-was-built-from-it — how to use the file: this note is the ancestor of the vault's own CLAUDE.md
+59	page:the-owners-instructions-note-and-what-was-built-from-it — the same instruction, its second line

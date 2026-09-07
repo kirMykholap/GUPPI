@@ -1,0 +1,75 @@
+7	skip:document title — the sections below carry the verdicts
+9	skip:section heading — §1 is journal by the template; every unit in it still carries its own verdict
+11	journal
+17	journal
+20	journal
+23	journal
+29	journal
+35	skip:section heading — the verdicts are on the section's units
+37	page:markdown-is-pinned-to-lf — the second rule in `.gitattributes`, and why the first one was `*.sh`
+38	page:vault-librarian,a-rewriter-must-be-paired-with-a-detector — the new path and the unchanged content on the entity page; the misspelt directory and the eleven rewritten references on the lesson
+43	page:the-audits-findings-are-owed-to-the-owner — finding #6 is that skill file, and both its items are discharged by this change
+46	page:vault-scripts — the seventh section's new shape, in the entity page that owns the script
+47	page:line-endings-make-git-status-overstate-what-changed — a second producer of the same class of diff noise, on the page that already carries the class
+51	skip:section heading — the verdicts are on the section's units
+53	page:markdown-is-pinned-to-lf — new; LF, the rejected widening to `*.py` and `*.html`, and the unpinned `.gitattributes` it obliges
+59	page:the-folder-is-the-first-narrowing,vault-scripts — the reasoning for ten and per folder was compiled on 2026-08-16 by the earlier dispatch; the script's own section carries what it prints
+67	page:the-dense-tags-are-not-split-and-the-standing-advisories-are-named-here — the decision itself, with the per-folder table it was taken against
+73	page:batches-stays-a-tag-of-its-own — new; the refusal, with the four reasons brought up from §7
+75	page:a-title-names-what-is-counted-instead-of-counting-it — new; the rule, both rejected versions, and the technique that replaces a count
+81	page:a-title-names-what-is-counted-instead-of-counting-it — the eight non-compliant titles and the three S2 will break on purpose
+84	page:the-titles-form-follows-the-records-type — new; noun phrase for an entity, a stated claim for a decision or a lesson
+89	page:the-index-reads-and-the-schema-writes — new; the reader/writer split and the three measured duplications
+95	page:the-repository-claude-md-becomes-a-dispatch-table,claude-md-is-a-map-and-four-rules — the new decision, and a note on the page describing the file as it stands that it is not yet superseded
+102	page:rules-becomes-a-type-of-its-own — new; the type, the injector, and S2
+105	page:ingest-is-batched-at-the-retrospective — new; the measured reason and what accumulating sources cost
+110	page:the-measurement-is-whether-the-vault-changed-what-a-session-did — new; two numbers per session and no invented scale
+115	page:the-dense-tags-are-not-split-and-the-standing-advisories-are-named-here — the owner's reading of criterion 3, and the `sprint.md` entry it owes, which the librarian does not write
+120	skip:section heading — the verdicts are on the section's units
+122	page:the-stale-stat-cache-behind-git-status — new; the cached stat size, the `ls-files --debug` figures, and `git add -A`
+130	page:the-stale-stat-cache-behind-git-status — delete-then-checkout, on the same mechanism page
+134	page:vault-scripts — the folder derived from the path in the pass that was already running, and `archive/` excluded by construction
+138	page:the-folder-is-the-first-narrowing — compiled 2026-08-16 by the earlier dispatch, including the silent-miss caveat
+144	page:claude-md-can-lose-an-assertion-but-cannot-strand-a-page — new; rule 5b, reachability, and what a cut can actually lose
+150	skip:section heading — the verdicts are on the section's units
+152	page:the-evidence-was-not-wrong-the-instrument-was-too-coarse — new; and told apart from the two failure classes it resembles
+159	page:a-proposal-must-be-rechecked-when-the-frame-changes — new; the frame changed inside the session that made the proposal
+166	page:the-turn-that-explains-a-rule-adds-exceptions-to-it — new; why the unconditional version was the one the owner kept
+171	page:the-unreadable-mass-is-in-the-plans-not-the-vault — new; the measurement, with §8's quotation of the complaint it answers
+177	skip:section heading — the verdicts are on the section's units
+179	skip:table header — the rows below carry the verdicts
+181	page:structure-work-agreed-and-not-executed,lint-waits-for-an-open-sprint — the row, and a note on the page whose title is false that the retitle is decided and not performed
+182	page:structure-work-agreed-and-not-executed,staleness-checks-run-at-different-times-and-ask-different-questions — the row, and a note on the page that this one is undecided and its filename is false too
+183	page:structure-work-agreed-and-not-executed,the-index-reads-and-the-schema-writes — the deferral, and the decision behind what the file becomes
+184	page:structure-work-agreed-and-not-executed,claude-md-may-point-and-may-not-assert — the row, and the design that would answer criterion 4
+185	page:structure-work-agreed-and-not-executed,an-alias-may-point-at-a-page-not-only-at-a-tag — the row, and the proposal written on 2026-08-16 and not taken
+186	page:structure-work-agreed-and-not-executed,the-wiki-has-five-folders-and-tasks-is-not-one — the row, and the standing decision it repeats
+187	page:structure-work-agreed-and-not-executed,reconciling-entities-against-the-decision-register — the row, and the proposal whose first run is blocked by exactly this gap
+188	page:structure-work-agreed-and-not-executed,moving-raw-into-a-dated-archive — the row, and the proposal carrying the cheaper shape and the 115 citations
+189	page:structure-work-agreed-and-not-executed,moving-raw-into-a-dated-archive — the row, and the open question of whether it happens before the move
+190	page:structure-work-agreed-and-not-executed,a-skill-is-a-mask-and-a-subagent-is-a-body — the row, and the fork stated with both halves
+191	page:structure-work-agreed-and-not-executed,markdown-is-pinned-to-lf — the row, and the decision that names it as what it obliges
+193	skip:section heading — §7 goes to `log.md` by the template; every entry is written there under the kind it names, and those that also carried knowledge name their page below
+195	page:line-endings-make-git-status-overstate-what-changed,markdown-is-pinned-to-lf — the wrong price corrected beside the estimate, and the true cost of the commit that was made
+199	page:the-stale-stat-cache-behind-git-status — the cause the lesson page called unidentified, given its own page
+206	page:the-stale-stat-cache-behind-git-status — the `-f` that does not force, on the same page
+209	page:markdown-is-pinned-to-lf — the per-extension table, as observed at `86823e3`
+213	elsewhere:log.md — a `lint:` entry; it was discharged inside the same session by the earlier dispatch, and the transfer is what records that it was owed
+222	page:batches-stays-a-tag-of-its-own — the four reasons and the mechanical cost are the body of that page
+239	elsewhere:log.md — a `lint:` entry; both pages were written inside the same session by the earlier dispatch
+245	page:the-dense-tags-are-not-split-and-the-standing-advisories-are-named-here — the per-folder table at `94483b1`, on the decision it was taken for
+250	page:claude-md-can-lose-an-assertion-but-cannot-strand-a-page — the shape it names, as instance 4; the schema itself is the vault's `CLAUDE.md`, which the librarian does not write, so the fix is logged as a miss and not made
+262	page:claude-md-can-lose-an-assertion-but-cannot-strand-a-page — instance 5, created inside an hour by a file move
+267	page:a-rewriter-must-be-paired-with-a-detector — new; complete for `sources:`, blind in prose, and what was deliberately left naming the old path
+280	page:a-skill-is-a-mask-and-a-subagent-is-a-body — new; the owner's model and the fork it opens
+289	page:a-schema-per-type-says-what-a-record-asserts — new; both mis-filed records also carry a note of their own
+296	page:claude-md-may-point-and-may-not-assert — new; the three facts from the code, the approximation, and the half the owner declined
+305	page:line-endings-make-git-status-overstate-what-changed — the editor's reformatting, filed with the noise class it belongs to
+310	page:the-measurement-is-whether-the-vault-changed-what-a-session-did — the first reading of the measurement the same journal decided to keep
+311	page:the-measurement-is-whether-the-vault-changed-what-a-session-did — the four lookups named, in the table on that page
+318	page:agent-round-trip-cost — the fifth writing dispatch, recorded as observed and not as a rate
+322	page:the-unreadable-mass-is-in-the-plans-not-the-vault — both halves of the comparison, measured 2026-08-16
+327	skip:section heading — the verdicts are on the section's units
+329	page:the-unreadable-mass-is-in-the-plans-not-the-vault — the owner's statement of the problem, quoted rather than paraphrased
+335	page:the-unreadable-mass-is-in-the-plans-not-the-vault — the criterion that names its command, and the plans that have nothing of the kind
+341	page:a-title-names-what-is-counted-instead-of-counting-it — the three titles S2 breaks by design, as an obligation on whoever executes it

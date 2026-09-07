@@ -1,0 +1,121 @@
+7	journal
+9	journal
+12	journal
+14	journal
+21	journal
+27	journal
+30	journal
+33	journal
+35	journal
+36	journal
+37	journal
+38	journal
+40	journal
+42	journal
+45	journal
+47	journal
+49	page:the-pre-task-state-library
+52	page:the-plan-check-hook
+54	page:the-plan-check-hook,vault-scripts — the script, and why it is not under .claude/hooks/
+57	page:the-pre-task-ledger
+59	page:the-pre-task-ledger — with the divergence it caused recorded on its own page
+61	page:the-pre-task-rule-leaves-claude-md-for-a-hook-message — the gap is closed there: the directory is what the rule now governs
+64	journal
+66	page:the-guard-chain-appends-the-net-rather-than-branching-on-it,session-hooks
+69	page:session-hooks,the-pre-task-ledger
+70	page:vault-scripts — the changed scripts, one line each
+73	journal
+75	journal
+77	page:the-pre-task-trigger-becomes-the-plan-and-the-first-write
+80	page:the-pre-task-trigger-becomes-the-plan-and-the-first-write
+88	page:the-pre-task-trigger-becomes-the-plan-and-the-first-write
+91	page:the-pre-task-rule-leaves-claude-md-for-a-hook-message
+94	page:the-pre-task-rule-leaves-claude-md-for-a-hook-message,core-is-what-bootstraps-the-asking-and-what-is-irreversible-if-missed,the-javascript-rule-leaves-claude-md-and-is-not-yet-removed
+103	page:advisory-is-the-default-for-a-hook,the-plan-check-hook
+109	page:paths-is-required-where-it-is-read-and-nowhere-else
+112	page:paths-is-required-where-it-is-read-and-nowhere-else
+117	page:the-pre-task-rule-leaves-claude-md-for-a-hook-message,a-pre-task-paid-for-itself-in-findings-nobody-would-have-made
+121	page:one-pre-task-per-approved-scope-and-the-answer-comes-back-per-item
+126	page:the-write-net-requires-a-session-id
+130	page:the-vault-is-excluded-from-the-pre-task-net
+134	page:the-one-writer-note-speaks-once-per-session
+139	page:the-approved-scope-survives-a-compact-and-not-a-clear
+145	page:the-pre-task-ledger,the-retro-writes-its-own-transit-file
+150	page:dispatch-librarians-in-parallel-only-for-reading
+153	page:dispatch-librarians-in-parallel-only-for-reading,parallel-librarians-break-the-one-writer-property
+160	page:the-out-of-band-write-pair-is-answered-by-a-rule-and-a-declined-risk
+163	page:the-out-of-band-write-pair-is-answered-by-a-rule-and-a-declined-risk
+169	page:an-approved-scope-was-widened-by-a-step-that-was-forced-rather-than-chosen
+171	page:an-approved-scope-was-widened-by-a-step-that-was-forced-rather-than-chosen,narrowing-a-scope-notifies-and-widening-it-asks
+174	page:an-approved-scope-was-widened-by-a-step-that-was-forced-rather-than-chosen
+177	page:an-approved-scope-was-widened-by-a-step-that-was-forced-rather-than-chosen
+182	page:an-approved-scope-was-widened-by-a-step-that-was-forced-rather-than-chosen
+184	page:a-shell-script-was-edited-while-bash-was-executing-it
+186	page:a-shell-script-was-edited-while-bash-was-executing-it,do-not-change-a-working-file-mid-work
+189	page:a-shell-script-was-edited-while-bash-was-executing-it
+192	page:a-shell-script-was-edited-while-bash-was-executing-it,do-not-change-a-working-file-mid-work
+196	page:a-shell-script-was-edited-while-bash-was-executing-it
+198	journal
+200	page:the-pre-task-state-machine-has-a-flag-for-the-plan-and-a-flag-for-the-write
+207	page:one-ledger-is-the-record-the-heartbeat-and-the-permission-mode
+213	page:one-ledger-is-the-record-the-heartbeat-and-the-permission-mode
+217	page:the-guard-chain-appends-the-net-rather-than-branching-on-it
+223	page:the-ritual-records-itself-rather-than-being-detected
+228	page:a-generated-rule-file-with-no-paths-carries-no-frontmatter
+234	page:no-hook-event-fires-when-the-permission-mode-changes,exit-plan-mode-is-an-ordinary-tool-and-the-owner-performs-the-transition — the lead-in; each bullet under it carries its own page
+236	page:no-hook-event-fires-when-the-permission-mode-changes
+239	page:exit-plan-mode-is-an-ordinary-tool-and-the-owner-performs-the-transition
+241	page:exit-plan-mode-is-an-ordinary-tool-and-the-owner-performs-the-transition
+243	page:the-vs-code-extension-reads-its-starting-mode-from-user-settings,claude-code-config-loading
+246	page:switching-permission-modes-is-cache-safe
+250	page:plan-mode-blocks-edits-and-not-a-subagent-dispatch
+254	journal
+256	page:a-fixture-must-materialise-what-the-subject-reads,the-pre-task-state-library
+264	page:a-refusal-written-as-one-glob-can-match-none-of-the-paths-it-guards
+271	page:a-column-a-human-reads-is-not-the-column-a-branch-reads
+276	page:once-per-session-is-undefined-without-a-session
+282	page:add-content-utf8-writes-a-bom-in-front-of-the-first-field
+286	page:a-shell-script-was-edited-while-bash-was-executing-it,do-not-change-a-working-file-mid-work
+290	page:an-alarm-that-fires-when-nothing-is-wrong-is-one-you-learn-not-to-read
+292	page:an-alarm-that-fires-when-nothing-is-wrong-is-one-you-learn-not-to-read,the-one-writer-note-speaks-once-per-session
+298	page:a-rule-applied-in-opposite-directions-on-one-day-is-not-a-reversal
+303	page:a-pre-task-paid-for-itself-in-findings-nobody-would-have-made
+310	page:a-tree-broken-for-a-real-reason-is-a-better-fixture-than-a-planted-offender,the-plan-check-hook
+313	journal
+315	page:the-pre-task-rule-leaves-claude-md-for-a-hook-message,a-rule-moving-to-conditional-delivery-needs-its-page-first — no longer deferred: it landed at this ingest
+320	page:the-approved-scope-survives-a-compact-and-not-a-clear
+323	page:what-reaches-a-subagent-a-scoped-rule-does-and-an-html-comment-does-not
+326	page:the-system-naming-which-hooks-block
+329	elsewhere:sprint.md — the next list belongs to the sprint, and the librarian reports it there
+330	page:a-deferred-check-must-be-run-when-its-condition-arrives
+331	page:the-pre-task-ledger
+333	page:the-pre-task-rule-leaves-claude-md-for-a-hook-message
+335	page:the-vs-code-extension-reads-its-starting-mode-from-user-settings
+338	page:a-rule-usage-axis-for-vault-lint
+340	page:a-rule-usage-axis-for-vault-lint
+343	page:a-rule-usage-axis-for-vault-lint
+345	page:a-rule-usage-axis-for-vault-lint
+349	page:a-rule-usage-axis-for-vault-lint
+351	page:a-rule-usage-axis-for-vault-lint,the-pre-task-ledger
+355	page:a-rule-usage-axis-for-vault-lint,the-tag-density-advisories-move-behind-lint
+360	elsewhere:log.md
+362	elsewhere:log.md — the undrained line is itself the process finding below
+366	elsewhere:log.md — a process: line; the repair belongs to .claude/skills/ingest/SKILL.md
+377	elsewhere:log.md — a miss: line; the figure is corrected on the successor rule page
+390	journal
+393	journal
+395	elsewhere:log.md — measure: lines, figures copied as observed
+397	page:the-plan-check-hook,session-hooks — and a measure: line in log.md
+400	page:one-pre-task-per-approved-scope-and-the-answer-comes-back-per-item — and a measure: line in log.md
+404	elsewhere:log.md — a measure: line, and the tree comparison in the brief
+406	journal
+410	journal
+412	journal
+414	page:a-pre-task-runs-between-the-plan-and-its-approval
+420	page:the-pre-task-rule-leaves-claude-md-for-a-hook-message
+424	page:dispatch-librarians-in-parallel-only-for-reading
+427	page:the-out-of-band-write-pair-is-answered-by-a-rule-and-a-declined-risk
+430	page:a-rule-usage-axis-for-vault-lint
+432	page:the-javascript-rule-leaves-claude-md-and-is-not-yet-removed — flagged there as owed; the re-reading is the owner's
+435	elsewhere:.claude/skills/ingest/SKILL.md — the tie-break, also filed as a process: line in log.md
+437	page:the-governed-denominator-may-grow-and-the-criterion-stays-a-file-count — and reported in sprint.md and the brief

@@ -1,0 +1,249 @@
+# What a page in this folder must and may carry.
+#
+# vault-check.sh READS THIS FILE. It is the one list: nothing restates it, and a key that
+# appears in neither block below is rejected by the gate. Two lists of the same set drift,
+# and this store has already lost two selftest cases to exactly that.
+#
+# THIS FILE ENCODES WHAT IS DECIDED, NOT WHAT IS OBSERVED. A field carried by every page
+# today is not thereby required: that is how `quantity:` entered this store, around the
+# admission procedure, and it took a day to remove. A field moves from `optional` to
+# `required` when a decision says so, and the decision names the page it is written on.
+
+type: rule
+
+# The core, decided 2026-08-16 on [[the-frontmatter-core-is-fixed-and-updated-joins-it]].
+required:
+  - title
+  - type
+  - status
+  - created
+  - sources
+  - tags
+  - sprint
+  # NAMES ONE FILE OR SEVERAL, decided 2026-08-21. `governs: CLAUDE.md` and
+  # `governs: [CLAUDE.md]` mean the same thing; an inline list names more than one destination
+  # and is the spelling this corpus already writes `tags:` and `sources:` in. A block list -
+  # indented `- path` lines - is NOT accepted by either reader, deliberately: the injector WRITES
+  # the files it resolves, so a spelling that is half-parsed renders a rule into a subset of where
+  # it belongs and leaves the gate reading the rest as drift.
+  #
+  # The occasion is a second reading agent: the shared reading discipline has to reach both the
+  # librarian and the pre-task agent, and copying it into the second is the divergence failure the
+  # whole injector exists to prevent. Thirteen pages carried the bare form when this landed and
+  # none was touched.
+  #
+  # `governs:` MOVED TO `optional:` ON 2026-08-30 and the paragraph above is left as it was
+  # written, because it is still true of every rule delivered by injection. What changed is that
+  # injection stopped being the only delivery: `render: authority` names a rule found by a lookup
+  # on its slug, and such a page has no destination to write here. A key cannot be required in a
+  # folder where one legal mode makes it meaningless, and a per-folder schema cannot say "required
+  # unless `render:` says otherwise" - so the obligation moved into the gate, where the
+  # `nogoverns` verdict now reads `render:` before it fires. That is the arrangement `paths:`
+  # already had in the other direction ([[the-cleanup-suspends-the-rules-that-would-refuse-it]]).
+  # Promoted from optional on 2026-08-19, owner's ruling: the field conflict
+  # resolution rests on cannot be one a page may omit.
+  # [[the-frontmatter-core-is-fixed-and-updated-joins-it]]
+  - basis
+  # `render` names WHICH WAY this rule is delivered. Decided 2026-08-19, owner's ruling, and
+  # REQUIRED from the moment the nine existing rule pages carried it - which they did the same
+  # session, so this field never spent a day as a default anybody had to remember.
+  #
+  # It was refused on 2026-08-17 for a reason that has since expired: only the `region` mode
+  # existed, so the field would have carried one legal value, with no writer and no reader that
+  # could branch on it ([[render-was-not-introduced]]). That page named its own re-entry
+  # condition - the day a second delivery mode is built - and the `whole` mode is that day.
+  #
+  # ITS DISCRIMINATING POWER WAS PROSPECTIVE FOR ONE DAY. Written 2026-08-19 as: all nine rule
+  # pages govern `CLAUDE.md`, all nine render into a region, so the field carries one value
+  # across the folder until the first `whole` page is written. **That stopped being true on
+  # 2026-08-20**, when `an-ast-boundary-test-is-fixed-at-its-cause-not-in-the-test` moved to
+  # `.claude/rules/ast-boundaries.md` under `render: whole` - eight regions and one generated
+  # file. The sentence is corrected here rather than left standing, because a schema comment is
+  # read as a statement about the tree it sits in.
+  - render
+  # THE DECISION THAT CAUSED THIS PAGE. A field of its own rather than a line in `sources:`,
+  # which would then mean both what a page was compiled FROM and what CAUSED it, with no way for
+  # a reader to tell which a given entry was; and rather than a link in the body, which no
+  # machine can separate from a decision the page merely mentions
+  # ([[decided-by-is-a-field-of-its-own-and-not-a-line-in-sources]]). It is a `[[wikilink]]`,
+  # never a path, and there is exactly one: a page has one cause.
+  #
+  # LEGAL IN `wiki/proposals/` AND `wiki/rules/` ALONE, decided 2026-08-23 on the causal chain
+  # the owner stated - a decision produces a proposal or a rule and nothing else, and anything
+  # further down names what it descends from in `sources:`. This narrows the ruling of the day
+  # before, which obliged the field in all six
+  # ([[decided-by-is-legal-in-proposals-and-rules-and-required-in-rules]]).
+  #
+  # AND THE ALL-SIX ARGUMENT DOES NOT REACH A KEY, which is why the narrowing is safe rather than
+  # merely permitted. That argument was transplanted from the `status:` block below, where it is
+  # about legal VALUES and is correct: the `badvalue` verdict iterates the fields a folder
+  # DECLARES values for, so a folder left out loses that verdict silently, in the direction of
+  # passing. A KEY fails the other way - `scripts/vault-check.sh` reddens a page carrying a key
+  # that appears in neither block - so a key belongs only where it is legal, and a folder left
+  # out refuses rather than waves through.
+  #
+  # REQUIRED HERE FROM 2026-08-23, once all fifteen rule pages carried it and not before. `authority:` is
+  # forbidden in this folder, so this field is the ONLY way a rule can name the decision behind
+  # it; today all fifteen name their decisions inside `sources:`, indistinguishable from the file
+  # they govern and from every other citation, and five name no decision there at all.
+  #
+  # REQUIRED FIRST WOULD HAVE DEADLOCKED THE FILL, which is why it was not. Red here turns the
+  # gate red, and
+  # `lock-the-librarian.ps1` reads a red gate as a refusal to dispatch - locking out the only
+  # writer permitted to fill the field ([[a-lock-on-a-red-tree-hides-the-health-of-what-it-guards]]).
+  # Legal and optional, then the back-fill, then promote: the order recorded in this file set's
+  # own `authority` block, and applied there before. The fifteenth page had NO decision behind it
+  # at all - the rule had been enforced for nine days without one - and the owner ratified it
+  # rather than let the field be pointed at the nearest plausible page
+  # ([[the-ask-before-weakening-rule-is-ratified-after-being-enforced-without-a-decision]]).
+  - decided_by
+
+optional:
+  # The glob set a `render: whole` rule is scoped to, synced verbatim into the generated file's
+  # frontmatter ([[paths-lives-on-the-vault-page-and-is-written-widest]]). Optional and not
+  # required, because it is meaningless under `render: region` - a region has no scope of its
+  # own, it goes where `governs:` says. The injector reports a `whole` page carrying none, which
+  # is the conditional requirement a per-folder schema cannot express.
+  - paths
+  # Moved here from `required:` on 2026-08-30. Required in practice for `render: region` and
+  # `render: whole`, forbidden for `render: authority`, and the gate holds that condition because
+  # the schema cannot express it. The argument for requiring it at all is where it was written,
+  # in the `required:` block above.
+  - governs
+  - updated
+  - supersedes
+  - superseded_by
+
+  # `authority:` BECAME LEGAL HERE ON 2026-08-30, and it had been forbidden in this folder alone
+  # since 2026-08-21. The old ground was that a rule answers with `governs:`, so a rule carrying
+  # `authority:` would share a slug with the decision it states and the pair would read as a
+  # contradiction. THAT GROUND IS GONE: rule 3 of the gate now compares slugs WITHIN A TYPE, so a
+  # decision and the rule stating it may share one and neither reddens - which is not a loophole
+  # but the point, because the shared slug is how a reader gets from one to the other
+  # ([[the-cleanup-suspends-the-rules-that-would-refuse-it]]).
+  #
+  # OPTIONAL AND NOT REQUIRED, and the asymmetry is deliberate. A rule delivered by injection
+  # answers with `governs:` and needs no slug; a rule delivered by lookup answers with
+  # `authority:` and has no destination to name. Neither field can be required here without
+  # making the other kind of rule illegal, and a per-folder schema cannot say "one of these two".
+  # The gate carries that condition instead, in the `nogoverns` verdict, which is the same
+  # arrangement `paths:` already has above.
+  - authority
+
+  # `Links:` WAS REMOVED FROM ALL SIX SCHEMAS ON 2026-08-30 and the key is legal nowhere. It was
+  # admitted on 2026-08-23 to carry the body's `[[wikilinks]]` so a reader could walk the graph
+  # without opening the page, filled by a script rather than by an agent. THE SCRIPT WAS NEVER
+  # WRITTEN AND NO PAGE EVER CARRIED THE FIELD - zero under `wiki/` and zero under `archive/`,
+  # measured the day it was removed, which is why removing the key reddens nothing.
+  #
+  # WHAT KILLED IT is that the graph it would have cached exists twice over already. Obsidian
+  # builds its graph from the `[[wikilinks]]` in the body, so the field bought that reader nothing;
+  # and an agent reads one page's outgoing links with a single grep over that one file, without
+  # loading the page at all, so it bought that reader nothing either. The owner found the first
+  # half by looking at his own graph. A field with no writer and no reader is a comment with a
+  # colon in it ([[a-rule-with-no-instrument-behind-it-is-a-rule-a-fixture-can-violate-for-a-week]]).
+  #
+  # The proposal that designed the script was refused in the same change rather than left standing
+  # over a field that no longer exists ([[links-is-filled-by-a-script-from-the-bodys-wikilinks]]).
+
+# THE LEGAL VALUES OF A FIELD, decided 2026-08-19 on the owner's ruling. Until then the gate
+# enforced that `basis` was PRESENT and said nothing about what it said, so `basis: banana`
+# passed on the one field conflict resolution rests on. A value outside the list below is red.
+#
+# The list is decided on the vault's own CLAUDE.md, section `basis`, which gives each value and
+# its meaning. It is NOT swept off the corpus: a field's legal values being read off the pages
+# that happen to carry them is how a typo becomes law, and it is the same mistake `quantity:`
+# was. Same rule as the key set above - this file encodes what is decided.
+#
+# A `values:` header that parses to nothing is red, for the reason the key set is: a silent
+# empty list turns the check into "every value is fine", in the direction of passing.
+values:
+  basis:
+    - human
+    - code
+    - measurement
+    - external
+    - inference
+  # A region is a slice written into a file that has a life of its own, and the paired markers
+  # protect the rest of it. `whole` is a file with no life of its own - frontmatter and the rule
+  # and nothing else - where there is nothing around the text to protect and the script owns the
+  # bytes end to end ([[a-claude-rules-file-is-generated-whole-and-deleted-by-its-own-marker]]).
+  # `authority` WAS MINTED AS THE THIRD MODE ON 2026-08-30. The rule is written into no file: it is
+  # found by a lookup on its `authority:` slug, by `.claude/hooks/serve-the-rule.ps1`, at the moment
+  # a file that slug answers for is touched. So such a page carries `authority:` and no `governs:`,
+  # and the gate reddens either half of that being wrong.
+  #
+  # WHY A THIRD MODE RATHER THAN A NEW FOLDER: the folder set is closed, and a rule is still what
+  # this is - text written to reach a reader who did not come looking. What changed is the carrier,
+  # which is exactly what this field names.
+  #
+  # THE VALUE HAS A READER FROM THE DAY IT WAS MINTED, which is the test this store applies after
+  # minting `status: repealed` with none: the gate branches on it in three places and the hook is
+  # what delivers it. A value nothing reads is a comment with a colon in it
+  # ([[a-rule-with-no-instrument-behind-it-is-a-rule-a-fixture-can-violate-for-a-week]]).
+  #
+  # THE COMMENT SITS ABOVE THE KEY AND NOT AMONG THE ITEMS, and that is not a style choice. The
+  # gate reads a `values:` list by taking every indented line under the key until the indentation
+  # ends, so a comment written between two items IS an item: the three paragraphs above, placed
+  # there first, became legal values of `render:` and blew the awk argument list past its limit -
+  # the whole frontmatter pass then produced nothing, silently, and the only symptom was every
+  # registered tag reported as unused.
+  render:
+    - region
+    - whole
+    - authority
+
+  # THE TWO STATUSES THIS STORE HAS ALWAYS HAD, moved here 2026-08-23 from
+  # `scripts/vault-check.sh`, where they were hardcoded in the awk pass and restated in the
+  # message beside it. The gate is the reader, not the register - the same ground the key set
+  # moved on ([[the-legal-value-list-lives-in-each-folders-schema]]).
+  #
+  # WRITTEN INTO EVERY FOLDER'S FILE, and not only into the one that needed a third value. The
+  # `badvalue` verdict iterates the fields a folder DECLARES values for, so a folder omitting
+  # this block would lose its status check entirely, and silently - which is the direction that
+  # hides a defect. `implemented` is legal in `proposals/` alone; here the word is red, and that
+  # is the protection rather than an oversight
+  # ([[implemented-joins-the-legal-status-values-and-the-status-block-enters-every-schema]]).
+  # `archived`, ADMITTED 2026-08-28, and the value enters every schema BEFORE any sweep writes it
+  # ([[the-archiver-sets-status-archived-and-the-value-enters-the-schema-first]]).
+  #
+  # WHY IT IS NEEDED HERE AT ALL, WHICH IS NOT THE REASON THAT PAGE GIVES. The gate's frontmatter
+  # pass reads `find "$VAULT/wiki"` and nothing else - `scripts/vault-check.sh:84` - so a page that
+  # has ALREADY reached `archive/` is validated by no schema and could carry any word. What makes
+  # the declaration necessary is the sweep's own failure mode, decided 2026-08-28: it continues past
+  # a refused move, collects the refusals and reports them at the end. So a page can be left HERE
+  # carrying the mark of a move that did not complete, and an undeclared value would report that as
+  # a schema fault rather than as the half-finished move it is.
+  #
+  # A RULE REACHES THIS VALUE BY A ROUTE OF ITS OWN. Its archival condition is `deprecated` plus a
+  # decision behind the overturn, and the librarian sets that mark and only that one; `archived` is
+  # then written by the sweep as it moves the page. So a rule page can legitimately carry
+  # `deprecated` here for as long as it takes the next sweep to run, and never `archived`.
+  status:
+    - current
+    - deprecated
+    - archived
+
+    # `repealed` - THE PAGE WAS CANCELLED AND IS REPLACED BY NOTHING. Minted 2026-08-30, and legal
+    # in this folder alone.
+    #
+    # WHY `deprecated` COULD NOT CARRY IT. `deprecated` means the page was REPLACED because it went
+    # false, and `scripts/vault-archive.sh` refuses to release such a page without a live successor
+    # named in `superseded_by:` - the strongest test this store has, chosen deliberately over a
+    # weaker floor, because nothing in `archive/` is swept, checked or read by `/pre-task`, so a page
+    # nothing points at has left the store rather than been filed in it. A cancellation HAS no
+    # successor and can have none (owner, 2026-08-30, overturning the ruling of the day before that
+    # a repeal is recorded by supersession). Under `deprecated` alone such a page could therefore
+    # never leave `wiki/` at all: it would sit here carrying a claim that is false, or be given an
+    # invented successor. Both were on the table and both are worse than a value of its own.
+    #
+    # THE REFUSAL IS NOT WEAKENED, WHICH IS THE POINT OF A SEPARATE VALUE. `deprecated` without a
+    # successor stays refused, unconditionally. This value opens a second route with its own
+    # precondition - the decision that cancelled the page, named in `decided_by:` - rather than
+    # making the first route conditional on a field a page could simply omit.
+    #
+    # AND THE DECISION BEHIND IT NEVER LEAVES. A `target_kind: repeal` decision is refused by the
+    # archiver and stays live in `wiki/decisions/` for good, because once this page reaches
+    # `archive/` that decision is the only live carrier of the fact that the rule is gone
+    # ([[a-decisions-archival-condition-is-read-off-its-binding]]).
+    - repealed

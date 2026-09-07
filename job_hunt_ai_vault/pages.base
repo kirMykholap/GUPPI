@@ -1,0 +1,81 @@
+filters:
+  and:
+    - file.inFolder("wiki")
+properties:
+  title:
+    displayName: Title
+  type:
+    displayName: Kind
+  status:
+    displayName: Status
+  sprint:
+    displayName: From
+  authority:
+    displayName: Answers for
+  governs:
+    displayName: Renders into
+  decided:
+    displayName: Decided
+views:
+  - type: table
+    name: Every page
+    filters:
+      and:
+        - file.inFolder("wiki/decisions")
+    order:
+      - file.name
+      - title
+      - type
+      - status
+      - sprint
+      - tags
+      - governs
+      - file.mtime
+      - authority
+      - binding
+    sort:
+      - property: authority
+        direction: ASC
+      - property: tags
+        direction: ASC
+    columnSize:
+      file.name: 387
+      note.title: 875
+      note.type: 83
+      note.status: 171
+      note.governs: 318
+  - type: table
+    name: Decisions by date
+    filters:
+      and:
+        - type == "decision"
+    order:
+      - decided
+      - title
+      - authority
+  - type: table
+    name: Rules and where they render
+    filters:
+      and:
+        - type == "rule"
+    order:
+      - title
+      - governs
+      - status
+  - type: table
+    name: Proposals still standing
+    filters:
+      and:
+        - type == "proposal"
+        - status == "current"
+    order:
+      - title
+      - sprint
+  - type: cards
+    name: Lessons
+    filters:
+      and:
+        - type == "lesson"
+    order:
+      - title
+      - tags

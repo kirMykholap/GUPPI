@@ -1,0 +1,67 @@
+7	skip:document title — the sections below carry the verdicts
+9	skip:section heading — the template files section 1 as journal; every unit in it still carries its own verdict
+11	journal
+15	journal
+20	journal
+24	journal
+28	journal
+31	skip:section heading — the verdicts are on the section's units
+33	journal
+35	skip:an artefact under docs/superpowers/, cited in `sources:` by fourteen pages of this ingest rather than described by one; no spec has an entity page here, and freezing rather than compiling it is the decision at line 76
+36	page:grill-me-skill — new; the path, the four moving parts, what it drove, and that it is the owner's file rather than the librarian's
+41	journal
+43	page:the-harness-is-built-by-a-script-and-guarded-by-a-gate,a-staleness-detector-from-updated-against-a-pages-sources,an-authority-register-on-the-model-of-the-tag-dictionary — designed and not existing, so each lands in proposals/, never in entities/; `wiki/rules/` is on rules-becomes-a-type-of-its-own and the template on the decision at line 110
+46	skip:section heading — the verdicts are on the section's units
+48	page:the-harness-is-compiled-not-maintained — new; the claim, both rejected alternatives, and the admission test brought up from line 115
+54	page:the-harness-is-compiled-not-maintained,measurement-settled-what-argument-could-not — the rejection sits with the decision it belongs to; that a number ended the argument is the lesson
+59	page:a-harness-change-is-recorded-when-it-is-decided — new; the marked line, the section cut, and why a classifier cannot detect absence
+64	page:the-steward-is-scripts-that-run-after-the-librarian — new; the monopoly, the rejected parallel steward, and the lost write of 2026-08-14 behind it
+69	page:ingest-runs-after-handoff-at-the-end-of-a-session — new, and marked CONTRADICTION against ingest-is-batched-at-the-retrospective on both pages; the rename and the surviving sense of batching are here
+76	page:raw-holds-testimony-and-artefacts-are-frozen — new; the testimony/artefact line, the unit measurements, and the S1 criterion 2 proof
+83	page:archive-is-dated-by-session-and-holds-what-left-the-working-set — new; dated by session, the rejected sessions/ folder, and the empty inbox
+89	page:raw-holds-testimony-and-artefacts-are-frozen,archive-is-dated-by-session-and-holds-what-left-the-working-set — the freezing argument on the first, the one-wave migration on the second
+92	page:the-frontmatter-core-is-fixed-and-updated-joins-it — new; the core, and which fields survive on the checksum half
+95	page:the-frontmatter-core-is-fixed-and-updated-joins-it — `decided` stays, with the 8-of-58 figure and the rejected alternative
+99	page:the-frontmatter-core-is-fixed-and-updated-joins-it — `supersedes` and the unchecked symmetry, listed among the three checks the schema owes
+102	page:the-proposal-status-cannot-tell-built-from-refused — new; the defect recorded and deliberately not fixed
+106	page:entities-describe-the-application-once-the-detector-exists — new; the decision, the objection, and the three bounds
+110	page:the-handoff-template-moves-out-of-raw-and-drops-its-numbers — new; the move, the dropped numbers, the Harness section and the owner's marked token
+115	page:the-harness-is-compiled-not-maintained,rules-becomes-a-type-of-its-own — the admission test for a rule page, on the decision that needs it and on the page that owns the type
+118	page:the-harness-is-built-by-a-script-and-guarded-by-a-gate — `harness-layout` and its `asserts:` file list, which is how absence is detected
+121	skip:section heading — the verdicts are on the section's units; nothing under it is built, so most of it lands in proposals/ rather than concepts/
+123	page:a-field-earns-its-place-by-being-read-or-by-being-a-checksum — new; the test was applied in this session, so it is a concept and not an intention
+129	page:the-harness-is-built-by-a-script-and-guarded-by-a-gate — the four delivery modes and why the division is forced
+137	page:the-harness-is-built-by-a-script-and-guarded-by-a-gate — the two mechanisms and the two failures they catch, as the opening table
+142	page:asserts-is-a-closed-predicate-set-with-a-flat-syntax — new; closed because pages are written unattended, flat because there is no YAML parser
+148	page:a-staleness-detector-from-updated-against-a-pages-sources — new; the algorithm and the single `git log --name-only` pass
+151	page:a-staleness-detector-from-updated-against-a-pages-sources — the coverage figure and the half it cannot see, stated as a limit
+156	page:a-staleness-detector-from-updated-against-a-pages-sources,the-frontmatter-core-is-fixed-and-updated-joins-it — what a stamp may not clear, and the two mechanics, beside the field that carries it
+163	page:an-authority-register-on-the-model-of-the-tag-dictionary — new; the register, and preventer against detector
+170	page:the-frontmatter-core-is-fixed-and-updated-joins-it — the `basis` enumeration, first of the three checks the schema owes
+174	page:marked-regions-and-the-prose-outside-them — new; the form, the four verdicts, and the fence rule with its two scars
+180	page:marked-regions-and-the-prose-outside-them — the three layers over prose, the 103 hits, and the per-file coverage number
+187	skip:section heading — the verdicts are on the section's units
+189	page:a-gate-guarantees-agreement-never-truth — new; the live demonstration and what each mechanism actually promises
+195	page:no-rule-reads-a-harness-file,claude-md-can-lose-an-assertion-but-cannot-strand-a-page — new lesson carrying the shape and the running total; the two new rows also appended to the page that tabulates the instances
+199	page:a-field-with-no-register-produces-unique-values-by-default — new; the 133-of-133 measurement and the preventer/detector table
+205	page:a-command-that-is-false-only-in-its-documentation-fails-nothing — new; the `rg -o` mechanics, the correct form, and why documentation-only falsehood is the worst case
+211	page:measurement-settled-what-argument-could-not — new; both questions in one table, and the timing as the transferable part
+215	page:interviewing-in-rounds-asks-only-what-is-unblocked — new; the three rules and the four turns that changed a recommendation
+220	skip:section heading — the verdicts are on the section's units
+222	page:what-the-harness-build-waits-on,asserts-is-a-closed-predicate-set-with-a-flat-syntax — the deferral row with its cost, and the design it defers
+226	page:what-the-harness-build-waits-on,an-authority-register-on-the-model-of-the-tag-dictionary — the deferral row, and what is open about the register
+230	page:what-the-harness-build-waits-on — the row; the rule itself is a-title-names-what-is-counted-instead-of-counting-it, and S2 criterion 2 lives in sprint.md
+233	page:what-the-harness-build-waits-on — the row; the S2 blocking question itself is the owner's and stays in sprint.md
+236	page:what-the-harness-build-waits-on — the row, with the owner's reason for parking it
+238	page:what-the-harness-build-waits-on,the-steward-is-scripts-that-run-after-the-librarian — the row, beside the decision that created the thing needing a name
+240	page:what-the-harness-build-waits-on,marked-regions-and-the-prose-outside-them — the row, and the two starting files on the proposal that owns the markup
+244	skip:section heading — every entry under it is filed by its own kind
+246	elsewhere:log.md — `- miss:` transferred verbatim in substance; the instance is also appended to a-stated-count-drifts-from-the-list-it-heads as its fourteenth
+250	elsewhere:log.md — `- miss:` transferred; the divergence is also row 6 of claude-md-can-lose-an-assertion-but-cannot-strand-a-page and row 5 of no-rule-reads-a-harness-file
+257	elsewhere:log.md — `- miss:` transferred; the correction belongs to the vault's CLAUDE.md, which the librarian does not write, and the failure class is a-command-that-is-false-only-in-its-documentation-fails-nothing
+266	skip:section heading — the verdicts are on the section's units; this section has no folder of its own by the template
+268	page:rules-becomes-a-type-of-its-own — `rules` is a sixth folder, appended there; which S2 questions remain open is sprint.md's to record and is raised in the brief
+272	elsewhere:sprint.md — whether S1 criterion 4 is met is the owner's reading, and the librarian never judges a sprint's goal; raised as an alarm in the brief
+276	journal
+280	page:the-harness-is-built-by-a-script-and-guarded-by-a-gate — the first intended use of the mechanism, on the proposal that describes it
+284	journal

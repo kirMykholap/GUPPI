@@ -1,0 +1,55 @@
+7	skip:document title — its content is covered by the section units below
+9	journal
+11	skip:section heading — the verdicts are on the section's units
+13	journal
+16	page:the-handoff-template-maps-onto-the-categories — task 5 is the /handoff skill and the template it copies
+17	page:ingest-is-units-and-verdicts,journal-vault-brief-each-artefact-has-one-owner — task 6 is /ingest and the first generated brief
+18	page:session-hooks — the SessionStart hook and the PreToolUse guard, tasks 7 and 8
+19	page:vault-scripts,a-sprint-closes-on-its-goal,aliases-carry-the-question-across-languages — task 9: the selftest, sprint.md and the tag rules
+21	page:handoff-retires-only-when-every-unit-has-a-verdict — the gate and the 332 claims
+22	page:handoff-retires-only-when-every-unit-has-a-verdict — 1307 to 27 lines; CLAUDE.md's count measured at 210 today, not 190
+23	journal
+26	journal
+29	journal
+31	page:session-hooks — the hook has never been observed, and the $CLAUDE_PROJECT_DIR diagnosis
+38	page:vault-scripts,session-hooks — 17 failing rules, 54 selftest cases, 25 hook cases; the pytest and ruff results are state
+45	skip:section heading — the verdicts are on the section's units
+47	page:session-hooks,vault-librarian,the-handoff-template-maps-onto-the-categories,vault-scripts,the-vault-directory — five skills, two hooks, two self-tests, sprint.md, brief.md, the sidecars and raw/notes/
+54	page:vault-scripts,handoff-retires-only-when-every-unit-has-a-verdict,stale-after-thirty-minutes,migrations-do-not-drift-from-the-models — the rewritten scripts, the pointer, STALE_AFTER and MIGRATION_CHECK_DATABASE_URL
+61	page:the-handoff-splits-into-a-handoff-and-a-knowledge-base,the-index-is-a-map-not-a-catalogue — the owner's notes, cited and not ingested
+66	skip:section heading — the verdicts are on the section's units
+68	page:vault-scripts — already carried, verbatim reasoning included
+72	page:session-hooks — the WSL shim on the system PATH, and who spawns a hook
+75	page:a-sprint-closes-on-its-goal,the-handoff-splits-into-a-handoff-and-a-knowledge-base — 31 citing pages, and the sixth divergence from the owner's notes
+79	page:the-brief-is-stamped-with-its-commit
+81	page:one-librarian-behind-every-caller — the ceiling belongs to the question mode
+83	page:one-librarian-behind-every-caller — merging is supersession; the agenda itself stays in log.md
+86	skip:section heading — the verdicts are on the section's units
+88	page:journal-vault-brief-each-artefact-has-one-owner,the-brief-is-stamped-with-its-commit,session-hooks — the loop and its three seams
+94	page:ingest-is-units-and-verdicts — already carried
+98	page:vault-scripts — already carried; the 71 s to 3 s rewrite added
+102	page:the-librarian-writes-unattended,session-hooks — the guard cannot say who is writing
+105	skip:section heading — the verdicts are on the section's units
+107	page:vault-scripts,how-a-slice-is-executed — the verdict grammar, and a fix worse than its defect
+113	page:a-test-green-under-any-implementation,vault-scripts — the vacuum failure mode on a suite's negative half
+118	page:a-long-source-contradicts-itself-and-the-first-hit-is-the-old-one — already carried, including vocabulary rather than position
+124	page:a-long-source-contradicts-itself-and-the-first-hit-is-the-old-one,vault-scripts — the third instance, at 24 times the scale
+130	page:windows-console-encoding,session-hooks — already carried; the hook page now says why there is PowerShell at all
+134	page:how-a-slice-is-executed,javascript-policy — the three lenses, and what the arrival lens found
+140	skip:section heading — the verdicts are on the section's units
+142	page:session-hooks — the only unverified item, and it answers itself
+144	journal
+145	elsewhere:log.md — the /lint agenda; its hooks entry is filled by session-hooks in this ingest
+148	page:handoff-retires-only-when-every-unit-has-a-verdict — already carried
+150	page:javascript-policy — already carried, with the three script locations
+152	page:the-growth-signal-is-the-brief — already carried
+153	page:active-tasks-stay-empty-until-a-tracker-exists — already carried, Beads named
+155	skip:section heading — the verdicts are on the section's units
+157	elsewhere:log.md — miss, closed the same day by minting the schema tag
+160	elsewhere:log.md — miss, no page about React
+162	page:vault-librarian — registration proved by name; /vault-ask still unexercised. Also logged as a miss
+165	page:claude-code-config-loading — the injected CLAUDE.md is the parent session's. Also logged as a miss
+168	page:vault-scripts — the sidecar grammar is written on the page now. Also logged as a miss
+172	skip:section heading — the verdicts are on the section's units
+174	page:how-a-slice-is-executed — the first post-hoc confirmation, review half only
+181	page:how-a-slice-is-executed,the-owners-question-was-how-would-you-check-that — answering when to review, rather than deferring it

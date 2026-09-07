@@ -1,0 +1,43 @@
+# Секреты и локальная конфигурация
+.env
+.env.local
+
+# Личные документы кандидата — не должны попадать в репозиторий
+docs/cv/
+*.resume.pdf
+*.resume.docx
+
+# Собранные данные (только в корне репозитория — src/jobhunt/web/data/ это
+# пакет с исходным кодом, а не место для выгрузок, и попадать под игнор не должен)
+/data/
+*.sqlite
+*.db
+
+# Python
+__pycache__/
+*.py[cod]
+.venv/
+venv/
+*.egg-info/
+.pytest_cache/
+.ruff_cache/
+.mypy_cache/
+
+# Модели и кеши
+.cache/
+tests/fixtures/html/*.live.html
+
+# Снимки и слепки страниц, которые пишет Playwright MCP во время браузерных
+# прогулок. Это рабочий материал одной сессии, а не артефакт проекта.
+.playwright-mcp/
+
+# IDE и ОС
+.idea/
+.vscode/
+Thumbs.db
+desktop.ini
+scratch_out*.txt
+
+# Локальные настройки Obsidian — состояние окна и панелей конкретной машины,
+# а не знание проекта.
+.obsidian/

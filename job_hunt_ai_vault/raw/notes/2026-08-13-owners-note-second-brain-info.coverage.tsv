@@ -1,0 +1,91 @@
+1	page:the-owners-method-note-and-what-was-built-from-it — the document's own title: a concept paper, present tense about a store that did not exist yet
+2	page:the-owners-method-note-and-what-was-built-from-it,vault-librarian,the-vault-directory — built: Obsidian is the reader and the IDE, Claude Code is the librarian with direct filesystem access
+3	skip:a full stop left alone on a line by a paste out of chat; it carries no claim
+4	page:the-vault-is-compiled-not-retrieved — the philosophy the rest of the note follows from, and this section title is itself the claim
+5	page:the-vault-is-compiled-not-retrieved,vectors-are-deferred-not-rejected — built: the reading happens once at ingest rather than afresh at every query
+6	skip:a full stop left alone on a line by a paste out of chat; it carries no claim
+7	page:the-vault-is-compiled-not-retrieved — built: a new claim edits the page that held the old one or supersedes it, and nothing is deleted
+8	skip:a full stop left alone on a line by a paste out of chat; it carries no claim
+9	page:the-vault-is-compiled-not-retrieved,vault-librarian — built: the agent definition says it in those words, Synthesise, never dump page contents; and the links are the structure
+10	skip:a full stop left alone on a line by a paste out of chat; it carries no claim
+11	page:the-vault-is-compiled-not-retrieved — built, and it is what makes an isolated librarian context the unit of retrieval
+12	skip:a full stop left alone on a line by a paste out of chat; it carries no claim
+13	page:the-owners-method-note-and-what-was-built-from-it,journal-vault-brief-each-artefact-has-one-owner — built as three layers, and the loop turns on four artefacts: the fourth is brief.md, which this note does not have
+14	page:the-owners-method-note-and-what-was-built-from-it — the provenance of the method, the Karpathy second-brain article, the same external source the other note cites by bracketed number
+15	skip:a colon left alone on a line by a paste out of chat; the claim is on the lines it introduces
+16	page:journal-vault-brief-each-artefact-has-one-owner — built: raw/ is testimony, and it is the first of the three artefacts
+17	page:the-owners-method-note-and-what-was-built-from-it — diverged: raw/ holds session journals and these two notes only; plans and specs stay in docs/superpowers/ and are cited from there
+18	skip:a full stop left alone on a line by a paste out of chat; it carries no claim
+19	page:journal-vault-brief-each-artefact-has-one-owner — built: appended to, never edited after the fact, and rule 8 is the only structural rule that reaches inside raw/
+20	skip:a full stop left alone on a line by a paste out of chat; it carries no claim
+21	page:journal-vault-brief-each-artefact-has-one-owner — built: wiki/ is the compiled layer and the librarian is its only writer
+22	elsewhere:the vault's own CLAUDE.md — One entity or one decision per file, built in those words
+23	skip:a full stop left alone on a line by a paste out of chat; it carries no claim
+24	skip:a label introducing the three category lines below
+25	page:the-wiki-has-no-tasks-folder — built; entities/ is one of the four folders
+26	skip:a full stop left alone on a line by a paste out of chat; it carries no claim
+27	page:the-wiki-has-no-tasks-folder,the-owners-method-note-and-what-was-built-from-it — built, and asked for only here: the instructions note has no concepts/ and asks instead for a tasks/ this note never mentions
+28	skip:a full stop left alone on a line by a paste out of chat; it carries no claim
+29	page:the-wiki-has-no-tasks-folder,one-librarian-behind-every-caller — built; the conflict check before work starts is /pre-task, and the librarian enumerates every decisions/ page for it
+30	skip:a full stop left alone on a line by a paste out of chat; it carries no claim
+31	page:the-catalogue-is-generated-not-maintained,index-md-stays-at-the-vault-root,the-index-is-a-map-not-a-catalogue — the ask is verbatim in both notes; settled 2026-08-15 by building it generated, while index.md stays a map at the vault root
+32	skip:a full stop left alone on a line by a paste out of chat; it carries no claim
+33	page:the-owners-method-note-and-what-was-built-from-it — built as two constitutions rather than one: the vault's CLAUDE.md and the repository's
+34	page:claude-md-is-a-map-and-four-rules — built, and the repository's half is a map and four rules after the cut of 2026-08-14
+35	skip:a full stop left alone on a line by a paste out of chat; it carries no claim
+36	elsewhere:the vault's own CLAUDE.md — all four are in it: the page schema, the frontmatter, the contradiction rule and supersession into archive/
+37	skip:a full stop left alone on a line by a paste out of chat; it carries no claim
+38	skip:section title; the verdicts are on the section's units
+39	skip:subsection title; the verdicts are on its units
+40	page:journal-vault-brief-each-artefact-has-one-owner,the-handoff-template-maps-onto-the-categories — built and firmed: a handoff ends every session, and there is no sprint-sized handoff at all
+41	page:one-librarian-behind-every-caller — built: /ingest is one of the four callers that dispatch the librarian
+42	skip:a colon left alone on a line by a paste out of chat; the claim is on the lines it introduces
+43	page:ingest-is-units-and-verdicts — redefined: the source is split into units by a script, because reading it is not a checkable operation
+44	page:ingest-is-units-and-verdicts,the-verdict-is-the-write — redefined: every unit takes one of four verdicts, and page: is the write rather than a plan to write later
+45	elsewhere:scripts/vault-check.sh — built and load-bearing: rules 4 and 5 refuse a broken link and an orphan page
+46	skip:a full stop left alone on a line by a paste out of chat; it carries no claim
+47	page:the-index-is-a-map-not-a-catalogue — built by halves: log.md at every ingest, index.md only when the map itself changes
+48	skip:a full stop left alone on a line by a paste out of chat; it carries no claim
+49	skip:subsection title; the verdicts are on its units
+50	elsewhere:the vault's own CLAUDE.md — Nothing is ever deleted, built in those words
+51	skip:a colon left alone on a line by a paste out of chat; the claim is on the lines it introduces
+52	elsewhere:the vault's own CLAUDE.md, and scripts/vault-check.sh — built; rule 2 refuses any status but current and deprecated
+53	skip:a full stop left alone on a line by a paste out of chat; it carries no claim
+54	elsewhere:the vault's own CLAUDE.md — built as superseded_by:, plus the reverse link supersedes: that neither note asks for
+55	skip:a full stop left alone on a line by a paste out of chat; it carries no claim
+56	elsewhere:scripts/vault-check.sh — built; rule 7 fails a deprecated page still sitting in wiki/
+57	skip:a full stop left alone on a line by a paste out of chat; it carries no claim
+58	skip:subsection title; the verdicts are on its units
+59	page:lint-waits-for-an-open-sprint — the cadence, given in both notes in the same words, and the audit has still never run
+60	skip:a colon left alone on a line by a paste out of chat; the claim is on the lines it introduces
+61	elsewhere:scripts/vault-check.sh — made mechanical instead of annual: rule 3, two current pages claiming one authority
+62	elsewhere:scripts/vault-check.sh — made mechanical instead of annual: rule 5, on every write
+63	page:lint-waits-for-an-open-sprint — half built: broken links are rule 4, and the missing conceptual pages are unbuilt; it is also a different fourth check from the one the other note asks for, and neither of the two exists
+64	skip:section title; the verdicts are on the section's units
+65	skip:subsection title; the verdicts are on its units
+66	elsewhere:scripts/vault-check.sh — built and enforced: rule 2, six required fields on every page in wiki/
+67	skip:a colon left alone on a line by a paste out of chat; the claim is on the lines it introduces
+68	skip:the opening --- of the YAML example; a delimiter, not a claim
+69	elsewhere:the vault's own CLAUDE.md — title: is one of the six required fields
+70	page:the-owners-method-note-and-what-was-built-from-it — this enum is the one that survived, plus lesson; the instructions note spells the third value task
+71	page:the-owners-method-note-and-what-was-built-from-it — diverged: active is spelled current, and no page has ever carried active
+72	elsewhere:the vault's own CLAUDE.md — created: is required, and a decision carries decided: as well
+73	elsewhere:the vault's own CLAUDE.md, and scripts/vault-check.sh — built; rule 11 checks that every path in sources: resolves, which a citation to a missing file would not
+74	page:aliases-carry-the-question-across-languages,the-owners-method-note-and-what-was-built-from-it — diverged deliberately: tags are English words, 2 to 4 per page, and a Russian question reaches them through the alias list
+75	skip:the closing --- of the YAML example; a delimiter, not a claim
+76	page:filenames-carry-no-category-prefix — built, and the example auth-module-redesign.md carries no category prefix, against the other note's [category]- rule
+77	skip:a full stop left alone on a line by a paste out of chat; it carries no claim
+78	skip:a label introducing the three tooling lines below
+79	page:vault-librarian — built: one definition, four callers, direct filesystem access and command execution
+80	skip:a full stop left alone on a line by a paste out of chat; it carries no claim
+81	page:the-vault-directory — built, and it is why the directory name is the owner's to change: Obsidian displays it
+82	skip:a full stop left alone on a line by a paste out of chat; it carries no claim
+83	page:the-owners-method-note-and-what-was-built-from-it — built as practice and enforced by nothing: every ingest so far is its own commit, and no skill, hook or check requires one
+84	skip:a full stop left alone on a line by a paste out of chat; it carries no claim
+85	skip:section title; the verdicts are on the section's units
+86	page:a-sprint-closes-on-its-goal — built: a sprint is declared explicitly and never inferred from a branch or a merge
+87	page:the-owners-method-note-and-what-was-built-from-it — unbuilt: nothing accumulates in raw/ while a slice runs; the working files live in .superpowers/sdd/ and docs/superpowers/
+88	page:a-sprint-closes-on-its-goal,journal-vault-brief-each-artefact-has-one-owner — built stronger: a handoff ends every session rather than every retrospective, so a sprint never closes over uncompiled journals
+89	page:ingest-is-units-and-verdicts — built: the compilation half of the loop, and it is units with verdicts
+90	page:a-sprint-closes-on-its-goal — rejected by measurement: 31 pages cite raw/handoffs/ in sources:, so the first close would break all 31
+91	skip:a full stop left alone on a line by a paste out of chat; it carries no claim

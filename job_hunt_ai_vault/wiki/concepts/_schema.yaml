@@ -1,0 +1,136 @@
+# What a page in this folder must and may carry.
+#
+# vault-check.sh READS THIS FILE. It is the one list: nothing restates it, and a key that
+# appears in neither block below is rejected by the gate. Two lists of the same set drift,
+# and this store has already lost two selftest cases to exactly that.
+#
+# THIS FILE ENCODES WHAT IS DECIDED, NOT WHAT IS OBSERVED. A field carried by every page
+# today is not thereby required: that is how `quantity:` entered this store, around the
+# admission procedure, and it took a day to remove. A field moves from `optional` to
+# `required` when a decision says so, and the decision names the page it is written on.
+
+type: concept
+
+# WHAT BELONGS IN THIS FOLDER, decided 2026-08-30 by the owner and written here 2026-08-31, which
+# is the obligation that ruling carried and did not discharge: **a `concept` is a NON-FUNCTIONAL
+# REQUIREMENT**, and an `entity` is a functional one. That is the test the next sweep of these two
+# folders walks by ([[concepts-are-non-functional-requirements-and-entities-are-functional]]).
+#
+# IT STANDS BESIDE THE OLDER TEST RATHER THAN REPLACING IT, AND NOBODY HAS SAID WHICH WINS. The
+# vault's own `CLAUDE.md` says an `entity` is a noun with properties and a `concept` is a mechanism
+# with consequences. `session-hooks`, `docker-desktop` and `windows-console-encoding` are nouns with
+# properties AND are functional requirements of nothing, so the two tests disagree about them. The
+# disagreement is recorded here rather than resolved, because resolving it is a judgement about the
+# corpus and the sweep it governs is deferred.
+#
+# ONE `authority:` SLUG IS PERMITTED AND REQUIRED ON THE PAIR, AND ONLY HERE - the `permitted` half
+# is built and the `required` half is deferred, because 22 families hold concepts with no entity at
+# all ([[authority-uniqueness-becomes-a-per-type-question]]).
+#
+# NO EXIT CRITERION IS NAMED FOR EITHER FOLDER, deliberately and on his own words: «критерий выхода
+# для entities/ и concepts/ я не назову. Это сейчас малая часть vault».
+
+# The core, decided 2026-08-16 on [[the-frontmatter-core-is-fixed-and-updated-joins-it]].
+required:
+  - title
+  - type
+  - status
+  - created
+  - sources
+  - tags
+  - sprint
+  # Promoted from optional on 2026-08-19, owner's ruling: the field conflict
+  # resolution rests on cannot be one a page may omit.
+  # [[the-frontmatter-core-is-fixed-and-updated-joins-it]]
+  - basis
+  # Promoted from optional on 2026-08-21, owner's ruling at the retro, in the same change that
+  # took `governs:` and `render:` out of this folder - and the two halves are one decision rather
+  # than two. His words: «Если у концепта появляется governs - Он становится правилом. Поэтому
+  # authority = required в concepts. А governs из concepts уходит.»
+  #
+  # THE CONDITION THIS FOLDER USED TO CARRY IS GONE RATHER THAN MOVED. `authority` was optional
+  # here alone, because a `concepts/` page could carry `governs:` and the two fields on one page
+  # are forbidden - a requirement no per-folder schema can express, so it had to live in the gate.
+  # The ruling removes what that condition ranged over: a page rendering its text into another
+  # file IS a rule, by the folder set's own definition, so there is no longer a concept that may
+  # not answer with `authority:` ([[governs-is-a-property-of-wiki-rules-alone]]).
+  # [[authority-becomes-the-index-and-is-required-outside-rules]]
+  - authority
+
+optional:
+  - updated
+  - supersedes
+  - superseded_by
+  # `Links:` WAS REMOVED FROM ALL SIX SCHEMAS ON 2026-08-30 and the key is legal nowhere. It was
+  # admitted on 2026-08-23 to carry the body's `[[wikilinks]]` so a reader could walk the graph
+  # without opening the page, filled by a script rather than by an agent. THE SCRIPT WAS NEVER
+  # WRITTEN AND NO PAGE EVER CARRIED THE FIELD - zero under `wiki/` and zero under `archive/`,
+  # measured the day it was removed, which is why removing the key reddens nothing.
+  #
+  # WHAT KILLED IT is that the graph it would have cached exists twice over already. Obsidian
+  # builds its graph from the `[[wikilinks]]` in the body, so the field bought that reader nothing;
+  # and an agent reads one page's outgoing links with a single grep over that one file, without
+  # loading the page at all, so it bought that reader nothing either. The owner found the first
+  # half by looking at his own graph. A field with no writer and no reader is a comment with a
+  # colon in it ([[a-rule-with-no-instrument-behind-it-is-a-rule-a-fixture-can-violate-for-a-week]]).
+  #
+  # The proposal that designed the script was refused in the same change rather than left standing
+  # over a field that no longer exists ([[links-is-filled-by-a-script-from-the-bodys-wikilinks]]).
+
+# THE LEGAL VALUES OF A FIELD, decided 2026-08-19 on the owner's ruling. Until then the gate
+# enforced that `basis` was PRESENT and said nothing about what it said, so `basis: banana`
+# passed on the one field conflict resolution rests on. A value outside the list below is red.
+#
+# The list is decided on the vault's own CLAUDE.md, section `basis`, which gives each value and
+# its meaning. It is NOT swept off the corpus: a field's legal values being read off the pages
+# that happen to carry them is how a typo becomes law, and it is the same mistake `quantity:`
+# was. Same rule as the key set above - this file encodes what is decided.
+#
+# A `values:` header that parses to nothing is red, for the reason the key set is: a silent
+# empty list turns the check into "every value is fine", in the direction of passing.
+values:
+  basis:
+    - human
+    - code
+    - measurement
+    - external
+    - inference
+  # The same two values `wiki/rules/_schema.yaml` carries, COPIED rather than referenced, because
+  # a field admitted to a second folder without its list is a field with no list here: `render:
+  # banana` would pass rule 2 on a concept page while failing on a rule page. The injector cannot
+  # cover for it either - it reads `render` only AFTER it has skipped every page carrying no
+  # `governs:`, so a nonsense value on a page with neither is seen by nothing at all
+  # ([[the-legal-value-list-lives-in-each-folders-schema]]).
+  render:
+    - region
+    - whole
+
+  # THE TWO STATUSES THIS STORE HAS ALWAYS HAD, moved here 2026-08-23 from
+  # `scripts/vault-check.sh`, where they were hardcoded in the awk pass and restated in the
+  # message beside it. The gate is the reader, not the register - the same ground the key set
+  # moved on ([[the-legal-value-list-lives-in-each-folders-schema]]).
+  #
+  # WRITTEN INTO EVERY FOLDER'S FILE, and not only into the one that needed a third value. The
+  # `badvalue` verdict iterates the fields a folder DECLARES values for, so a folder omitting
+  # this block would lose its status check entirely, and silently - which is the direction that
+  # hides a defect. `implemented` is legal in `proposals/` alone; here the word is red, and that
+  # is the protection rather than an oversight
+  # ([[implemented-joins-the-legal-status-values-and-the-status-block-enters-every-schema]]).
+  # `archived`, ADMITTED 2026-08-28, and the value enters every schema BEFORE any sweep writes it
+  # ([[the-archiver-sets-status-archived-and-the-value-enters-the-schema-first]]).
+  #
+  # WHY IT IS NEEDED HERE AT ALL, WHICH IS NOT THE REASON THAT PAGE GIVES. The gate's frontmatter
+  # pass reads `find "$VAULT/wiki"` and nothing else - `scripts/vault-check.sh:84` - so a page that
+  # has ALREADY reached `archive/` is validated by no schema and could carry any word. What makes
+  # the declaration necessary is the sweep's own failure mode, decided 2026-08-28: it continues past
+  # a refused move, collects the refusals and reports them at the end. So a page can be left HERE
+  # carrying the mark of a move that did not complete, and an undeclared value would report that as
+  # a schema fault rather than as the half-finished move it is.
+  #
+  # IT IS NOT `deprecated`. A deprecated page was replaced because it went false; an archived one is
+  # simply no longer in the working set. Both oblige a page to leave `wiki/`, and the gate says so
+  # about each - the consequence is shared, the cause is not.
+  status:
+    - current
+    - deprecated
+    - archived

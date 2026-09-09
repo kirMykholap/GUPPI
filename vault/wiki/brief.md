@@ -1,63 +1,63 @@
-# Brief — 2026-09-09, after Slice 1 session A
+# Brief — 2026-09-09, after Slice 1 session B
 
-**Hand-written by the session that ran Slice 1's first part. No librarian exists yet.**
+**Hand-written by the session that ran Slice 1's second part. No librarian exists yet.**
 The next brief is written the same way until Slice 3 delivers the librarian.
 
 ## Where things stand
 
-Branch `migration`, four commits above `main`. Slice 0 is closed. Slice 1 is **open, one
-session of three done**: its spec is the second document in `raw/2026-09-09/spec.md`
-(cases 9–13), its sixteen decision lines are in `raw/2026-09-09/ledger.md`, written by
-hand at ratification.
+Branch `migration`, seven commits above `main`. Slice 0 is closed. Slice 1 is **open, two
+sessions of three done**: its spec is the second document in `raw/2026-09-09/spec.md`
+(cases 9–13), its sixteen decision lines and three lesson lines are in
+`raw/2026-09-09/ledger.md`, all written by hand.
 
-**`vault/wiki/` holds its first sixteen pages**: eight Rules (`rule-session-start`,
-`rule-skill-hi`, `rule-internal-context`, `rule-git-context`, `rule-github-issues`,
-`rule-event-log`, `rule-ledger-write`, `rule-case-protocol`) and their eight Estimates, all
-`draft` / `pending`.
+**Built:** `uv run guppi ledger`, registered on `Stop`. It lifts the bare `- decision[`,
+`- estimate[` and `- lesson[` lines of a finished reply into `raw/<date>/ledger.md`,
+refuses with exit 2 and a reason when the event log has no `hi` after this session's last
+`session-start`, and never writes a line twice. `guppi event` now reads its stdin as UTF-8
+bytes. The probe is gone. `make test`: 28 green.
 
-**Built:** `guppi/` with `uv run guppi event` (the event log) and `uv run guppi probe`
-(throwaway); `.claude/settings.json` registers `SessionStart` and `PostToolUse` on
-`guppi event`, `Stop` and `PostToolUse ExitPlanMode` on `guppi probe`; the `/hi` skill;
-the Case protocol section in `CLAUDE.md`; `make test` (pytest, 14 green).
+**Measured this session** (five Estimate pages now `passed`, filled by hand):
+`estimate-hi-no-read-calls`, `estimate-internal-context-loaded`,
+`estimate-git-context-current`, `estimate-github-issues-listed`,
+`estimate-event-log-records`. The probe readings are the three `lesson[...]` lines in the
+ledger: `Stop` carries `last_assistant_message` and `stop_hook_active`; `ExitPlanMode`
+carries the plan in `tool_response.plan`, not in `tool_input`; a hook's stdin on Windows is
+cp1252 with `surrogateescape`, which is why the first probe files were empty.
 
-**Not built:** `guppi ledger`, the `Stop` hook. It waits on the probe below. Until it is
-registered, ledger lines are still written by hand, in the same format.
+**Not measured:** `estimate-ledger-write-lifts` (live part), `estimate-session-start-context`,
+`estimate-case-protocol-loaded`. All three are session C's.
 
-**Already measured, this session:** a `PostToolUse` hook added to `settings.json` fires on
-the next tool call without a restart, and `guppi event` receives the real `session_id`
-(`event_log.md` carries `1cee6ce3 tool Write: …` lines). `uv run guppi` needs the project
-installed — `uv sync` after a fresh clone, and a `[build-system]` block in
-`pyproject.toml` (uv's own backend, build-time only).
+## What the next session does — Slice 1, session C
 
-## What the next session does — Slice 1, session B
+**The owner restarts Claude Code twice.**
 
-**The owner, before opening Claude Code:** nothing. Then, in the new session:
+**First start, without `/hi`.** Ask the agent to put one bare line in its reply, exactly:
+`- decision[case 0][defer][probe]`. The `Stop` hook must refuse: the reply the owner sees
+names the cause (`ledger: 1 line(s) not written — no /hi recorded for session …`) and
+`raw/<date>/ledger.md` stays untouched. That is the first reading of
+`estimate-session-start-context`. Nothing else happens in that session.
 
-1. Type `/hi`. It records itself in the event log and prints a `Probe:` line with
-   `CLAUDE_SESSION_ID` or `unset`.
-2. Make one tool call of any kind, enter Plan Mode, exit it with a trivial plan, and let
-   the agent reply. `raw/2026-09-09/probe-Stop-1.json` and `probe-PostToolUse-1.json`
-   appear (gitignored).
+**Second start, with `/hi`.** Then, in order (spec.md, "Сессия C"):
 
-**The agent, in that session** (spec.md, "Сессия B"):
+1. The agent writes the `- estimate[<slug>][passed|failed] <result>` lines for all eight
+   Estimates, bare, in one reply — the five already measured repeat their page's
+   `## Result` in short; `estimate-session-start-context` takes the two readings of these
+   two starts; `estimate-case-protocol-loaded` is read off the agent's first reply of this
+   session (does it state the fence/bare rule and one-Case-at-a-time without a read call);
+   `estimate-ledger-write-lifts` is the fact that these very lines reach the ledger by the
+   hook. Check the ledger's tail after the reply: the lines are there, once.
+2. Fill the three remaining Estimate pages by hand (`status`, `## Result`, `History`),
+   `log.md` too.
+3. Retro: what is done and not done; a `- lesson[error][…]` bare line if anything burned.
+   Rewrite this brief for Slice 2. Extend `raw/2026-09-09/handoff.md` with a session C
+   section. Commit `docs(vault): Slice 1 closes, the brief points at Slice 2`.
 
-- Read the probe files. Record the readings as two `- lesson[knowledge][…]` lines — by
-  hand into the ledger, the hook does not exist yet: `lesson-hooks-stop-payload`
-  (which field carries the reply; whether `stop_hook_active` is present; whether a
-  `Stop` registration needed a restart) and `lesson-hooks-exitplanmode-payload` (does
-  `tool_input` carry the plan text, C9).
-- Take the readings of `estimate-hi-no-read-calls`, `estimate-internal-context-loaded`,
-  `estimate-git-context-current`, `estimate-github-issues-listed` from this very start,
-  and of `estimate-event-log-records` (`git check-ignore`, timing through a pipe).
-- Write `guppi/ledger.py` and `tests/test_ledger.py` to the contract of case 10, on the
-  branch the probe confirmed. Remove `guppi/probe.py`, the probe files, the `Probe:` line
-  from the skill and the `ExitPlanMode` registration; register `Stop` →
-  `uv run guppi ledger`. If `CLAUDE_SESSION_ID` was `unset`, the skill text stays as it
-  is and the two-sessions limit in `rule-event-log` stands.
-- Fill the measured Estimates' pages (`status`, `## Result`, `History`) by hand.
-- `make style`, `make test`, commit. Rewrite this brief for session C: one start without
-  `/hi` (the hook must refuse a bare decision line and say why), one with `/hi` (the hook
-  must write the `estimate[...]` lines itself — item 5 of the definition of done).
+**Open Case, not ratified, decide first in session C:** Case 14 (raised in session B).
+`SessionStart` also fires on `compact` and `resume`, so by the letter of
+`rule-ledger-write` a mid-session compaction closes the `hi` window and every later line
+is refused. Recommendation: only another session's `session-start` closes the window.
+The code follows the letter until the owner decides; the change is one condition in
+`hi_recorded` in `guppi/ledger.py`, one sentence on the rule page, one test.
 
 ## Deferred, carried here so it surfaces
 
@@ -70,23 +70,25 @@ installed — `uv sync` after a fresh clone, and a `[build-system]` block in
 - `gh` is not logged in and there is no GitHub remote; `gh issue list` in `/hi` prints its
   own message. Owner's decision 11.2: leave until a remote exists.
 - Estimate pages are updated by hand (`status`, `## Result`) until Slice 3's generator.
-- The fate of `vault/parked/`, `vault/archive/`, `docs/superpowers/`, `docs/HANDOFF.md` and the
-  2026-08 documents under `docs/`. Slice 5.
+- C9 by hook (`PostToolUse ExitPlanMode` → copy `tool_response.plan` into
+  `raw/<date>/spec.md`): Slice 2, `rule-branch-commit`. The payload is now known.
+- The fate of `vault/parked/`, `vault/archive/`, `docs/superpowers/`, `docs/HANDOFF.md` and
+  the 2026-08 documents under `docs/`. Slice 5.
 
 ## Known false, and left so on purpose
 
 - `rule-case-protocol` has `parent: rule-plan-mode`; that page arrives with Slice 2.
-- `rule-ledger-write` lists `guppi/ledger.py` in `implementation_ref`; the file arrives
-  with session B.
-- `.claude/skills/hi/SKILL.md` carries a `Probe:` line that is not in `rule-skill-hi`'s
-  `## Render`; it leaves with the probe. Until Slice 2's renderer the skill file and the
-  four rule pages are two copies of one text, kept identical by hand.
+- Until Slice 2's renderer the skill file and the four rule pages are two copies of one
+  text, kept identical by hand. They are identical again: the `Probe:` line is gone.
 - `docs/migration/rule-*.md` carry `origin: TBD`, `sprint: TBD`, `created: TBD`. They are
-  drafts, not pages; `rule-session-start` now has a real page and the draft stays until
-  Slice 5.
+  drafts, not pages; the drafts stay until Slice 5.
+- The `hi` line in `event_log.md` has no session id: `CLAUDE_SESSION_ID` does not reach a
+  `!` substitution (measured session B: `unset`). The two-sessions limit of
+  `rule-event-log` stands.
 
-## Readings at the close of session A
+## Readings at the close of session B
 
 - `find vault/wiki -type f | wc -l` → 35.
-- `make style` → clean; `make test` → 14 passed.
+- `make style` → clean; `make test` → 28 passed.
 - `git check-ignore vault/raw/2026-09-09/event_log.md` → ignored.
+- `guppi event tool` through a pipe: exit 0, 0.10 s.

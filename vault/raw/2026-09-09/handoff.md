@@ -65,3 +65,39 @@ predate it.
 - `vault/wiki/rules/` ×8, `vault/wiki/estimates/` ×8, `tags.md` ×7 tags, `log.md` ×6 lines.
 - `CLAUDE.md`: Case protocol section, Migration mode updated.
 - Not done: `guppi/ledger.py` (waits on the probe), every Estimate reading.
+
+---
+
+# Handoff — 2026-09-09, Slice 1, session B
+
+## Notes from memory
+
+- The first two `probe-Stop-*.json` were 0 bytes, which looked like "no payload". It was
+  the write failing after the file was created: a hook's stdin on Windows is cp1252 with
+  `surrogateescape`, and the reply is Cyrillic. Reproduced with a one-line pipe before
+  fixing. The event log had carried the same defect as mojibake since session A.
+- `Stop` fired at the end of the very turn that registered it, in session A: no restart.
+- `ExitPlanMode` was exercised on purpose with a real, short plan, so the reading came from
+  an ordinary approval; `tool_input` is empty, the plan is in `tool_response.plan`.
+- Case 14 (a same-session `session-start compact`/`resume` after `hi` closes the window)
+  was raised and is not ratified. The code follows the letter of the rule page.
+- The five Estimate pages were filled from this session's own start; that start is the
+  measurement, which is why they could not have been taken in session A.
+
+## Direct instructions to the librarian
+
+Still no librarian. The three `lesson[...]` lines of this session have no pages; when the
+generator exists they are the first Lessons to materialize. `estimate-event-log-records`'s
+Result names `lesson-hooks-windows-stdin-encoding` before that page exists.
+
+## What actually got done
+
+- Commit `feat(harness): guppi ledger on Stop, the probe leaves` — the code, the pages, the
+  hand-written lesson lines.
+- `guppi/ledger.py`, `tests/test_ledger.py` (13); `read_text` in `guppi/event.py` and a
+  test; UTF-8 streams in `guppi/cli.py`. `guppi/probe.py` removed.
+- `.claude/settings.json`: `Stop` → `uv run guppi ledger`; `ExitPlanMode` registration gone.
+  `.claude/skills/hi/SKILL.md`: `Probe:` line gone. `.gitignore`: probe line gone.
+- Five Estimate pages `passed`; `log.md` one line.
+- Not done: the live reading of the hook and the three remaining Estimates (session C);
+  Case 14.

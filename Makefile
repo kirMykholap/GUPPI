@@ -8,12 +8,12 @@
 # No target here writes to the working tree. A target that reports and a target that mutates
 # are different kinds of thing.
 #
-# `test` arrived with Slice 1. `lint` (the vault) arrives with Slice 2, when the code
-# they run exists.
+# `test` arrived with Slice 1; `lint` and the per-MOC test pipelines with Slice 2. `lint`
+# only checks: the writers are `uv run guppi render` and `uv run guppi index`.
 
 SHELL := /usr/bin/sh
 .DEFAULT_GOAL := help
-.PHONY: help style test
+.PHONY: help style test lint test-session-start test-plan-mode
 
 help: ## list these targets
 	@awk 'BEGIN{FS=":.*## "} /^[a-z-]+:.*## /{printf "  %-7s %s\n", $$1, $$2}' $(MAKEFILE_LIST)
@@ -24,3 +24,14 @@ style: ## ruff over the Python in this repository; must be clean before every co
 
 test: ## pytest over the harness's own suite
 	@uv run pytest -q < /dev/null
+
+lint: ## the vault: rendered harness and indexes match their pages, pages pass the checks
+	@uv run guppi render --check < /dev/null
+	@uv run guppi index --check < /dev/null
+	@uv run guppi lint < /dev/null
+
+test-session-start: ## the pipeline over rule-session-start's children
+	@uv run pytest -q tests/test_event.py tests/test_ledger.py < /dev/null
+
+test-plan-mode: ## the pipeline over rule-plan-mode's children
+	@uv run pytest -q tests/test_spec.py tests/test_pretask.py < /dev/null

@@ -1,0 +1,109 @@
+"""`guppi spec`: the `PostToolUse ExitPlanMode` hook that copies the approved plan into
+`vault/raw/<date>/spec.md`. Rule page: `vault/wiki/rules/rule-spec-capture.md`.
+
+Every test feeds the payload through a stream, the shape a hook is really handed.
+"""
+
+import io
+import json
+from datetime import UTC, date, datetime
+
+from guppi import spec
+
+TODAY = date(2026, 9, 9)
+NOW = datetime(2026, 9, 9, 18, 40, 5, tzinfo=UTC)
+SESSION = "44c1aae1-4076-4a58-a7c0-d20bc274047c"
+PLAN = "# Slice 2\n\n## Context\n\nThe plan text.\n"
+STAMP = "<!-- approved 18:40:05 · session 44c1aae1 -->"
+EVENT_LOG_WITH_HI = "- 15:01:00 44c1aae1 session-start startup\n- 15:01:30 -------- hi\n"
+EVENT_LOG_WITHOUT_HI = "- 15:01:00 44c1aae1 session-start startup\n"
+
+
+def payload(tool="ExitPlanMode", plan=PLAN, session=SESSION, **extra):
+    fields = {"session_id": session, "hook_event_name": "PostToolUse", "tool_name": tool}
+    if plan is not None:
+        fields["tool_response"] = {"plan": plan}
+    fields.update(extra)
+    return io.StringIO(json.dumps(fields))
+
+
+def raw(project_dir):
+    folder = project_dir / "vault" / "raw" / TODAY.isoformat()
+    folder.mkdir(parents=True, exist_ok=True)
+    return folder
+
+
+def with_event_log(project_dir, text=EVENT_LOG_WITH_HI):
+    (raw(project_dir) / "event_log.md").write_text(text, encoding="utf-8", newline="\n")
+
+
+def run(stdin, project_dir):
+    err = io.StringIO()
+    code = spec.run([], stdin=stdin, stderr=err, project_dir=project_dir, now=NOW)
+    return code, err.getvalue()
+
+
+def spec_text(project_dir):
+    return (raw(project_dir) / "spec.md").read_text(encoding="utf-8")
+
+
+def test_plan_is_appended_after_a_separator_and_a_stamp(tmp_path):
+    with_event_log(tmp_path)
+    (raw(tmp_path) / "spec.md").write_text("# Earlier\n\nold.\n", encoding="utf-8", newline="\n")
+    code, err = run(payload(), tmp_path)
+    assert (code, err) == (0, "")
+    assert spec_text(tmp_path) == f"# Earlier\n\nold.\n\n---\n\n{STAMP}\n\n{PLAN}"
+
+
+def test_first_plan_creates_the_file_without_a_separator(tmp_path):
+    with_event_log(tmp_path)
+    code, err = run(payload(), tmp_path)
+    assert (code, err) == (0, "")
+    assert spec_text(tmp_path) == f"{STAMP}\n\n{PLAN}"
+
+
+def test_the_same_plan_is_not_appended_twice(tmp_path):
+    with_event_log(tmp_path)
+    run(payload(), tmp_path)
+    run(payload(), tmp_path)
+    assert spec_text(tmp_path).count("# Slice 2") == 1
+
+
+def test_without_hi_the_hook_refuses_and_writes_nothing(tmp_path):
+    with_event_log(tmp_path, EVENT_LOG_WITHOUT_HI)
+    code, err = run(payload(), tmp_path)
+    assert code == 2
+    assert "44c1aae1" in err and "/hi" in err
+    assert not (raw(tmp_path) / "spec.md").exists()
+
+
+def test_another_tool_is_ignored(tmp_path):
+    with_event_log(tmp_path)
+    code, err = run(payload(tool="Write"), tmp_path)
+    assert (code, err) == (0, "")
+    assert not (raw(tmp_path) / "spec.md").exists()
+
+
+def test_a_payload_without_a_plan_is_ignored(tmp_path):
+    with_event_log(tmp_path)
+    code, err = run(payload(plan=None), tmp_path)
+    assert (code, err) == (0, "")
+    assert not (raw(tmp_path) / "spec.md").exists()
+
+
+def test_a_write_failure_never_fails_the_hook(tmp_path):
+    with_event_log(tmp_path)
+    (raw(tmp_path) / "spec.md").mkdir()
+    code, err = run(payload(), tmp_path)
+    assert code == 0
+    assert "spec.md" in err
+
+
+def test_cli_dispatches_to_spec(tmp_path, monkeypatch, capsys):
+    from guppi import cli
+
+    with_event_log(tmp_path, EVENT_LOG_WITHOUT_HI)
+    monkeypatch.setenv("CLAUDE_PROJECT_DIR", str(tmp_path))
+    monkeypatch.setattr("sys.stdin", payload())
+    assert cli.main(["spec"]) == 2
+    assert "/hi" in capsys.readouterr().err

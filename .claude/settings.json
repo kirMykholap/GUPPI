@@ -4,25 +4,19 @@
   },
   "hooks": {
     "SessionStart": [
-      {
-        "hooks": [
-          { "type": "command", "command": "uv run guppi event session-start", "timeout": 30 }
-        ]
-      }
+      { "hooks": [ { "type": "command", "command": "uv run guppi event session-start", "timeout": 30 } ] }
+    ],
+    "PreToolUse": [
+      { "matcher": "ExitPlanMode",
+        "hooks": [ { "type": "command", "command": "uv run guppi pretask", "timeout": 30 } ] }
     ],
     "PostToolUse": [
-      {
-        "hooks": [
-          { "type": "command", "command": "uv run guppi event tool", "timeout": 30 }
-        ]
-      }
+      { "hooks": [ { "type": "command", "command": "uv run guppi event tool", "timeout": 30 } ] },
+      { "matcher": "ExitPlanMode",
+        "hooks": [ { "type": "command", "command": "uv run guppi spec", "timeout": 30 } ] }
     ],
     "Stop": [
-      {
-        "hooks": [
-          { "type": "command", "command": "uv run guppi ledger", "timeout": 30 }
-        ]
-      }
+      { "hooks": [ { "type": "command", "command": "uv run guppi ledger", "timeout": 30 } ] }
     ]
   }
 }

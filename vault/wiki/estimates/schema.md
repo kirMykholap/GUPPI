@@ -34,7 +34,7 @@ A `failed` Estimate is debt, not an endpoint: its target stays `draft` and the l
 |---|---|---|
 | `## Context` | yes | What is being checked and why this check matters. Not a restatement of the target's `purpose` — that is on the target page. |
 | `## Criterion` | yes | What counts as passing, as ratified in the Case. For Research this may legitimately be broad ("determine whether we stay inside the latency budget"); for QA it should be exact. |
-| `## Method` | yes | How it is checked. QA: which test, where it lives. Research: what is being measured or investigated, and how. |
+| `## Method` | yes | How it is checked. On a Leaf target: the test file that performs the check, by path (`tests/test_x.py`); a check no file can perform — a live reading of a session start — says so, and is the exception. On a MOC target: the make target that runs the children's checks as one pipeline, by name; the target depends on the children's targets, so the MOC's check is the sequence, never a new test. Research: what is being measured or investigated, and how. |
 | `## Result` | no | Omitted while `pending`. For QA usually one line. For Research this is the substance of the page — findings, numbers, the conclusion drawn. |
 
 The two kinds sit at opposite ends of the same schema: QA puts its weight on `Criterion` and treats `Result` as a formality, Research often has a loose `Criterion` and carries everything in `Result`. That is why unused sections are omitted rather than filled with placeholder text.

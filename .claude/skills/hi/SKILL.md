@@ -3,7 +3,6 @@ name: hi
 description: Open a working session — sprint, brief, git state, open issues, then the Frontier.
 disable-model-invocation: true
 ---
-<!-- rule-skill-hi -->
 Recorded: !`uv run guppi event hi --session "${CLAUDE_SESSION_ID:-}"`
 
 <!-- rule-internal-context -->
@@ -26,4 +25,3 @@ carried over, where the sprint stands; on a plan branch the unfinished plan come
 A failed pull or an unavailable `gh` is an item on that list, not a reason to stop. Wait
 for the human to pick the order or defer items. Before any `create`, ask the vault first
 (§3 of `vault/wiki/index.md`).
-<!-- /rule-skill-hi -->

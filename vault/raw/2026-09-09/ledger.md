@@ -46,3 +46,39 @@
 - 17:55:58 decision[case 16.1][update][estimate-session-start-context]
 - 17:55:58 decision[case 16.2][update][estimate-case-protocol-loaded]
 - 17:55:58 decision[case 17][update][rule-case-protocol]{supersedes:case 15.2}
+- 17:59:24 lesson[error][lesson-estimates-criterion-stale-after-contract-change] trigger: case 15.1 redefined a ledger record as a line in a LEDGER block; the criteria of estimate-session-start-context and estimate-case-protocol-loaded still described the bare-line contract and the first stopped discriminating a session with /hi from one without; found by hand while filling their Result, fixed by cases 16.1 and 16.2 root_cause: a decision update on a Rule page has no step that lists the Estimates whose criterion quotes the changed wording; until lint or the generator does it, the acknowledging reply must grep estimates/ for the words the contract dropped
+- 18:03:39 estimate[estimate-case-protocol-loaded][passed] first reply of session D states the LEDGER-block rule and one-Case-at-a-time and assembles the Frontier from the /hi output alone, with no read call
+- 18:23:10 decision[case 18.1][create][rule-render-harness]{ref:rule-documentation}
+- 18:23:10 decision[case 18.1][create][estimate-render-harness-reproduces]{ref:rule-render-harness}
+- 18:23:10 decision[case 18.2][create][rule-hook-registry]{ref:rule-session-start}
+- 18:23:10 decision[case 18.2][create][estimate-hook-registry-rendered]{ref:rule-hook-registry}
+- 18:23:10 decision[case 18.2][update][rule-session-start]
+- 18:23:10 decision[case 18.3][update][estimates-schema]
+- 18:31:03 decision[case 19][create][rule-plan-mode]
+- 18:31:03 decision[case 19][create][estimate-plan-mode-verified]{ref:rule-plan-mode}
+- 18:34:42 decision[case 20][create][rule-spec-capture]{ref:rule-plan-mode}
+- 18:34:42 decision[case 20][create][estimate-spec-capture-appends]{ref:rule-spec-capture}
+- 18:34:42 decision[case 20][update][rule-plan-mode]
+- 18:34:42 decision[case 20][update][rule-hook-registry]
+- 18:40:47 decision[case 21][create][rule-lint]{ref:rule-documentation}
+- 18:40:47 decision[case 21][create][estimate-lint-catches]{ref:rule-lint}
+- 18:43:27 decision[case 22][create][rule-index]{ref:rule-documentation}
+- 18:43:27 decision[case 22][create][estimate-index-lists]{ref:rule-index}
+- 19:18:58 decision[case 23.1][create][rule-ask]{ref:rule-plan-mode}
+- 19:18:58 decision[case 23.1][create][estimate-ask-finds]{ref:rule-ask}
+- 19:21:47 decision[case 24.1][create][rule-pretask-hook]{ref:rule-plan-mode}
+- 19:21:47 decision[case 24.1][create][estimate-pretask-hook-gates]{ref:rule-pretask-hook}
+- 19:21:47 decision[case 24.1][update][rule-hook-registry]
+- 19:21:47 decision[case 24.2][create][rule-pretask]{ref:rule-plan-mode}
+- 19:21:47 decision[case 24.2][create][estimate-pretask-reconciles]{ref:rule-pretask}
+- 19:24:50 decision[case 25][update][glossary]
+- 19:28:07 decision[case 26.1][update][rule-case-protocol]
+- 19:28:07 decision[case 26.1][update][index]
+- 19:28:07 decision[case 26.1][update][rule-ask]{supersedes:case 23.1}
+- 19:28:07 decision[case 26.1][update][rule-pretask]{supersedes:case 24.2}
+- 19:28:07 decision[case 26.2][update][rule-lint]
+- 19:28:07 decision[case 26.2][update][estimate-lint-catches]
+- 19:28:07 decision[case 26.2][update][estimate-session-start-context]
+- 19:37:10 decision[case 27][update][rule-index]{supersedes:case 22}
+- 19:37:10 decision[case 27][update][index]
+- 19:37:10 decision[case 27][update][rule-ask]

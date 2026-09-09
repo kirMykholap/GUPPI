@@ -1,0 +1,114 @@
+"""Reading vault pages: frontmatter, `## ` sections, and the folders they live in.
+
+Shared by `render`, `lint` and `index`. A page is a Markdown file under
+`vault/wiki/<category>/`, its properties in a YAML block between `---` lines, its body in
+H2 sections. Nothing here writes.
+"""
+
+import re
+from dataclasses import dataclass, field
+from pathlib import Path
+
+import yaml
+
+CATEGORIES = ("entities", "rules", "estimates", "lessons", "insights", "decisions")
+SECTION = "## "
+MARKER = re.compile(r"^<!-- (/?)([^\s]+) -->$")
+
+
+@dataclass
+class Page:
+    category: str
+    slug: str
+    path: Path
+    props: dict = field(default_factory=dict)
+    sections: dict[str, str] = field(default_factory=dict)
+    error: str | None = None
+
+    def section(self, name: str) -> str | None:
+        return self.sections.get(name)
+
+
+def wiki_root(project_dir: Path) -> Path:
+    return project_dir / "vault" / "wiki"
+
+
+def split_frontmatter(text: str) -> tuple[str | None, str]:
+    """`(yaml block, body)`; the block is None when the file does not open with `---`."""
+    lines = text.splitlines()
+    if not lines or lines[0].strip() != "---":
+        return None, text
+    for index in range(1, len(lines)):
+        if lines[index].strip() == "---":
+            return "\n".join(lines[1:index]), "\n".join(lines[index + 1 :])
+    return None, text
+
+
+def split_sections(body: str) -> dict[str, str]:
+    """H2 heading → the text under it, leading and trailing blank lines removed. A heading
+    inside a `<!-- slug -->` … `<!-- /slug -->` block belongs to the block: a render section
+    may carry the headings of the file it produces."""
+    sections: dict[str, str] = {}
+    current: str | None = None
+    buffer: list[str] = []
+
+    def close():
+        if current is not None:
+            sections[current] = "\n".join(buffer).strip("\n")
+
+    lines = body.splitlines()
+    closed = {m.group(2) for m in map(MARKER.match, lines) if m and m.group(1)}
+    open_markers: list[str] = []
+    for line in lines:
+        match = MARKER.match(line)
+        if match:
+            closing, name = match.groups()
+            if closing:
+                if open_markers and open_markers[-1] == name:
+                    open_markers.pop()
+            elif name in closed:  # a lone child marker in a frame opens nothing
+                open_markers.append(name)
+        if line.startswith(SECTION) and not open_markers:
+            close()
+            current = line.strip()
+            buffer = []
+        elif current is not None:
+            buffer.append(line)
+    close()
+    return sections
+
+
+def read_page(path: Path, category: str) -> Page:
+    page = Page(category=category, slug=path.stem, path=path)
+    try:
+        text = path.read_text(encoding="utf-8")
+    except OSError as exc:
+        page.error = f"unreadable: {exc}"
+        return page
+    block, body = split_frontmatter(text)
+    if block is None:
+        page.error = "no frontmatter"
+    else:
+        try:
+            props = yaml.safe_load(block) or {}
+        except yaml.YAMLError as exc:
+            page.error = f"frontmatter is not YAML: {exc}"
+            props = {}
+        if not isinstance(props, dict):
+            page.error = "frontmatter is not a mapping"
+            props = {}
+        page.props = props
+    page.sections = split_sections(body)
+    return page
+
+
+def read_category(wiki: Path, category: str) -> list[Page]:
+    folder = wiki / category
+    if not folder.is_dir():
+        return []
+    pages = [read_page(p, category) for p in sorted(folder.glob("*.md")) if p.stem != "schema"]
+    return pages
+
+
+def read_vault(wiki: Path) -> dict[str, list[Page]]:
+    return {category: read_category(wiki, category) for category in CATEGORIES}

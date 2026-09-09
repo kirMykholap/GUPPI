@@ -52,8 +52,8 @@ the sections the children share live on the parent and are not repeated. A previ
 ledger lines is an untagged fence at the end of the Case; the record is a LEDGER block.
 
 Before a `create` without a `ref`, ask the vault first: does this exist, what conflicts,
-what sits in `draft`, which tags fit. Put the answer in `now`. Use `/ask` once it exists;
-until then read the category folders.
+what sits in `draft`, which tags fit. Put the answer in `now`. Dispatch the `ask-guppi`
+agent with one short question once it exists; until then read the category folders.
 
 Ledger lines are written by the `Stop` hook, from the reply, verbatim, each with the time
 of writing. A record is a `- decision[...]`, `- estimate[...]` or `- lesson[...]` line
@@ -78,3 +78,4 @@ the hook refuses and says so: tell the person, do not retry.
 - 2026-09-09 updated: records live in a LEDGER block · raw/2026-09-09/ledger.md#case-15.1
 - 2026-09-09 updated: a section is `**name:**` + text, closed by a blank line · raw/2026-09-09/ledger.md#case-15.2
 - 2026-09-09 updated: a Case is a `## Case N` heading and one blockquote per section; sub-cases are `###` · raw/2026-09-09/ledger.md#case-17, supersedes case 15.2
+- 2026-09-09 updated: the search mechanism is the `ask-guppi` agent, not a `/ask` command · raw/2026-09-09/ledger.md#case-26.1

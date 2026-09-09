@@ -1,92 +1,89 @@
-# Brief — 2026-09-09, after Slice 1 session C
+# Brief — 2026-09-09, after Slice 2 session D
 
-**Hand-written by the session that closed Slice 1. No librarian exists yet.** The next
+**Hand-written by the session that built Slice 2. No librarian exists yet.** The next
 brief is written the same way until Slice 3 delivers the librarian.
 
 ## Where things stand
 
-Branch `migration`, eight commits above `main`. Slices 0 and 1 are **closed**. Slice 1's
-spec is the second document in `raw/2026-09-09/spec.md` (cases 9–13); its ledger lines are
-in `raw/2026-09-09/ledger.md`: the sixteen decision lines and three lesson lines of sessions
-A and B by hand, everything from session C on by the hook.
+Branch `migration`, nine commits above `main`. Slices 0 and 1 are closed. Slice 2 is
+**built, not closed**: every page and script exists, `make test` is 88 green, but five
+Estimates wait for a live reading that only a fresh session can take (below). Its spec is
+the third document in `raw/2026-09-09/spec.md` (cases 18–27); its ledger lines were all
+written by the hook.
 
-**Built:** `uv run guppi event` (`SessionStart`, `PostToolUse`) and `uv run guppi ledger`
-(`Stop`). The ledger hook lifts the `- decision[`, `- estimate[` and `- lesson[` lines of a
-```` ```LEDGER ```` block in the finished reply into `raw/<date>/ledger.md`, each prefixed
-with the time of writing (`- HH:MM:SS decision[...]`); lines anywhere else are previews. It
-refuses with exit 2 and a reason when no `hi` follows a `session-start` of this session;
-`compact` and `resume` of the same session keep the window open. A line already present,
-with or without a time, is not written twice. `make test`: 32 green.
+**Built in Slice 2:** `uv run guppi render` (writes the harness from the Rule pages;
+`--check` reports drift), `guppi index` (`wiki/<category>-index.md`; `--check`), `guppi
+lint` (eight defect classes, reports only), `guppi spec` (`PostToolUse ExitPlanMode` →
+`raw/<date>/spec.md`), `guppi pretask` (`PreToolUse ExitPlanMode`, holds Plan Mode until
+`/pre-task` ran in a session with `/hi`), the agent `.claude/agents/ask-guppi.md`, the
+skill `/pre-task`, `make lint` (the three `--check`s plus lint), `make test-session-start`
+and `make test-plan-mode`. `.claude/settings.json`, `SKILL.md` of `/hi`, the Case
+protocol block of `CLAUDE.md`, the agent and the new skill are rendered; editing them by
+hand is undone by the next `guppi render`. `glossary.md` is a table, 8 002 characters.
 
-**Measured:** all eight Estimate pages of Slice 1 are `passed`, filled by hand.
-`estimate-ledger-write-lifts` has two live readings, one under each contract.
+**Measured:** `estimate-render-harness-reproduces`, `estimate-lint-catches`,
+`estimate-index-lists` are `passed`.
 
-**Decided in session C** (cases 14–17, all `update`): the `hi` window survives
-`compact`/`resume` (14); a record is a LEDGER block, not a bare line (15.1); a Case renders
-as `## Case N — name` plus one blockquote per section, sub-cases as `###` (17, replacing
-15.2); each ledger line carries the time (15.3); the two Estimate criteria that quoted the
-bare-line contract were rewritten (16.1, 16.2).
+## What the next session does first — five readings
 
-## What the next session does — Slice 2
+Take them at the start, before anything else; each is one `estimate[...]` line.
 
-Slice 2 per `sprint.md`: renderer, lint, indexes, `/ask`, pre-task. Its own Plan Mode and
-its own approval; the approved plan is copied to `raw/<date>/spec.md`. Candidates for the
-Frontier, in the order the plan suggests:
+1. **`estimate-hook-registry-rendered`** — the session start of the next session writes a
+   `session-start` line into `event_log.md` from the rendered `settings.json`. The other
+   two parts of the criterion (byte-identical render, JSON parses) already held in D.
+2. **`estimate-ask-finds`** — three dispatches of `ask-guppi` (agent definitions load at
+   session start; in D the file existed but the `Agent` tool did not see it): the ledger
+   hook question in English, the same in Russian, and a proposal for a blocking
+   `SessionStart` hook. Record whether `@vault/wiki/rules-index.md` expanded and the
+   tokens of one dispatch.
+3. **`estimate-pretask-reconciles`** — one `/pre-task` run before the Slice 3 approval. In
+   D the skill's `!` line landed in `event_log.md` when the model invoked it through the
+   `Skill` tool (20:01:32); the dispatch could not happen for the reason in 2.
+4. **`estimate-pretask-hook-gates`** and 5. **`estimate-spec-capture-appends`** — the
+   Slice 3 plan approval: the first `ExitPlanMode` is refused until `/pre-task` ran, the
+   approved plan lands in `raw/<date>/spec.md` by the hook, and the reading records what a
+   rejected plan produces.
 
-1. **Harness renderer** (`migration-plan.md`, Phase 1): reads every Rule page with
-   `enforcement: render`, writes `## Render` into the file named by `governs` — `full`
-   replaces, `partial` splices between `<!-- slug -->` markers. Today four rule pages and
-   `.claude/skills/hi/SKILL.md`, and `rule-case-protocol` and `CLAUDE.md`, are two copies
-   of one text kept identical by hand. Includes the deferred `rule-hook-registry`
-   (`render: full` → `.claude/settings.json`).
-2. **`rule-plan-mode`** MOC: `rule-case-protocol` already names it as parent.
-3. **C9 by hook**: `PostToolUse ExitPlanMode` copies `tool_response.plan` into
-   `raw/<date>/spec.md` (`rule-branch-commit`). The payload is known (lesson line of
-   session B).
-4. **Lint, indexes, `/ask`, pre-task**: the 35 pages of `vault/wiki/` were written by hand
-   against `schema.md`; lint will be their first check.
+Then Slice 3 per `sprint.md`: materialize, generate, librarian, retro, handoff.
 
-Free readings at the start: the agent's first reply is a reading of
-`estimate-case-protocol-loaded` under its new criterion (states the LEDGER-block rule and
-one-Case-at-a-time, no read call). A fresh reading 1 of `estimate-session-start-context`
-under the LEDGER form costs one start without `/hi`; optional, the refusal path did not
-change.
+## Open question for the owner — a Case at the next start
+
+`guppi lint` flags `estimate-hi-no-read-calls: method: a MOC's Estimate names no make
+target`. `rule-skill-hi` is a MOC whose three children are all hand readings; the Method
+rule of case 18.3 gives the by-hand exception to Leaf targets only. Either the rule gains
+"a MOC whose children are all hand readings says so" or `rule-skill-hi` gets an empty
+pipeline target. Not decided in D.
 
 ## Deferred, carried here so it surfaces
 
 - `/grill-me` is kept without a page. Decide at Slice 3 (retro) or Slice 5.
-- Rendering `.claude/settings.json` from a Rule page (`rule-hook-registry`, `render: full`).
-  Slice 2; until then the three hook registrations are hand-written.
-- `origin` points at the product repository (`c:/PROJECTS/job hunt ai`) and `migration`
-  has no upstream; `git pull --ff-only` in `/hi` fails visibly and harmlessly. Owner's
-  decision 11.1: leave until Slice 5.
-- `gh` is not logged in and there is no GitHub remote; `gh issue list` in `/hi` prints its
-  own message. Owner's decision 11.2: leave until a remote exists.
-- Estimate pages are updated by hand (`status`, `## Result`, `History`) until Slice 3's
-  generator; `log.md` likewise.
-- C9 by hook: Slice 2, item 3 above.
+- `origin` points at the product repository and `migration` has no upstream; `git pull
+  --ff-only` in `/hi` fails visibly. Owner's decision 11.1: leave until Slice 5.
+- `gh` is not logged in and there is no GitHub remote. Owner's decision 11.2.
+- Estimate pages are updated by hand until Slice 3's generator; `log.md` likewise.
+- `rule-hook-registry` sits under `rule-session-start`; moves under a harness MOC when one
+  exists.
 - The fate of `vault/parked/`, `vault/archive/`, `docs/superpowers/`, `docs/HANDOFF.md` and
   the 2026-08 documents under `docs/`. Slice 5.
 
-## Known false, and left so on purpose
+## Known false, and left so on purpose — what `make lint` prints today
 
-- `rule-case-protocol` has `parent: rule-plan-mode`; that page arrives with Slice 2.
-- Until Slice 2's renderer the skill file and the four rule pages, and the render block of
-  `rule-case-protocol` and `CLAUDE.md`, are two copies of one text kept identical by hand.
-  Checked identical by `diff` at the close of session C.
-- `docs/migration/rule-*.md` carry `origin: TBD`, `sprint: TBD`, `created: TBD`. They are
-  drafts, not pages; the drafts stay until Slice 5.
-- `docs/migration/migration-plan.md`, Phase 1 item 4, says hand-written and hook-written
-  ledger lines must be indistinguishable. Case 15.3 made them distinguishable by design:
-  the hook's lines carry a time. The plan is a draft and is corrected at Slice 5.
-- The `hi` line in `event_log.md` has no session id: `CLAUDE_SESSION_ID` does not reach a
-  `!` substitution (measured session B: `unset`). The two-sessions limit of
-  `rule-event-log` stands.
-- The one lesson line of session C is written by the hook after the closing commit, so it
-  sits in `ledger.md` uncommitted until the next commit.
+- `rule-render-harness`, `rule-lint`, `rule-index` carry `parent: rule-documentation`;
+  that MOC arrives with Slice 3. Three `ref` findings.
+- Eleven `status: draft while every Estimate is passed` findings (the Slice 1 pages,
+  `rule-render-harness`, `rule-lint`, `rule-index`): lint reports, the Slice 3 generator
+  sets `built`.
+- The `method` finding on `estimate-hi-no-read-calls`, the open question above.
+- `docs/migration/rule-*.md` carry `TBD` fields and still say `/ask`; drafts until
+  Slice 5. `docs/migration/migration-plan.md` Phase 1 item 4 contradicts case 15.3.
+- `index.md` §11 still says the indexes are "regenerated by lint"; they are written by
+  `guppi index`, checked by lint. Case 27 changed only the file name.
+- `raw/2026-09-09/ledger.md` has mixed line endings (hand-written lines CRLF, hook lines
+  LF); git normalizes on commit.
 
-## Readings at the close of session C
+## Readings at the close of session D
 
-- `find vault/wiki -type f | wc -l` → 35.
-- `make style` → clean; `make test` → 32 passed.
-- Ledger tail: cases 15.1–15.3, 14, 16.1, 16.2, 17 written by the hook with times, once each.
+- `find vault/wiki -type f | wc -l` → 58 (35 before the slice; 17 pages in `rules/`).
+- `make style` → clean; `make test` → 88 passed.
+- `make lint` → red on exactly the known-false list above.
+- `uv run guppi render --check`, `uv run guppi index --check` → exit 0.

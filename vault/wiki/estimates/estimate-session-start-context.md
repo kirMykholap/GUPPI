@@ -24,7 +24,8 @@ end.
 
 ## Method
 
-Two session starts, by hand, one reading each, recorded in the estimate line.
+`make test-session-start`, the pipeline over `tests/test_event.py` and
+`tests/test_ledger.py`; the two end-to-end readings by hand, recorded in the estimate line.
 
 ## Result
 
@@ -41,3 +42,4 @@ path is unchanged since, and `tests/test_ledger.py` holds it in the LEDGER-block
 - 2026-09-09 created · raw/2026-09-09/ledger.md#case-12
 - 2026-09-09 status: pending → passed · written by hand, no generator yet
 - 2026-09-09 updated: criterion follows the LEDGER block · raw/2026-09-09/ledger.md#case-16.1
+- 2026-09-09 updated: Method names the make pipeline over the children · raw/2026-09-09/ledger.md#case-26.2

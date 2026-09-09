@@ -35,7 +35,8 @@ move closes:
   `/ingest`, no librarian, no gate; the hooks that asked for them are gone. `docs/migration/`
   holds the drafts of the workflow that replaces them and the plan of the move.
 - **Each slice is its own Plan Mode and its own approval.** The approved plan is copied to
-  `vault/raw/<date>/spec.md`.
+  `vault/raw/<date>/spec.md` by the `PostToolUse ExitPlanMode` hook `guppi spec` since
+  Slice 2; the Specs of Slices 0–2 were copied by hand.
 
 <!-- rule-case-protocol -->
 ## Case protocol
@@ -55,8 +56,8 @@ the sections the children share live on the parent and are not repeated. A previ
 ledger lines is an untagged fence at the end of the Case; the record is a LEDGER block.
 
 Before a `create` without a `ref`, ask the vault first: does this exist, what conflicts,
-what sits in `draft`, which tags fit. Put the answer in `now`. Use `/ask` once it exists;
-until then read the category folders.
+what sits in `draft`, which tags fit. Put the answer in `now`. Dispatch the `ask-guppi`
+agent with one short question once it exists; until then read the category folders.
 
 Ledger lines are written by the `Stop` hook, from the reply, verbatim, each with the time
 of writing. A record is a `- decision[...]`, `- estimate[...]` or `- lesson[...]` line

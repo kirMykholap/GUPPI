@@ -1,66 +1,92 @@
-# Brief — 2026-09-09
+# Brief — 2026-09-09, after Slice 1 session A
 
-**Hand-written by the session that ran Slice 0. No librarian exists yet, so no ingest produced
-this.** The next brief is written the same way until Slice 3 delivers the librarian.
+**Hand-written by the session that ran Slice 1's first part. No librarian exists yet.**
+The next brief is written the same way until Slice 3 delivers the librarian.
 
 ## Where things stand
 
-The repository is on branch `migration`, three commits above `main` (`047a612`, tagged
-`vault-v1` at the split from the product). Slice 0 of the migration plan is closed: the layout
-of `vault/wiki/index.md` §1 exists, the model's documents live in the vault, the old harness is
-gone, and the sprint `migration` is open in `sprint.md`.
+Branch `migration`, four commits above `main`. Slice 0 is closed. Slice 1 is **open, one
+session of three done**: its spec is the second document in `raw/2026-09-09/spec.md`
+(cases 9–13), its sixteen decision lines are in `raw/2026-09-09/ledger.md`, written by
+hand at ratification.
 
-**`vault/wiki/` holds no page.** Six categories, each with `schema.yaml` and `schema.md`, four
-registers, three top-level documents. The first pages arrive with Slice 1.
+**`vault/wiki/` holds its first sixteen pages**: eight Rules (`rule-session-start`,
+`rule-skill-hi`, `rule-internal-context`, `rule-git-context`, `rule-github-issues`,
+`rule-event-log`, `rule-ledger-write`, `rule-case-protocol`) and their eight Estimates, all
+`draft` / `pending`.
 
-**The old vault is parked, not retired**, under `vault/parked/2026-09-09/` (entities 44, rules
-35, lessons 31, proposals 52, and the eight old registers) and `vault/parked/2026-09-07/`
-(decisions 218, concepts 147, and four product pages). `vault/archive/` is the old archive,
-untouched. Slice 4 converts entities, rules and lessons by group; proposals stay parked
-(decision D2).
+**Built:** `guppi/` with `uv run guppi event` (the event log) and `uv run guppi probe`
+(throwaway); `.claude/settings.json` registers `SessionStart` and `PostToolUse` on
+`guppi event`, `Stop` and `PostToolUse ExitPlanMode` on `guppi probe`; the `/hi` skill;
+the Case protocol section in `CLAUDE.md`; `make test` (pytest, 14 green).
 
-**The decisions of 2026-09-09** are the nine lines of `vault/raw/2026-09-09/ledger.md`, with
-their content in `spec.md` beside it (the approved plan, D1–D8 and C1–C14). Their Decision pages
-do not exist yet: the generator that writes them is Slice 3's.
+**Not built:** `guppi ledger`, the `Stop` hook. It waits on the probe below. Until it is
+registered, ledger lines are still written by hand, in the same format.
 
-## What the next session does — Slice 1
+**Already measured, this session:** a `PostToolUse` hook added to `settings.json` fires on
+the next tool call without a restart, and `guppi event` receives the real `session_id`
+(`event_log.md` carries `1cee6ce3 tool Write: …` lines). `uv run guppi` needs the project
+installed — `uv sync` after a fresh clone, and a `[build-system]` block in
+`pyproject.toml` (uv's own backend, build-time only).
 
-Open Plan Mode and plan Slice 1 from `docs/migration/rule-session-start.md` and the roadmap in
-`raw/2026-09-09/spec.md`:
+## What the next session does — Slice 1, session B
 
-1. The Python package `guppi/` with a CLI (`uv run guppi …`) and the pytest suite beside it.
-2. `guppi event` — the event log, `raw/<date>/event_log.md`, gitignored.
-3. `guppi ledger` — the `Stop` hook that lifts `- decision[...]`, `- estimate[...]` and
-   `- lesson[...]` lines out of the finished reply into `raw/<date>/ledger.md`, refusing with a
-   reason when no `/hi` was recorded. **Probe the `Stop` payload first** (does it carry the last
-   assistant message, or only `transcript_path`?) with a throwaway hook, as the old vault's
-   lesson on probe hooks teaches; do not trust the documentation on this.
-4. The `/hi` skill, recording its own invocation through a `!` substitution, loading
-   `sprint.md`, `brief.md`, git state and open issues.
-5. The Rule pages that describe all of the above — `rule-session-start` and its children — written
-   by hand into `vault/wiki/rules/`, each with its Estimate. They are re-rendered by Slice 2's
-   renderer; until then the skill file and the rule page are two copies, for one session.
-6. `CLAUDE.md` gains the Case protocol section (`rule-case-protocol`), by hand, same caveat.
+**The owner, before opening Claude Code:** nothing. Then, in the new session:
+
+1. Type `/hi`. It records itself in the event log and prints a `Probe:` line with
+   `CLAUDE_SESSION_ID` or `unset`.
+2. Make one tool call of any kind, enter Plan Mode, exit it with a trivial plan, and let
+   the agent reply. `raw/2026-09-09/probe-Stop-1.json` and `probe-PostToolUse-1.json`
+   appear (gitignored).
+
+**The agent, in that session** (spec.md, "Сессия B"):
+
+- Read the probe files. Record the readings as two `- lesson[knowledge][…]` lines — by
+  hand into the ledger, the hook does not exist yet: `lesson-hooks-stop-payload`
+  (which field carries the reply; whether `stop_hook_active` is present; whether a
+  `Stop` registration needed a restart) and `lesson-hooks-exitplanmode-payload` (does
+  `tool_input` carry the plan text, C9).
+- Take the readings of `estimate-hi-no-read-calls`, `estimate-internal-context-loaded`,
+  `estimate-git-context-current`, `estimate-github-issues-listed` from this very start,
+  and of `estimate-event-log-records` (`git check-ignore`, timing through a pipe).
+- Write `guppi/ledger.py` and `tests/test_ledger.py` to the contract of case 10, on the
+  branch the probe confirmed. Remove `guppi/probe.py`, the probe files, the `Probe:` line
+  from the skill and the `ExitPlanMode` registration; register `Stop` →
+  `uv run guppi ledger`. If `CLAUDE_SESSION_ID` was `unset`, the skill text stays as it
+  is and the two-sessions limit in `rule-event-log` stands.
+- Fill the measured Estimates' pages (`status`, `## Result`, `History`) by hand.
+- `make style`, `make test`, commit. Rewrite this brief for session C: one start without
+  `/hi` (the hook must refuse a bare decision line and say why), one with `/hi` (the hook
+  must write the `estimate[...]` lines itself — item 5 of the definition of done).
 
 ## Deferred, carried here so it surfaces
 
 - `/grill-me` is kept without a page. Decide at Slice 3 (retro) or Slice 5.
 - Rendering `.claude/settings.json` from a Rule page (`rule-hook-registry`, `render: full`).
-  Decide in Slice 2, when the renderer exists.
-- `PostToolUse ExitPlanMode`: does its payload carry the plan text? Needed for the hook that
-  copies the approved plan into `raw/<date>/spec.md` (C9). Check in Slice 2.
+  Decide in Slice 2; until then the three hook registrations are hand-written.
+- `origin` points at the product repository (`c:/PROJECTS/job hunt ai`) and `migration`
+  has no upstream; `git pull --ff-only` in `/hi` fails visibly and harmlessly. Owner's
+  decision 11.1: leave until Slice 5.
+- `gh` is not logged in and there is no GitHub remote; `gh issue list` in `/hi` prints its
+  own message. Owner's decision 11.2: leave until a remote exists.
+- Estimate pages are updated by hand (`status`, `## Result`) until Slice 3's generator.
 - The fate of `vault/parked/`, `vault/archive/`, `docs/superpowers/`, `docs/HANDOFF.md` and the
   2026-08 documents under `docs/`. Slice 5.
 
 ## Known false, and left so on purpose
 
+- `rule-case-protocol` has `parent: rule-plan-mode`; that page arrives with Slice 2.
+- `rule-ledger-write` lists `guppi/ledger.py` in `implementation_ref`; the file arrives
+  with session B.
+- `.claude/skills/hi/SKILL.md` carries a `Probe:` line that is not in `rule-skill-hi`'s
+  `## Render`; it leaves with the probe. Until Slice 2's renderer the skill file and the
+  four rule pages are two copies of one text, kept identical by hand.
 - `docs/migration/rule-*.md` carry `origin: TBD`, `sprint: TBD`, `created: TBD`. They are
-  drafts, not pages; each gets real values when it becomes a page in `vault/wiki/rules/`.
-- The old harness's own lessons (31, parked) describe hooks that no longer exist. They are
-  still the record of what burned; Slice 4 decides which survive as Lessons of the new model.
+  drafts, not pages; `rule-session-start` now has a real page and the draft stays until
+  Slice 5.
 
-## Readings at the close of Slice 0
+## Readings at the close of session A
 
-- `find vault/wiki -type f | wc -l` → 19.
-- `ls .claude` → `settings.json`, `skills/` (holding `grill-me` only).
-- `make style` → clean, over no Python.
+- `find vault/wiki -type f | wc -l` → 35.
+- `make style` → clean; `make test` → 14 passed.
+- `git check-ignore vault/raw/2026-09-09/event_log.md` → ignored.

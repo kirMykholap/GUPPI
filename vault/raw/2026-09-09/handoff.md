@@ -31,3 +31,37 @@ this folder: the nine ledger lines above map onto `spec.md`, and the Decision pa
   `.superpowers/`, six skills. `/grill-me` kept. `settings.json` holds only the default mode.
 - `CLAUDE.md` rewritten as a bootstrap with `@import` of the glossary and the Case schema.
 - Where the code landed: the three commits above `047a612` on `migration`.
+
+---
+
+# Handoff — 2026-09-09, Slice 1, session A
+
+## Notes from memory
+
+- Five Cases (9–13), each ratified as recommended on the first pass; the owner's only
+  choices were the two sub-questions of Case 11 (`origin`, `gh`), both answered "leave it".
+- The `PostToolUse` registration fired mid-session, on the very next tool call, and the
+  first firing failed with `Failed to spawn: guppi — program not found`: the entry point
+  needs `uv sync` and a build backend. That is why `pyproject.toml` grew a
+  `[build-system]` block; it is uv's own backend, fetched once at build time.
+- ruff here enforces `DTZ` (timezone-aware datetimes); `datetime.now().astimezone()` is
+  the shape that passes.
+- The `Stop` probe was registered during this session's last turn; whether it fires at
+  that turn's end without a restart is itself a reading — look for
+  `probe-Stop-1.json` before assuming a restart was needed.
+
+## Direct instructions to the librarian
+
+Still no librarian. When one exists: the sixteen pages of this slice were written by hand
+against `rules/schema.md` and `estimates/schema.md`; check them against lint first, they
+predate it.
+
+## What actually got done
+
+- Commit `feat(harness): guppi event, the probe, /hi and the Slice 1 pages` — everything
+  of session A but this brief and this note.
+- `guppi/event.py`, `guppi/probe.py`, `guppi/cli.py`, `tests/test_event.py` (14 tests).
+- `.claude/settings.json`: four registrations. `.claude/skills/hi/SKILL.md`.
+- `vault/wiki/rules/` ×8, `vault/wiki/estimates/` ×8, `tags.md` ×7 tags, `log.md` ×6 lines.
+- `CLAUDE.md`: Case protocol section, Migration mode updated.
+- Not done: `guppi/ledger.py` (waits on the probe), every Estimate reading.

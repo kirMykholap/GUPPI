@@ -1,0 +1,17 @@
+# Insight — the machine-readable schema. Lint reads this file; schema.md beside it is the
+# same schema as prose with examples, and lint checks the two agree. Rule-class: changes only
+# through a ratified `decision update`.
+type: insight
+properties:
+  required: [type, pattern, status, children, severity, origin, sprint, created, tags]
+  optional: [addressed_by]
+  values:
+    status: [open, actioned, archived]
+  conditional:
+    - when: {status: actioned}
+      required: [addressed_by]
+# `severity` is count(children where status != archived), recomputed by lint.
+computed: [severity]
+body:
+  required: ["## Pattern", "## Children", "## History"]
+  optional: ["## Proposal", "## Addressed by"]

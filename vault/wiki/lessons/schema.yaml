@@ -1,0 +1,21 @@
+# Lesson — the machine-readable schema. Lint reads this file; schema.md beside it is the
+# same schema as prose with examples, and lint checks the two agree. Rule-class: changes only
+# through a ratified `decision update`.
+type: lesson
+properties:
+  required: [type, kind, root_cause, status, estimates, origin, sprint, created, tags]
+  optional: [source, insight]
+  values:
+    kind: [error, knowledge]
+    status: [new, clustered, archived]
+  conditional:
+    - when: {kind: knowledge}
+      required: [source]
+    - when: {status: clustered}
+      required: [insight]
+body:
+  required: ["## Trigger", "## Root cause", "## Estimates", "## History"]
+  optional: ["## Insight"]
+  conditional:
+    - when: {status: clustered}
+      required: ["## Insight"]

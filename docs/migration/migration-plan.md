@@ -2,7 +2,6 @@
 
 One-time plan for converting the existing vault into the model described in `index.md`. Discard this document once migration is complete. The permanent set is `index.md`, `glossary.md`, `case-schema.md`, and the six page schemas (decision, entity, rule, estimate, lesson, insight).
 
-Anything under `superseded/` is an earlier draft and contradicts the current model — do not read it as instructions.
 
 ---
 

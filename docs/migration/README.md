@@ -5,20 +5,22 @@ ratified by a human; nothing reaches the codebase or the vault without one.
 
 ## Read in this order
 
-1. **`index.md`** — what the vault is made of and the rules that hold in every phase.
-   Start here.
-2. **`glossary.md`** — every term, precisely. Consult while reading the rest.
-3. **`case-schema.md`** — the Case, the unit of dialogue where content gets ratified.
-4. **Page schemas** — `decision-`, `entity-`, `rule-`, `estimate-`, `lesson-`,
-   `insight-schema.md`. One per category: properties, body, history, worked examples.
-5. **`moc/`** — the session workflow, one Rule MOC per phase. Read in session order:
+Since 2026-09-09 the permanent documents live in the vault, at `vault/wiki/`; only the
+workflow drafts and this plan remain here.
+
+1. **`vault/wiki/index.md`** — what the vault is made of and the rules that hold in every
+   phase. Start here.
+2. **`vault/wiki/glossary.md`** — every term, precisely. Consult while reading the rest.
+3. **`vault/wiki/case-schema.md`** — the Case, the unit of dialogue where content gets
+   ratified.
+4. **Page schemas** — `vault/wiki/<category>/schema.md`, one per category: properties,
+   body, history, worked examples. `schema.yaml` beside each is the same schema for lint.
+5. **`rule-*.md`, here** — the session workflow, one Rule MOC per phase, drafts until each
+   becomes a page in `vault/wiki/rules/`. Read in session order:
    `rule-session-start` → `rule-plan-mode` → `rule-work-mode` → `rule-subagent-guppi` →
    `rule-end-of-work` → `rule-documentation`.
 6. **`migration-plan.md`** — the one-time conversion of an existing vault. Read last, and
    only when doing that work.
-
-**`superseded/`** holds earlier drafts. They contradict the current model. Do not read them
-as instructions.
 
 ## Which file is authoritative for what
 
@@ -30,7 +32,7 @@ The split matters, because several things could plausibly live in two places:
 | What the vault directory structure is | `index.md` §1 |
 | How a decision routes to a page | `index.md` §5 |
 | When to split something into children | `index.md` §6 |
-| How a session actually runs, step by step | `moc/` — **not** `index.md` |
+| How a session actually runs, step by step | the `rule-*.md` MOCs — **not** `index.md` |
 | What a term means | `glossary.md` |
 
 `index.md` deliberately does **not** describe the session workflow. That lives in the Rule

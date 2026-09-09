@@ -1,0 +1,23 @@
+# Entity — the machine-readable schema. Lint reads this file; schema.md beside it is the
+# same schema as prose with examples, and lint checks the two agree. Rule-class: changes only
+# through a ratified `decision update`.
+type: entity
+properties:
+  required: [type, kind, purpose, status, estimates, origin, sprint, created, tags]
+  optional: [parent, children, code_ref]
+  values:
+    kind: [MOC, Leaf]
+    status: [draft, built, archived]
+  conditional:
+    - when: {kind: Leaf}
+      required: [parent]
+    - when: {kind: MOC}
+      required: [children]
+body:
+  required: ["## Purpose", "## Estimates", "## History"]
+  optional: ["## How it works", "## Children", "## Parent", "## Code"]
+  conditional:
+    - when: {kind: MOC}
+      required: ["## Children"]
+    - when: {kind: Leaf}
+      required: ["## Parent"]

@@ -1,0 +1,18 @@
+# Estimate — the machine-readable schema. Lint reads this file; schema.md beside it is the
+# same schema as prose with examples, and lint checks the two agree. Rule-class: changes only
+# through a ratified `decision update`.
+type: estimate
+properties:
+  required: [type, kind, status, target, origin, sprint, created, tags]
+  optional: []
+  values:
+    kind: [QA, Research]
+    status: [pending, passed, failed]
+body:
+  required: ["## Context", "## Criterion", "## Method", "## History"]
+  optional: ["## Result"]
+  conditional:
+    - when: {status: passed}
+      required: ["## Result"]
+    - when: {status: failed}
+      required: ["## Result"]

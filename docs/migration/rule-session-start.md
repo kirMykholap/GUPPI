@@ -74,12 +74,16 @@ versus authentication, so they are separate.
 
 2. **[[rule-event-log]]** — `hook`. Fires at session start, every session. Records tool
    calls, agent dispatches, commits, test runs. Gitignored: debugging material, not
-   traceability. **Records the `/hi` invocation**, which is what makes it the source of
+   traceability. **The `/hi` invocation is recorded by the skill itself**, through a `!`
+   substitution in its body — a command typed by the person does not pass through the
+   `Skill` tool, so no hook would see it. That record is what makes the log the source of
    truth about which kind of session this is.
 
-3. **[[rule-ledger-write]]** — `hook`. Listens for `- decision[...]`, `- estimate[...]` and
-   `- lesson[...]` in the agent's output and appends them verbatim to
-   `raw/<date>/ledger.md`, interpreting nothing.
+3. **[[rule-ledger-write]]** — `hook`, on `Stop`. Reads the reply that just finished, finds
+   `- decision[...]`, `- estimate[...]` and `- lesson[...]` lines and appends them verbatim to
+   `raw/<date>/ledger.md`, interpreting nothing. `Stop` and not `MessageDisplay`: the latter
+   can neither block nor speak (measured 2026-08-29), the former can block with a reason the
+   agent reads.
 
    **Checks `event_log.md` for a `/hi` invocation first.** The instruction to write those
    lines lives in `CLAUDE.md`, so the agent produces them in *any* session — including one

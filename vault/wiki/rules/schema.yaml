@@ -1,0 +1,39 @@
+# Rule — the machine-readable schema. Lint reads this file; schema.md beside it is the
+# same schema as prose with examples, and lint checks the two agree. Rule-class: changes only
+# through a ratified `decision update`.
+type: rule
+properties:
+  required: [type, kind, purpose, status, estimates, origin, sprint, created, tags]
+  optional: [enforcement, implementation_ref, governs, render_mode, parent, children]
+  values:
+    kind: [MOC, Leaf]
+    status: [draft, built, archived]
+    enforcement: [hook, check, render]
+    render_mode: [full, partial]
+  conditional:
+    - when: {enforcement: hook}
+      required: [implementation_ref]
+    - when: {enforcement: check}
+      required: [implementation_ref]
+    - when: {enforcement: render}
+      required: [governs, render_mode]
+    - when: {kind: MOC}
+      required: [children]
+      # a MOC carries `enforcement` only as `render`: the frame of a harness file
+      forbidden_values: {enforcement: [hook, check]}
+# `children` on a Rule MOC is ordered and the order is content; nothing may sort it.
+ordered_children: true
+body:
+  required: ["## Purpose", "## Estimates", "## History"]
+  optional: ["## Render", "## How it works", "## Children", "## Parent", "## Implementation"]
+  conditional:
+    - when: {enforcement: render}
+      required: ["## Render"]
+    - when: {enforcement: hook}
+      required: ["## Implementation"]
+    - when: {enforcement: check}
+      required: ["## Implementation"]
+    - when: {kind: MOC}
+      required: ["## Children"]
+    - when: {kind: Leaf}
+      required: ["## Parent"]

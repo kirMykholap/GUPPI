@@ -1,0 +1,14 @@
+# Decision — the machine-readable schema. Lint reads this file; schema.md beside it is the
+# same schema as prose with examples, and lint checks the two agree. Rule-class: changes only
+# through a ratified `decision update`.
+type: decision
+properties:
+  required: [type, kind, status, target_category, target_slug, origin, sprint, created, tags]
+  optional: [ref, source, supersedes, superseded_by]
+  values:
+    kind: [create, update, delete, defer]
+    status: [current, superseded, archived]
+    target_category: [entities, rules, estimates, lessons]
+body:
+  required: ["## Context", "## Now", "## Problem", "## Then", "## History"]
+  optional: ["## Note"]

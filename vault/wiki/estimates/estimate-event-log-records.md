@@ -1,7 +1,7 @@
 ---
 type: estimate
 kind: QA
-status: pending
+status: passed
 target: rule-event-log
 origin: raw/2026-09-09/ledger.md#case-9
 sprint: migration
@@ -28,6 +28,16 @@ pytest in `tests/test_event.py` drives `guppi.event` with piped JSON payloads ag
 temp vault; the git-ignore and timing readings are taken once by hand, through a pipe, and
 written into the estimate line.
 
+## Result
+
+Passing. pytest: twelve cases in `tests/test_event.py`. By hand, 2026-09-09 session B:
+`session-start clear` and `session-start resume` stamped `44c1aae1`, then `hi`, then the
+`tool` lines, in order; `git check-ignore -v` → `.gitignore:47`; three piped invocations
+of `guppi event tool` exited 0 in 0.10 s each. A UTF-8 payload through the cp1252 stdin a
+hook gets on Windows came out as mojibake until `read_text` took the bytes
+(`lesson-hooks-windows-stdin-encoding`); a test covers it since.
+
 ## History
 
 - 2026-09-09 created · raw/2026-09-09/ledger.md#case-9
+- 2026-09-09 status: pending → passed · written by hand, no generator yet

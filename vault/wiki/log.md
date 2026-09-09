@@ -10,3 +10,4 @@ instruction. The global feed; a page's own `## History` is the per-page view.
 - 2026-09-09 rules/rule-session-start, estimates/estimate-session-start-context created · raw/2026-09-09/ledger.md#case-12 · written by hand, no hook exists yet
 - 2026-09-09 rules/rule-case-protocol, estimates/estimate-case-protocol-loaded created · raw/2026-09-09/ledger.md#case-13 · written by hand, no hook exists yet
 - 2026-09-09 tags.md registers session, hooks, harness, ledger, git, github, workflow · raw/2026-09-09/ledger.md#case-9 to #case-13 · written by hand
+- 2026-09-09 estimates/estimate-hi-no-read-calls, estimate-internal-context-loaded, estimate-git-context-current, estimate-github-issues-listed, estimate-event-log-records passed · raw/2026-09-09/ledger.md#case-9, #case-11 · written by hand, no hook exists yet

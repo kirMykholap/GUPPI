@@ -15,18 +15,12 @@
         "hooks": [
           { "type": "command", "command": "uv run guppi event tool", "timeout": 30 }
         ]
-      },
-      {
-        "matcher": "ExitPlanMode",
-        "hooks": [
-          { "type": "command", "command": "uv run guppi probe", "timeout": 30 }
-        ]
       }
     ],
     "Stop": [
       {
         "hooks": [
-          { "type": "command", "command": "uv run guppi probe", "timeout": 30 }
+          { "type": "command", "command": "uv run guppi ledger", "timeout": 30 }
         ]
       }
     ]

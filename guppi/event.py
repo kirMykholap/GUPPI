@@ -20,10 +20,21 @@ UNKNOWN_SESSION = "--------"
 DETAIL_LIMIT = 80
 
 
+def read_text(stream) -> str:
+    """Everything on the stream, taken as bytes and decoded as UTF-8 where the stream has a
+    byte layer underneath. A hook's stdin on Windows is a text wrapper in the locale's code
+    page with `surrogateescape` (measured 2026-09-09: cp1252), which turns a UTF-8 payload
+    into mojibake and lone surrogates that no UTF-8 file will take."""
+    buffer = getattr(stream, "buffer", None)
+    if buffer is not None:
+        return buffer.read().decode("utf-8", errors="replace")
+    return stream.read()
+
+
 def read_payload(stream) -> dict:
     """The hook's JSON from stdin; `{}` when there is none or it is not JSON."""
     try:
-        text = stream.read()
+        text = read_text(stream)
     except (OSError, ValueError):
         return {}
     if not text or not text.strip():

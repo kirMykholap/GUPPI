@@ -1,7 +1,7 @@
 ---
 type: estimate
 kind: QA
-status: pending
+status: passed
 target: rule-github-issues
 origin: raw/2026-09-09/ledger.md#case-11
 sprint: migration
@@ -24,6 +24,12 @@ the skill completes either way.
 
 One reading at a session start, by hand, in the current `gh` state.
 
+## Result
+
+Passing. `gh`'s own message (`To get started with GitHub CLI, please run: gh auth
+login`) was in context and the skill completed (2026-09-09, session B).
+
 ## History
 
 - 2026-09-09 created · raw/2026-09-09/ledger.md#case-11
+- 2026-09-09 status: pending → passed · written by hand, no generator yet

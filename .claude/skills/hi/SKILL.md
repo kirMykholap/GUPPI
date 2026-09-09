@@ -5,7 +5,6 @@ disable-model-invocation: true
 ---
 <!-- rule-skill-hi -->
 Recorded: !`uv run guppi event hi --session "${CLAUDE_SESSION_ID:-}"`
-Probe: !`echo "${CLAUDE_SESSION_ID:-unset}"`
 
 <!-- rule-internal-context -->
 @vault/wiki/sprint.md

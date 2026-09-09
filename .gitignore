@@ -43,6 +43,5 @@ scratch_out*.txt
 .obsidian/
 
 # GUPPI session artifacts that are debugging material, not traceability: the event log
-# (index.md §1) and the raw hook payloads a throwaway probe writes.
+# (index.md §1).
 vault/raw/*/event_log.md
-vault/raw/*/probe-*.json

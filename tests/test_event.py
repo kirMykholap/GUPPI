@@ -105,6 +105,19 @@ def test_lines_append_in_order(tmp_path):
     assert all(LINE.match(line) for line in log_lines(tmp_path))
 
 
+def test_utf8_payload_survives_a_locale_encoded_stdin(tmp_path):
+    # The shape of a hook's stdin on Windows: a cp1252 text wrapper with surrogateescape
+    # over UTF-8 bytes (measured 2026-09-09). The detail must come out as the UTF-8 it was.
+    raw = json.dumps(
+        {"session_id": "abc12345", "tool_name": "Bash", "tool_input": {"command": "echo — тест"}},
+        ensure_ascii=False,
+    ).encode("utf-8")
+    stdin = io.TextIOWrapper(io.BytesIO(raw), encoding="cp1252", errors="surrogateescape")
+    code, err = run(["tool"], stdin, tmp_path)
+    assert (code, err) == (0, "")
+    assert log_lines(tmp_path) == ["- 15:02:11 abc12345 tool Bash: echo — тест"]
+
+
 def test_non_json_stdin_is_treated_as_no_payload(tmp_path):
     code, err = run(["tool"], io.StringIO("not json"), tmp_path)
     assert (code, err) == (0, "")

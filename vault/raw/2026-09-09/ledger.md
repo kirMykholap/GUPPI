@@ -8,3 +8,20 @@
 - decision[case 6][delete][old-harness]{source:docs/harness-map-2026-09-07.md}
 - decision[case 7][update][migration-plan]
 - decision[case 8][update][migration-plan]
+<!-- Slice 1, same day. Written by hand at ratification: the hook that writes these lines arrives with this slice (spec.md, second document). -->
+- decision[case 9][create][rule-event-log]{ref:rule-session-start}
+- decision[case 9][create][estimate-event-log-records]{ref:rule-event-log}
+- decision[case 10][create][rule-ledger-write]{ref:rule-session-start}
+- decision[case 10][create][estimate-ledger-write-lifts]{ref:rule-ledger-write}
+- decision[case 11][create][rule-skill-hi]{ref:rule-session-start}
+- decision[case 11][create][estimate-hi-no-read-calls]{ref:rule-skill-hi}
+- decision[case 11][create][rule-internal-context]{ref:rule-skill-hi}
+- decision[case 11][create][estimate-internal-context-loaded]{ref:rule-internal-context}
+- decision[case 11][create][rule-git-context]{ref:rule-skill-hi}
+- decision[case 11][create][estimate-git-context-current]{ref:rule-git-context}
+- decision[case 11][create][rule-github-issues]{ref:rule-skill-hi}
+- decision[case 11][create][estimate-github-issues-listed]{ref:rule-github-issues}
+- decision[case 12][create][rule-session-start]
+- decision[case 12][create][estimate-session-start-context]{ref:rule-session-start}
+- decision[case 13][create][rule-case-protocol]{ref:rule-plan-mode}
+- decision[case 13][create][estimate-case-protocol-loaded]{ref:rule-case-protocol}

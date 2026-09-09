@@ -1,0 +1,55 @@
+---
+type: rule
+kind: Leaf
+purpose: Prevents a session from starting on a branch it does not know, or pulling mid-session
+status: draft
+enforcement: render
+governs: .claude/skills/hi/SKILL.md
+render_mode: partial
+parent: rule-skill-hi
+estimates: [estimate-git-context-current]
+origin: raw/2026-09-09/ledger.md#case-11
+sprint: migration
+created: 2026-09-09
+tags: [session, harness, git]
+---
+
+## Purpose
+
+Prevents a session from starting on a branch it does not know, or pulling mid-session.
+
+**Branch tells us what kind of start this is.** On `main` or a working branch, no plan is
+open. On a plan branch, unfinished work exists and becomes the first Frontier item. This is
+never restated in `brief.md` — git already knows, and a second source of truth eventually
+disagrees with the first.
+
+**`git pull` happens here and only here.** Pulling mid-session, after the plan is written
+and half the tasks are ticked, breaks the session.
+
+## How it works
+
+`--ff-only` so a pull can never open a merge inside a session start. A failing pull — no
+upstream, a remote that is not this project, a conflict — prints its message into the
+context and becomes a Frontier item; `|| true` keeps the skill going. As of 2026-09-09 the
+remote is the product repository this vault was split from and `migration` has no upstream;
+the owner left both as they are until Slice 5.
+
+## Render
+
+<!-- rule-git-context -->
+Pull: !`git pull --ff-only 2>&1 || true`
+Branch: !`git branch --show-current`
+Status: !`git status --short`
+<!-- /rule-git-context -->
+
+## Estimates
+
+- [[estimate-git-context-current]]
+
+## Parent
+
+- [[rule-skill-hi]]
+
+## History
+
+- 2026-09-09 created · raw/2026-09-09/ledger.md#case-11

@@ -7,3 +7,10 @@ another.
 
 | tag | meaning | aliases (ru) |
 |---|---|---|
+| session | the working session: how it opens, what it loads, how it closes | сессия, старт сессии |
+| hooks | Claude Code hook scripts and their events | хуки, хук |
+| harness | the operational layer around the agent: hooks, skills, agents, settings | харнесс, обвязка |
+| ledger | the chronological record of decisions, estimates and lessons | леджер, журнал решений |
+| git | branch, status, pull: the repository's own state | гит, ветка |
+| github | issues and anything else that lives on GitHub rather than in the vault | гитхаб, issues |
+| workflow | the order of phases and steps a session follows | процесс, порядок работы |

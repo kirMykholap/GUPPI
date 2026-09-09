@@ -27,14 +27,37 @@ move closes:
 
 - **The state a session starts from is `vault/wiki/brief.md`.** Read it first; nothing prints
   it yet. `vault/wiki/sprint.md` names the slices and what closes the sprint.
-- **Ledger lines are written by hand**, into `vault/raw/<date>/ledger.md`, in exactly the
-  format `index.md` §4 gives, until the ledger hook exists. Hand-written and hook-written
-  lines must be indistinguishable.
+- **The ledger hook exists since Slice 1.** Lines are emitted bare in the reply and the
+  `Stop` hook writes them into `vault/raw/<date>/ledger.md`. The nine lines of 2026-09-09
+  before it were written by hand, in the same format; hand-written and hook-written lines
+  are indistinguishable.
 - **The rituals of the earlier model do not apply.** There is no `/retro`, `/handoff` or
   `/ingest`, no librarian, no gate; the hooks that asked for them are gone. `docs/migration/`
   holds the drafts of the workflow that replaces them and the plan of the move.
 - **Each slice is its own Plan Mode and its own approval.** The approved plan is copied to
   `vault/raw/<date>/spec.md`.
+
+<!-- rule-case-protocol -->
+## Case protocol
+
+One reply is one Case, in the six sections of `case-schema.md`. Never move to the next
+Case until this one is ratified or deferred. Plan Mode does not end while a Frontier item
+is neither ratified nor deferred.
+
+A follow-up question that asks you to justify a choice does not split the Case; one whose
+answer needs a new choice does — into sub-cases `N.1`, `N.2`. Ratifying a parent does not
+ratify its children.
+
+Before a `create` without a `ref`, ask the vault first: does this exist, what conflicts,
+what sits in `draft`, which tags fit. Put the answer in `now`. Use `/ask` once it exists;
+until then read the category folders.
+
+Ledger lines are written by the `Stop` hook, from the reply, verbatim. A line inside a
+fenced block is a preview and is never written; a bare line at column zero is a record.
+Write the bare `- decision[...]` lines only in the reply that acknowledges ratification;
+`- estimate[...]` and `- lesson[...]` lines the moment the measurement or the lesson
+exists. Without `/hi` the hook refuses and says so: tell the person, do not retry.
+<!-- /rule-case-protocol -->
 
 ## Language
 

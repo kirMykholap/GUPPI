@@ -8,12 +8,12 @@
 # No target here writes to the working tree. A target that reports and a target that mutates
 # are different kinds of thing.
 #
-# `lint` (the vault) and `test` (the harness's own suite) arrive with Slice 2, when the code
+# `test` arrived with Slice 1. `lint` (the vault) arrives with Slice 2, when the code
 # they run exists.
 
 SHELL := /usr/bin/sh
 .DEFAULT_GOAL := help
-.PHONY: help style
+.PHONY: help style test
 
 help: ## list these targets
 	@awk 'BEGIN{FS=":.*## "} /^[a-z-]+:.*## /{printf "  %-7s %s\n", $$1, $$2}' $(MAKEFILE_LIST)
@@ -21,3 +21,6 @@ help: ## list these targets
 style: ## ruff over the Python in this repository; must be clean before every commit
 	@uv run ruff check . < /dev/null
 	@uv run ruff format --check . < /dev/null
+
+test: ## pytest over the harness's own suite
+	@uv run pytest -q < /dev/null

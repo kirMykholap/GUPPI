@@ -1,4 +1,5 @@
-"""`guppi ledger`: the `Stop` hook that lifts bare record lines into `vault/raw/<date>/ledger.md`.
+"""`guppi ledger`: the `Stop` hook that lifts the lines of a LEDGER block into
+`vault/raw/<date>/ledger.md`, each with the time of writing.
 
 Every test feeds the payload through a stream, the shape a hook is really handed.
 """
@@ -18,24 +19,35 @@ SESSION = "44c1aae1-4076-4a58-a7c0-d20bc274047c"
 DECISION = "- decision[case 10][create][rule-ledger-write]{ref:rule-session-start}"
 ESTIMATE = "- estimate[estimate-hi-no-read-calls][passed] all five in context, no read call"
 LESSON = "- lesson[error][lesson-x] trigger: a root_cause: b"
+PREVIEW = "- decision[case 10][create][estimate-ledger-write-lifts]{ref:rule-ledger-write}"
 REPLY = f"""Ratified. Recording:
 
+```LEDGER
 {DECISION}
+{ESTIMATE}
+```
 
 The preview in `then` was:
 
 ```
-{DECISION}
-- decision[case 10][create][estimate-ledger-write-lifts]{{ref:rule-ledger-write}}
+{PREVIEW}
 ```
 
-{ESTIMATE}
+{PREVIEW}
 """
 
 EVENT_LOG_WITH_HI = """- 15:01:00 44c1aae1 session-start startup
 - 15:01:30 -------- hi
 - 15:02:00 44c1aae1 tool Bash: git status --short
 """
+
+
+def timed(line):
+    return "- 15:02:11 " + line[2:]
+
+
+def ledger_block(*lines):
+    return "```LEDGER\n" + "\n".join(lines) + "\n```\n"
 
 
 def payload(**fields):
@@ -70,22 +82,43 @@ def working(tmp_path):
     return tmp_path
 
 
-def test_bare_lines_land_once_and_fenced_lines_never(working):
+def test_ledger_block_lines_land_timed_and_other_lines_never(working):
     code, err = run(payload(last_assistant_message=REPLY), working)
     assert (code, err) == (0, "")
-    assert ledger_text(working) == f"{DECISION}\n{ESTIMATE}\n"
+    assert ledger_text(working) == f"{timed(DECISION)}\n{timed(ESTIMATE)}\n"
+
+
+def test_the_tag_is_case_insensitive_and_may_follow_spaces(working):
+    reply = f"``` ledger\n{DECISION}\n```\n"
+    run(payload(last_assistant_message=reply), working)
+    assert ledger_text(working) == f"{timed(DECISION)}\n"
+
+
+def test_a_block_with_another_tag_is_a_preview(tmp_path):
+    reply = f"```text\n{DECISION}\n```\n```markdown\n{ESTIMATE}\n```\n"
+    code, err = run(payload(last_assistant_message=reply), tmp_path)
+    assert (code, err) == (0, "")
+    assert not ledger_file(tmp_path).exists()
 
 
 def test_running_twice_on_the_same_reply_adds_nothing(working):
     run(payload(last_assistant_message=REPLY), working)
     run(payload(last_assistant_message=REPLY), working)
-    assert ledger_text(working) == f"{DECISION}\n{ESTIMATE}\n"
+    assert ledger_text(working) == f"{timed(DECISION)}\n{timed(ESTIMATE)}\n"
 
 
 def test_a_line_repeated_in_a_later_reply_adds_nothing(working):
     run(payload(last_assistant_message=REPLY), working)
-    run(payload(last_assistant_message=f"As recorded earlier:\n{DECISION}\n{LESSON}\n"), working)
-    assert ledger_text(working).splitlines() == [DECISION, ESTIMATE, LESSON]
+    run(payload(last_assistant_message=ledger_block(DECISION, LESSON)), working)
+    assert ledger_text(working).splitlines() == [timed(DECISION), timed(ESTIMATE), timed(LESSON)]
+
+
+def test_a_line_written_by_hand_without_a_time_counts_as_present(working):
+    path = ledger_file(working)
+    path.parent.mkdir(parents=True, exist_ok=True)
+    path.write_text(f"<!-- by hand -->\n{DECISION}\n", encoding="utf-8")
+    run(payload(last_assistant_message=REPLY), working)
+    assert ledger_text(working).splitlines() == ["<!-- by hand -->", DECISION, timed(ESTIMATE)]
 
 
 def test_without_hi_the_hook_refuses_with_count_and_session(tmp_path):
@@ -117,34 +150,45 @@ def test_another_sessions_start_after_hi_closes_the_window(tmp_path):
     assert code == 2
 
 
+def test_a_compact_or_resume_of_the_same_session_keeps_the_window_open(tmp_path):
+    write_event_log(
+        tmp_path,
+        EVENT_LOG_WITH_HI
+        + "- 15:03:00 44c1aae1 session-start compact\n- 15:04:00 44c1aae1 session-start resume\n",
+    )
+    code, err = run(payload(last_assistant_message=REPLY), tmp_path)
+    assert (code, err) == (0, "")
+    assert ledger_text(tmp_path) == f"{timed(DECISION)}\n{timed(ESTIMATE)}\n"
+
+
 def test_stop_hook_active_exits_zero_and_writes_nothing(tmp_path):
     code, err = run(payload(last_assistant_message=REPLY, stop_hook_active=True), tmp_path)
     assert (code, err) == (0, "")
     assert not ledger_file(tmp_path).exists()
 
 
-def test_a_reply_without_record_lines_creates_no_ledger(tmp_path):
-    reply = "Nothing here.\n  - decision[case 1][create][x]\n```\n- lesson[error][y]\n```\n"
+def test_a_reply_without_a_ledger_block_creates_no_ledger(tmp_path):
+    reply = f"Nothing here.\n{DECISION}\n  - decision[case 1][create][x]\n```\n{LESSON}\n```\n"
     code, err = run(payload(last_assistant_message=reply), tmp_path)
     assert (code, err) == (0, "")
     assert not ledger_file(tmp_path).exists()
 
 
-def test_a_tilde_fence_hides_its_lines_too(working):
-    run(payload(last_assistant_message=f"~~~\n{DECISION}\n~~~\n{ESTIMATE}\n"), working)
-    assert ledger_text(working) == f"{ESTIMATE}\n"
+def test_a_tilde_ledger_block_records_too(working):
+    run(payload(last_assistant_message=f"~~~LEDGER\n{DECISION}\n~~~\n{ESTIMATE}\n"), working)
+    assert ledger_text(working) == f"{timed(DECISION)}\n"
 
 
-def test_a_utf8_reply_is_written_verbatim(working):
+def test_a_utf8_line_is_written_verbatim(working):
     line = "- lesson[error][lesson-hooks-windows-stdin-encoding] trigger: пустой файл — «probe»"
     raw = json.dumps(
-        {"session_id": SESSION, "last_assistant_message": line + "\n"}, ensure_ascii=False
+        {"session_id": SESSION, "last_assistant_message": ledger_block(line)}, ensure_ascii=False
     )
     stdin = io.TextIOWrapper(
         io.BytesIO(raw.encode("utf-8")), encoding="cp1252", errors="surrogateescape"
     )
     run(stdin, working)
-    assert ledger_text(working) == line + "\n"
+    assert ledger_text(working) == timed(line) + "\n"
 
 
 def test_empty_stdin_is_a_reply_with_no_lines(tmp_path):
@@ -157,7 +201,8 @@ def test_cli_dispatches_to_ledger(tmp_path, monkeypatch, capsys):
 
     write_event_log(tmp_path, EVENT_LOG_WITH_HI)
     monkeypatch.setenv("CLAUDE_PROJECT_DIR", str(tmp_path))
-    monkeypatch.setattr("sys.stdin", payload(last_assistant_message=f"{DECISION}\n"))
+    monkeypatch.setattr("sys.stdin", payload(last_assistant_message=ledger_block(DECISION)))
     assert cli.main(["ledger"]) == 0
     assert capsys.readouterr().err == ""
-    assert ledger_text(tmp_path).splitlines() == [DECISION]
+    written = ledger_text(tmp_path).splitlines()[0]
+    assert written.startswith("- ") and written.endswith(DECISION[2:])

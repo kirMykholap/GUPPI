@@ -29,3 +29,20 @@
 - lesson[knowledge][lesson-hooks-stop-payload] trigger: the Slice 1 probe on `Stop`, 2026-09-09, session B (`probe-Stop-6.json`) root_cause: the payload carries `last_assistant_message` with the whole reply text, `stop_hook_active` (false on an ordinary stop), `session_id`, `transcript_path`, `cwd`, `permission_mode`; a `Stop` registration added to `settings.json` fired at the end of the same turn, no restart needed
 - lesson[knowledge][lesson-hooks-exitplanmode-payload] trigger: the Slice 1 probe on `PostToolUse ExitPlanMode`, 2026-09-09, session B (`probe-PostToolUse-1.json`) root_cause: `tool_input` is `{}`; the plan text is in `tool_response.plan`, whole, with `session_id`, `transcript_path`, `cwd` and `permission_mode` beside it, so C9 (copying the approved plan into `raw/<date>/spec.md`) can be a hook
 - lesson[error][lesson-hooks-windows-stdin-encoding] trigger: `probe-Stop-1.json` and `-2.json` were 0 bytes although the `Stop` hook had fired, and `event_log.md` carried mojibake (`â€”`) in tool details root_cause: a hook's stdin on Windows is a cp1252 text wrapper with `surrogateescape`; a UTF-8 payload becomes lone surrogates, `write_text(encoding="utf-8")` raises after creating the file; fixed by reading `stdin.buffer` and decoding UTF-8 (`read_text` in `guppi/event.py`), stderr reconfigured to UTF-8 in `cli.py`, covered by tests
+- estimate[estimate-hi-no-read-calls][passed] /hi resolved branch, brief, sprint and issues through `!` and `@` substitutions; the agent's first reply used no read-tool call (sessions B and C).
+- estimate[estimate-internal-context-loaded][passed] brief.md and sprint.md arrive expanded inside the /hi skill output; content matches the files on disk.
+- estimate[estimate-git-context-current][passed] /hi prints the current branch, status and the pull result; the failed pull (no upstream) is shown, not hidden.
+- estimate[estimate-github-issues-listed][passed] /hi runs `gh issue list`; with gh not logged in it prints gh's own message in place of the list.
+- estimate[estimate-event-log-records][passed] `guppi event` appends session-start, tool and hi lines to raw/<date>/event_log.md; the hi line is written by the skill's `!` substitution.
+- estimate[estimate-session-start-context][passed] reading 1, start without /hi: the bare `decision[case 0][defer][probe]` line was refused, ledger untouched (owner's report); reading 2, start with /hi: the lines of this reply are lifted into the ledger.
+- estimate[estimate-case-protocol-loaded][passed] the first reply of session C states the fence-vs-bare rule and one-Case-at-a-time without a read call; both came from the CLAUDE.md imports.
+- estimate[estimate-ledger-write-lifts][passed] live part: the eight bare estimate lines of this reply reach raw/2026-09-09/ledger.md by the Stop hook, each once; verify with the ledger's tail.
+- 17:09:59 decision[case 15.1][update][rule-ledger-write]
+- 17:09:59 decision[case 15.1][update][estimate-ledger-write-lifts]
+- 17:09:59 decision[case 15.2][update][rule-case-protocol]
+- 17:09:59 decision[case 15.3][update][rule-ledger-write]
+- 17:09:59 estimate[estimate-ledger-write-lifts][passed] the five lines of the acknowledging reply, inside a LEDGER block, reached raw/2026-09-09/ledger.md with a time prefix, once; a bare copy and an untagged fence were ignored; 31 tests green
+- 17:31:07 decision[case 14][update][rule-ledger-write]
+- 17:55:58 decision[case 16.1][update][estimate-session-start-context]
+- 17:55:58 decision[case 16.2][update][estimate-case-protocol-loaded]
+- 17:55:58 decision[case 17][update][rule-case-protocol]{supersedes:case 15.2}

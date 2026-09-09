@@ -1,94 +1,92 @@
-# Brief — 2026-09-09, after Slice 1 session B
+# Brief — 2026-09-09, after Slice 1 session C
 
-**Hand-written by the session that ran Slice 1's second part. No librarian exists yet.**
-The next brief is written the same way until Slice 3 delivers the librarian.
+**Hand-written by the session that closed Slice 1. No librarian exists yet.** The next
+brief is written the same way until Slice 3 delivers the librarian.
 
 ## Where things stand
 
-Branch `migration`, seven commits above `main`. Slice 0 is closed. Slice 1 is **open, two
-sessions of three done**: its spec is the second document in `raw/2026-09-09/spec.md`
-(cases 9–13), its sixteen decision lines and three lesson lines are in
-`raw/2026-09-09/ledger.md`, all written by hand.
+Branch `migration`, eight commits above `main`. Slices 0 and 1 are **closed**. Slice 1's
+spec is the second document in `raw/2026-09-09/spec.md` (cases 9–13); its ledger lines are
+in `raw/2026-09-09/ledger.md`: the sixteen decision lines and three lesson lines of sessions
+A and B by hand, everything from session C on by the hook.
 
-**Built:** `uv run guppi ledger`, registered on `Stop`. It lifts the bare `- decision[`,
-`- estimate[` and `- lesson[` lines of a finished reply into `raw/<date>/ledger.md`,
-refuses with exit 2 and a reason when the event log has no `hi` after this session's last
-`session-start`, and never writes a line twice. `guppi event` now reads its stdin as UTF-8
-bytes. The probe is gone. `make test`: 28 green.
+**Built:** `uv run guppi event` (`SessionStart`, `PostToolUse`) and `uv run guppi ledger`
+(`Stop`). The ledger hook lifts the `- decision[`, `- estimate[` and `- lesson[` lines of a
+```` ```LEDGER ```` block in the finished reply into `raw/<date>/ledger.md`, each prefixed
+with the time of writing (`- HH:MM:SS decision[...]`); lines anywhere else are previews. It
+refuses with exit 2 and a reason when no `hi` follows a `session-start` of this session;
+`compact` and `resume` of the same session keep the window open. A line already present,
+with or without a time, is not written twice. `make test`: 32 green.
 
-**Measured this session** (five Estimate pages now `passed`, filled by hand):
-`estimate-hi-no-read-calls`, `estimate-internal-context-loaded`,
-`estimate-git-context-current`, `estimate-github-issues-listed`,
-`estimate-event-log-records`. The probe readings are the three `lesson[...]` lines in the
-ledger: `Stop` carries `last_assistant_message` and `stop_hook_active`; `ExitPlanMode`
-carries the plan in `tool_response.plan`, not in `tool_input`; a hook's stdin on Windows is
-cp1252 with `surrogateescape`, which is why the first probe files were empty.
+**Measured:** all eight Estimate pages of Slice 1 are `passed`, filled by hand.
+`estimate-ledger-write-lifts` has two live readings, one under each contract.
 
-**Not measured:** `estimate-ledger-write-lifts` (live part), `estimate-session-start-context`,
-`estimate-case-protocol-loaded`. All three are session C's.
+**Decided in session C** (cases 14–17, all `update`): the `hi` window survives
+`compact`/`resume` (14); a record is a LEDGER block, not a bare line (15.1); a Case renders
+as `## Case N — name` plus one blockquote per section, sub-cases as `###` (17, replacing
+15.2); each ledger line carries the time (15.3); the two Estimate criteria that quoted the
+bare-line contract were rewritten (16.1, 16.2).
 
-## What the next session does — Slice 1, session C
+## What the next session does — Slice 2
 
-**The owner restarts Claude Code twice.**
+Slice 2 per `sprint.md`: renderer, lint, indexes, `/ask`, pre-task. Its own Plan Mode and
+its own approval; the approved plan is copied to `raw/<date>/spec.md`. Candidates for the
+Frontier, in the order the plan suggests:
 
-**First start, without `/hi`.** Ask the agent to put one bare line in its reply, exactly:
-`- decision[case 0][defer][probe]`. The `Stop` hook must refuse: the reply the owner sees
-names the cause (`ledger: 1 line(s) not written — no /hi recorded for session …`) and
-`raw/<date>/ledger.md` stays untouched. That is the first reading of
-`estimate-session-start-context`. Nothing else happens in that session.
+1. **Harness renderer** (`migration-plan.md`, Phase 1): reads every Rule page with
+   `enforcement: render`, writes `## Render` into the file named by `governs` — `full`
+   replaces, `partial` splices between `<!-- slug -->` markers. Today four rule pages and
+   `.claude/skills/hi/SKILL.md`, and `rule-case-protocol` and `CLAUDE.md`, are two copies
+   of one text kept identical by hand. Includes the deferred `rule-hook-registry`
+   (`render: full` → `.claude/settings.json`).
+2. **`rule-plan-mode`** MOC: `rule-case-protocol` already names it as parent.
+3. **C9 by hook**: `PostToolUse ExitPlanMode` copies `tool_response.plan` into
+   `raw/<date>/spec.md` (`rule-branch-commit`). The payload is known (lesson line of
+   session B).
+4. **Lint, indexes, `/ask`, pre-task**: the 35 pages of `vault/wiki/` were written by hand
+   against `schema.md`; lint will be their first check.
 
-**Second start, with `/hi`.** Then, in order (spec.md, "Сессия C"):
-
-1. The agent writes the `- estimate[<slug>][passed|failed] <result>` lines for all eight
-   Estimates, bare, in one reply — the five already measured repeat their page's
-   `## Result` in short; `estimate-session-start-context` takes the two readings of these
-   two starts; `estimate-case-protocol-loaded` is read off the agent's first reply of this
-   session (does it state the fence/bare rule and one-Case-at-a-time without a read call);
-   `estimate-ledger-write-lifts` is the fact that these very lines reach the ledger by the
-   hook. Check the ledger's tail after the reply: the lines are there, once.
-2. Fill the three remaining Estimate pages by hand (`status`, `## Result`, `History`),
-   `log.md` too.
-3. Retro: what is done and not done; a `- lesson[error][…]` bare line if anything burned.
-   Rewrite this brief for Slice 2. Extend `raw/2026-09-09/handoff.md` with a session C
-   section. Commit `docs(vault): Slice 1 closes, the brief points at Slice 2`.
-
-**Open Case, not ratified, decide first in session C:** Case 14 (raised in session B).
-`SessionStart` also fires on `compact` and `resume`, so by the letter of
-`rule-ledger-write` a mid-session compaction closes the `hi` window and every later line
-is refused. Recommendation: only another session's `session-start` closes the window.
-The code follows the letter until the owner decides; the change is one condition in
-`hi_recorded` in `guppi/ledger.py`, one sentence on the rule page, one test.
+Free readings at the start: the agent's first reply is a reading of
+`estimate-case-protocol-loaded` under its new criterion (states the LEDGER-block rule and
+one-Case-at-a-time, no read call). A fresh reading 1 of `estimate-session-start-context`
+under the LEDGER form costs one start without `/hi`; optional, the refusal path did not
+change.
 
 ## Deferred, carried here so it surfaces
 
 - `/grill-me` is kept without a page. Decide at Slice 3 (retro) or Slice 5.
 - Rendering `.claude/settings.json` from a Rule page (`rule-hook-registry`, `render: full`).
-  Decide in Slice 2; until then the three hook registrations are hand-written.
+  Slice 2; until then the three hook registrations are hand-written.
 - `origin` points at the product repository (`c:/PROJECTS/job hunt ai`) and `migration`
   has no upstream; `git pull --ff-only` in `/hi` fails visibly and harmlessly. Owner's
   decision 11.1: leave until Slice 5.
 - `gh` is not logged in and there is no GitHub remote; `gh issue list` in `/hi` prints its
   own message. Owner's decision 11.2: leave until a remote exists.
-- Estimate pages are updated by hand (`status`, `## Result`) until Slice 3's generator.
-- C9 by hook (`PostToolUse ExitPlanMode` → copy `tool_response.plan` into
-  `raw/<date>/spec.md`): Slice 2, `rule-branch-commit`. The payload is now known.
+- Estimate pages are updated by hand (`status`, `## Result`, `History`) until Slice 3's
+  generator; `log.md` likewise.
+- C9 by hook: Slice 2, item 3 above.
 - The fate of `vault/parked/`, `vault/archive/`, `docs/superpowers/`, `docs/HANDOFF.md` and
   the 2026-08 documents under `docs/`. Slice 5.
 
 ## Known false, and left so on purpose
 
 - `rule-case-protocol` has `parent: rule-plan-mode`; that page arrives with Slice 2.
-- Until Slice 2's renderer the skill file and the four rule pages are two copies of one
-  text, kept identical by hand. They are identical again: the `Probe:` line is gone.
+- Until Slice 2's renderer the skill file and the four rule pages, and the render block of
+  `rule-case-protocol` and `CLAUDE.md`, are two copies of one text kept identical by hand.
+  Checked identical by `diff` at the close of session C.
 - `docs/migration/rule-*.md` carry `origin: TBD`, `sprint: TBD`, `created: TBD`. They are
   drafts, not pages; the drafts stay until Slice 5.
+- `docs/migration/migration-plan.md`, Phase 1 item 4, says hand-written and hook-written
+  ledger lines must be indistinguishable. Case 15.3 made them distinguishable by design:
+  the hook's lines carry a time. The plan is a draft and is corrected at Slice 5.
 - The `hi` line in `event_log.md` has no session id: `CLAUDE_SESSION_ID` does not reach a
   `!` substitution (measured session B: `unset`). The two-sessions limit of
   `rule-event-log` stands.
+- The one lesson line of session C is written by the hook after the closing commit, so it
+  sits in `ledger.md` uncommitted until the next commit.
 
-## Readings at the close of session B
+## Readings at the close of session C
 
 - `find vault/wiki -type f | wc -l` → 35.
-- `make style` → clean; `make test` → 28 passed.
-- `git check-ignore vault/raw/2026-09-09/event_log.md` → ignored.
-- `guppi event tool` through a pipe: exit 0, 0.10 s.
+- `make style` → clean; `make test` → 32 passed.
+- Ledger tail: cases 15.1–15.3, 14, 16.1, 16.2, 17 written by the hook with times, once each.

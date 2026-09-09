@@ -101,3 +101,47 @@ Result names `lesson-hooks-windows-stdin-encoding` before that page exists.
 - Five Estimate pages `passed`; `log.md` one line.
 - Not done: the live reading of the hook and the three remaining Estimates (session C);
   Case 14.
+
+---
+
+# Handoff — 2026-09-09, Slice 1, session C
+
+## Notes from memory
+
+- The owner's first move after the readings was three format changes (cases 15.1–15.3),
+  raised together and ratified together as sub-cases; then he reopened the Case rendering
+  (15.2) after seeing it in use, chose the blockquote variant from three rendered in chat,
+  and 17 supersedes 15.2. Expect the rendering to be judged on how it reads, not on the
+  rule's text.
+- The contract change of 15.1 was applied inside the acknowledging reply, before the
+  LEDGER block: the `Stop` hook runs the code as it is at the end of the turn, so the lines
+  of that very reply landed in the new format. Useful when a hook's own contract changes.
+- Filling the three Estimate Results by hand is what exposed the stale criteria (16.1,
+  16.2): a rule's `decision update` has no step that lists the Estimates quoting the old
+  wording. The lesson line below records it; lint or the generator should own that check.
+- The first attempt to write `ledger.py` through a quoted bash heredoc failed on quoting;
+  the Write tool was used instead. Not a lesson, a tool choice.
+- Case 14 was ratified as recommended: only another session's `session-start` closes the
+  `hi` window.
+
+## Direct instructions to the librarian
+
+Still no librarian. The lesson line of session C
+(`lesson-estimates-criterion-stale-after-contract-change`) has no page. Case 17
+supersedes 15.2: when Decision pages are generated, `decision-update-rule-case-protocol`
+for 15.2 is `superseded`, not `current`. Everything from 15.1 on in `ledger.md` carries a
+time; the lines before it do not, and that is the hand/hook boundary.
+
+## What actually got done
+
+- Commit `docs(vault): Slice 1 closes, the brief points at Slice 2` — everything of
+  session C. The code changes ride in the same commit: `guppi/ledger.py` (LEDGER block,
+  time prefix, `hi` window across `compact`/`resume`), `tests/test_ledger.py` (16 tests,
+  32 in the suite).
+- Pages: `rule-ledger-write` (three updates), `rule-case-protocol` (three updates, render
+  block mirrored in `CLAUDE.md`), `estimate-ledger-write-lifts` (criterion, passed),
+  `estimate-session-start-context` (passed, criterion), `estimate-case-protocol-loaded`
+  (passed, criterion). `log.md` five lines. `CLAUDE.md` Migration-mode paragraph.
+- Ledger: eight `estimate[...]` lines (first reply, pre-15.1 format), then cases 15.1,
+  15.1, 15.2, 15.3, 14, 16.1, 16.2, 17 and one more `estimate[...]`, all by the hook.
+- Not done: nothing of Slice 1's plan. The lesson line lands after the commit.

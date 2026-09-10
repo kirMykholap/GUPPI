@@ -79,3 +79,94 @@
   `.claude/agents/librarian-guppi.md` after your update of `rule-documentation` (next
   session, with a commit); the ten estimate readings of Case 42 (after your report,
   uncommitted); the close of Slice 3 in `sprint.md` (next session).
+
+---
+
+# Handoff — 2026-09-10, session G: the librarian's reads, generate per entry, Slice 3c
+
+## Notes from memory
+
+- The owner questioned the read limit of the librarian at length. The outcome, Case 44:
+  the four inputs are the inputs of the run; a wiki page may be opened in three named
+  cases (same-or-near not settled by an index line; the lessons of an Insight being
+  written; a page a script names in an error), each named in the report with its reason;
+  never session artifacts, the archive, or code; the yaml is edited only by the marks and
+  the entries of index check and synthesis, a rejected entry is a flag, not a repair.
+  Insights stay the librarian's product, status `open`, no ratification.
+- Case 45 (a `guppi tail` script printing the unmaterialized ledger lines at `/hi`) was
+  drafted in full, then deferred by the owner to Slice 3c: with `raw/` archived after the
+  librarian, the tail is what lies in `raw/`, no diff needed. The draft sits in the Spec
+  under Case 45 in an untagged yaml fence, unsigned.
+- Case 46 records Slice 3c, raw lifecycle, in `migration-plan.md` and `sprint.md`:
+  `decided_by` on pages born of a Case, `origin` as a ledger pointer elsewhere, `raw/<date>/`
+  of a fully applied date archived by run stamp with its paths rewritten. The owner runs
+  several sessions a day; the stamp exists for that. Nothing of it is built yet.
+- Retro was reshaped in conversation: an analysis, not planning; decisions in Retro are
+  always `defer`; lessons and estimates are written there; red tests mean the question
+  "fix now, or revert to a patch in raw/ and defer". Recorded as `defer` of `rule-retro`
+  (Case 50). The Stop hook misses a reply that ends in a Skill or ExitPlanMode call: the
+  lines of Cases 48 and 49 were lost and re-emitted at Retro; `defer` of `rule-ledger-write`
+  (Case 51) and `lesson-ledger-hook-misses-a-reply-ending-in-a-tool-call` carry it.
+- Two readings of Slice 3 stand `failed` in this ledger (documentation-completes,
+  synthesis-clusters, 11:57:07). Their criteria change by Case 44 in this same yaml, after
+  the failed lines. The `passed` readings come after your run, in the tail, and the next
+  session closes Slice 3. Do not close it.
+
+## Direct instructions to the librarian
+
+- Materialize 2026-09-10. The walk over 2026-09-09 should now pass `old-harness` with a
+  stdout line (Case 48): if stderr still names it, flag it.
+- The frame of Case 44 applies to this run even though `.claude/agents/librarian-guppi.md`
+  will only be rendered next session: name every page you open in the report with its
+  reason (same-or-near, the lessons of an Insight, a script's error); read no file under
+  `guppi/` or `tests/`; do not edit the yaml beyond the marks and your own entries; an
+  entry `generate` rejects stays as it is and is a flag. The marks of the yaml: `applied`
+  and `failed` are set by generate; `exists` is a create whose page was on disk;
+  `incomplete` lists fields the Spec block lacked; `near`, `librarian` and `merged` are
+  yours, no script reads them, the brief reports them.
+- Lessons in this ledger: three about generate (`replace` mapping crash, log written last,
+  walk history dated by yaml), `lesson-librarian-reads-beyond-the-four-inputs`,
+  `lesson-readings-after-librarian-invisible-to-next-hi`,
+  `lesson-ledger-hook-misses-a-reply-ending-in-a-tool-call`. Synthesis by the rule of
+  Case 44: read the Trigger and Root cause of the lessons you cluster and name them. The
+  three generate lessons share an area; whether they share a root cause is your judgment.
+  `lesson-librarian-reads-beyond-the-four-inputs` may pair with the two agent-visibility
+  lessons only if the cause is the same; it is not — it is about the frame, not agent
+  loading.
+- Possible near pairs: `estimate-generate-rejects-shape-alone`,
+  `estimate-generate-logs-per-entry`, `estimate-generate-dates-history-by-run`,
+  `estimate-generate-passes-delete-outside-vault` against `estimate-generate-writes` and
+  `estimate-generate-walks-dates` — each checks a behaviour the earlier ones do not; keep
+  them as `near` at most, no merge.
+- `rule-ledger-tail` (Case 45 defer) is a placeholder with a purpose only; it will be an
+  orphan at lint, like `rule-work-mode`. Expected. `rule-retro` and `rule-ledger-write`
+  defers have pages: History lines only.
+- Rule-class files (`case-schema.md`, `index.md` §5, `migration-plan.md`) and `sprint.md`
+  were edited by hand in Work Mode; their entries are `file` entries, nothing to write.
+- Do not touch `sprint.md`. Do not close Slice 3.
+- The brief: Slice 3 closes next session after the two `passed` readings; Case 45 is
+  deferred to Slice 3c; next session's first step is `uv run guppi render` and a commit
+  (the agent file lags rule-documentation by Case 44), then the readings of Case 44 and
+  of the four generate estimates, then Plan Mode over Cases 50, 51, Slice 3c or 3b. The
+  readings written after your commit will sit in the ledger tail; the owner adds a note
+  to the brief by hand, as after session F.
+- Deferred, carried with counts +1: Slice 3b Work Mode, `/grill-me`, upstream `origin`,
+  `gh`, `parked/` and the old `archive/`, archive in `ask-guppi`, plus Case 45 → Slice 3c,
+  Case 50 `rule-retro`, Case 51 `rule-ledger-write`.
+
+## What actually got done
+
+- Commit `68bb295`: render of the librarian agent file after Case 43; the tail of session
+  F and the Spec of session G in raw; the owner's note in brief.md.
+- Commit `3eaf5a3`: `guppi/generate.py` — an entry fails alone whatever the cause and is
+  marked `failed`; `log.md` appended after each entry; History and log lines carry the
+  run's date, `created` the yaml's; a delete with `category: unknown` is outside the vault,
+  applied with a stdout line. Five tests in `tests/test_generate.py`, `make test` 137.
+  `log.md` regained six lines of entries 78–82. `case-schema.md` pins `replace` as a list
+  of pairs; `index.md` §5 gains the delete-outside-the-vault row; `migration-plan.md` and
+  `sprint.md` carry Slice 3c.
+- Commit `ebf943b`: the two defers of Retro.
+- Readings taken: `estimate-librarian-reads-beyond-the-four-inputs` passed (13:10:37).
+- Not done: the pages of Cases 44–49 (yours); the render of the Case 44 frame (next
+  session); the readings of Case 44 and of the four new generate estimates (after your
+  run); the close of Slice 3; Case 45, 50, 51 (deferred).

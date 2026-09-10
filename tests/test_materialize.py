@@ -337,6 +337,36 @@ def test_an_existing_yaml_gains_only_the_new_lines(tmp_path):
     assert {d["case"] for d in data["decisions"]} == {"1", "2", "3", "4", "5", "6", "7", "8"}
 
 
+def test_an_entry_the_librarian_appended_has_no_line_and_is_kept(tmp_path):
+    seed(tmp_path)
+    run(tmp_path)
+    path = tmp_path / "vault" / "raw" / DATE / "materialize.yaml"
+    data = load(tmp_path)
+    data["entries"].append(
+        {
+            "kind": "create",
+            "category": "insights",
+            "slug": "insight-x",
+            "fields": {"pattern": "p"},
+            "librarian": "synthesis",
+            "applied": "10:30:00",
+        }
+    )
+    path.write_text(yaml.safe_dump(data, allow_unicode=True, sort_keys=False), encoding="utf-8")
+    ledger = tmp_path / "vault" / "raw" / DATE / "ledger.md"
+    ledger.write_text(
+        LEDGER + "- 11:00:00 lesson[error][lesson-y-z] trigger: t root_cause: r\n",
+        encoding="utf-8",
+        newline="\n",
+    )
+    code, out, err = run(tmp_path)
+    assert code == 0 and err == "" and "extended with 1 entries" in out
+    data = load(tmp_path)
+    (insight,) = by_slug(data, "insight-x")
+    assert "line" not in insight and insight["applied"] == "10:30:00"
+    assert by_slug(data, "lesson-y-z")
+
+
 def test_a_changed_line_is_reported_and_left_alone(tmp_path):
     seed(tmp_path)
     run(tmp_path)

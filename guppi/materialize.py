@@ -500,7 +500,7 @@ def assemble(project_dir: Path, date: str, existing: dict | None, stderr) -> tup
     entries: list[dict] = data.setdefault("entries", [])
     decisions: list[dict] = data.setdefault("decisions", [])
     unparsed: list[dict] = data.setdefault("unparsed", [])
-    known = {e["line"]: e for e in entries}
+    known = {e["line"]: e for e in entries if "line" in e}  # the librarian's own entries have none
     folded = {n for e in entries for n in e.get("folded") or []}
     known_unparsed = {u["line"] for u in unparsed} | folded
     blocks: dict[str, tuple[dict, list[str]]] = {}
@@ -550,7 +550,7 @@ def assemble(project_dir: Path, date: str, existing: dict | None, stderr) -> tup
     # decisions: one per case, from the entries of that case
     by_case: dict[str, list[dict]] = {}
     for entry in entries:
-        if entry.get("kind") in DECISION_KINDS:
+        if entry.get("kind") in DECISION_KINDS and "case" in entry:  # not the librarian's
             by_case.setdefault(entry["case"], []).append(entry)
     present = {d["case"]: d for d in decisions}
     for case, group in by_case.items():

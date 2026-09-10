@@ -78,7 +78,7 @@ the dirty tree at the end of session E (`retro-commit-gates`, live part).
 
 ## Readings at the close of session E
 
-- `find vault/wiki -type f | wc -l` → 175 (58 before the slice).
+- `find vault/wiki -type f | wc -l` → 160 (58 before the slice).
 - `make style` → clean; `make test` → 126 passed.
 - `make lint` → 159 findings, the flags above; `render --check`, `index --check` → exit 0.
 - `raw/2026-09-10/materialize.yaml`: 77 entries, 21 decisions, none failed, none unparsed.

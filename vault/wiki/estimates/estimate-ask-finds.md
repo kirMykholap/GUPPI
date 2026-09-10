@@ -1,7 +1,7 @@
 ---
 type: estimate
 kind: QA
-status: pending
+status: passed
 target: rule-ask
 origin: raw/2026-09-09/ledger.md#case-23.1
 sprint: migration
@@ -30,6 +30,20 @@ expanded and the tokens of one dispatch.
 Three readings by hand in one session, written into the estimate line — the exception the
 Method rule allows.
 
+## Result
+
+Passing, 2026-09-10, session E, three dispatches at 05:52. English "which page describes the
+hook that writes ledger lines on Stop": `exists: rule-ledger-write`. The same in Russian:
+`exists: rule-ledger-write`. A blocking `SessionStart` hook: `rules: rule-hook-registry`,
+`exists: rule-session-start`, and `missing` said no page yet states that `SessionStart`
+cannot block (the lesson is a ledger line until Slice 3 generates it). Only the five lines
+reached the caller; each dispatch is a `tool Agent: ask-guppi` line in the event log.
+`@vault/wiki/rules-index.md` did not expand: the agent received the literal text and read
+the file itself. Tokens per dispatch: 14 662, 15 881, 23 574 (the proposal, ten tool
+uses). Deviations: the lines run to several sentences each, and the third answer added a
+`Paths read:` trailer after the five.
+
 ## History
 
 - 2026-09-09 created · raw/2026-09-09/ledger.md#case-23.1
+- 2026-09-10 status: pending → passed · written by hand, no generator yet

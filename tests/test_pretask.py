@@ -24,8 +24,8 @@ def payload(tool="ExitPlanMode", session=SESSION):
     return io.StringIO(json.dumps(fields))
 
 
-def with_event_log(project_dir, text):
-    folder = project_dir / "vault" / "raw" / TODAY.isoformat()
+def with_event_log(project_dir, text, day=TODAY):
+    folder = project_dir / "vault" / "raw" / day.isoformat()
     folder.mkdir(parents=True, exist_ok=True)
     (folder / "event_log.md").write_text(text, encoding="utf-8", newline="\n")
 
@@ -77,7 +77,9 @@ def test_garbage_on_stdin_never_fails_the_session(tmp_path):
 def test_cli_dispatches_to_pretask(tmp_path, monkeypatch, capsys):
     from guppi import cli
 
-    with_event_log(tmp_path, START + HI)
+    today = datetime.now().astimezone().date()  # the CLI reads the real clock
+
+    with_event_log(tmp_path, START + HI, day=today)
     monkeypatch.setenv("CLAUDE_PROJECT_DIR", str(tmp_path))
     monkeypatch.setattr("sys.stdin", payload())
     assert cli.main(["pretask"]) == 2

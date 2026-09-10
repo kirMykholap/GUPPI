@@ -28,8 +28,8 @@ def run(argv, stdin, project_dir):
     return code, err.getvalue()
 
 
-def log_lines(project_dir):
-    path = project_dir / "vault" / "raw" / TODAY.isoformat() / "event_log.md"
+def log_lines(project_dir, day=TODAY):
+    path = project_dir / "vault" / "raw" / day.isoformat() / "event_log.md"
     return path.read_text(encoding="utf-8").splitlines()
 
 
@@ -135,9 +135,11 @@ def test_a_write_failure_never_fails_the_hook(tmp_path):
 def test_cli_dispatches_to_event(tmp_path, monkeypatch, capsys):
     from guppi import cli
 
+    today = datetime.now().astimezone().date()  # the CLI reads the real clock
+
     monkeypatch.setenv("CLAUDE_PROJECT_DIR", str(tmp_path))
     monkeypatch.setattr("sys.stdin", io.StringIO(""))
     assert cli.main(["event", "hi"]) == 0
-    (line,) = log_lines(tmp_path)
+    (line,) = log_lines(tmp_path, day=today)
     assert line.endswith(" -------- hi")
     assert capsys.readouterr().err == ""

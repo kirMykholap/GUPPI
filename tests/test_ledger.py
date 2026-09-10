@@ -56,18 +56,18 @@ def payload(**fields):
     return io.StringIO(json.dumps(fields, ensure_ascii=False))
 
 
-def write_event_log(project_dir, text):
-    path = project_dir / "vault" / "raw" / TODAY.isoformat() / "event_log.md"
+def write_event_log(project_dir, text, day=TODAY):
+    path = project_dir / "vault" / "raw" / day.isoformat() / "event_log.md"
     path.parent.mkdir(parents=True, exist_ok=True)
     path.write_text(text, encoding="utf-8")
 
 
-def ledger_file(project_dir):
-    return project_dir / "vault" / "raw" / TODAY.isoformat() / "ledger.md"
+def ledger_file(project_dir, day=TODAY):
+    return project_dir / "vault" / "raw" / day.isoformat() / "ledger.md"
 
 
-def ledger_text(project_dir):
-    return ledger_file(project_dir).read_text(encoding="utf-8")
+def ledger_text(project_dir, day=TODAY):
+    return ledger_file(project_dir, day).read_text(encoding="utf-8")
 
 
 def run(stdin, project_dir):
@@ -199,10 +199,12 @@ def test_empty_stdin_is_a_reply_with_no_lines(tmp_path):
 def test_cli_dispatches_to_ledger(tmp_path, monkeypatch, capsys):
     from guppi import cli
 
-    write_event_log(tmp_path, EVENT_LOG_WITH_HI)
+    today = datetime.now().astimezone().date()  # the CLI reads the real clock
+
+    write_event_log(tmp_path, EVENT_LOG_WITH_HI, day=today)
     monkeypatch.setenv("CLAUDE_PROJECT_DIR", str(tmp_path))
     monkeypatch.setattr("sys.stdin", payload(last_assistant_message=ledger_block(DECISION)))
     assert cli.main(["ledger"]) == 0
     assert capsys.readouterr().err == ""
-    written = ledger_text(tmp_path).splitlines()[0]
+    written = ledger_text(tmp_path, day=today).splitlines()[0]
     assert written.startswith("- ") and written.endswith(DECISION[2:])

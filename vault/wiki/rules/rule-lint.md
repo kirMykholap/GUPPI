@@ -42,3 +42,4 @@ yet as a page; the reference dangles until then, on purpose.
 
 - 2026-09-09 created · raw/2026-09-09/ledger.md#case-21
 - 2026-09-09 updated: the Method check, a Leaf names a test file, a MOC a make target · raw/2026-09-09/ledger.md#case-26.2
+- 2026-09-10 updated: the Method check, a MOC over hand-read children says by hand · raw/2026-09-10/ledger.md#case-28

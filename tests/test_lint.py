@@ -366,6 +366,35 @@ def test_a_moc_method_needs_a_make_target_that_exists(tmp_path):
     assert run(tmp_path) == (0, [], "")
 
 
+def test_a_moc_method_by_hand_over_hand_read_children_is_the_exception(tmp_path):
+    wiki = seed(tmp_path, estimate=estimate_page(method="One reading by hand."))
+    write(
+        wiki / "rules" / "rule-root.md",
+        root_page().replace("estimates: []", "estimates: [estimate-root-holds]"),
+    )
+    write(
+        wiki / "estimates" / "estimate-root-holds.md",
+        estimate_page(target="rule-root", method="One reading at a session start, by hand."),
+    )
+    assert run(tmp_path) == (0, [], "")
+
+
+def test_a_moc_method_by_hand_over_a_tested_child_is_a_method_finding(tmp_path):
+    wiki = seed(tmp_path)
+    write(
+        wiki / "rules" / "rule-root.md",
+        root_page().replace("estimates: []", "estimates: [estimate-root-holds]"),
+    )
+    write(
+        wiki / "estimates" / "estimate-root-holds.md",
+        estimate_page(target="rule-root", method="One reading at a session start, by hand."),
+    )
+    _, lines, _ = run(tmp_path)
+    assert lines == [
+        "estimates/estimate-root-holds: method: says by hand while estimate-x-works names a test file"
+    ]
+
+
 def test_cli_dispatches_to_lint(tmp_path, monkeypatch, capsys):
     from guppi import cli
 

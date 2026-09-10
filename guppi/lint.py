@@ -8,8 +8,9 @@ naming different fields or sections), `ref` (a slug no live or archived page car
 `origin` (a ledger file or `[case N]` line that does not exist), `path` (a file named in
 `implementation_ref` or `governs` that does not exist), `orphan` (a live page no other live
 page's frontmatter names), `status` (a status its Estimates do not support), `method` (an
-Estimate whose Method names no existing test file, or no make target for a MOC). Rule
-page: `vault/wiki/rules/rule-lint.md`.
+Estimate whose Method names no existing test file, or no make target for a MOC; a MOC
+whose children's Estimates are all by hand may say by hand instead). Rule page:
+`vault/wiki/rules/rule-lint.md`.
 """
 
 import argparse
@@ -280,6 +281,20 @@ def check_status(page: Page, by_slug: dict[str, Page]) -> list[Finding]:
     return out
 
 
+def children_estimates(moc: Page, by_slug: dict[str, Page]) -> list[Page]:
+    """The Estimate pages of a MOC's direct children, in the children's order."""
+    out = []
+    for child_slug in as_list(moc.props.get("children")):
+        child = by_slug.get(child_slug)
+        if child is None:
+            continue
+        for slug in as_list(child.props.get("estimates")):
+            estimate = by_slug.get(slug)
+            if estimate is not None:
+                out.append(estimate)
+    return out
+
+
 def check_method(page: Page, by_slug: dict[str, Page], project_dir: Path) -> list[Finding]:
     if page.category != "estimates":
         return []
@@ -288,6 +303,12 @@ def check_method(page: Page, by_slug: dict[str, Page], project_dir: Path) -> lis
     if method is None or target is None:
         return []
     if str(target.props.get("kind")) == "MOC":
+        if BY_HAND in method:
+            return [
+                Finding(page, "method", f"says by hand while {child.slug} names a test file")
+                for child in children_estimates(target, by_slug)
+                if BY_HAND not in (child.sections.get("## Method") or "")
+            ][:1]
         match = MAKE_TARGET.search(method)
         if not match:
             return [Finding(page, "method", "a MOC's Estimate names no `make <target>`")]

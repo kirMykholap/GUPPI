@@ -1,7 +1,7 @@
 ---
 type: estimate
 kind: QA
-status: pending
+status: passed
 target: rule-hook-registry
 origin: raw/2026-09-09/ledger.md#case-18.2
 sprint: migration
@@ -28,6 +28,14 @@ hand once), the file parses as JSON, and the next session start still writes a
 The JSON case in `tests/test_render.py`; the live reading once by hand, written into the
 estimate line.
 
+## Result
+
+Passing, 2026-09-10, session E. `tests/test_render.py` holds the JSON case; `render --check`
+exited 0 at the close of D. Live: the start of session `c640ade7` wrote
+`05:44:48 c640ade7 session-start clear` into `raw/2026-09-10/event_log.md` from the rendered
+`.claude/settings.json`.
+
 ## History
 
 - 2026-09-09 created · raw/2026-09-09/ledger.md#case-18.2
+- 2026-09-10 status: pending → passed · written by hand, no generator yet

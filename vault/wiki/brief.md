@@ -47,6 +47,15 @@ The cascade moved `rule-retro-commit` to `built` and `rule-materialize` and
 3. Close Slice 3 in `sprint.md` once those readings are in. This run did not touch
    `sprint.md`; the handoff said not to.
 4. Decide the route of `[delete][old-harness]` of case 6 or accept it as permanent noise.
+5. **Hand-written by the owner's word after the librarian's run, 2026-09-10 12:05.** The ten
+   readings of item 2 are already in the ledger (11:57:07), plus five lessons; two readings
+   failed (`estimate-documentation-completes`, `estimate-synthesis-clusters`: the librarian
+   read a lesson page and `guppi/generate.py` before any script error), so Slice 3 is not
+   closed. Those fifteen lines are not in `materialize.yaml`; the next librarian picks them
+   up. Question to discuss as a Case: readings written after the librarian's commit reach
+   the Frontier two sessions later, because `/hi` loads this brief only and the brief is
+   written before them. Proposal on the table: `/hi` prints the ledger lines of every date
+   not yet in its `materialize.yaml`; the page lag of one session is accepted.
 
 ## Deferred
 

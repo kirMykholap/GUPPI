@@ -3,12 +3,12 @@
 # through a ratified `decision update`.
 type: decision
 properties:
-  required: [type, kind, status, target_category, target_slug, origin, sprint, created, tags]
-  optional: [ref, source, supersedes, superseded_by]
+  required: [type, case, status, targets, origin, sprint, created, tags]
+  optional: [supersedes, superseded_by]
   values:
-    kind: [create, update, delete, defer]
     status: [current, superseded, archived]
-    target_category: [entities, rules, estimates, lessons]
+# `targets` is a list of {kind, category, slug, ref?, source?, path?}; one item per ledger
+# line of the Case. Lint checks the field exists; the script writes its items.
 body:
   required: ["## Context", "## Now", "## Problem", "## Then", "## History"]
   optional: ["## Note"]

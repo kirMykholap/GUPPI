@@ -2,7 +2,7 @@
 type: rule
 kind: Leaf
 purpose: Prevents a set of ratified decisions from reaching the Spec with a contradiction between them or with the vault
-status: draft
+status: built
 enforcement: render
 governs: .claude/skills/pre-task/SKILL.md
 render_mode: full
@@ -49,3 +49,4 @@ finding as a Case, or say in one line why it is already known. Then exit Plan Mo
 
 - 2026-09-09 created · raw/2026-09-09/ledger.md#case-24.2
 - 2026-09-09 updated: dispatches `ask-guppi` · raw/2026-09-09/ledger.md#case-26.1
+- 2026-09-10 status: draft → built · cascade

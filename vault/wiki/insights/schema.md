@@ -27,7 +27,7 @@ Created by the librarian, never by a decision. It reaches the human through `bri
 
 An Insight is created on the **second** Lesson sharing a root cause. One occurrence is an incident; two is a pattern.
 
-The archive is searched too. A recurrence after the pattern was supposedly fixed carries information a first occurrence does not — that our answer did not work — and that context belongs in the new Lesson.
+The archive is not searched. A Lesson is archived only when its Insight was actioned, and that Insight stays live with its `pattern` in `insights-index.md`; a recurrence after the pattern was supposedly fixed is caught there, at the cost of one index line, and reopens the Insight.
 
 ### Reopening
 

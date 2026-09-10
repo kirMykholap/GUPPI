@@ -21,7 +21,7 @@ outer markers it drops.
 Against a temp vault: a full MOC with two partial children renders to the MOC's Render
 text with each child marker replaced by the child's block, in child order, outer markers
 dropped; a partial page splices between its markers in an existing file and leaves the
-markers; a partial target without markers exits 1 with nothing written; `--check` on a
+markers; a partial target without markers exits 1 with nothing written; a full page whose children include a page without `enforcement: render` renders as if that child were absent, and exits 1 with nothing written when its text carries a marker line for it; `--check` on a
 differing file exits 1, names it, writes nothing, and exits 0 on an identical one.
 Against the live vault: after `uv run guppi render`, `git diff --stat` shows only the two
 dropped marker lines of `.claude/skills/hi/SKILL.md` and no change to `CLAUDE.md`, and
@@ -44,3 +44,4 @@ and `CLAUDE.md` untouched; `--check` then exited 0.
 
 - 2026-09-09 created · raw/2026-09-09/ledger.md#case-18.1
 - 2026-09-09 status: pending → passed · written by hand, no generator yet
+- 2026-09-10 updated: criterion: a full page with a child that is not a render page renders without it, and errors on a marker line for it · raw/2026-09-10/ledger.md#case-36.2

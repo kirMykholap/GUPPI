@@ -1,0 +1,94 @@
+---
+type: rule
+kind: Leaf
+purpose: Prevents a ratified decision from ending the session without a page, or a page from carrying a field nobody ratified
+status: built
+enforcement: check
+implementation_ref: [guppi/generate.py, tests/test_generate.py]
+parent: rule-documentation
+estimates: [estimate-generate-writes]
+origin: raw/2026-09-10/ledger.md#case-32
+sprint: migration
+created: 2026-09-10
+tags: [harness, workflow, ledger]
+---
+
+## Purpose
+
+Prevents a ratified decision from ending the session without a page, or a page from
+carrying a field nobody ratified. The script is the only writer to `wiki/`. It lays
+the content of `materialize.yaml` into schema fields, derives what is derivable and
+writes nothing else. A page is always created, even incomplete: red lint is an
+accurate signal of debt, a decision with no page is the ledger and the vault
+disagreeing silently. A slug collision is an error, never a rename.
+
+## How it works
+
+`uv run guppi generate [--date]` applies the entries of `raw/<date>/materialize.yaml`
+in order and marks each applied entry `applied: <time>` in the yaml, so a rerun
+writes nothing. An entry that fails — a collision, a `ref` naming no page, a
+`replace` whose text is absent or not unique — is reported on stderr and skipped;
+the rest apply; the exit code is 1.
+
+Initial `status` by category: entity and rule `draft`, estimate `pending`, lesson
+`new`, insight `open`, decision `current`. `sprint` is the first `## <id>` heading
+of `sprint.md`; `created` is the yaml's date. Body sections follow the order of the
+category's `schema.yaml`: `Purpose` from `sections` or the `purpose` line;
+`Estimates`, `Children` (numbered for a rule), `Parent`, `Implementation` from the
+fields; `Render`, `How it works`, `Context`, `Criterion`, `Method`, `Result`,
+`Trigger`, `Root cause`, `Pattern`, `Proposal` from `sections` or the estimate's
+fields. A field or section the entry lacks is not written: lint names it.
+
+History lines: `created`, `updated: <change>`, `status: a → b`, `deleted`,
+`deferred`, `child <slug> added`, `estimate <slug> added`, each `· <origin>`;
+`log.md` gets the same line with `<category>/<slug>` in front. A `create` with `ref`
+appends the slug to the parent's `children` (order kept) or, for an estimate, to
+the target's `estimates`, and rebuilds that section. An `update` applies `set` to
+the frontmatter, `sections` as whole replacements, `replace` inside the body
+(whitespace-collapsed match, exactly one occurrence), and appends History. An
+`estimate` entry sets `status`, overwrites `## Result` and appends History; a page
+already at that status with a Result is skipped. A `delete` sets `status: archived`
+with History `deleted`; there is no `deleted` status. A `defer` with a page appends
+History `deferred`; without one it writes a placeholder page, `status: draft`, with
+only the fields the Case gave.
+
+A lesson's paired Estimate is `estimate-<lesson slug without lesson->`, target the
+lesson, tags the lesson's. `error`: kind `QA`, status `passed`, criterion "The
+failure named in Trigger was observed directly", method "The observation itself,
+by hand; recorded in the ledger line", result "Observed. The ledger line is the
+record." `knowledge`: kind `Research`, status `pending`, criterion "The claim in
+Root cause holds when read live", method "One live reading by hand, recorded in
+the estimate line". A missing `source` is not invented; lint names it.
+
+One Decision page per Case, `decisions/decision-case-<N>.md`: `case`, `status:
+current`, `targets`, `supersedes`, `origin`, `sprint`, `created`, `tags` (the union
+of the targets' tags); body `Context`, `Now`, `Problem`, `Then` from `case_text`
+(`given` fills `Now`). A `supersedes` sets the earlier page `status: superseded`
+and appends the new slug to its `superseded_by`. A decision page that exists is
+skipped. A `create` marked `exists` writes no page and no History; its decision
+page is still written.
+
+After all entries: an entity or rule whose Estimates are all `passed` becomes
+`built`, a `built` one with an Estimate not passed returns to `draft`, both with a
+History line; the `severity` of every insight is recounted. A tag declared in
+`new_tags` is appended to `tags.md` with its meaning and aliases; a tag used but not
+declared and not registered is reported on stderr and left on the page.
+
+## Estimates
+
+- [[estimate-generate-writes]]
+
+## Parent
+
+- [[rule-documentation]]
+
+## Implementation
+
+- `guppi/generate.py`
+- `tests/test_generate.py`
+
+## History
+
+- 2026-09-10 created · raw/2026-09-10/ledger.md#case-32
+- 2026-09-10 estimate estimate-generate-writes added · raw/2026-09-10/ledger.md#case-32
+- 2026-09-10 status: draft → built · cascade

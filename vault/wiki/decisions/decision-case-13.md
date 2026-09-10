@@ -1,0 +1,42 @@
+---
+type: decision
+case: "13"
+status: current
+targets:
+  - {kind: create, category: rules, slug: rule-case-protocol, ref: rule-plan-mode}
+  - {kind: create, category: estimates, slug: estimate-case-protocol-loaded, ref: rule-case-protocol}
+origin: raw/2026-09-09/ledger.md#case-13
+sprint: migration
+created: 2026-09-09
+tags: [session, workflow, ledger]
+---
+
+## Then
+
+**context.** Правило, которое агент видит всегда: как ведётся Case, когда он делится,
+когда и как пишутся ledger-строки. Инструкция, не enforcement — хука на «закончил ли ты
+Frontier» не бывает, поэтому текст стоит там, где агент его не пропустит: в `CLAUDE.md`.
+Первый Leaf будущего `rule-plan-mode` (Slice 2), описан в `docs/migration/rule-plan-mode.md`
+как ребёнок 1.
+
+**now.** `CLAUDE.md` — bootstrap Slice 0: импортирует glossary и case-schema, несёт секцию
+«Migration mode» с пунктом «ledger lines are written by hand … until the ledger hook
+exists», который после Case 10 станет ложным. Шесть секций Case уже приходят через
+`@vault/wiki/case-schema.md` — повторять их нельзя. Правило «fence — предпросмотр, голая
+строка — запись» ратифицировано в Case 10 и ещё нигде не записано для агента. `/ask`
+появится в Slice 2; до него «спросить vault» — чтение папок категорий.
+
+**problem.** (а) текст секции; (б) правка «Migration mode» под появившийся хук;
+(в) `parent: rule-plan-mode` указывает на страницу, которой нет до Slice 2.
+
+**recommend.**
+
+(а) Секция `## Case protocol` в `CLAUDE.md` между маркерами, ~20 строк, без повтора
+case-schema:
+
+```markdown
+<!-- rule-case-protocol -->
+
+## History
+
+- 2026-09-09 created · raw/2026-09-09/ledger.md#case-13

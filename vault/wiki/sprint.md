@@ -21,6 +21,8 @@ by its own rules) and Phase 2 (the surviving pages brought into conformance) of
 7. Tests are green, and the branch `migration` is ready to merge into `main`.
 
 **Slices**, each its own Plan Mode and approval: 0 layout · 1 ledger, event log, `/hi` ·
-2 renderer, lint, indexes, `/ask`, pre-task · 3 materialize, generate, librarian, retro,
-handoff · 4 conversion of the parked pages by group · 5 closing. Slices 0 and 1 closed 2026-09-09; Slice 2 built 2026-09-09, closes when its five
-pending readings pass at the start of the next session (see `brief.md`).
+2 renderer, lint, indexes, `/ask`, pre-task · 3 materialize, generate, cleanup, librarian, retro,
+handoff · 3b Work Mode (`rule-work-mode`, `rule-subagent-guppi`, `to-executable-plan`, its
+hooks) · 4 conversion of the parked pages by group · 5 closing. Slices 0–2 closed by
+2026-09-10; Slice 3 built 2026-09-10, closes when the librarian's first run and the `/retro`
+and `/handoff` readings pass in the next session (see `brief.md`).

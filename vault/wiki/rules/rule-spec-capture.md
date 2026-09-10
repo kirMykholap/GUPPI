@@ -2,7 +2,7 @@
 type: rule
 kind: Leaf
 purpose: Prevents an approved Spec from existing only in Claude Code's plan file, outside the repository
-status: draft
+status: built
 enforcement: hook
 implementation_ref: [guppi/spec.py, .claude/settings.json]
 parent: rule-plan-mode
@@ -36,3 +36,4 @@ not at all.
 ## History
 
 - 2026-09-09 created · raw/2026-09-09/ledger.md#case-20
+- 2026-09-10 status: draft → built · cascade

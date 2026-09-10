@@ -27,7 +27,7 @@ page (`draft` while in `docs/migration/`), `here` this row. Rule-class; imported
 | Entity | The thing that gets built; MOC or Leaf; a Leaf carries `code_ref` | entities/schema.md |
 | Rule | How the work happens; force by `hook`, `check` or `render`; needs an Estimate | rules/schema.md |
 | Estimate | How a behaviour was checked and the outcome; its own Leaf page; `QA` checks a known criterion, `Research` finds out | estimates/schema.md |
-| Lesson | Something learned; a fact the hook writes, no Case; slug = area + cause. `error` is born `passed` and archived; `knowledge` needs its Research Estimate passed before an Insight builds on it | lessons/schema.md |
+| Lesson | Something learned; a fact the hook writes, no Case; slug = area + cause. `error`'s Estimate is born `passed`; `knowledge` needs its Research Estimate passed before an Insight builds on it | lessons/schema.md |
 | Insight | Over Lessons sharing a root cause, made by the librarian on the second; never a Decision target; `actioned` reopens | insights/schema.md, §8 |
 | Issue | Tracked on GitHub; never a page, a `ref` only | here |
 
@@ -47,7 +47,7 @@ page (`draft` while in `docs/migration/`), `here` this row. Rule-class; imported
 | Entity / Rule | `draft` / `built` / `archived`; `built` is computed once every Estimate passes, never by hand | §7 |
 | Decision, Lesson, Insight | `current`/`superseded`/`archived`; `new`/`clustered`/`archived`; `open`/`actioned`/`archived`, a new Lesson reopens `actioned` | schema.md |
 | Estimate | `pending` / `passed` / `failed`; `failed` is debt, archival the default outcome | §7 |
-| `archived`, `deleted` | Set by the librarian, a script moves the file to `wiki/archive/`; the marker `delete` sets, never physical, restored by `update` | §1, §3 |
+| `archived` | Set by `delete` or by `guppi generate`; `guppi cleanup` moves the file to `vault/archived/<sprint>/<date>/<category>/` and brings it back on an `update` of `status`; never physical deletion | §1, §3, rule-cleanup |
 
 ## Decisions
 
@@ -56,7 +56,7 @@ page (`draft` while in `docs/migration/`), `here` this row. Rule-class; imported
 | Decision | The atomic unit of work: `create`, `update`, `delete`, `defer`; Read is never one | §3 |
 | Types | `create` a page (a Leaf brings a paired Estimate `create`); `update` fields, `result`/`status` included; `delete` sets `status: deleted` after an impact analysis, the librarian archives; `defer` postpones, a placeholder page when no `ref` | §3, §5 |
 | Delegate | The agent deciding without ratification; rejected, parked | here |
-| Routing Table, Decision page | (type × `ref` × category) to vault action, mechanical; one page per ratified decision in `wiki/decisions/`, meaningful slug, never indexed | §5, §11 |
+| Routing Table, Decision page | (type × `ref` × category) to vault action, mechanical; one page per Case in `wiki/decisions/`, slug `decision-case-<N>`, `targets` per ledger line, never indexed, never opened by `ask-guppi` unless asked why | §5, §11 |
 
 ## Session
 
@@ -64,15 +64,15 @@ page (`draft` while in `docs/migration/`), `here` this row. Rule-class; imported
 |---|---|---|
 | Session | Session Start, Plan Mode, Work Mode, End of Session | §9 |
 | `/hi`, Frontier | Opens a working session and records `hi`; the open items it assembles (brief, sprint, issues, an unfinished plan) are the Plan Mode agenda | rule-skill-hi |
-| Sprint, `brief.md` | The backlog giving the session its scope (`migration` during the move); the handover between sessions, deferred items capped at 7, ranked by Insight severity then postponements | sprint.md, rule-brief (draft) |
-| Case | The unit of dialogue, not a page: `context`, `now`, `problem`, `recommend`, `then` (the page draft), `ratification`; splits into dotted sub-cases the parent's sign-off never covers | case-schema.md |
+| Sprint, `brief.md` | The backlog giving the session its scope (`migration` during the move); the handover between sessions, deferred items capped at 7, ranked by Insight severity then postponements | sprint.md, rule-brief |
+| Case | The unit of dialogue, not a page: `context`, `problem`, `recommend`, `given`, `when`, `then`, `ratification`; `when` + `then` is the Estimate criterion; the page content is a `then` block in the Spec; splits into dotted sub-cases the parent's sign-off never covers | case-schema.md |
 | Plan Mode, Pre-task | Frontier items discussed as Cases until each is ratified or deferred; the vault query before a `create` without `ref`, `draft` pages included | rule-plan-mode, rule-pretask |
 | Ledger, Event log | The record of decisions (routing only), estimates and lessons (with text), written by the `Stop` hook; the gitignored log of tool calls and commits, written by hooks | §4, rule-ledger-write, rule-event-log |
 | Spec | The ratified Cases as one document, approved as Claude Code's plan, copied to `raw/<date>/spec.md` | rule-spec-capture |
 | Executable plan, Work Mode | The Spec as tasks with code, paths, checkboxes; subagents transcribe, a fork comes back as a Case | rule-work-mode (draft) |
-| Retro, Handoff | Review of this session only, edits only finish ratified work, bugs become `lesson[error]`, ends with a commit; then `handoff.md`: notes, instructions to the librarian, what got done | rule-end-of-work (draft) |
+| Retro, Handoff | `/retro`: review of this session only, edits only finish ratified work, bugs become `lesson[error]`, ends with a commit; `/handoff`, gated by `guppi gate` on a dirty tree: `handoff.md` from memory, then the librarian | rule-end-of-work |
 | Index, `ask-guppi` | `wiki/<category>-index.md`, one line per live page, never compared across categories; the search agent over them, one entry point | §11, rule-index, rule-ask |
-| Documentation | The librarian's phase: `materialize.yaml` from ledger, routing and Spec; generation, tags, statuses, synthesis, flags, brief, lint, commit | rule-documentation (draft) |
+| Documentation | The librarian's phase, the agent `librarian-guppi`: materialize, index check, synthesis, generate, cleanup, brief, close | rule-documentation |
 
 ## Agents and machinery
 

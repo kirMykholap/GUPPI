@@ -26,6 +26,7 @@ from guppi.pages import CATEGORIES, Page, read_vault, wiki_root
 LINK_FIELDS = ("parent", "children", "estimates", "target", "addressed_by", "insight")
 PATH_FIELDS = ("implementation_ref", "governs")
 WIKILINK = re.compile(r"\[\[([^\]|#]+)(?:[|#][^\]]*)?\]\]")
+CODE_SPAN = re.compile(r"`[^`\n]*`")  # a `[[slug]]` quoted in prose is not a link
 ORIGIN_CASE = re.compile(r"^raw/(\d{4}-\d\d-\d\d)/ledger\.md#case-([\w.]+)$")
 ORIGIN_LINE = re.compile(r"^raw/(\d{4}-\d\d-\d\d)/ledger\.md#L(\d+)$")
 TABLE_FIELD = re.compile(r"^\|\s*`([^`]+)`")
@@ -173,7 +174,7 @@ def check_prose(wiki: Path, category: str, schema: dict) -> list[Finding]:
 
 
 def archived_slugs(wiki: Path) -> set[str]:
-    folder = wiki / "archive"
+    folder = wiki.parent / "archived"
     if not folder.is_dir():
         return set()
     return {p.stem for p in folder.rglob("*.md") if p.stem != "schema"}
@@ -186,7 +187,7 @@ def links_of(page: Page) -> list[tuple[str, str]]:
         for slug in as_list(page.props.get(field)):
             out.append((field, slug))
     for text in page.sections.values():
-        for slug in WIKILINK.findall(text):
+        for slug in WIKILINK.findall(CODE_SPAN.sub("", text)):
             out.append(("body", slug.strip()))
     return out
 

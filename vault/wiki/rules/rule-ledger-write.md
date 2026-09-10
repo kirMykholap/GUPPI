@@ -2,7 +2,7 @@
 type: rule
 kind: Leaf
 purpose: Prevents a ratified line from existing only in a chat reply, or landing in a session no /hi opened
-status: draft
+status: built
 enforcement: hook
 implementation_ref: [guppi/ledger.py, .claude/settings.json]
 parent: rule-session-start
@@ -72,3 +72,4 @@ the implementation arrives in the session after the probe (Slice 1, session B).
 - 2026-09-09 updated: records are the lines of a LEDGER block, not bare lines · raw/2026-09-09/ledger.md#case-15.1
 - 2026-09-09 updated: each written line carries the time of writing · raw/2026-09-09/ledger.md#case-15.3
 - 2026-09-09 updated: compact and resume of the same session keep the hi window open · raw/2026-09-09/ledger.md#case-14
+- 2026-09-10 status: draft → built · cascade

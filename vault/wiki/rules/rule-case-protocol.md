@@ -2,7 +2,7 @@
 type: rule
 kind: Leaf
 purpose: Prevents a decision from being acted on before it is ratified, or ratified without its content in view
-status: draft
+status: built
 enforcement: render
 governs: CLAUDE.md
 render_mode: partial
@@ -21,6 +21,47 @@ content in view. This is instruction, not enforcement — no hook can check "did
 the Frontier" or "did you wait for the sign-off" — so it is written where the agent always
 sees it: `CLAUDE.md`, which is in the system prompt from the first turn.
 
+## Render
+
+<!-- rule-case-protocol -->
+## Case protocol
+
+One reply is one Case, in the seven sections of `case-schema.md`: context, problem,
+recommend, given, when, then, ratification. Never move to the next Case until this
+one is ratified or deferred. Plan Mode does not end while a Frontier item is neither
+ratified nor deferred.
+
+A follow-up question that asks you to justify a choice does not split the Case; one
+whose answer needs a new choice does — into sub-cases `N.1`, `N.2`. Ratifying a
+parent does not ratify its children.
+
+A Case renders as `## Case N — name`, then one blockquote per section: its first
+line `**name:**`, its text on the following quoted lines, a blank line between
+sections. In `given`, `when` and `then` every line after the first starts with a
+bold operand: **＋** for one more condition or action, **－** for a limit or an
+exception. `when` and `then` together are the criterion of the Estimate the Case
+creates. Write short sentences, one idea each, in the active voice. A sub-case is
+`### Case N.M — name` under its parent, with its own `given`, `when`, `then` and
+`ratification`; the sections the children share live on the parent. The
+`ratification` section ends with a preview of the ledger lines in an untagged
+fence. The page content itself — fields, prose sections, the Estimate — is a YAML
+block tagged `then` under the Case in the Spec, not in the chat; `guppi
+materialize` reads it, and what is not in that block was signed by nobody.
+
+Before a `create` without a `ref`, ask the vault first: does this exist, what
+conflicts, what sits in `draft`, which tags fit. Put the answer in `given`.
+Dispatch the `ask-guppi` agent with one short question.
+
+Ledger lines are written by the `Stop` hook, from the reply, verbatim, each with
+the time of writing. A record is a `- decision[...]`, `- estimate[...]` or
+`- lesson[...]` line inside a fenced block opened with the `LEDGER` tag; the same
+line anywhere else — bare, or in a block with another tag or none — is a preview
+and is never written. A `create` line carries the ratified tags: `{tags:a,b}`.
+Write the `- decision[...]` lines only in the reply that acknowledges ratification;
+`- estimate[...]` and `- lesson[...]` lines the moment the measurement or the lesson
+exists. Without `/hi` the hook refuses and says so: tell the person, do not retry.
+<!-- /rule-case-protocol -->
+
 ## How it works
 
 Spliced into `CLAUDE.md` between its markers. The six Case sections are not repeated here:
@@ -31,38 +72,6 @@ hook relies on.
 
 `parent: rule-plan-mode` names the Plan Mode MOC of Slice 2, which does not exist yet as a
 page; the reference dangles until then, on purpose.
-
-## Render
-
-<!-- rule-case-protocol -->
-## Case protocol
-
-One reply is one Case, in the six sections of `case-schema.md`. Never move to the next
-Case until this one is ratified or deferred. Plan Mode does not end while a Frontier item
-is neither ratified nor deferred.
-
-A follow-up question that asks you to justify a choice does not split the Case; one whose
-answer needs a new choice does — into sub-cases `N.1`, `N.2`. Ratifying a parent does not
-ratify its children.
-
-A Case renders as `## Case N — name`, then one blockquote per section: its first line
-`**name**`, its text on the following quoted lines, a blank line between sections. A
-sub-case is `### Case N.M — name` under its parent, with its own `then` and `ratification`;
-the sections the children share live on the parent and are not repeated. A preview of
-ledger lines is an untagged fence at the end of the Case; the record is a LEDGER block.
-
-Before a `create` without a `ref`, ask the vault first: does this exist, what conflicts,
-what sits in `draft`, which tags fit. Put the answer in `now`. Dispatch the `ask-guppi`
-agent with one short question once it exists; until then read the category folders.
-
-Ledger lines are written by the `Stop` hook, from the reply, verbatim, each with the time
-of writing. A record is a `- decision[...]`, `- estimate[...]` or `- lesson[...]` line
-inside a fenced block opened with the `LEDGER` tag; the same line anywhere else — bare, or
-in a block with another tag or none — is a preview and is never written. Write the
-`- decision[...]` lines only in the reply that acknowledges ratification; `- estimate[...]`
-and `- lesson[...]` lines the moment the measurement or the lesson exists. Without `/hi`
-the hook refuses and says so: tell the person, do not retry.
-<!-- /rule-case-protocol -->
 
 ## Estimates
 
@@ -79,3 +88,6 @@ the hook refuses and says so: tell the person, do not retry.
 - 2026-09-09 updated: a section is `**name:**` + text, closed by a blank line · raw/2026-09-09/ledger.md#case-15.2
 - 2026-09-09 updated: a Case is a `## Case N` heading and one blockquote per section; sub-cases are `###` · raw/2026-09-09/ledger.md#case-17, supersedes case 15.2
 - 2026-09-09 updated: the search mechanism is the `ask-guppi` agent, not a `/ask` command · raw/2026-09-09/ledger.md#case-26.1
+- 2026-09-10 updated: the Render names the then block (superseded by case 34) · raw/2026-09-10/ledger.md#case-30
+- 2026-09-10 updated: the Render describes the seven sections, the operands, the then block in the Spec, and {tags} on a create line · raw/2026-09-10/ledger.md#case-34
+- 2026-09-10 status: draft → built · cascade

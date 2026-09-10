@@ -2,7 +2,7 @@
 type: rule
 kind: Leaf
 purpose: Prevents the ledger from being written into a session nothing recorded
-status: draft
+status: built
 enforcement: hook
 implementation_ref: [guppi/event.py, guppi/cli.py, .claude/settings.json]
 parent: rule-session-start
@@ -65,3 +65,4 @@ repository cannot be told apart by the ledger hook, which looks for a `hi` after
 ## History
 
 - 2026-09-09 created · raw/2026-09-09/ledger.md#case-9
+- 2026-09-10 status: draft → built · cascade

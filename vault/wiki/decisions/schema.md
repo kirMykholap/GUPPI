@@ -6,27 +6,28 @@ Every page has three blocks: **properties** (frontmatter), **body** (per-categor
 
 ## Properties
 
+One page per Case, however many ledger lines the Case produced.
+
 | Field | Required | Values / format | Purpose |
 |---|---|---|---|
 | `type` | yes | `decision` | Page category. Fixed for this schema. |
-| `kind` | yes | `create` \| `update` \| `delete` \| `defer` | The decision itself. Together with `ref` presence, drives routing. |
-| `status` | yes | `current` \| `superseded` \| `archived` | Lifecycle of this page. What lint reads, and what archival acts on. Not the state of the work — that lives on the target page. |
-| `target_category` | yes | `entities` \| `rules` \| `estimates` \| `lessons` | Where the resulting page belongs. Explicit, so the generation script never infers a folder from a slug prefix. |
-| `target_slug` | yes | slug | The page this decision acts on. For `create`, the name of the new page. |
-| `ref` | no | slug | Parent MOC, for a `create` that adds a child. Omitted for `update`/`delete` — `target_slug` is already unambiguous. |
-| `origin` | yes | `raw/YYYY-MM-DD/ledger.md#case-N` | Where this was ratified. `raw/` is archived with the session; the pointer stays valid into the archive. |
+| `case` | yes | case id, e.g. `18.1` | The Case this page records. |
+| `status` | yes | `current` \| `superseded` \| `archived` | Lifecycle of this page, not of the work. `superseded` once a later Case names it in `supersedes`. |
+| `targets` | yes | list of `{kind, category, slug, ref?, source?, path?}` | One item per ledger line of the Case. `kind`: `create` \| `update` \| `delete` \| `defer`. `category`: the folder the effect lands in (`entities`, `rules`, `estimates`, `lessons`, `insights`), or `file` with `path` for a Rule-class file. `ref`: the parent for a `create` that adds a child. `source`: an external id, traceability only. The category is explicit on the page; the script derives it from the slug prefix, which pre-task guards. |
+| `supersedes` | no | list of decision slugs | Earlier Cases this one overrides, from the ledger's `{supersedes:case N}`. |
+| `superseded_by` | no | list of decision slugs | Back-references, written by the script. |
+| `origin` | yes | `raw/YYYY-MM-DD/ledger.md#case-N` | Where this was ratified. The folder also holds the Spec with the Case. `raw/` stays in place; it is not archived with the session. |
 | `sprint` | yes | sprint id | Cheap slice of "what did we decide this sprint" without parsing dates. |
 | `created` | yes | date | |
-| `source` | no | external id, e.g. `issue-84` | External provenance. Traceability only — never affects routing. |
-| `supersedes` | no | decision slug | This decision overrides an earlier one. |
-| `superseded_by` | no | decision slug | Back-reference, written by the script. Without it, telling whether a decision still stands would mean scanning everything that came after it. |
-| `tags` | yes | list | Chosen during pre-task, ratified in the Case. |
+| `tags` | yes | list | The union of the targets' tags, as ratified in the Case. |
 
 ### Slug
 
-The slug carries the meaning — `decision-create-cart`, not `decision-2026-09-08-01`. **The main agent writes it in the Case**, so the human ratifies the name along with everything else, and pre-task checks it for collisions and for near-identical existing decisions.
-
-Because the slug already says what the decision was, there is no `summary` field — it would only restate the slug in prose.
+`decision-case-<N>`: `decision-case-18.1`. Mechanical, because the script writes the page
+and may not name anything; unique, because a Case id is. Nothing searches Decision pages,
+so the slug needs no meaning beyond the Case it points back at. The one lookup that
+happens — which decision a new one supersedes — goes by the case id the ledger line
+already carries.
 
 ### Fields deliberately absent
 
@@ -42,9 +43,9 @@ The Case that produced it, minus what belongs to the conversation rather than th
 | Section | Required | Content |
 |---|---|---|
 | `## Context` | yes | What this is about. |
-| `## Now` | yes | How things worked before, including the pre-task result — what already existed, what conflicted, what sat in `draft`. |
+| `## Now` | yes | The Case's `given`: how things worked before, the pre-task result included — what already existed, what conflicted, what sat in `draft`. |
 | `## Problem` | yes | What required a decision. |
-| `## Then` | yes | What was decided and what follows. If the human reshaped the proposal, this holds the reshaped version. |
+| `## Then` | yes | The Case's `when` and `then`: what was decided and what follows. If the human reshaped the proposal, this holds the reshaped version. |
 | `## Note` | no | Only when ratification was non-trivial: a reservation, a condition, a rejected alternative worth remembering. Omit when the answer was simply yes. |
 
 ## History
@@ -62,14 +63,14 @@ Appended by hook, never by an agent. Always the last section, so `tail` reads it
 ```markdown
 ---
 type: decision
-kind: create
+case: "1"
 status: current
-target_category: entities
-target_slug: entity-cart
+targets:
+  - {kind: create, category: entities, slug: entity-cart}
+  - {kind: create, category: estimates, slug: estimate-cart-render-time, ref: entity-cart}
 origin: raw/2026-09-08/ledger.md#case-1
 sprint: 2026-Q3-s4
 created: 2026-09-08
-source: issue-84
 tags: [cart, checkout]
 ---
 
@@ -84,9 +85,11 @@ be affected. Nothing in `draft` covers this either.
 Buyers cannot review an order before paying.
 
 ## Then
-Create `entity-cart` as a MOC. Four children follow, each ratified separately: add item,
-change quantity, remove item, total. Cross-cutting estimate on the parent: the cart
-renders within 200ms.
+A buyer opens the cart.
+
+The cart lists the order and renders within 200ms.
+**＋** Four children follow, each ratified separately: add item, change quantity, remove
+item, total.
 
 ## History
 - 2026-09-08 created · raw/2026-09-08/ledger.md#case-1

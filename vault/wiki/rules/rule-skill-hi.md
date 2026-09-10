@@ -2,7 +2,7 @@
 type: rule
 kind: MOC
 purpose: Prevents a session from being loaded piecemeal by read-tool calls
-status: draft
+status: built
 enforcement: render
 governs: .claude/skills/hi/SKILL.md
 render_mode: full
@@ -22,19 +22,6 @@ skill body resolve before the agent's first turn, so the context is simply prese
 is no step the agent can forget or reorder. The skill also leaves the `hi` mark in the
 event log itself: a command typed by the person does not pass through the `Skill` tool, so
 no hook would see it.
-
-## How it works
-
-Rendered in full into the skill file; the three children splice into the markers below, in
-the order they are listed. Editing the skill directly is meaningless once the renderer
-exists (Slice 2) — the next render overwrites it. Until then the file and this page are two
-copies of one text, kept identical by hand.
-
-`disable-model-invocation: true` in the frontmatter: only the person opens a working
-session. `${CLAUDE_SESSION_ID:-}` passes the session id to the event log when the variable
-exists inside a substitution and an empty string otherwise; the probe of Slice 1 measures
-which. For that one session the skill file carries an extra `Probe:` line that is not part
-of this render.
 
 ## Render
 
@@ -57,6 +44,19 @@ for the human to pick the order or defer items. Before any `create`, ask the vau
 (§3 of `vault/wiki/index.md`).
 <!-- /rule-skill-hi -->
 
+## How it works
+
+Rendered in full into the skill file; the three children splice into the markers below, in
+the order they are listed. Editing the skill directly is meaningless once the renderer
+exists (Slice 2) — the next render overwrites it. Until then the file and this page are two
+copies of one text, kept identical by hand.
+
+`disable-model-invocation: true` in the frontmatter: only the person opens a working
+session. `${CLAUDE_SESSION_ID:-}` passes the session id to the event log when the variable
+exists inside a substitution and an empty string otherwise; the probe of Slice 1 measures
+which. For that one session the skill file carries an extra `Probe:` line that is not part
+of this render.
+
 ## Estimates
 
 - [[estimate-hi-no-read-calls]]
@@ -74,3 +74,4 @@ for the human to pick the order or defer items. Before any `create`, ask the vau
 ## History
 
 - 2026-09-09 created · raw/2026-09-09/ledger.md#case-11
+- 2026-09-10 status: draft → built · cascade

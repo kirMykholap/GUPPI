@@ -2,11 +2,11 @@
 type: rule
 kind: Leaf
 purpose: Prevents a hook from being registered by hand, outside a ratified decision
-status: draft
+status: built
 enforcement: render
 governs: .claude/settings.json
 render_mode: full
-parent: rule-session-start
+parent: rule-harness
 estimates: [estimate-hook-registry-rendered]
 origin: raw/2026-09-09/ledger.md#case-18.2
 sprint: migration
@@ -23,8 +23,7 @@ behind it. The Render body is the file; adding a hook is an `update` of this pag
 same Case that creates the hook's Rule. `defaultMode: plan` lives here too: it is harness
 configuration, and one file has one source.
 
-`parent: rule-session-start` is temporary: the registry holds the hooks of every phase
-and moves under a harness-wide MOC when one exists.
+`parent: rule-harness`: the registry holds the hooks of every phase, so it sits with the tools of the harness, in no phase. A hook in an agent's own frontmatter is part of that agent's Render and is ratified with it; this registry holds `settings.json` only.
 
 ## Render
 
@@ -39,7 +38,9 @@ and moves under a harness-wide MOC when one exists.
     ],
     "PreToolUse": [
       { "matcher": "ExitPlanMode",
-        "hooks": [ { "type": "command", "command": "uv run guppi pretask", "timeout": 30 } ] }
+        "hooks": [ { "type": "command", "command": "uv run guppi pretask", "timeout": 30 } ] },
+      { "matcher": "Skill",
+        "hooks": [ { "type": "command", "command": "uv run guppi gate", "timeout": 30 } ] }
     ],
     "PostToolUse": [
       { "hooks": [ { "type": "command", "command": "uv run guppi event tool", "timeout": 30 } ] },
@@ -66,3 +67,6 @@ and moves under a harness-wide MOC when one exists.
 - 2026-09-09 created · raw/2026-09-09/ledger.md#case-18.2
 - 2026-09-09 updated: PostToolUse ExitPlanMode → guppi spec · raw/2026-09-09/ledger.md#case-20
 - 2026-09-09 updated: PreToolUse ExitPlanMode → guppi pretask · raw/2026-09-09/ledger.md#case-24.1
+- 2026-09-10 updated: parent is rule-harness · raw/2026-09-10/ledger.md#case-37
+- 2026-09-10 updated: PreToolUse, matcher Skill → uv run guppi gate · raw/2026-09-10/ledger.md#case-38.2
+- 2026-09-10 status: draft → built · cascade

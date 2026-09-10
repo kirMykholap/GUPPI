@@ -16,3 +16,172 @@ instruction. The global feed; a page's own `## History` is the per-page view.
 - 2026-09-09 rules/rule-ledger-write updated: compact and resume of the same session keep the hi window open · raw/2026-09-09/ledger.md#case-14 · written by hand, no generator yet
 - 2026-09-09 estimates/estimate-session-start-context, estimate-case-protocol-loaded updated: criteria follow the LEDGER block · raw/2026-09-09/ledger.md#case-16.1, #case-16.2 · written by hand, no generator yet
 - 2026-09-09 rules/rule-case-protocol updated: a Case renders as a heading and one blockquote per section, sub-cases as `###` · raw/2026-09-09/ledger.md#case-17, supersedes case 15.2 · written by hand, no generator yet
+- 2026-09-10 lessons/lesson-agents-at-import-not-expanded created · raw/2026-09-10/ledger.md#L3 · generate
+- 2026-09-10 estimates/estimate-agents-at-import-not-expanded created · raw/2026-09-10/ledger.md#L3 · generate
+- 2026-09-10 lessons/lesson-tests-cli-date-pinned created · raw/2026-09-10/ledger.md#L7 · generate
+- 2026-09-10 estimates/estimate-tests-cli-date-pinned created · raw/2026-09-10/ledger.md#L7 · generate
+- 2026-09-10 estimates/estimate-tests-cli-date-pinned status: pending → passed · raw/2026-09-10/ledger.md#L7 · generate
+- 2026-09-10 rules/rule-work-mode deferred, placeholder · raw/2026-09-10/ledger.md#case-29 · generate
+- 2026-09-10 rules/rule-subagent-guppi deferred, placeholder · raw/2026-09-10/ledger.md#case-29 · generate
+- 2026-09-10 rules/rule-case-protocol updated: the Render names the then block (superseded by case 34) · raw/2026-09-10/ledger.md#case-30 · generate
+- 2026-09-10 rules/rule-ask updated: the agent does not open or grep wiki/decisions/ unless the question asks why something was decided · raw/2026-09-10/ledger.md#case-31.1 · generate
+- 2026-09-10 rules/rule-materialize created · raw/2026-09-10/ledger.md#case-31 · generate
+- 2026-09-10 estimates/estimate-materialize-assembles created · raw/2026-09-10/ledger.md#case-31 · generate
+- 2026-09-10 rules/rule-materialize estimate estimate-materialize-assembles added · raw/2026-09-10/ledger.md#case-31 · generate
+- 2026-09-10 rules/rule-page-generation created · raw/2026-09-10/ledger.md#case-32 · generate
+- 2026-09-10 estimates/estimate-generate-writes created · raw/2026-09-10/ledger.md#case-32 · generate
+- 2026-09-10 rules/rule-page-generation estimate estimate-generate-writes added · raw/2026-09-10/ledger.md#case-32 · generate
+- 2026-09-10 rules/rule-cleanup created · raw/2026-09-10/ledger.md#case-33 · generate
+- 2026-09-10 estimates/estimate-cleanup-moves created · raw/2026-09-10/ledger.md#case-33 · generate
+- 2026-09-10 rules/rule-cleanup estimate estimate-cleanup-moves added · raw/2026-09-10/ledger.md#case-33 · generate
+- 2026-09-10 rules/rule-case-protocol updated: the Render describes the seven sections, the operands, the then block in the Spec, and {tags} on a create line · raw/2026-09-10/ledger.md#case-34 · generate
+- 2026-09-10 rules/rule-index-check created · raw/2026-09-10/ledger.md#case-35.1 · generate
+- 2026-09-10 estimates/estimate-index-check-merges created · raw/2026-09-10/ledger.md#case-35.1 · generate
+- 2026-09-10 rules/rule-index-check estimate estimate-index-check-merges added · raw/2026-09-10/ledger.md#case-35.1 · generate
+- 2026-09-10 rules/rule-brief created · raw/2026-09-10/ledger.md#case-35.3 · generate
+- 2026-09-10 estimates/estimate-brief-written created · raw/2026-09-10/ledger.md#case-35.3 · generate
+- 2026-09-10 rules/rule-brief estimate estimate-brief-written added · raw/2026-09-10/ledger.md#case-35.3 · generate
+- 2026-09-10 rules/rule-synthesis created · raw/2026-09-10/ledger.md#case-35.2 · generate
+- 2026-09-10 estimates/estimate-synthesis-clusters created · raw/2026-09-10/ledger.md#case-35.2 · generate
+- 2026-09-10 rules/rule-synthesis estimate estimate-synthesis-clusters added · raw/2026-09-10/ledger.md#case-35.2 · generate
+- 2026-09-10 rules/rule-close created · raw/2026-09-10/ledger.md#case-36.1 · generate
+- 2026-09-10 estimates/estimate-close-commits created · raw/2026-09-10/ledger.md#case-36.1 · generate
+- 2026-09-10 rules/rule-close estimate estimate-close-commits added · raw/2026-09-10/ledger.md#case-36.1 · generate
+- 2026-09-10 rules/rule-documentation created · raw/2026-09-10/ledger.md#case-36 · generate
+- 2026-09-10 estimates/estimate-documentation-completes created · raw/2026-09-10/ledger.md#case-36 · generate
+- 2026-09-10 rules/rule-documentation estimate estimate-documentation-completes added · raw/2026-09-10/ledger.md#case-36 · generate
+- 2026-09-10 rules/rule-render-harness updated: a child without enforcement render contributes nothing to a full render; a marker line for it is an error · raw/2026-09-10/ledger.md#case-36.2 · generate
+- 2026-09-10 estimates/estimate-render-harness-reproduces updated: criterion: a full page with a child that is not a render page renders without it, and errors on a marker line for it · raw/2026-09-10/ledger.md#case-36.2 · generate
+- 2026-09-10 rules/rule-harness created · raw/2026-09-10/ledger.md#case-37 · generate
+- 2026-09-10 estimates/estimate-harness-pipeline created · raw/2026-09-10/ledger.md#case-37 · generate
+- 2026-09-10 rules/rule-harness estimate estimate-harness-pipeline added · raw/2026-09-10/ledger.md#case-37 · generate
+- 2026-09-10 rules/rule-render-harness updated: parent is rule-harness · raw/2026-09-10/ledger.md#case-37 · generate
+- 2026-09-10 rules/rule-hook-registry updated: parent is rule-harness · raw/2026-09-10/ledger.md#case-37 · generate
+- 2026-09-10 rules/rule-lint updated: parent is rule-harness · raw/2026-09-10/ledger.md#case-37 · generate
+- 2026-09-10 rules/rule-index updated: parent is rule-harness · raw/2026-09-10/ledger.md#case-37 · generate
+- 2026-09-10 rules/rule-end-of-work created · raw/2026-09-10/ledger.md#case-38 · generate
+- 2026-09-10 estimates/estimate-end-of-work-order created · raw/2026-09-10/ledger.md#case-38 · generate
+- 2026-09-10 rules/rule-end-of-work estimate estimate-end-of-work-order added · raw/2026-09-10/ledger.md#case-38 · generate
+- 2026-09-10 rules/rule-retro created · raw/2026-09-10/ledger.md#case-38.1 · generate
+- 2026-09-10 estimates/estimate-retro-loads created · raw/2026-09-10/ledger.md#case-38.1 · generate
+- 2026-09-10 rules/rule-retro estimate estimate-retro-loads added · raw/2026-09-10/ledger.md#case-38.1 · generate
+- 2026-09-10 rules/rule-retro-commit created · raw/2026-09-10/ledger.md#case-38.2 · generate
+- 2026-09-10 estimates/estimate-retro-commit-gates created · raw/2026-09-10/ledger.md#case-38.2 · generate
+- 2026-09-10 rules/rule-retro-commit estimate estimate-retro-commit-gates added · raw/2026-09-10/ledger.md#case-38.2 · generate
+- 2026-09-10 rules/rule-hook-registry updated: PreToolUse, matcher Skill → uv run guppi gate · raw/2026-09-10/ledger.md#case-38.2 · generate
+- 2026-09-10 rules/rule-handoff created · raw/2026-09-10/ledger.md#case-38.3 · generate
+- 2026-09-10 estimates/estimate-handoff-dispatches created · raw/2026-09-10/ledger.md#case-38.3 · generate
+- 2026-09-10 rules/rule-handoff estimate estimate-handoff-dispatches added · raw/2026-09-10/ledger.md#case-38.3 · generate
+- 2026-09-10 rules/rule-session-start updated: rule-hook-registry moves under rule-harness · raw/2026-09-10/ledger.md#case-39 · generate
+- 2026-09-10 estimates/estimate-plan-mode-verified updated: criterion names the Case's given, not now · raw/2026-09-10/ledger.md#case-40 · generate
+- 2026-09-10 rules/rule-retro updated: Retro ends with the commit, then /handoff (the Render of case 38.1 already carries it) · raw/2026-09-10/ledger.md#case-40 · generate
+- 2026-09-10 decisions/decision-case-28 created · raw/2026-09-10/ledger.md#case-28 · generate
+- 2026-09-10 decisions/decision-case-29 created · raw/2026-09-10/ledger.md#case-29 · generate
+- 2026-09-10 decisions/decision-case-30 created · raw/2026-09-10/ledger.md#case-30 · generate
+- 2026-09-10 decisions/decision-case-31.1 created · raw/2026-09-10/ledger.md#case-31.1 · generate
+- 2026-09-10 decisions/decision-case-31 created · raw/2026-09-10/ledger.md#case-31 · generate
+- 2026-09-10 decisions/decision-case-32 created · raw/2026-09-10/ledger.md#case-32 · generate
+- 2026-09-10 decisions/decision-case-33 created · raw/2026-09-10/ledger.md#case-33 · generate
+- 2026-09-10 decisions/decision-case-34 created · raw/2026-09-10/ledger.md#case-34 · generate
+- 2026-09-10 decisions/decision-case-30 superseded by decision-case-34 · raw/2026-09-10/ledger.md#case-34 · generate
+- 2026-09-10 decisions/decision-case-35.1 created · raw/2026-09-10/ledger.md#case-35.1 · generate
+- 2026-09-10 decisions/decision-case-35.3 created · raw/2026-09-10/ledger.md#case-35.3 · generate
+- 2026-09-10 decisions/decision-case-35.2 created · raw/2026-09-10/ledger.md#case-35.2 · generate
+- 2026-09-10 decisions/decision-case-36.1 created · raw/2026-09-10/ledger.md#case-36.1 · generate
+- 2026-09-10 decisions/decision-case-36 created · raw/2026-09-10/ledger.md#case-36 · generate
+- 2026-09-10 decisions/decision-case-36.2 created · raw/2026-09-10/ledger.md#case-36.2 · generate
+- 2026-09-10 decisions/decision-case-37 created · raw/2026-09-10/ledger.md#case-37 · generate
+- 2026-09-10 decisions/decision-case-38 created · raw/2026-09-10/ledger.md#case-38 · generate
+- 2026-09-10 decisions/decision-case-38.1 created · raw/2026-09-10/ledger.md#case-38.1 · generate
+- 2026-09-10 decisions/decision-case-38.2 created · raw/2026-09-10/ledger.md#case-38.2 · generate
+- 2026-09-10 decisions/decision-case-38.3 created · raw/2026-09-10/ledger.md#case-38.3 · generate
+- 2026-09-10 decisions/decision-case-39 created · raw/2026-09-10/ledger.md#case-39 · generate
+- 2026-09-10 decisions/decision-case-40 created · raw/2026-09-10/ledger.md#case-40 · generate
+- 2026-09-10 decisions/decision-case-38.1 superseded by decision-case-40 · raw/2026-09-10/ledger.md#case-40 · generate
+- 2026-09-10 rules/rule-ask status: draft → built · cascade · generate
+- 2026-09-10 rules/rule-case-protocol status: draft → built · cascade · generate
+- 2026-09-10 rules/rule-event-log status: draft → built · cascade · generate
+- 2026-09-10 rules/rule-git-context status: draft → built · cascade · generate
+- 2026-09-10 rules/rule-github-issues status: draft → built · cascade · generate
+- 2026-09-10 rules/rule-hook-registry status: draft → built · cascade · generate
+- 2026-09-10 rules/rule-index status: draft → built · cascade · generate
+- 2026-09-10 rules/rule-internal-context status: draft → built · cascade · generate
+- 2026-09-10 rules/rule-ledger-write status: draft → built · cascade · generate
+- 2026-09-10 rules/rule-lint status: draft → built · cascade · generate
+- 2026-09-10 rules/rule-render-harness status: draft → built · cascade · generate
+- 2026-09-10 rules/rule-session-start status: draft → built · cascade · generate
+- 2026-09-10 rules/rule-skill-hi status: draft → built · cascade · generate
+- 2026-09-10 tags.md registers librarian · generate
+- 2026-09-09 lessons/lesson-hooks-stop-payload created · raw/2026-09-09/ledger.md#L29 · generate
+- 2026-09-09 estimates/estimate-hooks-stop-payload created · raw/2026-09-09/ledger.md#L29 · generate
+- 2026-09-09 lessons/lesson-hooks-exitplanmode-payload created · raw/2026-09-09/ledger.md#L30 · generate
+- 2026-09-09 estimates/estimate-hooks-exitplanmode-payload created · raw/2026-09-09/ledger.md#L30 · generate
+- 2026-09-09 lessons/lesson-hooks-windows-stdin-encoding created · raw/2026-09-09/ledger.md#L31 · generate
+- 2026-09-09 estimates/estimate-hooks-windows-stdin-encoding created · raw/2026-09-09/ledger.md#L31 · generate
+- 2026-09-09 estimates/estimate-hooks-windows-stdin-encoding status: pending → passed · raw/2026-09-09/ledger.md#L31 · generate
+- 2026-09-09 lessons/lesson-estimates-criterion-stale-after-contract-change created · raw/2026-09-09/ledger.md#L49 · generate
+- 2026-09-09 estimates/estimate-estimates-criterion-stale-after-contract-change created · raw/2026-09-09/ledger.md#L49 · generate
+- 2026-09-09 estimates/estimate-estimates-criterion-stale-after-contract-change status: pending → passed · raw/2026-09-09/ledger.md#L49 · generate
+- 2026-09-09 lessons/lesson-hooks-sessionstart-cannot-block created · raw/2026-09-09/ledger.md#L88 · generate
+- 2026-09-09 estimates/estimate-hooks-sessionstart-cannot-block created · raw/2026-09-09/ledger.md#L88 · generate
+- 2026-09-09 lessons/lesson-hooks-messagedisplay-cannot-block created · raw/2026-09-09/ledger.md#L89 · generate
+- 2026-09-09 estimates/estimate-hooks-messagedisplay-cannot-block created · raw/2026-09-09/ledger.md#L89 · generate
+- 2026-09-09 lessons/lesson-agents-loaded-at-session-start created · raw/2026-09-09/ledger.md#L90 · generate
+- 2026-09-09 estimates/estimate-agents-loaded-at-session-start created · raw/2026-09-09/ledger.md#L90 · generate
+- 2026-09-09 estimates/estimate-agents-loaded-at-session-start status: pending → passed · raw/2026-09-09/ledger.md#L90 · generate
+- 2026-09-09 decisions/decision-case-1 created · raw/2026-09-09/ledger.md#case-1 · generate
+- 2026-09-09 decisions/decision-case-2 created · raw/2026-09-09/ledger.md#case-2 · generate
+- 2026-09-09 decisions/decision-case-3 created · raw/2026-09-09/ledger.md#case-3 · generate
+- 2026-09-09 decisions/decision-case-4 created · raw/2026-09-09/ledger.md#case-4 · generate
+- 2026-09-09 decisions/decision-case-5 created · raw/2026-09-09/ledger.md#case-5 · generate
+- 2026-09-09 decisions/decision-case-6 created · raw/2026-09-09/ledger.md#case-6 · generate
+- 2026-09-09 decisions/decision-case-7 created · raw/2026-09-09/ledger.md#case-7 · generate
+- 2026-09-09 decisions/decision-case-8 created · raw/2026-09-09/ledger.md#case-8 · generate
+- 2026-09-09 decisions/decision-case-9 created · raw/2026-09-09/ledger.md#case-9 · generate
+- 2026-09-09 decisions/decision-case-10 created · raw/2026-09-09/ledger.md#case-10 · generate
+- 2026-09-09 decisions/decision-case-11 created · raw/2026-09-09/ledger.md#case-11 · generate
+- 2026-09-09 decisions/decision-case-12 created · raw/2026-09-09/ledger.md#case-12 · generate
+- 2026-09-09 decisions/decision-case-13 created · raw/2026-09-09/ledger.md#case-13 · generate
+- 2026-09-09 decisions/decision-case-15.1 created · raw/2026-09-09/ledger.md#case-15.1 · generate
+- 2026-09-09 decisions/decision-case-15.2 created · raw/2026-09-09/ledger.md#case-15.2 · generate
+- 2026-09-09 decisions/decision-case-15.3 created · raw/2026-09-09/ledger.md#case-15.3 · generate
+- 2026-09-09 decisions/decision-case-14 created · raw/2026-09-09/ledger.md#case-14 · generate
+- 2026-09-09 decisions/decision-case-16.1 created · raw/2026-09-09/ledger.md#case-16.1 · generate
+- 2026-09-09 decisions/decision-case-16.2 created · raw/2026-09-09/ledger.md#case-16.2 · generate
+- 2026-09-09 decisions/decision-case-17 created · raw/2026-09-09/ledger.md#case-17 · generate
+- 2026-09-09 decisions/decision-case-15.2 superseded by decision-case-17 · raw/2026-09-09/ledger.md#case-17 · generate
+- 2026-09-09 decisions/decision-case-18.1 created · raw/2026-09-09/ledger.md#case-18.1 · generate
+- 2026-09-09 decisions/decision-case-18.2 created · raw/2026-09-09/ledger.md#case-18.2 · generate
+- 2026-09-09 decisions/decision-case-18.3 created · raw/2026-09-09/ledger.md#case-18.3 · generate
+- 2026-09-09 decisions/decision-case-19 created · raw/2026-09-09/ledger.md#case-19 · generate
+- 2026-09-09 decisions/decision-case-20 created · raw/2026-09-09/ledger.md#case-20 · generate
+- 2026-09-09 decisions/decision-case-21 created · raw/2026-09-09/ledger.md#case-21 · generate
+- 2026-09-09 decisions/decision-case-22 created · raw/2026-09-09/ledger.md#case-22 · generate
+- 2026-09-09 decisions/decision-case-23.1 created · raw/2026-09-09/ledger.md#case-23.1 · generate
+- 2026-09-09 decisions/decision-case-24.1 created · raw/2026-09-09/ledger.md#case-24.1 · generate
+- 2026-09-09 decisions/decision-case-24.2 created · raw/2026-09-09/ledger.md#case-24.2 · generate
+- 2026-09-09 decisions/decision-case-25 created · raw/2026-09-09/ledger.md#case-25 · generate
+- 2026-09-09 decisions/decision-case-26.1 created · raw/2026-09-09/ledger.md#case-26.1 · generate
+- 2026-09-09 decisions/decision-case-23.1 superseded by decision-case-26.1 · raw/2026-09-09/ledger.md#case-26.1 · generate
+- 2026-09-09 decisions/decision-case-24.2 superseded by decision-case-26.1 · raw/2026-09-09/ledger.md#case-26.1 · generate
+- 2026-09-09 decisions/decision-case-26.2 created · raw/2026-09-09/ledger.md#case-26.2 · generate
+- 2026-09-09 decisions/decision-case-27 created · raw/2026-09-09/ledger.md#case-27 · generate
+- 2026-09-09 decisions/decision-case-22 superseded by decision-case-27 · raw/2026-09-09/ledger.md#case-27 · generate
+- 2026-09-10 rules/rule-materialize updated: an existing yaml is extended with the ledger lines it does not hold, never rewritten (the How it works of case 31 already carries it) · raw/2026-09-10/ledger.md#case-41 · generate
+- 2026-09-10 estimates/estimate-materialize-assembles updated: criterion: an existing yaml gains only the entries of ledger lines it does not hold (the Criterion of case 31 already carries it) · raw/2026-09-10/ledger.md#case-41 · generate
+- 2026-09-10 estimates/estimate-materialize-assembles status: pending → passed · raw/2026-09-10/ledger.md#L70 · generate
+- 2026-09-10 estimates/estimate-generate-writes status: pending → passed · raw/2026-09-10/ledger.md#L71 · generate
+- 2026-09-10 estimates/estimate-cleanup-moves status: pending → passed · raw/2026-09-10/ledger.md#L72 · generate
+- 2026-09-10 estimates/estimate-harness-pipeline status: pending → passed · raw/2026-09-10/ledger.md#L74 · generate
+- 2026-09-10 estimates/estimate-pretask-reconciles status: pending → passed · raw/2026-09-10/ledger.md#L75 · generate
+- 2026-09-10 estimates/estimate-pretask-hook-gates status: pending → passed · raw/2026-09-10/ledger.md#L76 · generate
+- 2026-09-10 estimates/estimate-spec-capture-appends status: pending → passed · raw/2026-09-10/ledger.md#L77 · generate
+- 2026-09-10 decisions/decision-case-41 created · raw/2026-09-10/ledger.md#case-41 · generate
+- 2026-09-10 decisions/decision-case-31 superseded by decision-case-41 · raw/2026-09-10/ledger.md#case-41 · generate
+- 2026-09-10 rules/rule-cleanup status: draft → built · cascade · generate
+- 2026-09-10 rules/rule-harness status: draft → built · cascade · generate
+- 2026-09-10 rules/rule-materialize status: draft → built · cascade · generate
+- 2026-09-10 rules/rule-page-generation status: draft → built · cascade · generate
+- 2026-09-10 rules/rule-pretask-hook status: draft → built · cascade · generate
+- 2026-09-10 rules/rule-pretask status: draft → built · cascade · generate
+- 2026-09-10 rules/rule-spec-capture status: draft → built · cascade · generate

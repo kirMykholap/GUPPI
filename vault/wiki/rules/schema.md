@@ -38,7 +38,7 @@ This is the one place a Rule MOC differs structurally from an Entity MOC, where 
 
 **`render` is the exception.** A MOC that renders holds the *frame* of a harness file — its structure and the markers its children splice into — while each child renders one section. The frame is not separable from the grouping: a MOC over three sections plus a separate Leaf holding an empty template with markers would be two pages describing one thing.
 
-So a rendering MOC uses `render_mode: full` on the target file, and its children use `partial` into the same file. **Child order is the order of sections in the output**, which is the ordinary Rule-MOC rule about order being content, applied literally.
+So a rendering MOC uses `render_mode: full` on the target file, and its children with a Render use `partial` into the same file. **Child order is the order of sections in the output**, which is the ordinary Rule-MOC rule about order being content, applied literally. A child without a Render — a script the frame calls by name — is a step of the workflow that contributes nothing to the file; the renderer skips it, and a marker line for it is an error.
 
 **Not every step of a workflow is a child page.** The atomicity rule applies as everywhere: split when parts fail independently and are fixed differently. Four `@`-imports from the vault fail the same way (missing file, wrong path) and are fixed the same way — one Leaf, listed in its body. But `git pull` and `gh issue list` fail differently, on conflicts versus authentication, so those are separate Leaves.
 

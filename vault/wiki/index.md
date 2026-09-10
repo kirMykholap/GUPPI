@@ -17,7 +17,7 @@ When you are unsure whether something needs ratification: it does.
 ## 1. Vault layout
 
 ```
-raw/                 session artifacts land here first
+raw/                 session artifacts land here first, and stay here: every `origin` points in
   YYYY-MM-DD/
     ledger.md        ratified decisions and lessons (committed)
     event_log.md     tool/agent events (gitignored)
@@ -26,8 +26,10 @@ raw/                 session artifacts land here first
     handoff.md       the main agent's notes + direct instructions
     materialize.yaml action list for the generation script
 
+archived/            everything archived: <sprint>/<date>/<category>/<slug>.md, moved by `guppi cleanup`
+
 wiki/
-  decisions/         Decision pages — the journal
+  decisions/         Decision pages — the journal, one page per Case
     schema.yaml      the machine-readable schema, read by lint
     schema.md        the same schema as prose, with examples
   entities/
@@ -40,7 +42,6 @@ wiki/
     schema.yaml  schema.md
   insights/          clusters of Lessons sharing a root cause
     schema.yaml  schema.md
-  archive/           everything archived, same subfolder structure
   entities-index.md  generated: slug → purpose, one line per live page
   rules-index.md     generated
   estimates-index.md generated: slug → criterion
@@ -53,7 +54,7 @@ wiki/
   brief.md           handover to the next session
   sprint.md          current sprint scope
   tags.md            registry of tags in use
-  log.md             every page change, written mechanically by a hook
+  log.md             every page change, written mechanically by the scripts
 ```
 
 The filename **is** the page `slug`. No separate registry of identifiers is needed — `ref` and `origin` point at filenames, and collisions are caught by lint.
@@ -78,14 +79,14 @@ tags: [discounts, pricing]
 ---
 
 Body sections vary by category — see each schema.
-The last section is always History, appended by hook:
+The last section is always History, appended by the scripts that write pages (`guppi generate`, `guppi cleanup`):
 2026-09-05 created · raw/2026-09-05/ledger.md#case-3
 2026-09-12 status: draft → built
 ```
 
 Every page carries `type`, `status`, `origin`, `sprint`, `created` and `tags`. `status` is a flat list per category, never a nested structure.
 
-**`History` is always the last section of a page.** A hook appends one line per change, so the recent history of any page is readable with `tail` — no need to load the page, or `log.md`, into context. `log.md` remains the global feed; `History` is the per-page view.
+**`History` is always the last section of a page.** The scripts append one line per change, so the recent history of any page is readable with `tail` — no need to load the page, or `log.md`, into context. `log.md` remains the global feed; `History` is the per-page view.
 
 ### System files are Rule-class
 
@@ -99,7 +100,7 @@ Every file that governs how the system behaves changes **only** through a ratifi
 | `tags.md` | registry | written during the session — but only registering tags already ratified in a Case |
 | `<category>-index.md` | generated | rebuilt by `guppi index`; never edited |
 | `brief.md`, `sprint.md` | working | written by the librarian each session |
-| `log.md`, page `History` | generated | appended by hook |
+| `log.md`, page `History` | generated | appended by `guppi generate` and `guppi cleanup` |
 
 The distinction: **Rule-class files decide what the system does, so changing them is a decision.** Registries and generated files record what already happened, so they are written mechanically.
 
@@ -107,7 +108,7 @@ The distinction: **Rule-class files decide what the system does, so changing the
 
 A new term appearing mid-session is not an exception. If it belongs in the glossary, that is a `decision update` on `glossary.md`, ratified like anything else. The librarian may notice a term in the ledger that the glossary lacks and flag it in `brief.md` — the human decides next session.
 
-**`log.md`** is written by a hook on every page change — never by an agent following an instruction. A hook fires even when the agent deviates or crashes, which is exactly when the log matters.
+**`log.md`** is written by the scripts on every page change — never by an agent following an instruction. The scripts are the only writers to `wiki/`, so the log is complete by construction.
 
 ---
 
@@ -115,7 +116,7 @@ A new term appearing mid-session is not an exception. If it belongs in the gloss
 
 The Case is the unit of dialogue — roughly one agent response — and the only place content gets ratified. Whatever is not in a Case was signed by nobody.
 
-**Its structure lives in `wiki/case-schema.md`**, imported into `CLAUDE.md` so it is present from the first turn. Six sections: `context`, `now`, `problem`, `recommend`, `then`, `ratification`. For a `create`, `then` holds the page draft itself, laid out per the target category's schema — the human signs content, not the fact that a decision occurred.
+**Its structure lives in `wiki/case-schema.md`**, imported into `CLAUDE.md` so it is present from the first turn. Seven sections: `context`, `problem`, `recommend`, `given`, `when`, `then`, `ratification`. `given` is how things work today, `when` the action, `then` what holds after it; `when` and `then` are the criterion of the Estimate the Case creates. The page content itself is a YAML block tagged `then` under the Case in the Spec — the human signs content, not the fact that a decision occurred.
 
 Not duplicated here: one description, one place to change it.
 
@@ -138,7 +139,7 @@ Four types. There are no others.
 
 ### Before any `create`
 
-If the Case has no `ref`, you must query the vault first to confirm nothing already covers this. Put the result in `now`. Only after that may you propose `create`.
+If the Case has no `ref`, you must query the vault first to confirm nothing already covers this. Put the result in `given`. Only after that may you propose `create`.
 
 **Pre-task is not a name lookup.** It asks the broader question: does this already exist, are there similar cases, what might obstruct this, what contradicts the plan. Estimates count too — a `create` spawns one, and an identical check may already be sitting on another page.
 
@@ -161,7 +162,7 @@ You write the acceptance criteria into the Case's `then` so the human ratifies t
 
 ### Delete
 
-No dedicated Estimate page. Instead: query the vault for what depends on the target, state the impact in `recommend`/`then`, and let the human ratify with that analysis in hand. Delete never means physical deletion — it sets `status: deleted`, the librarian archives, a cleanup script moves the file.
+No dedicated Estimate page. Instead: query the vault for what depends on the target, state the impact in `recommend`/`then`, and let the human ratify with that analysis in hand. Delete never means physical deletion — it sets `status: archived`, and `guppi cleanup` moves the file to `vault/archived/`.
 
 Restoring is an ordinary `update` setting `status` back to `draft` or `built`.
 
@@ -174,12 +175,13 @@ Restoring is an ordinary `update` setting `status` back to `draft` or `built`.
 **Decisions** — routing only. The content already exists in `spec.md`, ratified in the Case, so the line just says what happens to which page:
 
 ```
-- decision[case_id][kind][slug]{ref:parent}{source:external_id}
+- decision[case_id][kind][slug]{ref:parent}{source:external_id}{tags:a,b}
 ```
 
 - `slug` — the affected page
 - `ref` — the parent, for a `create` that adds a child. Omitted for update/delete: `slug` already identifies the target.
 - `source` — optional external origin (a GitHub issue). Traceability only; never affects routing.
+- `tags` — the ratified tags, on a `create`. The page's category comes from the slug prefix (`rule-`, `entity-`, `estimate-`, `lesson-`, `insight-`), which pre-task guards.
 
 **Estimates and lessons** — these carry text, not just markup. Their content is born in the moment and exists nowhere else: a measurement taken after the tests were written, a failure understood while it was still fresh. There is nothing in `spec.md` to point at.
 
@@ -206,7 +208,7 @@ The librarian reads the log as a chain and applies the last link.
 
 ## 5. Routing
 
-**Every ratified decision produces two things**: a page in `wiki/decisions/` recording the decision itself, and an effect on the target page. The table below describes the second; the first happens unconditionally.
+**Every ratified Case produces two things**: one page in `wiki/decisions/` (`decision-case-<N>`) recording the decision with one `targets` item per ledger line, and an effect on each target page. The table below describes the second; the first happens unconditionally.
 
 | Decision | `ref` | Effect on the target |
 |---|---|---|
@@ -219,7 +221,7 @@ The librarian reads the log as a chain and applies the last link.
 | `defer` | existing | Log only; it resurfaces via the next Frontier |
 | `defer` | none | Librarian creates a minimal placeholder page |
 
-`target_category` on the decision page says which folder the effect lands in, so the script never infers it from a slug prefix.
+Each `targets` item on the decision page names its `category` explicitly; the script derives it from the slug prefix, which pre-task guards, and writes it out so nothing downstream has to infer it.
 
 ---
 
@@ -278,7 +280,7 @@ Two kinds, both flat, both in `wiki/lessons/`:
 
 Write `trigger` and `root_cause` yourself, in the moment, while the context is cheap. For `knowledge`, record `source` too.
 
-**Estimates:** an `error` Lesson gets one created already `passed` and archived immediately — the failure was observed directly, so it is a record that this was verified. A `knowledge` Lesson gets a Research Estimate that must actually reach `passed`; unverified external claims are not usable.
+**Estimates:** an `error` Lesson gets one created already `passed` — the failure was observed directly, so it is a record that this was verified; Estimates have no `archived` status. A `knowledge` Lesson gets a Research Estimate that must actually reach `passed`; unverified external claims are not usable.
 
 **Slug is area + cause** — `lesson-hooks-sessionstart-cannot-block`. The area groups related lessons in a plain file listing; the cause makes near-duplicates visible before anyone opens the index. Naming by symptom was rejected: unrelated failures often share a symptom, and the symptom is not what clustering compares.
 
@@ -286,7 +288,7 @@ Write `trigger` and `root_cause` yourself, in the moment, while the context is c
 
 **A separate type, not a kind of Lesson.** It shares no content fields with one — no `trigger`, `root_cause`, `source` or Estimate; instead `pattern`, `children`, `severity`, `addressed_by`. That "Insight is a MOC over Lessons" describes a relationship, not an identity: Estimates belong to Entities without being a kind of Entity.
 
-Created by the librarian on the **second** Lesson sharing a root cause — one occurrence is an incident, two is a pattern. The archive is searched too: a recurrence after the pattern was supposedly fixed carries information a first occurrence does not, and that belongs in the new Lesson.
+Created by the librarian on the **second** Lesson sharing a root cause — one occurrence is an incident, two is a pattern. The archive is not searched: a Lesson is archived only when its Insight was actioned, and that Insight stays live with its `pattern` in `insights-index.md`, so a recurrence is caught there at the cost of one index line.
 
 `severity` = count of children not archived, recomputed by lint.
 
@@ -302,7 +304,7 @@ drift.
 |---|---|---|
 | Session Start | `rule-session-start` | `/hi`, context loading, the event-log and ledger hooks |
 | Plan Mode | `rule-plan-mode` | Case protocol, the `ask-guppi` agent, pre-task reconciliation |
-| Work Mode | `rule-work-mode` | executable plan, branch, `subagent-guppi`, harness tests |
+| Work Mode | `rule-work-mode` | executable plan, branch, `subagent-guppi`, harness tests — deferred to Slice 3b, a `draft` placeholder until then |
 | — | `rule-subagent-guppi` | task dispatch, review, model tiers |
 | End of Work | `rule-end-of-work` | Retro, the commit hook, handoff |
 | Documentation | `rule-documentation` | the `librarian-guppi` agent |
@@ -351,7 +353,7 @@ Runs every session, in a clean context. **The only actor that writes to `wiki/`*
 ## 11. The indexes
 
 `wiki/<category>-index.md` — one generated line per live page, `slug: purpose` (for lessons,
-`slug: root_cause`). Regenerated by lint every session, never edited by hand.
+`slug: root_cause`). Written by `guppi index` and by `guppi cleanup`, checked by lint, never edited by hand.
 
 ```
 entity-cart-total: recalculates the order total
@@ -375,8 +377,8 @@ to leave in place, and a decision stays valid for exactly as long as the page it
 leaves the live vault only when superseded, or by cascade when its target is archived.
 
 The one lookup that does happen — finding the decision a new one supersedes — is a targeted
-grep by slug, which is why Decision slugs are meaningful (`decision-create-cart`, never
-`decision-2026-09-08-01`).
+grep by case id, which the ledger line carries; Decision slugs are `decision-case-<N>`, one
+page per Case.
 
 The `ask-guppi` agent is the search mechanism over these indexes. One tool, two moments: pre-task queries
 by intent before a decision exists; the librarian queries by finished content afterwards.

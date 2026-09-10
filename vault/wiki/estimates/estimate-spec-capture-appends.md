@@ -1,7 +1,7 @@
 ---
 type: estimate
 kind: QA
-status: pending
+status: passed
 target: rule-spec-capture
 origin: raw/2026-09-09/ledger.md#case-20
 sprint: migration
@@ -30,6 +30,11 @@ what a rejected plan produces.
 pytest in `tests/test_spec.py` with piped payloads against a temp vault; the live reading
 once by hand, written into the estimate line.
 
+## Result
+
+live: the approved plan landed in raw/2026-09-10/spec.md by the hook, stamp `<!-- approved 10:25:13 · session c640ade7 -->`, 1502 lines, once; the rejected-plan reading was not taken, the plan was approved at the first attempt
+
 ## History
 
 - 2026-09-09 created · raw/2026-09-09/ledger.md#case-20
+- 2026-09-10 status: pending → passed · raw/2026-09-10/ledger.md#L77

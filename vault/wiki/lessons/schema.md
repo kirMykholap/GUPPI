@@ -15,7 +15,7 @@ A Lesson is a recorded fact, not a ratified decision. It does not go through a C
 | `root_cause` | yes | one line | Why it happened (`error`), or the mechanism the source claims (`knowledge`). Lives in properties because `lessons.index` is built from it, and clustering into an Insight compares exactly this. |
 | `status` | yes | `new` \| `clustered` \| `archived` | `clustered` once it belongs to an Insight. Archived when its Insight is `actioned`. |
 | `source` | `knowledge` | url or reference | Where the material came from. |
-| `estimates` | yes | list of slugs | `error`: created already `passed` and archived immediately — a record that this was verified, since the failure was observed directly. `knowledge`: a Research Estimate that must actually reach `passed` before an Insight may build on it. Unverified external claims are not usable. |
+| `estimates` | yes | list of slugs | `error`: created already `passed` — a record that this was verified, since the failure was observed directly; Estimates have no `archived` status. `knowledge`: a Research Estimate that must actually reach `passed` before an Insight may build on it. Unverified external claims are not usable. |
 | `insight` | no | slug | The Insight this belongs to, once clustered. Written by the script. |
 | `origin` | yes | `raw/YYYY-MM-DD/ledger.md#L<n>` | The ledger line. Unlike Entity and Rule, this points at a `lesson[...]` line rather than a `decision[...]` one. |
 | `sprint` | yes | sprint id | |

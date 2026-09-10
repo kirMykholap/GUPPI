@@ -253,10 +253,19 @@ def test_a_slug_no_page_carries_is_a_ref_finding(tmp_path):
 
 
 def test_an_archived_page_still_resolves_a_ref(tmp_path):
-    wiki = seed(tmp_path, rule=rule_page(parent="rule-gone"))
-    write(wiki / "archive" / "rules" / "rule-gone.md", "---\ntype: rule\n---\n")
+    seed(tmp_path, rule=rule_page(parent="rule-gone"))
+    archived = tmp_path / "vault" / "archived" / "migration" / "2026-09-10" / "rules"
+    write(archived / "rule-gone.md", "---\ntype: rule\n---\n")
     _, lines, _ = run(tmp_path)
     assert lines == ["rules/rule-root: orphan: no other live page names it in its frontmatter"]
+
+
+def test_a_wikilink_inside_a_code_span_is_prose_not_a_link(tmp_path):
+    seed(
+        tmp_path,
+        rule=rule_page().replace("- [[rule-root]]", "- [[rule-root]], and `[[slug]]` links stay"),
+    )
+    assert run(tmp_path) == (0, [], "")
 
 
 def test_a_wikilink_to_nothing_is_a_ref_finding(tmp_path):

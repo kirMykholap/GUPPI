@@ -1,7 +1,7 @@
 ---
 type: estimate
 kind: QA
-status: pending
+status: passed
 target: rule-pretask
 origin: raw/2026-09-09/ledger.md#case-24.2
 sprint: migration
@@ -26,6 +26,11 @@ returns is either raised as a Case or named as already known in the reply.
 One reading by hand, written into the estimate line — the exception the Method rule
 allows.
 
+## Result
+
+/pre-task at 09:57:45 wrote the pretask line; one ask-guppi dispatch with the 30 decisions of this Plan Mode returned nine findings: five became Case 40, four were named as already known in the reply
+
 ## History
 
 - 2026-09-09 created · raw/2026-09-09/ledger.md#case-24.2
+- 2026-09-10 status: pending → passed · raw/2026-09-10/ledger.md#L75

@@ -1,7 +1,7 @@
 ---
 type: estimate
 kind: QA
-status: pending
+status: passed
 target: rule-pretask-hook
 origin: raw/2026-09-09/ledger.md#case-24.1
 sprint: migration
@@ -28,6 +28,11 @@ only after `/pre-task` ran.
 pytest in `tests/test_pretask.py` with piped payloads against a temp event log; the live
 reading once by hand, written into the estimate line.
 
+## Result
+
+tests/test_pretask.py green; live: ExitPlanMode at 10:25:13 passed after the pretask line of 09:57:45; the refusal path was not exercised live, the approval came after /pre-task by construction
+
 ## History
 
 - 2026-09-09 created · raw/2026-09-09/ledger.md#case-24.1
+- 2026-09-10 status: pending → passed · raw/2026-09-10/ledger.md#L76

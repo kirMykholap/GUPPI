@@ -25,9 +25,7 @@ Entity is the thing that gets built. It is recursive: a MOC holds children, a Le
 
 ### Slug
 
-Meaningful, written by the main agent in the Case and checked by pre-task for collisions. It mirrors the decision that created it — `decision-create-cart` produces `entity-cart` — so the relationship is readable without opening either page.
-
-For `update` decisions the pattern differs: the decision slug describes the change (`decision-cart-add-promo`), not the target, since repeated updates to one page would otherwise collide.
+Meaningful, written by the main agent in the Case and checked by pre-task for collisions. The decision that created it is `decision-case-<N>`, reachable through the page's `origin`; the relationship is readable without opening either page.
 
 ### `built` is not a field you set
 

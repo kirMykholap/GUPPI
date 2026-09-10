@@ -1,0 +1,467 @@
+"""`guppi generate`: pages from `materialize.yaml`, derived fields, backlinks, History, log."""
+
+import io
+import shutil
+from pathlib import Path
+
+import yaml
+
+from guppi import generate, lint
+
+DATE = "2026-09-10"
+ORIGIN = f"raw/{DATE}/ledger.md#case-1"
+REPO = Path(__file__).resolve().parent.parent
+
+
+def seed(tmp_path, entries=(), decisions=(), new_tags=(), pages=()):
+    wiki = tmp_path / "vault" / "wiki"
+    for category in ("entities", "rules", "estimates", "lessons", "insights", "decisions"):
+        (wiki / category).mkdir(parents=True)
+        for name in ("schema.yaml", "schema.md"):
+            shutil.copy(REPO / "vault" / "wiki" / category / name, wiki / category / name)
+    (wiki / "sprint.md").write_text("# Sprint\n\n## migration — open\n", encoding="utf-8")
+    (wiki / "tags.md").write_text(
+        "# Tags\n\n| tag | meaning | aliases (ru) |\n|---|---|---|\n| harness | the harness | харнесс |\n",
+        encoding="utf-8",
+    )
+    (wiki / "log.md").write_text("# Log\n", encoding="utf-8")
+    for category, slug, text in pages:
+        (wiki / category / f"{slug}.md").write_text(text, encoding="utf-8", newline="\n")
+    raw = tmp_path / "vault" / "raw" / DATE
+    raw.mkdir(parents=True)
+    (raw / "ledger.md").write_text(
+        "- decision[case 1][create][rule-root]\n- decision[case 2][update][rule-root]\n"
+        "- decision[case 3][defer][rule-later]\n- decision[case 4][defer][rule-root]\n"
+        "- lesson[error][x] trigger: t root_cause: r\n",
+        encoding="utf-8",
+    )
+    data = {
+        "date": DATE,
+        "sprint": "migration",
+        "entries": list(entries),
+        "decisions": list(decisions),
+        "unparsed": [],
+    }
+    if new_tags:
+        data["new_tags"] = list(new_tags)
+    (raw / "materialize.yaml").write_text(
+        yaml.safe_dump(data, allow_unicode=True, sort_keys=False), encoding="utf-8"
+    )
+    return tmp_path
+
+
+def run(project_dir):
+    out, err = io.StringIO(), io.StringIO()
+    code = generate.run(["--date", DATE], stdout=out, stderr=err, project_dir=project_dir)
+    return code, out.getvalue(), err.getvalue()
+
+
+def page(project_dir, category, slug):
+    return (project_dir / "vault" / "wiki" / category / f"{slug}.md").read_text(encoding="utf-8")
+
+
+def props(text):
+    return yaml.safe_load(text.split("---")[1])
+
+
+def load_yaml(project_dir):
+    path = project_dir / "vault" / "raw" / DATE / "materialize.yaml"
+    return yaml.safe_load(path.read_text(encoding="utf-8"))
+
+
+def create(slug, category, fields, ref=None, sections=None, tags=None, **extra):
+    entry = {
+        "line": extra.pop("line", 1),
+        "text": "",
+        "case": "1",
+        "kind": "create",
+        "category": category,
+        "slug": slug,
+        "origin": ORIGIN,
+        "decision": "decision-case-1",
+        "fields": fields,
+    }
+    if ref:
+        entry["ref"] = ref
+    if sections:
+        entry["sections"] = sections
+    if tags:
+        entry["tags"] = tags
+    entry.update(extra)
+    return entry
+
+
+ROOT = create(
+    "rule-root",
+    "rules",
+    {"type": "rule", "kind": "MOC", "purpose": "Prevents root"},
+    tags=["harness"],
+)
+CHILD = create(
+    "rule-child",
+    "rules",
+    {
+        "type": "rule",
+        "kind": "Leaf",
+        "purpose": "Prevents child",
+        "enforcement": "check",
+        "implementation_ref": ["guppi/x.py"],
+    },
+    ref="rule-root",
+    sections={"Purpose": "Two lines of\npurpose."},
+    tags=["harness"],
+    line=2,
+)
+CHILD_ESTIMATE = create(
+    "estimate-child-works",
+    "estimates",
+    {"type": "estimate", "kind": "QA"},
+    ref="rule-child",
+    sections={
+        "Context": "Why it matters.",
+        "Criterion": "the child works",
+        "Method": "pytest in tests/test_x.py",
+    },
+    tags=["harness"],
+    line=3,
+)
+
+
+def test_creates_yield_conformant_pages_with_backlinks_in_order(tmp_path):
+    seed(tmp_path, entries=[CHILD, CHILD_ESTIMATE, ROOT])  # the parent comes last, on purpose
+    (tmp_path / "guppi").mkdir()
+    (tmp_path / "guppi" / "x.py").write_text("")
+    (tmp_path / "tests").mkdir()
+    (tmp_path / "tests" / "test_x.py").write_text("")
+    code, out, err = run(tmp_path)
+    assert code == 0 and err == "", err
+    root = props(page(tmp_path, "rules", "rule-root"))
+    assert root["children"] == ["rule-child"] and root["status"] == "draft"
+    assert (
+        root["origin"] == ORIGIN and root["sprint"] == "migration" and str(root["created"]) == DATE
+    )
+    assert "## Children\n\n1. [[rule-child]]" in page(tmp_path, "rules", "rule-root")
+    child = page(tmp_path, "rules", "rule-child")
+    assert props(child)["parent"] == "rule-root" and props(child)["estimates"] == [
+        "estimate-child-works"
+    ]
+    assert "## Purpose\n\nTwo lines of\npurpose.\n" in child
+    assert (
+        "## Estimates\n\n- [[estimate-child-works]]" in child
+        and "## Parent\n\n- [[rule-root]]" in child
+    )
+    assert "## Implementation\n\n- `guppi/x.py`" in child
+    assert f"## History\n\n- {DATE} created · {ORIGIN}\n" in child
+    estimate = page(tmp_path, "estimates", "estimate-child-works")
+    assert props(estimate)["target"] == "rule-child" and props(estimate)["status"] == "pending"
+    assert "## Criterion\n\nthe child works" in estimate
+    findings = lint.lint(tmp_path)
+    assert findings == [], findings
+    assert f"- {DATE} rules/rule-root child rule-child added · {ORIGIN} · generate" in page(
+        tmp_path, "", "log"
+    )
+    assert "3 page(s) written" in out or "page(s) written" in out
+
+
+def test_an_update_sets_fields_sections_and_text_and_appends_history(tmp_path):
+    seed(
+        tmp_path,
+        entries=[
+            ROOT,
+            {
+                "line": 2,
+                "text": "",
+                "case": "2",
+                "kind": "update",
+                "category": "rules",
+                "slug": "rule-root",
+                "origin": f"raw/{DATE}/ledger.md#case-2",
+                "decision": "decision-case-2",
+                "set": {"tags": ["harness"], "governs": "x.md"},
+                "sections": {"How it works": "It works like this."},
+                "replace": [{"old": "Prevents root", "new": "Prevents the root"}],
+                "change": "the root gets a body",
+            },
+        ],
+    )
+    code, _, err = run(tmp_path)
+    assert code == 0 and err == ""
+    text = page(tmp_path, "rules", "rule-root")
+    assert props(text)["tags"] == ["harness"] and props(text)["governs"] == "x.md"
+    assert (
+        "## Purpose\n\nPrevents the root\n" in text
+        and "## How it works\n\nIt works like this." in text
+    )
+    assert f"- {DATE} updated: the root gets a body · raw/{DATE}/ledger.md#case-2" in text
+
+
+def test_a_replace_absent_or_not_unique_fails_that_entry_alone(tmp_path):
+    bad = {
+        "line": 2,
+        "text": "",
+        "case": "2",
+        "kind": "update",
+        "category": "rules",
+        "slug": "rule-root",
+        "origin": ORIGIN,
+        "decision": "decision-case-2",
+        "replace": [{"old": "no such words", "new": "x"}],
+        "change": "nothing",
+    }
+    seed(tmp_path, entries=[ROOT, bad, CHILD])
+    code, _, err = run(tmp_path)
+    assert code == 1 and "rule-root: replace" in err
+    assert (tmp_path / "vault" / "wiki" / "rules" / "rule-child.md").exists()
+    data = load_yaml(tmp_path)
+    assert "applied" not in data["entries"][1] and "failed" in data["entries"][1]
+    assert data["entries"][0]["applied"] and data["entries"][2]["applied"]
+
+
+def test_delete_archives_and_defer_writes_a_placeholder_or_a_history_line(tmp_path):
+    entries = [
+        ROOT,
+        {
+            "line": 2,
+            "text": "",
+            "case": "2",
+            "kind": "delete",
+            "category": "rules",
+            "slug": "rule-root",
+            "origin": ORIGIN,
+            "decision": "decision-case-2",
+        },
+        {
+            "line": 3,
+            "text": "",
+            "case": "3",
+            "kind": "defer",
+            "category": "rules",
+            "slug": "rule-later",
+            "origin": ORIGIN,
+            "decision": "decision-case-3",
+            "fields": {"type": "rule", "purpose": "Prevents something, later"},
+        },
+        {
+            "line": 4,
+            "text": "",
+            "case": "4",
+            "kind": "defer",
+            "category": "rules",
+            "slug": "rule-root",
+            "origin": ORIGIN,
+            "decision": "decision-case-4",
+        },
+    ]
+    seed(tmp_path, entries=entries)
+    code, _, err = run(tmp_path)
+    assert code == 0 and err == ""
+    root = page(tmp_path, "rules", "rule-root")
+    assert props(root)["status"] == "archived" and f"- {DATE} deleted · {ORIGIN}" in root
+    assert f"- {DATE} deferred · {ORIGIN}" in root
+    later = page(tmp_path, "rules", "rule-later")
+    assert props(later) == {
+        "type": "rule",
+        "status": "draft",
+        "purpose": "Prevents something, later",
+        "origin": ORIGIN,
+        "sprint": "migration",
+        "created": yaml.safe_load(DATE),
+    }
+    assert f"- {DATE} deferred, placeholder · {ORIGIN}" in later
+
+
+def test_an_estimate_entry_fills_status_and_result_once(tmp_path):
+    entries = [
+        CHILD,
+        CHILD_ESTIMATE,
+        ROOT,
+        {
+            "line": 4,
+            "text": "",
+            "kind": "estimate",
+            "category": "estimates",
+            "slug": "estimate-child-works",
+            "status": "passed",
+            "result": "twelve tests green",
+            "origin": f"raw/{DATE}/ledger.md#L4",
+        },
+        {
+            "line": 5,
+            "text": "",
+            "kind": "estimate",
+            "category": "estimates",
+            "slug": "estimate-child-works",
+            "status": "passed",
+            "result": "a second reading",
+            "origin": f"raw/{DATE}/ledger.md#L5",
+        },
+    ]
+    seed(tmp_path, entries=entries)
+    code, out, err = run(tmp_path)
+    assert code == 0 and err == ""
+    text = page(tmp_path, "estimates", "estimate-child-works")
+    assert props(text)["status"] == "passed" and "## Result\n\ntwelve tests green\n" in text
+    assert "a second reading" not in text and "already passed with a Result; skipped" in out
+    assert f"- {DATE} status: pending → passed · raw/{DATE}/ledger.md#L4" in text
+    assert props(page(tmp_path, "rules", "rule-child"))["status"] == "built"
+    assert f"- {DATE} status: draft → built · cascade" in page(tmp_path, "rules", "rule-child")
+    assert (
+        props(page(tmp_path, "rules", "rule-root"))["status"] == "draft"
+    )  # a MOC with no estimate
+
+
+def test_a_lesson_brings_its_paired_estimate_per_kind(tmp_path):
+    entries = [
+        {
+            "line": 1,
+            "text": "",
+            "kind": "lesson",
+            "category": "lessons",
+            "slug": "lesson-hooks-late-fire",
+            "origin": f"raw/{DATE}/ledger.md#L1",
+            "tags": ["harness"],
+            "fields": {"type": "lesson", "kind": "error", "root_cause": "the matcher was wrong"},
+            "sections": {"Trigger": "the hook fired late", "Root cause": "the matcher was wrong"},
+        },
+        {
+            "line": 2,
+            "text": "",
+            "kind": "lesson",
+            "category": "lessons",
+            "slug": "lesson-docs-agents-at-import",
+            "origin": f"raw/{DATE}/ledger.md#L2",
+            "tags": ["harness"],
+            "fields": {
+                "type": "lesson",
+                "kind": "knowledge",
+                "root_cause": "an @ in an agent file is literal",
+                "source": "docs",
+            },
+            "sections": {
+                "Trigger": "read the docs",
+                "Root cause": "an @ in an agent file is literal",
+            },
+        },
+    ]
+    seed(tmp_path, entries=entries)
+    code, _, err = run(tmp_path)
+    assert code == 0 and err == ""
+    lesson = page(tmp_path, "lessons", "lesson-hooks-late-fire")
+    assert props(lesson)["status"] == "new" and props(lesson)["estimates"] == [
+        "estimate-hooks-late-fire"
+    ]
+    assert "## Trigger\n\nthe hook fired late" in lesson
+    error = props(page(tmp_path, "estimates", "estimate-hooks-late-fire"))
+    assert (
+        error["kind"] == "QA"
+        and error["status"] == "passed"
+        and error["target"] == "lesson-hooks-late-fire"
+    )
+    assert "## Result\n\nObserved." in page(tmp_path, "estimates", "estimate-hooks-late-fire")
+    knowledge = props(page(tmp_path, "estimates", "estimate-docs-agents-at-import"))
+    assert knowledge["kind"] == "Research" and knowledge["status"] == "pending"
+    assert lint.lint(tmp_path) == []
+
+
+def test_one_decision_page_per_case_and_supersedes_marks_the_earlier(tmp_path):
+    decisions = [
+        {
+            "case": "1",
+            "decision": "decision-case-1",
+            "origin": ORIGIN,
+            "tags": ["harness"],
+            "targets": [{"kind": "create", "category": "rules", "slug": "rule-root"}],
+            "case_text": {
+                "context": "A root.",
+                "problem": "No root.",
+                "given": "Nothing.",
+                "when": "Someone asks.",
+                "then": "A root exists.\n**＋** It is a MOC.",
+            },
+        },
+        {
+            "case": "2",
+            "decision": "decision-case-2",
+            "origin": f"raw/{DATE}/ledger.md#case-2",
+            "tags": [],
+            "targets": [{"kind": "update", "category": "rules", "slug": "rule-root"}],
+            "supersedes": ["decision-case-1"],
+            "case_text": {},
+        },
+    ]
+    seed(tmp_path, entries=[ROOT], decisions=decisions)
+    code, _, err = run(tmp_path)
+    assert code == 0 and err == ""
+    one = page(tmp_path, "decisions", "decision-case-1")
+    assert props(one)["case"] == "1" and props(one)["status"] == "superseded"
+    assert props(one)["superseded_by"] == ["decision-case-2"]
+    assert props(one)["targets"] == [{"kind": "create", "category": "rules", "slug": "rule-root"}]
+    assert (
+        "## Now\n\nNothing." in one
+        and "## Then\n\nSomeone asks.\n\nA root exists.\n**＋** It is a MOC." in one
+    )
+    assert f"- {DATE} superseded by decision-case-2" in one
+    two = props(page(tmp_path, "decisions", "decision-case-2"))
+    assert two["supersedes"] == ["decision-case-1"] and two["tags"] == [
+        "harness"
+    ]  # from the target page
+    findings = [f for f in lint.lint(tmp_path) if "decision-case-2" in f]
+    assert findings == [
+        "decisions/decision-case-2: schema: missing section ## Context",
+        "decisions/decision-case-2: schema: missing section ## Now",
+        "decisions/decision-case-2: schema: missing section ## Problem",
+        "decisions/decision-case-2: schema: missing section ## Then",
+    ]
+
+
+def test_new_tags_register_and_undeclared_ones_are_reported(tmp_path):
+    entries = [dict(ROOT, tags=["harness", "git", "lost"])]
+    seed(
+        tmp_path,
+        entries=entries,
+        new_tags=[{"tag": "git", "meaning": "the repository", "aliases": "гит"}],
+    )
+    code, _, err = run(tmp_path)
+    assert code == 0
+    tags = (tmp_path / "vault" / "wiki" / "tags.md").read_text(encoding="utf-8")
+    assert "| git | the repository | гит |" in tags and "lost" not in tags
+    assert "tag lost is used but not registered" in err
+
+
+def test_applied_entries_are_marked_and_a_rerun_writes_nothing(tmp_path):
+    seed(tmp_path, entries=[ROOT, CHILD, CHILD_ESTIMATE])
+    run(tmp_path)
+    before = {p: p.read_text(encoding="utf-8") for p in (tmp_path / "vault").rglob("*.md")}
+    data = load_yaml(tmp_path)
+    assert all(e["applied"] for e in data["entries"])
+    code, out, err = run(tmp_path)
+    assert code == 0 and err == "" and "0 page(s)" in out
+    after = {p: p.read_text(encoding="utf-8") for p in (tmp_path / "vault").rglob("*.md")}
+    assert before == after
+
+
+def test_a_collision_fails_and_an_existing_create_is_skipped(tmp_path):
+    seed(
+        tmp_path,
+        entries=[ROOT, dict(CHILD, exists=True, status="passed", result="ignored")],
+        pages=[
+            (
+                "rules",
+                "rule-root",
+                "---\ntype: rule\nkind: MOC\npurpose: Old root\nstatus: draft\nchildren: []\nestimates: []\norigin: x\nsprint: s\ncreated: 2026-09-09\ntags: [harness]\n---\n\n## Purpose\n\nOld root\n\n## History\n\n- old\n",
+            )
+        ],
+    )
+    code, _, err = run(tmp_path)
+    assert code == 1 and "rule-root: a page with this slug exists" in err
+    assert "Old root" in page(tmp_path, "rules", "rule-root")
+    assert not (tmp_path / "vault" / "wiki" / "rules" / "rule-child.md").exists()
+
+
+def test_cli_dispatches_to_generate(tmp_path, monkeypatch, capsys):
+    from guppi import cli
+
+    seed(tmp_path, entries=[ROOT])
+    monkeypatch.setenv("CLAUDE_PROJECT_DIR", str(tmp_path))
+    assert cli.main(["generate", "--date", DATE]) == 0
+    assert "page(s) written" in capsys.readouterr().out

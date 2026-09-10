@@ -4,7 +4,9 @@ Every page under `vault/wiki/rules/` with `enforcement: render` carries the text
 harness file in its `## Render` section, between `<!-- slug -->` and `<!-- /slug -->`.
 A `full` page's text becomes the whole file named by `governs`, without those outer
 markers; a lone `<!-- child -->` line in it is replaced by the child's text, markers kept,
-in the order of `children`, one blank line between blocks. A `partial` page whose file no
+in the order of `children`, one blank line between blocks. A child that is not a render
+page — a script the frame calls by name — contributes nothing and needs no marker; a
+marker line for it is an error. A `partial` page whose file no
 `full` page owns is spliced into the existing file between its markers, which stay.
 `--check` renders in memory, names every file that differs, exits 1 and writes nothing.
 Rule page: `vault/wiki/rules/rule-render-harness.md`.
@@ -95,7 +97,7 @@ def render_full(unit: Unit, units: dict[str, Unit]) -> str:
             replaced.add(child)
         else:
             lines.append(line)
-    missing = [child for child in children if child not in replaced]
+    missing = [child for child in children if child not in replaced and child in units]
     if missing:
         raise RenderError(f"{unit.page.slug}: no marker line for child {missing[0]}")
     return join_blocks(lines) + "\n"

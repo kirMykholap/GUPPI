@@ -2,7 +2,7 @@
 type: rule
 kind: Leaf
 purpose: Prevents a Spec from being approved before its decisions were checked against each other and the vault
-status: draft
+status: built
 enforcement: hook
 implementation_ref: [guppi/pretask.py, .claude/settings.json]
 parent: rule-plan-mode
@@ -37,3 +37,4 @@ ordinary session, one without `/hi`, is not gated: no governance applies there.
 ## History
 
 - 2026-09-09 created · raw/2026-09-09/ledger.md#case-24.1
+- 2026-09-10 status: draft → built · cascade

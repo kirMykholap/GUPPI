@@ -5,3 +5,73 @@
 - 06:05:46 decision[case 28][update][rule-lint]
 - 06:05:46 estimate[estimate-lint-catches][passed] tests/test_lint.py 24 green after case 28; live: the method finding on estimate-hi-no-read-calls is gone, `guppi lint` reports 16 findings, all on the brief's known-false list (3 ref on rule-documentation, 13 draft-while-passed)
 - 06:05:46 lesson[error][lesson-tests-cli-date-pinned] trigger: `make test` on 2026-09-10 morning, the three CLI dispatch tests of test_event.py, test_ledger.py and test_pretask.py red with a missing raw/2026-09-09/event_log.md root_cause: the test helpers wrote the event log under a pinned TODAY of 2026-09-09 while cli.main reads the real clock, so the tests passed only on the day they were written; the three CLI tests now pass the local clock's date to the helpers
+- 06:15:59 decision[case 29][defer][rule-work-mode]
+- 06:15:59 decision[case 29][defer][rule-subagent-guppi]
+- 06:24:39 decision[case 30][update][case-schema]
+- 06:24:39 decision[case 30][update][rule-case-protocol]
+- 06:42:26 decision[case 31.1][update][decisions-schema]
+- 06:42:26 decision[case 31.1][update][decisions-schema-yaml]
+- 06:42:26 decision[case 31.1][update][rule-ask]
+- 06:51:58 decision[case 31][create][rule-materialize]{ref:rule-documentation}
+- 06:51:58 decision[case 31][create][estimate-materialize-assembles]{ref:rule-materialize}
+- 06:56:19 decision[case 32][create][rule-page-generation]{ref:rule-documentation}
+- 06:56:19 decision[case 32][create][estimate-generate-writes]{ref:rule-page-generation}
+- 06:56:19 decision[case 32][update][lessons-schema]
+- 09:26:01 decision[case 33][create][rule-cleanup]{ref:rule-documentation}{tags:harness,workflow}
+- 09:26:01 decision[case 33][create][estimate-cleanup-moves]{ref:rule-cleanup}{tags:harness,workflow}
+- 09:26:01 decision[case 33][update][index]
+- 09:26:01 decision[case 33][update][glossary]
+- 09:28:08 decision[case 34][update][case-schema]{supersedes:case 30}
+- 09:28:08 decision[case 34][update][rule-case-protocol]{supersedes:case 30}
+- 09:28:08 decision[case 34][update][index]
+- 09:28:08 decision[case 34][update][glossary]
+- 09:33:35 decision[case 35.1][create][rule-index-check]{ref:rule-documentation}{tags:harness,workflow,librarian}
+- 09:33:35 decision[case 35.1][create][estimate-index-check-merges]{ref:rule-index-check}{tags:harness,workflow,librarian}
+- 09:33:35 decision[case 35.3][create][rule-brief]{ref:rule-documentation}{tags:harness,workflow,librarian}
+- 09:33:35 decision[case 35.3][create][estimate-brief-written]{ref:rule-brief}{tags:harness,workflow,librarian}
+- 09:35:07 decision[case 35.2][create][rule-synthesis]{ref:rule-documentation}{tags:harness,workflow,librarian}
+- 09:35:07 decision[case 35.2][create][estimate-synthesis-clusters]{ref:rule-synthesis}{tags:harness,workflow,librarian}
+- 09:35:07 decision[case 35.2][update][index]
+- 09:35:07 decision[case 35.2][update][insights-schema]
+- 09:40:24 decision[case 36.1][create][rule-close]{ref:rule-documentation}{tags:harness,workflow,git,librarian}
+- 09:40:24 decision[case 36.1][create][estimate-close-commits]{ref:rule-close}{tags:harness,workflow,git,librarian}
+- 09:43:31 decision[case 36][create][rule-documentation]{tags:session,workflow,harness,librarian,render}
+- 09:43:31 decision[case 36][create][estimate-documentation-completes]{ref:rule-documentation}{tags:session,workflow,harness,librarian}
+- 09:44:28 decision[case 36.2][update][rule-render-harness]
+- 09:44:28 decision[case 36.2][update][estimate-render-harness-reproduces]
+- 09:46:51 decision[case 37][create][rule-harness]{tags:harness,workflow}
+- 09:46:51 decision[case 37][create][estimate-harness-pipeline]{ref:rule-harness}{tags:harness,workflow}
+- 09:46:51 decision[case 37][update][rule-render-harness]
+- 09:46:51 decision[case 37][update][rule-hook-registry]
+- 09:46:51 decision[case 37][update][rule-lint]
+- 09:46:51 decision[case 37][update][rule-index]
+- 09:56:55 decision[case 38][create][rule-end-of-work]{tags:session,workflow}
+- 09:56:55 decision[case 38][create][estimate-end-of-work-order]{ref:rule-end-of-work}{tags:session,workflow}
+- 09:56:55 decision[case 38.1][create][rule-retro]{ref:rule-end-of-work}{tags:session,workflow,harness,render}
+- 09:56:55 decision[case 38.1][create][estimate-retro-loads]{ref:rule-retro}{tags:session,workflow,harness}
+- 09:56:55 decision[case 38.2][create][rule-retro-commit]{ref:rule-end-of-work}{tags:session,workflow,hooks,harness,git}
+- 09:56:55 decision[case 38.2][create][estimate-retro-commit-gates]{ref:rule-retro-commit}{tags:session,workflow,hooks,harness,git}
+- 09:56:55 decision[case 38.2][update][rule-hook-registry]
+- 09:56:55 decision[case 38.3][create][rule-handoff]{ref:rule-end-of-work}{tags:session,workflow,harness,render}
+- 09:56:55 decision[case 38.3][create][estimate-handoff-dispatches]{ref:rule-handoff}{tags:session,workflow,harness}
+- 10:02:52 decision[case 39][update][index]
+- 10:02:52 decision[case 39][update][glossary]
+- 10:02:52 decision[case 39][update][claude-md]
+- 10:02:52 decision[case 39][update][rule-session-start]
+- 10:05:16 decision[case 40][update][index]
+- 10:05:16 decision[case 40][update][glossary]
+- 10:05:16 decision[case 40][update][decisions-schema]
+- 10:05:16 decision[case 40][update][entities-schema]
+- 10:05:16 decision[case 40][update][rules-schema]
+- 10:05:16 decision[case 40][update][estimate-plan-mode-verified]
+- 10:05:16 decision[case 40][update][rule-retro]{supersedes:case 38.1}
+- 10:47:41 decision[case 41][update][rule-materialize]{supersedes:case 31}
+- 10:47:41 decision[case 41][update][estimate-materialize-assembles]{supersedes:case 31}
+- 10:47:41 estimate[estimate-materialize-assembles][passed] tests/test_materialize.py 12 green; live 2026-09-10: 67 entries (update 34, create 26, estimate 3, lesson 2, defer 2), 21 decision entries, no unparsed line, incomplete only on the two lessons (tags, source) and case 28 (no Spec text); live --date 2026-09-09: 87 record lines, 74 entries (create 34, update 32, lesson 7, delete 1) plus 13 estimate lines folded into their creates, 34 decision entries, no unparsed line, all 34 creates marked exists
+- 10:47:41 estimate[estimate-generate-writes][passed] tests/test_generate.py 11 green; live 2026-09-10: 68 pages written or changed — rules 13 created and 8 updated, estimates 15, lessons 2, decisions 21, placeholders 2, cascade set 14 rules built; live 2026-09-09: 48 pages — decisions 34, lessons 7 with 7 estimates, 34 creates skipped as existing, 11 estimate lines skipped as already recorded, one failure: [delete][old-harness] of case 6 has no page and no category; make lint afterwards 159 findings, all on the known list; git diff --stat 40 tracked files, 126 new pages
+- 10:47:41 estimate[estimate-cleanup-moves][passed] tests/test_cleanup.py 5 green; live: `uv run guppi cleanup` over the vault moved 0 pages, exit 0, the working tree unchanged by it
+- 10:47:41 estimate[estimate-render-harness-reproduces][passed] tests/test_render.py 13 green with the child-without-Render case of 36.2; live: rule-documentation with three script children rendered .claude/agents/librarian-guppi.md (80 lines), retro and handoff skills and settings.json rendered, `render --check` exit 0 after
+- 10:47:41 estimate[estimate-harness-pipeline][passed] `make test-harness` 44 green; `make lint` ran render --check (exit 0), index --check (exit 0), guppi lint (159 findings, the known list) in that order
+- 10:47:41 estimate[estimate-pretask-reconciles][passed] /pre-task at 09:57:45 wrote the pretask line; one ask-guppi dispatch with the 30 decisions of this Plan Mode returned nine findings: five became Case 40, four were named as already known in the reply
+- 10:47:41 estimate[estimate-pretask-hook-gates][passed] tests/test_pretask.py green; live: ExitPlanMode at 10:25:13 passed after the pretask line of 09:57:45; the refusal path was not exercised live, the approval came after /pre-task by construction
+- 10:47:41 estimate[estimate-spec-capture-appends][passed] live: the approved plan landed in raw/2026-09-10/spec.md by the hook, stamp `<!-- approved 10:25:13 · session c640ade7 -->`, 1502 lines, once; the rejected-plan reading was not taken, the plan was approved at the first attempt

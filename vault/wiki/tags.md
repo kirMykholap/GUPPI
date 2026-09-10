@@ -15,3 +15,4 @@ another.
 | github | issues and anything else that lives on GitHub rather than in the vault | гитхаб, issues |
 | workflow | the order of phases and steps a session follows | процесс, порядок работы |
 | render | a Rule page whose body is written into a harness file by the renderer | рендер, генерация файла |
+| librarian | the Documentation phase and its agent | библиотекарь |

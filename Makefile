@@ -8,12 +8,13 @@
 # No target here writes to the working tree. A target that reports and a target that mutates
 # are different kinds of thing.
 #
-# `test` arrived with Slice 1; `lint` and the per-MOC test pipelines with Slice 2. `lint`
-# only checks: the writers are `uv run guppi render` and `uv run guppi index`.
+# `test` arrived with Slice 1; `lint` and the per-MOC test pipelines with Slice 2, three more
+# with Slice 3. `lint` only checks: the writers are `uv run guppi render`, `guppi index`,
+# `guppi generate` and `guppi cleanup`.
 
 SHELL := /usr/bin/sh
 .DEFAULT_GOAL := help
-.PHONY: help style test lint test-session-start test-plan-mode
+.PHONY: help style test lint test-session-start test-plan-mode test-documentation test-harness test-end-of-work
 
 help: ## list these targets
 	@awk 'BEGIN{FS=":.*## "} /^[a-z-]+:.*## /{printf "  %-7s %s\n", $$1, $$2}' $(MAKEFILE_LIST)
@@ -35,3 +36,12 @@ test-session-start: ## the pipeline over rule-session-start's children
 
 test-plan-mode: ## the pipeline over rule-plan-mode's children
 	@uv run pytest -q tests/test_spec.py tests/test_pretask.py < /dev/null
+
+test-documentation: ## the pipeline over rule-documentation's scripts
+	@uv run pytest -q tests/test_materialize.py tests/test_generate.py tests/test_cleanup.py < /dev/null
+
+test-harness: ## the pipeline over rule-harness's children
+	@uv run pytest -q tests/test_render.py tests/test_lint.py tests/test_index.py < /dev/null
+
+test-end-of-work: ## the pipeline over rule-end-of-work's children
+	@uv run pytest -q tests/test_gate.py < /dev/null

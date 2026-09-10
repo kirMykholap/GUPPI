@@ -31,9 +31,11 @@ move closes:
   in the reply and the `Stop` hook writes them into `vault/raw/<date>/ledger.md`, each
   prefixed with the time of writing. The lines of 2026-09-09 written by hand before it
   carry no time; that is how the two are told apart.
-- **The rituals of the earlier model do not apply.** There is no `/retro`, `/handoff` or
-  `/ingest`, no librarian, no gate; the hooks that asked for them are gone. `docs/migration/`
-  holds the drafts of the workflow that replaces them and the plan of the move.
+- **The rituals of the new model exist since Slice 3.** `/retro` (the person), `/handoff` (the
+  agent, refused by `guppi gate` while the tree is dirty), then the `librarian-guppi` agent:
+  `materialize`, index check, synthesis, `generate`, `cleanup`, brief, commit. Pages are no
+  longer written by hand; `brief.md` is written by the librarian. `docs/migration/` still
+  holds the drafts of Work Mode and the plan of the move.
 - **Each slice is its own Plan Mode and its own approval.** The approved plan is copied to
   `vault/raw/<date>/spec.md` by the `PostToolUse ExitPlanMode` hook `guppi spec` since
   Slice 2; the Specs of Slices 0–2 were copied by hand.
@@ -41,31 +43,40 @@ move closes:
 <!-- rule-case-protocol -->
 ## Case protocol
 
-One reply is one Case, in the six sections of `case-schema.md`. Never move to the next
-Case until this one is ratified or deferred. Plan Mode does not end while a Frontier item
-is neither ratified nor deferred.
+One reply is one Case, in the seven sections of `case-schema.md`: context, problem,
+recommend, given, when, then, ratification. Never move to the next Case until this
+one is ratified or deferred. Plan Mode does not end while a Frontier item is neither
+ratified nor deferred.
 
-A follow-up question that asks you to justify a choice does not split the Case; one whose
-answer needs a new choice does — into sub-cases `N.1`, `N.2`. Ratifying a parent does not
-ratify its children.
+A follow-up question that asks you to justify a choice does not split the Case; one
+whose answer needs a new choice does — into sub-cases `N.1`, `N.2`. Ratifying a
+parent does not ratify its children.
 
-A Case renders as `## Case N — name`, then one blockquote per section: its first line
-`**name**`, its text on the following quoted lines, a blank line between sections. A
-sub-case is `### Case N.M — name` under its parent, with its own `then` and `ratification`;
-the sections the children share live on the parent and are not repeated. A preview of
-ledger lines is an untagged fence at the end of the Case; the record is a LEDGER block.
+A Case renders as `## Case N — name`, then one blockquote per section: its first
+line `**name:**`, its text on the following quoted lines, a blank line between
+sections. In `given`, `when` and `then` every line after the first starts with a
+bold operand: **＋** for one more condition or action, **－** for a limit or an
+exception. `when` and `then` together are the criterion of the Estimate the Case
+creates. Write short sentences, one idea each, in the active voice. A sub-case is
+`### Case N.M — name` under its parent, with its own `given`, `when`, `then` and
+`ratification`; the sections the children share live on the parent. The
+`ratification` section ends with a preview of the ledger lines in an untagged
+fence. The page content itself — fields, prose sections, the Estimate — is a YAML
+block tagged `then` under the Case in the Spec, not in the chat; `guppi
+materialize` reads it, and what is not in that block was signed by nobody.
 
-Before a `create` without a `ref`, ask the vault first: does this exist, what conflicts,
-what sits in `draft`, which tags fit. Put the answer in `now`. Dispatch the `ask-guppi`
-agent with one short question once it exists; until then read the category folders.
+Before a `create` without a `ref`, ask the vault first: does this exist, what
+conflicts, what sits in `draft`, which tags fit. Put the answer in `given`.
+Dispatch the `ask-guppi` agent with one short question.
 
-Ledger lines are written by the `Stop` hook, from the reply, verbatim, each with the time
-of writing. A record is a `- decision[...]`, `- estimate[...]` or `- lesson[...]` line
-inside a fenced block opened with the `LEDGER` tag; the same line anywhere else — bare, or
-in a block with another tag or none — is a preview and is never written. Write the
-`- decision[...]` lines only in the reply that acknowledges ratification; `- estimate[...]`
-and `- lesson[...]` lines the moment the measurement or the lesson exists. Without `/hi`
-the hook refuses and says so: tell the person, do not retry.
+Ledger lines are written by the `Stop` hook, from the reply, verbatim, each with
+the time of writing. A record is a `- decision[...]`, `- estimate[...]` or
+`- lesson[...]` line inside a fenced block opened with the `LEDGER` tag; the same
+line anywhere else — bare, or in a block with another tag or none — is a preview
+and is never written. A `create` line carries the ratified tags: `{tags:a,b}`.
+Write the `- decision[...]` lines only in the reply that acknowledges ratification;
+`- estimate[...]` and `- lesson[...]` lines the moment the measurement or the lesson
+exists. Without `/hi` the hook refuses and says so: tell the person, do not retry.
 <!-- /rule-case-protocol -->
 
 ## Language

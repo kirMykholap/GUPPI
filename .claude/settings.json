@@ -8,7 +8,9 @@
     ],
     "PreToolUse": [
       { "matcher": "ExitPlanMode",
-        "hooks": [ { "type": "command", "command": "uv run guppi pretask", "timeout": 30 } ] }
+        "hooks": [ { "type": "command", "command": "uv run guppi pretask", "timeout": 30 } ] },
+      { "matcher": "Skill",
+        "hooks": [ { "type": "command", "command": "uv run guppi gate", "timeout": 30 } ] }
     ],
     "PostToolUse": [
       { "hooks": [ { "type": "command", "command": "uv run guppi event tool", "timeout": 30 } ] },

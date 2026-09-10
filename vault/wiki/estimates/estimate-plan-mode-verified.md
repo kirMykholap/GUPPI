@@ -17,8 +17,7 @@ preventing the plan from being written.
 
 ## Criterion
 
-A `create` for a page whose purpose the index already carries is flagged in the Case's
-`now` before ratification; the pre-task hook fires before the plan is written and the
+A `create` for a page whose purpose the index already carries is flagged in the Case's `given` before ratification; the pre-task hook fires before the plan is written and the
 plan is still written.
 
 ## Method
@@ -29,3 +28,4 @@ the flagging is one live reading by hand, written into the estimate line.
 ## History
 
 - 2026-09-09 created · raw/2026-09-09/ledger.md#case-19
+- 2026-09-10 updated: criterion names the Case's given, not now · raw/2026-09-10/ledger.md#case-40

@@ -1,0 +1,2146 @@
+date: '2026-09-09'
+sprint: migration
+ledger: vault/raw/2026-09-09/ledger.md
+spec: vault/raw/2026-09-09/spec.md
+entries:
+- line: 2
+  text: decision[case 1][update][migration-plan]
+  case: '1'
+  kind: update
+  slug: migration-plan
+  origin: raw/2026-09-09/ledger.md#case-1
+  decision: decision-case-1
+  category: file
+  path: docs/migration/migration-plan.md
+  incomplete:
+  - then
+  applied: '10:46:02'
+- line: 3
+  text: decision[case 2][update][migration-plan]
+  case: '2'
+  kind: update
+  slug: migration-plan
+  origin: raw/2026-09-09/ledger.md#case-2
+  decision: decision-case-2
+  category: file
+  path: docs/migration/migration-plan.md
+  incomplete:
+  - then
+  applied: '10:46:02'
+- line: 4
+  text: decision[case 3][update][migration-plan]
+  case: '3'
+  kind: update
+  slug: migration-plan
+  origin: raw/2026-09-09/ledger.md#case-3
+  decision: decision-case-3
+  category: file
+  path: docs/migration/migration-plan.md
+  incomplete:
+  - then
+  applied: '10:46:02'
+- line: 5
+  text: decision[case 4][update][index]
+  case: '4'
+  kind: update
+  slug: index
+  origin: raw/2026-09-09/ledger.md#case-4
+  decision: decision-case-4
+  category: file
+  path: vault/wiki/index.md
+  incomplete:
+  - then
+  applied: '10:46:02'
+- line: 6
+  text: decision[case 4][update][glossary]
+  case: '4'
+  kind: update
+  slug: glossary
+  origin: raw/2026-09-09/ledger.md#case-4
+  decision: decision-case-4
+  category: file
+  path: vault/wiki/glossary.md
+  incomplete:
+  - then
+  applied: '10:46:02'
+- line: 7
+  text: decision[case 5][update][index]
+  case: '5'
+  kind: update
+  slug: index
+  origin: raw/2026-09-09/ledger.md#case-5
+  decision: decision-case-5
+  category: file
+  path: vault/wiki/index.md
+  incomplete:
+  - then
+  applied: '10:46:02'
+- line: 8
+  text: decision[case 6][delete][old-harness]{source:docs/harness-map-2026-09-07.md}
+  case: '6'
+  kind: delete
+  slug: old-harness
+  origin: raw/2026-09-09/ledger.md#case-6
+  decision: decision-case-6
+  source: docs/harness-map-2026-09-07.md
+  category: unknown
+  incomplete:
+  - category
+  - then
+  failed: 'generate: old-harness: no page to delete'
+- line: 9
+  text: decision[case 7][update][migration-plan]
+  case: '7'
+  kind: update
+  slug: migration-plan
+  origin: raw/2026-09-09/ledger.md#case-7
+  decision: decision-case-7
+  category: file
+  path: docs/migration/migration-plan.md
+  incomplete:
+  - then
+  applied: '10:46:02'
+- line: 10
+  text: decision[case 8][update][migration-plan]
+  case: '8'
+  kind: update
+  slug: migration-plan
+  origin: raw/2026-09-09/ledger.md#case-8
+  decision: decision-case-8
+  category: file
+  path: docs/migration/migration-plan.md
+  incomplete:
+  - then
+  applied: '10:46:02'
+- line: 12
+  text: decision[case 9][create][rule-event-log]{ref:rule-session-start}
+  case: '9'
+  kind: create
+  slug: rule-event-log
+  origin: raw/2026-09-09/ledger.md#case-9
+  decision: decision-case-9
+  ref: rule-session-start
+  category: rules
+  exists: true
+  incomplete:
+  - then
+  applied: '10:46:02'
+- line: 13
+  text: decision[case 9][create][estimate-event-log-records]{ref:rule-event-log}
+  case: '9'
+  kind: create
+  slug: estimate-event-log-records
+  origin: raw/2026-09-09/ledger.md#case-9
+  decision: decision-case-9
+  ref: rule-event-log
+  category: estimates
+  exists: true
+  incomplete:
+  - then
+  status: passed
+  result: '`guppi event` appends session-start, tool and hi lines to raw/<date>/event_log.md; the hi line
+    is written by the skill''s `!` substitution.'
+  folded:
+  - 36
+  applied: '10:46:02'
+- line: 14
+  text: decision[case 10][create][rule-ledger-write]{ref:rule-session-start}
+  case: '10'
+  kind: create
+  slug: rule-ledger-write
+  origin: raw/2026-09-09/ledger.md#case-10
+  decision: decision-case-10
+  ref: rule-session-start
+  category: rules
+  exists: true
+  incomplete:
+  - then
+  applied: '10:46:02'
+- line: 15
+  text: decision[case 10][create][estimate-ledger-write-lifts]{ref:rule-ledger-write}
+  case: '10'
+  kind: create
+  slug: estimate-ledger-write-lifts
+  origin: raw/2026-09-09/ledger.md#case-10
+  decision: decision-case-10
+  ref: rule-ledger-write
+  category: estimates
+  exists: true
+  incomplete:
+  - then
+  status: passed
+  result: the five lines of the acknowledging reply, inside a LEDGER block, reached raw/2026-09-09/ledger.md
+    with a time prefix, once; a bare copy and an untagged fence were ignored; 31 tests green
+  folded:
+  - 39
+  - 44
+  applied: '10:46:02'
+- line: 16
+  text: decision[case 11][create][rule-skill-hi]{ref:rule-session-start}
+  case: '11'
+  kind: create
+  slug: rule-skill-hi
+  origin: raw/2026-09-09/ledger.md#case-11
+  decision: decision-case-11
+  ref: rule-session-start
+  category: rules
+  exists: true
+  incomplete:
+  - then
+  applied: '10:46:02'
+- line: 17
+  text: decision[case 11][create][estimate-hi-no-read-calls]{ref:rule-skill-hi}
+  case: '11'
+  kind: create
+  slug: estimate-hi-no-read-calls
+  origin: raw/2026-09-09/ledger.md#case-11
+  decision: decision-case-11
+  ref: rule-skill-hi
+  category: estimates
+  exists: true
+  incomplete:
+  - then
+  status: passed
+  result: /hi resolved branch, brief, sprint and issues through `!` and `@` substitutions; the agent's
+    first reply used no read-tool call (sessions B and C).
+  folded:
+  - 32
+  applied: '10:46:02'
+- line: 18
+  text: decision[case 11][create][rule-internal-context]{ref:rule-skill-hi}
+  case: '11'
+  kind: create
+  slug: rule-internal-context
+  origin: raw/2026-09-09/ledger.md#case-11
+  decision: decision-case-11
+  ref: rule-skill-hi
+  category: rules
+  exists: true
+  incomplete:
+  - then
+  applied: '10:46:02'
+- line: 19
+  text: decision[case 11][create][estimate-internal-context-loaded]{ref:rule-internal-context}
+  case: '11'
+  kind: create
+  slug: estimate-internal-context-loaded
+  origin: raw/2026-09-09/ledger.md#case-11
+  decision: decision-case-11
+  ref: rule-internal-context
+  category: estimates
+  exists: true
+  incomplete:
+  - then
+  status: passed
+  result: brief.md and sprint.md arrive expanded inside the /hi skill output; content matches the files
+    on disk.
+  folded:
+  - 33
+  applied: '10:46:02'
+- line: 20
+  text: decision[case 11][create][rule-git-context]{ref:rule-skill-hi}
+  case: '11'
+  kind: create
+  slug: rule-git-context
+  origin: raw/2026-09-09/ledger.md#case-11
+  decision: decision-case-11
+  ref: rule-skill-hi
+  category: rules
+  exists: true
+  incomplete:
+  - then
+  applied: '10:46:02'
+- line: 21
+  text: decision[case 11][create][estimate-git-context-current]{ref:rule-git-context}
+  case: '11'
+  kind: create
+  slug: estimate-git-context-current
+  origin: raw/2026-09-09/ledger.md#case-11
+  decision: decision-case-11
+  ref: rule-git-context
+  category: estimates
+  exists: true
+  incomplete:
+  - then
+  status: passed
+  result: /hi prints the current branch, status and the pull result; the failed pull (no upstream) is
+    shown, not hidden.
+  folded:
+  - 34
+  applied: '10:46:02'
+- line: 22
+  text: decision[case 11][create][rule-github-issues]{ref:rule-skill-hi}
+  case: '11'
+  kind: create
+  slug: rule-github-issues
+  origin: raw/2026-09-09/ledger.md#case-11
+  decision: decision-case-11
+  ref: rule-skill-hi
+  category: rules
+  exists: true
+  incomplete:
+  - then
+  applied: '10:46:02'
+- line: 23
+  text: decision[case 11][create][estimate-github-issues-listed]{ref:rule-github-issues}
+  case: '11'
+  kind: create
+  slug: estimate-github-issues-listed
+  origin: raw/2026-09-09/ledger.md#case-11
+  decision: decision-case-11
+  ref: rule-github-issues
+  category: estimates
+  exists: true
+  incomplete:
+  - then
+  status: passed
+  result: /hi runs `gh issue list`; with gh not logged in it prints gh's own message in place of the list.
+  folded:
+  - 35
+  applied: '10:46:02'
+- line: 24
+  text: decision[case 12][create][rule-session-start]
+  case: '12'
+  kind: create
+  slug: rule-session-start
+  origin: raw/2026-09-09/ledger.md#case-12
+  decision: decision-case-12
+  category: rules
+  exists: true
+  incomplete:
+  - then
+  applied: '10:46:02'
+- line: 25
+  text: decision[case 12][create][estimate-session-start-context]{ref:rule-session-start}
+  case: '12'
+  kind: create
+  slug: estimate-session-start-context
+  origin: raw/2026-09-09/ledger.md#case-12
+  decision: decision-case-12
+  ref: rule-session-start
+  category: estimates
+  exists: true
+  incomplete:
+  - then
+  status: passed
+  result: 'reading 1, start without /hi: the bare `decision[case 0][defer][probe]` line was refused, ledger
+    untouched (owner''s report); reading 2, start with /hi: the lines of this reply are lifted into the
+    ledger.'
+  folded:
+  - 37
+  applied: '10:46:02'
+- line: 26
+  text: decision[case 13][create][rule-case-protocol]{ref:rule-plan-mode}
+  case: '13'
+  kind: create
+  slug: rule-case-protocol
+  origin: raw/2026-09-09/ledger.md#case-13
+  decision: decision-case-13
+  ref: rule-plan-mode
+  category: rules
+  exists: true
+  incomplete:
+  - then
+  applied: '10:46:02'
+- line: 27
+  text: decision[case 13][create][estimate-case-protocol-loaded]{ref:rule-case-protocol}
+  case: '13'
+  kind: create
+  slug: estimate-case-protocol-loaded
+  origin: raw/2026-09-09/ledger.md#case-13
+  decision: decision-case-13
+  ref: rule-case-protocol
+  category: estimates
+  exists: true
+  incomplete:
+  - then
+  status: passed
+  result: first reply of session D states the LEDGER-block rule and one-Case-at-a-time and assembles the
+    Frontier from the /hi output alone, with no read call
+  folded:
+  - 38
+  - 50
+  applied: '10:46:02'
+- line: 29
+  text: 'lesson[knowledge][lesson-hooks-stop-payload] trigger: the Slice 1 probe on `Stop`, 2026-09-09,
+    session B (`probe-Stop-6.json`) root_cause: the payload carries `last_assistant_message` with the
+    whole reply text, `stop_hook_active` (false on an ordinary stop), `session_id`, `transcript_path`,
+    `cwd`, `permission_mode`; a `Stop` registration added to `settings.json` fired at the end of the same
+    turn, no restart needed'
+  kind: lesson
+  category: lessons
+  slug: lesson-hooks-stop-payload
+  origin: raw/2026-09-09/ledger.md#L29
+  fields:
+    type: lesson
+    kind: knowledge
+    root_cause: the payload carries `last_assistant_message` with the whole reply text, `stop_hook_active`
+      (false on an ordinary stop), `session_id`, `transcript_path`, `cwd`, `permission_mode`; a `Stop`
+      registration added to `settings.json` fired at the end of the same turn, no restart needed
+  sections:
+    Trigger: the Slice 1 probe on `Stop`, 2026-09-09, session B (`probe-Stop-6.json`)
+    Root cause: the payload carries `last_assistant_message` with the whole reply text, `stop_hook_active`
+      (false on an ordinary stop), `session_id`, `transcript_path`, `cwd`, `permission_mode`; a `Stop`
+      registration added to `settings.json` fired at the end of the same turn, no restart needed
+  incomplete:
+  - tags
+  - source
+  applied: '10:46:02'
+- line: 30
+  text: 'lesson[knowledge][lesson-hooks-exitplanmode-payload] trigger: the Slice 1 probe on `PostToolUse
+    ExitPlanMode`, 2026-09-09, session B (`probe-PostToolUse-1.json`) root_cause: `tool_input` is `{}`;
+    the plan text is in `tool_response.plan`, whole, with `session_id`, `transcript_path`, `cwd` and `permission_mode`
+    beside it, so C9 (copying the approved plan into `raw/<date>/spec.md`) can be a hook'
+  kind: lesson
+  category: lessons
+  slug: lesson-hooks-exitplanmode-payload
+  origin: raw/2026-09-09/ledger.md#L30
+  fields:
+    type: lesson
+    kind: knowledge
+    root_cause: '`tool_input` is `{}`; the plan text is in `tool_response.plan`, whole, with `session_id`,
+      `transcript_path`, `cwd` and `permission_mode` beside it, so C9 (copying the approved plan into
+      `raw/<date>/spec.md`) can be a hook'
+  sections:
+    Trigger: the Slice 1 probe on `PostToolUse ExitPlanMode`, 2026-09-09, session B (`probe-PostToolUse-1.json`)
+    Root cause: '`tool_input` is `{}`; the plan text is in `tool_response.plan`, whole, with `session_id`,
+      `transcript_path`, `cwd` and `permission_mode` beside it, so C9 (copying the approved plan into
+      `raw/<date>/spec.md`) can be a hook'
+  incomplete:
+  - tags
+  - source
+  applied: '10:46:02'
+- line: 31
+  text: 'lesson[error][lesson-hooks-windows-stdin-encoding] trigger: `probe-Stop-1.json` and `-2.json`
+    were 0 bytes although the `Stop` hook had fired, and `event_log.md` carried mojibake (`â€”`) in tool
+    details root_cause: a hook''s stdin on Windows is a cp1252 text wrapper with `surrogateescape`; a
+    UTF-8 payload becomes lone surrogates, `write_text(encoding="utf-8")` raises after creating the file;
+    fixed by reading `stdin.buffer` and decoding UTF-8 (`read_text` in `guppi/event.py`), stderr reconfigured
+    to UTF-8 in `cli.py`, covered by tests'
+  kind: lesson
+  category: lessons
+  slug: lesson-hooks-windows-stdin-encoding
+  origin: raw/2026-09-09/ledger.md#L31
+  fields:
+    type: lesson
+    kind: error
+    root_cause: a hook's stdin on Windows is a cp1252 text wrapper with `surrogateescape`; a UTF-8 payload
+      becomes lone surrogates, `write_text(encoding="utf-8")` raises after creating the file; fixed by
+      reading `stdin.buffer` and decoding UTF-8 (`read_text` in `guppi/event.py`), stderr reconfigured
+      to UTF-8 in `cli.py`, covered by tests
+  sections:
+    Trigger: '`probe-Stop-1.json` and `-2.json` were 0 bytes although the `Stop` hook had fired, and `event_log.md`
+      carried mojibake (`â€”`) in tool details'
+    Root cause: a hook's stdin on Windows is a cp1252 text wrapper with `surrogateescape`; a UTF-8 payload
+      becomes lone surrogates, `write_text(encoding="utf-8")` raises after creating the file; fixed by
+      reading `stdin.buffer` and decoding UTF-8 (`read_text` in `guppi/event.py`), stderr reconfigured
+      to UTF-8 in `cli.py`, covered by tests
+  incomplete:
+  - tags
+  applied: '10:46:02'
+- line: 40
+  text: decision[case 15.1][update][rule-ledger-write]
+  case: '15.1'
+  kind: update
+  slug: rule-ledger-write
+  origin: raw/2026-09-09/ledger.md#case-15.1
+  decision: decision-case-15.1
+  category: rules
+  incomplete:
+  - then
+  applied: '10:46:02'
+- line: 41
+  text: decision[case 15.1][update][estimate-ledger-write-lifts]
+  case: '15.1'
+  kind: update
+  slug: estimate-ledger-write-lifts
+  origin: raw/2026-09-09/ledger.md#case-15.1
+  decision: decision-case-15.1
+  category: estimates
+  incomplete:
+  - then
+  applied: '10:46:02'
+- line: 42
+  text: decision[case 15.2][update][rule-case-protocol]
+  case: '15.2'
+  kind: update
+  slug: rule-case-protocol
+  origin: raw/2026-09-09/ledger.md#case-15.2
+  decision: decision-case-15.2
+  category: rules
+  incomplete:
+  - then
+  superseded_by: '17'
+  applied: '10:46:02'
+- line: 43
+  text: decision[case 15.3][update][rule-ledger-write]
+  case: '15.3'
+  kind: update
+  slug: rule-ledger-write
+  origin: raw/2026-09-09/ledger.md#case-15.3
+  decision: decision-case-15.3
+  category: rules
+  incomplete:
+  - then
+  applied: '10:46:02'
+- line: 45
+  text: decision[case 14][update][rule-ledger-write]
+  case: '14'
+  kind: update
+  slug: rule-ledger-write
+  origin: raw/2026-09-09/ledger.md#case-14
+  decision: decision-case-14
+  category: rules
+  incomplete:
+  - then
+  applied: '10:46:02'
+- line: 46
+  text: decision[case 16.1][update][estimate-session-start-context]
+  case: '16.1'
+  kind: update
+  slug: estimate-session-start-context
+  origin: raw/2026-09-09/ledger.md#case-16.1
+  decision: decision-case-16.1
+  category: estimates
+  incomplete:
+  - then
+  applied: '10:46:02'
+- line: 47
+  text: decision[case 16.2][update][estimate-case-protocol-loaded]
+  case: '16.2'
+  kind: update
+  slug: estimate-case-protocol-loaded
+  origin: raw/2026-09-09/ledger.md#case-16.2
+  decision: decision-case-16.2
+  category: estimates
+  incomplete:
+  - then
+  applied: '10:46:02'
+- line: 48
+  text: decision[case 17][update][rule-case-protocol]{supersedes:case 15.2}
+  case: '17'
+  kind: update
+  slug: rule-case-protocol
+  origin: raw/2026-09-09/ledger.md#case-17
+  decision: decision-case-17
+  supersedes: '15.2'
+  category: rules
+  incomplete:
+  - then
+  applied: '10:46:02'
+- line: 49
+  text: 'lesson[error][lesson-estimates-criterion-stale-after-contract-change] trigger: case 15.1 redefined
+    a ledger record as a line in a LEDGER block; the criteria of estimate-session-start-context and estimate-case-protocol-loaded
+    still described the bare-line contract and the first stopped discriminating a session with /hi from
+    one without; found by hand while filling their Result, fixed by cases 16.1 and 16.2 root_cause: a
+    decision update on a Rule page has no step that lists the Estimates whose criterion quotes the changed
+    wording; until lint or the generator does it, the acknowledging reply must grep estimates/ for the
+    words the contract dropped'
+  kind: lesson
+  category: lessons
+  slug: lesson-estimates-criterion-stale-after-contract-change
+  origin: raw/2026-09-09/ledger.md#L49
+  fields:
+    type: lesson
+    kind: error
+    root_cause: a decision update on a Rule page has no step that lists the Estimates whose criterion
+      quotes the changed wording; until lint or the generator does it, the acknowledging reply must grep
+      estimates/ for the words the contract dropped
+  sections:
+    Trigger: case 15.1 redefined a ledger record as a line in a LEDGER block; the criteria of estimate-session-start-context
+      and estimate-case-protocol-loaded still described the bare-line contract and the first stopped discriminating
+      a session with /hi from one without; found by hand while filling their Result, fixed by cases 16.1
+      and 16.2
+    Root cause: a decision update on a Rule page has no step that lists the Estimates whose criterion
+      quotes the changed wording; until lint or the generator does it, the acknowledging reply must grep
+      estimates/ for the words the contract dropped
+  incomplete:
+  - tags
+  applied: '10:46:02'
+- line: 51
+  text: decision[case 18.1][create][rule-render-harness]{ref:rule-documentation}
+  case: '18.1'
+  kind: create
+  slug: rule-render-harness
+  origin: raw/2026-09-09/ledger.md#case-18.1
+  decision: decision-case-18.1
+  ref: rule-documentation
+  category: rules
+  exists: true
+  incomplete:
+  - then
+  applied: '10:46:02'
+- line: 52
+  text: decision[case 18.1][create][estimate-render-harness-reproduces]{ref:rule-render-harness}
+  case: '18.1'
+  kind: create
+  slug: estimate-render-harness-reproduces
+  origin: raw/2026-09-09/ledger.md#case-18.1
+  decision: decision-case-18.1
+  ref: rule-render-harness
+  category: estimates
+  exists: true
+  incomplete:
+  - then
+  status: passed
+  result: 'tests/test_render.py 12 green; live: `render --check` before the first render named only .claude/skills/hi/SKILL.md,
+    after `guppi render` git diff showed that file alone with 2 deletions (the outer rule-skill-hi markers),
+    CLAUDE.md untouched, `--check` then exit 0'
+  folded:
+  - 85
+  applied: '10:46:02'
+- line: 53
+  text: decision[case 18.2][create][rule-hook-registry]{ref:rule-session-start}
+  case: '18.2'
+  kind: create
+  slug: rule-hook-registry
+  origin: raw/2026-09-09/ledger.md#case-18.2
+  decision: decision-case-18.2
+  ref: rule-session-start
+  category: rules
+  exists: true
+  incomplete:
+  - then
+  applied: '10:46:02'
+- line: 54
+  text: decision[case 18.2][create][estimate-hook-registry-rendered]{ref:rule-hook-registry}
+  case: '18.2'
+  kind: create
+  slug: estimate-hook-registry-rendered
+  origin: raw/2026-09-09/ledger.md#case-18.2
+  decision: decision-case-18.2
+  ref: rule-hook-registry
+  category: estimates
+  exists: true
+  incomplete:
+  - then
+  applied: '10:46:02'
+- line: 55
+  text: decision[case 18.2][update][rule-session-start]
+  case: '18.2'
+  kind: update
+  slug: rule-session-start
+  origin: raw/2026-09-09/ledger.md#case-18.2
+  decision: decision-case-18.2
+  category: rules
+  incomplete:
+  - then
+  applied: '10:46:02'
+- line: 56
+  text: decision[case 18.3][update][estimates-schema]
+  case: '18.3'
+  kind: update
+  slug: estimates-schema
+  origin: raw/2026-09-09/ledger.md#case-18.3
+  decision: decision-case-18.3
+  category: file
+  path: vault/wiki/estimates/schema.md
+  incomplete:
+  - then
+  applied: '10:46:02'
+- line: 57
+  text: decision[case 19][create][rule-plan-mode]
+  case: '19'
+  kind: create
+  slug: rule-plan-mode
+  origin: raw/2026-09-09/ledger.md#case-19
+  decision: decision-case-19
+  category: rules
+  exists: true
+  incomplete:
+  - then
+  applied: '10:46:02'
+- line: 58
+  text: decision[case 19][create][estimate-plan-mode-verified]{ref:rule-plan-mode}
+  case: '19'
+  kind: create
+  slug: estimate-plan-mode-verified
+  origin: raw/2026-09-09/ledger.md#case-19
+  decision: decision-case-19
+  ref: rule-plan-mode
+  category: estimates
+  exists: true
+  incomplete:
+  - then
+  applied: '10:46:02'
+- line: 59
+  text: decision[case 20][create][rule-spec-capture]{ref:rule-plan-mode}
+  case: '20'
+  kind: create
+  slug: rule-spec-capture
+  origin: raw/2026-09-09/ledger.md#case-20
+  decision: decision-case-20
+  ref: rule-plan-mode
+  category: rules
+  exists: true
+  incomplete:
+  - then
+  applied: '10:46:02'
+- line: 60
+  text: decision[case 20][create][estimate-spec-capture-appends]{ref:rule-spec-capture}
+  case: '20'
+  kind: create
+  slug: estimate-spec-capture-appends
+  origin: raw/2026-09-09/ledger.md#case-20
+  decision: decision-case-20
+  ref: rule-spec-capture
+  category: estimates
+  exists: true
+  incomplete:
+  - then
+  applied: '10:46:02'
+- line: 61
+  text: decision[case 20][update][rule-plan-mode]
+  case: '20'
+  kind: update
+  slug: rule-plan-mode
+  origin: raw/2026-09-09/ledger.md#case-20
+  decision: decision-case-20
+  category: rules
+  incomplete:
+  - then
+  applied: '10:46:02'
+- line: 62
+  text: decision[case 20][update][rule-hook-registry]
+  case: '20'
+  kind: update
+  slug: rule-hook-registry
+  origin: raw/2026-09-09/ledger.md#case-20
+  decision: decision-case-20
+  category: rules
+  incomplete:
+  - then
+  applied: '10:46:02'
+- line: 63
+  text: decision[case 21][create][rule-lint]{ref:rule-documentation}
+  case: '21'
+  kind: create
+  slug: rule-lint
+  origin: raw/2026-09-09/ledger.md#case-21
+  decision: decision-case-21
+  ref: rule-documentation
+  category: rules
+  exists: true
+  incomplete:
+  - then
+  applied: '10:46:02'
+- line: 64
+  text: decision[case 21][create][estimate-lint-catches]{ref:rule-lint}
+  case: '21'
+  kind: create
+  slug: estimate-lint-catches
+  origin: raw/2026-09-09/ledger.md#case-21
+  decision: decision-case-21
+  ref: rule-lint
+  category: estimates
+  exists: true
+  incomplete:
+  - then
+  status: passed
+  result: 'tests/test_lint.py 22 green; live first run over the vault: 15 findings — 3 ref (rule-plan-mode
+    children arriving in the slice), 1 ref (rule-documentation, Slice 3), 9 status `draft while every
+    Estimate is passed` (Slice 1 pages, rule-render-harness), 1 method on estimate-session-start-context
+    (fixed by 26.2), 1 method on estimate-hi-no-read-calls (a MOC of hand readings, raised to the owner
+    as a Case)'
+  folded:
+  - 86
+  applied: '10:46:02'
+- line: 65
+  text: decision[case 22][create][rule-index]{ref:rule-documentation}
+  case: '22'
+  kind: create
+  slug: rule-index
+  origin: raw/2026-09-09/ledger.md#case-22
+  decision: decision-case-22
+  ref: rule-documentation
+  category: rules
+  exists: true
+  incomplete:
+  - then
+  superseded_by: '27'
+  applied: '10:46:02'
+- line: 66
+  text: decision[case 22][create][estimate-index-lists]{ref:rule-index}
+  case: '22'
+  kind: create
+  slug: estimate-index-lists
+  origin: raw/2026-09-09/ledger.md#case-22
+  decision: decision-case-22
+  ref: rule-index
+  category: estimates
+  exists: true
+  incomplete:
+  - then
+  superseded_by: '27'
+  status: passed
+  result: 'tests/test_index.py 6 green; live: five wiki/<category>-index.md files written, rules-index.md
+    17 lines for 17 pages, estimate criteria on one line each, `index --check` exit 0 right after'
+  folded:
+  - 87
+  applied: '10:46:02'
+- line: 67
+  text: decision[case 23.1][create][rule-ask]{ref:rule-plan-mode}
+  case: '23.1'
+  kind: create
+  slug: rule-ask
+  origin: raw/2026-09-09/ledger.md#case-23.1
+  decision: decision-case-23.1
+  ref: rule-plan-mode
+  category: rules
+  exists: true
+  incomplete:
+  - then
+  superseded_by: '26.1'
+  applied: '10:46:02'
+- line: 68
+  text: decision[case 23.1][create][estimate-ask-finds]{ref:rule-ask}
+  case: '23.1'
+  kind: create
+  slug: estimate-ask-finds
+  origin: raw/2026-09-09/ledger.md#case-23.1
+  decision: decision-case-23.1
+  ref: rule-ask
+  category: estimates
+  exists: true
+  incomplete:
+  - then
+  superseded_by: '26.1'
+  applied: '10:46:02'
+- line: 69
+  text: decision[case 24.1][create][rule-pretask-hook]{ref:rule-plan-mode}
+  case: '24.1'
+  kind: create
+  slug: rule-pretask-hook
+  origin: raw/2026-09-09/ledger.md#case-24.1
+  decision: decision-case-24.1
+  ref: rule-plan-mode
+  category: rules
+  exists: true
+  incomplete:
+  - then
+  applied: '10:46:02'
+- line: 70
+  text: decision[case 24.1][create][estimate-pretask-hook-gates]{ref:rule-pretask-hook}
+  case: '24.1'
+  kind: create
+  slug: estimate-pretask-hook-gates
+  origin: raw/2026-09-09/ledger.md#case-24.1
+  decision: decision-case-24.1
+  ref: rule-pretask-hook
+  category: estimates
+  exists: true
+  incomplete:
+  - then
+  applied: '10:46:02'
+- line: 71
+  text: decision[case 24.1][update][rule-hook-registry]
+  case: '24.1'
+  kind: update
+  slug: rule-hook-registry
+  origin: raw/2026-09-09/ledger.md#case-24.1
+  decision: decision-case-24.1
+  category: rules
+  incomplete:
+  - then
+  applied: '10:46:02'
+- line: 72
+  text: decision[case 24.2][create][rule-pretask]{ref:rule-plan-mode}
+  case: '24.2'
+  kind: create
+  slug: rule-pretask
+  origin: raw/2026-09-09/ledger.md#case-24.2
+  decision: decision-case-24.2
+  ref: rule-plan-mode
+  category: rules
+  exists: true
+  incomplete:
+  - then
+  superseded_by: '26.1'
+  applied: '10:46:02'
+- line: 73
+  text: decision[case 24.2][create][estimate-pretask-reconciles]{ref:rule-pretask}
+  case: '24.2'
+  kind: create
+  slug: estimate-pretask-reconciles
+  origin: raw/2026-09-09/ledger.md#case-24.2
+  decision: decision-case-24.2
+  ref: rule-pretask
+  category: estimates
+  exists: true
+  incomplete:
+  - then
+  superseded_by: '26.1'
+  applied: '10:46:02'
+- line: 74
+  text: decision[case 25][update][glossary]
+  case: '25'
+  kind: update
+  slug: glossary
+  origin: raw/2026-09-09/ledger.md#case-25
+  decision: decision-case-25
+  category: file
+  path: vault/wiki/glossary.md
+  incomplete:
+  - then
+  applied: '10:46:02'
+- line: 75
+  text: decision[case 26.1][update][rule-case-protocol]
+  case: '26.1'
+  kind: update
+  slug: rule-case-protocol
+  origin: raw/2026-09-09/ledger.md#case-26.1
+  decision: decision-case-26.1
+  category: rules
+  incomplete:
+  - then
+  applied: '10:46:02'
+- line: 76
+  text: decision[case 26.1][update][index]
+  case: '26.1'
+  kind: update
+  slug: index
+  origin: raw/2026-09-09/ledger.md#case-26.1
+  decision: decision-case-26.1
+  category: file
+  path: vault/wiki/index.md
+  incomplete:
+  - then
+  applied: '10:46:02'
+- line: 77
+  text: decision[case 26.1][update][rule-ask]{supersedes:case 23.1}
+  case: '26.1'
+  kind: update
+  slug: rule-ask
+  origin: raw/2026-09-09/ledger.md#case-26.1
+  decision: decision-case-26.1
+  supersedes: '23.1'
+  category: rules
+  incomplete:
+  - then
+  applied: '10:46:02'
+- line: 78
+  text: decision[case 26.1][update][rule-pretask]{supersedes:case 24.2}
+  case: '26.1'
+  kind: update
+  slug: rule-pretask
+  origin: raw/2026-09-09/ledger.md#case-26.1
+  decision: decision-case-26.1
+  supersedes: '24.2'
+  category: rules
+  incomplete:
+  - then
+  applied: '10:46:02'
+- line: 79
+  text: decision[case 26.2][update][rule-lint]
+  case: '26.2'
+  kind: update
+  slug: rule-lint
+  origin: raw/2026-09-09/ledger.md#case-26.2
+  decision: decision-case-26.2
+  category: rules
+  incomplete:
+  - then
+  applied: '10:46:02'
+- line: 80
+  text: decision[case 26.2][update][estimate-lint-catches]
+  case: '26.2'
+  kind: update
+  slug: estimate-lint-catches
+  origin: raw/2026-09-09/ledger.md#case-26.2
+  decision: decision-case-26.2
+  category: estimates
+  incomplete:
+  - then
+  applied: '10:46:02'
+- line: 81
+  text: decision[case 26.2][update][estimate-session-start-context]
+  case: '26.2'
+  kind: update
+  slug: estimate-session-start-context
+  origin: raw/2026-09-09/ledger.md#case-26.2
+  decision: decision-case-26.2
+  category: estimates
+  incomplete:
+  - then
+  applied: '10:46:02'
+- line: 82
+  text: decision[case 27][update][rule-index]{supersedes:case 22}
+  case: '27'
+  kind: update
+  slug: rule-index
+  origin: raw/2026-09-09/ledger.md#case-27
+  decision: decision-case-27
+  supersedes: '22'
+  category: rules
+  incomplete:
+  - then
+  applied: '10:46:02'
+- line: 83
+  text: decision[case 27][update][index]
+  case: '27'
+  kind: update
+  slug: index
+  origin: raw/2026-09-09/ledger.md#case-27
+  decision: decision-case-27
+  category: file
+  path: vault/wiki/index.md
+  incomplete:
+  - then
+  applied: '10:46:02'
+- line: 84
+  text: decision[case 27][update][rule-ask]
+  case: '27'
+  kind: update
+  slug: rule-ask
+  origin: raw/2026-09-09/ledger.md#case-27
+  decision: decision-case-27
+  category: rules
+  incomplete:
+  - then
+  applied: '10:46:02'
+- line: 88
+  text: 'lesson[knowledge][lesson-hooks-sessionstart-cannot-block] trigger: the old glossary''s Hook entry,
+    carried since the earlier harness root_cause: `SessionStart` cannot block — exit 2 is a no-op there
+    — so gating belongs on `PreToolUse`'
+  kind: lesson
+  category: lessons
+  slug: lesson-hooks-sessionstart-cannot-block
+  origin: raw/2026-09-09/ledger.md#L88
+  fields:
+    type: lesson
+    kind: knowledge
+    root_cause: '`SessionStart` cannot block — exit 2 is a no-op there — so gating belongs on `PreToolUse`'
+  sections:
+    Trigger: the old glossary's Hook entry, carried since the earlier harness
+    Root cause: '`SessionStart` cannot block — exit 2 is a no-op there — so gating belongs on `PreToolUse`'
+  incomplete:
+  - tags
+  - source
+  applied: '10:46:02'
+- line: 89
+  text: 'lesson[knowledge][lesson-hooks-messagedisplay-cannot-block] trigger: the old glossary''s Hook
+    entry, measured 2026-08-29 root_cause: `MessageDisplay` can neither block nor add context, which is
+    why the ledger writer lives on `Stop`'
+  kind: lesson
+  category: lessons
+  slug: lesson-hooks-messagedisplay-cannot-block
+  origin: raw/2026-09-09/ledger.md#L89
+  fields:
+    type: lesson
+    kind: knowledge
+    root_cause: '`MessageDisplay` can neither block nor add context, which is why the ledger writer lives
+      on `Stop`'
+  sections:
+    Trigger: the old glossary's Hook entry, measured 2026-08-29
+    Root cause: '`MessageDisplay` can neither block nor add context, which is why the ledger writer lives
+      on `Stop`'
+  incomplete:
+  - tags
+  - source
+  applied: '10:46:02'
+- line: 90
+  text: 'lesson[error][lesson-agents-loaded-at-session-start] trigger: session D rendered .claude/agents/ask-guppi.md
+    and dispatched it three times in the same session; every call failed with "Agent type ''ask-guppi''
+    not found", while the skill .claude/skills/pre-task/SKILL.md rendered minutes earlier was invocable
+    at once root_cause: Claude Code reads agent definitions at session start and skills on demand; a rendered
+    agent is usable only from the next session, so an Estimate on a new agent cannot be read in the session
+    that creates it'
+  kind: lesson
+  category: lessons
+  slug: lesson-agents-loaded-at-session-start
+  origin: raw/2026-09-09/ledger.md#L90
+  fields:
+    type: lesson
+    kind: error
+    root_cause: Claude Code reads agent definitions at session start and skills on demand; a rendered
+      agent is usable only from the next session, so an Estimate on a new agent cannot be read in the
+      session that creates it
+  sections:
+    Trigger: session D rendered .claude/agents/ask-guppi.md and dispatched it three times in the same
+      session; every call failed with "Agent type 'ask-guppi' not found", while the skill .claude/skills/pre-task/SKILL.md
+      rendered minutes earlier was invocable at once
+    Root cause: Claude Code reads agent definitions at session start and skills on demand; a rendered
+      agent is usable only from the next session, so an Estimate on a new agent cannot be read in the
+      session that creates it
+  incomplete:
+  - tags
+  applied: '10:46:02'
+decisions:
+- case: '1'
+  decision: decision-case-1
+  origin: raw/2026-09-09/ledger.md#case-1
+  targets:
+  - kind: update
+    category: file
+    slug: migration-plan
+    path: docs/migration/migration-plan.md
+  tags: []
+  case_text: {}
+  incomplete:
+  - context
+  - problem
+  - given
+  - then
+  applied: '10:46:02'
+- case: '2'
+  decision: decision-case-2
+  origin: raw/2026-09-09/ledger.md#case-2
+  targets:
+  - kind: update
+    category: file
+    slug: migration-plan
+    path: docs/migration/migration-plan.md
+  tags: []
+  case_text: {}
+  incomplete:
+  - context
+  - problem
+  - given
+  - then
+  applied: '10:46:02'
+- case: '3'
+  decision: decision-case-3
+  origin: raw/2026-09-09/ledger.md#case-3
+  targets:
+  - kind: update
+    category: file
+    slug: migration-plan
+    path: docs/migration/migration-plan.md
+  tags: []
+  case_text: {}
+  incomplete:
+  - context
+  - problem
+  - given
+  - then
+  applied: '10:46:02'
+- case: '4'
+  decision: decision-case-4
+  origin: raw/2026-09-09/ledger.md#case-4
+  targets:
+  - kind: update
+    category: file
+    slug: index
+    path: vault/wiki/index.md
+  - kind: update
+    category: file
+    slug: glossary
+    path: vault/wiki/glossary.md
+  tags: []
+  case_text: {}
+  incomplete:
+  - context
+  - problem
+  - given
+  - then
+  applied: '10:46:02'
+- case: '5'
+  decision: decision-case-5
+  origin: raw/2026-09-09/ledger.md#case-5
+  targets:
+  - kind: update
+    category: file
+    slug: index
+    path: vault/wiki/index.md
+  tags: []
+  case_text: {}
+  incomplete:
+  - context
+  - problem
+  - given
+  - then
+  applied: '10:46:02'
+- case: '6'
+  decision: decision-case-6
+  origin: raw/2026-09-09/ledger.md#case-6
+  targets:
+  - kind: delete
+    category: unknown
+    slug: old-harness
+    source: docs/harness-map-2026-09-07.md
+  tags: []
+  case_text: {}
+  incomplete:
+  - context
+  - problem
+  - given
+  - then
+  applied: '10:46:02'
+- case: '7'
+  decision: decision-case-7
+  origin: raw/2026-09-09/ledger.md#case-7
+  targets:
+  - kind: update
+    category: file
+    slug: migration-plan
+    path: docs/migration/migration-plan.md
+  tags: []
+  case_text: {}
+  incomplete:
+  - context
+  - problem
+  - given
+  - then
+  applied: '10:46:02'
+- case: '8'
+  decision: decision-case-8
+  origin: raw/2026-09-09/ledger.md#case-8
+  targets:
+  - kind: update
+    category: file
+    slug: migration-plan
+    path: docs/migration/migration-plan.md
+  tags: []
+  case_text: {}
+  incomplete:
+  - context
+  - problem
+  - given
+  - then
+  applied: '10:46:02'
+- case: '9'
+  decision: decision-case-9
+  origin: raw/2026-09-09/ledger.md#case-9
+  targets:
+  - kind: create
+    category: rules
+    slug: rule-event-log
+    ref: rule-session-start
+  - kind: create
+    category: estimates
+    slug: estimate-event-log-records
+    ref: rule-event-log
+  tags: []
+  case_text:
+    then: "**context.** Event log — шумная запись сессии: старты, вызовы инструментов, диспатчи,\nкоммиты,\
+      \ прогоны тестов. Пишется хуками, не инструкциями, поэтому фиксирует и отклонения\nагента. Не коммитится.\
+      \ Это первый механизм слайса, и вместе с ним рождается пакет `guppi/`,\nв котором живут все хуки\
+      \ и скрипты модели (D3).\n\n**now.** Python в репозитории нет. `pyproject.toml` объявляет пакет\
+      \ `guppi`, зависимость\n`pyyaml`, dev-группу с `ruff`; `[project.scripts]` не задан (Slice 0 отложил\
+      \ на Slice 1).\n`.claude/settings.json` — только `defaultMode: plan`, хуков нет. `.gitignore` не\
+      \ знает\n`event_log.md`. Старый аналог — `pre-task-ledger.tsv` и четыре хука на PowerShell —\nудалён\
+      \ в Slice 0 с вердиктом rework. Два урока старого vault держат: хук всегда получает\npayload на\
+      \ stdin, и мерить его надо через pipe; процесс, читающий stdin, вешается при\nфоновом запуске —\
+      \ каждый вызов в Makefile закрывает stdin. `tags.md` пуст: любой тег\nздесь — новый. `wiki/` не\
+      \ содержит страниц, pre-task по индексам невозможен (индексов\nнет); проверено чтением `wiki/` и\
+      \ `parked/` — дубликатов нет.\n\n**problem.** Три решения: (а) форма пакета и тестов — в частности\
+      \ pytest как новая\ndev-зависимость; (б) контракт event log — путь, формат строки, какие события;\
+      \ (в) как\nскилл `/hi` оставляет свою отметку без session id, и как `Stop`-хук потом её находит.\n\
+      \n**recommend.**\n\n(а) `guppi/` — пакет на stdlib + pyyaml: `guppi/cli.py` (`main`, argparse, субкоманды),\n\
+      `guppi/event.py`, позже `ledger.py`. `[project.scripts] guppi = \"guppi.cli:main\"`, вызов\nвсюду\
+      \ `uv run guppi …`. Тесты в `tests/` на **pytest**: roadmap в spec.md уже называет\n«`guppi lint`\
+      \ + pytest», brief — «the pytest suite beside it»; это одна dev-зависимость\nрядом с `ruff`, runtime-зависимостей\
+      \ не прибавляется. `Makefile` получает `test`\n(`uv run pytest -q < /dev/null`); `style` остаётся\
+      \ `ruff check .`.\n\n(б) `guppi event <name> [detail]`. Читает JSON хука со stdin, если он есть\
+      \ (не tty, не\nпуст): берёт `session_id`, `hook_event_name`, `tool_name`, для `Bash` — первые 80\
+      \ символов\n`command`, для `Agent`/`Skill` — тип агента или имя скилла. Дописывает одну строку в\n\
+      `vault/raw/<сегодня>/event_log.md`, создавая папку и файл:\n\n```\n- 15:02:11 a1b2c3d4 session-start\
+      \ startup\n- 15:02:40 -------- hi\n- 15:03:05 a1b2c3d4 tool Bash: git status --short\n- 15:04:12\
+      \ a1b2c3d4 tool Agent: Explore\n```\n\nФормат: `- HH:MM:SS <8 знаков session_id | -------- > <event>\
+      \ <detail>`. Никогда не\nроняет сессию: любая ошибка — в stderr, exit 0. Регистрация в `settings.json`:\n\
+      `SessionStart` → `uv run guppi event session-start`; `PostToolUse` без matcher'а →\n`uv run guppi\
+      \ event tool`. Пишутся все вызовы инструментов, не только Bash/Agent: это\nзапись для отладки, и\
+      \ фильтр — лишнее решение, которое потом придётся менять.\n`.gitignore` получает `vault/raw/*/event_log.md`.\n\
+      \n(в) `/hi` пишет `hi` через `!`-подстановку `uv run guppi event hi` — там нет payload'а,\nsession\
+      \ id неизвестен, в строке `--------`. `Stop`-хук (Case 10) считает сессию рабочей,\nесли в сегодняшнем\
+      \ `event_log.md` после **последней** строки `session-start` с его\nsession_id есть строка `hi`,\
+      \ и между ними нет `session-start` другой сессии. Две\nодновременные сессии в одном репозитории\
+      \ этот способ не различает — фиксируется в\n`How it works` как известное ограничение. Проба Case\
+      \ 10 заодно проверит, доступна ли\n`$CLAUDE_SESSION_ID` внутри `!`-подстановки; если да, `hi` получит\
+      \ настоящий id и\nограничение снимается.\n\n**then.**\n\n```\nslug: rule-event-log\ntype: rule\n\
+      kind: Leaf\npurpose: Prevents the ledger from being written into a session nothing recorded\nenforcement:\
+      \ hook\nimplementation_ref: [guppi/event.py, guppi/cli.py, .claude/settings.json]\nparent: rule-session-start\n\
+      sprint: migration\ntags: [session, hooks, harness]        # все три — новые, tags.md пуст\nestimate:\n\
+      \  slug: estimate-event-log-records\n  kind: QA\n  criterion: >\n    After a session starts and\
+      \ one tool call completes, raw/<date>/event_log.md carries a\n    `session-start` line with this\
+      \ session's id and a `tool` line after it; after `/hi`\n    it carries a `hi` line; `git check-ignore`\
+      \ reports the file ignored; and a hook\n    invocation with piped stdin exits 0 and finishes under\
+      \ 2 s.\n  method: >\n    pytest in tests/test_event.py drives guppi.event with piped JSON payloads\
+      \ against a\n    temp vault; the git-ignore and timing readings are taken once by hand, through\
+      \ a pipe,\n    and written into the estimate line.\n```\n\nКод: `guppi/__init__.py`, `guppi/cli.py`,\
+      \ `guppi/event.py`, `tests/test_event.py`,\nправки `pyproject.toml` (scripts, pytest в dev), `Makefile`\
+      \ (`test`), `.gitignore`,\n`.claude/settings.json` (два хука).\n\nLedger:\n```\n- decision[case\
+      \ 9][create][rule-event-log]{ref:rule-session-start}\n- decision[case 9][create][estimate-event-log-records]{ref:rule-event-log}\n\
+      ```\n\n**ratification.** Ратифицирован владельцем 2026-09-09, как предложено.\n\n---"
+  incomplete:
+  - context
+  - problem
+  - given
+  applied: '10:46:02'
+- case: '10'
+  decision: decision-case-10
+  origin: raw/2026-09-09/ledger.md#case-10
+  targets:
+  - kind: create
+    category: rules
+    slug: rule-ledger-write
+    ref: rule-session-start
+  - kind: create
+    category: estimates
+    slug: estimate-ledger-write-lifts
+    ref: rule-ledger-write
+  tags: []
+  case_text:
+    then: "**context.** Хук, который снимает `- decision[...]`, `- estimate[...]` и `- lesson[...]`\n\
+      строки из только что законченного ответа и дописывает их в `raw/<date>/ledger.md`\nдословно, ничего\
+      \ не интерпретируя. Отказывает с причиной, если сессия не рабочая\n(Case 9, пункт в). Это механизм,\
+      \ ради которого «ledger пишется вручную до Slice 1».\n\n**now.** Хука нет; ledger сегодняшнего дня\
+      \ — девять строк руками (Slice 0). Старый\n`catch-the-feedback.ps1` на `MessageDisplay` снимал fenced-блоки\
+      \ из ответа — удалён с\nвердиктом rework, идея «хук снимает строки из ответа» сохранена. Урок 2026-08-29:\n\
+      `MessageDisplay` не может ни говорить, ни блокировать; C7 переносит хук на `Stop`.\nДокументация\
+      \ (справка read-only агента по docs) говорит, что `Stop` получает\n`session_id`, `hook_event_name`,\
+      \ `last_assistant_message`, `permission_mode`, блокирует\nчерез exit 2 + stderr; видит ли модель\
+      \ причину, и есть ли `stop_hook_active` — не\nзадокументировано. Brief велит не верить, а пробовать.\
+      \ Формат строк — index §4 и\ncase-schema.\n\n**problem.** (а) откуда брать текст ответа; (б) какие\
+      \ строки считаются — в частности,\nстроки внутри fenced-блока: Case показывает будущие ledger-строки\
+      \ в `then` **до**\nратификации, и хук, снявший их с этого же ответа, записал бы нератифицированное;\n\
+      (в) что делать без `/hi`; (г) повторный запуск хука на том же ответе; (д) первая проба.\n\n**recommend.**\n\
+      \n(д) сначала — **проба**, первый шаг Work Mode: throwaway-команда `guppi probe`,\nзарегистрированная\
+      \ на `Stop` и на `PostToolUse` с matcher `ExitPlanMode`, пишет сырой\nstdin в `vault/raw/2026-09-09/probe-<event>-<n>.json`;\
+      \ в тело `/hi`-заглушки временно\nкладётся `!`-подстановка `echo $CLAUDE_SESSION_ID`. Снимается\
+      \ за одну новую сессию (хуки\nчитаются при старте — тоже показание пробы). Показания идут в ledger\
+      \ как\n`- lesson[knowledge][lesson-hooks-stop-payload] trigger: … root_cause: …` (и второй\nlesson\
+      \ для `ExitPlanMode`), проба и её файлы удаляются в том же коммите. Ветка кода,\nкоторую проба не\
+      \ подтвердила, не пишется.\n\n(а) текст — `last_assistant_message`; если проба покажет только `transcript_path`,\n\
+      читается последняя assistant-запись транскрипта. Пишется одна ветка, не обе.\n\n(б) считается строка,\
+      \ которая начинается с `- decision[`, `- estimate[` или\n`- lesson[` в нулевой колонке **и не лежит\
+      \ внутри fenced-блока**. Правило для агента,\nвойдёт в `rule-case-protocol` (Case 13): в fence —\
+      \ предпросмотр, голой строкой — запись;\nголую строку агент пишет только в ответе, который признаёт\
+      \ ратификацию.\n\n(в) строки есть, `/hi` не записан → exit 2, stderr:\n`ledger: 2 line(s) not written\
+      \ — no /hi recorded for session a1b2c3d4. Tell the person; run /hi, then repeat the lines.`\nСтрок\
+      \ нет → exit 0, ledger не трогается (создаётся лениво, при первой строке).\n\n(г) `stop_hook_active:\
+      \ true` (повторный Stop после блокировки) → exit 0, ничего не\nпишет и не блокирует, чтобы не зациклиться.\
+      \ Дополнительно строка, дословно уже\nприсутствующая в сегодняшнем ledger, не дописывается второй\
+      \ раз — это покрывает и\nповтор хука, и агента, повторившего строку в следующем ответе.\n\nПапка\
+      \ — `raw/<сегодня>/`, та же, что у event log. Регистрация: `Stop` →\n`uv run guppi ledger`, timeout\
+      \ 30 с. Строки Case 9–13 этой сессии пишутся руками при\nратификации (хука ещё нет); всё, что родится\
+      \ в Work Mode после запуска хука — строки\n`estimate[...]` с результатами и `lesson[...]` пробы\
+      \ — пишет хук. Это репетиция пункта 5\nDefinition of done.\n\n**then.**\n\n```\nslug: rule-ledger-write\n\
+      type: rule\nkind: Leaf\npurpose: Prevents a ratified line from existing only in a chat reply, or\
+      \ landing in a session no /hi opened\nenforcement: hook\nimplementation_ref: [guppi/ledger.py, .claude/settings.json]\n\
+      parent: rule-session-start\nsprint: migration\ntags: [session, hooks, harness, ledger]        #\
+      \ ledger — новый тег\nestimate:\n  slug: estimate-ledger-write-lifts\n  kind: QA\n  criterion: >\n\
+      \    Given a Stop payload whose reply carries one bare decision line, the same line inside a\n \
+      \   fence, and one bare estimate line, with a `hi` recorded for the session: the ledger\n    gains\
+      \ exactly the two bare lines, verbatim, once, even when the hook runs twice on the\n    same payload.\
+      \ Without `hi` the hook exits 2 with a reason naming the count and the\n    session, and the ledger\
+      \ is untouched. With `stop_hook_active` true it exits 0 and\n    writes nothing. In a live session,\
+      \ the last lines of this slice reach\n    raw/2026-09-09/ledger.md written by the hook, not by hand.\n\
+      \  method: >\n    pytest in tests/test_ledger.py with piped payloads against a temp vault; the live\n\
+      \    reading is taken once by hand and written into the estimate line.\n```\n\nКод: `guppi/ledger.py`,\
+      \ `guppi/probe.py` (временно), `tests/test_ledger.py`,\n`.claude/settings.json` (хук `Stop`).\n\n\
+      Ledger:\n```\n- decision[case 10][create][rule-ledger-write]{ref:rule-session-start}\n- decision[case\
+      \ 10][create][estimate-ledger-write-lifts]{ref:rule-ledger-write}\n```\n\n**ratification.** Ратифицирован\
+      \ владельцем 2026-09-09, как предложено.\n\n---"
+  incomplete:
+  - context
+  - problem
+  - given
+  applied: '10:46:02'
+- case: '11'
+  decision: decision-case-11
+  origin: raw/2026-09-09/ledger.md#case-11
+  targets:
+  - kind: create
+    category: rules
+    slug: rule-skill-hi
+    ref: rule-session-start
+  - kind: create
+    category: estimates
+    slug: estimate-hi-no-read-calls
+    ref: rule-skill-hi
+  - kind: create
+    category: rules
+    slug: rule-internal-context
+    ref: rule-skill-hi
+  - kind: create
+    category: estimates
+    slug: estimate-internal-context-loaded
+    ref: rule-internal-context
+  - kind: create
+    category: rules
+    slug: rule-git-context
+    ref: rule-skill-hi
+  - kind: create
+    category: estimates
+    slug: estimate-git-context-current
+    ref: rule-git-context
+  - kind: create
+    category: rules
+    slug: rule-github-issues
+    ref: rule-skill-hi
+  - kind: create
+    category: estimates
+    slug: estimate-github-issues-listed
+    ref: rule-github-issues
+  tags: []
+  case_text:
+    then: "**context.** `/hi` открывает рабочую сессию. Bash-подстановки в теле скилла исполняются\nдо\
+      \ первого хода агента, поэтому sprint, brief, git-состояние и issues просто присутствуют\nв контексте\
+      \ — нет шага, который агент мог бы забыть. Скилл сам оставляет отметку `hi` в\nevent log (C8). Без\
+      \ `/hi` сессия обычная: ничего не загружено, ledger не пишется.\n\n**now.** Скилла нет; `.claude/skills/`\
+      \ содержит только `grill-me`. Старый\n`session-brief.ps1` (SessionStart, печатал brief) удалён с\
+      \ вердиктом rework. Черновик\n`docs/migration/rule-session-start.md` задаёт структуру: MOC `rule-skill-hi`\n\
+      (`render: full`) и три Leaf с `render: partial` — internal context, git context, github\nissues;\
+      \ разбиение обосновано там же (четыре `@`-импорта падают одинаково — один Leaf;\n`git pull` и `gh\
+      \ issue list` падают по-разному — отдельные). До Slice 2 renderer'а нет:\nфайл скилла и страницы\
+      \ правил — две копии на одну сессию, brief это принимает.\nДва факта среды, которых черновик не\
+      \ знал: `origin` → `c:/PROJECTS/job hunt ai`\n(репозиторий продукта), у `migration` нет upstream;\
+      \ `gh` не залогинен.\n\n**problem.** (а) текст скилла — он же тело четырёх страниц; (б) `git pull`\
+      \ в `/hi` при\nтаком `origin`; (в) `gh issue list` без авторизации; (г) Estimates на каждую страницу.\n\
+      \n**recommend.**\n\n(а) Файл `.claude/skills/hi/SKILL.md`, frontmatter `name: hi`,\n`disable-model-invocation:\
+      \ true` (вызывает только человек — иначе агент мог бы «открыть»\nсессию сам). Тело — рендер MOC\
+      \ с маркерами трёх детей:\n\n```markdown\n---\nname: hi\ndescription: Open a working session — sprint,\
+      \ brief, git state, open issues, then the Frontier.\ndisable-model-invocation: true\n---\n<!-- rule-skill-hi\
+      \ -->\nRecorded: !`uv run guppi event hi --session \"${CLAUDE_SESSION_ID:-}\"`\n\n<!-- rule-internal-context\
+      \ -->\n@vault/wiki/sprint.md\n@vault/wiki/brief.md\n<!-- /rule-internal-context -->\n\n<!-- rule-git-context\
+      \ -->\nPull: !`git pull --ff-only 2>&1 || true`\nBranch: !`git branch --show-current`\nStatus: !`git\
+      \ status --short`\n<!-- /rule-git-context -->\n\n<!-- rule-github-issues -->\nOpen issues: !`gh\
+      \ issue list --limit 5 2>&1 || true`\n<!-- /rule-github-issues -->\n\nAssemble the Frontier from\
+      \ the above and present it as a list: tasks, problems, debt\ncarried over, where the sprint stands;\
+      \ on a plan branch the unfinished plan comes first.\nA failed pull or an unavailable `gh` is an\
+      \ item on that list, not a reason to stop. Wait\nfor the human to pick the order or defer items.\
+      \ Before any `create`, ask the vault first\n(§3 of `vault/wiki/index.md`).\n<!-- /rule-skill-hi\
+      \ -->\n```\n\n`${CLAUDE_SESSION_ID:-}` — если проба Case 10 покажет переменную, `hi` получит настоящий\n\
+      id; если нет — пустая строка, `--------`, текст скилла не меняется.\n\n(б) `git pull --ff-only`\
+      \ остаётся в скилле: правило «pull здесь и только здесь» — про\nместо, не про сегодняшний remote.\
+      \ Падение печатается в контекст и становится пунктом\nFrontier. Сам `origin` — вопрос владельцу\
+      \ (11.1): оставить как есть до Slice 5 (merge в\n`main`), или снять/переназначить сейчас. Рекомендую\
+      \ оставить: репозиторий сейчас\nлокальный, а `git pull` с `|| true` безвреден.\n\n(в) `gh issue\
+      \ list` остаётся; без авторизации в контекст попадает `gh`'s own message.\nВопрос владельцу (11.2):\
+      \ логиниться ли в `gh` для этого репозитория (нужен GitHub-remote,\nкоторого нет). Рекомендую: не\
+      \ сейчас; правило страницы — «список или названная причина\nего отсутствия».\n\n(г) Четыре Estimate,\
+      \ все QA, метод — ручное показание при старте сессии, записанное в\nстроку `estimate[...]`; автоматической\
+      \ проверки у markdown-скилла нет до Slice 2.\n\n**then.**\n\n```\nslug: rule-skill-hi\ntype: rule\n\
+      kind: MOC\npurpose: Prevents a session from being loaded piecemeal by read-tool calls\nenforcement:\
+      \ render\ngoverns: .claude/skills/hi/SKILL.md\nrender_mode: full\nparent: rule-session-start\nchildren:\
+      \ [rule-internal-context, rule-git-context, rule-github-issues]   # порядок — содержание\nsprint:\
+      \ migration\ntags: [session, harness]\nestimate:\n  slug: estimate-hi-no-read-calls\n  kind: QA\n\
+      \  criterion: >\n    After /hi the context holds sprint.md, brief.md, the current branch, git status\
+      \ and the\n    issue list (or gh's message) with no read-tool call having occurred, and\n    raw/<date>/event_log.md\
+      \ carries a `hi` line.\n  method: one reading at a session start, by hand, recorded in the estimate\
+      \ line\n\nslug: rule-internal-context\ntype: rule\nkind: Leaf\npurpose: Prevents work starting without\
+      \ the current sprint and the previous session's handover\nenforcement: render\ngoverns: .claude/skills/hi/SKILL.md\n\
+      render_mode: partial\nparent: rule-skill-hi\nsprint: migration\ntags: [session, harness]\nestimate:\n\
+      \  slug: estimate-internal-context-loaded\n  kind: QA\n  criterion: the text of sprint.md and brief.md\
+      \ is present in the first turn's context\n  method: one reading at a session start, by hand\n\n\
+      slug: rule-git-context\ntype: rule\nkind: Leaf\npurpose: Prevents a session from starting on a branch\
+      \ it does not know, or pulling mid-session\nenforcement: render\ngoverns: .claude/skills/hi/SKILL.md\n\
+      render_mode: partial\nparent: rule-skill-hi\nsprint: migration\ntags: [session, harness, git]  \
+      \        # git — новый тег\nestimate:\n  slug: estimate-git-context-current\n  kind: QA\n  criterion:\
+      \ >\n    branch and short status are in context; a failing pull shows its message there and the\n\
+      \    skill still completes; no pull happens later in the session\n  method: one reading at a session\
+      \ start, by hand, on the current remote\n\nslug: rule-github-issues\ntype: rule\nkind: Leaf\npurpose:\
+      \ Prevents deferred bugs, tracked outside the vault, from being forgotten at session start\nenforcement:\
+      \ render\ngoverns: .claude/skills/hi/SKILL.md\nrender_mode: partial\nparent: rule-skill-hi\nsprint:\
+      \ migration\ntags: [session, harness, github]       # github — новый тег\nestimate:\n  slug: estimate-github-issues-listed\n\
+      \  kind: QA\n  criterion: >\n    the open-issue list, or gh's own message naming why there is none,\
+      \ is in context and\n    the skill completes either way\n  method: one reading at a session start,\
+      \ by hand, in the current gh state\n```\n\nКод: `.claude/skills/hi/SKILL.md`; страницы `vault/wiki/rules/rule-skill-hi.md`,\n\
+      `rule-internal-context.md`, `rule-git-context.md`, `rule-github-issues.md`; четыре\nстраницы в `vault/wiki/estimates/`.\n\
+      \nLedger:\n```\n- decision[case 11][create][rule-skill-hi]{ref:rule-session-start}\n- decision[case\
+      \ 11][create][estimate-hi-no-read-calls]{ref:rule-skill-hi}\n- decision[case 11][create][rule-internal-context]{ref:rule-skill-hi}\n\
+      - decision[case 11][create][estimate-internal-context-loaded]{ref:rule-internal-context}\n- decision[case\
+      \ 11][create][rule-git-context]{ref:rule-skill-hi}\n- decision[case 11][create][estimate-git-context-current]{ref:rule-git-context}\n\
+      - decision[case 11][create][rule-github-issues]{ref:rule-skill-hi}\n- decision[case 11][create][estimate-github-issues-listed]{ref:rule-github-issues}\n\
+      ```\n\n**ratification.** Ратифицирован владельцем 2026-09-09, как предложено. 11.1: `origin`\nостаётся\
+      \ как есть до Slice 5. 11.2: в `gh` не логинимся; Estimate снимается по ветке\n«причина названа».\n\
+      \n---"
+  incomplete:
+  - context
+  - problem
+  - given
+  applied: '10:46:02'
+- case: '12'
+  decision: decision-case-12
+  origin: raw/2026-09-09/ledger.md#case-12
+  targets:
+  - kind: create
+    category: rules
+    slug: rule-session-start
+  - kind: create
+    category: estimates
+    slug: estimate-session-start-context
+    ref: rule-session-start
+  tags: []
+  case_text:
+    then: "**context.** Родитель трёх механизмов, ратифицированных в Case 9–11. Rule MOC: порядок\nдетей\
+      \ — содержание. Не рендерится (это не файл harness'а, а описание фазы), поэтому\n`enforcement` нет;\
+      \ сила — в детях.\n\n**now.** Черновик `docs/migration/rule-session-start.md` целиком, с `TBD` в\
+      \ `origin`,\n`sprint`, `created`. Его секция `## The Frontier` не входит в список секций\n`rules/schema.yaml`\
+      \ — переносится в `## How it works`. Родителя у MOC фазы нет (верхний\nуровень). `estimates: [estimate-session-start-context]`\
+      \ — уже назван черновиком.\n\n**problem.** Только сквозная проверка: что именно измеряет Estimate\
+      \ MOC, чего не\nизмеряют Estimates детей. Дети проверяют, что каждый механизм работает; MOC — что\n\
+      различение «обычная / рабочая сессия» держится насквозь.\n\n**recommend.** Страница — черновик с\
+      \ реальными значениями, Frontier внутри\n`## How it works`. Estimate — два показания, два запуска:\
+      \ обычная сессия (без `/hi`), в\nкоторой агент пишет голую `- decision[...]`-строку → строка не\
+      \ попадает в `ledger.md`, и\nчеловек видит в ответе причину; рабочая сессия (после `/hi`) с той\
+      \ же строкой → строка в\n`ledger.md`. Метод ручной, оба показания в строку `estimate[...]`.\n\n\
+      **then.**\n\n```\nslug: rule-session-start\ntype: rule\nkind: MOC\npurpose: Prevents a working session\
+      \ from starting against unknown state\nchildren: [rule-skill-hi, rule-event-log, rule-ledger-write]\
+      \   # порядок — содержание\nsprint: migration\ntags: [session, workflow, hooks]       # workflow\
+      \ — новый тег\nbody: черновик docs/migration/rule-session-start.md, секции Purpose / How it works\n\
+      \      (включая The Frontier) / Children / Estimates / History\nestimate:\n  slug: estimate-session-start-context\n\
+      \  kind: QA\n  criterion: >\n    In a session opened without /hi, a bare `- decision[...]` line\
+      \ in a reply does not\n    reach raw/<date>/ledger.md and the reply the person sees names the cause.\
+      \ In a session\n    opened with /hi, the same line does reach it. Both readings taken end-to-end.\n\
+      \  method: two session starts, by hand, one reading each, recorded in the estimate line\n```\n\n\
+      Файлы: `vault/wiki/rules/rule-session-start.md`,\n`vault/wiki/estimates/estimate-session-start-context.md`.\
+      \ Черновик в `docs/migration/`\nостаётся до Slice 5 (spec C6).\n\nLedger:\n```\n- decision[case\
+      \ 12][create][rule-session-start]\n- decision[case 12][create][estimate-session-start-context]{ref:rule-session-start}\n\
+      ```\n\n**ratification.** Ратифицирован владельцем 2026-09-09, как предложено.\n\n---"
+  incomplete:
+  - context
+  - problem
+  - given
+  applied: '10:46:02'
+- case: '13'
+  decision: decision-case-13
+  origin: raw/2026-09-09/ledger.md#case-13
+  targets:
+  - kind: create
+    category: rules
+    slug: rule-case-protocol
+    ref: rule-plan-mode
+  - kind: create
+    category: estimates
+    slug: estimate-case-protocol-loaded
+    ref: rule-case-protocol
+  tags: []
+  case_text:
+    then: '**context.** Правило, которое агент видит всегда: как ведётся Case, когда он делится,
+
+      когда и как пишутся ledger-строки. Инструкция, не enforcement — хука на «закончил ли ты
+
+      Frontier» не бывает, поэтому текст стоит там, где агент его не пропустит: в `CLAUDE.md`.
+
+      Первый Leaf будущего `rule-plan-mode` (Slice 2), описан в `docs/migration/rule-plan-mode.md`
+
+      как ребёнок 1.
+
+
+      **now.** `CLAUDE.md` — bootstrap Slice 0: импортирует glossary и case-schema, несёт секцию
+
+      «Migration mode» с пунктом «ledger lines are written by hand … until the ledger hook
+
+      exists», который после Case 10 станет ложным. Шесть секций Case уже приходят через
+
+      `@vault/wiki/case-schema.md` — повторять их нельзя. Правило «fence — предпросмотр, голая
+
+      строка — запись» ратифицировано в Case 10 и ещё нигде не записано для агента. `/ask`
+
+      появится в Slice 2; до него «спросить vault» — чтение папок категорий.
+
+
+      **problem.** (а) текст секции; (б) правка «Migration mode» под появившийся хук;
+
+      (в) `parent: rule-plan-mode` указывает на страницу, которой нет до Slice 2.
+
+
+      **recommend.**
+
+
+      (а) Секция `## Case protocol` в `CLAUDE.md` между маркерами, ~20 строк, без повтора
+
+      case-schema:
+
+
+      ```markdown
+
+      <!-- rule-case-protocol -->'
+  incomplete:
+  - context
+  - problem
+  - given
+  applied: '10:46:02'
+- case: '15.1'
+  decision: decision-case-15.1
+  origin: raw/2026-09-09/ledger.md#case-15.1
+  targets:
+  - kind: update
+    category: rules
+    slug: rule-ledger-write
+  - kind: update
+    category: estimates
+    slug: estimate-ledger-write-lifts
+  tags: []
+  case_text: {}
+  incomplete:
+  - context
+  - problem
+  - given
+  - then
+  applied: '10:46:02'
+- case: '15.2'
+  decision: decision-case-15.2
+  origin: raw/2026-09-09/ledger.md#case-15.2
+  targets:
+  - kind: update
+    category: rules
+    slug: rule-case-protocol
+  tags: []
+  case_text: {}
+  incomplete:
+  - context
+  - problem
+  - given
+  - then
+  superseded_by:
+  - decision-case-17
+  applied: '10:46:02'
+- case: '15.3'
+  decision: decision-case-15.3
+  origin: raw/2026-09-09/ledger.md#case-15.3
+  targets:
+  - kind: update
+    category: rules
+    slug: rule-ledger-write
+  tags: []
+  case_text: {}
+  incomplete:
+  - context
+  - problem
+  - given
+  - then
+  applied: '10:46:02'
+- case: '14'
+  decision: decision-case-14
+  origin: raw/2026-09-09/ledger.md#case-14
+  targets:
+  - kind: update
+    category: rules
+    slug: rule-ledger-write
+  tags: []
+  case_text: {}
+  incomplete:
+  - context
+  - problem
+  - given
+  - then
+  applied: '10:46:02'
+- case: '16.1'
+  decision: decision-case-16.1
+  origin: raw/2026-09-09/ledger.md#case-16.1
+  targets:
+  - kind: update
+    category: estimates
+    slug: estimate-session-start-context
+  tags: []
+  case_text: {}
+  incomplete:
+  - context
+  - problem
+  - given
+  - then
+  applied: '10:46:02'
+- case: '16.2'
+  decision: decision-case-16.2
+  origin: raw/2026-09-09/ledger.md#case-16.2
+  targets:
+  - kind: update
+    category: estimates
+    slug: estimate-case-protocol-loaded
+  tags: []
+  case_text: {}
+  incomplete:
+  - context
+  - problem
+  - given
+  - then
+  applied: '10:46:02'
+- case: '17'
+  decision: decision-case-17
+  origin: raw/2026-09-09/ledger.md#case-17
+  targets:
+  - kind: update
+    category: rules
+    slug: rule-case-protocol
+  tags: []
+  case_text: {}
+  supersedes:
+  - decision-case-15.2
+  incomplete:
+  - context
+  - problem
+  - given
+  - then
+  applied: '10:46:02'
+- case: '18.1'
+  decision: decision-case-18.1
+  origin: raw/2026-09-09/ledger.md#case-18.1
+  targets:
+  - kind: create
+    category: rules
+    slug: rule-render-harness
+    ref: rule-documentation
+  - kind: create
+    category: estimates
+    slug: estimate-render-harness-reproduces
+    ref: rule-render-harness
+  tags: []
+  case_text:
+    then: "`uv run guppi render` пишет; `uv run guppi render --check` сравнивает, exit 1, не пишет.\n\
+      Маркеры: `partial` оставляет их в файле, `full` пишет тело без внешних маркеров.\n`SKILL.md` теряет\
+      \ две строки комментариев. Новый тег `render`.\n\n```\ncreate:\n  slug: rule-render-harness\n  type:\
+      \ rule\n  kind: Leaf\n  purpose: Prevents a Rule page and the harness file it governs from becoming\
+      \ two copies of one text\n  enforcement: check\n  implementation_ref: [guppi/render.py, tests/test_render.py]\n\
+      \  parent: rule-documentation        # dangles until Slice 3, like rule-plan-mode did\n  tags: [harness,\
+      \ render]\n  estimate:\n    slug: estimate-render-harness-reproduces\n    kind: QA\n    criterion:\
+      \ against a temp vault — a full MOC with two partial children renders to the MOC's Render text with\
+      \ each child marker replaced by the child's block, in child order, outer markers dropped; a partial\
+      \ page splices between its markers in an existing file and leaves the markers; a partial target\
+      \ without markers exits 1 with nothing written; --check on a differing file exits 1, names it, writes\
+      \ nothing, and exits 0 on an identical one. Against the live vault — after `uv run guppi render`,\
+      \ `git diff --stat` shows only the two dropped marker lines of .claude/skills/hi/SKILL.md and no\
+      \ change to CLAUDE.md; `guppi render --check` then exits 0\n    method: pytest in tests/test_render.py\
+      \ against a temp vault; the live reading once by hand\n```\n\nСемантика `guppi render`: обходит\
+      \ `vault/wiki/rules/`, берёт страницы с\n`enforcement: render` и текст `## Render` между собственными\
+      \ маркерами. `full` пишет этот\nтекст как весь файл `governs`, без внешних маркеров; одиночная строка\
+      \ `<!-- child -->`\nв нём заменяется Render-текстом ребёнка вместе с его маркерами, в порядке `children`,\n\
+      блоки детей разделены одной пустой строкой. `partial`, чью цель не держит ни одна\n`full`-страница,\
+      \ вклеивается в существующий файл между его маркерами, маркеры остаются.\nОшибки — на stderr, exit\
+      \ 1, ничего не записано: `partial` без маркеров в цели; `full`\nназывает ребёнка, который не render-страница;\
+      \ две `full` на один файл."
+  incomplete:
+  - context
+  - problem
+  - given
+  applied: '10:46:02'
+- case: '18.2'
+  decision: decision-case-18.2
+  origin: raw/2026-09-09/ledger.md#case-18.2
+  targets:
+  - kind: create
+    category: rules
+    slug: rule-hook-registry
+    ref: rule-session-start
+  - kind: create
+    category: estimates
+    slug: estimate-hook-registry-rendered
+    ref: rule-hook-registry
+  - kind: update
+    category: rules
+    slug: rule-session-start
+  tags: []
+  case_text:
+    then: "```\ncreate:\n  slug: rule-hook-registry\n  type: rule\n  kind: Leaf\n  purpose: Prevents a\
+      \ hook from being registered by hand, outside a ratified decision\n  enforcement: render\n  governs:\
+      \ .claude/settings.json\n  render_mode: full\n  parent: rule-session-start         # temporary;\
+      \ moves under a harness MOC when one exists\n  tags: [hooks, harness, render]\n  estimate:\n   \
+      \ slug: estimate-hook-registry-rendered\n    kind: QA\n    criterion: `uv run guppi render` leaves\
+      \ .claude/settings.json byte-identical to the ratified Render body (git diff empty after the two\
+      \ hook additions of cases 20 and 24.1 are applied by hand once), the file parses as JSON, and the\
+      \ next session start still writes a session-start line into event_log.md\n    method: the JSON case\
+      \ in tests/test_render.py; the live reading once by hand\nupdate:\n  slug: rule-session-start\n\
+      \  change: children → [rule-skill-hi, rule-event-log, rule-ledger-write, rule-hook-registry]; ##\
+      \ Children gets the fourth line; one sentence in How it works — the registry comes last because\
+      \ it records the registration of children 2–3, it is not a step of the session\n```\n\nRender body\
+      \ (final, after cases 20 and 24.1):\n\n```json\n{\n  \"permissions\": {\n    \"defaultMode\": \"\
+      plan\"\n  },\n  \"hooks\": {\n    \"SessionStart\": [\n      { \"hooks\": [ { \"type\": \"command\"\
+      , \"command\": \"uv run guppi event session-start\", \"timeout\": 30 } ] }\n    ],\n    \"PreToolUse\"\
+      : [\n      { \"matcher\": \"ExitPlanMode\",\n        \"hooks\": [ { \"type\": \"command\", \"command\"\
+      : \"uv run guppi pretask\", \"timeout\": 30 } ] }\n    ],\n    \"PostToolUse\": [\n      { \"hooks\"\
+      : [ { \"type\": \"command\", \"command\": \"uv run guppi event tool\", \"timeout\": 30 } ] },\n\
+      \      { \"matcher\": \"ExitPlanMode\",\n        \"hooks\": [ { \"type\": \"command\", \"command\"\
+      : \"uv run guppi spec\", \"timeout\": 30 } ] }\n    ],\n    \"Stop\": [\n      { \"hooks\": [ {\
+      \ \"type\": \"command\", \"command\": \"uv run guppi ledger\", \"timeout\": 30 } ] }\n    ]\n  }\n\
+      }\n```"
+  incomplete:
+  - context
+  - problem
+  - given
+  applied: '10:46:02'
+- case: '18.3'
+  decision: decision-case-18.3
+  origin: raw/2026-09-09/ledger.md#case-18.3
+  targets:
+  - kind: update
+    category: file
+    slug: estimates-schema
+    path: vault/wiki/estimates/schema.md
+  tags: []
+  case_text:
+    then: "```\nupdate:\n  slug: estimates-schema\n  file: vault/wiki/estimates/schema.md\n  change: the\
+      \ `## Method` row becomes — \"How it is checked. On a Leaf target: the test file that performs the\
+      \ check, by path (`tests/test_x.py`); a check no file can perform — a live reading of a session\
+      \ start — says so, and is the exception. On a MOC target: the make target that runs the children's\
+      \ checks as one pipeline, by name; the target depends on the children's targets, so the MOC's check\
+      \ is the sequence, never a new test. Research: what is being measured or investigated, and how.\"\
+      \n```"
+  incomplete:
+  - context
+  - problem
+  - given
+  applied: '10:46:02'
+- case: '19'
+  decision: decision-case-19
+  origin: raw/2026-09-09/ledger.md#case-19
+  targets:
+  - kind: create
+    category: rules
+    slug: rule-plan-mode
+  - kind: create
+    category: estimates
+    slug: estimate-plan-mode-verified
+    ref: rule-plan-mode
+  tags: []
+  case_text:
+    then: "```\ncreate:\n  slug: rule-plan-mode\n  type: rule\n  kind: MOC\n  purpose: Prevents work being\
+      \ planned against stale or contradictory vault state\n  children: [rule-case-protocol, rule-ask,\
+      \ rule-pretask-hook, rule-pretask, rule-spec-capture]   # after case 20\n  tags: [session, workflow]\n\
+      \  estimate:\n    slug: estimate-plan-mode-verified\n    kind: QA\n    criterion: a `create` for\
+      \ a page whose purpose the index already carries is flagged in the Case's `now` before ratification;\
+      \ the pre-task hook fires before the plan is written and the plan is still written\n    method:\
+      \ `make test-plan-mode`, the pipeline over tests/test_spec.py and tests/test_pretask.py; the flagging\
+      \ is one live reading by hand\n```\n\n`## Purpose` страницы: purpose плюс одно предложение из черновика\
+      \ — «deciding to build\nsomething that already exists, or ratifying decisions that conflict with\
+      \ each other or\nwith what is already there». `rule-case-protocol` не трогается: его `parent` перестаёт\n\
+      висеть сам."
+  incomplete:
+  - context
+  - problem
+  - given
+  applied: '10:46:02'
+- case: '20'
+  decision: decision-case-20
+  origin: raw/2026-09-09/ledger.md#case-20
+  targets:
+  - kind: create
+    category: rules
+    slug: rule-spec-capture
+    ref: rule-plan-mode
+  - kind: create
+    category: estimates
+    slug: estimate-spec-capture-appends
+    ref: rule-spec-capture
+  - kind: update
+    category: rules
+    slug: rule-plan-mode
+  - kind: update
+    category: rules
+    slug: rule-hook-registry
+  tags: []
+  case_text:
+    then: "```\ncreate:\n  slug: rule-spec-capture\n  type: rule\n  kind: Leaf\n  purpose: Prevents an\
+      \ approved Spec from existing only in Claude Code's plan file, outside the repository\n  enforcement:\
+      \ hook\n  implementation_ref: [guppi/spec.py, .claude/settings.json]\n  parent: rule-plan-mode\n\
+      \  tags: [session, hooks, harness, workflow]\n  estimate:\n    slug: estimate-spec-capture-appends\n\
+      \    kind: QA\n    criterion: given a PostToolUse payload naming ExitPlanMode with a plan and a\
+      \ `hi` recorded — spec.md gains a `---` separator (when the file has content), the stamp `<!-- approved\
+      \ HH:MM:SS · session xxxxxxxx -->` and the plan text, once, even when the hook runs twice; earlier\
+      \ documents stay intact. Without `hi` — exit 2 naming the session, file untouched. Another tool's\
+      \ payload — nothing written, exit 0. Live — the next plan approval lands in raw/<date>/spec.md by\
+      \ the hook, not by hand, and the reading records what a rejected plan produces\n    method: pytest\
+      \ in tests/test_spec.py with piped payloads against a temp vault; the live reading once by hand\n\
+      update:\n  slug: rule-plan-mode\n  change: children gain rule-spec-capture last\nupdate:\n  slug:\
+      \ rule-hook-registry\n  change: PostToolUse, matcher ExitPlanMode → `uv run guppi spec`\n```\n\n\
+      `CLAUDE.md`, migration-абзац: «The approved plan is copied to `vault/raw/<date>/spec.md`»\n→ «...\
+      \ copied by the `Stop`-side hook `guppi spec` since Slice 2»."
+  incomplete:
+  - context
+  - problem
+  - given
+  applied: '10:46:02'
+- case: '21'
+  decision: decision-case-21
+  origin: raw/2026-09-09/ledger.md#case-21
+  targets:
+  - kind: create
+    category: rules
+    slug: rule-lint
+    ref: rule-documentation
+  - kind: create
+    category: estimates
+    slug: estimate-lint-catches
+    ref: rule-lint
+  tags: []
+  case_text:
+    then: "```\ncreate:\n  slug: rule-lint\n  type: rule\n  kind: Leaf\n  purpose: Prevents a page that\
+      \ breaks the schema, points nowhere, or claims a status its Estimates do not support from sitting\
+      \ in the vault unnoticed\n  enforcement: check\n  implementation_ref: [guppi/lint.py, tests/test_lint.py,\
+      \ Makefile]\n  parent: rule-documentation\n  tags: [harness, workflow]\n  estimate:\n    slug: estimate-lint-catches\n\
+      \    kind: QA\n    criterion: against a temp vault seeded with one page per defect class, `guppi\
+      \ lint` names each defective page with the class and nothing else, exits 1, and exits 0 with no\
+      \ output on a clean vault; the two Method classes (26.2) are seeded too. Against the live vault\
+      \ — the first run's findings are each either an item of the brief's known-false list or become a\
+      \ Case\n    method: pytest in tests/test_lint.py, one test per defect class; the live reading once\
+      \ by hand\nupdate:\n  slug: estimate-session-start-context\n  change: Method → \"`make test-session-start`,\
+      \ the pipeline over tests/test_event.py and tests/test_ledger.py; the two end-to-end readings by\
+      \ hand\"\n```\n\nКлассы дефектов `guppi lint` (читает `vault/wiki/<category>/`, архив исключён;\
+      \ печатает\n`<category>/<slug>: <what>`, exit 1 при любой находке; ничего не пишет):\n\n1. schema:\
+      \ отсутствует обязательное поле или секция; значение вне `values`; не выполнен\n   `conditional`.\n\
+      2. schema-prose: `schema.md` называет поле или секцию, которых нет в `schema.yaml`, или\n   наоборот.\n\
+      3. ref: slug в `parent`, `children`, `estimates`, `target`, `addressed_by` или `[[slug]]`\n   в\
+      \ теле, которого нет ни среди живых, ни среди архивных страниц.\n4. origin: файл ledger или строка\
+      \ `[case N]` не существуют.\n5. path: путь в `implementation_ref` или `governs` не существует.\n\
+      6. orphan: живая страница, которую не называет frontmatter ни одной другой живой\n   страницы; MOC\
+      \ без `parent` считается названным через детей и Estimates.\n7. status: `built` при Estimate не\
+      \ `passed`; `passed`/`failed` без `## Result`; Estimate,\n   чей `target` не перечисляет её; `draft`\
+      \ при всех Estimates `passed` (сообщает, не\n   ставит — `built` ставит генератор слайса 3).\n8.\
+      \ method (26.2): у Estimate с Leaf-целью `## Method` называет существующий путь `tests/…`\n   или\
+      \ содержит «by hand»; у Estimate с MOC-целью — `make <target>`, и цель есть в\n   `Makefile`.\n\n\
+      `Makefile`: `lint` = `guppi render --check` + `guppi index --check` + `guppi lint`;\n`test-session-start`\
+      \ = `pytest tests/test_event.py tests/test_ledger.py`;\n`test-plan-mode` = `pytest tests/test_spec.py\
+      \ tests/test_pretask.py`. Заголовок Makefile\n(«ни одна цель не пишет в дерево») остаётся верным."
+  incomplete:
+  - context
+  - problem
+  - given
+  applied: '10:46:02'
+- case: '22'
+  decision: decision-case-22
+  origin: raw/2026-09-09/ledger.md#case-22
+  targets:
+  - kind: create
+    category: rules
+    slug: rule-index
+    ref: rule-documentation
+  - kind: create
+    category: estimates
+    slug: estimate-index-lists
+    ref: rule-index
+  tags: []
+  case_text:
+    then: "```\ncreate:\n  slug: rule-index\n  type: rule\n  kind: Leaf\n  purpose: Prevents a pre-task\
+      \ check from reading every page of a category to learn what already exists\n  enforcement: check\n\
+      \  implementation_ref: [guppi/index.py, tests/test_index.py, Makefile]\n  parent: rule-documentation\n\
+      \  tags: [harness, workflow]\n  estimate:\n    slug: estimate-index-lists\n    kind: QA\n    criterion:\
+      \ against a temp vault — each category file holds exactly one line per live page in slug order with\
+      \ the field its schema names; an estimate line carries its whole criterion on one line; an archived\
+      \ page and a decision have no line; an empty category yields an empty file; --check exits 1 naming\
+      \ a stale file and 0 when all match, writing nothing. Against the live vault — five files appear,\
+      \ rules-index.md has one line per page of rules/, --check exits 0 right after\n    method: pytest\
+      \ in tests/test_index.py; the live reading once by hand\nupdate:\n  slug: index\n  file: vault/wiki/index.md\n\
+      \  change: the index file is `wiki/<category>-index.md` — §1 layout, §10 (librarian reads), §11;\
+      \ decisions still have none\n```\n\n`uv run guppi index` пишет `vault/wiki/<category>-index.md`\
+      \ для entities, rules,\nestimates, lessons, insights: строка `slug: text`, по slug, файл есть и\
+      \ пустым. Текст —\n`purpose` (entities, rules), `root_cause` (lessons), `pattern` (insights), `##\
+      \ Criterion`\nв одну строку (estimates). Архив и decisions без строк. `--check` — сравнение, exit\
+      \ 1,\nне пишет. Файлы коммитятся."
+  incomplete:
+  - context
+  - problem
+  - given
+  superseded_by:
+  - decision-case-27
+  applied: '10:46:02'
+- case: '23.1'
+  decision: decision-case-23.1
+  origin: raw/2026-09-09/ledger.md#case-23.1
+  targets:
+  - kind: create
+    category: rules
+    slug: rule-ask
+    ref: rule-plan-mode
+  - kind: create
+    category: estimates
+    slug: estimate-ask-finds
+    ref: rule-ask
+  tags: []
+  case_text:
+    then: "```\ncreate:\n  slug: rule-ask\n  type: rule\n  kind: Leaf\n  purpose: Prevents a create from\
+      \ being proposed without the vault having been asked whether it already holds the thing, or forbids\
+      \ it\n  enforcement: render\n  governs: .claude/agents/ask-guppi.md\n  render_mode: full\n  parent:\
+      \ rule-plan-mode\n  tags: [session, workflow, harness]\n  estimate:\n    slug: estimate-ask-finds\n\
+      \    kind: QA\n    criterion: three live dispatches once the indexes exist — a question about an\
+      \ existing page, in English, names its slug under `exists`; the same question in Russian names the\
+      \ same slug; a proposal crossing a known rule (a SessionStart hook meant to block) names the rule\
+      \ or lesson under `rules`; each answer is the five lines, no index or page text reaches the caller's\
+      \ context, each dispatch is in the event log; the reading records whether `@` expanded and the tokens\
+      \ of one dispatch\n    method: three readings by hand in one session — the exception the Method\
+      \ rule allows\n```\n\nТекст рендера (в файл при `full` без маркеров):\n\n```markdown\n---\nname:\
+      \ ask-guppi\ndescription: Ask the vault what already exists, what is close, what is missing, which\
+      \ rule the proposal touches, which tags fit and whether a slug is free. One short question per Case.\n\
+      model: opus\ntools: Read, Grep, Glob\n---\nYou search the vault at `vault/wiki/` for the caller\
+      \ and answer in five lines. You\ndecide nothing and propose nothing.\n\nRules of the vault, one\
+      \ line per page:\n@vault/wiki/rules-index.md\n\nStart there. Read `vault/wiki/<category>-index.md`\
+      \ for every other category the question\ntouches (entities, estimates, lessons, insights; decisions\
+      \ have none). Open a page only\nwhen the question asks what it says, or when its index line is not\
+      \ enough to judge;\nthen report its `status` too, since a `draft` page is something already decided.\n\
+      Grep `vault/wiki/index.md` when the proposal may cross a rule of the vault itself.\nCompare meanings,\
+      \ not words; the aliases column of `vault/wiki/tags.md` maps Russian\nwords to tags. Never compare\
+      \ across categories.\n\nAnswer with exactly these five lines, each present, \"none\" when empty:\n\
+      - exists: slug — what matches\n- near: slug — how it differs\n- missing: what the question asks\
+      \ for that no page covers\n- rules: rule or lesson slug — what it forbids or requires here\n- tags/slug:\
+      \ tags that fit, existing first; whether the named slug is free\n```\n\n```\nupdate:\n  slug: rule-case-protocol\n\
+      \  change: render text — \"Use `/ask` once it exists; until then read the category folders\" → \"\
+      Dispatch the `ask-guppi` agent with one short question once it exists; until then read the category\
+      \ folders\"\nupdate:\n  slug: index\n  change: §3 and §11 name the mechanism \"the `ask-guppi` agent\"\
+      ; no other wording changes\n```"
+  incomplete:
+  - context
+  - problem
+  - given
+  superseded_by:
+  - decision-case-26.1
+  applied: '10:46:02'
+- case: '24.1'
+  decision: decision-case-24.1
+  origin: raw/2026-09-09/ledger.md#case-24.1
+  targets:
+  - kind: create
+    category: rules
+    slug: rule-pretask-hook
+    ref: rule-plan-mode
+  - kind: create
+    category: estimates
+    slug: estimate-pretask-hook-gates
+    ref: rule-pretask-hook
+  - kind: update
+    category: rules
+    slug: rule-hook-registry
+  tags: []
+  case_text:
+    then: "```\ncreate:\n  slug: rule-pretask-hook\n  type: rule\n  kind: Leaf\n  purpose: Prevents a\
+      \ Spec from being approved before its decisions were checked against each other and the vault\n\
+      \  enforcement: hook\n  implementation_ref: [guppi/pretask.py, .claude/settings.json]\n  parent:\
+      \ rule-plan-mode\n  tags: [session, workflow, hooks, harness]\n  estimate:\n    slug: estimate-pretask-hook-gates\n\
+      \    kind: QA\n    criterion: given a PreToolUse payload naming ExitPlanMode — with no `pretask`\
+      \ line after this session's `hi` in the event log, exit 2 with a reason naming /pre-task and the\
+      \ session; with the line, exit 0; any other tool, exit 0; the live approval of the next plan passes\
+      \ only after /pre-task ran\n    method: pytest in tests/test_pretask.py with piped payloads against\
+      \ a temp event log; the live reading once by hand\nupdate:\n  slug: rule-hook-registry\n  change:\
+      \ PreToolUse, matcher ExitPlanMode → `uv run guppi pretask`\n```"
+  incomplete:
+  - context
+  - problem
+  - given
+  applied: '10:46:02'
+- case: '24.2'
+  decision: decision-case-24.2
+  origin: raw/2026-09-09/ledger.md#case-24.2
+  targets:
+  - kind: create
+    category: rules
+    slug: rule-pretask
+    ref: rule-plan-mode
+  - kind: create
+    category: estimates
+    slug: estimate-pretask-reconciles
+    ref: rule-pretask
+  tags: []
+  case_text:
+    then: "```\ncreate:\n  slug: rule-pretask\n  type: rule\n  kind: Leaf\n  purpose: Prevents a set of\
+      \ ratified decisions from reaching the Spec with a contradiction between them or with the vault\n\
+      \  enforcement: render\n  governs: .claude/skills/pre-task/SKILL.md\n  render_mode: full\n  parent:\
+      \ rule-plan-mode\n  tags: [session, workflow, harness]\n  estimate:\n    slug: estimate-pretask-reconciles\n\
+      \    kind: QA\n    criterion: one live run before a plan approval — the event log gains a `pretask`\
+      \ line, the ask-guppi agent is dispatched once with the list of this Plan Mode's decisions, and\
+      \ every finding it returns is either raised as a Case or named as already known in the reply\n \
+      \   method: one reading by hand — the exception the Method rule allows\n```\n\nТекст рендера:\n\n\
+      ```markdown\n---\nname: pre-task\ndescription: Check this Plan Mode's ratified decisions against\
+      \ each other and the vault before the Spec is approved.\n---\nRecorded: !`uv run guppi event pretask\
+      \ --session \"${CLAUDE_SESSION_ID:-}\"`\n\nList every decision ratified in this Plan Mode, one line\
+      \ each: slug — decision type —\npurpose. Dispatch the `ask-guppi` agent once with that list and\
+      \ the question: which of\nthese contradict a page of the vault, a rule of `index.md`, or each other.\
+      \ Raise each\nfinding as a Case, or say in one line why it is already known. Then exit Plan Mode\
+      \ again.\n```"
+  incomplete:
+  - context
+  - problem
+  - given
+  superseded_by:
+  - decision-case-26.1
+  applied: '10:46:02'
+- case: '25'
+  decision: decision-case-25
+  origin: raw/2026-09-09/ledger.md#case-25
+  targets:
+  - kind: update
+    category: file
+    slug: glossary
+    path: vault/wiki/glossary.md
+  tags: []
+  case_text:
+    then: "```\nupdate:\n  slug: glossary\n  file: vault/wiki/glossary.md\n  shape: per section one table\
+      \ — term | meaning (≤ 100 chars, no argument) | where\n  rule: no fact is dropped — a fact with\
+      \ no home in `where` stays in `meaning` or becomes a lesson[knowledge] line\n  size: ≤ 8 000 chars\n\
+      \  sections kept: all nine, Retired terms included\n```\n\nПереписанный файл — Приложение A: измерено\
+      \ 8 002 знака, 1 319 слов, около 1 750 токенов\nпротив 6 300 сегодня. Два факта из старого глоссария,\
+      \ у которых нет дома,\nуходят в ledger строками `lesson[knowledge]` в ответе, где ложится файл:\n\
+      \n```\n- lesson[knowledge][lesson-hooks-sessionstart-cannot-block] trigger: the old glossary's Hook\
+      \ entry, carried since the earlier harness root_cause: `SessionStart` cannot block — exit 2 is a\
+      \ no-op there — so gating belongs on `PreToolUse`\n- lesson[knowledge][lesson-hooks-messagedisplay-cannot-block]\
+      \ trigger: the old glossary's Hook entry, measured 2026-08-29 root_cause: `MessageDisplay` can neither\
+      \ block nor add context, which is why the ledger writer lives on `Stop`\n```"
+  incomplete:
+  - context
+  - problem
+  - given
+  applied: '10:46:02'
+- case: '26.1'
+  decision: decision-case-26.1
+  origin: raw/2026-09-09/ledger.md#case-26.1
+  targets:
+  - kind: update
+    category: rules
+    slug: rule-case-protocol
+  - kind: update
+    category: file
+    slug: index
+    path: vault/wiki/index.md
+  - kind: update
+    category: rules
+    slug: rule-ask
+  - kind: update
+    category: rules
+    slug: rule-pretask
+  tags: []
+  case_text: {}
+  supersedes:
+  - decision-case-23.1
+  - decision-case-24.2
+  incomplete:
+  - context
+  - problem
+  - given
+  - then
+  applied: '10:46:02'
+- case: '26.2'
+  decision: decision-case-26.2
+  origin: raw/2026-09-09/ledger.md#case-26.2
+  targets:
+  - kind: update
+    category: rules
+    slug: rule-lint
+  - kind: update
+    category: estimates
+    slug: estimate-lint-catches
+  - kind: update
+    category: estimates
+    slug: estimate-session-start-context
+  tags: []
+  case_text: {}
+  incomplete:
+  - context
+  - problem
+  - given
+  - then
+  applied: '10:46:02'
+- case: '27'
+  decision: decision-case-27
+  origin: raw/2026-09-09/ledger.md#case-27
+  targets:
+  - kind: update
+    category: rules
+    slug: rule-index
+  - kind: update
+    category: file
+    slug: index
+    path: vault/wiki/index.md
+  - kind: update
+    category: rules
+    slug: rule-ask
+  tags: []
+  case_text:
+    then: 'Учтено выше: файлы `wiki/<category>-index.md`; `index.md` §1, §10, §11; `rule-ask`
+
+      читает `rules-index.md`. Индекса decisions нет.'
+  supersedes:
+  - decision-case-22
+  incomplete:
+  - context
+  - problem
+  - given
+  applied: '10:46:02'
+unparsed: []

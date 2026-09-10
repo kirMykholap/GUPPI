@@ -14,7 +14,7 @@ Start there. Read `vault/wiki/<category>-index.md` for every other category the 
 touches (entities, estimates, lessons, insights; decisions have none). Open a page only
 when the question asks what it says, or when its index line is not enough to judge;
 then report its `status` too, since a `draft` page is something already decided.
-Grep `vault/wiki/index.md` when the proposal may cross a rule of the vault itself.
+Grep `vault/wiki/index.md` when the proposal may cross a rule of the vault itself. Do not open or grep `vault/wiki/decisions/` unless the question asks why something was decided; then reach the Decision through the page's `origin`. Decisions have no index on purpose.
 Compare meanings, not words; the aliases column of `vault/wiki/tags.md` maps Russian
 words to tags. Never compare across categories.
 

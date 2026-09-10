@@ -2,7 +2,7 @@
 type: rule
 kind: Leaf
 purpose: Prevents work starting without the current sprint and the previous session's handover
-status: draft
+status: built
 enforcement: render
 governs: .claude/skills/hi/SKILL.md
 render_mode: partial
@@ -20,18 +20,18 @@ Prevents work starting without the current sprint and the previous session's han
 Both are vault files, both fail the same way — missing file or wrong path — so they are
 one rule rather than two.
 
-## How it works
-
-The glossary, `case-schema.md` and the category schemas are not listed here: they arrive
-through `@import` in `CLAUDE.md`, and re-reading them would duplicate context that is
-already present.
-
 ## Render
 
 <!-- rule-internal-context -->
 @vault/wiki/sprint.md
 @vault/wiki/brief.md
 <!-- /rule-internal-context -->
+
+## How it works
+
+The glossary, `case-schema.md` and the category schemas are not listed here: they arrive
+through `@import` in `CLAUDE.md`, and re-reading them would duplicate context that is
+already present.
 
 ## Estimates
 
@@ -44,3 +44,4 @@ already present.
 ## History
 
 - 2026-09-09 created · raw/2026-09-09/ledger.md#case-11
+- 2026-09-10 status: draft → built · cascade

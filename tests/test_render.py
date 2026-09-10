@@ -187,6 +187,37 @@ def test_full_naming_a_child_that_does_not_render_writes_nothing(tmp_path):
     assert not (tmp_path / "out" / "SKILL.md").exists()
 
 
+def test_a_child_without_render_contributes_nothing_and_needs_no_marker(tmp_path):
+    rule(
+        tmp_path,
+        "rule-frame",
+        "full",
+        "out/SKILL.md",
+        FRAME.replace("<!-- rule-two -->\n", ""),
+        kind="MOC",
+        children=["rule-one", "rule-two"],
+    )
+    rule(tmp_path, "rule-one", "partial", "out/SKILL.md", ONE, parent="rule-frame")
+    page(
+        tmp_path,
+        "rule-two",
+        {
+            "type": "rule",
+            "kind": "Leaf",
+            "purpose": "x",
+            "status": "draft",
+            "enforcement": "check",
+            "parent": "rule-frame",
+        },
+    )
+    code, _out, err = run([], tmp_path)
+    assert (code, err) == (0, "")
+    text = (tmp_path / "out" / "SKILL.md").read_text(encoding="utf-8")
+    assert text == EXPECTED_FULL.replace(
+        "<!-- rule-two -->\nTwo: !`echo two`\n<!-- /rule-two -->\n\n", ""
+    )
+
+
 def test_two_full_pages_on_one_file_write_nothing(tmp_path):
     rule(
         tmp_path,

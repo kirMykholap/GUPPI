@@ -2,11 +2,11 @@
 type: rule
 kind: Leaf
 purpose: Prevents a ratified decision from ending the session without a page, or a page from carrying a field nobody ratified
-status: built
+status: draft
 enforcement: check
 implementation_ref: [guppi/generate.py, tests/test_generate.py]
 parent: rule-documentation
-estimates: [estimate-generate-writes]
+estimates: [estimate-generate-writes, estimate-generate-walks-dates]
 origin: raw/2026-09-10/ledger.md#case-32
 sprint: migration
 created: 2026-09-10
@@ -26,7 +26,9 @@ disagreeing silently. A slug collision is an error, never a rename.
 
 `uv run guppi generate [--date]` applies the entries of `raw/<date>/materialize.yaml`
 in order and marks each applied entry `applied: <time>` in the yaml, so a rerun
-writes nothing. An entry that fails — a collision, a `ref` naming no page, a
+writes nothing. Without `--date` it walks every `raw/<date>/` that holds a yaml, in
+date order; a date with no unapplied entry changes nothing; a failure on one date is
+reported and the walk goes on, with exit 1 at the end. An entry that fails — a collision, a `ref` naming no page, a
 `replace` whose text is absent or not unique — is reported on stderr and skipped;
 the rest apply; the exit code is 1.
 
@@ -77,6 +79,7 @@ declared and not registered is reported on stderr and left on the page.
 ## Estimates
 
 - [[estimate-generate-writes]]
+- [[estimate-generate-walks-dates]]
 
 ## Parent
 
@@ -92,3 +95,6 @@ declared and not registered is reported on stderr and left on the page.
 - 2026-09-10 created · raw/2026-09-10/ledger.md#case-32
 - 2026-09-10 estimate estimate-generate-writes added · raw/2026-09-10/ledger.md#case-32
 - 2026-09-10 status: draft → built · cascade
+- 2026-09-10 updated: without --date the script walks every raw/<date> with a yaml, applying what is not yet applied · raw/2026-09-10/ledger.md#case-43
+- 2026-09-10 estimate estimate-generate-walks-dates added · raw/2026-09-10/ledger.md#case-43
+- 2026-09-10 status: built → draft · cascade

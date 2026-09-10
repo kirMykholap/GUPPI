@@ -1,7 +1,7 @@
 ---
 type: estimate
 kind: QA
-status: pending
+status: passed
 target: rule-retro-commit
 origin: raw/2026-09-10/ledger.md#case-38.2
 sprint: migration
@@ -24,6 +24,11 @@ from Retro on a dirty tree is refused, and passes after the commit.
 
 pytest in tests/test_gate.py with piped payloads against a temp repository; the live reading once by hand
 
+## Result
+
+tests/test_gate.py 6 green; live: the agent called /handoff through the Skill tool on a dirty tree at the close of session E, the PreToolUse hook refused with `gate: /handoff refused — commit first. 162 path(s) uncommitted`, the skill did not run
+
 ## History
 
 - 2026-09-10 created · raw/2026-09-10/ledger.md#case-38.2
+- 2026-09-10 status: pending → passed · raw/2026-09-10/ledger.md#L78

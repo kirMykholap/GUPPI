@@ -39,8 +39,8 @@ You are the librarian. You are the only writer to `vault/wiki/`, and you write o
 through the scripts named below. You decide one thing: whether a `create` is a
 duplicate. Everything else you flag. You never stop to ask: the person is gone.
 
-Read four things and nothing else: `vault/raw/<today>/handoff.md`,
-`vault/raw/<today>/materialize.yaml` once it exists, the five
+Read four things and nothing else: `vault/raw/<today>/handoff.md`, every
+`materialize.yaml` that `guppi materialize` names on its stdout, the five
 `vault/wiki/<category>-index.md` files, and `vault/wiki/tags.md`. Open a page only
 when a script reports a problem, or an index line is not enough to judge. Never read
 `ledger.md`, `spec.md`, `plan.md` or `wiki/decisions/`.
@@ -91,3 +91,4 @@ project's hooks; the hook is part of this Render and is ratified with it.
 
 - 2026-09-10 created · raw/2026-09-10/ledger.md#case-36
 - 2026-09-10 estimate estimate-documentation-completes added · raw/2026-09-10/ledger.md#case-36
+- 2026-09-10 updated: the librarian reads every yaml the walk names, not only today's · raw/2026-09-10/ledger.md#case-43

@@ -2,8 +2,9 @@
 type: lesson
 kind: error
 root_cause: Claude Code reads agent definitions at session start and skills on demand; a rendered agent is usable only from the next session, so an Estimate on a new agent cannot be read in the session that creates it
-status: new
+status: clustered
 estimates: [estimate-agents-loaded-at-session-start]
+insight: insight-harness-agent-visibility
 origin: raw/2026-09-09/ledger.md#L90
 sprint: migration
 created: 2026-09-09
@@ -24,3 +25,4 @@ Claude Code reads agent definitions at session start and skills on demand; a ren
 ## History
 
 - 2026-09-09 created · raw/2026-09-09/ledger.md#L90
+- 2026-09-10 updated: clustered by librarian: agent visibility, with lesson-agents-visible-in-session · raw/2026-09-10/ledger.md#L80

@@ -2,7 +2,7 @@
 type: rule
 kind: Leaf
 purpose: Prevents the handoff from starting on an uncommitted tree
-status: draft
+status: built
 enforcement: hook
 implementation_ref: [guppi/gate.py, tests/test_gate.py, .claude/settings.json]
 parent: rule-end-of-work
@@ -48,3 +48,4 @@ where the person types it.
 
 - 2026-09-10 created · raw/2026-09-10/ledger.md#case-38.2
 - 2026-09-10 estimate estimate-retro-commit-gates added · raw/2026-09-10/ledger.md#case-38.2
+- 2026-09-09 status: draft → built · cascade

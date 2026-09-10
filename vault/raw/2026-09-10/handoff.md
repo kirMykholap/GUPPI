@@ -28,3 +28,54 @@
   librarian agent, /retro and /handoff`.
 - Not done: `/retro` and `/handoff` were not invoked (the session ran long); the librarian
   never ran; the readings listed in the brief wait for the next session.
+
+---
+
+# Handoff — 2026-09-10, Slice 3 closes, session F
+
+## Notes from memory
+
+- The owner picked "close Slice 3" from the Frontier and ratified both Cases at the
+  first reading, without a question. No hesitation recorded.
+- Case 42 carries no decision line: it only runs the built rituals. Its ten readings
+  (eight of Slice 3, two of Case 43) are written by the main agent after your commit,
+  so they stay uncommitted and are materialized by the next run, whatever its date.
+- Case 43 changes the contract of `materialize` and `generate`: without `--date` both
+  walk every `vault/raw/<date>/`. Caveat accepted in the Spec: the Render text of
+  `rule-documentation` changes with this run, so `render --check` is red until
+  `guppi render` is run and committed at the start of the next session.
+- The two new Estimates hang by `ref` on `built` rules; the cascade drops
+  `rule-materialize` and `rule-page-generation` to `draft` until their readings land.
+- The brief of session E said `Materialize 2026-09-11`; the session ran on 2026-09-10,
+  the same date as E, so the raw folder is shared.
+
+## Direct instructions to the librarian
+
+- The walk touches 2026-09-09 as well: its yaml is fully applied except
+  `[delete][old-harness]` of case 6, which has no page and no category. Flag it; do
+  not invent a route. Its stderr line is expected on every run.
+- Two lessons on agent visibility contradict each other:
+  `lesson-agents-loaded-at-session-start` (session D, a rendered agent usable only
+  from the next session) and `lesson-agents-visible-in-session` (session E, the
+  opposite observed). Same area, opposite claims. Synthesis: cluster or flag.
+- Case 43 creates `estimate-materialize-walks-dates` and `estimate-generate-walks-dates`;
+  nothing close exists in `estimates-index.md` as of this morning. Its three updates
+  rewrite the How it works of `rule-materialize`, replace one sentence in
+  `rule-page-generation` and one in the Render of `rule-documentation`.
+- Do not change `sprint.md`. Slice 3 is not closed until the ten readings are read;
+  the next session's handoff says so.
+- The deferred list of the previous brief carries over with one more postponement each;
+  nothing of it was touched this session.
+
+## What actually got done
+
+- Commit `165a261 chore(ledger): the tail of session E` (three ledger lines of 11:18:24).
+- Commit `893b3d9 feat(harness): Case 43 — materialize and generate walk every date`:
+  `guppi/materialize.py` (`dates_with`, `materialize_date`), `guppi/generate.py`
+  (`generate_date`), six tests in `tests/test_materialize.py` and `tests/test_generate.py`,
+  `make test` 132 green, the Spec of session F appended to `raw/2026-09-10/spec.md`, the
+  five decision lines of Case 43.
+- Not done: the pages of Case 43 (yours, now); `guppi render` of
+  `.claude/agents/librarian-guppi.md` after your update of `rule-documentation` (next
+  session, with a commit); the ten estimate readings of Case 42 (after your report,
+  uncommitted); the close of Slice 3 in `sprint.md` (next session).

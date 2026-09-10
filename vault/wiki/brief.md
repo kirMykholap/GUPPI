@@ -1,85 +1,124 @@
-# Brief — 2026-09-10, after Slice 3 session E
+# Brief — 2026-09-10, after Slice 3 session F
 
-**Hand-written by the session that built Slice 3, for the last time.** The librarian
-exists since this slice and writes the next brief; its first run is what the next session
-does first.
+Written by the librarian on its first run.
 
 ## Where things stand
 
-Branch `migration`, eleven commits above `main`. Slices 0–2 are closed. Slice 3 is
-**built, not closed**: every script, page and skill exists, `make test` is 126 green, but
-the librarian has never run and `/retro` and `/handoff` were never invoked. Its Spec is
-`raw/2026-09-10/spec.md` (Cases 29–41, copied by the hook); its ledger lines were all
-written by the hook; its pages were all written by `guppi generate`, none by hand.
+Session F did what its handoff records under "What actually got done": commit
+`165a261 chore(ledger): the tail of session E` (three ledger lines of 11:18:24) and
+commit `893b3d9 feat(harness): Case 43 — materialize and generate walk every date`
+(`guppi/materialize.py` with `dates_with` and `materialize_date`, `guppi/generate.py`
+with `generate_date`, six tests, `make test` 132 green, the Spec of session F appended
+to `raw/2026-09-10/spec.md`, the five decision lines of Case 43).
 
-**Built in Slice 3:** `uv run guppi materialize` (ledger + Spec → `raw/<date>/
-materialize.yaml`, extends an existing yaml), `guppi generate` (pages, backlinks, History,
-`log.md`, `tags.md`, one Decision page per Case, lesson-born Estimates, the `built`
-cascade), `guppi cleanup` (archived pages → `vault/archived/<sprint>/<date>/<category>/`,
-restores, rebuilds the indexes), `guppi gate` (`PreToolUse Skill`, refuses `/handoff` on a
-dirty tree), the agent `.claude/agents/librarian-guppi.md`, the skills `/retro` and
-`/handoff`, MOCs `rule-documentation`, `rule-harness`, `rule-end-of-work`, `make
-test-documentation`, `make test-harness`, `make test-end-of-work`. The Case has seven
-sections (Case 34), the `then` block lives in the Spec, a `create` line carries `{tags}`.
+Not done by that session: the pages of Case 43 (written by this run), `guppi render` of
+`.claude/agents/librarian-guppi.md`, the ten estimate readings of Case 42, the close of
+Slice 3 in `sprint.md`.
 
-**Measured:** `materialize-assembles`, `generate-writes`, `cleanup-moves`,
-`render-harness-reproduces`, `harness-pipeline`, `pretask-reconciles`,
-`pretask-hook-gates`, `spec-capture-appends` are `passed`. The gate refused `/handoff` on
-the dirty tree at the end of session E (`retro-commit-gates`, live part).
+`guppi materialize` walked two dates: `raw/2026-09-09/materialize.yaml` extended with 0
+entries, `raw/2026-09-10/materialize.yaml` extended with 8. The 2026-09-10 yaml now holds
+88 entries (3 added by the librarian) and 23 decision entries; the 2026-09-09 yaml holds
+74 entries and 34 decision entries.
+
+Pages written by `guppi generate` in this run:
+
+| category | created | updated |
+|---|---|---|
+| rules | 0 | 4 (`rule-materialize`, `rule-page-generation`, `rule-documentation`, `rule-retro-commit`) |
+| estimates | 3 (`estimate-agents-visible-in-session`, `estimate-materialize-walks-dates`, `estimate-generate-walks-dates`) | 1 (`estimate-retro-commit-gates`, pending → passed) |
+| lessons | 1 (`lesson-agents-visible-in-session`) | 2 (both clustered) |
+| insights | 1 (`insight-harness-agent-visibility`, severity 2) | 0 |
+| decisions | 1 (`decision-case-43`) | 0 |
+| entities | 0 | 0 |
+
+`estimate-materialize-assembles` was skipped: it is already `passed` with a Result.
+The cascade moved `rule-retro-commit` to `built` and `rule-materialize` and
+`rule-page-generation` to `draft`, as the handoff foretold. `guppi cleanup` moved 0 pages.
 
 ## What the next session does first
 
-1. **Run the librarian.** `/retro` (the person), commit, then `/handoff` from Retro: it
-   dispatches `librarian-guppi` with `Materialize 2026-09-11.` The 2026-09-10 yaml is
-   fully applied; the librarian's own run materializes the next session's ledger. Read
-   `documentation-completes`, `index-check-merges`, `synthesis-clusters`,
-   `brief-written`, `close-commits`, `retro-loads`, `handoff-dispatches`,
-   `end-of-work-order`; each is one `estimate[...]` line, written by the main agent from
-   the librarian's report.
-2. **Synthesis has material:** `lesson-agents-loaded-at-session-start` (D) says a rendered
-   agent is usable only from the next session; `lesson-agents-visible-in-session` (E) says
-   the opposite was observed. Same area, contradicting claims: the librarian's first
-   judgment.
-3. Then Slice 3b or Slice 4 per `sprint.md`; the owner chooses.
+1. `uv run guppi render`, then commit: `.claude/agents/librarian-guppi.md` differs from
+   `rule-documentation` since this run rewrote its Render text (Case 43). `make lint` is
+   red at its first step until then.
+2. Write the ten estimate readings of Case 42 (eight of Slice 3, two of Case 43) as
+   `estimate[...]` ledger lines. `estimate-materialize-walks-dates` and
+   `estimate-generate-walks-dates` now exist as `pending`, and the walk over two dates
+   ran live in this session.
+3. Close Slice 3 in `sprint.md` once those readings are in. This run did not touch
+   `sprint.md`; the handoff said not to.
+4. Decide the route of `[delete][old-harness]` of case 6 or accept it as permanent noise.
 
-## Deferred, carried here so it surfaces
+## Deferred
 
-- **Slice 3b: Work Mode** — `rule-work-mode`, `rule-subagent-guppi` (placeholders,
-  `draft`, red at lint until then), `to-executable-plan`, the four hooks. Case 29.
-- **Archive in `ask-guppi`:** a named slug checked against `vault/archived/`. Case 31
-  discussion; decide when the archive holds something.
-- `/grill-me` is kept without a page. Slice 3b or 5. (postponed 3 times)
-- `origin` points at the product repository and `migration` has no upstream; `git pull` in
-  `/hi` fails visibly. Owner's decision 11.1: leave until Slice 5. (postponed 3 times)
-- `gh` is not logged in and there is no GitHub remote. Owner's decision 11.2. (postponed 3 times)
-- The fate of `vault/parked/`, `vault/archive/` (the old one, 505 files, beside the new
-  `vault/archived/`), `docs/superpowers/`, `docs/HANDOFF.md`, `docs/migration/rule-*.md`
-  and the 2026-08 documents under `docs/`. Slice 5. (postponed 2 times)
+1. **Slice 3b: Work Mode** — `rule-work-mode`, `rule-subagent-guppi` (placeholders,
+   `draft`, orphans at lint), `to-executable-plan`, the four hooks. Case 29. Related
+   Insight `insight-harness-agent-visibility`, severity 2. (postponed 1 time)
+2. `/grill-me` is kept without a page. Slice 3b or 5. (postponed 4 times)
+3. `origin` points at the product repository and `migration` has no upstream; `git pull`
+   in `/hi` fails visibly. Owner's decision 11.1: leave until Slice 5. (postponed 4 times)
+4. `gh` is not logged in and there is no GitHub remote. Owner's decision 11.2.
+   (postponed 4 times)
+5. The fate of `vault/parked/`, `vault/archive/` (the old one, 505 files, beside the new
+   `vault/archived/`), `docs/superpowers/`, `docs/HANDOFF.md`, `docs/migration/rule-*.md`
+   and the 2026-08 documents under `docs/`. Slice 5. (postponed 3 times)
+6. **Archive in `ask-guppi`:** a named slug checked against `vault/archived/`. Case 31
+   discussion; decide when the archive holds something. (postponed 1 time)
 
-## Flags — what `make lint` prints today, 159 lines, all known
+## Flags
 
-- **Decision pages of Cases 1–30 have no `## Context`, `## Now`, `## Problem`** (and
-  Cases 1–8, 28, 30 no `## Then`): their Specs predate the seven-block form, so
-  `materialize` put the whole Case text under `Then` or found none. Debt of the
-  backfill, not of the model; a Case to accept it as is or to archive them.
-- **Nine lessons and their nine Estimates carry no `tags`;** five `knowledge` lessons
-  carry no `source`. A lesson line carried no tags before Case 34; the sources sit in
-  the Trigger text. One `update` Case with `set` fixes all eighteen.
-- **`[delete][old-harness]` of case 6** names no page and no category; `generate` reports
-  it on every run. Decide: a `file` route to `docs/harness-map-2026-09-07.md`, or leave.
-- **Two placeholders** (`rule-work-mode`, `rule-subagent-guppi`): no `kind`, `estimates`,
-  `tags`; orphans. Slice 3b fills them.
-- `estimate-render-harness-reproduces` kept its D Result: the 36.2 reading is in the
-  ledger only, since a page already `passed` with a Result is skipped by design.
-- `docs/migration/rule-documentation.md` and `rule-end-of-work.md` are superseded by
-  pages; `rule-work-mode.md`, `rule-subagent-guppi.md`, `rule-plan-mode.md`,
-  `rule-session-start.md` stay as drafts until Slice 5.
-- `raw/2026-09-09/ledger.md` has mixed line endings; git normalizes on commit.
+- **`generate` stopped with `'str' object has no attribute 'get'`** on its first run of
+  this session. Cause: entries 83 and 85 carry `replace` as a mapping (`old:`/`new:`
+  under the key), while `guppi/generate.py` iterates `replace` as a list of items. The
+  librarian rewrote those two blocks into the list form, without changing the `old` or
+  `new` text, and reran. Both `raw/2026-09-10/materialize.yaml` (lines 2306, 2356) and
+  the shape produced by `materialize` from the Spec are involved; `case-schema.md` does
+  not pin the shape.
+- **The aborted run left `log.md` short.** Entries 78–82 wrote their pages and their page
+  `History` lines before the crash, but their lines never reached `vault/wiki/log.md`:
+  nine lines are missing (`estimate-retro-commit-gates` passed, `lesson-agents-visible-in-session`
+  and its estimate created, `estimate-materialize-walks-dates` created and its backlink,
+  `rule-materialize` updated). The pages are correct; the feed is not. Not repaired by
+  hand.
+- **Log lines of a multi-date walk carry the date of the yaml, not of the run.** Two
+  `2026-09-09` cascade lines sit after the `2026-09-10` lines in `log.md`, and
+  `rule-materialize` ends its History with a `2026-09-09` line written today.
+- **`[delete][old-harness]` of case 6** (2026-09-09 yaml) fails on every run: no page and
+  no category. `generate: old-harness: no page to delete` on stderr, exit 1. Not routed,
+  per the handoff.
+- **Entries marked `incomplete`:** 2026-09-10 — line 3 `lesson-agents-at-import-not-expanded`
+  (`tags`, `source`), line 4 `estimates-schema` (`then`), line 5 `rule-lint` (`then`),
+  line 7 `lesson-tests-cli-date-pinned` (`tags`), line 80 `lesson-agents-visible-in-session`
+  (`source`); decision entries of Cases 28 and 30. 2026-09-09 — all 74 entries and all 34
+  decision entries, the debt of the backfill.
+- **Entries marked `near` by the librarian:** `lesson-agents-visible-in-session` near
+  `lesson-agents-loaded-at-session-start`; `estimate-materialize-walks-dates` near
+  `estimate-materialize-assembles`; `estimate-generate-walks-dates` near
+  `estimate-generate-writes`. None was merged: each checks a behaviour its neighbour does
+  not check, and the two lessons make opposite claims.
+- **Contradiction, clustered:** `lesson-agents-loaded-at-session-start` (session D) and
+  `lesson-agents-visible-in-session` (session E) claim the opposite about the same
+  mechanism. Both are now `clustered` under `insight-harness-agent-visibility`, severity
+  2, status `open`. Its Proposal is a suggestion, not a decision.
+- **Stale defers:** `rule-work-mode` and `rule-subagent-guppi` are the two lint orphans;
+  they have stood as placeholders since Case 29 with no `kind`, `estimates` or `tags`.
+- No entry is marked `failed` in the 2026-09-10 yaml, no line is `unparsed` in either
+  yaml, no Estimate in the vault has `status: failed`, and 17 are `pending`.
+- No MOC candidate was identified.
+- **Lint.** `make lint` stops at its first step: `render: .claude/agents/librarian-guppi.md
+  differs from its Rule page`, exit 1 — expected, and the caveat accepted in the Spec of
+  Case 43. Run separately: `guppi index --check` exit 0; `guppi lint` 169 findings — 166
+  `schema: missing section` on Decision pages of Cases 1–30, 2 `orphan`
+  (`rule-work-mode`, `rule-subagent-guppi`), 1 `method`
+  (`estimate-documentation-completes` says by hand while `estimate-materialize-walks-dates`
+  names a test file).
 
-## Readings at the close of session E
+## Readings at the close
 
-- `find vault/wiki -type f | wc -l` → 160 (58 before the slice).
-- `make style` → clean; `make test` → 126 passed.
-- `make lint` → 159 findings, the flags above; `render --check`, `index --check` → exit 0.
-- `raw/2026-09-10/materialize.yaml`: 77 entries, 21 decisions, none failed, none unparsed.
-  `raw/2026-09-09/materialize.yaml`: 74 entries, 34 decisions, one failed (`old-harness`).
+- `make test` → 132 passed. `make style` → clean.
+- `make lint` → exit 1 at `render --check`; `index --check` → exit 0; `guppi lint` → 169
+  findings.
+- `find vault/wiki -type f | wc -l` → 166 (160 at the close of session E).
+- Live pages: rules 32, entities 0, estimates 42, lessons 10, insights 1, decisions 57.
+- `raw/2026-09-10/materialize.yaml`: 88 entries, 23 decisions, none failed, none unparsed,
+  none unapplied. `raw/2026-09-09/materialize.yaml`: 74 entries, 34 decisions, one failed
+  and unapplied (`old-harness`), none unparsed.

@@ -2126,6 +2126,299 @@ entries:
     was approved at the first attempt'
   origin: raw/2026-09-10/ledger.md#L77
   applied: '11:16:51'
+- line: 78
+  text: 'estimate[estimate-retro-commit-gates][passed] tests/test_gate.py 6 green; live: the agent called
+    /handoff through the Skill tool on a dirty tree at the close of session E, the PreToolUse hook refused
+    with `gate: /handoff refused — commit first. 162 path(s) uncommitted`, the skill did not run'
+  kind: estimate
+  category: estimates
+  slug: estimate-retro-commit-gates
+  status: passed
+  result: 'tests/test_gate.py 6 green; live: the agent called /handoff through the Skill tool on a dirty
+    tree at the close of session E, the PreToolUse hook refused with `gate: /handoff refused — commit
+    first. 162 path(s) uncommitted`, the skill did not run'
+  origin: raw/2026-09-10/ledger.md#L78
+  applied: '11:51:20'
+- line: 79
+  text: 'estimate[estimate-materialize-assembles][passed] Case 41 live: after the Stop hook wrote ten
+    lines, `guppi materialize` extended raw/2026-09-10/materialize.yaml with 10 entries, the 67 earlier
+    entries kept their applied marks, `generate` then changed 16 pages, no text mismatch reported'
+  kind: estimate
+  category: estimates
+  slug: estimate-materialize-assembles
+  status: passed
+  result: 'Case 41 live: after the Stop hook wrote ten lines, `guppi materialize` extended raw/2026-09-10/materialize.yaml
+    with 10 entries, the 67 earlier entries kept their applied marks, `generate` then changed 16 pages,
+    no text mismatch reported'
+  origin: raw/2026-09-10/ledger.md#L79
+  applied: '11:51:20'
+- line: 80
+  text: 'lesson[knowledge][lesson-agents-visible-in-session]{tags:harness,hooks} trigger: session E rendered
+    .claude/agents/librarian-guppi.md by `guppi render` at about 10:40; the Agent tool listed `librarian-guppi`
+    as available in the same session, at 10:52, before any restart root_cause: the agent list is re-read
+    during a session, at least after a file appears under .claude/agents/; this contradicts lesson-agents-loaded-at-session-start
+    of session D, where three dispatches in the rendering session failed — the difference between the
+    two sessions is not measured'
+  kind: lesson
+  category: lessons
+  slug: lesson-agents-visible-in-session
+  origin: raw/2026-09-10/ledger.md#L80
+  fields:
+    type: lesson
+    kind: knowledge
+    root_cause: the agent list is re-read during a session, at least after a file appears under .claude/agents/;
+      this contradicts lesson-agents-loaded-at-session-start of session D, where three dispatches in the
+      rendering session failed — the difference between the two sessions is not measured
+  sections:
+    Trigger: session E rendered .claude/agents/librarian-guppi.md by `guppi render` at about 10:40; the
+      Agent tool listed `librarian-guppi` as available in the same session, at 10:52, before any restart
+    Root cause: the agent list is re-read during a session, at least after a file appears under .claude/agents/;
+      this contradicts lesson-agents-loaded-at-session-start of session D, where three dispatches in the
+      rendering session failed — the difference between the two sessions is not measured
+  tags:
+  - harness
+  - hooks
+  near: lesson-agents-loaded-at-session-start
+  incomplete:
+  - source
+  applied: '11:51:20'
+- line: 81
+  text: decision[case 43][update][rule-materialize]
+  case: '43'
+  kind: update
+  slug: rule-materialize
+  origin: raw/2026-09-10/ledger.md#case-43
+  decision: decision-case-43
+  category: rules
+  sections:
+    How it works: '`uv run guppi materialize [--date YYYY-MM-DD]` reads `raw/<date>/ledger.md` and
+
+      `raw/<date>/spec.md` and writes `raw/<date>/materialize.yaml`. Without `--date` it
+
+      walks every `raw/<date>/` that holds a `ledger.md`, in date order, and prints one
+
+      line per date; a line written after the librarian''s commit of its date is picked up
+
+      by the next run, whatever the date of that run. An error on one date stops the walk
+
+      with exit 1.
+
+
+      One entry per record line, in ledger order. Fields: `case`, `kind` (`create`,
+
+      `update`, `delete`, `defer`, `estimate`, `lesson`), `category` (from the slug
+
+      prefix: `rule-`, `entity-`, `estimate-`, `lesson-`, `insight-`; a Rule-class file
+
+      is `file` with its path), `slug`, `ref`, `source`, `supersedes`, `superseded_by`,
+
+      `origin` (`raw/<date>/ledger.md#case-N`; a lesson `#L<n>`), `line`, `text` (the
+
+      ledger line), `tags` (from `{tags:...}`), `fields`, `sections`, `replace`, `change`
+
+      (from the `then` block), `incomplete` (required fields the block lacks), `exists`
+
+      (a create whose page is on disk), `applied` (set by `guppi generate`).
+
+
+      The Spec is read by headings `## Case N` and `### Case N.M`. Under a heading, every
+
+      fenced block tagged `then` up to the next heading is YAML; a leading `> ` is
+
+      removed. The entry for a slug is the item with that `slug` under the key of its
+
+      kind. A Leaf''s nested `estimate` becomes its own `create` entry. An `estimate` line
+
+      for a page created in the same ledger is folded into that create (`status`,
+
+      `result`); for an earlier page it is an `estimate` entry, an update. A `lesson` line
+
+      is a `create` in `lessons`: `kind`, `root_cause` and the sections `Trigger` and
+
+      `Root cause` from the line. A line with `{supersedes:case N}` marks the entries of
+
+      case N `superseded_by`. One decision entry per Case: `decision: decision-case-<N>`,
+
+      `case_text` (the seven quoted sections of the Case, verbatim, in the language of
+
+      the Spec), `targets` (one item per line of the Case). A line the grammar does not
+
+      parse goes under `unparsed`; the script continues.
+
+
+      An existing yaml is extended, never rewritten (case 41): entries whose `line` is
+
+      present stay as they are, with the librarian''s edits and the `applied` marks; new
+
+      ledger lines become new entries at the end; an entry whose stored `text` differs
+
+      from the ledger line at that number is reported on stderr and left alone; a later
+
+      `supersedes` adds `superseded_by` to the earlier entry and changes nothing else; an
+
+      `estimate` line for a create already `applied` becomes its own `estimate` entry.
+
+      The count of entries added goes to stdout, one line per date. Exit 0; exit 1 when a
+
+      date fails.
+
+      '
+  change: without --date the script walks every raw/<date> with a ledger, so lines written after a date's
+    librarian commit are materialized by the next run; exit 1 when a date fails
+  applied: '11:51:20'
+- line: 82
+  text: decision[case 43][create][estimate-materialize-walks-dates]{ref:rule-materialize}{tags:harness,workflow,ledger}
+  case: '43'
+  kind: create
+  slug: estimate-materialize-walks-dates
+  origin: raw/2026-09-10/ledger.md#case-43
+  decision: decision-case-43
+  ref: rule-materialize
+  tags:
+  - harness
+  - workflow
+  - ledger
+  category: estimates
+  fields:
+    type: estimate
+    kind: QA
+    tags:
+    - harness
+    - workflow
+    - ledger
+    criterion: Without --date, materialize walks every vault/raw/<date>/ with a ledger.md in date order,
+      extends or writes each yaml, prints one line per date, and a ledger line written after its date's
+      librarian commit is materialized by the next run on a later date; --date keeps one date; an error
+      on one date stops the walk with exit 1.
+    method: tests/test_materialize.py with two dated folders; live, the librarian's first run over 2026-09-09
+      and 2026-09-10
+  near: estimate-materialize-assembles
+  applied: '11:51:20'
+- line: 83
+  text: decision[case 43][update][rule-page-generation]
+  case: '43'
+  kind: update
+  slug: rule-page-generation
+  origin: raw/2026-09-10/ledger.md#case-43
+  decision: decision-case-43
+  category: rules
+  replace:
+  - old: '`uv run guppi generate [--date]` applies the entries of `raw/<date>/materialize.yaml`
+
+      in order and marks each applied entry `applied: <time>` in the yaml, so a rerun
+
+      writes nothing.'
+    new: '`uv run guppi generate [--date]` applies the entries of `raw/<date>/materialize.yaml`
+
+      in order and marks each applied entry `applied: <time>` in the yaml, so a rerun
+
+      writes nothing. Without `--date` it walks every `raw/<date>/` that holds a yaml, in
+
+      date order; a date with no unapplied entry changes nothing; a failure on one date is
+
+      reported and the walk goes on, with exit 1 at the end.'
+  change: without --date the script walks every raw/<date> with a yaml, applying what is not yet applied
+  applied: '11:51:51'
+- line: 84
+  text: decision[case 43][create][estimate-generate-walks-dates]{ref:rule-page-generation}{tags:harness,workflow,ledger}
+  case: '43'
+  kind: create
+  slug: estimate-generate-walks-dates
+  origin: raw/2026-09-10/ledger.md#case-43
+  decision: decision-case-43
+  ref: rule-page-generation
+  tags:
+  - harness
+  - workflow
+  - ledger
+  category: estimates
+  fields:
+    type: estimate
+    kind: QA
+    tags:
+    - harness
+    - workflow
+    - ledger
+    criterion: Without --date, generate walks every vault/raw/<date>/ with a materialize.yaml in date
+      order and applies the unapplied entries of each; a date with nothing unapplied changes no page;
+      --date keeps one date; a failure on one date is reported, the walk goes on, and the exit code is
+      1 at the end.
+    method: tests/test_generate.py with two dated folders; live, the librarian's first run
+  near: estimate-generate-writes
+  applied: '11:51:51'
+- line: 85
+  text: decision[case 43][update][rule-documentation]
+  case: '43'
+  kind: update
+  slug: rule-documentation
+  origin: raw/2026-09-10/ledger.md#case-43
+  decision: decision-case-43
+  category: rules
+  replace:
+  - old: 'Read four things and nothing else: `vault/raw/<today>/handoff.md`,
+
+      `vault/raw/<today>/materialize.yaml` once it exists, the five'
+    new: 'Read four things and nothing else: `vault/raw/<today>/handoff.md`, every
+
+      `materialize.yaml` that `guppi materialize` names on its stdout, the five'
+  change: the librarian reads every yaml the walk names, not only today's
+  applied: '11:51:51'
+- kind: create
+  category: insights
+  slug: insight-harness-agent-visibility
+  origin: raw/2026-09-10/ledger.md#L80
+  librarian: synthesis
+  tags:
+  - harness
+  - hooks
+  fields:
+    type: insight
+    pattern: The moment Claude Code reads an agent definition is not established; two sessions rendered
+      an agent and got opposite results, and no measurement separates them.
+    children:
+    - lesson-agents-loaded-at-session-start
+    - lesson-agents-visible-in-session
+  sections:
+    Pattern: 'Two lessons make opposite claims about the same mechanism.
+
+
+      Session D (`lesson-agents-loaded-at-session-start`) rendered `.claude/agents/ask-guppi.md` and dispatched
+      it three times in the same session; every call failed with "Agent type not found".
+
+
+      Session E (`lesson-agents-visible-in-session`) rendered `.claude/agents/librarian-guppi.md` at about
+      10:40 and the Agent tool listed it at 10:52, in the same session, without a restart.
+
+
+      The difference between the two sessions was not measured. Until it is, the rule "an agent is usable
+      only from the next session" rests on one reading and its counter-example rests on one reading.'
+    Proposal: 'A suggestion, not a decision. Take one reading that separates the two: render a throwaway
+      agent mid-session, dispatch it at once, record the result and the session state (whether the file
+      is new or replaced, whether a compaction happened, the client version). Write it as an Estimate
+      on the Rule that renders agents. Until that reading exists, plan as if a rendered agent were unusable
+      in the session that creates it, and treat a successful same-session dispatch as a bonus, not as
+      a guarantee.'
+  applied: '11:51:51'
+- kind: update
+  slug: lesson-agents-loaded-at-session-start
+  category: lessons
+  origin: raw/2026-09-10/ledger.md#L80
+  librarian: synthesis
+  set:
+    status: clustered
+    insight: insight-harness-agent-visibility
+  change: 'clustered by librarian: agent visibility, with lesson-agents-visible-in-session'
+  applied: '11:51:51'
+- kind: update
+  slug: lesson-agents-visible-in-session
+  category: lessons
+  origin: raw/2026-09-10/ledger.md#L80
+  librarian: synthesis
+  set:
+    status: clustered
+    insight: insight-harness-agent-visibility
+  change: 'clustered by librarian: agent visibility, with lesson-agents-loaded-at-session-start'
+  applied: '11:51:51'
 decisions:
 - case: '28'
   decision: decision-case-28
@@ -3056,6 +3349,79 @@ decisions:
   supersedes:
   - decision-case-31
   applied: '11:16:51'
+- case: '43'
+  decision: decision-case-43
+  origin: raw/2026-09-10/ledger.md#case-43
+  targets:
+  - kind: update
+    category: rules
+    slug: rule-materialize
+  - kind: create
+    category: estimates
+    slug: estimate-materialize-walks-dates
+    ref: rule-materialize
+  - kind: update
+    category: rules
+    slug: rule-page-generation
+  - kind: create
+    category: estimates
+    slug: estimate-generate-walks-dates
+    ref: rule-page-generation
+  - kind: update
+    category: rules
+    slug: rule-documentation
+  tags:
+  - harness
+  - workflow
+  - ledger
+  case_text:
+    context: Чтения handoff-фазы пишутся после коммита библиотекаря, в ledger своей даты. Следующая сессия
+      обычно на другой дате.
+    problem: '`materialize` и `generate` читают одну `raw/<date>/`, по умолчанию сегодня. Строки после
+      коммита библиотекаря никто не материализует, если следующая сессия не на той же дате. Хвост сессии
+      E спасён только совпадением дат.'
+    recommend: 'Без `--date` оба скрипта обходят все `vault/raw/<date>/` по порядку дат: `materialize`
+      — каждую папку с `ledger.md`, `generate` — каждую с `materialize.yaml`. `--date` оставляет одну
+      дату. Агент читает те yaml, которые скрипт назвал на stdout. Два новых Estimate; старые чтения остаются
+      как есть.'
+    given: '`rule-materialize` и `rule-page-generation` `built`, обе фиксируют одну `raw/<date>/`. Ни
+      одна страница не покрывает остаток за границей даты (ask-guppi).
+
+      **＋** Yaml дополняется, `applied` делает повтор идемпотентным (Case 41). Обход по датам ничего не
+      переписывает.
+
+      **＋** `rule-documentation` `render_mode: full`: правка текста перерендеривает `.claude/agents/librarian-guppi.md`.
+
+      **＋** Slugs `estimate-materialize-walks-dates`, `estimate-generate-walks-dates` свободны. Теги:
+      `harness`, `workflow`, `ledger`.
+
+      **－** Yaml 2026-09-09 держит упавший `old-harness`; при обходе `generate` флагует его каждый запуск
+      и выходит 1. Известный долг, свой Case из брифа.
+
+      **－** `rule-handoff` не меняется: `Materialize <date>.` называет дату сессии, остаток подбирает
+      скрипт.
+
+      **－** Страница `passed` с Result вторую строку не принимает; поэтому новые Estimates, не `update`
+      старых.'
+    when: '`uv run guppi materialize` и `uv run guppi generate` без `--date`.'
+    then: '`materialize` обходит каждую `vault/raw/<date>/` с `ledger.md` по возрастанию даты, дополняет
+      или пишет её yaml, печатает одну строку на дату.
+
+      **＋** `generate` обходит каждую `vault/raw/<date>/` с `materialize.yaml` по возрастанию даты, применяет
+      непримененные записи.
+
+      **＋** Дата без новых строк и без непримененных записей ничего не меняет.
+
+      **＋** `--date` ограничивает обход одной датой, поведение прежнее.
+
+      **＋** Библиотекарь читает каждый yaml, названный на stdout, для index check и синтеза.
+
+      **－** Ошибка одной даты: `materialize` печатает её и выходит 1, не идя дальше; `generate` продолжает,
+      выходит 1 в конце.
+
+      **－** `cleanup` не меняется.'
+    ratification: ратифицирован.
+  applied: '11:51:51'
 unparsed: []
 new_tags:
 - tag: librarian

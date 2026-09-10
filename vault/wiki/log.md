@@ -185,3 +185,14 @@ instruction. The global feed; a page's own `## History` is the per-page view.
 - 2026-09-10 rules/rule-pretask-hook status: draft → built · cascade · generate
 - 2026-09-10 rules/rule-pretask status: draft → built · cascade · generate
 - 2026-09-10 rules/rule-spec-capture status: draft → built · cascade · generate
+- 2026-09-09 rules/rule-materialize status: built → draft · cascade · generate
+- 2026-09-09 rules/rule-retro-commit status: draft → built · cascade · generate
+- 2026-09-10 rules/rule-page-generation updated: without --date the script walks every raw/<date> with a yaml, applying what is not yet applied · raw/2026-09-10/ledger.md#case-43 · generate
+- 2026-09-10 estimates/estimate-generate-walks-dates created · raw/2026-09-10/ledger.md#case-43 · generate
+- 2026-09-10 rules/rule-page-generation estimate estimate-generate-walks-dates added · raw/2026-09-10/ledger.md#case-43 · generate
+- 2026-09-10 rules/rule-documentation updated: the librarian reads every yaml the walk names, not only today's · raw/2026-09-10/ledger.md#case-43 · generate
+- 2026-09-10 insights/insight-harness-agent-visibility created · raw/2026-09-10/ledger.md#L80 · generate
+- 2026-09-10 lessons/lesson-agents-loaded-at-session-start updated: clustered by librarian: agent visibility, with lesson-agents-visible-in-session · raw/2026-09-10/ledger.md#L80 · generate
+- 2026-09-10 lessons/lesson-agents-visible-in-session updated: clustered by librarian: agent visibility, with lesson-agents-loaded-at-session-start · raw/2026-09-10/ledger.md#L80 · generate
+- 2026-09-10 decisions/decision-case-43 created · raw/2026-09-10/ledger.md#case-43 · generate
+- 2026-09-10 rules/rule-page-generation status: built → draft · cascade · generate

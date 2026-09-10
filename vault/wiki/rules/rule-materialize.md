@@ -2,11 +2,11 @@
 type: rule
 kind: Leaf
 purpose: Prevents the librarian from reading the ledger and the Spec itself, or from routing a decision by guesswork
-status: built
+status: draft
 enforcement: check
 implementation_ref: [guppi/materialize.py, tests/test_materialize.py]
 parent: rule-documentation
-estimates: [estimate-materialize-assembles]
+estimates: [estimate-materialize-assembles, estimate-materialize-walks-dates]
 origin: raw/2026-09-10/ledger.md#case-31
 sprint: migration
 created: 2026-09-10
@@ -25,7 +25,11 @@ defect of the ledger, and it shows here.
 ## How it works
 
 `uv run guppi materialize [--date YYYY-MM-DD]` reads `raw/<date>/ledger.md` and
-`raw/<date>/spec.md` and writes `raw/<date>/materialize.yaml`.
+`raw/<date>/spec.md` and writes `raw/<date>/materialize.yaml`. Without `--date` it
+walks every `raw/<date>/` that holds a `ledger.md`, in date order, and prints one
+line per date; a line written after the librarian's commit of its date is picked up
+by the next run, whatever the date of that run. An error on one date stops the walk
+with exit 1.
 
 One entry per record line, in ledger order. Fields: `case`, `kind` (`create`,
 `update`, `delete`, `defer`, `estimate`, `lesson`), `category` (from the slug
@@ -55,11 +59,13 @@ ledger lines become new entries at the end; an entry whose stored `text` differs
 from the ledger line at that number is reported on stderr and left alone; a later
 `supersedes` adds `superseded_by` to the earlier entry and changes nothing else; an
 `estimate` line for a create already `applied` becomes its own `estimate` entry.
-The count of entries added goes to stdout. Exit 0.
+The count of entries added goes to stdout, one line per date. Exit 0; exit 1 when a
+date fails.
 
 ## Estimates
 
 - [[estimate-materialize-assembles]]
+- [[estimate-materialize-walks-dates]]
 
 ## Parent
 
@@ -76,3 +82,6 @@ The count of entries added goes to stdout. Exit 0.
 - 2026-09-10 estimate estimate-materialize-assembles added · raw/2026-09-10/ledger.md#case-31
 - 2026-09-10 updated: an existing yaml is extended with the ledger lines it does not hold, never rewritten (the How it works of case 31 already carries it) · raw/2026-09-10/ledger.md#case-41
 - 2026-09-10 status: draft → built · cascade
+- 2026-09-10 updated: without --date the script walks every raw/<date> with a ledger, so lines written after a date's librarian commit are materialized by the next run; exit 1 when a date fails · raw/2026-09-10/ledger.md#case-43
+- 2026-09-10 estimate estimate-materialize-walks-dates added · raw/2026-09-10/ledger.md#case-43
+- 2026-09-09 status: built → draft · cascade

@@ -2,7 +2,7 @@
 type: rule
 kind: Leaf
 purpose: Prevents a page from being born twice under two names
-status: draft
+status: built
 enforcement: render
 governs: .claude/agents/librarian-guppi.md
 render_mode: partial
@@ -32,7 +32,7 @@ category. Compare meanings, not words. Never compare across categories.
   slug, add `change: "merged by librarian: <why>"` and `librarian: merged`. Keep
   every other field of the entry as it is.
 - A page is close but not the same: keep the entry and add `near: <slug>`.
-Open a page only when its index line is not enough to judge.
+When the index line does not settle same or near, open the page and name it in the report.
 <!-- /rule-index-check -->
 
 ## Estimates
@@ -47,3 +47,5 @@ Open a page only when its index line is not enough to judge.
 
 - 2026-09-10 created · raw/2026-09-10/ledger.md#case-35.1
 - 2026-09-10 estimate estimate-index-check-merges added · raw/2026-09-10/ledger.md#case-35.1
+- 2026-09-10 updated: the read is for same-or-near only and is named in the report · raw/2026-09-10/ledger.md#case-44
+- 2026-09-10 status: draft → built · cascade

@@ -36,8 +36,8 @@ Synthesis. For each `lesson` entry, compare its `root_cause` with every line of
   the new lesson, and `set: {status: open}` when it was `actioned`; and an `update`
   for the lesson.
 Mark each entry you add with `librarian: synthesis`. One lesson without a pair
-stays `new`; that needs no flag. `Proposal` is a suggestion, never a decision. Do
-not read the archive and do not write pages yourself.
+stays `new`; that needs no flag. `Proposal` is a suggestion, never a decision. Read the Trigger and Root cause of the lessons you cluster and name those pages in
+the report. Do not read the archive and do not write pages yourself.
 <!-- /rule-synthesis -->
 
 ## Estimates
@@ -52,3 +52,4 @@ not read the archive and do not write pages yourself.
 
 - 2026-09-10 created · raw/2026-09-10/ledger.md#case-35.2
 - 2026-09-10 estimate estimate-synthesis-clusters added · raw/2026-09-10/ledger.md#case-35.2
+- 2026-09-10 updated: the lessons of a cluster are read before the Insight is written, and named · raw/2026-09-10/ledger.md#case-44

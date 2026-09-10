@@ -14,6 +14,7 @@ rule-hook-registry: Prevents a hook from being registered by hand, outside a rat
 rule-index: Prevents a pre-task check from reading every page of a category to learn what already exists
 rule-index-check: Prevents a page from being born twice under two names
 rule-internal-context: Prevents work starting without the current sprint and the previous session's handover
+rule-ledger-tail: Shows at /hi every ledger line that no vault page holds yet, so a reading or a lesson written after the librarian's commit reaches the next session's Frontier
 rule-ledger-write: Prevents a ratified line from existing only in a chat reply, or landing in a session no /hi opened
 rule-lint: Prevents a page that breaks the schema, points nowhere, or claims a status its Estimates do not support from sitting in the vault unnoticed
 rule-materialize: Prevents the librarian from reading the ledger and the Spec itself, or from routing a decision by guesswork

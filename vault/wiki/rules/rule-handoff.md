@@ -2,7 +2,7 @@
 type: rule
 kind: Leaf
 purpose: Prevents the session's memory from being lost between the commit and the librarian
-status: draft
+status: built
 enforcement: render
 governs: .claude/skills/handoff/SKILL.md
 render_mode: full
@@ -58,3 +58,4 @@ for its report and show it to the person unchanged. Do not commit after this.
 
 - 2026-09-10 created · raw/2026-09-10/ledger.md#case-38.3
 - 2026-09-10 estimate estimate-handoff-dispatches added · raw/2026-09-10/ledger.md#case-38.3
+- 2026-09-10 status: draft → built · cascade

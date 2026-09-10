@@ -6,7 +6,7 @@ status: draft
 enforcement: check
 implementation_ref: [guppi/generate.py, tests/test_generate.py]
 parent: rule-documentation
-estimates: [estimate-generate-writes, estimate-generate-walks-dates]
+estimates: [estimate-generate-writes, estimate-generate-walks-dates, estimate-generate-rejects-shape-alone, estimate-generate-logs-per-entry, estimate-generate-dates-history-by-run, estimate-generate-passes-delete-outside-vault]
 origin: raw/2026-09-10/ledger.md#case-32
 sprint: migration
 created: 2026-09-10
@@ -29,12 +29,14 @@ in order and marks each applied entry `applied: <time>` in the yaml, so a rerun
 writes nothing. Without `--date` it walks every `raw/<date>/` that holds a yaml, in
 date order; a date with no unapplied entry changes nothing; a failure on one date is
 reported and the walk goes on, with exit 1 at the end. An entry that fails — a collision, a `ref` naming no page, a
-`replace` whose text is absent or not unique — is reported on stderr and skipped;
-the rest apply; the exit code is 1.
+`replace` whose text is absent or not unique, a field whose shape the script does not
+expect, any exception raised while applying it — is reported on stderr, marked
+`failed` and skipped; the rest apply; the exit code is 1. No entry ends the run.
 
 Initial `status` by category: entity and rule `draft`, estimate `pending`, lesson
 `new`, insight `open`, decision `current`. `sprint` is the first `## <id>` heading
-of `sprint.md`; `created` is the yaml's date. Body sections follow the order of the
+of `sprint.md`; `created` is the yaml's date; History lines and `log.md` lines carry
+the date of the run. Body sections follow the order of the
 category's `schema.yaml`: `Purpose` from `sections` or the `purpose` line;
 `Estimates`, `Children` (numbered for a rule), `Parent`, `Implementation` from the
 fields; `Render`, `How it works`, `Context`, `Criterion`, `Method`, `Result`,
@@ -43,14 +45,19 @@ fields. A field or section the entry lacks is not written: lint names it.
 
 History lines: `created`, `updated: <change>`, `status: a → b`, `deleted`,
 `deferred`, `child <slug> added`, `estimate <slug> added`, each `· <origin>`;
-`log.md` gets the same line with `<category>/<slug>` in front. A `create` with `ref`
+`log.md` gets the same line with `<category>/<slug>` in front, appended after each
+entry, so a run that stops leaves the feed level with the pages. A `create` with `ref`
 appends the slug to the parent's `children` (order kept) or, for an estimate, to
 the target's `estimates`, and rebuilds that section. An `update` applies `set` to
 the frontmatter, `sections` as whole replacements, `replace` inside the body
 (whitespace-collapsed match, exactly one occurrence), and appends History. An
 `estimate` entry sets `status`, overwrites `## Result` and appends History; a page
 already at that status with a Result is skipped. A `delete` sets `status: archived`
-with History `deleted`; there is no `deleted` status. A `defer` with a page appends
+with History `deleted`; there is no `deleted` status. A `delete` whose slug is neither
+a category prefix nor a Rule-class file (`category: unknown` in the yaml) names
+something outside the vault: it is printed on stdout as `outside the vault, nothing to
+archive` and marked applied, no page is written; a `delete` with a category and no
+page fails. A `defer` with a page appends
 History `deferred`; without one it writes a placeholder page, `status: draft`, with
 only the fields the Case gave.
 
@@ -80,6 +87,10 @@ declared and not registered is reported on stderr and left on the page.
 
 - [[estimate-generate-writes]]
 - [[estimate-generate-walks-dates]]
+- [[estimate-generate-rejects-shape-alone]]
+- [[estimate-generate-logs-per-entry]]
+- [[estimate-generate-dates-history-by-run]]
+- [[estimate-generate-passes-delete-outside-vault]]
 
 ## Parent
 
@@ -98,3 +109,9 @@ declared and not registered is reported on stderr and left on the page.
 - 2026-09-10 updated: without --date the script walks every raw/<date> with a yaml, applying what is not yet applied · raw/2026-09-10/ledger.md#case-43
 - 2026-09-10 estimate estimate-generate-walks-dates added · raw/2026-09-10/ledger.md#case-43
 - 2026-09-10 status: built → draft · cascade
+- 2026-09-10 updated: an entry fails alone whatever the cause; log.md is appended per entry; History and log carry the run's date, created the yaml's · raw/2026-09-10/ledger.md#case-47
+- 2026-09-10 estimate estimate-generate-rejects-shape-alone added · raw/2026-09-10/ledger.md#case-47
+- 2026-09-10 estimate estimate-generate-logs-per-entry added · raw/2026-09-10/ledger.md#case-47
+- 2026-09-10 estimate estimate-generate-dates-history-by-run added · raw/2026-09-10/ledger.md#case-47
+- 2026-09-10 updated: a delete of something outside the vault (category unknown) applies with a stdout line; a delete of a missing page still fails · raw/2026-09-10/ledger.md#case-48
+- 2026-09-10 estimate estimate-generate-passes-delete-outside-vault added · raw/2026-09-10/ledger.md#case-48

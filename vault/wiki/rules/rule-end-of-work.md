@@ -2,7 +2,7 @@
 type: rule
 kind: MOC
 purpose: Prevents a session being handed over without a settled account of what happened
-status: draft
+status: built
 children: [rule-retro, rule-retro-commit, rule-handoff]
 estimates: [estimate-end-of-work-order]
 origin: raw/2026-09-10/ledger.md#case-38
@@ -32,3 +32,4 @@ conversation, the commit gate on the way to handoff, then handoff itself.
 
 - 2026-09-10 created · raw/2026-09-10/ledger.md#case-38
 - 2026-09-10 estimate estimate-end-of-work-order added · raw/2026-09-10/ledger.md#case-38
+- 2026-09-10 status: draft → built · cascade

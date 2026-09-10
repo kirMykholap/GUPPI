@@ -202,3 +202,71 @@ instruction. The global feed; a page's own `## History` is the per-page view.
 - 2026-09-10 lessons/lesson-agents-visible-in-session updated: clustered by librarian: agent visibility, with lesson-agents-loaded-at-session-start · raw/2026-09-10/ledger.md#L80 · generate
 - 2026-09-10 decisions/decision-case-43 created · raw/2026-09-10/ledger.md#case-43 · generate
 - 2026-09-10 rules/rule-page-generation status: built → draft · cascade · generate
+- 2026-09-10 estimates/estimate-retro-loads status: pending → passed · raw/2026-09-10/ledger.md#L86 · generate
+- 2026-09-10 estimates/estimate-handoff-dispatches status: pending → passed · raw/2026-09-10/ledger.md#L87 · generate
+- 2026-09-10 estimates/estimate-end-of-work-order status: pending → passed · raw/2026-09-10/ledger.md#L88 · generate
+- 2026-09-10 estimates/estimate-documentation-completes status: pending → failed · raw/2026-09-10/ledger.md#L89 · generate
+- 2026-09-10 estimates/estimate-index-check-merges status: pending → passed · raw/2026-09-10/ledger.md#L90 · generate
+- 2026-09-10 estimates/estimate-synthesis-clusters status: pending → failed · raw/2026-09-10/ledger.md#L91 · generate
+- 2026-09-10 estimates/estimate-brief-written status: pending → passed · raw/2026-09-10/ledger.md#L92 · generate
+- 2026-09-10 estimates/estimate-close-commits status: pending → passed · raw/2026-09-10/ledger.md#L93 · generate
+- 2026-09-10 estimates/estimate-materialize-walks-dates status: pending → passed · raw/2026-09-10/ledger.md#L94 · generate
+- 2026-09-10 estimates/estimate-generate-walks-dates status: pending → passed · raw/2026-09-10/ledger.md#L95 · generate
+- 2026-09-10 lessons/lesson-generate-replace-mapping-crashes created · raw/2026-09-10/ledger.md#L96 · generate
+- 2026-09-10 estimates/estimate-generate-replace-mapping-crashes created · raw/2026-09-10/ledger.md#L96 · generate
+- 2026-09-10 estimates/estimate-generate-replace-mapping-crashes status: pending → passed · raw/2026-09-10/ledger.md#L96 · generate
+- 2026-09-10 lessons/lesson-generate-log-written-last created · raw/2026-09-10/ledger.md#L97 · generate
+- 2026-09-10 estimates/estimate-generate-log-written-last created · raw/2026-09-10/ledger.md#L97 · generate
+- 2026-09-10 estimates/estimate-generate-log-written-last status: pending → passed · raw/2026-09-10/ledger.md#L97 · generate
+- 2026-09-10 lessons/lesson-generate-walk-history-dated-by-yaml created · raw/2026-09-10/ledger.md#L98 · generate
+- 2026-09-10 estimates/estimate-generate-walk-history-dated-by-yaml created · raw/2026-09-10/ledger.md#L98 · generate
+- 2026-09-10 estimates/estimate-generate-walk-history-dated-by-yaml status: pending → passed · raw/2026-09-10/ledger.md#L98 · generate
+- 2026-09-10 lessons/lesson-librarian-reads-beyond-the-four-inputs created · raw/2026-09-10/ledger.md#L99 · generate
+- 2026-09-10 estimates/estimate-librarian-reads-beyond-the-four-inputs created · raw/2026-09-10/ledger.md#L99 · generate
+- 2026-09-10 lessons/lesson-readings-after-librarian-invisible-to-next-hi created · raw/2026-09-10/ledger.md#L100 · generate
+- 2026-09-10 estimates/estimate-readings-after-librarian-invisible-to-next-hi created · raw/2026-09-10/ledger.md#L100 · generate
+- 2026-09-10 estimates/estimate-librarian-reads-beyond-the-four-inputs status: pending → passed · raw/2026-09-10/ledger.md#L101 · generate
+- 2026-09-10 rules/rule-documentation updated: four inputs; a wiki page in three named cases, each named in the report; session artifacts, the archive and code never; the yaml edited only by the marks; the marks described · raw/2026-09-10/ledger.md#case-44 · generate
+- 2026-09-10 rules/rule-index-check updated: the read is for same-or-near only and is named in the report · raw/2026-09-10/ledger.md#case-44 · generate
+- 2026-09-10 rules/rule-synthesis updated: the lessons of a cluster are read before the Insight is written, and named · raw/2026-09-10/ledger.md#case-44 · generate
+- 2026-09-10 estimates/estimate-synthesis-clusters updated: a lesson page is read for the Insight it feeds and named in the report; the archive stays closed · raw/2026-09-10/ledger.md#case-44 · generate
+- 2026-09-10 estimates/estimate-documentation-completes updated: a read beyond the four inputs is allowed for one of three named reasons; session artifacts, code and yaml repairs are not · raw/2026-09-10/ledger.md#case-44 · generate
+- 2026-09-10 rules/rule-ledger-tail deferred, placeholder · raw/2026-09-10/ledger.md#case-45 · generate
+- 2026-09-10 rules/rule-page-generation updated: an entry fails alone whatever the cause; log.md is appended per entry; History and log carry the run's date, created the yaml's · raw/2026-09-10/ledger.md#case-47 · generate
+- 2026-09-10 estimates/estimate-generate-rejects-shape-alone created · raw/2026-09-10/ledger.md#case-47 · generate
+- 2026-09-10 rules/rule-page-generation estimate estimate-generate-rejects-shape-alone added · raw/2026-09-10/ledger.md#case-47 · generate
+- 2026-09-10 estimates/estimate-generate-logs-per-entry created · raw/2026-09-10/ledger.md#case-47 · generate
+- 2026-09-10 rules/rule-page-generation estimate estimate-generate-logs-per-entry added · raw/2026-09-10/ledger.md#case-47 · generate
+- 2026-09-10 estimates/estimate-generate-dates-history-by-run created · raw/2026-09-10/ledger.md#case-47 · generate
+- 2026-09-10 rules/rule-page-generation estimate estimate-generate-dates-history-by-run added · raw/2026-09-10/ledger.md#case-47 · generate
+- 2026-09-10 rules/rule-page-generation updated: a delete of something outside the vault (category unknown) applies with a stdout line; a delete of a missing page still fails · raw/2026-09-10/ledger.md#case-48 · generate
+- 2026-09-10 estimates/estimate-generate-passes-delete-outside-vault created · raw/2026-09-10/ledger.md#case-48 · generate
+- 2026-09-10 rules/rule-page-generation estimate estimate-generate-passes-delete-outside-vault added · raw/2026-09-10/ledger.md#case-48 · generate
+- 2026-09-10 estimates/estimate-index-check-merges updated: an opened page is named in the report with the index line that did not settle it · raw/2026-09-10/ledger.md#case-49 · generate
+- 2026-09-10 rules/rule-materialize updated: the field list names folded, applied and failed · raw/2026-09-10/ledger.md#case-49 · generate
+- 2026-09-10 lessons/lesson-ledger-hook-misses-a-reply-ending-in-a-tool-call created · raw/2026-09-10/ledger.md#L119 · generate
+- 2026-09-10 estimates/estimate-ledger-hook-misses-a-reply-ending-in-a-tool-call created · raw/2026-09-10/ledger.md#L119 · generate
+- 2026-09-10 estimates/estimate-ledger-hook-misses-a-reply-ending-in-a-tool-call status: pending → passed · raw/2026-09-10/ledger.md#L119 · generate
+- 2026-09-10 rules/rule-retro deferred · raw/2026-09-10/ledger.md#case-50 · generate
+- 2026-09-10 rules/rule-ledger-write deferred · raw/2026-09-10/ledger.md#case-51 · generate
+- 2026-09-10 lessons/lesson-materialize-assumes-every-entry-has-a-line created · raw/2026-09-10/ledger.md#L122 · generate
+- 2026-09-10 estimates/estimate-materialize-assumes-every-entry-has-a-line created · raw/2026-09-10/ledger.md#L122 · generate
+- 2026-09-10 estimates/estimate-materialize-assumes-every-entry-has-a-line status: pending → passed · raw/2026-09-10/ledger.md#L122 · generate
+- 2026-09-10 insights/insight-harness-yaml-entry-shape-assumed created · raw/2026-09-10/ledger.md#L122 · generate
+- 2026-09-10 lessons/lesson-generate-replace-mapping-crashes updated: clustered by librarian: the yaml entry shape a script assumes, with lesson-materialize-assumes-every-entry-has-a-line · raw/2026-09-10/ledger.md#L122 · generate
+- 2026-09-10 lessons/lesson-materialize-assumes-every-entry-has-a-line updated: clustered by librarian: the yaml entry shape a script assumes, with lesson-generate-replace-mapping-crashes · raw/2026-09-10/ledger.md#L122 · generate
+- 2026-09-10 decisions/decision-case-44 created · raw/2026-09-10/ledger.md#case-44 · generate
+- 2026-09-10 decisions/decision-case-45 created · raw/2026-09-10/ledger.md#case-45 · generate
+- 2026-09-10 decisions/decision-case-46 created · raw/2026-09-10/ledger.md#case-46 · generate
+- 2026-09-10 decisions/decision-case-47 created · raw/2026-09-10/ledger.md#case-47 · generate
+- 2026-09-10 decisions/decision-case-48 created · raw/2026-09-10/ledger.md#case-48 · generate
+- 2026-09-10 decisions/decision-case-49 created · raw/2026-09-10/ledger.md#case-49 · generate
+- 2026-09-10 decisions/decision-case-50 created · raw/2026-09-10/ledger.md#case-50 · generate
+- 2026-09-10 decisions/decision-case-51 created · raw/2026-09-10/ledger.md#case-51 · generate
+- 2026-09-10 rules/rule-brief status: draft → built · cascade · generate
+- 2026-09-10 rules/rule-close status: draft → built · cascade · generate
+- 2026-09-10 rules/rule-end-of-work status: draft → built · cascade · generate
+- 2026-09-10 rules/rule-handoff status: draft → built · cascade · generate
+- 2026-09-10 rules/rule-index-check status: draft → built · cascade · generate
+- 2026-09-10 rules/rule-materialize status: draft → built · cascade · generate
+- 2026-09-10 rules/rule-retro status: draft → built · cascade · generate

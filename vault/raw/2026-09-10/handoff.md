@@ -170,3 +170,31 @@
 - Not done: the pages of Cases 44–49 (yours); the render of the Case 44 frame (next
   session); the readings of Case 44 and of the four new generate estimates (after your
   run); the close of Slice 3; Case 45, 50, 51 (deferred).
+
+---
+
+# Handoff — 2026-09-10, session G, second pass: after the materialize fix
+
+## Notes from memory
+
+- The first pass stopped at step 1: `guppi materialize` failed with `'line'`. Cause: the
+  three entries you (the librarian of session F) appended at synthesis carry no `line` and
+  no `case`; assemble assumed both. Fixed in commit `7dc4f7f`, one test, `make test` 138.
+  The lesson `lesson-materialize-assumes-every-entry-has-a-line` is in the ledger.
+- A dry run of assemble over 2026-09-10 adds 37 entries, no `unparsed`; `incomplete` on
+  four: `source` of two lessons (lines 99, 100 — their source text holds a dash or a
+  comma the grammar may not take), `then` of the two Retro defers (Cases 50, 51 — a
+  Retro defer has no Spec block by design).
+
+## Direct instructions to the librarian
+
+- Everything in the document above still holds. Materialize 2026-09-10; the yaml of
+  2026-09-10 now takes the whole of session G.
+- Your own three synthesis entries of session F sit in the yaml without `line`; leave
+  them as they are.
+
+## What actually got done
+
+- Commit `7dc4f7f`: `guppi/materialize.py` skips entries without `line` when matching
+  the ledger and entries without `case` when grouping decisions; `tests/test_materialize.py`
+  gains one test. Nothing else changed since the document above.

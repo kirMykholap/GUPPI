@@ -88,6 +88,7 @@ entries:
   - category
   - then
   failed: 'generate: old-harness: no page to delete'
+  applied: '16:08:18'
 - line: 9
   text: decision[case 7][update][migration-plan]
   case: '7'

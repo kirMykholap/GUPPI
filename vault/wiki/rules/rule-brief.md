@@ -2,7 +2,7 @@
 type: rule
 kind: Leaf
 purpose: Prevents the next session from starting without the facts and the flags of this one
-status: draft
+status: built
 enforcement: render
 governs: .claude/agents/librarian-guppi.md
 render_mode: partial
@@ -51,3 +51,4 @@ Write facts and flags only. Add no decision and no judgment of the work. Change
 
 - 2026-09-10 created · raw/2026-09-10/ledger.md#case-35.3
 - 2026-09-10 estimate estimate-brief-written added · raw/2026-09-10/ledger.md#case-35.3
+- 2026-09-10 status: draft → built · cascade

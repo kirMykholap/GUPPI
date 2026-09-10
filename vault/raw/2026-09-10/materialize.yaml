@@ -2419,6 +2419,930 @@ entries:
     insight: insight-harness-agent-visibility
   change: 'clustered by librarian: agent visibility, with lesson-agents-loaded-at-session-start'
   applied: '11:51:51'
+- line: 86
+  text: 'estimate[estimate-retro-loads][passed] live 2026-09-10 session F: the /retro context held make
+    test (132), make style and today''s ledger with no read-tool call; event_log.md line `retro` at 11:46:56;
+    no edit was made in Retro; no bug and no new deferral, so no lesson and no defer line; the closing
+    reply listed the ratifications (Cases 42, 43), the done and the not done; the commit 893b3d9 at 11:47:54
+    preceded the /handoff call at 11:47:58'
+  kind: estimate
+  category: estimates
+  slug: estimate-retro-loads
+  status: passed
+  result: 'live 2026-09-10 session F: the /retro context held make test (132), make style and today''s
+    ledger with no read-tool call; event_log.md line `retro` at 11:46:56; no edit was made in Retro; no
+    bug and no new deferral, so no lesson and no defer line; the closing reply listed the ratifications
+    (Cases 42, 43), the done and the not done; the commit 893b3d9 at 11:47:54 preceded the /handoff call
+    at 11:47:58'
+  origin: raw/2026-09-10/ledger.md#L86
+  applied: '16:08:18'
+- line: 87
+  text: 'estimate[estimate-handoff-dispatches][passed] live 2026-09-10 session F: the /handoff context
+    held `git status --porcelain` (empty; the refusal path was read in session E); event_log.md line `handoff`
+    at 11:47:58; handoff.md gained the document `Handoff — 2026-09-10, Slice 3 closes, session F` with
+    the three sections, written from memory by one append with no read of the artifacts; librarian-guppi
+    was dispatched with `Materialize 2026-09-10.`; its report was shown unchanged; no commit followed,
+    the tree is clean at HEAD 8bbfa10'
+  kind: estimate
+  category: estimates
+  slug: estimate-handoff-dispatches
+  status: passed
+  result: 'live 2026-09-10 session F: the /handoff context held `git status --porcelain` (empty; the refusal
+    path was read in session E); event_log.md line `handoff` at 11:47:58; handoff.md gained the document
+    `Handoff — 2026-09-10, Slice 3 closes, session F` with the three sections, written from memory by
+    one append with no read of the artifacts; librarian-guppi was dispatched with `Materialize 2026-09-10.`;
+    its report was shown unchanged; no commit followed, the tree is clean at HEAD 8bbfa10'
+  origin: raw/2026-09-10/ledger.md#L87
+  applied: '16:08:18'
+- line: 88
+  text: 'estimate[estimate-end-of-work-order][passed] make test-end-of-work green inside the 132; live
+    2026-09-10: the refusal on a dirty tree was read in session E at 11:18:24 (retro-commit-gates); this
+    session the tree was clean at /handoff; handoff.md existed at 11:48:15 before the dispatch at 11:48:22;
+    git log shows 893b3d9 (Retro) then 8bbfa10 (librarian) with nothing between'
+  kind: estimate
+  category: estimates
+  slug: estimate-end-of-work-order
+  status: passed
+  result: 'make test-end-of-work green inside the 132; live 2026-09-10: the refusal on a dirty tree was
+    read in session E at 11:18:24 (retro-commit-gates); this session the tree was clean at /handoff; handoff.md
+    existed at 11:48:15 before the dispatch at 11:48:22; git log shows 893b3d9 (Retro) then 8bbfa10 (librarian)
+    with nothing between'
+  origin: raw/2026-09-10/ledger.md#L88
+  applied: '16:08:18'
+- line: 89
+  text: 'estimate[estimate-documentation-completes][failed] make test-documentation green inside the 132;
+    live 2026-09-10: decision-case-43 and its five targets exist, the lesson-born and synthesis pages
+    trace to line 80, the commit 8bbfa10 is separate and touches only vault/, its 44 commands are in event_log.md,
+    it did not stop to ask; failed on the read constraint: at 11:49:55 it read vault/wiki/lessons/lesson-agents-loaded-at-session-start.md
+    and at 11:50:08–11:50:15 guppi/generate.py three times, before any script had reported a problem;
+    after the generate crash it also edited materialize.yaml lines 2306 and 2356 by sed and reran'
+  kind: estimate
+  category: estimates
+  slug: estimate-documentation-completes
+  status: failed
+  result: 'make test-documentation green inside the 132; live 2026-09-10: decision-case-43 and its five
+    targets exist, the lesson-born and synthesis pages trace to line 80, the commit 8bbfa10 is separate
+    and touches only vault/, its 44 commands are in event_log.md, it did not stop to ask; failed on the
+    read constraint: at 11:49:55 it read vault/wiki/lessons/lesson-agents-loaded-at-session-start.md and
+    at 11:50:08–11:50:15 guppi/generate.py three times, before any script had reported a problem; after
+    the generate crash it also edited materialize.yaml lines 2306 and 2356 by sed and reran'
+  origin: raw/2026-09-10/ledger.md#L89
+  applied: '16:08:18'
+- line: 90
+  text: 'estimate[estimate-index-check-merges][passed] live 2026-09-10: the report names the outcome per
+    category (estimates: two near, lessons: one near, no merge); the three `near:` marks in materialize.yaml
+    (lines 2181, 2295, 2347) point at pages of the same category, no other field of those entries changed;
+    no create was turned into an update, and none should have been (each new page checks a behaviour its
+    neighbour does not); the one page opened is the lesson read of 11:49:55, counted against synthesis;
+    weak point: the report lists outcomes, not the comparisons made'
+  kind: estimate
+  category: estimates
+  slug: estimate-index-check-merges
+  status: passed
+  result: 'live 2026-09-10: the report names the outcome per category (estimates: two near, lessons: one
+    near, no merge); the three `near:` marks in materialize.yaml (lines 2181, 2295, 2347) point at pages
+    of the same category, no other field of those entries changed; no create was turned into an update,
+    and none should have been (each new page checks a behaviour its neighbour does not); the one page
+    opened is the lesson read of 11:49:55, counted against synthesis; weak point: the report lists outcomes,
+    not the comparisons made'
+  origin: raw/2026-09-10/ledger.md#L90
+  applied: '16:08:18'
+- line: 91
+  text: 'estimate[estimate-synthesis-clusters][failed] live 2026-09-10 with one new lesson entry against
+    ten index lines: the two agent-visibility lessons produced one insight create (insight-harness-agent-visibility:
+    pattern, both children, tags harness,hooks as the union, Pattern and Proposal) and one update per
+    lesson setting clustered and the insight, all three marked `librarian: synthesis`; lesson-agents-at-import-not-expanded
+    stayed new; no archive file was read; failed on one point: the librarian read the lesson page lesson-agents-loaded-at-session-start
+    at 11:49:55 before judging, which the criterion forbids and rule-index-check permits when an index
+    line is not enough'
+  kind: estimate
+  category: estimates
+  slug: estimate-synthesis-clusters
+  status: failed
+  result: 'live 2026-09-10 with one new lesson entry against ten index lines: the two agent-visibility
+    lessons produced one insight create (insight-harness-agent-visibility: pattern, both children, tags
+    harness,hooks as the union, Pattern and Proposal) and one update per lesson setting clustered and
+    the insight, all three marked `librarian: synthesis`; lesson-agents-at-import-not-expanded stayed
+    new; no archive file was read; failed on one point: the librarian read the lesson page lesson-agents-loaded-at-session-start
+    at 11:49:55 before judging, which the criterion forbids and rule-index-check permits when an index
+    line is not enough'
+  origin: raw/2026-09-10/ledger.md#L91
+  applied: '16:08:18'
+- line: 92
+  text: 'estimate[estimate-brief-written][passed] live 2026-09-10: brief.md holds the five sections in
+    order; Deferred has 6 items, each with its postponement count carried from the previous brief plus
+    one; every near entry (3), every incomplete entry, the failed old-harness entry and the lint output
+    are under Flags; no unparsed line existed; the brief states facts and flags, the one imperative is
+    an item for the next session; sprint.md is unchanged, as the handoff asked'
+  kind: estimate
+  category: estimates
+  slug: estimate-brief-written
+  status: passed
+  result: 'live 2026-09-10: brief.md holds the five sections in order; Deferred has 6 items, each with
+    its postponement count carried from the previous brief plus one; every near entry (3), every incomplete
+    entry, the failed old-harness entry and the lint output are under Flags; no unparsed line existed;
+    the brief states facts and flags, the one imperative is an item for the next session; sprint.md is
+    unchanged, as the handoff asked'
+  origin: raw/2026-09-10/ledger.md#L92
+  applied: '16:08:18'
+- line: 93
+  text: 'estimate[estimate-close-commits][passed] live 2026-09-10: git log shows one commit 8bbfa10 `docs(vault):
+    librarian, 2026-09-10` after the Retro commit 893b3d9, 19 files all under vault/, no --amend; the
+    report reached the main agent with the counts per category, thirteen flags and the lint total (169
+    findings, render --check exit 1); the report is 16 lines'
+  kind: estimate
+  category: estimates
+  slug: estimate-close-commits
+  status: passed
+  result: 'live 2026-09-10: git log shows one commit 8bbfa10 `docs(vault): librarian, 2026-09-10` after
+    the Retro commit 893b3d9, 19 files all under vault/, no --amend; the report reached the main agent
+    with the counts per category, thirteen flags and the lint total (169 findings, render --check exit
+    1); the report is 16 lines'
+  origin: raw/2026-09-10/ledger.md#L93
+  applied: '16:08:18'
+- line: 94
+  text: 'estimate[estimate-materialize-walks-dates][passed] tests/test_materialize.py 15 green with the
+    three walk tests (order, --date, an error stops the walk); live 2026-09-10: the librarian''s `uv run
+    guppi materialize` at 11:48:27 walked 2026-09-09 (+0 entries) and 2026-09-10 (+8), one stdout line
+    per date, exit 0; the pickup of a line after a later date''s run is covered by the test only, both
+    sessions of today share the date'
+  kind: estimate
+  category: estimates
+  slug: estimate-materialize-walks-dates
+  status: passed
+  result: 'tests/test_materialize.py 15 green with the three walk tests (order, --date, an error stops
+    the walk); live 2026-09-10: the librarian''s `uv run guppi materialize` at 11:48:27 walked 2026-09-09
+    (+0 entries) and 2026-09-10 (+8), one stdout line per date, exit 0; the pickup of a line after a later
+    date''s run is covered by the test only, both sessions of today share the date'
+  origin: raw/2026-09-10/ledger.md#L94
+  applied: '16:08:18'
+- line: 95
+  text: 'estimate[estimate-generate-walks-dates][passed] tests/test_generate.py 14 green with the three
+    walk tests; live 2026-09-10: `uv run guppi generate` walked 2026-09-09 (old-harness failed, reported,
+    the walk went on) and 2026-09-10, exit 1 at the end; the second run wrote 0 pages for the applied
+    entries; the first live run also exposed three defects recorded as lessons below, none of them in
+    the walk itself'
+  kind: estimate
+  category: estimates
+  slug: estimate-generate-walks-dates
+  status: passed
+  result: 'tests/test_generate.py 14 green with the three walk tests; live 2026-09-10: `uv run guppi generate`
+    walked 2026-09-09 (old-harness failed, reported, the walk went on) and 2026-09-10, exit 1 at the end;
+    the second run wrote 0 pages for the applied entries; the first live run also exposed three defects
+    recorded as lessons below, none of them in the walk itself'
+  origin: raw/2026-09-10/ledger.md#L95
+  applied: '16:08:18'
+- line: 96
+  text: 'lesson[error][lesson-generate-replace-mapping-crashes]{tags:harness,ledger}{source:raw/2026-09-10/event_log.md
+    11:51:21} trigger: the librarian''s first `guppi generate` of 2026-09-10 stopped with `''str'' object
+    has no attribute ''get''` on entries 83 and 85 of materialize.yaml, the Case 43 updates of rule-page-generation
+    and rule-documentation root_cause: case-schema.md describes `replace` as `old` → `new` without pinning
+    a shape, the Spec wrote it as a mapping, materialize lifted it as written, and generate.py iterates
+    `replace` as a list of items; a shape the script does not expect must fail that entry alone, not the
+    run'
+  kind: lesson
+  category: lessons
+  slug: lesson-generate-replace-mapping-crashes
+  origin: raw/2026-09-10/ledger.md#L96
+  fields:
+    type: lesson
+    kind: error
+    root_cause: case-schema.md describes `replace` as `old` → `new` without pinning a shape, the Spec
+      wrote it as a mapping, materialize lifted it as written, and generate.py iterates `replace` as a
+      list of items; a shape the script does not expect must fail that entry alone, not the run
+  sections:
+    Trigger: the librarian's first `guppi generate` of 2026-09-10 stopped with `'str' object has no attribute
+      'get'` on entries 83 and 85 of materialize.yaml, the Case 43 updates of rule-page-generation and
+      rule-documentation
+    Root cause: case-schema.md describes `replace` as `old` → `new` without pinning a shape, the Spec
+      wrote it as a mapping, materialize lifted it as written, and generate.py iterates `replace` as a
+      list of items; a shape the script does not expect must fail that entry alone, not the run
+  tags:
+  - harness
+  - ledger
+  applied: '16:08:18'
+- line: 97
+  text: 'lesson[error][lesson-generate-log-written-last]{tags:harness}{source:brief.md 2026-09-10 Flags}
+    trigger: after the aborted run the pages and History lines of entries 78–82 existed but their nine
+    lines never reached vault/wiki/log.md root_cause: generate.py writes log.md once at the end of apply
+    (write_log at line 649), so any exception inside apply keeps the page writes and loses the feed; the
+    log must be appended per entry or the run must be atomic'
+  kind: lesson
+  category: lessons
+  slug: lesson-generate-log-written-last
+  origin: raw/2026-09-10/ledger.md#L97
+  fields:
+    type: lesson
+    kind: error
+    root_cause: generate.py writes log.md once at the end of apply (write_log at line 649), so any exception
+      inside apply keeps the page writes and loses the feed; the log must be appended per entry or the
+      run must be atomic
+  sections:
+    Trigger: after the aborted run the pages and History lines of entries 78–82 existed but their nine
+      lines never reached vault/wiki/log.md
+    Root cause: generate.py writes log.md once at the end of apply (write_log at line 649), so any exception
+      inside apply keeps the page writes and loses the feed; the log must be appended per entry or the
+      run must be atomic
+  tags:
+  - harness
+  applied: '16:08:18'
+- line: 98
+  text: 'lesson[error][lesson-generate-walk-history-dated-by-yaml]{tags:harness,ledger}{source:vault/wiki/log.md
+    2026-09-10} trigger: the walk of Case 43 wrote two `2026-09-09` cascade lines into log.md after the
+    `2026-09-10` lines, and rule-materialize ends its History with a 2026-09-09 line written today root_cause:
+    Vault takes the yaml''s date for `created` and reuses it for History and log lines; with a multi-date
+    walk the date of the yaml and the date of the run differ, and History and the log should carry the
+    run''s date'
+  kind: lesson
+  category: lessons
+  slug: lesson-generate-walk-history-dated-by-yaml
+  origin: raw/2026-09-10/ledger.md#L98
+  fields:
+    type: lesson
+    kind: error
+    root_cause: Vault takes the yaml's date for `created` and reuses it for History and log lines; with
+      a multi-date walk the date of the yaml and the date of the run differ, and History and the log should
+      carry the run's date
+  sections:
+    Trigger: the walk of Case 43 wrote two `2026-09-09` cascade lines into log.md after the `2026-09-10`
+      lines, and rule-materialize ends its History with a 2026-09-09 line written today
+    Root cause: Vault takes the yaml's date for `created` and reuses it for History and log lines; with
+      a multi-date walk the date of the yaml and the date of the run differ, and History and the log should
+      carry the run's date
+  tags:
+  - harness
+  - ledger
+  applied: '16:08:18'
+- line: 99
+  text: 'lesson[knowledge][lesson-librarian-reads-beyond-the-four-inputs]{tags:harness,librarian}{source:raw/2026-09-10/event_log.md
+    11:49:55–11:50:15} trigger: on its first run the librarian read one lesson page and guppi/generate.py
+    three times before any script had reported a problem, then edited the yaml by sed after the crash
+    root_cause: the agent prompt gives the librarian no description of how generate reads the yaml marks
+    (near, librarian, synthesis), so it went to the code to learn the semantics; and rule-index-check
+    lets it open a page when an index line is not enough while rule-synthesis forbids reading a lesson
+    page, so the two rules disagree on the same act'
+  kind: lesson
+  category: lessons
+  slug: lesson-librarian-reads-beyond-the-four-inputs
+  origin: raw/2026-09-10/ledger.md#L99
+  fields:
+    type: lesson
+    kind: knowledge
+    root_cause: the agent prompt gives the librarian no description of how generate reads the yaml marks
+      (near, librarian, synthesis), so it went to the code to learn the semantics; and rule-index-check
+      lets it open a page when an index line is not enough while rule-synthesis forbids reading a lesson
+      page, so the two rules disagree on the same act
+  sections:
+    Trigger: on its first run the librarian read one lesson page and guppi/generate.py three times before
+      any script had reported a problem, then edited the yaml by sed after the crash
+    Root cause: the agent prompt gives the librarian no description of how generate reads the yaml marks
+      (near, librarian, synthesis), so it went to the code to learn the semantics; and rule-index-check
+      lets it open a page when an index line is not enough while rule-synthesis forbids reading a lesson
+      page, so the two rules disagree on the same act
+  tags:
+  - harness
+  - librarian
+  incomplete:
+  - source
+  applied: '16:08:18'
+- line: 100
+  text: 'lesson[knowledge][lesson-readings-after-librarian-invisible-to-next-hi]{tags:harness,workflow}{source:session
+    F 2026-09-10, owner''s question after the readings} trigger: fourteen estimate and lesson lines written
+    after the librarian''s commit of session F sit in the ledger; brief.md was written before them and
+    /hi loads brief.md only, so the next session''s Frontier does not see two failed readings and four
+    lessons until the librarian after next root_cause: the readings of the End of Work phase are born
+    after the one artifact the next session reads; the ledger is materialized by the next librarian, and
+    the brief by design carries only what the yaml held at its writing, so a fact born after the librarian''s
+    commit reaches the Frontier two sessions later unless /hi shows the unmaterialized ledger tail itself'
+  kind: lesson
+  category: lessons
+  slug: lesson-readings-after-librarian-invisible-to-next-hi
+  origin: raw/2026-09-10/ledger.md#L100
+  fields:
+    type: lesson
+    kind: knowledge
+    root_cause: the readings of the End of Work phase are born after the one artifact the next session
+      reads; the ledger is materialized by the next librarian, and the brief by design carries only what
+      the yaml held at its writing, so a fact born after the librarian's commit reaches the Frontier two
+      sessions later unless /hi shows the unmaterialized ledger tail itself
+  sections:
+    Trigger: fourteen estimate and lesson lines written after the librarian's commit of session F sit
+      in the ledger; brief.md was written before them and /hi loads brief.md only, so the next session's
+      Frontier does not see two failed readings and four lessons until the librarian after next
+    Root cause: the readings of the End of Work phase are born after the one artifact the next session
+      reads; the ledger is materialized by the next librarian, and the brief by design carries only what
+      the yaml held at its writing, so a fact born after the librarian's commit reaches the Frontier two
+      sessions later unless /hi shows the unmaterialized ledger tail itself
+  tags:
+  - harness
+  - workflow
+  incomplete:
+  - source
+  applied: '16:08:18'
+- line: 101
+  text: 'estimate[estimate-librarian-reads-beyond-the-four-inputs][passed] read live 2026-09-10 session
+    G: rule-documentation Render line 44 and rule-index-check Render line 35 allow a page when an index
+    line is not enough, while estimate-synthesis-clusters Criterion line 24 requires that no lesson page
+    was read, so the parent''s Render and the child''s criterion disagree on the same act; no Render and
+    not the agent file names any yaml mark (near, librarian, merged, applied, failed, exists, incomplete),
+    and guppi/generate.py reads none of near, librarian, merged'
+  kind: estimate
+  category: estimates
+  slug: estimate-librarian-reads-beyond-the-four-inputs
+  status: passed
+  result: 'read live 2026-09-10 session G: rule-documentation Render line 44 and rule-index-check Render
+    line 35 allow a page when an index line is not enough, while estimate-synthesis-clusters Criterion
+    line 24 requires that no lesson page was read, so the parent''s Render and the child''s criterion
+    disagree on the same act; no Render and not the agent file names any yaml mark (near, librarian, merged,
+    applied, failed, exists, incomplete), and guppi/generate.py reads none of near, librarian, merged'
+  origin: raw/2026-09-10/ledger.md#L101
+  applied: '16:08:18'
+- line: 102
+  text: decision[case 44][update][rule-documentation]
+  case: '44'
+  kind: update
+  slug: rule-documentation
+  origin: raw/2026-09-10/ledger.md#case-44
+  decision: decision-case-44
+  category: rules
+  replace:
+  - old: 'Read four things and nothing else: `vault/raw/<today>/handoff.md`, every
+
+      `materialize.yaml` that `guppi materialize` names on its stdout, the five
+
+      `vault/wiki/<category>-index.md` files, and `vault/wiki/tags.md`. Open a page only
+
+      when a script reports a problem, or an index line is not enough to judge. Never read
+
+      `ledger.md`, `spec.md`, `plan.md` or `wiki/decisions/`.'
+    new: 'Your inputs are four: `vault/raw/<today>/handoff.md`, every `materialize.yaml`
+
+      that `guppi materialize` names on its stdout, the five `vault/wiki/<category>-index.md`
+
+      files, and `vault/wiki/tags.md`. Open a page under `vault/wiki/` in three cases only:
+
+      an index line does not tell you whether a create is the same page or a near one; you
+
+      write an Insight and need the Trigger and Root cause of its lessons; a script names a
+
+      page in an error and you say why it failed. Name every page you open in the report,
+
+      with the reason. Never read `ledger.md`, `spec.md`, `plan.md`, `wiki/decisions/`,
+
+      `vault/archived/`, or any file under `guppi/` or `tests/`: what the scripts do with
+
+      the yaml is written here. Edit the yaml only as the index check and the synthesis
+
+      say; an entry a script rejects stays as it is and is a flag in the report, never a
+
+      repair.
+
+
+      Marks in `materialize.yaml`: `applied` and `failed` are set by `guppi generate`, an
+
+      entry with either is skipped or reported; `exists` is a create whose page was on
+
+      disk, no page is written; `incomplete` lists the fields the Spec block lacked, the
+
+      page is written without them; `near`, `librarian` and `merged` are yours, no script
+
+      reads them, the brief reports them.'
+  - old: It starts empty and reads four things.
+    new: It starts empty, reads four inputs, and opens a page only for a reason its frame names.
+  change: four inputs; a wiki page in three named cases, each named in the report; session artifacts,
+    the archive and code never; the yaml edited only by the marks; the marks described
+  applied: '16:08:18'
+- line: 103
+  text: decision[case 44][update][rule-index-check]
+  case: '44'
+  kind: update
+  slug: rule-index-check
+  origin: raw/2026-09-10/ledger.md#case-44
+  decision: decision-case-44
+  category: rules
+  replace:
+  - old: Open a page only when its index line is not enough to judge.
+    new: When the index line does not settle same or near, open the page and name it in the report.
+  change: the read is for same-or-near only and is named in the report
+  applied: '16:08:18'
+- line: 104
+  text: decision[case 44][update][rule-synthesis]
+  case: '44'
+  kind: update
+  slug: rule-synthesis
+  origin: raw/2026-09-10/ledger.md#case-44
+  decision: decision-case-44
+  category: rules
+  replace:
+  - old: 'Do
+
+      not read the archive and do not write pages yourself.'
+    new: 'Read the Trigger and Root cause of the lessons you cluster and name those pages in
+
+      the report. Do not read the archive and do not write pages yourself.'
+  change: the lessons of a cluster are read before the Insight is written, and named
+  applied: '16:08:18'
+- line: 105
+  text: decision[case 44][update][estimate-synthesis-clusters]
+  case: '44'
+  kind: update
+  slug: estimate-synthesis-clusters
+  origin: raw/2026-09-10/ledger.md#case-44
+  decision: decision-case-44
+  category: estimates
+  sections:
+    Criterion: 'After a live librarian run with at least two lesson entries: the report names the
+
+      comparisons made against lessons-index and insights-index; two lessons with one
+
+      root cause produced one insight create entry with pattern, both children, the union
+
+      of tags, Pattern and Proposal, and one update per lesson setting clustered and
+
+      insight; a lesson matching a live Insight''s pattern produced an update of that
+
+      Insight and of the lesson; every added entry carries librarian: synthesis; no
+
+      archive file was read, and every lesson page read is named in the report as a
+
+      child of the Insight written; a lesson without a pair stayed new.
+
+      '
+  change: a lesson page is read for the Insight it feeds and named in the report; the archive stays closed
+  applied: '16:08:18'
+- line: 106
+  text: decision[case 44][update][estimate-documentation-completes]
+  case: '44'
+  kind: update
+  slug: estimate-documentation-completes
+  origin: raw/2026-09-10/ledger.md#case-44
+  decision: decision-case-44
+  category: estimates
+  sections:
+    Criterion: 'make test-documentation runs the tests of materialize, generate and cleanup as one
+
+      pipeline, green. Live, after a librarian run: every decision line of the session''s
+
+      ledger has a Decision page and its target page; no page exists that no ledger line
+
+      produced; the agent read only handoff.md, the yamls materialize named, the five
+
+      indexes and tags.md, plus the wiki pages it names in the report with one of the
+
+      three reasons of its frame (same or near, the lessons of an Insight, a script''s
+
+      error), and no ledger, Spec, plan, Decision page, archive file, or file under guppi/
+
+      or tests/; it edited no yaml entry beyond the marks and the entries of the index
+
+      check and the synthesis; its commands are in event_log.md; its commit is separate
+
+      from the session''s; it did not stop to ask.
+
+      '
+  change: a read beyond the four inputs is allowed for one of three named reasons; session artifacts,
+    code and yaml repairs are not
+  applied: '16:08:18'
+- line: 107
+  text: decision[case 45][defer][rule-ledger-tail]
+  case: '45'
+  kind: defer
+  slug: rule-ledger-tail
+  origin: raw/2026-09-10/ledger.md#case-45
+  decision: decision-case-45
+  category: rules
+  fields:
+    type: rule
+    purpose: Shows at /hi every ledger line that no vault page holds yet, so a reading or a lesson written
+      after the librarian's commit reaches the next session's Frontier
+  exists: false
+  applied: '16:08:18'
+- line: 108
+  text: decision[case 46][update][migration-plan]
+  case: '46'
+  kind: update
+  slug: migration-plan
+  origin: raw/2026-09-10/ledger.md#case-46
+  decision: decision-case-46
+  category: file
+  path: docs/migration/migration-plan.md
+  change: 'Phase 1, Required Rules: a bullet `Archive script` — after generate and cleanup the librarian
+    moves raw/<date>/ of every fully applied date to vault/archived/<sprint>/raw/<date>/<stamp>/ (one
+    stamp per librarian run, several a day) and rewrites every path that pointed there; a page born of
+    a Case carries decided_by (a Decision slug), a Decision, Lesson or Insight page and a History line
+    carry origin (a ledger pointer); lint checks decided_by as a ref and origin as a grep target in raw/
+    or archived/; a ledger line written after the librarian''s commit lands in a fresh raw/<date>/ledger.md
+    and /hi prints every raw/*/ledger.md; the existing pages are migrated by script. Definition of done
+    item 1: `origin` → `decided_by` or `origin`, as its schema says. sprint.md mirrors both: Slice 3c
+    raw lifecycle between 3b and 4, item 1 reworded.'
+  applied: '16:08:18'
+- line: 109
+  text: decision[case 47][update][rule-page-generation]
+  case: '47'
+  kind: update
+  slug: rule-page-generation
+  origin: raw/2026-09-10/ledger.md#case-47
+  decision: decision-case-47
+  category: rules
+  replace:
+  - old: 'An entry that fails — a collision, a `ref` naming no page, a
+
+      `replace` whose text is absent or not unique — is reported on stderr and skipped;
+
+      the rest apply; the exit code is 1.'
+    new: 'An entry that fails — a collision, a `ref` naming no page, a
+
+      `replace` whose text is absent or not unique, a field whose shape the script does not
+
+      expect, any exception raised while applying it — is reported on stderr, marked
+
+      `failed` and skipped; the rest apply; the exit code is 1. No entry ends the run.'
+  - old: '`sprint` is the first `## <id>` heading
+
+      of `sprint.md`; `created` is the yaml''s date.'
+    new: '`sprint` is the first `## <id>` heading
+
+      of `sprint.md`; `created` is the yaml''s date; History lines and `log.md` lines carry
+
+      the date of the run.'
+  - old: '`log.md` gets the same line with `<category>/<slug>` in front.'
+    new: '`log.md` gets the same line with `<category>/<slug>` in front, appended after each
+
+      entry, so a run that stops leaves the feed level with the pages.'
+  change: an entry fails alone whatever the cause; log.md is appended per entry; History and log carry
+    the run's date, created the yaml's
+  applied: '16:08:18'
+- line: 110
+  text: decision[case 47][update][case-schema]
+  case: '47'
+  kind: update
+  slug: case-schema
+  origin: raw/2026-09-10/ledger.md#case-47
+  decision: decision-case-47
+  category: file
+  path: vault/wiki/case-schema.md
+  change: 'the sentence on `replace` in an `update` pins its shape: `replace` is a list of `{old, new}`
+    pairs, one pair being a list of one; a mapping under `replace` is a shape generate rejects'
+  applied: '16:08:18'
+- line: 111
+  near: estimate-generate-writes
+  text: decision[case 47][create][estimate-generate-rejects-shape-alone]{ref:rule-page-generation}{tags:harness,workflow,ledger}
+  case: '47'
+  kind: create
+  slug: estimate-generate-rejects-shape-alone
+  origin: raw/2026-09-10/ledger.md#case-47
+  decision: decision-case-47
+  ref: rule-page-generation
+  tags:
+  - harness
+  - workflow
+  - ledger
+  category: estimates
+  fields:
+    type: estimate
+    kind: QA
+    ref: rule-page-generation
+    tags:
+    - harness
+    - workflow
+    - ledger
+    criterion: An entry whose field has a shape the script does not expect (a mapping under replace, a
+      string where a list is due) or in which any exception is raised is marked failed, reported on stderr
+      and skipped; every other entry of the yaml applies; the exit code is 1; no entry ends the run.
+    method: tests/test_generate.py with a replace mapping and an entry that raises; live at the next librarian
+      run
+  applied: '16:08:18'
+- line: 112
+  near: estimate-generate-writes
+  text: decision[case 47][create][estimate-generate-logs-per-entry]{ref:rule-page-generation}{tags:harness,workflow,ledger}
+  case: '47'
+  kind: create
+  slug: estimate-generate-logs-per-entry
+  origin: raw/2026-09-10/ledger.md#case-47
+  decision: decision-case-47
+  ref: rule-page-generation
+  tags:
+  - harness
+  - workflow
+  - ledger
+  category: estimates
+  fields:
+    type: estimate
+    kind: QA
+    ref: rule-page-generation
+    tags:
+    - harness
+    - workflow
+    - ledger
+    criterion: After each applied entry its lines are in log.md; a run stopped at entry N by an injected
+      failure leaves log.md holding the lines of every entry before N, level with the pages and their
+      History.
+    method: tests/test_generate.py with an injected failure after three entries; live, log.md against
+      the History lines of the next librarian run
+  applied: '16:08:18'
+- line: 113
+  near: estimate-generate-walks-dates
+  text: decision[case 47][create][estimate-generate-dates-history-by-run]{ref:rule-page-generation}{tags:harness,workflow,ledger}
+  case: '47'
+  kind: create
+  slug: estimate-generate-dates-history-by-run
+  origin: raw/2026-09-10/ledger.md#case-47
+  decision: decision-case-47
+  ref: rule-page-generation
+  tags:
+  - harness
+  - workflow
+  - ledger
+  category: estimates
+  fields:
+    type: estimate
+    kind: QA
+    ref: rule-page-generation
+    tags:
+    - harness
+    - workflow
+    - ledger
+    criterion: In a walk over an earlier date, every History line and log.md line written carries the
+      date of the run, and created of a page written in that walk carries the yaml's date.
+    method: tests/test_generate.py with a yaml of an earlier date and a pinned now; live, the next walk
+      that touches 2026-09-09
+  applied: '16:08:18'
+- line: 114
+  text: decision[case 48][update][rule-page-generation]
+  case: '48'
+  kind: update
+  slug: rule-page-generation
+  origin: raw/2026-09-10/ledger.md#case-48
+  decision: decision-case-48
+  category: rules
+  replace:
+  - old: 'A `delete` sets `status: archived`
+
+      with History `deleted`; there is no `deleted` status.'
+    new: 'A `delete` sets `status: archived`
+
+      with History `deleted`; there is no `deleted` status. A `delete` whose slug is neither
+
+      a category prefix nor a Rule-class file (`category: unknown` in the yaml) names
+
+      something outside the vault: it is printed on stdout as `outside the vault, nothing to
+
+      archive` and marked applied, no page is written; a `delete` with a category and no
+
+      page fails.'
+  change: a delete of something outside the vault (category unknown) applies with a stdout line; a delete
+    of a missing page still fails
+  applied: '16:08:18'
+- line: 115
+  near: estimate-generate-writes
+  text: decision[case 48][create][estimate-generate-passes-delete-outside-vault]{ref:rule-page-generation}{tags:harness,workflow,ledger}
+  case: '48'
+  kind: create
+  slug: estimate-generate-passes-delete-outside-vault
+  origin: raw/2026-09-10/ledger.md#case-48
+  decision: decision-case-48
+  ref: rule-page-generation
+  tags:
+  - harness
+  - workflow
+  - ledger
+  category: estimates
+  fields:
+    type: estimate
+    kind: QA
+    ref: rule-page-generation
+    tags:
+    - harness
+    - workflow
+    - ledger
+    criterion: A delete entry whose slug has no category prefix is printed on stdout as outside the vault,
+      marked applied and writes no page and no History; a delete entry with a category and no page fails
+      that entry alone; live, the walk over 2026-09-09 prints nothing on stderr and exits 0.
+    method: tests/test_generate.py with both entries; live, the next librarian run
+  applied: '16:08:18'
+- line: 116
+  text: decision[case 49][update][estimate-index-check-merges]
+  case: '49'
+  kind: update
+  slug: estimate-index-check-merges
+  origin: raw/2026-09-10/ledger.md#case-49
+  decision: decision-case-49
+  category: estimates
+  sections:
+    Criterion: 'After a live librarian run: the report names the comparisons made per category; a
+
+      create whose purpose an index line already carries was turned into an update of
+
+      that slug with change "merged by librarian: ..." and the mark librarian: merged,
+
+      with no other field changed; a near match was kept with near: <slug>; every page
+
+      opened is named in the report with the index line that did not settle same or
+
+      near; no comparison crossed categories.
+
+      '
+  change: an opened page is named in the report with the index line that did not settle it
+  applied: '16:08:18'
+- line: 117
+  text: decision[case 49][update][rule-materialize]
+  case: '49'
+  kind: update
+  slug: rule-materialize
+  origin: raw/2026-09-10/ledger.md#case-49
+  decision: decision-case-49
+  category: rules
+  replace:
+  - old: (a create whose page is on disk), `applied` (set by `guppi generate`).
+    new: '(a create whose page is on disk), `folded` (the ledger lines of readings folded into
+
+      a create), `applied` and `failed` (set by `guppi generate`: the time applied, or the
+
+      error).'
+  change: the field list names folded, applied and failed
+  applied: '16:08:18'
+- line: 118
+  text: decision[case 49][update][index]
+  case: '49'
+  kind: update
+  slug: index
+  origin: raw/2026-09-10/ledger.md#case-49
+  decision: decision-case-49
+  category: file
+  path: vault/wiki/index.md
+  change: '§5 table, after the `delete` row: `| delete | none, no category | Outside the vault (a doc,
+    a file): the decision page records it, generate marks it applied, nothing to archive |`'
+  applied: '16:08:18'
+- line: 119
+  text: 'lesson[error][lesson-ledger-hook-misses-a-reply-ending-in-a-tool-call]{tags:harness,hooks,ledger}{source:raw/2026-09-10/event_log.md
+    13:56:06 pretask; ledger.md of 2026-09-10 between 13:54:53 and Retro} trigger: the LEDGER blocks of
+    the two replies that acknowledged Cases 48 and 49 never reached ledger.md; the first reply ended with
+    the Skill call of /pre-task, the second with ExitPlanMode; the lines were found missing at /retro
+    and re-emitted there root_cause: the Stop hook fires when the assistant''s turn ends in text; a reply
+    whose last act is a tool call whose result comes back as the next turn (Skill, ExitPlanMode) has no
+    Stop, so its LEDGER block is never read; a reply that carries a LEDGER block must end in text, after
+    the tool call, or the ledger writer needs a second event'
+  kind: lesson
+  category: lessons
+  slug: lesson-ledger-hook-misses-a-reply-ending-in-a-tool-call
+  origin: raw/2026-09-10/ledger.md#L119
+  fields:
+    type: lesson
+    kind: error
+    root_cause: the Stop hook fires when the assistant's turn ends in text; a reply whose last act is
+      a tool call whose result comes back as the next turn (Skill, ExitPlanMode) has no Stop, so its LEDGER
+      block is never read; a reply that carries a LEDGER block must end in text, after the tool call,
+      or the ledger writer needs a second event
+  sections:
+    Trigger: the LEDGER blocks of the two replies that acknowledged Cases 48 and 49 never reached ledger.md;
+      the first reply ended with the Skill call of /pre-task, the second with ExitPlanMode; the lines
+      were found missing at /retro and re-emitted there
+    Root cause: the Stop hook fires when the assistant's turn ends in text; a reply whose last act is
+      a tool call whose result comes back as the next turn (Skill, ExitPlanMode) has no Stop, so its LEDGER
+      block is never read; a reply that carries a LEDGER block must end in text, after the tool call,
+      or the ledger writer needs a second event
+  tags:
+  - harness
+  - hooks
+  - ledger
+  applied: '16:08:18'
+- line: 120
+  text: decision[case 50][defer][rule-retro]
+  case: '50'
+  kind: defer
+  slug: rule-retro
+  origin: raw/2026-09-10/ledger.md#case-50
+  decision: decision-case-50
+  category: rules
+  exists: true
+  incomplete:
+  - then
+  applied: '16:08:18'
+- line: 121
+  text: decision[case 51][defer][rule-ledger-write]
+  case: '51'
+  kind: defer
+  slug: rule-ledger-write
+  origin: raw/2026-09-10/ledger.md#case-51
+  decision: decision-case-51
+  category: rules
+  exists: true
+  incomplete:
+  - then
+  applied: '16:08:18'
+- line: 122
+  text: 'lesson[error][lesson-materialize-assumes-every-entry-has-a-line]{tags:harness,ledger,librarian}{source:librarian
+    report 2026-09-10 session G; guppi/materialize.py assemble line 503} trigger: the librarian''s `guppi
+    materialize` of session G stopped with `materialize.yaml not written: ''line''` on 2026-09-10, nothing
+    written, the run ended at step 1 and the brief of session F stayed root_cause: assemble builds `known
+    = {e["line"]: e for e in entries}` over every entry of the existing yaml, but the three entries the
+    librarian appended at synthesis in session F (an insight create and two lesson updates, marked `librarian:
+    synthesis`) carry no `line` because no ledger line made them; the first materialize over a yaml the
+    librarian has extended fails; entries without `line` must be skipped when the ledger is matched, as
+    the contract of case 41 already says'
+  kind: lesson
+  category: lessons
+  slug: lesson-materialize-assumes-every-entry-has-a-line
+  origin: raw/2026-09-10/ledger.md#L122
+  fields:
+    type: lesson
+    kind: error
+    root_cause: 'assemble builds `known = {e["line"]: e for e in entries}` over every entry of the existing
+      yaml, but the three entries the librarian appended at synthesis in session F (an insight create
+      and two lesson updates, marked `librarian: synthesis`) carry no `line` because no ledger line made
+      them; the first materialize over a yaml the librarian has extended fails; entries without `line`
+      must be skipped when the ledger is matched, as the contract of case 41 already says'
+  sections:
+    Trigger: 'the librarian''s `guppi materialize` of session G stopped with `materialize.yaml not written:
+      ''line''` on 2026-09-10, nothing written, the run ended at step 1 and the brief of session F stayed'
+    Root cause: 'assemble builds `known = {e["line"]: e for e in entries}` over every entry of the existing
+      yaml, but the three entries the librarian appended at synthesis in session F (an insight create
+      and two lesson updates, marked `librarian: synthesis`) carry no `line` because no ledger line made
+      them; the first materialize over a yaml the librarian has extended fails; entries without `line`
+      must be skipped when the ledger is matched, as the contract of case 41 already says'
+  tags:
+  - harness
+  - ledger
+  - librarian
+  applied: '16:08:18'
+- kind: create
+  category: insights
+  slug: insight-harness-yaml-entry-shape-assumed
+  origin: raw/2026-09-10/ledger.md#L122
+  librarian: synthesis
+  tags:
+  - harness
+  - ledger
+  - librarian
+  fields:
+    type: insight
+    pattern: A script of the pipeline assumes every entry of materialize.yaml carries the fields and the
+      shapes it wrote itself; an entry written by another hand ends the whole run instead of failing alone.
+    children:
+    - lesson-generate-replace-mapping-crashes
+    - lesson-materialize-assumes-every-entry-has-a-line
+  sections:
+    Pattern: 'Two lessons of one run share a cause.
+
+
+      `lesson-generate-replace-mapping-crashes`: the Spec wrote `replace` as a mapping, materialize lifted
+
+      it as written, and generate iterated it as a list. One entry stopped the whole run.
+
+
+      `lesson-materialize-assumes-every-entry-has-a-line`: the three entries the librarian appended at
+
+      synthesis carry no `line`, because no ledger line made them. Materialize builds its index over
+
+      `e["line"]` for every entry, and the run stopped before anything was written.
+
+
+      `materialize.yaml` has four writers: materialize itself, the Spec block it lifts, the librarian,
+      and
+
+      generate''s marks. Each script reads the file as if it alone had written it, so a shape from another
+
+      writer is not a rejected entry but a crashed run. Both cases were fixed one at a time, in the script
+
+      that crashed; nothing yet states the shape of an entry in one place for all four writers.
+
+      '
+    Proposal: 'A suggestion, not a decision. Two things could hold this down.
+
+
+      One: state the shape of a yaml entry in one place — which fields a writer may add, which are optional,
+
+      which shapes a field takes — and have every script read an entry through that one description.
+
+      `case-schema.md` now pins `replace`; `rule-materialize` lists the marks. Neither is the whole shape.
+
+
+      Two: extend the rule of Case 47 — an entry fails alone whatever the cause — from generate to
+
+      materialize, so the file is never left unwritten because one entry is odd.
+
+      '
+  applied: '16:08:18'
+- kind: update
+  slug: lesson-generate-replace-mapping-crashes
+  category: lessons
+  origin: raw/2026-09-10/ledger.md#L122
+  librarian: synthesis
+  set:
+    status: clustered
+    insight: insight-harness-yaml-entry-shape-assumed
+  change: 'clustered by librarian: the yaml entry shape a script assumes, with lesson-materialize-assumes-every-entry-has-a-line'
+  applied: '16:08:18'
+- kind: update
+  slug: lesson-materialize-assumes-every-entry-has-a-line
+  category: lessons
+  origin: raw/2026-09-10/ledger.md#L122
+  librarian: synthesis
+  set:
+    status: clustered
+    insight: insight-harness-yaml-entry-shape-assumed
+  change: 'clustered by librarian: the yaml entry shape a script assumes, with lesson-generate-replace-mapping-crashes'
+  applied: '16:08:18'
 decisions:
 - case: '28'
   decision: decision-case-28
@@ -3422,6 +4346,415 @@ decisions:
       **－** `cleanup` не меняется.'
     ratification: ратифицирован.
   applied: '11:51:51'
+- case: '44'
+  decision: decision-case-44
+  origin: raw/2026-09-10/ledger.md#case-44
+  targets:
+  - kind: update
+    category: rules
+    slug: rule-documentation
+  - kind: update
+    category: rules
+    slug: rule-index-check
+  - kind: update
+    category: rules
+    slug: rule-synthesis
+  - kind: update
+    category: estimates
+    slug: estimate-synthesis-clusters
+  - kind: update
+    category: estimates
+    slug: estimate-documentation-completes
+  tags: []
+  case_text:
+    context: 'Два чтения Slice 3 упали на чтениях библиотекаря: страница урока перед синтезом, `guppi/generate.py`
+      трижды до любой ошибки, потом правка yaml через sed после краха `generate`.'
+    problem: 'Рамка говорит «четыре входа и ничего больше», а два её суждения иногда требуют страницы:
+      строка индекса не различает «то же» и «рядом», а Insight нельзя написать по одной строке старого
+      урока. Критерий `estimate-synthesis-clusters` запрещает то, что рамка разрешает. Метки yaml не описаны
+      нигде, и за ними пошли в код. Правка yaml сверх меток не запрещена, и её сделали.'
+    recommend: 'Провести границу по тому, что защищает vault. Четыре входа — входы прогона. Страницы `wiki/`
+      открываются в трёх случаях: строка индекса не решает «то же или рядом»; пишется Insight и нужны
+      Trigger и Root cause его уроков; скрипт назвал страницу в ошибке и нужен диагноз. Каждая открытая
+      страница названа в отчёте с причиной. Под запретом сырьё сессии (`ledger.md`, `spec.md`, `plan.md`,
+      `wiki/decisions/`), архив, код. Yaml правится только метками и записями синтеза; отвергнутая скриптом
+      запись — флаг, не починка. Метки описаны в рамке. Критерии двух оценок под это. Insights, глоссарий,
+      §8 не трогаются. Пять `update`, ни одного `create`.'
+    given: '`rule-documentation` (`draft`, MOC, `render_mode: full`) строки 42–46: «Read four things and
+      nothing else … Open a page only when a script reports a problem, or an index line is not enough
+      to judge». `rule-index-check` (`draft`) повторяет разрешение. `rule-synthesis` (`draft`): «Do not
+      read the archive and do not write pages yourself», о страницах уроков молчит. `estimate-synthesis-clusters`
+      (`pending`): «no archive file and no lesson page was read». Ask-guppi: приоритет Render родителя
+      над критерием ребёнка нигде не задан.
+
+      **＋** Обе оценки стоят `failed` в ledger-хвосте (11:57:07), ещё не в yaml. Следующий `generate`
+      применит `failed`, затем правки этого Case; `passed` ляжет после следующего прогона библиотекаря.
+      Slice 3 закрывается тогда.
+
+      **＋** `lesson-librarian-reads-beyond-the-four-inputs` (knowledge, в хвосте) получит Research-оценку
+      `pending`; утверждение проверено по страницам сейчас, строка `passed` в ответе Case.
+
+      **＋** `guppi/generate.py` не читает `near`, `librarian`, `merged`; `rule-brief` их отчитывает. Описание
+      меток — факт.
+
+      **＋** Все slug заняты, только `update`. Теги без изменений.
+
+      **－** Insight остаётся продуктом библиотекаря, статус `open`, бриф его называет; ратификация приходит
+      Case''ом, который на нём действует. Глоссарий и `insights/schema.md` не меняются.
+
+      **－** Правка yaml после краха 11:51: с Case 46 запись падает одна; рамка называет отвергнутую запись
+      флагом.
+
+      **－** `render` файла агента после правки — шаг 1 Work Mode этой сессии.'
+    when: Библиотекарь запускается по файлу агента, отрендеренному из `rule-documentation`, и после его
+      прогона снимаются чтения `estimate-documentation-completes` и `estimate-synthesis-clusters`.
+    then: 'Библиотекарь читает четыре входа прогона.
+
+      **＋** Страницу `wiki/` он открывает в трёх случаях: строка индекса не решает «то же или рядом»;
+      он пишет Insight и ему нужны Trigger и Root cause его уроков; скрипт назвал страницу в ошибке и
+      он объясняет причину. Каждую открытую страницу он называет в отчёте с причиной.
+
+      **＋** Он не читает `ledger.md`, `spec.md`, `plan.md`, `wiki/decisions/`, `vault/archived/`, файлы
+      под `guppi/` и `tests/`; рамка говорит, что значит каждая метка yaml.
+
+      **＋** Yaml он правит только метками и записями index check и синтеза; запись, отвергнутая скриптом,
+      остаётся как есть и становится флагом.
+
+      **＋** `estimate-synthesis-clusters` проходит, когда архив не читан, а каждая прочитанная страница
+      урока названа в отчёте как ребёнок написанного Insight.
+
+      **＋** `estimate-documentation-completes` проходит, когда каждое чтение сверх четырёх входов названо
+      с одной из трёх причин, сырьё сессии и код не читаны, yaml не правлен сверх меток и записей.
+
+      **－** Что содержит Insight, кто его создаёт и его статусы — без изменений.'
+    ratification: ''
+  applied: '16:08:18'
+- case: '45'
+  decision: decision-case-45
+  origin: raw/2026-09-10/ledger.md#case-45
+  targets:
+  - kind: defer
+    category: rules
+    slug: rule-ledger-tail
+  tags: []
+  case_text:
+    context: Чтения и уроки фазы End of Work пишутся после коммита библиотекаря. Бриф написан раньше них,
+      `/hi` читает только бриф. Хвост сессии F (15 строк, два `failed`) дошёл до этого Frontier только
+      через ручную приписку владельца и память агента.
+    problem: 'Факт, рождённый после коммита библиотекаря, попадает во Frontier через две сессии: следующий
+      библиотекарь материализует его в страницы, и только бриф после него его назовёт. Упавшее чтение
+      и урок ждут сессию лишнюю.'
+    recommend: 'Скрипт `guppi tail`: для каждой `raw/<date>/ledger.md` печатает строки-записи, которых
+      нет в `materialize.yaml` этой даты (по номеру строки: ни `line`, ни `folded`, ни `unparsed`). `/hi`
+      вызывает его одной строкой рендера рядом с git и issues; текст Frontier говорит, что упавшее чтение
+      и урок из хвоста — пункты, а decision-строка — страница следующего библиотекаря, не пункт. Лаг страниц
+      в одну сессию принят; бриф не меняется. Одна новая Rule `check` с Estimate, `update` `rule-skill-hi`
+      и его критерия, строка глоссария.'
+    given: 'Ask-guppi: ни одна страница не покрывает нематериализованный хвост, слепое пятно брифа или
+      чтение ledger из `/hi`; `rule-ledger-tail` и `estimate-tail-lists-unmaterialized` свободны; теги
+      `session`, `harness`, `ledger` зарегистрированы.
+
+      **＋** `rule-skill-hi` (`built`, `render_mode: full`) держит свою строку `Recorded: !`uv run guppi
+      event hi`` в собственном Render, без ребёнка; новая строка ложится так же. Скрипт `guppi event`
+      живёт своей страницей `rule-event-log` под `rule-session-start`; `rule-ledger-tail` ложится туда
+      же (Atomicity: рендер и скрипт падают порознь, две страницы).
+
+      **＋** `materialize.yaml` держит `line` у каждой записи, `folded` у create со свёрнутым чтением,
+      `unparsed` со своими `line`; `guppi/ledger.py` даёт `body`, `guppi/materialize.py` — `parse_line`,
+      `dates_with`, `load_yaml`. Скрипт складывается из них.
+
+      **＋** `estimate-hi-no-read-calls` `passed`; критерий меняется → `pending`, `rule-skill-hi` вернётся
+      в `draft` до чтения следующим `/hi` (lesson-estimates-criterion-stale-after-contract-change).
+
+      **＋** Глоссарий, строка `/hi`, Frontier, перечисляет источники Frontier; хвост добавляется туда.
+      Rule-class `update`, руками в Work Mode.
+
+      **－** `rule-brief`, `rule-materialize` не меняются: бриф по-прежнему знает только yaml, обход дат
+      уже подбирает хвост в страницы.
+
+      **－** `hi` не пишется в ledger, только в event_log; строки без грамматики записи скрипт не печатает.
+
+      **－** Дата с `ledger.md` без yaml печатает все свои записи: так виден и ledger сессии, у которой
+      библиотекарь не бежал вовсе.'
+    when: '`uv run guppi tail` запускается; `/hi` вызывает его строкой рендера.'
+    then: 'Для каждой `vault/raw/<date>/ledger.md` по возрастанию даты скрипт печатает каждую строку-запись,
+      номера которой нет ни в `line` записей, ни в `folded`, ни в `unparsed` `materialize.yaml` этой даты,
+      как `<date> L<n>: <строка как в ledger>`.
+
+      **＋** Дата без yaml печатает все свои строки-записи.
+
+      **＋** Дата, у которой всё материализовано, не печатает ничего; при пустом хвосте вывод пуст.
+
+      **＋** Выход 0 всегда; ошибка чтения одной даты печатается на stderr, обход идёт дальше.
+
+      **＋** После `/hi` контекст держит вывод `guppi tail` без read-tool вызова; Frontier называет упавшее
+      чтение и урок из хвоста пунктами.
+
+      **－** Строка, не разобранная грамматикой ledger, не печатается: она либо уже `unparsed` в yaml,
+      либо не запись.
+
+      **－** Decision-строка хвоста — не пункт Frontier: её страницу пишет следующий библиотекарь.'
+    ratification: 'Отложен владельцем до Slice 3c (Case 46): при временном `raw/` хвост лежит в `raw/`
+      физически, и скрипт разницы не нужен. Placeholder-страница `rule-ledger-tail` держит место; черновик
+      контента ниже не подписан.'
+  applied: '16:08:18'
+- case: '46'
+  decision: decision-case-46
+  origin: raw/2026-09-10/ledger.md#case-46
+  targets:
+  - kind: update
+    category: file
+    slug: migration-plan
+    path: docs/migration/migration-plan.md
+  tags: []
+  case_text:
+    context: Несколько сессий в день. Строки ledger после коммита библиотекаря и `origin` как путь в `raw/`
+      держат весь `raw/` навсегда, а хвост сессии виден только через разницу с yaml.
+    problem: '`origin` смешивает два смысла: «какое решение породило страницу» и «где строка в ledger».
+      Пока страницы указывают путём в `raw/`, `raw/` нельзя очищать, и хвост после библиотекаря приходится
+      вычислять. Модель обсуждена в чате; без записи в план она живёт только там.'
+    recommend: 'Записать модель как Slice 3c в `migration-plan.md` (Phase 1, Required Rules, и Definition
+      of done) и отразить в `sprint.md`: `decided_by` со slug решения на страницах, рождённых Case''ом;
+      `origin` как указатель в ledger на Decision, Lesson, Insight и в History; после `generate` и `cleanup`
+      библиотекарь архивирует `raw/<date>/` каждой полностью применённой даты в `vault/archived/<sprint>/raw/<date>/<stamp>/`
+      и переписывает пути; дата с непримененной записью остаётся; свежий `raw/<date>/ledger.md` после
+      коммита — хвост, `/hi` печатает `raw/*/ledger.md`; lint проверяет оба поля; существующие страницы
+      мигрирует скрипт. Slice до Slice 4. Детали — Plan Mode того slice.'
+    given: '`migration-plan.md` — Rule-class (`migration-plan` в `RULE_CLASS` у `materialize`), правится
+      руками в Work Mode. `sprint.md` не страница и не Rule-class: ledger-строке на него нет категории;
+      он зеркалит план и правится руками под этим Case.
+
+      **＋** `origin` сегодня на 166 страницах путём `raw/<date>/ledger.md#case-N` или `#L<n>`; глоссарий
+      определяет его как «the Decision that created or deleted the page» и grep-цель lint. `decided_by`
+      в vault не встречается.
+
+      **＋** `guppi cleanup` уже переносит `archived` страницы в `vault/archived/<sprint>/<date>/<category>/`;
+      `raw/` не трогает. `event_log.md` в gitignore.
+
+      **＋** Definition of done п. 1 требует `origin` у каждой страницы; с переименованием формулировка
+      должна допускать `decided_by`.
+
+      **－** Case 45 отложен до этого slice; `old-harness` (Frontier п. 6) блокирует архивацию 2026-09-09
+      и решается до него или в нём.
+
+      **－** Что именно меняется в `generate`, `lint`, схемах и семи Rule-страницах — Cases того Plan Mode,
+      здесь только контракт slice.'
+    when: Кто-то читает `migration-plan.md` или `sprint.md`; Plan Mode Slice 3c открывается.
+    then: 'Phase 1 плана перечисляет archive script с контрактом: `decided_by`/`origin`, архив `raw/<date>/`
+      по штампу прогона для полностью применённых дат, переписывание путей, свежий ledger как хвост, `/hi`
+      печатает `raw/*/ledger.md`, lint на оба поля, миграция страниц скриптом.
+
+      **＋** Definition of done п. 1: «`decided_by` or `origin`, as its schema says».
+
+      **＋** `sprint.md` перечисляет Slice 3c между 3b и 4 с той же формулой в одну строку и правит п.
+      1.
+
+      **－** Порядок 3b и 3c не фиксируется: оба до Slice 4.'
+    ratification: ''
+  applied: '16:08:18'
+- case: '47'
+  decision: decision-case-47
+  origin: raw/2026-09-10/ledger.md#case-47
+  targets:
+  - kind: update
+    category: rules
+    slug: rule-page-generation
+  - kind: update
+    category: file
+    slug: case-schema
+    path: vault/wiki/case-schema.md
+  - kind: create
+    category: estimates
+    slug: estimate-generate-rejects-shape-alone
+    ref: rule-page-generation
+  - kind: create
+    category: estimates
+    slug: estimate-generate-logs-per-entry
+    ref: rule-page-generation
+  - kind: create
+    category: estimates
+    slug: estimate-generate-dates-history-by-run
+    ref: rule-page-generation
+  tags:
+  - harness
+  - workflow
+  - ledger
+  case_text:
+    context: 'Первый прогон библиотекаря оставил три урока об `generate`: `replace` в форме mapping уронил
+      весь прогон; `log.md` пишется один раз в конце, и крах потерял девять строк ленты; при обходе дат
+      History и log получили дату yaml, а не прогона.'
+    problem: Контракт `rule-page-generation` называет три причины падения записи и обещает, что остальные
+      применяются; неожиданная форма поля к ним не относится и роняет всё. Лента и страницы расходятся
+      после любого исключения. Дата в History лжёт при обходе. Форма `replace` не закреплена в `case-schema.md`,
+      и Spec Case 43 написал её иначе, чем читает скрипт.
+    recommend: 'Три `update` контракта в одной странице: любая ошибка внутри одной записи роняет только
+      её; `log.md` дописывается после каждой записи; History и log несут дату прогона, `created` — дату
+      yaml. `case-schema.md` закрепляет `replace` как список пар `old`/`new`. Три Estimate, по одному
+      на дефект, потому что они падают и чинятся порознь. Девять потерянных строк ленты дописываются руками
+      под этим Case, датой 2026-09-10, в порядке yaml.'
+    given: '`rule-page-generation` (`draft`, `check`, `guppi/generate.py`) строки 31–33: падение записи
+      — collision, `ref` без страницы, `replace` без текста; строка 37: «`created` is the yaml''s date»;
+      строка 46: «`log.md` gets the same line». `case-schema.md` строка 60: «`replace` (`old` → `new`
+      inside the body)», форма не задана.
+
+      **＋** `estimate-generate-writes` `passed` с Result: вторую строку не примет, потому новые Estimates.
+      Slugs `estimate-generate-rejects-shape-alone`, `estimate-generate-logs-per-entry`, `estimate-generate-dates-history-by-run`
+      свободны (estimates-index). Теги страницы: `harness`, `workflow`, `ledger`.
+
+      **＋** `generate.py`: `Vault.date` — дата yaml, используется и для `created`, и для History (строка
+      221), и для log (225); `write_log` вызывается один раз в конце `apply` (649); `replace` итерируется
+      как список (395).
+
+      **＋** `log.md` — рабочий файл, не страница (case-schema «Not schema-governed»); девять строк известны
+      из History страниц entries 78–82 и брифа.
+
+      **＋** Уроки `lesson-generate-replace-mapping-crashes`, `lesson-generate-log-written-last`, `lesson-generate-walk-history-dated-by-yaml`
+      в хвосте; их Estimate `passed` от рождения (error). Insight поверх них — дело библиотекаря.
+
+      **－** Yaml 2026-09-10 уже в списочной форме (правка библиотекаря); переписывать его не нужно.
+
+      **－** `old-harness` не в этом Case.'
+    when: '`uv run guppi generate` применяет yaml, в том числе при обходе дат; кто-то пишет блок `then`
+      с `replace`.'
+    then: 'Запись, чьё поле имеет форму, которую скрипт не ждёт, или в которой поднялось любое исключение,
+      отмечается `failed`, печатается на stderr и пропускается; остальные записи применяются; выход 1.
+
+      **＋** После каждой применённой записи её строки дописаны в `log.md`; прогон, остановившийся на записи
+      N, оставил в ленте строки записей до N.
+
+      **＋** History-строки и строки `log.md` несут дату прогона; `created` страницы — дату yaml.
+
+      **＋** `case-schema.md`: `replace` — список пар `{old, new}`; одна пара тоже список из одного элемента.
+
+      **＋** Девять строк entries 78–82 дописаны в `log.md` руками под этим Case.
+
+      **－** `materialize` не меняется: форму `replace` он поднимает как написано; неверную форму отвергает
+      `generate`, одной записью.'
+    ratification: ''
+  applied: '16:08:18'
+- case: '48'
+  decision: decision-case-48
+  origin: raw/2026-09-10/ledger.md#case-48
+  targets:
+  - kind: update
+    category: rules
+    slug: rule-page-generation
+  - kind: create
+    category: estimates
+    slug: estimate-generate-passes-delete-outside-vault
+    ref: rule-page-generation
+  tags:
+  - harness
+  - workflow
+  - ledger
+  case_text:
+    context: 'Строка 8 ledger 2026-09-09, `decision[case 6][delete][old-harness]{source:docs/harness-map-2026-09-07.md}`:
+      удаление старого harness''а, файлов, а не страницы. Записана рукой при backfill. Каждый прогон `generate`
+      роняет её: `old-harness: no page to delete`, exit 1.'
+    problem: Грамматика ledger позволяет `delete` вещи вне vault, и `source` для того и нужен; `generate`
+      знает только удаление страницы. Запись без категории и без страницы падает вечно, обход дат несёт
+      её в каждый прогон, exit 1 маскирует настоящие падения. Правка yaml рукой запрещена (Case 44); Slice
+      3c не архивирует дату с непримененной записью.
+    recommend: 'Контракт `rule-page-generation`: `delete` со slug без префикса категории — удаление вне
+      vault; страницы нет и не было; запись печатается на stdout как «outside the vault, nothing to archive»
+      и отмечается `applied`. Decision-страница уже держит запись решения. `delete` с категорией и без
+      страницы падает по-прежнему: это опечатка. Один `update`, одна новая Estimate.'
+    given: 'Запись yaml 2026-09-09 строка 78–90: `category: unknown`, `incomplete: [category, then]`,
+      `failed`. `decision-case-6` написана и `applied` (строка 1168). Case 6 Spec''а не имеет блока `then`.
+
+      **＋** `rule-page-generation` строка 52: «A `delete` sets `status: archived` with History `deleted`»;
+      про slug без категории молчит. `materialize` даёт `category: unknown` такому slug.
+
+      **＋** Slug `estimate-generate-passes-delete-outside-vault` свободен. Теги страницы.
+
+      **－** `guppi materialize` не меняется: `unknown` — честная категория для вещи вне vault.
+
+      **－** Строка ledger не переписывается и не superseded: решение верное, исполнитель не умел его прочесть.'
+    when: '`uv run guppi generate` встречает `delete`, чей slug не несёт префикса категории.'
+    then: 'Запись печатается на stdout как удаление вне vault, без страницы к архивации, и отмечается
+      `applied`; страниц не пишется, History нет.
+
+      **＋** Следующий прогон обхода над 2026-09-09 ничего не печатает на stderr и выходит 0.
+
+      **－** `delete` с категорией и без страницы падает как прежде.'
+    ratification: ''
+  applied: '16:08:18'
+- case: '49'
+  decision: decision-case-49
+  origin: raw/2026-09-10/ledger.md#case-49
+  targets:
+  - kind: update
+    category: estimates
+    slug: estimate-index-check-merges
+  - kind: update
+    category: rules
+    slug: rule-materialize
+  - kind: update
+    category: file
+    slug: index
+    path: vault/wiki/index.md
+  tags: []
+  case_text:
+    context: '`/pre-task` над Cases 44–48 нашёл три места, где vault останется в расхождении с ратифицированным,
+      и одно, где формулировка Case 48 неточна.'
+    problem: '`estimate-index-check-merges` не требует называть открытую страницу, так что отчётная часть
+      Case 44 у index check не проверяется ничем. `rule-materialize` перечисляет метки yaml без `failed`
+      и `folded`, которые скрипты уже пишут и которые рамка Case 44 описывает. Таблица маршрутов §5 `index.md`
+      не знает `delete` вне vault, который Case 48 вводит. Case 48 говорил «без префикса категории», а
+      `materialize` без префикса даёт и Rule-class файлы.'
+    recommend: 'Три `update` под уже ратифицированное; Case 48 уточнён в плане: «neither a category prefix
+      nor a Rule-class file, `category: unknown`».'
+    given: '`estimate-index-check-merges` (`pending`): «no page was read when its index line sufficed».
+      `rule-materialize` строка 41: «`exists` (a create whose page is on disk), `applied` (set by `guppi
+      generate`)». §5 `index.md`: строки таблицы для `delete` только с target.
+
+      **＋** Остальные находки pre-task уже известны: `estimate-generate-writes` («log.md gains one line
+      per write», «a replace … fails that entry alone») верна и после Case 47; «exactly one occurrence»
+      в `rule-page-generation` согласуется со списком пар; расхождения Case 46 с §1, §3, §4, глоссарием,
+      схемами, `rule-ask`, `rule-cleanup`, `rule-documentation`, `rule-skill-hi` — работа Plan Mode Slice
+      3c, Case 46 так и говорит.
+
+      **－** Новых страниц нет.'
+    when: Библиотекарь читает отчёт index check; кто-то читает `rule-materialize` или §5.
+    then: '`estimate-index-check-merges` проходит, когда каждая открытая при index check страница названа
+      в отчёте со строкой индекса, которая не решила «то же или рядом».
+
+      **＋** `rule-materialize` перечисляет `folded`, `applied` и `failed` среди полей записи.
+
+      **＋** §5 держит строку: `delete` без target и без категории — вне vault, Decision-страница фиксирует,
+      `generate` отмечает applied.'
+    ratification: ''
+  applied: '16:08:18'
+- case: '50'
+  decision: decision-case-50
+  origin: raw/2026-09-10/ledger.md#case-50
+  targets:
+  - kind: defer
+    category: rules
+    slug: rule-retro
+  tags: []
+  case_text: {}
+  incomplete:
+  - context
+  - problem
+  - given
+  - then
+  applied: '16:08:18'
+- case: '51'
+  decision: decision-case-51
+  origin: raw/2026-09-10/ledger.md#case-51
+  targets:
+  - kind: defer
+    category: rules
+    slug: rule-ledger-write
+  tags: []
+  case_text: {}
+  incomplete:
+  - context
+  - problem
+  - given
+  - then
+  applied: '16:08:18'
 unparsed: []
 new_tags:
 - tag: librarian

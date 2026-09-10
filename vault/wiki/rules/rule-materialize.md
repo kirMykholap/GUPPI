@@ -2,7 +2,7 @@
 type: rule
 kind: Leaf
 purpose: Prevents the librarian from reading the ledger and the Spec itself, or from routing a decision by guesswork
-status: draft
+status: built
 enforcement: check
 implementation_ref: [guppi/materialize.py, tests/test_materialize.py]
 parent: rule-documentation
@@ -38,7 +38,9 @@ is `file` with its path), `slug`, `ref`, `source`, `supersedes`, `superseded_by`
 `origin` (`raw/<date>/ledger.md#case-N`; a lesson `#L<n>`), `line`, `text` (the
 ledger line), `tags` (from `{tags:...}`), `fields`, `sections`, `replace`, `change`
 (from the `then` block), `incomplete` (required fields the block lacks), `exists`
-(a create whose page is on disk), `applied` (set by `guppi generate`).
+(a create whose page is on disk), `folded` (the ledger lines of readings folded into
+a create), `applied` and `failed` (set by `guppi generate`: the time applied, or the
+error).
 
 The Spec is read by headings `## Case N` and `### Case N.M`. Under a heading, every
 fenced block tagged `then` up to the next heading is YAML; a leading `> ` is
@@ -85,3 +87,5 @@ date fails.
 - 2026-09-10 updated: without --date the script walks every raw/<date> with a ledger, so lines written after a date's librarian commit are materialized by the next run; exit 1 when a date fails · raw/2026-09-10/ledger.md#case-43
 - 2026-09-10 estimate estimate-materialize-walks-dates added · raw/2026-09-10/ledger.md#case-43
 - 2026-09-09 status: built → draft · cascade
+- 2026-09-10 updated: the field list names folded, applied and failed · raw/2026-09-10/ledger.md#case-49
+- 2026-09-10 status: draft → built · cascade

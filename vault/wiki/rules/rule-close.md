@@ -2,7 +2,7 @@
 type: rule
 kind: Leaf
 purpose: Prevents the librarian's writes from landing in the session's own commit, or from ending without a commit at all
-status: draft
+status: built
 enforcement: render
 governs: .claude/agents/librarian-guppi.md
 render_mode: partial
@@ -42,3 +42,4 @@ pages archived, the flags you raised, the lint total. Nothing else.
 
 - 2026-09-10 created · raw/2026-09-10/ledger.md#case-36.1
 - 2026-09-10 estimate estimate-close-commits added · raw/2026-09-10/ledger.md#case-36.1
+- 2026-09-10 status: draft → built · cascade

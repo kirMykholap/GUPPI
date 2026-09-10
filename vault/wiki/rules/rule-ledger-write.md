@@ -73,3 +73,4 @@ the implementation arrives in the session after the probe (Slice 1, session B).
 - 2026-09-09 updated: each written line carries the time of writing · raw/2026-09-09/ledger.md#case-15.3
 - 2026-09-09 updated: compact and resume of the same session keep the hi window open · raw/2026-09-09/ledger.md#case-14
 - 2026-09-10 status: draft → built · cascade
+- 2026-09-10 deferred · raw/2026-09-10/ledger.md#case-51

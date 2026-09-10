@@ -187,6 +187,12 @@ instruction. The global feed; a page's own `## History` is the per-page view.
 - 2026-09-10 rules/rule-spec-capture status: draft → built · cascade · generate
 - 2026-09-09 rules/rule-materialize status: built → draft · cascade · generate
 - 2026-09-09 rules/rule-retro-commit status: draft → built · cascade · generate
+- 2026-09-10 estimates/estimate-retro-commit-gates status: pending → passed · raw/2026-09-10/ledger.md#L78 · generate
+- 2026-09-10 lessons/lesson-agents-visible-in-session created · raw/2026-09-10/ledger.md#L80 · generate
+- 2026-09-10 estimates/estimate-agents-visible-in-session created · raw/2026-09-10/ledger.md#L80 · generate
+- 2026-09-10 rules/rule-materialize updated: without --date the script walks every raw/<date> with a ledger, so lines written after a date's librarian commit are materialized by the next run; exit 1 when a date fails · raw/2026-09-10/ledger.md#case-43 · generate
+- 2026-09-10 estimates/estimate-materialize-walks-dates created · raw/2026-09-10/ledger.md#case-43 · generate
+- 2026-09-10 rules/rule-materialize estimate estimate-materialize-walks-dates added · raw/2026-09-10/ledger.md#case-43 · generate
 - 2026-09-10 rules/rule-page-generation updated: without --date the script walks every raw/<date> with a yaml, applying what is not yet applied · raw/2026-09-10/ledger.md#case-43 · generate
 - 2026-09-10 estimates/estimate-generate-walks-dates created · raw/2026-09-10/ledger.md#case-43 · generate
 - 2026-09-10 rules/rule-page-generation estimate estimate-generate-walks-dates added · raw/2026-09-10/ledger.md#case-43 · generate

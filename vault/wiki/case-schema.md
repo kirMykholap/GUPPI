@@ -57,7 +57,7 @@ update:
     change: the cart precedes payment
 ```
 
-A `create` holds the fields the target schema needs a judgment for and, for a Leaf, its `estimate`; prose for a body section goes under `sections`, keyed by the section name. An `update` holds `set` (fields), `sections` (the whole new text of a section), `replace` (`old` → `new` inside the body) and `change` (one line for History). A `delete` holds `impact`, a `defer` a `type` and a `purpose`. A Rule-class file (`index.md`, `glossary.md`, this file, a schema, `CLAUDE.md`) is an `update` with `file` and `change`, applied by hand in Work Mode. New tags are declared under `new_tags` with a meaning and a Russian alias.
+A `create` holds the fields the target schema needs a judgment for and, for a Leaf, its `estimate`; prose for a body section goes under `sections`, keyed by the section name. An `update` holds `set` (fields), `sections` (the whole new text of a section), `replace` (a list of `{old, new}` pairs, each `old` replaced by its `new` inside the body; one pair is a list of one, and a mapping under `replace` is a shape `generate` rejects) and `change` (one line for History). A `delete` holds `impact`, a `defer` a `type` and a `purpose`. A Rule-class file (`index.md`, `glossary.md`, this file, a schema, `CLAUDE.md`) is an `update` with `file` and `change`, applied by hand in Work Mode. New tags are declared under `new_tags` with a meaning and a Russian alias.
 
 Derivable fields — `origin`, `status`, `parent` from `ref`, `children`, `code_ref` — are filled mechanically and are not written here. `guppi materialize` reads the blocks, and what is not in a block was signed by nobody.
 

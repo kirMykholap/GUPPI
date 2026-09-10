@@ -218,6 +218,7 @@ The librarian reads the log as a chain and applies the last link.
 | `update` | target | Edit the target's fields |
 | `update` | none | **Invalid.** This Case should have been a `create` |
 | `delete` | target | Impact analysis in-case → librarian archives → `origin` preserved |
+| `delete` | none, no category | Outside the vault (a doc, a file): the decision page records it, `generate` marks it applied, nothing to archive |
 | `defer` | existing | Log only; it resurfaces via the next Frontier |
 | `defer` | none | Librarian creates a minimal placeholder page |
 

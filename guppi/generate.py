@@ -5,8 +5,11 @@ in order: a `create` becomes a page with the ratified fields and the derived one
 `ref` lands as a backlink on the parent, an `update` edits fields and sections, an
 `estimate` fills status and Result, a `lesson` brings its paired Estimate, one Decision
 page per Case records the routing. What an entry lacks is not written; lint names it.
-Every applied entry is marked in the yaml, so a rerun writes nothing. A slug collision is
-an error, never a rename. Without `--date` the script walks every `vault/raw/<date>/` that
+Every applied entry is marked in the yaml, so a rerun writes nothing; an entry that fails,
+whatever the cause, is marked `failed` and the rest apply. `log.md` is appended after each
+entry; History and log lines carry the run's date, `created` the yaml's. A `delete` of a
+slug with no category is a thing outside the vault: noted, nothing to archive. A slug
+collision is an error, never a rename. Without `--date` the script walks every `vault/raw/<date>/` that
 holds a yaml, in date order; a failure on one date is reported and the walk goes on, with
 exit 1 at the end. Rule page: `vault/wiki/rules/rule-page-generation.md`.
 """
@@ -186,7 +189,8 @@ class Vault:
     def __init__(self, project_dir: Path, date: str, sprint: str, now, stdout, stderr):
         self.project_dir = project_dir
         self.wiki = wiki_root(project_dir)
-        self.date = date
+        self.date = date  # the yaml's date: `created`
+        self.run_date = now.strftime("%Y-%m-%d")  # History and log lines
         self.sprint = sprint
         self.now = now
         self.stdout = stdout
@@ -218,11 +222,11 @@ class Vault:
         write_page(page.path, page.props, page.sections, page.category)
 
     def history(self, page: Page, what: str, origin: str | None) -> None:
-        line = f"- {self.date} {what}" + (f" · {origin}" if origin else "")
+        line = f"- {self.run_date} {what}" + (f" · {origin}" if origin else "")
         current = page.sections.get(HISTORY, "").strip("\n")
         page.sections[HISTORY] = (current + "\n" + line).strip("\n")
         self.log_lines.append(
-            f"- {self.date} {page.category}/{page.slug} {what}"
+            f"- {self.run_date} {page.category}/{page.slug} {what}"
             + (f" · {origin}" if origin else "")
             + " · generate"
         )
@@ -392,7 +396,11 @@ class Vault:
                 self.used_tags.update(as_list(value))
         for name, text in (entry.get("sections") or {}).items():
             page.sections[f"## {name}"] = str(text).strip("\n")
-        for item in entry.get("replace") or []:
+        replaces = entry.get("replace") or []
+        if not isinstance(replaces, list) or not all(isinstance(i, dict) for i in replaces):
+            self.error(slug, "replace: expected a list of old/new pairs")
+            return
+        for item in replaces:
             if not self.replace(page, str(item.get("old", "")), str(item.get("new", ""))):
                 self.error(slug, f"replace: {item.get('old', '')[:60]!r} is absent or not unique")
                 return
@@ -438,6 +446,12 @@ class Vault:
     # delete, defer
 
     def delete(self, entry: dict) -> None:
+        if entry.get("category") not in CATEGORIES:
+            print(
+                f"generate: {entry['slug']}: outside the vault, nothing to archive",
+                file=self.stdout,
+            )
+            return
         page = self.find(entry["slug"])
         if page is None:
             self.error(entry["slug"], "no page to delete")
@@ -590,18 +604,21 @@ class Vault:
             text = text.rstrip("\n") + "\n" + "\n".join(rows) + "\n"
             path.write_text(text, encoding="utf-8", newline="\n")
             self.log_lines.append(
-                f"- {self.date} tags.md registers {', '.join(r.split('|')[1].strip() for r in rows)} · generate"
+                f"- {self.run_date} tags.md registers {', '.join(r.split('|')[1].strip() for r in rows)} · generate"
             )
         for tag in sorted(self.used_tags - known):
             print(f"generate: tag {tag} is used but not registered in tags.md", file=self.stderr)
 
     def write_log(self) -> None:
+        """Append the lines gathered so far and clear them: called after every entry, so a
+        run that stops leaves the feed level with the pages."""
         if not self.log_lines:
             return
         path = self.wiki / "log.md"
         text = path.read_text(encoding="utf-8") if path.exists() else "# Log\n"
         text = text.rstrip("\n") + "\n" + "\n".join(self.log_lines) + "\n"
         path.write_text(text, encoding="utf-8", newline="\n")
+        self.log_lines = []
 
 
 # --- the run ------------------------------------------------------------------------
@@ -620,30 +637,39 @@ def apply(vault: Vault, data: dict) -> None:
             entry["applied"] = stamp
             continue
         before = len(vault.errors)
-        if kind == "create" or kind == "lesson":
-            vault.create(entry)
-        elif kind == "update":
-            vault.update(entry)
-        elif kind == "estimate":
-            vault.estimate(entry)
-        elif kind == "delete":
-            vault.delete(entry)
-        elif kind == "defer":
-            vault.defer(entry)
-        else:
-            vault.error(entry.get("slug", "?"), f"unknown kind {kind!r}")
+        try:
+            if kind == "create" or kind == "lesson":
+                vault.create(entry)
+            elif kind == "update":
+                vault.update(entry)
+            elif kind == "estimate":
+                vault.estimate(entry)
+            elif kind == "delete":
+                vault.delete(entry)
+            elif kind == "defer":
+                vault.defer(entry)
+            else:
+                vault.error(entry.get("slug", "?"), f"unknown kind {kind!r}")
+        except Exception as exc:  # noqa: BLE001 — one entry fails alone, the run goes on
+            vault.error(entry.get("slug", "?"), f"{type(exc).__name__}: {exc}")
         if len(vault.errors) == before:
             entry["applied"] = stamp
         else:
             entry["failed"] = vault.errors[-1]
+        vault.write_log()
     vault.settle_backlinks()
+    vault.write_log()
     for record in data.get("decisions") or []:
         if record.get("applied"):
             continue
         before = len(vault.errors)
-        vault.decision(record)
+        try:
+            vault.decision(record)
+        except Exception as exc:  # noqa: BLE001
+            vault.error(record.get("decision", "?"), f"{type(exc).__name__}: {exc}")
         if len(vault.errors) == before:
             record["applied"] = stamp
+        vault.write_log()
     vault.cascade()
     vault.register_tags(data.get("new_tags") or [])
     vault.write_log()

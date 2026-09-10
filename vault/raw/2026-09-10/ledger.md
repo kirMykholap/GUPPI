@@ -111,3 +111,9 @@
 - 13:54:53 decision[case 47][create][estimate-generate-rejects-shape-alone]{ref:rule-page-generation}{tags:harness,workflow,ledger}
 - 13:54:53 decision[case 47][create][estimate-generate-logs-per-entry]{ref:rule-page-generation}{tags:harness,workflow,ledger}
 - 13:54:53 decision[case 47][create][estimate-generate-dates-history-by-run]{ref:rule-page-generation}{tags:harness,workflow,ledger}
+- 14:23:37 decision[case 48][update][rule-page-generation]
+- 14:23:37 decision[case 48][create][estimate-generate-passes-delete-outside-vault]{ref:rule-page-generation}{tags:harness,workflow,ledger}
+- 14:23:37 decision[case 49][update][estimate-index-check-merges]
+- 14:23:37 decision[case 49][update][rule-materialize]
+- 14:23:37 decision[case 49][update][index]
+- 14:23:37 lesson[error][lesson-ledger-hook-misses-a-reply-ending-in-a-tool-call]{tags:harness,hooks,ledger}{source:raw/2026-09-10/event_log.md 13:56:06 pretask; ledger.md of 2026-09-10 between 13:54:53 and Retro} trigger: the LEDGER blocks of the two replies that acknowledged Cases 48 and 49 never reached ledger.md; the first reply ended with the Skill call of /pre-task, the second with ExitPlanMode; the lines were found missing at /retro and re-emitted there root_cause: the Stop hook fires when the assistant's turn ends in text; a reply whose last act is a tool call whose result comes back as the next turn (Skill, ExitPlanMode) has no Stop, so its LEDGER block is never read; a reply that carries a LEDGER block must end in text, after the tool call, or the ledger writer needs a second event

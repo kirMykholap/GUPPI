@@ -58,6 +58,15 @@ Describe the process itself as **Rule MOCs** with ordered children — session-s
 - Librarian agent definition, with the boundary from `index.md` §10
 - Index-generation (one `<category>.index` per category, `slug: purpose`)
 - `materialize.yaml` assembly from the ledger
+- **Archive script** (Slice 3c, raw lifecycle) — after generate and cleanup the librarian
+  moves `raw/<date>/` of every fully applied date to
+  `vault/archived/<sprint>/raw/<date>/<stamp>/` (one stamp per librarian run, several a
+  day) and rewrites every path that pointed there. A page born of a Case carries
+  `decided_by` (a Decision slug); a Decision, Lesson or Insight page and a History line
+  carry `origin` (a ledger pointer). Lint checks `decided_by` as a ref and `origin` as a
+  grep target in `raw/` or `archived/`. A ledger line written after the librarian's
+  commit lands in a fresh `raw/<date>/ledger.md`, and `/hi` prints every
+  `raw/*/ledger.md`. The existing pages are migrated by script.
 - **Harness renderer** — reads every Rule page with `enforcement: render` and writes its
   `## Render` body into the file named by `governs`: `full` replaces the file, `partial`
   splices between `<!-- slug -->` markers, in the order the parent MOC lists its children.
@@ -120,7 +129,7 @@ The existing vault may contain these. They are gone from the model. If you find 
 
 Migration is complete when:
 
-1. Every page in `entities/` and `rules/` has a `type`, `purpose`, `status`, `origin`, and at least one Estimate ref.
+1. Every page in `entities/` and `rules/` has a `type`, `purpose`, `status`, `decided_by` or `origin` as its schema says, and at least one Estimate ref.
 2. Every Estimate page referenced actually exists, with `criterion`, `method`, `status`.
 3. Lint passes: no broken refs, no schema violations, no orphans, no status contradictions.
 4. Every harness element listed in Phase 1 exists as a conformant Rule page with its own Estimate.

@@ -2,6 +2,7 @@
 
 import io
 import shutil
+from datetime import UTC, datetime
 from pathlib import Path
 
 import yaml
@@ -532,3 +533,124 @@ def test_a_failure_on_one_date_is_reported_and_the_walk_goes_on(tmp_path):
     assert "rule-gone" in err
     assert len(out.splitlines()) == 2
     assert (tmp_path / "vault" / "wiki" / "rules" / "rule-root.md").exists()
+
+
+# --- Cases 47 and 48: one entry fails alone, the log per entry, the run's date, a delete
+# outside the vault ----------------------------------------------------------------------
+
+
+NOW = datetime(2026, 9, 10, 12, 0, 0, tzinfo=UTC)
+
+
+def run_at(project_dir, argv=None):
+    out, err = io.StringIO(), io.StringIO()
+    argv = ["--date", DATE] if argv is None else list(argv)
+    code = generate.run(argv, stdout=out, stderr=err, project_dir=project_dir, now=NOW)
+    return code, out.getvalue(), err.getvalue()
+
+
+def update_of(slug, line, **content):
+    return {
+        "line": line,
+        "text": "",
+        "case": str(line),
+        "kind": "update",
+        "category": "rules",
+        "slug": slug,
+        "origin": ORIGIN,
+        "decision": f"decision-case-{line}",
+        **content,
+    }
+
+
+def test_a_replace_mapping_fails_that_entry_alone(tmp_path):
+    bad = update_of("rule-root", 2, replace={"old": "Prevents root", "new": "x"}, change="c")
+    seed(tmp_path, entries=[ROOT, bad, CHILD])
+    code, _, err = run_at(tmp_path)
+    assert code == 1 and "rule-root: replace: expected a list of old/new pairs" in err
+    data = load_yaml(tmp_path)
+    assert "failed" in data["entries"][1] and "applied" not in data["entries"][1]
+    assert data["entries"][0]["applied"] and data["entries"][2]["applied"]
+    assert "Prevents root" in page(tmp_path, "rules", "rule-root")
+
+
+def test_an_exception_inside_one_entry_fails_it_alone_and_the_log_keeps_the_earlier(
+    tmp_path, monkeypatch
+):
+    third = update_of("rule-root", 3, set={"purpose": "Prevents boom"}, change="boom")
+    fourth = update_of("rule-child", 4, set={"purpose": "Prevents four"}, change="four")
+    seed(tmp_path, entries=[ROOT, CHILD, third, fourth])
+    original = generate.Vault.update
+
+    def explode(self, entry):
+        if entry["change"] == "boom":
+            raise RuntimeError("boom")
+        return original(self, entry)
+
+    monkeypatch.setattr(generate.Vault, "update", explode)
+    code, _, err = run_at(tmp_path)
+    assert code == 1 and "rule-root: RuntimeError: boom" in err
+    data = load_yaml(tmp_path)
+    assert data["entries"][2]["failed"].endswith("RuntimeError: boom")
+    assert data["entries"][0]["applied"] and data["entries"][1]["applied"]
+    assert data["entries"][3]["applied"]
+    log = (tmp_path / "vault" / "wiki" / "log.md").read_text(encoding="utf-8")
+    assert "rules/rule-root created" in log and "rules/rule-child created" in log
+    assert "updated: four" in log and "updated: boom" not in log
+
+
+def test_the_log_is_appended_after_each_entry(tmp_path, monkeypatch):
+    seen = []
+    original = generate.Vault.update
+
+    def peek(self, entry):
+        seen.append((tmp_path / "vault" / "wiki" / "log.md").read_text(encoding="utf-8"))
+        return original(self, entry)
+
+    monkeypatch.setattr(generate.Vault, "update", peek)
+    later = update_of("rule-root", 3, set={"purpose": "Prevents later"}, change="later")
+    seed(tmp_path, entries=[ROOT, CHILD, later])
+    code, _, err = run_at(tmp_path)
+    assert code == 0, err
+    # when the update ran, the two creates were already in the log
+    assert "rules/rule-root created" in seen[0] and "rules/rule-child created" in seen[0]
+
+
+def test_history_and_log_carry_the_run_date_and_created_the_yamls(tmp_path):
+    seed(tmp_path, entries=[])
+    seed_earlier(tmp_path, [ROOT])
+    code, _, err = run_at(tmp_path, [])
+    assert code == 0, err
+    root = page(tmp_path, "rules", "rule-root")
+    assert str(props(root)["created"]) == EARLIER
+    assert f"- {DATE} created · raw/{DATE}/ledger.md#case-1" in root
+    assert f"- {EARLIER} created" not in root
+    log = (tmp_path / "vault" / "wiki" / "log.md").read_text(encoding="utf-8")
+    assert f"- {DATE} rules/rule-root created" in log and f"- {EARLIER} " not in log
+
+
+def test_a_delete_outside_the_vault_applies_and_a_delete_of_a_missing_page_fails(tmp_path):
+    outside = {
+        "line": 2,
+        "text": "",
+        "case": "2",
+        "kind": "delete",
+        "category": "unknown",
+        "slug": "old-thing",
+        "origin": ORIGIN,
+        "decision": "decision-case-2",
+        "source": "docs/old.md",
+    }
+    missing = {**outside, "line": 3, "case": "3", "category": "rules", "slug": "rule-nothing"}
+    seed(tmp_path, entries=[ROOT, outside, missing])
+    code, out, err = run_at(tmp_path)
+    assert code == 1
+    assert "generate: old-thing: outside the vault, nothing to archive" in out
+    assert "rule-nothing: no page to delete" in err
+    data = load_yaml(tmp_path)
+    assert data["entries"][1]["applied"] and "failed" not in data["entries"][1]
+    assert "failed" in data["entries"][2]
+    wiki = tmp_path / "vault" / "wiki"
+    assert not list(wiki.glob("*/old-thing.md"))
+    log = (wiki / "log.md").read_text(encoding="utf-8")
+    assert "old-thing" not in log

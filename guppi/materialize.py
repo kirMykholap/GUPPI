@@ -5,8 +5,11 @@ Reads `vault/raw/<date>/ledger.md` and `vault/raw/<date>/spec.md`, writes
 order, with its route computed from `index.md` §5 and its content lifted from the `then`
 block of its Case in the Spec. One decision entry per Case. What is missing is named
 (`incomplete`), never invented. A line the grammar does not parse goes under `unparsed`.
-An existing yaml is extended with the lines it does not hold and never rewritten. Rule
-page: `vault/wiki/rules/rule-materialize.md`.
+An existing yaml is extended with the lines it does not hold and never rewritten. Without
+`--date` the script walks every `vault/raw/<date>/` that holds a `ledger.md`, in date
+order, so a line written after the librarian's commit of its date is picked up by the next
+run; an error on one date stops the walk with exit 1. Rule page:
+`vault/wiki/rules/rule-materialize.md`.
 """
 
 import argparse
@@ -597,20 +600,20 @@ def dump_yaml(path: Path, data: dict) -> None:
 
 def parser() -> argparse.ArgumentParser:
     p = argparse.ArgumentParser(prog="guppi materialize", description=__doc__.split("\n\n")[1])
-    p.add_argument("--date", default=None, help="the raw/<date> folder; today by default")
+    p.add_argument("--date", default=None, help="one raw/<date> folder; without it, every date")
     return p
 
 
-def run(argv, *, stdout=None, stderr=None, project_dir: Path | None = None, now=None) -> int:
-    stdout = sys.stdout if stdout is None else stdout
-    stderr = sys.stderr if stderr is None else stderr
-    project_dir = project_root() if project_dir is None else Path(project_dir)
-    now = datetime.now().astimezone() if now is None else now
-    try:
-        args = parser().parse_args(argv)
-    except SystemExit as exc:
-        return 2 if exc.code not in (None, 0) else 0
-    date = args.date or now.date().isoformat()
+def dates_with(project_dir: Path, name: str) -> list[str]:
+    """Every `vault/raw/<date>/` that holds `name`, in date order."""
+    raw = project_dir / "vault" / "raw"
+    if not raw.is_dir():
+        return []
+    return sorted(p.name for p in raw.iterdir() if p.is_dir() and (p / name).is_file())
+
+
+def materialize_date(project_dir: Path, date: str, now, stdout, stderr) -> int:
+    """One date: extend or write its yaml; one line on stdout, exit 1 on an error."""
     try:
         path = yaml_path(project_dir, date)
         existing = load_yaml(path)
@@ -627,4 +630,24 @@ def run(argv, *, stdout=None, stderr=None, project_dir: Path | None = None, now=
         f"materialize: {path.relative_to(project_dir).as_posix()} {verb} {added} entries",
         file=stdout,
     )
+    return 0
+
+
+def run(argv, *, stdout=None, stderr=None, project_dir: Path | None = None, now=None) -> int:
+    stdout = sys.stdout if stdout is None else stdout
+    stderr = sys.stderr if stderr is None else stderr
+    project_dir = project_root() if project_dir is None else Path(project_dir)
+    now = datetime.now().astimezone() if now is None else now
+    try:
+        args = parser().parse_args(argv)
+    except SystemExit as exc:
+        return 2 if exc.code not in (None, 0) else 0
+    dates = [args.date] if args.date else dates_with(project_dir, "ledger.md")
+    if not dates:
+        print("materialize: no vault/raw/<date>/ledger.md to read", file=stderr)
+        return 1
+    for date in dates:
+        code = materialize_date(project_dir, date, now, stdout, stderr)
+        if code:
+            return code
     return 0

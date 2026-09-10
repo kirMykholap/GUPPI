@@ -6,7 +6,9 @@ in order: a `create` becomes a page with the ratified fields and the derived one
 `estimate` fills status and Result, a `lesson` brings its paired Estimate, one Decision
 page per Case records the routing. What an entry lacks is not written; lint names it.
 Every applied entry is marked in the yaml, so a rerun writes nothing. A slug collision is
-an error, never a rename. Rule page: `vault/wiki/rules/rule-page-generation.md`.
+an error, never a rename. Without `--date` the script walks every `vault/raw/<date>/` that
+holds a yaml, in date order; a failure on one date is reported and the walk goes on, with
+exit 1 at the end. Rule page: `vault/wiki/rules/rule-page-generation.md`.
 """
 
 import argparse
@@ -18,7 +20,7 @@ from datetime import datetime
 from pathlib import Path
 
 from guppi.event import project_root
-from guppi.materialize import CATEGORIES, dump_yaml, load_yaml, sprint_id, yaml_path
+from guppi.materialize import CATEGORIES, dates_with, dump_yaml, load_yaml, sprint_id, yaml_path
 from guppi.pages import Page, read_page, wiki_root
 
 KEY_ORDER = {
@@ -649,20 +651,12 @@ def apply(vault: Vault, data: dict) -> None:
 
 def parser() -> argparse.ArgumentParser:
     p = argparse.ArgumentParser(prog="guppi generate", description=__doc__.split("\n\n")[1])
-    p.add_argument("--date", default=None, help="the raw/<date> folder; today by default")
+    p.add_argument("--date", default=None, help="one raw/<date> folder; without it, every date")
     return p
 
 
-def run(argv, *, stdout=None, stderr=None, project_dir: Path | None = None, now=None) -> int:
-    stdout = sys.stdout if stdout is None else stdout
-    stderr = sys.stderr if stderr is None else stderr
-    project_dir = project_root() if project_dir is None else Path(project_dir)
-    now = datetime.now().astimezone() if now is None else now
-    try:
-        args = parser().parse_args(argv)
-    except SystemExit as exc:
-        return 2 if exc.code not in (None, 0) else 0
-    date = args.date or now.date().isoformat()
+def generate_date(project_dir: Path, date: str, now, stdout, stderr) -> int:
+    """One date: apply the unapplied entries of its yaml; exit 1 when an entry failed."""
     path = yaml_path(project_dir, date)
     data = load_yaml(path)
     if data is None:
@@ -685,5 +679,27 @@ def run(argv, *, stdout=None, stderr=None, project_dir: Path | None = None, now=
     for line in vault.errors:
         print(line, file=stderr)
     touched = len(vault.written)
-    print(f"generate: {touched} page(s) written or changed", file=stdout)
+    print(f"generate: {date}: {touched} page(s) written or changed", file=stdout)
     return 1 if vault.errors else 0
+
+
+def run(argv, *, stdout=None, stderr=None, project_dir: Path | None = None, now=None) -> int:
+    stdout = sys.stdout if stdout is None else stdout
+    stderr = sys.stderr if stderr is None else stderr
+    project_dir = project_root() if project_dir is None else Path(project_dir)
+    now = datetime.now().astimezone() if now is None else now
+    try:
+        args = parser().parse_args(argv)
+    except SystemExit as exc:
+        return 2 if exc.code not in (None, 0) else 0
+    dates = [args.date] if args.date else dates_with(project_dir, "materialize.yaml")
+    if not dates:
+        print(
+            "generate: no vault/raw/<date>/materialize.yaml to apply; run materialize first",
+            file=stderr,
+        )
+        return 1
+    failed = False
+    for date in dates:
+        failed = generate_date(project_dir, date, now, stdout, stderr) != 0 or failed
+    return 1 if failed else 0

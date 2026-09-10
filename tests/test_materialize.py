@@ -363,3 +363,61 @@ def test_cli_dispatches_to_materialize(tmp_path, monkeypatch, capsys):
     monkeypatch.setenv("CLAUDE_PROJECT_DIR", str(tmp_path))
     assert cli.main(["materialize", "--date", DATE]) == 0
     assert "written with" in capsys.readouterr().out
+
+
+EARLIER = "2026-09-09"
+
+
+def seed_earlier(tmp_path):
+    raw = tmp_path / "vault" / "raw" / EARLIER
+    raw.mkdir(parents=True)
+    (raw / "ledger.md").write_text(
+        "- decision[case 1][create][rule-early]{tags:harness}\n", encoding="utf-8", newline="\n"
+    )
+    return raw
+
+
+def run_walk(project_dir, argv=()):
+    out, err = io.StringIO(), io.StringIO()
+    code = materialize.run(list(argv), stdout=out, stderr=err, project_dir=project_dir)
+    return code, out.getvalue(), err.getvalue()
+
+
+def test_without_date_every_folder_with_a_ledger_is_walked_in_date_order(tmp_path):
+    seed(tmp_path)
+    seed_earlier(tmp_path)
+    (tmp_path / "vault" / "raw" / "notes").mkdir()  # no ledger: not a date to walk
+    code, out, err = run_walk(tmp_path)
+    assert code == 0 and err == ""
+    lines = out.splitlines()
+    assert [line.split()[1] for line in lines] == [
+        f"vault/raw/{EARLIER}/materialize.yaml",
+        f"vault/raw/{DATE}/materialize.yaml",
+    ]
+    assert (tmp_path / "vault" / "raw" / EARLIER / "materialize.yaml").exists()
+    assert load(tmp_path)["date"] == DATE
+    # a later run picks up a line written after the earlier date's yaml was closed
+    with (tmp_path / "vault" / "raw" / EARLIER / "ledger.md").open("a", encoding="utf-8") as f:
+        f.write("- estimate[estimate-early-holds][passed] read later\n")
+    code, out, _ = run_walk(tmp_path)
+    assert code == 0
+    assert out.splitlines()[0].endswith("extended with 1 entries")
+    assert out.splitlines()[1].endswith("extended with 0 entries")
+
+
+def test_with_date_only_that_folder_is_read(tmp_path):
+    seed(tmp_path)
+    seed_earlier(tmp_path)
+    code, out, _ = run_walk(tmp_path, ["--date", DATE])
+    assert code == 0 and len(out.splitlines()) == 1
+    assert not (tmp_path / "vault" / "raw" / EARLIER / "materialize.yaml").exists()
+
+
+def test_an_error_on_one_date_stops_the_walk_with_exit_1(tmp_path):
+    seed(tmp_path)
+    raw = seed_earlier(tmp_path)
+    (raw / "materialize.yaml").mkdir()  # the yaml cannot be written
+    code, out, err = run_walk(tmp_path)
+    assert code == 1 and out == ""
+    assert err.startswith("materialize: materialize.yaml not written")
+    assert not (tmp_path / "vault" / "raw" / DATE / "materialize.yaml").exists()

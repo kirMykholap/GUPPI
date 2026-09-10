@@ -465,3 +465,70 @@ def test_cli_dispatches_to_generate(tmp_path, monkeypatch, capsys):
     monkeypatch.setenv("CLAUDE_PROJECT_DIR", str(tmp_path))
     assert cli.main(["generate", "--date", DATE]) == 0
     assert "page(s) written" in capsys.readouterr().out
+
+
+EARLIER = "2026-09-09"
+
+
+def seed_earlier(tmp_path, entries):
+    raw = tmp_path / "vault" / "raw" / EARLIER
+    raw.mkdir(parents=True)
+    (raw / "ledger.md").write_text("- decision[case 1][create][rule-root]\n", encoding="utf-8")
+    data = {
+        "date": EARLIER,
+        "sprint": "migration",
+        "entries": list(entries),
+        "decisions": [],
+        "unparsed": [],
+    }
+    (raw / "materialize.yaml").write_text(
+        yaml.safe_dump(data, allow_unicode=True, sort_keys=False), encoding="utf-8"
+    )
+
+
+def run_walk(project_dir, argv=()):
+    out, err = io.StringIO(), io.StringIO()
+    code = generate.run(list(argv), stdout=out, stderr=err, project_dir=project_dir)
+    return code, out.getvalue(), err.getvalue()
+
+
+def test_without_date_every_folder_with_a_yaml_is_applied_in_date_order(tmp_path):
+    seed(tmp_path, entries=[CHILD])  # its ref needs the root of the earlier date, applied first
+    seed_earlier(tmp_path, [ROOT])
+    (tmp_path / "guppi").mkdir()
+    (tmp_path / "guppi" / "x.py").write_text("")
+    code, out, err = run_walk(tmp_path)
+    assert code == 0, err
+    assert [line.split(":")[1].strip() for line in out.splitlines()] == [EARLIER, DATE]
+    assert "[[rule-child]]" in page(tmp_path, "rules", "rule-root")
+    assert str(props(page(tmp_path, "rules", "rule-root"))["created"]) == EARLIER
+    # a second walk: nothing unapplied, nothing written
+    code, out, _ = run_walk(tmp_path)
+    assert code == 0
+    assert all(line.endswith("0 page(s) written or changed") for line in out.splitlines())
+
+
+def test_with_date_only_that_folder_is_applied(tmp_path):
+    seed(tmp_path, entries=[ROOT])
+    seed_earlier(
+        tmp_path,
+        [
+            create(
+                "rule-early", "rules", {"type": "rule", "kind": "MOC", "purpose": "Prevents early"}
+            )
+        ],
+    )
+    code, out, _ = run_walk(tmp_path, ["--date", DATE])
+    assert code == 0 and len(out.splitlines()) == 1
+    assert not (tmp_path / "vault" / "wiki" / "rules" / "rule-early.md").exists()
+
+
+def test_a_failure_on_one_date_is_reported_and_the_walk_goes_on(tmp_path):
+    seed(tmp_path, entries=[ROOT])
+    bad = {**create("rule-gone", "rules", {}), "kind": "update", "set": {"purpose": "x"}}
+    seed_earlier(tmp_path, [bad])  # an update of a page that does not exist
+    code, out, err = run_walk(tmp_path)
+    assert code == 1
+    assert "rule-gone" in err
+    assert len(out.splitlines()) == 2
+    assert (tmp_path / "vault" / "wiki" / "rules" / "rule-root.md").exists()

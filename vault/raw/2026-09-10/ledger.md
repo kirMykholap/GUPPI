@@ -78,3 +78,8 @@
 - 11:18:24 estimate[estimate-retro-commit-gates][passed] tests/test_gate.py 6 green; live: the agent called /handoff through the Skill tool on a dirty tree at the close of session E, the PreToolUse hook refused with `gate: /handoff refused — commit first. 162 path(s) uncommitted`, the skill did not run
 - 11:18:24 estimate[estimate-materialize-assembles][passed] Case 41 live: after the Stop hook wrote ten lines, `guppi materialize` extended raw/2026-09-10/materialize.yaml with 10 entries, the 67 earlier entries kept their applied marks, `generate` then changed 16 pages, no text mismatch reported
 - 11:18:24 lesson[knowledge][lesson-agents-visible-in-session]{tags:harness,hooks} trigger: session E rendered .claude/agents/librarian-guppi.md by `guppi render` at about 10:40; the Agent tool listed `librarian-guppi` as available in the same session, at 10:52, before any restart root_cause: the agent list is re-read during a session, at least after a file appears under .claude/agents/; this contradicts lesson-agents-loaded-at-session-start of session D, where three dispatches in the rendering session failed — the difference between the two sessions is not measured
+- 11:39:11 decision[case 43][update][rule-materialize]
+- 11:39:11 decision[case 43][create][estimate-materialize-walks-dates]{ref:rule-materialize}{tags:harness,workflow,ledger}
+- 11:39:11 decision[case 43][update][rule-page-generation]
+- 11:39:11 decision[case 43][create][estimate-generate-walks-dates]{ref:rule-page-generation}{tags:harness,workflow,ledger}
+- 11:39:11 decision[case 43][update][rule-documentation]

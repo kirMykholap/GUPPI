@@ -1500,3 +1500,213 @@ update:
 - `docs/migration/rule-*.md`, `vault/parked/`, `vault/archive/`, `docs/superpowers/`,
   `docs/HANDOFF.md`, `/grill-me` без страницы, `origin` без upstream, `gh` — Slice 5.
 - `raw/2026-09-09/ledger.md`: смешанные line endings, git нормализует.
+
+---
+
+<!-- approved 11:37:16 · session f7d2c025 -->
+
+# GUPPI — Slice 3 closes: the first librarian run
+
+Spec сессии F, 2026-09-10. Собран из Cases 42–, ратифицированных в этой сессии. Та же дата,
+что у сессии E: `raw/2026-09-10/` общий — `ledger.md`, `spec.md`, `handoff.md`,
+`materialize.yaml`. Хук `guppi spec` допишет этот документ после `---`. Проза по-русски,
+блоки `then` по-английски.
+
+## Контекст
+
+Slice 3 построен в сессии E и не закрыт: `/retro`, `/handoff` и библиотекарь ни разу не
+запускались, восемь Estimates стоят `pending`. Хвост сессии E — три строки ledger от
+11:18:24 (два `estimate`, один `lesson`) — не закоммичен и не в yaml. Бриф просил
+`Materialize 2026-09-11`; дата сегодня 2026-09-10, так что материализуется `2026-09-10`.
+
+## Case 42 — the first librarian run
+
+> **context:**
+> Slice 3 закрывается, когда библиотекарь пройдёт один раз, а чтения `/retro` и `/handoff` пройдут.
+
+> **problem:**
+> Порядок ритуалов в этой сессии, дата для библиотекаря, кто пишет восемь чтений, кто закрывает Slice 3 в `sprint.md`.
+
+> **recommend:**
+> Прогнать модель как построена, без правок. Восемь `estimate[...]` пишет главный агент из отчёта библиотекаря, после его коммита. Slice 3 закрывает в `sprint.md` handoff следующей сессии, когда все восемь `passed`.
+
+> **given:**
+> Yaml 2026-09-10 держит 77 entries; три строки 11:18:24 в нём нет, `lesson-agents-visible-in-session` — только строка.
+> **＋** `materialize` и `generate` берут `--date`, по умолчанию сегодня; одна дата за прогон.
+> **＋** `handoff.md` и `spec.md` за 2026-09-10 уже держат документ сессии E; skill и хук дописывают после `---`.
+> **＋** `lessons-index` держит `lesson-agents-loaded-at-session-start`; `insights-index` пуст. У синтеза есть пара.
+> **＋** `rule-brief`: `sprint.md` меняется только по слову handoff.
+> **－** Plan Mode запрещает коммит; коммит хвоста E — первый шаг Work Mode.
+> **－** `/retro` с `disable-model-invocation`; вызывает владелец.
+> **－** Строки после коммита библиотекаря остаются незакоммиченными до следующей сессии.
+
+> **when:**
+> Владелец одобряет Spec, шаги Work Mode идут по порядку: коммит хвоста, `/retro`, Retro-коммит, `/handoff`, `Materialize 2026-09-10.`, отчёт без правок, восемь строк.
+
+> **then:**
+> В ledger восемь строк `estimate[...]`, каждая `passed` или `failed` с чтением.
+> **＋** Один коммит библиотекаря `docs(vault): librarian, 2026-09-10`, только `vault/`.
+> **＋** `brief.md` переписан библиотекарем; `handoff.md` получил второй документ.
+> **－** Case не даёт `decision`-строки; `sprint.md` в этой сессии не меняется.
+> **－** Упавшее чтение — `lesson[error]` и долг; Slice 3 закрыт только при восьми `passed`.
+
+> **ratification:** ратифицирован. Decision-строк нет; строки `estimate[...]` — в конце Work Mode.
+
+## Case 43 — the librarian walks every date
+
+> **context:**
+> Чтения handoff-фазы пишутся после коммита библиотекаря, в ledger своей даты. Следующая сессия обычно на другой дате.
+
+> **problem:**
+> `materialize` и `generate` читают одну `raw/<date>/`, по умолчанию сегодня. Строки после коммита библиотекаря никто не материализует, если следующая сессия не на той же дате. Хвост сессии E спасён только совпадением дат.
+
+> **recommend:**
+> Без `--date` оба скрипта обходят все `vault/raw/<date>/` по порядку дат: `materialize` — каждую папку с `ledger.md`, `generate` — каждую с `materialize.yaml`. `--date` оставляет одну дату. Агент читает те yaml, которые скрипт назвал на stdout. Два новых Estimate; старые чтения остаются как есть.
+
+> **given:**
+> `rule-materialize` и `rule-page-generation` `built`, обе фиксируют одну `raw/<date>/`. Ни одна страница не покрывает остаток за границей даты (ask-guppi).
+> **＋** Yaml дополняется, `applied` делает повтор идемпотентным (Case 41). Обход по датам ничего не переписывает.
+> **＋** `rule-documentation` `render_mode: full`: правка текста перерендеривает `.claude/agents/librarian-guppi.md`.
+> **＋** Slugs `estimate-materialize-walks-dates`, `estimate-generate-walks-dates` свободны. Теги: `harness`, `workflow`, `ledger`.
+> **－** Yaml 2026-09-09 держит упавший `old-harness`; при обходе `generate` флагует его каждый запуск и выходит 1. Известный долг, свой Case из брифа.
+> **－** `rule-handoff` не меняется: `Materialize <date>.` называет дату сессии, остаток подбирает скрипт.
+> **－** Страница `passed` с Result вторую строку не принимает; поэтому новые Estimates, не `update` старых.
+
+> **when:**
+> `uv run guppi materialize` и `uv run guppi generate` без `--date`.
+
+> **then:**
+> `materialize` обходит каждую `vault/raw/<date>/` с `ledger.md` по возрастанию даты, дополняет или пишет её yaml, печатает одну строку на дату.
+> **＋** `generate` обходит каждую `vault/raw/<date>/` с `materialize.yaml` по возрастанию даты, применяет непримененные записи.
+> **＋** Дата без новых строк и без непримененных записей ничего не меняет.
+> **＋** `--date` ограничивает обход одной датой, поведение прежнее.
+> **＋** Библиотекарь читает каждый yaml, названный на stdout, для index check и синтеза.
+> **－** Ошибка одной даты: `materialize` печатает её и выходит 1, не идя дальше; `generate` продолжает, выходит 1 в конце.
+> **－** `cleanup` не меняется.
+
+> **ratification:** ратифицирован.
+
+```then
+update:
+  - slug: rule-materialize
+    sections:
+      How it works: |
+        `uv run guppi materialize [--date YYYY-MM-DD]` reads `raw/<date>/ledger.md` and
+        `raw/<date>/spec.md` and writes `raw/<date>/materialize.yaml`. Without `--date` it
+        walks every `raw/<date>/` that holds a `ledger.md`, in date order, and prints one
+        line per date; a line written after the librarian's commit of its date is picked up
+        by the next run, whatever the date of that run. An error on one date stops the walk
+        with exit 1.
+
+        One entry per record line, in ledger order. Fields: `case`, `kind` (`create`,
+        `update`, `delete`, `defer`, `estimate`, `lesson`), `category` (from the slug
+        prefix: `rule-`, `entity-`, `estimate-`, `lesson-`, `insight-`; a Rule-class file
+        is `file` with its path), `slug`, `ref`, `source`, `supersedes`, `superseded_by`,
+        `origin` (`raw/<date>/ledger.md#case-N`; a lesson `#L<n>`), `line`, `text` (the
+        ledger line), `tags` (from `{tags:...}`), `fields`, `sections`, `replace`, `change`
+        (from the `then` block), `incomplete` (required fields the block lacks), `exists`
+        (a create whose page is on disk), `applied` (set by `guppi generate`).
+
+        The Spec is read by headings `## Case N` and `### Case N.M`. Under a heading, every
+        fenced block tagged `then` up to the next heading is YAML; a leading `> ` is
+        removed. The entry for a slug is the item with that `slug` under the key of its
+        kind. A Leaf's nested `estimate` becomes its own `create` entry. An `estimate` line
+        for a page created in the same ledger is folded into that create (`status`,
+        `result`); for an earlier page it is an `estimate` entry, an update. A `lesson` line
+        is a `create` in `lessons`: `kind`, `root_cause` and the sections `Trigger` and
+        `Root cause` from the line. A line with `{supersedes:case N}` marks the entries of
+        case N `superseded_by`. One decision entry per Case: `decision: decision-case-<N>`,
+        `case_text` (the seven quoted sections of the Case, verbatim, in the language of
+        the Spec), `targets` (one item per line of the Case). A line the grammar does not
+        parse goes under `unparsed`; the script continues.
+
+        An existing yaml is extended, never rewritten (case 41): entries whose `line` is
+        present stay as they are, with the librarian's edits and the `applied` marks; new
+        ledger lines become new entries at the end; an entry whose stored `text` differs
+        from the ledger line at that number is reported on stderr and left alone; a later
+        `supersedes` adds `superseded_by` to the earlier entry and changes nothing else; an
+        `estimate` line for a create already `applied` becomes its own `estimate` entry.
+        The count of entries added goes to stdout, one line per date. Exit 0; exit 1 when a
+        date fails.
+    change: "without --date the script walks every raw/<date> with a ledger, so lines written after a date's librarian commit are materialized by the next run; exit 1 when a date fails"
+  - slug: rule-page-generation
+    replace:
+      old: "`uv run guppi generate [--date]` applies the entries of `raw/<date>/materialize.yaml`\nin order and marks each applied entry `applied: <time>` in the yaml, so a rerun\nwrites nothing."
+      new: "`uv run guppi generate [--date]` applies the entries of `raw/<date>/materialize.yaml`\nin order and marks each applied entry `applied: <time>` in the yaml, so a rerun\nwrites nothing. Without `--date` it walks every `raw/<date>/` that holds a yaml, in\ndate order; a date with no unapplied entry changes nothing; a failure on one date is\nreported and the walk goes on, with exit 1 at the end."
+    change: "without --date the script walks every raw/<date> with a yaml, applying what is not yet applied"
+  - slug: rule-documentation
+    replace:
+      old: "Read four things and nothing else: `vault/raw/<today>/handoff.md`,\n`vault/raw/<today>/materialize.yaml` once it exists, the five"
+      new: "Read four things and nothing else: `vault/raw/<today>/handoff.md`, every\n`materialize.yaml` that `guppi materialize` names on its stdout, the five"
+    change: "the librarian reads every yaml the walk names, not only today's"
+create:
+  - slug: estimate-materialize-walks-dates
+    type: estimate
+    kind: QA
+    tags: [harness, workflow, ledger]
+    criterion: >-
+      Without --date, materialize walks every vault/raw/<date>/ with a ledger.md in date
+      order, extends or writes each yaml, prints one line per date, and a ledger line
+      written after its date's librarian commit is materialized by the next run on a later
+      date; --date keeps one date; an error on one date stops the walk with exit 1.
+    method: tests/test_materialize.py with two dated folders; live, the librarian's first run over 2026-09-09 and 2026-09-10
+  - slug: estimate-generate-walks-dates
+    type: estimate
+    kind: QA
+    tags: [harness, workflow, ledger]
+    criterion: >-
+      Without --date, generate walks every vault/raw/<date>/ with a materialize.yaml in
+      date order and applies the unapplied entries of each; a date with nothing unapplied
+      changes no page; --date keeps one date; a failure on one date is reported, the walk
+      goes on, and the exit code is 1 at the end.
+    method: tests/test_generate.py with two dated folders; live, the librarian's first run
+```
+
+## Находки pre-task (ask-guppi, один вызов)
+
+- `rule-materialize` кончается «Exit 0.» — блок `then` выше переписывает секцию How it works целиком, с «exit 1 when a date fails». Учтено.
+- Библиотекарь «materialize exit 1 → отчёт и стоп»: при обходе сломанная старая дата остановит его до сегодняшних страниц. Известно, принято: `materialize` падает только без `ledger.md` в папке, которую обход выбрал по наличию `ledger.md`; `generate` идёт дальше.
+- `Materialize <date>.` в `rule-handoff` становится декоративной датой. Известно, в `given` Case 43.
+- `rule-brief` считает «yaml» в единственном числе; обход подтянет флаг `old-harness` за 2026-09-09. Известный долг брифа, флагов без лимита.
+- Правка Render в `rule-documentation` расходится с `.claude/agents/librarian-guppi.md` до `guppi render`; `render --check` в `make lint` библиотекаря будет красным в этом прогоне. Принято: render и его коммит — первый шаг следующей сессии, handoff называет это. Rule page пишет только библиотекарь.
+- Estimate `pending` по `ref` на `built` правило возвращает её в `draft` до `passed`. Ожидаемо: строки чтений лягут после коммита библиотекаря, страницы станут `passed` следующим прогоном.
+- Восемь чтений Case 42 плюс два новых — десять строк, шаг 8 ниже.
+
+## Порядок работы
+
+1. `git add vault/raw/2026-09-10/ledger.md && git commit -m "chore(ledger): the tail of session E"` — только этот файл.
+2. Case 43, код. `guppi/materialize.py`: вынести тело `run` после разбора аргументов в
+   `materialize_date(project_dir, date, now, stdout, stderr) -> int`; без `--date` —
+   `sorted(p.name for p in (project_dir/"vault"/"raw").iterdir() if (p/"ledger.md").exists())`,
+   по каждой дате, первый ненулевой код возвращается сразу. `guppi/generate.py`: так же
+   `generate_date(...)`; без `--date` — папки с `materialize.yaml`; код 1, если хоть одна дала 1.
+   Обновить docstring обоих модулей и help `--date` («today» → «one date; without it every date»).
+3. Тесты: `tests/test_materialize.py` — две даты, без `--date` оба yaml написаны, stdout две
+   строки; с `--date` только одна. `tests/test_generate.py` — две даты с yaml, без `--date`
+   обе применены; дата без непримененных записей не пишет страниц; `--date` одна. Ожидание:
+   `make test` 126 → 130.
+4. `make style` clean, `make test` green. Страницы vault и `.claude/agents/librarian-guppi.md`
+   не трогать: их пишет библиотекарь по блоку `then`; render — следующая сессия.
+5. Конец хода: блок `LEDGER` с пятью `decision[case 43]` строками (хук пишет их при Stop).
+6. Владелец вызывает `/retro`. Retro в форме Case; три списка. Retro-коммит
+   `feat(harness): Case 43 — materialize and generate walk every date` (`make style`, `make test`),
+   затем `/handoff` через Skill tool.
+7. `/handoff`: `handoff.md` из памяти, три секции. Инструкции библиотекарю: обход тронет
+   2026-09-09 (`old-harness` — флаг, не маршрут); два урока о видимости агентов — синтез;
+   Render `rule-documentation` расходится с файлом агента до render следующей сессии;
+   `sprint.md` не менять. Затем `librarian-guppi` с `Materialize 2026-09-10.`
+8. Отчёт библиотекаря — владельцу без правок. Десять строк `estimate[...]` в блоке `LEDGER`:
+   `retro-loads`, `handoff-dispatches`, `end-of-work-order`, `documentation-completes`,
+   `index-check-merges`, `synthesis-clusters`, `brief-written`, `close-commits`,
+   `materialize-walks-dates`, `generate-walks-dates`. По критериям страниц; источники:
+   `event_log.md`, `git log`, `materialize.yaml` обеих дат, `brief.md`, отчёт, `git show`
+   коммита библиотекаря. Без коммита после handoff.
+
+## Проверка
+
+- `make test` 130 green, `make style` clean до Retro-коммита.
+- `uv run guppi materialize` на дереве: две строки stdout (2026-09-09: 0 entries, 2026-09-10: ≥5).
+- `git log --oneline -4`: хвост E, Retro-коммит, коммит библиотекаря только `vault/`.
+- `raw/2026-09-10/materialize.yaml`: entries сверх 77 — три строки 11:18:24, пять `decision[case 43]`, и при синтезе `insight-agents-*` с `librarian: synthesis`.
+- `vault/wiki/brief.md` — пять секций, ≤7 deferred, флаги включая `render --check`.
+- Не сделано по плану и названо в handoff: render агента, `sprint.md` о закрытии Slice 3, десять строк чтений не закоммичены.

@@ -21,6 +21,7 @@ A Rule is something that can be broken, where breaking it will be detected. That
 | `parent` | Leaf | slug | The workflow MOC above it. |
 | `children` | MOC | **ordered** list of slugs | See *Ordering* below. |
 | `estimates` | yes | list of slugs | On a Leaf: that the rule does what it claims. On a MOC: that the sequence itself holds. |
+| `deferred_by` | no | list of decision slugs | The Decision pages whose `defer` targets this page. Written by `guppi generate` on a defer, cleared when a later Case `supersedes` that one; the index line carries it, so `ask-guppi` reaches the deferred decision without opening the page (case 52.3). |
 | `origin` | yes | `raw/YYYY-MM-DD/ledger.md#case-N` | |
 | `sprint` | yes | sprint id | |
 | `created` | yes | date | |

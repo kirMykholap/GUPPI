@@ -8,7 +8,7 @@ import io
 from guppi import index
 from tests.test_render import page
 
-FIVE = ["entities", "rules", "estimates", "lessons", "insights"]
+FOUR = ["entities", "rules", "lessons", "insights"]
 
 
 def run(argv, project_dir):
@@ -32,6 +32,11 @@ def seed(tmp_path):
         category="entities",
     )
     page(tmp_path, "rule-x", {"type": "rule", "purpose": "Prevents x"})
+    page(
+        tmp_path,
+        "rule-y",
+        {"type": "rule", "purpose": "Prevents y", "deferred_by": ["decision-case-50"]},
+    )
     page(tmp_path, "lesson-a-b", {"type": "lesson", "root_cause": "because b"}, category="lessons")
     page(tmp_path, "insight-c", {"type": "insight", "pattern": "always c"}, category="insights")
     page(tmp_path, "decision-x", {"type": "decision", "kind": "create"}, category="decisions")
@@ -54,8 +59,10 @@ def test_each_category_gets_one_line_per_live_page_in_slug_order(tmp_path):
     assert (code, out, err) == (0, "", "")
     read = lambda name: (wiki(tmp_path) / f"{name}-index.md").read_text(encoding="utf-8")
     assert read("entities") == "entity-alpha: First by name\nentity-zeta: Last by name\n"
-    assert read("rules") == "rule-x: Prevents x\n"
-    assert read("estimates") == "estimate-x-works: Given a multi-line criterion.\n"
+    assert (
+        read("rules") == "rule-x: Prevents x\nrule-y: Prevents y · deferred_by: decision-case-50\n"
+    )
+    assert not (wiki(tmp_path) / "estimates-index.md").exists()  # reached through the target
     assert read("lessons") == "lesson-a-b: because b\n"
     assert read("insights") == "insight-c: always c\n"
     assert not (wiki(tmp_path) / "decisions-index.md").exists()
@@ -65,7 +72,7 @@ def test_each_category_gets_one_line_per_live_page_in_slug_order(tmp_path):
 def test_an_empty_category_yields_an_empty_file(tmp_path):
     page(tmp_path, "rule-x", {"type": "rule", "purpose": "Prevents x"})
     run([], tmp_path)
-    for name in FIVE:
+    for name in FOUR:
         assert (wiki(tmp_path) / f"{name}-index.md").exists()
     assert (wiki(tmp_path) / "lessons-index.md").read_text(encoding="utf-8") == ""
 
@@ -73,11 +80,11 @@ def test_an_empty_category_yields_an_empty_file(tmp_path):
 def test_check_names_a_stale_index_and_writes_nothing(tmp_path):
     seed(tmp_path)
     run([], tmp_path)
-    page(tmp_path, "rule-y", {"type": "rule", "purpose": "Prevents y"})
+    page(tmp_path, "rule-z", {"type": "rule", "purpose": "Prevents z"})
     code, out, _err = run(["--check"], tmp_path)
     assert code == 1
     assert out == "index: vault/wiki/rules-index.md is stale\n"
-    assert "rule-y" not in (wiki(tmp_path) / "rules-index.md").read_text(encoding="utf-8")
+    assert "rule-z" not in (wiki(tmp_path) / "rules-index.md").read_text(encoding="utf-8")
 
 
 def test_check_is_silent_when_every_index_matches(tmp_path):
@@ -90,7 +97,7 @@ def test_check_counts_a_missing_index_as_stale(tmp_path):
     seed(tmp_path)
     code, out, _err = run(["--check"], tmp_path)
     assert code == 1
-    assert len(out.splitlines()) == 5
+    assert len(out.splitlines()) == 4
 
 
 def test_cli_dispatches_to_index(tmp_path, monkeypatch, capsys):

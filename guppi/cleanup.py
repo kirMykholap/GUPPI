@@ -2,11 +2,13 @@
 
 Every live page under `vault/wiki/<category>/` with `status: archived` moves to
 `vault/archived/<sprint>/<date>/<category>/<slug>.md`, with a History line and a `log.md`
-line; its slug leaves the `children` and `estimates` lists of live pages (an Insight's
-`children` keep it, since `severity` counts the live ones); `[[slug]]` links in page bodies
-stay. A page under `vault/archived/` whose status is no longer `archived` moves back. A live
-page whose `parent` or `target` is in the archive is reported, not moved. Then the indexes
-are rewritten. `raw/` stays where it is. Rule page: `vault/wiki/rules/rule-cleanup.md`.
+line; its slug leaves the `children` lists of live pages and the `estimates` lists of
+entities and rules (an Insight's `children` keep it, since `severity` counts the live
+ones; a lesson has no Estimates, case 53.1); `[[slug]]` links in page bodies stay. A page
+under `vault/archived/` whose status is no longer `archived` moves back. A live page whose
+`parent` or `target` is in the archive is reported, not moved. Then the four indexes are
+rewritten; an archived Estimate leaves no line, since estimates have none (case 57).
+`raw/` stays where it is. Rule page: `vault/wiki/rules/rule-cleanup.md`.
 """
 
 import argparse
@@ -113,6 +115,8 @@ class Cleanup:
             changed = False
             for field in LISTS:
                 if page.category == "insights" and field == "children":
+                    continue
+                if field == "estimates" and page.category not in ("entities", "rules"):
                     continue
                 current = as_list(page.props.get(field))
                 kept = [s for s in current if s not in gone]

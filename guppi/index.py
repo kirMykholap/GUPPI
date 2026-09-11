@@ -1,11 +1,13 @@
 """`guppi index [--check]` — one line per live page, per category.
 
-Writes `vault/wiki/<category>-index.md` for entities, rules, estimates, lessons and
-insights: `slug: text`, sorted by slug, the file present even when empty. The text is
-`purpose` for entities and rules, `root_cause` for lessons, `pattern` for insights, and the
-`## Criterion` section collapsed to one line for estimates. Archived pages and decisions
-have no line. `--check` renders in memory, names every stale file, exits 1 and writes
-nothing. Rule page: `vault/wiki/rules/rule-index.md`.
+Writes `vault/wiki/<category>-index.md` for entities, rules, lessons and insights:
+`slug: text`, sorted by slug, the file present even when empty. The text is `purpose` for
+entities and rules, `root_cause` for lessons, `pattern` for insights; a page carrying
+`deferred_by` ends its line with ` · deferred_by: <slugs>`, so a deferred decision is seen
+without opening the page (case 52.3). Archived pages, decisions and estimates have no
+line: an Estimate is reached through the `estimates` field of its target (case 53.4).
+`--check` renders in memory, names every stale file, exits 1 and writes nothing. Rule
+page: `vault/wiki/rules/rule-index.md`.
 """
 
 import argparse
@@ -18,7 +20,6 @@ from guppi.pages import Page, read_category, wiki_root
 INDEXED = {
     "entities": ("prop", "purpose"),
     "rules": ("prop", "purpose"),
-    "estimates": ("section", "## Criterion"),
     "lessons": ("prop", "root_cause"),
     "insights": ("prop", "pattern"),
 }
@@ -30,9 +31,11 @@ def one_line(text) -> str:
 
 def line_text(page: Page, category: str) -> str:
     source, name = INDEXED[category]
-    if source == "prop":
-        return one_line(page.props.get(name))
-    return one_line(page.section(name))
+    text = one_line(page.props.get(name)) if source == "prop" else one_line(page.section(name))
+    deferred = page.props.get("deferred_by")
+    if isinstance(deferred, list) and deferred:
+        text += " · deferred_by: " + ", ".join(str(d) for d in deferred)
+    return text
 
 
 def index_text(pages: list[Page], category: str) -> str:

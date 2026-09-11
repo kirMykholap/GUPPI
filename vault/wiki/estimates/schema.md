@@ -13,7 +13,7 @@ An Estimate is always a Leaf — never inline on another page, never a MOC. Grou
 | `type` | yes | `estimate` | Page category. |
 | `kind` | yes | `QA` \| `Research` | QA: the expected result is known in advance and checked against a stated criterion. Research: the result is not known, and finding it produces new content. |
 | `status` | yes | `pending` \| `passed` \| `failed` | Short state, from a fixed list. The narrative belongs in the body. |
-| `target` | yes | slug | The Entity or Rule this verifies. Written by the script from the ledger. Without it the cascade — an Entity is `built` only once all its Estimates pass — cannot be computed. |
+| `target` | yes | slug of an Entity or Rule | The page with a contract this verifies; a Lesson or an Insight has no Estimate (case 53.1). Written by the script from the ledger. Without it the cascade — an Entity is `built` only once all its Estimates pass — cannot be computed. |
 | `origin` | yes | `raw/YYYY-MM-DD/ledger.md#case-N` | The ratified decision that created it. |
 | `sprint` | yes | sprint id | |
 | `created` | yes | date | |

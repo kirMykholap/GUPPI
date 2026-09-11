@@ -14,7 +14,33 @@ ORIGIN = f"raw/{DATE}/ledger.md#case-1"
 REPO = Path(__file__).resolve().parent.parent
 
 
-def seed(tmp_path, entries=(), decisions=(), new_tags=(), pages=()):
+def records_for(entries):
+    """One minimal Decision record per Case among the entries, as materialize would make."""
+    records = {}
+    for entry in entries:
+        case = entry.get("case")
+        if case is None or entry.get("kind") not in ("create", "update", "delete", "defer"):
+            continue
+        record = records.setdefault(
+            case,
+            {
+                "case": case,
+                "decision": f"decision-case-{case}",
+                "origin": f"raw/{DATE}/ledger.md#case-{case}",
+                "targets": [],
+                "tags": [],
+                "case_text": {"context": "c", "problem": "p", "given": "g", "when": "w"},
+            },
+        )
+        record["targets"].append(
+            {"kind": entry["kind"], "category": entry.get("category"), "slug": entry["slug"]}
+        )
+    return list(records.values())
+
+
+def seed(tmp_path, entries=(), decisions=None, new_tags=(), pages=()):
+    if decisions is None:
+        decisions = records_for(entries)
     wiki = tmp_path / "vault" / "wiki"
     for category in ("entities", "rules", "estimates", "lessons", "insights", "decisions"):
         (wiki / category).mkdir(parents=True)
@@ -155,15 +181,17 @@ def test_creates_yield_conformant_pages_with_backlinks_in_order(tmp_path):
         and "## Parent\n\n- [[rule-root]]" in child
     )
     assert "## Implementation\n\n- `guppi/x.py`" in child
-    assert f"## History\n\n- {DATE} created · {ORIGIN}\n" in child
+    assert f"## History\n\n- {DATE} created · [[decision-case-1]]\n" in child
     estimate = page(tmp_path, "estimates", "estimate-child-works")
     assert props(estimate)["target"] == "rule-child" and props(estimate)["status"] == "pending"
     assert "## Criterion\n\nthe child works" in estimate
     findings = lint.lint(tmp_path)
     assert findings == [], findings
-    assert f"- {DATE} rules/rule-root child rule-child added · {ORIGIN} · generate" in page(
-        tmp_path, "", "log"
+    log = page(tmp_path, "", "log")
+    assert (
+        f"- {DATE} rules/rule-root child rule-child added · [[decision-case-1]] · generate" in log
     )
+    assert log.index("decisions/decision-case-1 created") < log.index("rules/rule-child created")
     assert "3 page(s) written" in out or "page(s) written" in out
 
 
@@ -196,7 +224,7 @@ def test_an_update_sets_fields_sections_and_text_and_appends_history(tmp_path):
         "## Purpose\n\nPrevents the root\n" in text
         and "## How it works\n\nIt works like this." in text
     )
-    assert f"- {DATE} updated: the root gets a body · raw/{DATE}/ledger.md#case-2" in text
+    assert f"- {DATE} updated: the root gets a body · [[decision-case-2]]" in text
 
 
 def test_a_replace_absent_or_not_unique_fails_that_entry_alone(tmp_path):
@@ -260,21 +288,62 @@ def test_delete_archives_and_defer_writes_a_placeholder_or_a_history_line(tmp_pa
     code, _, err = run(tmp_path)
     assert code == 0 and err == ""
     root = page(tmp_path, "rules", "rule-root")
-    assert props(root)["status"] == "archived" and f"- {DATE} deleted · {ORIGIN}" in root
-    assert f"- {DATE} deferred · {ORIGIN}" in root
+    assert props(root)["status"] == "archived" and f"- {DATE} deleted · [[decision-case-2]]" in root
+    assert f"- {DATE} deferred · [[decision-case-4]]" in root
+    assert props(root)["deferred_by"] == ["decision-case-4"]
     later = page(tmp_path, "rules", "rule-later")
     assert props(later) == {
         "type": "rule",
         "status": "draft",
         "purpose": "Prevents something, later",
+        "deferred_by": ["decision-case-3"],
         "origin": ORIGIN,
         "sprint": "migration",
         "created": yaml.safe_load(DATE),
     }
-    assert f"- {DATE} deferred, placeholder · {ORIGIN}" in later
+    assert f"- {DATE} deferred, placeholder · [[decision-case-3]]" in later
 
 
-def test_an_estimate_entry_fills_status_and_result_once(tmp_path):
+def test_a_supersedes_clears_deferred_by_on_the_targets(tmp_path):
+    entries = [
+        ROOT,
+        {
+            "line": 2,
+            "text": "",
+            "case": "2",
+            "kind": "defer",
+            "category": "rules",
+            "slug": "rule-root",
+            "origin": f"raw/{DATE}/ledger.md#case-2",
+            "decision": "decision-case-2",
+        },
+        {
+            "line": 3,
+            "text": "",
+            "case": "3",
+            "kind": "update",
+            "category": "rules",
+            "slug": "rule-root",
+            "origin": f"raw/{DATE}/ledger.md#case-3",
+            "decision": "decision-case-3",
+            "supersedes": "2",
+            "set": {"governs": "x.md"},
+            "change": "taken up",
+        },
+    ]
+    decisions = records_for(entries)
+    decisions[2]["supersedes"] = ["decision-case-2"]
+    seed(tmp_path, entries=entries, decisions=decisions)
+    code, _, err = run(tmp_path)
+    assert code == 0 and err == ""
+    root = page(tmp_path, "rules", "rule-root")
+    assert "deferred_by" not in props(root)
+    assert f"- {DATE} deferred · [[decision-case-2]]" in root
+    assert f"- {DATE} defer by decision-case-2 superseded · [[decision-case-3]]" in root
+    assert props(page(tmp_path, "decisions", "decision-case-2"))["status"] == "superseded"
+
+
+def test_an_estimate_entry_always_fills_status_and_result(tmp_path):
     entries = [
         CHILD,
         CHILD_ESTIMATE,
@@ -304,9 +373,10 @@ def test_an_estimate_entry_fills_status_and_result_once(tmp_path):
     code, out, err = run(tmp_path)
     assert code == 0 and err == ""
     text = page(tmp_path, "estimates", "estimate-child-works")
-    assert props(text)["status"] == "passed" and "## Result\n\ntwelve tests green\n" in text
-    assert "a second reading" not in text and "already passed with a Result; skipped" in out
+    assert props(text)["status"] == "passed" and "## Result\n\na second reading\n" in text
+    assert "twelve tests green" not in text and "skipped" not in out
     assert f"- {DATE} status: pending → passed · raw/{DATE}/ledger.md#L4" in text
+    assert f"- {DATE} status: passed → passed · raw/{DATE}/ledger.md#L5" in text
     assert props(page(tmp_path, "rules", "rule-child"))["status"] == "built"
     assert f"- {DATE} status: draft → built · cascade" in page(tmp_path, "rules", "rule-child")
     assert (
@@ -314,7 +384,7 @@ def test_an_estimate_entry_fills_status_and_result_once(tmp_path):
     )  # a MOC with no estimate
 
 
-def test_a_lesson_brings_its_paired_estimate_per_kind(tmp_path):
+def test_a_lesson_writes_the_lesson_and_no_estimate(tmp_path):
     entries = [
         {
             "line": 1,
@@ -351,19 +421,10 @@ def test_a_lesson_brings_its_paired_estimate_per_kind(tmp_path):
     code, _, err = run(tmp_path)
     assert code == 0 and err == ""
     lesson = page(tmp_path, "lessons", "lesson-hooks-late-fire")
-    assert props(lesson)["status"] == "new" and props(lesson)["estimates"] == [
-        "estimate-hooks-late-fire"
-    ]
-    assert "## Trigger\n\nthe hook fired late" in lesson
-    error = props(page(tmp_path, "estimates", "estimate-hooks-late-fire"))
-    assert (
-        error["kind"] == "QA"
-        and error["status"] == "passed"
-        and error["target"] == "lesson-hooks-late-fire"
-    )
-    assert "## Result\n\nObserved." in page(tmp_path, "estimates", "estimate-hooks-late-fire")
-    knowledge = props(page(tmp_path, "estimates", "estimate-docs-agents-at-import"))
-    assert knowledge["kind"] == "Research" and knowledge["status"] == "pending"
+    assert props(lesson)["status"] == "new" and "estimates" not in props(lesson)
+    assert "## Trigger\n\nthe hook fired late" in lesson and "## Estimates" not in lesson
+    assert f"- {DATE} created · raw/{DATE}/ledger.md#L1" in lesson
+    assert list((tmp_path / "vault" / "wiki" / "estimates").glob("estimate-*.md")) == []
     assert lint.lint(tmp_path) == []
 
 
@@ -399,12 +460,18 @@ def test_one_decision_page_per_case_and_supersedes_marks_the_earlier(tmp_path):
     one = page(tmp_path, "decisions", "decision-case-1")
     assert props(one)["case"] == "1" and props(one)["status"] == "superseded"
     assert props(one)["superseded_by"] == ["decision-case-2"]
-    assert props(one)["targets"] == [{"kind": "create", "category": "rules", "slug": "rule-root"}]
+    assert props(one)["kind"] == ["create"] and props(one)["target_slug"] == ["rule-root"]
+    assert "targets" not in props(one)
     assert (
-        "## Now\n\nNothing." in one
-        and "## Then\n\nSomeone asks.\n\nA root exists.\n**＋** It is a MOC." in one
+        "## Context\n\nA root." in one
+        and "## Problem\n\nNo root." in one
+        and "## Given\n\nNothing." in one
+        and "## When\n\nSomeone asks." in one
+        and "## Then" not in one
+        and "A root exists." not in one
     )
-    assert f"- {DATE} superseded by decision-case-2" in one
+    assert one.index("## Problem") < one.index("## Given") < one.index("## When")
+    assert f"- {DATE} superseded by decision-case-2 · [[decision-case-2]]" in one
     two = props(page(tmp_path, "decisions", "decision-case-2"))
     assert two["supersedes"] == ["decision-case-1"] and two["tags"] == [
         "harness"
@@ -412,9 +479,7 @@ def test_one_decision_page_per_case_and_supersedes_marks_the_earlier(tmp_path):
     findings = [f for f in lint.lint(tmp_path) if "decision-case-2" in f]
     assert findings == [
         "decisions/decision-case-2: schema: missing section ## Context",
-        "decisions/decision-case-2: schema: missing section ## Now",
         "decisions/decision-case-2: schema: missing section ## Problem",
-        "decisions/decision-case-2: schema: missing section ## Then",
     ]
 
 
@@ -442,6 +507,14 @@ def test_applied_entries_are_marked_and_a_rerun_writes_nothing(tmp_path):
     assert code == 0 and err == "" and "0 page(s)" in out
     after = {p: p.read_text(encoding="utf-8") for p in (tmp_path / "vault").rglob("*.md")}
     assert before == after
+
+
+def test_an_entry_that_applies_loses_a_stale_failed_mark(tmp_path):
+    seed(tmp_path, entries=[dict(ROOT, failed="generate: rule-root: an earlier run's error")])
+    code, _, err = run(tmp_path)
+    assert code == 0 and err == ""
+    entry = load_yaml(tmp_path)["entries"][0]
+    assert entry["applied"] and "failed" not in entry
 
 
 def test_a_collision_fails_and_an_existing_create_is_skipped(tmp_path):
@@ -623,7 +696,7 @@ def test_history_and_log_carry_the_run_date_and_created_the_yamls(tmp_path):
     assert code == 0, err
     root = page(tmp_path, "rules", "rule-root")
     assert str(props(root)["created"]) == EARLIER
-    assert f"- {DATE} created · raw/{DATE}/ledger.md#case-1" in root
+    assert f"- {DATE} created · [[decision-case-1]]" in root
     assert f"- {EARLIER} created" not in root
     log = (tmp_path / "vault" / "wiki" / "log.md").read_text(encoding="utf-8")
     assert f"- {DATE} rules/rule-root created" in log and f"- {EARLIER} " not in log

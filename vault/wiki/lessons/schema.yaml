@@ -3,7 +3,9 @@
 # through a ratified `decision update`.
 type: lesson
 properties:
-  required: [type, kind, root_cause, status, estimates, origin, sprint, created, tags]
+  required: [type, kind, root_cause, status, origin, sprint, created, tags]
+# A lesson is a recorded fact and carries no Estimate: an Estimate exists only for a page
+# with a contract, an Entity or a Rule (case 53.1).
   optional: [source, insight]
   values:
     kind: [error, knowledge]
@@ -14,7 +16,7 @@ properties:
     - when: {status: clustered}
       required: [insight]
 body:
-  required: ["## Trigger", "## Root cause", "## Estimates", "## History"]
+  required: ["## Trigger", "## Root cause", "## History"]
   optional: ["## Insight"]
   conditional:
     - when: {status: clustered}

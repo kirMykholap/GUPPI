@@ -4,6 +4,7 @@
 type: estimate
 properties:
   required: [type, kind, status, target, origin, sprint, created, tags]
+# `target` names an Entity or a Rule; lint reports any other category (case 53.1).
   optional: []
   values:
     kind: [QA, Research]

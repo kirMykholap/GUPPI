@@ -4,7 +4,9 @@
 type: rule
 properties:
   required: [type, kind, purpose, status, estimates, origin, sprint, created, tags]
-  optional: [enforcement, implementation_ref, governs, render_mode, parent, children]
+  optional: [enforcement, implementation_ref, governs, render_mode, parent, children, deferred_by]
+# `deferred_by`: the Decision pages whose `defer` targets this page; written on a defer and
+# cleared on a `supersedes` by `guppi generate`, never by hand (case 52.3).
   values:
     kind: [MOC, Leaf]
     status: [draft, built, archived]

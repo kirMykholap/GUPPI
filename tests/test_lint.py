@@ -411,3 +411,125 @@ def test_cli_dispatches_to_lint(tmp_path, monkeypatch, capsys):
     monkeypatch.setenv("CLAUDE_PROJECT_DIR", str(tmp_path))
     assert cli.main(["lint"]) == 1
     assert "rules/rule-x: status" in capsys.readouterr().out
+
+
+# --- cases 52 and 53: decision lists, deferred_by, History links, an estimate's target ------
+
+DECISIONS_YAML = """\
+type: decision
+properties:
+  required: [type, case, status, kind, target_slug, origin]
+  optional: [source, supersedes, superseded_by]
+  values:
+    status: [current, superseded, archived]
+body:
+  required: ["## Context", "## Problem", "## History"]
+  optional: ["## Given", "## When", "## Note"]
+"""
+
+DECISIONS_MD = """\
+# Decision — page schema
+
+## Properties
+
+| Field | Required |
+|---|---|
+| `type` | yes |
+| `case` | yes |
+| `status` | yes |
+| `kind` | yes |
+| `target_slug` | yes |
+| `source` | no |
+| `supersedes` | no |
+| `superseded_by` | no |
+| `origin` | yes |
+
+## Body
+
+| Section | Required |
+|---|---|
+| `## Context` | yes |
+| `## Problem` | yes |
+| `## Given` | no |
+| `## When` | no |
+| `## Note` | no |
+
+## History
+"""
+
+
+def decision_page(kinds="[defer]", slugs="[rule-x]"):
+    return (
+        f"---\ntype: decision\ncase: '50'\nstatus: current\nkind: {kinds}\ntarget_slug: {slugs}\n"
+        f"origin: {ORIGIN}\n---\n\n## Context\n\nc\n\n## Problem\n\np\n\n## History\n\n- created\n"
+    )
+
+
+def seed_decisions(tmp_path, page=None):
+    wiki = seed(tmp_path)
+    write(wiki / "decisions" / "schema.yaml", DECISIONS_YAML)
+    write(wiki / "decisions" / "schema.md", DECISIONS_MD)
+    write(wiki / "decisions" / "decision-case-50.md", decision_page() if page is None else page)
+    return wiki
+
+
+def test_a_decision_with_aligned_lists_naming_pages_is_clean(tmp_path):
+    seed_decisions(tmp_path)
+    assert run(tmp_path) == (0, [], "")
+
+
+def test_decision_lists_of_unequal_length_are_a_decision_finding(tmp_path):
+    seed_decisions(tmp_path, decision_page(kinds="[defer, update]"))
+    _, lines, _ = run(tmp_path)
+    assert lines == ["decisions/decision-case-50: decision: kind has 2 items, target_slug 1"]
+
+
+def test_a_target_slug_naming_no_page_is_a_decision_finding(tmp_path):
+    seed_decisions(tmp_path, decision_page(slugs="[rule-nowhere]"))
+    _, lines, _ = run(tmp_path)
+    assert lines == [
+        "decisions/decision-case-50: decision: target_slug rule-nowhere names no live page"
+    ]
+
+
+def test_a_rule_class_target_slug_is_not_looked_up(tmp_path):
+    seed_decisions(tmp_path, decision_page(kinds="[update]", slugs="[case-schema]"))
+    assert run(tmp_path) == (0, [], "")
+
+
+def test_a_deferred_by_naming_no_decision_is_a_ref_finding(tmp_path):
+    seed_decisions(tmp_path)
+    write(
+        tmp_path / "vault" / "wiki" / "rules" / "rule-x.md",
+        rule_page(deferred_by="[decision-case-51]"),
+    )
+    _, lines, _ = run(tmp_path)
+    assert lines == [
+        "rules/rule-x: ref: deferred_by names decision-case-51, which no live or archived page carries"
+    ]
+
+
+def test_a_history_wikilink_to_nothing_is_a_ref_finding(tmp_path):
+    seed(tmp_path, rule=rule_page().replace("- created", "- created · [[decision-case-99]]"))
+    _, lines, _ = run(tmp_path)
+    assert lines == [
+        "rules/rule-x: ref: body names decision-case-99, which no live or archived page carries"
+    ]
+
+
+def test_an_estimate_whose_target_is_not_an_entity_or_rule_is_a_status_finding(tmp_path):
+    wiki = seed(tmp_path, estimate=estimate_page(target="lesson-l"))
+    write(
+        wiki / "lessons" / "schema.yaml",
+        "type: lesson\nproperties:\n  required: [type]\n  optional: []\nbody:\n  required: []\n  optional: []\n",
+    )
+    write(
+        wiki / "lessons" / "schema.md", "# Lesson\n\n## Properties\n\n| `type` | yes |\n\n## Body\n"
+    )
+    write(wiki / "lessons" / "lesson-l.md", "---\ntype: lesson\n---\n")
+    _, lines, _ = run(tmp_path)
+    assert (
+        "estimates/estimate-x-works: status: target lesson-l is a lesson, not an entity or rule"
+        in lines
+    )
+    assert not any("lesson-l: orphan" in line for line in lines)  # a lesson is never an orphan

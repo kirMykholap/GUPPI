@@ -6,11 +6,15 @@ classes, in the order they are checked: `schema` (a missing field or section, a 
 outside the list, a conditional not met), `schema-prose` (`schema.md` and `schema.yaml`
 naming different fields or sections), `ref` (a slug no live or archived page carries),
 `origin` (a ledger file or `[case N]` line that does not exist), `path` (a file named in
-`implementation_ref` or `governs` that does not exist), `orphan` (a live page no other live
-page's frontmatter names), `status` (a status its Estimates do not support), `method` (an
-Estimate whose Method names no existing test file, or no make target for a MOC; a MOC
-whose children's Estimates are all by hand may say by hand instead). Rule page:
-`vault/wiki/rules/rule-lint.md`.
+`implementation_ref` or `governs` that does not exist), `orphan` (a live entity, rule,
+estimate or insight no other live page's frontmatter names; a lesson is a record and an
+Insight names it or not), `status` (a status its Estimates do not support; an Estimate
+whose `target` is not an entity or a rule, case 53.1), `method` (an Estimate whose Method
+names no existing test file, or no make target for a MOC; a MOC whose children's Estimates
+are all by hand may say by hand instead), `decision` (`kind` and `target_slug` of unequal
+length, or a `target_slug` with a category prefix that names no page, case 52.1). A
+`deferred_by` slug and a `[[decision-case-N]]` wikilink in History are refs like any other
+(cases 52.3, 52.4). Rule page: `vault/wiki/rules/rule-lint.md`.
 """
 
 import argparse
@@ -23,7 +27,22 @@ import yaml
 from guppi.event import project_root
 from guppi.pages import CATEGORIES, Page, read_vault, wiki_root
 
-LINK_FIELDS = ("parent", "children", "estimates", "target", "addressed_by", "insight")
+LINK_FIELDS = (
+    "parent",
+    "children",
+    "estimates",
+    "target",
+    "addressed_by",
+    "insight",
+    "deferred_by",
+)
+PREFIXES = {
+    "entity-": "entities",
+    "rule-": "rules",
+    "estimate-": "estimates",
+    "lesson-": "lessons",
+    "insight-": "insights",
+}
 PATH_FIELDS = ("implementation_ref", "governs")
 WIKILINK = re.compile(r"\[\[([^\]|#]+)(?:[|#][^\]]*)?\]\]")
 CODE_SPAN = re.compile(r"`[^`\n]*`")  # a `[[slug]]` quoted in prose is not a link
@@ -251,8 +270,27 @@ def check_orphans(pages: list[Page]) -> list[Finding]:
     return [
         Finding(page, "orphan", "no other live page names it in its frontmatter")
         for page in pages
-        if page.category != "decisions" and page.slug not in referenced
+        if page.category not in ("decisions", "lessons") and page.slug not in referenced
     ]
+
+
+def check_decision(page: Page, by_slug: dict[str, Page]) -> list[Finding]:
+    """`kind` and `target_slug` aligned by position; a page slug names a page (case 52.1)."""
+    if page.category != "decisions":
+        return []
+    kinds, slugs = as_list(page.props.get("kind")), as_list(page.props.get("target_slug"))
+    if len(kinds) != len(slugs):
+        return [Finding(page, "decision", f"kind has {len(kinds)} items, target_slug {len(slugs)}")]
+    out = []
+    for kind, slug in zip(kinds, slugs, strict=True):
+        if kind not in ("create", "update", "delete", "defer"):
+            out.append(
+                Finding(page, "decision", f"kind {kind!r} is not create/update/delete/defer")
+            )
+        category = next((c for p, c in PREFIXES.items() if slug.startswith(p)), None)
+        if category is not None and slug not in by_slug:
+            out.append(Finding(page, "decision", f"target_slug {slug} names no live page"))
+    return out
 
 
 def check_status(page: Page, by_slug: dict[str, Page]) -> list[Finding]:
@@ -262,7 +300,15 @@ def check_status(page: Page, by_slug: dict[str, Page]) -> list[Finding]:
         if status in ("passed", "failed") and "## Result" not in page.sections:
             out.append(Finding(page, "status", f"{status} without a ## Result section"))
         target = by_slug.get(str(page.props.get("target", "")))
-        if target is not None and page.slug not in as_list(target.props.get("estimates")):
+        if target is not None and target.category not in ("entities", "rules"):
+            out.append(
+                Finding(
+                    page,
+                    "status",
+                    f"target {target.slug} is a {target.category[:-1]}, not an entity or rule",
+                )
+            )
+        elif target is not None and page.slug not in as_list(target.props.get("estimates")):
             out.append(
                 Finding(page, "status", f"target {target.slug} does not list it in estimates")
             )
@@ -357,6 +403,7 @@ def lint(project_dir: Path) -> list[str]:
             continue
         findings.extend(check_status(page, by_slug))
         findings.extend(check_method(page, by_slug, project_dir))
+        findings.extend(check_decision(page, by_slug))
     return [f.text for f in findings]
 
 

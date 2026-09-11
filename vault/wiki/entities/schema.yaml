@@ -4,7 +4,9 @@
 type: entity
 properties:
   required: [type, kind, purpose, status, estimates, origin, sprint, created, tags]
-  optional: [parent, children, code_ref]
+  optional: [parent, children, code_ref, deferred_by]
+# `deferred_by`: the Decision pages whose `defer` targets this page; written on a defer and
+# cleared on a `supersedes` by `guppi generate`, never by hand (case 52.3).
   values:
     kind: [MOC, Leaf]
     status: [draft, built, archived]

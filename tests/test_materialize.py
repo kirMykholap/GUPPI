@@ -36,6 +36,9 @@ SPEC = """# Spec
 > **given:**
 > Nothing exists.
 
+> **when:**
+> Someone asks.
+
 > **then:**
 > The root exists.
 
@@ -299,10 +302,12 @@ def test_one_decision_entry_per_case_with_case_text_and_targets(tmp_path):
         "context": "A root MOC.",
         "problem": "None yet.",
         "given": "Nothing exists.",
+        "when": "Someone asks.",
         "then": "The root exists.",
     }
     assert "incomplete" not in decisions["1"]
-    assert decisions["4"]["incomplete"] == ["context", "problem", "given", "then"]
+    assert decisions["4"]["incomplete"] == ["context", "problem", "given", "when"]
+    assert decisions["5"]["incomplete"] == ["context", "problem"]  # a defer alone: the short form
     assert decisions["7"]["targets"][0]["path"] == "vault/wiki/glossary.md"
 
 

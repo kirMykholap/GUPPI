@@ -3,13 +3,17 @@
 The only writer to `vault/wiki/`. Applies the entries of `vault/raw/<date>/materialize.yaml`
 in order: a `create` becomes a page with the ratified fields and the derived ones, a
 `ref` lands as a backlink on the parent, an `update` edits fields and sections, an
-`estimate` fills status and Result, a `lesson` brings its paired Estimate, one Decision
-page per Case records the routing. What an entry lacks is not written; lint names it.
-Every applied entry is marked in the yaml, so a rerun writes nothing; an entry that fails,
-whatever the cause, is marked `failed` and the rest apply. `log.md` is appended after each
-entry; History and log lines carry the run's date, `created` the yaml's. A `delete` of a
-slug with no category is a thing outside the vault: noted, nothing to archive. A slug
-collision is an error, never a rename. Without `--date` the script walks every `vault/raw/<date>/` that
+`estimate` fills status and Result whatever the page held, a `lesson` writes the lesson
+alone (a fact has no Estimate, case 53.1), a `defer` marks its target `deferred_by`
+(case 52.3), one Decision page per Case records the routing with `kind` and
+`target_slug` aligned by position (case 52.1) and is written before the entries of its
+lines, so the History lines of those entries can name it as `[[decision-case-N]]` (case
+52.4). What an entry lacks is not written; lint names it. Every applied entry is marked
+in the yaml, a stale `failed` mark is dropped on apply (case 53.3), so a rerun writes
+nothing; an entry that fails, whatever the cause, is marked `failed` and the rest apply.
+`log.md` is appended after each entry; History and log lines carry the run's date,
+`created` the yaml's. A `delete` of a slug with no category is a thing outside the
+vault: noted, nothing to archive. A slug collision is an error, never a rename. Without `--date` the script walks every `vault/raw/<date>/` that
 holds a yaml, in date order; a failure on one date is reported and the walk goes on, with
 exit 1 at the end. Rule page: `vault/wiki/rules/rule-page-generation.md`.
 """
@@ -29,24 +33,25 @@ from guppi.pages import Page, read_page, wiki_root
 KEY_ORDER = {
     "rules": [
         "type", "kind", "purpose", "status", "enforcement", "implementation_ref", "governs",
-        "render_mode", "parent", "children", "estimates", "origin", "sprint", "created", "tags",
+        "render_mode", "parent", "children", "estimates", "deferred_by", "origin", "sprint",
+        "created", "tags",
     ],
     "entities": [
-        "type", "kind", "purpose", "status", "parent", "children", "estimates", "code_ref",
-        "origin", "sprint", "created", "tags",
+        "type", "kind", "purpose", "status", "parent", "children", "estimates", "deferred_by",
+        "code_ref", "origin", "sprint", "created", "tags",
     ],
     "estimates": ["type", "kind", "status", "target", "origin", "sprint", "created", "tags"],
     "lessons": [
-        "type", "kind", "root_cause", "status", "source", "estimates", "insight", "origin",
-        "sprint", "created", "tags",
+        "type", "kind", "root_cause", "status", "source", "insight", "origin", "sprint",
+        "created", "tags",
     ],
     "insights": [
         "type", "pattern", "status", "children", "severity", "addressed_by", "origin", "sprint",
         "created", "tags",
     ],
     "decisions": [
-        "type", "case", "status", "targets", "supersedes", "superseded_by", "origin", "sprint",
-        "created", "tags",
+        "type", "case", "status", "kind", "target_slug", "source", "supersedes", "superseded_by",
+        "origin", "sprint", "created", "tags",
     ],
 }  # fmt: skip
 SECTION_ORDER = {
@@ -61,9 +66,9 @@ SECTION_ORDER = {
     ],
     "entities": ["Purpose", "How it works", "Estimates", "Children", "Parent", "Code"],
     "estimates": ["Context", "Criterion", "Method", "Result"],
-    "lessons": ["Trigger", "Root cause", "Estimates", "Insight"],
+    "lessons": ["Trigger", "Root cause", "Insight"],
     "insights": ["Pattern", "Proposal", "Children", "Addressed by"],
-    "decisions": ["Context", "Now", "Problem", "Then", "Note"],
+    "decisions": ["Context", "Problem", "Given", "When", "Note"],
 }
 INITIAL_STATUS = {
     "entities": "draft",
@@ -85,19 +90,6 @@ HISTORY = "## History"
 NEEDS_QUOTE = re.compile(r"""^[\s\[\]{}"'&*!|>%@,#`-]|: | #|:$|\s$|\n""")
 LOOKS_SPECIAL = re.compile(r"^(true|false|null|yes|no|on|off|~|[-+]?\d[\d.]*)$", re.IGNORECASE)
 TAG_ROW = re.compile(r"^\|\s*([\w-]+)\s*\|")
-ERROR_ESTIMATE = {
-    "kind": "QA",
-    "status": "passed",
-    "Criterion": "The failure named in Trigger was observed directly.",
-    "Method": "The observation itself, by hand; recorded in the ledger line.",
-    "Result": "Observed. The ledger line is the record.",
-}
-KNOWLEDGE_ESTIMATE = {
-    "kind": "Research",
-    "status": "pending",
-    "Criterion": "The claim in Root cause holds when read live.",
-    "Method": "One live reading by hand, recorded in the estimate line.",
-}
 
 
 class GenerateError(Exception):
@@ -221,6 +213,14 @@ class Vault:
     def save(self, page: Page) -> None:
         write_page(page.path, page.props, page.sections, page.category)
 
+    @staticmethod
+    def pointer(entry: dict) -> str | None:
+        """What a History line points at: the Decision page of the entry's Case as a
+        wikilink, or the ledger line of a reading or a lesson (case 52.4)."""
+        if entry.get("decision"):
+            return f"[[{entry['decision']}]]"
+        return entry.get("origin")
+
     def history(self, page: Page, what: str, origin: str | None) -> None:
         line = f"- {self.run_date} {what}" + (f" · {origin}" if origin else "")
         current = page.sections.get(HISTORY, "").strip("\n")
@@ -276,7 +276,7 @@ class Vault:
             props["parent"] = ref
         if ref and category == "estimates":
             props["target"] = ref
-        if category in ("rules", "entities", "lessons"):
+        if category in ("rules", "entities"):
             props.setdefault("estimates", [])
         if category in ("rules", "entities") and props.get("kind") == "MOC":
             props.setdefault("children", [])
@@ -299,7 +299,7 @@ class Vault:
             and props.get("purpose")
         ):
             sections["## Purpose"] = str(props["purpose"])
-        if category in ("rules", "entities", "lessons"):
+        if category in ("rules", "entities"):
             sections["## Estimates"] = links(as_list(props.get("estimates")))
         if "children" in props and category in ("rules", "entities", "insights"):
             sections["## Children"] = links(as_list(props["children"]), category == "rules")
@@ -313,14 +313,15 @@ class Vault:
             props["status"] = entry["status"]
             sections["## Result"] = str(entry.get("result") or "")
         page = Page(category=category, slug=slug, path=path, props=props, sections=sections)
-        self.history(page, "created", entry["origin"])
+        self.history(page, "created", self.pointer(entry))
         if category == "estimates" and entry.get("status"):
-            self.history(page, f"status: pending → {entry['status']}", entry["origin"])
+            folded = as_list(entry.get("folded"))
+            date = str(entry["origin"]).split("/")[1] if "/" in str(entry["origin"]) else self.date
+            reading = f"raw/{date}/ledger.md#L{folded[0]}" if folded else self.pointer(entry)
+            self.history(page, f"status: pending → {entry['status']}", reading)
         self.save(page)
         if ref:
-            self.backlink(ref, slug, category, entry["origin"])
-        if category == "lessons":
-            self.lesson_estimate(page, entry)
+            self.backlink(ref, slug, category, self.pointer(entry) or entry["origin"])
 
     def backlink(self, ref: str, slug: str, category: str, origin: str, last: bool = False) -> None:
         parent = self.find(ref)
@@ -339,40 +340,6 @@ class Vault:
         what = f"estimate {slug} added" if field == "estimates" else f"child {slug} added"
         self.history(parent, what, origin)
         self.save(parent)
-
-    def lesson_estimate(self, lesson: Page, entry: dict) -> None:
-        slug = "estimate-" + lesson.slug.removeprefix("lesson-")
-        template = ERROR_ESTIMATE if lesson.props.get("kind") == "error" else KNOWLEDGE_ESTIMATE
-        path = self.path("estimates", slug)
-        if path.exists():
-            self.error(slug, "the lesson's paired estimate exists already")
-            return
-        props = {
-            "type": "estimate",
-            "kind": template["kind"],
-            "status": template["status"],
-            "target": lesson.slug,
-            "origin": entry["origin"],
-            "sprint": self.sprint,
-            "created": self.date,
-        }
-        if lesson.props.get("tags"):
-            props["tags"] = list(lesson.props["tags"])
-        sections = {
-            "## Context": f"The paired Estimate of [[{lesson.slug}]], a `{lesson.props.get('kind')}` lesson.",
-            "## Criterion": template["Criterion"],
-            "## Method": template["Method"],
-        }
-        if "Result" in template:
-            sections["## Result"] = template["Result"]
-        page = Page(category="estimates", slug=slug, path=path, props=props, sections=sections)
-        self.history(page, "created", entry["origin"])
-        if template["status"] == "passed":
-            self.history(page, "status: pending → passed", entry["origin"])
-        self.save(page)
-        lesson.props["estimates"] = as_list(lesson.props.get("estimates")) + [slug]
-        self.rebuild_list(lesson, "estimates")
-        self.save(lesson)
 
     # update
 
@@ -405,7 +372,7 @@ class Vault:
                 self.error(slug, f"replace: {item.get('old', '')[:60]!r} is absent or not unique")
                 return
         change = entry.get("change") or "updated"
-        self.history(page, f"updated: {change}", entry.get("origin"))
+        self.history(page, f"updated: {change}", self.pointer(entry))
         self.save(page)
 
     def replace(self, page: Page, old: str, new: str) -> bool:
@@ -434,10 +401,7 @@ class Vault:
         if page is None or page.category != "estimates":
             self.error(slug, "no estimate page to fill")
             return
-        before = str(page.props.get("status"))
-        if before == entry["status"] and "## Result" in page.sections:
-            print(f"generate: {slug}: already {before} with a Result; skipped", file=self.stdout)
-            return
+        before = str(page.props.get("status"))  # a reading always lands (case 53.2)
         page.props["status"] = entry["status"]
         page.sections["## Result"] = str(entry.get("result") or "")
         self.history(page, f"status: {before} → {entry['status']}", entry.get("origin"))
@@ -457,14 +421,19 @@ class Vault:
             self.error(entry["slug"], "no page to delete")
             return
         page.props["status"] = "archived"
-        self.history(page, "deleted", entry.get("origin"))
+        self.history(page, "deleted", self.pointer(entry))
         self.save(page)
 
     def defer(self, entry: dict) -> None:
         slug, category = entry["slug"], entry["category"]
         page = self.find(slug)
+        decision = entry.get("decision")
         if page is not None:
-            self.history(page, "deferred", entry.get("origin"))
+            if decision and page.category in ("rules", "entities"):
+                current = as_list(page.props.get("deferred_by"))
+                if decision not in current:
+                    page.props["deferred_by"] = current + [decision]
+            self.history(page, "deferred", self.pointer(entry))
             self.save(page)
             return
         if category not in CATEGORIES:
@@ -474,6 +443,8 @@ class Vault:
         props = {"type": fields.pop("type", SINGULAR[category]), "status": "draft"}
         tags = fields.pop("tags", None) or entry.get("tags")
         props.update(fields)
+        if decision and category in ("rules", "entities"):
+            props["deferred_by"] = [decision]
         props["origin"] = entry["origin"]
         props["sprint"] = self.sprint
         props["created"] = self.date
@@ -489,8 +460,26 @@ class Vault:
             props=props,
             sections=sections,
         )
-        self.history(page, "deferred, placeholder", entry["origin"])
+        self.history(page, "deferred, placeholder", self.pointer(entry))
         self.save(page)
+
+    def clear_deferred_by(self, earlier: Page, by: str, origin: str) -> None:
+        """A `supersedes` of a decision that deferred pages: those pages drop it from
+        `deferred_by`, an empty list is dropped (case 52.3)."""
+        kinds, slugs = as_list(earlier.props.get("kind")), as_list(earlier.props.get("target_slug"))
+        for kind, slug in zip(kinds, slugs, strict=False):
+            if kind != "defer":
+                continue
+            page = self.find(slug)
+            if page is None or earlier.slug not in as_list(page.props.get("deferred_by")):
+                continue
+            kept = [d for d in as_list(page.props["deferred_by"]) if d != earlier.slug]
+            if kept:
+                page.props["deferred_by"] = kept
+            else:
+                del page.props["deferred_by"]
+            self.history(page, f"defer by {earlier.slug} superseded", f"[[{by}]]")
+            self.save(page)
 
     def settle_backlinks(self) -> None:
         pending, self.pending = self.pending, []
@@ -506,7 +495,8 @@ class Vault:
             return
         text = record.get("case_text") or {}
         tags = list(record.get("tags") or [])
-        for target in record.get("targets") or []:
+        targets = record.get("targets") or []
+        for target in targets:
             if target.get("category") in CATEGORIES:
                 page = self.find(str(target.get("slug")))
                 for tag in as_list(page.props.get("tags")) if page else []:
@@ -516,8 +506,12 @@ class Vault:
             "type": "decision",
             "case": str(record["case"]),
             "status": "current",
-            "targets": record.get("targets") or [],
+            "kind": [str(t.get("kind")) for t in targets],
+            "target_slug": [str(t.get("slug")) for t in targets],
         }
+        sources = [str(t["source"]) for t in targets if t.get("source")]
+        if sources:
+            props["source"] = sources
         if record.get("supersedes"):
             props["supersedes"] = list(record["supersedes"])
         props["origin"] = record["origin"]
@@ -525,12 +519,14 @@ class Vault:
         props["created"] = self.date
         props["tags"] = tags  # the union of the targets' tags; empty is a fact, not a gap
         sections = {}
-        for name, key in (("Context", "context"), ("Now", "given"), ("Problem", "problem")):
+        for name, key in (
+            ("Context", "context"),
+            ("Problem", "problem"),
+            ("Given", "given"),
+            ("When", "when"),
+        ):
             if text.get(key):
                 sections[f"## {name}"] = text[key]
-        then = "\n\n".join(t for t in (text.get("when"), text.get("then")) if t)
-        if then:
-            sections["## Then"] = then
         page = Page(category="decisions", slug=slug, path=path, props=props, sections=sections)
         self.history(page, "created", record["origin"])
         self.save(page)
@@ -542,8 +538,9 @@ class Vault:
             done = as_list(other.props.get("superseded_by"))
             if slug not in done:
                 other.props["superseded_by"] = done + [slug]
-            self.history(other, f"superseded by {slug}", record["origin"])
+            self.history(other, f"superseded by {slug}", f"[[{slug}]]")
             self.save(other)
+            self.clear_deferred_by(other, slug, record["origin"])
 
     # after all entries
 
@@ -624,17 +621,37 @@ class Vault:
 # --- the run ------------------------------------------------------------------------
 
 
+def apply_decision(vault: Vault, record: dict, stamp: str) -> None:
+    if record.get("applied"):
+        return
+    before = len(vault.errors)
+    try:
+        vault.decision(record)
+    except Exception as exc:  # noqa: BLE001
+        vault.error(record.get("decision", "?"), f"{type(exc).__name__}: {exc}")
+    if len(vault.errors) == before:
+        record["applied"] = stamp
+        record.pop("failed", None)
+    else:
+        record["failed"] = vault.errors[-1]
+    vault.write_log()
+
+
 def apply(vault: Vault, data: dict) -> None:
     stamp = vault.now.strftime("%H:%M:%S")
+    records = {str(r.get("case")): r for r in data.get("decisions") or []}
     for entry in data.get("entries") or []:
         if entry.get("applied"):
             continue
+        if "case" in entry and str(entry["case"]) in records:  # the Decision page first (52.4)
+            apply_decision(vault, records[str(entry["case"])], stamp)
         kind = entry.get("kind")
         if entry.get("category") == "file":
             print(
                 f"generate: {entry['slug']}: a Rule-class file, applied by hand", file=vault.stdout
             )
             entry["applied"] = stamp
+            entry.pop("failed", None)
             continue
         before = len(vault.errors)
         try:
@@ -654,22 +671,14 @@ def apply(vault: Vault, data: dict) -> None:
             vault.error(entry.get("slug", "?"), f"{type(exc).__name__}: {exc}")
         if len(vault.errors) == before:
             entry["applied"] = stamp
+            entry.pop("failed", None)  # a failure that is over is not shown (53.3)
         else:
             entry["failed"] = vault.errors[-1]
         vault.write_log()
     vault.settle_backlinks()
     vault.write_log()
     for record in data.get("decisions") or []:
-        if record.get("applied"):
-            continue
-        before = len(vault.errors)
-        try:
-            vault.decision(record)
-        except Exception as exc:  # noqa: BLE001
-            vault.error(record.get("decision", "?"), f"{type(exc).__name__}: {exc}")
-        if len(vault.errors) == before:
-            record["applied"] = stamp
-        vault.write_log()
+        apply_decision(vault, record, stamp)
     vault.cascade()
     vault.register_tags(data.get("new_tags") or [])
     vault.write_log()

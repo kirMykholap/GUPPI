@@ -323,11 +323,12 @@ def _lift_item(entry: dict, item: dict, kind: str, nested: str | None, incomplet
             for k, v in item.items()
             if k not in ("slug", "sections", "estimate", "file", "parent_create", "parent_tags")
         }
-        if nested == "estimate":
+        if nested == "estimate" or entry.get("category") == "estimates":
             fields.setdefault("type", "estimate")
-            for key in ("context", "criterion", "method"):
+            for key in ("context", "criterion", "method"):  # sections either way (case 53.3)
                 if key in fields:
                     entry.setdefault("sections", {})[key.capitalize()] = fields.pop(key)
+        if nested == "estimate":
             if "parent_create" in item and not entry.get("ref"):
                 entry["ref"] = item["parent_create"]
             if item.get("parent_tags") and not entry.get("tags") and not fields.get("tags"):
@@ -462,7 +463,10 @@ def decision_record(case: str, entries_of_case: list[dict], date: str, texts: di
     }
     if supersedes:
         record["supersedes"] = supersedes
-    missing = [name for name in ("context", "problem", "given", "then") if name not in texts]
+    needed = ("context", "problem")
+    if any(e.get("kind") != "defer" for e in entries_of_case):  # the short form of Retro (56)
+        needed += ("given", "when")
+    missing = [name for name in needed if name not in texts]
     if missing or block_errors:
         record["incomplete"] = missing + list(block_errors)
     return record

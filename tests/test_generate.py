@@ -51,9 +51,12 @@ def seed(tmp_path, entries=(), decisions=(), new_tags=(), pages=()):
     return tmp_path
 
 
+NOW = datetime(2026, 9, 10, 12, 0, 0, tzinfo=UTC)  # pinned: History carries the run's date
+
+
 def run(project_dir):
     out, err = io.StringIO(), io.StringIO()
-    code = generate.run(["--date", DATE], stdout=out, stderr=err, project_dir=project_dir)
+    code = generate.run(["--date", DATE], stdout=out, stderr=err, project_dir=project_dir, now=NOW)
     return code, out.getvalue(), err.getvalue()
 
 
@@ -537,9 +540,6 @@ def test_a_failure_on_one_date_is_reported_and_the_walk_goes_on(tmp_path):
 
 # --- Cases 47 and 48: one entry fails alone, the log per entry, the run's date, a delete
 # outside the vault ----------------------------------------------------------------------
-
-
-NOW = datetime(2026, 9, 10, 12, 0, 0, tzinfo=UTC)
 
 
 def run_at(project_dir, argv=None):

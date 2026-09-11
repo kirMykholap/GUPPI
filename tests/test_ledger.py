@@ -208,3 +208,143 @@ def test_cli_dispatches_to_ledger(tmp_path, monkeypatch, capsys):
     assert capsys.readouterr().err == ""
     written = ledger_text(tmp_path, day=today).splitlines()[0]
     assert written.startswith("- ") and written.endswith(DECISION[2:])
+
+
+# --- case 55.1: the hi window spans the dates of the session ---------------------------
+
+YESTERDAY = date(2026, 9, 8)
+ONLY_TOOLS_TODAY = "- 00:12:00 44c1aae1 tool Bash: git status --short\n"
+
+
+def test_a_start_and_hi_in_yesterdays_log_open_todays_window(tmp_path):
+    write_event_log(tmp_path, EVENT_LOG_WITH_HI, day=YESTERDAY)
+    write_event_log(tmp_path, ONLY_TOOLS_TODAY)
+    code, err = run(payload(last_assistant_message=REPLY), tmp_path)
+    assert (code, err) == (0, "")
+    assert ledger_text(tmp_path) == f"{timed(DECISION)}\n{timed(ESTIMATE)}\n"
+    assert not ledger_file(tmp_path, YESTERDAY).exists()
+
+
+def test_no_start_of_this_session_on_any_date_refuses(tmp_path):
+    write_event_log(
+        tmp_path,
+        "- 15:01:00 deadbeef session-start startup\n- 15:01:30 -------- hi\n",
+        day=YESTERDAY,
+    )
+    write_event_log(tmp_path, "- 00:12:00 -------- hi\n")
+    code, err = run(payload(last_assistant_message=REPLY), tmp_path)
+    assert code == 2
+    assert "no /hi recorded" in err
+
+
+def test_another_sessions_start_today_closes_yesterdays_window(tmp_path):
+    write_event_log(tmp_path, EVENT_LOG_WITH_HI, day=YESTERDAY)
+    write_event_log(tmp_path, "- 00:12:00 deadbeef session-start startup\n")
+    code, _ = run(payload(last_assistant_message=REPLY), tmp_path)
+    assert code == 2
+
+
+def test_the_walk_stops_at_the_first_date_holding_this_sessions_start(tmp_path):
+    # Two days ago: a hi under this session's start; yesterday: this session started again,
+    # then another session's start closed the window. The older hi must not leak through.
+    write_event_log(tmp_path, EVENT_LOG_WITH_HI, day=date(2026, 9, 7))
+    write_event_log(
+        tmp_path,
+        "- 09:00:00 44c1aae1 session-start startup\n- 10:00:00 deadbeef session-start startup\n",
+        day=YESTERDAY,
+    )
+    write_event_log(tmp_path, ONLY_TOOLS_TODAY)
+    code, _ = run(payload(last_assistant_message=REPLY), tmp_path)
+    assert code == 2
+
+
+# --- case 55.2: the Stop hook reads the whole session back -----------------------------
+
+
+def transcript_line(text, *, sidechain=False, session=SESSION, kind="assistant"):
+    content = [{"type": "text", "text": text}] if kind == "assistant" else text
+    return json.dumps(
+        {
+            "type": kind,
+            "isSidechain": sidechain,
+            "sessionId": session,
+            "message": {"role": kind, "content": content},
+        },
+        ensure_ascii=False,
+    )
+
+
+def write_transcript(tmp_path, *lines):
+    path = tmp_path / "transcript.jsonl"
+    path.write_text("\n".join(lines) + "\n", encoding="utf-8")
+    return str(path)
+
+
+def test_a_block_of_an_earlier_reply_lands_at_the_next_stop(working):
+    earlier = f"Ratified.\n\n{ledger_block(DECISION)}\nRunning /pre-task now."
+    transcript = write_transcript(
+        working,
+        transcript_line("Earlier still, no block."),
+        transcript_line(earlier),
+        transcript_line("user text", kind="user"),
+        transcript_line("The current reply, no block."),
+    )
+    stdin = payload(
+        last_assistant_message="The current reply, no block.", transcript_path=transcript
+    )
+    code, err = run(stdin, working)
+    assert (code, err) == (0, "")
+    assert ledger_text(working) == f"{timed(DECISION)}\n"
+
+
+def test_the_transcript_and_the_last_message_are_read_once_each(working):
+    transcript = write_transcript(working, transcript_line(REPLY))
+    run(payload(last_assistant_message=REPLY, transcript_path=transcript), working)
+    run(payload(last_assistant_message=REPLY, transcript_path=transcript), working)
+    assert ledger_text(working) == f"{timed(DECISION)}\n{timed(ESTIMATE)}\n"
+
+
+def test_the_current_reply_is_taken_from_the_payload_when_the_transcript_lags(working):
+    transcript = write_transcript(working, transcript_line("Earlier, no block."))
+    run(payload(last_assistant_message=REPLY, transcript_path=transcript), working)
+    assert ledger_text(working) == f"{timed(DECISION)}\n{timed(ESTIMATE)}\n"
+
+
+def test_a_subagents_block_in_the_transcript_is_ignored(working):
+    transcript = write_transcript(working, transcript_line(ledger_block(LESSON), sidechain=True))
+    code, err = run(payload(last_assistant_message="Nothing.", transcript_path=transcript), working)
+    assert (code, err) == (0, "")
+    assert not ledger_file(working).exists()
+
+
+def test_a_line_in_an_earlier_days_ledger_is_not_written_again(working):
+    path = ledger_file(working, YESTERDAY)
+    path.parent.mkdir(parents=True, exist_ok=True)
+    path.write_text(f"- 20:50:18 {DECISION[2:]}\n", encoding="utf-8")
+    transcript = write_transcript(working, transcript_line(ledger_block(DECISION)))
+    run(payload(last_assistant_message=ledger_block(ESTIMATE), transcript_path=transcript), working)
+    assert ledger_text(working) == f"{timed(ESTIMATE)}\n"
+
+
+def test_a_missing_or_broken_transcript_falls_back_to_the_last_message(working):
+    code, err = run(
+        payload(last_assistant_message=REPLY, transcript_path=str(working / "absent.jsonl")),
+        working,
+    )
+    assert (code, err) == (0, "")
+    broken = working / "broken.jsonl"
+    broken.write_text(
+        "{not json\n" + transcript_line(ledger_block(LESSON)) + "\n", encoding="utf-8"
+    )
+    run(payload(last_assistant_message="Nothing.", transcript_path=str(broken)), working)
+    assert ledger_text(working).splitlines() == [timed(DECISION), timed(ESTIMATE), timed(LESSON)]
+
+
+def test_the_refusal_counts_only_the_lines_not_yet_written(tmp_path):
+    write_event_log(tmp_path, "- 15:01:00 44c1aae1 session-start startup\n")
+    path = ledger_file(tmp_path)
+    path.parent.mkdir(parents=True, exist_ok=True)
+    path.write_text(f"{DECISION}\n", encoding="utf-8")
+    code, err = run(payload(last_assistant_message=REPLY), tmp_path)
+    assert code == 2
+    assert err.startswith("ledger: 1 line(s) not written")

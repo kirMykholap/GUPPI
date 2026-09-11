@@ -35,7 +35,9 @@ with these sections in this order:
 - Flags, no limit: entries marked `incomplete`, `failed`, `near` or `unparsed`;
   failed Estimates; MOC candidates; stale defers; contradictions; the lint output.
 - Readings at the close: `make test`, `make lint`, page counts.
-Write facts and flags only. Add no decision and no judgment of the work. Change
+When a fact the brief needs is in no input — the status of an Estimate, the severity
+of an Insight — read it from the page and name the page in the report. Write facts
+and flags only. Add no decision and no judgment of the work. Change
 `vault/wiki/sprint.md` only when `handoff.md` tells you to, and only as it says.
 <!-- /rule-brief -->
 
@@ -52,3 +54,4 @@ Write facts and flags only. Add no decision and no judgment of the work. Change
 - 2026-09-10 created · raw/2026-09-10/ledger.md#case-35.3
 - 2026-09-10 estimate estimate-brief-written added · raw/2026-09-10/ledger.md#case-35.3
 - 2026-09-10 status: draft → built · cascade
+- 2026-09-11 updated: a fact no input carries is read from the page and named · [[decision-case-54]]

@@ -23,7 +23,9 @@ Given a `Stop` payload whose reply carries a decision line and an estimate line 
 text verbatim and the time of writing in front, once, even when the hook runs twice on the
 same payload; a line already present by hand, without a time, is not written again.
 Without `hi` the hook exits 2 with a reason naming the count and the session, and
-the ledger is untouched. With `stop_hook_active` true it exits 0 and writes nothing. In a
+the ledger is untouched. With `stop_hook_active` true it exits 0 and writes nothing. With the `session-start` and the `hi` in yesterday's event log and only `tool` lines
+in today's, the lines are written into today's ledger. A reply carrying a `LEDGER` block
+that ends in `/pre-task` reaches the ledger once, at the next `Stop` of the session. In a
 live session, the last lines of this slice reach `raw/2026-09-09/ledger.md` written by the
 hook, not by hand.
 
@@ -34,15 +36,13 @@ reading is taken once by hand and written into the estimate line.
 
 ## Result
 
-Passing, two live readings on 2026-09-09 plus the suite. Reading 1, first reply of session
-C, pre-15.1 contract: eight bare estimate lines reached `raw/2026-09-09/ledger.md`, once
-each. Reading 2, the reply acknowledging case 15, post-15.1 contract: five lines inside a
-```` ```LEDGER ```` block landed at 17:09:59 with the time prefix, once each; a bare copy
-and an untagged fence in earlier replies were ignored. `tests/test_ledger.py`: 16 tests
-green (31 in the suite).
+tests/test_ledger.py 28 green with the midnight window (a start and hi in yesterday's log, only tool lines today, writes into today's ledger; no start on any date refuses; another session's start today closes yesterday's window) and the read-back (an earlier reply's block lands at the next Stop, a subagent's block is ignored, a line in an earlier day's ledger is not written again, a missing transcript falls back to the last message); live 2026-09-11 session H: the reply of 11:32 carried three estimate lines and a lesson in a LEDGER block and ended in the /pre-task Skill call, no Stop fired, the ledger stayed at 67 lines; the next reply ended in text and its Stop at 11:32:59 wrote the four lines once, read from the transcript, with that time
 
 ## History
 
 - 2026-09-09 created · raw/2026-09-09/ledger.md#case-10
 - 2026-09-09 updated: criterion follows the LEDGER block and the time prefix · raw/2026-09-09/ledger.md#case-15.1
 - 2026-09-09 status: pending → passed · written by hand, no generator yet
+- 2026-09-11 updated: the midnight window added to the criterion; pending until the reading · [[decision-case-55.1]]
+- 2026-09-11 updated: the transcript read-back added to the criterion; pending until the live reading · [[decision-case-55.2]]
+- 2026-09-11 status: pending → passed · raw/2026-09-11/ledger.md#L72

@@ -19,7 +19,7 @@ pages written by hand since Slice 0, whose findings are the debt the brief carri
 
 Against a temp vault seeded with one page per defect class, `guppi lint` names each
 defective page with the class and nothing else, exits 1, and exits 0 with no output on a
-clean vault; the two Method classes (case 26.2) are seeded too. Against the live vault:
+clean vault; the two Method classes (case 26.2) are seeded too, and the classes of cases 52 and 53: decision lists of unequal length, a target_slug naming no page, a deferred_by naming no decision, a History wikilink resolving to nothing, an estimate whose target is not an entity or a rule; a lesson without estimates is not a finding. Against the live vault:
 the first run's findings are each either an item of the brief's known-false list or
 become a Case.
 
@@ -30,17 +30,12 @@ written into the estimate line.
 
 ## Result
 
-Passing, 2026-09-09, session D. `tests/test_lint.py`: 22 tests green. Live, first run over
-the vault, 15 findings: three `ref` lines for the children of `rule-plan-mode` that
-arrive later in the slice, one `ref` line for `rule-documentation` (Slice 3), nine
-`status` lines `draft while every Estimate is passed` on the Slice 1 pages and
-`rule-render-harness` (`built` is the Slice 3 generator's to set), one `method` line for
-`estimate-session-start-context` (fixed by case 26.2 in the same slice), and one `method`
-line for `estimate-hi-no-read-calls` — a MOC whose children are all hand readings, which
-the ratified Method rule does not cover; raised to the owner as a Case.
+tests/test_lint.py 32 green with the classes of cases 52 and 53 seeded: unequal decision lists, a target_slug naming no page, a deferred_by naming no decision, a History wikilink to nothing, an estimate whose target is a lesson, and a lesson that is never an orphan; live 2026-09-11 after the migrations: 259 findings, each on the known-false list — 89 ref to decision-case-52…57 pages the librarian has not written, 20 orphan and 17 status on the 21 Estimates the ledger deletes, 132 schema on the 2026-09-09 backfill and the four clustered lessons without ## Insight, 3 orphan placeholders, 1 method (documentation-completes by hand while materialize-walks-dates names a file)
 
 ## History
 
 - 2026-09-09 created · raw/2026-09-09/ledger.md#case-21
 - 2026-09-09 updated: criterion gains the two Method defect classes · raw/2026-09-09/ledger.md#case-26.2
 - 2026-09-09 status: pending → passed · written by hand, no generator yet
+- 2026-09-11 updated: the classes of cases 52 and 53 seeded; a lesson without estimates is clean; pending until the suite · [[decision-case-57]]
+- 2026-09-11 status: pending → passed · raw/2026-09-11/ledger.md#L69

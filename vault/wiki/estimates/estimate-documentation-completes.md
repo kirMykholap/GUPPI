@@ -1,7 +1,7 @@
 ---
 type: estimate
 kind: QA
-status: failed
+status: pending
 target: rule-documentation
 origin: raw/2026-09-10/ledger.md#case-36
 sprint: migration
@@ -18,10 +18,10 @@ The phase either turns every ledger line into a page, or the vault and the ledge
 make test-documentation runs the tests of materialize, generate and cleanup as one
 pipeline, green. Live, after a librarian run: every decision line of the session's
 ledger has a Decision page and its target page; no page exists that no ledger line
-produced; the agent read only handoff.md, the yamls materialize named, the five
+produced; the agent read only handoff.md, the yamls materialize named, the four
 indexes and tags.md, plus the wiki pages it names in the report with one of the
-three reasons of its frame (same or near, the lessons of an Insight, a script's
-error), and no ledger, Spec, plan, Decision page, archive file, or file under guppi/
+four reasons of its frame (same or near; a candidate cluster; a script's error; a
+fact for the brief) and the outcome, and no ledger, Spec, plan, Decision page, archive file, or file under guppi/
 or tests/; it edited no yaml entry beyond the marks and the entries of the index
 check and the synthesis; its commands are in event_log.md; its commit is separate
 from the session's; it did not stop to ask.
@@ -32,10 +32,12 @@ from the session's; it did not stop to ask.
 
 ## Result
 
-make test-documentation green inside the 132; live 2026-09-10: decision-case-43 and its five targets exist, the lesson-born and synthesis pages trace to line 80, the commit 8bbfa10 is separate and touches only vault/, its 44 commands are in event_log.md, it did not stop to ask; failed on the read constraint: at 11:49:55 it read vault/wiki/lessons/lesson-agents-loaded-at-session-start.md and at 11:50:08–11:50:15 guppi/generate.py three times, before any script had reported a problem; after the generate crash it also edited materialize.yaml lines 2306 and 2356 by sed and reran
+live 2026-09-10 session G, librarian run 16:00–16:12, commit 58301d8: make test 138 green; the 8 decision lines of Cases 44–51 have their decision pages and targets, no entry unapplied; the report names four pages opened with a reason (two hooks lessons for a synthesis candidate, two walks-dates estimates whose index lines are empty); no ledger, spec, plan, decision page, archive file or code was read; the yaml was edited once by its own script (near marks, synthesis entries); its 34 commands are in event_log.md; the commit is separate, 58 files all under vault/; it did not stop; failed on two reads after generate not named in the report and outside the three cases: 16:09:57 sed of its own insight-harness-yaml-entry-shape-assumed, 16:10:41 grep of status on estimate pages, both for the brief
 
 ## History
 
 - 2026-09-10 created · raw/2026-09-10/ledger.md#case-36
 - 2026-09-10 status: pending → failed · raw/2026-09-10/ledger.md#L89
 - 2026-09-10 updated: a read beyond the four inputs is allowed for one of three named reasons; session artifacts, code and yaml repairs are not · raw/2026-09-10/ledger.md#case-44
+- 2026-09-11 status: failed → failed · raw/2026-09-10/ledger.md#L123
+- 2026-09-11 updated: four indexes; four reasons; outcome named · [[decision-case-54]]

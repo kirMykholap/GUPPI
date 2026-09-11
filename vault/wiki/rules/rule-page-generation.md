@@ -6,7 +6,7 @@ status: draft
 enforcement: check
 implementation_ref: [guppi/generate.py, tests/test_generate.py]
 parent: rule-documentation
-estimates: [estimate-generate-writes, estimate-generate-walks-dates, estimate-generate-rejects-shape-alone, estimate-generate-logs-per-entry, estimate-generate-dates-history-by-run, estimate-generate-passes-delete-outside-vault]
+estimates: [estimate-generate-writes, estimate-generate-walks-dates]
 origin: raw/2026-09-10/ledger.md#case-32
 sprint: migration
 created: 2026-09-10
@@ -24,9 +24,7 @@ disagreeing silently. A slug collision is an error, never a rename.
 
 ## How it works
 
-`uv run guppi generate [--date]` applies the entries of `raw/<date>/materialize.yaml`
-in order and marks each applied entry `applied: <time>` in the yaml, so a rerun
-writes nothing. Without `--date` it walks every `raw/<date>/` that holds a yaml, in
+`uv run guppi generate [--date]` applies the entries of `raw/<date>/materialize.yaml` in order, the Decision page of a Case written before the first entry of its lines, and marks each applied entry `applied: <time>` in the yaml and drops a `failed` mark an earlier run left on it, so a rerun writes nothing and no reader of the yaml sees a failure that is over. Without `--date` it walks every `raw/<date>/` that holds a yaml, in
 date order; a date with no unapplied entry changes nothing; a failure on one date is
 reported and the walk goes on, with exit 1 at the end. An entry that fails — a collision, a `ref` naming no page, a
 `replace` whose text is absent or not unique, a field whose shape the script does not
@@ -43,37 +41,22 @@ fields; `Render`, `How it works`, `Context`, `Criterion`, `Method`, `Result`,
 `Trigger`, `Root cause`, `Pattern`, `Proposal` from `sections` or the estimate's
 fields. A field or section the entry lacks is not written: lint names it.
 
-History lines: `created`, `updated: <change>`, `status: a → b`, `deleted`,
-`deferred`, `child <slug> added`, `estimate <slug> added`, each `· <origin>`;
+History lines: `created`, `updated: <change>`, `status: a → b`, `deleted`, `deferred`, `child <slug> added`, `estimate <slug> added`, each `· [[decision-case-N]]` when the entry belongs to a Case and `· <origin>` (the ledger pointer) when it is a reading or a lesson;
 `log.md` gets the same line with `<category>/<slug>` in front, appended after each
 entry, so a run that stops leaves the feed level with the pages. A `create` with `ref`
 appends the slug to the parent's `children` (order kept) or, for an estimate, to
 the target's `estimates`, and rebuilds that section. An `update` applies `set` to
 the frontmatter, `sections` as whole replacements, `replace` inside the body
-(whitespace-collapsed match, exactly one occurrence), and appends History. An
-`estimate` entry sets `status`, overwrites `## Result` and appends History; a page
-already at that status with a Result is skipped. A `delete` sets `status: archived`
+(whitespace-collapsed match, exactly one occurrence), and appends History. An `estimate` entry sets `status`, overwrites `## Result` and appends History, whatever the page held before: a reading always lands, and reruns are held off by the `applied` marks alone. A `delete` sets `status: archived`
 with History `deleted`; there is no `deleted` status. A `delete` whose slug is neither
 a category prefix nor a Rule-class file (`category: unknown` in the yaml) names
 something outside the vault: it is printed on stdout as `outside the vault, nothing to
 archive` and marked applied, no page is written; a `delete` with a category and no
-page fails. A `defer` with a page appends
-History `deferred`; without one it writes a placeholder page, `status: draft`, with
-only the fields the Case gave.
+page fails. A `defer` with a page appends History `deferred` and the decision slug to its `deferred_by`; without one it writes a placeholder page, `status: draft`, with only the fields the Case gave and `deferred_by`.
 
-A lesson's paired Estimate is `estimate-<lesson slug without lesson->`, target the
-lesson, tags the lesson's. `error`: kind `QA`, status `passed`, criterion "The
-failure named in Trigger was observed directly", method "The observation itself,
-by hand; recorded in the ledger line", result "Observed. The ledger line is the
-record." `knowledge`: kind `Research`, status `pending`, criterion "The claim in
-Root cause holds when read live", method "One live reading by hand, recorded in
-the estimate line". A missing `source` is not invented; lint names it.
+A lesson entry writes the lesson only: a lesson is a recorded fact and has no Estimate. A missing `source` is not invented; lint names it.
 
-One Decision page per Case, `decisions/decision-case-<N>.md`: `case`, `status:
-current`, `targets`, `supersedes`, `origin`, `sprint`, `created`, `tags` (the union
-of the targets' tags); body `Context`, `Now`, `Problem`, `Then` from `case_text`
-(`given` fills `Now`). A `supersedes` sets the earlier page `status: superseded`
-and appends the new slug to its `superseded_by`. A decision page that exists is
+One Decision page per Case, `decisions/decision-case-<N>.md`: `case`, `status: current`, `kind` and `target_slug` (two lists aligned by position, one position per ledger line of the Case; the category is derived from the slug prefix or the Rule-class map, never written), `source` when a line carries one, `supersedes`, `origin`, `sprint`, `created`, `tags` (the union of the targets' tags); body `Context`, `Problem`, `Given`, `When` from `case_text`. A `supersedes` sets the earlier page `status: superseded`, appends the new slug to its `superseded_by`, and removes the earlier decision's slug from the `deferred_by` of every target it deferred; an empty `deferred_by` is dropped. A decision page that exists is
 skipped. A `create` marked `exists` writes no page and no History; its decision
 page is still written.
 
@@ -87,10 +70,6 @@ declared and not registered is reported on stderr and left on the page.
 
 - [[estimate-generate-writes]]
 - [[estimate-generate-walks-dates]]
-- [[estimate-generate-rejects-shape-alone]]
-- [[estimate-generate-logs-per-entry]]
-- [[estimate-generate-dates-history-by-run]]
-- [[estimate-generate-passes-delete-outside-vault]]
 
 ## Parent
 
@@ -115,3 +94,15 @@ declared and not registered is reported on stderr and left on the page.
 - 2026-09-10 estimate estimate-generate-dates-history-by-run added · raw/2026-09-10/ledger.md#case-47
 - 2026-09-10 updated: a delete of something outside the vault (category unknown) applies with a stdout line; a delete of a missing page still fails · raw/2026-09-10/ledger.md#case-48
 - 2026-09-10 estimate estimate-generate-passes-delete-outside-vault added · raw/2026-09-10/ledger.md#case-48
+- 2026-09-11 updated: a decision page carries kind and target_slug lists and the sections Context, Problem, Given, When from case_text · [[decision-case-52.1]]
+- 2026-09-11 updated: a defer with a page appends the decision slug to deferred_by; a placeholder is born with it; a supersedes removes the superseded decision from the list · [[decision-case-52.3]]
+- 2026-09-11 updated: the decision page of a Case is written before its entries; History and log lines end with · [[decision-case-N]] when a decision exists, else the ledger pointer · [[decision-case-52.4]]
+- 2026-09-11 status: draft → built · cascade
+- 2026-09-11 updated: a lesson entry writes the lesson only; no paired Estimate · [[decision-case-53.1]]
+- 2026-09-11 updated: an estimate entry always sets status, overwrites Result and appends History; no skip · [[decision-case-53.2]]
+- 2026-09-11 updated: an entry that applies loses a failed mark left by an earlier run · [[decision-case-53.3]]
+- 2026-09-11 status: built → draft · cascade
+- 2026-09-11 estimate estimate-generate-rejects-shape-alone archived · cleanup
+- 2026-09-11 estimate estimate-generate-logs-per-entry archived · cleanup
+- 2026-09-11 estimate estimate-generate-dates-history-by-run archived · cleanup
+- 2026-09-11 estimate estimate-generate-passes-delete-outside-vault archived · cleanup

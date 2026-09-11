@@ -1,7 +1,7 @@
 ---
 type: estimate
 kind: QA
-status: passed
+status: pending
 target: rule-spec-capture
 origin: raw/2026-09-09/ledger.md#case-20
 sprint: migration
@@ -21,9 +21,7 @@ Given a `PostToolUse` payload naming `ExitPlanMode` with a plan and a `hi` recor
 `spec.md` gains a `---` separator (when the file has content), the stamp
 `<!-- approved HH:MM:SS · session xxxxxxxx -->` and the plan text, once, even when the
 hook runs twice; earlier documents stay intact. Without `hi`: exit 2 naming the session,
-file untouched. Another tool's payload: nothing written, exit 0. Live: the next plan
-approval lands in `raw/<date>/spec.md` by the hook, not by hand, and the reading records
-what a rejected plan produces.
+file untouched. Another tool's payload: nothing written, exit 0. A `## Retro` section appended by the agent stays intact under a later approval's separator, and materialize reads its Cases. Live: the next plan approval lands in `raw/<date>/spec.md` by the hook, not by hand, and the reading records what a rejected plan produces.
 
 ## Method
 
@@ -38,3 +36,4 @@ live: the approved plan landed in raw/2026-09-10/spec.md by the hook, stamp `<!-
 
 - 2026-09-09 created · raw/2026-09-09/ledger.md#case-20
 - 2026-09-10 status: pending → passed · raw/2026-09-10/ledger.md#L77
+- 2026-09-11 updated: the Retro section survives a later approval; pending until the live reading · [[decision-case-57]]

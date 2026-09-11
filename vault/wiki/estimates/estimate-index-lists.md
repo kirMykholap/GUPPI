@@ -16,11 +16,9 @@ of pages. A line missing, stale or out of order is a page the search cannot find
 
 ## Criterion
 
-Against a temp vault: each category file holds exactly one line per live page in slug
-order with the field its schema names; an estimate line carries its whole criterion on
-one line; an archived page and a decision have no line; an empty category yields an empty
+Against a temp vault: each category file holds exactly one line per live page in slug order with the field its schema names, a page with deferred_by ending with · deferred_by: <slugs>; an archived page and a decision have no line; an empty category yields an empty
 file; `--check` exits 1 naming a stale file and 0 when all match, writing nothing. Against
-the live vault: five files appear, `rules-index.md` has one line per page of `rules/`,
+the live vault: four files appear and none for estimates, `rules-index.md` has one line per page of `rules/`,
 and `--check` exits 0 right after.
 
 ## Method
@@ -30,11 +28,11 @@ line.
 
 ## Result
 
-Passing, 2026-09-09, session D. `tests/test_index.py`: 6 tests green. Live: `uv run guppi
-index` wrote the five files; `rules-index.md` holds 17 lines for the 17 pages of `rules/`;
-`estimates-index.md` carries each criterion on one line; `--check` exited 0 right after.
+tests/test_index.py 6 green with four files, no estimates file and the deferred_by suffix; live 2026-09-11 after the migrations: uv run guppi index wrote four files, rules-index.md has 33 lines for 33 pages of rules/, five of them ending in · deferred_by: (decision-case-29, 45, 50, 51), estimates-index.md is gone, index --check exit 0 right after
 
 ## History
 
 - 2026-09-09 created · raw/2026-09-09/ledger.md#case-22
 - 2026-09-09 status: pending → passed · written by hand, no generator yet
+- 2026-09-11 updated: no estimates index; four files; the deferred_by suffix · [[decision-case-53.4]]
+- 2026-09-11 status: pending → passed · raw/2026-09-11/ledger.md#L68

@@ -2,7 +2,7 @@
 type: rule
 kind: Leaf
 purpose: Prevents the librarian from reading the ledger and the Spec itself, or from routing a decision by guesswork
-status: built
+status: draft
 enforcement: check
 implementation_ref: [guppi/materialize.py, tests/test_materialize.py]
 parent: rule-documentation
@@ -45,14 +45,12 @@ error).
 The Spec is read by headings `## Case N` and `### Case N.M`. Under a heading, every
 fenced block tagged `then` up to the next heading is YAML; a leading `> ` is
 removed. The entry for a slug is the item with that `slug` under the key of its
-kind. A Leaf's nested `estimate` becomes its own `create` entry. An `estimate` line
+kind. A Leaf's nested `estimate` becomes its own `create` entry; a standalone estimate `create` with `ref` maps `context`, `criterion` and `method` into `sections` the same way, so the page gets its Criterion and Method sections whichever way it was born. An `estimate` line
 for a page created in the same ledger is folded into that create (`status`,
 `result`); for an earlier page it is an `estimate` entry, an update. A `lesson` line
 is a `create` in `lessons`: `kind`, `root_cause` and the sections `Trigger` and
 `Root cause` from the line. A line with `{supersedes:case N}` marks the entries of
-case N `superseded_by`. One decision entry per Case: `decision: decision-case-<N>`,
-`case_text` (the seven quoted sections of the Case, verbatim, in the language of
-the Spec), `targets` (one item per line of the Case). A line the grammar does not
+case N `superseded_by`. One decision entry per Case: `decision: decision-case-<N>`, `case_text` (the quoted sections of the Case, verbatim, in the language of the Spec), `targets` (one item per line of the Case); a Case whose text lacks `given` or `when` is marked `incomplete` only when a kind other than `defer` is among its lines, since the short form of Retro has neither. A line the grammar does not
 parse goes under `unparsed`; the script continues.
 
 An existing yaml is extended, never rewritten (case 41): entries whose `line` is
@@ -89,3 +87,6 @@ date fails.
 - 2026-09-09 status: built → draft · cascade
 - 2026-09-10 updated: the field list names folded, applied and failed · raw/2026-09-10/ledger.md#case-49
 - 2026-09-10 status: draft → built · cascade
+- 2026-09-11 updated: a standalone estimate create maps context, criterion and method into sections, as the nested one does · [[decision-case-53.3]]
+- 2026-09-11 updated: a decision entry lacks given or when: incomplete only when a kind other than defer is among its lines · [[decision-case-56]]
+- 2026-09-11 status: built → draft · cascade

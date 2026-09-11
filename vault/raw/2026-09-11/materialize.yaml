@@ -1,0 +1,1956 @@
+date: '2026-09-11'
+sprint: migration
+ledger: vault/raw/2026-09-11/ledger.md
+spec: vault/raw/2026-09-11/spec.md
+entries:
+- line: 1
+  text: decision[case 53.1][update][estimates-schema-yaml]
+  case: '53.1'
+  kind: update
+  slug: estimates-schema-yaml
+  origin: raw/2026-09-11/ledger.md#case-53.1
+  decision: decision-case-53.1
+  category: file
+  path: vault/wiki/estimates/schema.yaml
+  change: 'target: an entity or rule slug'
+  applied: '12:17:12'
+- line: 2
+  text: decision[case 53.1][update][estimates-schema]
+  case: '53.1'
+  kind: update
+  slug: estimates-schema
+  origin: raw/2026-09-11/ledger.md#case-53.1
+  decision: decision-case-53.1
+  category: file
+  path: vault/wiki/estimates/schema.md
+  change: 'target row: the Entity or Rule this verifies; an Estimate exists only for a page with a when
+    and then; a Lesson or Insight has none'
+  applied: '12:17:12'
+- line: 3
+  text: decision[case 53.1][update][lessons-schema-yaml]
+  case: '53.1'
+  kind: update
+  slug: lessons-schema-yaml
+  origin: raw/2026-09-11/ledger.md#case-53.1
+  decision: decision-case-53.1
+  category: file
+  path: vault/wiki/lessons/schema.yaml
+  change: 'estimates removed from required; ## Estimates removed from body'
+  applied: '12:17:12'
+- line: 4
+  text: decision[case 53.1][update][lessons-schema]
+  case: '53.1'
+  kind: update
+  slug: lessons-schema
+  origin: raw/2026-09-11/ledger.md#case-53.1
+  decision: decision-case-53.1
+  category: file
+  path: vault/wiki/lessons/schema.md
+  change: 'the estimates row and the ## Estimates section removed; a lesson is a recorded fact and carries
+    no check; the examples rewritten'
+  applied: '12:17:12'
+- line: 5
+  text: decision[case 53.1][update][index]
+  case: '53.1'
+  kind: update
+  slug: index
+  origin: raw/2026-09-11/ledger.md#case-53.1
+  decision: decision-case-53.1
+  category: file
+  path: vault/wiki/index.md
+  change: '§8 Estimates paragraph removed: a lesson has no Estimate; a knowledge claim is checked by the
+    Estimate of the Rule that leans on it; §7: an Estimate targets an Entity or a Rule'
+  applied: '12:17:12'
+- line: 6
+  text: decision[case 53.1][update][glossary]
+  case: '53.1'
+  kind: update
+  slug: glossary
+  origin: raw/2026-09-11/ledger.md#case-53.1
+  decision: decision-case-53.1
+  category: file
+  path: vault/wiki/glossary.md
+  change: 'Lesson row: no Estimate; Estimate row: exists only for an Entity or Rule'
+  applied: '12:17:12'
+- line: 7
+  text: decision[case 53.1][update][rule-page-generation]
+  case: '53.1'
+  kind: update
+  slug: rule-page-generation
+  origin: raw/2026-09-11/ledger.md#case-53.1
+  decision: decision-case-53.1
+  category: rules
+  replace:
+  - old: 'A lesson''s paired Estimate is `estimate-<lesson slug without lesson->`, target the lesson,
+      tags the lesson''s. `error`: kind `QA`, status `passed`, criterion "The failure named in Trigger
+      was observed directly", method "The observation itself, by hand; recorded in the ledger line", result
+      "Observed. The ledger line is the record." `knowledge`: kind `Research`, status `pending`, criterion
+      "The claim in Root cause holds when read live", method "One live reading by hand, recorded in the
+      estimate line". A missing `source` is not invented; lint names it.'
+    new: 'A lesson entry writes the lesson only: a lesson is a recorded fact and has no Estimate. A missing
+      `source` is not invented; lint names it.'
+  change: a lesson entry writes the lesson only; no paired Estimate
+  applied: '12:17:12'
+- line: 8
+  text: decision[case 53.1][update][rule-lint]
+  case: '53.1'
+  kind: update
+  slug: rule-lint
+  origin: raw/2026-09-11/ledger.md#case-53.1
+  decision: decision-case-53.1
+  category: rules
+  replace:
+  - old: resolves to a page.
+    new: resolves to a page. A lesson needs no `estimates`; an estimate whose `target` is not an entity
+      or a rule is a finding.
+  change: 'lessons: estimates not required; an estimate whose target is not an entity or rule is a finding'
+  applied: '12:17:12'
+- line: 9
+  text: decision[case 53.1][delete][estimate-agents-at-import-not-expanded]
+  case: '53.1'
+  kind: delete
+  slug: estimate-agents-at-import-not-expanded
+  origin: raw/2026-09-11/ledger.md#case-53.1
+  decision: decision-case-53.1
+  category: estimates
+  impact: paired Estimate of a lesson; referenced by its lesson only; the field is removed by the migration
+    script
+  applied: '12:17:12'
+- line: 10
+  text: decision[case 53.1][delete][estimate-agents-loaded-at-session-start]
+  case: '53.1'
+  kind: delete
+  slug: estimate-agents-loaded-at-session-start
+  origin: raw/2026-09-11/ledger.md#case-53.1
+  decision: decision-case-53.1
+  category: estimates
+  impact: as above
+  applied: '12:17:12'
+- line: 11
+  text: decision[case 53.1][delete][estimate-agents-visible-in-session]
+  case: '53.1'
+  kind: delete
+  slug: estimate-agents-visible-in-session
+  origin: raw/2026-09-11/ledger.md#case-53.1
+  decision: decision-case-53.1
+  category: estimates
+  impact: as above
+  applied: '12:17:12'
+- line: 12
+  text: decision[case 53.1][delete][estimate-estimates-criterion-stale-after-contract-change]
+  case: '53.1'
+  kind: delete
+  slug: estimate-estimates-criterion-stale-after-contract-change
+  origin: raw/2026-09-11/ledger.md#case-53.1
+  decision: decision-case-53.1
+  category: estimates
+  impact: as above
+  applied: '12:17:12'
+- line: 13
+  text: decision[case 53.1][delete][estimate-generate-log-written-last]
+  case: '53.1'
+  kind: delete
+  slug: estimate-generate-log-written-last
+  origin: raw/2026-09-11/ledger.md#case-53.1
+  decision: decision-case-53.1
+  category: estimates
+  impact: as above
+  applied: '12:17:12'
+- line: 14
+  text: decision[case 53.1][delete][estimate-generate-replace-mapping-crashes]
+  case: '53.1'
+  kind: delete
+  slug: estimate-generate-replace-mapping-crashes
+  origin: raw/2026-09-11/ledger.md#case-53.1
+  decision: decision-case-53.1
+  category: estimates
+  impact: as above
+  applied: '12:17:12'
+- line: 15
+  text: decision[case 53.1][delete][estimate-generate-walk-history-dated-by-yaml]
+  case: '53.1'
+  kind: delete
+  slug: estimate-generate-walk-history-dated-by-yaml
+  origin: raw/2026-09-11/ledger.md#case-53.1
+  decision: decision-case-53.1
+  category: estimates
+  impact: as above
+  applied: '12:17:12'
+- line: 16
+  text: decision[case 53.1][delete][estimate-hooks-exitplanmode-payload]
+  case: '53.1'
+  kind: delete
+  slug: estimate-hooks-exitplanmode-payload
+  origin: raw/2026-09-11/ledger.md#case-53.1
+  decision: decision-case-53.1
+  category: estimates
+  impact: as above
+  applied: '12:17:12'
+- line: 17
+  text: decision[case 53.1][delete][estimate-hooks-messagedisplay-cannot-block]
+  case: '53.1'
+  kind: delete
+  slug: estimate-hooks-messagedisplay-cannot-block
+  origin: raw/2026-09-11/ledger.md#case-53.1
+  decision: decision-case-53.1
+  category: estimates
+  impact: as above
+  applied: '12:17:12'
+- line: 18
+  text: decision[case 53.1][delete][estimate-hooks-sessionstart-cannot-block]
+  case: '53.1'
+  kind: delete
+  slug: estimate-hooks-sessionstart-cannot-block
+  origin: raw/2026-09-11/ledger.md#case-53.1
+  decision: decision-case-53.1
+  category: estimates
+  impact: as above
+  applied: '12:17:12'
+- line: 19
+  text: decision[case 53.1][delete][estimate-hooks-stop-payload]
+  case: '53.1'
+  kind: delete
+  slug: estimate-hooks-stop-payload
+  origin: raw/2026-09-11/ledger.md#case-53.1
+  decision: decision-case-53.1
+  category: estimates
+  impact: as above
+  applied: '12:17:12'
+- line: 20
+  text: decision[case 53.1][delete][estimate-hooks-windows-stdin-encoding]
+  case: '53.1'
+  kind: delete
+  slug: estimate-hooks-windows-stdin-encoding
+  origin: raw/2026-09-11/ledger.md#case-53.1
+  decision: decision-case-53.1
+  category: estimates
+  impact: as above
+  applied: '12:17:12'
+- line: 21
+  text: decision[case 53.1][delete][estimate-ledger-hook-misses-a-reply-ending-in-a-tool-call]
+  case: '53.1'
+  kind: delete
+  slug: estimate-ledger-hook-misses-a-reply-ending-in-a-tool-call
+  origin: raw/2026-09-11/ledger.md#case-53.1
+  decision: decision-case-53.1
+  category: estimates
+  impact: as above
+  applied: '12:17:12'
+- line: 22
+  text: decision[case 53.1][delete][estimate-librarian-reads-beyond-the-four-inputs]
+  case: '53.1'
+  kind: delete
+  slug: estimate-librarian-reads-beyond-the-four-inputs
+  origin: raw/2026-09-11/ledger.md#case-53.1
+  decision: decision-case-53.1
+  category: estimates
+  impact: as above; its live reading of 13:10:37 stays in the ledger
+  applied: '12:17:12'
+- line: 23
+  text: decision[case 53.1][delete][estimate-materialize-assumes-every-entry-has-a-line]
+  case: '53.1'
+  kind: delete
+  slug: estimate-materialize-assumes-every-entry-has-a-line
+  origin: raw/2026-09-11/ledger.md#case-53.1
+  decision: decision-case-53.1
+  category: estimates
+  impact: as above
+  applied: '12:17:12'
+- line: 24
+  text: decision[case 53.1][delete][estimate-readings-after-librarian-invisible-to-next-hi]
+  case: '53.1'
+  kind: delete
+  slug: estimate-readings-after-librarian-invisible-to-next-hi
+  origin: raw/2026-09-11/ledger.md#case-53.1
+  decision: decision-case-53.1
+  category: estimates
+  impact: as above
+  applied: '12:17:12'
+- line: 25
+  text: decision[case 53.1][delete][estimate-tests-cli-date-pinned]
+  case: '53.1'
+  kind: delete
+  slug: estimate-tests-cli-date-pinned
+  origin: raw/2026-09-11/ledger.md#case-53.1
+  decision: decision-case-53.1
+  category: estimates
+  impact: as above
+  applied: '12:17:12'
+- line: 26
+  text: decision[case 53.2][update][index]
+  case: '53.2'
+  kind: update
+  slug: index
+  origin: raw/2026-09-11/ledger.md#case-53.2
+  decision: decision-case-53.2
+  category: file
+  path: vault/wiki/index.md
+  change: '§3 pre-task: ''Estimates count too'' replaced by ''the Estimates of a page whose contract changes
+    are named in given, and the Case updates their criterion''; §7: a reading overwrites Result; a contract
+    change updates the criterion and sets pending; a new Estimate only by §6'
+  applied: '12:17:12'
+- line: 27
+  text: decision[case 53.2][update][case-schema]
+  case: '53.2'
+  kind: update
+  slug: case-schema
+  origin: raw/2026-09-11/ledger.md#case-53.2
+  decision: decision-case-53.2
+  category: file
+  path: vault/wiki/case-schema.md
+  change: 'an update of a Leaf''s contract carries, in the same then block, the update of its Estimate:
+    sections Criterion (and Method) and set status pending'
+  applied: '12:17:12'
+- line: 28
+  text: decision[case 53.2][update][rule-page-generation]
+  case: '53.2'
+  kind: update
+  slug: rule-page-generation
+  origin: raw/2026-09-11/ledger.md#case-53.2
+  decision: decision-case-53.2
+  category: rules
+  replace:
+  - old: An `estimate` entry sets `status`, overwrites `## Result` and appends History; a page already
+      at that status with a Result is skipped.
+    new: 'An `estimate` entry sets `status`, overwrites `## Result` and appends History, whatever the
+      page held before: a reading always lands, and reruns are held off by the `applied` marks alone.'
+  change: an estimate entry always sets status, overwrites Result and appends History; no skip
+  applied: '12:17:12'
+- line: 29
+  text: decision[case 53.2][update][rule-ask]
+  case: '53.2'
+  kind: update
+  slug: rule-ask
+  origin: raw/2026-09-11/ledger.md#case-53.2
+  decision: decision-case-53.2
+  category: rules
+  replace:
+  - old: Read `vault/wiki/<category>-index.md` for every other category the question touches (entities,
+      estimates, lessons, insights; decisions have none).
+    new: Read `vault/wiki/<category>-index.md` for every other category the question touches (entities,
+      lessons, insights; decisions and estimates have none). When the question is about a check, reach
+      the Estimates through the `estimates` field of the page it is about, and open them only when the
+      question asks what they say.
+  change: Estimates are reached through the estimates field of the page the question is about; no estimates
+    index
+  applied: '12:17:12'
+- line: 30
+  text: decision[case 53.2][update][rule-pretask]
+  case: '53.2'
+  kind: update
+  slug: rule-pretask
+  origin: raw/2026-09-11/ledger.md#case-53.2
+  decision: decision-case-53.2
+  category: rules
+  replace:
+  - old: 'List every decision ratified in this Plan Mode, one line each: slug — decision type — purpose.'
+    new: 'List every decision ratified in this Plan Mode, one line each: slug — decision type — purpose;
+      for an `update` that changes a page''s contract, add the page''s `estimates` and whether the Case
+      updates their criterion — an Estimate whose criterion quotes the changed wording and has no update
+      line is a finding.'
+  change: a Case changing a page's contract names the page's Estimates; a stale criterion is a finding
+  applied: '12:17:12'
+- line: 31
+  text: decision[case 53.2][update][estimate-generate-writes]
+  case: '53.2'
+  kind: update
+  slug: estimate-generate-writes
+  origin: raw/2026-09-11/ledger.md#case-53.2
+  decision: decision-case-53.2
+  category: estimates
+  set:
+    status: pending
+  sections:
+    Criterion: 'Against a temp vault from one yaml: a MOC rule create, a Leaf child create with ref
+
+      and its nested estimate yield three pages that pass their schema.yaml, the parent''s
+
+      children and ## Children in order, the target''s estimates and ## Estimates; an
+
+      update with set, sections, replace and change changes the field, the section, the
+
+      text and appends History; a replace absent or not unique fails that entry alone,
+
+      exit 1; a delete sets archived with History; a defer without a page writes a
+
+      placeholder with only the Case''s fields and deferred_by, a defer with a page appends
+
+      the decision slug to its deferred_by, and a supersedes removes it; an estimate entry
+
+      sets status and overwrites ## Result whatever the page held; a lesson entry writes
+
+      the lesson and no Estimate; one decision page per Case with kind and target_slug
+
+      aligned by position and the sections Context, Problem, Given, When, written before
+
+      the entries of its lines, and supersedes marks the earlier page superseded; History
+
+      and log lines of a Case''s entries end with the decision wikilink, a reading''s or a
+
+      lesson''s with the ledger pointer; the cascade sets built; a declared new tag lands
+
+      in tags.md, an undeclared one is reported; log.md gains one line per write.
+
+      **＋** An entry whose field has a shape the script does not expect, or in which any
+
+      exception is raised, is marked failed, reported on stderr and skipped; the rest
+
+      apply; exit 1.
+
+      **＋** After each applied entry its lines are in log.md; a run that stops at entry N
+
+      leaves the feed level with the pages up to N.
+
+      **＋** History lines and log.md lines carry the date of the run; created carries the
+
+      yaml''s date.
+
+      **＋** A delete whose slug is neither a category prefix nor a Rule-class file is
+
+      printed on stdout as outside the vault and marked applied; a delete of a missing
+
+      page with a category fails.
+
+      Applied entries are marked and a rerun writes nothing; a create colliding with a
+
+      page not marked exists fails. Live: the yaml of the session''s librarian run; the
+
+      reading records pages created per category, make lint afterwards against the
+
+      known-false list, and git diff --stat.
+
+      '
+  change: the criteria of the four Estimates of Cases 47–48 folded in; no skip, no paired estimate, the
+    decision-page shape and deferred_by of Case 52; pending until the End of Work reading
+  applied: '12:17:12'
+- line: 32
+  text: decision[case 53.2][delete][estimate-generate-rejects-shape-alone]
+  case: '53.2'
+  kind: delete
+  slug: estimate-generate-rejects-shape-alone
+  origin: raw/2026-09-11/ledger.md#case-53.2
+  decision: decision-case-53.2
+  category: estimates
+  impact: folded into estimate-generate-writes; rule-page-generation's estimates field loses it by cleanup
+  applied: '12:17:12'
+- line: 33
+  text: decision[case 53.2][delete][estimate-generate-logs-per-entry]
+  case: '53.2'
+  kind: delete
+  slug: estimate-generate-logs-per-entry
+  origin: raw/2026-09-11/ledger.md#case-53.2
+  decision: decision-case-53.2
+  category: estimates
+  impact: as above
+  applied: '12:17:12'
+- line: 34
+  text: decision[case 53.2][delete][estimate-generate-dates-history-by-run]
+  case: '53.2'
+  kind: delete
+  slug: estimate-generate-dates-history-by-run
+  origin: raw/2026-09-11/ledger.md#case-53.2
+  decision: decision-case-53.2
+  category: estimates
+  impact: as above
+  applied: '12:17:12'
+- line: 35
+  text: decision[case 53.2][delete][estimate-generate-passes-delete-outside-vault]
+  case: '53.2'
+  kind: delete
+  slug: estimate-generate-passes-delete-outside-vault
+  origin: raw/2026-09-11/ledger.md#case-53.2
+  decision: decision-case-53.2
+  category: estimates
+  impact: as above
+  applied: '12:17:12'
+- line: 36
+  text: decision[case 53.3][update][rule-materialize]
+  case: '53.3'
+  kind: update
+  slug: rule-materialize
+  origin: raw/2026-09-11/ledger.md#case-53.3
+  decision: decision-case-53.3
+  category: rules
+  replace:
+  - old: A Leaf's nested `estimate` becomes its own `create` entry.
+    new: A Leaf's nested `estimate` becomes its own `create` entry; a standalone estimate `create` with
+      `ref` maps `context`, `criterion` and `method` into `sections` the same way, so the page gets its
+      Criterion and Method sections whichever way it was born.
+  change: a standalone estimate create maps context, criterion and method into sections, as the nested
+    one does
+  applied: '12:17:12'
+- line: 37
+  text: decision[case 53.3][update][rule-page-generation]
+  case: '53.3'
+  kind: update
+  slug: rule-page-generation
+  origin: raw/2026-09-11/ledger.md#case-53.3
+  decision: decision-case-53.3
+  category: rules
+  replace:
+  - old: 'marks each applied entry `applied: <time>` in the yaml, so a rerun writes nothing.'
+    new: 'marks each applied entry `applied: <time>` in the yaml and drops a `failed` mark an earlier
+      run left on it, so a rerun writes nothing and no reader of the yaml sees a failure that is over.'
+  change: an entry that applies loses a failed mark left by an earlier run
+  applied: '12:17:12'
+- line: 38
+  text: decision[case 53.3][update][estimate-materialize-assembles]
+  case: '53.3'
+  kind: update
+  slug: estimate-materialize-assembles
+  origin: raw/2026-09-11/ledger.md#case-53.3
+  decision: decision-case-53.3
+  category: estimates
+  set:
+    status: pending
+  replace:
+  - old: one decision entry per Case carries case_text and targets.
+    new: one decision entry per Case carries case_text and targets, and is marked incomplete for a missing
+      given or when only when a kind other than defer is among its lines; a standalone estimate create
+      with ref carries context, criterion and method as sections, as the nested one does.
+  change: 'criterion: the standalone estimate create maps to sections; the incomplete rule for a defer-only
+    Case (case 56)'
+  applied: '12:17:12'
+- line: 39
+  text: decision[case 53.3][update][estimate-generate-writes]
+  case: '53.3'
+  kind: update
+  slug: estimate-generate-writes
+  origin: raw/2026-09-11/ledger.md#case-53.3
+  decision: decision-case-53.3
+  category: estimates
+  set:
+    status: pending
+  replace:
+  - old: Applied entries are marked and a rerun writes nothing;
+    new: Applied entries are marked, a stale failed mark left by an earlier run is dropped on apply, and
+      a rerun writes nothing;
+  change: 'criterion: a stale failed mark is dropped on apply (case 53.3)'
+  applied: '12:17:12'
+- line: 40
+  text: decision[case 53.4][update][index]
+  case: '53.4'
+  kind: update
+  slug: index
+  origin: raw/2026-09-11/ledger.md#case-53.4
+  decision: decision-case-53.4
+  category: file
+  path: vault/wiki/index.md
+  change: '§1 layout and §11: four indexes; no estimates-index.md; Estimates are reached through their
+    target'
+  applied: '12:17:12'
+- line: 41
+  text: decision[case 53.4][update][rule-index]
+  case: '53.4'
+  kind: update
+  slug: rule-index
+  origin: raw/2026-09-11/ledger.md#case-53.4
+  decision: decision-case-53.4
+  category: rules
+  replace:
+  - old: for entities, rules, estimates, lessons and insights;
+    new: 'for entities, rules, lessons and insights — there is no estimates index: an Estimate is reached
+      through the `estimates` field of its target, and nothing searches by criterion;'
+  change: four category files; no estimates index
+  applied: '12:17:12'
+- line: 42
+  text: decision[case 53.4][update][rule-index-check]
+  case: '53.4'
+  kind: update
+  slug: rule-index-check
+  origin: raw/2026-09-11/ledger.md#case-53.4
+  decision: decision-case-53.4
+  category: rules
+  replace:
+  - old: for each `create` entry in `materialize.yaml`, compare its `purpose` (`criterion` for an estimate,
+      `root_cause` for a lesson)
+    new: for each `create` entry in `materialize.yaml` other than an estimate — an Estimate is born with
+      its Leaf and has no index — compare its `purpose` (`root_cause` for a lesson)
+  change: estimate creates are not compared; four categories
+  applied: '12:17:12'
+- line: 43
+  text: decision[case 53.4][update][rule-lint]
+  case: '53.4'
+  kind: update
+  slug: rule-lint
+  origin: raw/2026-09-11/ledger.md#case-53.4
+  decision: decision-case-53.4
+  category: rules
+  replace:
+  - old: '`make lint` runs it after `render --check` and `index --check`;'
+    new: '`make lint` runs it after `render --check` and `index --check` over the four index files;'
+  change: index --check over four files
+  applied: '12:17:12'
+- line: 44
+  text: decision[case 53.4][update][estimate-index-lists]
+  case: '53.4'
+  kind: update
+  slug: estimate-index-lists
+  origin: raw/2026-09-11/ledger.md#case-53.4
+  decision: decision-case-53.4
+  category: estimates
+  set:
+    status: pending
+  replace:
+  - old: in slug order with the field its schema names; an estimate line carries its whole criterion on
+      one line; an archived page
+    new: 'in slug order with the field its schema names, a page with deferred_by ending with · deferred_by:
+      <slugs>; an archived page'
+  - old: five files appear,
+    new: four files appear and none for estimates,
+  change: no estimates index; four files; the deferred_by suffix
+  applied: '12:17:12'
+- line: 45
+  text: 'lesson[error][lesson-ledger-hook-hi-lost-at-midnight]{tags:harness,hooks,ledger}{source:guppi/ledger.py
+    hi_recorded; raw/2026-09-11/event_log.md} trigger: session H crossed midnight; the Stop hook refused
+    the 44 lines of Case 53 with "no /hi recorded", and a fresh /hi on 2026-09-11 did not help root_cause:
+    the hook reads raw/<today>/event_log.md only and needs a session-start of its own session before the
+    hi; both lay in raw/2026-09-10/event_log.md, and the day''s new log held tool lines and a hi with
+    no start; a session that crosses midnight, or any hi whose start is in another day''s file, cannot
+    write the ledger until the session is resumed'
+  kind: lesson
+  category: lessons
+  slug: lesson-ledger-hook-hi-lost-at-midnight
+  near: lesson-ledger-hook-misses-a-reply-ending-in-a-tool-call
+  origin: raw/2026-09-11/ledger.md#L45
+  fields:
+    type: lesson
+    kind: error
+    root_cause: the hook reads raw/<today>/event_log.md only and needs a session-start of its own session
+      before the hi; both lay in raw/2026-09-10/event_log.md, and the day's new log held tool lines and
+      a hi with no start; a session that crosses midnight, or any hi whose start is in another day's file,
+      cannot write the ledger until the session is resumed
+  sections:
+    Trigger: session H crossed midnight; the Stop hook refused the 44 lines of Case 53 with "no /hi recorded",
+      and a fresh /hi on 2026-09-11 did not help
+    Root cause: the hook reads raw/<today>/event_log.md only and needs a session-start of its own session
+      before the hi; both lay in raw/2026-09-10/event_log.md, and the day's new log held tool lines and
+      a hi with no start; a session that crosses midnight, or any hi whose start is in another day's file,
+      cannot write the ledger until the session is resumed
+  tags:
+  - harness
+  - hooks
+  - ledger
+  applied: '12:17:12'
+- line: 46
+  text: decision[case 54][update][rule-documentation]
+  case: '54'
+  kind: update
+  slug: rule-documentation
+  origin: raw/2026-09-11/ledger.md#case-54
+  decision: decision-case-54
+  category: rules
+  replace:
+  - old: 'Your inputs are four: `vault/raw/<today>/handoff.md`, every `materialize.yaml`
+
+      that `guppi materialize` names on its stdout, the five `vault/wiki/<category>-index.md`
+
+      files, and `vault/wiki/tags.md`. Open a page under `vault/wiki/` in three cases only:
+
+      an index line does not tell you whether a create is the same page or a near one; you
+
+      write an Insight and need the Trigger and Root cause of its lessons; a script names a
+
+      page in an error and you say why it failed. Name every page you open in the report,
+
+      with the reason.'
+    new: 'Your inputs are four: `vault/raw/<today>/handoff.md`, every `materialize.yaml`
+
+      that `guppi materialize` names on its stdout, the four `vault/wiki/<category>-index.md`
+
+      files, and `vault/wiki/tags.md`. Open a page under `vault/wiki/` for four reasons only:
+
+      an index line does not tell you whether a create is the same page or a near one; an
+
+      index line does not tell you whether a lesson shares its root cause with another lesson
+
+      or an Insight, whether or not you then write one; a script names a page in an error
+
+      and you say why it failed; the brief needs a fact no input carries — the status of an
+
+      Estimate, the severity of an Insight. Name every page you open in the report, with
+
+      the reason and the outcome.'
+  change: four indexes; four reasons to open a page, each by the question asked, named with reason and
+    outcome
+  applied: '12:17:12'
+- line: 47
+  text: decision[case 54][update][rule-synthesis]
+  case: '54'
+  kind: update
+  slug: rule-synthesis
+  origin: raw/2026-09-11/ledger.md#case-54
+  decision: decision-case-54
+  category: rules
+  replace:
+  - old: 'Read the Trigger and Root cause of the lessons you cluster and name those pages in
+
+      the report.'
+    new: 'When an index line does not settle whether a lesson shares a root cause, read the
+
+      Trigger and Root cause of the candidate and name the page in the report with the
+
+      outcome, clustered or not.'
+  change: a candidate lesson is read when the index line is not enough, clustered or not, and named with
+    the outcome
+  applied: '12:17:12'
+- line: 48
+  text: decision[case 54][update][rule-brief]
+  case: '54'
+  kind: update
+  slug: rule-brief
+  origin: raw/2026-09-11/ledger.md#case-54
+  decision: decision-case-54
+  category: rules
+  replace:
+  - old: Write facts and flags only.
+    new: 'When a fact the brief needs is in no input — the status of an Estimate, the severity
+
+      of an Insight — read it from the page and name the page in the report. Write facts
+
+      and flags only.'
+  change: a fact no input carries is read from the page and named
+  applied: '12:17:12'
+- line: 49
+  text: decision[case 54][update][estimate-documentation-completes]
+  case: '54'
+  kind: update
+  slug: estimate-documentation-completes
+  origin: raw/2026-09-11/ledger.md#case-54
+  decision: decision-case-54
+  category: estimates
+  set:
+    status: pending
+  replace:
+  - old: 'the five
+
+      indexes and tags.md, plus the wiki pages it names in the report with one of the
+
+      three reasons of its frame (same or near, the lessons of an Insight, a script''s
+
+      error)'
+    new: 'the four
+
+      indexes and tags.md, plus the wiki pages it names in the report with one of the
+
+      four reasons of its frame (same or near; a candidate cluster; a script''s error; a
+
+      fact for the brief) and the outcome'
+  change: four indexes; four reasons; outcome named
+  applied: '12:17:12'
+- line: 50
+  text: decision[case 54][update][estimate-synthesis-clusters]
+  case: '54'
+  kind: update
+  slug: estimate-synthesis-clusters
+  origin: raw/2026-09-11/ledger.md#case-54
+  decision: decision-case-54
+  category: estimates
+  set:
+    status: pending
+  replace:
+  - old: 'every lesson page read is named in the report as a
+
+      child of the Insight written'
+    new: 'every lesson page read is named in the report with
+
+      the outcome: the Insight it joined, or none and why'
+  change: a lesson page read is named with its outcome, clustered or not
+  applied: '12:17:12'
+- line: 51
+  text: decision[case 55.1][update][rule-ledger-write]{supersedes:case 51}
+  case: '55.1'
+  kind: update
+  slug: rule-ledger-write
+  origin: raw/2026-09-11/ledger.md#case-55.1
+  decision: decision-case-55.1
+  supersedes: '51'
+  category: rules
+  replace:
+  - old: '**Checks the event log first.** The session is a working one when a `hi` line follows a
+
+      `session-start` line of this session''s id, with no other session''s start in between.'
+    new: '**Checks the event log first.** The log it reads is `raw/<date>/event_log.md` of every
+
+      date from today back to the first that holds a `session-start` of this session, joined in
+
+      date order; a session that crosses midnight keeps its window. The session is a working one
+
+      when a `hi` line follows a `session-start` line of this session''s id, with no other
+
+      session''s start in between.'
+  change: 'the hi window spans the dates of the session: the event logs back to its start are joined'
+  applied: '12:17:12'
+- line: 52
+  text: decision[case 55.1][update][estimate-ledger-write-lifts]
+  case: '55.1'
+  kind: update
+  slug: estimate-ledger-write-lifts
+  origin: raw/2026-09-11/ledger.md#case-55.1
+  decision: decision-case-55.1
+  category: estimates
+  set:
+    status: pending
+  replace:
+  - old: 'In a
+
+      live session, the last lines of this slice reach `raw/2026-09-09/ledger.md` written by the
+
+      hook, not by hand.'
+    new: 'With the `session-start` and the `hi` in yesterday''s event log and only `tool` lines
+
+      in today''s, the lines are written into today''s ledger. In a
+
+      live session, the last lines of this slice reach `raw/2026-09-09/ledger.md` written by the
+
+      hook, not by hand.'
+  change: the midnight window added to the criterion; pending until the reading
+  applied: '12:17:12'
+- line: 53
+  text: decision[case 55.2][update][rule-ledger-write]
+  case: '55.2'
+  kind: update
+  slug: rule-ledger-write
+  origin: raw/2026-09-11/ledger.md#case-55.2
+  decision: decision-case-55.2
+  category: rules
+  replace:
+  - old: 'Reads the reply that just finished, finds every line that starts
+
+      with `- decision[`, `- estimate[` or `- lesson[` **inside a fenced block opened with the
+
+      `LEDGER` tag**'
+    new: 'Reads every assistant message of this session from `transcript_path`, in order,
+
+      falling back to the reply that just finished (`last_assistant_message`) when the
+
+      transcript is absent or unreadable, and finds every line that starts with `- decision[`,
+
+      `- estimate[` or `- lesson[` **inside a fenced block opened with the `LEDGER` tag**'
+  - old: A line whose text is already in today's ledger
+    new: 'So a reply that ended in a tool call (`Skill`, `ExitPlanMode`), which has no `Stop` of
+
+      its own, reaches the ledger at the next `Stop` of the session, with that time; only the
+
+      last reply of a session can still be lost, and Retro sees it. A line whose text is already
+
+      in today''s ledger'
+  change: the hi window spans the dates of the session; every LEDGER block of the session's transcript
+    is read at each Stop, the last reply as fallback
+  applied: '12:17:12'
+- line: 54
+  text: decision[case 55.2][update][estimate-ledger-write-lifts]
+  case: '55.2'
+  kind: update
+  slug: estimate-ledger-write-lifts
+  origin: raw/2026-09-11/ledger.md#case-55.2
+  decision: decision-case-55.2
+  category: estimates
+  set:
+    status: pending
+  replace:
+  - old: 'the lines are written into today''s ledger. In a
+
+      live session,'
+    new: 'the lines are written into today''s ledger. A reply carrying a `LEDGER` block
+
+      that ends in `/pre-task` reaches the ledger once, at the next `Stop` of the session. In a
+
+      live session,'
+  change: the transcript read-back added to the criterion; pending until the live reading
+  applied: '12:17:12'
+- line: 55
+  text: decision[case 56][update][rule-retro]{supersedes:case 50}
+  case: '56'
+  kind: update
+  slug: rule-retro
+  origin: raw/2026-09-11/ledger.md#case-56
+  decision: decision-case-56
+  supersedes: '50'
+  category: rules
+  sections:
+    Render: '<!-- rule-retro -->
+
+      ---
+
+      name: retro
+
+      description: Review this session''s work — tests, style, the ledger — before the commit and the
+      handoff.
+
+      disable-model-invocation: true
+
+      ---
+
+      Recorded: !`uv run guppi event retro --session "${CLAUDE_SESSION_ID:-}"`
+
+
+      Tests: !`make test`
+
+
+      Style: !`make style`
+
+
+      Ledger of today: !`cat "vault/raw/$(date +%F)/ledger.md"`
+
+
+      Retro is an analysis of this session, not planning. Open with the frontier, in one
+
+      message and with no read call: what was ratified (the ledger lines of today grouped
+
+      by Case, one line per Case); what got done and what did not, against the Spec; what
+
+      you noticed during Work Mode, as a numbered list — bugs, forks, a contract that
+
+      turned out imprecise. The person adds their own observations. Every item, theirs or
+
+      yours, ends in one of four ways: a `- lesson[...]` line; a `- estimate[...]` line, a
+
+      reading of an Estimate whose work is finished; a short defer; or a note for the
+
+      handoff. Retro ratifies no other decision: a `create`, `update` or `delete` waits for
+
+      the next Plan Mode.
+
+
+      A short defer is a Case in the short form, appended to `vault/raw/<date>/spec.md`
+
+      under a `## Retro` heading before its ledger line: `## Case N`, `context`, `problem`,
+
+      and a `defer` block with `purpose`; no `recommend`, `given`, `when` or `then`. A defer
+
+      line without its Case is marked incomplete by materialize.
+
+
+      Edit code only when the edit finishes work that traces to a line of today''s ledger.
+
+      Red tests: fix now when the fix finishes ratified work; otherwise save the change
+
+      with `git diff` into `raw/<date>/patch-<slug>.diff`, revert it, and write a short
+
+      defer naming the patch. Either way write a `- lesson[error][...]` line whose root
+
+      cause says why Retro was reached with a regression; the handoff still needs green.
+
+      `gh` is not available: name a deferred bug in the handoff, so the brief carries it.
+
+      Do not run `make lint` here: the vault is written after handoff, by the librarian.
+
+
+      Take the readings of this session''s Estimates whose work is finished and write their
+
+      lines; name in the handoff any Estimate whose reading cannot be taken yet.
+
+
+      Close with three lists: every ratification of this session, one line each; what
+
+      got done; what did not. When the person approves, commit (`make style` clean,
+
+      `make test` green), then call `/handoff`.
+
+      <!-- /rule-retro -->
+
+      '
+  change: Retro opens with the frontier; every item ends as a lesson, a reading, a short defer or a handoff
+    note; red tests are fixed or reverted into a patch; readings are a step
+  applied: '12:17:12'
+- line: 56
+  text: decision[case 56][update][case-schema]
+  case: '56'
+  kind: update
+  slug: case-schema
+  origin: raw/2026-09-11/ledger.md#case-56
+  decision: decision-case-56
+  category: file
+  path: vault/wiki/case-schema.md
+  change: 'a short form for Retro: ## Case N with context, problem and a defer block with purpose, appended
+    to spec.md under ## Retro; the seven-section form stays the form of Plan Mode; replaces the 52.2 clause'
+  applied: '12:17:12'
+- line: 57
+  text: decision[case 56][update][decisions-schema-yaml]
+  case: '56'
+  kind: update
+  slug: decisions-schema-yaml
+  origin: raw/2026-09-11/ledger.md#case-56
+  decision: decision-case-56
+  category: file
+  path: vault/wiki/decisions/schema.yaml
+  change: '## Given and ## When move from required to optional; a note: required by materialize when any
+    kind is not defer'
+  applied: '12:17:12'
+- line: 58
+  text: decision[case 56][update][decisions-schema]
+  case: '56'
+  kind: update
+  slug: decisions-schema
+  origin: raw/2026-09-11/ledger.md#case-56
+  decision: decision-case-56
+  category: file
+  path: vault/wiki/decisions/schema.md
+  change: 'Given and When rows: optional on a page whose every kind is defer; the short-form example'
+  applied: '12:17:12'
+- line: 59
+  text: decision[case 56][update][rule-materialize]
+  case: '56'
+  kind: update
+  slug: rule-materialize
+  origin: raw/2026-09-11/ledger.md#case-56
+  decision: decision-case-56
+  category: rules
+  replace:
+  - old: 'One decision entry per Case: `decision: decision-case-<N>`, `case_text` (the seven quoted sections
+      of the Case, verbatim, in the language of the Spec), `targets` (one item per line of the Case).'
+    new: 'One decision entry per Case: `decision: decision-case-<N>`, `case_text` (the quoted sections
+      of the Case, verbatim, in the language of the Spec), `targets` (one item per line of the Case);
+      a Case whose text lacks `given` or `when` is marked `incomplete` only when a kind other than `defer`
+      is among its lines, since the short form of Retro has neither.'
+  change: 'a decision entry lacks given or when: incomplete only when a kind other than defer is among
+    its lines'
+  applied: '12:17:12'
+- line: 60
+  text: decision[case 56][update][estimate-retro-loads]
+  case: '56'
+  kind: update
+  slug: estimate-retro-loads
+  origin: raw/2026-09-11/ledger.md#case-56
+  decision: decision-case-56
+  category: estimates
+  set:
+    status: pending
+  sections:
+    Criterion: 'After a live /retro: the first turn''s context holds the output of make test, make
+
+      style and today''s ledger with no read-tool call; event_log.md carries a retro line;
+
+      the first message is the frontier in three blocks — ratified by Case, done and not
+
+      done against the Spec, noticed — with no read call; every item raised by either side
+
+      ends as a lesson line, an estimate line, a short defer with its Case under ## Retro in
+
+      spec.md, or a handoff note; no decision line other than defer is written in Retro;
+
+      every Estimate whose work is finished has its reading line; a red test ends as a fix
+
+      that traces to today''s ledger or as a patch in raw/ with a short defer, with a
+
+      lesson[error] either way; every edit made in Retro traces to a line of today''s ledger;
+
+      the closing reply lists the ratifications, the done and the not done; the commit
+
+      precedes the /handoff call.
+
+      '
+  change: the frontier, the four outcomes, the readings and the red-test paths added; pending until the
+    next live /retro
+  applied: '12:17:12'
+- line: 61
+  text: decision[case 57][update][index]
+  case: '57'
+  kind: update
+  slug: index
+  origin: raw/2026-09-11/ledger.md#case-57
+  decision: decision-case-57
+  category: file
+  path: vault/wiki/index.md
+  change: '§5 line 211: one page per Case with kind and target_slug aligned by position; line 225: the
+    category is derived from the slug prefix, never written; the Case that takes up a deferred item writes
+    {supersedes:case N} and deferred_by is cleared; §10 Reads: the four inputs, and a page for one of
+    the four reasons of the librarian''s frame (case 54); §1: the four index files'
+  applied: '12:17:12'
+- line: 62
+  text: decision[case 57][update][claude-md]
+  case: '57'
+  kind: update
+  slug: claude-md
+  origin: raw/2026-09-11/ledger.md#case-57
+  decision: decision-case-57
+  category: file
+  path: CLAUDE.md
+  change: 'Case protocol: the seven sections are the form of Plan Mode; at Retro a defer is the short
+    form — context, problem, a defer block with purpose — appended to spec.md under ## Retro'
+  applied: '12:17:12'
+- line: 63
+  text: decision[case 57][update][rule-cleanup]
+  case: '57'
+  kind: update
+  slug: rule-cleanup
+  origin: raw/2026-09-11/ledger.md#case-57
+  decision: decision-case-57
+  category: rules
+  replace:
+  - old: The slug is removed from the `children` and `estimates` lists of live pages, their sections are
+      rebuilt and they get a History line;
+    new: The slug is removed from the `children` lists of live pages and from the `estimates` lists of
+      entities and rules, their sections are rebuilt and they get a History line;
+  - old: Then the indexes are rewritten with the writer of `guppi index`.
+    new: Then the four indexes are rewritten with the writer of `guppi index`; an archived Estimate leaves
+      no line, since estimates have none.
+  change: four indexes; estimates lists of entities and rules only
+  applied: '12:17:12'
+- line: 64
+  text: decision[case 57][update][estimate-cleanup-moves]
+  case: '57'
+  kind: update
+  slug: estimate-cleanup-moves
+  origin: raw/2026-09-11/ledger.md#case-57
+  decision: decision-case-57
+  category: estimates
+  set:
+    status: pending
+  replace:
+  - old: its slug leaves the children and estimates lists of live pages and their sections, with a History
+      line there;
+    new: its slug leaves the children lists of live pages and the estimates lists of entities and rules,
+      and their sections, with a History line there;
+  - old: the category indexes are rewritten without the moved page;
+    new: the four category indexes are rewritten without the moved page, and an archived Estimate leaves
+      no line anywhere;
+  change: four indexes; estimates lists of entities and rules only; pending until the live run
+  applied: '12:17:12'
+- line: 65
+  text: decision[case 57][update][rule-spec-capture]
+  case: '57'
+  kind: update
+  slug: rule-spec-capture
+  origin: raw/2026-09-11/ledger.md#case-57
+  decision: decision-case-57
+  category: rules
+  sections:
+    How it works: '`uv run guppi spec` on `PostToolUse` of `ExitPlanMode` appends the approved plan to
+
+      `raw/<date>/spec.md`: a `---` separator when the file has content, the stamp
+
+      `<!-- approved HH:MM:SS · session xxxxxxxx -->`, the plan text, once. The file has
+
+      a second writer: at Retro the agent appends the short-form Cases under a `## Retro`
+
+      heading, before their ledger lines (`rule-retro`). `guppi materialize` reads both by
+
+      their `## Case N` headings, so a Retro defer gets its Decision page like any other.
+
+      '
+  change: 'spec.md has two writers: the hook at ExitPlanMode and the agent at Retro under ## Retro'
+  applied: '12:17:12'
+- line: 66
+  text: decision[case 57][update][estimate-spec-capture-appends]
+  case: '57'
+  kind: update
+  slug: estimate-spec-capture-appends
+  origin: raw/2026-09-11/ledger.md#case-57
+  decision: decision-case-57
+  category: estimates
+  set:
+    status: pending
+  replace:
+  - old: 'Live: the next plan approval lands in `raw/<date>/spec.md` by the hook, not by hand, and the
+      reading records what a rejected plan produces.'
+    new: 'A `## Retro` section appended by the agent stays intact under a later approval''s separator,
+      and materialize reads its Cases. Live: the next plan approval lands in `raw/<date>/spec.md` by the
+      hook, not by hand, and the reading records what a rejected plan produces.'
+  change: the Retro section survives a later approval; pending until the live reading
+  applied: '12:17:12'
+- line: 67
+  text: decision[case 57][update][estimate-lint-catches]
+  case: '57'
+  kind: update
+  slug: estimate-lint-catches
+  origin: raw/2026-09-11/ledger.md#case-57
+  decision: decision-case-57
+  category: estimates
+  set:
+    status: pending
+  replace:
+  - old: the two Method classes (case 26.2) are seeded too.
+    new: 'the two Method classes (case 26.2) are seeded too, and the classes of cases 52 and 53: decision
+      lists of unequal length, a target_slug naming no page, a deferred_by naming no decision, a History
+      wikilink resolving to nothing, an estimate whose target is not an entity or a rule; a lesson without
+      estimates is not a finding.'
+  change: the classes of cases 52 and 53 seeded; a lesson without estimates is clean; pending until the
+    suite
+  applied: '12:17:12'
+- line: 68
+  text: 'estimate[estimate-index-lists][passed] tests/test_index.py 6 green with four files, no estimates
+    file and the deferred_by suffix; live 2026-09-11 after the migrations: uv run guppi index wrote four
+    files, rules-index.md has 33 lines for 33 pages of rules/, five of them ending in · deferred_by: (decision-case-29,
+    45, 50, 51), estimates-index.md is gone, index --check exit 0 right after'
+  kind: estimate
+  category: estimates
+  slug: estimate-index-lists
+  status: passed
+  result: 'tests/test_index.py 6 green with four files, no estimates file and the deferred_by suffix;
+    live 2026-09-11 after the migrations: uv run guppi index wrote four files, rules-index.md has 33 lines
+    for 33 pages of rules/, five of them ending in · deferred_by: (decision-case-29, 45, 50, 51), estimates-index.md
+    is gone, index --check exit 0 right after'
+  origin: raw/2026-09-11/ledger.md#L68
+  applied: '12:17:12'
+- line: 69
+  text: 'estimate[estimate-lint-catches][passed] tests/test_lint.py 32 green with the classes of cases
+    52 and 53 seeded: unequal decision lists, a target_slug naming no page, a deferred_by naming no decision,
+    a History wikilink to nothing, an estimate whose target is a lesson, and a lesson that is never an
+    orphan; live 2026-09-11 after the migrations: 259 findings, each on the known-false list — 89 ref
+    to decision-case-52…57 pages the librarian has not written, 20 orphan and 17 status on the 21 Estimates
+    the ledger deletes, 132 schema on the 2026-09-09 backfill and the four clustered lessons without ##
+    Insight, 3 orphan placeholders, 1 method (documentation-completes by hand while materialize-walks-dates
+    names a file)'
+  kind: estimate
+  category: estimates
+  slug: estimate-lint-catches
+  status: passed
+  result: 'tests/test_lint.py 32 green with the classes of cases 52 and 53 seeded: unequal decision lists,
+    a target_slug naming no page, a deferred_by naming no decision, a History wikilink to nothing, an
+    estimate whose target is a lesson, and a lesson that is never an orphan; live 2026-09-11 after the
+    migrations: 259 findings, each on the known-false list — 89 ref to decision-case-52…57 pages the librarian
+    has not written, 20 orphan and 17 status on the 21 Estimates the ledger deletes, 132 schema on the
+    2026-09-09 backfill and the four clustered lessons without ## Insight, 3 orphan placeholders, 1 method
+    (documentation-completes by hand while materialize-walks-dates names a file)'
+  origin: raw/2026-09-11/ledger.md#L69
+  applied: '12:17:12'
+- line: 70
+  text: 'estimate[estimate-cleanup-moves][passed] tests/test_cleanup.py 5 green with the estimates lists
+    of entities and rules only; live 2026-09-11: uv run guppi cleanup with nothing archived printed 0
+    page(s) moved, exit 0, rewrote the four indexes unchanged, git status clean afterwards'
+  kind: estimate
+  category: estimates
+  slug: estimate-cleanup-moves
+  status: passed
+  result: 'tests/test_cleanup.py 5 green with the estimates lists of entities and rules only; live 2026-09-11:
+    uv run guppi cleanup with nothing archived printed 0 page(s) moved, exit 0, rewrote the four indexes
+    unchanged, git status clean afterwards'
+  origin: raw/2026-09-11/ledger.md#L70
+  applied: '12:17:12'
+- line: 71
+  text: 'lesson[error][lesson-tests-generate-history-date-unpinned]{tags:harness,tests}{source:tests/test_generate.py
+    run helper; brief 2026-09-10 make test 138} trigger: on 2026-09-11 five tests of tests/test_generate.py
+    failed on the committed tree before any change of session H, asserting a History line dated 2026-09-10
+    that the page carried as 2026-09-11 root_cause: the run helper of test_generate.py called generate.run
+    without now, so History and log lines took the real clock (case 47 dates them by the run) while the
+    assertions used the pinned DATE; a test that passes only on the day it was written; fixed by pinning
+    now in the helper'
+  kind: lesson
+  category: lessons
+  slug: lesson-tests-generate-history-date-unpinned
+  near: lesson-tests-cli-date-pinned
+  origin: raw/2026-09-11/ledger.md#L71
+  fields:
+    type: lesson
+    kind: error
+    root_cause: the run helper of test_generate.py called generate.run without now, so History and log
+      lines took the real clock (case 47 dates them by the run) while the assertions used the pinned DATE;
+      a test that passes only on the day it was written; fixed by pinning now in the helper
+  sections:
+    Trigger: on 2026-09-11 five tests of tests/test_generate.py failed on the committed tree before any
+      change of session H, asserting a History line dated 2026-09-10 that the page carried as 2026-09-11
+    Root cause: the run helper of test_generate.py called generate.run without now, so History and log
+      lines took the real clock (case 47 dates them by the run) while the assertions used the pinned DATE;
+      a test that passes only on the day it was written; fixed by pinning now in the helper
+  tags:
+  - harness
+  - tests
+  applied: '12:17:12'
+- line: 72
+  text: 'estimate[estimate-ledger-write-lifts][passed] tests/test_ledger.py 28 green with the midnight
+    window (a start and hi in yesterday''s log, only tool lines today, writes into today''s ledger; no
+    start on any date refuses; another session''s start today closes yesterday''s window) and the read-back
+    (an earlier reply''s block lands at the next Stop, a subagent''s block is ignored, a line in an earlier
+    day''s ledger is not written again, a missing transcript falls back to the last message); live 2026-09-11
+    session H: the reply of 11:32 carried three estimate lines and a lesson in a LEDGER block and ended
+    in the /pre-task Skill call, no Stop fired, the ledger stayed at 67 lines; the next reply ended in
+    text and its Stop at 11:32:59 wrote the four lines once, read from the transcript, with that time'
+  kind: estimate
+  category: estimates
+  slug: estimate-ledger-write-lifts
+  status: passed
+  result: 'tests/test_ledger.py 28 green with the midnight window (a start and hi in yesterday''s log,
+    only tool lines today, writes into today''s ledger; no start on any date refuses; another session''s
+    start today closes yesterday''s window) and the read-back (an earlier reply''s block lands at the
+    next Stop, a subagent''s block is ignored, a line in an earlier day''s ledger is not written again,
+    a missing transcript falls back to the last message); live 2026-09-11 session H: the reply of 11:32
+    carried three estimate lines and a lesson in a LEDGER block and ended in the /pre-task Skill call,
+    no Stop fired, the ledger stayed at 67 lines; the next reply ended in text and its Stop at 11:32:59
+    wrote the four lines once, read from the transcript, with that time'
+  origin: raw/2026-09-11/ledger.md#L72
+  applied: '12:17:12'
+- line: 73
+  text: 'lesson[error][lesson-spec-then-items-unchecked-against-ledger-lines]{tags:harness,ledger,workflow}{source:raw/2026-09-11/spec.md
+    Cases 53.3 and 55.1; the Retro of session H} trigger: at Retro of session H three ratified decision
+    lines had no item in their Case''s then block — 53.3 estimate-generate-writes was never written, and
+    the two lines of 55.1 sat in a block under 55.2, which materialize reads only for case 55.2 root_cause:
+    nothing before the librarian compares the ledger lines of a Case with the items of its then block;
+    pre-task asks the vault for contradictions and the Spec is approved as a whole, so an omitted or misplaced
+    item shows only as incomplete: then in the yaml, one session later; a mechanical check — every decision
+    line of today''s ledger finds its item under its own Case heading — belongs before the plan is approved'
+  kind: lesson
+  category: lessons
+  slug: lesson-spec-then-items-unchecked-against-ledger-lines
+  origin: raw/2026-09-11/ledger.md#L73
+  fields:
+    type: lesson
+    kind: error
+    root_cause: 'nothing before the librarian compares the ledger lines of a Case with the items of its
+      then block; pre-task asks the vault for contradictions and the Spec is approved as a whole, so an
+      omitted or misplaced item shows only as incomplete: then in the yaml, one session later; a mechanical
+      check — every decision line of today''s ledger finds its item under its own Case heading — belongs
+      before the plan is approved'
+  sections:
+    Trigger: at Retro of session H three ratified decision lines had no item in their Case's then block
+      — 53.3 estimate-generate-writes was never written, and the two lines of 55.1 sat in a block under
+      55.2, which materialize reads only for case 55.2
+    Root cause: 'nothing before the librarian compares the ledger lines of a Case with the items of its
+      then block; pre-task asks the vault for contradictions and the Spec is approved as a whole, so an
+      omitted or misplaced item shows only as incomplete: then in the yaml, one session later; a mechanical
+      check — every decision line of today''s ledger finds its item under its own Case heading — belongs
+      before the plan is approved'
+  tags:
+  - harness
+  - ledger
+  - workflow
+  applied: '12:17:12'
+- kind: create
+  category: insights
+  slug: insight-librarian-frame-omits-required-reads
+  origin: raw/2026-09-10/ledger.md#L132
+  librarian: synthesis
+  tags:
+  - harness
+  - librarian
+  fields:
+    type: insight
+    pattern: The frame of the librarian names the reads it allows one by one, and the list is shorter
+      than the judgments the librarian must make; the agent then breaks a clause or judges on an index
+      line alone.
+    children:
+    - lesson-librarian-reads-beyond-the-four-inputs
+    - lesson-frame-read-clauses-omit-candidate-check-and-brief
+  sections:
+    Pattern: 'Two lessons name the same gap in the written frame of the librarian.
+
+
+      Session F (`lesson-librarian-reads-beyond-the-four-inputs`): the prompt described no semantics for
+      the yaml marks, so the librarian read `guppi/generate.py`; and `rule-index-check` allowed opening
+      a page when an index line did not settle the judgment while `rule-synthesis` forbade reading a lesson
+      page, so two rules gave opposite answers for one act.
+
+
+      Session G (`lesson-frame-read-clauses-omit-candidate-check-and-brief`): the frame listed three reads
+      and covered two judgments; deciding whether a lesson joins a cluster, and taking a fact the brief
+      needs, each need a page when an index line is not enough, and neither had a clause.
+
+
+      In both, the reads the work needs were found while the work ran, not when the frame was written.'
+    Proposal: 'A suggestion, not a decision. Derive the read clauses from the judgments: list every judgment
+      the librarian makes (duplicate or not, cluster or not, why a script failed, what the brief states
+      as fact), and give each one clause that says which page it may open and for which field. Case 54
+      added four reasons to the frame this way; the readings of `estimate-documentation-completes` and
+      `estimate-synthesis-clusters` after this run show whether the list is now complete. Every rule that
+      names a read should be changed in one pass, so that two rules never answer one act differently.'
+  applied: '12:17:12'
+- kind: update
+  slug: lesson-librarian-reads-beyond-the-four-inputs
+  category: lessons
+  origin: raw/2026-09-10/ledger.md#L132
+  librarian: synthesis
+  set:
+    status: clustered
+    insight: insight-librarian-frame-omits-required-reads
+  change: 'clustered by librarian: the frame omits reads the work needs, with lesson-frame-read-clauses-omit-candidate-check-and-brief'
+  applied: '12:17:12'
+- kind: update
+  slug: lesson-frame-read-clauses-omit-candidate-check-and-brief
+  category: lessons
+  origin: raw/2026-09-10/ledger.md#L132
+  librarian: synthesis
+  set:
+    status: clustered
+    insight: insight-librarian-frame-omits-required-reads
+  change: 'clustered by librarian: the frame omits reads the work needs, with lesson-librarian-reads-beyond-the-four-inputs'
+  applied: '12:17:12'
+- kind: create
+  category: insights
+  slug: insight-tests-clock-not-pinned
+  origin: raw/2026-09-11/ledger.md#L71
+  librarian: synthesis
+  tags:
+  - harness
+  - tests
+  fields:
+    type: insight
+    pattern: A test pins the date on one side of the call and lets the code read the real clock on the
+      other; it passes on the day it is written and fails later.
+    children:
+    - lesson-tests-cli-date-pinned
+    - lesson-tests-generate-history-date-unpinned
+  sections:
+    Pattern: 'Two lessons, two months apart in the code, one cause.
+
+
+      `lesson-tests-cli-date-pinned`: the helpers wrote the event log under a pinned TODAY of 2026-09-09
+      while `cli.main` read the real clock; the three CLI dispatch tests went red on 2026-09-10.
+
+
+      `lesson-tests-generate-history-date-unpinned`: the run helper of `tests/test_generate.py` called
+      `generate.run` without `now`, so History and log lines took the real clock while the assertions
+      used the pinned DATE; five tests went red on 2026-09-11, on the committed tree, before any change
+      of the session.
+
+
+      Both were fixed by making the two sides agree. Neither was caught when written, because on that
+      day the clock and the pin were the same date.'
+    Proposal: A suggestion, not a decision. Every entry point that reads the clock takes `now` as a parameter,
+      and every test helper passes the pinned date into it; a test that needs a date never reads the clock
+      itself. A check that runs the suite under a shifted date would catch the rest of this class in one
+      run.
+  applied: '12:17:12'
+- kind: update
+  slug: lesson-tests-cli-date-pinned
+  category: lessons
+  origin: raw/2026-09-11/ledger.md#L71
+  librarian: synthesis
+  set:
+    status: clustered
+    insight: insight-tests-clock-not-pinned
+  change: 'clustered by librarian: a test reads the real clock, with lesson-tests-generate-history-date-unpinned'
+  applied: '12:17:12'
+- kind: update
+  slug: lesson-tests-generate-history-date-unpinned
+  category: lessons
+  origin: raw/2026-09-11/ledger.md#L71
+  librarian: synthesis
+  set:
+    status: clustered
+    insight: insight-tests-clock-not-pinned
+  change: 'clustered by librarian: a test reads the real clock, with lesson-tests-cli-date-pinned'
+  applied: '12:17:12'
+decisions:
+- case: '53.1'
+  decision: decision-case-53.1
+  origin: raw/2026-09-11/ledger.md#case-53.1
+  targets:
+  - kind: update
+    category: file
+    slug: estimates-schema-yaml
+    path: vault/wiki/estimates/schema.yaml
+  - kind: update
+    category: file
+    slug: estimates-schema
+    path: vault/wiki/estimates/schema.md
+  - kind: update
+    category: file
+    slug: lessons-schema-yaml
+    path: vault/wiki/lessons/schema.yaml
+  - kind: update
+    category: file
+    slug: lessons-schema
+    path: vault/wiki/lessons/schema.md
+  - kind: update
+    category: file
+    slug: index
+    path: vault/wiki/index.md
+  - kind: update
+    category: file
+    slug: glossary
+    path: vault/wiki/glossary.md
+  - kind: update
+    category: rules
+    slug: rule-page-generation
+  - kind: update
+    category: rules
+    slug: rule-lint
+  - kind: delete
+    category: estimates
+    slug: estimate-agents-at-import-not-expanded
+  - kind: delete
+    category: estimates
+    slug: estimate-agents-loaded-at-session-start
+  - kind: delete
+    category: estimates
+    slug: estimate-agents-visible-in-session
+  - kind: delete
+    category: estimates
+    slug: estimate-estimates-criterion-stale-after-contract-change
+  - kind: delete
+    category: estimates
+    slug: estimate-generate-log-written-last
+  - kind: delete
+    category: estimates
+    slug: estimate-generate-replace-mapping-crashes
+  - kind: delete
+    category: estimates
+    slug: estimate-generate-walk-history-dated-by-yaml
+  - kind: delete
+    category: estimates
+    slug: estimate-hooks-exitplanmode-payload
+  - kind: delete
+    category: estimates
+    slug: estimate-hooks-messagedisplay-cannot-block
+  - kind: delete
+    category: estimates
+    slug: estimate-hooks-sessionstart-cannot-block
+  - kind: delete
+    category: estimates
+    slug: estimate-hooks-stop-payload
+  - kind: delete
+    category: estimates
+    slug: estimate-hooks-windows-stdin-encoding
+  - kind: delete
+    category: estimates
+    slug: estimate-ledger-hook-misses-a-reply-ending-in-a-tool-call
+  - kind: delete
+    category: estimates
+    slug: estimate-librarian-reads-beyond-the-four-inputs
+  - kind: delete
+    category: estimates
+    slug: estimate-materialize-assumes-every-entry-has-a-line
+  - kind: delete
+    category: estimates
+    slug: estimate-readings-after-librarian-invisible-to-next-hi
+  - kind: delete
+    category: estimates
+    slug: estimate-tests-cli-date-pinned
+  tags: []
+  case_text:
+    when: '`guppi generate` применяет `lesson`; lint проверяет урок и Estimate; библиотекарь пишет Insight.'
+    then: '`target` Estimate — slug Entity или Rule. У Lesson и Insight Estimate нет: урок — запись наблюдения,
+      без контракта.
+
+      **＋** `estimates`, `## Estimates` уходят из схемы урока; `generate` не пишет пару; lint не требует
+      `estimates` у урока.
+
+      **＋** §8, глоссарий, `rule-page-generation`: условие «Research `passed` до Insight» снято.
+
+      **＋** 17 парных Estimate — `delete`; `cleanup` уносит в `archived/`. Влияние: у их уроков поле `estimates`
+      и секцию удаляет скрипт под этим Case; Insights не затронуты.
+
+      **－** Ledger-строки чтений остаются.'
+    ratification: ratified 2026-09-11.
+    context: '53 Estimate-страниц на 33 правила: 17 парных к урокам с шаблонной фразой, четыре новых у
+      `rule-page-generation` вместо правки одной, шесть с `criterion` полем без секции. Estimate — проверка
+      контракта: критерий, метод, результат, статус; от неё считается `built`. Существует только у страницы
+      с `when` + `then`.'
+    problem: Снять пары у уроков; изменение контракта — `update` существующей Estimate; ask доходит до
+      Estimate через цель; два дефекта хвоста; нужен ли `estimates-index.md`.
+    recommend: Четыре sub-cases; 21 `delete`, остальное `update`.
+  incomplete:
+  - given
+  applied: '12:17:12'
+- case: '53.2'
+  decision: decision-case-53.2
+  origin: raw/2026-09-11/ledger.md#case-53.2
+  targets:
+  - kind: update
+    category: file
+    slug: index
+    path: vault/wiki/index.md
+  - kind: update
+    category: file
+    slug: case-schema
+    path: vault/wiki/case-schema.md
+  - kind: update
+    category: rules
+    slug: rule-page-generation
+  - kind: update
+    category: rules
+    slug: rule-ask
+  - kind: update
+    category: rules
+    slug: rule-pretask
+  - kind: update
+    category: estimates
+    slug: estimate-generate-writes
+  - kind: delete
+    category: estimates
+    slug: estimate-generate-rejects-shape-alone
+  - kind: delete
+    category: estimates
+    slug: estimate-generate-logs-per-entry
+  - kind: delete
+    category: estimates
+    slug: estimate-generate-dates-history-by-run
+  - kind: delete
+    category: estimates
+    slug: estimate-generate-passes-delete-outside-vault
+  tags: []
+  case_text:
+    when: Case меняет контракт Leaf; `guppi generate` применяет строку чтения; `ask-guppi` отвечает про
+      проверку.
+    then: 'Case, меняющий контракт страницы, в том же Case правит `Criterion` (и `Method`) её существующей
+      Estimate и ставит `status: pending`. Новая Estimate — только по §6: условие, которое падает и чинится
+      отдельно.
+
+      **＋** `generate`: строка чтения всегда пишет Result и History; пропуск снят; повтор держат метки
+      `applied`.
+
+      **＋** `ask-guppi` доходит до Estimate через поле `estimates` цели, когда вопрос о проверке. §3:
+      «the Estimates of a page whose contract changes are named in `given`».
+
+      **＋** Четыре Estimate Cases 47–48 — `delete`; их критерии — строки **＋** в `Criterion` `estimate-generate-writes`,
+      `pending`, чтение на End of Work из тех же тестов. `*-walks-dates` остаются.'
+    ratification: ratified 2026-09-11.
+    context: '53 Estimate-страниц на 33 правила: 17 парных к урокам с шаблонной фразой, четыре новых у
+      `rule-page-generation` вместо правки одной, шесть с `criterion` полем без секции. Estimate — проверка
+      контракта: критерий, метод, результат, статус; от неё считается `built`. Существует только у страницы
+      с `when` + `then`.'
+    problem: Снять пары у уроков; изменение контракта — `update` существующей Estimate; ask доходит до
+      Estimate через цель; два дефекта хвоста; нужен ли `estimates-index.md`.
+    recommend: Четыре sub-cases; 21 `delete`, остальное `update`.
+  incomplete:
+  - given
+  applied: '12:17:12'
+- case: '53.3'
+  decision: decision-case-53.3
+  origin: raw/2026-09-11/ledger.md#case-53.3
+  targets:
+  - kind: update
+    category: rules
+    slug: rule-materialize
+  - kind: update
+    category: rules
+    slug: rule-page-generation
+  - kind: update
+    category: estimates
+    slug: estimate-materialize-assembles
+  - kind: update
+    category: estimates
+    slug: estimate-generate-writes
+  tags: []
+  case_text:
+    when: '`guppi materialize` читает standalone `create` Estimate с `ref`; `guppi generate` применяет
+      запись с `failed` прошлого прогона.'
+    then: '`materialize` кладёт `context`, `criterion`, `method` standalone Estimate в `sections`, как
+      у вложенной.
+
+      **＋** Успешно применённая запись теряет `failed`.
+
+      **＋** По 53.2: `Criterion` `estimate-materialize-assembles` и `estimate-generate-writes` получают
+      по строке **＋**, `pending`.
+
+      **＋** Скрипт-однодневка переносит поля в секции у `estimate-generate-walks-dates`, `estimate-materialize-walks-dates`;
+      снимает `failed` у `old-harness` в yaml 2026-09-09.'
+    ratification: ratified 2026-09-11.
+    context: '53 Estimate-страниц на 33 правила: 17 парных к урокам с шаблонной фразой, четыре новых у
+      `rule-page-generation` вместо правки одной, шесть с `criterion` полем без секции. Estimate — проверка
+      контракта: критерий, метод, результат, статус; от неё считается `built`. Существует только у страницы
+      с `when` + `then`.'
+    problem: Снять пары у уроков; изменение контракта — `update` существующей Estimate; ask доходит до
+      Estimate через цель; два дефекта хвоста; нужен ли `estimates-index.md`.
+    recommend: Четыре sub-cases; 21 `delete`, остальное `update`.
+  incomplete:
+  - given
+  applied: '12:17:12'
+- case: '53.4'
+  decision: decision-case-53.4
+  origin: raw/2026-09-11/ledger.md#case-53.4
+  targets:
+  - kind: update
+    category: file
+    slug: index
+    path: vault/wiki/index.md
+  - kind: update
+    category: rules
+    slug: rule-index
+  - kind: update
+    category: rules
+    slug: rule-index-check
+  - kind: update
+    category: rules
+    slug: rule-lint
+  - kind: update
+    category: estimates
+    slug: estimate-index-lists
+  tags: []
+  case_text:
+    when: '`guppi index` пишет индексы; библиотекарь делает index check; `make lint` идёт.'
+    then: 'Индексов четыре: entities, rules, lessons, insights. `estimates-index.md` не пишется; файл
+      удаляется под этим Case.
+
+      **＋** Index check сравнивает четыре категории.
+
+      **＋** `estimate-index-lists`: строка про estimate уходит из Criterion, `pending`.
+
+      **＋** §1, §11, `rule-index`, `rule-index-check`, `rule-lint`: четыре.
+
+      **－** `cleanup` перестраивает четыре.'
+    ratification: ratified 2026-09-11.
+    context: '53 Estimate-страниц на 33 правила: 17 парных к урокам с шаблонной фразой, четыре новых у
+      `rule-page-generation` вместо правки одной, шесть с `criterion` полем без секции. Estimate — проверка
+      контракта: критерий, метод, результат, статус; от неё считается `built`. Существует только у страницы
+      с `when` + `then`.'
+    problem: Снять пары у уроков; изменение контракта — `update` существующей Estimate; ask доходит до
+      Estimate через цель; два дефекта хвоста; нужен ли `estimates-index.md`.
+    recommend: Четыре sub-cases; 21 `delete`, остальное `update`.
+  incomplete:
+  - given
+  applied: '12:17:12'
+- case: '54'
+  decision: decision-case-54
+  origin: raw/2026-09-11/ledger.md#case-54
+  targets:
+  - kind: update
+    category: rules
+    slug: rule-documentation
+  - kind: update
+    category: rules
+    slug: rule-synthesis
+  - kind: update
+    category: rules
+    slug: rule-brief
+  - kind: update
+    category: estimates
+    slug: estimate-documentation-completes
+  - kind: update
+    category: estimates
+    slug: estimate-synthesis-clusters
+  tags: []
+  case_text:
+    context: 'Case 44 разрешил библиотекарю открывать страницу `wiki/` в трёх случаях: строка индекса
+      не решает «то же или рядом»; он пишет Insight и ему нужны Trigger и Root cause его уроков; скрипт
+      назвал страницу в ошибке. Прогон G нарушил это дважды, и оба чтения были нужны: два урока, чтобы
+      решить, кластеризуется ли третий (Insight не родился); свой Insight и статусы Estimate для брифа.
+      Оба чтения снова `failed`, Slice 3 не закрывается.'
+    problem: Фрейм называет чтения по итогу, а не по вопросу; у брифа нет входа со статусом Estimate и
+      severity Insight.
+    recommend: Четыре причины, каждая по вопросу; каждое чтение названо с причиной и исходом; критерии
+      переписаны; «five indexes» → «four» после 53.4.
+    given: '`rule-documentation` Render 43–47: «the five index files», три случая. `rule-synthesis` Render
+      39: «the lessons you cluster». `rule-brief`: нужны failed Estimates, severity, счёт страниц; входа
+      нет.
+
+      **＋** `estimate-documentation-completes`: «five indexes», «three reasons». `estimate-synthesis-clusters`:
+      «named as a child of the Insight written». Оба `failed` 16:15:34 на этих чтениях; урок `lesson-frame-read-clauses-omit-candidate-check-and-brief`.
+
+      **＋** Event log G: 16:06:54 два урока; 16:09:57 свой Insight; 16:10:41 grep статусов.
+
+      **－** `rule-index-check` не меняется. Чтение снимается после прогона библиотекаря этой сессии, в
+      хвост ledger.'
+    when: Библиотекарь запускается по агент-файлу из `rule-documentation`; после прогона снимаются `estimate-documentation-completes`
+      и `estimate-synthesis-clusters`.
+    then: 'Входов четыре: `handoff.md`, yaml-ы из stdout `materialize`, четыре индекса, `tags.md`. Страницу
+      `wiki/` библиотекарь открывает по четырём причинам: строка индекса не решает «то же или рядом»;
+      строка индекса не решает, делит ли урок root cause с другим уроком или Insight; скрипт назвал страницу
+      в ошибке; брифу нужен факт, которого нет ни в одном входе (статус Estimate, severity Insight). Каждую
+      открытую страницу он называет в отчёте с причиной и исходом.
+
+      **＋** `rule-synthesis` Render: читать Trigger и Root cause урока-кандидата, когда строки индекса
+      мало, кластер или нет; называть с исходом.
+
+      **＋** `rule-brief` Render: статус Estimate и severity Insight со страницы, когда входа нет; каждая
+      названа.
+
+      **＋** `estimate-documentation-completes`: «four indexes», «one of the four reasons»; `pending`.
+
+      **＋** `estimate-synthesis-clusters`: «every lesson page read is named with the outcome: the Insight
+      it joined, or none and why»; `pending`.
+
+      **－** Запреты на `ledger.md`, `spec.md`, `plan.md`, `decisions/`, `archived/`, `guppi/`, `tests/`
+      без изменений.'
+    ratification: ratified 2026-09-11, the owner not fully sure; the reading after this session's librarian
+      run decides.
+  applied: '12:17:12'
+- case: '55.1'
+  decision: decision-case-55.1
+  origin: raw/2026-09-11/ledger.md#case-55.1
+  targets:
+  - kind: update
+    category: rules
+    slug: rule-ledger-write
+  - kind: update
+    category: estimates
+    slug: estimate-ledger-write-lifts
+  tags: []
+  case_text:
+    when: Хук `Stop` проверяет, открыта ли сессия.
+    then: 'Хук читает `raw/<date>/event_log.md` всех дат от сегодняшней назад до первой с `session-start`
+      его сессии и склеивает их в порядке дат; окно `hi` считается по склейке тем же правилом.
+
+      **＋** Нет ни одной даты со стартом этой сессии — отказ как сейчас.
+
+      **＋** Тест: старт и `hi` во вчерашнем файле, сегодня только `tool` — строки пишутся в сегодняшний
+      ledger.
+
+      **－** Дальше самой ранней даты со стартом хук не идёт.'
+    ratification: ratified 2026-09-11.
+    context: 'Хук ledger дважды терял ратифицированные строки. Вчера: реплики Cases 48 и 49 кончались
+      `/pre-task` и `ExitPlanMode`, `Stop` не сработал (Case 51, отложен). Сегодня: сессия перешла полночь,
+      хук искал `session-start` и `hi` в сегодняшнем логе; 44 строки Case 53 ушли только после resume.'
+    problem: Окно `hi` привязано к файлу одного дня; хук привязан к одному событию, которого у части реплик
+      нет.
+    recommend: 'Два sub-cases на одном правиле. 55.1 — склейка логов по датам. 55.2 — `Stop` смотрит назад
+      по транскрипту, без нового события: `MessageDisplay` не может отказать и сказать (`lesson-hooks-messagedisplay-cannot-block`),
+      `PostToolUse` не несёт реплику.'
+  supersedes:
+  - decision-case-51
+  incomplete:
+  - given
+  applied: '12:17:12'
+- case: '55.2'
+  decision: decision-case-55.2
+  origin: raw/2026-09-11/ledger.md#case-55.2
+  targets:
+  - kind: update
+    category: rules
+    slug: rule-ledger-write
+  - kind: update
+    category: estimates
+    slug: estimate-ledger-write-lifts
+  tags: []
+  case_text:
+    when: Хук `Stop` срабатывает.
+    then: 'Хук читает все сообщения ассистента этой сессии из `transcript_path`, в порядке хода, и берёт
+      строки из каждого блока `LEDGER`; строка, чьего текста в сегодняшнем ledger нет, пишется со временем
+      этого `Stop`.
+
+      **＋** `last_assistant_message` — запасной вход, когда транскрипта нет или он не читается.
+
+      **＋** Реплика, кончившаяся `Skill` или `ExitPlanMode`, попадает в ledger на следующем `Stop` той
+      же сессии.
+
+      **＋** Критерий: реплика с блоком `LEDGER`, кончающаяся `/pre-task`, оказывается в ledger один раз
+      после следующего `Stop`; живое чтение в этой сессии.
+
+      **－** `settings.json`, `rule-hook-registry` не меняются.
+
+      **－** Последняя реплика сессии, кончившаяся tool-вызовом без дальнейшего `Stop`, остаётся потерянной;
+      её видит Retro.'
+    ratification: ratified 2026-09-11.
+    context: 'Хук ledger дважды терял ратифицированные строки. Вчера: реплики Cases 48 и 49 кончались
+      `/pre-task` и `ExitPlanMode`, `Stop` не сработал (Case 51, отложен). Сегодня: сессия перешла полночь,
+      хук искал `session-start` и `hi` в сегодняшнем логе; 44 строки Case 53 ушли только после resume.'
+    problem: Окно `hi` привязано к файлу одного дня; хук привязан к одному событию, которого у части реплик
+      нет.
+    recommend: 'Два sub-cases на одном правиле. 55.1 — склейка логов по датам. 55.2 — `Stop` смотрит назад
+      по транскрипту, без нового события: `MessageDisplay` не может отказать и сказать (`lesson-hooks-messagedisplay-cannot-block`),
+      `PostToolUse` не несёт реплику.'
+  incomplete:
+  - given
+  applied: '12:17:12'
+- case: '56'
+  decision: decision-case-56
+  origin: raw/2026-09-11/ledger.md#case-56
+  targets:
+  - kind: update
+    category: rules
+    slug: rule-retro
+  - kind: update
+    category: file
+    slug: case-schema
+    path: vault/wiki/case-schema.md
+  - kind: update
+    category: file
+    slug: decisions-schema-yaml
+    path: vault/wiki/decisions/schema.yaml
+  - kind: update
+    category: file
+    slug: decisions-schema
+    path: vault/wiki/decisions/schema.md
+  - kind: update
+    category: rules
+    slug: rule-materialize
+  - kind: update
+    category: estimates
+    slug: estimate-retro-loads
+  tags: []
+  case_text:
+    context: 'Case 50 отложил переосмысление Retro без текста; восстановлено из handoff G (строки 104–107)
+      и дополнения владельца: Retro открывается фронтиром работ, замечания агента и человека, исход каждого
+      — строка, решения только `defer` в короткой форме.'
+    problem: '`rule-retro` читается как малый Plan Mode. Нет открывающего фронтира, нет шага чтений, нет
+      пути «откатить и отложить». Полная форма Case для defer избыточна; Decision-страница по 52.1 требует
+      Given и When, которых у отсрочки нет.'
+    recommend: Render `rule-retro` переписан; короткая форма defer в `case-schema.md`; Given и When необязательны
+      у Decision, где все `kind` — `defer`; критерий дополнен. Закрывает Case 50.
+    given: '`rule-retro` Render: контекст загружает `make test`, `make style`, ledger дня; «Discuss …
+      in the Case form»; правки в счёт ratified; остальное defer; красные тесты — урок; три списка, коммит,
+      `/handoff`.
+
+      **＋** 52.1: Decision body Given, When required. 52.2: Retro Case — семь секций. `materialize` метит
+      отсутствующие секции `incomplete`.
+
+      **＋** `estimate-retro-loads` `passed`; по 53.2 дополняется, `pending`. `rule-retro-commit` требует
+      чистое дерево.
+
+      **－** Три списка, коммит, `/handoff`, загрузка контекста — без изменений.'
+    when: Человек вызывает `/retro`; в Retro возникает замечание; красные тесты; Estimates этой сессии
+      в `pending` с законченной работой.
+    then: 'Первое сообщение Retro — фронтир: ратифицировано (строки ledger по Case), сделано и не сделано
+      против Spec, замечено агентом. Человек добавляет своё.
+
+      **＋** Каждый пункт кончается одним из четырёх: `lesson[...]`, `estimate[...]`, короткий `defer`,
+      или запись в handoff.
+
+      **＋** Короткий defer: `## Case N` под `## Retro` с `context`, `problem` и блоком `defer` с `purpose`.
+
+      **＋** Decision-страница: `## Given`, `## When` optional; `materialize` метит их отсутствие `incomplete`
+      только когда среди `kind` есть не-`defer`.
+
+      **＋** Retro снимает чтения Estimates с законченной работой; несъёмная названа в handoff.
+
+      **＋** Красные тесты: чинить в счёт ratified, иначе `git diff` в `raw/<date>/patch-<slug>.diff`,
+      откат, короткий `defer`. В обоих случаях `lesson[error]`; handoff зелёный.
+
+      **＋** `estimate-retro-loads` дополнен, `pending`.
+
+      **－** Правки в счёт ratified остаются разрешены.'
+    ratification: ratified 2026-09-11 («попробуем так, если что — поменяем»).
+  supersedes:
+  - decision-case-50
+  applied: '12:17:12'
+- case: '57'
+  decision: decision-case-57
+  origin: raw/2026-09-11/ledger.md#case-57
+  targets:
+  - kind: update
+    category: file
+    slug: index
+    path: vault/wiki/index.md
+  - kind: update
+    category: file
+    slug: claude-md
+    path: CLAUDE.md
+  - kind: update
+    category: rules
+    slug: rule-cleanup
+  - kind: update
+    category: estimates
+    slug: estimate-cleanup-moves
+  - kind: update
+    category: rules
+    slug: rule-spec-capture
+  - kind: update
+    category: estimates
+    slug: estimate-spec-capture-appends
+  - kind: update
+    category: estimates
+    slug: estimate-lint-catches
+  tags: []
+  case_text:
+    context: Cases 52–56 меняют форму Decision, число индексов, чтения библиотекаря, форму Retro и `spec.md`.
+      Pre-task (`ask-guppi`, 2026-09-11) нашёл страницы, которые описывают то же и не названы ни в одной
+      строке.
+    problem: §5 и §10 `index.md` описывают старую форму; `CLAUDE.md` требует семь секций для любого ответа;
+      `rule-cleanup` перестраивает пять индексов; `rule-spec-capture` считает хук единственным писателем
+      `spec.md`; критерии `estimate-lint-catches` и `estimate-cleanup-moves` не знают новых классов и
+      четырёх файлов.
+    recommend: Семь `update`; три критерия, уже названные в 53, расширены в их блоках.
+    given: '`index.md` §5 строки 211, 225 (`targets`, `category` explicitly); §10 строка 333 («That is
+      all … not the pages themselves»). `CLAUDE.md` строка 46: «One reply is one Case, in the seven sections».
+      `rule-cleanup`: пять индексов, `estimates` всех живых страниц. `rule-spec-capture`: один писатель.
+      `estimate-lint-catches`, `estimate-cleanup-moves`, `estimate-spec-capture-appends` — `passed`, по
+      53.2 `pending`.
+
+      **－** Ворота «Research `passed` до Insight» уходят без замены (53.1).'
+    when: Кто-то читает `index.md`, `CLAUDE.md`, `rule-cleanup`, `rule-spec-capture`; `guppi cleanup`
+      и `guppi lint` идут; снимаются их чтения.
+    then: '§5: `kind` и `target_slug` по позициям, категория из префикса; Case, берущий отложенное, пишет
+      `{supersedes:case N}`, и `deferred_by` снимается. §10: четыре причины фрейма. §1: четыре индекса.
+
+      **＋** `CLAUDE.md`: семь секций — форма Plan Mode; короткая форма Retro.
+
+      **＋** `rule-cleanup`: четыре индекса; slug архивированной Estimate снимается из `estimates` Entity
+      и Rule. `estimate-cleanup-moves` `pending`.
+
+      **＋** `rule-spec-capture`: два писателя `spec.md`. `estimate-spec-capture-appends` `pending`.
+
+      **＋** `estimate-lint-catches`: классы 52 и 53, `pending`.'
+    ratification: ratified 2026-09-11.
+  applied: '12:17:12'
+unparsed: []

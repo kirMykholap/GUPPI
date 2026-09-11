@@ -270,3 +270,134 @@ instruction. The global feed; a page's own `## History` is the per-page view.
 - 2026-09-10 rules/rule-index-check status: draft → built · cascade · generate
 - 2026-09-10 rules/rule-materialize status: draft → built · cascade · generate
 - 2026-09-10 rules/rule-retro status: draft → built · cascade · generate
+- 2026-09-11 estimates/estimate-documentation-completes status: failed → failed · raw/2026-09-10/ledger.md#L123 · generate
+- 2026-09-11 estimates/estimate-synthesis-clusters status: failed → failed · raw/2026-09-10/ledger.md#L124 · generate
+- 2026-09-11 estimates/estimate-index-check-merges status: passed → passed · raw/2026-09-10/ledger.md#L125 · generate
+- 2026-09-11 estimates/estimate-generate-rejects-shape-alone status: pending → passed · raw/2026-09-10/ledger.md#L126 · generate
+- 2026-09-11 estimates/estimate-generate-logs-per-entry status: pending → passed · raw/2026-09-10/ledger.md#L127 · generate
+- 2026-09-11 estimates/estimate-generate-dates-history-by-run status: pending → passed · raw/2026-09-10/ledger.md#L128 · generate
+- 2026-09-11 estimates/estimate-generate-passes-delete-outside-vault status: pending → passed · raw/2026-09-10/ledger.md#L129 · generate
+- 2026-09-11 lessons/lesson-generate-keeps-a-stale-failed-mark created · raw/2026-09-10/ledger.md#L130 · generate
+- 2026-09-11 lessons/lesson-materialize-standalone-estimate-keeps-criterion-as-a-field created · raw/2026-09-10/ledger.md#L131 · generate
+- 2026-09-11 lessons/lesson-frame-read-clauses-omit-candidate-check-and-brief created · raw/2026-09-10/ledger.md#L132 · generate
+- 2026-09-11 decisions/decision-case-52.1 created · raw/2026-09-10/ledger.md#case-52.1 · generate
+- 2026-09-11 rules/rule-page-generation updated: a decision page carries kind and target_slug lists and the sections Context, Problem, Given, When from case_text · [[decision-case-52.1]] · generate
+- 2026-09-11 rules/rule-lint updated: the classes listed; decision pages: kind and target_slug of equal length, every vault target_slug an existing page · [[decision-case-52.1]] · generate
+- 2026-09-11 decisions/decision-case-52.2 created · raw/2026-09-10/ledger.md#case-52.2 · generate
+- 2026-09-11 rules/rule-retro updated: a Retro Case is appended to spec.md under ## Retro before its ledger line; a bare defer is forbidden · [[decision-case-52.2]] · generate
+- 2026-09-11 decisions/decision-case-52.3 created · raw/2026-09-10/ledger.md#case-52.3 · generate
+- 2026-09-11 rules/rule-page-generation updated: a defer with a page appends the decision slug to deferred_by; a placeholder is born with it; a supersedes removes the superseded decision from the list · [[decision-case-52.3]] · generate
+- 2026-09-11 rules/rule-index updated: a line of a page with deferred_by ends with · deferred_by: <slugs> · [[decision-case-52.3]] · generate
+- 2026-09-11 rules/rule-ask updated: a page with deferred_by in the answer: open the named decision, give its Problem on the exists or near line · [[decision-case-52.3]] · generate
+- 2026-09-11 rules/rule-lint updated: deferred_by: every slug an existing decision page · [[decision-case-52.3]] · generate
+- 2026-09-11 decisions/decision-case-52.4 created · raw/2026-09-10/ledger.md#case-52.4 · generate
+- 2026-09-11 rules/rule-page-generation updated: the decision page of a Case is written before its entries; History and log lines end with · [[decision-case-N]] when a decision exists, else the ledger pointer · [[decision-case-52.4]] · generate
+- 2026-09-11 rules/rule-lint updated: a History wikilink resolves to a page · [[decision-case-52.4]] · generate
+- 2026-09-11 rules/rule-page-generation status: draft → built · cascade · generate
+- 2026-09-11 decisions/decision-case-53.1 created · raw/2026-09-11/ledger.md#case-53.1 · generate
+- 2026-09-11 rules/rule-page-generation updated: a lesson entry writes the lesson only; no paired Estimate · [[decision-case-53.1]] · generate
+- 2026-09-11 rules/rule-lint updated: lessons: estimates not required; an estimate whose target is not an entity or rule is a finding · [[decision-case-53.1]] · generate
+- 2026-09-11 estimates/estimate-agents-at-import-not-expanded deleted · [[decision-case-53.1]] · generate
+- 2026-09-11 estimates/estimate-agents-loaded-at-session-start deleted · [[decision-case-53.1]] · generate
+- 2026-09-11 estimates/estimate-agents-visible-in-session deleted · [[decision-case-53.1]] · generate
+- 2026-09-11 estimates/estimate-estimates-criterion-stale-after-contract-change deleted · [[decision-case-53.1]] · generate
+- 2026-09-11 estimates/estimate-generate-log-written-last deleted · [[decision-case-53.1]] · generate
+- 2026-09-11 estimates/estimate-generate-replace-mapping-crashes deleted · [[decision-case-53.1]] · generate
+- 2026-09-11 estimates/estimate-generate-walk-history-dated-by-yaml deleted · [[decision-case-53.1]] · generate
+- 2026-09-11 estimates/estimate-hooks-exitplanmode-payload deleted · [[decision-case-53.1]] · generate
+- 2026-09-11 estimates/estimate-hooks-messagedisplay-cannot-block deleted · [[decision-case-53.1]] · generate
+- 2026-09-11 estimates/estimate-hooks-sessionstart-cannot-block deleted · [[decision-case-53.1]] · generate
+- 2026-09-11 estimates/estimate-hooks-stop-payload deleted · [[decision-case-53.1]] · generate
+- 2026-09-11 estimates/estimate-hooks-windows-stdin-encoding deleted · [[decision-case-53.1]] · generate
+- 2026-09-11 estimates/estimate-ledger-hook-misses-a-reply-ending-in-a-tool-call deleted · [[decision-case-53.1]] · generate
+- 2026-09-11 estimates/estimate-librarian-reads-beyond-the-four-inputs deleted · [[decision-case-53.1]] · generate
+- 2026-09-11 estimates/estimate-materialize-assumes-every-entry-has-a-line deleted · [[decision-case-53.1]] · generate
+- 2026-09-11 estimates/estimate-readings-after-librarian-invisible-to-next-hi deleted · [[decision-case-53.1]] · generate
+- 2026-09-11 estimates/estimate-tests-cli-date-pinned deleted · [[decision-case-53.1]] · generate
+- 2026-09-11 decisions/decision-case-53.2 created · raw/2026-09-11/ledger.md#case-53.2 · generate
+- 2026-09-11 rules/rule-page-generation updated: an estimate entry always sets status, overwrites Result and appends History; no skip · [[decision-case-53.2]] · generate
+- 2026-09-11 rules/rule-ask updated: Estimates are reached through the estimates field of the page the question is about; no estimates index · [[decision-case-53.2]] · generate
+- 2026-09-11 rules/rule-pretask updated: a Case changing a page's contract names the page's Estimates; a stale criterion is a finding · [[decision-case-53.2]] · generate
+- 2026-09-11 estimates/estimate-generate-writes updated: the criteria of the four Estimates of Cases 47–48 folded in; no skip, no paired estimate, the decision-page shape and deferred_by of Case 52; pending until the End of Work reading · [[decision-case-53.2]] · generate
+- 2026-09-11 estimates/estimate-generate-rejects-shape-alone deleted · [[decision-case-53.2]] · generate
+- 2026-09-11 estimates/estimate-generate-logs-per-entry deleted · [[decision-case-53.2]] · generate
+- 2026-09-11 estimates/estimate-generate-dates-history-by-run deleted · [[decision-case-53.2]] · generate
+- 2026-09-11 estimates/estimate-generate-passes-delete-outside-vault deleted · [[decision-case-53.2]] · generate
+- 2026-09-11 decisions/decision-case-53.3 created · raw/2026-09-11/ledger.md#case-53.3 · generate
+- 2026-09-11 rules/rule-materialize updated: a standalone estimate create maps context, criterion and method into sections, as the nested one does · [[decision-case-53.3]] · generate
+- 2026-09-11 rules/rule-page-generation updated: an entry that applies loses a failed mark left by an earlier run · [[decision-case-53.3]] · generate
+- 2026-09-11 estimates/estimate-materialize-assembles updated: criterion: the standalone estimate create maps to sections; the incomplete rule for a defer-only Case (case 56) · [[decision-case-53.3]] · generate
+- 2026-09-11 estimates/estimate-generate-writes updated: criterion: a stale failed mark is dropped on apply (case 53.3) · [[decision-case-53.3]] · generate
+- 2026-09-11 decisions/decision-case-53.4 created · raw/2026-09-11/ledger.md#case-53.4 · generate
+- 2026-09-11 rules/rule-index updated: four category files; no estimates index · [[decision-case-53.4]] · generate
+- 2026-09-11 rules/rule-index-check updated: estimate creates are not compared; four categories · [[decision-case-53.4]] · generate
+- 2026-09-11 rules/rule-lint updated: index --check over four files · [[decision-case-53.4]] · generate
+- 2026-09-11 estimates/estimate-index-lists updated: no estimates index; four files; the deferred_by suffix · [[decision-case-53.4]] · generate
+- 2026-09-11 lessons/lesson-ledger-hook-hi-lost-at-midnight created · raw/2026-09-11/ledger.md#L45 · generate
+- 2026-09-11 decisions/decision-case-54 created · raw/2026-09-11/ledger.md#case-54 · generate
+- 2026-09-11 rules/rule-documentation updated: four indexes; four reasons to open a page, each by the question asked, named with reason and outcome · [[decision-case-54]] · generate
+- 2026-09-11 rules/rule-synthesis updated: a candidate lesson is read when the index line is not enough, clustered or not, and named with the outcome · [[decision-case-54]] · generate
+- 2026-09-11 rules/rule-brief updated: a fact no input carries is read from the page and named · [[decision-case-54]] · generate
+- 2026-09-11 estimates/estimate-documentation-completes updated: four indexes; four reasons; outcome named · [[decision-case-54]] · generate
+- 2026-09-11 estimates/estimate-synthesis-clusters updated: a lesson page read is named with its outcome, clustered or not · [[decision-case-54]] · generate
+- 2026-09-11 decisions/decision-case-55.1 created · raw/2026-09-11/ledger.md#case-55.1 · generate
+- 2026-09-11 decisions/decision-case-51 superseded by decision-case-55.1 · [[decision-case-55.1]] · generate
+- 2026-09-11 rules/rule-ledger-write defer by decision-case-51 superseded · [[decision-case-55.1]] · generate
+- 2026-09-11 rules/rule-ledger-write updated: the hi window spans the dates of the session: the event logs back to its start are joined · [[decision-case-55.1]] · generate
+- 2026-09-11 estimates/estimate-ledger-write-lifts updated: the midnight window added to the criterion; pending until the reading · [[decision-case-55.1]] · generate
+- 2026-09-11 decisions/decision-case-55.2 created · raw/2026-09-11/ledger.md#case-55.2 · generate
+- 2026-09-11 rules/rule-ledger-write updated: the hi window spans the dates of the session; every LEDGER block of the session's transcript is read at each Stop, the last reply as fallback · [[decision-case-55.2]] · generate
+- 2026-09-11 estimates/estimate-ledger-write-lifts updated: the transcript read-back added to the criterion; pending until the live reading · [[decision-case-55.2]] · generate
+- 2026-09-11 decisions/decision-case-56 created · raw/2026-09-11/ledger.md#case-56 · generate
+- 2026-09-11 decisions/decision-case-50 superseded by decision-case-56 · [[decision-case-56]] · generate
+- 2026-09-11 rules/rule-retro defer by decision-case-50 superseded · [[decision-case-56]] · generate
+- 2026-09-11 rules/rule-retro updated: Retro opens with the frontier; every item ends as a lesson, a reading, a short defer or a handoff note; red tests are fixed or reverted into a patch; readings are a step · [[decision-case-56]] · generate
+- 2026-09-11 rules/rule-materialize updated: a decision entry lacks given or when: incomplete only when a kind other than defer is among its lines · [[decision-case-56]] · generate
+- 2026-09-11 estimates/estimate-retro-loads updated: the frontier, the four outcomes, the readings and the red-test paths added; pending until the next live /retro · [[decision-case-56]] · generate
+- 2026-09-11 decisions/decision-case-57 created · raw/2026-09-11/ledger.md#case-57 · generate
+- 2026-09-11 rules/rule-cleanup updated: four indexes; estimates lists of entities and rules only · [[decision-case-57]] · generate
+- 2026-09-11 estimates/estimate-cleanup-moves updated: four indexes; estimates lists of entities and rules only; pending until the live run · [[decision-case-57]] · generate
+- 2026-09-11 rules/rule-spec-capture updated: spec.md has two writers: the hook at ExitPlanMode and the agent at Retro under ## Retro · [[decision-case-57]] · generate
+- 2026-09-11 estimates/estimate-spec-capture-appends updated: the Retro section survives a later approval; pending until the live reading · [[decision-case-57]] · generate
+- 2026-09-11 estimates/estimate-lint-catches updated: the classes of cases 52 and 53 seeded; a lesson without estimates is clean; pending until the suite · [[decision-case-57]] · generate
+- 2026-09-11 estimates/estimate-index-lists status: pending → passed · raw/2026-09-11/ledger.md#L68 · generate
+- 2026-09-11 estimates/estimate-lint-catches status: pending → passed · raw/2026-09-11/ledger.md#L69 · generate
+- 2026-09-11 estimates/estimate-cleanup-moves status: pending → passed · raw/2026-09-11/ledger.md#L70 · generate
+- 2026-09-11 lessons/lesson-tests-generate-history-date-unpinned created · raw/2026-09-11/ledger.md#L71 · generate
+- 2026-09-11 estimates/estimate-ledger-write-lifts status: pending → passed · raw/2026-09-11/ledger.md#L72 · generate
+- 2026-09-11 lessons/lesson-spec-then-items-unchecked-against-ledger-lines created · raw/2026-09-11/ledger.md#L73 · generate
+- 2026-09-11 insights/insight-librarian-frame-omits-required-reads created · raw/2026-09-10/ledger.md#L132 · generate
+- 2026-09-11 lessons/lesson-librarian-reads-beyond-the-four-inputs updated: clustered by librarian: the frame omits reads the work needs, with lesson-frame-read-clauses-omit-candidate-check-and-brief · raw/2026-09-10/ledger.md#L132 · generate
+- 2026-09-11 lessons/lesson-frame-read-clauses-omit-candidate-check-and-brief updated: clustered by librarian: the frame omits reads the work needs, with lesson-librarian-reads-beyond-the-four-inputs · raw/2026-09-10/ledger.md#L132 · generate
+- 2026-09-11 insights/insight-tests-clock-not-pinned created · raw/2026-09-11/ledger.md#L71 · generate
+- 2026-09-11 lessons/lesson-tests-cli-date-pinned updated: clustered by librarian: a test reads the real clock, with lesson-tests-generate-history-date-unpinned · raw/2026-09-11/ledger.md#L71 · generate
+- 2026-09-11 lessons/lesson-tests-generate-history-date-unpinned updated: clustered by librarian: a test reads the real clock, with lesson-tests-cli-date-pinned · raw/2026-09-11/ledger.md#L71 · generate
+- 2026-09-11 rules/rule-materialize status: built → draft · cascade · generate
+- 2026-09-11 rules/rule-page-generation status: built → draft · cascade · generate
+- 2026-09-11 rules/rule-retro status: built → draft · cascade · generate
+- 2026-09-11 rules/rule-spec-capture status: built → draft · cascade · generate
+- 2026-09-11 estimates/estimate-agents-at-import-not-expanded archived · cleanup
+- 2026-09-11 estimates/estimate-agents-loaded-at-session-start archived · cleanup
+- 2026-09-11 estimates/estimate-agents-visible-in-session archived · cleanup
+- 2026-09-11 estimates/estimate-estimates-criterion-stale-after-contract-change archived · cleanup
+- 2026-09-11 estimates/estimate-generate-dates-history-by-run archived · cleanup
+- 2026-09-11 estimates/estimate-generate-log-written-last archived · cleanup
+- 2026-09-11 estimates/estimate-generate-logs-per-entry archived · cleanup
+- 2026-09-11 estimates/estimate-generate-passes-delete-outside-vault archived · cleanup
+- 2026-09-11 estimates/estimate-generate-rejects-shape-alone archived · cleanup
+- 2026-09-11 estimates/estimate-generate-replace-mapping-crashes archived · cleanup
+- 2026-09-11 estimates/estimate-generate-walk-history-dated-by-yaml archived · cleanup
+- 2026-09-11 estimates/estimate-hooks-exitplanmode-payload archived · cleanup
+- 2026-09-11 estimates/estimate-hooks-messagedisplay-cannot-block archived · cleanup
+- 2026-09-11 estimates/estimate-hooks-sessionstart-cannot-block archived · cleanup
+- 2026-09-11 estimates/estimate-hooks-stop-payload archived · cleanup
+- 2026-09-11 estimates/estimate-hooks-windows-stdin-encoding archived · cleanup
+- 2026-09-11 estimates/estimate-ledger-hook-misses-a-reply-ending-in-a-tool-call archived · cleanup
+- 2026-09-11 estimates/estimate-librarian-reads-beyond-the-four-inputs archived · cleanup
+- 2026-09-11 estimates/estimate-materialize-assumes-every-entry-has-a-line archived · cleanup
+- 2026-09-11 estimates/estimate-readings-after-librarian-invisible-to-next-hi archived · cleanup
+- 2026-09-11 estimates/estimate-tests-cli-date-pinned archived · cleanup
+- 2026-09-11 rules/rule-page-generation estimate estimate-generate-rejects-shape-alone archived · cleanup
+- 2026-09-11 rules/rule-page-generation estimate estimate-generate-logs-per-entry archived · cleanup
+- 2026-09-11 rules/rule-page-generation estimate estimate-generate-dates-history-by-run archived · cleanup
+- 2026-09-11 rules/rule-page-generation estimate estimate-generate-passes-delete-outside-vault archived · cleanup

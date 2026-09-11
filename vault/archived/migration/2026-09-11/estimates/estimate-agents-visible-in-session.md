@@ -1,0 +1,28 @@
+---
+type: estimate
+kind: Research
+status: archived
+target: lesson-agents-visible-in-session
+origin: raw/2026-09-10/ledger.md#L80
+sprint: migration
+created: 2026-09-10
+tags: [harness, hooks]
+---
+
+## Context
+
+The paired Estimate of [[lesson-agents-visible-in-session]], a `knowledge` lesson.
+
+## Criterion
+
+The claim in Root cause holds when read live.
+
+## Method
+
+One live reading by hand, recorded in the estimate line.
+
+## History
+
+- 2026-09-10 created · raw/2026-09-10/ledger.md#L80
+- 2026-09-11 deleted · [[decision-case-53.1]]
+- 2026-09-11 archived · cleanup

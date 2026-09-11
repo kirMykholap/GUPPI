@@ -15,7 +15,7 @@ rule-index: Prevents a pre-task check from reading every page of a category to l
 rule-index-check: Prevents a page from being born twice under two names
 rule-internal-context: Prevents work starting without the current sprint and the previous session's handover
 rule-ledger-tail: Shows at /hi every ledger line that no vault page holds yet, so a reading or a lesson written after the librarian's commit reaches the next session's Frontier · deferred_by: decision-case-45
-rule-ledger-write: Prevents a ratified line from existing only in a chat reply, or landing in a session no /hi opened · deferred_by: decision-case-51
+rule-ledger-write: Prevents a ratified line from existing only in a chat reply, or landing in a session no /hi opened
 rule-lint: Prevents a page that breaks the schema, points nowhere, or claims a status its Estimates do not support from sitting in the vault unnoticed
 rule-materialize: Prevents the librarian from reading the ledger and the Spec itself, or from routing a decision by guesswork
 rule-page-generation: Prevents a ratified decision from ending the session without a page, or a page from carrying a field nobody ratified
@@ -23,7 +23,7 @@ rule-plan-mode: Prevents work being planned against stale or contradictory vault
 rule-pretask: Prevents a set of ratified decisions from reaching the Spec with a contradiction between them or with the vault
 rule-pretask-hook: Prevents a Spec from being approved before its decisions were checked against each other and the vault
 rule-render-harness: Prevents a Rule page and the harness file it governs from becoming two copies of one text
-rule-retro: Prevents a session from closing on work nobody reviewed, or on a change that traces to no decision · deferred_by: decision-case-50
+rule-retro: Prevents a session from closing on work nobody reviewed, or on a change that traces to no decision
 rule-retro-commit: Prevents the handoff from starting on an uncommitted tree
 rule-session-start: Prevents a working session from starting against unknown state
 rule-skill-hi: Prevents a session from being loaded piecemeal by read-tool calls

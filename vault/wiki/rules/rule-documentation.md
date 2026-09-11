@@ -40,12 +40,14 @@ through the scripts named below. You decide one thing: whether a `create` is a
 duplicate. Everything else you flag. You never stop to ask: the person is gone.
 
 Your inputs are four: `vault/raw/<today>/handoff.md`, every `materialize.yaml`
-that `guppi materialize` names on its stdout, the five `vault/wiki/<category>-index.md`
-files, and `vault/wiki/tags.md`. Open a page under `vault/wiki/` in three cases only:
-an index line does not tell you whether a create is the same page or a near one; you
-write an Insight and need the Trigger and Root cause of its lessons; a script names a
-page in an error and you say why it failed. Name every page you open in the report,
-with the reason. Never read `ledger.md`, `spec.md`, `plan.md`, `wiki/decisions/`,
+that `guppi materialize` names on its stdout, the four `vault/wiki/<category>-index.md`
+files, and `vault/wiki/tags.md`. Open a page under `vault/wiki/` for four reasons only:
+an index line does not tell you whether a create is the same page or a near one; an
+index line does not tell you whether a lesson shares its root cause with another lesson
+or an Insight, whether or not you then write one; a script names a page in an error
+and you say why it failed; the brief needs a fact no input carries — the status of an
+Estimate, the severity of an Insight. Name every page you open in the report, with
+the reason and the outcome. Never read `ledger.md`, `spec.md`, `plan.md`, `wiki/decisions/`,
 `vault/archived/`, or any file under `guppi/` or `tests/`: what the scripts do with
 the yaml is written here. Edit the yaml only as the index check and the synthesis
 say; an entry a script rejects stays as it is and is a flag in the report, never a
@@ -105,3 +107,4 @@ project's hooks; the hook is part of this Render and is ratified with it.
 - 2026-09-10 estimate estimate-documentation-completes added · raw/2026-09-10/ledger.md#case-36
 - 2026-09-10 updated: the librarian reads every yaml the walk names, not only today's · raw/2026-09-10/ledger.md#case-43
 - 2026-09-10 updated: four inputs; a wiki page in three named cases, each named in the report; session artifacts, the archive and code never; the yaml edited only by the marks; the marks described · raw/2026-09-10/ledger.md#case-44
+- 2026-09-11 updated: four indexes; four reasons to open a page, each by the question asked, named with reason and outcome · [[decision-case-54]]

@@ -24,9 +24,7 @@ avoids a page created and merged in the same session.
 ## Render
 
 <!-- rule-index-check -->
-Index check. Do what `handoff.md` asks first. Then, for each `create` entry in
-`materialize.yaml`, compare its `purpose` (`criterion` for an estimate, `root_cause`
-for a lesson) with every line of `vault/wiki/<category>-index.md` of the same
+Index check. Do what `handoff.md` asks first. Then, for each `create` entry in `materialize.yaml` other than an estimate — an Estimate is born with its Leaf and has no index — compare its `purpose` (`root_cause` for a lesson) with every line of `vault/wiki/<category>-index.md` of the same
 category. Compare meanings, not words. Never compare across categories.
 - The same thing already has a page: change the entry to `kind: update` of that
   slug, add `change: "merged by librarian: <why>"` and `librarian: merged`. Keep
@@ -49,3 +47,4 @@ When the index line does not settle same or near, open the page and name it in t
 - 2026-09-10 estimate estimate-index-check-merges added · raw/2026-09-10/ledger.md#case-35.1
 - 2026-09-10 updated: the read is for same-or-near only and is named in the report · raw/2026-09-10/ledger.md#case-44
 - 2026-09-10 status: draft → built · cascade
+- 2026-09-11 updated: estimate creates are not compared; four categories · [[decision-case-53.4]]

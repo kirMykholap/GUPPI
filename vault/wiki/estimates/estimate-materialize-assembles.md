@@ -1,7 +1,7 @@
 ---
 type: estimate
 kind: QA
-status: passed
+status: pending
 target: rule-materialize
 origin: raw/2026-09-10/ledger.md#case-31
 sprint: migration
@@ -26,8 +26,7 @@ superseded entry carries superseded_by; the first estimate line is folded into i
 create, the second is an estimate entry; the lesson entry carries root_cause and
 origin #L<n>; the unparsable line is under unparsed; a create without a then block
 is marked incomplete, a create whose page exists is marked exists; a Rule-class slug
-routes to file with its path; one decision entry per Case carries case_text and
-targets. An existing yaml gains only the entries of ledger lines it does not hold,
+routes to file with its path; one decision entry per Case carries case_text and targets, and is marked incomplete for a missing given or when only when a kind other than defer is among its lines; a standalone estimate create with ref carries context, criterion and method as sections, as the nested one does. An existing yaml gains only the entries of ledger lines it does not hold,
 keeps its edited and applied entries, reports a text mismatch, gains superseded_by
 from a later supersedes, and turns an estimate line for an applied create into an
 estimate entry. Live: --date 2026-09-09 over the 85-line ledger yields no unparsed
@@ -46,3 +45,4 @@ tests/test_materialize.py 12 green; live 2026-09-10: 67 entries (update 34, crea
 - 2026-09-10 created · raw/2026-09-10/ledger.md#case-31
 - 2026-09-10 updated: criterion: an existing yaml gains only the entries of ledger lines it does not hold (the Criterion of case 31 already carries it) · raw/2026-09-10/ledger.md#case-41
 - 2026-09-10 status: pending → passed · raw/2026-09-10/ledger.md#L70
+- 2026-09-11 updated: criterion: the standalone estimate create maps to sections; the incomplete rule for a defer-only Case (case 56) · [[decision-case-53.3]]

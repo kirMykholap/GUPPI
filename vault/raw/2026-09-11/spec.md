@@ -490,6 +490,12 @@ update:
       - old: "one decision entry per Case carries case_text and targets."
         new: "one decision entry per Case carries case_text and targets, and is marked incomplete for a missing given or when only when a kind other than defer is among its lines; a standalone estimate create with ref carries context, criterion and method as sections, as the nested one does."
     change: "criterion: the standalone estimate create maps to sections; the incomplete rule for a defer-only Case (case 56)"
+  - slug: estimate-generate-writes
+    set: {status: pending}
+    replace:
+      - old: "Applied entries are marked and a rerun writes nothing;"
+        new: "Applied entries are marked, a stale failed mark left by an earlier run is dropped on apply, and a rerun writes nothing;"
+    change: "criterion: a stale failed mark is dropped on apply (case 53.3)"
 ```
 
 ### Case 53.4 — No `estimates-index.md`
@@ -636,6 +642,21 @@ update:
 
 > **ratification:** ratified 2026-09-11.
 
+```then
+update:
+  - slug: rule-ledger-write
+    replace:
+      - old: "**Checks the event log first.** The session is a working one when a `hi` line follows a\n`session-start` line of this session's id, with no other session's start in between."
+        new: "**Checks the event log first.** The log it reads is `raw/<date>/event_log.md` of every\ndate from today back to the first that holds a `session-start` of this session, joined in\ndate order; a session that crosses midnight keeps its window. The session is a working one\nwhen a `hi` line follows a `session-start` line of this session's id, with no other\nsession's start in between."
+    change: "the hi window spans the dates of the session: the event logs back to its start are joined"
+  - slug: estimate-ledger-write-lifts
+    set: {status: pending}
+    replace:
+      - old: "In a\nlive session, the last lines of this slice reach `raw/2026-09-09/ledger.md` written by the\nhook, not by hand."
+        new: "With the `session-start` and the `hi` in yesterday's event log and only `tool` lines\nin today's, the lines are written into today's ledger. In a\nlive session, the last lines of this slice reach `raw/2026-09-09/ledger.md` written by the\nhook, not by hand."
+    change: "the midnight window added to the criterion; pending until the reading"
+```
+
 ### Case 55.2 — The `Stop` hook reads the whole session back
 
 > **when:**
@@ -655,8 +676,6 @@ update:
 update:
   - slug: rule-ledger-write
     replace:
-      - old: "**Checks the event log first.** The session is a working one when a `hi` line follows a\n`session-start` line of this session's id, with no other session's start in between."
-        new: "**Checks the event log first.** The log it reads is `raw/<date>/event_log.md` of every\ndate from today back to the first that holds a `session-start` of this session, joined in\ndate order; a session that crosses midnight keeps its window. The session is a working one\nwhen a `hi` line follows a `session-start` line of this session's id, with no other\nsession's start in between."
       - old: "Reads the reply that just finished, finds every line that starts\nwith `- decision[`, `- estimate[` or `- lesson[` **inside a fenced block opened with the\n`LEDGER` tag**"
         new: "Reads every assistant message of this session from `transcript_path`, in order,\nfalling back to the reply that just finished (`last_assistant_message`) when the\ntranscript is absent or unreadable, and finds every line that starts with `- decision[`,\n`- estimate[` or `- lesson[` **inside a fenced block opened with the `LEDGER` tag**"
       - old: "A line whose text is already in today's ledger"
@@ -665,9 +684,9 @@ update:
   - slug: estimate-ledger-write-lifts
     set: {status: pending}
     replace:
-      - old: "In a\nlive session, the last lines of this slice reach `raw/2026-09-09/ledger.md` written by the\nhook, not by hand."
-        new: "With the `session-start` and the `hi` in yesterday's event log and only `tool` lines\nin today's, the lines are written into today's ledger. A reply carrying a `LEDGER` block\nthat ends in `/pre-task` reaches the ledger once, at the next `Stop` of the session. In a\nlive session, the last lines of this slice reach `raw/2026-09-09/ledger.md` written by the\nhook, not by hand; the two new clauses are read live in session H."
-    change: "the midnight window and the transcript read-back added to the criterion; pending until the live reading"
+      - old: "the lines are written into today's ledger. In a\nlive session,"
+        new: "the lines are written into today's ledger. A reply carrying a `LEDGER` block\nthat ends in `/pre-task` reaches the ledger once, at the next `Stop` of the session. In a\nlive session,"
+    change: "the transcript read-back added to the criterion; pending until the live reading"
 ```
 
 ## Case 56 — Retro is an analysis: a frontier, then lessons, readings and short defers

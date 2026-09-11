@@ -7,6 +7,7 @@ enforcement: hook
 implementation_ref: [guppi/ledger.py, .claude/settings.json]
 parent: rule-session-start
 estimates: [estimate-ledger-write-lifts]
+deferred_by: [decision-case-51]
 origin: raw/2026-09-09/ledger.md#case-10
 sprint: migration
 created: 2026-09-09
@@ -74,3 +75,4 @@ the implementation arrives in the session after the probe (Slice 1, session B).
 - 2026-09-09 updated: compact and resume of the same session keep the hi window open · raw/2026-09-09/ledger.md#case-14
 - 2026-09-10 status: draft → built · cascade
 - 2026-09-10 deferred · raw/2026-09-10/ledger.md#case-51
+- 2026-09-11 deferred_by decision-case-51 set · [[decision-case-52.3]]

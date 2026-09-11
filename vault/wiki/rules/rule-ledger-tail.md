@@ -2,6 +2,7 @@
 type: rule
 purpose: Shows at /hi every ledger line that no vault page holds yet, so a reading or a lesson written after the librarian's commit reaches the next session's Frontier
 status: draft
+deferred_by: [decision-case-45]
 origin: raw/2026-09-10/ledger.md#case-45
 sprint: migration
 created: 2026-09-10
@@ -14,3 +15,4 @@ Shows at /hi every ledger line that no vault page holds yet, so a reading or a l
 ## History
 
 - 2026-09-10 deferred, placeholder · raw/2026-09-10/ledger.md#case-45
+- 2026-09-11 deferred_by decision-case-45 set · [[decision-case-52.3]]

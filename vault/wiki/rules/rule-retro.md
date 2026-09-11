@@ -8,6 +8,7 @@ governs: .claude/skills/retro/SKILL.md
 render_mode: full
 parent: rule-end-of-work
 estimates: [estimate-retro-loads]
+deferred_by: [decision-case-50]
 origin: raw/2026-09-10/ledger.md#case-38.1
 sprint: migration
 created: 2026-09-10
@@ -67,3 +68,4 @@ got done; what did not. When the person approves, commit (`make style` clean,
 - 2026-09-10 updated: Retro ends with the commit, then /handoff (the Render of case 38.1 already carries it) · raw/2026-09-10/ledger.md#case-40
 - 2026-09-10 deferred · raw/2026-09-10/ledger.md#case-50
 - 2026-09-10 status: draft → built · cascade
+- 2026-09-11 deferred_by decision-case-50 set · [[decision-case-52.3]]

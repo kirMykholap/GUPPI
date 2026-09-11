@@ -2,11 +2,8 @@
 type: decision
 case: "34"
 status: current
-targets:
-  - {kind: update, category: file, slug: case-schema, path: vault/wiki/case-schema.md}
-  - {kind: update, category: rules, slug: rule-case-protocol}
-  - {kind: update, category: file, slug: index, path: vault/wiki/index.md}
-  - {kind: update, category: file, slug: glossary, path: vault/wiki/glossary.md}
+kind: [update, update, update, update]
+target_slug: [case-schema, rule-case-protocol, index, glossary]
 supersedes: [decision-case-30]
 origin: raw/2026-09-10/ledger.md#case-34
 sprint: migration
@@ -18,19 +15,23 @@ tags: [session, workflow, ledger]
 
 Case стал тяжёлым. Новый формат должен лечь в `case-schema.md`, Render `rule-case-protocol` и грамматику ledger.
 
-## Now
+## Problem
+
+Формат живёт только в чате.
+
+## Given
 
 `case-schema.md`: шесть секций, `then` несёт страницу целиком.
 **＋** `index.md` §4: грамматика без тегов.
 **－** Про операнды и простой язык не говорит ни один файл.
 
-## Problem
-
-Формат живёт только в чате.
-
-## Then
+## When
 
 Агент пишет Case. Хук `Stop` читает ответ. `guppi materialize` читает Spec.
+
+## Note
+
+The `then` of the Case, as ratified:
 
 Case состоит из семи цитат. Имя блока с двоеточием.
 **＋** Строки given, when, then после первой начинаются с **＋** или **－**.
@@ -42,3 +43,4 @@ Case состоит из семи цитат. Имя блока с двоето�
 ## History
 
 - 2026-09-10 created · raw/2026-09-10/ledger.md#case-34
+- 2026-09-11 migrated: targets to kind and target_slug, Now to Given, Then to When · [[decision-case-52.1]]

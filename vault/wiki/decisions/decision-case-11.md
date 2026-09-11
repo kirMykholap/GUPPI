@@ -2,22 +2,15 @@
 type: decision
 case: "11"
 status: current
-targets:
-  - {kind: create, category: rules, slug: rule-skill-hi, ref: rule-session-start}
-  - {kind: create, category: estimates, slug: estimate-hi-no-read-calls, ref: rule-skill-hi}
-  - {kind: create, category: rules, slug: rule-internal-context, ref: rule-skill-hi}
-  - {kind: create, category: estimates, slug: estimate-internal-context-loaded, ref: rule-internal-context}
-  - {kind: create, category: rules, slug: rule-git-context, ref: rule-skill-hi}
-  - {kind: create, category: estimates, slug: estimate-git-context-current, ref: rule-git-context}
-  - {kind: create, category: rules, slug: rule-github-issues, ref: rule-skill-hi}
-  - {kind: create, category: estimates, slug: estimate-github-issues-listed, ref: rule-github-issues}
+kind: [create, create, create, create, create, create, create, create]
+target_slug: [rule-skill-hi, estimate-hi-no-read-calls, rule-internal-context, estimate-internal-context-loaded, rule-git-context, estimate-git-context-current, rule-github-issues, estimate-github-issues-listed]
 origin: raw/2026-09-09/ledger.md#case-11
 sprint: migration
 created: 2026-09-09
 tags: [session, harness, git, github]
 ---
 
-## Then
+## When
 
 **context.** `/hi` открывает рабочую сессию. Bash-подстановки в теле скилла исполняются
 до первого хода агента, поэтому sprint, brief, git-состояние и issues просто присутствуют
@@ -193,3 +186,4 @@ Ledger:
 ## History
 
 - 2026-09-09 created · raw/2026-09-09/ledger.md#case-11
+- 2026-09-11 migrated: targets to kind and target_slug, Now to Given, Then to When · [[decision-case-52.1]]

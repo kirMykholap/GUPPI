@@ -26,8 +26,8 @@ page (`draft` while in `docs/migration/`), `here` this row. Rule-class; imported
 |---|---|---|
 | Entity | The thing that gets built; MOC or Leaf; a Leaf carries `code_ref` | entities/schema.md |
 | Rule | How the work happens; force by `hook`, `check` or `render`; needs an Estimate | rules/schema.md |
-| Estimate | How a behaviour was checked and the outcome; its own Leaf page; `QA` checks a known criterion, `Research` finds out | estimates/schema.md |
-| Lesson | Something learned; a fact the hook writes, no Case; slug = area + cause. `error`'s Estimate is born `passed`; `knowledge` needs its Research Estimate passed before an Insight builds on it | lessons/schema.md |
+| Estimate | How a behaviour was checked and the outcome; its own Leaf page under an Entity or Rule only; `QA` checks a known criterion, `Research` finds out; a contract change updates its criterion, never spawns a page; no index, reached through the target's `estimates` | estimates/schema.md, §7, §11 |
+| Lesson | Something learned; a fact the hook writes, no Case, no Estimate; slug = area + cause; a `knowledge` claim is checked by the Rule that leans on it | lessons/schema.md, §8 |
 | Insight | Over Lessons sharing a root cause, made by the librarian on the second; never a Decision target; `actioned` reopens | insights/schema.md, §8 |
 | Issue | Tracked on GitHub; never a page, a `ref` only | here |
 
@@ -36,6 +36,7 @@ page (`draft` while in `docs/migration/`), `here` this row. Rule-class; imported
 | term | meaning | where |
 |---|---|---|
 | Page fields | `type` the kind; `purpose` one line the index is built from; `children` MOC only, ordered on a Rule; `estimates` cross-cutting on a MOC; `code_ref` (Entity Leaf), `implementation_ref` (`hook`, `check` rules) | schema.md |
+| `deferred_by` | On an Entity or Rule, the Decision pages whose `defer` targets it; set by `generate`, cleared by a `supersedes`, shown in the index line, followed by `ask-guppi` | §5, §11, rules/schema.md |
 | `origin` | The Decision that created or deleted the page; kept when archived; `#case-N` is a grep target lint checks | §4 |
 | Category fields | Estimate: `criterion`, `method`, `result`. Lesson: `trigger`, `root_cause`, `source` (in a ledger line, the external origin). Insight: `severity` (children not archived), `addressed_by` | schema.md |
 | `ref`, `slug`, `supersedes` | A pointer to an existing page (absent: query the vault before a `create`; present: `update`); the page id = filename; the earlier case a ledger line corrects | §3, §4, §5 |
@@ -56,7 +57,7 @@ page (`draft` while in `docs/migration/`), `here` this row. Rule-class; imported
 | Decision | The atomic unit of work: `create`, `update`, `delete`, `defer`; Read is never one | §3 |
 | Types | `create` a page (a Leaf brings a paired Estimate `create`); `update` fields, `result`/`status` included; `delete` sets `status: deleted` after an impact analysis, the librarian archives; `defer` postpones, a placeholder page when no `ref` | §3, §5 |
 | Delegate | The agent deciding without ratification; rejected, parked | here |
-| Routing Table, Decision page | (type × `ref` × category) to vault action, mechanical; one page per Case in `wiki/decisions/`, slug `decision-case-<N>`, `targets` per ledger line, never indexed, never opened by `ask-guppi` unless asked why | §5, §11 |
+| Routing Table, Decision page | (type × `ref` × category) to vault action, mechanical; one page per Case in `wiki/decisions/`, slug `decision-case-<N>`, `kind` and `target_slug` aligned by position, body Context, Problem, Given, When; never indexed, reached through `deferred_by`, a History wikilink or `origin` | §5, §11, decisions/schema.md |
 
 ## Session
 
@@ -70,8 +71,8 @@ page (`draft` while in `docs/migration/`), `here` this row. Rule-class; imported
 | Ledger, Event log | The record of decisions (routing only), estimates and lessons (with text), written by the `Stop` hook; the gitignored log of tool calls and commits, written by hooks | §4, rule-ledger-write, rule-event-log |
 | Spec | The ratified Cases as one document, approved as Claude Code's plan, copied to `raw/<date>/spec.md` | rule-spec-capture |
 | Executable plan, Work Mode | The Spec as tasks with code, paths, checkboxes; subagents transcribe, a fork comes back as a Case | rule-work-mode (draft) |
-| Retro, Handoff | `/retro`: review of this session only, edits only finish ratified work, bugs become `lesson[error]`, ends with a commit; `/handoff`, gated by `guppi gate` on a dirty tree: `handoff.md` from memory, then the librarian | rule-end-of-work |
-| Index, `ask-guppi` | `wiki/<category>-index.md`, one line per live page, never compared across categories; the search agent over them, one entry point | §11, rule-index, rule-ask |
+| Retro, Handoff | `/retro`: an analysis of this session only — the frontier first, then every item ends as a lesson, a reading, a short defer (a Case of `context`, `problem`, `purpose` under `## Retro` in the Spec) or a handoff note; edits only finish ratified work; red tests are fixed or reverted into a patch in `raw/`; ends with a commit. `/handoff`, gated by `guppi gate` on a dirty tree: `handoff.md` from memory, then the librarian | rule-end-of-work, rule-retro |
+| Index, `ask-guppi` | `wiki/<category>-index.md` for entities, rules, lessons, insights, one line per live page, never compared across categories; the search agent over them, one entry point; Estimates through the target, Decisions through `deferred_by` | §11, rule-index, rule-ask |
 | Documentation | The librarian's phase, the agent `librarian-guppi`: materialize, index check, synthesis, generate, cleanup, brief, close | rule-documentation |
 
 ## Agents and machinery
@@ -83,7 +84,7 @@ page (`draft` while in `docs/migration/`), `here` this row. Rule-class; imported
 | Scripts | Page generation (fills `origin`, `slug`, `status`); cleanup (moves `archived` pages); lint (refs, schema, statuses, orphans); renderer (Rule body into the file it governs) | rule-lint, rule-render-harness |
 | Working files | `log.md` and page `History`, the feed of page changes by hook; `raw/`, session artifacts by date; `tags.md`, ratified tags with Russian aliases | §1 |
 | Rule-class files | `index.md`, `glossary.md`, `case-schema.md`, every schema; change only by ratified `update` | §1 |
-| Harness, Hook | Hooks, agents, skills rendered from `rules/` pages; a hook is an event-triggered script behind a Rule page, the ledger writer on `Stop`, which sees the reply and can block | §9, rule-ledger-write |
+| Harness, Hook | Hooks, agents, skills rendered from `rules/` pages; a hook is an event-triggered script behind a Rule page, the ledger writer on `Stop`, which reads the session's transcript back, keeps its `hi` window across midnight, and can block | §9, rule-ledger-write |
 | `CLAUDE.md`, `index.md` | The system prompt: `@path` expands this file and `case-schema.md` inline, and points at the sections of the map — layout, routing, ledger, splitting, librarian — read one at a time | CLAUDE.md |
 
 ## Retired terms

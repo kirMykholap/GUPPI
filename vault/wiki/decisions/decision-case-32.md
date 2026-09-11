@@ -2,10 +2,8 @@
 type: decision
 case: "32"
 status: current
-targets:
-  - {kind: create, category: rules, slug: rule-page-generation, ref: rule-documentation}
-  - {kind: create, category: estimates, slug: estimate-generate-writes, ref: rule-page-generation}
-  - {kind: update, category: file, slug: lessons-schema, path: vault/wiki/lessons/schema.md}
+kind: [create, create, update]
+target_slug: [rule-page-generation, estimate-generate-writes, lessons-schema]
 origin: raw/2026-09-10/ledger.md#case-32
 sprint: migration
 created: 2026-09-10
@@ -16,20 +14,24 @@ tags: [harness, workflow, ledger]
 
 Единственный писатель в `wiki/`. Пишет страницы, обратные ссылки, History, `log.md`, теги, считает `built`.
 
-## Now
+## Problem
+
+Что скрипт выводит механически, какими шаблонами, как ведёт себя при ошибке и повторе.
+
+## Given
 
 Черновик: коллизия — ошибка; страница создаётся всегда; `origin`, `status`, `parent`, `children`, backlinks — производные.
 **＋** У Estimate нет статуса `archived`, хотя схема уроков велит архивировать Estimate error-урока. Статуса `deleted` нет ни в одной `schema.yaml`.
 **＋** `sprint` — первый заголовок `## <id>` в `sprint.md`.
 **－** Все 34 страницы и `log.md` написаны руками.
 
-## Problem
-
-Что скрипт выводит механически, какими шаблонами, как ведёт себя при ошибке и повторе.
-
-## Then
+## When
 
 Librarian или главный агент запускает `uv run guppi generate`.
+
+## Note
+
+The `then` of the Case, as ratified:
 
 `create` даёт страницу с полями записи и производными: начальный статус по категории, `origin`, `sprint`, `created`, `parent` из `ref`, `target` из `ref`. Секции в порядке схемы. Первая строка History.
 **＋** Родитель получает `children += slug` в конец, цель Estimate — `estimates += slug`; их секции пересобраны, у них строка History.
@@ -45,3 +47,4 @@ Librarian или главный агент запускает `uv run guppi gene
 ## History
 
 - 2026-09-10 created · raw/2026-09-10/ledger.md#case-32
+- 2026-09-11 migrated: targets to kind and target_slug, Now to Given, Then to When · [[decision-case-52.1]]

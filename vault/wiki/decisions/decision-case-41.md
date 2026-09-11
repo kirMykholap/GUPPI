@@ -2,9 +2,8 @@
 type: decision
 case: "41"
 status: current
-targets:
-  - {kind: update, category: rules, slug: rule-materialize}
-  - {kind: update, category: estimates, slug: estimate-materialize-assembles}
+kind: [update, update]
+target_slug: [rule-materialize, estimate-materialize-assembles]
 supersedes: [decision-case-31]
 origin: raw/2026-09-10/ledger.md#case-41
 sprint: migration
@@ -16,19 +15,23 @@ tags: [harness, workflow, ledger]
 
 Один ledger материализуется в два приёма.
 
-## Now
+## Problem
+
+Отказ теряет поздние строки и ломает второй запуск.
+
+## Given
 
 Case 31: «yaml уже есть — exit 1».
 **＋** Каждая запись несёт `line`. `generate` помечает `applied`.
 **－** В этой сессии скрипты бегут по сегодняшнему ledger дважды.
 
-## Problem
-
-Отказ теряет поздние строки и ломает второй запуск.
-
-## Then
+## When
 
 `uv run guppi materialize` при существующем `materialize.yaml`.
+
+## Note
+
+The `then` of the Case, as ratified:
 
 Записи с известным `line` остаются как были.
 **＋** Новые строки ledger — новые записи в конце.
@@ -41,3 +44,4 @@ Case 31: «yaml уже есть — exit 1».
 ## History
 
 - 2026-09-10 created · raw/2026-09-10/ledger.md#case-41
+- 2026-09-11 migrated: targets to kind and target_slug, Now to Given, Then to When · [[decision-case-52.1]]

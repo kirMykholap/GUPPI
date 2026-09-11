@@ -2162,3 +2162,185 @@ update:
 ## Отложено — в бриф
 
 Slice 3b Work Mode (2), `/grill-me` (5), upstream `origin` (5), `gh` (5), `parked/` и старый `archive/` (4), архив в `ask-guppi` (2), Case 45 → Slice 3c (1). Insight `insight-harness-agent-visibility` остаётся `open` без Case.
+
+---
+
+<!-- copied by hand 2026-09-11 · session 3893518e: Case 52 was ratified on 2026-09-10 (ledger 20:50:18) and approved in the Spec of 2026-09-11 -->
+
+## Case 52 — Decision page: fields, body, defer, the loop back from the target
+
+> **context:**
+> Decision-страница сегодня — журнал по Case: `targets` списком объектов, тело из четырёх секций старой формы Case, пустое у defer с Retro. Цель defer не знает, что по ней что-то отложено; её History указывает на строку ledger, не на решение.
+
+> **problem:**
+> Форма полей Decision и тела; откуда у Retro-Case берётся текст; поле `deferred_by` на цели и его путь через индекс в ask; History и порядок записи.
+
+> **recommend:**
+> Четыре sub-cases. Все `update`; 65 существующих Decision-страниц переписывает скрипт под 52.1.
+
+> **given:**
+> `decisions/schema.yaml`: required `targets`, body `## Context`, `## Now`, `## Problem`, `## Then`, `## History`.
+> **＋** `generate.py`: entries applied (line 629) before decision pages (line 662). History `<action> · <origin>`.
+> **＋** `materialize.py`: `case_text` from `## Case N` in `spec.md`; Retro Cases never reach the Spec; Cases 50, 51 `incomplete`.
+> **＋** `rules/schema.yaml`, `entities/schema.yaml`: no `deferred_by`; `built` computed by the cascade.
+> **＋** `rule-index`: `slug: purpose`. `ask-guppi` never opens `decisions/` unless asked why.
+> **＋** `materialize` marks `superseded_by` on `{supersedes:case N}`.
+> **－** `origin` stays a ledger path until Slice 3c.
+
+### Case 52.1 — Decision fields and body
+
+> **when:**
+> `guppi generate` writes a Decision page; lint checks it; someone reads `decisions/schema.md`.
+
+> **then:**
+> Frontmatter carries two lists aligned by position, one position per ledger line of the Case: `kind: [update, create]`, `target_slug: [rule-x, estimate-y]`. The category is derived from the slug prefix; a Rule-class slug (`case-schema`, `rules-schema-yaml`) names a file.
+> **＋** `targets`, `ref`, `path` go; `source` is a page field, a list, when present.
+> **＋** Body: `## Context`, `## Problem`, `## Given`, `## When`, `## Note` (optional), `## History` last, as on every page. `## Now` and `## Then` go.
+> **＋** Lint checks the two lists have equal length and every vault-category `target_slug` is a page.
+> **＋** A one-off script under this Case rewrites the 65 pages of `decisions/`, History `migrated · [[decision-case-52.1]]`.
+> **－** One page per Case, slug `decision-case-<N>`, unchanged.
+
+> **ratification:** ratified 2026-09-10 with the owner's change: no `target_category`; History stays.
+
+```then
+update:
+  - slug: decisions-schema-yaml
+    file: vault/wiki/decisions/schema.yaml
+    change: "required: type, case, status, kind, target_slug, origin, sprint, created, tags; optional: source, supersedes, superseded_by; kind values create|update|delete|defer per position; body required Context, Problem, Given, When, History; optional Note"
+  - slug: decisions-schema
+    file: vault/wiki/decisions/schema.md
+    change: "the Properties table: targets replaced by kind and target_slug, two lists aligned by position, the category derived from the slug prefix or the Rule-class map; ref and path gone; source optional; Body table: Context, Problem, Given, When, Note; the example rewritten; History stays last"
+  - slug: rule-page-generation
+    replace:
+      - old: "One Decision page per Case, `decisions/decision-case-<N>.md`: `case`, `status: current`, `targets`, `supersedes`, `origin`, `sprint`, `created`, `tags` (the union of the targets' tags); body `Context`, `Now`, `Problem`, `Then` from `case_text` (`given` fills `Now`)."
+        new: "One Decision page per Case, `decisions/decision-case-<N>.md`: `case`, `status: current`, `kind` and `target_slug` (two lists aligned by position, one position per ledger line of the Case; the category is derived from the slug prefix or the Rule-class map, never written), `source` when a line carries one, `supersedes`, `origin`, `sprint`, `created`, `tags` (the union of the targets' tags); body `Context`, `Problem`, `Given`, `When` from `case_text`."
+    change: "a decision page carries kind and target_slug lists and the sections Context, Problem, Given, When from case_text"
+  - slug: rule-lint
+    sections:
+      How it works: |
+        `uv run guppi lint` reads every live page against its category's `schema.yaml`:
+        required fields and sections, legal statuses, `origin` as a grep target in `raw/`,
+        every ref (`parent`, `target`, `children`, `estimates`, `insight`) as an existing page,
+        orphans, a `built` page with an Estimate not `passed`, the two Method classes of
+        case 26.2. A decision page: `kind` and `target_slug` of equal length; every
+        `target_slug` with a category prefix an existing page. It reports and exits 1 on any
+        finding, 0 with no output on a clean vault.
+    change: "the classes listed; decision pages: kind and target_slug of equal length, every vault target_slug an existing page"
+```
+
+### Case 52.2 — A Retro Case reaches the Spec
+
+> **when:**
+> At Retro a Case is ratified or deferred; the agent writes the `LEDGER` block.
+
+> **then:**
+> Before the `LEDGER` block the agent appends the Case to `raw/<date>/spec.md` under `## Retro`, in the same form: `## Case N`, the seven sections, the `then` block. `materialize` finds it like any other.
+> **＋** A defer at Retro is a Case with one-sentence `context`, `problem`, `given`, `when` and a `defer` block with `purpose`; a bare line without a Case is forbidden, `materialize` marks it `incomplete`.
+> **＋** `rule-retro` and `case-schema.md` say so.
+> **－** No hook: writing into `raw/` is the agent's work, like `handoff.md`.
+
+> **ratification:** ratified 2026-09-10.
+
+```then
+update:
+  - slug: rule-retro
+    replace:
+      - old: "Any other change is new scope: write a `- decision[case N][defer][slug]`\nline instead and, when it is a bug, a `- lesson[error][...]` line too."
+        new: "Any other change is new scope: discuss it as a Case, append the Case to\n`vault/raw/<date>/spec.md` under a `## Retro` heading in the form of Plan Mode (the\nseven sections and the `then` block, a `defer` block with `purpose`), then write the\n`- decision[case N][defer][slug]` line and, when it is a bug, a `- lesson[error][...]`\nline too. A defer line without its Case in the Spec is marked incomplete by materialize."
+    change: "a Retro Case is appended to spec.md under ## Retro before its ledger line; a bare defer is forbidden"
+  - slug: case-schema
+    file: vault/wiki/case-schema.md
+    change: "a Case ratified or deferred at Retro is appended by the agent to raw/<date>/spec.md under ## Retro, same form; a defer block carries purpose; every defer has its Case"
+```
+
+### Case 52.3 — `deferred_by` on the target, in the index, in ask
+
+> **when:**
+> `guppi generate` applies a `defer`; `guppi index` builds the index; `ask-guppi` answers about a page carrying the field.
+
+> **then:**
+> Rule and Entity get an optional `deferred_by: [decision slugs]`. `generate` appends the decision slug on a `defer`; a placeholder page is born with it.
+> **＋** A later decision with `{supersedes:case N}` removes `decision-case-N` from the list; an empty list is removed.
+> **＋** Index line: `slug: purpose · deferred_by: decision-case-50`.
+> **＋** `ask-guppi`: when a page in its answer carries `deferred_by`, it opens the named decision and gives its `## Problem` on the `exists` or `near` line. Otherwise `decisions/` stays closed.
+> **＋** Lint: every slug in `deferred_by` is an existing Decision page.
+> **－** The target's `status` does not change; the cascade as before.
+
+> **ratification:** ratified 2026-09-10.
+
+```then
+update:
+  - slug: rules-schema-yaml
+    file: vault/wiki/rules/schema.yaml
+    change: "optional deferred_by: list of decision slugs"
+  - slug: rules-schema
+    file: vault/wiki/rules/schema.md
+    change: "deferred_by row: the Decision pages whose defer targets this page; written and cleared by generate, never by hand"
+  - slug: entities-schema-yaml
+    file: vault/wiki/entities/schema.yaml
+    change: "optional deferred_by: list of decision slugs"
+  - slug: entities-schema
+    file: vault/wiki/entities/schema.md
+    change: "deferred_by row, as for rules"
+  - slug: rule-page-generation
+    replace:
+      - old: "A `defer` with a page appends History `deferred`; without one it writes a placeholder page, `status: draft`, with only the fields the Case gave."
+        new: "A `defer` with a page appends History `deferred` and the decision slug to its `deferred_by`; without one it writes a placeholder page, `status: draft`, with only the fields the Case gave and `deferred_by`."
+      - old: "A `supersedes` sets the earlier page `status: superseded` and appends the new slug to its `superseded_by`."
+        new: "A `supersedes` sets the earlier page `status: superseded`, appends the new slug to its `superseded_by`, and removes the earlier decision's slug from the `deferred_by` of every target it deferred; an empty `deferred_by` is dropped."
+    change: "a defer with a page appends the decision slug to deferred_by; a placeholder is born with it; a supersedes removes the superseded decision from the list"
+  - slug: rule-index
+    replace:
+      - old: "`uv run guppi index` writes `vault/wiki/<category>-index.md` for entities, rules, estimates, lessons and insights;"
+        new: "`uv run guppi index` writes `vault/wiki/<category>-index.md` for entities, rules, estimates, lessons and insights; the line of a page carrying `deferred_by` ends with ` · deferred_by: <slugs>`, so a deferred decision is visible without opening the page;"
+    change: "a line of a page with deferred_by ends with · deferred_by: <slugs>"
+  - slug: rule-ask
+    replace:
+      - old: "Do not open or grep `vault/wiki/decisions/` unless the question asks why something was decided; then reach the Decision through the page's `origin`. Decisions have no index on purpose."
+        new: "Do not open or grep `vault/wiki/decisions/` except for two reasons: a page in your answer carries `deferred_by` — open the decision it names and give its `## Problem` on the `exists` or `near` line, since a deferred decision is something already decided; or the question asks why something was decided — reach the Decision through the page's `origin`. Decisions have no index on purpose."
+    change: "a page with deferred_by in the answer: open the named decision, give its Problem on the exists or near line"
+  - slug: rule-lint
+    replace:
+      - old: "every `target_slug` with a category prefix an existing page."
+        new: "every `target_slug` with a category prefix an existing page; every slug in `deferred_by` an existing decision page."
+    change: "deferred_by: every slug an existing decision page"
+  - slug: index
+    file: vault/wiki/index.md
+    change: "§5 defer rows: existing → deferred_by on the target; §11: a Decision is opened by ask only through deferred_by or origin"
+  - slug: glossary
+    file: vault/wiki/glossary.md
+    change: "deferred_by row under Fields; the Decision row names kind and target_slug"
+```
+
+### Case 52.4 — History names the decision; the decision is written first
+
+> **when:**
+> `guppi generate` applies the yaml of one date.
+
+> **then:**
+> For each Case its Decision page is written first, then the entries of its lines.
+> **＋** History of the targets and `log.md`: `<action> · [[decision-case-N]]`.
+> **＋** Lint checks the wikilink in a History line resolves.
+> **－** A reading or a lesson has no decision: their History stays `· raw/<date>/ledger.md#L<n>` until Slice 3c.
+> **－** `origin` unchanged.
+
+> **ratification:** ratified 2026-09-10.
+
+```then
+update:
+  - slug: rule-page-generation
+    replace:
+      - old: "`uv run guppi generate [--date]` applies the entries of `raw/<date>/materialize.yaml` in order"
+        new: "`uv run guppi generate [--date]` applies the entries of `raw/<date>/materialize.yaml` in order, the Decision page of a Case written before the first entry of its lines,"
+      - old: "History lines: `created`, `updated: <change>`, `status: a → b`, `deleted`, `deferred`, `child <slug> added`, `estimate <slug> added`, each `· <origin>`;"
+        new: "History lines: `created`, `updated: <change>`, `status: a → b`, `deleted`, `deferred`, `child <slug> added`, `estimate <slug> added`, each `· [[decision-case-N]]` when the entry belongs to a Case and `· <origin>` (the ledger pointer) when it is a reading or a lesson;"
+    change: "the decision page of a Case is written before its entries; History and log lines end with · [[decision-case-N]] when a decision exists, else the ledger pointer"
+  - slug: rule-lint
+    replace:
+      - old: "every slug in `deferred_by` an existing decision page."
+        new: "every slug in `deferred_by` an existing decision page; a `[[decision-…]]` wikilink in a History line resolves to a page."
+    change: "a History wikilink resolves to a page"
+  - slug: index
+    file: vault/wiki/index.md
+    change: "§1 History example and §5: History lines name the decision as a wikilink; readings and lessons keep the ledger pointer"
+```

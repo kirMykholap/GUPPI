@@ -2,9 +2,8 @@
 type: decision
 case: "22"
 status: superseded
-targets:
-  - {kind: create, category: rules, slug: rule-index, ref: rule-documentation}
-  - {kind: create, category: estimates, slug: estimate-index-lists, ref: rule-index}
+kind: [create, create]
+target_slug: [rule-index, estimate-index-lists]
 superseded_by: [decision-case-27]
 origin: raw/2026-09-09/ledger.md#case-22
 sprint: migration
@@ -12,7 +11,7 @@ created: 2026-09-09
 tags: [harness, workflow]
 ---
 
-## Then
+## When
 
 ```
 create:
@@ -45,3 +44,4 @@ estimates, lessons, insights: строка `slug: text`, по slug, файл е�
 
 - 2026-09-09 created · raw/2026-09-09/ledger.md#case-22
 - 2026-09-09 superseded by decision-case-27 · raw/2026-09-09/ledger.md#case-27
+- 2026-09-11 migrated: targets to kind and target_slug, Now to Given, Then to When · [[decision-case-52.1]]

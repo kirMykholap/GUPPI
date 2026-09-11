@@ -2,16 +2,15 @@
 type: decision
 case: "18.1"
 status: current
-targets:
-  - {kind: create, category: rules, slug: rule-render-harness, ref: rule-documentation}
-  - {kind: create, category: estimates, slug: estimate-render-harness-reproduces, ref: rule-render-harness}
+kind: [create, create]
+target_slug: [rule-render-harness, estimate-render-harness-reproduces]
 origin: raw/2026-09-09/ledger.md#case-18.1
 sprint: migration
 created: 2026-09-09
 tags: [harness, render]
 ---
 
-## Then
+## When
 
 `uv run guppi render` пишет; `uv run guppi render --check` сравнивает, exit 1, не пишет.
 Маркеры: `partial` оставляет их в файле, `full` пишет тело без внешних маркеров.
@@ -46,3 +45,4 @@ create:
 ## History
 
 - 2026-09-09 created · raw/2026-09-09/ledger.md#case-18.1
+- 2026-09-11 migrated: targets to kind and target_slug, Now to Given, Then to When · [[decision-case-52.1]]

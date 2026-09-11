@@ -2,18 +2,15 @@
 type: decision
 case: "20"
 status: current
-targets:
-  - {kind: create, category: rules, slug: rule-spec-capture, ref: rule-plan-mode}
-  - {kind: create, category: estimates, slug: estimate-spec-capture-appends, ref: rule-spec-capture}
-  - {kind: update, category: rules, slug: rule-plan-mode}
-  - {kind: update, category: rules, slug: rule-hook-registry}
+kind: [create, create, update, update]
+target_slug: [rule-spec-capture, estimate-spec-capture-appends, rule-plan-mode, rule-hook-registry]
 origin: raw/2026-09-09/ledger.md#case-20
 sprint: migration
 created: 2026-09-09
 tags: [session, hooks, harness, workflow, render]
 ---
 
-## Then
+## When
 
 ```
 create:
@@ -44,3 +41,4 @@ update:
 ## History
 
 - 2026-09-09 created · raw/2026-09-09/ledger.md#case-20
+- 2026-09-11 migrated: targets to kind and target_slug, Now to Given, Then to When · [[decision-case-52.1]]

@@ -44,10 +44,9 @@ wiki/
     schema.yaml  schema.md
   entities-index.md  generated: slug → purpose, one line per live page
   rules-index.md     generated
-  estimates-index.md generated: slug → criterion
   lessons-index.md   generated: slug → root_cause
   insights-index.md  generated: slug → pattern
-                     (no decisions-index.md — see §11)
+                     (no decisions-index.md and no estimates-index.md — see §11)
   index.md           routing table, archival rules, the map of the vault
   glossary.md        terms
   case-schema.md     Case structure — imported into CLAUDE.md
@@ -80,13 +79,13 @@ tags: [discounts, pricing]
 
 Body sections vary by category — see each schema.
 The last section is always History, appended by the scripts that write pages (`guppi generate`, `guppi cleanup`):
-2026-09-05 created · raw/2026-09-05/ledger.md#case-3
-2026-09-12 status: draft → built
+2026-09-05 created · [[decision-case-3]]
+2026-09-12 status: draft → built · cascade
 ```
 
 Every page carries `type`, `status`, `origin`, `sprint`, `created` and `tags`. `status` is a flat list per category, never a nested structure.
 
-**`History` is always the last section of a page.** The scripts append one line per change, so the recent history of any page is readable with `tail` — no need to load the page, or `log.md`, into context. `log.md` remains the global feed; `History` is the per-page view.
+**`History` is always the last section of a page.** The scripts append one line per change, so the recent history of any page is readable with `tail` — no need to load the page, or `log.md`, into context. `log.md` remains the global feed; `History` is the per-page view. A line made by a Case ends with the Decision page as a wikilink, `· [[decision-case-N]]`; a reading or a lesson, which has no Decision, ends with the ledger pointer `· raw/<date>/ledger.md#L<n>` (case 52.4).
 
 ### System files are Rule-class
 
@@ -141,7 +140,7 @@ Four types. There are no others.
 
 If the Case has no `ref`, you must query the vault first to confirm nothing already covers this. Put the result in `given`. Only after that may you propose `create`.
 
-**Pre-task is not a name lookup.** It asks the broader question: does this already exist, are there similar cases, what might obstruct this, what contradicts the plan. Estimates count too — a `create` spawns one, and an identical check may already be sitting on another page.
+**Pre-task is not a name lookup.** It asks the broader question: does this already exist, are there similar cases, what might obstruct this, what contradicts the plan. The Estimates of a page whose contract changes are named in `given`, and the Case updates their criterion in the same `then` block (case 53.2); they are reached through the page's `estimates` field, never searched.
 
 **It also returns relevant tags** from `tags.md`. Put them in `then` alongside `purpose` and `criterion`, so the human ratifies the tagging with everything else. If no existing tag fits, propose a new one explicitly — the human sees "a new tag X will be created" and signs or objects. This is why `tags.md` cannot grow uncontrolled: every new tag was ratified, and the librarian only registers what is already signed.
 
@@ -208,7 +207,7 @@ The librarian reads the log as a chain and applies the last link.
 
 ## 5. Routing
 
-**Every ratified Case produces two things**: one page in `wiki/decisions/` (`decision-case-<N>`) recording the decision with one `targets` item per ledger line, and an effect on each target page. The table below describes the second; the first happens unconditionally.
+**Every ratified Case produces two things**: one page in `wiki/decisions/` (`decision-case-<N>`) recording the decision — `kind` and `target_slug`, two lists aligned by position, one position per ledger line (case 52.1) — and an effect on each target page. The table below describes the second; the first happens unconditionally, and is written before the effects so their History lines can name it (case 52.4).
 
 | Decision | `ref` | Effect on the target |
 |---|---|---|
@@ -219,10 +218,10 @@ The librarian reads the log as a chain and applies the last link.
 | `update` | none | **Invalid.** This Case should have been a `create` |
 | `delete` | target | Impact analysis in-case → librarian archives → `origin` preserved |
 | `delete` | none, no category | Outside the vault (a doc, a file): the decision page records it, `generate` marks it applied, nothing to archive |
-| `defer` | existing | Log only; it resurfaces via the next Frontier |
-| `defer` | none | Librarian creates a minimal placeholder page |
+| `defer` | existing | The decision slug is appended to the target's `deferred_by`; the index line shows it, so `ask-guppi` reaches the deferred decision without opening the page (case 52.3) |
+| `defer` | none | Librarian creates a minimal placeholder page, born with `deferred_by` |
 
-Each `targets` item on the decision page names its `category` explicitly; the script derives it from the slug prefix, which pre-task guards, and writes it out so nothing downstream has to infer it.
+The category of a `target_slug` is derived from the slug prefix, which pre-task guards, or from the Rule-class map (`case-schema`, `rules-schema-yaml`); it is never written. The Case that takes up a deferred item writes `{supersedes:case N}` on its line: the earlier decision becomes `superseded` and its slug leaves the target's `deferred_by` (case 52.3).
 
 ---
 
@@ -252,12 +251,14 @@ This is why our own process is described as Rule MOCs — session-start, plan-mo
 
 ## 7. Estimates
 
-Always its own page. Never inline, never composite.
+Always its own page. Never inline, never composite. Its `target` is an Entity or a Rule — a page with a `when` and a `then`; a Lesson or an Insight has no Estimate (case 53.1).
 
 - **QA** — the expected result is known in advance. Check against a stated criterion.
 - **Research** — the result is not known in advance. Investigating produces new content.
 
 Fields: `criterion`, `method`, `result`, `status` (`pending`/`passed`/`failed`), `origin`.
+
+A reading overwrites `Result` and appends a History line; it never makes a page. A Case that changes a page's contract updates the `Criterion` of that page's existing Estimate and sets it `pending`, in the same Case; a new Estimate is made only by the atomicity rule of §6, for a condition that fails and is fixed apart (case 53.2). So the count of Estimates follows the count of Leaf pages, not the count of sessions.
 
 **A `failed` Estimate is debt, not an endpoint.** Its Entity stays `draft` and the librarian surfaces it in `brief.md` until a human decides what to do. The default outcome, absent a decision to fix, is archival — an Entity that cannot pass its own criterion should not sit in the vault pretending to be work in progress.
 
@@ -281,7 +282,7 @@ Two kinds, both flat, both in `wiki/lessons/`:
 
 Write `trigger` and `root_cause` yourself, in the moment, while the context is cheap. For `knowledge`, record `source` too.
 
-**Estimates:** an `error` Lesson gets one created already `passed` — the failure was observed directly, so it is a record that this was verified; Estimates have no `archived` status. A `knowledge` Lesson gets a Research Estimate that must actually reach `passed`; unverified external claims are not usable.
+**No Estimate.** A Lesson is a recorded fact: the trigger is the observation, and nothing about it is checked again. A `knowledge` claim is checked where it is leaned on — by the Estimate of the Rule built on it (case 53.1).
 
 **Slug is area + cause** — `lesson-hooks-sessionstart-cannot-block`. The area groups related lessons in a plain file listing; the cause makes near-duplicates visible before anyone opens the index. Naming by symptom was rejected: unrelated failures often share a symptom, and the symptom is not what clustering compares.
 
@@ -330,7 +331,7 @@ so there is nothing to isolate until there is a plan to execute.
 
 Runs every session, in a clean context. **The only actor that writes to `wiki/`** — everything reaches the vault through the scripts it invokes.
 
-**Reads:** `handoff.md`, `materialize.yaml`, and the category indexes (`<category>-index.md`). That is all. Not `ledger.md`, not `spec.md`, not `plan.md`, not the pages themselves — the yaml is assembled by script and already carries every `purpose`, `criterion` and tag. Raw artifacts are opened only when a script reports a problem.
+**Reads:** four inputs — `handoff.md`, every `materialize.yaml` the walk names, the four category indexes (`<category>-index.md`) and `tags.md`. Not `ledger.md`, not `spec.md`, not `plan.md`, not `wiki/decisions/`, not the archive, not the code — the yaml is assembled by script and already carries every `purpose`, `criterion` and tag. A page under `wiki/` is opened for one of four reasons, each named in the report with its outcome: an index line does not settle same-or-near at the index check; an index line does not settle whether a lesson shares a root cause with another, whether or not an Insight follows; a script names the page in an error; the brief needs a fact no input carries — the status of an Estimate, the severity of an Insight (case 54).
 
 **Does three things:** checks new pages against the indexes, synthesizes Lessons, and writes the brief. Statuses, backlinks and cascades are all script or lint work.
 
@@ -354,7 +355,7 @@ Runs every session, in a clean context. **The only actor that writes to `wiki/`*
 ## 11. The indexes
 
 `wiki/<category>-index.md` — one generated line per live page, `slug: purpose` (for lessons,
-`slug: root_cause`). Written by `guppi index` and by `guppi cleanup`, checked by lint, never edited by hand.
+`slug: root_cause`; for insights, `slug: pattern`), four files: entities, rules, lessons, insights. A page carrying `deferred_by` ends its line with ` · deferred_by: <slugs>` (case 52.3). Written by `guppi index` and by `guppi cleanup`, checked by lint, never edited by hand.
 
 ```
 entity-cart-total: recalculates the order total
@@ -369,6 +370,10 @@ dependencies, and no reason to add them until the index itself stops fitting in 
 a purpose is not duplication — it is the normal division of labour between a thing and its
 check.
 
+**There is no `estimates-index.md`.** An Estimate is born with its Leaf and reached through the
+`estimates` field of its target; nothing searches by criterion, so nothing indexes it (case
+53.4).
+
 **There is no `decisions-index.md`, and Decision pages are never archived on completion.**
 Everything worth searching for is reachable through entities and rules: if something was
 decided and built, its page is in the index; if it was deferred, it exists as a `draft` page
@@ -377,9 +382,11 @@ and pre-task finds it. Decisions are a journal — read by following a page's `o
 to leave in place, and a decision stays valid for exactly as long as the page it created. It
 leaves the live vault only when superseded, or by cascade when its target is archived.
 
-The one lookup that does happen — finding the decision a new one supersedes — is a targeted
-grep by case id, which the ledger line carries; Decision slugs are `decision-case-<N>`, one
-page per Case.
+A Decision is opened by reference only: `ask-guppi` follows a `deferred_by` it meets in an
+index line to give the deferred decision's Problem (case 52.3); a reader follows the
+`[[decision-case-N]]` of a History line or a page's `origin` to ask why; the one grep — the
+decision a new one supersedes — goes by the case id the ledger line carries. Decision slugs
+are `decision-case-<N>`, one page per Case.
 
 The `ask-guppi` agent is the search mechanism over these indexes. One tool, two moments: pre-task queries
 by intent before a decision exists; the librarian queries by finished content afterwards.

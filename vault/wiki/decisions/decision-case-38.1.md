@@ -2,9 +2,8 @@
 type: decision
 case: "38.1"
 status: superseded
-targets:
-  - {kind: create, category: rules, slug: rule-retro, ref: rule-end-of-work}
-  - {kind: create, category: estimates, slug: estimate-retro-loads, ref: rule-retro}
+kind: [create, create]
+target_slug: [rule-retro, estimate-retro-loads]
 superseded_by: [decision-case-40]
 origin: raw/2026-09-10/ledger.md#case-38.1
 sprint: migration
@@ -16,19 +15,23 @@ tags: [session, workflow, harness, render]
 
 Конец работы: Retro, коммит, handoff с вызовом librarian'а. Сейчас всё по памяти.
 
-## Now
+## Problem
+
+Retro без рамки. Коммит — инструкция, которую можно пропустить. Handoff без формы.
+
+## Given
 
 Retro смотрит на эту сессию. Правка кода допустима, если заканчивает работу из сегодняшнего ledger.
 **＋** Баг — `lesson[error]`. Красные тесты — `lesson[error]` с причиной «почему дошли до Retro с регрессией».
 **－** Skill'а нет.
 
-## Problem
-
-Retro без рамки. Коммит — инструкция, которую можно пропустить. Handoff без формы.
-
-## Then
+## When
 
 Человек вызывает `/retro`.
+
+## Note
+
+The `then` of the Case, as ratified:
 
 В контексте до первого хода: `make test`, `make style`, сегодняшний ledger. Без read-вызовов.
 **＋** В `event_log.md` строка `retro`.
@@ -41,3 +44,4 @@ Retro без рамки. Коммит — инструкция, которую �
 
 - 2026-09-10 created · raw/2026-09-10/ledger.md#case-38.1
 - 2026-09-10 superseded by decision-case-40 · raw/2026-09-10/ledger.md#case-40
+- 2026-09-11 migrated: targets to kind and target_slug, Now to Given, Then to When · [[decision-case-52.1]]

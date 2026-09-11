@@ -2,9 +2,8 @@
 type: decision
 case: "38.3"
 status: current
-targets:
-  - {kind: create, category: rules, slug: rule-handoff, ref: rule-end-of-work}
-  - {kind: create, category: estimates, slug: estimate-handoff-dispatches, ref: rule-handoff}
+kind: [create, create]
+target_slug: [rule-handoff, estimate-handoff-dispatches]
 origin: raw/2026-09-10/ledger.md#case-38.3
 sprint: migration
 created: 2026-09-10
@@ -15,19 +14,23 @@ tags: [session, workflow, harness, render]
 
 Конец работы: Retro, коммит, handoff с вызовом librarian'а. Сейчас всё по памяти.
 
-## Now
+## Problem
+
+Retro без рамки. Коммит — инструкция, которую можно пропустить. Handoff без формы.
+
+## Given
 
 `handoff.md` несёт три раздела. Главный агент не перечитывает артефакты для него.
 **＋** Librarian — агент, его вызывает главный агент.
 **－** Skill'а нет.
 
-## Problem
-
-Retro без рамки. Коммит — инструкция, которую можно пропустить. Handoff без формы.
-
-## Then
+## When
 
 Агент вызывает `/handoff`.
+
+## Note
+
+The `then` of the Case, as ratified:
 
 В контексте `git status --porcelain`. Не пуст — агент останавливается: «commit first».
 **＋** В `event_log.md` строка `handoff`.
@@ -38,3 +41,4 @@ Retro без рамки. Коммит — инструкция, которую �
 ## History
 
 - 2026-09-10 created · raw/2026-09-10/ledger.md#case-38.3
+- 2026-09-11 migrated: targets to kind and target_slug, Now to Given, Then to When · [[decision-case-52.1]]

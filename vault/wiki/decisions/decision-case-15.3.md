@@ -2,8 +2,8 @@
 type: decision
 case: "15.3"
 status: current
-targets:
-  - {kind: update, category: rules, slug: rule-ledger-write}
+kind: [update]
+target_slug: [rule-ledger-write]
 origin: raw/2026-09-09/ledger.md#case-15.3
 sprint: migration
 created: 2026-09-09
@@ -13,3 +13,4 @@ tags: [session, hooks, harness, ledger]
 ## History
 
 - 2026-09-09 created · raw/2026-09-09/ledger.md#case-15.3
+- 2026-09-11 migrated: targets to kind and target_slug, Now to Given, Then to When · [[decision-case-52.1]]

@@ -2,16 +2,15 @@
 type: decision
 case: "12"
 status: current
-targets:
-  - {kind: create, category: rules, slug: rule-session-start}
-  - {kind: create, category: estimates, slug: estimate-session-start-context, ref: rule-session-start}
+kind: [create, create]
+target_slug: [rule-session-start, estimate-session-start-context]
 origin: raw/2026-09-09/ledger.md#case-12
 sprint: migration
 created: 2026-09-09
 tags: [session, workflow, hooks]
 ---
 
-## Then
+## When
 
 **context.** Родитель трёх механизмов, ратифицированных в Case 9–11. Rule MOC: порядок
 детей — содержание. Не рендерится (это не файл harness'а, а описание фазы), поэтому
@@ -71,3 +70,4 @@ Ledger:
 ## History
 
 - 2026-09-09 created · raw/2026-09-09/ledger.md#case-12
+- 2026-09-11 migrated: targets to kind and target_slug, Now to Given, Then to When · [[decision-case-52.1]]

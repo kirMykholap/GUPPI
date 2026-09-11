@@ -2,15 +2,15 @@
 type: decision
 case: "25"
 status: current
-targets:
-  - {kind: update, category: file, slug: glossary, path: vault/wiki/glossary.md}
+kind: [update]
+target_slug: [glossary]
 origin: raw/2026-09-09/ledger.md#case-25
 sprint: migration
 created: 2026-09-09
 tags: []
 ---
 
-## Then
+## When
 
 ```
 update:
@@ -34,3 +34,4 @@ update:
 ## History
 
 - 2026-09-09 created · raw/2026-09-09/ledger.md#case-25
+- 2026-09-11 migrated: targets to kind and target_slug, Now to Given, Then to When · [[decision-case-52.1]]

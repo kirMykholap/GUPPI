@@ -2,11 +2,8 @@
 type: decision
 case: "33"
 status: current
-targets:
-  - {kind: create, category: rules, slug: rule-cleanup, ref: rule-documentation}
-  - {kind: create, category: estimates, slug: estimate-cleanup-moves, ref: rule-cleanup}
-  - {kind: update, category: file, slug: index, path: vault/wiki/index.md}
-  - {kind: update, category: file, slug: glossary, path: vault/wiki/glossary.md}
+kind: [create, create, update, update]
+target_slug: [rule-cleanup, estimate-cleanup-moves, index, glossary]
 origin: raw/2026-09-10/ledger.md#case-33
 sprint: migration
 created: 2026-09-10
@@ -17,20 +14,24 @@ tags: [harness, workflow]
 
 Страница со `status: archived` должна уйти из живого vault. Скрипта нет.
 
-## Now
+## Problem
+
+Куда переносить. Кто правит ссылки. Что с `raw/`.
+
+## Given
 
 `wiki/archive/` пуст. `index.md` §1 и glossary называют `wiki/archive/`, lint читает его.
 **＋** `vault/archive/` занят старым архивом, 505 файлов, до Slice 5.
 **＋** Каждый `origin` указывает в `raw/<date>/`.
 **－** Черновик велит переносить `raw/`. Это сломает origin.
 
-## Problem
-
-Куда переносить. Кто правит ссылки. Что с `raw/`.
-
-## Then
+## When
 
 Librarian запускает `uv run guppi cleanup`.
+
+## Note
+
+The `then` of the Case, as ratified:
 
 Каждая живая страница со `status: archived` лежит в `vault/archived/<sprint>/<date>/<category>/<slug>.md`.
 **＋** У неё строка History `archived · cleanup`. В `log.md` такая же.
@@ -45,3 +46,4 @@ Librarian запускает `uv run guppi cleanup`.
 ## History
 
 - 2026-09-10 created · raw/2026-09-10/ledger.md#case-33
+- 2026-09-11 migrated: targets to kind and target_slug, Now to Given, Then to When · [[decision-case-52.1]]

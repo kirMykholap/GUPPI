@@ -30,4 +30,4 @@ rule-skill-hi: Prevents a session from being loaded piecemeal by read-tool calls
 rule-spec-capture: Prevents an approved Spec from existing only in Claude Code's plan file, outside the repository
 rule-subagent-guppi: Prevents implementation drifting from the ratified plan while it is being executed
 rule-synthesis: Prevents a pattern of failures from staying a list of unrelated incidents
-rule-work-mode: Prevents implementation starting before the plan, branch and baseline exist
+rule-work-mode: Prevents implementation starting before the plan, branch and baseline exist · deferred_by: decision-case-29

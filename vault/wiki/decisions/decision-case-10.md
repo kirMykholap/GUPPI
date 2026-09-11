@@ -2,16 +2,15 @@
 type: decision
 case: "10"
 status: current
-targets:
-  - {kind: create, category: rules, slug: rule-ledger-write, ref: rule-session-start}
-  - {kind: create, category: estimates, slug: estimate-ledger-write-lifts, ref: rule-ledger-write}
+kind: [create, create]
+target_slug: [rule-ledger-write, estimate-ledger-write-lifts]
 origin: raw/2026-09-09/ledger.md#case-10
 sprint: migration
 created: 2026-09-09
 tags: [session, hooks, harness, ledger]
 ---
 
-## Then
+## When
 
 **context.** Хук, который снимает `- decision[...]`, `- estimate[...]` и `- lesson[...]`
 строки из только что законченного ответа и дописывает их в `raw/<date>/ledger.md`
@@ -111,3 +110,4 @@ Ledger:
 ## History
 
 - 2026-09-09 created · raw/2026-09-09/ledger.md#case-10
+- 2026-09-11 migrated: targets to kind and target_slug, Now to Given, Then to When · [[decision-case-52.1]]

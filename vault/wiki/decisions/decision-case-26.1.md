@@ -2,11 +2,8 @@
 type: decision
 case: "26.1"
 status: current
-targets:
-  - {kind: update, category: rules, slug: rule-case-protocol}
-  - {kind: update, category: file, slug: index, path: vault/wiki/index.md}
-  - {kind: update, category: rules, slug: rule-ask}
-  - {kind: update, category: rules, slug: rule-pretask}
+kind: [update, update, update, update]
+target_slug: [rule-case-protocol, index, rule-ask, rule-pretask]
 supersedes: [decision-case-23.1, decision-case-24.2]
 origin: raw/2026-09-09/ledger.md#case-26.1
 sprint: migration
@@ -17,3 +14,4 @@ tags: [session, workflow, ledger, harness]
 ## History
 
 - 2026-09-09 created · raw/2026-09-09/ledger.md#case-26.1
+- 2026-09-11 migrated: targets to kind and target_slug, Now to Given, Then to When · [[decision-case-52.1]]

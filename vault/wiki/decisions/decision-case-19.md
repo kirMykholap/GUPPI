@@ -2,16 +2,15 @@
 type: decision
 case: "19"
 status: current
-targets:
-  - {kind: create, category: rules, slug: rule-plan-mode}
-  - {kind: create, category: estimates, slug: estimate-plan-mode-verified, ref: rule-plan-mode}
+kind: [create, create]
+target_slug: [rule-plan-mode, estimate-plan-mode-verified]
 origin: raw/2026-09-09/ledger.md#case-19
 sprint: migration
 created: 2026-09-09
 tags: [session, workflow]
 ---
 
-## Then
+## When
 
 ```
 create:
@@ -36,3 +35,4 @@ with what is already there». `rule-case-protocol` не трогается: ег
 ## History
 
 - 2026-09-09 created · raw/2026-09-09/ledger.md#case-19
+- 2026-09-11 migrated: targets to kind and target_slug, Now to Given, Then to When · [[decision-case-52.1]]

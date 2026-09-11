@@ -2,11 +2,8 @@
 type: decision
 case: "35.2"
 status: current
-targets:
-  - {kind: create, category: rules, slug: rule-synthesis, ref: rule-documentation}
-  - {kind: create, category: estimates, slug: estimate-synthesis-clusters, ref: rule-synthesis}
-  - {kind: update, category: file, slug: index, path: vault/wiki/index.md}
-  - {kind: update, category: file, slug: insights-schema, path: vault/wiki/insights/schema.md}
+kind: [create, create, update, update]
+target_slug: [rule-synthesis, estimate-synthesis-clusters, index, insights-schema]
 origin: raw/2026-09-10/ledger.md#case-35.2
 sprint: migration
 created: 2026-09-10
@@ -17,19 +14,23 @@ tags: [harness, workflow, librarian]
 
 Между скриптами librarian сверяет новые страницы с индексами, собирает Insight, пишет brief. Каждая — partial render в файл агента.
 
-## Now
+## Problem
+
+Границы каждого шага.
+
+## Given
 
 §8: Insight рождается на втором уроке с общей причиной. `actioned` не конечный.
 **＋** Урок уходит в архив только когда его Insight стал `actioned`; Insight остаётся живым, его `pattern` в `insights-index.md`.
 **－** §8 и `insights/schema.md` велят искать в архиве. Это дорого и ничего не добавляет.
 
-## Problem
-
-Границы каждого шага.
-
-## Then
+## When
 
 В `materialize.yaml` есть запись `lesson`.
+
+## Note
+
+The `then` of the Case, as ratified:
 
 Librarian сравнивает `root_cause` со строками `lessons-index.md` и `insights-index.md`.
 **＋** Второй живой урок, Insight нет: `create` в `insights` и `update` обоим урокам.
@@ -41,3 +42,4 @@ Librarian сравнивает `root_cause` со строками `lessons-index
 ## History
 
 - 2026-09-10 created · raw/2026-09-10/ledger.md#case-35.2
+- 2026-09-11 migrated: targets to kind and target_slug, Now to Given, Then to When · [[decision-case-52.1]]

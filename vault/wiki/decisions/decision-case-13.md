@@ -2,16 +2,15 @@
 type: decision
 case: "13"
 status: current
-targets:
-  - {kind: create, category: rules, slug: rule-case-protocol, ref: rule-plan-mode}
-  - {kind: create, category: estimates, slug: estimate-case-protocol-loaded, ref: rule-case-protocol}
+kind: [create, create]
+target_slug: [rule-case-protocol, estimate-case-protocol-loaded]
 origin: raw/2026-09-09/ledger.md#case-13
 sprint: migration
 created: 2026-09-09
 tags: [session, workflow, ledger]
 ---
 
-## Then
+## When
 
 **context.** Правило, которое агент видит всегда: как ведётся Case, когда он делится,
 когда и как пишутся ledger-строки. Инструкция, не enforcement — хука на «закончил ли ты
@@ -40,3 +39,4 @@ case-schema:
 ## History
 
 - 2026-09-09 created · raw/2026-09-09/ledger.md#case-13
+- 2026-09-11 migrated: targets to kind and target_slug, Now to Given, Then to When · [[decision-case-52.1]]

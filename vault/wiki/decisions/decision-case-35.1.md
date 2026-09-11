@@ -2,9 +2,8 @@
 type: decision
 case: "35.1"
 status: current
-targets:
-  - {kind: create, category: rules, slug: rule-index-check, ref: rule-documentation}
-  - {kind: create, category: estimates, slug: estimate-index-check-merges, ref: rule-index-check}
+kind: [create, create]
+target_slug: [rule-index-check, estimate-index-check-merges]
 origin: raw/2026-09-10/ledger.md#case-35.1
 sprint: migration
 created: 2026-09-10
@@ -15,19 +14,23 @@ tags: [harness, workflow, librarian]
 
 Между скриптами librarian сверяет новые страницы с индексами, собирает Insight, пишет brief. Каждая — partial render в файл агента.
 
-## Now
+## Problem
+
+Границы каждого шага.
+
+## Given
 
 §10: единственное суждение — `create` → `update` при дубликате. Остальное — флаг.
 **＋** Индексы: одна строка на живую страницу. Сравнение не идёт между категориями.
 **＋** `handoff.md` несёт прямые указания.
 
-## Problem
-
-Границы каждого шага.
-
-## Then
+## When
 
 Librarian прочитал `materialize.yaml` и `handoff.md`.
+
+## Note
+
+The `then` of the Case, as ratified:
 
 Он выполняет указания из `handoff.md` первыми.
 **＋** Для каждой записи `create` сравнивает `purpose` (`criterion`, `root_cause`) со строками индекса той же категории по смыслу.
@@ -38,3 +41,4 @@ Librarian прочитал `materialize.yaml` и `handoff.md`.
 ## History
 
 - 2026-09-10 created · raw/2026-09-10/ledger.md#case-35.1
+- 2026-09-11 migrated: targets to kind and target_slug, Now to Given, Then to When · [[decision-case-52.1]]

@@ -3,7 +3,6 @@ type: lesson
 kind: knowledge
 root_cause: the readings of the End of Work phase are born after the one artifact the next session reads; the ledger is materialized by the next librarian, and the brief by design carries only what the yaml held at its writing, so a fact born after the librarian's commit reaches the Frontier two sessions later unless /hi shows the unmaterialized ledger tail itself
 status: new
-estimates: [estimate-readings-after-librarian-invisible-to-next-hi]
 origin: raw/2026-09-10/ledger.md#L100
 sprint: migration
 created: 2026-09-10
@@ -18,10 +17,7 @@ fourteen estimate and lesson lines written after the librarian's commit of sessi
 
 the readings of the End of Work phase are born after the one artifact the next session reads; the ledger is materialized by the next librarian, and the brief by design carries only what the yaml held at its writing, so a fact born after the librarian's commit reaches the Frontier two sessions later unless /hi shows the unmaterialized ledger tail itself
 
-## Estimates
-
-- [[estimate-readings-after-librarian-invisible-to-next-hi]]
-
 ## History
 
 - 2026-09-10 created · raw/2026-09-10/ledger.md#L100
+- 2026-09-11 estimates removed: a lesson has no Estimate · [[decision-case-53.1]]

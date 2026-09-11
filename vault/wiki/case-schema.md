@@ -57,11 +57,15 @@ update:
     change: the cart precedes payment
 ```
 
-A `create` holds the fields the target schema needs a judgment for and, for a Leaf, its `estimate`; prose for a body section goes under `sections`, keyed by the section name. An `update` holds `set` (fields), `sections` (the whole new text of a section), `replace` (a list of `{old, new}` pairs, each `old` replaced by its `new` inside the body; one pair is a list of one, and a mapping under `replace` is a shape `generate` rejects) and `change` (one line for History). A `delete` holds `impact`, a `defer` a `type` and a `purpose`. A Rule-class file (`index.md`, `glossary.md`, this file, a schema, `CLAUDE.md`) is an `update` with `file` and `change`, applied by hand in Work Mode. New tags are declared under `new_tags` with a meaning and a Russian alias.
+A `create` holds the fields the target schema needs a judgment for and, for a Leaf, its `estimate`; prose for a body section goes under `sections`, keyed by the section name. An `update` holds `set` (fields), `sections` (the whole new text of a section), `replace` (a list of `{old, new}` pairs, each `old` replaced by its `new` inside the body; one pair is a list of one, and a mapping under `replace` is a shape `generate` rejects) and `change` (one line for History). An `update` that changes a Leaf's contract carries, in the same block, the `update` of its Estimate: `sections` with the new `Criterion` (and `Method`) and `set: {status: pending}`; a new Estimate is made only for a condition that fails and is fixed apart (case 53.2). A `delete` holds `impact`, a `defer` a `type` and a `purpose`. A Rule-class file (`index.md`, `glossary.md`, this file, a schema, `CLAUDE.md`) is an `update` with `file` and `change`, applied by hand in Work Mode. New tags are declared under `new_tags` with a meaning and a Russian alias.
 
-Derivable fields — `origin`, `status`, `parent` from `ref`, `children`, `code_ref` — are filled mechanically and are not written here. `guppi materialize` reads the blocks, and what is not in a block was signed by nobody.
+Derivable fields — `origin`, `status`, `parent` from `ref`, `children`, `code_ref`, `deferred_by` — are filled mechanically and are not written here. `guppi materialize` reads the blocks, and what is not in a block was signed by nobody.
 
 **The slug is written in the Case**, and pre-task checks it. Meaningful, never an index: `entity-cart`, `lesson-hooks-sessionstart-cannot-block`. The page's category comes from its prefix: `rule-`, `entity-`, `estimate-`, `lesson-`, `insight-`. Decision pages are the one exception: `decision-case-<N>`, one per Case, written by the script.
+
+## The short form of Retro
+
+Retro is an analysis, not planning: the only decision it ratifies is a `defer`. A defer at Retro is a Case in the short form — `## Case N — name`, then `context`, `problem`, and a `then` block with `defer:` carrying `purpose`; no `recommend`, `given`, `when` or `then` section. The agent appends it to `raw/<date>/spec.md` under a `## Retro` heading before writing its ledger line, so `materialize` finds it like any other Case; a defer line without its Case is marked `incomplete`. A `create`, `update` or `delete` waits for the next Plan Mode (cases 52.2, 56).
 
 ## Splitting
 

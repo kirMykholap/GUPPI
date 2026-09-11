@@ -2,12 +2,8 @@
 type: decision
 case: "43"
 status: current
-targets:
-  - {kind: update, category: rules, slug: rule-materialize}
-  - {kind: create, category: estimates, slug: estimate-materialize-walks-dates, ref: rule-materialize}
-  - {kind: update, category: rules, slug: rule-page-generation}
-  - {kind: create, category: estimates, slug: estimate-generate-walks-dates, ref: rule-page-generation}
-  - {kind: update, category: rules, slug: rule-documentation}
+kind: [update, create, update, create, update]
+target_slug: [rule-materialize, estimate-materialize-walks-dates, rule-page-generation, estimate-generate-walks-dates, rule-documentation]
 origin: raw/2026-09-10/ledger.md#case-43
 sprint: migration
 created: 2026-09-10
@@ -18,7 +14,11 @@ tags: [harness, workflow, ledger, session, librarian, render]
 
 Чтения handoff-фазы пишутся после коммита библиотекаря, в ledger своей даты. Следующая сессия обычно на другой дате.
 
-## Now
+## Problem
+
+`materialize` и `generate` читают одну `raw/<date>/`, по умолчанию сегодня. Строки после коммита библиотекаря никто не материализует, если следующая сессия не на той же дате. Хвост сессии E спасён только совпадением дат.
+
+## Given
 
 `rule-materialize` и `rule-page-generation` `built`, обе фиксируют одну `raw/<date>/`. Ни одна страница не покрывает остаток за границей даты (ask-guppi).
 **＋** Yaml дополняется, `applied` делает повтор идемпотентным (Case 41). Обход по датам ничего не переписывает.
@@ -28,13 +28,13 @@ tags: [harness, workflow, ledger, session, librarian, render]
 **－** `rule-handoff` не меняется: `Materialize <date>.` называет дату сессии, остаток подбирает скрипт.
 **－** Страница `passed` с Result вторую строку не принимает; поэтому новые Estimates, не `update` старых.
 
-## Problem
-
-`materialize` и `generate` читают одну `raw/<date>/`, по умолчанию сегодня. Строки после коммита библиотекаря никто не материализует, если следующая сессия не на той же дате. Хвост сессии E спасён только совпадением дат.
-
-## Then
+## When
 
 `uv run guppi materialize` и `uv run guppi generate` без `--date`.
+
+## Note
+
+The `then` of the Case, as ratified:
 
 `materialize` обходит каждую `vault/raw/<date>/` с `ledger.md` по возрастанию даты, дополняет или пишет её yaml, печатает одну строку на дату.
 **＋** `generate` обходит каждую `vault/raw/<date>/` с `materialize.yaml` по возрастанию даты, применяет непримененные записи.
@@ -47,3 +47,4 @@ tags: [harness, workflow, ledger, session, librarian, render]
 ## History
 
 - 2026-09-10 created · raw/2026-09-10/ledger.md#case-43
+- 2026-09-11 migrated: targets to kind and target_slug, Now to Given, Then to When · [[decision-case-52.1]]

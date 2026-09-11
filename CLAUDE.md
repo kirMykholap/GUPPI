@@ -44,9 +44,11 @@ move closes:
 ## Case protocol
 
 One reply is one Case, in the seven sections of `case-schema.md`: context, problem,
-recommend, given, when, then, ratification. Never move to the next Case until this
-one is ratified or deferred. Plan Mode does not end while a Frontier item is neither
-ratified nor deferred.
+recommend, given, when, then, ratification. That is the form of Plan Mode. At Retro
+the only decision is a `defer`, in the short form — context, problem, a `defer` block
+with `purpose` — appended to `raw/<date>/spec.md` under `## Retro` before its ledger
+line. Never move to the next Case until this one is ratified or deferred. Plan Mode
+does not end while a Frontier item is neither ratified nor deferred.
 
 A follow-up question that asks you to justify a choice does not split the Case; one
 whose answer needs a new choice does — into sub-cases `N.1`, `N.2`. Ratifying a

@@ -2,17 +2,15 @@
 type: decision
 case: "24.1"
 status: current
-targets:
-  - {kind: create, category: rules, slug: rule-pretask-hook, ref: rule-plan-mode}
-  - {kind: create, category: estimates, slug: estimate-pretask-hook-gates, ref: rule-pretask-hook}
-  - {kind: update, category: rules, slug: rule-hook-registry}
+kind: [create, create, update]
+target_slug: [rule-pretask-hook, estimate-pretask-hook-gates, rule-hook-registry]
 origin: raw/2026-09-09/ledger.md#case-24.1
 sprint: migration
 created: 2026-09-09
 tags: [session, workflow, hooks, harness, render]
 ---
 
-## Then
+## When
 
 ```
 create:
@@ -37,3 +35,4 @@ update:
 ## History
 
 - 2026-09-09 created · raw/2026-09-09/ledger.md#case-24.1
+- 2026-09-11 migrated: targets to kind and target_slug, Now to Given, Then to When · [[decision-case-52.1]]

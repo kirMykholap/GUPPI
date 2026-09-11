@@ -2,16 +2,15 @@
 type: decision
 case: "9"
 status: current
-targets:
-  - {kind: create, category: rules, slug: rule-event-log, ref: rule-session-start}
-  - {kind: create, category: estimates, slug: estimate-event-log-records, ref: rule-event-log}
+kind: [create, create]
+target_slug: [rule-event-log, estimate-event-log-records]
 origin: raw/2026-09-09/ledger.md#case-9
 sprint: migration
 created: 2026-09-09
 tags: [session, hooks, harness]
 ---
 
-## Then
+## When
 
 **context.** Event log — шумная запись сессии: старты, вызовы инструментов, диспатчи,
 коммиты, прогоны тестов. Пишется хуками, не инструкциями, поэтому фиксирует и отклонения
@@ -112,3 +111,4 @@ Ledger:
 ## History
 
 - 2026-09-09 created · raw/2026-09-09/ledger.md#case-9
+- 2026-09-11 migrated: targets to kind and target_slug, Now to Given, Then to When · [[decision-case-52.1]]

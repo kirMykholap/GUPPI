@@ -2,9 +2,8 @@
 type: decision
 case: "36.1"
 status: current
-targets:
-  - {kind: create, category: rules, slug: rule-close, ref: rule-documentation}
-  - {kind: create, category: estimates, slug: estimate-close-commits, ref: rule-close}
+kind: [create, create]
+target_slug: [rule-close, estimate-close-commits]
 origin: raw/2026-09-10/ledger.md#case-36.1
 sprint: migration
 created: 2026-09-10
@@ -15,18 +14,22 @@ tags: [harness, workflow, git, librarian]
 
 Семь детей фазы ратифицированы. Нужен MOC, который держит порядок и рамку файла агента.
 
-## Now
-
-Коммит librarian'а должен быть отдельным от коммита Retro.
-**＋** Главный агент видит из запуска только отчёт.
-
 ## Problem
 
 Рамка агента и порядок шагов. Три ребёнка — скрипты без Render. Нет шага «коммит».
 
-## Then
+## Given
+
+Коммит librarian'а должен быть отдельным от коммита Retro.
+**＋** Главный агент видит из запуска только отчёт.
+
+## When
 
 Librarian закончил brief.
+
+## Note
+
+The `then` of the Case, as ratified:
 
 Он запускает `make lint` и держит вывод.
 **＋** Один коммит только путей `vault/`: `docs(vault): librarian, <date>`.
@@ -36,3 +39,4 @@ Librarian закончил brief.
 ## History
 
 - 2026-09-10 created · raw/2026-09-10/ledger.md#case-36.1
+- 2026-09-11 migrated: targets to kind and target_slug, Now to Given, Then to When · [[decision-case-52.1]]

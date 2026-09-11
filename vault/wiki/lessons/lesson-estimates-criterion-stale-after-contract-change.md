@@ -3,7 +3,6 @@ type: lesson
 kind: error
 root_cause: a decision update on a Rule page has no step that lists the Estimates whose criterion quotes the changed wording; until lint or the generator does it, the acknowledging reply must grep estimates/ for the words the contract dropped
 status: new
-estimates: [estimate-estimates-criterion-stale-after-contract-change]
 origin: raw/2026-09-09/ledger.md#L49
 sprint: migration
 created: 2026-09-09
@@ -17,10 +16,7 @@ case 15.1 redefined a ledger record as a line in a LEDGER block; the criteria of
 
 a decision update on a Rule page has no step that lists the Estimates whose criterion quotes the changed wording; until lint or the generator does it, the acknowledging reply must grep estimates/ for the words the contract dropped
 
-## Estimates
-
-- [[estimate-estimates-criterion-stale-after-contract-change]]
-
 ## History
 
 - 2026-09-09 created · raw/2026-09-09/ledger.md#L49
+- 2026-09-11 estimates removed: a lesson has no Estimate · [[decision-case-53.1]]

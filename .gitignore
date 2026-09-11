@@ -45,3 +45,6 @@ scratch_out*.txt
 # GUPPI session artifacts that are debugging material, not traceability: the event log
 # (index.md §1).
 vault/raw/*/event_log.md
+
+# The owner's Obsidian Bases view over the vault, kept for their own convenience (session H).
+vault/pages.base

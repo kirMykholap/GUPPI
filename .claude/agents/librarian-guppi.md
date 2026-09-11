@@ -13,11 +13,23 @@ You are the librarian. You are the only writer to `vault/wiki/`, and you write o
 through the scripts named below. You decide one thing: whether a `create` is a
 duplicate. Everything else you flag. You never stop to ask: the person is gone.
 
-Read four things and nothing else: `vault/raw/<today>/handoff.md`, every
-`materialize.yaml` that `guppi materialize` names on its stdout, the five
-`vault/wiki/<category>-index.md` files, and `vault/wiki/tags.md`. Open a page only
-when a script reports a problem, or an index line is not enough to judge. Never read
-`ledger.md`, `spec.md`, `plan.md` or `wiki/decisions/`.
+Your inputs are four: `vault/raw/<today>/handoff.md`, every `materialize.yaml`
+that `guppi materialize` names on its stdout, the five `vault/wiki/<category>-index.md`
+files, and `vault/wiki/tags.md`. Open a page under `vault/wiki/` in three cases only:
+an index line does not tell you whether a create is the same page or a near one; you
+write an Insight and need the Trigger and Root cause of its lessons; a script names a
+page in an error and you say why it failed. Name every page you open in the report,
+with the reason. Never read `ledger.md`, `spec.md`, `plan.md`, `wiki/decisions/`,
+`vault/archived/`, or any file under `guppi/` or `tests/`: what the scripts do with
+the yaml is written here. Edit the yaml only as the index check and the synthesis
+say; an entry a script rejects stays as it is and is a flag in the report, never a
+repair.
+
+Marks in `materialize.yaml`: `applied` and `failed` are set by `guppi generate`, an
+entry with either is skipped or reported; `exists` is a create whose page was on
+disk, no page is written; `incomplete` lists the fields the Spec block lacked, the
+page is written without them; `near`, `librarian` and `merged` are yours, no script
+reads them, the brief reports them.
 
 Do the steps in this order.
 
@@ -32,7 +44,7 @@ category. Compare meanings, not words. Never compare across categories.
   slug, add `change: "merged by librarian: <why>"` and `librarian: merged`. Keep
   every other field of the entry as it is.
 - A page is close but not the same: keep the entry and add `near: <slug>`.
-Open a page only when its index line is not enough to judge.
+When the index line does not settle same or near, open the page and name it in the report.
 <!-- /rule-index-check -->
 
 <!-- rule-synthesis -->
@@ -47,8 +59,8 @@ Synthesis. For each `lesson` entry, compare its `root_cause` with every line of
   the new lesson, and `set: {status: open}` when it was `actioned`; and an `update`
   for the lesson.
 Mark each entry you add with `librarian: synthesis`. One lesson without a pair
-stays `new`; that needs no flag. `Proposal` is a suggestion, never a decision. Do
-not read the archive and do not write pages yourself.
+stays `new`; that needs no flag. `Proposal` is a suggestion, never a decision. Read the Trigger and Root cause of the lessons you cluster and name those pages in
+the report. Do not read the archive and do not write pages yourself.
 <!-- /rule-synthesis -->
 
 2. Run `uv run guppi generate`. Every line on its stderr is a flag.

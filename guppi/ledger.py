@@ -149,14 +149,14 @@ def ledger_path(project_dir: Path, now) -> Path:
     return log_path(project_dir, now).with_name("ledger.md")
 
 
-def session_event_log(project_dir: Path, now, stamp: str) -> str:
-    """The event logs of every date from today back to the first holding a `session-start`
-    of this session, joined in date order (case 55.1). With no such date, every log up to
-    today is joined and the window check fails on its own."""
+def session_event_logs(project_dir: Path, now, stamp: str) -> list[tuple[str, str]]:
+    """`(date, text)` of the event log of every date from today back to the first holding a
+    `session-start` of this session, in date order (case 55.1). With no such date, every
+    log up to today is returned and the window check fails on its own."""
     raw = project_dir / "vault" / "raw"
     today = now.date().isoformat()
     marker = f" {stamp} session-start"
-    chosen: list[str] = []
+    chosen: list[tuple[str, str]] = []
     if raw.is_dir():
         dates = sorted(
             (d.name for d in raw.iterdir() if d.name <= today and d.is_dir()), reverse=True
@@ -166,10 +166,15 @@ def session_event_log(project_dir: Path, now, stamp: str) -> str:
             if not log.exists():
                 continue
             text = log.read_text(encoding="utf-8")
-            chosen.append(text)
+            chosen.append((name, text))
             if marker in text:
                 break
-    return "".join(reversed(chosen))
+    return list(reversed(chosen))
+
+
+def session_event_log(project_dir: Path, now, stamp: str) -> str:
+    """The logs of `session_event_logs`, joined."""
+    return "".join(text for _, text in session_event_logs(project_dir, now, stamp))
 
 
 def existing_bodies(project_dir: Path) -> set[str]:

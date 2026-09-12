@@ -7,7 +7,7 @@ enforcement: check
 implementation_ref: [guppi/materialize.py, tests/test_materialize.py]
 parent: rule-documentation
 estimates: [estimate-materialize-assembles, estimate-materialize-walks-dates]
-deferred_by: [decision-case-69]
+deferred_by: [decision-case-82]
 origin: raw/2026-09-10/ledger.md#case-31
 sprint: migration
 created: 2026-09-10
@@ -25,12 +25,10 @@ defect of the ledger, and it shows here.
 
 ## How it works
 
-`uv run guppi materialize [--date YYYY-MM-DD]` reads `raw/<date>/ledger.md` and
-`raw/<date>/spec.md` and writes `raw/<date>/materialize.yaml`. Without `--date` it
+`uv run guppi materialize [--date YYYY-MM-DD]` reads `raw/<date>/ledger.md` and every Spec of the date — `raw/<date>/<HHMM>/spec.md` in folder order, and `raw/<date>/spec.md` when the date has one (dates before case 73) — and writes `raw/<date>/materialize.yaml`; the yaml's `spec` field names the file each Case was found in, and a Case heading found in two files stops the walk with exit 1. Without `--date` it
 walks every `raw/<date>/` that holds a `ledger.md`, in date order, and prints one
 line per date; a line written after the librarian's commit of its date is picked up
-by the next run, whatever the date of that run. An error on one date stops the walk
-with exit 1.
+by the next run, whatever the date of that run. An error on one date stops the walk with exit 1. With `--show` (case 76) the same walk prints to stdout the yaml each date would be written with — entries, `unparsed`, `incomplete` marks, decision groups, one document per date — and writes nothing under `raw/`; the agent and pre-task look before the librarian runs.
 
 One entry per record line, in ledger order. Fields: `case`, `kind` (`create`,
 `update`, `delete`, `defer`, `estimate`, `lesson`), `category` (from the slug
@@ -46,7 +44,7 @@ error).
 The Spec is read by headings `## Case N` and `### Case N.M`. Under a heading, every
 fenced block tagged `then` up to the next heading is YAML; a leading `> ` is
 removed. The entry for a slug is the item with that `slug` under the key of its
-kind. A Leaf's nested `estimate` becomes its own `create` entry; a standalone estimate `create` with `ref` maps `context`, `criterion` and `method` into `sections` the same way, so the page gets its Criterion and Method sections whichever way it was born. An `estimate` line
+kind. A Leaf `create` whose item carries `method` yields a second entry for its Estimate, with no line of its own (case 72.3): category `estimates`, slug `estimate-<target minus its prefix>` or the item's `slug`, `ref` the target, `tags` the target's, `origin` and `decision` the line's, sections Context (the Case's `problem`), Criterion (`### case N`, then the Case's `when` and `then` verbatim with their operands) and Method. An `update` of a Leaf whose item carries `contract: changed` yields an `update` entry of the target's Estimate: `criterion_block` (`### case N` with `when` and `then`), `set: {status: pending}`, `sections: {Method}` when the item carries `method`; `contract: same` yields nothing. A line with `{supersedes:case N}` also yields a `remove_criterion` entry for the Estimate case N shaped. The decision entry carries `criterion`, one `{estimate, case}` per Estimate the Case shaped. A nested `estimate` in an older Spec becomes its own `create` entry as before, for a line with its slug; a standalone estimate `create` with `ref` maps `context`, `criterion` and `method` into `sections` the same way, so the page gets its Criterion and Method sections whichever way it was born. An `estimate` line
 for a page created in the same ledger is folded into that create (`status`,
 `result`); for an earlier page it is an `estimate` entry, an update. A `lesson` line
 is a `create` in `lessons`: `kind`, `root_cause` and the sections `Trigger` and
@@ -97,3 +95,8 @@ date fails.
 - 2026-09-12 updated: a sub-case inherits a missing given from its parent, as context, problem and recommend; when stays its own (case 60) · [[decision-case-60]]
 - 2026-09-12 updated: new_tags are collected from every Case block, lines or none (case 61) · [[decision-case-61]]
 - 2026-09-12 deferred · [[decision-case-69]]
+- 2026-09-12 updated: a Leaf create with method and an update with contract: changed yield the Estimate's entries; supersedes removes a criterion block; the decision entry names the Estimates shaped (case 72.3) · [[decision-case-72.3]]
+- 2026-09-12 updated: one Spec per session folder; all of a date's Specs are read (case 73.5) · [[decision-case-73.5]]
+- 2026-09-12 defer by decision-case-69 superseded · [[decision-case-76]]
+- 2026-09-12 updated: a --show mode prints the yaml and writes nothing (case 76, supersedes 69) · [[decision-case-76]]
+- 2026-09-12 deferred · [[decision-case-82]]

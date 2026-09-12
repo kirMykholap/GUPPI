@@ -1,7 +1,8 @@
 date: '2026-09-09'
 sprint: migration
 ledger: vault/raw/2026-09-09/ledger.md
-spec: vault/raw/2026-09-09/spec.md
+spec:
+- vault/raw/2026-09-09/spec.md
 entries:
 - line: 2
   text: decision[case 1][update][migration-plan]
@@ -1267,6 +1268,7 @@ decisions:
   - problem
   - given
   applied: '10:46:02'
+  spec: vault/raw/2026-09-09/spec.md
 - case: '10'
   decision: decision-case-10
   origin: raw/2026-09-09/ledger.md#case-10
@@ -1337,6 +1339,7 @@ decisions:
   - problem
   - given
   applied: '10:46:02'
+  spec: vault/raw/2026-09-09/spec.md
 - case: '11'
   decision: decision-case-11
   origin: raw/2026-09-09/ledger.md#case-11
@@ -1451,6 +1454,7 @@ decisions:
   - problem
   - given
   applied: '10:46:02'
+  spec: vault/raw/2026-09-09/spec.md
 - case: '12'
   decision: decision-case-12
   origin: raw/2026-09-09/ledger.md#case-12
@@ -1494,6 +1498,7 @@ decisions:
   - problem
   - given
   applied: '10:46:02'
+  spec: vault/raw/2026-09-09/spec.md
 - case: '13'
   decision: decision-case-13
   origin: raw/2026-09-09/ledger.md#case-13
@@ -1553,6 +1558,7 @@ decisions:
   - problem
   - given
   applied: '10:46:02'
+  spec: vault/raw/2026-09-09/spec.md
 - case: '15.1'
   decision: decision-case-15.1
   origin: raw/2026-09-09/ledger.md#case-15.1
@@ -1706,6 +1712,7 @@ decisions:
   - problem
   - given
   applied: '10:46:02'
+  spec: vault/raw/2026-09-09/spec.md
 - case: '18.2'
   decision: decision-case-18.2
   origin: raw/2026-09-09/ledger.md#case-18.2
@@ -1750,6 +1757,7 @@ decisions:
   - problem
   - given
   applied: '10:46:02'
+  spec: vault/raw/2026-09-09/spec.md
 - case: '18.3'
   decision: decision-case-18.3
   origin: raw/2026-09-09/ledger.md#case-18.3
@@ -1772,6 +1780,7 @@ decisions:
   - problem
   - given
   applied: '10:46:02'
+  spec: vault/raw/2026-09-09/spec.md
 - case: '19'
   decision: decision-case-19
   origin: raw/2026-09-09/ledger.md#case-19
@@ -1801,6 +1810,7 @@ decisions:
   - problem
   - given
   applied: '10:46:02'
+  spec: vault/raw/2026-09-09/spec.md
 - case: '20'
   decision: decision-case-20
   origin: raw/2026-09-09/ledger.md#case-20
@@ -1841,6 +1851,7 @@ decisions:
   - problem
   - given
   applied: '10:46:02'
+  spec: vault/raw/2026-09-09/spec.md
 - case: '21'
   decision: decision-case-21
   origin: raw/2026-09-09/ledger.md#case-21
@@ -1887,6 +1898,7 @@ decisions:
   - problem
   - given
   applied: '10:46:02'
+  spec: vault/raw/2026-09-09/spec.md
 - case: '22'
   decision: decision-case-22
   origin: raw/2026-09-09/ledger.md#case-22
@@ -1924,6 +1936,7 @@ decisions:
   superseded_by:
   - decision-case-27
   applied: '10:46:02'
+  spec: vault/raw/2026-09-09/spec.md
 - case: '23.1'
   decision: decision-case-23.1
   origin: raw/2026-09-09/ledger.md#case-23.1
@@ -1974,6 +1987,7 @@ decisions:
   superseded_by:
   - decision-case-26.1
   applied: '10:46:02'
+  spec: vault/raw/2026-09-09/spec.md
 - case: '24.1'
   decision: decision-case-24.1
   origin: raw/2026-09-09/ledger.md#case-24.1
@@ -2006,6 +2020,7 @@ decisions:
   - problem
   - given
   applied: '10:46:02'
+  spec: vault/raw/2026-09-09/spec.md
 - case: '24.2'
   decision: decision-case-24.2
   origin: raw/2026-09-09/ledger.md#case-24.2
@@ -2042,6 +2057,7 @@ decisions:
   superseded_by:
   - decision-case-26.1
   applied: '10:46:02'
+  spec: vault/raw/2026-09-09/spec.md
 - case: '25'
   decision: decision-case-25
   origin: raw/2026-09-09/ledger.md#case-25
@@ -2068,6 +2084,7 @@ decisions:
   - problem
   - given
   applied: '10:46:02'
+  spec: vault/raw/2026-09-09/spec.md
 - case: '26.1'
   decision: decision-case-26.1
   origin: raw/2026-09-09/ledger.md#case-26.1
@@ -2143,4 +2160,5 @@ decisions:
   - problem
   - given
   applied: '10:46:02'
+  spec: vault/raw/2026-09-09/spec.md
 unparsed: []

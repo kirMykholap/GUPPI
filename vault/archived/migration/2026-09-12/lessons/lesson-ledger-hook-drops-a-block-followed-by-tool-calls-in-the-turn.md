@@ -2,7 +2,7 @@
 type: lesson
 kind: error
 root_cause: not yet found; the read-back of case 55.2 was measured on an earlier reply's block, and a block in an intermediate message of one turn seems not to be among the texts transcript_texts collects, or is filtered as not the main agent's; to be read in guppi/ledger.py against the transcript of this session before a fix is proposed
-status: clustered
+status: archived
 insight: insight-ledger-hook-reads-only-the-final-text
 origin: raw/2026-09-12/ledger.md#L101
 sprint: migration
@@ -22,3 +22,5 @@ not yet found; the read-back of case 55.2 was measured on an earlier reply's blo
 
 - 2026-09-12 created · raw/2026-09-12/ledger.md#L101
 - 2026-09-12 updated: clustered by librarian: the writer reads only the last text of a turn, with lesson-ledger-hook-misses-a-reply-ending-in-a-tool-call · raw/2026-09-12/ledger.md#L101
+- 2026-09-12 deleted · [[decision-case-70]]
+- 2026-09-12 archived · cleanup

@@ -1,9 +1,10 @@
 ---
 type: decision
 case: "63"
-status: current
+status: superseded
 defer: [rule-ledger-tail]
 supersedes: [decision-case-45]
+superseded_by: [decision-case-79]
 origin: raw/2026-09-12/ledger.md#case-63
 sprint: migration
 created: 2026-09-12
@@ -30,3 +31,4 @@ what was written after the librarian's commit. Postponed three times now.
 ## History
 
 - 2026-09-12 created · raw/2026-09-12/ledger.md#case-63
+- 2026-09-12 superseded by decision-case-79 · [[decision-case-79]]

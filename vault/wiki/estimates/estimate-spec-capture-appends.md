@@ -1,7 +1,7 @@
 ---
 type: estimate
 kind: QA
-status: passed
+status: pending
 target: rule-spec-capture
 origin: raw/2026-09-09/ledger.md#case-20
 sprint: migration
@@ -23,6 +23,16 @@ Given a `PostToolUse` payload naming `ExitPlanMode` with a plan and a `hi` recor
 hook runs twice; earlier documents stay intact. Without `hi`: exit 2 naming the session,
 file untouched. Another tool's payload: nothing written, exit 0. A `## Deferred` section appended by the agent stays intact under a later approval's separator, and materialize reads its Cases. Live: the next plan approval lands in `raw/<date>/spec.md` by the hook, not by hand, and the reading records what a rejected plan produces.
 
+### case 73.2
+
+When:
+`ExitPlanMode` is approved in a session with a `hi`.
+
+Then:
+The plan is copied to `raw/<hi date>/<hi HHMM>/spec.md`; a second approval of the same
+session appends under `---` and the stamp, as before.
+**－** Without a `hi` the hook refuses as before.
+
 ## Method
 
 pytest in `tests/test_spec.py` with piped payloads against a temp vault; the live reading
@@ -39,3 +49,4 @@ live 2026-09-12 session I: the rejected ExitPlanMode of 04:58 wrote nothing — 
 - 2026-09-11 updated: the Retro section survives a later approval; pending until the live reading · [[decision-case-57]]
 - 2026-09-12 status: pending → passed · raw/2026-09-12/ledger.md#L34
 - 2026-09-12 updated: the Deferred heading (cases 59.5, 66) · [[decision-case-66]]
+- 2026-09-12 criterion: case 73.2 added · [[decision-case-73.2]]

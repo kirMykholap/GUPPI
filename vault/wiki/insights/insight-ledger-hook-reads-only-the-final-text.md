@@ -3,7 +3,7 @@ type: insight
 pattern: The ledger writer sees the last text of a turn, not the turn; a LEDGER block anywhere else in the turn is never written.
 status: open
 children: [lesson-ledger-hook-misses-a-reply-ending-in-a-tool-call, lesson-ledger-hook-drops-a-block-followed-by-tool-calls-in-the-turn]
-severity: 2
+severity: 1
 origin: raw/2026-09-12/ledger.md#L101
 sprint: migration
 created: 2026-09-12

@@ -1,7 +1,8 @@
 date: '2026-09-11'
 sprint: migration
 ledger: vault/raw/2026-09-11/ledger.md
-spec: vault/raw/2026-09-11/spec.md
+spec:
+- vault/raw/2026-09-11/spec.md
 entries:
 - line: 1
   text: decision[case 53.1][update][estimates-schema-yaml]
@@ -1648,6 +1649,7 @@ decisions:
   incomplete:
   - given
   applied: '12:17:12'
+  spec: vault/raw/2026-09-11/spec.md
 - case: '53.2'
   decision: decision-case-53.2
   origin: raw/2026-09-11/ledger.md#case-53.2
@@ -1711,6 +1713,7 @@ decisions:
   incomplete:
   - given
   applied: '12:17:12'
+  spec: vault/raw/2026-09-11/spec.md
 - case: '53.3'
   decision: decision-case-53.3
   origin: raw/2026-09-11/ledger.md#case-53.3
@@ -1752,6 +1755,7 @@ decisions:
   incomplete:
   - given
   applied: '12:17:12'
+  spec: vault/raw/2026-09-11/spec.md
 - case: '53.4'
   decision: decision-case-53.4
   origin: raw/2026-09-11/ledger.md#case-53.4
@@ -1796,6 +1800,7 @@ decisions:
   incomplete:
   - given
   applied: '12:17:12'
+  spec: vault/raw/2026-09-11/spec.md
 - case: '54'
   decision: decision-case-54
   origin: raw/2026-09-11/ledger.md#case-54
@@ -1861,6 +1866,7 @@ decisions:
     ratification: ratified 2026-09-11, the owner not fully sure; the reading after this session's librarian
       run decides.
   applied: '12:17:12'
+  spec: vault/raw/2026-09-11/spec.md
 - case: '55.1'
   decision: decision-case-55.1
   origin: raw/2026-09-11/ledger.md#case-55.1
@@ -1897,6 +1903,7 @@ decisions:
   incomplete:
   - given
   applied: '12:17:12'
+  spec: vault/raw/2026-09-11/spec.md
 - case: '55.2'
   decision: decision-case-55.2
   origin: raw/2026-09-11/ledger.md#case-55.2
@@ -1938,6 +1945,7 @@ decisions:
   incomplete:
   - given
   applied: '12:17:12'
+  spec: vault/raw/2026-09-11/spec.md
 - case: '56'
   decision: decision-case-56
   origin: raw/2026-09-11/ledger.md#case-56
@@ -2009,6 +2017,7 @@ decisions:
   supersedes:
   - decision-case-50
   applied: '12:17:12'
+  spec: vault/raw/2026-09-11/spec.md
 - case: '57'
   decision: decision-case-57
   origin: raw/2026-09-11/ledger.md#case-57
@@ -2068,4 +2077,5 @@ decisions:
       **＋** `estimate-lint-catches`: классы 52 и 53, `pending`.'
     ratification: ratified 2026-09-11.
   applied: '12:17:12'
+  spec: vault/raw/2026-09-11/spec.md
 unparsed: []

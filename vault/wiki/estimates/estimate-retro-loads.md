@@ -1,7 +1,7 @@
 ---
 type: estimate
 kind: QA
-status: passed
+status: pending
 target: rule-retro
 origin: raw/2026-09-10/ledger.md#case-38.1
 sprint: migration
@@ -27,6 +27,15 @@ lesson[error] either way; every edit made in Retro traces to a line of today's l
 the closing reply lists the ratifications, the done and the not done; the commit
 precedes the /handoff call.
 
+### case 73.6
+
+When:
+`/retro` writes a short defer.
+
+Then:
+It is appended under `## Deferred` of `raw/<hi date>/<hi HHMM>/spec.md`; the unticked
+`tasks` Retro counts are that file's.
+
 ## Method
 
 one reading by hand at the first /retro, recorded in the estimate line
@@ -42,3 +51,4 @@ live 2026-09-12 session I, the first /retro of the new form: the skill loaded ma
 - 2026-09-11 updated: the frontier, the four outcomes, the readings and the red-test paths added; pending until the next live /retro · [[decision-case-56]]
 - 2026-09-12 updated: the Deferred heading (cases 59.5, 66) · [[decision-case-66]]
 - 2026-09-12 status: pending → passed · raw/2026-09-12/ledger.md#L106
+- 2026-09-12 criterion: case 73.6 added · [[decision-case-73.6]]

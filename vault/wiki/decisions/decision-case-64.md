@@ -1,9 +1,10 @@
 ---
 type: decision
 case: "64"
-status: current
+status: superseded
 defer: [rule-work-mode, rule-subagent-guppi]
 supersedes: [decision-case-29]
+superseded_by: [decision-case-78]
 origin: raw/2026-09-12/ledger.md#case-64
 sprint: migration
 created: 2026-09-12
@@ -30,3 +31,4 @@ clause before its Cases are formed. Postponed four times now.
 ## History
 
 - 2026-09-12 created · raw/2026-09-12/ledger.md#case-64
+- 2026-09-12 superseded by decision-case-78 · [[decision-case-78]]

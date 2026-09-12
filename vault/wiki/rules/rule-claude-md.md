@@ -8,7 +8,8 @@ governs: CLAUDE.md
 render_mode: full
 parent: rule-harness
 children: [rule-case-protocol]
-estimates: []
+estimates: [estimate-claude-md-rendered]
+deferred_by: [decision-case-84]
 origin: raw/2026-09-12/ledger.md#case-59.8
 sprint: migration
 created: 2026-09-12
@@ -64,9 +65,7 @@ move closes:
   `materialize`, index check, synthesis, `generate`, `cleanup`, brief, commit. Pages are no
   longer written by hand; `brief.md` is written by the librarian. `docs/migration/` still
   holds the drafts of Work Mode and the plan of the move.
-- **Each slice is its own Plan Mode and its own approval.** The approved plan is copied to
-  `vault/raw/<date>/spec.md` by the `PostToolUse ExitPlanMode` hook `guppi spec` since
-  Slice 2; the Specs of Slices 0–2 were copied by hand.
+- **Each slice is its own Plan Mode and its own approval.** The approved plan is copied to `vault/raw/<date>/<hi HHMM>/spec.md`, the session's folder, by the `PostToolUse ExitPlanMode` hook `guppi spec` since Slice 2 (the folder since case 73); the Specs of Slices 0–2 were copied by hand.
 
 <!-- rule-case-protocol -->
 
@@ -93,10 +92,11 @@ dependencies, Python or otherwise.
 Rendered in full into `CLAUDE.md`; `rule-case-protocol` splices into its marker. The
 `@` lines are text here and imports for Claude Code. The section "Migration mode"
 is carried from the hand-written file as it stood on 2026-09-12 and leaves with the
-migration, by an `update` of this page. `rule-case-protocol` keeps its parent
-`rule-plan-mode`; it is listed here for the renderer only.
+migration, by an `update` of this page. `rule-case-protocol` has this page as its parent since case 66 and is its one child; the renderer splices it into the marker.
 
 ## Estimates
+
+- [[estimate-claude-md-rendered]]
 
 ## Children
 
@@ -109,3 +109,7 @@ migration, by an `update` of this page. `rule-case-protocol` keeps its parent
 ## History
 
 - 2026-09-12 created · [[decision-case-59.8]]
+- 2026-09-12 estimate estimate-claude-md-rendered added · [[decision-case-71.1]]
+- 2026-09-12 updated: the Migration paragraph names the session's folder (case 73.10) · [[decision-case-73.10]]
+- 2026-09-12 updated: the stale sentence on rule-case-protocol's parent corrected (case 77) · [[decision-case-77]]
+- 2026-09-12 deferred · [[decision-case-84]]

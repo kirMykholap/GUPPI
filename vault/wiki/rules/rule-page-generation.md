@@ -43,11 +43,7 @@ fields. A field or section the entry lacks is not written: lint names it.
 
 History lines: `created`, `updated: <change>`, `status: a → b`, `deleted`, `deferred`, `child <slug> added`, `estimate <slug> added`, each `· [[decision-case-N]]` when the entry belongs to a Case and `· <origin>` (the ledger pointer) when it is a reading or a lesson;
 `log.md` gets the same line with `<category>/<slug>` in front, appended after each
-entry, so a run that stops leaves the feed level with the pages. A `create` with `ref`
-appends the slug to the parent's `children` (order kept) or, for an estimate, to
-the target's `estimates`, and rebuilds that section. An `update` applies `set` to
-the frontmatter, `sections` as whole replacements, `replace` inside the body
-(whitespace-collapsed match, exactly one occurrence), and appends History. An `estimate` entry sets `status`, overwrites `## Result` and appends History, whatever the page held before: a reading always lands, and reruns are held off by the `applied` marks alone. A `delete` sets `status: archived`
+entry, so a run that stops leaves the feed level with the pages. A `create` with `ref` appends the slug to the parent's `children` (order kept) or, for an estimate, to the target's `estimates`, and rebuilds that section; a derived Estimate create (case 72.3) writes the page `pending` with Context, Criterion and Method and no Result, and is listed on its target the same way. An `update` applies `set` to the frontmatter, `sections` as whole replacements, `replace` inside the body (whitespace-collapsed match, exactly one occurrence), and appends History; an update carrying `criterion_block` appends the block to `## Criterion`, History `criterion: case N added`; a `remove_criterion` entry deletes the `### case N` block, History `criterion: case N removed` (case 72.4). An `estimate` entry sets `status`, overwrites `## Result` and appends History, whatever the page held before: a reading always lands, and reruns are held off by the `applied` marks alone. A `delete` sets `status: archived`
 with History `deleted`; there is no `deleted` status. A `delete` whose slug is neither
 a category prefix nor a Rule-class file (`category: unknown` in the yaml) names
 something outside the vault: it is printed on stdout as `outside the vault, nothing to
@@ -56,7 +52,7 @@ page fails. A `defer` with a page appends History `deferred` and the decision sl
 
 A lesson entry writes the lesson only: a lesson is a recorded fact and has no Estimate. A missing `source` is not invented; lint names it.
 
-One Decision page per Case, `decisions/decision-case-<N>.md`: `case`, `status: current`, one list per kind present among the Case's ledger lines — `create`, `update`, `delete`, `defer`, in that order, each the slugs of those lines in ledger order (the category is derived from the slug prefix or the Rule-class map, never written), `source` when a line carries one, `supersedes`, `origin`, `sprint`, `created`, `tags` (the union of the targets' tags); body `Context`, `Problem`, `Given`, `When` from `case_text`. A `supersedes` sets the earlier page `status: superseded`, appends the new slug to its `superseded_by`, and removes the earlier decision's slug from the `deferred_by` of every target in its `defer` list; an empty `deferred_by` is dropped. A decision page that exists is
+One Decision page per Case, `decisions/decision-case-<N>.md`: `case`, `status: current`, one list per kind present among the Case's ledger lines — `create`, `update`, `delete`, `defer`, in that order, each the slugs of those lines in ledger order (the category is derived from the slug prefix or the Rule-class map, never written), `source` when a line carries one, `supersedes`, `origin`, `sprint`, `created`, `tags` (the union of the targets' tags); body `Context`, `Problem`, `Given` from `case_text`, and `Criterion` — one `[[estimate-x]] § case N` line per Estimate the Case shaped — when the entry carries `criterion`; no `When` (case 72.4; pages written before keep theirs). A `supersedes` sets the earlier page `status: superseded`, appends the new slug to its `superseded_by`, and removes the earlier decision's slug from the `deferred_by` of every target in its `defer` list; an empty `deferred_by` is dropped. A decision page that exists is
 skipped. A `create` marked `exists` writes no page and no History; its decision
 page is still written.
 
@@ -109,3 +105,4 @@ declared and not registered is reported on stderr and left on the page.
 - 2026-09-12 status: draft → built · cascade
 - 2026-09-12 updated: a decision page names its targets by kind — one list per kind present — instead of two lists aligned by position (case 59.4) · [[decision-case-59.4]]
 - 2026-09-12 status: built → draft · cascade
+- 2026-09-12 updated: the derived Estimate page, the criterion block appended or removed, the decision page's Criterion links and no When (case 72.4) · [[decision-case-72.4]]

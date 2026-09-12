@@ -2,7 +2,7 @@
 type: rule
 kind: MOC
 purpose: Prevents a session from being loaded piecemeal by read-tool calls
-status: draft
+status: built
 enforcement: render
 governs: .claude/skills/hi/SKILL.md
 render_mode: full
@@ -40,8 +40,7 @@ Recorded: !`uv run guppi event hi --session "${CLAUDE_SESSION_ID:-}"`
 Assemble the Frontier from the above and present it as a list: tasks, problems, debt
 carried over, where the sprint stands; on a plan branch the unfinished plan comes first;
 what `guppi render --sync` printed at session start is an item when it shows a hand edit.
-A failed pull or an unavailable `gh` is an item on that list, not a reason to stop. Write
-the same list to `vault/raw/<date>/frontier.md`, one line per item:
+A failed pull or an unavailable `gh` is an item on that list, not a reason to stop. Write the same list to `vault/raw/<date>/<hi HHMM>/frontier.md` — the session's folder, `HHMM` the time of the `hi` line above (case 73) — one line per item:
 `- [ ] F<n> — <title> · <source>`. Close a line when its item ends: `[x] … · case N`
 when ratified, `[x] … · work` when it needs no decision, `[-] … · defer case N` when
 deferred; an item the person adds is a new line. `/pre-task` fails on an open line. Wait
@@ -84,3 +83,5 @@ of this render.
 - 2026-09-12 updated: the Frontier is written to raw/<date>/frontier.md and closed line by line; estimate-hi-writes-frontier added · [[decision-case-59.2]]
 - 2026-09-12 updated: a hand edit shown by render --sync at session start is a Frontier item (case 59.7) · [[decision-case-59.7]]
 - 2026-09-12 status: built → draft · cascade
+- 2026-09-12 updated: the Frontier lands in the session's folder (case 73.3) · [[decision-case-73.3]]
+- 2026-09-12 status: draft → built · cascade

@@ -514,3 +514,124 @@ instruction. The global feed; a page's own `## History` is the per-page view.
 - 2026-09-12 rules/rule-skill-hi status: built → draft · cascade · generate
 - 2026-09-12 rules/rule-spec-capture status: draft → built · cascade · generate
 - 2026-09-12 tags.md registers tests · generate
+- 2026-09-12 lessons/lesson-ledger-preview-in-ratification-taken-for-the-record created · raw/2026-09-12/ledger.md#L107 · generate
+- 2026-09-12 decisions/decision-case-70 created · raw/2026-09-12/ledger.md#case-70 · generate
+- 2026-09-12 lessons/lesson-ledger-hook-drops-a-block-followed-by-tool-calls-in-the-turn deleted · [[decision-case-70]] · generate
+- 2026-09-12 lessons/lesson-pretask-nested-estimate-exempt-from-the-line-check created · raw/2026-09-12/ledger.md#L109 · generate
+- 2026-09-12 decisions/decision-case-71.1 created · raw/2026-09-12/ledger.md#case-71.1 · generate
+- 2026-09-12 estimates/estimate-governed-files-hook-refuses created · [[decision-case-71.1]] · generate
+- 2026-09-12 estimates/estimate-governed-files-hook-refuses status: pending → failed · raw/2026-09-12/ledger.md#L152 · generate
+- 2026-09-12 rules/rule-governed-files-hook estimate estimate-governed-files-hook-refuses added · [[decision-case-71.1]] · generate
+- 2026-09-12 estimates/estimate-claude-md-rendered created · [[decision-case-71.1]] · generate
+- 2026-09-12 estimates/estimate-claude-md-rendered status: pending → failed · raw/2026-09-12/ledger.md#L153 · generate
+- 2026-09-12 rules/rule-claude-md estimate estimate-claude-md-rendered added · [[decision-case-71.1]] · generate
+- 2026-09-12 decisions/decision-case-72.1 created · raw/2026-09-12/ledger.md#case-72.1 · generate
+- 2026-09-12 rules/rule-case-protocol updated: the Estimate is derived from the Case: when and then as its Criterion block, method on a create, contract on an update (case 72.1) · [[decision-case-72.1]] · generate
+- 2026-09-12 estimates/estimate-case-protocol-loaded updated: the then block form of case 72.1 joins the criterion; pending for the next session's reading · [[decision-case-72.1]] · generate
+- 2026-09-12 decisions/decision-case-72.2 created · raw/2026-09-12/ledger.md#case-72.2 · generate
+- 2026-09-12 decisions/decision-case-72.3 created · raw/2026-09-12/ledger.md#case-72.3 · generate
+- 2026-09-12 rules/rule-materialize updated: a Leaf create with method and an update with contract: changed yield the Estimate's entries; supersedes removes a criterion block; the decision entry names the Estimates shaped (case 72.3) · [[decision-case-72.3]] · generate
+- 2026-09-12 estimates/estimate-materialize-assembles updated: the derived Estimate entries of case 72.3 join the criterion; pending until the unit reading · [[decision-case-72.3]] · generate
+- 2026-09-12 decisions/decision-case-72.4 created · raw/2026-09-12/ledger.md#case-72.4 · generate
+- 2026-09-12 rules/rule-page-generation updated: the derived Estimate page, the criterion block appended or removed, the decision page's Criterion links and no When (case 72.4) · [[decision-case-72.4]] · generate
+- 2026-09-12 estimates/estimate-generate-writes updated: the derived Estimate page and the decision page's Criterion links join the criterion (case 72.4); pending until the unit reading · [[decision-case-72.4]] · generate
+- 2026-09-12 decisions/decision-case-72.5 created · raw/2026-09-12/ledger.md#case-72.5 · generate
+- 2026-09-12 rules/rule-pretask updated: findings for a missing method, a missing contract, two contracts in one Case and a colliding derived slug; no line for an Estimate (case 72.5) · [[decision-case-72.5]] · generate
+- 2026-09-12 estimates/estimate-pretask-reconciles updated: the findings of case 72.5 join the criterion; pending until the unit reading · [[decision-case-72.5]] · generate
+- 2026-09-12 decisions/decision-case-72.6 created · raw/2026-09-12/ledger.md#case-72.6 · generate
+- 2026-09-12 rules/rule-lint updated: no When required on a decision page; Criterion links and ### case N blocks resolve (case 72.6) · [[decision-case-72.6]] · generate
+- 2026-09-12 estimates/estimate-lint-catches updated: the two shapes of case 72.6 join the criterion; pending until the unit reading · [[decision-case-72.6]] · generate
+- 2026-09-12 decisions/decision-case-73.1 created · raw/2026-09-12/ledger.md#case-73.1 · generate
+- 2026-09-12 decisions/decision-case-73.2 created · raw/2026-09-12/ledger.md#case-73.2 · generate
+- 2026-09-12 rules/rule-spec-capture updated: the Spec lands in the session's folder raw/<hi date>/<hi HHMM>/ (case 73.2) · [[decision-case-73.2]] · generate
+- 2026-09-12 estimates/estimate-spec-capture-appends criterion: case 73.2 added · [[decision-case-73.2]] · generate
+- 2026-09-12 decisions/decision-case-73.3 created · raw/2026-09-12/ledger.md#case-73.3 · generate
+- 2026-09-12 rules/rule-skill-hi updated: the Frontier lands in the session's folder (case 73.3) · [[decision-case-73.3]] · generate
+- 2026-09-12 estimates/estimate-hi-writes-frontier criterion: case 73.3 added · [[decision-case-73.3]] · generate
+- 2026-09-12 decisions/decision-case-73.4 created · raw/2026-09-12/ledger.md#case-73.4 · generate
+- 2026-09-12 rules/rule-pretask updated: the frontier of the session's folder (case 73.4) · [[decision-case-73.4]] · generate
+- 2026-09-12 estimates/estimate-pretask-reconciles criterion: case 73.4 added · [[decision-case-73.4]] · generate
+- 2026-09-12 decisions/decision-case-73.5 created · raw/2026-09-12/ledger.md#case-73.5 · generate
+- 2026-09-12 rules/rule-materialize updated: one Spec per session folder; all of a date's Specs are read (case 73.5) · [[decision-case-73.5]] · generate
+- 2026-09-12 estimates/estimate-materialize-assembles criterion: case 73.5 added · [[decision-case-73.5]] · generate
+- 2026-09-12 decisions/decision-case-73.6 created · raw/2026-09-12/ledger.md#case-73.6 · generate
+- 2026-09-12 rules/rule-retro updated: Retro reads and appends the session's Spec (case 73.6) · [[decision-case-73.6]] · generate
+- 2026-09-12 estimates/estimate-retro-loads criterion: case 73.6 added · [[decision-case-73.6]] · generate
+- 2026-09-12 decisions/decision-case-73.7 created · raw/2026-09-12/ledger.md#case-73.7 · generate
+- 2026-09-12 rules/rule-handoff updated: the handoff is one document in the session's folder; the librarian is dispatched with its path (case 73.7) · [[decision-case-73.7]] · generate
+- 2026-09-12 estimates/estimate-handoff-dispatches criterion: case 73.7 added · [[decision-case-73.7]] · generate
+- 2026-09-12 decisions/decision-case-73.8 created · raw/2026-09-12/ledger.md#case-73.8 · generate
+- 2026-09-12 rules/rule-documentation updated: the handoff of the session's folder (case 73.8) · [[decision-case-73.8]] · generate
+- 2026-09-12 estimates/estimate-documentation-completes criterion: case 73.8 added · [[decision-case-73.8]] · generate
+- 2026-09-12 decisions/decision-case-73.9 created · raw/2026-09-12/ledger.md#case-73.9 · generate
+- 2026-09-12 rules/rule-case-protocol updated: the Spec and the Frontier live in the session's folder (case 73.9) · [[decision-case-73.9]] · generate
+- 2026-09-12 estimates/estimate-case-protocol-loaded criterion: case 73.9 added · [[decision-case-73.9]] · generate
+- 2026-09-12 decisions/decision-case-73.10 created · raw/2026-09-12/ledger.md#case-73.10 · generate
+- 2026-09-12 rules/rule-claude-md updated: the Migration paragraph names the session's folder (case 73.10) · [[decision-case-73.10]] · generate
+- 2026-09-12 estimates/estimate-claude-md-rendered criterion: case 73.10 added · [[decision-case-73.10]] · generate
+- 2026-09-12 decisions/decision-case-74 created · raw/2026-09-12/ledger.md#case-74 · generate
+- 2026-09-12 decisions/decision-case-68 superseded by decision-case-74 · [[decision-case-74]] · generate
+- 2026-09-12 rules/rule-pretask defer by decision-case-68 superseded · [[decision-case-74]] · generate
+- 2026-09-12 rules/rule-pretask updated: a Case with work, not a Case with lines: the defer-only exemption of the code is the wording (case 74, supersedes 68) · [[decision-case-74]] · generate
+- 2026-09-12 estimates/estimate-pretask-reconciles criterion: case 74 added · [[decision-case-74]] · generate
+- 2026-09-12 decisions/decision-case-75.1 created · raw/2026-09-12/ledger.md#case-75.1 · generate
+- 2026-09-12 decisions/decision-case-67 superseded by decision-case-75.1 · [[decision-case-75.1]] · generate
+- 2026-09-12 rules/rule-case-protocol defer by decision-case-67 superseded · [[decision-case-75.1]] · generate
+- 2026-09-12 rules/rule-case-protocol updated: the ledger paragraph shows a decision line as written, with the word case (case 75.1, supersedes 67) · [[decision-case-75.1]] · generate
+- 2026-09-12 estimates/estimate-case-protocol-loaded criterion: case 75.1 added · [[decision-case-75.1]] · generate
+- 2026-09-12 decisions/decision-case-75.2 created · raw/2026-09-12/ledger.md#case-75.2 · generate
+- 2026-09-12 rules/rule-pretask updated: a ledger line of the window that does not parse is a finding (case 75.2) · [[decision-case-75.2]] · generate
+- 2026-09-12 estimates/estimate-pretask-reconciles criterion: case 75.2 added · [[decision-case-75.2]] · generate
+- 2026-09-12 decisions/decision-case-76 created · raw/2026-09-12/ledger.md#case-76 · generate
+- 2026-09-12 decisions/decision-case-69 superseded by decision-case-76 · [[decision-case-76]] · generate
+- 2026-09-12 rules/rule-materialize defer by decision-case-69 superseded · [[decision-case-76]] · generate
+- 2026-09-12 rules/rule-materialize updated: a --show mode prints the yaml and writes nothing (case 76, supersedes 69) · [[decision-case-76]] · generate
+- 2026-09-12 estimates/estimate-materialize-assembles criterion: case 76 added · [[decision-case-76]] · generate
+- 2026-09-12 decisions/decision-case-77 created · raw/2026-09-12/ledger.md#case-77 · generate
+- 2026-09-12 rules/rule-claude-md updated: the stale sentence on rule-case-protocol's parent corrected (case 77) · [[decision-case-77]] · generate
+- 2026-09-12 decisions/decision-case-78 created · raw/2026-09-12/ledger.md#case-78 · generate
+- 2026-09-12 decisions/decision-case-64 superseded by decision-case-78 · [[decision-case-78]] · generate
+- 2026-09-12 rules/rule-work-mode defer by decision-case-64 superseded · [[decision-case-78]] · generate
+- 2026-09-12 rules/rule-subagent-guppi defer by decision-case-64 superseded · [[decision-case-78]] · generate
+- 2026-09-12 rules/rule-work-mode deferred · [[decision-case-78]] · generate
+- 2026-09-12 rules/rule-subagent-guppi deferred · [[decision-case-78]] · generate
+- 2026-09-12 decisions/decision-case-79 created · raw/2026-09-12/ledger.md#case-79 · generate
+- 2026-09-12 decisions/decision-case-63 superseded by decision-case-79 · [[decision-case-79]] · generate
+- 2026-09-12 rules/rule-ledger-tail defer by decision-case-63 superseded · [[decision-case-79]] · generate
+- 2026-09-12 rules/rule-ledger-tail deferred · [[decision-case-79]] · generate
+- 2026-09-12 decisions/decision-case-80 created · raw/2026-09-12/ledger.md#case-80 · generate
+- 2026-09-12 decisions/decision-case-65 superseded by decision-case-80 · [[decision-case-80]] · generate
+- 2026-09-12 rules/rule-ask defer by decision-case-65 superseded · [[decision-case-80]] · generate
+- 2026-09-12 rules/rule-ask deferred · [[decision-case-80]] · generate
+- 2026-09-12 estimates/estimate-hi-writes-frontier status: pending → passed · raw/2026-09-12/ledger.md#L151 · generate
+- 2026-09-12 estimates/estimate-render-harness-reproduces status: pending → failed · raw/2026-09-12/ledger.md#L154 · generate
+- 2026-09-12 lessons/lesson-estimates-live-clause-stale-at-first-render created · raw/2026-09-12/ledger.md#L155 · generate
+- 2026-09-12 lessons/lesson-hooks-blocked-pretooluse-leaves-no-posttooluse-event created · raw/2026-09-12/ledger.md#L156 · generate
+- 2026-09-12 estimates/estimate-materialize-assembles status: pending → passed · raw/2026-09-12/ledger.md#L157 · generate
+- 2026-09-12 estimates/estimate-pretask-reconciles status: pending → passed · raw/2026-09-12/ledger.md#L158 · generate
+- 2026-09-12 estimates/estimate-lint-catches status: pending → passed · raw/2026-09-12/ledger.md#L159 · generate
+- 2026-09-12 lessons/lesson-materialize-lesson-line-source-dropped created · raw/2026-09-12/ledger.md#L160 · generate
+- 2026-09-12 decisions/decision-case-81 created · raw/2026-09-12/ledger.md#case-81 · generate
+- 2026-09-12 rules/rule-case-protocol deferred · [[decision-case-81]] · generate
+- 2026-09-12 decisions/decision-case-82 created · raw/2026-09-12/ledger.md#case-82 · generate
+- 2026-09-12 rules/rule-materialize deferred · [[decision-case-82]] · generate
+- 2026-09-12 decisions/decision-case-83 created · raw/2026-09-12/ledger.md#case-83 · generate
+- 2026-09-12 rules/rule-governed-files-hook deferred · [[decision-case-83]] · generate
+- 2026-09-12 decisions/decision-case-84 created · raw/2026-09-12/ledger.md#case-84 · generate
+- 2026-09-12 rules/rule-claude-md deferred · [[decision-case-84]] · generate
+- 2026-09-12 rules/rule-render-harness deferred · [[decision-case-84]] · generate
+- 2026-09-12 insights/insight-ledger-line-written-unchecked updated: clustered by librarian: two more lessons on a ledger line unchecked at the moment of writing · raw/2026-09-12/ledger.md#L107 · generate
+- 2026-09-12 lessons/lesson-ledger-preview-in-ratification-taken-for-the-record updated: clustered by librarian: a ledger line is unchecked until materialize, with lesson-spec-then-items-unchecked-against-ledger-lines · raw/2026-09-12/ledger.md#L107 · generate
+- 2026-09-12 lessons/lesson-pretask-nested-estimate-exempt-from-the-line-check updated: clustered by librarian: a ledger line is unchecked until materialize, with lesson-ledger-preview-in-ratification-taken-for-the-record · raw/2026-09-12/ledger.md#L109 · generate
+- 2026-09-12 insights/insight-workflow-contract-change-leaves-its-derived-text-stale updated: clustered by librarian: a third lesson on a change that leaves its derived text stale · raw/2026-09-12/ledger.md#L155 · generate
+- 2026-09-12 lessons/lesson-estimates-live-clause-stale-at-first-render updated: clustered by librarian: a change leaves its derived text stale, with lesson-estimates-criterion-stale-after-contract-change · raw/2026-09-12/ledger.md#L155 · generate
+- 2026-09-12 insights/insight-materialize-lift-loses-a-schema-field created · raw/2026-09-12/ledger.md#L160 · generate
+- 2026-09-12 lessons/lesson-materialize-standalone-estimate-keeps-criterion-as-a-field updated: clustered by librarian: the lift from a line to a page loses a field, with lesson-materialize-lesson-line-source-dropped · raw/2026-09-12/ledger.md#L160 · generate
+- 2026-09-12 lessons/lesson-materialize-lesson-line-source-dropped updated: clustered by librarian: the lift from a line to a page loses a field, with lesson-materialize-standalone-estimate-keeps-criterion-as-a-field · raw/2026-09-12/ledger.md#L160 · generate
+- 2026-09-12 rules/rule-case-protocol status: built → draft · cascade · generate
+- 2026-09-12 rules/rule-handoff status: built → draft · cascade · generate
+- 2026-09-12 rules/rule-pretask status: draft → built · cascade · generate
+- 2026-09-12 rules/rule-retro status: built → draft · cascade · generate
+- 2026-09-12 rules/rule-skill-hi status: draft → built · cascade · generate
+- 2026-09-12 rules/rule-spec-capture status: built → draft · cascade · generate
+- 2026-09-12 lessons/lesson-ledger-hook-drops-a-block-followed-by-tool-calls-in-the-turn archived · cleanup

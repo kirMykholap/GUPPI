@@ -1,8 +1,9 @@
 ---
 type: decision
 case: "67"
-status: current
+status: superseded
 defer: [rule-case-protocol]
+superseded_by: [decision-case-75.1]
 origin: raw/2026-09-12/ledger.md#case-67
 sprint: migration
 created: 2026-09-12
@@ -28,3 +29,4 @@ ledger writes it. An `update` of both; the next Plan Mode.
 ## History
 
 - 2026-09-12 created · raw/2026-09-12/ledger.md#case-67
+- 2026-09-12 superseded by decision-case-75.1 · [[decision-case-75.1]]

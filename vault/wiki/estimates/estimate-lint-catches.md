@@ -19,7 +19,7 @@ pages written by hand since Slice 0, whose findings are the debt the brief carri
 
 Against a temp vault seeded with one page per defect class, `guppi lint` names each
 defective page with the class and nothing else, exits 1, and exits 0 with no output on a
-clean vault; the two Method classes (case 26.2) are seeded too, and the classes of cases 52 and 53: a decision page with none of the four kind lists or with kind or target_slug still present, a slug in one of the lists naming neither a live nor an archived page, a deferred_by naming no decision, a History wikilink resolving to nothing, an estimate whose target is not an entity or a rule; a lesson without estimates is not a finding. Against the live vault:
+clean vault; the two Method classes (case 26.2) are seeded too, and the classes of cases 52 and 53: a decision page with none of the four kind lists or with kind or target_slug still present, a slug in one of the lists naming neither a live nor an archived page, a deferred_by naming no decision, a History wikilink resolving to nothing, an estimate whose target is not an entity or a rule; a lesson without estimates is not a finding; a decision page without ## When is not a finding, a ## Criterion link resolving to no Estimate page is one, and a ### case N block of an Estimate naming no decision page is one. Against the live vault:
 the first run's findings are each either an item of the brief's known-false list or
 become a Case.
 
@@ -30,7 +30,7 @@ written into the estimate line.
 
 ## Result
 
-tests/test_lint.py green with the classes of case 59.4 seeded: a decision page with none of the four lists, kind or target_slug still present, a slug naming neither a live nor an archived page, an archived target not a finding, a Rule-class slug not looked up; live 2026-09-12 after the migration of 78 pages: guppi lint 209 findings, 0 of class decision, the 88 ref findings are the History wikilinks [[decision-case-59.4]] and [[decision-case-60]] that resolve at the librarian's run, the rest the known list of the brief
+tests/test_lint.py green in the 258 with the three classes of 72.6 seeded: a decision page without ## When is no finding even when the yaml requires it, a ## Criterion link resolving to no Estimate page is a ref finding, a ### case N block of an Estimate naming no decision page is a ref finding, and a ### line is not a section boundary; live 2026-09-12 session J after the render and the Work Mode of Cases 72–76: guppi lint 129 findings, the same count and classes as the brief's known-false list (124 schema of the backfill and the missing ## Insight sections, 3 orphans, 1 ref literal in rule-page-generation, 1 method), none new
 
 ## History
 
@@ -41,3 +41,5 @@ tests/test_lint.py green with the classes of case 59.4 seeded: a decision page w
 - 2026-09-11 status: pending → passed · raw/2026-09-11/ledger.md#L69
 - 2026-09-12 updated: the decision classes of case 59.4 replace those of 52.1 in the criterion · [[decision-case-59.4]]
 - 2026-09-12 status: pending → passed · raw/2026-09-12/ledger.md#L98
+- 2026-09-12 updated: the two shapes of case 72.6 join the criterion; pending until the unit reading · [[decision-case-72.6]]
+- 2026-09-12 status: pending → passed · raw/2026-09-12/ledger.md#L159

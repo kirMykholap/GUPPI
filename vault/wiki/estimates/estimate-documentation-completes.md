@@ -26,6 +26,15 @@ guppi/ and tests/ are the scripts' own and may be read); it edited no yaml entry
 check and the synthesis; its commands are in event_log.md; its commit is separate
 from the session's; it did not stop to ask.
 
+### case 73.8
+
+When:
+`librarian-guppi` starts.
+
+Then:
+Its first input is the `handoff.md` the dispatch names, `raw/<hi date>/<hi HHMM>/handoff.md`;
+the other three inputs are unchanged.
+
 ## Method
 
 `make test-documentation`, the pipeline over tests/test_materialize.py, tests/test_generate.py and tests/test_cleanup.py; the live reading by hand
@@ -44,3 +53,4 @@ the librarian run of session H (2026-09-11 12:10–12:21, commit 10731cb) read a
 - 2026-09-12 status: pending → failed · raw/2026-09-11/ledger.md#L74
 - 2026-09-12 status: failed → passed · raw/2026-09-12/ledger.md#L35
 - 2026-09-12 updated: the Makefile, guppi/ and tests/ leave the forbidden set; pending for the reading against the new criterion (case 58) · [[decision-case-58]]
+- 2026-09-12 criterion: case 73.8 added · [[decision-case-73.8]]

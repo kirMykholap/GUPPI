@@ -1,8 +1,9 @@
 ---
 type: decision
 case: "68"
-status: current
+status: superseded
 defer: [rule-pretask]
+superseded_by: [decision-case-74]
 origin: raw/2026-09-12/ledger.md#case-68
 sprint: migration
 created: 2026-09-12
@@ -25,3 +26,4 @@ with a line other than `defer`". An `update` of both; the next Plan Mode.
 ## History
 
 - 2026-09-12 created · raw/2026-09-12/ledger.md#case-68
+- 2026-09-12 superseded by decision-case-74 · [[decision-case-74]]

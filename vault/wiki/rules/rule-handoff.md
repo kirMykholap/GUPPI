@@ -2,7 +2,7 @@
 type: rule
 kind: Leaf
 purpose: Prevents the session's memory from being lost between the commit and the librarian
-status: built
+status: draft
 enforcement: render
 governs: .claude/skills/handoff/SKILL.md
 render_mode: full
@@ -33,9 +33,7 @@ Recorded: !`uv run guppi event handoff --session "${CLAUDE_SESSION_ID:-}"`
 
 Tree: !`git status --porcelain`
 
-If Tree above is not empty, stop and say "commit first". Otherwise append to
-`vault/raw/<today>/handoff.md` (create it when missing; `---` before a new document
-in an existing file) a document headed `# Handoff — <date>, <slice or topic>` with
+If Tree above is not empty, stop and say "commit first". Otherwise write `vault/raw/<date>/<hi HHMM>/handoff.md` — the session's folder, one document, no `---` (case 73) — headed `# Handoff — <date>, <slice or topic>` with
 three sections: `## Notes from memory` (where the person hesitated, what stayed
 unclear, which decisions carried caveats), `## Direct instructions to the
 librarian` (what to check first, what may duplicate what), `## What actually got
@@ -59,3 +57,5 @@ for its report and show it to the person unchanged. Do not commit after this.
 - 2026-09-10 created · raw/2026-09-10/ledger.md#case-38.3
 - 2026-09-10 estimate estimate-handoff-dispatches added · raw/2026-09-10/ledger.md#case-38.3
 - 2026-09-10 status: draft → built · cascade
+- 2026-09-12 updated: the handoff is one document in the session's folder; the librarian is dispatched with its path (case 73.7) · [[decision-case-73.7]]
+- 2026-09-12 status: built → draft · cascade

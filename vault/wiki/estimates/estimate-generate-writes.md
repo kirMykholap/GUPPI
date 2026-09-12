@@ -17,15 +17,14 @@ Every page of the vault comes through this script from Slice 3 on. A derived fie
 
 Against a temp vault from one yaml: a MOC rule create, a Leaf child create with ref
 and its nested estimate yield three pages that pass their schema.yaml, the parent's
-children and ## Children in order, the target's estimates and ## Estimates; an
-update with set, sections, replace and change changes the field, the section, the
+children and ## Children in order, the target's estimates and ## Estimates; a derived Estimate create yields a pending page with Context, Criterion as a ### case N block and Method, listed on its target; an update carrying a criterion block appends it to ## Criterion and sets pending, a removal deletes the block, each with its History line; an update with set, sections, replace and change changes the field, the section, the
 text and appends History; a replace absent or not unique fails that entry alone,
 exit 1; a delete sets archived with History; a defer without a page writes a
 placeholder with only the Case's fields and deferred_by, a defer with a page appends
 the decision slug to its deferred_by, and a supersedes removes it; an estimate entry
 sets status and overwrites ## Result whatever the page held; a lesson entry writes
 the lesson and no Estimate; one decision page per Case with one list per kind present —
-create, update, delete, defer, the slugs in ledger order — and the sections Context, Problem, Given, When, written before
+create, update, delete, defer, the slugs in ledger order — and the sections Context, Problem, Given, and Criterion links when the Case shaped an Estimate, no When, written before
 the entries of its lines, and supersedes marks the earlier page superseded; History
 and log lines of a Case's entries end with the decision wikilink, a reading's or a
 lesson's with the ledger pointer; the cascade sets built; a declared new tag lands
@@ -61,3 +60,4 @@ tests/test_generate.py 21 green with the four folded criteria, no skip, no paire
 - 2026-09-11 updated: criterion: a stale failed mark is dropped on apply (case 53.3) · [[decision-case-53.3]]
 - 2026-09-12 status: pending → passed · raw/2026-09-11/ledger.md#L76
 - 2026-09-12 updated: the decision page's four lists replace the aligned pair in the criterion (case 59.4) · [[decision-case-59.4]]
+- 2026-09-12 updated: the derived Estimate page and the decision page's Criterion links join the criterion (case 72.4); pending until the unit reading · [[decision-case-72.4]]

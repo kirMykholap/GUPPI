@@ -1,7 +1,7 @@
 ---
 type: estimate
 kind: QA
-status: pending
+status: failed
 target: rule-render-harness
 origin: raw/2026-09-09/ledger.md#case-18.1
 sprint: migration
@@ -35,11 +35,7 @@ written into the estimate line.
 
 ## Result
 
-Passing, 2026-09-09, session D. `tests/test_render.py`: 12 tests green (44 in the suite).
-Live: `guppi render --check` before the first render named only
-`.claude/skills/hi/SKILL.md`; after `guppi render`, `git diff --stat` showed that file
-alone, 2 deletions — the `<!-- rule-skill-hi -->` and `<!-- /rule-skill-hi -->` lines —
-and `CLAUDE.md` untouched; `--check` then exited 0.
+unit: tests/test_render.py green in the 211; live 2026-09-12 session J: after uv run guppi render, git diff --stat shows six files, not the two dropped marker lines of hi/SKILL.md — hi/SKILL.md changed by the text of 59.2 and 59.7, CLAUDE.md by 37 lines of 59.5, 59.6, 62, 66, settings.json by the guard and render --sync hooks, the librarian agent and two skills by their Cases; render --check then exits 0; the two live clauses describe a tree the librarian's run of session I had already left
 
 ## History
 
@@ -47,3 +43,4 @@ and `CLAUDE.md` untouched; `--check` then exited 0.
 - 2026-09-09 status: pending → passed · written by hand, no generator yet
 - 2026-09-10 updated: criterion: a full page with a child that is not a render page renders without it, and errors on a marker line for it · raw/2026-09-10/ledger.md#case-36.2
 - 2026-09-12 updated: CLAUDE.md is a full render target; pending for the next session's render (cases 59.8, 66) · [[decision-case-66]]
+- 2026-09-12 status: pending → failed · raw/2026-09-12/ledger.md#L154

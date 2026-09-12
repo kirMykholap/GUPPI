@@ -6,7 +6,8 @@ status: draft
 enforcement: hook
 implementation_ref: [guppi/guard.py, tests/test_guard.py, .claude/settings.json]
 parent: rule-harness
-estimates: []
+estimates: [estimate-governed-files-hook-refuses]
+deferred_by: [decision-case-83]
 origin: raw/2026-09-12/ledger.md#case-59.6
 sprint: migration
 created: 2026-09-12
@@ -32,6 +33,8 @@ and passes; subagents inherit no project hook.
 
 ## Estimates
 
+- [[estimate-governed-files-hook-refuses]]
+
 ## Parent
 
 - [[rule-harness]]
@@ -45,3 +48,5 @@ and passes; subagents inherit no project hook.
 ## History
 
 - 2026-09-12 created · [[decision-case-59.6]]
+- 2026-09-12 estimate estimate-governed-files-hook-refuses added · [[decision-case-71.1]]
+- 2026-09-12 deferred · [[decision-case-83]]

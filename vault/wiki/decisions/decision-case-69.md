@@ -1,8 +1,9 @@
 ---
 type: decision
 case: "69"
-status: current
+status: superseded
 defer: [rule-materialize]
+superseded_by: [decision-case-76]
 origin: raw/2026-09-12/ledger.md#case-69
 sprint: migration
 created: 2026-09-12
@@ -27,3 +28,4 @@ runs. An `update` of `rule-materialize` with its Estimate; the next Plan Mode (t
 ## History
 
 - 2026-09-12 created · raw/2026-09-12/ledger.md#case-69
+- 2026-09-12 superseded by decision-case-76 · [[decision-case-76]]

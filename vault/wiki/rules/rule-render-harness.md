@@ -7,6 +7,7 @@ enforcement: check
 implementation_ref: [guppi/render.py, tests/test_render.py, .claude/settings.json]
 parent: rule-harness
 estimates: [estimate-render-harness-reproduces, estimate-render-sync-reports]
+deferred_by: [decision-case-84]
 origin: raw/2026-09-09/ledger.md#case-18.1
 sprint: migration
 created: 2026-09-09
@@ -54,3 +55,4 @@ render error goes to stderr. The rendered files are committed at Retro.
 - 2026-09-10 status: draft → built · cascade
 - 2026-09-12 updated: render --sync at SessionStart — diff on stdout, then the write; enforcement hook (case 59.7) · [[decision-case-59.7]]
 - 2026-09-12 status: built → draft · cascade
+- 2026-09-12 deferred · [[decision-case-84]]

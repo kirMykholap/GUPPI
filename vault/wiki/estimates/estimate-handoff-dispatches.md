@@ -1,7 +1,7 @@
 ---
 type: estimate
 kind: QA
-status: passed
+status: pending
 target: rule-handoff
 origin: raw/2026-09-10/ledger.md#case-38.3
 sprint: migration
@@ -21,6 +21,15 @@ gained a document with the three sections, written without read-tool calls on th
 artifacts; the librarian-guppi agent was dispatched with the date and its report
 was shown unchanged; no commit followed.
 
+### case 73.7
+
+When:
+The person invokes `/handoff`.
+
+Then:
+`handoff.md` is written to `raw/<hi date>/<hi HHMM>/`, one document, no `---`; the
+librarian is dispatched with that path.
+
 ## Method
 
 one reading by hand at the first /handoff, recorded in the estimate line
@@ -33,3 +42,4 @@ live 2026-09-10 session F: the /handoff context held `git status --porcelain` (e
 
 - 2026-09-10 created · raw/2026-09-10/ledger.md#case-38.3
 - 2026-09-10 status: pending → passed · raw/2026-09-10/ledger.md#L87
+- 2026-09-12 criterion: case 73.7 added · [[decision-case-73.7]]

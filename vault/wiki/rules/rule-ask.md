@@ -8,6 +8,7 @@ governs: .claude/agents/ask-guppi.md
 render_mode: full
 parent: rule-plan-mode
 estimates: [estimate-ask-finds]
+deferred_by: [decision-case-65]
 origin: raw/2026-09-09/ledger.md#case-23.1
 sprint: migration
 created: 2026-09-09
@@ -70,3 +71,4 @@ Answer with exactly these five lines, each present, "none" when empty:
 - 2026-09-10 status: draft → built · cascade
 - 2026-09-11 updated: a page with deferred_by in the answer: open the named decision, give its Problem on the exists or near line · [[decision-case-52.3]]
 - 2026-09-11 updated: Estimates are reached through the estimates field of the page the question is about; no estimates index · [[decision-case-53.2]]
+- 2026-09-12 deferred · [[decision-case-65]]

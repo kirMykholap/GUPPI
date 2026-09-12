@@ -1421,6 +1421,121 @@ entries:
     insight: insight-tests-clock-not-pinned
   change: 'clustered by librarian: a test reads the real clock, with lesson-tests-cli-date-pinned'
   applied: '12:17:12'
+- line: 74
+  text: 'estimate[estimate-documentation-completes][failed] live 2026-09-11 session H, librarian run 12:10–12:21,
+    commit 10731cb: make test 158 green; every decision line of Cases 52–57 has its Decision page and
+    its targets, 79 entries none unapplied, no entry failed; the report names every wiki page opened with
+    reason and outcome (three lessons for cluster candidates, brief.md for counts, frontmatter of four
+    categories for the brief''s statuses); no ledger, spec, plan, decision page, archive file or file
+    under guppi/ or tests/ was read; the yaml was edited by its own synthesis entries (moved from decisions:
+    to entries:); commit separate, vault/ only; it did not stop; failed on one read outside the four inputs
+    and the four reasons, not named in the report: 12:18:26 sed -n 25,40p Makefile, to see what make lint
+    runs'
+  kind: estimate
+  category: estimates
+  slug: estimate-documentation-completes
+  status: failed
+  result: 'live 2026-09-11 session H, librarian run 12:10–12:21, commit 10731cb: make test 158 green;
+    every decision line of Cases 52–57 has its Decision page and its targets, 79 entries none unapplied,
+    no entry failed; the report names every wiki page opened with reason and outcome (three lessons for
+    cluster candidates, brief.md for counts, frontmatter of four categories for the brief''s statuses);
+    no ledger, spec, plan, decision page, archive file or file under guppi/ or tests/ was read; the yaml
+    was edited by its own synthesis entries (moved from decisions: to entries:); commit separate, vault/
+    only; it did not stop; failed on one read outside the four inputs and the four reasons, not named
+    in the report: 12:18:26 sed -n 25,40p Makefile, to see what make lint runs'
+  origin: raw/2026-09-11/ledger.md#L74
+  applied: '11:47:22'
+- line: 75
+  text: 'estimate[estimate-synthesis-clusters][passed] live 2026-09-11 session H with six lesson entries:
+    two insight creates (insight-librarian-frame-omits-required-reads over frame-read-clauses and reads-beyond-the-four-inputs;
+    insight-tests-clock-not-pinned over history-date-unpinned and cli-date-pinned), one update per clustered
+    lesson, all marked librarian: synthesis; the report names the comparisons per lesson (five near marks)
+    and every lesson page read with its outcome — two clustered, one (ledger-hook-misses-a-reply) compared
+    and not clustered, same area and fix but not one mechanism; no archive file read (event log 12:10–12:21);
+    the lone lesson stayed new'
+  kind: estimate
+  category: estimates
+  slug: estimate-synthesis-clusters
+  status: passed
+  result: 'live 2026-09-11 session H with six lesson entries: two insight creates (insight-librarian-frame-omits-required-reads
+    over frame-read-clauses and reads-beyond-the-four-inputs; insight-tests-clock-not-pinned over history-date-unpinned
+    and cli-date-pinned), one update per clustered lesson, all marked librarian: synthesis; the report
+    names the comparisons per lesson (five near marks) and every lesson page read with its outcome — two
+    clustered, one (ledger-hook-misses-a-reply) compared and not clustered, same area and fix but not
+    one mechanism; no archive file read (event log 12:10–12:21); the lone lesson stayed new'
+  origin: raw/2026-09-11/ledger.md#L75
+  applied: '11:47:22'
+- line: 76
+  text: 'estimate[estimate-generate-writes][passed] tests/test_generate.py 21 green with the four folded
+    criteria, no skip, no paired estimate, the decision-page shape, deferred_by and its clearing, the
+    decision written first, History wikilinks, a stale failed dropped; live 2026-09-11, the librarian''s
+    run: 13 decision pages, 6 lessons, 2 insights created, 14 rules, 11 estimates, 2 lessons, 2 decisions
+    updated, 21 estimates set archived and moved by cleanup, stderr one line (tag tests unregistered),
+    no entry failed, exit 0; make lint afterwards 146, all on the known-false list plus the 25 decision
+    findings of lint''s own archived-target defect; git diff --stat of 10731cb is vault/ only'
+  kind: estimate
+  category: estimates
+  slug: estimate-generate-writes
+  status: passed
+  result: 'tests/test_generate.py 21 green with the four folded criteria, no skip, no paired estimate,
+    the decision-page shape, deferred_by and its clearing, the decision written first, History wikilinks,
+    a stale failed dropped; live 2026-09-11, the librarian''s run: 13 decision pages, 6 lessons, 2 insights
+    created, 14 rules, 11 estimates, 2 lessons, 2 decisions updated, 21 estimates set archived and moved
+    by cleanup, stderr one line (tag tests unregistered), no entry failed, exit 0; make lint afterwards
+    146, all on the known-false list plus the 25 decision findings of lint''s own archived-target defect;
+    git diff --stat of 10731cb is vault/ only'
+  origin: raw/2026-09-11/ledger.md#L76
+  applied: '11:47:22'
+- line: 77
+  text: 'estimate[estimate-materialize-assembles][passed] tests/test_materialize.py 16 green with the
+    standalone-estimate sections and the incomplete rule of a defer-only Case; live 2026-09-11: the walk
+    extended raw/2026-09-10/materialize.yaml with the 19 lines and four decision groups of Case 52 and
+    wrote raw/2026-09-11/materialize.yaml with 79 entries and 13 decision groups, none unparsed, the sub-case
+    groups incomplete only on given; no standalone estimate create this session, so that mapping is read
+    by the tests alone'
+  kind: estimate
+  category: estimates
+  slug: estimate-materialize-assembles
+  status: passed
+  result: 'tests/test_materialize.py 16 green with the standalone-estimate sections and the incomplete
+    rule of a defer-only Case; live 2026-09-11: the walk extended raw/2026-09-10/materialize.yaml with
+    the 19 lines and four decision groups of Case 52 and wrote raw/2026-09-11/materialize.yaml with 79
+    entries and 13 decision groups, none unparsed, the sub-case groups incomplete only on given; no standalone
+    estimate create this session, so that mapping is read by the tests alone'
+  origin: raw/2026-09-11/ledger.md#L77
+  applied: '11:47:22'
+- line: 78
+  text: 'lesson[error][lesson-lint-decision-target-archived-counts-as-missing]{tags:harness,workflow}{source:guppi/lint.py
+    check_decision; librarian report 2026-09-11 session H item 9} trigger: after the librarian archived
+    the 21 Estimates of Cases 53.1 and 53.2, guppi lint reported 25 decision findings "target_slug … names
+    no live page" on decision-case-47, 48, 53.1 and 53.2, whose targets are those archived pages root_cause:
+    check_decision, written in session H for case 52.1, looks a target_slug up in by_slug, the live pages,
+    while check_refs resolves every other slug against live and archived pages; a decision stays current
+    when its target is archived, so the lookup must use the same known set; one-line fix under the line
+    of case 52.1'
+  kind: lesson
+  category: lessons
+  slug: lesson-lint-decision-target-archived-counts-as-missing
+  origin: raw/2026-09-11/ledger.md#L78
+  fields:
+    type: lesson
+    kind: error
+    root_cause: check_decision, written in session H for case 52.1, looks a target_slug up in by_slug,
+      the live pages, while check_refs resolves every other slug against live and archived pages; a decision
+      stays current when its target is archived, so the lookup must use the same known set; one-line fix
+      under the line of case 52.1
+  sections:
+    Trigger: after the librarian archived the 21 Estimates of Cases 53.1 and 53.2, guppi lint reported
+      25 decision findings "target_slug … names no live page" on decision-case-47, 48, 53.1 and 53.2,
+      whose targets are those archived pages
+    Root cause: check_decision, written in session H for case 52.1, looks a target_slug up in by_slug,
+      the live pages, while check_refs resolves every other slug against live and archived pages; a decision
+      stays current when its target is archived, so the lookup must use the same known set; one-line fix
+      under the line of case 52.1
+  tags:
+  - harness
+  - workflow
+  applied: '11:47:22'
 decisions:
 - case: '53.1'
   decision: decision-case-53.1

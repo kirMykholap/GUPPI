@@ -1,7 +1,7 @@
 ---
 type: estimate
 kind: QA
-status: pending
+status: passed
 target: rule-materialize
 origin: raw/2026-09-10/ledger.md#case-31
 sprint: migration
@@ -26,7 +26,7 @@ superseded entry carries superseded_by; the first estimate line is folded into i
 create, the second is an estimate entry; the lesson entry carries root_cause and
 origin #L<n>; the unparsable line is under unparsed; a create without a then block
 is marked incomplete, a create whose page exists is marked exists; a Rule-class slug
-routes to file with its path; one decision entry per Case carries case_text and targets, and is marked incomplete for a missing given or when only when a kind other than defer is among its lines; a standalone estimate create with ref carries context, criterion and method as sections, as the nested one does. An existing yaml gains only the entries of ledger lines it does not hold,
+routes to file with its path; one decision entry per Case carries case_text and targets, and takes a missing context, problem, recommend or given from its parent Case, never when, and is marked incomplete for a section neither has, or a missing when, only when a kind other than defer is among its lines; a standalone estimate create with ref carries context, criterion and method as sections, as the nested one does. The new_tags of a Case with no decision line reach the yaml once. An existing yaml gains only the entries of ledger lines it does not hold,
 keeps its edited and applied entries, reports a text mismatch, gains superseded_by
 from a later supersedes, and turns an estimate line for an applied create into an
 estimate entry. Live: --date 2026-09-09 over the 85-line ledger yields no unparsed
@@ -38,7 +38,7 @@ pytest in tests/test_materialize.py against a temp vault; the live reading once 
 
 ## Result
 
-tests/test_materialize.py 12 green; live 2026-09-10: 67 entries (update 34, create 26, estimate 3, lesson 2, defer 2), 21 decision entries, no unparsed line, incomplete only on the two lessons (tags, source) and case 28 (no Spec text); live --date 2026-09-09: 87 record lines, 74 entries (create 34, update 32, lesson 7, delete 1) plus 13 estimate lines folded into their creates, 34 decision entries, no unparsed line, all 34 creates marked exists
+tests/test_materialize.py 19 green: a sub-case inherits a missing given from its parent and never when, its own given kept, incomplete only when neither has it; new_tags of a line-less Case reach the yaml once; claude-md routes to no file; the standalone-estimate sections and the defer-only rule as before
 
 ## History
 
@@ -46,3 +46,7 @@ tests/test_materialize.py 12 green; live 2026-09-10: 67 entries (update 34, crea
 - 2026-09-10 updated: criterion: an existing yaml gains only the entries of ledger lines it does not hold (the Criterion of case 31 already carries it) · raw/2026-09-10/ledger.md#case-41
 - 2026-09-10 status: pending → passed · raw/2026-09-10/ledger.md#L70
 - 2026-09-11 updated: criterion: the standalone estimate create maps to sections; the incomplete rule for a defer-only Case (case 56) · [[decision-case-53.3]]
+- 2026-09-12 status: pending → passed · raw/2026-09-11/ledger.md#L77
+- 2026-09-12 updated: the parent's given is inherited by a sub-case; pending for the unit reading (case 60) · [[decision-case-60]]
+- 2026-09-12 updated: new_tags of a line-less Case join the criterion (case 61) · [[decision-case-61]]
+- 2026-09-12 status: pending → passed · raw/2026-09-12/ledger.md#L99

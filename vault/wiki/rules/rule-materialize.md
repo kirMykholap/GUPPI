@@ -2,11 +2,12 @@
 type: rule
 kind: Leaf
 purpose: Prevents the librarian from reading the ledger and the Spec itself, or from routing a decision by guesswork
-status: draft
+status: built
 enforcement: check
 implementation_ref: [guppi/materialize.py, tests/test_materialize.py]
 parent: rule-documentation
 estimates: [estimate-materialize-assembles, estimate-materialize-walks-dates]
+deferred_by: [decision-case-69]
 origin: raw/2026-09-10/ledger.md#case-31
 sprint: migration
 created: 2026-09-10
@@ -50,8 +51,10 @@ for a page created in the same ledger is folded into that create (`status`,
 `result`); for an earlier page it is an `estimate` entry, an update. A `lesson` line
 is a `create` in `lessons`: `kind`, `root_cause` and the sections `Trigger` and
 `Root cause` from the line. A line with `{supersedes:case N}` marks the entries of
-case N `superseded_by`. One decision entry per Case: `decision: decision-case-<N>`, `case_text` (the quoted sections of the Case, verbatim, in the language of the Spec), `targets` (one item per line of the Case); a Case whose text lacks `given` or `when` is marked `incomplete` only when a kind other than `defer` is among its lines, since the short form of Retro has neither. A line the grammar does not
-parse goes under `unparsed`; the script continues.
+case N `superseded_by`. One decision entry per Case: `decision: decision-case-<N>`, `case_text` (the quoted sections of the Case, verbatim, in the language of the Spec), `targets` (one item per line of the Case); a sub-case's `context`, `problem`, `recommend` and `given` are its own when present and its parent's otherwise, `when` never; a Case whose text lacks `given` or `when`, its parent's included, is marked `incomplete` only when a kind other than `defer` is among its lines, since the short form has neither. A line the grammar does not
+parse goes under `unparsed`; the script continues. `new_tags` declared in the `then`
+block of any Case of the Spec, with decision lines or without, go to the yaml's
+`new_tags` once each, so a tag a lesson brought can be declared at the next Plan Mode.
 
 An existing yaml is extended, never rewritten (case 41): entries whose `line` is
 present stay as they are, with the librarian's edits and the `applied` marks; new
@@ -90,3 +93,7 @@ date fails.
 - 2026-09-11 updated: a standalone estimate create maps context, criterion and method into sections, as the nested one does · [[decision-case-53.3]]
 - 2026-09-11 updated: a decision entry lacks given or when: incomplete only when a kind other than defer is among its lines · [[decision-case-56]]
 - 2026-09-11 status: built → draft · cascade
+- 2026-09-12 status: draft → built · cascade
+- 2026-09-12 updated: a sub-case inherits a missing given from its parent, as context, problem and recommend; when stays its own (case 60) · [[decision-case-60]]
+- 2026-09-12 updated: new_tags are collected from every Case block, lines or none (case 61) · [[decision-case-61]]
+- 2026-09-12 deferred · [[decision-case-69]]

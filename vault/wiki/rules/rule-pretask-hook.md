@@ -19,7 +19,10 @@ Prevents a Spec from being approved before its decisions were checked against ea
 and the vault. `PreToolUse` on `ExitPlanMode`: in a working session with no `pretask`
 line after this session's `hi`, `uv run guppi pretask` exits 2 with the reason, which
 blocks the approval once; `/pre-task` records the line and the next exit passes. An
-ordinary session, one without `/hi`, is not gated: no governance applies there.
+ordinary session, one without `/hi`, is not gated: no governance applies there. The
+same module serves the skill: `uv run guppi pretask --check <plan>` compares the plan
+with the session's ledger lines and frontier (cases 59.1–59.3, 59.6); `/pre-task` runs
+it, the hook does not.
 
 ## Estimates
 
@@ -38,3 +41,4 @@ ordinary session, one without `/hi`, is not gated: no governance applies there.
 
 - 2026-09-09 created · raw/2026-09-09/ledger.md#case-24.1
 - 2026-09-10 status: draft → built · cascade
+- 2026-09-12 updated: guppi pretask --check lives here and serves /pre-task (case 66) · [[decision-case-66]]

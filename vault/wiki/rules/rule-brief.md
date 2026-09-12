@@ -29,9 +29,11 @@ with these sections in this order:
 - Where things stand: from the "What actually got done" section of `handoff.md` and
   the counts of the yaml, pages created and updated per category.
 - What the next session does first.
-- Deferred: at most seven items. Rank by the `severity` of a related Insight, then
-  by the number of times the item was postponed. Take that number from the previous
-  brief and add one.
+- Deferred: at most seven items, one per target of a `defer` entry in the yamls the
+  walk named, plus every item of the previous brief's list whose decision no
+  `supersedes` retired. Rank by the `severity` of a related Insight, then by the
+  number of times the item was postponed. Take that number from the previous brief
+  and add one.
 - Flags, no limit: entries marked `incomplete`, `failed`, `near` or `unparsed`;
   failed Estimates; MOC candidates; stale defers; contradictions; the lint output.
 - Readings at the close: `make test`, `make lint`, page counts.
@@ -55,3 +57,4 @@ and flags only. Add no decision and no judgment of the work. Change
 - 2026-09-10 estimate estimate-brief-written added · raw/2026-09-10/ledger.md#case-35.3
 - 2026-09-10 status: draft → built · cascade
 - 2026-09-11 updated: a fact no input carries is read from the page and named · [[decision-case-54]]
+- 2026-09-12 updated: the Deferred list comes from the defer entries of the yamls and the previous brief, not from the handoff (case 59.5) · [[decision-case-59.5]]

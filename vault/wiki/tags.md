@@ -16,3 +16,4 @@ another.
 | workflow | the order of phases and steps a session follows | процесс, порядок работы |
 | render | a Rule page whose body is written into a harness file by the renderer | рендер, генерация файла |
 | librarian | the Documentation phase and its agent | библиотекарь |
+| tests | the harness's own test suite, its fixtures and clocks | тесты |

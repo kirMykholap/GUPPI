@@ -1,4 +1,7 @@
 insight-harness-agent-visibility: The moment Claude Code reads an agent definition is not established; two sessions rendered an agent and got opposite results, and no measurement separates them.
 insight-harness-yaml-entry-shape-assumed: A script of the pipeline assumes every entry of materialize.yaml carries the fields and the shapes it wrote itself; an entry written by another hand ends the whole run instead of failing alone.
+insight-ledger-hook-reads-only-the-final-text: The ledger writer sees the last text of a turn, not the turn; a LEDGER block anywhere else in the turn is never written.
+insight-ledger-line-written-unchecked: A ledger line is written verbatim and nothing reads it back until materialize, so a line that does not parse or does not match the Spec costs a session.
 insight-librarian-frame-omits-required-reads: The frame of the librarian names the reads it allows one by one, and the list is shorter than the judgments the librarian must make; the agent then breaks a clause or judges on an index line alone.
 insight-tests-clock-not-pinned: A test pins the date on one side of the call and lets the code read the real clock on the other; it passes on the day it is written and fails later.
+insight-workflow-contract-change-leaves-its-derived-text-stale: A ratified change lands on one text and leaves the text derived from it behind, because no step of the pipeline names the dependents of a change.

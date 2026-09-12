@@ -33,14 +33,17 @@ configuration, and one file has one source.
     "defaultMode": "plan"
   },
   "hooks": {
-    "SessionStart": [
-      { "hooks": [ { "type": "command", "command": "uv run guppi event session-start", "timeout": 30 } ] }
+        "SessionStart": [
+      { "hooks": [ { "type": "command", "command": "uv run guppi event session-start", "timeout": 30 },
+                   { "type": "command", "command": "uv run guppi render --sync", "timeout": 60 } ] }
     ],
     "PreToolUse": [
       { "matcher": "ExitPlanMode",
         "hooks": [ { "type": "command", "command": "uv run guppi pretask", "timeout": 30 } ] },
-      { "matcher": "Skill",
-        "hooks": [ { "type": "command", "command": "uv run guppi gate", "timeout": 30 } ] }
+            { "matcher": "Skill",
+        "hooks": [ { "type": "command", "command": "uv run guppi gate", "timeout": 30 } ] },
+      { "matcher": "Edit|Write|MultiEdit",
+        "hooks": [ { "type": "command", "command": "uv run guppi guard", "timeout": 30 } ] }
     ],
     "PostToolUse": [
       { "hooks": [ { "type": "command", "command": "uv run guppi event tool", "timeout": 30 } ] },
@@ -70,3 +73,5 @@ configuration, and one file has one source.
 - 2026-09-10 updated: parent is rule-harness · raw/2026-09-10/ledger.md#case-37
 - 2026-09-10 updated: PreToolUse, matcher Skill → uv run guppi gate · raw/2026-09-10/ledger.md#case-38.2
 - 2026-09-10 status: draft → built · cascade
+- 2026-09-12 updated: guppi guard registered on PreToolUse of Edit, Write and MultiEdit (case 59.6) · [[decision-case-59.6]]
+- 2026-09-12 updated: guppi render --sync registered as the second SessionStart hook (case 59.7) · [[decision-case-59.7]]

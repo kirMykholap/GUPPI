@@ -1,7 +1,7 @@
 ---
 type: estimate
 kind: QA
-status: pending
+status: passed
 target: rule-synthesis
 origin: raw/2026-09-10/ledger.md#case-35.2
 sprint: migration
@@ -30,7 +30,7 @@ one reading by hand after the first librarian run, recorded in the estimate line
 
 ## Result
 
-live 2026-09-10 session G with seven lesson entries: one insight create (insight-harness-yaml-entry-shape-assumed: pattern, both children, tags harness,ledger,librarian, Pattern and Proposal) and one update per lesson setting clustered, all three marked librarian: synthesis; five lessons stayed new; no archive file read; the report names the pages opened; failed on the letter of the criterion: the two lesson pages read (lesson-hooks-messagedisplay-cannot-block, lesson-hooks-sessionstart-cannot-block) were read to settle a candidate cluster and are children of no Insight, a read the frame of Case 44 does not list; the report still lists outcomes, not every comparison
+live 2026-09-11 session H with six lesson entries: two insight creates (insight-librarian-frame-omits-required-reads over frame-read-clauses and reads-beyond-the-four-inputs; insight-tests-clock-not-pinned over history-date-unpinned and cli-date-pinned), one update per clustered lesson, all marked librarian: synthesis; the report names the comparisons per lesson (five near marks) and every lesson page read with its outcome — two clustered, one (ledger-hook-misses-a-reply) compared and not clustered, same area and fix but not one mechanism; no archive file read (event log 12:10–12:21); the lone lesson stayed new
 
 ## History
 
@@ -39,3 +39,4 @@ live 2026-09-10 session G with seven lesson entries: one insight create (insight
 - 2026-09-10 updated: a lesson page is read for the Insight it feeds and named in the report; the archive stays closed · raw/2026-09-10/ledger.md#case-44
 - 2026-09-11 status: failed → failed · raw/2026-09-10/ledger.md#L124
 - 2026-09-11 updated: a lesson page read is named with its outcome, clustered or not · [[decision-case-54]]
+- 2026-09-12 status: pending → passed · raw/2026-09-11/ledger.md#L75

@@ -1,7 +1,7 @@
 ---
 type: estimate
 kind: QA
-status: passed
+status: pending
 target: rule-render-harness
 origin: raw/2026-09-09/ledger.md#case-18.1
 sprint: migration
@@ -24,7 +24,8 @@ dropped; a partial page splices between its markers in an existing file and leav
 markers; a partial target without markers exits 1 with nothing written; a full page whose children include a page without `enforcement: render` renders as if that child were absent, and exits 1 with nothing written when its text carries a marker line for it; `--check` on a
 differing file exits 1, names it, writes nothing, and exits 0 on an identical one.
 Against the live vault: after `uv run guppi render`, `git diff --stat` shows only the two
-dropped marker lines of `.claude/skills/hi/SKILL.md` and no change to `CLAUDE.md`, and
+dropped marker lines of `.claude/skills/hi/SKILL.md`; after `rule-claude-md` exists, the
+first render changes `CLAUDE.md` by its marker lines only (case 59.8); and
 `uv run guppi render --check` then exits 0.
 
 ## Method
@@ -45,3 +46,4 @@ and `CLAUDE.md` untouched; `--check` then exited 0.
 - 2026-09-09 created · raw/2026-09-09/ledger.md#case-18.1
 - 2026-09-09 status: pending → passed · written by hand, no generator yet
 - 2026-09-10 updated: criterion: a full page with a child that is not a render page renders without it, and errors on a marker line for it · raw/2026-09-10/ledger.md#case-36.2
+- 2026-09-12 updated: CLAUDE.md is a full render target; pending for the next session's render (cases 59.8, 66) · [[decision-case-66]]

@@ -21,8 +21,8 @@ ledger has a Decision page and its target page; no page exists that no ledger li
 produced; the agent read only handoff.md, the yamls materialize named, the four
 indexes and tags.md, plus the wiki pages it names in the report with one of the
 four reasons of its frame (same or near; a candidate cluster; a script's error; a
-fact for the brief) and the outcome, and no ledger, Spec, plan, Decision page, archive file, or file under guppi/
-or tests/; it edited no yaml entry beyond the marks and the entries of the index
+fact for the brief) and the outcome, and no ledger, Spec, plan, Decision page or archive file (the Makefile,
+guppi/ and tests/ are the scripts' own and may be read); it edited no yaml entry beyond the marks and the entries of the index
 check and the synthesis; its commands are in event_log.md; its commit is separate
 from the session's; it did not stop to ask.
 
@@ -32,7 +32,7 @@ from the session's; it did not stop to ask.
 
 ## Result
 
-live 2026-09-10 session G, librarian run 16:00–16:12, commit 58301d8: make test 138 green; the 8 decision lines of Cases 44–51 have their decision pages and targets, no entry unapplied; the report names four pages opened with a reason (two hooks lessons for a synthesis candidate, two walks-dates estimates whose index lines are empty); no ledger, spec, plan, decision page, archive file or code was read; the yaml was edited once by its own script (near marks, synthesis entries); its 34 commands are in event_log.md; the commit is separate, 58 files all under vault/; it did not stop; failed on two reads after generate not named in the report and outside the three cases: 16:09:57 sed of its own insight-harness-yaml-entry-shape-assumed, 16:10:41 grep of status on estimate pages, both for the brief
+the librarian run of session H (2026-09-11 12:10–12:21, commit 10731cb) read again against the criterion of case 58: make test 158 green; every decision line of Cases 52–57 has its Decision page and targets, 79 entries none unapplied, none failed; every wiki page opened is named in the report with reason and outcome; no ledger, spec, plan, decision page or archive file read; the yaml edited only by the index check and synthesis entries; commands in the event log; commit separate, vault/ only; no stop; the one read outside the four inputs was the Makefile at 12:18:26, which the criterion now allows as the scripts' own file — Slice 3 closes
 
 ## History
 
@@ -41,3 +41,6 @@ live 2026-09-10 session G, librarian run 16:00–16:12, commit 58301d8: make tes
 - 2026-09-10 updated: a read beyond the four inputs is allowed for one of three named reasons; session artifacts, code and yaml repairs are not · raw/2026-09-10/ledger.md#case-44
 - 2026-09-11 status: failed → failed · raw/2026-09-10/ledger.md#L123
 - 2026-09-11 updated: four indexes; four reasons; outcome named · [[decision-case-54]]
+- 2026-09-12 status: pending → failed · raw/2026-09-11/ledger.md#L74
+- 2026-09-12 status: failed → passed · raw/2026-09-12/ledger.md#L35
+- 2026-09-12 updated: the Makefile, guppi/ and tests/ leave the forbidden set; pending for the reading against the new criterion (case 58) · [[decision-case-58]]

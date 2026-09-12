@@ -6,8 +6,9 @@ status: built
 enforcement: render
 governs: CLAUDE.md
 render_mode: partial
-parent: rule-plan-mode
+parent: rule-claude-md
 estimates: [estimate-case-protocol-loaded]
+deferred_by: [decision-case-67]
 origin: raw/2026-09-09/ledger.md#case-13
 sprint: migration
 created: 2026-09-09
@@ -27,9 +28,16 @@ sees it: `CLAUDE.md`, which is in the system prompt from the first turn.
 ## Case protocol
 
 One reply is one Case, in the seven sections of `case-schema.md`: context, problem,
-recommend, given, when, then, ratification. Never move to the next Case until this
-one is ratified or deferred. Plan Mode does not end while a Frontier item is neither
-ratified nor deferred.
+recommend, given, when, then, ratification. That is the form of Plan Mode. A deferred
+decision — an item left open when the person closes Plan Mode, or an item Retro ends
+in a defer — is its own Case in the short form: context, problem, a `defer` block with
+`purpose`, under the `## Deferred` heading of `raw/<date>/spec.md`, before its ledger
+line (cases 56, 59.5); a page-less Slice task goes to `sprint.md` instead. Taking a
+deferred decision up means building its full Case from its page — recommend, given,
+when, then added — and writing `{supersedes:case N}` on the line. Never move to the
+next Case until this one is ratified or deferred. The Frontier is `raw/<date>/frontier.md`, written at `/hi`;
+close its line in the reply that ends the item. Plan Mode does not end while a line is
+open; `/pre-task` checks it.
 
 A follow-up question that asks you to justify a choice does not split the Case; one
 whose answer needs a new choice does — into sub-cases `N.1`, `N.2`. Ratifying a
@@ -41,12 +49,28 @@ sections. In `given`, `when` and `then` every line after the first starts with a
 bold operand: **＋** for one more condition or action, **－** for a limit or an
 exception. `when` and `then` together are the criterion of the Estimate the Case
 creates. Write short sentences, one idea each, in the active voice. A sub-case is
-`### Case N.M — name` under its parent, with its own `given`, `when`, `then` and
-`ratification`; the sections the children share live on the parent. The
+`### Case N.M — name` under its parent, with its own `when`, `then` and
+`ratification`, and its own `given` unless it is the parent's word for word; the
+sections the children share live on the parent, and `materialize` reads them there. The
 `ratification` section ends with a preview of the ledger lines in an untagged
-fence. The page content itself — fields, prose sections, the Estimate — is a YAML
+fence, and the turn ends with a plain question in the chat, never a picker tool.
+When the person answers with a change, show the Case again: `context` and
+`problem` if they changed, always `given`, `when`, `then` and `ratification`, and
+no `recommend` — the variant is theirs. The page content itself — fields, prose sections, the Estimate — is a YAML
 block tagged `then` under the Case in the Spec, not in the chat; `guppi
 materialize` reads it, and what is not in that block was signed by nobody.
+
+The Spec is the plan file, written as each Case is ratified, in the reply that
+carries its ledger lines: `context`, `problem`, `given`, `when`, `then`, the `then`
+block and a block tagged `tasks` — one `- [ ] <what>` per file, test, command and
+one-off migration, and one per reading of an Estimate the Case creates or sets
+`pending`, by its slug; no `recommend`, no `ratification`, no code. Work Mode ticks
+the boxes in `raw/<date>/spec.md` in the reply that finishes the task; Retro
+counts the unticked.
+
+The harness — hooks, skills, agents, `settings.json`, this section of `CLAUDE.md` —
+is rendered from `rules/`. A harness file changes through an `update` of its Rule
+page, never by hand; a hook refuses the edit.
 
 Before a `create` without a `ref`, ask the vault first: does this exist, what
 conflicts, what sits in `draft`, which tags fit. Put the answer in `given`.
@@ -79,7 +103,7 @@ page; the reference dangles until then, on purpose.
 
 ## Parent
 
-- [[rule-plan-mode]]
+- [[rule-claude-md]]
 
 ## History
 
@@ -91,3 +115,11 @@ page; the reference dangles until then, on purpose.
 - 2026-09-10 updated: the Render names the then block (superseded by case 34) · raw/2026-09-10/ledger.md#case-30
 - 2026-09-10 updated: the Render describes the seven sections, the operands, the then block in the Spec, and {tags} on a create line · raw/2026-09-10/ledger.md#case-34
 - 2026-09-10 status: draft → built · cascade
+- 2026-09-12 updated: the Frontier is a file, closed line by line (case 59.2) · [[decision-case-59.2]]
+- 2026-09-12 updated: the Spec is written as ratified, with a tasks block per Case; boxes ticked in Work Mode, counted at Retro (case 59.3) · [[decision-case-59.3]]
+- 2026-09-12 updated: a deferred decision is its own short-form Case under · [[decision-case-59.5]]
+- 2026-09-12 updated: the harness changes through Rule pages, never by hand — one sentence always in CLAUDE.md (case 59.6) · [[decision-case-59.6]]
+- 2026-09-12 updated: a sub-case's given may be the parent's; when, then and ratification are its own (case 60) · [[decision-case-60]]
+- 2026-09-12 updated: the sign-off is asked in plain chat; a changed Case is shown again without recommend (case 62) · [[decision-case-62]]
+- 2026-09-12 updated: parent is rule-claude-md, the page CLAUDE.md is rendered from (case 66) · [[decision-case-66]]
+- 2026-09-12 deferred · [[decision-case-67]]

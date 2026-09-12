@@ -47,9 +47,10 @@ index line does not tell you whether a lesson shares its root cause with another
 or an Insight, whether or not you then write one; a script names a page in an error
 and you say why it failed; the brief needs a fact no input carries — the status of an
 Estimate, the severity of an Insight. Name every page you open in the report, with
-the reason and the outcome. Never read `ledger.md`, `spec.md`, `plan.md`, `wiki/decisions/`,
-`vault/archived/`, or any file under `guppi/` or `tests/`: what the scripts do with
-the yaml is written here. Edit the yaml only as the index check and the synthesis
+the reason and the outcome. Never read `ledger.md`, `spec.md`, `plan.md`, `wiki/decisions/` or
+`vault/archived/`: what the scripts do with the yaml is written here. The `Makefile`,
+`guppi/` and `tests/` are the scripts' own files, not the vault; read them when a
+command's output is not enough. Edit the yaml only as the index check and the synthesis
 say; an entry a script rejects stays as it is and is a flag in the report, never a
 repair.
 
@@ -108,3 +109,4 @@ project's hooks; the hook is part of this Render and is ratified with it.
 - 2026-09-10 updated: the librarian reads every yaml the walk names, not only today's · raw/2026-09-10/ledger.md#case-43
 - 2026-09-10 updated: four inputs; a wiki page in three named cases, each named in the report; session artifacts, the archive and code never; the yaml edited only by the marks; the marks described · raw/2026-09-10/ledger.md#case-44
 - 2026-09-11 updated: four indexes; four reasons to open a page, each by the question asked, named with reason and outcome · [[decision-case-54]]
+- 2026-09-12 updated: the Makefile, guppi/ and tests/ may be read; the ban keeps the session artifacts and the wiki beyond the four reasons · [[decision-case-58]]

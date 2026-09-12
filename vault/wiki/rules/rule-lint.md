@@ -29,7 +29,7 @@ three only report, so the Makefile's rule — no target writes to the tree — h
 required fields and sections, legal statuses, `origin` as a grep target in `raw/`,
 every ref (`parent`, `target`, `children`, `estimates`, `insight`) as an existing page,
 orphans, a `built` page with an Estimate not `passed`, the two Method classes of
-case 26.2. A decision page: `kind` and `target_slug` of equal length; every `target_slug` with a category prefix an existing page; every slug in `deferred_by` an existing decision page; a `[[decision-…]]` wikilink in a History line resolves to a page. A lesson needs no `estimates`; an estimate whose `target` is not an entity or a rule is a finding. It reports and exits 1 on any
+case 26.2. A decision page: at least one of `create`, `update`, `delete`, `defer`, each a list of slugs, and neither `kind` nor `target_slug`; every slug with a category prefix a live or archived page; every slug in `deferred_by` an existing decision page; a `[[decision-…]]` wikilink in a History line resolves to a page. A lesson needs no `estimates`; an estimate whose `target` is not an entity or a rule is a finding. It reports and exits 1 on any
 finding, 0 with no output on a clean vault.
 
 ## Estimates
@@ -58,3 +58,4 @@ finding, 0 with no output on a clean vault.
 - 2026-09-11 updated: a History wikilink resolves to a page · [[decision-case-52.4]]
 - 2026-09-11 updated: lessons: estimates not required; an estimate whose target is not an entity or rule is a finding · [[decision-case-53.1]]
 - 2026-09-11 updated: index --check over four files · [[decision-case-53.4]]
+- 2026-09-12 updated: decision pages checked on the four kind lists; a target resolves against live and archived pages (case 59.4) · [[decision-case-59.4]]

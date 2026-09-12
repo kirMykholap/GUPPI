@@ -401,3 +401,116 @@ instruction. The global feed; a page's own `## History` is the per-page view.
 - 2026-09-11 rules/rule-page-generation estimate estimate-generate-logs-per-entry archived · cleanup
 - 2026-09-11 rules/rule-page-generation estimate estimate-generate-dates-history-by-run archived · cleanup
 - 2026-09-11 rules/rule-page-generation estimate estimate-generate-passes-delete-outside-vault archived · cleanup
+- 2026-09-12 estimates/estimate-documentation-completes status: pending → failed · raw/2026-09-11/ledger.md#L74 · generate
+- 2026-09-12 estimates/estimate-synthesis-clusters status: pending → passed · raw/2026-09-11/ledger.md#L75 · generate
+- 2026-09-12 estimates/estimate-generate-writes status: pending → passed · raw/2026-09-11/ledger.md#L76 · generate
+- 2026-09-12 estimates/estimate-materialize-assembles status: pending → passed · raw/2026-09-11/ledger.md#L77 · generate
+- 2026-09-12 lessons/lesson-lint-decision-target-archived-counts-as-missing created · raw/2026-09-11/ledger.md#L78 · generate
+- 2026-09-12 rules/rule-materialize status: draft → built · cascade · generate
+- 2026-09-12 rules/rule-page-generation status: draft → built · cascade · generate
+- 2026-09-12 rules/rule-synthesis status: draft → built · cascade · generate
+- 2026-09-12 lessons/lesson-plan-mode-exited-per-frontier-item created · raw/2026-09-12/ledger.md#L1 · generate
+- 2026-09-12 lessons/lesson-bash-tool-heredoc-escapes-interpreted created · raw/2026-09-12/ledger.md#L2 · generate
+- 2026-09-12 lessons/lesson-render-governed-file-updated-as-rule-class-file created · raw/2026-09-12/ledger.md#L12 · generate
+- 2026-09-12 estimates/estimate-spec-capture-appends status: pending → passed · raw/2026-09-12/ledger.md#L34 · generate
+- 2026-09-12 estimates/estimate-documentation-completes status: failed → passed · raw/2026-09-12/ledger.md#L35 · generate
+- 2026-09-12 decisions/decision-case-58 created · raw/2026-09-12/ledger.md#case-58 · generate
+- 2026-09-12 rules/rule-documentation updated: the Makefile, guppi/ and tests/ may be read; the ban keeps the session artifacts and the wiki beyond the four reasons · [[decision-case-58]] · generate
+- 2026-09-12 estimates/estimate-documentation-completes updated: the Makefile, guppi/ and tests/ leave the forbidden set; pending for the reading against the new criterion (case 58) · [[decision-case-58]] · generate
+- 2026-09-12 decisions/decision-case-59.1 created · raw/2026-09-12/ledger.md#case-59.1 · generate
+- 2026-09-12 rules/rule-pretask updated: the skill runs guppi pretask --check on the plan file before ask-guppi; every decision line since hi has its item under its own Case, every item its line (the command lives in guppi/pretask.py under rule-pretask-hook, case 66) · [[decision-case-59.1]] · generate
+- 2026-09-12 estimates/estimate-pretask-reconciles updated: the mechanical check of the plan against the session's decision lines joins the criterion; pending for the reading at this session's pre-task (case 59.1) · [[decision-case-59.1]] · generate
+- 2026-09-12 decisions/decision-case-59.2 created · raw/2026-09-12/ledger.md#case-59.2 · generate
+- 2026-09-12 rules/rule-skill-hi updated: the Frontier is written to raw/<date>/frontier.md and closed line by line; estimate-hi-writes-frontier added · [[decision-case-59.2]] · generate
+- 2026-09-12 estimates/estimate-hi-writes-frontier created · [[decision-case-59.2]] · generate
+- 2026-09-12 rules/rule-pretask updated: the check also reads the session's frontier.md — an open line or a closing Case absent from the plan is a finding (case 59.2) · [[decision-case-59.2]] · generate
+- 2026-09-12 estimates/estimate-pretask-reconciles updated: the frontier findings join the criterion (case 59.2) · [[decision-case-59.2]] · generate
+- 2026-09-12 rules/rule-case-protocol updated: the Frontier is a file, closed line by line (case 59.2) · [[decision-case-59.2]] · generate
+- 2026-09-12 decisions/decision-case-59.3 created · raw/2026-09-12/ledger.md#case-59.3 · generate
+- 2026-09-12 rules/rule-case-protocol updated: the Spec is written as ratified, with a tasks block per Case; boxes ticked in Work Mode, counted at Retro (case 59.3) · [[decision-case-59.3]] · generate
+- 2026-09-12 rules/rule-retro updated: Retro counts the unticked tasks of spec.md instead of judging done against the Spec (case 59.3) · [[decision-case-59.3]] · generate
+- 2026-09-12 rules/rule-spec-capture updated: Work Mode is the third writer of spec.md, ticking boxes only (case 59.3) · [[decision-case-59.3]] · generate
+- 2026-09-12 rules/rule-pretask updated: a Case without tasks and an Estimate without its reading task are findings (case 59.3) · [[decision-case-59.3]] · generate
+- 2026-09-12 estimates/estimate-pretask-reconciles updated: the tasks findings join the criterion (case 59.3) · [[decision-case-59.3]] · generate
+- 2026-09-12 decisions/decision-case-59.4 created · raw/2026-09-12/ledger.md#case-59.4 · generate
+- 2026-09-12 rules/rule-page-generation updated: a decision page names its targets by kind — one list per kind present — instead of two lists aligned by position (case 59.4) · [[decision-case-59.4]] · generate
+- 2026-09-12 estimates/estimate-generate-writes updated: the decision page's four lists replace the aligned pair in the criterion (case 59.4) · [[decision-case-59.4]] · generate
+- 2026-09-12 rules/rule-lint updated: decision pages checked on the four kind lists; a target resolves against live and archived pages (case 59.4) · [[decision-case-59.4]] · generate
+- 2026-09-12 estimates/estimate-lint-catches updated: the decision classes of case 59.4 replace those of 52.1 in the criterion · [[decision-case-59.4]] · generate
+- 2026-09-12 decisions/decision-case-59.5 created · raw/2026-09-12/ledger.md#case-59.5 · generate
+- 2026-09-12 rules/rule-case-protocol updated: a deferred decision is its own short-form Case under · [[decision-case-59.5]] · generate
+- 2026-09-12 rules/rule-brief updated: the Deferred list comes from the defer entries of the yamls and the previous brief, not from the handoff (case 59.5) · [[decision-case-59.5]] · generate
+- 2026-09-12 rules/rule-retro updated: the short-form Cases of Retro go under · [[decision-case-59.5]] · generate
+- 2026-09-12 rules/rule-spec-capture updated: the Deferred heading, written at the close of Plan Mode and at Retro (case 59.5) · [[decision-case-59.5]] · generate
+- 2026-09-12 decisions/decision-case-59.6 created · raw/2026-09-12/ledger.md#case-59.6 · generate
+- 2026-09-12 rules/rule-governed-files-hook created · [[decision-case-59.6]] · generate
+- 2026-09-12 rules/rule-harness child rule-governed-files-hook added · [[decision-case-59.6]] · generate
+- 2026-09-12 rules/rule-hook-registry updated: guppi guard registered on PreToolUse of Edit, Write and MultiEdit (case 59.6) · [[decision-case-59.6]] · generate
+- 2026-09-12 rules/rule-case-protocol updated: the harness changes through Rule pages, never by hand — one sentence always in CLAUDE.md (case 59.6) · [[decision-case-59.6]] · generate
+- 2026-09-12 rules/rule-pretask updated: a file item on a governed path is a finding — a rendered file has no file route (case 59.6) · [[decision-case-59.6]] · generate
+- 2026-09-12 estimates/estimate-pretask-reconciles updated: the governed-file finding joins the criterion (case 59.6) · [[decision-case-59.6]] · generate
+- 2026-09-12 decisions/decision-case-59.7 created · raw/2026-09-12/ledger.md#case-59.7 · generate
+- 2026-09-12 rules/rule-render-harness updated: render --sync at SessionStart — diff on stdout, then the write; enforcement hook (case 59.7) · [[decision-case-59.7]] · generate
+- 2026-09-12 estimates/estimate-render-sync-reports created · [[decision-case-59.7]] · generate
+- 2026-09-12 rules/rule-hook-registry updated: guppi render --sync registered as the second SessionStart hook (case 59.7) · [[decision-case-59.7]] · generate
+- 2026-09-12 rules/rule-skill-hi updated: a hand edit shown by render --sync at session start is a Frontier item (case 59.7) · [[decision-case-59.7]] · generate
+- 2026-09-12 decisions/decision-case-59.8 created · raw/2026-09-12/ledger.md#case-59.8 · generate
+- 2026-09-12 rules/rule-claude-md created · [[decision-case-59.8]] · generate
+- 2026-09-12 rules/rule-harness child rule-claude-md added · [[decision-case-59.8]] · generate
+- 2026-09-12 decisions/decision-case-60 created · raw/2026-09-12/ledger.md#case-60 · generate
+- 2026-09-12 rules/rule-materialize updated: a sub-case inherits a missing given from its parent, as context, problem and recommend; when stays its own (case 60) · [[decision-case-60]] · generate
+- 2026-09-12 estimates/estimate-materialize-assembles updated: the parent's given is inherited by a sub-case; pending for the unit reading (case 60) · [[decision-case-60]] · generate
+- 2026-09-12 rules/rule-case-protocol updated: a sub-case's given may be the parent's; when, then and ratification are its own (case 60) · [[decision-case-60]] · generate
+- 2026-09-12 decisions/decision-case-61 created · raw/2026-09-12/ledger.md#case-61 · generate
+- 2026-09-12 rules/rule-materialize updated: new_tags are collected from every Case block, lines or none (case 61) · [[decision-case-61]] · generate
+- 2026-09-12 estimates/estimate-materialize-assembles updated: new_tags of a line-less Case join the criterion (case 61) · [[decision-case-61]] · generate
+- 2026-09-12 decisions/decision-case-62 created · raw/2026-09-12/ledger.md#case-62 · generate
+- 2026-09-12 rules/rule-case-protocol updated: the sign-off is asked in plain chat; a changed Case is shown again without recommend (case 62) · [[decision-case-62]] · generate
+- 2026-09-12 decisions/decision-case-63 created · raw/2026-09-12/ledger.md#case-63 · generate
+- 2026-09-12 decisions/decision-case-45 superseded by decision-case-63 · [[decision-case-63]] · generate
+- 2026-09-12 rules/rule-ledger-tail defer by decision-case-45 superseded · [[decision-case-63]] · generate
+- 2026-09-12 rules/rule-ledger-tail deferred · [[decision-case-63]] · generate
+- 2026-09-12 decisions/decision-case-64 created · raw/2026-09-12/ledger.md#case-64 · generate
+- 2026-09-12 decisions/decision-case-29 superseded by decision-case-64 · [[decision-case-64]] · generate
+- 2026-09-12 rules/rule-work-mode defer by decision-case-29 superseded · [[decision-case-64]] · generate
+- 2026-09-12 rules/rule-subagent-guppi defer by decision-case-29 superseded · [[decision-case-64]] · generate
+- 2026-09-12 rules/rule-work-mode deferred · [[decision-case-64]] · generate
+- 2026-09-12 rules/rule-subagent-guppi deferred · [[decision-case-64]] · generate
+- 2026-09-12 decisions/decision-case-65 created · raw/2026-09-12/ledger.md#case-65 · generate
+- 2026-09-12 rules/rule-ask deferred · [[decision-case-65]] · generate
+- 2026-09-12 decisions/decision-case-66 created · raw/2026-09-12/ledger.md#case-66 · generate
+- 2026-09-12 rules/rule-case-protocol updated: parent is rule-claude-md, the page CLAUDE.md is rendered from (case 66) · [[decision-case-66]] · generate
+- 2026-09-12 rules/rule-plan-mode updated: rule-case-protocol moved under rule-claude-md (case 66) · [[decision-case-66]] · generate
+- 2026-09-12 rules/rule-pretask-hook updated: guppi pretask --check lives here and serves /pre-task (case 66) · [[decision-case-66]] · generate
+- 2026-09-12 rules/rule-harness updated: two children outside the make lint pipeline — the guard hook and the CLAUDE.md page (case 66) · [[decision-case-66]] · generate
+- 2026-09-12 estimates/estimate-retro-loads updated: the Deferred heading (cases 59.5, 66) · [[decision-case-66]] · generate
+- 2026-09-12 estimates/estimate-spec-capture-appends updated: the Deferred heading (cases 59.5, 66) · [[decision-case-66]] · generate
+- 2026-09-12 estimates/estimate-render-harness-reproduces updated: CLAUDE.md is a full render target; pending for the next session's render (cases 59.8, 66) · [[decision-case-66]] · generate
+- 2026-09-12 estimates/estimate-lint-catches status: pending → passed · raw/2026-09-12/ledger.md#L98 · generate
+- 2026-09-12 estimates/estimate-materialize-assembles status: pending → passed · raw/2026-09-12/ledger.md#L99 · generate
+- 2026-09-12 lessons/lesson-ledger-decision-line-written-without-the-case-word created · raw/2026-09-12/ledger.md#L100 · generate
+- 2026-09-12 lessons/lesson-ledger-hook-drops-a-block-followed-by-tool-calls-in-the-turn created · raw/2026-09-12/ledger.md#L101 · generate
+- 2026-09-12 decisions/decision-case-67 created · raw/2026-09-12/ledger.md#case-67 · generate
+- 2026-09-12 rules/rule-case-protocol deferred · [[decision-case-67]] · generate
+- 2026-09-12 decisions/decision-case-68 created · raw/2026-09-12/ledger.md#case-68 · generate
+- 2026-09-12 rules/rule-pretask deferred · [[decision-case-68]] · generate
+- 2026-09-12 decisions/decision-case-69 created · raw/2026-09-12/ledger.md#case-69 · generate
+- 2026-09-12 rules/rule-materialize deferred · [[decision-case-69]] · generate
+- 2026-09-12 lessons/lesson-subagents-parallel-on-one-tree-red-mid-flight created · raw/2026-09-12/ledger.md#L105 · generate
+- 2026-09-12 estimates/estimate-retro-loads status: pending → passed · raw/2026-09-12/ledger.md#L106 · generate
+- 2026-09-12 insights/insight-ledger-hook-reads-only-the-final-text created · raw/2026-09-12/ledger.md#L101 · generate
+- 2026-09-12 lessons/lesson-ledger-hook-misses-a-reply-ending-in-a-tool-call updated: clustered by librarian: the writer reads only the last text of a turn, with lesson-ledger-hook-drops-a-block-followed-by-tool-calls-in-the-turn · raw/2026-09-12/ledger.md#L101 · generate
+- 2026-09-12 lessons/lesson-ledger-hook-drops-a-block-followed-by-tool-calls-in-the-turn updated: clustered by librarian: the writer reads only the last text of a turn, with lesson-ledger-hook-misses-a-reply-ending-in-a-tool-call · raw/2026-09-12/ledger.md#L101 · generate
+- 2026-09-12 insights/insight-workflow-contract-change-leaves-its-derived-text-stale created · raw/2026-09-12/ledger.md#L12 · generate
+- 2026-09-12 lessons/lesson-estimates-criterion-stale-after-contract-change updated: clustered by librarian: a change leaves its derived text stale, with lesson-render-governed-file-updated-as-rule-class-file · raw/2026-09-12/ledger.md#L12 · generate
+- 2026-09-12 lessons/lesson-render-governed-file-updated-as-rule-class-file updated: clustered by librarian: a change leaves its derived text stale, with lesson-estimates-criterion-stale-after-contract-change · raw/2026-09-12/ledger.md#L12 · generate
+- 2026-09-12 insights/insight-ledger-line-written-unchecked created · raw/2026-09-12/ledger.md#L100 · generate
+- 2026-09-12 lessons/lesson-spec-then-items-unchecked-against-ledger-lines updated: clustered by librarian: a ledger line is unchecked until materialize, with lesson-ledger-decision-line-written-without-the-case-word · raw/2026-09-12/ledger.md#L100 · generate
+- 2026-09-12 lessons/lesson-ledger-decision-line-written-without-the-case-word updated: clustered by librarian: a ledger line is unchecked until materialize, with lesson-spec-then-items-unchecked-against-ledger-lines · raw/2026-09-12/ledger.md#L100 · generate
+- 2026-09-12 rules/rule-page-generation status: built → draft · cascade · generate
+- 2026-09-12 rules/rule-pretask status: built → draft · cascade · generate
+- 2026-09-12 rules/rule-render-harness status: built → draft · cascade · generate
+- 2026-09-12 rules/rule-retro status: draft → built · cascade · generate
+- 2026-09-12 rules/rule-skill-hi status: built → draft · cascade · generate
+- 2026-09-12 rules/rule-spec-capture status: draft → built · cascade · generate
+- 2026-09-12 tags.md registers tests · generate

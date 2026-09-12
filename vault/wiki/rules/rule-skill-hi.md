@@ -2,13 +2,13 @@
 type: rule
 kind: MOC
 purpose: Prevents a session from being loaded piecemeal by read-tool calls
-status: built
+status: draft
 enforcement: render
 governs: .claude/skills/hi/SKILL.md
 render_mode: full
 parent: rule-session-start
 children: [rule-internal-context, rule-git-context, rule-github-issues]
-estimates: [estimate-hi-no-read-calls]
+estimates: [estimate-hi-no-read-calls, estimate-hi-writes-frontier]
 origin: raw/2026-09-09/ledger.md#case-11
 sprint: migration
 created: 2026-09-09
@@ -38,8 +38,13 @@ Recorded: !`uv run guppi event hi --session "${CLAUDE_SESSION_ID:-}"`
 <!-- rule-github-issues -->
 
 Assemble the Frontier from the above and present it as a list: tasks, problems, debt
-carried over, where the sprint stands; on a plan branch the unfinished plan comes first.
-A failed pull or an unavailable `gh` is an item on that list, not a reason to stop. Wait
+carried over, where the sprint stands; on a plan branch the unfinished plan comes first;
+what `guppi render --sync` printed at session start is an item when it shows a hand edit.
+A failed pull or an unavailable `gh` is an item on that list, not a reason to stop. Write
+the same list to `vault/raw/<date>/frontier.md`, one line per item:
+`- [ ] F<n> — <title> · <source>`. Close a line when its item ends: `[x] … · case N`
+when ratified, `[x] … · work` when it needs no decision, `[-] … · defer case N` when
+deferred; an item the person adds is a new line. `/pre-task` fails on an open line. Wait
 for the human to pick the order or defer items. Before any `create`, ask the vault first
 (§3 of `vault/wiki/index.md`).
 <!-- /rule-skill-hi -->
@@ -60,6 +65,7 @@ of this render.
 ## Estimates
 
 - [[estimate-hi-no-read-calls]]
+- [[estimate-hi-writes-frontier]]
 
 ## Children
 
@@ -75,3 +81,6 @@ of this render.
 
 - 2026-09-09 created · raw/2026-09-09/ledger.md#case-11
 - 2026-09-10 status: draft → built · cascade
+- 2026-09-12 updated: the Frontier is written to raw/<date>/frontier.md and closed line by line; estimate-hi-writes-frontier added · [[decision-case-59.2]]
+- 2026-09-12 updated: a hand edit shown by render --sync at session start is a Frontier item (case 59.7) · [[decision-case-59.7]]
+- 2026-09-12 status: built → draft · cascade

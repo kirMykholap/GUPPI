@@ -1024,3 +1024,94 @@ defer:
     type: rule
     purpose: Answers a question about the vault from the indexes, one entry point; the archive included
 ```
+
+## Case 81 — the field names of the derived Estimate in the `then` item
+
+> **context:**
+> Case 72.1 says a Leaf `create` carries `method`, `kind` (`QA` by default) and `slug`
+> (only on a collision). On the item `kind` and `slug` already belong to the target
+> page, so the code of 72.3 and 72.5 and the texts of `case-schema.md`, `index.md` §7
+> and the glossary write `estimate_kind` and `estimate_slug`. The agent resolved the
+> fork in Work Mode instead of returning it.
+
+> **problem:**
+> The ratified wording and the written wording differ in two field names; nobody signed
+> `estimate_kind` and `estimate_slug`. The next Plan Mode ratifies them or reverts to a
+> form where `kind` and `slug` are unambiguous.
+
+```then
+defer:
+  - slug: rule-case-protocol
+    type: rule
+    purpose: Holds the Case protocol every session reads; its Render names the fields of the then item
+```
+
+## Case 82 — `materialize` drops the `source` of a lesson line
+
+> **context:**
+> `materialize.parse_line` reads the braces of a lesson line and returns `tags` only;
+> `lesson_entry` then marks every `knowledge` lesson `incomplete: [source]` and
+> `generate` writes no `source` field, though the line carries one
+> (`lesson-materialize-lesson-line-source-dropped`, session J). Two knowledge lessons of
+> sessions I and J are affected; the librarian sets the field on their entries by hand.
+
+> **problem:**
+> The lesson entry's contract (`rule-materialize`, `estimate-materialize-assembles`)
+> names `kind`, `root_cause`, Trigger and Root cause and not `source`; carrying it is a
+> change of that contract. One `update` of `rule-materialize`; the next Plan Mode.
+
+```then
+defer:
+  - slug: rule-materialize
+    type: rule
+    purpose: Turns the ledger and the Spec of a date into the yaml the librarian applies
+```
+
+## Case 83 — the guard's refusal leaves no trace in the event log
+
+> **context:**
+> The live clause of `estimate-governed-files-hook-refuses` says the refused call is in
+> the event log. At the probe of session J the guard refused the Edit and named the rule,
+> and the event log gained no line: PostToolUse does not fire for a tool a PreToolUse
+> hook blocked (`lesson-hooks-blocked-pretooluse-leaves-no-posttooluse-event`). The
+> reading is `failed`; `rule-governed-files-hook` stays `draft`.
+
+> **problem:**
+> Either the guard writes its own event line on a refusal, or the clause leaves the
+> criterion. An `update` of `rule-governed-files-hook` with its Estimate; the next Plan
+> Mode.
+
+```then
+defer:
+  - slug: rule-governed-files-hook
+    type: rule
+    purpose: Prevents a harness file rendered from a Rule page from being edited by hand
+```
+
+## Case 84 — the live clauses of the two render readings describe a diff that cannot exist
+
+> **context:**
+> `estimate-claude-md-rendered` (case 59.8) says the first render leaves a `git diff` of
+> marker lines only; `estimate-render-harness-reproduces` (case 59.7) says `git diff
+> --stat` shows only the two dropped marker lines of `hi/SKILL.md`. A full render drops
+> the outer markers by design, and the librarian's run of session I wrote Cases 59.2,
+> 59.5, 59.6, 59.7, 62 and 66 into the Rule pages after the clauses were written; at the
+> render of session J both readings failed on those clauses and on nothing else
+> (`lesson-estimates-live-clause-stale-at-first-render`). `rule-claude-md` and
+> `rule-render-harness` stay `draft`.
+
+> **problem:**
+> The live clauses have to say what a render of the current pages leaves in the tree:
+> `render --check` exits 0, the diff equals the Renders of the pages that changed since
+> the last render, no more. An `update` of the two Estimates through their Rules; the
+> next Plan Mode, under the derived-Criterion scheme of case 72.
+
+```then
+defer:
+  - slug: rule-claude-md
+    type: rule
+    purpose: Prevents the system prompt from holding a line nobody ratified
+  - slug: rule-render-harness
+    type: rule
+    purpose: Keeps a Rule page and the harness file rendered from it one text
+```

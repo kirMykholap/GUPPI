@@ -1,21 +1,23 @@
 """`guppi spec` — the `PostToolUse ExitPlanMode` hook that copies the approved plan into
-`vault/raw/<date>/spec.md`.
+the session's folder, `vault/raw/<hi date>/<hi HHMM>/spec.md`.
 
 The plan arrives whole in `tool_response.plan` (measured 2026-09-09, Slice 1 probe). It is
 appended after a `---` separator when the file already has content, under a stamp line
 with the time and the session; a plan whose text is already in the file is not appended
-again. Any other tool, or a payload without a plan: nothing. Without a `hi` recorded for
-this session — the same check the ledger makes — the hook exits 2 with the reason, so the
-person is told rather than left believing the Spec was copied. Rule page:
-`vault/wiki/rules/rule-spec-capture.md`.
+again. Any other tool, or a payload without a plan: nothing. The folder is named by the
+`hi` line that opens this session's window — its date, then its time as `HHMM` — found
+the way the ledger hook finds it, across the event logs of the window (case 73.2); the
+folder is created when missing. Without a `hi` recorded for this session the hook exits 2
+with the reason, so the person is told rather than left believing the Spec was copied.
+Rule page: `vault/wiki/rules/rule-spec-capture.md`.
 """
 
 import sys
 from datetime import datetime
 from pathlib import Path
 
-from guppi.event import log_path, project_root, read_payload, session_stamp
-from guppi.ledger import hi_recorded
+from guppi.event import project_root, read_payload, session_stamp
+from guppi.ledger import session_dir
 
 TOOL = "ExitPlanMode"
 
@@ -29,8 +31,10 @@ def plan_text(payload: dict) -> str:
     return str(response.get("plan") or "")
 
 
-def spec_path(project_dir: Path, now) -> Path:
-    return log_path(project_dir, now).with_name("spec.md")
+def spec_path(project_dir: Path, now, session: str) -> Path | None:
+    """`<session folder>/spec.md`, or None when no `hi` opens this session's window."""
+    folder = session_dir(project_dir, now, session)
+    return None if folder is None else folder / "spec.md"
 
 
 def stamp(now, session: str) -> str:
@@ -64,9 +68,8 @@ def run(argv, *, stdin=None, stderr=None, project_dir: Path | None = None, now=N
         if not plan.strip():
             return 0
         session = session_stamp(None, payload)
-        log = log_path(project_dir, now)
-        event_log = log.read_text(encoding="utf-8") if log.exists() else ""
-        if not hi_recorded(event_log, session):
+        path = spec_path(project_dir, now, session)
+        if path is None:
             print(
                 f"spec: the approved plan was not copied to spec.md — no /hi recorded for "
                 f"session {session}. Tell the person; copy the plan by hand, or run /hi and "
@@ -74,7 +77,7 @@ def run(argv, *, stdin=None, stderr=None, project_dir: Path | None = None, now=N
                 file=stderr,
             )
             return 2
-        append_plan(spec_path(project_dir, now), plan, now, session)
+        append_plan(path, plan, now, session)
     except Exception as exc:  # noqa: BLE001 — a hook that raises would fail the session
         print(f"spec: spec.md not written: {exc}", file=stderr)
     return 0

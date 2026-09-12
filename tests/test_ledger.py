@@ -348,3 +348,65 @@ def test_the_refusal_counts_only_the_lines_not_yet_written(tmp_path):
     code, err = run(payload(last_assistant_message=REPLY), tmp_path)
     assert code == 2
     assert err.startswith("ledger: 1 line(s) not written")
+
+
+# --- case 70: a block followed by a tool_use record of the same turn is still collected ---
+
+
+def tool_use_line(session=SESSION):
+    """An assistant record whose only block is a `tool_use`: the turn went on to a tool."""
+    return json.dumps(
+        {
+            "type": "assistant",
+            "isSidechain": False,
+            "sessionId": session,
+            "message": {
+                "role": "assistant",
+                "content": [
+                    {
+                        "type": "tool_use",
+                        "id": "toolu_1",
+                        "name": "Bash",
+                        "input": {"command": "ls"},
+                    }
+                ],
+            },
+        }
+    )
+
+
+def test_a_block_followed_by_a_tool_use_record_of_the_same_turn_is_collected(working):
+    text = f"Ratified.\n\n{ledger_block(DECISION)}\nRunning the tests now."
+    transcript = write_transcript(
+        working,
+        transcript_line(text),
+        tool_use_line(),
+        transcript_line("tool result", kind="user"),
+        transcript_line("The current reply, no block."),
+    )
+    fields = {
+        "last_assistant_message": "The current reply, no block.",
+        "transcript_path": transcript,
+    }
+    assert text in ledger.transcript_texts(fields)
+    assert ledger.session_lines(fields) == [DECISION]
+    code, err = run(payload(**fields), working)
+    assert (code, err) == (0, "")
+    assert ledger_text(working) == f"{timed(DECISION)}\n"
+
+
+# --- the session's folder (case 73) ------------------------------------------------------
+
+
+def test_session_dir_is_the_date_and_hhmm_of_the_hi(tmp_path):
+    write_event_log(tmp_path, EVENT_LOG_WITH_HI, day=YESTERDAY)
+    write_event_log(tmp_path, ONLY_TOOLS_TODAY)
+    folder = ledger.session_dir(tmp_path, NOW, "44c1aae1")
+    assert folder == tmp_path / "vault" / "raw" / "2026-09-08" / "1501"
+
+
+def test_session_dir_is_none_without_a_hi(tmp_path):
+    write_event_log(tmp_path, "- 15:01:00 44c1aae1 session-start startup\n")
+    assert ledger.session_dir(tmp_path, NOW, "44c1aae1") is None
+    write_event_log(tmp_path, EVENT_LOG_WITH_HI + "- 15:03:00 deadbeef session-start startup\n")
+    assert ledger.session_dir(tmp_path, NOW, "44c1aae1") is None

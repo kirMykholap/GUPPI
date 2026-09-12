@@ -12,18 +12,30 @@ applies there. Any other tool: exit 0. Rule page: `vault/wiki/rules/rule-pretask
 The check prints one finding per line on stdout and exits 1 on any, 0 and silent when
 clean; without a `hi` in the session's window it exits 0 with one line on stderr. The
 session is `--session`, else `CLAUDE_SESSION_ID`, else the last `session-start` of today's
-event log. Findings (cases 59.1, 59.2, 59.3, 59.6):
+event log. The session's window is the one the ledger hook walks (`ledger.session_dir`):
+the ledgers of its dates, on the `hi` date from the `hi` time on, and its folder
+`raw/<hi date>/<hi HHMM>/` (case 73). Findings (cases 59.1, 59.2, 59.3, 59.6, 72.5, 74,
+75.2):
 
-- a decision line written since the session's `hi` — the ledgers of the window's dates, on
-  the `hi` date from the `hi` time on — with no item of its kind under its own Case heading
-  of the plan, and an item of a `then` block with no decision line of its Case; a `defer`
-  line matches a `defer` item, a Rule-class `file` line an `update` with that `file`, a
-  create of an Estimate the nested `estimate` of a create;
-- the frontier `raw/<hi date>/frontier.md`: missing, an open `[ ]` line, a `[x] … · case N`
-  whose heading the plan lacks, a `[-] … · defer case N` with no `defer` item under Case N;
-- a Case with decision lines and no fenced block tagged `tasks`; an Estimate a `then` block
-  creates or sets `pending` that no line of the Case's `tasks` names;
-- an `update` item with `file:` on a path a live Rule page `governs`.
+- a decision line written since the session's `hi` with no item of its kind under its own
+  Case heading of the plan, and an item of a `then` block with no decision line of its Case;
+  a `defer` line matches a `defer` item, a Rule-class `file` line an `update` with that
+  `file`; a Leaf's Estimate has no line of its own (case 72.5), so a nested `estimate` of an
+  older Spec is covered by its parent's create line;
+- the frontier `raw/<hi date>/<hi HHMM>/frontier.md` (case 73.4): missing, an open `[ ]`
+  line, a `[x] … · case N` whose heading the plan lacks, a `[-] … · defer case N` with no
+  `defer` item under Case N;
+- a Case with a line of a kind other than `defer` and no fenced block tagged `tasks` (a
+  defer-only Case has no work, case 74); an Estimate a `then` block creates or sets
+  `pending` that no line of the Case's `tasks` names;
+- an `update` item with `file:` on a path a live Rule page `governs`;
+- the form of a Leaf item (case 72.5): a `create` of a Leaf Rule or Entity without
+  `method`; an `update` of one whose page is a Leaf without `contract`; a Case with two or
+  more Leaf items that create or say `contract: changed` (split it); a create with `method`
+  whose derived Estimate slug — `estimate-` + the target's slug minus its category prefix —
+  names an existing page and no `estimate_slug` on the item;
+- a record line of the window — `- decision[`, `- estimate[`, `- lesson[`, timed — that
+  `materialize.parse_line` does not read, with its date and line number (case 75.2).
 """
 
 import argparse
@@ -34,21 +46,25 @@ from datetime import datetime
 from pathlib import Path
 
 from guppi.event import log_path, project_root, read_payload, session_stamp
-from guppi.ledger import hi_recorded, session_event_logs
+from guppi.ledger import hi_moment, hi_recorded, session_dir, session_event_logs
 from guppi.materialize import (
     DECISION_KINDS,
     FENCE,
+    category_of,
     find_item,
+    page_exists,
     parse_line,
     rule_class_path,
     split_cases,
     then_blocks,
     unquote,
 )
-from guppi.pages import read_category, wiki_root
+from guppi.pages import read_category, read_page, wiki_root
 
 TOOL = "ExitPlanMode"
-TIMED_DECISION = re.compile(r"^- (\d\d:\d\d:\d\d) decision\[")
+TIMED_RECORD = re.compile(r"^- (\d\d:\d\d:\d\d) (decision|estimate|lesson)\[")
+LEAF_CATEGORIES = ("rules", "entities")
+LINE_PREVIEW = 80
 # `case-schema.md` writes the line as `decision[case_id]…`; `parse_line` reads `[case N]`.
 # A bare id is read as the same line rather than skipped (the lines of 2026-09-12).
 BARE_CASE = re.compile(r"^(- (?:\d\d:\d\d:\d\d )?decision\[)(?!case )")
@@ -79,27 +95,6 @@ def window(event_log: str, stamp: str) -> tuple[bool, bool]:
 # --- the session's window -------------------------------------------------------------
 
 
-def hi_moment(logs: list[tuple[str, str]], stamp: str) -> tuple[str, str] | None:
-    """`(date, time)` of the `hi` that opens this session's window: the first `hi` after a
-    `session-start` of this session with no other session's start in between, the walk of
-    `ledger.hi_recorded`."""
-    ours = False
-    found: tuple[str, str] | None = None
-    for day, text in logs:
-        for line in text.splitlines():
-            parts = line.split(" ", 3)
-            if len(parts) < 4 or parts[0] != "-":
-                continue
-            time, session, event = parts[1], parts[2], parts[3].split(" ", 1)[0]
-            if event == "session-start" and session != stamp:
-                ours, found = False, None
-            elif event == "session-start":
-                ours = True
-            elif event == "hi" and ours and found is None:
-                found = (day, time)
-    return found
-
-
 def last_session_start(event_log: str) -> str | None:
     """The stamp of the last `session-start` line of an event log."""
     stamp = None
@@ -121,32 +116,49 @@ def resolve_session(option: str | None, project_dir: Path, now) -> str:
     return last_session_start(text) or session_stamp(None, {})
 
 
-def session_decisions(
-    project_dir: Path, hi: tuple[str, str], today: str
-) -> tuple[list[dict], list[str]]:
-    """The decision records written since `hi`: every timed decision line of the ledgers from
-    the `hi` date to today, on the `hi` date from the `hi` time on. A line the grammar does
-    not read is a finding."""
+def window_lines(project_dir: Path, hi: tuple[str, str], today: str) -> list[tuple]:
+    """`(date, line number, line)` of every timed record line of the session's window: the
+    ledgers from the `hi` date to today, on the `hi` date from the `hi` time on. A line
+    before the `hi`, or without a time, is not read."""
     hi_date, hi_time = hi
     raw = project_dir / "vault" / "raw"
-    records: list[dict] = []
-    findings: list[str] = []
+    lines: list[tuple] = []
     folders = sorted(d for d in raw.iterdir() if d.is_dir()) if raw.is_dir() else []
     for folder in folders:
         day = folder.name
         path = folder / "ledger.md"
         if day < hi_date or day > today or not path.exists():
             continue
-        for line in path.read_text(encoding="utf-8").splitlines():
-            match = TIMED_DECISION.match(line)
+        for number, line in enumerate(path.read_text(encoding="utf-8").splitlines(), 1):
+            match = TIMED_RECORD.match(line)
             if not match or (day == hi_date and match.group(1) < hi_time):
                 continue
-            record = parse_line(BARE_CASE.sub(r"\1case ", line))
-            if record is None:
-                findings.append(f"{day} ledger: decision line not read: {line.strip()}")
-            else:
-                records.append(record)
-    return records, findings
+            lines.append((day, number, line))
+    return lines
+
+
+def session_decisions(lines: list[tuple]) -> list[dict]:
+    """The decision records among the window's lines; a bare case id is read as `case N`
+    and the grammar check (75.2) reports it."""
+    records: list[dict] = []
+    for _, _, line in lines:
+        if TIMED_RECORD.match(line).group(2) != "decision":
+            continue
+        record = parse_line(BARE_CASE.sub(r"\1case ", line))
+        if record is not None:
+            records.append(record)
+    return records
+
+
+def check_grammar(lines: list[tuple]) -> list[str]:
+    """75.2: every record line of the window goes through `materialize.parse_line`; one
+    that returns None is a finding with its date and line number."""
+    findings: list[str] = []
+    for day, number, line in lines:
+        if parse_line(line) is None:
+            text = line.strip()[:LINE_PREVIEW]
+            findings.append(f"raw/{day}/ledger.md:{number}: does not parse: {text}")
+    return findings
 
 
 # --- the plan ---------------------------------------------------------------------------
@@ -177,7 +189,7 @@ def tagged_blocks(lines: list[str], tag: str) -> list[str]:
 def items_of(block: dict) -> list[dict]:
     """Every decision item of a `then` block as `{kind, slug, file, nested}`; a nested
     `estimate` of a create is a create item with `nested` set, covered by its parent's
-    line since case 53.1 (no paired estimate line); `new_tags` are not items."""
+    line: a Leaf's Estimate has no line of its own (case 72.5); `new_tags` are not items."""
     items: list[dict] = []
     for kind in DECISION_KINDS:
         for item in block.get(kind) or []:
@@ -247,7 +259,8 @@ def check_lines(cases: dict, blocks: dict, records: list[dict]) -> list[str]:
 
 
 def check_frontier(path: Path, relative: str, cases: dict, blocks: dict) -> list[str]:
-    """59.2: the frontier of the `hi` date, every line closed by a Case the plan holds."""
+    """59.2: the frontier of the session's folder (73.4), every line closed by a Case the
+    plan holds."""
     if not path.exists():
         return [f"frontier: {relative} is missing"]
     findings: list[str] = []
@@ -299,7 +312,7 @@ def check_tasks(cases: dict, blocks: dict, records: list[dict]) -> list[str]:
     with_work = {r["case"] for r in records if r.get("kind") != "defer"}
     for case, lines in cases.items():
         tasks = "\n".join(tagged_blocks(lines, "tasks"))
-        if case in with_work and not tasks:  # a defer-only Case has no work (case 59.5)
+        if case in with_work and not tasks:  # a defer-only Case has no work, case 74
             findings.append(f"case {case}: decision lines and no tasks block")
         for slug in estimates_to_read(blocks[case]):
             if not any(slug in line for line in tasks.splitlines()):
@@ -334,10 +347,60 @@ def check_governed(blocks: dict, governed: dict[str, str]) -> list[str]:
     return findings
 
 
+def leaf_page(project_dir: Path, slug: str) -> bool | None:
+    """Whether the page of `slug` is a Leaf, by the `kind` of its frontmatter; None when no
+    page exists under its category."""
+    category = category_of(slug)
+    if category not in LEAF_CATEGORIES:
+        return None
+    path = wiki_root(project_dir) / category / f"{slug}.md"
+    if not path.exists():
+        return None
+    return read_page(path, category).props.get("kind") == "Leaf"
+
+
+def derived_estimate_slug(slug: str) -> str:
+    """`estimate-` + the target's slug minus its category prefix (case 72.1)."""
+    return "estimate-" + slug.split("-", 1)[1] if "-" in slug else f"estimate-{slug}"
+
+
+def check_form(blocks: dict, project_dir: Path) -> list[str]:
+    """72.5: a Leaf `create` carries `method`, a Leaf `update` `contract`; one contract per
+    Case; a derived Estimate slug that names an existing page needs `estimate_slug`. `file`
+    and `defer` items are outside these checks."""
+    findings: list[str] = []
+    for case, block in blocks.items():
+        contracts = 0
+        for item in block.get("create") or []:
+            slug = item.get("slug") if isinstance(item, dict) else None
+            if not slug or category_of(slug) not in LEAF_CATEGORIES:
+                continue
+            if item.get("kind") == "Leaf":
+                contracts += 1
+                if not item.get("method"):
+                    findings.append(f"case {case}: create {slug} has no method")
+            if item.get("method") and not item.get("estimate_slug"):
+                derived = derived_estimate_slug(slug)
+                if page_exists(project_dir, "estimates", derived):
+                    findings.append(f"case {case}: estimate {derived} exists; name estimate_slug")
+        for item in block.get("update") or []:
+            slug = item.get("slug") if isinstance(item, dict) else None
+            if not slug or category_of(slug) not in LEAF_CATEGORIES:
+                continue
+            if item.get("contract") == "changed":
+                contracts += 1
+            if leaf_page(project_dir, slug) and not item.get("contract"):
+                findings.append(f"case {case}: update {slug} has no contract")
+        if contracts >= 2:
+            findings.append(f"case {case}: two contracts in one Case — split it")
+    return findings
+
+
 def check(plan: str, project_dir: Path, stamp: str, now, stdout, stderr) -> int:
     logs = session_event_logs(project_dir, now, stamp)
     hi = hi_moment(logs, stamp)
-    if hi is None or not hi_recorded("".join(t for _, t in logs), stamp):
+    folder = session_dir(project_dir, now, stamp)
+    if hi is None or folder is None or not hi_recorded("".join(t for _, t in logs), stamp):
         print(f"pretask: no hi recorded for session {stamp}; nothing checked", file=stderr)
         return 0
     cases = split_cases(plan)
@@ -346,13 +409,15 @@ def check(plan: str, project_dir: Path, stamp: str, now, stdout, stderr) -> int:
     for case, lines in cases.items():
         blocks[case], errors = then_blocks(lines)
         findings += [f"case {case}: {e}" for e in errors]
-    records, unread = session_decisions(project_dir, hi, now.date().isoformat())
-    findings += unread
+    lines = window_lines(project_dir, hi, now.date().isoformat())
+    records = session_decisions(lines)
+    findings += check_grammar(lines)
     findings += check_lines(cases, blocks, records)
-    relative = f"vault/raw/{hi[0]}/frontier.md"
-    findings += check_frontier(project_dir / relative, relative, cases, blocks)
+    relative = folder.relative_to(project_dir).as_posix() + "/frontier.md"
+    findings += check_frontier(folder / "frontier.md", relative, cases, blocks)
     findings += check_tasks(cases, blocks, records)
     findings += check_governed(blocks, governed_paths(project_dir))
+    findings += check_form(blocks, project_dir)
     for finding in findings:
         print(finding, file=stdout)
     return 1 if findings else 0

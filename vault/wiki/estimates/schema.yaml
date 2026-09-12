@@ -11,6 +11,9 @@ properties:
     status: [pending, passed, failed]
 body:
   required: ["## Context", "## Criterion", "## Method", "## History"]
+# `## Context` is written once, from the Case's `problem`; `## Criterion` may hold one
+# `### case N` sub-block per Case that shaped the Estimate, in ledger order; `## Method` is
+# the Case's `method`. All three stay required (case 72.2).
   optional: ["## Result"]
   conditional:
     - when: {status: passed}

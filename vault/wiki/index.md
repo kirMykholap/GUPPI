@@ -18,15 +18,16 @@ When you are unsure whether something needs ratification: it does.
 
 ```
 raw/                 session artifacts land here first, and stay here: every `origin` points in
-  YYYY-MM-DD/
+  YYYY-MM-DD/        the logs of the day; a session is a window of them, opened by its `hi`
     ledger.md        ratified decisions and lessons (committed)
     event_log.md     tool/agent events (gitignored)
-    spec.md          Plan Mode output: the Cases, their `then` blocks and their `tasks`,
-                     ticked in Work Mode (case 59.3)
-    frontier.md      the Frontier of the session, one line per item, closed as the
-                     session goes (case 59.2)
-    handoff.md       the main agent's notes + direct instructions
     materialize.yaml action list for the generation script
+    HHMM/            one folder per session, named by the time of its `hi` line (case 73.1)
+      spec.md        Plan Mode output: the Cases, their `then` blocks and their `tasks`,
+                     ticked in Work Mode (case 59.3)
+      frontier.md    the Frontier of the session, one line per item, closed as the
+                     session goes (case 59.2)
+      handoff.md     the main agent's notes + direct instructions
 
 archived/            everything archived: <sprint>/<date>/<category>/<slug>.md, moved by `guppi cleanup`
 
@@ -57,6 +58,8 @@ wiki/
   tags.md            registry of tags in use
   log.md             every page change, written mechanically by the scripts
 ```
+
+Dates before 2026-09-12 hold one session each: their `spec.md`, `frontier.md` and `handoff.md` stay at the date root, and the scripts read that shape for them (case 73.1).
 
 The filename **is** the page `slug`. No separate registry of identifiers is needed — `ref` and `origin` point at filenames, and collisions are caught by lint.
 
@@ -117,7 +120,7 @@ A new term appearing mid-session is not an exception. If it belongs in the gloss
 
 The Case is the unit of dialogue — roughly one agent response — and the only place content gets ratified. Whatever is not in a Case was signed by nobody.
 
-**Its structure lives in `wiki/case-schema.md`**, imported into `CLAUDE.md` so it is present from the first turn. Seven sections: `context`, `problem`, `recommend`, `given`, `when`, `then`, `ratification`. `given` is how things work today, `when` the action, `then` what holds after it; `when` and `then` are the criterion of the Estimate the Case creates. The page content itself is a YAML block tagged `then` under the Case in the Spec — the human signs content, not the fact that a decision occurred.
+**Its structure lives in `wiki/case-schema.md`**, imported into `CLAUDE.md` so it is present from the first turn. Seven sections: `context`, `problem`, `recommend`, `given`, `when`, `then`, `ratification`. `given` is how things work today, `when` the action, `then` what holds after it; `when` and `then` are the criterion of the Estimate the Case creates or changes (§7). The page content itself is a YAML block tagged `then` under the Case in the Spec — the human signs content, not the fact that a decision occurred.
 
 Not duplicated here: one description, one place to change it.
 
@@ -142,9 +145,9 @@ Four types. There are no others.
 
 If the Case has no `ref`, you must query the vault first to confirm nothing already covers this. Put the result in `given`. Only after that may you propose `create`.
 
-**Pre-task is not a name lookup.** It asks the broader question: does this already exist, are there similar cases, what might obstruct this, what contradicts the plan. The Estimates of a page whose contract changes are named in `given`, and the Case updates their criterion in the same `then` block (case 53.2); they are reached through the page's `estimates` field, never searched.
+**Pre-task is not a name lookup.** It asks the broader question: does this already exist, are there similar cases, what might obstruct this, what contradicts the plan. The Estimate of a page whose contract changes is named in `given`, and the `update` carries `contract: changed`, so the scripts append the Case's `when` and `then` to its Criterion (case 72.1); it is reached through the page's `estimates` field, never searched.
 
-**It also returns relevant tags** from `tags.md`. Put them in `then` alongside `purpose` and `criterion`, so the human ratifies the tagging with everything else. If no existing tag fits, propose a new one explicitly — the human sees "a new tag X will be created" and signs or objects. This is why `tags.md` cannot grow uncontrolled: every new tag was ratified, and the librarian only registers what is already signed.
+**It also returns relevant tags** from `tags.md`. Put them in `then` alongside `purpose` and `method`, so the human ratifies the tagging with everything else. If no existing tag fits, propose a new one explicitly — the human sees "a new tag X will be created" and signs or objects. This is why `tags.md` cannot grow uncontrolled: every new tag was ratified, and the librarian only registers what is already signed.
 
 **The query must include `draft` pages.** Everything ever deferred lives on as one, whether or not it made this session's capped `brief.md`. Skipping them means re-deciding something already decided, doing the work, and leaving the original `defer` behind as dead weight.
 
@@ -152,14 +155,13 @@ If the Case arrived with a `ref` (from the brief, the Frontier, or a pre-check),
 
 ### Paired Estimate on create
 
-Creating a Leaf Entity or Rule requires you to also decide and log its Estimate, in the same ratified Case:
+Creating a Leaf Entity or Rule also creates its Estimate, in the same ratified Case, from one ledger line:
 
 ```
-- decision[case 3][create][entity-x]
-- decision[case 3][create][estimate-x]{ref:entity-x}
+- decision[case 3][create][entity-x]{tags:a,b}
 ```
 
-You write the acceptance criteria into the Case's `then` so the human ratifies them along with the page itself. Never leave this for the librarian to infer. If the criteria turn out to be contested enough to need their own discussion, split into a sub-case — that's the normal atomicity test, not an exception.
+The Leaf's item in the `then` block carries `method`; the scripts derive the Estimate from it — slug `estimate-x` (the target's slug minus its prefix), Criterion the Case's `when` and `then`, Context the Case's `problem` — and no second line is written (case 72.1). The human ratifies the criterion along with the page itself, because the criterion is the Case. Never leave the `method` for the librarian to infer. If the criterion turns out to be contested enough to need its own discussion, split into a sub-case — that's the normal atomicity test, not an exception.
 
 ### Delete
 
@@ -176,13 +178,15 @@ Restoring is an ordinary `update` setting `status` back to `draft` or `built`.
 **Decisions** — routing only. The content already exists in `spec.md`, ratified in the Case, so the line just says what happens to which page:
 
 ```
-- decision[case_id][kind][slug]{ref:parent}{source:external_id}{tags:a,b}
+- decision[case 12][update][rule-x]{ref:rule-x}{source:external_id}{tags:a,b}
 ```
 
 - `slug` — the affected page
 - `ref` — the parent, for a `create` that adds a child. Omitted for update/delete: `slug` already identifies the target.
 - `source` — optional external origin (a GitHub issue). Traceability only; never affects routing.
 - `tags` — the ratified tags, on a `create`. The page's category comes from the slug prefix (`rule-`, `entity-`, `estimate-`, `lesson-`, `insight-`), which pre-task guards.
+
+The id is `case N` everywhere the line carries one — the first bracket and `{supersedes:case N}` — the word and a space (case 75.1).
 
 **Estimates and lessons** — these carry text, not just markup. Their content is born in the moment and exists nowhere else: a measurement taken after the tests were written, a failure understood while it was still fresh. There is nothing in `spec.md` to point at.
 
@@ -200,7 +204,7 @@ An `estimate[...]` line does not replace the `decision[...]` that created the pa
 **Changed your mind mid-session?** Never edit or delete an earlier line. Write a new one that supersedes it:
 
 ```
-- decision[case 4][update][slug-x]{supersedes:case1}
+- decision[case 12][update][slug-x]{supersedes:case 4}
 ```
 
 The librarian reads the log as a chain and applies the last link.
@@ -215,7 +219,7 @@ The librarian reads the log as a chain and applies the last link.
 |---|---|---|
 | `create` | none | Query vault. Nothing found → new top-level page |
 | `create` | parent | New child page, added to the parent's `children` |
-| `create` | — (Leaf) | Also log a paired `create` for its Estimate |
+| `create` | — (Leaf) | Its `method` in the `then` block makes the Estimate's `create` entry, `estimate-<slug minus its prefix>`, added to the target's `estimates`; no line of its own (case 72.1) |
 | `update` | target | Edit the target's fields |
 | `update` | none | **Invalid.** This Case should have been a `create` |
 | `delete` | target | Impact analysis in-case → librarian archives → `origin` preserved |
@@ -258,9 +262,9 @@ Always its own page. Never inline, never composite. Its `target` is an Entity or
 - **QA** — the expected result is known in advance. Check against a stated criterion.
 - **Research** — the result is not known in advance. Investigating produces new content.
 
-Fields: `criterion`, `method`, `result`, `status` (`pending`/`passed`/`failed`), `origin`.
+Fields: `kind`, `status` (`pending`/`passed`/`failed`), `target`, `origin`; sections `Context`, `Criterion`, `Method`, `Result`.
 
-A reading overwrites `Result` and appends a History line; it never makes a page. A Case that changes a page's contract updates the `Criterion` of that page's existing Estimate and sets it `pending`, in the same Case; a new Estimate is made only by the atomicity rule of §6, for a condition that fails and is fixed apart (case 53.2). So the count of Estimates follows the count of Leaf pages, not the count of sessions.
+A reading overwrites `Result` and appends a History line; it never makes a page. The Estimate is derived from the Case (case 72.1): its slug is `estimate-<target minus its prefix>`, its `Context` the `problem` of the Case that made it, its `Criterion` the `when` and `then` of every Case that shaped it, one `### case N` block each, in ledger order. A Case that changes a page's contract writes `contract: changed` on the `update`; the scripts append its `when` and `then` as a new `### case N` block and set the Estimate `pending`. A line with `{supersedes:case N}` removes the block of case N. A second Estimate on one target is made only by the atomicity rule of §6, for a condition that fails and is fixed apart, with a slug named in the Case (case 53.2). So the count of Estimates follows the count of Leaf pages, not the count of sessions.
 
 **A `failed` Estimate is debt, not an endpoint.** Its Entity stays `draft` and the librarian surfaces it in `brief.md` until a human decides what to do. The default outcome, absent a decision to fix, is archival — an Entity that cannot pass its own criterion should not sit in the vault pretending to be work in progress.
 
@@ -407,9 +411,9 @@ Ratifying `create entity-x` without seeing what that page will claim is an empty
 ratification. The human signs content, not the fact that a decision occurred.
 
 The librarian lays that ratified content into schema fields. **It reshapes; it never adds.**
-If a Case is missing a required field — a `create` with no `criterion` — it does not invent
+If a Case is missing a required field — a Leaf `create` with no `method` — it does not invent
 one. The page is marked incomplete and recorded in `brief.md`.
 
-Fields split by origin: `type`, `purpose`, `criterion`, `method` and `tags` come from the
-ratified Case. `origin`, `slug`, `status`, `parent`, `children` and backlinks are derived
+Fields split by origin: `type`, `purpose`, `method` and `tags` come from the ratified Case,
+and the Criterion is its `when` and `then` (case 72.1). `origin`, `slug`, `status`, `parent`, `children` and backlinks are derived
 mechanically by the generation script.

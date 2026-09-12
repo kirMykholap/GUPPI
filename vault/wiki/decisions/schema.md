@@ -50,7 +50,8 @@ The Case that produced it, minus what belongs to the conversation rather than th
 | `## Context` | yes | What this is about. |
 | `## Problem` | yes | What required a decision. On a defer, what is unresolved. |
 | `## Given` | when a kind other than `defer` is present | The Case's `given`: how things worked before, the pre-task result included — what already existed, what conflicted, what sat in `draft`. The short form of Retro (a defer-only Case) has none (case 56). |
-| `## When` | when a kind other than `defer` is present | The Case's `when`: the action that triggers the behaviour. What was decided (`then`) lives on the target pages, not here. |
+| `## When` | no | Only on pages written before case 72, which keep it: the Case's `when`. A page written after case 72 has no `## When` (case 72.2). |
+| `## Criterion` | when the Case shaped an Estimate | One line per Estimate the Case shaped, `- [[estimate-x]] § case N`: the block of the Estimate's Criterion this Case wrote. `when` and `then` live on the Estimate, the `then` block on the target — not here (case 72.2). |
 | `## Note` | no | Only when ratification was non-trivial: a reservation, a condition, a rejected alternative worth remembering. Omit when the answer was simply yes. |
 
 ## History
@@ -70,7 +71,7 @@ Appended by hook, never by an agent. Always the last section, so `tail` reads it
 type: decision
 case: "1"
 status: current
-create: [entity-cart, estimate-cart-render-time]
+create: [entity-cart]
 origin: raw/2026-09-08/ledger.md#case-1
 sprint: 2026-Q3-s4
 created: 2026-09-08
@@ -87,8 +88,8 @@ Buyers cannot review an order before paying.
 Pre-task found no cart page and no overlapping purpose. `entity-checkout` exists and will
 be affected. Nothing in `draft` covers this either.
 
-## When
-A buyer opens the cart.
+## Criterion
+- [[estimate-cart]] § case 1
 
 ## History
 - 2026-09-08 created · raw/2026-09-08/ledger.md#case-1

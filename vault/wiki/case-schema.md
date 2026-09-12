@@ -30,7 +30,7 @@ Short sentences. One idea per sentence. Active voice. A common word over a term.
 
 ## `when` and `then` are the criterion
 
-The Case that creates a page also creates its Estimate. The Estimate's criterion is the `when` and `then` of the Case, copied without change. Nothing is signed twice, and nothing is signed in two wordings.
+The Case that creates a Leaf also creates its Estimate; the Case that changes the Leaf's contract changes the Estimate. The scripts copy the Case's `when` and `then`, verbatim with their operands, as the `### case N` block of the Estimate's `Criterion`, and its `problem` as the Estimate's `Context` at birth. A later line with `{supersedes:case N}` removes the block of case N. One contract per Case or sub-case: a Case that changes two contracts is split, and pre-task asks for the split. Nothing is signed twice, and nothing is signed in two wordings (case 72.1).
 
 ## The `then` block lives in the Spec
 
@@ -46,20 +46,18 @@ create:
     sections:
       Purpose: |
         Until now items went straight from the catalogue to payment.
-    estimate:
-      slug: estimate-cart-render-time
-      kind: Research
-      criterion: cart renders within 200ms
-      method: measure at 10, 50 and 200 line items
+    method: measure the render at 10, 50 and 200 line items, against a seeded database
+    estimate_kind: Research
 update:
   - slug: entity-checkout
+    contract: changed
     set: {tags: [cart, checkout, payment]}
     change: the cart precedes payment
 ```
 
-A `create` holds the fields the target schema needs a judgment for and, for a Leaf, its `estimate`; prose for a body section goes under `sections`, keyed by the section name. An `update` holds `set` (fields), `sections` (the whole new text of a section), `replace` (a list of `{old, new}` pairs, each `old` replaced by its `new` inside the body; one pair is a list of one, and a mapping under `replace` is a shape `generate` rejects) and `change` (one line for History). An `update` that changes a Leaf's contract carries, in the same block, the `update` of its Estimate: `sections` with the new `Criterion` (and `Method`) and `set: {status: pending}`; a new Estimate is made only for a condition that fails and is fixed apart (case 53.2). A `delete` holds `impact`, a `defer` a `type` and a `purpose`. A Rule-class file (`index.md`, `glossary.md`, this file, a schema) is an `update` with `file` and `change`, applied by hand in Work Mode; `CLAUDE.md` is not one — it is rendered from `rule-claude-md` and `rule-case-protocol` and changes by an `update` of one of them (case 59.8). New tags are declared under `new_tags` with a meaning and a Russian alias, under any Case of the Spec (case 61).
+A `create` holds the fields the target schema needs a judgment for; prose for a body section goes under `sections`, keyed by the section name. A `create` of a Leaf also carries `method` (required): how the check of its `when` and `then` is made. The Estimate is derived from the Case, with no nested `estimate` and no ledger line of its own: its slug is `estimate-<target minus its prefix>` (`entity-cart` → `estimate-cart`), its kind `QA` unless the item says `estimate_kind: Research`; `estimate_slug` names it only when the derived slug collides with a live page. A MOC gets an Estimate the same way, only when its `create` carries `method` (case 72.1). An `update` holds `set` (fields), `sections` (the whole new text of a section), `replace` (a list of `{old, new}` pairs, each `old` replaced by its `new` inside the body; one pair is a list of one, and a mapping under `replace` is a shape `generate` rejects) and `change` (one line for History). An `update` of a Leaf carries `contract: same` or `contract: changed`. With `contract: changed` the scripts append the Case's `when` and `then` to its Estimate as a `### case N` block and set the Estimate `pending`; `method` is written only when the way of checking changes. One contract per Case or sub-case: two changed contracts in one Case are two sub-cases, and pre-task asks for the split. A new Estimate is made only for a condition that fails and is fixed apart, with its slug named in the Case (case 53.2). A `delete` holds `impact`, a `defer` a `type` and a `purpose`. A Rule-class file (`index.md`, `glossary.md`, this file, a schema) is an `update` with `file` and `change`, applied by hand in Work Mode; `CLAUDE.md` is not one — it is rendered from `rule-claude-md` and `rule-case-protocol` and changes by an `update` of one of them (case 59.8). New tags are declared under `new_tags` with a meaning and a Russian alias, under any Case of the Spec (case 61).
 
-**The Spec is written as each Case is ratified**, into the plan file, in the reply that carries the Case's ledger lines: `context`, `problem`, `given`, `when`, `then`, the `then` block and a block tagged `tasks` — one `- [ ] <what>` per file to change, test to write, command to run, one-off migration, and one per reading of an Estimate the Case creates or sets `pending`, by its slug. `recommend` and `ratification` stay in the chat; code is Work Mode. Work Mode ticks the boxes in `raw/<date>/spec.md` in the reply that finishes the task; Retro counts the unticked (case 59.3).
+**The Spec is written as each Case is ratified**, into the plan file, in the reply that carries the Case's ledger lines: `context`, `problem`, `given`, `when`, `then`, the `then` block and a block tagged `tasks` — one `- [ ] <what>` per file to change, test to write, command to run, one-off migration, and one per reading of an Estimate the Case creates or sets `pending`, by its slug. `recommend` and `ratification` stay in the chat; code is Work Mode. Work Mode ticks the boxes in `raw/<date>/<hi HHMM>/spec.md`, the session's folder (case 73), in the reply that finishes the task; Retro counts the unticked (case 59.3).
 
 Derivable fields — `origin`, `status`, `parent` from `ref`, `children`, `code_ref`, `deferred_by` — are filled mechanically and are not written here. `guppi materialize` reads the blocks, and what is not in a block was signed by nobody.
 
@@ -67,7 +65,7 @@ Derivable fields — `origin`, `status`, `parent` from `ref`, `children`, `code_
 
 ## The short form — deferred decisions
 
-A deferred decision is its own Case in the short form — `## Case N — name`, then `context`, `problem`, and a `then` block with `defer:` carrying `slug`, `type` and `purpose`; no `recommend`, `given`, `when` or `then` section. It has two moments: the close of Plan Mode, when the person defers the items left open, and Retro, which ratifies no other decision. Either way the agent appends it to `raw/<date>/spec.md` under the `## Deferred` heading before writing its ledger line, one line per target, so `materialize` finds it like any other Case; a defer line without its Case is marked `incomplete`. Two or more pages share one Case only when one context and one problem hold for all of them. A page-less Slice task goes to `sprint.md`, not into a defer. Taking a deferred decision up means building its full Case from its page — `context` and `problem` as they stand, then `recommend`, `given` (the vault asked), `when`, `then` — and writing `{supersedes:case N}` on the line. A `create`, `update` or `delete` at Retro waits for the next Plan Mode (cases 52.2, 56, 59.5).
+A deferred decision is its own Case in the short form — `## Case N — name`, then `context`, `problem`, and a `then` block with `defer:` carrying `slug`, `type` and `purpose`; no `recommend`, `given`, `when` or `then` section. It has two moments: the close of Plan Mode, when the person defers the items left open, and Retro, which ratifies no other decision. Either way the agent appends it to `raw/<date>/<hi HHMM>/spec.md` under the `## Deferred` heading before writing its ledger line, one line per target, so `materialize` finds it like any other Case; a defer line without its Case is marked `incomplete`. Two or more pages share one Case only when one context and one problem hold for all of them. A page-less Slice task goes to `sprint.md`, not into a defer. Taking a deferred decision up means building its full Case from its page — `context` and `problem` as they stand, then `recommend`, `given` (the vault asked), `when`, `then` — and writing `{supersedes:case N}` on the line. A `create`, `update` or `delete` at Retro waits for the next Plan Mode (cases 52.2, 56, 59.5).
 
 ## Splitting
 
@@ -81,9 +79,11 @@ A question that only asks you to justify a choice already on the table ("why thi
 
 | Outcome | Ledger line |
 |---|---|
-| ratified decision | `- decision[case_id][kind][slug]{ref}{source}{supersedes}{tags:a,b}` |
+| ratified decision | `- decision[case 12][update][rule-x]{ref:rule-x}` or `- decision[case 12][create][rule-y]{ref:rule-x}{tags:a,b}` |
 | a measurement taken | `- estimate[slug][passed\|failed] <result>` |
 | something learned | `- lesson[error\|knowledge][slug]{tags:a,b} trigger: <...> root_cause: <...>` |
+
+The id is `case N` — the word and a space — in the first bracket and in `{supersedes:case N}` alike; `{source:...}` and `{supersedes:...}` are present only when they apply (case 75.1).
 
 **Decision lines are markup only** — their content already sits ratified in the Spec, so the
 line just names what happens to which page, and the tags a `create` was ratified with.

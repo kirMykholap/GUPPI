@@ -5,7 +5,10 @@ Reads every page under `vault/wiki/<category>/` (archive excluded) against that 
 classes, in the order they are checked: `schema` (a missing field or section, a value
 outside the list, a conditional not met), `schema-prose` (`schema.md` and `schema.yaml`
 naming different fields or sections), `ref` (a slug no live or archived page carries),
-`origin` (a ledger file or `[case N]` line that does not exist), `path` (a file named in
+and, case 72.6, a `[[slug]]` under a decision page's `## Criterion` that is not a live or
+archived Estimate page, or a `### case N` block under an Estimate's `## Criterion` with no
+live or archived `decision-case-N`), `origin` (a ledger file or `[case N]` line that does
+not exist), `path` (a file named in
 `implementation_ref` or `governs` that does not exist), `orphan` (a live entity, rule,
 estimate or insight no other live page's frontmatter names; a lesson is a record and an
 Insight names it or not), `status` (a status its Estimates do not support; an Estimate
@@ -16,7 +19,9 @@ kind lists `create`, `update`, `delete`, `defer`, or with `kind` or `target_slug
 present, or a slug in a list with a category prefix that names neither a live nor an
 archived page, case 59.4). A
 `deferred_by` slug and a `[[decision-case-N]]` wikilink in History are refs like any other
-(cases 52.3, 52.4). Rule page: `vault/wiki/rules/rule-lint.md`.
+(cases 52.3, 52.4). `## When` is never a required section of a decision page, whatever
+`decisions/schema.yaml` says: a page written before case 72 has one, a later page has none
+(case 72.6). Rule page: `vault/wiki/rules/rule-lint.md`.
 """
 
 import argparse
@@ -56,6 +61,9 @@ TABLE_SECTION = re.compile(r"^\|\s*`(## [^`]+)`")
 TEST_PATH = re.compile(r"`?(tests/[\w./-]+\.py)`?")
 MAKE_TARGET = re.compile(r"`?make ([\w-]+)`?")
 BY_HAND = "by hand"
+CRITERION = "## Criterion"
+WHEN = "## When"
+CASE_BLOCK = re.compile(r"^### case ([\w.]+)\s*$", re.MULTILINE)  # an Estimate's Criterion block
 
 
 class Finding:
@@ -203,14 +211,16 @@ def archived_slugs(wiki: Path) -> set[str]:
 
 
 def links_of(page: Page) -> list[tuple[str, str]]:
-    """`(field, slug)` for every frontmatter link and every `[[slug]]` in the body."""
+    """`(field, slug)` for every frontmatter link and every `[[slug]]` in the body; a link
+    under a decision page's `## Criterion` is `criterion`, checked by `check_criterion`."""
     out = []
     for field in LINK_FIELDS:
         for slug in as_list(page.props.get(field)):
             out.append((field, slug))
-    for text in page.sections.values():
+    for name, text in page.sections.items():
+        field = "criterion" if page.category == "decisions" and name == CRITERION else "body"
         for slug in WIKILINK.findall(CODE_SPAN.sub("", text)):
-            out.append(("body", slug.strip()))
+            out.append((field, slug.strip()))
     return out
 
 
@@ -218,13 +228,62 @@ def check_refs(page: Page, known: set[str]) -> list[Finding]:
     out = []
     seen = set()
     for field, slug in links_of(page):
-        if slug in known or slug in seen:
+        if field == "criterion" or slug in known or slug in seen:
             continue
         seen.add(slug)
         out.append(
             Finding(page, "ref", f"{field} names {slug}, which no live or archived page carries")
         )
     return out
+
+
+def check_criterion(page: Page, known: set[str]) -> list[Finding]:
+    """Case 72.6. On a decision page every `[[slug]]` under `## Criterion` is a live or
+    archived Estimate page. On an Estimate page `## Criterion` may be plain text or
+    `### case N` blocks; each block names a live or archived `decision-case-N`. One
+    finding per slug or case, class `ref`."""
+    out = []
+    seen: set[str] = set()
+    if page.category == "decisions":
+        for field, slug in links_of(page):
+            if field != "criterion" or slug in seen:
+                continue
+            seen.add(slug)
+            if not slug.startswith("estimate-") or slug not in known:
+                out.append(
+                    Finding(
+                        page,
+                        "ref",
+                        f"{CRITERION} names {slug}, which no live or archived Estimate page carries",
+                    )
+                )
+    elif page.category == "estimates":
+        for case in CASE_BLOCK.findall(page.sections.get(CRITERION) or ""):
+            if case in seen:
+                continue
+            seen.add(case)
+            if f"decision-case-{case}" not in known:
+                out.append(
+                    Finding(
+                        page,
+                        "ref",
+                        f"{CRITERION} names case {case}, and no live or archived page "
+                        f"decision-case-{case} exists",
+                    )
+                )
+    return out
+
+
+def without_when(schema: dict) -> dict:
+    """The decision schema with `## When` dropped from every required list of `body`
+    (case 72.6): lint does not depend on whether `schema.yaml` still requires it."""
+    body = dict(schema.get("body") or {})
+    body["required"] = [s for s in body.get("required") or [] if s != WHEN]
+    body["conditional"] = [
+        {**rule, "required": [s for s in rule.get("required") or [] if s != WHEN]}
+        for rule in body.get("conditional") or []
+    ]
+    return {**schema, "body": body}
 
 
 def check_origin(page: Page, project_dir: Path) -> list[Finding]:
@@ -268,7 +327,7 @@ def check_orphans(pages: list[Page]) -> list[Finding]:
     referenced: set[str] = set()
     for page in pages:
         for field, slug in links_of(page):
-            if field != "body":
+            if field not in ("body", "criterion"):
                 referenced.add(slug)
     return [
         Finding(page, "orphan", "no other live page names it in its frontmatter")
@@ -398,12 +457,15 @@ def lint(project_dir: Path) -> list[str]:
                 findings.append(Finding(f"{category}/schema", "schema", "schema.yaml is missing"))
             continue
         findings.extend(check_prose(wiki, category, schema))
+        if category == "decisions":
+            schema = without_when(schema)
         for page in vault[category]:
             findings.extend(check_schema(page, schema))
     for page in pages:
         if page.error:
             continue
         findings.extend(check_refs(page, known))
+        findings.extend(check_criterion(page, known))
         findings.extend(check_origin(page, project_dir))
         findings.extend(check_paths(page, project_dir))
     findings.extend(check_orphans([p for p in pages if not p.error]))

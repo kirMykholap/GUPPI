@@ -1,11 +1,12 @@
 """`guppi pretask`: the `PreToolUse ExitPlanMode` hook that holds Plan Mode open until
 `/pre-task` has run in this session, and `guppi pretask --check <plan>`, the check of the
-session's decision lines, frontier and tasks against the plan (cases 59.1, 59.2, 59.3,
-59.6). Rule page: `vault/wiki/rules/rule-pretask-hook.md`.
+session's decision lines, frontier, tasks, the form of its Leaf items and the grammar of
+its record lines against the plan (cases 59.1, 59.2, 59.3, 59.6, 72.5, 73.4, 74, 75.2).
+Rule page: `vault/wiki/rules/rule-pretask-hook.md`.
 
 Every hook test feeds the payload through a stream, the shape a hook is really handed. The
 check tests build a temp project: an event log with the session's `hi`, a ledger written
-after it, a plan file and a frontier.
+after it, a plan file and a frontier in the session's folder `raw/<date>/<hi HHMM>/`.
 """
 
 import io
@@ -122,8 +123,11 @@ def with_ledger(project_dir, text, day=TODAY):
     (folder / "ledger.md").write_text(text, encoding="utf-8", newline="\n")
 
 
-def with_frontier(project_dir, text, day=TODAY):
-    folder = project_dir / "vault" / "raw" / day.isoformat()
+HI_FOLDER = "1501"  # the `hi` at 15:01:30 names the session's folder (case 73)
+
+
+def with_frontier(project_dir, text, day=TODAY, hhmm=HI_FOLDER):
+    folder = project_dir / "vault" / "raw" / day.isoformat() / hhmm
     folder.mkdir(parents=True, exist_ok=True)
     (folder / "frontier.md").write_text(text, encoding="utf-8", newline="\n")
 
@@ -132,6 +136,14 @@ def with_rule(project_dir, slug, governs):
     folder = project_dir / "vault" / "wiki" / "rules"
     folder.mkdir(parents=True, exist_ok=True)
     text = f"---\ntype: rule\nstatus: built\ngoverns: {governs}\n---\n\n## Purpose\n\nx\n"
+    (folder / f"{slug}.md").write_text(text, encoding="utf-8", newline="\n")
+
+
+def with_page(project_dir, category, slug, kind="Leaf"):
+    folder = project_dir / "vault" / "wiki" / category
+    folder.mkdir(parents=True, exist_ok=True)
+    text = f"---\ntype: {category[:-1] if category != 'entities' else 'entity'}\n"
+    text += f"kind: {kind}\nstatus: built\n---\n\n## Purpose\n\nx\n"
     (folder / f"{slug}.md").write_text(text, encoding="utf-8", newline="\n")
 
 
@@ -218,8 +230,9 @@ def test_a_rule_class_file_line_matches_a_file_item(tmp_path):
 
 
 def test_a_nested_estimate_is_covered_by_its_parents_create_line(tmp_path):
-    # since case 53.1 no paired estimate line is written: the parent's line covers the
-    # nested estimate; a line for the nested slug, if someone writes one, still finds it
+    # a Leaf's Estimate has no line of its own (case 72.5): the parent's line covers the
+    # nested estimate of an older Spec; a line for the nested slug, if someone writes one,
+    # still finds it
     parent = "- 16:00:00 decision[case 1][create][rule-z]{ref:rule-root}{tags:a}\n"
     paired = "- 16:00:00 decision[case 1][create][estimate-z-works]{ref:rule-z}{tags:a}\n"
     plan = PLAN.replace(
@@ -239,8 +252,17 @@ def test_a_standalone_estimate_create_needs_its_own_line(tmp_path):
     assert out.splitlines() == ["case 1: item [create][estimate-alone] has no decision line"]
 
 
-def test_a_bare_case_id_in_a_line_is_read(tmp_path):
-    assert check(tmp_path, ledger=LINE.replace("[case 1]", "[1]")) == (0, "", "")
+def test_a_bare_case_id_in_a_line_is_read_and_reported(tmp_path):
+    # the comparison still finds its item (no "has no item" finding); the grammar check
+    # of case 75.2 reports the line, once, with its date and number
+    code, out, _ = check(tmp_path, ledger=LINE.replace("[case 1]", "[1]"))
+    assert code == 1
+    assert out.splitlines() == [
+        (
+            "raw/2026-09-09/ledger.md:1: does not parse: "
+            "- 16:00:00 decision[1][update][rule-x]{ref:rule-x}"
+        )
+    ]
 
 
 def test_the_same_lines_at_two_ratifications_are_fine(tmp_path):
@@ -257,7 +279,17 @@ def test_no_hi_means_no_check(tmp_path):
 def test_a_missing_frontier_is_a_finding(tmp_path):
     code, out, _ = check(tmp_path, frontier=None)
     assert code == 1
-    assert out.splitlines() == ["frontier: vault/raw/2026-09-09/frontier.md is missing"]
+    assert out.splitlines() == ["frontier: vault/raw/2026-09-09/1501/frontier.md is missing"]
+
+
+def test_the_frontier_path_follows_the_hi_time(tmp_path):
+    # case 73.4: the frontier of the session's folder, named by the hi's HHMM
+    log = "- 11:55:00 44c1aae1 session-start startup\n- 11:56:22 -------- hi\n"
+    code, out, _ = check(tmp_path, frontier=None, event_log=log)
+    assert code == 1
+    assert out.splitlines() == ["frontier: vault/raw/2026-09-09/1156/frontier.md is missing"]
+    with_frontier(tmp_path, CLEAN_FRONTIER, hhmm="1156")
+    assert check(tmp_path, frontier=None, event_log=log) == (0, "", "")
 
 
 def test_an_open_frontier_line_is_a_finding(tmp_path):
@@ -354,3 +386,174 @@ def test_a_defer_only_case_needs_no_tasks_block(tmp_path):
     ledger = LINE + "- 16:00:01 decision[case 2][defer][rule-later]\n"
     frontier = CLEAN_FRONTIER + "- [-] F2 — later · brief deferred 1 · defer case 2\n"
     assert check(tmp_path, plan=plan, ledger=ledger, frontier=frontier) == (0, "", "")
+
+
+def test_a_case_mixing_a_defer_with_an_update_needs_a_tasks_block(tmp_path):
+    # case 74: a Case with a line of a kind other than defer and no tasks block is a finding
+    plan = PLAN.split("```tasks")[0].replace(
+        "    change: one line\n",
+        "    change: one line\ndefer:\n  - slug: rule-later\n    type: rule\n    purpose: p\n",
+    )
+    ledger = LINE + "- 16:00:01 decision[case 1][defer][rule-later]\n"
+    code, out, _ = check(tmp_path, plan=plan, ledger=ledger)
+    assert code == 1
+    assert out.splitlines() == ["case 1: decision lines and no tasks block"]
+
+
+# --- the form of a Leaf item (case 72.5) ------------------------------------------------
+
+LEAF_CREATE = "create:\n  - slug: rule-z\n    type: rule\n    kind: Leaf\n    method: pytest\n"
+CREATE_LINE = "- 16:00:00 decision[case 1][create][rule-z]{ref:rule-root}{tags:a}\n"
+
+
+def create_plan(item=LEAF_CREATE):
+    return PLAN.replace("update:\n  - slug: rule-x\n    change: one line\n", item)
+
+
+def test_a_leaf_create_without_method_is_a_finding(tmp_path):
+    plan = create_plan(LEAF_CREATE.replace("    method: pytest\n", ""))
+    code, out, _ = check(tmp_path, plan=plan, ledger=CREATE_LINE)
+    assert code == 1
+    assert out.splitlines() == ["case 1: create rule-z has no method"]
+    assert check(tmp_path, plan=create_plan(), ledger=CREATE_LINE) == (0, "", "")
+
+
+def test_a_moc_create_needs_no_method(tmp_path):
+    plan = create_plan(
+        LEAF_CREATE.replace("kind: Leaf", "kind: MOC").replace("    method: pytest\n", "")
+    )
+    assert check(tmp_path, plan=plan, ledger=CREATE_LINE) == (0, "", "")
+
+
+def test_a_leaf_update_without_contract_is_a_finding(tmp_path):
+    with_page(tmp_path, "rules", "rule-x", kind="Leaf")
+    code, out, _ = check(tmp_path)
+    assert code == 1
+    assert out.splitlines() == ["case 1: update rule-x has no contract"]
+    plan = PLAN.replace("    change: one line\n", "    change: one line\n    contract: same\n")
+    assert check(tmp_path, plan=plan) == (0, "", "")
+
+
+def test_an_update_of_a_moc_or_of_a_missing_page_needs_no_contract(tmp_path):
+    assert check(tmp_path) == (0, "", "")  # no page: the missing-page finding is elsewhere
+    with_page(tmp_path, "rules", "rule-x", kind="MOC")
+    assert check(tmp_path) == (0, "", "")
+
+
+def test_two_contracts_in_one_case_is_a_finding(tmp_path):
+    with_page(tmp_path, "rules", "rule-x", kind="Leaf")
+    plan = PLAN.replace(
+        "    change: one line\n",
+        "    change: one line\n    contract: changed\n" + LEAF_CREATE,
+    )
+    code, out, _ = check(tmp_path, plan=plan, ledger=LINE + CREATE_LINE)
+    assert code == 1
+    assert out.splitlines() == ["case 1: two contracts in one Case — split it"]
+    # a sub-case is its own Case: one contract each is fine
+    split = plan.replace(
+        LEAF_CREATE,
+        "```\n\n```tasks\n- [ ] guppi/x.py: the change\n```\n\n### Case 1.1 — sub\n\n"
+        "```then\n" + LEAF_CREATE,
+    )
+    ledger = LINE + CREATE_LINE.replace("[case 1]", "[case 1.1]")
+    assert check(tmp_path, plan=split, ledger=ledger) == (0, "", "")
+
+
+def test_a_derived_estimate_slug_that_names_a_page_needs_estimate_slug(tmp_path):
+    with_page(tmp_path, "estimates", "estimate-z", kind="Leaf")
+    code, out, _ = check(tmp_path, plan=create_plan(), ledger=CREATE_LINE)
+    assert code == 1
+    assert out.splitlines() == ["case 1: estimate estimate-z exists; name estimate_slug"]
+    named = create_plan(LEAF_CREATE + "    estimate_slug: estimate-z-again\n")
+    assert check(tmp_path, plan=named, ledger=CREATE_LINE) == (0, "", "")
+
+
+def test_an_archived_estimate_page_counts_as_existing(tmp_path):
+    archived = tmp_path / "vault" / "archived" / "migration" / "2026-09-01" / "estimates"
+    archived.mkdir(parents=True)
+    (archived / "estimate-z.md").write_text("---\ntype: estimate\n---\n", encoding="utf-8")
+    _, out, _ = check(tmp_path, plan=create_plan(), ledger=CREATE_LINE)
+    assert out.splitlines() == ["case 1: estimate estimate-z exists; name estimate_slug"]
+
+
+def test_a_leaf_create_with_method_needs_no_estimate_line(tmp_path):
+    # the Estimate is derived from the Case (72.3) and has no line of its own (72.5)
+    assert check(tmp_path, plan=create_plan(), ledger=CREATE_LINE) == (0, "", "")
+
+
+def test_file_and_defer_items_are_outside_the_form_checks(tmp_path):
+    plan = PLAN.replace(
+        "    change: one line\n",
+        "    change: one line\n  - file: vault/wiki/index.md\n    change: a row\n"
+        "defer:\n  - slug: rule-later\n    type: rule\n    purpose: p\n",
+    )
+    ledger = (
+        LINE
+        + "- 16:00:01 decision[case 1][update][index]{ref:index}\n"
+        + "- 16:00:02 decision[case 1][defer][rule-later]\n"
+    )
+    assert check(tmp_path, plan=plan, ledger=ledger) == (0, "", "")
+
+
+# --- the grammar of the window's record lines (case 75.2) -------------------------------
+
+
+def test_a_record_line_that_does_not_parse_is_a_finding_with_its_date_and_number(tmp_path):
+    bad_estimate = "- 16:00:02 estimate[estimate-x-holds] no outcome given\n"
+    bad_lesson = "- 16:00:03 lesson[lesson-no-kind] trigger: t root_cause: r\n"
+    code, out, _ = check(tmp_path, ledger=LINE + bad_estimate + bad_lesson)
+    assert code == 1
+    assert out.splitlines() == [
+        (
+            "raw/2026-09-09/ledger.md:2: does not parse: "
+            "- 16:00:02 estimate[estimate-x-holds] no outcome given"
+        ),
+        (
+            "raw/2026-09-09/ledger.md:3: does not parse: "
+            "- 16:00:03 lesson[lesson-no-kind] trigger: t root_cause: r"
+        ),
+    ]
+
+
+def test_a_long_unparsed_line_is_cut_to_eighty_characters(tmp_path):
+    long = "- 16:00:02 decision[1][update][rule-x]{ref:" + "x" * 100 + "}\n"
+    _, out, _ = check(tmp_path, ledger=LINE + long)
+    finding = out.splitlines()[0]
+    assert finding.startswith("raw/2026-09-09/ledger.md:2: does not parse: ")
+    assert len(finding.split("does not parse: ", 1)[1]) == 80
+
+
+def test_a_line_before_the_hi_and_a_non_record_line_are_not_checked(tmp_path):
+    # a preview is never in the ledger; what is there and is not a record line — a heading,
+    # prose — is not a record and is not checked; a record before the hi is not read
+    before = "- 15:01:00 decision[1][update][rule-x]{ref:rule-x}\n"
+    prose = "# Ledger\n\nthe line decision[1] shown as a preview\n"
+    assert check(tmp_path, ledger=prose + before + LINE) == (0, "", "")
+
+
+def test_a_parsed_line_of_a_later_date_of_the_window_is_read(tmp_path):
+    with_ledger(
+        tmp_path, "- 00:10:00 decision[2][update][rule-y]{ref:rule-y}\n", day=date(2026, 9, 9)
+    )
+    log = "- 15:01:00 44c1aae1 session-start startup\n- 15:01:30 -------- hi\n"
+    with_event_log(tmp_path, log, day=date(2026, 9, 8))
+    with_ledger(tmp_path, LINE.replace("16:00:00", "23:00:00"), day=date(2026, 9, 8))
+    with_frontier(tmp_path, CLEAN_FRONTIER, day=date(2026, 9, 8))
+    plan_file = tmp_path / "plan.md"
+    plan_file.write_text(PLAN, encoding="utf-8", newline="\n")
+    out = io.StringIO()
+    code = pretask.run(
+        ["--check", str(plan_file), "--session", SESSION],
+        stdout=out,
+        stderr=io.StringIO(),
+        project_dir=tmp_path,
+        now=NOW,
+    )
+    assert code == 1
+    assert out.getvalue().splitlines() == [
+        (
+            "raw/2026-09-09/ledger.md:1: does not parse: "
+            "- 00:10:00 decision[2][update][rule-y]{ref:rule-y}"
+        ),
+        "case 2: line [update][rule-y]: no Case 2 heading in the plan",
+    ]

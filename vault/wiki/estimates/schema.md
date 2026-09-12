@@ -32,14 +32,14 @@ A `failed` Estimate is debt, not an endpoint: its target stays `draft` and the l
 
 | Section | Required | Content |
 |---|---|---|
-| `## Context` | yes | What is being checked and why this check matters. Not a restatement of the target's `purpose` — that is on the target page. |
-| `## Criterion` | yes | What counts as passing, as ratified in the Case. For Research this may legitimately be broad ("determine whether we stay inside the latency budget"); for QA it should be exact. |
-| `## Method` | yes | How it is checked. On a Leaf target: the test file that performs the check, by path (`tests/test_x.py`); a check no file can perform — a live reading of a session start — says so, and is the exception. On a MOC target: the make target that runs the children's checks as one pipeline, by name; the target depends on the children's targets, so the MOC's check is the sequence, never a new test. A MOC whose children's Estimates are all hand readings has no pipeline; its Method says so, by hand, and the exception holds for it too. Research: what is being measured or investigated, and how. |
+| `## Context` | yes | Written once, from the `problem` of the Case that made the Estimate; no `update` touches it (case 72.2). Not a restatement of the target's `purpose` — that is on the target page. |
+| `## Criterion` | yes | What counts as passing: one block per Case that shaped the Estimate, in ledger order — `### case N`, then `When:` and `Then:` verbatim from the Case, with their operands. The `create` with `method` writes the first block; an `update` with `contract: changed` appends one; a line with `{supersedes:case N}` removes the block of case N (case 72.2). For Research the `then` may legitimately be broad ("determine whether we stay inside the latency budget"); for QA it should be exact. |
+| `## Method` | yes | The `method` of the Case: how it is checked. On a Leaf target: the test file that performs the check, by path (`tests/test_x.py`); a check no file can perform — a live reading of a session start — says so, and is the exception. On a MOC target: the make target that runs the children's checks as one pipeline, by name; the target depends on the children's targets, so the MOC's check is the sequence, never a new test. A MOC whose children's Estimates are all hand readings has no pipeline; its Method says so, by hand, and the exception holds for it too. Research: what is being measured or investigated, and how. |
 | `## Result` | no | Omitted while `pending`. For QA usually one line. For Research this is the substance of the page — findings, numbers, the conclusion drawn. |
 
 The two kinds sit at opposite ends of the same schema: QA puts its weight on `Criterion` and treats `Result` as a formality, Research often has a loose `Criterion` and carries everything in `Result`. That is why unused sections are omitted rather than filled with placeholder text.
 
-**`Result` is overwritten, not appended.** A test that passed, broke and was fixed leaves one current result; the sequence of changes is what History is for. Same for Research: the page states what we currently believe, and History records that the belief changed.
+**`Result` is overwritten, not appended.** A test that passed, broke and was fixed leaves one current result; the sequence of changes is what History is for. Same for Research: the page states what we currently believe, and History records that the belief changed. **`Criterion` is appended, block by Case:** each Case that shapes the Estimate adds its `### case N` block, and only a `supersedes` removes one (case 72.2).
 
 ## History
 
@@ -71,10 +71,15 @@ tags: [discounts, pricing]
 
 ## Context
 New-client discount is the only rule that returns zero rather than a positive percentage,
-so it is the one most likely to be broken by a change to the discount pipeline.
+so a change to the discount pipeline can break it without a positive rule noticing.
 
 ## Criterion
-A client with zero completed orders receives a 0% discount.
+### case 2
+When:
+A client with zero completed orders asks for a discount.
+Then:
+The discount is 0%.
+**－** A client with one completed order is not a new client.
 
 ## Method
 Unit test `test_new_client_discount` in `tests/discounts/test_new_client.py`.
@@ -106,7 +111,11 @@ The cart is a MOC with four children; render time is cross-cutting and belongs t
 parent, not to any single child.
 
 ## Criterion
-Determine whether the cart can render within 200ms, and what dominates the time if not.
+### case 1
+When:
+A buyer opens the cart.
+Then:
+Determine whether the cart renders within 200ms, and what dominates the time if not.
 
 ## Method
 Measure render time under 10, 50 and 200 line items, against a seeded database.

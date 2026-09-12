@@ -6,9 +6,17 @@ in order: a `create` becomes a page with the ratified fields and the derived one
 `estimate` fills status and Result whatever the page held, a `lesson` writes the lesson
 alone (a fact has no Estimate, case 53.1), a `defer` marks its target `deferred_by`
 (case 52.3), one Decision page per Case records the routing as one list per kind present
-— `create`, `update`, `delete`, `defer`, the slugs in ledger order (case 59.4) — and is
-written before the entries of its lines, so the History lines of those entries can name
-it as `[[decision-case-N]]` (case 52.4). What an entry lacks is not written; lint names it. Every applied entry is marked
+— `create`, `update`, `delete`, `defer`, the slugs in ledger order (case 59.4) — with the
+body `Context`, `Problem`, `Given` from the Case and `Criterion`, one `[[estimate-x]] §
+case N` line per Estimate the Case shaped, when the record carries `criterion`; no `When`
+(case 72.4; pages written before keep theirs). The page is written before the entries of
+its lines, so the History lines of those entries can name it as `[[decision-case-N]]`
+(case 52.4). The Estimate entries `materialize` derives from a Case (case 72.3) take the
+same paths: a derived `create` is a create with `ref`; an `update` with `criterion_block`
+appends the `### case N` block to `## Criterion`, History `criterion: case N added`; a
+`remove_criterion` deletes the block of `case_removed` from every Estimate that holds it,
+History `criterion: case N removed`, and applies with nothing written when none does
+(case 72.4). What an entry lacks is not written; lint names it. Every applied entry is marked
 in the yaml, a stale `failed` mark is dropped on apply (case 53.3), so a rerun writes
 nothing; an entry that fails, whatever the cause, is marked `failed` and the rest apply.
 `log.md` is appended after each entry; History and log lines carry the run's date,
@@ -69,7 +77,7 @@ SECTION_ORDER = {
     "estimates": ["Context", "Criterion", "Method", "Result"],
     "lessons": ["Trigger", "Root cause", "Insight"],
     "insights": ["Pattern", "Proposal", "Children", "Addressed by"],
-    "decisions": ["Context", "Problem", "Given", "When", "Note"],
+    "decisions": ["Context", "Problem", "Given", "When", "Criterion", "Note"],
 }
 INITIAL_STATUS = {
     "entities": "draft",
@@ -91,6 +99,8 @@ HISTORY = "## History"
 NEEDS_QUOTE = re.compile(r"""^[\s\[\]{}"'&*!|>%@,#`-]|: | #|:$|\s$|\n""")
 LOOKS_SPECIAL = re.compile(r"^(true|false|null|yes|no|on|off|~|[-+]?\d[\d.]*)$", re.IGNORECASE)
 TAG_ROW = re.compile(r"^\|\s*([\w-]+)\s*\|")
+CRITERION = "## Criterion"
+CASE_BLOCK = re.compile(r"^### case (\S+)\s*$")  # one block of an Estimate's Criterion (72.2)
 
 
 class GenerateError(Exception):
@@ -173,6 +183,21 @@ def as_list(value) -> list[str]:
     if isinstance(value, list):
         return [str(v) for v in value]
     return [str(value)]
+
+
+def drop_case_block(criterion: str, case: str) -> str | None:
+    """The Criterion text without its `### case <case>` block — the heading and the lines up
+    to the next `### ` heading — or None when the text holds no such block."""
+    lines = criterion.strip("\n").splitlines()
+    start = next(
+        (i for i, line in enumerate(lines) if (m := CASE_BLOCK.match(line)) and m.group(1) == case),
+        None,
+    )
+    if start is None:
+        return None
+    end = next((i for i in range(start + 1, len(lines)) if lines[i].startswith("### ")), len(lines))
+    kept = lines[:start] + lines[end:]
+    return re.sub(r"\n{3,}", "\n\n", "\n".join(kept)).strip("\n")
 
 
 # --- the vault ----------------------------------------------------------------------
@@ -350,12 +375,21 @@ class Vault:
         if page is None:
             self.error(slug, "no page to update")
             return
-        if not any(entry.get(k) for k in ("set", "sections", "replace", "change")):
+        keys = ("set", "sections", "replace", "change", "criterion_block")
+        if not any(entry.get(k) for k in keys):
             print(
                 f"generate: {slug}: an update with no content in the Spec; applied by hand",
                 file=self.stdout,
             )
             return
+        block = str(entry.get("criterion_block") or "").strip("\n")
+        case_added = None
+        if block:  # a derived update: the Case's when and then join the Criterion (72.4)
+            match = CASE_BLOCK.match(block.splitlines()[0])
+            if page.category != "estimates" or match is None:
+                self.error(slug, "criterion_block: needs an Estimate page and a ### case N line")
+                return
+            case_added = match.group(1)
         for key, value in (entry.get("set") or {}).items():
             page.props[key] = value
             if key in ("children", "estimates"):
@@ -372,9 +406,39 @@ class Vault:
             if not self.replace(page, str(item.get("old", "")), str(item.get("new", ""))):
                 self.error(slug, f"replace: {item.get('old', '')[:60]!r} is absent or not unique")
                 return
-        change = entry.get("change") or "updated"
-        self.history(page, f"updated: {change}", self.pointer(entry))
+        if case_added is not None:
+            current = page.sections.get(CRITERION, "").strip("\n")
+            page.sections[CRITERION] = (current + "\n\n" + block).strip("\n")
+            self.history(page, f"criterion: case {case_added} added", self.pointer(entry))
+        else:
+            change = entry.get("change") or "updated"
+            self.history(page, f"updated: {change}", self.pointer(entry))
         self.save(page)
+
+    def remove_criterion(self, entry: dict) -> None:
+        """A `supersedes` of case N: its `### case N` block leaves the Criterion of every
+        Estimate that holds one, up to the next `### ` line or the end of the section
+        (case 72.4). No Estimate holding one is a fact, printed, not an error."""
+        case = str(entry.get("case_removed") or "").strip()
+        if not case:
+            self.error(entry.get("slug") or "?", "remove_criterion: no case_removed")
+            return
+        found = False
+        for path in sorted((self.wiki / "estimates").glob("*.md")):
+            if path.stem == "schema":
+                continue
+            page = read_page(path, "estimates")
+            if page.error or str(page.props.get("status")) == "archived":
+                continue
+            kept = drop_case_block(page.sections.get(CRITERION, ""), case)
+            if kept is None:
+                continue
+            page.sections[CRITERION] = kept
+            self.history(page, f"criterion: case {case} removed", self.pointer(entry))
+            self.save(page)
+            found = True
+        if not found:
+            print(f"remove_criterion: case {case}: no Estimate holds a block", file=self.stdout)
 
     def replace(self, page: Page, old: str, new: str) -> bool:
         tokens = [re.escape(t) for t in old.split()]
@@ -516,14 +580,16 @@ class Vault:
         props["created"] = self.date
         props["tags"] = tags  # the union of the targets' tags; empty is a fact, not a gap
         sections = {}
-        for name, key in (
-            ("Context", "context"),
-            ("Problem", "problem"),
-            ("Given", "given"),
-            ("When", "when"),
-        ):
+        for name, key in (("Context", "context"), ("Problem", "problem"), ("Given", "given")):
             if text.get(key):
                 sections[f"## {name}"] = text[key]
+        criterion = [  # one link per Estimate the Case shaped; no When (case 72.4)
+            f"- [[{item['estimate']}]] § case {item['case']}"
+            for item in record.get("criterion") or []
+            if isinstance(item, dict) and item.get("estimate")
+        ]
+        if criterion:
+            sections[CRITERION] = "\n".join(criterion)
         page = Page(category="decisions", slug=slug, path=path, props=props, sections=sections)
         self.history(page, "created", record["origin"])
         self.save(page)
@@ -662,6 +728,8 @@ def apply(vault: Vault, data: dict) -> None:
                 vault.delete(entry)
             elif kind == "defer":
                 vault.defer(entry)
+            elif kind == "remove_criterion":
+                vault.remove_criterion(entry)
             else:
                 vault.error(entry.get("slug", "?"), f"unknown kind {kind!r}")
         except Exception as exc:  # noqa: BLE001 — one entry fails alone, the run goes on

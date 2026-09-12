@@ -15,6 +15,8 @@ properties:
 # `kind` nor `target_slug` is present (case 59.4).
 body:
   required: ["## Context", "## Problem", "## History"]
-  # `## Given` and `## When` are required by materialize when any kind is not `defer`; a
-  # defer-only Case, the short form of Retro, has neither (case 56).
-  optional: ["## Given", "## When", "## Note"]
+  # `## Given` is required by materialize when any kind is not `defer`; a defer-only Case,
+  # the short form of Retro, has none (case 56). `## When` is no longer required: pages
+  # written before case 72 keep theirs, later pages have none. `## Criterion` is optional,
+  # one `- [[estimate-x]] § case N` line per Estimate the Case shaped (case 72.2).
+  optional: ["## Given", "## When", "## Criterion", "## Note"]

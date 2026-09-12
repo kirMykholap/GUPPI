@@ -1,16 +1,40 @@
-"""`guppi materialize [--date YYYY-MM-DD]` — the ledger and the Spec as one yaml.
+"""`guppi materialize [--date YYYY-MM-DD] [--show]` — the ledger and the Spec as one yaml.
 
-Reads `vault/raw/<date>/ledger.md` and `vault/raw/<date>/spec.md`, writes
-`vault/raw/<date>/materialize.yaml`: one entry per record line of the ledger, in ledger
-order, with its route computed from `index.md` §5 and its content lifted from the `then`
-block of its Case in the Spec. One decision entry per Case; a sub-case's `context`,
-`problem`, `recommend` and `given` are its own when present and its parent's otherwise,
-`when` never. What is missing is named (`incomplete`), never invented. A line the grammar
-does not parse goes under `unparsed`. `new_tags` declared in the `then` block of any Case,
-with decision lines or without, reach the yaml once each. An existing yaml is extended with the lines it does not hold and never rewritten. Without
+Reads `vault/raw/<date>/ledger.md` and every Spec of the date — `vault/raw/<date>/spec.md`
+when the date has one (dates before case 73), then `vault/raw/<date>/<HHMM>/spec.md` in
+folder order — and writes `vault/raw/<date>/materialize.yaml`: one entry per record line
+of the ledger, in ledger order, with its route computed from `index.md` §5 and its content
+lifted from the `then` block of its Case in the Spec. The yaml's `spec` field lists the
+files read and each decision entry names the file its Case was found in; a Case heading
+found in two files stops the walk with exit 1 (case 73.5). One decision entry per Case; a
+sub-case's `context`, `problem`, `recommend` and `given` are its own when present and its
+parent's otherwise, `when` never. What is missing is named (`incomplete`), never invented.
+A line the grammar does not parse goes under `unparsed`. `new_tags` declared in the `then`
+block of any Case, with decision lines or without, reach the yaml once each.
+
+The Estimate of a Leaf is derived from its Case (case 72.3). A `create` of a rule or an
+entity whose `then` item carries `method` yields, right after its own entry, a second
+`create` entry with no line of its own: category `estimates`, slug `estimate-<target minus
+its prefix>` or the item's `estimate_slug`, `ref` the target, `tags` the target's, `origin`
+and `decision` the line's, `derived: true`, sections Context (the Case's `problem`),
+Criterion (a `### case N` block: the Case's `when` and `then` verbatim, with their
+operands) and Method. An `update` whose item carries `contract: changed` yields an
+`update` entry of the target's Estimate — the first slug of the live page's `estimates`,
+`incomplete: [estimate]` when there is none — with `criterion_block`, `set: {status:
+pending}`, `sections: {Method}` when the item carries `method` and `change`; `contract:
+same` yields nothing. A line with `{supersedes:case N}` also yields a `remove_criterion`
+entry with `case_removed`, for `generate` to find the Estimate that holds the block. The
+decision entry carries `criterion`, one `{estimate, case}` per Estimate the Case shaped. A
+nested `estimate` in an older Spec becomes its own `create` entry as before, for a line
+with its slug; a standalone estimate `create` with `ref` maps `context`, `criterion` and
+`method` into `sections` the same way.
+
+An existing yaml is extended with the lines it does not hold and never rewritten. Without
 `--date` the script walks every `vault/raw/<date>/` that holds a `ledger.md`, in date
 order, so a line written after the librarian's commit of its date is picked up by the next
-run; an error on one date stops the walk with exit 1. Rule page:
+run; an error on one date stops the walk with exit 1. With `--show` (case 76) the same walk
+prints to stdout the yaml each date would be written with, one document per date, `---`
+between two, and writes nothing under `raw/`. Rule page:
 `vault/wiki/rules/rule-materialize.md`.
 """
 
@@ -56,6 +80,10 @@ REQUIRED = {
     "insights": ("pattern", "children", "tags"),
 }
 CASE_SECTIONS = ("context", "problem", "recommend", "given", "when", "then", "ratification")
+INHERITED = ("context", "problem", "recommend", "given")  # a sub-case reads these from its parent
+DERIVED_CATEGORIES = ("rules", "entities")  # the targets whose Estimate a Case derives (72.3)
+DERIVED_KEYS = ("method", "contract", "estimate_slug", "estimate_kind")  # never the target's
+SESSION_FOLDER = re.compile(r"^\d{4}$")  # raw/<date>/<HHMM>/, one session's Spec (case 73)
 
 
 class MaterializeError(Exception):
@@ -165,6 +193,32 @@ def split_cases(spec: str) -> dict[str, list[str]]:
     return cases
 
 
+def spec_files(project_dir: Path, date: str) -> list[Path]:
+    """Every Spec of a date: `raw/<date>/spec.md` when it exists, then each
+    `raw/<date>/<HHMM>/spec.md` in folder order (case 73.5)."""
+    raw = project_dir / "vault" / "raw" / date
+    files = [raw / "spec.md"] if (raw / "spec.md").is_file() else []
+    if raw.is_dir():
+        folders = sorted(p for p in raw.iterdir() if p.is_dir() and SESSION_FOLDER.match(p.name))
+        files.extend(p / "spec.md" for p in folders if (p / "spec.md").is_file())
+    return files
+
+
+def read_specs(project_dir: Path, date: str) -> tuple[dict[str, list[str]], dict[str, str]]:
+    """The Cases of every Spec of the date, and the file each Case was found in (relative
+    to the project); a Case heading in two files is an error."""
+    cases: dict[str, list[str]] = {}
+    found: dict[str, str] = {}
+    for path in spec_files(project_dir, date):
+        name = path.relative_to(project_dir).as_posix()
+        for case, lines in split_cases(path.read_text(encoding="utf-8")).items():
+            if case in found:
+                raise MaterializeError(f"Case {case} is in both {found[case]} and {name}")
+            cases[case] = lines
+            found[case] = name
+    return cases, found
+
+
 def unquote(line: str) -> str:
     match = QUOTE.match(line)
     return match.group(1) if match else line
@@ -244,6 +298,21 @@ def case_text(lines: list[str]) -> dict[str, str]:
     return sections
 
 
+def case_texts(cases: dict[str, list[str]], case: str) -> dict[str, str]:
+    """The sections of a Case, with a missing `context`, `problem`, `recommend` or `given`
+    read from its parent (case 60), never `when`; a Spec older than the seven-block form
+    gives its text whole as `then`."""
+    lines = cases.get(case, [])
+    texts = case_text(lines)
+    if not texts and lines:
+        texts = {"then": "\n".join(lines).strip("\n")}
+    if "." in case:
+        for name, text in case_text(cases.get(case.rsplit(".", 1)[0], [])).items():
+            if name in INHERITED:
+                texts.setdefault(name, text)
+    return texts
+
+
 def find_item(block: dict, kind: str, slug: str) -> tuple[dict | None, str | None]:
     """The `then` item for a decision, and the kind of the create it was nested in."""
     for item in block.get(kind) or []:
@@ -319,11 +388,10 @@ def decision_entry(record: dict, number: int, text: str, date: str, block: dict,
 
 def _lift_item(entry: dict, item: dict, kind: str, nested: str | None, incomplete: list[str]):
     if kind == "create":
-        fields = {
-            k: v
-            for k, v in item.items()
-            if k not in ("slug", "sections", "estimate", "file", "parent_create", "parent_tags")
-        }
+        skipped = ("slug", "sections", "estimate", "file", "parent_create", "parent_tags")
+        if nested != "estimate" and entry.get("category") != "estimates":
+            skipped += DERIVED_KEYS  # the Estimate's keys stay off the target (case 72.3)
+        fields = {k: v for k, v in item.items() if k not in skipped}
         if nested == "estimate" or entry.get("category") == "estimates":
             fields.setdefault("type", "estimate")
             for key in ("context", "criterion", "method"):  # sections either way (case 53.3)
@@ -372,6 +440,116 @@ def _lift_item(entry: dict, item: dict, kind: str, nested: str | None, incomplet
             entry["impact"] = item["impact"]
         if item.get("change") is not None:
             entry["change"] = item["change"]
+
+
+# --- the derived Estimate (case 72.3) -----------------------------------------------
+
+
+def derived_slug(slug: str) -> str:
+    """`estimate-<target minus its prefix>`: `rule-x` → `estimate-x`."""
+    for prefix in PREFIXES:
+        if slug.startswith(prefix):
+            return "estimate-" + slug[len(prefix) :]
+    return "estimate-" + slug
+
+
+def criterion_block(case: str, texts: dict[str, str]) -> str:
+    """The `### case N` block of an Estimate's Criterion: the Case's `when` and `then`
+    verbatim, with their operand lines; a missing section is left out, never invented."""
+    parts = [f"### case {case}"]
+    if "when" in texts:
+        parts.append(f"When:\n{texts['when']}")
+    if "then" in texts:
+        parts.append(f"Then:\n{texts['then']}")
+    return "\n\n".join(parts)
+
+
+def page_estimates(project_dir: Path, category: str, slug: str) -> list[str] | None:
+    """The `estimates` field of a live page, None when the page does not exist."""
+    path = project_dir / "vault" / "wiki" / category / f"{slug}.md"
+    if not path.is_file():
+        return None
+    text = path.read_text(encoding="utf-8")
+    if not text.startswith("---"):
+        return []
+    head, _, _ = text[3:].partition("\n---")
+    try:
+        front = yaml.safe_load(head)
+    except yaml.YAMLError:
+        return []
+    value = front.get("estimates") if isinstance(front, dict) else None
+    return [str(v) for v in value] if isinstance(value, list) else []
+
+
+def derived_entries(entry: dict, item: dict | None, texts: dict, project_dir: Path) -> list:
+    """The entries a decision line yields beside its own: the Estimate's `create` for a
+    create with `method`, its `update` for `contract: changed`, a `remove_criterion` for
+    a `supersedes`. None has a line of its own."""
+    out: list[dict] = []
+    base = {k: entry[k] for k in ("line", "text", "case")}
+    tail = {k: entry[k] for k in ("origin", "decision")}
+    case = entry["case"]
+    if item is not None and entry.get("category") in DERIVED_CATEGORIES:
+        if entry["kind"] == "create" and item.get("method") is not None:
+            derived = {
+                **base,
+                "kind": "create",
+                "slug": item.get("estimate_slug") or derived_slug(entry["slug"]),
+                "category": "estimates",
+                "ref": entry["slug"],
+                **tail,
+                "derived": True,
+            }
+            if entry.get("tags"):
+                derived["tags"] = list(entry["tags"])
+            derived["fields"] = {"type": "estimate", "kind": item.get("estimate_kind") or "QA"}
+            sections = {}
+            if "problem" in texts:
+                sections["Context"] = texts["problem"]
+            sections["Criterion"] = criterion_block(case, texts)
+            sections["Method"] = item["method"]
+            derived["sections"] = sections
+            if page_exists(project_dir, "estimates", derived["slug"]):
+                derived["exists"] = True
+            missing = [n for n in ("problem", "when", "then") if n not in texts]
+            if missing:
+                derived["incomplete"] = missing
+            out.append(derived)
+        elif entry["kind"] == "update" and item.get("contract") == "changed":
+            estimates = page_estimates(project_dir, entry["category"], entry["slug"])
+            derived = {
+                **base,
+                "kind": "update",
+                "slug": estimates[0] if estimates else None,
+                "category": "estimates",
+                **tail,
+                "derived": True,
+                "criterion_block": criterion_block(case, texts),
+                "set": {"status": "pending"},
+            }
+            if item.get("method") is not None:
+                derived["sections"] = {"Method": item["method"]}
+            derived["change"] = f"criterion: case {case} added"
+            missing = [n for n in ("when", "then") if n not in texts]
+            if not estimates:
+                missing.append("estimate")
+            if missing:
+                derived["incomplete"] = missing
+            out.append(derived)
+    if entry.get("supersedes"):
+        removed = entry["supersedes"]
+        out.append(
+            {
+                **base,
+                "kind": "remove_criterion",
+                "category": "estimates",
+                **tail,
+                "derived": True,
+                "case_removed": removed,
+                "change": f"criterion: case {removed} removed",
+            }
+        )
+    return out
 
 
 def estimate_entry(record: dict, number: int, text: str, date: str) -> dict:
@@ -437,11 +615,23 @@ def mark_superseded(entries: list[dict], decisions: list[dict], case: str, by: s
                 done.append(f"decision-case-{by}")
 
 
-def decision_record(case: str, entries_of_case: list[dict], date: str, texts: dict, block_errors):
+def decision_record(
+    case: str,
+    entries_of_case: list[dict],
+    date: str,
+    texts: dict,
+    block_errors,
+    spec: str | None = None,
+):
     targets = []
     tags: list[str] = []
     supersedes: list[str] = []
+    criterion: list[dict] = []
     for entry in entries_of_case:
+        if entry.get("derived"):  # the Estimate a Case shaped, named under criterion (72.3)
+            if entry.get("slug"):
+                criterion.append({"estimate": entry["slug"], "case": case})
+            continue
         target = {"kind": entry["kind"], "category": entry["category"], "slug": entry["slug"]}
         if entry.get("category") == "file":
             target["path"] = entry.get("path")
@@ -462,6 +652,10 @@ def decision_record(case: str, entries_of_case: list[dict], date: str, texts: di
         "tags": tags,
         "case_text": texts,
     }
+    if spec is not None:
+        record["spec"] = spec
+    if criterion:
+        record["criterion"] = criterion
     if supersedes:
         record["supersedes"] = supersedes
     needed = ("context", "problem")
@@ -487,21 +681,22 @@ def sprint_id(project_dir: Path) -> str:
 
 def assemble(project_dir: Path, date: str, existing: dict | None, stderr) -> tuple[dict, int]:
     raw = project_dir / "vault" / "raw" / date
-    ledger_path, spec_path = raw / "ledger.md", raw / "spec.md"
+    ledger_path = raw / "ledger.md"
     if not ledger_path.exists():
         raise MaterializeError(f"{ledger_path.relative_to(project_dir).as_posix()} does not exist")
     ledger = ledger_path.read_text(encoding="utf-8").splitlines()
-    spec = spec_path.read_text(encoding="utf-8") if spec_path.exists() else ""
-    cases = split_cases(spec)
+    cases, spec_of = read_specs(project_dir, date)
     data = existing or {
         "date": date,
         "sprint": sprint_id(project_dir),
         "ledger": f"vault/raw/{date}/ledger.md",
-        "spec": f"vault/raw/{date}/spec.md",
+        "spec": [],
         "entries": [],
         "decisions": [],
         "unparsed": [],
     }
+    data["spec"] = [p.relative_to(project_dir).as_posix() for p in spec_files(project_dir, date)]
+    texts_of: dict[str, dict] = {}
     entries: list[dict] = data.setdefault("entries", [])
     decisions: list[dict] = data.setdefault("decisions", [])
     unparsed: list[dict] = data.setdefault("unparsed", [])
@@ -547,6 +742,14 @@ def assemble(project_dir: Path, date: str, existing: dict | None, stderr) -> tup
             entry["incomplete"] = [e for e in entry["incomplete"] if e != "then"] + errors
         entries.append(entry)
         added += 1
+        item, nested = find_item(block, record["kind"], record["slug"])
+        if case not in texts_of:
+            texts_of[case] = case_texts(cases, case)
+        for derived in derived_entries(
+            entry, None if nested else item, texts_of[case], project_dir
+        ):
+            entries.append(derived)  # no line of its own (case 72.3)
+            added += 1
         if record.get("supersedes"):
             mark_superseded(entries, decisions, record["supersedes"], case)
     # new_tags: from the then block of every Case of the Spec, lines or none (case 61)
@@ -564,20 +767,15 @@ def assemble(project_dir: Path, date: str, existing: dict | None, stderr) -> tup
     present = {d["case"]: d for d in decisions}
     for case, group in by_case.items():
         block, errors = blocks.get(case) or then_blocks(cases.get(case, []))
-        texts = case_text(cases.get(case, []))
-        if not texts and cases.get(case):  # a Spec older than the seven-block form: its text, whole
-            texts = {"then": "\n".join(cases[case]).strip("\n")}
-        parent = case.rsplit(".", 1)[0] if "." in case else None
-        if parent is not None:  # a sub-case reads a missing section from its parent, never when
-            for name, text in case_text(cases.get(parent, [])).items():
-                if name in ("context", "problem", "recommend", "given"):  # case 60
-                    texts.setdefault(name, text)
-        record = decision_record(case, group, date, texts, errors)
+        if case not in texts_of:
+            texts_of[case] = case_texts(cases, case)
+        record = decision_record(case, group, date, texts_of[case], errors, spec_of.get(case))
         if case in present:
             present[case]["targets"] = record["targets"]
             present[case]["tags"] = record["tags"]
-            if "supersedes" in record:
-                present[case]["supersedes"] = record["supersedes"]
+            for key in ("supersedes", "criterion", "spec"):
+                if key in record:
+                    present[case][key] = record[key]
         else:
             decisions.append(record)
             present[case] = record
@@ -602,14 +800,22 @@ def load_yaml(path: Path) -> dict | None:
     return data if isinstance(data, dict) else None
 
 
+def yaml_text(data: dict) -> str:
+    return yaml.safe_dump(data, allow_unicode=True, sort_keys=False, width=100)
+
+
 def dump_yaml(path: Path, data: dict) -> None:
-    text = yaml.safe_dump(data, allow_unicode=True, sort_keys=False, width=100)
-    path.write_text(text, encoding="utf-8", newline="\n")
+    path.write_text(yaml_text(data), encoding="utf-8", newline="\n")
 
 
 def parser() -> argparse.ArgumentParser:
     p = argparse.ArgumentParser(prog="guppi materialize", description=__doc__.split("\n\n")[1])
     p.add_argument("--date", default=None, help="one raw/<date> folder; without it, every date")
+    p.add_argument(
+        "--show",
+        action="store_true",
+        help="print the yaml each date would be written with; write nothing (case 76)",
+    )
     return p
 
 
@@ -621,12 +827,16 @@ def dates_with(project_dir: Path, name: str) -> list[str]:
     return sorted(p.name for p in raw.iterdir() if p.is_dir() and (p / name).is_file())
 
 
-def materialize_date(project_dir: Path, date: str, now, stdout, stderr) -> int:
-    """One date: extend or write its yaml; one line on stdout, exit 1 on an error."""
+def materialize_date(project_dir: Path, date: str, now, stdout, stderr, show=False) -> int:
+    """One date: extend or write its yaml; one line on stdout, exit 1 on an error. With
+    `show` the yaml goes to stdout instead and no file changes (case 76)."""
     try:
         path = yaml_path(project_dir, date)
         existing = load_yaml(path)
         data, added = assemble(project_dir, date, existing, stderr)
+        if show:
+            stdout.write(yaml_text(data))
+            return 0
         dump_yaml(path, data)
     except MaterializeError as exc:
         print(f"materialize: {exc}", file=stderr)
@@ -655,8 +865,10 @@ def run(argv, *, stdout=None, stderr=None, project_dir: Path | None = None, now=
     if not dates:
         print("materialize: no vault/raw/<date>/ledger.md to read", file=stderr)
         return 1
-    for date in dates:
-        code = materialize_date(project_dir, date, now, stdout, stderr)
+    for index, date in enumerate(dates):
+        if args.show and index:
+            print("---", file=stdout)  # one yaml document per date (case 76)
+        code = materialize_date(project_dir, date, now, stdout, stderr, show=args.show)
         if code:
             return code
     return 0

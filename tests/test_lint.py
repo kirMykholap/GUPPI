@@ -424,7 +424,7 @@ properties:
     status: [current, superseded, archived]
 body:
   required: ["## Context", "## Problem", "## History"]
-  optional: ["## Given", "## When", "## Note"]
+  optional: ["## Given", "## When", "## Criterion", "## Note"]
 """
 
 DECISIONS_MD = """\
@@ -454,6 +454,7 @@ DECISIONS_MD = """\
 | `## Problem` | yes |
 | `## Given` | no |
 | `## When` | no |
+| `## Criterion` | no |
 | `## Note` | no |
 
 ## History
@@ -559,3 +560,88 @@ def test_an_estimate_whose_target_is_not_an_entity_or_rule_is_a_status_finding(t
         in lines
     )
     assert not any("lesson-l: orphan" in line for line in lines)  # a lesson is never an orphan
+
+
+# --- case 72.6: lint accepts both shapes of a decision page and an Estimate page ---------
+
+
+def criterion_decision(*lines):
+    """The default decision page with a `## Criterion` section holding the given lines."""
+    return decision_page().replace(
+        "## History", "## Criterion\n\n" + "\n".join(lines) + "\n\n## History"
+    )
+
+
+def block_estimate(*cases):
+    """The default Estimate page whose `## Criterion` is one `### case N` block per case."""
+    blocks = "\n\n".join(f"### case {c}\n\n**when:** w.\n\n**then:** t." for c in cases)
+    return estimate_page().replace("## Criterion\n\ncr\n\n", f"## Criterion\n\n{blocks}\n\n")
+
+
+def test_a_decision_without_when_is_not_a_finding_even_when_the_yaml_requires_it(tmp_path):
+    wiki = seed_decisions(tmp_path)
+    write(
+        wiki / "decisions" / "schema.yaml",
+        DECISIONS_YAML.replace(
+            '"## Problem", "## History"', '"## Problem", "## When", "## History"'
+        ).replace('"## Given", "## When", "## Criterion"', '"## Given", "## Criterion"'),
+    )
+    assert run(tmp_path) == (0, [], "")
+
+
+def test_a_criterion_link_to_a_live_or_archived_estimate_page_is_clean(tmp_path):
+    seed_decisions(
+        tmp_path,
+        criterion_decision("- [[estimate-x-works]] § case 50", "- [[estimate-gone]] § case 49"),
+    )
+    archived = tmp_path / "vault" / "archived" / "migration" / "2026-09-10" / "estimates"
+    write(archived / "estimate-gone.md", "---\ntype: estimate\n---\n")
+    assert run(tmp_path) == (0, [], "")
+
+
+def test_a_criterion_link_resolving_to_no_estimate_page_is_a_ref_finding(tmp_path):
+    seed_decisions(
+        tmp_path,
+        criterion_decision("- [[estimate-ghost]] § case 50", "- [[rule-x]] § case 50"),
+    )
+    _, lines, _ = run(tmp_path)
+    assert lines == [
+        (
+            "decisions/decision-case-50: ref: ## Criterion names estimate-ghost, "
+            "which no live or archived Estimate page carries"
+        ),
+        (
+            "decisions/decision-case-50: ref: ## Criterion names rule-x, "
+            "which no live or archived Estimate page carries"
+        ),
+    ]
+
+
+def test_a_case_block_naming_a_live_or_archived_decision_page_is_clean(tmp_path):
+    wiki = seed_decisions(tmp_path)
+    write(wiki / "estimates" / "estimate-x-works.md", block_estimate("50", "49"))
+    archived = tmp_path / "vault" / "archived" / "migration" / "2026-09-10" / "decisions"
+    write(archived / "decision-case-49.md", "---\ntype: decision\n---\n")
+    assert run(tmp_path) == (0, [], "")
+
+
+def test_a_case_block_naming_no_decision_page_is_a_ref_finding(tmp_path):
+    wiki = seed_decisions(tmp_path)
+    write(wiki / "estimates" / "estimate-x-works.md", block_estimate("50", "51"))
+    _, lines, _ = run(tmp_path)
+    assert lines == [
+        (
+            "estimates/estimate-x-works: ref: ## Criterion names case 51, "
+            "and no live or archived page decision-case-51 exists"
+        )
+    ]
+
+
+def test_a_case_block_heading_is_not_a_section_boundary():
+    from guppi.pages import split_sections
+
+    body = "## Criterion\n\n### case 50\n\n**when:** w.\n\n## Method\n\nm\n"
+    assert split_sections(body) == {
+        "## Criterion": "### case 50\n\n**when:** w.",
+        "## Method": "m",
+    }

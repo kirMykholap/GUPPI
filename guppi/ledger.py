@@ -172,6 +172,39 @@ def session_event_logs(project_dir: Path, now, stamp: str) -> list[tuple[str, st
     return list(reversed(chosen))
 
 
+def hi_moment(logs: list[tuple[str, str]], stamp: str) -> tuple[str, str] | None:
+    """`(date, time)` of the `hi` that opens this session's window: the first `hi` after a
+    `session-start` of this session with no other session's start in between, the walk of
+    `hi_recorded` over the `(date, text)` logs of `session_event_logs`."""
+    ours = False
+    found: tuple[str, str] | None = None
+    for day, text in logs:
+        for line in text.splitlines():
+            parts = line.split(" ", 3)
+            if len(parts) < 4 or parts[0] != "-":
+                continue
+            time, session, event = parts[1], parts[2], parts[3].split(" ", 1)[0]
+            if event == "session-start" and session != stamp:
+                ours, found = False, None
+            elif event == "session-start":
+                ours = True
+            elif event == "hi" and ours and found is None:
+                found = (day, time)
+    return found
+
+
+def session_dir(project_dir: Path, now, stamp: str) -> Path | None:
+    """The session's folder `vault/raw/<hi date>/<hi HHMM>/` (case 73): the date and the
+    time of the `hi` line that opens this session's window, over the event logs the ledger
+    hook walks; None without a `hi`. Lives here rather than in `event.py` because this
+    module imports `event.py` and the walk is the ledger's."""
+    hi = hi_moment(session_event_logs(project_dir, now, stamp), stamp)
+    if hi is None:
+        return None
+    day, time = hi
+    return project_dir / "vault" / "raw" / day / (time[:2] + time[3:5])
+
+
 def session_event_log(project_dir: Path, now, stamp: str) -> str:
     """The logs of `session_event_logs`, joined."""
     return "".join(text for _, text in session_event_logs(project_dir, now, stamp))

@@ -3,9 +3,11 @@
 Reads `vault/raw/<date>/ledger.md` and `vault/raw/<date>/spec.md`, writes
 `vault/raw/<date>/materialize.yaml`: one entry per record line of the ledger, in ledger
 order, with its route computed from `index.md` §5 and its content lifted from the `then`
-block of its Case in the Spec. One decision entry per Case. What is missing is named
-(`incomplete`), never invented. A line the grammar does not parse goes under `unparsed`.
-An existing yaml is extended with the lines it does not hold and never rewritten. Without
+block of its Case in the Spec. One decision entry per Case; a sub-case's `context`,
+`problem`, `recommend` and `given` are its own when present and its parent's otherwise,
+`when` never. What is missing is named (`incomplete`), never invented. A line the grammar
+does not parse goes under `unparsed`. `new_tags` declared in the `then` block of any Case,
+with decision lines or without, reach the yaml once each. An existing yaml is extended with the lines it does not hold and never rewritten. Without
 `--date` the script walks every `vault/raw/<date>/` that holds a `ledger.md`, in date
 order, so a line written after the librarian's commit of its date is picked up by the next
 run; an error on one date stops the walk with exit 1. Rule page:
@@ -44,7 +46,6 @@ RULE_CLASS = {
     "index": "vault/wiki/index.md",
     "glossary": "vault/wiki/glossary.md",
     "case-schema": "vault/wiki/case-schema.md",
-    "claude-md": "CLAUDE.md",
     "migration-plan": "docs/migration/migration-plan.md",
 }
 CATEGORIES = ("entities", "rules", "estimates", "lessons", "insights", "decisions")
@@ -548,7 +549,11 @@ def assemble(project_dir: Path, date: str, existing: dict | None, stderr) -> tup
         added += 1
         if record.get("supersedes"):
             mark_superseded(entries, decisions, record["supersedes"], case)
-        for tag in (block.get("new_tags") or []) if isinstance(block, dict) else []:
+    # new_tags: from the then block of every Case of the Spec, lines or none (case 61)
+    for case, lines in cases.items():
+        if case not in blocks:
+            blocks[case] = then_blocks(lines)
+        for tag in blocks[case][0].get("new_tags") or []:
             if isinstance(tag, dict) and tag not in data.setdefault("new_tags", []):
                 data["new_tags"].append(tag)
     # decisions: one per case, from the entries of that case
@@ -563,9 +568,9 @@ def assemble(project_dir: Path, date: str, existing: dict | None, stderr) -> tup
         if not texts and cases.get(case):  # a Spec older than the seven-block form: its text, whole
             texts = {"then": "\n".join(cases[case]).strip("\n")}
         parent = case.rsplit(".", 1)[0] if "." in case else None
-        if parent is not None:  # a sub-case shares context, problem and recommend with its parent
+        if parent is not None:  # a sub-case reads a missing section from its parent, never when
             for name, text in case_text(cases.get(parent, [])).items():
-                if name in ("context", "problem", "recommend"):
+                if name in ("context", "problem", "recommend", "given"):  # case 60
                     texts.setdefault(name, text)
         record = decision_record(case, group, date, texts, errors)
         if case in present:

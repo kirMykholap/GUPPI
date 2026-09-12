@@ -281,6 +281,119 @@ def test_a_rule_class_slug_routes_to_a_file_and_new_tags_are_kept(tmp_path):
     assert data["new_tags"] == [{"tag": "git", "meaning": "the repository", "aliases": "гит"}]
 
 
+def test_claude_md_is_not_a_rule_class_file(tmp_path):  # case 59.8
+    ledger = "- decision[case 8][update][claude-md]{ref:claude-md}\n"
+    spec = "## Case 8 — the prompt\n\n```then\nupdate:\n  - slug: claude-md\n    change: a\n```\n"
+    seed(tmp_path, ledger=ledger, spec=spec)
+    run(tmp_path)
+    assert materialize.rule_class_path("claude-md") is None
+    (entry,) = by_slug(load(tmp_path), "claude-md")
+    assert entry["category"] == "unknown" and "path" not in entry
+    assert entry["incomplete"] == ["category"]
+
+
+SUB_LEDGER = """- decision[case 9.1][update][rule-old]
+- decision[case 9.2][update][rule-old]
+- decision[case 9.3][update][rule-old]
+"""
+
+SUB_SPEC = """# Spec
+
+## Case 9 — the parent
+
+> **context:**
+> Shared context.
+
+> **problem:**
+> Shared problem.
+
+> **recommend:**
+> Three sub-cases.
+
+> **given:**
+> The parent's given.
+> **＋** A second line.
+
+> **when:**
+> The parent's when.
+
+### Case 9.1 — inherits given
+
+> **when:**
+> The first sub-case's when.
+
+```then
+update:
+  - slug: rule-old
+    change: one
+new_tags:
+  - tag: git
+    meaning: the repository
+    aliases: гит
+```
+
+### Case 9.2 — its own given
+
+> **given:**
+> The second sub-case's given.
+
+> **when:**
+> The second sub-case's when.
+
+```then
+update:
+  - slug: rule-old
+    change: two
+```
+
+### Case 9.3 — no when
+
+```then
+update:
+  - slug: rule-old
+    change: three
+```
+
+## Case 10 — a tag alone
+
+```then
+new_tags:
+  - tag: tests
+    meaning: the harness's own test suite
+    aliases: тесты
+  - tag: git
+    meaning: the repository
+    aliases: гит
+```
+"""
+
+
+def test_a_sub_case_inherits_a_missing_given_never_when(tmp_path):  # case 60
+    seed(tmp_path, ledger=SUB_LEDGER, spec=SUB_SPEC)
+    run(tmp_path)
+    decisions = {d["case"]: d for d in load(tmp_path)["decisions"]}
+    first = decisions["9.1"]
+    assert first["case_text"]["given"] == "The parent's given.\n**＋** A second line."
+    assert first["case_text"]["when"] == "The first sub-case's when."
+    assert first["case_text"]["context"] == "Shared context."
+    assert "incomplete" not in first
+    assert decisions["9.2"]["case_text"]["given"] == "The second sub-case's given."
+    assert "incomplete" not in decisions["9.2"]
+    third = decisions["9.3"]
+    assert third["case_text"]["given"] == "The parent's given.\n**＋** A second line."
+    assert "when" not in third["case_text"]
+    assert third["incomplete"] == ["when"]
+
+
+def test_new_tags_come_from_every_case_lines_or_none(tmp_path):  # case 61
+    seed(tmp_path, ledger=SUB_LEDGER, spec=SUB_SPEC)
+    run(tmp_path)
+    assert load(tmp_path)["new_tags"] == [
+        {"tag": "git", "meaning": "the repository", "aliases": "гит"},
+        {"tag": "tests", "meaning": "the harness's own test suite", "aliases": "тесты"},
+    ]
+
+
 def test_one_decision_entry_per_case_with_case_text_and_targets(tmp_path):
     seed(tmp_path)
     run(tmp_path)

@@ -21,8 +21,10 @@ raw/                 session artifacts land here first, and stay here: every `or
   YYYY-MM-DD/
     ledger.md        ratified decisions and lessons (committed)
     event_log.md     tool/agent events (gitignored)
-    spec.md          Plan Mode output
-    plan.md          executable plan
+    spec.md          Plan Mode output: the Cases, their `then` blocks and their `tasks`,
+                     ticked in Work Mode (case 59.3)
+    frontier.md      the Frontier of the session, one line per item, closed as the
+                     session goes (case 59.2)
     handoff.md       the main agent's notes + direct instructions
     materialize.yaml action list for the generation script
 
@@ -207,7 +209,7 @@ The librarian reads the log as a chain and applies the last link.
 
 ## 5. Routing
 
-**Every ratified Case produces two things**: one page in `wiki/decisions/` (`decision-case-<N>`) recording the decision — `kind` and `target_slug`, two lists aligned by position, one position per ledger line (case 52.1) — and an effect on each target page. The table below describes the second; the first happens unconditionally, and is written before the effects so their History lines can name it (case 52.4).
+**Every ratified Case produces two things**: one page in `wiki/decisions/` (`decision-case-<N>`) recording the decision — one list per kind present, `create`, `update`, `delete`, `defer`, the slugs of its ledger lines (case 59.4) — and an effect on each target page. The table below describes the second; the first happens unconditionally, and is written before the effects so their History lines can name it (case 52.4).
 
 | Decision | `ref` | Effect on the target |
 |---|---|---|
@@ -306,7 +308,7 @@ drift.
 |---|---|---|
 | Session Start | `rule-session-start` | `/hi`, context loading, the event-log and ledger hooks |
 | Plan Mode | `rule-plan-mode` | Case protocol, the `ask-guppi` agent, pre-task reconciliation |
-| Work Mode | `rule-work-mode` | executable plan, branch, `subagent-guppi`, harness tests — deferred to Slice 3b, a `draft` placeholder until then |
+| Work Mode | `rule-work-mode` | the tasks of the Spec, branch, `subagent-guppi`, harness tests — deferred to Slice 3b, a `draft` placeholder until then |
 | — | `rule-subagent-guppi` | task dispatch, review, model tiers |
 | End of Work | `rule-end-of-work` | Retro, the commit hook, handoff |
 | Documentation | `rule-documentation` | the `librarian-guppi` agent |
@@ -318,7 +320,7 @@ rules that hold regardless of phase.
 
 ```
 /hi → Frontier → Cases (ratified one at a time) → Spec approved
-    → executable plan → branch + baseline commit → subagents → harness tests
+    → the tasks of the Spec → branch + baseline commit → subagents → harness tests
     → Retro → commit → handoff → librarian → commit → closed
 ```
 
@@ -331,7 +333,7 @@ so there is nothing to isolate until there is a plan to execute.
 
 Runs every session, in a clean context. **The only actor that writes to `wiki/`** — everything reaches the vault through the scripts it invokes.
 
-**Reads:** four inputs — `handoff.md`, every `materialize.yaml` the walk names, the four category indexes (`<category>-index.md`) and `tags.md`. Not `ledger.md`, not `spec.md`, not `plan.md`, not `wiki/decisions/`, not the archive, not the code — the yaml is assembled by script and already carries every `purpose`, `criterion` and tag. A page under `wiki/` is opened for one of four reasons, each named in the report with its outcome: an index line does not settle same-or-near at the index check; an index line does not settle whether a lesson shares a root cause with another, whether or not an Insight follows; a script names the page in an error; the brief needs a fact no input carries — the status of an Estimate, the severity of an Insight (case 54).
+**Reads:** four inputs — `handoff.md`, every `materialize.yaml` the walk names, the four category indexes (`<category>-index.md`) and `tags.md`. Not `ledger.md`, not `spec.md`, not `plan.md`, not `wiki/decisions/`, not the archive — the yaml is assembled by script and already carries every `purpose`, `criterion` and tag. The Makefile, `guppi/` and `tests/` are the scripts' own files and may be read when a command's output is not enough (case 58). A page under `wiki/` is opened for one of four reasons, each named in the report with its outcome: an index line does not settle same-or-near at the index check; an index line does not settle whether a lesson shares a root cause with another, whether or not an Insight follows; a script names the page in an error; the brief needs a fact no input carries — the status of an Estimate, the severity of an Insight (case 54).
 
 **Does three things:** checks new pages against the indexes, synthesizes Lessons, and writes the brief. Statuses, backlinks and cascades are all script or lint work.
 

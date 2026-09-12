@@ -27,6 +27,10 @@ hooks) · 3c raw lifecycle (`decided_by` on pages born of a Case, `origin` as a 
 pointer, `raw/<date>/` of a fully applied date archived by run stamp with its paths
 rewritten, a fresh ledger as the tail `/hi` prints, lint on both fields, the pages
 migrated by script; 3b and 3c both before 4) · 4 conversion of the parked pages by
-group · 5 closing. Slices 0–2 closed by
-2026-09-10; Slice 3 built 2026-09-10, closes when the librarian's first run and the `/retro`
-and `/handoff` readings pass in the next session (see `brief.md`).
+group · 5 closing: `/grill-me` kept without a page; `git pull` in `/hi` without an upstream
+(owner's decision 11.1); `gh` not logged in, no GitHub remote (11.2); the fate of `vault/parked/`,
+`vault/archive/` (the old one), `docs/superpowers/`, `docs/HANDOFF.md`, `docs/migration/rule-*.md`
+and the 2026-08 documents under `docs/` — moved here from the brief's Deferred list by case 59.5.
+Slices 0–2 closed by 2026-09-10; Slice 3 built 2026-09-10, closed 2026-09-12:
+`estimate-documentation-completes` passed on the librarian's run of session H read against the
+criterion of case 58, the other readings of Slice 3 passed on 2026-09-11.

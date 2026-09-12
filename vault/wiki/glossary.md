@@ -57,7 +57,7 @@ page (`draft` while in `docs/migration/`), `here` this row. Rule-class; imported
 | Decision | The atomic unit of work: `create`, `update`, `delete`, `defer`; Read is never one | §3 |
 | Types | `create` a page (a Leaf brings a paired Estimate `create`); `update` fields, `result`/`status` included; `delete` sets `status: deleted` after an impact analysis, the librarian archives; `defer` postpones, a placeholder page when no `ref` | §3, §5 |
 | Delegate | The agent deciding without ratification; rejected, parked | here |
-| Routing Table, Decision page | (type × `ref` × category) to vault action, mechanical; one page per Case in `wiki/decisions/`, slug `decision-case-<N>`, `kind` and `target_slug` aligned by position, body Context, Problem, Given, When; never indexed, reached through `deferred_by`, a History wikilink or `origin` | §5, §11, decisions/schema.md |
+| Routing Table, Decision page | (type × `ref` × category) to vault action, mechanical; one page per Case in `wiki/decisions/`, slug `decision-case-<N>`, one list per kind present: `create`, `update`, `delete`, `defer`, body Context, Problem, Given, When; never indexed, reached through `deferred_by`, a History wikilink or `origin` | §5, §11, decisions/schema.md |
 
 ## Session
 
@@ -85,7 +85,7 @@ page (`draft` while in `docs/migration/`), `here` this row. Rule-class; imported
 | Working files | `log.md` and page `History`, the feed of page changes by hook; `raw/`, session artifacts by date; `tags.md`, ratified tags with Russian aliases | §1 |
 | Rule-class files | `index.md`, `glossary.md`, `case-schema.md`, every schema; change only by ratified `update` | §1 |
 | Harness, Hook | Hooks, agents, skills rendered from `rules/` pages; a hook is an event-triggered script behind a Rule page, the ledger writer on `Stop`, which reads the session's transcript back, keeps its `hi` window across midnight, and can block | §9, rule-ledger-write |
-| `CLAUDE.md`, `index.md` | The system prompt: `@path` expands this file and `case-schema.md` inline, and points at the sections of the map — layout, routing, ledger, splitting, librarian — read one at a time | CLAUDE.md |
+| `CLAUDE.md`, `index.md` | The system prompt, the Render of `rule-claude-md`, whole, with the Case protocol from `rule-case-protocol` (case 59.8): `@path` expands this file and `case-schema.md` inline, and points at the sections of the map — layout, routing, ledger, splitting, librarian — read one at a time | rule-claude-md |
 
 ## Retired terms
 

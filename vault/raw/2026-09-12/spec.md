@@ -143,8 +143,8 @@ update:
 ```
 
 ```tasks
-- [ ] guppi/pretask.py: `--check <plan>` — the decision lines since this session's hi (ledger.session_event_log for the window, the ledger files of its dates) against the then items under their own Case heading (materialize.split_cases, then_blocks, find_item); one line per mismatch, exit 1; no hi → exit 0, one line on stderr; the CLI entry
-- [ ] tests/test_pretask.py: a line with its item passes; a line without an item; an item without a line; an item under another sub-case; defer↔defer; file↔file; no hi
+- [x] guppi/pretask.py: `--check <plan>` — the decision lines since this session's hi (ledger.session_event_log for the window, the ledger files of its dates) against the then items under their own Case heading (materialize.split_cases, then_blocks, find_item); one line per mismatch, exit 1; no hi → exit 0, one line on stderr; the CLI entry
+- [x] tests/test_pretask.py: a line with its item passes; a line without an item; an item without a line; an item under another sub-case; defer↔defer; file↔file; no hi
 - [ ] take the reading of estimate-pretask-reconciles at this session's /pre-task, with the checks of 59.2, 59.3 and 59.6 in the same command; write the estimate line
 ```
 
@@ -269,10 +269,10 @@ update:
 ```
 
 ```tasks
-- [ ] vault/raw/2026-09-12/frontier.md written from the list of this session's /hi, first action of Work Mode; every line closed with its case, work or defer
-- [ ] guppi/pretask.py: the frontier findings — no file, an open line, `case N` without its heading, `defer case N` without its item; the file of the hi date
-- [ ] tests/test_pretask.py: the four frontier findings and a clean file
-- [ ] vault/wiki/index.md §1: frontier.md under raw/<date>/ (by hand, Rule-class)
+- [x] vault/raw/2026-09-12/frontier.md written from the list of this session's /hi, first action of Work Mode; every line closed with its case, work or defer
+- [x] guppi/pretask.py: the frontier findings — no file, an open line, `case N` without its heading, `defer case N` without its item; the file of the hi date
+- [x] tests/test_pretask.py: the four frontier findings and a clean file
+- [x] vault/wiki/index.md §1: frontier.md under raw/<date>/ (by hand, Rule-class)
 - [ ] take the reading of estimate-hi-writes-frontier at this session's /pre-task; write the estimate line
 ```
 
@@ -381,11 +381,11 @@ update:
 ```
 
 ```tasks
-- [ ] guppi/pretask.py: a Case with decision lines and no tasks block; an Estimate a then block creates or sets pending that no task line names
-- [ ] tests/test_pretask.py: both findings and a Case that passes
-- [ ] vault/wiki/index.md §1 (plan.md out, spec.md described) and §9 (the chain) by hand
-- [ ] vault/wiki/case-schema.md: the paragraph under "The then block lives in the Spec" by hand
-- [ ] tick the boxes of this Spec in vault/raw/2026-09-12/spec.md as each task finishes
+- [x] guppi/pretask.py: a Case with decision lines and no tasks block; an Estimate a then block creates or sets pending that no task line names
+- [x] tests/test_pretask.py: both findings and a Case that passes
+- [x] vault/wiki/index.md §1 (plan.md out, spec.md described) and §9 (the chain) by hand
+- [x] vault/wiki/case-schema.md: the paragraph under "The then block lives in the Spec" by hand
+- [x] tick the boxes of this Spec in vault/raw/2026-09-12/spec.md as each task finishes
 ```
 
 ### Case 59.4 — a Decision page names its targets by kind: `create`, `update`, `delete`, `defer` lists
@@ -504,13 +504,13 @@ update:
 ```
 
 ```tasks
-- [ ] guppi/generate.py: decision() writes create/update/delete/defer lists in that order, no kind or target_slug; clear_deferred_by reads the defer list
-- [ ] guppi/lint.py: check_decision on the four lists — none present, kind or target_slug present, a slug naming neither a live nor an archived page (the lesson of 2026-09-11 folds in)
-- [ ] tests/test_generate.py, tests/test_lint.py: the new shape, the archived target, the old fields as findings
-- [ ] vault/wiki/decisions/schema.yaml and schema.md by hand
-- [ ] one-off, scratchpad script, not kept: the 78 live decision pages folded into the four lists, kind and target_slug dropped, one History line each; guppi lint → 0 decision findings
-- [ ] vault/wiki/index.md §5 and vault/wiki/glossary.md row by hand
-- [ ] take the readings of estimate-generate-writes (unit now; live at the librarian's run of this session, read next session) and estimate-lint-catches (unit and the live vault after the migration); write the estimate lines
+- [x] guppi/generate.py: decision() writes create/update/delete/defer lists in that order, no kind or target_slug; clear_deferred_by reads the defer list
+- [x] guppi/lint.py: check_decision on the four lists — none present, kind or target_slug present, a slug naming neither a live nor an archived page (the lesson of 2026-09-11 folds in)
+- [x] tests/test_generate.py, tests/test_lint.py: the new shape, the archived target, the old fields as findings
+- [x] vault/wiki/decisions/schema.yaml and schema.md by hand
+- [x] one-off, scratchpad script, not kept: the 78 live decision pages folded into the four lists, kind and target_slug dropped, one History line each; guppi lint → 0 decision findings
+- [x] vault/wiki/index.md §5 and vault/wiki/glossary.md row by hand
+- [x] take the readings of estimate-generate-writes (unit now; live at the librarian's run of this session, read next session) and estimate-lint-catches (unit and the live vault after the migration); write the estimate lines
 ```
 
 ### Case 59.5 — the deferred decisions: a `## Deferred` section of the Spec, one short-form Case per decision
@@ -610,10 +610,10 @@ update:
 ```
 
 ```tasks
-- [ ] vault/wiki/case-schema.md: "The short form", two moments, by hand
-- [ ] vault/wiki/sprint.md: the four Slice-5 items of the brief (/grill-me without a page; git pull without upstream, 11.1; gh not logged in, 11.2; the fate of vault/parked/, vault/archive/, docs/superpowers/, docs/HANDOFF.md, docs/migration/rule-*.md, the 2026-08 docs) under Slice 5; the handoff tells the librarian they left the Deferred list
-- [ ] Cases 63–65 under `## Deferred` are this session's deferred decisions; their frontier lines close with `defer case 63`, `64`, `65`
-- [ ] vault/wiki/case-schema.md: `## Retro` → `## Deferred` wherever named, by hand
+- [x] vault/wiki/case-schema.md: "The short form", two moments, by hand
+- [x] vault/wiki/sprint.md: the four Slice-5 items of the brief (/grill-me without a page; git pull without upstream, 11.1; gh not logged in, 11.2; the fate of vault/parked/, vault/archive/, docs/superpowers/, docs/HANDOFF.md, docs/migration/rule-*.md, the 2026-08 docs) under Slice 5; the handoff tells the librarian they left the Deferred list
+- [x] Cases 63–65 under `## Deferred` are this session's deferred decisions; their frontier lines close with `defer case 63`, `64`, `65`
+- [x] vault/wiki/case-schema.md: `## Retro` → `## Deferred` wherever named, by hand
 ```
 
 ### Case 59.6 — a governed harness file is never edited by hand: a hook refuses, pre-task checks, `CLAUDE.md` says so
@@ -747,9 +747,9 @@ update:
 ```
 
 ```tasks
-- [ ] guppi/guard.py and the CLI entry: PreToolUse payload of Edit, Write, MultiEdit; the governs set from the live rule pages; exit 2 naming the rule and the file; other tools, ungoverned paths, unreadable payloads exit 0
-- [ ] tests/test_guard.py: the refusals and the passes
-- [ ] guppi/pretask.py: a file item on a governed path is a finding; a test
+- [x] guppi/guard.py and the CLI entry: PreToolUse payload of Edit, Write, MultiEdit; the governs set from the live rule pages; exit 2 naming the rule and the file; other tools, ungoverned paths, unreadable payloads exit 0
+- [x] tests/test_guard.py: the refusals and the passes
+- [x] guppi/pretask.py: a file item on a governed path is a finding; a test
 - [ ] no hand edit of .claude/settings.json, the skills or CLAUDE.md in this session: the pages change at the librarian's run, the files at the next session's render; the live probe of estimate-governed-files-hook-refuses is taken then and named in the handoff
 ```
 
@@ -871,8 +871,8 @@ update:
 ```
 
 ```tasks
-- [ ] guppi/render.py: `--sync` — for each differing governed file a unified diff (difflib) on stdout, then the write; nothing when identical; a render error on stderr, exit 0
-- [ ] tests/test_render.py: a differing file, an identical one, a render error
+- [x] guppi/render.py: `--sync` — for each differing governed file a unified diff (difflib) on stdout, then the write; nothing when identical; a render error on stderr, exit 0
+- [x] tests/test_render.py: a differing file, an identical one, a render error
 - [ ] the hook registers at the next session's first manual `uv run guppi render` (settings.json is governed); the live reading of estimate-render-sync-reports is taken at the session after that and named in the handoff
 ```
 
@@ -1042,9 +1042,10 @@ update:
 ```
 
 ```tasks
-- [ ] guppi/materialize.py: `claude-md` leaves RULE_CLASS; a test that a file item on CLAUDE.md has no route
-- [ ] vault/wiki/case-schema.md and vault/wiki/glossary.md by hand
+- [x] guppi/materialize.py: `claude-md` leaves RULE_CLASS; a test that a file item on CLAUDE.md has no route
+- [x] vault/wiki/case-schema.md and vault/wiki/glossary.md by hand
 - [ ] after the next session's render: git diff of CLAUDE.md is the marker lines only — named in the handoff as a check for that session
+- [ ] take the reading of estimate-claude-md-rendered at the next session's render — named in the handoff
 ```
 
 ## Case 60 — `materialize` reads a sub-case's missing `given` from its parent; the ten pages get theirs
@@ -1140,10 +1141,10 @@ update:
 ```
 
 ```tasks
-- [ ] guppi/materialize.py: `given` joins the inherited sections; incomplete only when neither has it; a test
-- [ ] one-off, scratchpad script, not kept: `## Given` before `## When` on the ten pages (52.1–52.4 from raw/2026-09-10/spec.md, 53.1–53.4, 55.1, 55.2 from raw/2026-09-11/spec.md), History line `· [[decision-case-60]]`; guppi lint → no `## Given` finding on them
-- [ ] vault/wiki/case-schema.md, Splitting, by hand
-- [ ] take the reading of estimate-materialize-assembles (unit, with 61); write the estimate line
+- [x] guppi/materialize.py: `given` joins the inherited sections; incomplete only when neither has it; a test
+- [x] one-off, scratchpad script, not kept: `## Given` before `## When` on the ten pages (52.1–52.4 from raw/2026-09-10/spec.md, 53.1–53.4, 55.1, 55.2 from raw/2026-09-11/spec.md), History line `· [[decision-case-60]]`; guppi lint → no `## Given` finding on them
+- [x] vault/wiki/case-schema.md, Splitting, by hand
+- [x] take the reading of estimate-materialize-assembles (unit, with 61); write the estimate line
 ```
 
 ## Case 61 — the tag `tests` is registered; a tag a lesson brought is declared at the next Plan Mode
@@ -1213,8 +1214,8 @@ new_tags:
 ```
 
 ```tasks
-- [ ] guppi/materialize.py: new_tags collected from every Case block of the Spec; a test with a line-less Case
-- [ ] the reading of estimate-materialize-assembles covers this (task of case 60)
+- [x] guppi/materialize.py: new_tags collected from every Case block of the Spec; a test with a line-less Case
+- [x] the reading of estimate-materialize-assembles covers this (task of case 60)
 ```
 
 ## Case 62 — `rule-case-protocol`: no picker, a changed Case shown again without `recommend`
@@ -1281,8 +1282,8 @@ update:
 ```
 
 ```tasks
-- [ ] vault/wiki/case-schema.md row `ratification` by hand
-- [ ] delete the four memory files and their lines in MEMORY.md
+- [x] vault/wiki/case-schema.md row `ratification` by hand
+- [x] delete the four memory files and their lines in MEMORY.md
 ```
 
 ## Case 66 — pre-task findings: the pages the Cases forgot
@@ -1414,7 +1415,7 @@ update:
 ```
 
 ```tasks
-- [ ] vault/wiki/index.md §10 by hand
+- [x] vault/wiki/index.md §10 by hand
 - [ ] the reading of estimate-render-harness-reproduces at the next session's render — named in the handoff
 ```
 
@@ -1590,6 +1591,6 @@ update:
 ```
 
 ```tasks
-- [ ] take the reading of estimate-documentation-completes: the librarian run of session H (raw/2026-09-11/event_log.md 12:10–12:21, the report in the ledger line of 12:24:05) against the new criterion; write the estimate line
-- [ ] if it passes: vault/wiki/sprint.md — Slice 3 closed 2026-09-12, one line
+- [x] take the reading of estimate-documentation-completes: the librarian run of session H (raw/2026-09-11/event_log.md 12:10–12:21, the report in the ledger line of 12:24:05) against the new criterion; write the estimate line
+- [x] if it passes: vault/wiki/sprint.md — Slice 3 closed 2026-09-12, one line
 ```

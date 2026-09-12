@@ -31,3 +31,71 @@
 - 09:30:03 decision[62][update][case-schema]{ref:case-schema}
 - 10:09:45 decision[59.5][update][rule-retro]{ref:rule-retro}
 - 10:09:45 decision[59.5][update][rule-spec-capture]{ref:rule-spec-capture}
+- 10:53:05 estimate[estimate-spec-capture-appends][passed] live 2026-09-12 session I: the rejected ExitPlanMode of 04:58 wrote nothing — no raw/2026-09-12/spec.md, no spec line in the event log, the pretask hook's exit 2 stood alone; the approved plan of 10:48:13 landed by the hook as raw/2026-09-12/spec.md with the stamp `<!-- approved 10:48:13 · session 763dd08e -->`, 1595 lines, once, no separator since the file was new; tests/test_spec.py 8 green
+- 10:53:05 estimate[estimate-documentation-completes][passed] the librarian run of session H (2026-09-11 12:10–12:21, commit 10731cb) read again against the criterion of case 58: make test 158 green; every decision line of Cases 52–57 has its Decision page and targets, 79 entries none unapplied, none failed; every wiki page opened is named in the report with reason and outcome; no ledger, spec, plan, decision page or archive file read; the yaml edited only by the index check and synthesis entries; commands in the event log; commit separate, vault/ only; no stop; the one read outside the four inputs was the Makefile at 12:18:26, which the criterion now allows as the scripts' own file — Slice 3 closes
+- 10:59:36 decision[case 58][update][rule-documentation]{ref:rule-documentation}
+- 10:59:36 decision[case 58][update][estimate-documentation-completes]{ref:estimate-documentation-completes}
+- 10:59:36 decision[case 59.1][update][rule-pretask]{ref:rule-pretask}
+- 10:59:36 decision[case 59.1][update][estimate-pretask-reconciles]{ref:estimate-pretask-reconciles}
+- 10:59:36 decision[case 59.2][update][rule-skill-hi]{ref:rule-skill-hi}
+- 10:59:36 decision[case 59.2][create][estimate-hi-writes-frontier]{ref:rule-skill-hi}{tags:session,harness,workflow}
+- 10:59:36 decision[case 59.2][update][rule-pretask]{ref:rule-pretask}
+- 10:59:36 decision[case 59.2][update][estimate-pretask-reconciles]{ref:estimate-pretask-reconciles}
+- 10:59:36 decision[case 59.2][update][rule-case-protocol]{ref:rule-case-protocol}
+- 10:59:36 decision[case 59.2][update][index]{ref:index}
+- 10:59:36 decision[case 59.3][update][rule-case-protocol]{ref:rule-case-protocol}
+- 10:59:36 decision[case 59.3][update][case-schema]{ref:case-schema}
+- 10:59:36 decision[case 59.3][update][index]{ref:index}
+- 10:59:36 decision[case 59.3][update][rule-retro]{ref:rule-retro}
+- 10:59:36 decision[case 59.3][update][rule-spec-capture]{ref:rule-spec-capture}
+- 10:59:36 decision[case 59.3][update][rule-pretask]{ref:rule-pretask}
+- 10:59:36 decision[case 59.3][update][estimate-pretask-reconciles]{ref:estimate-pretask-reconciles}
+- 10:59:36 decision[case 59.4][update][decisions-schema-yaml]{ref:decisions-schema-yaml}
+- 10:59:36 decision[case 59.4][update][decisions-schema]{ref:decisions-schema}
+- 10:59:36 decision[case 59.4][update][rule-page-generation]{ref:rule-page-generation}
+- 10:59:36 decision[case 59.4][update][estimate-generate-writes]{ref:estimate-generate-writes}
+- 10:59:36 decision[case 59.4][update][rule-lint]{ref:rule-lint}
+- 10:59:36 decision[case 59.4][update][estimate-lint-catches]{ref:estimate-lint-catches}
+- 10:59:36 decision[case 59.4][update][index]{ref:index}
+- 10:59:36 decision[case 59.4][update][glossary]{ref:glossary}
+- 10:59:36 decision[case 59.5][update][case-schema]{ref:case-schema}
+- 10:59:36 decision[case 59.5][update][rule-case-protocol]{ref:rule-case-protocol}
+- 10:59:36 decision[case 59.5][update][rule-brief]{ref:rule-brief}
+- 10:59:36 decision[case 59.5][update][rule-retro]{ref:rule-retro}
+- 10:59:36 decision[case 59.5][update][rule-spec-capture]{ref:rule-spec-capture}
+- 10:59:36 decision[case 59.6][create][rule-governed-files-hook]{ref:rule-harness}{tags:hooks,harness,render}
+- 10:59:36 decision[case 59.6][update][rule-hook-registry]{ref:rule-hook-registry}
+- 10:59:36 decision[case 59.6][update][rule-case-protocol]{ref:rule-case-protocol}
+- 10:59:36 decision[case 59.6][update][rule-pretask]{ref:rule-pretask}
+- 10:59:36 decision[case 59.6][update][estimate-pretask-reconciles]{ref:estimate-pretask-reconciles}
+- 10:59:36 decision[case 59.7][update][rule-render-harness]{ref:rule-render-harness}
+- 10:59:36 decision[case 59.7][create][estimate-render-sync-reports]{ref:rule-render-harness}{tags:harness,render,hooks}
+- 10:59:36 decision[case 59.7][update][rule-hook-registry]{ref:rule-hook-registry}
+- 10:59:36 decision[case 59.7][update][rule-skill-hi]{ref:rule-skill-hi}
+- 10:59:36 decision[case 59.8][create][rule-claude-md]{ref:rule-harness}{tags:harness,render}
+- 10:59:36 decision[case 59.8][update][case-schema]{ref:case-schema}
+- 10:59:36 decision[case 59.8][update][glossary]{ref:glossary}
+- 10:59:36 decision[case 60][update][rule-materialize]{ref:rule-materialize}
+- 10:59:36 decision[case 60][update][estimate-materialize-assembles]{ref:estimate-materialize-assembles}
+- 10:59:36 decision[case 60][update][rule-case-protocol]{ref:rule-case-protocol}
+- 10:59:36 decision[case 60][update][case-schema]{ref:case-schema}
+- 10:59:36 decision[case 61][update][rule-materialize]{ref:rule-materialize}
+- 10:59:36 decision[case 61][update][estimate-materialize-assembles]{ref:estimate-materialize-assembles}
+- 10:59:36 decision[case 62][update][rule-case-protocol]{ref:rule-case-protocol}
+- 10:59:36 decision[case 62][update][case-schema]{ref:case-schema}
+- 10:59:36 decision[case 63][defer][rule-ledger-tail]{ref:rule-ledger-tail}{supersedes:case 45}
+- 10:59:36 decision[case 64][defer][rule-work-mode]{ref:rule-work-mode}{supersedes:case 29}
+- 10:59:36 decision[case 64][defer][rule-subagent-guppi]{ref:rule-subagent-guppi}{supersedes:case 29}
+- 10:59:36 decision[case 65][defer][rule-ask]{ref:rule-ask}
+- 10:59:36 decision[case 66][update][rule-case-protocol]{ref:rule-case-protocol}
+- 10:59:36 decision[case 66][update][rule-plan-mode]{ref:rule-plan-mode}
+- 10:59:36 decision[case 66][update][rule-pretask-hook]{ref:rule-pretask-hook}
+- 10:59:36 decision[case 66][update][index]{ref:index}
+- 10:59:36 decision[case 66][update][rule-harness]{ref:rule-harness}
+- 10:59:36 decision[case 66][update][estimate-retro-loads]{ref:estimate-retro-loads}
+- 10:59:36 decision[case 66][update][estimate-spec-capture-appends]{ref:estimate-spec-capture-appends}
+- 10:59:36 decision[case 66][update][estimate-render-harness-reproduces]{ref:estimate-render-harness-reproduces}
+- 10:59:36 estimate[estimate-lint-catches][passed] tests/test_lint.py green with the classes of case 59.4 seeded: a decision page with none of the four lists, kind or target_slug still present, a slug naming neither a live nor an archived page, an archived target not a finding, a Rule-class slug not looked up; live 2026-09-12 after the migration of 78 pages: guppi lint 209 findings, 0 of class decision, the 88 ref findings are the History wikilinks [[decision-case-59.4]] and [[decision-case-60]] that resolve at the librarian's run, the rest the known list of the brief
+- 10:59:36 estimate[estimate-materialize-assembles][passed] tests/test_materialize.py 19 green: a sub-case inherits a missing given from its parent and never when, its own given kept, incomplete only when neither has it; new_tags of a line-less Case reach the yaml once; claude-md routes to no file; the standalone-estimate sections and the defer-only rule as before
+- 10:59:36 lesson[error][lesson-ledger-decision-line-written-without-the-case-word]{tags:ledger,workflow}{source:raw/2026-09-12/ledger.md lines 3–33; guppi pretask --check of session I} trigger: every decision line of session I up to 10:09 was written as decision[58][update][slug], and materialize.parse_line accepts decision[case 58] only, so 33 lines of the day would go under unparsed; the check of case 59.1 found them while comparing the plan with the ledger root_cause: the table of case-schema.md shows the line as decision[case_id][kind][slug], a placeholder the agent read literally, while every earlier ledger writes the word case before the id; nothing between the reply and materialize checks a written line against the grammar, and the Stop hook writes verbatim by design; the lines were written again in the right form, the wrong ones stay as the trace
+- 10:59:36 lesson[error][lesson-ledger-hook-drops-a-block-followed-by-tool-calls-in-the-turn]{tags:ledger,hooks,harness}{source:raw/2026-09-12/ledger.md against the replies of session I; guppi pretask --check} trigger: the LEDGER blocks of cases 59.1, 59.2, 59.4, 60, 63, 64, 65 and 66 never reached the ledger, while those of 58, 59.3, 59.5–59.8, 61 and 62 did; every lost block sat in a text message followed by tool calls in the same turn, every written one in the turn's last message root_cause: not yet found; the read-back of case 55.2 was measured on an earlier reply's block, and a block in an intermediate message of one turn seems not to be among the texts transcript_texts collects, or is filtered as not the main agent's; to be read in guppi/ledger.py against the transcript of this session before a fix is proposed

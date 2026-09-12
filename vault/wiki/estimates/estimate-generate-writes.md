@@ -1,7 +1,7 @@
 ---
 type: estimate
 kind: QA
-status: pending
+status: passed
 target: rule-page-generation
 origin: raw/2026-09-10/ledger.md#case-32
 sprint: migration
@@ -50,7 +50,7 @@ pytest in tests/test_generate.py against a temp vault; the live reading once by 
 
 ## Result
 
-tests/test_generate.py 21 green with the four folded criteria, no skip, no paired estimate, the decision-page shape, deferred_by and its clearing, the decision written first, History wikilinks, a stale failed dropped; live 2026-09-11, the librarian's run: 13 decision pages, 6 lessons, 2 insights created, 14 rules, 11 estimates, 2 lessons, 2 decisions updated, 21 estimates set archived and moved by cleanup, stderr one line (tag tests unregistered), no entry failed, exit 0; make lint afterwards 146, all on the known-false list plus the 25 decision findings of lint's own archived-target defect; git diff --stat of 10731cb is vault/ only
+unit: tests/test_generate.py green in the same 47, with the derived Estimate page and the decision page's Criterion links of case 72.4; live 2026-09-12, the librarian's run of session J on raw/2026-09-12/materialize.yaml: 76 pages for the date and 0 for the three earlier dates, exit 0, stderr empty, every entry of every yaml applied and none failed — 30 decision pages created and 6 set superseded, 17 rules updated, 2 estimates created and 11 updated, 5 lessons created and 5 set clustered, 1 insight created and 3 updated, 21 derived criterion blocks appended with their Estimate set pending, 8 remove_criterion entries applied, 11 file entries skipped as Rule-class; guppi lint afterwards 133 findings in the known-false classes only (128 schema, 3 orphan, 1 ref, 1 method) against 129 before the run; git show --stat 8836953 touches vault/ only
 
 ## History
 
@@ -61,3 +61,4 @@ tests/test_generate.py 21 green with the four folded criteria, no skip, no paire
 - 2026-09-12 status: pending → passed · raw/2026-09-11/ledger.md#L76
 - 2026-09-12 updated: the decision page's four lists replace the aligned pair in the criterion (case 59.4) · [[decision-case-59.4]]
 - 2026-09-12 updated: the derived Estimate page and the decision page's Criterion links join the criterion (case 72.4); pending until the unit reading · [[decision-case-72.4]]
+- 2026-09-12 status: pending → passed · raw/2026-09-12/ledger.md#L167

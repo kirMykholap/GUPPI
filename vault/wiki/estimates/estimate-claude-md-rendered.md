@@ -18,9 +18,10 @@ born of Case 71.1 with the criterion of 59.8 unchanged.
 ## Criterion
 
 After `uv run guppi render`, `CLAUDE.md` equals the Render of `rule-claude-md` with
-the text of `rule-case-protocol` between its markers; the first such render leaves
-a `git diff` of marker lines only; `guppi render --check` then exits 0; every
-session after it loads the same text, the two `@` imports expanded.
+the text of `rule-case-protocol` between its markers; the diff of that render holds
+the text those two pages gained since the file was last written, and nothing else;
+`guppi render --check` then exits 0; every session after it loads the same text,
+the two `@` imports expanded (case 88.2).
 
 ### case 73.10
 
@@ -30,6 +31,19 @@ A session starts with `CLAUDE.md`.
 Then:
 The Migration paragraph says the approved plan is copied to
 `vault/raw/<date>/<hi HHMM>/spec.md`.
+
+### case 88.2
+
+When:
+The first `uv run guppi render` after `rule-claude-md` or `rule-case-protocol` changed.
+
+Then:
+`CLAUDE.md` equals the Render of `rule-claude-md` with the text of `rule-case-protocol`
+between its markers.
+**＋** The diff holds the text those two pages gained since the file was last written,
+and nothing else.
+**＋** `guppi render --check` then exits 0, and every session after it loads the same
+text with the two `@` imports expanded.
 
 ## Method
 
@@ -46,3 +60,5 @@ live 2026-09-12 session J, the first uv run guppi render after rule-claude-md ex
 - 2026-09-12 created · [[decision-case-71.1]]
 - 2026-09-12 status: pending → failed · raw/2026-09-12/ledger.md#L153
 - 2026-09-12 criterion: case 73.10 added · [[decision-case-73.10]]
+- 2026-09-12 criterion: case 88.2 added · [[decision-case-88.2]]
+- 2026-09-12 updated: the stale live clause of case 59.8 leaves the Criterion prose (case 88.2) · [[decision-case-88.2]]

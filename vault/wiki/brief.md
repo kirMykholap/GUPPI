@@ -1,217 +1,203 @@
-# Brief — 2026-09-12, after session J (the Estimate derived from the Case, Cases 70–84)
+# Brief — 2026-09-12, after session K (settings.json as a MOC, the render in the librarian's phase, Cases 85–99)
 
 Written by the librarian.
 
 ## Where things stand
 
-What the handoff of session J records under "What actually got done":
+What the handoff of session K records under "What actually got done":
 
-- Commits: `e43c9e4` the render of six harness files (the first item of the previous
-  brief); `16b7f58` Cases 72–76 — `materialize` (72.3, 73.5, 76), `generate` (72.4),
-  `pretask`/`spec`/`ledger` (72.5, 73.2, 73.4, 74, 75.2; `session_dir` lives in
-  `guppi/ledger.py`, not `event.py`, an import cycle), `lint` (72.6), the ledger test of
-  70, seven Rule-class files (72.1, 72.2, 73.1, 75.1), the one-off of 73.1; `90bdd36` the
-  Retro.
-- `make test` 258 green, `make style` clean, `guppi lint` 129 findings, `render --check`
-  exit 0 before this run.
-- Ratified: 70, 71.1, 72.1–72.6, 73.1–73.10, 74, 75.1, 75.2, 76, 77. Deferred: 78–84.
-- Readings passed: `estimate-hi-writes-frontier`, `estimate-materialize-assembles`,
-  `estimate-pretask-reconciles`, `estimate-lint-catches`. Failed on a clause, not on the
-  code: `estimate-governed-files-hook-refuses`, `estimate-claude-md-rendered`,
-  `estimate-render-harness-reproduces` (Cases 83, 84).
-- Not done: the render of the governed files by 72.1, 73.x, 74, 75 (next session start);
-  five readings; the Spec's 15 unticked tasks are all of that kind.
-- Per-session files moved under `raw/<date>/<hi HHMM>/` (Case 73): session I is `0454`,
-  session J is `1156`. `sprint.md` was not touched, as the handoff instructs.
+- One commit, `0ed3afb`: the code of the Spec, the two Rule-class files by hand, the
+  `source` backfill on five lesson pages, and the render of the six governed files that
+  `render --sync` wrote at session start (the first item of the previous brief).
+- Ratified: 85.1–85.5, 86, 87, 88.1, 88.2, 89.1–89.4, 90.1–90.3, 91, 92, 99. Deferred:
+  93–98.
+- Code in four files: `render.py` (the bare splice into a comment-less file, the JSON gate
+  before the write), `materialize.py` (`source` from the braces, the named Estimate),
+  `pretask.py` (the fifth form finding), `guard.py` (the event line on a refusal).
+- Readings passed and written in the session: `estimate-governed-files-hook-refuses`
+  (`failed` → `passed`), `estimate-materialize-assembles`, `estimate-pretask-reconciles`.
+- Not done: 19 of the Spec's 40 tasks. Eight readings wait on this run, two on the next
+  session start; the rest are the pages this run writes.
+- `make test` 267 green, `make style` clean. `guppi lint` was not run after the commit.
+- Four `estimate_slug` lines were added to the Spec after the owner approved it (cases
+  85.1, 88.1, 89.4, 87); the lesson is `lesson-pretask-runs-before-the-check-it-adds`.
 
-`guppi materialize` walked four dates: `raw/2026-09-09` extended with 0 entries (74),
-`raw/2026-09-10` with 0 (157), `raw/2026-09-11` with 0 (84), `raw/2026-09-12` with 80 (163
-entries). It read both Specs of the date, `0454/spec.md` and `1156/spec.md`. The librarian
-appended 8 entries at synthesis; the yaml of 2026-09-12 now holds 171 entries, 49 decision
-groups and 30 unparsed lines (all of session I).
+`uv run guppi materialize` walked four dates: `raw/2026-09-09` extended with 0 entries
+(74), `raw/2026-09-10` with 0 (157), `raw/2026-09-11` with 0 (84), `raw/2026-09-12` with
+70. It read the three Specs of the date, `0454/spec.md`, `1156/spec.md` and
+`1610/spec.md`. The librarian appended 3 entries at synthesis; the yaml of 2026-09-12 now
+holds 244 entries, 74 decision groups and 30 unparsed lines.
 
-`guppi generate`: 0 pages for 2026-09-09, 2026-09-10 and 2026-09-11; 76 for 2026-09-12;
-exit 0, stderr empty. 11 entries of category `file` were skipped as Rule-class files
-applied by hand; 8 `remove_criterion` entries printed "no Estimate holds a block" and
-applied. `guppi cleanup` moved 1 page, stderr empty. Every entry of every yaml is
-`applied`; none is `failed`.
+`uv run guppi generate`: 0 pages for 2026-09-09, 2026-09-10 and 2026-09-11; 72 for
+2026-09-12; exit 0, stderr empty. Two entries of category `file` were skipped as
+Rule-class files applied by hand; 12 `remove_criterion` entries printed "no Estimate holds
+a block" and applied. `uv run guppi cleanup` moved 0 pages, stderr empty. Every entry of
+every yaml is `applied`; none is `failed`.
 
 | category | created | updated |
 |---|---|---|
-| decisions | 30 (`decision-case-70`, `71.1`, `72.1`–`72.6`, `73.1`–`73.10`, `74`, `75.1`, `75.2`, `76`–`84`) | 6 set `superseded`: `decision-case-63`, `64`, `65`, `67`, `68`, `69` |
-| rules | 0 | 17: `rule-ask`, `rule-case-protocol`, `rule-claude-md`, `rule-documentation`, `rule-governed-files-hook`, `rule-handoff`, `rule-ledger-tail`, `rule-lint`, `rule-materialize`, `rule-page-generation`, `rule-pretask`, `rule-render-harness`, `rule-retro`, `rule-skill-hi`, `rule-spec-capture`, `rule-subagent-guppi`, `rule-work-mode` |
-| estimates | 2 (`estimate-governed-files-hook-refuses` `failed`, `estimate-claude-md-rendered`, both of Case 71.1) | 11: `estimate-case-protocol-loaded`, `estimate-documentation-completes`, `estimate-generate-writes`, `estimate-handoff-dispatches`, `estimate-hi-writes-frontier`, `estimate-lint-catches`, `estimate-materialize-assembles`, `estimate-pretask-reconciles`, `estimate-render-harness-reproduces`, `estimate-retro-loads`, `estimate-spec-capture-appends` |
-| lessons | 5 (`lesson-ledger-preview-in-ratification-taken-for-the-record`, `lesson-pretask-nested-estimate-exempt-from-the-line-check`, `lesson-estimates-live-clause-stale-at-first-render`, `lesson-hooks-blocked-pretooluse-leaves-no-posttooluse-event`, `lesson-materialize-lesson-line-source-dropped`) | 5 set `clustered` by synthesis (four of the new five, plus `lesson-materialize-standalone-estimate-keeps-criterion-as-a-field`); 1 archived by Case 70 |
-| insights | 1 by synthesis (`insight-materialize-lift-loses-a-schema-field`, severity 2, `open`) | 3: `insight-ledger-line-written-unchecked` (severity 4), `insight-workflow-contract-change-leaves-its-derived-text-stale` (severity 3), `insight-ledger-hook-reads-only-the-final-text` (severity recounted to 1) |
+| decisions | 25 (`decision-case-85.1`–`85.5`, `86`, `87`, `88.1`, `88.2`, `89.1`–`89.4`, `90.1`–`90.3`, `91`, `92`, `93`–`99`) | 7 set `superseded`: `decision-case-78`–`84` |
+| rules | 3 (`rule-settings` MOC, `rule-default-mode`, `rule-permissions`) | 17: 10 by decision (`rule-case-protocol`, `rule-claude-md`, `rule-close`, `rule-documentation`, `rule-governed-files-hook`, `rule-harness`, `rule-hook-registry`, `rule-materialize`, `rule-pretask`, `rule-render-harness`), 6 by `deferred_by` (`rule-ask`, `rule-ledger-tail`, `rule-skill-hi`, `rule-subagent-guppi`, `rule-synthesis`, `rule-work-mode`), `rule-page-generation` `draft` → `built` by cascade |
+| estimates | 3 (`estimate-settings`, `estimate-default-mode`, `estimate-permissions`, all `pending`) | 12: `estimate-case-protocol-loaded`, `estimate-claude-md-rendered`, `estimate-close-commits`, `estimate-documentation-completes`, `estimate-generate-writes`, `estimate-governed-files-hook-refuses`, `estimate-hook-registry-rendered`, `estimate-materialize-assembles`, `estimate-pretask-reconciles`, `estimate-render-harness-reproduces`, `estimate-render-sync-reports`, `estimate-synthesis-clusters` |
+| lessons | 3 (`lesson-handoff-instructs-a-repair-the-librarian-rule-forbids`, `lesson-pretask-runs-before-the-check-it-adds`, `lesson-vault-lesson-absent-at-the-moment-it-applies`) | 2 set `clustered` by synthesis (`lesson-vault-lesson-absent-at-the-moment-it-applies`, `lesson-readings-after-librarian-invisible-to-next-hi`) |
+| insights | 1 by synthesis (`insight-session-vault-knowledge-not-loaded`, severity 2, `open`) | 1: `insight-ledger-hook-reads-only-the-final-text`, severity recounted 1 → 2 |
 | entities | 0 | 0 |
 
-The 21 derived entries of Cases 73.2–73.10, 74, 75.1, 75.2 and 76 appended a `### case N`
-block to the Criterion of their Estimate and set it `pending` (Case 72). Case 77 carried
-`contract: same` and derived nothing. `deferred_by` was set on `rule-work-mode` and
-`rule-subagent-guppi` (78), `rule-ledger-tail` (79), `rule-ask` (80), `rule-case-protocol`
-(81), `rule-materialize` (82), `rule-governed-files-hook` (83), `rule-claude-md` and
-`rule-render-harness` (84).
+The three checks the handoff asks for, after `generate`:
 
-Readings recorded in this walk: `estimate-hi-writes-frontier`,
-`estimate-materialize-assembles`, `estimate-pretask-reconciles` and `estimate-lint-catches`
-`passed`; `estimate-render-harness-reproduces` and `estimate-governed-files-hook-refuses`
-`failed`. `estimate-claude-md-rendered` took a `failed` result at birth and was set
-`pending` by the derived update of Case 73.10 in the same run.
+- `rule-settings.children` is `[rule-default-mode, rule-permissions, rule-hook-registry]`,
+  no duplicate.
+- `rule-harness.children` is `[rule-render-harness, rule-settings, rule-lint, rule-index,
+  rule-governed-files-hook, rule-claude-md]`; `rule-hook-registry` is gone from it and its
+  `parent` is `rule-settings`.
+- The pages updated twice kept every criterion block:
+  `estimate-render-harness-reproduces` holds `### case 85.1`, `88.1`, `89.4`;
+  `estimate-materialize-assembles` holds `73.5`, `76`, `87`, `90.1`;
+  `estimate-documentation-completes` holds `73.8`, `89.1`, `90.3`. No `replace` pair was
+  reported absent or not unique; `generate` wrote nothing to stderr, so the Case 99
+  replaces on `estimate-hook-registry-rendered`, `rule-pretask`, `rule-materialize` and
+  `rule-harness` all applied, the `rule-pretask` pair included.
+
+Readings recorded in this walk: `estimate-render-sync-reports`, `estimate-generate-writes`,
+`estimate-synthesis-clusters`, `estimate-governed-files-hook-refuses`,
+`estimate-materialize-assembles` and `estimate-pretask-reconciles` `passed`;
+`estimate-documentation-completes` `failed` (the librarian's run of session J, one clause:
+three yaml entries edited by hand).
+
+`uv run guppi render` was not run, and the commit holds `vault/` only, as the handoff
+instructs. Cases 89.1 and 89.2 take effect at the next session.
 
 ## What the next session does first
 
-1. `uv run guppi render` once, by hand, then commit. Six governed files differ from their
-   Rule pages after this run: `CLAUDE.md`, `.claude/agents/librarian-guppi.md` and the
-   four skills (`hi`, `pre-task`, `retro`, `handoff`). `make lint` stops at that step
-   until then; the handoff foretold it.
-2. Take the readings the handoff names: at the start, `estimate-case-protocol-loaded` and
-   `estimate-render-sync-reports`; against this report, `estimate-generate-writes` (the
-   live half), `estimate-documentation-completes` and `estimate-synthesis-clusters`.
+1. `/hi` runs `render --sync`: three governed files differ from their Rule pages —
+   `.claude/settings.json` (new, from `rule-settings` and its three children),
+   `.claude/agents/librarian-guppi.md` (89.1, 90.3) and `.claude/skills/pre-task/SKILL.md`
+   (90.2). `make lint` stops at that step until they are written and committed.
+2. Take the readings the handoff names against this run: `estimate-settings`,
+   `estimate-permissions`, `estimate-default-mode`, `estimate-hook-registry-rendered`,
+   `estimate-documentation-completes`, `estimate-close-commits`,
+   `estimate-render-harness-reproduces`, `estimate-claude-md-rendered`; and at session
+   start `estimate-case-protocol-loaded` and `estimate-render-sync-reports`.
 3. Plan Mode over the deferred list below.
 
 ## Deferred
 
-1. **The live clauses of the two render readings** — Case 84, `rule-claude-md` and
-   `rule-render-harness`: the live clause of `estimate-claude-md-rendered` and of
-   `estimate-render-harness-reproduces` names a diff of marker lines only; the first
-   render moved six files and 37 lines of text, and both readings failed on the clause.
-   Related Insight `insight-workflow-contract-change-leaves-its-derived-text-stale`,
-   severity 3. (postponed 1 time)
-2. **Slice 3b: Work Mode** — Case 78, `rule-work-mode` and `rule-subagent-guppi`
-   (placeholders, `draft`, two of the three lint orphans). The draft in `docs/migration/`
-   has to be reconciled with 59.3 (no separate `plan.md`; the `tasks` blocks of the Spec)
-   and with the fork clause. Related Insight `insight-harness-agent-visibility`, severity
-   2. (postponed 5 times)
-3. **`source` dropped between the ledger line and the page** — Case 82,
-   `rule-materialize`: `parse_line` reads the braces of a lesson line into options and
-   returns `tags` only, so every knowledge lesson is marked `incomplete: [source]` and its
-   page is written without the field. Related Insight
-   `insight-materialize-lift-loses-a-schema-field`, severity 2. (postponed 1 time)
-4. **Archive in `ask-guppi`** — Case 80, `update` of `rule-ask` with its Estimate: a named
-   slug checked against `vault/archived/`, which holds 22 pages. No related Insight.
-   (postponed 5 times)
-5. **Slice 3c: the raw lifecycle** — Case 79, `rule-ledger-tail`: `decided_by` and
-   `origin` as a ledger pointer, `raw/<date>/` of an applied date archived by run stamp,
-   the fresh ledger as the tail `/hi` prints, lint on both fields. No related Insight.
-   (postponed 4 times)
-6. **The field names of the `then` item** — Case 81, `rule-case-protocol`: Case 72.1 says
-   `kind` and `slug` inside the `estimate` item, the Work Mode agent wrote `estimate_kind`
-   and `estimate_slug`, and the code and the Render now disagree with the ratified text.
-   No related Insight. (postponed 1 time)
-7. **A guard refusal leaves no line in the event log** — Case 83,
-   `rule-governed-files-hook`: `PostToolUse` does not fire for a tool a `PreToolUse` hook
-   blocked, so a refusal is visible only on stderr unless the hook writes its own line.
-   The fact is `lesson-hooks-blocked-pretooluse-leaves-no-posttooluse-event`, `new`, no
-   Insight. (postponed 1 time)
+1. **A render inside `/hi`, after the pull** — Case 98, `rule-skill-hi`: what arrives from
+   outside the session reaches its files in the same session. Related Insight
+   `insight-workflow-contract-change-leaves-its-derived-text-stale`, severity 3.
+   (postponed 1 time)
+2. **Slice 3b: Work Mode** — Case 93, `rule-work-mode` and `rule-subagent-guppi`
+   (placeholders, `draft`, two of the three lint orphans): the Spec as tasks with code,
+   the ticked boxes, what a subagent may do, and the fork that comes back as a Case.
+   Related Insight `insight-harness-agent-visibility`, severity 2. (postponed 6 times)
+3. **Slice 3c: the lifecycle of `raw/`** — Case 95, `rule-ledger-tail`: an applied date
+   archived by run stamp, the fresh ledger the tail prints at `/hi`, `decided_by` and
+   `origin` under lint. Related Insight `insight-session-vault-knowledge-not-loaded`,
+   severity 2. (postponed 5 times)
+4. **What becomes of an Insight when its children are archived** — Case 97,
+   `rule-synthesis`: the count, the status, and who decides. Related Insight
+   `insight-ledger-hook-reads-only-the-final-text`, severity 1. (postponed 1 time)
+5. **The archive in `ask-guppi`** — Case 94, `rule-ask`: the archive is part of the vault
+   the agent answers from, and a named slug is checked against it; `vault/archived/` holds
+   22 pages. No related Insight. (postponed 6 times)
+6. **The `## Insight` section of a clustered lesson** — Case 96, `rule-synthesis`: the
+   synthesis update sets the `insight` field and nothing writes the section
+   `lessons/schema.md` requires; 20 lessons carry the gap. The `purpose` of this defer
+   reads "A synthesis entry carries the" in the yaml and on `decision-case-96` — see
+   Flags. No related Insight. (postponed 1 time)
 
-Three items of the previous brief left this list: Case 75.1 supersedes 67 (the ledger
-grammar in `case-schema.md` and `rule-case-protocol`), Case 74 supersedes 68 (the wording
-of `rule-pretask` on a Case whose lines are all `defer`), Case 76 supersedes 69
-(`materialize --show`). Cases 63, 64 and 65 are superseded by their re-defers 79, 78 and
-80.
+Every item of the previous brief's list left it: Case 93 supersedes 78, 94 supersedes 80,
+95 supersedes 79; Cases 85.1, 88.1 and 89.4 retired 84 (the live clauses of the two render
+readings), 86 and 92 retired 81 (the field names of the `then` item), 87 retired 82
+(`source` dropped at the parser), 91 retired 83 (a guard refusal with no event line).
 
 ## Flags
 
-- **Entries marked `incomplete` in this walk: 13.** Eleven of category `file` carry
-  `incomplete: [then]` — the Rule-class file items of Cases 72.1 (`case-schema`, `index`,
-  `glossary`), 72.2 (`estimates-schema`, `estimates-schema-yaml`, `decisions-schema`,
-  `decisions-schema-yaml`), 73.1 (`index`, `glossary`) and 75.1 (`case-schema`, `index`),
-  applied by hand in Work Mode. The handoff expected twelve; the yaml holds eleven. One
-  entry carries `incomplete: [estimate]` and one `incomplete: [source]`; both were
-  repaired by hand as the handoff instructs (item 2) and the mark was left standing.
-- **The three entry edits of the handoff were made**, each one judgment: the derived
-  update of Case 73.10 got `slug: estimate-claude-md-rendered` (it had `slug: null`
-  because the page's `estimates` was empty when materialize ran); the derived update of
-  Case 73.3 got `slug: estimate-hi-writes-frontier` in place of the page's first Estimate
-  `estimate-hi-no-read-calls`; the knowledge lesson
-  `lesson-hooks-blocked-pretooluse-leaves-no-posttooluse-event` got `fields.source` from
-  the braces of its own ledger line.
-- **A page written without `source`, not repaired:**
-  `lesson-subagents-parallel-on-one-tree-red-mid-flight` (session I, `kind: knowledge`,
-  its line carries a source). Its entry is applied; the handoff says not to edit the page.
-  It is one of lint's 11 `source` findings.
-- **Two failed Estimates:** `estimate-governed-files-hook-refuses` (`failed`, its live
-  clause is Case 83) and `estimate-render-harness-reproduces` (`failed`, Case 84). Nine
-  Estimates are `pending`: `estimate-case-protocol-loaded`, `estimate-claude-md-rendered`,
-  `estimate-documentation-completes`, `estimate-generate-writes`,
-  `estimate-handoff-dispatches`, `estimate-plan-mode-verified`,
-  `estimate-render-sync-reports`, `estimate-retro-loads`, `estimate-spec-capture-appends`.
-- **`estimate-claude-md-rendered` is `pending` after a `failed` reading.** Its create and
-  the reading were folded into one entry (result `failed`), and the derived update of Case
-  73.10 later in the same yaml set it `pending`. The failed result stands in its Result
-  section.
-- **Entries marked `near`, 4 added by this run.**
-  `lesson-ledger-preview-in-ratification-taken-for-the-record` and
-  `lesson-pretask-nested-estimate-exempt-from-the-line-check` near
-  `lesson-spec-then-items-unchecked-against-ledger-lines`: all three are a Spec item and a
-  ledger line that do not meet, but one is a line never written, one is a check that
-  exempts a nested Estimate, and one is an item that was never in the block; not merged,
-  all three now under one Insight. `lesson-estimates-live-clause-stale-at-first-render`
-  near `lesson-estimates-criterion-stale-after-contract-change`: one is a criterion left
-  quoting a dropped wording, the other a live clause written against a tree that changed
-  the same session; not merged, clustered together.
-  `lesson-materialize-lesson-line-source-dropped` near
-  `lesson-materialize-standalone-estimate-keeps-criterion-as-a-field`: one drops a field
-  at the parser, the other puts a section in the frontmatter; not merged, clustered
-  together.
-- **Synthesis: one Insight made, two extended, one judged.** New:
-  `insight-materialize-lift-loses-a-schema-field` (severity 2) over
-  `lesson-materialize-standalone-estimate-keeps-criterion-as-a-field` and
-  `lesson-materialize-lesson-line-source-dropped`. Extended:
-  `insight-ledger-line-written-unchecked` to four children (severity 4) and
-  `insight-workflow-contract-change-leaves-its-derived-text-stale` to three (severity 3).
-  Five lessons moved to `clustered`. Each `Proposal` is a suggestion, not a decision.
-- **`insight-ledger-hook-reads-only-the-final-text` stands on one live child.** Case 70
-  archived `lesson-ledger-hook-drops-a-block-followed-by-tool-calls-in-the-turn`, the
-  second of its two members, and `generate` recounted severity to 1; the archived slug
-  stays in `children`. Its Proposal was already the behaviour of Case 55.2, and the new
-  `lesson-ledger-preview-in-ratification-taken-for-the-record` states the hook dropped
-  nothing. The librarian did not put the new lesson under it and did not change its
-  Pattern or its status: what becomes of an Insight whose evidence is withdrawn is a
-  decision, not a librarian's judgment.
-- **One new lesson stays `new` without a pair:**
-  `lesson-hooks-blocked-pretooluse-leaves-no-posttooluse-event` (`knowledge`; compared
-  with `lesson-hooks-sessionstart-cannot-block` and
-  `lesson-hooks-messagedisplay-cannot-block`, which are about what an event may do, not
-  about which event fires).
-- **18 `clustered` lessons have no `## Insight` section**, five of them from this run. The
-  synthesis update sets the `insight` field in the frontmatter; nothing writes the section
-  `lessons/schema.md` requires. 18 of the 128 `schema` findings.
-- **Two facts for the next Plan Mode, from the handoff, that are not defers:** `index.md`
-  §4 still says `ref` is omitted on `update` and `delete` while every line now carries it;
-  `case-schema.md` had two `raw/<date>/spec.md` mentions changed to the session folder by
-  the Work Mode agent beyond the literal `change` lines of Case 73.
-- **The contradiction the previous brief raised is gone.** The sentence of
-  `rule-claude-md` that kept `rule-case-protocol` under `rule-plan-mode` "for the renderer
-  only" is no longer in the page.
-- **30 lines under `unparsed`**, all of session I, as the handoff says; the earlier count
-  of 33 stands corrected in the yaml itself.
+- **Entries marked `incomplete` in this walk: 2**, both of category `file` with
+  `incomplete: [then]` — `case-schema` and `index`, the Rule-class file items applied by
+  hand in Work Mode. No entry of this walk is marked `failed`.
+- **The entries of the two earlier runs on this date keep their marks**, three of them
+  `incomplete: [source]` and one `incomplete: [estimate]`; nothing in the yaml was
+  repaired, as the handoff asks.
+- **One entry marked `near`, by this run's index check.** `rule-default-mode` ("Keeps a
+  session from writing anything before a Case is ratified") near `rule-case-protocol`
+  ("Prevents a decision from being acted on before it is ratified, or ratified without its
+  content in view"): the same aim, a different file and a different enforcement — one is
+  the `defaultMode` key of `settings.json`, the other the protocol text of `CLAUDE.md`.
+  Not merged. `rule-settings` and `rule-permissions` were compared with every line of
+  `rules-index.md` and marked neither same nor near.
+- **The `purpose` of the defer of Case 96 is cut short.** The yaml entry and
+  `decision-case-96` both carry `purpose: A synthesis entry carries the`. The handoff
+  names the subject: the missing `## Insight` section on a clustered lesson. Left as it
+  is.
+- **`estimate-documentation-completes` is `pending` after a `failed` reading.** The
+  reading (line 168) failed on one clause — three yaml entries edited by hand in the
+  librarian's run of session J — and the derived updates of Cases 89.1 and 90.3 later in
+  the same walk set the Estimate `pending`. The failed result stands in its Result
+  section. The fact is `lesson-handoff-instructs-a-repair-the-librarian-rule-forbids`,
+  `new`.
+- **No Estimate is `failed`.** 14 are `pending`: `estimate-case-protocol-loaded`,
+  `estimate-claude-md-rendered`, `estimate-close-commits`, `estimate-default-mode`,
+  `estimate-documentation-completes`, `estimate-handoff-dispatches`,
+  `estimate-hook-registry-rendered`, `estimate-permissions`, `estimate-plan-mode-verified`,
+  `estimate-render-harness-reproduces`, `estimate-render-sync-reports`,
+  `estimate-retro-loads`, `estimate-settings`, `estimate-spec-capture-appends`.
+- **`insight-ledger-hook-reads-only-the-final-text` was recounted from severity 1 to 2**
+  while one of its two children,
+  `lesson-ledger-hook-drops-a-block-followed-by-tool-calls-in-the-turn`, sits in
+  `vault/archived/migration/2026-09-12/lessons/`. `insights/schema.md` defines `severity`
+  as the count of children whose status is not `archived`. This is the subject of the
+  deferred Case 97.
+- **Synthesis: one Insight made, none extended.**
+  `insight-session-vault-knowledge-not-loaded` (severity 2, `open`) over
+  `lesson-readings-after-librarian-invisible-to-next-hi` (session F, `new` until now) and
+  `lesson-vault-lesson-absent-at-the-moment-it-applies` (session K): in both a fact was in
+  the record and absent from the session that needed it. Its `Proposal` is a suggestion,
+  not a decision.
+- **Two new lessons stay `new` without a pair:**
+  `lesson-handoff-instructs-a-repair-the-librarian-rule-forbids` (compared with
+  `lesson-librarian-reads-beyond-the-four-inputs`, which is about the frame contradicting
+  itself, and with `insight-librarian-frame-omits-required-reads`) and
+  `lesson-pretask-runs-before-the-check-it-adds` (compared with
+  `lesson-pretask-nested-estimate-exempt-from-the-line-check`, a coverage gap in the
+  check, and with `insight-workflow-contract-change-leaves-its-derived-text-stale`).
+- **20 `clustered` lessons have no `## Insight` section**, three of them from this run.
+  20 of the 125 `schema` findings; Case 96 is its defer.
+- **Four `method` findings, three of them new.** `estimate-default-mode` names no `tests/`
+  file and does not say by hand; `estimate-settings`, a MOC's Estimate, names no `make
+  <target>`; `estimate-documentation-completes` and `estimate-harness-pipeline` say "by
+  hand" while another Estimate names a test file. The previous run had one `method`
+  finding.
 - **Stale defers:** `rule-work-mode` and `rule-subagent-guppi` have stood as placeholders
-  since Case 29 (now 78) and `rule-ledger-tail` since Case 45 (now 79), without `kind`,
+  since Case 29 (now 93) and `rule-ledger-tail` since Case 45 (now 95), without `kind`,
   `estimates` or `tags`. They are the three lint orphans.
 - **No MOC candidate.** `entities-index.md` is empty; the vault holds no Entity page.
-  Thirteen Rule pages are `draft`.
-- **Lint.** `make lint` exits 1 at its first step with six lines: `CLAUDE.md`,
-  `.claude/agents/librarian-guppi.md`, `.claude/skills/handoff/SKILL.md`,
-  `.claude/skills/pre-task/SKILL.md`, `.claude/skills/retro/SKILL.md` and
-  `.claude/skills/hi/SKILL.md` each "differs from its Rule page" — the render the next
-  session runs first. `guppi index --check` exits 0. `guppi lint` run separately: 133
-  findings, exit 1 — 128 `schema` (40 missing `## Context`, 38 `## Problem`, 18
-  `## Insight`, 12 `tags`, 11 `source`, 3 `kind`, 3 `estimates`, 3 `## Estimates`), 3
-  `orphan`, 1 `ref` (`rule-page-generation` names `decision-case-N` in its body, a
-  literal), 1 `method`. 129 before this run.
+  Sixteen Rule pages are `draft`.
+- **30 lines under `unparsed`**, all of session I, unchanged by this walk.
+- **`new_tags` holds one entry, `tests`**, already in `tags.md`. The handoff declares no
+  new tag; the tags used by this run's creates — `harness`, `render`, `session`,
+  `workflow` — are all registered.
+- **Lint.** `make lint` exits 1 at its first step with three lines:
+  `.claude/agents/librarian-guppi.md`, `.claude/skills/pre-task/SKILL.md` and
+  `.claude/settings.json` each "differs from its Rule page" — the render the next session
+  runs first. `guppi index --check` exits 0. `guppi lint` run separately: 133 findings,
+  exit 1 — 125 `schema` (40 missing `## Context`, 38 `## Problem`, 20 `## Insight`, 12
+  `tags`, 6 `source`, 3 `kind`, 3 `estimates`, 3 `## Estimates`), 4 `method`, 3 `orphan`,
+  1 `ref` (`rule-page-generation` names `decision-case-N` in its body, a literal). 133
+  before this run as well.
 
 ## Readings at the close
 
-- `make test` → 258 passed.
-- `make lint` → exit 1 at `render --check`, six files; `guppi lint` → 133 findings, exit 1.
-- Live pages, 240: rules 35 (22 `built`, 13 `draft`), entities 0, estimates 36 (25
-  `passed`, 9 `pending`, 2 `failed`), lessons 34 (16 `new`, 18 `clustered`), insights 8
-  (all `open`), decisions 127 (110 `current`, 17 `superseded`).
+- `make test` → 267 passed.
+- `make lint` → exit 1 at `render --check`, three files; `guppi lint` → 133 findings, exit
+  1; `guppi index --check` → exit 0.
+- Live pages, 275: rules 38 (22 `built`, 16 `draft`), entities 0, estimates 39 (25
+  `passed`, 14 `pending`, 0 `failed`), lessons 37 (17 `new`, 20 `clustered`), insights 9
+  (all `open`), decisions 152 (128 `current`, 24 `superseded`).
 - `vault/archived/` holds 22 pages: 21 under `migration/2026-09-11/estimates/` and
   `lesson-ledger-hook-drops-a-block-followed-by-tool-calls-in-the-turn` under
-  `migration/2026-09-12/lessons/`, moved by `guppi cleanup` in this run.
-- `raw/2026-09-12/materialize.yaml`: 171 entries (163 from the two Specs and the ledger, 8
-  appended at synthesis), 49 decision groups, 30 unparsed lines, 13 `incomplete` marks in
-  this walk, no `new_tags`. `raw/2026-09-11`: 84 entries. `raw/2026-09-10`: 157 entries.
-  `raw/2026-09-09`: 74 entries.
+  `migration/2026-09-12/lessons/`. `cleanup` moved none in this run.
+- `raw/2026-09-12/materialize.yaml`: 244 entries (241 from the three Specs and the ledger,
+  3 appended at synthesis), 74 decision groups, 30 unparsed lines, 2 `incomplete` marks in
+  this walk, 1 `new_tags` entry. `raw/2026-09-11`: 84 entries. `raw/2026-09-10`: 157
+  entries. `raw/2026-09-09`: 74 entries.

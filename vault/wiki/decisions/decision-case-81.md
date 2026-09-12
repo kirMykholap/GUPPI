@@ -1,8 +1,9 @@
 ---
 type: decision
 case: "81"
-status: current
+status: superseded
 defer: [rule-case-protocol]
+superseded_by: [decision-case-86]
 origin: raw/2026-09-12/ledger.md#case-81
 sprint: migration
 created: 2026-09-12
@@ -26,3 +27,4 @@ form where `kind` and `slug` are unambiguous.
 ## History
 
 - 2026-09-12 created · raw/2026-09-12/ledger.md#case-81
+- 2026-09-12 superseded by decision-case-86 · [[decision-case-86]]

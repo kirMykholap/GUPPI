@@ -1,7 +1,7 @@
 ---
 type: estimate
 kind: QA
-status: passed
+status: pending
 target: rule-hook-registry
 origin: raw/2026-09-09/ledger.md#case-18.2
 sprint: migration
@@ -18,10 +18,24 @@ would silently unregister every hook.
 
 ## Criterion
 
-`uv run guppi render` leaves `.claude/settings.json` byte-identical to the ratified Render
-body (`git diff` empty after the two hook additions of cases 20 and 24.1 are applied by
-hand once), the file parses as JSON, and the next session start still writes a
-`session-start` line into `event_log.md`.
+`uv run guppi render` writes the `"hooks"` key of `.claude/settings.json` from the Render
+of `rule-hook-registry`, byte for byte, and every registration the harness runs is one of
+its lines (case 85.3). That the assembled file parses and that the next session start
+still writes its `session-start` line into `event_log.md` belong to `estimate-settings`,
+which reads the whole file (case 99).
+
+### case 85.3
+
+When:
+`guppi render` runs.
+
+Then:
+`rule-hook-registry` renders the four event keys only, as a `partial` child of
+`rule-settings`.
+**＋** Its Purpose keeps the hooks and drops `defaultMode`, which is now
+`rule-default-mode`.
+**－** The whole-file clauses — the file parses, the next start still logs — belong to
+`estimate-settings` from now on; this page answers for the hook registrations.
 
 ## Method
 
@@ -39,3 +53,5 @@ exited 0 at the close of D. Live: the start of session `c640ade7` wrote
 
 - 2026-09-09 created · raw/2026-09-09/ledger.md#case-18.2
 - 2026-09-10 status: pending → passed · written by hand, no generator yet
+- 2026-09-12 criterion: case 85.3 added · [[decision-case-85.3]]
+- 2026-09-12 updated: the criterion covers the hooks key; the whole-file clauses move to estimate-settings (case 99) · [[decision-case-99]]

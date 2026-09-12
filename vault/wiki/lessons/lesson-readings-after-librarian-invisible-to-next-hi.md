@@ -2,8 +2,9 @@
 type: lesson
 kind: knowledge
 root_cause: the readings of the End of Work phase are born after the one artifact the next session reads; the ledger is materialized by the next librarian, and the brief by design carries only what the yaml held at its writing, so a fact born after the librarian's commit reaches the Frontier two sessions later unless /hi shows the unmaterialized ledger tail itself
-status: new
+status: clustered
 source: session F 2026-09-10, owner's question after the readings
+insight: insight-session-vault-knowledge-not-loaded
 origin: raw/2026-09-10/ledger.md#L100
 sprint: migration
 created: 2026-09-10
@@ -23,3 +24,4 @@ the readings of the End of Work phase are born after the one artifact the next s
 - 2026-09-10 created · raw/2026-09-10/ledger.md#L100
 - 2026-09-11 estimates removed: a lesson has no Estimate · [[decision-case-53.1]]
 - 2026-09-12 source set from its ledger line · [[decision-case-87]]
+- 2026-09-12 updated: clustered by librarian: a recorded fact does not reach the session that needs it, with lesson-vault-lesson-absent-at-the-moment-it-applies · raw/2026-09-12/ledger.md#L210

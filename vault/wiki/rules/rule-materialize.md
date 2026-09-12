@@ -7,7 +7,6 @@ enforcement: check
 implementation_ref: [guppi/materialize.py, tests/test_materialize.py]
 parent: rule-documentation
 estimates: [estimate-materialize-assembles, estimate-materialize-walks-dates]
-deferred_by: [decision-case-82]
 origin: raw/2026-09-10/ledger.md#case-31
 sprint: migration
 created: 2026-09-10
@@ -44,11 +43,11 @@ error).
 The Spec is read by headings `## Case N` and `### Case N.M`. Under a heading, every
 fenced block tagged `then` up to the next heading is YAML; a leading `> ` is
 removed. The entry for a slug is the item with that `slug` under the key of its
-kind. A Leaf `create` whose item carries `method` yields a second entry for its Estimate, with no line of its own (case 72.3): category `estimates`, slug `estimate-<target minus its prefix>` or the item's `slug`, `ref` the target, `tags` the target's, `origin` and `decision` the line's, sections Context (the Case's `problem`), Criterion (`### case N`, then the Case's `when` and `then` verbatim with their operands) and Method. An `update` of a Leaf whose item carries `contract: changed` yields an `update` entry of the target's Estimate: `criterion_block` (`### case N` with `when` and `then`), `set: {status: pending}`, `sections: {Method}` when the item carries `method`; `contract: same` yields nothing. A line with `{supersedes:case N}` also yields a `remove_criterion` entry for the Estimate case N shaped. The decision entry carries `criterion`, one `{estimate, case}` per Estimate the Case shaped. A nested `estimate` in an older Spec becomes its own `create` entry as before, for a line with its slug; a standalone estimate `create` with `ref` maps `context`, `criterion` and `method` into `sections` the same way, so the page gets its Criterion and Method sections whichever way it was born. An `estimate` line
+kind. A Leaf `create` whose item carries `method` yields a second entry for its Estimate, with no line of its own (case 72.3): category `estimates`, slug `estimate-<target minus its prefix>` or the item's `estimate_slug`, `ref` the target, `tags` the target's, `origin` and `decision` the line's, sections Context (the Case's `problem`), Criterion (`### case N`, then the Case's `when` and `then` verbatim with their operands) and Method. An `update` of a Leaf whose item carries `contract: changed` yields an `update` entry of the Estimate the item's `estimate_slug` names, or of the page's one Estimate when it carries exactly one; when it carries none or more than one and the item names none, the entry goes without a slug and is marked `incomplete: [estimate]` rather than guessing (case 90.1): `criterion_block` (`### case N` with `when` and `then`), `set: {status: pending}`, `sections: {Method}` when the item carries `method`; `contract: same` yields nothing. A line with `{supersedes:case N}` also yields a `remove_criterion` entry for the Estimate case N shaped. The decision entry carries `criterion`, one `{estimate, case}` per Estimate the Case shaped. A nested `estimate` in an older Spec becomes its own `create` entry as before, for a line with its slug; a standalone estimate `create` with `ref` maps `context`, `criterion` and `method` into `sections` the same way, so the page gets its Criterion and Method sections whichever way it was born. An `estimate` line
 for a page created in the same ledger is folded into that create (`status`,
 `result`); for an earlier page it is an `estimate` entry, an update. A `lesson` line
-is a `create` in `lessons`: `kind`, `root_cause` and the sections `Trigger` and
-`Root cause` from the line. A line with `{supersedes:case N}` marks the entries of
+is a `create` in `lessons`: `kind`, `root_cause`, `source` when the braces of the line carry one, and the sections `Trigger` and
+`Root cause` from the line; a `knowledge` lesson whose line carries no `source` is marked `incomplete: [source]`, an `error` lesson never (case 87). A line with `{supersedes:case N}` marks the entries of
 case N `superseded_by`. One decision entry per Case: `decision: decision-case-<N>`, `case_text` (the quoted sections of the Case, verbatim, in the language of the Spec), `targets` (one item per line of the Case); a sub-case's `context`, `problem`, `recommend` and `given` are its own when present and its parent's otherwise, `when` never; a Case whose text lacks `given` or `when`, its parent's included, is marked `incomplete` only when a kind other than `defer` is among its lines, since the short form has neither. A line the grammar does not
 parse goes under `unparsed`; the script continues. `new_tags` declared in the `then`
 block of any Case of the Spec, with decision lines or without, go to the yaml's
@@ -100,3 +99,7 @@ date fails.
 - 2026-09-12 defer by decision-case-69 superseded · [[decision-case-76]]
 - 2026-09-12 updated: a --show mode prints the yaml and writes nothing (case 76, supersedes 69) · [[decision-case-76]]
 - 2026-09-12 deferred · [[decision-case-82]]
+- 2026-09-12 defer by decision-case-82 superseded · [[decision-case-87]]
+- 2026-09-12 updated: the lesson entry carries source from the braces of its line (case 87) · [[decision-case-87]]
+- 2026-09-12 updated: the derived update names its Estimate instead of taking the first of the page's list (case 90.1) · [[decision-case-90.1]]
+- 2026-09-12 updated: the item's key is named estimate_slug, as case 86 ratified (case 99) · [[decision-case-99]]

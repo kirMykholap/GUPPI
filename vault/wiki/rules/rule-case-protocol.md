@@ -8,7 +8,6 @@ governs: CLAUDE.md
 render_mode: partial
 parent: rule-claude-md
 estimates: [estimate-case-protocol-loaded]
-deferred_by: [decision-case-81]
 origin: raw/2026-09-09/ledger.md#case-13
 sprint: migration
 created: 2026-09-09
@@ -125,3 +124,5 @@ page; the reference dangles until then, on purpose.
 - 2026-09-12 updated: the ledger paragraph shows a decision line as written, with the word case (case 75.1, supersedes 67) · [[decision-case-75.1]]
 - 2026-09-12 deferred · [[decision-case-81]]
 - 2026-09-12 status: built → draft · cascade
+- 2026-09-12 defer by decision-case-81 superseded · [[decision-case-86]]
+- 2026-09-12 updated: the two keys of the derived Estimate are ratified as estimate_kind and estimate_slug (case 86) · [[decision-case-86]]

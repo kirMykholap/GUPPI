@@ -42,6 +42,19 @@ show `- decision[case 12][update][rule-x]{ref:rule-x}` and
 with the word and a space, in `{supersedes:case N}` too.
 **－** The estimate and lesson rows do not change.
 
+### case 86
+
+When:
+The agent writes a `then` block for a `create` whose Estimate is a Research, or whose
+derived slug is taken.
+**＋** A session starts with `CLAUDE.md`, which imports `case-schema.md`.
+
+Then:
+The item names them `estimate_kind` and `estimate_slug`.
+**＋** `case-schema.md` says why the prefix: `kind` and `slug` on the item are the target
+page's own fields.
+**－** No other key of a `then` item is renamed; `method` and `contract` stay as they are.
+
 ## Method
 
 One reading at a session start, by hand, plus the preview cases of `tests/test_ledger.py`.
@@ -62,3 +75,4 @@ the criterion's wording predates that change.
 - 2026-09-12 updated: the then block form of case 72.1 joins the criterion; pending for the next session's reading · [[decision-case-72.1]]
 - 2026-09-12 criterion: case 73.9 added · [[decision-case-73.9]]
 - 2026-09-12 criterion: case 75.1 added · [[decision-case-75.1]]
+- 2026-09-12 criterion: case 86 added · [[decision-case-86]]

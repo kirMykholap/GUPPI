@@ -2,11 +2,11 @@
 type: rule
 kind: Leaf
 purpose: Prevents a hook from being registered by hand, outside a ratified decision
-status: built
+status: draft
 enforcement: render
 governs: .claude/settings.json
-render_mode: full
-parent: rule-harness
+render_mode: partial
+parent: rule-settings
 estimates: [estimate-hook-registry-rendered]
 origin: raw/2026-09-09/ledger.md#case-18.2
 sprint: migration
@@ -16,31 +16,27 @@ tags: [hooks, harness, render]
 
 ## Purpose
 
-Prevents a hook from being registered by hand, outside a ratified decision. A hook Rule
-names `.claude/settings.json` in `implementation_ref`, but nothing ties the file to the
-pages: a registration added or dropped by hand changes what fires with no ledger line
-behind it. The Render body is the file; adding a hook is an `update` of this page in the
-same Case that creates the hook's Rule. `defaultMode: plan` lives here too: it is harness
-configuration, and one file has one source.
+Prevents a hook from being registered by hand, outside a ratified decision. A hook
+Rule names `.claude/settings.json` in `implementation_ref`, but nothing ties the
+file to the pages: a registration added or dropped by hand changes what fires with
+no ledger line behind it. This page is the `"hooks"` key of that file; adding a
+hook is an `update` of this page in the same Case that creates the hook's Rule.
 
-`parent: rule-harness`: the registry holds the hooks of every phase, so it sits with the tools of the harness, in no phase. A hook in an agent's own frontmatter is part of that agent's Render and is ratified with it; this registry holds `settings.json` only.
+`parent: rule-settings`: the file is one text of three rules, and the registry is
+one of them (case 85.3). A hook in an agent's own frontmatter is part of that
+agent's Render and is ratified with it; this page holds the registrations only.
 
 ## Render
 
 <!-- rule-hook-registry -->
-{
-  "permissions": {
-    "defaultMode": "plan"
-  },
-  "hooks": {
-        "SessionStart": [
+    "SessionStart": [
       { "hooks": [ { "type": "command", "command": "uv run guppi event session-start", "timeout": 30 },
                    { "type": "command", "command": "uv run guppi render --sync", "timeout": 60 } ] }
     ],
     "PreToolUse": [
       { "matcher": "ExitPlanMode",
         "hooks": [ { "type": "command", "command": "uv run guppi pretask", "timeout": 30 } ] },
-            { "matcher": "Skill",
+      { "matcher": "Skill",
         "hooks": [ { "type": "command", "command": "uv run guppi gate", "timeout": 30 } ] },
       { "matcher": "Edit|Write|MultiEdit",
         "hooks": [ { "type": "command", "command": "uv run guppi guard", "timeout": 30 } ] }
@@ -53,8 +49,6 @@ configuration, and one file has one source.
     "Stop": [
       { "hooks": [ { "type": "command", "command": "uv run guppi ledger", "timeout": 30 } ] }
     ]
-  }
-}
 <!-- /rule-hook-registry -->
 
 ## Estimates
@@ -75,3 +69,5 @@ configuration, and one file has one source.
 - 2026-09-10 status: draft → built · cascade
 - 2026-09-12 updated: guppi guard registered on PreToolUse of Edit, Write and MultiEdit (case 59.6) · [[decision-case-59.6]]
 - 2026-09-12 updated: guppi render --sync registered as the second SessionStart hook (case 59.7) · [[decision-case-59.7]]
+- 2026-09-12 updated: the page renders the hooks key only, as a partial child of rule-settings (case 85.3) · [[decision-case-85.3]]
+- 2026-09-12 status: built → draft · cascade

@@ -1,8 +1,9 @@
 ---
 type: decision
 case: "84"
-status: current
+status: superseded
 defer: [rule-claude-md, rule-render-harness]
+superseded_by: [decision-case-88.1, decision-case-88.2]
 origin: raw/2026-09-12/ledger.md#case-84
 sprint: migration
 created: 2026-09-12
@@ -30,3 +31,5 @@ next Plan Mode, under the derived-Criterion scheme of case 72.
 ## History
 
 - 2026-09-12 created · raw/2026-09-12/ledger.md#case-84
+- 2026-09-12 superseded by decision-case-88.1 · [[decision-case-88.1]]
+- 2026-09-12 superseded by decision-case-88.2 · [[decision-case-88.2]]

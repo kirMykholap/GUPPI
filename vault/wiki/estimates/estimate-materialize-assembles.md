@@ -55,13 +55,42 @@ Stdout holds the yaml each date would be written with — entries, `unparsed`,
 `raw/` changes; exit 0, or 1 on an error of the walk as without `--show`.
 **＋** Without `--show` the command writes as before.
 
+### case 87
+
+When:
+`guppi materialize` reads a `- lesson[...]` ledger line whose braces carry `{source:...}`.
+
+Then:
+The entry carries `source` in its `fields`, and `generate` writes it into the page's
+frontmatter.
+**＋** A `knowledge` lesson whose line carries no `source` is still marked
+`incomplete: [source]`; an `error` lesson never is.
+**＋** A one-off run sets `source` on the five live pages whose line carries one and whose
+page lacks it, taking the value from the line.
+**－** The six `knowledge` pages whose lines carry no source keep their lint finding;
+nothing invents one.
+**－** The applied entries of the earlier yamls are not rewritten: they record what the
+parser did that day.
+
+### case 90.1
+
+When:
+`guppi materialize` meets an `update` whose item carries `contract: changed`.
+
+Then:
+When the item carries `estimate_slug`, the derived entry goes to that Estimate.
+**＋** When it does not, and the page carries exactly one Estimate, it goes to that one.
+**＋** When the page carries none or more than one and the item names none, the entry goes
+without a slug and is marked `incomplete: [estimate]`.
+**－** The `create` branch does not change: it reads `estimate_slug` already.
+
 ## Method
 
 pytest in tests/test_materialize.py against a temp vault; the live reading once by hand
 
 ## Result
 
-tests/test_materialize.py 33 green in the 258 of make test: the derived Estimate create from a Leaf create with method (derived slug, ref, tags, Context from problem, Criterion as a ### case N block, Method), the update entry from contract: changed with the block and pending, nothing from contract: same, the remove_criterion entry from a supersedes, criterion on the decision entry, every Spec of a date in folder order and a Case in two files stopping the walk, --show printing the yaml and writing nothing, the clauses of 53.3, 60 and 61 as before; live 2026-09-12 session J with --show --date 2026-09-09: 74 entries, 0 unparsed, 34 creates all marked exists, nothing written
+unit: tests/test_materialize.py 35 green with the blocks of 87 and 90.1 — a knowledge line with a source carries it into fields and is not incomplete, a knowledge line without one is incomplete: [source], an error line keeps a source it was given; a contract change names its Estimate through estimate_slug, falls back to a page's single Estimate, and goes slug-less with incomplete: [estimate] when the page carries none or two; live 2026-09-12 session K, materialize --show --date 2026-09-12: every derived entry of cases 85.1, 85.3, 86, 87, 88.1, 89.1, 89.4, 90.1, 90.2, 90.3 and 91 names its Estimate and none is incomplete; the applied lesson entries of the earlier run keep their old marks, as case 87 says
 
 ## History
 
@@ -77,3 +106,6 @@ tests/test_materialize.py 33 green in the 258 of make test: the derived Estimate
 - 2026-09-12 criterion: case 73.5 added · [[decision-case-73.5]]
 - 2026-09-12 criterion: case 76 added · [[decision-case-76]]
 - 2026-09-12 status: pending → passed · raw/2026-09-12/ledger.md#L157
+- 2026-09-12 criterion: case 87 added · [[decision-case-87]]
+- 2026-09-12 criterion: case 90.1 added · [[decision-case-90.1]]
+- 2026-09-12 status: pending → passed · raw/2026-09-12/ledger.md#L207

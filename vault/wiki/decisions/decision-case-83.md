@@ -1,8 +1,9 @@
 ---
 type: decision
 case: "83"
-status: current
+status: superseded
 defer: [rule-governed-files-hook]
+superseded_by: [decision-case-91]
 origin: raw/2026-09-12/ledger.md#case-83
 sprint: migration
 created: 2026-09-12
@@ -26,3 +27,4 @@ Mode.
 ## History
 
 - 2026-09-12 created · raw/2026-09-12/ledger.md#case-83
+- 2026-09-12 superseded by decision-case-91 · [[decision-case-91]]

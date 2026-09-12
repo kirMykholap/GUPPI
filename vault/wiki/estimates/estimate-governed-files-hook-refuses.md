@@ -1,7 +1,7 @@
 ---
 type: estimate
 kind: QA
-status: failed
+status: passed
 target: rule-governed-files-hook
 origin: raw/2026-09-12/ledger.md#case-71.1
 sprint: migration
@@ -24,6 +24,19 @@ that registers the hook —
 an `Edit` on `.claude/skills/hi/SKILL.md` refused, the rule named, the call in the
 event log.
 
+### case 91
+
+When:
+`guppi guard` refuses an `Edit`, `Write` or `MultiEdit` of a governed file.
+
+Then:
+Before it exits 2 it appends one line to `vault/raw/<date>/event_log.md`.
+**＋** The line carries the time, the session, the tool, the path and the slug of the rule
+that governs the file.
+**－** A call the hook lets through writes nothing: `PostToolUse` logs it as before.
+**－** A log the hook cannot write does not change the refusal: the exit stays 2 and the
+reason still goes to stderr.
+
 ## Method
 
 pytest in `tests/test_guard.py` with piped payloads; the live probe once by hand,
@@ -31,9 +44,11 @@ written into the estimate line.
 
 ## Result
 
-unit: tests/test_guard.py green in the 211 of make test; live 2026-09-12 session J, first render of the session registered the hook in .claude/settings.json: an Edit on .claude/skills/hi/SKILL.md was refused with "guard: .claude/skills/hi/SKILL.md is rendered from rule-skill-hi; change the Rule page through a decision", the file unchanged; the call is NOT in the event log — PostToolUse does not fire for a tool a PreToolUse hook blocked, and the guard logs nothing itself; two of the three live clauses hold, the third does not
+unit: tests/test_guard.py 20 green in the 267 of make test, with the three cases of 91 — a refusal writes its event line with the tool, the path and the rule; a call the guard lets through writes none; an append that raises leaves the exit at 2 and adds one stderr line; live 2026-09-12 session K: an Edit on .claude/skills/hi/SKILL.md was refused with "guard: .claude/skills/hi/SKILL.md is rendered from rule-skill-hi; change the Rule page through a decision", the file unchanged, and raw/2026-09-12/event_log.md gained "- 21:55:57 91c83351 guard refused Edit .claude/skills/hi/SKILL.md (rule-skill-hi)" — the third live clause, the one that failed in session J, now holds
 
 ## History
 
 - 2026-09-12 created · [[decision-case-71.1]]
 - 2026-09-12 status: pending → failed · raw/2026-09-12/ledger.md#L152
+- 2026-09-12 criterion: case 91 added · [[decision-case-91]]
+- 2026-09-12 status: pending → passed · raw/2026-09-12/ledger.md#L206

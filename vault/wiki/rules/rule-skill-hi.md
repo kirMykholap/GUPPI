@@ -9,6 +9,7 @@ render_mode: full
 parent: rule-session-start
 children: [rule-internal-context, rule-git-context, rule-github-issues]
 estimates: [estimate-hi-no-read-calls, estimate-hi-writes-frontier]
+deferred_by: [decision-case-98]
 origin: raw/2026-09-09/ledger.md#case-11
 sprint: migration
 created: 2026-09-09
@@ -85,3 +86,4 @@ of this render.
 - 2026-09-12 status: built → draft · cascade
 - 2026-09-12 updated: the Frontier lands in the session's folder (case 73.3) · [[decision-case-73.3]]
 - 2026-09-12 status: draft → built · cascade
+- 2026-09-12 deferred · [[decision-case-98]]

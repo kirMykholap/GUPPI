@@ -9,7 +9,6 @@ render_mode: full
 parent: rule-harness
 children: [rule-case-protocol]
 estimates: [estimate-claude-md-rendered]
-deferred_by: [decision-case-84]
 origin: raw/2026-09-12/ledger.md#case-59.8
 sprint: migration
 created: 2026-09-12
@@ -113,3 +112,5 @@ migration, by an `update` of this page. `rule-case-protocol` has this page as it
 - 2026-09-12 updated: the Migration paragraph names the session's folder (case 73.10) · [[decision-case-73.10]]
 - 2026-09-12 updated: the stale sentence on rule-case-protocol's parent corrected (case 77) · [[decision-case-77]]
 - 2026-09-12 deferred · [[decision-case-84]]
+- 2026-09-12 defer by decision-case-84 superseded · [[decision-case-88.1]]
+- 2026-09-12 updated: the live clause of the CLAUDE.md reading is a standing rule, read against the two pages that render it (case 88.2) · [[decision-case-88.2]]

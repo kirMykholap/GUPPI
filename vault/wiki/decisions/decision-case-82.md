@@ -1,8 +1,9 @@
 ---
 type: decision
 case: "82"
-status: current
+status: superseded
 defer: [rule-materialize]
+superseded_by: [decision-case-87]
 origin: raw/2026-09-12/ledger.md#case-82
 sprint: migration
 created: 2026-09-12
@@ -26,3 +27,4 @@ change of that contract. One `update` of `rule-materialize`; the next Plan Mode.
 ## History
 
 - 2026-09-12 created · raw/2026-09-12/ledger.md#case-82
+- 2026-09-12 superseded by decision-case-87 · [[decision-case-87]]

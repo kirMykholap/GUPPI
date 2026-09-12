@@ -35,13 +35,41 @@ Then:
 Its first input is the `handoff.md` the dispatch names, `raw/<hi date>/<hi HHMM>/handoff.md`;
 the other three inputs are unchanged.
 
+### case 89.1
+
+When:
+The librarian reaches the end of its run.
+
+Then:
+After `cleanup` and before the brief it runs `uv run guppi render`, and the governed
+files are written from the pages of that same run.
+**＋** Every line on its stderr is a flag for the brief.
+**＋** `make lint` at the close then passes its `render --check` step.
+**－** A file the render could not write is left to the next session start; the librarian
+does not write it by hand.
+
+### case 90.3
+
+When:
+The handoff tells the librarian to do what the criterion of `rule-documentation` forbids
+— repair an entry of the yaml, or read `ledger.md`, a Spec, a decision page or the
+archive.
+
+Then:
+The librarian does not do it.
+**＋** It names the instruction in the report: what was asked, and why it was refused.
+**－** The handoff itself is checked by nothing: it is written from memory, and the
+refusal is the librarian's work, not its author's.
+**－** A refusal does not stop the run: the librarian asks no questions, the person is
+gone.
+
 ## Method
 
 `make test-documentation`, the pipeline over tests/test_materialize.py, tests/test_generate.py and tests/test_cleanup.py; the live reading by hand
 
 ## Result
 
-the librarian run of session H (2026-09-11 12:10–12:21, commit 10731cb) read again against the criterion of case 58: make test 158 green; every decision line of Cases 52–57 has its Decision page and targets, 79 entries none unapplied, none failed; every wiki page opened is named in the report with reason and outcome; no ledger, spec, plan, decision page or archive file read; the yaml edited only by the index check and synthesis entries; commands in the event log; commit separate, vault/ only; no stop; the one read outside the four inputs was the Makefile at 12:18:26, which the criterion now allows as the scripts' own file — Slice 3 closes
+make test-documentation 67 green; live 2026-09-12, the librarian's run of session J (15:57:15–16:08:31, commit 8836953): its first input was vault/raw/2026-09-12/1156/handoff.md, the session folder the dispatch named (case 73.8); all 49 decision cases of today's ledger have their Decision page and their target page; the event log of the window holds no read of a ledger, a Spec, a plan, a Decision page or an archive file, every wiki page it opened is named in the report with a reason and an outcome, its commands are in the event log, its commit is separate from the session's and touches vault/ only, and it did not stop to ask; one clause does not hold — it edited three yaml entries by hand (slug on the derived updates of cases 73.10 and 73.3, fields.source on lesson-hooks-blocked-pretooluse-leaves-no-posttooluse-event), the repair item 2 of the handoff named by slug and the criterion of case 44 forbids
 
 ## History
 
@@ -54,3 +82,6 @@ the librarian run of session H (2026-09-11 12:10–12:21, commit 10731cb) read a
 - 2026-09-12 status: failed → passed · raw/2026-09-12/ledger.md#L35
 - 2026-09-12 updated: the Makefile, guppi/ and tests/ leave the forbidden set; pending for the reading against the new criterion (case 58) · [[decision-case-58]]
 - 2026-09-12 criterion: case 73.8 added · [[decision-case-73.8]]
+- 2026-09-12 status: pending → failed · raw/2026-09-12/ledger.md#L168
+- 2026-09-12 criterion: case 89.1 added · [[decision-case-89.1]]
+- 2026-09-12 criterion: case 90.3 added · [[decision-case-90.3]]

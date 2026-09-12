@@ -4,6 +4,7 @@ ledger: vault/raw/2026-09-12/ledger.md
 spec:
 - vault/raw/2026-09-12/0454/spec.md
 - vault/raw/2026-09-12/1156/spec.md
+- vault/raw/2026-09-12/1610/spec.md
 entries:
 - line: 1
   text: 'lesson[error][lesson-plan-mode-exited-per-frontier-item]{tags:session,workflow}{source:session
@@ -3179,6 +3180,7 @@ entries:
       as a short-form Case
   exists: true
   applied: '16:03:46'
+  superseded_by: '93'
 - line: 147
   text: decision[case 78][defer][rule-work-mode]{ref:rule-work-mode}{supersedes:case 64}
   case: '78'
@@ -3205,6 +3207,7 @@ entries:
     purpose: Governs the subagent that executes a task of the Spec and stops at a fork
   exists: true
   applied: '16:03:46'
+  superseded_by: '93'
 - line: 148
   text: decision[case 78][defer][rule-subagent-guppi]{ref:rule-subagent-guppi}{supersedes:case 64}
   case: '78'
@@ -3231,6 +3234,7 @@ entries:
     purpose: Shows at /hi the ledger lines written after the librarian's commit
   exists: true
   applied: '16:03:46'
+  superseded_by: '95'
 - line: 149
   text: decision[case 79][defer][rule-ledger-tail]{ref:rule-ledger-tail}{supersedes:case 63}
   case: '79'
@@ -3257,6 +3261,7 @@ entries:
     purpose: Answers a question about the vault from the indexes, one entry point; the archive included
   exists: true
   applied: '16:03:46'
+  superseded_by: '94'
 - line: 150
   text: decision[case 80][defer][rule-ask]{ref:rule-ask}{supersedes:case 65}
   case: '80'
@@ -3500,6 +3505,7 @@ entries:
     purpose: Holds the Case protocol every session reads; its Render names the fields of the then item
   exists: true
   applied: '16:03:46'
+  superseded_by: '86'
 - line: 162
   text: decision[case 82][defer][rule-materialize]{ref:rule-materialize}
   case: '82'
@@ -3514,6 +3520,7 @@ entries:
     purpose: Turns the ledger and the Spec of a date into the yaml the librarian applies
   exists: true
   applied: '16:03:46'
+  superseded_by: '87'
 - line: 163
   text: decision[case 83][defer][rule-governed-files-hook]{ref:rule-governed-files-hook}
   case: '83'
@@ -3528,6 +3535,7 @@ entries:
     purpose: Prevents a harness file rendered from a Rule page from being edited by hand
   exists: true
   applied: '16:03:46'
+  superseded_by: '91'
 - line: 164
   text: decision[case 84][defer][rule-claude-md]{ref:rule-claude-md}
   case: '84'
@@ -3542,6 +3550,7 @@ entries:
     purpose: Prevents the system prompt from holding a line nobody ratified
   exists: true
   applied: '16:03:46'
+  superseded_by: '88.2'
 - line: 165
   text: decision[case 84][defer][rule-render-harness]{ref:rule-render-harness}
   case: '84'
@@ -3556,6 +3565,7 @@ entries:
     purpose: Keeps a Rule page and the harness file rendered from it one text
   exists: true
   applied: '16:03:46'
+  superseded_by: '88.2'
 - kind: update
   category: insights
   slug: insight-ledger-line-written-unchecked
@@ -3774,6 +3784,1788 @@ entries:
     insight: insight-materialize-lift-loses-a-schema-field
   change: 'clustered by librarian: the lift from a line to a page loses a field, with lesson-materialize-standalone-estimate-keeps-criterion-as-a-field'
   applied: '16:03:46'
+- line: 166
+  text: 'estimate[estimate-render-sync-reports][passed] unit: tests/test_render.py green in the 47 of
+    uv run pytest tests/test_render.py tests/test_generate.py; live 2026-09-12 session K, the first session
+    start after case 59.7: the SessionStart hook printed a unified diff of the six governed files the
+    librarian''s run of session J had left behind — CLAUDE.md, .claude/agents/librarian-guppi.md and the
+    hi, pre-task, retro and handoff skills — wrote the rendered text into them, and uv run guppi render
+    --check now exits 0; the CLAUDE.md this session loaded is the text the hook wrote, not the text before
+    it: the system prompt carries the raw/<date>/<hi HHMM>/spec.md wording of case 73 and the decision-line
+    grammar of case 75.1, both written into rule-claude-md and rule-case-protocol after the file was last
+    rendered'
+  kind: estimate
+  category: estimates
+  slug: estimate-render-sync-reports
+  status: passed
+  result: 'unit: tests/test_render.py green in the 47 of uv run pytest tests/test_render.py tests/test_generate.py;
+    live 2026-09-12 session K, the first session start after case 59.7: the SessionStart hook printed
+    a unified diff of the six governed files the librarian''s run of session J had left behind — CLAUDE.md,
+    .claude/agents/librarian-guppi.md and the hi, pre-task, retro and handoff skills — wrote the rendered
+    text into them, and uv run guppi render --check now exits 0; the CLAUDE.md this session loaded is
+    the text the hook wrote, not the text before it: the system prompt carries the raw/<date>/<hi HHMM>/spec.md
+    wording of case 73 and the decision-line grammar of case 75.1, both written into rule-claude-md and
+    rule-case-protocol after the file was last rendered'
+  origin: raw/2026-09-12/ledger.md#L166
+  applied: '22:07:42'
+- line: 167
+  text: 'estimate[estimate-generate-writes][passed] unit: tests/test_generate.py green in the same 47,
+    with the derived Estimate page and the decision page''s Criterion links of case 72.4; live 2026-09-12,
+    the librarian''s run of session J on raw/2026-09-12/materialize.yaml: 76 pages for the date and 0
+    for the three earlier dates, exit 0, stderr empty, every entry of every yaml applied and none failed
+    — 30 decision pages created and 6 set superseded, 17 rules updated, 2 estimates created and 11 updated,
+    5 lessons created and 5 set clustered, 1 insight created and 3 updated, 21 derived criterion blocks
+    appended with their Estimate set pending, 8 remove_criterion entries applied, 11 file entries skipped
+    as Rule-class; guppi lint afterwards 133 findings in the known-false classes only (128 schema, 3 orphan,
+    1 ref, 1 method) against 129 before the run; git show --stat 8836953 touches vault/ only'
+  kind: estimate
+  category: estimates
+  slug: estimate-generate-writes
+  status: passed
+  result: 'unit: tests/test_generate.py green in the same 47, with the derived Estimate page and the decision
+    page''s Criterion links of case 72.4; live 2026-09-12, the librarian''s run of session J on raw/2026-09-12/materialize.yaml:
+    76 pages for the date and 0 for the three earlier dates, exit 0, stderr empty, every entry of every
+    yaml applied and none failed — 30 decision pages created and 6 set superseded, 17 rules updated, 2
+    estimates created and 11 updated, 5 lessons created and 5 set clustered, 1 insight created and 3 updated,
+    21 derived criterion blocks appended with their Estimate set pending, 8 remove_criterion entries applied,
+    11 file entries skipped as Rule-class; guppi lint afterwards 133 findings in the known-false classes
+    only (128 schema, 3 orphan, 1 ref, 1 method) against 129 before the run; git show --stat 8836953 touches
+    vault/ only'
+  origin: raw/2026-09-12/ledger.md#L167
+  applied: '22:07:42'
+- line: 168
+  text: 'estimate[estimate-documentation-completes][failed] make test-documentation 67 green; live 2026-09-12,
+    the librarian''s run of session J (15:57:15–16:08:31, commit 8836953): its first input was vault/raw/2026-09-12/1156/handoff.md,
+    the session folder the dispatch named (case 73.8); all 49 decision cases of today''s ledger have their
+    Decision page and their target page; the event log of the window holds no read of a ledger, a Spec,
+    a plan, a Decision page or an archive file, every wiki page it opened is named in the report with
+    a reason and an outcome, its commands are in the event log, its commit is separate from the session''s
+    and touches vault/ only, and it did not stop to ask; one clause does not hold — it edited three yaml
+    entries by hand (slug on the derived updates of cases 73.10 and 73.3, fields.source on lesson-hooks-blocked-pretooluse-leaves-no-posttooluse-event),
+    the repair item 2 of the handoff named by slug and the criterion of case 44 forbids'
+  kind: estimate
+  category: estimates
+  slug: estimate-documentation-completes
+  status: failed
+  result: 'make test-documentation 67 green; live 2026-09-12, the librarian''s run of session J (15:57:15–16:08:31,
+    commit 8836953): its first input was vault/raw/2026-09-12/1156/handoff.md, the session folder the
+    dispatch named (case 73.8); all 49 decision cases of today''s ledger have their Decision page and
+    their target page; the event log of the window holds no read of a ledger, a Spec, a plan, a Decision
+    page or an archive file, every wiki page it opened is named in the report with a reason and an outcome,
+    its commands are in the event log, its commit is separate from the session''s and touches vault/ only,
+    and it did not stop to ask; one clause does not hold — it edited three yaml entries by hand (slug
+    on the derived updates of cases 73.10 and 73.3, fields.source on lesson-hooks-blocked-pretooluse-leaves-no-posttooluse-event),
+    the repair item 2 of the handoff named by slug and the criterion of case 44 forbids'
+  origin: raw/2026-09-12/ledger.md#L168
+  applied: '22:07:42'
+- line: 169
+  text: 'estimate[estimate-synthesis-clusters][passed] live 2026-09-12, the librarian''s run of session
+    J with five lesson entries: one insight create — insight-materialize-lift-loses-a-schema-field over
+    lesson-materialize-standalone-estimate-keeps-criterion-as-a-field and lesson-materialize-lesson-line-source-dropped
+    — with a pattern, both children, the union of tags, Pattern and Proposal, and one update per lesson
+    setting clustered and insight; two live Insights extended by a matching lesson, insight-ledger-line-written-unchecked
+    to four children and insight-workflow-contract-change-leaves-its-derived-text-stale to three, each
+    with its lesson update; all 8 added entries carry librarian: synthesis, 17 in the yaml with the 9
+    of session H; the report names the comparisons against lessons-index and insights-index and every
+    lesson page read with its outcome, four near marks; the event log of the window holds no archive read;
+    lesson-hooks-blocked-pretooluse-leaves-no-posttooluse-event found no pair and stayed new'
+  kind: estimate
+  category: estimates
+  slug: estimate-synthesis-clusters
+  status: passed
+  result: 'live 2026-09-12, the librarian''s run of session J with five lesson entries: one insight create
+    — insight-materialize-lift-loses-a-schema-field over lesson-materialize-standalone-estimate-keeps-criterion-as-a-field
+    and lesson-materialize-lesson-line-source-dropped — with a pattern, both children, the union of tags,
+    Pattern and Proposal, and one update per lesson setting clustered and insight; two live Insights extended
+    by a matching lesson, insight-ledger-line-written-unchecked to four children and insight-workflow-contract-change-leaves-its-derived-text-stale
+    to three, each with its lesson update; all 8 added entries carry librarian: synthesis, 17 in the yaml
+    with the 9 of session H; the report names the comparisons against lessons-index and insights-index
+    and every lesson page read with its outcome, four near marks; the event log of the window holds no
+    archive read; lesson-hooks-blocked-pretooluse-leaves-no-posttooluse-event found no pair and stayed
+    new'
+  origin: raw/2026-09-12/ledger.md#L169
+  applied: '22:07:42'
+- line: 170
+  text: 'lesson[error][lesson-handoff-instructs-a-repair-the-librarian-rule-forbids]{tags:harness,librarian,workflow}
+    trigger: the live reading of estimate-documentation-completes for the librarian run of session J failed
+    on one clause only — three yaml entries edited by hand, which item 2 of the handoff named by slug
+    and the criterion of case 44 forbids root_cause: the handoff is written by the main agent from memory
+    and nothing checks it against the criterion of rule-documentation; the librarian takes the handoff
+    as its first input and as its instruction list, so an instruction that breaks the Rule reaches it
+    carrying the authority of the person''s session, and the librarian obeys instead of flagging it'
+  kind: lesson
+  category: lessons
+  slug: lesson-handoff-instructs-a-repair-the-librarian-rule-forbids
+  origin: raw/2026-09-12/ledger.md#L170
+  fields:
+    type: lesson
+    kind: error
+    root_cause: the handoff is written by the main agent from memory and nothing checks it against the
+      criterion of rule-documentation; the librarian takes the handoff as its first input and as its instruction
+      list, so an instruction that breaks the Rule reaches it carrying the authority of the person's session,
+      and the librarian obeys instead of flagging it
+  sections:
+    Trigger: the live reading of estimate-documentation-completes for the librarian run of session J failed
+      on one clause only — three yaml entries edited by hand, which item 2 of the handoff named by slug
+      and the criterion of case 44 forbids
+    Root cause: the handoff is written by the main agent from memory and nothing checks it against the
+      criterion of rule-documentation; the librarian takes the handoff as its first input and as its instruction
+      list, so an instruction that breaks the Rule reaches it carrying the authority of the person's session,
+      and the librarian obeys instead of flagging it
+  tags:
+  - harness
+  - librarian
+  - workflow
+  applied: '22:07:42'
+- line: 171
+  text: decision[case 85.1][update][rule-render-harness]{ref:rule-render-harness}
+  case: '85.1'
+  kind: update
+  slug: rule-render-harness
+  origin: raw/2026-09-12/ledger.md#case-85.1
+  decision: decision-case-85.1
+  ref: rule-render-harness
+  category: rules
+  sections:
+    How it works: '`uv run guppi render` writes every governed file from its Rule page; `--check`
+
+      renders in memory and names the files that differ, for `make lint`; `--sync`, the
+
+      `SessionStart` hook, prints a unified diff for each differing file — the file as it
+
+      is, then the rendered text — and writes it, so the agent''s first turn shows what
+
+      the render changed: the pages the librarian updated, or a hand edit that is now
+
+      gone and may deserve a Case. It exits 0 always; `SessionStart` cannot block, and a
+
+      render error goes to stderr. The rendered files are committed at Retro.
+
+
+      A child of a `full` page lands between its own markers, which stay in the file and
+
+      say who owns the text. A file that cannot hold a comment takes the child''s text
+
+      bare: the markers would make it unparsable. The owner is then named by the
+
+      `<!-- child -->` line of the parent''s body, and `render --check` compares the whole
+
+      file, so nothing is lost but the label in the file itself (case 85.1).
+
+      '
+  change: a child spliced into a file that cannot hold a comment lands without its markers (case 85.1)
+  applied: '22:07:42'
+- line: 171
+  text: decision[case 85.1][update][rule-render-harness]{ref:rule-render-harness}
+  case: '85.1'
+  kind: update
+  slug: estimate-render-harness-reproduces
+  category: estimates
+  origin: raw/2026-09-12/ledger.md#case-85.1
+  decision: decision-case-85.1
+  derived: true
+  criterion_block: '### case 85.1
+
+
+    When:
+
+    `guppi render` writes a file that cannot hold a comment — today `.claude/settings.json`.
+
+
+    Then:
+
+    The text of each child replaces its `<!-- child -->` line without the two marker lines.
+
+    **＋** In every other file the splice keeps the markers.
+
+    **－** A `partial` page whose file has no `full` owner still needs its markers in the
+
+    file; a file that holds no comment can have no such page.'
+  set:
+    status: pending
+  change: 'criterion: case 85.1 added'
+  applied: '22:07:42'
+- line: 172
+  text: decision[case 85.2][create][rule-settings]{ref:rule-harness}{tags:harness,render}
+  case: '85.2'
+  kind: create
+  slug: rule-settings
+  origin: raw/2026-09-12/ledger.md#case-85.2
+  decision: decision-case-85.2
+  ref: rule-harness
+  tags:
+  - harness
+  - render
+  category: rules
+  fields:
+    type: rule
+    kind: MOC
+    purpose: Keeps the three rules that share .claude/settings.json from becoming two copies of one file
+    tags:
+    - harness
+    - render
+    enforcement: render
+    governs: .claude/settings.json
+    render_mode: full
+    children:
+    - rule-default-mode
+    - rule-permissions
+    - rule-hook-registry
+  sections:
+    Purpose: 'Keeps the three rules that share `.claude/settings.json` from becoming two copies
+
+      of one file. The permission mode a session opens in, what may be written without a
+
+      question, and which hook fires on which event are three different rules with three
+
+      different criteria, and one file carries all three. This page is the file: its body
+
+      is the whole of `settings.json`, and each `<!-- child -->` line names the page that
+
+      owns that text.
+
+
+      `parent: rule-harness`: the file belongs to no phase of the session.
+
+      '
+    Render: "<!-- rule-settings -->\n{\n  \"permissions\": {\n<!-- rule-default-mode -->\n<!-- rule-permissions\
+      \ -->\n  },\n  \"hooks\": {\n<!-- rule-hook-registry -->\n  }\n}\n<!-- /rule-settings -->\n"
+  applied: '22:07:42'
+- line: 172
+  text: decision[case 85.2][create][rule-settings]{ref:rule-harness}{tags:harness,render}
+  case: '85.2'
+  kind: create
+  slug: estimate-settings
+  category: estimates
+  ref: rule-settings
+  origin: raw/2026-09-12/ledger.md#case-85.2
+  decision: decision-case-85.2
+  derived: true
+  tags:
+  - harness
+  - render
+  fields:
+    type: estimate
+    kind: QA
+  sections:
+    Context: 'How to describe `settings.json` so that permissions have their own rule, the mode has
+
+      its own and the hooks have their own, while the file keeps one source.'
+    Criterion: '### case 85.2
+
+
+      When:
+
+      `guppi render` runs, or someone reads `.claude/settings.json`.
+
+
+      Then:
+
+      `rule-settings` is a MOC, `enforcement: render`, `render_mode: full`,
+
+      `governs: .claude/settings.json`; its body is the whole file, with one `<!-- child -->`
+
+      line where a child owns the text.
+
+      **＋** Its `children` are `rule-default-mode`, `rule-permissions`, `rule-hook-registry`,
+
+      and that order is the order of the keys in the file.
+
+      **＋** Its Estimate reads the rendered file: it parses as JSON, `render --check` exits 0,
+
+      and the next session start writes its `session-start` line into the event log.
+
+      **－** The MOC holds no rule of its own about what a hook or a permission may be.'
+    Method: uv run guppi render, then json.load on .claude/settings.json and guppi render --check; the
+      live half at the next session start — the session-start line in raw/<date>/event_log.md came from
+      the rendered file
+  applied: '22:07:42'
+- line: 173
+  text: decision[case 85.2][update][rule-harness]{ref:rule-harness}
+  case: '85.2'
+  kind: update
+  slug: rule-harness
+  origin: raw/2026-09-12/ledger.md#case-85.2
+  decision: decision-case-85.2
+  ref: rule-harness
+  category: rules
+  set:
+    children:
+    - rule-render-harness
+    - rule-settings
+    - rule-lint
+    - rule-index
+    - rule-governed-files-hook
+    - rule-claude-md
+  change: rule-settings takes the slot of rule-hook-registry, which becomes its child (case 85.2)
+  applied: '22:07:42'
+- line: 174
+  text: decision[case 85.3][update][rule-hook-registry]{ref:rule-hook-registry}
+  case: '85.3'
+  kind: update
+  slug: rule-hook-registry
+  origin: raw/2026-09-12/ledger.md#case-85.3
+  decision: decision-case-85.3
+  ref: rule-hook-registry
+  category: rules
+  set:
+    render_mode: partial
+    parent: rule-settings
+  sections:
+    Purpose: 'Prevents a hook from being registered by hand, outside a ratified decision. A hook
+
+      Rule names `.claude/settings.json` in `implementation_ref`, but nothing ties the
+
+      file to the pages: a registration added or dropped by hand changes what fires with
+
+      no ledger line behind it. This page is the `"hooks"` key of that file; adding a
+
+      hook is an `update` of this page in the same Case that creates the hook''s Rule.
+
+
+      `parent: rule-settings`: the file is one text of three rules, and the registry is
+
+      one of them (case 85.3). A hook in an agent''s own frontmatter is part of that
+
+      agent''s Render and is ratified with it; this page holds the registrations only.
+
+      '
+    Render: "<!-- rule-hook-registry -->\n    \"SessionStart\": [\n      { \"hooks\": [ { \"type\": \"\
+      command\", \"command\": \"uv run guppi event session-start\", \"timeout\": 30 },\n             \
+      \      { \"type\": \"command\", \"command\": \"uv run guppi render --sync\", \"timeout\": 60 } ]\
+      \ }\n    ],\n    \"PreToolUse\": [\n      { \"matcher\": \"ExitPlanMode\",\n        \"hooks\": [\
+      \ { \"type\": \"command\", \"command\": \"uv run guppi pretask\", \"timeout\": 30 } ] },\n     \
+      \ { \"matcher\": \"Skill\",\n        \"hooks\": [ { \"type\": \"command\", \"command\": \"uv run\
+      \ guppi gate\", \"timeout\": 30 } ] },\n      { \"matcher\": \"Edit|Write|MultiEdit\",\n       \
+      \ \"hooks\": [ { \"type\": \"command\", \"command\": \"uv run guppi guard\", \"timeout\": 30 } ]\
+      \ }\n    ],\n    \"PostToolUse\": [\n      { \"hooks\": [ { \"type\": \"command\", \"command\":\
+      \ \"uv run guppi event tool\", \"timeout\": 30 } ] },\n      { \"matcher\": \"ExitPlanMode\",\n\
+      \        \"hooks\": [ { \"type\": \"command\", \"command\": \"uv run guppi spec\", \"timeout\":\
+      \ 30 } ] }\n    ],\n    \"Stop\": [\n      { \"hooks\": [ { \"type\": \"command\", \"command\":\
+      \ \"uv run guppi ledger\", \"timeout\": 30 } ] }\n    ]\n<!-- /rule-hook-registry -->\n"
+  change: the page renders the hooks key only, as a partial child of rule-settings (case 85.3)
+  applied: '22:07:42'
+- line: 174
+  text: decision[case 85.3][update][rule-hook-registry]{ref:rule-hook-registry}
+  case: '85.3'
+  kind: update
+  slug: estimate-hook-registry-rendered
+  category: estimates
+  origin: raw/2026-09-12/ledger.md#case-85.3
+  decision: decision-case-85.3
+  derived: true
+  criterion_block: '### case 85.3
+
+
+    When:
+
+    `guppi render` runs.
+
+
+    Then:
+
+    `rule-hook-registry` renders the four event keys only, as a `partial` child of
+
+    `rule-settings`.
+
+    **＋** Its Purpose keeps the hooks and drops `defaultMode`, which is now
+
+    `rule-default-mode`.
+
+    **－** The whole-file clauses — the file parses, the next start still logs — belong to
+
+    `estimate-settings` from now on; this page answers for the hook registrations.'
+  set:
+    status: pending
+  change: 'criterion: case 85.3 added'
+  applied: '22:07:42'
+- line: 175
+  text: decision[case 85.4][create][rule-default-mode]{ref:rule-settings}{tags:harness,session}
+  case: '85.4'
+  kind: create
+  slug: rule-default-mode
+  near: rule-case-protocol
+  origin: raw/2026-09-12/ledger.md#case-85.4
+  decision: decision-case-85.4
+  ref: rule-settings
+  tags:
+  - harness
+  - session
+  category: rules
+  fields:
+    type: rule
+    kind: Leaf
+    purpose: Keeps a session from writing anything before a Case is ratified
+    tags:
+    - harness
+    - session
+    enforcement: render
+    governs: .claude/settings.json
+    render_mode: partial
+  sections:
+    Purpose: 'Keeps a session from writing anything before a Case is ratified. Plan Mode is the
+
+      form of the whole model: the agent reads, forms Cases and waits for a sign-off, and
+
+      the harness enforces it rather than the agent''s memory. `defaultMode` is one key,
+
+      but it decides what a session may do from its first turn, so it is a rule of its
+
+      own and not a line of the registry (case 85.4).
+
+      '
+    Render: "<!-- rule-default-mode -->\n    \"defaultMode\": \"plan\",\n<!-- /rule-default-mode -->\n"
+  applied: '22:07:42'
+- line: 175
+  text: decision[case 85.4][create][rule-default-mode]{ref:rule-settings}{tags:harness,session}
+  case: '85.4'
+  kind: create
+  slug: estimate-default-mode
+  category: estimates
+  ref: rule-default-mode
+  origin: raw/2026-09-12/ledger.md#case-85.4
+  decision: decision-case-85.4
+  derived: true
+  tags:
+  - harness
+  - session
+  fields:
+    type: estimate
+    kind: QA
+  sections:
+    Context: 'How to describe `settings.json` so that permissions have their own rule, the mode has
+
+      its own and the hooks have their own, while the file keeps one source.'
+    Criterion: '### case 85.4
+
+
+      When:
+
+      A session starts.
+
+
+      Then:
+
+      `.claude/settings.json` carries `"defaultMode": "plan"` from `rule-default-mode`, a Leaf
+
+      child of `rule-settings`, and the session opens in Plan Mode.
+
+      **＋** The page says why: nothing is written before a Case is ratified.
+
+      **－** The page holds no other permission field.'
+    Method: the rendered .claude/settings.json holds permissions.defaultMode as "plan" and parses; the
+      live half at the next session start — the session opens in Plan Mode and an edit outside the plan
+      file is not made without a sign-off
+  applied: '22:07:42'
+- line: 176
+  text: decision[case 85.5][create][rule-permissions]{ref:rule-settings}{tags:harness,session}
+  case: '85.5'
+  kind: create
+  slug: rule-permissions
+  origin: raw/2026-09-12/ledger.md#case-85.5
+  decision: decision-case-85.5
+  ref: rule-settings
+  tags:
+  - harness
+  - session
+  category: rules
+  fields:
+    type: rule
+    kind: Leaf
+    purpose: Lets the session write its own working files without asking, and nothing else
+    tags:
+    - harness
+    - session
+    enforcement: render
+    governs: .claude/settings.json
+    render_mode: partial
+  sections:
+    Purpose: 'Lets the session write its own working files without asking, and nothing else. The
+
+      Frontier, the Spec and the handoff are the session''s own record of itself: `/hi`
+
+      writes the Frontier, every closed item edits it, Work Mode ticks the boxes of the
+
+      Spec, `/handoff` writes the note. A question before each of those writes buys
+
+      nothing — the content is the agent''s own, and the person reads it in the reply
+
+      anyway.
+
+
+      What stays outside the list is the point of the list. `ledger.md` and
+
+      `event_log.md` are written by hooks, `materialize.yaml` by a script, and a harness
+
+      file rendered from a Rule page is refused by `guppi guard`: none of them is the
+
+      agent''s to write, so none of them is allowed here. `deny` and `ask` stay empty:
+
+      a refusal that matters has a hook behind it (case 85.5).
+
+      '
+    Render: "<!-- rule-permissions -->\n    \"allow\": [\n      \"Edit(vault/raw/**/frontier.md)\",\n\
+      \      \"Write(vault/raw/**/frontier.md)\",\n      \"Edit(vault/raw/**/spec.md)\",\n      \"Write(vault/raw/**/spec.md)\"\
+      ,\n      \"Edit(vault/raw/**/handoff.md)\",\n      \"Write(vault/raw/**/handoff.md)\"\n    ]\n<!--\
+      \ /rule-permissions -->\n"
+  applied: '22:07:42'
+- line: 176
+  text: decision[case 85.5][create][rule-permissions]{ref:rule-settings}{tags:harness,session}
+  case: '85.5'
+  kind: create
+  slug: estimate-permissions
+  category: estimates
+  ref: rule-permissions
+  origin: raw/2026-09-12/ledger.md#case-85.5
+  decision: decision-case-85.5
+  derived: true
+  tags:
+  - harness
+  - session
+  fields:
+    type: estimate
+    kind: QA
+  sections:
+    Context: 'How to describe `settings.json` so that permissions have their own rule, the mode has
+
+      its own and the hooks have their own, while the file keeps one source.'
+    Criterion: '### case 85.5
+
+
+      When:
+
+      The agent writes or edits `frontier.md`, `spec.md` or `handoff.md` under
+
+      `vault/raw/<date>/<HHMM>/`, in Plan Mode or in Work Mode.
+
+
+      Then:
+
+      The write happens with no question to the person, allowed by the six entries of the
+
+      Render of `rule-permissions`: `Edit` and `Write` for the three names.
+
+      **＋** Nothing else is allowed: `ledger.md`, `event_log.md`, `materialize.yaml` and every
+
+      file a Rule page governs stay outside the list.
+
+      **－** `deny` and `ask` stay empty.
+
+      **－** If Claude Code reads `settings.json` only at a session start, the effect begins at
+
+      the next start; the reading records which it was.'
+    Method: the six entries in the rendered .claude/settings.json and the JSON case of tests/test_render.py;
+      the live probe — one edit of the session's spec.md in Work Mode and one of frontier.md, each recorded
+      as asked or not asked, and the same at the next session's /hi in Plan Mode
+  applied: '22:07:42'
+- line: 177
+  text: decision[case 86][update][rule-case-protocol]{ref:rule-case-protocol}{supersedes:case 81}
+  case: '86'
+  kind: update
+  slug: rule-case-protocol
+  origin: raw/2026-09-12/ledger.md#case-86
+  decision: decision-case-86
+  ref: rule-case-protocol
+  supersedes: '81'
+  category: rules
+  change: the two keys of the derived Estimate are ratified as estimate_kind and estimate_slug (case 86)
+  applied: '22:07:42'
+- line: 177
+  text: decision[case 86][update][rule-case-protocol]{ref:rule-case-protocol}{supersedes:case 81}
+  case: '86'
+  kind: update
+  slug: estimate-case-protocol-loaded
+  category: estimates
+  origin: raw/2026-09-12/ledger.md#case-86
+  decision: decision-case-86
+  derived: true
+  criterion_block: '### case 86
+
+
+    When:
+
+    The agent writes a `then` block for a `create` whose Estimate is a Research, or whose
+
+    derived slug is taken.
+
+    **＋** A session starts with `CLAUDE.md`, which imports `case-schema.md`.
+
+
+    Then:
+
+    The item names them `estimate_kind` and `estimate_slug`.
+
+    **＋** `case-schema.md` says why the prefix: `kind` and `slug` on the item are the target
+
+    page''s own fields.
+
+    **－** No other key of a `then` item is renamed; `method` and `contract` stay as they are.'
+  set:
+    status: pending
+  change: 'criterion: case 86 added'
+  applied: '22:07:42'
+- line: 177
+  text: decision[case 86][update][rule-case-protocol]{ref:rule-case-protocol}{supersedes:case 81}
+  case: '86'
+  kind: remove_criterion
+  category: estimates
+  origin: raw/2026-09-12/ledger.md#case-86
+  decision: decision-case-86
+  derived: true
+  case_removed: '81'
+  change: 'criterion: case 81 removed'
+  applied: '22:07:42'
+- line: 178
+  text: decision[case 86][update][case-schema]{ref:case-schema}
+  case: '86'
+  kind: update
+  slug: case-schema
+  origin: raw/2026-09-12/ledger.md#case-86
+  decision: decision-case-86
+  ref: case-schema
+  category: file
+  path: vault/wiki/case-schema.md
+  incomplete:
+  - then
+  applied: '22:07:42'
+- line: 179
+  text: decision[case 87][update][rule-materialize]{ref:rule-materialize}{supersedes:case 82}
+  case: '87'
+  kind: update
+  slug: rule-materialize
+  origin: raw/2026-09-12/ledger.md#case-87
+  decision: decision-case-87
+  ref: rule-materialize
+  supersedes: '82'
+  category: rules
+  replace:
+  - old: '`kind`, `root_cause` and the sections `Trigger` and'
+    new: '`kind`, `root_cause`, `source` when the braces of the line carry one, and the sections `Trigger`
+      and'
+  - old: '`Root cause` from the line.'
+    new: '`Root cause` from the line; a `knowledge` lesson whose line carries no `source` is marked `incomplete:
+      [source]`, an `error` lesson never (case 87).'
+  change: the lesson entry carries source from the braces of its line (case 87)
+  applied: '22:07:42'
+- line: 179
+  text: decision[case 87][update][rule-materialize]{ref:rule-materialize}{supersedes:case 82}
+  case: '87'
+  kind: update
+  slug: estimate-materialize-assembles
+  category: estimates
+  origin: raw/2026-09-12/ledger.md#case-87
+  decision: decision-case-87
+  derived: true
+  criterion_block: '### case 87
+
+
+    When:
+
+    `guppi materialize` reads a `- lesson[...]` ledger line whose braces carry `{source:...}`.
+
+
+    Then:
+
+    The entry carries `source` in its `fields`, and `generate` writes it into the page''s
+
+    frontmatter.
+
+    **＋** A `knowledge` lesson whose line carries no `source` is still marked
+
+    `incomplete: [source]`; an `error` lesson never is.
+
+    **＋** A one-off run sets `source` on the five live pages whose line carries one and whose
+
+    page lacks it, taking the value from the line.
+
+    **－** The six `knowledge` pages whose lines carry no source keep their lint finding;
+
+    nothing invents one.
+
+    **－** The applied entries of the earlier yamls are not rewritten: they record what the
+
+    parser did that day.'
+  set:
+    status: pending
+  change: 'criterion: case 87 added'
+  applied: '22:07:42'
+- line: 179
+  text: decision[case 87][update][rule-materialize]{ref:rule-materialize}{supersedes:case 82}
+  case: '87'
+  kind: remove_criterion
+  category: estimates
+  origin: raw/2026-09-12/ledger.md#case-87
+  decision: decision-case-87
+  derived: true
+  case_removed: '82'
+  change: 'criterion: case 82 removed'
+  applied: '22:07:42'
+- line: 180
+  text: decision[case 88.1][update][rule-render-harness]{ref:rule-render-harness}{supersedes:case 84}
+  case: '88.1'
+  kind: update
+  slug: rule-render-harness
+  origin: raw/2026-09-12/ledger.md#case-88.1
+  decision: decision-case-88.1
+  ref: rule-render-harness
+  supersedes: '84'
+  category: rules
+  change: the live clause of the render reading is a standing rule, read against the pages that changed
+    (case 88.1)
+  applied: '22:07:42'
+- line: 180
+  text: decision[case 88.1][update][rule-render-harness]{ref:rule-render-harness}{supersedes:case 84}
+  case: '88.1'
+  kind: update
+  slug: estimate-render-harness-reproduces
+  category: estimates
+  origin: raw/2026-09-12/ledger.md#case-88.1
+  decision: decision-case-88.1
+  derived: true
+  criterion_block: '### case 88.1
+
+
+    When:
+
+    `uv run guppi render` runs against the live vault.
+
+
+    Then:
+
+    `git diff --stat` names only the governed files whose Rule page changed since the last
+
+    render.
+
+    **＋** The diff of each file equals the text of that page''s Render; a full render also
+
+    drops the page''s outer markers, by design.
+
+    **＋** `uv run guppi render --check` then exits 0.
+
+    **－** The clause names no fixed file and no count of lines: it is read against the pages
+
+    that changed, never against a tree that has passed.'
+  set:
+    status: pending
+  change: 'criterion: case 88.1 added'
+  applied: '22:07:42'
+- line: 180
+  text: decision[case 88.1][update][rule-render-harness]{ref:rule-render-harness}{supersedes:case 84}
+  case: '88.1'
+  kind: remove_criterion
+  category: estimates
+  origin: raw/2026-09-12/ledger.md#case-88.1
+  decision: decision-case-88.1
+  derived: true
+  case_removed: '84'
+  change: 'criterion: case 84 removed'
+  applied: '22:07:42'
+- line: 181
+  text: decision[case 88.1][update][estimate-render-harness-reproduces]{ref:estimate-render-harness-reproduces}
+  case: '88.1'
+  kind: update
+  slug: estimate-render-harness-reproduces
+  origin: raw/2026-09-12/ledger.md#case-88.1
+  decision: decision-case-88.1
+  ref: estimate-render-harness-reproduces
+  category: estimates
+  replace:
+  - old: 'Against the live vault: after `uv run guppi render`, `git diff --stat` shows only the two
+
+      dropped marker lines of `.claude/skills/hi/SKILL.md`; after `rule-claude-md` exists, the
+
+      first render changes `CLAUDE.md` by its marker lines only (case 59.8); and
+
+      `uv run guppi render --check` then exits 0.'
+    new: 'Against the live vault: after `uv run guppi render`, `git diff --stat` names only the
+
+      governed files whose Rule page changed since the last render, each diff equal to the
+
+      text of that page''s Render, and `uv run guppi render --check` then exits 0 (case 88.1).'
+  change: the stale live clause of cases 18.1 and 59.8 leaves the Criterion prose (case 88.1)
+  applied: '22:07:42'
+- line: 182
+  text: decision[case 88.2][update][rule-claude-md]{ref:rule-claude-md}{supersedes:case 84}
+  case: '88.2'
+  kind: update
+  slug: rule-claude-md
+  origin: raw/2026-09-12/ledger.md#case-88.2
+  decision: decision-case-88.2
+  ref: rule-claude-md
+  supersedes: '84'
+  category: rules
+  change: the live clause of the CLAUDE.md reading is a standing rule, read against the two pages that
+    render it (case 88.2)
+  applied: '22:07:42'
+- line: 182
+  text: decision[case 88.2][update][rule-claude-md]{ref:rule-claude-md}{supersedes:case 84}
+  case: '88.2'
+  kind: update
+  slug: estimate-claude-md-rendered
+  category: estimates
+  origin: raw/2026-09-12/ledger.md#case-88.2
+  decision: decision-case-88.2
+  derived: true
+  criterion_block: '### case 88.2
+
+
+    When:
+
+    The first `uv run guppi render` after `rule-claude-md` or `rule-case-protocol` changed.
+
+
+    Then:
+
+    `CLAUDE.md` equals the Render of `rule-claude-md` with the text of `rule-case-protocol`
+
+    between its markers.
+
+    **＋** The diff holds the text those two pages gained since the file was last written,
+
+    and nothing else.
+
+    **＋** `guppi render --check` then exits 0, and every session after it loads the same
+
+    text with the two `@` imports expanded.'
+  set:
+    status: pending
+  change: 'criterion: case 88.2 added'
+  applied: '22:07:42'
+- line: 182
+  text: decision[case 88.2][update][rule-claude-md]{ref:rule-claude-md}{supersedes:case 84}
+  case: '88.2'
+  kind: remove_criterion
+  category: estimates
+  origin: raw/2026-09-12/ledger.md#case-88.2
+  decision: decision-case-88.2
+  derived: true
+  case_removed: '84'
+  change: 'criterion: case 84 removed'
+  applied: '22:07:42'
+- line: 183
+  text: decision[case 88.2][update][estimate-claude-md-rendered]{ref:estimate-claude-md-rendered}
+  case: '88.2'
+  kind: update
+  slug: estimate-claude-md-rendered
+  origin: raw/2026-09-12/ledger.md#case-88.2
+  decision: decision-case-88.2
+  ref: estimate-claude-md-rendered
+  category: estimates
+  replace:
+  - old: 'After `uv run guppi render`, `CLAUDE.md` equals the Render of `rule-claude-md` with
+
+      the text of `rule-case-protocol` between its markers; the first such render leaves
+
+      a `git diff` of marker lines only; `guppi render --check` then exits 0; every
+
+      session after it loads the same text, the two `@` imports expanded.'
+    new: 'After `uv run guppi render`, `CLAUDE.md` equals the Render of `rule-claude-md` with
+
+      the text of `rule-case-protocol` between its markers; the diff of that render holds
+
+      the text those two pages gained since the file was last written, and nothing else;
+
+      `guppi render --check` then exits 0; every session after it loads the same text,
+
+      the two `@` imports expanded (case 88.2).'
+  change: the stale live clause of case 59.8 leaves the Criterion prose (case 88.2)
+  applied: '22:07:42'
+- line: 184
+  text: decision[case 89.1][update][rule-documentation]{ref:rule-documentation}
+  case: '89.1'
+  kind: update
+  slug: rule-documentation
+  origin: raw/2026-09-12/ledger.md#case-89.1
+  decision: decision-case-89.1
+  ref: rule-documentation
+  category: rules
+  replace:
+  - old: '3. Run `uv run guppi cleanup`. Every line on its stderr is a flag.
+
+
+      <!-- rule-brief -->'
+    new: "3. Run `uv run guppi cleanup`. Every line on its stderr is a flag.\n\n4. Run `uv run guppi render`.\
+      \ The pages are final after cleanup, so the governed\n   files are written from them here. Every\
+      \ line on its stderr is a flag; a file it\n   could not write is left to the next session start.\n\
+      \n<!-- rule-brief -->"
+  - old: 'brief, so the brief sees the final graph and the lint output. The close commits
+
+      only `vault/`, apart from the session''s own commit.'
+    new: 'brief, so the brief sees the final graph and the lint output. The render runs after
+
+      cleanup, since cleanup is the last step that changes which pages are live and where
+
+      they lie, and the close commits the pages together with the files they render into,
+
+      apart from the session''s own commit (case 89).'
+  change: the pipeline gains a render step after cleanup (case 89.1)
+  applied: '22:07:42'
+- line: 184
+  text: decision[case 89.1][update][rule-documentation]{ref:rule-documentation}
+  case: '89.1'
+  kind: update
+  slug: estimate-documentation-completes
+  category: estimates
+  origin: raw/2026-09-12/ledger.md#case-89.1
+  decision: decision-case-89.1
+  derived: true
+  criterion_block: '### case 89.1
+
+
+    When:
+
+    The librarian reaches the end of its run.
+
+
+    Then:
+
+    After `cleanup` and before the brief it runs `uv run guppi render`, and the governed
+
+    files are written from the pages of that same run.
+
+    **＋** Every line on its stderr is a flag for the brief.
+
+    **＋** `make lint` at the close then passes its `render --check` step.
+
+    **－** A file the render could not write is left to the next session start; the librarian
+
+    does not write it by hand.'
+  set:
+    status: pending
+  change: 'criterion: case 89.1 added'
+  applied: '22:07:42'
+- line: 185
+  text: decision[case 89.2][update][rule-close]{ref:rule-close}
+  case: '89.2'
+  kind: update
+  slug: rule-close
+  origin: raw/2026-09-12/ledger.md#case-89.2
+  decision: decision-case-89.2
+  ref: rule-close
+  category: rules
+  replace:
+  - old: 'Close. Run `make lint` and keep its output for the report. Commit only paths under
+
+      `vault/`: `git add vault && git commit -m "docs(vault): librarian, <date>"`, never
+
+      `--amend`, never anything outside `vault/`.'
+    new: 'Close. Run `make lint` and keep its output for the report. Commit the vault with the
+
+      files the render wrote: `git add vault CLAUDE.md .claude && git commit -m
+
+      "docs(vault): librarian, <date>"`, never `--amend`, never a path outside those three.'
+  change: the commit takes the governed files the render wrote, beside vault/ (case 89.2)
+  applied: '22:07:42'
+- line: 185
+  text: decision[case 89.2][update][rule-close]{ref:rule-close}
+  case: '89.2'
+  kind: update
+  slug: estimate-close-commits
+  category: estimates
+  origin: raw/2026-09-12/ledger.md#case-89.2
+  decision: decision-case-89.2
+  derived: true
+  criterion_block: '### case 89.2
+
+
+    When:
+
+    The librarian commits.
+
+
+    Then:
+
+    The commit takes `vault/` and the files the render wrote: `git add vault CLAUDE.md
+
+    .claude`.
+
+    **＋** It stays one commit, separate from the session''s, with the same message
+
+    convention, and never `--amend`.
+
+    **－** No path outside those three.'
+  set:
+    status: pending
+  change: 'criterion: case 89.2 added'
+  applied: '22:07:42'
+- line: 186
+  text: decision[case 89.2][update][estimate-close-commits]{ref:estimate-close-commits}
+  case: '89.2'
+  kind: update
+  slug: estimate-close-commits
+  origin: raw/2026-09-12/ledger.md#case-89.2
+  decision: decision-case-89.2
+  ref: estimate-close-commits
+  category: estimates
+  replace:
+  - old: 'After a live librarian run: git log shows one commit after the Retro commit,
+
+      touching only vault/ paths, with the message convention;'
+    new: 'After a live librarian run: git log shows one commit after the Retro commit,
+
+      touching vault/ and the governed files the render wrote and nothing else, with the
+
+      message convention (case 89.2);'
+  change: the vault-only clause of the criterion names the rendered files too (case 89.2)
+  applied: '22:07:42'
+- line: 187
+  text: decision[case 89.3][update][estimate-render-sync-reports]{ref:estimate-render-sync-reports}
+  case: '89.3'
+  kind: update
+  slug: estimate-render-sync-reports
+  origin: raw/2026-09-12/ledger.md#case-89.3
+  decision: decision-case-89.3
+  ref: estimate-render-sync-reports
+  category: estimates
+  set:
+    status: pending
+  replace:
+  - old: 'Unit: `guppi render --sync` against a temp vault prints a unified diff for a governed
+
+      file that differs and writes the rendered text; prints and writes nothing for an
+
+      identical one; on a render error prints to stderr, writes nothing, exits 0. Live: at
+
+      the first session start after this one, the diff of the pages the librarian changed
+
+      is in the agent''s first turn, the files match their pages, `render --check` exits 0;
+
+      the reading records whether the `CLAUDE.md` loaded by that session is the text the
+
+      hook wrote (a marker sentence added by the librarian''s run), or the text before it.'
+    new: 'Unit: `guppi render --sync` against a temp vault prints a unified diff for a governed
+
+      file that differs and writes the rendered text; prints and writes nothing for an
+
+      identical one; on a render error prints to stderr, writes nothing, exits 0. Live: at
+
+      a session start after a librarian run that rendered, the hook prints nothing and
+
+      writes nothing and `render --check` exits 0; at a session start after a governed file
+
+      and its page have parted, the diff of that file is in the agent''s first turn and the
+
+      page''s text is written back (case 89.3).'
+  change: the live clause is read against a tree the librarian already rendered (case 89.3)
+  applied: '22:07:42'
+- line: 188
+  text: decision[case 89.4][update][rule-render-harness]{ref:rule-render-harness}
+  case: '89.4'
+  kind: update
+  slug: rule-render-harness
+  origin: raw/2026-09-12/ledger.md#case-89.4
+  decision: decision-case-89.4
+  ref: rule-render-harness
+  category: rules
+  replace:
+  - old: The rendered files are committed at Retro.
+    new: 'A governed file whose name ends in `.json` is parsed before anything is written: when one of
+      them does not parse, the run writes nothing and names the file and its page on stderr (case 89.4).
+      The rendered files are committed by the librarian, in its own commit (case 89.2).'
+  change: a json target is parsed before the write, and one failure stops the whole write (case 89.4)
+  applied: '22:07:42'
+- line: 188
+  text: decision[case 89.4][update][rule-render-harness]{ref:rule-render-harness}
+  case: '89.4'
+  kind: update
+  slug: estimate-render-harness-reproduces
+  category: estimates
+  origin: raw/2026-09-12/ledger.md#case-89.4
+  decision: decision-case-89.4
+  derived: true
+  criterion_block: '### case 89.4
+
+
+    When:
+
+    `guppi render` has built its texts and is about to write, and a target''s name ends in
+
+    `.json`.
+
+
+    Then:
+
+    Each such text goes through `json.loads` before anything is written.
+
+    **＋** If one of them does not parse, nothing at all is written: the file and the page
+
+    that owns it go to stderr, `render` exits 1 and `--sync` exits 0 with the same line.
+
+    **＋** If all of them parse, the run writes as before.
+
+    **－** No other file type is checked: markdown has no grammar to break.'
+  set:
+    status: pending
+  change: 'criterion: case 89.4 added'
+  applied: '22:07:42'
+- line: 189
+  text: decision[case 90.1][update][rule-materialize]{ref:rule-materialize}
+  case: '90.1'
+  kind: update
+  slug: rule-materialize
+  origin: raw/2026-09-12/ledger.md#case-90.1
+  decision: decision-case-90.1
+  ref: rule-materialize
+  category: rules
+  replace:
+  - old: 'An `update` of a Leaf whose item carries `contract: changed` yields an `update` entry of the
+      target''s Estimate:'
+    new: 'An `update` of a Leaf whose item carries `contract: changed` yields an `update` entry of the
+      Estimate the item''s `estimate_slug` names, or of the page''s one Estimate when it carries exactly
+      one; when it carries none or more than one and the item names none, the entry goes without a slug
+      and is marked `incomplete: [estimate]` rather than guessing (case 90.1):'
+  change: the derived update names its Estimate instead of taking the first of the page's list (case 90.1)
+  applied: '22:07:42'
+- line: 189
+  text: decision[case 90.1][update][rule-materialize]{ref:rule-materialize}
+  case: '90.1'
+  kind: update
+  slug: estimate-materialize-assembles
+  category: estimates
+  origin: raw/2026-09-12/ledger.md#case-90.1
+  decision: decision-case-90.1
+  derived: true
+  criterion_block: '### case 90.1
+
+
+    When:
+
+    `guppi materialize` meets an `update` whose item carries `contract: changed`.
+
+
+    Then:
+
+    When the item carries `estimate_slug`, the derived entry goes to that Estimate.
+
+    **＋** When it does not, and the page carries exactly one Estimate, it goes to that one.
+
+    **＋** When the page carries none or more than one and the item names none, the entry goes
+
+    without a slug and is marked `incomplete: [estimate]`.
+
+    **－** The `create` branch does not change: it reads `estimate_slug` already.'
+  set:
+    status: pending
+  change: 'criterion: case 90.1 added'
+  applied: '22:07:42'
+- line: 190
+  text: decision[case 90.2][update][rule-pretask]{ref:rule-pretask}
+  case: '90.2'
+  kind: update
+  slug: rule-pretask
+  origin: raw/2026-09-12/ledger.md#case-90.2
+  decision: decision-case-90.2
+  ref: rule-pretask
+  category: rules
+  replace:
+  - old: and for every derived Estimate slug that names an existing page while the item has no `slug`;
+    new: 'for every derived Estimate slug that names an existing page while the item has no `slug`, and
+      for every `update` with `contract: changed` whose page carries no Estimate or more than one while
+      the item names no `estimate_slug` (case 90.2);'
+  change: 'a fifth form finding: the Estimate of a contract change is named when the page''s list does
+    not name it alone (case 90.2)'
+  applied: '22:07:42'
+- line: 190
+  text: decision[case 90.2][update][rule-pretask]{ref:rule-pretask}
+  case: '90.2'
+  kind: update
+  slug: estimate-pretask-reconciles
+  category: estimates
+  origin: raw/2026-09-12/ledger.md#case-90.2
+  decision: decision-case-90.2
+  derived: true
+  criterion_block: '### case 90.2
+
+
+    When:
+
+    `guppi pretask --check` runs against the plan of this Plan Mode.
+
+
+    Then:
+
+    It prints one line for every `update` with `contract: changed` whose page carries no
+
+    Estimate or more than one while the item names no `estimate_slug`.
+
+    **＋** The line names the Case, the page and the page''s Estimates, so the person can see
+
+    the choice.
+
+    **－** A page with exactly one Estimate is no finding.'
+  set:
+    status: pending
+  change: 'criterion: case 90.2 added'
+  applied: '22:07:42'
+- line: 191
+  text: decision[case 90.3][update][rule-documentation]{ref:rule-documentation}
+  case: '90.3'
+  kind: update
+  slug: rule-documentation
+  origin: raw/2026-09-12/ledger.md#case-90.3
+  decision: decision-case-90.3
+  ref: rule-documentation
+  category: rules
+  replace:
+  - old: 'say; an entry a script rejects stays as it is and is a flag in the report, never a
+
+      repair.'
+    new: 'say; an entry a script rejects stays as it is and is a flag in the report, never a
+
+      repair. An instruction of the handoff that this frame forbids — a repair of an
+
+      entry, a read of `ledger.md`, a Spec, a decision page or the archive — you do not
+
+      carry out: name it in the report, what was asked and why it was refused, and go on
+
+      (case 90.3).'
+  change: an instruction of the handoff that the frame forbids is refused and named in the report (case
+    90.3)
+  applied: '22:07:42'
+- line: 191
+  text: decision[case 90.3][update][rule-documentation]{ref:rule-documentation}
+  case: '90.3'
+  kind: update
+  slug: estimate-documentation-completes
+  category: estimates
+  origin: raw/2026-09-12/ledger.md#case-90.3
+  decision: decision-case-90.3
+  derived: true
+  criterion_block: '### case 90.3
+
+
+    When:
+
+    The handoff tells the librarian to do what the criterion of `rule-documentation` forbids
+
+    — repair an entry of the yaml, or read `ledger.md`, a Spec, a decision page or the
+
+    archive.
+
+
+    Then:
+
+    The librarian does not do it.
+
+    **＋** It names the instruction in the report: what was asked, and why it was refused.
+
+    **－** The handoff itself is checked by nothing: it is written from memory, and the
+
+    refusal is the librarian''s work, not its author''s.
+
+    **－** A refusal does not stop the run: the librarian asks no questions, the person is
+
+    gone.'
+  set:
+    status: pending
+  change: 'criterion: case 90.3 added'
+  applied: '22:07:42'
+- line: 192
+  text: decision[case 91][update][rule-governed-files-hook]{ref:rule-governed-files-hook}{supersedes:case
+    83}
+  case: '91'
+  kind: update
+  slug: rule-governed-files-hook
+  origin: raw/2026-09-12/ledger.md#case-91
+  decision: decision-case-91
+  ref: rule-governed-files-hook
+  supersedes: '83'
+  category: rules
+  replace:
+  - old: '`file_path` is a governed path exits 2 with the rule''s slug and the file, which
+
+      blocks the tool.'
+    new: '`file_path` is a governed path exits 2 with the rule''s slug and the file, which
+
+      blocks the tool, and one line goes to `vault/raw/<date>/event_log.md` before that:
+
+      a blocked call has no `PostToolUse`, so a refusal the hook does not write is
+
+      nowhere (case 91).'
+  change: the hook writes its own event line on a refusal (case 91)
+  applied: '22:07:42'
+- line: 192
+  text: decision[case 91][update][rule-governed-files-hook]{ref:rule-governed-files-hook}{supersedes:case
+    83}
+  case: '91'
+  kind: update
+  slug: estimate-governed-files-hook-refuses
+  category: estimates
+  origin: raw/2026-09-12/ledger.md#case-91
+  decision: decision-case-91
+  derived: true
+  criterion_block: '### case 91
+
+
+    When:
+
+    `guppi guard` refuses an `Edit`, `Write` or `MultiEdit` of a governed file.
+
+
+    Then:
+
+    Before it exits 2 it appends one line to `vault/raw/<date>/event_log.md`.
+
+    **＋** The line carries the time, the session, the tool, the path and the slug of the rule
+
+    that governs the file.
+
+    **－** A call the hook lets through writes nothing: `PostToolUse` logs it as before.
+
+    **－** A log the hook cannot write does not change the refusal: the exit stays 2 and the
+
+    reason still goes to stderr.'
+  set:
+    status: pending
+  change: 'criterion: case 91 added'
+  applied: '22:07:42'
+- line: 192
+  text: decision[case 91][update][rule-governed-files-hook]{ref:rule-governed-files-hook}{supersedes:case
+    83}
+  case: '91'
+  kind: remove_criterion
+  category: estimates
+  origin: raw/2026-09-12/ledger.md#case-91
+  decision: decision-case-91
+  derived: true
+  case_removed: '83'
+  change: 'criterion: case 83 removed'
+  applied: '22:07:42'
+- line: 193
+  text: decision[case 92][update][index]{ref:index}
+  case: '92'
+  kind: update
+  slug: index
+  origin: raw/2026-09-12/ledger.md#case-92
+  decision: decision-case-92
+  ref: index
+  category: file
+  path: vault/wiki/index.md
+  incomplete:
+  - then
+  applied: '22:07:42'
+- line: 194
+  text: decision[case 92][update][case-schema]{ref:case-schema}
+  case: '92'
+  kind: update
+  slug: case-schema
+  origin: raw/2026-09-12/ledger.md#case-92
+  decision: decision-case-92
+  ref: case-schema
+  category: file
+  path: vault/wiki/case-schema.md
+  incomplete:
+  - then
+  applied: '22:07:42'
+- line: 195
+  text: decision[case 93][defer][rule-work-mode]{ref:rule-work-mode}{supersedes:case 78}
+  case: '93'
+  kind: defer
+  slug: rule-work-mode
+  origin: raw/2026-09-12/ledger.md#case-93
+  decision: decision-case-93
+  ref: rule-work-mode
+  supersedes: '78'
+  category: rules
+  fields:
+    type: rule
+    purpose: The rule of Work Mode — the Spec as tasks with code, the ticked boxes, what a subagent may
+      do
+  exists: true
+  applied: '22:07:42'
+- line: 195
+  text: decision[case 93][defer][rule-work-mode]{ref:rule-work-mode}{supersedes:case 78}
+  case: '93'
+  kind: remove_criterion
+  category: estimates
+  origin: raw/2026-09-12/ledger.md#case-93
+  decision: decision-case-93
+  derived: true
+  case_removed: '78'
+  change: 'criterion: case 78 removed'
+  applied: '22:07:42'
+- line: 196
+  text: decision[case 93][defer][rule-subagent-guppi]{ref:rule-subagent-guppi}{supersedes:case 78}
+  case: '93'
+  kind: defer
+  slug: rule-subagent-guppi
+  origin: raw/2026-09-12/ledger.md#case-93
+  decision: decision-case-93
+  ref: rule-subagent-guppi
+  supersedes: '78'
+  category: rules
+  fields:
+    type: rule
+    purpose: The rule of the transcribing subagent — it never decides, and a fork comes back as a Case
+  exists: true
+  applied: '22:07:42'
+- line: 196
+  text: decision[case 93][defer][rule-subagent-guppi]{ref:rule-subagent-guppi}{supersedes:case 78}
+  case: '93'
+  kind: remove_criterion
+  category: estimates
+  origin: raw/2026-09-12/ledger.md#case-93
+  decision: decision-case-93
+  derived: true
+  case_removed: '78'
+  change: 'criterion: case 78 removed'
+  applied: '22:07:42'
+- line: 197
+  text: decision[case 94][defer][rule-ask]{ref:rule-ask}{supersedes:case 80}
+  case: '94'
+  kind: defer
+  slug: rule-ask
+  origin: raw/2026-09-12/ledger.md#case-94
+  decision: decision-case-94
+  ref: rule-ask
+  supersedes: '80'
+  category: rules
+  fields:
+    type: rule
+    purpose: The archive is part of the vault the agent answers from, and a named slug is checked against
+      it
+  exists: true
+  applied: '22:07:42'
+- line: 197
+  text: decision[case 94][defer][rule-ask]{ref:rule-ask}{supersedes:case 80}
+  case: '94'
+  kind: remove_criterion
+  category: estimates
+  origin: raw/2026-09-12/ledger.md#case-94
+  decision: decision-case-94
+  derived: true
+  case_removed: '80'
+  change: 'criterion: case 80 removed'
+  applied: '22:07:42'
+- line: 198
+  text: decision[case 95][defer][rule-ledger-tail]{ref:rule-ledger-tail}{supersedes:case 79}
+  case: '95'
+  kind: defer
+  slug: rule-ledger-tail
+  origin: raw/2026-09-12/ledger.md#case-95
+  decision: decision-case-95
+  ref: rule-ledger-tail
+  supersedes: '79'
+  category: rules
+  fields:
+    type: rule
+    purpose: The lifecycle of raw/ — an applied date archived by run stamp, the fresh ledger the tail
+      prints, decided_by and origin under lint
+  exists: true
+  applied: '22:07:42'
+- line: 198
+  text: decision[case 95][defer][rule-ledger-tail]{ref:rule-ledger-tail}{supersedes:case 79}
+  case: '95'
+  kind: remove_criterion
+  category: estimates
+  origin: raw/2026-09-12/ledger.md#case-95
+  decision: decision-case-95
+  derived: true
+  case_removed: '79'
+  change: 'criterion: case 79 removed'
+  applied: '22:07:42'
+- line: 199
+  text: decision[case 96][defer][rule-synthesis]{ref:rule-synthesis}
+  case: '96'
+  kind: defer
+  slug: rule-synthesis
+  origin: raw/2026-09-12/ledger.md#case-96
+  decision: decision-case-96
+  ref: rule-synthesis
+  category: rules
+  fields:
+    type: rule
+    purpose: A synthesis entry carries the
+  exists: true
+  applied: '22:07:42'
+- line: 200
+  text: decision[case 97][defer][rule-synthesis]{ref:rule-synthesis}
+  case: '97'
+  kind: defer
+  slug: rule-synthesis
+  origin: raw/2026-09-12/ledger.md#case-97
+  decision: decision-case-97
+  ref: rule-synthesis
+  category: rules
+  fields:
+    type: rule
+    purpose: What becomes of an Insight when its children are archived — the count, the status, and who
+      decides
+  exists: true
+  applied: '22:07:42'
+- line: 201
+  text: decision[case 98][defer][rule-skill-hi]{ref:rule-skill-hi}
+  case: '98'
+  kind: defer
+  slug: rule-skill-hi
+  origin: raw/2026-09-12/ledger.md#case-98
+  decision: decision-case-98
+  ref: rule-skill-hi
+  category: rules
+  fields:
+    type: rule
+    purpose: A render inside /hi after the pull, so what arrives from outside the session reaches its
+      files in the same session
+  exists: true
+  applied: '22:07:42'
+- line: 202
+  text: decision[case 99][update][estimate-hook-registry-rendered]{ref:estimate-hook-registry-rendered}
+  case: '99'
+  kind: update
+  slug: estimate-hook-registry-rendered
+  origin: raw/2026-09-12/ledger.md#case-99
+  decision: decision-case-99
+  ref: estimate-hook-registry-rendered
+  category: estimates
+  replace:
+  - old: '`uv run guppi render` leaves `.claude/settings.json` byte-identical to the ratified Render
+
+      body (`git diff` empty after the two hook additions of cases 20 and 24.1 are applied by
+
+      hand once), the file parses as JSON, and the next session start still writes a
+
+      `session-start` line into `event_log.md`.'
+    new: '`uv run guppi render` writes the `"hooks"` key of `.claude/settings.json` from the Render
+
+      of `rule-hook-registry`, byte for byte, and every registration the harness runs is one of
+
+      its lines (case 85.3). That the assembled file parses and that the next session start
+
+      still writes its `session-start` line into `event_log.md` belong to `estimate-settings`,
+
+      which reads the whole file (case 99).'
+  change: the criterion covers the hooks key; the whole-file clauses move to estimate-settings (case 99)
+  applied: '22:07:42'
+- line: 203
+  text: decision[case 99][update][rule-pretask]{ref:rule-pretask}
+  case: '99'
+  kind: update
+  slug: rule-pretask
+  origin: raw/2026-09-12/ledger.md#case-99
+  decision: decision-case-99
+  ref: rule-pretask
+  category: rules
+  replace:
+  - old: that names an existing page while the item has no `slug`,
+    new: that names an existing page while the item has no `estimate_slug`,
+  change: the item's key is named estimate_slug, as case 86 ratified (case 99)
+  applied: '22:07:42'
+- line: 204
+  text: decision[case 99][update][rule-materialize]{ref:rule-materialize}
+  case: '99'
+  kind: update
+  slug: rule-materialize
+  origin: raw/2026-09-12/ledger.md#case-99
+  decision: decision-case-99
+  ref: rule-materialize
+  category: rules
+  replace:
+  - old: or the item's `slug`,
+    new: or the item's `estimate_slug`,
+  change: the item's key is named estimate_slug, as case 86 ratified (case 99)
+  applied: '22:07:42'
+- line: 205
+  text: decision[case 99][update][rule-harness]{ref:rule-harness}
+  case: '99'
+  kind: update
+  slug: rule-harness
+  origin: raw/2026-09-12/ledger.md#case-99
+  decision: decision-case-99
+  ref: rule-harness
+  category: rules
+  replace:
+  - old: 'them. Four rules belong to no phase of the session: the renderer, the hook
+
+      registry, lint and the indexes.'
+    new: 'them. Four rules belong to no phase of the session: the renderer, the page
+
+      `.claude/settings.json` is assembled from, lint and the indexes.'
+  change: rule-settings takes the slot of the hook registry in the Purpose too (case 99)
+  applied: '22:07:42'
+- line: 206
+  text: 'estimate[estimate-governed-files-hook-refuses][passed] unit: tests/test_guard.py 20 green in
+    the 267 of make test, with the three cases of 91 — a refusal writes its event line with the tool,
+    the path and the rule; a call the guard lets through writes none; an append that raises leaves the
+    exit at 2 and adds one stderr line; live 2026-09-12 session K: an Edit on .claude/skills/hi/SKILL.md
+    was refused with "guard: .claude/skills/hi/SKILL.md is rendered from rule-skill-hi; change the Rule
+    page through a decision", the file unchanged, and raw/2026-09-12/event_log.md gained "- 21:55:57 91c83351
+    guard refused Edit .claude/skills/hi/SKILL.md (rule-skill-hi)" — the third live clause, the one that
+    failed in session J, now holds'
+  kind: estimate
+  category: estimates
+  slug: estimate-governed-files-hook-refuses
+  status: passed
+  result: 'unit: tests/test_guard.py 20 green in the 267 of make test, with the three cases of 91 — a
+    refusal writes its event line with the tool, the path and the rule; a call the guard lets through
+    writes none; an append that raises leaves the exit at 2 and adds one stderr line; live 2026-09-12
+    session K: an Edit on .claude/skills/hi/SKILL.md was refused with "guard: .claude/skills/hi/SKILL.md
+    is rendered from rule-skill-hi; change the Rule page through a decision", the file unchanged, and
+    raw/2026-09-12/event_log.md gained "- 21:55:57 91c83351 guard refused Edit .claude/skills/hi/SKILL.md
+    (rule-skill-hi)" — the third live clause, the one that failed in session J, now holds'
+  origin: raw/2026-09-12/ledger.md#L206
+  applied: '22:07:42'
+- line: 207
+  text: 'estimate[estimate-materialize-assembles][passed] unit: tests/test_materialize.py 35 green with
+    the blocks of 87 and 90.1 — a knowledge line with a source carries it into fields and is not incomplete,
+    a knowledge line without one is incomplete: [source], an error line keeps a source it was given; a
+    contract change names its Estimate through estimate_slug, falls back to a page''s single Estimate,
+    and goes slug-less with incomplete: [estimate] when the page carries none or two; live 2026-09-12
+    session K, materialize --show --date 2026-09-12: every derived entry of cases 85.1, 85.3, 86, 87,
+    88.1, 89.1, 89.4, 90.1, 90.2, 90.3 and 91 names its Estimate and none is incomplete; the applied lesson
+    entries of the earlier run keep their old marks, as case 87 says'
+  kind: estimate
+  category: estimates
+  slug: estimate-materialize-assembles
+  status: passed
+  result: 'unit: tests/test_materialize.py 35 green with the blocks of 87 and 90.1 — a knowledge line
+    with a source carries it into fields and is not incomplete, a knowledge line without one is incomplete:
+    [source], an error line keeps a source it was given; a contract change names its Estimate through
+    estimate_slug, falls back to a page''s single Estimate, and goes slug-less with incomplete: [estimate]
+    when the page carries none or two; live 2026-09-12 session K, materialize --show --date 2026-09-12:
+    every derived entry of cases 85.1, 85.3, 86, 87, 88.1, 89.1, 89.4, 90.1, 90.2, 90.3 and 91 names its
+    Estimate and none is incomplete; the applied lesson entries of the earlier run keep their old marks,
+    as case 87 says'
+  origin: raw/2026-09-12/ledger.md#L207
+  applied: '22:07:42'
+- line: 208
+  text: 'estimate[estimate-pretask-reconciles][passed] unit: tests/test_pretask.py 48 green with the fifth
+    form finding of 90.2 — a page with two Estimates and no estimate_slug, a page with none, a page with
+    one, an item that names the slug; live 2026-09-12 session K on the captured Spec with the new code:
+    a copy stripped of its estimate_slug lines printed exactly five findings, cases 85.1, 87, 88.1, 89.4
+    and 90.1, each naming the page and both of its Estimates, and the Spec itself exits 0'
+  kind: estimate
+  category: estimates
+  slug: estimate-pretask-reconciles
+  status: passed
+  result: 'unit: tests/test_pretask.py 48 green with the fifth form finding of 90.2 — a page with two
+    Estimates and no estimate_slug, a page with none, a page with one, an item that names the slug; live
+    2026-09-12 session K on the captured Spec with the new code: a copy stripped of its estimate_slug
+    lines printed exactly five findings, cases 85.1, 87, 88.1, 89.4 and 90.1, each naming the page and
+    both of its Estimates, and the Spec itself exits 0'
+  origin: raw/2026-09-12/ledger.md#L208
+  applied: '22:07:42'
+- line: 209
+  text: 'lesson[error][lesson-pretask-runs-before-the-check-it-adds]{tags:harness,workflow,session} trigger:
+    cases 85.1, 88.1, 89.4 and 87 of this Spec change the contract of a page with two Estimates and named
+    no estimate_slug; guppi pretask --check passed them at the close of Plan Mode, and the fifth form
+    finding that would have caught them was written in Work Mode by case 90.2 of the same Spec; four items
+    had to be added to a Spec the owner had already approved root_cause: pre-task runs once, before Work
+    Mode, against the code as it stands then; a Case that changes the checker leaves its own Spec judged
+    by the old one, and nothing re-runs the check after the new code exists, so the Spec that ratifies
+    a rule is the one document the rule never sees'
+  kind: lesson
+  category: lessons
+  slug: lesson-pretask-runs-before-the-check-it-adds
+  origin: raw/2026-09-12/ledger.md#L209
+  fields:
+    type: lesson
+    kind: error
+    root_cause: pre-task runs once, before Work Mode, against the code as it stands then; a Case that
+      changes the checker leaves its own Spec judged by the old one, and nothing re-runs the check after
+      the new code exists, so the Spec that ratifies a rule is the one document the rule never sees
+  sections:
+    Trigger: cases 85.1, 88.1, 89.4 and 87 of this Spec change the contract of a page with two Estimates
+      and named no estimate_slug; guppi pretask --check passed them at the close of Plan Mode, and the
+      fifth form finding that would have caught them was written in Work Mode by case 90.2 of the same
+      Spec; four items had to be added to a Spec the owner had already approved
+    Root cause: pre-task runs once, before Work Mode, against the code as it stands then; a Case that
+      changes the checker leaves its own Spec judged by the old one, and nothing re-runs the check after
+      the new code exists, so the Spec that ratifies a rule is the one document the rule never sees
+  tags:
+  - harness
+  - workflow
+  - session
+  applied: '22:07:42'
+- line: 210
+  text: 'lesson[error][lesson-vault-lesson-absent-at-the-moment-it-applies]{tags:harness,workflow} trigger:
+    a python heredoc in the Bash tool broke tests/test_pretask.py twice in this session, the second time
+    leaving a half-written helper in the file; lesson-bash-tool-heredoc-escapes-interpreted, written in
+    session I, names this exact trap and the way around it — write the script to the scratchpad with Write
+    and run it by path root_cause: a lesson is a page of the vault and nothing brings it into the session
+    at the moment it applies; only CLAUDE.md, the skills and the agents'' frames are in the prompt, and
+    the vault is reached by a read the agent must first think to make, which is exactly what a forgotten
+    trap prevents'
+  kind: lesson
+  category: lessons
+  slug: lesson-vault-lesson-absent-at-the-moment-it-applies
+  origin: raw/2026-09-12/ledger.md#L210
+  fields:
+    type: lesson
+    kind: error
+    root_cause: a lesson is a page of the vault and nothing brings it into the session at the moment it
+      applies; only CLAUDE.md, the skills and the agents' frames are in the prompt, and the vault is reached
+      by a read the agent must first think to make, which is exactly what a forgotten trap prevents
+  sections:
+    Trigger: a python heredoc in the Bash tool broke tests/test_pretask.py twice in this session, the
+      second time leaving a half-written helper in the file; lesson-bash-tool-heredoc-escapes-interpreted,
+      written in session I, names this exact trap and the way around it — write the script to the scratchpad
+      with Write and run it by path
+    Root cause: a lesson is a page of the vault and nothing brings it into the session at the moment it
+      applies; only CLAUDE.md, the skills and the agents' frames are in the prompt, and the vault is reached
+      by a read the agent must first think to make, which is exactly what a forgotten trap prevents
+  tags:
+  - harness
+  - workflow
+  applied: '22:07:42'
+- kind: create
+  category: insights
+  slug: insight-session-vault-knowledge-not-loaded
+  origin: raw/2026-09-12/ledger.md#L210
+  librarian: synthesis
+  tags:
+  - harness
+  - workflow
+  fields:
+    type: insight
+    pattern: A fact the vault holds does not reach the session that needs it; only brief.md, CLAUDE.md,
+      the skills and the agent frames are loaded, and everything else waits for a read the agent must
+      first think to make.
+    children:
+    - lesson-readings-after-librarian-invisible-to-next-hi
+    - lesson-vault-lesson-absent-at-the-moment-it-applies
+  sections:
+    Pattern: 'Two lessons where a fact was in the record and still absent from the session that needed
+      it.
+
+
+      `lesson-readings-after-librarian-invisible-to-next-hi` (session F): fourteen estimate and lesson
+      lines written after the librarian''s commit sit in the ledger; `/hi` loads `brief.md`, and `brief.md`
+      was written before them, so the next session''s Frontier does not hold them.
+
+
+      `lesson-vault-lesson-absent-at-the-moment-it-applies` (session K): `lesson-bash-tool-heredoc-escapes-interpreted`
+      names the exact trap that broke a test file twice in one session; the page was in the vault the
+      whole time and nothing put it in front of the agent.
+
+
+      In both, the channel into a session is a fixed set of artifacts - `CLAUDE.md`, the skills, the agent
+      frames, `brief.md` - and a fact outside that set travels only by a read the agent must first decide
+      to make.'
+    Proposal: 'A suggestion, not a decision. Give the session a second channel beside the brief: the unmaterialized
+      ledger tail at `/hi` (already deferred as `rule-ledger-tail`, decision-case-79), and a way for a
+      Rule page to name the lessons that bear on it, so the pages loaded with a phase carry the traps
+      of that phase. Whether either belongs in the prompt or in a hook is a Case.'
+  applied: '22:07:42'
+- kind: update
+  category: lessons
+  slug: lesson-readings-after-librarian-invisible-to-next-hi
+  origin: raw/2026-09-12/ledger.md#L210
+  librarian: synthesis
+  set:
+    status: clustered
+    insight: insight-session-vault-knowledge-not-loaded
+  change: 'clustered by librarian: a recorded fact does not reach the session that needs it, with lesson-vault-lesson-absent-at-the-moment-it-applies'
+  applied: '22:07:42'
+- kind: update
+  category: lessons
+  slug: lesson-vault-lesson-absent-at-the-moment-it-applies
+  origin: raw/2026-09-12/ledger.md#L210
+  librarian: synthesis
+  set:
+    status: clustered
+    insight: insight-session-vault-knowledge-not-loaded
+  change: 'clustered by librarian: a recorded fact does not reach the session that needs it, with lesson-readings-after-librarian-invisible-to-next-hi'
+  applied: '22:07:42'
 decisions:
 - case: '58'
   decision: decision-case-58
@@ -6908,7 +8700,7 @@ decisions:
       without a path and do not change.'
   spec: vault/raw/2026-09-12/1156/spec.md
   criterion:
-  - estimate: estimate-hi-no-read-calls
+  - estimate: estimate-hi-writes-frontier
     case: '73.3'
   applied: '16:03:46'
 - case: '73.4'
@@ -7460,6 +9252,9 @@ decisions:
       without a path and do not change.'
   spec: vault/raw/2026-09-12/1156/spec.md
   applied: '16:03:46'
+  criterion:
+  - estimate: estimate-claude-md-rendered
+    case: '73.10'
 - case: '74'
   decision: decision-case-74
   origin: raw/2026-09-12/ledger.md#case-74
@@ -7779,6 +9574,8 @@ decisions:
   supersedes:
   - decision-case-64
   applied: '16:03:46'
+  superseded_by:
+  - decision-case-93
 - case: '79'
   decision: decision-case-79
   origin: raw/2026-09-12/ledger.md#case-79
@@ -7809,6 +9606,8 @@ decisions:
   supersedes:
   - decision-case-63
   applied: '16:03:46'
+  superseded_by:
+  - decision-case-95
 - case: '80'
   decision: decision-case-80
   origin: raw/2026-09-12/ledger.md#case-80
@@ -7835,6 +9634,8 @@ decisions:
   supersedes:
   - decision-case-65
   applied: '16:03:46'
+  superseded_by:
+  - decision-case-94
 - case: '81'
   decision: decision-case-81
   origin: raw/2026-09-12/ledger.md#case-81
@@ -7861,6 +9662,8 @@ decisions:
       form where `kind` and `slug` are unambiguous.'
   spec: vault/raw/2026-09-12/1156/spec.md
   applied: '16:03:46'
+  superseded_by:
+  - decision-case-86
 - case: '82'
   decision: decision-case-82
   origin: raw/2026-09-12/ledger.md#case-82
@@ -7887,6 +9690,8 @@ decisions:
       change of that contract. One `update` of `rule-materialize`; the next Plan Mode.'
   spec: vault/raw/2026-09-12/1156/spec.md
   applied: '16:03:46'
+  superseded_by:
+  - decision-case-87
 - case: '83'
   decision: decision-case-83
   origin: raw/2026-09-12/ledger.md#case-83
@@ -7913,6 +9718,8 @@ decisions:
       Mode.'
   spec: vault/raw/2026-09-12/1156/spec.md
   applied: '16:03:46'
+  superseded_by:
+  - decision-case-91
 - case: '84'
   decision: decision-case-84
   origin: raw/2026-09-12/ledger.md#case-84
@@ -7951,6 +9758,1829 @@ decisions:
       next Plan Mode, under the derived-Criterion scheme of case 72.'
   spec: vault/raw/2026-09-12/1156/spec.md
   applied: '16:03:46'
+  superseded_by:
+  - decision-case-88.1
+  - decision-case-88.2
+- case: '85.1'
+  decision: decision-case-85.1
+  origin: raw/2026-09-12/ledger.md#case-85.1
+  targets:
+  - kind: update
+    category: rules
+    slug: rule-render-harness
+    ref: rule-render-harness
+  tags: []
+  case_text:
+    when: '`guppi render` writes a file that cannot hold a comment — today `.claude/settings.json`.'
+    then: 'The text of each child replaces its `<!-- child -->` line without the two marker lines.
+
+      **＋** In every other file the splice keeps the markers.
+
+      **－** A `partial` page whose file has no `full` owner still needs its markers in the
+
+      file; a file that holds no comment can have no such page.'
+    context: 'The Frontier, the Spec and the handoff are the session''s own working files under
+
+      `raw/<date>/<HHMM>/`, and the agent writes them many times in one session. Every write
+
+      asks the person for permission. The entries that would stop the question belong in
+
+      `permissions.allow`. But `.claude/settings.json` has one page for the whole file today —
+
+      `rule-hook-registry`, `render_mode: full` — and its Purpose says `defaultMode: plan`
+
+      lives there too, "one file has one source". Permissions, the mode and the hook registry
+
+      are three rules in one file.'
+    problem: 'How to describe `settings.json` so that permissions have their own rule, the mode has
+
+      its own and the hooks have their own, while the file keeps one source.'
+    given: 'The vault, asked through `ask-guppi`: no live or `draft` page is about permission
+
+      settings; the only live text is the `permissions` block inside the Render of
+
+      `rule-hook-registry` (`built`, `full`, `governs: .claude/settings.json`, Estimate
+
+      `estimate-hook-registry-rendered`, `passed`). The slugs `rule-settings`,
+
+      `rule-permissions`, `rule-default-mode`, `estimate-settings`, `estimate-permissions` and
+
+      `estimate-default-mode` are free; `rule-plan-mode` is taken by the phase of the session.
+
+      **＋** `render_full` replaces a `<!-- child -->` line with the child''s text wrapped in its
+
+      own markers (`guppi/render.py`, `block()`); a marker line must match `^<!-- name -->$`
+
+      exactly. `render.plan` already refuses two `full` pages on one file and already requires
+
+      a `partial` child to be listed in the owner''s `children`.
+
+      **＋** JSON holds no comment, so a child spliced with its markers makes the file
+
+      unparsable. This is the one thing the `rule-claude-md` pattern does not lend to a JSON
+
+      file.
+
+      **＋** A marker must be a whole line, so the comma between two JSON keys belongs to the
+
+      text of the child that precedes the other.
+
+      **＋** `guppi guard` and `guppi lint` read no marker; `pages.py` reads the markers of a
+
+      page, not of a file.
+
+      **＋** `rule-harness` is a MOC whose `children` hold `rule-hook-registry`; the new MOC
+
+      takes that slot.
+
+      **＋** The criterion of `estimate-hook-registry-rendered` is the whole file today: the
+
+      Render reproduced byte for byte, the file parses as JSON, the next session start writes
+
+      its `session-start` line.
+
+      **－** Whether Claude Code reads `settings.json` during a session or only at its start is
+
+      written nowhere in the vault. If only at the start, the questions stop at the next `/hi`.'
+  spec: vault/raw/2026-09-12/1610/spec.md
+  criterion:
+  - estimate: estimate-render-harness-reproduces
+    case: '85.1'
+  applied: '22:07:42'
+- case: '85.2'
+  decision: decision-case-85.2
+  origin: raw/2026-09-12/ledger.md#case-85.2
+  targets:
+  - kind: create
+    category: rules
+    slug: rule-settings
+    ref: rule-harness
+  - kind: update
+    category: rules
+    slug: rule-harness
+    ref: rule-harness
+  tags:
+  - harness
+  - render
+  case_text:
+    when: '`guppi render` runs, or someone reads `.claude/settings.json`.'
+    then: '`rule-settings` is a MOC, `enforcement: render`, `render_mode: full`,
+
+      `governs: .claude/settings.json`; its body is the whole file, with one `<!-- child -->`
+
+      line where a child owns the text.
+
+      **＋** Its `children` are `rule-default-mode`, `rule-permissions`, `rule-hook-registry`,
+
+      and that order is the order of the keys in the file.
+
+      **＋** Its Estimate reads the rendered file: it parses as JSON, `render --check` exits 0,
+
+      and the next session start writes its `session-start` line into the event log.
+
+      **－** The MOC holds no rule of its own about what a hook or a permission may be.'
+    context: 'The Frontier, the Spec and the handoff are the session''s own working files under
+
+      `raw/<date>/<HHMM>/`, and the agent writes them many times in one session. Every write
+
+      asks the person for permission. The entries that would stop the question belong in
+
+      `permissions.allow`. But `.claude/settings.json` has one page for the whole file today —
+
+      `rule-hook-registry`, `render_mode: full` — and its Purpose says `defaultMode: plan`
+
+      lives there too, "one file has one source". Permissions, the mode and the hook registry
+
+      are three rules in one file.'
+    problem: 'How to describe `settings.json` so that permissions have their own rule, the mode has
+
+      its own and the hooks have their own, while the file keeps one source.'
+    given: 'The vault, asked through `ask-guppi`: no live or `draft` page is about permission
+
+      settings; the only live text is the `permissions` block inside the Render of
+
+      `rule-hook-registry` (`built`, `full`, `governs: .claude/settings.json`, Estimate
+
+      `estimate-hook-registry-rendered`, `passed`). The slugs `rule-settings`,
+
+      `rule-permissions`, `rule-default-mode`, `estimate-settings`, `estimate-permissions` and
+
+      `estimate-default-mode` are free; `rule-plan-mode` is taken by the phase of the session.
+
+      **＋** `render_full` replaces a `<!-- child -->` line with the child''s text wrapped in its
+
+      own markers (`guppi/render.py`, `block()`); a marker line must match `^<!-- name -->$`
+
+      exactly. `render.plan` already refuses two `full` pages on one file and already requires
+
+      a `partial` child to be listed in the owner''s `children`.
+
+      **＋** JSON holds no comment, so a child spliced with its markers makes the file
+
+      unparsable. This is the one thing the `rule-claude-md` pattern does not lend to a JSON
+
+      file.
+
+      **＋** A marker must be a whole line, so the comma between two JSON keys belongs to the
+
+      text of the child that precedes the other.
+
+      **＋** `guppi guard` and `guppi lint` read no marker; `pages.py` reads the markers of a
+
+      page, not of a file.
+
+      **＋** `rule-harness` is a MOC whose `children` hold `rule-hook-registry`; the new MOC
+
+      takes that slot.
+
+      **＋** The criterion of `estimate-hook-registry-rendered` is the whole file today: the
+
+      Render reproduced byte for byte, the file parses as JSON, the next session start writes
+
+      its `session-start` line.
+
+      **－** Whether Claude Code reads `settings.json` during a session or only at its start is
+
+      written nowhere in the vault. If only at the start, the questions stop at the next `/hi`.'
+  spec: vault/raw/2026-09-12/1610/spec.md
+  criterion:
+  - estimate: estimate-settings
+    case: '85.2'
+  applied: '22:07:42'
+- case: '85.3'
+  decision: decision-case-85.3
+  origin: raw/2026-09-12/ledger.md#case-85.3
+  targets:
+  - kind: update
+    category: rules
+    slug: rule-hook-registry
+    ref: rule-hook-registry
+  tags: []
+  case_text:
+    when: '`guppi render` runs.'
+    then: '`rule-hook-registry` renders the four event keys only, as a `partial` child of
+
+      `rule-settings`.
+
+      **＋** Its Purpose keeps the hooks and drops `defaultMode`, which is now
+
+      `rule-default-mode`.
+
+      **－** The whole-file clauses — the file parses, the next start still logs — belong to
+
+      `estimate-settings` from now on; this page answers for the hook registrations.'
+    context: 'The Frontier, the Spec and the handoff are the session''s own working files under
+
+      `raw/<date>/<HHMM>/`, and the agent writes them many times in one session. Every write
+
+      asks the person for permission. The entries that would stop the question belong in
+
+      `permissions.allow`. But `.claude/settings.json` has one page for the whole file today —
+
+      `rule-hook-registry`, `render_mode: full` — and its Purpose says `defaultMode: plan`
+
+      lives there too, "one file has one source". Permissions, the mode and the hook registry
+
+      are three rules in one file.'
+    problem: 'How to describe `settings.json` so that permissions have their own rule, the mode has
+
+      its own and the hooks have their own, while the file keeps one source.'
+    given: 'The vault, asked through `ask-guppi`: no live or `draft` page is about permission
+
+      settings; the only live text is the `permissions` block inside the Render of
+
+      `rule-hook-registry` (`built`, `full`, `governs: .claude/settings.json`, Estimate
+
+      `estimate-hook-registry-rendered`, `passed`). The slugs `rule-settings`,
+
+      `rule-permissions`, `rule-default-mode`, `estimate-settings`, `estimate-permissions` and
+
+      `estimate-default-mode` are free; `rule-plan-mode` is taken by the phase of the session.
+
+      **＋** `render_full` replaces a `<!-- child -->` line with the child''s text wrapped in its
+
+      own markers (`guppi/render.py`, `block()`); a marker line must match `^<!-- name -->$`
+
+      exactly. `render.plan` already refuses two `full` pages on one file and already requires
+
+      a `partial` child to be listed in the owner''s `children`.
+
+      **＋** JSON holds no comment, so a child spliced with its markers makes the file
+
+      unparsable. This is the one thing the `rule-claude-md` pattern does not lend to a JSON
+
+      file.
+
+      **＋** A marker must be a whole line, so the comma between two JSON keys belongs to the
+
+      text of the child that precedes the other.
+
+      **＋** `guppi guard` and `guppi lint` read no marker; `pages.py` reads the markers of a
+
+      page, not of a file.
+
+      **＋** `rule-harness` is a MOC whose `children` hold `rule-hook-registry`; the new MOC
+
+      takes that slot.
+
+      **＋** The criterion of `estimate-hook-registry-rendered` is the whole file today: the
+
+      Render reproduced byte for byte, the file parses as JSON, the next session start writes
+
+      its `session-start` line.
+
+      **－** Whether Claude Code reads `settings.json` during a session or only at its start is
+
+      written nowhere in the vault. If only at the start, the questions stop at the next `/hi`.'
+  spec: vault/raw/2026-09-12/1610/spec.md
+  criterion:
+  - estimate: estimate-hook-registry-rendered
+    case: '85.3'
+  applied: '22:07:42'
+- case: '85.4'
+  decision: decision-case-85.4
+  origin: raw/2026-09-12/ledger.md#case-85.4
+  targets:
+  - kind: create
+    category: rules
+    slug: rule-default-mode
+    ref: rule-settings
+  tags:
+  - harness
+  - session
+  case_text:
+    when: A session starts.
+    then: '`.claude/settings.json` carries `"defaultMode": "plan"` from `rule-default-mode`, a Leaf
+
+      child of `rule-settings`, and the session opens in Plan Mode.
+
+      **＋** The page says why: nothing is written before a Case is ratified.
+
+      **－** The page holds no other permission field.'
+    context: 'The Frontier, the Spec and the handoff are the session''s own working files under
+
+      `raw/<date>/<HHMM>/`, and the agent writes them many times in one session. Every write
+
+      asks the person for permission. The entries that would stop the question belong in
+
+      `permissions.allow`. But `.claude/settings.json` has one page for the whole file today —
+
+      `rule-hook-registry`, `render_mode: full` — and its Purpose says `defaultMode: plan`
+
+      lives there too, "one file has one source". Permissions, the mode and the hook registry
+
+      are three rules in one file.'
+    problem: 'How to describe `settings.json` so that permissions have their own rule, the mode has
+
+      its own and the hooks have their own, while the file keeps one source.'
+    given: 'The vault, asked through `ask-guppi`: no live or `draft` page is about permission
+
+      settings; the only live text is the `permissions` block inside the Render of
+
+      `rule-hook-registry` (`built`, `full`, `governs: .claude/settings.json`, Estimate
+
+      `estimate-hook-registry-rendered`, `passed`). The slugs `rule-settings`,
+
+      `rule-permissions`, `rule-default-mode`, `estimate-settings`, `estimate-permissions` and
+
+      `estimate-default-mode` are free; `rule-plan-mode` is taken by the phase of the session.
+
+      **＋** `render_full` replaces a `<!-- child -->` line with the child''s text wrapped in its
+
+      own markers (`guppi/render.py`, `block()`); a marker line must match `^<!-- name -->$`
+
+      exactly. `render.plan` already refuses two `full` pages on one file and already requires
+
+      a `partial` child to be listed in the owner''s `children`.
+
+      **＋** JSON holds no comment, so a child spliced with its markers makes the file
+
+      unparsable. This is the one thing the `rule-claude-md` pattern does not lend to a JSON
+
+      file.
+
+      **＋** A marker must be a whole line, so the comma between two JSON keys belongs to the
+
+      text of the child that precedes the other.
+
+      **＋** `guppi guard` and `guppi lint` read no marker; `pages.py` reads the markers of a
+
+      page, not of a file.
+
+      **＋** `rule-harness` is a MOC whose `children` hold `rule-hook-registry`; the new MOC
+
+      takes that slot.
+
+      **＋** The criterion of `estimate-hook-registry-rendered` is the whole file today: the
+
+      Render reproduced byte for byte, the file parses as JSON, the next session start writes
+
+      its `session-start` line.
+
+      **－** Whether Claude Code reads `settings.json` during a session or only at its start is
+
+      written nowhere in the vault. If only at the start, the questions stop at the next `/hi`.'
+  spec: vault/raw/2026-09-12/1610/spec.md
+  criterion:
+  - estimate: estimate-default-mode
+    case: '85.4'
+  applied: '22:07:42'
+- case: '85.5'
+  decision: decision-case-85.5
+  origin: raw/2026-09-12/ledger.md#case-85.5
+  targets:
+  - kind: create
+    category: rules
+    slug: rule-permissions
+    ref: rule-settings
+  tags:
+  - harness
+  - session
+  case_text:
+    when: 'The agent writes or edits `frontier.md`, `spec.md` or `handoff.md` under
+
+      `vault/raw/<date>/<HHMM>/`, in Plan Mode or in Work Mode.'
+    then: 'The write happens with no question to the person, allowed by the six entries of the
+
+      Render of `rule-permissions`: `Edit` and `Write` for the three names.
+
+      **＋** Nothing else is allowed: `ledger.md`, `event_log.md`, `materialize.yaml` and every
+
+      file a Rule page governs stay outside the list.
+
+      **－** `deny` and `ask` stay empty.
+
+      **－** If Claude Code reads `settings.json` only at a session start, the effect begins at
+
+      the next start; the reading records which it was.'
+    context: 'The Frontier, the Spec and the handoff are the session''s own working files under
+
+      `raw/<date>/<HHMM>/`, and the agent writes them many times in one session. Every write
+
+      asks the person for permission. The entries that would stop the question belong in
+
+      `permissions.allow`. But `.claude/settings.json` has one page for the whole file today —
+
+      `rule-hook-registry`, `render_mode: full` — and its Purpose says `defaultMode: plan`
+
+      lives there too, "one file has one source". Permissions, the mode and the hook registry
+
+      are three rules in one file.'
+    problem: 'How to describe `settings.json` so that permissions have their own rule, the mode has
+
+      its own and the hooks have their own, while the file keeps one source.'
+    given: 'The vault, asked through `ask-guppi`: no live or `draft` page is about permission
+
+      settings; the only live text is the `permissions` block inside the Render of
+
+      `rule-hook-registry` (`built`, `full`, `governs: .claude/settings.json`, Estimate
+
+      `estimate-hook-registry-rendered`, `passed`). The slugs `rule-settings`,
+
+      `rule-permissions`, `rule-default-mode`, `estimate-settings`, `estimate-permissions` and
+
+      `estimate-default-mode` are free; `rule-plan-mode` is taken by the phase of the session.
+
+      **＋** `render_full` replaces a `<!-- child -->` line with the child''s text wrapped in its
+
+      own markers (`guppi/render.py`, `block()`); a marker line must match `^<!-- name -->$`
+
+      exactly. `render.plan` already refuses two `full` pages on one file and already requires
+
+      a `partial` child to be listed in the owner''s `children`.
+
+      **＋** JSON holds no comment, so a child spliced with its markers makes the file
+
+      unparsable. This is the one thing the `rule-claude-md` pattern does not lend to a JSON
+
+      file.
+
+      **＋** A marker must be a whole line, so the comma between two JSON keys belongs to the
+
+      text of the child that precedes the other.
+
+      **＋** `guppi guard` and `guppi lint` read no marker; `pages.py` reads the markers of a
+
+      page, not of a file.
+
+      **＋** `rule-harness` is a MOC whose `children` hold `rule-hook-registry`; the new MOC
+
+      takes that slot.
+
+      **＋** The criterion of `estimate-hook-registry-rendered` is the whole file today: the
+
+      Render reproduced byte for byte, the file parses as JSON, the next session start writes
+
+      its `session-start` line.
+
+      **－** Whether Claude Code reads `settings.json` during a session or only at its start is
+
+      written nowhere in the vault. If only at the start, the questions stop at the next `/hi`.'
+  spec: vault/raw/2026-09-12/1610/spec.md
+  criterion:
+  - estimate: estimate-permissions
+    case: '85.5'
+  applied: '22:07:42'
+- case: '86'
+  decision: decision-case-86
+  origin: raw/2026-09-12/ledger.md#case-86
+  targets:
+  - kind: update
+    category: rules
+    slug: rule-case-protocol
+    ref: rule-case-protocol
+  - kind: update
+    category: file
+    slug: case-schema
+    path: vault/wiki/case-schema.md
+    ref: case-schema
+  tags: []
+  case_text:
+    context: 'Case 72.1 ratified that a Leaf `create` carries `method`, the Estimate''s `kind` (`QA` by
+
+      default) and its `slug` (only on a collision). In Work Mode the agent saw that `kind` and
+
+      `slug` on the item are already the target page''s own fields, chose `estimate_kind` and
+
+      `estimate_slug`, and did not return the fork. The code, the tests and `case-schema.md`
+
+      write the prefixed names; the ratified text of 72.1 does not. Case 81 deferred it here.'
+    problem: 'Either the two names are ratified as they stand, or the form goes back to one where
+
+      `kind` and `slug` are unambiguous. No field the harness reads may carry a name nobody
+
+      signed.'
+    given: '`guppi/materialize.py` holds `DERIVED_KEYS = ("method", "contract", "estimate_slug",
+
+      "estimate_kind")`; line 497 takes `item.get("estimate_slug") or derived_slug(...)` and
+
+      line 505 `item.get("estimate_kind") or "QA"`. `guppi/pretask.py` prints "estimate <slug>
+
+      exists; name estimate_slug". Both names are pinned in `tests/test_materialize.py` and
+
+      `tests/test_pretask.py`.
+
+      **＋** `case-schema.md` writes both names, in the example block and in the prose, and
+
+      nowhere says why the prefix.
+
+      **＋** Against what `decision-case-81` records: `index.md` §7 and `glossary.md` name no
+
+      item key at all; they describe the derivation without one. The disagreement is between
+
+      the ratified text of 72.1 and `case-schema.md` with the code, and nowhere else.
+
+      **＋** `rule-case-protocol` is a Leaf, `draft`, `deferred_by: [decision-case-81]`; its
+
+      Estimate `estimate-case-protocol-loaded` is `pending` and its Criterion already holds the
+
+      clause of 72.1 — a Leaf `create` carries `method` and no nested `estimate`.
+
+      **－** `_lift_item` puts every key of a create item that it does not skip into the page''s
+
+      frontmatter, and `DERIVED_KEYS` keeps these four off the target: without the prefix the
+
+      Estimate''s `kind` would overwrite the target page''s own.'
+    when: 'The agent writes a `then` block for a `create` whose Estimate is a Research, or whose
+
+      derived slug is taken.
+
+      **＋** A session starts with `CLAUDE.md`, which imports `case-schema.md`.'
+    then: 'The item names them `estimate_kind` and `estimate_slug`.
+
+      **＋** `case-schema.md` says why the prefix: `kind` and `slug` on the item are the target
+
+      page''s own fields.
+
+      **－** No other key of a `then` item is renamed; `method` and `contract` stay as they are.'
+  spec: vault/raw/2026-09-12/1610/spec.md
+  criterion:
+  - estimate: estimate-case-protocol-loaded
+    case: '86'
+  supersedes:
+  - decision-case-81
+  applied: '22:07:42'
+- case: '87'
+  decision: decision-case-87
+  origin: raw/2026-09-12/ledger.md#case-87
+  targets:
+  - kind: update
+    category: rules
+    slug: rule-materialize
+    ref: rule-materialize
+  tags: []
+  case_text:
+    context: '`materialize.parse_line` reads the braces of a lesson line into options and returns
+
+      `tags` only. `lesson_entry` then marks every `knowledge` lesson `incomplete: [source]`
+
+      and `generate` writes the page without the field, though the line carried one. Case 82
+
+      deferred it here.'
+    problem: 'The lesson entry''s contract (`rule-materialize`, `estimate-materialize-assembles`) names
+
+      `kind`, `root_cause`, Trigger and Root cause, and not `source`; carrying the field is a
+
+      change of that contract. The pages already written without it need a decision of their
+
+      own: a backfill, or debt.'
+    given: 'The lesson branch of `parse_line` returns `record`, `kind`, `slug`, `trigger`,
+
+      `root_cause` and `tags`; the decision branch of the same function already reads
+
+      `options.get("source")` (line 116), so the grammar is there and only the lesson does not
+
+      read it.
+
+      **＋** `lesson_entry` builds `fields: {type, kind, root_cause}` with the sections Trigger
+
+      and Root cause, and calls `incomplete.append("source")` for every `knowledge` lesson
+
+      unconditionally.
+
+      **＋** `lessons/schema.md` requires `source` for `knowledge` — "url or reference" — and
+
+      defines `knowledge` as external material studied once so the source never has to be
+
+      supplied again.
+
+      **＋** Twelve `knowledge` lessons are live and eleven carry no `source`. Five of the
+
+      eleven have a ledger line that carries one:
+
+      `lesson-bash-tool-heredoc-escapes-interpreted`,
+
+      `lesson-frame-read-clauses-omit-candidate-check-and-brief`,
+
+      `lesson-librarian-reads-beyond-the-four-inputs`,
+
+      `lesson-readings-after-librarian-invisible-to-next-hi`,
+
+      `lesson-subagents-parallel-on-one-tree-red-mid-flight`. The other six have no source in
+
+      the line either.
+
+      **＋** `guppi lint` prints exactly eleven findings of class `source`; these are they.
+
+      **＋** `rule-materialize` is a Leaf; its first Estimate is `estimate-materialize-assembles`
+
+      (33 tests, `passed` in session J).
+
+      **－** The librarian set `fields.source` on one entry by hand in the last run because the
+
+      handoff told it to — the conflict of F48. After this change no hand is needed.'
+    when: '`guppi materialize` reads a `- lesson[...]` ledger line whose braces carry `{source:...}`.'
+    then: 'The entry carries `source` in its `fields`, and `generate` writes it into the page''s
+
+      frontmatter.
+
+      **＋** A `knowledge` lesson whose line carries no `source` is still marked
+
+      `incomplete: [source]`; an `error` lesson never is.
+
+      **＋** A one-off run sets `source` on the five live pages whose line carries one and whose
+
+      page lacks it, taking the value from the line.
+
+      **－** The six `knowledge` pages whose lines carry no source keep their lint finding;
+
+      nothing invents one.
+
+      **－** The applied entries of the earlier yamls are not rewritten: they record what the
+
+      parser did that day.'
+  spec: vault/raw/2026-09-12/1610/spec.md
+  criterion:
+  - estimate: estimate-materialize-assembles
+    case: '87'
+  supersedes:
+  - decision-case-82
+  applied: '22:07:42'
+- case: '88.1'
+  decision: decision-case-88.1
+  origin: raw/2026-09-12/ledger.md#case-88.1
+  targets:
+  - kind: update
+    category: rules
+    slug: rule-render-harness
+    ref: rule-render-harness
+  - kind: update
+    category: estimates
+    slug: estimate-render-harness-reproduces
+    ref: estimate-render-harness-reproduces
+  tags: []
+  case_text:
+    when: '`uv run guppi render` runs against the live vault.'
+    then: '`git diff --stat` names only the governed files whose Rule page changed since the last
+
+      render.
+
+      **＋** The diff of each file equals the text of that page''s Render; a full render also
+
+      drops the page''s outer markers, by design.
+
+      **＋** `uv run guppi render --check` then exits 0.
+
+      **－** The clause names no fixed file and no count of lines: it is read against the pages
+
+      that changed, never against a tree that has passed.'
+    context: 'Both render readings failed in session J on their wording, not on the code. The live
+
+      half of `estimate-render-harness-reproduces` asks for a `git diff --stat` of the two
+
+      dropped marker lines of `hi/SKILL.md`; the live half of `estimate-claude-md-rendered`
+
+      asks the first render to leave a diff of marker lines only. Both were written in the Plan
+
+      Mode of session I against the tree as it stood; the librarian''s run of the same session
+
+      wrote the text of cases 59.2, 59.5, 59.6, 62 and 66 into the Rule pages, and the render
+
+      of session J moved six files and 37 lines. Case 84 deferred the repair here.'
+    problem: 'A live clause that describes one past state of the tree goes stale at the first change of
+
+      a page. Both have to say a standing rule, read against the pages that changed.'
+    given: 'In both pages the stale sentence sits in the prose of `## Criterion`, not in a
+
+      `### case N` block: both Estimates are older than the derived-Criterion scheme of case
+
+      72. A `{supersedes:case N}` removes a block, so it cannot reach them; only an explicit
+
+      `replace` on the Estimate page can.
+
+      **＋** `estimate-render-harness-reproduces` is `failed`, its target `rule-render-harness`
+
+      (Leaf, `draft`, first Estimate). `estimate-claude-md-rendered` is `pending`, its target
+
+      `rule-claude-md` (MOC, `draft`, one Estimate). Both Rule pages carry
+
+      `deferred_by: [decision-case-84]`.
+
+      **＋** The unit halves of both criteria hold: `tests/test_render.py` is green. Only the
+
+      live half breaks.
+
+      **＋** Case 85.1 of this Spec already sets `estimate-render-harness-reproduces` `pending`
+
+      with a block of its own; the block of 88.1 sits beside it and says another thing — one is
+
+      the bare splice into a file that holds no comment, the other is what a render leaves in
+
+      the tree.
+
+      **＋** This is the class of
+
+      `insight-workflow-contract-change-leaves-its-derived-text-stale` (severity 3): the
+
+      contract moves and the derived text stays. Case 72 closed it for criteria born after it;
+
+      these two are older.
+
+      **－** The reading is taken in this session: Work Mode runs `uv run guppi render` for
+
+      85.2 anyway.'
+  spec: vault/raw/2026-09-12/1610/spec.md
+  criterion:
+  - estimate: estimate-render-harness-reproduces
+    case: '88.1'
+  supersedes:
+  - decision-case-84
+  applied: '22:07:42'
+- case: '88.2'
+  decision: decision-case-88.2
+  origin: raw/2026-09-12/ledger.md#case-88.2
+  targets:
+  - kind: update
+    category: rules
+    slug: rule-claude-md
+    ref: rule-claude-md
+  - kind: update
+    category: estimates
+    slug: estimate-claude-md-rendered
+    ref: estimate-claude-md-rendered
+  tags: []
+  case_text:
+    when: The first `uv run guppi render` after `rule-claude-md` or `rule-case-protocol` changed.
+    then: '`CLAUDE.md` equals the Render of `rule-claude-md` with the text of `rule-case-protocol`
+
+      between its markers.
+
+      **＋** The diff holds the text those two pages gained since the file was last written,
+
+      and nothing else.
+
+      **＋** `guppi render --check` then exits 0, and every session after it loads the same
+
+      text with the two `@` imports expanded.'
+    context: 'Both render readings failed in session J on their wording, not on the code. The live
+
+      half of `estimate-render-harness-reproduces` asks for a `git diff --stat` of the two
+
+      dropped marker lines of `hi/SKILL.md`; the live half of `estimate-claude-md-rendered`
+
+      asks the first render to leave a diff of marker lines only. Both were written in the Plan
+
+      Mode of session I against the tree as it stood; the librarian''s run of the same session
+
+      wrote the text of cases 59.2, 59.5, 59.6, 62 and 66 into the Rule pages, and the render
+
+      of session J moved six files and 37 lines. Case 84 deferred the repair here.'
+    problem: 'A live clause that describes one past state of the tree goes stale at the first change of
+
+      a page. Both have to say a standing rule, read against the pages that changed.'
+    given: 'In both pages the stale sentence sits in the prose of `## Criterion`, not in a
+
+      `### case N` block: both Estimates are older than the derived-Criterion scheme of case
+
+      72. A `{supersedes:case N}` removes a block, so it cannot reach them; only an explicit
+
+      `replace` on the Estimate page can.
+
+      **＋** `estimate-render-harness-reproduces` is `failed`, its target `rule-render-harness`
+
+      (Leaf, `draft`, first Estimate). `estimate-claude-md-rendered` is `pending`, its target
+
+      `rule-claude-md` (MOC, `draft`, one Estimate). Both Rule pages carry
+
+      `deferred_by: [decision-case-84]`.
+
+      **＋** The unit halves of both criteria hold: `tests/test_render.py` is green. Only the
+
+      live half breaks.
+
+      **＋** Case 85.1 of this Spec already sets `estimate-render-harness-reproduces` `pending`
+
+      with a block of its own; the block of 88.1 sits beside it and says another thing — one is
+
+      the bare splice into a file that holds no comment, the other is what a render leaves in
+
+      the tree.
+
+      **＋** This is the class of
+
+      `insight-workflow-contract-change-leaves-its-derived-text-stale` (severity 3): the
+
+      contract moves and the derived text stays. Case 72 closed it for criteria born after it;
+
+      these two are older.
+
+      **－** The reading is taken in this session: Work Mode runs `uv run guppi render` for
+
+      85.2 anyway.'
+  spec: vault/raw/2026-09-12/1610/spec.md
+  criterion:
+  - estimate: estimate-claude-md-rendered
+    case: '88.2'
+  supersedes:
+  - decision-case-84
+  applied: '22:07:42'
+- case: '89.1'
+  decision: decision-case-89.1
+  origin: raw/2026-09-12/ledger.md#case-89.1
+  targets:
+  - kind: update
+    category: rules
+    slug: rule-documentation
+    ref: rule-documentation
+  tags: []
+  case_text:
+    when: The librarian reaches the end of its run.
+    then: 'After `cleanup` and before the brief it runs `uv run guppi render`, and the governed
+
+      files are written from the pages of that same run.
+
+      **＋** Every line on its stderr is a flag for the brief.
+
+      **＋** `make lint` at the close then passes its `render --check` step.
+
+      **－** A file the render could not write is left to the next session start; the librarian
+
+      does not write it by hand.'
+    context: '`guppi render` writes files only at a session start, from the `--sync` hook. The
+
+      librarian reaches the renderer through `make lint` alone, whose first step is
+
+      `render --check` — it reports and writes nothing. So its commit holds the pages without
+
+      the files they render into, `make lint` fails at step one on that commit, and the gap
+
+      closes only at the next `/hi`.'
+    problem: 'The files should be written where the pages are made: the error then shows in the same
+
+      run and reaches the brief, and the librarian''s commit stops contradicting itself. That
+
+      changes what the commit holds, and it makes the live clause of a reading that passed
+
+      today describe something that can no longer happen.'
+    given: '`rule-documentation` is the full Render of the librarian agent, its steps numbered: 1
+
+      `materialize`, index check, synthesis, 2 `generate`, 3 `cleanup`, then brief and close.
+
+      Its How it works says "The close commits only `vault/`, apart from the session''s own
+
+      commit".
+
+      **＋** `rule-close` is a Leaf, `built`, `partial`; its Render says "Commit only paths
+
+      under `vault/` … never anything outside `vault/`", and its Estimate
+
+      `estimate-close-commits` (`passed`) asks for one commit "touching only vault/ paths".
+
+      **＋** The criterion of `estimate-documentation-completes` asks only that the commit be
+
+      separate from the session''s; it holds no vault-only clause, so no prose of it is touched.
+
+      **＋** Every governed file lies under three paths beside the vault: `CLAUDE.md`,
+
+      `.claude/settings.json`, and the files under `.claude/agents/` and `.claude/skills/`. So
+
+      `git add vault CLAUDE.md .claude` covers them and sweeps nothing else.
+
+      **＋** `guppi cleanup` is the last step that changes which pages are live and where they
+
+      lie: it moves every `status: archived` page out of `vault/wiki/`, strips archived slugs
+
+      from `children` and `estimates`, and rewrites the indexes. `render_units` filters by
+
+      `enforcement`, never by `status`, so a render before cleanup would build a file from a
+
+      page this run archived, and a full page whose child was archived would splice the
+
+      archived text or fail on it. The render belongs after cleanup.
+
+      **＋** `run()` builds every output in memory through `plan()` and only then calls
+
+      `write_all`, so a `RenderError` leaves nothing written. A pre-flight `--check` would add
+
+      no protection, and it cannot serve as a gate: it exits 1 whenever a file merely differs,
+
+      which after `generate` is always.
+
+      **＋** `.claude/settings.json` is the only governed file a machine parses. If it does not
+
+      load, every hook goes with it — the ledger, the event log, the guard, the pretask gate,
+
+      the spec capture, `render --sync` — and `defaultMode: plan` with them, silently. Case 85
+
+      makes that file an assembly of four pages with the comma between two keys carried in a
+
+      child''s body, and 89.1 removes the person who used to see the diff at a session start.
+
+      **－** The frontmatter of an agent or a skill file is machine-read too. It is short,
+
+      stable and barely part of a Render, so 89.4 does not cover it; that would be its own Case.
+
+      **－** `git pull` lives inside `/hi`, which runs after the `SessionStart` hooks, so what a
+
+      pull brings is rendered only at the following start. Closing that needs a render inside
+
+      `/hi` after the pull, and it waits for the pull itself to be decided (sprint, Slice 5).'
+  spec: vault/raw/2026-09-12/1610/spec.md
+  criterion:
+  - estimate: estimate-documentation-completes
+    case: '89.1'
+  applied: '22:07:42'
+- case: '89.2'
+  decision: decision-case-89.2
+  origin: raw/2026-09-12/ledger.md#case-89.2
+  targets:
+  - kind: update
+    category: rules
+    slug: rule-close
+    ref: rule-close
+  - kind: update
+    category: estimates
+    slug: estimate-close-commits
+    ref: estimate-close-commits
+  tags: []
+  case_text:
+    when: The librarian commits.
+    then: 'The commit takes `vault/` and the files the render wrote: `git add vault CLAUDE.md
+
+      .claude`.
+
+      **＋** It stays one commit, separate from the session''s, with the same message
+
+      convention, and never `--amend`.
+
+      **－** No path outside those three.'
+    context: '`guppi render` writes files only at a session start, from the `--sync` hook. The
+
+      librarian reaches the renderer through `make lint` alone, whose first step is
+
+      `render --check` — it reports and writes nothing. So its commit holds the pages without
+
+      the files they render into, `make lint` fails at step one on that commit, and the gap
+
+      closes only at the next `/hi`.'
+    problem: 'The files should be written where the pages are made: the error then shows in the same
+
+      run and reaches the brief, and the librarian''s commit stops contradicting itself. That
+
+      changes what the commit holds, and it makes the live clause of a reading that passed
+
+      today describe something that can no longer happen.'
+    given: '`rule-documentation` is the full Render of the librarian agent, its steps numbered: 1
+
+      `materialize`, index check, synthesis, 2 `generate`, 3 `cleanup`, then brief and close.
+
+      Its How it works says "The close commits only `vault/`, apart from the session''s own
+
+      commit".
+
+      **＋** `rule-close` is a Leaf, `built`, `partial`; its Render says "Commit only paths
+
+      under `vault/` … never anything outside `vault/`", and its Estimate
+
+      `estimate-close-commits` (`passed`) asks for one commit "touching only vault/ paths".
+
+      **＋** The criterion of `estimate-documentation-completes` asks only that the commit be
+
+      separate from the session''s; it holds no vault-only clause, so no prose of it is touched.
+
+      **＋** Every governed file lies under three paths beside the vault: `CLAUDE.md`,
+
+      `.claude/settings.json`, and the files under `.claude/agents/` and `.claude/skills/`. So
+
+      `git add vault CLAUDE.md .claude` covers them and sweeps nothing else.
+
+      **＋** `guppi cleanup` is the last step that changes which pages are live and where they
+
+      lie: it moves every `status: archived` page out of `vault/wiki/`, strips archived slugs
+
+      from `children` and `estimates`, and rewrites the indexes. `render_units` filters by
+
+      `enforcement`, never by `status`, so a render before cleanup would build a file from a
+
+      page this run archived, and a full page whose child was archived would splice the
+
+      archived text or fail on it. The render belongs after cleanup.
+
+      **＋** `run()` builds every output in memory through `plan()` and only then calls
+
+      `write_all`, so a `RenderError` leaves nothing written. A pre-flight `--check` would add
+
+      no protection, and it cannot serve as a gate: it exits 1 whenever a file merely differs,
+
+      which after `generate` is always.
+
+      **＋** `.claude/settings.json` is the only governed file a machine parses. If it does not
+
+      load, every hook goes with it — the ledger, the event log, the guard, the pretask gate,
+
+      the spec capture, `render --sync` — and `defaultMode: plan` with them, silently. Case 85
+
+      makes that file an assembly of four pages with the comma between two keys carried in a
+
+      child''s body, and 89.1 removes the person who used to see the diff at a session start.
+
+      **－** The frontmatter of an agent or a skill file is machine-read too. It is short,
+
+      stable and barely part of a Render, so 89.4 does not cover it; that would be its own Case.
+
+      **－** `git pull` lives inside `/hi`, which runs after the `SessionStart` hooks, so what a
+
+      pull brings is rendered only at the following start. Closing that needs a render inside
+
+      `/hi` after the pull, and it waits for the pull itself to be decided (sprint, Slice 5).'
+  spec: vault/raw/2026-09-12/1610/spec.md
+  criterion:
+  - estimate: estimate-close-commits
+    case: '89.2'
+  applied: '22:07:42'
+- case: '89.3'
+  decision: decision-case-89.3
+  origin: raw/2026-09-12/ledger.md#case-89.3
+  targets:
+  - kind: update
+    category: estimates
+    slug: estimate-render-sync-reports
+    ref: estimate-render-sync-reports
+  tags: []
+  case_text:
+    when: A session starts.
+    then: 'After a librarian run that rendered, the hook prints nothing, writes nothing, and
+
+      `render --check` exits 0.
+
+      **＋** When a governed file and its page have parted — a hand edit, or a change that
+
+      arrived from outside the session — the diff of that file is in the agent''s first turn and
+
+      the page''s text is written back.
+
+      **－** The Estimate goes `pending` and is read at the next session start.'
+    context: '`guppi render` writes files only at a session start, from the `--sync` hook. The
+
+      librarian reaches the renderer through `make lint` alone, whose first step is
+
+      `render --check` — it reports and writes nothing. So its commit holds the pages without
+
+      the files they render into, `make lint` fails at step one on that commit, and the gap
+
+      closes only at the next `/hi`.'
+    problem: 'The files should be written where the pages are made: the error then shows in the same
+
+      run and reaches the brief, and the librarian''s commit stops contradicting itself. That
+
+      changes what the commit holds, and it makes the live clause of a reading that passed
+
+      today describe something that can no longer happen.'
+    given: '`rule-documentation` is the full Render of the librarian agent, its steps numbered: 1
+
+      `materialize`, index check, synthesis, 2 `generate`, 3 `cleanup`, then brief and close.
+
+      Its How it works says "The close commits only `vault/`, apart from the session''s own
+
+      commit".
+
+      **＋** `rule-close` is a Leaf, `built`, `partial`; its Render says "Commit only paths
+
+      under `vault/` … never anything outside `vault/`", and its Estimate
+
+      `estimate-close-commits` (`passed`) asks for one commit "touching only vault/ paths".
+
+      **＋** The criterion of `estimate-documentation-completes` asks only that the commit be
+
+      separate from the session''s; it holds no vault-only clause, so no prose of it is touched.
+
+      **＋** Every governed file lies under three paths beside the vault: `CLAUDE.md`,
+
+      `.claude/settings.json`, and the files under `.claude/agents/` and `.claude/skills/`. So
+
+      `git add vault CLAUDE.md .claude` covers them and sweeps nothing else.
+
+      **＋** `guppi cleanup` is the last step that changes which pages are live and where they
+
+      lie: it moves every `status: archived` page out of `vault/wiki/`, strips archived slugs
+
+      from `children` and `estimates`, and rewrites the indexes. `render_units` filters by
+
+      `enforcement`, never by `status`, so a render before cleanup would build a file from a
+
+      page this run archived, and a full page whose child was archived would splice the
+
+      archived text or fail on it. The render belongs after cleanup.
+
+      **＋** `run()` builds every output in memory through `plan()` and only then calls
+
+      `write_all`, so a `RenderError` leaves nothing written. A pre-flight `--check` would add
+
+      no protection, and it cannot serve as a gate: it exits 1 whenever a file merely differs,
+
+      which after `generate` is always.
+
+      **＋** `.claude/settings.json` is the only governed file a machine parses. If it does not
+
+      load, every hook goes with it — the ledger, the event log, the guard, the pretask gate,
+
+      the spec capture, `render --sync` — and `defaultMode: plan` with them, silently. Case 85
+
+      makes that file an assembly of four pages with the comma between two keys carried in a
+
+      child''s body, and 89.1 removes the person who used to see the diff at a session start.
+
+      **－** The frontmatter of an agent or a skill file is machine-read too. It is short,
+
+      stable and barely part of a Render, so 89.4 does not cover it; that would be its own Case.
+
+      **－** `git pull` lives inside `/hi`, which runs after the `SessionStart` hooks, so what a
+
+      pull brings is rendered only at the following start. Closing that needs a render inside
+
+      `/hi` after the pull, and it waits for the pull itself to be decided (sprint, Slice 5).'
+  spec: vault/raw/2026-09-12/1610/spec.md
+  applied: '22:07:42'
+- case: '89.4'
+  decision: decision-case-89.4
+  origin: raw/2026-09-12/ledger.md#case-89.4
+  targets:
+  - kind: update
+    category: rules
+    slug: rule-render-harness
+    ref: rule-render-harness
+  tags: []
+  case_text:
+    when: '`guppi render` has built its texts and is about to write, and a target''s name ends in
+
+      `.json`.'
+    then: 'Each such text goes through `json.loads` before anything is written.
+
+      **＋** If one of them does not parse, nothing at all is written: the file and the page
+
+      that owns it go to stderr, `render` exits 1 and `--sync` exits 0 with the same line.
+
+      **＋** If all of them parse, the run writes as before.
+
+      **－** No other file type is checked: markdown has no grammar to break.'
+    context: '`guppi render` writes files only at a session start, from the `--sync` hook. The
+
+      librarian reaches the renderer through `make lint` alone, whose first step is
+
+      `render --check` — it reports and writes nothing. So its commit holds the pages without
+
+      the files they render into, `make lint` fails at step one on that commit, and the gap
+
+      closes only at the next `/hi`.'
+    problem: 'The files should be written where the pages are made: the error then shows in the same
+
+      run and reaches the brief, and the librarian''s commit stops contradicting itself. That
+
+      changes what the commit holds, and it makes the live clause of a reading that passed
+
+      today describe something that can no longer happen.'
+    given: '`rule-documentation` is the full Render of the librarian agent, its steps numbered: 1
+
+      `materialize`, index check, synthesis, 2 `generate`, 3 `cleanup`, then brief and close.
+
+      Its How it works says "The close commits only `vault/`, apart from the session''s own
+
+      commit".
+
+      **＋** `rule-close` is a Leaf, `built`, `partial`; its Render says "Commit only paths
+
+      under `vault/` … never anything outside `vault/`", and its Estimate
+
+      `estimate-close-commits` (`passed`) asks for one commit "touching only vault/ paths".
+
+      **＋** The criterion of `estimate-documentation-completes` asks only that the commit be
+
+      separate from the session''s; it holds no vault-only clause, so no prose of it is touched.
+
+      **＋** Every governed file lies under three paths beside the vault: `CLAUDE.md`,
+
+      `.claude/settings.json`, and the files under `.claude/agents/` and `.claude/skills/`. So
+
+      `git add vault CLAUDE.md .claude` covers them and sweeps nothing else.
+
+      **＋** `guppi cleanup` is the last step that changes which pages are live and where they
+
+      lie: it moves every `status: archived` page out of `vault/wiki/`, strips archived slugs
+
+      from `children` and `estimates`, and rewrites the indexes. `render_units` filters by
+
+      `enforcement`, never by `status`, so a render before cleanup would build a file from a
+
+      page this run archived, and a full page whose child was archived would splice the
+
+      archived text or fail on it. The render belongs after cleanup.
+
+      **＋** `run()` builds every output in memory through `plan()` and only then calls
+
+      `write_all`, so a `RenderError` leaves nothing written. A pre-flight `--check` would add
+
+      no protection, and it cannot serve as a gate: it exits 1 whenever a file merely differs,
+
+      which after `generate` is always.
+
+      **＋** `.claude/settings.json` is the only governed file a machine parses. If it does not
+
+      load, every hook goes with it — the ledger, the event log, the guard, the pretask gate,
+
+      the spec capture, `render --sync` — and `defaultMode: plan` with them, silently. Case 85
+
+      makes that file an assembly of four pages with the comma between two keys carried in a
+
+      child''s body, and 89.1 removes the person who used to see the diff at a session start.
+
+      **－** The frontmatter of an agent or a skill file is machine-read too. It is short,
+
+      stable and barely part of a Render, so 89.4 does not cover it; that would be its own Case.
+
+      **－** `git pull` lives inside `/hi`, which runs after the `SessionStart` hooks, so what a
+
+      pull brings is rendered only at the following start. Closing that needs a render inside
+
+      `/hi` after the pull, and it waits for the pull itself to be decided (sprint, Slice 5).'
+  spec: vault/raw/2026-09-12/1610/spec.md
+  criterion:
+  - estimate: estimate-render-harness-reproduces
+    case: '89.4'
+  applied: '22:07:42'
+- case: '90.1'
+  decision: decision-case-90.1
+  origin: raw/2026-09-12/ledger.md#case-90.1
+  targets:
+  - kind: update
+    category: rules
+    slug: rule-materialize
+    ref: rule-materialize
+  tags: []
+  case_text:
+    when: '`guppi materialize` meets an `update` whose item carries `contract: changed`.'
+    then: 'When the item carries `estimate_slug`, the derived entry goes to that Estimate.
+
+      **＋** When it does not, and the page carries exactly one Estimate, it goes to that one.
+
+      **＋** When the page carries none or more than one and the item names none, the entry goes
+
+      without a slug and is marked `incomplete: [estimate]`.
+
+      **－** The `create` branch does not change: it reads `estimate_slug` already.'
+    context: 'Today''s reading of `estimate-documentation-completes` failed on one clause: the librarian
+
+      edited yaml entries by hand. There were three, and the handoff asked for all of them. Two
+
+      were needed because of a defect of `materialize`: the derived entry takes the first
+
+      Estimate of the page, and `None` when the page has none. The third is gone with case 87.'
+    problem: 'Two things. A script guesses which Estimate a Case changes instead of asking. And an
+
+      instruction of the handoff that the librarian''s own Rule forbids reaches it with the
+
+      authority of the person''s session, and is carried out.'
+    given: '`derived_entries`, the `update` branch: `"slug": estimates[0] if estimates else None`. The
+
+      `create` branch beside it already reads `item.get("estimate_slug")`, and `DERIVED_KEYS`
+
+      already keeps that key off the target page — on an `update` it is simply not read.
+
+      **＋** Both of the librarian''s repairs are of this class: case 73.10 had `slug: null`
+
+      (`rule-claude-md` had an empty `estimates` list when materialize ran) and case 73.3 had
+
+      `estimate-hi-no-read-calls` where the Case changed `estimate-hi-writes-frontier`, because
+
+      the first of `rule-skill-hi`''s two Estimates is not the one that moved.
+
+      **＋** Four pages carry two Estimates: `rule-materialize`, `rule-page-generation`,
+
+      `rule-render-harness`, `rule-skill-hi`. Three contracts of this session hit two of them —
+
+      case 87 on `rule-materialize`, 88.1 and 89.4 on `rule-render-harness` — and each time the
+
+      first of the list was the right one by chance, not by guarantee.
+
+      **＋** `pretask --check` already carries the four form findings of case 72.5: a Leaf
+
+      `create` without `method`, a Leaf `update` without `contract`, two contracts in one Case,
+
+      a colliding derived slug. This is the fifth of that family.
+
+      **＋** The criterion of `estimate-documentation-completes` says the librarian edits the
+
+      yaml only as the index check and the synthesis say; case 44 put yaml repairs in the
+
+      forbidden set by name. The librarian takes the handoff as its first input and as its list
+
+      of instructions, and nothing checks the handoff against that criterion.
+
+      **－** The repairs were useful in themselves: without them two pages would be wrong. After
+
+      90.1 and 90.2 they are not needed; until then the price of a refusal is a wrong entry that
+
+      the next Plan Mode fixes, instead of a hand nobody signed.'
+  spec: vault/raw/2026-09-12/1610/spec.md
+  criterion:
+  - estimate: estimate-materialize-assembles
+    case: '90.1'
+  applied: '22:07:42'
+- case: '90.2'
+  decision: decision-case-90.2
+  origin: raw/2026-09-12/ledger.md#case-90.2
+  targets:
+  - kind: update
+    category: rules
+    slug: rule-pretask
+    ref: rule-pretask
+  tags: []
+  case_text:
+    when: '`guppi pretask --check` runs against the plan of this Plan Mode.'
+    then: 'It prints one line for every `update` with `contract: changed` whose page carries no
+
+      Estimate or more than one while the item names no `estimate_slug`.
+
+      **＋** The line names the Case, the page and the page''s Estimates, so the person can see
+
+      the choice.
+
+      **－** A page with exactly one Estimate is no finding.'
+    context: 'Today''s reading of `estimate-documentation-completes` failed on one clause: the librarian
+
+      edited yaml entries by hand. There were three, and the handoff asked for all of them. Two
+
+      were needed because of a defect of `materialize`: the derived entry takes the first
+
+      Estimate of the page, and `None` when the page has none. The third is gone with case 87.'
+    problem: 'Two things. A script guesses which Estimate a Case changes instead of asking. And an
+
+      instruction of the handoff that the librarian''s own Rule forbids reaches it with the
+
+      authority of the person''s session, and is carried out.'
+    given: '`derived_entries`, the `update` branch: `"slug": estimates[0] if estimates else None`. The
+
+      `create` branch beside it already reads `item.get("estimate_slug")`, and `DERIVED_KEYS`
+
+      already keeps that key off the target page — on an `update` it is simply not read.
+
+      **＋** Both of the librarian''s repairs are of this class: case 73.10 had `slug: null`
+
+      (`rule-claude-md` had an empty `estimates` list when materialize ran) and case 73.3 had
+
+      `estimate-hi-no-read-calls` where the Case changed `estimate-hi-writes-frontier`, because
+
+      the first of `rule-skill-hi`''s two Estimates is not the one that moved.
+
+      **＋** Four pages carry two Estimates: `rule-materialize`, `rule-page-generation`,
+
+      `rule-render-harness`, `rule-skill-hi`. Three contracts of this session hit two of them —
+
+      case 87 on `rule-materialize`, 88.1 and 89.4 on `rule-render-harness` — and each time the
+
+      first of the list was the right one by chance, not by guarantee.
+
+      **＋** `pretask --check` already carries the four form findings of case 72.5: a Leaf
+
+      `create` without `method`, a Leaf `update` without `contract`, two contracts in one Case,
+
+      a colliding derived slug. This is the fifth of that family.
+
+      **＋** The criterion of `estimate-documentation-completes` says the librarian edits the
+
+      yaml only as the index check and the synthesis say; case 44 put yaml repairs in the
+
+      forbidden set by name. The librarian takes the handoff as its first input and as its list
+
+      of instructions, and nothing checks the handoff against that criterion.
+
+      **－** The repairs were useful in themselves: without them two pages would be wrong. After
+
+      90.1 and 90.2 they are not needed; until then the price of a refusal is a wrong entry that
+
+      the next Plan Mode fixes, instead of a hand nobody signed.'
+  spec: vault/raw/2026-09-12/1610/spec.md
+  criterion:
+  - estimate: estimate-pretask-reconciles
+    case: '90.2'
+  applied: '22:07:42'
+- case: '90.3'
+  decision: decision-case-90.3
+  origin: raw/2026-09-12/ledger.md#case-90.3
+  targets:
+  - kind: update
+    category: rules
+    slug: rule-documentation
+    ref: rule-documentation
+  tags: []
+  case_text:
+    when: 'The handoff tells the librarian to do what the criterion of `rule-documentation` forbids
+
+      — repair an entry of the yaml, or read `ledger.md`, a Spec, a decision page or the
+
+      archive.'
+    then: 'The librarian does not do it.
+
+      **＋** It names the instruction in the report: what was asked, and why it was refused.
+
+      **－** The handoff itself is checked by nothing: it is written from memory, and the
+
+      refusal is the librarian''s work, not its author''s.
+
+      **－** A refusal does not stop the run: the librarian asks no questions, the person is
+
+      gone.'
+    context: 'Today''s reading of `estimate-documentation-completes` failed on one clause: the librarian
+
+      edited yaml entries by hand. There were three, and the handoff asked for all of them. Two
+
+      were needed because of a defect of `materialize`: the derived entry takes the first
+
+      Estimate of the page, and `None` when the page has none. The third is gone with case 87.'
+    problem: 'Two things. A script guesses which Estimate a Case changes instead of asking. And an
+
+      instruction of the handoff that the librarian''s own Rule forbids reaches it with the
+
+      authority of the person''s session, and is carried out.'
+    given: '`derived_entries`, the `update` branch: `"slug": estimates[0] if estimates else None`. The
+
+      `create` branch beside it already reads `item.get("estimate_slug")`, and `DERIVED_KEYS`
+
+      already keeps that key off the target page — on an `update` it is simply not read.
+
+      **＋** Both of the librarian''s repairs are of this class: case 73.10 had `slug: null`
+
+      (`rule-claude-md` had an empty `estimates` list when materialize ran) and case 73.3 had
+
+      `estimate-hi-no-read-calls` where the Case changed `estimate-hi-writes-frontier`, because
+
+      the first of `rule-skill-hi`''s two Estimates is not the one that moved.
+
+      **＋** Four pages carry two Estimates: `rule-materialize`, `rule-page-generation`,
+
+      `rule-render-harness`, `rule-skill-hi`. Three contracts of this session hit two of them —
+
+      case 87 on `rule-materialize`, 88.1 and 89.4 on `rule-render-harness` — and each time the
+
+      first of the list was the right one by chance, not by guarantee.
+
+      **＋** `pretask --check` already carries the four form findings of case 72.5: a Leaf
+
+      `create` without `method`, a Leaf `update` without `contract`, two contracts in one Case,
+
+      a colliding derived slug. This is the fifth of that family.
+
+      **＋** The criterion of `estimate-documentation-completes` says the librarian edits the
+
+      yaml only as the index check and the synthesis say; case 44 put yaml repairs in the
+
+      forbidden set by name. The librarian takes the handoff as its first input and as its list
+
+      of instructions, and nothing checks the handoff against that criterion.
+
+      **－** The repairs were useful in themselves: without them two pages would be wrong. After
+
+      90.1 and 90.2 they are not needed; until then the price of a refusal is a wrong entry that
+
+      the next Plan Mode fixes, instead of a hand nobody signed.'
+  spec: vault/raw/2026-09-12/1610/spec.md
+  criterion:
+  - estimate: estimate-documentation-completes
+    case: '90.3'
+  applied: '22:07:42'
+- case: '91'
+  decision: decision-case-91
+  origin: raw/2026-09-12/ledger.md#case-91
+  targets:
+  - kind: update
+    category: rules
+    slug: rule-governed-files-hook
+    ref: rule-governed-files-hook
+  tags: []
+  case_text:
+    context: 'A `PreToolUse` hook that blocks a tool leaves no `PostToolUse`, so the call reaches the
+
+      event log never. The fact is `lesson-hooks-blocked-pretooluse-leaves-no-posttooluse-event`
+
+      (`knowledge`, with the live probe of session J as its source). The live clause of
+
+      `estimate-governed-files-hook-refuses` asks for the call in the event log, and the reading
+
+      failed on it: two of its three clauses hold. Case 83 deferred the choice here.'
+    problem: 'Either the guard writes the line itself, or the clause leaves the criterion. A refusal is
+
+      the one event of a session the log cannot see.'
+    given: 'The guard exits 2 with the rule''s slug and the file on stderr, and writes nothing.
+
+      **＋** `guppi/event.py` holds `format_line(name, payload, words, session, now)`,
+
+      `log_path(project_dir, now)` and `append(path, line)`; `guard.py` already imports
+
+      `project_root` and `read_payload` from it. A log line reads
+
+      `- 15:57:15 d08a5ca5 tool Read: …`.
+
+      **＋** The live clause already asks for the line, so no prose of the Estimate changes: it
+
+      takes the `### case 91` block and goes from `failed` to `pending`.
+
+      **＋** The reading is taken in this session: one refused `Edit` on any governed file.
+
+      **－** Cases 85 and 89 change the world around the guard — what `settings.json` holds and
+
+      when the render runs — but not the guard itself. This is the only change of its code in
+
+      the session.'
+    when: '`guppi guard` refuses an `Edit`, `Write` or `MultiEdit` of a governed file.'
+    then: 'Before it exits 2 it appends one line to `vault/raw/<date>/event_log.md`.
+
+      **＋** The line carries the time, the session, the tool, the path and the slug of the rule
+
+      that governs the file.
+
+      **－** A call the hook lets through writes nothing: `PostToolUse` logs it as before.
+
+      **－** A log the hook cannot write does not change the refusal: the exit stays 2 and the
+
+      reason still goes to stderr.'
+  spec: vault/raw/2026-09-12/1610/spec.md
+  criterion:
+  - estimate: estimate-governed-files-hook-refuses
+    case: '91'
+  supersedes:
+  - decision-case-83
+  applied: '22:07:42'
+- case: '92'
+  decision: decision-case-92
+  origin: raw/2026-09-12/ledger.md#case-92
+  targets:
+  - kind: update
+    category: file
+    slug: index
+    path: vault/wiki/index.md
+    ref: index
+  - kind: update
+    category: file
+    slug: case-schema
+    path: vault/wiki/case-schema.md
+    ref: case-schema
+  tags: []
+  case_text:
+    context: 'The librarian raised two facts for this Plan Mode that ask for no new work, only for a
+
+      signature under what already stands. First: §4 of `index.md` says `ref` is omitted on
+
+      `update` and `delete`, while its own example two lines above carries `{ref:rule-x}` on an
+
+      `update`, and every line of the last four sessions carries it. Second: the Work Mode of
+
+      session J changed two mentions of the Spec in `case-schema.md` to the session folder,
+
+      beyond what the `change` lines of case 73 named literally.'
+    problem: 'In both the text and the practice have parted, and neither side is signed. Either the
+
+      text follows the practice, or the practice goes back to the text.'
+    given: '`index.md` line 181 is the example
+
+      `- decision[case 12][update][rule-x]{ref:rule-x}{source:external_id}{tags:a,b}`; line 185
+
+      says "`ref` — the parent, for a `create` that adds a child. Omitted for update/delete:
+
+      `slug` already identifies the target". Two lines of one section contradict each other.
+
+      **＋** The Render of `rule-case-protocol`, and so `CLAUDE.md`, already says "A record is a
+
+      `- decision[case 12][update][rule-x]{ref:rule-x}`": the ratified text is on the side of
+
+      the practice, and only §4 disagrees.
+
+      **＋** `materialize.parse_line` reads `options.get("ref")` for a decision line of any
+
+      kind; a `ref` on an `update` overrides nothing and breaks nothing.
+
+      **＋** `case-schema.md` names the session folder in two places, line 60 (Work Mode ticks
+
+      the boxes of the Spec) and line 68 (the short form is appended to the Spec). Both say what
+
+      case 73 decided.
+
+      **－** Both files are Rule-class: applied by hand in Work Mode, no Estimate, no reading
+
+      born here.'
+    when: Someone reads §4 of `index.md` or `case-schema.md`.
+    then: '§4 says `ref` stands on every decision line: on a `create` it is the parent, on an
+
+      `update` or a `delete` it repeats the target''s `slug`.
+
+      **＋** `case-schema.md` names the session folder in both places, signed by case 92.
+
+      **－** The form of the lines does not change: no ledger of an earlier session is rewritten.'
+  spec: vault/raw/2026-09-12/1610/spec.md
+  applied: '22:07:42'
+- case: '93'
+  decision: decision-case-93
+  origin: raw/2026-09-12/ledger.md#case-93
+  targets:
+  - kind: defer
+    category: rules
+    slug: rule-work-mode
+    ref: rule-work-mode
+  - kind: defer
+    category: rules
+    slug: rule-subagent-guppi
+    ref: rule-subagent-guppi
+  tags: []
+  case_text:
+    context: '`rule-work-mode` and `rule-subagent-guppi` have stood as placeholders since case 29, now
+
+      78, without `kind`, `estimates` or `tags`; two of lint''s three orphans. The draft in
+
+      `docs/migration/` still has to be reconciled with case 59.3 — no separate `plan.md`, the
+
+      `tasks` blocks of the Spec — and with the fork clause.'
+    problem: 'The phase the harness spends most of its time in is the one phase with no ratified rule.
+
+      It needs a Plan Mode of its own, not a corner of this one.'
+  spec: vault/raw/2026-09-12/1610/spec.md
+  supersedes:
+  - decision-case-78
+  applied: '22:07:42'
+- case: '94'
+  decision: decision-case-94
+  origin: raw/2026-09-12/ledger.md#case-94
+  targets:
+  - kind: defer
+    category: rules
+    slug: rule-ask
+    ref: rule-ask
+  tags: []
+  case_text:
+    context: 'The search agent reads the four live indexes and never `vault/archived/`, which holds 22
+
+      pages. A `create` whose slug was archived comes back as free.'
+    problem: 'A named slug has to be checked against the archive, and the answer has to say which of
+
+      the two it found.'
+  spec: vault/raw/2026-09-12/1610/spec.md
+  supersedes:
+  - decision-case-80
+  applied: '22:07:42'
+- case: '95'
+  decision: decision-case-95
+  origin: raw/2026-09-12/ledger.md#case-95
+  targets:
+  - kind: defer
+    category: rules
+    slug: rule-ledger-tail
+    ref: rule-ledger-tail
+  tags: []
+  case_text:
+    context: '`decided_by` on the pages born of a Case, `origin` as a pointer into the ledger, the
+
+      `raw/<date>/` of a fully applied date archived by run stamp with its paths rewritten, a
+
+      fresh ledger as the tail `/hi` prints, lint on both fields, the pages migrated by script.
+
+      Deferred four times, last as case 79.'
+    problem: '`raw/` grows without end and nothing says when a date is done with. The slice needs its
+
+      own Plan Mode.'
+  spec: vault/raw/2026-09-12/1610/spec.md
+  supersedes:
+  - decision-case-79
+  applied: '22:07:42'
+- case: '96'
+  decision: decision-case-96
+  origin: raw/2026-09-12/ledger.md#case-96
+  targets:
+  - kind: defer
+    category: rules
+    slug: rule-synthesis
+    ref: rule-synthesis
+  tags: []
+  case_text:
+    context: 'Eighteen `clustered` lessons carry no `## Insight` section, five of them from the last
+
+      run. The synthesis sets the `insight` field in the frontmatter, and nothing writes the
+
+      section `lessons/schema.md` requires. They are 18 of lint''s 128 schema findings.'
+    problem: 'Either the synthesis entry carries the section, or the schema stops asking for it. Both
+
+      are a change of what a synthesis entry holds.'
+  spec: vault/raw/2026-09-12/1610/spec.md
+  applied: '22:07:42'
+- case: '97'
+  decision: decision-case-97
+  origin: raw/2026-09-12/ledger.md#case-97
+  targets:
+  - kind: defer
+    category: rules
+    slug: rule-synthesis
+    ref: rule-synthesis
+  tags: []
+  case_text:
+    context: '`insight-ledger-hook-reads-only-the-final-text` stands on one live child: case 70
+
+      archived the second of its two members, `generate` recounted its severity to 1, and the
+
+      archived slug stays in `children`. Its Proposal was already the behaviour of case 55.2,
+
+      and the new lesson says the hook dropped nothing.'
+    problem: 'What becomes of an Insight whose evidence is withdrawn is a decision, not a librarian''s
+
+      judgment, and no rule says it.'
+  spec: vault/raw/2026-09-12/1610/spec.md
+  applied: '22:07:42'
+- case: '98'
+  decision: decision-case-98
+  origin: raw/2026-09-12/ledger.md#case-98
+  targets:
+  - kind: defer
+    category: rules
+    slug: rule-skill-hi
+    ref: rule-skill-hi
+  tags: []
+  case_text:
+    context: '`git pull` lives inside `/hi`, which runs after the `SessionStart` hooks, so a change the
+
+      pull brings is rendered only at the following session start. Case 89 puts the render in
+
+      the librarian''s phase and leaves this half open.'
+    problem: 'The render has to run once more after the pull, inside `/hi`. It waits for the pull
+
+      itself, which has no upstream to pull from yet (sprint, Slice 5).'
+  spec: vault/raw/2026-09-12/1610/spec.md
+  applied: '22:07:42'
+- case: '99'
+  decision: decision-case-99
+  origin: raw/2026-09-12/ledger.md#case-99
+  targets:
+  - kind: update
+    category: estimates
+    slug: estimate-hook-registry-rendered
+    ref: estimate-hook-registry-rendered
+  - kind: update
+    category: rules
+    slug: rule-pretask
+    ref: rule-pretask
+  - kind: update
+    category: rules
+    slug: rule-materialize
+    ref: rule-materialize
+  - kind: update
+    category: rules
+    slug: rule-harness
+    ref: rule-harness
+  tags: []
+  case_text:
+    context: 'Four wordings in the vault say what cases 85, 86 and 90 stop being true. It is the class
+
+      case 88 repaired on the two render Estimates: the contract moves and the derived text
+
+      stays. Here it moves in this session, so the repair belongs in it and not one session
+
+      later.'
+    problem: 'Left standing, the next readings fail on the words and not on the code — exactly how two
+
+      render readings failed today.'
+    given: '`estimate-hook-registry-rendered` (`passed`) asks the render to leave
+
+      `.claude/settings.json` "byte-identical to the ratified Render body" of that page. After
+
+      85.3 the page renders the `"hooks"` key alone, and the clause is false by construction;
+
+      85.3 appends a block and does not touch the prose.
+
+      **＋** `rule-pretask` (line 37) and `rule-materialize` (line 47) name the item''s key
+
+      `slug` where the code reads `estimate_slug`. Case 86 ratifies the prefixed names; the two
+
+      texts are left from the earlier wording. `estimate-pretask-reconciles` does not carry the
+
+      phrase — checked.
+
+      **＋** The Purpose of `rule-harness` names its four children "the renderer, the hook
+
+      registry, lint and the indexes". After 85.2 the hook registry is a child of
+
+      `rule-settings`, which takes that slot.
+
+      **＋** `estimate-harness-pipeline` reads the steps of `make lint`, not the children list,
+
+      so the slot swap leaves it alone — checked.
+
+      **－** No contract moves here: all four bring the words to what is already signed. Hence
+
+      `contract: same` on the two Leaf pages and no new criterion block.
+
+      **－** The anchor of the `rule-pretask` pair is the text 90.2 leaves behind, so it matches
+
+      only after that entry applies.'
+    when: 'Someone reads the criterion of `estimate-hook-registry-rendered`, the body of
+
+      `rule-pretask` or `rule-materialize`, or the Purpose of `rule-harness`.'
+    then: 'The criterion of `estimate-hook-registry-rendered` speaks of the `"hooks"` key, and of
+
+      `estimate-settings` for the whole file.
+
+      **＋** Both rules name the key `estimate_slug`.
+
+      **＋** The Purpose of `rule-harness` names the page `.claude/settings.json` is assembled
+
+      from, in place of the hook registry.
+
+      **－** Nothing else in these pages changes.'
+  spec: vault/raw/2026-09-12/1610/spec.md
+  applied: '22:07:42'
 unparsed:
 - line: 3
   text: decision[58][update][rule-documentation]{ref:rule-documentation}

@@ -30,7 +30,7 @@ one reading by hand after the first librarian run, recorded in the estimate line
 
 ## Result
 
-live 2026-09-11 session H with six lesson entries: two insight creates (insight-librarian-frame-omits-required-reads over frame-read-clauses and reads-beyond-the-four-inputs; insight-tests-clock-not-pinned over history-date-unpinned and cli-date-pinned), one update per clustered lesson, all marked librarian: synthesis; the report names the comparisons per lesson (five near marks) and every lesson page read with its outcome — two clustered, one (ledger-hook-misses-a-reply) compared and not clustered, same area and fix but not one mechanism; no archive file read (event log 12:10–12:21); the lone lesson stayed new
+live 2026-09-12, the librarian's run of session J with five lesson entries: one insight create — insight-materialize-lift-loses-a-schema-field over lesson-materialize-standalone-estimate-keeps-criterion-as-a-field and lesson-materialize-lesson-line-source-dropped — with a pattern, both children, the union of tags, Pattern and Proposal, and one update per lesson setting clustered and insight; two live Insights extended by a matching lesson, insight-ledger-line-written-unchecked to four children and insight-workflow-contract-change-leaves-its-derived-text-stale to three, each with its lesson update; all 8 added entries carry librarian: synthesis, 17 in the yaml with the 9 of session H; the report names the comparisons against lessons-index and insights-index and every lesson page read with its outcome, four near marks; the event log of the window holds no archive read; lesson-hooks-blocked-pretooluse-leaves-no-posttooluse-event found no pair and stayed new
 
 ## History
 
@@ -40,3 +40,4 @@ live 2026-09-11 session H with six lesson entries: two insight creates (insight-
 - 2026-09-11 status: failed → failed · raw/2026-09-10/ledger.md#L124
 - 2026-09-11 updated: a lesson page read is named with its outcome, clustered or not · [[decision-case-54]]
 - 2026-09-12 status: pending → passed · raw/2026-09-11/ledger.md#L75
+- 2026-09-12 status: passed → passed · raw/2026-09-12/ledger.md#L169

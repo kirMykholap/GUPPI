@@ -8,7 +8,7 @@ governs: .claude/agents/ask-guppi.md
 render_mode: full
 parent: rule-plan-mode
 estimates: [estimate-ask-finds]
-deferred_by: [decision-case-80]
+deferred_by: [decision-case-94]
 origin: raw/2026-09-09/ledger.md#case-23.1
 sprint: migration
 created: 2026-09-09
@@ -74,3 +74,5 @@ Answer with exactly these five lines, each present, "none" when empty:
 - 2026-09-12 deferred · [[decision-case-65]]
 - 2026-09-12 defer by decision-case-65 superseded · [[decision-case-80]]
 - 2026-09-12 deferred · [[decision-case-80]]
+- 2026-09-12 defer by decision-case-80 superseded · [[decision-case-94]]
+- 2026-09-12 deferred · [[decision-case-94]]

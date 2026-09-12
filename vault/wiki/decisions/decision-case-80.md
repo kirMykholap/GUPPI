@@ -1,9 +1,10 @@
 ---
 type: decision
 case: "80"
-status: current
+status: superseded
 defer: [rule-ask]
 supersedes: [decision-case-65]
+superseded_by: [decision-case-94]
 origin: raw/2026-09-12/ledger.md#case-80
 sprint: migration
 created: 2026-09-12
@@ -26,3 +27,4 @@ it. Postponed five times now.
 ## History
 
 - 2026-09-12 created · raw/2026-09-12/ledger.md#case-80
+- 2026-09-12 superseded by decision-case-94 · [[decision-case-94]]

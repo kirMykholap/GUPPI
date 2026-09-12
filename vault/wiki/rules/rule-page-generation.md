@@ -2,7 +2,7 @@
 type: rule
 kind: Leaf
 purpose: Prevents a ratified decision from ending the session without a page, or a page from carrying a field nobody ratified
-status: draft
+status: built
 enforcement: check
 implementation_ref: [guppi/generate.py, tests/test_generate.py]
 parent: rule-documentation
@@ -106,3 +106,4 @@ declared and not registered is reported on stderr and left on the page.
 - 2026-09-12 updated: a decision page names its targets by kind — one list per kind present — instead of two lists aligned by position (case 59.4) · [[decision-case-59.4]]
 - 2026-09-12 status: built → draft · cascade
 - 2026-09-12 updated: the derived Estimate page, the criterion block appended or removed, the decision page's Criterion links and no When (case 72.4) · [[decision-case-72.4]]
+- 2026-09-12 status: draft → built · cascade

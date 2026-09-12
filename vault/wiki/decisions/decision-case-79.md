@@ -1,9 +1,10 @@
 ---
 type: decision
 case: "79"
-status: current
+status: superseded
 defer: [rule-ledger-tail]
 supersedes: [decision-case-63]
+superseded_by: [decision-case-95]
 origin: raw/2026-09-12/ledger.md#case-79
 sprint: migration
 created: 2026-09-12
@@ -28,3 +29,4 @@ memory file that carried the tail is gone (case 62). Postponed four times now.
 ## History
 
 - 2026-09-12 created · raw/2026-09-12/ledger.md#case-79
+- 2026-09-12 superseded by decision-case-95 · [[decision-case-95]]

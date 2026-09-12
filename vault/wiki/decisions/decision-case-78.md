@@ -1,9 +1,10 @@
 ---
 type: decision
 case: "78"
-status: current
+status: superseded
 defer: [rule-work-mode, rule-subagent-guppi]
 supersedes: [decision-case-64]
+superseded_by: [decision-case-93]
 origin: raw/2026-09-12/ledger.md#case-78
 sprint: migration
 created: 2026-09-12
@@ -28,3 +29,4 @@ orphans. Session J's Work Mode holds Cases 72 and 73; no room. Postponed five ti
 ## History
 
 - 2026-09-12 created · raw/2026-09-12/ledger.md#case-78
+- 2026-09-12 superseded by decision-case-93 · [[decision-case-93]]

@@ -61,6 +61,18 @@ returns none is one finding with its date and line number, exit 1.
 **－** Lines before the `hi` are not read; a preview outside a LEDGER block is not a
 record and is not checked.
 
+### case 90.2
+
+When:
+`guppi pretask --check` runs against the plan of this Plan Mode.
+
+Then:
+It prints one line for every `update` with `contract: changed` whose page carries no
+Estimate or more than one while the item names no `estimate_slug`.
+**＋** The line names the Case, the page and the page's Estimates, so the person can see
+the choice.
+**－** A page with exactly one Estimate is no finding.
+
 ## Method
 
 One reading by hand, written into the estimate line — the exception the Method rule
@@ -68,7 +80,7 @@ allows.
 
 ## Result
 
-tests/test_pretask.py green in the 258: the findings of 59.1–59.3 and 59.6, the four form findings of 72.5 (a Leaf create without method, a Leaf update without contract, two contracts in one Case, a colliding derived slug), no finding for a Leaf's Estimate without a line, the frontier of the session folder (73.4), the defer-only Case without a tasks block as no finding and the mixed Case as one (74), a record line of the window that does not parse as one finding with its date and number and a line before the hi not read (75.2); live 2026-09-12 session J at /pre-task: the check ran first and printed 16 frontier findings, all session I's lines in the shared file, fixed by moving them into raw/2026-09-12/0454/; the event log gained the pretask line; ask-guppi was dispatched once with the list of Cases 70–80 and its two findings were named as known in the reply; the new code on the approved Spec prints five "update <rule> has no contract" findings for the items of Case 72 itself, the transition Case that carries explicit Estimate updates instead
+unit: tests/test_pretask.py 48 green with the fifth form finding of 90.2 — a page with two Estimates and no estimate_slug, a page with none, a page with one, an item that names the slug; live 2026-09-12 session K on the captured Spec with the new code: a copy stripped of its estimate_slug lines printed exactly five findings, cases 85.1, 87, 88.1, 89.4 and 90.1, each naming the page and both of its Estimates, and the Spec itself exits 0
 
 ## History
 
@@ -83,3 +95,5 @@ tests/test_pretask.py green in the 258: the findings of 59.1–59.3 and 59.6, th
 - 2026-09-12 criterion: case 74 added · [[decision-case-74]]
 - 2026-09-12 criterion: case 75.2 added · [[decision-case-75.2]]
 - 2026-09-12 status: pending → passed · raw/2026-09-12/ledger.md#L158
+- 2026-09-12 criterion: case 90.2 added · [[decision-case-90.2]]
+- 2026-09-12 status: pending → passed · raw/2026-09-12/ledger.md#L208

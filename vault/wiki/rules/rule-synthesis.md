@@ -8,6 +8,7 @@ governs: .claude/agents/librarian-guppi.md
 render_mode: partial
 parent: rule-documentation
 estimates: [estimate-synthesis-clusters]
+deferred_by: [decision-case-96, decision-case-97]
 origin: raw/2026-09-10/ledger.md#case-35.2
 sprint: migration
 created: 2026-09-10
@@ -56,3 +57,5 @@ outcome, clustered or not. Do not read the archive and do not write pages yourse
 - 2026-09-10 updated: the lessons of a cluster are read before the Insight is written, and named · raw/2026-09-10/ledger.md#case-44
 - 2026-09-11 updated: a candidate lesson is read when the index line is not enough, clustered or not, and named with the outcome · [[decision-case-54]]
 - 2026-09-12 status: draft → built · cascade
+- 2026-09-12 deferred · [[decision-case-96]]
+- 2026-09-12 deferred · [[decision-case-97]]

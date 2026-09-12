@@ -364,10 +364,24 @@ def derived_estimate_slug(slug: str) -> str:
     return "estimate-" + slug.split("-", 1)[1] if "-" in slug else f"estimate-{slug}"
 
 
+def page_estimates(project_dir: Path, slug: str) -> list[str]:
+    """The `estimates` of a live page, by slug; empty when the page or the field is not
+    there (case 90.2)."""
+    category = category_of(slug)
+    if not category:
+        return []
+    path = wiki_root(project_dir) / category / f"{slug}.md"
+    if not path.exists():
+        return []
+    value = read_page(path, category).props.get("estimates")
+    return [str(v) for v in value] if isinstance(value, list) else []
+
+
 def check_form(blocks: dict, project_dir: Path) -> list[str]:
     """72.5: a Leaf `create` carries `method`, a Leaf `update` `contract`; one contract per
-    Case; a derived Estimate slug that names an existing page needs `estimate_slug`. `file`
-    and `defer` items are outside these checks."""
+    Case; a derived Estimate slug that names an existing page needs `estimate_slug`. 90.2: a
+    contract change whose page carries no Estimate or more than one names the one it moves.
+    `file` and `defer` items are outside these checks."""
     findings: list[str] = []
     for case, block in blocks.items():
         contracts = 0
@@ -389,6 +403,14 @@ def check_form(blocks: dict, project_dir: Path) -> list[str]:
                 continue
             if item.get("contract") == "changed":
                 contracts += 1
+                if not item.get("estimate_slug"):
+                    estimates = page_estimates(project_dir, slug) or []
+                    if len(estimates) != 1:  # none to take, or a choice to make (case 90.2)
+                        named = ", ".join(estimates) or "none"
+                        findings.append(
+                            f"case {case}: {slug} has {len(estimates)} estimates ({named}); "
+                            "name estimate_slug"
+                        )
             if leaf_page(project_dir, slug) and not item.get("contract"):
                 findings.append(f"case {case}: update {slug} has no contract")
         if contracts >= 2:

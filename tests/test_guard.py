@@ -7,6 +7,7 @@ vault is a temp folder with one governing page per file.
 
 import io
 import json
+from datetime import UTC, datetime
 
 import pytest
 
@@ -160,3 +161,42 @@ def test_cli_dispatches_to_guard(tmp_path, monkeypatch, capsys):
     monkeypatch.setattr("sys.stdin", payload())
     assert cli.main(["guard"]) == 2
     assert RULE in capsys.readouterr().err
+
+
+NOW = datetime(2026, 9, 12, 16, 30, 5, tzinfo=UTC)
+
+
+def log_of(project_dir):
+    path = project_dir / "vault" / "raw" / "2026-09-12" / "event_log.md"
+    return path.read_text(encoding="utf-8") if path.exists() else ""
+
+
+def run_at(stdin, project_dir, now=NOW):
+    err = io.StringIO()
+    code = guard.run([], stdin=stdin, stderr=err, project_dir=project_dir, now=now)
+    return code, err.getvalue()
+
+
+def test_a_refusal_writes_its_own_event_line(tmp_path):
+    vault(tmp_path)
+    code, err = run_at(payload(), tmp_path)
+    assert code == 2 and "through a decision" in err
+    line = log_of(tmp_path).splitlines()[-1]
+    assert line.startswith("- 16:30:05 44c1aae1 guard refused Edit")
+    assert GOVERNED in line and f"({RULE})" in line
+
+
+def test_a_call_the_guard_lets_through_writes_no_line(tmp_path):
+    vault(tmp_path)
+    assert run_at(payload(file_path="vault/wiki/index.md"), tmp_path) == (0, "")
+    assert log_of(tmp_path) == ""
+
+
+def test_a_log_that_cannot_be_written_leaves_the_refusal_standing(tmp_path, monkeypatch):
+    vault(tmp_path)
+    monkeypatch.setattr(
+        guard, "append", lambda *a, **k: (_ for _ in ()).throw(OSError("read-only"))
+    )
+    code, err = run_at(payload(), tmp_path)
+    assert code == 2
+    assert "refusal not logged: read-only" in err and "through a decision" in err

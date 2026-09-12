@@ -4,7 +4,9 @@ Every page under `vault/wiki/rules/` with `enforcement: render` carries the text
 harness file in its `## Render` section, between `<!-- slug -->` and `<!-- /slug -->`.
 A `full` page's text becomes the whole file named by `governs`, without those outer
 markers; a lone `<!-- child -->` line in it is replaced by the child's text, markers kept,
-in the order of `children`, one blank line between blocks. A child that is not a render
+in the order of `children`, one blank line between blocks. A file that cannot hold a
+comment — today a `.json` target — takes the child's text bare, since the markers would
+make it unparsable (case 85.1). A child that is not a render
 page — a script the frame calls by name — contributes nothing and needs no marker; a
 marker line for it is an error. A `partial` page whose file no
 `full` page owns is spliced into the existing file between its markers, which stay.
@@ -13,11 +15,14 @@ marker line for it is an error. A `partial` page whose file no
 file as it is, then the rendered text — and writes it; an identical file gets neither; a
 render error goes to stderr and nothing is written. `--sync` always exits 0, since a
 `SessionStart` hook cannot block and its stdout is added to the agent's context.
+Every `.json` target is parsed before anything is written; one that does not parse stops
+the whole write and names the file and its page on stderr (case 89.4).
 Rule page: `vault/wiki/rules/rule-render-harness.md`.
 """
 
 import argparse
 import difflib
+import json
 import re
 import sys
 from dataclasses import dataclass
@@ -75,6 +80,11 @@ def render_units(pages: list[Page]) -> dict[str, Unit]:
     return units
 
 
+def bare_splice(governs: str) -> bool:
+    """A file that cannot carry a comment takes a child's text without its markers."""
+    return Path(governs).suffix == ".json"
+
+
 def join_blocks(lines: list[str]) -> str:
     """Two adjacent blocks are separated by one blank line."""
     out: list[str] = []
@@ -98,7 +108,8 @@ def render_full(unit: Unit, units: dict[str, Unit]) -> str:
                 raise RenderError(f"{unit.page.slug}: child {child} is not a render page")
             if other.governs != unit.governs:
                 raise RenderError(f"{unit.page.slug}: child {child} governs another file")
-            lines.extend(block(other).splitlines())
+            text = other.text if bare_splice(unit.governs) else block(other)
+            lines.extend(text.splitlines())
             replaced.add(child)
         else:
             lines.append(line)
@@ -153,6 +164,20 @@ def plan(project_dir: Path, units: dict[str, Unit]) -> dict[str, str]:
             current = path.read_text(encoding="utf-8")
         outputs[unit.governs] = render_partial(unit, current, unit.governs)
     return outputs
+
+
+def check_json(outputs: dict[str, str], units: dict[str, Unit]) -> None:
+    """Every `.json` target parses, or nothing is written: a file that does not load
+    unregisters every hook it carries, and the render is the only writer (case 89.4)."""
+    owners = {u.governs: u.page.slug for u in units.values() if u.mode == "full"}
+    for governs, text in sorted(outputs.items()):
+        if Path(governs).suffix != ".json":
+            continue
+        try:
+            json.loads(text)
+        except ValueError as exc:
+            owner = owners.get(governs, "no full page")
+            raise RenderError(f"{owner}: {governs} does not parse as JSON: {exc}") from exc
 
 
 def differing(project_dir: Path, outputs: dict[str, str]) -> list[str]:
@@ -213,7 +238,9 @@ def run(argv, *, stdout=None, stderr=None, project_dir: Path | None = None) -> i
         return 2 if exc.code not in (None, 0) else 0
     try:
         pages = read_category(wiki_root(project_dir), "rules")
-        outputs = plan(project_dir, render_units(pages))
+        units = render_units(pages)
+        outputs = plan(project_dir, units)
+        check_json(outputs, units)
         if args.sync:
             sync(project_dir, outputs, stdout)
             return 0

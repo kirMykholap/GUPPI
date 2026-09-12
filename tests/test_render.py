@@ -324,3 +324,63 @@ def test_sync_and_check_together_are_a_bad_invocation(tmp_path):
     frame_vault(tmp_path)
     code, _out, _err = run(["--sync", "--check"], tmp_path)
     assert code == 2
+
+
+JSON_FRAME = """<!-- rule-json -->
+{
+  "permissions": {
+<!-- rule-mode -->
+<!-- rule-allow -->
+  }
+}
+<!-- /rule-json -->"""
+
+JSON_MODE = """<!-- rule-mode -->
+    "defaultMode": "plan",
+<!-- /rule-mode -->"""
+
+JSON_ALLOW = """<!-- rule-allow -->
+    "allow": ["Edit(vault/raw/**/frontier.md)"]
+<!-- /rule-allow -->"""
+
+
+def json_vault(tmp_path, mode_text=JSON_MODE):
+    rule(
+        tmp_path,
+        "rule-json",
+        "full",
+        ".claude/settings.json",
+        JSON_FRAME,
+        kind="MOC",
+        children=["rule-mode", "rule-allow"],
+    )
+    rule(tmp_path, "rule-mode", "partial", ".claude/settings.json", mode_text, parent="rule-json")
+    rule(tmp_path, "rule-allow", "partial", ".claude/settings.json", JSON_ALLOW, parent="rule-json")
+    return tmp_path
+
+
+def test_children_of_a_json_frame_land_without_their_markers(tmp_path):
+    json_vault(tmp_path)
+    code, _out, err = run([], tmp_path)
+    assert (code, err) == (0, "")
+    text = (tmp_path / ".claude" / "settings.json").read_text(encoding="utf-8")
+    assert "<!--" not in text
+    assert json.loads(text) == {
+        "permissions": {"defaultMode": "plan", "allow": ["Edit(vault/raw/**/frontier.md)"]}
+    }
+
+
+def test_a_json_target_that_does_not_parse_writes_nothing_and_names_its_page(tmp_path):
+    json_vault(tmp_path, mode_text=JSON_MODE.replace('"plan",', '"plan"'))
+    code, _out, err = run([], tmp_path)
+    assert code == 1
+    assert "rule-json" in err and ".claude/settings.json does not parse as JSON" in err
+    assert not (tmp_path / ".claude" / "settings.json").exists()
+
+
+def test_sync_on_a_json_target_that_does_not_parse_exits_0_and_writes_nothing(tmp_path):
+    json_vault(tmp_path, mode_text=JSON_MODE.replace('"plan",', '"plan"'))
+    code, out, err = run(["--sync"], tmp_path)
+    assert (code, out) == (0, "")
+    assert "does not parse as JSON" in err
+    assert not (tmp_path / ".claude" / "settings.json").exists()

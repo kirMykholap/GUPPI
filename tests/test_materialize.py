@@ -639,6 +639,7 @@ create:
 update:
   - slug: rule-old
     contract: changed
+    estimate_slug: estimate-old-holds
     method: the new way
     replace:
       - old: old words
@@ -1031,3 +1032,99 @@ def test_show_exits_1_on_an_error_as_without_it(tmp_path):
     assert err.startswith("materialize: materialize.yaml not written")
     code, _, err = run(tmp_path / "elsewhere", ["--show"])  # no ledger at all
     assert code == 1 and "does not exist" in err
+
+
+EXTRA_CASES = """
+## Case 18 — one Estimate, no name
+
+> **context:**
+> One.
+
+> **problem:**
+> The contract moves.
+
+> **given:**
+> The page has one.
+
+> **when:**
+> The page is read.
+
+> **then:**
+> It says new.
+
+```then
+update:
+  - slug: rule-single
+    contract: changed
+    change: the contract changes
+```
+
+## Case 19 — two Estimates, no name
+
+> **context:**
+> Two.
+
+> **problem:**
+> The contract moves.
+
+> **given:**
+> The page has two.
+
+> **when:**
+> The page is read.
+
+> **then:**
+> It says new.
+
+```then
+update:
+  - slug: rule-old
+    contract: changed
+    change: the contract changes
+```
+"""
+
+
+def test_the_estimate_of_a_contract_change_is_named_or_the_entry_is_incomplete(tmp_path):
+    seed_derived(tmp_path)
+    rules = tmp_path / "vault" / "wiki" / "rules"
+    (rules / "rule-single.md").write_text(
+        "---\ntype: rule\nkind: Leaf\nestimates: [estimate-single-holds]\n---\n",
+        encoding="utf-8",
+    )
+    raw = tmp_path / "vault" / "raw" / DATE
+    with (raw / "ledger.md").open("a", encoding="utf-8", newline="\n") as fh:
+        fh.write(
+            "- decision[case 18][update][rule-single]\n- decision[case 19][update][rule-old]\n"
+        )
+    with (raw / "spec.md").open("a", encoding="utf-8", newline="\n") as fh:
+        fh.write(EXTRA_CASES)
+    run(tmp_path)
+    data = load(tmp_path)
+    _, single = of_case(data, "18")  # one Estimate and no name: that one
+    assert single["slug"] == "estimate-single-holds" and "incomplete" not in single
+    _, two = of_case(data, "19")  # two Estimates and no name: no guess
+    assert two["slug"] is None and two["incomplete"] == ["estimate"]
+    assert two["set"] == {"status": "pending"}
+
+
+def test_a_lesson_line_carries_the_source_of_its_braces(tmp_path):
+    seed(tmp_path)
+    raw = tmp_path / "vault" / "raw" / DATE
+    with (raw / "ledger.md").open("a", encoding="utf-8", newline="\n") as fh:
+        fh.write(
+            "- 11:00:00 lesson[knowledge][lesson-k-with]{tags:hooks}{source:a live probe} "
+            "trigger: t root_cause: r\n"
+            "- 11:00:01 lesson[knowledge][lesson-k-without]{tags:hooks} trigger: t root_cause: r\n"
+            "- 11:00:02 lesson[error][lesson-e-with]{tags:hooks}{source:a live probe} "
+            "trigger: t root_cause: r\n"
+        )
+    run(tmp_path)
+    data = load(tmp_path)
+    (with_source,) = by_slug(data, "lesson-k-with")
+    assert with_source["fields"]["source"] == "a live probe"
+    assert "incomplete" not in with_source
+    (without,) = by_slug(data, "lesson-k-without")
+    assert "source" not in without["fields"] and without["incomplete"] == ["source"]
+    (error,) = by_slug(data, "lesson-e-with")  # an error lesson keeps a source it was given
+    assert error["fields"]["source"] == "a live probe" and "incomplete" not in error

@@ -182,7 +182,7 @@ Restoring is an ordinary `update` setting `status` back to `draft` or `built`.
 ```
 
 - `slug` — the affected page
-- `ref` — the parent, for a `create` that adds a child. Omitted for update/delete: `slug` already identifies the target.
+- `ref` — the parent, for a `create` that adds a child; on an `update` or a `delete` it repeats the target's own `slug`. Every decision line carries it (case 92).
 - `source` — optional external origin (a GitHub issue). Traceability only; never affects routing.
 - `tags` — the ratified tags, on a `create`. The page's category comes from the slug prefix (`rule-`, `entity-`, `estimate-`, `lesson-`, `insight-`), which pre-task guards.
 

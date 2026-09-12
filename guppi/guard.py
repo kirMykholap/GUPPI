@@ -5,16 +5,19 @@ harness file; the renderer keeps the page and the file one text, so an edit to t
 alone is lost at the next render and was ratified for nobody. On `Edit`, `Write` or
 `MultiEdit` the hook takes `tool_input.file_path`, resolves it against the project root and
 compares it with every governed path. A match exits 2 with the rule's slug and the file on
-stderr, which Claude Code shows the agent and which blocks the tool. Any other tool, a path
+stderr, which Claude Code shows the agent and which blocks the tool. One line goes to the
+day's `event_log.md` first: a blocked call has no `PostToolUse`, so a refusal the hook does
+not write is nowhere (case 91). Any other tool, a path
 no page governs, or a payload the hook cannot read: exit 0, the last with one line on
 stderr. The hook never raises. Rule page: `vault/wiki/rules/rule-governed-files-hook.md`.
 """
 
 import os
 import sys
+from datetime import datetime
 from pathlib import Path
 
-from guppi.event import project_root, read_payload
+from guppi.event import append, format_line, log_path, project_root, read_payload
 from guppi.pages import Page, read_category, wiki_root
 
 TOOLS = ("Edit", "Write", "MultiEdit")
@@ -56,10 +59,22 @@ def relative(file_path: str, project_dir: Path) -> str | None:
         return None
 
 
-def run(argv, *, stdin=None, stderr=None, project_dir: Path | None = None) -> int:
+def log_refusal(project_dir: Path, payload: dict, path: str, slug: str, now, stderr) -> None:
+    """A blocked call has no `PostToolUse`, so a refusal the hook does not write is nowhere
+    (case 91). A log it cannot write never changes the refusal."""
+    tool = str(payload.get("tool_name") or "a tool")
+    try:
+        line = format_line("guard", payload, ["refused", tool, path, f"({slug})"], None, now)
+        append(log_path(project_dir, now), line)
+    except Exception as exc:  # noqa: BLE001 — the refusal stands whatever the log does
+        print(f"guard: refusal not logged: {exc}", file=stderr)
+
+
+def run(argv, *, stdin=None, stderr=None, project_dir: Path | None = None, now=None) -> int:
     stdin = sys.stdin if stdin is None else stdin
     stderr = sys.stderr if stderr is None else stderr
     project_dir = project_root() if project_dir is None else Path(project_dir)
+    now = datetime.now().astimezone() if now is None else now
     try:
         payload = read_payload(stdin)
         if not payload:
@@ -77,6 +92,7 @@ def run(argv, *, stdin=None, stderr=None, project_dir: Path | None = None) -> in
         hit = governed(read_category(wiki_root(project_dir), "rules")).get(key(rel))
         if hit is not None:
             path, slug = hit
+            log_refusal(project_dir, payload, path, slug, now, stderr)
             print(
                 f"guard: {path} is rendered from {slug}; change the Rule page through a decision",
                 file=stderr,

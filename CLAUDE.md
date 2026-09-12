@@ -36,9 +36,7 @@ move closes:
   `materialize`, index check, synthesis, `generate`, `cleanup`, brief, commit. Pages are no
   longer written by hand; `brief.md` is written by the librarian. `docs/migration/` still
   holds the drafts of Work Mode and the plan of the move.
-- **Each slice is its own Plan Mode and its own approval.** The approved plan is copied to
-  `vault/raw/<date>/spec.md` by the `PostToolUse ExitPlanMode` hook `guppi spec` since
-  Slice 2; the Specs of Slices 0–2 were copied by hand.
+- **Each slice is its own Plan Mode and its own approval.** The approved plan is copied to `vault/raw/<date>/<hi HHMM>/spec.md`, the session's folder, by the `PostToolUse ExitPlanMode` hook `guppi spec` since Slice 2 (the folder since case 73); the Specs of Slices 0–2 were copied by hand.
 
 <!-- rule-case-protocol -->
 ## Case protocol
@@ -47,11 +45,10 @@ One reply is one Case, in the seven sections of `case-schema.md`: context, probl
 recommend, given, when, then, ratification. That is the form of Plan Mode. A deferred
 decision — an item left open when the person closes Plan Mode, or an item Retro ends
 in a defer — is its own Case in the short form: context, problem, a `defer` block with
-`purpose`, under the `## Deferred` heading of `raw/<date>/spec.md`, before its ledger
-line (cases 56, 59.5); a page-less Slice task goes to `sprint.md` instead. Taking a
+`purpose`, under the `## Deferred` heading of `raw/<date>/<hi HHMM>/spec.md`, the session's folder (case 73), before its ledger line (cases 56, 59.5); a page-less Slice task goes to `sprint.md` instead. Taking a
 deferred decision up means building its full Case from its page — recommend, given,
 when, then added — and writing `{supersedes:case N}` on the line. Never move to the
-next Case until this one is ratified or deferred. The Frontier is `raw/<date>/frontier.md`, written at `/hi`;
+next Case until this one is ratified or deferred. The Frontier is `raw/<date>/<hi HHMM>/frontier.md`, written at `/hi`;
 close its line in the reply that ends the item. Plan Mode does not end while a line is
 open; `/pre-task` checks it.
 
@@ -63,8 +60,7 @@ A Case renders as `## Case N — name`, then one blockquote per section: its fir
 line `**name:**`, its text on the following quoted lines, a blank line between
 sections. In `given`, `when` and `then` every line after the first starts with a
 bold operand: **＋** for one more condition or action, **－** for a limit or an
-exception. `when` and `then` together are the criterion of the Estimate the Case
-creates. Write short sentences, one idea each, in the active voice. A sub-case is
+exception. `when` and `then` together are the criterion of the Estimate the Case creates or changes: the scripts copy them as its `### case N` block and `problem` as its Context at birth; a Leaf `create` carries `method`, a Leaf `update` `contract: same` or `changed`; one contract per Case or sub-case. Write short sentences, one idea each, in the active voice. A sub-case is
 `### Case N.M — name` under its parent, with its own `when`, `then` and
 `ratification`, and its own `given` unless it is the parent's word for word; the
 sections the children share live on the parent, and `materialize` reads them there. The
@@ -72,7 +68,7 @@ sections the children share live on the parent, and `materialize` reads them the
 fence, and the turn ends with a plain question in the chat, never a picker tool.
 When the person answers with a change, show the Case again: `context` and
 `problem` if they changed, always `given`, `when`, `then` and `ratification`, and
-no `recommend` — the variant is theirs. The page content itself — fields, prose sections, the Estimate — is a YAML
+no `recommend` — the variant is theirs. The page content itself — fields, prose sections, the `method` of its check — is a YAML
 block tagged `then` under the Case in the Spec, not in the chat; `guppi
 materialize` reads it, and what is not in that block was signed by nobody.
 
@@ -80,8 +76,7 @@ The Spec is the plan file, written as each Case is ratified, in the reply that
 carries its ledger lines: `context`, `problem`, `given`, `when`, `then`, the `then`
 block and a block tagged `tasks` — one `- [ ] <what>` per file, test, command and
 one-off migration, and one per reading of an Estimate the Case creates or sets
-`pending`, by its slug; no `recommend`, no `ratification`, no code. Work Mode ticks
-the boxes in `raw/<date>/spec.md` in the reply that finishes the task; Retro
+`pending`, by its slug; no `recommend`, no `ratification`, no code. Work Mode ticks the boxes in `raw/<date>/<hi HHMM>/spec.md` in the reply that finishes the task; Retro
 counts the unticked.
 
 The harness — hooks, skills, agents, `settings.json`, this section of `CLAUDE.md` —
@@ -93,8 +88,7 @@ conflicts, what sits in `draft`, which tags fit. Put the answer in `given`.
 Dispatch the `ask-guppi` agent with one short question.
 
 Ledger lines are written by the `Stop` hook, from the reply, verbatim, each with
-the time of writing. A record is a `- decision[...]`, `- estimate[...]` or
-`- lesson[...]` line inside a fenced block opened with the `LEDGER` tag; the same
+the time of writing. A record is a `- decision[case 12][update][rule-x]{ref:rule-x}`, `- estimate[...]` or `- lesson[...]` line inside a fenced block opened with the `LEDGER` tag — the id is `case N`, the word and a space, in `{supersedes:case N}` too; the same
 line anywhere else — bare, or in a block with another tag or none — is a preview
 and is never written. A `create` line carries the ratified tags: `{tags:a,b}`.
 Write the `- decision[...]` lines only in the reply that acknowledges ratification;

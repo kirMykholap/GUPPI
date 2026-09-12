@@ -140,6 +140,7 @@ def parse_line(text: str) -> dict | None:
         "trigger": trigger,
         "root_cause": root_cause.strip(),
         "tags": _tags(options.get("tags")),
+        "source": options.get("source"),
     }
 
 
@@ -516,11 +517,12 @@ def derived_entries(entry: dict, item: dict | None, texts: dict, project_dir: Pa
                 derived["incomplete"] = missing
             out.append(derived)
         elif entry["kind"] == "update" and item.get("contract") == "changed":
-            estimates = page_estimates(project_dir, entry["category"], entry["slug"])
+            estimates = page_estimates(project_dir, entry["category"], entry["slug"]) or []
+            named = item.get("estimate_slug") or (estimates[0] if len(estimates) == 1 else None)
             derived = {
                 **base,
                 "kind": "update",
-                "slug": estimates[0] if estimates else None,
+                "slug": named,
                 "category": "estimates",
                 **tail,
                 "derived": True,
@@ -531,7 +533,7 @@ def derived_entries(entry: dict, item: dict | None, texts: dict, project_dir: Pa
                 derived["sections"] = {"Method": item["method"]}
             derived["change"] = f"criterion: case {case} added"
             missing = [n for n in ("when", "then") if n not in texts]
-            if not estimates:
+            if named is None:  # none to take, or a choice the item did not make (case 90.1)
                 missing.append("estimate")
             if missing:
                 derived["incomplete"] = missing
@@ -581,7 +583,9 @@ def lesson_entry(record: dict, number: int, text: str, date: str, project_dir: P
         entry["tags"] = record["tags"]
     else:
         incomplete.append("tags")
-    if record["kind"] == "knowledge":
+    if record.get("source"):
+        entry["fields"]["source"] = record["source"]
+    elif record["kind"] == "knowledge":
         incomplete.append("source")
     if page_exists(project_dir, "lessons", record["slug"]):
         entry["exists"] = True

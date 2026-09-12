@@ -3,6 +3,7 @@ type: lesson
 kind: knowledge
 root_cause: the suite and the formatter read the whole tree, so an agent's half-written edit is a failure in every other agent's run; a measurement taken while another agent is writing measures the other agent; the suite is run once, by the main agent, after every subagent has returned, and a subagent's mid-flight red is not a finding
 status: new
+source: session I 2026-09-12, four general-purpose agents on Cases 59.1–59.8, 60, 61
 origin: raw/2026-09-12/ledger.md#L105
 sprint: migration
 created: 2026-09-12
@@ -20,3 +21,4 @@ the suite and the formatter read the whole tree, so an agent's half-written edit
 ## History
 
 - 2026-09-12 created · raw/2026-09-12/ledger.md#L105
+- 2026-09-12 source set from its ledger line · [[decision-case-87]]

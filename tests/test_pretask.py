@@ -139,11 +139,12 @@ def with_rule(project_dir, slug, governs):
     (folder / f"{slug}.md").write_text(text, encoding="utf-8", newline="\n")
 
 
-def with_page(project_dir, category, slug, kind="Leaf"):
+def with_page(project_dir, category, slug, kind="Leaf", estimates=("estimate-x",)):
     folder = project_dir / "vault" / "wiki" / category
     folder.mkdir(parents=True, exist_ok=True)
     text = f"---\ntype: {category[:-1] if category != 'entities' else 'entity'}\n"
-    text += f"kind: {kind}\nstatus: built\n---\n\n## Purpose\n\nx\n"
+    text += f"kind: {kind}\nstatus: built\n"
+    text += "estimates: [" + ", ".join(estimates) + "]\n---\n\n## Purpose\n\nx\n"
     (folder / f"{slug}.md").write_text(text, encoding="utf-8", newline="\n")
 
 
@@ -557,3 +558,20 @@ def test_a_parsed_line_of_a_later_date_of_the_window_is_read(tmp_path):
         ),
         "case 2: line [update][rule-y]: no Case 2 heading in the plan",
     ]
+
+
+def test_a_contract_change_names_the_estimate_when_the_page_does_not(tmp_path):
+    plan = PLAN.replace("    change: one line\n", "    change: one line\n    contract: changed\n")
+    with_page(tmp_path, "rules", "rule-x", kind="Leaf", estimates=("e-one", "e-two"))
+    code, out, _ = check(tmp_path, plan=plan)
+    assert code == 1
+    assert "case 1: rule-x has 2 estimates (e-one, e-two); name estimate_slug" in out.splitlines()
+    named = plan.replace(
+        "    contract: changed\n", "    contract: changed\n    estimate_slug: e-two\n"
+    )
+    assert check(tmp_path, plan=named) == (0, "", "")
+    with_page(tmp_path, "rules", "rule-x", kind="Leaf", estimates=())
+    code, out, _ = check(tmp_path, plan=plan)
+    assert "case 1: rule-x has 0 estimates (none); name estimate_slug" in out.splitlines()
+    with_page(tmp_path, "rules", "rule-x", kind="Leaf", estimates=("e-one",))
+    assert check(tmp_path, plan=plan) == (0, "", "")  # one Estimate names itself

@@ -13,7 +13,8 @@ Ledger of today: !`cat "vault/raw/$(date +%F)/ledger.md"`
 
 Retro is an analysis of this session, not planning. Open with the frontier, in one
 message and with no read call: what was ratified (the ledger lines of today grouped
-by Case, one line per Case); what got done and what did not, against the Spec; what
+by Case, one line per Case); the `tasks` of `raw/<date>/spec.md`, the unticked boxes
+per Case; what
 you noticed during Work Mode, as a numbered list — bugs, forks, a contract that
 turned out imprecise. The person adds their own observations. Every item, theirs or
 yours, ends in one of four ways: a `- lesson[...]` line; a `- estimate[...]` line, a
@@ -22,7 +23,7 @@ handoff. Retro ratifies no other decision: a `create`, `update` or `delete` wait
 the next Plan Mode.
 
 A short defer is a Case in the short form, appended to `vault/raw/<date>/spec.md`
-under a `## Retro` heading before its ledger line: `## Case N`, `context`, `problem`,
+under the `## Deferred` heading before its ledger line: `## Case N`, `context`, `problem`,
 and a `defer` block with `purpose`; no `recommend`, `given`, `when` or `then`. A defer
 line without its Case is marked incomplete by materialize.
 

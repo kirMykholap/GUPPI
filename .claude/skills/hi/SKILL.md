@@ -21,7 +21,12 @@ Open issues: !`gh issue list --limit 5 2>&1 || true`
 <!-- /rule-github-issues -->
 
 Assemble the Frontier from the above and present it as a list: tasks, problems, debt
-carried over, where the sprint stands; on a plan branch the unfinished plan comes first.
-A failed pull or an unavailable `gh` is an item on that list, not a reason to stop. Wait
+carried over, where the sprint stands; on a plan branch the unfinished plan comes first;
+what `guppi render --sync` printed at session start is an item when it shows a hand edit.
+A failed pull or an unavailable `gh` is an item on that list, not a reason to stop. Write
+the same list to `vault/raw/<date>/frontier.md`, one line per item:
+`- [ ] F<n> — <title> · <source>`. Close a line when its item ends: `[x] … · case N`
+when ratified, `[x] … · work` when it needs no decision, `[-] … · defer case N` when
+deferred; an item the person adds is a new line. `/pre-task` fails on an open line. Wait
 for the human to pick the order or defer items. Before any `create`, ask the vault first
 (§3 of `vault/wiki/index.md`).

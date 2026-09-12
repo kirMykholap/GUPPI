@@ -21,9 +21,10 @@ index line does not tell you whether a lesson shares its root cause with another
 or an Insight, whether or not you then write one; a script names a page in an error
 and you say why it failed; the brief needs a fact no input carries — the status of an
 Estimate, the severity of an Insight. Name every page you open in the report, with
-the reason and the outcome. Never read `ledger.md`, `spec.md`, `plan.md`, `wiki/decisions/`,
-`vault/archived/`, or any file under `guppi/` or `tests/`: what the scripts do with
-the yaml is written here. Edit the yaml only as the index check and the synthesis
+the reason and the outcome. Never read `ledger.md`, `spec.md`, `plan.md`, `wiki/decisions/` or
+`vault/archived/`: what the scripts do with the yaml is written here. The `Makefile`,
+`guppi/` and `tests/` are the scripts' own files, not the vault; read them when a
+command's output is not enough. Edit the yaml only as the index check and the synthesis
 say; an entry a script rejects stays as it is and is a flag in the report, never a
 repair.
 
@@ -74,9 +75,11 @@ with these sections in this order:
 - Where things stand: from the "What actually got done" section of `handoff.md` and
   the counts of the yaml, pages created and updated per category.
 - What the next session does first.
-- Deferred: at most seven items. Rank by the `severity` of a related Insight, then
-  by the number of times the item was postponed. Take that number from the previous
-  brief and add one.
+- Deferred: at most seven items, one per target of a `defer` entry in the yamls the
+  walk named, plus every item of the previous brief's list whose decision no
+  `supersedes` retired. Rank by the `severity` of a related Insight, then by the
+  number of times the item was postponed. Take that number from the previous brief
+  and add one.
 - Flags, no limit: entries marked `incomplete`, `failed`, `near` or `unparsed`;
   failed Estimates; MOC candidates; stale defers; contradictions; the lint output.
 - Readings at the close: `make test`, `make lint`, page counts.

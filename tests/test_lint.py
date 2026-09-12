@@ -418,8 +418,8 @@ def test_cli_dispatches_to_lint(tmp_path, monkeypatch, capsys):
 DECISIONS_YAML = """\
 type: decision
 properties:
-  required: [type, case, status, kind, target_slug, origin]
-  optional: [source, supersedes, superseded_by]
+  required: [type, case, status, origin]
+  optional: [create, update, delete, defer, source, supersedes, superseded_by]
   values:
     status: [current, superseded, archived]
 body:
@@ -437,8 +437,10 @@ DECISIONS_MD = """\
 | `type` | yes |
 | `case` | yes |
 | `status` | yes |
-| `kind` | yes |
-| `target_slug` | yes |
+| `create` | no |
+| `update` | no |
+| `delete` | no |
+| `defer` | no |
 | `source` | no |
 | `supersedes` | no |
 | `superseded_by` | no |
@@ -458,9 +460,10 @@ DECISIONS_MD = """\
 """
 
 
-def decision_page(kinds="[defer]", slugs="[rule-x]"):
+def decision_page(lists="defer: [rule-x]"):
+    """A decision page whose kind lists are the given frontmatter lines (case 59.4)."""
     return (
-        f"---\ntype: decision\ncase: '50'\nstatus: current\nkind: {kinds}\ntarget_slug: {slugs}\n"
+        f"---\ntype: decision\ncase: '50'\nstatus: current\n{lists}\n"
         f"origin: {ORIGIN}\n---\n\n## Context\n\nc\n\n## Problem\n\np\n\n## History\n\n- created\n"
     )
 
@@ -473,27 +476,50 @@ def seed_decisions(tmp_path, page=None):
     return wiki
 
 
-def test_a_decision_with_aligned_lists_naming_pages_is_clean(tmp_path):
-    seed_decisions(tmp_path)
+def test_a_decision_with_kind_lists_naming_pages_is_clean(tmp_path):
+    seed_decisions(tmp_path, decision_page("update: [rule-x, case-schema]\ndefer: [rule-root]"))
     assert run(tmp_path) == (0, [], "")
 
 
-def test_decision_lists_of_unequal_length_are_a_decision_finding(tmp_path):
-    seed_decisions(tmp_path, decision_page(kinds="[defer, update]"))
-    _, lines, _ = run(tmp_path)
-    assert lines == ["decisions/decision-case-50: decision: kind has 2 items, target_slug 1"]
-
-
-def test_a_target_slug_naming_no_page_is_a_decision_finding(tmp_path):
-    seed_decisions(tmp_path, decision_page(slugs="[rule-nowhere]"))
+def test_a_decision_with_none_of_the_four_lists_is_a_decision_finding(tmp_path):
+    seed_decisions(tmp_path, decision_page("source: [x]"))
     _, lines, _ = run(tmp_path)
     assert lines == [
-        "decisions/decision-case-50: decision: target_slug rule-nowhere names no live page"
+        "decisions/decision-case-50: decision: none of create, update, delete, defer is present"
     ]
 
 
-def test_a_rule_class_target_slug_is_not_looked_up(tmp_path):
-    seed_decisions(tmp_path, decision_page(kinds="[update]", slugs="[case-schema]"))
+def test_kind_or_target_slug_on_a_decision_is_a_decision_finding(tmp_path):
+    seed_decisions(tmp_path, decision_page("defer: [rule-x]\nkind: [defer]\ntarget_slug: [rule-x]"))
+    _, lines, _ = run(tmp_path)
+    assert lines == [
+        "decisions/decision-case-50: decision: kind is no longer a field (case 59.4)",
+        "decisions/decision-case-50: decision: target_slug is no longer a field (case 59.4)",
+    ]
+
+
+def test_a_list_slug_naming_neither_a_live_nor_an_archived_page_is_a_decision_finding(
+    tmp_path,
+):
+    seed_decisions(tmp_path, decision_page("defer: [rule-nowhere]"))
+    _, lines, _ = run(tmp_path)
+    assert lines == [
+        (
+            "decisions/decision-case-50: decision: defer names rule-nowhere, "
+            "which no live or archived page carries"
+        )
+    ]
+
+
+def test_a_list_slug_naming_an_archived_page_is_not_a_finding(tmp_path):
+    seed_decisions(tmp_path, decision_page("update: [rule-gone]"))
+    archived = tmp_path / "vault" / "archived" / "migration" / "2026-09-10" / "rules"
+    write(archived / "rule-gone.md", "---\ntype: rule\n---\n")
+    assert run(tmp_path) == (0, [], "")
+
+
+def test_a_rule_class_slug_in_a_list_is_not_looked_up(tmp_path):
+    seed_decisions(tmp_path, decision_page("update: [case-schema]"))
     assert run(tmp_path) == (0, [], "")
 
 

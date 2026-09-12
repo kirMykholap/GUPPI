@@ -2,8 +2,7 @@
 type: decision
 case: "39"
 status: current
-kind: [update, update, update, update]
-target_slug: [index, glossary, claude-md, rule-session-start]
+update: [index, glossary, claude-md, rule-session-start]
 origin: raw/2026-09-10/ledger.md#case-39
 sprint: migration
 created: 2026-09-10
@@ -40,3 +39,4 @@ The `then` of the Case, as ratified:
 
 - 2026-09-10 created · raw/2026-09-10/ledger.md#case-39
 - 2026-09-11 migrated: targets to kind and target_slug, Now to Given, Then to When · [[decision-case-52.1]]
+- 2026-09-12 fields kind and target_slug folded into create, update, delete, defer · [[decision-case-59.4]]

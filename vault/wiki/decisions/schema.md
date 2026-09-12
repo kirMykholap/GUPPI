@@ -13,8 +13,10 @@ One page per Case, however many ledger lines the Case produced.
 | `type` | yes | `decision` | Page category. Fixed for this schema. |
 | `case` | yes | case id, e.g. `18.1` | The Case this page records. |
 | `status` | yes | `current` \| `superseded` \| `archived` | Lifecycle of this page, not of the work. `superseded` once a later Case names it in `supersedes`. |
-| `kind` | yes | list of `create` \| `update` \| `delete` \| `defer` | One item per ledger line of the Case, in ledger order; aligned by position with `target_slug`. Two lists of scalars, not a list of objects, so Obsidian shows them as lists and links (case 52.1). |
-| `target_slug` | yes | list of slugs | The slug of each ledger line, at the same position as its `kind`: a page, or a Rule-class file by its ledger slug (`case-schema`, `rules-schema-yaml`). The category is derived from the slug prefix or the Rule-class map and never written; the parent of a `create` is on the child page as `parent` or `target`. |
+| `create` | one of the four | list of slugs | The slugs of the Case's `create` lines, in ledger order: a page, or a Rule-class file by its ledger slug (`case-schema`, `rules-schema-yaml`). One list per kind present, in the order create, update, delete, defer; a kind with no line is absent. Lists of scalars, so Obsidian shows them as lists and links; the kind of every target is its key (case 59.4, replacing the aligned `kind` and `target_slug` of case 52.1). The category is derived from the slug prefix or the Rule-class map and never written; the parent of a `create` is on the child page as `parent` or `target`. |
+| `update` | one of the four | list of slugs | The slugs of the Case's `update` lines, in ledger order. |
+| `delete` | one of the four | list of slugs | The slugs of the Case's `delete` lines, in ledger order. |
+| `defer` | one of the four | list of slugs | The slugs of the Case's `defer` lines, in ledger order; each target carries this page in `deferred_by`. |
 | `source` | no | list | External ids the Case's lines carried (`{source:...}`), traceability only. |
 | `supersedes` | no | list of decision slugs | Earlier Cases this one overrides, from the ledger's `{supersedes:case N}`. |
 | `superseded_by` | no | list of decision slugs | Back-references, written by the script. |
@@ -47,8 +49,8 @@ The Case that produced it, minus what belongs to the conversation rather than th
 |---|---|---|
 | `## Context` | yes | What this is about. |
 | `## Problem` | yes | What required a decision. On a defer, what is unresolved. |
-| `## Given` | when any `kind` is not `defer` | The Case's `given`: how things worked before, the pre-task result included — what already existed, what conflicted, what sat in `draft`. The short form of Retro (a defer-only Case) has none (case 56). |
-| `## When` | when any `kind` is not `defer` | The Case's `when`: the action that triggers the behaviour. What was decided (`then`) lives on the target pages, not here. |
+| `## Given` | when a kind other than `defer` is present | The Case's `given`: how things worked before, the pre-task result included — what already existed, what conflicted, what sat in `draft`. The short form of Retro (a defer-only Case) has none (case 56). |
+| `## When` | when a kind other than `defer` is present | The Case's `when`: the action that triggers the behaviour. What was decided (`then`) lives on the target pages, not here. |
 | `## Note` | no | Only when ratification was non-trivial: a reservation, a condition, a rejected alternative worth remembering. Omit when the answer was simply yes. |
 
 ## History
@@ -68,8 +70,7 @@ Appended by hook, never by an agent. Always the last section, so `tail` reads it
 type: decision
 case: "1"
 status: current
-kind: [create, create]
-target_slug: [entity-cart, estimate-cart-render-time]
+create: [entity-cart, estimate-cart-render-time]
 origin: raw/2026-09-08/ledger.md#case-1
 sprint: 2026-Q3-s4
 created: 2026-09-08

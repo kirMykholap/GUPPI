@@ -2,8 +2,7 @@
 type: decision
 case: "46"
 status: current
-kind: [update]
-target_slug: [migration-plan]
+update: [migration-plan]
 origin: raw/2026-09-10/ledger.md#case-46
 sprint: migration
 created: 2026-09-10
@@ -44,3 +43,4 @@ Phase 1 плана перечисляет archive script с контрактом
 
 - 2026-09-10 created · raw/2026-09-10/ledger.md#case-46
 - 2026-09-11 migrated: targets to kind and target_slug, Now to Given, Then to When · [[decision-case-52.1]]
+- 2026-09-12 fields kind and target_slug folded into create, update, delete, defer · [[decision-case-59.4]]

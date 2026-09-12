@@ -2,8 +2,8 @@
 type: decision
 case: "37"
 status: current
-kind: [create, create, update, update, update, update]
-target_slug: [rule-harness, estimate-harness-pipeline, rule-render-harness, rule-hook-registry, rule-lint, rule-index]
+create: [rule-harness, estimate-harness-pipeline]
+update: [rule-render-harness, rule-hook-registry, rule-lint, rule-index]
 origin: raw/2026-09-10/ledger.md#case-37
 sprint: migration
 created: 2026-09-10
@@ -40,3 +40,4 @@ The `then` of the Case, as ratified:
 
 - 2026-09-10 created · raw/2026-09-10/ledger.md#case-37
 - 2026-09-11 migrated: targets to kind and target_slug, Now to Given, Then to When · [[decision-case-52.1]]
+- 2026-09-12 fields kind and target_slug folded into create, update, delete, defer · [[decision-case-59.4]]

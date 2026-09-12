@@ -2,8 +2,7 @@
 type: decision
 case: "12"
 status: current
-kind: [create, create]
-target_slug: [rule-session-start, estimate-session-start-context]
+create: [rule-session-start, estimate-session-start-context]
 origin: raw/2026-09-09/ledger.md#case-12
 sprint: migration
 created: 2026-09-09
@@ -71,3 +70,4 @@ Ledger:
 
 - 2026-09-09 created · raw/2026-09-09/ledger.md#case-12
 - 2026-09-11 migrated: targets to kind and target_slug, Now to Given, Then to When · [[decision-case-52.1]]
+- 2026-09-12 fields kind and target_slug folded into create, update, delete, defer · [[decision-case-59.4]]

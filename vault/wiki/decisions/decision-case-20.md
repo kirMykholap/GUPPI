@@ -2,8 +2,8 @@
 type: decision
 case: "20"
 status: current
-kind: [create, create, update, update]
-target_slug: [rule-spec-capture, estimate-spec-capture-appends, rule-plan-mode, rule-hook-registry]
+create: [rule-spec-capture, estimate-spec-capture-appends]
+update: [rule-plan-mode, rule-hook-registry]
 origin: raw/2026-09-09/ledger.md#case-20
 sprint: migration
 created: 2026-09-09
@@ -42,3 +42,4 @@ update:
 
 - 2026-09-09 created · raw/2026-09-09/ledger.md#case-20
 - 2026-09-11 migrated: targets to kind and target_slug, Now to Given, Then to When · [[decision-case-52.1]]
+- 2026-09-12 fields kind and target_slug folded into create, update, delete, defer · [[decision-case-59.4]]

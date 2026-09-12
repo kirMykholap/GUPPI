@@ -2,8 +2,7 @@
 type: decision
 case: "56"
 status: current
-kind: [update, update, update, update, update, update]
-target_slug: [rule-retro, case-schema, decisions-schema-yaml, decisions-schema, rule-materialize, estimate-retro-loads]
+update: [rule-retro, case-schema, decisions-schema-yaml, decisions-schema, rule-materialize, estimate-retro-loads]
 supersedes: [decision-case-50]
 origin: raw/2026-09-11/ledger.md#case-56
 sprint: migration
@@ -33,3 +32,4 @@ Case 50 отложил переосмысление Retro без текста; �
 ## History
 
 - 2026-09-11 created · raw/2026-09-11/ledger.md#case-56
+- 2026-09-12 fields kind and target_slug folded into create, update, delete, defer · [[decision-case-59.4]]

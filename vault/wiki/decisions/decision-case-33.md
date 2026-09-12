@@ -2,8 +2,8 @@
 type: decision
 case: "33"
 status: current
-kind: [create, create, update, update]
-target_slug: [rule-cleanup, estimate-cleanup-moves, index, glossary]
+create: [rule-cleanup, estimate-cleanup-moves]
+update: [index, glossary]
 origin: raw/2026-09-10/ledger.md#case-33
 sprint: migration
 created: 2026-09-10
@@ -47,3 +47,4 @@ The `then` of the Case, as ratified:
 
 - 2026-09-10 created · raw/2026-09-10/ledger.md#case-33
 - 2026-09-11 migrated: targets to kind and target_slug, Now to Given, Then to When · [[decision-case-52.1]]
+- 2026-09-12 fields kind and target_slug folded into create, update, delete, defer · [[decision-case-59.4]]

@@ -13,6 +13,54 @@ DATE = "2026-09-10"
 ORIGIN = f"raw/{DATE}/ledger.md#case-1"
 REPO = Path(__file__).resolve().parent.parent
 
+# The decisions schema the tests run against: the four kind lists of case 59.4, so the
+# suite does not depend on the live `vault/wiki/decisions/schema.yaml`.
+DECISIONS_YAML = """\
+type: decision
+properties:
+  required: [type, case, status, origin, sprint, created, tags]
+  optional: [create, update, delete, defer, source, supersedes, superseded_by]
+  values:
+    status: [current, superseded, archived]
+body:
+  required: ["## Context", "## Problem", "## History"]
+  optional: ["## Given", "## When", "## Note"]
+"""
+DECISIONS_MD = """\
+# Decision — page schema
+
+## Properties
+
+| Field | Required |
+|---|---|
+| `type` | yes |
+| `case` | yes |
+| `status` | yes |
+| `create` | no |
+| `update` | no |
+| `delete` | no |
+| `defer` | no |
+| `source` | no |
+| `supersedes` | no |
+| `superseded_by` | no |
+| `origin` | yes |
+| `sprint` | yes |
+| `created` | yes |
+| `tags` | yes |
+
+## Body
+
+| Section | Required |
+|---|---|
+| `## Context` | yes |
+| `## Problem` | yes |
+| `## Given` | no |
+| `## When` | no |
+| `## Note` | no |
+
+## History
+"""
+
 
 def records_for(entries):
     """One minimal Decision record per Case among the entries, as materialize would make."""
@@ -46,6 +94,8 @@ def seed(tmp_path, entries=(), decisions=None, new_tags=(), pages=()):
         (wiki / category).mkdir(parents=True)
         for name in ("schema.yaml", "schema.md"):
             shutil.copy(REPO / "vault" / "wiki" / category / name, wiki / category / name)
+    (wiki / "decisions" / "schema.yaml").write_text(DECISIONS_YAML, encoding="utf-8", newline="\n")
+    (wiki / "decisions" / "schema.md").write_text(DECISIONS_MD, encoding="utf-8", newline="\n")
     (wiki / "sprint.md").write_text("# Sprint\n\n## migration — open\n", encoding="utf-8")
     (wiki / "tags.md").write_text(
         "# Tags\n\n| tag | meaning | aliases (ru) |\n|---|---|---|\n| harness | the harness | харнесс |\n",
@@ -340,6 +390,48 @@ def test_a_supersedes_clears_deferred_by_on_the_targets(tmp_path):
     assert "deferred_by" not in props(root)
     assert f"- {DATE} deferred · [[decision-case-2]]" in root
     assert f"- {DATE} defer by decision-case-2 superseded · [[decision-case-3]]" in root
+    two = props(page(tmp_path, "decisions", "decision-case-2"))
+    assert two["status"] == "superseded" and two["defer"] == ["rule-root"]  # what was read
+
+
+def test_a_supersedes_of_a_page_with_only_a_defer_list_clears_deferred_by(tmp_path):
+    """The earlier page carries the four lists and no `kind`/`target_slug` (case 59.4)."""
+    earlier = (
+        '---\ntype: decision\ncase: "2"\nstatus: current\ndefer: [rule-root]\n'
+        f"origin: raw/{DATE}/ledger.md#case-2\nsprint: migration\ncreated: {DATE}\ntags: []\n---\n\n"
+        "## Context\n\nc\n\n## Problem\n\np\n\n## History\n\n- created\n"
+    )
+    entry = {
+        "line": 3,
+        "text": "",
+        "case": "3",
+        "kind": "update",
+        "category": "rules",
+        "slug": "rule-root",
+        "origin": f"raw/{DATE}/ledger.md#case-3",
+        "decision": "decision-case-3",
+        "supersedes": "2",
+        "set": {"governs": "x.md"},
+        "change": "taken up",
+    }
+    root_page = (
+        "---\ntype: rule\nkind: MOC\npurpose: Old root\nstatus: draft\nchildren: []\n"
+        "estimates: []\ndeferred_by: [decision-case-2]\norigin: x\nsprint: s\ncreated: 2026-09-09\n"
+        "tags: [harness]\n---\n\n## Purpose\n\nOld root\n\n## History\n\n- old\n"
+    )
+    decisions = records_for([entry])
+    decisions[0]["supersedes"] = ["decision-case-2"]
+    seed(
+        tmp_path,
+        entries=[entry],
+        decisions=decisions,
+        pages=[("rules", "rule-root", root_page), ("decisions", "decision-case-2", earlier)],
+    )
+    code, _, err = run(tmp_path)
+    assert code == 0 and err == ""
+    root = page(tmp_path, "rules", "rule-root")
+    assert "deferred_by" not in props(root)
+    assert f"- {DATE} defer by decision-case-2 superseded · [[decision-case-3]]" in root
     assert props(page(tmp_path, "decisions", "decision-case-2"))["status"] == "superseded"
 
 
@@ -460,8 +552,8 @@ def test_one_decision_page_per_case_and_supersedes_marks_the_earlier(tmp_path):
     one = page(tmp_path, "decisions", "decision-case-1")
     assert props(one)["case"] == "1" and props(one)["status"] == "superseded"
     assert props(one)["superseded_by"] == ["decision-case-2"]
-    assert props(one)["kind"] == ["create"] and props(one)["target_slug"] == ["rule-root"]
-    assert "targets" not in props(one)
+    assert props(one)["create"] == ["rule-root"]
+    assert not {"kind", "target_slug", "targets", "update", "delete", "defer"} & set(props(one))
     assert (
         "## Context\n\nA root." in one
         and "## Problem\n\nNo root." in one
@@ -481,6 +573,37 @@ def test_one_decision_page_per_case_and_supersedes_marks_the_earlier(tmp_path):
         "decisions/decision-case-2: schema: missing section ## Context",
         "decisions/decision-case-2: schema: missing section ## Problem",
     ]
+
+
+def test_a_decision_page_lists_its_targets_by_kind_in_ledger_order(tmp_path):
+    """One list per kind present, `create`, `update`, `delete`, `defer` in that order, the
+    slugs of each in ledger order; a kind with no line is absent (case 59.4)."""
+    decisions = [
+        {
+            "case": "1",
+            "decision": "decision-case-1",
+            "origin": ORIGIN,
+            "tags": [],
+            "targets": [
+                {"kind": "update", "category": None, "slug": "case-schema"},
+                {"kind": "create", "category": "rules", "slug": "rule-root"},
+                {"kind": "defer", "category": "rules", "slug": "rule-later"},
+                {"kind": "create", "category": "estimates", "slug": "estimate-root-holds"},
+                {"kind": "update", "category": None, "slug": "index"},
+            ],
+            "case_text": {"context": "c", "problem": "p"},
+        }
+    ]
+    seed(tmp_path, entries=[ROOT], decisions=decisions)
+    code, _, err = run(tmp_path)
+    assert code == 0 and err == ""
+    text = page(tmp_path, "decisions", "decision-case-1")
+    assert (
+        "create: [rule-root, estimate-root-holds]\nupdate: [case-schema, index]\ndefer: [rule-later]\n"
+        in text
+    )
+    assert "delete:" not in text and "kind:" not in text and "target_slug:" not in text
+    assert text.index("status: current\n") < text.index("create:") < text.index("origin:")
 
 
 def test_new_tags_register_and_undeclared_ones_are_reported(tmp_path):

@@ -2,8 +2,7 @@
 type: decision
 case: "11"
 status: current
-kind: [create, create, create, create, create, create, create, create]
-target_slug: [rule-skill-hi, estimate-hi-no-read-calls, rule-internal-context, estimate-internal-context-loaded, rule-git-context, estimate-git-context-current, rule-github-issues, estimate-github-issues-listed]
+create: [rule-skill-hi, estimate-hi-no-read-calls, rule-internal-context, estimate-internal-context-loaded, rule-git-context, estimate-git-context-current, rule-github-issues, estimate-github-issues-listed]
 origin: raw/2026-09-09/ledger.md#case-11
 sprint: migration
 created: 2026-09-09
@@ -187,3 +186,4 @@ Ledger:
 
 - 2026-09-09 created · raw/2026-09-09/ledger.md#case-11
 - 2026-09-11 migrated: targets to kind and target_slug, Now to Given, Then to When · [[decision-case-52.1]]
+- 2026-09-12 fields kind and target_slug folded into create, update, delete, defer · [[decision-case-59.4]]

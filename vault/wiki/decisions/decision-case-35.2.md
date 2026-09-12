@@ -2,8 +2,8 @@
 type: decision
 case: "35.2"
 status: current
-kind: [create, create, update, update]
-target_slug: [rule-synthesis, estimate-synthesis-clusters, index, insights-schema]
+create: [rule-synthesis, estimate-synthesis-clusters]
+update: [index, insights-schema]
 origin: raw/2026-09-10/ledger.md#case-35.2
 sprint: migration
 created: 2026-09-10
@@ -43,3 +43,4 @@ Librarian сравнивает `root_cause` со строками `lessons-index
 
 - 2026-09-10 created · raw/2026-09-10/ledger.md#case-35.2
 - 2026-09-11 migrated: targets to kind and target_slug, Now to Given, Then to When · [[decision-case-52.1]]
+- 2026-09-12 fields kind and target_slug folded into create, update, delete, defer · [[decision-case-59.4]]

@@ -2,8 +2,7 @@
 type: decision
 case: "55.1"
 status: current
-kind: [update, update]
-target_slug: [rule-ledger-write, estimate-ledger-write-lifts]
+update: [rule-ledger-write, estimate-ledger-write-lifts]
 supersedes: [decision-case-51]
 origin: raw/2026-09-11/ledger.md#case-55.1
 sprint: migration
@@ -19,6 +18,14 @@ tags: [session, hooks, harness, ledger]
 
 Окно `hi` привязано к файлу одного дня; хук привязан к одному событию, которого у части реплик нет.
 
+## Given
+
+`ledger.py`: `log_path(project_dir, now)` — только `raw/<today>/event_log.md`; `hi_recorded` требует `session-start` своей сессии до `hi` в одном тексте. `reply_text` берёт `last_assistant_message` из payload `Stop`; payload несёт и `transcript_path` (`lesson-hooks-stop-payload`).
+**＋** `existing_bodies` не пишет строку, чей текст уже в ledger.
+**＋** `rule-ledger-write` `built`, `estimate-ledger-write-lifts` `passed`; по 53.2 критерий правится, `pending`. `deferred_by` Case 51 снимается `{supersedes:case 51}`.
+**＋** Уроки: `lesson-ledger-hook-misses-a-reply-ending-in-a-tool-call`, `lesson-ledger-hook-hi-lost-at-midnight`.
+**－** Формат строки, тег `LEDGER`, отказ без `hi`, `settings.json` — без изменений.
+
 ## When
 
 Хук `Stop` проверяет, открыта ли сессия.
@@ -26,3 +33,5 @@ tags: [session, hooks, harness, ledger]
 ## History
 
 - 2026-09-11 created · raw/2026-09-11/ledger.md#case-55.1
+- 2026-09-12 Given inherited from the parent Case · [[decision-case-60]]
+- 2026-09-12 fields kind and target_slug folded into create, update, delete, defer · [[decision-case-59.4]]

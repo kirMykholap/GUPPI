@@ -2,8 +2,7 @@
 type: decision
 case: "21"
 status: current
-kind: [create, create]
-target_slug: [rule-lint, estimate-lint-catches]
+create: [rule-lint, estimate-lint-catches]
 origin: raw/2026-09-09/ledger.md#case-21
 sprint: migration
 created: 2026-09-09
@@ -61,3 +60,4 @@ update:
 
 - 2026-09-09 created · raw/2026-09-09/ledger.md#case-21
 - 2026-09-11 migrated: targets to kind and target_slug, Now to Given, Then to When · [[decision-case-52.1]]
+- 2026-09-12 fields kind and target_slug folded into create, update, delete, defer · [[decision-case-59.4]]

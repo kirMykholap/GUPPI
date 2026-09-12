@@ -2,8 +2,7 @@
 type: decision
 case: "19"
 status: current
-kind: [create, create]
-target_slug: [rule-plan-mode, estimate-plan-mode-verified]
+create: [rule-plan-mode, estimate-plan-mode-verified]
 origin: raw/2026-09-09/ledger.md#case-19
 sprint: migration
 created: 2026-09-09
@@ -36,3 +35,4 @@ with what is already there». `rule-case-protocol` не трогается: ег
 
 - 2026-09-09 created · raw/2026-09-09/ledger.md#case-19
 - 2026-09-11 migrated: targets to kind and target_slug, Now to Given, Then to When · [[decision-case-52.1]]
+- 2026-09-12 fields kind and target_slug folded into create, update, delete, defer · [[decision-case-59.4]]

@@ -2,8 +2,7 @@
 type: decision
 case: "24.2"
 status: superseded
-kind: [create, create]
-target_slug: [rule-pretask, estimate-pretask-reconciles]
+create: [rule-pretask, estimate-pretask-reconciles]
 superseded_by: [decision-case-26.1]
 origin: raw/2026-09-09/ledger.md#case-24.2
 sprint: migration
@@ -51,3 +50,4 @@ finding as a Case, or say in one line why it is already known. Then exit Plan Mo
 - 2026-09-09 created · raw/2026-09-09/ledger.md#case-24.2
 - 2026-09-09 superseded by decision-case-26.1 · raw/2026-09-09/ledger.md#case-26.1
 - 2026-09-11 migrated: targets to kind and target_slug, Now to Given, Then to When · [[decision-case-52.1]]
+- 2026-09-12 fields kind and target_slug folded into create, update, delete, defer · [[decision-case-59.4]]

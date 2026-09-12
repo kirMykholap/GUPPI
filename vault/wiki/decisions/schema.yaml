@@ -3,15 +3,16 @@
 # through a ratified `decision update`.
 type: decision
 properties:
-  required: [type, case, status, kind, target_slug, origin, sprint, created, tags]
-  optional: [source, supersedes, superseded_by]
+  required: [type, case, status, origin, sprint, created, tags]
+  optional: [create, update, delete, defer, source, supersedes, superseded_by]
   values:
     status: [current, superseded, archived]
-# `kind` and `target_slug` are two lists aligned by position, one position per ledger line
-# of the Case: `kind` items are create | update | delete | defer, `target_slug` items the
-# slug of the ledger line (a page, or a Rule-class file such as `case-schema`); the category
-# is derived from the slug prefix or the Rule-class map, never written. Lint checks the two
-# lists have equal length and every page slug exists (case 52.1).
+# `create`, `update`, `delete`, `defer`: one list per kind present among the Case's ledger
+# lines, in that order, each the slugs of those lines in ledger order (a page, or a
+# Rule-class file such as `case-schema`); a kind with no line is absent, at least one is
+# present. The category is derived from the slug prefix or the Rule-class map, never
+# written. Lint checks every page slug names a live or archived page, and that neither
+# `kind` nor `target_slug` is present (case 59.4).
 body:
   required: ["## Context", "## Problem", "## History"]
   # `## Given` and `## When` are required by materialize when any kind is not `defer`; a

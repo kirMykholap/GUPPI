@@ -2,8 +2,7 @@
 type: decision
 case: "41"
 status: current
-kind: [update, update]
-target_slug: [rule-materialize, estimate-materialize-assembles]
+update: [rule-materialize, estimate-materialize-assembles]
 supersedes: [decision-case-31]
 origin: raw/2026-09-10/ledger.md#case-41
 sprint: migration
@@ -45,3 +44,4 @@ The `then` of the Case, as ratified:
 
 - 2026-09-10 created · raw/2026-09-10/ledger.md#case-41
 - 2026-09-11 migrated: targets to kind and target_slug, Now to Given, Then to When · [[decision-case-52.1]]
+- 2026-09-12 fields kind and target_slug folded into create, update, delete, defer · [[decision-case-59.4]]

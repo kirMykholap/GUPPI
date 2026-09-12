@@ -2,8 +2,8 @@
 type: decision
 case: "18.2"
 status: current
-kind: [create, create, update]
-target_slug: [rule-hook-registry, estimate-hook-registry-rendered, rule-session-start]
+create: [rule-hook-registry, estimate-hook-registry-rendered]
+update: [rule-session-start]
 origin: raw/2026-09-09/ledger.md#case-18.2
 sprint: migration
 created: 2026-09-09
@@ -64,3 +64,4 @@ Render body (final, after cases 20 and 24.1):
 
 - 2026-09-09 created · raw/2026-09-09/ledger.md#case-18.2
 - 2026-09-11 migrated: targets to kind and target_slug, Now to Given, Then to When · [[decision-case-52.1]]
+- 2026-09-12 fields kind and target_slug folded into create, update, delete, defer · [[decision-case-59.4]]

@@ -2,8 +2,7 @@
 type: decision
 case: "54"
 status: current
-kind: [update, update, update, update, update]
-target_slug: [rule-documentation, rule-synthesis, rule-brief, estimate-documentation-completes, estimate-synthesis-clusters]
+update: [rule-documentation, rule-synthesis, rule-brief, estimate-documentation-completes, estimate-synthesis-clusters]
 origin: raw/2026-09-11/ledger.md#case-54
 sprint: migration
 created: 2026-09-11
@@ -32,3 +31,4 @@ Case 44 разрешил библиотекарю открывать стран�
 ## History
 
 - 2026-09-11 created · raw/2026-09-11/ledger.md#case-54
+- 2026-09-12 fields kind and target_slug folded into create, update, delete, defer · [[decision-case-59.4]]

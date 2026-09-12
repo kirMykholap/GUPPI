@@ -2,8 +2,7 @@
 type: decision
 case: "57"
 status: current
-kind: [update, update, update, update, update, update, update]
-target_slug: [index, claude-md, rule-cleanup, estimate-cleanup-moves, rule-spec-capture, estimate-spec-capture-appends, estimate-lint-catches]
+update: [index, claude-md, rule-cleanup, estimate-cleanup-moves, rule-spec-capture, estimate-spec-capture-appends, estimate-lint-catches]
 origin: raw/2026-09-11/ledger.md#case-57
 sprint: migration
 created: 2026-09-11
@@ -30,3 +29,4 @@ Cases 52–56 меняют форму Decision, число индексов, ч�
 ## History
 
 - 2026-09-11 created · raw/2026-09-11/ledger.md#case-57
+- 2026-09-12 fields kind and target_slug folded into create, update, delete, defer · [[decision-case-59.4]]

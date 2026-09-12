@@ -2,8 +2,7 @@
 type: decision
 case: "23.1"
 status: superseded
-kind: [create, create]
-target_slug: [rule-ask, estimate-ask-finds]
+create: [rule-ask, estimate-ask-finds]
 superseded_by: [decision-case-26.1]
 origin: raw/2026-09-09/ledger.md#case-23.1
 sprint: migration
@@ -76,3 +75,4 @@ update:
 - 2026-09-09 created · raw/2026-09-09/ledger.md#case-23.1
 - 2026-09-09 superseded by decision-case-26.1 · raw/2026-09-09/ledger.md#case-26.1
 - 2026-09-11 migrated: targets to kind and target_slug, Now to Given, Then to When · [[decision-case-52.1]]
+- 2026-09-12 fields kind and target_slug folded into create, update, delete, defer · [[decision-case-59.4]]

@@ -2,8 +2,7 @@
 type: decision
 case: "40"
 status: current
-kind: [update, update, update, update, update, update, update]
-target_slug: [index, glossary, decisions-schema, entities-schema, rules-schema, estimate-plan-mode-verified, rule-retro]
+update: [index, glossary, decisions-schema, entities-schema, rules-schema, estimate-plan-mode-verified, rule-retro]
 supersedes: [decision-case-38.1]
 origin: raw/2026-09-10/ledger.md#case-40
 sprint: migration
@@ -46,3 +45,4 @@ The `then` of the Case, as ratified:
 
 - 2026-09-10 created · raw/2026-09-10/ledger.md#case-40
 - 2026-09-11 migrated: targets to kind and target_slug, Now to Given, Then to When · [[decision-case-52.1]]
+- 2026-09-12 fields kind and target_slug folded into create, update, delete, defer · [[decision-case-59.4]]

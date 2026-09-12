@@ -2,8 +2,8 @@
 type: decision
 case: "43"
 status: current
-kind: [update, create, update, create, update]
-target_slug: [rule-materialize, estimate-materialize-walks-dates, rule-page-generation, estimate-generate-walks-dates, rule-documentation]
+create: [estimate-materialize-walks-dates, estimate-generate-walks-dates]
+update: [rule-materialize, rule-page-generation, rule-documentation]
 origin: raw/2026-09-10/ledger.md#case-43
 sprint: migration
 created: 2026-09-10
@@ -48,3 +48,4 @@ The `then` of the Case, as ratified:
 
 - 2026-09-10 created · raw/2026-09-10/ledger.md#case-43
 - 2026-09-11 migrated: targets to kind and target_slug, Now to Given, Then to When · [[decision-case-52.1]]
+- 2026-09-12 fields kind and target_slug folded into create, update, delete, defer · [[decision-case-59.4]]

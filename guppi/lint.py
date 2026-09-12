@@ -11,8 +11,10 @@ estimate or insight no other live page's frontmatter names; a lesson is a record
 Insight names it or not), `status` (a status its Estimates do not support; an Estimate
 whose `target` is not an entity or a rule, case 53.1), `method` (an Estimate whose Method
 names no existing test file, or no make target for a MOC; a MOC whose children's Estimates
-are all by hand may say by hand instead), `decision` (`kind` and `target_slug` of unequal
-length, or a `target_slug` with a category prefix that names no page, case 52.1). A
+are all by hand may say by hand instead), `decision` (a decision page with none of the four
+kind lists `create`, `update`, `delete`, `defer`, or with `kind` or `target_slug` still
+present, or a slug in a list with a category prefix that names neither a live nor an
+archived page, case 59.4). A
 `deferred_by` slug and a `[[decision-case-N]]` wikilink in History are refs like any other
 (cases 52.3, 52.4). Rule page: `vault/wiki/rules/rule-lint.md`.
 """
@@ -43,6 +45,7 @@ PREFIXES = {
     "lesson-": "lessons",
     "insight-": "insights",
 }
+KINDS = ("create", "update", "delete", "defer")  # a decision page's lists (case 59.4)
 PATH_FIELDS = ("implementation_ref", "governs")
 WIKILINK = re.compile(r"\[\[([^\]|#]+)(?:[|#][^\]]*)?\]\]")
 CODE_SPAN = re.compile(r"`[^`\n]*`")  # a `[[slug]]` quoted in prose is not a link
@@ -274,22 +277,28 @@ def check_orphans(pages: list[Page]) -> list[Finding]:
     ]
 
 
-def check_decision(page: Page, by_slug: dict[str, Page]) -> list[Finding]:
-    """`kind` and `target_slug` aligned by position; a page slug names a page (case 52.1)."""
+def check_decision(page: Page, known: set[str]) -> list[Finding]:
+    """At least one of the four kind lists, neither `kind` nor `target_slug`; every slug
+    with a category prefix a live or archived page, a slug without one a thing outside the
+    vault and not looked up (case 59.4)."""
     if page.category != "decisions":
         return []
-    kinds, slugs = as_list(page.props.get("kind")), as_list(page.props.get("target_slug"))
-    if len(kinds) != len(slugs):
-        return [Finding(page, "decision", f"kind has {len(kinds)} items, target_slug {len(slugs)}")]
     out = []
-    for kind, slug in zip(kinds, slugs, strict=True):
-        if kind not in ("create", "update", "delete", "defer"):
-            out.append(
-                Finding(page, "decision", f"kind {kind!r} is not create/update/delete/defer")
-            )
-        category = next((c for p, c in PREFIXES.items() if slug.startswith(p)), None)
-        if category is not None and slug not in by_slug:
-            out.append(Finding(page, "decision", f"target_slug {slug} names no live page"))
+    if not any(kind in page.props for kind in KINDS):
+        out.append(Finding(page, "decision", f"none of {', '.join(KINDS)} is present"))
+    for field in ("kind", "target_slug"):
+        if field in page.props:
+            out.append(Finding(page, "decision", f"{field} is no longer a field (case 59.4)"))
+    for kind in KINDS:
+        for slug in as_list(page.props.get(kind)):
+            if any(slug.startswith(p) for p in PREFIXES) and slug not in known:
+                out.append(
+                    Finding(
+                        page,
+                        "decision",
+                        f"{kind} names {slug}, which no live or archived page carries",
+                    )
+                )
     return out
 
 
@@ -403,7 +412,7 @@ def lint(project_dir: Path) -> list[str]:
             continue
         findings.extend(check_status(page, by_slug))
         findings.extend(check_method(page, by_slug, project_dir))
-        findings.extend(check_decision(page, by_slug))
+        findings.extend(check_decision(page, known))
     return [f.text for f in findings]
 
 

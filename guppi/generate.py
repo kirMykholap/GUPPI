@@ -5,10 +5,10 @@ in order: a `create` becomes a page with the ratified fields and the derived one
 `ref` lands as a backlink on the parent, an `update` edits fields and sections, an
 `estimate` fills status and Result whatever the page held, a `lesson` writes the lesson
 alone (a fact has no Estimate, case 53.1), a `defer` marks its target `deferred_by`
-(case 52.3), one Decision page per Case records the routing with `kind` and
-`target_slug` aligned by position (case 52.1) and is written before the entries of its
-lines, so the History lines of those entries can name it as `[[decision-case-N]]` (case
-52.4). What an entry lacks is not written; lint names it. Every applied entry is marked
+(case 52.3), one Decision page per Case records the routing as one list per kind present
+— `create`, `update`, `delete`, `defer`, the slugs in ledger order (case 59.4) — and is
+written before the entries of its lines, so the History lines of those entries can name
+it as `[[decision-case-N]]` (case 52.4). What an entry lacks is not written; lint names it. Every applied entry is marked
 in the yaml, a stale `failed` mark is dropped on apply (case 53.3), so a rerun writes
 nothing; an entry that fails, whatever the cause, is marked `failed` and the rest apply.
 `log.md` is appended after each entry; History and log lines carry the run's date,
@@ -50,10 +50,11 @@ KEY_ORDER = {
         "created", "tags",
     ],
     "decisions": [
-        "type", "case", "status", "kind", "target_slug", "source", "supersedes", "superseded_by",
-        "origin", "sprint", "created", "tags",
+        "type", "case", "status", "create", "update", "delete", "defer", "source", "supersedes",
+        "superseded_by", "origin", "sprint", "created", "tags",
     ],
 }  # fmt: skip
+KINDS = ("create", "update", "delete", "defer")  # a decision page's lists, in this order
 SECTION_ORDER = {
     "rules": [
         "Purpose",
@@ -464,12 +465,10 @@ class Vault:
         self.save(page)
 
     def clear_deferred_by(self, earlier: Page, by: str, origin: str) -> None:
-        """A `supersedes` of a decision that deferred pages: those pages drop it from
-        `deferred_by`, an empty list is dropped (case 52.3)."""
-        kinds, slugs = as_list(earlier.props.get("kind")), as_list(earlier.props.get("target_slug"))
-        for kind, slug in zip(kinds, slugs, strict=False):
-            if kind != "defer":
-                continue
+        """A `supersedes` of a decision that deferred pages: every target in the earlier
+        page's `defer` list drops it from `deferred_by`, an empty list is dropped (cases
+        52.3, 59.4)."""
+        for slug in as_list(earlier.props.get("defer")):
             page = self.find(slug)
             if page is None or earlier.slug not in as_list(page.props.get("deferred_by")):
                 continue
@@ -502,13 +501,11 @@ class Vault:
                 for tag in as_list(page.props.get("tags")) if page else []:
                     if tag not in tags:
                         tags.append(tag)
-        props: dict = {
-            "type": "decision",
-            "case": str(record["case"]),
-            "status": "current",
-            "kind": [str(t.get("kind")) for t in targets],
-            "target_slug": [str(t.get("slug")) for t in targets],
-        }
+        props: dict = {"type": "decision", "case": str(record["case"]), "status": "current"}
+        for kind in KINDS:  # one list per kind present, the slugs in ledger order (case 59.4)
+            slugs = [str(t.get("slug")) for t in targets if str(t.get("kind")) == kind]
+            if slugs:
+                props[kind] = slugs
         sources = [str(t["source"]) for t in targets if t.get("source")]
         if sources:
             props["source"] = sources

@@ -2,8 +2,7 @@
 type: decision
 case: "27"
 status: current
-kind: [update, update, update]
-target_slug: [rule-index, index, rule-ask]
+update: [rule-index, index, rule-ask]
 supersedes: [decision-case-22]
 origin: raw/2026-09-09/ledger.md#case-27
 sprint: migration
@@ -20,3 +19,4 @@ tags: [harness, workflow, session]
 
 - 2026-09-09 created · raw/2026-09-09/ledger.md#case-27
 - 2026-09-11 migrated: targets to kind and target_slug, Now to Given, Then to When · [[decision-case-52.1]]
+- 2026-09-12 fields kind and target_slug folded into create, update, delete, defer · [[decision-case-59.4]]

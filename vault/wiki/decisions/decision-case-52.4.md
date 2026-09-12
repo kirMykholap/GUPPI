@@ -2,8 +2,7 @@
 type: decision
 case: "52.4"
 status: current
-kind: [update, update, update]
-target_slug: [rule-page-generation, rule-lint, index]
+update: [rule-page-generation, rule-lint, index]
 origin: raw/2026-09-10/ledger.md#case-52.4
 sprint: migration
 created: 2026-09-10
@@ -18,6 +17,16 @@ Decision-страница сегодня — журнал по Case: `targets` �
 
 Форма полей Decision и тела; откуда у Retro-Case берётся текст; поле `deferred_by` на цели и его путь через индекс в ask; History и порядок записи.
 
+## Given
+
+`decisions/schema.yaml`: required `targets`, body `## Context`, `## Now`, `## Problem`, `## Then`, `## History`.
+**＋** `generate.py`: entries applied (line 629) before decision pages (line 662). History `<action> · <origin>`.
+**＋** `materialize.py`: `case_text` from `## Case N` in `spec.md`; Retro Cases never reach the Spec; Cases 50, 51 `incomplete`.
+**＋** `rules/schema.yaml`, `entities/schema.yaml`: no `deferred_by`; `built` computed by the cascade.
+**＋** `rule-index`: `slug: purpose`. `ask-guppi` never opens `decisions/` unless asked why.
+**＋** `materialize` marks `superseded_by` on `{supersedes:case N}`.
+**－** `origin` stays a ledger path until Slice 3c.
+
 ## When
 
 `guppi generate` applies the yaml of one date.
@@ -25,3 +34,5 @@ Decision-страница сегодня — журнал по Case: `targets` �
 ## History
 
 - 2026-09-11 created · raw/2026-09-10/ledger.md#case-52.4
+- 2026-09-12 Given inherited from the parent Case · [[decision-case-60]]
+- 2026-09-12 fields kind and target_slug folded into create, update, delete, defer · [[decision-case-59.4]]

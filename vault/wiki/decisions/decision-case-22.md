@@ -2,8 +2,7 @@
 type: decision
 case: "22"
 status: superseded
-kind: [create, create]
-target_slug: [rule-index, estimate-index-lists]
+create: [rule-index, estimate-index-lists]
 superseded_by: [decision-case-27]
 origin: raw/2026-09-09/ledger.md#case-22
 sprint: migration
@@ -45,3 +44,4 @@ estimates, lessons, insights: строка `slug: text`, по slug, файл е�
 - 2026-09-09 created · raw/2026-09-09/ledger.md#case-22
 - 2026-09-09 superseded by decision-case-27 · raw/2026-09-09/ledger.md#case-27
 - 2026-09-11 migrated: targets to kind and target_slug, Now to Given, Then to When · [[decision-case-52.1]]
+- 2026-09-12 fields kind and target_slug folded into create, update, delete, defer · [[decision-case-59.4]]

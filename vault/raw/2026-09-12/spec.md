@@ -1594,3 +1594,68 @@ update:
 - [x] take the reading of estimate-documentation-completes: the librarian run of session H (raw/2026-09-11/event_log.md 12:10–12:21, the report in the ledger line of 12:24:05) against the new criterion; write the estimate line
 - [x] if it passes: vault/wiki/sprint.md — Slice 3 closed 2026-09-12, one line
 ```
+
+## Case 67 — the ledger line grammar shown as it is written
+
+> **context:**
+> Every decision line of session I up to 10:09 was written `decision[58][update][slug]`;
+> `materialize.parse_line` reads `decision[case 58][update][slug]` only. The agent took the
+> placeholder `decision[case_id][kind][slug]` of the table "What a Case produces" in
+> `case-schema.md` literally, and the Render of `rule-case-protocol` shows the line only as
+> `- decision[...]`. The lines were written again in the right form; the 33 wrong ones stay
+> (`lesson-ledger-decision-line-written-without-the-case-word`).
+
+> **problem:**
+> Nothing the agent reads at session start shows a decision line as the ledger holds it.
+> The table of `case-schema.md` and the ledger paragraph of `rule-case-protocol` should show
+> `- decision[case N][kind][slug]{ref:…}{tags:…}` with a real number, as every earlier
+> ledger writes it. An `update` of both; the next Plan Mode.
+
+```then
+defer:
+  - slug: rule-case-protocol
+    type: rule
+    purpose: Prevents a decision from being acted on before it is ratified, or ratified without its content in view
+```
+
+## Case 68 — `rule-pretask`: a Case with work, not a Case with lines
+
+> **context:**
+> Case 59.3 says `guppi pretask --check` reports "a Case that has decision lines and no
+> `tasks` block". At the first live run the three deferred decisions of the session (Cases
+> 63–65) were reported: a defer has lines and no work, so no `tasks` block. The code exempts
+> a Case whose lines are all `defer` (commit 2b7dd42); the ratified wording does not.
+
+> **problem:**
+> The Render of `rule-pretask` and the criterion of `estimate-pretask-reconciles` will be
+> generated from the wording of 59.3 and say "a Case with decision lines". One word: "a Case
+> with a line other than `defer`". An `update` of both; the next Plan Mode.
+
+```then
+defer:
+  - slug: rule-pretask
+    type: rule
+    purpose: Prevents a set of ratified decisions from reaching the Spec with a contradiction between them or with the vault
+```
+
+## Case 69 — `guppi materialize` needs a mode that shows and does not write
+
+> **context:**
+> In Work Mode the agent ran `uv run guppi materialize --date 2026-09-12` to see how the
+> day's ledger lines would parse. The command has one mode: it wrote
+> `raw/2026-09-12/materialize.yaml`, the librarian's artifact, which the agent deleted at
+> once. Nothing was committed.
+
+> **problem:**
+> The only way to see what the ledger and the Spec will become is to write the yaml. A
+> `--check` or `--show` mode — the entries, the unparsed lines and the incomplete marks on
+> stdout, nothing written — would let the agent and pre-task look before the librarian
+> runs. An `update` of `rule-materialize` with its Estimate; the next Plan Mode (the owner,
+> 2026-09-12).
+
+```then
+defer:
+  - slug: rule-materialize
+    type: rule
+    purpose: Prevents the librarian from reading the ledger and the Spec itself, or from routing a decision by guesswork
+```

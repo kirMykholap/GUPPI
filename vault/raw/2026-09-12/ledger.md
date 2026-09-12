@@ -1,0 +1,33 @@
+- 05:24:04 lesson[error][lesson-plan-mode-exited-per-frontier-item]{tags:session,workflow}{source:session I 2026-09-12, the rejected ExitPlanMode of 04:58} trigger: the owner said "начнем с 1, дальше я скажу" about the Frontier; the agent wrote a plan for item 1 alone, ran pre-task on an empty decision list and called ExitPlanMode; the owner rejected it: the phrase named the order of discussion, not the scope of the plan root_cause: CLAUDE.md says Plan Mode does not end while a Frontier item is neither ratified nor deferred, but nothing says what a Frontier item with no decision in it becomes; the agent treated a mechanical item as a plan of its own instead of one line in the Work Mode order of the single Spec; one Spec per Plan Mode, ExitPlanMode once, when the owner closes the discussion
+- 05:24:04 lesson[knowledge][lesson-bash-tool-heredoc-escapes-interpreted]{tags:harness}{source:session H 2026-09-11, three broken writes of a python edit script} trigger: a python - <<'EOF' heredoc in the Bash tool on this Windows machine turned "\n" inside the python source into a real newline and broke the edited file three times; a heredoc holding quotes and \| failed to parse with "unexpected EOF while looking for matching quote" root_cause: the tool's shell layer on Windows interprets backslash escapes before python reads the script, and the quoting of the heredoc marker does not protect them; a multi-line edit script is written to the session scratchpad with the Write tool and run as python path, and console output with characters outside cp1252 needs PYTHONIOENCODING=utf-8 or the script dies at the print
+- 06:33:50 decision[58][update][rule-documentation]{ref:rule-documentation}
+- 06:33:50 decision[58][update][estimate-documentation-completes]{ref:estimate-documentation-completes}
+- 08:08:53 decision[59.3][update][rule-case-protocol]{ref:rule-case-protocol}
+- 08:08:53 decision[59.3][update][case-schema]{ref:case-schema}
+- 08:08:53 decision[59.3][update][index]{ref:index}
+- 08:08:53 decision[59.3][update][rule-retro]{ref:rule-retro}
+- 08:08:53 decision[59.3][update][rule-spec-capture]{ref:rule-spec-capture}
+- 08:08:53 decision[59.3][update][rule-pretask]{ref:rule-pretask}
+- 08:08:53 decision[59.3][update][estimate-pretask-reconciles]{ref:estimate-pretask-reconciles}
+- 08:21:38 lesson[error][lesson-render-governed-file-updated-as-rule-class-file]{tags:harness,render,workflow}{source:commit df4cdcf, CLAUDE.md by hand; guppi render --check 2026-09-12} trigger: case 56 changed the Case protocol paragraph of CLAUDE.md by hand as a file update; rule-case-protocol, whose Render that paragraph is, was not updated; at the next /hi guppi render --check names CLAUDE.md, and a render would drop the ratified Retro sentence root_cause: CLAUDE.md is both a Rule-class file, changed by hand through a file item, and a rendered file governed by rule-case-protocol; nothing says which of its sections is which, and pre-task does not check that a file item on a governed path comes with an update of the governing rule
+- 08:28:33 decision[59.5][update][case-schema]{ref:case-schema}
+- 08:28:33 decision[59.5][update][rule-case-protocol]{ref:rule-case-protocol}
+- 08:28:33 decision[59.5][update][rule-brief]{ref:rule-brief}
+- 08:57:05 decision[59.6][create][rule-governed-files-hook]{ref:rule-harness}{tags:hooks,harness,render}
+- 08:57:05 decision[59.6][update][rule-hook-registry]{ref:rule-hook-registry}
+- 08:57:05 decision[59.6][update][rule-case-protocol]{ref:rule-case-protocol}
+- 08:57:05 decision[59.6][update][rule-pretask]{ref:rule-pretask}
+- 08:57:05 decision[59.6][update][estimate-pretask-reconciles]{ref:estimate-pretask-reconciles}
+- 08:59:18 decision[59.7][update][rule-render-harness]{ref:rule-render-harness}
+- 08:59:18 decision[59.7][create][estimate-render-sync-reports]{ref:rule-render-harness}{tags:harness,render,hooks}
+- 08:59:18 decision[59.7][update][rule-hook-registry]{ref:rule-hook-registry}
+- 08:59:18 decision[59.7][update][rule-skill-hi]{ref:rule-skill-hi}
+- 09:14:15 decision[59.8][create][rule-claude-md]{ref:rule-harness}{tags:harness,render}
+- 09:14:15 decision[59.8][update][case-schema]{ref:case-schema}
+- 09:14:15 decision[59.8][update][glossary]{ref:glossary}
+- 09:23:36 decision[61][update][rule-materialize]{ref:rule-materialize}
+- 09:23:36 decision[61][update][estimate-materialize-assembles]{ref:estimate-materialize-assembles}
+- 09:30:03 decision[62][update][rule-case-protocol]{ref:rule-case-protocol}
+- 09:30:03 decision[62][update][case-schema]{ref:case-schema}
+- 10:09:45 decision[59.5][update][rule-retro]{ref:rule-retro}
+- 10:09:45 decision[59.5][update][rule-spec-capture]{ref:rule-spec-capture}

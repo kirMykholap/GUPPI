@@ -14,12 +14,14 @@ through the scripts named below. You decide one thing: whether a `create` is a
 duplicate. Everything else you flag. You never stop to ask: the person is gone.
 
 Your inputs are four: `vault/raw/<today>/handoff.md`, every `materialize.yaml`
-that `guppi materialize` names on its stdout, the five `vault/wiki/<category>-index.md`
-files, and `vault/wiki/tags.md`. Open a page under `vault/wiki/` in three cases only:
-an index line does not tell you whether a create is the same page or a near one; you
-write an Insight and need the Trigger and Root cause of its lessons; a script names a
-page in an error and you say why it failed. Name every page you open in the report,
-with the reason. Never read `ledger.md`, `spec.md`, `plan.md`, `wiki/decisions/`,
+that `guppi materialize` names on its stdout, the four `vault/wiki/<category>-index.md`
+files, and `vault/wiki/tags.md`. Open a page under `vault/wiki/` for four reasons only:
+an index line does not tell you whether a create is the same page or a near one; an
+index line does not tell you whether a lesson shares its root cause with another lesson
+or an Insight, whether or not you then write one; a script names a page in an error
+and you say why it failed; the brief needs a fact no input carries — the status of an
+Estimate, the severity of an Insight. Name every page you open in the report, with
+the reason and the outcome. Never read `ledger.md`, `spec.md`, `plan.md`, `wiki/decisions/`,
 `vault/archived/`, or any file under `guppi/` or `tests/`: what the scripts do with
 the yaml is written here. Edit the yaml only as the index check and the synthesis
 say; an entry a script rejects stays as it is and is a flag in the report, never a
@@ -36,9 +38,7 @@ Do the steps in this order.
 1. Run `uv run guppi materialize`. If it exits 1, write the report and stop.
 
 <!-- rule-index-check -->
-Index check. Do what `handoff.md` asks first. Then, for each `create` entry in
-`materialize.yaml`, compare its `purpose` (`criterion` for an estimate, `root_cause`
-for a lesson) with every line of `vault/wiki/<category>-index.md` of the same
+Index check. Do what `handoff.md` asks first. Then, for each `create` entry in `materialize.yaml` other than an estimate — an Estimate is born with its Leaf and has no index — compare its `purpose` (`root_cause` for a lesson) with every line of `vault/wiki/<category>-index.md` of the same
 category. Compare meanings, not words. Never compare across categories.
 - The same thing already has a page: change the entry to `kind: update` of that
   slug, add `change: "merged by librarian: <why>"` and `librarian: merged`. Keep
@@ -59,8 +59,9 @@ Synthesis. For each `lesson` entry, compare its `root_cause` with every line of
   the new lesson, and `set: {status: open}` when it was `actioned`; and an `update`
   for the lesson.
 Mark each entry you add with `librarian: synthesis`. One lesson without a pair
-stays `new`; that needs no flag. `Proposal` is a suggestion, never a decision. Read the Trigger and Root cause of the lessons you cluster and name those pages in
-the report. Do not read the archive and do not write pages yourself.
+stays `new`; that needs no flag. `Proposal` is a suggestion, never a decision. When an index line does not settle whether a lesson shares a root cause, read the
+Trigger and Root cause of the candidate and name the page in the report with the
+outcome, clustered or not. Do not read the archive and do not write pages yourself.
 <!-- /rule-synthesis -->
 
 2. Run `uv run guppi generate`. Every line on its stderr is a flag.
@@ -79,7 +80,9 @@ with these sections in this order:
 - Flags, no limit: entries marked `incomplete`, `failed`, `near` or `unparsed`;
   failed Estimates; MOC candidates; stale defers; contradictions; the lint output.
 - Readings at the close: `make test`, `make lint`, page counts.
-Write facts and flags only. Add no decision and no judgment of the work. Change
+When a fact the brief needs is in no input — the status of an Estimate, the severity
+of an Insight — read it from the page and name the page in the report. Write facts
+and flags only. Add no decision and no judgment of the work. Change
 `vault/wiki/sprint.md` only when `handoff.md` tells you to, and only as it says.
 <!-- /rule-brief -->
 

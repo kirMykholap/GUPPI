@@ -24,11 +24,13 @@ def read_text(stream) -> str:
     """Everything on the stream, taken as bytes and decoded as UTF-8 where the stream has a
     byte layer underneath. A hook's stdin on Windows is a text wrapper in the locale's code
     page with `surrogateescape` (measured 2026-09-09: cp1252), which turns a UTF-8 payload
-    into mojibake and lone surrogates that no UTF-8 file will take."""
+    into mojibake and lone surrogates that no UTF-8 file will take. A leading BOM is dropped:
+    Windows PowerShell 5.1 puts one in front of a piped payload (measured 2026-09-12), and
+    `json.loads` refuses it."""
     buffer = getattr(stream, "buffer", None)
     if buffer is not None:
-        return buffer.read().decode("utf-8", errors="replace")
-    return stream.read()
+        return buffer.read().decode("utf-8-sig", errors="replace")
+    return stream.read().lstrip("\ufeff")
 
 
 def read_payload(stream) -> dict:

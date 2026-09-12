@@ -265,3 +265,62 @@ def test_cli_dispatches_to_render(tmp_path, monkeypatch, capsys):
     monkeypatch.setenv("CLAUDE_PROJECT_DIR", str(tmp_path))
     assert cli.main(["render", "--check"]) == 1
     assert "out/SKILL.md" in capsys.readouterr().out
+
+
+def test_sync_prints_the_diff_of_a_differing_file_and_writes_it(tmp_path):
+    frame_vault(tmp_path)
+    target = tmp_path / "out" / "SKILL.md"
+    target.parent.mkdir()
+    target.write_text("stale\n", encoding="utf-8", newline="\n")
+    code, out, err = run(["--sync"], tmp_path)
+    assert (code, err) == (0, "")
+    assert out.startswith("--- out/SKILL.md (file)\n+++ out/SKILL.md (rendered)\n")
+    assert "-stale\n" in out and "+Recorded: yes\n" in out
+    assert target.read_text(encoding="utf-8") == EXPECTED_FULL
+
+
+def test_sync_prints_nothing_and_writes_nothing_for_an_identical_file(tmp_path):
+    frame_vault(tmp_path)
+    run([], tmp_path)
+    target = tmp_path / "out" / "SKILL.md"
+    before = target.stat().st_mtime_ns
+    assert run(["--sync"], tmp_path) == (0, "", "")
+    assert target.stat().st_mtime_ns == before
+
+
+def test_sync_writes_a_missing_file_after_a_diff_against_nothing(tmp_path):
+    frame_vault(tmp_path)
+    code, out, err = run(["--sync"], tmp_path)
+    assert (code, err) == (0, "")
+    assert out.startswith("--- out/SKILL.md (file)\n+++ out/SKILL.md (rendered)\n")
+    assert not any(line.startswith("-") and not line.startswith("---") for line in out.splitlines())
+    assert (tmp_path / "out" / "SKILL.md").read_text(encoding="utf-8") == EXPECTED_FULL
+
+
+def test_sync_on_a_render_error_reports_on_stderr_writes_nothing_and_exits_0(tmp_path):
+    rule(
+        tmp_path,
+        "rule-a",
+        "full",
+        "out/X.md",
+        "<!-- rule-a -->\na\n<!-- /rule-a -->",
+        parent="rule-x",
+    )
+    rule(
+        tmp_path,
+        "rule-b",
+        "full",
+        "out/X.md",
+        "<!-- rule-b -->\nb\n<!-- /rule-b -->",
+        parent="rule-x",
+    )
+    code, out, err = run(["--sync"], tmp_path)
+    assert (code, out) == (0, "")
+    assert "out/X.md" in err
+    assert not (tmp_path / "out" / "X.md").exists()
+
+
+def test_sync_and_check_together_are_a_bad_invocation(tmp_path):
+    frame_vault(tmp_path)
+    code, _out, _err = run(["--sync", "--check"], tmp_path)
+    assert code == 2

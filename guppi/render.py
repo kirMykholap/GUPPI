@@ -1,4 +1,4 @@
-"""`guppi render [--check]` — the harness written from its Rule pages.
+"""`guppi render [--check | --sync]` — the harness written from its Rule pages.
 
 Every page under `vault/wiki/rules/` with `enforcement: render` carries the text of a
 harness file in its `## Render` section, between `<!-- slug -->` and `<!-- /slug -->`.
@@ -9,10 +9,15 @@ page — a script the frame calls by name — contributes nothing and needs no m
 marker line for it is an error. A `partial` page whose file no
 `full` page owns is spliced into the existing file between its markers, which stay.
 `--check` renders in memory, names every file that differs, exits 1 and writes nothing.
+`--sync`, the `SessionStart` hook, prints a unified diff for each file that differs — the
+file as it is, then the rendered text — and writes it; an identical file gets neither; a
+render error goes to stderr and nothing is written. `--sync` always exits 0, since a
+`SessionStart` hook cannot block and its stdout is added to the agent's context.
 Rule page: `vault/wiki/rules/rule-render-harness.md`.
 """
 
 import argparse
+import difflib
 import re
 import sys
 from dataclasses import dataclass
@@ -166,9 +171,35 @@ def write_all(project_dir: Path, outputs: dict[str, str]) -> None:
         path.write_text(text, encoding="utf-8", newline="\n")
 
 
+def sync(project_dir: Path, outputs: dict[str, str], stdout) -> None:
+    """For each file that differs: its unified diff to the rendered text, then the write.
+    A missing file diffs against nothing; an identical one is neither printed nor written."""
+    stale = differing(project_dir, outputs)
+    for governs in stale:
+        path = project_dir / governs
+        current = path.read_text(encoding="utf-8") if path.exists() else ""
+        diff = difflib.unified_diff(
+            current.splitlines(keepends=True),
+            outputs[governs].splitlines(keepends=True),
+            fromfile=f"{governs} (file)",
+            tofile=f"{governs} (rendered)",
+        )
+        for line in diff:
+            stdout.write(line if line.endswith("\n") else line + "\n")
+    write_all(project_dir, {governs: outputs[governs] for governs in stale})
+
+
 def parser() -> argparse.ArgumentParser:
     p = argparse.ArgumentParser(prog="guppi render", description=__doc__.split("\n\n")[1])
-    p.add_argument("--check", action="store_true", help="report files that differ; write nothing")
+    mode = p.add_mutually_exclusive_group()
+    mode.add_argument(
+        "--check", action="store_true", help="report files that differ; write nothing"
+    )
+    mode.add_argument(
+        "--sync",
+        action="store_true",
+        help="print a diff for each file that differs, then write it; always exit 0",
+    )
     return p
 
 
@@ -178,13 +209,22 @@ def run(argv, *, stdout=None, stderr=None, project_dir: Path | None = None) -> i
     project_dir = project_root() if project_dir is None else Path(project_dir)
     try:
         args = parser().parse_args(argv)
-        pages = read_category(wiki_root(project_dir), "rules")
-        outputs = plan(project_dir, render_units(pages))
     except SystemExit as exc:
         return 2 if exc.code not in (None, 0) else 0
+    try:
+        pages = read_category(wiki_root(project_dir), "rules")
+        outputs = plan(project_dir, render_units(pages))
+        if args.sync:
+            sync(project_dir, outputs, stdout)
+            return 0
     except RenderError as exc:
         print(f"render: {exc}", file=stderr)
-        return 1
+        return 0 if args.sync else 1
+    except Exception as exc:  # as a SessionStart hook, --sync must not raise
+        if not args.sync:
+            raise
+        print(f"render: sync skipped: {exc}", file=stderr)
+        return 0
     if args.check:
         stale = differing(project_dir, outputs)
         for governs in stale:

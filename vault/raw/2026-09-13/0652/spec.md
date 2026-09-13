@@ -586,7 +586,7 @@ update:
 ```tasks
 - [x] `guppi/ledger.py`: `ledger_path` → the session folder of `session_dir` (mkdir on append); `existing_bodies` over `raw/**/ledger.md`
 - [x] `tests/test_ledger.py`: the lines land in `raw/<hi date>/<hi HHMM>/ledger.md`, across midnight too; a line already in a session ledger is not written twice
-- [ ] read `estimate-ledger-write-lifts` (103.1): unit, then the first LEDGER block after the code change lands in `raw/2026-09-13/0652/ledger.md`
+- [x] read `estimate-ledger-write-lifts` (103.1): unit, then the first LEDGER block after the code change lands in `raw/2026-09-13/0652/ledger.md`
 ```
 
 ### Case 103.2 — `materialize` walks sessions

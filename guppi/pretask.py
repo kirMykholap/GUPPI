@@ -117,12 +117,20 @@ def resolve_session(option: str | None, project_dir: Path, now) -> str:
 
 
 def window_lines(project_dir: Path, hi: tuple[str, str], today: str) -> list[tuple]:
-    """`(date, line number, line)` of every timed record line of the session's window: the
-    ledgers from the `hi` date to today, on the `hi` date from the `hi` time on. A line
-    before the `hi`, or without a time, is not read."""
+    """`(unit, line number, line)` of every timed record line of the session's window: the
+    session's own ledger `raw/<hi date>/<hi HHMM>/ledger.md` whole (case 103.4), then the
+    date-level ledgers from the `hi` date to today, on the `hi` date from the `hi` time on,
+    while any exist. A line before the `hi` in a date-level ledger, or without a time, is
+    not read. `unit` is `<date>/<HHMM>` or `<date>`, so `raw/<unit>/ledger.md` names the
+    file."""
     hi_date, hi_time = hi
     raw = project_dir / "vault" / "raw"
     lines: list[tuple] = []
+    session = raw / hi_date / (hi_time[:2] + hi_time[3:5]) / "ledger.md"
+    if session.exists():
+        for number, line in enumerate(session.read_text(encoding="utf-8").splitlines(), 1):
+            if TIMED_RECORD.match(line):
+                lines.append((f"{hi_date}/{session.parent.name}", number, line))
     folders = sorted(d for d in raw.iterdir() if d.is_dir()) if raw.is_dir() else []
     for folder in folders:
         day = folder.name
@@ -152,7 +160,7 @@ def session_decisions(lines: list[tuple]) -> list[dict]:
 
 def check_grammar(lines: list[tuple]) -> list[str]:
     """75.2: every record line of the window goes through `materialize.parse_line`; one
-    that returns None is a finding with its date and line number."""
+    that returns None is a finding with its file and line number."""
     findings: list[str] = []
     for day, number, line in lines:
         if parse_line(line) is None:

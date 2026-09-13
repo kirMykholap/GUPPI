@@ -37,7 +37,7 @@ page (`draft` while in `docs/migration/`), `here` this row. Rule-class; imported
 |---|---|---|
 | Page fields | `type` the kind; `purpose` one line the index is built from; `children` MOC only, ordered on a Rule; `estimates` cross-cutting on a MOC; `code_ref` (Entity Leaf), `implementation_ref` (`hook`, `check` rules) | schema.md |
 | `deferred_by` | On an Entity or Rule, the Decision pages whose `defer` targets it; set by `generate`, cleared by a `supersedes`, shown in the index line, followed by `ask-guppi` | §5, §11, rules/schema.md |
-| `origin` | The Decision that created or deleted the page; kept when archived; `#case-N` is a grep target lint checks | §4 |
+| `origin` | The Decision that created or deleted the page, as `raw/<date>/<HHMM>/ledger.md#case-N` — the date form on older pages; kept when archived, never rewritten; `#case-N` is a grep target lint checks in `raw/` or in the archive (case 103.6) | §4 |
 | Category fields | Estimate: `criterion`, `method`, `result`. Lesson: `trigger`, `root_cause`, `source` (in a ledger line, the external origin). Insight: `severity` (children not archived), `addressed_by` | schema.md |
 | `ref`, `slug`, `supersedes` | A pointer to an existing page (absent: query the vault before a `create`; present: `update`); the page id = filename; the earlier case a ledger line corrects, written `{supersedes:case N}`, which also removes that Case's block from the Estimate's Criterion (case 72.1) | §3, §4, §5 |
 
@@ -48,7 +48,7 @@ page (`draft` while in `docs/migration/`), `here` this row. Rule-class; imported
 | Entity / Rule | `draft` / `built` / `archived`; `built` is computed once every Estimate passes, never by hand | §7 |
 | Decision, Lesson, Insight | `current`/`superseded`/`archived`; `new`/`clustered`/`archived`; `open`/`actioned`/`archived`, a new Lesson reopens `actioned` | schema.md |
 | Estimate | `pending` / `passed` / `failed`; `failed` is debt, archival the default outcome | §7 |
-| `archived` | Set by `delete` or by `guppi generate`; `guppi cleanup` moves the file to `vault/archived/<sprint>/<date>/<category>/` and brings it back on an `update` of `status`; never physical deletion | §1, §3, rule-cleanup |
+| `archived` | Set by `delete`, or by the cascade of `guppi generate` — a superseded Decision, the lessons of an actioned Insight, an open Insight with no live child (case 104); `guppi cleanup` moves the file to `vault/archive/<sprint>/<date>/<HHMM>/<category>/` and brings it back on an `update` of `status`; `guppi archive` moves an applied session of `raw/` whole (case 100.1); never physical deletion | §1, §3, rule-cleanup, rule-raw-archive |
 
 ## Decisions
 
@@ -64,15 +64,15 @@ page (`draft` while in `docs/migration/`), `here` this row. Rule-class; imported
 | term | meaning | where |
 |---|---|---|
 | Session | Session Start, Plan Mode, Work Mode, End of Session | §9 |
-| `/hi`, Frontier | Opens a working session and records `hi`; the open items it assembles (brief, sprint, issues, an unfinished plan) are the Plan Mode agenda | rule-skill-hi |
+| `/hi`, Frontier | Opens a working session and records `hi`; the open items it assembles (brief, sprint, issues, an unfinished plan, the ledger tail) are the Plan Mode agenda | rule-skill-hi, rule-ledger-tail |
 | Sprint, `brief.md` | The backlog giving the session its scope (`migration` during the move); the handover between sessions, deferred items capped at 7, ranked by Insight severity then postponements | sprint.md, rule-brief |
 | Case | The unit of dialogue, not a page: `context`, `problem`, `recommend`, `given`, `when`, `then`, `ratification`; `when` + `then` is the Estimate criterion; the page content is a `then` block in the Spec; splits into dotted sub-cases the parent's sign-off never covers | case-schema.md |
 | Plan Mode, Pre-task | Frontier items discussed as Cases until each is ratified or deferred; the vault query before a `create` without `ref`, `draft` pages included | rule-plan-mode, rule-pretask |
-| Ledger, Event log | The record of decisions (routing only), estimates and lessons (with text), written by the `Stop` hook; the gitignored log of tool calls and commits, written by hooks | §4, rule-ledger-write, rule-event-log |
+| Ledger, Event log | The record of decisions (routing only), estimates and lessons (with text), written by the `Stop` hook into `raw/<date>/<HHMM>/ledger.md`, the session's folder (case 103.1); the gitignored log of tool calls and commits of the day, written by hooks | §4, rule-ledger-write, rule-event-log |
 | Spec | The ratified Cases as one document, approved as Claude Code's plan, copied to `raw/<date>/<hi HHMM>/spec.md`, the session's folder (case 73.1) | rule-spec-capture |
 | Executable plan, Work Mode | The Spec as tasks with code, paths, checkboxes; subagents transcribe, a fork comes back as a Case | rule-work-mode (draft) |
 | Retro, Handoff | `/retro`: an analysis of this session only — the frontier first, then every item ends as a lesson, a reading, a short defer (a Case of `context`, `problem`, `purpose` under `## Retro` in the Spec) or a handoff note; edits only finish ratified work; red tests are fixed or reverted into a patch in `raw/`; ends with a commit. `/handoff`, gated by `guppi gate` on a dirty tree: `handoff.md` from memory, then the librarian | rule-end-of-work, rule-retro |
-| Index, `ask-guppi` | `wiki/<category>-index.md` for entities, rules, lessons, insights, one line per live page, never compared across categories; the search agent over them, one entry point; Estimates through the target, Decisions through `deferred_by` | §11, rule-index, rule-ask |
+| Index, `ask-guppi` | `wiki/<category>-index.md` for entities, rules, lessons, insights, one line per live page, never compared across categories; the search agent over them, one entry point; Estimates through the target, Decisions through `deferred_by`; the archive answered by slug alone — `free`, `live` or `archived at <path>` — never by meaning (case 105.1) | §11, rule-index, rule-ask |
 | Documentation | The librarian's phase, the agent `librarian-guppi`: materialize, index check, synthesis, generate, cleanup, brief, close | rule-documentation |
 
 ## Agents and machinery
@@ -82,7 +82,7 @@ page (`draft` while in `docs/migration/`), `here` this row. Rule-class; imported
 | Main agent, Subagent | Runs Cases and writes ledger lines, until the Retro commit; executes plan tasks, never decides, a fork returns | §9, case-schema.md |
 | Librarian | Clean context; the only writer to `wiki/`; reads handoff, yaml, indexes; one judgment, `create` to `update` on a duplicate; flags the rest | §10 |
 | Scripts | Page generation (fills `origin`, `slug`, `status`); cleanup (moves `archived` pages); lint (refs, schema, statuses, orphans); renderer (Rule body into the file it governs) | rule-lint, rule-render-harness |
-| Working files | `log.md` and page `History`, the feed of page changes by hook; `raw/`, the logs of the day (`ledger.md`, `event_log.md`, `materialize.yaml`) and one folder per session, named by its `hi` time (case 73.1); `tags.md`, ratified tags with Russian aliases | §1 |
+| Working files | `log.md` and page `History`, the feed of page changes by hook; `raw/`: `event_log.md` of the day and one folder per session, named by its `hi` time (case 73.1), with its ledger, yaml, Spec, Frontier and handoff, moved whole into the archive once applied (cases 100.1, 103.6); `tags.md`, ratified tags with Russian aliases | §1 |
 | Rule-class files | `index.md`, `glossary.md`, `case-schema.md`, every schema; change only by ratified `update` | §1 |
 | Harness, Hook | Hooks, agents, skills rendered from `rules/` pages; a hook is an event-triggered script behind a Rule page, the ledger writer on `Stop`, which reads the session's transcript back, keeps its `hi` window across midnight, and can block | §9, rule-ledger-write |
 | `CLAUDE.md`, `index.md` | The system prompt, the Render of `rule-claude-md`, whole, with the Case protocol from `rule-case-protocol` (case 59.8): `@path` expands this file and `case-schema.md` inline, and points at the sections of the map — layout, routing, ledger, splitting, librarian — read one at a time | rule-claude-md |

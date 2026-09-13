@@ -1,8 +1,9 @@
 """`guppi ledger` — the `Stop` hook that lifts ratified lines out of the finished reply.
 
 Every line of the reply that starts with `- decision[`, `- estimate[` or `- lesson[` inside
-a fenced block opened with the `LEDGER` tag goes into `vault/raw/<date>/ledger.md`, its
-text verbatim, prefixed with the time of writing. A line anywhere else — bare, or in a
+a fenced block opened with the `LEDGER` tag goes into `vault/raw/<hi date>/<hi HHMM>/ledger.md`
+— the session's folder, the same across midnight (case 103.1) — its text verbatim,
+prefixed with the time of writing. A line anywhere else — bare, or in a
 block with another tag or none — is a preview (a Case shows its lines in `then` before they
 are ratified); only a LEDGER block is a record. Rule page:
 `vault/wiki/rules/rule-ledger-write.md`.
@@ -20,8 +21,8 @@ The lines come from every assistant message of the session in `transcript_path`,
 plus the reply that just finished (`last_assistant_message`), so a reply that ended in a
 tool call — which has no `Stop` of its own — reaches the ledger at the next `Stop` of the
 session (case 55.2). A subagent's message (`isSidechain`) is skipped: only the main agent
-writes ledger lines. A line whose text is already in any `raw/<date>/ledger.md`, whatever
-its time, is not appended twice.
+writes ledger lines. A line whose text is already in any `ledger.md` under `raw/`, at the
+date level or in a session folder, whatever its time, is not appended twice.
 """
 
 import json
@@ -30,7 +31,7 @@ import sys
 from datetime import datetime
 from pathlib import Path
 
-from guppi.event import log_path, project_root, read_payload, session_stamp
+from guppi.event import project_root, read_payload, session_stamp
 
 PREFIXES = ("- decision[", "- estimate[", "- lesson[")
 FENCE = re.compile(r"^ {0,3}(```|~~~)\s*(\S*)")
@@ -145,8 +146,11 @@ def hi_recorded(event_log: str, stamp: str) -> bool:
     return seen_hi
 
 
-def ledger_path(project_dir: Path, now) -> Path:
-    return log_path(project_dir, now).with_name("ledger.md")
+def ledger_path(project_dir: Path, now, stamp: str) -> Path | None:
+    """`raw/<hi date>/<hi HHMM>/ledger.md`, the session's ledger (case 103.1); None without
+    a `hi`, which `hi_recorded` has already refused by then."""
+    folder = session_dir(project_dir, now, stamp)
+    return None if folder is None else folder / "ledger.md"
 
 
 def session_event_logs(project_dir: Path, now, stamp: str) -> list[tuple[str, str]]:
@@ -211,11 +215,11 @@ def session_event_log(project_dir: Path, now, stamp: str) -> str:
 
 
 def existing_bodies(project_dir: Path) -> set[str]:
-    """The bodies of every line in every `raw/<date>/ledger.md`."""
+    """The bodies of every line in every `ledger.md` under `raw/`, at any depth."""
     raw = project_dir / "vault" / "raw"
     bodies: set[str] = set()
     if raw.is_dir():
-        for path in raw.glob("*/ledger.md"):
+        for path in raw.rglob("ledger.md"):
             bodies |= {body(line) for line in path.read_text(encoding="utf-8").splitlines()}
     return bodies
 
@@ -248,7 +252,10 @@ def run(argv, *, stdin=None, stderr=None, project_dir: Path | None = None, now=N
                 file=stderr,
             )
             return 2
-        append(ledger_path(project_dir, now), fresh)
+        path = ledger_path(project_dir, now, stamp)
+        if path is None:
+            raise RuntimeError("no session folder for the hi")
+        append(path, fresh)
     except Exception as exc:  # noqa: BLE001 — a hook that raises would fail the session
         print(f"ledger: ledger.md not written: {exc}", file=stderr)
     return 0

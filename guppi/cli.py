@@ -6,6 +6,7 @@ Each command is a module with a `run(argv, ...) -> int`. Hook commands (`event`,
 import sys
 
 from guppi import (
+    archive,
     cleanup,
     event,
     gate,
@@ -18,9 +19,11 @@ from guppi import (
     pretask,
     render,
     spec,
+    tail,
 )
 
 COMMANDS = {
+    "archive": archive.run,
     "cleanup": cleanup.run,
     "event": event.run,
     "gate": gate.run,
@@ -33,6 +36,7 @@ COMMANDS = {
     "pretask": pretask.run,
     "render": render.run,
     "spec": spec.run,
+    "tail": tail.run,
 }
 
 

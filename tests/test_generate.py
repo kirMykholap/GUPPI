@@ -355,6 +355,177 @@ def test_delete_archives_and_defer_writes_a_placeholder_or_a_history_line(tmp_pa
     assert f"- {DATE} deferred, placeholder · [[decision-case-3]]" in later
 
 
+# --- a create over a placeholder (case 101.1) -------------------------------------------
+
+PLACEHOLDER = (
+    "---\ntype: rule\npurpose: Prevents something, later\nstatus: draft\n"
+    "deferred_by: [decision-case-3]\norigin: raw/2026-09-01/ledger.md#case-3\n"
+    "sprint: migration\ncreated: 2026-09-01\n---\n\n## Purpose\n\nPrevents something, later\n\n"
+    "## History\n\n- 2026-09-01 deferred, placeholder · [[decision-case-3]]\n"
+)
+
+
+def test_a_create_over_a_placeholder_fills_it_and_keeps_its_birth(tmp_path):
+    later = create(
+        "rule-later",
+        "rules",
+        {
+            "type": "rule",
+            "kind": "Leaf",
+            "purpose": "Prevents later",
+            "enforcement": "check",
+            "implementation_ref": ["guppi/x.py"],
+        },
+        ref="rule-root",
+        tags=["harness"],
+        line=2,
+    )
+    later["case"] = "9"
+    later["decision"] = "decision-case-9"
+    seed(tmp_path, entries=[ROOT, later], pages=[("rules", "rule-later", PLACEHOLDER)])
+    (tmp_path / "guppi").mkdir()
+    (tmp_path / "guppi" / "x.py").write_text("")
+    code, _, err = run(tmp_path)
+    assert code == 0 and err == ""
+    filled = page(tmp_path, "rules", "rule-later")
+    fields = props(filled)
+    assert fields["kind"] == "Leaf" and fields["purpose"] == "Prevents later"
+    assert fields["origin"] == ORIGIN  # the create's, not the defer's
+    assert str(fields["created"]) == "2026-09-01" and fields["deferred_by"] == ["decision-case-3"]
+    assert fields["parent"] == "rule-root" and fields["status"] == "draft"
+    assert "- 2026-09-01 deferred, placeholder · [[decision-case-3]]" in filled
+    assert f"- {DATE} created over placeholder · [[decision-case-9]]" in filled
+    assert "[[rule-later]]" in page(tmp_path, "rules", "rule-root")
+
+
+def test_a_create_over_a_real_page_is_still_a_collision(tmp_path):
+    seed(tmp_path, entries=[ROOT], pages=[("rules", "rule-root", page_text("rules", "rule-root"))])
+    code, _, err = run(tmp_path)
+    assert code == 1 and "a collision is an error" in err
+
+
+def page_text(category, slug, status="draft", **extra):
+    lines = [f"type: {category[:-1]}", "kind: MOC", f"status: {status}", f"purpose: {slug}"]
+    lines += [f"{k}: {v}" for k, v in extra.items()]
+    body = "\n".join(lines)
+    return f"---\n{body}\n---\n\n## Purpose\n\n{slug}\n\n## History\n\n- 2026-09-01 created · x\n"
+
+
+# --- the cascades over the archive (cases 104.1–104.3) -----------------------------------
+
+
+def insight_text(slug, status, children):
+    kids = "[" + ", ".join(children) + "]"
+    return (
+        f"---\ntype: insight\npattern: p\nstatus: {status}\nseverity: {len(children)}\n"
+        f"children: {kids}\norigin: 2026-09-01 A\nsprint: migration\ncreated: 2026-09-01\n"
+        f"tags: [harness]\n---\n\n## Pattern\n\np\n\n## History\n\n- 2026-09-01 created · x\n"
+    )
+
+
+def lesson_text(slug, status, insight=None):
+    extra = f"insight: {insight}\n" if insight else ""
+    return (
+        f"---\ntype: lesson\nkind: error\nroot_cause: r\nstatus: {status}\n{extra}"
+        f"origin: raw/2026-09-01/ledger.md#L1\nsprint: migration\ncreated: 2026-09-01\ntags: [harness]\n"
+        f"---\n\n## Trigger\n\nt\n\n## Root cause\n\nr\n\n## History\n\n- 2026-09-01 created · x\n"
+    )
+
+
+def test_the_lessons_of_an_actioned_insight_are_archived_and_the_open_ones_recounted(tmp_path):
+    pages = [
+        (
+            "insights",
+            "insight-done",
+            insight_text("insight-done", "actioned", ["lesson-a", "lesson-b"]),
+        ),
+        ("lessons", "lesson-a", lesson_text("lesson-a", "clustered", "insight-done")),
+        ("lessons", "lesson-b", lesson_text("lesson-b", "archived", "insight-done")),
+        (
+            "insights",
+            "insight-thin",
+            insight_text("insight-thin", "open", ["lesson-c", "lesson-d"]),
+        ),
+        ("lessons", "lesson-c", lesson_text("lesson-c", "clustered", "insight-thin")),
+        ("lessons", "lesson-d", lesson_text("lesson-d", "archived", "insight-thin")),
+        ("insights", "insight-gone", insight_text("insight-gone", "open", ["lesson-e"])),
+        ("lessons", "lesson-e", lesson_text("lesson-e", "archived", "insight-gone")),
+        ("insights", "insight-kept", insight_text("insight-kept", "actioned", ["lesson-f"])),
+        ("lessons", "lesson-f", lesson_text("lesson-f", "archived", "insight-kept")),
+    ]
+    seed(tmp_path, entries=[ROOT], pages=pages)
+    code, _, err = run(tmp_path)
+    assert code == 0 and err == ""
+    a = page(tmp_path, "lessons", "lesson-a")
+    assert props(a)["status"] == "archived" and f"- {DATE} archived · insight actioned" in a
+    done = props(page(tmp_path, "insights", "insight-done"))
+    assert done["status"] == "actioned" and done["severity"] == 0
+    assert done["children"] == ["lesson-a", "lesson-b"]
+    thin = props(page(tmp_path, "insights", "insight-thin"))
+    assert thin["status"] == "open" and thin["severity"] == 1
+    assert props(page(tmp_path, "lessons", "lesson-c"))["status"] == "clustered"
+    gone = page(tmp_path, "insights", "insight-gone")
+    assert props(gone)["status"] == "archived" and f"- {DATE} archived · no live child" in gone
+    assert props(gone)["children"] == ["lesson-e"]
+    assert props(page(tmp_path, "insights", "insight-kept"))["status"] == "actioned"
+
+
+def test_a_lesson_added_to_a_reopened_insight_stays_live(tmp_path):
+    pages = [
+        (
+            "insights",
+            "insight-back",
+            insight_text("insight-back", "open", ["lesson-old", "lesson-new"]),
+        ),
+        ("lessons", "lesson-old", lesson_text("lesson-old", "archived", "insight-back")),
+        ("lessons", "lesson-new", lesson_text("lesson-new", "clustered", "insight-back")),
+    ]
+    seed(tmp_path, entries=[ROOT], pages=pages)
+    code, _, err = run(tmp_path)
+    assert code == 0 and err == ""
+    assert props(page(tmp_path, "lessons", "lesson-new"))["status"] == "clustered"
+    back = props(page(tmp_path, "insights", "insight-back"))
+    assert back["status"] == "open" and back["severity"] == 1
+
+
+# --- an update reaches an archived page (case 105.3) --------------------------------------
+
+
+def test_an_update_edits_an_archived_page_in_the_archive_and_cleanup_restores_it(tmp_path):
+    from guppi import cleanup
+
+    seed(
+        tmp_path,
+        entries=[
+            ROOT,
+            update_of("rule-old", 2, set={"status": "draft", "purpose": "back"}, change="restored"),
+        ],
+    )
+    archived = tmp_path / "vault" / "archive" / "migration" / "2026-09-05" / "1200" / "rules"
+    archived.mkdir(parents=True)
+    (archived / "rule-old.md").write_text(
+        page_text("rules", "rule-old", status="archived"), encoding="utf-8"
+    )
+    code, _, err = run(tmp_path)
+    assert code == 0, err
+    text = (archived / "rule-old.md").read_text(encoding="utf-8")
+    assert props(text)["status"] == "draft" and props(text)["purpose"] == "back"
+    assert f"- {DATE} updated: restored · [[decision-case-2]]" in text
+    out, err = io.StringIO(), io.StringIO()
+    assert cleanup.run([], stdout=out, stderr=err, project_dir=tmp_path, now=NOW) == 0
+    assert (tmp_path / "vault" / "wiki" / "rules" / "rule-old.md").exists()
+    assert not (archived / "rule-old.md").exists()
+
+
+def test_a_page_under_an_archived_raw_folder_is_not_found(tmp_path):
+    seed(tmp_path, entries=[ROOT, update_of("rule-old", 2, set={"purpose": "x"}, change="c")])
+    raw = tmp_path / "vault" / "archive" / "migration" / "2026-09-05" / "1200" / "raw" / "rules"
+    raw.mkdir(parents=True)
+    (raw / "rule-old.md").write_text(page_text("rules", "rule-old"), encoding="utf-8")
+    code, _, err = run(tmp_path)
+    assert code == 1 and "rule-old" in err
+
+
 def test_a_supersedes_clears_deferred_by_on_the_targets(tmp_path):
     entries = [
         ROOT,
@@ -392,7 +563,9 @@ def test_a_supersedes_clears_deferred_by_on_the_targets(tmp_path):
     assert f"- {DATE} deferred · [[decision-case-2]]" in root
     assert f"- {DATE} defer by decision-case-2 superseded · [[decision-case-3]]" in root
     two = props(page(tmp_path, "decisions", "decision-case-2"))
-    assert two["status"] == "superseded" and two["defer"] == ["rule-root"]  # what was read
+    assert two["status"] == "archived" and two["defer"] == [
+        "rule-root"
+    ]  # superseded, then archived by the cascade (104.1)
 
 
 def test_a_supersedes_of_a_page_with_only_a_defer_list_clears_deferred_by(tmp_path):
@@ -433,7 +606,7 @@ def test_a_supersedes_of_a_page_with_only_a_defer_list_clears_deferred_by(tmp_pa
     root = page(tmp_path, "rules", "rule-root")
     assert "deferred_by" not in props(root)
     assert f"- {DATE} defer by decision-case-2 superseded · [[decision-case-3]]" in root
-    assert props(page(tmp_path, "decisions", "decision-case-2"))["status"] == "superseded"
+    assert props(page(tmp_path, "decisions", "decision-case-2"))["status"] == "archived"
 
 
 def test_an_estimate_entry_always_fills_status_and_result(tmp_path):
@@ -551,7 +724,7 @@ def test_one_decision_page_per_case_and_supersedes_marks_the_earlier(tmp_path):
     code, _, err = run(tmp_path)
     assert code == 0 and err == ""
     one = page(tmp_path, "decisions", "decision-case-1")
-    assert props(one)["case"] == "1" and props(one)["status"] == "superseded"
+    assert props(one)["case"] == "1" and props(one)["status"] == "archived"  # 104.1
     assert props(one)["superseded_by"] == ["decision-case-2"]
     assert props(one)["create"] == ["rule-root"]
     assert not {"kind", "target_slug", "targets", "update", "delete", "defer"} & set(props(one))
@@ -708,6 +881,42 @@ def test_without_date_every_folder_with_a_yaml_is_applied_in_date_order(tmp_path
     code, out, _ = run_walk(tmp_path)
     assert code == 0
     assert all(line.endswith("0 page(s) written or changed") for line in out.splitlines())
+
+
+def seed_session(tmp_path, entries, folder="1610", date=DATE):
+    """A session folder with its own yaml (case 103.3)."""
+    raw = tmp_path / "vault" / "raw" / date / folder
+    raw.mkdir(parents=True)
+    (raw / "ledger.md").write_text("- decision[case 9][create][rule-late]\n", encoding="utf-8")
+    data = {
+        "date": date,
+        "session": folder,
+        "sprint": "migration",
+        "entries": list(entries),
+        "decisions": [],
+        "unparsed": [],
+    }
+    (raw / "materialize.yaml").write_text(
+        yaml.safe_dump(data, allow_unicode=True, sort_keys=False), encoding="utf-8"
+    )
+    return raw
+
+
+def test_the_walk_applies_a_session_yaml_after_the_date_level_one(tmp_path):
+    seed(tmp_path, entries=[ROOT])
+    late = create("rule-late", "rules", {"type": "rule", "kind": "MOC", "purpose": "Prevents late"})
+    session = seed_session(tmp_path, [late])
+    code, out, err = run_walk(tmp_path)
+    assert code == 0, err
+    units = [line.split("generate: ")[1].split(":")[0] for line in out.splitlines()]
+    assert units == [DATE, f"{DATE}/1610"]
+    assert (tmp_path / "vault" / "wiki" / "rules" / "rule-late.md").exists()
+    marks = yaml.safe_load((session / "materialize.yaml").read_text(encoding="utf-8"))
+    assert marks["entries"][0]["applied"]
+    assert str(props(page(tmp_path, "rules", "rule-late"))["created"]) == DATE
+    # --date takes both units of the date
+    code, out, _ = run_walk(tmp_path, ["--date", DATE])
+    assert code == 0 and len(out.splitlines()) == 2
 
 
 def test_with_date_only_that_folder_is_applied(tmp_path):

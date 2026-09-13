@@ -1,14 +1,16 @@
 """`guppi cleanup` — archived pages leave the live vault, restored ones come back.
 
 Every live page under `vault/wiki/<category>/` with `status: archived` moves to
-`vault/archived/<sprint>/<date>/<category>/<slug>.md`, with a History line and a `log.md`
-line; its slug leaves the `children` lists of live pages and the `estimates` lists of
+`vault/archive/<sprint>/<date>/<HHMM>/<category>/<slug>.md` — `date` the day of the run,
+`HHMM` the session of the run: the latest `<HHMM>/` folder under `raw/<date>/`, and without
+one the latest of the nearest date back; `<date>/<category>/` when no session folder
+exists (case 102.2) — with a History line and a `log.md` line; its slug leaves the `children` lists of live pages and the `estimates` lists of
 entities and rules (an Insight's `children` keep it, since `severity` counts the live
 ones; a lesson has no Estimates, case 53.1); `[[slug]]` links in page bodies stay. A page
-under `vault/archived/` whose status is no longer `archived` moves back. A live page whose
+under `vault/archive/`, at any depth, whose status is no longer `archived` moves back. A live page whose
 `parent` or `target` is in the archive is reported, not moved. Then the four indexes are
 rewritten; an archived Estimate leaves no line, since estimates have none (case 57).
-`raw/` stays where it is. Rule page: `vault/wiki/rules/rule-cleanup.md`.
+`raw/` is `guppi archive`'s, not this script's. Rule page: `vault/wiki/rules/rule-cleanup.md`.
 """
 
 import argparse
@@ -19,14 +21,14 @@ from pathlib import Path
 from guppi.event import project_root
 from guppi.generate import HISTORY, as_list, write_page
 from guppi.index import plan as index_plan
-from guppi.materialize import CATEGORIES, sprint_id
+from guppi.materialize import CATEGORIES, session_of_run, sprint_id
 from guppi.pages import Page, read_page, wiki_root
 
 LISTS = ("children", "estimates")
 
 
 def archive_root(project_dir: Path) -> Path:
-    return project_dir / "vault" / "archived"
+    return project_dir / "vault" / "archive"
 
 
 def live_pages(wiki: Path) -> list[Page]:
@@ -91,16 +93,17 @@ class Cleanup:
         for page in live_pages(self.wiki):
             if str(page.props.get("status")) != "archived":
                 continue
-            target = (
-                archive_root(self.project_dir)
-                / self.sprint
-                / self.date
-                / page.category
-                / page.path.name
-            )
+            target = self.session_root() / page.category / page.path.name
             if self.move(page, target, "archived"):
                 gone.add(page.slug)
         return gone
+
+    def session_root(self) -> Path:
+        """`vault/archive/<sprint>/<date>/<HHMM>/` of the run's session, or
+        `vault/archive/<sprint>/<date>/` when no session folder exists (case 102.2)."""
+        root = archive_root(self.project_dir) / self.sprint / self.date
+        session = session_of_run(self.project_dir, self.date)
+        return root if session is None else root / session[1]
 
     def restore(self) -> None:
         for page in archived_pages(archive_root(self.project_dir)):

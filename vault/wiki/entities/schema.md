@@ -19,7 +19,7 @@ Entity is the thing that gets built. It is recursive: a MOC holds children, a Le
 | `estimates` | yes | list of slugs | On a Leaf: checks of its own behaviour. On a MOC: cross-cutting checks that belong to all children and to none individually — non-functional requirements live here. |
 | `deferred_by` | no | list of decision slugs | The Decision pages whose `defer` targets this page. Written by `guppi generate` on a defer, cleared when a later Case `supersedes` that one; the index line carries it (case 52.3). |
 | `code_ref` | no | list of paths | Code, commits or PRs. Allowed on both kinds: a Leaf points at files, a MOC may point at the directory or module it corresponds to. |
-| `origin` | yes | `raw/YYYY-MM-DD/ledger.md#case-N` | The ratified decision that created it. |
+| `origin` | yes | `raw/YYYY-MM-DD/HHMM/ledger.md#case-N` (the date form, `raw/YYYY-MM-DD/ledger.md#case-N`, on pages born before 2026-09-13; case 103.6) | The ratified decision that created it. |
 | `sprint` | yes | sprint id | |
 | `created` | yes | date | |
 | `tags` | yes | list | Chosen at pre-task, ratified in the Case. |

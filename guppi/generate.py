@@ -21,9 +21,10 @@ in the yaml, a stale `failed` mark is dropped on apply (case 53.3), so a rerun w
 nothing; an entry that fails, whatever the cause, is marked `failed` and the rest apply.
 `log.md` is appended after each entry; History and log lines carry the run's date,
 `created` the yaml's. A `delete` of a slug with no category is a thing outside the
-vault: noted, nothing to archive. A slug collision is an error, never a rename. Without `--date` the script walks every `vault/raw/<date>/` that
-holds a yaml, in date order; a failure on one date is reported and the walk goes on, with
-exit 1 at the end. Rule page: `vault/wiki/rules/rule-page-generation.md`.
+vault: noted, nothing to archive. A slug collision is an error, never a rename. Without `--date` the script walks every yaml under `vault/raw/`
+— the date-level one of a date first, then `raw/<date>/<HHMM>/materialize.yaml` per
+session in folder order, dates ascending (case 103.3); `--date` walks the units of that
+date; a failure on one unit is reported and the walk goes on, with exit 1 at the end. Rule page: `vault/wiki/rules/rule-page-generation.md`.
 """
 
 import argparse
@@ -35,7 +36,7 @@ from datetime import datetime
 from pathlib import Path
 
 from guppi.event import project_root
-from guppi.materialize import CATEGORIES, dates_with, dump_yaml, load_yaml, sprint_id, yaml_path
+from guppi.materialize import CATEGORIES, dump_yaml, load_yaml, sprint_id, units_with, yaml_path
 from guppi.pages import Page, read_page, wiki_root
 
 KEY_ORDER = {
@@ -203,6 +204,19 @@ def drop_case_block(criterion: str, case: str) -> str | None:
 # --- the vault ----------------------------------------------------------------------
 
 
+def archived_paths(project_dir: Path, slug: str) -> list[Path]:
+    """`<slug>.md` under `vault/archive/`, at any depth, in a category folder and not
+    under a `raw/` folder (cases 102.2, 105.3)."""
+    archive = project_dir / "vault" / "archive"
+    if not archive.is_dir():
+        return []
+    return sorted(
+        p
+        for p in archive.rglob(f"{slug}.md")
+        if p.parent.name in CATEGORIES and "raw" not in p.relative_to(archive).parts[:-1]
+    )
+
+
 class Vault:
     def __init__(self, project_dir: Path, date: str, sprint: str, now, stdout, stderr):
         self.project_dir = project_dir
@@ -227,6 +241,9 @@ class Vault:
         return self.wiki / category / f"{slug}.md"
 
     def find(self, slug: str) -> Page | None:
+        """The live page of a slug, or the archived one under `vault/archive/` (`raw/`
+        folders excluded), so an `update` reaches a page in the archive and a `status`
+        other than `archived` brings it back through `cleanup` (case 105.3)."""
         for category in CATEGORIES:
             path = self.path(category, slug)
             if path.exists():
@@ -234,6 +251,11 @@ class Vault:
                 if page.error:
                     raise GenerateError(f"{slug}: {page.error}")
                 return page
+        for path in archived_paths(self.project_dir, slug):
+            page = read_page(path, path.parent.name)
+            if page.error:
+                raise GenerateError(f"{slug}: {page.error}")
+            return page
         return None
 
     def save(self, page: Page) -> None:
@@ -286,9 +308,20 @@ class Vault:
                     }
                 )
             return
+        placeholder = None
         if path.exists():
-            self.error(slug, "a page with this slug exists; a collision is an error, not a rename")
-            return
+            found = read_page(path, category)
+            if (
+                not found.error
+                and found.props.get("kind") is None
+                and str(found.props.get("status")) == "draft"
+            ):
+                placeholder = found  # born of a defer without a ref (case 101.1)
+            else:
+                self.error(
+                    slug, "a page with this slug exists; a collision is an error, not a rename"
+                )
+                return
         fields = dict(entry.get("fields") or {})
         sections_in = dict(entry.get("sections") or {})
         props: dict = {"type": fields.pop("type", SINGULAR[category])}
@@ -339,11 +372,23 @@ class Vault:
             props["status"] = entry["status"]
             sections["## Result"] = str(entry.get("result") or "")
         page = Page(category=category, slug=slug, path=path, props=props, sections=sections)
-        self.history(page, "created", self.pointer(entry))
+        if placeholder is not None:
+            props["created"] = placeholder.props.get("created", self.date)
+            if placeholder.props.get("deferred_by") is not None:
+                props["deferred_by"] = as_list(placeholder.props.get("deferred_by"))
+            page.sections[HISTORY] = placeholder.sections.get(HISTORY, "")
+            self.history(page, "created over placeholder", self.pointer(entry))
+        else:
+            self.history(page, "created", self.pointer(entry))
         if category == "estimates" and entry.get("status"):
             folded = as_list(entry.get("folded"))
-            date = str(entry["origin"]).split("/")[1] if "/" in str(entry["origin"]) else self.date
-            reading = f"raw/{date}/ledger.md#L{folded[0]}" if folded else self.pointer(entry)
+            origin = str(entry["origin"])
+            unit = (
+                origin.split("raw/", 1)[1].split("/ledger.md", 1)[0]
+                if "raw/" in origin
+                else self.date
+            )
+            reading = f"raw/{unit}/ledger.md#L{folded[0]}" if folded else self.pointer(entry)
             self.history(page, f"status: pending → {entry['status']}", reading)
         self.save(page)
         if ref:
@@ -630,6 +675,16 @@ class Vault:
                     page.props["status"] = after
                     self.history(page, f"status: {before} → {after}", "cascade")
                     self.save(page)
+        # 104.1: a superseded decision no longer describes the present
+        for path in sorted((self.wiki / "decisions").glob("*.md")):
+            if path.stem == "schema":
+                continue
+            page = read_page(path, "decisions")
+            if page.error or str(page.props.get("status")) != "superseded":
+                continue
+            page.props["status"] = "archived"
+            self.history(page, "archived · superseded", None)
+            self.save(page)
         lessons = {}
         for path in (self.wiki / "lessons").glob("*.md"):
             if path.stem != "schema":
@@ -640,13 +695,30 @@ class Vault:
             page = read_page(path, "insights")
             if page.error:
                 continue
+            status = str(page.props.get("status"))
+            if status == "actioned":  # 104.2: its lessons did their work
+                for slug in as_list(page.props.get("children")):
+                    child = lessons.get(slug)
+                    if child is None or child.error:
+                        continue
+                    if str(child.props.get("status")) == "clustered":
+                        child.props["status"] = "archived"
+                        self.history(child, "archived · insight actioned", None)
+                        self.save(child)
             live = [
                 s
                 for s in as_list(page.props.get("children"))
                 if str(lessons.get(s, Page("lessons", s, path)).props.get("status")) != "archived"
             ]
+            changed = False
             if page.props.get("severity") != len(live):
                 page.props["severity"] = len(live)
+                changed = True
+            if status == "open" and not live:  # 104.3: its evidence is withdrawn
+                page.props["status"] = "archived"
+                self.history(page, "archived · no live child", None)
+                changed = True
+            if changed:
                 self.save(page)
 
     def register_tags(self, new_tags: list[dict]) -> None:
@@ -751,13 +823,17 @@ def apply(vault: Vault, data: dict) -> None:
 
 def parser() -> argparse.ArgumentParser:
     p = argparse.ArgumentParser(prog="guppi generate", description=__doc__.split("\n\n")[1])
-    p.add_argument("--date", default=None, help="one raw/<date> folder; without it, every date")
+    p.add_argument(
+        "--date", default=None, help="the units of one raw/<date>; without it, every unit"
+    )
     return p
 
 
-def generate_date(project_dir: Path, date: str, now, stdout, stderr) -> int:
-    """One date: apply the unapplied entries of its yaml; exit 1 when an entry failed."""
-    path = yaml_path(project_dir, date)
+def generate_date(project_dir: Path, unit: str, now, stdout, stderr) -> int:
+    """One unit, `<date>` or `<date>/<HHMM>` (case 103.3): apply the unapplied entries of
+    its yaml; exit 1 when an entry failed."""
+    date = unit.split("/")[0]
+    path = yaml_path(project_dir, unit)
     data = load_yaml(path)
     if data is None:
         print(
@@ -779,7 +855,7 @@ def generate_date(project_dir: Path, date: str, now, stdout, stderr) -> int:
     for line in vault.errors:
         print(line, file=stderr)
     touched = len(vault.written)
-    print(f"generate: {date}: {touched} page(s) written or changed", file=stdout)
+    print(f"generate: {unit}: {touched} page(s) written or changed", file=stdout)
     return 1 if vault.errors else 0
 
 
@@ -792,7 +868,9 @@ def run(argv, *, stdout=None, stderr=None, project_dir: Path | None = None, now=
         args = parser().parse_args(argv)
     except SystemExit as exc:
         return 2 if exc.code not in (None, 0) else 0
-    dates = [args.date] if args.date else dates_with(project_dir, "materialize.yaml")
+    dates = units_with(project_dir, "materialize.yaml", args.date)
+    if args.date and not dates:
+        dates = [args.date]  # so the missing yaml is named
     if not dates:
         print(
             "generate: no vault/raw/<date>/materialize.yaml to apply; run materialize first",

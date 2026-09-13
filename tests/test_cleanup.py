@@ -1,4 +1,4 @@
-"""`guppi cleanup`: archived pages move to vault/archived/<sprint>/<date>/<category>/."""
+"""`guppi cleanup`: archived pages move to vault/archive/<sprint>/<date>/<HHMM>/<category>/."""
 
 import io
 from datetime import UTC, datetime
@@ -34,7 +34,7 @@ def run(project_dir):
 
 
 def archived(project_dir, category, slug):
-    return project_dir / "vault" / "archived" / "migration" / DATE / category / f"{slug}.md"
+    return project_dir / "vault" / "archive" / "migration" / DATE / category / f"{slug}.md"
 
 
 def test_archived_pages_move_with_a_history_line_and_leave_the_lists(tmp_path):
@@ -106,6 +106,48 @@ def test_a_page_whose_status_left_archived_comes_back(tmp_path):
     back = tmp_path / "vault" / "wiki" / "rules" / "rule-a.md"
     assert back.exists() and not moved.exists()
     assert f"- {DATE} restored · cleanup" in back.read_text(encoding="utf-8")
+
+
+# --- the session of the run (case 102.2) --------------------------------------------------
+
+
+def with_session(tmp_path, date, hhmm):
+    (tmp_path / "vault" / "raw" / date / hhmm).mkdir(parents=True, exist_ok=True)
+
+
+def test_a_page_lands_under_the_latest_session_of_the_run_day(tmp_path):
+    seed(tmp_path, [("rules", "rule-a", page("rules", "rule-a", status="archived"))])
+    with_session(tmp_path, DATE, "0454")
+    with_session(tmp_path, DATE, "1156")
+    with_session(tmp_path, "2026-09-11", "0900")  # a later date is never the run's
+    code, out, _ = run(tmp_path)
+    assert code == 0 and "1 page(s) moved" in out
+    moved = tmp_path / "vault" / "archive" / "migration" / DATE / "1156" / "rules" / "rule-a.md"
+    assert moved.exists()
+    assert not archived(tmp_path, "rules", "rule-a").exists()
+
+
+def test_without_a_session_today_the_nearest_date_back_names_the_session(tmp_path):
+    seed(tmp_path, [("rules", "rule-a", page("rules", "rule-a", status="archived"))])
+    with_session(tmp_path, "2026-09-08", "0700")
+    with_session(tmp_path, "2026-09-09", "2350")  # the session that crossed midnight
+    run(tmp_path)
+    moved = tmp_path / "vault" / "archive" / "migration" / DATE / "2350" / "rules" / "rule-a.md"
+    assert moved.exists()
+
+
+def test_a_page_restores_from_the_session_depth(tmp_path):
+    seed(tmp_path, [("rules", "rule-a", page("rules", "rule-a", status="archived"))])
+    with_session(tmp_path, DATE, "1156")
+    run(tmp_path)
+    moved = tmp_path / "vault" / "archive" / "migration" / DATE / "1156" / "rules" / "rule-a.md"
+    moved.write_text(
+        moved.read_text(encoding="utf-8").replace("status: archived", "status: draft"),
+        encoding="utf-8",
+    )
+    code, out, _ = run(tmp_path)
+    assert code == 0 and "1 page(s) moved" in out
+    assert (tmp_path / "vault" / "wiki" / "rules" / "rule-a.md").exists() and not moved.exists()
 
 
 def test_a_rerun_moves_nothing_and_a_dangling_parent_is_flagged(tmp_path):

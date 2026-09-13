@@ -54,8 +54,9 @@ KINDS = ("create", "update", "delete", "defer")  # a decision page's lists (case
 PATH_FIELDS = ("implementation_ref", "governs")
 WIKILINK = re.compile(r"\[\[([^\]|#]+)(?:[|#][^\]]*)?\]\]")
 CODE_SPAN = re.compile(r"`[^`\n]*`")  # a `[[slug]]` quoted in prose is not a link
-ORIGIN_CASE = re.compile(r"^raw/(\d{4}-\d\d-\d\d)/ledger\.md#case-([\w.]+)$")
-ORIGIN_LINE = re.compile(r"^raw/(\d{4}-\d\d-\d\d)/ledger\.md#L(\d+)$")
+# `raw/<date>/ledger.md#…` (the shape before case 103) or `raw/<date>/<HHMM>/ledger.md#…`
+ORIGIN_CASE = re.compile(r"^raw/(\d{4}-\d\d-\d\d(?:/\d{4})?)/ledger\.md#case-([\w.]+)$")
+ORIGIN_LINE = re.compile(r"^raw/(\d{4}-\d\d-\d\d(?:/\d{4})?)/ledger\.md#L(\d+)$")
 TABLE_FIELD = re.compile(r"^\|\s*`([^`]+)`")
 TABLE_SECTION = re.compile(r"^\|\s*`(## [^`]+)`")
 TEST_PATH = re.compile(r"`?(tests/[\w./-]+\.py)`?")
@@ -204,10 +205,27 @@ def check_prose(wiki: Path, category: str, schema: dict) -> list[Finding]:
 
 
 def archived_slugs(wiki: Path) -> set[str]:
-    folder = wiki.parent / "archived"
+    """Every page under `vault/archive/`, at any depth, except what sits under a `raw/`
+    folder — the archived raw of a session is no page (cases 102.2, 103.5)."""
+    folder = wiki.parent / "archive"
     if not folder.is_dir():
         return set()
-    return {p.stem for p in folder.rglob("*.md") if p.stem != "schema"}
+    return {
+        p.stem
+        for p in folder.rglob("*.md")
+        if p.stem != "schema" and "raw" not in p.relative_to(folder).parts[:-1]
+    }
+
+
+def ledger_files(project_dir: Path, unit: str) -> list[Path]:
+    """Where the ledger named by an `origin` may sit (case 103.5): `vault/raw/<unit>/` or,
+    once archived, `vault/archive/<sprint>/<unit>/raw/`; `unit` is `<date>` or
+    `<date>/<HHMM>`."""
+    found = [project_dir / "vault" / "raw" / unit / "ledger.md"]
+    archive = project_dir / "vault" / "archive"
+    if archive.is_dir():
+        found.extend(sorted(archive.glob(f"*/{unit}/raw/ledger.md")))
+    return [p for p in found if p.is_file()]
 
 
 def links_of(page: Page) -> list[tuple[str, str]]:
@@ -291,27 +309,24 @@ def check_origin(page: Page, project_dir: Path) -> list[Finding]:
     if origin is None:
         return []  # a missing required field is the schema check's finding
     origin = str(origin)
-    match = ORIGIN_CASE.match(origin)
+    match = ORIGIN_CASE.match(origin) or ORIGIN_LINE.match(origin)
     if match:
-        date, case = match.groups()
-        ledger = project_dir / "vault" / "raw" / date / "ledger.md"
-        if not ledger.exists():
+        unit, what = match.groups()
+        ledgers = ledger_files(project_dir, unit)
+        if not ledgers:
             return [Finding(page, "origin", f"{origin}: no such ledger")]
-        if f"[case {case}]" not in ledger.read_text(encoding="utf-8"):
-            return [Finding(page, "origin", f"{origin}: no line carrying [case {case}]")]
-        return []
-    match = ORIGIN_LINE.match(origin)
-    if match:
-        date, number = match.groups()
-        ledger = project_dir / "vault" / "raw" / date / "ledger.md"
-        if not ledger.exists():
-            return [Finding(page, "origin", f"{origin}: no such ledger")]
-        if len(ledger.read_text(encoding="utf-8").splitlines()) < int(number):
-            return [Finding(page, "origin", f"{origin}: the ledger has no line {number}")]
+        if len(ledgers) > 1:
+            return [Finding(page, "origin", f"{origin}: two ledgers for raw/{unit}")]
+        text = ledgers[0].read_text(encoding="utf-8")
+        if ORIGIN_CASE.match(origin):
+            if f"[case {what}]" not in text:
+                return [Finding(page, "origin", f"{origin}: no line carrying [case {what}]")]
+        elif len(text.splitlines()) < int(what):
+            return [Finding(page, "origin", f"{origin}: the ledger has no line {what}")]
         return []
     if page.category == "insights":
         return []
-    return [Finding(page, "origin", f"{origin}: not raw/<date>/ledger.md#case-N")]
+    return [Finding(page, "origin", f"{origin}: not raw/<date>[/<HHMM>]/ledger.md#case-N")]
 
 
 def check_paths(page: Page, project_dir: Path) -> list[Finding]:

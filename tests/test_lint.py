@@ -254,7 +254,7 @@ def test_a_slug_no_page_carries_is_a_ref_finding(tmp_path):
 
 def test_an_archived_page_still_resolves_a_ref(tmp_path):
     seed(tmp_path, rule=rule_page(parent="rule-gone"))
-    archived = tmp_path / "vault" / "archived" / "migration" / "2026-09-10" / "rules"
+    archived = tmp_path / "vault" / "archive" / "migration" / "2026-09-10" / "rules"
     write(archived / "rule-gone.md", "---\ntype: rule\n---\n")
     _, lines, _ = run(tmp_path)
     assert lines == ["rules/rule-root: orphan: no other live page names it in its frontmatter"]
@@ -284,6 +284,52 @@ def test_an_origin_without_its_ledger_line_is_an_origin_finding(tmp_path):
     assert lines == [
         "rules/rule-x: origin: raw/2026-09-09/ledger.md#case-7: no line carrying [case 7]"
     ]
+
+
+# --- both forms of origin, in raw/ or in the archive (case 103.5) ------------------------
+
+
+def test_a_session_origin_resolves_in_the_session_folder(tmp_path):
+    seed(tmp_path, rule=rule_page(origin="raw/2026-09-10/1610/ledger.md#case-1"))
+    write(tmp_path / "vault" / "raw" / "2026-09-10" / "1610" / "ledger.md", LEDGER)
+    assert run(tmp_path) == (0, [], "")
+
+
+def test_an_origin_resolves_in_the_archive_once_the_unit_moved(tmp_path):
+    seed(tmp_path, rule=rule_page(origin="raw/2026-09-10/1610/ledger.md#case-1"))
+    archive = tmp_path / "vault" / "archive" / "migration"
+    write(archive / "2026-09-10" / "1610" / "raw" / "ledger.md", LEDGER)
+    assert run(tmp_path) == (0, [], "")
+    # the date form, archived at <date>/raw/
+    (tmp_path / "vault" / "raw" / "2026-09-09" / "ledger.md").unlink()
+    write(archive / "2026-09-09" / "raw" / "ledger.md", LEDGER)
+    seed_rule = tmp_path / "vault" / "wiki" / "rules" / "rule-x.md"
+    write(seed_rule, rule_page())
+    assert run(tmp_path) == (0, [], "")
+
+
+def test_an_origin_in_neither_place_or_in_both_is_a_finding(tmp_path):
+    seed(tmp_path, rule=rule_page(origin="raw/2026-09-10/1610/ledger.md#L1"))
+    _, lines, _ = run(tmp_path)
+    assert lines == ["rules/rule-x: origin: raw/2026-09-10/1610/ledger.md#L1: no such ledger"]
+    write(tmp_path / "vault" / "raw" / "2026-09-10" / "1610" / "ledger.md", LEDGER)
+    write(
+        tmp_path / "vault" / "archive" / "migration" / "2026-09-10" / "1610" / "raw" / "ledger.md",
+        LEDGER,
+    )
+    _, lines, _ = run(tmp_path)
+    assert lines == [
+        "rules/rule-x: origin: raw/2026-09-10/1610/ledger.md#L1: two ledgers for raw/2026-09-10/1610"
+    ]
+
+
+def test_a_page_under_an_archived_raw_folder_is_no_known_slug(tmp_path):
+    seed(tmp_path)
+    write(
+        tmp_path / "vault" / "archive" / "migration" / "2026-09-10" / "1610" / "raw" / "spec.md",
+        "# Spec\n",
+    )
+    assert "spec" not in lint.archived_slugs(tmp_path / "vault" / "wiki")
 
 
 def test_a_path_that_does_not_exist_is_a_path_finding(tmp_path):
@@ -514,7 +560,7 @@ def test_a_list_slug_naming_neither_a_live_nor_an_archived_page_is_a_decision_fi
 
 def test_a_list_slug_naming_an_archived_page_is_not_a_finding(tmp_path):
     seed_decisions(tmp_path, decision_page("update: [rule-gone]"))
-    archived = tmp_path / "vault" / "archived" / "migration" / "2026-09-10" / "rules"
+    archived = tmp_path / "vault" / "archive" / "migration" / "2026-09-10" / "rules"
     write(archived / "rule-gone.md", "---\ntype: rule\n---\n")
     assert run(tmp_path) == (0, [], "")
 
@@ -594,7 +640,7 @@ def test_a_criterion_link_to_a_live_or_archived_estimate_page_is_clean(tmp_path)
         tmp_path,
         criterion_decision("- [[estimate-x-works]] § case 50", "- [[estimate-gone]] § case 49"),
     )
-    archived = tmp_path / "vault" / "archived" / "migration" / "2026-09-10" / "estimates"
+    archived = tmp_path / "vault" / "archive" / "migration" / "2026-09-10" / "estimates"
     write(archived / "estimate-gone.md", "---\ntype: estimate\n---\n")
     assert run(tmp_path) == (0, [], "")
 
@@ -620,7 +666,7 @@ def test_a_criterion_link_resolving_to_no_estimate_page_is_a_ref_finding(tmp_pat
 def test_a_case_block_naming_a_live_or_archived_decision_page_is_clean(tmp_path):
     wiki = seed_decisions(tmp_path)
     write(wiki / "estimates" / "estimate-x-works.md", block_estimate("50", "49"))
-    archived = tmp_path / "vault" / "archived" / "migration" / "2026-09-10" / "decisions"
+    archived = tmp_path / "vault" / "archive" / "migration" / "2026-09-10" / "decisions"
     write(archived / "decision-case-49.md", "---\ntype: decision\n---\n")
     assert run(tmp_path) == (0, [], "")
 

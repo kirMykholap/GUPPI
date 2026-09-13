@@ -16,7 +16,7 @@ A Lesson is a recorded fact, not a ratified decision. It does not go through a C
 | `status` | yes | `new` \| `clustered` \| `archived` | `clustered` once it belongs to an Insight. Archived when its Insight is `actioned`. |
 | `source` | `knowledge` | url or reference | Where the material came from. |
 | `insight` | no | slug | The Insight this belongs to, once clustered. Written by the script. |
-| `origin` | yes | `raw/YYYY-MM-DD/ledger.md#L<n>` | The ledger line. Unlike Entity and Rule, this points at a `lesson[...]` line rather than a `decision[...]` one. |
+| `origin` | yes | `raw/YYYY-MM-DD/HHMM/ledger.md#L<n>` (the date form, `raw/YYYY-MM-DD/ledger.md#L<n>`, on pages born before 2026-09-13; case 103.6) | The ledger line. Unlike Entity and Rule, this points at a `lesson[...]` line rather than a `decision[...]` one. |
 | `sprint` | yes | sprint id | |
 | `created` | yes | date | |
 | `tags` | yes | list | Includes what the material applies to, for `knowledge`. |

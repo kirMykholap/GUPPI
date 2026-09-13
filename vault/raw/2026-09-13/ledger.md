@@ -1,0 +1,49 @@
+- 17:16:38 decision[case 100.1][create][rule-raw-archive]{ref:rule-documentation}{supersedes:case 95}{tags:harness,librarian,ledger}
+- 17:16:38 decision[case 100.2][update][rule-documentation]{ref:rule-documentation}
+- 17:16:38 decision[case 100.3][update][rule-lint]{ref:rule-lint}
+- 17:16:38 decision[case 100.4][update][rule-cleanup]{ref:rule-cleanup}
+- 17:16:38 decision[case 100.5][update][index]{ref:index}
+- 17:16:38 decision[case 100.5][update][glossary]{ref:glossary}
+- 17:16:38 decision[case 100.6][delete][raw-notes]
+- 18:45:18 decision[case 101.1][update][rule-page-generation]{ref:rule-page-generation}
+- 18:45:18 decision[case 101.2][create][rule-ledger-tail]{ref:rule-skill-hi}{tags:session,harness,ledger}
+- 18:45:18 decision[case 101.3][update][rule-skill-hi]{ref:rule-skill-hi}
+- 18:45:18 decision[case 101.4][update][rule-skill-hi]{ref:rule-skill-hi}
+- 18:45:18 decision[case 101.5][update][glossary]{ref:glossary}
+- 21:43:12 decision[case 102.1][delete][old-archive]
+- 21:43:12 decision[case 102.2][update][rule-cleanup]{ref:rule-cleanup}
+- 21:43:12 decision[case 102.4][update][rule-documentation]{ref:rule-documentation}
+- 21:43:12 decision[case 103.1][update][rule-ledger-write]{ref:rule-ledger-write}
+- 21:43:12 decision[case 103.2][update][rule-materialize]{ref:rule-materialize}
+- 21:43:12 decision[case 103.3][update][rule-page-generation]{ref:rule-page-generation}
+- 21:43:12 decision[case 103.4][update][rule-pretask]{ref:rule-pretask}
+- 21:43:12 decision[case 103.5][update][rule-lint]{ref:rule-lint}{supersedes:case 100.3}
+- 21:43:12 decision[case 103.6][update][index]{ref:index}{supersedes:case 100.5}
+- 21:43:12 decision[case 103.6][update][glossary]{ref:glossary}{supersedes:case 100.5}
+- 21:43:12 decision[case 103.6][update][entities-schema]{ref:entities-schema}
+- 21:43:12 decision[case 103.6][update][rules-schema]{ref:rules-schema}
+- 21:43:12 decision[case 103.6][update][estimates-schema]{ref:estimates-schema}
+- 21:43:12 decision[case 103.6][update][lessons-schema]{ref:lessons-schema}
+- 21:43:12 decision[case 103.6][update][decisions-schema]{ref:decisions-schema}
+- 21:49:26 decision[case 104.1][update][rule-page-generation]{ref:rule-page-generation}
+- 21:49:26 decision[case 104.2][update][rule-page-generation]{ref:rule-page-generation}
+- 21:49:26 decision[case 104.3][update][rule-page-generation]{ref:rule-page-generation}{supersedes:case 97}
+- 21:56:43 decision[case 105.1][update][rule-ask]{ref:rule-ask}{supersedes:case 94}
+- 21:56:43 decision[case 105.1][update][glossary]{ref:glossary}
+- 21:56:43 decision[case 105.2][update][rule-materialize]{ref:rule-materialize}
+- 21:56:43 decision[case 105.3][update][rule-page-generation]{ref:rule-page-generation}
+- 21:56:43 decision[case 106][defer][rule-skill-hi]{ref:rule-skill-hi}{supersedes:case 98}
+- 21:56:43 decision[case 107][defer][rule-work-mode]{ref:rule-work-mode}{supersedes:case 93}
+- 21:56:43 decision[case 107][defer][rule-subagent-guppi]{ref:rule-subagent-guppi}{supersedes:case 93}
+- 21:56:43 decision[case 108][defer][rule-synthesis]{ref:rule-synthesis}{supersedes:case 96}
+- 22:14:53 decision[case 109.1][update][rule-retro]{ref:rule-retro}
+- 22:14:53 decision[case 109.2][update][rule-claude-md]{ref:rule-claude-md}
+- 22:14:53 decision[case 109.3][update][insights-schema]{ref:insights-schema}
+- 22:14:53 lesson[error][lesson-transcript-omits-text-emitted-before-tool-calls]{tags:hooks,ledger,harness} trigger: the reply that ratified Case 109 carried its LEDGER block in a text written before four Edit calls and a closing text of the same turn; the Stop hook wrote nothing, and the session transcript holds that turn as thinking, tool_use and the closing text only — the first text is absent, so ledger.session_lines over the transcript returns 38 lines and none of 109; every earlier block of the session stood in the last text of its turn and reached the ledger root_cause: in this harness (VS Code extension, focus view) an assistant text emitted before a tool call in the same turn is not persisted to the transcript and is not last_assistant_message, so the hook has nothing to read; lesson-ledger-hook-drops-a-block-followed-by-tool-calls-in-the-turn, withdrawn by case 70 as the hook dropping nothing, described the same loss — the hook reads faithfully what the transcript never received
+- 22:18:17 estimate[estimate-case-protocol-loaded][passed] live 2026-09-13 session L: the first turn assembled the Frontier without a read call and every Case of the session used the protocol as loaded — LEDGER blocks only in the acknowledging reply, one Case per reply, sub-cases with their own when/then/ratification, then blocks with method and estimate_slug (86), the Spec at raw/2026-09-13/0652/spec.md and the Frontier beside it (73.9), the case N id in every line and supersedes (75.1); the previews in the ratification quotes of ten Cases added nothing — the ledger holds exactly the 41 decision lines of the LEDGER blocks; the clause "states the rule" was met by use, not by a statement at session start
+- 22:18:17 estimate[estimate-render-sync-reports][passed] live 2026-09-13 session L start, after the librarian of K rendered nothing: the SessionStart hook printed the unified diff of the three governed files whose pages had parted — .claude/settings.json, .claude/agents/librarian-guppi.md, .claude/skills/pre-task/SKILL.md — into the first turn and wrote the pages' text back (git status M on the three, git diff --stat 23 insertions 8 deletions); uv run guppi render --check then exited 0 with no output; the three were committed as 44e4e37
+- 22:18:17 estimate[estimate-default-mode][passed] the rendered .claude/settings.json holds permissions.defaultMode "plan" and json.load parses it; live 2026-09-13 session L opened in Plan Mode and nothing outside the plan file was edited without a sign-off — the frontier edits are the /hi rule's and rule-permissions' own allowance
+- 22:18:17 estimate[estimate-hook-registry-rendered][passed] live 2026-09-13 session L: render --sync wrote .claude/settings.json from rule-settings with the hooks key from rule-hook-registry, uv run guppi render --check exits 0 so the file is byte for byte the render, the file holds no marker line (grep of "<!--" finds 0), and every registration the harness ran this session — event session-start, render --sync, pretask, gate, guard, spec, ledger — is one of its lines
+- 22:18:17 estimate[estimate-permissions][passed] the six allow entries stand in the rendered .claude/settings.json, Edit and Write for frontier.md, spec.md and handoff.md under vault/raw/**, deny and ask absent; live 2026-09-13 session L: six Edit calls on raw/2026-09-13/0652/frontier.md in Plan Mode, where only the plan file is otherwise allowed, and two on 0652/spec.md in Work Mode, none asked the person; the file written by render --sync at this session's start took effect within the same session
+- 22:18:17 estimate[estimate-render-harness-reproduces][passed] tests/test_render.py green in the 267 of session K; live 2026-09-13 session L start: git diff --stat after render --sync named only the three governed files whose Rule pages changed since the last render (settings.json from rule-settings and children, librarian-guppi.md from 89.1 and 90.3, pre-task SKILL.md from 90.2), each diff the text the pages gained, settings.json rendered with no marker lines (85.1), and uv run guppi render --check exited 0 (88.1); the JSON gate of 89.4 let the file through and json.load parses it
+- 22:18:17 estimate[estimate-claude-md-rendered][passed] live 2026-09-13 session L: CLAUDE.md was not among the files render --sync wrote, so it still equals the render of rule-claude-md with rule-case-protocol between its markers made at the start of session K; render --check exits 0; the session loaded it with glossary.md and case-schema.md expanded inline, and its Migration paragraph names vault/raw/<date>/<hi HHMM>/spec.md (73.10)

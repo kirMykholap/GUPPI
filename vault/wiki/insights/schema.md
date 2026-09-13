@@ -14,7 +14,7 @@ Created by the librarian, never by a decision. It reaches the human through `bri
 |---|---|---|---|
 | `type` | yes | `insight` | Page category. |
 | `pattern` | yes | one line | The shared root cause, stated once. `insights.index` is built from it. |
-| `status` | yes | `open` \| `actioned` \| `archived` | `actioned` when a ratified decision has addressed it. Not terminal — a new Lesson with the same root cause reopens it. |
+| `status` | yes | `open` \| `actioned` \| `archived` | `actioned` when a ratified decision has addressed it. Not terminal — a new Lesson with the same root cause reopens it. `archived` when the cascade of `generate` finds an `open` Insight with no live child (case 104.3); an `actioned` Insight is never archived by the cascade, it is kept for the recurrence. |
 | `children` | yes | list of slugs | The Lessons clustered here. Unordered. |
 | `severity` | yes | integer | `count(children where status != archived)`. Recomputed by lint, never written by hand. |
 | `addressed_by` | no | decision slug | The ratified decision that fixed the pattern. |
@@ -27,7 +27,7 @@ Created by the librarian, never by a decision. It reaches the human through `bri
 
 An Insight is created on the **second** Lesson sharing a root cause. One occurrence is an incident; two is a pattern.
 
-The archive is not searched. A Lesson is archived only when its Insight was actioned, and that Insight stays live with its `pattern` in `insights-index.md`; a recurrence after the pattern was supposedly fixed is caught there, at the cost of one index line, and reopens the Insight.
+The archive is not searched. A Lesson is archived only when its Insight was actioned — its `clustered` children are archived by the cascade of `generate` (case 104.2) — and that Insight stays live with its `pattern` in `insights-index.md`; a recurrence after the pattern was supposedly fixed is caught there, at the cost of one index line, and reopens the Insight.
 
 ### Reopening
 

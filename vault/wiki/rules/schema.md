@@ -22,7 +22,7 @@ A Rule is something that can be broken, where breaking it will be detected. That
 | `children` | MOC | **ordered** list of slugs | See *Ordering* below. |
 | `estimates` | yes | list of slugs | On a Leaf: that the rule does what it claims. On a MOC: that the sequence itself holds. |
 | `deferred_by` | no | list of decision slugs | The Decision pages whose `defer` targets this page. Written by `guppi generate` on a defer, cleared when a later Case `supersedes` that one; the index line carries it, so `ask-guppi` reaches the deferred decision without opening the page (case 52.3). |
-| `origin` | yes | `raw/YYYY-MM-DD/ledger.md#case-N` | |
+| `origin` | yes | `raw/YYYY-MM-DD/HHMM/ledger.md#case-N` (the date form, `raw/YYYY-MM-DD/ledger.md#case-N`, on pages born before 2026-09-13; case 103.6) | |
 | `sprint` | yes | sprint id | |
 | `created` | yes | date | |
 | `tags` | yes | list | |

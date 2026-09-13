@@ -268,7 +268,32 @@ def test_unparsable_lines_incomplete_creates_and_existing_pages_are_marked(tmp_p
     assert later["exists"] is False
     (root,) = by_slug(data, "rule-root")
     assert "exists" not in root
-    (tmp_path / "vault" / "wiki" / "rules" / "rule-root.md").write_text("---\ntype: rule\n---\n")
+    # exists only for the page this very line made (case 105.2): the same #case-N in origin
+    page = tmp_path / "vault" / "wiki" / "rules" / "rule-root.md"
+    page.write_text(f"---\ntype: rule\norigin: raw/{DATE}/ledger.md#case-1\n---\n")
+    (tmp_path / "vault" / "raw" / DATE / "materialize.yaml").unlink()
+    run(tmp_path)
+    (root,) = by_slug(load(tmp_path), "rule-root")
+    assert root["exists"] is True
+    # a page of another Case, live or archived, leaves the entry a create
+    page.write_text("---\ntype: rule\norigin: raw/2026-09-01/ledger.md#case-77\n---\n")
+    (tmp_path / "vault" / "raw" / DATE / "materialize.yaml").unlink()
+    run(tmp_path)
+    (root,) = by_slug(load(tmp_path), "rule-root")
+    assert "exists" not in root
+    page.unlink()
+    archived = tmp_path / "vault" / "archive" / "migration" / "2026-09-01" / "rules"
+    archived.mkdir(parents=True)
+    (archived / "rule-root.md").write_text(
+        "---\ntype: rule\norigin: raw/2026-09-01/ledger.md#case-77\n---\n"
+    )
+    (tmp_path / "vault" / "raw" / DATE / "materialize.yaml").unlink()
+    run(tmp_path)
+    (root,) = by_slug(load(tmp_path), "rule-root")
+    assert "exists" not in root
+    (archived / "rule-root.md").write_text(
+        f"---\ntype: rule\norigin: raw/{DATE}/ledger.md#case-1\n---\n"
+    )
     (tmp_path / "vault" / "raw" / DATE / "materialize.yaml").unlink()
     run(tmp_path)
     (root,) = by_slug(load(tmp_path), "rule-root")
@@ -974,6 +999,74 @@ def test_a_date_without_a_spec_behaves_as_today(tmp_path):
     (root,) = by_slug(data, "rule-root")
     assert root["incomplete"] == ["then"]
     assert all("spec" not in d for d in data["decisions"])
+
+
+# --- the ledger of a session (case 103.2) -------------------------------------------
+
+
+def seed_session_unit(tmp_path, folder="1610"):
+    """A session folder with its own ledger and Spec beside the date-level shape."""
+    raw = seed_sessions(tmp_path)
+    (raw / folder).mkdir()
+    (raw / folder / "ledger.md").write_text(
+        "- 16:20:00 decision[case 30][update][rule-old]\n"
+        "- 16:21:00 estimate[estimate-old-holds][passed] read in the session\n",
+        encoding="utf-8",
+        newline="\n",
+    )
+    (raw / folder / "spec.md").write_text(
+        session_spec("30", f"from {folder}"), encoding="utf-8", newline="\n"
+    )
+    return raw / folder
+
+
+def test_a_session_unit_reads_its_own_spec_and_writes_its_own_yaml(tmp_path):
+    session = seed_session_unit(tmp_path)
+    code, out, err = run_walk(tmp_path, ["--date", DATE])
+    assert code == 0 and err == ""
+    assert [line.split()[1] for line in out.splitlines()] == [
+        f"vault/raw/{DATE}/materialize.yaml",
+        f"vault/raw/{DATE}/1610/materialize.yaml",
+    ]
+    data = yaml.safe_load((session / "materialize.yaml").read_text(encoding="utf-8"))
+    assert data["date"] == DATE and data["session"] == "1610"
+    assert data["ledger"] == f"vault/raw/{DATE}/1610/ledger.md"
+    assert data["spec"] == [f"vault/raw/{DATE}/1610/spec.md"]
+    update, reading = data["entries"]
+    assert update["origin"] == f"raw/{DATE}/1610/ledger.md#case-30"
+    assert update["change"] == "from 1610"
+    assert reading["origin"] == f"raw/{DATE}/1610/ledger.md#L2"
+    (decision,) = data["decisions"]
+    assert decision["origin"] == f"raw/{DATE}/1610/ledger.md#case-30"
+    assert decision["spec"] == f"vault/raw/{DATE}/1610/spec.md"
+    # the date-level unit still reads the Specs of the date and keeps the date form
+    date_level = load(tmp_path)
+    assert "session" not in date_level
+    assert f"vault/raw/{DATE}/1610/spec.md" in date_level["spec"]
+    assert date_level["entries"][0]["origin"] == f"raw/{DATE}/ledger.md#case-3"
+
+
+def test_the_walk_takes_the_date_level_unit_first_then_the_sessions(tmp_path):
+    seed_session_unit(tmp_path)
+    seed_earlier(tmp_path)
+    assert materialize.units_with(tmp_path, "ledger.md") == [EARLIER, DATE, f"{DATE}/1610"]
+    code, out, _ = run_walk(tmp_path)
+    assert code == 0
+    assert [line.split()[1] for line in out.splitlines()] == [
+        f"vault/raw/{EARLIER}/materialize.yaml",
+        f"vault/raw/{DATE}/materialize.yaml",
+        f"vault/raw/{DATE}/1610/materialize.yaml",
+    ]
+
+
+def test_a_session_unit_alone_is_a_unit_of_its_own(tmp_path):
+    session = seed_session_unit(tmp_path)
+    (tmp_path / "vault" / "raw" / DATE / "ledger.md").unlink()
+    assert materialize.units_with(tmp_path, "ledger.md", DATE) == [f"{DATE}/1610"]
+    code, out, err = run_walk(tmp_path, ["--date", DATE])
+    assert code == 0 and err == "" and len(out.splitlines()) == 1
+    assert (session / "materialize.yaml").exists()
+    assert not (tmp_path / "vault" / "raw" / DATE / "materialize.yaml").exists()
 
 
 # --- --show (case 76) ---------------------------------------------------------------

@@ -1,9 +1,14 @@
 """`guppi materialize [--date YYYY-MM-DD] [--show]` — the ledger and the Spec as one yaml.
 
-Reads `vault/raw/<date>/ledger.md` and every Spec of the date — `vault/raw/<date>/spec.md`
-when the date has one (dates before case 73), then `vault/raw/<date>/<HHMM>/spec.md` in
-folder order — and writes `vault/raw/<date>/materialize.yaml`: one entry per record line
-of the ledger, in ledger order, with its route computed from `index.md` §5 and its content
+Reads one unit at a time (case 103.2). A session folder `vault/raw/<date>/<HHMM>/` holding
+a `ledger.md` is a unit: its ledger, its own `spec.md` and nothing else, written to
+`vault/raw/<date>/<HHMM>/materialize.yaml`, the `origin` of every entry
+`raw/<date>/<HHMM>/ledger.md#…`. A date-level `vault/raw/<date>/ledger.md` — the shape
+before case 103 — is a unit read as before: the ledger and every Spec of the date
+(`vault/raw/<date>/spec.md` when the date has one, dates before case 73, then
+`vault/raw/<date>/<HHMM>/spec.md` in folder order), written to
+`vault/raw/<date>/materialize.yaml` with the date form of `origin`. Either way the yaml
+holds one entry per record line of the ledger, in ledger order, with its route computed from `index.md` §5 and its content
 lifted from the `then` block of its Case in the Spec. The yaml's `spec` field lists the
 files read and each decision entry names the file its Case was found in; a Case heading
 found in two files stops the walk with exit 1 (case 73.5). One decision entry per Case; a
@@ -30,11 +35,12 @@ with its slug; a standalone estimate `create` with `ref` maps `context`, `criter
 `method` into `sections` the same way.
 
 An existing yaml is extended with the lines it does not hold and never rewritten. Without
-`--date` the script walks every `vault/raw/<date>/` that holds a `ledger.md`, in date
-order, so a line written after the librarian's commit of its date is picked up by the next
-run; an error on one date stops the walk with exit 1. With `--show` (case 76) the same walk
-prints to stdout the yaml each date would be written with, one document per date, `---`
-between two, and writes nothing under `raw/`. Rule page:
+`--date` the script walks every unit under `vault/raw/` — dates ascending, the date-level
+ledger of a date first, then its sessions in folder order — so a line written after the
+librarian's commit of its unit is picked up by the next run; `--date` walks the units of
+that date; an error on one unit stops the walk with exit 1. With `--show` (case 76) the
+same walk prints to stdout the yaml each unit would be written with, one document per
+unit, `---` between two, and writes nothing under `raw/`. Rule page:
 `vault/wiki/rules/rule-materialize.md`.
 """
 
@@ -194,10 +200,19 @@ def split_cases(spec: str) -> dict[str, list[str]]:
     return cases
 
 
-def spec_files(project_dir: Path, date: str) -> list[Path]:
-    """Every Spec of a date: `raw/<date>/spec.md` when it exists, then each
-    `raw/<date>/<HHMM>/spec.md` in folder order (case 73.5)."""
-    raw = project_dir / "vault" / "raw" / date
+def is_session(unit: str) -> bool:
+    """A unit is `<date>` (the date-level ledger, the shape before case 103) or
+    `<date>/<HHMM>` (a session folder with its own ledger)."""
+    return "/" in unit
+
+
+def spec_files(project_dir: Path, unit: str) -> list[Path]:
+    """The Specs of a unit: a session's own `spec.md` alone (case 103.2); for a date-level
+    unit `raw/<date>/spec.md` when it exists, then each `raw/<date>/<HHMM>/spec.md` in
+    folder order (case 73.5)."""
+    raw = project_dir / "vault" / "raw" / unit
+    if is_session(unit):
+        return [raw / "spec.md"] if (raw / "spec.md").is_file() else []
     files = [raw / "spec.md"] if (raw / "spec.md").is_file() else []
     if raw.is_dir():
         folders = sorted(p for p in raw.iterdir() if p.is_dir() and SESSION_FOLDER.match(p.name))
@@ -205,12 +220,12 @@ def spec_files(project_dir: Path, date: str) -> list[Path]:
     return files
 
 
-def read_specs(project_dir: Path, date: str) -> tuple[dict[str, list[str]], dict[str, str]]:
-    """The Cases of every Spec of the date, and the file each Case was found in (relative
+def read_specs(project_dir: Path, unit: str) -> tuple[dict[str, list[str]], dict[str, str]]:
+    """The Cases of every Spec of the unit, and the file each Case was found in (relative
     to the project); a Case heading in two files is an error."""
     cases: dict[str, list[str]] = {}
     found: dict[str, str] = {}
-    for path in spec_files(project_dir, date):
+    for path in spec_files(project_dir, unit):
         name = path.relative_to(project_dir).as_posix()
         for case, lines in split_cases(path.read_text(encoding="utf-8")).items():
             if case in found:
@@ -332,12 +347,40 @@ def find_item(block: dict, kind: str, slug: str) -> tuple[dict | None, str | Non
 # --- entries ------------------------------------------------------------------------
 
 
-def page_exists(project_dir: Path, category: str, slug: str) -> bool:
+def page_paths(project_dir: Path, category: str, slug: str) -> list[Path]:
+    """The page of a slug on disk: live under `wiki/<category>/`, or under
+    `vault/archive/` at any depth outside a `raw/` folder (case 102.2)."""
     wiki = project_dir / "vault" / "wiki"
-    if (wiki / category / f"{slug}.md").exists():
-        return True
-    archived = project_dir / "vault" / "archived"
-    return archived.is_dir() and any(archived.rglob(f"{slug}.md"))
+    found = [wiki / category / f"{slug}.md"] if (wiki / category / f"{slug}.md").exists() else []
+    archive = project_dir / "vault" / "archive"
+    if archive.is_dir():
+        found += [
+            p
+            for p in sorted(archive.rglob(f"{slug}.md"))
+            if "raw" not in p.relative_to(archive).parts[:-1]
+        ]
+    return found
+
+
+def page_exists(project_dir: Path, category: str, slug: str) -> bool:
+    return bool(page_paths(project_dir, category, slug))
+
+
+def page_of_case(project_dir: Path, category: str, slug: str, origin: str) -> bool:
+    """True when the page on disk was born of this very line — its `origin` names the
+    same `#case-N` or the same `#L<n>` of the same ledger (case 105.2). A page of another
+    Case, live or archived, is not `exists`: the entry stays a create for `generate` to
+    refuse as a collision, so the data of the new Case is never dropped in silence."""
+    for path in page_paths(project_dir, category, slug):
+        text = path.read_text(encoding="utf-8")
+        match = re.search(r"^origin:\s*(.+?)\s*$", text, re.MULTILINE)
+        found = match.group(1).strip("'\"") if match else ""
+        if found == origin:
+            return True
+        this_case, that_case = origin.rsplit("#", 1)[-1], found.rsplit("#", 1)[-1]
+        if this_case.startswith("case-") and this_case == that_case:
+            return True
+    return False
 
 
 def decision_entry(record: dict, number: int, text: str, date: str, block: dict, project_dir: Path):
@@ -377,7 +420,7 @@ def decision_entry(record: dict, number: int, text: str, date: str, block: dict,
     if (
         kind == "create"
         and entry["category"] in CATEGORIES
-        and page_exists(project_dir, entry["category"], slug)
+        and page_of_case(project_dir, entry["category"], slug, entry["origin"])
     ):
         entry["exists"] = True
     if kind == "defer" and entry["category"] in CATEGORIES:
@@ -510,7 +553,7 @@ def derived_entries(entry: dict, item: dict | None, texts: dict, project_dir: Pa
             sections["Criterion"] = criterion_block(case, texts)
             sections["Method"] = item["method"]
             derived["sections"] = sections
-            if page_exists(project_dir, "estimates", derived["slug"]):
+            if page_of_case(project_dir, "estimates", derived["slug"], derived["origin"]):
                 derived["exists"] = True
             missing = [n for n in ("problem", "when", "then") if n not in texts]
             if missing:
@@ -587,7 +630,7 @@ def lesson_entry(record: dict, number: int, text: str, date: str, project_dir: P
         entry["fields"]["source"] = record["source"]
     elif record["kind"] == "knowledge":
         incomplete.append("source")
-    if page_exists(project_dir, "lessons", record["slug"]):
+    if page_of_case(project_dir, "lessons", record["slug"], entry["origin"]):
         entry["exists"] = True
     if incomplete:
         entry["incomplete"] = incomplete
@@ -683,23 +726,28 @@ def sprint_id(project_dir: Path) -> str:
     return "unknown"
 
 
-def assemble(project_dir: Path, date: str, existing: dict | None, stderr) -> tuple[dict, int]:
-    raw = project_dir / "vault" / "raw" / date
+def assemble(project_dir: Path, unit: str, existing: dict | None, stderr) -> tuple[dict, int]:
+    """The yaml of one unit, `<date>` or `<date>/<HHMM>` (case 103.2); the `origin` of
+    every entry names the unit's ledger, so `date` below is the unit path."""
+    raw = project_dir / "vault" / "raw" / unit
     ledger_path = raw / "ledger.md"
     if not ledger_path.exists():
         raise MaterializeError(f"{ledger_path.relative_to(project_dir).as_posix()} does not exist")
     ledger = ledger_path.read_text(encoding="utf-8").splitlines()
-    cases, spec_of = read_specs(project_dir, date)
+    cases, spec_of = read_specs(project_dir, unit)
+    date = unit
     data = existing or {
-        "date": date,
+        "date": unit.split("/")[0],
         "sprint": sprint_id(project_dir),
-        "ledger": f"vault/raw/{date}/ledger.md",
+        "ledger": f"vault/raw/{unit}/ledger.md",
         "spec": [],
         "entries": [],
         "decisions": [],
         "unparsed": [],
     }
-    data["spec"] = [p.relative_to(project_dir).as_posix() for p in spec_files(project_dir, date)]
+    if is_session(unit):
+        data["session"] = unit.split("/")[1]
+    data["spec"] = [p.relative_to(project_dir).as_posix() for p in spec_files(project_dir, unit)]
     texts_of: dict[str, dict] = {}
     entries: list[dict] = data.setdefault("entries", [])
     decisions: list[dict] = data.setdefault("decisions", [])
@@ -793,8 +841,8 @@ def assemble(project_dir: Path, date: str, existing: dict | None, stderr) -> tup
     return data, added
 
 
-def yaml_path(project_dir: Path, date: str) -> Path:
-    return project_dir / "vault" / "raw" / date / "materialize.yaml"
+def yaml_path(project_dir: Path, unit: str) -> Path:
+    return project_dir / "vault" / "raw" / unit / "materialize.yaml"
 
 
 def load_yaml(path: Path) -> dict | None:
@@ -814,7 +862,9 @@ def dump_yaml(path: Path, data: dict) -> None:
 
 def parser() -> argparse.ArgumentParser:
     p = argparse.ArgumentParser(prog="guppi materialize", description=__doc__.split("\n\n")[1])
-    p.add_argument("--date", default=None, help="one raw/<date> folder; without it, every date")
+    p.add_argument(
+        "--date", default=None, help="the units of one raw/<date> folder; without it, every unit"
+    )
     p.add_argument(
         "--show",
         action="store_true",
@@ -824,20 +874,57 @@ def parser() -> argparse.ArgumentParser:
 
 
 def dates_with(project_dir: Path, name: str) -> list[str]:
-    """Every `vault/raw/<date>/` that holds `name`, in date order."""
+    """Every `vault/raw/<date>/` that holds `name` at the date level, in date order."""
     raw = project_dir / "vault" / "raw"
     if not raw.is_dir():
         return []
     return sorted(p.name for p in raw.iterdir() if p.is_dir() and (p / name).is_file())
 
 
-def materialize_date(project_dir: Path, date: str, now, stdout, stderr, show=False) -> int:
-    """One date: extend or write its yaml; one line on stdout, exit 1 on an error. With
+def session_of_run(project_dir: Path, date: str) -> tuple[str, str] | None:
+    """`(date, HHMM)` of the session of a run on `date` (case 102.2): the latest `<HHMM>/`
+    folder under `raw/<date>/`, and without one the latest of the nearest date back — a
+    session across midnight. None when no session folder exists at all."""
+    raw = project_dir / "vault" / "raw"
+    if not raw.is_dir():
+        return None
+    for folder in sorted((p for p in raw.iterdir() if p.is_dir() and p.name <= date), reverse=True):
+        sessions = sorted(
+            p.name for p in folder.iterdir() if p.is_dir() and SESSION_FOLDER.match(p.name)
+        )
+        if sessions:
+            return folder.name, sessions[-1]
+    return None
+
+
+def units_with(project_dir: Path, name: str, date: str | None = None) -> list[str]:
+    """Every unit under `vault/raw/` that holds `name` (case 103.2): dates ascending, the
+    date-level `<date>` first when the file sits at the date root, then `<date>/<HHMM>` for
+    each session folder holding it, in folder order. With `date`, the units of that date."""
+    raw = project_dir / "vault" / "raw"
+    if not raw.is_dir():
+        return []
+    dates = [raw / date] if date else sorted(p for p in raw.iterdir() if p.is_dir())
+    units: list[str] = []
+    for folder in dates:
+        if not folder.is_dir():
+            continue
+        if (folder / name).is_file():
+            units.append(folder.name)
+        sessions = sorted(
+            p for p in folder.iterdir() if p.is_dir() and SESSION_FOLDER.match(p.name)
+        )
+        units.extend(f"{folder.name}/{p.name}" for p in sessions if (p / name).is_file())
+    return units
+
+
+def materialize_date(project_dir: Path, unit: str, now, stdout, stderr, show=False) -> int:
+    """One unit: extend or write its yaml; one line on stdout, exit 1 on an error. With
     `show` the yaml goes to stdout instead and no file changes (case 76)."""
     try:
-        path = yaml_path(project_dir, date)
+        path = yaml_path(project_dir, unit)
         existing = load_yaml(path)
-        data, added = assemble(project_dir, date, existing, stderr)
+        data, added = assemble(project_dir, unit, existing, stderr)
         if show:
             stdout.write(yaml_text(data))
             return 0
@@ -865,14 +952,19 @@ def run(argv, *, stdout=None, stderr=None, project_dir: Path | None = None, now=
         args = parser().parse_args(argv)
     except SystemExit as exc:
         return 2 if exc.code not in (None, 0) else 0
-    dates = [args.date] if args.date else dates_with(project_dir, "ledger.md")
-    if not dates:
-        print("materialize: no vault/raw/<date>/ledger.md to read", file=stderr)
+    units = units_with(project_dir, "ledger.md", args.date)
+    if not units:
+        what = (
+            f"vault/raw/{args.date}/ledger.md does not exist"
+            if args.date
+            else "no ledger.md under vault/raw/ to read"
+        )
+        print(f"materialize: {what}", file=stderr)
         return 1
-    for index, date in enumerate(dates):
+    for index, unit in enumerate(units):
         if args.show and index:
-            print("---", file=stdout)  # one yaml document per date (case 76)
-        code = materialize_date(project_dir, date, now, stdout, stderr, show=args.show)
+            print("---", file=stdout)  # one yaml document per unit (case 76)
+        code = materialize_date(project_dir, unit, now, stdout, stderr, show=args.show)
         if code:
             return code
     return 0

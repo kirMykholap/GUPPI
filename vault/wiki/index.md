@@ -17,19 +17,30 @@ When you are unsure whether something needs ratification: it does.
 ## 1. Vault layout
 
 ```
-raw/                 session artifacts land here first, and stay here: every `origin` points in
-  YYYY-MM-DD/        the logs of the day; a session is a window of them, opened by its `hi`
-    ledger.md        ratified decisions and lessons (committed)
-    event_log.md     tool/agent events (gitignored)
-    materialize.yaml action list for the generation script
+raw/                 session artifacts land here first; a session moves whole into the
+                     archive once every line of it became a page (case 100.1); every
+                     `origin` names a ledger, found here or there (case 103.5)
+  YYYY-MM-DD/        the day; a session is a window of its logs, opened by its `hi`
+    event_log.md     tool/agent events (gitignored); stays here, the hook's `hi` window
     HHMM/            one folder per session, named by the time of its `hi` line (case 73.1)
+      ledger.md      ratified decisions, readings and lessons of the session (case 103.1)
+      materialize.yaml action list for the generation script, one per session (case 103.2)
       spec.md        Plan Mode output: the Cases, their `then` blocks and their `tasks`,
                      ticked in Work Mode (case 59.3)
       frontier.md    the Frontier of the session, one line per item, closed as the
                      session goes (case 59.2)
       handoff.md     the main agent's notes + direct instructions
+      patch-*.diff   a change Retro reverted, kept for a later Case (case 109.1)
 
-archived/            everything archived: <sprint>/<date>/<category>/<slug>.md, moved by `guppi cleanup`
+archive/             everything archived, by sprint, date and session (cases 102, 103.6)
+  <sprint>/<date>/
+    raw/             a date-level ledger and yaml of the shape before 2026-09-13, with what
+                     stood beside them, moved by `guppi archive`
+    <HHMM>/
+      raw/           the session's ledger, yaml, Spec, Frontier, handoff, moved by
+                     `guppi archive` once applied (case 100.1)
+      <category>/<slug>.md
+                     the pages the `cleanup` of that session archived (case 102.2)
 
 wiki/
   decisions/         Decision pages — the journal, one page per Case
@@ -59,7 +70,7 @@ wiki/
   log.md             every page change, written mechanically by the scripts
 ```
 
-Dates before 2026-09-12 hold one session each: their `spec.md`, `frontier.md` and `handoff.md` stay at the date root, and the scripts read that shape for them (case 73.1).
+Dates before 2026-09-12 hold one session each: their `spec.md`, `frontier.md` and `handoff.md` stay at the date root, and the scripts read that shape for them (case 73.1). Dates before 2026-09-13 hold the ledger and the yaml at the date root, the sessions of the day in one ledger; the scripts read that shape until the date is archived, and `origin` keeps its date form on the pages born of it (case 103.6). A page whose `cleanup` ran on a date without a session folder sits at `<date>/<category>/` in the archive.
 
 The filename **is** the page `slug`. No separate registry of identifiers is needed — `ref` and `origin` point at filenames, and collisions are caught by lint.
 
@@ -165,7 +176,7 @@ The Leaf's item in the `then` block carries `method`; the scripts derive the Est
 
 ### Delete
 
-No dedicated Estimate page. Instead: query the vault for what depends on the target, state the impact in `recommend`/`then`, and let the human ratify with that analysis in hand. Delete never means physical deletion — it sets `status: archived`, and `guppi cleanup` moves the file to `vault/archived/`.
+No dedicated Estimate page. Instead: query the vault for what depends on the target, state the impact in `recommend`/`then`, and let the human ratify with that analysis in hand. Delete never means physical deletion — it sets `status: archived`, and `guppi cleanup` moves the file to `vault/archive/` (case 102.2).
 
 Restoring is an ordinary `update` setting `status` back to `draft` or `built`.
 
@@ -173,7 +184,7 @@ Restoring is an ordinary `update` setting `status` back to `draft` or `built`.
 
 ## 4. Ledger
 
-`raw/<date>/ledger.md` carries two kinds of line, written mechanically by a hook that interprets nothing.
+`raw/<date>/<HHMM>/ledger.md` — the session's ledger (case 103.1); `raw/<date>/ledger.md` on dates before 2026-09-13 — carries two kinds of line, written mechanically by a hook that interprets nothing.
 
 **Decisions** — routing only. The content already exists in `spec.md`, ratified in the Case, so the line just says what happens to which page:
 
@@ -209,7 +220,7 @@ An `estimate[...]` line does not replace the `decision[...]` that created the pa
 
 The librarian reads the log as a chain and applies the last link.
 
-**`#case-N` in an `origin`** names the ledger line carrying `[case N]`. It is a grep target, not a Markdown anchor; lint checks that the line exists.
+**`#case-N` in an `origin`** names the ledger line carrying `[case N]`. It is a grep target, not a Markdown anchor; lint checks that the line exists. The ledger is named by its place under `raw/` — `raw/<date>/<HHMM>/ledger.md`, or `raw/<date>/ledger.md` on older pages — and lint looks for it there first and then in the archive, `vault/archive/*/<date>/<HHMM>/raw/ledger.md` or `vault/archive/*/<date>/raw/ledger.md`; a ledger in neither place, or in both, is a finding (case 103.5). Nothing rewrites an `origin` when a ledger moves.
 
 ## 5. Routing
 

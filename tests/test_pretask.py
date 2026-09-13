@@ -470,7 +470,7 @@ def test_a_derived_estimate_slug_that_names_a_page_needs_estimate_slug(tmp_path)
 
 
 def test_an_archived_estimate_page_counts_as_existing(tmp_path):
-    archived = tmp_path / "vault" / "archived" / "migration" / "2026-09-01" / "estimates"
+    archived = tmp_path / "vault" / "archive" / "migration" / "2026-09-01" / "estimates"
     archived.mkdir(parents=True)
     (archived / "estimate-z.md").write_text("---\ntype: estimate\n---\n", encoding="utf-8")
     _, out, _ = check(tmp_path, plan=create_plan(), ledger=CREATE_LINE)
@@ -494,6 +494,45 @@ def test_file_and_defer_items_are_outside_the_form_checks(tmp_path):
         + "- 16:00:02 decision[case 1][defer][rule-later]\n"
     )
     assert check(tmp_path, plan=plan, ledger=ledger) == (0, "", "")
+
+
+# --- the session's ledger (case 103.4) ---------------------------------------------------
+
+
+def with_session_ledger(project_dir, text, day=TODAY, hhmm=HI_FOLDER):
+    folder = project_dir / "vault" / "raw" / day.isoformat() / hhmm
+    folder.mkdir(parents=True, exist_ok=True)
+    (folder / "ledger.md").write_text(text, encoding="utf-8", newline="\n")
+
+
+def test_the_lines_of_the_session_ledger_are_in_the_window(tmp_path):
+    # the date-level ledger holds nothing; the session's own ledger holds the line
+    with_session_ledger(tmp_path, LINE)
+    assert check(tmp_path, ledger="") == (0, "", "")
+    # a line the plan does not hold, in the session ledger, is found there
+    with_session_ledger(
+        tmp_path, LINE + "- 16:00:01 decision[case 2][update][rule-y]{ref:rule-y}\n"
+    )
+    code, out, _ = check(tmp_path, ledger="")
+    assert code == 1 and "case 2" in out
+
+
+def test_a_session_ledger_line_before_the_hi_time_still_counts(tmp_path):
+    # the session ledger is the session's whole: its lines are not filtered by the hi time
+    with_session_ledger(tmp_path, "- 15:00:00 " + LINE[11:])
+    assert check(tmp_path, ledger="") == (0, "", "")
+
+
+def test_a_grammar_finding_names_the_session_ledger(tmp_path):
+    with_session_ledger(tmp_path, LINE + "- 16:00:02 estimate[estimate-x-holds] no outcome\n")
+    code, out, _ = check(tmp_path, ledger="")
+    assert code == 1
+    assert out.splitlines() == [
+        (
+            f"raw/2026-09-09/{HI_FOLDER}/ledger.md:2: does not parse: "
+            "- 16:00:02 estimate[estimate-x-holds] no outcome"
+        )
+    ]
 
 
 # --- the grammar of the window's record lines (case 75.2) -------------------------------

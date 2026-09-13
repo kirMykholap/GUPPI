@@ -1,5 +1,6 @@
 """`guppi ledger`: the `Stop` hook that lifts the lines of a LEDGER block into
-`vault/raw/<date>/ledger.md`, each with the time of writing.
+`vault/raw/<hi date>/<hi HHMM>/ledger.md`, the session's folder, each with the time of
+writing (case 103.1).
 
 Every test feeds the payload through a stream, the shape a hook is really handed.
 """
@@ -62,8 +63,9 @@ def write_event_log(project_dir, text, day=TODAY):
     path.write_text(text, encoding="utf-8")
 
 
-def ledger_file(project_dir, day=TODAY):
-    return project_dir / "vault" / "raw" / day.isoformat() / "ledger.md"
+def ledger_file(project_dir, day=TODAY, session="1501"):
+    """The session ledger: the `hi` of EVENT_LOG_WITH_HI is at 15:01 (case 103.1)."""
+    return project_dir / "vault" / "raw" / day.isoformat() / session / "ledger.md"
 
 
 def ledger_text(project_dir, day=TODAY):
@@ -217,12 +219,23 @@ ONLY_TOOLS_TODAY = "- 00:12:00 44c1aae1 tool Bash: git status --short\n"
 
 
 def test_a_start_and_hi_in_yesterdays_log_open_todays_window(tmp_path):
+    # Across midnight the lines still land in the session's folder, under the hi date
+    # (case 103.1): nothing is written under today.
     write_event_log(tmp_path, EVENT_LOG_WITH_HI, day=YESTERDAY)
     write_event_log(tmp_path, ONLY_TOOLS_TODAY)
     code, err = run(payload(last_assistant_message=REPLY), tmp_path)
     assert (code, err) == (0, "")
-    assert ledger_text(tmp_path) == f"{timed(DECISION)}\n{timed(ESTIMATE)}\n"
-    assert not ledger_file(tmp_path, YESTERDAY).exists()
+    assert ledger_text(tmp_path, YESTERDAY) == f"{timed(DECISION)}\n{timed(ESTIMATE)}\n"
+    assert not (tmp_path / "vault" / "raw" / TODAY.isoformat() / "1501").exists()
+
+
+def test_a_line_already_in_a_date_level_ledger_is_not_written_again(working):
+    # The shape before case 103: a ledger at the date root still counts for the dedupe.
+    old = working / "vault" / "raw" / TODAY.isoformat() / "ledger.md"
+    old.write_text("- 09:00:00 " + DECISION[2:] + "\n", encoding="utf-8")
+    code, err = run(payload(last_assistant_message=REPLY), working)
+    assert (code, err) == (0, "")
+    assert ledger_text(working) == f"{timed(ESTIMATE)}\n"
 
 
 def test_no_start_of_this_session_on_any_date_refuses(tmp_path):

@@ -1,7 +1,7 @@
 ---
 type: estimate
 kind: QA
-status: passed
+status: pending
 target: rule-materialize
 origin: raw/2026-09-10/ledger.md#case-31
 sprint: migration
@@ -84,6 +84,17 @@ When the item carries `estimate_slug`, the derived entry goes to that Estimate.
 without a slug and is marked `incomplete: [estimate]`.
 **－** The `create` branch does not change: it reads `estimate_slug` already.
 
+### case 105.2
+
+When:
+`uv run guppi materialize` reads a `create` line whose slug is already on disk — live or archived.
+
+Then:
+The entry is marked `exists` only when the `origin` of the page carries the `#case-N` of this line; a derived Estimate the same way, by the `origin` of the Estimate page.
+**＋** Otherwise the entry stays an ordinary `create`; `generate` answers with a collision on stderr, the entry is `failed`, the unit stays in `raw/`.
+**＋** `estimate-materialize-assembles` gets a `### case 105.2` block, `pending`.
+**－** A placeholder (no `kind`) is not a collision: 101.1 fills it.
+
 ## Method
 
 pytest in tests/test_materialize.py against a temp vault; the live reading once by hand
@@ -109,3 +120,4 @@ unit: tests/test_materialize.py 35 green with the blocks of 87 and 90.1 — a kn
 - 2026-09-12 criterion: case 87 added · [[decision-case-87]]
 - 2026-09-12 criterion: case 90.1 added · [[decision-case-90.1]]
 - 2026-09-12 status: pending → passed · raw/2026-09-12/ledger.md#L207
+- 2026-09-13 criterion: case 105.2 added · [[decision-case-105.2]]

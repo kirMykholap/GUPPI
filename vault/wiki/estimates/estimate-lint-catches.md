@@ -23,6 +23,17 @@ clean vault; the two Method classes (case 26.2) are seeded too, and the classes 
 the first run's findings are each either an item of the brief's known-false list or
 become a Case.
 
+### case 103.5
+
+When:
+`uv run guppi lint` checks an `origin` and gathers the known slugs.
+
+Then:
+`raw/<date>/ledger.md#…` is looked for at `vault/raw/<date>/ledger.md`, then at `vault/archive/*/<date>/raw/ledger.md`; `raw/<date>/<HHMM>/ledger.md#…` at `vault/raw/<date>/<HHMM>/ledger.md`, then at `vault/archive/*/<date>/<HHMM>/raw/ledger.md`; the `[case N]` or line-number check runs on the file found.
+**＋** In neither: the finding `no such ledger`; in both: the finding `two ledgers for <path>`.
+**＋** The archived slugs are every `*.md` under `vault/archive/` except those under a `raw/` folder.
+**＋** `estimate-lint-catches` gets a `### case 103.5` block; the block of 100.3 is removed.
+
 ## Method
 
 pytest in `tests/test_lint.py`, one test per defect class; the live reading once by hand,
@@ -30,7 +41,7 @@ written into the estimate line.
 
 ## Result
 
-tests/test_lint.py green in the 258 with the three classes of 72.6 seeded: a decision page without ## When is no finding even when the yaml requires it, a ## Criterion link resolving to no Estimate page is a ref finding, a ### case N block of an Estimate naming no decision page is a ref finding, and a ### line is not a section boundary; live 2026-09-12 session J after the render and the Work Mode of Cases 72–76: guppi lint 129 findings, the same count and classes as the brief's known-false list (124 schema of the backfill and the missing ## Insight sections, 3 orphans, 1 ref literal in rule-page-generation, 1 method), none new
+unit: tests/test_lint.py 44 green with the four cases of 103.5 — a session origin resolved in raw/<date>/<HHMM>/, an origin of either form resolved in the archive at <date>/raw/ or <date>/<HHMM>/raw/, neither place a no-such-ledger finding, both places a two-ledgers finding, a spec.md under an archived raw/ folder no known slug; live 2026-09-13 after the archive of the four dates: uv run guppi lint resolved every origin of the 287 pages — all of the date form, in the archive now — with zero origin findings, 133 findings in all, the same 133 as before the session (125 schema, 4 method, 3 orphan, 1 ref)
 
 ## History
 
@@ -43,3 +54,7 @@ tests/test_lint.py green in the 258 with the three classes of 72.6 seeded: a dec
 - 2026-09-12 status: pending → passed · raw/2026-09-12/ledger.md#L98
 - 2026-09-12 updated: the two shapes of case 72.6 join the criterion; pending until the unit reading · [[decision-case-72.6]]
 - 2026-09-12 status: pending → passed · raw/2026-09-12/ledger.md#L159
+- 2026-09-13 criterion: case 100.3 added · [[decision-case-100.3]]
+- 2026-09-13 criterion: case 103.5 added · [[decision-case-103.5]]
+- 2026-09-13 criterion: case 100.3 removed · [[decision-case-103.5]]
+- 2026-09-13 status: pending → passed · raw/2026-09-13/0652/ledger.md#L2

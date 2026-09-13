@@ -36,6 +36,16 @@ Then:
 It is appended under `## Deferred` of `raw/<hi date>/<hi HHMM>/spec.md`; the unticked
 `tasks` Retro counts are that file's.
 
+### case 109.1
+
+When:
+The person invokes `/retro`.
+
+Then:
+The Render: `Ledger of today: !`cat vault/raw/$(date +%F)/ledger.md vault/raw/$(date +%F)/*/ledger.md 2>/dev/null``; the text "a line of today's ledger" becomes "a line of this session's ledger".
+**＋** The revert patch goes to `raw/<hi date>/<hi HHMM>/patch-<slug>.diff`, the session folder.
+**＋** `estimate-retro-loads` gets a `### case 109.1` block, `pending`.
+
 ## Method
 
 one reading by hand at the first /retro, recorded in the estimate line
@@ -52,3 +62,4 @@ live 2026-09-12 session I, the first /retro of the new form: the skill loaded ma
 - 2026-09-12 updated: the Deferred heading (cases 59.5, 66) · [[decision-case-66]]
 - 2026-09-12 status: pending → passed · raw/2026-09-12/ledger.md#L106
 - 2026-09-12 criterion: case 73.6 added · [[decision-case-73.6]]
+- 2026-09-13 criterion: case 109.1 added · [[decision-case-109.1]]

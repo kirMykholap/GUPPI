@@ -26,7 +26,7 @@ three only report, so the Makefile's rule — no target writes to the tree — h
 ## How it works
 
 `uv run guppi lint` reads every live page against its category's `schema.yaml`:
-required fields and sections, legal statuses, `origin` as a grep target in `raw/`,
+required fields and sections, legal statuses, `origin` as a grep target — `raw/<date>/ledger.md#…` at `vault/raw/<date>/ledger.md` or `vault/archive/*/<date>/raw/ledger.md`, `raw/<date>/<HHMM>/ledger.md#…` at `vault/raw/<date>/<HHMM>/ledger.md` or `vault/archive/*/<date>/<HHMM>/raw/ledger.md`; in neither place or in both a finding (case 103.5) —
 every ref (`parent`, `target`, `children`, `estimates`, `insight`) as an existing page,
 orphans, a `built` page with an Estimate not `passed`, the two Method classes of
 case 26.2. A decision page: at least one of `create`, `update`, `delete`, `defer`, each a list of slugs, and neither `kind` nor `target_slug`; every slug with a category prefix a live or archived page; every slug in `deferred_by` an existing decision page; a `[[decision-…]]` wikilink in a History line resolves to a page; `## When` is not required (case 72.6), and every link under `## Criterion` resolves to an Estimate page. An Estimate's `## Criterion` may hold `### case N` blocks; each `case N` names an existing decision page. A lesson needs no `estimates`; an estimate whose `target` is not an entity or a rule is a finding. It reports and exits 1 on any
@@ -60,3 +60,7 @@ finding, 0 with no output on a clean vault.
 - 2026-09-11 updated: index --check over four files · [[decision-case-53.4]]
 - 2026-09-12 updated: decision pages checked on the four kind lists; a target resolves against live and archived pages (case 59.4) · [[decision-case-59.4]]
 - 2026-09-12 updated: no When required on a decision page; Criterion links and ### case N blocks resolve (case 72.6) · [[decision-case-72.6]]
+- 2026-09-13 updated: origin resolves in raw/ or the archive (case 100.3, superseded by 103.5 which carries the wording) · [[decision-case-100.3]]
+- 2026-09-13 updated: both forms of origin resolve in raw/ or vault/archive/; archived slugs come from vault/archive/ outside raw/ folders; supersedes case 100.3 (case 103.5) · [[decision-case-103.5]]
+- 2026-09-13 status: built → draft · cascade
+- 2026-09-13 status: draft → built · cascade

@@ -2,7 +2,7 @@
 type: rule
 kind: Leaf
 purpose: Prevents a hook from being registered by hand, outside a ratified decision
-status: draft
+status: built
 enforcement: render
 governs: .claude/settings.json
 render_mode: partial
@@ -71,3 +71,4 @@ agent's Render and is ratified with it; this page holds the registrations only.
 - 2026-09-12 updated: guppi render --sync registered as the second SessionStart hook (case 59.7) · [[decision-case-59.7]]
 - 2026-09-12 updated: the page renders the hooks key only, as a partial child of rule-settings (case 85.3) · [[decision-case-85.3]]
 - 2026-09-12 status: built → draft · cascade
+- 2026-09-13 status: draft → built · cascade

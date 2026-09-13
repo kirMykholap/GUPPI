@@ -1,7 +1,7 @@
 ---
 type: estimate
 kind: QA
-status: pending
+status: passed
 target: rule-hook-registry
 origin: raw/2026-09-09/ledger.md#case-18.2
 sprint: migration
@@ -44,10 +44,7 @@ estimate line.
 
 ## Result
 
-Passing, 2026-09-10, session E. `tests/test_render.py` holds the JSON case; `render --check`
-exited 0 at the close of D. Live: the start of session `c640ade7` wrote
-`05:44:48 c640ade7 session-start clear` into `raw/2026-09-10/event_log.md` from the rendered
-`.claude/settings.json`.
+live 2026-09-13 session L: render --sync wrote .claude/settings.json from rule-settings with the hooks key from rule-hook-registry, uv run guppi render --check exits 0 so the file is byte for byte the render, the file holds no marker line (grep of "<!--" finds 0), and every registration the harness ran this session — event session-start, render --sync, pretask, gate, guard, spec, ledger — is one of its lines
 
 ## History
 
@@ -55,3 +52,4 @@ exited 0 at the close of D. Live: the start of session `c640ade7` wrote
 - 2026-09-10 status: pending → passed · written by hand, no generator yet
 - 2026-09-12 criterion: case 85.3 added · [[decision-case-85.3]]
 - 2026-09-12 updated: the criterion covers the hooks key; the whole-file clauses move to estimate-settings (case 99) · [[decision-case-99]]
+- 2026-09-13 status: pending → passed · raw/2026-09-13/ledger.md#L46

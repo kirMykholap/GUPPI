@@ -6,7 +6,7 @@ status: draft
 enforcement: render
 governs: .claude/agents/librarian-guppi.md
 render_mode: full
-children: [rule-materialize, rule-index-check, rule-synthesis, rule-page-generation, rule-cleanup, rule-brief, rule-close]
+children: [rule-materialize, rule-index-check, rule-synthesis, rule-page-generation, rule-cleanup, rule-raw-archive, rule-brief, rule-close]
 estimates: [estimate-documentation-completes]
 origin: raw/2026-09-10/ledger.md#case-36
 sprint: migration
@@ -48,7 +48,7 @@ or an Insight, whether or not you then write one; a script names a page in an er
 and you say why it failed; the brief needs a fact no input carries — the status of an
 Estimate, the severity of an Insight. Name every page you open in the report, with
 the reason and the outcome. Never read `ledger.md`, `spec.md`, `plan.md`, `wiki/decisions/` or
-`vault/archived/`: what the scripts do with the yaml is written here. The `Makefile`,
+`vault/archive/`: what the scripts do with the yaml is written here. The `Makefile`,
 `guppi/` and `tests/` are the scripts' own files, not the vault; read them when a
 command's output is not enough. Edit the yaml only as the index check and the synthesis
 say; an entry a script rejects stays as it is and is a flag in the report, never a
@@ -81,6 +81,10 @@ Do the steps in this order.
 
 <!-- rule-brief -->
 
+Archive. Run `uv run guppi archive`. Every line on its stderr is a flag; the units it
+moved and the units it kept, with the reason, go into the report. The session of the
+run is never moved.
+
 <!-- rule-close -->
 <!-- /rule-documentation -->
 
@@ -108,8 +112,9 @@ project's hooks; the hook is part of this Render and is ratified with it.
 3. [[rule-synthesis]]
 4. [[rule-page-generation]]
 5. [[rule-cleanup]]
-6. [[rule-brief]]
-7. [[rule-close]]
+6. [[rule-raw-archive]]
+7. [[rule-brief]]
+8. [[rule-close]]
 
 ## History
 
@@ -122,3 +127,6 @@ project's hooks; the hook is part of this Render and is ratified with it.
 - 2026-09-12 updated: the handoff of the session's folder (case 73.8) · [[decision-case-73.8]]
 - 2026-09-12 updated: the pipeline gains a render step after cleanup (case 89.1) · [[decision-case-89.1]]
 - 2026-09-12 updated: an instruction of the handoff that the frame forbids is refused and named in the report (case 90.3) · [[decision-case-90.3]]
+- 2026-09-13 child rule-raw-archive added · [[decision-case-100.1]]
+- 2026-09-13 updated: the archive step between brief and close, after the brief has read the yamls; rule-raw-archive the sixth child (case 100.2) · [[decision-case-100.2]]
+- 2026-09-13 updated: the frame names the archive root vault/archive/ (case 102.4) · [[decision-case-102.4]]

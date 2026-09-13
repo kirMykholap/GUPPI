@@ -8,7 +8,7 @@ governs: .claude/agents/librarian-guppi.md
 render_mode: partial
 parent: rule-documentation
 estimates: [estimate-synthesis-clusters]
-deferred_by: [decision-case-96, decision-case-97]
+deferred_by: [decision-case-108]
 origin: raw/2026-09-10/ledger.md#case-35.2
 sprint: migration
 created: 2026-09-10
@@ -59,3 +59,6 @@ outcome, clustered or not. Do not read the archive and do not write pages yourse
 - 2026-09-12 status: draft → built · cascade
 - 2026-09-12 deferred · [[decision-case-96]]
 - 2026-09-12 deferred · [[decision-case-97]]
+- 2026-09-13 defer by decision-case-97 superseded · [[decision-case-104.3]]
+- 2026-09-13 defer by decision-case-96 superseded · [[decision-case-108]]
+- 2026-09-13 deferred · [[decision-case-108]]

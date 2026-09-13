@@ -2,7 +2,7 @@
 type: rule
 kind: Leaf
 purpose: Prevents the librarian from reading the ledger and the Spec itself, or from routing a decision by guesswork
-status: built
+status: draft
 enforcement: check
 implementation_ref: [guppi/materialize.py, tests/test_materialize.py]
 parent: rule-documentation
@@ -24,9 +24,9 @@ defect of the ledger, and it shows here.
 
 ## How it works
 
-`uv run guppi materialize [--date YYYY-MM-DD]` reads `raw/<date>/ledger.md` and every Spec of the date — `raw/<date>/<HHMM>/spec.md` in folder order, and `raw/<date>/spec.md` when the date has one (dates before case 73) — and writes `raw/<date>/materialize.yaml`; the yaml's `spec` field names the file each Case was found in, and a Case heading found in two files stops the walk with exit 1. Without `--date` it
-walks every `raw/<date>/` that holds a `ledger.md`, in date order, and prints one
-line per date; a line written after the librarian's commit of its date is picked up
+`uv run guppi materialize [--date YYYY-MM-DD]` reads one unit at a time. A session folder `raw/<date>/<HHMM>/` holding a `ledger.md` is a unit (case 103.2): it reads that ledger and `raw/<date>/<HHMM>/spec.md` alone, and writes `raw/<date>/<HHMM>/materialize.yaml`, the `origin` of every entry `raw/<date>/<HHMM>/ledger.md#…`. A date-level `raw/<date>/ledger.md` (the shape before case 103) is a unit read as before: the ledger and every Spec of the date — `raw/<date>/<HHMM>/spec.md` in folder order, and `raw/<date>/spec.md` when the date has one (dates before case 73) — written to `raw/<date>/materialize.yaml` with the date form of `origin`; on a date with both shapes the date-level unit goes first; the yaml's `spec` field names the file each Case was found in, and a Case heading found in two files stops the walk with exit 1. Without `--date` it
+walks every unit under `raw/` — dates ascending, the date-level ledger of a date first, then its sessions in folder order — and prints one
+line per unit; a line written after the librarian's commit of its date is picked up
 by the next run, whatever the date of that run. An error on one date stops the walk with exit 1. With `--show` (case 76) the same walk prints to stdout the yaml each date would be written with — entries, `unparsed`, `incomplete` marks, decision groups, one document per date — and writes nothing under `raw/`; the agent and pre-task look before the librarian runs.
 
 One entry per record line, in ledger order. Fields: `case`, `kind` (`create`,
@@ -36,7 +36,7 @@ is `file` with its path), `slug`, `ref`, `source`, `supersedes`, `superseded_by`
 `origin` (`raw/<date>/ledger.md#case-N`; a lesson `#L<n>`), `line`, `text` (the
 ledger line), `tags` (from `{tags:...}`), `fields`, `sections`, `replace`, `change`
 (from the `then` block), `incomplete` (required fields the block lacks), `exists`
-(a create whose page is on disk), `folded` (the ledger lines of readings folded into
+(a create whose page is on disk with an `origin` carrying this line's `#case-N`; a page of another Case, live or archived, leaves the entry a create for `generate` to refuse as a collision, case 105.2), `folded` (the ledger lines of readings folded into
 a create), `applied` and `failed` (set by `guppi generate`: the time applied, or the
 error).
 
@@ -103,3 +103,6 @@ date fails.
 - 2026-09-12 updated: the lesson entry carries source from the braces of its line (case 87) · [[decision-case-87]]
 - 2026-09-12 updated: the derived update names its Estimate instead of taking the first of the page's list (case 90.1) · [[decision-case-90.1]]
 - 2026-09-12 updated: the item's key is named estimate_slug, as case 86 ratified (case 99) · [[decision-case-99]]
+- 2026-09-13 updated: the unit of the walk is the session folder with its own ledger, yaml, Spec and origin; a date-level ledger is walked in the old shape (case 103.2) · [[decision-case-103.2]]
+- 2026-09-13 updated: exists only when the page on disk was born of the same Case; another Case's page is a collision (case 105.2) · [[decision-case-105.2]]
+- 2026-09-13 status: built → draft · cascade

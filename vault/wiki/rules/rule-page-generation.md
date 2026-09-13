@@ -2,7 +2,7 @@
 type: rule
 kind: Leaf
 purpose: Prevents a ratified decision from ending the session without a page, or a page from carrying a field nobody ratified
-status: built
+status: draft
 enforcement: check
 implementation_ref: [guppi/generate.py, tests/test_generate.py]
 parent: rule-documentation
@@ -20,13 +20,13 @@ carrying a field nobody ratified. The script is the only writer to `wiki/`. It l
 the content of `materialize.yaml` into schema fields, derives what is derivable and
 writes nothing else. A page is always created, even incomplete: red lint is an
 accurate signal of debt, a decision with no page is the ledger and the vault
-disagreeing silently. A slug collision is an error, never a rename.
+disagreeing silently. A slug collision is an error, never a rename — with one exception: a `create` whose slug is a placeholder page, `status: draft` and no `kind`, fills that page (case 101.1).
 
 ## How it works
 
-`uv run guppi generate [--date]` applies the entries of `raw/<date>/materialize.yaml` in order, the Decision page of a Case written before the first entry of its lines, and marks each applied entry `applied: <time>` in the yaml and drops a `failed` mark an earlier run left on it, so a rerun writes nothing and no reader of the yaml sees a failure that is over. Without `--date` it walks every `raw/<date>/` that holds a yaml, in
+`uv run guppi generate [--date]` applies the entries of every `materialize.yaml` under `raw/` — the date-level one of a date first, then `raw/<date>/<HHMM>/materialize.yaml` per session in folder order, dates ascending (case 103.3) — each in order, the Decision page of a Case written before the first entry of its lines, and marks each applied entry `applied: <time>` in the yaml and drops a `failed` mark an earlier run left on it, so a rerun writes nothing and no reader of the yaml sees a failure that is over. Without `--date` it walks every `raw/<date>/` that holds a yaml, in
 date order; a date with no unapplied entry changes nothing; a failure on one date is
-reported and the walk goes on, with exit 1 at the end. An entry that fails — a collision, a `ref` naming no page, a
+reported and the walk goes on, with exit 1 at the end. An `update`, `estimate`, `delete` or `defer` whose slug is not under `wiki/` reaches the page under `vault/archive/` (`raw/` folders excluded) and edits it there; with a `status` other than `archived` in the same entry, `cleanup` brings it back (case 105.3). An entry that fails — a collision, a `ref` naming no page, a
 `replace` whose text is absent or not unique, a field whose shape the script does not
 expect, any exception raised while applying it — is reported on stderr, marked
 `failed` and skipped; the rest apply; the exit code is 1. No entry ends the run.
@@ -48,7 +48,7 @@ with History `deleted`; there is no `deleted` status. A `delete` whose slug is n
 a category prefix nor a Rule-class file (`category: unknown` in the yaml) names
 something outside the vault: it is printed on stdout as `outside the vault, nothing to
 archive` and marked applied, no page is written; a `delete` with a category and no
-page fails. A `defer` with a page appends History `deferred` and the decision slug to its `deferred_by`; without one it writes a placeholder page, `status: draft`, with only the fields the Case gave and `deferred_by`.
+page fails. A `defer` with a page appends History `deferred` and the decision slug to its `deferred_by`; without one it writes a placeholder page, `status: draft`, with only the fields the Case gave and `deferred_by`. A later `create` of that slug fills the placeholder: fields and sections as for a new page, `origin` the create's, `created` and `deferred_by` kept, History `created over placeholder`; its Estimate is made from `method` as for any Leaf. Any other existing page is a collision (case 101.1).
 
 A lesson entry writes the lesson only: a lesson is a recorded fact and has no Estimate. A missing `source` is not invented; lint names it.
 
@@ -58,7 +58,7 @@ page is still written.
 
 After all entries: an entity or rule whose Estimates are all `passed` becomes
 `built`, a `built` one with an Estimate not passed returns to `draft`, both with a
-History line; the `severity` of every insight is recounted. A tag declared in
+History line; a decision page with `status: superseded` — the one a supersedes just set, or any met in the walk — becomes `archived` with the History `archived · superseded`, its `superseded_by` and `deferred_by` untouched (case 104.1); the `severity` of every insight is recounted; every `clustered` child of an `actioned` insight becomes `archived` with the History `archived · insight actioned`, the insight's `children` unchanged (case 104.2); an `open` insight whose recounted `severity` is 0 becomes `archived` with the History `archived · no live child`, its `children` kept; an `actioned` one at 0 stays, kept for the recurrence (case 104.3). A tag declared in
 `new_tags` is appended to `tags.md` with its meaning and aliases; a tag used but not
 declared and not registered is reported on stderr and left on the page.
 
@@ -107,3 +107,10 @@ declared and not registered is reported on stderr and left on the page.
 - 2026-09-12 status: built → draft · cascade
 - 2026-09-12 updated: the derived Estimate page, the criterion block appended or removed, the decision page's Criterion links and no When (case 72.4) · [[decision-case-72.4]]
 - 2026-09-12 status: draft → built · cascade
+- 2026-09-13 updated: a create over a placeholder fills it; any other existing page stays a collision (case 101.1) · [[decision-case-101.1]]
+- 2026-09-13 updated: the walk covers the yaml of every session folder as well as the date-level yaml (case 103.3) · [[decision-case-103.3]]
+- 2026-09-13 updated: a superseded decision is archived by the cascade (case 104.1) · [[decision-case-104.1]]
+- 2026-09-13 updated: the clustered lessons of an actioned Insight are archived by the cascade (case 104.2) · [[decision-case-104.2]]
+- 2026-09-13 updated: an open Insight with no live child is archived by the cascade; supersedes case 97 (case 104.3) · [[decision-case-104.3]]
+- 2026-09-13 updated: an update reaches an archived page in the archive, so a restore and its fix are one entry (case 105.3) · [[decision-case-105.3]]
+- 2026-09-13 status: built → draft · cascade

@@ -1,7 +1,7 @@
 ---
 type: estimate
 kind: QA
-status: pending
+status: passed
 target: rule-default-mode
 origin: raw/2026-09-12/ledger.md#case-85.4
 sprint: migration
@@ -31,6 +31,11 @@ child of `rule-settings`, and the session opens in Plan Mode.
 
 the rendered .claude/settings.json holds permissions.defaultMode as "plan" and parses; the live half at the next session start — the session opens in Plan Mode and an edit outside the plan file is not made without a sign-off
 
+## Result
+
+the rendered .claude/settings.json holds permissions.defaultMode "plan" and json.load parses it; live 2026-09-13 session L opened in Plan Mode and nothing outside the plan file was edited without a sign-off — the frontier edits are the /hi rule's and rule-permissions' own allowance
+
 ## History
 
 - 2026-09-12 created · [[decision-case-85.4]]
+- 2026-09-13 status: pending → passed · raw/2026-09-13/ledger.md#L45

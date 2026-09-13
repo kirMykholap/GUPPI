@@ -2,7 +2,7 @@
 type: rule
 kind: Leaf
 purpose: Keeps a session from writing anything before a Case is ratified
-status: draft
+status: built
 enforcement: render
 governs: .claude/settings.json
 render_mode: partial
@@ -40,3 +40,4 @@ own and not a line of the registry (case 85.4).
 
 - 2026-09-12 created · [[decision-case-85.4]]
 - 2026-09-12 estimate estimate-default-mode added · [[decision-case-85.4]]
+- 2026-09-13 status: draft → built · cascade

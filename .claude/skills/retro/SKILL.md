@@ -9,7 +9,7 @@ Tests: !`make test`
 
 Style: !`make style`
 
-Ledger of today: !`cat "vault/raw/$(date +%F)/ledger.md"`
+Ledger of today: !`cat vault/raw/$(date +%F)/ledger.md vault/raw/$(date +%F)/*/ledger.md 2>/dev/null`
 
 Retro is an analysis of this session, not planning. Open with the frontier, in one
 message and with no read call: what was ratified (the ledger lines of today grouped
@@ -26,9 +26,9 @@ A short defer is a Case in the short form, appended to `vault/raw/<date>/<hi HHM
 and a `defer` block with `purpose`; no `recommend`, `given`, `when` or `then`. A defer
 line without its Case is marked incomplete by materialize.
 
-Edit code only when the edit finishes work that traces to a line of today's ledger.
+Edit code only when the edit finishes work that traces to a line of this session's ledger.
 Red tests: fix now when the fix finishes ratified work; otherwise save the change
-with `git diff` into `raw/<date>/patch-<slug>.diff`, revert it, and write a short
+with `git diff` into `raw/<hi date>/<hi HHMM>/patch-<slug>.diff`, the session's folder, revert it, and write a short
 defer naming the patch. Either way write a `- lesson[error][...]` line whose root
 cause says why Retro was reached with a regression; the handoff still needs green.
 `gh` is not available: name a deferred bug in the handoff, so the brief carries it.

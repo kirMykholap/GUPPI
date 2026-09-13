@@ -29,7 +29,7 @@ would materialize pages from it the next day.
 falling back to the reply that just finished (`last_assistant_message`) when the
 transcript is absent or unreadable, and finds every line that starts with `- decision[`,
 `- estimate[` or `- lesson[` **inside a fenced block opened with the `LEDGER` tag** (```` ```LEDGER ````, any case) and appends them to
-`vault/raw/<today>/ledger.md`, interpreting nothing: the text verbatim, the time of writing
+`vault/raw/<hi date>/<hi HHMM>/ledger.md` — the session's folder, the same across midnight (case 103.1) — interpreting nothing: the text verbatim, the time of writing
 between the dash and the text — `- HH:MM:SS decision[...]`, the date being the folder's.
 A line anywhere else — bare, or in a block with no tag or another one — is a preview: a
 Case's `then` shows lines before they are ratified. The tagged block is what the chat
@@ -85,3 +85,6 @@ the implementation arrives in the session after the probe (Slice 1, session B).
 - 2026-09-11 defer by decision-case-51 superseded · [[decision-case-55.1]]
 - 2026-09-11 updated: the hi window spans the dates of the session: the event logs back to its start are joined · [[decision-case-55.1]]
 - 2026-09-11 updated: the hi window spans the dates of the session; every LEDGER block of the session's transcript is read at each Stop, the last reply as fallback · [[decision-case-55.2]]
+- 2026-09-13 updated: the lines go to the session folder raw/<hi date>/<hi HHMM>/ledger.md; the dedupe reads every ledger under raw/ (case 103.1) · [[decision-case-103.1]]
+- 2026-09-13 status: built → draft · cascade
+- 2026-09-13 status: draft → built · cascade

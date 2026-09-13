@@ -1,7 +1,7 @@
 ---
 type: estimate
 kind: QA
-status: pending
+status: passed
 target: rule-case-protocol
 origin: raw/2026-09-09/ledger.md#case-13
 sprint: migration
@@ -61,11 +61,7 @@ One reading at a session start, by hand, plus the preview cases of `tests/test_l
 
 ## Result
 
-Passing. Session C start, 2026-09-09 16:29: the agent's first reply stated the fence-vs-bare
-rule and one-Case-at-a-time, both from the `CLAUDE.md` imports, with no read-tool call
-before the reply; the fence case of `tests/test_ledger.py` held. Since case 15.1 the same
-test asserts the inverse shape — a LEDGER block records, everything else is a preview — and
-the criterion's wording predates that change.
+live 2026-09-13 session L: the first turn assembled the Frontier without a read call and every Case of the session used the protocol as loaded — LEDGER blocks only in the acknowledging reply, one Case per reply, sub-cases with their own when/then/ratification, then blocks with method and estimate_slug (86), the Spec at raw/2026-09-13/0652/spec.md and the Frontier beside it (73.9), the case N id in every line and supersedes (75.1); the previews in the ratification quotes of ten Cases added nothing — the ledger holds exactly the 41 decision lines of the LEDGER blocks; the clause "states the rule" was met by use, not by a statement at session start
 
 ## History
 
@@ -76,3 +72,4 @@ the criterion's wording predates that change.
 - 2026-09-12 criterion: case 73.9 added · [[decision-case-73.9]]
 - 2026-09-12 criterion: case 75.1 added · [[decision-case-75.1]]
 - 2026-09-12 criterion: case 86 added · [[decision-case-86]]
+- 2026-09-13 status: pending → passed · raw/2026-09-13/ledger.md#L43

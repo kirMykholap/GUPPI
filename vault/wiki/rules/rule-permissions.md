@@ -2,7 +2,7 @@
 type: rule
 kind: Leaf
 purpose: Lets the session write its own working files without asking, and nothing else
-status: draft
+status: built
 enforcement: render
 governs: .claude/settings.json
 render_mode: partial
@@ -54,3 +54,4 @@ a refusal that matters has a hook behind it (case 85.5).
 
 - 2026-09-12 created · [[decision-case-85.5]]
 - 2026-09-12 estimate estimate-permissions added · [[decision-case-85.5]]
+- 2026-09-13 status: draft → built · cascade

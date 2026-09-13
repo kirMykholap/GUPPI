@@ -1,7 +1,7 @@
 ---
 type: estimate
 kind: QA
-status: passed
+status: pending
 target: rule-pretask
 origin: raw/2026-09-09/ledger.md#case-24.2
 sprint: migration
@@ -73,6 +73,16 @@ Estimate or more than one while the item names no `estimate_slug`.
 the choice.
 **－** A page with exactly one Estimate is no finding.
 
+### case 103.4
+
+When:
+`uv run guppi pretask --check` gathers the lines of the window.
+
+Then:
+The window is `raw/<hi date>/<hi HHMM>/ledger.md` whole, plus the date-level ledgers from the `hi` date to today from the `hi` time on, as today, while any exist.
+**＋** A grammar finding names the file: `raw/<date>/<HHMM>/ledger.md:<n>` or `raw/<date>/ledger.md:<n>`.
+**＋** `estimate-pretask-reconciles` gets a `### case 103.4` block, `pending`.
+
 ## Method
 
 One reading by hand, written into the estimate line — the exception the Method rule
@@ -97,3 +107,4 @@ unit: tests/test_pretask.py 48 green with the fifth form finding of 90.2 — a p
 - 2026-09-12 status: pending → passed · raw/2026-09-12/ledger.md#L158
 - 2026-09-12 criterion: case 90.2 added · [[decision-case-90.2]]
 - 2026-09-12 status: pending → passed · raw/2026-09-12/ledger.md#L208
+- 2026-09-13 criterion: case 103.4 added · [[decision-case-103.4]]

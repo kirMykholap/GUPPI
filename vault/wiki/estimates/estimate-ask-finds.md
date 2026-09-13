@@ -1,7 +1,7 @@
 ---
 type: estimate
 kind: QA
-status: passed
+status: pending
 target: rule-ask
 origin: raw/2026-09-09/ledger.md#case-23.1
 sprint: migration
@@ -25,6 +25,17 @@ lesson under `rules`. Each answer is the five lines, no index or page text reach
 caller's context, each dispatch is in the event log; the reading records whether `@`
 expanded and the tokens of one dispatch.
 
+### case 105.1
+
+When:
+A question to `ask-guppi` names a slug.
+
+Then:
+The `tags/slug` line says one of three: `free`; `live` (with the category); `archived at <path> by [[decision-case-N]]` — by a Glob `vault/archive/**/<slug>.md`, `N` from the `origin` of the page found.
+**＋** The agent opens an archived page only when the question names its slug and asks what it said or why it was withdrawn; it answers from its Result, `origin` and History.
+**＋** `estimate-ask-finds` gets a `### case 105.1` block, `pending`.
+**－** The archive is not searched by meaning: the `exists` and `near` lines are live pages only.
+
 ## Method
 
 Three readings by hand in one session, written into the estimate line — the exception the
@@ -47,3 +58,4 @@ uses). Deviations: the lines run to several sentences each, and the third answer
 
 - 2026-09-09 created · raw/2026-09-09/ledger.md#case-23.1
 - 2026-09-10 status: pending → passed · written by hand, no generator yet
+- 2026-09-13 criterion: case 105.1 added · [[decision-case-105.1]]

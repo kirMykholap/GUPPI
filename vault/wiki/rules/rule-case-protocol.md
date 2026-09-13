@@ -2,7 +2,7 @@
 type: rule
 kind: Leaf
 purpose: Prevents a decision from being acted on before it is ratified, or ratified without its content in view
-status: draft
+status: built
 enforcement: render
 governs: CLAUDE.md
 render_mode: partial
@@ -126,3 +126,4 @@ page; the reference dangles until then, on purpose.
 - 2026-09-12 status: built → draft · cascade
 - 2026-09-12 defer by decision-case-81 superseded · [[decision-case-86]]
 - 2026-09-12 updated: the two keys of the derived Estimate are ratified as estimate_kind and estimate_slug (case 86) · [[decision-case-86]]
+- 2026-09-13 status: draft → built · cascade

@@ -1,7 +1,7 @@
 ---
 type: estimate
 kind: QA
-status: passed
+status: pending
 target: rule-page-generation
 origin: raw/2026-09-10/ledger.md#case-32
 sprint: migration
@@ -44,6 +44,60 @@ page not marked exists fails. Live: the yaml of the session's librarian run; the
 reading records pages created per category, make lint afterwards against the
 known-false list, and git diff --stat.
 
+### case 101.1
+
+When:
+`uv run guppi generate` applies a `create` whose slug is a live page without `kind` and with `status: draft`.
+
+Then:
+The page is filled from the entry: fields and sections as for a new page, `origin` the create's, `created` kept, `deferred_by` kept (empty after the supersedes), History gains `created over placeholder · [[decision-case-N]]`.
+**＋** The Estimate from `method` is created and written into `estimates`, as for any Leaf create.
+**＋** Any other existing page is a collision, as today.
+**＋** `estimate-generate-writes` gets a `### case 101.1` block, `pending`.
+
+### case 104.1
+
+When:
+`uv run guppi generate` sets `superseded` on a decision page, or meets a decision with `status: superseded` in the cascade.
+
+Then:
+The page's status is `archived`; `superseded_by` and the History `superseded by [[X]]` as today, plus the History `archived · superseded`; `cleanup` takes it under the session of the run.
+**＋** The cascade walks every decision page: the 24 `superseded` of today leave at the first run.
+**＋** `estimate-generate-writes` gets a `### case 104.1` block, `pending`.
+**－** `deferred_by`, the History wikilinks and the `supersedes` chain do not change: the slug is known in the archive.
+
+### case 104.2
+
+When:
+In the cascade `generate` meets an Insight with `status: actioned`.
+
+Then:
+Every child of it with `status: clustered` gets `status: archived`, History `archived · insight actioned`; the Insight's `children` does not change.
+**＋** A lesson synthesis adds later, returning the Insight to `open`, stays live; the children archived before stay archived.
+**＋** `estimate-generate-writes` gets a `### case 104.2` block, `pending`.
+
+### case 104.3
+
+When:
+In the cascade `generate` recounts the `severity` of an Insight with `status: open`.
+
+Then:
+`severity` 0 — every child `archived` — gives `status: archived`, History `archived · no live child`; `children` keeps the slugs.
+**＋** `severity` 1 or more: as it is; the Insight stands on one live child.
+**＋** `estimate-generate-writes` gets a `### case 104.3` block, `pending`.
+**－** An `actioned` Insight with `severity` 0 is not archived: it is kept for the recurrence.
+
+### case 105.3
+
+When:
+`uv run guppi generate` applies an `update` (or `estimate`, `delete`, `defer`) to a slug that is not under `wiki/`.
+
+Then:
+`find` looks for `<slug>.md` under `vault/archive/`, `raw/` folders excluded, and edits the page there: `set`, `sections`, `replace`, History — as for a live page.
+**＋** `set: {status: <not archived>}` in the same entry — `cleanup` then brings the page back to `wiki/<category>/` with the History `restored · cleanup`.
+**＋** `estimate-generate-writes` gets a `### case 105.3` block, `pending`.
+**－** A slug in neither place: "no such page", as today.
+
 ## Method
 
 pytest in tests/test_generate.py against a temp vault; the live reading once by hand
@@ -62,3 +116,8 @@ unit: tests/test_generate.py green in the same 47, with the derived Estimate pag
 - 2026-09-12 updated: the decision page's four lists replace the aligned pair in the criterion (case 59.4) · [[decision-case-59.4]]
 - 2026-09-12 updated: the derived Estimate page and the decision page's Criterion links join the criterion (case 72.4); pending until the unit reading · [[decision-case-72.4]]
 - 2026-09-12 status: pending → passed · raw/2026-09-12/ledger.md#L167
+- 2026-09-13 criterion: case 101.1 added · [[decision-case-101.1]]
+- 2026-09-13 criterion: case 104.1 added · [[decision-case-104.1]]
+- 2026-09-13 criterion: case 104.2 added · [[decision-case-104.2]]
+- 2026-09-13 criterion: case 104.3 added · [[decision-case-104.3]]
+- 2026-09-13 criterion: case 105.3 added · [[decision-case-105.3]]

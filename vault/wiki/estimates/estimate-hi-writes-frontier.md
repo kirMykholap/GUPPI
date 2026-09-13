@@ -1,7 +1,7 @@
 ---
 type: estimate
 kind: QA
-status: passed
+status: pending
 target: rule-skill-hi
 origin: raw/2026-09-12/ledger.md#case-59.2
 sprint: migration
@@ -32,6 +32,15 @@ Then:
 The Frontier goes to `raw/<hi date>/<hi HHMM>/frontier.md`, the folder made at that
 moment; the lines and their closing are as in case 59.2.
 
+### case 101.4
+
+When:
+The agent assembles the Frontier from the text of `/hi`.
+
+Then:
+The skill text: "A `failed` reading or a lesson in the Tail above is an item; a decision line of the tail is not — its page comes with the next librarian."
+**＋** `estimate-hi-writes-frontier` gets a `### case 101.4` block, `pending`.
+
 ## Method
 
 pytest in `tests/test_pretask.py` against a temp plan and frontier; the live reading at
@@ -46,3 +55,4 @@ live 2026-09-12 session J: after /hi the agent wrote raw/2026-09-12/frontier.md 
 - 2026-09-12 created · [[decision-case-59.2]]
 - 2026-09-12 criterion: case 73.3 added · [[decision-case-73.3]]
 - 2026-09-12 status: pending → passed · raw/2026-09-12/ledger.md#L151
+- 2026-09-13 criterion: case 101.4 added · [[decision-case-101.4]]

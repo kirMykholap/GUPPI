@@ -746,3 +746,199 @@ instruction. The global feed; a page's own `## History` is the per-page view.
 - 2026-09-12 rules/rule-governed-files-hook status: draft → built · cascade · generate
 - 2026-09-12 rules/rule-hook-registry status: built → draft · cascade · generate
 - 2026-09-12 rules/rule-page-generation status: draft → built · cascade · generate
+- 2026-09-13 decisions/decision-case-100.1 created · raw/2026-09-13/ledger.md#case-100.1 · generate
+- 2026-09-13 decisions/decision-case-95 superseded by decision-case-100.1 · [[decision-case-100.1]] · generate
+- 2026-09-13 rules/rule-ledger-tail defer by decision-case-95 superseded · [[decision-case-100.1]] · generate
+- 2026-09-13 rules/rule-raw-archive created · [[decision-case-100.1]] · generate
+- 2026-09-13 rules/rule-documentation child rule-raw-archive added · [[decision-case-100.1]] · generate
+- 2026-09-13 estimates/estimate-raw-archive created · [[decision-case-100.1]] · generate
+- 2026-09-13 rules/rule-raw-archive estimate estimate-raw-archive added · [[decision-case-100.1]] · generate
+- 2026-09-13 decisions/decision-case-100.2 created · raw/2026-09-13/ledger.md#case-100.2 · generate
+- 2026-09-13 rules/rule-documentation updated: the archive step between brief and close, after the brief has read the yamls; rule-raw-archive the sixth child (case 100.2) · [[decision-case-100.2]] · generate
+- 2026-09-13 estimates/estimate-documentation-completes criterion: case 100.2 added · [[decision-case-100.2]] · generate
+- 2026-09-13 decisions/decision-case-100.3 created · raw/2026-09-13/ledger.md#case-100.3 · generate
+- 2026-09-13 rules/rule-lint updated: origin resolves in raw/ or the archive (case 100.3, superseded by 103.5 which carries the wording) · [[decision-case-100.3]] · generate
+- 2026-09-13 estimates/estimate-lint-catches criterion: case 100.3 added · [[decision-case-100.3]] · generate
+- 2026-09-13 decisions/decision-case-100.4 created · raw/2026-09-13/ledger.md#case-100.4 · generate
+- 2026-09-13 rules/rule-cleanup updated: raw/ is guppi archive's, not cleanup's (case 100.4) · [[decision-case-100.4]] · generate
+- 2026-09-13 decisions/decision-case-100.5 created · raw/2026-09-13/ledger.md#case-100.5 · generate
+- 2026-09-13 decisions/decision-case-100.6 created · raw/2026-09-13/ledger.md#case-100.6 · generate
+- 2026-09-13 decisions/decision-case-101.1 created · raw/2026-09-13/ledger.md#case-101.1 · generate
+- 2026-09-13 rules/rule-page-generation updated: a create over a placeholder fills it; any other existing page stays a collision (case 101.1) · [[decision-case-101.1]] · generate
+- 2026-09-13 estimates/estimate-generate-writes criterion: case 101.1 added · [[decision-case-101.1]] · generate
+- 2026-09-13 decisions/decision-case-101.2 created · raw/2026-09-13/ledger.md#case-101.2 · generate
+- 2026-09-13 rules/rule-ledger-tail created over placeholder · [[decision-case-101.2]] · generate
+- 2026-09-13 rules/rule-skill-hi child rule-ledger-tail added · [[decision-case-101.2]] · generate
+- 2026-09-13 estimates/estimate-ledger-tail created · [[decision-case-101.2]] · generate
+- 2026-09-13 rules/rule-ledger-tail estimate estimate-ledger-tail added · [[decision-case-101.2]] · generate
+- 2026-09-13 decisions/decision-case-101.3 created · raw/2026-09-13/ledger.md#case-101.3 · generate
+- 2026-09-13 rules/rule-skill-hi updated: rule-ledger-tail the fourth child; its marker after rule-github-issues, the tail in the context without a read call (case 101.3) · [[decision-case-101.3]] · generate
+- 2026-09-13 estimates/estimate-hi-no-read-calls criterion: case 101.3 added · [[decision-case-101.3]] · generate
+- 2026-09-13 decisions/decision-case-101.4 created · raw/2026-09-13/ledger.md#case-101.4 · generate
+- 2026-09-13 rules/rule-skill-hi updated: a failed reading or a lesson of the tail is a Frontier item, a decision line is not (case 101.4) · [[decision-case-101.4]] · generate
+- 2026-09-13 estimates/estimate-hi-writes-frontier criterion: case 101.4 added · [[decision-case-101.4]] · generate
+- 2026-09-13 decisions/decision-case-101.5 created · raw/2026-09-13/ledger.md#case-101.5 · generate
+- 2026-09-13 decisions/decision-case-102.1 created · raw/2026-09-13/ledger.md#case-102.1 · generate
+- 2026-09-13 decisions/decision-case-102.2 created · raw/2026-09-13/ledger.md#case-102.2 · generate
+- 2026-09-13 rules/rule-cleanup updated: the root is vault/archive/, the page lands under the session of the run (case 102.2) · [[decision-case-102.2]] · generate
+- 2026-09-13 estimates/estimate-cleanup-moves criterion: case 102.2 added · [[decision-case-102.2]] · generate
+- 2026-09-13 decisions/decision-case-102.4 created · raw/2026-09-13/ledger.md#case-102.4 · generate
+- 2026-09-13 rules/rule-documentation updated: the frame names the archive root vault/archive/ (case 102.4) · [[decision-case-102.4]] · generate
+- 2026-09-13 decisions/decision-case-103.1 created · raw/2026-09-13/ledger.md#case-103.1 · generate
+- 2026-09-13 rules/rule-ledger-write updated: the lines go to the session folder raw/<hi date>/<hi HHMM>/ledger.md; the dedupe reads every ledger under raw/ (case 103.1) · [[decision-case-103.1]] · generate
+- 2026-09-13 estimates/estimate-ledger-write-lifts criterion: case 103.1 added · [[decision-case-103.1]] · generate
+- 2026-09-13 decisions/decision-case-103.2 created · raw/2026-09-13/ledger.md#case-103.2 · generate
+- 2026-09-13 rules/rule-materialize updated: the unit of the walk is the session folder with its own ledger, yaml, Spec and origin; a date-level ledger is walked in the old shape (case 103.2) · [[decision-case-103.2]] · generate
+- 2026-09-13 estimates/estimate-materialize-walks-dates criterion: case 103.2 added · [[decision-case-103.2]] · generate
+- 2026-09-13 decisions/decision-case-103.3 created · raw/2026-09-13/ledger.md#case-103.3 · generate
+- 2026-09-13 rules/rule-page-generation updated: the walk covers the yaml of every session folder as well as the date-level yaml (case 103.3) · [[decision-case-103.3]] · generate
+- 2026-09-13 estimates/estimate-generate-walks-dates criterion: case 103.3 added · [[decision-case-103.3]] · generate
+- 2026-09-13 decisions/decision-case-103.4 created · raw/2026-09-13/ledger.md#case-103.4 · generate
+- 2026-09-13 rules/rule-pretask updated: the window is the session's ledger plus the date-level ledgers of the window (case 103.4) · [[decision-case-103.4]] · generate
+- 2026-09-13 estimates/estimate-pretask-reconciles criterion: case 103.4 added · [[decision-case-103.4]] · generate
+- 2026-09-13 decisions/decision-case-103.5 created · raw/2026-09-13/ledger.md#case-103.5 · generate
+- 2026-09-13 decisions/decision-case-100.3 superseded by decision-case-103.5 · [[decision-case-103.5]] · generate
+- 2026-09-13 rules/rule-lint updated: both forms of origin resolve in raw/ or vault/archive/; archived slugs come from vault/archive/ outside raw/ folders; supersedes case 100.3 (case 103.5) · [[decision-case-103.5]] · generate
+- 2026-09-13 estimates/estimate-lint-catches criterion: case 103.5 added · [[decision-case-103.5]] · generate
+- 2026-09-13 estimates/estimate-lint-catches criterion: case 100.3 removed · [[decision-case-103.5]] · generate
+- 2026-09-13 decisions/decision-case-103.6 created · raw/2026-09-13/ledger.md#case-103.6 · generate
+- 2026-09-13 decisions/decision-case-100.5 superseded by decision-case-103.6 · [[decision-case-103.6]] · generate
+- 2026-09-13 decisions/decision-case-104.1 created · raw/2026-09-13/ledger.md#case-104.1 · generate
+- 2026-09-13 rules/rule-page-generation updated: a superseded decision is archived by the cascade (case 104.1) · [[decision-case-104.1]] · generate
+- 2026-09-13 estimates/estimate-generate-writes criterion: case 104.1 added · [[decision-case-104.1]] · generate
+- 2026-09-13 decisions/decision-case-104.2 created · raw/2026-09-13/ledger.md#case-104.2 · generate
+- 2026-09-13 rules/rule-page-generation updated: the clustered lessons of an actioned Insight are archived by the cascade (case 104.2) · [[decision-case-104.2]] · generate
+- 2026-09-13 estimates/estimate-generate-writes criterion: case 104.2 added · [[decision-case-104.2]] · generate
+- 2026-09-13 decisions/decision-case-104.3 created · raw/2026-09-13/ledger.md#case-104.3 · generate
+- 2026-09-13 decisions/decision-case-97 superseded by decision-case-104.3 · [[decision-case-104.3]] · generate
+- 2026-09-13 rules/rule-synthesis defer by decision-case-97 superseded · [[decision-case-104.3]] · generate
+- 2026-09-13 rules/rule-page-generation updated: an open Insight with no live child is archived by the cascade; supersedes case 97 (case 104.3) · [[decision-case-104.3]] · generate
+- 2026-09-13 estimates/estimate-generate-writes criterion: case 104.3 added · [[decision-case-104.3]] · generate
+- 2026-09-13 decisions/decision-case-105.1 created · raw/2026-09-13/ledger.md#case-105.1 · generate
+- 2026-09-13 decisions/decision-case-94 superseded by decision-case-105.1 · [[decision-case-105.1]] · generate
+- 2026-09-13 rules/rule-ask defer by decision-case-94 superseded · [[decision-case-105.1]] · generate
+- 2026-09-13 rules/rule-ask updated: the named slug is checked against vault/archive/ by Glob and answered as free, live or archived at a path; the archive is never searched by meaning; supersedes case 94 (case 105.1) · [[decision-case-105.1]] · generate
+- 2026-09-13 estimates/estimate-ask-finds criterion: case 105.1 added · [[decision-case-105.1]] · generate
+- 2026-09-13 decisions/decision-case-105.2 created · raw/2026-09-13/ledger.md#case-105.2 · generate
+- 2026-09-13 rules/rule-materialize updated: exists only when the page on disk was born of the same Case; another Case's page is a collision (case 105.2) · [[decision-case-105.2]] · generate
+- 2026-09-13 estimates/estimate-materialize-assembles criterion: case 105.2 added · [[decision-case-105.2]] · generate
+- 2026-09-13 decisions/decision-case-105.3 created · raw/2026-09-13/ledger.md#case-105.3 · generate
+- 2026-09-13 rules/rule-page-generation updated: an update reaches an archived page in the archive, so a restore and its fix are one entry (case 105.3) · [[decision-case-105.3]] · generate
+- 2026-09-13 estimates/estimate-generate-writes criterion: case 105.3 added · [[decision-case-105.3]] · generate
+- 2026-09-13 decisions/decision-case-106 created · raw/2026-09-13/ledger.md#case-106 · generate
+- 2026-09-13 decisions/decision-case-98 superseded by decision-case-106 · [[decision-case-106]] · generate
+- 2026-09-13 rules/rule-skill-hi defer by decision-case-98 superseded · [[decision-case-106]] · generate
+- 2026-09-13 rules/rule-skill-hi deferred · [[decision-case-106]] · generate
+- 2026-09-13 decisions/decision-case-107 created · raw/2026-09-13/ledger.md#case-107 · generate
+- 2026-09-13 decisions/decision-case-93 superseded by decision-case-107 · [[decision-case-107]] · generate
+- 2026-09-13 rules/rule-work-mode defer by decision-case-93 superseded · [[decision-case-107]] · generate
+- 2026-09-13 rules/rule-subagent-guppi defer by decision-case-93 superseded · [[decision-case-107]] · generate
+- 2026-09-13 rules/rule-work-mode deferred · [[decision-case-107]] · generate
+- 2026-09-13 rules/rule-subagent-guppi deferred · [[decision-case-107]] · generate
+- 2026-09-13 decisions/decision-case-108 created · raw/2026-09-13/ledger.md#case-108 · generate
+- 2026-09-13 decisions/decision-case-96 superseded by decision-case-108 · [[decision-case-108]] · generate
+- 2026-09-13 rules/rule-synthesis defer by decision-case-96 superseded · [[decision-case-108]] · generate
+- 2026-09-13 rules/rule-synthesis deferred · [[decision-case-108]] · generate
+- 2026-09-13 decisions/decision-case-109.1 created · raw/2026-09-13/ledger.md#case-109.1 · generate
+- 2026-09-13 rules/rule-retro updated: Retro reads the session ledgers of the day (and the date-level one while it exists); the revert patch goes to the session folder (case 109.1) · [[decision-case-109.1]] · generate
+- 2026-09-13 estimates/estimate-retro-loads criterion: case 109.1 added · [[decision-case-109.1]] · generate
+- 2026-09-13 decisions/decision-case-109.2 created · raw/2026-09-13/ledger.md#case-109.2 · generate
+- 2026-09-13 rules/rule-claude-md updated: the Migration paragraph names the session ledger (case 109.2) · [[decision-case-109.2]] · generate
+- 2026-09-13 decisions/decision-case-109.3 created · raw/2026-09-13/ledger.md#case-109.3 · generate
+- 2026-09-13 lessons/lesson-transcript-omits-text-emitted-before-tool-calls created · raw/2026-09-13/ledger.md#L42 · generate
+- 2026-09-13 estimates/estimate-case-protocol-loaded status: pending → passed · raw/2026-09-13/ledger.md#L43 · generate
+- 2026-09-13 estimates/estimate-render-sync-reports status: pending → passed · raw/2026-09-13/ledger.md#L44 · generate
+- 2026-09-13 estimates/estimate-default-mode status: pending → passed · raw/2026-09-13/ledger.md#L45 · generate
+- 2026-09-13 estimates/estimate-hook-registry-rendered status: pending → passed · raw/2026-09-13/ledger.md#L46 · generate
+- 2026-09-13 estimates/estimate-permissions status: pending → passed · raw/2026-09-13/ledger.md#L47 · generate
+- 2026-09-13 estimates/estimate-render-harness-reproduces status: pending → passed · raw/2026-09-13/ledger.md#L48 · generate
+- 2026-09-13 estimates/estimate-claude-md-rendered status: pending → passed · raw/2026-09-13/ledger.md#L49 · generate
+- 2026-09-13 insights/insight-ledger-hook-reads-only-the-final-text updated: synthesis: lesson-transcript-omits-text-emitted-before-tool-calls added, the text before a tool call is not in the transcript · raw/2026-09-13/ledger.md#L42 · generate
+- 2026-09-13 lessons/lesson-transcript-omits-text-emitted-before-tool-calls updated: clustered under insight-ledger-hook-reads-only-the-final-text · raw/2026-09-13/ledger.md#L42 · generate
+- 2026-09-13 rules/rule-ask status: built → draft · cascade · generate
+- 2026-09-13 rules/rule-case-protocol status: draft → built · cascade · generate
+- 2026-09-13 rules/rule-claude-md status: draft → built · cascade · generate
+- 2026-09-13 rules/rule-cleanup status: built → draft · cascade · generate
+- 2026-09-13 rules/rule-default-mode status: draft → built · cascade · generate
+- 2026-09-13 rules/rule-hook-registry status: draft → built · cascade · generate
+- 2026-09-13 rules/rule-ledger-write status: built → draft · cascade · generate
+- 2026-09-13 rules/rule-lint status: built → draft · cascade · generate
+- 2026-09-13 rules/rule-materialize status: built → draft · cascade · generate
+- 2026-09-13 rules/rule-page-generation status: built → draft · cascade · generate
+- 2026-09-13 rules/rule-permissions status: draft → built · cascade · generate
+- 2026-09-13 rules/rule-pretask status: built → draft · cascade · generate
+- 2026-09-13 rules/rule-render-harness status: draft → built · cascade · generate
+- 2026-09-13 rules/rule-skill-hi status: built → draft · cascade · generate
+- 2026-09-13 decisions/decision-case-100.3 archived · superseded · generate
+- 2026-09-13 decisions/decision-case-100.5 archived · superseded · generate
+- 2026-09-13 decisions/decision-case-15.2 archived · superseded · generate
+- 2026-09-13 decisions/decision-case-22 archived · superseded · generate
+- 2026-09-13 decisions/decision-case-23.1 archived · superseded · generate
+- 2026-09-13 decisions/decision-case-24.2 archived · superseded · generate
+- 2026-09-13 decisions/decision-case-29 archived · superseded · generate
+- 2026-09-13 decisions/decision-case-30 archived · superseded · generate
+- 2026-09-13 decisions/decision-case-31 archived · superseded · generate
+- 2026-09-13 decisions/decision-case-38.1 archived · superseded · generate
+- 2026-09-13 decisions/decision-case-45 archived · superseded · generate
+- 2026-09-13 decisions/decision-case-50 archived · superseded · generate
+- 2026-09-13 decisions/decision-case-51 archived · superseded · generate
+- 2026-09-13 decisions/decision-case-63 archived · superseded · generate
+- 2026-09-13 decisions/decision-case-64 archived · superseded · generate
+- 2026-09-13 decisions/decision-case-65 archived · superseded · generate
+- 2026-09-13 decisions/decision-case-67 archived · superseded · generate
+- 2026-09-13 decisions/decision-case-68 archived · superseded · generate
+- 2026-09-13 decisions/decision-case-69 archived · superseded · generate
+- 2026-09-13 decisions/decision-case-78 archived · superseded · generate
+- 2026-09-13 decisions/decision-case-79 archived · superseded · generate
+- 2026-09-13 decisions/decision-case-80 archived · superseded · generate
+- 2026-09-13 decisions/decision-case-81 archived · superseded · generate
+- 2026-09-13 decisions/decision-case-82 archived · superseded · generate
+- 2026-09-13 decisions/decision-case-83 archived · superseded · generate
+- 2026-09-13 decisions/decision-case-84 archived · superseded · generate
+- 2026-09-13 decisions/decision-case-93 archived · superseded · generate
+- 2026-09-13 decisions/decision-case-94 archived · superseded · generate
+- 2026-09-13 decisions/decision-case-95 archived · superseded · generate
+- 2026-09-13 decisions/decision-case-96 archived · superseded · generate
+- 2026-09-13 decisions/decision-case-97 archived · superseded · generate
+- 2026-09-13 decisions/decision-case-98 archived · superseded · generate
+- 2026-09-13 estimates/estimate-raw-archive status: pending → passed · raw/2026-09-13/0652/ledger.md#L1 · generate
+- 2026-09-13 estimates/estimate-lint-catches status: pending → passed · raw/2026-09-13/0652/ledger.md#L2 · generate
+- 2026-09-13 lessons/lesson-heredoc-trap-hit-twice-with-its-lesson-live created · raw/2026-09-13/0652/ledger.md#L3 · generate
+- 2026-09-13 estimates/estimate-ledger-write-lifts status: pending → passed · raw/2026-09-13/0652/ledger.md#L4 · generate
+- 2026-09-13 insights/insight-session-vault-knowledge-not-loaded updated: synthesis: lesson-heredoc-trap-hit-twice-with-its-lesson-live added, the same trap with its lesson live · raw/2026-09-13/0652/ledger.md#L3 · generate
+- 2026-09-13 lessons/lesson-heredoc-trap-hit-twice-with-its-lesson-live updated: clustered under insight-session-vault-knowledge-not-loaded · raw/2026-09-13/0652/ledger.md#L3 · generate
+- 2026-09-13 rules/rule-ledger-write status: draft → built · cascade · generate
+- 2026-09-13 rules/rule-lint status: draft → built · cascade · generate
+- 2026-09-13 rules/rule-raw-archive status: draft → built · cascade · generate
+- 2026-09-13 decisions/decision-case-100.3 archived · cleanup
+- 2026-09-13 decisions/decision-case-100.5 archived · cleanup
+- 2026-09-13 decisions/decision-case-15.2 archived · cleanup
+- 2026-09-13 decisions/decision-case-22 archived · cleanup
+- 2026-09-13 decisions/decision-case-23.1 archived · cleanup
+- 2026-09-13 decisions/decision-case-24.2 archived · cleanup
+- 2026-09-13 decisions/decision-case-29 archived · cleanup
+- 2026-09-13 decisions/decision-case-30 archived · cleanup
+- 2026-09-13 decisions/decision-case-31 archived · cleanup
+- 2026-09-13 decisions/decision-case-38.1 archived · cleanup
+- 2026-09-13 decisions/decision-case-45 archived · cleanup
+- 2026-09-13 decisions/decision-case-50 archived · cleanup
+- 2026-09-13 decisions/decision-case-51 archived · cleanup
+- 2026-09-13 decisions/decision-case-63 archived · cleanup
+- 2026-09-13 decisions/decision-case-64 archived · cleanup
+- 2026-09-13 decisions/decision-case-65 archived · cleanup
+- 2026-09-13 decisions/decision-case-67 archived · cleanup
+- 2026-09-13 decisions/decision-case-68 archived · cleanup
+- 2026-09-13 decisions/decision-case-69 archived · cleanup
+- 2026-09-13 decisions/decision-case-78 archived · cleanup
+- 2026-09-13 decisions/decision-case-79 archived · cleanup
+- 2026-09-13 decisions/decision-case-80 archived · cleanup
+- 2026-09-13 decisions/decision-case-81 archived · cleanup
+- 2026-09-13 decisions/decision-case-82 archived · cleanup
+- 2026-09-13 decisions/decision-case-83 archived · cleanup
+- 2026-09-13 decisions/decision-case-84 archived · cleanup
+- 2026-09-13 decisions/decision-case-93 archived · cleanup
+- 2026-09-13 decisions/decision-case-94 archived · cleanup
+- 2026-09-13 decisions/decision-case-95 archived · cleanup
+- 2026-09-13 decisions/decision-case-96 archived · cleanup
+- 2026-09-13 decisions/decision-case-97 archived · cleanup
+- 2026-09-13 decisions/decision-case-98 archived · cleanup

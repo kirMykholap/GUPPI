@@ -1,7 +1,7 @@
 ---
 type: estimate
 kind: QA
-status: pending
+status: passed
 target: rule-render-harness
 origin: raw/2026-09-09/ledger.md#case-18.1
 sprint: migration
@@ -72,7 +72,7 @@ written into the estimate line.
 
 ## Result
 
-unit: tests/test_render.py green in the 211; live 2026-09-12 session J: after uv run guppi render, git diff --stat shows six files, not the two dropped marker lines of hi/SKILL.md — hi/SKILL.md changed by the text of 59.2 and 59.7, CLAUDE.md by 37 lines of 59.5, 59.6, 62, 66, settings.json by the guard and render --sync hooks, the librarian agent and two skills by their Cases; render --check then exits 0; the two live clauses describe a tree the librarian's run of session I had already left
+tests/test_render.py green in the 267 of session K; live 2026-09-13 session L start: git diff --stat after render --sync named only the three governed files whose Rule pages changed since the last render (settings.json from rule-settings and children, librarian-guppi.md from 89.1 and 90.3, pre-task SKILL.md from 90.2), each diff the text the pages gained, settings.json rendered with no marker lines (85.1), and uv run guppi render --check exited 0 (88.1); the JSON gate of 89.4 let the file through and json.load parses it
 
 ## History
 
@@ -85,3 +85,4 @@ unit: tests/test_render.py green in the 211; live 2026-09-12 session J: after uv
 - 2026-09-12 criterion: case 88.1 added · [[decision-case-88.1]]
 - 2026-09-12 updated: the stale live clause of cases 18.1 and 59.8 leaves the Criterion prose (case 88.1) · [[decision-case-88.1]]
 - 2026-09-12 criterion: case 89.4 added · [[decision-case-89.4]]
+- 2026-09-13 status: pending → passed · raw/2026-09-13/ledger.md#L48

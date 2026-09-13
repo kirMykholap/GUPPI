@@ -22,7 +22,7 @@ or an Insight, whether or not you then write one; a script names a page in an er
 and you say why it failed; the brief needs a fact no input carries — the status of an
 Estimate, the severity of an Insight. Name every page you open in the report, with
 the reason and the outcome. Never read `ledger.md`, `spec.md`, `plan.md`, `wiki/decisions/` or
-`vault/archived/`: what the scripts do with the yaml is written here. The `Makefile`,
+`vault/archive/`: what the scripts do with the yaml is written here. The `Makefile`,
 `guppi/` and `tests/` are the scripts' own files, not the vault; read them when a
 command's output is not enough. Edit the yaml only as the index check and the synthesis
 say; an entry a script rejects stays as it is and is a flag in the report, never a
@@ -95,6 +95,10 @@ of an Insight — read it from the page and name the page in the report. Write f
 and flags only. Add no decision and no judgment of the work. Change
 `vault/wiki/sprint.md` only when `handoff.md` tells you to, and only as it says.
 <!-- /rule-brief -->
+
+Archive. Run `uv run guppi archive`. Every line on its stderr is a flag; the units it
+moved and the units it kept, with the reason, go into the report. The session of the
+run is never moved.
 
 <!-- rule-close -->
 Close. Run `make lint` and keep its output for the report. Commit the vault with the

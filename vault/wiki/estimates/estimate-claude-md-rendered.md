@@ -1,7 +1,7 @@
 ---
 type: estimate
 kind: QA
-status: pending
+status: passed
 target: rule-claude-md
 origin: raw/2026-09-12/ledger.md#case-71.1
 sprint: migration
@@ -53,7 +53,7 @@ child.
 
 ## Result
 
-live 2026-09-12 session J, the first uv run guppi render after rule-claude-md exists: CLAUDE.md equals the Render with rule-case-protocol spliced between its markers and render --check exits 0; the git diff is not marker lines only — a full render drops the outer markers by design (estimate-render-harness-reproduces, unit), and the diff holds 37 lines of the Case protocol that Cases 59.5, 59.6, 62 and 66 wrote into the Render of rule-case-protocol after the file was last written by hand; the clause was written against a file the page had already left
+live 2026-09-13 session L: CLAUDE.md was not among the files render --sync wrote, so it still equals the render of rule-claude-md with rule-case-protocol between its markers made at the start of session K; render --check exits 0; the session loaded it with glossary.md and case-schema.md expanded inline, and its Migration paragraph names vault/raw/<date>/<hi HHMM>/spec.md (73.10)
 
 ## History
 
@@ -62,3 +62,4 @@ live 2026-09-12 session J, the first uv run guppi render after rule-claude-md ex
 - 2026-09-12 criterion: case 73.10 added · [[decision-case-73.10]]
 - 2026-09-12 criterion: case 88.2 added · [[decision-case-88.2]]
 - 2026-09-12 updated: the stale live clause of case 59.8 leaves the Criterion prose (case 88.2) · [[decision-case-88.2]]
+- 2026-09-13 status: pending → passed · raw/2026-09-13/ledger.md#L49

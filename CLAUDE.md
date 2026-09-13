@@ -28,7 +28,7 @@ move closes:
 - **The state a session starts from is `vault/wiki/brief.md`.** Read it first; nothing prints
   it yet. `vault/wiki/sprint.md` names the slices and what closes the sprint.
 - **The ledger hook exists since Slice 1.** Lines are emitted in a ```` ```LEDGER ```` block
-  in the reply and the `Stop` hook writes them into `vault/raw/<date>/ledger.md`, each
+  in the reply and the `Stop` hook writes them into `vault/raw/<date>/<hi HHMM>/ledger.md`, the session's folder (case 103.1), each
   prefixed with the time of writing. The lines of 2026-09-09 written by hand before it
   carry no time; that is how the two are told apart.
 - **The rituals of the new model exist since Slice 3.** `/retro` (the person), `/handoff` (the

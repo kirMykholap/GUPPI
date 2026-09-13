@@ -1,7 +1,7 @@
 ---
 type: estimate
 kind: QA
-status: pending
+status: passed
 target: rule-render-harness
 origin: raw/2026-09-12/ledger.md#case-59.7
 sprint: migration
@@ -33,10 +33,11 @@ first turn, written into the estimate line.
 
 ## Result
 
-unit: tests/test_render.py green in the 47 of uv run pytest tests/test_render.py tests/test_generate.py; live 2026-09-12 session K, the first session start after case 59.7: the SessionStart hook printed a unified diff of the six governed files the librarian's run of session J had left behind — CLAUDE.md, .claude/agents/librarian-guppi.md and the hi, pre-task, retro and handoff skills — wrote the rendered text into them, and uv run guppi render --check now exits 0; the CLAUDE.md this session loaded is the text the hook wrote, not the text before it: the system prompt carries the raw/<date>/<hi HHMM>/spec.md wording of case 73 and the decision-line grammar of case 75.1, both written into rule-claude-md and rule-case-protocol after the file was last rendered
+live 2026-09-13 session L start, after the librarian of K rendered nothing: the SessionStart hook printed the unified diff of the three governed files whose pages had parted — .claude/settings.json, .claude/agents/librarian-guppi.md, .claude/skills/pre-task/SKILL.md — into the first turn and wrote the pages' text back (git status M on the three, git diff --stat 23 insertions 8 deletions); uv run guppi render --check then exited 0 with no output; the three were committed as 44e4e37
 
 ## History
 
 - 2026-09-12 created · [[decision-case-59.7]]
 - 2026-09-12 status: pending → passed · raw/2026-09-12/ledger.md#L166
 - 2026-09-12 updated: the live clause is read against a tree the librarian already rendered (case 89.3) · [[decision-case-89.3]]
+- 2026-09-13 status: pending → passed · raw/2026-09-13/ledger.md#L44

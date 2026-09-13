@@ -2,7 +2,7 @@
 type: rule
 kind: Leaf
 purpose: Prevents a Rule page and the harness file it governs from becoming two copies of one text
-status: draft
+status: built
 enforcement: check
 implementation_ref: [guppi/render.py, tests/test_render.py, .claude/settings.json]
 parent: rule-harness
@@ -65,3 +65,4 @@ file, so nothing is lost but the label in the file itself (case 85.1).
 - 2026-09-12 defer by decision-case-84 superseded · [[decision-case-88.1]]
 - 2026-09-12 updated: the live clause of the render reading is a standing rule, read against the pages that changed (case 88.1) · [[decision-case-88.1]]
 - 2026-09-12 updated: a json target is parsed before the write, and one failure stops the whole write (case 89.4) · [[decision-case-89.4]]
+- 2026-09-13 status: draft → built · cascade

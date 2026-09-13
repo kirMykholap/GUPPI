@@ -63,6 +63,18 @@ refusal is the librarian's work, not its author's.
 **－** A refusal does not stop the run: the librarian asks no questions, the person is
 gone.
 
+### case 100.2
+
+When:
+The librarian works by its frame (the Render of `rule-documentation`).
+
+Then:
+A step between Brief and Close (shown again at pre-task: the brief reads the yamls the walk named, so the archive runs after it): "Archive. Run `uv run guppi archive`. Every line on its stderr is a flag; the units it moved and the units it kept, with the reason, go into the report." The brief is already written; the commit picks the move up.
+**＋** `rule-raw-archive` is the sixth child of `rule-documentation`, after `rule-cleanup`.
+**＋** The ban on reading `vault/archive/` stays.
+**＋** The session of the run is found as `cleanup` finds it — the latest `<HHMM>/` folder of the run day, else the nearest date back — and is skipped even when dated before the run day (a session across midnight).
+**＋** `estimate-documentation-completes` gets a `### case 100.2` block, `pending`.
+
 ## Method
 
 `make test-documentation`, the pipeline over tests/test_materialize.py, tests/test_generate.py and tests/test_cleanup.py; the live reading by hand
@@ -85,3 +97,4 @@ make test-documentation 67 green; live 2026-09-12, the librarian's run of sessio
 - 2026-09-12 status: pending → failed · raw/2026-09-12/ledger.md#L168
 - 2026-09-12 criterion: case 89.1 added · [[decision-case-89.1]]
 - 2026-09-12 criterion: case 90.3 added · [[decision-case-90.3]]
+- 2026-09-13 criterion: case 100.2 added · [[decision-case-100.2]]

@@ -2,13 +2,12 @@
 type: rule
 kind: Leaf
 purpose: Prevents a create from being proposed without the vault having been asked whether it already holds the thing, or forbids it
-status: built
+status: draft
 enforcement: render
 governs: .claude/agents/ask-guppi.md
 render_mode: full
 parent: rule-plan-mode
 estimates: [estimate-ask-finds]
-deferred_by: [decision-case-94]
 origin: raw/2026-09-09/ledger.md#case-23.1
 sprint: migration
 created: 2026-09-09
@@ -33,7 +32,7 @@ description: Ask the vault what already exists, what is close, what is missing, 
 model: opus
 tools: Read, Grep, Glob
 ---
-You search the vault at `vault/wiki/` for the caller and answer in five lines. You
+You search the vault at `vault/wiki/` for the caller and answer in five lines. The archive, `vault/archive/`, is searched by slug alone, never by meaning: a named slug is checked there with a Glob `vault/archive/**/<slug>.md`, and an archived page is opened only when the question names its slug and asks what it said or why it was withdrawn (case 105.1). You
 decide nothing and propose nothing.
 
 Rules of the vault, one line per page:
@@ -51,7 +50,7 @@ Answer with exactly these five lines, each present, "none" when empty:
 - near: slug — how it differs
 - missing: what the question asks for that no page covers
 - rules: rule or lesson slug — what it forbids or requires here
-- tags/slug: tags that fit, existing first; whether the named slug is free
+- tags/slug: tags that fit, existing first; the named slug — `free`, `live` (with its category), or `archived at <path> by [[decision-case-N]]`, N from the page's `origin`
 <!-- /rule-ask -->
 
 ## Estimates
@@ -76,3 +75,6 @@ Answer with exactly these five lines, each present, "none" when empty:
 - 2026-09-12 deferred · [[decision-case-80]]
 - 2026-09-12 defer by decision-case-80 superseded · [[decision-case-94]]
 - 2026-09-12 deferred · [[decision-case-94]]
+- 2026-09-13 defer by decision-case-94 superseded · [[decision-case-105.1]]
+- 2026-09-13 updated: the named slug is checked against vault/archive/ by Glob and answered as free, live or archived at a path; the archive is never searched by meaning; supersedes case 94 (case 105.1) · [[decision-case-105.1]]
+- 2026-09-13 status: built → draft · cascade

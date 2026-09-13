@@ -1,4 +1,4 @@
-rule-ask: Prevents a create from being proposed without the vault having been asked whether it already holds the thing, or forbids it · deferred_by: decision-case-94
+rule-ask: Prevents a create from being proposed without the vault having been asked whether it already holds the thing, or forbids it
 rule-brief: Prevents the next session from starting without the facts and the flags of this one
 rule-case-protocol: Prevents a decision from being acted on before it is ratified, or ratified without its content in view
 rule-claude-md: Prevents the system prompt from holding a line nobody ratified
@@ -17,7 +17,7 @@ rule-hook-registry: Prevents a hook from being registered by hand, outside a rat
 rule-index: Prevents a pre-task check from reading every page of a category to learn what already exists
 rule-index-check: Prevents a page from being born twice under two names
 rule-internal-context: Prevents work starting without the current sprint and the previous session's handover
-rule-ledger-tail: Shows at /hi every ledger line that no vault page holds yet, so a reading or a lesson written after the librarian's commit reaches the next session's Frontier · deferred_by: decision-case-95
+rule-ledger-tail: Shows at /hi every ledger line that no vault page holds yet, so a reading or a lesson written after the librarian's commit reaches the next session's Frontier
 rule-ledger-write: Prevents a ratified line from existing only in a chat reply, or landing in a session no /hi opened
 rule-lint: Prevents a page that breaks the schema, points nowhere, or claims a status its Estimates do not support from sitting in the vault unnoticed
 rule-materialize: Prevents the librarian from reading the ledger and the Spec itself, or from routing a decision by guesswork
@@ -26,13 +26,14 @@ rule-permissions: Lets the session write its own working files without asking, a
 rule-plan-mode: Prevents work being planned against stale or contradictory vault state
 rule-pretask: Prevents a set of ratified decisions from reaching the Spec with a contradiction between them or with the vault
 rule-pretask-hook: Prevents a Spec from being approved before its decisions were checked against each other and the vault
+rule-raw-archive: Keeps raw/ to the sessions not yet turned into pages, by moving an applied session whole into the archive
 rule-render-harness: Prevents a Rule page and the harness file it governs from becoming two copies of one text
 rule-retro: Prevents a session from closing on work nobody reviewed, or on a change that traces to no decision
 rule-retro-commit: Prevents the handoff from starting on an uncommitted tree
 rule-session-start: Prevents a working session from starting against unknown state
 rule-settings: Keeps the three rules that share .claude/settings.json from becoming two copies of one file
-rule-skill-hi: Prevents a session from being loaded piecemeal by read-tool calls · deferred_by: decision-case-98
+rule-skill-hi: Prevents a session from being loaded piecemeal by read-tool calls · deferred_by: decision-case-106
 rule-spec-capture: Prevents an approved Spec from existing only in Claude Code's plan file, outside the repository
-rule-subagent-guppi: Prevents implementation drifting from the ratified plan while it is being executed · deferred_by: decision-case-93
-rule-synthesis: Prevents a pattern of failures from staying a list of unrelated incidents · deferred_by: decision-case-96, decision-case-97
-rule-work-mode: Prevents implementation starting before the plan, branch and baseline exist · deferred_by: decision-case-93
+rule-subagent-guppi: Prevents implementation drifting from the ratified plan while it is being executed · deferred_by: decision-case-107
+rule-synthesis: Prevents a pattern of failures from staying a list of unrelated incidents · deferred_by: decision-case-108
+rule-work-mode: Prevents implementation starting before the plan, branch and baseline exist · deferred_by: decision-case-107

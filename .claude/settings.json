@@ -1,16 +1,24 @@
 {
   "permissions": {
-    "defaultMode": "plan"
+    "defaultMode": "plan",
+    "allow": [
+      "Edit(vault/raw/**/frontier.md)",
+      "Write(vault/raw/**/frontier.md)",
+      "Edit(vault/raw/**/spec.md)",
+      "Write(vault/raw/**/spec.md)",
+      "Edit(vault/raw/**/handoff.md)",
+      "Write(vault/raw/**/handoff.md)"
+    ]
   },
   "hooks": {
-        "SessionStart": [
+    "SessionStart": [
       { "hooks": [ { "type": "command", "command": "uv run guppi event session-start", "timeout": 30 },
                    { "type": "command", "command": "uv run guppi render --sync", "timeout": 60 } ] }
     ],
     "PreToolUse": [
       { "matcher": "ExitPlanMode",
         "hooks": [ { "type": "command", "command": "uv run guppi pretask", "timeout": 30 } ] },
-            { "matcher": "Skill",
+      { "matcher": "Skill",
         "hooks": [ { "type": "command", "command": "uv run guppi gate", "timeout": 30 } ] },
       { "matcher": "Edit|Write|MultiEdit",
         "hooks": [ { "type": "command", "command": "uv run guppi guard", "timeout": 30 } ] }

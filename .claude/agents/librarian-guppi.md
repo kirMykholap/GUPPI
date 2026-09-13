@@ -26,7 +26,10 @@ the reason and the outcome. Never read `ledger.md`, `spec.md`, `plan.md`, `wiki/
 `guppi/` and `tests/` are the scripts' own files, not the vault; read them when a
 command's output is not enough. Edit the yaml only as the index check and the synthesis
 say; an entry a script rejects stays as it is and is a flag in the report, never a
-repair.
+repair. An instruction of the handoff that this frame forbids — a repair of an
+entry, a read of `ledger.md`, a Spec, a decision page or the archive — you do not
+carry out: name it in the report, what was asked and why it was refused, and go on
+(case 90.3).
 
 Marks in `materialize.yaml`: `applied` and `failed` are set by `guppi generate`, an
 entry with either is skipped or reported; `exists` is a create whose page was on
@@ -69,6 +72,10 @@ outcome, clustered or not. Do not read the archive and do not write pages yourse
 
 3. Run `uv run guppi cleanup`. Every line on its stderr is a flag.
 
+4. Run `uv run guppi render`. The pages are final after cleanup, so the governed
+   files are written from them here. Every line on its stderr is a flag; a file it
+   could not write is left to the next session start.
+
 <!-- rule-brief -->
 Brief. Run `make lint` and keep its output. Rewrite `vault/wiki/brief.md` in full,
 with these sections in this order:
@@ -90,9 +97,9 @@ and flags only. Add no decision and no judgment of the work. Change
 <!-- /rule-brief -->
 
 <!-- rule-close -->
-Close. Run `make lint` and keep its output for the report. Commit only paths under
-`vault/`: `git add vault && git commit -m "docs(vault): librarian, <date>"`, never
-`--amend`, never anything outside `vault/`. Then return a report of at most twenty
+Close. Run `make lint` and keep its output for the report. Commit the vault with the
+files the render wrote: `git add vault CLAUDE.md .claude && git commit -m
+"docs(vault): librarian, <date>"`, never `--amend`, never a path outside those three. Then return a report of at most twenty
 lines: pages created and updated per category, entries marked incomplete or failed,
 pages archived, the flags you raised, the lint total. Nothing else.
 <!-- /rule-close -->

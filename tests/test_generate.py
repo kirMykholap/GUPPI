@@ -1322,3 +1322,109 @@ def test_a_decision_page_links_the_estimates_it_shaped_and_has_no_when(tmp_path)
     assert "- [[estimate-child-works]] § case 1\n\n## History" in text
     assert "## When" not in text and "criterion:" not in text.split("---")[1]
     assert not [f for f in lint.lint(tmp_path) if "decision-case-1" in f]
+
+
+# --- an Insight as the target of update and defer (case 124.2) ----------------------------
+
+
+def test_a_defer_marks_an_insight_deferred_by_and_a_supersedes_clears_it(tmp_path):
+    entries = [
+        ROOT,
+        {
+            "line": 2,
+            "text": "",
+            "case": "2",
+            "kind": "defer",
+            "category": "insights",
+            "slug": "insight-thin",
+            "origin": f"raw/{DATE}/ledger.md#case-2",
+            "decision": "decision-case-2",
+        },
+    ]
+    pages = [
+        ("insights", "insight-thin", insight_text("insight-thin", "open", ["lesson-c"])),
+        ("lessons", "lesson-c", lesson_text("lesson-c", "clustered", "insight-thin")),
+    ]
+    seed(tmp_path, entries=entries, pages=pages)
+    code, _, err = run(tmp_path)
+    assert code == 0 and err == ""
+    thin = page(tmp_path, "insights", "insight-thin")
+    assert props(thin)["deferred_by"] == ["decision-case-2"]
+    assert f"- {DATE} deferred · [[decision-case-2]]" in thin
+    assert "## Addressed by" not in thin
+    from guppi import index
+
+    index.run([], project_dir=tmp_path)
+    line = [
+        l
+        for l in (tmp_path / "vault" / "wiki" / "insights-index.md")
+        .read_text(encoding="utf-8")
+        .splitlines()
+        if l.startswith("insight-thin")
+    ]
+    assert line and "deferred_by: decision-case-2" in line[0]
+    # the supersedes of a later session clears it
+    later = [
+        {
+            "line": 1,
+            "text": "",
+            "case": "3",
+            "kind": "update",
+            "category": "insights",
+            "slug": "insight-thin",
+            "origin": f"raw/{DATE}/ledger.md#case-3",
+            "decision": "decision-case-3",
+            "supersedes": "2",
+            "set": {"addressed_by": "decision-case-3", "status": "actioned"},
+            "change": "the proposal taken up",
+        },
+    ]
+    decisions = records_for(later)
+    decisions[0]["supersedes"] = ["decision-case-2"]
+    raw = tmp_path / "vault" / "raw" / DATE
+    raw.joinpath("materialize.yaml").unlink()
+    data = {
+        "date": DATE,
+        "sprint": "migration",
+        "entries": later,
+        "decisions": decisions,
+        "unparsed": [],
+    }
+    (raw / "materialize.yaml").write_text(
+        yaml.safe_dump(data, allow_unicode=True, sort_keys=False), encoding="utf-8"
+    )
+    code, _, err = run(tmp_path)
+    assert code == 0 and err == "", err
+    thin = page(tmp_path, "insights", "insight-thin")
+    assert "deferred_by" not in props(thin)
+    assert props(thin)["status"] == "actioned" and props(thin)["addressed_by"] == "decision-case-3"
+    assert "## Addressed by\n\n- [[decision-case-3]]\n" in thin
+    assert props(page(tmp_path, "lessons", "lesson-c"))["status"] == "archived"
+    assert props(thin)["severity"] == 0
+
+
+def test_a_create_or_delete_of_an_insight_through_the_yaml_is_an_error(tmp_path):
+    entries = [
+        ROOT,
+        create(
+            "insight-new", "insights", {"type": "insight", "pattern": "p"}, tags=["harness"], line=2
+        ),
+    ]
+    entries[1]["case"] = "2"
+    entries.append(
+        {
+            "line": 3,
+            "text": "",
+            "case": "3",
+            "kind": "delete",
+            "category": "insights",
+            "slug": "insight-thin",
+            "origin": f"raw/{DATE}/ledger.md#case-3",
+            "decision": "decision-case-3",
+        }
+    )
+    pages = [("insights", "insight-thin", insight_text("insight-thin", "open", ["lesson-c"]))]
+    seed(tmp_path, entries=entries, pages=pages)
+    code, _, err = run(tmp_path)
+    assert code == 1 and "insight-new" in err and "insight-thin" in err
+    assert props(page(tmp_path, "insights", "insight-thin"))["status"] == "open"

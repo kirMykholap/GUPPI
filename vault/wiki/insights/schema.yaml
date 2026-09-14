@@ -4,7 +4,9 @@
 type: insight
 properties:
   required: [type, pattern, status, children, severity, origin, sprint, created, tags]
-  optional: [addressed_by]
+  optional: [addressed_by, deferred_by]
+# `deferred_by`: the `defer` decisions that postponed the Insight; set by `generate`, cleared by
+# a `supersedes` (case 124.2).
   values:
     status: [open, actioned, archived]
   conditional:

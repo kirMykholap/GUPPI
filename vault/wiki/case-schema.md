@@ -26,7 +26,7 @@ In `given`, `when` and `then`, the first line stands alone. Every further line s
 
 ## Language
 
-Short sentences. One idea per sentence. Active voice. A common word over a term. Russian in the chat with the owner; English, in the manner of ASD-STE100 Simplified Technical English, in everything that lands in the vault.
+Short sentences. One idea per sentence. Active voice. A common word over a term. Russian in the chat with the owner: a Case is discussed there in Russian, all its sections. English, in the manner of ASD-STE100 Simplified Technical English, in everything that lands in the vault: the Case enters the Spec translated, its slugs, field names and ledger lines unchanged (case 123).
 
 ## `when` and `then` are the criterion
 

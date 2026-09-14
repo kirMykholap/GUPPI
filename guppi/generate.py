@@ -55,8 +55,8 @@ KEY_ORDER = {
         "created", "tags",
     ],
     "insights": [
-        "type", "pattern", "status", "children", "severity", "addressed_by", "origin", "sprint",
-        "created", "tags",
+        "type", "pattern", "status", "children", "severity", "addressed_by", "deferred_by",
+        "origin", "sprint", "created", "tags",
     ],
     "decisions": [
         "type", "case", "status", "create", "update", "delete", "defer", "source", "supersedes",
@@ -80,6 +80,8 @@ SECTION_ORDER = {
     "insights": ["Pattern", "Proposal", "Children", "Addressed by"],
     "decisions": ["Context", "Problem", "Given", "When", "Criterion", "Note"],
 }
+DEFERRABLE = ("rules", "entities", "insights")  # the categories a `defer` marks (124.2)
+LIBRARIAN_ONLY = "an Insight is made and retired by the librarian, never created or deleted by a decision (case 124.2)"
 INITIAL_STATUS = {
     "entities": "draft",
     "rules": "draft",
@@ -195,6 +197,27 @@ def derive_insight(page: Page) -> bool:
     return True
 
 
+ADDRESSED_BY = "## Addressed by"
+
+
+def derive_addressed_by(page: Page) -> bool:
+    """The `## Addressed by` section of an insight, rebuilt from its `addressed_by` field the
+    way `## Insight` is from a lesson's `insight` (case 124.2): the link when the field is
+    set, no section otherwise. True when the page changed."""
+    decision = page.props.get("addressed_by")
+    wanted = links([str(decision)]) if decision else None
+    current = page.sections.get(ADDRESSED_BY)
+    if current is not None:
+        current = current.strip()
+    if wanted == current:
+        return False
+    if wanted is None:
+        page.sections.pop(ADDRESSED_BY, None)
+    else:
+        page.sections[ADDRESSED_BY] = wanted
+    return True
+
+
 def paths_list(paths: list[str]) -> str:
     return "\n".join(f"- `{p}`" for p in paths)
 
@@ -282,6 +305,8 @@ class Vault:
     def save(self, page: Page) -> None:
         if page.category == "lessons":
             derive_insight(page)
+        if page.category == "insights":
+            derive_addressed_by(page)
         write_page(page.path, page.props, page.sections, page.category)
 
     @staticmethod
@@ -318,6 +343,9 @@ class Vault:
         category, slug = entry["category"], entry["slug"]
         if category not in CATEGORIES:
             self.error(slug, f"category {category!r} is not a vault folder")
+            return
+        if category == "insights":
+            self.error(slug, LIBRARIAN_ONLY)
             return
         path = self.path(category, slug)
         if entry.get("exists"):
@@ -550,6 +578,9 @@ class Vault:
             )
             return
         page = self.find(entry["slug"])
+        if page is not None and page.category == "insights":
+            self.error(entry["slug"], LIBRARIAN_ONLY)
+            return
         if page is None:
             self.error(entry["slug"], "no page to delete")
             return
@@ -558,11 +589,13 @@ class Vault:
         self.save(page)
 
     def defer(self, entry: dict) -> None:
+        """A `defer` marks its target `deferred_by` — a Rule, an Entity or an Insight (case
+        124.2) — or writes a placeholder page when the target does not exist."""
         slug, category = entry["slug"], entry["category"]
         page = self.find(slug)
         decision = entry.get("decision")
         if page is not None:
-            if decision and page.category in ("rules", "entities"):
+            if decision and page.category in DEFERRABLE:
                 current = as_list(page.props.get("deferred_by"))
                 if decision not in current:
                     page.props["deferred_by"] = current + [decision]
@@ -576,7 +609,7 @@ class Vault:
         props = {"type": fields.pop("type", SINGULAR[category]), "status": "draft"}
         tags = fields.pop("tags", None) or entry.get("tags")
         props.update(fields)
-        if decision and category in ("rules", "entities"):
+        if decision and category in DEFERRABLE:
             props["deferred_by"] = [decision]
         props["origin"] = entry["origin"]
         props["sprint"] = self.sprint

@@ -1,12 +1,13 @@
 """`uv run guppi <command> ...` — the one entry point for the harness's scripts.
 
-Each command is a module with a `run(argv, ...) -> int`. Hook commands (`event`, `ledger`, `spec`, `pretask`, `gate`, `guard`, `render --sync`) read their payload from stdin and are registered in `.claude/settings.json`.
+Each command is a module with a `run(argv, ...) -> int`. Hook commands (`event`, `ledger`, `spec`, `pretask`, `gate`, `guard`, `bashguard`, `render --sync`) read their payload from stdin and are registered in `.claude/settings.json`.
 """
 
 import sys
 
 from guppi import (
     archive,
+    bashguard,
     cleanup,
     event,
     gate,
@@ -24,6 +25,7 @@ from guppi import (
 
 COMMANDS = {
     "archive": archive.run,
+    "bashguard": bashguard.run,
     "cleanup": cleanup.run,
     "event": event.run,
     "gate": gate.run,

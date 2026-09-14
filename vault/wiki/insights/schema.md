@@ -6,7 +6,7 @@ Three blocks: **properties**, **body**, **history**. Always a MOC — a single u
 
 **Insight is its own type, not a kind of Lesson.** It shares no fields with one: no `trigger`, no `root_cause`, no `source`, no Estimate. It has `children`, `severity` and `addressed_by`, which a Lesson does not. Two schemas under one name would have meant a page where most fields are inapplicable whichever kind it is.
 
-Created by the librarian, never by a decision. It reaches the human through `brief.md` and becomes an ordinary ratified Case there.
+Created by the librarian, never by a decision; an `update` actions or rejects it, a `defer` postpones it (case 124). It reaches the human through the Deferred list of `brief.md` and becomes an ordinary ratified Case there.
 
 ## Properties
 
@@ -17,7 +17,8 @@ Created by the librarian, never by a decision. It reaches the human through `bri
 | `status` | yes | `open` \| `actioned` \| `archived` | `actioned` when a ratified decision has addressed it. Not terminal — a new Lesson with the same root cause reopens it. `archived` when the cascade of `generate` finds an `open` Insight with no live child (case 104.3); an `actioned` Insight is never archived by the cascade, it is kept for the recurrence. |
 | `children` | yes | list of slugs | The Lessons clustered here. Unordered. |
 | `severity` | yes | integer | `count(children where status != archived)`. Recomputed by the cascade of `generate` (case 104.3), a child read in `wiki/lessons/` or in the archive (case 110), never written by hand (case 110.1). |
-| `addressed_by` | no | decision slug | The ratified decision that fixed the pattern. |
+| `addressed_by` | no | decision slug | The ratified decision that fixed the pattern, or rejected it (case 124). |
+| `deferred_by` | no | list of decision slugs | The `defer` decisions that postponed it; set by `generate`, cleared by a `supersedes` (case 124.2). |
 | `origin` | yes | date + session | When the librarian first clustered it. Unlike every other category this does not point at a ledger line — no decision created it. |
 | `sprint` | yes | sprint id | |
 | `created` | yes | date | |
@@ -44,7 +45,7 @@ Area + pattern, as for Lessons: `insight-hooks-lifecycle-assumptions`.
 | `## Pattern` | yes | Expands the property: what the clustered lessons have in common, stated as a mechanism rather than a list of symptoms. |
 | `## Proposal` | no | What the librarian suggests doing about it. A suggestion, not a decision — it is ratified, rejected or reshaped in a later Case. |
 | `## Children` | yes | Script places Lesson links here. |
-| `## Addressed by` | no | Script places the decision link here once fixed. |
+| `## Addressed by` | no | Derived by `generate` from `addressed_by` (case 124.2). |
 
 ## History
 

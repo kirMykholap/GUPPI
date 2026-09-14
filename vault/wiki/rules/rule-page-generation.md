@@ -92,7 +92,7 @@ declared and not registered is reported on stderr and left on the page.
 - 2026-09-10 estimate estimate-generate-passes-delete-outside-vault added · raw/2026-09-10/ledger.md#case-48
 - 2026-09-11 updated: a decision page carries kind and target_slug lists and the sections Context, Problem, Given, When from case_text · [[decision-case-52.1]]
 - 2026-09-11 updated: a defer with a page appends the decision slug to deferred_by; a placeholder is born with it; a supersedes removes the superseded decision from the list · [[decision-case-52.3]]
-- 2026-09-11 updated: the decision page of a Case is written before its entries; History and log lines end with · [[decision-case-N]] when a decision exists, else the ledger pointer · [[decision-case-52.4]]
+- 2026-09-11 updated: the decision page of a Case is written before its entries; History and log lines end with `· [[decision-case-N]]` when a decision exists, else the ledger pointer · [[decision-case-52.4]]
 - 2026-09-11 status: draft → built · cascade
 - 2026-09-11 updated: a lesson entry writes the lesson only; no paired Estimate · [[decision-case-53.1]]
 - 2026-09-11 updated: an estimate entry always sets status, overwrites Result and appends History; no skip · [[decision-case-53.2]]
@@ -115,5 +115,5 @@ declared and not registered is reported on stderr and left on the page.
 - 2026-09-13 updated: an update reaches an archived page in the archive, so a restore and its fix are one entry (case 105.3) · [[decision-case-105.3]]
 - 2026-09-13 status: built → draft · cascade
 - 2026-09-14 updated: the cascade reads a child's status in the archive too, so an archived child is not counted live (case 110) · [[decision-case-110]]
-- 2026-09-14 updated: the · [[decision-case-114]]
+- 2026-09-14 updated: the cascade derives the ## Insight section of every clustered lesson from its insight field (case 114) · [[decision-case-114]]
 - 2026-09-14 status: draft → built · cascade

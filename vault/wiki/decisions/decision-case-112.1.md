@@ -24,7 +24,7 @@ Two of the four `method` findings are not the pages' fault: `estimate-documentat
 **＋** `estimate-settings` (target `rule-settings`, MOC, child of `rule-harness`): Method names no `make` target; `make test-harness` is the pipeline over `rule-harness`'s children.
 **＋** `estimate-generate-walks-dates` and `estimate-materialize-walks-dates`: no `## Context`; both born of case 43, whose Problem on `decision-case-43` is in Russian — the Context is its English. `write_page` orders sections by the schema, so a section added by `update` lands before `## Criterion`.
 **＋** `estimate-cleanup-moves`: the prose Criterion from before case 72 says `vault/archived/<sprint>/<date>/<category>/`; the block `### case 102.2` says `vault/archive/…/<HHMM>/…`. The block is the contract; the prose is the stale path.
-**＋** `rule-page-generation`, History line of 2026-09-11: "History and log lines end with · [[decision-case-N]] when a decision exists" — a wikilink outside a code span, so lint resolves it. Line 44 has the same text inside a code span and is not flagged.
+**＋** `rule-page-generation`, History line of 2026-09-11: "History and log lines end with `· [[decision-case-N]]` when a decision exists" — a wikilink outside a code span, so lint resolves it. Line 44 has the same text inside a code span and is not flagged.
 **－** Case 110 already updates `rule-page-generation`; a second `update` of the same page in one session is two entries on one page, in ledger order — allowed.
 **－** The 31 decision pages of Cases 1–28 (F8 a) and the lessons (F8 d) are not this Case.
 

@@ -28,7 +28,9 @@ operands) and Method. An `update` whose item carries `contract: changed` yields 
 `incomplete: [estimate]` when there is none — with `criterion_block`, `set: {status:
 pending}`, `sections: {Method}` when the item carries `method` and `change`; `contract:
 same` yields nothing. A line with `{supersedes:case N}` also yields a `remove_criterion`
-entry with `case_removed`, for `generate` to find the Estimate that holds the block. The
+entry with `case_removed`, for `generate` to find the Estimate that holds the block, and
+marks the entries of case N `superseded_by` in whichever unit's yaml holds them — this one
+or any other under `raw/`, written with that mark only (case 130.2). The
 decision entry carries `criterion`, one `{estimate, case}` per Estimate the Case shaped. A
 nested `estimate` in an older Spec becomes its own `create` entry as before, for a line
 with its slug; a standalone estimate `create` with `ref` maps `context`, `criterion` and
@@ -651,15 +653,43 @@ def fold_estimate(entries: list[dict], record: dict, number: int) -> bool:
     return False
 
 
-def mark_superseded(entries: list[dict], decisions: list[dict], case: str, by: str) -> None:
+def mark_superseded(entries: list[dict], decisions: list[dict], case: str, by: str) -> bool:
+    """Mark the decision entries of `case` `superseded_by` and its decision record likewise;
+    True when an entry or a record of that case was here to mark."""
+    marked = False
     for entry in entries:
         if entry.get("case") == case and entry.get("kind") in DECISION_KINDS:
             entry["superseded_by"] = by
+            marked = True
     for decision in decisions:
         if decision.get("case") == case:
             done = decision.setdefault("superseded_by", [])
             if f"decision-case-{by}" not in done:
                 done.append(f"decision-case-{by}")
+            marked = True
+    return marked
+
+
+def mark_superseded_elsewhere(project_dir: Path, unit: str, pairs: list[tuple[str, str]]) -> None:
+    """A `supersedes` of a Case whose entries lie in another unit's yaml marks them there
+    (case 130.2): every other yaml under `raw/` is loaded, the entries and the `decisions`
+    of that case marked, and the file written with that mark only. A case no yaml holds
+    changes nothing."""
+    if not pairs:
+        return
+    for other in units_with(project_dir, "materialize.yaml"):
+        if other == unit:
+            continue
+        path = yaml_path(project_dir, other)
+        data = load_yaml(path)
+        if data is None:
+            continue
+        changed = False
+        for case, by in pairs:
+            if mark_superseded(data.get("entries") or [], data.get("decisions") or [], case, by):
+                changed = True
+        if changed:
+            dump_yaml(path, data)
 
 
 def decision_record(
@@ -726,7 +756,9 @@ def sprint_id(project_dir: Path) -> str:
     return "unknown"
 
 
-def assemble(project_dir: Path, unit: str, existing: dict | None, stderr) -> tuple[dict, int]:
+def assemble(
+    project_dir: Path, unit: str, existing: dict | None, stderr
+) -> tuple[dict, int, list[tuple[str, str]]]:
     """The yaml of one unit, `<date>` or `<date>/<HHMM>` (case 103.2); the `origin` of
     every entry names the unit's ledger, so `date` below is the unit path."""
     raw = project_dir / "vault" / "raw" / unit
@@ -736,6 +768,7 @@ def assemble(project_dir: Path, unit: str, existing: dict | None, stderr) -> tup
     ledger = ledger_path.read_text(encoding="utf-8").splitlines()
     cases, spec_of = read_specs(project_dir, unit)
     date = unit
+    elsewhere: list[tuple[str, str]] = []
     data = existing or {
         "date": unit.split("/")[0],
         "sprint": sprint_id(project_dir),
@@ -802,8 +835,10 @@ def assemble(project_dir: Path, unit: str, existing: dict | None, stderr) -> tup
         ):
             entries.append(derived)  # no line of its own (case 72.3)
             added += 1
-        if record.get("supersedes"):
-            mark_superseded(entries, decisions, record["supersedes"], case)
+        if record.get("supersedes") and not mark_superseded(
+            entries, decisions, record["supersedes"], case
+        ):
+            elsewhere.append((record["supersedes"], case))  # another unit's yaml (130.2)
     # new_tags: from the then block of every Case of the Spec, lines or none (case 61)
     for case, lines in cases.items():
         if case not in blocks:
@@ -838,7 +873,7 @@ def assemble(project_dir: Path, unit: str, existing: dict | None, stderr) -> tup
                 done = target.setdefault("superseded_by", [])
                 if decision["decision"] not in done:
                     done.append(decision["decision"])
-    return data, added
+    return data, added, elsewhere
 
 
 def yaml_path(project_dir: Path, unit: str) -> Path:
@@ -924,11 +959,12 @@ def materialize_date(project_dir: Path, unit: str, now, stdout, stderr, show=Fal
     try:
         path = yaml_path(project_dir, unit)
         existing = load_yaml(path)
-        data, added = assemble(project_dir, unit, existing, stderr)
+        data, added, elsewhere = assemble(project_dir, unit, existing, stderr)
         if show:
             stdout.write(yaml_text(data))
             return 0
         dump_yaml(path, data)
+        mark_superseded_elsewhere(project_dir, unit, elsewhere)
     except MaterializeError as exc:
         print(f"materialize: {exc}", file=stderr)
         return 1

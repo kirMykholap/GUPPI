@@ -28,6 +28,12 @@ def run(argv, stdin, project_dir):
     return code, err.getvalue()
 
 
+def run_out(argv, stdin, project_dir, now=NOW):
+    out, err = io.StringIO(), io.StringIO()
+    code = event.run(argv, stdin=stdin, stdout=out, stderr=err, project_dir=project_dir, now=now)
+    return code, out.getvalue(), err.getvalue()
+
+
 def log_lines(project_dir, day=TODAY):
     path = project_dir / "vault" / "raw" / day.isoformat() / "event_log.md"
     return path.read_text(encoding="utf-8").splitlines()
@@ -207,3 +213,44 @@ def test_a_prompt_with_an_unreadable_payload_exits_zero(tmp_path):
     code, err = run(["prompt"], io.StringIO("not json"), tmp_path)
     assert code == 0 and err == ""
     assert not (tmp_path / "vault" / "raw").exists()
+
+
+# --- the hi: line in the context (case 125) ------------------------------------------------
+
+
+def test_the_hi_prompt_prints_the_line_and_the_folder_into_the_context(tmp_path):
+    run(["session-start"], payload(session_id="abc12345-6789", source="startup"), tmp_path)
+    code, out, err = run_out(["prompt"], prompt_payload("/hi"), tmp_path)
+    assert (code, err) == (0, "")
+    assert out == "hi: 15:02:11 abc12345 → raw/2026-09-09/1502/\n"
+    assert log_lines(tmp_path)[-1] == "- 15:02:11 abc12345 hi"
+
+
+def test_a_second_hi_prints_already_recorded_and_adds_no_line(tmp_path):
+    run(["session-start"], payload(session_id="abc12345-6789", source="startup"), tmp_path)
+    run(["prompt"], prompt_payload("/hi"), tmp_path)
+    later = NOW.replace(hour=16, minute=30, second=0)
+    code, out, err = run_out(["prompt"], prompt_payload("/hi"), tmp_path, now=later)
+    assert (code, err) == (0, "")
+    assert out == "hi: already recorded at 15:02:11 → raw/2026-09-09/1502/\n"
+    assert [ln for ln in log_lines(tmp_path) if ln.endswith(" hi")] == ["- 15:02:11 abc12345 hi"]
+
+
+def test_the_folder_across_midnight_is_the_hi_dates(tmp_path):
+    run(["session-start"], payload(session_id="abc12345-6789", source="startup"), tmp_path)
+    run(["prompt"], prompt_payload("/hi"), tmp_path)
+    tomorrow = NOW.replace(day=10, hour=0, minute=5, second=0)
+    code, out, _ = run_out(["prompt"], prompt_payload("/hi"), tmp_path, now=tomorrow)
+    assert code == 0 and out == "hi: already recorded at 15:02:11 → raw/2026-09-09/1502/\n"
+
+
+@pytest.mark.parametrize("prompt", ["hello", "/retro", ""])
+def test_any_other_prompt_prints_nothing(tmp_path, prompt):
+    run(["session-start"], payload(session_id="abc12345-6789", source="startup"), tmp_path)
+    assert run_out(["prompt"], prompt_payload(prompt), tmp_path) == (0, "", "")
+
+
+def test_a_hi_prompt_without_a_session_id_prints_nothing(tmp_path):
+    assert run_out(
+        ["prompt"], payload(hook_event_name="UserPromptSubmit", prompt="/hi"), tmp_path
+    ) == (0, "", "")

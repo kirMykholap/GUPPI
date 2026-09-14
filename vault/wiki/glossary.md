@@ -28,7 +28,7 @@ page (`draft` while in `docs/migration/`), `here` this row. Rule-class; imported
 | Rule | How the work happens; force by `hook`, `check` or `render`; needs an Estimate | rules/schema.md |
 | Estimate | How a behaviour was checked and the outcome; its own Leaf page under an Entity or Rule only, slug `estimate-<target minus its prefix>`; `QA` checks a known criterion, `Research` finds out; its Criterion is the `when` and `then` of its Cases, one `### case N` block per Case, its Context the `problem` of the Case that made it; a contract change (`contract: changed`) appends a block, never spawns a page; no index, reached through the target's `estimates` | estimates/schema.md, §7, §11 |
 | Lesson | Something learned; a fact the hook writes, no Case, no Estimate; slug = area + cause; a `knowledge` claim is checked by the Rule that leans on it | lessons/schema.md, §8 |
-| Insight | Over Lessons sharing a root cause, made by the librarian on the second; never a Decision target; `actioned` reopens | insights/schema.md, §8 |
+| Insight | Over Lessons sharing a root cause, made by the librarian on the second; surfaces in the brief's Deferred list and is the target of the `update` that actions or rejects it, or of a `defer`; never created or deleted by a Decision; `actioned` reopens (case 124) | insights/schema.md, §8 |
 | Issue | Tracked on GitHub; never a page, a `ref` only | here |
 
 ## Fields
@@ -36,7 +36,7 @@ page (`draft` while in `docs/migration/`), `here` this row. Rule-class; imported
 | term | meaning | where |
 |---|---|---|
 | Page fields | `type` the kind; `purpose` one line the index is built from; `children` MOC only, ordered on a Rule; `estimates` cross-cutting on a MOC; `code_ref` (Entity Leaf), `implementation_ref` (`hook`, `check` rules) | schema.md |
-| `deferred_by` | On an Entity or Rule, the Decision pages whose `defer` targets it; set by `generate`, cleared by a `supersedes`, shown in the index line, followed by `ask-guppi` | §5, §11, rules/schema.md |
+| `deferred_by` | On an Entity, Rule or Insight, the Decision pages whose `defer` targets it; set by `generate`, cleared by a `supersedes`, shown in the index line, followed by `ask-guppi` | §5, §11, rules/schema.md |
 | `origin` | The Decision that created or deleted the page, as `raw/<date>/<HHMM>/ledger.md#case-N` — the date form on older pages; kept when archived, never rewritten; `#case-N` is a grep target lint checks in `raw/` or in the archive (case 103.6) | §4 |
 | Category fields | Estimate: `criterion`, `method`, `result`. Lesson: `trigger`, `root_cause`, `source` (in a ledger line, the external origin). Insight: `severity` (children not archived), `addressed_by` | schema.md |
 | `ref`, `slug`, `supersedes` | A pointer to an existing page (absent: query the vault before a `create`; present: `update`); the page id = filename; the earlier case a ledger line corrects, written `{supersedes:case N}`, which also removes that Case's block from the Estimate's Criterion (case 72.1) | §3, §4, §5 |

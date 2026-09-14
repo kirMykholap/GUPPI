@@ -10,7 +10,11 @@ Line format: `- HH:MM:SS <first 8 of session_id | --------> <event> <detail>`.
 `guppi event prompt`, the `UserPromptSubmit` hook, is the one event with a filter: it
 writes `hi` with the session's stamp when the prompt is `/hi` (arguments allowed) and no
 `hi` of this session follows its first `session-start` yet; any other prompt, a second
-`/hi`, or a payload without a session id writes nothing (case 111.1).
+`/hi`, or a payload without a session id writes nothing (case 111.1). On `/hi` it also
+prints one line on stdout, which Claude Code adds to the context: `hi: HH:MM:SS <stamp> →
+raw/<date>/<HHMM>/` for the line it wrote, `hi: already recorded at HH:MM:SS → raw/<date>/
+<HHMM>/` for the one that exists; the `/hi` skill takes the session's folder from it (case
+125).
 
 The hook never fails the session. Every error goes to stderr and the exit code is 0.
 """
@@ -108,10 +112,16 @@ def is_hi_prompt(prompt) -> bool:
 def hi_written(project_dir: Path, now, stamp: str) -> bool:
     """True when a `hi` of this stamp already follows the first `session-start` of this
     stamp in the logs the ledger hook walks (case 111.1): one session, one `hi` line."""
+    return hi_of(project_dir, now, stamp) is not None
+
+
+def hi_of(project_dir: Path, now, stamp: str) -> tuple[str, str] | None:
+    """`(date, HH:MM:SS)` of the first `hi` of this stamp after its first `session-start`
+    in the logs the ledger hook walks; None when there is none."""
     from guppi.ledger import session_event_logs  # ledger imports this module
 
     ours = False
-    for _, text in session_event_logs(project_dir, now, stamp):
+    for day, text in session_event_logs(project_dir, now, stamp):
         for line in text.splitlines():
             parts = line.split(" ", 3)
             if len(parts) < 4 or parts[0] != "-" or parts[2] != stamp:
@@ -120,8 +130,31 @@ def hi_written(project_dir: Path, now, stamp: str) -> bool:
             if event == "session-start":
                 ours = True
             elif event == "hi" and ours:
-                return True
-    return False
+                return day, parts[1]
+    return None
+
+
+def folder_of(day: str, time: str) -> str:
+    """`raw/<date>/<HHMM>/`, the session's folder (case 73), as the `hi:` line names it."""
+    return f"raw/{day}/{time[:2] + time[3:5]}/"
+
+
+def hi_context(payload: dict, session: str | None, project_dir: Path, now) -> str | None:
+    """The line the `UserPromptSubmit` hook prints into the context on `/hi` (case 125):
+    `hi: HH:MM:SS <stamp> → raw/<date>/<HHMM>/` when it wrote the `hi` line, `hi: already
+    recorded at HH:MM:SS → raw/<date>/<HHMM>/` when one of this session exists; None on
+    any other prompt or without a session id."""
+    if not is_hi_prompt(payload.get("prompt")):
+        return None
+    stamp = session_stamp(session, payload)
+    if stamp == UNKNOWN_SESSION:
+        return None
+    existing = hi_of(project_dir, now, stamp)
+    if existing is not None:
+        day, time = existing
+        return f"hi: already recorded at {time} → {folder_of(day, time)}"
+    time = now.strftime("%H:%M:%S")
+    return f"hi: {time} {stamp} → {folder_of(now.date().isoformat(), time)}"
 
 
 def prompt_line(payload: dict, session: str | None, project_dir: Path, now) -> str | None:
@@ -160,8 +193,11 @@ def project_root() -> Path:
     return Path(os.environ.get("CLAUDE_PROJECT_DIR") or os.getcwd())
 
 
-def run(argv, *, stdin=None, stderr=None, project_dir: Path | None = None, now=None) -> int:
+def run(
+    argv, *, stdin=None, stdout=None, stderr=None, project_dir: Path | None = None, now=None
+) -> int:
     stdin = sys.stdin if stdin is None else stdin
+    stdout = sys.stdout if stdout is None else stdout
     stderr = sys.stderr if stderr is None else stderr
     project_dir = project_root() if project_dir is None else Path(project_dir)
     now = datetime.now().astimezone() if now is None else now
@@ -169,9 +205,13 @@ def run(argv, *, stdin=None, stderr=None, project_dir: Path | None = None, now=N
         args = parser().parse_args(argv)
         payload = read_payload(stdin)
         if args.name == "prompt":
+            context = hi_context(payload, args.session, project_dir, now)
             line = prompt_line(payload, args.session, project_dir, now)
-            if line is None:
-                return 0
+            if line is not None:
+                append(log_path(project_dir, now), line)
+            if context is not None:
+                print(context, file=stdout)  # stdout of UserPromptSubmit reaches the context
+            return 0
         else:
             line = format_line(args.name, payload, args.words, args.session, now)
         append(log_path(project_dir, now), line)

@@ -311,7 +311,7 @@ Created by the librarian on the **second** Lesson sharing a root cause — one o
 
 `severity` = count of children not archived, recomputed by lint.
 
-An Insight is never the target of a Decision. It reaches you as a `brief.md` candidate in a later session and becomes an ordinary ratified Case there. `actioned` is not terminal: a new matching Lesson reopens it, previously archived children stay archived, and `severity` counts only the current run.
+An Insight is never created or deleted by a Decision. Every `open` Insight stands in the brief's Deferred list, ranked by `severity`, and is a Case of the next Plan Mode: its Proposal is ratified into an `update` of the Insight (`status: actioned`, `addressed_by`) with what it needs, or rejected the same way, or deferred with the Insight as the target (case 124). `actioned` is not terminal: a new matching Lesson reopens it, previously archived children stay archived, and `severity` counts only the current run.
 
 ## 9. The session workflow
 

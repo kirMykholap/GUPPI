@@ -1221,3 +1221,76 @@ def test_a_lesson_line_carries_the_source_of_its_braces(tmp_path):
     assert "source" not in without["fields"] and without["incomplete"] == ["source"]
     (error,) = by_slug(data, "lesson-e-with")  # an error lesson keeps a source it was given
     assert error["fields"]["source"] == "a live probe" and "incomplete" not in error
+
+
+# --- a supersedes reaches another unit's yaml (case 130.2) --------------------------------
+
+
+def seed_two_units(tmp_path):
+    """Unit A, `<date>/0900`, with a yaml holding an unapplied entry of case 5; unit B,
+    `<date>/1600`, with a ledger whose line supersedes case 5."""
+    raw = tmp_path / "vault" / "raw" / DATE
+    (tmp_path / "vault" / "wiki" / "rules").mkdir(parents=True)
+    (tmp_path / "vault" / "wiki" / "sprint.md").write_text(
+        "# Sprint\n\n## migration — open\n", encoding="utf-8"
+    )
+    a = raw / "0900"
+    a.mkdir(parents=True)
+    (a / "ledger.md").write_text(
+        "- 09:10:00 decision[case 5][update][rule-old]{ref:rule-old}\n",
+        encoding="utf-8",
+        newline="\n",
+    )
+    (a / "spec.md").write_text(session_spec("5", "the old words"), encoding="utf-8", newline="\n")
+    b = raw / "1600"
+    b.mkdir()
+    (b / "ledger.md").write_text(
+        "- 16:10:00 decision[case 9][update][rule-old]{ref:rule-old}{supersedes:case 5}\n",
+        encoding="utf-8",
+        newline="\n",
+    )
+    (b / "spec.md").write_text(session_spec("9", "the new words"), encoding="utf-8", newline="\n")
+    return a, b
+
+
+def unit_yaml(folder):
+    return yaml.safe_load((folder / "materialize.yaml").read_text(encoding="utf-8"))
+
+
+def test_a_supersedes_marks_the_earlier_entry_in_another_units_yaml(tmp_path):
+    from guppi import archive
+
+    a, b = seed_two_units(tmp_path)
+    code, _, err = run_walk(tmp_path, ["--date", DATE])
+    assert code == 0 and err == ""
+    before = unit_yaml(a)
+    (entry,) = [e for e in before["entries"] if e.get("case") == "5"]
+    assert entry["superseded_by"] == "9" and "applied" not in entry
+    (decision,) = before["decisions"]
+    assert decision["superseded_by"] == ["decision-case-9"]
+    assert archive.kept_reason(tmp_path, f"{DATE}/0900") is None
+    later = unit_yaml(b)
+    (mine,) = [e for e in later["entries"] if e.get("case") == "9" and e.get("kind") == "update"]
+    assert mine["supersedes"] == "5" and "superseded_by" not in mine
+    # the rest of A is untouched: a second walk changes nothing
+    text_a = (a / "materialize.yaml").read_text(encoding="utf-8")
+    code, _, err = run_walk(tmp_path, ["--date", DATE])
+    assert code == 0 and err == ""
+    assert (a / "materialize.yaml").read_text(encoding="utf-8") == text_a
+
+
+def test_a_supersedes_of_a_case_no_yaml_holds_changes_nothing(tmp_path):
+    a, b = seed_two_units(tmp_path)
+    (a / "ledger.md").write_text(
+        "- 09:10:00 decision[case 4][update][rule-old]{ref:rule-old}\n",
+        encoding="utf-8",
+        newline="\n",
+    )
+    (a / "spec.md").write_text(session_spec("4", "other"), encoding="utf-8", newline="\n")
+    code, _, err = run_walk(tmp_path, ["--date", DATE])
+    assert code == 0 and err == ""
+    assert all("superseded_by" not in e for e in unit_yaml(a)["entries"])
+    (mine,) = [
+        e for e in unit_yaml(b)["entries"] if e.get("case") == "9" and e.get("kind") == "update"
+    ]
+    assert mine["supersedes"] == "5"

@@ -230,7 +230,7 @@ update:
 ```
 
 ```tasks
-- [ ] applied only after the reading of 111.1 passed: `vault/wiki/rules/rule-skill-hi.md` Render without the `Recorded:` line (the librarian's `generate`), then `guppi render` writes `.claude/skills/hi/SKILL.md`; if the reading fails, this sub-case is superseded, not applied — the handoff says which
+- [ ] (owner's choice at Retro, 09:50: applied by this run's librarian, before the reading of 111.1) `vault/wiki/rules/rule-skill-hi.md` Render without the `Recorded:` line (the librarian's `generate`), then `guppi render` writes `.claude/skills/hi/SKILL.md`; if the reading fails, this sub-case is superseded, not applied — the handoff says which
 ```
 
 ### Case 111.5 — the lesson's root cause corrected

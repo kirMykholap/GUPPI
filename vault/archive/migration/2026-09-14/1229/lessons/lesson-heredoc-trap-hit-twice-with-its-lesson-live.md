@@ -2,7 +2,7 @@
 type: lesson
 kind: error
 root_cause: the lesson is a page of the vault and reaches the session only when the agent thinks to read it; nothing in the harness puts a lesson about a tool in front of the agent at the moment it reaches for that tool, so the same trap is hit once per session until the rule lives in a skill, a hook or CLAUDE.md
-status: clustered
+status: archived
 insight: insight-session-vault-knowledge-not-loaded
 origin: raw/2026-09-13/0652/ledger.md#L3
 sprint: migration
@@ -27,3 +27,5 @@ the lesson is a page of the vault and reaches the session only when the agent th
 - 2026-09-13 created · raw/2026-09-13/0652/ledger.md#L3
 - 2026-09-13 updated: clustered under insight-session-vault-knowledge-not-loaded · raw/2026-09-13/0652/ledger.md#L3
 - 2026-09-14 insight section derived
+- 2026-09-14 archived · insight actioned
+- 2026-09-14 archived · cleanup

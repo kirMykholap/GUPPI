@@ -2,7 +2,7 @@
 type: lesson
 kind: error
 root_cause: the agent took the ratification preview for the record and moved on to the Spec-writing tool calls without a LEDGER block; the hook dropped nothing, and lesson-ledger-hook-drops-a-block-followed-by-tool-calls-in-the-turn names a hook fault that did not happen; the case belongs with insight-ledger-line-written-unchecked, since nothing between the reply and guppi pretask --check holds the written lines against the Spec at the moment of writing
-status: clustered
+status: archived
 insight: insight-ledger-line-written-unchecked
 origin: raw/2026-09-12/ledger.md#L107
 sprint: migration
@@ -27,3 +27,5 @@ the agent took the ratification preview for the record and moved on to the Spec-
 - 2026-09-12 created · raw/2026-09-12/ledger.md#L107
 - 2026-09-12 updated: clustered by librarian: a ledger line is unchecked until materialize, with lesson-spec-then-items-unchecked-against-ledger-lines · raw/2026-09-12/ledger.md#L107
 - 2026-09-14 insight section derived
+- 2026-09-14 archived · insight actioned
+- 2026-09-14 archived · cleanup

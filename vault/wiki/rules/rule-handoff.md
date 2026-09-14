@@ -2,7 +2,7 @@
 type: rule
 kind: Leaf
 purpose: Prevents the session's memory from being lost between the commit and the librarian
-status: draft
+status: built
 enforcement: render
 governs: .claude/skills/handoff/SKILL.md
 render_mode: full
@@ -29,7 +29,7 @@ context advantage that is the note's only reason to exist.
 name: handoff
 description: Write the handoff note from memory and hand the session to the librarian.
 ---
-Recorded: !`uv run guppi event handoff --session "${CLAUDE_SESSION_ID:-}"`
+
 
 Tree: !`git status --porcelain`
 
@@ -59,3 +59,5 @@ for its report and show it to the person unchanged. Do not commit after this.
 - 2026-09-10 status: draft → built · cascade
 - 2026-09-12 updated: the handoff is one document in the session's folder; the librarian is dispatched with its path (case 73.7) · [[decision-case-73.7]]
 - 2026-09-12 status: built → draft · cascade
+- 2026-09-14 updated: the Recorded line dropped; guppi gate writes the stamped handoff mark (case 136.1) · [[decision-case-136.1]]
+- 2026-09-14 status: draft → built · cascade

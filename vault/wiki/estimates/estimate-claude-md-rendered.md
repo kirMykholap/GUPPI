@@ -53,7 +53,7 @@ child.
 
 ## Result
 
-live 2026-09-13 session L: CLAUDE.md was not among the files render --sync wrote, so it still equals the render of rule-claude-md with rule-case-protocol between its markers made at the start of session K; render --check exits 0; the session loaded it with glossary.md and case-schema.md expanded inline, and its Migration paragraph names vault/raw/<date>/<hi HHMM>/spec.md (73.10)
+live 2026-09-14 session O: CLAUDE.md loaded with the `## Language` section of 123 and the sentence of 122 ("A reply that carries a `LEDGER` block ends in that text…"), the two @ imports expanded; render --check exits 0 at 12:34; the render of session N's librarian wrote it, nothing differs from HEAD fc3d439
 
 ## History
 
@@ -63,3 +63,4 @@ live 2026-09-13 session L: CLAUDE.md was not among the files render --sync wrote
 - 2026-09-12 criterion: case 88.2 added · [[decision-case-88.2]]
 - 2026-09-12 updated: the stale live clause of case 59.8 leaves the Criterion prose (case 88.2) · [[decision-case-88.2]]
 - 2026-09-13 status: pending → passed · raw/2026-09-13/ledger.md#L49
+- 2026-09-14 status: passed → passed · raw/2026-09-14/1229/ledger.md#L2

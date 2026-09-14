@@ -4,7 +4,7 @@ kind: Leaf
 purpose: Prevents the ledger from being written into a session nothing recorded
 status: built
 enforcement: hook
-implementation_ref: [guppi/event.py, guppi/cli.py, .claude/settings.json]
+implementation_ref: [guppi/event.py, guppi/gate.py, guppi/cli.py, tests/test_gate.py, .claude/settings.json]
 parent: rule-session-start
 estimates: [estimate-event-log-records]
 origin: raw/2026-09-09/ledger.md#case-9
@@ -37,7 +37,7 @@ payload comes from stdin when a hook is the caller: `session_id`, `tool_name` an
 telling field of `tool_input` (`command` cut to 80 characters on one line, `subagent_type`,
 `skill`, `file_path`). Registered on `SessionStart` (`session-start`) and on `PostToolUse`
 with no matcher (`tool`) — every tool, because this is a debugging record and a filter is
-one more decision to maintain. The `hi` line is written by `guppi event prompt` on `UserPromptSubmit`: when the prompt, trimmed, is `/hi` or starts with `/hi `, and no `hi` of this session's stamp follows its first `session-start` in the logs the ledger hook walks, the log gains `- HH:MM:SS <stamp> hi`, the stamp from the payload's `session_id`; a second `/hi` of the same session and any other prompt write nothing (case 111.1). Having written the line, the hook prints `hi: HH:MM:SS <stamp> → raw/<date>/<HHMM>/` on stdout, which Claude Code adds to the context; when a `hi` of this session already exists it prints `hi: already recorded at HH:MM:SS → raw/<date>/<HHMM>/`; on any other prompt it is silent. The `/hi` skill takes the time of the session's folder from that line (case 125). Until case 111.4 the skill's `!` substitution writes a second, unstamped `hi` line, which the ledger hook ignores.
+one more decision to maintain. The `hi` line is written by `guppi event prompt` on `UserPromptSubmit`: when the prompt, trimmed, is `/hi` or starts with `/hi `, and no `hi` of this session's stamp follows its first `session-start` in the logs the ledger hook walks, the log gains `- HH:MM:SS <stamp> hi`, the stamp from the payload's `session_id`; a second `/hi` of the same session and any other prompt write nothing (case 111.1). Having written the line, the hook prints `hi: HH:MM:SS <stamp> → raw/<date>/<HHMM>/` on stdout, which Claude Code adds to the context; when a `hi` of this session already exists it prints `hi: already recorded at HH:MM:SS → raw/<date>/<HHMM>/`; on any other prompt it is silent. The `/hi` skill takes the time of the session's folder from that line (case 125). The marks `pretask`, `retro` and `handoff` are written by `guppi gate` on `PreToolUse Skill` when it lets the call through, one line `- HH:MM:SS <stamp> <mark>` with the stamp from the payload's `session_id`; a refused call leaves no mark. Until case 136.1 the three skills wrote them through a `!` substitution where `CLAUDE_SESSION_ID` is empty, so every mark read `--------` (case 136.1).
 
 The hook never fails the session: any error goes to stderr and the exit code is 0.
 
@@ -66,3 +66,4 @@ The hook never fails the session: any error goes to stderr and the exit code is 
 - 2026-09-14 updated: the prompt hook prints the hi it wrote, or the one already recorded, with the session's folder, into the context (case 125) · [[decision-case-125]]
 - 2026-09-14 updated: the event log's second governance job, the plan path for guppi gate, named (case 132) · [[decision-case-132]]
 - 2026-09-14 status: draft → built · cascade
+- 2026-09-14 updated: the marks pretask, retro, handoff written by guppi gate with the session's stamp; the skills' Recorded lines dropped (case 136.1) · [[decision-case-136.1]]

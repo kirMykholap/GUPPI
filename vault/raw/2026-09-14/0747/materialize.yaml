@@ -1066,6 +1066,7 @@ entries:
       sessions the old skill line opened (case 111.6).
   change: an unstamped hi keeps its window by the old rule while no stamped hi exists (case 111.6)
   applied: 09:59:51
+  superseded_by: '136.3'
 - line: 48
   text: decision[case 111.6][update][rule-ledger-write]{ref:rule-ledger-write}
   case: '111.6'
@@ -1101,6 +1102,7 @@ entries:
     status: pending
   change: 'criterion: case 111.6 added'
   applied: 09:59:51
+  superseded_by: '136.3'
 - line: 49
   text: 'lesson[error][lesson-reader-changed-before-its-writer-closed-the-live-session]{tags:harness,hooks,ledger,workflow}
     trigger: after case 111.3 was coded, the Stop hook of session M refused 13 reading lines: hi_recorded
@@ -2447,6 +2449,8 @@ decisions:
   - estimate: estimate-ledger-write-lifts
     case: '111.6'
   applied: 09:59:51
+  superseded_by:
+  - decision-case-136.3
 - case: '118'
   decision: decision-case-118
   origin: raw/2026-09-14/0747/ledger.md#case-118

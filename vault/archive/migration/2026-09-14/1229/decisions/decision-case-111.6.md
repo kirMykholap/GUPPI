@@ -1,8 +1,9 @@
 ---
 type: decision
 case: "111.6"
-status: current
+status: archived
 update: [rule-ledger-write]
+superseded_by: [decision-case-136.3]
 origin: raw/2026-09-14/0747/ledger.md#case-111.6
 sprint: migration
 created: 2026-09-14
@@ -30,3 +31,6 @@ The window of a session is inferred from the order of starts around an unstamped
 ## History
 
 - 2026-09-14 created · raw/2026-09-14/0747/ledger.md#case-111.6
+- 2026-09-14 superseded by decision-case-136.3 · [[decision-case-136.3]]
+- 2026-09-14 archived · superseded
+- 2026-09-14 archived · cleanup

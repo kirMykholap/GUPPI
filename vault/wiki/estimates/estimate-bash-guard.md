@@ -34,9 +34,10 @@ pytest in `tests/test_bashguard.py` with piped payloads — a `python - <<'EOF'`
 
 ## Result
 
-against tests/test_bashguard.py: a backslash in the body → 2 naming Write and Edit; cat > f, cat >> path and tee → 2 with the path; a clean heredoc into a pipe or the screen, <<- with a tab-indented close, 2>/dev/null, a <<< here-string, no heredoc → 0; the refusal logged first; an unreadable payload → 0 with a stderr line; no live refusal yet — the hook is registered by the render after the librarian
+live 2026-09-14 session O, block 127: the first heredoc with a backslash in its body (`cat <<'EOF' | head -1`) was refused, exit 2, the reason naming Write and Edit and the scratchpad; the event log carries `12:34:26 07a95bd2 bashguard refused: a backslash in its body` before the refusal
 
 ## History
 
 - 2026-09-14 created · [[decision-case-127]]
 - 2026-09-14 status: pending → passed · raw/2026-09-14/1029/ledger.md#L35
+- 2026-09-14 status: passed → passed · raw/2026-09-14/1229/ledger.md#L3

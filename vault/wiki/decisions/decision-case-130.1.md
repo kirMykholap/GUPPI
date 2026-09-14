@@ -12,7 +12,7 @@ tags: [harness, workflow, ledger]
 
 ## Context
 
-Entry 112.6 of `raw/2026-09-14/0747/materialize.yaml` is `failed`: the `replace` on `rule-page-generation` did not find its `old`. The reason: the text "History and log lines end with · [[decision-case-N]] when a decision exists" stands only in the History line of 2026-09-11 (line 95), and `generate.replace` skips History (`generate.py:519`); line 44 of the body is already in backticks, and lint does not count it (`CODE_SPAN`, `lint.py:57`). Seven `ref` findings of lint: the History line of `rule-page-generation` and the Given of `decision-case-112.1`–`112.6`, which quote the same line without backticks. The librarian repairs no yaml (rule-documentation); `archive` keeps `0747`: "1 entries not applied".
+Entry 112.6 of `raw/2026-09-14/0747/materialize.yaml` is `failed`: the `replace` on `rule-page-generation` did not find its `old`. The reason: the text "History and log lines end with `· [[decision-case-N]]` when a decision exists" stands only in the History line of 2026-09-11 (line 95), and `generate.replace` skips History (`generate.py:519`); line 44 of the body is already in backticks, and lint does not count it (`CODE_SPAN`, `lint.py:57`). Seven `ref` findings of lint: the History line of `rule-page-generation` and the Given of `decision-case-112.1`–`112.6`, which quote the same line without backticks. The librarian repairs no yaml (rule-documentation); `archive` keeps `0747`: "1 entries not applied".
 
 ## Problem
 
@@ -29,3 +29,4 @@ The literal has to be quoted where `replace` does not reach — in History and i
 ## History
 
 - 2026-09-14 created · raw/2026-09-14/1029/ledger.md#case-130.1
+- 2026-09-14 updated: the quoted literal decision-case-N wrapped in backticks, a lint ref finding; no content change (case 140) · [[decision-case-140]]

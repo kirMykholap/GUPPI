@@ -1,9 +1,10 @@
 ---
 type: insight
 pattern: The ledger writer sees the last text of a turn, not the turn; a LEDGER block anywhere else in the turn is never written.
-status: open
+status: actioned
 children: [lesson-ledger-hook-misses-a-reply-ending-in-a-tool-call, lesson-ledger-hook-drops-a-block-followed-by-tool-calls-in-the-turn, lesson-transcript-omits-text-emitted-before-tool-calls, lesson-ledger-lines-lost-in-a-reply-ending-in-a-skill-call-with-the-insight-live]
-severity: 3
+severity: 0
+addressed_by: decision-case-137
 origin: raw/2026-09-12/ledger.md#L101
 sprint: migration
 created: 2026-09-12
@@ -44,8 +45,13 @@ lines written, shown at `/hi` with the unmaterialized tail.
 - [[lesson-transcript-omits-text-emitted-before-tool-calls]]
 - [[lesson-ledger-lines-lost-in-a-reply-ending-in-a-skill-call-with-the-insight-live]]
 
+## Addressed by
+
+- [[decision-case-137]]
+
 ## History
 
 - 2026-09-12 created · raw/2026-09-12/ledger.md#L101
 - 2026-09-13 updated: synthesis: lesson-transcript-omits-text-emitted-before-tool-calls added, the text before a tool call is not in the transcript · raw/2026-09-13/ledger.md#L42
 - 2026-09-14 updated: synthesis: lesson-ledger-lines-lost-in-a-reply-ending-in-a-skill-call-with-the-insight-live added, a reply ended in a Skill call with the Insight live · raw/2026-09-14/0747/ledger.md#L33
+- 2026-09-14 updated: actioned by 122 — the rule that a reply with a LEDGER block ends in that text, and guppi gate on the Skill call; collecting intermediate texts rejected as impossible, the transcript omits them (case 137) · [[decision-case-137]]

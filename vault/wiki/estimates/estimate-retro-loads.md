@@ -1,7 +1,7 @@
 ---
 type: estimate
 kind: QA
-status: failed
+status: passed
 target: rule-retro
 origin: raw/2026-09-10/ledger.md#case-38.1
 sprint: migration
@@ -62,7 +62,7 @@ one reading by hand at the first /retro, recorded in the estimate line
 
 ## Result
 
-block 109.1, second reading: /retro of 2026-09-14 11:55 recorded its event and its ledger substitution exited 1 again on a day without a date-level ledger; the harness did not load the skill text and the agent ran Retro from SKILL.md. Case 126 is ratified and replaces the line with `uv run guppi tail`; the render comes with the librarian, so the next /retro is the reading of block 126
+block 126, live 2026-09-14 14:45 session O: /retro loaded on the rendered skill; `Tests:` 359 passed, `Style:` clean, `Ledger:` carried the 29 lines of raw/2026-09-14/1229/ledger.md prefixed with the folder and line number, the tail `guppi tail` prints; the second failed reading of 109.1 stands as history
 
 ## History
 
@@ -76,3 +76,4 @@ block 109.1, second reading: /retro of 2026-09-14 11:55 recorded its event and i
 - 2026-09-14 status: pending → failed · raw/2026-09-14/0747/ledger.md#L50
 - 2026-09-14 criterion: case 126 added · [[decision-case-126]]
 - 2026-09-14 status: pending → failed · raw/2026-09-14/1029/ledger.md#L41
+- 2026-09-14 status: failed → passed · raw/2026-09-14/1229/ledger.md#L30

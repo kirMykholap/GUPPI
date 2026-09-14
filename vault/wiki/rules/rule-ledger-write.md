@@ -38,7 +38,7 @@ not created at session start; it comes into existence with the first line.
 
 **Checks the event log first.** The log it reads is `raw/<date>/event_log.md` of every
 date from today back to the first that holds a `session-start` of this session, joined in
-date order; a session that crosses midnight keeps its window. The session is a working one when a `hi` line of this session's id follows its first `session-start` line in the logs walked (case 111.3); the session's folder is the first such `hi`. A `session-start` of another session, before or after, changes nothing; a `hi` with another id does not count. With no stamped `hi` in the logs walked, a `--------` `hi` counts by the rule before 111.3 — after a `session-start` of this session with no other session's start in between — for the sessions the old skill line opened (case 111.6). `compact` and `resume` of the same session do not close the window — `SessionStart` fires on both, and neither changes the person, the branch or the agenda (case 14). When the check fails and there are lines to write, the hook exits 2 with the reason on
+date order; a session that crosses midnight keeps its window. The session is a working one when a `hi` line of this session's id follows its first `session-start` line in the logs walked (case 111.3); the session's folder is the first such `hi`. A `session-start` of another session, before or after, changes nothing; a `hi` with another id does not count. A `--------` `hi` never counts: the fallback by position of case 111.6 was removed once every session opened before the stamped `hi` had closed (case 136.3).  `compact` and `resume` of the same session do not close the window — `SessionStart` fires on both, and neither changes the person, the branch or the agenda (case 14). When the check fails and there are lines to write, the hook exits 2 with the reason on
 stderr — `ledger: N line(s) not written — no /hi recorded for session X. Tell the person;
 run /hi, then repeat the lines.` — so the person is told rather than left believing their
 decisions were recorded. With `stop_hook_active` set (the re-fire after a block) it exits 0
@@ -88,3 +88,4 @@ the implementation arrives in the session after the probe (Slice 1, session B).
 - 2026-09-14 defer by decision-case-117 superseded · [[decision-case-122]]
 - 2026-09-14 updated: guppi gate refuses a Skill call while a then item of the session's Spec or plan file has no decision line in the ledger; the text before a tool call is never kept (case 122) · [[decision-case-122]]
 - 2026-09-14 status: draft → built · cascade
+- 2026-09-14 updated: the fallback of 111.6 — an unstamped hi bound by position — removed; a hi of the session's stamp is the one way to open the window (case 136.3) · [[decision-case-136.3]]

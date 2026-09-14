@@ -50,17 +50,6 @@ The session is a working one when a `hi` line of this session's stamp follows it
 **－** A `hi` with `--------` or another stamp does not count.
 **＋** `estimate-ledger-write-lifts` gets a `### case 111.3` block, `pending`; the test seeds our start, a foreign `resume` and a stamped `hi` and expects the window open, and a `--------` `hi` alone and expects it refused.
 
-### case 111.6
-
-When:
-The `Stop` hook, `pretask`, `spec`, `gate` or `cleanup` asks whether the session has a `hi`, or where its folder is.
-
-Then:
-A `hi` of this session's stamp after its first `session-start` opens the window, as 111.3 says.
-**＋** With no such line in the logs walked, a `--------` `hi` after a `session-start` of this session with no other session's start in between opens it — the rule before 111.3, kept for the sessions the old skill line opened.
-**－** A `hi` of another session's stamp never counts.
-**＋** `estimate-ledger-write-lifts` gets a `### case 111.6` block, `pending`; the test seeds an unstamped `hi` under our start and expects the window open, and the same with a foreign start between and expects it refused.
-
 ### case 122
 
 When:
@@ -75,6 +64,17 @@ The gate reads the `then` items of every Case in the session's `spec.md` and in 
 **＋** `estimate-ledger-write-lifts` gets a `### case 122` block, `pending`; the test seeds a plan with one item and an empty ledger and expects exit 2 with the case named, then the item's line and expects 0, then no plan path and no `spec.md` and expects 0; the live half is read at the first `/pre-task` of this session after its lines are written: the call passes.
 **－** `{supersedes:case 117}`: `decision-case-117` is superseded, `rule-ledger-write` loses `deferred_by`.
 
+### case 136.3
+
+When:
+The `Stop` hook, `pretask`, `spec`, `gate` or `cleanup` asks whether the session has a `hi`, and where its folder is.
+
+Then:
+Only a `hi` of the session's stamp after its first `session-start` opens the window (111.3); with no such line there is no window, the ledger refuses "no /hi recorded", `unstamped_hi_moment` is removed.
+**＋** `rule-ledger-write` `contract: changed`; `estimate-ledger-write-lifts` gets a `### case 136.3` block, `pending`; the test of 111.6 flips: a `--------` `hi` under our start → refused.
+**＋** The `### case 111.6` block leaves the criterion: `{supersedes:case 111.6}`.
+**－** `hi_recorded`, `session_dir`, `ledger_path` — unchanged beyond the removal of the fallback.
+
 ## Method
 
 pytest in `tests/test_ledger.py` with piped payloads against a temp vault; the live
@@ -82,7 +82,7 @@ reading is taken once by hand and written into the estimate line.
 
 ## Result
 
-block 122 against tests/test_gate.py (an item without its line → exit 2 naming the case; the line in raw/<date>/<HHMM>/ledger.md → 0; no plan path and no spec.md → 0; a defer item of spec.md → 2; the Spec check before the tree check) and live: guppi gate on this session's payload with every item lined → exit 0
+block 136.3 against tests/test_ledger.py: an unstamped `--------` hi under our start → the lines refused with "no /hi recorded for session 44c1aae1" and no ledger file; the same after a foreign resume → refused, and a stamped hi of ours then opens the window at its time; `unstamped_hi_moment` removed, 359 tests green
 
 ## History
 
@@ -99,3 +99,6 @@ block 122 against tests/test_gate.py (an item without its line → exit 2 naming
 - 2026-09-14 criterion: case 122 added · [[decision-case-122]]
 - 2026-09-14 status: pending → passed · raw/2026-09-14/1029/ledger.md#L7
 - 2026-09-14 status: passed → passed · raw/2026-09-14/1029/ledger.md#L32
+- 2026-09-14 criterion: case 136.3 added · [[decision-case-136.3]]
+- 2026-09-14 criterion: case 111.6 removed · [[decision-case-136.3]]
+- 2026-09-14 status: pending → passed · raw/2026-09-14/1229/ledger.md#L27

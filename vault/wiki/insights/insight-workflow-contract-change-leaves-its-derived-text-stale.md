@@ -1,9 +1,10 @@
 ---
 type: insight
 pattern: A ratified change lands on one text and leaves the text derived from it behind, because no step of the pipeline names the dependents of a change.
-status: open
+status: actioned
 children: [lesson-estimates-criterion-stale-after-contract-change, lesson-render-governed-file-updated-as-rule-class-file, lesson-estimates-live-clause-stale-at-first-render]
-severity: 3
+severity: 0
+addressed_by: decision-case-138
 origin: raw/2026-09-12/ledger.md#L12
 sprint: migration
 created: 2026-09-12
@@ -49,7 +50,12 @@ acknowledging reply.
 - [[lesson-render-governed-file-updated-as-rule-class-file]]
 - [[lesson-estimates-live-clause-stale-at-first-render]]
 
+## Addressed by
+
+- [[decision-case-138]]
+
 ## History
 
 - 2026-09-12 created · raw/2026-09-12/ledger.md#L12
 - 2026-09-12 updated: clustered by librarian: a third lesson on a change that leaves its derived text stale · raw/2026-09-12/ledger.md#L155
+- 2026-09-14 updated: actioned: the path half by 59.6, 59.8 and pre-task's governed check; the criterion half by the derived criterion blocks of 72.1 and 88.2; no pre-task pass over quoting Estimates (case 138) · [[decision-case-138]]

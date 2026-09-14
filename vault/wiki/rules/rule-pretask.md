@@ -18,9 +18,7 @@ tags: [session, workflow, harness]
 
 Prevents a set of ratified decisions from reaching the Spec with a contradiction between
 them or with the vault. The per-Case question to `ask-guppi` asks "does this exist"; this
-one asks, once, "does this set hold together". The skill records its own run through a
-`!` substitution, which is what the pre-task hook looks for, and whoever calls it — the
-agent through the `Skill` tool or the person — leaves the same line.
+one asks, once, "does this set hold together". Its run is recorded by `guppi gate` on the `Skill` call, one `pretask` line with the session's stamp, which is what the pre-task hook looks for (case 136.1).
 
 ## Render
 
@@ -29,7 +27,7 @@ agent through the `Skill` tool or the person — leaves the same line.
 name: pre-task
 description: Check this Plan Mode's ratified decisions against each other and the vault before the Spec is approved.
 ---
-Recorded: !`uv run guppi event pretask --session "${CLAUDE_SESSION_ID:-}"`
+
 
 Run `uv run guppi pretask --check <the plan file of this Plan Mode>`. It prints one line
 for every decision line of this session that has no item under its own Case in the plan,
@@ -75,3 +73,4 @@ finding as a Case, or say in one line why it is already known. Then exit Plan Mo
 - 2026-09-14 status: draft → built · cascade
 - 2026-09-14 defer by decision-case-121 superseded · [[decision-case-128]]
 - 2026-09-14 updated: the pre-task dispatch carries the plan file's path and the instruction to read every Case's when, then and then block, not a summary (case 128) · [[decision-case-128]]
+- 2026-09-14 updated: the Recorded line dropped; guppi gate writes the stamped pretask mark (case 136.1) · [[decision-case-136.1]]

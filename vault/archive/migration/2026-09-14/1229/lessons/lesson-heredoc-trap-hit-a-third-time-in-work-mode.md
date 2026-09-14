@@ -2,7 +2,7 @@
 type: lesson
 kind: error
 root_cause: "the same trap as lesson-bash-tool-heredoc-escapes-interpreted and lesson-heredoc-trap-hit-twice-with-its-lesson-live, with both lessons and insight-session-vault-knowledge-not-loaded (severity 3) live: nothing puts the lesson in front of the agent at the moment it reaches for the Bash tool with a heredoc, and the agent reached for it first each time."
-status: clustered
+status: archived
 insight: insight-session-vault-knowledge-not-loaded
 origin: raw/2026-09-14/0747/ledger.md#L51
 sprint: migration
@@ -26,3 +26,5 @@ the same trap as lesson-bash-tool-heredoc-escapes-interpreted and lesson-heredoc
 
 - 2026-09-14 created · raw/2026-09-14/0747/ledger.md#L51
 - 2026-09-14 updated: clustered under insight-session-vault-knowledge-not-loaded · raw/2026-09-14/0747/ledger.md#L51
+- 2026-09-14 archived · insight actioned
+- 2026-09-14 archived · cleanup

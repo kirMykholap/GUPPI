@@ -1,9 +1,10 @@
 ---
 type: insight
 pattern: A ledger line is written verbatim and nothing reads it back until materialize, so a line that does not parse or does not match the Spec costs a session.
-status: open
+status: actioned
 children: [lesson-spec-then-items-unchecked-against-ledger-lines, lesson-ledger-decision-line-written-without-the-case-word, lesson-ledger-preview-in-ratification-taken-for-the-record, lesson-pretask-nested-estimate-exempt-from-the-line-check]
-severity: 4
+severity: 0
+addressed_by: decision-case-135
 origin: raw/2026-09-12/ledger.md#L100
 sprint: migration
 created: 2026-09-12
@@ -56,7 +57,12 @@ literally, and should show `decision[case N]`.
 - [[lesson-ledger-preview-in-ratification-taken-for-the-record]]
 - [[lesson-pretask-nested-estimate-exempt-from-the-line-check]]
 
+## Addressed by
+
+- [[decision-case-135]]
+
 ## History
 
 - 2026-09-12 created · raw/2026-09-12/ledger.md#L100
 - 2026-09-12 updated: clustered by librarian: two more lessons on a ledger line unchecked at the moment of writing · raw/2026-09-12/ledger.md#L107
+- 2026-09-14 updated: actioned: the Proposal was done by 75.2 (line grammar at pre-task) and 75.1 (the case N form in case-schema.md); the children closed by 59.1, 72.5 and 122 (case 135) · [[decision-case-135]]

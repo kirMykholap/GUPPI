@@ -1,7 +1,7 @@
 ---
 type: estimate
 kind: QA
-status: pending
+status: passed
 target: rule-handoff
 origin: raw/2026-09-10/ledger.md#case-38.3
 sprint: migration
@@ -36,10 +36,11 @@ one reading by hand at the first /handoff, recorded in the estimate line
 
 ## Result
 
-live 2026-09-10 session F: the /handoff context held `git status --porcelain` (empty; the refusal path was read in session E); event_log.md line `handoff` at 11:47:58; handoff.md gained the document `Handoff — 2026-09-10, Slice 3 closes, session F` with the three sections, written from memory by one append with no read of the artifacts; librarian-guppi was dispatched with `Materialize 2026-09-10.`; its report was shown unchanged; no commit followed, the tree is clean at HEAD 8bbfa10
+live 2026-09-14 session N, block 73.7: handoff.md written to raw/2026-09-14/1029/ (the hi folder), one document, no `---`; event_log `12:10:50 handoff`; librarian-guppi dispatched (Agent line 12:19:19) and its report shown; the only commit that followed is the librarian's own fc3d439
 
 ## History
 
 - 2026-09-10 created · raw/2026-09-10/ledger.md#case-38.3
 - 2026-09-10 status: pending → passed · raw/2026-09-10/ledger.md#L87
 - 2026-09-12 criterion: case 73.7 added · [[decision-case-73.7]]
+- 2026-09-14 status: pending → passed · raw/2026-09-14/1229/ledger.md#L4

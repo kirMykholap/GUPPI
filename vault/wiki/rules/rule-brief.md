@@ -2,7 +2,7 @@
 type: rule
 kind: Leaf
 purpose: Prevents the next session from starting without the facts and the flags of this one
-status: draft
+status: built
 enforcement: render
 governs: .claude/agents/librarian-guppi.md
 render_mode: partial
@@ -58,3 +58,4 @@ and flags only. Add no decision and no judgment of the work. Change
 - 2026-09-14 updated: every open Insight stands in the Deferred list of the brief, ranked by its severity, with a count of the briefs it stood in, and is a Case of the next Plan Mode (case 124.1) · [[decision-case-124.1]]
 - 2026-09-14 updated: an open Insight in Deferred is a live page, not a draft placeholder (case 132) · [[decision-case-132]]
 - 2026-09-14 status: built → draft · cascade
+- 2026-09-14 status: draft → built · cascade

@@ -2,7 +2,7 @@
 type: lesson
 kind: error
 root_cause: a decision update on a Rule page has no step that lists the Estimates whose criterion quotes the changed wording; until lint or the generator does it, the acknowledging reply must grep estimates/ for the words the contract dropped
-status: clustered
+status: archived
 insight: insight-workflow-contract-change-leaves-its-derived-text-stale
 origin: raw/2026-09-09/ledger.md#L49
 sprint: migration
@@ -29,3 +29,5 @@ a decision update on a Rule page has no step that lists the Estimates whose crit
 - 2026-09-12 updated: clustered by librarian: a change leaves its derived text stale, with lesson-render-governed-file-updated-as-rule-class-file · raw/2026-09-12/ledger.md#L12
 - 2026-09-14 insight section derived
 - 2026-09-14 updated: tags filled (case 113) · [[decision-case-113]]
+- 2026-09-14 archived · insight actioned
+- 2026-09-14 archived · cleanup

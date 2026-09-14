@@ -65,6 +65,17 @@ that owns it go to stderr, `render` exits 1 and `--sync` exits 0 with the same l
 **＋** If all of them parse, the run writes as before.
 **－** No other file type is checked: markdown has no grammar to break.
 
+### case 139.1
+
+When:
+In Work Mode of this session the agent writes `.claude/agents/probe-guppi.md` and at once calls the Agent tool with `probe-guppi`; then replaces the file's body and calls again; then removes the file.
+
+Then:
+The estimate line records three facts: the new file — found or "Agent type not found"; the replaced one — the old text, the new text, or not found; the client version and whether a compaction happened between the steps.
+**＋** `rule-render-harness` `contract: changed`; `estimate-render-harness-reproduces` gets a `### case 139.1` block, `pending`; the reading is the probe itself; `passed` once the three facts are recorded, whatever the outcome.
+**＋** The body of `rule-render-harness` (How it works) gains the sentence: "When Claude Code reads an agent file under `.claude/agents/` — at session start or on the call — is the reading of case 139.1 on `estimate-render-harness-reproduces`; the librarian's render is its last step before the commit, and an agent it renders is planned for from the next session (case 139.1)."
+**－** `probe-guppi.md` stays neither in the tree nor in a commit; no Rule page for it.
+
 ## Method
 
 pytest in `tests/test_render.py` against a temp vault; the live reading once by hand,
@@ -72,7 +83,7 @@ written into the estimate line.
 
 ## Result
 
-tests/test_render.py green in the 267 of session K; live 2026-09-13 session L start: git diff --stat after render --sync named only the three governed files whose Rule pages changed since the last render (settings.json from rule-settings and children, librarian-guppi.md from 89.1 and 90.3, pre-task SKILL.md from 90.2), each diff the text the pages gained, settings.json rendered with no marker lines (85.1), and uv run guppi render --check exited 0 (88.1); the JSON gate of 89.4 let the file through and json.load parses it
+block 139.1, the probe 2026-09-14 session O: a new `.claude/agents/probe-guppi.md` written mid-session → Agent tool "Agent type 'probe-guppi' not found", the list unchanged (ask-guppi, librarian-guppi, built-ins); the body replaced and called again → not found again; Claude Code 2.1.228, no compaction between the steps; the file removed, `.claude/` clean — in this client the agent list is read at session start, an agent rendered mid-session is usable from the next session
 
 ## History
 
@@ -86,3 +97,5 @@ tests/test_render.py green in the 267 of session K; live 2026-09-13 session L st
 - 2026-09-12 updated: the stale live clause of cases 18.1 and 59.8 leaves the Criterion prose (case 88.1) · [[decision-case-88.1]]
 - 2026-09-12 criterion: case 89.4 added · [[decision-case-89.4]]
 - 2026-09-13 status: pending → passed · raw/2026-09-13/ledger.md#L48
+- 2026-09-14 criterion: case 139.1 added · [[decision-case-139.1]]
+- 2026-09-14 status: pending → passed · raw/2026-09-14/1229/ledger.md#L28

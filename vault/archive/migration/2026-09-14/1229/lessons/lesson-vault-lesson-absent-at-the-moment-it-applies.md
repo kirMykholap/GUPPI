@@ -2,7 +2,7 @@
 type: lesson
 kind: error
 root_cause: a lesson is a page of the vault and nothing brings it into the session at the moment it applies; only CLAUDE.md, the skills and the agents' frames are in the prompt, and the vault is reached by a read the agent must first think to make, which is exactly what a forgotten trap prevents
-status: clustered
+status: archived
 insight: insight-session-vault-knowledge-not-loaded
 origin: raw/2026-09-12/ledger.md#L210
 sprint: migration
@@ -27,3 +27,5 @@ a lesson is a page of the vault and nothing brings it into the session at the mo
 - 2026-09-12 created · raw/2026-09-12/ledger.md#L210
 - 2026-09-12 updated: clustered by librarian: a recorded fact does not reach the session that needs it, with lesson-readings-after-librarian-invisible-to-next-hi · raw/2026-09-12/ledger.md#L210
 - 2026-09-14 insight section derived
+- 2026-09-14 archived · insight actioned
+- 2026-09-14 archived · cleanup

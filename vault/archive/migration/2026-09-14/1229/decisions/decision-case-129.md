@@ -1,9 +1,10 @@
 ---
 type: decision
 case: "129"
-status: current
+status: archived
 defer: [rule-work-mode, rule-subagent-guppi]
 supersedes: [decision-case-116]
+superseded_by: [decision-case-141]
 origin: raw/2026-09-14/1029/ledger.md#case-129
 sprint: migration
 created: 2026-09-14
@@ -21,3 +22,6 @@ The phase the harness spends most of its time in is the one phase with no ratifi
 ## History
 
 - 2026-09-14 created · raw/2026-09-14/1029/ledger.md#case-129
+- 2026-09-14 superseded by decision-case-141 · [[decision-case-141]]
+- 2026-09-14 archived · superseded
+- 2026-09-14 archived · cleanup

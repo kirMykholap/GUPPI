@@ -2,7 +2,7 @@
 type: lesson
 kind: error
 root_cause: the same trap as lesson-heredoc-trap-hit-a-third-time-in-work-mode, with Case 127 ratified in this very session and guppi bashguard written an hour later; the hook that refuses the heredoc enters settings.json only with the librarian's render, so nothing mechanical stood between the agent and the trap yet, and the auto-mode instruction to prefer Bash heredocs for file changes pointed straight at it
-status: clustered
+status: archived
 insight: insight-session-vault-knowledge-not-loaded
 origin: raw/2026-09-14/1029/ledger.md#L39
 sprint: migration
@@ -26,3 +26,5 @@ the same trap as lesson-heredoc-trap-hit-a-third-time-in-work-mode, with Case 12
 
 - 2026-09-14 created · raw/2026-09-14/1029/ledger.md#L39
 - 2026-09-14 updated: clustered under insight-session-vault-knowledge-not-loaded · raw/2026-09-14/1029/ledger.md#L39
+- 2026-09-14 archived · insight actioned
+- 2026-09-14 archived · cleanup

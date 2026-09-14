@@ -45,6 +45,19 @@ Having written the `hi` line, the hook prints on stdout `hi: HH:MM:SS <stamp> �
 **＋** `estimate-event-log-records` gets a `### case 125` block, `pending`; the test: `/hi` → the line written and stdout `hi: … → raw/…/`; a second `/hi` → stdout `already recorded`, no new line in the log; `hello` → stdout empty. The live reading at the next `/hi`: the `hi:` line is in the context and the folder is named without a read call.
 **－** `rule-skill-hi` is a MOC, no `contract` is written; `rule-event-log` is `contract: changed`.
 
+### case 136.1
+
+When:
+The agent calls the Skill tool with `pre-task`, `retro` or `handoff`, and `guppi gate` on `PreToolUse` lets the call through.
+
+Then:
+The gate appends one line `- HH:MM:SS <stamp> <mark>` to `raw/<date>/event_log.md` — `pretask`, `retro` or `handoff`, the stamp from the payload's `session_id` — in the form `guppi event` writes; on a refusal there is no line.
+**＋** The Render of `rule-pretask`, `rule-retro`, `rule-handoff` loses its `Recorded:` line; `guppi event <name>` stays as a CLI, the skills do not call it.
+**＋** `rule-event-log`: `implementation_ref` gains `guppi/gate.py`, `tests/test_gate.py`; the paragraph on the marks says who writes them; `contract: changed`; `estimate-event-log-records` gets a `### case 136.1` block, `pending`: the test — a Skill payload `pre-task` → the line `<stamp> pretask`; `handoff` on a dirty tree → refused and no line; the live reading — the `/pre-task` of this session with the stamp `07a95bd2`.
+**＋** `rule-pretask`, `rule-retro`, `rule-handoff`: `contract: same`.
+**－** Other skills (`hi`, `grill-me`) get no mark.
+**－** The Frontier line F12 closes on this sub-case.
+
 ## Method
 
 pytest in `tests/test_event.py` drives `guppi.event` with piped JSON payloads against a
@@ -53,7 +66,7 @@ written into the estimate line.
 
 ## Result
 
-block 125 against tests/test_event.py: /hi prints `hi: 15:02:11 abc12345 → raw/2026-09-09/1502/` and writes the line; a second /hi prints `already recorded at 15:02:11 → raw/2026-09-09/1502/` and adds no line; across midnight the folder is the hi date's; other prompts print nothing; the live half waits for the next /hi
+block 136.1, test and live: tests/test_gate.py — pre-task → `<stamp> pretask`, retro and handoff → their marks, a refused handoff on a dirty tree and a refused pre-task on an unwritten item → no mark, hi → no mark, no log → the day folder created; live 13:50:37 session O: the Skill call pre-task passed the gate and the log gained `- 13:50:37 07a95bd2 pretask` before the skill's own `-------- pretask` of 13:50:39 (the render of 136.1 comes with the librarian)
 
 ## History
 
@@ -63,3 +76,6 @@ block 125 against tests/test_event.py: /hi prints `hi: 15:02:11 abc12345 → raw
 - 2026-09-14 criterion: case 125 added · [[decision-case-125]]
 - 2026-09-14 status: pending → passed · raw/2026-09-14/1029/ledger.md#L23
 - 2026-09-14 status: passed → passed · raw/2026-09-14/1029/ledger.md#L34
+- 2026-09-14 status: passed → passed · raw/2026-09-14/1229/ledger.md#L1
+- 2026-09-14 criterion: case 136.1 added · [[decision-case-136.1]]
+- 2026-09-14 status: pending → passed · raw/2026-09-14/1229/ledger.md#L25

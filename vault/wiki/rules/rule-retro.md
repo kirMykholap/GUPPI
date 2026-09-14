@@ -2,7 +2,7 @@
 type: rule
 kind: Leaf
 purpose: Prevents a session from closing on work nobody reviewed, or on a change that traces to no decision
-status: draft
+status: built
 enforcement: render
 governs: .claude/skills/retro/SKILL.md
 render_mode: full
@@ -30,7 +30,7 @@ name: retro
 description: Review this session's work — tests, style, the ledger — before the commit and the handoff.
 disable-model-invocation: true
 ---
-Recorded: !`uv run guppi event retro --session "${CLAUDE_SESSION_ID:-}"`
+
 
 Tests: !`make test`
 
@@ -98,3 +98,5 @@ got done; what did not. When the person approves, commit (`make style` clean,
 - 2026-09-14 defer by decision-case-118 superseded · [[decision-case-126]]
 - 2026-09-14 updated: the Retro ledger is the unmaterialized tail printed by guppi tail, not a cat over a date-level file the model of case 103 no longer has (case 126) · [[decision-case-126]]
 - 2026-09-14 updated: the scope rule names this session's ledger, as 109.1 promised (case 132) · [[decision-case-132]]
+- 2026-09-14 updated: the Recorded line dropped; guppi gate writes the stamped retro mark (case 136.1) · [[decision-case-136.1]]
+- 2026-09-14 status: draft → built · cascade

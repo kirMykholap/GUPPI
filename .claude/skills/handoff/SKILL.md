@@ -2,7 +2,7 @@
 name: handoff
 description: Write the handoff note from memory and hand the session to the librarian.
 ---
-Recorded: !`uv run guppi event handoff --session "${CLAUDE_SESSION_ID:-}"`
+
 
 Tree: !`git status --porcelain`
 

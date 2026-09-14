@@ -28,7 +28,7 @@ renders in memory and names the files that differ, for `make lint`; `--sync`, th
 is, then the rendered text — and writes it, so the agent's first turn shows what
 the render changed: the pages the librarian updated, or a hand edit that is now
 gone and may deserve a Case. It exits 0 always; `SessionStart` cannot block, and a
-render error goes to stderr. A governed file whose name ends in `.json` is parsed before anything is written: when one of them does not parse, the run writes nothing and names the file and its page on stderr (case 89.4). The rendered files are committed by the librarian, in its own commit (case 89.2).
+render error goes to stderr. A governed file whose name ends in `.json` is parsed before anything is written: when one of them does not parse, the run writes nothing and names the file and its page on stderr (case 89.4). When Claude Code reads an agent file under `.claude/agents/` — at session start or on the call — is the reading of case 139.1 on `estimate-render-harness-reproduces`; the librarian's render is its last step before the commit, and an agent it renders is planned for from the next session (case 139.1). The rendered files are committed by the librarian, in its own commit (case 89.2).
 
 A child of a `full` page lands between its own markers, which stay in the file and
 say who owns the text. A file that cannot hold a comment takes the child's text
@@ -66,3 +66,4 @@ file, so nothing is lost but the label in the file itself (case 85.1).
 - 2026-09-12 updated: a json target is parsed before the write, and one failure stops the whole write (case 89.4) · [[decision-case-89.4]]
 - 2026-09-13 status: draft → built · cascade
 - 2026-09-14 updated: --sync is named as the SessionStart hook and the Render line of /hi after the pull (case 115.1) · [[decision-case-115.1]]
+- 2026-09-14 updated: the moment Claude Code reads an agent file is the reading of case 139.1; a rendered agent is planned for from the next session (case 139.1) · [[decision-case-139.1]]

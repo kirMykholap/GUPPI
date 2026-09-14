@@ -1182,3 +1182,102 @@ instruction. The global feed; a page's own `## History` is the per-page view.
 - 2026-09-14 decisions/decision-case-119 archived · cleanup
 - 2026-09-14 decisions/decision-case-120 archived · cleanup
 - 2026-09-14 decisions/decision-case-121 archived · cleanup
+- 2026-09-14 estimates/estimate-event-log-records status: passed → passed · raw/2026-09-14/1229/ledger.md#L1 · generate
+- 2026-09-14 estimates/estimate-claude-md-rendered status: passed → passed · raw/2026-09-14/1229/ledger.md#L2 · generate
+- 2026-09-14 estimates/estimate-bash-guard status: passed → passed · raw/2026-09-14/1229/ledger.md#L3 · generate
+- 2026-09-14 estimates/estimate-handoff-dispatches status: pending → passed · raw/2026-09-14/1229/ledger.md#L4 · generate
+- 2026-09-14 estimates/estimate-brief-written status: pending → passed · raw/2026-09-14/1229/ledger.md#L5 · generate
+- 2026-09-14 decisions/decision-case-133 created · raw/2026-09-14/1229/ledger.md#case-133 · generate
+- 2026-09-14 decisions/decision-case-134 created · raw/2026-09-14/1229/ledger.md#case-134 · generate
+- 2026-09-14 insights/insight-session-vault-knowledge-not-loaded updated: actioned: the ledger tail (rule-ledger-tail, 101.2) answers the first child, the bash guard (rule-bash-guard, 127) the four heredoc children; a lessons list on a Rule page rejected — a text to remember is the channel that failed (case 134) · [[decision-case-134]] · generate
+- 2026-09-14 decisions/decision-case-135 created · raw/2026-09-14/1229/ledger.md#case-135 · generate
+- 2026-09-14 insights/insight-ledger-line-written-unchecked updated: actioned: the Proposal was done by 75.2 (line grammar at pre-task) and 75.1 (the case N form in case-schema.md); the children closed by 59.1, 72.5 and 122 (case 135) · [[decision-case-135]] · generate
+- 2026-09-14 decisions/decision-case-136.1 created · raw/2026-09-14/1229/ledger.md#case-136.1 · generate
+- 2026-09-14 rules/rule-event-log updated: the marks pretask, retro, handoff written by guppi gate with the session's stamp; the skills' Recorded lines dropped (case 136.1) · [[decision-case-136.1]] · generate
+- 2026-09-14 estimates/estimate-event-log-records criterion: case 136.1 added · [[decision-case-136.1]] · generate
+- 2026-09-14 rules/rule-pretask updated: the Recorded line dropped; guppi gate writes the stamped pretask mark (case 136.1) · [[decision-case-136.1]] · generate
+- 2026-09-14 rules/rule-retro updated: the Recorded line dropped; guppi gate writes the stamped retro mark (case 136.1) · [[decision-case-136.1]] · generate
+- 2026-09-14 rules/rule-handoff updated: the Recorded line dropped; guppi gate writes the stamped handoff mark (case 136.1) · [[decision-case-136.1]] · generate
+- 2026-09-14 decisions/decision-case-136.3 created · raw/2026-09-14/1229/ledger.md#case-136.3 · generate
+- 2026-09-14 decisions/decision-case-111.6 superseded by decision-case-136.3 · [[decision-case-136.3]] · generate
+- 2026-09-14 rules/rule-ledger-write updated: the fallback of 111.6 — an unstamped hi bound by position — removed; a hi of the session's stamp is the one way to open the window (case 136.3) · [[decision-case-136.3]] · generate
+- 2026-09-14 estimates/estimate-ledger-write-lifts criterion: case 136.3 added · [[decision-case-136.3]] · generate
+- 2026-09-14 estimates/estimate-ledger-write-lifts criterion: case 111.6 removed · [[decision-case-136.3]] · generate
+- 2026-09-14 decisions/decision-case-136.4 created · raw/2026-09-14/1229/ledger.md#case-136.4 · generate
+- 2026-09-14 insights/insight-ledger-hi-tied-to-its-session-by-position updated: actioned: the hi is stamped by 111, the marks pretask/retro/handoff by guppi gate (136.1), pretask.window and the ledger window read by stamp only (136.2, 136.3) (case 136.4) · [[decision-case-136.4]] · generate
+- 2026-09-14 decisions/decision-case-136.2 created · raw/2026-09-14/1229/ledger.md#case-136.2 · generate
+- 2026-09-14 rules/rule-pretask-hook updated: the ExitPlanMode hook binds the pretask mark by the session's stamp, not by position (case 136.2) · [[decision-case-136.2]] · generate
+- 2026-09-14 estimates/estimate-pretask-hook-gates criterion: case 136.2 added · [[decision-case-136.2]] · generate
+- 2026-09-14 decisions/decision-case-137 created · raw/2026-09-14/1229/ledger.md#case-137 · generate
+- 2026-09-14 insights/insight-ledger-hook-reads-only-the-final-text updated: actioned by 122 — the rule that a reply with a LEDGER block ends in that text, and guppi gate on the Skill call; collecting intermediate texts rejected as impossible, the transcript omits them (case 137) · [[decision-case-137]] · generate
+- 2026-09-14 decisions/decision-case-138 created · raw/2026-09-14/1229/ledger.md#case-138 · generate
+- 2026-09-14 insights/insight-workflow-contract-change-leaves-its-derived-text-stale updated: actioned: the path half by 59.6, 59.8 and pre-task's governed check; the criterion half by the derived criterion blocks of 72.1 and 88.2; no pre-task pass over quoting Estimates (case 138) · [[decision-case-138]] · generate
+- 2026-09-14 decisions/decision-case-139.1 created · raw/2026-09-14/1229/ledger.md#case-139.1 · generate
+- 2026-09-14 rules/rule-render-harness updated: the moment Claude Code reads an agent file is the reading of case 139.1; a rendered agent is planned for from the next session (case 139.1) · [[decision-case-139.1]] · generate
+- 2026-09-14 estimates/estimate-render-harness-reproduces criterion: case 139.1 added · [[decision-case-139.1]] · generate
+- 2026-09-14 decisions/decision-case-139.2 created · raw/2026-09-14/1229/ledger.md#case-139.2 · generate
+- 2026-09-14 insights/insight-harness-agent-visibility updated: actioned: one reading on estimate-render-harness-reproduces (139.1) replaces the two opposing lessons; the Rule page names where the answer is (case 139.2) · [[decision-case-139.2]] · generate
+- 2026-09-14 lessons/lesson-gate-plan-path-cut-by-the-event-log-detail-limit created · raw/2026-09-14/1229/ledger.md#L20 · generate
+- 2026-09-14 decisions/decision-case-140 created · raw/2026-09-14/1229/ledger.md#case-140 · generate
+- 2026-09-14 decisions/decision-case-130.1 updated: the quoted literal decision-case-N wrapped in backticks, a lint ref finding; no content change (case 140) · [[decision-case-140]] · generate
+- 2026-09-14 decisions/decision-case-130.2 updated: the quoted literal decision-case-N wrapped in backticks, a lint ref finding; no content change (case 140) · [[decision-case-140]] · generate
+- 2026-09-14 decisions/decision-case-141 created · raw/2026-09-14/1229/ledger.md#case-141 · generate
+- 2026-09-14 decisions/decision-case-129 superseded by decision-case-141 · [[decision-case-141]] · generate
+- 2026-09-14 rules/rule-work-mode defer by decision-case-129 superseded · [[decision-case-141]] · generate
+- 2026-09-14 rules/rule-subagent-guppi defer by decision-case-129 superseded · [[decision-case-141]] · generate
+- 2026-09-14 rules/rule-work-mode deferred · [[decision-case-141]] · generate
+- 2026-09-14 rules/rule-subagent-guppi deferred · [[decision-case-141]] · generate
+- 2026-09-14 estimates/estimate-event-log-records status: pending → passed · raw/2026-09-14/1229/ledger.md#L25 · generate
+- 2026-09-14 estimates/estimate-pretask-hook-gates status: pending → passed · raw/2026-09-14/1229/ledger.md#L26 · generate
+- 2026-09-14 estimates/estimate-ledger-write-lifts status: pending → passed · raw/2026-09-14/1229/ledger.md#L27 · generate
+- 2026-09-14 estimates/estimate-render-harness-reproduces status: pending → passed · raw/2026-09-14/1229/ledger.md#L28 · generate
+- 2026-09-14 lessons/lesson-agents-read-at-session-start-in-claude-code-2-1-228 created · raw/2026-09-14/1229/ledger.md#L29 · generate
+- 2026-09-14 estimates/estimate-retro-loads status: failed → passed · raw/2026-09-14/1229/ledger.md#L30 · generate
+- 2026-09-14 lessons/lesson-retro-typed-by-the-person-bypasses-the-skill-tool-and-the-gate created · raw/2026-09-14/1229/ledger.md#L31 · generate
+- 2026-09-14 rules/rule-brief status: draft → built · cascade · generate
+- 2026-09-14 rules/rule-handoff status: draft → built · cascade · generate
+- 2026-09-14 rules/rule-retro status: draft → built · cascade · generate
+- 2026-09-14 decisions/decision-case-111.6 archived · superseded · generate
+- 2026-09-14 decisions/decision-case-129 archived · superseded · generate
+- 2026-09-14 lessons/lesson-agents-loaded-at-session-start archived · insight actioned · generate
+- 2026-09-14 lessons/lesson-agents-visible-in-session archived · insight actioned · generate
+- 2026-09-14 lessons/lesson-ledger-hook-hi-lost-at-midnight archived · insight actioned · generate
+- 2026-09-14 lessons/lesson-hi-taken-by-a-session-started-in-the-same-second archived · insight actioned · generate
+- 2026-09-14 lessons/lesson-pretask-line-unstamped-and-bound-by-position archived · insight actioned · generate
+- 2026-09-14 lessons/lesson-ledger-hook-misses-a-reply-ending-in-a-tool-call archived · insight actioned · generate
+- 2026-09-14 lessons/lesson-transcript-omits-text-emitted-before-tool-calls archived · insight actioned · generate
+- 2026-09-14 lessons/lesson-ledger-lines-lost-in-a-reply-ending-in-a-skill-call-with-the-insight-live archived · insight actioned · generate
+- 2026-09-14 lessons/lesson-spec-then-items-unchecked-against-ledger-lines archived · insight actioned · generate
+- 2026-09-14 lessons/lesson-ledger-decision-line-written-without-the-case-word archived · insight actioned · generate
+- 2026-09-14 lessons/lesson-ledger-preview-in-ratification-taken-for-the-record archived · insight actioned · generate
+- 2026-09-14 lessons/lesson-pretask-nested-estimate-exempt-from-the-line-check archived · insight actioned · generate
+- 2026-09-14 lessons/lesson-readings-after-librarian-invisible-to-next-hi archived · insight actioned · generate
+- 2026-09-14 lessons/lesson-vault-lesson-absent-at-the-moment-it-applies archived · insight actioned · generate
+- 2026-09-14 lessons/lesson-heredoc-trap-hit-twice-with-its-lesson-live archived · insight actioned · generate
+- 2026-09-14 lessons/lesson-heredoc-trap-hit-a-third-time-in-work-mode archived · insight actioned · generate
+- 2026-09-14 lessons/lesson-heredoc-trap-hit-a-fourth-time-in-the-session-that-ratified-its-hook archived · insight actioned · generate
+- 2026-09-14 lessons/lesson-estimates-criterion-stale-after-contract-change archived · insight actioned · generate
+- 2026-09-14 lessons/lesson-render-governed-file-updated-as-rule-class-file archived · insight actioned · generate
+- 2026-09-14 lessons/lesson-estimates-live-clause-stale-at-first-render archived · insight actioned · generate
+- 2026-09-14 lessons/lesson-agents-loaded-at-session-start archived · cleanup
+- 2026-09-14 lessons/lesson-agents-visible-in-session archived · cleanup
+- 2026-09-14 lessons/lesson-estimates-criterion-stale-after-contract-change archived · cleanup
+- 2026-09-14 lessons/lesson-estimates-live-clause-stale-at-first-render archived · cleanup
+- 2026-09-14 lessons/lesson-heredoc-trap-hit-a-fourth-time-in-the-session-that-ratified-its-hook archived · cleanup
+- 2026-09-14 lessons/lesson-heredoc-trap-hit-a-third-time-in-work-mode archived · cleanup
+- 2026-09-14 lessons/lesson-heredoc-trap-hit-twice-with-its-lesson-live archived · cleanup
+- 2026-09-14 lessons/lesson-hi-taken-by-a-session-started-in-the-same-second archived · cleanup
+- 2026-09-14 lessons/lesson-ledger-decision-line-written-without-the-case-word archived · cleanup
+- 2026-09-14 lessons/lesson-ledger-hook-hi-lost-at-midnight archived · cleanup
+- 2026-09-14 lessons/lesson-ledger-hook-misses-a-reply-ending-in-a-tool-call archived · cleanup
+- 2026-09-14 lessons/lesson-ledger-lines-lost-in-a-reply-ending-in-a-skill-call-with-the-insight-live archived · cleanup
+- 2026-09-14 lessons/lesson-ledger-preview-in-ratification-taken-for-the-record archived · cleanup
+- 2026-09-14 lessons/lesson-pretask-line-unstamped-and-bound-by-position archived · cleanup
+- 2026-09-14 lessons/lesson-pretask-nested-estimate-exempt-from-the-line-check archived · cleanup
+- 2026-09-14 lessons/lesson-readings-after-librarian-invisible-to-next-hi archived · cleanup
+- 2026-09-14 lessons/lesson-render-governed-file-updated-as-rule-class-file archived · cleanup
+- 2026-09-14 lessons/lesson-spec-then-items-unchecked-against-ledger-lines archived · cleanup
+- 2026-09-14 lessons/lesson-transcript-omits-text-emitted-before-tool-calls archived · cleanup
+- 2026-09-14 lessons/lesson-vault-lesson-absent-at-the-moment-it-applies archived · cleanup
+- 2026-09-14 decisions/decision-case-111.6 archived · cleanup
+- 2026-09-14 decisions/decision-case-129 archived · cleanup

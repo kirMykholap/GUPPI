@@ -2,7 +2,7 @@
 type: lesson
 kind: error
 root_cause: CLAUDE.md is both a Rule-class file, changed by hand through a file item, and a rendered file governed by rule-case-protocol; nothing says which of its sections is which, and pre-task does not check that a file item on a governed path comes with an update of the governing rule
-status: clustered
+status: archived
 insight: insight-workflow-contract-change-leaves-its-derived-text-stale
 origin: raw/2026-09-12/ledger.md#L12
 sprint: migration
@@ -27,3 +27,5 @@ CLAUDE.md is both a Rule-class file, changed by hand through a file item, and a 
 - 2026-09-12 created · raw/2026-09-12/ledger.md#L12
 - 2026-09-12 updated: clustered by librarian: a change leaves its derived text stale, with lesson-estimates-criterion-stale-after-contract-change · raw/2026-09-12/ledger.md#L12
 - 2026-09-14 insight section derived
+- 2026-09-14 archived · insight actioned
+- 2026-09-14 archived · cleanup

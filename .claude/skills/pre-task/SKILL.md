@@ -2,7 +2,7 @@
 name: pre-task
 description: Check this Plan Mode's ratified decisions against each other and the vault before the Spec is approved.
 ---
-Recorded: !`uv run guppi event pretask --session "${CLAUDE_SESSION_ID:-}"`
+
 
 Run `uv run guppi pretask --check <the plan file of this Plan Mode>`. It prints one line
 for every decision line of this session that has no item under its own Case in the plan,

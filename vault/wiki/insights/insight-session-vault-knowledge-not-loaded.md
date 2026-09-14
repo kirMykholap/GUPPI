@@ -1,9 +1,10 @@
 ---
 type: insight
 pattern: A fact the vault holds does not reach the session that needs it; only brief.md, CLAUDE.md, the skills and the agent frames are loaded, and everything else waits for a read the agent must first think to make.
-status: open
+status: actioned
 children: [lesson-readings-after-librarian-invisible-to-next-hi, lesson-vault-lesson-absent-at-the-moment-it-applies, lesson-heredoc-trap-hit-twice-with-its-lesson-live, lesson-heredoc-trap-hit-a-third-time-in-work-mode, lesson-heredoc-trap-hit-a-fourth-time-in-the-session-that-ratified-its-hook]
-severity: 5
+severity: 0
+addressed_by: decision-case-134
 origin: raw/2026-09-12/ledger.md#L210
 sprint: migration
 created: 2026-09-12
@@ -32,9 +33,14 @@ A suggestion, not a decision. Give the session a second channel beside the brief
 - [[lesson-heredoc-trap-hit-a-third-time-in-work-mode]]
 - [[lesson-heredoc-trap-hit-a-fourth-time-in-the-session-that-ratified-its-hook]]
 
+## Addressed by
+
+- [[decision-case-134]]
+
 ## History
 
 - 2026-09-12 created · raw/2026-09-12/ledger.md#L210
 - 2026-09-13 updated: synthesis: lesson-heredoc-trap-hit-twice-with-its-lesson-live added, the same trap with its lesson live · raw/2026-09-13/0652/ledger.md#L3
 - 2026-09-14 updated: synthesis: lesson-heredoc-trap-hit-a-third-time-in-work-mode added, the same trap a third time with the Insight live · raw/2026-09-14/0747/ledger.md#L51
 - 2026-09-14 updated: synthesis: lesson-heredoc-trap-hit-a-fourth-time-in-the-session-that-ratified-its-hook added, the same trap a fourth time, in the session that ratified the hook against it · raw/2026-09-14/1029/ledger.md#L39
+- 2026-09-14 updated: actioned: the ledger tail (rule-ledger-tail, 101.2) answers the first child, the bash guard (rule-bash-guard, 127) the four heredoc children; a lessons list on a Rule page rejected — a text to remember is the channel that failed (case 134) · [[decision-case-134]]

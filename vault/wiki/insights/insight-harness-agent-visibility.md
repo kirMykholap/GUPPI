@@ -1,9 +1,10 @@
 ---
 type: insight
 pattern: The moment Claude Code reads an agent definition is not established; two sessions rendered an agent and got opposite results, and no measurement separates them.
-status: open
+status: actioned
 children: [lesson-agents-loaded-at-session-start, lesson-agents-visible-in-session]
-severity: 2
+severity: 0
+addressed_by: decision-case-139.2
 origin: raw/2026-09-10/ledger.md#L80
 sprint: migration
 created: 2026-09-10
@@ -29,6 +30,11 @@ A suggestion, not a decision. Take one reading that separates the two: render a 
 - [[lesson-agents-loaded-at-session-start]]
 - [[lesson-agents-visible-in-session]]
 
+## Addressed by
+
+- [[decision-case-139.2]]
+
 ## History
 
 - 2026-09-10 created · raw/2026-09-10/ledger.md#L80
+- 2026-09-14 updated: actioned: one reading on estimate-render-harness-reproduces (139.1) replaces the two opposing lessons; the Rule page names where the answer is (case 139.2) · [[decision-case-139.2]]

@@ -1,7 +1,7 @@
 ---
 type: estimate
 kind: QA
-status: passed
+status: pending
 target: "[[rule-cleanup]]"
 origin: raw/2026-09-10/ledger.md#case-33
 sprint: migration
@@ -36,6 +36,14 @@ A page with `status: archived` goes to `vault/archive/<sprint>/<date>/<HHMM>/<ca
 **＋** `estimate-cleanup-moves` gets a `### case 102.2` block, `pending`.
 **－** A date without `<HHMM>/` folders is one session; the page goes to `<date>/<category>/`.
 
+### case 147.6
+
+When:
+`guppi cleanup` runs.
+
+Then:
+The sentence "Then the four indexes are rewritten …" removed; purpose — "Prevents an archived page from staying among the live ones"; `cleanup.py` without the call of the index writer; the tests without the index checks.
+
 ## Method
 
 pytest in tests/test_cleanup.py against a temp vault; the live reading once by hand
@@ -53,3 +61,4 @@ block 102.2: the librarian of session L moved 32 pages to vault/archive/migratio
 - 2026-09-13 criterion: case 102.2 added · [[decision-case-102.2]]
 - 2026-09-14 updated: the prose Criterion names the path of case 102 (case 112.5) · [[decision-case-112.5]]
 - 2026-09-14 status: pending → passed · raw/2026-09-14/0747/ledger.md#L41
+- 2026-09-14 criterion: case 147.6 added · [[decision-case-147.6]]

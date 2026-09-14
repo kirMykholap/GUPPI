@@ -1,7 +1,7 @@
 ---
 type: estimate
 kind: QA
-status: passed
+status: pending
 target: "[[rule-index-check]]"
 origin: raw/2026-09-10/ledger.md#case-35.1
 sprint: migration
@@ -22,6 +22,16 @@ with no other field changed; a near match was kept with near: <slug>; every page
 opened is named in the report with the index line that did not settle same or
 near; no comparison crossed categories.
 
+### case 147.3
+
+When:
+The librarian does the index check.
+
+Then:
+"for each `create` entry … run the Grep of its category yourself — `^(purpose|deferred_by):` over `vault/wiki/<category>/` (`root_cause` for lessons, `pattern` for insights) — and compare the entry's `purpose` (`root_cause` for a lesson) with every index line it returns"; the rest as it is.
+**＋** The report names the Grep and the number of lines compared with.
+**－** The name of the rule does not change.
+
 ## Method
 
 one reading by hand after the first librarian run, recorded in the estimate line
@@ -36,3 +46,4 @@ live 2026-09-10 session G: the report names the comparisons per category (four e
 - 2026-09-10 status: pending → passed · raw/2026-09-10/ledger.md#L90
 - 2026-09-10 updated: an opened page is named in the report with the index line that did not settle it · raw/2026-09-10/ledger.md#case-49
 - 2026-09-11 status: passed → passed · raw/2026-09-10/ledger.md#L125
+- 2026-09-14 criterion: case 147.3 added · [[decision-case-147.3]]

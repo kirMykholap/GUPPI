@@ -1,7 +1,6 @@
 ---
 name: retro
 description: Review this session's work — tests, style, the ledger — before the commit and the handoff.
-disable-model-invocation: true
 ---
 
 

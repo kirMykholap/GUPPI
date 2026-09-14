@@ -2,7 +2,7 @@
 type: rule
 kind: Leaf
 purpose: Prevents a decision from being acted on before it is ratified, or ratified without its content in view
-status: built
+status: draft
 enforcement: render
 governs: CLAUDE.md
 render_mode: partial
@@ -75,7 +75,7 @@ Dispatch the `ask-guppi` agent with one short question.
 Ledger lines are written by the `Stop` hook, from the reply, verbatim, each with
 the time of writing. A record is a `- decision[case 12][update][rule-x]{ref:rule-x}`, `- estimate[...]` or `- lesson[...]` line inside a fenced block opened with the `LEDGER` tag — the id is `case N`, the word and a space, in `{supersedes:case N}` too; the same
 line anywhere else — bare, or in a block with another tag or none — is a preview
-and is never written. A `create` line carries the ratified tags: `{tags:a,b}`.
+and is never written. A `create` line carries the ratified tags: `{tags:a,b}`. A `knowledge` lesson line carries `{source:...}`, the url or reference the lesson studied — a file of the harness, a probe, a client version; the schema requires it, and a line without it is `incomplete: [source]` in the yaml and a lint finding on the page. An `error` lesson never carries one.
 Write the `- decision[...]` lines only in the reply that acknowledges ratification;
 `- estimate[...]` and `- lesson[...]` lines the moment the measurement or the lesson
 exists. Without `/hi` the hook refuses and says so: tell the person, do not retry. A reply that carries a `LEDGER` block ends in that text. No tool call follows it in the same reply: the text before a tool call is never kept, and the hook reads nothing.
@@ -128,3 +128,5 @@ page; the reference dangles until then, on purpose.
 - 2026-09-12 updated: the two keys of the derived Estimate are ratified as estimate_kind and estimate_slug (case 86) · [[decision-case-86]]
 - 2026-09-13 status: draft → built · cascade
 - 2026-09-14 updated: a reply that carries a LEDGER block ends in that text, no tool call after it (case 122) · [[decision-case-122]]
+- 2026-09-14 updated: a knowledge lesson line carries {source:...}, the reference the lesson studied (case 144.1) · [[decision-case-144.1]]
+- 2026-09-14 status: built → draft · cascade

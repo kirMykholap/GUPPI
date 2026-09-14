@@ -1,7 +1,7 @@
 ---
 type: estimate
 kind: QA
-status: passed
+status: pending
 target: "[[rule-case-protocol]]"
 origin: raw/2026-09-09/ledger.md#case-13
 sprint: migration
@@ -55,6 +55,17 @@ The item names them `estimate_kind` and `estimate_slug`.
 page's own fields.
 **－** No other key of a `then` item is renamed; `method` and `contract` stay as they are.
 
+### case 144.1
+
+When:
+`guppi render` writes the Render of `rule-case-protocol` into `CLAUDE.md`; then the main agent writes a `- lesson[knowledge][...]` line.
+
+Then:
+The paragraph on ledger lines in the Render carries the sentence: "A `knowledge` lesson line carries `{source:...}`, the url or reference the lesson studied — a file of the harness, a probe, a client version; the schema requires it, and a line without it is `incomplete: [source]` in the yaml and a lint finding on the page. An `error` lesson never carries one."
+**＋** `CLAUDE.md` carries the sentence after the render; `guppi render --check` exit 0.
+**－** `rule-ledger-write` does not change: the hook writes verbatim and checks nothing.
+**－** `rule-retro` does not change: its example lines stay; the rule is read in `CLAUDE.md`.
+
 ## Method
 
 One reading at a session start, by hand, plus the preview cases of `tests/test_ledger.py`.
@@ -73,3 +84,4 @@ live 2026-09-13 session L: the first turn assembled the Frontier without a read 
 - 2026-09-12 criterion: case 75.1 added · [[decision-case-75.1]]
 - 2026-09-12 criterion: case 86 added · [[decision-case-86]]
 - 2026-09-13 status: pending → passed · raw/2026-09-13/ledger.md#L43
+- 2026-09-14 criterion: case 144.1 added · [[decision-case-144.1]]

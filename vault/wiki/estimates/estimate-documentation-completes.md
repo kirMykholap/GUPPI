@@ -1,7 +1,7 @@
 ---
 type: estimate
 kind: QA
-status: passed
+status: pending
 target: "[[rule-documentation]]"
 origin: raw/2026-09-10/ledger.md#case-36
 sprint: migration
@@ -75,6 +75,14 @@ A step between Brief and Close (shown again at pre-task: the brief reads the yam
 **＋** The session of the run is found as `cleanup` finds it — the latest `<HHMM>/` folder of the run day, else the nearest date back — and is skipped even when dated before the run day (a session across midnight).
 **＋** `estimate-documentation-completes` gets a `### case 100.2` block, `pending`.
 
+### case 147.5
+
+When:
+`guppi render` writes `librarian-guppi.md`.
+
+Then:
+"Your inputs are three: the `handoff.md` …, every `materialize.yaml` …, and `vault/wiki/tags.md`; the index lines you compare with are the Greps `rule-index-check` and `rule-synthesis` name"; the four reasons to open a page — as they are.
+
 ## Method
 
 `make test-documentation`, the pipeline over tests/test_materialize.py, tests/test_generate.py and tests/test_cleanup.py; the live reading by hand
@@ -99,3 +107,4 @@ block 100.2 against the librarian's run of session M: Archive ran after Brief (1
 - 2026-09-12 criterion: case 90.3 added · [[decision-case-90.3]]
 - 2026-09-13 criterion: case 100.2 added · [[decision-case-100.2]]
 - 2026-09-14 status: pending → passed · raw/2026-09-14/1029/ledger.md#L2
+- 2026-09-14 criterion: case 147.5 added · [[decision-case-147.5]]

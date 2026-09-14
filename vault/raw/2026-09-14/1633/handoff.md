@@ -1,0 +1,34 @@
+# Handoff — 2026-09-14, session P: the four open Insights actioned, the index files retired, the vault's refs as wikilinks (Cases 142–154)
+
+## Notes from memory
+
+- The owner opened the session on F2 (the reading of 124.1) and set Slice 3b aside once more (152, supersedes 141, the eleventh postponement) to close the other open items first.
+- The Obsidian direction (F14–F16, Cases 147–149) came from the owner mid-session: they use the graph, backlinks and Bases; the CLI (1.12, needs the running app) was weighed and not adopted; lint stays with its own notion of an orphan. The owner sees orphans still in the graph after 148.1 — a next-session item, with 146 (an `actioned` Insight is exempt from `orphan`, deferred).
+- 150 was decided on "least work": the `disable-model-invocation` flag of the retro skill is dropped (B), not a `--check` mode. The Skill tool refused the agent's `retro` call in this session as the flag stands until the render.
+- 154 (defer `rule-ask`) came from the owner's remark that six `ask-guppi` dispatches were too many; the practice from now is one before a `create` without `ref` and one at pre-task.
+- Caveats on 142.1: the code treats an entry carrying `librarian` (the librarian's synthesis entries, no `line`) as readable; the ratified text of the Rule says "a mapping without `line` and without `derived`" — a precision for a later `update`, not a contradiction in behaviour. `PinnedDatetime.astimezone()` without a zone gives UTC, not the machine's zone, so the pinned wall clock reads 00:00:00 everywhere (145.1, in the conftest docstring).
+- `log.md`: lines 15 and 17 carried the same bare `#case-…` pointers as the lines 12–14 of 148.3 and were put in code spans too.
+
+## Direct instructions to the librarian
+
+- The units to walk: `raw/2026-09-14/1633` is this session's; `0747` and `1029` are kept by the date guard; `1229` is all applied. Expect the entry of 112.6 in `0747` to be skipped silently now (151) — no stderr line, `failed` kept.
+- Order matters twice in `rule-page-generation`: 142.2 and 151 both insert after "No entry ends the run."; apply in ledger order and both `old`s stay unique.
+- `rule-materialize` gets two `contract: changed` updates (142.1 with `estimate_slug: estimate-materialize-assembles`, 142.4 with `estimate-materialize-walks-dates`); both readings are already in the ledger, so the folded `passed` should land on both Estimates. `estimate-generate-writes` gets three blocks (142.2, 148.1, 151) and one reading line covering all three.
+- `rule-tests-clock-pinned` is a `create` with `method`: its Estimate `estimate-tests-clock-pinned` is derived and its reading line is in the ledger — fold it.
+- 147.1 deletes `rule-index` and `estimate-index-lists`; `rule-harness.children` loses `rule-index` by cleanup, while 145.2's `set` still lists it (the `set` is in ledger order before 147.1) and 153's `replace` rewrites the Purpose. Check `rule-harness` after the run: children without `rule-index`, with `rule-tests-clock-pinned` last.
+- 149.4 puts `[[brief]]`, `[[sprint]]`, `[[tags]]`, `[[glossary]]`, `[[case-schema]]`, `[[index]]` into four Purposes; lint of 149.3 is built and resolves them — no `ref` finding expected.
+- The renders after generate: `CLAUDE.md` (144.1, 150.1), `.claude/agents/ask-guppi.md` (147.2, 147.9), `.claude/agents/librarian-guppi.md` (147.3, 147.4, 147.5, 142.5, 147.9), `.claude/skills/retro/SKILL.md` (150). `guppi render --check` must exit 0 after.
+- No index files exist and `guppi index` is gone: the index check and the synthesis run the Greps named in 147.2–147.4 (`^(purpose|deferred_by):` over rules and entities, `^(root_cause|deferred_by):` over lessons, `^(pattern|deferred_by):` over insights). Name the Grep and its line count in the report.
+- Two `knowledge` lessons with `source`: `lesson-obsidian-cli-needs-the-running-app`, `lesson-obsidian-property-links-need-wikilink-form`. Candidates for `near`: none known; no live lesson names Obsidian.
+- Readings still pending after the run, for the brief: `estimate-lint-catches` (149.3: lint clean of `ref` on the four rules), `estimate-cleanup-moves` (147.6: the run wrote no index), `estimate-harness-pipeline` (153), `estimate-ask-finds` (147.2), `estimate-index-check-merges` (147.3), `estimate-synthesis-clusters` (147.4), `estimate-documentation-completes` (147.5), `estimate-case-protocol-loaded` (144.1), `estimate-retro-loads` (150, at the next `/retro`).
+- Lint before the run: 84 findings — the 82 of session O plus 2 `path` on `rule-index` (its files deleted); after the run expect the `rule-index` ones and the three `source` findings gone, the two placeholders and the 62 of Cases 1–28 to stay, and the orphan count changed only by the four newly actioned Insights (146 is deferred).
+- `sprint.md`: no change.
+
+## What actually got done
+
+- Ratified: 142.1–142.5, 143, 144.1–144.3, 145.1–145.3, 147.1–147.9, 148.1–148.3, 149.1–149.4, 150, 150.1, 151, 153; deferred 146 (`rule-lint`), 152 (`rule-work-mode`, `rule-subagent-guppi`, supersedes 141), 154 (`rule-ask`).
+- Code, commit `4586061` on `migration`: `guppi/materialize.py` (`lift_line`, the per-line guard, the retry, the unreadable-entry skip, `page_estimates` through `slug_of`, `run` keeps walking), `guppi/generate.py` (skip `failed`-without-`kind`, skip `superseded_by` after its Decision page, `wikilink()` in `frontmatter`), `guppi/pages.py` (`REF_FIELDS`, `slug_of`, `strip_refs` in `read_page`), `guppi/lint.py` (`hub_files`, `check_refs` with hubs), `guppi/cleanup.py` and `guppi/cli.py` without the index, `guppi/index.py` deleted, Makefile (`lint` two steps, `test-harness` two files); tests: `tests/conftest.py` (the pinned clock), `tests/test_conftest.py`, `tests/test_pages.py`, additions in `test_materialize.py` (+5), `test_generate.py` (+2), `test_lint.py` (+1), `tests/test_index.py` deleted, three CLI tests moved to the fixture: 368 green (359 before), `make style` clean.
+- The migration of 148.1: 357 of 399 pages under `wiki/` and `archive/` rewritten, frontmatter only; lint identical before and after; the owner saw 2 backlinks on `insight-tests-clock-not-pinned` and 15 on `rule-harness`.
+- By hand: `index.md` (§11 rewritten, §1 index lines and the table row removed, the hub-links paragraph, the example page), `glossary.md`, `case-schema.md`, the six `schema.md`, `insights/schema.md` line 31, `log.md`; the four `wiki/*-index.md` deleted.
+- Readings: `estimate-brief-written` (124.1), `estimate-materialize-assembles` (142.1), `estimate-materialize-walks-dates` (142.4), `estimate-tests-clock-pinned` (145.1), `estimate-generate-writes` (142.2, 148.1, 151) — all `passed`. Lessons: two `knowledge` with `source`.
+- Not done: the librarian's 29 tasks (every `replace`/`set`, the renders, the cascades); the nine readings listed above; the Obsidian graph still shows orphans (owner) — next session, with 146.

@@ -1281,3 +1281,136 @@ instruction. The global feed; a page's own `## History` is the per-page view.
 - 2026-09-14 lessons/lesson-vault-lesson-absent-at-the-moment-it-applies archived · cleanup
 - 2026-09-14 decisions/decision-case-111.6 archived · cleanup
 - 2026-09-14 decisions/decision-case-129 archived · cleanup
+- 2026-09-14 estimates/estimate-brief-written status: passed → passed · raw/2026-09-14/1633/ledger.md#L1 · generate
+- 2026-09-14 decisions/decision-case-142.1 created · raw/2026-09-14/1633/ledger.md#case-142.1 · generate
+- 2026-09-14 rules/rule-materialize updated: an entry fails alone in materialize, the walk goes on; an unreadable existing entry is left alone; the field list names every field and its writer (case 142.1) · [[decision-case-142.1]] · generate
+- 2026-09-14 estimates/estimate-materialize-assembles criterion: case 142.1 added · [[decision-case-142.1]] · generate
+- 2026-09-14 decisions/decision-case-142.2 created · raw/2026-09-14/1633/ledger.md#case-142.2 · generate
+- 2026-09-14 rules/rule-page-generation updated: an entry materialize failed is skipped, its failed mark kept (case 142.2) · [[decision-case-142.2]] · generate
+- 2026-09-14 estimates/estimate-generate-writes criterion: case 142.2 added · [[decision-case-142.2]] · generate
+- 2026-09-14 decisions/decision-case-142.3 created · raw/2026-09-14/1633/ledger.md#case-142.3 · generate
+- 2026-09-14 insights/insight-harness-yaml-entry-shape-assumed updated: actioned: materialize fails an entry alone and generate keeps its mark (142.1, 142.2); the field list of rule-materialize is the one place for the entry shape; no schema module in code (case 142.3) · [[decision-case-142.3]] · generate
+- 2026-09-14 decisions/decision-case-143 created · raw/2026-09-14/1633/ledger.md#case-143 · generate
+- 2026-09-14 insights/insight-librarian-frame-omits-required-reads updated: actioned: the four reasons of the frame (54, 58, 90.3, 102.4) are one clause per judgment, the children's clauses agree, nine runs without a recurrence; no Rule changed (case 143) · [[decision-case-143]] · generate
+- 2026-09-14 decisions/decision-case-144.1 created · raw/2026-09-14/1633/ledger.md#case-144.1 · generate
+- 2026-09-14 rules/rule-case-protocol updated: a knowledge lesson line carries {source:...}, the reference the lesson studied (case 144.1) · [[decision-case-144.1]] · generate
+- 2026-09-14 estimates/estimate-case-protocol-loaded criterion: case 144.1 added · [[decision-case-144.1]] · generate
+- 2026-09-14 decisions/decision-case-144.2 created · raw/2026-09-14/1633/ledger.md#case-144.2 · generate
+- 2026-09-14 lessons/lesson-gate-plan-path-cut-by-the-event-log-detail-limit updated: source added (case 144.2) · [[decision-case-144.2]] · generate
+- 2026-09-14 lessons/lesson-agents-read-at-session-start-in-claude-code-2-1-228 updated: source added (case 144.2) · [[decision-case-144.2]] · generate
+- 2026-09-14 lessons/lesson-retro-typed-by-the-person-bypasses-the-skill-tool-and-the-gate updated: source added (case 144.2) · [[decision-case-144.2]] · generate
+- 2026-09-14 decisions/decision-case-144.3 created · raw/2026-09-14/1633/ledger.md#case-144.3 · generate
+- 2026-09-14 insights/insight-materialize-lift-loses-a-schema-field updated: actioned: the children fixed by 53.3 and 87; the protocol names {source:...} on a knowledge line (144.1); the three lessons of O sourced (144.2); no table in code (case 144.3) · [[decision-case-144.3]] · generate
+- 2026-09-14 decisions/decision-case-145.1 created · raw/2026-09-14/1633/ledger.md#case-145.1 · generate
+- 2026-09-14 rules/rule-tests-clock-pinned created · [[decision-case-145.1]] · generate
+- 2026-09-14 rules/rule-harness child rule-tests-clock-pinned added · [[decision-case-145.1]] · generate
+- 2026-09-14 estimates/estimate-tests-clock-pinned created · [[decision-case-145.1]] · generate
+- 2026-09-14 estimates/estimate-tests-clock-pinned status: pending → passed · raw/2026-09-14/1633/ledger.md#L57 · generate
+- 2026-09-14 rules/rule-tests-clock-pinned estimate estimate-tests-clock-pinned added · [[decision-case-145.1]] · generate
+- 2026-09-14 decisions/decision-case-145.2 created · raw/2026-09-14/1633/ledger.md#case-145.2 · generate
+- 2026-09-14 rules/rule-harness updated: rule-tests-clock-pinned added (case 145.2) · [[decision-case-145.2]] · generate
+- 2026-09-14 decisions/decision-case-145.3 created · raw/2026-09-14/1633/ledger.md#case-145.3 · generate
+- 2026-09-14 insights/insight-tests-clock-not-pinned updated: actioned: every run() takes now (the children's fixes); the clock of the tests pinned to 2001 by rule-tests-clock-pinned (145.1) (case 145.3) · [[decision-case-145.3]] · generate
+- 2026-09-14 decisions/decision-case-146 created · raw/2026-09-14/1633/ledger.md#case-146 · generate
+- 2026-09-14 rules/rule-lint deferred · [[decision-case-146]] · generate
+- 2026-09-14 decisions/decision-case-147.1 created · raw/2026-09-14/1633/ledger.md#case-147.1 · generate
+- 2026-09-14 rules/rule-index deleted · [[decision-case-147.1]] · generate
+- 2026-09-14 estimates/estimate-index-lists deleted · [[decision-case-147.1]] · generate
+- 2026-09-14 decisions/decision-case-147.2 created · raw/2026-09-14/1633/ledger.md#case-147.2 · generate
+- 2026-09-14 rules/rule-ask updated: the index lines come from one Grep per category, the rules always first; no index file (case 147.2) · [[decision-case-147.2]] · generate
+- 2026-09-14 estimates/estimate-ask-finds criterion: case 147.2 added · [[decision-case-147.2]] · generate
+- 2026-09-14 decisions/decision-case-147.3 created · raw/2026-09-14/1633/ledger.md#case-147.3 · generate
+- 2026-09-14 rules/rule-index-check updated: the index lines come from the librarian's own Grep of the category, not a file (case 147.3) · [[decision-case-147.3]] · generate
+- 2026-09-14 estimates/estimate-index-check-merges criterion: case 147.3 added · [[decision-case-147.3]] · generate
+- 2026-09-14 decisions/decision-case-147.4 created · raw/2026-09-14/1633/ledger.md#case-147.4 · generate
+- 2026-09-14 rules/rule-synthesis updated: the index lines come from the librarian's own Greps of lessons and insights (case 147.4) · [[decision-case-147.4]] · generate
+- 2026-09-14 estimates/estimate-synthesis-clusters criterion: case 147.4 added · [[decision-case-147.4]] · generate
+- 2026-09-14 decisions/decision-case-147.5 created · raw/2026-09-14/1633/ledger.md#case-147.5 · generate
+- 2026-09-14 rules/rule-documentation updated: three inputs; the index lines are the librarian's own Greps, no index file (case 147.5) · [[decision-case-147.5]] · generate
+- 2026-09-14 estimates/estimate-documentation-completes criterion: case 147.5 added · [[decision-case-147.5]] · generate
+- 2026-09-14 decisions/decision-case-147.6 created · raw/2026-09-14/1633/ledger.md#case-147.6 · generate
+- 2026-09-14 rules/rule-cleanup updated: cleanup rewrites no index; the files are gone (case 147.6) · [[decision-case-147.6]] · generate
+- 2026-09-14 estimates/estimate-cleanup-moves criterion: case 147.6 added · [[decision-case-147.6]] · generate
+- 2026-09-14 decisions/decision-case-147.7 created · raw/2026-09-14/1633/ledger.md#case-147.7 · generate
+- 2026-09-14 rules/rule-lint updated: make lint has two steps; no index --check (case 147.7) · [[decision-case-147.7]] · generate
+- 2026-09-14 decisions/decision-case-147.8 created · raw/2026-09-14/1633/ledger.md#case-147.8 · generate
+- 2026-09-14 decisions/decision-case-148.1 created · raw/2026-09-14/1633/ledger.md#case-148.1 · generate
+- 2026-09-14 rules/rule-page-generation updated: ref fields written as quoted wikilinks; read through the brackets; one migration over wiki/ and archive/ (case 148.1) · [[decision-case-148.1]] · generate
+- 2026-09-14 estimates/estimate-generate-writes criterion: case 148.1 added · [[decision-case-148.1]] · generate
+- 2026-09-14 decisions/decision-case-148.2 created · raw/2026-09-14/1633/ledger.md#case-148.2 · generate
+- 2026-09-14 decisions/decision-case-148.3 created · raw/2026-09-14/1633/ledger.md#case-148.3 · generate
+- 2026-09-14 estimates/estimate-materialize-assembles updated: the bare #L<n> of the Criterion prose in a code span, no Obsidian tag (case 148.3) · [[decision-case-148.3]] · generate
+- 2026-09-14 decisions/decision-case-149.1 created · raw/2026-09-14/1633/ledger.md#case-149.1 · generate
+- 2026-09-14 decisions/decision-case-149.2 created · raw/2026-09-14/1633/ledger.md#case-149.2 · generate
+- 2026-09-14 decisions/decision-case-149.3 created · raw/2026-09-14/1633/ledger.md#case-149.3 · generate
+- 2026-09-14 rules/rule-lint updated: a body wikilink may name a hub file under wiki/ by stem or path (case 149.3) · [[decision-case-149.3]] · generate
+- 2026-09-14 estimates/estimate-lint-catches criterion: case 149.3 added · [[decision-case-149.3]] · generate
+- 2026-09-14 decisions/decision-case-149.4 created · raw/2026-09-14/1633/ledger.md#case-149.4 · generate
+- 2026-09-14 rules/rule-brief updated: the hub file linked for the graph (case 149.4) · [[decision-case-149.4]] · generate
+- 2026-09-14 rules/rule-skill-hi updated: the hub file linked for the graph (case 149.4) · [[decision-case-149.4]] · generate
+- 2026-09-14 rules/rule-documentation updated: the hub file linked for the graph (case 149.4) · [[decision-case-149.4]] · generate
+- 2026-09-14 rules/rule-claude-md updated: the hub file linked for the graph (case 149.4) · [[decision-case-149.4]] · generate
+- 2026-09-14 decisions/decision-case-150 created · raw/2026-09-14/1633/ledger.md#case-150 · generate
+- 2026-09-14 rules/rule-retro updated: disable-model-invocation dropped: a typed or agent-called /retro passes the Skill tool, so guppi gate sees it and writes the retro mark (case 150) · [[decision-case-150]] · generate
+- 2026-09-14 estimates/estimate-retro-loads criterion: case 150 added · [[decision-case-150]] · generate
+- 2026-09-14 decisions/decision-case-151 created · raw/2026-09-14/1633/ledger.md#case-151 · generate
+- 2026-09-14 rules/rule-page-generation updated: an entry with superseded_by is skipped without a line; its Decision page still written (case 151) · [[decision-case-151]] · generate
+- 2026-09-14 estimates/estimate-generate-writes criterion: case 151 added · [[decision-case-151]] · generate
+- 2026-09-14 decisions/decision-case-152 created · raw/2026-09-14/1633/ledger.md#case-152 · generate
+- 2026-09-14 decisions/decision-case-141 superseded by decision-case-152 · [[decision-case-152]] · generate
+- 2026-09-14 rules/rule-work-mode defer by decision-case-141 superseded · [[decision-case-152]] · generate
+- 2026-09-14 rules/rule-subagent-guppi defer by decision-case-141 superseded · [[decision-case-152]] · generate
+- 2026-09-14 rules/rule-work-mode deferred · [[decision-case-152]] · generate
+- 2026-09-14 rules/rule-subagent-guppi deferred · [[decision-case-152]] · generate
+- 2026-09-14 decisions/decision-case-142.4 created · raw/2026-09-14/1633/ledger.md#case-142.4 · generate
+- 2026-09-14 rules/rule-materialize updated: a failed line does not stop the walk; a unit error still does (case 142.4) · [[decision-case-142.4]] · generate
+- 2026-09-14 estimates/estimate-materialize-walks-dates criterion: case 142.4 added · [[decision-case-142.4]] · generate
+- 2026-09-14 decisions/decision-case-142.5 created · raw/2026-09-14/1633/ledger.md#case-142.5 · generate
+- 2026-09-14 rules/rule-documentation updated: failed may be set by materialize on a line it could not lift (case 142.5) · [[decision-case-142.5]] · generate
+- 2026-09-14 decisions/decision-case-147.9 created · raw/2026-09-14/1633/ledger.md#case-147.9 · generate
+- 2026-09-14 rules/rule-render-harness updated: no indexes in make lint (case 147.9) · [[decision-case-147.9]] · generate
+- 2026-09-14 rules/rule-ask updated: index lines, not index files (case 147.9) · [[decision-case-147.9]] · generate
+- 2026-09-14 rules/rule-documentation updated: three inputs (case 147.9) · [[decision-case-147.9]] · generate
+- 2026-09-14 decisions/decision-case-150.1 created · raw/2026-09-14/1633/ledger.md#case-150.1 · generate
+- 2026-09-14 rules/rule-claude-md updated: the agent may call /retro after Work Mode (case 150.1) · [[decision-case-150.1]] · generate
+- 2026-09-14 decisions/decision-case-153 created · raw/2026-09-14/1633/ledger.md#case-153 · generate
+- 2026-09-14 rules/rule-harness updated: three rules in make lint, four outside it; the pipeline's Method without tests/test_index.py (case 153) · [[decision-case-153]] · generate
+- 2026-09-14 estimates/estimate-harness-pipeline criterion: case 153 added · [[decision-case-153]] · generate
+- 2026-09-14 decisions/decision-case-154 created · raw/2026-09-14/1633/ledger.md#case-154 · generate
+- 2026-09-14 rules/rule-ask deferred · [[decision-case-154]] · generate
+- 2026-09-14 estimates/estimate-materialize-assembles status: pending → passed · raw/2026-09-14/1633/ledger.md#L55 · generate
+- 2026-09-14 estimates/estimate-materialize-walks-dates status: pending → passed · raw/2026-09-14/1633/ledger.md#L56 · generate
+- 2026-09-14 estimates/estimate-generate-writes status: pending → passed · raw/2026-09-14/1633/ledger.md#L58 · generate
+- 2026-09-14 lessons/lesson-obsidian-cli-needs-the-running-app created · raw/2026-09-14/1633/ledger.md#L59 · generate
+- 2026-09-14 lessons/lesson-obsidian-property-links-need-wikilink-form created · raw/2026-09-14/1633/ledger.md#L60 · generate
+- 2026-09-14 rules/rule-ask status: built → draft · cascade · generate
+- 2026-09-14 rules/rule-case-protocol status: built → draft · cascade · generate
+- 2026-09-14 rules/rule-cleanup status: built → draft · cascade · generate
+- 2026-09-14 rules/rule-documentation status: built → draft · cascade · generate
+- 2026-09-14 rules/rule-harness status: built → draft · cascade · generate
+- 2026-09-14 rules/rule-index-check status: built → draft · cascade · generate
+- 2026-09-14 rules/rule-lint status: built → draft · cascade · generate
+- 2026-09-14 rules/rule-retro status: built → draft · cascade · generate
+- 2026-09-14 rules/rule-synthesis status: built → draft · cascade · generate
+- 2026-09-14 rules/rule-tests-clock-pinned status: draft → built · cascade · generate
+- 2026-09-14 decisions/decision-case-141 archived · superseded · generate
+- 2026-09-14 lessons/lesson-generate-replace-mapping-crashes archived · insight actioned · generate
+- 2026-09-14 lessons/lesson-materialize-assumes-every-entry-has-a-line archived · insight actioned · generate
+- 2026-09-14 lessons/lesson-librarian-reads-beyond-the-four-inputs archived · insight actioned · generate
+- 2026-09-14 lessons/lesson-frame-read-clauses-omit-candidate-check-and-brief archived · insight actioned · generate
+- 2026-09-14 lessons/lesson-materialize-standalone-estimate-keeps-criterion-as-a-field archived · insight actioned · generate
+- 2026-09-14 lessons/lesson-materialize-lesson-line-source-dropped archived · insight actioned · generate
+- 2026-09-14 lessons/lesson-tests-cli-date-pinned archived · insight actioned · generate
+- 2026-09-14 lessons/lesson-tests-generate-history-date-unpinned archived · insight actioned · generate
+- 2026-09-14 rules/rule-index archived · cleanup
+- 2026-09-14 estimates/estimate-index-lists archived · cleanup
+- 2026-09-14 lessons/lesson-frame-read-clauses-omit-candidate-check-and-brief archived · cleanup
+- 2026-09-14 lessons/lesson-generate-replace-mapping-crashes archived · cleanup
+- 2026-09-14 lessons/lesson-librarian-reads-beyond-the-four-inputs archived · cleanup
+- 2026-09-14 lessons/lesson-materialize-assumes-every-entry-has-a-line archived · cleanup
+- 2026-09-14 lessons/lesson-materialize-lesson-line-source-dropped archived · cleanup
+- 2026-09-14 lessons/lesson-materialize-standalone-estimate-keeps-criterion-as-a-field archived · cleanup
+- 2026-09-14 lessons/lesson-tests-cli-date-pinned archived · cleanup
+- 2026-09-14 lessons/lesson-tests-generate-history-date-unpinned archived · cleanup
+- 2026-09-14 decisions/decision-case-141 archived · cleanup
+- 2026-09-14 rules/rule-harness child rule-index archived · cleanup

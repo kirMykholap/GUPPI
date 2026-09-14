@@ -1,7 +1,7 @@
 ---
 type: estimate
 kind: QA
-status: passed
+status: pending
 target: "[[rule-retro]]"
 origin: raw/2026-09-10/ledger.md#case-38.1
 sprint: migration
@@ -56,6 +56,17 @@ The Render of `rule-retro`: the line `Ledger of today: !`cat vault/raw/$(date +%
 **＋** `estimate-retro-loads` gets a `### case 126` block, `pending`; read at the first `/retro` after the render — the next session's, since the skill is rendered by the librarian after this session's Retro: the skill loaded, `Ledger:` carries the lines of the session's folder, no substitution failed.
 **－** `{supersedes:case 118}`: `decision-case-118` is superseded, `rule-retro` loses `deferred_by`.
 
+### case 150
+
+When:
+`guppi render` writes `.claude/skills/retro/SKILL.md`; then the person types `/retro` or the agent calls the skill `retro`.
+
+Then:
+The frontmatter of `SKILL.md` without `disable-model-invocation`; the call goes through the Skill tool: `guppi gate` checks the Spec against the ledger (122), leaves the mark `- HH:MM:SS <stamp> retro`, the event log gets `tool Skill: retro` and the PostToolUse lines.
+**＋** The agent may call `/retro` itself when the tasks of the Spec are ticked; the Retro stops at the lessons and the readings as before; `/handoff` behind the gate of the tree and of 122.
+**－** No other page and no line of code changes.
+**－** The Frontier line F8 closes on this Case; the live refusal of 122 — a reading at the event.
+
 ## Method
 
 one reading by hand at the first /retro, recorded in the estimate line
@@ -77,3 +88,4 @@ block 126, live 2026-09-14 14:45 session O: /retro loaded on the rendered skill;
 - 2026-09-14 criterion: case 126 added · [[decision-case-126]]
 - 2026-09-14 status: pending → failed · raw/2026-09-14/1029/ledger.md#L41
 - 2026-09-14 status: failed → passed · raw/2026-09-14/1229/ledger.md#L30
+- 2026-09-14 criterion: case 150 added · [[decision-case-150]]

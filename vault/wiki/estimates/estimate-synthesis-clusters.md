@@ -1,7 +1,7 @@
 ---
 type: estimate
 kind: QA
-status: passed
+status: pending
 target: "[[rule-synthesis]]"
 origin: raw/2026-09-10/ledger.md#case-35.2
 sprint: migration
@@ -24,6 +24,14 @@ Insight and of the lesson; every added entry carries librarian: synthesis; no
 archive file was read, and every lesson page read is named in the report with
 the outcome: the Insight it joined, or none and why; a lesson without a pair stayed new.
 
+### case 147.4
+
+When:
+The librarian does the synthesis.
+
+Then:
+"compare its `root_cause` with every index line of `lessons/` and of `insights/` — the Greps of 147.2 — by meaning"; "that Insight stays live with its pattern in its index line".
+
 ## Method
 
 one reading by hand after the first librarian run, recorded in the estimate line
@@ -41,3 +49,4 @@ live 2026-09-12, the librarian's run of session J with five lesson entries: one 
 - 2026-09-11 updated: a lesson page read is named with its outcome, clustered or not · [[decision-case-54]]
 - 2026-09-12 status: pending → passed · raw/2026-09-11/ledger.md#L75
 - 2026-09-12 status: passed → passed · raw/2026-09-12/ledger.md#L169
+- 2026-09-14 criterion: case 147.4 added · [[decision-case-147.4]]

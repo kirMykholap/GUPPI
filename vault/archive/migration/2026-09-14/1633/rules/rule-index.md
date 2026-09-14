@@ -2,7 +2,7 @@
 type: rule
 kind: Leaf
 purpose: Prevents a pre-task check from reading every page of a category to learn what already exists
-status: built
+status: archived
 enforcement: check
 implementation_ref: [guppi/index.py, tests/test_index.py, Makefile]
 parent: "[[rule-harness]]"
@@ -45,3 +45,5 @@ being done long before the vault is large. `uv run guppi index` writes `vault/wi
 - 2026-09-10 status: draft → built · cascade
 - 2026-09-11 updated: a line of a page with deferred_by ends with · deferred_by: <slugs> · [[decision-case-52.3]]
 - 2026-09-11 updated: four category files; no estimates index · [[decision-case-53.4]]
+- 2026-09-14 deleted · [[decision-case-147.1]]
+- 2026-09-14 archived · cleanup

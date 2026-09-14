@@ -2,7 +2,7 @@
 type: rule
 kind: Leaf
 purpose: Prevents a pattern of failures from staying a list of unrelated incidents
-status: built
+status: draft
 enforcement: render
 governs: .claude/agents/librarian-guppi.md
 render_mode: partial
@@ -19,14 +19,13 @@ tags: [harness, workflow, librarian]
 Prevents a pattern of failures from staying a list of unrelated incidents. One
 lesson is an incident; two with one root cause are a pattern, and a pattern is what
 a later Case can fix. The archive is not read: a lesson is archived only when its
-Insight was actioned, and that Insight stays live with its pattern in the index, so
-a recurrence is caught there at the cost of one index line.
+Insight was actioned, and that Insight stays live with its pattern in its index line, so
+a recurrence is caught there at the cost of one Grep line.
 
 ## Render
 
 <!-- rule-synthesis -->
-Synthesis. For each `lesson` entry, compare its `root_cause` with every line of
-`lessons-index.md` and of `insights-index.md`, by meaning.
+Synthesis. For each `lesson` entry, compare its `root_cause` with every index line of `vault/wiki/lessons/` and of `vault/wiki/insights/` — the Greps `^(root_cause|deferred_by):` and `^(pattern|deferred_by):`, run by you — by meaning (case 147.4).
 - A live lesson has the same cause and no Insight exists: append to the yaml a
   `create` in `insights` with `slug` (`insight-<area>-<pattern>`), `pattern`,
   `children` (both lessons), `tags` (the union), and `sections` `Pattern` and
@@ -62,3 +61,5 @@ outcome, clustered or not. Do not read the archive and do not write pages yourse
 - 2026-09-13 defer by decision-case-96 superseded · [[decision-case-108]]
 - 2026-09-13 deferred · [[decision-case-108]]
 - 2026-09-14 defer by decision-case-108 superseded · [[decision-case-114]]
+- 2026-09-14 updated: the index lines come from the librarian's own Greps of lessons and insights (case 147.4) · [[decision-case-147.4]]
+- 2026-09-14 status: built → draft · cascade

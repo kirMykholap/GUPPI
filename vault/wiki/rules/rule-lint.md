@@ -2,11 +2,12 @@
 type: rule
 kind: Leaf
 purpose: Prevents a page that breaks the schema, points nowhere, or claims a status its Estimates do not support from sitting in the vault unnoticed
-status: built
+status: draft
 enforcement: check
 implementation_ref: [guppi/lint.py, tests/test_lint.py, Makefile]
 parent: "[[rule-harness]]"
 estimates: ["[[estimate-lint-catches]]"]
+deferred_by: ["[[decision-case-146]]"]
 origin: raw/2026-09-09/ledger.md#case-21
 sprint: migration
 created: 2026-09-09
@@ -18,16 +19,15 @@ tags: [harness, workflow]
 Prevents a page that breaks its schema, points at nothing, or claims a status its
 Estimates do not support from sitting in the vault unnoticed. Pages are written by hand
 until the generator exists and by script after; both drift, and nothing else reads the
-whole graph at once. `make lint` runs it after `render --check` and `index --check` over the four index files; all
-three only report, so the Makefile's rule — no target writes to the tree — holds.
+whole graph at once. `make lint` runs it after `render --check`; both only report, so the Makefile's rule — no target writes to the tree — holds (case 147.7).
 
-`parent: rule-harness` names the MOC of the harness tools: lint runs with the renderer and the indexes, in no phase of the session.
+`parent: rule-harness` names the MOC of the harness tools: lint runs with the renderer, in no phase of the session.
 
 ## How it works
 
 `uv run guppi lint` reads every live page against its category's `schema.yaml`:
 required fields and sections, legal statuses, `origin` as a grep target — `raw/<date>/ledger.md#…` at `vault/raw/<date>/ledger.md` or `vault/archive/*/<date>/raw/ledger.md`, `raw/<date>/<HHMM>/ledger.md#…` at `vault/raw/<date>/<HHMM>/ledger.md` or `vault/archive/*/<date>/<HHMM>/raw/ledger.md`; in neither place or in both a finding (case 103.5) —
-every ref (`parent`, `target`, `children`, `estimates`, `insight`) as an existing page,
+every ref (`parent`, `target`, `children`, `estimates`, `insight`) as an existing page, a `[[…]]` in a body as a live or archived page, or as a file under `vault/wiki/` by its stem (`brief`, `index`, `glossary`, `case-schema`, `sprint`, `tags`, `log`) or its path (`rules/schema`) (case 149.3),
 orphans, a `built` page with an Estimate not `passed`, the two Method classes of case 26.2 — for a MOC's Estimate the `make <target>` is looked for first and a Method that names one passes whatever else it says; "by hand" is judged only when no target is named (case 112.1). A decision page: at least one of `create`, `update`, `delete`, `defer`, each a list of slugs, and neither `kind` nor `target_slug`; every slug with a category prefix a live or archived page; every slug in `deferred_by` an existing decision page; a `[[decision-…]]` wikilink in a History line resolves to a page; `## When` is not required (case 72.6), and every link under `## Criterion` resolves to an Estimate page. An Estimate's `## Criterion` may hold `### case N` blocks; each `case N` names an existing decision page. A lesson needs no `estimates`; an estimate whose `target` is not an entity or a rule is a finding. It reports and exits 1 on any
 finding, 0 with no output on a clean vault.
 
@@ -64,3 +64,7 @@ finding, 0 with no output on a clean vault.
 - 2026-09-13 status: built → draft · cascade
 - 2026-09-13 status: draft → built · cascade
 - 2026-09-14 updated: the Method check of a MOC's Estimate looks for the make target before the words by hand (case 112.1) · [[decision-case-112.1]]
+- 2026-09-14 deferred · [[decision-case-146]]
+- 2026-09-14 updated: make lint has two steps; no index --check (case 147.7) · [[decision-case-147.7]]
+- 2026-09-14 updated: a body wikilink may name a hub file under wiki/ by stem or path (case 149.3) · [[decision-case-149.3]]
+- 2026-09-14 status: built → draft · cascade

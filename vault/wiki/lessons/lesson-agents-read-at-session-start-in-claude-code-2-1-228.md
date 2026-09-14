@@ -3,6 +3,7 @@ type: lesson
 kind: knowledge
 root_cause: the client enumerates .claude/agents/ at session start and does not re-read the folder on an Agent call; session E's counter-example most likely saw a file that already existed at its start; the librarian's render is the last step before its commit and every agent it renders is planned for from the next session
 status: new
+source: the probe of case 139.1, Claude Code 2.1.228
 origin: raw/2026-09-14/1229/ledger.md#L29
 sprint: migration
 created: 2026-09-14
@@ -20,3 +21,4 @@ the client enumerates .claude/agents/ at session start and does not re-read the 
 ## History
 
 - 2026-09-14 created · raw/2026-09-14/1229/ledger.md#L29
+- 2026-09-14 updated: source added (case 144.2) · [[decision-case-144.2]]

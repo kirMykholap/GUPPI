@@ -28,13 +28,22 @@ The unit of the walk is a session folder `raw/<date>/<HHMM>/` holding a `ledger.
 **＋** `--date` walks the date-level ledger and every session of the date; stdout carries one line per yaml.
 **＋** `estimate-materialize-walks-dates` gets a `### case 103.2` block, `pending`.
 
+### case 142.4
+
+When:
+`guppi materialize` walks the units and in one of them the lift of a line raised.
+
+Then:
+Line 30 reads: "An error of a unit — no `ledger.md`, a Case heading in two files — stops the walk with exit 1; a line whose lift failed marks its entry, the unit exits 1 and the walk goes on (case 142.4)."
+**＋** Test: two units, a failing lift in the first — the second is written, the exit is 1.
+
 ## Method
 
 tests/test_materialize.py with two dated folders; live, the librarian's first run over 2026-09-09 and 2026-09-10
 
 ## Result
 
-block 103.2: the librarian of session L walked the date-level unit raw/2026-09-13 (79 entries) and the session unit raw/2026-09-13/0652 (4 entries) in that order, the session's yaml and origin in its own folder; unit tests green
+block 142.4, 2026-09-14: two units, a failing lift in the first — both yamls written, exit 1, the second unit's entries lifted; a MaterializeError of the first unit still stops the walk with nothing written; tests green
 
 ## History
 
@@ -44,3 +53,5 @@ block 103.2: the librarian of session L walked the date-level unit raw/2026-09-1
 - 2026-09-13 criterion: case 103.2 added · [[decision-case-103.2]]
 - 2026-09-14 updated: Context added from the Problem of case 43 (case 112.4) · [[decision-case-112.4]]
 - 2026-09-14 status: pending → passed · raw/2026-09-14/0747/ledger.md#L42
+- 2026-09-14 criterion: case 142.4 added · [[decision-case-142.4]]
+- 2026-09-14 status: pending → passed · raw/2026-09-14/1633/ledger.md#L56

@@ -19,7 +19,7 @@ tags: [session, harness]
 
 Prevents a session from being loaded piecemeal by read-tool calls. Bash substitutions in a
 skill body resolve before the agent's first turn, so the context is simply present — there
-is no step the agent can forget or reorder. The `hi` mark in the event log is left by the `UserPromptSubmit` hook `guppi event prompt` (`rule-event-log`, case 111.1), which sees the session id; the skill's own `!` substitution could not (case 111.4). A command typed by the person does not pass through the `Skill` tool, so no `PreToolUse` hook sees it.
+is no step the agent can forget or reorder. The `hi` mark in the event log is left by the `UserPromptSubmit` hook `guppi event prompt` (`rule-event-log`, case 111.1), which sees the session id; the skill's own `!` substitution could not (case 111.4). A command typed by the person does not pass through the `Skill` tool, so no `PreToolUse` hook sees it. It puts [[brief]] and [[sprint]] into the context before the first turn.
 
 ## Render
 
@@ -93,3 +93,4 @@ session. The skill writes no event line of its own since case 111.4: a `!` subst
 - 2026-09-14 defer by decision-case-106 superseded · [[decision-case-115]]
 - 2026-09-14 status: draft → built · cascade
 - 2026-09-14 updated: the time of the session's folder comes from the hook's hi line in context, not from a line the skill no longer prints (case 125) · [[decision-case-125]]
+- 2026-09-14 updated: the hub file linked for the graph (case 149.4) · [[decision-case-149.4]]

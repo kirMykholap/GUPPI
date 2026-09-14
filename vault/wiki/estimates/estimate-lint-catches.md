@@ -1,7 +1,7 @@
 ---
 type: estimate
 kind: QA
-status: passed
+status: pending
 target: "[[rule-lint]]"
 origin: raw/2026-09-09/ledger.md#case-21
 sprint: migration
@@ -44,6 +44,16 @@ A Method that names a `make <target>` present in the Makefile passes, whatever e
 **＋** Only a Method with no target is judged on "by hand": it passes when every child's Estimate says by hand, and is a finding naming the first child that names a test file.
 **＋** `estimate-lint-catches` gets a `### case 112.1` block, `pending`; a test in `tests/test_lint.py` seeds a MOC's Estimate with `make lint` and "by hand" and expects no finding.
 
+### case 149.3
+
+When:
+`guppi lint` checks a `[[…]]` in the body of a page.
+
+Then:
+The link resolves when its text is the slug of a live or archived page, the stem of a file `vault/wiki/*.md` (`brief`, `sprint`, `tags`, `log`, `index`, `glossary`, `case-schema`) or the path of a file under `vault/wiki/` without `.md` (`rules/schema`); otherwise a `ref` finding as today.
+**＋** Test: `[[brief]]` and `[[rules/schema]]` in a body — no finding; `[[nowhere]]` — a finding.
+**－** Frontmatter fields — page slugs only, as today.
+
 ## Method
 
 pytest in `tests/test_lint.py`, one test per defect class; the live reading once by hand,
@@ -70,3 +80,4 @@ block 103.5 as before; block 112.1 against test_lint.py (a MOC's Estimate naming
 - 2026-09-13 status: pending → passed · raw/2026-09-13/0652/ledger.md#L2
 - 2026-09-14 criterion: case 112.1 added · [[decision-case-112.1]]
 - 2026-09-14 status: pending → passed · raw/2026-09-14/0747/ledger.md#L47
+- 2026-09-14 criterion: case 149.3 added · [[decision-case-149.3]]

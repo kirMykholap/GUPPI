@@ -1,9 +1,10 @@
 ---
 type: decision
 case: "141"
-status: current
+status: archived
 defer: ["[[rule-work-mode]]", "[[rule-subagent-guppi]]"]
 supersedes: ["[[decision-case-129]]"]
+superseded_by: ["[[decision-case-152]]"]
 origin: raw/2026-09-14/1229/ledger.md#case-141
 sprint: migration
 created: 2026-09-14
@@ -21,3 +22,6 @@ The owner opened session O on the state after session N and the open Insights in
 ## History
 
 - 2026-09-14 created · raw/2026-09-14/1229/ledger.md#case-141
+- 2026-09-14 superseded by decision-case-152 · [[decision-case-152]]
+- 2026-09-14 archived · superseded
+- 2026-09-14 archived · cleanup

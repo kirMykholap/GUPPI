@@ -37,7 +37,7 @@ one reading by hand after the first librarian run, recorded in the estimate line
 
 ## Result
 
-live 2026-09-14, block 124.1, against the brief of session N's librarian: the Deferred list holds seven items ranked by severity 5, 4, 3, 3, 3, then Slice 3b (related severity 2, postponed 9 times), then severity 2; every item carries its count; the four open Insights outside the cap are named with their order; the five sections stand in order, the flags name every failed entry and the lint output
+live 2026-09-14, block 124.1, against the brief of session O's librarian: the Deferred list holds five items — the four `open` Insights, each severity 2, ordered by slug at equal severity and count, each marked "stood in 1 brief"; then Slice 3b, related Insight `insight-harness-agent-visibility` actioned at severity 0, "postponed 10 times"; every Insight line carries slug, severity, pattern and Proposal; no `open` Insight is outside the list; the five sections stand in order, the flags name the 3 incomplete, the 1 failed and the 2 near entries and the lint output; sprint.md unchanged as the handoff asked nothing
 
 ## History
 
@@ -45,3 +45,4 @@ live 2026-09-14, block 124.1, against the brief of session N's librarian: the De
 - 2026-09-10 status: pending → passed · raw/2026-09-10/ledger.md#L92
 - 2026-09-14 criterion: case 124.1 added · [[decision-case-124.1]]
 - 2026-09-14 status: pending → passed · raw/2026-09-14/1229/ledger.md#L5
+- 2026-09-14 status: passed → passed · raw/2026-09-14/1633/ledger.md#L1

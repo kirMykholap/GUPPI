@@ -2,7 +2,7 @@
 type: rule
 kind: Leaf
 purpose: Prevents a session from closing on work nobody reviewed, or on a change that traces to no decision
-status: built
+status: draft
 enforcement: render
 governs: .claude/skills/retro/SKILL.md
 render_mode: full
@@ -28,7 +28,6 @@ work a line of this session's ledger ratified, and is new scope otherwise.
 ---
 name: retro
 description: Review this session's work — tests, style, the ledger — before the commit and the handoff.
-disable-model-invocation: true
 ---
 
 
@@ -100,3 +99,5 @@ got done; what did not. When the person approves, commit (`make style` clean,
 - 2026-09-14 updated: the scope rule names this session's ledger, as 109.1 promised (case 132) · [[decision-case-132]]
 - 2026-09-14 updated: the Recorded line dropped; guppi gate writes the stamped retro mark (case 136.1) · [[decision-case-136.1]]
 - 2026-09-14 status: draft → built · cascade
+- 2026-09-14 updated: disable-model-invocation dropped: a typed or agent-called /retro passes the Skill tool, so guppi gate sees it and writes the retro mark (case 150) · [[decision-case-150]]
+- 2026-09-14 status: built → draft · cascade

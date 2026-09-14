@@ -1,7 +1,7 @@
 ---
 type: estimate
 kind: QA
-status: passed
+status: pending
 target: "[[rule-ask]]"
 origin: raw/2026-09-09/ledger.md#case-23.1
 sprint: migration
@@ -36,6 +36,16 @@ The `tags/slug` line says one of three: `free`; `live` (with the category); `arc
 **＋** `estimate-ask-finds` gets a `### case 105.1` block, `pending`.
 **－** The archive is not searched by meaning: the `exists` and `near` lines are live pages only.
 
+### case 147.2
+
+When:
+`guppi render` writes `.claude/agents/ask-guppi.md`; then the agent answers a question.
+
+Then:
+The Render, instead of `@vault/wiki/rules-index.md` and "Read `vault/wiki/<category>-index.md` …": "Always start with the Grep of the rules, whatever the question: pattern `^(purpose|deferred_by):` over `vault/wiki/rules/`, output with content; the harness is governed by these pages, and a proposal that crosses one of them must be named. Then one Grep per other category the question touches: `^(purpose|deferred_by):` over `vault/wiki/entities/`, `^(root_cause|deferred_by):` over `vault/wiki/lessons/`, `^(pattern|deferred_by):` over `vault/wiki/insights/`. One line per page — `<category>/<slug>.md:<field>: <text>` — is the index line; decisions and estimates have none."
+**＋** The answer names the rule the proposal crosses on its `rules` line — as today.
+**－** No read of a `*-index.md`; the files do not exist.
+
 ## Method
 
 Three readings by hand in one session, written into the estimate line — the exception the
@@ -51,3 +61,4 @@ block 105.1: ask-guppi asked for estimate-agents-at-import-not-expanded answered
 - 2026-09-10 status: pending → passed · written by hand, no generator yet
 - 2026-09-13 criterion: case 105.1 added · [[decision-case-105.1]]
 - 2026-09-14 status: pending → passed · raw/2026-09-14/0747/ledger.md#L39
+- 2026-09-14 criterion: case 147.2 added · [[decision-case-147.2]]

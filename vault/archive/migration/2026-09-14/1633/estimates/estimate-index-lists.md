@@ -1,7 +1,7 @@
 ---
 type: estimate
 kind: QA
-status: passed
+status: archived
 target: "[[rule-index]]"
 origin: raw/2026-09-09/ledger.md#case-22
 sprint: migration
@@ -36,3 +36,5 @@ tests/test_index.py 6 green with four files, no estimates file and the deferred_
 - 2026-09-09 status: pending → passed · written by hand, no generator yet
 - 2026-09-11 updated: no estimates index; four files; the deferred_by suffix · [[decision-case-53.4]]
 - 2026-09-11 status: pending → passed · raw/2026-09-11/ledger.md#L68
+- 2026-09-14 deleted · [[decision-case-147.1]]
+- 2026-09-14 archived · cleanup

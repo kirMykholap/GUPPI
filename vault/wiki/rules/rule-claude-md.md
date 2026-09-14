@@ -21,7 +21,7 @@ Prevents the system prompt from holding a line nobody ratified. `CLAUDE.md` is t
 one file every session reads first; until this page it was hand-written around one
 rendered section, and a ratified sentence went into the file instead of the page
 (case 56). Now the file is the Render of this page, whole, with the Case protocol
-spliced from `rule-case-protocol`; a change to it is an `update` of one of the two.
+spliced from `rule-case-protocol`; a change to it is an `update` of one of the two. The Render imports [[glossary]] and [[case-schema]] and points at [[index]].
 
 ## Render
 
@@ -59,7 +59,7 @@ move closes:
   in the reply and the `Stop` hook writes them into `vault/raw/<date>/<hi HHMM>/ledger.md`, the session's folder (case 103.1), each
   prefixed with the time of writing. The lines of 2026-09-09 written by hand before it
   carry no time; that is how the two are told apart.
-- **The rituals of the new model exist since Slice 3.** `/retro` (the person), `/handoff` (the
+- **The rituals of the new model exist since Slice 3.** `/retro` (the person, or the agent once the Spec's tasks are ticked), `/handoff` (the
   agent, refused by `guppi gate` while the tree is dirty), then the `librarian-guppi` agent:
   `materialize`, index check, synthesis, `generate`, `cleanup`, brief, commit. Pages are no
   longer written by hand; `brief.md` is written by the librarian. `docs/migration/` still
@@ -115,3 +115,5 @@ migration, by an `update` of this page. `rule-case-protocol` has this page as it
 - 2026-09-13 updated: the Migration paragraph names the session ledger (case 109.2) · [[decision-case-109.2]]
 - 2026-09-13 status: draft → built · cascade
 - 2026-09-14 updated: a Case is discussed in the chat in Russian and enters the Spec in English; the plan the owner approves is the Spec (case 123) · [[decision-case-123]]
+- 2026-09-14 updated: the hub file linked for the graph (case 149.4) · [[decision-case-149.4]]
+- 2026-09-14 updated: the agent may call /retro after Work Mode (case 150.1) · [[decision-case-150.1]]

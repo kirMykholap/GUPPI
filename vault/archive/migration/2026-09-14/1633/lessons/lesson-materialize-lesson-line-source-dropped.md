@@ -2,7 +2,7 @@
 type: lesson
 kind: error
 root_cause: materialize.parse_line reads the braces of a lesson line into options and returns tags only, never source; lesson_entry then marks every knowledge lesson incomplete and generate writes no source field; the one line that carries the source is dropped between the ledger and the yaml, and lint reports the page, not the parser; a fix is a change of what the lesson entry carries, taken to the next Plan Mode as a defer at Retro, and the librarian sets the field on the two entries by hand meanwhile
-status: clustered
+status: archived
 insight: "[[insight-materialize-lift-loses-a-schema-field]]"
 origin: raw/2026-09-12/ledger.md#L160
 sprint: migration
@@ -27,3 +27,5 @@ materialize.parse_line reads the braces of a lesson line into options and return
 - 2026-09-12 created · raw/2026-09-12/ledger.md#L160
 - 2026-09-12 updated: clustered by librarian: the lift from a line to a page loses a field, with lesson-materialize-standalone-estimate-keeps-criterion-as-a-field · raw/2026-09-12/ledger.md#L160
 - 2026-09-14 insight section derived
+- 2026-09-14 archived · insight actioned
+- 2026-09-14 archived · cleanup

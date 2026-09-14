@@ -24,7 +24,7 @@ line in ledger order, each with case, kind, category, slug, origin, line, text a
 the decision slug of its Case; the nested estimate is its own create entry; a Leaf create with method yields its Estimate's create entry with the derived slug, ref, tags, Context from problem, Criterion as a ### case N block of when and then, and Method; an update with contract: changed yields an update entry of the target's Estimate with the criterion block and status pending, contract: same yields none; a supersedes yields the removal of the block of case N; the decision entry names the Estimates the Case shaped; the
 superseded entry carries superseded_by; the first estimate line is folded into its
 create, the second is an estimate entry; the lesson entry carries root_cause and
-origin #L<n>; the unparsable line is under unparsed; a create without a then block
+origin `#L<n>`; the unparsable line is under unparsed; a create without a then block
 is marked incomplete, a create whose page exists is marked exists; a Rule-class slug
 routes to file with its path; one decision entry per Case carries case_text and targets, and takes a missing context, problem, recommend or given from its parent Case, never when, and is marked incomplete for a section neither has, or a missing when, only when a kind other than defer is among its lines; a standalone estimate create with ref carries context, criterion and method as sections, as the nested one does. The new_tags of a Case with no decision line reach the yaml once. An existing yaml gains only the entries of ledger lines it does not hold,
 keeps its edited and applied entries, reports a text mismatch, gains superseded_by
@@ -105,13 +105,26 @@ The entries of Case N (decision kinds) are marked `superseded_by` in the yaml of
 **＋** `estimate-materialize-assembles` gets a `### case 130.2` block, `pending`; the test: the yaml of unit A with an entry of case 5 without `applied`, the ledger of unit B with a line carrying `{supersedes:case 5}` → after `materialize` of unit B the entry in A carries `superseded_by`, the rest of A unchanged; `archive.kept_reason(A)` is None. The live reading at the librarian's run: 112.6 marked, `0747` moved.
 **－** An entry that no yaml holds: as today, nothing.
 
+### case 142.1
+
+When:
+`guppi materialize` lifts a record line of the ledger and the lift raises — a `then` item of an unexpected shape, any error in `decision_entry`, `derived_entries`, `estimate_entry`, `lesson_entry`.
+
+Then:
+The line becomes an entry `{line, text, failed: "<Type>: <message>"}` without `kind`; one line on stderr, `materialize: line N: <message>`; the other lines are lifted; the yaml is written; the unit's exit is 1; the walk goes on to the next unit.
+**＋** On the next run an entry with `failed` and no `kind` is lifted again from its line and replaced when the lift succeeds — the Spec fixed, the run repeated (the class of 53.3).
+**＋** An existing entry the script cannot read — not a mapping, or a mapping without `line` and without `derived` — is left as it is, named on stderr, and does not end the run.
+**＋** The field list in "How it works" of `rule-materialize` is complete, every field with its writer: from the ledger line, from the `then` block, derived (`derived`, `decision`, `criterion_block`, `set`, `case_removed`), a folded reading (`status`, `result`, `folded`), a `file` with `path`, the marks of `generate` (`applied`, `failed`), the marks of the librarian (`near`, and `librarian` with the value `merged` or `synthesis` — by `rule-documentation`), `superseded_by` from any unit. A key the code writes and the list does not name is a finding of the reading.
+**－** A `MaterializeError` — no `ledger.md`, a Case heading in two files — still stops the walk with exit 1.
+**－** `unparsed` does not change: a line the grammar does not parse goes there, as today.
+
 ## Method
 
 pytest in tests/test_materialize.py against a temp vault; the live reading once by hand
 
 ## Result
 
-block 130.2 against tests/test_materialize.py: unit B's line with {supersedes:case 5} marks unit A's entry and decision superseded_by, archive.kept_reason(A) is None, a second walk leaves A byte-identical; a case no yaml holds changes nothing
+block 142.1, 2026-09-14: tests/test_materialize.py — a lift that raises leaves `{line, text, failed}` without kind, one stderr line, the yaml written, exit 1; the failed line lifted again and replaced on the next run; a string entry and a mapping without line/derived left alone with one stderr line each; 45 tests green; every key materialize.py writes (case, kind, category, slug, ref, source, supersedes, superseded_by, origin, line, text, decision, tags, fields, sections, replace, change, impact, incomplete, exists, folded, status, result, derived, criterion_block, set, case_removed, path, failed) is in the field list of 142.1; the librarian's own entries carry `librarian` and no line and are read as readable, a precision on the wording
 
 ## History
 
@@ -134,3 +147,6 @@ block 130.2 against tests/test_materialize.py: unit B's line with {supersedes:ca
 - 2026-09-14 status: pending → passed · raw/2026-09-14/0747/ledger.md#L44
 - 2026-09-14 criterion: case 130.2 added · [[decision-case-130.2]]
 - 2026-09-14 status: pending → passed · raw/2026-09-14/1029/ledger.md#L36
+- 2026-09-14 criterion: case 142.1 added · [[decision-case-142.1]]
+- 2026-09-14 updated: the bare #L<n> of the Criterion prose in a code span, no Obsidian tag (case 148.3) · [[decision-case-148.3]]
+- 2026-09-14 status: pending → passed · raw/2026-09-14/1633/ledger.md#L55

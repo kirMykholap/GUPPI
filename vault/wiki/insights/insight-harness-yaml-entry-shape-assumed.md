@@ -1,9 +1,10 @@
 ---
 type: insight
 pattern: A script of the pipeline assumes every entry of materialize.yaml carries the fields and the shapes it wrote itself; an entry written by another hand ends the whole run instead of failing alone.
-status: open
+status: actioned
 children: ["[[lesson-generate-replace-mapping-crashes]]", "[[lesson-materialize-assumes-every-entry-has-a-line]]"]
-severity: 2
+severity: 0
+addressed_by: "[[decision-case-142.3]]"
 origin: raw/2026-09-10/ledger.md#L122
 sprint: migration
 created: 2026-09-10
@@ -42,6 +43,11 @@ materialize, so the file is never left unwritten because one entry is odd.
 - [[lesson-generate-replace-mapping-crashes]]
 - [[lesson-materialize-assumes-every-entry-has-a-line]]
 
+## Addressed by
+
+- [[decision-case-142.3]]
+
 ## History
 
 - 2026-09-10 created · raw/2026-09-10/ledger.md#L122
+- 2026-09-14 updated: actioned: materialize fails an entry alone and generate keeps its mark (142.1, 142.2); the field list of rule-materialize is the one place for the entry shape; no schema module in code (case 142.3) · [[decision-case-142.3]]

@@ -2,12 +2,13 @@
 type: rule
 kind: Leaf
 purpose: Prevents a create from being proposed without the vault having been asked whether it already holds the thing, or forbids it
-status: built
+status: draft
 enforcement: render
 governs: .claude/agents/ask-guppi.md
 render_mode: full
 parent: "[[rule-plan-mode]]"
 estimates: ["[[estimate-ask-finds]]"]
+deferred_by: ["[[decision-case-154]]"]
 origin: raw/2026-09-09/ledger.md#case-23.1
 sprint: migration
 created: 2026-09-09
@@ -19,7 +20,7 @@ tags: [session, workflow, harness]
 Prevents a `create` from being proposed without the vault having been asked whether it
 already holds the thing, or forbids it. One entry point for every caller — the agent at
 pre-task, the librarian, the person — so the search is tuned once, and its cost stays in
-the searcher's own context: the indexes and pages never enter the caller's. A subagent
+the searcher's own context: the index lines and pages never enter the caller's. A subagent
 with read-only tools, dispatched through the `Agent` tool, so the event log records each
 call.
 
@@ -35,10 +36,7 @@ tools: Read, Grep, Glob
 You search the vault at `vault/wiki/` for the caller and answer in five lines. The archive, `vault/archive/`, is searched by slug alone, never by meaning: a named slug is checked there with a Glob `vault/archive/**/<slug>.md`, and an archived page is opened only when the question names its slug and asks what it said or why it was withdrawn (case 105.1). You
 decide nothing and propose nothing.
 
-Rules of the vault, one line per page:
-@vault/wiki/rules-index.md
-
-Start there. Read `vault/wiki/<category>-index.md` for every other category the question touches (entities, lessons, insights; decisions and estimates have none). When the question is about a check, reach the Estimates through the `estimates` field of the page it is about, and open them only when the question asks what they say. Open a page only
+Always start with the Grep of the rules, whatever the question: pattern `^(purpose|deferred_by):` over `vault/wiki/rules/`, output with content; the harness is governed by these pages, and a proposal that crosses one of them must be named. Then one Grep per other category the question touches: `^(purpose|deferred_by):` over `vault/wiki/entities/`, `^(root_cause|deferred_by):` over `vault/wiki/lessons/`, `^(pattern|deferred_by):` over `vault/wiki/insights/`. One line per page — `<category>/<slug>.md:<field>: <text>` — is the index line; decisions and estimates have none (case 147.2). When the question is about a check, reach the Estimates through the `estimates` field of the page it is about, and open them only when the question asks what they say. Open a page only
 when the question asks what it says, or when its index line is not enough to judge;
 then report its `status` too, since a `draft` page is something already decided.
 Grep `vault/wiki/index.md` when the proposal may cross a rule of the vault itself. Do not open or grep `vault/wiki/decisions/` except for two reasons: a page in your answer carries `deferred_by` — open the decision it names and give its `## Problem` on the `exists` or `near` line, since a deferred decision is something already decided; or the question asks why something was decided — reach the Decision through the page's `origin`. Decisions have no index on purpose.
@@ -79,3 +77,7 @@ Answer with exactly these five lines, each present, "none" when empty:
 - 2026-09-13 updated: the named slug is checked against vault/archive/ by Glob and answered as free, live or archived at a path; the archive is never searched by meaning; supersedes case 94 (case 105.1) · [[decision-case-105.1]]
 - 2026-09-13 status: built → draft · cascade
 - 2026-09-14 status: draft → built · cascade
+- 2026-09-14 updated: the index lines come from one Grep per category, the rules always first; no index file (case 147.2) · [[decision-case-147.2]]
+- 2026-09-14 updated: index lines, not index files (case 147.9) · [[decision-case-147.9]]
+- 2026-09-14 deferred · [[decision-case-154]]
+- 2026-09-14 status: built → draft · cascade

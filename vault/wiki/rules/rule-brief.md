@@ -16,8 +16,8 @@ tags: [harness, workflow, librarian]
 
 ## Purpose
 
-Prevents the next session from starting without the facts and the flags of this one.
-The brief is a shop window, not storage: every deferred item lives on as a page — a draft placeholder, or the open Insight itself — and pre-task finds it there. So the deferred list is capped, the flags are not,
+Prevents the next session from starting without the facts and the flags of this one,
+written to [[brief]]. [[brief]] is a shop window, not storage: every deferred item lives on as a page — a draft placeholder, or the open Insight itself — and pre-task finds it there. So the deferred list is capped, the flags are not,
 and nothing in the brief is a decision.
 
 ## Render
@@ -59,3 +59,4 @@ and flags only. Add no decision and no judgment of the work. Change
 - 2026-09-14 updated: an open Insight in Deferred is a live page, not a draft placeholder (case 132) · [[decision-case-132]]
 - 2026-09-14 status: built → draft · cascade
 - 2026-09-14 status: draft → built · cascade
+- 2026-09-14 updated: the hub file linked for the graph (case 149.4) · [[decision-case-149.4]]

@@ -2,7 +2,7 @@
 type: lesson
 kind: knowledge
 root_cause: the agent prompt gives the librarian no description of how generate reads the yaml marks (near, librarian, synthesis), so it went to the code to learn the semantics; and rule-index-check lets it open a page when an index line is not enough while rule-synthesis forbids reading a lesson page, so the two rules disagree on the same act
-status: clustered
+status: archived
 source: raw/2026-09-10/event_log.md 11:49:55–11:50:15
 insight: "[[insight-librarian-frame-omits-required-reads]]"
 origin: raw/2026-09-10/ledger.md#L99
@@ -30,3 +30,5 @@ the agent prompt gives the librarian no description of how generate reads the ya
 - 2026-09-11 updated: clustered by librarian: the frame omits reads the work needs, with lesson-frame-read-clauses-omit-candidate-check-and-brief · raw/2026-09-10/ledger.md#L132
 - 2026-09-12 source set from its ledger line · [[decision-case-87]]
 - 2026-09-14 insight section derived
+- 2026-09-14 archived · insight actioned
+- 2026-09-14 archived · cleanup

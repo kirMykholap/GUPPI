@@ -1,9 +1,10 @@
 ---
 type: insight
 pattern: The frame of the librarian names the reads it allows one by one, and the list is shorter than the judgments the librarian must make; the agent then breaks a clause or judges on an index line alone.
-status: open
+status: actioned
 children: ["[[lesson-librarian-reads-beyond-the-four-inputs]]", "[[lesson-frame-read-clauses-omit-candidate-check-and-brief]]"]
-severity: 2
+severity: 0
+addressed_by: "[[decision-case-143]]"
 origin: raw/2026-09-10/ledger.md#L132
 sprint: migration
 created: 2026-09-11
@@ -29,6 +30,11 @@ A suggestion, not a decision. Derive the read clauses from the judgments: list e
 - [[lesson-librarian-reads-beyond-the-four-inputs]]
 - [[lesson-frame-read-clauses-omit-candidate-check-and-brief]]
 
+## Addressed by
+
+- [[decision-case-143]]
+
 ## History
 
 - 2026-09-11 created · raw/2026-09-10/ledger.md#L132
+- 2026-09-14 updated: actioned: the four reasons of the frame (54, 58, 90.3, 102.4) are one clause per judgment, the children's clauses agree, nine runs without a recurrence; no Rule changed (case 143) · [[decision-case-143]]

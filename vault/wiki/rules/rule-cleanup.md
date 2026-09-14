@@ -1,8 +1,8 @@
 ---
 type: rule
 kind: Leaf
-purpose: Prevents an archived page from staying among the live ones, or the indexes from lagging behind the vault
-status: built
+purpose: Prevents an archived page from staying among the live ones
+status: draft
 enforcement: check
 implementation_ref: [guppi/cleanup.py, tests/test_cleanup.py]
 parent: "[[rule-documentation]]"
@@ -15,8 +15,7 @@ tags: [harness, workflow]
 
 ## Purpose
 
-Prevents an archived page from staying among the live ones, or the indexes from
-lagging behind the vault. `archived` is a status the generator sets. The file move
+Prevents an archived page from staying among the live ones. `archived` is a status the generator sets. The file move
 is this script's, so a page never disappears by an agent's hand. `raw/<date>/` is not
 this script's: `guppi archive` moves an applied session ([[rule-raw-archive]]).
 
@@ -33,7 +32,7 @@ resolves a name in any folder, and lint counts archived slugs as known. A live p
 whose `parent` or `target` went to the archive is reported on stderr and left.
 
 A page under `vault/archive/`, at any depth, whose status is no longer `archived` moves back to
-`wiki/<category>/` with the History line `restored · cleanup`. Then the four indexes are rewritten with the writer of `guppi index`; an archived Estimate leaves no line, since estimates have none. A rerun moves nothing and exits 0. A
+`wiki/<category>/` with the History line `restored · cleanup`.  A rerun moves nothing and exits 0. A
 file that cannot be moved, or a name already taken in the archive, is reported on
 stderr with exit 1; the other pages still move.
 
@@ -60,3 +59,5 @@ stderr with exit 1; the other pages still move.
 - 2026-09-13 updated: the root is vault/archive/, the page lands under the session of the run (case 102.2) · [[decision-case-102.2]]
 - 2026-09-13 status: built → draft · cascade
 - 2026-09-14 status: draft → built · cascade
+- 2026-09-14 updated: cleanup rewrites no index; the files are gone (case 147.6) · [[decision-case-147.6]]
+- 2026-09-14 status: built → draft · cascade

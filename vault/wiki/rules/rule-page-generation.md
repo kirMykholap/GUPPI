@@ -29,13 +29,12 @@ date order; a date with no unapplied entry changes nothing; a failure on one dat
 reported and the walk goes on, with exit 1 at the end. An `update`, `estimate`, `delete` or `defer` whose slug is not under `wiki/` reaches the page under `vault/archive/` (`raw/` folders excluded) and edits it there; with a `status` other than `archived` in the same entry, `cleanup` brings it back (case 105.3). An entry that fails — a collision, a `ref` naming no page, a
 `replace` whose text is absent or not unique, a field whose shape the script does not
 expect, any exception raised while applying it — is reported on stderr, marked
-`failed` and skipped; the rest apply; the exit code is 1. No entry ends the run.
+`failed` and skipped; the rest apply; the exit code is 1. No entry ends the run. An entry with `superseded_by` is not applied — a later Case did its work — and leaves no line; its Case's Decision page is still written, `superseded`, and archived by the cascade (case 151). An entry with `failed` and no `kind` — a line `materialize` could not lift (case 142.1) — is skipped with its mark kept and one stderr line, `generate: line N: not lifted by materialize; <message>`; the exit code is 1 (case 142.2).
 
 Initial `status` by category: entity and rule `draft`, estimate `pending`, lesson
 `new`, insight `open`, decision `current`. `sprint` is the first `## <id>` heading
 of `sprint.md`; `created` is the yaml's date; History lines and `log.md` lines carry
-the date of the run. Body sections follow the order of the
-category's `schema.yaml`: `Purpose` from `sections` or the `purpose` line;
+the date of the run. A ref field — `parent`, `children`, `estimates`, `target`, `insight`, `addressed_by`, `deferred_by`, and on a Decision page `create`, `update`, `delete`, `defer`, `supersedes`, `superseded_by` — is written as a quoted wikilink, `"[[slug]]"`, a list as `["[[a]]", "[[b]]"]`, so Obsidian's graph, backlinks and Bases see the structure; a slug without a category prefix (a Rule-class file in a Decision list) stays bare. `pages.read_page` and `materialize.page_estimates` strip the brackets on read, so every reader sees the slug; a page written without brackets reads the same (case 148.1). Body sections follow the order of the category's `schema.yaml`: `Purpose` from `sections` or the `purpose` line;
 `Estimates`, `Children` (numbered for a rule), `Parent`, `Implementation` from the
 fields; `Render`, `How it works`, `Context`, `Criterion`, `Method`, `Result`,
 `Trigger`, `Root cause`, `Pattern`, `Proposal` from `sections` or the estimate's
@@ -120,3 +119,6 @@ declared and not registered is reported on stderr and left on the page.
 - 2026-09-14 updated: a defer marks an Insight deferred_by like a Rule, and the Addressed by section of an Insight is derived from addressed_by (case 124.2) · [[decision-case-124.2]]
 - 2026-09-14 updated: the literal decision-case-N of the History line of 2026-09-11 and of the Given of decision-case-112.1–112.6 quoted by hand, a one-off migration; entry 112.6 superseded (case 130.1) · [[decision-case-130.1]]
 - 2026-09-14 updated: the History line of case 114, `updated: the`, completed by hand to name the derived ## Insight section — a one-off migration (case 131) · [[decision-case-131]]
+- 2026-09-14 updated: an entry materialize failed is skipped, its failed mark kept (case 142.2) · [[decision-case-142.2]]
+- 2026-09-14 updated: ref fields written as quoted wikilinks; read through the brackets; one migration over wiki/ and archive/ (case 148.1) · [[decision-case-148.1]]
+- 2026-09-14 updated: an entry with superseded_by is skipped without a line; its Decision page still written (case 151) · [[decision-case-151]]

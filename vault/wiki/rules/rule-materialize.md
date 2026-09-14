@@ -27,18 +27,9 @@ defect of the ledger, and it shows here.
 `uv run guppi materialize [--date YYYY-MM-DD]` reads one unit at a time. A session folder `raw/<date>/<HHMM>/` holding a `ledger.md` is a unit (case 103.2): it reads that ledger and `raw/<date>/<HHMM>/spec.md` alone, and writes `raw/<date>/<HHMM>/materialize.yaml`, the `origin` of every entry `raw/<date>/<HHMM>/ledger.md#…`. A date-level `raw/<date>/ledger.md` (the shape before case 103) is a unit read as before: the ledger and every Spec of the date — `raw/<date>/<HHMM>/spec.md` in folder order, and `raw/<date>/spec.md` when the date has one (dates before case 73) — written to `raw/<date>/materialize.yaml` with the date form of `origin`; on a date with both shapes the date-level unit goes first; the yaml's `spec` field names the file each Case was found in, and a Case heading found in two files stops the walk with exit 1. Without `--date` it
 walks every unit under `raw/` — dates ascending, the date-level ledger of a date first, then its sessions in folder order — and prints one
 line per unit; a line written after the librarian's commit of its date is picked up
-by the next run, whatever the date of that run. An error on one date stops the walk with exit 1. With `--show` (case 76) the same walk prints to stdout the yaml each date would be written with — entries, `unparsed`, `incomplete` marks, decision groups, one document per date — and writes nothing under `raw/`; the agent and pre-task look before the librarian runs.
+by the next run, whatever the date of that run. An error of a unit — no `ledger.md`, a Case heading in two files — stops the walk with exit 1; a line whose lift failed marks its entry, the unit exits 1 and the walk goes on (case 142.4). With `--show` (case 76) the same walk prints to stdout the yaml each date would be written with — entries, `unparsed`, `incomplete` marks, decision groups, one document per date — and writes nothing under `raw/`; the agent and pre-task look before the librarian runs.
 
-One entry per record line, in ledger order. Fields: `case`, `kind` (`create`,
-`update`, `delete`, `defer`, `estimate`, `lesson`), `category` (from the slug
-prefix: `rule-`, `entity-`, `estimate-`, `lesson-`, `insight-`; a Rule-class file
-is `file` with its path), `slug`, `ref`, `source`, `supersedes`, `superseded_by`,
-`origin` (`raw/<date>/ledger.md#case-N`; a lesson `#L<n>`), `line`, `text` (the
-ledger line), `tags` (from `{tags:...}`), `fields`, `sections`, `replace`, `change`
-(from the `then` block), `incomplete` (required fields the block lacks), `exists`
-(a create whose page is on disk with an `origin` carrying this line's `#case-N`; a page of another Case, live or archived, leaves the entry a create for `generate` to refuse as a collision, case 105.2), `folded` (the ledger lines of readings folded into
-a create), `applied` and `failed` (set by `guppi generate`: the time applied, or the
-error).
+One entry per record line, in ledger order. The fields of an entry, each with its writer (case 142.1) — from the ledger line: `case`, `kind` (`create`, `update`, `delete`, `defer`, `estimate`, `lesson`), `category` (from the slug prefix: `rule-`, `entity-`, `estimate-`, `lesson-`, `insight-`; a Rule-class file is `file` with its `path`), `slug`, `ref`, `source`, `supersedes`, `tags` (from `{tags:...}`), `origin` (`raw/<date>/<HHMM>/ledger.md#case-N`; a lesson `#L<n>`), `line`, `text` (the ledger line), `decision` (`decision-case-<N>`); from the `then` block: `fields`, `sections`, `replace`, `change`, `impact`, `incomplete` (required fields the block lacks), `exists` (a create whose page is on disk with an `origin` carrying this line's `#case-N`; a page of another Case, live or archived, leaves the entry a create for `generate` to refuse as a collision, case 105.2); derived by this script: `derived`, `criterion_block`, `set`, `case_removed`, and `status`, `result`, `folded` of a reading folded into a create; `superseded_by` from a later `{supersedes}` in any unit; `failed` from a lift that raised; set by `guppi generate`: `applied` (the time applied) and `failed` (the error); set by the librarian: `near`, and `librarian` with the value `merged` or `synthesis` (`rule-documentation`). A key the code writes and this list does not name is a finding.
 
 The Spec is read by headings `## Case N` and `### Case N.M`. Under a heading, every
 fenced block tagged `then` up to the next heading is YAML; a leading `> ` is
@@ -49,7 +40,7 @@ for a page created in the same ledger is folded into that create (`status`,
 is a `create` in `lessons`: `kind`, `root_cause`, `source` when the braces of the line carry one, and the sections `Trigger` and
 `Root cause` from the line; a `knowledge` lesson whose line carries no `source` is marked `incomplete: [source]`, an `error` lesson never (case 87). A line with `{supersedes:case N}` marks the entries of
 case N `superseded_by`. One decision entry per Case: `decision: decision-case-<N>`, `case_text` (the quoted sections of the Case, verbatim, in the language of the Spec), `targets` (one item per line of the Case); a sub-case's `context`, `problem`, `recommend` and `given` are its own when present and its parent's otherwise, `when` never; a Case whose text lacks `given` or `when`, its parent's included, is marked `incomplete` only when a kind other than `defer` is among its lines, since the short form has neither. A line the grammar does not
-parse goes under `unparsed`; the script continues. `new_tags` declared in the `then`
+parse goes under `unparsed`; the script continues. A line whose lift raises — a `then` item of an unexpected shape, any error while the entry is built — becomes an entry `{line, text, failed: "<Type>: <message>"}` without `kind`, reported on stderr as `materialize: line N: <message>`; the other lines are lifted, the yaml is written, the unit exits 1 and the walk goes on to the next unit; on the next run such an entry is lifted again from its line and replaced when the lift succeeds. An existing entry the script cannot read — not a mapping, or a mapping without `line` and without `derived` — is left as it is, named on stderr, and does not end the run (case 142.1). `new_tags` declared in the `then`
 block of any Case of the Spec, with decision lines or without, go to the yaml's
 `new_tags` once each, so a tag a lesson brought can be declared at the next Plan Mode.
 
@@ -107,3 +98,5 @@ date fails.
 - 2026-09-13 status: built → draft · cascade
 - 2026-09-14 status: draft → built · cascade
 - 2026-09-14 updated: a supersedes marks the earlier Case's entries in the yaml of any unit under raw/, so a failed entry superseded from a later session no longer keeps its unit out of the archive (case 130.2) · [[decision-case-130.2]]
+- 2026-09-14 updated: an entry fails alone in materialize, the walk goes on; an unreadable existing entry is left alone; the field list names every field and its writer (case 142.1) · [[decision-case-142.1]]
+- 2026-09-14 updated: a failed line does not stop the walk; a unit error still does (case 142.4) · [[decision-case-142.4]]

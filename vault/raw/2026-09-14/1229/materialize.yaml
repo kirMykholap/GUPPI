@@ -556,6 +556,7 @@ entries:
       do, and the fork that comes back as a Case; the Plan Mode of a session of its own
   exists: true
   applied: '15:01:46'
+  superseded_by: '152'
 - line: 23
   text: decision[case 141][defer][rule-work-mode]{ref:rule-work-mode}{supersedes:case 129}
   case: '141'
@@ -583,6 +584,7 @@ entries:
       fork as a Case; the Plan Mode of a session of its own
   exists: true
   applied: '15:01:46'
+  superseded_by: '152'
 - line: 24
   text: decision[case 141][defer][rule-subagent-guppi]{ref:rule-subagent-guppi}{supersedes:case 129}
   case: '141'
@@ -1529,5 +1531,7 @@ decisions:
   supersedes:
   - decision-case-129
   applied: '15:01:46'
+  superseded_by:
+  - decision-case-152
 unparsed: []
 session: '1229'

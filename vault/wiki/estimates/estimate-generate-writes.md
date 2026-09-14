@@ -122,13 +122,47 @@ A `defer` with an Insight as its target appends the decision slug to its `deferr
 **＋** `estimate-generate-writes` gets a `### case 124.2` block, `pending`; the test: a `defer` on an insight → `deferred_by` written and shown in `insights-index.md`; an `update` with `addressed_by` and `status: actioned` → `## Addressed by` with the link, the children `archived`; a `supersedes` clears `deferred_by`.
 **－** An Insight is neither created nor deleted through the yaml: a `create` or `delete` with an Insight as its target is a `generate` error, as today.
 
+### case 142.2
+
+When:
+`guppi generate` reaches an entry with `failed` and no `kind`.
+
+Then:
+The entry is skipped: not applied, `failed` kept as `materialize` wrote it, one line on stderr `generate: line N: not lifted by materialize; <message>`; exit 1; the other entries apply.
+**－** An entry with `kind` and a stale `failed` of an earlier run is as today (53.3): applied, the mark dropped.
+
+### case 148.1
+
+When:
+`guppi generate` or `guppi cleanup` writes a page; any script reads a page through `pages.read_page` or `materialize.page_estimates`; a one-off migration walks `vault/wiki/` and `vault/archive/`.
+
+Then:
+In the written frontmatter every value of a ref field that carries a category prefix is `"[[slug]]"`, a list `["[[a]]", "[[b]]"]`; the fields: `parent`, `children`, `estimates`, `target`, `insight`, `addressed_by`, `deferred_by`, `create`, `update`, `delete`, `defer`, `supersedes`, `superseded_by`. A slug without a category prefix (a Rule-class file in a Decision list) stays as it was.
+**＋** `read_page` and `page_estimates` strip `[[`/`]]` from these fields; a page without brackets reads the same — the migration is idempotent; lint, cleanup, pretask, materialize, archive change neither code nor contract beyond the two stripping lines.
+**＋** The migration: every page under `wiki/**` and `archive/**` read by `read_page` and written by `write_page`; body, History and key order as before; after it `guppi lint` gives the findings it gave before; `guppi render --check` exit 0; `git diff --stat` shows frontmatter only.
+**＋** Tests: the writer wraps; the reader strips; a page without brackets reads; `frontmatter()` quotes `[[…]]`.
+**＋** In Obsidian after the migration: the backlinks of an Insight are its lessons (in the archive) and its Decision; the backlinks of a Rule are its children, Estimates and Decisions; `unresolved` is empty.
+**－** The body sections stay; no CLI probe.
+
+### case 151
+
+When:
+`guppi generate` reaches an entry with `superseded_by`.
+
+Then:
+The action of the entry is not done, stderr is empty, the exit code is not changed; the Decision page of its Case is written when it does not exist yet (`superseded`, the cascade — `archived`); `failed` and `superseded_by` on the entry stay as they are.
+**＋** The rule's text: "An entry with `superseded_by` is not applied — a later Case did its work — and leaves no line; its Case's Decision page is still written, `superseded`, and archived by the cascade (case 151)."
+**＋** Tests: an entry `failed` + `superseded_by` — no stderr, exit 0, the Decision page exists, the target untouched; an entry `superseded_by` without `applied` in one yaml with the superseding one — both Decision pages, the earlier `superseded`.
+**＋** The librarian's run of this session: `generate` over `0747` is silent; 112.6 is out of the Flags.
+**－** `materialize`, `archive`, `cleanup` do not change.
+
 ## Method
 
 pytest in tests/test_generate.py against a temp vault; the live reading once by hand
 
 ## Result
 
-block 124.2 against tests/test_generate.py: a defer on an insight writes deferred_by and insights-index.md shows it; an update with addressed_by and status actioned writes ## Addressed by with the link and the cascade archives the clustered child, severity 0; a supersedes clears deferred_by; a create or delete of an insight is an error
+blocks 142.2, 148.1, 151, 2026-09-14: tests/test_generate.py — an entry with failed and no kind skipped with its mark kept and one stderr line, exit 1, the next entry applied; an entry with superseded_by not applied, its Decision page written superseded before the superseding one marks it; tests/test_pages.py — the writer wraps page slugs in quoted wikilinks and leaves Rule-class slugs bare, read_page and page_estimates read both forms the same; the migration over wiki/ and archive/ rewrote 357 of 399 pages, frontmatter only (numstat 1:1), guppi lint identical before and after (84 lines), render --check exit 0; in Obsidian, by the owner: insight-tests-clock-not-pinned shows its two lessons as backlinks, rule-harness fifteen — seven children by parent, its Estimate by target, seven Decision pages; the silence of generate over raw/2026-09-14/0747 (151) is read at the librarian's run
 
 ## History
 
@@ -150,3 +184,7 @@ block 124.2 against tests/test_generate.py: a defer on an insight writes deferre
 - 2026-09-14 status: pending → passed · raw/2026-09-14/0747/ledger.md#L46
 - 2026-09-14 criterion: case 124.2 added · [[decision-case-124.2]]
 - 2026-09-14 status: pending → passed · raw/2026-09-14/1029/ledger.md#L33
+- 2026-09-14 criterion: case 142.2 added · [[decision-case-142.2]]
+- 2026-09-14 criterion: case 148.1 added · [[decision-case-148.1]]
+- 2026-09-14 criterion: case 151 added · [[decision-case-151]]
+- 2026-09-14 status: pending → passed · raw/2026-09-14/1633/ledger.md#L58

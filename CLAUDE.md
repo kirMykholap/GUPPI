@@ -31,7 +31,7 @@ move closes:
   in the reply and the `Stop` hook writes them into `vault/raw/<date>/<hi HHMM>/ledger.md`, the session's folder (case 103.1), each
   prefixed with the time of writing. The lines of 2026-09-09 written by hand before it
   carry no time; that is how the two are told apart.
-- **The rituals of the new model exist since Slice 3.** `/retro` (the person), `/handoff` (the
+- **The rituals of the new model exist since Slice 3.** `/retro` (the person, or the agent once the Spec's tasks are ticked), `/handoff` (the
   agent, refused by `guppi gate` while the tree is dirty), then the `librarian-guppi` agent:
   `materialize`, index check, synthesis, `generate`, `cleanup`, brief, commit. Pages are no
   longer written by hand; `brief.md` is written by the librarian. `docs/migration/` still
@@ -90,7 +90,7 @@ Dispatch the `ask-guppi` agent with one short question.
 Ledger lines are written by the `Stop` hook, from the reply, verbatim, each with
 the time of writing. A record is a `- decision[case 12][update][rule-x]{ref:rule-x}`, `- estimate[...]` or `- lesson[...]` line inside a fenced block opened with the `LEDGER` tag — the id is `case N`, the word and a space, in `{supersedes:case N}` too; the same
 line anywhere else — bare, or in a block with another tag or none — is a preview
-and is never written. A `create` line carries the ratified tags: `{tags:a,b}`.
+and is never written. A `create` line carries the ratified tags: `{tags:a,b}`. A `knowledge` lesson line carries `{source:...}`, the url or reference the lesson studied — a file of the harness, a probe, a client version; the schema requires it, and a line without it is `incomplete: [source]` in the yaml and a lint finding on the page. An `error` lesson never carries one.
 Write the `- decision[...]` lines only in the reply that acknowledges ratification;
 `- estimate[...]` and `- lesson[...]` lines the moment the measurement or the lesson
 exists. Without `/hi` the hook refuses and says so: tell the person, do not retry. A reply that carries a `LEDGER` block ends in that text. No tool call follows it in the same reply: the text before a tool call is never kept, and the hook reads nothing.

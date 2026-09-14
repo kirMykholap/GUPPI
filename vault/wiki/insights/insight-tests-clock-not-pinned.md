@@ -1,9 +1,10 @@
 ---
 type: insight
 pattern: A test pins the date on one side of the call and lets the code read the real clock on the other; it passes on the day it is written and fails later.
-status: open
+status: actioned
 children: ["[[lesson-tests-cli-date-pinned]]", "[[lesson-tests-generate-history-date-unpinned]]"]
-severity: 2
+severity: 0
+addressed_by: "[[decision-case-145.3]]"
 origin: raw/2026-09-11/ledger.md#L71
 sprint: migration
 created: 2026-09-11
@@ -29,6 +30,11 @@ A suggestion, not a decision. Every entry point that reads the clock takes `now`
 - [[lesson-tests-cli-date-pinned]]
 - [[lesson-tests-generate-history-date-unpinned]]
 
+## Addressed by
+
+- [[decision-case-145.3]]
+
 ## History
 
 - 2026-09-11 created · raw/2026-09-11/ledger.md#L71
+- 2026-09-14 updated: actioned: every run() takes now (the children's fixes); the clock of the tests pinned to 2001 by rule-tests-clock-pinned (145.1) (case 145.3) · [[decision-case-145.3]]

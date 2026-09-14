@@ -19,7 +19,7 @@ Prevents a Rule page and the harness file it governs from becoming two copies of
 text. Without a renderer `enforcement: render` is a label: the skill and `CLAUDE.md` are
 edited by hand, the page follows or does not, and the vault stops being the source.
 
-`parent: rule-harness` names the MOC of the harness tools: the renderer runs with lint and the indexes, in no phase of the session.
+`parent: rule-harness` names the MOC of the harness tools: the renderer runs with lint, in no phase of the session.
 
 ## How it works
 
@@ -67,3 +67,4 @@ file, so nothing is lost but the label in the file itself (case 85.1).
 - 2026-09-13 status: draft → built · cascade
 - 2026-09-14 updated: --sync is named as the SessionStart hook and the Render line of /hi after the pull (case 115.1) · [[decision-case-115.1]]
 - 2026-09-14 updated: the moment Claude Code reads an agent file is the reading of case 139.1; a rendered agent is planned for from the next session (case 139.1) · [[decision-case-139.1]]
+- 2026-09-14 updated: no indexes in make lint (case 147.9) · [[decision-case-147.9]]

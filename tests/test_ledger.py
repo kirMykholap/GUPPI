@@ -38,7 +38,7 @@ The preview in `then` was:
 """
 
 EVENT_LOG_WITH_HI = """- 15:01:00 44c1aae1 session-start startup
-- 15:01:30 -------- hi
+- 15:01:30 44c1aae1 hi
 - 15:02:00 44c1aae1 tool Bash: git status --short
 """
 
@@ -141,15 +141,71 @@ def test_without_an_event_log_the_hook_refuses(tmp_path):
 
 
 def test_hi_before_this_sessions_start_does_not_count(tmp_path):
-    write_event_log(tmp_path, "- 14:00:00 -------- hi\n- 15:01:00 44c1aae1 session-start startup\n")
+    write_event_log(tmp_path, "- 14:00:00 44c1aae1 hi\n- 15:01:00 44c1aae1 session-start startup\n")
     code, _ = run(payload(last_assistant_message=REPLY), tmp_path)
     assert code == 2
 
 
-def test_another_sessions_start_after_hi_closes_the_window(tmp_path):
+def test_another_sessions_start_after_hi_leaves_the_window_open(tmp_path):
+    # case 111.3: the hi carries our stamp, so a foreign start before or after it is noise
     write_event_log(tmp_path, EVENT_LOG_WITH_HI + "- 15:03:00 deadbeef session-start startup\n")
+    code, err = run(payload(last_assistant_message=REPLY), tmp_path)
+    assert (code, err) == (0, "")
+    assert ledger_text(tmp_path) == f"{timed(DECISION)}\n{timed(ESTIMATE)}\n"
+
+
+def test_a_foreign_resume_between_our_start_and_our_hi_changes_nothing(tmp_path):
+    # 2026-09-14, session M: a session restored in the same second took the unstamped hi
+    write_event_log(
+        tmp_path,
+        "- 15:01:00 44c1aae1 session-start startup\n- 15:01:00 deadbeef session-start resume\n"
+        "- 15:01:30 44c1aae1 hi\n",
+    )
+    code, err = run(payload(last_assistant_message=REPLY), tmp_path)
+    assert (code, err) == (0, "")
+    assert ledger_file(tmp_path, session="1501").exists()
+
+
+def test_a_foreign_hi_does_not_count(tmp_path):
+    write_event_log(
+        tmp_path,
+        "- 15:01:00 44c1aae1 session-start startup\n- 15:02:00 deadbeef hi\n",
+    )
+    code, err = run(payload(last_assistant_message=REPLY), tmp_path)
+    assert code == 2 and "no /hi recorded for session 44c1aae1" in err
+
+
+def test_an_unstamped_hi_counts_by_the_old_rule_when_no_stamped_one_exists(tmp_path):
+    # case 111.6: the sessions the old skill line opened keep their window
+    write_event_log(
+        tmp_path,
+        "- 15:01:00 44c1aae1 session-start startup\n- 15:01:30 -------- hi\n",
+    )
+    code, err = run(payload(last_assistant_message=REPLY), tmp_path)
+    assert (code, err) == (0, "")
+    assert ledger_file(tmp_path, session="1501").exists()
+
+
+def test_an_unstamped_hi_after_a_foreign_start_is_refused_and_a_stamped_one_wins(tmp_path):
+    log = (
+        "- 15:01:00 44c1aae1 session-start startup\n- 15:01:00 deadbeef session-start resume\n"
+        "- 15:01:30 -------- hi\n"
+    )
+    write_event_log(tmp_path, log)
     code, _ = run(payload(last_assistant_message=REPLY), tmp_path)
     assert code == 2
+    write_event_log(tmp_path, log + "- 15:09:00 44c1aae1 hi\n")
+    code, _ = run(payload(last_assistant_message=REPLY), tmp_path)
+    assert code == 0
+    assert ledger_file(tmp_path, session="1509").exists()
+
+
+def test_the_first_stamped_hi_names_the_folder(tmp_path):
+    write_event_log(tmp_path, EVENT_LOG_WITH_HI + "- 15:07:00 44c1aae1 hi\n")
+    code, _ = run(payload(last_assistant_message=REPLY), tmp_path)
+    assert code == 0
+    assert ledger_file(tmp_path, session="1501").exists()
+    assert not ledger_file(tmp_path, session="1507").exists()
 
 
 def test_a_compact_or_resume_of_the_same_session_keeps_the_window_open(tmp_path):
@@ -250,11 +306,12 @@ def test_no_start_of_this_session_on_any_date_refuses(tmp_path):
     assert "no /hi recorded" in err
 
 
-def test_another_sessions_start_today_closes_yesterdays_window(tmp_path):
+def test_another_sessions_start_today_leaves_yesterdays_window_open(tmp_path):
     write_event_log(tmp_path, EVENT_LOG_WITH_HI, day=YESTERDAY)
     write_event_log(tmp_path, "- 00:12:00 deadbeef session-start startup\n")
-    code, _ = run(payload(last_assistant_message=REPLY), tmp_path)
-    assert code == 2
+    code, err = run(payload(last_assistant_message=REPLY), tmp_path)
+    assert (code, err) == (0, "")
+    assert ledger_text(tmp_path, YESTERDAY) == f"{timed(DECISION)}\n{timed(ESTIMATE)}\n"
 
 
 def test_the_walk_stops_at_the_first_date_holding_this_sessions_start(tmp_path):
@@ -418,8 +475,8 @@ def test_session_dir_is_the_date_and_hhmm_of_the_hi(tmp_path):
     assert folder == tmp_path / "vault" / "raw" / "2026-09-08" / "1501"
 
 
-def test_session_dir_is_none_without_a_hi(tmp_path):
+def test_session_dir_is_none_without_a_hi_and_survives_a_foreign_start(tmp_path):
     write_event_log(tmp_path, "- 15:01:00 44c1aae1 session-start startup\n")
     assert ledger.session_dir(tmp_path, NOW, "44c1aae1") is None
     write_event_log(tmp_path, EVENT_LOG_WITH_HI + "- 15:03:00 deadbeef session-start startup\n")
-    assert ledger.session_dir(tmp_path, NOW, "44c1aae1") is None
+    assert ledger.session_dir(tmp_path, NOW, "44c1aae1") is not None  # case 111.3

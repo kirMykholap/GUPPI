@@ -174,6 +174,27 @@ def links(slugs: list[str], numbered: bool = False) -> str:
     return "\n".join(f"- [[{s}]]" for s in slugs)
 
 
+INSIGHT = "## Insight"
+
+
+def derive_insight(page: Page) -> bool:
+    """The `## Insight` section of a lesson, rebuilt from its `insight` field like `## Parent`
+    from `parent` (case 114): the link when the field is set, no section otherwise. True
+    when the page changed."""
+    insight = page.props.get("insight")
+    wanted = links([str(insight)]) if insight else None
+    current = page.sections.get(INSIGHT)
+    if current is not None:
+        current = current.strip()
+    if wanted == current:
+        return False
+    if wanted is None:
+        page.sections.pop(INSIGHT, None)
+    else:
+        page.sections[INSIGHT] = wanted
+    return True
+
+
 def paths_list(paths: list[str]) -> str:
     return "\n".join(f"- `{p}`" for p in paths)
 
@@ -259,6 +280,8 @@ class Vault:
         return None
 
     def save(self, page: Page) -> None:
+        if page.category == "lessons":
+            derive_insight(page)
         write_page(page.path, page.props, page.sections, page.category)
 
     @staticmethod
@@ -689,6 +712,23 @@ class Vault:
         for path in (self.wiki / "lessons").glob("*.md"):
             if path.stem != "schema":
                 lessons[path.stem] = read_page(path, "lessons")
+        for page in list(lessons.values()):  # 114: the section the field promises
+            if page.error or not page.props.get("insight"):
+                continue
+            if derive_insight(page):
+                self.history(page, "insight section derived", None)
+                self.save(page)
+
+        def child_status(slug: str) -> str:
+            """`wiki/lessons/` first, then the archive (case 110); no page anywhere is
+            not `archived`, so the child stays live and lint names the missing page."""
+            child = lessons.get(slug)
+            if child is None:
+                for path in archived_paths(self.project_dir, slug):
+                    child = read_page(path, path.parent.name)
+                    break
+            return str(child.props.get("status")) if child is not None else "none"
+
         for path in sorted((self.wiki / "insights").glob("*.md")):
             if path.stem == "schema":
                 continue
@@ -705,11 +745,7 @@ class Vault:
                         child.props["status"] = "archived"
                         self.history(child, "archived · insight actioned", None)
                         self.save(child)
-            live = [
-                s
-                for s in as_list(page.props.get("children"))
-                if str(lessons.get(s, Page("lessons", s, path)).props.get("status")) != "archived"
-            ]
+            live = [s for s in as_list(page.props.get("children")) if child_status(s) != "archived"]
             changed = False
             if page.props.get("severity") != len(live):
                 page.props["severity"] = len(live)

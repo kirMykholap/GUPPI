@@ -7,6 +7,11 @@ instructions, so it still fills when the agent deviates or crashes. Rule page:
 
 Line format: `- HH:MM:SS <first 8 of session_id | --------> <event> <detail>`.
 
+`guppi event prompt`, the `UserPromptSubmit` hook, is the one event with a filter: it
+writes `hi` with the session's stamp when the prompt is `/hi` (arguments allowed) and no
+`hi` of this session follows its first `session-start` yet; any other prompt, a second
+`/hi`, or a payload without a session id writes nothing (case 111.1).
+
 The hook never fails the session. Every error goes to stderr and the exit code is 0.
 """
 
@@ -92,6 +97,45 @@ def format_line(name: str, payload: dict, words: list[str], session: str | None,
     return " ".join(parts)
 
 
+HI_PROMPT = "/hi"
+
+
+def is_hi_prompt(prompt) -> bool:
+    text = str(prompt or "").strip()
+    return text == HI_PROMPT or text.startswith(HI_PROMPT + " ")
+
+
+def hi_written(project_dir: Path, now, stamp: str) -> bool:
+    """True when a `hi` of this stamp already follows the first `session-start` of this
+    stamp in the logs the ledger hook walks (case 111.1): one session, one `hi` line."""
+    from guppi.ledger import session_event_logs  # ledger imports this module
+
+    ours = False
+    for _, text in session_event_logs(project_dir, now, stamp):
+        for line in text.splitlines():
+            parts = line.split(" ", 3)
+            if len(parts) < 4 or parts[0] != "-" or parts[2] != stamp:
+                continue
+            event = parts[3].split(" ", 1)[0]
+            if event == "session-start":
+                ours = True
+            elif event == "hi" and ours:
+                return True
+    return False
+
+
+def prompt_line(payload: dict, session: str | None, project_dir: Path, now) -> str | None:
+    """The `hi` line a `UserPromptSubmit` payload earns, or None: the prompt must be `/hi`
+    (arguments allowed), the session id known, and no `hi` of this session written yet
+    (case 111.1). Any other prompt writes nothing."""
+    if not is_hi_prompt(payload.get("prompt")):
+        return None
+    stamp = session_stamp(session, payload)
+    if stamp == UNKNOWN_SESSION or hi_written(project_dir, now, stamp):
+        return None
+    return format_line("hi", payload, [], session, now)
+
+
 def log_path(project_dir: Path, now) -> Path:
     return project_dir / "vault" / "raw" / now.date().isoformat() / "event_log.md"
 
@@ -104,7 +148,7 @@ def append(path: Path, line: str) -> None:
 
 def parser() -> argparse.ArgumentParser:
     p = argparse.ArgumentParser(prog="guppi event", description=__doc__.split("\n\n")[1])
-    p.add_argument("name", help="the event, e.g. session-start, tool, hi")
+    p.add_argument("name", help="the event, e.g. session-start, tool, prompt, hi")
     p.add_argument("--session", default=None, help="session id; overrides the payload's")
     p.add_argument("words", nargs="*", help="free detail; replaces what the payload would give")
     return p
@@ -124,7 +168,12 @@ def run(argv, *, stdin=None, stderr=None, project_dir: Path | None = None, now=N
     try:
         args = parser().parse_args(argv)
         payload = read_payload(stdin)
-        line = format_line(args.name, payload, args.words, args.session, now)
+        if args.name == "prompt":
+            line = prompt_line(payload, args.session, project_dir, now)
+            if line is None:
+                return 0
+        else:
+            line = format_line(args.name, payload, args.words, args.session, now)
         append(log_path(project_dir, now), line)
     except SystemExit as exc:  # argparse: a bad invocation still must not fail the session
         if exc.code not in (None, 0):

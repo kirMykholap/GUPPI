@@ -19,7 +19,7 @@ TODAY = date(2026, 9, 9)
 NOW = datetime(2026, 9, 9, 18, 40, 5, tzinfo=UTC)
 SESSION = "44c1aae1-4076-4a58-a7c0-d20bc274047c"
 START = "- 15:01:00 44c1aae1 session-start startup\n"
-HI = "- 15:01:30 -------- hi\n"
+HI = "- 15:01:30 44c1aae1 hi\n"
 PRETASK = "- 16:20:00 -------- pretask\n"
 OTHER_START = "- 14:00:00 99999999 session-start startup\n"
 
@@ -285,7 +285,7 @@ def test_a_missing_frontier_is_a_finding(tmp_path):
 
 def test_the_frontier_path_follows_the_hi_time(tmp_path):
     # case 73.4: the frontier of the session's folder, named by the hi's HHMM
-    log = "- 11:55:00 44c1aae1 session-start startup\n- 11:56:22 -------- hi\n"
+    log = "- 11:55:00 44c1aae1 session-start startup\n- 11:56:22 44c1aae1 hi\n"
     code, out, _ = check(tmp_path, frontier=None, event_log=log)
     assert code == 1
     assert out.splitlines() == ["frontier: vault/raw/2026-09-09/1156/frontier.md is missing"]
@@ -575,7 +575,7 @@ def test_a_parsed_line_of_a_later_date_of_the_window_is_read(tmp_path):
     with_ledger(
         tmp_path, "- 00:10:00 decision[2][update][rule-y]{ref:rule-y}\n", day=date(2026, 9, 9)
     )
-    log = "- 15:01:00 44c1aae1 session-start startup\n- 15:01:30 -------- hi\n"
+    log = "- 15:01:00 44c1aae1 session-start startup\n- 15:01:30 44c1aae1 hi\n"
     with_event_log(tmp_path, log, day=date(2026, 9, 8))
     with_ledger(tmp_path, LINE.replace("16:00:00", "23:00:00"), day=date(2026, 9, 8))
     with_frontier(tmp_path, CLEAN_FRONTIER, day=date(2026, 9, 8))

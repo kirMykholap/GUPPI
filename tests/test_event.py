@@ -143,3 +143,67 @@ def test_cli_dispatches_to_event(tmp_path, monkeypatch, capsys):
     (line,) = log_lines(tmp_path, day=today)
     assert line.endswith(" -------- hi")
     assert capsys.readouterr().err == ""
+
+
+# --- case 111.1: the hi line on UserPromptSubmit, stamped, once per session --------------
+
+
+def prompt_payload(prompt, session="abc12345-6789"):
+    return payload(session_id=session, hook_event_name="UserPromptSubmit", prompt=prompt)
+
+
+def test_the_hi_prompt_writes_a_stamped_hi_line(tmp_path):
+    run(["session-start"], payload(session_id="abc12345-6789", source="startup"), tmp_path)
+    code, err = run(["prompt"], prompt_payload("/hi"), tmp_path)
+    assert (code, err) == (0, "")
+    assert log_lines(tmp_path)[-1] == "- 15:02:11 abc12345 hi"
+
+
+def test_hi_with_arguments_and_surrounding_spaces_counts(tmp_path):
+    run(["session-start"], payload(session_id="abc12345-6789", source="startup"), tmp_path)
+    run(["prompt"], prompt_payload("  /hi again  "), tmp_path)
+    assert log_lines(tmp_path)[-1] == "- 15:02:11 abc12345 hi"
+
+
+def test_a_second_hi_of_the_same_session_writes_nothing(tmp_path):
+    run(["session-start"], payload(session_id="abc12345-6789", source="startup"), tmp_path)
+    run(["prompt"], prompt_payload("/hi"), tmp_path)
+    run(
+        ["tool"],
+        payload(session_id="abc12345-6789", tool_name="Bash", tool_input={"command": "ls"}),
+        tmp_path,
+    )
+    code, err = run(["prompt"], prompt_payload("/hi"), tmp_path)
+    assert (code, err) == (0, "")
+    assert [ln for ln in log_lines(tmp_path) if ln.endswith(" hi")] == ["- 15:02:11 abc12345 hi"]
+
+
+def test_another_sessions_hi_does_not_stand_in_for_ours(tmp_path):
+    run(["session-start"], payload(session_id="abc12345-6789", source="startup"), tmp_path)
+    run(["session-start"], payload(session_id="deadbeef-0000", source="resume"), tmp_path)
+    run(["prompt"], prompt_payload("/hi", session="deadbeef-0000"), tmp_path)
+    run(["prompt"], prompt_payload("/hi"), tmp_path)
+    assert [ln for ln in log_lines(tmp_path) if ln.endswith(" hi")] == [
+        "- 15:02:11 deadbeef hi",
+        "- 15:02:11 abc12345 hi",
+    ]
+
+
+@pytest.mark.parametrize("prompt", ["hello", "/history", "hi", "/retro", ""])
+def test_any_other_prompt_writes_nothing(tmp_path, prompt):
+    run(["session-start"], payload(session_id="abc12345-6789", source="startup"), tmp_path)
+    code, err = run(["prompt"], prompt_payload(prompt), tmp_path)
+    assert (code, err) == (0, "")
+    assert len(log_lines(tmp_path)) == 1
+
+
+def test_a_prompt_without_a_session_id_writes_nothing(tmp_path):
+    code, err = run(["prompt"], payload(hook_event_name="UserPromptSubmit", prompt="/hi"), tmp_path)
+    assert code == 0 and err == ""
+    assert not (tmp_path / "vault" / "raw").exists()
+
+
+def test_a_prompt_with_an_unreadable_payload_exits_zero(tmp_path):
+    code, err = run(["prompt"], io.StringIO("not json"), tmp_path)
+    assert code == 0 and err == ""
+    assert not (tmp_path / "vault" / "raw").exists()

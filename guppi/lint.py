@@ -13,8 +13,9 @@ not exist), `path` (a file named in
 estimate or insight no other live page's frontmatter names; a lesson is a record and an
 Insight names it or not), `status` (a status its Estimates do not support; an Estimate
 whose `target` is not an entity or a rule, case 53.1), `method` (an Estimate whose Method
-names no existing test file, or no make target for a MOC; a MOC whose children's Estimates
-are all by hand may say by hand instead), `decision` (a decision page with none of the four
+names no existing test file, or no make target for a MOC; a MOC's Estimate that names a
+target passes whatever else it says, and one that names none may say by hand when its
+children's Estimates are all by hand, case 112.1), `decision` (a decision page with none of the four
 kind lists `create`, `update`, `delete`, `defer`, or with `kind` or `target_slug` still
 present, or a slug in a list with a category prefix that names neither a live nor an
 archived page, case 59.4). A
@@ -433,13 +434,13 @@ def check_method(page: Page, by_slug: dict[str, Page], project_dir: Path) -> lis
     if method is None or target is None:
         return []
     if str(target.props.get("kind")) == "MOC":
-        if BY_HAND in method:
+        match = MAKE_TARGET.search(method)  # the target first (case 112.1)
+        if not match and BY_HAND in method:
             return [
                 Finding(page, "method", f"says by hand while {child.slug} names a test file")
                 for child in children_estimates(target, by_slug)
                 if BY_HAND not in (child.sections.get("## Method") or "")
             ][:1]
-        match = MAKE_TARGET.search(method)
         if not match:
             return [Finding(page, "method", "a MOC's Estimate names no `make <target>`")]
         makefile = project_dir / "Makefile"

@@ -16,7 +16,7 @@ NOW = datetime(2026, 9, 9, 18, 40, 5, tzinfo=UTC)
 SESSION = "44c1aae1-4076-4a58-a7c0-d20bc274047c"
 PLAN = "# Slice 2\n\n## Context\n\nThe plan text.\n"
 STAMP = "<!-- approved 18:40:05 · session 44c1aae1 -->"
-EVENT_LOG_WITH_HI = "- 15:01:00 44c1aae1 session-start startup\n- 15:01:30 -------- hi\n"
+EVENT_LOG_WITH_HI = "- 15:01:00 44c1aae1 session-start startup\n- 15:01:30 44c1aae1 hi\n"
 EVENT_LOG_WITHOUT_HI = "- 15:01:00 44c1aae1 session-start startup\n"
 HI_FOLDER = "1501"  # the `hi` at 15:01:30 names the session's folder
 
@@ -79,7 +79,7 @@ def test_first_plan_creates_the_folder_and_the_file_without_a_separator(tmp_path
 
 def test_the_spec_lands_in_the_folder_of_the_hi_time(tmp_path):
     # case 73.2: a hi at 11:56 puts the Spec at raw/<date>/1156/spec.md
-    with_event_log(tmp_path, "- 11:55:00 44c1aae1 session-start startup\n- 11:56:22 -------- hi\n")
+    with_event_log(tmp_path, "- 11:55:00 44c1aae1 session-start startup\n- 11:56:22 44c1aae1 hi\n")
     run(payload(), tmp_path)
     assert spec_files(tmp_path) == ["vault/raw/2026-09-09/1156/spec.md"]
     assert spec_text(tmp_path, "1156") == f"{STAMP}\n\n{PLAN}"

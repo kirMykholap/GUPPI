@@ -488,6 +488,81 @@ def test_a_lesson_added_to_a_reopened_insight_stays_live(tmp_path):
     assert back["status"] == "open" and back["severity"] == 1
 
 
+# --- the recount reads a child in the archive (case 110) ----------------------------------
+
+
+NL = chr(10)
+
+
+def archive_lesson(tmp_path, slug, text, folder="2026-09-01/0900"):
+    path = tmp_path / "vault" / "archive" / "migration" / folder / "lessons" / f"{slug}.md"
+    path.parent.mkdir(parents=True, exist_ok=True)
+    path.write_text(text, encoding="utf-8", newline=NL)
+
+
+def test_an_archived_child_in_the_archive_is_not_counted_live(tmp_path):
+    pages = [
+        (
+            "insights",
+            "insight-two",
+            insight_text("insight-two", "open", ["lesson-live", "lesson-gone"]),
+        ),
+        ("lessons", "lesson-live", lesson_text("lesson-live", "clustered", "insight-two")),
+        ("insights", "insight-one", insight_text("insight-one", "open", ["lesson-only"])),
+        ("insights", "insight-lost", insight_text("insight-lost", "open", ["lesson-nowhere"])),
+    ]
+    seed(tmp_path, entries=[ROOT], pages=pages)
+    archive_lesson(tmp_path, "lesson-gone", lesson_text("lesson-gone", "archived", "insight-two"))
+    archive_lesson(tmp_path, "lesson-only", lesson_text("lesson-only", "archived", "insight-one"))
+    code, _, err = run(tmp_path)
+    assert code == 0 and err == ""
+    two = props(page(tmp_path, "insights", "insight-two"))
+    assert two["status"] == "open" and two["severity"] == 1
+    assert two["children"] == ["lesson-live", "lesson-gone"]
+    one = page(tmp_path, "insights", "insight-one")
+    assert props(one)["status"] == "archived" and f"- {DATE} archived · no live child" in one
+    lost = props(page(tmp_path, "insights", "insight-lost"))
+    assert lost["status"] == "open" and lost["severity"] == 1  # no page anywhere: still live
+
+
+# --- the ## Insight section is derived from the field (case 114) --------------------------
+
+
+SECTION = "## Insight" + chr(10) * 2 + "- [[insight-x]]" + chr(10) * 2 + "## History"
+
+
+def test_a_lesson_with_an_insight_field_gets_the_section_on_write_and_in_the_cascade(tmp_path):
+    pages = [
+        ("insights", "insight-x", insight_text("insight-x", "open", ["lesson-a", "lesson-b"])),
+        ("lessons", "lesson-a", lesson_text("lesson-a", "new")),
+        ("lessons", "lesson-b", lesson_text("lesson-b", "clustered", "insight-x")),
+        ("lessons", "lesson-c", lesson_text("lesson-c", "new")),
+    ]
+    update = {
+        "kind": "update",
+        "slug": "lesson-a",
+        "category": "lessons",
+        "line": 9,
+        "case": "5",
+        "origin": "raw/2026-09-10/ledger.md#case-5",
+        "set": {"status": "clustered", "insight": "insight-x"},
+        "change": "clustered",
+    }
+    seed(tmp_path, entries=[ROOT, update], pages=pages)
+    code, _, err = run(tmp_path)
+    assert code == 0 and err == ""
+    a = page(tmp_path, "lessons", "lesson-a")
+    assert SECTION in a
+    b = page(tmp_path, "lessons", "lesson-b")
+    assert SECTION in b
+    assert f"- {DATE} insight section derived" in b
+    c = page(tmp_path, "lessons", "lesson-c")
+    assert "## Insight" not in c
+    # a rerun rewrites nothing: the section is there already
+    code, _, _ = run(tmp_path)
+    assert page(tmp_path, "lessons", "lesson-b").count("insight section derived") == 1
+
+
 # --- an update reaches an archived page (case 105.3) --------------------------------------
 
 

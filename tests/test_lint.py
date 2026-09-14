@@ -691,3 +691,20 @@ def test_a_case_block_heading_is_not_a_section_boundary():
         "## Criterion": "### case 50\n\n**when:** w.",
         "## Method": "m",
     }
+
+
+def test_a_moc_method_naming_a_make_target_passes_whatever_else_it_says(tmp_path):
+    # case 112.1: the target is looked for first; "by hand" beside it is not a finding
+    wiki = seed(tmp_path)
+    write(
+        wiki / "rules" / "rule-root.md",
+        root_page().replace("estimates: []", "estimates: [estimate-root-holds]"),
+    )
+    write(
+        wiki / "estimates" / "estimate-root-holds.md",
+        estimate_page(
+            target="rule-root",
+            method="`make test-root`, the pipeline; the live reading by hand.",
+        ),
+    )
+    assert run(tmp_path) == (0, [], "")

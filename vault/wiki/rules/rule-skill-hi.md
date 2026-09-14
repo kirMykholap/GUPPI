@@ -6,9 +6,9 @@ status: built
 enforcement: render
 governs: .claude/skills/hi/SKILL.md
 render_mode: full
-parent: rule-session-start
-children: [rule-internal-context, rule-git-context, rule-github-issues, rule-ledger-tail]
-estimates: [estimate-hi-no-read-calls, estimate-hi-writes-frontier]
+parent: "[[rule-session-start]]"
+children: ["[[rule-internal-context]]", "[[rule-git-context]]", "[[rule-github-issues]]", "[[rule-ledger-tail]]"]
+estimates: ["[[estimate-hi-no-read-calls]]", "[[estimate-hi-writes-frontier]]"]
 origin: raw/2026-09-09/ledger.md#case-11
 sprint: migration
 created: 2026-09-09

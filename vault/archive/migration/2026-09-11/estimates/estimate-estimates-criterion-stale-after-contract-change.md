@@ -2,7 +2,7 @@
 type: estimate
 kind: QA
 status: archived
-target: lesson-estimates-criterion-stale-after-contract-change
+target: "[[lesson-estimates-criterion-stale-after-contract-change]]"
 origin: raw/2026-09-09/ledger.md#L49
 sprint: migration
 created: 2026-09-09

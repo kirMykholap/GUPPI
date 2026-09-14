@@ -6,8 +6,8 @@ status: built
 enforcement: render
 governs: .claude/skills/handoff/SKILL.md
 render_mode: full
-parent: rule-end-of-work
-estimates: [estimate-handoff-dispatches]
+parent: "[[rule-end-of-work]]"
+estimates: ["[[estimate-handoff-dispatches]]"]
 origin: raw/2026-09-10/ledger.md#case-38.3
 sprint: migration
 created: 2026-09-10

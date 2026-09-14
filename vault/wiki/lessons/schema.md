@@ -15,7 +15,7 @@ A Lesson is a recorded fact, not a ratified decision. It does not go through a C
 | `root_cause` | yes | one line | Why it happened (`error`), or the mechanism the source claims (`knowledge`). Lives in properties because `lessons.index` is built from it, and clustering into an Insight compares exactly this. |
 | `status` | yes | `new` \| `clustered` \| `archived` | `clustered` once it belongs to an Insight. Archived when its Insight is `actioned`. |
 | `source` | `knowledge` | url or reference | Where the material came from. |
-| `insight` | no | slug | The Insight this belongs to, once clustered. Written by the script. |
+| `insight` | no | quoted wikilink `"[[slug]]"` | The Insight this belongs to, once clustered. Written by the script. The scripts read the slug through the brackets; a slug without a category prefix stays bare (case 148.2). |
 | `origin` | yes | `raw/YYYY-MM-DD/HHMM/ledger.md#L<n>` (the date form, `raw/YYYY-MM-DD/ledger.md#L<n>`, on pages born before 2026-09-13; case 103.6) | The ledger line. Unlike Entity and Rule, this points at a `lesson[...]` line rather than a `decision[...]` one. |
 | `sprint` | yes | sprint id | |
 | `created` | yes | date | |

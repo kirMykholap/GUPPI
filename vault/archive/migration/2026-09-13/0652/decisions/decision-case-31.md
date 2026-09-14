@@ -2,8 +2,8 @@
 type: decision
 case: "31"
 status: archived
-create: [rule-materialize, estimate-materialize-assembles]
-superseded_by: [decision-case-41]
+create: ["[[rule-materialize]]", "[[estimate-materialize-assembles]]"]
+superseded_by: ["[[decision-case-41]]"]
 origin: raw/2026-09-10/ledger.md#case-31
 sprint: migration
 created: 2026-09-10

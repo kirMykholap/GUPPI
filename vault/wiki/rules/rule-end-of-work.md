@@ -3,8 +3,8 @@ type: rule
 kind: MOC
 purpose: Prevents a session being handed over without a settled account of what happened
 status: built
-children: [rule-retro, rule-retro-commit, rule-handoff]
-estimates: [estimate-end-of-work-order]
+children: ["[[rule-retro]]", "[[rule-retro-commit]]", "[[rule-handoff]]"]
+estimates: ["[[estimate-end-of-work-order]]"]
 origin: raw/2026-09-10/ledger.md#case-38
 sprint: migration
 created: 2026-09-10

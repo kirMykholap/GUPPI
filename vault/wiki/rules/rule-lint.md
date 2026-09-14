@@ -5,8 +5,8 @@ purpose: Prevents a page that breaks the schema, points nowhere, or claims a sta
 status: built
 enforcement: check
 implementation_ref: [guppi/lint.py, tests/test_lint.py, Makefile]
-parent: rule-harness
-estimates: [estimate-lint-catches]
+parent: "[[rule-harness]]"
+estimates: ["[[estimate-lint-catches]]"]
 origin: raw/2026-09-09/ledger.md#case-21
 sprint: migration
 created: 2026-09-09

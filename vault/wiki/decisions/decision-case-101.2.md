@@ -2,7 +2,7 @@
 type: decision
 case: "101.2"
 status: current
-create: [rule-ledger-tail]
+create: ["[[rule-ledger-tail]]"]
 origin: raw/2026-09-13/ledger.md#case-101.2
 sprint: migration
 created: 2026-09-13

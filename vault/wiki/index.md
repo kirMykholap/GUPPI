@@ -56,11 +56,6 @@ wiki/
     schema.yaml  schema.md
   insights/          clusters of Lessons sharing a root cause
     schema.yaml  schema.md
-  entities-index.md  generated: slug → purpose, one line per live page
-  rules-index.md     generated
-  lessons-index.md   generated: slug → root_cause
-  insights-index.md  generated: slug → pattern
-                     (no decisions-index.md and no estimates-index.md — see §11)
   index.md           routing table, archival rules, the map of the vault
   glossary.md        terms
   case-schema.md     Case structure — imported into CLAUDE.md
@@ -69,6 +64,8 @@ wiki/
   tags.md            registry of tags in use
   log.md             every page change, written mechanically by the scripts
 ```
+
+As links, for the graph: [[glossary]] · [[case-schema]] · [[brief]] · [[sprint]] · [[tags]] · [[log]] · the schemas [[decisions/schema]], [[entities/schema]], [[rules/schema]], [[estimates/schema]], [[lessons/schema]], [[insights/schema]] (case 149.1).
 
 Dates before 2026-09-12 hold one session each: their `spec.md`, `frontier.md` and `handoff.md` stay at the date root, and the scripts read that shape for them (case 73.1). Dates before 2026-09-13 hold the ledger and the yaml at the date root, the sessions of the day in one ledger; the scripts read that shape until the date is archived, and `origin` keeps its date form on the pages born of it (case 103.6). A page whose `cleanup` ran on a date without a session folder sits at `<date>/<category>/` in the archive.
 
@@ -84,8 +81,8 @@ type: entity
 kind: Leaf
 purpose: New clients receive a 0% discount
 status: built
-parent: entity-discount-rules
-estimates: [estimate-new-client-discount]
+parent: "[[entity-discount-rules]]"
+estimates: ["[[estimate-new-client-discount]]"]
 code_ref: [src/discounts/new_client.py]
 origin: raw/2026-09-05/ledger.md#case-3
 sprint: 2026-Q3-s4
@@ -113,7 +110,6 @@ Every file that governs how the system behaves changes **only** through a ratifi
 | `glossary.md` | Rule | ratified `decision update` |
 | `<category>/schema.yaml`, `schema.md` | Rule | ratified `decision update` |
 | `tags.md` | registry | written during the session — but only registering tags already ratified in a Case |
-| `<category>-index.md` | generated | rebuilt by `guppi index`; never edited |
 | `brief.md`, `sprint.md` | working | written by the librarian each session |
 | `log.md`, page `History` | generated | appended by `guppi generate` and `guppi cleanup` |
 
@@ -307,7 +303,7 @@ Write `trigger` and `root_cause` yourself, in the moment, while the context is c
 
 **A separate type, not a kind of Lesson.** It shares no content fields with one — no `trigger`, `root_cause`, `source` or Estimate; instead `pattern`, `children`, `severity`, `addressed_by`. That "Insight is a MOC over Lessons" describes a relationship, not an identity: Estimates belong to Entities without being a kind of Entity.
 
-Created by the librarian on the **second** Lesson sharing a root cause — one occurrence is an incident, two is a pattern. The archive is not searched: a Lesson is archived only when its Insight was actioned, and that Insight stays live with its `pattern` in `insights-index.md`, so a recurrence is caught there at the cost of one index line.
+Created by the librarian on the **second** Lesson sharing a root cause — one occurrence is an incident, two is a pattern. The archive is not searched: a Lesson is archived only when its Insight was actioned, and that Insight stays live with its `pattern` in its index line, so a recurrence is caught there at the cost of one Grep line.
 
 `severity` = count of children not archived, recomputed by lint.
 
@@ -348,11 +344,11 @@ so there is nothing to isolate until there is a plan to execute.
 
 Runs every session, in a clean context. **The only actor that writes to `wiki/`** — everything reaches the vault through the scripts it invokes.
 
-**Reads:** four inputs — `handoff.md`, every `materialize.yaml` the walk names, the four category indexes (`<category>-index.md`) and `tags.md`. Not `ledger.md`, not `spec.md`, not `plan.md`, not `wiki/decisions/`, not the archive — the yaml is assembled by script and already carries every `purpose`, `criterion` and tag. The Makefile, `guppi/` and `tests/` are the scripts' own files and may be read when a command's output is not enough (case 58). A page under `wiki/` is opened for one of four reasons, each named in the report with its outcome: an index line does not settle same-or-near at the index check; an index line does not settle whether a lesson shares a root cause with another, whether or not an Insight follows; a script names the page in an error; the brief needs a fact no input carries — the status of an Estimate, the severity of an Insight (case 54).
+**Reads:** three inputs — `handoff.md`, every `materialize.yaml` the walk names and `tags.md`; the index lines it compares with are its own Greps of the category (§11). Not `ledger.md`, not `spec.md`, not `plan.md`, not `wiki/decisions/`, not the archive — the yaml is assembled by script and already carries every `purpose`, `criterion` and tag. The Makefile, `guppi/` and `tests/` are the scripts' own files and may be read when a command's output is not enough (case 58). A page under `wiki/` is opened for one of four reasons, each named in the report with its outcome: an index line does not settle same-or-near at the index check; an index line does not settle whether a lesson shares a root cause with another, whether or not an Insight follows; a script names the page in an error; the brief needs a fact no input carries — the status of an Estimate, the severity of an Insight (case 54).
 
-**Does three things:** checks new pages against the indexes, synthesizes Lessons, and writes the brief. Statuses, backlinks and cascades are all script or lint work.
+**Does three things:** checks new pages against the index lines, synthesizes Lessons, and writes the brief. Statuses, backlinks and cascades are all script or lint work.
 
-**Acts on exactly one judgment:** turning a `create` into an `update` when the indexes reveal a duplicate, before generation runs. Safe because `delete` only archives and every action is marked `librarian:` in `History`; worth acting on because catching it beforehand avoids a page being created and merged in the same session, and because a brief that opens with housekeeping every time is a real cost.
+**Acts on exactly one judgment:** turning a `create` into an `update` when the index lines reveal a duplicate, before generation runs. Safe because `delete` only archives and every action is marked `librarian:` in `History`; worth acting on because catching it beforehand avoids a page being created and merged in the same session, and because a brief that opens with housekeeping every time is a real cost.
 
 **Flags everything else:** MOC candidates, over-broad MOCs, stale defers, `failed` Estimates, incomplete pages, contradictions.
 
@@ -369,35 +365,41 @@ Runs every session, in a clean context. **The only actor that writes to `wiki/`*
 
 ---
 
-## 11. The indexes
+## 11. The index lines
 
-`wiki/<category>-index.md` — one generated line per live page, `slug: purpose` (for lessons,
-`slug: root_cause`; for insights, `slug: pattern`), four files: entities, rules, lessons, insights. A page carrying `deferred_by` ends its line with ` · deferred_by: <slugs>` (case 52.3). Written by `guppi index` and by `guppi cleanup`, checked by lint, never edited by hand.
+There is no index file. The index of a category is computed by its reader, one Grep over the
+frontmatter of `wiki/<category>/`: pattern `^(purpose|deferred_by):` over `rules/` and
+`entities/`, `^(root_cause|deferred_by):` over `lessons/`, `^(pattern|deferred_by):` over
+`insights/`, output with content. One line per live page — `<category>/<slug>.md:<field>:
+<text>` — is the index line; a page carrying `deferred_by` shows it on its own line (case
+52.3). Written by nobody, checked by nothing, never stale (case 147.8; the four
+`<category>-index.md` files, `guppi index` and its `--check` were retired there).
 
 ```
-entity-cart-total: recalculates the order total
-entity-discount-new-client: new clients receive a 0% discount
+rules/rule-cart-total.md:purpose: recalculates the order total
+rules/rule-cart-total.md:deferred_by: [decision-case-9]
 ```
 
 This is what makes semantic checks affordable: five hundred pages are a few thousand
 tokens, read in one pass, and the agent compares meanings directly. No embeddings, no extra
-dependencies, and no reason to add them until the index itself stops fitting in context.
+dependencies, and no reason to add them until the lines themselves stop fitting in context.
 
 **Per-category, and comparison never crosses categories.** An Estimate and an Entity sharing
 a purpose is not duplication — it is the normal division of labour between a thing and its
 check.
 
-**There is no `estimates-index.md`.** An Estimate is born with its Leaf and reached through the
+**There is no index of estimates.** An Estimate is born with its Leaf and reached through the
 `estimates` field of its target; nothing searches by criterion, so nothing indexes it (case
 53.4).
 
-**There is no `decisions-index.md`, and Decision pages are never archived on completion.**
+**There is no index of decisions, and Decision pages are never archived on completion.**
 Everything worth searching for is reachable through entities and rules: if something was
-decided and built, its page is in the index; if it was deferred, it exists as a `draft` page
-and pre-task finds it. Decisions are a journal — read by following a page's `origin` to ask
-"why is this the way it is", never by scanning. Since nothing scans them, they cost nothing
-to leave in place, and a decision stays valid for exactly as long as the page it created. It
-leaves the live vault only when superseded, or by cascade when its target is archived.
+decided and built, its page is in its category's lines; if it was deferred, it exists as a
+`draft` page and pre-task finds it. Decisions are a journal — read by following a page's
+`origin` to ask "why is this the way it is", never by scanning. Since nothing scans them,
+they cost nothing to leave in place, and a decision stays valid for exactly as long as the
+page it created. It leaves the live vault only when superseded, or by cascade when its
+target is archived.
 
 A Decision is opened by reference only: `ask-guppi` follows a `deferred_by` it meets in an
 index line to give the deferred decision's Problem (case 52.3); a reader follows the
@@ -405,7 +407,7 @@ index line to give the deferred decision's Problem (case 52.3); a reader follows
 decision a new one supersedes — goes by the case id the ledger line carries. Decision slugs
 are `decision-case-<N>`, one page per Case.
 
-The `ask-guppi` agent is the search mechanism over these indexes. One tool, two moments: pre-task queries
+The `ask-guppi` agent is the search mechanism over these lines. One tool, two moments: pre-task queries
 by intent before a decision exists; the librarian queries by finished content afterwards.
 
 ---

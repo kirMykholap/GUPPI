@@ -2,7 +2,7 @@
 type: estimate
 kind: QA
 status: passed
-target: rule-bash-guard
+target: "[[rule-bash-guard]]"
 origin: raw/2026-09-14/1029/ledger.md#case-127
 sprint: migration
 created: 2026-09-14

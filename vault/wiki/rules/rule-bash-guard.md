@@ -5,8 +5,8 @@ purpose: Prevents a heredoc from carrying a backslash escape or writing a file t
 status: built
 enforcement: hook
 implementation_ref: [guppi/bashguard.py, tests/test_bashguard.py, .claude/settings.json]
-parent: rule-harness
-estimates: [estimate-bash-guard]
+parent: "[[rule-harness]]"
+estimates: ["[[estimate-bash-guard]]"]
 origin: raw/2026-09-14/1029/ledger.md#case-127
 sprint: migration
 created: 2026-09-14

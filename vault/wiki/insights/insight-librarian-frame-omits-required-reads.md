@@ -2,7 +2,7 @@
 type: insight
 pattern: The frame of the librarian names the reads it allows one by one, and the list is shorter than the judgments the librarian must make; the agent then breaks a clause or judges on an index line alone.
 status: open
-children: [lesson-librarian-reads-beyond-the-four-inputs, lesson-frame-read-clauses-omit-candidate-check-and-brief]
+children: ["[[lesson-librarian-reads-beyond-the-four-inputs]]", "[[lesson-frame-read-clauses-omit-candidate-check-and-brief]]"]
 severity: 2
 origin: raw/2026-09-10/ledger.md#L132
 sprint: migration

@@ -2,7 +2,7 @@
 type: decision
 case: "35.2"
 status: current
-create: [rule-synthesis, estimate-synthesis-clusters]
+create: ["[[rule-synthesis]]", "[[estimate-synthesis-clusters]]"]
 update: [index, insights-schema]
 origin: raw/2026-09-10/ledger.md#case-35.2
 sprint: migration

@@ -2,8 +2,8 @@
 type: decision
 case: "29"
 status: archived
-defer: [rule-work-mode, rule-subagent-guppi]
-superseded_by: [decision-case-64]
+defer: ["[[rule-work-mode]]", "[[rule-subagent-guppi]]"]
+superseded_by: ["[[decision-case-64]]"]
 origin: raw/2026-09-10/ledger.md#case-29
 sprint: migration
 created: 2026-09-10

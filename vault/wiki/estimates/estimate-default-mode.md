@@ -2,7 +2,7 @@
 type: estimate
 kind: QA
 status: passed
-target: rule-default-mode
+target: "[[rule-default-mode]]"
 origin: raw/2026-09-12/ledger.md#case-85.4
 sprint: migration
 created: 2026-09-12

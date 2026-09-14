@@ -2,7 +2,7 @@
 type: estimate
 kind: QA
 status: archived
-target: lesson-hooks-windows-stdin-encoding
+target: "[[lesson-hooks-windows-stdin-encoding]]"
 origin: raw/2026-09-09/ledger.md#L31
 sprint: migration
 created: 2026-09-09

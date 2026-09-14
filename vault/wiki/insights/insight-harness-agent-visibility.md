@@ -2,9 +2,9 @@
 type: insight
 pattern: The moment Claude Code reads an agent definition is not established; two sessions rendered an agent and got opposite results, and no measurement separates them.
 status: actioned
-children: [lesson-agents-loaded-at-session-start, lesson-agents-visible-in-session]
+children: ["[[lesson-agents-loaded-at-session-start]]", "[[lesson-agents-visible-in-session]]"]
 severity: 0
-addressed_by: decision-case-139.2
+addressed_by: "[[decision-case-139.2]]"
 origin: raw/2026-09-10/ledger.md#L80
 sprint: migration
 created: 2026-09-10

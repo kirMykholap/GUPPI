@@ -4,7 +4,7 @@ kind: knowledge
 root_cause: the frame of Case 44 lists three reads (same-or-near of a create, the lessons of an Insight being written, a page a script names in an error) and covers the two judgments only; deciding a cluster candidate and writing the brief both need a page when an index line is not enough, and neither has a clause, so the librarian either breaks the criterion or judges blind
 status: clustered
 source: raw/2026-09-10/event_log.md 16:06:54, 16:09:57, 16:10:41; the readings of Case 44 above
-insight: insight-librarian-frame-omits-required-reads
+insight: "[[insight-librarian-frame-omits-required-reads]]"
 origin: raw/2026-09-10/ledger.md#L132
 sprint: migration
 created: 2026-09-10

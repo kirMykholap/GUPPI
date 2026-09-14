@@ -2,7 +2,7 @@
 type: estimate
 kind: QA
 status: passed
-target: rule-materialize
+target: "[[rule-materialize]]"
 origin: raw/2026-09-10/ledger.md#case-31
 sprint: migration
 created: 2026-09-10

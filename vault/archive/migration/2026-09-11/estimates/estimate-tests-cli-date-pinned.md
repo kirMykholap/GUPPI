@@ -2,7 +2,7 @@
 type: estimate
 kind: QA
 status: archived
-target: lesson-tests-cli-date-pinned
+target: "[[lesson-tests-cli-date-pinned]]"
 origin: raw/2026-09-10/ledger.md#L7
 sprint: migration
 created: 2026-09-10

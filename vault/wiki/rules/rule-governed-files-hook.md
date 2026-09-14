@@ -5,8 +5,8 @@ purpose: Prevents a harness file rendered from a Rule page from being edited by 
 status: built
 enforcement: hook
 implementation_ref: [guppi/guard.py, tests/test_guard.py, .claude/settings.json]
-parent: rule-harness
-estimates: [estimate-governed-files-hook-refuses]
+parent: "[[rule-harness]]"
+estimates: ["[[estimate-governed-files-hook-refuses]]"]
 origin: raw/2026-09-12/ledger.md#case-59.6
 sprint: migration
 created: 2026-09-12

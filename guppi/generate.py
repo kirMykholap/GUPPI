@@ -19,6 +19,9 @@ History `criterion: case N removed`, and applies with nothing written when none 
 (case 72.4). What an entry lacks is not written; lint names it. Every applied entry is marked
 in the yaml, a stale `failed` mark is dropped on apply (case 53.3), so a rerun writes
 nothing; an entry that fails, whatever the cause, is marked `failed` and the rest apply.
+An entry with `failed` and no `kind` — a line `materialize` could not lift — is skipped
+with its mark kept and one stderr line (case 142.2); an entry with `superseded_by` is not
+applied, a later Case did its work, and only its Case's Decision page is written (case 151).
 `log.md` is appended after each entry; History and log lines carry the run's date,
 `created` the yaml's. A `delete` of a slug with no category is a thing outside the
 vault: noted, nothing to archive. A slug collision is an error, never a rename. Without `--date` the script walks every yaml under `vault/raw/`
@@ -36,8 +39,16 @@ from datetime import datetime
 from pathlib import Path
 
 from guppi.event import project_root
-from guppi.materialize import CATEGORIES, dump_yaml, load_yaml, sprint_id, units_with, yaml_path
-from guppi.pages import Page, read_page, wiki_root
+from guppi.materialize import (
+    CATEGORIES,
+    PREFIXES,
+    dump_yaml,
+    load_yaml,
+    sprint_id,
+    units_with,
+    yaml_path,
+)
+from guppi.pages import REF_FIELDS, Page, read_page, slug_of, wiki_root
 
 KEY_ORDER = {
     "rules": [
@@ -134,6 +145,16 @@ def flow(value) -> str:
     return scalar(value)
 
 
+def wikilink(value):
+    """A slug with a category prefix as `[[slug]]`; a Rule-class slug, or anything else,
+    as it is (case 148.1). `scalar` quotes the brackets."""
+    if isinstance(value, str):
+        slug = slug_of(value)
+        if any(slug.startswith(prefix) for prefix in PREFIXES):
+            return f"[[{slug}]]"
+    return value
+
+
 def frontmatter(props: dict, category: str) -> str:
     order = KEY_ORDER.get(category, [])
     keys = [k for k in order if k in props] + [k for k in props if k not in order]
@@ -142,6 +163,8 @@ def frontmatter(props: dict, category: str) -> str:
         value = props[key]
         if value is None:
             continue
+        if key in REF_FIELDS:  # ref fields are written as quoted wikilinks (case 148.1)
+            value = [wikilink(v) for v in value] if isinstance(value, list) else wikilink(value)
         if isinstance(value, list) and value and all(isinstance(v, dict) for v in value):
             lines.append(f"{key}:")
             lines.extend(f"  - {flow(v)}" for v in value)
@@ -845,8 +868,17 @@ def apply(vault: Vault, data: dict) -> None:
     stamp = vault.now.strftime("%H:%M:%S")
     records = {str(r.get("case")): r for r in data.get("decisions") or []}
     for entry in data.get("entries") or []:
-        if entry.get("applied"):
+        if not isinstance(entry, dict) or entry.get("applied"):
             continue
+        if entry.get("superseded_by"):  # a later Case did its work; only the Decision page
+            if "case" in entry and str(entry["case"]) in records:  # of its Case is written,
+                apply_decision(vault, records[str(entry["case"])], stamp)  # before the
+            continue  # superseding one marks it (case 151)
+        if "kind" not in entry and entry.get("failed"):  # a line materialize could not lift
+            vault.error(
+                f"line {entry.get('line', '?')}", f"not lifted by materialize; {entry['failed']}"
+            )
+            continue  # the mark stays as materialize wrote it (case 142.2)
         if "case" in entry and str(entry["case"]) in records:  # the Decision page first (52.4)
             apply_decision(vault, records[str(entry["case"])], stamp)
         kind = entry.get("kind")

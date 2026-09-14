@@ -2,8 +2,8 @@
 type: decision
 case: "96"
 status: archived
-defer: [rule-synthesis]
-superseded_by: [decision-case-108]
+defer: ["[[rule-synthesis]]"]
+superseded_by: ["[[decision-case-108]]"]
 origin: raw/2026-09-12/ledger.md#case-96
 sprint: migration
 created: 2026-09-12

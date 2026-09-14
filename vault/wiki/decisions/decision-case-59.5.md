@@ -2,7 +2,7 @@
 type: decision
 case: "59.5"
 status: current
-update: [case-schema, rule-case-protocol, rule-brief, rule-retro, rule-spec-capture]
+update: [case-schema, "[[rule-case-protocol]]", "[[rule-brief]]", "[[rule-retro]]", "[[rule-spec-capture]]"]
 origin: raw/2026-09-12/ledger.md#case-59.5
 sprint: migration
 created: 2026-09-12

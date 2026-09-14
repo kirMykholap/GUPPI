@@ -2,7 +2,7 @@
 type: estimate
 kind: QA
 status: archived
-target: lesson-agents-loaded-at-session-start
+target: "[[lesson-agents-loaded-at-session-start]]"
 origin: raw/2026-09-09/ledger.md#L90
 sprint: migration
 created: 2026-09-09

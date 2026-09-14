@@ -3,7 +3,7 @@ type: lesson
 kind: error
 root_cause: CLAUDE.md is both a Rule-class file, changed by hand through a file item, and a rendered file governed by rule-case-protocol; nothing says which of its sections is which, and pre-task does not check that a file item on a governed path comes with an update of the governing rule
 status: archived
-insight: insight-workflow-contract-change-leaves-its-derived-text-stale
+insight: "[[insight-workflow-contract-change-leaves-its-derived-text-stale]]"
 origin: raw/2026-09-12/ledger.md#L12
 sprint: migration
 created: 2026-09-12

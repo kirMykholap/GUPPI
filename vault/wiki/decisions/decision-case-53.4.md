@@ -2,7 +2,7 @@
 type: decision
 case: "53.4"
 status: current
-update: [index, rule-index, rule-index-check, rule-lint, estimate-index-lists]
+update: [index, "[[rule-index]]", "[[rule-index-check]]", "[[rule-lint]]", "[[estimate-index-lists]]"]
 origin: raw/2026-09-11/ledger.md#case-53.4
 sprint: migration
 created: 2026-09-11

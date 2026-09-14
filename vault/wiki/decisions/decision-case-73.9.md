@@ -2,7 +2,7 @@
 type: decision
 case: "73.9"
 status: current
-update: [rule-case-protocol]
+update: ["[[rule-case-protocol]]"]
 origin: raw/2026-09-12/ledger.md#case-73.9
 sprint: migration
 created: 2026-09-12

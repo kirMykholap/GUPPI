@@ -3,7 +3,7 @@ type: decision
 case: "100.5"
 status: archived
 update: [index, glossary]
-superseded_by: [decision-case-103.6]
+superseded_by: ["[[decision-case-103.6]]"]
 origin: raw/2026-09-13/ledger.md#case-100.5
 sprint: migration
 created: 2026-09-13

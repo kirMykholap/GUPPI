@@ -2,8 +2,8 @@
 type: decision
 case: "56"
 status: current
-update: [rule-retro, case-schema, decisions-schema-yaml, decisions-schema, rule-materialize, estimate-retro-loads]
-supersedes: [decision-case-50]
+update: ["[[rule-retro]]", case-schema, decisions-schema-yaml, decisions-schema, "[[rule-materialize]]", "[[estimate-retro-loads]]"]
+supersedes: ["[[decision-case-50]]"]
 origin: raw/2026-09-11/ledger.md#case-56
 sprint: migration
 created: 2026-09-11

@@ -2,7 +2,7 @@
 type: estimate
 kind: Research
 status: archived
-target: lesson-hooks-messagedisplay-cannot-block
+target: "[[lesson-hooks-messagedisplay-cannot-block]]"
 origin: raw/2026-09-09/ledger.md#L89
 sprint: migration
 created: 2026-09-09

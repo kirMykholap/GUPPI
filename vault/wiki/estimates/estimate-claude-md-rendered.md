@@ -2,7 +2,7 @@
 type: estimate
 kind: QA
 status: passed
-target: rule-claude-md
+target: "[[rule-claude-md]]"
 origin: raw/2026-09-12/ledger.md#case-71.1
 sprint: migration
 created: 2026-09-12

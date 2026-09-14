@@ -2,8 +2,8 @@
 type: decision
 case: "53.2"
 status: current
-update: [index, case-schema, rule-page-generation, rule-ask, rule-pretask, estimate-generate-writes]
-delete: [estimate-generate-rejects-shape-alone, estimate-generate-logs-per-entry, estimate-generate-dates-history-by-run, estimate-generate-passes-delete-outside-vault]
+update: [index, case-schema, "[[rule-page-generation]]", "[[rule-ask]]", "[[rule-pretask]]", "[[estimate-generate-writes]]"]
+delete: ["[[estimate-generate-rejects-shape-alone]]", "[[estimate-generate-logs-per-entry]]", "[[estimate-generate-dates-history-by-run]]", "[[estimate-generate-passes-delete-outside-vault]]"]
 origin: raw/2026-09-11/ledger.md#case-53.2
 sprint: migration
 created: 2026-09-11

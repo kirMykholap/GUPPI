@@ -1,6 +1,6 @@
 # Case — schema
 
-`wiki/case-schema.md` — imported into `CLAUDE.md`, so the structure is loaded at session start rather than read as a file.
+`wiki/case-schema.md` — imported into `CLAUDE.md`, so the structure is loaded at session start rather than read as a file; the map of the vault is [[index]].
 
 A Case is the unit of dialogue, not a vault page. It lives only inside a session. This schema exists because the Case is where content gets ratified: whatever is not in a Case was never signed by anyone.
 

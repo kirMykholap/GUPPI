@@ -2,8 +2,8 @@
 type: decision
 case: "38.1"
 status: archived
-create: [rule-retro, estimate-retro-loads]
-superseded_by: [decision-case-40]
+create: ["[[rule-retro]]", "[[estimate-retro-loads]]"]
+superseded_by: ["[[decision-case-40]]"]
 origin: raw/2026-09-10/ledger.md#case-38.1
 sprint: migration
 created: 2026-09-10

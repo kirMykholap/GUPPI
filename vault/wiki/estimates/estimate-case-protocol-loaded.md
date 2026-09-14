@@ -2,7 +2,7 @@
 type: estimate
 kind: QA
 status: passed
-target: rule-case-protocol
+target: "[[rule-case-protocol]]"
 origin: raw/2026-09-09/ledger.md#case-13
 sprint: migration
 created: 2026-09-09

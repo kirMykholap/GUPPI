@@ -2,7 +2,7 @@
 type: estimate
 kind: QA
 status: passed
-target: rule-lint
+target: "[[rule-lint]]"
 origin: raw/2026-09-09/ledger.md#case-21
 sprint: migration
 created: 2026-09-09

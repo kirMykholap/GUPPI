@@ -2,7 +2,7 @@
 type: decision
 case: "89.2"
 status: current
-update: [rule-close, estimate-close-commits]
+update: ["[[rule-close]]", "[[estimate-close-commits]]"]
 origin: raw/2026-09-12/ledger.md#case-89.2
 sprint: migration
 created: 2026-09-12

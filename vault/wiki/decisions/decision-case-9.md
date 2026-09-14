@@ -2,7 +2,7 @@
 type: decision
 case: "9"
 status: current
-create: [rule-event-log, estimate-event-log-records]
+create: ["[[rule-event-log]]", "[[estimate-event-log-records]]"]
 origin: raw/2026-09-09/ledger.md#case-9
 sprint: migration
 created: 2026-09-09

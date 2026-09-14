@@ -2,7 +2,7 @@
 type: insight
 pattern: materialize lifts a ledger line or a `then` item into an entry and loses a field the page schema needs; the page is written without it and lint names the page, never the parser.
 status: open
-children: [lesson-materialize-standalone-estimate-keeps-criterion-as-a-field, lesson-materialize-lesson-line-source-dropped]
+children: ["[[lesson-materialize-standalone-estimate-keeps-criterion-as-a-field]]", "[[lesson-materialize-lesson-line-source-dropped]]"]
 severity: 2
 origin: raw/2026-09-12/ledger.md#L160
 sprint: migration

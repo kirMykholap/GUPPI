@@ -2,7 +2,7 @@
 type: estimate
 kind: QA
 status: archived
-target: lesson-generate-replace-mapping-crashes
+target: "[[lesson-generate-replace-mapping-crashes]]"
 origin: raw/2026-09-10/ledger.md#L96
 sprint: migration
 created: 2026-09-10

@@ -2,9 +2,9 @@
 type: decision
 case: "127"
 status: current
-create: [rule-bash-guard]
-update: [rule-hook-registry]
-supersedes: [decision-case-120]
+create: ["[[rule-bash-guard]]"]
+update: ["[[rule-hook-registry]]"]
+supersedes: ["[[decision-case-120]]"]
 origin: raw/2026-09-14/1029/ledger.md#case-127
 sprint: migration
 created: 2026-09-14

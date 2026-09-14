@@ -2,7 +2,7 @@
 type: decision
 case: "100.4"
 status: current
-update: [rule-cleanup]
+update: ["[[rule-cleanup]]"]
 origin: raw/2026-09-13/ledger.md#case-100.4
 sprint: migration
 created: 2026-09-13

@@ -2,7 +2,7 @@
 type: decision
 case: "28"
 status: current
-update: [estimates-schema, rule-lint]
+update: [estimates-schema, "[[rule-lint]]"]
 origin: raw/2026-09-10/ledger.md#case-28
 sprint: migration
 created: 2026-09-10

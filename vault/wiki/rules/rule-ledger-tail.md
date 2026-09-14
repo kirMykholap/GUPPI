@@ -7,8 +7,8 @@ enforcement: render
 implementation_ref: [guppi/tail.py, tests/test_tail.py]
 governs: .claude/skills/hi/SKILL.md
 render_mode: partial
-parent: rule-skill-hi
-estimates: [estimate-ledger-tail]
+parent: "[[rule-skill-hi]]"
+estimates: ["[[estimate-ledger-tail]]"]
 origin: raw/2026-09-13/ledger.md#case-101.2
 sprint: migration
 created: 2026-09-10

@@ -2,9 +2,9 @@
 type: decision
 case: "116"
 status: archived
-defer: [rule-work-mode, rule-subagent-guppi]
-supersedes: [decision-case-107]
-superseded_by: [decision-case-129]
+defer: ["[[rule-work-mode]]", "[[rule-subagent-guppi]]"]
+supersedes: ["[[decision-case-107]]"]
+superseded_by: ["[[decision-case-129]]"]
 origin: raw/2026-09-14/0747/ledger.md#case-116
 sprint: migration
 created: 2026-09-14

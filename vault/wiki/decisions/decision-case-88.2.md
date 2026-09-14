@@ -2,8 +2,8 @@
 type: decision
 case: "88.2"
 status: current
-update: [rule-claude-md, estimate-claude-md-rendered]
-supersedes: [decision-case-84]
+update: ["[[rule-claude-md]]", "[[estimate-claude-md-rendered]]"]
+supersedes: ["[[decision-case-84]]"]
 origin: raw/2026-09-12/ledger.md#case-88.2
 sprint: migration
 created: 2026-09-12

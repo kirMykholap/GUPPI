@@ -2,7 +2,7 @@
 type: estimate
 kind: QA
 status: passed
-target: rule-hook-registry
+target: "[[rule-hook-registry]]"
 origin: raw/2026-09-09/ledger.md#case-18.2
 sprint: migration
 created: 2026-09-09

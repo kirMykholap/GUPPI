@@ -2,9 +2,9 @@
 type: insight
 pattern: The event log ties a hi line to its session by the session-start lines around it, not by an id; any start that is missing from the window or added to it sends the hi to the wrong session and the ledger writer refuses.
 status: actioned
-children: [lesson-ledger-hook-hi-lost-at-midnight, lesson-hi-taken-by-a-session-started-in-the-same-second, lesson-pretask-line-unstamped-and-bound-by-position]
+children: ["[[lesson-ledger-hook-hi-lost-at-midnight]]", "[[lesson-hi-taken-by-a-session-started-in-the-same-second]]", "[[lesson-pretask-line-unstamped-and-bound-by-position]]"]
 severity: 0
-addressed_by: decision-case-136.4
+addressed_by: "[[decision-case-136.4]]"
 origin: raw/2026-09-14/0747/ledger.md#L2
 sprint: migration
 created: 2026-09-14

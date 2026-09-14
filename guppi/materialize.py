@@ -14,8 +14,15 @@ files read and each decision entry names the file its Case was found in; a Case 
 found in two files stops the walk with exit 1 (case 73.5). One decision entry per Case; a
 sub-case's `context`, `problem`, `recommend` and `given` are its own when present and its
 parent's otherwise, `when` never. What is missing is named (`incomplete`), never invented.
-A line the grammar does not parse goes under `unparsed`. `new_tags` declared in the `then`
-block of any Case, with decision lines or without, reach the yaml once each.
+A line the grammar does not parse goes under `unparsed`. A line whose lift raises — a `then`
+item of an unexpected shape, any error while the entry is built — becomes an entry `{line,
+text, failed}` without `kind`, reported on stderr as `materialize: line N: <message>`; the
+other lines are lifted, the yaml is written, the unit exits 1 and the walk goes on to the
+next unit; on the next run such an entry is lifted again and replaced when the lift succeeds.
+An existing entry the script cannot read — not a mapping, or a mapping with neither `line`
+nor `derived` — is left as it is and named on stderr (cases 142.1, 142.4). `new_tags`
+declared in the `then` block of any Case, with decision lines or without, reach the yaml
+once each.
 
 The Estimate of a Leaf is derived from its Case (case 72.3). A `create` of a rule or an
 entity whose `then` item carries `method` yields, right after its own entry, a second
@@ -56,6 +63,7 @@ import yaml
 
 from guppi.event import project_root
 from guppi.ledger import body as line_body
+from guppi.pages import slug_of
 
 RECORD = re.compile(r"^- (?:\d\d:\d\d:\d\d )?(decision|estimate|lesson)(\[.*)$")
 BRACKETS = re.compile(r"\[([^\]]*)\]")
@@ -524,7 +532,7 @@ def page_estimates(project_dir: Path, category: str, slug: str) -> list[str] | N
     except yaml.YAMLError:
         return []
     value = front.get("estimates") if isinstance(front, dict) else None
-    return [str(v) for v in value] if isinstance(value, list) else []
+    return [str(slug_of(v)) for v in value] if isinstance(value, list) else []  # 148.1
 
 
 def derived_entries(entry: dict, item: dict | None, texts: dict, project_dir: Path) -> list:
@@ -756,11 +764,57 @@ def sprint_id(project_dir: Path) -> str:
     return "unknown"
 
 
+def lift_line(
+    record: dict,
+    number: int,
+    text: str,
+    date: str,
+    project_dir: Path,
+    cases: dict[str, list[str]],
+    blocks: dict,
+    texts_of: dict,
+    entries: list[dict],
+    decisions: list[dict],
+    elsewhere: list[tuple[str, str]],
+) -> int:
+    """One record line into its entries; the count added. Any exception is the line's
+    alone: `assemble` catches it and writes a `failed` entry instead (case 142.1)."""
+    if record["record"] == "estimate":
+        if fold_estimate(entries, record, number):
+            return 1
+        entries.append(estimate_entry(record, number, text, date))
+        return 1
+    if record["record"] == "lesson":
+        entries.append(lesson_entry(record, number, text, date, project_dir))
+        return 1
+    case = record["case"]
+    if case not in blocks:
+        blocks[case] = then_blocks(cases.get(case, []))
+    block, errors = blocks[case]
+    entry = decision_entry(record, number, text, date, block, project_dir)
+    if errors and "then" in (entry.get("incomplete") or []):
+        entry["incomplete"] = [e for e in entry["incomplete"] if e != "then"] + errors
+    entries.append(entry)
+    added = 1
+    item, nested = find_item(block, record["kind"], record["slug"])
+    if case not in texts_of:
+        texts_of[case] = case_texts(cases, case)
+    for derived in derived_entries(entry, None if nested else item, texts_of[case], project_dir):
+        entries.append(derived)  # no line of its own (case 72.3)
+        added += 1
+    if record.get("supersedes") and not mark_superseded(
+        entries, decisions, record["supersedes"], case
+    ):
+        elsewhere.append((record["supersedes"], case))  # another unit's yaml (130.2)
+    return added
+
+
 def assemble(
     project_dir: Path, unit: str, existing: dict | None, stderr
-) -> tuple[dict, int, list[tuple[str, str]]]:
+) -> tuple[dict, int, list[tuple[str, str]], int]:
     """The yaml of one unit, `<date>` or `<date>/<HHMM>` (case 103.2); the `origin` of
-    every entry names the unit's ledger, so `date` below is the unit path."""
+    every entry names the unit's ledger, so `date` below is the unit path. Returns the
+    data, the entries added, the supersedes for other units and the lines that failed."""
     raw = project_dir / "vault" / "raw" / unit
     ledger_path = raw / "ledger.md"
     if not ledger_path.exists():
@@ -785,11 +839,26 @@ def assemble(
     entries: list[dict] = data.setdefault("entries", [])
     decisions: list[dict] = data.setdefault("decisions", [])
     unparsed: list[dict] = data.setdefault("unparsed", [])
-    known = {e["line"]: e for e in entries if "line" in e}  # the librarian's own entries have none
+    # An entry another hand wrote in a shape this script cannot read — not a mapping, or a
+    # mapping with none of `line`, `derived`, `librarian` — is left as it is, named once
+    # (case 142.1; the librarian's own entries carry `librarian` and no line).
+    for entry in entries:
+        if not isinstance(entry, dict) or not (
+            "line" in entry or entry.get("derived") or entry.get("librarian")
+        ):
+            print(
+                f"materialize: an entry the script cannot read is left alone: {entry!r:.80}",
+                file=stderr,
+            )
+    entries[:] = [e for e in entries if isinstance(e, dict)]
+    # A line whose lift failed last run is lifted again and replaced on success (142.1).
+    retry = {e["line"]: e for e in entries if "line" in e and e.get("failed") and "kind" not in e}
+    known = {e["line"]: e for e in entries if "line" in e and e["line"] not in retry}
     folded = {n for e in entries for n in e.get("folded") or []}
-    known_unparsed = {u["line"] for u in unparsed} | folded
+    known_unparsed = {u["line"] for u in unparsed if isinstance(u, dict)} | folded
     blocks: dict[str, tuple[dict, list[str]]] = {}
     added = 0
+    failed = 0
     for number, line in enumerate(ledger, start=1):
         if not line.startswith("- "):
             continue
@@ -807,38 +876,30 @@ def assemble(
         if record is None:
             unparsed.append({"line": number, "text": text})
             continue
-        if record["record"] == "estimate":
-            if fold_estimate(entries, record, number):
-                added += 1
-                continue
-            entries.append(estimate_entry(record, number, text, date))
-            added += 1
+        before = len(entries)
+        try:
+            added += lift_line(
+                record,
+                number,
+                text,
+                date,
+                project_dir,
+                cases,
+                blocks,
+                texts_of,
+                entries,
+                decisions,
+                elsewhere,
+            )
+        except Exception as exc:  # noqa: BLE001 — one line fails alone, the rest are lifted (142.1)
+            del entries[before:]
+            message = f"{type(exc).__name__}: {exc}"
+            print(f"materialize: line {number}: {message}", file=stderr)
+            entries.append({"line": number, "text": text, "failed": message})
+            failed += 1
             continue
-        if record["record"] == "lesson":
-            entries.append(lesson_entry(record, number, text, date, project_dir))
-            added += 1
-            continue
-        case = record["case"]
-        if case not in blocks:
-            blocks[case] = then_blocks(cases.get(case, []))
-        block, errors = blocks[case]
-        entry = decision_entry(record, number, text, date, block, project_dir)
-        if errors and "then" in (entry.get("incomplete") or []):
-            entry["incomplete"] = [e for e in entry["incomplete"] if e != "then"] + errors
-        entries.append(entry)
-        added += 1
-        item, nested = find_item(block, record["kind"], record["slug"])
-        if case not in texts_of:
-            texts_of[case] = case_texts(cases, case)
-        for derived in derived_entries(
-            entry, None if nested else item, texts_of[case], project_dir
-        ):
-            entries.append(derived)  # no line of its own (case 72.3)
-            added += 1
-        if record.get("supersedes") and not mark_superseded(
-            entries, decisions, record["supersedes"], case
-        ):
-            elsewhere.append((record["supersedes"], case))  # another unit's yaml (130.2)
+        if number in retry:
+            entries.remove(retry[number])
     # new_tags: from the then block of every Case of the Spec, lines or none (case 61)
     for case, lines in cases.items():
         if case not in blocks:
@@ -851,9 +912,9 @@ def assemble(
     for entry in entries:
         if entry.get("kind") in DECISION_KINDS and "case" in entry:  # not the librarian's
             by_case.setdefault(entry["case"], []).append(entry)
-    present = {d["case"]: d for d in decisions}
+    present = {d["case"]: d for d in decisions if isinstance(d, dict) and "case" in d}
     for case, group in by_case.items():
-        block, errors = blocks.get(case) or then_blocks(cases.get(case, []))
+        _block, errors = blocks.get(case) or then_blocks(cases.get(case, []))
         if case not in texts_of:
             texts_of[case] = case_texts(cases, case)
         record = decision_record(case, group, date, texts_of[case], errors, spec_of.get(case))
@@ -873,7 +934,7 @@ def assemble(
                 done = target.setdefault("superseded_by", [])
                 if decision["decision"] not in done:
                     done.append(decision["decision"])
-    return data, added, elsewhere
+    return data, added, elsewhere, failed
 
 
 def yaml_path(project_dir: Path, unit: str) -> Path:
@@ -954,29 +1015,31 @@ def units_with(project_dir: Path, name: str, date: str | None = None) -> list[st
 
 
 def materialize_date(project_dir: Path, unit: str, now, stdout, stderr, show=False) -> int:
-    """One unit: extend or write its yaml; one line on stdout, exit 1 on an error. With
-    `show` the yaml goes to stdout instead and no file changes (case 76)."""
+    """One unit: extend or write its yaml; one line on stdout. Exit 2 on an error of the
+    unit itself (nothing written), 1 when a line failed alone and the yaml was written
+    without it (case 142.1), else 0. With `show` the yaml goes to stdout instead and no
+    file changes (case 76)."""
     try:
         path = yaml_path(project_dir, unit)
         existing = load_yaml(path)
-        data, added, elsewhere = assemble(project_dir, unit, existing, stderr)
+        data, added, elsewhere, failed = assemble(project_dir, unit, existing, stderr)
         if show:
             stdout.write(yaml_text(data))
-            return 0
+            return 1 if failed else 0
         dump_yaml(path, data)
         mark_superseded_elsewhere(project_dir, unit, elsewhere)
     except MaterializeError as exc:
         print(f"materialize: {exc}", file=stderr)
-        return 1
+        return 2
     except Exception as exc:  # noqa: BLE001 — report, never traceback
         print(f"materialize: materialize.yaml not written: {exc}", file=stderr)
-        return 1
+        return 2
     verb = "extended with" if existing else "written with"
     print(
         f"materialize: {path.relative_to(project_dir).as_posix()} {verb} {added} entries",
         file=stdout,
     )
-    return 0
+    return 1 if failed else 0
 
 
 def run(argv, *, stdout=None, stderr=None, project_dir: Path | None = None, now=None) -> int:
@@ -997,10 +1060,12 @@ def run(argv, *, stdout=None, stderr=None, project_dir: Path | None = None, now=
         )
         print(f"materialize: {what}", file=stderr)
         return 1
+    failed = False
     for index, unit in enumerate(units):
         if args.show and index:
             print("---", file=stdout)  # one yaml document per unit (case 76)
         code = materialize_date(project_dir, unit, now, stdout, stderr, show=args.show)
-        if code:
-            return code
-    return 0
+        if code == 2:  # an error of the unit itself stops the walk (case 142.4)
+            return 1
+        failed = failed or code == 1  # a failed line: the walk goes on, exit 1 at the end
+    return 1 if failed else 0

@@ -2,7 +2,7 @@
 type: decision
 case: "32"
 status: current
-create: [rule-page-generation, estimate-generate-writes]
+create: ["[[rule-page-generation]]", "[[estimate-generate-writes]]"]
 update: [lessons-schema]
 origin: raw/2026-09-10/ledger.md#case-32
 sprint: migration

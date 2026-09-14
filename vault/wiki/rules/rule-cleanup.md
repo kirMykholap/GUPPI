@@ -5,8 +5,8 @@ purpose: Prevents an archived page from staying among the live ones, or the inde
 status: built
 enforcement: check
 implementation_ref: [guppi/cleanup.py, tests/test_cleanup.py]
-parent: rule-documentation
-estimates: [estimate-cleanup-moves]
+parent: "[[rule-documentation]]"
+estimates: ["[[estimate-cleanup-moves]]"]
 origin: raw/2026-09-10/ledger.md#case-33
 sprint: migration
 created: 2026-09-10

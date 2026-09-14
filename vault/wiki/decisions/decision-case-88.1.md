@@ -2,8 +2,8 @@
 type: decision
 case: "88.1"
 status: current
-update: [rule-render-harness, estimate-render-harness-reproduces]
-supersedes: [decision-case-84]
+update: ["[[rule-render-harness]]", "[[estimate-render-harness-reproduces]]"]
+supersedes: ["[[decision-case-84]]"]
 origin: raw/2026-09-12/ledger.md#case-88.1
 sprint: migration
 created: 2026-09-12

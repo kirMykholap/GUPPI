@@ -2,7 +2,7 @@
 type: estimate
 kind: Research
 status: archived
-target: lesson-hooks-stop-payload
+target: "[[lesson-hooks-stop-payload]]"
 origin: raw/2026-09-09/ledger.md#L29
 sprint: migration
 created: 2026-09-09

@@ -2,8 +2,8 @@
 type: decision
 case: "48"
 status: current
-create: [estimate-generate-passes-delete-outside-vault]
-update: [rule-page-generation]
+create: ["[[estimate-generate-passes-delete-outside-vault]]"]
+update: ["[[rule-page-generation]]"]
 origin: raw/2026-09-10/ledger.md#case-48
 sprint: migration
 created: 2026-09-10

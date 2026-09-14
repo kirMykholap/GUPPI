@@ -2,9 +2,9 @@
 type: decision
 case: "80"
 status: archived
-defer: [rule-ask]
-supersedes: [decision-case-65]
-superseded_by: [decision-case-94]
+defer: ["[[rule-ask]]"]
+supersedes: ["[[decision-case-65]]"]
+superseded_by: ["[[decision-case-94]]"]
 origin: raw/2026-09-12/ledger.md#case-80
 sprint: migration
 created: 2026-09-12

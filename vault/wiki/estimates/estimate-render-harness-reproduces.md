@@ -2,7 +2,7 @@
 type: estimate
 kind: QA
 status: passed
-target: rule-render-harness
+target: "[[rule-render-harness]]"
 origin: raw/2026-09-09/ledger.md#case-18.1
 sprint: migration
 created: 2026-09-09

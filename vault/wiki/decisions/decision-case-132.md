@@ -2,7 +2,7 @@
 type: decision
 case: "132"
 status: current
-update: [rule-retro-commit, rule-event-log, rule-harness, rule-retro, rule-brief, rule-ledger-tail]
+update: ["[[rule-retro-commit]]", "[[rule-event-log]]", "[[rule-harness]]", "[[rule-retro]]", "[[rule-brief]]", "[[rule-ledger-tail]]"]
 origin: raw/2026-09-14/1029/ledger.md#case-132
 sprint: migration
 created: 2026-09-14

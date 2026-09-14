@@ -2,7 +2,7 @@
 type: decision
 case: "73.5"
 status: current
-update: [rule-materialize]
+update: ["[[rule-materialize]]"]
 origin: raw/2026-09-12/ledger.md#case-73.5
 sprint: migration
 created: 2026-09-12

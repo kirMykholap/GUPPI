@@ -3,7 +3,7 @@ type: lesson
 kind: error
 root_cause: the transcript holds only the final text of a turn (insight-ledger-hook-reads-only-the-final-text, severity 3, lesson-transcript-omits-text-emitted-before-tool-calls of session L); the agent ended a reply with ledger lines in a tool call anyway, with the lesson and the Insight live in the vault and the Insight's Proposal unactioned. A reply that carries ledger lines must end in text, never in a tool call.
 status: archived
-insight: insight-ledger-hook-reads-only-the-final-text
+insight: "[[insight-ledger-hook-reads-only-the-final-text]]"
 origin: raw/2026-09-14/0747/ledger.md#L33
 sprint: migration
 created: 2026-09-14

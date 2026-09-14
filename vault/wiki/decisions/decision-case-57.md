@@ -2,7 +2,7 @@
 type: decision
 case: "57"
 status: current
-update: [index, claude-md, rule-cleanup, estimate-cleanup-moves, rule-spec-capture, estimate-spec-capture-appends, estimate-lint-catches]
+update: [index, claude-md, "[[rule-cleanup]]", "[[estimate-cleanup-moves]]", "[[rule-spec-capture]]", "[[estimate-spec-capture-appends]]", "[[estimate-lint-catches]]"]
 origin: raw/2026-09-11/ledger.md#case-57
 sprint: migration
 created: 2026-09-11

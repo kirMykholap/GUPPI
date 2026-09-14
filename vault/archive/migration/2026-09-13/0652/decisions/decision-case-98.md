@@ -2,8 +2,8 @@
 type: decision
 case: "98"
 status: archived
-defer: [rule-skill-hi]
-superseded_by: [decision-case-106]
+defer: ["[[rule-skill-hi]]"]
+superseded_by: ["[[decision-case-106]]"]
 origin: raw/2026-09-12/ledger.md#case-98
 sprint: migration
 created: 2026-09-12

@@ -2,7 +2,7 @@
 type: decision
 case: "73.6"
 status: current
-update: [rule-retro]
+update: ["[[rule-retro]]"]
 origin: raw/2026-09-12/ledger.md#case-73.6
 sprint: migration
 created: 2026-09-12

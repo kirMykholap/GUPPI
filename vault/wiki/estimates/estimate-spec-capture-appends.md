@@ -2,7 +2,7 @@
 type: estimate
 kind: QA
 status: passed
-target: rule-spec-capture
+target: "[[rule-spec-capture]]"
 origin: raw/2026-09-09/ledger.md#case-20
 sprint: migration
 created: 2026-09-09

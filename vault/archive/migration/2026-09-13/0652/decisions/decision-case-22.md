@@ -2,8 +2,8 @@
 type: decision
 case: "22"
 status: archived
-create: [rule-index, estimate-index-lists]
-superseded_by: [decision-case-27]
+create: ["[[rule-index]]", "[[estimate-index-lists]]"]
+superseded_by: ["[[decision-case-27]]"]
 origin: raw/2026-09-09/ledger.md#case-22
 sprint: migration
 created: 2026-09-09

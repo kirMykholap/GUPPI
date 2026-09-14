@@ -2,7 +2,7 @@
 type: decision
 case: "35.3"
 status: current
-create: [rule-brief, estimate-brief-written]
+create: ["[[rule-brief]]", "[[estimate-brief-written]]"]
 origin: raw/2026-09-10/ledger.md#case-35.3
 sprint: migration
 created: 2026-09-10

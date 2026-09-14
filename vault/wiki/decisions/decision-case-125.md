@@ -2,7 +2,7 @@
 type: decision
 case: "125"
 status: current
-update: [rule-event-log, rule-skill-hi]
+update: ["[[rule-event-log]]", "[[rule-skill-hi]]"]
 origin: raw/2026-09-14/1029/ledger.md#case-125
 sprint: migration
 created: 2026-09-14

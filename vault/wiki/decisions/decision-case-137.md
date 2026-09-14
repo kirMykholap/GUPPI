@@ -2,7 +2,7 @@
 type: decision
 case: "137"
 status: current
-update: [insight-ledger-hook-reads-only-the-final-text]
+update: ["[[insight-ledger-hook-reads-only-the-final-text]]"]
 origin: raw/2026-09-14/1229/ledger.md#case-137
 sprint: migration
 created: 2026-09-14

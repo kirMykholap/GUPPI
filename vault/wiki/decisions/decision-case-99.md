@@ -2,7 +2,7 @@
 type: decision
 case: "99"
 status: current
-update: [estimate-hook-registry-rendered, rule-pretask, rule-materialize, rule-harness]
+update: ["[[estimate-hook-registry-rendered]]", "[[rule-pretask]]", "[[rule-materialize]]", "[[rule-harness]]"]
 origin: raw/2026-09-12/ledger.md#case-99
 sprint: migration
 created: 2026-09-12

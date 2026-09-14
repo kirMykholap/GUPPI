@@ -3,7 +3,7 @@ type: lesson
 kind: error
 root_cause: a decision update on a Rule page has no step that lists the Estimates whose criterion quotes the changed wording; until lint or the generator does it, the acknowledging reply must grep estimates/ for the words the contract dropped
 status: archived
-insight: insight-workflow-contract-change-leaves-its-derived-text-stale
+insight: "[[insight-workflow-contract-change-leaves-its-derived-text-stale]]"
 origin: raw/2026-09-09/ledger.md#L49
 sprint: migration
 created: 2026-09-09

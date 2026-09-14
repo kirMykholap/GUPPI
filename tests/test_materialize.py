@@ -1294,3 +1294,90 @@ def test_a_supersedes_of_a_case_no_yaml_holds_changes_nothing(tmp_path):
         e for e in unit_yaml(b)["entries"] if e.get("case") == "9" and e.get("kind") == "update"
     ]
     assert mine["supersedes"] == "5"
+
+
+# --- an entry fails alone (cases 142.1, 142.4) --------------------------------------------
+
+
+def test_a_line_whose_lift_raises_fails_alone_and_the_yaml_is_written(tmp_path, monkeypatch):
+    seed(tmp_path)
+
+    def boom(record, number, text, date, block, project_dir):
+        raise ValueError("odd item")
+
+    monkeypatch.setattr(materialize, "decision_entry", boom)
+    code, out, err = run(tmp_path)
+    assert code == 1
+    assert "materialize: line 2: ValueError: odd item" in err
+    assert "written with" in out
+    data = load(tmp_path)
+    failed = [e for e in data["entries"] if e.get("failed")]
+    assert failed and all("kind" not in e for e in failed)
+    assert failed[0]["line"] == 2 and failed[0]["text"].startswith("decision[case 1]")
+    # the other lines of the ledger are lifted
+    assert any(e.get("kind") == "estimate" or e.get("status") for e in data["entries"])
+
+
+def test_a_failed_line_is_lifted_again_and_replaced_on_the_next_run(tmp_path, monkeypatch):
+    seed(tmp_path)
+    monkeypatch.setattr(
+        materialize, "decision_entry", lambda *a, **k: (_ for _ in ()).throw(ValueError("x"))
+    )
+    assert run(tmp_path)[0] == 1
+    monkeypatch.undo()
+    code, _out, err = run(tmp_path)
+    assert code == 0 and err == ""
+    data = load(tmp_path)
+    assert not [e for e in data["entries"] if e.get("failed") and "kind" not in e]
+    assert [e for e in data["entries"] if e.get("line") == 2 and e.get("kind") == "create"]
+
+
+def test_an_entry_the_script_cannot_read_is_left_alone(tmp_path):
+    seed(tmp_path)
+    assert run(tmp_path)[0] == 0
+    path = tmp_path / "vault" / "raw" / DATE / "materialize.yaml"
+    data = yaml.safe_load(path.read_text(encoding="utf-8"))
+    data["entries"].append("a bare string")
+    data["entries"].append({"note": "a mapping without line or derived"})
+    path.write_text(yaml.safe_dump(data, allow_unicode=True, sort_keys=False), encoding="utf-8")
+    code, _out, err = run(tmp_path)
+    assert code == 0
+    assert err.count("an entry the script cannot read is left alone") == 2
+    after = load(tmp_path)
+    assert {"note": "a mapping without line or derived"} in after["entries"]
+
+
+def test_a_failed_line_in_one_unit_does_not_stop_the_walk(tmp_path, monkeypatch):
+    a, b = seed_two_units(tmp_path)
+    calls = {"n": 0}
+    real = materialize.decision_entry
+
+    def first_fails(record, number, text, date, block, project_dir):
+        calls["n"] += 1
+        if calls["n"] == 1:
+            raise RuntimeError("first unit")
+        return real(record, number, text, date, block, project_dir)
+
+    monkeypatch.setattr(materialize, "decision_entry", first_fails)
+    code, _out, err = run_walk(tmp_path, ["--date", DATE])
+    assert code == 1
+    assert "materialize: line 1: RuntimeError: first unit" in err
+    assert (a / "materialize.yaml").exists() and (b / "materialize.yaml").exists()
+    assert unit_yaml(a)["entries"][0]["failed"].startswith("RuntimeError")
+    assert any(e.get("case") == "9" for e in unit_yaml(b)["entries"])
+
+
+def test_an_error_of_the_unit_itself_still_stops_the_walk(tmp_path, monkeypatch):
+    a, b = seed_two_units(tmp_path)
+    real = materialize.read_specs
+
+    def two_files(project_dir, unit):
+        if unit.endswith("0900"):
+            raise materialize.MaterializeError("Case 5 found in two files")
+        return real(project_dir, unit)
+
+    monkeypatch.setattr(materialize, "read_specs", two_files)
+    code, _out, err = run_walk(tmp_path, ["--date", DATE])
+    assert code == 1 and "Case 5 found in two files" in err
+    assert not (a / "materialize.yaml").exists()
+    assert not (b / "materialize.yaml").exists()

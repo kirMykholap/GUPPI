@@ -2,8 +2,8 @@
 type: decision
 case: "30"
 status: archived
-update: [case-schema, rule-case-protocol]
-superseded_by: [decision-case-34]
+update: [case-schema, "[[rule-case-protocol]]"]
+superseded_by: ["[[decision-case-34]]"]
 origin: raw/2026-09-10/ledger.md#case-30
 sprint: migration
 created: 2026-09-10

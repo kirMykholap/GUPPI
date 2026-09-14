@@ -2,7 +2,7 @@
 type: estimate
 kind: QA
 status: passed
-target: rule-raw-archive
+target: "[[rule-raw-archive]]"
 origin: raw/2026-09-13/ledger.md#case-100.1
 sprint: migration
 created: 2026-09-13

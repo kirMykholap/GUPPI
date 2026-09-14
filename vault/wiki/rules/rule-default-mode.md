@@ -6,8 +6,8 @@ status: built
 enforcement: render
 governs: .claude/settings.json
 render_mode: partial
-parent: rule-settings
-estimates: [estimate-default-mode]
+parent: "[[rule-settings]]"
+estimates: ["[[estimate-default-mode]]"]
 origin: raw/2026-09-12/ledger.md#case-85.4
 sprint: migration
 created: 2026-09-12

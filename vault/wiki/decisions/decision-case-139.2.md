@@ -2,7 +2,7 @@
 type: decision
 case: "139.2"
 status: current
-update: [insight-harness-agent-visibility]
+update: ["[[insight-harness-agent-visibility]]"]
 origin: raw/2026-09-14/1229/ledger.md#case-139.2
 sprint: migration
 created: 2026-09-14

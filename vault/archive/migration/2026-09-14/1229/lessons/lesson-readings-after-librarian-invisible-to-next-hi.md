@@ -4,7 +4,7 @@ kind: knowledge
 root_cause: the readings of the End of Work phase are born after the one artifact the next session reads; the ledger is materialized by the next librarian, and the brief by design carries only what the yaml held at its writing, so a fact born after the librarian's commit reaches the Frontier two sessions later unless /hi shows the unmaterialized ledger tail itself
 status: archived
 source: session F 2026-09-10, owner's question after the readings
-insight: insight-session-vault-knowledge-not-loaded
+insight: "[[insight-session-vault-knowledge-not-loaded]]"
 origin: raw/2026-09-10/ledger.md#L100
 sprint: migration
 created: 2026-09-10

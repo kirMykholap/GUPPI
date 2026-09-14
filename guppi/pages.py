@@ -1,8 +1,11 @@
 """Reading vault pages: frontmatter, `## ` sections, and the folders they live in.
 
-Shared by `render`, `lint` and `index`. A page is a Markdown file under
-`vault/wiki/<category>/`, its properties in a YAML block between `---` lines, its body in
-H2 sections. Nothing here writes.
+Shared by `render`, `lint`, `generate`, `cleanup`, `pretask` and `archive`. A page is a
+Markdown file under `vault/wiki/<category>/`, its properties in a YAML block between `---`
+lines, its body in H2 sections. A ref field — `REF_FIELDS` — holds its slugs as quoted
+wikilinks, `"[[slug]]"`, so Obsidian's graph, backlinks and Bases see them; `read_page`
+strips the brackets, so every reader sees the bare slug, and a page written without them
+reads the same (case 148.1). Nothing here writes.
 """
 
 import re
@@ -14,6 +17,42 @@ import yaml
 CATEGORIES = ("entities", "rules", "estimates", "lessons", "insights", "decisions")
 SECTION = "## "
 MARKER = re.compile(r"^<!-- (/?)([^\s]+) -->$")
+REF_FIELDS = (  # the fields whose values are slugs of pages (case 148.1)
+    "parent",
+    "children",
+    "estimates",
+    "target",
+    "insight",
+    "addressed_by",
+    "deferred_by",
+    "create",
+    "update",
+    "delete",
+    "defer",
+    "supersedes",
+    "superseded_by",
+)
+WIKILINK_VALUE = re.compile(r"^\[\[([^\]|#]+)(?:[|#][^\]]*)?\]\]$")
+
+
+def slug_of(value):
+    """The slug inside a `[[slug]]` value; any other value as it is."""
+    if isinstance(value, str):
+        match = WIKILINK_VALUE.match(value.strip())
+        if match:
+            return match.group(1).strip()
+    return value
+
+
+def strip_refs(props: dict) -> dict:
+    """The props with every ref field read through its brackets, in place."""
+    for key in REF_FIELDS:
+        value = props.get(key)
+        if isinstance(value, list):
+            props[key] = [slug_of(v) for v in value]
+        elif isinstance(value, str):
+            props[key] = slug_of(value)
+    return props
 
 
 @dataclass
@@ -97,7 +136,7 @@ def read_page(path: Path, category: str) -> Page:
         if not isinstance(props, dict):
             page.error = "frontmatter is not a mapping"
             props = {}
-        page.props = props
+        page.props = strip_refs(props)
     page.sections = split_sections(body)
     return page
 

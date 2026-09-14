@@ -2,8 +2,8 @@
 type: decision
 case: "43"
 status: current
-create: [estimate-materialize-walks-dates, estimate-generate-walks-dates]
-update: [rule-materialize, rule-page-generation, rule-documentation]
+create: ["[[estimate-materialize-walks-dates]]", "[[estimate-generate-walks-dates]]"]
+update: ["[[rule-materialize]]", "[[rule-page-generation]]", "[[rule-documentation]]"]
 origin: raw/2026-09-10/ledger.md#case-43
 sprint: migration
 created: 2026-09-10

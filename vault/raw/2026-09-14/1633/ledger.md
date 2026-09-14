@@ -1,0 +1,60 @@
+- 16:38:49 estimate[estimate-brief-written][passed] live 2026-09-14, block 124.1, against the brief of session O's librarian: the Deferred list holds five items — the four `open` Insights, each severity 2, ordered by slug at equal severity and count, each marked "stood in 1 brief"; then Slice 3b, related Insight `insight-harness-agent-visibility` actioned at severity 0, "postponed 10 times"; every Insight line carries slug, severity, pattern and Proposal; no `open` Insight is outside the list; the five sections stand in order, the flags name the 3 incomplete, the 1 failed and the 2 near entries and the lint output; sprint.md unchanged as the handoff asked nothing
+- 16:50:03 decision[case 142.1][update][rule-materialize]{ref:rule-materialize}
+- 16:50:03 decision[case 142.2][update][rule-page-generation]{ref:rule-page-generation}
+- 16:50:03 decision[case 142.3][update][insight-harness-yaml-entry-shape-assumed]{ref:insight-harness-yaml-entry-shape-assumed}
+- 16:55:11 decision[case 143][update][insight-librarian-frame-omits-required-reads]{ref:insight-librarian-frame-omits-required-reads}
+- 17:06:52 decision[case 144.1][update][rule-case-protocol]{ref:rule-case-protocol}
+- 17:06:52 decision[case 144.2][update][lesson-gate-plan-path-cut-by-the-event-log-detail-limit]{ref:lesson-gate-plan-path-cut-by-the-event-log-detail-limit}
+- 17:06:52 decision[case 144.2][update][lesson-agents-read-at-session-start-in-claude-code-2-1-228]{ref:lesson-agents-read-at-session-start-in-claude-code-2-1-228}
+- 17:06:52 decision[case 144.2][update][lesson-retro-typed-by-the-person-bypasses-the-skill-tool-and-the-gate]{ref:lesson-retro-typed-by-the-person-bypasses-the-skill-tool-and-the-gate}
+- 17:06:52 decision[case 144.3][update][insight-materialize-lift-loses-a-schema-field]{ref:insight-materialize-lift-loses-a-schema-field}
+- 17:16:44 decision[case 145.1][create][rule-tests-clock-pinned]{ref:rule-harness}{tags:tests,harness}
+- 17:16:44 decision[case 145.2][update][rule-harness]{ref:rule-harness}
+- 17:16:44 decision[case 145.3][update][insight-tests-clock-not-pinned]{ref:insight-tests-clock-not-pinned}
+- 17:51:50 decision[case 146][defer][rule-lint]{ref:rule-lint}
+- 18:33:12 decision[case 147.1][delete][rule-index]{ref:rule-index}
+- 18:33:12 decision[case 147.1][delete][estimate-index-lists]{ref:estimate-index-lists}
+- 18:33:12 decision[case 147.2][update][rule-ask]{ref:rule-ask}
+- 18:33:12 decision[case 147.3][update][rule-index-check]{ref:rule-index-check}
+- 18:33:12 decision[case 147.4][update][rule-synthesis]{ref:rule-synthesis}
+- 18:33:12 decision[case 147.5][update][rule-documentation]{ref:rule-documentation}
+- 18:33:12 decision[case 147.6][update][rule-cleanup]{ref:rule-cleanup}
+- 18:33:12 decision[case 147.7][update][rule-lint]{ref:rule-lint}
+- 18:33:12 decision[case 147.8][update][index]{ref:index}
+- 18:33:12 decision[case 147.8][update][glossary]{ref:glossary}
+- 18:41:15 decision[case 148.1][update][rule-page-generation]{ref:rule-page-generation}
+- 18:41:15 decision[case 148.2][update][rules-schema]{ref:rules-schema}
+- 18:41:15 decision[case 148.2][update][entities-schema]{ref:entities-schema}
+- 18:41:15 decision[case 148.2][update][estimates-schema]{ref:estimates-schema}
+- 18:41:15 decision[case 148.2][update][lessons-schema]{ref:lessons-schema}
+- 18:41:15 decision[case 148.2][update][insights-schema]{ref:insights-schema}
+- 18:41:15 decision[case 148.2][update][decisions-schema]{ref:decisions-schema}
+- 18:41:15 decision[case 148.3][update][estimate-materialize-assembles]{ref:estimate-materialize-assembles}
+- 18:55:35 decision[case 149.1][update][index]{ref:index}
+- 18:55:35 decision[case 149.2][update][glossary]{ref:glossary}
+- 18:55:35 decision[case 149.2][update][case-schema]{ref:case-schema}
+- 18:55:35 decision[case 149.3][update][rule-lint]{ref:rule-lint}
+- 18:55:35 decision[case 149.4][update][rule-brief]{ref:rule-brief}
+- 18:55:35 decision[case 149.4][update][rule-skill-hi]{ref:rule-skill-hi}
+- 18:55:35 decision[case 149.4][update][rule-documentation]{ref:rule-documentation}
+- 18:55:35 decision[case 149.4][update][rule-claude-md]{ref:rule-claude-md}
+- 19:28:38 decision[case 150][update][rule-retro]{ref:rule-retro}
+- 19:36:33 decision[case 151][update][rule-page-generation]{ref:rule-page-generation}
+- 19:41:50 decision[case 152][defer][rule-work-mode]{ref:rule-work-mode}{supersedes:case 141}
+- 19:41:50 decision[case 152][defer][rule-subagent-guppi]{ref:rule-subagent-guppi}{supersedes:case 141}
+- 19:57:33 decision[case 142.4][update][rule-materialize]{ref:rule-materialize}
+- 19:57:33 decision[case 142.5][update][rule-documentation]{ref:rule-documentation}
+- 19:57:33 decision[case 147.9][update][rule-render-harness]{ref:rule-render-harness}
+- 19:57:33 decision[case 147.9][update][rule-ask]{ref:rule-ask}
+- 19:57:33 decision[case 147.9][update][rule-documentation]{ref:rule-documentation}
+- 19:57:33 decision[case 150.1][update][rule-claude-md]{ref:rule-claude-md}
+- 19:57:33 decision[case 153][update][rule-harness]{ref:rule-harness}
+- 19:57:33 decision[case 154][defer][rule-ask]{ref:rule-ask}
+- 19:58:01 decision[case 147.8][update][insights-schema]{ref:insights-schema}
+- 19:58:01 decision[case 148.2][update][index]{ref:index}
+- 20:15:10 estimate[estimate-materialize-assembles][passed] block 142.1, 2026-09-14: tests/test_materialize.py — a lift that raises leaves `{line, text, failed}` without kind, one stderr line, the yaml written, exit 1; the failed line lifted again and replaced on the next run; a string entry and a mapping without line/derived left alone with one stderr line each; 45 tests green; every key materialize.py writes (case, kind, category, slug, ref, source, supersedes, superseded_by, origin, line, text, decision, tags, fields, sections, replace, change, impact, incomplete, exists, folded, status, result, derived, criterion_block, set, case_removed, path, failed) is in the field list of 142.1; the librarian's own entries carry `librarian` and no line and are read as readable, a precision on the wording
+- 20:15:10 estimate[estimate-materialize-walks-dates][passed] block 142.4, 2026-09-14: two units, a failing lift in the first — both yamls written, exit 1, the second unit's entries lifted; a MaterializeError of the first unit still stops the walk with nothing written; tests green
+- 20:15:10 estimate[estimate-tests-clock-pinned][passed] block 145.1, 2026-09-14: tests/test_conftest.py — event.run without now writes under raw/2001-01-01 at 00:00:00; every module with a datetime attribute pinned; strptime, fromisoformat and the constructor unchanged; make test 368 green under the fixture, after it caught the three CLI tests that read the real clock (test_ledger, test_pretask, test_event), moved to the fixture
+- 20:28:29 estimate[estimate-generate-writes][passed] blocks 142.2, 148.1, 151, 2026-09-14: tests/test_generate.py — an entry with failed and no kind skipped with its mark kept and one stderr line, exit 1, the next entry applied; an entry with superseded_by not applied, its Decision page written superseded before the superseding one marks it; tests/test_pages.py — the writer wraps page slugs in quoted wikilinks and leaves Rule-class slugs bare, read_page and page_estimates read both forms the same; the migration over wiki/ and archive/ rewrote 357 of 399 pages, frontmatter only (numstat 1:1), guppi lint identical before and after (84 lines), render --check exit 0; in Obsidian, by the owner: insight-tests-clock-not-pinned shows its two lessons as backlinks, rule-harness fifteen — seven children by parent, its Estimate by target, seven Decision pages; the silence of generate over raw/2026-09-14/0747 (151) is read at the librarian's run
+- 20:31:58 lesson[knowledge][lesson-obsidian-cli-needs-the-running-app]{tags:harness}{source:https://obsidian.md/help/cli} trigger: session P weighed the Obsidian CLI (1.12.7+, commands orphans, unresolved, backlinks, base:query) as a replacement for guppi lint and the index files root_cause: the CLI is enabled in Settings and talks to the running desktop app — "the first command you run launches Obsidian" — so a Stop hook, make lint or CI cannot use it; its orphans (no inbound link at all) is weaker than lint's (no owner in the tree); not adopted, lint stays
+- 20:31:58 lesson[knowledge][lesson-obsidian-property-links-need-wikilink-form]{tags:harness}{source:the owner's Obsidian after the migration of case 148.1 — insight-tests-clock-not-pinned 2 backlinks, rule-harness 15} trigger: before 148.1 the graph showed an Insight linked only through the body sections generate duplicates, never through children, parent or estimates root_cause: Obsidian reads a property value as a link only in the form "[[slug]]" (quoted in YAML, or it parses as a nested list); a bare slug is text; a property link is seen by the graph, backlinks, unresolved and Bases, and resolves in any folder, the archive included

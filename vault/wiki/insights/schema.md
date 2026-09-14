@@ -15,10 +15,10 @@ Created by the librarian, never by a decision; an `update` actions or rejects it
 | `type` | yes | `insight` | Page category. |
 | `pattern` | yes | one line | The shared root cause, stated once. `insights.index` is built from it. |
 | `status` | yes | `open` \| `actioned` \| `archived` | `actioned` when a ratified decision has addressed it. Not terminal — a new Lesson with the same root cause reopens it. `archived` when the cascade of `generate` finds an `open` Insight with no live child (case 104.3); an `actioned` Insight is never archived by the cascade, it is kept for the recurrence. |
-| `children` | yes | list of slugs | The Lessons clustered here. Unordered. |
+| `children` | yes | list of quoted wikilink `"[[slug]]"` | The Lessons clustered here. Unordered. The scripts read the slug through the brackets; a slug without a category prefix stays bare (case 148.2). |
 | `severity` | yes | integer | `count(children where status != archived)`. Recomputed by the cascade of `generate` (case 104.3), a child read in `wiki/lessons/` or in the archive (case 110), never written by hand (case 110.1). |
-| `addressed_by` | no | decision slug | The ratified decision that fixed the pattern, or rejected it (case 124). |
-| `deferred_by` | no | list of decision slugs | The `defer` decisions that postponed it; set by `generate`, cleared by a `supersedes` (case 124.2). |
+| `addressed_by` | no | decision quoted wikilink `"[[slug]]"` | The ratified decision that fixed the pattern, or rejected it (case 124). |
+| `deferred_by` | no | list of decision quoted wikilink `"[[slug]]"` | The `defer` decisions that postponed it; set by `generate`, cleared by a `supersedes` (case 124.2). |
 | `origin` | yes | date + session | When the librarian first clustered it. Unlike every other category this does not point at a ledger line — no decision created it. |
 | `sprint` | yes | sprint id | |
 | `created` | yes | date | |
@@ -28,7 +28,7 @@ Created by the librarian, never by a decision; an `update` actions or rejects it
 
 An Insight is created on the **second** Lesson sharing a root cause. One occurrence is an incident; two is a pattern.
 
-The archive is not searched. A Lesson is archived only when its Insight was actioned — its `clustered` children are archived by the cascade of `generate` (case 104.2) — and that Insight stays live with its `pattern` in `insights-index.md`; a recurrence after the pattern was supposedly fixed is caught there, at the cost of one index line, and reopens the Insight.
+The archive is not searched. A Lesson is archived only when its Insight was actioned — its `clustered` children are archived by the cascade of `generate` (case 104.2) — and that Insight stays live with its `pattern` in its index line; a recurrence after the pattern was supposedly fixed is caught there, at the cost of one index line, and reopens the Insight.
 
 ### Reopening
 

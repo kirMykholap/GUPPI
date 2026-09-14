@@ -2,7 +2,7 @@
 type: estimate
 kind: QA
 status: archived
-target: lesson-ledger-hook-misses-a-reply-ending-in-a-tool-call
+target: "[[lesson-ledger-hook-misses-a-reply-ending-in-a-tool-call]]"
 origin: raw/2026-09-10/ledger.md#L119
 sprint: migration
 created: 2026-09-10

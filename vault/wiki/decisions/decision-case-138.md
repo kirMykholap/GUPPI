@@ -2,7 +2,7 @@
 type: decision
 case: "138"
 status: current
-update: [insight-workflow-contract-change-leaves-its-derived-text-stale]
+update: ["[[insight-workflow-contract-change-leaves-its-derived-text-stale]]"]
 origin: raw/2026-09-14/1229/ledger.md#case-138
 sprint: migration
 created: 2026-09-14

@@ -2,7 +2,7 @@
 type: estimate
 kind: QA
 status: passed
-target: rule-ledger-write
+target: "[[rule-ledger-write]]"
 origin: raw/2026-09-09/ledger.md#case-10
 sprint: migration
 created: 2026-09-09

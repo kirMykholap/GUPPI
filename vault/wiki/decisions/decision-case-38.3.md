@@ -2,7 +2,7 @@
 type: decision
 case: "38.3"
 status: current
-create: [rule-handoff, estimate-handoff-dispatches]
+create: ["[[rule-handoff]]", "[[estimate-handoff-dispatches]]"]
 origin: raw/2026-09-10/ledger.md#case-38.3
 sprint: migration
 created: 2026-09-10

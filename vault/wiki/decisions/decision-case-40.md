@@ -2,8 +2,8 @@
 type: decision
 case: "40"
 status: current
-update: [index, glossary, decisions-schema, entities-schema, rules-schema, estimate-plan-mode-verified, rule-retro]
-supersedes: [decision-case-38.1]
+update: [index, glossary, decisions-schema, entities-schema, rules-schema, "[[estimate-plan-mode-verified]]", "[[rule-retro]]"]
+supersedes: ["[[decision-case-38.1]]"]
 origin: raw/2026-09-10/ledger.md#case-40
 sprint: migration
 created: 2026-09-10

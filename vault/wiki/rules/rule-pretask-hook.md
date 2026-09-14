@@ -5,8 +5,8 @@ purpose: Prevents a Spec from being approved before its decisions were checked a
 status: built
 enforcement: hook
 implementation_ref: [guppi/pretask.py, .claude/settings.json]
-parent: rule-plan-mode
-estimates: [estimate-pretask-hook-gates]
+parent: "[[rule-plan-mode]]"
+estimates: ["[[estimate-pretask-hook-gates]]"]
 origin: raw/2026-09-09/ledger.md#case-24.1
 sprint: migration
 created: 2026-09-09

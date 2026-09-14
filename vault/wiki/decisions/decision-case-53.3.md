@@ -2,7 +2,7 @@
 type: decision
 case: "53.3"
 status: current
-update: [rule-materialize, rule-page-generation, estimate-materialize-assembles, estimate-generate-writes]
+update: ["[[rule-materialize]]", "[[rule-page-generation]]", "[[estimate-materialize-assembles]]", "[[estimate-generate-writes]]"]
 origin: raw/2026-09-11/ledger.md#case-53.3
 sprint: migration
 created: 2026-09-11

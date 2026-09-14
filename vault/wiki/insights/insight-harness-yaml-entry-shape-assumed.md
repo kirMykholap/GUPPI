@@ -2,7 +2,7 @@
 type: insight
 pattern: A script of the pipeline assumes every entry of materialize.yaml carries the fields and the shapes it wrote itself; an entry written by another hand ends the whole run instead of failing alone.
 status: open
-children: [lesson-generate-replace-mapping-crashes, lesson-materialize-assumes-every-entry-has-a-line]
+children: ["[[lesson-generate-replace-mapping-crashes]]", "[[lesson-materialize-assumes-every-entry-has-a-line]]"]
 severity: 2
 origin: raw/2026-09-10/ledger.md#L122
 sprint: migration

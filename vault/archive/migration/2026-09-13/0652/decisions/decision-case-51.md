@@ -2,8 +2,8 @@
 type: decision
 case: "51"
 status: archived
-defer: [rule-ledger-write]
-superseded_by: [decision-case-55.1]
+defer: ["[[rule-ledger-write]]"]
+superseded_by: ["[[decision-case-55.1]]"]
 origin: raw/2026-09-10/ledger.md#case-51
 sprint: migration
 created: 2026-09-10

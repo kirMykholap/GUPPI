@@ -2,8 +2,8 @@
 type: decision
 case: "24.2"
 status: archived
-create: [rule-pretask, estimate-pretask-reconciles]
-superseded_by: [decision-case-26.1]
+create: ["[[rule-pretask]]", "[[estimate-pretask-reconciles]]"]
+superseded_by: ["[[decision-case-26.1]]"]
 origin: raw/2026-09-09/ledger.md#case-24.2
 sprint: migration
 created: 2026-09-09

@@ -2,7 +2,7 @@
 type: decision
 case: "26.2"
 status: current
-update: [rule-lint, estimate-lint-catches, estimate-session-start-context]
+update: ["[[rule-lint]]", "[[estimate-lint-catches]]", "[[estimate-session-start-context]]"]
 origin: raw/2026-09-09/ledger.md#case-26.2
 sprint: migration
 created: 2026-09-09

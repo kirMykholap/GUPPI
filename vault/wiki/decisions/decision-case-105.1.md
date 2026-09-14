@@ -2,8 +2,8 @@
 type: decision
 case: "105.1"
 status: current
-update: [rule-ask, glossary]
-supersedes: [decision-case-94]
+update: ["[[rule-ask]]", glossary]
+supersedes: ["[[decision-case-94]]"]
 origin: raw/2026-09-13/ledger.md#case-105.1
 sprint: migration
 created: 2026-09-13

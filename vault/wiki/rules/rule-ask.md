@@ -6,8 +6,8 @@ status: built
 enforcement: render
 governs: .claude/agents/ask-guppi.md
 render_mode: full
-parent: rule-plan-mode
-estimates: [estimate-ask-finds]
+parent: "[[rule-plan-mode]]"
+estimates: ["[[estimate-ask-finds]]"]
 origin: raw/2026-09-09/ledger.md#case-23.1
 sprint: migration
 created: 2026-09-09

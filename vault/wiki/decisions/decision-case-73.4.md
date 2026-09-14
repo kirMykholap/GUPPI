@@ -2,7 +2,7 @@
 type: decision
 case: "73.4"
 status: current
-update: [rule-pretask]
+update: ["[[rule-pretask]]"]
 origin: raw/2026-09-12/ledger.md#case-73.4
 sprint: migration
 created: 2026-09-12

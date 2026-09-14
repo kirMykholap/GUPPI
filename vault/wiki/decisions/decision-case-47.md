@@ -2,8 +2,8 @@
 type: decision
 case: "47"
 status: current
-create: [estimate-generate-rejects-shape-alone, estimate-generate-logs-per-entry, estimate-generate-dates-history-by-run]
-update: [rule-page-generation, case-schema]
+create: ["[[estimate-generate-rejects-shape-alone]]", "[[estimate-generate-logs-per-entry]]", "[[estimate-generate-dates-history-by-run]]"]
+update: ["[[rule-page-generation]]", case-schema]
 origin: raw/2026-09-10/ledger.md#case-47
 sprint: migration
 created: 2026-09-10

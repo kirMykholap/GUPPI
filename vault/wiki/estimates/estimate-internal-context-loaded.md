@@ -2,7 +2,7 @@
 type: estimate
 kind: QA
 status: passed
-target: rule-internal-context
+target: "[[rule-internal-context]]"
 origin: raw/2026-09-09/ledger.md#case-11
 sprint: migration
 created: 2026-09-09

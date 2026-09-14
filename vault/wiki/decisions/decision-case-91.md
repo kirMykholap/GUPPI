@@ -2,8 +2,8 @@
 type: decision
 case: "91"
 status: current
-update: [rule-governed-files-hook]
-supersedes: [decision-case-83]
+update: ["[[rule-governed-files-hook]]"]
+supersedes: ["[[decision-case-83]]"]
 origin: raw/2026-09-12/ledger.md#case-91
 sprint: migration
 created: 2026-09-12

@@ -2,7 +2,7 @@
 type: estimate
 kind: Research
 status: archived
-target: lesson-hooks-exitplanmode-payload
+target: "[[lesson-hooks-exitplanmode-payload]]"
 origin: raw/2026-09-09/ledger.md#L30
 sprint: migration
 created: 2026-09-09

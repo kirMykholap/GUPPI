@@ -18,10 +18,10 @@ A Rule is something that can be broken, where breaking it will be detected. That
 | `implementation_ref` | `hook`, `check` | list of paths | The hook script, or the linter/test that performs the check. |
 | `governs` | `render` | path | The harness file this rule's text is rendered into. |
 | `render_mode` | `render` | `full` \| `partial` | Whether the rule's body becomes the whole target file, or is spliced between markers inside it. |
-| `parent` | Leaf | slug | The workflow MOC above it. |
-| `children` | MOC | **ordered** list of slugs | See *Ordering* below. |
-| `estimates` | yes | list of slugs | On a Leaf: that the rule does what it claims. On a MOC: that the sequence itself holds. |
-| `deferred_by` | no | list of decision slugs | The Decision pages whose `defer` targets this page. Written by `guppi generate` on a defer, cleared when a later Case `supersedes` that one; the index line carries it, so `ask-guppi` reaches the deferred decision without opening the page (case 52.3). |
+| `parent` | Leaf | quoted wikilink `"[[slug]]"` | The workflow MOC above it. The scripts read the slug through the brackets; a slug without a category prefix stays bare (case 148.2). |
+| `children` | MOC | **ordered** list of quoted wikilink `"[[slug]]"` | See *Ordering* below. |
+| `estimates` | yes | list of quoted wikilink `"[[slug]]"` | On a Leaf: that the rule does what it claims. On a MOC: that the sequence itself holds. |
+| `deferred_by` | no | list of decision quoted wikilink `"[[slug]]"` | The Decision pages whose `defer` targets this page. Written by `guppi generate` on a defer, cleared when a later Case `supersedes` that one; the index line carries it, so `ask-guppi` reaches the deferred decision without opening the page (case 52.3). |
 | `origin` | yes | `raw/YYYY-MM-DD/HHMM/ledger.md#case-N` (the date form, `raw/YYYY-MM-DD/ledger.md#case-N`, on pages born before 2026-09-13; case 103.6) | |
 | `sprint` | yes | sprint id | |
 | `created` | yes | date | |

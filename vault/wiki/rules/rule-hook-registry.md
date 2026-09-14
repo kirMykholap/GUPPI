@@ -6,8 +6,8 @@ status: built
 enforcement: render
 governs: .claude/settings.json
 render_mode: partial
-parent: rule-settings
-estimates: [estimate-hook-registry-rendered]
+parent: "[[rule-settings]]"
+estimates: ["[[estimate-hook-registry-rendered]]"]
 origin: raw/2026-09-09/ledger.md#case-18.2
 sprint: migration
 created: 2026-09-09

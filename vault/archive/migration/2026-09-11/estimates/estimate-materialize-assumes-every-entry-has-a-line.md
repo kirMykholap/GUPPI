@@ -2,7 +2,7 @@
 type: estimate
 kind: QA
 status: archived
-target: lesson-materialize-assumes-every-entry-has-a-line
+target: "[[lesson-materialize-assumes-every-entry-has-a-line]]"
 origin: raw/2026-09-10/ledger.md#L122
 sprint: migration
 created: 2026-09-10

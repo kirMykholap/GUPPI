@@ -2,7 +2,7 @@
 type: estimate
 kind: QA
 status: passed
-target: rule-plan-mode
+target: "[[rule-plan-mode]]"
 origin: raw/2026-09-09/ledger.md#case-19
 sprint: migration
 created: 2026-09-09

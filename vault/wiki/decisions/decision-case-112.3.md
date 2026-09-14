@@ -2,7 +2,7 @@
 type: decision
 case: "112.3"
 status: current
-update: [estimate-settings]
+update: ["[[estimate-settings]]"]
 origin: raw/2026-09-14/0747/ledger.md#case-112.3
 sprint: migration
 created: 2026-09-14

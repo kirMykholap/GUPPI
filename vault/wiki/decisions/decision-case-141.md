@@ -2,8 +2,8 @@
 type: decision
 case: "141"
 status: current
-defer: [rule-work-mode, rule-subagent-guppi]
-supersedes: [decision-case-129]
+defer: ["[[rule-work-mode]]", "[[rule-subagent-guppi]]"]
+supersedes: ["[[decision-case-129]]"]
 origin: raw/2026-09-14/1229/ledger.md#case-141
 sprint: migration
 created: 2026-09-14

@@ -3,7 +3,7 @@ type: lesson
 kind: error
 root_cause: Claude Code reads agent definitions at session start and skills on demand; a rendered agent is usable only from the next session, so an Estimate on a new agent cannot be read in the session that creates it
 status: archived
-insight: insight-harness-agent-visibility
+insight: "[[insight-harness-agent-visibility]]"
 origin: raw/2026-09-09/ledger.md#L90
 sprint: migration
 created: 2026-09-09

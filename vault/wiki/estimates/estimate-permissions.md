@@ -2,7 +2,7 @@
 type: estimate
 kind: QA
 status: passed
-target: rule-permissions
+target: "[[rule-permissions]]"
 origin: raw/2026-09-12/ledger.md#case-85.5
 sprint: migration
 created: 2026-09-12

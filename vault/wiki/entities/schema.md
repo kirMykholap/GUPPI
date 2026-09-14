@@ -14,10 +14,10 @@ Entity is the thing that gets built. It is recursive: a MOC holds children, a Le
 | `kind` | yes | `MOC` \| `Leaf` | MOC: no direct criteria, holds children. Leaf: direct behaviour of its own. |
 | `purpose` | yes | one line | Why this exists. Lives in properties, not the body, because `entities.index` is built from it and must stay one line per page. The body expands on it; the property stays short. |
 | `status` | yes | `draft` \| `built` \| `archived` | Flat list, like every other category. `built` is set by lint, not by hand: an Entity is built only once all of its Estimates pass — a graph property. |
-| `parent` | Leaf | slug | The MOC above it. Written by the script from the ledger's `ref`. |
-| `children` | MOC | list of slugs | Functional requirements, each its own page. Written by the script. |
-| `estimates` | yes | list of slugs | On a Leaf: checks of its own behaviour. On a MOC: cross-cutting checks that belong to all children and to none individually — non-functional requirements live here. |
-| `deferred_by` | no | list of decision slugs | The Decision pages whose `defer` targets this page. Written by `guppi generate` on a defer, cleared when a later Case `supersedes` that one; the index line carries it (case 52.3). |
+| `parent` | Leaf | quoted wikilink `"[[slug]]"` | The MOC above it. Written by the script from the ledger's `ref`. The scripts read the slug through the brackets; a slug without a category prefix stays bare (case 148.2). |
+| `children` | MOC | list of quoted wikilink `"[[slug]]"` | Functional requirements, each its own page. Written by the script. |
+| `estimates` | yes | list of quoted wikilink `"[[slug]]"` | On a Leaf: checks of its own behaviour. On a MOC: cross-cutting checks that belong to all children and to none individually — non-functional requirements live here. |
+| `deferred_by` | no | list of decision quoted wikilink `"[[slug]]"` | The Decision pages whose `defer` targets this page. Written by `guppi generate` on a defer, cleared when a later Case `supersedes` that one; the index line carries it (case 52.3). |
 | `code_ref` | no | list of paths | Code, commits or PRs. Allowed on both kinds: a Leaf points at files, a MOC may point at the directory or module it corresponds to. |
 | `origin` | yes | `raw/YYYY-MM-DD/HHMM/ledger.md#case-N` (the date form, `raw/YYYY-MM-DD/ledger.md#case-N`, on pages born before 2026-09-13; case 103.6) | The ratified decision that created it. |
 | `sprint` | yes | sprint id | |

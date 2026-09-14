@@ -3,7 +3,7 @@ type: lesson
 kind: error
 root_cause: index.md §5 requires a paired create line for a Leaf's Estimate and materialize.find_item builds the nested entry only from that line, but pretask.items_of marks a nested estimate as covered by its parent's line "since case 53.1" — a Case about lessons having no paired Estimate, not about Leaf creates — so the check stayed silent when the agent wrote no paired line, and the two Estimates were signed in the Spec and never logged
 status: archived
-insight: insight-ledger-line-written-unchecked
+insight: "[[insight-ledger-line-written-unchecked]]"
 origin: raw/2026-09-12/ledger.md#L109
 sprint: migration
 created: 2026-09-12

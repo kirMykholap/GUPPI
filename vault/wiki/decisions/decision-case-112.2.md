@@ -2,7 +2,7 @@
 type: decision
 case: "112.2"
 status: current
-update: [estimate-default-mode]
+update: ["[[estimate-default-mode]]"]
 origin: raw/2026-09-14/0747/ledger.md#case-112.2
 sprint: migration
 created: 2026-09-14

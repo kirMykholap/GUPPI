@@ -2,8 +2,8 @@
 type: decision
 case: "86"
 status: current
-update: [rule-case-protocol, case-schema]
-supersedes: [decision-case-81]
+update: ["[[rule-case-protocol]]", case-schema]
+supersedes: ["[[decision-case-81]]"]
 origin: raw/2026-09-12/ledger.md#case-86
 sprint: migration
 created: 2026-09-12

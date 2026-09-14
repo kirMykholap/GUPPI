@@ -2,8 +2,8 @@
 type: decision
 case: "85.2"
 status: current
-create: [rule-settings]
-update: [rule-harness]
+create: ["[[rule-settings]]"]
+update: ["[[rule-harness]]"]
 origin: raw/2026-09-12/ledger.md#case-85.2
 sprint: migration
 created: 2026-09-12

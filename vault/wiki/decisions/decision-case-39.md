@@ -2,7 +2,7 @@
 type: decision
 case: "39"
 status: current
-update: [index, glossary, claude-md, rule-session-start]
+update: [index, glossary, claude-md, "[[rule-session-start]]"]
 origin: raw/2026-09-10/ledger.md#case-39
 sprint: migration
 created: 2026-09-10

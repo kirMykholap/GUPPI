@@ -2,7 +2,7 @@
 type: decision
 case: "15.1"
 status: current
-update: [rule-ledger-write, estimate-ledger-write-lifts]
+update: ["[[rule-ledger-write]]", "[[estimate-ledger-write-lifts]]"]
 origin: raw/2026-09-09/ledger.md#case-15.1
 sprint: migration
 created: 2026-09-09

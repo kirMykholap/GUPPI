@@ -2,8 +2,8 @@
 type: decision
 case: "55.1"
 status: current
-update: [rule-ledger-write, estimate-ledger-write-lifts]
-supersedes: [decision-case-51]
+update: ["[[rule-ledger-write]]", "[[estimate-ledger-write-lifts]]"]
+supersedes: ["[[decision-case-51]]"]
 origin: raw/2026-09-11/ledger.md#case-55.1
 sprint: migration
 created: 2026-09-11

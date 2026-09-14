@@ -2,7 +2,7 @@
 type: estimate
 kind: QA
 status: passed
-target: rule-skill-hi
+target: "[[rule-skill-hi]]"
 origin: raw/2026-09-12/ledger.md#case-59.2
 sprint: migration
 created: 2026-09-12

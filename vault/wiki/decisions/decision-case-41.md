@@ -2,8 +2,8 @@
 type: decision
 case: "41"
 status: current
-update: [rule-materialize, estimate-materialize-assembles]
-supersedes: [decision-case-31]
+update: ["[[rule-materialize]]", "[[estimate-materialize-assembles]]"]
+supersedes: ["[[decision-case-31]]"]
 origin: raw/2026-09-10/ledger.md#case-41
 sprint: migration
 created: 2026-09-10

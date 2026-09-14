@@ -2,7 +2,7 @@
 type: estimate
 kind: QA
 status: passed
-target: rule-retro-commit
+target: "[[rule-retro-commit]]"
 origin: raw/2026-09-10/ledger.md#case-38.2
 sprint: migration
 created: 2026-09-10

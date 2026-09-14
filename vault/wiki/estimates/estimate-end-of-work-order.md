@@ -2,7 +2,7 @@
 type: estimate
 kind: QA
 status: passed
-target: rule-end-of-work
+target: "[[rule-end-of-work]]"
 origin: raw/2026-09-10/ledger.md#case-38
 sprint: migration
 created: 2026-09-10

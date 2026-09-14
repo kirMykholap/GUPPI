@@ -3,8 +3,8 @@ type: rule
 kind: MOC
 purpose: Prevents a working session from starting against unknown state
 status: built
-children: [rule-skill-hi, rule-event-log, rule-ledger-write]
-estimates: [estimate-session-start-context]
+children: ["[[rule-skill-hi]]", "[[rule-event-log]]", "[[rule-ledger-write]]"]
+estimates: ["[[estimate-session-start-context]]"]
 origin: raw/2026-09-09/ledger.md#case-12
 sprint: migration
 created: 2026-09-09

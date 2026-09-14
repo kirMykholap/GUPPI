@@ -2,7 +2,7 @@
 type: estimate
 kind: QA
 status: archived
-target: lesson-generate-log-written-last
+target: "[[lesson-generate-log-written-last]]"
 origin: raw/2026-09-10/ledger.md#L97
 sprint: migration
 created: 2026-09-10

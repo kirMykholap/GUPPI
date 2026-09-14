@@ -4,7 +4,7 @@ kind: knowledge
 root_cause: the agent list is re-read during a session, at least after a file appears under .claude/agents/; this contradicts lesson-agents-loaded-at-session-start of session D, where three dispatches in the rendering session failed — the difference between the two sessions is not measured
 status: archived
 source: session E 2026-09-10, the Agent tool listing librarian-guppi at 10:52 after guppi render at 10:40 (raw/2026-09-10/ledger.md#L80)
-insight: insight-harness-agent-visibility
+insight: "[[insight-harness-agent-visibility]]"
 origin: raw/2026-09-10/ledger.md#L80
 sprint: migration
 created: 2026-09-10

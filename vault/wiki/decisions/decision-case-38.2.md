@@ -2,8 +2,8 @@
 type: decision
 case: "38.2"
 status: current
-create: [rule-retro-commit, estimate-retro-commit-gates]
-update: [rule-hook-registry]
+create: ["[[rule-retro-commit]]", "[[estimate-retro-commit-gates]]"]
+update: ["[[rule-hook-registry]]"]
 origin: raw/2026-09-10/ledger.md#case-38.2
 sprint: migration
 created: 2026-09-10

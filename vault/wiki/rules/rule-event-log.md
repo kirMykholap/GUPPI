@@ -5,8 +5,8 @@ purpose: Prevents the ledger from being written into a session nothing recorded
 status: built
 enforcement: hook
 implementation_ref: [guppi/event.py, guppi/gate.py, guppi/cli.py, tests/test_gate.py, .claude/settings.json]
-parent: rule-session-start
-estimates: [estimate-event-log-records]
+parent: "[[rule-session-start]]"
+estimates: ["[[estimate-event-log-records]]"]
 origin: raw/2026-09-09/ledger.md#case-9
 sprint: migration
 created: 2026-09-09

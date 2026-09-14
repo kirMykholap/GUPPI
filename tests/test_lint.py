@@ -278,6 +278,20 @@ def test_a_wikilink_to_nothing_is_a_ref_finding(tmp_path):
     ]
 
 
+def test_a_wikilink_to_a_hub_file_under_wiki_resolves(tmp_path):
+    seed(
+        tmp_path,
+        rule=rule_page().replace(
+            "- [[rule-root]]", "- [[rule-root]], [[brief]], [[rules/schema]] and [[nowhere]]"
+        ),
+    )
+    write(tmp_path / "vault" / "wiki" / "brief.md", "# Brief\n")
+    _, lines, _ = run(tmp_path)
+    assert lines == [  # case 149.3: the stem of a root file, the path of a schema
+        "rules/rule-x: ref: body names nowhere, which no live or archived page carries"
+    ]
+
+
 def test_an_origin_without_its_ledger_line_is_an_origin_finding(tmp_path):
     seed(tmp_path, rule=rule_page(origin="raw/2026-09-09/ledger.md#case-7"))
     _, lines, _ = run(tmp_path)

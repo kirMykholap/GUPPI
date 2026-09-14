@@ -3,8 +3,8 @@ type: rule
 kind: MOC
 purpose: Prevents work being planned against stale or contradictory vault state
 status: built
-children: [rule-ask, rule-pretask-hook, rule-pretask, rule-spec-capture]
-estimates: [estimate-plan-mode-verified]
+children: ["[[rule-ask]]", "[[rule-pretask-hook]]", "[[rule-pretask]]", "[[rule-spec-capture]]"]
+estimates: ["[[estimate-plan-mode-verified]]"]
 origin: raw/2026-09-09/ledger.md#case-19
 sprint: migration
 created: 2026-09-09

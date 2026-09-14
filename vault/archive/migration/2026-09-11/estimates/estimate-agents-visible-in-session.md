@@ -2,7 +2,7 @@
 type: estimate
 kind: Research
 status: archived
-target: lesson-agents-visible-in-session
+target: "[[lesson-agents-visible-in-session]]"
 origin: raw/2026-09-10/ledger.md#L80
 sprint: migration
 created: 2026-09-10

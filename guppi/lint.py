@@ -4,7 +4,8 @@ Reads every page under `vault/wiki/<category>/` (archive excluded) against that 
 `schema.yaml` and reports `<category>/<slug>: <class>: <what>`; writes nothing. The
 classes, in the order they are checked: `schema` (a missing field or section, a value
 outside the list, a conditional not met), `schema-prose` (`schema.md` and `schema.yaml`
-naming different fields or sections), `ref` (a slug no live or archived page carries),
+naming different fields or sections), `ref` (a slug no live or archived page carries; a
+body `[[…]]` may also name a hub file under `wiki/` by its stem or its path, case 149.3),
 and, case 72.6, a `[[slug]]` under a decision page's `## Criterion` that is not a live or
 archived Estimate page, or a `### case N` block under an Estimate's `## Criterion` with no
 live or archived `decision-case-N`), `origin` (a ledger file or `[case N]` line that does
@@ -243,11 +244,23 @@ def links_of(page: Page) -> list[tuple[str, str]]:
     return out
 
 
-def check_refs(page: Page, known: set[str]) -> list[Finding]:
+def hub_files(wiki: Path) -> set[str]:
+    """What a body `[[…]]` may name besides a page (case 149.3): a file at the root of
+    `wiki/` by its stem (`brief`, `index`, `glossary`, `case-schema`, `sprint`, `tags`,
+    `log`) or a file under `wiki/` by its path without the suffix (`rules/schema`)."""
+    out = {p.stem for p in wiki.glob("*.md")}
+    for category in CATEGORIES:
+        out |= {f"{category}/{p.stem}" for p in (wiki / category).glob("*.md")}
+    return out
+
+
+def check_refs(page: Page, known: set[str], hubs: set[str] = frozenset()) -> list[Finding]:
     out = []
     seen = set()
     for field, slug in links_of(page):
         if field == "criterion" or slug in known or slug in seen:
+            continue
+        if field == "body" and slug in hubs:  # a hub file under wiki/ (case 149.3)
             continue
         seen.add(slug)
         out.append(
@@ -465,6 +478,7 @@ def lint(project_dir: Path) -> list[str]:
     pages = [p for category in CATEGORIES for p in vault[category]]
     by_slug = {p.slug: p for p in pages}
     known = set(by_slug) | archived_slugs(wiki)
+    hubs = hub_files(wiki)
     findings: list[Finding] = []
     for category in CATEGORIES:
         schema = load_schema(wiki, category)
@@ -480,7 +494,7 @@ def lint(project_dir: Path) -> list[str]:
     for page in pages:
         if page.error:
             continue
-        findings.extend(check_refs(page, known))
+        findings.extend(check_refs(page, known, hubs))
         findings.extend(check_criterion(page, known))
         findings.extend(check_origin(page, project_dir))
         findings.extend(check_paths(page, project_dir))

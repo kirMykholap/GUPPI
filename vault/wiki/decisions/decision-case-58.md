@@ -2,7 +2,7 @@
 type: decision
 case: "58"
 status: current
-update: [rule-documentation, estimate-documentation-completes]
+update: ["[[rule-documentation]]", "[[estimate-documentation-completes]]"]
 origin: raw/2026-09-12/ledger.md#case-58
 sprint: migration
 created: 2026-09-12

@@ -8,6 +8,7 @@ from pathlib import Path
 import yaml
 
 from guppi import generate, lint
+from guppi.pages import strip_refs
 
 DATE = "2026-09-10"
 ORIGIN = f"raw/{DATE}/ledger.md#case-1"
@@ -142,7 +143,7 @@ def page(project_dir, category, slug):
 
 
 def props(text):
-    return yaml.safe_load(text.split("---")[1])
+    return strip_refs(yaml.safe_load(text.split("---")[1]))  # the ref fields bare (148.1)
 
 
 def load_yaml(project_dir):
@@ -848,9 +849,9 @@ def test_a_decision_page_lists_its_targets_by_kind_in_ledger_order(tmp_path):
     code, _, err = run(tmp_path)
     assert code == 0 and err == ""
     text = page(tmp_path, "decisions", "decision-case-1")
-    assert (
-        "create: [rule-root, estimate-root-holds]\nupdate: [case-schema, index]\ndefer: [rule-later]\n"
-        in text
+    assert (  # page slugs as quoted wikilinks, Rule-class slugs bare (148.1)
+        'create: ["[[rule-root]]", "[[estimate-root-holds]]"]\nupdate: [case-schema, index]\n'
+        'defer: ["[[rule-later]]"]\n' in text
     )
     assert "delete:" not in text and "kind:" not in text and "target_slug:" not in text
     assert text.index("status: current\n") < text.index("create:") < text.index("origin:")
@@ -1352,17 +1353,8 @@ def test_a_defer_marks_an_insight_deferred_by_and_a_supersedes_clears_it(tmp_pat
     assert props(thin)["deferred_by"] == ["decision-case-2"]
     assert f"- {DATE} deferred · [[decision-case-2]]" in thin
     assert "## Addressed by" not in thin
-    from guppi import index
-
-    index.run([], project_dir=tmp_path)
-    line = [
-        l
-        for l in (tmp_path / "vault" / "wiki" / "insights-index.md")
-        .read_text(encoding="utf-8")
-        .splitlines()
-        if l.startswith("insight-thin")
-    ]
-    assert line and "deferred_by: decision-case-2" in line[0]
+    # the index line is the page's own field now, read by a Grep of the frontmatter (147.1)
+    assert 'deferred_by: ["[[decision-case-2]]"]' in thin
     # the supersedes of a later session clears it
     later = [
         {
@@ -1428,3 +1420,69 @@ def test_a_create_or_delete_of_an_insight_through_the_yaml_is_an_error(tmp_path)
     code, _, err = run(tmp_path)
     assert code == 1 and "insight-new" in err and "insight-thin" in err
     assert props(page(tmp_path, "insights", "insight-thin"))["status"] == "open"
+
+
+# --- an entry materialize failed, an entry superseded (cases 142.2, 151) -------------------
+
+
+def test_an_entry_materialize_failed_is_skipped_with_its_mark_kept(tmp_path):
+    not_lifted = {
+        "line": 2,
+        "text": "decision[case 9][update][rule-root]",
+        "failed": "ValueError: odd item",
+    }
+    seed(tmp_path, entries=[ROOT, not_lifted])
+    code, _, err = run(tmp_path)
+    assert code == 1
+    assert "generate: line 2: not lifted by materialize; ValueError: odd item" in err
+    assert (tmp_path / "vault" / "wiki" / "rules" / "rule-root.md").exists()  # the rest apply
+    entries = load_yaml(tmp_path)["entries"]
+    assert entries[1] == not_lifted  # the mark as materialize wrote it, no `applied`
+    assert entries[0].get("applied")
+
+
+def test_an_entry_with_superseded_by_is_not_applied_and_its_decision_page_is_written(tmp_path):
+    superseded = {
+        "line": 2,
+        "text": "",
+        "case": "2",
+        "kind": "update",
+        "category": "rules",
+        "slug": "rule-root",
+        "origin": f"raw/{DATE}/ledger.md#case-2",
+        "decision": "decision-case-2",
+        "replace": [{"old": "absent words", "new": "x"}],
+        "change": "the old words",
+        "failed": "generate: rule-root: replace: 'absent words' is absent or not unique",
+        "superseded_by": "3",
+    }
+    later = {
+        "line": 3,
+        "text": "",
+        "case": "3",
+        "kind": "update",
+        "category": "rules",
+        "slug": "rule-root",
+        "origin": f"raw/{DATE}/ledger.md#case-3",
+        "decision": "decision-case-3",
+        "set": {"purpose": "Prevents root, the new words"},
+        "change": "the new words",
+        "supersedes": "2",
+    }
+    decisions = records_for([ROOT, superseded, later])
+    decisions[1]["superseded_by"] = ["decision-case-3"]
+    decisions[2]["supersedes"] = ["decision-case-2"]
+    seed(tmp_path, entries=[ROOT, superseded, later], decisions=decisions)
+    code, _, err = run(tmp_path)
+    assert code == 0 and err == ""
+    entries = load_yaml(tmp_path)["entries"]
+    assert "applied" not in entries[1] and entries[1]["failed"].startswith("generate:")
+    assert entries[2].get("applied")
+    root = props(page(tmp_path, "rules", "rule-root"))
+    assert root["purpose"] == "Prevents root, the new words"
+    assert "the old words" not in page(tmp_path, "rules", "rule-root")
+    early = props(page(tmp_path, "decisions", "decision-case-2"))
+    assert early["status"] in ("superseded", "archived")
+    assert props(page(tmp_path, "decisions", "decision-case-3"))["supersedes"] == [
+        "decision-case-2"
+    ]

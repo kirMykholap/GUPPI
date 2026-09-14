@@ -3,7 +3,7 @@ type: lesson
 kind: error
 root_cause: the clauses were written in Plan Mode of session I against the files as they stood, and the librarian's run of the same session wrote those Cases into the Rule pages after; nothing re-derived the clause from the pages, the class of insight-workflow-contract-change-leaves-its-derived-text-stale, which case 72 closes for Criteria born after it; a full render also drops the outer markers by design, so "marker lines only" was never a possible diff of CLAUDE.md
 status: archived
-insight: insight-workflow-contract-change-leaves-its-derived-text-stale
+insight: "[[insight-workflow-contract-change-leaves-its-derived-text-stale]]"
 origin: raw/2026-09-12/ledger.md#L155
 sprint: migration
 created: 2026-09-12

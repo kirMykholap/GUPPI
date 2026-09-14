@@ -3,7 +3,7 @@ type: lesson
 kind: error
 root_cause: "assemble builds `known = {e[\"line\"]: e for e in entries}` over every entry of the existing yaml, but the three entries the librarian appended at synthesis in session F (an insight create and two lesson updates, marked `librarian: synthesis`) carry no `line` because no ledger line made them; the first materialize over a yaml the librarian has extended fails; entries without `line` must be skipped when the ledger is matched, as the contract of case 41 already says"
 status: clustered
-insight: insight-harness-yaml-entry-shape-assumed
+insight: "[[insight-harness-yaml-entry-shape-assumed]]"
 origin: raw/2026-09-10/ledger.md#L122
 sprint: migration
 created: 2026-09-10

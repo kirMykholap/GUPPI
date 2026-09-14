@@ -6,9 +6,9 @@ status: built
 enforcement: render
 governs: .claude/settings.json
 render_mode: full
-parent: rule-harness
-children: [rule-default-mode, rule-permissions, rule-hook-registry]
-estimates: [estimate-settings]
+parent: "[[rule-harness]]"
+children: ["[[rule-default-mode]]", "[[rule-permissions]]", "[[rule-hook-registry]]"]
+estimates: ["[[estimate-settings]]"]
 origin: raw/2026-09-12/ledger.md#case-85.2
 sprint: migration
 created: 2026-09-12

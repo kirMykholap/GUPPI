@@ -2,8 +2,8 @@
 type: decision
 case: "23.1"
 status: archived
-create: [rule-ask, estimate-ask-finds]
-superseded_by: [decision-case-26.1]
+create: ["[[rule-ask]]", "[[estimate-ask-finds]]"]
+superseded_by: ["[[decision-case-26.1]]"]
 origin: raw/2026-09-09/ledger.md#case-23.1
 sprint: migration
 created: 2026-09-09

@@ -2,7 +2,7 @@
 type: decision
 case: "115.1"
 status: current
-update: [rule-render-harness]
+update: ["[[rule-render-harness]]"]
 origin: raw/2026-09-14/0747/ledger.md#case-115.1
 sprint: migration
 created: 2026-09-14

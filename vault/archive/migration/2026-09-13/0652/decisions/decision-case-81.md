@@ -2,8 +2,8 @@
 type: decision
 case: "81"
 status: archived
-defer: [rule-case-protocol]
-superseded_by: [decision-case-86]
+defer: ["[[rule-case-protocol]]"]
+superseded_by: ["[[decision-case-86]]"]
 origin: raw/2026-09-12/ledger.md#case-81
 sprint: migration
 created: 2026-09-12

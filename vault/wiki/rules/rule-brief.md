@@ -6,8 +6,8 @@ status: built
 enforcement: render
 governs: .claude/agents/librarian-guppi.md
 render_mode: partial
-parent: rule-documentation
-estimates: [estimate-brief-written]
+parent: "[[rule-documentation]]"
+estimates: ["[[estimate-brief-written]]"]
 origin: raw/2026-09-10/ledger.md#case-35.3
 sprint: migration
 created: 2026-09-10

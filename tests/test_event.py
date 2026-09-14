@@ -138,10 +138,10 @@ def test_a_write_failure_never_fails_the_hook(tmp_path):
     assert "event_log" in err
 
 
-def test_cli_dispatches_to_event(tmp_path, monkeypatch, capsys):
+def test_cli_dispatches_to_event(tmp_path, monkeypatch, capsys, pinned_clock):
     from guppi import cli
 
-    today = datetime.now().astimezone().date()  # the CLI reads the real clock
+    today = pinned_clock.date()  # the CLI reads the clock, pinned by conftest (case 145.1)
 
     monkeypatch.setenv("CLAUDE_PROJECT_DIR", str(tmp_path))
     monkeypatch.setattr("sys.stdin", io.StringIO(""))

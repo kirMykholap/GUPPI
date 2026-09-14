@@ -2,7 +2,7 @@
 type: decision
 case: "70"
 status: current
-delete: [lesson-ledger-hook-drops-a-block-followed-by-tool-calls-in-the-turn]
+delete: ["[[lesson-ledger-hook-drops-a-block-followed-by-tool-calls-in-the-turn]]"]
 origin: raw/2026-09-12/ledger.md#case-70
 sprint: migration
 created: 2026-09-12

@@ -2,7 +2,7 @@
 type: decision
 case: "44"
 status: current
-update: [rule-documentation, rule-index-check, rule-synthesis, estimate-synthesis-clusters, estimate-documentation-completes]
+update: ["[[rule-documentation]]", "[[rule-index-check]]", "[[rule-synthesis]]", "[[estimate-synthesis-clusters]]", "[[estimate-documentation-completes]]"]
 origin: raw/2026-09-10/ledger.md#case-44
 sprint: migration
 created: 2026-09-10

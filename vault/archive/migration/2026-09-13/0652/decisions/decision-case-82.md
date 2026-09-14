@@ -2,8 +2,8 @@
 type: decision
 case: "82"
 status: archived
-defer: [rule-materialize]
-superseded_by: [decision-case-87]
+defer: ["[[rule-materialize]]"]
+superseded_by: ["[[decision-case-87]]"]
 origin: raw/2026-09-12/ledger.md#case-82
 sprint: migration
 created: 2026-09-12

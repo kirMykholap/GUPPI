@@ -5,8 +5,8 @@ purpose: Prevents the librarian from reading the ledger and the Spec itself, or 
 status: built
 enforcement: check
 implementation_ref: [guppi/materialize.py, tests/test_materialize.py]
-parent: rule-documentation
-estimates: [estimate-materialize-assembles, estimate-materialize-walks-dates]
+parent: "[[rule-documentation]]"
+estimates: ["[[estimate-materialize-assembles]]", "[[estimate-materialize-walks-dates]]"]
 origin: raw/2026-09-10/ledger.md#case-31
 sprint: migration
 created: 2026-09-10

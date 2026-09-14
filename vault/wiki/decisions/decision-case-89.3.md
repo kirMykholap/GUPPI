@@ -2,7 +2,7 @@
 type: decision
 case: "89.3"
 status: current
-update: [estimate-render-sync-reports]
+update: ["[[estimate-render-sync-reports]]"]
 origin: raw/2026-09-12/ledger.md#case-89.3
 sprint: migration
 created: 2026-09-12

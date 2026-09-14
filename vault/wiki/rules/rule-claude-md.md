@@ -6,9 +6,9 @@ status: built
 enforcement: render
 governs: CLAUDE.md
 render_mode: full
-parent: rule-harness
-children: [rule-case-protocol]
-estimates: [estimate-claude-md-rendered]
+parent: "[[rule-harness]]"
+children: ["[[rule-case-protocol]]"]
+estimates: ["[[estimate-claude-md-rendered]]"]
 origin: raw/2026-09-12/ledger.md#case-59.8
 sprint: migration
 created: 2026-09-12

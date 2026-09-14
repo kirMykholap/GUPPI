@@ -2,7 +2,7 @@
 type: decision
 case: "111.2"
 status: current
-update: [rule-hook-registry]
+update: ["[[rule-hook-registry]]"]
 origin: raw/2026-09-14/0747/ledger.md#case-111.2
 sprint: migration
 created: 2026-09-14

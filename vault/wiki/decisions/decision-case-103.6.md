@@ -3,7 +3,7 @@ type: decision
 case: "103.6"
 status: current
 update: [index, glossary, entities-schema, rules-schema, estimates-schema, lessons-schema, decisions-schema]
-supersedes: [decision-case-100.5]
+supersedes: ["[[decision-case-100.5]]"]
 origin: raw/2026-09-13/ledger.md#case-103.6
 sprint: migration
 created: 2026-09-13

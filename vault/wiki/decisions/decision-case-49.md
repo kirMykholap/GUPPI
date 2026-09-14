@@ -2,7 +2,7 @@
 type: decision
 case: "49"
 status: current
-update: [estimate-index-check-merges, rule-materialize, index]
+update: ["[[estimate-index-check-merges]]", "[[rule-materialize]]", index]
 origin: raw/2026-09-10/ledger.md#case-49
 sprint: migration
 created: 2026-09-10

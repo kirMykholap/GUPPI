@@ -2,8 +2,8 @@
 type: decision
 case: "20"
 status: current
-create: [rule-spec-capture, estimate-spec-capture-appends]
-update: [rule-plan-mode, rule-hook-registry]
+create: ["[[rule-spec-capture]]", "[[estimate-spec-capture-appends]]"]
+update: ["[[rule-plan-mode]]", "[[rule-hook-registry]]"]
 origin: raw/2026-09-09/ledger.md#case-20
 sprint: migration
 created: 2026-09-09

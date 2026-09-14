@@ -8,8 +8,8 @@ exists (case 102.2) — with a History line and a `log.md` line; its slug leaves
 entities and rules (an Insight's `children` keep it, since `severity` counts the live
 ones; a lesson has no Estimates, case 53.1); `[[slug]]` links in page bodies stay. A page
 under `vault/archive/`, at any depth, whose status is no longer `archived` moves back. A live page whose
-`parent` or `target` is in the archive is reported, not moved. Then the four indexes are
-rewritten; an archived Estimate leaves no line, since estimates have none (case 57).
+`parent` or `target` is in the archive is reported, not moved. No index is rewritten: the
+index files are gone, the reader computes the line (case 147.6).
 `raw/` is `guppi archive`'s, not this script's. Rule page: `vault/wiki/rules/rule-cleanup.md`.
 """
 
@@ -20,7 +20,6 @@ from pathlib import Path
 
 from guppi.event import project_root
 from guppi.generate import HISTORY, as_list, write_page
-from guppi.index import plan as index_plan
 from guppi.materialize import CATEGORIES, session_of_run, sprint_id
 from guppi.pages import Page, read_page, wiki_root
 
@@ -152,11 +151,6 @@ class Cleanup:
                         file=self.stderr,
                     )
 
-    def rewrite_indexes(self) -> None:
-        for path, text in index_plan(self.wiki).items():
-            if not path.exists() or path.read_text(encoding="utf-8") != text:
-                path.write_text(text, encoding="utf-8", newline="\n")
-
     def write_log(self) -> None:
         if not self.log_lines:
             return
@@ -188,7 +182,6 @@ def run(argv, *, stdout=None, stderr=None, project_dir: Path | None = None, now=
         job.restore()
         job.unlink(gone)
         job.flag_dangling()
-        job.rewrite_indexes()
         job.write_log()
     except Exception as exc:  # noqa: BLE001 — report, never traceback
         job.errors.append(f"cleanup: stopped: {exc}")

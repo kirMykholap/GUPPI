@@ -6,8 +6,8 @@ status: built
 enforcement: render
 governs: .claude/skills/retro/SKILL.md
 render_mode: full
-parent: rule-end-of-work
-estimates: [estimate-retro-loads]
+parent: "[[rule-end-of-work]]"
+estimates: ["[[estimate-retro-loads]]"]
 origin: raw/2026-09-10/ledger.md#case-38.1
 sprint: migration
 created: 2026-09-10

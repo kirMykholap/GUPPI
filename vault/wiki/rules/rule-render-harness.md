@@ -5,8 +5,8 @@ purpose: Prevents a Rule page and the harness file it governs from becoming two 
 status: built
 enforcement: check
 implementation_ref: [guppi/render.py, tests/test_render.py, .claude/settings.json]
-parent: rule-harness
-estimates: [estimate-render-harness-reproduces, estimate-render-sync-reports]
+parent: "[[rule-harness]]"
+estimates: ["[[estimate-render-harness-reproduces]]", "[[estimate-render-sync-reports]]"]
 origin: raw/2026-09-09/ledger.md#case-18.1
 sprint: migration
 created: 2026-09-09

@@ -2,8 +2,8 @@
 type: decision
 case: "15.2"
 status: archived
-update: [rule-case-protocol]
-superseded_by: [decision-case-17]
+update: ["[[rule-case-protocol]]"]
+superseded_by: ["[[decision-case-17]]"]
 origin: raw/2026-09-09/ledger.md#case-15.2
 sprint: migration
 created: 2026-09-09

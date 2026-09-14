@@ -2,7 +2,7 @@
 type: decision
 case: "59.4"
 status: current
-update: [decisions-schema-yaml, decisions-schema, rule-page-generation, estimate-generate-writes, rule-lint, estimate-lint-catches, index, glossary]
+update: [decisions-schema-yaml, decisions-schema, "[[rule-page-generation]]", "[[estimate-generate-writes]]", "[[rule-lint]]", "[[estimate-lint-catches]]", index, glossary]
 origin: raw/2026-09-12/ledger.md#case-59.4
 sprint: migration
 created: 2026-09-12

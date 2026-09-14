@@ -6,8 +6,8 @@ status: built
 enforcement: render
 governs: .claude/skills/hi/SKILL.md
 render_mode: partial
-parent: rule-skill-hi
-estimates: [estimate-internal-context-loaded]
+parent: "[[rule-skill-hi]]"
+estimates: ["[[estimate-internal-context-loaded]]"]
 origin: raw/2026-09-09/ledger.md#case-11
 sprint: migration
 created: 2026-09-09

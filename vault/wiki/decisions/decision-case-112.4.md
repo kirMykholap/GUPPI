@@ -2,7 +2,7 @@
 type: decision
 case: "112.4"
 status: current
-update: [estimate-generate-walks-dates, estimate-materialize-walks-dates]
+update: ["[[estimate-generate-walks-dates]]", "[[estimate-materialize-walks-dates]]"]
 origin: raw/2026-09-14/0747/ledger.md#case-112.4
 sprint: migration
 created: 2026-09-14

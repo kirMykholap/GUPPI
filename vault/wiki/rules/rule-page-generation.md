@@ -5,8 +5,8 @@ purpose: Prevents a ratified decision from ending the session without a page, or
 status: built
 enforcement: check
 implementation_ref: [guppi/generate.py, tests/test_generate.py]
-parent: rule-documentation
-estimates: [estimate-generate-writes, estimate-generate-walks-dates]
+parent: "[[rule-documentation]]"
+estimates: ["[[estimate-generate-writes]]", "[[estimate-generate-walks-dates]]"]
 origin: raw/2026-09-10/ledger.md#case-32
 sprint: migration
 created: 2026-09-10

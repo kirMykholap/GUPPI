@@ -2,8 +2,8 @@
 type: decision
 case: "120"
 status: archived
-defer: [rule-bash-guard]
-superseded_by: [decision-case-127]
+defer: ["[[rule-bash-guard]]"]
+superseded_by: ["[[decision-case-127]]"]
 origin: raw/2026-09-14/0747/ledger.md#case-120
 sprint: migration
 created: 2026-09-14

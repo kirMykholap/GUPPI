@@ -2,7 +2,7 @@
 type: rule
 purpose: Prevents implementation starting before the plan, branch and baseline exist
 status: draft
-deferred_by: [decision-case-141]
+deferred_by: ["[[decision-case-141]]"]
 origin: raw/2026-09-10/ledger.md#case-29
 sprint: migration
 created: 2026-09-10

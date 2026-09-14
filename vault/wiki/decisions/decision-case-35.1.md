@@ -2,7 +2,7 @@
 type: decision
 case: "35.1"
 status: current
-create: [rule-index-check, estimate-index-check-merges]
+create: ["[[rule-index-check]]", "[[estimate-index-check-merges]]"]
 origin: raw/2026-09-10/ledger.md#case-35.1
 sprint: migration
 created: 2026-09-10

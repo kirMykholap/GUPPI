@@ -9,7 +9,7 @@
 # are different kinds of thing.
 #
 # `test` arrived with Slice 1; `lint` and the per-MOC test pipelines with Slice 2, three more
-# with Slice 3. `lint` only checks: the writers are `uv run guppi render`, `guppi index`,
+# with Slice 3. `lint` only checks: the writers are `uv run guppi render`,
 # `guppi generate` and `guppi cleanup`.
 
 SHELL := /usr/bin/sh
@@ -26,9 +26,8 @@ style: ## ruff over the Python in this repository; must be clean before every co
 test: ## pytest over the harness's own suite
 	@uv run pytest -q < /dev/null
 
-lint: ## the vault: rendered harness and indexes match their pages, pages pass the checks
+lint: ## the vault: the rendered harness matches its pages, pages pass the checks
 	@uv run guppi render --check < /dev/null
-	@uv run guppi index --check < /dev/null
 	@uv run guppi lint < /dev/null
 
 test-session-start: ## the pipeline over rule-session-start's children
@@ -41,7 +40,7 @@ test-documentation: ## the pipeline over rule-documentation's scripts
 	@uv run pytest -q tests/test_materialize.py tests/test_generate.py tests/test_cleanup.py < /dev/null
 
 test-harness: ## the pipeline over rule-harness's children
-	@uv run pytest -q tests/test_render.py tests/test_lint.py tests/test_index.py < /dev/null
+	@uv run pytest -q tests/test_render.py tests/test_lint.py < /dev/null
 
 test-end-of-work: ## the pipeline over rule-end-of-work's children
 	@uv run pytest -q tests/test_gate.py < /dev/null

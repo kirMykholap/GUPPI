@@ -2,7 +2,7 @@
 type: estimate
 kind: QA
 status: passed
-target: rule-git-context
+target: "[[rule-git-context]]"
 origin: raw/2026-09-09/ledger.md#case-11
 sprint: migration
 created: 2026-09-09

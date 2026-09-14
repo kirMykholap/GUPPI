@@ -6,8 +6,8 @@ status: built
 enforcement: render
 governs: .claude/agents/librarian-guppi.md
 render_mode: full
-children: [rule-materialize, rule-index-check, rule-synthesis, rule-page-generation, rule-cleanup, rule-raw-archive, rule-brief, rule-close]
-estimates: [estimate-documentation-completes]
+children: ["[[rule-materialize]]", "[[rule-index-check]]", "[[rule-synthesis]]", "[[rule-page-generation]]", "[[rule-cleanup]]", "[[rule-raw-archive]]", "[[rule-brief]]", "[[rule-close]]"]
+estimates: ["[[estimate-documentation-completes]]"]
 origin: raw/2026-09-10/ledger.md#case-36
 sprint: migration
 created: 2026-09-10

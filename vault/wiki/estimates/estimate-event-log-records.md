@@ -2,7 +2,7 @@
 type: estimate
 kind: QA
 status: passed
-target: rule-event-log
+target: "[[rule-event-log]]"
 origin: raw/2026-09-09/ledger.md#case-9
 sprint: migration
 created: 2026-09-09

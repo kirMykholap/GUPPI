@@ -2,7 +2,7 @@
 type: decision
 case: "38"
 status: current
-create: [rule-end-of-work, estimate-end-of-work-order]
+create: ["[[rule-end-of-work]]", "[[estimate-end-of-work-order]]"]
 origin: raw/2026-09-10/ledger.md#case-38
 sprint: migration
 created: 2026-09-10

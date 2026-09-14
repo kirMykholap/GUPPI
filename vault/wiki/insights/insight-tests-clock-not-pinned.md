@@ -2,7 +2,7 @@
 type: insight
 pattern: A test pins the date on one side of the call and lets the code read the real clock on the other; it passes on the day it is written and fails later.
 status: open
-children: [lesson-tests-cli-date-pinned, lesson-tests-generate-history-date-unpinned]
+children: ["[[lesson-tests-cli-date-pinned]]", "[[lesson-tests-generate-history-date-unpinned]]"]
 severity: 2
 origin: raw/2026-09-11/ledger.md#L71
 sprint: migration

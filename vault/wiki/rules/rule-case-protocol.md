@@ -6,8 +6,8 @@ status: built
 enforcement: render
 governs: CLAUDE.md
 render_mode: partial
-parent: rule-claude-md
-estimates: [estimate-case-protocol-loaded]
+parent: "[[rule-claude-md]]"
+estimates: ["[[estimate-case-protocol-loaded]]"]
 origin: raw/2026-09-09/ledger.md#case-13
 sprint: migration
 created: 2026-09-09

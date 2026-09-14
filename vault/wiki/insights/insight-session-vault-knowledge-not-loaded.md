@@ -2,9 +2,9 @@
 type: insight
 pattern: A fact the vault holds does not reach the session that needs it; only brief.md, CLAUDE.md, the skills and the agent frames are loaded, and everything else waits for a read the agent must first think to make.
 status: actioned
-children: [lesson-readings-after-librarian-invisible-to-next-hi, lesson-vault-lesson-absent-at-the-moment-it-applies, lesson-heredoc-trap-hit-twice-with-its-lesson-live, lesson-heredoc-trap-hit-a-third-time-in-work-mode, lesson-heredoc-trap-hit-a-fourth-time-in-the-session-that-ratified-its-hook]
+children: ["[[lesson-readings-after-librarian-invisible-to-next-hi]]", "[[lesson-vault-lesson-absent-at-the-moment-it-applies]]", "[[lesson-heredoc-trap-hit-twice-with-its-lesson-live]]", "[[lesson-heredoc-trap-hit-a-third-time-in-work-mode]]", "[[lesson-heredoc-trap-hit-a-fourth-time-in-the-session-that-ratified-its-hook]]"]
 severity: 0
-addressed_by: decision-case-134
+addressed_by: "[[decision-case-134]]"
 origin: raw/2026-09-12/ledger.md#L210
 sprint: migration
 created: 2026-09-12

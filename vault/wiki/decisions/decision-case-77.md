@@ -2,7 +2,7 @@
 type: decision
 case: "77"
 status: current
-update: [rule-claude-md]
+update: ["[[rule-claude-md]]"]
 origin: raw/2026-09-12/ledger.md#case-77
 sprint: migration
 created: 2026-09-12

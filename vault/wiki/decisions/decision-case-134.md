@@ -2,7 +2,7 @@
 type: decision
 case: "134"
 status: current
-update: [insight-session-vault-knowledge-not-loaded]
+update: ["[[insight-session-vault-knowledge-not-loaded]]"]
 origin: raw/2026-09-14/1229/ledger.md#case-134
 sprint: migration
 created: 2026-09-14

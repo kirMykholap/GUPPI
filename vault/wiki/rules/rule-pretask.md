@@ -6,8 +6,8 @@ status: built
 enforcement: render
 governs: .claude/skills/pre-task/SKILL.md
 render_mode: full
-parent: rule-plan-mode
-estimates: [estimate-pretask-reconciles]
+parent: "[[rule-plan-mode]]"
+estimates: ["[[estimate-pretask-reconciles]]"]
 origin: raw/2026-09-09/ledger.md#case-24.2
 sprint: migration
 created: 2026-09-09

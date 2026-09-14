@@ -2,8 +2,8 @@
 type: decision
 case: "126"
 status: current
-update: [rule-retro]
-supersedes: [decision-case-118]
+update: ["[[rule-retro]]"]
+supersedes: ["[[decision-case-118]]"]
 origin: raw/2026-09-14/1029/ledger.md#case-126
 sprint: migration
 created: 2026-09-14

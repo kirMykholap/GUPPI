@@ -2,7 +2,7 @@
 type: estimate
 kind: Research
 status: archived
-target: lesson-readings-after-librarian-invisible-to-next-hi
+target: "[[lesson-readings-after-librarian-invisible-to-next-hi]]"
 origin: raw/2026-09-10/ledger.md#L100
 sprint: migration
 created: 2026-09-10

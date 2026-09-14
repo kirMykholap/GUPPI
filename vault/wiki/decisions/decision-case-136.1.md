@@ -2,7 +2,7 @@
 type: decision
 case: "136.1"
 status: current
-update: [rule-event-log, rule-pretask, rule-retro, rule-handoff]
+update: ["[[rule-event-log]]", "[[rule-pretask]]", "[[rule-retro]]", "[[rule-handoff]]"]
 origin: raw/2026-09-14/1229/ledger.md#case-136.1
 sprint: migration
 created: 2026-09-14

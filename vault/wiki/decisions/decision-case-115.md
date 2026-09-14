@@ -2,8 +2,8 @@
 type: decision
 case: "115"
 status: current
-update: [rule-git-context]
-supersedes: [decision-case-106]
+update: ["[[rule-git-context]]"]
+supersedes: ["[[decision-case-106]]"]
 origin: raw/2026-09-14/0747/ledger.md#case-115
 sprint: migration
 created: 2026-09-14

@@ -91,10 +91,10 @@ def test_garbage_on_stdin_never_fails_the_session(tmp_path):
     assert run(io.StringIO("not json"), tmp_path) == (0, "")
 
 
-def test_cli_dispatches_to_pretask(tmp_path, monkeypatch, capsys):
+def test_cli_dispatches_to_pretask(tmp_path, monkeypatch, capsys, pinned_clock):
     from guppi import cli
 
-    today = datetime.now().astimezone().date()  # the CLI reads the real clock
+    today = pinned_clock.date()  # the CLI reads the clock, pinned by conftest (case 145.1)
 
     with_event_log(tmp_path, START + HI, day=today)
     monkeypatch.setenv("CLAUDE_PROJECT_DIR", str(tmp_path))

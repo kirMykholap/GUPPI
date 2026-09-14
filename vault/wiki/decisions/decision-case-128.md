@@ -2,8 +2,8 @@
 type: decision
 case: "128"
 status: current
-update: [rule-pretask]
-supersedes: [decision-case-121]
+update: ["[[rule-pretask]]"]
+supersedes: ["[[decision-case-121]]"]
 origin: raw/2026-09-14/1029/ledger.md#case-128
 sprint: migration
 created: 2026-09-14

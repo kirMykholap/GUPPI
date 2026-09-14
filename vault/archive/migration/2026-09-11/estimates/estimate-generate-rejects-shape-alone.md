@@ -2,7 +2,7 @@
 type: estimate
 kind: QA
 status: archived
-target: rule-page-generation
+target: "[[rule-page-generation]]"
 origin: raw/2026-09-10/ledger.md#case-47
 sprint: migration
 created: 2026-09-10

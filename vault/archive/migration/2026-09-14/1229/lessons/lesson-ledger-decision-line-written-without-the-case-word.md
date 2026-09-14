@@ -3,7 +3,7 @@ type: lesson
 kind: error
 root_cause: the table of case-schema.md shows the line as decision[case_id][kind][slug], a placeholder the agent read literally, while every earlier ledger writes the word case before the id; nothing between the reply and materialize checks a written line against the grammar, and the Stop hook writes verbatim by design; the lines were written again in the right form, the wrong ones stay as the trace
 status: archived
-insight: insight-ledger-line-written-unchecked
+insight: "[[insight-ledger-line-written-unchecked]]"
 origin: raw/2026-09-12/ledger.md#L100
 sprint: migration
 created: 2026-09-12

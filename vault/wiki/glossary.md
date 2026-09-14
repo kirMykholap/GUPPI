@@ -1,6 +1,6 @@
 # Glossary
 
-One line per term and where it is defined: `§N` a section of `index.md`, a slug the Rule
+One line per term and where it is defined: `§N` a section of [[index]], a slug the Rule
 page (`draft` while in `docs/migration/`), `here` this row. Rule-class; imported into `CLAUDE.md`.
 
 ## Core principle
@@ -72,7 +72,7 @@ page (`draft` while in `docs/migration/`), `here` this row. Rule-class; imported
 | Spec | The ratified Cases as one document, approved as Claude Code's plan, copied to `raw/<date>/<hi HHMM>/spec.md`, the session's folder (case 73.1) | rule-spec-capture |
 | Executable plan, Work Mode | The Spec as tasks with code, paths, checkboxes; subagents transcribe, a fork comes back as a Case | rule-work-mode (draft) |
 | Retro, Handoff | `/retro`: an analysis of this session only — the frontier first, then every item ends as a lesson, a reading, a short defer (a Case of `context`, `problem`, `purpose` under `## Retro` in the Spec) or a handoff note; edits only finish ratified work; red tests are fixed or reverted into a patch in `raw/`; ends with a commit. `/handoff`, gated by `guppi gate` on a dirty tree: `handoff.md` from memory, then the librarian | rule-end-of-work, rule-retro |
-| Index, `ask-guppi` | `wiki/<category>-index.md` for entities, rules, lessons, insights, one line per live page, never compared across categories; the search agent over them, one entry point; Estimates through the target, Decisions through `deferred_by`; the archive answered by slug alone — `free`, `live` or `archived at <path>` — never by meaning (case 105.1) | §11, rule-index, rule-ask |
+| Index line, `ask-guppi` | The Grep of a category's frontmatter — `purpose`, `root_cause` or `pattern`, and `deferred_by` — one line per live page, never compared across categories; no index file (case 147.8); the search agent over these lines, one entry point; Estimates through the target, Decisions through `deferred_by`; the archive answered by slug alone — `free`, `live` or `archived at <path>` — never by meaning (case 105.1) | §11, rule-ask |
 | Documentation | The librarian's phase, the agent `librarian-guppi`: materialize, index check, synthesis, generate, cleanup, brief, close | rule-documentation |
 
 ## Agents and machinery

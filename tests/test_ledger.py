@@ -254,10 +254,10 @@ def test_empty_stdin_is_a_reply_with_no_lines(tmp_path):
     assert (code, err) == (0, "")
 
 
-def test_cli_dispatches_to_ledger(tmp_path, monkeypatch, capsys):
+def test_cli_dispatches_to_ledger(tmp_path, monkeypatch, capsys, pinned_clock):
     from guppi import cli
 
-    today = datetime.now().astimezone().date()  # the CLI reads the real clock
+    today = pinned_clock.date()  # the CLI reads the clock, pinned by conftest (case 145.1)
 
     write_event_log(tmp_path, EVENT_LOG_WITH_HI, day=today)
     monkeypatch.setenv("CLAUDE_PROJECT_DIR", str(tmp_path))

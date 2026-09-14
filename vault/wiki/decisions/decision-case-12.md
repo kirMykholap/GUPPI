@@ -2,7 +2,7 @@
 type: decision
 case: "12"
 status: current
-create: [rule-session-start, estimate-session-start-context]
+create: ["[[rule-session-start]]", "[[estimate-session-start-context]]"]
 origin: raw/2026-09-09/ledger.md#case-12
 sprint: migration
 created: 2026-09-09

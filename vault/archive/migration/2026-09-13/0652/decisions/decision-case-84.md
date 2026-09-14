@@ -2,8 +2,8 @@
 type: decision
 case: "84"
 status: archived
-defer: [rule-claude-md, rule-render-harness]
-superseded_by: [decision-case-88.1, decision-case-88.2]
+defer: ["[[rule-claude-md]]", "[[rule-render-harness]]"]
+superseded_by: ["[[decision-case-88.1]]", "[[decision-case-88.2]]"]
 origin: raw/2026-09-12/ledger.md#case-84
 sprint: migration
 created: 2026-09-12

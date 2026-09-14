@@ -5,8 +5,8 @@ purpose: Keeps raw/ to the sessions not yet turned into pages, by moving an appl
 status: built
 enforcement: check
 implementation_ref: [guppi/archive.py, tests/test_archive.py]
-parent: rule-documentation
-estimates: [estimate-raw-archive]
+parent: "[[rule-documentation]]"
+estimates: ["[[estimate-raw-archive]]"]
 origin: raw/2026-09-13/ledger.md#case-100.1
 sprint: migration
 created: 2026-09-13

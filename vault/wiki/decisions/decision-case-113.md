@@ -2,7 +2,7 @@
 type: decision
 case: "113"
 status: current
-update: [lesson-agents-at-import-not-expanded, lesson-agents-loaded-at-session-start, lesson-agents-visible-in-session, lesson-estimates-criterion-stale-after-contract-change, lesson-hooks-exitplanmode-payload, lesson-hooks-messagedisplay-cannot-block, lesson-hooks-sessionstart-cannot-block, lesson-hooks-stop-payload, lesson-hooks-windows-stdin-encoding, lesson-tests-cli-date-pinned]
+update: ["[[lesson-agents-at-import-not-expanded]]", "[[lesson-agents-loaded-at-session-start]]", "[[lesson-agents-visible-in-session]]", "[[lesson-estimates-criterion-stale-after-contract-change]]", "[[lesson-hooks-exitplanmode-payload]]", "[[lesson-hooks-messagedisplay-cannot-block]]", "[[lesson-hooks-sessionstart-cannot-block]]", "[[lesson-hooks-stop-payload]]", "[[lesson-hooks-windows-stdin-encoding]]", "[[lesson-tests-cli-date-pinned]]"]
 origin: raw/2026-09-14/0747/ledger.md#case-113
 sprint: migration
 created: 2026-09-14

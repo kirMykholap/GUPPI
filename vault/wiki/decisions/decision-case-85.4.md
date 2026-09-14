@@ -2,7 +2,7 @@
 type: decision
 case: "85.4"
 status: current
-create: [rule-default-mode]
+create: ["[[rule-default-mode]]"]
 origin: raw/2026-09-12/ledger.md#case-85.4
 sprint: migration
 created: 2026-09-12

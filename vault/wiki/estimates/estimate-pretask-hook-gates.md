@@ -2,7 +2,7 @@
 type: estimate
 kind: QA
 status: passed
-target: rule-pretask-hook
+target: "[[rule-pretask-hook]]"
 origin: raw/2026-09-09/ledger.md#case-24.1
 sprint: migration
 created: 2026-09-09

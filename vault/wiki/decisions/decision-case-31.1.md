@@ -2,7 +2,7 @@
 type: decision
 case: "31.1"
 status: current
-update: [decisions-schema, decisions-schema-yaml, rule-ask]
+update: [decisions-schema, decisions-schema-yaml, "[[rule-ask]]"]
 origin: raw/2026-09-10/ledger.md#case-31.1
 sprint: migration
 created: 2026-09-10

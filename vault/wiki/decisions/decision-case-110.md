@@ -2,7 +2,7 @@
 type: decision
 case: "110"
 status: current
-update: [rule-page-generation]
+update: ["[[rule-page-generation]]"]
 origin: raw/2026-09-14/0747/ledger.md#case-110
 sprint: migration
 created: 2026-09-14

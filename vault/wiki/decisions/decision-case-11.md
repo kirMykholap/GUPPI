@@ -2,7 +2,7 @@
 type: decision
 case: "11"
 status: current
-create: [rule-skill-hi, estimate-hi-no-read-calls, rule-internal-context, estimate-internal-context-loaded, rule-git-context, estimate-git-context-current, rule-github-issues, estimate-github-issues-listed]
+create: ["[[rule-skill-hi]]", "[[estimate-hi-no-read-calls]]", "[[rule-internal-context]]", "[[estimate-internal-context-loaded]]", "[[rule-git-context]]", "[[estimate-git-context-current]]", "[[rule-github-issues]]", "[[estimate-github-issues-listed]]"]
 origin: raw/2026-09-09/ledger.md#case-11
 sprint: migration
 created: 2026-09-09

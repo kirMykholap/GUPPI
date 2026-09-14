@@ -13,13 +13,13 @@ One page per Case, however many ledger lines the Case produced.
 | `type` | yes | `decision` | Page category. Fixed for this schema. |
 | `case` | yes | case id, e.g. `18.1` | The Case this page records. |
 | `status` | yes | `current` \| `superseded` \| `archived` | Lifecycle of this page, not of the work. `superseded` once a later Case names it in `supersedes`, and `archived` the moment the cascade of `generate` meets it so: a superseded Decision no longer describes the present (case 104.1). |
-| `create` | one of the four | list of slugs | The slugs of the Case's `create` lines, in ledger order: a page, or a Rule-class file by its ledger slug (`case-schema`, `rules-schema-yaml`). One list per kind present, in the order create, update, delete, defer; a kind with no line is absent. Lists of scalars, so Obsidian shows them as lists and links; the kind of every target is its key (case 59.4, replacing the aligned `kind` and `target_slug` of case 52.1). The category is derived from the slug prefix or the Rule-class map and never written; the parent of a `create` is on the child page as `parent` or `target`. |
-| `update` | one of the four | list of slugs | The slugs of the Case's `update` lines, in ledger order. |
-| `delete` | one of the four | list of slugs | The slugs of the Case's `delete` lines, in ledger order. |
-| `defer` | one of the four | list of slugs | The slugs of the Case's `defer` lines, in ledger order; each target carries this page in `deferred_by`. |
+| `create` | one of the four | list of quoted wikilink `"[[slug]]"` | The slugs of the Case's `create` lines, in ledger order: a page, or a Rule-class file by its ledger slug (`case-schema`, `rules-schema-yaml`). One list per kind present, in the order create, update, delete, defer; a kind with no line is absent. Lists of quoted wikilinks for page slugs, a Rule-class slug bare, so Obsidian shows them as links (case 148.2); the kind of every target is its key (case 59.4, replacing the aligned `kind` and `target_slug` of case 52.1). The category is derived from the slug prefix or the Rule-class map and never written; the parent of a `create` is on the child page as `parent` or `target`. |
+| `update` | one of the four | list of quoted wikilink `"[[slug]]"` | The slugs of the Case's `update` lines, in ledger order. |
+| `delete` | one of the four | list of quoted wikilink `"[[slug]]"` | The slugs of the Case's `delete` lines, in ledger order. |
+| `defer` | one of the four | list of quoted wikilink `"[[slug]]"` | The slugs of the Case's `defer` lines, in ledger order; each target carries this page in `deferred_by`. |
 | `source` | no | list | External ids the Case's lines carried (`{source:...}`), traceability only. |
-| `supersedes` | no | list of decision slugs | Earlier Cases this one overrides, from the ledger's `{supersedes:case N}`. |
-| `superseded_by` | no | list of decision slugs | Back-references, written by the script. |
+| `supersedes` | no | list of decision quoted wikilink `"[[slug]]"` | Earlier Cases this one overrides, from the ledger's `{supersedes:case N}`. |
+| `superseded_by` | no | list of decision quoted wikilink `"[[slug]]"` | Back-references, written by the script. |
 | `origin` | yes | `raw/YYYY-MM-DD/HHMM/ledger.md#case-N` (the date form, `raw/YYYY-MM-DD/ledger.md#case-N`, on pages born before 2026-09-13; case 103.6) | Where this was ratified. The folder also holds the Spec with the Case. The `raw/` of a session is archived with it once every line of it became a page, and the pointer is not rewritten (cases 100.1, 103.6). |
 | `sprint` | yes | sprint id | Cheap slice of "what did we decide this sprint" without parsing dates. |
 | `created` | yes | date | |

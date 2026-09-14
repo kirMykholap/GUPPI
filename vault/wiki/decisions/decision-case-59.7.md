@@ -2,8 +2,8 @@
 type: decision
 case: "59.7"
 status: current
-create: [estimate-render-sync-reports]
-update: [rule-render-harness, rule-hook-registry, rule-skill-hi]
+create: ["[[estimate-render-sync-reports]]"]
+update: ["[[rule-render-harness]]", "[[rule-hook-registry]]", "[[rule-skill-hi]]"]
 origin: raw/2026-09-12/ledger.md#case-59.7
 sprint: migration
 created: 2026-09-12

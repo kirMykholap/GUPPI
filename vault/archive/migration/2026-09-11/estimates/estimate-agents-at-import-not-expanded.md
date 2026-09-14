@@ -2,7 +2,7 @@
 type: estimate
 kind: Research
 status: archived
-target: lesson-agents-at-import-not-expanded
+target: "[[lesson-agents-at-import-not-expanded]]"
 origin: raw/2026-09-10/ledger.md#L3
 sprint: migration
 created: 2026-09-10

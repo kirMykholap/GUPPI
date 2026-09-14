@@ -2,8 +2,8 @@
 type: decision
 case: "130.1"
 status: current
-update: [rule-page-generation]
-supersedes: [decision-case-112.6]
+update: ["[[rule-page-generation]]"]
+supersedes: ["[[decision-case-112.6]]"]
 origin: raw/2026-09-14/1029/ledger.md#case-130.1
 sprint: migration
 created: 2026-09-14

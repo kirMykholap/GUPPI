@@ -2,7 +2,7 @@
 type: decision
 case: "19"
 status: current
-create: [rule-plan-mode, estimate-plan-mode-verified]
+create: ["[[rule-plan-mode]]", "[[estimate-plan-mode-verified]]"]
 origin: raw/2026-09-09/ledger.md#case-19
 sprint: migration
 created: 2026-09-09

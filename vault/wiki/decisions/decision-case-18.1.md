@@ -2,7 +2,7 @@
 type: decision
 case: "18.1"
 status: current
-create: [rule-render-harness, estimate-render-harness-reproduces]
+create: ["[[rule-render-harness]]", "[[estimate-render-harness-reproduces]]"]
 origin: raw/2026-09-09/ledger.md#case-18.1
 sprint: migration
 created: 2026-09-09

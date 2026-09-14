@@ -2,7 +2,7 @@
 type: decision
 case: "71.1"
 status: current
-create: [estimate-governed-files-hook-refuses, estimate-claude-md-rendered]
+create: ["[[estimate-governed-files-hook-refuses]]", "[[estimate-claude-md-rendered]]"]
 origin: raw/2026-09-12/ledger.md#case-71.1
 sprint: migration
 created: 2026-09-12

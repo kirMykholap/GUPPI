@@ -2,7 +2,7 @@
 type: estimate
 kind: QA
 status: archived
-target: lesson-generate-walk-history-dated-by-yaml
+target: "[[lesson-generate-walk-history-dated-by-yaml]]"
 origin: raw/2026-09-10/ledger.md#L98
 sprint: migration
 created: 2026-09-10

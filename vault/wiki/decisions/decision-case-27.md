@@ -2,8 +2,8 @@
 type: decision
 case: "27"
 status: current
-update: [rule-index, index, rule-ask]
-supersedes: [decision-case-22]
+update: ["[[rule-index]]", index, "[[rule-ask]]"]
+supersedes: ["[[decision-case-22]]"]
 origin: raw/2026-09-09/ledger.md#case-27
 sprint: migration
 created: 2026-09-09

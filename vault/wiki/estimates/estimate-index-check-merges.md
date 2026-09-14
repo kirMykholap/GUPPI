@@ -2,7 +2,7 @@
 type: estimate
 kind: QA
 status: passed
-target: rule-index-check
+target: "[[rule-index-check]]"
 origin: raw/2026-09-10/ledger.md#case-35.1
 sprint: migration
 created: 2026-09-10

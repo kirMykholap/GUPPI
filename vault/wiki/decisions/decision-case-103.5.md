@@ -2,8 +2,8 @@
 type: decision
 case: "103.5"
 status: current
-update: [rule-lint]
-supersedes: [decision-case-100.3]
+update: ["[[rule-lint]]"]
+supersedes: ["[[decision-case-100.3]]"]
 origin: raw/2026-09-13/ledger.md#case-103.5
 sprint: migration
 created: 2026-09-13

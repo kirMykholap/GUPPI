@@ -2,7 +2,7 @@
 type: decision
 case: "136.4"
 status: current
-update: [insight-ledger-hi-tied-to-its-session-by-position]
+update: ["[[insight-ledger-hi-tied-to-its-session-by-position]]"]
 origin: raw/2026-09-14/1229/ledger.md#case-136.4
 sprint: migration
 created: 2026-09-14

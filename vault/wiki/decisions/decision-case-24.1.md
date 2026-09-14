@@ -2,8 +2,8 @@
 type: decision
 case: "24.1"
 status: current
-create: [rule-pretask-hook, estimate-pretask-hook-gates]
-update: [rule-hook-registry]
+create: ["[[rule-pretask-hook]]", "[[estimate-pretask-hook-gates]]"]
+update: ["[[rule-hook-registry]]"]
 origin: raw/2026-09-09/ledger.md#case-24.1
 sprint: migration
 created: 2026-09-09

@@ -2,7 +2,7 @@
 type: decision
 case: "52.4"
 status: current
-update: [rule-page-generation, rule-lint, index]
+update: ["[[rule-page-generation]]", "[[rule-lint]]", index]
 origin: raw/2026-09-10/ledger.md#case-52.4
 sprint: migration
 created: 2026-09-10

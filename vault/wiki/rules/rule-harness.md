@@ -3,8 +3,8 @@ type: rule
 kind: MOC
 purpose: Prevents the tools of the harness from drifting apart from the pages that describe them
 status: built
-children: [rule-render-harness, rule-settings, rule-lint, rule-index, rule-governed-files-hook, rule-claude-md, rule-bash-guard]
-estimates: [estimate-harness-pipeline]
+children: ["[[rule-render-harness]]", "[[rule-settings]]", "[[rule-lint]]", "[[rule-index]]", "[[rule-governed-files-hook]]", "[[rule-claude-md]]", "[[rule-bash-guard]]"]
+estimates: ["[[estimate-harness-pipeline]]"]
 origin: raw/2026-09-10/ledger.md#case-37
 sprint: migration
 created: 2026-09-10

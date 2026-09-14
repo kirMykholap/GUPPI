@@ -2,7 +2,7 @@
 type: decision
 case: "52.3"
 status: current
-update: [rules-schema-yaml, rules-schema, entities-schema-yaml, entities-schema, rule-page-generation, rule-index, rule-ask, rule-lint, index, glossary]
+update: [rules-schema-yaml, rules-schema, entities-schema-yaml, entities-schema, "[[rule-page-generation]]", "[[rule-index]]", "[[rule-ask]]", "[[rule-lint]]", index, glossary]
 origin: raw/2026-09-10/ledger.md#case-52.3
 sprint: migration
 created: 2026-09-10

@@ -2,7 +2,7 @@
 type: decision
 case: "66"
 status: current
-update: [rule-case-protocol, rule-plan-mode, rule-pretask-hook, index, rule-harness, estimate-retro-loads, estimate-spec-capture-appends, estimate-render-harness-reproduces]
+update: ["[[rule-case-protocol]]", "[[rule-plan-mode]]", "[[rule-pretask-hook]]", index, "[[rule-harness]]", "[[estimate-retro-loads]]", "[[estimate-spec-capture-appends]]", "[[estimate-render-harness-reproduces]]"]
 origin: raw/2026-09-12/ledger.md#case-66
 sprint: migration
 created: 2026-09-12

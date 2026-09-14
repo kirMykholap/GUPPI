@@ -2,7 +2,7 @@
 type: decision
 case: "33"
 status: current
-create: [rule-cleanup, estimate-cleanup-moves]
+create: ["[[rule-cleanup]]", "[[estimate-cleanup-moves]]"]
 update: [index, glossary]
 origin: raw/2026-09-10/ledger.md#case-33
 sprint: migration

@@ -5,8 +5,8 @@ purpose: Prevents the handoff from starting on an uncommitted tree
 status: built
 enforcement: hook
 implementation_ref: [guppi/gate.py, tests/test_gate.py, .claude/settings.json]
-parent: rule-end-of-work
-estimates: [estimate-retro-commit-gates]
+parent: "[[rule-end-of-work]]"
+estimates: ["[[estimate-retro-commit-gates]]"]
 origin: raw/2026-09-10/ledger.md#case-38.2
 sprint: migration
 created: 2026-09-10

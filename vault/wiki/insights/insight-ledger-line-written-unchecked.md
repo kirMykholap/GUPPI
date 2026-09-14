@@ -2,9 +2,9 @@
 type: insight
 pattern: A ledger line is written verbatim and nothing reads it back until materialize, so a line that does not parse or does not match the Spec costs a session.
 status: actioned
-children: [lesson-spec-then-items-unchecked-against-ledger-lines, lesson-ledger-decision-line-written-without-the-case-word, lesson-ledger-preview-in-ratification-taken-for-the-record, lesson-pretask-nested-estimate-exempt-from-the-line-check]
+children: ["[[lesson-spec-then-items-unchecked-against-ledger-lines]]", "[[lesson-ledger-decision-line-written-without-the-case-word]]", "[[lesson-ledger-preview-in-ratification-taken-for-the-record]]", "[[lesson-pretask-nested-estimate-exempt-from-the-line-check]]"]
 severity: 0
-addressed_by: decision-case-135
+addressed_by: "[[decision-case-135]]"
 origin: raw/2026-09-12/ledger.md#L100
 sprint: migration
 created: 2026-09-12

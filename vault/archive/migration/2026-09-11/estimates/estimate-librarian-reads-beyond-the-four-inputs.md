@@ -2,7 +2,7 @@
 type: estimate
 kind: Research
 status: archived
-target: lesson-librarian-reads-beyond-the-four-inputs
+target: "[[lesson-librarian-reads-beyond-the-four-inputs]]"
 origin: raw/2026-09-10/ledger.md#L99
 sprint: migration
 created: 2026-09-10

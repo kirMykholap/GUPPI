@@ -2,8 +2,8 @@
 type: decision
 case: "18.2"
 status: current
-create: [rule-hook-registry, estimate-hook-registry-rendered]
-update: [rule-session-start]
+create: ["[[rule-hook-registry]]", "[[estimate-hook-registry-rendered]]"]
+update: ["[[rule-session-start]]"]
 origin: raw/2026-09-09/ledger.md#case-18.2
 sprint: migration
 created: 2026-09-09

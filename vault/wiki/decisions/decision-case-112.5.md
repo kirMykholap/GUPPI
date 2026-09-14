@@ -2,7 +2,7 @@
 type: decision
 case: "112.5"
 status: current
-update: [estimate-cleanup-moves]
+update: ["[[estimate-cleanup-moves]]"]
 origin: raw/2026-09-14/0747/ledger.md#case-112.5
 sprint: migration
 created: 2026-09-14

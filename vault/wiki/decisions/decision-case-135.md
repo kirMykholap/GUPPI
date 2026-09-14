@@ -2,7 +2,7 @@
 type: decision
 case: "135"
 status: current
-update: [insight-ledger-line-written-unchecked]
+update: ["[[insight-ledger-line-written-unchecked]]"]
 origin: raw/2026-09-14/1229/ledger.md#case-135
 sprint: migration
 created: 2026-09-14

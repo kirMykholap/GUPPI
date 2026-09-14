@@ -2,7 +2,7 @@
 type: decision
 case: "13"
 status: current
-create: [rule-case-protocol, estimate-case-protocol-loaded]
+create: ["[[rule-case-protocol]]", "[[estimate-case-protocol-loaded]]"]
 origin: raw/2026-09-09/ledger.md#case-13
 sprint: migration
 created: 2026-09-09

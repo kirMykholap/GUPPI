@@ -2,7 +2,7 @@
 type: decision
 case: "140"
 status: current
-update: [decision-case-130.1, decision-case-130.2]
+update: ["[[decision-case-130.1]]", "[[decision-case-130.2]]"]
 origin: raw/2026-09-14/1229/ledger.md#case-140
 sprint: migration
 created: 2026-09-14

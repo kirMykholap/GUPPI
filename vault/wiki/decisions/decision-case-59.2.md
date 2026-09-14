@@ -2,8 +2,8 @@
 type: decision
 case: "59.2"
 status: current
-create: [estimate-hi-writes-frontier]
-update: [rule-skill-hi, rule-pretask, estimate-pretask-reconciles, rule-case-protocol, index]
+create: ["[[estimate-hi-writes-frontier]]"]
+update: ["[[rule-skill-hi]]", "[[rule-pretask]]", "[[estimate-pretask-reconciles]]", "[[rule-case-protocol]]", index]
 origin: raw/2026-09-12/ledger.md#case-59.2
 sprint: migration
 created: 2026-09-12

@@ -5,8 +5,8 @@ purpose: Prevents a ratified line from existing only in a chat reply, or landing
 status: built
 enforcement: hook
 implementation_ref: [guppi/ledger.py, guppi/gate.py, tests/test_gate.py, .claude/settings.json]
-parent: rule-session-start
-estimates: [estimate-ledger-write-lifts]
+parent: "[[rule-session-start]]"
+estimates: ["[[estimate-ledger-write-lifts]]"]
 origin: raw/2026-09-09/ledger.md#case-10
 sprint: migration
 created: 2026-09-09

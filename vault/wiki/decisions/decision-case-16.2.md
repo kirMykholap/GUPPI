@@ -2,7 +2,7 @@
 type: decision
 case: "16.2"
 status: current
-update: [estimate-case-protocol-loaded]
+update: ["[[estimate-case-protocol-loaded]]"]
 origin: raw/2026-09-09/ledger.md#case-16.2
 sprint: migration
 created: 2026-09-09

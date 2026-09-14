@@ -2,7 +2,7 @@
 type: decision
 case: "85.5"
 status: current
-create: [rule-permissions]
+create: ["[[rule-permissions]]"]
 origin: raw/2026-09-12/ledger.md#case-85.5
 sprint: migration
 created: 2026-09-12

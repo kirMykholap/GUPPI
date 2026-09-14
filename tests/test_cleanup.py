@@ -77,7 +77,7 @@ def test_archived_pages_move_with_a_history_line_and_leave_the_lists(tmp_path):
     assert f"- {DATE} archived · cleanup" in moved.read_text(encoding="utf-8")
     assert archived(tmp_path, "estimates", "estimate-root").exists()
     root = (tmp_path / "vault" / "wiki" / "rules" / "rule-root.md").read_text(encoding="utf-8")
-    assert "children: [rule-b]" in root and "estimates: []" in root
+    assert 'children: ["[[rule-b]]"]' in root and "estimates: []" in root
     assert "## Estimates\n\n## Children\n\n1. [[rule-b]]\n\n## History" in root
     assert (
         f"- {DATE} child rule-a archived · cleanup" in root
@@ -86,11 +86,10 @@ def test_archived_pages_move_with_a_history_line_and_leave_the_lists(tmp_path):
     insight = (tmp_path / "vault" / "wiki" / "insights" / "insight-x.md").read_text(
         encoding="utf-8"
     )
-    assert "children: [lesson-x]" in insight
+    assert "children: [lesson-x]" in insight  # untouched by cleanup: the bare form stays
     log = (tmp_path / "vault" / "wiki" / "log.md").read_text(encoding="utf-8")
     assert f"- {DATE} rules/rule-a archived · cleanup" in log
-    index = (tmp_path / "vault" / "wiki" / "rules-index.md").read_text(encoding="utf-8")
-    assert "rule-a" not in index and "rule-b" in index
+    assert not (tmp_path / "vault" / "wiki" / "rules-index.md").exists()  # no index (147.6)
 
 
 def test_a_page_whose_status_left_archived_comes_back(tmp_path):

@@ -2,8 +2,8 @@
 type: decision
 case: "112.6"
 status: archived
-update: [rule-page-generation]
-superseded_by: [decision-case-130.1]
+update: ["[[rule-page-generation]]"]
+superseded_by: ["[[decision-case-130.1]]"]
 origin: raw/2026-09-14/0747/ledger.md#case-112.6
 sprint: migration
 created: 2026-09-14

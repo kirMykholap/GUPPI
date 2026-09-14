@@ -2,8 +2,8 @@
 type: decision
 case: "37"
 status: current
-create: [rule-harness, estimate-harness-pipeline]
-update: [rule-render-harness, rule-hook-registry, rule-lint, rule-index]
+create: ["[[rule-harness]]", "[[estimate-harness-pipeline]]"]
+update: ["[[rule-render-harness]]", "[[rule-hook-registry]]", "[[rule-lint]]", "[[rule-index]]"]
 origin: raw/2026-09-10/ledger.md#case-37
 sprint: migration
 created: 2026-09-10

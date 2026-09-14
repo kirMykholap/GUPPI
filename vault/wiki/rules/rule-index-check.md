@@ -6,8 +6,8 @@ status: built
 enforcement: render
 governs: .claude/agents/librarian-guppi.md
 render_mode: partial
-parent: rule-documentation
-estimates: [estimate-index-check-merges]
+parent: "[[rule-documentation]]"
+estimates: ["[[estimate-index-check-merges]]"]
 origin: raw/2026-09-10/ledger.md#case-35.1
 sprint: migration
 created: 2026-09-10

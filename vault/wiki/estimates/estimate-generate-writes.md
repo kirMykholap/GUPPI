@@ -110,13 +110,25 @@ A lesson whose `insight` field is set gets `## Insight` holding `- [[<insight>]]
 **＋** `guppi lint` after the run shows the 22 `## Insight` findings gone.
 **－** `{supersedes:case 108}`: `decision-case-108` is superseded, `rule-synthesis` loses `deferred_by`.
 
+### case 124.2
+
+When:
+`guppi generate` applies a yaml entry whose target is a page of `insights/`.
+
+Then:
+A `defer` with an Insight as its target appends the decision slug to its `deferred_by`, as for a Rule; `KEY_ORDER["insights"]` gains `deferred_by` after `addressed_by`; a `supersedes` removes it through the same `clear_deferred_by`.
+**＋** An `update` with `set: {addressed_by: decision-case-N}` writes the field, and on every write of an Insight page the `## Addressed by` section is derived from the field — `- [[decision-case-N]]` — as a lesson's `## Insight` is from `insight` (114); without the field there is no section.
+**＋** An `update` with `set: {status: actioned}` goes as any `update`; the cascade of the same run archives the `clustered` children (104.2) and recounts `severity`.
+**＋** `estimate-generate-writes` gets a `### case 124.2` block, `pending`; the test: a `defer` on an insight → `deferred_by` written and shown in `insights-index.md`; an `update` with `addressed_by` and `status: actioned` → `## Addressed by` with the link, the children `archived`; a `supersedes` clears `deferred_by`.
+**－** An Insight is neither created nor deleted through the yaml: a `create` or `delete` with an Insight as its target is a `generate` error, as today.
+
 ## Method
 
 pytest in tests/test_generate.py against a temp vault; the live reading once by hand
 
 ## Result
 
-blocks 101.1, 104.1, 104.2, 105.3 against the librarian's run of session L and the tests of test_generate.py; block 104.3 against the test of case 110 (an archived child in vault/archive/ counts 0, the Insight archived; one live and one archived count 1); block 114 against the test of case 114 (the ## Insight section derived on write and in the cascade); 38 tests green
+block 124.2 against tests/test_generate.py: a defer on an insight writes deferred_by and insights-index.md shows it; an update with addressed_by and status actioned writes ## Addressed by with the link and the cascade archives the clustered child, severity 0; a supersedes clears deferred_by; a create or delete of an insight is an error
 
 ## History
 
@@ -136,3 +148,5 @@ blocks 101.1, 104.1, 104.2, 105.3 against the librarian's run of session L and t
 - 2026-09-14 status: pending → failed · raw/2026-09-14/0747/ledger.md#L1
 - 2026-09-14 criterion: case 114 added · [[decision-case-114]]
 - 2026-09-14 status: pending → passed · raw/2026-09-14/0747/ledger.md#L46
+- 2026-09-14 criterion: case 124.2 added · [[decision-case-124.2]]
+- 2026-09-14 status: pending → passed · raw/2026-09-14/1029/ledger.md#L33

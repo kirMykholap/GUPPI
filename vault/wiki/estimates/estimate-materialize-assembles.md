@@ -95,13 +95,23 @@ The entry is marked `exists` only when the `origin` of the page carries the `#ca
 **＋** `estimate-materialize-assembles` gets a `### case 105.2` block, `pending`.
 **－** A placeholder (no `kind`) is not a collision: 101.1 fills it.
 
+### case 130.2
+
+When:
+`guppi materialize` assembles the entry of a line with `{supersedes:case N}`.
+
+Then:
+The entries of Case N (decision kinds) are marked `superseded_by` in the yaml of the unit that holds them — its own or any other under `raw/` — and in the `decisions` list of that unit; a foreign yaml is written with that mark only.
+**＋** `estimate-materialize-assembles` gets a `### case 130.2` block, `pending`; the test: the yaml of unit A with an entry of case 5 without `applied`, the ledger of unit B with a line carrying `{supersedes:case 5}` → after `materialize` of unit B the entry in A carries `superseded_by`, the rest of A unchanged; `archive.kept_reason(A)` is None. The live reading at the librarian's run: 112.6 marked, `0747` moved.
+**－** An entry that no yaml holds: as today, nothing.
+
 ## Method
 
 pytest in tests/test_materialize.py against a temp vault; the live reading once by hand
 
 ## Result
 
-blocks 73.5, 76, 87, 90.1, 105.2 against the tests of test_materialize.py (green) and the librarian's run of session L: 0 unparsed lines in both yamls, the placeholder rule-ledger-tail filled without a collision, no false exists mark
+block 130.2 against tests/test_materialize.py: unit B's line with {supersedes:case 5} marks unit A's entry and decision superseded_by, archive.kept_reason(A) is None, a second walk leaves A byte-identical; a case no yaml holds changes nothing
 
 ## History
 
@@ -122,3 +132,5 @@ blocks 73.5, 76, 87, 90.1, 105.2 against the tests of test_materialize.py (green
 - 2026-09-12 status: pending → passed · raw/2026-09-12/ledger.md#L207
 - 2026-09-13 criterion: case 105.2 added · [[decision-case-105.2]]
 - 2026-09-14 status: pending → passed · raw/2026-09-14/0747/ledger.md#L44
+- 2026-09-14 criterion: case 130.2 added · [[decision-case-130.2]]
+- 2026-09-14 status: pending → passed · raw/2026-09-14/1029/ledger.md#L36

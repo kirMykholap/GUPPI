@@ -1,8 +1,9 @@
 ---
 type: decision
 case: "120"
-status: current
+status: archived
 defer: [rule-bash-guard]
+superseded_by: [decision-case-127]
 origin: raw/2026-09-14/0747/ledger.md#case-120
 sprint: migration
 created: 2026-09-14
@@ -20,3 +21,6 @@ A lesson the agent has to remember is not a rule. A `PreToolUse Bash` hook that 
 ## History
 
 - 2026-09-14 created · raw/2026-09-14/0747/ledger.md#case-120
+- 2026-09-14 superseded by decision-case-127 · [[decision-case-127]]
+- 2026-09-14 archived · superseded
+- 2026-09-14 archived · cleanup

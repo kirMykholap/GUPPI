@@ -1,8 +1,9 @@
 ---
 type: decision
 case: "112.6"
-status: current
+status: archived
 update: [rule-page-generation]
+superseded_by: [decision-case-130.1]
 origin: raw/2026-09-14/0747/ledger.md#case-112.6
 sprint: migration
 created: 2026-09-14
@@ -31,3 +32,6 @@ Two of the four `method` findings are not the pages' fault: `estimate-documentat
 ## History
 
 - 2026-09-14 created · raw/2026-09-14/0747/ledger.md#case-112.6
+- 2026-09-14 superseded by decision-case-130.1 · [[decision-case-130.1]]
+- 2026-09-14 archived · superseded
+- 2026-09-14 archived · cleanup

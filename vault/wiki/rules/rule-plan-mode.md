@@ -2,7 +2,7 @@
 type: rule
 kind: MOC
 purpose: Prevents work being planned against stale or contradictory vault state
-status: draft
+status: built
 children: [rule-ask, rule-pretask-hook, rule-pretask, rule-spec-capture]
 estimates: [estimate-plan-mode-verified]
 origin: raw/2026-09-09/ledger.md#case-19
@@ -33,3 +33,4 @@ with what is already there.
 - 2026-09-09 created · raw/2026-09-09/ledger.md#case-19
 - 2026-09-09 updated: rule-spec-capture is the fifth child · raw/2026-09-09/ledger.md#case-20
 - 2026-09-12 updated: rule-case-protocol moved under rule-claude-md (case 66) · [[decision-case-66]]
+- 2026-09-14 status: draft → built · cascade

@@ -1081,3 +1081,104 @@ instruction. The global feed; a page's own `## History` is the per-page view.
 - 2026-09-14 decisions/decision-case-106 archived · cleanup
 - 2026-09-14 decisions/decision-case-107 archived · cleanup
 - 2026-09-14 decisions/decision-case-108 archived · cleanup
+- 2026-09-14 estimates/estimate-git-context-current status: pending → passed · raw/2026-09-14/1029/ledger.md#L1 · generate
+- 2026-09-14 estimates/estimate-documentation-completes status: pending → passed · raw/2026-09-14/1029/ledger.md#L2 · generate
+- 2026-09-14 decisions/decision-case-123 created · raw/2026-09-14/1029/ledger.md#case-123 · generate
+- 2026-09-14 rules/rule-claude-md updated: a Case is discussed in the chat in Russian and enters the Spec in English; the plan the owner approves is the Spec (case 123) · [[decision-case-123]] · generate
+- 2026-09-14 decisions/decision-case-122 created · raw/2026-09-14/1029/ledger.md#case-122 · generate
+- 2026-09-14 decisions/decision-case-117 superseded by decision-case-122 · [[decision-case-122]] · generate
+- 2026-09-14 rules/rule-ledger-write defer by decision-case-117 superseded · [[decision-case-122]] · generate
+- 2026-09-14 rules/rule-ledger-write updated: guppi gate refuses a Skill call while a then item of the session's Spec or plan file has no decision line in the ledger; the text before a tool call is never kept (case 122) · [[decision-case-122]] · generate
+- 2026-09-14 estimates/estimate-ledger-write-lifts criterion: case 122 added · [[decision-case-122]] · generate
+- 2026-09-14 rules/rule-case-protocol updated: a reply that carries a LEDGER block ends in that text, no tool call after it (case 122) · [[decision-case-122]] · generate
+- 2026-09-14 estimates/estimate-ledger-write-lifts status: pending → passed · raw/2026-09-14/1029/ledger.md#L7 · generate
+- 2026-09-14 decisions/decision-case-124.1 created · raw/2026-09-14/1029/ledger.md#case-124.1 · generate
+- 2026-09-14 decisions/decision-case-119 superseded by decision-case-124.1 · [[decision-case-124.1]] · generate
+- 2026-09-14 rules/rule-brief defer by decision-case-119 superseded · [[decision-case-124.1]] · generate
+- 2026-09-14 rules/rule-brief updated: every open Insight stands in the Deferred list of the brief, ranked by its severity, with a count of the briefs it stood in, and is a Case of the next Plan Mode (case 124.1) · [[decision-case-124.1]] · generate
+- 2026-09-14 estimates/estimate-brief-written criterion: case 124.1 added · [[decision-case-124.1]] · generate
+- 2026-09-14 decisions/decision-case-124.2 created · raw/2026-09-14/1029/ledger.md#case-124.2 · generate
+- 2026-09-14 rules/rule-page-generation updated: a defer marks an Insight deferred_by like a Rule, and the Addressed by section of an Insight is derived from addressed_by (case 124.2) · [[decision-case-124.2]] · generate
+- 2026-09-14 estimates/estimate-generate-writes criterion: case 124.2 added · [[decision-case-124.2]] · generate
+- 2026-09-14 decisions/decision-case-124.3 created · raw/2026-09-14/1029/ledger.md#case-124.3 · generate
+- 2026-09-14 decisions/decision-case-125 created · raw/2026-09-14/1029/ledger.md#case-125 · generate
+- 2026-09-14 rules/rule-event-log updated: the prompt hook prints the hi it wrote, or the one already recorded, with the session's folder, into the context (case 125) · [[decision-case-125]] · generate
+- 2026-09-14 estimates/estimate-event-log-records criterion: case 125 added · [[decision-case-125]] · generate
+- 2026-09-14 rules/rule-skill-hi updated: the time of the session's folder comes from the hook's hi line in context, not from a line the skill no longer prints (case 125) · [[decision-case-125]] · generate
+- 2026-09-14 decisions/decision-case-126 created · raw/2026-09-14/1029/ledger.md#case-126 · generate
+- 2026-09-14 decisions/decision-case-118 superseded by decision-case-126 · [[decision-case-126]] · generate
+- 2026-09-14 rules/rule-retro defer by decision-case-118 superseded · [[decision-case-126]] · generate
+- 2026-09-14 rules/rule-retro updated: the Retro ledger is the unmaterialized tail printed by guppi tail, not a cat over a date-level file the model of case 103 no longer has (case 126) · [[decision-case-126]] · generate
+- 2026-09-14 estimates/estimate-retro-loads criterion: case 126 added · [[decision-case-126]] · generate
+- 2026-09-14 decisions/decision-case-127 created · raw/2026-09-14/1029/ledger.md#case-127 · generate
+- 2026-09-14 decisions/decision-case-120 superseded by decision-case-127 · [[decision-case-127]] · generate
+- 2026-09-14 rules/rule-bash-guard defer by decision-case-120 superseded · [[decision-case-127]] · generate
+- 2026-09-14 rules/rule-bash-guard created over placeholder · [[decision-case-127]] · generate
+- 2026-09-14 rules/rule-harness child rule-bash-guard added · [[decision-case-127]] · generate
+- 2026-09-14 estimates/estimate-bash-guard created · [[decision-case-127]] · generate
+- 2026-09-14 estimates/estimate-bash-guard status: pending → passed · raw/2026-09-14/1029/ledger.md#L35 · generate
+- 2026-09-14 rules/rule-bash-guard estimate estimate-bash-guard added · [[decision-case-127]] · generate
+- 2026-09-14 rules/rule-hook-registry updated: a PreToolUse hook on Bash, guppi bashguard, against the heredoc trap (case 127) · [[decision-case-127]] · generate
+- 2026-09-14 decisions/decision-case-129 created · raw/2026-09-14/1029/ledger.md#case-129 · generate
+- 2026-09-14 decisions/decision-case-116 superseded by decision-case-129 · [[decision-case-129]] · generate
+- 2026-09-14 rules/rule-work-mode defer by decision-case-116 superseded · [[decision-case-129]] · generate
+- 2026-09-14 rules/rule-subagent-guppi defer by decision-case-116 superseded · [[decision-case-129]] · generate
+- 2026-09-14 rules/rule-work-mode deferred · [[decision-case-129]] · generate
+- 2026-09-14 rules/rule-subagent-guppi deferred · [[decision-case-129]] · generate
+- 2026-09-14 decisions/decision-case-128 created · raw/2026-09-14/1029/ledger.md#case-128 · generate
+- 2026-09-14 decisions/decision-case-121 superseded by decision-case-128 · [[decision-case-128]] · generate
+- 2026-09-14 rules/rule-pretask defer by decision-case-121 superseded · [[decision-case-128]] · generate
+- 2026-09-14 rules/rule-pretask updated: the pre-task dispatch carries the plan file's path and the instruction to read every Case's when, then and then block, not a summary (case 128) · [[decision-case-128]] · generate
+- 2026-09-14 estimates/estimate-pretask-reconciles criterion: case 128 added · [[decision-case-128]] · generate
+- 2026-09-14 decisions/decision-case-130.1 created · raw/2026-09-14/1029/ledger.md#case-130.1 · generate
+- 2026-09-14 decisions/decision-case-112.6 superseded by decision-case-130.1 · [[decision-case-130.1]] · generate
+- 2026-09-14 rules/rule-page-generation updated: the literal decision-case-N of the History line of 2026-09-11 and of the Given of decision-case-112.1–112.6 quoted by hand, a one-off migration; entry 112.6 superseded (case 130.1) · [[decision-case-130.1]] · generate
+- 2026-09-14 decisions/decision-case-130.2 created · raw/2026-09-14/1029/ledger.md#case-130.2 · generate
+- 2026-09-14 rules/rule-materialize updated: a supersedes marks the earlier Case's entries in the yaml of any unit under raw/, so a failed entry superseded from a later session no longer keeps its unit out of the archive (case 130.2) · [[decision-case-130.2]] · generate
+- 2026-09-14 estimates/estimate-materialize-assembles criterion: case 130.2 added · [[decision-case-130.2]] · generate
+- 2026-09-14 estimates/estimate-event-log-records status: pending → passed · raw/2026-09-14/1029/ledger.md#L23 · generate
+- 2026-09-14 decisions/decision-case-131 created · raw/2026-09-14/1029/ledger.md#case-131 · generate
+- 2026-09-14 rules/rule-page-generation updated: the History line of case 114, `updated: the`, completed by hand to name the derived ## Insight section — a one-off migration (case 131) · [[decision-case-131]] · generate
+- 2026-09-14 estimates/estimate-pretask-reconciles status: pending → passed · raw/2026-09-14/1029/ledger.md#L25 · generate
+- 2026-09-14 decisions/decision-case-132 created · raw/2026-09-14/1029/ledger.md#case-132 · generate
+- 2026-09-14 rules/rule-retro-commit updated: the gate's second refusal, on an unwritten ledger line, named beside the tree check (case 132) · [[decision-case-132]] · generate
+- 2026-09-14 rules/rule-event-log updated: the event log's second governance job, the plan path for guppi gate, named (case 132) · [[decision-case-132]] · generate
+- 2026-09-14 rules/rule-harness updated: the bash guard hook counted among the children outside the pipeline (case 132) · [[decision-case-132]] · generate
+- 2026-09-14 rules/rule-retro updated: the scope rule names this session's ledger, as 109.1 promised (case 132) · [[decision-case-132]] · generate
+- 2026-09-14 rules/rule-brief updated: an open Insight in Deferred is a live page, not a draft placeholder (case 132) · [[decision-case-132]] · generate
+- 2026-09-14 rules/rule-ledger-tail updated: the second caller of guppi tail, the retro skill, named (case 132) · [[decision-case-132]] · generate
+- 2026-09-14 estimates/estimate-ledger-write-lifts status: passed → passed · raw/2026-09-14/1029/ledger.md#L32 · generate
+- 2026-09-14 estimates/estimate-generate-writes status: pending → passed · raw/2026-09-14/1029/ledger.md#L33 · generate
+- 2026-09-14 estimates/estimate-event-log-records status: passed → passed · raw/2026-09-14/1029/ledger.md#L34 · generate
+- 2026-09-14 estimates/estimate-materialize-assembles status: pending → passed · raw/2026-09-14/1029/ledger.md#L36 · generate
+- 2026-09-14 estimates/estimate-spec-capture-appends status: pending → passed · raw/2026-09-14/1029/ledger.md#L37 · generate
+- 2026-09-14 estimates/estimate-plan-mode-verified status: pending → passed · raw/2026-09-14/1029/ledger.md#L38 · generate
+- 2026-09-14 lessons/lesson-heredoc-trap-hit-a-fourth-time-in-the-session-that-ratified-its-hook created · raw/2026-09-14/1029/ledger.md#L39 · generate
+- 2026-09-14 lessons/lesson-pretask-line-unstamped-and-bound-by-position created · raw/2026-09-14/1029/ledger.md#L40 · generate
+- 2026-09-14 estimates/estimate-retro-loads status: pending → failed · raw/2026-09-14/1029/ledger.md#L41 · generate
+- 2026-09-14 insights/insight-session-vault-knowledge-not-loaded updated: synthesis: lesson-heredoc-trap-hit-a-fourth-time-in-the-session-that-ratified-its-hook added, the same trap a fourth time, in the session that ratified the hook against it · raw/2026-09-14/1029/ledger.md#L39 · generate
+- 2026-09-14 lessons/lesson-heredoc-trap-hit-a-fourth-time-in-the-session-that-ratified-its-hook updated: clustered under insight-session-vault-knowledge-not-loaded · raw/2026-09-14/1029/ledger.md#L39 · generate
+- 2026-09-14 insights/insight-ledger-hi-tied-to-its-session-by-position updated: synthesis: lesson-pretask-line-unstamped-and-bound-by-position added, the pretask line is bound to its session by position as the hi was, no session id in the skill shell · raw/2026-09-14/1029/ledger.md#L40 · generate
+- 2026-09-14 lessons/lesson-pretask-line-unstamped-and-bound-by-position updated: clustered under insight-ledger-hi-tied-to-its-session-by-position · raw/2026-09-14/1029/ledger.md#L40 · generate
+- 2026-09-14 rules/rule-bash-guard status: draft → built · cascade · generate
+- 2026-09-14 rules/rule-brief status: built → draft · cascade · generate
+- 2026-09-14 rules/rule-documentation status: draft → built · cascade · generate
+- 2026-09-14 rules/rule-event-log status: draft → built · cascade · generate
+- 2026-09-14 rules/rule-git-context status: draft → built · cascade · generate
+- 2026-09-14 rules/rule-ledger-write status: draft → built · cascade · generate
+- 2026-09-14 rules/rule-plan-mode status: draft → built · cascade · generate
+- 2026-09-14 rules/rule-spec-capture status: draft → built · cascade · generate
+- 2026-09-14 decisions/decision-case-112.6 archived · superseded · generate
+- 2026-09-14 decisions/decision-case-116 archived · superseded · generate
+- 2026-09-14 decisions/decision-case-117 archived · superseded · generate
+- 2026-09-14 decisions/decision-case-118 archived · superseded · generate
+- 2026-09-14 decisions/decision-case-119 archived · superseded · generate
+- 2026-09-14 decisions/decision-case-120 archived · superseded · generate
+- 2026-09-14 decisions/decision-case-121 archived · superseded · generate
+- 2026-09-14 decisions/decision-case-112.6 archived · cleanup
+- 2026-09-14 decisions/decision-case-116 archived · cleanup
+- 2026-09-14 decisions/decision-case-117 archived · cleanup
+- 2026-09-14 decisions/decision-case-118 archived · cleanup
+- 2026-09-14 decisions/decision-case-119 archived · cleanup
+- 2026-09-14 decisions/decision-case-120 archived · cleanup
+- 2026-09-14 decisions/decision-case-121 archived · cleanup

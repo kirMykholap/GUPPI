@@ -1,7 +1,7 @@
 ---
 type: estimate
 kind: QA
-status: pending
+status: passed
 target: rule-ledger-write
 origin: raw/2026-09-09/ledger.md#case-10
 sprint: migration
@@ -61,6 +61,20 @@ A `hi` of this session's stamp after its first `session-start` opens the window,
 **－** A `hi` of another session's stamp never counts.
 **＋** `estimate-ledger-write-lifts` gets a `### case 111.6` block, `pending`; the test seeds an unstamped `hi` under our start and expects the window open, and the same with a foreign start between and expects it refused.
 
+### case 122
+
+When:
+The agent calls a skill through the `Skill` tool and `guppi gate` runs.
+
+Then:
+The gate reads the `then` items of every Case in the session's `spec.md` and in the plan file the session's event log names last under `.claude/plans/`, and the decision lines of the session's window as `guppi pretask --check` reads them.
+**＋** When an item has no decision line of its Case, the gate exits 2 and writes nothing: `gate: /<skill> refused — N item(s) of the Spec have no ledger line (case A, case B). The text before a tool call is never kept: end this reply in text with the LEDGER block, then call /<skill> in the next reply.`
+**＋** Every item with its line, or no source found: exit 0, silent; the `/handoff` check of the dirty tree runs as before.
+**＋** `rule-ledger-write` gains `guppi/gate.py` and `tests/test_gate.py` in `implementation_ref`; its "How it works" says the gate, not the agent's memory, holds the reply back.
+**＋** `rule-case-protocol` says, after the paragraph on the `Stop` hook: "A reply that carries a `LEDGER` block ends in that text. No tool call follows it in the same reply: the text before a tool call is never kept, and the hook reads nothing." — rendered into `CLAUDE.md`, `contract: same`.
+**＋** `estimate-ledger-write-lifts` gets a `### case 122` block, `pending`; the test seeds a plan with one item and an empty ledger and expects exit 2 with the case named, then the item's line and expects 0, then no plan path and no `spec.md` and expects 0; the live half is read at the first `/pre-task` of this session after its lines are written: the call passes.
+**－** `{supersedes:case 117}`: `decision-case-117` is superseded, `rule-ledger-write` loses `deferred_by`.
+
 ## Method
 
 pytest in `tests/test_ledger.py` with piped payloads against a temp vault; the live
@@ -68,7 +82,7 @@ reading is taken once by hand and written into the estimate line.
 
 ## Result
 
-unit: tests/test_ledger.py 32 green with the two cases of 103.1 — the lines land in raw/<hi date>/<hi HHMM>/ledger.md, across midnight under the hi date and nothing under today, a line already in a date-level ledger is not written twice; live 2026-09-13 session L: the first LEDGER block after the code change, the two readings at 22:36:57, landed in raw/2026-09-13/0652/ledger.md while raw/2026-09-13/ledger.md kept its last line of 22:18:17, and guppi tail printed both units, 2026-09-13 L1–L49 and 2026-09-13/0652 L1–L3
+block 122 against tests/test_gate.py (an item without its line → exit 2 naming the case; the line in raw/<date>/<HHMM>/ledger.md → 0; no plan path and no spec.md → 0; a defer item of spec.md → 2; the Spec check before the tree check) and live: guppi gate on this session's payload with every item lined → exit 0
 
 ## History
 
@@ -82,3 +96,6 @@ unit: tests/test_ledger.py 32 green with the two cases of 103.1 — the lines la
 - 2026-09-13 status: pending → passed · raw/2026-09-13/0652/ledger.md#L4
 - 2026-09-14 criterion: case 111.3 added · [[decision-case-111.3]]
 - 2026-09-14 criterion: case 111.6 added · [[decision-case-111.6]]
+- 2026-09-14 criterion: case 122 added · [[decision-case-122]]
+- 2026-09-14 status: pending → passed · raw/2026-09-14/1029/ledger.md#L7
+- 2026-09-14 status: passed → passed · raw/2026-09-14/1029/ledger.md#L32

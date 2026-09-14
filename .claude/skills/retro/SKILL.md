@@ -9,11 +9,10 @@ Tests: !`make test`
 
 Style: !`make style`
 
-Ledger of today: !`cat vault/raw/$(date +%F)/ledger.md vault/raw/$(date +%F)/*/ledger.md 2>/dev/null`
+Ledger: !`uv run guppi tail`
 
 Retro is an analysis of this session, not planning. Open with the frontier, in one
-message and with no read call: what was ratified (the ledger lines of today grouped
-by Case, one line per Case); the `tasks` of `raw/<date>/<hi HHMM>/spec.md` (the session's folder, case 73), the unticked boxes
+message and with no read call: what was ratified (the lines of the Tail above grouped by Case, this session's folder first, one line per Case); the `tasks` of `raw/<date>/<hi HHMM>/spec.md` (the session's folder, case 73), the unticked boxes
 per Case; what
 you noticed during Work Mode, as a numbered list — bugs, forks, a contract that
 turned out imprecise. The person adds their own observations. Every item, theirs or

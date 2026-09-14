@@ -83,6 +83,16 @@ The window is `raw/<hi date>/<hi HHMM>/ledger.md` whole, plus the date-level led
 **＋** A grammar finding names the file: `raw/<date>/<HHMM>/ledger.md:<n>` or `raw/<date>/ledger.md:<n>`.
 **＋** `estimate-pretask-reconciles` gets a `### case 103.4` block, `pending`.
 
+### case 128
+
+When:
+The person invokes `/pre-task` and the agent assembles the dispatch for `ask-guppi`.
+
+Then:
+The Render of `rule-pretask`: "Dispatch the `ask-guppi` agent once with that list and the question" → "Dispatch the `ask-guppi` agent once with that list, the absolute path of the plan file, the instruction to read for every Case there its `when` and `then` sections and its `then` block — `replace` old and new, `set`, `sections` — before judging a page, so that a finding can name a wrong wording or a wrong place, and the question".
+**＋** `estimate-pretask-reconciles` gets a `### case 128` block, `pending`; read at this session's `/pre-task`: the dispatch carries the path and the instruction on `when`, `then` and the blocks, and no finding answers what the plan already does.
+**－** `{supersedes:case 121}`: `decision-case-121` is superseded, `rule-pretask` loses `deferred_by`.
+
 ## Method
 
 One reading by hand, written into the estimate line — the exception the Method rule
@@ -90,7 +100,7 @@ allows.
 
 ## Result
 
-live run 08:48:57: the pretask line in the event log, guppi pretask --check first (8 findings — 3 lines pending the Stop hook, 1 frontier, 4 missing tasks blocks — fixed in the plan), ask-guppi dispatched once with the 17 decisions, its findings raised as Cases 115.1, 115.2 and a third replace in 111.4 or named known; the 34 window lines all parse (blocks 73.4, 74, 75.2, 90.2, 103.4); unit tests green
+block 128 at the /pre-task of session N: the dispatch carried the plan file's absolute path and the instruction to read every Case's when, then and then block; ask-guppi returned ten findings, each naming a page and a sentence, and none answered what a then block already does; four were wrong places or absent old texts in the blocks themselves, which a summary would not have shown
 
 ## History
 
@@ -109,3 +119,5 @@ live run 08:48:57: the pretask line in the event log, guppi pretask --check firs
 - 2026-09-12 status: pending → passed · raw/2026-09-12/ledger.md#L208
 - 2026-09-13 criterion: case 103.4 added · [[decision-case-103.4]]
 - 2026-09-14 status: pending → passed · raw/2026-09-14/0747/ledger.md#L38
+- 2026-09-14 criterion: case 128 added · [[decision-case-128]]
+- 2026-09-14 status: pending → passed · raw/2026-09-14/1029/ledger.md#L25

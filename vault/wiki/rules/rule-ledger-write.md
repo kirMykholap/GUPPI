@@ -2,12 +2,11 @@
 type: rule
 kind: Leaf
 purpose: Prevents a ratified line from existing only in a chat reply, or landing in a session no /hi opened
-status: draft
+status: built
 enforcement: hook
-implementation_ref: [guppi/ledger.py, .claude/settings.json]
+implementation_ref: [guppi/ledger.py, guppi/gate.py, tests/test_gate.py, .claude/settings.json]
 parent: rule-session-start
 estimates: [estimate-ledger-write-lifts]
-deferred_by: [decision-case-117]
 origin: raw/2026-09-09/ledger.md#case-10
 sprint: migration
 created: 2026-09-09
@@ -45,9 +44,7 @@ run /hi, then repeat the lines.` — so the person is told rather than left beli
 decisions were recorded. With `stop_hook_active` set (the re-fire after a block) it exits 0
 and writes nothing, so it cannot loop.
 
-So a reply that ended in a tool call (`Skill`, `ExitPlanMode`), which has no `Stop` of
-its own, reaches the ledger at the next `Stop` of the session, with that time; only the
-last reply of a session can still be lost, and Retro sees it. A line whose text is already
+A reply that ends in a tool call (`Skill`, `ExitPlanMode`) has no `Stop` of its own, and the text before the call is never kept: not in the transcript, not in `last_assistant_message` (measured in sessions L and N). The harness holds the reply back instead of the agent's memory: `guppi gate` on `PreToolUse Skill` reads the `then` items of every Case in the session's `spec.md` and in the plan file the session's event log names last under `.claude/plans/`, and the decision lines of the session's window as `guppi pretask --check` reads them; an item with no decision line of its Case refuses the call with exit 2 — `gate: /<skill> refused — N item(s) of the Spec have no ledger line (case A, case B). The text before a tool call is never kept: end this reply in text with the LEDGER block, then call /<skill> in the next reply.` — and every item with its line, or no source found, passes silently (case 122). `estimate[...]` and `lesson[...]` lines have no source but the text; a loss of one is a Retro finding. A block the agent repeats in a later text reaches the ledger at that `Stop`, with that time; only the last reply of a session can still be lost, and Retro sees it. A line whose text is already
 in today's ledger — whatever its time, or with none, as the
 hand-written lines of 2026-09-09 have none — is not appended again: this covers the hook
 running twice on one reply and the agent repeating a line in a later reply. A hook-written
@@ -88,3 +85,6 @@ the implementation arrives in the session after the probe (Slice 1, session B).
 - 2026-09-14 deferred · [[decision-case-117]]
 - 2026-09-14 updated: an unstamped hi keeps its window by the old rule while no stamped hi exists (case 111.6) · [[decision-case-111.6]]
 - 2026-09-14 status: built → draft · cascade
+- 2026-09-14 defer by decision-case-117 superseded · [[decision-case-122]]
+- 2026-09-14 updated: guppi gate refuses a Skill call while a then item of the session's Spec or plan file has no decision line in the ledger; the text before a tool call is never kept (case 122) · [[decision-case-122]]
+- 2026-09-14 status: draft → built · cascade

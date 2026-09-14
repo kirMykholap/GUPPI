@@ -25,7 +25,10 @@
       { "matcher": "Skill",
         "hooks": [ { "type": "command", "command": "uv run guppi gate", "timeout": 30 } ] },
       { "matcher": "Edit|Write|MultiEdit",
-        "hooks": [ { "type": "command", "command": "uv run guppi guard", "timeout": 30 } ] }
+  "hooks": [ { "type": "command", "command": "uv run guppi guard", "timeout": 30 } ] },
+{ "matcher": "Bash",
+  "hooks": [ { "type": "command", "command": "uv run guppi bashguard", "timeout": 30 } ] }
+
     ],
     "PostToolUse": [
       { "hooks": [ { "type": "command", "command": "uv run guppi event tool", "timeout": 30 } ] },

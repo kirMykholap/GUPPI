@@ -8,7 +8,6 @@ governs: .claude/skills/retro/SKILL.md
 render_mode: full
 parent: rule-end-of-work
 estimates: [estimate-retro-loads]
-deferred_by: [decision-case-118]
 origin: raw/2026-09-10/ledger.md#case-38.1
 sprint: migration
 created: 2026-09-10
@@ -21,7 +20,7 @@ Prevents a session from closing on work nobody reviewed, or on a change that tra
 to no decision. Retro is a conversation over this session only. The tests and the
 style check load before the first turn, so the person reads the result instead of
 waiting for it. The scope rule is mechanical: an edit is allowed when it finishes
-work a line of today's ledger ratified, and is new scope otherwise.
+work a line of this session's ledger ratified, and is new scope otherwise.
 
 ## Render
 
@@ -37,11 +36,10 @@ Tests: !`make test`
 
 Style: !`make style`
 
-Ledger of today: !`cat vault/raw/$(date +%F)/ledger.md vault/raw/$(date +%F)/*/ledger.md 2>/dev/null`
+Ledger: !`uv run guppi tail`
 
 Retro is an analysis of this session, not planning. Open with the frontier, in one
-message and with no read call: what was ratified (the ledger lines of today grouped
-by Case, one line per Case); the `tasks` of `raw/<date>/<hi HHMM>/spec.md` (the session's folder, case 73), the unticked boxes
+message and with no read call: what was ratified (the lines of the Tail above grouped by Case, this session's folder first, one line per Case); the `tasks` of `raw/<date>/<hi HHMM>/spec.md` (the session's folder, case 73), the unticked boxes
 per Case; what
 you noticed during Work Mode, as a numbered list — bugs, forks, a contract that
 turned out imprecise. The person adds their own observations. Every item, theirs or
@@ -97,3 +95,6 @@ got done; what did not. When the person approves, commit (`make style` clean,
 - 2026-09-12 status: built → draft · cascade
 - 2026-09-13 updated: Retro reads the session ledgers of the day (and the date-level one while it exists); the revert patch goes to the session folder (case 109.1) · [[decision-case-109.1]]
 - 2026-09-14 deferred · [[decision-case-118]]
+- 2026-09-14 defer by decision-case-118 superseded · [[decision-case-126]]
+- 2026-09-14 updated: the Retro ledger is the unmaterialized tail printed by guppi tail, not a cat over a date-level file the model of case 103 no longer has (case 126) · [[decision-case-126]]
+- 2026-09-14 updated: the scope rule names this session's ledger, as 109.1 promised (case 132) · [[decision-case-132]]

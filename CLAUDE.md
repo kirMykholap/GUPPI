@@ -93,14 +93,12 @@ line anywhere else — bare, or in a block with another tag or none — is a pre
 and is never written. A `create` line carries the ratified tags: `{tags:a,b}`.
 Write the `- decision[...]` lines only in the reply that acknowledges ratification;
 `- estimate[...]` and `- lesson[...]` lines the moment the measurement or the lesson
-exists. Without `/hi` the hook refuses and says so: tell the person, do not retry.
+exists. Without `/hi` the hook refuses and says so: tell the person, do not retry. A reply that carries a `LEDGER` block ends in that text. No tool call follows it in the same reply: the text before a tool call is never kept, and the hook reads nothing.
 <!-- /rule-case-protocol -->
 
 ## Language
 
-English for everything written into the repository: code, identifiers, comments, pages,
-commit messages, documents. Russian for chat with the owner, and for the plan he reads in
-order to approve it. English technical terms are not transliterated into Cyrillic.
+English for everything written into the repository: code, identifiers, comments, pages, commit messages, documents — the Spec included. Russian for chat with the owner: a Case is discussed in the chat in Russian, all its sections, and enters the Spec translated into English. Slugs, field names, ledger lines, paths and quotations from pages stay as they are in either language. English technical terms are not transliterated into Cyrillic.
 
 ## Style
 

@@ -46,13 +46,23 @@ The Render: `Ledger of today: !`cat vault/raw/$(date +%F)/ledger.md vault/raw/$(
 **＋** The revert patch goes to `raw/<hi date>/<hi HHMM>/patch-<slug>.diff`, the session folder.
 **＋** `estimate-retro-loads` gets a `### case 109.1` block, `pending`.
 
+### case 126
+
+When:
+The person invokes `/retro`.
+
+Then:
+The Render of `rule-retro`: the line `Ledger of today: !`cat vault/raw/$(date +%F)/ledger.md vault/raw/$(date +%F)/*/ledger.md 2>/dev/null`` → `Ledger: !`uv run guppi tail`` — the unmaterialized lines, this session's in its folder; the phrase "the ledger lines of today grouped by Case" → "the lines of the Tail above grouped by Case, this session's folder first".
+**＋** `estimate-retro-loads` gets a `### case 126` block, `pending`; read at the first `/retro` after the render — the next session's, since the skill is rendered by the librarian after this session's Retro: the skill loaded, `Ledger:` carries the lines of the session's folder, no substitution failed.
+**－** `{supersedes:case 118}`: `decision-case-118` is superseded, `rule-retro` loses `deferred_by`.
+
 ## Method
 
 one reading by hand at the first /retro, recorded in the estimate line
 
 ## Result
 
-block 109.1: /retro of 2026-09-14 09:23 recorded its event, then its ledger substitution `cat vault/raw/$(date +%F)/ledger.md vault/raw/$(date +%F)/*/ledger.md 2>/dev/null` exited 1 — no date-level ledger exists on the first day with the session form of case 103 alone — and the harness reported the substitution failed and did not load the skill text; the agent ran Retro from the SKILL.md file. Defer case 118.
+block 109.1, second reading: /retro of 2026-09-14 11:55 recorded its event and its ledger substitution exited 1 again on a day without a date-level ledger; the harness did not load the skill text and the agent ran Retro from SKILL.md. Case 126 is ratified and replaces the line with `uv run guppi tail`; the render comes with the librarian, so the next /retro is the reading of block 126
 
 ## History
 
@@ -64,3 +74,5 @@ block 109.1: /retro of 2026-09-14 09:23 recorded its event, then its ledger subs
 - 2026-09-12 criterion: case 73.6 added · [[decision-case-73.6]]
 - 2026-09-13 criterion: case 109.1 added · [[decision-case-109.1]]
 - 2026-09-14 status: pending → failed · raw/2026-09-14/0747/ledger.md#L50
+- 2026-09-14 criterion: case 126 added · [[decision-case-126]]
+- 2026-09-14 status: pending → failed · raw/2026-09-14/1029/ledger.md#L41

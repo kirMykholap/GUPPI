@@ -1,7 +1,7 @@
 ---
 type: estimate
 kind: QA
-status: pending
+status: passed
 target: rule-event-log
 origin: raw/2026-09-09/ledger.md#case-9
 sprint: migration
@@ -34,6 +34,17 @@ When the prompt, trimmed, is `/hi` or starts with `/hi `, and no `hi` of this se
 **＋** The "Known limit" paragraph of the page says the limit is lifted by this Case; a `hi` of one session no longer belongs to another.
 **＋** `estimate-event-log-records` gets a `### case 111.1` block, `pending`; read at the next `/hi`: the log carries `<stamp> hi` for that session, and a repeated `/hi` adds no line.
 
+### case 125
+
+When:
+The person submits `/hi` and the `UserPromptSubmit` hook `uv run guppi event prompt` runs.
+
+Then:
+Having written the `hi` line, the hook prints on stdout `hi: HH:MM:SS <stamp> → raw/<date>/<HHMM>/`; when a `hi` of this session already exists it prints `hi: already recorded at HH:MM:SS → raw/<date>/<HHMM>/` and writes nothing; on any other prompt it is silent. The line reaches the session's context.
+**＋** The Render of `rule-skill-hi`: "`HHMM` the time of the `hi` line above (case 73)" → "`HHMM` from the `hi:` line the `UserPromptSubmit` hook put in context (cases 73, 125)".
+**＋** `estimate-event-log-records` gets a `### case 125` block, `pending`; the test: `/hi` → the line written and stdout `hi: … → raw/…/`; a second `/hi` → stdout `already recorded`, no new line in the log; `hello` → stdout empty. The live reading at the next `/hi`: the `hi:` line is in the context and the folder is named without a read call.
+**－** `rule-skill-hi` is a MOC, no `contract` is written; `rule-event-log` is `contract: changed`.
+
 ## Method
 
 pytest in `tests/test_event.py` drives `guppi.event` with piped JSON payloads against a
@@ -42,15 +53,13 @@ written into the estimate line.
 
 ## Result
 
-Passing. pytest: twelve cases in `tests/test_event.py`. By hand, 2026-09-09 session B:
-`session-start clear` and `session-start resume` stamped `44c1aae1`, then `hi`, then the
-`tool` lines, in order; `git check-ignore -v` → `.gitignore:47`; three piped invocations
-of `guppi event tool` exited 0 in 0.10 s each. A UTF-8 payload through the cp1252 stdin a
-hook gets on Windows came out as mojibake until `read_text` took the bytes
-(`lesson-hooks-windows-stdin-encoding`); a test covers it since.
+block 125 against tests/test_event.py: /hi prints `hi: 15:02:11 abc12345 → raw/2026-09-09/1502/` and writes the line; a second /hi prints `already recorded at 15:02:11 → raw/2026-09-09/1502/` and adds no line; across midnight the folder is the hi date's; other prompts print nothing; the live half waits for the next /hi
 
 ## History
 
 - 2026-09-09 created · raw/2026-09-09/ledger.md#case-9
 - 2026-09-09 status: pending → passed · written by hand, no generator yet
 - 2026-09-14 criterion: case 111.1 added · [[decision-case-111.1]]
+- 2026-09-14 criterion: case 125 added · [[decision-case-125]]
+- 2026-09-14 status: pending → passed · raw/2026-09-14/1029/ledger.md#L23
+- 2026-09-14 status: passed → passed · raw/2026-09-14/1029/ledger.md#L34

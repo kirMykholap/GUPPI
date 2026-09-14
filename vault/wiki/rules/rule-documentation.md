@@ -2,7 +2,7 @@
 type: rule
 kind: MOC
 purpose: Prevents a ratified decision from ending the session without becoming a vault page
-status: draft
+status: built
 enforcement: render
 governs: .claude/agents/librarian-guppi.md
 render_mode: full
@@ -130,3 +130,4 @@ project's hooks; the hook is part of this Render and is ratified with it.
 - 2026-09-13 child rule-raw-archive added · [[decision-case-100.1]]
 - 2026-09-13 updated: the archive step between brief and close, after the brief has read the yamls; rule-raw-archive the sixth child (case 100.2) · [[decision-case-100.2]]
 - 2026-09-13 updated: the frame names the archive root vault/archive/ (case 102.4) · [[decision-case-102.4]]
+- 2026-09-14 status: draft → built · cascade

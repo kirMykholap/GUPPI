@@ -2,7 +2,7 @@
 type: rule
 kind: Leaf
 purpose: Prevents the ledger from being written into a session nothing recorded
-status: draft
+status: built
 enforcement: hook
 implementation_ref: [guppi/event.py, guppi/cli.py, .claude/settings.json]
 parent: rule-session-start
@@ -18,8 +18,7 @@ tags: [session, hooks, harness]
 Prevents the ledger from being written into a session nothing recorded. The event log is
 the noisy record of a session — starts, tool calls, agent dispatches, commits, test runs —
 written by hooks rather than by instructions, so it still fills when the agent deviates or
-crashes. It is gitignored: debugging material, not traceability. Its one governance job is
-to carry the `hi` mark that tells the ledger hook a working session is open.
+crashes. It is gitignored: debugging material, not traceability. Its governance jobs: to carry the `hi` mark that tells the ledger hook a working session is open, and to name the session's plan file by its `tool Write:` and `tool Edit:` lines for `guppi gate` (case 122).
 
 ## How it works
 
@@ -38,7 +37,7 @@ payload comes from stdin when a hook is the caller: `session_id`, `tool_name` an
 telling field of `tool_input` (`command` cut to 80 characters on one line, `subagent_type`,
 `skill`, `file_path`). Registered on `SessionStart` (`session-start`) and on `PostToolUse`
 with no matcher (`tool`) — every tool, because this is a debugging record and a filter is
-one more decision to maintain. The `hi` line is written by `guppi event prompt` on `UserPromptSubmit`: when the prompt, trimmed, is `/hi` or starts with `/hi `, and no `hi` of this session's stamp follows its first `session-start` in the logs the ledger hook walks, the log gains `- HH:MM:SS <stamp> hi`, the stamp from the payload's `session_id`; a second `/hi` of the same session and any other prompt write nothing (case 111.1). Until case 111.4 the skill's `!` substitution writes a second, unstamped `hi` line, which the ledger hook ignores.
+one more decision to maintain. The `hi` line is written by `guppi event prompt` on `UserPromptSubmit`: when the prompt, trimmed, is `/hi` or starts with `/hi `, and no `hi` of this session's stamp follows its first `session-start` in the logs the ledger hook walks, the log gains `- HH:MM:SS <stamp> hi`, the stamp from the payload's `session_id`; a second `/hi` of the same session and any other prompt write nothing (case 111.1). Having written the line, the hook prints `hi: HH:MM:SS <stamp> → raw/<date>/<HHMM>/` on stdout, which Claude Code adds to the context; when a `hi` of this session already exists it prints `hi: already recorded at HH:MM:SS → raw/<date>/<HHMM>/`; on any other prompt it is silent. The `/hi` skill takes the time of the session's folder from that line (case 125). Until case 111.4 the skill's `!` substitution writes a second, unstamped `hi` line, which the ledger hook ignores.
 
 The hook never fails the session: any error goes to stderr and the exit code is 0.
 
@@ -64,3 +63,6 @@ The hook never fails the session: any error goes to stderr and the exit code is 
 - 2026-09-10 status: draft → built · cascade
 - 2026-09-14 updated: the hi line is written by guppi event prompt on UserPromptSubmit with the session's stamp, once per session; the known limit is lifted (case 111.1) · [[decision-case-111.1]]
 - 2026-09-14 status: built → draft · cascade
+- 2026-09-14 updated: the prompt hook prints the hi it wrote, or the one already recorded, with the session's folder, into the context (case 125) · [[decision-case-125]]
+- 2026-09-14 updated: the event log's second governance job, the plan path for guppi gate, named (case 132) · [[decision-case-132]]
+- 2026-09-14 status: draft → built · cascade

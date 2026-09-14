@@ -2,7 +2,7 @@
 type: rule
 kind: Leaf
 purpose: Prevents an approved Spec from existing only in Claude Code's plan file, outside the repository
-status: draft
+status: built
 enforcement: hook
 implementation_ref: [guppi/spec.py, .claude/settings.json]
 parent: rule-plan-mode
@@ -53,3 +53,4 @@ their `## Case N` headings, so a Retro defer gets its Decision page like any oth
 - 2026-09-12 status: draft → built · cascade
 - 2026-09-12 updated: the Spec lands in the session's folder raw/<hi date>/<hi HHMM>/ (case 73.2) · [[decision-case-73.2]]
 - 2026-09-12 status: built → draft · cascade
+- 2026-09-14 status: draft → built · cascade

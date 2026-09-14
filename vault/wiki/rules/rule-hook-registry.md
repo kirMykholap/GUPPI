@@ -43,7 +43,10 @@ agent's Render and is ratified with it; this page holds the registrations only.
       { "matcher": "Skill",
         "hooks": [ { "type": "command", "command": "uv run guppi gate", "timeout": 30 } ] },
       { "matcher": "Edit|Write|MultiEdit",
-        "hooks": [ { "type": "command", "command": "uv run guppi guard", "timeout": 30 } ] }
+  "hooks": [ { "type": "command", "command": "uv run guppi guard", "timeout": 30 } ] },
+{ "matcher": "Bash",
+  "hooks": [ { "type": "command", "command": "uv run guppi bashguard", "timeout": 30 } ] }
+
     ],
     "PostToolUse": [
       { "hooks": [ { "type": "command", "command": "uv run guppi event tool", "timeout": 30 } ] },
@@ -77,3 +80,4 @@ agent's Render and is ratified with it; this page holds the registrations only.
 - 2026-09-12 status: built → draft · cascade
 - 2026-09-13 status: draft → built · cascade
 - 2026-09-14 updated: guppi event prompt registered on UserPromptSubmit (case 111.2) · [[decision-case-111.2]]
+- 2026-09-14 updated: a PreToolUse hook on Bash, guppi bashguard, against the heredoc trap (case 127) · [[decision-case-127]]

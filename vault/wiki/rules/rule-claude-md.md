@@ -70,9 +70,7 @@ move closes:
 
 ## Language
 
-English for everything written into the repository: code, identifiers, comments, pages,
-commit messages, documents. Russian for chat with the owner, and for the plan he reads in
-order to approve it. English technical terms are not transliterated into Cyrillic.
+English for everything written into the repository: code, identifiers, comments, pages, commit messages, documents — the Spec included. Russian for chat with the owner: a Case is discussed in the chat in Russian, all its sections, and enters the Spec translated into English. Slugs, field names, ledger lines, paths and quotations from pages stay as they are in either language. English technical terms are not transliterated into Cyrillic.
 
 ## Style
 
@@ -116,3 +114,4 @@ migration, by an `update` of this page. `rule-case-protocol` has this page as it
 - 2026-09-12 updated: the live clause of the CLAUDE.md reading is a standing rule, read against the two pages that render it (case 88.2) · [[decision-case-88.2]]
 - 2026-09-13 updated: the Migration paragraph names the session ledger (case 109.2) · [[decision-case-109.2]]
 - 2026-09-13 status: draft → built · cascade
+- 2026-09-14 updated: a Case is discussed in the chat in Russian and enters the Spec in English; the plan the owner approves is the Spec (case 123) · [[decision-case-123]]

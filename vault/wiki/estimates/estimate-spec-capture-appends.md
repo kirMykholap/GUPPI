@@ -1,7 +1,7 @@
 ---
 type: estimate
 kind: QA
-status: pending
+status: passed
 target: rule-spec-capture
 origin: raw/2026-09-09/ledger.md#case-20
 sprint: migration
@@ -40,7 +40,7 @@ once by hand, written into the estimate line.
 
 ## Result
 
-live 2026-09-12 session I: the rejected ExitPlanMode of 04:58 wrote nothing — no raw/2026-09-12/spec.md, no spec line in the event log, the pretask hook's exit 2 stood alone; the approved plan of 10:48:13 landed by the hook as raw/2026-09-12/spec.md with the stamp `<!-- approved 10:48:13 · session 763dd08e -->`, 1595 lines, once, no separator since the file was new; tests/test_spec.py 8 green
+block 73.2 at the approval of 11:40:48: the plan copied whole to raw/2026-09-14/1029/spec.md under `<!-- approved 11:40:48 · session 19037d1c -->`, 64696 bytes for a 64648-byte plan
 
 ## History
 
@@ -50,3 +50,4 @@ live 2026-09-12 session I: the rejected ExitPlanMode of 04:58 wrote nothing — 
 - 2026-09-12 status: pending → passed · raw/2026-09-12/ledger.md#L34
 - 2026-09-12 updated: the Deferred heading (cases 59.5, 66) · [[decision-case-66]]
 - 2026-09-12 criterion: case 73.2 added · [[decision-case-73.2]]
+- 2026-09-14 status: pending → passed · raw/2026-09-14/1029/ledger.md#L37

@@ -1,7 +1,7 @@
 ---
 type: estimate
 kind: QA
-status: pending
+status: passed
 target: rule-git-context
 origin: raw/2026-09-09/ledger.md#case-11
 sprint: migration
@@ -37,12 +37,11 @@ One reading at a session start, by hand, on the current remote.
 
 ## Result
 
-Passing. `Branch: migration`, an empty `Status:` and the pull's own message (`There is
-no tracking information for the current branch`) were in context; the skill completed;
-no pull happened later in the session (2026-09-09, session B).
+block 115 at the /hi of 10:29: the `Render:` line is present after `Pull:` and empty on a clean tree; branch and status in context; the failing pull shows its message and the skill completed
 
 ## History
 
 - 2026-09-09 created · raw/2026-09-09/ledger.md#case-11
 - 2026-09-09 status: pending → passed · written by hand, no generator yet
 - 2026-09-14 criterion: case 115 added · [[decision-case-115]]
+- 2026-09-14 status: pending → passed · raw/2026-09-14/1029/ledger.md#L1

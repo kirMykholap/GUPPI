@@ -427,6 +427,7 @@ entries:
   change: the literal decision-case-N of the History line of 2026-09-11 quoted (case 112.6)
   failed: 'generate: rule-page-generation: replace: ''History and log lines end with · [[decision-case-N]]
     when a '' is absent or not unique'
+  superseded_by: '130.1'
 - line: 17
   text: decision[case 113][update][lesson-agents-at-import-not-expanded]{ref:lesson-agents-at-import-not-expanded}
   case: '113'
@@ -765,6 +766,7 @@ entries:
       do, and the fork that comes back as a Case
   exists: true
   applied: 09:59:51
+  superseded_by: '129'
 - line: 31
   text: decision[case 116][defer][rule-work-mode]{ref:rule-work-mode}{supersedes:case 107}
   case: '116'
@@ -792,6 +794,7 @@ entries:
       fork as a Case
   exists: true
   applied: 09:59:51
+  superseded_by: '129'
 - line: 32
   text: decision[case 116][defer][rule-subagent-guppi]{ref:rule-subagent-guppi}{supersedes:case 107}
   case: '116'
@@ -855,6 +858,7 @@ entries:
       of insight-ledger-hook-reads-only-the-final-text
   exists: true
   applied: 09:59:51
+  superseded_by: '122'
 - line: 35
   text: 'estimate[estimate-settings][passed] session M start 07:30:30: .claude/settings.json rendered
     by the librarian of session L parses as JSON, guppi render --check exits 0, and the session-start
@@ -1199,6 +1203,7 @@ entries:
       over the files a glob finds — so the skill loads on a day with session ledgers only
   exists: true
   applied: 09:59:51
+  superseded_by: '126'
 - line: 53
   text: 'lesson[error][lesson-pretask-dispatch-summarized-the-plan-and-ask-guppi-judged-the-summary]{tags:harness,librarian,workflow}
     trigger: at pre-task of session M ask-guppi returned four findings that the plan already answered
@@ -1249,6 +1254,7 @@ entries:
       stop saying "never a Decision target", and a Decision may set addressed_by and actioned on it
   exists: true
   applied: 09:59:51
+  superseded_by: '124.1'
 - line: 55
   text: decision[case 120][defer][rule-bash-guard]
   case: '120'
@@ -1263,6 +1269,7 @@ entries:
       that writes a file, and names Write and Edit instead; the third recurrence of the heredoc trap
   exists: false
   applied: 09:59:51
+  superseded_by: '127'
 - line: 56
   text: decision[case 121][defer][rule-pretask]{ref:rule-pretask}
   case: '121'
@@ -1279,6 +1286,7 @@ entries:
       text against the pages
   exists: true
   applied: 09:59:51
+  superseded_by: '128'
 - kind: create
   category: insights
   slug: insight-ledger-hi-tied-to-its-session-by-position
@@ -2095,6 +2103,8 @@ decisions:
       **－** The 31 decision pages of Cases 1–28 (F8 a) and the lessons (F8 d) are not this Case.'
   spec: vault/raw/2026-09-14/0747/spec.md
   applied: 09:59:51
+  superseded_by:
+  - decision-case-130.1
 - case: '113'
   decision: decision-case-113
   origin: raw/2026-09-14/0747/ledger.md#case-113
@@ -2356,6 +2366,8 @@ decisions:
   supersedes:
   - decision-case-107
   applied: 09:59:51
+  superseded_by:
+  - decision-case-129
 - case: '117'
   decision: decision-case-117
   origin: raw/2026-09-14/0747/ledger.md#case-117
@@ -2380,6 +2392,8 @@ decisions:
       of its own.'
   spec: vault/raw/2026-09-14/0747/spec.md
   applied: 09:59:51
+  superseded_by:
+  - decision-case-122
 - case: '111.6'
   decision: decision-case-111.6
   origin: raw/2026-09-14/0747/ledger.md#case-111.6
@@ -2453,6 +2467,8 @@ decisions:
       which Retro cannot ratify.
   spec: vault/raw/2026-09-14/0747/spec.md
   applied: 09:59:51
+  superseded_by:
+  - decision-case-126
 - case: '119'
   decision: decision-case-119
   origin: raw/2026-09-14/0747/ledger.md#case-119
@@ -2474,6 +2490,8 @@ decisions:
       with a count — the same lifecycle a deferred Case has.'
   spec: vault/raw/2026-09-14/0747/spec.md
   applied: 09:59:51
+  superseded_by:
+  - decision-case-124.1
 - case: '120'
   decision: decision-case-120
   origin: raw/2026-09-14/0747/ledger.md#case-120
@@ -2493,6 +2511,8 @@ decisions:
       at all, pointing at Write and Edit — makes the trap impossible instead of remembered.
   spec: vault/raw/2026-09-14/0747/spec.md
   applied: 09:59:51
+  superseded_by:
+  - decision-case-127
 - case: '121'
   decision: decision-case-121
   origin: raw/2026-09-14/0747/ledger.md#case-121
@@ -2511,5 +2531,7 @@ decisions:
       path of the plan file, since the agent has Read.'
   spec: vault/raw/2026-09-14/0747/spec.md
   applied: 09:59:51
+  superseded_by:
+  - decision-case-128
 unparsed: []
 session: '0747'

@@ -1,0 +1,2112 @@
+date: '2026-09-14'
+sprint: migration
+ledger: vault/raw/2026-09-14/1029/ledger.md
+spec:
+- vault/raw/2026-09-14/1029/spec.md
+entries:
+- line: 1
+  text: 'estimate[estimate-git-context-current][passed] block 115 at the /hi of 10:29: the `Render:` line
+    is present after `Pull:` and empty on a clean tree; branch and status in context; the failing pull
+    shows its message and the skill completed'
+  kind: estimate
+  category: estimates
+  slug: estimate-git-context-current
+  status: passed
+  result: 'block 115 at the /hi of 10:29: the `Render:` line is present after `Pull:` and empty on a clean
+    tree; branch and status in context; the failing pull shows its message and the skill completed'
+  origin: raw/2026-09-14/1029/ledger.md#L1
+  applied: '12:13:27'
+- line: 2
+  text: 'estimate[estimate-documentation-completes][passed] block 100.2 against the librarian''s run of
+    session M: Archive ran after Brief (10:04:23 brief, 10:04:32 archive), moved raw/2026-09-13 and raw/2026-09-13/0652
+    to archive/migration/<date>/[0652/]raw, kept raw/2026-09-14/0747 as the session of the run, exit 0,
+    stderr empty, all reported in the brief''s Flags; rule-raw-archive is the sixth child of rule-documentation,
+    after rule-cleanup'
+  kind: estimate
+  category: estimates
+  slug: estimate-documentation-completes
+  status: passed
+  result: 'block 100.2 against the librarian''s run of session M: Archive ran after Brief (10:04:23 brief,
+    10:04:32 archive), moved raw/2026-09-13 and raw/2026-09-13/0652 to archive/migration/<date>/[0652/]raw,
+    kept raw/2026-09-14/0747 as the session of the run, exit 0, stderr empty, all reported in the brief''s
+    Flags; rule-raw-archive is the sixth child of rule-documentation, after rule-cleanup'
+  origin: raw/2026-09-14/1029/ledger.md#L2
+  applied: '12:13:27'
+- line: 3
+  text: decision[case 123][update][rule-claude-md]{ref:rule-claude-md}
+  case: '123'
+  kind: update
+  slug: rule-claude-md
+  origin: raw/2026-09-14/1029/ledger.md#case-123
+  decision: decision-case-123
+  ref: rule-claude-md
+  category: rules
+  replace:
+  - old: 'English for everything written into the repository: code, identifiers, comments, pages, commit
+      messages, documents. Russian for chat with the owner, and for the plan he reads in order to approve
+      it. English technical terms are not transliterated into Cyrillic.'
+    new: 'English for everything written into the repository: code, identifiers, comments, pages, commit
+      messages, documents — the Spec included. Russian for chat with the owner: a Case is discussed in
+      the chat in Russian, all its sections, and enters the Spec translated into English. Slugs, field
+      names, ledger lines, paths and quotations from pages stay as they are in either language. English
+      technical terms are not transliterated into Cyrillic.'
+  change: a Case is discussed in the chat in Russian and enters the Spec in English; the plan the owner
+    approves is the Spec (case 123)
+  applied: '12:13:27'
+- line: 4
+  text: decision[case 123][update][case-schema]{ref:case-schema}
+  case: '123'
+  kind: update
+  slug: case-schema
+  origin: raw/2026-09-14/1029/ledger.md#case-123
+  decision: decision-case-123
+  ref: case-schema
+  category: file
+  path: vault/wiki/case-schema.md
+  change: 'Language: a Case is discussed in the chat in Russian, all its sections, and enters the Spec
+    translated into English, its slugs, field names and ledger lines unchanged (case 123)'
+  applied: '12:13:27'
+- line: 5
+  text: decision[case 122][update][rule-ledger-write]{ref:rule-ledger-write}{supersedes:case 117}
+  case: '122'
+  kind: update
+  slug: rule-ledger-write
+  origin: raw/2026-09-14/1029/ledger.md#case-122
+  decision: decision-case-122
+  ref: rule-ledger-write
+  supersedes: '117'
+  category: rules
+  set:
+    implementation_ref:
+    - guppi/ledger.py
+    - guppi/gate.py
+    - tests/test_gate.py
+    - .claude/settings.json
+  replace:
+  - old: So a reply that ended in a tool call (`Skill`, `ExitPlanMode`), which has no `Stop` of its own,
+      reaches the ledger at the next `Stop` of the session, with that time; only the last reply of a session
+      can still be lost, and Retro sees it.
+    new: 'A reply that ends in a tool call (`Skill`, `ExitPlanMode`) has no `Stop` of its own, and the
+      text before the call is never kept: not in the transcript, not in `last_assistant_message` (measured
+      in sessions L and N). The harness holds the reply back instead of the agent''s memory: `guppi gate`
+      on `PreToolUse Skill` reads the `then` items of every Case in the session''s `spec.md` and in the
+      plan file the session''s event log names last under `.claude/plans/`, and the decision lines of
+      the session''s window as `guppi pretask --check` reads them; an item with no decision line of its
+      Case refuses the call with exit 2 — `gate: /<skill> refused — N item(s) of the Spec have no ledger
+      line (case A, case B). The text before a tool call is never kept: end this reply in text with the
+      LEDGER block, then call /<skill> in the next reply.` — and every item with its line, or no source
+      found, passes silently (case 122). `estimate[...]` and `lesson[...]` lines have no source but the
+      text; a loss of one is a Retro finding. A block the agent repeats in a later text reaches the ledger
+      at that `Stop`, with that time; only the last reply of a session can still be lost, and Retro sees
+      it.'
+  change: guppi gate refuses a Skill call while a then item of the session's Spec or plan file has no
+    decision line in the ledger; the text before a tool call is never kept (case 122)
+  applied: '12:13:27'
+- line: 5
+  text: decision[case 122][update][rule-ledger-write]{ref:rule-ledger-write}{supersedes:case 117}
+  case: '122'
+  kind: update
+  slug: estimate-ledger-write-lifts
+  category: estimates
+  origin: raw/2026-09-14/1029/ledger.md#case-122
+  decision: decision-case-122
+  derived: true
+  criterion_block: '### case 122
+
+
+    When:
+
+    The agent calls a skill through the `Skill` tool and `guppi gate` runs.
+
+
+    Then:
+
+    The gate reads the `then` items of every Case in the session''s `spec.md` and in the plan file the
+    session''s event log names last under `.claude/plans/`, and the decision lines of the session''s window
+    as `guppi pretask --check` reads them.
+
+    **＋** When an item has no decision line of its Case, the gate exits 2 and writes nothing: `gate: /<skill>
+    refused — N item(s) of the Spec have no ledger line (case A, case B). The text before a tool call
+    is never kept: end this reply in text with the LEDGER block, then call /<skill> in the next reply.`
+
+    **＋** Every item with its line, or no source found: exit 0, silent; the `/handoff` check of the dirty
+    tree runs as before.
+
+    **＋** `rule-ledger-write` gains `guppi/gate.py` and `tests/test_gate.py` in `implementation_ref`;
+    its "How it works" says the gate, not the agent''s memory, holds the reply back.
+
+    **＋** `rule-case-protocol` says, after the paragraph on the `Stop` hook: "A reply that carries a `LEDGER`
+    block ends in that text. No tool call follows it in the same reply: the text before a tool call is
+    never kept, and the hook reads nothing." — rendered into `CLAUDE.md`, `contract: same`.
+
+    **＋** `estimate-ledger-write-lifts` gets a `### case 122` block, `pending`; the test seeds a plan
+    with one item and an empty ledger and expects exit 2 with the case named, then the item''s line and
+    expects 0, then no plan path and no `spec.md` and expects 0; the live half is read at the first `/pre-task`
+    of this session after its lines are written: the call passes.
+
+    **－** `{supersedes:case 117}`: `decision-case-117` is superseded, `rule-ledger-write` loses `deferred_by`.'
+  set:
+    status: pending
+  change: 'criterion: case 122 added'
+  applied: '12:13:27'
+- line: 5
+  text: decision[case 122][update][rule-ledger-write]{ref:rule-ledger-write}{supersedes:case 117}
+  case: '122'
+  kind: remove_criterion
+  category: estimates
+  origin: raw/2026-09-14/1029/ledger.md#case-122
+  decision: decision-case-122
+  derived: true
+  case_removed: '117'
+  change: 'criterion: case 117 removed'
+  applied: '12:13:27'
+- line: 6
+  text: decision[case 122][update][rule-case-protocol]{ref:rule-case-protocol}
+  case: '122'
+  kind: update
+  slug: rule-case-protocol
+  origin: raw/2026-09-14/1029/ledger.md#case-122
+  decision: decision-case-122
+  ref: rule-case-protocol
+  category: rules
+  replace:
+  - old: 'Without `/hi` the hook refuses and says so: tell the person, do not retry.'
+    new: 'Without `/hi` the hook refuses and says so: tell the person, do not retry. A reply that carries
+      a `LEDGER` block ends in that text. No tool call follows it in the same reply: the text before a
+      tool call is never kept, and the hook reads nothing.'
+  change: a reply that carries a LEDGER block ends in that text, no tool call after it (case 122)
+  applied: '12:13:27'
+- line: 7
+  text: 'estimate[estimate-ledger-write-lifts][passed] block 111.3 live: the lines of 10:32:15, 10:43:58
+    and 10:51:27 sit in raw/2026-09-14/1029/ledger.md, the folder of the stamped hi `10:29:12 19037d1c
+    hi`, with a foreign session-start (fde37e7c, 10:29 and before) in the same log; block 111.6 against
+    tests/test_ledger.py of case 111.6 (an unstamped hi under our start opens the window, a foreign start
+    between refuses it), 318 green at f5becdc; blocks 103.1 and earlier hold'
+  kind: estimate
+  category: estimates
+  slug: estimate-ledger-write-lifts
+  status: passed
+  result: 'block 111.3 live: the lines of 10:32:15, 10:43:58 and 10:51:27 sit in raw/2026-09-14/1029/ledger.md,
+    the folder of the stamped hi `10:29:12 19037d1c hi`, with a foreign session-start (fde37e7c, 10:29
+    and before) in the same log; block 111.6 against tests/test_ledger.py of case 111.6 (an unstamped
+    hi under our start opens the window, a foreign start between refuses it), 318 green at f5becdc; blocks
+    103.1 and earlier hold'
+  origin: raw/2026-09-14/1029/ledger.md#L7
+  applied: '12:13:27'
+- line: 8
+  text: decision[case 124.1][update][rule-brief]{ref:rule-brief}{supersedes:case 119}
+  case: '124.1'
+  kind: update
+  slug: rule-brief
+  origin: raw/2026-09-14/1029/ledger.md#case-124.1
+  decision: decision-case-124.1
+  ref: rule-brief
+  supersedes: '119'
+  category: rules
+  replace:
+  - old: '- Deferred: at most seven items, one per target of a `defer` entry in the yamls the walk named,
+      plus every item of the previous brief''s list whose decision no `supersedes` retired. Rank by the
+      `severity` of a related Insight, then by the number of times the item was postponed. Take that number
+      from the previous brief and add one.'
+    new: '- Deferred: at most seven items — one per target of a `defer` entry in the yamls the walk named,
+      every item of the previous brief''s list whose decision no `supersedes` retired, and every Insight
+      whose `status` is `open`. Rank by `severity` — the Insight''s own, or that of the Insight related
+      to a deferred Case — then by the number of briefs the item has stood in: the previous brief''s count
+      plus one. An Insight''s line carries its slug, its `severity`, its `pattern` and its Proposal in
+      one or two sentences; in Plan Mode it is a Case whose `recommend` starts from that Proposal, and
+      it ends in an `update` of the Insight (`status: actioned`, `addressed_by`), a rejection written
+      the same way, or a `defer` with the Insight as its target.'
+  change: every open Insight stands in the Deferred list of the brief, ranked by its severity, with a
+    count of the briefs it stood in, and is a Case of the next Plan Mode (case 124.1)
+  applied: '12:13:27'
+- line: 8
+  text: decision[case 124.1][update][rule-brief]{ref:rule-brief}{supersedes:case 119}
+  case: '124.1'
+  kind: update
+  slug: estimate-brief-written
+  category: estimates
+  origin: raw/2026-09-14/1029/ledger.md#case-124.1
+  decision: decision-case-124.1
+  derived: true
+  criterion_block: '### case 124.1
+
+
+    When:
+
+    The librarian writes `brief.md` by its frame (the Render of `rule-brief`).
+
+
+    Then:
+
+    The Deferred item of the Render reads: "Deferred: at most seven items — one per target of a `defer`
+    entry in the yamls the walk named, every item of the previous brief''s list whose decision no `supersedes`
+    retired, and every Insight whose `status` is `open`. Rank by `severity` — the Insight''s own, or that
+    of the Insight related to a deferred Case — then by the number of briefs the item has stood in: the
+    previous brief''s count plus one. An Insight''s line carries its slug, its `severity`, its `pattern`
+    and its Proposal in one or two sentences; in Plan Mode it is a Case whose `recommend` starts from
+    that Proposal, and it ends in an `update` of the Insight (`status: actioned`, `addressed_by`), a rejection
+    written the same way, or a `defer` with the Insight as its target."
+
+    **＋** `estimate-brief-written` gets a `### case 124.1` block, `pending`; read against the brief of
+    the next librarian''s run: the `open` Insights stand in Deferred by severity, with a count.
+
+    **－** `{supersedes:case 119}`: `decision-case-119` is superseded, `rule-brief` loses `deferred_by`.'
+  set:
+    status: pending
+  change: 'criterion: case 124.1 added'
+  applied: '12:13:27'
+- line: 8
+  text: decision[case 124.1][update][rule-brief]{ref:rule-brief}{supersedes:case 119}
+  case: '124.1'
+  kind: remove_criterion
+  category: estimates
+  origin: raw/2026-09-14/1029/ledger.md#case-124.1
+  decision: decision-case-124.1
+  derived: true
+  case_removed: '119'
+  change: 'criterion: case 119 removed'
+  applied: '12:13:27'
+- line: 9
+  text: decision[case 124.2][update][rule-page-generation]{ref:rule-page-generation}
+  case: '124.2'
+  kind: update
+  slug: rule-page-generation
+  origin: raw/2026-09-14/1029/ledger.md#case-124.2
+  decision: decision-case-124.2
+  ref: rule-page-generation
+  category: rules
+  replace:
+  - old: A `defer` with a page appends History `deferred` and the decision slug to its `deferred_by`;
+    new: A `defer` with a page appends History `deferred` and the decision slug to its `deferred_by` —
+      a Rule, an Entity or an Insight (case 124.2);
+  - old: History `insight section derived` (case 114);
+    new: 'History `insight section derived` (case 114); an insight whose `addressed_by` is set gets `##
+      Addressed by` holding the link the same way, rebuilt from the field on every write, and an `update`
+      that sets `status: actioned` goes as any update, the cascade of the same run archiving the `clustered`
+      children and recounting `severity` (case 124.2);'
+  change: a defer marks an Insight deferred_by like a Rule, and the Addressed by section of an Insight
+    is derived from addressed_by (case 124.2)
+  applied: '12:13:27'
+- line: 9
+  text: decision[case 124.2][update][rule-page-generation]{ref:rule-page-generation}
+  case: '124.2'
+  kind: update
+  slug: estimate-generate-writes
+  category: estimates
+  origin: raw/2026-09-14/1029/ledger.md#case-124.2
+  decision: decision-case-124.2
+  derived: true
+  criterion_block: '### case 124.2
+
+
+    When:
+
+    `guppi generate` applies a yaml entry whose target is a page of `insights/`.
+
+
+    Then:
+
+    A `defer` with an Insight as its target appends the decision slug to its `deferred_by`, as for a Rule;
+    `KEY_ORDER["insights"]` gains `deferred_by` after `addressed_by`; a `supersedes` removes it through
+    the same `clear_deferred_by`.
+
+    **＋** An `update` with `set: {addressed_by: decision-case-N}` writes the field, and on every write
+    of an Insight page the `## Addressed by` section is derived from the field — `- [[decision-case-N]]`
+    — as a lesson''s `## Insight` is from `insight` (114); without the field there is no section.
+
+    **＋** An `update` with `set: {status: actioned}` goes as any `update`; the cascade of the same run
+    archives the `clustered` children (104.2) and recounts `severity`.
+
+    **＋** `estimate-generate-writes` gets a `### case 124.2` block, `pending`; the test: a `defer` on
+    an insight → `deferred_by` written and shown in `insights-index.md`; an `update` with `addressed_by`
+    and `status: actioned` → `## Addressed by` with the link, the children `archived`; a `supersedes`
+    clears `deferred_by`.
+
+    **－** An Insight is neither created nor deleted through the yaml: a `create` or `delete` with an Insight
+    as its target is a `generate` error, as today.'
+  set:
+    status: pending
+  change: 'criterion: case 124.2 added'
+  applied: '12:13:27'
+- line: 10
+  text: decision[case 124.3][update][glossary]{ref:glossary}
+  case: '124.3'
+  kind: update
+  slug: glossary
+  origin: raw/2026-09-14/1029/ledger.md#case-124.3
+  decision: decision-case-124.3
+  ref: glossary
+  category: file
+  path: vault/wiki/glossary.md
+  change: 'Insight row: surfaces in the brief''s Deferred list, the target of the update that actions
+    or rejects it or of a defer, never created or deleted by a Decision; deferred_by row: on an Entity,
+    Rule or Insight (case 124.3)'
+  applied: '12:13:27'
+- line: 11
+  text: decision[case 124.3][update][index]{ref:index}
+  case: '124.3'
+  kind: update
+  slug: index
+  origin: raw/2026-09-14/1029/ledger.md#case-124.3
+  decision: decision-case-124.3
+  ref: index
+  category: file
+  path: vault/wiki/index.md
+  change: '§8 Insight: never created or deleted by a Decision; every open Insight stands in the brief''s
+    Deferred list by severity and is a Case of the next Plan Mode — actioned, rejected or deferred (case
+    124.3)'
+  applied: '12:13:27'
+- line: 12
+  text: decision[case 124.3][update][insights-schema]{ref:insights-schema}
+  case: '124.3'
+  kind: update
+  slug: insights-schema
+  origin: raw/2026-09-14/1029/ledger.md#case-124.3
+  decision: decision-case-124.3
+  ref: insights-schema
+  category: file
+  path: vault/wiki/insights/schema.md
+  change: an update actions or rejects an Insight, a defer postpones it; a deferred_by row; Addressed
+    by derived by generate from addressed_by (case 124.3)
+  applied: '12:13:27'
+- line: 13
+  text: decision[case 125][update][rule-event-log]{ref:rule-event-log}
+  case: '125'
+  kind: update
+  slug: rule-event-log
+  origin: raw/2026-09-14/1029/ledger.md#case-125
+  decision: decision-case-125
+  ref: rule-event-log
+  category: rules
+  replace:
+  - old: a second `/hi` of the same session and any other prompt write nothing (case 111.1).
+    new: 'a second `/hi` of the same session and any other prompt write nothing (case 111.1). Having written
+      the line, the hook prints `hi: HH:MM:SS <stamp> → raw/<date>/<HHMM>/` on stdout, which Claude Code
+      adds to the context; when a `hi` of this session already exists it prints `hi: already recorded
+      at HH:MM:SS → raw/<date>/<HHMM>/`; on any other prompt it is silent. The `/hi` skill takes the time
+      of the session''s folder from that line (case 125).'
+  change: the prompt hook prints the hi it wrote, or the one already recorded, with the session's folder,
+    into the context (case 125)
+  applied: '12:13:27'
+- line: 13
+  text: decision[case 125][update][rule-event-log]{ref:rule-event-log}
+  case: '125'
+  kind: update
+  slug: estimate-event-log-records
+  category: estimates
+  origin: raw/2026-09-14/1029/ledger.md#case-125
+  decision: decision-case-125
+  derived: true
+  criterion_block: '### case 125
+
+
+    When:
+
+    The person submits `/hi` and the `UserPromptSubmit` hook `uv run guppi event prompt` runs.
+
+
+    Then:
+
+    Having written the `hi` line, the hook prints on stdout `hi: HH:MM:SS <stamp> → raw/<date>/<HHMM>/`;
+    when a `hi` of this session already exists it prints `hi: already recorded at HH:MM:SS → raw/<date>/<HHMM>/`
+    and writes nothing; on any other prompt it is silent. The line reaches the session''s context.
+
+    **＋** The Render of `rule-skill-hi`: "`HHMM` the time of the `hi` line above (case 73)" → "`HHMM`
+    from the `hi:` line the `UserPromptSubmit` hook put in context (cases 73, 125)".
+
+    **＋** `estimate-event-log-records` gets a `### case 125` block, `pending`; the test: `/hi` → the line
+    written and stdout `hi: … → raw/…/`; a second `/hi` → stdout `already recorded`, no new line in the
+    log; `hello` → stdout empty. The live reading at the next `/hi`: the `hi:` line is in the context
+    and the folder is named without a read call.
+
+    **－** `rule-skill-hi` is a MOC, no `contract` is written; `rule-event-log` is `contract: changed`.'
+  set:
+    status: pending
+  change: 'criterion: case 125 added'
+  applied: '12:13:27'
+- line: 14
+  text: decision[case 125][update][rule-skill-hi]{ref:rule-skill-hi}
+  case: '125'
+  kind: update
+  slug: rule-skill-hi
+  origin: raw/2026-09-14/1029/ledger.md#case-125
+  decision: decision-case-125
+  ref: rule-skill-hi
+  category: rules
+  replace:
+  - old: '`HHMM` the time of the `hi` line above (case 73)'
+    new: '`HHMM` from the `hi:` line the `UserPromptSubmit` hook put in context (cases 73, 125)'
+  change: the time of the session's folder comes from the hook's hi line in context, not from a line the
+    skill no longer prints (case 125)
+  applied: '12:13:27'
+- line: 15
+  text: decision[case 126][update][rule-retro]{ref:rule-retro}{supersedes:case 118}
+  case: '126'
+  kind: update
+  slug: rule-retro
+  origin: raw/2026-09-14/1029/ledger.md#case-126
+  decision: decision-case-126
+  ref: rule-retro
+  supersedes: '118'
+  category: rules
+  replace:
+  - old: 'Ledger of today: !`cat vault/raw/$(date +%F)/ledger.md vault/raw/$(date +%F)/*/ledger.md 2>/dev/null`'
+    new: 'Ledger: !`uv run guppi tail`'
+  - old: the ledger lines of today grouped by Case
+    new: the lines of the Tail above grouped by Case, this session's folder first
+  change: the Retro ledger is the unmaterialized tail printed by guppi tail, not a cat over a date-level
+    file the model of case 103 no longer has (case 126)
+  applied: '12:13:27'
+- line: 15
+  text: decision[case 126][update][rule-retro]{ref:rule-retro}{supersedes:case 118}
+  case: '126'
+  kind: update
+  slug: estimate-retro-loads
+  category: estimates
+  origin: raw/2026-09-14/1029/ledger.md#case-126
+  decision: decision-case-126
+  derived: true
+  criterion_block: '### case 126
+
+
+    When:
+
+    The person invokes `/retro`.
+
+
+    Then:
+
+    The Render of `rule-retro`: the line `Ledger of today: !`cat vault/raw/$(date +%F)/ledger.md vault/raw/$(date
+    +%F)/*/ledger.md 2>/dev/null`` → `Ledger: !`uv run guppi tail`` — the unmaterialized lines, this session''s
+    in its folder; the phrase "the ledger lines of today grouped by Case" → "the lines of the Tail above
+    grouped by Case, this session''s folder first".
+
+    **＋** `estimate-retro-loads` gets a `### case 126` block, `pending`; read at the first `/retro` after
+    the render — the next session''s, since the skill is rendered by the librarian after this session''s
+    Retro: the skill loaded, `Ledger:` carries the lines of the session''s folder, no substitution failed.
+
+    **－** `{supersedes:case 118}`: `decision-case-118` is superseded, `rule-retro` loses `deferred_by`.'
+  set:
+    status: pending
+  change: 'criterion: case 126 added'
+  applied: '12:13:27'
+- line: 15
+  text: decision[case 126][update][rule-retro]{ref:rule-retro}{supersedes:case 118}
+  case: '126'
+  kind: remove_criterion
+  category: estimates
+  origin: raw/2026-09-14/1029/ledger.md#case-126
+  decision: decision-case-126
+  derived: true
+  case_removed: '118'
+  change: 'criterion: case 118 removed'
+  applied: '12:13:27'
+- line: 16
+  text: decision[case 127][create][rule-bash-guard]{ref:rule-harness}{tags:hooks,harness}{supersedes:case
+    120}
+  case: '127'
+  kind: create
+  slug: rule-bash-guard
+  origin: raw/2026-09-14/1029/ledger.md#case-127
+  decision: decision-case-127
+  ref: rule-harness
+  supersedes: '120'
+  tags:
+  - hooks
+  - harness
+  category: rules
+  fields:
+    type: rule
+    kind: Leaf
+    purpose: Prevents a heredoc from carrying a backslash escape or writing a file through the Bash tool
+    enforcement: hook
+    implementation_ref:
+    - guppi/bashguard.py
+    - tests/test_bashguard.py
+    - .claude/settings.json
+    tags:
+    - hooks
+    - harness
+  sections:
+    Purpose: 'Prevents a heredoc from carrying a backslash escape or writing a file through the Bash
+
+      tool. On this Windows machine the tool''s shell layer interprets backslash escapes inside a
+
+      heredoc body before the interpreter reads it, whatever the quoting of the marker; three
+
+      sessions (H, L, M) broke edit scripts that way with the lesson live, and a heredoc that
+
+      writes a file fails on quotes in its body. A lesson the agent has to remember is not a
+
+      rule; a `PreToolUse` hook cannot be skipped.
+
+      '
+    How it works: '`uv run guppi bashguard` on `PreToolUse` of `Bash`. It reads `tool_input.command`,
+      finds
+
+      every heredoc (`<<` or `<<-`, the marker quoted or not) and its body up to the closing
+
+      line. A body with a backslash, or a marker line that redirects into a file (`>` or `>>`
+
+      not to `/dev/null`, `tee`), exits 2 with the reason on stderr — `bashguard: heredoc
+
+      refused — <a backslash in its body | it writes <path>>. Write the script with the Write
+
+      tool into the scratchpad and run it by path; change a file with Edit.` — which blocks
+
+      the call; one line `bashguard: <reason>` goes to `vault/raw/<date>/event_log.md` before
+
+      that (case 91). A `<<<` here-string, a heredoc without a backslash whose output goes to a
+
+      pipe or the screen, a command without a heredoc, any other tool, or a payload the hook
+
+      cannot read: exit 0, the last with one line on stderr. The hook never raises (case 127).
+
+      '
+  applied: '12:13:27'
+- line: 16
+  text: decision[case 127][create][rule-bash-guard]{ref:rule-harness}{tags:hooks,harness}{supersedes:case
+    120}
+  case: '127'
+  kind: create
+  slug: estimate-bash-guard
+  category: estimates
+  ref: rule-bash-guard
+  origin: raw/2026-09-14/1029/ledger.md#case-127
+  decision: decision-case-127
+  derived: true
+  tags:
+  - hooks
+  - harness
+  fields:
+    type: estimate
+    kind: QA
+  sections:
+    Context: A lesson the agent has to remember is not a rule. A `PreToolUse Bash` hook that refuses a
+      command whose heredoc body carries a backslash escape — or refuses a heredoc that writes a file
+      at all, pointing at Write and Edit — makes the trap impossible instead of remembered. (Case 120
+      as it stands.)
+    Criterion: '### case 127
+
+
+      When:
+
+      The agent calls the `Bash` tool and the hook `uv run guppi bashguard` runs on `PreToolUse`.
+
+
+      Then:
+
+      The hook reads `tool_input.command`, finds every heredoc (`<<` or `<<-`, the marker quoted or not)
+      and its body up to the closing line. A body with a backslash, or a marker line that redirects into
+      a file (`>` / `>>` not to `/dev/null`, `tee`) — exit 2, the reason on stderr: `bashguard: heredoc
+      refused — <a backslash in its body | it writes <path>>. Write the script with the Write tool into
+      the scratchpad and run it by path; change a file with Edit.`
+
+      **＋** Before the refusal one line `- HH:MM:SS <stamp> bashguard: <reason>` goes to `raw/<date>/event_log.md`
+      (case 91).
+
+      **＋** Any other tool, a command without a heredoc, a heredoc without a backslash and without a file
+      write, an unreadable payload — exit 0, the last with a line on stderr; the hook never raises.
+
+      **＋** `rule-bash-guard` is a `Leaf`, `enforcement: hook`, `implementation_ref: [guppi/bashguard.py,
+      tests/test_bashguard.py, .claude/settings.json]`, `parent: rule-harness`, `tags: [hooks, harness]`;
+      `estimate-bash-guard` (`QA`), `pending`: the test on `python - <<''EOF''` with `\n` in the body
+      → 2; `cat > f <<EOF` → 2; a heredoc with a clean body into a pipe → 0; a command without a heredoc
+      → 0; an unreadable payload → 0; the live reading is the first refusal in Work Mode or, without one,
+      the test.
+
+      **＋** `rule-hook-registry`: in `PreToolUse` after the matcher `Edit|Write|MultiEdit` — `{ "matcher":
+      "Bash", "hooks": [ { "type": "command", "command": "uv run guppi bashguard", "timeout": 30 } ] }`;
+      `contract: same`; `rule-harness` gets `rule-bash-guard` as its seventh child through the `ref`.
+
+      **－** `{supersedes:case 120}`: `decision-case-120` is superseded, `rule-bash-guard` loses `deferred_by`.'
+    Method: pytest in `tests/test_bashguard.py` with piped payloads — a `python - <<'EOF'` body with `\n`
+      → 2, `cat > f <<EOF` → 2, a clean heredoc into a pipe → 0, no heredoc → 0, an unreadable payload
+      → 0; the live reading is the first refusal of a Work Mode, written into the estimate line, or the
+      test alone when none occurs
+  status: passed
+  result: 'against tests/test_bashguard.py: a backslash in the body → 2 naming Write and Edit; cat > f,
+    cat >> path and tee → 2 with the path; a clean heredoc into a pipe or the screen, <<- with a tab-indented
+    close, 2>/dev/null, a <<< here-string, no heredoc → 0; the refusal logged first; an unreadable payload
+    → 0 with a stderr line; no live refusal yet — the hook is registered by the render after the librarian'
+  folded:
+  - 35
+  applied: '12:13:27'
+- line: 16
+  text: decision[case 127][create][rule-bash-guard]{ref:rule-harness}{tags:hooks,harness}{supersedes:case
+    120}
+  case: '127'
+  kind: remove_criterion
+  category: estimates
+  origin: raw/2026-09-14/1029/ledger.md#case-127
+  decision: decision-case-127
+  derived: true
+  case_removed: '120'
+  change: 'criterion: case 120 removed'
+  applied: '12:13:27'
+- line: 17
+  text: decision[case 127][update][rule-hook-registry]{ref:rule-hook-registry}
+  case: '127'
+  kind: update
+  slug: rule-hook-registry
+  origin: raw/2026-09-14/1029/ledger.md#case-127
+  decision: decision-case-127
+  ref: rule-hook-registry
+  category: rules
+  replace:
+  - old: "{ \"matcher\": \"Edit|Write|MultiEdit\",\n  \"hooks\": [ { \"type\": \"command\", \"command\"\
+      : \"uv run guppi guard\", \"timeout\": 30 } ] }\n"
+    new: "{ \"matcher\": \"Edit|Write|MultiEdit\",\n  \"hooks\": [ { \"type\": \"command\", \"command\"\
+      : \"uv run guppi guard\", \"timeout\": 30 } ] },\n{ \"matcher\": \"Bash\",\n  \"hooks\": [ { \"\
+      type\": \"command\", \"command\": \"uv run guppi bashguard\", \"timeout\": 30 } ] }\n"
+  change: a PreToolUse hook on Bash, guppi bashguard, against the heredoc trap (case 127)
+  applied: '12:13:27'
+- line: 18
+  text: decision[case 129][defer][rule-work-mode]{ref:rule-work-mode}{supersedes:case 116}
+  case: '129'
+  kind: defer
+  slug: rule-work-mode
+  origin: raw/2026-09-14/1029/ledger.md#case-129
+  decision: decision-case-129
+  ref: rule-work-mode
+  supersedes: '116'
+  category: rules
+  fields:
+    type: rule
+    purpose: The rule of Work Mode — the Spec as tasks with code, the ticked boxes, what a subagent may
+      do, and the fork that comes back as a Case; the Plan Mode of the next session
+  exists: true
+  applied: '12:13:27'
+- line: 18
+  text: decision[case 129][defer][rule-work-mode]{ref:rule-work-mode}{supersedes:case 116}
+  case: '129'
+  kind: remove_criterion
+  category: estimates
+  origin: raw/2026-09-14/1029/ledger.md#case-129
+  decision: decision-case-129
+  derived: true
+  case_removed: '116'
+  change: 'criterion: case 116 removed'
+  applied: '12:13:27'
+- line: 19
+  text: decision[case 129][defer][rule-subagent-guppi]{ref:rule-subagent-guppi}{supersedes:case 116}
+  case: '129'
+  kind: defer
+  slug: rule-subagent-guppi
+  origin: raw/2026-09-14/1029/ledger.md#case-129
+  decision: decision-case-129
+  ref: rule-subagent-guppi
+  supersedes: '116'
+  category: rules
+  fields:
+    type: rule
+    purpose: Governs Work Mode's subagents — they execute the Spec's tasks, never decide, and return a
+      fork as a Case; the Plan Mode of the next session
+  exists: true
+  applied: '12:13:27'
+- line: 19
+  text: decision[case 129][defer][rule-subagent-guppi]{ref:rule-subagent-guppi}{supersedes:case 116}
+  case: '129'
+  kind: remove_criterion
+  category: estimates
+  origin: raw/2026-09-14/1029/ledger.md#case-129
+  decision: decision-case-129
+  derived: true
+  case_removed: '116'
+  change: 'criterion: case 116 removed'
+  applied: '12:13:27'
+- line: 20
+  text: decision[case 128][update][rule-pretask]{ref:rule-pretask}{supersedes:case 121}
+  case: '128'
+  kind: update
+  slug: rule-pretask
+  origin: raw/2026-09-14/1029/ledger.md#case-128
+  decision: decision-case-128
+  ref: rule-pretask
+  supersedes: '121'
+  category: rules
+  replace:
+  - old: Dispatch the `ask-guppi` agent once with that list and the question
+    new: Dispatch the `ask-guppi` agent once with that list, the absolute path of the plan file, the instruction
+      to read for every Case there its `when` and `then` sections and its `then` block — `replace` old
+      and new, `set`, `sections` — before judging a page, so that a finding can name a wrong wording or
+      a wrong place, and the question
+  change: the pre-task dispatch carries the plan file's path and the instruction to read every Case's
+    when, then and then block, not a summary (case 128)
+  applied: '12:13:27'
+- line: 20
+  text: decision[case 128][update][rule-pretask]{ref:rule-pretask}{supersedes:case 121}
+  case: '128'
+  kind: update
+  slug: estimate-pretask-reconciles
+  category: estimates
+  origin: raw/2026-09-14/1029/ledger.md#case-128
+  decision: decision-case-128
+  derived: true
+  criterion_block: '### case 128
+
+
+    When:
+
+    The person invokes `/pre-task` and the agent assembles the dispatch for `ask-guppi`.
+
+
+    Then:
+
+    The Render of `rule-pretask`: "Dispatch the `ask-guppi` agent once with that list and the question"
+    → "Dispatch the `ask-guppi` agent once with that list, the absolute path of the plan file, the instruction
+    to read for every Case there its `when` and `then` sections and its `then` block — `replace` old and
+    new, `set`, `sections` — before judging a page, so that a finding can name a wrong wording or a wrong
+    place, and the question".
+
+    **＋** `estimate-pretask-reconciles` gets a `### case 128` block, `pending`; read at this session''s
+    `/pre-task`: the dispatch carries the path and the instruction on `when`, `then` and the blocks, and
+    no finding answers what the plan already does.
+
+    **－** `{supersedes:case 121}`: `decision-case-121` is superseded, `rule-pretask` loses `deferred_by`.'
+  set:
+    status: pending
+  change: 'criterion: case 128 added'
+  applied: '12:13:27'
+- line: 20
+  text: decision[case 128][update][rule-pretask]{ref:rule-pretask}{supersedes:case 121}
+  case: '128'
+  kind: remove_criterion
+  category: estimates
+  origin: raw/2026-09-14/1029/ledger.md#case-128
+  decision: decision-case-128
+  derived: true
+  case_removed: '121'
+  change: 'criterion: case 121 removed'
+  applied: '12:13:27'
+- line: 21
+  text: decision[case 130.1][update][rule-page-generation]{ref:rule-page-generation}{supersedes:case 112.6}
+  case: '130.1'
+  kind: update
+  slug: rule-page-generation
+  origin: raw/2026-09-14/1029/ledger.md#case-130.1
+  decision: decision-case-130.1
+  ref: rule-page-generation
+  supersedes: '112.6'
+  category: rules
+  change: the literal decision-case-N of the History line of 2026-09-11 and of the Given of decision-case-112.1–112.6
+    quoted by hand, a one-off migration; entry 112.6 superseded (case 130.1)
+  applied: '12:13:27'
+- line: 21
+  text: decision[case 130.1][update][rule-page-generation]{ref:rule-page-generation}{supersedes:case 112.6}
+  case: '130.1'
+  kind: remove_criterion
+  category: estimates
+  origin: raw/2026-09-14/1029/ledger.md#case-130.1
+  decision: decision-case-130.1
+  derived: true
+  case_removed: '112.6'
+  change: 'criterion: case 112.6 removed'
+  applied: '12:13:27'
+- line: 22
+  text: decision[case 130.2][update][rule-materialize]{ref:rule-materialize}
+  case: '130.2'
+  kind: update
+  slug: rule-materialize
+  origin: raw/2026-09-14/1029/ledger.md#case-130.2
+  decision: decision-case-130.2
+  ref: rule-materialize
+  category: rules
+  replace:
+  - old: a later `supersedes` adds `superseded_by` to the earlier entry and changes nothing else
+    new: a later `supersedes` adds `superseded_by` to the entries of the earlier Case in whichever unit's
+      yaml holds them — this one or any other under `raw/` — and to that unit's `decisions` list, and
+      changes nothing else; a foreign yaml is written with that mark only (case 130.2)
+  change: a supersedes marks the earlier Case's entries in the yaml of any unit under raw/, so a failed
+    entry superseded from a later session no longer keeps its unit out of the archive (case 130.2)
+  applied: '12:13:27'
+- line: 22
+  text: decision[case 130.2][update][rule-materialize]{ref:rule-materialize}
+  case: '130.2'
+  kind: update
+  slug: estimate-materialize-assembles
+  category: estimates
+  origin: raw/2026-09-14/1029/ledger.md#case-130.2
+  decision: decision-case-130.2
+  derived: true
+  criterion_block: '### case 130.2
+
+
+    When:
+
+    `guppi materialize` assembles the entry of a line with `{supersedes:case N}`.
+
+
+    Then:
+
+    The entries of Case N (decision kinds) are marked `superseded_by` in the yaml of the unit that holds
+    them — its own or any other under `raw/` — and in the `decisions` list of that unit; a foreign yaml
+    is written with that mark only.
+
+    **＋** `estimate-materialize-assembles` gets a `### case 130.2` block, `pending`; the test: the yaml
+    of unit A with an entry of case 5 without `applied`, the ledger of unit B with a line carrying `{supersedes:case
+    5}` → after `materialize` of unit B the entry in A carries `superseded_by`, the rest of A unchanged;
+    `archive.kept_reason(A)` is None. The live reading at the librarian''s run: 112.6 marked, `0747` moved.
+
+    **－** An entry that no yaml holds: as today, nothing.'
+  set:
+    status: pending
+  change: 'criterion: case 130.2 added'
+  applied: '12:13:27'
+- line: 23
+  text: 'estimate[estimate-event-log-records][passed] block 111.1: the log carries `- 10:29:12 19037d1c
+    hi` for this session, written by the UserPromptSubmit hook on the slash command; the half "a repeated
+    /hi adds no line" read against tests/test_event.py of case 111.1 (a second /hi of the same session
+    writes nothing), 318 green at f5becdc — a live second /hi would rewrite this session''s frontier.md,
+    so it was not made'
+  kind: estimate
+  category: estimates
+  slug: estimate-event-log-records
+  status: passed
+  result: 'block 111.1: the log carries `- 10:29:12 19037d1c hi` for this session, written by the UserPromptSubmit
+    hook on the slash command; the half "a repeated /hi adds no line" read against tests/test_event.py
+    of case 111.1 (a second /hi of the same session writes nothing), 318 green at f5becdc — a live second
+    /hi would rewrite this session''s frontier.md, so it was not made'
+  origin: raw/2026-09-14/1029/ledger.md#L23
+  applied: '12:13:27'
+- line: 24
+  text: decision[case 131][update][rule-page-generation]{ref:rule-page-generation}
+  case: '131'
+  kind: update
+  slug: rule-page-generation
+  origin: raw/2026-09-14/1029/ledger.md#case-131
+  decision: decision-case-131
+  ref: rule-page-generation
+  category: rules
+  change: 'the History line of case 114, `updated: the`, completed by hand to name the derived ## Insight
+    section — a one-off migration (case 131)'
+  applied: '12:13:27'
+- line: 25
+  text: 'estimate[estimate-pretask-reconciles][passed] block 128 at the /pre-task of session N: the dispatch
+    carried the plan file''s absolute path and the instruction to read every Case''s when, then and then
+    block; ask-guppi returned ten findings, each naming a page and a sentence, and none answered what
+    a then block already does; four were wrong places or absent old texts in the blocks themselves, which
+    a summary would not have shown'
+  kind: estimate
+  category: estimates
+  slug: estimate-pretask-reconciles
+  status: passed
+  result: 'block 128 at the /pre-task of session N: the dispatch carried the plan file''s absolute path
+    and the instruction to read every Case''s when, then and then block; ask-guppi returned ten findings,
+    each naming a page and a sentence, and none answered what a then block already does; four were wrong
+    places or absent old texts in the blocks themselves, which a summary would not have shown'
+  origin: raw/2026-09-14/1029/ledger.md#L25
+  applied: '12:13:27'
+- line: 26
+  text: decision[case 132][update][rule-retro-commit]{ref:rule-retro-commit}
+  case: '132'
+  kind: update
+  slug: rule-retro-commit
+  origin: raw/2026-09-14/1029/ledger.md#case-132
+  decision: decision-case-132
+  ref: rule-retro-commit
+  category: rules
+  replace:
+  - old: 'Any other skill or tool: exit 0.'
+    new: 'Any other tool: exit 0; any other skill: exit 0 on the tree — the same hook refuses any skill
+      while a `then` item of the session''s Spec has no ledger line (`rule-ledger-write`, case 122).'
+  change: the gate's second refusal, on an unwritten ledger line, named beside the tree check (case 132)
+  applied: '12:13:27'
+- line: 27
+  text: decision[case 132][update][rule-event-log]{ref:rule-event-log}
+  case: '132'
+  kind: update
+  slug: rule-event-log
+  origin: raw/2026-09-14/1029/ledger.md#case-132
+  decision: decision-case-132
+  ref: rule-event-log
+  category: rules
+  replace:
+  - old: Its one governance job is to carry the `hi` mark that tells the ledger hook a working session
+      is open.
+    new: 'Its governance jobs: to carry the `hi` mark that tells the ledger hook a working session is
+      open, and to name the session''s plan file by its `tool Write:` and `tool Edit:` lines for `guppi
+      gate` (case 122).'
+  change: the event log's second governance job, the plan path for guppi gate, named (case 132)
+  applied: '12:13:27'
+- line: 28
+  text: decision[case 132][update][rule-harness]{ref:rule-harness}
+  case: '132'
+  kind: update
+  slug: rule-harness
+  origin: raw/2026-09-14/1029/ledger.md#case-132
+  decision: decision-case-132
+  ref: rule-harness
+  category: rules
+  replace:
+  - old: 'Two more belong here and run in no pipeline: the hook that refuses a hand edit of a rendered
+      file, and the page `CLAUDE.md` is rendered from (cases 59.6, 59.8).'
+    new: 'Three more belong here and run in no pipeline: the hook that refuses a hand edit of a rendered
+      file, the hook that refuses a heredoc with a backslash or a file write, and the page `CLAUDE.md`
+      is rendered from (cases 59.6, 59.8, 127).'
+  change: the bash guard hook counted among the children outside the pipeline (case 132)
+  applied: '12:13:27'
+- line: 29
+  text: decision[case 132][update][rule-retro]{ref:rule-retro}
+  case: '132'
+  kind: update
+  slug: rule-retro
+  origin: raw/2026-09-14/1029/ledger.md#case-132
+  decision: decision-case-132
+  ref: rule-retro
+  category: rules
+  replace:
+  - old: work a line of today's ledger ratified
+    new: work a line of this session's ledger ratified
+  change: the scope rule names this session's ledger, as 109.1 promised (case 132)
+  applied: '12:13:27'
+- line: 30
+  text: decision[case 132][update][rule-brief]{ref:rule-brief}
+  case: '132'
+  kind: update
+  slug: rule-brief
+  origin: raw/2026-09-14/1029/ledger.md#case-132
+  decision: decision-case-132
+  ref: rule-brief
+  category: rules
+  replace:
+  - old: every deferred item lives on as a draft page and pre-task finds it there
+    new: every deferred item lives on as a page — a draft placeholder, or the open Insight itself — and
+      pre-task finds it there
+  change: an open Insight in Deferred is a live page, not a draft placeholder (case 132)
+  applied: '12:13:27'
+- line: 31
+  text: decision[case 132][update][rule-ledger-tail]{ref:rule-ledger-tail}
+  case: '132'
+  kind: update
+  slug: rule-ledger-tail
+  origin: raw/2026-09-14/1029/ledger.md#case-132
+  decision: decision-case-132
+  ref: rule-ledger-tail
+  category: rules
+  replace:
+  - old: Shows at `/hi` every ledger line that no vault page holds yet.
+    new: Shows at `/hi`, and at `/retro` since case 126, every ledger line that no vault page holds yet.
+  change: the second caller of guppi tail, the retro skill, named (case 132)
+  applied: '12:13:27'
+- line: 32
+  text: 'estimate[estimate-ledger-write-lifts][passed] block 122 against tests/test_gate.py (an item without
+    its line → exit 2 naming the case; the line in raw/<date>/<HHMM>/ledger.md → 0; no plan path and no
+    spec.md → 0; a defer item of spec.md → 2; the Spec check before the tree check) and live: guppi gate
+    on this session''s payload with every item lined → exit 0'
+  kind: estimate
+  category: estimates
+  slug: estimate-ledger-write-lifts
+  status: passed
+  result: 'block 122 against tests/test_gate.py (an item without its line → exit 2 naming the case; the
+    line in raw/<date>/<HHMM>/ledger.md → 0; no plan path and no spec.md → 0; a defer item of spec.md
+    → 2; the Spec check before the tree check) and live: guppi gate on this session''s payload with every
+    item lined → exit 0'
+  origin: raw/2026-09-14/1029/ledger.md#L32
+  applied: '12:13:27'
+- line: 33
+  text: 'estimate[estimate-generate-writes][passed] block 124.2 against tests/test_generate.py: a defer
+    on an insight writes deferred_by and insights-index.md shows it; an update with addressed_by and status
+    actioned writes ## Addressed by with the link and the cascade archives the clustered child, severity
+    0; a supersedes clears deferred_by; a create or delete of an insight is an error'
+  kind: estimate
+  category: estimates
+  slug: estimate-generate-writes
+  status: passed
+  result: 'block 124.2 against tests/test_generate.py: a defer on an insight writes deferred_by and insights-index.md
+    shows it; an update with addressed_by and status actioned writes ## Addressed by with the link and
+    the cascade archives the clustered child, severity 0; a supersedes clears deferred_by; a create or
+    delete of an insight is an error'
+  origin: raw/2026-09-14/1029/ledger.md#L33
+  applied: '12:13:27'
+- line: 34
+  text: 'estimate[estimate-event-log-records][passed] block 125 against tests/test_event.py: /hi prints
+    `hi: 15:02:11 abc12345 → raw/2026-09-09/1502/` and writes the line; a second /hi prints `already recorded
+    at 15:02:11 → raw/2026-09-09/1502/` and adds no line; across midnight the folder is the hi date''s;
+    other prompts print nothing; the live half waits for the next /hi'
+  kind: estimate
+  category: estimates
+  slug: estimate-event-log-records
+  status: passed
+  result: 'block 125 against tests/test_event.py: /hi prints `hi: 15:02:11 abc12345 → raw/2026-09-09/1502/`
+    and writes the line; a second /hi prints `already recorded at 15:02:11 → raw/2026-09-09/1502/` and
+    adds no line; across midnight the folder is the hi date''s; other prompts print nothing; the live
+    half waits for the next /hi'
+  origin: raw/2026-09-14/1029/ledger.md#L34
+  applied: '12:13:27'
+- line: 36
+  text: 'estimate[estimate-materialize-assembles][passed] block 130.2 against tests/test_materialize.py:
+    unit B''s line with {supersedes:case 5} marks unit A''s entry and decision superseded_by, archive.kept_reason(A)
+    is None, a second walk leaves A byte-identical; a case no yaml holds changes nothing'
+  kind: estimate
+  category: estimates
+  slug: estimate-materialize-assembles
+  status: passed
+  result: 'block 130.2 against tests/test_materialize.py: unit B''s line with {supersedes:case 5} marks
+    unit A''s entry and decision superseded_by, archive.kept_reason(A) is None, a second walk leaves A
+    byte-identical; a case no yaml holds changes nothing'
+  origin: raw/2026-09-14/1029/ledger.md#L36
+  applied: '12:13:27'
+- line: 37
+  text: 'estimate[estimate-spec-capture-appends][passed] block 73.2 at the approval of 11:40:48: the plan
+    copied whole to raw/2026-09-14/1029/spec.md under `<!-- approved 11:40:48 · session 19037d1c -->`,
+    64696 bytes for a 64648-byte plan'
+  kind: estimate
+  category: estimates
+  slug: estimate-spec-capture-appends
+  status: passed
+  result: 'block 73.2 at the approval of 11:40:48: the plan copied whole to raw/2026-09-14/1029/spec.md
+    under `<!-- approved 11:40:48 · session 19037d1c -->`, 64696 bytes for a 64648-byte plan'
+  origin: raw/2026-09-14/1029/ledger.md#L37
+  applied: '12:13:27'
+- line: 38
+  text: 'estimate[estimate-plan-mode-verified][passed] at the approval of 11:40:48: ExitPlanMode passed
+    after the pretask line of 11:26:29 in the window of the hi 10:29:12, and the plan was written; the
+    pretask line is unstamped (`--------`) and counted by position — the lesson below'
+  kind: estimate
+  category: estimates
+  slug: estimate-plan-mode-verified
+  status: passed
+  result: 'at the approval of 11:40:48: ExitPlanMode passed after the pretask line of 11:26:29 in the
+    window of the hi 10:29:12, and the plan was written; the pretask line is unstamped (`--------`) and
+    counted by position — the lesson below'
+  origin: raw/2026-09-14/1029/ledger.md#L38
+  applied: '12:13:27'
+- line: 39
+  text: 'lesson[error][lesson-heredoc-trap-hit-a-fourth-time-in-the-session-that-ratified-its-hook]{tags:hooks,harness,tests}
+    trigger: two edit scripts of Work Mode in session N, passed to the Bash tool as heredocs, had their
+    backslash sequences turned into real newlines — three assertion strings in tests/test_event.py split
+    across lines, a replace target in a test_gate edit never matched — each caught by a SyntaxError or
+    a failed assert; the fix was a script written with the Write tool and run by path, and Edit root_cause:
+    the same trap as lesson-heredoc-trap-hit-a-third-time-in-work-mode, with Case 127 ratified in this
+    very session and guppi bashguard written an hour later; the hook that refuses the heredoc enters settings.json
+    only with the librarian''s render, so nothing mechanical stood between the agent and the trap yet,
+    and the auto-mode instruction to prefer Bash heredocs for file changes pointed straight at it'
+  kind: lesson
+  category: lessons
+  slug: lesson-heredoc-trap-hit-a-fourth-time-in-the-session-that-ratified-its-hook
+  origin: raw/2026-09-14/1029/ledger.md#L39
+  fields:
+    type: lesson
+    kind: error
+    root_cause: the same trap as lesson-heredoc-trap-hit-a-third-time-in-work-mode, with Case 127 ratified
+      in this very session and guppi bashguard written an hour later; the hook that refuses the heredoc
+      enters settings.json only with the librarian's render, so nothing mechanical stood between the agent
+      and the trap yet, and the auto-mode instruction to prefer Bash heredocs for file changes pointed
+      straight at it
+  sections:
+    Trigger: two edit scripts of Work Mode in session N, passed to the Bash tool as heredocs, had their
+      backslash sequences turned into real newlines — three assertion strings in tests/test_event.py split
+      across lines, a replace target in a test_gate edit never matched — each caught by a SyntaxError
+      or a failed assert; the fix was a script written with the Write tool and run by path, and Edit
+    Root cause: the same trap as lesson-heredoc-trap-hit-a-third-time-in-work-mode, with Case 127 ratified
+      in this very session and guppi bashguard written an hour later; the hook that refuses the heredoc
+      enters settings.json only with the librarian's render, so nothing mechanical stood between the agent
+      and the trap yet, and the auto-mode instruction to prefer Bash heredocs for file changes pointed
+      straight at it
+  tags:
+  - hooks
+  - harness
+  - tests
+  applied: '12:13:27'
+- line: 40
+  text: 'lesson[knowledge][lesson-pretask-line-unstamped-and-bound-by-position]{tags:hooks,session,harness}{source:raw/2026-09-14/event_log.md,
+    lines 348 and 268} trigger: the pretask line of session N reads `- 11:26:29 -------- pretask` — the
+    /pre-task skill writes it through a `!` substitution where CLAUDE_SESSION_ID is empty — and pretask.window
+    counts any pretask after our hi, whatever its stamp, so ExitPlanMode passed root_cause: the pretask
+    mark has no session id, as the hi had before case 111; two sessions open at once could lend each other
+    a pretask, the same binding by position that insight-ledger-hi-tied-to-its-session-by-position names;
+    a stamped pretask written by a hook on the Skill call, or by guppi gate, is the fix'
+  kind: lesson
+  category: lessons
+  slug: lesson-pretask-line-unstamped-and-bound-by-position
+  origin: raw/2026-09-14/1029/ledger.md#L40
+  fields:
+    type: lesson
+    kind: knowledge
+    root_cause: the pretask mark has no session id, as the hi had before case 111; two sessions open at
+      once could lend each other a pretask, the same binding by position that insight-ledger-hi-tied-to-its-session-by-position
+      names; a stamped pretask written by a hook on the Skill call, or by guppi gate, is the fix
+    source: raw/2026-09-14/event_log.md, lines 348 and 268
+  sections:
+    Trigger: the pretask line of session N reads `- 11:26:29 -------- pretask` — the /pre-task skill writes
+      it through a `!` substitution where CLAUDE_SESSION_ID is empty — and pretask.window counts any pretask
+      after our hi, whatever its stamp, so ExitPlanMode passed
+    Root cause: the pretask mark has no session id, as the hi had before case 111; two sessions open at
+      once could lend each other a pretask, the same binding by position that insight-ledger-hi-tied-to-its-session-by-position
+      names; a stamped pretask written by a hook on the Skill call, or by guppi gate, is the fix
+  tags:
+  - hooks
+  - session
+  - harness
+  applied: '12:13:27'
+- line: 41
+  text: 'estimate[estimate-retro-loads][failed] block 109.1, second reading: /retro of 2026-09-14 11:55
+    recorded its event and its ledger substitution exited 1 again on a day without a date-level ledger;
+    the harness did not load the skill text and the agent ran Retro from SKILL.md. Case 126 is ratified
+    and replaces the line with `uv run guppi tail`; the render comes with the librarian, so the next /retro
+    is the reading of block 126'
+  kind: estimate
+  category: estimates
+  slug: estimate-retro-loads
+  status: failed
+  result: 'block 109.1, second reading: /retro of 2026-09-14 11:55 recorded its event and its ledger substitution
+    exited 1 again on a day without a date-level ledger; the harness did not load the skill text and the
+    agent ran Retro from SKILL.md. Case 126 is ratified and replaces the line with `uv run guppi tail`;
+    the render comes with the librarian, so the next /retro is the reading of block 126'
+  origin: raw/2026-09-14/1029/ledger.md#L41
+  applied: '12:13:27'
+- kind: update
+  category: insights
+  slug: insight-session-vault-knowledge-not-loaded
+  origin: raw/2026-09-14/1029/ledger.md#L39
+  set:
+    children:
+    - lesson-readings-after-librarian-invisible-to-next-hi
+    - lesson-vault-lesson-absent-at-the-moment-it-applies
+    - lesson-heredoc-trap-hit-twice-with-its-lesson-live
+    - lesson-heredoc-trap-hit-a-third-time-in-work-mode
+    - lesson-heredoc-trap-hit-a-fourth-time-in-the-session-that-ratified-its-hook
+  change: 'synthesis: lesson-heredoc-trap-hit-a-fourth-time-in-the-session-that-ratified-its-hook added,
+    the same trap a fourth time, in the session that ratified the hook against it'
+  librarian: synthesis
+  applied: '12:13:27'
+- kind: update
+  category: lessons
+  slug: lesson-heredoc-trap-hit-a-fourth-time-in-the-session-that-ratified-its-hook
+  origin: raw/2026-09-14/1029/ledger.md#L39
+  set:
+    status: clustered
+    insight: insight-session-vault-knowledge-not-loaded
+  change: clustered under insight-session-vault-knowledge-not-loaded
+  librarian: synthesis
+  applied: '12:13:27'
+- kind: update
+  category: insights
+  slug: insight-ledger-hi-tied-to-its-session-by-position
+  origin: raw/2026-09-14/1029/ledger.md#L40
+  set:
+    children:
+    - lesson-ledger-hook-hi-lost-at-midnight
+    - lesson-hi-taken-by-a-session-started-in-the-same-second
+    - lesson-pretask-line-unstamped-and-bound-by-position
+  change: 'synthesis: lesson-pretask-line-unstamped-and-bound-by-position added, the pretask line is bound
+    to its session by position as the hi was, no session id in the skill shell'
+  librarian: synthesis
+  applied: '12:13:27'
+- kind: update
+  category: lessons
+  slug: lesson-pretask-line-unstamped-and-bound-by-position
+  origin: raw/2026-09-14/1029/ledger.md#L40
+  set:
+    status: clustered
+    insight: insight-ledger-hi-tied-to-its-session-by-position
+  change: clustered under insight-ledger-hi-tied-to-its-session-by-position
+  librarian: synthesis
+  applied: '12:13:27'
+decisions:
+- case: '123'
+  decision: decision-case-123
+  origin: raw/2026-09-14/1029/ledger.md#case-123
+  targets:
+  - kind: update
+    category: rules
+    slug: rule-claude-md
+    ref: rule-claude-md
+  - kind: update
+    category: file
+    slug: case-schema
+    path: vault/wiki/case-schema.md
+    ref: case-schema
+  tags: []
+  case_text:
+    context: '`## Language` of `CLAUDE.md` (the Render of `rule-claude-md`, lines 71–75) says: English
+      for everything written into the repository; Russian for chat with the owner "and for the plan he
+      reads in order to approve it". `case-schema.md` `## Language` says: Russian in the chat with the
+      owner, English in everything that lands in the vault. In session M Case 115 was discussed in the
+      chat in English and the Spec was written in English. Today Case 122 went the same way.'
+    problem: 'The rule does not say in which language a Case is discussed in the chat. The agent reads
+      "the plan in Russian" as leave to write the Case in English, because the Case is the plan to come.
+      The Spec is English in practice, and that is right: it lands in `raw/` and in the vault.'
+    given: '`rule-claude-md` (`MOC`, `built`, `render_mode: full`, `governs: CLAUDE.md`, `estimate-claude-md-rendered`
+      `passed`): the `## Language` section is three sentences inside the Render markers, so the change
+      is a `replace` of the three (a `sections` entry would add a second `## Language` outside the Render
+      — pre-task finding 1 of case 132), and `guppi render` carries it into `CLAUDE.md`.
+
+      **＋** `case-schema.md` is a Rule-class file: an `update` with `file` and `change`, applied by hand
+      in Work Mode; its `## Language` (line 29) is one sentence.
+
+      **＋** `rule-case-protocol` is not touched: the form of a Case does not change, only its language.
+
+      **＋** The Spec of session M (`raw/2026-09-14/0747/spec.md`) is already English; the practice of
+      the Spec does not change.
+
+      **－** Ledger lines, slugs, field and section names (`context`, `given`, `then`), paths and quotations
+      from pages stay English in either language.
+
+      **－** The Frontier line F13 closes on this Case.'
+    when: The agent writes a Case in the chat, or carries a ratified Case into the Spec, or reads `CLAUDE.md`
+      and `case-schema.md`.
+    then: '`## Language` of `rule-claude-md` reads: "English for everything written into the repository:
+      code, identifiers, comments, pages, commit messages, documents — the Spec included. Russian for
+      chat with the owner: a Case is discussed in the chat in Russian, all its sections, and enters the
+      Spec translated into English. Slugs, field names, ledger lines, paths and quotations from pages
+      stay as they are in either language. English technical terms are not transliterated into Cyrillic."
+
+      **＋** `## Language` of `case-schema.md` reads: "Short sentences. One idea per sentence. Active voice.
+      A common word over a term. Russian in the chat with the owner: a Case is discussed there in Russian,
+      all its sections. English, in the manner of ASD-STE100 Simplified Technical English, in everything
+      that lands in the vault: the Case enters the Spec translated, its slugs, field names and ledger
+      lines unchanged."
+
+      **＋** `CLAUDE.md` after `guppi render` carries the new section; the reading of `estimate-claude-md-rendered`
+      is a Work Mode task.
+
+      **－** `rule-claude-md` is a MOC with no Estimate of its own behaviour; no `contract` is written.'
+  spec: vault/raw/2026-09-14/1029/spec.md
+  applied: '12:13:27'
+- case: '122'
+  decision: decision-case-122
+  origin: raw/2026-09-14/1029/ledger.md#case-122
+  targets:
+  - kind: update
+    category: rules
+    slug: rule-ledger-write
+    ref: rule-ledger-write
+  - kind: update
+    category: rules
+    slug: rule-case-protocol
+    ref: rule-case-protocol
+  tags: []
+  case_text:
+    context: 'Four lessons on one writer: `lesson-ledger-hook-misses-a-reply-ending-in-a-tool-call` (F),
+      `lesson-ledger-hook-drops-a-block-followed-by-tool-calls-in-the-turn` (I, archived), `lesson-transcript-omits-text-emitted-before-tool-calls`
+      (L) and `lesson-ledger-lines-lost-in-a-reply-ending-in-a-skill-call-with-the-insight-live` (M).
+      The `Stop` hook reads the final text of a turn; a reply that ends in `Skill`, `ExitPlanMode` or
+      any tool call has no `Stop` and its text is not in the transcript. The Insight''s Proposal has stood
+      unactioned since session I. (Case 117 as it stands.)'
+    problem: 'The rule "a reply with ledger lines ends in text" lives in the agent''s memory only, and
+      the agent broke it with the lesson live. Either the hook reaches those lines — a `PreToolUse` hook
+      on `Skill|ExitPlanMode` that reads the reply under way, if the payload carries it — or the harness
+      makes the agent''s rule mechanical: `CLAUDE.md` says it, and `guppi gate` refuses a `Skill` call
+      while the reply holds an unwritten `LEDGER` block. Which of the two is measurable is a Plan Mode
+      of its own. (Case 117 as it stands.)'
+    given: 'Measured in session N at 10:4x: a text emitted before a `Bash` call in the same reply is absent
+      from `~/.claude/projects/…/19037d1c….jsonl` — the assistant records around it are `thinking` and
+      `tool_use` only — and session M''s transcript holds no assistant text between the owner''s «ратифицирую»
+      (record 650) and the `Skill` call of `/pre-task` (679): the block of 115 and 116 was never persisted.
+      A `PreToolUse` payload carries `tool_name`, `tool_input`, `transcript_path`, no reply text. The
+      question of the Insight''s Proposal is settled: absent, not dropped.
+
+      **＋** `rule-ledger-write` (`Leaf`, `draft`, `estimate-ledger-write-lifts` `pending` on blocks 111.3,
+      111.6): "a reply that ended in a tool call reaches the ledger at the next `Stop` of the session"
+      — true only when the agent repeats the block. `deferred_by: [decision-case-117]`.
+
+      **＋** `guppi gate` (`rule-retro-commit`, `built`) already runs on `PreToolUse` with the matcher
+      `Skill` and refuses `/handoff` on a dirty tree; `.claude/settings.json` needs no change, `rule-hook-registry`
+      is not touched.
+
+      **＋** `guppi pretask --check` already finds "item […] has no decision line" (`pretask.check_lines`,
+      `window_lines`, `session_decisions`, `split_cases`, `then_blocks`); the gate reuses them and reports
+      only that half. `rule-pretask` is not changed: the check at `/pre-task` stays as it is.
+
+      **＋** The plan file is in no payload; the event log holds `tool Write:` / `tool Edit:` lines with
+      the full path (`- 07:52:53 fde37e7c tool Write: C:\Users\kir\.claude\plans\async-sauteeing-moon.md`).
+      The gate takes the last such path of this session''s stamp under `.claude/plans/`. Retro''s defers
+      go to `spec.md` only, so the gate reads that file too; `/handoff` after a Retro reply with defer
+      lines is refused the same way.
+
+      **＋** `rule-case-protocol` (`Leaf`, `built`, `render` into `CLAUDE.md`, `estimate-case-protocol-loaded`
+      `passed`): the paragraph "Ledger lines are written by the `Stop` hook, from the reply, verbatim"
+      says nothing about where in the reply.
+
+      **－** `estimate[...]` and `lesson[...]` lines have no source but the text; the gate does not see
+      them. The sentence in `CLAUDE.md` covers them; a loss of one is still a Retro finding, as today.
+
+      **－** `ExitPlanMode` is not gated here: `/pre-task` precedes it and is a `Skill` call, so a reply
+      that ratifies and closes Plan Mode at once is refused at the `/pre-task` step.
+
+      **－** Without a `hi`, without a Spec and without a plan path in the log the gate has nothing to
+      check and exits 0; the `/handoff` refusal of `rule-retro-commit` stays as it is.
+
+      **－** The Frontier line F1 closes on this Case.'
+    when: The agent calls a skill through the `Skill` tool and `guppi gate` runs.
+    then: 'The gate reads the `then` items of every Case in the session''s `spec.md` and in the plan file
+      the session''s event log names last under `.claude/plans/`, and the decision lines of the session''s
+      window as `guppi pretask --check` reads them.
+
+      **＋** When an item has no decision line of its Case, the gate exits 2 and writes nothing: `gate:
+      /<skill> refused — N item(s) of the Spec have no ledger line (case A, case B). The text before a
+      tool call is never kept: end this reply in text with the LEDGER block, then call /<skill> in the
+      next reply.`
+
+      **＋** Every item with its line, or no source found: exit 0, silent; the `/handoff` check of the
+      dirty tree runs as before.
+
+      **＋** `rule-ledger-write` gains `guppi/gate.py` and `tests/test_gate.py` in `implementation_ref`;
+      its "How it works" says the gate, not the agent''s memory, holds the reply back.
+
+      **＋** `rule-case-protocol` says, after the paragraph on the `Stop` hook: "A reply that carries a
+      `LEDGER` block ends in that text. No tool call follows it in the same reply: the text before a tool
+      call is never kept, and the hook reads nothing." — rendered into `CLAUDE.md`, `contract: same`.
+
+      **＋** `estimate-ledger-write-lifts` gets a `### case 122` block, `pending`; the test seeds a plan
+      with one item and an empty ledger and expects exit 2 with the case named, then the item''s line
+      and expects 0, then no plan path and no `spec.md` and expects 0; the live half is read at the first
+      `/pre-task` of this session after its lines are written: the call passes.
+
+      **－** `{supersedes:case 117}`: `decision-case-117` is superseded, `rule-ledger-write` loses `deferred_by`.'
+  spec: vault/raw/2026-09-14/1029/spec.md
+  criterion:
+  - estimate: estimate-ledger-write-lifts
+    case: '122'
+  supersedes:
+  - decision-case-117
+  applied: '12:13:27'
+- case: '124.1'
+  decision: decision-case-124.1
+  origin: raw/2026-09-14/1029/ledger.md#case-124.1
+  targets:
+  - kind: update
+    category: rules
+    slug: rule-brief
+    ref: rule-brief
+  tags: []
+  case_text:
+    when: The librarian writes `brief.md` by its frame (the Render of `rule-brief`).
+    then: 'The Deferred item of the Render reads: "Deferred: at most seven items — one per target of a
+      `defer` entry in the yamls the walk named, every item of the previous brief''s list whose decision
+      no `supersedes` retired, and every Insight whose `status` is `open`. Rank by `severity` — the Insight''s
+      own, or that of the Insight related to a deferred Case — then by the number of briefs the item has
+      stood in: the previous brief''s count plus one. An Insight''s line carries its slug, its `severity`,
+      its `pattern` and its Proposal in one or two sentences; in Plan Mode it is a Case whose `recommend`
+      starts from that Proposal, and it ends in an `update` of the Insight (`status: actioned`, `addressed_by`),
+      a rejection written the same way, or a `defer` with the Insight as its target."
+
+      **＋** `estimate-brief-written` gets a `### case 124.1` block, `pending`; read against the brief
+      of the next librarian''s run: the `open` Insights stand in Deferred by severity, with a count.
+
+      **－** `{supersedes:case 119}`: `decision-case-119` is superseded, `rule-brief` loses `deferred_by`.'
+    context: Today an Insight is "never a Decision target" (glossary, `insights/schema.md`, `index.md`
+      §8); it reaches the Frontier only as the "Related Insight" of a deferred Case. `insight-session-vault-knowledge-not-loaded`
+      (severity 4, the heredoc trap among its children) and `insight-ledger-hook-reads-only-the-final-text`
+      (severity 3) have Proposals nobody was ever asked to ratify or reject; the same trap returns every
+      session. (Case 119 as it stands.)
+    problem: 'Lessons pile up, the librarian writes the Insight, and nothing puts it in front of the person
+      as a Case. The owner''s design: the librarian surfaces an open Insight in the brief as a Case for
+      the next Plan Mode, where it is ratified into a decision on its Proposal, or rejected, or deferred
+      with a count — the same lifecycle a deferred Case has. (Case 119 as it stands.)'
+    given: '`rule-brief` (`Leaf`, `built`, `render` into `.claude/agents/librarian-guppi.md`, `estimate-brief-written`
+      `passed`, `deferred_by: [decision-case-119]`): the Deferred item of the Render reads "at most seven
+      items, one per target of a `defer` entry … plus every item of the previous brief''s list whose decision
+      no `supersedes` retired. Rank by the `severity` of a related Insight, then by the number of times
+      the item was postponed".
+
+      **＋** `rule-page-generation` (`Leaf`, `built`, `estimate-generate-writes` `passed`): `defer` sets
+      `deferred_by` for `rules` and `entities` only (`generate.py:565-568, 579-580`); `KEY_ORDER["insights"]`
+      has no `deferred_by`; `update` is not bound to a category; the cascade archives the `clustered`
+      children of an `actioned` Insight and recounts `severity` (104.2, 104.3, 110); `derive_insight`
+      builds a lesson''s `## Insight` from its field — the model for `## Addressed by`. `clear_deferred_by`
+      on a `supersedes` works through `find`, whatever the category. `index.py` shows `deferred_by` on
+      a line of any category; `lint` treats it as a ref.
+
+      **＋** Rule-class files: `glossary.md` — the `Insight` row ("never a Decision target") and the `deferred_by`
+      row ("On an Entity or Rule"); `index.md` §8 — "An Insight is never the target of a Decision. It
+      reaches you as a `brief.md` candidate in a later session and becomes an ordinary ratified Case there";
+      `insights/schema.md` — "Created by the librarian, never by a decision", the `addressed_by` row,
+      the `## Addressed by` section ("Script places the decision link here once fixed"), no `deferred_by`
+      row.
+
+      **＋** Ten Insights today, all `open`, severity 2–4; under the cap of 7 with six deferred Cases the
+      first lines go to the Insights of severity 4 and 3.
+
+      **＋** `/hi` assembles the Frontier from the whole brief; a Deferred item is already an item, `rule-skill-hi`
+      is not changed (F4 is its own Case).
+
+      **－** The creation of an Insight stays with the librarian; a Decision neither creates nor deletes
+      one. `severity` is still never written by hand (110.1).
+
+      **－** `rule-synthesis` is not changed: clustering as it was.
+
+      **－** The Frontier line F2 closes on this Case.'
+  spec: vault/raw/2026-09-14/1029/spec.md
+  criterion:
+  - estimate: estimate-brief-written
+    case: '124.1'
+  supersedes:
+  - decision-case-119
+  applied: '12:13:27'
+- case: '124.2'
+  decision: decision-case-124.2
+  origin: raw/2026-09-14/1029/ledger.md#case-124.2
+  targets:
+  - kind: update
+    category: rules
+    slug: rule-page-generation
+    ref: rule-page-generation
+  tags: []
+  case_text:
+    when: '`guppi generate` applies a yaml entry whose target is a page of `insights/`.'
+    then: 'A `defer` with an Insight as its target appends the decision slug to its `deferred_by`, as
+      for a Rule; `KEY_ORDER["insights"]` gains `deferred_by` after `addressed_by`; a `supersedes` removes
+      it through the same `clear_deferred_by`.
+
+      **＋** An `update` with `set: {addressed_by: decision-case-N}` writes the field, and on every write
+      of an Insight page the `## Addressed by` section is derived from the field — `- [[decision-case-N]]`
+      — as a lesson''s `## Insight` is from `insight` (114); without the field there is no section.
+
+      **＋** An `update` with `set: {status: actioned}` goes as any `update`; the cascade of the same run
+      archives the `clustered` children (104.2) and recounts `severity`.
+
+      **＋** `estimate-generate-writes` gets a `### case 124.2` block, `pending`; the test: a `defer` on
+      an insight → `deferred_by` written and shown in `insights-index.md`; an `update` with `addressed_by`
+      and `status: actioned` → `## Addressed by` with the link, the children `archived`; a `supersedes`
+      clears `deferred_by`.
+
+      **－** An Insight is neither created nor deleted through the yaml: a `create` or `delete` with an
+      Insight as its target is a `generate` error, as today.'
+    context: Today an Insight is "never a Decision target" (glossary, `insights/schema.md`, `index.md`
+      §8); it reaches the Frontier only as the "Related Insight" of a deferred Case. `insight-session-vault-knowledge-not-loaded`
+      (severity 4, the heredoc trap among its children) and `insight-ledger-hook-reads-only-the-final-text`
+      (severity 3) have Proposals nobody was ever asked to ratify or reject; the same trap returns every
+      session. (Case 119 as it stands.)
+    problem: 'Lessons pile up, the librarian writes the Insight, and nothing puts it in front of the person
+      as a Case. The owner''s design: the librarian surfaces an open Insight in the brief as a Case for
+      the next Plan Mode, where it is ratified into a decision on its Proposal, or rejected, or deferred
+      with a count — the same lifecycle a deferred Case has. (Case 119 as it stands.)'
+    given: '`rule-brief` (`Leaf`, `built`, `render` into `.claude/agents/librarian-guppi.md`, `estimate-brief-written`
+      `passed`, `deferred_by: [decision-case-119]`): the Deferred item of the Render reads "at most seven
+      items, one per target of a `defer` entry … plus every item of the previous brief''s list whose decision
+      no `supersedes` retired. Rank by the `severity` of a related Insight, then by the number of times
+      the item was postponed".
+
+      **＋** `rule-page-generation` (`Leaf`, `built`, `estimate-generate-writes` `passed`): `defer` sets
+      `deferred_by` for `rules` and `entities` only (`generate.py:565-568, 579-580`); `KEY_ORDER["insights"]`
+      has no `deferred_by`; `update` is not bound to a category; the cascade archives the `clustered`
+      children of an `actioned` Insight and recounts `severity` (104.2, 104.3, 110); `derive_insight`
+      builds a lesson''s `## Insight` from its field — the model for `## Addressed by`. `clear_deferred_by`
+      on a `supersedes` works through `find`, whatever the category. `index.py` shows `deferred_by` on
+      a line of any category; `lint` treats it as a ref.
+
+      **＋** Rule-class files: `glossary.md` — the `Insight` row ("never a Decision target") and the `deferred_by`
+      row ("On an Entity or Rule"); `index.md` §8 — "An Insight is never the target of a Decision. It
+      reaches you as a `brief.md` candidate in a later session and becomes an ordinary ratified Case there";
+      `insights/schema.md` — "Created by the librarian, never by a decision", the `addressed_by` row,
+      the `## Addressed by` section ("Script places the decision link here once fixed"), no `deferred_by`
+      row.
+
+      **＋** Ten Insights today, all `open`, severity 2–4; under the cap of 7 with six deferred Cases the
+      first lines go to the Insights of severity 4 and 3.
+
+      **＋** `/hi` assembles the Frontier from the whole brief; a Deferred item is already an item, `rule-skill-hi`
+      is not changed (F4 is its own Case).
+
+      **－** The creation of an Insight stays with the librarian; a Decision neither creates nor deletes
+      one. `severity` is still never written by hand (110.1).
+
+      **－** `rule-synthesis` is not changed: clustering as it was.
+
+      **－** The Frontier line F2 closes on this Case.'
+  spec: vault/raw/2026-09-14/1029/spec.md
+  criterion:
+  - estimate: estimate-generate-writes
+    case: '124.2'
+  applied: '12:13:27'
+- case: '124.3'
+  decision: decision-case-124.3
+  origin: raw/2026-09-14/1029/ledger.md#case-124.3
+  targets:
+  - kind: update
+    category: file
+    slug: glossary
+    path: vault/wiki/glossary.md
+    ref: glossary
+  - kind: update
+    category: file
+    slug: index
+    path: vault/wiki/index.md
+    ref: index
+  - kind: update
+    category: file
+    slug: insights-schema
+    path: vault/wiki/insights/schema.md
+    ref: insights-schema
+  tags: []
+  case_text:
+    when: Someone reads one of the three files.
+    then: '`glossary.md`: the `Insight` row reads "Over Lessons sharing a root cause, made by the librarian
+      on the second; surfaces in the brief''s Deferred list and is the target of the `update` that actions
+      or rejects it, or of a `defer`; never created or deleted by a Decision; `actioned` reopens" (case
+      124); the `deferred_by` row reads "On an Entity, Rule or Insight".
+
+      **＋** `index.md` §8: "An Insight is never created or deleted by a Decision. Every `open` Insight
+      stands in the brief''s Deferred list, ranked by `severity`, and is a Case of the next Plan Mode:
+      its Proposal is ratified into an `update` of the Insight (`status: actioned`, `addressed_by`) with
+      what it needs, or rejected the same way, or deferred with the Insight as the target (case 124)."
+
+      **＋** `insights/schema.md`: "Created by the librarian, never by a decision" → "Created by the librarian,
+      never by a decision; an `update` actions or rejects it, a `defer` postpones it"; the table gains
+      a `deferred_by` row (no; a list of decision slugs; the `defer` decisions that postponed it, set
+      by `generate`, cleared by a `supersedes`); `## Addressed by` — "Derived by `generate` from `addressed_by`".
+
+      **－** Applied by hand in Work Mode; no Estimate.'
+    context: Today an Insight is "never a Decision target" (glossary, `insights/schema.md`, `index.md`
+      §8); it reaches the Frontier only as the "Related Insight" of a deferred Case. `insight-session-vault-knowledge-not-loaded`
+      (severity 4, the heredoc trap among its children) and `insight-ledger-hook-reads-only-the-final-text`
+      (severity 3) have Proposals nobody was ever asked to ratify or reject; the same trap returns every
+      session. (Case 119 as it stands.)
+    problem: 'Lessons pile up, the librarian writes the Insight, and nothing puts it in front of the person
+      as a Case. The owner''s design: the librarian surfaces an open Insight in the brief as a Case for
+      the next Plan Mode, where it is ratified into a decision on its Proposal, or rejected, or deferred
+      with a count — the same lifecycle a deferred Case has. (Case 119 as it stands.)'
+    given: '`rule-brief` (`Leaf`, `built`, `render` into `.claude/agents/librarian-guppi.md`, `estimate-brief-written`
+      `passed`, `deferred_by: [decision-case-119]`): the Deferred item of the Render reads "at most seven
+      items, one per target of a `defer` entry … plus every item of the previous brief''s list whose decision
+      no `supersedes` retired. Rank by the `severity` of a related Insight, then by the number of times
+      the item was postponed".
+
+      **＋** `rule-page-generation` (`Leaf`, `built`, `estimate-generate-writes` `passed`): `defer` sets
+      `deferred_by` for `rules` and `entities` only (`generate.py:565-568, 579-580`); `KEY_ORDER["insights"]`
+      has no `deferred_by`; `update` is not bound to a category; the cascade archives the `clustered`
+      children of an `actioned` Insight and recounts `severity` (104.2, 104.3, 110); `derive_insight`
+      builds a lesson''s `## Insight` from its field — the model for `## Addressed by`. `clear_deferred_by`
+      on a `supersedes` works through `find`, whatever the category. `index.py` shows `deferred_by` on
+      a line of any category; `lint` treats it as a ref.
+
+      **＋** Rule-class files: `glossary.md` — the `Insight` row ("never a Decision target") and the `deferred_by`
+      row ("On an Entity or Rule"); `index.md` §8 — "An Insight is never the target of a Decision. It
+      reaches you as a `brief.md` candidate in a later session and becomes an ordinary ratified Case there";
+      `insights/schema.md` — "Created by the librarian, never by a decision", the `addressed_by` row,
+      the `## Addressed by` section ("Script places the decision link here once fixed"), no `deferred_by`
+      row.
+
+      **＋** Ten Insights today, all `open`, severity 2–4; under the cap of 7 with six deferred Cases the
+      first lines go to the Insights of severity 4 and 3.
+
+      **＋** `/hi` assembles the Frontier from the whole brief; a Deferred item is already an item, `rule-skill-hi`
+      is not changed (F4 is its own Case).
+
+      **－** The creation of an Insight stays with the librarian; a Decision neither creates nor deletes
+      one. `severity` is still never written by hand (110.1).
+
+      **－** `rule-synthesis` is not changed: clustering as it was.
+
+      **－** The Frontier line F2 closes on this Case.'
+  spec: vault/raw/2026-09-14/1029/spec.md
+  applied: '12:13:27'
+- case: '125'
+  decision: decision-case-125
+  origin: raw/2026-09-14/1029/ledger.md#case-125
+  targets:
+  - kind: update
+    category: rules
+    slug: rule-event-log
+    ref: rule-event-log
+  - kind: update
+    category: rules
+    slug: rule-skill-hi
+    ref: rule-skill-hi
+  tags: []
+  case_text:
+    context: 'Case 111.4 removed the `Recorded:` line from the `/hi` skill: the `hi` is now written by
+      the `UserPromptSubmit` hook (`guppi event prompt`, 111.1) with the session''s stamp. Today it worked:
+      `- 10:29:12 19037d1c hi`. But the skill''s text still says "`HHMM` the time of the `hi` line above
+      (case 73)" — and there is no line above any more. To name the folder `raw/2026-09-14/1029/` the
+      agent read `event_log.md` through Bash.'
+    problem: The skill points at a line nobody prints. The agent either guesses the time or makes a read
+      call — against the purpose of `rule-skill-hi` ("prevents a session from being loaded piecemeal by
+      read-tool calls"). The time of the `hi` needs a source in the context, without a read.
+    given: '`rule-event-log` (`Leaf`, `draft`, `estimate-event-log-records` `pending` on block 111.1):
+      "the log gains `- HH:MM:SS <stamp> hi` … a second `/hi` of the same session and any other prompt
+      write nothing (case 111.1)"; `prompt_line` (`event.py:127-136`) returns the line or None, the hook
+      is silent on stdout; `hi_written` already knows whether a `hi` of this session exists.
+
+      **＋** `rule-skill-hi` (`MOC`, `built`, `estimate-hi-no-read-calls` `passed` on 101.3, `estimate-hi-writes-frontier`
+      `passed`): line 41 of the Render — "`HHMM` the time of the `hi` line above (case 73)". The folder
+      and the time come from `ledger.session_dir`; in a `!` substitution of the skill `CLAUDE_SESSION_ID`
+      is empty (111), so a substitution cannot name the session — the hook can, its payload carries `session_id`.
+      A `UserPromptSubmit` hook''s stdout on exit 0 is added to the context (Claude Code hooks reference).
+
+      **＋** The order "the `UserPromptSubmit` hook → the expansion of the skill" is not measured; it does
+      not matter here: the line reaches the context with the prompt, before the agent''s reply.
+
+      **－** Other prompts: the hook stays silent; exit 0 always, errors on stderr only.
+
+      **－** `estimate-hi-no-read-calls` gets no block: its criterion (no read call) does not change, the
+      way to meet it does; its reading is by 101.3 at the next `/hi`.
+
+      **－** The Frontier line F4 closes on this Case.'
+    when: The person submits `/hi` and the `UserPromptSubmit` hook `uv run guppi event prompt` runs.
+    then: 'Having written the `hi` line, the hook prints on stdout `hi: HH:MM:SS <stamp> → raw/<date>/<HHMM>/`;
+      when a `hi` of this session already exists it prints `hi: already recorded at HH:MM:SS → raw/<date>/<HHMM>/`
+      and writes nothing; on any other prompt it is silent. The line reaches the session''s context.
+
+      **＋** The Render of `rule-skill-hi`: "`HHMM` the time of the `hi` line above (case 73)" → "`HHMM`
+      from the `hi:` line the `UserPromptSubmit` hook put in context (cases 73, 125)".
+
+      **＋** `estimate-event-log-records` gets a `### case 125` block, `pending`; the test: `/hi` → the
+      line written and stdout `hi: … → raw/…/`; a second `/hi` → stdout `already recorded`, no new line
+      in the log; `hello` → stdout empty. The live reading at the next `/hi`: the `hi:` line is in the
+      context and the folder is named without a read call.
+
+      **－** `rule-skill-hi` is a MOC, no `contract` is written; `rule-event-log` is `contract: changed`.'
+  spec: vault/raw/2026-09-14/1029/spec.md
+  criterion:
+  - estimate: estimate-event-log-records
+    case: '125'
+  applied: '12:13:27'
+- case: '126'
+  decision: decision-case-126
+  origin: raw/2026-09-14/1029/ledger.md#case-126
+  targets:
+  - kind: update
+    category: rules
+    slug: rule-retro
+    ref: rule-retro
+  tags: []
+  case_text:
+    context: The Render of `rule-retro` (109.1) reads the ledgers of the day with `cat vault/raw/$(date
+      +%F)/ledger.md vault/raw/$(date +%F)/*/ledger.md 2>/dev/null`. On 2026-09-14 no date-level ledger
+      exists — the first day with the session form of case 103 alone — so `cat` exits 1, the harness reports
+      the substitution failed, and the skill text does not reach the agent; the `retro` event was still
+      recorded. (Case 118 as it stands.)
+    problem: A substitution that names a file which the model of case 103 no longer guarantees fails on
+      every session from now on. The fix is one `|| true` or a glob-only form; it is an `update` of `rule-retro`,
+      which Retro cannot ratify. (Case 118 as it stands.)
+    given: '`rule-retro` (`Leaf`, `draft`, `estimate-retro-loads` `failed` on 109.1, `deferred_by: [decision-case-118]`):
+      line 40 of the Render is the substitution above; the text "the ledger lines of today grouped by
+      Case".
+
+      **＋** `guppi tail` (`rule-ledger-tail`, `built`, `estimate-ledger-tail` `passed`): prints every
+      record line under `vault/raw/` that no entry of a `materialize.yaml` covers, as `<date>/<HHMM> L<n>:
+      <line>`; exit 0 always; a ledger that cannot be read is a line on stderr and the walk goes on. At
+      Retro, before the librarian, the tail is this session''s lines whole.
+
+      **＋** The glob form `cat vault/raw/$(date +%F)/*/ledger.md` loses a session across midnight and
+      fails on a day without any ledger; `|| true` hides the failure and does not fix the date.
+
+      **－** `rule-ledger-tail` is not changed: the command and its contract stay, a second caller is added.
+
+      **－** The Frontier line F5 closes on this Case.'
+    when: The person invokes `/retro`.
+    then: 'The Render of `rule-retro`: the line `Ledger of today: !`cat vault/raw/$(date +%F)/ledger.md
+      vault/raw/$(date +%F)/*/ledger.md 2>/dev/null`` → `Ledger: !`uv run guppi tail`` — the unmaterialized
+      lines, this session''s in its folder; the phrase "the ledger lines of today grouped by Case" → "the
+      lines of the Tail above grouped by Case, this session''s folder first".
+
+      **＋** `estimate-retro-loads` gets a `### case 126` block, `pending`; read at the first `/retro`
+      after the render — the next session''s, since the skill is rendered by the librarian after this
+      session''s Retro: the skill loaded, `Ledger:` carries the lines of the session''s folder, no substitution
+      failed.
+
+      **－** `{supersedes:case 118}`: `decision-case-118` is superseded, `rule-retro` loses `deferred_by`.'
+  spec: vault/raw/2026-09-14/1029/spec.md
+  criterion:
+  - estimate: estimate-retro-loads
+    case: '126'
+  supersedes:
+  - decision-case-118
+  applied: '12:13:27'
+- case: '127'
+  decision: decision-case-127
+  origin: raw/2026-09-14/1029/ledger.md#case-127
+  targets:
+  - kind: create
+    category: rules
+    slug: rule-bash-guard
+    ref: rule-harness
+  - kind: update
+    category: rules
+    slug: rule-hook-registry
+    ref: rule-hook-registry
+  tags:
+  - hooks
+  - harness
+  case_text:
+    context: '`lesson-bash-tool-heredoc-escapes-interpreted` (H), `lesson-heredoc-trap-hit-twice-with-its-lesson-live`
+      (L), `lesson-heredoc-trap-hit-a-third-time-in-work-mode` (M): a heredoc passed to the Bash tool
+      has its backslash escapes interpreted, and the agent reaches for a heredoc first every session,
+      with the lesson live. The Insight''s Proposal — pages of a phase carry its traps — is Case 119''s;
+      the trap itself has a mechanical fix. (Case 120 as it stands.)'
+    problem: A lesson the agent has to remember is not a rule. A `PreToolUse Bash` hook that refuses a
+      command whose heredoc body carries a backslash escape — or refuses a heredoc that writes a file
+      at all, pointing at Write and Edit — makes the trap impossible instead of remembered. (Case 120
+      as it stands.)
+    given: '`rule-bash-guard` is a placeholder (`draft`, `deferred_by: [decision-case-120]`, no `kind`,
+      `estimates` or `tags`: 4 `schema` and 1 `orphan` lint findings). `generate` fills a placeholder
+      on a `create` and keeps its `deferred_by` (`generate.py:400`); a `supersedes` clears it. The slug
+      is taken by the placeholder itself — that is the target.
+
+      **＋** `rule-harness` (`MOC`): children `rule-render-harness, rule-settings, rule-lint, rule-index,
+      rule-governed-files-hook, rule-claude-md`; `rule-governed-files-hook` (`guppi/guard.py`) is the
+      model: `PreToolUse` on `Edit|Write|MultiEdit`, a line in the event log before the refusal, exit
+      2 with the reason, never raises, exit 0 on an unreadable payload.
+
+      **＋** `rule-hook-registry` (`Leaf`, `built`, `estimate-hook-registry-rendered`): the Render''s `PreToolUse`
+      holds three matchers; a new matcher `Bash` is `contract: same`, as 111.2 was: the Estimate checks
+      that the render reproduces the file, not which hooks it holds.
+
+      **＋** Today''s case: `cat >> plan.md <<''EOF''` with the body of a Case failed with "unexpected
+      EOF while looking for matching quote" — the second face of the same trap, a file written by a heredoc;
+      Edit worked.
+
+      **－** Tags `hooks`, `harness`; no new tag.
+
+      **－** Not refused: a `<<<` here-string; a heredoc without a backslash whose output goes to a pipe
+      or the screen; `python - <<''EOF''` with a clean body.
+
+      **－** The Frontier line F6 closes on this Case.'
+    when: The agent calls the `Bash` tool and the hook `uv run guppi bashguard` runs on `PreToolUse`.
+    then: 'The hook reads `tool_input.command`, finds every heredoc (`<<` or `<<-`, the marker quoted
+      or not) and its body up to the closing line. A body with a backslash, or a marker line that redirects
+      into a file (`>` / `>>` not to `/dev/null`, `tee`) — exit 2, the reason on stderr: `bashguard: heredoc
+      refused — <a backslash in its body | it writes <path>>. Write the script with the Write tool into
+      the scratchpad and run it by path; change a file with Edit.`
+
+      **＋** Before the refusal one line `- HH:MM:SS <stamp> bashguard: <reason>` goes to `raw/<date>/event_log.md`
+      (case 91).
+
+      **＋** Any other tool, a command without a heredoc, a heredoc without a backslash and without a file
+      write, an unreadable payload — exit 0, the last with a line on stderr; the hook never raises.
+
+      **＋** `rule-bash-guard` is a `Leaf`, `enforcement: hook`, `implementation_ref: [guppi/bashguard.py,
+      tests/test_bashguard.py, .claude/settings.json]`, `parent: rule-harness`, `tags: [hooks, harness]`;
+      `estimate-bash-guard` (`QA`), `pending`: the test on `python - <<''EOF''` with `\n` in the body
+      → 2; `cat > f <<EOF` → 2; a heredoc with a clean body into a pipe → 0; a command without a heredoc
+      → 0; an unreadable payload → 0; the live reading is the first refusal in Work Mode or, without one,
+      the test.
+
+      **＋** `rule-hook-registry`: in `PreToolUse` after the matcher `Edit|Write|MultiEdit` — `{ "matcher":
+      "Bash", "hooks": [ { "type": "command", "command": "uv run guppi bashguard", "timeout": 30 } ] }`;
+      `contract: same`; `rule-harness` gets `rule-bash-guard` as its seventh child through the `ref`.
+
+      **－** `{supersedes:case 120}`: `decision-case-120` is superseded, `rule-bash-guard` loses `deferred_by`.'
+  spec: vault/raw/2026-09-14/1029/spec.md
+  criterion:
+  - estimate: estimate-bash-guard
+    case: '127'
+  supersedes:
+  - decision-case-120
+  applied: '12:13:27'
+- case: '129'
+  decision: decision-case-129
+  origin: raw/2026-09-14/1029/ledger.md#case-129
+  targets:
+  - kind: defer
+    category: rules
+    slug: rule-work-mode
+    ref: rule-work-mode
+  - kind: defer
+    category: rules
+    slug: rule-subagent-guppi
+    ref: rule-subagent-guppi
+  tags: []
+  case_text:
+    context: '`rule-work-mode` and `rule-subagent-guppi` have stood as placeholders since case 29, then
+      64, 78, 93, 107, 116, without `kind`, `estimates` or `tags`; two of the three lint orphans. The
+      draft in `docs/migration/` still has to be reconciled with case 59.3 — no separate `plan.md`, the
+      `tasks` blocks of the Spec — and with the fork clause. Case 101.1 gives a placeholder a way to be
+      filled.'
+    problem: The phase the harness spends most of its time in is the one phase with no ratified rule.
+      It needs a Plan Mode of its own; the owner set it apart on 2026-09-14 (session N) as the next session's
+      whole agenda, and this session closes the rest of the Frontier (Cases 122–128).
+  spec: vault/raw/2026-09-14/1029/spec.md
+  supersedes:
+  - decision-case-116
+  applied: '12:13:27'
+- case: '128'
+  decision: decision-case-128
+  origin: raw/2026-09-14/1029/ledger.md#case-128
+  targets:
+  - kind: update
+    category: rules
+    slug: rule-pretask
+    ref: rule-pretask
+  tags: []
+  case_text:
+    context: At pre-task of session M the dispatch to `ask-guppi` carried one summary line per decision;
+      four of its ten findings answered things the plan's `then` blocks already did (`lesson-pretask-dispatch-summarized-the-plan-and-ask-guppi-judged-the-summary`).
+      `rule-ask` says "one short question"; `rule-pretask` says "dispatch the agent once with that list".
+      (Case 121 as it stands.)
+    problem: 'The agent judged pages against a paraphrase and could not see the planned wording. The information
+      it lacked must be in the dispatch: the `then` blocks — `replace` pairs, `set`, `sections` — or the
+      path of the plan file, since the agent has Read. (Case 121 as it stands.)'
+    given: '`rule-pretask` (`Leaf`, `built`, `render` into `.claude/skills/pre-task/SKILL.md`, `estimate-pretask-reconciles`
+      `passed`, `deferred_by: [decision-case-121]`): the Render''s paragraph — "List every decision ratified
+      in this Plan Mode, one line each: slug — decision type — purpose; … Dispatch the `ask-guppi` agent
+      once with that list and the question: which of these contradict a page of the vault, a rule of `index.md`,
+      or each other".
+
+      **＋** `ask-guppi` (`rule-ask`): tools Read, Grep, Glob; reads the indexes, opens a page by slug.
+      The plan file lies outside the repository (`~/.claude/plans/<name>.md`), but Read takes an absolute
+      path; the agent knows it — it writes the file.
+
+      **＋** The `when` + `then` sections are the criterion of the Case (what reaches the Estimate); the
+      `then` block is the page text. The first says which event the change is bound to, the second in
+      which words; `ask-guppi` needs both to name a wrong wording and a wrong place alike (the owner''s
+      addition).
+
+      **＋** The lesson `lesson-pretask-dispatch-…` is `new`, without an Insight; this is its fix.
+
+      **－** `rule-ask` is not changed: one question per Case, one dispatch per pre-task, as before.
+
+      **－** The Frontier line F8 closes on this Case.'
+    when: The person invokes `/pre-task` and the agent assembles the dispatch for `ask-guppi`.
+    then: 'The Render of `rule-pretask`: "Dispatch the `ask-guppi` agent once with that list and the question"
+      → "Dispatch the `ask-guppi` agent once with that list, the absolute path of the plan file, the instruction
+      to read for every Case there its `when` and `then` sections and its `then` block — `replace` old
+      and new, `set`, `sections` — before judging a page, so that a finding can name a wrong wording or
+      a wrong place, and the question".
+
+      **＋** `estimate-pretask-reconciles` gets a `### case 128` block, `pending`; read at this session''s
+      `/pre-task`: the dispatch carries the path and the instruction on `when`, `then` and the blocks,
+      and no finding answers what the plan already does.
+
+      **－** `{supersedes:case 121}`: `decision-case-121` is superseded, `rule-pretask` loses `deferred_by`.'
+  spec: vault/raw/2026-09-14/1029/spec.md
+  criterion:
+  - estimate: estimate-pretask-reconciles
+    case: '128'
+  supersedes:
+  - decision-case-121
+  applied: '12:13:27'
+- case: '130.1'
+  decision: decision-case-130.1
+  origin: raw/2026-09-14/1029/ledger.md#case-130.1
+  targets:
+  - kind: update
+    category: rules
+    slug: rule-page-generation
+    ref: rule-page-generation
+  tags: []
+  case_text:
+    when: Work Mode of this session runs the migration task; then `guppi lint`.
+    then: 'In `rule-page-generation` the History line of 2026-09-11 reads "…History and log lines end
+      with `· [[decision-case-N]]` when a decision exists…"; in the Given of `decision-case-112.1`–`112.6`
+      the same quotation is in backticks. `guppi lint` finds no `ref` to `decision-case-N`: the 7 findings
+      are gone.
+
+      **＋** An `update` of `rule-page-generation`, `contract: same`, `change` only; `generate` appends
+      the History line.
+
+      **－** `{supersedes:case 112.6}`: `decision-case-112.6` is superseded.'
+    context: 'Entry 112.6 of `raw/2026-09-14/0747/materialize.yaml` is `failed`: the `replace` on `rule-page-generation`
+      did not find its `old`. The reason: the text "History and log lines end with · [[decision-case-N]]
+      when a decision exists" stands only in the History line of 2026-09-11 (line 95), and `generate.replace`
+      skips History (`generate.py:519`); line 44 of the body is already in backticks, and lint does not
+      count it (`CODE_SPAN`, `lint.py:57`). Seven `ref` findings of lint: the History line of `rule-page-generation`
+      and the Given of `decision-case-112.1`–`112.6`, which quote the same line without backticks. The
+      librarian repairs no yaml (rule-documentation); `archive` keeps `0747`: "1 entries not applied".'
+    problem: The literal has to be quoted where `replace` does not reach — in History and in six decision
+      pages; and the failed entry has to leave the count, or session M never moves into the archive. `mark_superseded`
+      (`materialize.py:654`) marks `superseded_by` on the entries of its own yaml only.
+    given: '`rule-page-generation` (`Leaf`, `built`, `estimate-generate-writes` `passed`; already an `update`
+      by 124.2 in this session — a second entry on one page in ledger order, allowed): History is "appended
+      by hook, never by an agent" — the hand edit of line 95 is ratified here as a one-off migration;
+      the decision pages 112.1–112.6 quote the line in their Given without backticks, the same migration
+      by hand; `decision-case-112.6` goes `superseded` by the cascade and into the archive.
+
+      **＋** `rule-materialize` (`Leaf`, `built`, `estimate-materialize-assembles`, `estimate-materialize-walks-dates`
+      `passed`): "a later `supersedes` adds `superseded_by` to the earlier entry and changes nothing else"
+      — today within one yaml only; `units_with(project_dir, "materialize.yaml")` already lists every
+      yaml; `archive.kept_reason` takes `superseded_by` as done.
+
+      **＋** `rule-lint` is not changed: a code span is no ref already, a History ref is a ref, as designed
+      (72.6).
+
+      **－** Entry 112.6 stays in the yaml as it is, with `failed` and `superseded_by`; `generate` skips
+      `applied` entries only (`generate.py:815`), so the librarian''s run of this session retries it,
+      fails it once more — exit 1, a flag — and `archive` then moves `0747` on the `superseded_by` mark
+      (pre-task finding 6 of case 132).
+
+      **－** The Frontier line F9 closes on this Case.'
+  spec: vault/raw/2026-09-14/1029/spec.md
+  supersedes:
+  - decision-case-112.6
+  applied: '12:13:27'
+- case: '130.2'
+  decision: decision-case-130.2
+  origin: raw/2026-09-14/1029/ledger.md#case-130.2
+  targets:
+  - kind: update
+    category: rules
+    slug: rule-materialize
+    ref: rule-materialize
+  tags: []
+  case_text:
+    when: '`guppi materialize` assembles the entry of a line with `{supersedes:case N}`.'
+    then: 'The entries of Case N (decision kinds) are marked `superseded_by` in the yaml of the unit that
+      holds them — its own or any other under `raw/` — and in the `decisions` list of that unit; a foreign
+      yaml is written with that mark only.
+
+      **＋** `estimate-materialize-assembles` gets a `### case 130.2` block, `pending`; the test: the yaml
+      of unit A with an entry of case 5 without `applied`, the ledger of unit B with a line carrying `{supersedes:case
+      5}` → after `materialize` of unit B the entry in A carries `superseded_by`, the rest of A unchanged;
+      `archive.kept_reason(A)` is None. The live reading at the librarian''s run: 112.6 marked, `0747`
+      moved.
+
+      **－** An entry that no yaml holds: as today, nothing.'
+    context: 'Entry 112.6 of `raw/2026-09-14/0747/materialize.yaml` is `failed`: the `replace` on `rule-page-generation`
+      did not find its `old`. The reason: the text "History and log lines end with · [[decision-case-N]]
+      when a decision exists" stands only in the History line of 2026-09-11 (line 95), and `generate.replace`
+      skips History (`generate.py:519`); line 44 of the body is already in backticks, and lint does not
+      count it (`CODE_SPAN`, `lint.py:57`). Seven `ref` findings of lint: the History line of `rule-page-generation`
+      and the Given of `decision-case-112.1`–`112.6`, which quote the same line without backticks. The
+      librarian repairs no yaml (rule-documentation); `archive` keeps `0747`: "1 entries not applied".'
+    problem: The literal has to be quoted where `replace` does not reach — in History and in six decision
+      pages; and the failed entry has to leave the count, or session M never moves into the archive. `mark_superseded`
+      (`materialize.py:654`) marks `superseded_by` on the entries of its own yaml only.
+    given: '`rule-page-generation` (`Leaf`, `built`, `estimate-generate-writes` `passed`; already an `update`
+      by 124.2 in this session — a second entry on one page in ledger order, allowed): History is "appended
+      by hook, never by an agent" — the hand edit of line 95 is ratified here as a one-off migration;
+      the decision pages 112.1–112.6 quote the line in their Given without backticks, the same migration
+      by hand; `decision-case-112.6` goes `superseded` by the cascade and into the archive.
+
+      **＋** `rule-materialize` (`Leaf`, `built`, `estimate-materialize-assembles`, `estimate-materialize-walks-dates`
+      `passed`): "a later `supersedes` adds `superseded_by` to the earlier entry and changes nothing else"
+      — today within one yaml only; `units_with(project_dir, "materialize.yaml")` already lists every
+      yaml; `archive.kept_reason` takes `superseded_by` as done.
+
+      **＋** `rule-lint` is not changed: a code span is no ref already, a History ref is a ref, as designed
+      (72.6).
+
+      **－** Entry 112.6 stays in the yaml as it is, with `failed` and `superseded_by`; `generate` skips
+      `applied` entries only (`generate.py:815`), so the librarian''s run of this session retries it,
+      fails it once more — exit 1, a flag — and `archive` then moves `0747` on the `superseded_by` mark
+      (pre-task finding 6 of case 132).
+
+      **－** The Frontier line F9 closes on this Case.'
+  spec: vault/raw/2026-09-14/1029/spec.md
+  criterion:
+  - estimate: estimate-materialize-assembles
+    case: '130.2'
+  applied: '12:13:27'
+- case: '131'
+  decision: decision-case-131
+  origin: raw/2026-09-14/1029/ledger.md#case-131
+  targets:
+  - kind: update
+    category: rules
+    slug: rule-page-generation
+    ref: rule-page-generation
+  tags: []
+  case_text:
+    context: 'The `change` of the 114 entry in session M''s Spec is the single word "the" (a truncated
+      phrase); `generate` wrote `- 2026-09-14 updated: the · [[decision-case-114]]` into the History of
+      `rule-page-generation` and into `log.md`. The `replace` of 114 applied; only History and `log.md`
+      carry the fragment (brief, Flags).'
+    problem: 'History is the record of what each Case did; the line "updated: the" says nothing. `replace`
+      does not reach History (130), and "appended by hook, never by an agent" is the rule a one-off migration
+      is the only way out of.'
+    given: '`rule-page-generation` (`Leaf`, `built`): already an `update` by 124.2 and 130.1 in this session
+      — a third entry on one page in ledger order, allowed; line 118 of History is `- 2026-09-14 updated:
+      the · [[decision-case-114]]`.
+
+      **＋** The `change` of 114 in `raw/2026-09-14/0747/spec.md` is not edited: the Spec is the record
+      of what was signed.
+
+      **－** `log.md` is not a page and has no schema; it stays as it is.
+
+      **－** The Frontier line F10 closes on this Case; the rest of F10 is `work` and Slice 5.'
+    when: Work Mode of this session runs the migration task.
+    then: 'The History line of 114 on `rule-page-generation` reads `- 2026-09-14 updated: the cascade
+      derives the ## Insight section of every clustered lesson from its insight field (case 114) · [[decision-case-114]]`.
+
+      **＋** An `update` of `rule-page-generation`, `contract: same`, `change` only; `generate` appends
+      its own History line.'
+  spec: vault/raw/2026-09-14/1029/spec.md
+  applied: '12:13:27'
+- case: '132'
+  decision: decision-case-132
+  origin: raw/2026-09-14/1029/ledger.md#case-132
+  targets:
+  - kind: update
+    category: rules
+    slug: rule-retro-commit
+    ref: rule-retro-commit
+  - kind: update
+    category: rules
+    slug: rule-event-log
+    ref: rule-event-log
+  - kind: update
+    category: rules
+    slug: rule-harness
+    ref: rule-harness
+  - kind: update
+    category: rules
+    slug: rule-retro
+    ref: rule-retro
+  - kind: update
+    category: rules
+    slug: rule-brief
+    ref: rule-brief
+  - kind: update
+    category: rules
+    slug: rule-ledger-tail
+    ref: rule-ledger-tail
+  tags: []
+  case_text:
+    context: '`ask-guppi` read the plan whole (the dispatch of case 128). Its findings: (1) `sections:
+      Language` in 123 — `## Language` lies inside the Render markers of `rule-claude-md`; `split_sections`
+      gives it to the Render block, a `sections` entry would add a second section and `CLAUDE.md` would
+      not change. (2) The `old` of 124.2, "a `defer` marks its target `deferred_by`", came from the docstring
+      of `generate.py`; the page has no such phrase; the whole 124.2 entry would fail. (3) `sections:
+      Addressed by` in 124.2 is an Insight section, not a Rule one; the Rule page would gain a stray section.
+      (4) 122 leaves `rule-retro-commit` false: "Any other skill or tool: exit 0". (5) 122 and 125 give
+      the event log a second job while `rule-event-log` says "Its one governance job is to carry the `hi`
+      mark". (6) 130.1 said "`generate` takes it no more" — wrong: `generate` skips `applied` only; 112.6
+      fails once more in the librarian''s run (a flag), then `archive` moves `0747` on `superseded_by`.
+      (7) `rule-harness` Purpose: "Two more belong here and run in no pipeline" — three after 127. (8)
+      `rule-retro` Purpose: "a line of today''s ledger" — 109.1 promised "this session''s", the page did
+      not change. (9) `rule-brief` Purpose: "every deferred item lives on as a draft page" — an Insight
+      in Deferred is no draft page. (10) `rule-ledger-tail` names `/hi` alone; 126 adds `/retro`.'
+    problem: 'Four amendments touch blocks already signed; they cannot change silently. Six pages need
+      new `update` entries, all `contract: same`: no contract changes, the text that became false does.'
+    given: 'Every `old` text below was checked on its page (`rule-retro-commit` 28, `rule-event-log` 22–23,
+      `rule-harness` 20–22, `rule-retro` 24, `rule-brief` 21–22, `rule-ledger-tail` 19, `rule-claude-md`
+      73–75, `rule-page-generation` 44 and 51).
+
+      **＋** `rule-retro-commit`: `estimate-retro-commit-gates` says "another skill or another tool, exit
+      0 whatever the tree" — on the tree that stays true; the refusal of 122 is on another ground; `contract:
+      same`.
+
+      **＋** `rule-event-log`, `rule-retro`, `rule-brief` already get an `update` in this session (125,
+      126, 124.1) — a second entry on a page in ledger order, allowed; `rule-page-generation` gets a block
+      amendment, not a new entry.
+
+      **－** No new Estimate block: no `when` or `then` changes.'
+    when: '`generate` applies the entries of this Case; the librarian reads `materialize.yaml`.'
+    then: 'The blocks of 123, 124.2 and 130.1 in the Spec are amended as the context says, before Plan
+      Mode ends: 123 a `replace` of the three sentences; 124.2 the `old` of line 51 and the `## Addressed
+      by` text as a second `replace` into `How it works`; 130.1 the `－` line stating the retry.
+
+      **＋** `rule-retro-commit`: "Any other skill or tool: exit 0." → "Any other tool: exit 0; any other
+      skill: exit 0 on the tree — the same hook refuses any skill while a `then` item of the session''s
+      Spec has no ledger line (`rule-ledger-write`, case 122)."
+
+      **＋** `rule-event-log`: "Its one governance job is to carry the `hi` mark that tells the ledger
+      hook a working session is open." → "Its governance jobs: to carry the `hi` mark that tells the ledger
+      hook a working session is open, and to name the session''s plan file by its `tool Write:` and `tool
+      Edit:` lines for `guppi gate` (case 122)."
+
+      **＋** `rule-harness`: "Two more belong here and run in no pipeline: the hook that refuses a hand
+      edit of a rendered file, and the page `CLAUDE.md` is rendered from (cases 59.6, 59.8)." → "Three
+      more belong here and run in no pipeline: the hook that refuses a hand edit of a rendered file, the
+      hook that refuses a heredoc with a backslash or a file write, and the page `CLAUDE.md` is rendered
+      from (cases 59.6, 59.8, 127)."
+
+      **＋** `rule-retro`: "work a line of today''s ledger ratified" → "work a line of this session''s
+      ledger ratified".
+
+      **＋** `rule-brief`: "every deferred item lives on as a draft page and pre-task finds it there" →
+      "every deferred item lives on as a page — a draft placeholder, or the open Insight itself — and
+      pre-task finds it there".
+
+      **＋** `rule-ledger-tail`: "Shows at `/hi` every ledger line that no vault page holds yet." → "Shows
+      at `/hi`, and at `/retro` since case 126, every ledger line that no vault page holds yet."
+
+      **－** Finding 6 is no page: the `－` line of 130.1 is corrected; the librarian''s flag is expected.'
+  spec: vault/raw/2026-09-14/1029/spec.md
+  applied: '12:13:27'
+unparsed: []
+session: '1029'

@@ -1,8 +1,9 @@
 ---
 type: decision
 case: "119"
-status: current
+status: archived
 defer: [rule-brief]
+superseded_by: [decision-case-124.1]
 origin: raw/2026-09-14/0747/ledger.md#case-119
 sprint: migration
 created: 2026-09-14
@@ -20,3 +21,6 @@ Lessons pile up, the librarian writes the Insight, and nothing puts it in front 
 ## History
 
 - 2026-09-14 created · raw/2026-09-14/0747/ledger.md#case-119
+- 2026-09-14 superseded by decision-case-124.1 · [[decision-case-124.1]]
+- 2026-09-14 archived · superseded
+- 2026-09-14 archived · cleanup

@@ -17,7 +17,7 @@ tags: [session, harness, ledger]
 
 ## Purpose
 
-Shows at `/hi` every ledger line that no vault page holds yet. The readings of the
+Shows at `/hi`, and at `/retro` since case 126, every ledger line that no vault page holds yet. The readings of the
 librarian's own run and the lessons of the close are written after its commit and
 after its brief, so the next `/hi`, which reads the brief, would not see them until
 the librarian after next. The tail closes that gap for the Frontier: the page of a
@@ -77,3 +77,4 @@ an item, and a decision line not.
 - 2026-09-13 created over placeholder · [[decision-case-101.2]]
 - 2026-09-13 estimate estimate-ledger-tail added · [[decision-case-101.2]]
 - 2026-09-14 status: draft → built · cascade
+- 2026-09-14 updated: the second caller of guppi tail, the retro skill, named (case 132) · [[decision-case-132]]

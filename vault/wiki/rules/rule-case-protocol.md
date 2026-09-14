@@ -78,7 +78,7 @@ line anywhere else — bare, or in a block with another tag or none — is a pre
 and is never written. A `create` line carries the ratified tags: `{tags:a,b}`.
 Write the `- decision[...]` lines only in the reply that acknowledges ratification;
 `- estimate[...]` and `- lesson[...]` lines the moment the measurement or the lesson
-exists. Without `/hi` the hook refuses and says so: tell the person, do not retry.
+exists. Without `/hi` the hook refuses and says so: tell the person, do not retry. A reply that carries a `LEDGER` block ends in that text. No tool call follows it in the same reply: the text before a tool call is never kept, and the hook reads nothing.
 <!-- /rule-case-protocol -->
 
 ## How it works
@@ -127,3 +127,4 @@ page; the reference dangles until then, on purpose.
 - 2026-09-12 defer by decision-case-81 superseded · [[decision-case-86]]
 - 2026-09-12 updated: the two keys of the derived Estimate are ratified as estimate_kind and estimate_slug (case 86) · [[decision-case-86]]
 - 2026-09-13 status: draft → built · cascade
+- 2026-09-14 updated: a reply that carries a LEDGER block ends in that text, no tool call after it (case 122) · [[decision-case-122]]

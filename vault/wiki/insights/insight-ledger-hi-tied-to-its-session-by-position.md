@@ -2,8 +2,8 @@
 type: insight
 pattern: The event log ties a hi line to its session by the session-start lines around it, not by an id; any start that is missing from the window or added to it sends the hi to the wrong session and the ledger writer refuses.
 status: open
-children: [lesson-ledger-hook-hi-lost-at-midnight, lesson-hi-taken-by-a-session-started-in-the-same-second]
-severity: 2
+children: [lesson-ledger-hook-hi-lost-at-midnight, lesson-hi-taken-by-a-session-started-in-the-same-second, lesson-pretask-line-unstamped-and-bound-by-position]
+severity: 3
 origin: raw/2026-09-14/0747/ledger.md#L2
 sprint: migration
 created: 2026-09-14
@@ -41,7 +41,9 @@ command, the fallback keeps both lessons live and a Case on 111.4 is due.
 
 - [[lesson-ledger-hook-hi-lost-at-midnight]]
 - [[lesson-hi-taken-by-a-session-started-in-the-same-second]]
+- [[lesson-pretask-line-unstamped-and-bound-by-position]]
 
 ## History
 
 - 2026-09-14 created · raw/2026-09-14/0747/ledger.md#L2
+- 2026-09-14 updated: synthesis: lesson-pretask-line-unstamped-and-bound-by-position added, the pretask line is bound to its session by position as the hi was, no session id in the skill shell · raw/2026-09-14/1029/ledger.md#L40

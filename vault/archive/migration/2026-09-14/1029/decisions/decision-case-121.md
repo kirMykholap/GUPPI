@@ -1,8 +1,9 @@
 ---
 type: decision
 case: "121"
-status: current
+status: archived
 defer: [rule-pretask]
+superseded_by: [decision-case-128]
 origin: raw/2026-09-14/0747/ledger.md#case-121
 sprint: migration
 created: 2026-09-14
@@ -20,3 +21,6 @@ The agent judged pages against a paraphrase and could not see the planned wordin
 ## History
 
 - 2026-09-14 created · raw/2026-09-14/0747/ledger.md#case-121
+- 2026-09-14 superseded by decision-case-128 · [[decision-case-128]]
+- 2026-09-14 archived · superseded
+- 2026-09-14 archived · cleanup

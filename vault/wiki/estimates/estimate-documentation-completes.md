@@ -1,7 +1,7 @@
 ---
 type: estimate
 kind: QA
-status: pending
+status: passed
 target: rule-documentation
 origin: raw/2026-09-10/ledger.md#case-36
 sprint: migration
@@ -81,7 +81,7 @@ A step between Brief and Close (shown again at pre-task: the brief reads the yam
 
 ## Result
 
-make test-documentation 67 green; live 2026-09-12, the librarian's run of session J (15:57:15–16:08:31, commit 8836953): its first input was vault/raw/2026-09-12/1156/handoff.md, the session folder the dispatch named (case 73.8); all 49 decision cases of today's ledger have their Decision page and their target page; the event log of the window holds no read of a ledger, a Spec, a plan, a Decision page or an archive file, every wiki page it opened is named in the report with a reason and an outcome, its commands are in the event log, its commit is separate from the session's and touches vault/ only, and it did not stop to ask; one clause does not hold — it edited three yaml entries by hand (slug on the derived updates of cases 73.10 and 73.3, fields.source on lesson-hooks-blocked-pretooluse-leaves-no-posttooluse-event), the repair item 2 of the handoff named by slug and the criterion of case 44 forbids
+block 100.2 against the librarian's run of session M: Archive ran after Brief (10:04:23 brief, 10:04:32 archive), moved raw/2026-09-13 and raw/2026-09-13/0652 to archive/migration/<date>/[0652/]raw, kept raw/2026-09-14/0747 as the session of the run, exit 0, stderr empty, all reported in the brief's Flags; rule-raw-archive is the sixth child of rule-documentation, after rule-cleanup
 
 ## History
 
@@ -98,3 +98,4 @@ make test-documentation 67 green; live 2026-09-12, the librarian's run of sessio
 - 2026-09-12 criterion: case 89.1 added · [[decision-case-89.1]]
 - 2026-09-12 criterion: case 90.3 added · [[decision-case-90.3]]
 - 2026-09-13 criterion: case 100.2 added · [[decision-case-100.2]]
+- 2026-09-14 status: pending → passed · raw/2026-09-14/1029/ledger.md#L2

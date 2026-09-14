@@ -2,7 +2,7 @@
 type: rule
 kind: Leaf
 purpose: Prevents a session from starting on a branch it does not know, or pulling mid-session
-status: draft
+status: built
 enforcement: render
 governs: .claude/skills/hi/SKILL.md
 render_mode: partial
@@ -57,3 +57,4 @@ the owner left both as they are until Slice 5.
 - 2026-09-10 status: draft → built · cascade
 - 2026-09-14 updated: a Render line after Pull runs guppi render --sync inside /hi; supersedes case 106 (case 115) · [[decision-case-115]]
 - 2026-09-14 status: built → draft · cascade
+- 2026-09-14 status: draft → built · cascade

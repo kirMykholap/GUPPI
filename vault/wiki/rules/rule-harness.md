@@ -3,7 +3,7 @@ type: rule
 kind: MOC
 purpose: Prevents the tools of the harness from drifting apart from the pages that describe them
 status: built
-children: [rule-render-harness, rule-settings, rule-lint, rule-index, rule-governed-files-hook, rule-claude-md]
+children: [rule-render-harness, rule-settings, rule-lint, rule-index, rule-governed-files-hook, rule-claude-md, rule-bash-guard]
 estimates: [estimate-harness-pipeline]
 origin: raw/2026-09-10/ledger.md#case-37
 sprint: migration
@@ -17,9 +17,7 @@ Prevents the tools of the harness from drifting apart from the pages that descri
 them. Four rules belong to no phase of the session: the renderer, the page
 `.claude/settings.json` is assembled from, lint and the indexes. They run together in `make lint`, in this order, and
 the order is the content: the harness files are checked against their pages before
-the indexes, the indexes before the pages. Two more belong here and run in no
-pipeline: the hook that refuses a hand edit of a rendered file, and the page
-`CLAUDE.md` is rendered from (cases 59.6, 59.8).
+the indexes, the indexes before the pages. Three more belong here and run in no pipeline: the hook that refuses a hand edit of a rendered file, the hook that refuses a heredoc with a backslash or a file write, and the page `CLAUDE.md` is rendered from (cases 59.6, 59.8, 127).
 
 ## Estimates
 
@@ -33,6 +31,7 @@ pipeline: the hook that refuses a hand edit of a rendered file, and the page
 4. [[rule-index]]
 5. [[rule-governed-files-hook]]
 6. [[rule-claude-md]]
+7. [[rule-bash-guard]]
 
 ## History
 
@@ -45,3 +44,5 @@ pipeline: the hook that refuses a hand edit of a rendered file, and the page
 - 2026-09-12 child rule-settings added · [[decision-case-85.2]]
 - 2026-09-12 updated: rule-settings takes the slot of rule-hook-registry, which becomes its child (case 85.2) · [[decision-case-85.2]]
 - 2026-09-12 updated: rule-settings takes the slot of the hook registry in the Purpose too (case 99) · [[decision-case-99]]
+- 2026-09-14 child rule-bash-guard added · [[decision-case-127]]
+- 2026-09-14 updated: the bash guard hook counted among the children outside the pipeline (case 132) · [[decision-case-132]]

@@ -1,8 +1,9 @@
 ---
 type: decision
 case: "118"
-status: current
+status: archived
 defer: [rule-retro]
+superseded_by: [decision-case-126]
 origin: raw/2026-09-14/0747/ledger.md#case-118
 sprint: migration
 created: 2026-09-14
@@ -20,3 +21,6 @@ A substitution that names a file which the model of case 103 no longer guarantee
 ## History
 
 - 2026-09-14 created · raw/2026-09-14/0747/ledger.md#case-118
+- 2026-09-14 superseded by decision-case-126 · [[decision-case-126]]
+- 2026-09-14 archived · superseded
+- 2026-09-14 archived · cleanup

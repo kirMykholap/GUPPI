@@ -1,8 +1,9 @@
 ---
 type: decision
 case: "117"
-status: current
+status: archived
 defer: [rule-ledger-write]
+superseded_by: [decision-case-122]
 origin: raw/2026-09-14/0747/ledger.md#case-117
 sprint: migration
 created: 2026-09-14
@@ -20,3 +21,6 @@ The rule "a reply with ledger lines ends in text" lives in the agent's memory on
 ## History
 
 - 2026-09-14 created · raw/2026-09-14/0747/ledger.md#case-117
+- 2026-09-14 superseded by decision-case-122 · [[decision-case-122]]
+- 2026-09-14 archived · superseded
+- 2026-09-14 archived · cleanup

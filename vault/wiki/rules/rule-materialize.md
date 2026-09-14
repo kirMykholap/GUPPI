@@ -56,8 +56,7 @@ block of any Case of the Spec, with decision lines or without, go to the yaml's
 An existing yaml is extended, never rewritten (case 41): entries whose `line` is
 present stay as they are, with the librarian's edits and the `applied` marks; new
 ledger lines become new entries at the end; an entry whose stored `text` differs
-from the ledger line at that number is reported on stderr and left alone; a later
-`supersedes` adds `superseded_by` to the earlier entry and changes nothing else; an
+from the ledger line at that number is reported on stderr and left alone; a later `supersedes` adds `superseded_by` to the entries of the earlier Case in whichever unit's yaml holds them — this one or any other under `raw/` — and to that unit's `decisions` list, and changes nothing else; a foreign yaml is written with that mark only (case 130.2); an
 `estimate` line for a create already `applied` becomes its own `estimate` entry.
 The count of entries added goes to stdout, one line per date. Exit 0; exit 1 when a
 date fails.
@@ -107,3 +106,4 @@ date fails.
 - 2026-09-13 updated: exists only when the page on disk was born of the same Case; another Case's page is a collision (case 105.2) · [[decision-case-105.2]]
 - 2026-09-13 status: built → draft · cascade
 - 2026-09-14 status: draft → built · cascade
+- 2026-09-14 updated: a supersedes marks the earlier Case's entries in the yaml of any unit under raw/, so a failed entry superseded from a later session no longer keeps its unit out of the archive (case 130.2) · [[decision-case-130.2]]

@@ -18,7 +18,12 @@ the live clauses of estimate-claude-md-rendered (case 59.8) and estimate-render-
 
 the clauses were written in Plan Mode of session I against the files as they stood, and the librarian's run of the same session wrote those Cases into the Rule pages after; nothing re-derived the clause from the pages, the class of insight-workflow-contract-change-leaves-its-derived-text-stale, which case 72 closes for Criteria born after it; a full render also drops the outer markers by design, so "marker lines only" was never a possible diff of CLAUDE.md
 
+## Insight
+
+- [[insight-workflow-contract-change-leaves-its-derived-text-stale]]
+
 ## History
 
 - 2026-09-12 created · raw/2026-09-12/ledger.md#L155
 - 2026-09-12 updated: clustered by librarian: a change leaves its derived text stale, with lesson-estimates-criterion-stale-after-contract-change · raw/2026-09-12/ledger.md#L155
+- 2026-09-14 insight section derived

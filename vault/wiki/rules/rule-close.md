@@ -2,7 +2,7 @@
 type: rule
 kind: Leaf
 purpose: Prevents the librarian's writes from landing in the session's own commit, or from ending without a commit at all
-status: draft
+status: built
 enforcement: render
 governs: .claude/agents/librarian-guppi.md
 render_mode: partial
@@ -45,3 +45,4 @@ pages archived, the flags you raised, the lint total. Nothing else.
 - 2026-09-10 status: draft → built · cascade
 - 2026-09-12 updated: the commit takes the governed files the render wrote, beside vault/ (case 89.2) · [[decision-case-89.2]]
 - 2026-09-12 status: built → draft · cascade
+- 2026-09-14 status: draft → built · cascade

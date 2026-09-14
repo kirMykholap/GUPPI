@@ -14,8 +14,12 @@
     "SessionStart": [
       { "hooks": [ { "type": "command", "command": "uv run guppi event session-start", "timeout": 30 },
                    { "type": "command", "command": "uv run guppi render --sync", "timeout": 60 } ] }
-    ],
-    "PreToolUse": [
+],
+"UserPromptSubmit": [
+  { "hooks": [ { "type": "command", "command": "uv run guppi event prompt", "timeout": 30 } ] }
+],
+"PreToolUse": [
+
       { "matcher": "ExitPlanMode",
         "hooks": [ { "type": "command", "command": "uv run guppi pretask", "timeout": 30 } ] },
       { "matcher": "Skill",

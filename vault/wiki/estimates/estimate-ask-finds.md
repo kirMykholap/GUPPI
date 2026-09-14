@@ -1,7 +1,7 @@
 ---
 type: estimate
 kind: QA
-status: pending
+status: passed
 target: rule-ask
 origin: raw/2026-09-09/ledger.md#case-23.1
 sprint: migration
@@ -43,19 +43,11 @@ Method rule allows.
 
 ## Result
 
-Passing, 2026-09-10, session E, three dispatches at 05:52. English "which page describes the
-hook that writes ledger lines on Stop": `exists: rule-ledger-write`. The same in Russian:
-`exists: rule-ledger-write`. A blocking `SessionStart` hook: `rules: rule-hook-registry`,
-`exists: rule-session-start`, and `missing` said no page yet states that `SessionStart`
-cannot block (the lesson is a ledger line until Slice 3 generates it). Only the five lines
-reached the caller; each dispatch is a `tool Agent: ask-guppi` line in the event log.
-`@vault/wiki/rules-index.md` did not expand: the agent received the literal text and read
-the file itself. Tokens per dispatch: 14 662, 15 881, 23 574 (the proposal, ten tool
-uses). Deviations: the lines run to several sentences each, and the third answer added a
-`Paths read:` trailer after the five.
+block 105.1: ask-guppi asked for estimate-agents-at-import-not-expanded answered "archived at vault/archive/migration/2026-09-11/estimates/… by [[decision-case-53.1]]", opened the archived page because the question asked what it said, answered from its origin and History (no Result on the page); five lines, 4 tool uses, 18895 tokens; the pretask dispatch (17 items, 91955 tokens) answered per item in the five lines too
 
 ## History
 
 - 2026-09-09 created · raw/2026-09-09/ledger.md#case-23.1
 - 2026-09-10 status: pending → passed · written by hand, no generator yet
 - 2026-09-13 criterion: case 105.1 added · [[decision-case-105.1]]
+- 2026-09-14 status: pending → passed · raw/2026-09-14/0747/ledger.md#L39

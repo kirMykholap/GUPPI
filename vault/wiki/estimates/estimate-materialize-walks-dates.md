@@ -1,13 +1,17 @@
 ---
 type: estimate
 kind: QA
-status: pending
+status: passed
 target: rule-materialize
 origin: raw/2026-09-10/ledger.md#case-43
 sprint: migration
 created: 2026-09-10
 tags: [harness, workflow, ledger]
 ---
+
+## Context
+
+`materialize` and `generate` read one `raw/<date>/`, today by default. Nothing materializes the lines written after the librarian's commit unless the next session falls on the same date. The tail of session E was saved by a coincidence of dates only. (The Problem of case 43, in English.)
 
 ## Criterion
 
@@ -30,7 +34,7 @@ tests/test_materialize.py with two dated folders; live, the librarian's first ru
 
 ## Result
 
-tests/test_materialize.py 15 green with the three walk tests (order, --date, an error stops the walk); live 2026-09-10: the librarian's `uv run guppi materialize` at 11:48:27 walked 2026-09-09 (+0 entries) and 2026-09-10 (+8), one stdout line per date, exit 0; the pickup of a line after a later date's run is covered by the test only, both sessions of today share the date
+block 103.2: the librarian of session L walked the date-level unit raw/2026-09-13 (79 entries) and the session unit raw/2026-09-13/0652 (4 entries) in that order, the session's yaml and origin in its own folder; unit tests green
 
 ## History
 
@@ -38,3 +42,5 @@ tests/test_materialize.py 15 green with the three walk tests (order, --date, an 
 - 2026-09-10 status: pending → passed · raw/2026-09-10/ledger.md#L94
 - 2026-09-11 fields to sections: criterion, method · [[decision-case-53.3]]
 - 2026-09-13 criterion: case 103.2 added · [[decision-case-103.2]]
+- 2026-09-14 updated: Context added from the Problem of case 43 (case 112.4) · [[decision-case-112.4]]
+- 2026-09-14 status: pending → passed · raw/2026-09-14/0747/ledger.md#L42

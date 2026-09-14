@@ -2,12 +2,13 @@
 type: rule
 kind: Leaf
 purpose: Prevents a set of ratified decisions from reaching the Spec with a contradiction between them or with the vault
-status: draft
+status: built
 enforcement: render
 governs: .claude/skills/pre-task/SKILL.md
 render_mode: full
 parent: rule-plan-mode
 estimates: [estimate-pretask-reconciles]
+deferred_by: [decision-case-121]
 origin: raw/2026-09-09/ledger.md#case-24.2
 sprint: migration
 created: 2026-09-09
@@ -71,3 +72,5 @@ finding as a Case, or say in one line why it is already known. Then exit Plan Mo
 - 2026-09-12 updated: the item's key is named estimate_slug, as case 86 ratified (case 99) · [[decision-case-99]]
 - 2026-09-13 updated: the window is the session's ledger plus the date-level ledgers of the window (case 103.4) · [[decision-case-103.4]]
 - 2026-09-13 status: built → draft · cascade
+- 2026-09-14 deferred · [[decision-case-121]]
+- 2026-09-14 status: draft → built · cascade

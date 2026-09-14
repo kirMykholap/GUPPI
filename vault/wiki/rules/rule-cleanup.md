@@ -2,7 +2,7 @@
 type: rule
 kind: Leaf
 purpose: Prevents an archived page from staying among the live ones, or the indexes from lagging behind the vault
-status: draft
+status: built
 enforcement: check
 implementation_ref: [guppi/cleanup.py, tests/test_cleanup.py]
 parent: rule-documentation
@@ -59,3 +59,4 @@ stderr with exit 1; the other pages still move.
 - 2026-09-13 updated: raw/ is guppi archive's, not cleanup's (case 100.4) · [[decision-case-100.4]]
 - 2026-09-13 updated: the root is vault/archive/, the page lands under the session of the run (case 102.2) · [[decision-case-102.2]]
 - 2026-09-13 status: built → draft · cascade
+- 2026-09-14 status: draft → built · cascade

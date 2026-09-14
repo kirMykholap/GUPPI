@@ -2,7 +2,7 @@
 type: insight
 pattern: The ledger writer sees the last text of a turn, not the turn; a LEDGER block anywhere else in the turn is never written.
 status: open
-children: [lesson-ledger-hook-misses-a-reply-ending-in-a-tool-call, lesson-ledger-hook-drops-a-block-followed-by-tool-calls-in-the-turn, lesson-transcript-omits-text-emitted-before-tool-calls]
+children: [lesson-ledger-hook-misses-a-reply-ending-in-a-tool-call, lesson-ledger-hook-drops-a-block-followed-by-tool-calls-in-the-turn, lesson-transcript-omits-text-emitted-before-tool-calls, lesson-ledger-lines-lost-in-a-reply-ending-in-a-skill-call-with-the-insight-live]
 severity: 3
 origin: raw/2026-09-12/ledger.md#L101
 sprint: migration
@@ -42,8 +42,10 @@ lines written, shown at `/hi` with the unmaterialized tail.
 - [[lesson-ledger-hook-misses-a-reply-ending-in-a-tool-call]]
 - [[lesson-ledger-hook-drops-a-block-followed-by-tool-calls-in-the-turn]]
 - [[lesson-transcript-omits-text-emitted-before-tool-calls]]
+- [[lesson-ledger-lines-lost-in-a-reply-ending-in-a-skill-call-with-the-insight-live]]
 
 ## History
 
 - 2026-09-12 created · raw/2026-09-12/ledger.md#L101
 - 2026-09-13 updated: synthesis: lesson-transcript-omits-text-emitted-before-tool-calls added, the text before a tool call is not in the transcript · raw/2026-09-13/ledger.md#L42
+- 2026-09-14 updated: synthesis: lesson-ledger-lines-lost-in-a-reply-ending-in-a-skill-call-with-the-insight-live added, a reply ended in a Skill call with the Insight live · raw/2026-09-14/0747/ledger.md#L33

@@ -32,8 +32,12 @@ agent's Render and is ratified with it; this page holds the registrations only.
     "SessionStart": [
       { "hooks": [ { "type": "command", "command": "uv run guppi event session-start", "timeout": 30 },
                    { "type": "command", "command": "uv run guppi render --sync", "timeout": 60 } ] }
-    ],
-    "PreToolUse": [
+],
+"UserPromptSubmit": [
+  { "hooks": [ { "type": "command", "command": "uv run guppi event prompt", "timeout": 30 } ] }
+],
+"PreToolUse": [
+
       { "matcher": "ExitPlanMode",
         "hooks": [ { "type": "command", "command": "uv run guppi pretask", "timeout": 30 } ] },
       { "matcher": "Skill",
@@ -72,3 +76,4 @@ agent's Render and is ratified with it; this page holds the registrations only.
 - 2026-09-12 updated: the page renders the hooks key only, as a partial child of rule-settings (case 85.3) · [[decision-case-85.3]]
 - 2026-09-12 status: built → draft · cascade
 - 2026-09-13 status: draft → built · cascade
+- 2026-09-14 updated: guppi event prompt registered on UserPromptSubmit (case 111.2) · [[decision-case-111.2]]

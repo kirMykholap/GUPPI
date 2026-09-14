@@ -1,7 +1,7 @@
 ---
 type: estimate
 kind: QA
-status: pending
+status: passed
 target: rule-settings
 origin: raw/2026-09-12/ledger.md#case-85.2
 sprint: migration
@@ -33,8 +33,14 @@ and the next session start writes its `session-start` line into the event log.
 
 ## Method
 
-uv run guppi render, then json.load on .claude/settings.json and guppi render --check; the live half at the next session start — the session-start line in raw/<date>/event_log.md came from the rendered file
+`make test-harness`; then uv run guppi render, json.load on .claude/settings.json and guppi render --check; the live half at the next session start — the session-start line in raw/<date>/event_log.md came from the rendered file
+
+## Result
+
+session M start 07:30:30: .claude/settings.json rendered by the librarian of session L parses as JSON, guppi render --check exits 0, and the session-start line of fde37e7c was written from the rendered file
 
 ## History
 
 - 2026-09-12 created · [[decision-case-85.2]]
+- 2026-09-14 updated: Method names make test-harness (case 112.3) · [[decision-case-112.3]]
+- 2026-09-14 status: pending → passed · raw/2026-09-14/0747/ledger.md#L35

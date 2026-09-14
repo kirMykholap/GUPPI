@@ -1,7 +1,7 @@
 ---
 type: estimate
 kind: QA
-status: pending
+status: passed
 target: rule-materialize
 origin: raw/2026-09-10/ledger.md#case-31
 sprint: migration
@@ -101,7 +101,7 @@ pytest in tests/test_materialize.py against a temp vault; the live reading once 
 
 ## Result
 
-unit: tests/test_materialize.py 35 green with the blocks of 87 and 90.1 — a knowledge line with a source carries it into fields and is not incomplete, a knowledge line without one is incomplete: [source], an error line keeps a source it was given; a contract change names its Estimate through estimate_slug, falls back to a page's single Estimate, and goes slug-less with incomplete: [estimate] when the page carries none or two; live 2026-09-12 session K, materialize --show --date 2026-09-12: every derived entry of cases 85.1, 85.3, 86, 87, 88.1, 89.1, 89.4, 90.1, 90.2, 90.3 and 91 names its Estimate and none is incomplete; the applied lesson entries of the earlier run keep their old marks, as case 87 says
+blocks 73.5, 76, 87, 90.1, 105.2 against the tests of test_materialize.py (green) and the librarian's run of session L: 0 unparsed lines in both yamls, the placeholder rule-ledger-tail filled without a collision, no false exists mark
 
 ## History
 
@@ -121,3 +121,4 @@ unit: tests/test_materialize.py 35 green with the blocks of 87 and 90.1 — a kn
 - 2026-09-12 criterion: case 90.1 added · [[decision-case-90.1]]
 - 2026-09-12 status: pending → passed · raw/2026-09-12/ledger.md#L207
 - 2026-09-13 criterion: case 105.2 added · [[decision-case-105.2]]
+- 2026-09-14 status: pending → passed · raw/2026-09-14/0747/ledger.md#L44

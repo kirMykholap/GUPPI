@@ -1,7 +1,7 @@
 ---
 type: estimate
 kind: QA
-status: pending
+status: passed
 target: rule-skill-hi
 origin: raw/2026-09-12/ledger.md#case-59.2
 sprint: migration
@@ -48,7 +48,7 @@ this session's `/hi` (the file written by hand from the presented list) and `/pr
 
 ## Result
 
-live 2026-09-12 session J: after /hi the agent wrote raw/2026-09-12/frontier.md by hand, F19–F33, one line per item presented, all [ ]; every line closed in Plan Mode as its item ended — work, case N or defer case N; at /pre-task the first guppi pretask --check printed 16 frontier findings, all of session I's lines in the same file (the collision case 73 fixes), none of this session's; after session I's section moved to raw/2026-09-12/0454/frontier.md the check printed nothing, exit 0
+raw/2026-09-14/0747/frontier.md written at /hi with F1–F10, F11 and F12 added by the person and by the hi failure; at /pre-task every line closed as case N, work or defer case N; guppi pretask --check named the one malformed closing (F8) as a finding and printed none after the fix (blocks 73.3, 101.4)
 
 ## History
 
@@ -56,3 +56,4 @@ live 2026-09-12 session J: after /hi the agent wrote raw/2026-09-12/frontier.md 
 - 2026-09-12 criterion: case 73.3 added · [[decision-case-73.3]]
 - 2026-09-12 status: pending → passed · raw/2026-09-12/ledger.md#L151
 - 2026-09-13 criterion: case 101.4 added · [[decision-case-101.4]]
+- 2026-09-14 status: pending → passed · raw/2026-09-14/0747/ledger.md#L37

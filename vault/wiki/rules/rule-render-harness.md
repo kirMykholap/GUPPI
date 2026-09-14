@@ -24,8 +24,7 @@ edited by hand, the page follows or does not, and the vault stops being the sour
 ## How it works
 
 `uv run guppi render` writes every governed file from its Rule page; `--check`
-renders in memory and names the files that differ, for `make lint`; `--sync`, the
-`SessionStart` hook, prints a unified diff for each differing file — the file as it
+renders in memory and names the files that differ, for `make lint`; `--sync`, the `SessionStart` hook and, since case 115, the `Render:` line of `/hi` after the pull, prints a unified diff for each differing file — the file as it
 is, then the rendered text — and writes it, so the agent's first turn shows what
 the render changed: the pages the librarian updated, or a hand edit that is now
 gone and may deserve a Case. It exits 0 always; `SessionStart` cannot block, and a
@@ -66,3 +65,4 @@ file, so nothing is lost but the label in the file itself (case 85.1).
 - 2026-09-12 updated: the live clause of the render reading is a standing rule, read against the pages that changed (case 88.1) · [[decision-case-88.1]]
 - 2026-09-12 updated: a json target is parsed before the write, and one failure stops the whole write (case 89.4) · [[decision-case-89.4]]
 - 2026-09-13 status: draft → built · cascade
+- 2026-09-14 updated: --sync is named as the SessionStart hook and the Render line of /hi after the pull (case 115.1) · [[decision-case-115.1]]

@@ -942,3 +942,142 @@ instruction. The global feed; a page's own `## History` is the per-page view.
 - 2026-09-13 decisions/decision-case-96 archived · cleanup
 - 2026-09-13 decisions/decision-case-97 archived · cleanup
 - 2026-09-13 decisions/decision-case-98 archived · cleanup
+- 2026-09-14 lessons/lesson-agents-loaded-at-session-start insight section derived · generate
+- 2026-09-14 lessons/lesson-agents-visible-in-session insight section derived · generate
+- 2026-09-14 lessons/lesson-estimates-criterion-stale-after-contract-change insight section derived · generate
+- 2026-09-14 lessons/lesson-estimates-live-clause-stale-at-first-render insight section derived · generate
+- 2026-09-14 lessons/lesson-frame-read-clauses-omit-candidate-check-and-brief insight section derived · generate
+- 2026-09-14 lessons/lesson-generate-replace-mapping-crashes insight section derived · generate
+- 2026-09-14 lessons/lesson-heredoc-trap-hit-twice-with-its-lesson-live insight section derived · generate
+- 2026-09-14 lessons/lesson-ledger-decision-line-written-without-the-case-word insight section derived · generate
+- 2026-09-14 lessons/lesson-ledger-hook-misses-a-reply-ending-in-a-tool-call insight section derived · generate
+- 2026-09-14 lessons/lesson-ledger-preview-in-ratification-taken-for-the-record insight section derived · generate
+- 2026-09-14 lessons/lesson-librarian-reads-beyond-the-four-inputs insight section derived · generate
+- 2026-09-14 lessons/lesson-materialize-assumes-every-entry-has-a-line insight section derived · generate
+- 2026-09-14 lessons/lesson-materialize-lesson-line-source-dropped insight section derived · generate
+- 2026-09-14 lessons/lesson-materialize-standalone-estimate-keeps-criterion-as-a-field insight section derived · generate
+- 2026-09-14 lessons/lesson-pretask-nested-estimate-exempt-from-the-line-check insight section derived · generate
+- 2026-09-14 lessons/lesson-readings-after-librarian-invisible-to-next-hi insight section derived · generate
+- 2026-09-14 lessons/lesson-render-governed-file-updated-as-rule-class-file insight section derived · generate
+- 2026-09-14 lessons/lesson-spec-then-items-unchecked-against-ledger-lines insight section derived · generate
+- 2026-09-14 lessons/lesson-tests-cli-date-pinned insight section derived · generate
+- 2026-09-14 lessons/lesson-tests-generate-history-date-unpinned insight section derived · generate
+- 2026-09-14 lessons/lesson-transcript-omits-text-emitted-before-tool-calls insight section derived · generate
+- 2026-09-14 lessons/lesson-vault-lesson-absent-at-the-moment-it-applies insight section derived · generate
+- 2026-09-14 estimates/estimate-generate-writes status: pending → failed · raw/2026-09-14/0747/ledger.md#L1 · generate
+- 2026-09-14 lessons/lesson-hi-taken-by-a-session-started-in-the-same-second created · raw/2026-09-14/0747/ledger.md#L2 · generate
+- 2026-09-14 decisions/decision-case-110 created · raw/2026-09-14/0747/ledger.md#case-110 · generate
+- 2026-09-14 rules/rule-page-generation updated: the cascade reads a child's status in the archive too, so an archived child is not counted live (case 110) · [[decision-case-110]] · generate
+- 2026-09-14 decisions/decision-case-110.1 created · raw/2026-09-14/0747/ledger.md#case-110.1 · generate
+- 2026-09-14 decisions/decision-case-111.1 created · raw/2026-09-14/0747/ledger.md#case-111.1 · generate
+- 2026-09-14 rules/rule-event-log updated: the hi line is written by guppi event prompt on UserPromptSubmit with the session's stamp, once per session; the known limit is lifted (case 111.1) · [[decision-case-111.1]] · generate
+- 2026-09-14 estimates/estimate-event-log-records criterion: case 111.1 added · [[decision-case-111.1]] · generate
+- 2026-09-14 decisions/decision-case-111.2 created · raw/2026-09-14/0747/ledger.md#case-111.2 · generate
+- 2026-09-14 rules/rule-hook-registry updated: guppi event prompt registered on UserPromptSubmit (case 111.2) · [[decision-case-111.2]] · generate
+- 2026-09-14 decisions/decision-case-111.3 created · raw/2026-09-14/0747/ledger.md#case-111.3 · generate
+- 2026-09-14 rules/rule-ledger-write updated: the window is the session's own stamped hi after its first start; a foreign start no longer closes it (case 111.3) · [[decision-case-111.3]] · generate
+- 2026-09-14 estimates/estimate-ledger-write-lifts criterion: case 111.3 added · [[decision-case-111.3]] · generate
+- 2026-09-14 decisions/decision-case-111.4 created · raw/2026-09-14/0747/ledger.md#case-111.4 · generate
+- 2026-09-14 rules/rule-skill-hi updated: the Recorded substitution removed and the CLAUDE_SESSION_ID paragraph replaced; the hi line is the UserPromptSubmit hook's (case 111.4) · [[decision-case-111.4]] · generate
+- 2026-09-14 decisions/decision-case-111.5 created · raw/2026-09-14/0747/ledger.md#case-111.5 · generate
+- 2026-09-14 lessons/lesson-hi-taken-by-a-session-started-in-the-same-second updated: root_cause corrected (case 111.5) · [[decision-case-111.5]] · generate
+- 2026-09-14 decisions/decision-case-112.1 created · raw/2026-09-14/0747/ledger.md#case-112.1 · generate
+- 2026-09-14 rules/rule-lint updated: the Method check of a MOC's Estimate looks for the make target before the words by hand (case 112.1) · [[decision-case-112.1]] · generate
+- 2026-09-14 estimates/estimate-lint-catches criterion: case 112.1 added · [[decision-case-112.1]] · generate
+- 2026-09-14 decisions/decision-case-112.2 created · raw/2026-09-14/0747/ledger.md#case-112.2 · generate
+- 2026-09-14 estimates/estimate-default-mode updated: Method names tests/test_render.py (case 112.2) · [[decision-case-112.2]] · generate
+- 2026-09-14 decisions/decision-case-112.3 created · raw/2026-09-14/0747/ledger.md#case-112.3 · generate
+- 2026-09-14 estimates/estimate-settings updated: Method names make test-harness (case 112.3) · [[decision-case-112.3]] · generate
+- 2026-09-14 decisions/decision-case-112.4 created · raw/2026-09-14/0747/ledger.md#case-112.4 · generate
+- 2026-09-14 estimates/estimate-generate-walks-dates updated: Context added from the Problem of case 43 (case 112.4) · [[decision-case-112.4]] · generate
+- 2026-09-14 estimates/estimate-materialize-walks-dates updated: Context added from the Problem of case 43 (case 112.4) · [[decision-case-112.4]] · generate
+- 2026-09-14 decisions/decision-case-112.5 created · raw/2026-09-14/0747/ledger.md#case-112.5 · generate
+- 2026-09-14 estimates/estimate-cleanup-moves updated: the prose Criterion names the path of case 102 (case 112.5) · [[decision-case-112.5]] · generate
+- 2026-09-14 decisions/decision-case-112.6 created · raw/2026-09-14/0747/ledger.md#case-112.6 · generate
+- 2026-09-14 decisions/decision-case-113 created · raw/2026-09-14/0747/ledger.md#case-113 · generate
+- 2026-09-14 lessons/lesson-agents-at-import-not-expanded updated: tags and source filled (case 113) · [[decision-case-113]] · generate
+- 2026-09-14 lessons/lesson-agents-loaded-at-session-start updated: tags filled (case 113) · [[decision-case-113]] · generate
+- 2026-09-14 lessons/lesson-agents-visible-in-session updated: source filled (case 113) · [[decision-case-113]] · generate
+- 2026-09-14 lessons/lesson-estimates-criterion-stale-after-contract-change updated: tags filled (case 113) · [[decision-case-113]] · generate
+- 2026-09-14 lessons/lesson-hooks-exitplanmode-payload updated: tags and source filled (case 113) · [[decision-case-113]] · generate
+- 2026-09-14 lessons/lesson-hooks-messagedisplay-cannot-block updated: tags and source filled (case 113) · [[decision-case-113]] · generate
+- 2026-09-14 lessons/lesson-hooks-sessionstart-cannot-block updated: tags and source filled (case 113) · [[decision-case-113]] · generate
+- 2026-09-14 lessons/lesson-hooks-stop-payload updated: tags and source filled (case 113) · [[decision-case-113]] · generate
+- 2026-09-14 lessons/lesson-hooks-windows-stdin-encoding updated: tags filled (case 113) · [[decision-case-113]] · generate
+- 2026-09-14 lessons/lesson-tests-cli-date-pinned updated: tags filled (case 113) · [[decision-case-113]] · generate
+- 2026-09-14 decisions/decision-case-114 created · raw/2026-09-14/0747/ledger.md#case-114 · generate
+- 2026-09-14 decisions/decision-case-108 superseded by decision-case-114 · [[decision-case-114]] · generate
+- 2026-09-14 rules/rule-synthesis defer by decision-case-108 superseded · [[decision-case-114]] · generate
+- 2026-09-14 rules/rule-page-generation updated: the · [[decision-case-114]] · generate
+- 2026-09-14 estimates/estimate-generate-writes criterion: case 114 added · [[decision-case-114]] · generate
+- 2026-09-14 decisions/decision-case-115.1 created · raw/2026-09-14/0747/ledger.md#case-115.1 · generate
+- 2026-09-14 rules/rule-render-harness updated: --sync is named as the SessionStart hook and the Render line of /hi after the pull (case 115.1) · [[decision-case-115.1]] · generate
+- 2026-09-14 decisions/decision-case-115.2 created · raw/2026-09-14/0747/ledger.md#case-115.2 · generate
+- 2026-09-14 rules/rule-skill-hi updated: the Frontier sentence covers the Render line of /hi (case 115.2) · [[decision-case-115.2]] · generate
+- 2026-09-14 decisions/decision-case-115 created · raw/2026-09-14/0747/ledger.md#case-115 · generate
+- 2026-09-14 decisions/decision-case-106 superseded by decision-case-115 · [[decision-case-115]] · generate
+- 2026-09-14 rules/rule-skill-hi defer by decision-case-106 superseded · [[decision-case-115]] · generate
+- 2026-09-14 rules/rule-git-context updated: a Render line after Pull runs guppi render --sync inside /hi; supersedes case 106 (case 115) · [[decision-case-115]] · generate
+- 2026-09-14 estimates/estimate-git-context-current criterion: case 115 added · [[decision-case-115]] · generate
+- 2026-09-14 decisions/decision-case-116 created · raw/2026-09-14/0747/ledger.md#case-116 · generate
+- 2026-09-14 decisions/decision-case-107 superseded by decision-case-116 · [[decision-case-116]] · generate
+- 2026-09-14 rules/rule-work-mode defer by decision-case-107 superseded · [[decision-case-116]] · generate
+- 2026-09-14 rules/rule-subagent-guppi defer by decision-case-107 superseded · [[decision-case-116]] · generate
+- 2026-09-14 rules/rule-work-mode deferred · [[decision-case-116]] · generate
+- 2026-09-14 rules/rule-subagent-guppi deferred · [[decision-case-116]] · generate
+- 2026-09-14 lessons/lesson-ledger-lines-lost-in-a-reply-ending-in-a-skill-call-with-the-insight-live created · raw/2026-09-14/0747/ledger.md#L33 · generate
+- 2026-09-14 decisions/decision-case-117 created · raw/2026-09-14/0747/ledger.md#case-117 · generate
+- 2026-09-14 rules/rule-ledger-write deferred · [[decision-case-117]] · generate
+- 2026-09-14 estimates/estimate-settings status: pending → passed · raw/2026-09-14/0747/ledger.md#L35 · generate
+- 2026-09-14 estimates/estimate-hi-no-read-calls status: pending → passed · raw/2026-09-14/0747/ledger.md#L36 · generate
+- 2026-09-14 estimates/estimate-hi-writes-frontier status: pending → passed · raw/2026-09-14/0747/ledger.md#L37 · generate
+- 2026-09-14 estimates/estimate-pretask-reconciles status: pending → passed · raw/2026-09-14/0747/ledger.md#L38 · generate
+- 2026-09-14 estimates/estimate-ask-finds status: pending → passed · raw/2026-09-14/0747/ledger.md#L39 · generate
+- 2026-09-14 estimates/estimate-close-commits status: pending → passed · raw/2026-09-14/0747/ledger.md#L40 · generate
+- 2026-09-14 estimates/estimate-cleanup-moves status: pending → passed · raw/2026-09-14/0747/ledger.md#L41 · generate
+- 2026-09-14 estimates/estimate-materialize-walks-dates status: pending → passed · raw/2026-09-14/0747/ledger.md#L42 · generate
+- 2026-09-14 estimates/estimate-generate-walks-dates status: pending → passed · raw/2026-09-14/0747/ledger.md#L43 · generate
+- 2026-09-14 estimates/estimate-materialize-assembles status: pending → passed · raw/2026-09-14/0747/ledger.md#L44 · generate
+- 2026-09-14 estimates/estimate-ledger-tail status: pending → passed · raw/2026-09-14/0747/ledger.md#L45 · generate
+- 2026-09-14 estimates/estimate-generate-writes status: pending → passed · raw/2026-09-14/0747/ledger.md#L46 · generate
+- 2026-09-14 estimates/estimate-lint-catches status: pending → passed · raw/2026-09-14/0747/ledger.md#L47 · generate
+- 2026-09-14 decisions/decision-case-111.6 created · raw/2026-09-14/0747/ledger.md#case-111.6 · generate
+- 2026-09-14 rules/rule-ledger-write updated: an unstamped hi keeps its window by the old rule while no stamped hi exists (case 111.6) · [[decision-case-111.6]] · generate
+- 2026-09-14 estimates/estimate-ledger-write-lifts criterion: case 111.6 added · [[decision-case-111.6]] · generate
+- 2026-09-14 lessons/lesson-reader-changed-before-its-writer-closed-the-live-session created · raw/2026-09-14/0747/ledger.md#L49 · generate
+- 2026-09-14 estimates/estimate-retro-loads status: pending → failed · raw/2026-09-14/0747/ledger.md#L50 · generate
+- 2026-09-14 lessons/lesson-heredoc-trap-hit-a-third-time-in-work-mode created · raw/2026-09-14/0747/ledger.md#L51 · generate
+- 2026-09-14 decisions/decision-case-118 created · raw/2026-09-14/0747/ledger.md#case-118 · generate
+- 2026-09-14 rules/rule-retro deferred · [[decision-case-118]] · generate
+- 2026-09-14 lessons/lesson-pretask-dispatch-summarized-the-plan-and-ask-guppi-judged-the-summary created · raw/2026-09-14/0747/ledger.md#L53 · generate
+- 2026-09-14 decisions/decision-case-119 created · raw/2026-09-14/0747/ledger.md#case-119 · generate
+- 2026-09-14 rules/rule-brief deferred · [[decision-case-119]] · generate
+- 2026-09-14 decisions/decision-case-120 created · raw/2026-09-14/0747/ledger.md#case-120 · generate
+- 2026-09-14 rules/rule-bash-guard deferred, placeholder · [[decision-case-120]] · generate
+- 2026-09-14 decisions/decision-case-121 created · raw/2026-09-14/0747/ledger.md#case-121 · generate
+- 2026-09-14 rules/rule-pretask deferred · [[decision-case-121]] · generate
+- 2026-09-14 insights/insight-ledger-hi-tied-to-its-session-by-position created · raw/2026-09-14/0747/ledger.md#L2 · generate
+- 2026-09-14 lessons/lesson-ledger-hook-hi-lost-at-midnight updated: clustered under insight-ledger-hi-tied-to-its-session-by-position · raw/2026-09-14/0747/ledger.md#L2 · generate
+- 2026-09-14 lessons/lesson-hi-taken-by-a-session-started-in-the-same-second updated: clustered under insight-ledger-hi-tied-to-its-session-by-position · raw/2026-09-14/0747/ledger.md#L2 · generate
+- 2026-09-14 insights/insight-ledger-hook-reads-only-the-final-text updated: synthesis: lesson-ledger-lines-lost-in-a-reply-ending-in-a-skill-call-with-the-insight-live added, a reply ended in a Skill call with the Insight live · raw/2026-09-14/0747/ledger.md#L33 · generate
+- 2026-09-14 lessons/lesson-ledger-lines-lost-in-a-reply-ending-in-a-skill-call-with-the-insight-live updated: clustered under insight-ledger-hook-reads-only-the-final-text · raw/2026-09-14/0747/ledger.md#L33 · generate
+- 2026-09-14 insights/insight-session-vault-knowledge-not-loaded updated: synthesis: lesson-heredoc-trap-hit-a-third-time-in-work-mode added, the same trap a third time with the Insight live · raw/2026-09-14/0747/ledger.md#L51 · generate
+- 2026-09-14 lessons/lesson-heredoc-trap-hit-a-third-time-in-work-mode updated: clustered under insight-session-vault-knowledge-not-loaded · raw/2026-09-14/0747/ledger.md#L51 · generate
+- 2026-09-14 rules/rule-ask status: draft → built · cascade · generate
+- 2026-09-14 rules/rule-cleanup status: draft → built · cascade · generate
+- 2026-09-14 rules/rule-close status: draft → built · cascade · generate
+- 2026-09-14 rules/rule-event-log status: built → draft · cascade · generate
+- 2026-09-14 rules/rule-git-context status: built → draft · cascade · generate
+- 2026-09-14 rules/rule-ledger-tail status: draft → built · cascade · generate
+- 2026-09-14 rules/rule-ledger-write status: built → draft · cascade · generate
+- 2026-09-14 rules/rule-materialize status: draft → built · cascade · generate
+- 2026-09-14 rules/rule-page-generation status: draft → built · cascade · generate
+- 2026-09-14 rules/rule-pretask status: draft → built · cascade · generate
+- 2026-09-14 rules/rule-settings status: draft → built · cascade · generate
+- 2026-09-14 rules/rule-skill-hi status: draft → built · cascade · generate
+- 2026-09-14 decisions/decision-case-106 archived · superseded · generate
+- 2026-09-14 decisions/decision-case-107 archived · superseded · generate
+- 2026-09-14 decisions/decision-case-108 archived · superseded · generate
+- 2026-09-14 decisions/decision-case-106 archived · cleanup
+- 2026-09-14 decisions/decision-case-107 archived · cleanup
+- 2026-09-14 decisions/decision-case-108 archived · cleanup

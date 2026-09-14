@@ -1,7 +1,7 @@
 ---
 type: estimate
 kind: QA
-status: pending
+status: passed
 target: rule-ledger-tail
 origin: raw/2026-09-13/ledger.md#case-101.2
 sprint: migration
@@ -41,6 +41,11 @@ unreadable yaml is one stderr line and the other ledgers still print. Live,
 prints the readings and lessons written after it and nothing else; the next `/hi`
 carries them under `Tail:`.
 
+## Result
+
+block 101.2: at /hi of 07:47 Tail: printed nothing — both units of 2026-09-13 covered by their yamls; by hand at 09:5x uv run guppi tail prints the 34 record lines of raw/2026-09-14/0747/ledger.md, the one ledger without a yaml, as 2026-09-14/0747 L<n>: <line>, exit 0; the render carries the Tail: line between the rule-ledger-tail markers
+
 ## History
 
 - 2026-09-13 created · [[decision-case-101.2]]
+- 2026-09-14 status: pending → passed · raw/2026-09-14/0747/ledger.md#L45

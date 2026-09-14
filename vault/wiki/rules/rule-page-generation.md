@@ -2,7 +2,7 @@
 type: rule
 kind: Leaf
 purpose: Prevents a ratified decision from ending the session without a page, or a page from carrying a field nobody ratified
-status: draft
+status: built
 enforcement: check
 implementation_ref: [guppi/generate.py, tests/test_generate.py]
 parent: rule-documentation
@@ -43,7 +43,7 @@ fields. A field or section the entry lacks is not written: lint names it.
 
 History lines: `created`, `updated: <change>`, `status: a → b`, `deleted`, `deferred`, `child <slug> added`, `estimate <slug> added`, each `· [[decision-case-N]]` when the entry belongs to a Case and `· <origin>` (the ledger pointer) when it is a reading or a lesson;
 `log.md` gets the same line with `<category>/<slug>` in front, appended after each
-entry, so a run that stops leaves the feed level with the pages. A `create` with `ref` appends the slug to the parent's `children` (order kept) or, for an estimate, to the target's `estimates`, and rebuilds that section; a derived Estimate create (case 72.3) writes the page `pending` with Context, Criterion and Method and no Result, and is listed on its target the same way. An `update` applies `set` to the frontmatter, `sections` as whole replacements, `replace` inside the body (whitespace-collapsed match, exactly one occurrence), and appends History; an update carrying `criterion_block` appends the block to `## Criterion`, History `criterion: case N added`; a `remove_criterion` entry deletes the `### case N` block, History `criterion: case N removed` (case 72.4). An `estimate` entry sets `status`, overwrites `## Result` and appends History, whatever the page held before: a reading always lands, and reruns are held off by the `applied` marks alone. A `delete` sets `status: archived`
+entry, so a run that stops leaves the feed level with the pages. A `create` with `ref` appends the slug to the parent's `children` (order kept) or, for an estimate, to the target's `estimates`, and rebuilds that section; a lesson whose `insight` field is set gets `## Insight` holding the link, rebuilt from the field on every write, and the cascade fills it on every live lesson that carries the field without the section, History `insight section derived` (case 114); a derived Estimate create (case 72.3) writes the page `pending` with Context, Criterion and Method and no Result, and is listed on its target the same way. An `update` applies `set` to the frontmatter, `sections` as whole replacements, `replace` inside the body (whitespace-collapsed match, exactly one occurrence), and appends History; an update carrying `criterion_block` appends the block to `## Criterion`, History `criterion: case N added`; a `remove_criterion` entry deletes the `### case N` block, History `criterion: case N removed` (case 72.4). An `estimate` entry sets `status`, overwrites `## Result` and appends History, whatever the page held before: a reading always lands, and reruns are held off by the `applied` marks alone. A `delete` sets `status: archived`
 with History `deleted`; there is no `deleted` status. A `delete` whose slug is neither
 a category prefix nor a Rule-class file (`category: unknown` in the yaml) names
 something outside the vault: it is printed on stdout as `outside the vault, nothing to
@@ -58,7 +58,7 @@ page is still written.
 
 After all entries: an entity or rule whose Estimates are all `passed` becomes
 `built`, a `built` one with an Estimate not passed returns to `draft`, both with a
-History line; a decision page with `status: superseded` — the one a supersedes just set, or any met in the walk — becomes `archived` with the History `archived · superseded`, its `superseded_by` and `deferred_by` untouched (case 104.1); the `severity` of every insight is recounted; every `clustered` child of an `actioned` insight becomes `archived` with the History `archived · insight actioned`, the insight's `children` unchanged (case 104.2); an `open` insight whose recounted `severity` is 0 becomes `archived` with the History `archived · no live child`, its `children` kept; an `actioned` one at 0 stays, kept for the recurrence (case 104.3). A tag declared in
+History line; a decision page with `status: superseded` — the one a supersedes just set, or any met in the walk — becomes `archived` with the History `archived · superseded`, its `superseded_by` and `deferred_by` untouched (case 104.1); the `severity` of every insight is recounted, the status of a child read from its page under `wiki/lessons/` or, failing that, under `vault/archive/` the way `find` reaches a page, a child with no page anywhere counted live (case 110); every `clustered` child of an `actioned` insight becomes `archived` with the History `archived · insight actioned`, the insight's `children` unchanged (case 104.2); an `open` insight whose recounted `severity` is 0 becomes `archived` with the History `archived · no live child`, its `children` kept; an `actioned` one at 0 stays, kept for the recurrence (case 104.3). A tag declared in
 `new_tags` is appended to `tags.md` with its meaning and aliases; a tag used but not
 declared and not registered is reported on stderr and left on the page.
 
@@ -114,3 +114,6 @@ declared and not registered is reported on stderr and left on the page.
 - 2026-09-13 updated: an open Insight with no live child is archived by the cascade; supersedes case 97 (case 104.3) · [[decision-case-104.3]]
 - 2026-09-13 updated: an update reaches an archived page in the archive, so a restore and its fix are one entry (case 105.3) · [[decision-case-105.3]]
 - 2026-09-13 status: built → draft · cascade
+- 2026-09-14 updated: the cascade reads a child's status in the archive too, so an archived child is not counted live (case 110) · [[decision-case-110]]
+- 2026-09-14 updated: the · [[decision-case-114]]
+- 2026-09-14 status: draft → built · cascade

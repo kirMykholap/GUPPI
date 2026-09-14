@@ -1,7 +1,7 @@
 ---
 type: estimate
 kind: QA
-status: passed
+status: pending
 target: rule-git-context
 origin: raw/2026-09-09/ledger.md#case-11
 sprint: migration
@@ -20,6 +20,17 @@ is visible and harmless, not that the pull succeeds.
 Branch and short status are in context; a failing pull shows its message there and the
 skill still completes; no pull happens later in the session.
 
+### case 115
+
+When:
+The person invokes `/hi`.
+
+Then:
+After the `Pull:` line the context holds a `Render:` line with the output of `uv run guppi render --sync`: a diff per governed file that differed and was written, or nothing.
+**＋** A diff on that line is a Frontier item, as the one of the session start is.
+**＋** `estimate-git-context-current` gets a `### case 115` block, `pending`; read at the next `/hi` after the render: the `Render:` line is present and empty on a clean tree.
+**－** `{supersedes:case 106}`: `decision-case-106` is superseded, `rule-skill-hi` loses `deferred_by`.
+
 ## Method
 
 One reading at a session start, by hand, on the current remote.
@@ -34,3 +45,4 @@ no pull happened later in the session (2026-09-09, session B).
 
 - 2026-09-09 created · raw/2026-09-09/ledger.md#case-11
 - 2026-09-09 status: pending → passed · written by hand, no generator yet
+- 2026-09-14 criterion: case 115 added · [[decision-case-115]]

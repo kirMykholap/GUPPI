@@ -1,7 +1,7 @@
 ---
 type: estimate
 kind: QA
-status: pending
+status: passed
 target: rule-page-generation
 origin: raw/2026-09-10/ledger.md#case-32
 sprint: migration
@@ -98,13 +98,25 @@ Then:
 **＋** `estimate-generate-writes` gets a `### case 105.3` block, `pending`.
 **－** A slug in neither place: "no such page", as today.
 
+### case 114
+
+When:
+`generate` writes a lesson page, or its cascade runs after all entries.
+
+Then:
+A lesson whose `insight` field is set gets `## Insight` holding `- [[<insight>]]`, rebuilt from the field on every write, before `## History`; a lesson without the field has no such section.
+**＋** In the cascade every live lesson with `insight` set and no `## Insight` section, or one that names another slug, is rewritten with the section and History `insight section derived`; the 22 pages are filled at the next librarian run.
+**＋** `estimate-generate-writes` gets a `### case 114` block, `pending`; a test in `tests/test_generate.py`: an `update` with `set: {status: clustered, insight: insight-x}` yields the section; a live lesson with the field and no section gets it in the cascade.
+**＋** `guppi lint` after the run shows the 22 `## Insight` findings gone.
+**－** `{supersedes:case 108}`: `decision-case-108` is superseded, `rule-synthesis` loses `deferred_by`.
+
 ## Method
 
 pytest in tests/test_generate.py against a temp vault; the live reading once by hand
 
 ## Result
 
-unit: tests/test_generate.py green in the same 47, with the derived Estimate page and the decision page's Criterion links of case 72.4; live 2026-09-12, the librarian's run of session J on raw/2026-09-12/materialize.yaml: 76 pages for the date and 0 for the three earlier dates, exit 0, stderr empty, every entry of every yaml applied and none failed — 30 decision pages created and 6 set superseded, 17 rules updated, 2 estimates created and 11 updated, 5 lessons created and 5 set clustered, 1 insight created and 3 updated, 21 derived criterion blocks appended with their Estimate set pending, 8 remove_criterion entries applied, 11 file entries skipped as Rule-class; guppi lint afterwards 133 findings in the known-false classes only (128 schema, 3 orphan, 1 ref, 1 method) against 129 before the run; git show --stat 8836953 touches vault/ only
+blocks 101.1, 104.1, 104.2, 105.3 against the librarian's run of session L and the tests of test_generate.py; block 104.3 against the test of case 110 (an archived child in vault/archive/ counts 0, the Insight archived; one live and one archived count 1); block 114 against the test of case 114 (the ## Insight section derived on write and in the cascade); 38 tests green
 
 ## History
 
@@ -121,3 +133,6 @@ unit: tests/test_generate.py green in the same 47, with the derived Estimate pag
 - 2026-09-13 criterion: case 104.2 added · [[decision-case-104.2]]
 - 2026-09-13 criterion: case 104.3 added · [[decision-case-104.3]]
 - 2026-09-13 criterion: case 105.3 added · [[decision-case-105.3]]
+- 2026-09-14 status: pending → failed · raw/2026-09-14/0747/ledger.md#L1
+- 2026-09-14 criterion: case 114 added · [[decision-case-114]]
+- 2026-09-14 status: pending → passed · raw/2026-09-14/0747/ledger.md#L46

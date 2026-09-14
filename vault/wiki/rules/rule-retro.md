@@ -8,6 +8,7 @@ governs: .claude/skills/retro/SKILL.md
 render_mode: full
 parent: rule-end-of-work
 estimates: [estimate-retro-loads]
+deferred_by: [decision-case-118]
 origin: raw/2026-09-10/ledger.md#case-38.1
 sprint: migration
 created: 2026-09-10
@@ -95,3 +96,4 @@ got done; what did not. When the person approves, commit (`make style` clean,
 - 2026-09-12 updated: Retro reads and appends the session's Spec (case 73.6) · [[decision-case-73.6]]
 - 2026-09-12 status: built → draft · cascade
 - 2026-09-13 updated: Retro reads the session ledgers of the day (and the date-level one while it exists); the revert patch goes to the session folder (case 109.1) · [[decision-case-109.1]]
+- 2026-09-14 deferred · [[decision-case-118]]

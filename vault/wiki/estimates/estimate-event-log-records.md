@@ -1,7 +1,7 @@
 ---
 type: estimate
 kind: QA
-status: passed
+status: pending
 target: rule-event-log
 origin: raw/2026-09-09/ledger.md#case-9
 sprint: migration
@@ -22,6 +22,18 @@ After a session starts and one tool call completes, `raw/<date>/event_log.md` ca
 carries a `hi` line; `git check-ignore` reports the file ignored; and a hook invocation
 with piped stdin exits 0 and finishes under 2 s.
 
+### case 111.1
+
+When:
+The person submits a prompt and the `UserPromptSubmit` hook `uv run guppi event prompt` runs.
+
+Then:
+When the prompt, trimmed, is `/hi` or starts with `/hi `, and no `hi` of this session's stamp follows its first `session-start` in the logs walked, the log gains `- HH:MM:SS <stamp> hi`, the stamp from the payload's `session_id`.
+**＋** A second `/hi` of the same session writes nothing: one session, one `hi` line.
+**＋** Any other prompt writes nothing; exit 0 either way, an error on stderr only.
+**＋** The "Known limit" paragraph of the page says the limit is lifted by this Case; a `hi` of one session no longer belongs to another.
+**＋** `estimate-event-log-records` gets a `### case 111.1` block, `pending`; read at the next `/hi`: the log carries `<stamp> hi` for that session, and a repeated `/hi` adds no line.
+
 ## Method
 
 pytest in `tests/test_event.py` drives `guppi.event` with piped JSON payloads against a
@@ -41,3 +53,4 @@ hook gets on Windows came out as mojibake until `read_text` took the bytes
 
 - 2026-09-09 created · raw/2026-09-09/ledger.md#case-9
 - 2026-09-09 status: pending → passed · written by hand, no generator yet
+- 2026-09-14 criterion: case 111.1 added · [[decision-case-111.1]]

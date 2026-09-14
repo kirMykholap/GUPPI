@@ -2,8 +2,8 @@
 type: insight
 pattern: A fact the vault holds does not reach the session that needs it; only brief.md, CLAUDE.md, the skills and the agent frames are loaded, and everything else waits for a read the agent must first think to make.
 status: open
-children: [lesson-readings-after-librarian-invisible-to-next-hi, lesson-vault-lesson-absent-at-the-moment-it-applies, lesson-heredoc-trap-hit-twice-with-its-lesson-live]
-severity: 3
+children: [lesson-readings-after-librarian-invisible-to-next-hi, lesson-vault-lesson-absent-at-the-moment-it-applies, lesson-heredoc-trap-hit-twice-with-its-lesson-live, lesson-heredoc-trap-hit-a-third-time-in-work-mode]
+severity: 4
 origin: raw/2026-09-12/ledger.md#L210
 sprint: migration
 created: 2026-09-12
@@ -29,8 +29,10 @@ A suggestion, not a decision. Give the session a second channel beside the brief
 - [[lesson-readings-after-librarian-invisible-to-next-hi]]
 - [[lesson-vault-lesson-absent-at-the-moment-it-applies]]
 - [[lesson-heredoc-trap-hit-twice-with-its-lesson-live]]
+- [[lesson-heredoc-trap-hit-a-third-time-in-work-mode]]
 
 ## History
 
 - 2026-09-12 created · raw/2026-09-12/ledger.md#L210
 - 2026-09-13 updated: synthesis: lesson-heredoc-trap-hit-twice-with-its-lesson-live added, the same trap with its lesson live · raw/2026-09-13/0652/ledger.md#L3
+- 2026-09-14 updated: synthesis: lesson-heredoc-trap-hit-a-third-time-in-work-mode added, the same trap a third time with the Insight live · raw/2026-09-14/0747/ledger.md#L51

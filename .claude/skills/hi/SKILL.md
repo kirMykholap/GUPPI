@@ -3,8 +3,6 @@ name: hi
 description: Open a working session — sprint, brief, git state, open issues, then the Frontier.
 disable-model-invocation: true
 ---
-Recorded: !`uv run guppi event hi --session "${CLAUDE_SESSION_ID:-}"`
-
 <!-- rule-internal-context -->
 @vault/wiki/sprint.md
 @vault/wiki/brief.md
@@ -12,6 +10,7 @@ Recorded: !`uv run guppi event hi --session "${CLAUDE_SESSION_ID:-}"`
 
 <!-- rule-git-context -->
 Pull: !`git pull --ff-only 2>&1 || true`
+Render: !`uv run guppi render --sync`
 Branch: !`git branch --show-current`
 Status: !`git status --short`
 <!-- /rule-git-context -->
@@ -27,7 +26,7 @@ Tail: !`uv run guppi tail`
 
 Assemble the Frontier from the above and present it as a list: tasks, problems, debt
 carried over, where the sprint stands; on a plan branch the unfinished plan comes first;
-what `guppi render --sync` printed at session start is an item when it shows a hand edit.
+what `guppi render --sync` printed at session start or on the `Render:` line above is an item when it shows a hand edit.
 A failed pull or an unavailable `gh` is an item on that list, not a reason to stop. A `failed` reading or a lesson in the Tail above is an item; a decision line of the tail is not — its page comes with the next librarian. Write the same list to `vault/raw/<date>/<hi HHMM>/frontier.md` — the session's folder, `HHMM` the time of the `hi` line above (case 73) — one line per item:
 `- [ ] F<n> — <title> · <source>`. Close a line when its item ends: `[x] … · case N`
 when ratified, `[x] … · work` when it needs no decision, `[-] … · defer case N` when

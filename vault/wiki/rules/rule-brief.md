@@ -8,6 +8,7 @@ governs: .claude/agents/librarian-guppi.md
 render_mode: partial
 parent: rule-documentation
 estimates: [estimate-brief-written]
+deferred_by: [decision-case-119]
 origin: raw/2026-09-10/ledger.md#case-35.3
 sprint: migration
 created: 2026-09-10
@@ -58,3 +59,4 @@ and flags only. Add no decision and no judgment of the work. Change
 - 2026-09-10 status: draft → built · cascade
 - 2026-09-11 updated: a fact no input carries is read from the page and named · [[decision-case-54]]
 - 2026-09-12 updated: the Deferred list comes from the defer entries of the yamls and the previous brief, not from the handoff (case 59.5) · [[decision-case-59.5]]
+- 2026-09-14 deferred · [[decision-case-119]]

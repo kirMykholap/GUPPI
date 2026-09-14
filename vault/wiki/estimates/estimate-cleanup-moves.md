@@ -1,7 +1,7 @@
 ---
 type: estimate
 kind: QA
-status: pending
+status: passed
 target: rule-cleanup
 origin: raw/2026-09-10/ledger.md#case-33
 sprint: migration
@@ -16,7 +16,7 @@ A page left live after archival keeps its index line and its findings. A page mo
 ## Criterion
 
 Against a temp vault: every live page with status archived moves to
-vault/archived/<sprint>/<date>/<category>/ under the same file name with a History
+vault/archive/<sprint>/<date>/<HHMM>/<category>/ under the same file name with a History
 line and a log.md line; its slug leaves the children lists of live pages and the estimates lists of entities and rules, and their sections, with a History line there; an Insight's children keep
 it; body wikilinks stay; pages with any other status stay; a page in the archive
 whose status is not archived moves back with History restored; the four category indexes are rewritten without the moved page, and an archived Estimate leaves no line anywhere; a live page whose parent or target
@@ -42,7 +42,7 @@ pytest in tests/test_cleanup.py against a temp vault; the live reading once by h
 
 ## Result
 
-tests/test_cleanup.py 5 green with the estimates lists of entities and rules only; live 2026-09-11: uv run guppi cleanup with nothing archived printed 0 page(s) moved, exit 0, rewrote the four indexes unchanged, git status clean afterwards
+block 102.2: the librarian of session L moved 32 pages to vault/archive/migration/2026-09-13/0652/decisions/, the session folder of the run; the migration archived/ → archive/ was one commit of session L; live on 2026-09-14: uv run guppi cleanup with nothing to move prints "0 page(s) moved", exit 0, git diff empty under vault/; unit tests green (make test-documentation, 84 passed)
 
 ## History
 
@@ -51,3 +51,5 @@ tests/test_cleanup.py 5 green with the estimates lists of entities and rules onl
 - 2026-09-11 updated: four indexes; estimates lists of entities and rules only; pending until the live run · [[decision-case-57]]
 - 2026-09-11 status: pending → passed · raw/2026-09-11/ledger.md#L70
 - 2026-09-13 criterion: case 102.2 added · [[decision-case-102.2]]
+- 2026-09-14 updated: the prose Criterion names the path of case 102 (case 112.5) · [[decision-case-112.5]]
+- 2026-09-14 status: pending → passed · raw/2026-09-14/0747/ledger.md#L41

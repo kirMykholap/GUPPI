@@ -29,7 +29,7 @@ child of `rule-settings`, and the session opens in Plan Mode.
 
 ## Method
 
-the rendered .claude/settings.json holds permissions.defaultMode as "plan" and parses; the live half at the next session start — the session opens in Plan Mode and an edit outside the plan file is not made without a sign-off
+tests/test_render.py: the rendered .claude/settings.json holds permissions.defaultMode as "plan" and parses; the live half at the next session start — the session opens in Plan Mode and an edit outside the plan file is not made without a sign-off
 
 ## Result
 
@@ -39,3 +39,4 @@ the rendered .claude/settings.json holds permissions.defaultMode "plan" and json
 
 - 2026-09-12 created · [[decision-case-85.4]]
 - 2026-09-13 status: pending → passed · raw/2026-09-13/ledger.md#L45
+- 2026-09-14 updated: Method names tests/test_render.py (case 112.2) · [[decision-case-112.2]]

@@ -1,7 +1,7 @@
 ---
 type: estimate
 kind: QA
-status: pending
+status: passed
 target: rule-close
 origin: raw/2026-09-10/ledger.md#case-36.1
 sprint: migration
@@ -39,7 +39,7 @@ one reading by hand after the first librarian run, recorded in the estimate line
 
 ## Result
 
-live 2026-09-10: git log shows one commit 8bbfa10 `docs(vault): librarian, 2026-09-10` after the Retro commit 893b3d9, 19 files all under vault/, no --amend; the report reached the main agent with the counts per category, thirteen flags and the lint total (169 findings, render --check exit 1); the report is 16 lines
+the librarian of session L: commit 18907ec "docs(vault): librarian, 2026-09-13" after the Retro commits 57d68e2 and 5c4ea2a, touching vault/, .claude/agents, .claude/skills and CLAUDE.md only; its report in the transcript of 19b07bbc is 15 non-empty lines with the counts, the flags and the lint total (block 89.2)
 
 ## History
 
@@ -47,3 +47,4 @@ live 2026-09-10: git log shows one commit 8bbfa10 `docs(vault): librarian, 2026-
 - 2026-09-10 status: pending → passed · raw/2026-09-10/ledger.md#L93
 - 2026-09-12 criterion: case 89.2 added · [[decision-case-89.2]]
 - 2026-09-12 updated: the vault-only clause of the criterion names the rendered files too (case 89.2) · [[decision-case-89.2]]
+- 2026-09-14 status: pending → passed · raw/2026-09-14/0747/ledger.md#L40

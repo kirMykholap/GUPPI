@@ -2,11 +2,12 @@
 type: rule
 kind: Leaf
 purpose: Prevents a ratified line from existing only in a chat reply, or landing in a session no /hi opened
-status: built
+status: draft
 enforcement: hook
 implementation_ref: [guppi/ledger.py, .claude/settings.json]
 parent: rule-session-start
 estimates: [estimate-ledger-write-lifts]
+deferred_by: [decision-case-117]
 origin: raw/2026-09-09/ledger.md#case-10
 sprint: migration
 created: 2026-09-09
@@ -38,12 +39,7 @@ not created at session start; it comes into existence with the first line.
 
 **Checks the event log first.** The log it reads is `raw/<date>/event_log.md` of every
 date from today back to the first that holds a `session-start` of this session, joined in
-date order; a session that crosses midnight keeps its window. The session is a working one
-when a `hi` line follows a `session-start` line of this session's id, with no other
-session's start in between. Only a
-`session-start` of another session closes the `hi` window; `compact` and `resume` of the
-same session do not — `SessionStart` fires on both, and neither changes the person, the
-branch or the agenda (case 14). When the check fails and there are lines to write, the hook exits 2 with the reason on
+date order; a session that crosses midnight keeps its window. The session is a working one when a `hi` line of this session's id follows its first `session-start` line in the logs walked (case 111.3); the session's folder is the first such `hi`. A `session-start` of another session, before or after, changes nothing; a `hi` with another id does not count. With no stamped `hi` in the logs walked, a `--------` `hi` counts by the rule before 111.3 — after a `session-start` of this session with no other session's start in between — for the sessions the old skill line opened (case 111.6). `compact` and `resume` of the same session do not close the window — `SessionStart` fires on both, and neither changes the person, the branch or the agenda (case 14). When the check fails and there are lines to write, the hook exits 2 with the reason on
 stderr — `ledger: N line(s) not written — no /hi recorded for session X. Tell the person;
 run /hi, then repeat the lines.` — so the person is told rather than left believing their
 decisions were recorded. With `stop_hook_active` set (the re-fire after a block) it exits 0
@@ -88,3 +84,7 @@ the implementation arrives in the session after the probe (Slice 1, session B).
 - 2026-09-13 updated: the lines go to the session folder raw/<hi date>/<hi HHMM>/ledger.md; the dedupe reads every ledger under raw/ (case 103.1) · [[decision-case-103.1]]
 - 2026-09-13 status: built → draft · cascade
 - 2026-09-13 status: draft → built · cascade
+- 2026-09-14 updated: the window is the session's own stamped hi after its first start; a foreign start no longer closes it (case 111.3) · [[decision-case-111.3]]
+- 2026-09-14 deferred · [[decision-case-117]]
+- 2026-09-14 updated: an unstamped hi keeps its window by the old rule while no stamped hi exists (case 111.6) · [[decision-case-111.6]]
+- 2026-09-14 status: built → draft · cascade

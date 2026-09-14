@@ -1,7 +1,7 @@
 ---
 type: estimate
 kind: QA
-status: pending
+status: passed
 target: rule-skill-hi
 origin: raw/2026-09-09/ledger.md#case-11
 sprint: migration
@@ -37,12 +37,11 @@ One reading at a session start, by hand, recorded in the estimate line.
 
 ## Result
 
-Passing. Session B start, 2026-09-09 16:11: `sprint.md`, `brief.md`, the branch, the
-short status and `gh`'s message were in the first turn's context with no read-tool call;
-`raw/2026-09-09/event_log.md` carries `16:11:19 -------- hi`.
+/hi of 07:47: sprint.md, brief.md, branch, status, gh's message and the Tail: line (block 101.3, the marker after rule-github-issues, rule-ledger-tail the fourth child) all in context with no read-tool call; event_log.md carries a hi line
 
 ## History
 
 - 2026-09-09 created · raw/2026-09-09/ledger.md#case-11
 - 2026-09-09 status: pending → passed · written by hand, no generator yet
 - 2026-09-13 criterion: case 101.3 added · [[decision-case-101.3]]
+- 2026-09-14 status: pending → passed · raw/2026-09-14/0747/ledger.md#L36

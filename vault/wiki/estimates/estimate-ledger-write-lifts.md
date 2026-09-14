@@ -1,7 +1,7 @@
 ---
 type: estimate
 kind: QA
-status: passed
+status: pending
 target: rule-ledger-write
 origin: raw/2026-09-09/ledger.md#case-10
 sprint: migration
@@ -39,6 +39,28 @@ The lines go to `raw/<hi date>/<hi HHMM>/ledger.md` — the session folder from 
 **＋** The dedupe reads every `ledger.md` under `raw/` at any depth.
 **－** Without a `hi` the hook refuses as today; `event_log.md` stays per day as today.
 
+### case 111.3
+
+When:
+The `Stop` hook has lines to write, or a script asks `session_dir` for the session's folder.
+
+Then:
+The session is a working one when a `hi` line of this session's stamp follows its first `session-start` in the logs walked; the folder is the first such `hi`.
+**＋** A `session-start` of another session, before or after, changes nothing; a `resume` or `compact` of our own still does not close the window (case 14).
+**－** A `hi` with `--------` or another stamp does not count.
+**＋** `estimate-ledger-write-lifts` gets a `### case 111.3` block, `pending`; the test seeds our start, a foreign `resume` and a stamped `hi` and expects the window open, and a `--------` `hi` alone and expects it refused.
+
+### case 111.6
+
+When:
+The `Stop` hook, `pretask`, `spec`, `gate` or `cleanup` asks whether the session has a `hi`, or where its folder is.
+
+Then:
+A `hi` of this session's stamp after its first `session-start` opens the window, as 111.3 says.
+**＋** With no such line in the logs walked, a `--------` `hi` after a `session-start` of this session with no other session's start in between opens it — the rule before 111.3, kept for the sessions the old skill line opened.
+**－** A `hi` of another session's stamp never counts.
+**＋** `estimate-ledger-write-lifts` gets a `### case 111.6` block, `pending`; the test seeds an unstamped `hi` under our start and expects the window open, and the same with a foreign start between and expects it refused.
+
 ## Method
 
 pytest in `tests/test_ledger.py` with piped payloads against a temp vault; the live
@@ -58,3 +80,5 @@ unit: tests/test_ledger.py 32 green with the two cases of 103.1 — the lines la
 - 2026-09-11 status: pending → passed · raw/2026-09-11/ledger.md#L72
 - 2026-09-13 criterion: case 103.1 added · [[decision-case-103.1]]
 - 2026-09-13 status: pending → passed · raw/2026-09-13/0652/ledger.md#L4
+- 2026-09-14 criterion: case 111.3 added · [[decision-case-111.3]]
+- 2026-09-14 criterion: case 111.6 added · [[decision-case-111.6]]

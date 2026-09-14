@@ -1,7 +1,7 @@
 ---
 type: estimate
 kind: QA
-status: pending
+status: passed
 target: rule-pretask
 origin: raw/2026-09-09/ledger.md#case-24.2
 sprint: migration
@@ -90,7 +90,7 @@ allows.
 
 ## Result
 
-unit: tests/test_pretask.py 48 green with the fifth form finding of 90.2 — a page with two Estimates and no estimate_slug, a page with none, a page with one, an item that names the slug; live 2026-09-12 session K on the captured Spec with the new code: a copy stripped of its estimate_slug lines printed exactly five findings, cases 85.1, 87, 88.1, 89.4 and 90.1, each naming the page and both of its Estimates, and the Spec itself exits 0
+live run 08:48:57: the pretask line in the event log, guppi pretask --check first (8 findings — 3 lines pending the Stop hook, 1 frontier, 4 missing tasks blocks — fixed in the plan), ask-guppi dispatched once with the 17 decisions, its findings raised as Cases 115.1, 115.2 and a third replace in 111.4 or named known; the 34 window lines all parse (blocks 73.4, 74, 75.2, 90.2, 103.4); unit tests green
 
 ## History
 
@@ -108,3 +108,4 @@ unit: tests/test_pretask.py 48 green with the fifth form finding of 90.2 — a p
 - 2026-09-12 criterion: case 90.2 added · [[decision-case-90.2]]
 - 2026-09-12 status: pending → passed · raw/2026-09-12/ledger.md#L208
 - 2026-09-13 criterion: case 103.4 added · [[decision-case-103.4]]
+- 2026-09-14 status: pending → passed · raw/2026-09-14/0747/ledger.md#L38

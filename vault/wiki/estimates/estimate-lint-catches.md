@@ -34,6 +34,16 @@ Then:
 **＋** The archived slugs are every `*.md` under `vault/archive/` except those under a `raw/` folder.
 **＋** `estimate-lint-catches` gets a `### case 103.5` block; the block of 100.3 is removed.
 
+### case 112.1
+
+When:
+`guppi lint` checks the Method of an Estimate whose target is a MOC.
+
+Then:
+A Method that names a `make <target>` present in the Makefile passes, whatever else it says.
+**＋** Only a Method with no target is judged on "by hand": it passes when every child's Estimate says by hand, and is a finding naming the first child that names a test file.
+**＋** `estimate-lint-catches` gets a `### case 112.1` block, `pending`; a test in `tests/test_lint.py` seeds a MOC's Estimate with `make lint` and "by hand" and expects no finding.
+
 ## Method
 
 pytest in `tests/test_lint.py`, one test per defect class; the live reading once by hand,
@@ -41,7 +51,7 @@ written into the estimate line.
 
 ## Result
 
-unit: tests/test_lint.py 44 green with the four cases of 103.5 — a session origin resolved in raw/<date>/<HHMM>/, an origin of either form resolved in the archive at <date>/raw/ or <date>/<HHMM>/raw/, neither place a no-such-ledger finding, both places a two-ledgers finding, a spec.md under an archived raw/ folder no known slug; live 2026-09-13 after the archive of the four dates: uv run guppi lint resolved every origin of the 287 pages — all of the date form, in the archive now — with zero origin findings, 133 findings in all, the same 133 as before the session (125 schema, 4 method, 3 orphan, 1 ref)
+block 103.5 as before; block 112.1 against test_lint.py (a MOC's Estimate naming make test-root beside "by hand" is no finding) and against the vault: guppi lint 116 → 114 findings, the method findings on estimate-documentation-completes and estimate-harness-pipeline gone
 
 ## History
 
@@ -58,3 +68,5 @@ unit: tests/test_lint.py 44 green with the four cases of 103.5 — a session ori
 - 2026-09-13 criterion: case 103.5 added · [[decision-case-103.5]]
 - 2026-09-13 criterion: case 100.3 removed · [[decision-case-103.5]]
 - 2026-09-13 status: pending → passed · raw/2026-09-13/0652/ledger.md#L2
+- 2026-09-14 criterion: case 112.1 added · [[decision-case-112.1]]
+- 2026-09-14 status: pending → passed · raw/2026-09-14/0747/ledger.md#L47

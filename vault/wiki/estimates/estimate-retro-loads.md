@@ -1,7 +1,7 @@
 ---
 type: estimate
 kind: QA
-status: pending
+status: failed
 target: rule-retro
 origin: raw/2026-09-10/ledger.md#case-38.1
 sprint: migration
@@ -52,7 +52,7 @@ one reading by hand at the first /retro, recorded in the estimate line
 
 ## Result
 
-live 2026-09-12 session I, the first /retro of the new form: the skill loaded make test (211 green), make style (clean) and the ledger of the day (101 lines) by its substitutions, the agent made no read call; the opening was one message — the ratifications grouped by Case, done and not done against the tasks of the Spec, nine observations; the person added their answers; every item ended as a lesson, a reading, a short defer under ## Deferred or a handoff note; no create, update or delete was ratified
+block 109.1: /retro of 2026-09-14 09:23 recorded its event, then its ledger substitution `cat vault/raw/$(date +%F)/ledger.md vault/raw/$(date +%F)/*/ledger.md 2>/dev/null` exited 1 — no date-level ledger exists on the first day with the session form of case 103 alone — and the harness reported the substitution failed and did not load the skill text; the agent ran Retro from the SKILL.md file. Defer case 118.
 
 ## History
 
@@ -63,3 +63,4 @@ live 2026-09-12 session I, the first /retro of the new form: the skill loaded ma
 - 2026-09-12 status: pending → passed · raw/2026-09-12/ledger.md#L106
 - 2026-09-12 criterion: case 73.6 added · [[decision-case-73.6]]
 - 2026-09-13 criterion: case 109.1 added · [[decision-case-109.1]]
+- 2026-09-14 status: pending → failed · raw/2026-09-14/0747/ledger.md#L50

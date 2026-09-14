@@ -32,7 +32,11 @@ group · 5 closing: `/grill-me` kept without a page; `git pull` in `/hi` without
 (owner's decision 11.1); `gh` not logged in, no GitHub remote (11.2); the fate of `vault/parked/`,
 `docs/superpowers/`, `docs/HANDOFF.md`, `docs/migration/rule-*.md`
 and the 2026-08 documents under `docs/` — moved here from the brief's Deferred list by case 59.5;
-the old `vault/archive/` of August left by case 102.1.
+the old `vault/archive/` of August left by case 102.1; the date folders of `raw/` that hold
+only an `event_log.md` (gitignored, never archived) pile up — removed at the close of the
+sprint, no one-off cleanup before (session M); the 31 decision pages of Cases 1–28 without
+`## Context` and `## Problem` (62 lint findings) are decided with the fate of every `current`
+Decision at the close of the sprint (given of case 104; session M).
 Slices 0–2 closed by 2026-09-10; Slice 3 built 2026-09-10, closed 2026-09-12:
 `estimate-documentation-completes` passed on the librarian's run of session H read against the
 criterion of case 58, the other readings of Slice 3 passed on 2026-09-11.

@@ -2,7 +2,7 @@
 type: rule
 kind: Leaf
 purpose: Shows at /hi every ledger line that no vault page holds yet, so a reading or a lesson written after the librarian's commit reaches the next session's Frontier
-status: draft
+status: built
 enforcement: render
 implementation_ref: [guppi/tail.py, tests/test_tail.py]
 governs: .claude/skills/hi/SKILL.md
@@ -76,3 +76,4 @@ an item, and a decision line not.
 - 2026-09-13 defer by decision-case-95 superseded · [[decision-case-100.1]]
 - 2026-09-13 created over placeholder · [[decision-case-101.2]]
 - 2026-09-13 estimate estimate-ledger-tail added · [[decision-case-101.2]]
+- 2026-09-14 status: draft → built · cascade

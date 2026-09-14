@@ -2,7 +2,7 @@
 type: rule
 kind: Leaf
 purpose: Prevents the ledger from being written into a session nothing recorded
-status: built
+status: draft
 enforcement: hook
 implementation_ref: [guppi/event.py, guppi/cli.py, .claude/settings.json]
 parent: rule-session-start
@@ -38,15 +38,11 @@ payload comes from stdin when a hook is the caller: `session_id`, `tool_name` an
 telling field of `tool_input` (`command` cut to 80 characters on one line, `subagent_type`,
 `skill`, `file_path`). Registered on `SessionStart` (`session-start`) and on `PostToolUse`
 with no matcher (`tool`) — every tool, because this is a debugging record and a filter is
-one more decision to maintain. `/hi` writes its own `hi` line through a `!` substitution,
-with the session id when `CLAUDE_SESSION_ID` reaches a substitution and `--------` when it
-does not.
+one more decision to maintain. The `hi` line is written by `guppi event prompt` on `UserPromptSubmit`: when the prompt, trimmed, is `/hi` or starts with `/hi `, and no `hi` of this session's stamp follows its first `session-start` in the logs the ledger hook walks, the log gains `- HH:MM:SS <stamp> hi`, the stamp from the payload's `session_id`; a second `/hi` of the same session and any other prompt write nothing (case 111.1). Until case 111.4 the skill's `!` substitution writes a second, unstamped `hi` line, which the ledger hook ignores.
 
 The hook never fails the session: any error goes to stderr and the exit code is 0.
 
-**Known limit.** With `--------` on the `hi` line, two sessions open at once in one
-repository cannot be told apart by the ledger hook, which looks for a `hi` after the last
-`session-start` of its own session. Sequential sessions are fine.
+**A limit lifted.** Until case 111 the `hi` line carried `--------` and the ledger hook looked for a `hi` after the last `session-start` of its own session, so two sessions open at once could not be told apart; on 2026-09-14 a session restored by `resume` in the same second took the `hi` of the session that typed it. With the stamp on the `hi` line a `hi` of one session never belongs to another (case 111.1).
 
 ## Estimates
 
@@ -66,3 +62,5 @@ repository cannot be told apart by the ledger hook, which looks for a `hi` after
 
 - 2026-09-09 created · raw/2026-09-09/ledger.md#case-9
 - 2026-09-10 status: draft → built · cascade
+- 2026-09-14 updated: the hi line is written by guppi event prompt on UserPromptSubmit with the session's stamp, once per session; the known limit is lifted (case 111.1) · [[decision-case-111.1]]
+- 2026-09-14 status: built → draft · cascade

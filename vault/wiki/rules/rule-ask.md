@@ -2,7 +2,7 @@
 type: rule
 kind: Leaf
 purpose: Prevents a create from being proposed without the vault having been asked whether it already holds the thing, or forbids it
-status: draft
+status: built
 enforcement: render
 governs: .claude/agents/ask-guppi.md
 render_mode: full
@@ -78,3 +78,4 @@ Answer with exactly these five lines, each present, "none" when empty:
 - 2026-09-13 defer by decision-case-94 superseded · [[decision-case-105.1]]
 - 2026-09-13 updated: the named slug is checked against vault/archive/ by Glob and answered as free, live or archived at a path; the archive is never searched by meaning; supersedes case 94 (case 105.1) · [[decision-case-105.1]]
 - 2026-09-13 status: built → draft · cascade
+- 2026-09-14 status: draft → built · cascade

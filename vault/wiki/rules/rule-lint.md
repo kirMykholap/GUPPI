@@ -28,8 +28,7 @@ three only report, so the Makefile's rule — no target writes to the tree — h
 `uv run guppi lint` reads every live page against its category's `schema.yaml`:
 required fields and sections, legal statuses, `origin` as a grep target — `raw/<date>/ledger.md#…` at `vault/raw/<date>/ledger.md` or `vault/archive/*/<date>/raw/ledger.md`, `raw/<date>/<HHMM>/ledger.md#…` at `vault/raw/<date>/<HHMM>/ledger.md` or `vault/archive/*/<date>/<HHMM>/raw/ledger.md`; in neither place or in both a finding (case 103.5) —
 every ref (`parent`, `target`, `children`, `estimates`, `insight`) as an existing page,
-orphans, a `built` page with an Estimate not `passed`, the two Method classes of
-case 26.2. A decision page: at least one of `create`, `update`, `delete`, `defer`, each a list of slugs, and neither `kind` nor `target_slug`; every slug with a category prefix a live or archived page; every slug in `deferred_by` an existing decision page; a `[[decision-…]]` wikilink in a History line resolves to a page; `## When` is not required (case 72.6), and every link under `## Criterion` resolves to an Estimate page. An Estimate's `## Criterion` may hold `### case N` blocks; each `case N` names an existing decision page. A lesson needs no `estimates`; an estimate whose `target` is not an entity or a rule is a finding. It reports and exits 1 on any
+orphans, a `built` page with an Estimate not `passed`, the two Method classes of case 26.2 — for a MOC's Estimate the `make <target>` is looked for first and a Method that names one passes whatever else it says; "by hand" is judged only when no target is named (case 112.1). A decision page: at least one of `create`, `update`, `delete`, `defer`, each a list of slugs, and neither `kind` nor `target_slug`; every slug with a category prefix a live or archived page; every slug in `deferred_by` an existing decision page; a `[[decision-…]]` wikilink in a History line resolves to a page; `## When` is not required (case 72.6), and every link under `## Criterion` resolves to an Estimate page. An Estimate's `## Criterion` may hold `### case N` blocks; each `case N` names an existing decision page. A lesson needs no `estimates`; an estimate whose `target` is not an entity or a rule is a finding. It reports and exits 1 on any
 finding, 0 with no output on a clean vault.
 
 ## Estimates
@@ -64,3 +63,4 @@ finding, 0 with no output on a clean vault.
 - 2026-09-13 updated: both forms of origin resolve in raw/ or vault/archive/; archived slugs come from vault/archive/ outside raw/ folders; supersedes case 100.3 (case 103.5) · [[decision-case-103.5]]
 - 2026-09-13 status: built → draft · cascade
 - 2026-09-13 status: draft → built · cascade
+- 2026-09-14 updated: the Method check of a MOC's Estimate looks for the make target before the words by hand (case 112.1) · [[decision-case-112.1]]

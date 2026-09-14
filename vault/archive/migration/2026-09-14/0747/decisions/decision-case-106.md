@@ -1,9 +1,10 @@
 ---
 type: decision
 case: "106"
-status: current
+status: archived
 defer: [rule-skill-hi]
 supersedes: [decision-case-98]
+superseded_by: [decision-case-115]
 origin: raw/2026-09-13/ledger.md#case-106
 sprint: migration
 created: 2026-09-13
@@ -21,3 +22,6 @@ The render has to run once more after the pull, inside `/hi`. It waits for the p
 ## History
 
 - 2026-09-13 created · raw/2026-09-13/ledger.md#case-106
+- 2026-09-14 superseded by decision-case-115 · [[decision-case-115]]
+- 2026-09-14 archived · superseded
+- 2026-09-14 archived · cleanup

@@ -2,14 +2,13 @@
 type: rule
 kind: MOC
 purpose: Prevents a session from being loaded piecemeal by read-tool calls
-status: draft
+status: built
 enforcement: render
 governs: .claude/skills/hi/SKILL.md
 render_mode: full
 parent: rule-session-start
 children: [rule-internal-context, rule-git-context, rule-github-issues, rule-ledger-tail]
 estimates: [estimate-hi-no-read-calls, estimate-hi-writes-frontier]
-deferred_by: [decision-case-106]
 origin: raw/2026-09-09/ledger.md#case-11
 sprint: migration
 created: 2026-09-09
@@ -20,9 +19,7 @@ tags: [session, harness]
 
 Prevents a session from being loaded piecemeal by read-tool calls. Bash substitutions in a
 skill body resolve before the agent's first turn, so the context is simply present — there
-is no step the agent can forget or reorder. The skill also leaves the `hi` mark in the
-event log itself: a command typed by the person does not pass through the `Skill` tool, so
-no hook would see it.
+is no step the agent can forget or reorder. The `hi` mark in the event log is left by the `UserPromptSubmit` hook `guppi event prompt` (`rule-event-log`, case 111.1), which sees the session id; the skill's own `!` substitution could not (case 111.4). A command typed by the person does not pass through the `Skill` tool, so no `PreToolUse` hook sees it.
 
 ## Render
 
@@ -32,8 +29,6 @@ name: hi
 description: Open a working session — sprint, brief, git state, open issues, then the Frontier.
 disable-model-invocation: true
 ---
-Recorded: !`uv run guppi event hi --session "${CLAUDE_SESSION_ID:-}"`
-
 <!-- rule-internal-context -->
 <!-- rule-git-context -->
 <!-- rule-github-issues -->
@@ -42,7 +37,7 @@ Recorded: !`uv run guppi event hi --session "${CLAUDE_SESSION_ID:-}"`
 
 Assemble the Frontier from the above and present it as a list: tasks, problems, debt
 carried over, where the sprint stands; on a plan branch the unfinished plan comes first;
-what `guppi render --sync` printed at session start is an item when it shows a hand edit.
+what `guppi render --sync` printed at session start or on the `Render:` line above is an item when it shows a hand edit.
 A failed pull or an unavailable `gh` is an item on that list, not a reason to stop. A `failed` reading or a lesson in the Tail above is an item; a decision line of the tail is not — its page comes with the next librarian. Write the same list to `vault/raw/<date>/<hi HHMM>/frontier.md` — the session's folder, `HHMM` the time of the `hi` line above (case 73) — one line per item:
 `- [ ] F<n> — <title> · <source>`. Close a line when its item ends: `[x] … · case N`
 when ratified, `[x] … · work` when it needs no decision, `[-] … · defer case N` when
@@ -59,10 +54,7 @@ exists (Slice 2) — the next render overwrites it. Until then the file and this
 copies of one text, kept identical by hand.
 
 `disable-model-invocation: true` in the frontmatter: only the person opens a working
-session. `${CLAUDE_SESSION_ID:-}` passes the session id to the event log when the variable
-exists inside a substitution and an empty string otherwise; the probe of Slice 1 measures
-which. For that one session the skill file carries an extra `Probe:` line that is not part
-of this render.
+session. The skill writes no event line of its own since case 111.4: a `!` substitution never saw `CLAUDE_SESSION_ID` (every `hi` of sessions A–M carried `--------`), so the `hi` line is the `UserPromptSubmit` hook's, which reads the session id from its payload (`rule-event-log`, case 111.1).
 
 ## Estimates
 
@@ -96,3 +88,7 @@ of this render.
 - 2026-09-13 defer by decision-case-98 superseded · [[decision-case-106]]
 - 2026-09-13 deferred · [[decision-case-106]]
 - 2026-09-13 status: built → draft · cascade
+- 2026-09-14 updated: the Recorded substitution removed and the CLAUDE_SESSION_ID paragraph replaced; the hi line is the UserPromptSubmit hook's (case 111.4) · [[decision-case-111.4]]
+- 2026-09-14 updated: the Frontier sentence covers the Render line of /hi (case 115.2) · [[decision-case-115.2]]
+- 2026-09-14 defer by decision-case-106 superseded · [[decision-case-115]]
+- 2026-09-14 status: draft → built · cascade

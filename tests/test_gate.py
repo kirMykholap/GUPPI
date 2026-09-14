@@ -152,6 +152,49 @@ def test_plan_path_takes_the_last_line_under_claude_plans(tmp_path):
     assert gate.plan_path(logs, "aaaaaaaa") is None
 
 
+# --- the mark (rule-event-log, case 136.1) ------------------------------------------------
+
+
+def event_log(project_dir):
+    return (project_dir / "vault" / "raw" / "2026-09-14" / "event_log.md").read_text(
+        encoding="utf-8"
+    )
+
+
+def test_a_pretask_call_that_passes_leaves_the_stamped_mark(tmp_path):
+    with_event_log(tmp_path, START + HI)
+    assert run(skill("pre-task"), tmp_path, status="") == (0, "")
+    assert event_log(tmp_path).endswith("- 11:00:00 19037d1c pretask\n")
+
+
+def test_retro_and_handoff_leave_their_marks(tmp_path):
+    with_event_log(tmp_path, START + HI)
+    run(skill("retro"), tmp_path, status="")
+    run(skill("handoff"), tmp_path, status="")
+    assert event_log(tmp_path).endswith("19037d1c retro\n- 11:00:00 19037d1c handoff\n")
+
+
+def test_a_refused_call_leaves_no_mark(tmp_path):
+    with_event_log(tmp_path, START + HI)
+    code, _ = run(skill("handoff"), tmp_path, status=" M a.py")
+    assert code == 2 and "handoff" not in event_log(tmp_path)
+    plan = with_plan(tmp_path)
+    with_event_log(tmp_path, START + HI + f"- 10:35:00 19037d1c tool Edit: {plan}\n")
+    code, _ = run(skill("pre-task"), tmp_path, status="")
+    assert code == 2 and "pretask" not in event_log(tmp_path)
+
+
+def test_another_skill_leaves_no_mark(tmp_path):
+    with_event_log(tmp_path, START + HI)
+    assert run(skill("hi"), tmp_path, status="") == (0, "")
+    assert event_log(tmp_path) == START + HI
+
+
+def test_the_mark_without_a_log_creates_the_day_folder(tmp_path):
+    assert run(skill("pre-task"), tmp_path, status="") == (0, "")
+    assert event_log(tmp_path) == "- 11:00:00 19037d1c pretask\n"
+
+
 def test_cli_dispatches_to_gate(tmp_path, monkeypatch, capsys):
     from guppi import cli
 

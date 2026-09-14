@@ -175,18 +175,18 @@ def test_a_foreign_hi_does_not_count(tmp_path):
     assert code == 2 and "no /hi recorded for session 44c1aae1" in err
 
 
-def test_an_unstamped_hi_counts_by_the_old_rule_when_no_stamped_one_exists(tmp_path):
-    # case 111.6: the sessions the old skill line opened keep their window
+def test_an_unstamped_hi_under_our_start_is_refused(tmp_path):
+    # case 136.3: the fallback of 111.6 is gone — a stamped hi is the one opener
     write_event_log(
         tmp_path,
         "- 15:01:00 44c1aae1 session-start startup\n- 15:01:30 -------- hi\n",
     )
     code, err = run(payload(last_assistant_message=REPLY), tmp_path)
-    assert (code, err) == (0, "")
-    assert ledger_file(tmp_path, session="1501").exists()
+    assert code == 2 and "no /hi recorded for session 44c1aae1" in err
+    assert not ledger_file(tmp_path, session="1501").exists()
 
 
-def test_an_unstamped_hi_after_a_foreign_start_is_refused_and_a_stamped_one_wins(tmp_path):
+def test_an_unstamped_hi_after_a_foreign_start_is_refused_and_a_stamped_one_opens(tmp_path):
     log = (
         "- 15:01:00 44c1aae1 session-start startup\n- 15:01:00 deadbeef session-start resume\n"
         "- 15:01:30 -------- hi\n"

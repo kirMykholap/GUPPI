@@ -128,8 +128,8 @@ def hi_recorded(event_log: str, stamp: str) -> bool:
     (case 111.3). The `hi` is written by the `UserPromptSubmit` hook with the session id,
     so a start of another session — before, between, after — changes nothing, and a `hi`
     of another stamp does not count. A further start of the same session — `compact`,
-    `resume` — does not close the window either (case 14). With no stamped `hi` at all, a
-    `--------` `hi` counts by the rule before 111.3 (case 111.6)."""
+    `resume` — does not close the window either (case 14). A `--------` `hi` never counts
+    (case 136.3)."""
     return hi_moment([("", event_log)], stamp) is not None
 
 
@@ -167,9 +167,9 @@ def hi_moment(logs: list[tuple[str, str]], stamp: str) -> tuple[str, str] | None
     """`(date, time)` of the `hi` that opens this session's window: the first `hi` of this
     stamp after its first `session-start`, over the `(date, text)` logs of
     `session_event_logs` in date order; lines of other sessions are skipped (case 111.3).
-    With no stamped `hi` at all, the rule before 111.3 applies to the `--------` lines the
-    old skill line wrote: a `hi` after a `session-start` of this session with no other
-    session's start in between (case 111.6, the sessions opened before the hook)."""
+    A stamped `hi` is the one opener: the fallback of case 111.6 — a `--------` `hi` bound
+    by position, for the sessions opened before the hook — was removed once those sessions
+    had closed (case 136.3)."""
     ours = False
     for day, text in logs:
         for line in text.splitlines():
@@ -180,26 +180,6 @@ def hi_moment(logs: list[tuple[str, str]], stamp: str) -> tuple[str, str] | None
             if event == "session-start":
                 ours = True
             elif event == "hi" and ours:
-                return (day, time)
-    return unstamped_hi_moment(logs, stamp)
-
-
-def unstamped_hi_moment(logs: list[tuple[str, str]], stamp: str) -> tuple[str, str] | None:
-    """The rule before case 111.3, kept as the fallback of case 111.6: the first `--------`
-    `hi` after a `session-start` of this session with no other session's start in between;
-    a foreign start closes the window, a further start of our own does not (case 14)."""
-    from guppi.event import UNKNOWN_SESSION
-
-    ours = False
-    for day, text in logs:
-        for line in text.splitlines():
-            parts = line.split(" ", 3)
-            if len(parts) < 4 or parts[0] != "-":
-                continue
-            time, session, event = parts[1], parts[2], parts[3].split(" ", 1)[0]
-            if event == "session-start":
-                ours = session == stamp
-            elif event == "hi" and ours and session == UNKNOWN_SESSION:
                 return (day, time)
     return None
 

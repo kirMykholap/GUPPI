@@ -2,12 +2,14 @@
 `/pre-task` has run in this session; `guppi pretask --check <plan> [--session ID]` — the
 check of that Plan Mode's artifacts against each other.
 
-The hook reads the event log the way the ledger hook does: the session is a working one
-when a `hi` follows its last `session-start`. In a working session with no `pretask` line
-after that `hi`, the hook exits 2 with the reason on stderr, which Claude Code shows the
-agent and which blocks the tool; the agent runs `/pre-task` (whose skill records the line)
-and exits Plan Mode again. An ordinary session — no `hi` — is not gated: no governance
-applies there. Any other tool: exit 0. Rule page: `vault/wiki/rules/rule-pretask-hook.md`.
+The hook reads the event log by the session's stamp (case 136.2): the session is a working
+one when the log holds a `hi` of its stamp. In a working session with no `pretask` line of
+the same stamp after that `hi`, the hook exits 2 with the reason on stderr, which Claude
+Code shows the agent and which blocks the tool; the agent runs `/pre-task` — `guppi gate`
+writes the stamped line on the Skill call (case 136.1) — and exits Plan Mode again. A mark
+of another stamp or `--------` does not count, and a `session-start` of another session
+resets nothing. An ordinary session — no `hi` — is not gated: no governance applies there.
+Any other tool: exit 0. Rule page: `vault/wiki/rules/rule-pretask-hook.md`.
 
 The check prints one finding per line on stdout and exits 1 on any, 0 and silent when
 clean; without a `hi` in the session's window it exits 0 with one line on stderr. The
@@ -74,18 +76,17 @@ CLOSERS = re.compile(r"^(work|case (\S+)|defer case (\S+))$")
 
 
 def window(event_log: str, stamp: str) -> tuple[bool, bool]:
-    """`(hi, pretask)`: whether this session's window holds a `hi`, and a `pretask` after it."""
-    ours = seen_hi = seen_pretask = False
+    """`(hi, pretask)`: whether the log holds a `hi` of this session's stamp, and a `pretask`
+    of the same stamp after it (case 136.2). A mark of another stamp or `--------` does not
+    count, and a `session-start` of another session resets nothing: the marks bind by stamp,
+    not by position."""
+    seen_hi = seen_pretask = False
     for line in event_log.splitlines():
         parts = line.split(" ", 3)
-        if len(parts) < 4 or parts[0] != "-":
+        if len(parts) < 4 or parts[0] != "-" or parts[2] != stamp:
             continue
-        session, event = parts[2], parts[3].split(" ", 1)[0]
-        if event == "session-start" and session != stamp:
-            ours = seen_hi = seen_pretask = False
-        elif event == "session-start":
-            ours = True
-        elif event == "hi" and ours:
+        event = parts[3].split(" ", 1)[0]
+        if event == "hi":
             seen_hi = True
         elif event == "pretask" and seen_hi:
             seen_pretask = True

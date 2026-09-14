@@ -21,6 +21,13 @@ reason is `commit first`. A clean tree, another skill or another tool: exit 0. T
 sees only calls made through the `Skill` tool, which is how the Retro skill calls
 `/handoff`; the handoff skill checks the tree itself for the case where the person types
 it. Rule pages: `vault/wiki/rules/rule-retro-commit.md`, `vault/wiki/rules/rule-ledger-write.md`.
+
+Last the mark (case 136.1): a call of `pre-task`, `retro` or `handoff` that passes both
+checks leaves one line `- HH:MM:SS <stamp> pretask|retro|handoff` in the day's event log,
+the stamp from the payload's `session_id` — the line the skills wrote through a `!`
+substitution until 136.1, where `CLAUDE_SESSION_ID` is empty and every mark read
+`--------`. A refused call and any other skill leave no mark. Rule page:
+`vault/wiki/rules/rule-event-log.md`.
 """
 
 import subprocess
@@ -28,7 +35,7 @@ import sys
 from datetime import datetime
 from pathlib import Path
 
-from guppi.event import project_root, read_payload, session_stamp
+from guppi.event import append, format_line, log_path, project_root, read_payload, session_stamp
 from guppi.ledger import hi_moment, session_dir, session_event_logs
 from guppi.materialize import split_cases, then_blocks
 from guppi.pretask import item_has_line, item_name, items_of, session_decisions, window_lines
@@ -36,6 +43,7 @@ from guppi.pretask import item_has_line, item_name, items_of, session_decisions,
 TOOL = "Skill"
 SKILL = "handoff"
 PLAN_TOOLS = ("Write", "Edit", "MultiEdit")
+MARKS = {"pre-task": "pretask", "retro": "retro", "handoff": "handoff"}
 
 
 def skill_of(payload: dict) -> str:
@@ -126,6 +134,14 @@ def spec_check(project_dir: Path, stamp: str, now) -> list[str]:
     return unwritten_items(specs, records)
 
 
+def mark(project_dir: Path, payload: dict, skill: str, now) -> None:
+    """The stamped mark of a skill call the gate let through (case 136.1); nothing for a
+    skill outside `MARKS`."""
+    name = MARKS.get(skill)
+    if name:
+        append(log_path(project_dir, now), format_line(name, payload, [], None, now))
+
+
 def run(
     argv, *, stdin=None, stderr=None, project_dir: Path | None = None, status=None, now=None
 ) -> int:
@@ -149,18 +165,18 @@ def run(
                 file=stderr,
             )
             return 2
-        if skill != SKILL:
-            return 0
-        tree = dirty(project_dir) if status is None else status
-        if not tree:
-            return 0
-        count = len(tree.splitlines())
-        print(
-            f"gate: /handoff refused — commit first. {count} path(s) uncommitted; the librarian's "
-            "commit must be separate from the session's.",
-            file=stderr,
-        )
-        return 2
+        if skill == SKILL:
+            tree = dirty(project_dir) if status is None else status
+            if tree:
+                count = len(tree.splitlines())
+                print(
+                    f"gate: /handoff refused — commit first. {count} path(s) uncommitted; the "
+                    "librarian's commit must be separate from the session's.",
+                    file=stderr,
+                )
+                return 2
+        mark(project_dir, payload, skill, now)
+        return 0
     except Exception as exc:  # noqa: BLE001 — a hook that raises would fail the session
         print(f"gate: not checked: {exc}", file=stderr)
         return 0

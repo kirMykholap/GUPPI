@@ -20,7 +20,9 @@ NOW = datetime(2026, 9, 9, 18, 40, 5, tzinfo=UTC)
 SESSION = "44c1aae1-4076-4a58-a7c0-d20bc274047c"
 START = "- 15:01:00 44c1aae1 session-start startup\n"
 HI = "- 15:01:30 44c1aae1 hi\n"
-PRETASK = "- 16:20:00 -------- pretask\n"
+PRETASK = "- 16:20:00 44c1aae1 pretask\n"
+UNSTAMPED_PRETASK = "- 16:20:00 -------- pretask\n"
+FOREIGN_PRETASK = "- 16:20:00 99999999 pretask\n"
 OTHER_START = "- 14:00:00 99999999 session-start startup\n"
 
 
@@ -53,11 +55,21 @@ def test_hi_without_pretask_holds_plan_mode_open(tmp_path):
     assert "/pre-task" in err and "44c1aae1" in err
 
 
-def test_a_pretask_of_an_earlier_session_does_not_count(tmp_path):
-    with_event_log(tmp_path, OTHER_START + HI + PRETASK + START + HI)
+def test_a_pretask_of_another_stamp_does_not_count(tmp_path):
+    with_event_log(tmp_path, START + HI + OTHER_START + FOREIGN_PRETASK)
     code, err = run(payload(), tmp_path)
     assert code == 2
     assert "/pre-task" in err
+
+
+def test_an_unstamped_pretask_does_not_count(tmp_path):
+    with_event_log(tmp_path, START + HI + UNSTAMPED_PRETASK)
+    assert run(payload(), tmp_path)[0] == 2
+
+
+def test_a_foreign_start_between_hi_and_pretask_resets_nothing(tmp_path):
+    with_event_log(tmp_path, START + HI + OTHER_START + PRETASK)
+    assert run(payload(), tmp_path) == (0, "")
 
 
 def test_an_ordinary_session_without_hi_is_not_gated(tmp_path):

@@ -288,6 +288,7 @@ entries:
   change: 'the reply that acknowledges a ratification has four parts: the Case heading with Changes, Notes
     when any, the Frontier as a checklist, the LEDGER block last (case 157)'
   applied: '14:39:28'
+  superseded_by: '167'
 - line: 11
   text: decision[case 157][update][rule-case-protocol]{ref:rule-case-protocol}
   case: '157'
@@ -326,6 +327,7 @@ entries:
     status: pending
   change: 'criterion: case 157 added'
   applied: '14:39:28'
+  superseded_by: '167'
 - line: 12
   text: decision[case 158][update][rule-materialize]{ref:rule-materialize}
   case: '158'
@@ -634,6 +636,7 @@ entries:
       do, and the fork that comes back as a Case; the Plan Mode of a session of its own
   exists: true
   applied: '14:39:28'
+  superseded_by: '170'
 - line: 19
   text: decision[case 162][defer][rule-work-mode]{ref:rule-work-mode}{supersedes:case 152}
   case: '162'
@@ -661,6 +664,7 @@ entries:
       fork as a Case; the Plan Mode of a session of its own
   exists: true
   applied: '14:39:28'
+  superseded_by: '170'
 - line: 20
   text: decision[case 162][defer][rule-subagent-guppi]{ref:rule-subagent-guppi}{supersedes:case 152}
   case: '162'
@@ -866,8 +870,7 @@ entries:
 
       '
   librarian: synthesis
-  failed: 'generate: insight-retro-typed-command-is-never-a-tool-call: an Insight is made and retired
-    by the librarian, never created or deleted by a decision (case 124.2)'
+  applied: '17:58:17'
 - kind: update
   category: lessons
   slug: lesson-retro-typed-by-the-person-bypasses-the-skill-tool-and-the-gate
@@ -1101,6 +1104,8 @@ decisions:
   - estimate: estimate-case-protocol-loaded
     case: '157'
   applied: '14:39:28'
+  superseded_by:
+  - decision-case-167
 - case: '158'
   decision: decision-case-158
   origin: raw/2026-09-15/1110/ledger.md#case-158
@@ -1353,6 +1358,8 @@ decisions:
   supersedes:
   - decision-case-152
   applied: '14:39:28'
+  superseded_by:
+  - decision-case-170
 - case: '163'
   decision: decision-case-163
   origin: raw/2026-09-15/1110/ledger.md#case-163

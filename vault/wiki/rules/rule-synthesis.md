@@ -2,7 +2,7 @@
 type: rule
 kind: Leaf
 purpose: Prevents a pattern of failures from staying a list of unrelated incidents
-status: draft
+status: built
 enforcement: render
 governs: .claude/agents/librarian-guppi.md
 render_mode: partial
@@ -55,3 +55,4 @@ outcome, clustered or not. Do not read the archive and do not write pages yourse
 - 2026-09-14 defer by decision-case-108 superseded · [[decision-case-114]]
 - 2026-09-14 updated: the index lines come from the librarian's own Greps of lessons and insights (case 147.4) · [[decision-case-147.4]]
 - 2026-09-14 status: built → draft · cascade
+- 2026-09-15 status: draft → built · cascade

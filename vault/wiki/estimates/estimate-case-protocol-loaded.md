@@ -66,18 +66,6 @@ The paragraph on ledger lines in the Render carries the sentence: "A `knowledge`
 **－** `rule-ledger-write` does not change: the hook writes verbatim and checks nothing.
 **－** `rule-retro` does not change: its example lines stay; the rule is read in `CLAUDE.md`.
 
-### case 157
-
-When:
-The owner answers a Case with a ratification; the agent writes the reply that acknowledges it.
-
-Then:
-The reply has four parts, in this order: a heading `## Case N — ratified` and a paragraph **Changes:** — what changes, in one or two sentences; a paragraph **Notes:** — facts that did not enter the Case, omitted when there are none; a heading `## Frontier` and the lines of `frontier.md` as a checklist — the closed lines folded into one, the open ones one per line with a short title, the deferred as `[-] … · defer case N` — and the question which item is next; the `LEDGER` block, last.
-**＋** The headings and labels are in the language of the chat: "ратифицирован", "Меняется", "Заметки".
-**＋** `rule-case-protocol` `contract: changed`; `estimate-case-protocol-loaded` gets a `### case 157` block, `pending`; read in the next session at the first such reply after the render.
-**－** The replies on readings and lessons keep their shape; the reply that carries a Case (the seven sections) too.
-**－** `CLAUDE.md` changes only through the librarian's render.
-
 ### case 159
 
 When:
@@ -94,13 +82,23 @@ Then:
 **－** The Spec as today: `context`, `problem`, `given`, `when`, `then` as blockquotes in English, the `then` and `tasks` blocks; the `tasks` section of the chat is its `tasks` block.
 **－** The acknowledging reply (157) and the short form of a defer do not change.
 
+### case 167
+
+When:
+The owner answers a Case with a ratification; the agent writes the reply that acknowledges it.
+
+Then:
+The reply has four parts, in this order: the `LEDGER` block first; the heading `## Case N — ratified` and a paragraph **Changes:** — what changes, in one or two sentences; a paragraph **Notes:** — facts that did not enter the Case, omitted when there are none; the heading `## Frontier` and the lines of `frontier.md` as a checklist — the closed lines folded into one, the open ones one per line with a short title, the deferred as `[-] … · defer case N` — and the question which item is next, last.
+**＋** The headings and labels are in the language of the chat.
+**－** The replies on readings and lessons, the reply that carries a Case and the short form of a defer stay as today; no tool call follows the block in the same reply.
+
 ## Method
 
 One reading at a session start, by hand, plus the preview cases of `tests/test_ledger.py`.
 
 ## Result
 
-block 144.1: CLAUDE.md carries the sentence on the knowledge lesson line and {source:...} in the ledger paragraph, present in the system prompt of session Q without a read; guppi render --check exit 0; the use clause reads at the first knowledge line of the session
+block 157, live 2026-09-15 session R, the reply that acknowledges Case 164 — the first after the render of 157: the heading Case 164 — ратифицирован, a paragraph Меняется, a paragraph Заметки, the heading Frontier with the closed lines folded into one and the open ones one per line with a short title and the question which item is next, the LEDGER block last; headings and labels in Russian, the language of the chat
 
 ## History
 
@@ -116,3 +114,7 @@ block 144.1: CLAUDE.md carries the sentence on the knowledge lesson line and {so
 - 2026-09-15 status: pending → passed · raw/2026-09-15/1110/ledger.md#L6
 - 2026-09-15 criterion: case 157 added · [[decision-case-157]]
 - 2026-09-15 criterion: case 159 added · [[decision-case-159]]
+- 2026-09-15 status: pending → passed · raw/2026-09-15/1448/ledger.md#L4
+- 2026-09-15 status: passed → passed · raw/2026-09-15/1448/ledger.md#L5
+- 2026-09-15 criterion: case 167 added · [[decision-case-167]]
+- 2026-09-15 criterion: case 157 removed · [[decision-case-167]]

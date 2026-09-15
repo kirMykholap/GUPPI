@@ -1,7 +1,7 @@
 ---
 type: estimate
 kind: QA
-status: pending
+status: passed
 target: "[[rule-synthesis]]"
 origin: raw/2026-09-10/ledger.md#case-35.2
 sprint: migration
@@ -38,7 +38,7 @@ one reading by hand after the first librarian run, recorded in the estimate line
 
 ## Result
 
-live 2026-09-12, the librarian's run of session J with five lesson entries: one insight create — insight-materialize-lift-loses-a-schema-field over lesson-materialize-standalone-estimate-keeps-criterion-as-a-field and lesson-materialize-lesson-line-source-dropped — with a pattern, both children, the union of tags, Pattern and Proposal, and one update per lesson setting clustered and insight; two live Insights extended by a matching lesson, insight-ledger-line-written-unchecked to four children and insight-workflow-contract-change-leaves-its-derived-text-stale to three, each with its lesson update; all 8 added entries carry librarian: synthesis, 17 in the yaml with the 9 of session H; the report names the comparisons against lessons-index and insights-index and every lesson page read with its outcome, four near marks; the event log of the window holds no archive read; lesson-hooks-blocked-pretooluse-leaves-no-posttooluse-event found no pair and stayed new
+live 2026-09-15, the librarian's run of session Q read against the brief: four root causes compared against the Greps `^(root_cause|deferred_by):` over `lessons/` (27 lines) and `^(pattern|deferred_by):` over `insights/` (11 lines), both named with their counts; one insight create entry over the two retro lessons with pattern, both children, the union of tags, Pattern and Proposal, and one update per lesson setting clustered and insight; one live Insight (`insight-librarian-frame-omits-required-reads`) reopened by a matching lesson with the lesson's update; the page `insight-materialize-lift-loses-a-schema-field` opened and named with the outcome (not the same cause); `lesson-wiki-page-edited-by-hand-in-obsidian` without a pair stayed new; all 5 added entries carry librarian: synthesis; the day's event log holds no archive read; the refusal of the create by generate (124.2) is outside this criterion — frontier F3
 
 ## History
 
@@ -50,3 +50,4 @@ live 2026-09-12, the librarian's run of session J with five lesson entries: one 
 - 2026-09-12 status: pending → passed · raw/2026-09-11/ledger.md#L75
 - 2026-09-12 status: passed → passed · raw/2026-09-12/ledger.md#L169
 - 2026-09-14 criterion: case 147.4 added · [[decision-case-147.4]]
+- 2026-09-15 status: pending → passed · raw/2026-09-15/1448/ledger.md#L2

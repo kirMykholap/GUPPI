@@ -78,7 +78,7 @@ Brief. Run `make lint` and keep its output. Rewrite `vault/wiki/brief.md` in ful
 with these sections in this order:
 - Where things stand: from the "What actually got done" section of `handoff.md` and
   the counts of the yaml, pages created and updated per category.
-- What the next session does first.
+- Readings due: after `generate`, every Estimate whose `status` is `pending` or `failed` — one line per `### case N` block: the Estimate, the block, the rule that stands `draft`, and where it is read, from the unticked `- [ ] read …` line of the session's `spec.md` or, when there is none, from the `Method` of the page; a `failed` one first, with the result of its reading in one line; nothing from the previous brief (case 168).
 - Deferred: at most seven items — one per target of a `defer` entry in the yamls the walk named, every item of the previous brief's list whose decision no `supersedes` retired, and every Insight whose `status` is `open`. Rank by `severity` — the Insight's own, or that of the Insight related to a deferred Case — then by the number of briefs the item has stood in: the previous brief's count plus one. An Insight's line carries its slug, its `severity`, its `pattern` and its Proposal in one or two sentences; in Plan Mode it is a Case whose `recommend` starts from that Proposal, and it ends in an `update` of the Insight (`status: actioned`, `addressed_by`), a rejection written the same way, or a `defer` with the Insight as its target.
 - Flags, no limit: entries marked `incomplete`, `failed`, `near` or `unparsed`;
   failed Estimates; MOC candidates; stale defers; contradictions; the lint output.

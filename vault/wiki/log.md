@@ -1474,3 +1474,88 @@ instruction. The global feed; a page's own `## History` is the per-page view.
 - 2026-09-15 decisions/decision-case-146 archived · cleanup
 - 2026-09-15 decisions/decision-case-152 archived · cleanup
 - 2026-09-15 decisions/decision-case-154 archived · cleanup
+- 2026-09-15 insights/insight-retro-typed-command-is-never-a-tool-call created · raw/2026-09-15/1110/ledger.md#L27 · generate
+- 2026-09-15 estimates/estimate-index-check-merges status: pending → passed · raw/2026-09-15/1448/ledger.md#L1 · generate
+- 2026-09-15 estimates/estimate-synthesis-clusters status: pending → passed · raw/2026-09-15/1448/ledger.md#L2 · generate
+- 2026-09-15 decisions/decision-case-164 created · raw/2026-09-15/1448/ledger.md#case-164 · generate
+- 2026-09-15 decisions/decision-case-124.2 superseded by decision-case-164 · [[decision-case-164]] · generate
+- 2026-09-15 estimates/estimate-generate-writes criterion: case 124.2 removed · [[decision-case-164]] · generate
+- 2026-09-15 estimates/estimate-case-protocol-loaded status: pending → passed · raw/2026-09-15/1448/ledger.md#L4 · generate
+- 2026-09-15 estimates/estimate-case-protocol-loaded status: passed → passed · raw/2026-09-15/1448/ledger.md#L5 · generate
+- 2026-09-15 decisions/decision-case-165.2 created · raw/2026-09-15/1448/ledger.md#case-165.2 · generate
+- 2026-09-15 decisions/decision-case-166.1 created · raw/2026-09-15/1448/ledger.md#case-166.1 · generate
+- 2026-09-15 decisions/decision-case-165.2 superseded by decision-case-166.1 · [[decision-case-166.1]] · generate
+- 2026-09-15 decisions/decision-case-166.2 created · raw/2026-09-15/1448/ledger.md#case-166.2 · generate
+- 2026-09-15 decisions/decision-case-164 superseded by decision-case-166.2 · [[decision-case-166.2]] · generate
+- 2026-09-15 rules/rule-page-generation updated: no derived section on any write; the Addressed by derivation of 124.2/164 removed; the migration over wiki/ and archive/; supersedes 164 (case 166.2) · [[decision-case-166.2]] · generate
+- 2026-09-15 estimates/estimate-generate-writes criterion: case 166.2 added · [[decision-case-166.2]] · generate
+- 2026-09-15 decisions/decision-case-166.3 created · raw/2026-09-15/1448/ledger.md#case-166.3 · generate
+- 2026-09-15 decisions/decision-case-114 superseded by decision-case-166.3 · [[decision-case-166.3]] · generate
+- 2026-09-15 rules/rule-page-generation updated: the cascade step of 114 removed: no ## Insight derived on lessons; supersedes 114 (case 166.3) · [[decision-case-166.3]] · generate
+- 2026-09-15 estimates/estimate-generate-writes criterion: case 166.3 added · [[decision-case-166.3]] · generate
+- 2026-09-15 estimates/estimate-generate-writes criterion: case 114 removed · [[decision-case-166.3]] · generate
+- 2026-09-15 decisions/decision-case-166.4 created · raw/2026-09-15/1448/ledger.md#case-166.4 · generate
+- 2026-09-15 rules/rule-cleanup updated: unlink edits the field only, no section rebuilt (case 166.4) · [[decision-case-166.4]] · generate
+- 2026-09-15 estimates/estimate-cleanup-moves criterion: case 166.4 added · [[decision-case-166.4]] · generate
+- 2026-09-15 decisions/decision-case-167 created · raw/2026-09-15/1448/ledger.md#case-167 · generate
+- 2026-09-15 decisions/decision-case-157 superseded by decision-case-167 · [[decision-case-167]] · generate
+- 2026-09-15 rules/rule-case-protocol updated: the LEDGER block opens the acknowledging reply, the question closes it; supersedes 157 (case 167) · [[decision-case-167]] · generate
+- 2026-09-15 estimates/estimate-case-protocol-loaded criterion: case 167 added · [[decision-case-167]] · generate
+- 2026-09-15 estimates/estimate-case-protocol-loaded criterion: case 157 removed · [[decision-case-167]] · generate
+- 2026-09-15 decisions/decision-case-168 created · raw/2026-09-15/1448/ledger.md#case-168 · generate
+- 2026-09-15 rules/rule-brief updated: the second section is Readings due, sourced from the pending and failed Estimates after the run and the Spec's reading lines; What the next session does first retired (case 168) · [[decision-case-168]] · generate
+- 2026-09-15 estimates/estimate-brief-written criterion: case 168 added · [[decision-case-168]] · generate
+- 2026-09-15 insights/insight-librarian-frame-omits-required-reads updated: actioned: the one section of the brief without a source gets one — Readings due, from the Estimates left pending or failed and the Spec's reading lines (case 168) · [[decision-case-168]] · generate
+- 2026-09-15 decisions/decision-case-169.1 created · raw/2026-09-15/1448/ledger.md#case-169.1 · generate
+- 2026-09-15 rules/rule-retro-commit updated: the gate reads a typed /pre-task, /retro or /handoff from the UserPromptSubmit payload: same checks, same mark, exit 2 for the person (case 169.1) · [[decision-case-169.1]] · generate
+- 2026-09-15 estimates/estimate-retro-commit-gates criterion: case 169.1 added · [[decision-case-169.1]] · generate
+- 2026-09-15 rules/rule-event-log updated: the marks name the second entry of the gate, the typed command on UserPromptSubmit (case 169.1) · [[decision-case-169.1]] · generate
+- 2026-09-15 rules/rule-ledger-write updated: the Spec check of 122 names the second entry of the gate, the typed command (case 169.1) · [[decision-case-169.1]] · generate
+- 2026-09-15 decisions/decision-case-169.2 created · raw/2026-09-15/1448/ledger.md#case-169.2 · generate
+- 2026-09-15 rules/rule-hook-registry updated: UserPromptSubmit runs guppi gate after guppi event prompt (case 169.2) · [[decision-case-169.2]] · generate
+- 2026-09-15 estimates/estimate-hook-registry-rendered criterion: case 169.2 added · [[decision-case-169.2]] · generate
+- 2026-09-15 decisions/decision-case-169.3 created · raw/2026-09-15/1448/ledger.md#case-169.3 · generate
+- 2026-09-15 decisions/decision-case-150 superseded by decision-case-169.3 · [[decision-case-169.3]] · generate
+- 2026-09-15 rules/rule-retro updated: the two paths of Retro, typed and called, both behind the gate; supersedes 150 (case 169.3) · [[decision-case-169.3]] · generate
+- 2026-09-15 estimates/estimate-retro-loads criterion: case 169.3 added · [[decision-case-169.3]] · generate
+- 2026-09-15 estimates/estimate-retro-loads criterion: case 150 removed · [[decision-case-169.3]] · generate
+- 2026-09-15 decisions/decision-case-170 created · raw/2026-09-15/1448/ledger.md#case-170 · generate
+- 2026-09-15 decisions/decision-case-162 superseded by decision-case-170 · [[decision-case-170]] · generate
+- 2026-09-15 rules/rule-work-mode defer by decision-case-162 superseded · [[decision-case-170]] · generate
+- 2026-09-15 rules/rule-subagent-guppi defer by decision-case-162 superseded · [[decision-case-170]] · generate
+- 2026-09-15 rules/rule-work-mode deferred · [[decision-case-170]] · generate
+- 2026-09-15 rules/rule-subagent-guppi deferred · [[decision-case-170]] · generate
+- 2026-09-15 decisions/decision-case-171 created · raw/2026-09-15/1448/ledger.md#case-171 · generate
+- 2026-09-15 decisions/decision-case-124.2 superseded by decision-case-171 · [[decision-case-171]] · generate
+- 2026-09-15 rules/rule-page-generation updated: the sentence of 164 on the librarian's create and the refusals, carried by 171 since 164 is superseded before it applies; supersedes 124.2 (case 171) · [[decision-case-171]] · generate
+- 2026-09-15 decisions/decision-case-172 created · raw/2026-09-15/1448/ledger.md#case-172 · generate
+- 2026-09-15 decisions/decision-case-148.1 superseded by decision-case-172 · [[decision-case-172]] · generate
+- 2026-09-15 rules/rule-page-generation updated: block 148.1 restated without the body sections; supersedes 148.1 (case 172) · [[decision-case-172]] · generate
+- 2026-09-15 estimates/estimate-generate-writes criterion: case 172 added · [[decision-case-172]] · generate
+- 2026-09-15 estimates/estimate-generate-writes criterion: case 148.1 removed · [[decision-case-172]] · generate
+- 2026-09-15 lessons/lesson-supersedes-in-the-same-session-skips-the-earlier-cases-entries created · raw/2026-09-15/1448/ledger.md#L30 · generate
+- 2026-09-15 rules/rule-brief status: built → draft · cascade · generate
+- 2026-09-15 rules/rule-cleanup status: built → draft · cascade · generate
+- 2026-09-15 rules/rule-hook-registry status: built → draft · cascade · generate
+- 2026-09-15 rules/rule-index-check status: draft → built · cascade · generate
+- 2026-09-15 rules/rule-page-generation status: built → draft · cascade · generate
+- 2026-09-15 rules/rule-retro-commit status: built → draft · cascade · generate
+- 2026-09-15 rules/rule-synthesis status: draft → built · cascade · generate
+- 2026-09-15 decisions/decision-case-114 archived · superseded · generate
+- 2026-09-15 decisions/decision-case-124.2 archived · superseded · generate
+- 2026-09-15 decisions/decision-case-148.1 archived · superseded · generate
+- 2026-09-15 decisions/decision-case-150 archived · superseded · generate
+- 2026-09-15 decisions/decision-case-157 archived · superseded · generate
+- 2026-09-15 decisions/decision-case-162 archived · superseded · generate
+- 2026-09-15 decisions/decision-case-164 archived · superseded · generate
+- 2026-09-15 decisions/decision-case-165.2 archived · superseded · generate
+- 2026-09-15 lessons/lesson-brief-next-section-has-no-source archived · insight actioned · generate
+- 2026-09-15 lessons/lesson-brief-next-section-has-no-source archived · cleanup
+- 2026-09-15 decisions/decision-case-114 archived · cleanup
+- 2026-09-15 decisions/decision-case-124.2 archived · cleanup
+- 2026-09-15 decisions/decision-case-148.1 archived · cleanup
+- 2026-09-15 decisions/decision-case-150 archived · cleanup
+- 2026-09-15 decisions/decision-case-157 archived · cleanup
+- 2026-09-15 decisions/decision-case-162 archived · cleanup
+- 2026-09-15 decisions/decision-case-164 archived · cleanup
+- 2026-09-15 decisions/decision-case-165.2 archived · cleanup

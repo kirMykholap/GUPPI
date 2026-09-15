@@ -1,8 +1,9 @@
 ---
 type: decision
 case: "148.1"
-status: current
+status: archived
 update: ["[[rule-page-generation]]"]
+superseded_by: ["[[decision-case-172]]"]
 origin: raw/2026-09-14/1633/ledger.md#case-148.1
 sprint: migration
 created: 2026-09-14
@@ -36,3 +37,6 @@ The scripts read the frontmatter in one place — `pages.read_page` (plus `mater
 ## History
 
 - 2026-09-14 created · raw/2026-09-14/1633/ledger.md#case-148.1
+- 2026-09-15 superseded by decision-case-172 · [[decision-case-172]]
+- 2026-09-15 archived · superseded
+- 2026-09-15 archived · cleanup

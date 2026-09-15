@@ -1,8 +1,9 @@
 ---
 type: decision
 case: "157"
-status: current
+status: archived
 update: ["[[rule-case-protocol]]"]
+superseded_by: ["[[decision-case-167]]"]
 origin: raw/2026-09-15/1110/ledger.md#case-157
 sprint: migration
 created: 2026-09-15
@@ -32,3 +33,6 @@ The shape of the acknowledging reply is ratified nowhere; the agent is not bound
 ## History
 
 - 2026-09-15 created · raw/2026-09-15/1110/ledger.md#case-157
+- 2026-09-15 superseded by decision-case-167 · [[decision-case-167]]
+- 2026-09-15 archived · superseded
+- 2026-09-15 archived · cleanup

@@ -19,8 +19,7 @@ tags: [session, workflow, harness, render]
 Prevents a session from closing on work nobody reviewed, or on a change that traces
 to no decision. Retro is a conversation over this session only. The tests and the
 style check load before the first turn, so the person reads the result instead of
-waiting for it. The scope rule is mechanical: an edit is allowed when it finishes
-work a line of this session's ledger ratified, and is new scope otherwise.
+waiting for it. The scope rule is mechanical: an edit is allowed when it finishes work a line of this session's ledger ratified, and is new scope otherwise. Retro opens by two paths, both behind `guppi gate`: the person's typed `/retro` on `UserPromptSubmit`, the agent's call on `PreToolUse Skill`; each checks the Spec against the ledger and leaves the mark `retro`, and a refused typed prompt is not expanded (case 169.3, supersedes 150).
 
 ## Render
 
@@ -93,3 +92,4 @@ got done; what did not. When the person approves, commit (`make style` clean,
 - 2026-09-14 status: draft → built · cascade
 - 2026-09-14 updated: disable-model-invocation dropped: a typed or agent-called /retro passes the Skill tool, so guppi gate sees it and writes the retro mark (case 150) · [[decision-case-150]]
 - 2026-09-14 status: built → draft · cascade
+- 2026-09-15 updated: the two paths of Retro, typed and called, both behind the gate; supersedes 150 (case 169.3) · [[decision-case-169.3]]

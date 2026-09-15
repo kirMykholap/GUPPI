@@ -79,12 +79,7 @@ one-off migration, and one per reading of an Estimate the Case creates or sets
 `pending`, by its slug; no `recommend`, no `ratification`, no code. Work Mode ticks the boxes in `raw/<date>/<hi HHMM>/spec.md` in the reply that finishes the task; Retro
 counts the unticked.
 
-The reply that acknowledges a ratification has four parts, in this order: a heading
-`## Case N — ratified` and a paragraph **Changes:** — what changes, in one or two sentences; a
-paragraph **Notes:** — facts that did not enter the Case, omitted when there are none; a heading
-`## Frontier` and the lines of `frontier.md` as a checklist — the closed lines folded into one, the
-open ones one per line with a short title, the deferred as `[-] … · defer case N` — and the question
-which item is next; the `LEDGER` block, last. Headings and labels in the language of the chat (case 157).
+The reply that acknowledges a ratification has four parts, in this order: the `LEDGER` block first; a heading `## Case N — ratified` and a paragraph **Changes:** — what changes, in one or two sentences; a paragraph **Notes:** — facts that did not enter the Case, omitted when there are none; a heading `## Frontier` and the lines of `frontier.md` as a checklist — the closed lines folded into one, the open ones one per line with a short title, the deferred as `[-] … · defer case N` — and the question which item is next, last. Headings and labels in the language of the chat (case 167, supersedes 157).
 
 The harness — hooks, skills, agents, `settings.json`, this section of `CLAUDE.md` —
 is rendered from `rules/`. A harness file changes through an `update` of its Rule

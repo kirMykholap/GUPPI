@@ -1,7 +1,7 @@
 ---
 type: estimate
 kind: QA
-status: passed
+status: pending
 target: "[[rule-cleanup]]"
 origin: raw/2026-09-10/ledger.md#case-33
 sprint: migration
@@ -44,6 +44,15 @@ When:
 Then:
 The sentence "Then the four indexes are rewritten …" removed; purpose — "Prevents an archived page from staying among the live ones"; `cleanup.py` without the call of the index writer; the tests without the index checks.
 
+### case 166.4
+
+When:
+`guppi cleanup` moves a page to the archive and removes its slug from the lists of the live pages.
+
+Then:
+`unlink` removes the slug from `children` and `estimates` and writes History `child <slug> archived` / `estimate <slug> archived`; it rebuilds no section and touches none.
+**－** What goes to the archive, what comes back and where — as today.
+
 ## Method
 
 pytest in tests/test_cleanup.py against a temp vault; the live reading once by hand
@@ -63,3 +72,4 @@ block 147.6: rule-cleanup purpose "Prevents an archived page from staying among 
 - 2026-09-14 status: pending → passed · raw/2026-09-14/0747/ledger.md#L41
 - 2026-09-14 criterion: case 147.6 added · [[decision-case-147.6]]
 - 2026-09-15 status: pending → passed · raw/2026-09-15/1110/ledger.md#L2
+- 2026-09-15 criterion: case 166.4 added · [[decision-case-166.4]]

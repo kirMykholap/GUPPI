@@ -1,7 +1,7 @@
 ---
 type: estimate
 kind: QA
-status: failed
+status: pending
 target: "[[rule-retro]]"
 origin: raw/2026-09-10/ledger.md#case-38.1
 sprint: migration
@@ -56,16 +56,15 @@ The Render of `rule-retro`: the line `Ledger of today: !`cat vault/raw/$(date +%
 **＋** `estimate-retro-loads` gets a `### case 126` block, `pending`; read at the first `/retro` after the render — the next session's, since the skill is rendered by the librarian after this session's Retro: the skill loaded, `Ledger:` carries the lines of the session's folder, no substitution failed.
 **－** `{supersedes:case 118}`: `decision-case-118` is superseded, `rule-retro` loses `deferred_by`.
 
-### case 150
+### case 169.3
 
 When:
-`guppi render` writes `.claude/skills/retro/SKILL.md`; then the person types `/retro` or the agent calls the skill `retro`.
+The person types `/retro`, or the agent calls the skill `retro`.
 
 Then:
-The frontmatter of `SKILL.md` without `disable-model-invocation`; the call goes through the Skill tool: `guppi gate` checks the Spec against the ledger (122), leaves the mark `- HH:MM:SS <stamp> retro`, the event log gets `tool Skill: retro` and the PostToolUse lines.
-**＋** The agent may call `/retro` itself when the tasks of the Spec are ticked; the Retro stops at the lessons and the readings as before; `/handoff` behind the gate of the tree and of 122.
-**－** No other page and no line of code changes.
-**－** The Frontier line F8 closes on this Case; the live refusal of 122 — a reading at the event.
+The typed `/retro` passes through `guppi gate` on `UserPromptSubmit`, the agent's call through `guppi gate` on `PreToolUse Skill`; both check the Spec against the ledger, both leave the mark `retro`; a refused typed prompt is not expanded.
+**＋** The frontmatter of `SKILL.md` without `disable-model-invocation`: the agent calls `/retro` when the tasks of the Spec are ticked.
+**－** Retro still stops at the lessons and the readings; `/handoff` behind the gate of the tree and of 122.
 
 ## Method
 
@@ -90,3 +89,5 @@ block 150: the person typed /retro at 14:2x and the event log holds no "tool Ski
 - 2026-09-14 status: failed → passed · raw/2026-09-14/1229/ledger.md#L30
 - 2026-09-14 criterion: case 150 added · [[decision-case-150]]
 - 2026-09-15 status: pending → failed · raw/2026-09-15/1110/ledger.md#L26
+- 2026-09-15 criterion: case 169.3 added · [[decision-case-169.3]]
+- 2026-09-15 criterion: case 150 removed · [[decision-case-169.3]]

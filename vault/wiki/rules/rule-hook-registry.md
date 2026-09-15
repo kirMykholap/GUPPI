@@ -2,7 +2,7 @@
 type: rule
 kind: Leaf
 purpose: Prevents a hook from being registered by hand, outside a ratified decision
-status: built
+status: draft
 enforcement: render
 governs: .claude/settings.json
 render_mode: partial
@@ -34,7 +34,8 @@ agent's Render and is ratified with it; this page holds the registrations only.
                    { "type": "command", "command": "uv run guppi render --sync", "timeout": 60 } ] }
 ],
 "UserPromptSubmit": [
-  { "hooks": [ { "type": "command", "command": "uv run guppi event prompt", "timeout": 30 } ] }
+  { "hooks": [ { "type": "command", "command": "uv run guppi event prompt", "timeout": 30 },
+               { "type": "command", "command": "uv run guppi gate", "timeout": 30 } ] }
 ],
 "PreToolUse": [
 
@@ -73,3 +74,5 @@ agent's Render and is ratified with it; this page holds the registrations only.
 - 2026-09-13 status: draft → built · cascade
 - 2026-09-14 updated: guppi event prompt registered on UserPromptSubmit (case 111.2) · [[decision-case-111.2]]
 - 2026-09-14 updated: a PreToolUse hook on Bash, guppi bashguard, against the heredoc trap (case 127) · [[decision-case-127]]
+- 2026-09-15 updated: UserPromptSubmit runs guppi gate after guppi event prompt (case 169.2) · [[decision-case-169.2]]
+- 2026-09-15 status: built → draft · cascade

@@ -1,8 +1,9 @@
 ---
 type: decision
 case: "150"
-status: current
+status: archived
 update: ["[[rule-retro]]"]
+superseded_by: ["[[decision-case-169.3]]"]
 origin: raw/2026-09-14/1633/ledger.md#case-150
 sprint: migration
 created: 2026-09-14
@@ -34,3 +35,6 @@ The owner allows the agent to start the Retro itself after Work Mode: the Retro 
 ## History
 
 - 2026-09-14 created · raw/2026-09-14/1633/ledger.md#case-150
+- 2026-09-15 superseded by decision-case-169.3 · [[decision-case-169.3]]
+- 2026-09-15 archived · superseded
+- 2026-09-15 archived · cleanup

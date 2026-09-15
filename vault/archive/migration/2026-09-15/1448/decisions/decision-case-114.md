@@ -1,9 +1,10 @@
 ---
 type: decision
 case: "114"
-status: current
+status: archived
 update: ["[[rule-page-generation]]"]
 supersedes: ["[[decision-case-108]]"]
+superseded_by: ["[[decision-case-166.3]]"]
 origin: raw/2026-09-14/0747/ledger.md#case-114
 sprint: migration
 created: 2026-09-14
@@ -35,3 +36,6 @@ Either the synthesis entry carries the section, or the schema stops asking for i
 ## History
 
 - 2026-09-14 created · raw/2026-09-14/0747/ledger.md#case-114
+- 2026-09-15 superseded by decision-case-166.3 · [[decision-case-166.3]]
+- 2026-09-15 archived · superseded
+- 2026-09-15 archived · cleanup

@@ -1,9 +1,10 @@
 ---
 type: decision
 case: "162"
-status: current
+status: archived
 defer: ["[[rule-work-mode]]", "[[rule-subagent-guppi]]"]
 supersedes: ["[[decision-case-152]]"]
+superseded_by: ["[[decision-case-170]]"]
 origin: raw/2026-09-15/1110/ledger.md#case-162
 sprint: migration
 created: 2026-09-15
@@ -21,3 +22,6 @@ The owner opened session Q on the readings due and the three deferred items of t
 ## History
 
 - 2026-09-15 created · raw/2026-09-15/1110/ledger.md#case-162
+- 2026-09-15 superseded by decision-case-170 · [[decision-case-170]]
+- 2026-09-15 archived · superseded
+- 2026-09-15 archived · cleanup

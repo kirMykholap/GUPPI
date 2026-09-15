@@ -1,7 +1,7 @@
 ---
 type: estimate
 kind: QA
-status: passed
+status: pending
 target: "[[rule-brief]]"
 origin: raw/2026-09-10/ledger.md#case-35.3
 sprint: migration
@@ -31,6 +31,16 @@ The Deferred item of the Render reads: "Deferred: at most seven items — one pe
 **＋** `estimate-brief-written` gets a `### case 124.1` block, `pending`; read against the brief of the next librarian's run: the `open` Insights stand in Deferred by severity, with a count.
 **－** `{supersedes:case 119}`: `decision-case-119` is superseded, `rule-brief` loses `deferred_by`.
 
+### case 168
+
+When:
+The librarian writes `brief.md` by its frame.
+
+Then:
+The second section of the brief is "Readings due": after `generate`, every Estimate whose `status` is `pending` or `failed` — one line per `### case N` block: the Estimate, the block, the rule that stands `draft`, and where it is read — from the unticked `- [ ] read …` line of the session's Spec, or from the `Method` of the page when there is none.
+**＋** A `failed` one stands first, with the result of its reading in one line.
+**－** Nothing from the previous brief; the "not done" of the handoff stays in "Where things stand"; the section "What the next session does first" is retired.
+
 ## Method
 
 one reading by hand after the first librarian run, recorded in the estimate line
@@ -46,3 +56,4 @@ live 2026-09-14, block 124.1, against the brief of session O's librarian: the De
 - 2026-09-14 criterion: case 124.1 added · [[decision-case-124.1]]
 - 2026-09-14 status: pending → passed · raw/2026-09-14/1229/ledger.md#L5
 - 2026-09-14 status: passed → passed · raw/2026-09-14/1633/ledger.md#L1
+- 2026-09-15 criterion: case 168 added · [[decision-case-168]]

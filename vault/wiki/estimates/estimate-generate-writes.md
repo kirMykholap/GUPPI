@@ -1,7 +1,7 @@
 ---
 type: estimate
 kind: QA
-status: passed
+status: pending
 target: "[[rule-page-generation]]"
 origin: raw/2026-09-10/ledger.md#case-32
 sprint: migration
@@ -98,30 +98,6 @@ Then:
 **＋** `estimate-generate-writes` gets a `### case 105.3` block, `pending`.
 **－** A slug in neither place: "no such page", as today.
 
-### case 114
-
-When:
-`generate` writes a lesson page, or its cascade runs after all entries.
-
-Then:
-A lesson whose `insight` field is set gets `## Insight` holding `- [[<insight>]]`, rebuilt from the field on every write, before `## History`; a lesson without the field has no such section.
-**＋** In the cascade every live lesson with `insight` set and no `## Insight` section, or one that names another slug, is rewritten with the section and History `insight section derived`; the 22 pages are filled at the next librarian run.
-**＋** `estimate-generate-writes` gets a `### case 114` block, `pending`; a test in `tests/test_generate.py`: an `update` with `set: {status: clustered, insight: insight-x}` yields the section; a live lesson with the field and no section gets it in the cascade.
-**＋** `guppi lint` after the run shows the 22 `## Insight` findings gone.
-**－** `{supersedes:case 108}`: `decision-case-108` is superseded, `rule-synthesis` loses `deferred_by`.
-
-### case 124.2
-
-When:
-`guppi generate` applies a yaml entry whose target is a page of `insights/`.
-
-Then:
-A `defer` with an Insight as its target appends the decision slug to its `deferred_by`, as for a Rule; `KEY_ORDER["insights"]` gains `deferred_by` after `addressed_by`; a `supersedes` removes it through the same `clear_deferred_by`.
-**＋** An `update` with `set: {addressed_by: decision-case-N}` writes the field, and on every write of an Insight page the `## Addressed by` section is derived from the field — `- [[decision-case-N]]` — as a lesson's `## Insight` is from `insight` (114); without the field there is no section.
-**＋** An `update` with `set: {status: actioned}` goes as any `update`; the cascade of the same run archives the `clustered` children (104.2) and recounts `severity`.
-**＋** `estimate-generate-writes` gets a `### case 124.2` block, `pending`; the test: a `defer` on an insight → `deferred_by` written and shown in `insights-index.md`; an `update` with `addressed_by` and `status: actioned` → `## Addressed by` with the link, the children `archived`; a `supersedes` clears `deferred_by`.
-**－** An Insight is neither created nor deleted through the yaml: a `create` or `delete` with an Insight as its target is a `generate` error, as today.
-
 ### case 142.2
 
 When:
@@ -130,19 +106,6 @@ When:
 Then:
 The entry is skipped: not applied, `failed` kept as `materialize` wrote it, one line on stderr `generate: line N: not lifted by materialize; <message>`; exit 1; the other entries apply.
 **－** An entry with `kind` and a stale `failed` of an earlier run is as today (53.3): applied, the mark dropped.
-
-### case 148.1
-
-When:
-`guppi generate` or `guppi cleanup` writes a page; any script reads a page through `pages.read_page` or `materialize.page_estimates`; a one-off migration walks `vault/wiki/` and `vault/archive/`.
-
-Then:
-In the written frontmatter every value of a ref field that carries a category prefix is `"[[slug]]"`, a list `["[[a]]", "[[b]]"]`; the fields: `parent`, `children`, `estimates`, `target`, `insight`, `addressed_by`, `deferred_by`, `create`, `update`, `delete`, `defer`, `supersedes`, `superseded_by`. A slug without a category prefix (a Rule-class file in a Decision list) stays as it was.
-**＋** `read_page` and `page_estimates` strip `[[`/`]]` from these fields; a page without brackets reads the same — the migration is idempotent; lint, cleanup, pretask, materialize, archive change neither code nor contract beyond the two stripping lines.
-**＋** The migration: every page under `wiki/**` and `archive/**` read by `read_page` and written by `write_page`; body, History and key order as before; after it `guppi lint` gives the findings it gave before; `guppi render --check` exit 0; `git diff --stat` shows frontmatter only.
-**＋** Tests: the writer wraps; the reader strips; a page without brackets reads; `frontmatter()` quotes `[[…]]`.
-**＋** In Obsidian after the migration: the backlinks of an Insight are its lessons (in the archive) and its Decision; the backlinks of a Rule are its children, Estimates and Decisions; `unresolved` is empty.
-**－** The body sections stay; no CLI probe.
 
 ### case 151
 
@@ -155,6 +118,40 @@ The action of the entry is not done, stderr is empty, the exit code is not chang
 **＋** Tests: an entry `failed` + `superseded_by` — no stderr, exit 0, the Decision page exists, the target untouched; an entry `superseded_by` without `applied` in one yaml with the superseding one — both Decision pages, the earlier `superseded`.
 **＋** The librarian's run of this session: `generate` over `0747` is silent; 112.6 is out of the Flags.
 **－** `materialize`, `archive`, `cleanup` do not change.
+
+### case 166.2
+
+When:
+`guppi generate` writes a page of any category, or applies a yaml entry whose target is a page of `insights/`.
+
+Then:
+Neither at `create`, nor at `update`, nor in `save` does `generate` write `## Estimates`, `## Children`, `## Parent`, `## Implementation`, `## Code`, `## Insight` or `## Addressed by`; a section a page still carries is neither touched nor derived again on a write; `SECTION_ORDER` does not know them.
+**＋** A `create` with `ref` still appends the slug to the parent's `children` or to the target's `estimates`, History `child <slug> added` / `estimate <slug> added`; an `update` with `set` on a field writes the field.
+**＋** A `create` in `insights` marked `librarian` writes the page as any `create`: `status: open`, `severity` from the count of `children`, the entry's `origin`, `## Pattern` and `## Proposal` from the fields; History `created · <origin>`.
+**＋** A `defer` with an Insight as its target appends the decision slug to its `deferred_by`; a `supersedes` removes it through `clear_deferred_by`.
+**＋** An `update` with `set: {addressed_by: decision-case-N}` writes the field — and only the field.
+**＋** An `update` with `set: {status: actioned}` goes as any `update`; the cascade of the same run archives the `clustered` children and recounts `severity`.
+**－** A `create` in `insights` without the `librarian` mark is refused; a `delete` of an Insight is refused always.
+
+### case 166.3
+
+When:
+The cascade of `guppi generate` runs after all entries.
+
+Then:
+The cascade does not walk the lessons for `## Insight`; a lesson's `insight` field is its one link to its Insight; the History line `insight section derived` is written no more.
+**－** The other steps of the cascade — `built`/`draft`, the archive of a superseded decision, `severity`, the children of an `actioned` Insight, an Insight with no live child — as today.
+
+### case 172
+
+When:
+`guppi generate` or `guppi cleanup` writes a page; a script reads a page through `pages.read_page` or `materialize.page_estimates`.
+
+Then:
+In the written frontmatter every value of a ref field that carries a category prefix is `"[[slug]]"`, a list `["[[a]]", "[[b]]"]`; the fields: `parent`, `children`, `estimates`, `target`, `insight`, `addressed_by`, `deferred_by`, `create`, `update`, `delete`, `defer`, `supersedes`, `superseded_by`; a slug without a category prefix stays as it was.
+**＋** `read_page` and `page_estimates` strip `[[`/`]]` from these fields; a page without brackets reads the same.
+**＋** In Obsidian the backlinks of an Insight are its lessons and its Decision; the backlinks of a Rule are its children, Estimates and Decisions; `unresolved` is empty.
+**－** No CLI probe.
 
 ## Method
 
@@ -188,3 +185,9 @@ blocks 142.2, 148.1, 151, 2026-09-14: tests/test_generate.py — an entry with f
 - 2026-09-14 criterion: case 148.1 added · [[decision-case-148.1]]
 - 2026-09-14 criterion: case 151 added · [[decision-case-151]]
 - 2026-09-14 status: pending → passed · raw/2026-09-14/1633/ledger.md#L58
+- 2026-09-15 criterion: case 124.2 removed · [[decision-case-164]]
+- 2026-09-15 criterion: case 166.2 added · [[decision-case-166.2]]
+- 2026-09-15 criterion: case 166.3 added · [[decision-case-166.3]]
+- 2026-09-15 criterion: case 114 removed · [[decision-case-166.3]]
+- 2026-09-15 criterion: case 172 added · [[decision-case-172]]
+- 2026-09-15 criterion: case 148.1 removed · [[decision-case-172]]

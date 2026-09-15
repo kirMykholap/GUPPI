@@ -2,7 +2,7 @@
 type: rule
 kind: Leaf
 purpose: Prevents the handoff from starting on an uncommitted tree
-status: built
+status: draft
 enforcement: hook
 implementation_ref: [guppi/gate.py, tests/test_gate.py, .claude/settings.json]
 parent: "[[rule-end-of-work]]"
@@ -26,9 +26,7 @@ separate layer.
 `tool_input.skill` is `handoff` and `git status --porcelain` is not empty, it exits
 2 with the reason `commit first`, which blocks the call once; when the tree is
 clean it exits 0. Any other tool: exit 0; any other skill: exit 0 on the tree — the same hook refuses any skill while a `then` item of the session's Spec has no ledger line (`rule-ledger-write`, case 122). The hook writes nothing and
-commits nothing. It sees only calls made through the `Skill` tool, which is how the
-Retro skill calls `/handoff`; the handoff skill checks the tree itself for the case
-where the person types it.
+commits nothing. It sees the agent's calls through the `Skill` tool, and — registered on `UserPromptSubmit` as well — the person's typed `/pre-task`, `/retro` or `/handoff`: the payload's `prompt`, trimmed, with or without arguments, gets the same two checks and the same mark; a refusal is exit 2 with the reason for the person — the client blocks the typed prompt — and asks them to have the agent end its reply with the LEDGER block, or to commit; any other prompt is exit 0 with no output and no mark (case 169.1). The handoff skill still checks the tree itself, a second net.
 
 ## History
 
@@ -36,3 +34,5 @@ where the person types it.
 - 2026-09-10 estimate estimate-retro-commit-gates added · raw/2026-09-10/ledger.md#case-38.2
 - 2026-09-09 status: draft → built · cascade
 - 2026-09-14 updated: the gate's second refusal, on an unwritten ledger line, named beside the tree check (case 132) · [[decision-case-132]]
+- 2026-09-15 updated: the gate reads a typed /pre-task, /retro or /handoff from the UserPromptSubmit payload: same checks, same mark, exit 2 for the person (case 169.1) · [[decision-case-169.1]]
+- 2026-09-15 status: built → draft · cascade

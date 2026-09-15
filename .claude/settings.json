@@ -16,7 +16,8 @@
                    { "type": "command", "command": "uv run guppi render --sync", "timeout": 60 } ] }
 ],
 "UserPromptSubmit": [
-  { "hooks": [ { "type": "command", "command": "uv run guppi event prompt", "timeout": 30 } ] }
+  { "hooks": [ { "type": "command", "command": "uv run guppi event prompt", "timeout": 30 },
+               { "type": "command", "command": "uv run guppi gate", "timeout": 30 } ] }
 ],
 "PreToolUse": [
 

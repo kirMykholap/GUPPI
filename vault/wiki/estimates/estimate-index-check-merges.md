@@ -1,7 +1,7 @@
 ---
 type: estimate
 kind: QA
-status: pending
+status: passed
 target: "[[rule-index-check]]"
 origin: raw/2026-09-10/ledger.md#case-35.1
 sprint: migration
@@ -38,7 +38,7 @@ one reading by hand after the first librarian run, recorded in the estimate line
 
 ## Result
 
-live 2026-09-10 session G: the report names the comparisons per category (four estimate creates, no other category had a create); no merge, and none was due; four near marks in materialize.yaml (lines 2988, 3016, 3044, 3097) point at estimates; the two pages opened (estimate-generate-walks-dates, estimate-materialize-walks-dates) are named with the index line that did not settle it, empty in both; no comparison crossed categories
+live 2026-09-15, the librarian's run of session Q read against the brief: four lesson creates compared against the Grep `^(root_cause|deferred_by):` over `wiki/lessons/`, 27 lines named with their count; 0 merged and none was due; 1 near (`lesson-retro-typed-still-bypasses-the-skill-tool-after-150` near `lesson-retro-typed-by-the-person-bypasses-the-skill-tool-and-the-gate`) settled on the index line with the reason; no page opened; no create in another category, the Greps of `rules/` and `entities/` not run; no comparison crossed categories
 
 ## History
 
@@ -47,3 +47,4 @@ live 2026-09-10 session G: the report names the comparisons per category (four e
 - 2026-09-10 updated: an opened page is named in the report with the index line that did not settle it · raw/2026-09-10/ledger.md#case-49
 - 2026-09-11 status: passed → passed · raw/2026-09-10/ledger.md#L125
 - 2026-09-14 criterion: case 147.3 added · [[decision-case-147.3]]
+- 2026-09-15 status: pending → passed · raw/2026-09-15/1448/ledger.md#L1

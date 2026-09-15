@@ -2,7 +2,7 @@
 type: rule
 kind: Leaf
 purpose: Prevents an archived page from staying among the live ones
-status: built
+status: draft
 enforcement: check
 implementation_ref: [guppi/cleanup.py, tests/test_cleanup.py]
 parent: "[[rule-documentation]]"
@@ -26,7 +26,7 @@ this script's: `guppi archive` moves an applied session ([[rule-raw-archive]]).
 `## <id>` heading of `sprint.md`, `date` the day of the run, `HHMM` the session of the
 run: the latest `<HHMM>/` folder under `raw/<date>/`, and without one the latest of the
 nearest date back (case 102.2). The moved page gets the History
-line `archived · cleanup`; `log.md` gets the same. The slug is removed from the `children` lists of live pages and from the `estimates` lists of entities and rules, their sections are rebuilt and they get a History line; an Insight's `children` keep archived lessons, since `severity`
+line `archived · cleanup`; `log.md` gets the same. The slug is removed from the `children` lists of live pages and from the `estimates` lists of entities and rules, they get a History line; an Insight's `children` keep archived lessons, since `severity`
 counts the live ones. `[[slug]]` links in page bodies are not changed: Obsidian
 resolves a name in any folder, and lint counts archived slugs as known. A live page
 whose `parent` or `target` went to the archive is reported on stderr and left.
@@ -49,3 +49,5 @@ stderr with exit 1; the other pages still move.
 - 2026-09-14 updated: cleanup rewrites no index; the files are gone (case 147.6) · [[decision-case-147.6]]
 - 2026-09-14 status: built → draft · cascade
 - 2026-09-15 status: draft → built · cascade
+- 2026-09-15 updated: unlink edits the field only, no section rebuilt (case 166.4) · [[decision-case-166.4]]
+- 2026-09-15 status: built → draft · cascade

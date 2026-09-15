@@ -1,7 +1,7 @@
 ---
 type: estimate
 kind: QA
-status: passed
+status: pending
 target: "[[rule-hook-registry]]"
 origin: raw/2026-09-09/ledger.md#case-18.2
 sprint: migration
@@ -37,6 +37,15 @@ Then:
 **－** The whole-file clauses — the file parses, the next start still logs — belong to
 `estimate-settings` from now on; this page answers for the hook registrations.
 
+### case 169.2
+
+When:
+`guppi render` writes `.claude/settings.json`; then the person submits a prompt.
+
+Then:
+`UserPromptSubmit` carries two commands in order: `uv run guppi event prompt`, then `uv run guppi gate`, both with timeout 30.
+**－** The other events and matchers as today.
+
 ## Method
 
 The JSON case in `tests/test_render.py`; the live reading once by hand, written into the
@@ -53,3 +62,4 @@ live 2026-09-13 session L: render --sync wrote .claude/settings.json from rule-s
 - 2026-09-12 criterion: case 85.3 added · [[decision-case-85.3]]
 - 2026-09-12 updated: the criterion covers the hooks key; the whole-file clauses move to estimate-settings (case 99) · [[decision-case-99]]
 - 2026-09-13 status: pending → passed · raw/2026-09-13/ledger.md#L46
+- 2026-09-15 criterion: case 169.2 added · [[decision-case-169.2]]

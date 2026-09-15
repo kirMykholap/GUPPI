@@ -1,8 +1,9 @@
 ---
 type: decision
 case: "179"
-status: current
+status: archived
 defer: ["[[rule-case-protocol]]"]
+superseded_by: ["[[decision-case-181]]"]
 origin: raw/2026-09-15/1809/ledger.md#case-179
 sprint: migration
 created: 2026-09-15
@@ -20,3 +21,6 @@ The text of the page went stale after a contract change — the pattern of `insi
 ## History
 
 - 2026-09-15 created · raw/2026-09-15/1809/ledger.md#case-179
+- 2026-09-16 superseded by decision-case-181 · [[decision-case-181]]
+- 2026-09-16 archived · superseded
+- 2026-09-16 archived · cleanup

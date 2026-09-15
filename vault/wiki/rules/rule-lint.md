@@ -7,6 +7,7 @@ enforcement: check
 implementation_ref: [guppi/lint.py, tests/test_lint.py, Makefile]
 parent: "[[rule-harness]]"
 estimates: ["[[estimate-lint-catches]]"]
+deferred_by: ["[[decision-case-182]]"]
 origin: raw/2026-09-09/ledger.md#case-21
 sprint: migration
 created: 2026-09-09
@@ -56,3 +57,4 @@ finding, 0 with no output on a clean vault.
 - 2026-09-15 defer by decision-case-146 superseded · [[decision-case-156]]
 - 2026-09-15 updated: an Insight is never an orphan: its owners are its children, named in its own children field, live or archived; supersedes case 146 (case 156) · [[decision-case-156]]
 - 2026-09-15 status: draft → built · cascade
+- 2026-09-16 deferred · [[decision-case-182]]

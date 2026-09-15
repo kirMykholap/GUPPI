@@ -8,6 +8,7 @@ governs: .claude/skills/pre-task/SKILL.md
 render_mode: full
 parent: "[[rule-plan-mode]]"
 estimates: ["[[estimate-pretask-reconciles]]"]
+deferred_by: ["[[decision-case-182]]"]
 origin: raw/2026-09-09/ledger.md#case-24.2
 sprint: migration
 created: 2026-09-09
@@ -67,3 +68,4 @@ finding as a Case, or say in one line why it is already known. Then exit Plan Mo
 - 2026-09-14 updated: the pre-task dispatch carries the plan file's path and the instruction to read every Case's when, then and then block, not a summary (case 128) · [[decision-case-128]]
 - 2026-09-14 updated: the Recorded line dropped; guppi gate writes the stamped pretask mark (case 136.1) · [[decision-case-136.1]]
 - 2026-09-15 updated: the question to ask-guppi is the one before a create without a ref, not one per Case (case 155) · [[decision-case-155]]
+- 2026-09-16 deferred · [[decision-case-182]]

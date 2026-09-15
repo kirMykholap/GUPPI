@@ -210,6 +210,7 @@ entries:
       taken in Work Mode; the Plan Mode of a session of its own, before Slice 4'
   exists: true
   applied: '22:11:55'
+  superseded_by: '183'
 - line: 10
   text: decision[case 176][defer][rule-work-mode]{ref:rule-work-mode}{supersedes:case 170}
   case: '176'
@@ -221,6 +222,7 @@ entries:
   case_removed: '170'
   change: 'criterion: case 170 removed'
   applied: '22:11:55'
+  superseded_by: '183'
 - line: 11
   text: decision[case 176][defer][rule-subagent-guppi]{ref:rule-subagent-guppi}
   case: '176'
@@ -236,6 +238,7 @@ entries:
       agent as a Case; with rule-work-mode
   exists: true
   applied: '22:11:55'
+  superseded_by: '183'
 - line: 12
   text: decision[case 177][update][rule-materialize]{ref:rule-materialize}{supersedes:case 130.2}
   case: '177'
@@ -341,6 +344,7 @@ entries:
       signature (cases 171, 177)
   exists: true
   applied: '22:11:55'
+  superseded_by: '182'
 - line: 17
   text: decision[case 179][defer][rule-case-protocol]{ref:rule-case-protocol}
   case: '179'
@@ -356,6 +360,7 @@ entries:
       by ask-guppi at the pre-task of session S'
   exists: true
   applied: '22:11:55'
+  superseded_by: '181'
 decisions:
 - case: '173'
   decision: decision-case-173
@@ -591,6 +596,8 @@ decisions:
   supersedes:
   - decision-case-170
   applied: '22:11:55'
+  superseded_by:
+  - decision-case-183
 - case: '177'
   decision: decision-case-177
   origin: raw/2026-09-15/1809/ledger.md#case-177
@@ -673,6 +680,8 @@ decisions:
       at `generate`, by what it received. A question of the next Plan Mode.'
   spec: vault/raw/2026-09-15/1809/spec.md
   applied: '22:11:55'
+  superseded_by:
+  - decision-case-182
 - case: '179'
   decision: decision-case-179
   origin: raw/2026-09-15/1809/ledger.md#case-179
@@ -690,5 +699,7 @@ decisions:
       One `replace`; found at the pre-task of session S by `ask-guppi`, not raised as a Case there.
   spec: vault/raw/2026-09-15/1809/spec.md
   applied: '22:11:55'
+  superseded_by:
+  - decision-case-181
 unparsed: []
 session: '1809'

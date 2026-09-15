@@ -8,7 +8,7 @@ governs: CLAUDE.md
 render_mode: partial
 parent: "[[rule-claude-md]]"
 estimates: ["[[estimate-case-protocol-loaded]]"]
-deferred_by: ["[[decision-case-179]]"]
+deferred_by: ["[[decision-case-185]]"]
 origin: raw/2026-09-09/ledger.md#case-13
 sprint: migration
 created: 2026-09-09
@@ -86,14 +86,13 @@ exists. Without `/hi` the hook refuses and says so: tell the person, do not retr
 
 ## How it works
 
-Spliced into `CLAUDE.md` between its markers. The six Case sections are not repeated here:
+Spliced into `CLAUDE.md` between its markers. The eight Case sections are not repeated here:
 they arrive through `@vault/wiki/case-schema.md`, imported by the same file. What this
 section adds is the discipline around them — one Case at a time, when a Case splits, the
 vault query before a `create`, the shape of a section, and the LEDGER-block rule the ledger
 hook relies on.
 
-`parent: rule-plan-mode` names the Plan Mode MOC of Slice 2, which does not exist yet as a
-page; the reference dangles until then, on purpose.
+`parent: rule-claude-md` names the file the Render is spliced into; `rule-plan-mode` is the rule of the phase in which a Case is held.
 
 ## History
 
@@ -130,3 +129,6 @@ page; the reference dangles until then, on purpose.
 - 2026-09-15 updated: the LEDGER block opens the acknowledging reply, the question closes it; supersedes 157 (case 167) · [[decision-case-167]]
 - 2026-09-15 deferred · [[decision-case-179]]
 - 2026-09-15 status: draft → built · cascade
+- 2026-09-16 defer by decision-case-179 superseded · [[decision-case-181]]
+- 2026-09-16 updated: How it works says eight sections, not six, and names the real parent; supersedes the defer of 179 (case 181) · [[decision-case-181]]
+- 2026-09-16 deferred · [[decision-case-185]]

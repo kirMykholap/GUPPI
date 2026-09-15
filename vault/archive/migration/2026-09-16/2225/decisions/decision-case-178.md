@@ -1,8 +1,9 @@
 ---
 type: decision
 case: "178"
-status: current
+status: archived
 defer: ["[[rule-plan-mode]]"]
+superseded_by: ["[[decision-case-182]]"]
 origin: raw/2026-09-15/1809/ledger.md#case-178
 sprint: migration
 created: 2026-09-15
@@ -20,3 +21,6 @@ Old criteria pile up on the page even when they are no longer needed, and the re
 ## History
 
 - 2026-09-15 created · raw/2026-09-15/1809/ledger.md#case-178
+- 2026-09-16 superseded by decision-case-182 · [[decision-case-182]]
+- 2026-09-16 archived · superseded
+- 2026-09-16 archived · cleanup

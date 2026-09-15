@@ -1602,3 +1602,44 @@ instruction. The global feed; a page's own `## History` is the per-page view.
 - 2026-09-15 lessons/lesson-retro-typed-still-bypasses-the-skill-tool-after-150 archived · cleanup
 - 2026-09-15 decisions/decision-case-130.2 archived · cleanup
 - 2026-09-15 decisions/decision-case-170 archived · cleanup
+- 2026-09-16 estimates/estimate-retro-commit-gates status: pending → passed · raw/2026-09-15/2225/ledger.md#L1 · generate
+- 2026-09-16 estimates/estimate-materialize-assembles status: pending → passed · raw/2026-09-15/2225/ledger.md#L2 · generate
+- 2026-09-16 estimates/estimate-brief-written status: pending → passed · raw/2026-09-15/2225/ledger.md#L3 · generate
+- 2026-09-16 decisions/decision-case-180 created · raw/2026-09-15/2225/ledger.md#case-180 · generate
+- 2026-09-16 rules/rule-retro-commit updated: the gate refuses /retro when the session has no Spec and no ledger line — nothing to review (case 180) · [[decision-case-180]] · generate
+- 2026-09-16 estimates/estimate-retro-commit-gates criterion: case 180 added · [[decision-case-180]] · generate
+- 2026-09-16 decisions/decision-case-181 created · raw/2026-09-15/2225/ledger.md#case-181 · generate
+- 2026-09-16 decisions/decision-case-179 superseded by decision-case-181 · [[decision-case-181]] · generate
+- 2026-09-16 rules/rule-case-protocol defer by decision-case-179 superseded · [[decision-case-181]] · generate
+- 2026-09-16 rules/rule-case-protocol updated: How it works says eight sections, not six, and names the real parent; supersedes the defer of 179 (case 181) · [[decision-case-181]] · generate
+- 2026-09-16 decisions/decision-case-182 created · raw/2026-09-15/2225/ledger.md#case-182 · generate
+- 2026-09-16 decisions/decision-case-178 superseded by decision-case-182 · [[decision-case-182]] · generate
+- 2026-09-16 rules/rule-plan-mode defer by decision-case-178 superseded · [[decision-case-182]] · generate
+- 2026-09-16 rules/rule-plan-mode deferred · [[decision-case-182]] · generate
+- 2026-09-16 rules/rule-page-generation deferred · [[decision-case-182]] · generate
+- 2026-09-16 rules/rule-materialize deferred · [[decision-case-182]] · generate
+- 2026-09-16 rules/rule-lint deferred · [[decision-case-182]] · generate
+- 2026-09-16 rules/rule-pretask deferred · [[decision-case-182]] · generate
+- 2026-09-16 decisions/decision-case-183 created · raw/2026-09-15/2225/ledger.md#case-183 · generate
+- 2026-09-16 decisions/decision-case-176 superseded by decision-case-183 · [[decision-case-183]] · generate
+- 2026-09-16 rules/rule-work-mode defer by decision-case-176 superseded · [[decision-case-183]] · generate
+- 2026-09-16 rules/rule-subagent-guppi defer by decision-case-176 superseded · [[decision-case-183]] · generate
+- 2026-09-16 rules/rule-work-mode deferred · [[decision-case-183]] · generate
+- 2026-09-16 rules/rule-subagent-guppi deferred · [[decision-case-183]] · generate
+- 2026-09-16 decisions/decision-case-184 created · raw/2026-09-15/2225/ledger.md#case-184 · generate
+- 2026-09-16 rules/rule-ledger-write updated: the pass on "no source found" of 122 narrowed — a /retro with no source and no ledger line is refused by rule-retro-commit (case 180) · [[decision-case-184]] · generate
+- 2026-09-16 estimates/estimate-ledger-write-lifts criterion: case 184 added · [[decision-case-184]] · generate
+- 2026-09-16 decisions/decision-case-185 created · raw/2026-09-15/2225/ledger.md#case-185 · generate
+- 2026-09-16 rules/rule-case-protocol deferred · [[decision-case-185]] · generate
+- 2026-09-16 estimates/estimate-ledger-write-lifts status: pending → passed · raw/2026-09-15/2225/ledger.md#L15 · generate
+- 2026-09-16 lessons/lesson-pretask-check-session-fallback-stops-at-midnight created · raw/2026-09-15/2225/ledger.md#L16 · generate
+- 2026-09-16 insights/insight-ledger-hi-tied-to-its-session-by-position updated: synthesis: lesson-pretask-check-session-fallback-stops-at-midnight added, the pre-task check resolves its session from the session-start lines of today's event log when no id is given, and a start on yesterday's log is outside that window as the hi was for the hook; reopened from actioned · raw/2026-09-15/2225/ledger.md#L16 · generate
+- 2026-09-16 lessons/lesson-pretask-check-session-fallback-stops-at-midnight updated: clustered under insight-ledger-hi-tied-to-its-session-by-position · raw/2026-09-15/2225/ledger.md#L16 · generate
+- 2026-09-16 rules/rule-brief status: draft → built · cascade · generate
+- 2026-09-16 rules/rule-materialize status: draft → built · cascade · generate
+- 2026-09-16 decisions/decision-case-176 archived · superseded · generate
+- 2026-09-16 decisions/decision-case-178 archived · superseded · generate
+- 2026-09-16 decisions/decision-case-179 archived · superseded · generate
+- 2026-09-16 decisions/decision-case-176 archived · cleanup
+- 2026-09-16 decisions/decision-case-178 archived · cleanup
+- 2026-09-16 decisions/decision-case-179 archived · cleanup

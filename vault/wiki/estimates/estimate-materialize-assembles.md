@@ -1,7 +1,7 @@
 ---
 type: estimate
 kind: QA
-status: pending
+status: passed
 target: "[[rule-materialize]]"
 origin: raw/2026-09-10/ledger.md#case-31
 sprint: migration
@@ -147,7 +147,7 @@ pytest in tests/test_materialize.py against a temp vault; the live reading once 
 
 ## Result
 
-blocks 158 and 161: test 486 keeps a librarian entry without line with stderr empty, 1336 names two unreadable entries, the new test finds a Spec item with file and no slug — change lifted, no incomplete, category file, path from file; 46 green; the librarian's run of this session is the live check of 161 on the case-schema entry of Case 159
+block 175: tests green (379); live, the librarian's run of session S read from the brief: the three entries of 170 in `1448/materialize.yaml` (two `defer`, one `remove_criterion` of 162) carry `superseded_by: '176'`, each keeping its `applied`; `generate` printed no line for them, and its one line naming 170 is the derived `remove_criterion` of 176
 
 ## History
 
@@ -178,3 +178,4 @@ blocks 158 and 161: test 486 keeps a librarian entry without line with stderr em
 - 2026-09-15 status: pending → passed · raw/2026-09-15/1110/ledger.md#L25
 - 2026-09-15 criterion: case 175 added · [[decision-case-175]]
 - 2026-09-15 criterion: case 130.2 removed · [[decision-case-177]]
+- 2026-09-16 status: pending → passed · raw/2026-09-15/2225/ledger.md#L2

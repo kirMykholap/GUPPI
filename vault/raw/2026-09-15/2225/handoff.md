@@ -1,0 +1,32 @@
+# Handoff — 2026-09-15, session 2225 (the gate's third refusal, the Estimate model deferred as Slice 3d)
+
+## Notes from memory
+
+- The session ran from 22:25 on 2026-09-15 past midnight into 2026-09-16; the folder is `raw/2026-09-15/2225/`, the ledger lines after 01:00 belong to it. `guppi pretask --check` needed `--session 8836b091`: without it the stamp resolved to `--------` after midnight (the lesson of this session).
+- The owner typed `/retro` at 22:34 before any plan, to take the reading of 169.1. The gate let it through — nothing to refuse — and the owner asked why it passed; the answer became Case 180. The reading of 169.1 is `passed` on the typed path and the mark; the refusal half stands on a test. The owner did not object to the reading.
+- Most of the session was a discussion of what an Estimate page is. The owner led it: an Estimate is one promise, the way it is checked and the last result; the promise lives on the Estimate, not on the rule; How it works goes on a Leaf. The agreed model is the sixteen points of Case 182's purpose on `rule-plan-mode`; `grill-me` ran over it, every question answered. Two wordings inside the purpose were corrected after `ask-guppi`'s pre-task findings (point 5: `ask-guppi` reads lessons and insights too; point 10: When is already absent from the Decision page, 72.4) — corrected facts, not changed decisions; the owner was told.
+- Case 182 is a defer, not the model's ratification: the schemas, `index.md`, `case-schema.md`, the scripts and the migration are the Plan Mode of Slice 3d, next session. 178 is superseded by it; 185 adds `rule-case-protocol` to the list after 181 cleared its `deferred_by`.
+- The owner's open question, for the next Plan Mode: why does `ask-guppi` at pre-task read a `defer` in depth when the Case moves to another session — a candidate `update` of `rule-pretask`. Carry it into the brief.
+- F8 (the History of `estimate-generate-writes` crediting `decision-case-164`) closed with no decision: the entry of 164 did remove the block before its Case was superseded, 171 is the live decision, and 104.1 keeps History wikilinks to archived pages. The owner agreed: History is not rewritten.
+- Case 184 came out of pre-task: block 122 of `estimate-ledger-write-lifts` says "no source found: exit 0" for every skill, which 180 narrows for `/retro`. Its block 184 is read `passed` on the tests of 180 in the same session — the update line precedes the estimate line in the ledger.
+
+## Direct instructions to the librarian
+
+- `sprint.md`: add Slice 3d — "the Estimate model" — before 3b, in the Slices list: one sentence naming Case 182 and its sixteen points (the purpose of `decision-case-182` on `rule-plan-mode`), "3d before 3b, Slice 4 after both". This is the one change to `sprint.md`; nothing else there.
+- `rule-case-protocol` gets an `update` from 181 (two `replace`, `{supersedes:case 179}`) and a `defer` from 185 in the same run: after both, `deferred_by` must hold `decision-case-185` only, `decision-case-179` archived. Check the two `old` strings apply — the second spans a line wrap in the page ("as a\nCase" or similar); `replace` is whitespace-collapsed.
+- `rule-retro-commit`: the `replace` of 180 on the sentence ending "(case 169.1). The handoff skill still checks the tree itself, a second net." — one occurrence. `estimate-retro-commit-gates` gets block 180, `pending` (the live reading is next session's: a typed `/retro` as the first prompt after `/hi`); `rule-retro-commit` stays `draft`.
+- `rule-ledger-write`: the `replace` of 184 on "and every item with its line, or no source found, passes silently (case 122)." — one occurrence. `estimate-ledger-write-lifts` gets block 184 and, from the estimate line of this session, ends `passed`.
+- Readings in the ledger: 169.1 (`estimate-retro-commit-gates` — `passed` at 22:36, then 180 sets it `pending` again later in the ledger; the page must end `pending` with block 180), 175 (`estimate-materialize-assembles` → `passed`, `rule-materialize` → `built` by the cascade), 168 (`estimate-brief-written` → `passed`, `rule-brief` → `built`), 184 (`estimate-ledger-write-lifts` → `passed`).
+- The lesson `lesson-pretask-check-session-fallback-stops-at-midnight` is `error`, tags `harness`, `session`. At the index check compare it with the lessons on the session stamp and `CLAUDE_SESSION_ID` (case 136.1 territory: `--------` marks) — a `near` is likely, a merge is not: this one is the pre-task check's fallback, not the hook's.
+- Defers 182 (five targets), 183 (two), 185 (one): all on live pages, `deferred_by` set, no placeholder. 182 supersedes 178, 183 supersedes 176: `decision-case-178` and `decision-case-176` archived; `rule-work-mode` and `rule-subagent-guppi` keep their placeholder state.
+- The three Slice 5 items (F5–F7) and F8 closed as `work` in `frontier.md`; no yaml entry expected for them.
+- Lint: expect 70 as before, the same 68 `schema` + 2 `orphan`; `rule-retro-commit` and `rule-materialize` change status (`draft` stays for the first, `built` for the second), no new finding expected.
+
+## What actually got done
+
+- Ratified: 180 (`rule-retro-commit`, `contract: changed`), 181 (`rule-case-protocol`, `contract: same`, supersedes 179), 182 (defer ×5, Slice 3d, supersedes 178), 183 (defer ×2, Slice 3b after 3d, supersedes 176), 184 (`rule-ledger-write`, `contract: changed`), 185 (defer `rule-case-protocol`).
+- Readings `passed`: `estimate-retro-commit-gates` block 169.1, `estimate-materialize-assembles` block 175, `estimate-brief-written` block 168, `estimate-ledger-write-lifts` block 184.
+- Lesson: `lesson-pretask-check-session-fallback-stops-at-midnight` (`error`).
+- Code, commit `572df74` on `migration`: `guppi/gate.py` (`nothing_to_review`, the refusal in `run` for `retro` before the check of 122, the docstring), `tests/test_gate.py` (+6 tests, two fixtures given a reading line). 385 green, `make style` clean.
+- `raw/2026-09-15/2225/spec.md`: the two code boxes of 180 ticked; open — the `update` boxes of 180, 181, 184 and the `render --check` of 181 (the librarian's), the reading of block 180 (live, next session), the reading of block 184 (taken; tick it).
+- Not done: the live reading of 180 — impossible in a session that already has ledger lines; next session types `/retro` first thing after `/hi` and sees the refusal. Slice 3d and 3b: their own Plan Modes. The owner's question on `ask-guppi` and defers: next Plan Mode.

@@ -2,7 +2,7 @@
 type: rule
 kind: Leaf
 purpose: Prevents the next session from starting without the facts and the flags of this one
-status: draft
+status: built
 enforcement: render
 governs: .claude/agents/librarian-guppi.md
 render_mode: partial
@@ -54,3 +54,4 @@ and flags only. Add no decision and no judgment of the work. Change
 - 2026-09-14 updated: the hub file linked for the graph (case 149.4) · [[decision-case-149.4]]
 - 2026-09-15 updated: the second section is Readings due, sourced from the pending and failed Estimates after the run and the Spec's reading lines; What the next session does first retired (case 168) · [[decision-case-168]]
 - 2026-09-15 status: built → draft · cascade
+- 2026-09-16 status: draft → built · cascade

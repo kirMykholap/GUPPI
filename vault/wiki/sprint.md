@@ -22,7 +22,11 @@ by its own rules) and Phase 2 (the surviving pages brought into conformance) of
 
 **Slices**, each its own Plan Mode and approval: 0 layout · 1 ledger, event log, `/hi` ·
 2 renderer, lint, indexes, `/ask`, pre-task · 3 materialize, generate, cleanup, librarian, retro,
-handoff · 3b Work Mode (`rule-work-mode`, `rule-subagent-guppi`, `to-executable-plan`, its
+handoff · 3d the Estimate model: Case 182 defers it as the sixteen points of the purpose of
+`decision-case-182` on `rule-plan-mode` — one promise, one way to check it, one last result per
+Estimate, the Criterion replaced whole by a Case, no `### case N` blocks, no `contract` on an
+`update`, lint `unread` on every `pending` Estimate, the migration of the 42 pages one rule at a
+time (3d before 3b, Slice 4 after both) · 3b Work Mode (`rule-work-mode`, `rule-subagent-guppi`, `to-executable-plan`, its
 hooks) · 3c raw lifecycle, built 2026-09-13 (session L): the archive of an applied session of
 `raw/` (case 100), the tail `/hi` prints (101), one archive root `vault/archive/` (102), the
 ledger of a session (103), the status cascades over the archive (104), the slug checked

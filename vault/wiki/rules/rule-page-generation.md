@@ -7,6 +7,7 @@ enforcement: check
 implementation_ref: [guppi/generate.py, tests/test_generate.py]
 parent: "[[rule-documentation]]"
 estimates: ["[[estimate-generate-writes]]", "[[estimate-generate-walks-dates]]"]
+deferred_by: ["[[decision-case-182]]"]
 origin: raw/2026-09-10/ledger.md#case-32
 sprint: migration
 created: 2026-09-10
@@ -110,3 +111,4 @@ declared and not registered is reported on stderr and left on the page.
 - 2026-09-15 updated: block 148.1 restated without the body sections; supersedes 148.1 (case 172) · [[decision-case-172]]
 - 2026-09-15 status: built → draft · cascade
 - 2026-09-15 status: draft → built · cascade
+- 2026-09-16 deferred · [[decision-case-182]]

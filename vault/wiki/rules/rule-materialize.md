@@ -2,11 +2,12 @@
 type: rule
 kind: Leaf
 purpose: Prevents the librarian from reading the ledger and the Spec itself, or from routing a decision by guesswork
-status: draft
+status: built
 enforcement: check
 implementation_ref: [guppi/materialize.py, tests/test_materialize.py]
 parent: "[[rule-documentation]]"
 estimates: ["[[estimate-materialize-assembles]]", "[[estimate-materialize-walks-dates]]"]
+deferred_by: ["[[decision-case-182]]"]
 origin: raw/2026-09-10/ledger.md#case-31
 sprint: migration
 created: 2026-09-10
@@ -90,3 +91,5 @@ date fails.
 - 2026-09-15 updated: a supersedes marks every entry of the earlier Case by its case number, the derived block removal included; the filter by kind is gone (case 175) · [[decision-case-175]]
 - 2026-09-15 updated: the second statement of the supersedes mark says every entry by case number; block 130.2 with its filter by kind leaves the Estimate (case 177, supersedes 130.2) · [[decision-case-177]]
 - 2026-09-15 status: built → draft · cascade
+- 2026-09-16 deferred · [[decision-case-182]]
+- 2026-09-16 status: draft → built · cascade

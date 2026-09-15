@@ -1,7 +1,7 @@
 ---
 type: estimate
 kind: QA
-status: pending
+status: passed
 target: "[[rule-brief]]"
 origin: raw/2026-09-10/ledger.md#case-35.3
 sprint: migration
@@ -47,7 +47,7 @@ one reading by hand after the first librarian run, recorded in the estimate line
 
 ## Result
 
-live 2026-09-14, block 124.1, against the brief of session O's librarian: the Deferred list holds five items — the four `open` Insights, each severity 2, ordered by slug at equal severity and count, each marked "stood in 1 brief"; then Slice 3b, related Insight `insight-harness-agent-visibility` actioned at severity 0, "postponed 10 times"; every Insight line carries slug, severity, pattern and Proposal; no `open` Insight is outside the list; the five sections stand in order, the flags name the 3 incomplete, the 1 failed and the 2 near entries and the lint output; sprint.md unchanged as the handoff asked nothing
+block 168: the brief of session S, read by hand: "Readings due" is its second section, after `generate` 3 `pending` and 0 `failed`, one line per block — the Estimate, the block, the rule standing `draft`, and where it is read: 175 and 169.1 from the unticked lines of `1809/spec.md`, 168 from the page's `Method`; no `failed` line; nothing from the previous brief; the "not done" stays in "Where things stand"; no section "What the next session does first"; the five sections in order
 
 ## History
 
@@ -57,3 +57,4 @@ live 2026-09-14, block 124.1, against the brief of session O's librarian: the De
 - 2026-09-14 status: pending → passed · raw/2026-09-14/1229/ledger.md#L5
 - 2026-09-14 status: passed → passed · raw/2026-09-14/1633/ledger.md#L1
 - 2026-09-15 criterion: case 168 added · [[decision-case-168]]
+- 2026-09-16 status: pending → passed · raw/2026-09-15/2225/ledger.md#L3

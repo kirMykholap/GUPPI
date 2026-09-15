@@ -1,9 +1,10 @@
 ---
 type: decision
 case: "176"
-status: current
+status: archived
 defer: ["[[rule-work-mode]]", "[[rule-subagent-guppi]]"]
 supersedes: ["[[decision-case-170]]"]
+superseded_by: ["[[decision-case-183]]"]
 origin: raw/2026-09-15/1809/ledger.md#case-176
 sprint: migration
 created: 2026-09-15
@@ -21,3 +22,6 @@ The owner opened session S on the Deferred list and the Flags of the brief — C
 ## History
 
 - 2026-09-15 created · raw/2026-09-15/1809/ledger.md#case-176
+- 2026-09-16 superseded by decision-case-183 · [[decision-case-183]]
+- 2026-09-16 archived · superseded
+- 2026-09-16 archived · cleanup

@@ -75,6 +75,16 @@ Only a `hi` of the session's stamp after its first `session-start` opens the win
 **＋** The `### case 111.6` block leaves the criterion: `{supersedes:case 111.6}`.
 **－** `hi_recorded`, `session_dir`, `ledger_path` — unchanged beyond the removal of the fallback.
 
+### case 184
+
+When:
+`guppi gate` receives `/pre-task`, `/retro` or `/handoff` — typed, or through `Skill` — and the session has no Spec source.
+
+Then:
+`/pre-task` and `/handoff`: as in 122 — exit 0, silent; for `/handoff` the tree check follows.
+**＋** `/retro` with at least one `decision`, `estimate` or `lesson` line in the session's ledger window: as in 122.
+**－** `/retro` with no source and none of those lines: the refusal of `rule-retro-commit` (case 180), not a pass.
+
 ## Method
 
 pytest in `tests/test_ledger.py` with piped payloads against a temp vault; the live
@@ -82,7 +92,7 @@ reading is taken once by hand and written into the estimate line.
 
 ## Result
 
-block 136.3 against tests/test_ledger.py: an unstamped `--------` hi under our start → the lines refused with "no /hi recorded for session 44c1aae1" and no ledger file; the same after a foreign resume → refused, and a stamped hi of ours then opens the window at its time; `unstamped_hi_moment` removed, 359 tests green
+block 184: tests/test_gate.py 30 green (385 total), 2026-09-16 session 2225 — `test_pretask_and_handoff_in_an_empty_session_pass_as_before` (no source: exit 0 for /pre-task and /handoff, the tree check after), `test_one_reading_line_is_something_to_review` (a /retro with one estimate line: exit 0 and the mark), `test_a_typed_retro_in_an_empty_session_is_refused` and `test_a_skill_retro_in_an_empty_session_is_refused_for_the_agent` (no source and no line: exit 2, nothing to review, no mark); no live half of its own
 
 ## History
 
@@ -102,3 +112,5 @@ block 136.3 against tests/test_ledger.py: an unstamped `--------` hi under our s
 - 2026-09-14 criterion: case 136.3 added · [[decision-case-136.3]]
 - 2026-09-14 criterion: case 111.6 removed · [[decision-case-136.3]]
 - 2026-09-14 status: pending → passed · raw/2026-09-14/1229/ledger.md#L27
+- 2026-09-16 criterion: case 184 added · [[decision-case-184]]
+- 2026-09-16 status: pending → passed · raw/2026-09-15/2225/ledger.md#L15

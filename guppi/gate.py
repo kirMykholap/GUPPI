@@ -26,6 +26,15 @@ the Spec have no ledger line (case A, case B). The text before a tool call is ne
 end this reply in text with the LEDGER block, then call /<skill> in the next reply.` No
 `hi`, no Spec and no plan path: nothing to check.
 
+Before the Spec, for `/retro` only (case 180): a session with a `hi` but no `spec.md` in
+its folder, no plan file named by the event log and no record line — decision, estimate
+or lesson — in its ledger window has nothing to review, and the call is refused: `gate:
+/retro refused — nothing to review: no Spec and no ledger line in raw/<date>/<HHMM>/.
+Ratify a Case or write a reading or a lesson first,` then the advice of the path — `then
+type /retro again.` for the person, `then call /retro in the next reply.` for the agent.
+No mark. `/pre-task` and `/handoff` in the same session go as before; without a `hi`
+nothing is checked.
+
 Then the tree: when the skill is `handoff` and `git status --porcelain` is not empty, the
 reason is `commit first`. A clean tree, another skill or another tool: exit 0. The handoff
 skill still checks the tree itself, a second net. Rule pages:
@@ -154,6 +163,26 @@ def spec_check(project_dir: Path, stamp: str, now) -> list[str]:
     return unwritten_items(specs, records)
 
 
+def nothing_to_review(project_dir: Path, stamp: str, now) -> str | None:
+    """The session's folder, as `raw/<date>/<HHMM>/`, when a `/retro` has nothing to review
+    (case 180): a `hi`, but no `spec.md` in the folder, no plan file named by the event
+    log, and no record line — decision, estimate or lesson — in the session's ledger
+    window. None without a `hi`, or when any of the three exists."""
+    logs = session_event_logs(project_dir, now, stamp)
+    hi = hi_moment(logs, stamp)
+    folder = session_dir(project_dir, now, stamp)
+    if hi is None or folder is None:
+        return None
+    if (folder / "spec.md").is_file():
+        return None
+    plan = plan_path(logs, stamp)
+    if plan is not None and plan.is_file():
+        return None
+    if window_lines(project_dir, hi, now.date().isoformat()):
+        return None
+    return f"raw/{folder.parent.name}/{folder.name}/"
+
+
 def mark(project_dir: Path, payload: dict, skill: str, now) -> None:
     """The stamped mark of a skill call the gate let through (case 136.1); nothing for a
     skill outside `MARKS`."""
@@ -175,6 +204,19 @@ def run(
         if not skill:
             return 0
         stamp = session_stamp(None, payload)
+        if skill == "retro":
+            empty = nothing_to_review(project_dir, stamp, now)
+            if empty:
+                if typed(payload):
+                    advice = "then type /retro again."
+                else:
+                    advice = "then call /retro in the next reply."
+                print(
+                    f"gate: /retro refused — nothing to review: no Spec and no ledger line in "
+                    f"{empty}. Ratify a Case or write a reading or a lesson first, {advice}",
+                    file=stderr,
+                )
+                return 2
         unwritten = spec_check(project_dir, stamp, now)
         if unwritten:
             cases = sorted({f.split(":", 1)[0] for f in unwritten}, key=case_key)

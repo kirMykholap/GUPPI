@@ -1,0 +1,218 @@
+<!-- approved 01:22:02 · session 8836b091 -->
+
+# Spec — 2026-09-15, session 22:25
+
+## Case 180 — `rule-retro-commit`: the gate refuses `/retro` when there is nothing to review
+
+> **context:**
+> `rule-retro-commit` is the hook `guppi gate`. It runs on `PreToolUse` for the agent's `Skill` call and on `UserPromptSubmit` for the person's typed `/pre-task`, `/retro` and `/handoff`. It has two refusals: a `then` item of the Spec without its ledger line (case 122), and a dirty tree for `/handoff`. It looks for the Spec in `spec.md` of the session's folder and in the plan file the event log named last. No `hi`, no Spec, no plan file: nothing to check, exit 0, the mark is written.
+
+> **problem:**
+> Retro is the analysis of what the session did: Cases, readings, lessons. A session with no Spec and no ledger line did nothing, and its Retro is empty — as at 22:34 today. The gate lets it through. Must the gate refuse, and on which condition?
+
+> **given:**
+> `rule-retro-commit` is `draft`; `estimate-retro-commit-gates` was `pending` on block 169.1, read `passed` at 22:34 (a line of this session's ledger).
+> **＋** `guppi/gate.py`: `spec_check` returns an empty list without `hi`, without `spec.md` and without a plan file; `run` then goes on to the tree check and the mark.
+> **＋** `session_decisions(window_lines(...))` reads the lines of the session's ledger window; `window_lines` returns every line of the window, not only `decision`.
+> **＋** `tests/test_gate.py`: piped payloads against a temp repository; 6 tests on the head block, the tests of 169.1 on the typed path.
+> **＋** An `estimate[...]` line is written the moment the measurement exists, in Plan Mode too (`rule-ledger-write`): a session of readings has a ledger line before `/retro`.
+> **－** `/handoff` and `/pre-task` are not changed by this Case; their contract stays.
+
+> **when:**
+> `guppi gate` receives `/retro` — typed by the person, a `UserPromptSubmit` payload whose `prompt`, trimmed, is `/retro` with or without arguments, or called by the agent through `Skill` with `skill: retro` on `PreToolUse`.
+
+> **then:**
+> When the session has a `hi` but its folder holds no `spec.md`, the event log names no plan file, and the session's ledger window holds no `- decision[`, `- estimate[` or `- lesson[` line, the gate refuses: exit 2, the reason on stderr: `gate: /retro refused — nothing to review: no Spec and no ledger line in raw/<date>/<HHMM>/. Ratify a Case or write a reading or a lesson first, then type /retro again.`; on the `Skill` path the same advice for the agent: `…then call /retro in the next reply.`; the client blocks the prompt, no mark is written.
+> **＋** With at least one of the three ledger lines, or a Spec, or a plan file — the check of 122 and the mark as today.
+> **＋** Without `hi` — as today: nothing to check, exit 0.
+> **－** `/pre-task` and `/handoff` are unchanged; `/handoff` in an empty session still checks the tree only.
+
+```then
+update:
+  - slug: rule-retro-commit
+    contract: changed
+    replace:
+      - old: "any other prompt is exit 0 with no output and no mark (case 169.1). The handoff skill still checks the tree itself, a second net."
+        new: "any other prompt is exit 0 with no output and no mark (case 169.1). A `/retro` — typed or called through `Skill` — in a session with nothing to review is refused: a `hi` but no `spec.md` in the session's folder, no plan file named by the event log, and no `- decision[`, `- estimate[` or `- lesson[` line in the session's ledger window; exit 2 with the reason `nothing to review`, the client blocks the prompt, no mark; `/pre-task` and `/handoff` are not affected (case 180). The handoff skill still checks the tree itself, a second net."
+    change: the gate refuses /retro when the session has no Spec and no ledger line — nothing to review (case 180)
+```
+
+```tasks
+- [ ] update `rule-retro-commit`, `contract: changed`: How it works gains the third refusal, "nothing to review"; `estimate-retro-commit-gates` gets a `### case 180` block, `pending`
+- [x] `guppi/gate.py`: `nothing_to_review(project_dir, stamp, now)` — no Spec source and no record line in the session's window; in `run`, for `retro` only, before the check of 122; the refusal text for the typed path and for the `Skill` path; the docstring
+- [x] `tests/test_gate.py`: a typed `/retro` and a `Skill retro` in a session with `hi`, no Spec, no plan file and no ledger line → exit 2, the reason, no mark; the same session with one `estimate[...]` line → exit 0 and the mark; `/handoff` and `/pre-task` in the same empty session → as before
+- [ ] read `estimate-retro-commit-gates` block 180: `tests/test_gate.py` green; live — a typed `/retro` as the first prompt of the next session after `/hi`, the refusal seen
+```
+
+## Case 181 — `rule-case-protocol`: the stale text of How it works
+
+Taken up from the defer of 179; `context` and `problem` as on `decision-case-179`.
+
+> **context:**
+> `rule-case-protocol` is the rule whose Render enters `CLAUDE.md`. The Render says "eight sections" (case 163); the How it works of the same page says "The six Case sections are not repeated here: they arrive through `case-schema.md`".
+
+> **problem:**
+> The text of the page went stale after a contract change — the pattern of `insight-workflow-contract-change-leaves-its-derived-text-stale`. One `replace`; found at the pre-task of session S by `ask-guppi`, not raised as a Case there.
+
+> **given:**
+> `rule-case-protocol` is `built`, `deferred_by: [[decision-case-179]]`; its Estimate `estimate-case-protocol-loaded` is `passed` on 167.
+> **＋** How it works, first sentence: "The six Case sections are not repeated here: they arrive through `@vault/wiki/case-schema.md`, imported by the same file."
+> **＋** How it works, second paragraph: "`parent: rule-plan-mode` names the Plan Mode MOC of Slice 2, which does not exist yet as a page; the reference dangles until then, on purpose." The page's frontmatter: `parent: "[[rule-claude-md]]"`; `rule-plan-mode` is a live page.
+> **＋** `{supersedes:case 179}` clears `deferred_by` on the page and archives `decision-case-179`.
+> **－** The Render does not change: `CLAUDE.md` after `guppi render` equals HEAD.
+
+> **when:**
+> The librarian applies the `update` through `guppi generate`, and a reader opens the How it works of `rule-case-protocol`.
+
+> **then:**
+> The first sentence says "The eight Case sections are not repeated here".
+> **＋** The second paragraph says: `parent: rule-claude-md` is the file the Render is spliced into; `rule-plan-mode` is the rule of the phase the Case is held in.
+> **＋** `deferred_by` on the page is empty; `decision-case-179` is `archived`.
+> **－** The Render and `CLAUDE.md` are unchanged; `estimate-case-protocol-loaded` gets no new block.
+
+```then
+update:
+  - slug: rule-case-protocol
+    contract: same
+    replace:
+      - old: "The six Case sections are not repeated here:"
+        new: "The eight Case sections are not repeated here:"
+      - old: "`parent: rule-plan-mode` names the Plan Mode MOC of Slice 2, which does not exist yet as a page; the reference dangles until then, on purpose."
+        new: "`parent: rule-claude-md` names the file the Render is spliced into; `rule-plan-mode` is the rule of the phase in which a Case is held."
+    change: How it works says eight sections, not six, and names the real parent; supersedes the defer of 179 (case 181)
+```
+
+```tasks
+- [ ] update `rule-case-protocol`, `contract: same`, two `replace` in How it works; `{supersedes:case 179}` on the line
+- [ ] after `generate`: `guppi render --check` exit 0, `CLAUDE.md` equal to HEAD
+```
+
+## Case 184 — `rule-ledger-write`: "no source found: exit 0" and the refusal of 180
+
+> **context:**
+> `rule-ledger-write` describes the gate from the side of the Spec: an item without its ledger line is refused, "every item with its line, or no source found, passes silently (case 122)". Block 122 of `estimate-ledger-write-lifts` signs the same: "Every item with its line, or no source found: exit 0, silent", for any call through `Skill`. Case 180 makes a `/retro` with no source and no ledger line a refusal.
+
+> **problem:**
+> Two signed texts say "no source: exit 0", and 180 says "no source and no line: exit 2" for `/retro`. Without a line on `rule-ledger-write` its contract contradicts 180 silently.
+
+> **given:**
+> `rule-ledger-write` is `built`, with one Estimate — `estimate-ledger-write-lifts`, `passed`; no `estimate_slug` needed.
+> **＋** How it works, one sentence: "and every item with its line, or no source found, passes silently (case 122)".
+> **＋** Case 180 is ratified in this session; its tests in `tests/test_gate.py` cover the refusal and the pass.
+> **－** The contract of `rule-retro-commit` does not change here.
+
+> **when:**
+> `guppi gate` receives `/pre-task`, `/retro` or `/handoff` — typed, or through `Skill` — and the session has no Spec source.
+
+> **then:**
+> `/pre-task` and `/handoff`: as in 122 — exit 0, silent; for `/handoff` the tree check follows.
+> **＋** `/retro` with at least one `decision`, `estimate` or `lesson` line in the session's ledger window: as in 122.
+> **－** `/retro` with no source and none of those lines: the refusal of `rule-retro-commit` (case 180), not a pass.
+
+```then
+update:
+  - slug: rule-ledger-write
+    contract: changed
+    replace:
+      - old: "and every item with its line, or no source found, passes silently (case 122)."
+        new: "and every item with its line, or no source found, passes silently (case 122) — except a `/retro` with no source and no `decision`, `estimate` or `lesson` line in the session's ledger window, which `rule-retro-commit` refuses as nothing to review (case 180; case 184)."
+    change: the pass on "no source found" of 122 narrowed — a /retro with no source and no ledger line is refused by rule-retro-commit (case 180)
+```
+
+```tasks
+- [ ] update `rule-ledger-write`, `contract: changed`, one `replace` in How it works; `estimate-ledger-write-lifts` gets a `### case 184` block, `pending`
+- [ ] read `estimate-ledger-write-lifts` block 184: the tests of 180 in `tests/test_gate.py` green — the same work as 180, none of its own
+```
+
+## Deferred
+
+## Case 182 — Slice 3d: the Estimate model
+
+> **context:**
+> An Estimate today is one page per rule: a head Criterion from the moment of `create`, plus one `### case N` block per `contract: changed`, appended by the script; only `{supersedes:case N}` removes a block; `Result` is overwritten by the last reading of any block; `Method` is one per page although the blocks are checked by a test here and by a reading there. The promise of a rule is written three times — How it works, Render, the blocks — and the copies drift apart (174, 179/181). `rule-page-generation` holds 10 blocks, `rule-materialize` 9. Question 178 — who names the block a new contract removes — is a symptom.
+
+> **problem:**
+> Nobody judges an Estimate page as a whole: it is stitched from deltas, and "what the rule promises now" is written nowhere. Session 2225 took this apart down to a model that changes `estimates/schema.md`, `rules/schema.md`, `case-schema.md`, `index.md` §6–§7, `materialize`, `generate`, `lint`, pre-task and the form of Plan Mode — the size of a Slice, not of a Case. The model must be kept whole and run as the Plan Mode of the next session, before 3b: Work Mode leans on "an Estimate is the red test".
+
+```then
+defer:
+  - slug: rule-plan-mode
+    type: rule
+    purpose: |
+      Slice 3d — the Estimate model agreed in session 2225; supersedes 178: the question "who names the block to remove" disappears — there are no blocks.
+
+      What an Estimate is
+      1. An Estimate = one promise + one way to check it + the last result with its date. The split: one action (`when`) — one Estimate; the ＋/－ lines stay in its `then` while one run checks them; a line with a test or a reading of its own is split off (§6). The axis of the split is the promise, not the method: a test in a temp repository ("on payload X the script does Y") and a live reading ("the hook is registered and fires in the client") are two promises, two Estimates, no text duplicated.
+      2. `kind` QA/Research stays; Research is when the result is unknown before the build — its `then` a question, its Result the finding. Reading a known criterion by eye is QA by hand, not Research.
+      3. The promise is written once — the Estimate's Criterion: Given/When/Then. The rule keeps `purpose`, Purpose (the failure it prevents), Render (when rendered), `estimates` — the table of contents of its promises — and `implementation_ref`/`code_ref`. How it works is dropped on a Leaf — the mechanism lives in the code and its docstring; kept on a MOC ("why in this order"). Render is a promise too: the file equals the Render (the render Estimate) and the agent does what is written (the live-reading Estimate).
+      4. A MOC exists when there is a promise about the whole — an order, a chain — that no child holds alone; that promise is the MOC's Estimate, checked by a make target. A grouping without such a promise is `tags.md`, not a MOC.
+      5. Estimate fields: `kind`, `status`, `target`, `purpose` (one line for the list on the rule), `method` (one line: the test command; where and when to read; what is measured in Research), `checked` (the date from the time of the estimate line). Sections: Criterion, Result. Context and the Method section go. Slugs: existing ones stay, new ones are `estimate-<target>-<promise>`. The pages will number ~90–120 — no harm: `ask-guppi` searches the index lines of rules, entities, lessons and insights, never Estimates; the rule page lists its Estimates with their `purpose`, only the touched ones are read; no Estimate index, as today (§11).
+
+      How a Case changes a promise
+      6. A Case: `context`/`problem`/`recommend` — the story for the person; the vault's answer — which Estimates of the rule are touched and which are not — in `context`. `given`/`when`/`then` — the technical contract, the description of the test or of the Research items; `given` holds conditions of the behaviour only, the state of pages moves to `context`. `tasks` without `contract` and "block N" lines. The chat form — eight sections — does not change; `case-schema.md`: "`when` + `then` are the criterion" → "`given` + `when` + `then` are the Estimate's Criterion". One signature (72.1): the contract is signed in the Case and copied by the script.
+      7. An `update` of `estimate-x` replaces the Criterion with the Case's `given`/`when`/`then` whole and sets `pending`; the `then` block carries `slug` only, and `set` when needed; a change of `method` alone writes the promise again word for word. The flag `contract: changed/same` goes; the `ref` of the ledger line is the Estimate itself. One contract per Case or sub-case; two touched promises are two sub-cases.
+      8. A change of a rule is the Case's judgment, not automation: only a replaced Criterion sets `pending`. An `update` of the rule's Purpose touches no Estimate (`when` — a reader opens the page, `then` — the new text); an `update` of the Render touches the live-reading Estimate of that Render. Pre-task checks that the named Estimates exist and asks `ask-guppi` whether an unnamed one speaks of the same thing. The hole: code in Work Mode touches a promise the Case did not name — only that promise's test catches it; hence a test for every promise where one is possible.
+      9. A new promise is an explicit `create` of an Estimate with `ref: rule-x`, its slug in the Case; a `create` of a rule with several promises — the parent creates the rule, sub-cases create one Estimate each. `method`, `estimate_kind`, `estimate_slug` on `create` go.
+      10. The Decision page: Context, Problem, the lists of decisions; Given goes (When is already absent, case 72.4), and the Criterion list of `[[estimate-x]] § case N` lines goes with the blocks — the contract is not its business. The old Criterion after a replacement stays in the Spec of the archived session, reached by `origin`, and in the Estimate's History.
+
+      Reading and building
+      11. A reading: `estimate[slug][passed|failed] text` as today; the date and the command as the first line of Result; Result is overwritten — it is about one run of one check; `built` = every Estimate `passed`, the cascade as today; `failed` is debt, archival by default.
+      12. TDD: an Estimate is the red test, described by `given`/`when`/`then` before the work; the test is written in Work Mode as the first step, before the code — a task of the Spec; Work Mode turns it green. A reading is taken in Plan Mode when the check can run there. Slice 3b (Work Mode) leans on this.
+      13. Lint: a finding `unread` for every `pending`/`failed` Estimate, exit 1 — red between a contract change and its reading by design, `guppi lint` runs whenever wanted; `make lint` does not block a commit. The flow: a rule changes → the touched Estimate `pending` → lint red → tests or reading → `passed` → lint clean.
+
+      Limits and migration
+      14. `materialize`/`generate` lose the blocks, `remove_criterion`, `contract`; `supersedes` stays for Decision pages and yaml entries. Lessons and Insights do not change. Entities: the same schema, none built, no migration.
+      15. The migration of the 42 pages: one Case per rule — a recut of signed text with no new contract — for the rules that get touched; the rest at their first touch; no separate marathon. 180 and 181 are applied by the librarian under the old model; block 180 is recut together with `rule-retro-commit`.
+      16. The Rule-class files of session 3d: `estimates/schema.md`, `rules/schema.md`, `decisions/schema.md`, `case-schema.md`, `index.md` §6–§7, `glossary.md`. `sprint.md`: Slice 3d before 3b, Slice 4 after both.
+  - slug: rule-page-generation
+    type: rule
+    purpose: "Slice 3d — generate without Criterion blocks and remove_criterion; the Criterion replaced whole; the fields purpose, method, checked; see the purpose on rule-plan-mode"
+  - slug: rule-materialize
+    type: rule
+    purpose: "Slice 3d — materialize without contract, derived blocks, method/estimate_kind/estimate_slug on create; an update of an Estimate = a replaced Criterion; see rule-plan-mode"
+  - slug: rule-lint
+    type: rule
+    purpose: "Slice 3d — the finding unread on every pending/failed Estimate; the Estimate schema without Context and the Method section, with purpose, method, checked; see rule-plan-mode"
+  - slug: rule-pretask
+    type: rule
+    purpose: "Slice 3d — pre-task checks the Estimates of the rule named in context and asks ask-guppi whether an unnamed one speaks of the same thing; see rule-plan-mode"
+```
+
+Handoff note, not a decision: the librarian adds Slice 3d to `sprint.md` before 3b, with the sixteen points above.
+
+## Case 183 — Slice 3b: Work Mode, after 3d
+
+> **context:**
+> `rule-work-mode` and `rule-subagent-guppi` have stood as placeholders since Case 29, `draft`, `deferred_by: [[decision-case-176]]`, without `kind`, `estimates` or `tags` — 6 `schema` and 2 `orphan` findings. Slice 3b is the Spec as tasks with code, the ticked boxes, the readings taken in Work Mode, what a subagent may do and the fork that comes back as a Case; `sprint.md` says "3b before 4"; the Plan Mode of a session of its own.
+
+> **problem:**
+> Case 182 puts Slice 3d — the Estimate model — before 3b: Work Mode leans on "an Estimate is the red test written before the work", and its rules cannot be written until that model stands. The two pages stay placeholders one more session; the postponement count goes to 15.
+
+```then
+defer:
+  - slug: rule-work-mode
+    type: rule
+    purpose: "Slice 3b — Work Mode: the Spec as tasks with code, the ticked boxes in spec.md, the test of each Estimate written first and turned green; the Plan Mode of a session of its own, after Slice 3d (case 182) and before Slice 4"
+  - slug: rule-subagent-guppi
+    type: rule
+    purpose: "Slice 3b — what a subagent may do in Work Mode, and the fork that comes back to the main agent as a Case; with rule-work-mode, after Slice 3d"
+```
+
+F5 (`git pull` without an upstream, owner's decision 11.1), F6 (`gh` not logged in, 11.2) and F7 (lint 70: the decision pages of Cases 1–28, the two placeholders) are page-less tasks of Slice 5 and stand in `sprint.md` already; no defer Case.
+
+## Case 185 — `rule-case-protocol`: into the list of Slice 3d
+
+> **context:**
+> The Render of `rule-case-protocol` enters `CLAUDE.md` and says: `given` holds the state of the pages; `when` + `then` are the criterion of the Estimate, the scripts copy them as a `### case N` block; a Leaf `create` carries `method`, a Leaf `update` `contract: same`/`changed`; the `tasks` lines carry `contract` and the block. Points 6, 7 and 9 of the model of 182 change all of it. Case 181 clears the page's `deferred_by` (179).
+
+> **problem:**
+> After this session no page would point at Slice 3d for the Render — `rule-case-protocol` is not in the list of 182, and point 16 names only `case-schema.md`.
+
+```then
+defer:
+  - slug: rule-case-protocol
+    type: rule
+    purpose: "Slice 3d — the Render is rewritten by points 6, 7 and 9 of the model of 182: given — conditions of the behaviour, given + when + then — the Estimate's Criterion, no ### case N blocks, no method on create and no contract on update, tasks without contract lines; see the purpose on rule-plan-mode"
+```
+
+Handoff notes, not decisions: (1) the librarian adds Slice 3d to `sprint.md` before 3b, with the sixteen points of 182; (2) the owner's question for the next Plan Mode — why does `ask-guppi` at pre-task read a `defer` in depth, when the Case is moved to another session and needs no detail now; a candidate `update` of `rule-pretask`.

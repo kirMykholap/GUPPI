@@ -16,6 +16,7 @@ START = "- 10:29:02 19037d1c session-start startup\n"
 HI = "- 10:29:12 19037d1c hi\n"
 PLAN = "## Case 5 — a rule\n\n> **when:**\n> x.\n\n```then\nupdate:\n  - slug: rule-x\n    contract: same\n    change: y\n```\n"
 LINE = "- 10:40:00 decision[case 5][update][rule-x]{ref:rule-x}\n"
+READING = "- 10:41:00 estimate[estimate-x][passed] block 5: green\n"
 
 
 def payload(**fields):
@@ -170,6 +171,7 @@ def test_a_pretask_call_that_passes_leaves_the_stamped_mark(tmp_path):
 
 def test_retro_and_handoff_leave_their_marks(tmp_path):
     with_event_log(tmp_path, START + HI)
+    with_ledger(tmp_path, READING)  # a session of one reading has something to review (180)
     run(skill("retro"), tmp_path, status="")
     run(skill("handoff"), tmp_path, status="")
     assert event_log(tmp_path).endswith("19037d1c retro\n- 11:00:00 19037d1c handoff\n")
@@ -229,6 +231,7 @@ def test_a_typed_handoff_on_a_dirty_tree_is_refused(tmp_path):
 
 def test_a_typed_command_may_carry_arguments(tmp_path):
     with_event_log(tmp_path, START + HI)
+    with_ledger(tmp_path, READING)
     assert run(typed("/retro --check  "), tmp_path, status="") == (0, "")
     assert run(typed("  /pre-task now"), tmp_path, status="") == (0, "")
     assert event_log(tmp_path).endswith("19037d1c retro\n- 11:00:00 19037d1c pretask\n")
@@ -239,6 +242,58 @@ def test_any_other_prompt_passes_silently_without_a_mark(tmp_path):
     for prompt in ("/hi", "/hi again", "ратифицирую", "retro", "/retrospective", ""):
         assert run(typed(prompt), tmp_path, status=" M a.py") == (0, ""), prompt
     assert event_log(tmp_path) == START + HI
+
+
+# --- nothing to review (case 180) --------------------------------------------------------
+
+
+def test_a_typed_retro_in_an_empty_session_is_refused(tmp_path):
+    with_event_log(tmp_path, START + HI)  # a hi, no spec.md, no plan path, no ledger line
+    code, err = run(typed("/retro"), tmp_path, status="")
+    assert code == 2
+    assert "gate: /retro refused — nothing to review: no Spec and no ledger line in" in err
+    assert "raw/2026-09-14/1029/" in err
+    assert "then type /retro again" in err
+    assert "retro" not in event_log(tmp_path)
+
+
+def test_a_skill_retro_in_an_empty_session_is_refused_for_the_agent(tmp_path):
+    with_event_log(tmp_path, START + HI)
+    code, err = run(skill("retro"), tmp_path, status="")
+    assert code == 2 and "nothing to review" in err and "then call /retro in the next reply" in err
+    assert "retro" not in event_log(tmp_path)
+
+
+def test_one_reading_line_is_something_to_review(tmp_path):
+    with_event_log(tmp_path, START + HI)
+    with_ledger(tmp_path, READING)
+    assert run(typed("/retro"), tmp_path, status="") == (0, "")
+    assert event_log(tmp_path).endswith("- 11:00:00 19037d1c retro\n")
+
+
+def test_a_spec_or_a_plan_path_is_something_to_review(tmp_path):
+    plan = with_plan(tmp_path)
+    with_event_log(tmp_path, START + HI + f"- 10:35:00 19037d1c tool Edit: {plan}\n")
+    with_ledger(tmp_path, LINE)
+    assert run(typed("/retro"), tmp_path, status="") == (0, "")
+    with_event_log(tmp_path, START + HI)
+    with_ledger(tmp_path, "")
+    folder = tmp_path / "vault" / "raw" / "2026-09-14" / "1029"
+    (folder / "spec.md").write_text("# Spec\n", encoding="utf-8", newline="\n")
+    assert run(typed("/retro"), tmp_path, status="") == (0, "")
+
+
+def test_pretask_and_handoff_in_an_empty_session_pass_as_before(tmp_path):
+    with_event_log(tmp_path, START + HI)
+    assert run(typed("/pre-task"), tmp_path, status="") == (0, "")
+    assert run(skill("handoff"), tmp_path, status="") == (0, "")
+    code, err = run(typed("/handoff"), tmp_path, status=" M a.py")
+    assert code == 2 and "commit first" in err and "nothing to review" not in err
+
+
+def test_without_a_hi_an_empty_retro_is_not_checked(tmp_path):
+    with_event_log(tmp_path, START)
+    assert run(typed("/retro"), tmp_path, status="") == (0, "")
 
 
 def test_cli_dispatches_to_gate(tmp_path, monkeypatch, capsys):

@@ -18,10 +18,6 @@ the LEDGER blocks of the two replies that acknowledged Cases 48 and 49 never rea
 
 the Stop hook fires when the assistant's turn ends in text; a reply whose last act is a tool call whose result comes back as the next turn (Skill, ExitPlanMode) has no Stop, so its LEDGER block is never read; a reply that carries a LEDGER block must end in text, after the tool call, or the ledger writer needs a second event
 
-## Insight
-
-- [[insight-ledger-hook-reads-only-the-final-text]]
-
 ## History
 
 - 2026-09-10 created · raw/2026-09-10/ledger.md#L119

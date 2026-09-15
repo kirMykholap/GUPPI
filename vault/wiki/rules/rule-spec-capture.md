@@ -29,19 +29,6 @@ nothing else; at the close of Plan Mode and at Retro the agent appends the short
 under the `## Deferred` heading, before their ledger lines (`rule-retro`). `guppi materialize` reads both by
 their `## Case N` headings, so a Retro defer gets its Decision page like any other.
 
-## Estimates
-
-- [[estimate-spec-capture-appends]]
-
-## Parent
-
-- [[rule-plan-mode]]
-
-## Implementation
-
-- `guppi/spec.py`
-- `.claude/settings.json`
-
 ## History
 
 - 2026-09-09 created · raw/2026-09-09/ledger.md#case-20

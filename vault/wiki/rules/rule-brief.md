@@ -38,14 +38,6 @@ and flags only. Add no decision and no judgment of the work. Change
 `vault/wiki/sprint.md` only when `handoff.md` tells you to, and only as it says.
 <!-- /rule-brief -->
 
-## Estimates
-
-- [[estimate-brief-written]]
-
-## Parent
-
-- [[rule-documentation]]
-
 ## History
 
 - 2026-09-10 created · raw/2026-09-10/ledger.md#case-35.3

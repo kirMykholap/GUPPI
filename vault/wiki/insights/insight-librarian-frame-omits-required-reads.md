@@ -25,16 +25,6 @@ In both, the reads the work needs were found while the work ran, not when the fr
 
 A suggestion, not a decision. Derive the read clauses from the judgments: list every judgment the librarian makes (duplicate or not, cluster or not, why a script failed, what the brief states as fact), and give each one clause that says which page it may open and for which field. Case 54 added four reasons to the frame this way; the readings of `estimate-documentation-completes` and `estimate-synthesis-clusters` after this run show whether the list is now complete. Every rule that names a read should be changed in one pass, so that two rules never answer one act differently.
 
-## Children
-
-- [[lesson-librarian-reads-beyond-the-four-inputs]]
-- [[lesson-frame-read-clauses-omit-candidate-check-and-brief]]
-- [[lesson-brief-next-section-has-no-source]]
-
-## Addressed by
-
-- [[decision-case-143]]
-
 ## History
 
 - 2026-09-11 created · raw/2026-09-10/ledger.md#L132

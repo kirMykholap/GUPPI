@@ -123,13 +123,7 @@ class Cleanup:
                 current = as_list(page.props.get(field))
                 kept = [s for s in current if s not in gone]
                 if kept != current:
-                    page.props[field] = kept
-                    section = "## Children" if field == "children" else "## Estimates"
-                    numbered = field == "children" and page.category == "rules"
-                    page.sections[section] = "\n".join(
-                        (f"{i}. [[{s}]]" if numbered else f"- [[{s}]]")
-                        for i, s in enumerate(kept, start=1)
-                    )
+                    page.props[field] = kept  # the field only; no section rebuilt (166.4)
                     for slug in current:
                         if slug in gone:
                             self.history(

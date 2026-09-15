@@ -39,14 +39,6 @@ these contradict a page of the vault, a rule of `index.md`, or each other. Raise
 finding as a Case, or say in one line why it is already known. Then exit Plan Mode again.
 <!-- /rule-pretask -->
 
-## Estimates
-
-- [[estimate-pretask-reconciles]]
-
-## Parent
-
-- [[rule-plan-mode]]
-
 ## History
 
 - 2026-09-09 created · raw/2026-09-09/ledger.md#case-24.2

@@ -30,20 +30,6 @@ commits nothing. It sees only calls made through the `Skill` tool, which is how 
 Retro skill calls `/handoff`; the handoff skill checks the tree itself for the case
 where the person types it.
 
-## Estimates
-
-- [[estimate-retro-commit-gates]]
-
-## Parent
-
-- [[rule-end-of-work]]
-
-## Implementation
-
-- `guppi/gate.py`
-- `tests/test_gate.py`
-- `.claude/settings.json`
-
 ## History
 
 - 2026-09-10 created · raw/2026-09-10/ledger.md#case-38.2

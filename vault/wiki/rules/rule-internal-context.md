@@ -33,14 +33,6 @@ The glossary, `case-schema.md` and the category schemas are not listed here: the
 through `@import` in `CLAUDE.md`, and re-reading them would duplicate context that is
 already present.
 
-## Estimates
-
-- [[estimate-internal-context-loaded]]
-
-## Parent
-
-- [[rule-skill-hi]]
-
 ## History
 
 - 2026-09-09 created · raw/2026-09-09/ledger.md#case-11

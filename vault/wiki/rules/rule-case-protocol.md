@@ -99,14 +99,6 @@ hook relies on.
 `parent: rule-plan-mode` names the Plan Mode MOC of Slice 2, which does not exist yet as a
 page; the reference dangles until then, on purpose.
 
-## Estimates
-
-- [[estimate-case-protocol-loaded]]
-
-## Parent
-
-- [[rule-claude-md]]
-
 ## History
 
 - 2026-09-09 created · raw/2026-09-09/ledger.md#case-13

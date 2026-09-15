@@ -42,14 +42,6 @@ a refusal that matters has a hook behind it (case 85.5).
     ]
 <!-- /rule-permissions -->
 
-## Estimates
-
-- [[estimate-permissions]]
-
-## Parent
-
-- [[rule-settings]]
-
 ## History
 
 - 2026-09-12 created · [[decision-case-85.5]]

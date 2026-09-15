@@ -38,15 +38,6 @@ which shapes a field takes — and have every script read an entry through that 
 Two: extend the rule of Case 47 — an entry fails alone whatever the cause — from generate to
 materialize, so the file is never left unwritten because one entry is odd.
 
-## Children
-
-- [[lesson-generate-replace-mapping-crashes]]
-- [[lesson-materialize-assumes-every-entry-has-a-line]]
-
-## Addressed by
-
-- [[decision-case-142.3]]
-
 ## History
 
 - 2026-09-10 created · raw/2026-09-10/ledger.md#L122

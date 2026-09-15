@@ -40,14 +40,6 @@ Trigger and Root cause of the candidate and name the page in the report with the
 outcome, clustered or not. Do not read the archive and do not write pages yourself.
 <!-- /rule-synthesis -->
 
-## Estimates
-
-- [[estimate-synthesis-clusters]]
-
-## Parent
-
-- [[rule-documentation]]
-
 ## History
 
 - 2026-09-10 created · raw/2026-09-10/ledger.md#case-35.2

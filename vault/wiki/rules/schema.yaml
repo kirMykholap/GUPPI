@@ -25,17 +25,11 @@ properties:
       forbidden_values: {enforcement: [hook, check]}
 # `children` on a Rule MOC is ordered and the order is content; nothing may sort it.
 ordered_children: true
+# No body section is derived from a ref field: `estimates`, `children`, `parent` and
+# `implementation_ref` are the link, seen by Obsidian since case 148.1 (case 166.1).
 body:
-  required: ["## Purpose", "## Estimates", "## History"]
-  optional: ["## Render", "## How it works", "## Children", "## Parent", "## Implementation"]
+  required: ["## Purpose", "## History"]
+  optional: ["## Render", "## How it works"]
   conditional:
     - when: {enforcement: render}
       required: ["## Render"]
-    - when: {enforcement: hook}
-      required: ["## Implementation"]
-    - when: {enforcement: check}
-      required: ["## Implementation"]
-    - when: {kind: MOC}
-      required: ["## Children"]
-    - when: {kind: Leaf}
-      required: ["## Parent"]

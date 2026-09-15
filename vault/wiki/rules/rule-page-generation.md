@@ -61,20 +61,6 @@ History line; a decision page with `status: superseded` — the one a supersedes
 `new_tags` is appended to `tags.md` with its meaning and aliases; a tag used but not
 declared and not registered is reported on stderr and left on the page.
 
-## Estimates
-
-- [[estimate-generate-writes]]
-- [[estimate-generate-walks-dates]]
-
-## Parent
-
-- [[rule-documentation]]
-
-## Implementation
-
-- `guppi/generate.py`
-- `tests/test_generate.py`
-
 ## History
 
 - 2026-09-10 created · raw/2026-09-10/ledger.md#case-32

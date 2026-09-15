@@ -50,19 +50,6 @@ walk holds only the sessions not yet done. The Render splices one line into the
 Frontier text of [[rule-skill-hi]] makes a `failed` reading or a lesson of the tail
 an item, and a decision line not.
 
-## Estimates
-
-- [[estimate-ledger-tail]]
-
-## Parent
-
-- [[rule-skill-hi]]
-
-## Implementation
-
-- `guppi/tail.py`
-- `tests/test_tail.py`
-
 ## History
 
 - 2026-09-10 deferred, placeholder · raw/2026-09-10/ledger.md#case-45

@@ -67,14 +67,6 @@ got done; what did not. When the person approves, commit (`make style` clean,
 `make test` green), then call `/handoff`.
 <!-- /rule-retro -->
 
-## Estimates
-
-- [[estimate-retro-loads]]
-
-## Parent
-
-- [[rule-end-of-work]]
-
 ## History
 
 - 2026-09-10 created · raw/2026-09-10/ledger.md#case-38.1

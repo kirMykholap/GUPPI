@@ -18,10 +18,6 @@ case 15.1 redefined a ledger record as a line in a LEDGER block; the criteria of
 
 a decision update on a Rule page has no step that lists the Estimates whose criterion quotes the changed wording; until lint or the generator does it, the acknowledging reply must grep estimates/ for the words the contract dropped
 
-## Insight
-
-- [[insight-workflow-contract-change-leaves-its-derived-text-stale]]
-
 ## History
 
 - 2026-09-09 created · raw/2026-09-09/ledger.md#L49

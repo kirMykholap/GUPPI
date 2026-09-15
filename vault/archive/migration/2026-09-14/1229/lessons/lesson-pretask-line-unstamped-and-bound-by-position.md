@@ -19,10 +19,6 @@ the pretask line of session N reads `- 11:26:29 -------- pretask` — the /pre-t
 
 the pretask mark has no session id, as the hi had before case 111; two sessions open at once could lend each other a pretask, the same binding by position that insight-ledger-hi-tied-to-its-session-by-position names; a stamped pretask written by a hook on the Skill call, or by guppi gate, is the fix
 
-## Insight
-
-- [[insight-ledger-hi-tied-to-its-session-by-position]]
-
 ## History
 
 - 2026-09-14 created · raw/2026-09-14/1029/ledger.md#L40

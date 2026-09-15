@@ -25,18 +25,6 @@ In both, the channel into a session is a fixed set of artifacts - `CLAUDE.md`, t
 
 A suggestion, not a decision. Give the session a second channel beside the brief: the unmaterialized ledger tail at `/hi` (already deferred as `rule-ledger-tail`, decision-case-79), and a way for a Rule page to name the lessons that bear on it, so the pages loaded with a phase carry the traps of that phase. Whether either belongs in the prompt or in a hook is a Case.
 
-## Children
-
-- [[lesson-readings-after-librarian-invisible-to-next-hi]]
-- [[lesson-vault-lesson-absent-at-the-moment-it-applies]]
-- [[lesson-heredoc-trap-hit-twice-with-its-lesson-live]]
-- [[lesson-heredoc-trap-hit-a-third-time-in-work-mode]]
-- [[lesson-heredoc-trap-hit-a-fourth-time-in-the-session-that-ratified-its-hook]]
-
-## Addressed by
-
-- [[decision-case-134]]
-
 ## History
 
 - 2026-09-12 created · raw/2026-09-12/ledger.md#L210

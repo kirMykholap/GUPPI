@@ -43,14 +43,6 @@ context and becomes a Frontier item; `|| true` keeps the skill going. As of 2026
 remote is the product repository this vault was split from and `migration` has no upstream;
 the owner left both as they are until Slice 5.
 
-## Estimates
-
-- [[estimate-git-context-current]]
-
-## Parent
-
-- [[rule-skill-hi]]
-
 ## History
 
 - 2026-09-09 created · raw/2026-09-09/ledger.md#case-11

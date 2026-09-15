@@ -222,17 +222,15 @@ def test_creates_yield_conformant_pages_with_backlinks_in_order(tmp_path):
     assert (
         root["origin"] == ORIGIN and root["sprint"] == "migration" and str(root["created"]) == DATE
     )
-    assert "## Children\n\n1. [[rule-child]]" in page(tmp_path, "rules", "rule-root")
+    assert "## Children" not in page(tmp_path, "rules", "rule-root")  # 166.2: the field is the link
     child = page(tmp_path, "rules", "rule-child")
     assert props(child)["parent"] == "rule-root" and props(child)["estimates"] == [
         "estimate-child-works"
     ]
     assert "## Purpose\n\nTwo lines of\npurpose.\n" in child
-    assert (
-        "## Estimates\n\n- [[estimate-child-works]]" in child
-        and "## Parent\n\n- [[rule-root]]" in child
-    )
-    assert "## Implementation\n\n- `guppi/x.py`" in child
+    assert props(child)["implementation_ref"] == ["guppi/x.py"]
+    for section in ("## Estimates", "## Parent", "## Implementation"):
+        assert section not in child
     assert f"## History\n\n- {DATE} created · [[decision-case-1]]\n" in child
     estimate = page(tmp_path, "estimates", "estimate-child-works")
     assert props(estimate)["target"] == "rule-child" and props(estimate)["status"] == "pending"
@@ -526,13 +524,12 @@ def test_an_archived_child_in_the_archive_is_not_counted_live(tmp_path):
     assert lost["status"] == "open" and lost["severity"] == 1  # no page anywhere: still live
 
 
-# --- the ## Insight section is derived from the field (case 114) --------------------------
+# --- no ## Insight section: the field is the link (cases 166.2, 166.3) --------------------
 
 
-SECTION = "## Insight" + chr(10) * 2 + "- [[insight-x]]" + chr(10) * 2 + "## History"
-
-
-def test_a_lesson_with_an_insight_field_gets_the_section_on_write_and_in_the_cascade(tmp_path):
+def test_a_lesson_with_an_insight_field_stays_without_a_section_on_write_and_in_the_cascade(
+    tmp_path,
+):
     pages = [
         ("insights", "insight-x", insight_text("insight-x", "open", ["lesson-a", "lesson-b"])),
         ("lessons", "lesson-a", lesson_text("lesson-a", "new")),
@@ -553,15 +550,32 @@ def test_a_lesson_with_an_insight_field_gets_the_section_on_write_and_in_the_cas
     code, _, err = run(tmp_path)
     assert code == 0 and err == ""
     a = page(tmp_path, "lessons", "lesson-a")
-    assert SECTION in a
+    assert props(a)["insight"] == "insight-x" and "## Insight" not in a
     b = page(tmp_path, "lessons", "lesson-b")
-    assert SECTION in b
-    assert f"- {DATE} insight section derived" in b
-    c = page(tmp_path, "lessons", "lesson-c")
-    assert "## Insight" not in c
-    # a rerun rewrites nothing: the section is there already
-    code, _, _ = run(tmp_path)
-    assert page(tmp_path, "lessons", "lesson-b").count("insight section derived") == 1
+    assert "## Insight" not in b and "insight section derived" not in b
+    assert "## Insight" not in page(tmp_path, "lessons", "lesson-c")
+
+
+def test_a_section_a_page_still_carries_is_left_as_it_is_on_an_update(tmp_path):
+    stale = lesson_text("lesson-b", "clustered", "insight-x").replace(
+        "## History", "## Insight\n\n- [[insight-old]]\n\n## History"
+    )
+    update = {
+        "kind": "update",
+        "slug": "lesson-b",
+        "category": "lessons",
+        "line": 9,
+        "case": "5",
+        "origin": "raw/2026-09-10/ledger.md#case-5",
+        "set": {"insight": "insight-x"},
+        "change": "re-clustered",
+    }
+    seed(tmp_path, entries=[ROOT, update], pages=[("lessons", "lesson-b", stale)])
+    code, _, err = run(tmp_path)
+    assert code == 0 and err == ""
+    b = page(tmp_path, "lessons", "lesson-b")
+    assert props(b)["insight"] == "insight-x"
+    assert "## Insight\n\n- [[insight-old]]\n" in b  # neither touched nor derived again
 
 
 # --- an update reaches an archived page (case 105.3) --------------------------------------
@@ -1213,7 +1227,7 @@ def test_a_derived_create_writes_the_estimate_and_lists_it_on_its_target(tmp_pat
     assert f"## History\n\n- {DATE} created · [[decision-case-1]]\n" in estimate
     child = page(tmp_path, "rules", "rule-child")
     assert props(child)["estimates"] == ["estimate-child"]
-    assert "## Estimates\n\n- [[estimate-child]]" in child
+    assert "## Estimates" not in child
     assert f"- {DATE} estimate estimate-child added · [[decision-case-1]]" in child
     log = page(tmp_path, "", "log")
     assert f"- {DATE} estimates/estimate-child created · [[decision-case-1]] · generate" in log
@@ -1390,9 +1404,38 @@ def test_a_defer_marks_an_insight_deferred_by_and_a_supersedes_clears_it(tmp_pat
     thin = page(tmp_path, "insights", "insight-thin")
     assert "deferred_by" not in props(thin)
     assert props(thin)["status"] == "actioned" and props(thin)["addressed_by"] == "decision-case-3"
-    assert "## Addressed by\n\n- [[decision-case-3]]\n" in thin
+    assert "## Addressed by" not in thin
     assert props(page(tmp_path, "lessons", "lesson-c"))["status"] == "archived"
     assert props(thin)["severity"] == 0
+
+
+def test_a_synthesis_create_of_an_insight_marked_librarian_applies(tmp_path):
+    entry = {
+        "kind": "create",
+        "category": "insights",
+        "slug": "insight-new",
+        "origin": f"raw/{DATE}/ledger.md#L7",
+        "fields": {"type": "insight", "pattern": "p", "children": ["lesson-a", "lesson-b"]},
+        "tags": ["harness"],
+        "sections": {"Pattern": "Two lessons on one path.", "Proposal": "A suggestion."},
+        "librarian": "synthesis",
+    }
+    pages = [
+        ("lessons", "lesson-a", lesson_text("lesson-a", "clustered", "insight-new")),
+        ("lessons", "lesson-b", lesson_text("lesson-b", "clustered", "insight-new")),
+    ]
+    seed(tmp_path, entries=[ROOT, entry], pages=pages)
+    code, _, err = run(tmp_path)
+    assert code == 0 and err == "", err
+    new = page(tmp_path, "insights", "insight-new")
+    fields = props(new)
+    assert fields["status"] == "open" and fields["severity"] == 2
+    assert fields["children"] == ["lesson-a", "lesson-b"] and fields["tags"] == ["harness"]
+    assert fields["origin"] == f"raw/{DATE}/ledger.md#L7"
+    assert "## Pattern\n\nTwo lessons on one path.\n" in new
+    assert "## Proposal\n\nA suggestion.\n" in new
+    assert "## Children" not in new
+    assert f"## History\n\n- {DATE} created · raw/{DATE}/ledger.md#L7\n" in new
 
 
 def test_a_create_or_delete_of_an_insight_through_the_yaml_is_an_error(tmp_path):

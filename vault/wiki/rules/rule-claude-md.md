@@ -91,18 +91,6 @@ Rendered in full into `CLAUDE.md`; `rule-case-protocol` splices into its marker.
 is carried from the hand-written file as it stood on 2026-09-12 and leaves with the
 migration, by an `update` of this page. `rule-case-protocol` has this page as its parent since case 66 and is its one child; the renderer splices it into the marker.
 
-## Estimates
-
-- [[estimate-claude-md-rendered]]
-
-## Children
-
-1. [[rule-case-protocol]]
-
-## Parent
-
-- [[rule-harness]]
-
 ## History
 
 - 2026-09-12 created · [[decision-case-59.8]]

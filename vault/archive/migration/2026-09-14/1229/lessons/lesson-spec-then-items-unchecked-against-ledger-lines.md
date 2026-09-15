@@ -18,10 +18,6 @@ at Retro of session H three ratified decision lines had no item in their Case's 
 
 nothing before the librarian compares the ledger lines of a Case with the items of its then block; pre-task asks the vault for contradictions and the Spec is approved as a whole, so an omitted or misplaced item shows only as incomplete: then in the yaml, one session later; a mechanical check — every decision line of today's ledger finds its item under its own Case heading — belongs before the plan is approved
 
-## Insight
-
-- [[insight-ledger-line-written-unchecked]]
-
 ## History
 
 - 2026-09-11 created · raw/2026-09-11/ledger.md#L73

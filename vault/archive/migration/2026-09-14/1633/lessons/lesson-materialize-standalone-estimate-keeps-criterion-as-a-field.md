@@ -18,10 +18,6 @@ the six Estimate pages born of a standalone `create` with a `ref` (the four of C
 
 materialize lifts every key of a standalone create into `fields`, while only the `estimate` nested under a Leaf create maps `criterion` and `method` into the sections the estimates schema wants; generate writes the fields as given and does not know the two keys are sections
 
-## Insight
-
-- [[insight-materialize-lift-loses-a-schema-field]]
-
 ## History
 
 - 2026-09-11 created · raw/2026-09-10/ledger.md#L131

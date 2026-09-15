@@ -19,10 +19,6 @@ the /retro of session O typed by the person left `- 14:45:16 -------- retro` fro
 
 retro's SKILL.md carries `disable-model-invocation: true`, so the client expands a typed /retro as a prompt and never calls the Skill tool; the PreToolUse Skill hook of 136.1 cannot see it, and once the render drops the Recorded line the retro mark disappears — no reader in code needs it today; a Case when one does
 
-## Insight
-
-- [[insight-retro-typed-command-is-never-a-tool-call]]
-
 ## History
 
 - 2026-09-14 created · raw/2026-09-14/1229/ledger.md#L31

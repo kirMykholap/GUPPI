@@ -36,21 +36,6 @@ bare: the markers would make it unparsable. The owner is then named by the
 `<!-- child -->` line of the parent's body, and `render --check` compares the whole
 file, so nothing is lost but the label in the file itself (case 85.1).
 
-## Estimates
-
-- [[estimate-render-harness-reproduces]]
-- [[estimate-render-sync-reports]]
-
-## Parent
-
-- [[rule-documentation]]
-
-## Implementation
-
-- `guppi/render.py`
-- `tests/test_render.py`
-- `.claude/settings.json`
-
 ## History
 
 - 2026-09-09 created · raw/2026-09-09/ledger.md#case-18.1

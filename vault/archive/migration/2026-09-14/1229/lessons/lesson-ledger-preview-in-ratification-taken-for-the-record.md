@@ -18,10 +18,6 @@ F24 of session J read guppi/ledger.py against the transcript of session I (763dd
 
 the agent took the ratification preview for the record and moved on to the Spec-writing tool calls without a LEDGER block; the hook dropped nothing, and lesson-ledger-hook-drops-a-block-followed-by-tool-calls-in-the-turn names a hook fault that did not happen; the case belongs with insight-ledger-line-written-unchecked, since nothing between the reply and guppi pretask --check holds the written lines against the Spec at the moment of writing
 
-## Insight
-
-- [[insight-ledger-line-written-unchecked]]
-
 ## History
 
 - 2026-09-12 created · raw/2026-09-12/ledger.md#L107

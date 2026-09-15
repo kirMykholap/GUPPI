@@ -78,7 +78,10 @@ def test_archived_pages_move_with_a_history_line_and_leave_the_lists(tmp_path):
     assert archived(tmp_path, "estimates", "estimate-root").exists()
     root = (tmp_path / "vault" / "wiki" / "rules" / "rule-root.md").read_text(encoding="utf-8")
     assert 'children: ["[[rule-b]]"]' in root and "estimates: []" in root
-    assert "## Estimates\n\n## Children\n\n1. [[rule-b]]\n\n## History" in root
+    # 166.4: the field only; a section the page still carries is left as it is
+    assert (
+        "## Children\n\n1. [[rule-a]]\n2. [[rule-b]]\n\n## Estimates\n\n- [[estimate-root]]" in root
+    )
     assert (
         f"- {DATE} child rule-a archived · cleanup" in root
         and f"- {DATE} estimate estimate-root archived · cleanup" in root

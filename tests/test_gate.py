@@ -1,6 +1,7 @@
 """`guppi gate`: `/handoff` through the Skill tool is refused while the tree is dirty, and
 any skill is refused while a `then` item of the session's Spec or plan file has no
-decision line in the ledger (case 122)."""
+decision line in the ledger (case 122); a typed `/pre-task`, `/retro` or `/handoff` on
+`UserPromptSubmit` gets the same checks and the same mark (case 169.1)."""
 
 import io
 import json
@@ -193,6 +194,51 @@ def test_another_skill_leaves_no_mark(tmp_path):
 def test_the_mark_without_a_log_creates_the_day_folder(tmp_path):
     assert run(skill("pre-task"), tmp_path, status="") == (0, "")
     assert event_log(tmp_path) == "- 11:00:00 19037d1c pretask\n"
+
+
+# --- the typed command on UserPromptSubmit (case 169.1) -----------------------------------
+
+
+def typed(prompt, session=SESSION):
+    return payload(session_id=session, prompt=prompt)
+
+
+def test_a_typed_retro_with_an_unwritten_item_is_refused_for_the_person(tmp_path):
+    plan = with_plan(tmp_path)
+    with_event_log(tmp_path, START + HI + f"- 10:35:00 19037d1c tool Write: {plan}\n")
+    code, err = run(typed("/retro"), tmp_path, status="")
+    assert code == 2
+    assert "/retro refused" in err and "1 item(s)" in err and "(case 5)" in err
+    assert "Ask the agent to end its reply with the LEDGER block, then type /retro again" in err
+    assert "19037d1c retro" not in event_log(tmp_path)
+
+
+def test_a_typed_retro_with_every_line_passes_and_leaves_the_mark(tmp_path):
+    plan = with_plan(tmp_path)
+    with_event_log(tmp_path, START + HI + f"- 10:35:00 19037d1c tool Edit: {plan}\n")
+    with_ledger(tmp_path, LINE)
+    assert run(typed("/retro"), tmp_path, status="") == (0, "")
+    assert event_log(tmp_path).endswith("- 11:00:00 19037d1c retro\n")
+
+
+def test_a_typed_handoff_on_a_dirty_tree_is_refused(tmp_path):
+    with_event_log(tmp_path, START + HI)
+    code, err = run(typed("/handoff"), tmp_path, status=" M a.py")
+    assert code == 2 and "commit first" in err and "handoff" not in event_log(tmp_path)
+
+
+def test_a_typed_command_may_carry_arguments(tmp_path):
+    with_event_log(tmp_path, START + HI)
+    assert run(typed("/retro --check  "), tmp_path, status="") == (0, "")
+    assert run(typed("  /pre-task now"), tmp_path, status="") == (0, "")
+    assert event_log(tmp_path).endswith("19037d1c retro\n- 11:00:00 19037d1c pretask\n")
+
+
+def test_any_other_prompt_passes_silently_without_a_mark(tmp_path):
+    with_event_log(tmp_path, START + HI)
+    for prompt in ("/hi", "/hi again", "ратифицирую", "retro", "/retrospective", ""):
+        assert run(typed(prompt), tmp_path, status=" M a.py") == (0, ""), prompt
+    assert event_log(tmp_path) == START + HI
 
 
 def test_cli_dispatches_to_gate(tmp_path, monkeypatch, capsys):

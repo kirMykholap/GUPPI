@@ -25,15 +25,6 @@ Both were fixed by making the two sides agree. Neither was caught when written, 
 
 A suggestion, not a decision. Every entry point that reads the clock takes `now` as a parameter, and every test helper passes the pinned date into it; a test that needs a date never reads the clock itself. A check that runs the suite under a shifted date would catch the rest of this class in one run.
 
-## Children
-
-- [[lesson-tests-cli-date-pinned]]
-- [[lesson-tests-generate-history-date-unpinned]]
-
-## Addressed by
-
-- [[decision-case-145.3]]
-
 ## History
 
 - 2026-09-11 created · raw/2026-09-11/ledger.md#L71

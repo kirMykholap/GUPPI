@@ -18,10 +18,6 @@ on 2026-09-11 five tests of tests/test_generate.py failed on the committed tree 
 
 the run helper of test_generate.py called generate.run without now, so History and log lines took the real clock (case 47 dates them by the run) while the assertions used the pinned DATE; a test that passes only on the day it was written; fixed by pinning now in the helper
 
-## Insight
-
-- [[insight-tests-clock-not-pinned]]
-
 ## History
 
 - 2026-09-11 created · raw/2026-09-11/ledger.md#L71

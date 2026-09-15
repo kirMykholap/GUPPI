@@ -53,19 +53,6 @@ line is told from a hand-written one by its time.
 Which field carries the reply is measured by the Slice 1 probe before this hook is written;
 the implementation arrives in the session after the probe (Slice 1, session B).
 
-## Estimates
-
-- [[estimate-ledger-write-lifts]]
-
-## Parent
-
-- [[rule-session-start]]
-
-## Implementation
-
-- `guppi/ledger.py`
-- `.claude/settings.json`
-
 ## History
 
 - 2026-09-09 created · raw/2026-09-09/ledger.md#case-10

@@ -30,14 +30,6 @@ lines: pages created and updated per category, entries marked incomplete or fail
 pages archived, the flags you raised, the lint total. Nothing else.
 <!-- /rule-close -->
 
-## Estimates
-
-- [[estimate-close-commits]]
-
-## Parent
-
-- [[rule-documentation]]
-
 ## History
 
 - 2026-09-10 created · raw/2026-09-10/ledger.md#case-36.1

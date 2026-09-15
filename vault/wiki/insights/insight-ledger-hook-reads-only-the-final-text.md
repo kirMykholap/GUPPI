@@ -38,17 +38,6 @@ message of the `hi` window instead of the last one; if it is absent, the writer 
 second event beside `Stop`. Either way the writer can count back: blocks seen against
 lines written, shown at `/hi` with the unmaterialized tail.
 
-## Children
-
-- [[lesson-ledger-hook-misses-a-reply-ending-in-a-tool-call]]
-- [[lesson-ledger-hook-drops-a-block-followed-by-tool-calls-in-the-turn]]
-- [[lesson-transcript-omits-text-emitted-before-tool-calls]]
-- [[lesson-ledger-lines-lost-in-a-reply-ending-in-a-skill-call-with-the-insight-live]]
-
-## Addressed by
-
-- [[decision-case-137]]
-
 ## History
 
 - 2026-09-12 created · raw/2026-09-12/ledger.md#L101

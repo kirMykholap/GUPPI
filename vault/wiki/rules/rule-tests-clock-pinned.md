@@ -33,19 +33,6 @@ constructor of the subclass work as before. A test that passes `now` does not
 notice the fixture. `tests/test_conftest.py` checks the fixture itself: a `run()`
 without `now` writes a time dated 2001 (case 145.1).
 
-## Estimates
-
-- [[estimate-tests-clock-pinned]]
-
-## Parent
-
-- [[rule-harness]]
-
-## Implementation
-
-- `tests/conftest.py`
-- `tests/test_conftest.py`
-
 ## History
 
 - 2026-09-14 created · [[decision-case-145.1]]

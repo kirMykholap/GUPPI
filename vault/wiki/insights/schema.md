@@ -15,9 +15,9 @@ Created by the librarian, never by a decision; an `update` actions or rejects it
 | `type` | yes | `insight` | Page category. |
 | `pattern` | yes | one line | The shared root cause, stated once. `insights.index` is built from it. |
 | `status` | yes | `open` \| `actioned` \| `archived` | `actioned` when a ratified decision has addressed it. Not terminal — a new Lesson with the same root cause reopens it. `archived` when the cascade of `generate` finds an `open` Insight with no live child (case 104.3); an `actioned` Insight is never archived by the cascade, it is kept for the recurrence. |
-| `children` | yes | list of quoted wikilink `"[[slug]]"` | The Lessons clustered here. Unordered. The scripts read the slug through the brackets; a slug without a category prefix stays bare (case 148.2). |
+| `children` | yes | list of quoted wikilink `"[[slug]]"` | The Lessons clustered here. Unordered. The scripts read the slug through the brackets; a slug without a category prefix stays bare (case 148.2). The field is the link; no body section repeats it (case 166.1). |
 | `severity` | yes | integer | `count(children where status != archived)`. Recomputed by the cascade of `generate` (case 104.3), a child read in `wiki/lessons/` or in the archive (case 110), never written by hand (case 110.1). |
-| `addressed_by` | no | decision quoted wikilink `"[[slug]]"` | The ratified decision that fixed the pattern, or rejected it (case 124). |
+| `addressed_by` | no | decision quoted wikilink `"[[slug]]"` | The ratified decision that fixed the pattern, or rejected it (case 124). The field is the link; no body section repeats it (case 166.1). |
 | `deferred_by` | no | list of decision quoted wikilink `"[[slug]]"` | The `defer` decisions that postponed it; set by `generate`, cleared by a `supersedes` (case 124.2). |
 | `origin` | yes | date + session | When the librarian first clustered it. Unlike every other category this does not point at a ledger line — no decision created it. |
 | `sprint` | yes | sprint id | |
@@ -44,8 +44,6 @@ Area + pattern, as for Lessons: `insight-hooks-lifecycle-assumptions`.
 |---|---|---|
 | `## Pattern` | yes | Expands the property: what the clustered lessons have in common, stated as a mechanism rather than a list of symptoms. |
 | `## Proposal` | no | What the librarian suggests doing about it. A suggestion, not a decision — it is ratified, rejected or reshaped in a later Case. |
-| `## Children` | yes | Script places Lesson links here. |
-| `## Addressed by` | no | Derived by `generate` from `addressed_by` (case 124.2). |
 
 ## History
 
@@ -76,13 +74,6 @@ obvious from the event name.
 ## Proposal
 A capability table in the session-start rule: for each hook event, whether exit 2 blocks.
 Consult it before placing any guard.
-
-## Children
-- [[lesson-hooks-sessionstart-cannot-block]]
-- [[lesson-hooks-subagentstart-no-gate]]
-
-## Addressed by
-- [[decision-hook-capability-table]]
 
 ## History
 - 2026-09-15 created · clustered from 2 lessons

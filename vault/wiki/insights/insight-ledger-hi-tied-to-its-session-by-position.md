@@ -38,16 +38,6 @@ reads the window by that stamp with the old rule as a fallback. The readings of
 whether the binding by position can be retired; if the hook does not fire on a slash
 command, the fallback keeps both lessons live and a Case on 111.4 is due.
 
-## Children
-
-- [[lesson-ledger-hook-hi-lost-at-midnight]]
-- [[lesson-hi-taken-by-a-session-started-in-the-same-second]]
-- [[lesson-pretask-line-unstamped-and-bound-by-position]]
-
-## Addressed by
-
-- [[decision-case-136.4]]
-
 ## History
 
 - 2026-09-14 created · raw/2026-09-14/0747/ledger.md#L2

@@ -23,20 +23,6 @@ being done long before the vault is large. `uv run guppi index` writes `vault/wi
 
 `parent: rule-harness` names the MOC of the harness tools: the indexes are written and checked with the renderer and lint, in no phase of the session.
 
-## Estimates
-
-- [[estimate-index-lists]]
-
-## Parent
-
-- [[rule-documentation]]
-
-## Implementation
-
-- `guppi/index.py`
-- `tests/test_index.py`
-- `Makefile`
-
 ## History
 
 - 2026-09-09 created · raw/2026-09-09/ledger.md#case-22

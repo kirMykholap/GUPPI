@@ -28,14 +28,6 @@ own and not a line of the registry (case 85.4).
     "defaultMode": "plan",
 <!-- /rule-default-mode -->
 
-## Estimates
-
-- [[estimate-default-mode]]
-
-## Parent
-
-- [[rule-settings]]
-
 ## History
 
 - 2026-09-12 created · [[decision-case-85.4]]

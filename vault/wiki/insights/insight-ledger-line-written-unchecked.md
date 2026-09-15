@@ -50,17 +50,6 @@ A suggestion, not a decision. `guppi pretask --check` already reads the day's le
 half: the table of `case-schema.md` shows `decision[case_id][kind][slug]`, a placeholder read
 literally, and should show `decision[case N]`.
 
-## Children
-
-- [[lesson-spec-then-items-unchecked-against-ledger-lines]]
-- [[lesson-ledger-decision-line-written-without-the-case-word]]
-- [[lesson-ledger-preview-in-ratification-taken-for-the-record]]
-- [[lesson-pretask-nested-estimate-exempt-from-the-line-check]]
-
-## Addressed by
-
-- [[decision-case-135]]
-
 ## History
 
 - 2026-09-12 created · raw/2026-09-12/ledger.md#L100

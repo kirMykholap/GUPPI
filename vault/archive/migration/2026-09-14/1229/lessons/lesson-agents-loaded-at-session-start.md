@@ -18,10 +18,6 @@ session D rendered .claude/agents/ask-guppi.md and dispatched it three times in 
 
 Claude Code reads agent definitions at session start and skills on demand; a rendered agent is usable only from the next session, so an Estimate on a new agent cannot be read in the session that creates it
 
-## Insight
-
-- [[insight-harness-agent-visibility]]
-
 ## History
 
 - 2026-09-09 created · raw/2026-09-09/ledger.md#L90

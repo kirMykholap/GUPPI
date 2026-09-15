@@ -58,16 +58,6 @@ plan if we are on a plan branch. The agent's first turn presents it as a list â€
 problems, debt carried over, where the sprint stands. The human picks the order or defers
 items outright.
 
-## Estimates
-
-- [[estimate-session-start-context]]
-
-## Children
-
-1. [[rule-skill-hi]]
-2. [[rule-event-log]]
-3. [[rule-ledger-write]]
-
 ## History
 
 - 2026-09-09 created Â· raw/2026-09-09/ledger.md#case-12

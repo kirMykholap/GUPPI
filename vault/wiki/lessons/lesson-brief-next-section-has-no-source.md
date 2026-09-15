@@ -18,10 +18,6 @@ the brief of session O listed the reading of estimate-brief-written (124.1) unde
 
 the Render of rule-brief gives "What the next session does first" no source, alone among its five sections, so the librarian copies it from the previous brief and strikes nothing off against the readings of the session
 
-## Insight
-
-- [[insight-librarian-frame-omits-required-reads]]
-
 ## History
 
 - 2026-09-15 created · raw/2026-09-15/1110/ledger.md#L7

@@ -43,20 +43,6 @@ The hook never fails the session: any error goes to stderr and the exit code is 
 
 **A limit lifted.** Until case 111 the `hi` line carried `--------` and the ledger hook looked for a `hi` after the last `session-start` of its own session, so two sessions open at once could not be told apart; on 2026-09-14 a session restored by `resume` in the same second took the `hi` of the session that typed it. With the stamp on the `hi` line a `hi` of one session never belongs to another (case 111.1).
 
-## Estimates
-
-- [[estimate-event-log-records]]
-
-## Parent
-
-- [[rule-session-start]]
-
-## Implementation
-
-- `guppi/event.py`
-- `guppi/cli.py`
-- `.claude/settings.json`
-
 ## History
 
 - 2026-09-09 created · raw/2026-09-09/ledger.md#case-9

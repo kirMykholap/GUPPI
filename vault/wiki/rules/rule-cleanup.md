@@ -36,19 +36,6 @@ A page under `vault/archive/`, at any depth, whose status is no longer `archived
 file that cannot be moved, or a name already taken in the archive, is reported on
 stderr with exit 1; the other pages still move.
 
-## Estimates
-
-- [[estimate-cleanup-moves]]
-
-## Parent
-
-- [[rule-documentation]]
-
-## Implementation
-
-- `guppi/cleanup.py`
-- `tests/test_cleanup.py`
-
 ## History
 
 - 2026-09-10 created · raw/2026-09-10/ledger.md#case-33

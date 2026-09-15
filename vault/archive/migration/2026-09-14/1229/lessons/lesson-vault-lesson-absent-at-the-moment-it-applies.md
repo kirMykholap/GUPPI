@@ -18,10 +18,6 @@ a python heredoc in the Bash tool broke tests/test_pretask.py twice in this sess
 
 a lesson is a page of the vault and nothing brings it into the session at the moment it applies; only CLAUDE.md, the skills and the agents' frames are in the prompt, and the vault is reached by a read the agent must first think to make, which is exactly what a forgotten trap prevents
 
-## Insight
-
-- [[insight-session-vault-knowledge-not-loaded]]
-
 ## History
 
 - 2026-09-12 created · raw/2026-09-12/ledger.md#L210

@@ -18,10 +18,6 @@ tags: [tests]
 
 the test helpers wrote the event log under a pinned TODAY of 2026-09-09 while cli.main reads the real clock, so the tests passed only on the day they were written; the three CLI tests now pass the local clock's date to the helpers
 
-## Insight
-
-- [[insight-tests-clock-not-pinned]]
-
 ## History
 
 - 2026-09-10 created · raw/2026-09-10/ledger.md#L7

@@ -44,14 +44,6 @@ Then dispatch the `librarian-guppi` agent with one line: `Materialize <date>.` W
 for its report and show it to the person unchanged. Do not commit after this.
 <!-- /rule-handoff -->
 
-## Estimates
-
-- [[estimate-handoff-dispatches]]
-
-## Parent
-
-- [[rule-end-of-work]]
-
 ## History
 
 - 2026-09-10 created · raw/2026-09-10/ledger.md#case-38.3

@@ -52,20 +52,6 @@ from the ledger line at that number is reported on stderr and left alone; a late
 The count of entries added goes to stdout, one line per date. Exit 0; exit 1 when a
 date fails.
 
-## Estimates
-
-- [[estimate-materialize-assembles]]
-- [[estimate-materialize-walks-dates]]
-
-## Parent
-
-- [[rule-documentation]]
-
-## Implementation
-
-- `guppi/materialize.py`
-- `tests/test_materialize.py`
-
 ## History
 
 - 2026-09-10 created · raw/2026-09-10/ledger.md#case-31

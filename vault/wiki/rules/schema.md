@@ -15,12 +15,12 @@ A Rule is something that can be broken, where breaking it will be detected. That
 | `purpose` | yes | one line | **What this prevents**, not what it provides. `rules.index` is built from it. |
 | `status` | yes | `draft` \| `built` \| `archived` | Set by lint once every Estimate passes, never by hand. |
 | `enforcement` | no | `hook` \| `check` \| `render` | How the rule has force, and which of the fields below apply. On a Leaf, any of the three. **On a MOC, only `render`** — see below. |
-| `implementation_ref` | `hook`, `check` | list of paths | The hook script, or the linter/test that performs the check. |
+| `implementation_ref` | `hook`, `check` | list of paths | The hook script, or the linter/test that performs the check. The field is the link; no body section repeats it (case 166.1). |
 | `governs` | `render` | path | The harness file this rule's text is rendered into. |
 | `render_mode` | `render` | `full` \| `partial` | Whether the rule's body becomes the whole target file, or is spliced between markers inside it. |
-| `parent` | Leaf | quoted wikilink `"[[slug]]"` | The workflow MOC above it. The scripts read the slug through the brackets; a slug without a category prefix stays bare (case 148.2). |
-| `children` | MOC | **ordered** list of quoted wikilink `"[[slug]]"` | See *Ordering* below. |
-| `estimates` | yes | list of quoted wikilink `"[[slug]]"` | On a Leaf: that the rule does what it claims. On a MOC: that the sequence itself holds. |
+| `parent` | Leaf | quoted wikilink `"[[slug]]"` | The workflow MOC above it. The scripts read the slug through the brackets; a slug without a category prefix stays bare (case 148.2). The field is the link; no body section repeats it (case 166.1). |
+| `children` | MOC | **ordered** list of quoted wikilink `"[[slug]]"` | See *Ordering* below. The field is the link; no body section repeats it (case 166.1). |
+| `estimates` | yes | list of quoted wikilink `"[[slug]]"` | On a Leaf: that the rule does what it claims. On a MOC: that the sequence itself holds. The field is the link; no body section repeats it (case 166.1). |
 | `deferred_by` | no | list of decision quoted wikilink `"[[slug]]"` | The Decision pages whose `defer` targets this page. Written by `guppi generate` on a defer, cleared when a later Case `supersedes` that one; the index line carries it, so `ask-guppi` reaches the deferred decision without opening the page (case 52.3). |
 | `origin` | yes | `raw/YYYY-MM-DD/HHMM/ledger.md#case-N` (the date form, `raw/YYYY-MM-DD/ledger.md#case-N`, on pages born before 2026-09-13; case 103.6) | |
 | `sprint` | yes | sprint id | |
@@ -74,10 +74,6 @@ A constraint that no hook, check or render can detect is not a Rule at all. It i
 | `## Purpose` | yes | Expands the property: what goes wrong without this rule. State the failure it prevents, not the behaviour it produces. |
 | `## Render` | `render` | The text written into `governs`, wrapped in `<!-- slug -->` markers. This section **is** the implementation. On a rendering MOC it is the frame, containing the children's markers. |
 | `## How it works` | no | Leaf: what the hook or check actually does, and when it fires. MOC: why the steps are in this order, and what breaks if they are reordered. Omitted while `draft`. |
-| `## Estimates` | yes | Script places Estimate links here. |
-| `## Children` | MOC | Script places child links here, **in order**. |
-| `## Parent` | Leaf | Script places the link upward. |
-| `## Implementation` | `hook`, `check` | Script places `implementation_ref` links here. Omitted for `render` rules — their implementation is the body itself. |
 
 ## History
 
@@ -127,17 +123,6 @@ Assemble the Frontier from the above and present it as a list: tasks, problems, 
 carried over, and where the sprint stands. Wait for the human to pick the order.
 <!-- /rule-skill-hi -->
 
-## Estimates
-- [[estimate-hi-no-read-calls]]
-
-## Children
-1. [[rule-internal-context]]
-2. [[rule-git-context]]
-3. [[rule-github-issues]]
-
-## Parent
-- [[rule-session-start]]
-
 ## History
 - 2026-09-08 created · raw/2026-09-08/ledger.md#case-5
 ```
@@ -177,12 +162,6 @@ already present.
 @wiki/brief.md
 <!-- /rule-internal-context -->
 
-## Estimates
-- [[estimate-internal-context-loaded]]
-
-## Parent
-- [[rule-skill-hi]]
-
 ## History
 - 2026-09-08 created · raw/2026-09-08/ledger.md#case-6
 ```
@@ -214,15 +193,6 @@ workspace resolves would silently land outside the session.
 PreToolUse, matched on writes to `ledger.md`. Reads the readiness flag written when the
 workspace was resolved; exits 2 and blocks the write if it is missing.
 
-## Estimates
-- [[estimate-ledger-guard]]
-
-## Parent
-- [[rule-session-start]]
-
-## Implementation
-- `.claude/hooks/ledger-guard.sh`
-
 ## History
 - 2026-09-08 created · raw/2026-09-08/ledger.md#case-6
 - 2026-09-09 status: draft → built
@@ -252,13 +222,6 @@ transaction; an await there does not fail loudly, it produces a partially applie
 ## How it works
 A lint rule flags `async def` and `await` under `src/pricing/`. Runs in CI, so the
 violation surfaces at the change that introduces it rather than at the next incident.
-
-## Estimates
-- [[estimate-pricing-sync-check]]
-
-## Implementation
-- `ruff.toml`
-- `tests/lint/test_pricing_sync.py`
 
 ## History
 - 2026-09-12 created · raw/2026-09-12/ledger.md#case-2

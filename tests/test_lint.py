@@ -25,11 +25,8 @@ properties:
       required: [children]
       forbidden_values: {enforcement: [hook, check]}
 body:
-  required: ["## Purpose", "## Estimates", "## History"]
-  optional: ["## Render", "## Children", "## Parent", "## Implementation"]
-  conditional:
-    - when: {kind: MOC}
-      required: ["## Children"]
+  required: ["## Purpose", "## History"]
+  optional: ["## Render"]
 """
 
 RULES_MD = """\
@@ -58,10 +55,6 @@ RULES_MD = """\
 |---|---|
 | `## Purpose` | yes |
 | `## Render` | no |
-| `## Estimates` | yes |
-| `## Children` | no |
-| `## Parent` | no |
-| `## Implementation` | no |
 
 ## History
 """
@@ -129,7 +122,7 @@ def rule_page(**over):
     }
     props.update(over)
     front = "\n".join(f"{k}: {v}" for k, v in props.items() if v is not None)
-    return f"---\n{front}\n---\n\n## Purpose\n\nx\n\n## Estimates\n\n- [[estimate-x-works]]\n\n## Parent\n\n- [[rule-root]]\n\n## History\n\n- created\n"
+    return f"---\n{front}\n---\n\n## Purpose\n\nx\n\n## History\n\n- created\n"
 
 
 def estimate_page(status="pending", method="pytest in `tests/test_x.py`.", result=True, **over):
@@ -154,7 +147,7 @@ def root_page():
     return (
         "---\ntype: rule\nkind: MOC\npurpose: Prevents root\nstatus: draft\n"
         "children: [rule-x]\nestimates: []\norigin: raw/2026-09-09/ledger.md#case-1\n---\n\n"
-        "## Purpose\n\nr\n\n## Estimates\n\n## Children\n\n1. [[rule-x]]\n\n## History\n\n- created\n"
+        "## Purpose\n\nr\n\n## History\n\n- created\n"
     )
 
 
@@ -263,14 +256,19 @@ def test_an_archived_page_still_resolves_a_ref(tmp_path):
 def test_a_wikilink_inside_a_code_span_is_prose_not_a_link(tmp_path):
     seed(
         tmp_path,
-        rule=rule_page().replace("- [[rule-root]]", "- [[rule-root]], and `[[slug]]` links stay"),
+        rule=rule_page().replace(
+            "## Purpose\n\nx", "## Purpose\n\nx [[rule-root]], and `[[slug]]` links stay"
+        ),
     )
     assert run(tmp_path) == (0, [], "")
 
 
 def test_a_wikilink_to_nothing_is_a_ref_finding(tmp_path):
     seed(
-        tmp_path, rule=rule_page().replace("- [[rule-root]]", "- [[rule-root]] and [[rule-ghost]]")
+        tmp_path,
+        rule=rule_page().replace(
+            "## Purpose\n\nx", "## Purpose\n\nx [[rule-root]] and [[rule-ghost]]"
+        ),
     )
     _, lines, _ = run(tmp_path)
     assert lines == [
@@ -282,7 +280,8 @@ def test_a_wikilink_to_a_hub_file_under_wiki_resolves(tmp_path):
     seed(
         tmp_path,
         rule=rule_page().replace(
-            "- [[rule-root]]", "- [[rule-root]], [[brief]], [[rules/schema]] and [[nowhere]]"
+            "## Purpose\n\nx",
+            "## Purpose\n\nx [[rule-root]], [[brief]], [[rules/schema]] and [[nowhere]]",
         ),
     )
     write(tmp_path / "vault" / "wiki" / "brief.md", "# Brief\n")

@@ -32,14 +32,6 @@ Index check. Do what `handoff.md` asks first. Then, for each `create` entry in `
 When the index line does not settle same or near, open the page and name it in the report.
 <!-- /rule-index-check -->
 
-## Estimates
-
-- [[estimate-index-check-merges]]
-
-## Parent
-
-- [[rule-documentation]]
-
 ## History
 
 - 2026-09-10 created · raw/2026-09-10/ledger.md#case-35.1

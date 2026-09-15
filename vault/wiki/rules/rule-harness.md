@@ -17,20 +17,6 @@ Prevents the tools of the harness from drifting apart from the pages that descri
 them. Three rules belong to no phase of the session: the renderer, the page
 `.claude/settings.json` is assembled from, and lint. They run together in `make lint`, in this order: the harness files are checked against their pages before the pages. Four more belong here and run in no pipeline: the hook that refuses a hand edit of a rendered file, the hook that refuses a heredoc with a backslash or a file write, the page `CLAUDE.md` is rendered from, and the pinned clock of the tests (cases 59.6, 59.8, 127, 145.1).
 
-## Estimates
-
-- [[estimate-harness-pipeline]]
-
-## Children
-
-1. [[rule-render-harness]]
-2. [[rule-settings]]
-3. [[rule-lint]]
-4. [[rule-governed-files-hook]]
-5. [[rule-claude-md]]
-6. [[rule-bash-guard]]
-7. [[rule-tests-clock-pinned]]
-
 ## History
 
 - 2026-09-10 created · raw/2026-09-10/ledger.md#case-37

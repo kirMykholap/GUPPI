@@ -1,8 +1,18 @@
-"""`guppi gate` — the `PreToolUse` hook on the `Skill` tool that refuses `/handoff` on a
-dirty tree, and any skill while the Spec is ahead of the ledger.
+"""`guppi gate` — the hook that refuses `/handoff` on a dirty tree, and any skill while the
+Spec is ahead of the ledger: on `PreToolUse` for the agent's call through the `Skill`
+tool, on `UserPromptSubmit` for the person's typed `/pre-task`, `/retro` or `/handoff`.
 
 Reads the hook payload from stdin. Two refusals, each exit 2 with the reason on stderr,
 which blocks the call once; the hook writes nothing and commits nothing.
+
+Two entries, one gate (case 169.1). A typed slash command is expanded by the client into
+the prompt and is never a `Skill` call, so no `PreToolUse` hook sees it; the
+`UserPromptSubmit` payload carries it as `prompt`. When the prompt, trimmed, is one of the
+three commands — arguments allowed — the same checks run and the same mark is left; a
+refusal is exit 2 with a reason written for the person, whom the client shows it while
+blocking the prompt: the agent must end its reply with the LEDGER block, or commit. Any
+other prompt, `/hi` included, is exit 0 with no output and no mark; a `PreToolUse`
+payload goes as before.
 
 The Spec first (case 122): the text of a reply emitted before a tool call is never kept —
 not in the transcript, not in `last_assistant_message` — so a `LEDGER` block followed by a
@@ -17,10 +27,9 @@ end this reply in text with the LEDGER block, then call /<skill> in the next rep
 `hi`, no Spec and no plan path: nothing to check.
 
 Then the tree: when the skill is `handoff` and `git status --porcelain` is not empty, the
-reason is `commit first`. A clean tree, another skill or another tool: exit 0. The hook
-sees only calls made through the `Skill` tool, which is how the Retro skill calls
-`/handoff`; the handoff skill checks the tree itself for the case where the person types
-it. Rule pages: `vault/wiki/rules/rule-retro-commit.md`, `vault/wiki/rules/rule-ledger-write.md`.
+reason is `commit first`. A clean tree, another skill or another tool: exit 0. The handoff
+skill still checks the tree itself, a second net. Rule pages:
+`vault/wiki/rules/rule-retro-commit.md`, `vault/wiki/rules/rule-ledger-write.md`.
 
 Last the mark (case 136.1): a call of `pre-task`, `retro` or `handoff` that passes both
 checks leaves one line `- HH:MM:SS <stamp> pretask|retro|handoff` in the day's event log,
@@ -47,6 +56,12 @@ MARKS = {"pre-task": "pretask", "retro": "retro", "handoff": "handoff"}
 
 
 def skill_of(payload: dict) -> str:
+    """The skill a payload names: `tool_input.skill` of a `Skill` call, or the typed command
+    of a `UserPromptSubmit` payload when it is one of `MARKS` (case 169.1); else ""."""
+    if "prompt" in payload and "tool_name" not in payload:
+        head = str(payload.get("prompt") or "").strip().split(" ", 1)[0]
+        name = head[1:] if head.startswith("/") else ""
+        return name if name in MARKS else ""
     if payload.get("tool_name") != TOOL:
         return ""
     tool_input = payload.get("tool_input")
@@ -57,6 +72,11 @@ def skill_of(payload: dict) -> str:
         if value:
             return str(value).strip().lstrip("/").split(" ", 1)[0]
     return ""
+
+
+def typed(payload: dict) -> bool:
+    """True for a `UserPromptSubmit` payload — the person's path (case 169.1)."""
+    return "prompt" in payload and "tool_name" not in payload
 
 
 def dirty(project_dir: Path) -> str:
@@ -158,10 +178,16 @@ def run(
         unwritten = spec_check(project_dir, stamp, now)
         if unwritten:
             cases = sorted({f.split(":", 1)[0] for f in unwritten}, key=case_key)
+            if typed(payload):  # 169.1: the reason is for the person
+                advice = f"Ask the agent to end its reply with the LEDGER block, then type /{skill} again."
+            else:
+                advice = (
+                    "The text before a tool call is never kept: end this reply in text with "
+                    f"the LEDGER block, then call /{skill} in the next reply."
+                )
             print(
                 f"gate: /{skill} refused — {len(unwritten)} item(s) of the Spec have no ledger "
-                f"line ({', '.join(cases)}). The text before a tool call is never kept: end "
-                f"this reply in text with the LEDGER block, then call /{skill} in the next reply.",
+                f"line ({', '.join(cases)}). {advice}",
                 file=stderr,
             )
             return 2

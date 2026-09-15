@@ -53,14 +53,6 @@ Answer with exactly these five lines, each present, "none" when empty:
 - tags/slug: tags that fit, existing first; the named slug — `free`, `live` (with its category), or `archived at <path> by [[decision-case-N]]`, N from the page's `origin`
 <!-- /rule-ask -->
 
-## Estimates
-
-- [[estimate-ask-finds]]
-
-## Parent
-
-- [[rule-plan-mode]]
-
 ## History
 
 - 2026-09-09 created · raw/2026-09-09/ledger.md#case-23.1

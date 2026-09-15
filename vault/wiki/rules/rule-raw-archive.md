@@ -52,19 +52,6 @@ the other units still move. A rerun moves nothing and exits 0. A folder without
 mark keeps its unit in `raw/`; that gap belongs to `rule-materialize`. The
 coverage of a line is the one function `guppi tail` uses ([[rule-ledger-tail]]).
 
-## Estimates
-
-- [[estimate-raw-archive]]
-
-## Parent
-
-- [[rule-documentation]]
-
-## Implementation
-
-- `guppi/archive.py`
-- `tests/test_archive.py`
-
 ## History
 
 - 2026-09-13 created · [[decision-case-100.1]]

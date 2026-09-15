@@ -15,7 +15,7 @@ A Lesson is a recorded fact, not a ratified decision. It does not go through a C
 | `root_cause` | yes | one line | Why it happened (`error`), or the mechanism the source claims (`knowledge`). Lives in properties because `lessons.index` is built from it, and clustering into an Insight compares exactly this. |
 | `status` | yes | `new` \| `clustered` \| `archived` | `clustered` once it belongs to an Insight. Archived when its Insight is `actioned`. |
 | `source` | `knowledge` | url or reference | Where the material came from. |
-| `insight` | no | quoted wikilink `"[[slug]]"` | The Insight this belongs to, once clustered. Written by the script. The scripts read the slug through the brackets; a slug without a category prefix stays bare (case 148.2). |
+| `insight` | no | quoted wikilink `"[[slug]]"` | The Insight this belongs to, once clustered. Written by the script. The scripts read the slug through the brackets; a slug without a category prefix stays bare (case 148.2). The field is the link; no body section repeats it (case 166.1). |
 | `origin` | yes | `raw/YYYY-MM-DD/HHMM/ledger.md#L<n>` (the date form, `raw/YYYY-MM-DD/ledger.md#L<n>`, on pages born before 2026-09-13; case 103.6) | The ledger line. Unlike Entity and Rule, this points at a `lesson[...]` line rather than a `decision[...]` one. |
 | `sprint` | yes | sprint id | |
 | `created` | yes | date | |
@@ -44,7 +44,6 @@ An intermediate "the librarian looked at it" state records nothing useful — a 
 |---|---|---|
 | `## Trigger` | yes | What happened (`error`), or what was read (`knowledge`). The full account — the one-line version is `root_cause` in properties. |
 | `## Root cause` | yes | Expands the property: why this happened, or what the source actually claims and on what grounds. |
-| `## Insight` | no | Script places the link once clustered. |
 
 ## History
 
@@ -76,9 +75,6 @@ session folder.
 SessionStart cannot block — exit code 2 is a no-op there. The guard had been placed on
 SessionStart on the assumption that it behaved like PreToolUse. Nothing actually gated
 the write.
-
-## Insight
-- [[insight-hook-gating-assumptions]]
 
 ## History
 - 2026-09-08 created · raw/2026-09-08/ledger.md#L14

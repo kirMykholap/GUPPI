@@ -2,7 +2,8 @@
 
 The only writer to `vault/wiki/`. Applies the entries of `vault/raw/<date>/materialize.yaml`
 in order: a `create` becomes a page with the ratified fields and the derived ones, a
-`ref` lands as a backlink on the parent, an `update` edits fields and sections, an
+`ref` lands in the parent's `children` or the target's `estimates`, an `update` edits
+fields and sections, an
 `estimate` fills status and Result whatever the page held, a `lesson` writes the lesson
 alone (a fact has no Estimate, case 53.1), a `defer` marks its target `deferred_by`
 (case 52.3), one Decision page per Case records the routing as one list per kind present
@@ -22,6 +23,11 @@ nothing; an entry that fails, whatever the cause, is marked `failed` and the res
 An entry with `failed` and no `kind` — a line `materialize` could not lift — is skipped
 with its mark kept and one stderr line (case 142.2); an entry with `superseded_by` is not
 applied, a later Case did its work, and only its Case's Decision page is written (case 151).
+No body section is derived from a ref field — `estimates`, `children`, `parent`,
+`implementation_ref`, `code_ref`, `insight`, `addressed_by` are the link, seen by Obsidian
+since case 148.1 — and a section a page still carries is left as it is (cases 166.2, 166.3).
+A `create` in `insights` is the librarian's, marked `librarian` at synthesis, and applies as
+any create; one from a ledger line, and every `delete` of an Insight, is refused (case 171).
 `log.md` is appended after each entry; History and log lines carry the run's date,
 `created` the yaml's. A `delete` of a slug with no category is a thing outside the
 vault: noted, nothing to archive. A slug collision is an error, never a rename. Without `--date` the script walks every yaml under `vault/raw/`
@@ -75,24 +81,16 @@ KEY_ORDER = {
     ],
 }  # fmt: skip
 KINDS = ("create", "update", "delete", "defer")  # a decision page's lists, in this order
-SECTION_ORDER = {
-    "rules": [
-        "Purpose",
-        "Render",
-        "How it works",
-        "Estimates",
-        "Children",
-        "Parent",
-        "Implementation",
-    ],
-    "entities": ["Purpose", "How it works", "Estimates", "Children", "Parent", "Code"],
+SECTION_ORDER = {  # no section derived from a ref field (case 166.2)
+    "rules": ["Purpose", "Render", "How it works"],
+    "entities": ["Purpose", "How it works"],
     "estimates": ["Context", "Criterion", "Method", "Result"],
-    "lessons": ["Trigger", "Root cause", "Insight"],
-    "insights": ["Pattern", "Proposal", "Children", "Addressed by"],
+    "lessons": ["Trigger", "Root cause"],
+    "insights": ["Pattern", "Proposal"],
     "decisions": ["Context", "Problem", "Given", "When", "Criterion", "Note"],
 }
 DEFERRABLE = ("rules", "entities", "insights")  # the categories a `defer` marks (124.2)
-LIBRARIAN_ONLY = "an Insight is made and retired by the librarian, never created or deleted by a decision (case 124.2)"
+LIBRARIAN_ONLY = "an Insight is made and retired by the librarian, never created or deleted by a decision (case 171)"
 INITIAL_STATUS = {
     "entities": "draft",
     "rules": "draft",
@@ -193,58 +191,6 @@ def write_page(path: Path, props: dict, sections: dict[str, str], category: str)
     path.write_text(text, encoding="utf-8", newline="\n")
 
 
-def links(slugs: list[str], numbered: bool = False) -> str:
-    if numbered:
-        return "\n".join(f"{i}. [[{s}]]" for i, s in enumerate(slugs, start=1))
-    return "\n".join(f"- [[{s}]]" for s in slugs)
-
-
-INSIGHT = "## Insight"
-
-
-def derive_insight(page: Page) -> bool:
-    """The `## Insight` section of a lesson, rebuilt from its `insight` field like `## Parent`
-    from `parent` (case 114): the link when the field is set, no section otherwise. True
-    when the page changed."""
-    insight = page.props.get("insight")
-    wanted = links([str(insight)]) if insight else None
-    current = page.sections.get(INSIGHT)
-    if current is not None:
-        current = current.strip()
-    if wanted == current:
-        return False
-    if wanted is None:
-        page.sections.pop(INSIGHT, None)
-    else:
-        page.sections[INSIGHT] = wanted
-    return True
-
-
-ADDRESSED_BY = "## Addressed by"
-
-
-def derive_addressed_by(page: Page) -> bool:
-    """The `## Addressed by` section of an insight, rebuilt from its `addressed_by` field the
-    way `## Insight` is from a lesson's `insight` (case 124.2): the link when the field is
-    set, no section otherwise. True when the page changed."""
-    decision = page.props.get("addressed_by")
-    wanted = links([str(decision)]) if decision else None
-    current = page.sections.get(ADDRESSED_BY)
-    if current is not None:
-        current = current.strip()
-    if wanted == current:
-        return False
-    if wanted is None:
-        page.sections.pop(ADDRESSED_BY, None)
-    else:
-        page.sections[ADDRESSED_BY] = wanted
-    return True
-
-
-def paths_list(paths: list[str]) -> str:
-    return "\n".join(f"- `{p}`" for p in paths)
-
-
 def as_list(value) -> list[str]:
     if value is None:
         return []
@@ -326,10 +272,6 @@ class Vault:
         return None
 
     def save(self, page: Page) -> None:
-        if page.category == "lessons":
-            derive_insight(page)
-        if page.category == "insights":
-            derive_addressed_by(page)
         write_page(page.path, page.props, page.sections, page.category)
 
     @staticmethod
@@ -354,12 +296,6 @@ class Vault:
     def error(self, slug: str, what: str) -> None:
         self.errors.append(f"generate: {slug}: {what}")
 
-    def rebuild_list(self, page: Page, field: str) -> None:
-        slugs = as_list(page.props.get(field))
-        section = {"children": "## Children", "estimates": "## Estimates"}[field]
-        numbered = field == "children" and page.category == "rules"
-        page.sections[section] = links(slugs, numbered)
-
     # create
 
     def create(self, entry: dict) -> None:
@@ -367,7 +303,7 @@ class Vault:
         if category not in CATEGORIES:
             self.error(slug, f"category {category!r} is not a vault folder")
             return
-        if category == "insights":
+        if category == "insights" and not entry.get("librarian"):  # 171: a decision's, refused
             self.error(slug, LIBRARIAN_ONLY)
             return
         path = self.path(category, slug)
@@ -432,16 +368,6 @@ class Vault:
             and props.get("purpose")
         ):
             sections["## Purpose"] = str(props["purpose"])
-        if category in ("rules", "entities"):
-            sections["## Estimates"] = links(as_list(props.get("estimates")))
-        if "children" in props and category in ("rules", "entities", "insights"):
-            sections["## Children"] = links(as_list(props["children"]), category == "rules")
-        if props.get("parent"):
-            sections["## Parent"] = links([props["parent"]])
-        if props.get("implementation_ref"):
-            sections["## Implementation"] = paths_list(as_list(props["implementation_ref"]))
-        if props.get("code_ref"):
-            sections["## Code"] = paths_list(as_list(props["code_ref"]))
         if category == "estimates" and entry.get("status"):
             props["status"] = entry["status"]
             sections["## Result"] = str(entry.get("result") or "")
@@ -481,7 +407,6 @@ class Vault:
         if slug in current:
             return
         parent.props[field] = current + [slug]
-        self.rebuild_list(parent, field)
         what = f"estimate {slug} added" if field == "estimates" else f"child {slug} added"
         self.history(parent, what, origin)
         self.save(parent)
@@ -511,8 +436,6 @@ class Vault:
             case_added = match.group(1)
         for key, value in (entry.get("set") or {}).items():
             page.props[key] = value
-            if key in ("children", "estimates"):
-                self.rebuild_list(page, key)
             if key == "tags":
                 self.used_tags.update(as_list(value))
         for name, text in (entry.get("sections") or {}).items():
@@ -768,12 +691,6 @@ class Vault:
         for path in (self.wiki / "lessons").glob("*.md"):
             if path.stem != "schema":
                 lessons[path.stem] = read_page(path, "lessons")
-        for page in list(lessons.values()):  # 114: the section the field promises
-            if page.error or not page.props.get("insight"):
-                continue
-            if derive_insight(page):
-                self.history(page, "insight section derived", None)
-                self.save(page)
 
         def child_status(slug: str) -> str:
             """`wiki/lessons/` first, then the archive (case 110); no page anywhere is

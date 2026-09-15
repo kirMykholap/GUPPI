@@ -19,10 +19,6 @@ session E rendered .claude/agents/librarian-guppi.md by `guppi render` at about 
 
 the agent list is re-read during a session, at least after a file appears under .claude/agents/; this contradicts lesson-agents-loaded-at-session-start of session D, where three dispatches in the rendering session failed — the difference between the two sessions is not measured
 
-## Insight
-
-- [[insight-harness-agent-visibility]]
-
 ## History
 
 - 2026-09-10 created · raw/2026-09-10/ledger.md#L80

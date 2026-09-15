@@ -100,21 +100,6 @@ apart from the session's own commit (case 89). The agent's own `PostToolUse`
 hook writes its commands to the event log, since a subagent does not inherit the
 project's hooks; the hook is part of this Render and is ratified with it.
 
-## Estimates
-
-- [[estimate-documentation-completes]]
-
-## Children
-
-1. [[rule-materialize]]
-2. [[rule-index-check]]
-3. [[rule-synthesis]]
-4. [[rule-page-generation]]
-5. [[rule-cleanup]]
-6. [[rule-raw-archive]]
-7. [[rule-brief]]
-8. [[rule-close]]
-
 ## History
 
 - 2026-09-10 created · raw/2026-09-10/ledger.md#case-36

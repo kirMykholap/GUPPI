@@ -25,15 +25,6 @@ The difference between the two sessions was not measured. Until it is, the rule 
 
 A suggestion, not a decision. Take one reading that separates the two: render a throwaway agent mid-session, dispatch it at once, record the result and the session state (whether the file is new or replaced, whether a compaction happened, the client version). Write it as an Estimate on the Rule that renders agents. Until that reading exists, plan as if a rendered agent were unusable in the session that creates it, and treat a successful same-session dispatch as a bonus, not as a guarantee.
 
-## Children
-
-- [[lesson-agents-loaded-at-session-start]]
-- [[lesson-agents-visible-in-session]]
-
-## Addressed by
-
-- [[decision-case-139.2]]
-
 ## History
 
 - 2026-09-10 created · raw/2026-09-10/ledger.md#L80

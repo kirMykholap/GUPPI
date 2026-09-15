@@ -40,20 +40,6 @@ owns that text.
 }
 <!-- /rule-settings -->
 
-## Estimates
-
-- [[estimate-settings]]
-
-## Children
-
-1. [[rule-default-mode]]
-2. [[rule-permissions]]
-3. [[rule-hook-registry]]
-
-## Parent
-
-- [[rule-harness]]
-
 ## History
 
 - 2026-09-12 created · [[decision-case-85.2]]

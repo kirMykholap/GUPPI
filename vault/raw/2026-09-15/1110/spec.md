@@ -272,7 +272,7 @@ update:
 
 ```tasks
 - [ ] nothing in Work Mode: the librarian's run applies the two updates
-- [ ] after the librarian's run: `guppi lint` raises no `ref` on `decision-case-140` and on the lesson (the next session's `/hi`)
+- [x] after the librarian's run: `guppi lint` raises no `ref` on `decision-case-140` and on the lesson (the next session's `/hi`)
 ```
 
 ## Case 161 — `rule-materialize`: the `then` item of a Rule-class file is found by `file`

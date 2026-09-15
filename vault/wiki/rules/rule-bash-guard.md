@@ -35,20 +35,6 @@ that (case 91). A `<<<` here-string, a heredoc without a backslash whose output 
 pipe or the screen, a command without a heredoc, any other tool, or a payload the hook
 cannot read: exit 0, the last with one line on stderr. The hook never raises (case 127).
 
-## Estimates
-
-- [[estimate-bash-guard]]
-
-## Parent
-
-- [[rule-harness]]
-
-## Implementation
-
-- `guppi/bashguard.py`
-- `tests/test_bashguard.py`
-- `.claude/settings.json`
-
 ## History
 
 - 2026-09-14 deferred, placeholder · [[decision-case-120]]

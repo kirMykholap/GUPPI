@@ -15,9 +15,6 @@ properties:
       required: [source]
     - when: {status: clustered}
       required: [insight]
+# No `## Insight` section: the `insight` field is the link (case 166.1).
 body:
   required: ["## Trigger", "## Root cause", "## History"]
-  optional: ["## Insight"]
-  conditional:
-    - when: {status: clustered}
-      required: ["## Insight"]

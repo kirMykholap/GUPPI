@@ -24,19 +24,6 @@ same module serves the skill: `uv run guppi pretask --check <plan>` compares the
 with the session's ledger lines and frontier (cases 59.1–59.3, 59.6); `/pre-task` runs
 it, the hook does not.
 
-## Estimates
-
-- [[estimate-pretask-hook-gates]]
-
-## Parent
-
-- [[rule-plan-mode]]
-
-## Implementation
-
-- `guppi/pretask.py`
-- `.claude/settings.json`
-
 ## History
 
 - 2026-09-09 created · raw/2026-09-09/ledger.md#case-24.1

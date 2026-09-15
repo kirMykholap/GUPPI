@@ -18,10 +18,6 @@ the reply that ratified Case 109 carried its LEDGER block in a text written befo
 
 in this harness (VS Code extension, focus view) an assistant text emitted before a tool call in the same turn is not persisted to the transcript and is not last_assistant_message, so the hook has nothing to read; lesson-ledger-hook-drops-a-block-followed-by-tool-calls-in-the-turn, withdrawn by case 70 as the hook dropping nothing, described the same loss — the hook reads faithfully what the transcript never received
 
-## Insight
-
-- [[insight-ledger-hook-reads-only-the-final-text]]
-
 ## History
 
 - 2026-09-13 created · raw/2026-09-13/ledger.md#L42

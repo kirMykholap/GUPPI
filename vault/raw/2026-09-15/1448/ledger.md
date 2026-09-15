@@ -1,0 +1,30 @@
+- 14:59:22 estimate[estimate-index-check-merges][passed] live 2026-09-15, the librarian's run of session Q read against the brief: four lesson creates compared against the Grep `^(root_cause|deferred_by):` over `wiki/lessons/`, 27 lines named with their count; 0 merged and none was due; 1 near (`lesson-retro-typed-still-bypasses-the-skill-tool-after-150` near `lesson-retro-typed-by-the-person-bypasses-the-skill-tool-and-the-gate`) settled on the index line with the reason; no page opened; no create in another category, the Greps of `rules/` and `entities/` not run; no comparison crossed categories
+- 14:59:22 estimate[estimate-synthesis-clusters][passed] live 2026-09-15, the librarian's run of session Q read against the brief: four root causes compared against the Greps `^(root_cause|deferred_by):` over `lessons/` (27 lines) and `^(pattern|deferred_by):` over `insights/` (11 lines), both named with their counts; one insight create entry over the two retro lessons with pattern, both children, the union of tags, Pattern and Proposal, and one update per lesson setting clustered and insight; one live Insight (`insight-librarian-frame-omits-required-reads`) reopened by a matching lesson with the lesson's update; the page `insight-materialize-lift-loses-a-schema-field` opened and named with the outcome (not the same cause); `lesson-wiki-page-edited-by-hand-in-obsidian` without a pair stayed new; all 5 added entries carry librarian: synthesis; the day's event log holds no archive read; the refusal of the create by generate (124.2) is outside this criterion — frontier F3
+- 15:39:09 decision[case 164][update][rule-page-generation]{ref:rule-page-generation}{supersedes:case 124.2}
+- 15:39:09 estimate[estimate-case-protocol-loaded][passed] block 159, live 2026-09-15 session R, Case 164 as first shown in the chat after the render of 159: context, problem, recommend as blockquotes without operands, the slug of the thing described only, six, two and three sentences, no line numbers, one quotation and the Case is about it; given seven facts with ＋ and －, no history; then behaviour only, the bookkeeping in a tasks blockquote with five checklist lines between then and ratification; slugs, files and values in code spans, bold on labels and operands only; no horizontal rule, no agent text after the Case; the owner's follow-up questions asked for a justification, no split
+- 15:39:09 estimate[estimate-case-protocol-loaded][passed] block 157, live 2026-09-15 session R, the reply that acknowledges Case 164 — the first after the render of 157: the heading Case 164 — ратифицирован, a paragraph Меняется, a paragraph Заметки, the heading Frontier with the closed lines folded into one and the open ones one per line with a short title and the question which item is next, the LEDGER block last; headings and labels in Russian, the language of the chat
+- 15:48:35 decision[case 165.2][defer][rule-page-generation]{ref:rule-page-generation}
+- 16:09:08 decision[case 166.1][update][rules-schema-yaml]{ref:rules-schema-yaml}{supersedes:case 165.2}
+- 16:09:08 decision[case 166.1][update][rules-schema]{ref:rules-schema}
+- 16:09:08 decision[case 166.1][update][entities-schema-yaml]{ref:entities-schema-yaml}
+- 16:09:08 decision[case 166.1][update][entities-schema]{ref:entities-schema}
+- 16:09:08 decision[case 166.1][update][lessons-schema-yaml]{ref:lessons-schema-yaml}
+- 16:09:08 decision[case 166.1][update][lessons-schema]{ref:lessons-schema}
+- 16:09:08 decision[case 166.1][update][insights-schema-yaml]{ref:insights-schema-yaml}
+- 16:09:08 decision[case 166.1][update][insights-schema]{ref:insights-schema}
+- 16:09:08 decision[case 166.2][update][rule-page-generation]{ref:rule-page-generation}{supersedes:case 164}
+- 16:09:08 decision[case 166.3][update][rule-page-generation]{ref:rule-page-generation}{supersedes:case 114}
+- 16:09:08 decision[case 166.4][update][rule-cleanup]{ref:rule-cleanup}
+- 16:12:41 decision[case 167][update][rule-case-protocol]{ref:rule-case-protocol}{supersedes:case 157}
+- 16:45:25 decision[case 168][update][rule-brief]{ref:rule-brief}
+- 16:45:25 decision[case 168][update][insight-librarian-frame-omits-required-reads]{ref:insight-librarian-frame-omits-required-reads}
+- 17:02:11 decision[case 169.1][update][rule-retro-commit]{ref:rule-retro-commit}
+- 17:02:11 decision[case 169.1][update][rule-event-log]{ref:rule-event-log}
+- 17:02:11 decision[case 169.1][update][rule-ledger-write]{ref:rule-ledger-write}
+- 17:02:11 decision[case 169.2][update][rule-hook-registry]{ref:rule-hook-registry}
+- 17:02:11 decision[case 169.3][update][rule-retro]{ref:rule-retro}{supersedes:case 150}
+- 17:06:29 decision[case 170][defer][rule-work-mode]{ref:rule-work-mode}{supersedes:case 162}
+- 17:06:29 decision[case 170][defer][rule-subagent-guppi]{ref:rule-subagent-guppi}
+- 17:36:06 decision[case 171][update][rule-page-generation]{ref:rule-page-generation}{supersedes:case 124.2}
+- 17:36:06 decision[case 172][update][rule-page-generation]{ref:rule-page-generation}{supersedes:case 148.1}
+- 17:47:02 lesson[error][lesson-supersedes-in-the-same-session-skips-the-earlier-cases-entries]{tags:workflow,ledger} trigger: Case 166.2 carried {supersedes:case 164}, ratified an hour earlier in the same session; ask-guppi at pre-task found that every entry of 164 — its replace, its criterion block, its remove_criterion of 124.2 — would get superseded_by and never apply, leaving block 124.2 beside block 166.2 and the rule text silent on the librarian's create root_cause: the Case protocol presents supersedes as the removal of the earlier Case's Criterion block, but materialize marks every entry of that Case superseded_by and generate applies none of them, so a Case that supersedes one whose text or removal work is still wanted must carry that work itself; the agent restated 164's behaviour in 166.2's then and forgot its replace and its own supersedes of 124.2 — cured by Case 171

@@ -14,11 +14,11 @@ Entity is the thing that gets built. It is recursive: a MOC holds children, a Le
 | `kind` | yes | `MOC` \| `Leaf` | MOC: no direct criteria, holds children. Leaf: direct behaviour of its own. |
 | `purpose` | yes | one line | Why this exists. Lives in properties, not the body, because `entities.index` is built from it and must stay one line per page. The body expands on it; the property stays short. |
 | `status` | yes | `draft` \| `built` \| `archived` | Flat list, like every other category. `built` is set by lint, not by hand: an Entity is built only once all of its Estimates pass — a graph property. |
-| `parent` | Leaf | quoted wikilink `"[[slug]]"` | The MOC above it. Written by the script from the ledger's `ref`. The scripts read the slug through the brackets; a slug without a category prefix stays bare (case 148.2). |
-| `children` | MOC | list of quoted wikilink `"[[slug]]"` | Functional requirements, each its own page. Written by the script. |
-| `estimates` | yes | list of quoted wikilink `"[[slug]]"` | On a Leaf: checks of its own behaviour. On a MOC: cross-cutting checks that belong to all children and to none individually — non-functional requirements live here. |
+| `parent` | Leaf | quoted wikilink `"[[slug]]"` | The MOC above it. Written by the script from the ledger's `ref`. The scripts read the slug through the brackets; a slug without a category prefix stays bare (case 148.2). The field is the link; no body section repeats it (case 166.1). |
+| `children` | MOC | list of quoted wikilink `"[[slug]]"` | Functional requirements, each its own page. Written by the script. The field is the link; no body section repeats it (case 166.1). |
+| `estimates` | yes | list of quoted wikilink `"[[slug]]"` | On a Leaf: checks of its own behaviour. On a MOC: cross-cutting checks that belong to all children and to none individually — non-functional requirements live here. The field is the link; no body section repeats it (case 166.1). |
 | `deferred_by` | no | list of decision quoted wikilink `"[[slug]]"` | The Decision pages whose `defer` targets this page. Written by `guppi generate` on a defer, cleared when a later Case `supersedes` that one; the index line carries it (case 52.3). |
-| `code_ref` | no | list of paths | Code, commits or PRs. Allowed on both kinds: a Leaf points at files, a MOC may point at the directory or module it corresponds to. |
+| `code_ref` | no | list of paths | Code, commits or PRs. Allowed on both kinds: a Leaf points at files, a MOC may point at the directory or module it corresponds to. The field is the link; no body section repeats it (case 166.1). |
 | `origin` | yes | `raw/YYYY-MM-DD/HHMM/ledger.md#case-N` (the date form, `raw/YYYY-MM-DD/ledger.md#case-N`, on pages born before 2026-09-13; case 103.6) | The ratified decision that created it. |
 | `sprint` | yes | sprint id | |
 | `created` | yes | date | |
@@ -38,10 +38,6 @@ Meaningful, written by the main agent in the Case and checked by pre-task for co
 |---|---|---|
 | `## Purpose` | yes | Expands the `purpose` property: what problem this solves, why it exists in this shape. |
 | `## How it works` | no | How it is built. For a Leaf, the mechanics. For a MOC, the principle by which it splits into children — why *these* children and not some other cut. Omitted while `draft`. |
-| `## Estimates` | yes | Where the script places links to the Estimate pages. |
-| `## Children` | MOC | Where the script places links to child Entities. |
-| `## Parent` | Leaf | Where the script places the link upward. |
-| `## Code` | no | Where the script places `code_ref` links. |
 
 ### `How it works` is unratified, and that is fine
 
@@ -88,18 +84,6 @@ totalling fail independently and are fixed in different places, so each is its o
 Render time is cross-cutting — it belongs to the cart as a whole — so it sits on this
 page rather than on any child.
 
-## Estimates
-- [[estimate-cart-render-time]]
-
-## Children
-- [[entity-cart-add]]
-- [[entity-cart-quantity]]
-- [[entity-cart-remove]]
-- [[entity-cart-total]]
-
-## Code
-- `src/cart/`
-
 ## History
 - 2026-09-08 created · raw/2026-09-08/ledger.md#case-1
 ```
@@ -128,15 +112,6 @@ tiers are measured against, not an absence of a rule.
 ## How it works
 Order count is read at checkout; zero completed orders returns 0% before any other tier
 is evaluated, so no later rule can raise it accidentally.
-
-## Estimates
-- [[estimate-new-client-discount]]
-
-## Parent
-- [[entity-discount-rules]]
-
-## Code
-- `src/discounts/new_client.py`
 
 ## History
 - 2026-09-08 created · raw/2026-09-08/ledger.md#case-2

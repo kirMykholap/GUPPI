@@ -58,14 +58,6 @@ agent's Render and is ratified with it; this page holds the registrations only.
     ]
 <!-- /rule-hook-registry -->
 
-## Estimates
-
-- [[estimate-hook-registry-rendered]]
-
-## Parent
-
-- [[rule-session-start]]
-
 ## History
 
 - 2026-09-09 created · raw/2026-09-09/ledger.md#case-18.2

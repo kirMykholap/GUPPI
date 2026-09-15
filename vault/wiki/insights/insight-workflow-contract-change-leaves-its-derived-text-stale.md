@@ -44,16 +44,6 @@ the path half at write time with the `guard` hook, and Case 59.8 removes the dua
 of `CLAUDE.md`; the Estimate-criterion half is still done by hand, by grep, in the
 acknowledging reply.
 
-## Children
-
-- [[lesson-estimates-criterion-stale-after-contract-change]]
-- [[lesson-render-governed-file-updated-as-rule-class-file]]
-- [[lesson-estimates-live-clause-stale-at-first-render]]
-
-## Addressed by
-
-- [[decision-case-138]]
-
 ## History
 
 - 2026-09-12 created · raw/2026-09-12/ledger.md#L12

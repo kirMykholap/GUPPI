@@ -56,22 +56,6 @@ copies of one text, kept identical by hand.
 `disable-model-invocation: true` in the frontmatter: only the person opens a working
 session. The skill writes no event line of its own since case 111.4: a `!` substitution never saw `CLAUDE_SESSION_ID` (every `hi` of sessions A–M carried `--------`), so the `hi` line is the `UserPromptSubmit` hook's, which reads the session id from its payload (`rule-event-log`, case 111.1).
 
-## Estimates
-
-- [[estimate-hi-no-read-calls]]
-- [[estimate-hi-writes-frontier]]
-
-## Children
-
-1. [[rule-internal-context]]
-2. [[rule-git-context]]
-3. [[rule-github-issues]]
-4. [[rule-ledger-tail]]
-
-## Parent
-
-- [[rule-session-start]]
-
 ## History
 
 - 2026-09-09 created · raw/2026-09-09/ledger.md#case-11

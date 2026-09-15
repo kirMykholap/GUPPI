@@ -37,15 +37,6 @@ where each comes from - a brace of the ledger line, a key of the `then` item - a
 and the source does not hold is what `incomplete` is for; a field the source holds and the
 table does not know is a fault of the parser, not of the page.
 
-## Children
-
-- [[lesson-materialize-standalone-estimate-keeps-criterion-as-a-field]]
-- [[lesson-materialize-lesson-line-source-dropped]]
-
-## Addressed by
-
-- [[decision-case-144.3]]
-
 ## History
 
 - 2026-09-12 created · raw/2026-09-12/ledger.md#L160

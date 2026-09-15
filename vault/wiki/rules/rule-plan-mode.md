@@ -17,17 +17,6 @@ Prevents work being planned against stale or contradictory vault state — decid
 something that already exists, or ratifying decisions that conflict with each other or
 with what is already there.
 
-## Estimates
-
-- [[estimate-plan-mode-verified]]
-
-## Children
-
-1. [[rule-ask]]
-2. [[rule-pretask-hook]]
-3. [[rule-pretask]]
-4. [[rule-spec-capture]]
-
 ## History
 
 - 2026-09-09 created · raw/2026-09-09/ledger.md#case-19

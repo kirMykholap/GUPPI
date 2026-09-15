@@ -32,20 +32,6 @@ Render (case 59.8). Any other tool, an ungoverned path, or a payload the hook ca
 read: exit 0, the last with one line on stderr. `guppi render` writes through Bash
 and passes; subagents inherit no project hook.
 
-## Estimates
-
-- [[estimate-governed-files-hook-refuses]]
-
-## Parent
-
-- [[rule-harness]]
-
-## Implementation
-
-- `guppi/guard.py`
-- `tests/test_guard.py`
-- `.claude/settings.json`
-
 ## History
 
 - 2026-09-12 created · [[decision-case-59.6]]

@@ -18,10 +18,6 @@ case 56 changed the Case protocol paragraph of CLAUDE.md by hand as a file updat
 
 CLAUDE.md is both a Rule-class file, changed by hand through a file item, and a rendered file governed by rule-case-protocol; nothing says which of its sections is which, and pre-task does not check that a file item on a governed path comes with an update of the governing rule
 
-## Insight
-
-- [[insight-workflow-contract-change-leaves-its-derived-text-stale]]
-
 ## History
 
 - 2026-09-12 created · raw/2026-09-12/ledger.md#L12

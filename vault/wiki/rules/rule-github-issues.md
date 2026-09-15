@@ -34,14 +34,6 @@ completes: the rule is "the list, or the named reason there is none". As of 2026
 there is no GitHub remote and `gh` is not logged in; the owner chose to leave it so until a
 remote exists.
 
-## Estimates
-
-- [[estimate-github-issues-listed]]
-
-## Parent
-
-- [[rule-skill-hi]]
-
 ## History
 
 - 2026-09-09 created · raw/2026-09-09/ledger.md#case-11

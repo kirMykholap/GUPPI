@@ -18,16 +18,6 @@ also prevents the librarian's writes from being indistinguishable from the
 session's own, by forcing a commit between the two. Three steps: the Retro
 conversation, the commit gate on the way to handoff, then handoff itself.
 
-## Estimates
-
-- [[estimate-end-of-work-order]]
-
-## Children
-
-1. [[rule-retro]]
-2. [[rule-retro-commit]]
-3. [[rule-handoff]]
-
 ## History
 
 - 2026-09-10 created · raw/2026-09-10/ledger.md#case-38

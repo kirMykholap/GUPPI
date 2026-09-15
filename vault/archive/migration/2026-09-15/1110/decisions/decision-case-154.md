@@ -1,8 +1,9 @@
 ---
 type: decision
 case: "154"
-status: current
+status: archived
 defer: ["[[rule-ask]]"]
+superseded_by: ["[[decision-case-155]]"]
 origin: raw/2026-09-14/1633/ledger.md#case-154
 sprint: migration
 created: 2026-09-14
@@ -20,3 +21,6 @@ The owner finds six dispatches dearer than one and of less use. The main agent's
 ## History
 
 - 2026-09-14 created · raw/2026-09-14/1633/ledger.md#case-154
+- 2026-09-15 superseded by decision-case-155 · [[decision-case-155]]
+- 2026-09-15 archived · superseded
+- 2026-09-15 archived · cleanup

@@ -1,7 +1,7 @@
 ---
 type: estimate
 kind: QA
-status: pending
+status: passed
 target: "[[rule-cleanup]]"
 origin: raw/2026-09-10/ledger.md#case-33
 sprint: migration
@@ -50,7 +50,7 @@ pytest in tests/test_cleanup.py against a temp vault; the live reading once by h
 
 ## Result
 
-block 102.2: the librarian of session L moved 32 pages to vault/archive/migration/2026-09-13/0652/decisions/, the session folder of the run; the migration archived/ → archive/ was one commit of session L; live on 2026-09-14: uv run guppi cleanup with nothing to move prints "0 page(s) moved", exit 0, git diff empty under vault/; unit tests green (make test-documentation, 84 passed)
+block 147.6: rule-cleanup purpose "Prevents an archived page from staying among the live ones", the index sentence gone; cleanup.py without the index writer, tests/test_cleanup.py asserts no index file; live: the librarian's run of session P moved 11 pages and wrote no index
 
 ## History
 
@@ -62,3 +62,4 @@ block 102.2: the librarian of session L moved 32 pages to vault/archive/migratio
 - 2026-09-14 updated: the prose Criterion names the path of case 102 (case 112.5) · [[decision-case-112.5]]
 - 2026-09-14 status: pending → passed · raw/2026-09-14/0747/ledger.md#L41
 - 2026-09-14 criterion: case 147.6 added · [[decision-case-147.6]]
+- 2026-09-15 status: pending → passed · raw/2026-09-15/1110/ledger.md#L2

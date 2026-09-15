@@ -41,8 +41,8 @@ move closes:
 <!-- rule-case-protocol -->
 ## Case protocol
 
-One reply is one Case, in the seven sections of `case-schema.md`: context, problem,
-recommend, given, when, then, ratification. That is the form of Plan Mode. A deferred
+One reply is one Case, in the eight sections of `case-schema.md`: context, problem,
+recommend, given, when, then, tasks, ratification. That is the form of Plan Mode. A deferred
 decision — an item left open when the person closes Plan Mode, or an item Retro ends
 in a defer — is its own Case in the short form: context, problem, a `defer` block with
 `purpose`, under the `## Deferred` heading of `raw/<date>/<hi HHMM>/spec.md`, the session's folder (case 73), before its ledger line (cases 56, 59.5); a page-less Slice task goes to `sprint.md` instead. Taking a
@@ -58,16 +58,16 @@ parent does not ratify its children.
 
 A Case renders as `## Case N — name`, then one blockquote per section: its first
 line `**name:**`, its text on the following quoted lines, a blank line between
-sections. In `given`, `when` and `then` every line after the first starts with a
-bold operand: **＋** for one more condition or action, **－** for a limit or an
-exception. `when` and `then` together are the criterion of the Estimate the Case creates or changes: the scripts copy them as its `### case N` block and `problem` as its Context at birth; a Leaf `create` carries `method`, a Leaf `update` `contract: same` or `changed`; one contract per Case or sub-case. Write short sentences, one idea each, in the active voice. A sub-case is
-`### Case N.M — name` under its parent, with its own `when`, `then` and
+sections. `context`, `problem` and `recommend` carry no operand, name the slug of the thing described only, and run to seven sentences each at most: `context` says what the thing is and how it works today, for a reader who has not opened the pages, with no line numbers and no quotation unless the Case is about one; `problem` says what is wrong, or the question answered, in one paragraph; `recommend` says the choice and why, the rejected option in one sentence. `given` holds one fact per line, and only a fact a line of `then` depends on: the state of the pages the Case changes, the rule that constrains, the vault's answer, the test that fixes the behaviour; no history, no quotation for its own sake. In `given`, `when` and `then` every line after the first starts with a
+bold operand: **＋** for one more condition or action — "and also", **－** for a limit or an
+exception — "but not", "does not apply here". `then` holds behaviour only: no `contract` mark, no Estimate block, no reading, no `supersedes`; those are lines of `tasks`, a section between `then` and `ratification`, a checklist in its blockquote — one line per page `update` with its `contract`, Estimate block, file, test, command and reading — the same lines that go into the Spec's `tasks` block. Slugs, file names and field values sit in code spans; bold is for section labels and operands only. One horizontal rule at most, after the Case or its last sub-case, and only when the agent's own text follows (case 159). `when` and `then` together are the criterion of the Estimate the Case creates or changes: the scripts copy them as its `### case N` block and `problem` as its Context at birth; a Leaf `create` carries `method`, a Leaf `update` `contract: same` or `changed`; one contract per Case or sub-case. Write short sentences, one idea each, in the active voice. A sub-case is
+`### Case N.M — name` under its parent, with its own `when`, `then`, `tasks` and
 `ratification`, and its own `given` unless it is the parent's word for word; the
 sections the children share live on the parent, and `materialize` reads them there. The
 `ratification` section ends with a preview of the ledger lines in an untagged
 fence, and the turn ends with a plain question in the chat, never a picker tool.
 When the person answers with a change, show the Case again: `context` and
-`problem` if they changed, always `given`, `when`, `then` and `ratification`, and
+`problem` if they changed, always `given`, `when`, `then`, `tasks` and `ratification`, and
 no `recommend` — the variant is theirs. The page content itself — fields, prose sections, the `method` of its check — is a YAML
 block tagged `then` under the Case in the Spec, not in the chat; `guppi
 materialize` reads it, and what is not in that block was signed by nobody.
@@ -78,6 +78,13 @@ block and a block tagged `tasks` — one `- [ ] <what>` per file, test, command 
 one-off migration, and one per reading of an Estimate the Case creates or sets
 `pending`, by its slug; no `recommend`, no `ratification`, no code. Work Mode ticks the boxes in `raw/<date>/<hi HHMM>/spec.md` in the reply that finishes the task; Retro
 counts the unticked.
+
+The reply that acknowledges a ratification has four parts, in this order: a heading
+`## Case N — ratified` and a paragraph **Changes:** — what changes, in one or two sentences; a
+paragraph **Notes:** — facts that did not enter the Case, omitted when there are none; a heading
+`## Frontier` and the lines of `frontier.md` as a checklist — the closed lines folded into one, the
+open ones one per line with a short title, the deferred as `[-] … · defer case N` — and the question
+which item is next; the `LEDGER` block, last. Headings and labels in the language of the chat (case 157).
 
 The harness — hooks, skills, agents, `settings.json`, this section of `CLAUDE.md` —
 is rendered from `rules/`. A harness file changes through an `update` of its Rule

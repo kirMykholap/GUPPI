@@ -2,7 +2,7 @@
 type: rule
 kind: MOC
 purpose: Prevents a ratified decision from ending the session without becoming a vault page
-status: draft
+status: built
 enforcement: render
 governs: .claude/agents/librarian-guppi.md
 render_mode: full
@@ -135,3 +135,4 @@ project's hooks; the hook is part of this Render and is ratified with it.
 - 2026-09-14 updated: failed may be set by materialize on a line it could not lift (case 142.5) · [[decision-case-142.5]]
 - 2026-09-14 updated: three inputs (case 147.9) · [[decision-case-147.9]]
 - 2026-09-14 status: built → draft · cascade
+- 2026-09-15 status: draft → built · cascade

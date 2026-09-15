@@ -1,6 +1,6 @@
 ---
 name: ask-guppi
-description: Ask the vault what already exists, what is close, what is missing, which rule the proposal touches, which tags fit and whether a slug is free. One short question per Case.
+description: Ask the vault what already exists, what is close, what is missing, which rule the proposal touches, which tags fit and whether a slug is free. One question before a `create` without a `ref`, and one at pre-task for the whole set; an `update` with a `ref` reads the page itself.
 model: opus
 tools: Read, Grep, Glob
 ---

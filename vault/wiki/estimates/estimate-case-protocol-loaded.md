@@ -66,13 +66,41 @@ The paragraph on ledger lines in the Render carries the sentence: "A `knowledge`
 **－** `rule-ledger-write` does not change: the hook writes verbatim and checks nothing.
 **－** `rule-retro` does not change: its example lines stay; the rule is read in `CLAUDE.md`.
 
+### case 157
+
+When:
+The owner answers a Case with a ratification; the agent writes the reply that acknowledges it.
+
+Then:
+The reply has four parts, in this order: a heading `## Case N — ratified` and a paragraph **Changes:** — what changes, in one or two sentences; a paragraph **Notes:** — facts that did not enter the Case, omitted when there are none; a heading `## Frontier` and the lines of `frontier.md` as a checklist — the closed lines folded into one, the open ones one per line with a short title, the deferred as `[-] … · defer case N` — and the question which item is next; the `LEDGER` block, last.
+**＋** The headings and labels are in the language of the chat: "ратифицирован", "Меняется", "Заметки".
+**＋** `rule-case-protocol` `contract: changed`; `estimate-case-protocol-loaded` gets a `### case 157` block, `pending`; read in the next session at the first such reply after the render.
+**－** The replies on readings and lessons keep their shape; the reply that carries a Case (the seven sections) too.
+**－** `CLAUDE.md` changes only through the librarian's render.
+
+### case 159
+
+When:
+The agent writes a Case in the chat — at its first showing, when shown again after the owner's change, and with sub-cases.
+
+Then:
+`context`, `problem`, `recommend` are blockquotes without operands, the slug of the thing described only, up to seven sentences each: `context` — what the thing is and how it works today, for a reader who has not opened the pages, no line numbers and no quotation unless the Case is about one; `problem` — what is wrong, or the question answered, one paragraph; `recommend` — the choice and why, the rejected option in one sentence.
+**＋** `given` — one fact per line, only those a line of `then` depends on: the state of the pages changed; the rule that constrains; the vault's answer; the test that fixes the behaviour. The first line bare, then **＋** "and also", **－** "but not / does not apply here". No history, no quotation for its own sake.
+**＋** `then` — behaviour only: **＋** what also holds, **－** what does not happen; no `contract`, Estimate blocks, readings or `supersedes`.
+**＋** A new section `tasks` between `then` and `ratification`: a blockquote with a checklist, one line per page `update` with its `contract`, Estimate block, file, test, command, reading — the same lines that go into the Spec's `tasks` block.
+**＋** Slugs, file names and field values in code spans; bold only for section labels and operands.
+**＋** Sub-cases: the story and the shared `given` on the parent; each `### Case N.M` has its own `when`, `then`, `tasks`, `ratification`.
+**＋** One horizontal rule, after the Case or its last sub-case, and only when the agent's own text follows.
+**－** The Spec as today: `context`, `problem`, `given`, `when`, `then` as blockquotes in English, the `then` and `tasks` blocks; the `tasks` section of the chat is its `tasks` block.
+**－** The acknowledging reply (157) and the short form of a defer do not change.
+
 ## Method
 
 One reading at a session start, by hand, plus the preview cases of `tests/test_ledger.py`.
 
 ## Result
 
-live 2026-09-13 session L: the first turn assembled the Frontier without a read call and every Case of the session used the protocol as loaded — LEDGER blocks only in the acknowledging reply, one Case per reply, sub-cases with their own when/then/ratification, then blocks with method and estimate_slug (86), the Spec at raw/2026-09-13/0652/spec.md and the Frontier beside it (73.9), the case N id in every line and supersedes (75.1); the previews in the ratification quotes of ten Cases added nothing — the ledger holds exactly the 41 decision lines of the LEDGER blocks; the clause "states the rule" was met by use, not by a statement at session start
+block 144.1: CLAUDE.md carries the sentence on the knowledge lesson line and {source:...} in the ledger paragraph, present in the system prompt of session Q without a read; guppi render --check exit 0; the use clause reads at the first knowledge line of the session
 
 ## History
 
@@ -85,3 +113,6 @@ live 2026-09-13 session L: the first turn assembled the Frontier without a read 
 - 2026-09-12 criterion: case 86 added · [[decision-case-86]]
 - 2026-09-13 status: pending → passed · raw/2026-09-13/ledger.md#L43
 - 2026-09-14 criterion: case 144.1 added · [[decision-case-144.1]]
+- 2026-09-15 status: pending → passed · raw/2026-09-15/1110/ledger.md#L6
+- 2026-09-15 criterion: case 157 added · [[decision-case-157]]
+- 2026-09-15 criterion: case 159 added · [[decision-case-159]]

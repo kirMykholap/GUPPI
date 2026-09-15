@@ -1414,3 +1414,63 @@ instruction. The global feed; a page's own `## History` is the per-page view.
 - 2026-09-14 lessons/lesson-tests-generate-history-date-unpinned archived · cleanup
 - 2026-09-14 decisions/decision-case-141 archived · cleanup
 - 2026-09-14 rules/rule-harness child rule-index archived · cleanup
+- 2026-09-15 estimates/estimate-lint-catches status: pending → passed · raw/2026-09-15/1110/ledger.md#L1 · generate
+- 2026-09-15 estimates/estimate-cleanup-moves status: pending → passed · raw/2026-09-15/1110/ledger.md#L2 · generate
+- 2026-09-15 estimates/estimate-harness-pipeline status: pending → passed · raw/2026-09-15/1110/ledger.md#L3 · generate
+- 2026-09-15 estimates/estimate-ask-finds status: pending → passed · raw/2026-09-15/1110/ledger.md#L4 · generate
+- 2026-09-15 estimates/estimate-documentation-completes status: pending → passed · raw/2026-09-15/1110/ledger.md#L5 · generate
+- 2026-09-15 estimates/estimate-case-protocol-loaded status: pending → passed · raw/2026-09-15/1110/ledger.md#L6 · generate
+- 2026-09-15 lessons/lesson-brief-next-section-has-no-source created · raw/2026-09-15/1110/ledger.md#L7 · generate
+- 2026-09-15 decisions/decision-case-155 created · raw/2026-09-15/1110/ledger.md#case-155 · generate
+- 2026-09-15 decisions/decision-case-154 superseded by decision-case-155 · [[decision-case-155]] · generate
+- 2026-09-15 rules/rule-ask defer by decision-case-154 superseded · [[decision-case-155]] · generate
+- 2026-09-15 rules/rule-ask updated: the question has two moments — before a create without a ref, and once at pre-task; an update with a ref reads the page itself; supersedes case 154 (case 155) · [[decision-case-155]] · generate
+- 2026-09-15 rules/rule-pretask updated: the question to ask-guppi is the one before a create without a ref, not one per Case (case 155) · [[decision-case-155]] · generate
+- 2026-09-15 decisions/decision-case-156 created · raw/2026-09-15/1110/ledger.md#case-156 · generate
+- 2026-09-15 decisions/decision-case-146 superseded by decision-case-156 · [[decision-case-156]] · generate
+- 2026-09-15 rules/rule-lint defer by decision-case-146 superseded · [[decision-case-156]] · generate
+- 2026-09-15 rules/rule-lint updated: an Insight is never an orphan: its owners are its children, named in its own children field, live or archived; supersedes case 146 (case 156) · [[decision-case-156]] · generate
+- 2026-09-15 estimates/estimate-lint-catches criterion: case 156 added · [[decision-case-156]] · generate
+- 2026-09-15 decisions/decision-case-157 created · raw/2026-09-15/1110/ledger.md#case-157 · generate
+- 2026-09-15 rules/rule-case-protocol updated: the reply that acknowledges a ratification has four parts: the Case heading with Changes, Notes when any, the Frontier as a checklist, the LEDGER block last (case 157) · [[decision-case-157]] · generate
+- 2026-09-15 estimates/estimate-case-protocol-loaded criterion: case 157 added · [[decision-case-157]] · generate
+- 2026-09-15 decisions/decision-case-158 created · raw/2026-09-15/1110/ledger.md#case-158 · generate
+- 2026-09-15 rules/rule-materialize updated: an entry with librarian and no line is readable: the librarian's synthesis entries are left alone without a stderr line; the text of 142.1 made precise (case 158) · [[decision-case-158]] · generate
+- 2026-09-15 estimates/estimate-materialize-assembles criterion: case 158 added · [[decision-case-158]] · generate
+- 2026-09-15 decisions/decision-case-159 created · raw/2026-09-15/1110/ledger.md#case-159 · generate
+- 2026-09-15 rules/rule-case-protocol updated: the shape of a Case in the chat: the story sections by explicit rules, given as the facts then depends on, then as behaviour only, a tasks section as the checklist of the Spec, code spans, one rule after the Case (case 159) · [[decision-case-159]] · generate
+- 2026-09-15 estimates/estimate-case-protocol-loaded criterion: case 159 added · [[decision-case-159]] · generate
+- 2026-09-15 decisions/decision-case-160 created · raw/2026-09-15/1110/ledger.md#case-160 · generate
+- 2026-09-15 decisions/decision-case-140 updated: the quoted wikilink of the Context in backticks: lint and Obsidian read a quotation, not a link (case 160) · [[decision-case-160]] · generate
+- 2026-09-15 lessons/lesson-obsidian-property-links-need-wikilink-form updated: the quoted wikilink of the root cause in backticks: lint and Obsidian read a quotation, not a link (case 160) · [[decision-case-160]] · generate
+- 2026-09-15 decisions/decision-case-161 created · raw/2026-09-15/1110/ledger.md#case-161 · generate
+- 2026-09-15 rules/rule-materialize updated: the then item of a Rule-class file is found by file as well as by slug; no false incomplete on a file entry (case 161) · [[decision-case-161]] · generate
+- 2026-09-15 estimates/estimate-materialize-assembles criterion: case 161 added · [[decision-case-161]] · generate
+- 2026-09-15 lessons/lesson-materialize-file-item-matched-by-slug-only created · raw/2026-09-15/1110/ledger.md#L18 · generate
+- 2026-09-15 decisions/decision-case-162 created · raw/2026-09-15/1110/ledger.md#case-162 · generate
+- 2026-09-15 decisions/decision-case-152 superseded by decision-case-162 · [[decision-case-162]] · generate
+- 2026-09-15 rules/rule-work-mode defer by decision-case-152 superseded · [[decision-case-162]] · generate
+- 2026-09-15 rules/rule-subagent-guppi defer by decision-case-152 superseded · [[decision-case-162]] · generate
+- 2026-09-15 rules/rule-work-mode deferred · [[decision-case-162]] · generate
+- 2026-09-15 rules/rule-subagent-guppi deferred · [[decision-case-162]] · generate
+- 2026-09-15 decisions/decision-case-163 created · raw/2026-09-15/1110/ledger.md#case-163 · generate
+- 2026-09-15 estimates/estimate-lint-catches status: pending → passed · raw/2026-09-15/1110/ledger.md#L24 · generate
+- 2026-09-15 estimates/estimate-materialize-assembles status: pending → passed · raw/2026-09-15/1110/ledger.md#L25 · generate
+- 2026-09-15 estimates/estimate-retro-loads status: pending → failed · raw/2026-09-15/1110/ledger.md#L26 · generate
+- 2026-09-15 lessons/lesson-retro-typed-still-bypasses-the-skill-tool-after-150 created · raw/2026-09-15/1110/ledger.md#L27 · generate
+- 2026-09-15 lessons/lesson-wiki-page-edited-by-hand-in-obsidian created · raw/2026-09-15/1110/ledger.md#L28 · generate
+- 2026-09-15 lessons/lesson-retro-typed-by-the-person-bypasses-the-skill-tool-and-the-gate updated: clustered under insight-retro-typed-command-is-never-a-tool-call · raw/2026-09-15/1110/ledger.md#L27 · generate
+- 2026-09-15 lessons/lesson-retro-typed-still-bypasses-the-skill-tool-after-150 updated: clustered under insight-retro-typed-command-is-never-a-tool-call · raw/2026-09-15/1110/ledger.md#L27 · generate
+- 2026-09-15 insights/insight-librarian-frame-omits-required-reads updated: synthesis: lesson-brief-next-section-has-no-source added, the frame names no source for the "What the next session does first" section of the brief; reopened from actioned · raw/2026-09-15/1110/ledger.md#L7 · generate
+- 2026-09-15 lessons/lesson-brief-next-section-has-no-source updated: clustered under insight-librarian-frame-omits-required-reads · raw/2026-09-15/1110/ledger.md#L7 · generate
+- 2026-09-15 rules/rule-ask status: draft → built · cascade · generate
+- 2026-09-15 rules/rule-cleanup status: draft → built · cascade · generate
+- 2026-09-15 rules/rule-documentation status: draft → built · cascade · generate
+- 2026-09-15 rules/rule-harness status: draft → built · cascade · generate
+- 2026-09-15 rules/rule-lint status: draft → built · cascade · generate
+- 2026-09-15 decisions/decision-case-146 archived · superseded · generate
+- 2026-09-15 decisions/decision-case-152 archived · superseded · generate
+- 2026-09-15 decisions/decision-case-154 archived · superseded · generate
+- 2026-09-15 decisions/decision-case-146 archived · cleanup
+- 2026-09-15 decisions/decision-case-152 archived · cleanup
+- 2026-09-15 decisions/decision-case-154 archived · cleanup

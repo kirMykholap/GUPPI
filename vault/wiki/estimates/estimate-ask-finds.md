@@ -1,7 +1,7 @@
 ---
 type: estimate
 kind: QA
-status: pending
+status: passed
 target: "[[rule-ask]]"
 origin: raw/2026-09-09/ledger.md#case-23.1
 sprint: migration
@@ -53,7 +53,7 @@ Method rule allows.
 
 ## Result
 
-block 105.1: ask-guppi asked for estimate-agents-at-import-not-expanded answered "archived at vault/archive/migration/2026-09-11/estimates/… by [[decision-case-53.1]]", opened the archived page because the question asked what it said, answered from its origin and History (no Result on the page); five lines, 4 tool uses, 18895 tokens; the pretask dispatch (17 items, 91955 tokens) answered per item in the five lines too
+block 147.2: the Render carries the Grep paragraph and names no *-index.md; one live dispatch on 2026-09-15 (the orphan check of 146): the event log shows the Grep of rules first, then the Greps of entities, lessons, insights, no index read; the rules line names rule-lint; five lines, 10 tool uses, 29882 tokens
 
 ## History
 
@@ -62,3 +62,4 @@ block 105.1: ask-guppi asked for estimate-agents-at-import-not-expanded answered
 - 2026-09-13 criterion: case 105.1 added · [[decision-case-105.1]]
 - 2026-09-14 status: pending → passed · raw/2026-09-14/0747/ledger.md#L39
 - 2026-09-14 criterion: case 147.2 added · [[decision-case-147.2]]
+- 2026-09-15 status: pending → passed · raw/2026-09-15/1110/ledger.md#L4

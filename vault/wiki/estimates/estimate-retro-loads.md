@@ -1,7 +1,7 @@
 ---
 type: estimate
 kind: QA
-status: pending
+status: failed
 target: "[[rule-retro]]"
 origin: raw/2026-09-10/ledger.md#case-38.1
 sprint: migration
@@ -73,7 +73,7 @@ one reading by hand at the first /retro, recorded in the estimate line
 
 ## Result
 
-block 126, live 2026-09-14 14:45 session O: /retro loaded on the rendered skill; `Tests:` 359 passed, `Style:` clean, `Ledger:` carried the 29 lines of raw/2026-09-14/1229/ledger.md prefixed with the folder and line number, the tail `guppi tail` prints; the second failed reading of 109.1 stands as history
+block 150: the person typed /retro at 14:2x and the event log holds no "tool Skill: retro", no gate line and no retro mark; the agent's own call of the skill at 14:33 left the retro mark (gate silent, every item with its line) and "tool Skill: retro"; the frontmatter is as ratified, Tests/Style/Ledger substituted — the typed path bypasses the Skill tool and the gate, the agent's path passes
 
 ## History
 
@@ -89,3 +89,4 @@ block 126, live 2026-09-14 14:45 session O: /retro loaded on the rendered skill;
 - 2026-09-14 status: pending → failed · raw/2026-09-14/1029/ledger.md#L41
 - 2026-09-14 status: failed → passed · raw/2026-09-14/1229/ledger.md#L30
 - 2026-09-14 criterion: case 150 added · [[decision-case-150]]
+- 2026-09-15 status: pending → failed · raw/2026-09-15/1110/ledger.md#L26

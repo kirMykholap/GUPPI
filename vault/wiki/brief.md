@@ -1,191 +1,226 @@
-# Brief — 2026-09-14, after session P (the four open Insights actioned, the index files retired, the vault's refs as wikilinks, Cases 142–154)
+# Brief — 2026-09-15, after session Q (the readings due, the three deferred items, the shape of the Case, Cases 155–163)
 
 Written by the librarian.
 
 ## Where things stand
 
-What the handoff of session P records under "What actually got done":
+What the handoff of session Q records under "What actually got done":
 
-- Ratified: 142.1–142.5, 143, 144.1–144.3, 145.1–145.3, 147.1–147.9, 148.1–148.3,
-  149.1–149.4, 150, 150.1, 151, 153. Deferred: 146 (`rule-lint`), 152 (`rule-work-mode`,
-  `rule-subagent-guppi`, supersedes 141), 154 (`rule-ask`).
-- Code, commit `4586061` on `migration`: `guppi/materialize.py` (`lift_line`, the per-line
-  guard, the retry, the unreadable-entry skip, `page_estimates` through `slug_of`, `run`
-  keeps walking), `guppi/generate.py` (skip `failed`-without-`kind`, skip `superseded_by`
-  after its Decision page, `wikilink()` in `frontmatter`), `guppi/pages.py` (`REF_FIELDS`,
-  `slug_of`, `strip_refs` in `read_page`), `guppi/lint.py` (`hub_files`, `check_refs` with
-  hubs), `guppi/cleanup.py` and `guppi/cli.py` without the index, `guppi/index.py` deleted,
-  Makefile (`lint` two steps, `test-harness` two files); tests: `tests/conftest.py` (the
-  pinned clock), `tests/test_conftest.py`, `tests/test_pages.py`, additions in
-  `test_materialize.py` (+5), `test_generate.py` (+2), `test_lint.py` (+1),
-  `tests/test_index.py` deleted, three CLI tests moved to the fixture: 368 green (359
-  before), `make style` clean.
-- The migration of 148.1: 357 of 399 pages under `wiki/` and `archive/` rewritten,
-  frontmatter only; lint identical before and after; the owner saw 2 backlinks on
-  `insight-tests-clock-not-pinned` and 15 on `rule-harness`.
-- By hand: `index.md` (§11 rewritten, §1 index lines and the table row removed, the
-  hub-links paragraph, the example page), `glossary.md`, `case-schema.md`, the six
-  `schema.md`, `insights/schema.md` line 31, `log.md`; the four `wiki/*-index.md` deleted.
-- Readings: `estimate-brief-written` (124.1), `estimate-materialize-assembles` (142.1),
-  `estimate-materialize-walks-dates` (142.4), `estimate-tests-clock-pinned` (145.1),
-  `estimate-generate-writes` (142.2, 148.1, 151) — all `passed`. Lessons: two `knowledge`
-  with `source`.
-- Not done: the librarian's 29 tasks (this run); the nine readings listed under "What the
-  next session does first"; the Obsidian graph still shows orphans (owner) — next session,
-  with 146.
+- Ratified: 155 (`rule-ask`, `rule-pretask`, supersedes 154), 156 (`rule-lint`, supersedes
+  146), 157 (`rule-case-protocol`), 158 (`rule-materialize`), 159 (`rule-case-protocol`,
+  `case-schema`), 160 (`decision-case-140`,
+  `lesson-obsidian-property-links-need-wikilink-form`), 161 (`rule-materialize`), 163
+  (`index`, `glossary`, `case-schema`). Deferred: 162 (`rule-work-mode`,
+  `rule-subagent-guppi`, supersedes 152).
+- Code, commit `891fd56` on `migration`: `guppi/lint.py` (`check_orphans` excludes
+  `insights`, docstring), `guppi/materialize.py` (docstring on readable entries; `find_item`
+  matches a Rule-class item by `file`), `tests/test_lint.py` (+1),
+  `tests/test_materialize.py` (+1): 370 green, `make style` clean, `guppi render --check`
+  exit 0, `guppi lint` 74 findings.
+- By hand: `vault/wiki/case-schema.md` ("Eight, in this order.", the `tasks` row, `then` as
+  behaviour only, Operands "and also / but not", the story rules paragraph under Language,
+  `tasks` on a sub-case, the `ratification` row), `vault/wiki/index.md` §2 (eight
+  sections), `vault/wiki/glossary.md` (the Case row).
+- Readings: `estimate-lint-catches` (149.3, 156), `estimate-cleanup-moves` (147.6),
+  `estimate-harness-pipeline` (153), `estimate-ask-finds` (147.2),
+  `estimate-documentation-completes` (147.5), `estimate-case-protocol-loaded` (144.1),
+  `estimate-materialize-assembles` (158, 161) — all `passed`; `estimate-retro-loads` (150)
+  `failed`. `estimate-brief-written` (124.1) not re-read.
+- Lessons: `lesson-brief-next-section-has-no-source`,
+  `lesson-materialize-file-item-matched-by-slug-only`,
+  `lesson-retro-typed-still-bypasses-the-skill-tool-after-150`,
+  `lesson-wiki-page-edited-by-hand-in-obsidian` — all `error`, no `source`.
+- Not done: the readings of 157 and 159 (the next session, after the render), 147.3 and
+  147.4 (from this brief), 160 (`lint` without `ref`, the next `/hi`), 122 and the use
+  clause of 144.1 (at the event); the cure of 150 and the `parent` mismatch of `rule-lint`
+  (Cases of the next Plan Mode); Slice 3b (162).
 
-`uv run guppi materialize` walked four units, exit 0: `raw/2026-09-14/0747`, `1029` and
-`1229` extended with 0 entries; `raw/2026-09-14/1633/materialize.yaml` written with 76
-entries (its stdout says 77: the folded reading counted) from the session ledger (60 lines)
-and `1633/spec.md`: 1 `create` (rules) with its derived Estimate, 60 `update` (25 rules,
-15 estimates, 4 insights, 3 lessons, 13 `file`), 2 `delete`, 4 `defer`, 2
-`remove_criterion`, 4 `estimate`, 2 `lesson`; 35 decision groups; 0 unparsed lines. The
-reading of ledger line 57 (`estimate-tests-clock-pinned`) folded into the `create` of
-145.1, no entry of its own. The librarian merged nothing at
-the index check, marked nothing `near`, appended nothing at synthesis.
+`uv run guppi materialize` walked five units, exit 0: `raw/2026-09-14/0747`, `1029`, `1229`
+and `1633` extended with 0 entries; `raw/2026-09-15/1110/materialize.yaml` written with 37
+entries from the session ledger (28 lines) and `1110/spec.md`: 0 `create`, 17 `update` (9
+rules, 5 estimates derived from `contract: changed`, 1 decision, 1 lesson, 4 `file`), 2
+`defer`, 4 `remove_criterion`, 9 `estimate`, 4 `lesson`; 0 unparsed lines, 0
+`incomplete`. In `1633` the entries of 146, 152 (×2) and 154 got `superseded_by: '156'` /
+`'162'` / `'155'`.
 
-`uv run guppi generate`: 0 pages for `0747`, `1029`, `1229`; 87 for `1633`; exit 0, stderr
-empty. Stdout: 13 `file` entries "a Rule-class file, applied by hand" (147.8 ×3, 148.2 ×7,
-149.1, 149.2 ×2); the two `remove_criterion` of 152 "case 141: no Estimate holds a block"
-(a defer, no block). Entry 112.6 of `0747` (`failed`, `superseded_by: '130.1'`) skipped
-without a line, as 151 says; its `failed` mark kept. The three defers of 141 in `1229`
-marked `superseded_by: '152'`. `uv run guppi cleanup`: 11 pages moved, stderr empty.
-`uv run guppi render`: stdout and stderr empty; four governed files differ from HEAD —
-`CLAUDE.md` (144.1, 150.1), `.claude/agents/ask-guppi.md` (147.2, 147.9),
-`.claude/agents/librarian-guppi.md` (147.3–147.5, 142.5, 147.9),
-`.claude/skills/retro/SKILL.md` (150). `guppi render --check` exit 0 after.
+The librarian at the index check: the four lessons compared against the Grep
+`^(root_cause|deferred_by):` over `wiki/lessons/`, 27 lines (25 lessons, 2 `schema.md`),
+0 `deferred_by`; nothing merged; 1 `near`:
+`lesson-retro-typed-still-bypasses-the-skill-tool-after-150` near
+`lesson-retro-typed-by-the-person-bypasses-the-skill-tool-and-the-gate` (the same path, a
+corrected cause, a second event — not the same page). No entity, rule or insight `create`
+in the yaml; the Greps of `rules/` and `entities/` were not run.
+
+At synthesis: the four `root_cause` lines against the same 27 lesson lines and the Grep
+`^(pattern|deferred_by):` over `wiki/insights/`, 11 lines (10 Insights, 1 `schema.md`), 0
+`deferred_by`. Five entries appended, `librarian: synthesis`:
+
+- a `create` of `insight-retro-typed-command-is-never-a-tool-call` over
+  `lesson-retro-typed-by-the-person-bypasses-the-skill-tool-and-the-gate` and
+  `lesson-retro-typed-still-bypasses-the-skill-tool-after-150` (one cause: a typed slash
+  command is expanded into the prompt and is never a Skill tool call; the earlier lesson's
+  cause names `disable-model-invocation`, 150 removed it, the typed path did not change) —
+  **refused by `generate`**, see Flags; and the two lesson `update`s to `clustered`, which
+  applied;
+- an `update` of `insight-librarian-frame-omits-required-reads` (`actioned` →
+  `open`, child `lesson-brief-next-section-has-no-source` added) and the lesson's `update`
+  to `clustered`: the frame's list of sources is shorter than the brief needs, as its list
+  of reads was shorter than the judgments — the same mechanism; the page was opened for the
+  judgment.
+- `lesson-materialize-file-item-matched-by-slug-only` against
+  `insight-materialize-lift-loses-a-schema-field` (`actioned`): the page opened; not
+  clustered. The Insight's mechanism is a field lost from a page and named by lint on the
+  page; the lesson is an item not found at all, marked `incomplete: [then]` in the yaml,
+  no page and no lint finding. Same area, not the same cause; the lesson stays `new`.
+- `lesson-wiki-page-edited-by-hand-in-obsidian`: no lesson or Insight with the cause;
+  stays `new`.
+
+`uv run guppi generate`: 0 pages for the four units of 09-14; 38 for `1110`; exit 1, one
+stderr line (the Insight create). Stdout: 4 `file` entries "a Rule-class file, applied by
+hand" (159 `case-schema`; 163 `index`, `glossary`, `case-schema`); the `remove_criterion`
+of 154, 146 and 152 (×2) "no Estimate holds a block" (defers, no block). Entry 112.6 of
+`0747` skipped without a line. `uv run guppi cleanup`: 3 pages moved, stderr empty.
+`uv run guppi render`: stdout and stderr empty; two governed files differ from HEAD —
+`CLAUDE.md` (157, 159), `.claude/agents/ask-guppi.md` (155); `guppi render --check` exit 0.
 
 | category | created | updated |
 |---|---|---|
-| decisions | 35 (`decision-case-142.1`…`154`, the list above) | 1 set `archived` by the supersedes cascade and moved by `cleanup` to `vault/archive/migration/2026-09-14/1633/decisions/`: `141` (by 152) |
-| rules | 1 (`rule-tests-clock-pinned`, Leaf, `check`, child 7 of `rule-harness`, `built` by cascade) | 1 deleted (`rule-index`, 147.1, moved to `…/1633/rules/`); 17 by decision: `rule-materialize` (142.1, 142.4), `rule-page-generation` (142.2, 148.1, 151), `rule-case-protocol` (144.1), `rule-harness` (145.2, 153; child `rule-index` dropped by cleanup, `rule-tests-clock-pinned` last), `rule-ask` (147.2, 147.9), `rule-index-check` (147.3), `rule-synthesis` (147.4), `rule-documentation` (147.5, 149.4, 142.5, 147.9), `rule-cleanup` (147.6), `rule-lint` (147.7, 149.3), `rule-brief`, `rule-skill-hi`, `rule-claude-md` (149.4; 150.1), `rule-retro` (150), `rule-render-harness` (147.9); 3 `deferred_by`: `rule-lint` ← `decision-case-146`, `rule-ask` ← `decision-case-154`, `rule-work-mode` and `rule-subagent-guppi` `decision-case-141` → `decision-case-152`; 9 `built` → `draft` by the `pending` cascade (`rule-ask`, `rule-case-protocol`, `rule-cleanup`, `rule-documentation`, `rule-harness`, `rule-index-check`, `rule-lint`, `rule-retro`, `rule-synthesis`) |
-| estimates | 1 (`estimate-tests-clock-pinned`, `passed` on line 57) | 1 deleted (`estimate-index-lists`, 147.1, moved); 13 criterion blocks appended: `estimate-materialize-assembles` +142.1, `estimate-generate-writes` +142.2 +148.1 +151, `estimate-case-protocol-loaded` +144.1, `estimate-ask-finds` +147.2, `estimate-index-check-merges` +147.3, `estimate-synthesis-clusters` +147.4, `estimate-documentation-completes` +147.5, `estimate-cleanup-moves` +147.6, `estimate-materialize-walks-dates` +142.4, `estimate-lint-catches` +149.3, `estimate-retro-loads` +150, `estimate-harness-pipeline` +153; 1 `replace` (`estimate-materialize-assembles`, 148.3); 4 readings written, all `passed`: `estimate-brief-written` (line 1), `estimate-materialize-assembles` (55), `estimate-materialize-walks-dates` (56), `estimate-generate-writes` (58); `pending` → `passed`: those three; 9 left `pending` |
-| lessons | 2 (`lesson-obsidian-cli-needs-the-running-app`, `lesson-obsidian-property-links-need-wikilink-form`), `knowledge`, with `source`, `new` | 3 `source` added (144.2: `lesson-gate-plan-path-cut-by-the-event-log-detail-limit`, `lesson-agents-read-at-session-start-in-claude-code-2-1-228`, `lesson-retro-typed-by-the-person-bypasses-the-skill-tool-and-the-gate`); 8 set `archived` by the cascade of the four actioned Insights and moved to `…/1633/lessons/` |
-| insights | 0 | 4 set `status: actioned` with `addressed_by`: `insight-harness-yaml-entry-shape-assumed` (142.3), `insight-librarian-frame-omits-required-reads` (143), `insight-materialize-lift-loses-a-schema-field` (144.3), `insight-tests-clock-not-pinned` (145.3); `severity` 0 on all four |
+| decisions | 9 (`decision-case-155`…`163`) | 1 by decision (`decision-case-140`, 160, `replace` in its Context); 3 set `archived` by the supersedes cascade and moved by `cleanup` to `vault/archive/migration/2026-09-15/1110/decisions/`: `146` (by 156), `152` (by 162), `154` (by 155) |
+| rules | 0 | 9 by decision: `rule-ask` (155), `rule-pretask` (155), `rule-lint` (156), `rule-case-protocol` (157 then 159, two `replace` on different paragraphs), `rule-materialize` (158 then 161, two `replace` on different sentences), `rule-work-mode` and `rule-subagent-guppi` (`deferred_by` `decision-case-152` → `decision-case-162`); `deferred_by` cleared on `rule-lint` (146) and `rule-ask` (154); 3 `draft` → `built` by cascade (`rule-cleanup`, `rule-documentation`, `rule-harness`); `rule-case-protocol` stays `draft` (157, 159 `pending`), `rule-retro` `draft` (`estimate-retro-loads` `failed`) |
+| estimates | 0 | 5 criterion blocks appended: `estimate-lint-catches` +156, `estimate-case-protocol-loaded` +157 +159, `estimate-materialize-assembles` +158 +161; 4 `remove_criterion` found no block (154, 146, 152 ×2); 9 readings written: 8 `passed` (`estimate-lint-catches` ×2, `estimate-cleanup-moves`, `estimate-harness-pipeline`, `estimate-ask-finds`, `estimate-documentation-completes`, `estimate-case-protocol-loaded` on 144.1 before 157 and 159 set it `pending`, `estimate-materialize-assembles` after 158 and 161), 1 `failed` (`estimate-retro-loads`, 150) |
+| lessons | 4 (`error`, no `source`, listed above) | 1 by decision (`lesson-obsidian-property-links-need-wikilink-form`, 160: `set: root_cause`, `replace` in the body); 3 set `clustered` by synthesis: the two retro lessons (their `insight` names a page that was not written) and `lesson-brief-next-section-has-no-source` |
+| insights | 0 (1 refused) | 1 reopened by synthesis: `insight-librarian-frame-omits-required-reads` `actioned` → `open`, `severity` 1, three children |
 | entities | 0 | 0 |
 
 The checks the handoff asks for, after the run:
 
-- `rule-page-generation`: both inserts after "No entry ends the run." applied in ledger
-  order (142.2 then 151), no failure.
-- `rule-materialize`: blocks `142.1` on `estimate-materialize-assembles` (with `73.5`,
-  `76`, `87`, `90.1`, `105.2`, `130.2`) and `142.4` on `estimate-materialize-walks-dates`
-  (with `103.2`); both `passed`. `estimate-generate-writes`: blocks `142.2`, `148.1`,
-  `151` appended after `124.2`; one reading, `passed`.
-- `rule-tests-clock-pinned` created; `estimate-tests-clock-pinned` derived, block `145.1`,
-  `passed`; `rule-tests-clock-pinned` `built`, `rule-harness` `draft` (its
-  `estimate-harness-pipeline` `pending` by 153).
-- `rule-harness` children: `rule-render-harness`, `rule-settings`, `rule-lint`,
-  `rule-governed-files-hook`, `rule-claude-md`, `rule-bash-guard`, `rule-tests-clock-pinned`
-  — no `rule-index`, the new Rule last; Purpose rewritten by 153.
-- The four Purposes of 149.4 carry `[[brief]]`, `[[sprint]]`, `[[tags]]`, `[[glossary]]`,
-  `[[case-schema]]`, `[[index]]`; lint raises no `ref` finding on them.
-- The four renders listed above; `guppi render --check` exit 0.
-- The Greps in place of the index files (147.2–147.4): `^(purpose|deferred_by):` over
-  `wiki/rules/` 46 lines and over `wiki/entities/` 2 (both `schema.md`);
-  `^(root_cause|deferred_by):` over `wiki/lessons/` 31 lines (29 lessons, 2 `schema.md`);
-  `^(pattern|deferred_by):` over `wiki/insights/` 11 lines (10 Insights, 1 `schema.md`).
-- Two `knowledge` lessons with `source`, no `incomplete`; no `near` candidate; no live
-  lesson names Obsidian.
+- Case 159's `file` item for `case-schema.md` with no `slug` and the three `file` items of
+  163 were found by `find_item`: no `incomplete: [then]` on any of the four — the live half
+  of the reading of 161 (`estimate-materialize-assembles`, `passed` on line 25).
+- `rule-case-protocol`: 157 then 159 applied in ledger order, both `replace` applied, no
+  failure; `estimate-case-protocol-loaded` carries blocks `157` and `159`, `pending`.
+  `rule-materialize`: 158 then 161, both `replace` applied; `estimate-materialize-assembles`
+  carries `158` and `161`, `passed`; block 142.1 keeps its wording, as the handoff says.
+- `rule-lint`: 156 applied, `deferred_by` cleared, `decision-case-146` superseded and
+  archived; `rule-ask`: 155 applied, `deferred_by` cleared, `decision-case-154` superseded
+  and archived; `rule-work-mode` and `rule-subagent-guppi`: `deferred_by:
+  ["[[decision-case-162]]"]`, `decision-case-152` superseded and archived.
+- Case 160: `decision-case-140` and `lesson-obsidian-property-links-need-wikilink-form`
+  updated; `guppi lint` raises no `ref` on either.
+- The two renders listed above; `guppi render --check` exit 0.
+- Entry 112.6 of `0747`: `failed`, `superseded_by: '130.1'`, skipped without a line.
 - `sprint.md` unchanged: the handoff says "no change".
 
 ## What the next session does first
 
-1. The nine readings `pending` after this run: `estimate-lint-catches` (149.3: lint clean
-   of `ref` on the four rules — the run of this brief already shows it, the line is not
-   written), `estimate-cleanup-moves` (147.6: the run wrote no index — likewise),
-   `estimate-harness-pipeline` (153), `estimate-ask-finds` (147.2),
-   `estimate-index-check-merges` (147.3), `estimate-synthesis-clusters` (147.4),
-   `estimate-documentation-completes` (147.5), `estimate-case-protocol-loaded` (144.1),
-   `estimate-retro-loads` (150, at the next `/retro`). Nine Rules stand `draft` until then.
-2. `estimate-brief-written` (124.1) against this brief; the live refusal of `guppi gate`
-   (122) when it first happens.
-3. Plan Mode over the Deferred list below: 146 (the orphan in lint) with the owner's
-   Obsidian graph, 154 (`rule-ask`), Slice 3b.
+From the handoff's "Not done" list and the state after this run:
+
+1. The readings `pending`: `estimate-case-protocol-loaded` (157: the first acknowledging
+   reply after the render; 159: the first Case shown in the chat),
+   `estimate-index-check-merges` (147.3: this brief names the Grep and 27 lines, 1 `near`,
+   0 merged), `estimate-synthesis-clusters` (147.4: this brief names the two Greps, 27 and
+   11 lines, one Insight reopened, one create refused). `rule-case-protocol`,
+   `rule-index-check`, `rule-synthesis` stand `draft` until then.
+2. `estimate-retro-loads` (150) is `failed`, `rule-retro` `draft`: the cure of 150 is a
+   Case of the next Plan Mode.
+3. 160: `guppi lint` after this run raises no `ref` on `decision-case-140` or
+   `lesson-obsidian-property-links-need-wikilink-form` — the line is not written here. 122
+   and the use clause of 144.1 at the event.
+4. Plan Mode over the Deferred list and the Flags: the refused Insight create (the two
+   retro lessons carry a dangling `insight`), the `parent` mismatch of `rule-lint`, Slice
+   3b.
 
 ## Deferred
 
-1. **Slice 3b: Work Mode** — Case 152 (supersedes 141), `rule-work-mode` and
-   `rule-subagent-guppi` (placeholders, `draft`, `deferred_by: [[decision-case-152]]`, the
+1. **`insight-librarian-frame-omits-required-reads`** — `open`, severity 1, reopened from
+   `actioned` (143). Pattern: the frame of the librarian names the reads it allows one by
+   one, and the list is shorter than the judgments the librarian must make; the agent then
+   breaks a clause or judges on an index line alone. New child
+   `lesson-brief-next-section-has-no-source`: "What the next session does first" is the one
+   section of `rule-brief` with no source named. Proposal: derive the read clauses from the
+   judgments, one clause per judgment naming the page and the field; change every rule that
+   names a read in one pass. In Plan Mode a Case whose `recommend` starts from that
+   Proposal, ending in an `update` of the Insight (`status: actioned`, `addressed_by`), a
+   rejection written the same way, or a `defer` with the Insight as its target. (stood in 1
+   brief since reopening)
+2. **Slice 3b: Work Mode** — Case 162 (supersedes 152), `rule-work-mode` and
+   `rule-subagent-guppi` (placeholders, `draft`, `deferred_by: [[decision-case-162]]`, the
    two lint orphans): the Spec as tasks with code, the ticked boxes, what a subagent may do,
    and the fork that comes back as a Case; the Plan Mode of a session of its own. Related
-   Insight `insight-harness-agent-visibility`, `actioned`, severity 0. (postponed 11 times)
-2. **`rule-ask`** — Case 154, `deferred_by: [[decision-case-154]]`: replace "One short
-   question per Case" by "one question before a create without a ref, and one at pre-task;
-   an update with a ref reads the page itself" — the Render's description line and the
-   Purpose; a Case at the next Plan Mode. No related Insight. (stood in 1 brief)
-3. **`rule-lint`** — Case 146, `deferred_by: [[decision-case-146]]`: decide whether an
-   actioned Insight is exempt from the orphan check, or whether lint adopts Obsidian's
-   notion of an orphan (no inbound link of any kind, decision pages included) once
-   frontmatter refs are wikilinks (147); a Case at the next Plan Mode. The owner sees
-   orphans in the graph after 148.1 (handoff). No related Insight; the ten actioned Insights
-   are the ten `orphan` findings of lint. (stood in 1 brief)
+   Insight `insight-harness-agent-visibility`, `actioned`, severity 0. (postponed 12 times)
 
-Of the previous brief's five items, items 1–4 were the four `open` Insights and left it by
-an `update` to `actioned` (142.3, 143, 144.3, 145.3); item 5 (Slice 3b, 141) was retired
-by 152's `supersedes` and deferred again by 152, item 1 above. Items 2 and 3 are the
-`defer` entries of this yaml, tied at count 1 and ordered by slug. No Insight is `open`;
-none stands in the list.
+Of the previous brief's three items, item 2 (`rule-ask`, 154) was retired by 155's
+`supersedes` and ratified there; item 3 (`rule-lint`, 146) by 156's `supersedes`, ratified
+there; item 1 (Slice 3b, 152) was retired by 162's `supersedes` and deferred again by 162,
+item 2 above. Item 1 above is the one `open` Insight, ranked first by severity.
 
 ## Flags
 
-- **13 `file` entries marked `incomplete: [then]`**: the Rule-class updates of 147.8
-  (`index`, `glossary`, `insights-schema`), 148.2 (`rules-schema`, `entities-schema`,
-  `estimates-schema`, `lessons-schema`, `insights-schema`, `decisions-schema`, `index`),
-  149.1 (`index`), 149.2 (`glossary`, `case-schema`). `generate` skips a `file` entry
-  ("applied by hand"); the handoff records the hand edits as done. Same class as 133 in the
-  previous run.
-- **4 entries marked `exists`**: the defers of 146, 152 (×2), 154 on live Rule pages; the
-  pages get `deferred_by`, no placeholder is written. Expected.
-- **0 `failed`, 0 `near`, 0 `unparsed`, 0 `librarian`** in `1633`. Entry 112.6 of `0747`
-  stays `failed` with `superseded_by: '130.1'`; since 151 it is skipped without a stderr
-  line. It stays as it is; no repair.
-- **1 new `ref` finding: `lessons/lesson-obsidian-property-links-need-wikilink-form`, "body
-  names `slug`"**. The root cause quotes the literal form `"[[slug]]"`, and lint reads it as
-  a wikilink to a page `slug`. The page is as the ledger line wrote it; the entry is not
-  repaired. The same shape as `decision-case-140` (literal `decision-case-N`), still
-  present.
-- **Four new lint orphans**: the four actioned Insights; their eight children are
-  archived, and no live page names them in its frontmatter. All ten Insights are now
-  `orphan` findings — the matter of 146.
-- **Nine Estimates `pending`, nine Rules `draft` by cascade** (the list under "What the
-  next session does first"). No Estimate `failed`.
-- **The 142.1 caveat of the handoff**: the code treats an entry carrying `librarian` as
-  readable; the ratified text of `rule-materialize` says "a mapping without `line` and
-  without `derived`". Recorded here as the handoff states it; no page opened.
+- **1 `failed`: the `create` of `insight-retro-typed-command-is-never-a-tool-call`**,
+  `librarian: synthesis`. `generate` refused it: "an Insight is made and retired by the
+  librarian, never created or deleted by a decision (case 124.2)". `generate.create`
+  refuses every `create` in `insights` and does not read the `librarian` mark, so the
+  synthesis path of `rule-synthesis` (a `create` in `insights` on the second lesson) and
+  the guard of 124.2 contradict each other; the last synthesis create that applied
+  (`insight-ledger-hi-tied-to-its-session-by-position`, `0747`) ran before 124.2 was
+  committed. The entry stays as it is, not repaired. The two lesson `update`s of the same
+  cluster applied before the refusal was known: both retro lessons are `clustered` with
+  `insight: "[[insight-retro-typed-command-is-never-a-tool-call]]"`, which no page carries —
+  2 new `ref` findings. A Case of the next Plan Mode: either `generate` exempts an entry
+  marked `librarian`, or the Insight is created another way; the yaml holds the
+  `pattern`, `children`, `tags`, `Pattern` and `Proposal` the page would carry.
+- **1 `near`**: `lesson-retro-typed-still-bypasses-the-skill-tool-after-150` near
+  `lesson-retro-typed-by-the-person-bypasses-the-skill-tool-and-the-gate`.
+- **2 entries marked `exists`**: the defers of 162 on the two live placeholders; the pages
+  get `deferred_by`, no placeholder is written. Expected.
+- **0 `incomplete`, 0 `unparsed`** in `1110`. The four `file` entries were found by `file`
+  (161). Entry 112.6 of `0747` stays `failed` with `superseded_by: '130.1'`; the 13
+  `incomplete: [then]` of `1633` and the 3 `incomplete: [source]` of `1229` stay as they
+  were, those units are applied and archived at the close.
+- **1 Estimate `failed`: `estimate-retro-loads`** (150) — the typed `/retro` bypasses the
+  Skill tool and the gate; the agent's own call passes. `rule-retro` `draft`.
+- **The reopened Insight**: `insight-librarian-frame-omits-required-reads` returned to
+  `open` on the librarian's judgment that a missing source for a section of the brief is
+  the same gap as a missing read clause. The judgment is the librarian's; the Case that
+  takes the Insight up can reject the clustering.
+- **Contradiction, pre-existing, not acted on**: `rule-lint` frontmatter `parent:
+  "[[rule-harness]]"` while its `## Parent` section names `rule-documentation`; lint does
+  not catch it (handoff). A Case of the next Plan Mode, or a lint check.
 - **Stale defers:** `rule-work-mode` and `rule-subagent-guppi` have stood as placeholders
-  since Case 29 (now 152), without `kind`, `estimates` or `tags`; 8 `schema` findings and 2
+  since Case 29 (now 162), without `kind`, `estimates` or `tags`; 8 `schema` findings and 2
   orphans.
 - **No MOC candidate.** The vault holds no Entity page.
 - **The handoff's instructions were all within the frame**; none was refused. Its
-  expectations held: the two `path` findings on `rule-index` and the three `source`
-  findings are gone; the two placeholders and the 62 of Cases 1–28 stay; the orphan count
-  rose by four.
-- **Archive (run after the brief): nothing moved.** `uv run guppi archive` exit 0, stdout
-  and stderr empty. `raw/2026-09-14/0747`, `1029` and `1229` are kept by the date guard (a
-  unit dated today is skipped without a line); `1633` is the session of the run, never
-  moved. The three units move at the first run on a later date.
+  expectations held except the lint total: 74 → 72 was expected after 160; the two `ref`
+  findings of 160 are gone and two new `ref` findings came from the refused Insight, so the
+  total stays 74.
+- **Archive (run after the brief): 4 units moved.** `raw/2026-09-14/0747`, `1029`, `1229`,
+  `1633` — applied and dated before today. `raw/2026-09-15/1110` is the session of the run,
+  never moved. See the report for the archive's stderr.
 - **Lint.** `make lint` exits 1 at its second step (`guppi lint`); `guppi render --check`
-  exit 0. `guppi lint`: 84 findings, exit 1 — 70 `schema` (31 missing `## Context`, 31
+  exit 0. `guppi lint`: 74 findings, exit 1 — 70 `schema` (31 missing `## Context`, 31
   `## Problem`, on the decision pages of Cases 1–28; `kind`, `estimates`, `tags`,
-  `## Estimates` on the two placeholders), 2 `ref` (`decision-case-140`,
-  `lesson-obsidian-property-links-need-wikilink-form`), 12 `orphan` (the two placeholders,
-  the ten actioned Insights). 84 before this run: −2 `path` (`rule-index`), −3 `schema`
-  (`source`), +1 `ref`, +4 `orphan`.
+  `## Estimates` on the two placeholders), 2 `ref` (the two retro lessons, `insight` names
+  `insight-retro-typed-command-is-never-a-tool-call`, "which no live or archived page
+  carries"), 2 `orphan` (the two placeholders). 84 before this run: −10 `orphan` (the
+  Insights, 156), −2 `ref` (160), +2 `ref` (the refused Insight).
 
 ## Readings at the close
 
-- `make test` → 368 passed.
-- `make lint` → exit 1 at `guppi lint`; `guppi render --check` → exit 0; `guppi lint` → 84
+- `make test` → 370 passed.
+- `make lint` → exit 1 at `guppi lint`; `guppi render --check` → exit 0; `guppi lint` → 74
   findings, exit 1.
-- Live pages, 341: rules 40 (29 `built`, 11 `draft`), entities 0, estimates 42 (33
-  `passed`, 9 `pending`), lessons 23 (all `new`), insights 10 (all `actioned`), decisions
-  226 (all `current`).
-- `vault/archive/migration/` holds 97 pages: the 86 of the previous brief and 11 under
-  `2026-09-14/1633/`: 1 `decisions/` (`141`), 1 `rules/` (`rule-index`), 1 `estimates/`
-  (`estimate-index-lists`), 8 `lessons/`; and the raw of the dates 09-09…09-13 under
-  `<date>/[HHMM/]raw/`. `cleanup` moved 11 in this run.
-- `raw/2026-09-14/1633/materialize.yaml`: 76 entries, all `applied`, 35 decision groups,
-  0 unparsed lines, 13 `incomplete`, 0 `failed`, 0 `near`, 4 `exists`, 0 `librarian`.
-  `0747`: 1 `failed` (112.6, `superseded_by`). `1229`: the three entries of 141
-  `superseded_by: '152'`.
+- Live pages, 351: rules 40 (34 `built`, 6 `draft`: `rule-case-protocol`,
+  `rule-index-check`, `rule-retro`, `rule-synthesis`, `rule-work-mode`,
+  `rule-subagent-guppi`), entities 0, estimates 42 (38 `passed`, 3 `pending`:
+  `estimate-case-protocol-loaded`, `estimate-index-check-merges`,
+  `estimate-synthesis-clusters`; 1 `failed`: `estimate-retro-loads`), lessons 27 (24
+  `new`, 3 `clustered`), insights 10 (9 `actioned`, 1 `open`), decisions 232 (all
+  `current`).
+- `vault/archive/migration/` holds 100 pages: the 97 of the previous brief and 3 under
+  `2026-09-15/1110/decisions/` (`146`, `152`, `154`); and the raw of the dates 09-09…09-13
+  under `<date>/[HHMM/]raw/`, with the four units of 09-14 added by the archive of this
+  run. `cleanup` moved 3 in this run.
+- `raw/2026-09-15/1110/materialize.yaml`: 42 entries (37 lifted, 5 `librarian: synthesis`),
+  41 `applied`, 1 `failed`, 0 unparsed lines, 0 `incomplete`, 1 `near`, 2 `exists`, 0
+  `merged`.

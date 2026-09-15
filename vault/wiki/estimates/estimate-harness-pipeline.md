@@ -1,7 +1,7 @@
 ---
 type: estimate
 kind: QA
-status: pending
+status: passed
 target: "[[rule-harness]]"
 origin: raw/2026-09-10/ledger.md#case-37
 sprint: migration
@@ -34,10 +34,11 @@ The Purpose: "Three rules belong to no phase of the session: the renderer, the p
 
 ## Result
 
-`make test-harness` 44 green; `make lint` ran render --check (exit 0), index --check (exit 0), guppi lint (159 findings, the known list) in that order
+block 153: rule-harness Purpose carries the ratified text; make test-harness runs pytest over tests/test_render.py and tests/test_lint.py, 67 passed; make lint by hand 2026-09-15: render --check exit 0, then guppi lint 84 findings exit 1, in that order
 
 ## History
 
 - 2026-09-10 created · raw/2026-09-10/ledger.md#case-37
 - 2026-09-10 status: pending → passed · raw/2026-09-10/ledger.md#L74
 - 2026-09-14 criterion: case 153 added · [[decision-case-153]]
+- 2026-09-15 status: pending → passed · raw/2026-09-15/1110/ledger.md#L3

@@ -1,9 +1,10 @@
 ---
 type: decision
 case: "152"
-status: current
+status: archived
 defer: ["[[rule-work-mode]]", "[[rule-subagent-guppi]]"]
 supersedes: ["[[decision-case-141]]"]
+superseded_by: ["[[decision-case-162]]"]
 origin: raw/2026-09-14/1633/ledger.md#case-152
 sprint: migration
 created: 2026-09-14
@@ -21,3 +22,6 @@ The owner opened session P on the readings due, the four open Insights and the O
 ## History
 
 - 2026-09-14 created · raw/2026-09-14/1633/ledger.md#case-152
+- 2026-09-15 superseded by decision-case-162 · [[decision-case-162]]
+- 2026-09-15 archived · superseded
+- 2026-09-15 archived · cleanup

@@ -1,8 +1,9 @@
 ---
 type: decision
 case: "146"
-status: current
+status: archived
 defer: ["[[rule-lint]]"]
+superseded_by: ["[[decision-case-156]]"]
 origin: raw/2026-09-14/1633/ledger.md#case-146
 sprint: migration
 created: 2026-09-14
@@ -20,3 +21,6 @@ Two ratified norms — the children of an actioned Insight are archived; an acti
 ## History
 
 - 2026-09-14 created · raw/2026-09-14/1633/ledger.md#case-146
+- 2026-09-15 superseded by decision-case-156 · [[decision-case-156]]
+- 2026-09-15 archived · superseded
+- 2026-09-15 archived · cleanup

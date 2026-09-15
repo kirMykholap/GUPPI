@@ -1,7 +1,7 @@
 ---
 type: estimate
 kind: QA
-status: pending
+status: passed
 target: "[[rule-lint]]"
 origin: raw/2026-09-09/ledger.md#case-21
 sprint: migration
@@ -54,6 +54,20 @@ The link resolves when its text is the slug of a live or archived page, the stem
 **＋** Test: `[[brief]]` and `[[rules/schema]]` in a body — no finding; `[[nowhere]]` — a finding.
 **－** Frontmatter fields — page slugs only, as today.
 
+### case 156
+
+When:
+`uv run guppi lint` checks orphans.
+
+Then:
+An Insight is not an orphan finding, whatever its `status`: its owners are its children, which it names itself in `children`, live or archived; `check_orphans` excludes `insights` beside `decisions` and `lessons`.
+**＋** The text of `rule-lint`: "orphans (a live entity, rule or estimate no other live page names in its frontmatter; a lesson is a record and an Insight names it or not; an Insight owns its children through `children` and is named by no live page once they are archived — neither is one, case 156)"; the docstring of `lint.py` says the same.
+**＋** `rule-lint` `contract: changed`; `estimate-lint-catches` gets a `### case 156` block, `pending`; a test: an Insight nothing names, `status: actioned` — no finding; a rule without an owner — a finding as before.
+**＋** The reading in Work Mode: the test green, live `guppi lint` 84 → 74, no `orphan` on `insights/`.
+**＋** `decision-case-146` superseded, `rule-lint` loses `deferred_by`.
+**－** The definition for entity, rule and estimate does not change; decision pages and bodies do not become ownership — Obsidian's notion is not adopted, the lesson stands.
+**－** The orphans of the Obsidian graph (the placeholders of F1, the hub files) are not this Case.
+
 ## Method
 
 pytest in `tests/test_lint.py`, one test per defect class; the live reading once by hand,
@@ -61,7 +75,7 @@ written into the estimate line.
 
 ## Result
 
-block 103.5 as before; block 112.1 against test_lint.py (a MOC's Estimate naming make test-root beside "by hand" is no finding) and against the vault: guppi lint 116 → 114 findings, the method findings on estimate-documentation-completes and estimate-harness-pipeline gone
+block 156: tests/test_lint.py seeds an actioned Insight nothing names and expects no orphan finding, 47 green; live 2026-09-15: guppi lint 84 → 74 findings, none under insights/, the two placeholders still orphans
 
 ## History
 
@@ -81,3 +95,6 @@ block 103.5 as before; block 112.1 against test_lint.py (a MOC's Estimate naming
 - 2026-09-14 criterion: case 112.1 added · [[decision-case-112.1]]
 - 2026-09-14 status: pending → passed · raw/2026-09-14/0747/ledger.md#L47
 - 2026-09-14 criterion: case 149.3 added · [[decision-case-149.3]]
+- 2026-09-15 status: pending → passed · raw/2026-09-15/1110/ledger.md#L1
+- 2026-09-15 criterion: case 156 added · [[decision-case-156]]
+- 2026-09-15 status: pending → passed · raw/2026-09-15/1110/ledger.md#L24

@@ -17,7 +17,7 @@ tags: [session, workflow, harness]
 ## Purpose
 
 Prevents a set of ratified decisions from reaching the Spec with a contradiction between
-them or with the vault. The per-Case question to `ask-guppi` asks "does this exist"; this
+them or with the vault. The question to `ask-guppi` before a `create` without a `ref` asks "does this exist"; this
 one asks, once, "does this set hold together". Its run is recorded by `guppi gate` on the `Skill` call, one `pretask` line with the session's stamp, which is what the pre-task hook looks for (case 136.1).
 
 ## Render
@@ -74,3 +74,4 @@ finding as a Case, or say in one line why it is already known. Then exit Plan Mo
 - 2026-09-14 defer by decision-case-121 superseded · [[decision-case-128]]
 - 2026-09-14 updated: the pre-task dispatch carries the plan file's path and the instruction to read every Case's when, then and then block, not a summary (case 128) · [[decision-case-128]]
 - 2026-09-14 updated: the Recorded line dropped; guppi gate writes the stamped pretask mark (case 136.1) · [[decision-case-136.1]]
+- 2026-09-15 updated: the question to ask-guppi is the one before a create without a ref, not one per Case (case 155) · [[decision-case-155]]

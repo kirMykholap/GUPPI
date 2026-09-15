@@ -2,7 +2,7 @@
 type: rule
 kind: Leaf
 purpose: Prevents an archived page from staying among the live ones
-status: draft
+status: built
 enforcement: check
 implementation_ref: [guppi/cleanup.py, tests/test_cleanup.py]
 parent: "[[rule-documentation]]"
@@ -61,3 +61,4 @@ stderr with exit 1; the other pages still move.
 - 2026-09-14 status: draft → built · cascade
 - 2026-09-14 updated: cleanup rewrites no index; the files are gone (case 147.6) · [[decision-case-147.6]]
 - 2026-09-14 status: built → draft · cascade
+- 2026-09-15 status: draft → built · cascade

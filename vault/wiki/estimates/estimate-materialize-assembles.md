@@ -118,13 +118,35 @@ The line becomes an entry `{line, text, failed: "<Type>: <message>"}` without `k
 **－** A `MaterializeError` — no `ledger.md`, a Case heading in two files — still stops the walk with exit 1.
 **－** `unparsed` does not change: a line the grammar does not parse goes there, as today.
 
+### case 158
+
+When:
+`guppi materialize` meets an existing entry in `materialize.yaml`.
+
+Then:
+The entry is readable when it is a mapping with at least one of `line`, `derived`, `librarian`; the librarian's entry — `librarian: synthesis` (or `merged`), no `line` — is left as it is, with no line on stderr.
+**＋** An unreadable one — not a mapping, or a mapping with none of the three — is left as it is, named on stderr once, and the run goes on, as in 142.1.
+**＋** The text of `rule-materialize` and the docstring of `materialize.py`: "a mapping with none of `line`, `derived`, `librarian`" in place of "without `line` and without `derived`".
+**＋** `rule-materialize` `contract: changed`; `estimate-materialize-assembles` gets a `### case 158` block, `pending`; the reading in Work Mode: tests 486 and 1336 green, the stderr of the run of P empty.
+**－** No line of code beyond the docstring; `walks-dates` untouched.
+
+### case 161
+
+When:
+`guppi materialize` lifts a line `decision[case N][update][<rule-class slug>]` and looks for its item in the `then` block of the Spec.
+
+Then:
+The item is found when its `slug` equals the slug of the line, or its `file` equals `rule_class_path(slug)`; `change` is lifted, `incomplete` is empty, `category: file`, `path` from `file`.
+**＋** An item with both keys is found as before.
+**－** A Rule-class slug with no item in `then` stays `incomplete: [then]`.
+
 ## Method
 
 pytest in tests/test_materialize.py against a temp vault; the live reading once by hand
 
 ## Result
 
-block 142.1, 2026-09-14: tests/test_materialize.py — a lift that raises leaves `{line, text, failed}` without kind, one stderr line, the yaml written, exit 1; the failed line lifted again and replaced on the next run; a string entry and a mapping without line/derived left alone with one stderr line each; 45 tests green; every key materialize.py writes (case, kind, category, slug, ref, source, supersedes, superseded_by, origin, line, text, decision, tags, fields, sections, replace, change, impact, incomplete, exists, folded, status, result, derived, criterion_block, set, case_removed, path, failed) is in the field list of 142.1; the librarian's own entries carry `librarian` and no line and are read as readable, a precision on the wording
+blocks 158 and 161: test 486 keeps a librarian entry without line with stderr empty, 1336 names two unreadable entries, the new test finds a Spec item with file and no slug — change lifted, no incomplete, category file, path from file; 46 green; the librarian's run of this session is the live check of 161 on the case-schema entry of Case 159
 
 ## History
 
@@ -150,3 +172,6 @@ block 142.1, 2026-09-14: tests/test_materialize.py — a lift that raises leaves
 - 2026-09-14 criterion: case 142.1 added · [[decision-case-142.1]]
 - 2026-09-14 updated: the bare #L<n> of the Criterion prose in a code span, no Obsidian tag (case 148.3) · [[decision-case-148.3]]
 - 2026-09-14 status: pending → passed · raw/2026-09-14/1633/ledger.md#L55
+- 2026-09-15 criterion: case 158 added · [[decision-case-158]]
+- 2026-09-15 criterion: case 161 added · [[decision-case-161]]
+- 2026-09-15 status: pending → passed · raw/2026-09-15/1110/ledger.md#L25

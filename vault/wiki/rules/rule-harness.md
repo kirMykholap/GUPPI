@@ -2,7 +2,7 @@
 type: rule
 kind: MOC
 purpose: Prevents the tools of the harness from drifting apart from the pages that describe them
-status: draft
+status: built
 children: ["[[rule-render-harness]]", "[[rule-settings]]", "[[rule-lint]]", "[[rule-governed-files-hook]]", "[[rule-claude-md]]", "[[rule-bash-guard]]", "[[rule-tests-clock-pinned]]"]
 estimates: ["[[estimate-harness-pipeline]]"]
 origin: raw/2026-09-10/ledger.md#case-37
@@ -49,3 +49,4 @@ them. Three rules belong to no phase of the session: the renderer, the page
 - 2026-09-14 updated: three rules in make lint, four outside it; the pipeline's Method without tests/test_index.py (case 153) · [[decision-case-153]]
 - 2026-09-14 status: built → draft · cascade
 - 2026-09-14 child rule-index archived · cleanup
+- 2026-09-15 status: draft → built · cascade

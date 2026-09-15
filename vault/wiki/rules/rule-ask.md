@@ -2,13 +2,12 @@
 type: rule
 kind: Leaf
 purpose: Prevents a create from being proposed without the vault having been asked whether it already holds the thing, or forbids it
-status: draft
+status: built
 enforcement: render
 governs: .claude/agents/ask-guppi.md
 render_mode: full
 parent: "[[rule-plan-mode]]"
 estimates: ["[[estimate-ask-finds]]"]
-deferred_by: ["[[decision-case-154]]"]
 origin: raw/2026-09-09/ledger.md#case-23.1
 sprint: migration
 created: 2026-09-09
@@ -22,14 +21,17 @@ already holds the thing, or forbids it. One entry point for every caller — the
 pre-task, the librarian, the person — so the search is tuned once, and its cost stays in
 the searcher's own context: the index lines and pages never enter the caller's. A subagent
 with read-only tools, dispatched through the `Agent` tool, so the event log records each
-call.
+call. The main agent asks at two moments: before a `create` without a `ref`, and once at
+pre-task for the set of ratified Cases; the librarian asks by finished content afterwards, as
+§11 of the map says. An `update` with a `ref` does not ask: the page itself and a Grep give
+the `given` (case 154).
 
 ## Render
 
 <!-- rule-ask -->
 ---
 name: ask-guppi
-description: Ask the vault what already exists, what is close, what is missing, which rule the proposal touches, which tags fit and whether a slug is free. One short question per Case.
+description: Ask the vault what already exists, what is close, what is missing, which rule the proposal touches, which tags fit and whether a slug is free. One question before a `create` without a `ref`, and one at pre-task for the whole set; an `update` with a `ref` reads the page itself.
 model: opus
 tools: Read, Grep, Glob
 ---
@@ -81,3 +83,6 @@ Answer with exactly these five lines, each present, "none" when empty:
 - 2026-09-14 updated: index lines, not index files (case 147.9) · [[decision-case-147.9]]
 - 2026-09-14 deferred · [[decision-case-154]]
 - 2026-09-14 status: built → draft · cascade
+- 2026-09-15 defer by decision-case-154 superseded · [[decision-case-155]]
+- 2026-09-15 updated: the question has two moments — before a create without a ref, and once at pre-task; an update with a ref reads the page itself; supersedes case 154 (case 155) · [[decision-case-155]]
+- 2026-09-15 status: draft → built · cascade

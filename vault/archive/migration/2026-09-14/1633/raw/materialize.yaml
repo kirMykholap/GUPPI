@@ -483,6 +483,7 @@ entries:
       refs are wikilinks (147); a Case at the next Plan Mode
   exists: true
   applied: '20:37:18'
+  superseded_by: '156'
 - line: 15
   text: decision[case 147.1][delete][rule-index]{ref:rule-index}
   case: '147.1'
@@ -1243,6 +1244,7 @@ entries:
       do, and the fork that comes back as a Case; the Plan Mode of a session of its own
   exists: true
   applied: '20:37:18'
+  superseded_by: '162'
 - line: 43
   text: decision[case 152][defer][rule-work-mode]{ref:rule-work-mode}{supersedes:case 141}
   case: '152'
@@ -1270,6 +1272,7 @@ entries:
       fork as a Case; the Plan Mode of a session of its own
   exists: true
   applied: '20:37:18'
+  superseded_by: '162'
 - line: 44
   text: decision[case 152][defer][rule-subagent-guppi]{ref:rule-subagent-guppi}{supersedes:case 141}
   case: '152'
@@ -1480,6 +1483,7 @@ entries:
       the Purpose; a Case at the next Plan Mode
   exists: true
   applied: '20:37:18'
+  superseded_by: '155'
 - line: 53
   text: decision[case 147.8][update][insights-schema]{ref:insights-schema}
   case: '147.8'
@@ -2351,6 +2355,8 @@ decisions:
       lint keeps is decided after that.'
   spec: vault/raw/2026-09-14/1633/spec.md
   applied: '20:37:18'
+  superseded_by:
+  - decision-case-156
 - case: '147.1'
   decision: decision-case-147.1
   origin: raw/2026-09-14/1633/ledger.md#case-147.1
@@ -3589,6 +3595,8 @@ decisions:
   supersedes:
   - decision-case-141
   applied: '20:37:18'
+  superseded_by:
+  - decision-case-162
 - case: '142.4'
   decision: decision-case-142.4
   origin: raw/2026-09-14/1633/ledger.md#case-142.4
@@ -3776,5 +3784,7 @@ decisions:
       `rule-ask`''s clause follows the practice.'
   spec: vault/raw/2026-09-14/1633/spec.md
   applied: '20:37:18'
+  superseded_by:
+  - decision-case-155
 unparsed: []
 session: '1633'

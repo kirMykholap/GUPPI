@@ -1,7 +1,7 @@
 ---
 type: estimate
 kind: QA
-status: pending
+status: passed
 target: "[[rule-documentation]]"
 origin: raw/2026-09-10/ledger.md#case-36
 sprint: migration
@@ -89,7 +89,7 @@ Then:
 
 ## Result
 
-block 100.2 against the librarian's run of session M: Archive ran after Brief (10:04:23 brief, 10:04:32 archive), moved raw/2026-09-13 and raw/2026-09-13/0652 to archive/migration/<date>/[0652/]raw, kept raw/2026-09-14/0747 as the session of the run, exit 0, stderr empty, all reported in the brief's Flags; rule-raw-archive is the sixth child of rule-documentation, after rule-cleanup
+block 147.5: .claude/agents/librarian-guppi.md line 16 carries the ratified sentence of the replace pair of Spec 1633 ("Your inputs are three ... the Greps of the category the index check and the synthesis name, run by you"), the four reasons to open a page unchanged; the first run under this frame is this session's librarian
 
 ## History
 
@@ -108,3 +108,4 @@ block 100.2 against the librarian's run of session M: Archive ran after Brief (1
 - 2026-09-13 criterion: case 100.2 added · [[decision-case-100.2]]
 - 2026-09-14 status: pending → passed · raw/2026-09-14/1029/ledger.md#L2
 - 2026-09-14 criterion: case 147.5 added · [[decision-case-147.5]]
+- 2026-09-15 status: pending → passed · raw/2026-09-15/1110/ledger.md#L5

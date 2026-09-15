@@ -11,7 +11,7 @@ tags: [harness, workflow, ledger]
 
 ## Context
 
-The shared `context` of Case 130 quotes a line of `rule-page-generation`: "History and log lines end with · [[decision-case-N]] when a decision exists" — without backticks. The librarian carried it onto `decision-case-130.1` and `decision-case-130.2` verbatim; lint sees `[[decision-case-N]]`, no page has that slug — two `ref` findings. Case 130.1 cured the same thing on the pages 112.1–112.6 by hand, with backticks.
+The shared `context` of Case 130 quotes a line of `rule-page-generation`: `"History and log lines end with · [[decision-case-N]] when a decision exists"` — without backticks. The librarian carried it onto `decision-case-130.1` and `decision-case-130.2` verbatim; lint sees `[[decision-case-N]]`, no page has that slug — two `ref` findings. Case 130.1 cured the same thing on the pages 112.1–112.6 by hand, with backticks.
 
 ## Problem
 
@@ -29,3 +29,4 @@ Remove the two findings and leave the pages what was signed. Through `generate` 
 ## History
 
 - 2026-09-14 created · raw/2026-09-14/1229/ledger.md#case-140
+- 2026-09-15 updated: the quoted wikilink of the Context in backticks: lint and Obsidian read a quotation, not a link (case 160) · [[decision-case-160]]

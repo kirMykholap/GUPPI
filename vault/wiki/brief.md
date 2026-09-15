@@ -1,205 +1,184 @@
-# Brief — 2026-09-15, after session R (the derived sections dropped, the librarian's Insight through generate, the gate on a typed command, Cases 164–172)
+# Brief — 2026-09-15, after session S (the Insight actioned, the stale heads caught up, the supersedes marks every entry, Cases 173–179)
 
-Written by the librarian, by the frame it was dispatched with (the frame before 168; the
-reading of 168 is the brief of the next run).
+Written by the librarian, by the frame after 168; this brief is the reading of block 168
+of `estimate-brief-written`.
 
 ## Where things stand
 
-What the handoff of session R records under "What actually got done":
+What the handoff of session S records under "What actually got done":
 
-- Ratified: 164 (`rule-page-generation`, supersedes 124.2; superseded by 166.2 before it
-  applies), 165.2 (defer, taken up by 166.1), 166.1 (eight schema files by hand), 166.2
-  (`generate` writes no derived section; migration; supersedes 164), 166.3 (the cascade of
-  114 removed; supersedes 114), 166.4 (`rule-cleanup`), 167 (`rule-case-protocol`,
-  supersedes 157), 168 (`rule-brief`, `insight-librarian-frame-omits-required-reads`
-  actioned), 169.1 (`rule-retro-commit`; `rule-event-log`, `rule-ledger-write` text), 169.2
-  (`rule-hook-registry`), 169.3 (`rule-retro`, supersedes 150), 170 (defer Slice 3b,
-  supersedes 162), 171 (`rule-page-generation`, contract same, supersedes 124.2), 172
-  (`rule-page-generation`, supersedes 148.1).
-- Readings: `estimate-index-check-merges` (147.3) and `estimate-synthesis-clusters` (147.4)
-  `passed` against the brief of Q's run; `estimate-case-protocol-loaded` blocks 159 and 157
-  `passed` on Case 164 and its acknowledging reply. 160's second box ticked in
-  `1110/spec.md`.
-- Code, commit `f78747c` on `migration`: `guppi/generate.py` (SECTION_ORDER without the
-  seven sections; `create` writes none; `rebuild_list`, `derive_insight`,
-  `derive_addressed_by`, `links`, `paths_list` removed; `save` writes as is; the cascade
-  step of 114 removed; a `create` in `insights` passes when the entry carries `librarian`),
-  `guppi/cleanup.py` (`unlink` edits the field only), `guppi/gate.py` (`skill_of` reads
-  `prompt` of a `UserPromptSubmit` payload for `/pre-task`, `/retro`, `/handoff`; `typed()`;
-  the refusal text for the person), `tests/test_generate.py` (+2), `tests/test_cleanup.py`,
-  `tests/test_gate.py` (+5), `tests/test_lint.py`. 377 green, `make style` clean, `guppi
-  render --check` exit 0, `guppi lint` 72.
-- By hand: `vault/wiki/{rules,entities,lessons,insights}/schema.yaml` and `schema.md`
-  (166.1). The migration: 80 pages under `wiki/` and `archive/` lost their derived
-  sections.
-- Lesson: `lesson-supersedes-in-the-same-session-skips-the-earlier-cases-entries` (`error`,
-  L30).
-- Not done: the live halves of every reading — 166.2, 166.3, 166.4, 172 (the pages after
-  this run, the backlinks in Obsidian — the owner's half), 167 (the first acknowledging
-  reply of the next session), 168 (the brief of the next run), 169.1–169.3 (the first
-  typed `/retro` of the next session, after the render of `settings.json`); the head
-  Criterion texts of `estimate-generate-writes` and `estimate-cleanup-moves` and the second
-  refusal text of `rule-ledger-write` (F17); Slice 3b (170).
+- Ratified: 173 (`insight-retro-typed-command-is-never-a-tool-call` `actioned`;
+  `case-schema.md` by hand), 174 (`estimate-generate-writes`, `estimate-cleanup-moves`
+  head texts; `rule-ledger-write` both advices, `contract: same`), 175 (`rule-materialize`,
+  `contract: changed`, `estimate_slug: estimate-materialize-assembles`), 176 (defer Slice
+  3b, supersedes 170), 177 (`rule-materialize`, `contract: same`, supersedes 130.2), 178
+  (defer `rule-plan-mode`), 179 (defer `rule-case-protocol`).
+- Readings `passed`: `estimate-case-protocol-loaded` (167), `estimate-cleanup-moves`
+  (166.4), `estimate-generate-writes` (166.2, 166.3, 172 — one line),
+  `estimate-hook-registry-rendered` (169.2), `estimate-retro-loads` (169.3).
+- Lesson: `lesson-plan-mode-contract-change-skips-the-estimates-blocks` (`error`).
+- Code, commit `e88a357` on `migration`: `guppi/materialize.py` (`mark_superseded` by case
+  number), `tests/test_materialize.py` (+2). 379 green, `make style` clean.
+- By hand: `vault/wiki/case-schema.md`, one sentence (173).
+- `raw/2026-09-15/1448/spec.md`: five reading boxes ticked. `raw/2026-09-15/1809/spec.md`:
+  the agent's boxes ticked; the librarian's `update` boxes of 173, 174, 175, 177 and the
+  readings 169.1, 175, 168 open.
+- Not done: the reading of 175 (this run's report, read next session); 169.1 `pending` on
+  purpose; 168 (this brief); Slice 3b (176); F6–F8 of the frontier are Slice 5 tasks in
+  `sprint.md`.
 
-`uv run guppi materialize` walked two units, exit 0: `raw/2026-09-15/1110/materialize.yaml`
-extended with 0 entries; `raw/2026-09-15/1448/materialize.yaml` written with 49 entries
-from the session ledger (30 lines) and `1448/spec.md`: 0 `create` of a page, 24 `update`
-(13 rules, 10 estimates derived from `contract: changed`, 1 insight), 8 `file`, 3 `defer`,
-9 `remove_criterion`, 4 `estimate`, 1 `lesson`; 0 unparsed lines, 0 `incomplete`. The
-entries of 164 (`replace`, criterion block) got `superseded_by: '166.2'`, the defer of
-165.2 `superseded_by: '166.1'`; the `remove_criterion` of 164 carries no mark, see Flags.
+`uv run guppi materialize` walked three units, exit 0: `raw/2026-09-15/1110` and `1448`
+extended with 0 entries; `raw/2026-09-15/1809/materialize.yaml` written with 20 entries
+from the session ledger (17 lines) and `1809/spec.md`: 0 `create` of a page, 8 `update`
+(3 rules, 4 estimates — one derived from `contract: changed` — 1 insight), 1 `file`, 4
+`defer`, 2 `remove_criterion`, 4 `estimate`, 1 `lesson`; 0 unparsed lines, 0
+`incomplete`. The three entries of 170 in `1448/materialize.yaml` (line 26 `defer`
+`rule-work-mode`, line 26 `remove_criterion` of 162, line 27 `defer` `rule-subagent-guppi`)
+carry `superseded_by: '176'`; each also keeps its `applied: 17:58:17` of R's run.
 
 The librarian at the index check: the one lesson compared against the Grep
 `^(root_cause|deferred_by):` over `wiki/lessons/`, 29 lines (27 lessons, 2 `schema.md`), 0
-`deferred_by`; nothing merged, no `near`. No entity, rule or insight `create` in the yaml
-of this session; the Greps of `rules/` and `entities/` were not run. The `create` of
-`insight-retro-typed-command-is-never-a-tool-call` in `1110` was checked in Q's run and
-was not checked again.
+`deferred_by`; nothing merged; `near:
+lesson-supersedes-in-the-same-session-skips-the-earlier-cases-entries` added (the same
+events, 164 and 171; a different cause — the supersedes semantics, not the unread
+Estimate). No entity, rule or insight `create` in the yaml; the Greps of `rules/` and
+`entities/` were not run.
 
 At synthesis: the one `root_cause` against the same 29 lesson lines and the Grep
-`^(pattern|deferred_by):` over `wiki/insights/`, 11 lines (10 Insights, 1 `schema.md`), 0
-`deferred_by`. Nothing appended. `insight-workflow-contract-change-leaves-its-derived-text-stale`
-(a change leaves the text derived from it stale) and `insight-ledger-line-written-unchecked`
-(a line nothing reads back until materialize) settled on the index line: the lesson's
-mechanism is a `supersedes` that skips every entry of the earlier Case, caught at
-pre-task — not the same cause. No page opened. The lesson stays `new`.
+`^(pattern|deferred_by):` over `wiki/insights/`, 12 lines (11 Insights, 1 `schema.md`), 0
+`deferred_by`. Two pages opened, neither clustered:
+`insight-workflow-contract-change-leaves-its-derived-text-stale` (`actioned`, severity 0)
+— its mechanism is the dependent of a change going unnamed, cured by the derived blocks of
+72.1 and 88.2; the block of 175 did land on the right Estimate, and the lesson's mechanism
+is the existing blocks of that Estimate going unread at Case time.
+`insight-session-vault-knowledge-not-loaded` (`actioned`, severity 0) — a fact missing
+from the session's loading channel, not a read missing from a step of Plan Mode.
+`insight-ledger-line-written-unchecked` settled on the index line. Nothing appended; the
+lesson stays `new`.
 
-`uv run guppi generate`: exit 0; 1 page for `1110` (the retried Insight), 45 for `1448`.
-Lines: 8 `file` entries of 166.1 "a Rule-class file, applied by hand"; `remove_criterion`
-of 165.2, 164, 162 and 124.2 "no Estimate holds a block". `uv run guppi cleanup`: 9 pages
-moved, stderr empty. `uv run guppi render`: stdout and stderr empty; three governed files
-differ from HEAD — `CLAUDE.md` (167), `.claude/settings.json` (169.2),
-`.claude/agents/librarian-guppi.md` (168); `guppi render --check` exit 0.
+`uv run guppi generate`: exit 0; 0 pages for `1110` and `1448`, 29 for `1809`; stderr
+empty. Stdout: "case-schema: a Rule-class file, applied by hand" (173) and
+"remove_criterion: case 170: no Estimate holds a block" (the derived removal of 176; 170
+was a defer and had no block). No line for the three superseded entries of 170. `uv run
+guppi cleanup`: 4 pages moved, stderr empty. `uv run guppi render`: stdout and stderr
+empty; `CLAUDE.md` and `.claude/` equal to HEAD; `guppi render --check` exit 0.
 
 | category | created | updated |
 |---|---|---|
-| decisions | 14 (`decision-case-164`, `165.2`, `166.1`…`172`) | 8 set `archived` by the supersedes cascade and moved by `cleanup` to `vault/archive/migration/2026-09-15/1448/decisions/`: `164` (by 166.2), `165.2` (by 166.1), `114` (by 166.3), `124.2` (by 171), `148.1` (by 172), `150` (by 169.3), `157` (by 167), `162` (by 170) |
-| rules | 0 | 11 by decision: `rule-page-generation` (166.2, 166.3, 171, 172 — five `replace` in one paragraph, all applied; the sentence of 171 stands once), `rule-cleanup` (166.4), `rule-case-protocol` (167), `rule-brief` (168), `rule-retro-commit`, `rule-event-log`, `rule-ledger-write` (169.1), `rule-hook-registry` (169.2), `rule-retro` (169.3), `rule-work-mode` and `rule-subagent-guppi` (`deferred_by` `decision-case-162` → `decision-case-170`); `deferred_by` of 165.2 on `rule-page-generation` never written (superseded). By cascade: `rule-index-check`, `rule-synthesis` `draft` → `built` (147.3, 147.4 `passed`); `rule-brief`, `rule-cleanup`, `rule-hook-registry`, `rule-page-generation`, `rule-retro-commit` `built` → `draft` (a `pending` block); `rule-case-protocol`, `rule-retro` stay `draft` |
-| estimates | 0 | 9 criterion blocks appended on 7 pages: `estimate-generate-writes` +166.2 +166.3 +172, `estimate-cleanup-moves` +166.4, `estimate-case-protocol-loaded` +167, `estimate-brief-written` +168, `estimate-retro-commit-gates` +169.1, `estimate-hook-registry-rendered` +169.2, `estimate-retro-loads` +169.3 — all seven `pending`; 5 blocks removed: 114, 124.2, 148.1 (`estimate-generate-writes`), 157 (`estimate-case-protocol-loaded`), 150 (`estimate-retro-loads`); 4 `remove_criterion` found no block (165.2, 164, 162 — defers or never applied; 124.2 by 171, removed already, see Flags); 4 readings written, all `passed`: `estimate-index-check-merges` (147.3), `estimate-synthesis-clusters` (147.4), `estimate-case-protocol-loaded` ×2 (159, 157 — before 167 set it `pending`) |
-| lessons | 1 (`lesson-supersedes-in-the-same-session-skips-the-earlier-cases-entries`, `error`, tags `workflow`, `ledger`) | 1 set `archived` by the cascade of the actioned Insight and moved to `vault/archive/migration/2026-09-15/1448/lessons/`: `lesson-brief-next-section-has-no-source` |
-| insights | 1: `insight-retro-typed-command-is-never-a-tool-call` — the `failed` entry of `1110` retried and applied, `open`, `severity` 2, two children, `## Pattern` and `## Proposal`, no `## Children`; its `failed` mark dropped | 1 by decision: `insight-librarian-frame-omits-required-reads` `open` → `actioned`, `addressed_by: decision-case-168` |
+| decisions | 7 (`decision-case-173`…`179`) | 2 set `archived` by the supersedes cascade and moved by `cleanup` to `vault/archive/migration/2026-09-15/1809/decisions/`: `130.2` (by 177), `170` (by 176) |
+| rules | 0 | 6 by decision: `rule-ledger-write` (174), `rule-materialize` (175 and 177, both `replace` applied; `built` → `draft` on the pending block), `rule-work-mode` and `rule-subagent-guppi` (`deferred_by` `decision-case-170` → `decision-case-176`), `rule-plan-mode` (`deferred_by: decision-case-178`), `rule-case-protocol` (`deferred_by: decision-case-179`). By cascade: `rule-case-protocol`, `rule-cleanup`, `rule-hook-registry`, `rule-page-generation`, `rule-retro` `draft` → `built` (their blocks `passed`) |
+| estimates | 0 | 6: `estimate-materialize-assembles` (+175 `pending`, −130.2; `passed` → `pending`), `estimate-generate-writes` (174 one `replace` on the head; `passed` on 166.2, 166.3, 172), `estimate-cleanup-moves` (174 two `replace` on the head; `passed` on 166.4), `estimate-case-protocol-loaded` (`passed` on 167), `estimate-hook-registry-rendered` (`passed` on 169.2), `estimate-retro-loads` (`passed` on 169.3) |
+| lessons | 1 (`lesson-plan-mode-contract-change-skips-the-estimates-blocks`, `error`, tags `workflow`, `harness`, `near` set) | 2 set `archived` by the cascade of the actioned Insight and moved to `vault/archive/migration/2026-09-15/1809/lessons/`: `lesson-retro-typed-by-the-person-bypasses-the-skill-tool-and-the-gate`, `lesson-retro-typed-still-bypasses-the-skill-tool-after-150` |
+| insights | 0 | 1: `insight-retro-typed-command-is-never-a-tool-call` `open` → `actioned`, `addressed_by: decision-case-173` |
 | entities | 0 | 0 |
 
 The checks the handoff asks for, after the run:
 
-- `rule-page-generation`: 164 did not apply; the sentence "A `create` in `insights/` from a
-  ledger line is refused…" stands once, marked `case 171, the text of 164; supersedes
-  124.2`; the three `replace` of 166.2 and the one of 166.3 applied, 172's too.
-- `estimate-generate-writes`: blocks 166.2, 166.3, 172 present, `pending`; blocks 114,
-  124.2, 148.1 absent; no block 164. The eight decisions named are archived.
-- The retried Insight: page written, `severity` 2; `guppi lint` raises no `ref` on the two
-  retro lessons.
-- No live page of `rules/`, `entities/`, `lessons/` or `insights/` carries a `## Estimates`,
-  `## Children`, `## Parent`, `## Implementation`, `## Code`, `## Insight` or `## Addressed
-  by` heading (Grep over the four folders, 0 hits). `log.md` has no `insight section
-  derived` line of today.
-- `.claude/settings.json` rendered with `uv run guppi gate` as the second `UserPromptSubmit`
-  command; `guppi render --check` exit 0. The typed `/retro` of session R before the render
-  is not a failure of 169.
+- `estimate-materialize-assembles`: block 130.2 gone (History: "case 130.2 removed ·
+  decision-case-177"), block 175 present, `status: pending`, no block 177.
+- `rule-materialize`: the `replace` of 175 in the line about a later `supersedes` ("every
+  entry carrying its `case`") and the one of 177 in the description of the yaml ("marks
+  every entry carrying `case: N`") both applied. `decision-case-130.2` archived.
+- 174: `estimate-generate-writes` and `estimate-cleanup-moves` end `passed` with the
+  corrected head (the three `old` texts replaced once each); `rule-ledger-write` carries
+  both advices.
+- 173: the Insight `actioned`, `addressed_by` set; its two lessons archived under
+  `2026-09-15/1809/lessons/`.
+- 176, 178, 179: `deferred_by` set on the four rule pages; no placeholder written.
 - `sprint.md` unchanged: the handoff says "no change".
-- Lint 72 → 70, as the handoff expected.
+- Lint 70, unchanged, as the handoff expected.
 
-## What the next session does first
+## Readings due
 
-From the handoff's "Not done" list and the state after this run:
+After `generate`, 3 Estimates `pending`, 0 `failed`:
 
-1. The readings `pending`, one per block, on the rules that stand `draft`:
-   `estimate-case-protocol-loaded` (167: the first acknowledging reply — the `LEDGER`
-   block first, the question last), `estimate-brief-written` (168: the brief of the next
-   run, "Readings due" as its second section), `estimate-retro-commit-gates` (169.1),
-   `estimate-hook-registry-rendered` (169.2) and `estimate-retro-loads` (169.3): the first
-   typed `/retro` of the session, now that `settings.json` carries the gate;
-   `estimate-generate-writes` (166.2, 166.3, 172) and `estimate-cleanup-moves` (166.4): the
-   pages of this run are written without derived sections, no `insight section derived`
-   line, the backlinks in Obsidian are the owner's half.
-2. Plan Mode over the Deferred list and the Flags: the open Insight
-   `insight-retro-typed-command-is-never-a-tool-call` (its Proposal is largely what 169.1–169.3
-   ratified; the Case that takes it up ends in `actioned`, a rejection, or a `defer`); F17
-   (the head Criterion texts, the second refusal text); Slice 3b (170).
+- `estimate-materialize-assembles`, block 175, `rule-materialize` `draft`. Read from the
+  unticked line of `1809/spec.md`: the tests green; live — the first `supersedes` of a Case
+  whose own line carried a `supersedes`: every entry of it marked in the yaml, `generate`
+  prints no line for them. This run's report: the three entries of 170 in
+  `1448/materialize.yaml` (two `defer`, one `remove_criterion` of 162) carry
+  `superseded_by: '176'`; `generate` printed no line for them; its one line naming 170,
+  "remove_criterion: case 170: no Estimate holds a block", is the derived entry of 176.
+- `estimate-retro-commit-gates`, block 169.1, `rule-retro-commit` `draft`. Read from the
+  unticked line of `1809/spec.md`: the next session types `/retro` before the plan is
+  written, to see what the gate says — the live refusal of a typed `/retro` on a Spec item
+  without its line.
+- `estimate-brief-written`, block 168, `rule-brief` `draft`. No unticked line in
+  `1809/spec.md`; from the page's `Method`: one reading by hand after the first librarian
+  run, recorded in the estimate line — this brief, "Readings due" as its second section.
 
 ## Deferred
 
-1. **`insight-retro-typed-command-is-never-a-tool-call`** — `open`, severity 2, created in
-   this run from the retried entry of Q. Pattern: a slash command typed by the person is
-   expanded by the client into the prompt and is never a Skill tool call, so a hook on the
-   Skill tool sees only the agent's own calls; a cure aimed at the skill's settings changes
-   the agent's path and leaves the typed one as it was. Proposal: treat the two paths as
-   two — the agent's call gated on the Skill tool, the person's typed command on
-   `UserPromptSubmit`; a `then` on a slash command names which path it covers, and its
-   reading takes both. In Plan Mode a Case whose `recommend` starts from that Proposal,
-   ending in an `update` of the Insight (`status: actioned`, `addressed_by`), a rejection
-   written the same way, or a `defer` with the Insight as its target. (stood in 1 brief)
-2. **Slice 3b: Work Mode** — Case 170 (supersedes 162), `rule-work-mode` and
-   `rule-subagent-guppi` (placeholders, `draft`, `deferred_by: [[decision-case-170]]`, the
+1. **Slice 3b: Work Mode** — Case 176 (supersedes 170), `rule-work-mode` and
+   `rule-subagent-guppi` (placeholders, `draft`, `deferred_by: [[decision-case-176]]`, the
    two lint orphans): the Spec as tasks with code, the ticked boxes in `spec.md`, the
-   readings taken in Work Mode, what a subagent may do and the fork that comes back as a
-   Case; the Plan Mode of a session of its own, before Slice 4. Related Insight
-   `insight-harness-agent-visibility`, `actioned`, severity 0. (postponed 13 times)
+   readings taken in Work Mode; the Plan Mode of a session of its own, before Slice 4.
+   Related Insight `insight-harness-agent-visibility`, `actioned`, severity 0. (stood in 14
+   briefs)
+2. **`rule-plan-mode`** — Case 178: decide who reads the blocks of an Estimate's Criterion
+   and names the block a contract change supersedes — the Case at its forming (`given`
+   carries the blocks, `pretask --check` before the ratification question) or the
+   librarian at `generate`; today only pre-task catches the contradiction, after the
+   signature (cases 171, 177). Related Insight
+   `insight-workflow-contract-change-leaves-its-derived-text-stale`, `actioned`, severity
+   0; the lesson of this session is its record. (stood in 1 brief)
+3. **`rule-case-protocol`** — Case 179: one `replace` in How it works, "The six Case
+   sections" → eight, the count of case 163; found by `ask-guppi` at the pre-task of
+   session S. No related Insight. (stood in 1 brief)
 
-Of the previous brief's two items, item 1 (`insight-librarian-frame-omits-required-reads`)
-was actioned by 168 (`addressed_by: decision-case-168`) and is no longer `open`; item 2
-(Slice 3b, 162) was retired by 170's `supersedes` and deferred again by 170, item 2 above.
-The defer of 165.2 (`rule-page-generation`) was retired by 166.1's `supersedes` in the same
-session. Item 1 above is the one `open` Insight, ranked first by severity.
+Of the previous brief's two items, item 1 (`insight-retro-typed-command-is-never-a-tool-call`)
+was actioned by 173 and is no longer `open`; item 2 (Slice 3b, 170) was retired by 176's
+`supersedes` and deferred again by 176, item 1 above. No Insight is `open`.
 
 ## Flags
 
-- **0 `failed`, 0 `incomplete`, 0 `unparsed`, 0 `near`, 0 `merged`** in `1448`. The one
-  `failed` of `1110` (the Insight create) applied in this run and lost its mark.
-- **3 entries marked `exists`**: the defer of 165.2 on `rule-page-generation` (superseded,
-  not applied) and the two defers of 170 on the live placeholders; `deferred_by` set, no
-  placeholder written. Expected.
-- **The `remove_criterion` of 164 applied although 164 is superseded.** `materialize` wrote
-  `superseded_by: '166.2'` on the `replace` and the criterion-block entries of line 3 and
-  not on its third entry, `remove_criterion` of 124.2; `generate` applied it
-  (`log.md`: "criterion: case 124.2 removed · [[decision-case-164]]"), and 171's own
-  removal of 124.2 then found no block. The page is as the handoff expected — block 124.2
-  gone — but the History credits a superseded decision. Not repaired.
-- **No Estimate `failed`.** `estimate-retro-loads` went from `failed` (150) to `pending`
-  when 169.3 appended its block and 150's block was removed. 7 Estimates `pending`, 9
-  rules `draft` (the five set `draft` by this run's blocks, `rule-case-protocol`,
-  `rule-retro`, the two placeholders).
-- **Contradictions, pre-existing, from the handoff (F17)**: the head Criterion of
-  `estimate-generate-writes` and `estimate-cleanup-moves` still names `## Children` and
-  `## Estimates` — no `### case` block, so no `supersedes` reaches it; `rule-ledger-write`
-  after 169.1 names one refusal text where the gate now has two. Both are the pattern of
-  `insight-workflow-contract-change-leaves-its-derived-text-stale` (`actioned`).
+- **0 `failed`, 0 `incomplete`, 0 `unparsed`, 1 `near`, 0 `merged`** in `1809`: the
+  `near` on the lesson, named above.
+- **4 entries marked `exists`**: the defers of 176 (two), 178 and 179 on live rule pages;
+  `deferred_by` set, no placeholder written. Expected.
+- **No Estimate `failed`.** 3 `pending` (Readings due). 5 rules `draft`: `rule-brief`,
+  `rule-materialize`, `rule-retro-commit`, `rule-work-mode`, `rule-subagent-guppi`.
+- **The three entries of 170 carry both `applied` (R's run) and `superseded_by: '176'`.**
+  `generate` skipped them; nothing was undone. Expected by 175's block ("the block a
+  superseded Case meant to remove stands until a live Case removes it").
+- **History of `estimate-generate-writes`** still credits `decision-case-164` (superseded)
+  with the removal of block 124.2; left as it is on purpose, by the handoff. Not repaired.
+- **Contradictions:** none new. F17 (the head texts of the two Estimates, the second refusal
+  text of `rule-ledger-write`) closed by 174.
 - **Stale defers:** `rule-work-mode` and `rule-subagent-guppi` have stood as placeholders
-  since Case 29 (now 170), without `kind`, `estimates` or `tags`; 6 `schema` findings and 2
+  since Case 29 (now 176), without `kind`, `estimates` or `tags`; 6 `schema` findings and 2
   orphans.
 - **No MOC candidate.** The vault holds no Entity page.
 - **The handoff's instructions were all within the frame**; none was refused. Its
   expectations held.
-- **The librarian read outside its inputs twice**, both named in the report: a Grep of
-  `status:` over eight pages of `wiki/decisions/` to confirm the cascade the handoff asked
-  about (the archive folder listing would have answered), and a Grep of the unticked
-  `- [ ] read` lines of `1448/spec.md`; the brief uses neither, its readings list comes
-  from the handoff and the Estimate statuses.
+- **Reads outside the yaml, handoff and index lines**, named in the report: the two
+  Insights opened at synthesis; `estimate-brief-written` (`Method` and block 168, where
+  168 is read); a Grep of `- [ ] read` lines over `1809/spec.md` (rule-brief names it as
+  the source of "where it is read"); Greps of `status:`, `deferred_by:` and the block
+  headings over the pages the handoff's checks name, and of `status:` over every category
+  for the counts.
 - **Archive (run after the brief): 0 units moved**, stdout and stderr empty, exit 0.
-  `raw/2026-09-15/1110` is applied but dated today, kept; `raw/2026-09-15/1448` is the
-  session of the run, never moved.
-- **Lint.** `make lint` exits 1 at its second step (`guppi lint`); `guppi render --check`
-  exit 0. `guppi lint`: 70 findings, exit 1 — 68 `schema` (31 missing `## Context`, 31
-  `## Problem`, on the decision pages of Cases 1–28; `kind`, `estimates`, `tags` on the two
-  placeholders), 2 `orphan` (the two placeholders). 72 before this run: −2 `ref` (the
-  retro lessons, their Insight now on disk). The two `## Estimates` findings of the
-  placeholders went with 166.1 in session R.
+  `raw/2026-09-15/1110` and `1448` are applied but dated today, kept; `raw/2026-09-15/1809`
+  is the session of the run, never moved.
+- **Lint.** `make lint` exits 1 at `guppi lint`; `guppi render --check` exit 0. `guppi
+  lint`: 70 findings, exit 1 — 68 `schema` (31 missing `## Context`, 31 `## Problem`, on
+  the decision pages of Cases 1–28; `kind`, `estimates`, `tags` on the two placeholders),
+  2 `orphan` (the two placeholders). 70 before this run.
 
 ## Readings at the close
 
-- `make test` → 377 passed.
+- `make test` → 379 passed.
 - `make lint` → exit 1 at `guppi lint`; `guppi render --check` → exit 0; `guppi lint` → 70
   findings, exit 1.
-- Live pages, 358: rules 40 (31 `built`, 9 `draft`: `rule-brief`, `rule-case-protocol`,
-  `rule-cleanup`, `rule-hook-registry`, `rule-page-generation`, `rule-retro-commit`,
-  `rule-retro`, `rule-work-mode`, `rule-subagent-guppi`), entities 0, estimates 42 (35
-  `passed`, 7 `pending`: `estimate-brief-written`, `estimate-case-protocol-loaded`,
-  `estimate-cleanup-moves`, `estimate-generate-writes`, `estimate-hook-registry-rendered`,
-  `estimate-retro-commit-gates`, `estimate-retro-loads`; 0 `failed`), lessons 27 (25 `new`,
-  2 `clustered`), insights 11 (10 `actioned`, 1 `open`), decisions 238 (all `current`).
-- `vault/archive/migration/` holds 109 pages: the 100 of the previous brief and 9 under
-  `2026-09-15/1448/` (8 decisions, 1 lesson); and the raw of the dates 09-09…09-14 under
-  `<date>/[HHMM/]raw/`. `cleanup` moved 9 in this run.
-- `raw/2026-09-15/1448/materialize.yaml`: 49 entries, 46 `applied`, 3 `superseded_by`, 0
-  `failed`, 0 unparsed lines, 0 `incomplete`, 0 `near`, 3 `exists`, 0 `merged`.
-  `raw/2026-09-15/1110/materialize.yaml`: 42 entries, all `applied`.
+- Live pages, 362: rules 40 (35 `built`, 5 `draft`), entities 0, estimates 42 (39
+  `passed`, 3 `pending`: `estimate-brief-written`, `estimate-materialize-assembles`,
+  `estimate-retro-commit-gates`; 0 `failed`), lessons 26 (26 `new`), insights 11 (11
+  `actioned`, 0 `open`), decisions 243 (all `current`).
+- `vault/archive/migration/` holds 113 pages: the 109 of the previous brief and 4 under
+  `2026-09-15/1809/` (2 decisions, 2 lessons); and the raw of the dates 09-09…09-14 under
+  `<date>/[HHMM/]raw/`. `cleanup` moved 4 in this run.
+- `raw/2026-09-15/1809/materialize.yaml`: 20 entries, all `applied`, 0 `failed`, 0
+  unparsed lines, 0 `incomplete`, 1 `near`, 4 `exists`, 0 `merged`.
+  `raw/2026-09-15/1448/materialize.yaml`: 49 entries, 46 `applied`, 6 `superseded_by`
+  (164 ×2, 165.2, 170 ×3). `raw/2026-09-15/1110/materialize.yaml`: 42 entries, all
+  `applied`.

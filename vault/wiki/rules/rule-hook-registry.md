@@ -2,7 +2,7 @@
 type: rule
 kind: Leaf
 purpose: Prevents a hook from being registered by hand, outside a ratified decision
-status: draft
+status: built
 enforcement: render
 governs: .claude/settings.json
 render_mode: partial
@@ -76,3 +76,4 @@ agent's Render and is ratified with it; this page holds the registrations only.
 - 2026-09-14 updated: a PreToolUse hook on Bash, guppi bashguard, against the heredoc trap (case 127) · [[decision-case-127]]
 - 2026-09-15 updated: UserPromptSubmit runs guppi gate after guppi event prompt (case 169.2) · [[decision-case-169.2]]
 - 2026-09-15 status: built → draft · cascade
+- 2026-09-15 status: draft → built · cascade

@@ -1,0 +1,694 @@
+date: '2026-09-15'
+sprint: migration
+ledger: vault/raw/2026-09-15/1809/ledger.md
+spec:
+- vault/raw/2026-09-15/1809/spec.md
+entries:
+- line: 1
+  text: decision[case 173][update][insight-retro-typed-command-is-never-a-tool-call]{ref:insight-retro-typed-command-is-never-a-tool-call}
+  case: '173'
+  kind: update
+  slug: insight-retro-typed-command-is-never-a-tool-call
+  origin: raw/2026-09-15/1809/ledger.md#case-173
+  decision: decision-case-173
+  ref: insight-retro-typed-command-is-never-a-tool-call
+  category: insights
+  set:
+    status: actioned
+    addressed_by: decision-case-173
+  change: 'actioned: the two paths of a slash command are two since 169.1–169.3, and case-schema.md now
+    asks a when on a slash command to name its path and a then covering both to be read on both (case
+    173)'
+  applied: '22:11:55'
+- line: 2
+  text: decision[case 173][update][case-schema]{ref:case-schema}
+  case: '173'
+  kind: update
+  slug: case-schema
+  origin: raw/2026-09-15/1809/ledger.md#case-173
+  decision: decision-case-173
+  ref: case-schema
+  category: file
+  path: vault/wiki/case-schema.md
+  change: 'the section ''when and then are the criterion'' gains one sentence: a when on a slash command
+    names the path it covers — the person''s typed command on UserPromptSubmit, the agent''s call on PreToolUse
+    Skill, or both; the reading of a then that covers both takes both (case 173)'
+  applied: '22:11:55'
+- line: 3
+  text: 'estimate[estimate-case-protocol-loaded][passed] block 167: the first acknowledging reply of session
+    S (Case 173) — the LEDGER block first, then the heading "Case 173 — ратифицирован" with Changes and
+    Notes, then the heading "Frontier" as a checklist with the closed line folded, the question last;
+    headings and labels in Russian, the language of the chat'
+  kind: estimate
+  category: estimates
+  slug: estimate-case-protocol-loaded
+  status: passed
+  result: 'block 167: the first acknowledging reply of session S (Case 173) — the LEDGER block first,
+    then the heading "Case 173 — ратифицирован" with Changes and Notes, then the heading "Frontier" as
+    a checklist with the closed line folded, the question last; headings and labels in Russian, the language
+    of the chat'
+  origin: raw/2026-09-15/1809/ledger.md#L3
+  applied: '22:11:55'
+- line: 4
+  text: decision[case 174][update][estimate-generate-writes]{ref:estimate-generate-writes}
+  case: '174'
+  kind: update
+  slug: estimate-generate-writes
+  origin: raw/2026-09-15/1809/ledger.md#case-174
+  decision: decision-case-174
+  ref: estimate-generate-writes
+  category: estimates
+  replace:
+  - old: 'the parent''s children and ## Children in order, the target''s estimates and ## Estimates;'
+    new: the parent's children in order and the target's estimates, no section derived from either (case
+      174);
+  change: 'head Criterion: no ## Children, no ## Estimates — the text of 166.2 (case 174)'
+  applied: '22:11:55'
+- line: 5
+  text: decision[case 174][update][estimate-cleanup-moves]{ref:estimate-cleanup-moves}
+  case: '174'
+  kind: update
+  slug: estimate-cleanup-moves
+  origin: raw/2026-09-15/1809/ledger.md#case-174
+  decision: decision-case-174
+  ref: estimate-cleanup-moves
+  category: estimates
+  replace:
+  - old: its slug leaves the children lists of live pages and the estimates lists of entities and rules,
+      and their sections, with a History line there;
+    new: its slug leaves the children lists of live pages and the estimates lists of entities and rules,
+      the field only and no section rebuilt, with a History line there (case 174);
+  - old: the four category indexes are rewritten without the moved page, and an archived Estimate leaves
+      no line anywhere;
+    new: no index file is written (case 174);
+  change: 'head Criterion: the field only, no section rebuilt (166.4); no index file (147.6) (case 174)'
+  applied: '22:11:55'
+- line: 6
+  text: decision[case 174][update][rule-ledger-write]{ref:rule-ledger-write}
+  case: '174'
+  kind: update
+  slug: rule-ledger-write
+  origin: raw/2026-09-15/1809/ledger.md#case-174
+  decision: decision-case-174
+  ref: rule-ledger-write
+  category: rules
+  replace:
+  - old: 'an item with no decision line of its Case refuses the call with exit 2 — `gate: /<skill> refused
+      — N item(s) of the Spec have no ledger line (case A, case B). The text before a tool call is never
+      kept: end this reply in text with the LEDGER block, then call /<skill> in the next reply.` — and
+      every item with its line, or no source found, passes silently (case 122).'
+    new: 'an item with no decision line of its Case refuses the call with exit 2 — `gate: /<skill> refused
+      — N item(s) of the Spec have no ledger line (case A, case B).` followed by the advice of the path:
+      to the agent `The text before a tool call is never kept: end this reply in text with the LEDGER
+      block, then call /<skill> in the next reply.`, to the person `Ask the agent to end its reply with
+      the LEDGER block, then type /<skill> again.` (case 174) — and every item with its line, or no source
+      found, passes silently (case 122).'
+  change: the refusal on an unwritten ledger line quoted with both advices, the agent's and the person's
+    (case 174)
+  applied: '22:11:55'
+- line: 7
+  text: decision[case 175][update][rule-materialize]{ref:rule-materialize}
+  case: '175'
+  kind: update
+  slug: rule-materialize
+  origin: raw/2026-09-15/1809/ledger.md#case-175
+  decision: decision-case-175
+  ref: rule-materialize
+  category: rules
+  replace:
+  - old: a later `supersedes` adds `superseded_by` to the entries of the earlier Case in whichever unit's
+      yaml holds them — this one or any other under `raw/` — and to that unit's `decisions` list, and
+      changes nothing else;
+    new: a later `supersedes` adds `superseded_by` to every entry of the earlier Case — every entry carrying
+      its `case`, the lines' own and the derived ones, the block removal included, whatever its `kind`
+      (case 175) — in whichever unit's yaml holds them — this one or any other under `raw/` — and to that
+      unit's `decisions` list, and changes nothing else;
+  change: a supersedes marks every entry of the earlier Case by its case number, the derived block removal
+    included; the filter by kind is gone (case 175)
+  applied: '22:11:55'
+- line: 7
+  text: decision[case 175][update][rule-materialize]{ref:rule-materialize}
+  case: '175'
+  kind: update
+  slug: estimate-materialize-assembles
+  category: estimates
+  origin: raw/2026-09-15/1809/ledger.md#case-175
+  decision: decision-case-175
+  derived: true
+  criterion_block: '### case 175
+
+
+    When:
+
+    `guppi materialize` reads a line with `{supersedes:case N}`, and the entries of Case N lie in this
+    yaml or in the yaml of another session under `raw/`.
+
+
+    Then:
+
+    Every entry with `case: N` gets `superseded_by` — the lines of Case N and everything derived from
+    them: the Estimate, the criterion block, the block removal; the `decisions` record of Case N as today.
+
+    **＋** `generate` applies none of them; the block a superseded Case meant to remove stands until a
+    live Case removes it.
+
+    **＋** A foreign yaml is marked by the same rule.
+
+    **－** An entry without `case` — `estimate`, `lesson` — gets no mark.'
+  set:
+    status: pending
+  change: 'criterion: case 175 added'
+  applied: '22:11:55'
+- line: 8
+  text: 'estimate[estimate-cleanup-moves][passed] block 166.4: tests green (377 passed, 2026-09-15 session
+    S); live — the librarian''s run of session R moved decision-case-164, decision-case-114 and decision-case-165.2
+    to vault/archive/migration/2026-09-15/1448/decisions/ with five more decisions and one lesson; the
+    pages that lost a slug carry no rebuilt section — a Grep of the seven derived headings over rules/,
+    entities/, lessons/ and insights/ gives 0 hits'
+  kind: estimate
+  category: estimates
+  slug: estimate-cleanup-moves
+  status: passed
+  result: 'block 166.4: tests green (377 passed, 2026-09-15 session S); live — the librarian''s run of
+    session R moved decision-case-164, decision-case-114 and decision-case-165.2 to vault/archive/migration/2026-09-15/1448/decisions/
+    with five more decisions and one lesson; the pages that lost a slug carry no rebuilt section — a Grep
+    of the seven derived headings over rules/, entities/, lessons/ and insights/ gives 0 hits'
+  origin: raw/2026-09-15/1809/ledger.md#L8
+  applied: '22:11:55'
+- line: 9
+  text: 'estimate[estimate-generate-writes][passed] blocks 166.2, 166.3, 172, live 2026-09-15 session
+    S: tests green (377 passed); the librarian''s run of session R wrote insight-retro-typed-command-is-never-a-tool-call
+    with ## Pattern and ## Proposal and no ## Children, log.md holds no insight section derived line of
+    2026-09-15, a Grep of the seven derived headings over rules/, entities/, lessons/ and insights/ gives
+    0 hits; the owner''s half in Obsidian — the backlinks of rule-documentation are its eight children,
+    its Estimate and its Decisions, the backlinks of the Insight are its two lessons, unresolved is empty'
+  kind: estimate
+  category: estimates
+  slug: estimate-generate-writes
+  status: passed
+  result: 'blocks 166.2, 166.3, 172, live 2026-09-15 session S: tests green (377 passed); the librarian''s
+    run of session R wrote insight-retro-typed-command-is-never-a-tool-call with ## Pattern and ## Proposal
+    and no ## Children, log.md holds no insight section derived line of 2026-09-15, a Grep of the seven
+    derived headings over rules/, entities/, lessons/ and insights/ gives 0 hits; the owner''s half in
+    Obsidian — the backlinks of rule-documentation are its eight children, its Estimate and its Decisions,
+    the backlinks of the Insight are its two lessons, unresolved is empty'
+  origin: raw/2026-09-15/1809/ledger.md#L9
+  applied: '22:11:55'
+- line: 10
+  text: decision[case 176][defer][rule-work-mode]{ref:rule-work-mode}{supersedes:case 170}
+  case: '176'
+  kind: defer
+  slug: rule-work-mode
+  origin: raw/2026-09-15/1809/ledger.md#case-176
+  decision: decision-case-176
+  ref: rule-work-mode
+  supersedes: '170'
+  category: rules
+  fields:
+    type: rule
+    purpose: 'Slice 3b — Work Mode: the Spec as tasks with code, the ticked boxes in spec.md, the readings
+      taken in Work Mode; the Plan Mode of a session of its own, before Slice 4'
+  exists: true
+  applied: '22:11:55'
+- line: 10
+  text: decision[case 176][defer][rule-work-mode]{ref:rule-work-mode}{supersedes:case 170}
+  case: '176'
+  kind: remove_criterion
+  category: estimates
+  origin: raw/2026-09-15/1809/ledger.md#case-176
+  decision: decision-case-176
+  derived: true
+  case_removed: '170'
+  change: 'criterion: case 170 removed'
+  applied: '22:11:55'
+- line: 11
+  text: decision[case 176][defer][rule-subagent-guppi]{ref:rule-subagent-guppi}
+  case: '176'
+  kind: defer
+  slug: rule-subagent-guppi
+  origin: raw/2026-09-15/1809/ledger.md#case-176
+  decision: decision-case-176
+  ref: rule-subagent-guppi
+  category: rules
+  fields:
+    type: rule
+    purpose: Slice 3b — what a subagent may do in Work Mode, and the fork that comes back to the main
+      agent as a Case; with rule-work-mode
+  exists: true
+  applied: '22:11:55'
+- line: 12
+  text: decision[case 177][update][rule-materialize]{ref:rule-materialize}{supersedes:case 130.2}
+  case: '177'
+  kind: update
+  slug: rule-materialize
+  origin: raw/2026-09-15/1809/ledger.md#case-177
+  decision: decision-case-177
+  ref: rule-materialize
+  supersedes: '130.2'
+  category: rules
+  replace:
+  - old: A line with `{supersedes:case N}` marks the entries of case N `superseded_by`.
+    new: 'A line with `{supersedes:case N}` marks every entry carrying `case: N` `superseded_by`, whatever
+      its `kind` (case 175, supersedes 130.2).'
+  change: the second statement of the supersedes mark says every entry by case number; block 130.2 with
+    its filter by kind leaves the Estimate (case 177, supersedes 130.2)
+  applied: '22:11:55'
+- line: 12
+  text: decision[case 177][update][rule-materialize]{ref:rule-materialize}{supersedes:case 130.2}
+  case: '177'
+  kind: remove_criterion
+  category: estimates
+  origin: raw/2026-09-15/1809/ledger.md#case-177
+  decision: decision-case-177
+  derived: true
+  case_removed: '130.2'
+  change: 'criterion: case 130.2 removed'
+  applied: '22:11:55'
+- line: 13
+  text: 'estimate[estimate-hook-registry-rendered][passed] block 169.2, live 2026-09-15 session S: .claude/settings.json
+    carries uv run guppi event prompt and uv run guppi gate on UserPromptSubmit, guppi render --check
+    exit 0; the day''s event log has hi at 18:09:02 from the first and the marks pretask 20:01:16 (the
+    agent''s call) and retro 20:31:22 (typed) from the second'
+  kind: estimate
+  category: estimates
+  slug: estimate-hook-registry-rendered
+  status: passed
+  result: 'block 169.2, live 2026-09-15 session S: .claude/settings.json carries uv run guppi event prompt
+    and uv run guppi gate on UserPromptSubmit, guppi render --check exit 0; the day''s event log has hi
+    at 18:09:02 from the first and the marks pretask 20:01:16 (the agent''s call) and retro 20:31:22 (typed)
+    from the second'
+  origin: raw/2026-09-15/1809/ledger.md#L13
+  applied: '22:11:55'
+- line: 14
+  text: 'estimate[estimate-retro-loads][passed] block 169.3, live 2026-09-15 session S: /retro typed by
+    the person at 20:31:22 and called by the agent through the Skill tool at 21:12:53; the event log carries
+    two marks retro, both after the gate''s check of the Spec against the ledger, all then items with
+    their lines; neither prompt refused'
+  kind: estimate
+  category: estimates
+  slug: estimate-retro-loads
+  status: passed
+  result: 'block 169.3, live 2026-09-15 session S: /retro typed by the person at 20:31:22 and called by
+    the agent through the Skill tool at 21:12:53; the event log carries two marks retro, both after the
+    gate''s check of the Spec against the ledger, all then items with their lines; neither prompt refused'
+  origin: raw/2026-09-15/1809/ledger.md#L14
+  applied: '22:11:55'
+- line: 15
+  text: 'lesson[error][lesson-plan-mode-contract-change-skips-the-estimates-blocks]{tags:workflow,harness}
+    trigger: Cases 175 and, in session R, 164 changed a contract of a rule and named no supersedes of
+    the criterion block that contradicts the new one; ask-guppi at pre-task found blocks 130.2 and 124.2,
+    and Cases 177 and 171 were added to carry the supersedes; the given of 175 named one Estimate where
+    the page carries two root_cause: forming a contract change the agent reads the rule page and the code,
+    never the Estimate page that will take the new block — the blocks are appended by script with no judgment
+    on contradiction, and nothing before pre-task asks for the Estimate to be read'
+  kind: lesson
+  category: lessons
+  slug: lesson-plan-mode-contract-change-skips-the-estimates-blocks
+  near: lesson-supersedes-in-the-same-session-skips-the-earlier-cases-entries
+  origin: raw/2026-09-15/1809/ledger.md#L15
+  fields:
+    type: lesson
+    kind: error
+    root_cause: forming a contract change the agent reads the rule page and the code, never the Estimate
+      page that will take the new block — the blocks are appended by script with no judgment on contradiction,
+      and nothing before pre-task asks for the Estimate to be read
+  sections:
+    Trigger: Cases 175 and, in session R, 164 changed a contract of a rule and named no supersedes of
+      the criterion block that contradicts the new one; ask-guppi at pre-task found blocks 130.2 and 124.2,
+      and Cases 177 and 171 were added to carry the supersedes; the given of 175 named one Estimate where
+      the page carries two
+    Root cause: forming a contract change the agent reads the rule page and the code, never the Estimate
+      page that will take the new block — the blocks are appended by script with no judgment on contradiction,
+      and nothing before pre-task asks for the Estimate to be read
+  tags:
+  - workflow
+  - harness
+  applied: '22:11:55'
+- line: 16
+  text: decision[case 178][defer][rule-plan-mode]{ref:rule-plan-mode}
+  case: '178'
+  kind: defer
+  slug: rule-plan-mode
+  origin: raw/2026-09-15/1809/ledger.md#case-178
+  decision: decision-case-178
+  ref: rule-plan-mode
+  category: rules
+  fields:
+    type: rule
+    purpose: decide who reads the blocks of an Estimate's Criterion and names the block a contract change
+      supersedes — the Case at its forming (given carries the blocks, pretask --check before the ratification
+      question) or the librarian at generate; today only pre-task catches the contradiction, after the
+      signature (cases 171, 177)
+  exists: true
+  applied: '22:11:55'
+- line: 17
+  text: decision[case 179][defer][rule-case-protocol]{ref:rule-case-protocol}
+  case: '179'
+  kind: defer
+  slug: rule-case-protocol
+  origin: raw/2026-09-15/1809/ledger.md#case-179
+  decision: decision-case-179
+  ref: rule-case-protocol
+  category: rules
+  fields:
+    type: rule
+    purpose: 'one replace in How it works: ''The six Case sections'' → eight, the count of case 163; found
+      by ask-guppi at the pre-task of session S'
+  exists: true
+  applied: '22:11:55'
+decisions:
+- case: '173'
+  decision: decision-case-173
+  origin: raw/2026-09-15/1809/ledger.md#case-173
+  targets:
+  - kind: update
+    category: insights
+    slug: insight-retro-typed-command-is-never-a-tool-call
+    ref: insight-retro-typed-command-is-never-a-tool-call
+  - kind: update
+    category: file
+    slug: case-schema
+    path: vault/wiki/case-schema.md
+    ref: case-schema
+  tags: []
+  case_text:
+    context: '`insight-retro-typed-command-is-never-a-tool-call` is an Insight, `open`, severity 2, with
+      two children: the lessons of sessions O and Q. Its pattern: a slash command typed by the person
+      is expanded by the client into the prompt and is never a Skill tool call; a hook on the Skill tool
+      sees only the agent''s own calls, and a cure aimed at the skill''s settings (case 150) changed the
+      agent''s path and left the typed one as it was. Its Proposal: treat the two paths as two — the agent''s
+      call gated on `PreToolUse Skill`, the typed command on `UserPromptSubmit`; a `then` on a slash command
+      names which path it covers, and its reading takes both. The librarian created the Insight in the
+      run of session R, after 169.1–169.3 had ratified most of the Proposal in that session: `guppi gate`
+      is the second command on `UserPromptSubmit` and reads a typed `/pre-task`, `/retro` or `/handoff`;
+      `rule-retro` names both paths; the reading of `estimate-retro-loads` (169.3) takes both — typed
+      and called, two `retro` marks in the event log.'
+    problem: 'The Insight stands first in the Deferred list of the brief and must end in this Plan Mode
+      as `actioned`, a rejection or a `defer`. The mechanics of the Proposal exist since 169.1–169.3,
+      but one sentence of it is ratified nowhere: the rule that a `when` on a slash command names its
+      path and the reading of a `then` covering both takes both. Without it the next Case on `/hi` or
+      `/ask` can again write a `then` that assumes both paths go through the Skill tool — the root of
+      the lessons of O and Q.'
+    given: '`insight-retro-typed-command-is-never-a-tool-call`: `status: open`, `severity: 2`, no `addressed_by`,
+      no `deferred_by`; an `update` with a `ref`, the page read, no vault query needed.
+
+      **＋** `rule-retro-commit` (169.1): the gate on `UserPromptSubmit` reads the payload''s `prompt`
+      for `/pre-task`, `/retro`, `/handoff`, the same two checks and the same mark; `rule-hook-registry`
+      (169.2): `guppi gate` is the second command on `UserPromptSubmit`; `rule-retro` (169.3): both paths
+      behind the gate, the reading of `estimate-retro-loads` takes both.
+
+      **＋** The readings of 169.1–169.3 stand `pending` until the first typed `/retro` of this session;
+      `actioned` is not terminal — a new lesson with the same root cause reopens the Insight (insights
+      schema, §8), so a failed reading reopens it by itself.
+
+      **＋** `case-schema.md` is a Rule-class file: an `update` with `file` and `change`, applied by hand
+      in Work Mode (case 166.1); ledger line `[case-schema]{ref:case-schema}` (cases 92, 123, 149.2).
+      The section "`when` and `then` are the criterion" says nothing today about the paths of a slash
+      command.
+
+      **＋** `generate`: an `update` of an Insight with `status: actioned` goes as any update; the cascade
+      archives the `clustered` children and recounts `severity` (case 168 went the same way).
+
+      **－** No new Rule page: the sentence has no hook, check or render — it is a rule for writing a Case,
+      and its place is `case-schema.md`.'
+    when: 'The person ratifies this Case; the librarian runs `generate` and `cleanup`; in Work Mode the
+      agent edits `case-schema.md` by hand.
+
+      **＋** Later: the agent writes the `when` and `then` of a Case on a slash command, with `case-schema.md`
+      loaded through `CLAUDE.md`.'
+    then: 'The Insight stands `actioned`, `addressed_by: decision-case-173`; both child lessons are `archived`
+      and moved by `cleanup` to `vault/archive/migration/2026-09-15/1809/lessons/`; `severity` recounted
+      by the cascade.
+
+      **＋** `case-schema.md`, section "`when` and `then` are the criterion", holds one sentence: a `when`
+      on a slash command names the path it covers — the person''s typed command on `UserPromptSubmit`,
+      the agent''s call on `PreToolUse Skill`, or both; the reading of a `then` that covers both takes
+      both (case 173).
+
+      **＋** A new lesson with the same root cause reopens the Insight — as today, unchanged.
+
+      **－** `rule-retro`, `rule-retro-commit`, `rule-hook-registry` do not change: their contracts stand
+      since 169.1–169.3, their readings are F1.'
+  spec: vault/raw/2026-09-15/1809/spec.md
+  applied: '22:11:55'
+- case: '174'
+  decision: decision-case-174
+  origin: raw/2026-09-15/1809/ledger.md#case-174
+  targets:
+  - kind: update
+    category: estimates
+    slug: estimate-generate-writes
+    ref: estimate-generate-writes
+  - kind: update
+    category: estimates
+    slug: estimate-cleanup-moves
+    ref: estimate-cleanup-moves
+  - kind: update
+    category: rules
+    slug: rule-ledger-write
+    ref: rule-ledger-write
+  tags: []
+  case_text:
+    context: '`estimate-generate-writes` and `estimate-cleanup-moves` are the Estimate pages of `rule-page-generation`
+      and `rule-cleanup`. Their Criterion is a head text — the criterion signed at creation (cases 32,
+      33) and edited directly in case 57 — and `### case N` blocks, one per contract change. A `supersedes`
+      removes a block only; nobody touches the head. `rule-ledger-write` describes the second refusal
+      of `guppi gate` — a Spec item without its ledger line — and quotes its text whole. Since 169.1 the
+      gate has two texts: for the agent "end this reply in text with the LEDGER block, then call /<skill>
+      in the next reply", for the person "Ask the agent to end its reply with the LEDGER block, then type
+      /<skill> again".'
+    problem: Three texts contradict ratified contracts. The head of `estimate-generate-writes` asks for
+      `## Children` and `## Estimates`, which 166.2 removed. The head of `estimate-cleanup-moves` asks
+      for "their sections" when a slug leaves (removed by 166.4) and "the four category indexes are rewritten"
+      (removed by 147.6). `rule-ledger-write` quotes one refusal text where the gate has two. The readings
+      of 166.2 and 166.4 stand in F1 and read the whole page; the reader meets a head that says one thing
+      and a block that says the opposite. This is the pattern of `insight-workflow-contract-change-leaves-its-derived-text-stale`
+      (`actioned`), left in the handoff of session R as F17.
+    given: '`estimate-generate-writes`, head Criterion: "the parent''s children and ## Children in order,
+      the target''s estimates and ## Estimates" — once on the page; block 166.2 says no section is derived
+      from a ref field.
+
+      **＋** `estimate-cleanup-moves`, head Criterion: "its slug leaves the children lists of live pages
+      and the estimates lists of entities and rules, and their sections, with a History line there" and
+      "the four category indexes are rewritten without the moved page, and an archived Estimate leaves
+      no line anywhere" — once each; block 147.6: no index is written; block 166.4: the field only, no
+      section rebuilt.
+
+      **＋** `rule-ledger-write`, How it works: one quoted refusal text — the advice to the agent; `guppi/gate.py`
+      prints `gate: /<skill> refused — N item(s) of the Spec have no ledger line (case A, case B).` and
+      then one of two advices by `typed(payload)`.
+
+      **＋** `generate` applies `replace` on a page of any category: `old` matched whitespace-insensitive
+      over every section but History, exactly one hit (case 57 edited `estimate-cleanup-moves` the same
+      way).
+
+      **＋** Both Estimates are `pending` already (blocks 166.2, 166.3, 172 and 166.4); their reading is
+      F1, over the whole page.
+
+      **－** No contract changes: an Estimate page has none, `rule-ledger-write` is `contract: same`; no
+      `### case 174` block appears.'
+    when: 'The librarian runs `generate` over the yaml of this session.
+
+      **＋** Later: the reading of `estimate-generate-writes` or `estimate-cleanup-moves` (F1) reads the
+      head Criterion; someone reads `rule-ledger-write` to understand a refusal of the gate.'
+    then: 'The head of `estimate-generate-writes` says: three pages pass their `schema.yaml`, the parent''s
+      `children` in order and the target''s `estimates`, and no section is derived from either.
+
+      **＋** The head of `estimate-cleanup-moves` says: the slug leaves the `children` lists of live pages
+      and the `estimates` lists of entities and rules — the field only, no section rebuilt; no index file
+      is written.
+
+      **＋** `rule-ledger-write` quotes the refusal and both advices: to the agent — the text before a
+      tool call is never kept, end the reply in text with the LEDGER block and call the skill in the next;
+      to the person — ask the agent to end its reply with the LEDGER block and type the command again.
+
+      **＋** Every replacement is marked `(case 174)`; the History of the three pages gains a line.
+
+      **－** The `### case N` blocks of the three pages do not change; no status changes.'
+  spec: vault/raw/2026-09-15/1809/spec.md
+  applied: '22:11:55'
+- case: '175'
+  decision: decision-case-175
+  origin: raw/2026-09-15/1809/ledger.md#case-175
+  targets:
+  - kind: update
+    category: rules
+    slug: rule-materialize
+    ref: rule-materialize
+  tags: []
+  case_text:
+    context: '`guppi materialize` builds the session''s `materialize.yaml` from the ledger and the Spec:
+      one entry per ledger line, the word of the second bracket as `kind`, plus derived entries with no
+      line of their own — the Estimate''s `create` from `method`, its `update` with a block from `contract:
+      changed`, the removal of a `### case N` block from `{supersedes:case N}` under the internal word
+      `remove_criterion`. A line with `{supersedes:case N}` marks the entries of Case N `superseded_by`
+      — in this yaml or in the yaml of another session (case 130.2); `generate` does not apply a marked
+      entry, it only writes the Decision page of N as `superseded`. `mark_superseded` sets the mark by
+      the filter "an entry of Case N whose `kind` is one of the four decision kinds". In session R 166.2
+      superseded 164: two entries of 164 were marked, the third — the removal of block 124.2 — was not;
+      `generate` applied it in the name of the superseded 164.'
+    problem: 'A superseded Case keeps acting through one of its entries. The filter by kind is superfluous:
+      when Case N is superseded, everything it yielded is superseded. `estimate` and `lesson` entries
+      carry no Case number, so a mark by the number alone catches nothing else.'
+    given: '`guppi/materialize.py`, `mark_superseded`: marks an entry when `entry.case == N` and `entry.kind
+      in DECISION_KINDS`; `mark_superseded_elsewhere` calls the same for a foreign yaml.
+
+      **＋** `derived_entries` gives a derived entry the line''s `case` and `derived: true`; the block-removal
+      entry is `kind: remove_criterion`, `case_removed: N`, no `slug`.
+
+      **＋** `estimate_entry` and `lesson_entry` write an entry without a `case` key.
+
+      **＋** `guppi generate`: an entry with `superseded_by` is not applied (case 151); a `remove_criterion`
+      with no block prints `no Estimate holds a block` and does not fail.
+
+      **＋** `rule-materialize` is `built`, `estimates: [estimate-materialize-assembles, estimate-materialize-walks-dates]`,
+      both `passed`, the first named by `estimate_slug` (a fact corrected at pre-task: the Case said one
+      Estimate); `tests/test_materialize.py`: `test_a_supersedes_chain_marks_the_earlier_entry`, `test_a_supersedes_marks_the_earlier_entry_in_another_units_yaml`,
+      the `seed` fixture.
+
+      **－** `1448/materialize.yaml` and the History of `estimate-generate-writes` are not rewritten: block
+      124.2 is gone, which 171 wanted; the History says what the script did.'
+    when: '`guppi materialize` reads a line with `{supersedes:case N}`, and the entries of Case N lie
+      in this yaml or in the yaml of another session under `raw/`.'
+    then: 'Every entry with `case: N` gets `superseded_by` — the lines of Case N and everything derived
+      from them: the Estimate, the criterion block, the block removal; the `decisions` record of Case
+      N as today.
+
+      **＋** `generate` applies none of them; the block a superseded Case meant to remove stands until
+      a live Case removes it.
+
+      **＋** A foreign yaml is marked by the same rule.
+
+      **－** An entry without `case` — `estimate`, `lesson` — gets no mark.'
+  spec: vault/raw/2026-09-15/1809/spec.md
+  criterion:
+  - estimate: estimate-materialize-assembles
+    case: '175'
+  applied: '22:11:55'
+- case: '176'
+  decision: decision-case-176
+  origin: raw/2026-09-15/1809/ledger.md#case-176
+  targets:
+  - kind: defer
+    category: rules
+    slug: rule-work-mode
+    ref: rule-work-mode
+  - kind: defer
+    category: rules
+    slug: rule-subagent-guppi
+    ref: rule-subagent-guppi
+  tags: []
+  case_text:
+    context: '`rule-work-mode` and `rule-subagent-guppi` have stood as placeholders since Case 29, `draft`,
+      `deferred_by: [[decision-case-170]]`, without `kind`, `estimates` or `tags` — 6 `schema` and 2 `orphan`
+      findings. Slice 3b is the Spec as tasks with code, the ticked boxes, the readings taken in Work
+      Mode, what a subagent may do and the fork that comes back as a Case; `sprint.md` says "3b before
+      4"; the Plan Mode of a session of its own.'
+    problem: The owner opened session S on the Deferred list and the Flags of the brief — Cases 173–175
+      and the readings of F1 — and left Slice 3b for a session of its own. The two pages stay placeholders
+      one more session; the postponement count goes to 14.
+  spec: vault/raw/2026-09-15/1809/spec.md
+  supersedes:
+  - decision-case-170
+  applied: '22:11:55'
+- case: '177'
+  decision: decision-case-177
+  origin: raw/2026-09-15/1809/ledger.md#case-177
+  targets:
+  - kind: update
+    category: rules
+    slug: rule-materialize
+    ref: rule-materialize
+  tags: []
+  case_text:
+    context: '`estimate-materialize-assembles` holds one block per contract change of `rule-materialize`.
+      Block 130.2 (session N) signed two things: the `superseded_by` mark lands on the entries of Case
+      N "decision kinds", and lands in the yaml of any session under `raw/`, a foreign yaml written with
+      that mark only. Case 175 of this session dropped the filter by kind and restated the foreign-yaml
+      rule in its own `then`. A block leaves the page only by `{supersedes:case N}` on a decision line
+      (case 72.1), and the line of 175 is written without one. In `rule-materialize` the sentence "A line
+      with `{supersedes:case N}` marks the entries of case N `superseded_by`" stands twice — 175 edits
+      one, the other stays in the description of the yaml.'
+    problem: After the librarian's run the Estimate would carry block 130.2 with the filter by kind and
+      block 175 without it — two signed criteria that contradict each other; the reading of 175 cannot
+      pass against 130.2. A line with `{supersedes:case 130.2}` is needed, and it must carry a decision
+      of its own.
+    given: '`estimate-materialize-assembles`, block 130.2: "The entries of Case N (decision kinds) are
+      marked `superseded_by` in the yaml of the unit that holds them — its own or any other under `raw/`
+      — and in the `decisions` list of that unit; a foreign yaml is written with that mark only."
+
+      **＋** Case 175, `then`: every entry with `case: N` — the lines and the derived ones; a foreign yaml
+      by the same rule; block 175 added, `pending`.
+
+      **＋** `rule-materialize`, How it works, second occurrence: "A line with `{supersedes:case N}` marks
+      the entries of case N `superseded_by`." — untouched by 175; `replace` matches whitespace-insensitive,
+      exactly once — the sentence ending in a full stop is one, the sentence 175 edits (line 50) differs
+      in its words.
+
+      **＋** The entries of 130.2 lie in the archived yaml of `2026-09-14`; `mark_superseded_elsewhere`
+      walks `raw/` only — "a case no yaml holds changes nothing"; `decision-case-130.2` becomes `superseded`
+      and is archived by the cascade (case 104.1).
+
+      **＋** Precedent: Case 171 (session R) — `contract: same` with `{supersedes:case 124.2}`, found at
+      pre-task.
+
+      **－** No contract change: the contract is 175''s; no `### case 177` block.'
+    when: 'The librarian runs `materialize` and `generate` over the ledger of this session.
+
+      **＋** Later: the reading of `estimate-materialize-assembles` (block 175).'
+    then: 'Block `### case 130.2` is removed from `estimate-materialize-assembles`, History `criterion:
+      case 130.2 removed`; block 175 stands alone with its rule, `pending`.
+
+      **＋** `rule-materialize`, the description of the yaml: "A line with `{supersedes:case N}` marks
+      every entry carrying `case: N` `superseded_by`, whatever its `kind` (case 175, supersedes 130.2)."
+
+      **＋** `decision-case-130.2` is `superseded`, archived; `rule-materialize` carries no `deferred_by`
+      from it — it never did.
+
+      **－** Code and tests do not change: that is the work of 175.'
+  spec: vault/raw/2026-09-15/1809/spec.md
+  supersedes:
+  - decision-case-130.2
+  applied: '22:11:55'
+- case: '178'
+  decision: decision-case-178
+  origin: raw/2026-09-15/1809/ledger.md#case-178
+  targets:
+  - kind: defer
+    category: rules
+    slug: rule-plan-mode
+    ref: rule-plan-mode
+  tags: []
+  case_text:
+    context: 'The Criterion of an Estimate page is a head text plus one `### case N` block per contract
+      change; the script appends the blocks one after another and removes one only by `{supersedes:case
+      N}` on a decision line. No judgment says whether a new block contradicts an old one: a script writes.
+      The one check that catches a contradiction is pre-task through `ask-guppi`, at the exit of Plan
+      Mode; in sessions R and S it caught 124.2 (Case 171) and 130.2 (Case 177), and both times a Case
+      of its own was added to carry the `supersedes`.'
+    problem: 'Old criteria pile up on the page even when they are no longer needed, and the removal is
+      decided after the signature, not before. Who reads the blocks and names the removal: the Case at
+      its forming — `given` carries the blocks of the Estimate and the `supersedes` of the contradicting
+      one, the plan file checked by `pretask --check` before the ratification question — or the librarian
+      at `generate`, by what it received. A question of the next Plan Mode.'
+  spec: vault/raw/2026-09-15/1809/spec.md
+  applied: '22:11:55'
+- case: '179'
+  decision: decision-case-179
+  origin: raw/2026-09-15/1809/ledger.md#case-179
+  targets:
+  - kind: defer
+    category: rules
+    slug: rule-case-protocol
+    ref: rule-case-protocol
+  tags: []
+  case_text:
+    context: '`rule-case-protocol` is the rule whose Render enters `CLAUDE.md`. The Render says "eight
+      sections" (case 163); the How it works of the same page says "The six Case sections are not repeated
+      here: they arrive through `case-schema.md`".'
+    problem: The text of the page went stale after a contract change — the pattern of `insight-workflow-contract-change-leaves-its-derived-text-stale`.
+      One `replace`; found at the pre-task of session S by `ask-guppi`, not raised as a Case there.
+  spec: vault/raw/2026-09-15/1809/spec.md
+  applied: '22:11:55'
+unparsed: []
+session: '1809'

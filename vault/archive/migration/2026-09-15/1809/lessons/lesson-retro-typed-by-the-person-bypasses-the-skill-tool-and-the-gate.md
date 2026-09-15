@@ -2,7 +2,7 @@
 type: lesson
 kind: knowledge
 root_cause: "retro's SKILL.md carries `disable-model-invocation: true`, so the client expands a typed /retro as a prompt and never calls the Skill tool; the PreToolUse Skill hook of 136.1 cannot see it, and once the render drops the Recorded line the retro mark disappears — no reader in code needs it today; a Case when one does"
-status: clustered
+status: archived
 source: ".claude/skills/retro/SKILL.md, disable-model-invocation: true"
 insight: "[[insight-retro-typed-command-is-never-a-tool-call]]"
 origin: raw/2026-09-14/1229/ledger.md#L31
@@ -24,3 +24,5 @@ retro's SKILL.md carries `disable-model-invocation: true`, so the client expands
 - 2026-09-14 created · raw/2026-09-14/1229/ledger.md#L31
 - 2026-09-14 updated: source added (case 144.2) · [[decision-case-144.2]]
 - 2026-09-15 updated: clustered under insight-retro-typed-command-is-never-a-tool-call · raw/2026-09-15/1110/ledger.md#L27
+- 2026-09-15 archived · insight actioned
+- 2026-09-15 archived · cleanup

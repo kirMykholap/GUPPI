@@ -1,7 +1,7 @@
 ---
 type: estimate
 kind: QA
-status: pending
+status: passed
 target: "[[rule-page-generation]]"
 origin: raw/2026-09-10/ledger.md#case-32
 sprint: migration
@@ -16,8 +16,7 @@ Every page of the vault comes through this script from Slice 3 on. A derived fie
 ## Criterion
 
 Against a temp vault from one yaml: a MOC rule create, a Leaf child create with ref
-and its nested estimate yield three pages that pass their schema.yaml, the parent's
-children and ## Children in order, the target's estimates and ## Estimates; a derived Estimate create yields a pending page with Context, Criterion as a ### case N block and Method, listed on its target; an update carrying a criterion block appends it to ## Criterion and sets pending, a removal deletes the block, each with its History line; an update with set, sections, replace and change changes the field, the section, the
+and its nested estimate yield three pages that pass their schema.yaml, the parent's children in order and the target's estimates, no section derived from either (case 174); a derived Estimate create yields a pending page with Context, Criterion as a ### case N block and Method, listed on its target; an update carrying a criterion block appends it to ## Criterion and sets pending, a removal deletes the block, each with its History line; an update with set, sections, replace and change changes the field, the section, the
 text and appends History; a replace absent or not unique fails that entry alone,
 exit 1; a delete sets archived with History; a defer without a page writes a
 placeholder with only the Case's fields and deferred_by, a defer with a page appends
@@ -159,7 +158,7 @@ pytest in tests/test_generate.py against a temp vault; the live reading once by 
 
 ## Result
 
-blocks 142.2, 148.1, 151, 2026-09-14: tests/test_generate.py — an entry with failed and no kind skipped with its mark kept and one stderr line, exit 1, the next entry applied; an entry with superseded_by not applied, its Decision page written superseded before the superseding one marks it; tests/test_pages.py — the writer wraps page slugs in quoted wikilinks and leaves Rule-class slugs bare, read_page and page_estimates read both forms the same; the migration over wiki/ and archive/ rewrote 357 of 399 pages, frontmatter only (numstat 1:1), guppi lint identical before and after (84 lines), render --check exit 0; in Obsidian, by the owner: insight-tests-clock-not-pinned shows its two lessons as backlinks, rule-harness fifteen — seven children by parent, its Estimate by target, seven Decision pages; the silence of generate over raw/2026-09-14/0747 (151) is read at the librarian's run
+blocks 166.2, 166.3, 172, live 2026-09-15 session S: tests green (377 passed); the librarian's run of session R wrote insight-retro-typed-command-is-never-a-tool-call with ## Pattern and ## Proposal and no ## Children, log.md holds no insight section derived line of 2026-09-15, a Grep of the seven derived headings over rules/, entities/, lessons/ and insights/ gives 0 hits; the owner's half in Obsidian — the backlinks of rule-documentation are its eight children, its Estimate and its Decisions, the backlinks of the Insight are its two lessons, unresolved is empty
 
 ## History
 
@@ -191,3 +190,5 @@ blocks 142.2, 148.1, 151, 2026-09-14: tests/test_generate.py — an entry with f
 - 2026-09-15 criterion: case 114 removed · [[decision-case-166.3]]
 - 2026-09-15 criterion: case 172 added · [[decision-case-172]]
 - 2026-09-15 criterion: case 148.1 removed · [[decision-case-172]]
+- 2026-09-15 updated: head Criterion: no ## Children, no ## Estimates — the text of 166.2 (case 174) · [[decision-case-174]]
+- 2026-09-15 status: pending → passed · raw/2026-09-15/1809/ledger.md#L9

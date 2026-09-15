@@ -1,7 +1,7 @@
 ---
 type: estimate
 kind: QA
-status: passed
+status: pending
 target: "[[rule-materialize]]"
 origin: raw/2026-09-10/ledger.md#case-31
 sprint: migration
@@ -95,16 +95,6 @@ The entry is marked `exists` only when the `origin` of the page carries the `#ca
 **＋** `estimate-materialize-assembles` gets a `### case 105.2` block, `pending`.
 **－** A placeholder (no `kind`) is not a collision: 101.1 fills it.
 
-### case 130.2
-
-When:
-`guppi materialize` assembles the entry of a line with `{supersedes:case N}`.
-
-Then:
-The entries of Case N (decision kinds) are marked `superseded_by` in the yaml of the unit that holds them — its own or any other under `raw/` — and in the `decisions` list of that unit; a foreign yaml is written with that mark only.
-**＋** `estimate-materialize-assembles` gets a `### case 130.2` block, `pending`; the test: the yaml of unit A with an entry of case 5 without `applied`, the ledger of unit B with a line carrying `{supersedes:case 5}` → after `materialize` of unit B the entry in A carries `superseded_by`, the rest of A unchanged; `archive.kept_reason(A)` is None. The live reading at the librarian's run: 112.6 marked, `0747` moved.
-**－** An entry that no yaml holds: as today, nothing.
-
 ### case 142.1
 
 When:
@@ -139,6 +129,17 @@ Then:
 The item is found when its `slug` equals the slug of the line, or its `file` equals `rule_class_path(slug)`; `change` is lifted, `incomplete` is empty, `category: file`, `path` from `file`.
 **＋** An item with both keys is found as before.
 **－** A Rule-class slug with no item in `then` stays `incomplete: [then]`.
+
+### case 175
+
+When:
+`guppi materialize` reads a line with `{supersedes:case N}`, and the entries of Case N lie in this yaml or in the yaml of another session under `raw/`.
+
+Then:
+Every entry with `case: N` gets `superseded_by` — the lines of Case N and everything derived from them: the Estimate, the criterion block, the block removal; the `decisions` record of Case N as today.
+**＋** `generate` applies none of them; the block a superseded Case meant to remove stands until a live Case removes it.
+**＋** A foreign yaml is marked by the same rule.
+**－** An entry without `case` — `estimate`, `lesson` — gets no mark.
 
 ## Method
 
@@ -175,3 +176,5 @@ blocks 158 and 161: test 486 keeps a librarian entry without line with stderr em
 - 2026-09-15 criterion: case 158 added · [[decision-case-158]]
 - 2026-09-15 criterion: case 161 added · [[decision-case-161]]
 - 2026-09-15 status: pending → passed · raw/2026-09-15/1110/ledger.md#L25
+- 2026-09-15 criterion: case 175 added · [[decision-case-175]]
+- 2026-09-15 criterion: case 130.2 removed · [[decision-case-177]]

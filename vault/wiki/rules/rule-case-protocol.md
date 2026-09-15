@@ -2,12 +2,13 @@
 type: rule
 kind: Leaf
 purpose: Prevents a decision from being acted on before it is ratified, or ratified without its content in view
-status: draft
+status: built
 enforcement: render
 governs: CLAUDE.md
 render_mode: partial
 parent: "[[rule-claude-md]]"
 estimates: ["[[estimate-case-protocol-loaded]]"]
+deferred_by: ["[[decision-case-179]]"]
 origin: raw/2026-09-09/ledger.md#case-13
 sprint: migration
 created: 2026-09-09
@@ -127,3 +128,5 @@ page; the reference dangles until then, on purpose.
 - 2026-09-15 updated: the reply that acknowledges a ratification has four parts: the Case heading with Changes, Notes when any, the Frontier as a checklist, the LEDGER block last (case 157) · [[decision-case-157]]
 - 2026-09-15 updated: the shape of a Case in the chat: the story sections by explicit rules, given as the facts then depends on, then as behaviour only, a tasks section as the checklist of the Spec, code spans, one rule after the Case (case 159) · [[decision-case-159]]
 - 2026-09-15 updated: the LEDGER block opens the acknowledging reply, the question closes it; supersedes 157 (case 167) · [[decision-case-167]]
+- 2026-09-15 deferred · [[decision-case-179]]
+- 2026-09-15 status: draft → built · cascade

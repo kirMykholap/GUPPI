@@ -1,7 +1,7 @@
 ---
 type: estimate
 kind: QA
-status: pending
+status: passed
 target: "[[rule-cleanup]]"
 origin: raw/2026-09-10/ledger.md#case-33
 sprint: migration
@@ -17,9 +17,9 @@ A page left live after archival keeps its index line and its findings. A page mo
 
 Against a temp vault: every live page with status archived moves to
 vault/archive/<sprint>/<date>/<HHMM>/<category>/ under the same file name with a History
-line and a log.md line; its slug leaves the children lists of live pages and the estimates lists of entities and rules, and their sections, with a History line there; an Insight's children keep
+line and a log.md line; its slug leaves the children lists of live pages and the estimates lists of entities and rules, the field only and no section rebuilt, with a History line there (case 174); an Insight's children keep
 it; body wikilinks stay; pages with any other status stay; a page in the archive
-whose status is not archived moves back with History restored; the four category indexes are rewritten without the moved page, and an archived Estimate leaves no line anywhere; a live page whose parent or target
+whose status is not archived moves back with History restored; no index file is written (case 174); a live page whose parent or target
 is archived is reported; a rerun moves nothing and exits 0; an unmovable file or a
 taken name is reported with exit 1 and the rest still move. Live: one run over the
 vault with nothing to move exits 0 and leaves git diff empty.
@@ -59,7 +59,7 @@ pytest in tests/test_cleanup.py against a temp vault; the live reading once by h
 
 ## Result
 
-block 147.6: rule-cleanup purpose "Prevents an archived page from staying among the live ones", the index sentence gone; cleanup.py without the index writer, tests/test_cleanup.py asserts no index file; live: the librarian's run of session P moved 11 pages and wrote no index
+block 166.4: tests green (377 passed, 2026-09-15 session S); live — the librarian's run of session R moved decision-case-164, decision-case-114 and decision-case-165.2 to vault/archive/migration/2026-09-15/1448/decisions/ with five more decisions and one lesson; the pages that lost a slug carry no rebuilt section — a Grep of the seven derived headings over rules/, entities/, lessons/ and insights/ gives 0 hits
 
 ## History
 
@@ -73,3 +73,5 @@ block 147.6: rule-cleanup purpose "Prevents an archived page from staying among 
 - 2026-09-14 criterion: case 147.6 added · [[decision-case-147.6]]
 - 2026-09-15 status: pending → passed · raw/2026-09-15/1110/ledger.md#L2
 - 2026-09-15 criterion: case 166.4 added · [[decision-case-166.4]]
+- 2026-09-15 updated: head Criterion: the field only, no section rebuilt (166.4); no index file (147.6) (case 174) · [[decision-case-174]]
+- 2026-09-15 status: pending → passed · raw/2026-09-15/1809/ledger.md#L8

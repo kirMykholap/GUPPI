@@ -2,7 +2,7 @@
 type: rule
 kind: Leaf
 purpose: Prevents a session from closing on work nobody reviewed, or on a change that traces to no decision
-status: draft
+status: built
 enforcement: render
 governs: .claude/skills/retro/SKILL.md
 render_mode: full
@@ -93,3 +93,4 @@ got done; what did not. When the person approves, commit (`make style` clean,
 - 2026-09-14 updated: disable-model-invocation dropped: a typed or agent-called /retro passes the Skill tool, so guppi gate sees it and writes the retro mark (case 150) · [[decision-case-150]]
 - 2026-09-14 status: built → draft · cascade
 - 2026-09-15 updated: the two paths of Retro, typed and called, both behind the gate; supersedes 150 (case 169.3) · [[decision-case-169.3]]
+- 2026-09-15 status: draft → built · cascade

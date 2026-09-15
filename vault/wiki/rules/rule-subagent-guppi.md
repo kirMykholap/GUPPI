@@ -2,7 +2,7 @@
 type: rule
 purpose: Prevents implementation drifting from the ratified plan while it is being executed
 status: draft
-deferred_by: ["[[decision-case-170]]"]
+deferred_by: ["[[decision-case-176]]"]
 origin: raw/2026-09-10/ledger.md#case-29
 sprint: migration
 created: 2026-09-10
@@ -36,3 +36,5 @@ Prevents implementation drifting from the ratified plan while it is being execut
 - 2026-09-15 deferred · [[decision-case-162]]
 - 2026-09-15 defer by decision-case-162 superseded · [[decision-case-170]]
 - 2026-09-15 deferred · [[decision-case-170]]
+- 2026-09-15 defer by decision-case-170 superseded · [[decision-case-176]]
+- 2026-09-15 deferred · [[decision-case-176]]

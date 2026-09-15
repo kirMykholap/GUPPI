@@ -1559,3 +1559,46 @@ instruction. The global feed; a page's own `## History` is the per-page view.
 - 2026-09-15 decisions/decision-case-162 archived · cleanup
 - 2026-09-15 decisions/decision-case-164 archived · cleanup
 - 2026-09-15 decisions/decision-case-165.2 archived · cleanup
+- 2026-09-15 decisions/decision-case-173 created · raw/2026-09-15/1809/ledger.md#case-173 · generate
+- 2026-09-15 insights/insight-retro-typed-command-is-never-a-tool-call updated: actioned: the two paths of a slash command are two since 169.1–169.3, and case-schema.md now asks a when on a slash command to name its path and a then covering both to be read on both (case 173) · [[decision-case-173]] · generate
+- 2026-09-15 estimates/estimate-case-protocol-loaded status: pending → passed · raw/2026-09-15/1809/ledger.md#L3 · generate
+- 2026-09-15 decisions/decision-case-174 created · raw/2026-09-15/1809/ledger.md#case-174 · generate
+- 2026-09-15 estimates/estimate-generate-writes updated: head Criterion: no ## Children, no ## Estimates — the text of 166.2 (case 174) · [[decision-case-174]] · generate
+- 2026-09-15 estimates/estimate-cleanup-moves updated: head Criterion: the field only, no section rebuilt (166.4); no index file (147.6) (case 174) · [[decision-case-174]] · generate
+- 2026-09-15 rules/rule-ledger-write updated: the refusal on an unwritten ledger line quoted with both advices, the agent's and the person's (case 174) · [[decision-case-174]] · generate
+- 2026-09-15 decisions/decision-case-175 created · raw/2026-09-15/1809/ledger.md#case-175 · generate
+- 2026-09-15 rules/rule-materialize updated: a supersedes marks every entry of the earlier Case by its case number, the derived block removal included; the filter by kind is gone (case 175) · [[decision-case-175]] · generate
+- 2026-09-15 estimates/estimate-materialize-assembles criterion: case 175 added · [[decision-case-175]] · generate
+- 2026-09-15 estimates/estimate-cleanup-moves status: pending → passed · raw/2026-09-15/1809/ledger.md#L8 · generate
+- 2026-09-15 estimates/estimate-generate-writes status: pending → passed · raw/2026-09-15/1809/ledger.md#L9 · generate
+- 2026-09-15 decisions/decision-case-176 created · raw/2026-09-15/1809/ledger.md#case-176 · generate
+- 2026-09-15 decisions/decision-case-170 superseded by decision-case-176 · [[decision-case-176]] · generate
+- 2026-09-15 rules/rule-work-mode defer by decision-case-170 superseded · [[decision-case-176]] · generate
+- 2026-09-15 rules/rule-subagent-guppi defer by decision-case-170 superseded · [[decision-case-176]] · generate
+- 2026-09-15 rules/rule-work-mode deferred · [[decision-case-176]] · generate
+- 2026-09-15 rules/rule-subagent-guppi deferred · [[decision-case-176]] · generate
+- 2026-09-15 decisions/decision-case-177 created · raw/2026-09-15/1809/ledger.md#case-177 · generate
+- 2026-09-15 decisions/decision-case-130.2 superseded by decision-case-177 · [[decision-case-177]] · generate
+- 2026-09-15 rules/rule-materialize updated: the second statement of the supersedes mark says every entry by case number; block 130.2 with its filter by kind leaves the Estimate (case 177, supersedes 130.2) · [[decision-case-177]] · generate
+- 2026-09-15 estimates/estimate-materialize-assembles criterion: case 130.2 removed · [[decision-case-177]] · generate
+- 2026-09-15 estimates/estimate-hook-registry-rendered status: pending → passed · raw/2026-09-15/1809/ledger.md#L13 · generate
+- 2026-09-15 estimates/estimate-retro-loads status: pending → passed · raw/2026-09-15/1809/ledger.md#L14 · generate
+- 2026-09-15 lessons/lesson-plan-mode-contract-change-skips-the-estimates-blocks created · raw/2026-09-15/1809/ledger.md#L15 · generate
+- 2026-09-15 decisions/decision-case-178 created · raw/2026-09-15/1809/ledger.md#case-178 · generate
+- 2026-09-15 rules/rule-plan-mode deferred · [[decision-case-178]] · generate
+- 2026-09-15 decisions/decision-case-179 created · raw/2026-09-15/1809/ledger.md#case-179 · generate
+- 2026-09-15 rules/rule-case-protocol deferred · [[decision-case-179]] · generate
+- 2026-09-15 rules/rule-case-protocol status: draft → built · cascade · generate
+- 2026-09-15 rules/rule-cleanup status: draft → built · cascade · generate
+- 2026-09-15 rules/rule-hook-registry status: draft → built · cascade · generate
+- 2026-09-15 rules/rule-materialize status: built → draft · cascade · generate
+- 2026-09-15 rules/rule-page-generation status: draft → built · cascade · generate
+- 2026-09-15 rules/rule-retro status: draft → built · cascade · generate
+- 2026-09-15 decisions/decision-case-130.2 archived · superseded · generate
+- 2026-09-15 decisions/decision-case-170 archived · superseded · generate
+- 2026-09-15 lessons/lesson-retro-typed-by-the-person-bypasses-the-skill-tool-and-the-gate archived · insight actioned · generate
+- 2026-09-15 lessons/lesson-retro-typed-still-bypasses-the-skill-tool-after-150 archived · insight actioned · generate
+- 2026-09-15 lessons/lesson-retro-typed-by-the-person-bypasses-the-skill-tool-and-the-gate archived · cleanup
+- 2026-09-15 lessons/lesson-retro-typed-still-bypasses-the-skill-tool-after-150 archived · cleanup
+- 2026-09-15 decisions/decision-case-130.2 archived · cleanup
+- 2026-09-15 decisions/decision-case-170 archived · cleanup

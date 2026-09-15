@@ -824,6 +824,7 @@ entries:
       taken in Work Mode; the Plan Mode of a session of its own, before Slice 4'
   exists: true
   applied: '17:58:17'
+  superseded_by: '176'
 - line: 26
   text: decision[case 170][defer][rule-work-mode]{ref:rule-work-mode}{supersedes:case 162}
   case: '170'
@@ -835,6 +836,7 @@ entries:
   case_removed: '162'
   change: 'criterion: case 162 removed'
   applied: '17:58:17'
+  superseded_by: '176'
 - line: 27
   text: decision[case 170][defer][rule-subagent-guppi]{ref:rule-subagent-guppi}
   case: '170'
@@ -850,6 +852,7 @@ entries:
       agent as a Case; with rule-work-mode
   exists: true
   applied: '17:58:17'
+  superseded_by: '176'
 - line: 28
   text: decision[case 171][update][rule-page-generation]{ref:rule-page-generation}{supersedes:case 124.2}
   case: '171'
@@ -1744,6 +1747,8 @@ decisions:
   supersedes:
   - decision-case-162
   applied: '17:58:17'
+  superseded_by:
+  - decision-case-176
 - case: '171'
   decision: decision-case-171
   origin: raw/2026-09-15/1448/ledger.md#case-171

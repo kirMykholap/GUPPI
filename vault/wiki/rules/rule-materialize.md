@@ -2,7 +2,7 @@
 type: rule
 kind: Leaf
 purpose: Prevents the librarian from reading the ledger and the Spec itself, or from routing a decision by guesswork
-status: built
+status: draft
 enforcement: check
 implementation_ref: [guppi/materialize.py, tests/test_materialize.py]
 parent: "[[rule-documentation]]"
@@ -38,8 +38,7 @@ kind. A Leaf `create` whose item carries `method` yields a second entry for its 
 for a page created in the same ledger is folded into that create (`status`,
 `result`); for an earlier page it is an `estimate` entry, an update. A `lesson` line
 is a `create` in `lessons`: `kind`, `root_cause`, `source` when the braces of the line carry one, and the sections `Trigger` and
-`Root cause` from the line; a `knowledge` lesson whose line carries no `source` is marked `incomplete: [source]`, an `error` lesson never (case 87). A line with `{supersedes:case N}` marks the entries of
-case N `superseded_by`. One decision entry per Case: `decision: decision-case-<N>`, `case_text` (the quoted sections of the Case, verbatim, in the language of the Spec), `targets` (one item per line of the Case); a sub-case's `context`, `problem`, `recommend` and `given` are its own when present and its parent's otherwise, `when` never; a Case whose text lacks `given` or `when`, its parent's included, is marked `incomplete` only when a kind other than `defer` is among its lines, since the short form has neither. A line the grammar does not
+`Root cause` from the line; a `knowledge` lesson whose line carries no `source` is marked `incomplete: [source]`, an `error` lesson never (case 87). A line with `{supersedes:case N}` marks every entry carrying `case: N` `superseded_by`, whatever its `kind` (case 175, supersedes 130.2). One decision entry per Case: `decision: decision-case-<N>`, `case_text` (the quoted sections of the Case, verbatim, in the language of the Spec), `targets` (one item per line of the Case); a sub-case's `context`, `problem`, `recommend` and `given` are its own when present and its parent's otherwise, `when` never; a Case whose text lacks `given` or `when`, its parent's included, is marked `incomplete` only when a kind other than `defer` is among its lines, since the short form has neither. A line the grammar does not
 parse goes under `unparsed`; the script continues. A line whose lift raises — a `then` item of an unexpected shape, any error while the entry is built — becomes an entry `{line, text, failed: "<Type>: <message>"}` without `kind`, reported on stderr as `materialize: line N: <message>`; the other lines are lifted, the yaml is written, the unit exits 1 and the walk goes on to the next unit; on the next run such an entry is lifted again from its line and replaced when the lift succeeds. An existing entry the script cannot read — not a mapping, or a mapping with none of `line`, `derived`, `librarian` — is left as it is, named on stderr, and does not end the run (cases 142.1, 158); the librarian's own entries carry `librarian` and no `line`. `new_tags` declared in the `then`
 block of any Case of the Spec, with decision lines or without, go to the yaml's
 `new_tags` once each, so a tag a lesson brought can be declared at the next Plan Mode.
@@ -47,7 +46,7 @@ block of any Case of the Spec, with decision lines or without, go to the yaml's
 An existing yaml is extended, never rewritten (case 41): entries whose `line` is
 present stay as they are, with the librarian's edits and the `applied` marks; new
 ledger lines become new entries at the end; an entry whose stored `text` differs
-from the ledger line at that number is reported on stderr and left alone; a later `supersedes` adds `superseded_by` to the entries of the earlier Case in whichever unit's yaml holds them — this one or any other under `raw/` — and to that unit's `decisions` list, and changes nothing else; a foreign yaml is written with that mark only (case 130.2); an
+from the ledger line at that number is reported on stderr and left alone; a later `supersedes` adds `superseded_by` to every entry of the earlier Case — every entry carrying its `case`, the lines' own and the derived ones, the block removal included, whatever its `kind` (case 175) — in whichever unit's yaml holds them — this one or any other under `raw/` — and to that unit's `decisions` list, and changes nothing else; a foreign yaml is written with that mark only (case 130.2); an
 `estimate` line for a create already `applied` becomes its own `estimate` entry.
 The count of entries added goes to stdout, one line per date. Exit 0; exit 1 when a
 date fails.
@@ -88,3 +87,6 @@ date fails.
 - 2026-09-14 updated: a failed line does not stop the walk; a unit error still does (case 142.4) · [[decision-case-142.4]]
 - 2026-09-15 updated: an entry with librarian and no line is readable: the librarian's synthesis entries are left alone without a stderr line; the text of 142.1 made precise (case 158) · [[decision-case-158]]
 - 2026-09-15 updated: the then item of a Rule-class file is found by file as well as by slug; no false incomplete on a file entry (case 161) · [[decision-case-161]]
+- 2026-09-15 updated: a supersedes marks every entry of the earlier Case by its case number, the derived block removal included; the filter by kind is gone (case 175) · [[decision-case-175]]
+- 2026-09-15 updated: the second statement of the supersedes mark says every entry by case number; block 130.2 with its filter by kind leaves the Estimate (case 177, supersedes 130.2) · [[decision-case-177]]
+- 2026-09-15 status: built → draft · cascade

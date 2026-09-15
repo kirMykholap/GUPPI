@@ -1,7 +1,7 @@
 ---
 type: estimate
 kind: QA
-status: pending
+status: passed
 target: "[[rule-hook-registry]]"
 origin: raw/2026-09-09/ledger.md#case-18.2
 sprint: migration
@@ -53,7 +53,7 @@ estimate line.
 
 ## Result
 
-live 2026-09-13 session L: render --sync wrote .claude/settings.json from rule-settings with the hooks key from rule-hook-registry, uv run guppi render --check exits 0 so the file is byte for byte the render, the file holds no marker line (grep of "<!--" finds 0), and every registration the harness ran this session — event session-start, render --sync, pretask, gate, guard, spec, ledger — is one of its lines
+block 169.2, live 2026-09-15 session S: .claude/settings.json carries uv run guppi event prompt and uv run guppi gate on UserPromptSubmit, guppi render --check exit 0; the day's event log has hi at 18:09:02 from the first and the marks pretask 20:01:16 (the agent's call) and retro 20:31:22 (typed) from the second
 
 ## History
 
@@ -63,3 +63,4 @@ live 2026-09-13 session L: render --sync wrote .claude/settings.json from rule-s
 - 2026-09-12 updated: the criterion covers the hooks key; the whole-file clauses move to estimate-settings (case 99) · [[decision-case-99]]
 - 2026-09-13 status: pending → passed · raw/2026-09-13/ledger.md#L46
 - 2026-09-15 criterion: case 169.2 added · [[decision-case-169.2]]
+- 2026-09-15 status: pending → passed · raw/2026-09-15/1809/ledger.md#L13

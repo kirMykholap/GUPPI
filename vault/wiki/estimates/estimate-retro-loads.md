@@ -1,7 +1,7 @@
 ---
 type: estimate
 kind: QA
-status: pending
+status: passed
 target: "[[rule-retro]]"
 origin: raw/2026-09-10/ledger.md#case-38.1
 sprint: migration
@@ -72,7 +72,7 @@ one reading by hand at the first /retro, recorded in the estimate line
 
 ## Result
 
-block 150: the person typed /retro at 14:2x and the event log holds no "tool Skill: retro", no gate line and no retro mark; the agent's own call of the skill at 14:33 left the retro mark (gate silent, every item with its line) and "tool Skill: retro"; the frontmatter is as ratified, Tests/Style/Ledger substituted — the typed path bypasses the Skill tool and the gate, the agent's path passes
+block 169.3, live 2026-09-15 session S: /retro typed by the person at 20:31:22 and called by the agent through the Skill tool at 21:12:53; the event log carries two marks retro, both after the gate's check of the Spec against the ledger, all then items with their lines; neither prompt refused
 
 ## History
 
@@ -91,3 +91,4 @@ block 150: the person typed /retro at 14:2x and the event log holds no "tool Ski
 - 2026-09-15 status: pending → failed · raw/2026-09-15/1110/ledger.md#L26
 - 2026-09-15 criterion: case 169.3 added · [[decision-case-169.3]]
 - 2026-09-15 criterion: case 150 removed · [[decision-case-169.3]]
+- 2026-09-15 status: pending → passed · raw/2026-09-15/1809/ledger.md#L14

@@ -1,8 +1,9 @@
 ---
 type: decision
 case: "130.2"
-status: current
+status: archived
 update: ["[[rule-materialize]]"]
+superseded_by: ["[[decision-case-177]]"]
 origin: raw/2026-09-14/1029/ledger.md#case-130.2
 sprint: migration
 created: 2026-09-14
@@ -33,3 +34,6 @@ The literal has to be quoted where `replace` does not reach — in History and i
 
 - 2026-09-14 created · raw/2026-09-14/1029/ledger.md#case-130.2
 - 2026-09-14 updated: the quoted literal decision-case-N wrapped in backticks, a lint ref finding; no content change (case 140) · [[decision-case-140]]
+- 2026-09-15 superseded by decision-case-177 · [[decision-case-177]]
+- 2026-09-15 archived · superseded
+- 2026-09-15 archived · cleanup

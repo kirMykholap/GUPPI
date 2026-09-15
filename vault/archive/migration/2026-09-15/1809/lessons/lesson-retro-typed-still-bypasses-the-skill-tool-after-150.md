@@ -2,7 +2,7 @@
 type: lesson
 kind: error
 root_cause: a slash command typed by the person is expanded by the client into the prompt and is never a tool call, so removing disable-model-invocation (case 150) enabled only the agent's call; the then of 150 assumed both paths go through the Skill tool and was read failed
-status: clustered
+status: archived
 insight: "[[insight-retro-typed-command-is-never-a-tool-call]]"
 origin: raw/2026-09-15/1110/ledger.md#L27
 sprint: migration
@@ -22,3 +22,5 @@ a slash command typed by the person is expanded by the client into the prompt an
 
 - 2026-09-15 created · raw/2026-09-15/1110/ledger.md#L27
 - 2026-09-15 updated: clustered under insight-retro-typed-command-is-never-a-tool-call · raw/2026-09-15/1110/ledger.md#L27
+- 2026-09-15 archived · insight actioned
+- 2026-09-15 archived · cleanup

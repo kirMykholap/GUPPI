@@ -1,9 +1,10 @@
 ---
 type: insight
 pattern: A slash command typed by the person is expanded by the client into the prompt and is never a Skill tool call, so a hook on the Skill tool sees only the agent's own calls; a cure aimed at the skill's settings changes the agent's path and leaves the typed one as it was.
-status: open
+status: actioned
 children: ["[[lesson-retro-typed-by-the-person-bypasses-the-skill-tool-and-the-gate]]", "[[lesson-retro-typed-still-bypasses-the-skill-tool-after-150]]"]
-severity: 2
+severity: 0
+addressed_by: "[[decision-case-173]]"
 origin: raw/2026-09-15/1110/ledger.md#L27
 sprint: migration
 created: 2026-09-15
@@ -38,3 +39,4 @@ is `draft` by the cascade until `estimate-retro-loads` passes.
 ## History
 
 - 2026-09-15 created · raw/2026-09-15/1110/ledger.md#L27
+- 2026-09-15 updated: actioned: the two paths of a slash command are two since 169.1–169.3, and case-schema.md now asks a when on a slash command to name its path and a then covering both to be read on both (case 173) · [[decision-case-173]]

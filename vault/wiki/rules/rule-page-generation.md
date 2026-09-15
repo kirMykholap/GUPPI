@@ -2,7 +2,7 @@
 type: rule
 kind: Leaf
 purpose: Prevents a ratified decision from ending the session without a page, or a page from carrying a field nobody ratified
-status: draft
+status: built
 enforcement: check
 implementation_ref: [guppi/generate.py, tests/test_generate.py]
 parent: "[[rule-documentation]]"
@@ -109,3 +109,4 @@ declared and not registered is reported on stderr and left on the page.
 - 2026-09-15 updated: the sentence of 164 on the librarian's create and the refusals, carried by 171 since 164 is superseded before it applies; supersedes 124.2 (case 171) · [[decision-case-171]]
 - 2026-09-15 updated: block 148.1 restated without the body sections; supersedes 148.1 (case 172) · [[decision-case-172]]
 - 2026-09-15 status: built → draft · cascade
+- 2026-09-15 status: draft → built · cascade

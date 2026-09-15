@@ -39,8 +39,9 @@ operands) and Method. An `update` whose item carries `contract: changed` yields 
 pending}`, `sections: {Method}` when the item carries `method` and `change`; `contract:
 same` yields nothing. A line with `{supersedes:case N}` also yields a `remove_criterion`
 entry with `case_removed`, for `generate` to find the Estimate that holds the block, and
-marks the entries of case N `superseded_by` in whichever unit's yaml holds them — this one
-or any other under `raw/`, written with that mark only (case 130.2). The
+marks every entry carrying `case: N` `superseded_by` — the lines' own and the derived ones,
+whatever their kind (case 175) — in whichever unit's yaml holds them — this one or any
+other under `raw/`, written with that mark only (case 130.2). The
 decision entry carries `criterion`, one `{estimate, case}` per Estimate the Case shaped. A
 nested `estimate` in an older Spec becomes its own `create` entry as before, for a line
 with its slug; a standalone estimate `create` with `ref` maps `context`, `criterion` and
@@ -672,11 +673,13 @@ def fold_estimate(entries: list[dict], record: dict, number: int) -> bool:
 
 
 def mark_superseded(entries: list[dict], decisions: list[dict], case: str, by: str) -> bool:
-    """Mark the decision entries of `case` `superseded_by` and its decision record likewise;
-    True when an entry or a record of that case was here to mark."""
+    """Mark every entry carrying `case` `superseded_by` — the lines' own and the derived
+    ones, the block removal included, whatever its kind (case 175) — and its decision
+    record likewise; True when an entry or a record of that case was here to mark. An
+    `estimate` or `lesson` entry carries no `case` and is never marked."""
     marked = False
     for entry in entries:
-        if entry.get("case") == case and entry.get("kind") in DECISION_KINDS:
+        if entry.get("case") == case:
             entry["superseded_by"] = by
             marked = True
     for decision in decisions:

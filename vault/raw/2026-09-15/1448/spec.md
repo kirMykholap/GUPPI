@@ -135,7 +135,7 @@ update:
 - [ ] `rule-page-generation` `update`, `contract: changed`, the three `replace` above; `estimate-generate-writes` block 166.2, `pending`; `{supersedes:case 164}` marks the entries of 164 superseded — block 164 never exists, block 124.2 is removed by 171
 - [ ] read, on the same block: the librarian's run of this session retries the `failed` entry of `1110/materialize.yaml` — `insight-retro-typed-command-is-never-a-tool-call` written, `severity` 2, the 2 `ref` findings gone
 - [x] one-off migration from the scratchpad: for every `*.md` under `vault/wiki/<category>/` and `vault/archive/**/<category>/` (`rules`, `entities`, `lessons`, `insights`) — `read_page`, the seven sections removed, `write_page`; no History line; then `guppi lint` (no more findings than before), `guppi render --check` exit 0, `git diff --stat`
-- [ ] read `estimate-generate-writes` (block 166.2): the tests green; the librarian's run of this session writes pages without these sections — `insight-retro-typed-command-is-never-a-tool-call` with `## Pattern`, `## Proposal`, no `## Children`; in Obsidian the backlinks of one Rule and one Insight in place
+- [x] read `estimate-generate-writes` (block 166.2): the tests green; the librarian's run of this session writes pages without these sections — `insight-retro-typed-command-is-never-a-tool-call` with `## Pattern`, `## Proposal`, no `## Children`; in Obsidian the backlinks of one Rule and one Insight in place
 ```
 
 ### Case 166.3 — the cascade derives no `## Insight`
@@ -162,7 +162,7 @@ update:
 - [x] `guppi/generate.py`: the cascade step of 114 removed
 - [x] `tests/test_generate.py`: the test of 114 replaced by: a lesson with `insight` and no section stays without one after the cascade
 - [ ] `rule-page-generation` `update`, `contract: changed`, the `replace` above; `estimate-generate-writes` block 166.3, `pending`; `{supersedes:case 114}` removes block 114
-- [ ] read `estimate-generate-writes` (block 166.3): the test green; after the librarian's run no new `insight section derived` line in `log.md`
+- [x] read `estimate-generate-writes` (block 166.3): the test green; after the librarian's run no new `insight section derived` line in `log.md`
 ```
 
 ### Case 166.4 — `cleanup` edits the field only
@@ -188,7 +188,7 @@ update:
 - [x] `guppi/cleanup.py`: `unlink` without the section rebuild
 - [x] `tests/test_cleanup.py`: the two section tests rewritten on the field
 - [ ] `rule-cleanup` `update`, `contract: changed`, the `replace` above; `estimate-cleanup-moves` block 166.4, `pending`
-- [ ] read `estimate-cleanup-moves` (block 166.4): the tests green; the librarian's run — `cleanup` moves `decision-case-164`, `decision-case-114`, `decision-case-165.2`; the pages that lost a slug carry no rebuilt section
+- [x] read `estimate-cleanup-moves` (block 166.4): the tests green; the librarian's run — `cleanup` moves `decision-case-164`, `decision-case-114`, `decision-case-165.2`; the pages that lost a slug carry no rebuilt section
 ```
 
 ## Case 167 — `rule-case-protocol`: the `LEDGER` block opens the acknowledging reply
@@ -226,7 +226,7 @@ update:
 ```tasks
 - [ ] `rule-case-protocol` `update`, `contract: changed`, the `replace` above; `estimate-case-protocol-loaded` block 167, `pending`; `{supersedes:case 157}` removes block 157
 - [ ] `CLAUDE.md`: the librarian's render, not touched by hand
-- [ ] read `estimate-case-protocol-loaded` (block 167): the next session, the first acknowledging reply after the render — the block first, the question last
+- [x] read `estimate-case-protocol-loaded` (block 167): the next session, the first acknowledging reply after the render — the block first, the question last
 - [x] no code and no test: the hook reads the block anywhere in the text
 ```
 
@@ -460,7 +460,7 @@ update:
 
 ```tasks
 - [ ] `rule-page-generation` `update`, `contract: changed`, the `replace` above; `estimate-generate-writes` block 172, `pending`; `{supersedes:case 148.1}` removes block 148.1
-- [ ] read `estimate-generate-writes` (block 172): the tests of 148.1 green; after the migration of 166.2 the backlinks in Obsidian in place — the same reading as 166.2
+- [x] read `estimate-generate-writes` (block 172): the tests of 148.1 green; after the migration of 166.2 the backlinks in Obsidian in place — the same reading as 166.2
 ```
 
 ## Deferred

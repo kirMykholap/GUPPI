@@ -33,7 +33,7 @@ The story sections — `context`, `problem`, `recommend` — name the slug of th
 
 ## `when` and `then` are the criterion
 
-The Case that creates a Leaf also creates its Estimate; the Case that changes the Leaf's contract changes the Estimate. The scripts copy the Case's `when` and `then`, verbatim with their operands, as the `### case N` block of the Estimate's `Criterion`, and its `problem` as the Estimate's `Context` at birth. A later line with `{supersedes:case N}` removes the block of case N. One contract per Case or sub-case: a Case that changes two contracts is split, and pre-task asks for the split. Nothing is signed twice, and nothing is signed in two wordings (case 72.1).
+The Case that creates a Leaf also creates its Estimate; the Case that changes the Leaf's contract changes the Estimate. The scripts copy the Case's `when` and `then`, verbatim with their operands, as the `### case N` block of the Estimate's `Criterion`, and its `problem` as the Estimate's `Context` at birth. A later line with `{supersedes:case N}` removes the block of case N. One contract per Case or sub-case: a Case that changes two contracts is split, and pre-task asks for the split. Nothing is signed twice, and nothing is signed in two wordings (case 72.1). A `when` on a slash command names the path it covers — the person's typed command on `UserPromptSubmit`, the agent's call on `PreToolUse Skill`, or both; the reading of a `then` that covers both takes both (case 173).
 
 ## The `then` block lives in the Spec
 

@@ -910,6 +910,56 @@ def test_a_supersedes_yields_a_remove_criterion_entry(tmp_path):
     assert data["entries"].index(removal) == data["entries"].index(update) + 1
 
 
+SUPERSEDED_TWICE_SPEC = (
+    DERIVED_SPEC
+    + """
+## Case 18 — superseding 13
+
+> **context:**
+> Words a third time.
+
+> **problem:**
+> Only words.
+
+> **given:**
+> The page says newer.
+
+> **when:**
+> The page is read.
+
+> **then:**
+> It says newest.
+
+```then
+update:
+  - slug: rule-old
+    contract: same
+    change: newest words
+```
+"""
+)
+
+
+def test_a_supersedes_marks_every_entry_of_the_earlier_case_the_block_removal_included(tmp_path):
+    # case 13 supersedes 12 and yields a block removal; case 18 supersedes 13 (case 175)
+    seed(
+        tmp_path,
+        ledger=DERIVED_LEDGER + "- decision[case 18][update][rule-old]{supersedes:case 13}\n",
+        spec=SUPERSEDED_TWICE_SPEC,
+    )
+    run(tmp_path)
+    data = load(tmp_path)
+    update, removal = of_case(data, "13")
+    assert update["kind"] == "update" and update["superseded_by"] == "18"
+    assert removal["kind"] == "remove_criterion" and removal["superseded_by"] == "18"
+    mine, my_removal = of_case(data, "18")  # its own line and its own block removal
+    assert mine["supersedes"] == "13" and my_removal["case_removed"] == "13"
+    marked = {e["case"] for e in data["entries"] if e.get("superseded_by")}
+    assert marked == {"12", "13"}  # 12 by 13 as before, 13 by 18; nothing else
+    decisions = {d["case"]: d for d in data["decisions"]}
+    assert decisions["13"]["superseded_by"] == ["decision-case-18"]
+
+
 def test_the_decision_entry_names_the_estimates_the_case_shaped(tmp_path):
     seed_derived(tmp_path)
     run(tmp_path)
@@ -1291,6 +1341,24 @@ def test_a_supersedes_marks_the_earlier_entry_in_another_units_yaml(tmp_path):
     code, _, err = run_walk(tmp_path, ["--date", DATE])
     assert code == 0 and err == ""
     assert (a / "materialize.yaml").read_text(encoding="utf-8") == text_a
+
+
+def test_a_supersedes_marks_the_block_removal_in_another_units_yaml(tmp_path):
+    # the line of case 5 supersedes 4 and yields a block removal in A; B supersedes 5 (175)
+    a, b = seed_two_units(tmp_path)
+    (a / "ledger.md").write_text(
+        "- 09:10:00 decision[case 5][update][rule-old]{ref:rule-old}{supersedes:case 4}\n",
+        encoding="utf-8",
+        newline="\n",
+    )
+    code, _, err = run_walk(tmp_path, ["--date", DATE])
+    assert code == 0 and err == ""
+    update, removal = [e for e in unit_yaml(a)["entries"] if e.get("case") == "5"]
+    assert update["kind"] == "update" and update["superseded_by"] == "9"
+    assert removal["kind"] == "remove_criterion" and removal["case_removed"] == "4"
+    assert removal["superseded_by"] == "9" and "applied" not in removal
+    mine = [e for e in unit_yaml(b)["entries"] if e.get("case") == "9"]
+    assert len(mine) == 2 and all("superseded_by" not in e for e in mine)
 
 
 def test_a_supersedes_of_a_case_no_yaml_holds_changes_nothing(tmp_path):

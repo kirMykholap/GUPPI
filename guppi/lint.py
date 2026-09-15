@@ -10,9 +10,10 @@ and, case 72.6, a `[[slug]]` under a decision page's `## Criterion` that is not 
 archived Estimate page, or a `### case N` block under an Estimate's `## Criterion` with no
 live or archived `decision-case-N`), `origin` (a ledger file or `[case N]` line that does
 not exist), `path` (a file named in
-`implementation_ref` or `governs` that does not exist), `orphan` (a live entity, rule,
-estimate or insight no other live page's frontmatter names; a lesson is a record and an
-Insight names it or not), `status` (a status its Estimates do not support; an Estimate
+`implementation_ref` or `governs` that does not exist), `orphan` (a live entity, rule or
+estimate no other live page's frontmatter names; a lesson is a record and an Insight names
+it or not; an Insight owns its children through `children`, archived or not, and is never
+one, case 156), `status` (a status its Estimates do not support; an Estimate
 whose `target` is not an entity or a rule, case 53.1), `method` (an Estimate whose Method
 names no existing test file, or no make target for a MOC; a MOC's Estimate that names a
 target passes whatever else it says, and one that names none may say by hand when its
@@ -361,7 +362,7 @@ def check_orphans(pages: list[Page]) -> list[Finding]:
     return [
         Finding(page, "orphan", "no other live page names it in its frontmatter")
         for page in pages
-        if page.category not in ("decisions", "lessons") and page.slug not in referenced
+        if page.category not in ("decisions", "lessons", "insights") and page.slug not in referenced
     ]
 
 

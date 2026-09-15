@@ -19,8 +19,11 @@ item of an unexpected shape, any error while the entry is built — becomes an e
 text, failed}` without `kind`, reported on stderr as `materialize: line N: <message>`; the
 other lines are lifted, the yaml is written, the unit exits 1 and the walk goes on to the
 next unit; on the next run such an entry is lifted again and replaced when the lift succeeds.
-An existing entry the script cannot read — not a mapping, or a mapping with neither `line`
-nor `derived` — is left as it is and named on stderr (cases 142.1, 142.4). `new_tags`
+An existing entry the script cannot read — not a mapping, or a mapping with none of `line`,
+`derived`, `librarian` — is left as it is and named on stderr (cases 142.1, 142.4, 158); the
+librarian's own entries carry `librarian` and no `line`. The `then` item of a Rule-class file
+is found by `slug`, or by `file` equal to the path the slug maps to, since the schema writes
+such an item with `file` and `change` alone (case 161). `new_tags`
 declared in the `then` block of any Case, with decision lines or without, reach the yaml
 once each.
 
@@ -340,10 +343,17 @@ def case_texts(cases: dict[str, list[str]], case: str) -> dict[str, str]:
 
 
 def find_item(block: dict, kind: str, slug: str) -> tuple[dict | None, str | None]:
-    """The `then` item for a decision, and the kind of the create it was nested in."""
+    """The `then` item for a decision, and the kind of the create it was nested in. A
+    Rule-class file's item carries `file` and no `slug` (case-schema.md); it is found by the
+    path its slug maps to (case 161)."""
     for item in block.get(kind) or []:
         if isinstance(item, dict) and item.get("slug") == slug:
             return item, None
+    path = rule_class_path(slug)
+    if path is not None:
+        for item in block.get(kind) or []:
+            if isinstance(item, dict) and "slug" not in item and item.get("file") == path:
+                return item, None
     if kind == "create":
         for item in block.get("create") or []:
             nested = item.get("estimate") if isinstance(item, dict) else None

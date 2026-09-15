@@ -127,7 +127,7 @@ A new term appearing mid-session is not an exception. If it belongs in the gloss
 
 The Case is the unit of dialogue — roughly one agent response — and the only place content gets ratified. Whatever is not in a Case was signed by nobody.
 
-**Its structure lives in `wiki/case-schema.md`**, imported into `CLAUDE.md` so it is present from the first turn. Seven sections: `context`, `problem`, `recommend`, `given`, `when`, `then`, `ratification`. `given` is how things work today, `when` the action, `then` what holds after it; `when` and `then` are the criterion of the Estimate the Case creates or changes (§7). The page content itself is a YAML block tagged `then` under the Case in the Spec — the human signs content, not the fact that a decision occurred.
+**Its structure lives in `wiki/case-schema.md`**, imported into `CLAUDE.md` so it is present from the first turn. Eight sections: `context`, `problem`, `recommend`, `given`, `when`, `then`, `tasks`, `ratification` (case 163). `given` is how things work today, `when` the action, `then` what holds after it, `tasks` the work it leaves; `when` and `then` are the criterion of the Estimate the Case creates or changes (§7). The page content itself is a YAML block tagged `then` under the Case in the Spec — the human signs content, not the fact that a decision occurred.
 
 Not duplicated here: one description, one place to change it.
 

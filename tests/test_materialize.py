@@ -309,6 +309,20 @@ def test_a_rule_class_slug_routes_to_a_file_and_new_tags_are_kept(tmp_path):
     assert data["new_tags"] == [{"tag": "git", "meaning": "the repository", "aliases": "гит"}]
 
 
+def test_a_rule_class_item_with_file_and_no_slug_is_found(tmp_path):  # case 161
+    spec = SPEC.replace(
+        "  - slug: glossary\n    file: vault/wiki/glossary.md\n",
+        "  - file: vault/wiki/glossary.md\n",
+    )
+    assert spec != SPEC
+    seed(tmp_path, spec=spec)
+    run(tmp_path)
+    (glossary,) = by_slug(load(tmp_path), "glossary")
+    assert "incomplete" not in glossary
+    assert glossary["category"] == "file" and glossary["path"] == "vault/wiki/glossary.md"
+    assert glossary["change"] == "a row changes"
+
+
 def test_claude_md_is_not_a_rule_class_file(tmp_path):  # case 59.8
     ledger = "- decision[case 8][update][claude-md]{ref:claude-md}\n"
     spec = "## Case 8 — the prompt\n\n```then\nupdate:\n  - slug: claude-md\n    change: a\n```\n"

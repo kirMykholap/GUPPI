@@ -8,7 +8,7 @@ A Case is the unit of dialogue, not a vault page. It lives only inside a session
 
 ## Sections
 
-Seven, in this order. Each is one blockquote: the first line `**name:**`, the text on the following quoted lines.
+Eight, in this order. Each is one blockquote: the first line `**name:**`, the text on the following quoted lines.
 
 | Section | Required | Content |
 |---|---|---|
@@ -17,16 +17,19 @@ Seven, in this order. Each is one blockquote: the first line `**name:**`, the te
 | `recommend` | yes | The agent's suggestion. Not carried onto the Decision page. |
 | `given` | yes | How things work today: the rules and pages this touches, what conflicts, what sits in `draft`. The pre-task result lives here. This is what determines whether the decision can be a `create` at all. |
 | `when` | yes | The action that triggers the behaviour: a hook fires, a script runs, the person invokes a skill. For a change to a document, the moment someone reads it. |
-| `then` | yes | What holds after the action, once the recommendation is accepted. |
-| `ratification` | yes | The human's sign-off, question, or their own alternative. Ends with a preview of the ledger lines in an untagged fence, and the turn ends with a plain question in the chat, never a picker tool. A Case the person changed is shown again: `context` and `problem` if they changed, always `given`, `when`, `then`, `ratification`, and no `recommend` (case 62). |
+| `then` | yes | What holds after the action, once the recommendation is accepted. Behaviour only: no `contract` mark, no Estimate block, no reading, no `supersedes` — those are lines of `tasks` (case 159). |
+| `tasks` | yes | The work the Case leaves: a checklist, one line per page `update` with its `contract`, Estimate block, file, test, command and reading. In the chat a blockquote with the checklist; in the Spec the block tagged `tasks` — the same lines (case 159). |
+| `ratification` | yes | The human's sign-off, question, or their own alternative. Ends with a preview of the ledger lines in an untagged fence, and the turn ends with a plain question in the chat, never a picker tool. A Case the person changed is shown again: `context` and `problem` if they changed, always `given`, `when`, `then`, `tasks` and `ratification`, and no `recommend` (cases 62, 163). |
 
 ## Operands
 
-In `given`, `when` and `then`, the first line stands alone. Every further line starts with a bold operand: **＋** for one more condition or action, **－** for a limit or an exception. One statement per line.
+In `given`, `when` and `then`, the first line stands alone. Every further line starts with a bold operand: **＋** for one more condition or action — "and also", **－** for a limit or an exception — "but not", "does not apply here". One statement per line. `context`, `problem` and `recommend` carry no operand (case 159).
 
 ## Language
 
 Short sentences. One idea per sentence. Active voice. A common word over a term. Russian in the chat with the owner: a Case is discussed there in Russian, all its sections. English, in the manner of ASD-STE100 Simplified Technical English, in everything that lands in the vault: the Case enters the Spec translated, its slugs, field names and ledger lines unchanged (case 123).
+
+The story sections — `context`, `problem`, `recommend` — name the slug of the thing described only and run to seven sentences each at most: `context` says what the thing is and how it works today, for a reader who has not opened the pages, with no line numbers and no quotation unless the Case is about one; `problem` says what is wrong, or the question answered, in one paragraph; `recommend` says the choice and why, the rejected option in one sentence. `given` holds one fact per line, and only a fact a line of `then` depends on: the state of the pages the Case changes, the rule that constrains, the vault's answer, the test that fixes the behaviour; no history, no quotation for its own sake. `then` holds behaviour only; the bookkeeping is `tasks`. Slugs, file names and field values sit in code spans; bold is for section labels and operands only. In the chat one horizontal rule at most, after the Case or its last sub-case, and only when the agent's own text follows. The Spec keeps its form — the blockquotes in English, the `then` and `tasks` blocks — and the scripts read nothing of the chat form (case 159).
 
 ## `when` and `then` are the criterion
 
@@ -69,7 +72,7 @@ A deferred decision is its own Case in the short form — `## Case N — name`, 
 
 ## Splitting
 
-If the human's reply to a Case is a follow-up question, the Case was not atomic. Detect this and propose splitting into sub-cases — recursive dotted ids, `1.1`, `1.1.1`. A sub-case is `### Case N.M — name` under its parent, with its own `when`, `then` and `ratification`, and its own `given` unless it is the parent's word for word; `context`, `problem`, `recommend` and a shared `given` live on the parent, and `materialize` reads a missing one there (case 60). Ratifying a parent does not ratify its children.
+If the human's reply to a Case is a follow-up question, the Case was not atomic. Detect this and propose splitting into sub-cases — recursive dotted ids, `1.1`, `1.1.1`. A sub-case is `### Case N.M — name` under its parent, with its own `when`, `then`, `tasks` and `ratification` (case 159), and its own `given` unless it is the parent's word for word; `context`, `problem`, `recommend` and a shared `given` live on the parent, and `materialize` reads a missing one there (case 60). Ratifying a parent does not ratify its children.
 
 A question that only asks you to justify a choice already on the table ("why this approach?") does **not** split the Case. A question whose answer requires a new choice with its own consequences ("how will we handle X?") **does**.
 

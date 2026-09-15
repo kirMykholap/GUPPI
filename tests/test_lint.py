@@ -622,6 +622,21 @@ def test_an_estimate_whose_target_is_not_an_entity_or_rule_is_a_status_finding(t
     assert not any("lesson-l: orphan" in line for line in lines)  # a lesson is never an orphan
 
 
+def test_an_insight_nothing_names_is_not_an_orphan_finding(tmp_path):  # case 156
+    wiki = seed(tmp_path)
+    write(
+        wiki / "insights" / "schema.yaml",
+        "type: insight\nproperties:\n  required: [type]\n  optional: [status]\nbody:\n  required: []\n  optional: []\n",
+    )
+    write(
+        wiki / "insights" / "schema.md",
+        "# Insight\n\n## Properties\n\n| `type` | yes |\n\n## Body\n",
+    )
+    write(wiki / "insights" / "insight-i.md", "---\ntype: insight\nstatus: actioned\n---\n")
+    _, lines, _ = run(tmp_path)
+    assert not any("insight-i: orphan" in line for line in lines)
+
+
 # --- case 72.6: lint accepts both shapes of a decision page and an Estimate page ---------
 
 

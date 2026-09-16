@@ -1,0 +1,37 @@
+- 10:42:31 estimate[estimate-retro-commit-gates][passed] block 180: tests/test_gate.py 30 tests green at commit 572df74 (385 total, read 2026-09-16 01:32 on the line of block 184), and both guppi/gate.py and tests/test_gate.py byte-identical at HEAD e970693 with a clean worktree — nothing changed since that run; live, session 1034 of 2026-09-16, after the hi of 10:34:45 — a typed /retro as the first command of the session, with no spec.md in the folder, no plan file named by the event log and no record line in the window, was blocked at UserPromptSubmit with "gate: /retro refused — nothing to review: no Spec and no ledger line in raw/2026-09-16/1034/. Ratify a Case or write a reading or a lesson first, then type /retro again." — the person's advice tail and the session's own folder in the path; no retro mark in raw/2026-09-16/event_log.md, as a refused call leaves none
+- 12:14:18 decision[case 186.1][update][rule-page-generation]{ref:rule-page-generation}
+- 12:14:18 decision[case 186.1][update][decisions-schema]{ref:decisions-schema}
+- 12:14:18 decision[case 186.1][update][decisions-schema-yaml]{ref:decisions-schema-yaml}
+- 12:14:18 decision[case 186.2][update][rule-pretask]{ref:rule-pretask}
+- 12:14:18 decision[case 186.3][update][rule-lint]{ref:rule-lint}
+- 12:45:09 decision[case 187][create][estimate-plan-mode-names-its-estimates]{ref:rule-plan-mode}{tags:session,workflow}
+- 12:45:09 decision[case 187][update][rule-plan-mode]{ref:rule-plan-mode}
+- 13:18:13 decision[case 188][update][rule-case-protocol]{ref:rule-case-protocol}{supersedes:case 185}
+- 13:18:13 decision[case 188][create][estimate-case-protocol-case-form]{ref:rule-case-protocol}{tags:session,workflow}
+- 13:18:13 decision[case 188][create][estimate-case-protocol-acknowledging-reply]{ref:rule-case-protocol}{tags:session,workflow,ledger}
+- 13:18:13 decision[case 188][create][estimate-case-protocol-ledger-line-form]{ref:rule-case-protocol}{tags:session,workflow,ledger}
+- 13:18:13 decision[case 188][update][estimate-case-protocol-loaded]{ref:estimate-case-protocol-loaded}
+- 13:18:13 decision[case 188][update][case-schema]{ref:case-schema}
+- 13:41:37 decision[case 189][update][rule-materialize]{ref:rule-materialize}
+- 13:41:37 decision[case 189][update][estimate-materialize-assembles]{ref:estimate-materialize-assembles}
+- 13:41:37 decision[case 189][update][estimate-materialize-walks-dates]{ref:estimate-materialize-walks-dates}
+- 13:41:37 decision[case 189][create][estimate-materialize-shows]{ref:rule-materialize}{tags:harness,workflow,ledger,tests}
+- 13:41:37 decision[case 189][create][estimate-materialize-lifts-a-lesson]{ref:rule-materialize}{tags:harness,workflow,ledger}
+- 13:41:37 decision[case 189][create][estimate-materialize-marks-exists]{ref:rule-materialize}{tags:harness,workflow,ledger,librarian}
+- 13:41:37 decision[case 189][create][estimate-materialize-fails-alone]{ref:rule-materialize}{tags:harness,workflow,ledger,tests}
+- 13:41:37 decision[case 189][create][estimate-materialize-finds-a-rule-class-item]{ref:rule-materialize}{tags:harness,workflow,ledger}
+- 13:41:37 decision[case 189][create][estimate-materialize-marks-superseded]{ref:rule-materialize}{tags:harness,workflow,ledger,librarian}
+- 16:19:10 decision[case 190.1][create][rule-carry-over]{ref:rule-end-of-work}{tags:session,workflow,harness,render}
+- 16:19:10 decision[case 190.1][create][estimate-carry-over-writes]{ref:rule-carry-over}{tags:session,workflow,harness}
+- 16:19:10 decision[case 190.2][update][rule-end-of-work]{ref:rule-end-of-work}
+- 16:19:10 decision[case 190.2][update][estimate-end-of-work-order]{ref:estimate-end-of-work-order}
+- 16:19:10 decision[case 190.3][update][rule-materialize]{ref:rule-materialize}
+- 16:19:10 decision[case 190.3][create][estimate-materialize-skips-a-carried-over-unit]{ref:rule-materialize}{tags:harness,workflow,ledger}
+- 16:19:10 decision[case 190.4][update][rule-brief]{ref:rule-brief}
+- 16:19:10 decision[case 190.4][update][estimate-brief-written]{ref:estimate-brief-written}
+- 16:19:10 decision[case 190.5][update][rule-spec-capture]{ref:rule-spec-capture}
+- 16:19:10 decision[case 190.5][create][estimate-spec-capture-offers-the-fork]{ref:rule-spec-capture}{tags:session,workflow,harness}
+- 16:30:09 decision[case 191][defer][rule-page-generation]{ref:rule-page-generation}{supersedes:case 182}
+- 16:30:09 decision[case 191][defer][rule-lint]{ref:rule-lint}
+- 16:30:09 decision[case 191][defer][rule-pretask]{ref:rule-pretask}
+- 16:32:18 decision[case 192][defer][insight-ledger-hi-tied-to-its-session-by-position]{ref:insight-ledger-hi-tied-to-its-session-by-position}

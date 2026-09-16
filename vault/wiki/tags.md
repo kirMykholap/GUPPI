@@ -17,3 +17,4 @@ another.
 | render | a Rule page whose body is written into a harness file by the renderer | рендер, генерация файла |
 | librarian | the Documentation phase and its agent | библиотекарь |
 | tests | the harness's own test suite, its fixtures and clocks | тесты |
+| sprint | the sprint page, its backlog and its render | спринт |

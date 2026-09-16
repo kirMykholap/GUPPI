@@ -3,18 +3,13 @@ type: estimate
 kind: QA
 status: passed
 target: "[[rule-lint]]"
-checked: 2026-09-16
+method: pytest in tests/test_lint.py, one test per defect class; the live reading once by hand, written into the estimate line
+checked: 2026-09-17
 origin: raw/2026-09-09/ledger.md#case-21
 sprint: migration
 created: 2026-09-09
 tags: [harness, workflow]
 ---
-
-## Context
-
-Lint is the first reader of the whole graph. The unit cases seed one page per defect
-class and pin the finding each produces; the live reading is the first pass over the
-pages written by hand since Slice 0, whose findings are the debt the brief carries.
 
 ## Criterion
 
@@ -36,21 +31,16 @@ Every live page is checked against the `schema.yaml` of its category; one line p
 **＋** `orphan`: a live entity, rule or estimate that no live page's frontmatter names; a lesson and an Insight never.
 **＋** `status`: `built` with an Estimate not `passed`, `draft` with every one `passed`; an Estimate `passed` or `failed` without `## Result`; an Estimate whose target is not an entity or a rule, or does not list it in `estimates`.
 **＋** `unread`: every Estimate `pending` or `failed` — one finding each, `unread: <status>`; red between a change of a promise and its reading, by design.
-**＋** `method`: the `method` field, or on a page of the old shape the `## Method` section; for a MOC's Estimate a named `make <target>` of the Makefile passes whatever stands beside it, without one `by hand` passes only when the Estimates of every child are by hand; for a Leaf's Estimate a `tests/` file that exists, the word `pytest`, a `make <target>` of the Makefile or a reading (`by hand`, `reading`); else a finding.
+**＋** `method`: the `method` field, or on a page of the old shape the `## Method` section; for a MOC's Estimate a named `make <target>` of the Makefile passes whatever stands beside it, and a reading (`by hand`, `reading`) passes when the Estimates of every child are readings or when another Estimate of the same MOC names a `make <target>` of the Makefile (case 212); for a Leaf's Estimate a `tests/` file that exists, the word `pytest`, a `make <target>` of the Makefile or a reading; else a finding.
 **＋** `decision`: a decision page with none of the four lists, or with `kind`/`target_slug`; a listed slug with a category prefix and no page.
 **＋** `deferred`: a placeholder earns one finding `deferred: <N> times since case <M>` in place of its `schema` and `orphan` findings; a page with `deferred_by` whose fields are in place earns none.
 **＋** `unmigrated`: one line, `estimates: unmigrated: <N> pages in the shape before case 193` — the live Estimates without a `method` field, or with `## Context`, `## Method` or a `### case N` block; no line at zero.
 **－** `make lint` runs it after `render --check`; neither writes.
 **－** The checks of the old shape — `## Method` as a section, the `### case N` blocks — leave by a separate `update` of this rule once the counter reads zero; not this Case.
 
-## Method
-
-pytest in `tests/test_lint.py`, one test per defect class; the live reading once by hand,
-written into the estimate line.
-
 ## Result
 
-2026-09-16, `pytest tests/test_lint.py`: 54 green — unread on pending and failed, the method field read with a test path, pytest, a make target or a reading passing, the ## Method section read on a page of the old shape, unmigrated as one line and none at zero; live, `make lint`: 77 findings — 62 of Cases 1–28, 2 deferred, 10 unread, 1 method (estimate-plan-mode-names-its-estimates says by hand while estimate-spec-capture-offers-the-fork names a test file — new, the MOC rule of 112.1 now reads the field), `estimates: unmigrated: 42 pages in the shape before case 193`; the body [[slug]] finding on estimate-generate-writes leaves with its recut
+2026-09-17, `pytest tests/test_lint.py`: 55 green — a reading on a MOC's Estimate passes beside a sibling naming a make target of the Makefile and is a finding when the sibling's target is not there; live, `make lint`: the finding on estimate-plan-mode-names-its-estimates left, the other classes unchanged
 
 ## History
 
@@ -76,3 +66,6 @@ written into the estimate line.
 - 2026-09-16 status: passed → passed · raw/2026-09-16/1651/ledger.md#L38
 - 2026-09-16 updated: the Criterion replaced whole by case 202 — the head and the blocks 103.5, 112.1, 149.3, 156 recut into one, with unread, the method field and unmigrated (case 202) · [[decision-case-202]]
 - 2026-09-16 status: pending → passed · raw/2026-09-16/1955/ledger.md#L32
+- 2026-09-17 updated: method as a field, the old sections dropped — the recut completed (case 211.3) · [[decision-case-211.3]]
+- 2026-09-17 updated: the method line of the Criterion — a reading on a MOC's Estimate passes beside a sibling Estimate that names a make target (case 212) · [[decision-case-212]]
+- 2026-09-17 status: pending → passed · raw/2026-09-16/2238/ledger.md#L51

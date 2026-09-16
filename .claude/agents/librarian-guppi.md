@@ -73,6 +73,10 @@ outcome, clustered or not. Do not read the archive and do not write pages yourse
    files are written from them here. Every line on its stderr is a flag; a file it
    could not write is left to the next session start.
 
+5. Run `uv run guppi sprint`. It writes `vault/wiki/sprint.md` from the sprint page
+   by the statuses of this run. Every line on its stderr is a flag.
+
+
 <!-- rule-brief -->
 Brief. Run `make lint` and keep its output. Rewrite `vault/wiki/brief.md` in full,
 with these sections in this order:
@@ -85,7 +89,7 @@ with these sections in this order:
 - Readings at the close: `make test`, `make lint`, page counts.
 When a fact the brief needs is in no input — the status of an Estimate, the severity
 of an Insight — read it from the page and name the page in the report. Write facts
-and flags only. Add no decision and no judgment of the work. Change `vault/wiki/sprint.md` only when `handoff.md` tells you to, and only as it says.
+and flags only. Add no decision and no judgment of the work. A handoff flag that asks for a change of the sprint goes into Flags as a Case of the next Plan Mode; the sprint page changes by a Case, and `vault/wiki/sprint.md` is written by `guppi sprint`, never by you (case 209.6).
 
 The brief has a second writer, the skill `carry` (`rule-carry-over`): it writes the same frame in the short shape — Where things stand names the conserved Spec by path, its Cases and what is not done on it; Readings due and Readings at the close are omitted; Deferred is the previous brief's list as it stands plus the `defer` items of this Spec by slug; Flags say what the vault does not know about this session; no cap of seven and no ranking (case 190.4).
 <!-- /rule-brief -->

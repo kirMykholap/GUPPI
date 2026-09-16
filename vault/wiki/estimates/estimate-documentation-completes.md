@@ -1,17 +1,14 @@
 ---
 type: estimate
 kind: QA
-status: passed
+status: pending
 target: "[[rule-documentation]]"
+method: make test-documentation, the pipeline over tests/test_materialize.py, tests/test_generate.py and tests/test_cleanup.py; the live reading by hand
 origin: raw/2026-09-10/ledger.md#case-36
 sprint: migration
 created: 2026-09-10
 tags: [session, workflow, harness, librarian]
 ---
-
-## Context
-
-The phase either turns every ledger line into a page, or the vault and the ledger disagree silently.
 
 ## Criterion
 
@@ -44,6 +41,7 @@ Then:
 After `cleanup` and before the brief it runs `uv run guppi render`, and the governed
 files are written from the pages of that same run.
 **＋** Every line on its stderr is a flag for the brief.
+**＋** After `render` and before the brief it runs `uv run guppi sprint`; every line on its stderr is a flag (case 209.5).
 **＋** `make lint` at the close then passes its `render --check` step.
 **－** A file the render could not write is left to the next session start; the librarian
 does not write it by hand.
@@ -83,10 +81,6 @@ When:
 Then:
 "Your inputs are three: the `handoff.md` …, every `materialize.yaml` …, and `vault/wiki/tags.md`; the index lines you compare with are the Greps `rule-index-check` and `rule-synthesis` name"; the four reasons to open a page — as they are.
 
-## Method
-
-`make test-documentation`, the pipeline over tests/test_materialize.py, tests/test_generate.py and tests/test_cleanup.py; the live reading by hand
-
 ## Result
 
 block 147.5: .claude/agents/librarian-guppi.md line 16 carries the ratified sentence of the replace pair of Spec 1633 ("Your inputs are three ... the Greps of the category the index check and the synthesis name, run by you"), the four reasons to open a page unchanged; the first run under this frame is this session's librarian
@@ -109,3 +103,4 @@ block 147.5: .claude/agents/librarian-guppi.md line 16 carries the ratified sent
 - 2026-09-14 status: pending → passed · raw/2026-09-14/1029/ledger.md#L2
 - 2026-09-14 criterion: case 147.5 added · [[decision-case-147.5]]
 - 2026-09-15 status: pending → passed · raw/2026-09-15/1110/ledger.md#L5
+- 2026-09-17 updated: one line in the block of case 89.1 — guppi sprint after render and before the brief (case 209.5) · [[decision-case-209.5]]

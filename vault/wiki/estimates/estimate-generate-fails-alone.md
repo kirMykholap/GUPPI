@@ -5,6 +5,7 @@ status: passed
 target: "[[rule-page-generation]]"
 purpose: One bad entry never stops the run; every entry carries its mark
 method: pytest tests/test_generate.py, the tests of the failed, skipped and marked entries
+checked: 2026-09-17
 origin: raw/2026-09-16/1955/ledger.md#case-201.3
 sprint: migration
 created: 2026-09-16
@@ -25,6 +26,7 @@ When:
 
 Then:
 An entry that fails — a collision, a `ref` naming no page, a `replace` absent or not unique, a field of an unexpected shape, an unknown `kind`, any exception — is printed on stderr as `generate: <slug>: <what>`, marked `failed` in the yaml and skipped; the rest apply; the exit code is 1; no entry ends the run.
+**＋** An `update` with `sections.Criterion` on an Estimate page without a `method` field, whose `set` carries no `method`, fails the same way: `generate: <slug>: a recut without method (case 211)`; a page with the field takes the Criterion as before (case 211.2).
 **＋** Every applied entry is marked `applied: <time>`; a stale `failed` mark is dropped on apply; a rerun writes nothing.
 **＋** An entry with `failed` and no `kind` is skipped with its mark kept and the line `generate: line N: not lifted by materialize; <message>`, exit 1.
 **＋** An entry with `superseded_by` is not applied and leaves no line; the Decision page of its Case is still written.
@@ -33,9 +35,11 @@ An entry that fails — a collision, a `ref` naming no page, a `replace` absent 
 
 ## Result
 
-2026-09-16, `pytest tests/test_generate.py`: 46 green — a failing entry is on stderr, marked failed and skipped, the rest apply, exit 1; applied marks, a stale failed dropped, a rerun silent; an entry materialize could not lift and one with superseded_by skipped as before
+2026-09-17, `pytest tests/test_generate.py`: 48 green — an update with sections.Criterion on a page without a method field and no set.method fails alone with `generate: <slug>: a recut without method (case 211)`, failed in the yaml, the page untouched, the rest applied, exit 1
 
 ## History
 
 - 2026-09-16 created · [[decision-case-201.3]]
 - 2026-09-16 status: pending → passed · raw/2026-09-16/1955/ledger.md#L29
+- 2026-09-17 updated: one line in the Criterion — a recut without method fails alone (case 211.2) · [[decision-case-211.2]]
+- 2026-09-17 status: pending → passed · raw/2026-09-16/2238/ledger.md#L50

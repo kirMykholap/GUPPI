@@ -1,8 +1,9 @@
 ---
 type: decision
 case: "205"
-status: current
+status: archived
 defer: ["[[insight-ledger-hi-tied-to-its-session-by-position]]"]
+superseded_by: ["[[decision-case-222]]"]
 origin: raw/2026-09-16/1955/ledger.md#case-205
 sprint: migration
 created: 2026-09-16
@@ -31,3 +32,6 @@ again by 205.
 ## History
 
 - 2026-09-16 created · raw/2026-09-16/1955/ledger.md#case-205
+- 2026-09-17 superseded by decision-case-222 · [[decision-case-222]]
+- 2026-09-17 archived · superseded
+- 2026-09-17 archived · cleanup

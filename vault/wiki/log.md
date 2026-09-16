@@ -1839,3 +1839,103 @@ instruction. The global feed; a page's own `## History` is the per-page view.
 - 2026-09-16 rules/rule-permissions status: draft → built · cascade · generate
 - 2026-09-16 decisions/decision-case-191 archived · superseded · generate
 - 2026-09-16 decisions/decision-case-191 archived · cleanup
+- 2026-09-17 estimates/estimate-materialize-marks-superseded status: pending → passed · raw/2026-09-16/2238/ledger.md#L1 · generate
+- 2026-09-17 estimates/estimate-end-of-work-order status: pending → passed · raw/2026-09-16/2238/ledger.md#L2 · generate
+- 2026-09-17 estimates/estimate-brief-written status: pending → passed · raw/2026-09-16/2238/ledger.md#L3 · generate
+- 2026-09-17 decisions/decision-case-209 created · raw/2026-09-16/2238/ledger.md#case-209 · generate
+- 2026-09-17 rules/rule-sprint created · [[decision-case-209]] · generate
+- 2026-09-17 rules/rule-documentation child rule-sprint added · [[decision-case-209]] · generate
+- 2026-09-17 decisions/decision-case-209.1 created · raw/2026-09-16/2238/ledger.md#case-209.1 · generate
+- 2026-09-17 estimates/estimate-sprint-renders-the-backlog created · [[decision-case-209.1]] · generate
+- 2026-09-17 rules/rule-sprint estimate estimate-sprint-renders-the-backlog added · [[decision-case-209.1]] · generate
+- 2026-09-17 decisions/decision-case-209.2 created · raw/2026-09-16/2238/ledger.md#case-209.2 · generate
+- 2026-09-17 entities/entity-sprint-migration created · [[decision-case-209.2]] · generate
+- 2026-09-17 estimates/estimate-sprint-migration-lint-clean created · [[decision-case-209.2]] · generate
+- 2026-09-17 entities/entity-sprint-migration estimate estimate-sprint-migration-lint-clean added · [[decision-case-209.2]] · generate
+- 2026-09-17 decisions/decision-case-209.3 created · raw/2026-09-16/2238/ledger.md#case-209.3 · generate
+- 2026-09-17 estimates/estimate-sprint-migration-leftovers-gone created · [[decision-case-209.3]] · generate
+- 2026-09-17 entities/entity-sprint-migration estimate estimate-sprint-migration-leftovers-gone added · [[decision-case-209.3]] · generate
+- 2026-09-17 decisions/decision-case-209.4 created · raw/2026-09-16/2238/ledger.md#case-209.4 · generate
+- 2026-09-17 estimates/estimate-sprint-migration-merges created · [[decision-case-209.4]] · generate
+- 2026-09-17 entities/entity-sprint-migration estimate estimate-sprint-migration-merges added · [[decision-case-209.4]] · generate
+- 2026-09-17 decisions/decision-case-209.5 created · raw/2026-09-16/2238/ledger.md#case-209.5 · generate
+- 2026-09-17 rules/rule-documentation updated: step 5 of the frame — guppi sprint after render, before the brief (case 209.5) · [[decision-case-209.5]] · generate
+- 2026-09-17 estimates/estimate-documentation-completes updated: one line in the block of case 89.1 — guppi sprint after render and before the brief (case 209.5) · [[decision-case-209.5]] · generate
+- 2026-09-17 decisions/decision-case-209.6 created · raw/2026-09-16/2238/ledger.md#case-209.6 · generate
+- 2026-09-17 rules/rule-brief updated: the librarian never edits sprint.md — a sprint change is a Case, the file is the render of guppi sprint (case 209.6) · [[decision-case-209.6]] · generate
+- 2026-09-17 estimates/estimate-brief-written updated: the last line of the Criterion — a change of the sprint is a Case, never the librarian's edit; the sprint flag lands in Flags (case 209.6) · [[decision-case-209.6]] · generate
+- 2026-09-17 decisions/decision-case-209.7 created · raw/2026-09-16/2238/ledger.md#case-209.7 · generate
+- 2026-09-17 decisions/decision-case-211.1 created · raw/2026-09-16/2238/ledger.md#case-211.1 · generate
+- 2026-09-17 estimates/estimate-generate-writes updated: one line in the Criterion — an update of an Estimate with set.method writes the field and drops · [[decision-case-211.1]] · generate
+- 2026-09-17 decisions/decision-case-211.2 created · raw/2026-09-16/2238/ledger.md#case-211.2 · generate
+- 2026-09-17 estimates/estimate-generate-fails-alone updated: one line in the Criterion — a recut without method fails alone (case 211.2) · [[decision-case-211.2]] · generate
+- 2026-09-17 decisions/decision-case-211.3 created · raw/2026-09-16/2238/ledger.md#case-211.3 · generate
+- 2026-09-17 estimates/estimate-generate-writes updated: method as a field, the old sections dropped — the recut completed (case 211.3) · [[decision-case-211.3]] · generate
+- 2026-09-17 estimates/estimate-generate-walks-dates updated: method as a field, the old sections dropped — the recut completed (case 211.3) · [[decision-case-211.3]] · generate
+- 2026-09-17 estimates/estimate-lint-catches updated: method as a field, the old sections dropped — the recut completed (case 211.3) · [[decision-case-211.3]] · generate
+- 2026-09-17 estimates/estimate-pretask-reconciles updated: method as a field, the old sections dropped — the recut completed (case 211.3) · [[decision-case-211.3]] · generate
+- 2026-09-17 estimates/estimate-materialize-assembles updated: method as a field, the old sections dropped — the recut completed (case 211.3) · [[decision-case-211.3]] · generate
+- 2026-09-17 decisions/decision-case-211.4 created · raw/2026-09-16/2238/ledger.md#case-211.4 · generate
+- 2026-09-17 decisions/decision-case-212 created · raw/2026-09-16/2238/ledger.md#case-212 · generate
+- 2026-09-17 estimates/estimate-lint-catches updated: the method line of the Criterion — a reading on a MOC's Estimate passes beside a sibling Estimate that names a make target (case 212) · [[decision-case-212]] · generate
+- 2026-09-17 decisions/decision-case-213.1 created · raw/2026-09-16/2238/ledger.md#case-213.1 · generate
+- 2026-09-17 estimates/estimate-pretask-checks-the-plan updated: two lines in the Criterion — the stamp from --session or the environment, refused without one; the window found as the ledger hook finds it, across midnight (case 213.1) · [[decision-case-213.1]] · generate
+- 2026-09-17 decisions/decision-case-213.2 created · raw/2026-09-16/2238/ledger.md#case-213.2 · generate
+- 2026-09-17 estimates/estimate-pretask-hook-gates updated: the Criterion in the form of the model, the block of 136.2 folded in, plus the logs read across midnight; method as a field, the old sections dropped (case 213.2) · [[decision-case-213.2]] · generate
+- 2026-09-17 decisions/decision-case-213.3 created · raw/2026-09-16/2238/ledger.md#case-213.3 · generate
+- 2026-09-17 rules/rule-pretask updated: the check takes --session with the stamp of the hi line (case 213.3) · [[decision-case-213.3]] · generate
+- 2026-09-17 estimates/estimate-pretask-reconciles updated: the first line of Then — the check runs with --session from the hi line (case 213.3) · [[decision-case-213.3]] · generate
+- 2026-09-17 decisions/decision-case-213.4 created · raw/2026-09-16/2238/ledger.md#case-213.4 · generate
+- 2026-09-17 insights/insight-ledger-hi-tied-to-its-session-by-position updated: the binding by position retired in pretask --check and the ExitPlanMode hook; the ledger hook already bound by the stamp (case 213) · [[decision-case-213.4]] · generate
+- 2026-09-17 decisions/decision-case-214.1 created · raw/2026-09-16/2238/ledger.md#case-214.1 · generate
+- 2026-09-17 estimates/estimate-materialize-assembles updated: one line in the Criterion — fields lifted by the category's schema.yaml, an unknown key marked unknown and never written (case 214.1) · [[decision-case-214.1]] · generate
+- 2026-09-17 decisions/decision-case-214.2 created · raw/2026-09-16/2238/ledger.md#case-214.2 · generate
+- 2026-09-17 insights/insight-materialize-lift-loses-a-schema-field updated: the lift by the schema — a key the schema does not name never reaches a page (case 214) · [[decision-case-214.2]] · generate
+- 2026-09-17 estimates/estimate-case-protocol-loaded status: passed → passed · raw/2026-09-16/2238/ledger.md#L36 · generate
+- 2026-09-17 decisions/decision-case-215 created · raw/2026-09-16/2238/ledger.md#case-215 · generate
+- 2026-09-17 estimates/estimate-permissions updated: the Criterion replaced whole by the facts — nine entries named, the given and when about permissions; method as a field, the old sections dropped (case 215) · [[decision-case-215]] · generate
+- 2026-09-17 estimates/estimate-permissions status: pending → passed · raw/2026-09-16/2238/ledger.md#L38 · generate
+- 2026-09-17 decisions/decision-case-217 created · raw/2026-09-16/2238/ledger.md#case-217 · generate
+- 2026-09-17 rules/rule-page-generation deferred · [[decision-case-217]] · generate
+- 2026-09-17 decisions/decision-case-218 created · raw/2026-09-16/2238/ledger.md#case-218 · generate
+- 2026-09-17 rules/rule-work-mode deferred · [[decision-case-218]] · generate
+- 2026-09-17 rules/rule-subagent-guppi deferred · [[decision-case-218]] · generate
+- 2026-09-17 decisions/decision-case-219 created · raw/2026-09-16/2238/ledger.md#case-219 · generate
+- 2026-09-17 rules/rule-spec-box deferred · [[decision-case-219]] · generate
+- 2026-09-17 decisions/decision-case-220 created · raw/2026-09-16/2238/ledger.md#case-220 · generate
+- 2026-09-17 rules/rule-git-context deferred · [[decision-case-220]] · generate
+- 2026-09-17 rules/rule-github-issues deferred · [[decision-case-220]] · generate
+- 2026-09-17 decisions/decision-case-221 created · raw/2026-09-16/2238/ledger.md#case-221 · generate
+- 2026-09-17 estimates/estimate-pretask-checks-the-plan updated: the Form line of the Criterion — a ref to a rule or entity the same plan creates is no finding (case 221) · [[decision-case-221]] · generate
+- 2026-09-17 decisions/decision-case-222 created · raw/2026-09-16/2238/ledger.md#case-222 · generate
+- 2026-09-17 decisions/decision-case-205 superseded by decision-case-222 · [[decision-case-222]] · generate
+- 2026-09-17 insights/insight-ledger-hi-tied-to-its-session-by-position defer by decision-case-205 superseded · [[decision-case-222]] · generate
+- 2026-09-17 decisions/decision-case-192 superseded by decision-case-222 · [[decision-case-222]] · generate
+- 2026-09-17 insights/insight-ledger-hi-tied-to-its-session-by-position defer by decision-case-192 superseded · [[decision-case-222]] · generate
+- 2026-09-17 insights/insight-ledger-hi-tied-to-its-session-by-position updated: the defers of cases 192 and 205 taken up by case 213 — deferred_by cleared (case 222) · [[decision-case-222]] · generate
+- 2026-09-17 insights/insight-ledger-hi-tied-to-its-session-by-position updated: the defers of cases 192 and 205 taken up by case 213 — deferred_by cleared (case 222) · [[decision-case-222]] · generate
+- 2026-09-17 lessons/lesson-ledger-block-followed-by-a-tool-call created · raw/2026-09-16/2238/ledger.md#L48 · generate
+- 2026-09-17 estimates/estimate-generate-writes status: pending → passed · raw/2026-09-16/2238/ledger.md#L49 · generate
+- 2026-09-17 estimates/estimate-generate-fails-alone status: pending → passed · raw/2026-09-16/2238/ledger.md#L50 · generate
+- 2026-09-17 estimates/estimate-lint-catches status: pending → passed · raw/2026-09-16/2238/ledger.md#L51 · generate
+- 2026-09-17 estimates/estimate-pretask-checks-the-plan status: pending → passed · raw/2026-09-16/2238/ledger.md#L52 · generate
+- 2026-09-17 estimates/estimate-pretask-hook-gates status: pending → passed · raw/2026-09-16/2238/ledger.md#L53 · generate
+- 2026-09-17 estimates/estimate-materialize-assembles status: pending → passed · raw/2026-09-16/2238/ledger.md#L54 · generate
+- 2026-09-17 decisions/decision-case-223 created · raw/2026-09-16/2238/ledger.md#case-223 · generate
+- 2026-09-17 rules/rule-carry-over deferred · [[decision-case-223]] · generate
+- 2026-09-17 insights/insight-ledger-hook-reads-only-the-final-text updated: reopened by librarian: a fifth lesson of the same pattern — the reply that acknowledged case 222 carried its LEDGER block and then a ToolSearch call, so the block was not the last text of the turn and the Stop hook wrote nothing (lesson-ledger-block-followed-by-a-tool-call) · generate
+- 2026-09-17 lessons/lesson-ledger-block-followed-by-a-tool-call updated: clustered by librarian under insight-ledger-hook-reads-only-the-final-text · generate
+- 2026-09-17 rules/rule-documentation status: built → draft · cascade · generate
+- 2026-09-17 rules/rule-end-of-work status: draft → built · cascade · generate
+- 2026-09-17 rules/rule-materialize status: draft → built · cascade · generate
+- 2026-09-17 rules/rule-page-generation status: built → draft · cascade · generate
+- 2026-09-17 rules/rule-pretask status: built → draft · cascade · generate
+- 2026-09-17 decisions/decision-case-192 archived · superseded · generate
+- 2026-09-17 decisions/decision-case-205 archived · superseded · generate
+- 2026-09-17 lessons/lesson-pretask-check-session-fallback-stops-at-midnight archived · insight actioned · generate
+- 2026-09-17 lessons/lesson-materialize-item-ref-lifted-as-a-page-field archived · insight actioned · generate
+- 2026-09-17 tags.md registers sprint · generate
+- 2026-09-17 lessons/lesson-materialize-item-ref-lifted-as-a-page-field archived · cleanup
+- 2026-09-17 lessons/lesson-pretask-check-session-fallback-stops-at-midnight archived · cleanup
+- 2026-09-17 decisions/decision-case-192 archived · cleanup
+- 2026-09-17 decisions/decision-case-205 archived · cleanup

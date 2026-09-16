@@ -1,8 +1,9 @@
 ---
 type: decision
 case: "192"
-status: current
+status: archived
 defer: ["[[insight-ledger-hi-tied-to-its-session-by-position]]"]
+superseded_by: ["[[decision-case-222]]"]
 origin: raw/2026-09-16/1034/ledger.md#case-192
 sprint: migration
 created: 2026-09-16
@@ -41,3 +42,6 @@ Insight. Needs its own Estimate and one live reading across midnight.
 ## History
 
 - 2026-09-16 created · raw/2026-09-16/1034/ledger.md#case-192
+- 2026-09-17 superseded by decision-case-222 · [[decision-case-222]]
+- 2026-09-17 archived · superseded
+- 2026-09-17 archived · cleanup

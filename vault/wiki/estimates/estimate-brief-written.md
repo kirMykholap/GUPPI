@@ -3,15 +3,13 @@ type: estimate
 kind: QA
 status: pending
 target: "[[rule-brief]]"
+method: one reading by hand after the first librarian run, recorded in the estimate line
+checked: 2026-09-16
 origin: raw/2026-09-10/ledger.md#case-35.3
 sprint: migration
 created: 2026-09-10
 tags: [harness, workflow, librarian]
 ---
-
-## Context
-
-The brief is the whole handover between sessions; a flag left out is debt nobody sees.
 
 ## Criterion
 
@@ -28,17 +26,13 @@ The brief holds five sections in order: Where things stand, Readings due, Deferr
 **＋** Where things stand — from "What actually got done" of `handoff.md` and the counts of the yaml: pages created and updated per category.
 **＋** Readings due — every Estimate `pending` or `failed` after `generate`: the Estimate, the rule that stands `draft`, and where it is read — from the unticked `read` line of the session's Spec or from the page's `method`; a `failed` one first, with the result of its reading in one line; nothing from the previous brief.
 **＋** Deferred — at most seven: the targets of the `defer` entries of this run, the items of the previous list whose decision no `supersedes` retired, every `open` Insight; ranked by `severity` — its own or that of the related Insight — then by the number of briefs the item stood in; an Insight's line carries its slug, `severity`, `pattern` and its Proposal in one or two sentences.
-**＋** Flags, no limit: entries `incomplete`, `failed`, `near`, `unparsed`; `failed` Estimates; MOC candidates; stale defers; contradictions; the lint output.
+**＋** Flags, no limit: entries `incomplete`, `failed`, `near`, `unparsed`; `failed` Estimates; MOC candidates; stale defers; contradictions; the lint output; a handoff flag that asks for a change of the sprint, as a Case of the next Plan Mode.
 **＋** Readings at the close — `make test`, `make lint`, page counts.
-**－** The brief states no decision and no judgment of the work; `sprint.md` changes only when `handoff.md` says so, and only as it says.
-
-## Method
-
-one reading by hand after the first librarian run, recorded in the estimate line
+**－** The brief states no decision and no judgment of the work; a change of the sprint is a Case, never the librarian's edit.
 
 ## Result
 
-block 168: the brief of session S, read by hand: "Readings due" is its second section, after `generate` 3 `pending` and 0 `failed`, one line per block — the Estimate, the block, the rule standing `draft`, and where it is read: 175 and 169.1 from the unticked lines of `1809/spec.md`, 168 from the page's `Method`; no `failed` line; nothing from the previous brief; the "not done" stays in "Where things stand"; no section "What the next session does first"; the five sections in order
+2026-09-16, the brief of session 1955 read by hand: the five sections in order; Where things stand from the handoff and the yaml counts per category; Readings due the four pending after generate, each with the draft rule and the place from its method, no failed; Deferred five of seven ranked by severity then briefs; Flags with near, folded, synthesis, stale defers, the contradiction and the lint output; Readings at the close with test, lint and page counts; no decision stated, sprint.md untouched as the handoff said
 
 ## History
 
@@ -51,3 +45,5 @@ block 168: the brief of session S, read by hand: "Readings due" is its second se
 - 2026-09-16 status: pending → passed · raw/2026-09-15/2225/ledger.md#L3
 - 2026-09-16 updated: the Criterion replaced whole by this Case; its earlier blocks recut by point 1 at this touch (case 190.4) · [[decision-case-190.4]]
 - 2026-09-16 updated: the Criterion replaced whole by case 197 — the head, 124.1 and 168 recut into one; the short shape of /carry left to estimate-carry-over-writes (case 197) · [[decision-case-197]]
+- 2026-09-17 status: pending → passed · raw/2026-09-16/2238/ledger.md#L3
+- 2026-09-17 updated: the last line of the Criterion — a change of the sprint is a Case, never the librarian's edit; the sprint flag lands in Flags (case 209.6) · [[decision-case-209.6]]

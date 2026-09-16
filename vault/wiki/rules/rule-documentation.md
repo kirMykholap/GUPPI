@@ -2,11 +2,11 @@
 type: rule
 kind: MOC
 purpose: Prevents a ratified decision from ending the session without becoming a vault page
-status: built
+status: draft
 enforcement: render
 governs: .claude/agents/librarian-guppi.md
 render_mode: full
-children: ["[[rule-materialize]]", "[[rule-index-check]]", "[[rule-synthesis]]", "[[rule-page-generation]]", "[[rule-cleanup]]", "[[rule-raw-archive]]", "[[rule-brief]]", "[[rule-close]]"]
+children: ["[[rule-materialize]]", "[[rule-index-check]]", "[[rule-synthesis]]", "[[rule-page-generation]]", "[[rule-cleanup]]", "[[rule-raw-archive]]", "[[rule-brief]]", "[[rule-close]]", "[[rule-sprint]]"]
 estimates: ["[[estimate-documentation-completes]]"]
 origin: raw/2026-09-10/ledger.md#case-36
 sprint: migration
@@ -78,6 +78,10 @@ Do the steps in this order.
    files are written from them here. Every line on its stderr is a flag; a file it
    could not write is left to the next session start.
 
+5. Run `uv run guppi sprint`. It writes `vault/wiki/sprint.md` from the sprint page
+   by the statuses of this run. Every line on its stderr is a flag.
+
+
 <!-- rule-brief -->
 
 Archive. Run `uv run guppi archive`. Every line on its stderr is a flag; the units it
@@ -121,3 +125,6 @@ project's hooks; the hook is part of this Render and is ratified with it.
 - 2026-09-14 updated: three inputs (case 147.9) · [[decision-case-147.9]]
 - 2026-09-14 status: built → draft · cascade
 - 2026-09-15 status: draft → built · cascade
+- 2026-09-17 child rule-sprint added · [[decision-case-209]]
+- 2026-09-17 updated: step 5 of the frame — guppi sprint after render, before the brief (case 209.5) · [[decision-case-209.5]]
+- 2026-09-17 status: built → draft · cascade

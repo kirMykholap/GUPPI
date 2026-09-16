@@ -2,7 +2,7 @@
 type: rule
 kind: MOC
 purpose: Prevents a session being handed over without a settled account of what happened
-status: draft
+status: built
 children: ["[[rule-retro]]", "[[rule-retro-commit]]", "[[rule-handoff]]", "[[rule-carry-over]]"]
 estimates: ["[[estimate-end-of-work-order]]"]
 origin: raw/2026-09-10/ledger.md#case-38
@@ -34,3 +34,4 @@ agent asks the person which of the two ends and starts nothing until it is answe
 - 2026-09-16 updated: a session has a second end — /carry straight after Plan Mode, without Work Mode, retro, handoff or the librarian; the agent asks which of the two on leaving Plan Mode (case 190.2) · [[decision-case-190.2]]
 - 2026-09-16 status: built → draft · cascade
 - 2026-09-16 updated: the second end — /carry straight after Plan Mode — and the question on leaving Plan Mode (case 196.2, the text of 190.2) · [[decision-case-196.2]]
+- 2026-09-17 status: draft → built · cascade

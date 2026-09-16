@@ -2,11 +2,12 @@
 type: rule
 kind: Leaf
 purpose: Prevents a ratified decision from ending the session without a page, or a page from carrying a field nobody ratified
-status: built
+status: draft
 enforcement: check
 implementation_ref: [guppi/generate.py, tests/test_generate.py]
 parent: "[[rule-documentation]]"
 estimates: ["[[estimate-generate-writes]]", "[[estimate-generate-walks-dates]]", "[[estimate-generate-writes-the-decision-page]]", "[[estimate-generate-fails-alone]]", "[[estimate-generate-cascades]]"]
+deferred_by: ["[[decision-case-217]]"]
 origin: raw/2026-09-10/ledger.md#case-32
 sprint: migration
 created: 2026-09-10
@@ -93,3 +94,5 @@ line — lives in the docstring of `guppi/generate.py`.
 - 2026-09-16 estimate estimate-generate-fails-alone added · [[decision-case-201.3]]
 - 2026-09-16 estimate estimate-generate-cascades added · [[decision-case-201.4]]
 - 2026-09-16 defer by decision-case-191 superseded · [[decision-case-203.2]]
+- 2026-09-17 deferred · [[decision-case-217]]
+- 2026-09-17 status: built → draft · cascade

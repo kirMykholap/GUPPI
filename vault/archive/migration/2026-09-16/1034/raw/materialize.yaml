@@ -1647,6 +1647,7 @@ entries:
       Insight. Needs its own Estimate and one live reading across midnight.'
   exists: true
   applied: '19:45:25'
+  superseded_by: '222'
 decisions:
 - case: '186.1'
   decision: decision-case-186.1
@@ -2925,5 +2926,7 @@ decisions:
       would be a fourth code decision where none of the first three has been built.'
   spec: vault/raw/2026-09-16/1034/spec.md
   applied: '19:45:25'
+  superseded_by:
+  - decision-case-222
 unparsed: []
 session: '1034'

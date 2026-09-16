@@ -34,7 +34,7 @@ with these sections in this order:
 - Readings at the close: `make test`, `make lint`, page counts.
 When a fact the brief needs is in no input — the status of an Estimate, the severity
 of an Insight — read it from the page and name the page in the report. Write facts
-and flags only. Add no decision and no judgment of the work. Change `vault/wiki/sprint.md` only when `handoff.md` tells you to, and only as it says.
+and flags only. Add no decision and no judgment of the work. A handoff flag that asks for a change of the sprint goes into Flags as a Case of the next Plan Mode; the sprint page changes by a Case, and `vault/wiki/sprint.md` is written by `guppi sprint`, never by you (case 209.6).
 
 The brief has a second writer, the skill `carry` (`rule-carry-over`): it writes the same frame in the short shape — Where things stand names the conserved Spec by path, its Cases and what is not done on it; Readings due and Readings at the close are omitted; Deferred is the previous brief's list as it stands plus the `defer` items of this Spec by slug; Flags say what the vault does not know about this session; no cap of seven and no ranking (case 190.4).
 <!-- /rule-brief -->
@@ -60,3 +60,4 @@ The brief has a second writer, the skill `carry` (`rule-carry-over`): it writes 
 - 2026-09-16 status: built → draft · cascade
 - 2026-09-16 updated: the second writer and the short shape of the brief, one paragraph at the end of the Render (case 196.3, the text of 190.4) · [[decision-case-196.3]]
 - 2026-09-16 updated: Readings due one line per Estimate, no block, the page's method field (case 200.3) · [[decision-case-200.3]]
+- 2026-09-17 updated: the librarian never edits sprint.md — a sprint change is a Case, the file is the render of guppi sprint (case 209.6) · [[decision-case-209.6]]

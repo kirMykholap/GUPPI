@@ -1,11 +1,10 @@
 ---
 type: insight
 pattern: The event log ties a hi line to its session by the session-start lines around it, not by an id; any start that is missing from the window or added to it sends the hi to the wrong session and the ledger writer refuses.
-status: open
+status: actioned
 children: ["[[lesson-ledger-hook-hi-lost-at-midnight]]", "[[lesson-hi-taken-by-a-session-started-in-the-same-second]]", "[[lesson-pretask-line-unstamped-and-bound-by-position]]", "[[lesson-pretask-check-session-fallback-stops-at-midnight]]"]
-severity: 1
-addressed_by: "[[decision-case-136.4]]"
-deferred_by: ["[[decision-case-192]]", "[[decision-case-205]]"]
+severity: 0
+addressed_by: "[[decision-case-213.1]]"
 origin: raw/2026-09-14/0747/ledger.md#L2
 sprint: migration
 created: 2026-09-14
@@ -47,3 +46,8 @@ command, the fallback keeps both lessons live and a Case on 111.4 is due.
 - 2026-09-16 updated: synthesis: lesson-pretask-check-session-fallback-stops-at-midnight added, the pre-task check resolves its session from the session-start lines of today's event log when no id is given, and a start on yesterday's log is outside that window as the hi was for the hook; reopened from actioned · raw/2026-09-15/2225/ledger.md#L16
 - 2026-09-16 deferred · [[decision-case-192]]
 - 2026-09-16 deferred · [[decision-case-205]]
+- 2026-09-17 updated: the binding by position retired in pretask --check and the ExitPlanMode hook; the ledger hook already bound by the stamp (case 213) · [[decision-case-213.4]]
+- 2026-09-17 defer by decision-case-205 superseded · [[decision-case-222]]
+- 2026-09-17 defer by decision-case-192 superseded · [[decision-case-222]]
+- 2026-09-17 updated: the defers of cases 192 and 205 taken up by case 213 — deferred_by cleared (case 222) · [[decision-case-222]]
+- 2026-09-17 updated: the defers of cases 192 and 205 taken up by case 213 — deferred_by cleared (case 222) · [[decision-case-222]]

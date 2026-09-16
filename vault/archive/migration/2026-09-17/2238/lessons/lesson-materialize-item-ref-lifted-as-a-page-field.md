@@ -2,7 +2,7 @@
 type: lesson
 kind: error
 root_cause: "`_lift_item` copies every key of a `then` item into `fields` except a fixed list; case 194.1 gave the Estimate item a `ref` and the list was not extended, so the entry's `ref` and a page field were written from the same key"
-status: clustered
+status: archived
 insight: "[[insight-materialize-lift-loses-a-schema-field]]"
 origin: raw/2026-09-16/1955/ledger.md#L40
 sprint: migration
@@ -22,3 +22,5 @@ the yaml preview of session 1955 showed `ref: rule-page-generation` under `field
 
 - 2026-09-16 created · raw/2026-09-16/1955/ledger.md#L40
 - 2026-09-16 updated: clustered by librarian under insight-materialize-lift-loses-a-schema-field
+- 2026-09-17 archived · insight actioned
+- 2026-09-17 archived · cleanup

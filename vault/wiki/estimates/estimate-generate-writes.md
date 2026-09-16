@@ -3,53 +3,33 @@ type: estimate
 kind: QA
 status: passed
 target: "[[rule-page-generation]]"
-checked: 2026-09-16
+method: pytest in tests/test_generate.py against a temp vault; the live reading once by hand
+checked: 2026-09-17
 origin: raw/2026-09-10/ledger.md#case-32
 sprint: migration
 created: 2026-09-10
 tags: [harness, workflow, ledger]
 ---
 
-## Context
-
-Every page of the vault comes through this script from Slice 3 on. A derived field computed wrong, or a ratified one dropped, is corrupted everywhere at once.
-
 ## Criterion
 
 Given:
-`guppi generate` applies the entries of a `materialize.yaml` in order; the `sections` of an `update` entry are whole replacements, `set` writes fields.
-**＋** An `update` entry for an Estimate carries `sections.Criterion` and `set: {status: pending}`; a `create` entry carries `kind`, `purpose`, `method`, `tags` as fields (194.1).
-**＋** An `estimate` entry carries `status` and `result`; the `result` opens with the date of the reading and the command (199).
+`guppi generate` applies `set` to the frontmatter and `sections` as whole replacements; the failure of one entry touches no other (`estimate-generate-fails-alone`).
+**＋** The field `method` is one line; `## Method` of the old shape is the same text as a section.
 **＋** The tests in `tests/test_generate.py` fix the behaviour; the live reading is the librarian's run of this session.
-**－** `materialize`, `cleanup` and `lint` do not change here.
+**－** `lint`, `materialize` and `pretask` do not change.
 
 When:
-`guppi generate` applies one entry of a yaml to a page.
+The librarian applies the yaml of this session after the build of 211.1.
 
 Then:
-A `create` becomes a page: `type`, the fields of the entry, `status` by category (entity and rule `draft`, estimate `pending`, lesson `new`, insight `open`), `origin`, `sprint` — the first `## <id>` of `sprint.md`, `created` — the yaml's date, `tags`; the body sections from `sections`, `## Purpose` from `purpose` on a rule or an entity; a `ref` lands in the parent's `children` or the target's `estimates` with History `child <slug> added` / `estimate <slug> added`, at the end of the run when the parent comes later in the yaml.
-**＋** An Estimate page carries `purpose`, `method` and `checked` as fields, in that order after `target`; `## Criterion` from `sections`; neither `## Context` nor `## Method` is written.
-**＋** A `create` whose slug is a placeholder (`draft`, no `kind`) fills it: `created` and `deferred_by` kept, History `created over placeholder`; any other existing page is a collision, not a rename.
-**＋** An `update` applies `set` to the frontmatter, `sections` as whole replacements, `replace` inside the body (whitespace collapsed, exactly one occurrence), History `updated: <change>`; an `update` of an Estimate with `sections.Criterion` replaces the section whole.
-**＋** An `update`, `estimate`, `delete` or `defer` whose slug is not under `wiki/` finds the page under `vault/archive/` (`raw/` folders excluded) and edits it there.
-**＋** An `estimate` sets `status`, overwrites `## Result`, writes `checked` — the date the `result` opens with, else the yaml's date — and appends History `status: a → b · <ledger pointer>`.
-**＋** A `delete` sets `archived` with History `deleted`; a `delete` outside the vault is a line on stdout, the entry applied, no page written.
-**＋** A `defer` with a page appends the decision slug to `deferred_by` (rule, entity, insight) with History `deferred`; without a page it writes a placeholder `draft` with the Case's fields and `deferred_by`.
-**＋** A `lesson` writes the lesson only, `source` when the line carries it; no Estimate is created.
-**＋** Every ref field is written as `"[[slug]]"`, a list as `["[[a]]", "[[b]]"]`; a slug without a category prefix stays bare; read through the brackets.
-**＋** A `create` in `insights` applies only with the mark `librarian`; a `delete` of an Insight is refused always.
-**＋** History lines and `log.md` lines carry the date of the run and end with `[[decision-case-N]]` or the ledger pointer; `log.md` is appended after each entry; a tag of `new_tags` lands in `tags.md`, a used and undeclared one goes to stderr.
-**－** No body section is derived from a ref field; a section a page still carries is not touched.
-**－** `criterion_block` on an `update` and an entry of kind `remove_criterion` are not applied: a shape the script does not know — the entry fails alone (`estimate-generate-fails-alone`).
-**－** The Decision page, the failure of an entry and the cascade are three other Estimates.
-
-## Method
-
-pytest in tests/test_generate.py against a temp vault; the live reading once by hand
+`estimate-generate-writes`, `-generate-walks-dates`, `-lint-catches`, `-pretask-reconciles`, `-materialize-assembles` carry a `method` field with the text of their `## Method` sections in one line; `## Context` and `## Method` are dropped.
+**＋** `unmigrated` reads 34 after the run: these five, `estimate-pretask-hook-gates` (213.2), `estimate-permissions` (215) and `estimate-brief-written` (209.6) leave the old shape; `estimate-documentation-completes` keeps its `### case` blocks.
+**－** The Criterion of these pages does not change; no `pending` is set — except on `estimate-generate-writes`, whose Criterion 211.1 changes.
 
 ## Result
 
-2026-09-16, `pytest tests/test_generate.py`: 46 green — an Estimate page carries purpose, method and checked after target, its Criterion from sections and no Context or Method; an update with sections.Criterion replaces the section whole and keeps the old sections a page still carries; a reading writes checked from the date the Result opens with, else the yaml's date; criterion_block and remove_criterion fail as shapes the script no longer knows; the live half is the librarian's run of this session
+2026-09-17, `pytest tests/test_generate.py`: 48 green — an Estimate update whose set carries method writes the field after purpose and drops ## Context and ## Method, an update without set.method touches no section; the live reading is the librarian's run of this session, on the five recuts of 211.3
 
 ## History
 
@@ -86,3 +66,6 @@ pytest in tests/test_generate.py against a temp vault; the live reading once by 
 - 2026-09-16 status: passed → passed · raw/2026-09-16/1651/ledger.md#L37
 - 2026-09-16 updated: the Criterion replaced whole by case 201.1 — the head recut with 101.1, 105.3, 166.2, 171 and 172; 104.x and 166.3 go to -cascades, 142.2 and 151 to -fails-alone; the ten blocks leave (case 201.1) · [[decision-case-201.1]]
 - 2026-09-16 status: pending → passed · raw/2026-09-16/1955/ledger.md#L27
+- 2026-09-17 updated: one line in the Criterion — an update of an Estimate with set.method writes the field and drops · [[decision-case-211.1]]
+- 2026-09-17 updated: method as a field, the old sections dropped — the recut completed (case 211.3) · [[decision-case-211.3]]
+- 2026-09-17 status: pending → passed · raw/2026-09-16/2238/ledger.md#L49

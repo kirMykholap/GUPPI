@@ -2,7 +2,7 @@
 type: rule
 kind: Leaf
 purpose: Prevents a set of ratified decisions from reaching the Spec with a contradiction between them or with the vault
-status: built
+status: draft
 enforcement: render
 governs: .claude/skills/pre-task/SKILL.md
 render_mode: full
@@ -29,7 +29,7 @@ description: Check this Plan Mode's ratified decisions against each other and th
 ---
 
 
-Run `uv run guppi pretask --check <the plan file of this Plan Mode>`. It prints one line
+Run `uv run guppi pretask --check <the plan file of this Plan Mode> --session <stamp>`, the stamp from the `hi:` line the `UserPromptSubmit` hook put in the context at `/hi` (case 213.3). It prints one line
 for every decision line of this session that has no item under its own Case in the plan,
 for every item that has no line, for every line of `raw/<hi date>/<hi HHMM>/frontier.md` (the session's folder, case 73) still open or closed by a Case the plan does not hold, for every ratified Case with a line of a kind other than `defer` and no `tasks` block (a defer-only Case has no work, case 74), for every Estimate a `then` block creates or sets `pending` that no
 task names, for every `file` item on a path a Rule page governs, for every Case whose `then` block holds two or more Estimate items — a `create`, or an `update` with `set: {status: pending}` — without a written `sections: Criterion` (one promise per Case: split it), for every `update` of an Estimate whose page does not exist, and for every `create` of an Estimate whose `ref` names no live rule or entity (case 203.1); an Estimate has its own line and its own item (case 189). It also runs every record line of the session's window — `raw/<hi date>/<hi HHMM>/ledger.md` whole, plus the date-level ledgers from the `hi` date to today from the `hi` time on, while any exist (case 103.4) — through `materialize.parse_line` and prints one line for each that does not parse, with its file and line number (case 75.2). Fix the plan, the frontier or the line for each, then run it again until it prints nothing.
@@ -75,3 +75,5 @@ finding as a Case, or say in one line why it is already known. Then exit Plan Mo
 - 2026-09-16 defer by decision-case-191 superseded · [[decision-case-203.2]]
 - 2026-09-16 updated: the findings of --check by the Estimate model; the list for ask-guppi carries the page's estimates and the ones the Case names; supersedes 191 (case 203.2) · [[decision-case-203.2]]
 - 2026-09-16 updated: the dispatch sentence names the two questions of 203.2 (case 208.3) · [[decision-case-208.3]]
+- 2026-09-17 updated: the check takes --session with the stamp of the hi line (case 213.3) · [[decision-case-213.3]]
+- 2026-09-17 status: built → draft · cascade

@@ -827,6 +827,7 @@ entries:
       again by 205.'
   exists: true
   applied: '22:22:18'
+  superseded_by: '222'
 - line: 17
   text: decision[case 206][defer][rule-work-mode]{ref:rule-work-mode}
   case: '206'
@@ -1972,6 +1973,8 @@ decisions:
       for a session that can read it.
   spec: vault/raw/2026-09-16/1955/spec.md
   applied: '22:22:18'
+  superseded_by:
+  - decision-case-222
 - case: '206'
   decision: decision-case-206
   origin: raw/2026-09-16/1955/ledger.md#case-206

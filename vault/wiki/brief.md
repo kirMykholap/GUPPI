@@ -1,209 +1,224 @@
-# Brief — 2026-09-16, after session 1955 (Slice 3d closed: case 191 taken up — generate, lint, pre-task by the Estimate model)
+# Brief — 2026-09-17, after session 2238 of 2026-09-16 (the sprint as a page and `guppi sprint`; the recut sets `method`; pre-task bound by the stamp; materialize lifts by the schema)
 
-Written by the librarian from `raw/2026-09-16/1955/handoff.md`, the yamls of
-`raw/2026-09-16/1034`, `raw/2026-09-16/1651` and `raw/2026-09-16/1955`, and the index Greps.
+Written by the librarian from `raw/2026-09-16/2238/handoff.md`, the yamls of
+`raw/2026-09-16/1034`, `1651`, `1955` and `2238`, and the index Greps.
 
 ## Where things stand
 
-- Cases 201–204 and 208 ratified and built in code in session 1955: `guppi/generate.py`
-  (fields `purpose`/`method`/`checked` in order, `checked` from the Result's date, the old
-  `criterion_block`/`remove_criterion` paths refused, the Decision page without Given and
-  the Criterion list, the docstring by the five promises), `guppi/lint.py` (`unread`, the
-  `method` field with the classes test / `pytest` / `make` / reading, `unmigrated` as one
-  line), `guppi/pretask.py` (`check_form` by the model), `guppi/materialize.py` (`ref` on
-  an Estimate item is the entry's). Tests 397 → 396 (the old-shape tests replaced), all
-  green; `make style` clean; `render --check` 0.
-- Rule-class by hand in the session: `decisions/schema.md` and `.yaml` (Given and Criterion
-  the shape before 201.2), `index.md` §7 and §12, `case-schema.md` two sentences,
-  `estimates/schema.md` and `.yaml` (201.1 and 202 instead of 191). `## How it works`
-  dropped by hand on `rule-page-generation` and `rule-lint`.
-- Cases 205, 206, 207 deferred under `## Deferred` of the Spec. 14 readings taken and in the
-  ledger; one lesson. Commit `8fd804e` on `migration`.
-- Not done in the session: the vault pages of 201–208 (this run), the three renders (this
-  run), the four readings listed below, the five flags of the handoff (below).
-- This run. `materialize` walked three units: 1034 extended with 0 entries (191's three
-  `defer` entries and its decision record gained `superseded_by: 203.2`), 1651 with 0, 1955
-  written with 41 entries — 37 in the yaml, the four readings of the created Estimates
-  folded into their `create` entries (`folded`). `generate`: 42 pages written or changed
-  from 1955, 0 from 1034 and 1651; stderr empty; exit 0. Counts of the 1955 yaml, all
-  entries applied:
-  - `create`: 4 estimates (`estimate-generate-writes-the-decision-page`,
-    `estimate-generate-fails-alone`, `estimate-generate-cascades`,
-    `estimate-pretask-checks-the-plan`, each with its folded reading, `passed`); 1 lesson
-    (`lesson-materialize-item-ref-lifted-as-a-page-field`, `error`); 15 Decision pages
-    (201.1–201.5, 202, 203.1, 203.2, 204, 205, 206, 207, 208.1–208.3); 1 placeholder rule
-    from the `defer` of 207 (`rule-spec-box`, `draft`).
-  - `update`: 6 entries on 5 rule pages (`rule-page-generation`, `rule-lint`, `rule-pretask`
-    twice — 203.2 and 208.3 —, `rule-materialize`, `rule-case-protocol`; the five `replace`
-    texts all found); 6 Estimate recuts with `sections.Criterion` and `status: pending`
-    (`estimate-generate-writes`, `-generate-walks-dates`, `-lint-catches`,
-    `-pretask-reconciles`, `-materialize-assembles`, `-case-protocol-case-form`); 6
-    Rule-class file entries printed "a Rule-class file, applied by hand".
-  - `defer`: 4 — `insight-ledger-hi-tied-to-its-session-by-position` (205),
-    `rule-work-mode`, `rule-subagent-guppi` (206), all three `exists`, `deferred_by`
-    appended; `rule-spec-box` (207) a placeholder.
-  - `estimate`: 10 reading entries, all `passed` — the six recuts (the reading lands after
-    the update, so each ends `passed`), `estimate-case-protocol-acknowledging-reply`,
-    `-loaded`, `-ledger-line-form`, `estimate-permissions`.
-  - Synthesis: 2 entries marked `librarian: synthesis` (below, Flags).
-  - Cascade: `rule-case-protocol` and `rule-permissions` `draft` → `built`;
-    `rule-page-generation`, `rule-lint`, `rule-pretask` lose `deferred_by` (203.2 supersedes
-    191); `decision-case-191` `superseded`. `rule-materialize` stays `draft`
-    (`estimate-materialize-marks-superseded` pending).
-  - `cleanup`: 1 page moved, `decision-case-191` to
-    `archive/migration/2026-09-16/1955/decisions/`. `render`: `CLAUDE.md` (208.2),
-    `.claude/skills/pre-task/SKILL.md` (203.2, 208.3); `render --check` exit 0.
-  - `deferred_by` now: `rule-work-mode`, `rule-subagent-guppi` by `decision-case-183` and
-    `decision-case-206`; `insight-ledger-hi-tied-to-its-session-by-position` by
-    `decision-case-192` and `decision-case-205`; `rule-spec-box` by `decision-case-207`.
-- `sprint.md` not changed: the handoff names its Slice 3d clause as a flag, a Case of the
-  next Plan Mode (Flags, item 5).
+- Cases 209–216, 221, 222 ratified and built in code in session 2238: `guppi/sprint.py` (new,
+  `guppi sprint` in `cli.py`, `tests/test_sprint.py`), `guppi/generate.py` (211.1, 211.2: an
+  Estimate `update` whose `set` carries `method` drops `## Context` and `## Method`; a
+  `sections.Criterion` on a page without `method` and no `set.method` fails alone),
+  `guppi/lint.py` (212), `guppi/pretask.py` (213.1, 213.2, 221: `--session <stamp>`),
+  `guppi/materialize.py` (214.1: fields lifted by the category's `schema.yaml`, a stray key
+  `unknown`). Tests 396 → 411, all green; `make style` clean; `render --check` 0. Commit
+  `a4c3509` on `migration`.
+- One-off in the session: the stray `ref` field removed from 15 Estimate pages by a script
+  (210); the 21 open task lines of `raw/2026-09-16/1955/spec.md` ticked by hand (216).
+- Rule-class by hand: `index.md` §1 and §7, `glossary.md` (the Sprint row),
+  `case-schema.md` (`set.method` on a recut), `rules/schema.md` (`governs` on a `check`
+  rule), `estimates/schema.md` and `schema.yaml`.
+- Readings in the ledger, all `passed`: `estimate-materialize-marks-superseded`,
+  `-end-of-work-order`, `-brief-written` (the 1955 brief), `-case-protocol-loaded`,
+  `-permissions`, `-generate-writes`, `-generate-fails-alone`, `-lint-catches`,
+  `-pretask-checks-the-plan`, `-pretask-hook-gates`, `-materialize-assembles` — 12 lines.
+  One lesson. Cases 217, 218, 219, 220, 223 deferred.
+- Not done in the session: every page create and update (this run), the three renders
+  (this run), the first `guppi sprint` (this run), the readings listed below,
+  `rule-carry-over`'s stray `ref` (defer 223). `sprint.md` was not edited by hand.
+- This run. `materialize` walked four units: 1034, 1651, 1955 extended with 0 entries (the
+  1034 and 1955 yamls gained `superseded_by: 222` on the entries of cases 192 and 205), 2238
+  written with 55 entries, no `unknown`, no `incomplete`, no `failed`. Two synthesis entries
+  appended (57). `generate`: 67 pages written or changed from 2238, 0 from the three others;
+  stderr empty; exit 0; every entry `applied`. Counts of the 2238 yaml:
+  - `create`: 1 rule (`rule-sprint`, `ref: rule-documentation`, `enforcement: check`,
+    `governs: vault/wiki/sprint.md`); 1 entity (`entity-sprint-migration`, MOC, the first
+    live page under `entities/`); 4 estimates (`estimate-sprint-renders-the-backlog`,
+    `estimate-sprint-migration-lint-clean`, `-leftovers-gone`, `-merges`); 1 lesson
+    (`lesson-ledger-block-followed-by-a-tool-call`, `error`); 27 Decision pages (209,
+    209.1–209.7, 211.1–211.4, 212, 213.1–213.4, 214.1, 214.2, 215, 217–223). New tag
+    `sprint` in `tags.md`.
+  - `update`: 3 rule pages (`rule-documentation` 209.5, `rule-brief` 209.6, `rule-pretask`
+    213.3); 17 Estimate entries on 12 pages (`estimate-documentation-completes` 209.5,
+    `-brief-written` 209.6, `-generate-writes` 211.1 and 211.3, `-generate-fails-alone`
+    211.2, `-generate-walks-dates`, `-lint-catches` 211.3 and 212, `-pretask-reconciles`
+    211.3 and 213.3, `-materialize-assembles` 211.3 and 214.1, `-pretask-checks-the-plan`
+    213.1 and 221, `-pretask-hook-gates` 213.2, `-permissions` 215); 4 Insight entries on 2
+    pages (213.4, 214.2, 222 twice with `supersedes` 205 and 192); 7 Rule-class file entries
+    printed "a Rule-class file, applied by hand".
+  - `defer`: 7 targets in 5 Cases — `rule-page-generation` (217), `rule-work-mode` and
+    `rule-subagent-guppi` (218), `rule-spec-box` (219), `rule-git-context` and
+    `rule-github-issues` (220), `rule-carry-over` (223); all `exists`, `deferred_by`
+    appended, no placeholder.
+  - `estimate`: 12 reading entries, all `passed`. `lesson`: 1.
+  - Synthesis: 2 entries `librarian: synthesis` (Flags).
+  - Cascade: `rule-end-of-work` and `rule-materialize` `draft` → `built`;
+    `rule-documentation`, `rule-page-generation`, `rule-pretask` `built` → `draft` (an
+    Estimate of each recut to `pending`); `insight-ledger-hi-tied-to-its-session-by-position`
+    `actioned` (`addressed_by: decision-case-213.1`), `deferred_by` cleared, severity 0;
+    `insight-materialize-lift-loses-a-schema-field` `actioned` (`addressed_by:
+    decision-case-214.1`), severity 0; `decision-case-192` and `decision-case-205`
+    `superseded`; `lesson-pretask-check-session-fallback-stops-at-midnight` and
+    `lesson-materialize-item-ref-lifted-as-a-page-field` `archived` (their siblings were
+    archived by earlier runs).
+  - `cleanup`: 4 pages moved to `archive/migration/2026-09-17/2238/` — `decisions/
+    decision-case-192`, `decisions/decision-case-205`, the two lessons above. `render`:
+    `.claude/agents/librarian-guppi.md` (209.5, step 5), `.claude/skills/pre-task/SKILL.md`
+    (213.3); `render --check` exit 0.
+  - `guppi sprint` (step 5, the first render): exit 0, stderr empty; `vault/wiki/sprint.md`
+    written whole from `entity-sprint-migration` — the three Done-when lines `pending`, the
+    backlog of Slices 3b, 4, 5 with six unticked items and the status and `deferred_by` of
+    each page (`rule-work-mode`, `rule-subagent-guppi`, `rule-spec-box` `draft`; the three
+    Estimates `pending`), the Closed section from the page.
+  - `deferred_by` now: `rule-work-mode`, `rule-subagent-guppi` by `decision-case-183`, `-206`,
+    `-218`; `rule-spec-box` by `-207`, `-219`; `rule-page-generation` by `-217`;
+    `rule-git-context`, `rule-github-issues` by `-220`; `rule-carry-over` by `-223`.
 
 ## Readings due
 
-Four Estimates stand `pending`, none `failed`. The 1955 Spec carries no `- [ ] read` line
-for any of them; the place is the page's `method`. The target Rule stands `draft` in every
-case.
+Nine Estimates stand `pending`, none `failed`. The 2238 Spec carries a `- [ ] read <slug>`
+line for seven of them, the slug alone; the place is the page's `method` in every case.
 
-- `estimate-materialize-marks-superseded` — `rule-materialize` (`draft`); read: pytest in
-  `tests/test_materialize.py`, the tests of the supersedes mark, plus one live reading of a
-  librarian's run. Facts of this run: `materialize` marked 191's three `defer` entries in
-  the 1034 yaml `superseded_by: 203.2` and its decision record `superseded_by:
-  decision-case-203.2`; the entries were already `applied`, `generate` skipped nothing new;
-  `decision-case-191` was set `superseded` by the record's `supersedes` and archived by
-  `cleanup`.
-- `estimate-end-of-work-order` — `rule-end-of-work` (`draft`); read: `make test-end-of-work`
-  over `tests/test_gate.py`, and the live reading of the order by hand — the order of
-  session 1955: retro, handoff, this librarian run.
+- `estimate-sprint-renders-the-backlog` — `rule-sprint` (`draft`); read: `pytest
+  tests/test_sprint.py` (5 tests, green in the session), plus one reading of the rendered
+  `sprint.md` after the librarian's run. Facts of this run: `guppi sprint` exit 0, no
+  stderr, `sprint.md` rewritten whole (45 lines changed), six backlog items each with the
+  status of its page; the reading is the next session's line.
+- `estimate-documentation-completes` — `rule-documentation` (`draft`); read: `make
+  test-documentation`, plus the live reading by hand. Facts of this run: materialize, index
+  check, synthesis, generate, cleanup, render, sprint, brief, archive, commit, in that
+  order; no stderr from any script. The page keeps its five `### case` blocks by the
+  Case's word (counted by `unmigrated`).
 - `estimate-brief-written` — `rule-brief` (`draft`); read: one reading by hand after the
-  first librarian run, recorded in the estimate line — this brief.
+  first librarian run, recorded in the estimate line — this brief, written without a
+  sprint edit.
+- `estimate-pretask-reconciles` — `rule-pretask` (`draft`); read: one reading by hand,
+  written into the estimate line — the next `/pre-task` with `--session <stamp>`.
+- `estimate-generate-walks-dates` — `rule-page-generation` (`draft`); read:
+  `tests/test_generate.py` with two dated folders; live, the librarian's first run. Set
+  `pending` by the recut of 211.3 (`set.method`); not in the handoff's list of readings due;
+  no `- [ ] read` line in the Spec.
 - `estimate-carry-over-writes` — `rule-carry-over` (`draft`); read: pytest over the skill's
-  render plus one live reading of a carried-over session — a live `/carry`, not this
-  session.
+  render, plus one live reading of a carried-over session — a live `/carry`, none yet.
+- `estimate-sprint-migration-lint-clean` — `entity-sprint-migration` (`draft`); read:
+  `make lint` exit 0, or only `unread` lines on the Estimates of `entity-sprint-migration`;
+  the close of the sprint.
+- `estimate-sprint-migration-leftovers-gone` — `entity-sprint-migration` (`draft`); read:
+  one reading of the tree by hand at the close of the sprint, each path and decision named
+  in the estimate line (`vault/parked/`, the 2026-08 documents, the old archive root, the
+  empty raw date folders; decisions 11.1 and 11.2 taken again — defer 220).
+- `estimate-sprint-migration-merges` — `entity-sprint-migration` (`draft`); read: `make
+  test` on the last commit of `migration`, then `git log` of `main` after the merge.
 
 ## Deferred
 
-1. **`insight-ledger-hi-tied-to-its-session-by-position`** — `open`, severity 1, cases 192
-   and 205. Pattern: the event log ties a `hi` line to its session by the `session-start`
-   lines around it, not by an id; any start missing from the window or added to it sends
-   the `hi` to the wrong session and the ledger writer refuses. Proposal: Case 111 already
-   writes a stamped `<stamp> hi` line from the `UserPromptSubmit` hook and reads the window
-   by that stamp with the old rule as a fallback; the readings of `estimate-event-log-records`
-   and `estimate-ledger-write-lifts` at the next `/hi` decide whether the binding by position
-   can be retired. The defer of 205: "Retire the binding by position: `pretask.resolve_session`
-   resolves the session from the stamped `hi` and walks back to the date of that `hi`,
-   instead of falling back to the last `session-start` of today's event log; the ledger
-   hook's window is checked against it so the two readers do not disagree at midnight.
-   Closes all four children of the Insight. Needs its own Estimate and one live reading
-   across midnight." In Plan Mode a Case whose `recommend` starts from that Proposal, ending
-   in an `update` of the Insight (`status: actioned`, `addressed_by`), a rejection written
-   the same way, or a `defer` with the Insight as its target. (stood in 4 briefs)
-2. **`insight-materialize-lift-loses-a-schema-field`** — `open`, severity 1, reopened by
-   this run (was `actioned` by `decision-case-144.3`); third child
-   `lesson-materialize-item-ref-lifted-as-a-page-field`. Pattern: `materialize` lifts a
-   ledger line or a `then` item into an entry and loses a field the page schema needs; the
-   page is written without it and lint names the page, never the parser. Proposal: name,
-   in one place, the fields each category's page needs and where each comes from — a brace
-   of the ledger line, a key of the `then` item — and have `materialize` lift by that table
-   rather than by a per-kind branch; a field the source holds and the table does not know
-   is a fault of the parser, not of the page. In Plan Mode a Case whose `recommend` starts
-   from that Proposal, ending in an `update` of the Insight (`status: actioned`,
-   `addressed_by`), a rejection written the same way, or a `defer` with the Insight as its
-   target. (stood in 1 brief)
-3. **`rule-work-mode`** — cases 183 and 206, Slice 3b: "Work Mode: the Spec as tasks with
+1. **`insight-ledger-hook-reads-only-the-final-text`** — `open`, severity 1, reopened by
+   this run (was `actioned` by `decision-case-137`); fifth child
+   `lesson-ledger-block-followed-by-a-tool-call`. Pattern: the ledger writer sees the last
+   text of a turn, not the turn; a LEDGER block anywhere else in the turn is never written.
+   Proposal: read `guppi/ledger.py` (`transcript_texts` and the filter that picks the main
+   agent's messages) against a transcript and settle whether an intermediate assistant text
+   is in the transcript at all; if present, collect every assistant text of the `hi` window
+   instead of the last one, if absent, the writer needs a second event beside `Stop`; either
+   way count back blocks seen against lines written and show it at `/hi`. In Plan Mode a
+   Case whose `recommend` starts from that Proposal, ending in an `update` of the Insight
+   (`status: actioned`, `addressed_by`), a rejection written the same way, or a `defer` with
+   the Insight as its target. (stood in 1 brief)
+2. **`rule-work-mode`** — cases 183, 206, 218, Slice 3b: "Work Mode: the Spec as tasks with
    code, the ticked boxes in spec.md, the test of each Estimate written first and turned
-   green; the Plan Mode of a session of its own, after the build of cases 201–203 and
-   before Slice 4." Placeholder, `draft`; lint: `deferred: 14 times since case 29`.
-   (stood in 18 briefs)
-4. **`rule-subagent-guppi`** — cases 183 and 206, Slice 3b: "what a subagent may do in Work
-   Mode, and the fork that comes back to the main agent as a Case; with `rule-work-mode`,
-   after the build of cases 201–203." Placeholder, `draft`; lint: `deferred: 14 times since
-   case 29`. (stood in 18 briefs)
-5. **`rule-spec-box`** — case 207, after Slice 3b: "A Spec box: a session that opens a
-   conserved Spec — a `raw/<date>/<HHMM>/` folder with `carry.md` — in a git worktree on
-   its own branch, and runs its Work Mode. Not `/hi`, not Plan Mode: a skill lists the
-   boxes, the person picks one, the agent executes it. It writes only into that folder —
-   ticks `spec.md`, readings into its `ledger.md`, `handoff.md` — and into the code; it
-   never touches `wiki/` and never runs the librarian. It ends with `/retro` and `/handoff`;
-   done is `handoff.md` present and `carry.md` removed. At a fork it stops and returns the
-   question, as a subagent does. The branch is merged into the main branch; the librarian
-   runs once there, over every unapplied unit and every handoff, and writes one brief.
-   Open: the skill and its conditions; the ledger hook and `guppi gate` inside a worktree
-   with its own `event_log.md`; the cut of a Spec into boxes that share no file and no
-   page; a third end of a session in `rule-end-of-work`; whether the box is a subagent of
-   the main session with `isolation: worktree` or a session the person starts." Placeholder,
-   `draft`, `near: rule-carry-over` (the box opens a Spec `/carry` conserved). (stood in
-   1 brief)
+   green; who ticks which task line (case 217); the Plan Mode of a session of its own, the
+   first open Slice of the sprint page." Placeholder, `draft`; lint: `deferred: 15 times
+   since case 29`. (stood in 19 briefs)
+3. **`rule-subagent-guppi`** — cases 183, 206, 218, Slice 3b: "what a subagent may do in Work
+   Mode, and the fork that comes back to the main agent as a Case; with rule-work-mode, the
+   next session." Placeholder, `draft`; lint: `deferred: 15 times since case 29`. (stood in
+   19 briefs)
+4. **`rule-spec-box`** — cases 207, 219, after Slice 3b: "the Spec box of case 207 — a
+   conserved Spec run in a worktree on its own branch, Work Mode only, the librarian once
+   after the merge; its open questions as 207 left them: the skill and its conditions, the
+   ledger hook and guppi gate inside a worktree, the cut of a Spec into boxes, a third end
+   of a session, subagent or session." Placeholder, `draft`. (stood in 2 briefs)
+5. **`rule-page-generation`** — case 217, with Slice 3b: "generate ticks, in the session's
+   spec.md, the task line under the entry's Case whose kind and slug it names — `- [ ]
+   create <slug>` / `update <slug>` / `defer <slug>` — once the entry applied, and the
+   librarian's render step ticks its `guppi render` line the same way; a line not found is
+   no error; the lines on code, tests, migrations and readings stay the agent's; the script
+   reads the Spec, not the librarian — said in the Criterion; a one-off tick of the older
+   Specs is case 216, not this; with Slice 3b, which fixes who ticks what." `draft`. (stood
+   in 1 brief)
+6. **`rule-git-context`** — case 220, the close of the sprint: "the pull without an upstream
+   at /hi — set the upstream of `migration`, or keep the printed failure as the decision
+   11.1 made it; at the close of the sprint, read by
+   estimate-sprint-migration-leftovers-gone." `built`. (stood in 1 brief)
+7. **`rule-github-issues`** — case 220, the close of the sprint: "gh not logged in, no GitHub
+   remote — log in and add the remote, or keep the printed line as decision 11.2 made it; at
+   the close of the sprint, read by estimate-sprint-migration-leftovers-gone." `built`.
+   (stood in 1 brief)
 
-Retired from the previous brief: `rule-page-generation`, `rule-lint`, `rule-pretask` — case
-191 superseded by 203.2, `decision-case-191` archived, the three pages carry no
-`deferred_by`.
+Over the cap of seven: `rule-carry-over` — case 223, the next Plan Mode: "drop the stray
+`ref` field from `rule-carry-over`, a one-off like case 210 — a script run once by path and
+a History line with the pointer." `draft`, `deferred_by: decision-case-223`; also Flags,
+item 1 of the handoff. Retired from the previous brief:
+`insight-ledger-hi-tied-to-its-session-by-position` (`actioned` by 213.4; its defers 192 and
+205 superseded by 222) and `insight-materialize-lift-loses-a-schema-field` (`actioned` by
+214.2).
 
 ## Flags
 
-- Entries: no `incomplete`, `failed` or `unparsed` in the three yamls; one `near` — the
-  `defer` of `rule-spec-box` (207), `near: rule-carry-over`, checked against the 49 lines of
-  the rules Grep as the handoff asked, not a duplicate. The four readings of the created
-  Estimates (ledger lines 28, 29, 30, 33) have no entry of their own: folded into the
-  `create` entries, `folded`.
-- Synthesis, against 32 lesson lines and 13 insight lines:
-  `lesson-materialize-item-ref-lifted-as-a-page-field` clustered under
-  `insight-materialize-lift-loses-a-schema-field` (its first child is the same mechanism —
-  every key of the item lifted into `fields`; its Proposal names the case of a field the
-  source holds and the table does not know). The Insight was `actioned` (`addressed_by:
-  decision-case-144.3`, "no table in code"): set `open` again, severity 0 → 1, the
-  `addressed_by` field stays. The handoff expected no shared root cause.
-  `lesson-materialize-file-item-matched-by-slug-only` opened and not clustered (its cause
-  is `find_item` matching by slug, not the lift of fields).
+- Entries: no `incomplete`, `failed`, `near` or `unparsed` in the four yamls; no `unknown`
+  key. Index check: `rule-sprint` against the 49 lines of the rules Grep — nothing the
+  same; the closest by mechanism is `rule-render-harness` (a page rendered into a governed
+  file), whose subject is the harness files, not the sprint — not near.
+  `entity-sprint-migration` against the entities Grep (2 lines, both schema examples) —
+  nothing.
+- Synthesis, against 31 lesson lines and 13 insight lines:
+  `lesson-ledger-block-followed-by-a-tool-call` clustered under
+  `insight-ledger-hook-reads-only-the-final-text` — the same condition, the block not the
+  last text of the turn (a ToolSearch call followed it). The Insight was `actioned`
+  (`addressed_by: decision-case-137`): set `open` again, severity 0 → 1, `addressed_by`
+  stays, its four earlier children stay archived. The handoff expected the lesson alone,
+  no cluster.
 - Handoff flags, each a Case of the next Plan Mode:
-  1. The 13 Estimate pages born of cases 188 and 189 carry a stray `ref` field beside
-     `target` (the lesson above); the code is fixed, the pages need a one-off migration.
-  2. A recut `update` sets `pending` and the Criterion but not `method`, and drops neither
-     `## Context` nor `## Method`: the six pages recut today stay in `unmigrated` (42). The
-     rule of a recut should carry `set: {method: …}` and the two sections dropped by hand.
-  3. `estimate-plan-mode-names-its-estimates`: lint `method: says by hand while
-     estimate-pretask-checks-the-plan names a test file` — the MOC clause of 112.1 now
-     reads the `method` field; the Estimate is a reading of Plan Mode, not a pipeline over
-     the children. Either its `method` names `make test-plan-mode` or the clause changes.
-  4. `estimate-permissions` read `passed` while its Criterion says "eight entries" and lists
-     nine; the set holds, the count is the Criterion's own. An `update` next Plan Mode.
-  5. `sprint.md`: Slice 3d closes with session 1955 — case 191 built; 3b (case 206) next;
-     a line for the recut remainder counted by lint (`unmigrated`). The Slice 3d clause
-     still says what remains of 3d is case 191.
-- `estimate-case-protocol-loaded` read `passed` on behaviour: the Criterion asks the agent
-  to state two rules at the first turn, the first turn wrote the frontier instead ("the
-  rules were followed, not recited"); the person may dispute (handoff).
-- The 1955 Spec carries one unticked `- [ ] read estimate-case-protocol-case-form` line;
-  the reading is on ledger line 41, `passed`, applied.
+  1. `rule-carry-over` carries a stray `ref: rule-end-of-work` field (defer 223, over the
+     cap above).
+  2. `generate` ticking the page lines of a Spec (defer 217, with Slice 3b).
+  3. Whether `sprint.md` should also be checked at `SessionStart` like `render --sync` —
+     not in case 209.
+  4. The unticked page lines of the 2238 Spec: 36 unticked `- [ ]` lines by grep, 7 of them
+     `read` lines (the handoff counts 35 page lines); they stay open by case 217 and are not
+     debt for the next Retro.
+- `estimate-generate-walks-dates` `pending` after the recut of 211.3 and absent from the
+  handoff's list of readings due (Readings due above); `rule-page-generation` `draft` by it.
+- `estimate-case-protocol-loaded` read `passed` on the first turn of 2238, which stated
+  the two rules; the person accepted the 1955 reading and this one (handoff).
+- `estimate-documentation-completes` keeps five `### case` blocks beside its `method`
+  field (209.5, by the Case's word); counted by `unmigrated`.
 - `rule-spec-box` (placeholder): lint `schema: missing field kind`, `missing field
   estimates`, `orphan: no other live page names it in its frontmatter`.
-- Lint: `estimates/estimate-lint-catches: ref: body names slug, which no live or archived
-  page carries` — new with its recut Criterion; the same finding on
-  `estimate-generate-writes` left with its recut, as the handoff said.
-- Stale defers: `rule-work-mode` and `rule-subagent-guppi`, `deferred: 14 times since case
-  29` (lint), 18 briefs.
-- Contradiction named by lint: `estimates/estimate-plan-mode-names-its-estimates: method:
-  says by hand while estimate-pretask-checks-the-plan names a test file` (flag 3 above).
-- MOC candidates: none. `entities/` holds no live page.
-- Lint at the close of the run, 74 findings (77 before the librarian's run per the
-  handoff):
+- Stale defers: `rule-work-mode` and `rule-subagent-guppi`, `deferred: 15 times since case
+  29` (lint), 19 briefs.
+- Contradictions: none named by lint this run; the `method` finding on
+  `estimate-plan-mode-names-its-estimates` left in Work Mode; the `ref: body names slug`
+  finding on `estimate-lint-catches` left with its new Result, as the handoff said.
+- MOC candidates: none. `entities/` holds one live page, `entity-sprint-migration` (MOC).
+- Lint at the close of the run, 78 findings (74 after the previous run):
   - 62 × `decisions/decision-case-<1–28>: schema: missing section ## Context` /
-    `## Problem` (31 pages, the Cases 1–28 — the sprint's closing item).
+    `## Problem` (31 pages, the Cases 1–28 — `estimate-sprint-migration-lint-clean`).
   - `rules/rule-spec-box: schema: missing field kind`, `missing field estimates`,
     `orphan: no other live page names it in its frontmatter` (3).
-  - `estimates/estimate-lint-catches: ref: body names slug, which no live or archived page
-    carries`
-  - `rules/rule-subagent-guppi: deferred: 14 times since case 29`
-  - `rules/rule-work-mode: deferred: 14 times since case 29`
-  - `estimates/estimate-brief-written`, `-carry-over-writes`, `-end-of-work-order`,
-    `-materialize-marks-superseded`: `unread: pending` (4).
-  - `estimates/estimate-plan-mode-names-its-estimates: method: says by hand while
-    estimate-pretask-checks-the-plan names a test file`
-  - `estimates: unmigrated: 42 pages in the shape before case 193`
+  - `rules/rule-subagent-guppi: deferred: 15 times since case 29`
+  - `rules/rule-work-mode: deferred: 15 times since case 29`
+  - `estimates/estimate-brief-written`, `-carry-over-writes`, `-documentation-completes`,
+    `-generate-walks-dates`, `-pretask-reconciles`, `-sprint-migration-leftovers-gone`,
+    `-sprint-migration-lint-clean`, `-sprint-migration-merges`,
+    `-sprint-renders-the-backlog`: `unread: pending` (9).
+  - `estimates: unmigrated: 34 pages in the shape before case 193`
 
 ## Readings at the close
 
-- `make test`: 396 passed.
-- `make lint`: 74 findings, exit 1 (the list above).
-- Live pages: rules 42, estimates 59, lessons 29, insights 11, decisions 285, entities 0.
-  Archived this run: 1 decision page (`decision-case-191`).
+- `make test`: 411 passed.
+- `make lint`: 78 findings, exit 1 (the list above).
+- Live pages: rules 43, estimates 63, lessons 28, insights 11, decisions 310, entities 1.
+  Archived this run: 2 decision pages (`decision-case-192`, `decision-case-205`), 2 lessons
+  (`lesson-pretask-check-session-fallback-stops-at-midnight`,
+  `lesson-materialize-item-ref-lifted-as-a-page-field`).

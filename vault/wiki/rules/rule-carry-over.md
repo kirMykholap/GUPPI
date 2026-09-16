@@ -8,6 +8,7 @@ governs: .claude/skills/carry/SKILL.md
 render_mode: full
 parent: "[[rule-end-of-work]]"
 estimates: ["[[estimate-carry-over-writes]]"]
+deferred_by: ["[[decision-case-223]]"]
 origin: raw/2026-09-16/1034/ledger.md#case-190.1
 sprint: migration
 created: 2026-09-16
@@ -61,3 +62,4 @@ the brief. The session that finishes the Spec deletes `carry.md`.
 - 2026-09-16 created · [[decision-case-190.1]]
 - 2026-09-16 estimate estimate-carry-over-writes added · [[decision-case-190.1]]
 - 2026-09-16 updated: the Render written — the skill's text, called by the agent after the fork (case 196.1) · [[decision-case-196.1]]
+- 2026-09-17 deferred · [[decision-case-223]]

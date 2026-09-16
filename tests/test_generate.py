@@ -197,13 +197,14 @@ CHILD = create(
 CHILD_ESTIMATE = create(
     "estimate-child-works",
     "estimates",
-    {"type": "estimate", "kind": "QA"},
-    ref="rule-child",
-    sections={
-        "Context": "Why it matters.",
-        "Criterion": "the child works",
-        "Method": "pytest in tests/test_x.py",
+    {
+        "type": "estimate",
+        "kind": "QA",
+        "purpose": "The child works",
+        "method": "pytest tests/test_x.py",
     },
+    ref="rule-child",
+    sections={"Criterion": "the child works"},
     tags=["harness"],
     line=3,
 )
@@ -236,7 +237,7 @@ def test_creates_yield_conformant_pages_with_backlinks_in_order(tmp_path):
     assert props(estimate)["target"] == "rule-child" and props(estimate)["status"] == "pending"
     assert "## Criterion\n\nthe child works" in estimate
     findings = lint.lint(tmp_path)
-    assert findings == [], findings
+    assert findings == ["estimates/estimate-child-works: unread: pending"], findings  # 202
     log = page(tmp_path, "", "log")
     assert (
         f"- {DATE} rules/rule-root child rule-child added · [[decision-case-1]] · generate" in log
@@ -880,13 +881,14 @@ def test_one_decision_page_per_case_and_supersedes_marks_the_earlier(tmp_path):
     assert (
         "## Context\n\nA root." in one
         and "## Problem\n\nNo root." in one
-        and "## Given\n\nNothing." in one
-        and "## When" not in one  # the when lives on the Estimate (case 72.4)
+        and "## Given" not in one  # the contract lives on the Estimate (cases 72.4, 201.2)
+        and "Nothing." not in one
+        and "## When" not in one
         and "Someone asks." not in one
         and "## Then" not in one
         and "A root exists." not in one
     )
-    assert one.index("## Problem") < one.index("## Given") < one.index("## History")
+    assert one.index("## Problem") < one.index("## History")
     assert f"- {DATE} superseded by decision-case-2 · [[decision-case-2]]" in one
     two = props(page(tmp_path, "decisions", "decision-case-2"))
     assert two["supersedes"] == ["decision-case-1"] and two["tags"] == [
@@ -1212,26 +1214,28 @@ def test_a_delete_outside_the_vault_applies_and_a_delete_of_a_missing_page_fails
     assert "old-thing" not in log
 
 
-# --- Case 72.4: the derived Estimate, the criterion block added and removed, the decision
-# page's Criterion links -----------------------------------------------------------------
+# --- Case 201: the Estimate page by the model, `checked`, the old shape refused, the
+# Decision page without Given and without a Criterion list -------------------------------
 
-CASE_BLOCK_1 = (
-    "### case 1\n\nWhen:\nthe hook fires.\n\nThen:\nthe page exists.\n**＋** It is listed."
-)
-CASE_BLOCK_5 = "### case 5\n\nWhen:\nthe hook fires twice.\n\nThen:\nnothing doubles."
-DERIVED_ESTIMATE = create(
+WRITTEN_CRITERION = "When:\nthe hook fires.\n\nThen:\nthe page exists.\n**＋** It is listed."
+MODEL_ESTIMATE = create(
     "estimate-child",
     "estimates",
-    {"type": "estimate", "kind": "QA"},
+    {
+        "type": "estimate",
+        "kind": "QA",
+        "purpose": "The page exists once the hook fires",
+        "method": "pytest tests/test_x.py",
+    },
     ref="rule-child",
-    sections={"Context": "Why it matters.", "Criterion": CASE_BLOCK_1, "Method": "pytest."},
+    sections={"Criterion": WRITTEN_CRITERION},
     tags=["harness"],
     line=2,
-    derived=True,
 )
 
 
 def estimate_page(criterion, slug="estimate-child", target="rule-child", status="pending"):
+    """A page of the shape before case 193: `## Context` and `## Method` as sections."""
     return (
         f"---\ntype: estimate\nkind: QA\nstatus: {status}\ntarget: {target}\norigin: x\n"
         "sprint: s\ncreated: 2026-09-09\ntags: [harness]\n---\n\n## Context\n\nWhy.\n\n"
@@ -1239,166 +1243,147 @@ def estimate_page(criterion, slug="estimate-child", target="rule-child", status=
     )
 
 
-def derived_update(slug, block, line=5, **content):
+def reading(slug, result, line=4):
     return {
         "line": line,
         "text": "",
-        "case": str(line),
-        "kind": "update",
+        "kind": "estimate",
         "category": "estimates",
         "slug": slug,
-        "origin": f"raw/{DATE}/ledger.md#case-{line}",
-        "decision": f"decision-case-{line}",
-        "derived": True,
-        "criterion_block": block,
-        "set": {"status": "pending"},
-        "change": f"criterion: case {line} added",
-        **content,
+        "status": "passed",
+        "result": result,
+        "origin": f"raw/{DATE}/ledger.md#L{line}",
     }
 
 
-def removal(case, line=6):
-    return {
-        "line": line,
-        "text": "",
-        "case": str(line),
-        "kind": "remove_criterion",
-        "case_removed": str(case),
-        "change": f"criterion: case {case} removed",
-        "origin": f"raw/{DATE}/ledger.md#case-{line}",
-        "decision": f"decision-case-{line}",
-    }
-
-
-def test_a_derived_create_writes_the_estimate_and_lists_it_on_its_target(tmp_path):
-    seed(tmp_path, entries=[ROOT, CHILD, DERIVED_ESTIMATE])
+def test_an_estimate_create_writes_purpose_method_and_criterion_and_no_old_sections(tmp_path):
+    seed(tmp_path, entries=[ROOT, CHILD, MODEL_ESTIMATE])
     code, _, err = run(tmp_path)
     assert code == 0 and err == "", err
     estimate = page(tmp_path, "estimates", "estimate-child")
     fields = props(estimate)
     assert fields["status"] == "pending" and fields["target"] == "rule-child"
-    assert fields["origin"] == ORIGIN and fields["sprint"] == "migration"
-    assert str(fields["created"]) == DATE and fields["tags"] == ["harness"]
-    assert "derived" not in fields
-    assert "## Context\n\nWhy it matters.\n" in estimate
-    assert f"## Criterion\n\n{CASE_BLOCK_1}\n\n## Method\n\npytest.\n" in estimate  # verbatim
+    assert fields["purpose"] == "The page exists once the hook fires"
+    assert fields["method"] == "pytest tests/test_x.py" and "checked" not in fields
+    keys = list(yaml.safe_load(estimate.split("---")[1]))
+    assert (
+        keys.index("target") < keys.index("purpose") < keys.index("method") < keys.index("origin")
+    )
+    assert f"## Criterion\n\n{WRITTEN_CRITERION}\n" in estimate
+    assert "## Context" not in estimate and "## Method" not in estimate
     assert "## Result" not in estimate
-    assert f"## History\n\n- {DATE} created · [[decision-case-1]]\n" in estimate
-    child = page(tmp_path, "rules", "rule-child")
-    assert props(child)["estimates"] == ["estimate-child"]
-    assert "## Estimates" not in child
-    assert f"- {DATE} estimate estimate-child added · [[decision-case-1]]" in child
-    log = page(tmp_path, "", "log")
-    assert f"- {DATE} estimates/estimate-child created · [[decision-case-1]] · generate" in log
-    assert f"- {DATE} rules/rule-child estimate estimate-child added · [[decision-case-1]]" in log
+    assert props(page(tmp_path, "rules", "rule-child"))["estimates"] == ["estimate-child"]
 
 
-def test_a_derived_update_appends_the_block_sets_pending_and_replaces_method(tmp_path):
+def test_an_estimate_update_replaces_the_criterion_whole_and_keeps_the_old_sections(tmp_path):
+    entry = {
+        "line": 5,
+        "text": "",
+        "case": "5",
+        "kind": "update",
+        "category": "estimates",
+        "slug": "estimate-child",
+        "origin": f"raw/{DATE}/ledger.md#case-5",
+        "decision": "decision-case-5",
+        "sections": {"Criterion": "Given:\nnothing.\n\nWhen:\nasked.\n\nThen:\nanswered."},
+        "set": {"status": "pending"},
+        "change": "the Criterion replaced whole",
+    }
     seed(
         tmp_path,
-        entries=[
-            derived_update("estimate-child", CASE_BLOCK_5, sections={"Method": "new method"}),
-            derived_update("estimate-plain", CASE_BLOCK_5, line=7),
-        ],
+        entries=[entry],
         pages=[
-            ("estimates", "estimate-child", estimate_page(CASE_BLOCK_1, status="passed")),
-            ("estimates", "estimate-plain", estimate_page("the child works", "estimate-plain")),
+            ("estimates", "estimate-child", estimate_page("### case 1\n\nold", status="passed"))
         ],
     )
     code, _, err = run(tmp_path)
     assert code == 0 and err == "", err
     text = page(tmp_path, "estimates", "estimate-child")
     assert props(text)["status"] == "pending"
-    assert f"## Criterion\n\n{CASE_BLOCK_1}\n\n{CASE_BLOCK_5}\n\n## Method\n\nnew method\n" in text
-    assert f"- {DATE} criterion: case 5 added · [[decision-case-5]]" in text
-    assert "updated:" not in text
-    plain = page(tmp_path, "estimates", "estimate-plain")
-    assert (
-        f"## Criterion\n\nthe child works\n\n{CASE_BLOCK_5}\n\n## Method\n\nold method\n" in plain
-    )
-    # N comes from the block's `### case N` line; the pointer from the entry's Case
-    assert f"- {DATE} criterion: case 5 added · [[decision-case-7]]" in plain
-    log = page(tmp_path, "", "log")
-    assert f"- {DATE} estimates/estimate-child criterion: case 5 added · [[decision-case-5]]" in log
+    assert "## Criterion\n\nGiven:\nnothing.\n\nWhen:\nasked.\n\nThen:\nanswered.\n" in text
+    assert "### case 1" not in text and "old" not in text.split("## Method")[0]
+    assert "## Context\n\nWhy.\n" in text and "## Method\n\nold method\n" in text  # kept as is
+    assert f"- {DATE} updated: the Criterion replaced whole · [[decision-case-5]]" in text
 
 
-def test_a_derived_update_without_a_target_fails_that_entry_alone(tmp_path):
-    missing = derived_update(None, CASE_BLOCK_5, incomplete=["estimate"])
-    seed(tmp_path, entries=[ROOT, missing, CHILD])
-    code, _, err = run(tmp_path)
-    assert code == 1 and "no page to update" in err
-    data = load_yaml(tmp_path)
-    assert "failed" in data["entries"][1] and "applied" not in data["entries"][1]
-    assert data["entries"][0]["applied"] and data["entries"][2]["applied"]
-
-
-def test_a_remove_criterion_deletes_the_block_from_every_estimate_that_holds_it(tmp_path):
+def test_a_reading_writes_checked_from_the_result_date_or_the_yamls_date(tmp_path):
     seed(
         tmp_path,
-        entries=[removal(1)],
+        entries=[
+            reading("estimate-child", "2026-09-14, `pytest tests/test_x.py`: 3 green", line=4),
+            reading("estimate-plain", "three tests green, no date", line=5),
+        ],
         pages=[
-            ("estimates", "estimate-child", estimate_page(CASE_BLOCK_1 + "\n\n" + CASE_BLOCK_5)),
-            (
-                "estimates",
-                "estimate-other",
-                estimate_page(CASE_BLOCK_5 + "\n\n" + CASE_BLOCK_1, "estimate-other", "rule-root"),
-            ),
-            ("estimates", "estimate-plain", estimate_page("the child works", "estimate-plain")),
+            ("estimates", "estimate-child", estimate_page("c")),
+            ("estimates", "estimate-plain", estimate_page("c", "estimate-plain")),
         ],
     )
-    code, out, err = run(tmp_path)
+    code, _, err = run(tmp_path)
     assert code == 0 and err == "", err
-    assert "no Estimate holds a block" not in out
+    child = props(page(tmp_path, "estimates", "estimate-child"))
+    assert child["status"] == "passed" and str(child["checked"]) == "2026-09-14"
+    plain = props(page(tmp_path, "estimates", "estimate-plain"))
+    assert str(plain["checked"]) == DATE
     text = page(tmp_path, "estimates", "estimate-child")
-    assert f"## Criterion\n\n{CASE_BLOCK_5}\n\n## Method" in text and "### case 1" not in text
-    assert f"- {DATE} criterion: case 1 removed · [[decision-case-6]]" in text
-    other = page(tmp_path, "estimates", "estimate-other")
-    assert (
-        f"## Criterion\n\n{CASE_BLOCK_5}\n\n## Method" in other and "the page exists" not in other
-    )
-    assert f"- {DATE} criterion: case 1 removed · [[decision-case-6]]" in other
-    plain = page(tmp_path, "estimates", "estimate-plain")
-    assert "## Criterion\n\nthe child works\n\n## Method" in plain and "removed" not in plain
-    log = page(tmp_path, "", "log")
-    assert (
-        f"- {DATE} estimates/estimate-child criterion: case 1 removed · [[decision-case-6]]" in log
-    )
-    assert "estimate-plain" not in log
-    assert load_yaml(tmp_path)["entries"][0]["applied"]
+    keys = list(yaml.safe_load(text.split("---")[1]))
+    assert keys.index("target") < keys.index("checked") < keys.index("origin")
+    assert "## Result\n\n2026-09-14, `pytest tests/test_x.py`: 3 green\n" in text
 
 
-def test_a_remove_criterion_with_no_block_anywhere_applies_and_says_so(tmp_path):
+def test_the_old_shape_criterion_block_and_remove_criterion_fail_alone(tmp_path):
+    block_update = {
+        "line": 5,
+        "text": "",
+        "case": "5",
+        "kind": "update",
+        "category": "estimates",
+        "slug": "estimate-child",
+        "origin": f"raw/{DATE}/ledger.md#case-5",
+        "decision": "decision-case-5",
+        "criterion_block": "### case 5\n\nWhen:\nx.\n\nThen:\ny.",
+        "set": {"status": "pending"},
+        "change": "criterion: case 5 added",
+    }
+    removal = {
+        "line": 6,
+        "text": "",
+        "case": "6",
+        "kind": "remove_criterion",
+        "case_removed": "1",
+        "origin": f"raw/{DATE}/ledger.md#case-6",
+        "decision": "decision-case-6",
+    }
     seed(
         tmp_path,
-        entries=[removal(9)],
-        pages=[("estimates", "estimate-child", estimate_page(CASE_BLOCK_1))],
+        entries=[block_update, removal, ROOT],
+        pages=[
+            ("estimates", "estimate-child", estimate_page("### case 1\n\nold", status="passed"))
+        ],
     )
-    code, out, err = run(tmp_path)
-    assert code == 0 and err == ""
-    assert "remove_criterion: case 9: no Estimate holds a block" in out
-    assert "### case 1" in page(tmp_path, "estimates", "estimate-child")
-    assert "removed" not in page(tmp_path, "", "log")
-    assert load_yaml(tmp_path)["entries"][0]["applied"]
+    code, _, err = run(tmp_path)
+    assert code == 1
+    assert "estimate-child: criterion_block: a shape the script no longer knows" in err
+    assert "unknown kind 'remove_criterion'" in err
+    text = page(tmp_path, "estimates", "estimate-child")
+    assert props(text)["status"] == "passed" and "### case 1\n\nold" in text  # untouched
+    data = load_yaml(tmp_path)
+    assert "failed" in data["entries"][0] and "failed" in data["entries"][1]
+    assert data["entries"][2]["applied"]  # the rest apply
+    assert props(page(tmp_path, "rules", "rule-root"))["status"] == "draft"
 
 
-def test_a_decision_page_links_the_estimates_it_shaped_and_has_no_when(tmp_path):
-    entries = [ROOT, CHILD, DERIVED_ESTIMATE, CHILD_ESTIMATE]
+def test_a_decision_page_carries_no_given_and_no_criterion_list(tmp_path):
+    entries = [ROOT, CHILD, MODEL_ESTIMATE, CHILD_ESTIMATE]
     decisions = records_for(entries)
-    decisions[0]["criterion"] = [
-        {"estimate": "estimate-child", "case": "1"},
-        {"estimate": "estimate-child-works", "case": "1"},
-    ]
+    decisions[0]["criterion"] = [{"estimate": "estimate-child", "case": "1"}]  # an old record
     seed(tmp_path, entries=entries, decisions=decisions)
     code, _, err = run(tmp_path)
     assert code == 0 and err == "", err
     text = page(tmp_path, "decisions", "decision-case-1")
-    assert "## Given\n\ng\n\n## Criterion\n\n- [[estimate-child]] § case 1\n" in text
-    assert "- [[estimate-child-works]] § case 1\n\n## History" in text
-    assert "## When" not in text and "criterion:" not in text.split("---")[1]
+    assert "## Context\n\nc\n\n## Problem\n\np\n\n## History" in text
+    assert "## Given" not in text and "## When" not in text and "## Criterion" not in text
+    assert "§ case" not in text
     assert not [f for f in lint.lint(tmp_path) if "decision-case-1" in f]
-
-
-# --- an Insight as the target of update and defer (case 124.2) ----------------------------
 
 
 def test_a_defer_marks_an_insight_deferred_by_and_a_supersedes_clears_it(tmp_path):

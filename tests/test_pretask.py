@@ -160,6 +160,15 @@ def with_page(project_dir, category, slug, kind="Leaf", estimates=("estimate-x",
     (folder / f"{slug}.md").write_text(text, encoding="utf-8", newline="\n")
 
 
+def with_estimate(project_dir, slug="estimate-x"):
+    folder = project_dir / "vault" / "wiki" / "estimates"
+    folder.mkdir(parents=True, exist_ok=True)
+    text = (
+        "---\ntype: estimate\nkind: QA\nstatus: passed\ntarget: rule-x\n---\n\n## Criterion\n\nc\n"
+    )
+    (folder / f"{slug}.md").write_text(text, encoding="utf-8", newline="\n")
+
+
 def check(project_dir, plan=PLAN, ledger=LINE, frontier=CLEAN_FRONTIER, event_log=START + HI):
     with_event_log(project_dir, event_log)
     with_ledger(project_dir, ledger)
@@ -259,8 +268,9 @@ def test_a_nested_estimate_is_covered_by_its_parents_create_line(tmp_path):
 def test_a_standalone_estimate_create_needs_its_own_line(tmp_path):
     plan = PLAN.replace(
         "update:\n  - slug: rule-x\n    change: one line\n",
-        "create:\n  - slug: estimate-alone\n    type: estimate\n",
+        "create:\n  - slug: estimate-alone\n    type: estimate\n    ref: rule-x\n",
     ).replace("- [ ] guppi/x.py: the change", "- [ ] take the reading of estimate-alone")
+    with_page(tmp_path, "rules", "rule-x")
     _, out, _ = check(tmp_path, plan=plan, ledger="")
     assert out.splitlines() == ["case 1: item [create][estimate-alone] has no decision line"]
 
@@ -348,6 +358,7 @@ def test_an_estimate_without_its_task_line_is_a_finding(tmp_path):
         "    change: one line\n",
         "    change: one line\n  - slug: estimate-x-holds\n    set: {status: pending}\n",
     )
+    with_estimate(tmp_path, "estimate-x-holds")
     code, out, _ = check(tmp_path, plan=plan, ledger=ledger)
     assert code == 1
     assert out.splitlines() == ["case 1: estimate-x-holds has no task line"]
@@ -359,8 +370,9 @@ def test_a_created_estimate_without_its_task_line_is_a_finding(tmp_path):
     ledger = "- 16:00:00 decision[case 1][create][estimate-fresh]{ref:rule-x}{tags:a}\n"
     plan = PLAN.replace(
         "update:\n  - slug: rule-x\n    change: one line\n",
-        "create:\n  - slug: estimate-fresh\n    type: estimate\n",
+        "create:\n  - slug: estimate-fresh\n    type: estimate\n    ref: rule-x\n",
     )
+    with_page(tmp_path, "rules", "rule-x")
     _, out, _ = check(tmp_path, plan=plan, ledger=ledger)
     assert out.splitlines() == ["case 1: estimate-fresh has no task line"]
 
@@ -413,85 +425,78 @@ def test_a_case_mixing_a_defer_with_an_update_needs_a_tasks_block(tmp_path):
     assert out.splitlines() == ["case 1: decision lines and no tasks block"]
 
 
-# --- the form of a Leaf item (case 72.5) ------------------------------------------------
+# --- the form of an Estimate item (case 203.1) ------------------------------------------
 
-LEAF_CREATE = "create:\n  - slug: rule-z\n    type: rule\n    kind: Leaf\n    method: pytest\n"
-CREATE_LINE = "- 16:00:00 decision[case 1][create][rule-z]{ref:rule-root}{tags:a}\n"
+ESTIMATE_CREATE = (
+    "create:\n  - slug: estimate-x-again\n    type: estimate\n    ref: rule-x\n"
+    "    kind: QA\n    purpose: p\n    method: pytest tests/test_x.py\n    tags: [a]\n"
+)
+CREATE_LINE = "- 16:00:00 decision[case 1][create][estimate-x-again]{ref:rule-x}{tags:a}\n"
+ESTIMATE_UPDATE = "  - slug: estimate-x\n    set: {status: pending}\n    change: recut\n"
+UPDATE_LINE = "- 16:00:01 decision[case 1][update][estimate-x]{ref:estimate-x}\n"
+WRITTEN = (
+    "    sections:\n      Criterion: |\n        When:\n        w.\n\n        Then:\n        t.\n"
+)
+TASKS = "```tasks\n- [ ] guppi/x.py: the change\n- [ ] read estimate-x\n- [ ] read estimate-x-again\n```"
 
 
-def create_plan(item=LEAF_CREATE):
-    return PLAN.replace("update:\n  - slug: rule-x\n    change: one line\n", item)
+def create_plan(item=ESTIMATE_CREATE):
+    plan = PLAN.replace("update:\n  - slug: rule-x\n    change: one line\n", item)
+    return plan.replace("```tasks\n- [ ] guppi/x.py: the change\n```", TASKS)
 
 
-def test_a_leaf_create_without_method_is_a_finding(tmp_path):
-    plan = create_plan(LEAF_CREATE.replace("    method: pytest\n", ""))
-    code, out, _ = check(tmp_path, plan=plan, ledger=CREATE_LINE)
+def test_an_estimate_create_whose_ref_names_no_live_page_is_a_finding(tmp_path):
+    code, out, _ = check(tmp_path, plan=create_plan(), ledger=CREATE_LINE)
     assert code == 1
-    assert out.splitlines() == ["case 1: create rule-z has no method"]
+    assert out.splitlines() == ["case 1: create estimate-x-again: ref rule-x names no live page"]
+    with_page(tmp_path, "rules", "rule-x")
     assert check(tmp_path, plan=create_plan(), ledger=CREATE_LINE) == (0, "", "")
 
 
-def test_a_moc_create_needs_no_method(tmp_path):
-    plan = create_plan(
-        LEAF_CREATE.replace("kind: Leaf", "kind: MOC").replace("    method: pytest\n", "")
-    )
-    assert check(tmp_path, plan=plan, ledger=CREATE_LINE) == (0, "", "")
-
-
-def test_a_leaf_update_without_contract_is_a_finding(tmp_path):
-    with_page(tmp_path, "rules", "rule-x", kind="Leaf")
-    code, out, _ = check(tmp_path)
+def test_an_update_of_an_estimate_without_a_page_is_a_finding(tmp_path):
+    plan = create_plan("update:\n" + ESTIMATE_UPDATE)
+    code, out, _ = check(tmp_path, plan=plan, ledger=UPDATE_LINE)
     assert code == 1
-    assert out.splitlines() == ["case 1: update rule-x has no contract"]
-    plan = PLAN.replace("    change: one line\n", "    change: one line\n    contract: same\n")
-    assert check(tmp_path, plan=plan) == (0, "", "")
+    assert out.splitlines() == ["case 1: update estimate-x: no such Estimate page"]
+    with_estimate(tmp_path)
+    assert check(tmp_path, plan=plan, ledger=UPDATE_LINE) == (0, "", "")
 
 
-def test_an_update_of_a_moc_or_of_a_missing_page_needs_no_contract(tmp_path):
-    assert check(tmp_path) == (0, "", "")  # no page: the missing-page finding is elsewhere
-    with_page(tmp_path, "rules", "rule-x", kind="MOC")
-    assert check(tmp_path) == (0, "", "")
-
-
-def test_two_contracts_in_one_case_is_a_finding(tmp_path):
-    with_page(tmp_path, "rules", "rule-x", kind="Leaf")
-    plan = PLAN.replace(
-        "    change: one line\n",
-        "    change: one line\n    contract: changed\n" + LEAF_CREATE,
-    )
-    code, out, _ = check(tmp_path, plan=plan, ledger=LINE + CREATE_LINE)
+def test_two_estimate_items_with_the_cases_criterion_is_a_finding(tmp_path):
+    with_page(tmp_path, "rules", "rule-x")
+    with_estimate(tmp_path)
+    plan = create_plan(ESTIMATE_CREATE + "update:\n" + ESTIMATE_UPDATE)
+    code, out, _ = check(tmp_path, plan=plan, ledger=CREATE_LINE + UPDATE_LINE)
     assert code == 1
-    assert out.splitlines() == ["case 1: two contracts in one Case — split it"]
-    # a sub-case is its own Case: one contract each is fine
+    assert out.splitlines() == ["case 1: two promises in one Case — split it"]
+    # one of them writes its own Criterion: it is signed in the block, no split (case 204)
+    written = create_plan(ESTIMATE_CREATE + WRITTEN + "update:\n" + ESTIMATE_UPDATE)
+    assert check(tmp_path, plan=written, ledger=CREATE_LINE + UPDATE_LINE) == (0, "", "")
+    # an update that sets a status other than pending is a reading, not a promise
+    passed = create_plan(
+        ESTIMATE_CREATE + "update:\n" + ESTIMATE_UPDATE.replace("pending", "passed")
+    )
+    assert check(tmp_path, plan=passed, ledger=CREATE_LINE + UPDATE_LINE) == (0, "", "")
+    # a sub-case is its own Case: one promise each is fine
     split = plan.replace(
-        LEAF_CREATE,
-        "```\n\n```tasks\n- [ ] guppi/x.py: the change\n```\n\n### Case 1.1 — sub\n\n"
-        "```then\n" + LEAF_CREATE,
+        "update:\n" + ESTIMATE_UPDATE,
+        "```\n\n" + TASKS + "\n\n### Case 1.1 — sub\n\n```then\nupdate:\n" + ESTIMATE_UPDATE,
     )
-    ledger = LINE + CREATE_LINE.replace("[case 1]", "[case 1.1]")
+    ledger = CREATE_LINE + UPDATE_LINE.replace("[case 1]", "[case 1.1]")
     assert check(tmp_path, plan=split, ledger=ledger) == (0, "", "")
 
 
-def test_a_derived_estimate_slug_that_names_a_page_needs_estimate_slug(tmp_path):
-    with_page(tmp_path, "estimates", "estimate-z", kind="Leaf")
-    code, out, _ = check(tmp_path, plan=create_plan(), ledger=CREATE_LINE)
-    assert code == 1
-    assert out.splitlines() == ["case 1: estimate estimate-z exists; name estimate_slug"]
-    named = create_plan(LEAF_CREATE + "    estimate_slug: estimate-z-again\n")
-    assert check(tmp_path, plan=named, ledger=CREATE_LINE) == (0, "", "")
-
-
-def test_an_archived_estimate_page_counts_as_existing(tmp_path):
-    archived = tmp_path / "vault" / "archive" / "migration" / "2026-09-01" / "estimates"
-    archived.mkdir(parents=True)
-    (archived / "estimate-z.md").write_text("---\ntype: estimate\n---\n", encoding="utf-8")
-    _, out, _ = check(tmp_path, plan=create_plan(), ledger=CREATE_LINE)
-    assert out.splitlines() == ["case 1: estimate estimate-z exists; name estimate_slug"]
-
-
-def test_a_leaf_create_with_method_needs_no_estimate_line(tmp_path):
-    # the Estimate is derived from the Case (72.3) and has no line of its own (72.5)
-    assert check(tmp_path, plan=create_plan(), ledger=CREATE_LINE) == (0, "", "")
+def test_the_keys_of_the_old_shape_are_not_read(tmp_path):
+    # `method`, `contract`, `estimate_slug` on a rule's item raise no finding (cases 194.1, 203.1)
+    with_page(tmp_path, "rules", "rule-x", kind="Leaf")
+    plan = PLAN.replace("    change: one line\n", "    change: one line\n    contract: changed\n")
+    assert check(tmp_path, plan=plan) == (0, "", "")
+    leaf = PLAN.replace(
+        "update:\n  - slug: rule-x\n    change: one line\n",
+        "create:\n  - slug: rule-z\n    type: rule\n    kind: Leaf\n    estimate_slug: e\n",
+    )
+    line = "- 16:00:00 decision[case 1][create][rule-z]{ref:rule-root}{tags:a}\n"
+    assert check(tmp_path, plan=leaf, ledger=line) == (0, "", "")
 
 
 def test_file_and_defer_items_are_outside_the_form_checks(tmp_path):
@@ -609,20 +614,3 @@ def test_a_parsed_line_of_a_later_date_of_the_window_is_read(tmp_path):
         ),
         "case 2: line [update][rule-y]: no Case 2 heading in the plan",
     ]
-
-
-def test_a_contract_change_names_the_estimate_when_the_page_does_not(tmp_path):
-    plan = PLAN.replace("    change: one line\n", "    change: one line\n    contract: changed\n")
-    with_page(tmp_path, "rules", "rule-x", kind="Leaf", estimates=("e-one", "e-two"))
-    code, out, _ = check(tmp_path, plan=plan)
-    assert code == 1
-    assert "case 1: rule-x has 2 estimates (e-one, e-two); name estimate_slug" in out.splitlines()
-    named = plan.replace(
-        "    contract: changed\n", "    contract: changed\n    estimate_slug: e-two\n"
-    )
-    assert check(tmp_path, plan=named) == (0, "", "")
-    with_page(tmp_path, "rules", "rule-x", kind="Leaf", estimates=())
-    code, out, _ = check(tmp_path, plan=plan)
-    assert "case 1: rule-x has 0 estimates (none); name estimate_slug" in out.splitlines()
-    with_page(tmp_path, "rules", "rule-x", kind="Leaf", estimates=("e-one",))
-    assert check(tmp_path, plan=plan) == (0, "", "")  # one Estimate names itself

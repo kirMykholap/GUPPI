@@ -16,13 +16,13 @@ clean; without a `hi` in the session's window it exits 0 with one line on stderr
 session is `--session`, else `CLAUDE_SESSION_ID`, else the last `session-start` of today's
 event log. The session's window is the one the ledger hook walks (`ledger.session_dir`):
 the ledgers of its dates, on the `hi` date from the `hi` time on, and its folder
-`raw/<hi date>/<hi HHMM>/` (case 73). Findings (cases 59.1, 59.2, 59.3, 59.6, 72.5, 74,
+`raw/<hi date>/<hi HHMM>/` (case 73). Findings (cases 59.1, 59.2, 59.3, 59.6, 74,
 75.2):
 
 - a decision line written since the session's `hi` with no item of its kind under its own
   Case heading of the plan, and an item of a `then` block with no decision line of its Case;
   a `defer` line matches a `defer` item, a Rule-class `file` line an `update` with that
-  `file`; a Leaf's Estimate has no line of its own (case 72.5), so a nested `estimate` of an
+  `file`; an Estimate has its own line and its own item (case 189); a nested `estimate` of an
   older Spec is covered by its parent's create line;
 - the frontier `raw/<hi date>/<hi HHMM>/frontier.md` (case 73.4): missing, an open `[ ]`
   line, a `[x] … · case N` whose heading the plan lacks, a `[-] … · defer case N` with no
@@ -31,11 +31,12 @@ the ledgers of its dates, on the `hi` date from the `hi` time on, and its folder
   defer-only Case has no work, case 74); an Estimate a `then` block creates or sets
   `pending` that no line of the Case's `tasks` names;
 - an `update` item with `file:` on a path a live Rule page `governs`;
-- the form of a Leaf item (case 72.5): a `create` of a Leaf Rule or Entity without
-  `method`; an `update` of one whose page is a Leaf without `contract`; a Case with two or
-  more Leaf items that create or say `contract: changed` (split it); a create with `method`
-  whose derived Estimate slug — `estimate-` + the target's slug minus its category prefix —
-  names an existing page and no `estimate_slug` on the item;
+- the form of an Estimate item (case 203.1): a Case whose `then` block holds two or more
+  Estimate items — a `create`, or an `update` with `set: {status: pending}` — without a
+  written `sections: Criterion` (one promise per Case: split it); an `update` of an
+  Estimate whose page does not exist; a `create` of an Estimate whose `ref` names no live
+  rule or entity; the keys of the shape before case 189 — `method`, `contract`,
+  `estimate_slug` — are not read;
 - a record line of the window — `- decision[`, `- estimate[`, `- lesson[`, timed — that
   `materialize.parse_line` does not read, with its date and line number (case 75.2).
 """
@@ -54,14 +55,13 @@ from guppi.materialize import (
     FENCE,
     category_of,
     find_item,
-    page_exists,
     parse_line,
     rule_class_path,
     split_cases,
     then_blocks,
     unquote,
 )
-from guppi.pages import read_category, read_page, wiki_root
+from guppi.pages import read_category, wiki_root
 
 TOOL = "ExitPlanMode"
 TIMED_RECORD = re.compile(r"^- (\d\d:\d\d:\d\d) (decision|estimate|lesson)\[")
@@ -356,74 +356,48 @@ def check_governed(blocks: dict, governed: dict[str, str]) -> list[str]:
     return findings
 
 
-def leaf_page(project_dir: Path, slug: str) -> bool | None:
-    """Whether the page of `slug` is a Leaf, by the `kind` of its frontmatter; None when no
-    page exists under its category."""
+def written_criterion(item: dict) -> bool:
+    """Whether the item signs its own Criterion under `sections` (cases 194.1, 204)."""
+    sections = item.get("sections")
+    return isinstance(sections, dict) and bool(str(sections.get("Criterion") or "").strip())
+
+
+def live_page(project_dir: Path, slug: str) -> bool:
     category = category_of(slug)
-    if category not in LEAF_CATEGORIES:
-        return None
-    path = wiki_root(project_dir) / category / f"{slug}.md"
-    if not path.exists():
-        return None
-    return read_page(path, category).props.get("kind") == "Leaf"
-
-
-def derived_estimate_slug(slug: str) -> str:
-    """`estimate-` + the target's slug minus its category prefix (case 72.1)."""
-    return "estimate-" + slug.split("-", 1)[1] if "-" in slug else f"estimate-{slug}"
-
-
-def page_estimates(project_dir: Path, slug: str) -> list[str]:
-    """The `estimates` of a live page, by slug; empty when the page or the field is not
-    there (case 90.2)."""
-    category = category_of(slug)
-    if not category:
-        return []
-    path = wiki_root(project_dir) / category / f"{slug}.md"
-    if not path.exists():
-        return []
-    value = read_page(path, category).props.get("estimates")
-    return [str(v) for v in value] if isinstance(value, list) else []
+    return bool(category) and (wiki_root(project_dir) / category / f"{slug}.md").exists()
 
 
 def check_form(blocks: dict, project_dir: Path) -> list[str]:
-    """72.5: a Leaf `create` carries `method`, a Leaf `update` `contract`; one contract per
-    Case; a derived Estimate slug that names an existing page needs `estimate_slug`. 90.2: a
-    contract change whose page carries no Estimate or more than one names the one it moves.
-    `file` and `defer` items are outside these checks."""
+    """The form of an Estimate item (case 203.1): a Case whose `then` block holds two or
+    more Estimate items — a `create`, or an `update` with `set: {status: pending}` — without
+    a written `sections: Criterion` is one promise too many (split it); an `update` of an
+    Estimate whose page does not exist, and a `create` of an Estimate whose `ref` names no
+    live rule or entity, are each a finding. The keys of the shape before case 189 —
+    `method`, `contract`, `estimate_slug` — are not read."""
     findings: list[str] = []
     for case, block in blocks.items():
-        contracts = 0
+        promises = 0
         for item in block.get("create") or []:
             slug = item.get("slug") if isinstance(item, dict) else None
-            if not slug or category_of(slug) not in LEAF_CATEGORIES:
+            if not slug or category_of(slug) != "estimates":
                 continue
-            if item.get("kind") == "Leaf":
-                contracts += 1
-                if not item.get("method"):
-                    findings.append(f"case {case}: create {slug} has no method")
-            if item.get("method") and not item.get("estimate_slug"):
-                derived = derived_estimate_slug(slug)
-                if page_exists(project_dir, "estimates", derived):
-                    findings.append(f"case {case}: estimate {derived} exists; name estimate_slug")
+            if not written_criterion(item):
+                promises += 1
+            ref = str(item.get("ref") or "")
+            if category_of(ref) not in LEAF_CATEGORIES or not live_page(project_dir, ref):
+                findings.append(f"case {case}: create {slug}: ref {ref or '?'} names no live page")
         for item in block.get("update") or []:
             slug = item.get("slug") if isinstance(item, dict) else None
-            if not slug or category_of(slug) not in LEAF_CATEGORIES:
+            if not slug or category_of(slug) != "estimates":
                 continue
-            if item.get("contract") == "changed":
-                contracts += 1
-                if not item.get("estimate_slug"):
-                    estimates = page_estimates(project_dir, slug) or []
-                    if len(estimates) != 1:  # none to take, or a choice to make (case 90.2)
-                        named = ", ".join(estimates) or "none"
-                        findings.append(
-                            f"case {case}: {slug} has {len(estimates)} estimates ({named}); "
-                            "name estimate_slug"
-                        )
-            if leaf_page(project_dir, slug) and not item.get("contract"):
-                findings.append(f"case {case}: update {slug} has no contract")
-        if contracts >= 2:
-            findings.append(f"case {case}: two contracts in one Case — split it")
+            set_fields = item.get("set")
+            pending = isinstance(set_fields, dict) and set_fields.get("status") == "pending"
+            if pending and not written_criterion(item):
+                promises += 1
+            if not live_page(project_dir, slug):
+                findings.append(f"case {case}: update {slug}: no such Estimate page")
+        if promises >= 2:
+            findings.append(f"case {case}: two promises in one Case — split it")
     return findings
 
 

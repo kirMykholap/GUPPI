@@ -49,9 +49,9 @@ The Case that produced it, minus what belongs to the conversation rather than th
 |---|---|---|
 | `## Context` | yes | What this is about. |
 | `## Problem` | yes | What required a decision. On a defer, what is unresolved. |
-| `## Given` | when a kind other than `defer` is present | The Case's `given`: how things worked before, the pre-task result included — what already existed, what conflicted, what sat in `draft`. The short form of Retro (a defer-only Case) has none (case 56). |
+| `## Given` | no | Only on pages written before case 201.2, which keep it: the Case's `given`. A page written after carries none — the contract lives on the Estimate (case 201.2). |
 | `## When` | no | Only on pages written before case 72, which keep it: the Case's `when`. A page written after case 72 has no `## When` (case 72.2). |
-| `## Criterion` | when the Case shaped an Estimate | One line per Estimate the Case shaped, `- [[estimate-x]] § case N`: the block of the Estimate's Criterion this Case wrote. `when` and `then` live on the Estimate, the `then` block on the target — not here (case 72.2). |
+| `## Criterion` | no | Only on pages written before case 201.2, which keep it: one `- [[estimate-x]] § case N` line per block the Case wrote under the shape before case 193. A page written after carries none: the Estimate named in the Case holds the Criterion whole (case 201.2). |
 | `## Deferred` | when the Case has a `defer` line with a `purpose` | The body of the deferred decision: one `### [[slug]]` heading per target of the Case's `defer` lines, in that order, each followed by that target's `purpose` verbatim, however long — written for a defer with a `ref` and for a placeholder alike, so the postponed work is never dropped; a `supersedes` does not edit it, the page is archived whole (case 186.1). |
 | `## Note` | no | Only when ratification was non-trivial: a reservation, a condition, a rejected alternative worth remembering. Omit when the answer was simply yes. |
 

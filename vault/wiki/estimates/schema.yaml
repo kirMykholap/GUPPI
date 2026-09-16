@@ -6,8 +6,8 @@ properties:
   required: [type, kind, status, target, origin, sprint, created, tags]
 # `target` names an Entity or a Rule; lint reports any other category (case 53.1).
 # `purpose`, `method` and `checked` are the fields of the model of case 182: one line each,
-# written on a page born since case 193; the 42 older pages carry none until their recut at
-# their first touch (case 191), so none is required yet (case 193).
+# written on a page born since case 193; the older pages carry none until their recut at
+# their first touch, counted by lint as `unmigrated` (case 202), so none is required yet (case 193).
   optional: [purpose, method, checked]
   values:
     kind: [QA, Research]

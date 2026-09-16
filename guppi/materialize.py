@@ -34,7 +34,8 @@ lifted into the entry's `sections.Criterion` — the shape `generate` applies as
 replacement; a `given` a sub-case lacks is its parent's. A Criterion the item wrote under
 `sections` stands. An Estimate `update` also carries `set: {status: pending}` unless the
 item set a status itself. An Estimate `create` keeps `kind`, `purpose`, `method` and
-`tags` as fields; `## Context` and `## Method` are not written, and a `context` key of the
+`tags` as fields — a `ref` on the item is the entry's `ref`, never a page field (case 201.1);
+`## Context` and `## Method` are not written, and a `context` key of the
 old shape is dropped; a `criterion` key of the old shape goes to `sections.Criterion`. On a
 rule's or entity's item the keys `method`, `contract`, `estimate_slug` and `estimate_kind`
 are ignored: they reach neither the page nor `incomplete`. A line with `{supersedes:case
@@ -485,6 +486,9 @@ def _lift_item(entry: dict, item: dict, kind: str, nested: str | None, incomplet
             fields.pop("context", None)  # `## Context` is not written since case 193
             if "criterion" in fields:  # the shape before 194.1: a written Criterion
                 entry.setdefault("sections", {})["Criterion"] = fields.pop("criterion")
+            ref = fields.pop("ref", None)  # the target is the entry's `ref`, not a page field
+            if ref and not entry.get("ref"):
+                entry["ref"] = str(ref)
             # `purpose` and `method` stay fields: one line each on the page (case 194.1)
         if nested == "estimate":
             if "parent_create" in item and not entry.get("ref"):

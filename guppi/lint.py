@@ -13,18 +13,27 @@ not exist), `path` (a file named in
 `implementation_ref` or `governs` that does not exist), `orphan` (a live entity, rule or
 estimate no other live page's frontmatter names; a lesson is a record and an Insight names
 it or not; an Insight owns its children through `children`, archived or not, and is never
-one, case 156), `status` (a status its Estimates do not support; an Estimate
-whose `target` is not an entity or a rule, case 53.1), `method` (an Estimate whose Method
-names no existing test file, or no make target for a MOC; a MOC's Estimate that names a
-target passes whatever else it says, and one that names none may say by hand when its
-children's Estimates are all by hand, case 112.1), `decision` (a decision page with none of the four
+one, case 156), `status` (a `built` page with an Estimate not `passed`, a `draft` one with
+every Estimate `passed`; an Estimate `passed` or `failed` without `## Result`; an Estimate
+whose `target` is not an entity or a rule, or does not list it, case 53.1), `unread` (every
+Estimate `pending` or `failed`, one finding each — red between a change of a promise and
+its reading, by design; cases 182, 202), `method` (the `method` field, or on a page of the
+shape before case 193 the `## Method` section: for a MOC's Estimate a `make <target>` of the
+Makefile passes whatever else it says, and one that names none may be a reading when its
+children's Estimates are all readings, case 112.1; for a Leaf's Estimate a `tests/` file
+that exists, the word `pytest`, a `make <target>` of the Makefile, or a reading — "by hand",
+"reading" — case 202), `decision` (a decision page with none of the four
 kind lists `create`, `update`, `delete`, `defer`, or with `kind` or `target_slug` still
 present, or a slug in a list with a category prefix that names neither a live nor an
 archived page, case 59.4), `deferred` (a placeholder — a rule or entity page that carries
 `deferred_by` and lacks the fields a `create` fills, `kind`, `estimates` and `tags` — earns
 one finding, `deferred: <N> times since case <M>`, N the `deferred` lines of its History
 and M the case of the first, in place of those three `schema` findings and of `orphan`; a
-page with `deferred_by` whose fields are in place earns none, case 186.3). A
+page with `deferred_by` whose fields are in place earns none, case 186.3), and last
+`unmigrated` (one line, `estimates: unmigrated: <N> pages in the shape before case 193` —
+the live Estimates without a `method` field, or with `## Context`, `## Method` or a `###
+case N` block; no line at zero; the checks of the old shape leave by an update of the rule
+once it reads zero, case 202). A
 `deferred_by` slug and a `[[decision-case-N]]` wikilink in History are refs like any other
 (cases 52.3, 52.4). `## When` is never a required section of a decision page, whatever
 `decisions/schema.yaml` says: a page written before case 72 has one, a later page has none
@@ -69,6 +78,8 @@ TABLE_SECTION = re.compile(r"^\|\s*`(## [^`]+)`")
 TEST_PATH = re.compile(r"`?(tests/[\w./-]+\.py)`?")
 MAKE_TARGET = re.compile(r"`?make ([\w-]+)`?")
 BY_HAND = "by hand"
+READING = "reading"  # a live reading is a method too (case 202)
+PYTEST = "pytest"
 CRITERION = "## Criterion"
 WHEN = "## When"
 CASE_BLOCK = re.compile(r"^### case ([\w.]+)\s*$", re.MULTILINE)  # an Estimate's Criterion block
@@ -475,36 +486,100 @@ def children_estimates(moc: Page, by_slug: dict[str, Page]) -> list[Page]:
     return out
 
 
-def check_method(page: Page, by_slug: dict[str, Page], project_dir: Path) -> list[Finding]:
+def method_of(page: Page) -> str | None:
+    """The `method` field, or on a page of the shape before case 193 the `## Method`
+    section; None when the page carries neither (case 202)."""
+    field = page.props.get("method")
+    if field is not None and str(field).strip():
+        return str(field)
+    return page.sections.get("## Method")
+
+
+def is_reading(method: str) -> bool:
+    return BY_HAND in method or READING in method
+
+
+def check_unread(page: Page) -> list[Finding]:
+    """Every `pending` or `failed` Estimate is one finding, `unread: <status>` — red between
+    a change of a promise and its reading, by design (cases 182, 202)."""
     if page.category != "estimates":
         return []
-    method = page.sections.get("## Method")
+    status = str(page.props.get("status", ""))
+    if status in ("pending", "failed"):
+        return [Finding(page, "unread", status)]
+    return []
+
+
+def is_old_shape(page: Page) -> bool:
+    """An Estimate of the shape before case 193: no `method` field, or `## Context`,
+    `## Method` or a `### case N` block still on the page (case 202)."""
+    return (
+        page.category == "estimates"
+        and not page.error
+        and (
+            page.props.get("method") is None
+            or "## Context" in page.sections
+            or "## Method" in page.sections
+            or bool(CASE_BLOCK.search(page.sections.get(CRITERION) or ""))
+        )
+    )
+
+
+def check_unmigrated(pages: list[Page]) -> list[Finding]:
+    """One line for the remainder of the recut, `estimates: unmigrated: <N> pages in the
+    shape before case 193`; no line at zero (case 202)."""
+    count = sum(1 for p in pages if is_old_shape(p))
+    if not count:
+        return []
+    pages_word = "page" if count == 1 else "pages"
+    return [
+        Finding("estimates", "unmigrated", f"{count} {pages_word} in the shape before case 193")
+    ]
+
+
+def check_method(page: Page, by_slug: dict[str, Page], project_dir: Path) -> list[Finding]:
+    """The `method` of an Estimate — the field, or the section of a page of the old shape:
+    for a MOC's Estimate a `make <target>` of the Makefile passes whatever else it says,
+    without one "by hand" passes only when every child's Estimate is a reading (case
+    112.1); for a Leaf's Estimate a `tests/` file that exists, the word `pytest`, a `make
+    <target>` of the Makefile, or a reading — "by hand", "reading" (case 202)."""
+    if page.category != "estimates":
+        return []
+    method = method_of(page)
     target = by_slug.get(str(page.props.get("target", "")))
     if method is None or target is None:
         return []
+    makefile = project_dir / "Makefile"
+    text = makefile.read_text(encoding="utf-8") if makefile.exists() else ""
+    match = MAKE_TARGET.search(method)  # the target first (case 112.1)
     if str(target.props.get("kind")) == "MOC":
-        match = MAKE_TARGET.search(method)  # the target first (case 112.1)
-        if not match and BY_HAND in method:
+        if not match and is_reading(method):
             return [
                 Finding(page, "method", f"says by hand while {child.slug} names a test file")
                 for child in children_estimates(target, by_slug)
-                if BY_HAND not in (child.sections.get("## Method") or "")
+                if not is_reading(method_of(child) or "")
             ][:1]
         if not match:
             return [Finding(page, "method", "a MOC's Estimate names no `make <target>`")]
-        makefile = project_dir / "Makefile"
-        text = makefile.read_text(encoding="utf-8") if makefile.exists() else ""
         if not re.search(rf"^{re.escape(match.group(1))}:", text, re.MULTILINE):
             return [Finding(page, "method", f"the Makefile has no target {match.group(1)}")]
         return []
-    if BY_HAND in method:
+    if is_reading(method):
         return []
     paths = TEST_PATH.findall(method)
-    if not paths:
-        return [Finding(page, "method", "names no tests/ file and does not say by hand")]
     for rel in paths:
         if not (project_dir / rel).exists():
             return [Finding(page, "method", f"names {rel}, which does not exist")]
+    if match:
+        if not re.search(rf"^{re.escape(match.group(1))}:", text, re.MULTILINE):
+            return [Finding(page, "method", f"the Makefile has no target {match.group(1)}")]
+        return []
+    if not paths and PYTEST not in method:
+        return [
+            Finding(
+                page, "method", "names no tests/ file, pytest or make target and is not a reading"
+            )
+        ]
     return []
 
 
@@ -540,8 +615,10 @@ def lint(project_dir: Path) -> list[str]:
             continue
         findings.extend(check_deferred(page))
         findings.extend(check_status(page, by_slug))
+        findings.extend(check_unread(page))
         findings.extend(check_method(page, by_slug, project_dir))
         findings.extend(check_decision(page, known))
+    findings.extend(check_unmigrated(pages))
     return [f.text for f in findings]
 
 

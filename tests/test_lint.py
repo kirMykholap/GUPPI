@@ -63,13 +63,13 @@ ESTIMATES_YAML = """\
 type: estimate
 properties:
   required: [type, kind, status, target, origin]
-  optional: []
+  optional: [purpose, method, checked]
   values:
     kind: [QA, Research]
     status: [pending, passed, failed]
 body:
-  required: ["## Context", "## Criterion", "## Method", "## History"]
-  optional: ["## Result"]
+  required: ["## Criterion", "## History"]
+  optional: ["## Context", "## Method", "## Result"]
 """
 
 ESTIMATES_MD = """\
@@ -83,15 +83,18 @@ ESTIMATES_MD = """\
 | `kind` | yes |
 | `status` | yes |
 | `target` | yes |
+| `purpose` | no |
+| `method` | no |
+| `checked` | no |
 | `origin` | yes |
 
 ## Body
 
 | Section | Required |
 |---|---|
-| `## Context` | yes |
 | `## Criterion` | yes |
-| `## Method` | yes |
+| `## Context` | no |
+| `## Method` | no |
 | `## Result` | no |
 
 ## History
@@ -113,7 +116,7 @@ def rule_page(**over):
         "type": "rule",
         "kind": "Leaf",
         "purpose": "Prevents x",
-        "status": "draft",
+        "status": "built",  # its one Estimate is passed by default (case 202)
         "enforcement": "hook",
         "implementation_ref": "[guppi/x.py]",
         "parent": "rule-root",
@@ -125,7 +128,30 @@ def rule_page(**over):
     return f"---\n{front}\n---\n\n## Purpose\n\nx\n\n## History\n\n- created\n"
 
 
-def estimate_page(status="pending", method="pytest in `tests/test_x.py`.", result=True, **over):
+def estimate_page(status="passed", method="pytest tests/test_x.py", result=True, **over):
+    """A page of the model (case 193): `method` a field, no `## Context`, no `## Method`;
+    `passed` with a Result by default, so the clean vault has nothing unread."""
+    props = {
+        "type": "estimate",
+        "kind": "QA",
+        "status": status,
+        "target": "rule-x",
+        "method": method,
+        "origin": ORIGIN,
+    }
+    props.update(over)
+    front = "\n".join(
+        f'{k}: "{v}"' if k == "method" else f"{k}: {v}" for k, v in props.items() if v is not None
+    )
+    body = f"---\n{front}\n---\n\n## Criterion\n\ncr\n\n"
+    if status != "pending" and result:
+        body += "## Result\n\nr\n\n"
+    return body + "## History\n\n- created\n"
+
+
+def old_estimate_page(status="passed", method="pytest in `tests/test_x.py`.", **over):
+    """A page of the shape before case 193: `## Context` and `## Method` as sections, no
+    `method` field — counted by `unmigrated`."""
     props = {
         "type": "estimate",
         "kind": "QA",
@@ -138,14 +164,17 @@ def estimate_page(status="pending", method="pytest in `tests/test_x.py`.", resul
     body = (
         f"---\n{front}\n---\n\n## Context\n\nc\n\n## Criterion\n\ncr\n\n## Method\n\n{method}\n\n"
     )
-    if status != "pending" and result:
+    if status != "pending":
         body += "## Result\n\nr\n\n"
     return body + "## History\n\n- created\n"
 
 
+UNMIGRATED_ONE = "estimates: unmigrated: 1 page in the shape before case 193"
+
+
 def root_page():
     return (
-        "---\ntype: rule\nkind: MOC\npurpose: Prevents root\nstatus: draft\n"
+        "---\ntype: rule\nkind: MOC\npurpose: Prevents root\nstatus: built\n"
         "children: [rule-x]\nestimates: []\norigin: raw/2026-09-09/ledger.md#case-1\n---\n\n"
         "## Purpose\n\nr\n\n## History\n\n- created\n"
     )
@@ -216,12 +245,9 @@ def test_a_forbidden_value_is_a_schema_finding(tmp_path):
 
 
 def test_a_missing_section_is_a_schema_finding(tmp_path):
-    seed(
-        tmp_path,
-        estimate=estimate_page().replace("## Method\n\npytest in `tests/test_x.py`.\n\n", ""),
-    )
+    seed(tmp_path, estimate=estimate_page().replace("## Criterion\n\ncr\n\n", ""))
     _, lines, _ = run(tmp_path)
-    assert lines == ["estimates/estimate-x-works: schema: missing section ## Method"]
+    assert lines == ["estimates/estimate-x-works: schema: missing section ## Criterion"]
 
 
 def test_prose_and_yaml_naming_different_fields_is_a_schema_prose_finding(tmp_path):
@@ -402,23 +428,48 @@ def test_a_placeholder_missing_another_field_still_earns_that_schema_finding(tmp
 
 
 def test_built_with_a_pending_estimate_is_a_status_finding(tmp_path):
-    seed(tmp_path, rule=rule_page(status="built"))
+    seed(tmp_path, rule=rule_page(status="built"), estimate=estimate_page(status="pending"))
     _, lines, _ = run(tmp_path)
-    assert lines == ["rules/rule-x: status: built while estimate-x-works is not passed"]
+    assert lines == [
+        "rules/rule-x: status: built while estimate-x-works is not passed",
+        "estimates/estimate-x-works: unread: pending",
+    ]
 
 
 def test_draft_with_every_estimate_passed_is_a_status_finding(tmp_path):
-    seed(tmp_path, estimate=estimate_page(status="passed"))
+    seed(tmp_path, rule=rule_page(status="draft"))
     _, lines, _ = run(tmp_path)
     assert lines == ["rules/rule-x: status: draft while every Estimate is passed"]
 
 
-def test_passed_without_a_result_is_a_status_finding(tmp_path):
-    seed(
-        tmp_path,
-        rule=rule_page(status="built"),
-        estimate=estimate_page(status="passed", result=False),
+def test_a_pending_or_failed_estimate_is_an_unread_finding(tmp_path):
+    # case 202: red between a change of a promise and its reading, by design
+    seed(tmp_path, rule=rule_page(status="draft"), estimate=estimate_page(status="pending"))
+    _, lines, _ = run(tmp_path)
+    assert lines == ["estimates/estimate-x-works: unread: pending"]
+    seed(tmp_path, rule=rule_page(status="draft"), estimate=estimate_page(status="failed"))
+    _, lines, _ = run(tmp_path)
+    assert lines == ["estimates/estimate-x-works: unread: failed"]
+
+
+def test_a_page_of_the_old_shape_is_counted_once_in_unmigrated(tmp_path):
+    # case 202: one line for the remainder of the recut, none at zero
+    wiki = seed(tmp_path, rule=rule_page(status="built"), estimate=old_estimate_page())
+    _, lines, _ = run(tmp_path)
+    assert lines == [UNMIGRATED_ONE]
+    write(wiki / "estimates" / "estimate-x-works.md", estimate_page())
+    assert run(tmp_path) == (0, [], "")
+    write(
+        wiki / "estimates" / "estimate-x-works.md",
+        estimate_page().replace("## Criterion\n\ncr", "## Criterion\n\n### case 1\n\ncr"),
     )
+    _, lines, _ = run(tmp_path)
+    assert lines[-1] == UNMIGRATED_ONE  # a block on a page with a method field still counts
+    assert len(lines) == 2  # the block's ref finding beside it
+
+
+def test_passed_without_a_result_is_a_status_finding(tmp_path):
+    seed(tmp_path, rule=rule_page(status="built"), estimate=estimate_page(result=False))
     _, lines, _ = run(tmp_path)
     assert lines == ["estimates/estimate-x-works: status: passed without a ## Result section"]
 
@@ -433,15 +484,53 @@ def test_an_estimate_its_target_does_not_list_is_a_status_finding(tmp_path):
 
 
 def test_a_leaf_method_naming_no_test_file_is_a_method_finding(tmp_path):
-    seed(tmp_path, estimate=estimate_page(method="Run it and look."))
+    seed(
+        tmp_path, rule=rule_page(status="built"), estimate=estimate_page(method="Run it and look.")
+    )
     _, lines, _ = run(tmp_path)
     assert lines == [
-        "estimates/estimate-x-works: method: names no tests/ file and does not say by hand"
+        (
+            "estimates/estimate-x-works: method: names no tests/ file, pytest or make target "
+            "and is not a reading"
+        )
+    ]
+
+
+def test_a_leaf_method_field_names_a_test_a_make_target_or_a_reading(tmp_path):
+    # case 202: the field is read; a test command, a make target or a reading passes
+    for method in (
+        "pytest tests/test_x.py, the tests of x",
+        "pytest in the tests of guppi/x.py",
+        "make test-root over the pipeline",
+        "one reading of the first reply of a session",
+        "One reading by hand at a session start",
+    ):
+        seed(tmp_path, rule=rule_page(status="built"), estimate=estimate_page(method=method))
+        assert run(tmp_path) == (0, [], ""), method
+    seed(tmp_path, rule=rule_page(status="built"), estimate=estimate_page(method="make test-nope"))
+    _, lines, _ = run(tmp_path)
+    assert lines == ["estimates/estimate-x-works: method: the Makefile has no target test-nope"]
+
+
+def test_the_method_section_is_read_on_a_page_of_the_old_shape(tmp_path):
+    seed(
+        tmp_path,
+        rule=rule_page(status="built"),
+        estimate=old_estimate_page(method="pytest in `tests/test_gone.py`."),
+    )
+    _, lines, _ = run(tmp_path)
+    assert lines == [
+        "estimates/estimate-x-works: method: names tests/test_gone.py, which does not exist",
+        UNMIGRATED_ONE,
     ]
 
 
 def test_a_leaf_method_naming_a_missing_test_file_is_a_method_finding(tmp_path):
-    seed(tmp_path, estimate=estimate_page(method="pytest in `tests/test_gone.py`."))
+    seed(
+        tmp_path,
+        rule=rule_page(status="built"),
+        estimate=estimate_page(method="pytest in `tests/test_gone.py`."),
+    )
     _, lines, _ = run(tmp_path)
     assert lines == [
         "estimates/estimate-x-works: method: names tests/test_gone.py, which does not exist"
@@ -449,12 +538,16 @@ def test_a_leaf_method_naming_a_missing_test_file_is_a_method_finding(tmp_path):
 
 
 def test_a_leaf_method_by_hand_is_the_exception(tmp_path):
-    seed(tmp_path, estimate=estimate_page(method="One reading by hand."))
+    seed(
+        tmp_path,
+        rule=rule_page(status="built"),
+        estimate=estimate_page(method="One reading by hand."),
+    )
     assert run(tmp_path) == (0, [], "")
 
 
 def test_a_moc_method_needs_a_make_target_that_exists(tmp_path):
-    wiki = seed(tmp_path)
+    wiki = seed(tmp_path, rule=rule_page(status="built"))
     write(
         wiki / "rules" / "rule-root.md",
         root_page().replace("estimates: []", "estimates: [estimate-root-holds]"),
@@ -473,7 +566,11 @@ def test_a_moc_method_needs_a_make_target_that_exists(tmp_path):
 
 
 def test_a_moc_method_by_hand_over_hand_read_children_is_the_exception(tmp_path):
-    wiki = seed(tmp_path, estimate=estimate_page(method="One reading by hand."))
+    wiki = seed(
+        tmp_path,
+        rule=rule_page(status="built"),
+        estimate=estimate_page(method="One reading by hand."),
+    )
     write(
         wiki / "rules" / "rule-root.md",
         root_page().replace("estimates: []", "estimates: [estimate-root-holds]"),
@@ -486,7 +583,7 @@ def test_a_moc_method_by_hand_over_hand_read_children_is_the_exception(tmp_path)
 
 
 def test_a_moc_method_by_hand_over_a_tested_child_is_a_method_finding(tmp_path):
-    wiki = seed(tmp_path)
+    wiki = seed(tmp_path, rule=rule_page(status="built"))
     write(
         wiki / "rules" / "rule-root.md",
         root_page().replace("estimates: []", "estimates: [estimate-root-holds]"),
@@ -504,7 +601,7 @@ def test_a_moc_method_by_hand_over_a_tested_child_is_a_method_finding(tmp_path):
 def test_cli_dispatches_to_lint(tmp_path, monkeypatch, capsys):
     from guppi import cli
 
-    seed(tmp_path, rule=rule_page(status="built"))
+    seed(tmp_path, rule=rule_page(status="draft"))
     monkeypatch.setenv("CLAUDE_PROJECT_DIR", str(tmp_path))
     assert cli.main(["lint"]) == 1
     assert "rules/rule-x: status" in capsys.readouterr().out
@@ -734,7 +831,8 @@ def test_a_case_block_naming_a_live_or_archived_decision_page_is_clean(tmp_path)
     write(wiki / "estimates" / "estimate-x-works.md", block_estimate("50", "49"))
     archived = tmp_path / "vault" / "archive" / "migration" / "2026-09-10" / "decisions"
     write(archived / "decision-case-49.md", "---\ntype: decision\n---\n")
-    assert run(tmp_path) == (0, [], "")
+    _, lines, _ = run(tmp_path)
+    assert lines == [UNMIGRATED_ONE]  # the blocks are the old shape, nothing else
 
 
 def test_a_case_block_naming_no_decision_page_is_a_ref_finding(tmp_path):
@@ -745,7 +843,8 @@ def test_a_case_block_naming_no_decision_page_is_a_ref_finding(tmp_path):
         (
             "estimates/estimate-x-works: ref: ## Criterion names case 51, "
             "and no live or archived page decision-case-51 exists"
-        )
+        ),
+        UNMIGRATED_ONE,
     ]
 
 
@@ -761,7 +860,7 @@ def test_a_case_block_heading_is_not_a_section_boundary():
 
 def test_a_moc_method_naming_a_make_target_passes_whatever_else_it_says(tmp_path):
     # case 112.1: the target is looked for first; "by hand" beside it is not a finding
-    wiki = seed(tmp_path)
+    wiki = seed(tmp_path, rule=rule_page(status="built"))
     write(
         wiki / "rules" / "rule-root.md",
         root_page().replace("estimates: []", "estimates: [estimate-root-holds]"),

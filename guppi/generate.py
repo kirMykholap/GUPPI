@@ -1,39 +1,78 @@
 """`guppi generate [--date YYYY-MM-DD]` — the vault written from `materialize.yaml`.
 
-The only writer to `vault/wiki/`. Applies the entries of `vault/raw/<date>/materialize.yaml`
-in order: a `create` becomes a page with the ratified fields and the derived ones, a
-`ref` lands in the parent's `children` or the target's `estimates`, an `update` edits
-fields and sections, an
-`estimate` fills status and Result whatever the page held, a `lesson` writes the lesson
-alone (a fact has no Estimate, case 53.1), a `defer` marks its target `deferred_by`
-(case 52.3), one Decision page per Case records the routing as one list per kind present
-— `create`, `update`, `delete`, `defer`, the slugs in ledger order (case 59.4) — with the
-body `Context`, `Problem`, `Given` from the Case and `Criterion`, one `[[estimate-x]] §
-case N` line per Estimate the Case shaped, when the record carries `criterion`; no `When`
-(case 72.4; pages written before keep theirs). The page is written before the entries of
-its lines, so the History lines of those entries can name it as `[[decision-case-N]]`
-(case 52.4). The Estimate entries `materialize` derives from a Case (case 72.3) take the
-same paths: a derived `create` is a create with `ref`; an `update` with `criterion_block`
-appends the `### case N` block to `## Criterion`, History `criterion: case N added`; a
-`remove_criterion` deletes the block of `case_removed` from every Estimate that holds it,
-History `criterion: case N removed`, and applies with nothing written when none does
-(case 72.4). What an entry lacks is not written; lint names it. Every applied entry is marked
-in the yaml, a stale `failed` mark is dropped on apply (case 53.3), so a rerun writes
-nothing; an entry that fails, whatever the cause, is marked `failed` and the rest apply.
-An entry with `failed` and no `kind` — a line `materialize` could not lift — is skipped
-with its mark kept and one stderr line (case 142.2); an entry with `superseded_by` is not
-applied, a later Case did its work, and only its Case's Decision page is written (case 151).
-No body section is derived from a ref field — `estimates`, `children`, `parent`,
-`implementation_ref`, `code_ref`, `insight`, `addressed_by` are the link, seen by Obsidian
-since case 148.1 — and a section a page still carries is left as it is (cases 166.2, 166.3).
-A `create` in `insights` is the librarian's, marked `librarian` at synthesis, and applies as
-any create; one from a ledger line, and every `delete` of an Insight, is refused (case 171).
-`log.md` is appended after each entry; History and log lines carry the run's date,
-`created` the yaml's. A `delete` of a slug with no category is a thing outside the
-vault: noted, nothing to archive. A slug collision is an error, never a rename. Without `--date` the script walks every yaml under `vault/raw/`
-— the date-level one of a date first, then `raw/<date>/<HHMM>/materialize.yaml` per
-session in folder order, dates ascending (case 103.3); `--date` walks the units of that
-date; a failure on one unit is reported and the walk goes on, with exit 1 at the end. Rule page: `vault/wiki/rules/rule-page-generation.md`.
+The only writer to `vault/wiki/`. Applies the entries of a `materialize.yaml` in order and
+writes nothing an entry does not carry: no section is derived from a ref field, no Estimate
+from a flag (cases 166.2, 194.1, 201). Rule page: `vault/wiki/rules/rule-page-generation.md`.
+
+One entry, one page (case 201.1). A `create` becomes a page: `type`, the entry's `fields`,
+`status` by category (`INITIAL_STATUS`), `origin`, `sprint` (the first `## <id>` heading of
+`sprint.md`), `created` (the yaml's date), `tags`; the body from `sections`, `## Purpose`
+from `purpose` on a rule or an entity; a `ref` lands in the parent's `children` or the
+target's `estimates`, History `child <slug> added` / `estimate <slug> added`, settled at
+the end of the run when the parent comes later in the yaml. An Estimate page carries
+`purpose`, `method` and `checked` as fields after `target`, its `## Criterion` from
+`sections`; `## Context` and `## Method` are the shape before case 193, kept where a page
+carries them and never written to a new one. A `create` whose slug is a placeholder —
+`status: draft`, no `kind` — fills it, `created` and `deferred_by` kept, History `created
+over placeholder` (case 101.1); any other existing page is a collision, never a rename. An
+`update` applies `set` to the frontmatter, `sections` as whole replacements — an Estimate's
+Criterion is replaced whole this way (case 194.1) — `replace` inside the body (whitespace
+collapsed, exactly one occurrence), History `updated: <change>`; an update with none of
+those prints `applied by hand`. An `update`, `estimate`, `delete` or `defer` whose slug is
+not under `wiki/` reaches the page under `vault/archive/`, `raw/` folders excluded, and
+edits it there (case 105.3). An `estimate` sets `status`, overwrites `## Result`, writes
+`checked` — the date the result opens with (case 199), else the yaml's date — and appends
+History `status: a → b` with the ledger pointer (case 53.2). A `delete` sets `archived`,
+History `deleted`; a `delete` of a slug with no category is a thing outside the vault:
+printed, applied, nothing to archive. A `defer` with a page appends the decision slug to
+its `deferred_by` — a rule, an entity or an Insight (case 124.2) — History `deferred`;
+without a page it writes a placeholder, `status: draft`, with the fields the Case gave. A
+`lesson` writes the lesson alone, `source` when the line carries it (case 53.1). Every ref
+field (`REF_FIELDS`) is written as a quoted wikilink, `"[[slug]]"`; a slug without a
+category prefix stays bare; readers strip the brackets (case 172). A `create` in
+`insights` applies only when marked `librarian` at synthesis; a `delete` of an Insight is
+refused always (case 171). History and `log.md` lines carry the run's date and end with
+`[[decision-case-N]]` when the entry belongs to a Case, else the ledger pointer (case
+52.4); `log.md` is appended after each entry; a tag of `new_tags` lands in `tags.md`, a
+used and undeclared one goes to stderr. `criterion_block` on an update and the kind
+`remove_criterion` — the shape before case 189 — are not applied: they fail as any shape
+the script does not know.
+
+The Decision page (case 201.2): one per Case, `decisions/decision-case-<N>.md`, written
+before the first entry of its lines so their History lines can name it; `case`, `status:
+current`, one list per kind present — `create`, `update`, `delete`, `defer`, the slugs in
+ledger order (case 59.4) — `source`, `supersedes`, `origin`, `sprint`, `created`, `tags`
+(the union of the targets' tags); the body `## Context` and `## Problem` from `case_text`
+and `## Deferred`, one `### [[slug]]` heading per target of the Case's `defer` lines with
+its `purpose` verbatim (case 186.1); no `## Given`, no `## When`, no `## Criterion` list —
+the contract lives on the Estimate; pages written before keep theirs. A `supersedes` sets
+the earlier page `superseded`, appends to its `superseded_by` and removes its slug from
+the `deferred_by` of every target of its `defer` list. An existing page is skipped; a
+`create` marked `exists` writes no page, its Decision page is still written.
+
+One bad entry never stops the run (case 201.3): an entry that fails — a collision, a `ref`
+naming no page, a `replace` absent or not unique, an unexpected shape, an unknown kind,
+any exception — is printed on stderr as `generate: <slug>: <what>`, marked `failed` and
+skipped; the rest apply; exit 1. Every applied entry is marked `applied: <time>`, a stale
+`failed` mark is dropped on apply (case 53.3), so a rerun writes nothing. An entry with
+`failed` and no `kind` — a line `materialize` could not lift — is skipped with its mark
+kept and one stderr line (case 142.2); an entry with `superseded_by` is not applied and
+leaves no line, only its Case's Decision page is written (case 151); a Rule-class file
+entry is printed `applied by hand` and marked applied.
+
+The cascade after all entries (case 201.4): an entity or rule whose Estimates are all
+`passed` becomes `built`, a `built` one with an Estimate not passed returns to `draft`,
+History `· cascade`; a `superseded` Decision page becomes `archived` (case 104.1); the
+`clustered` children of an `actioned` Insight become `archived` (case 104.2); every
+Insight's `severity` is recounted, a child's status read under `wiki/lessons/` or in the
+archive, a child with no page counted live (case 110); an `open` Insight at 0 becomes
+`archived`, an `actioned` one stays (case 104.3). No section is derived by the cascade.
+
+The walk (case 201.5): without `--date` every unit under `vault/raw/` with a yaml is
+applied — the date-level yaml of a date first, then `raw/<date>/<HHMM>/materialize.yaml`
+in folder order, dates ascending (case 103.3); `--date` walks the units of that date; a
+unit with nothing unapplied changes no page; a failure on one unit is reported and the
+walk goes on, with exit 1 at the end.
 """
 
 import argparse
@@ -66,7 +105,10 @@ KEY_ORDER = {
         "type", "kind", "purpose", "status", "parent", "children", "estimates", "deferred_by",
         "code_ref", "origin", "sprint", "created", "tags",
     ],
-    "estimates": ["type", "kind", "status", "target", "origin", "sprint", "created", "tags"],
+    "estimates": [
+        "type", "kind", "status", "target", "purpose", "method", "checked", "origin", "sprint",
+        "created", "tags",
+    ],
     "lessons": [
         "type", "kind", "root_cause", "status", "source", "insight", "origin", "sprint",
         "created", "tags",
@@ -87,6 +129,7 @@ SECTION_ORDER = {  # no section derived from a ref field (case 166.2)
     "estimates": ["Context", "Criterion", "Method", "Result"],
     "lessons": ["Trigger", "Root cause"],
     "insights": ["Pattern", "Proposal"],
+    # Given, When and Criterion: the shapes before 72.4 and 201.2, kept where a page carries them
     "decisions": ["Context", "Problem", "Given", "When", "Criterion", "Deferred", "Note"],
 }
 DEFERRABLE = ("rules", "entities", "insights")  # the categories a `defer` marks (124.2)
@@ -111,8 +154,7 @@ HISTORY = "## History"
 NEEDS_QUOTE = re.compile(r"""^[\s\[\]{}"'&*!|>%@,#`-]|: | #|:$|\s$|\n""")
 LOOKS_SPECIAL = re.compile(r"^(true|false|null|yes|no|on|off|~|[-+]?\d[\d.]*)$", re.IGNORECASE)
 TAG_ROW = re.compile(r"^\|\s*([\w-]+)\s*\|")
-CRITERION = "## Criterion"
-CASE_BLOCK = re.compile(r"^### case (\S+)\s*$")  # one block of an Estimate's Criterion (72.2)
+READING_DATE = re.compile(r"^\s*(\d{4}-\d\d-\d\d)\b")  # a Result opens with its date (case 199)
 
 
 class GenerateError(Exception):
@@ -197,21 +239,6 @@ def as_list(value) -> list[str]:
     if isinstance(value, list):
         return [str(v) for v in value]
     return [str(value)]
-
-
-def drop_case_block(criterion: str, case: str) -> str | None:
-    """The Criterion text without its `### case <case>` block — the heading and the lines up
-    to the next `### ` heading — or None when the text holds no such block."""
-    lines = criterion.strip("\n").splitlines()
-    start = next(
-        (i for i, line in enumerate(lines) if (m := CASE_BLOCK.match(line)) and m.group(1) == case),
-        None,
-    )
-    if start is None:
-        return None
-    end = next((i for i in range(start + 1, len(lines)) if lines[i].startswith("### ")), len(lines))
-    kept = lines[:start] + lines[end:]
-    return re.sub(r"\n{3,}", "\n\n", "\n".join(kept)).strip("\n")
 
 
 # --- the vault ----------------------------------------------------------------------
@@ -419,21 +446,16 @@ class Vault:
         if page is None:
             self.error(slug, "no page to update")
             return
-        keys = ("set", "sections", "replace", "change", "criterion_block")
+        if entry.get("criterion_block"):  # the shape before case 189: not applied (201.1)
+            self.error(slug, "criterion_block: a shape the script no longer knows (case 201.1)")
+            return
+        keys = ("set", "sections", "replace", "change")
         if not any(entry.get(k) for k in keys):
             print(
                 f"generate: {slug}: an update with no content in the Spec; applied by hand",
                 file=self.stdout,
             )
             return
-        block = str(entry.get("criterion_block") or "").strip("\n")
-        case_added = None
-        if block:  # a derived update: the Case's when and then join the Criterion (72.4)
-            match = CASE_BLOCK.match(block.splitlines()[0])
-            if page.category != "estimates" or match is None:
-                self.error(slug, "criterion_block: needs an Estimate page and a ### case N line")
-                return
-            case_added = match.group(1)
         for key, value in (entry.get("set") or {}).items():
             page.props[key] = value
             if key == "tags":
@@ -448,39 +470,9 @@ class Vault:
             if not self.replace(page, str(item.get("old", "")), str(item.get("new", ""))):
                 self.error(slug, f"replace: {item.get('old', '')[:60]!r} is absent or not unique")
                 return
-        if case_added is not None:
-            current = page.sections.get(CRITERION, "").strip("\n")
-            page.sections[CRITERION] = (current + "\n\n" + block).strip("\n")
-            self.history(page, f"criterion: case {case_added} added", self.pointer(entry))
-        else:
-            change = entry.get("change") or "updated"
-            self.history(page, f"updated: {change}", self.pointer(entry))
+        change = entry.get("change") or "updated"
+        self.history(page, f"updated: {change}", self.pointer(entry))
         self.save(page)
-
-    def remove_criterion(self, entry: dict) -> None:
-        """A `supersedes` of case N: its `### case N` block leaves the Criterion of every
-        Estimate that holds one, up to the next `### ` line or the end of the section
-        (case 72.4). No Estimate holding one is a fact, printed, not an error."""
-        case = str(entry.get("case_removed") or "").strip()
-        if not case:
-            self.error(entry.get("slug") or "?", "remove_criterion: no case_removed")
-            return
-        found = False
-        for path in sorted((self.wiki / "estimates").glob("*.md")):
-            if path.stem == "schema":
-                continue
-            page = read_page(path, "estimates")
-            if page.error or str(page.props.get("status")) == "archived":
-                continue
-            kept = drop_case_block(page.sections.get(CRITERION, ""), case)
-            if kept is None:
-                continue
-            page.sections[CRITERION] = kept
-            self.history(page, f"criterion: case {case} removed", self.pointer(entry))
-            self.save(page)
-            found = True
-        if not found:
-            print(f"remove_criterion: case {case}: no Estimate holds a block", file=self.stdout)
 
     def replace(self, page: Page, old: str, new: str) -> bool:
         tokens = [re.escape(t) for t in old.split()]
@@ -510,7 +502,10 @@ class Vault:
             return
         before = str(page.props.get("status"))  # a reading always lands (case 53.2)
         page.props["status"] = entry["status"]
-        page.sections["## Result"] = str(entry.get("result") or "")
+        result = str(entry.get("result") or "")
+        page.sections["## Result"] = result
+        match = READING_DATE.match(result)  # the date the Result opens with (cases 199, 201.1)
+        page.props["checked"] = date_type.fromisoformat(match.group(1) if match else self.date)
         self.history(page, f"status: {before} → {entry['status']}", entry.get("origin"))
         self.save(page)
 
@@ -628,17 +623,10 @@ class Vault:
         props["sprint"] = self.sprint
         props["created"] = self.date
         props["tags"] = tags  # the union of the targets' tags; empty is a fact, not a gap
-        sections = {}
-        for name, key in (("Context", "context"), ("Problem", "problem"), ("Given", "given")):
+        sections = {}  # no Given, no When, no Criterion list: the contract lives on the Estimate (201.2)
+        for name, key in (("Context", "context"), ("Problem", "problem")):
             if text.get(key):
                 sections[f"## {name}"] = text[key]
-        criterion = [  # one link per Estimate the Case shaped; no When (case 72.4)
-            f"- [[{item['estimate']}]] § case {item['case']}"
-            for item in record.get("criterion") or []
-            if isinstance(item, dict) and item.get("estimate")
-        ]
-        if criterion:
-            sections[CRITERION] = "\n".join(criterion)
         if deferred:  # the body of a deferred decision is never dropped (case 186.1)
             sections["## Deferred"] = "\n\n".join(
                 f"### [[{target}]]\n\n{str(purpose).strip()}" for target, purpose in deferred
@@ -844,9 +832,7 @@ def apply(vault: Vault, data: dict) -> None:
                 vault.delete(entry)
             elif kind == "defer":
                 vault.defer(entry)
-            elif kind == "remove_criterion":
-                vault.remove_criterion(entry)
-            else:
+            else:  # `remove_criterion` among them: the shape before case 189 (201.1)
                 vault.error(entry.get("slug", "?"), f"unknown kind {kind!r}")
         except Exception as exc:  # noqa: BLE001 — one entry fails alone, the run goes on
             vault.error(entry.get("slug", "?"), f"{type(exc).__name__}: {exc}")

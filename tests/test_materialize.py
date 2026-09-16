@@ -625,6 +625,7 @@ ESTIMATE_LEDGER = """- decision[case 11][create][rule-leaf]{ref:rule-root}{tags:
 - decision[case 18][update][estimate-old-second]{ref:estimate-old-second}
 - decision[case 19][create][estimate-cart-written]{ref:entity-cart}{tags:cart}
 - decision[case 20][create][estimate-cart-bare]{ref:entity-cart}{tags:cart}
+- decision[case 22][update][estimate-old-third]{ref:estimate-old-third}
 """
 
 ESTIMATE_SPEC = """# Spec
@@ -774,6 +775,7 @@ create:
 create:
   - slug: estimate-cart-alone
     type: estimate
+    ref: entity-cart
     kind: QA
     purpose: The cart renders in time
     method: m
@@ -864,6 +866,27 @@ create:
     kind: QA
     method: m
 ```
+
+## Case 22 — an Estimate update with a written Criterion and no status
+
+> **given:**
+> The Case's own.
+
+> **when:**
+> The Case's own.
+
+> **then:**
+> The Case's own.
+
+```then
+update:
+  - slug: estimate-old-third
+    sections:
+      Criterion: |
+        When:
+        The written one wins.
+    change: the written Criterion stands on an update (case 204)
+```
 """
 
 CRITERION_16 = (
@@ -893,7 +916,7 @@ def of_case(data, case):
 def test_a_create_with_the_old_method_key_yields_no_estimate_and_keeps_the_key_off(tmp_path):
     seed_estimates(tmp_path)
     code, out, err = run(tmp_path)
-    assert code == 0 and err == "" and "written with 10 entries" in out  # one per line
+    assert code == 0 and err == "" and "written with 11 entries" in out  # one per line
     data = load(tmp_path)
     (leaf,) = of_case(data, "11")
     assert leaf["slug"] == "rule-leaf" and leaf["kind"] == "create"
@@ -940,6 +963,7 @@ def test_a_supersedes_yields_no_removal_and_marks_the_earlier_entries(tmp_path):
         "update",
         "create",
         "create",
+        "update",  # case 22: the written Criterion on an update (case 204)
     ]
     assert not any(e.get("derived") or e.get("case_removed") for e in data["entries"])
     (thirteen,) = of_case(data, "13")
@@ -1007,6 +1031,16 @@ def test_a_written_criterion_stands_and_a_written_status_is_kept(tmp_path):
     (create,) = of_case(data, "19")
     assert create["sections"]["Criterion"].strip() == "When:\nThe written one."
     assert create["fields"]["purpose"] == "A written promise" and "incomplete" not in create
+
+
+def test_a_written_criterion_on_an_update_wins_over_the_cases_text_and_goes_pending(tmp_path):
+    # case 204: the item's text stands, the Case's given/when/then are not lifted over it
+    seed_estimates(tmp_path)
+    run(tmp_path)
+    (update,) = of_case(load(tmp_path), "22")
+    assert update["sections"]["Criterion"].strip() == "When:\nThe written one wins."
+    assert "The Case's own." not in update["sections"]["Criterion"]
+    assert update["set"] == {"status": "pending"} and "incomplete" not in update
 
 
 def test_an_estimate_create_with_nothing_to_lift_is_incomplete(tmp_path):

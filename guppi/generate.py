@@ -87,7 +87,7 @@ SECTION_ORDER = {  # no section derived from a ref field (case 166.2)
     "estimates": ["Context", "Criterion", "Method", "Result"],
     "lessons": ["Trigger", "Root cause"],
     "insights": ["Pattern", "Proposal"],
-    "decisions": ["Context", "Problem", "Given", "When", "Criterion", "Note"],
+    "decisions": ["Context", "Problem", "Given", "When", "Criterion", "Deferred", "Note"],
 }
 DEFERRABLE = ("rules", "entities", "insights")  # the categories a `defer` marks (124.2)
 LIBRARIAN_ONLY = "an Insight is made and retired by the librarian, never created or deleted by a decision (case 171)"
@@ -598,7 +598,9 @@ class Vault:
 
     # decisions
 
-    def decision(self, record: dict) -> None:
+    def decision(self, record: dict, deferred: list[tuple[str, str]] | None = None) -> None:
+        """The Decision page of a Case; `deferred` is the `(slug, purpose)` of every `defer`
+        line of the Case, in ledger order, written under `## Deferred` (case 186.1)."""
         slug = record["decision"]
         path = self.path("decisions", slug)
         if path.exists():
@@ -637,6 +639,10 @@ class Vault:
         ]
         if criterion:
             sections[CRITERION] = "\n".join(criterion)
+        if deferred:  # the body of a deferred decision is never dropped (case 186.1)
+            sections["## Deferred"] = "\n\n".join(
+                f"### [[{target}]]\n\n{str(purpose).strip()}" for target, purpose in deferred
+            )
         page = Page(category="decisions", slug=slug, path=path, props=props, sections=sections)
         self.history(page, "created", record["origin"])
         self.save(page)
@@ -765,12 +771,29 @@ class Vault:
 # --- the run ------------------------------------------------------------------------
 
 
-def apply_decision(vault: Vault, record: dict, stamp: str) -> None:
+def deferred_of(data: dict) -> dict[str, list[tuple[str, str]]]:
+    """Per Case, the `(slug, purpose)` of its `defer` entries in ledger order — for the
+    `## Deferred` section of the Decision page (case 186.1); a `purpose` the entry lacks
+    is left out, never invented."""
+    out: dict[str, list[tuple[str, str]]] = {}
+    for entry in data.get("entries") or []:
+        if not isinstance(entry, dict) or entry.get("kind") != "defer":
+            continue
+        purpose = (entry.get("fields") or {}).get("purpose")
+        if purpose is None or "case" not in entry:
+            continue
+        out.setdefault(str(entry["case"]), []).append((str(entry.get("slug")), str(purpose)))
+    return out
+
+
+def apply_decision(
+    vault: Vault, record: dict, stamp: str, deferred: list[tuple[str, str]] | None = None
+) -> None:
     if record.get("applied"):
         return
     before = len(vault.errors)
     try:
-        vault.decision(record)
+        vault.decision(record, deferred)
     except Exception as exc:  # noqa: BLE001
         vault.error(record.get("decision", "?"), f"{type(exc).__name__}: {exc}")
     if len(vault.errors) == before:
@@ -784,12 +807,14 @@ def apply_decision(vault: Vault, record: dict, stamp: str) -> None:
 def apply(vault: Vault, data: dict) -> None:
     stamp = vault.now.strftime("%H:%M:%S")
     records = {str(r.get("case")): r for r in data.get("decisions") or []}
+    deferred = deferred_of(data)
     for entry in data.get("entries") or []:
         if not isinstance(entry, dict) or entry.get("applied"):
             continue
         if entry.get("superseded_by"):  # a later Case did its work; only the Decision page
             if "case" in entry and str(entry["case"]) in records:  # of its Case is written,
-                apply_decision(vault, records[str(entry["case"])], stamp)  # before the
+                case = str(entry["case"])
+                apply_decision(vault, records[case], stamp, deferred.get(case))  # before the
             continue  # superseding one marks it (case 151)
         if "kind" not in entry and entry.get("failed"):  # a line materialize could not lift
             vault.error(
@@ -797,7 +822,8 @@ def apply(vault: Vault, data: dict) -> None:
             )
             continue  # the mark stays as materialize wrote it (case 142.2)
         if "case" in entry and str(entry["case"]) in records:  # the Decision page first (52.4)
-            apply_decision(vault, records[str(entry["case"])], stamp)
+            case = str(entry["case"])
+            apply_decision(vault, records[case], stamp, deferred.get(case))
         kind = entry.get("kind")
         if entry.get("category") == "file":
             print(
@@ -833,7 +859,7 @@ def apply(vault: Vault, data: dict) -> None:
     vault.settle_backlinks()
     vault.write_log()
     for record in data.get("decisions") or []:
-        apply_decision(vault, record, stamp)
+        apply_decision(vault, record, stamp, deferred.get(str(record.get("case"))))
     vault.cascade()
     vault.register_tags(data.get("new_tags") or [])
     vault.write_log()

@@ -20,7 +20,11 @@ target passes whatever else it says, and one that names none may say by hand whe
 children's Estimates are all by hand, case 112.1), `decision` (a decision page with none of the four
 kind lists `create`, `update`, `delete`, `defer`, or with `kind` or `target_slug` still
 present, or a slug in a list with a category prefix that names neither a live nor an
-archived page, case 59.4). A
+archived page, case 59.4), `deferred` (a placeholder — a rule or entity page that carries
+`deferred_by` and lacks the fields a `create` fills, `kind`, `estimates` and `tags` — earns
+one finding, `deferred: <N> times since case <M>`, N the `deferred` lines of its History
+and M the case of the first, in place of those three `schema` findings and of `orphan`; a
+page with `deferred_by` whose fields are in place earns none, case 186.3). A
 `deferred_by` slug and a `[[decision-case-N]]` wikilink in History are refs like any other
 (cases 52.3, 52.4). `## When` is never a required section of a decision page, whatever
 `decisions/schema.yaml` says: a page written before case 72 has one, a later page has none
@@ -68,6 +72,8 @@ BY_HAND = "by hand"
 CRITERION = "## Criterion"
 WHEN = "## When"
 CASE_BLOCK = re.compile(r"^### case ([\w.]+)\s*$", re.MULTILINE)  # an Estimate's Criterion block
+PLACEHOLDER_FIELDS = ("kind", "estimates", "tags")  # what a `create` fills (case 186.3)
+DEFERRED_LINE = re.compile(r"^- \S+ deferred\b.*(?:\[\[decision-case-|#case-)([\w.]+?)\]?\]?$")
 
 
 class Finding:
@@ -96,14 +102,41 @@ def matches(page: Page, when: dict) -> bool:
     return all(str(page.props.get(key)) == str(value) for key, value in when.items())
 
 
+def is_placeholder(page: Page) -> bool:
+    """A rule or entity page born of a `defer` without a `ref`: it carries `deferred_by`
+    and none of the fields a `create` fills (case 186.3)."""
+    return (
+        page.category in ("rules", "entities")
+        and not page.error
+        and page.props.get("deferred_by") is not None
+        and not any(field in page.props for field in PLACEHOLDER_FIELDS)
+    )
+
+
+def check_deferred(page: Page) -> list[Finding]:
+    """One finding for a placeholder, with its count: `deferred: <N> times since case <M>`,
+    N the `deferred` lines of its History, M the case of the first (case 186.3)."""
+    if not is_placeholder(page):
+        return []
+    cases = [
+        m.group(1)
+        for line in (page.sections.get("## History") or "").splitlines()
+        if (m := DEFERRED_LINE.match(line.strip()))
+    ]
+    since = f" since case {cases[0]}" if cases else ""
+    times = "time" if len(cases) == 1 else "times"
+    return [Finding(page, "deferred", f"{len(cases)} {times}{since}")]
+
+
 def check_schema(page: Page, schema: dict) -> list[Finding]:
     out: list[Finding] = []
     if page.error:
         return [Finding(page, "schema", page.error)]
     props = schema.get("properties") or {}
     body = schema.get("body") or {}
+    placeholder = is_placeholder(page)
     for field in props.get("required") or []:
-        if field not in page.props:
+        if field not in page.props and not (placeholder and field in PLACEHOLDER_FIELDS):
             out.append(Finding(page, "schema", f"missing field {field}"))
     for field, allowed in (props.get("values") or {}).items():
         if field in page.props and str(page.props[field]) not in [str(a) for a in allowed]:
@@ -362,7 +395,9 @@ def check_orphans(pages: list[Page]) -> list[Finding]:
     return [
         Finding(page, "orphan", "no other live page names it in its frontmatter")
         for page in pages
-        if page.category not in ("decisions", "lessons", "insights") and page.slug not in referenced
+        if page.category not in ("decisions", "lessons", "insights")
+        and page.slug not in referenced
+        and not is_placeholder(page)  # its one finding is `deferred` (case 186.3)
     ]
 
 
@@ -503,6 +538,7 @@ def lint(project_dir: Path) -> list[str]:
     for page in pages:
         if page.error:
             continue
+        findings.extend(check_deferred(page))
         findings.extend(check_status(page, by_slug))
         findings.extend(check_method(page, by_slug, project_dir))
         findings.extend(check_decision(page, known))

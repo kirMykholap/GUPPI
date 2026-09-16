@@ -73,7 +73,7 @@ A constraint that no hook, check or render can detect is not a Rule at all. It i
 |---|---|---|
 | `## Purpose` | yes | Expands the property: what goes wrong without this rule. State the failure it prevents, not the behaviour it produces. |
 | `## Render` | `render` | The text written into `governs`, wrapped in `<!-- slug -->` markers. This section **is** the implementation. On a rendering MOC it is the frame, containing the children's markers. |
-| `## How it works` | no | Leaf: what the hook or check actually does, and when it fires. MOC: why the steps are in this order, and what breaks if they are reordered. Omitted while `draft`. |
+| `## How it works` | no | MOC only: why the steps are in this order, and what breaks if they are reordered. On a Leaf the promise lives in its Estimates and the mechanism in the docstring of its code, or in its Render; a Leaf that still carries the section keeps it until its next touch, when the section leaves (cases 193, 200.2). |
 
 ## History
 

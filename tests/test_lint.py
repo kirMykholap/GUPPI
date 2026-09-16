@@ -363,6 +363,44 @@ def test_a_page_nothing_names_is_an_orphan_finding(tmp_path):
     assert lines == ["rules/rule-lonely: orphan: no other live page names it in its frontmatter"]
 
 
+# --- a placeholder says what is true (case 186.3): `estimate-lint-catches` ------------
+
+PLACEHOLDER = (
+    "---\ntype: rule\npurpose: Prevents something, later\nstatus: draft\n"
+    'deferred_by: ["[[decision-case-64]]"]\norigin: ' + ORIGIN + "\nsprint: migration\n"
+    "created: 2026-09-09\n---\n\n## Purpose\n\nLater.\n\n## History\n\n"
+    "- 2026-09-10 deferred, placeholder · raw/2026-09-09/ledger.md#case-29\n"
+    "- 2026-09-11 deferred_by decision-case-29 set · [[decision-case-52.3]]\n"
+    "- 2026-09-12 deferred · [[decision-case-64]]\n"
+    "- 2026-09-12 defer by decision-case-64 superseded · [[decision-case-70]]\n"
+    "- 2026-09-13 deferred · [[decision-case-70]]\n"
+)
+
+
+def test_a_placeholder_earns_one_deferred_finding_with_its_count(tmp_path):
+    wiki = seed(tmp_path)
+    write(wiki / "rules" / "rule-later.md", PLACEHOLDER)
+    _, lines, _ = run(tmp_path)  # the decision pages are not seeded: their `ref` lines stand
+    mine = [line for line in lines if "rule-later" in line and ": ref:" not in line]
+    assert mine == ["rules/rule-later: deferred: 3 times since case 29"]  # no schema, no orphan
+
+
+def test_a_page_with_deferred_by_whose_fields_are_in_place_earns_no_deferred_finding(tmp_path):
+    seed(tmp_path, rule=rule_page(deferred_by='["[[decision-case-64]]"]'))
+    _, lines, _ = run(tmp_path)
+    assert not any("deferred:" in line for line in lines)
+
+
+def test_a_placeholder_missing_another_field_still_earns_that_schema_finding(tmp_path):
+    wiki = seed(tmp_path)
+    write(wiki / "rules" / "rule-later.md", PLACEHOLDER.replace("origin: ", "origin_was: "))
+    _, lines, _ = run(tmp_path)
+    mine = [line for line in lines if "rule-later" in line and ": ref:" not in line]
+    assert "rules/rule-later: schema: missing field origin" in mine
+    assert "rules/rule-later: deferred: 3 times since case 29" in mine
+    assert not any("missing field kind" in line or "orphan" in line for line in mine)
+
+
 def test_built_with_a_pending_estimate_is_a_status_finding(tmp_path):
     seed(tmp_path, rule=rule_page(status="built"))
     _, lines, _ = run(tmp_path)

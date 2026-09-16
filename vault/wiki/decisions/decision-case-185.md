@@ -17,6 +17,12 @@ The Render of `rule-case-protocol` enters `CLAUDE.md` and says: `given` holds th
 
 After this session no page would point at Slice 3d for the Render — `rule-case-protocol` is not in the list of 182, and point 16 names only `case-schema.md`.
 
+## Deferred
+
+### [[rule-case-protocol]]
+
+Slice 3d — the Render is rewritten by points 6, 7 and 9 of the model of 182: given — conditions of the behaviour, given + when + then — the Estimate's Criterion, no ### case N blocks, no method on create and no contract on update, tasks without contract lines; see the purpose on rule-plan-mode
+
 ## History
 
 - 2026-09-16 created · raw/2026-09-15/2225/ledger.md#case-185

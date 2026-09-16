@@ -27,32 +27,51 @@ such an item with `file` and `change` alone (case 161). `new_tags`
 declared in the `then` block of any Case, with decision lines or without, reach the yaml
 once each.
 
-The Estimate of a Leaf is derived from its Case (case 72.3). A `create` of a rule or an
-entity whose `then` item carries `method` yields, right after its own entry, a second
-`create` entry with no line of its own: category `estimates`, slug `estimate-<target minus
-its prefix>` or the item's `estimate_slug`, `ref` the target, `tags` the target's, `origin`
-and `decision` the line's, `derived: true`, sections Context (the Case's `problem`),
-Criterion (a `### case N` block: the Case's `when` and `then` verbatim, with their
-operands) and Method. An `update` whose item carries `contract: changed` yields an
-`update` entry of the target's Estimate — the first slug of the live page's `estimates`,
-`incomplete: [estimate]` when there is none — with `criterion_block`, `set: {status:
-pending}`, `sections: {Method}` when the item carries `method` and `change`; `contract:
-same` yields nothing. A line with `{supersedes:case N}` also yields a `remove_criterion`
-entry with `case_removed`, for `generate` to find the Estimate that holds the block, and
-marks every entry carrying `case: N` `superseded_by` — the lines' own and the derived ones,
-whatever their kind (case 175) — in whichever unit's yaml holds them — this one or any
-other under `raw/`, written with that mark only (case 130.2). The
-decision entry carries `criterion`, one `{estimate, case}` per Estimate the Case shaped. A
-nested `estimate` in an older Spec becomes its own `create` entry as before, for a line
-with its slug; a standalone estimate `create` with `ref` maps `context`, `criterion` and
-`method` into `sections` the same way.
+No Estimate is derived (cases 189, 194.1). An Estimate has its own ledger line and its own
+entry; the `ref` of the line is the Estimate itself. Its Criterion is the `given`, `when`
+and `then` of its Case, verbatim with their operands, as `Given:`, `When:`, `Then:`,
+lifted into the entry's `sections.Criterion` — the shape `generate` applies as a whole
+replacement; a `given` a sub-case lacks is its parent's. A Criterion the item wrote under
+`sections` stands. An Estimate `update` also carries `set: {status: pending}` unless the
+item set a status itself. An Estimate `create` keeps `kind`, `purpose`, `method` and
+`tags` as fields; `## Context` and `## Method` are not written, and a `context` key of the
+old shape is dropped; a `criterion` key of the old shape goes to `sections.Criterion`. On a
+rule's or entity's item the keys `method`, `contract`, `estimate_slug` and `estimate_kind`
+are ignored: they reach neither the page nor `incomplete`. A line with `{supersedes:case
+N}` marks every entry carrying `case: N` `superseded_by`, whatever its kind (case 175), in
+whichever unit's yaml holds them — this one or any other under `raw/`, written with that
+mark only (case 130.2); nothing is derived from it. A nested `estimate` in an older Spec
+becomes its own `create` entry, for a line with its slug.
+
+The fields of an entry, each with its writer. From the ledger line: `case`, `kind`
+(`create`, `update`, `delete`, `defer`, `estimate`, `lesson`), `category` (from the slug
+prefix; a Rule-class file is `file` with its `path`), `slug`, `ref`, `source`,
+`supersedes`, `tags`, `origin` (`raw/<unit>/ledger.md#case-N`; a lesson `#L<n>`), `line`,
+`text`, `decision` (`decision-case-<N>`). From the `then` block: `fields`, `sections`
+(`Criterion` lifted from the Case when the item wrote none), `replace`, `change`, `impact`,
+`incomplete` (what the block lacks: a required field, `then`, `change`, `criterion`,
+`purpose`, `source`), `exists` (a create whose page is on disk with an `origin` carrying
+this line's `#case-N`, case 105.2; a defer whose page exists). Set by this script: `set`
+(`status: pending` on an Estimate update), and `status`, `result`, `folded` of a reading
+folded into a create; `superseded_by` from a later `{supersedes}` in any unit; `failed`
+from a lift that raised. Kept from the shape before case 189 on entries already written:
+`derived`, `criterion_block`, `case_removed`. Set by `guppi generate`: `applied` (the time
+applied) and `failed` (the error). Set by the librarian: `near`, and `librarian` with the
+value `merged` or `synthesis` (`rule-documentation`). The decision record of a Case:
+`case`, `decision`, `origin`, `targets` (one per line: `kind`, `category`, `slug`, and
+`path`, `ref`, `source` when present), `tags`, `case_text`, `spec`, `supersedes`,
+`superseded_by`, `incomplete`. A key the code writes and this list does not name is a
+finding of the reading of `estimate-materialize-assembles`.
 
 An existing yaml is extended with the lines it does not hold and never rewritten. Without
 `--date` the script walks every unit under `vault/raw/` — dates ascending, the date-level
 ledger of a date first, then its sessions in folder order — so a line written after the
 librarian's commit of its unit is picked up by the next run; `--date` walks the units of
-that date; an error on one unit stops the walk with exit 1. With `--show` (case 76) the
-same walk prints to stdout the yaml each unit would be written with, one document per
+that date; an error on one unit stops the walk with exit 1. A unit whose folder holds
+`carry.md` — the mark `/carry` leaves on a session whose Spec is ratified and whose work
+is not done — is passed by with one line on stdout: no yaml is written or extended for it,
+and its `applied` or `failed` state is not touched (case 190.3). With `--show` (case 76)
+the same walk prints to stdout the yaml each unit would be written with, one document per
 unit, `---` between two, and writes nothing under `raw/`. Rule page:
 `vault/wiki/rules/rule-materialize.md`.
 """
@@ -96,13 +115,15 @@ CATEGORIES = ("entities", "rules", "estimates", "lessons", "insights", "decision
 REQUIRED = {
     "rules": ("type", "kind", "purpose", "tags"),
     "entities": ("type", "kind", "purpose", "tags"),
-    "estimates": ("kind", "criterion", "method"),
+    "estimates": ("kind", "purpose", "method"),  # the Criterion comes from the Case (194.1)
     "insights": ("pattern", "children", "tags"),
 }
 CASE_SECTIONS = ("context", "problem", "recommend", "given", "when", "then", "ratification")
 INHERITED = ("context", "problem", "recommend", "given")  # a sub-case reads these from its parent
-DERIVED_CATEGORIES = ("rules", "entities")  # the targets whose Estimate a Case derives (72.3)
-DERIVED_KEYS = ("method", "contract", "estimate_slug", "estimate_kind")  # never the target's
+# The keys of the shape before case 189 on a rule's or entity's item: once they derived an
+# Estimate; now they are ignored — they reach neither the page nor `incomplete` (194.1).
+IGNORED_KEYS = ("method", "contract", "estimate_slug", "estimate_kind")
+CRITERION_SECTIONS = ("given", "when", "then")  # the Criterion of an Estimate (188, 194.1)
 SESSION_FOLDER = re.compile(r"^\d{4}$")  # raw/<date>/<HHMM>/, one session's Spec (case 73)
 
 
@@ -455,13 +476,16 @@ def _lift_item(entry: dict, item: dict, kind: str, nested: str | None, incomplet
     if kind == "create":
         skipped = ("slug", "sections", "estimate", "file", "parent_create", "parent_tags")
         if nested != "estimate" and entry.get("category") != "estimates":
-            skipped += DERIVED_KEYS  # the Estimate's keys stay off the target (case 72.3)
+            skipped += IGNORED_KEYS  # the old shape's keys stay off the target (194.1)
         fields = {k: v for k, v in item.items() if k not in skipped}
         if nested == "estimate" or entry.get("category") == "estimates":
             fields.setdefault("type", "estimate")
-            for key in ("context", "criterion", "method"):  # sections either way (case 53.3)
-                if key in fields:
-                    entry.setdefault("sections", {})[key.capitalize()] = fields.pop(key)
+            fields.pop("estimate_kind", None)
+            fields.pop("estimate_slug", None)
+            fields.pop("context", None)  # `## Context` is not written since case 193
+            if "criterion" in fields:  # the shape before 194.1: a written Criterion
+                entry.setdefault("sections", {})["Criterion"] = fields.pop("criterion")
+            # `purpose` and `method` stay fields: one line each on the page (case 194.1)
         if nested == "estimate":
             if "parent_create" in item and not entry.get("ref"):
                 entry["ref"] = item["parent_create"]
@@ -507,26 +531,39 @@ def _lift_item(entry: dict, item: dict, kind: str, nested: str | None, incomplet
             entry["change"] = item["change"]
 
 
-# --- the derived Estimate (case 72.3) -----------------------------------------------
+# --- the Criterion of an Estimate (cases 188, 194.1) ----------------------------------
 
 
-def derived_slug(slug: str) -> str:
-    """`estimate-<target minus its prefix>`: `rule-x` → `estimate-x`."""
-    for prefix in PREFIXES:
-        if slug.startswith(prefix):
-            return "estimate-" + slug[len(prefix) :]
-    return "estimate-" + slug
-
-
-def criterion_block(case: str, texts: dict[str, str]) -> str:
-    """The `### case N` block of an Estimate's Criterion: the Case's `when` and `then`
-    verbatim, with their operand lines; a missing section is left out, never invented."""
-    parts = [f"### case {case}"]
-    if "when" in texts:
-        parts.append(f"When:\n{texts['when']}")
-    if "then" in texts:
-        parts.append(f"Then:\n{texts['then']}")
+def criterion_text(texts: dict[str, str]) -> str:
+    """The Criterion of an Estimate: the Case's `given`, `when` and `then` verbatim with
+    their operand lines, as `Given:`, `When:`, `Then:`; a missing section is left out,
+    never invented (case 194.1)."""
+    parts = []
+    for name in CRITERION_SECTIONS:
+        text = texts.get(name)
+        if text and not FENCE.match(text.splitlines()[0]):  # not the whole-Case fallback
+            parts.append(f"{name.capitalize()}:\n{text}")
     return "\n\n".join(parts)
+
+
+def lift_criterion(entry: dict, texts: dict[str, str]) -> None:
+    """An Estimate's `create` or `update` carries its Criterion under `sections` — the
+    shape `generate` applies as a whole replacement. A Criterion the item wrote under
+    `sections` stands; otherwise the Case's own text is lifted. An `update` is set
+    `pending` unless the item set a status itself (case 194.1)."""
+    if entry.get("category") != "estimates" or entry.get("kind") not in ("create", "update"):
+        return
+    sections = entry.setdefault("sections", {})
+    if not sections.get("Criterion"):
+        text = criterion_text(texts)
+        if text:
+            sections["Criterion"] = text
+        else:
+            entry.setdefault("incomplete", []).append("criterion")
+    if not sections:
+        entry.pop("sections")
+    if entry["kind"] == "update":
+        entry.setdefault("set", {}).setdefault("status", "pending")
 
 
 def page_estimates(project_dir: Path, category: str, slug: str) -> list[str] | None:
@@ -544,78 +581,6 @@ def page_estimates(project_dir: Path, category: str, slug: str) -> list[str] | N
         return []
     value = front.get("estimates") if isinstance(front, dict) else None
     return [str(slug_of(v)) for v in value] if isinstance(value, list) else []  # 148.1
-
-
-def derived_entries(entry: dict, item: dict | None, texts: dict, project_dir: Path) -> list:
-    """The entries a decision line yields beside its own: the Estimate's `create` for a
-    create with `method`, its `update` for `contract: changed`, a `remove_criterion` for
-    a `supersedes`. None has a line of its own."""
-    out: list[dict] = []
-    base = {k: entry[k] for k in ("line", "text", "case")}
-    tail = {k: entry[k] for k in ("origin", "decision")}
-    case = entry["case"]
-    if item is not None and entry.get("category") in DERIVED_CATEGORIES:
-        if entry["kind"] == "create" and item.get("method") is not None:
-            derived = {
-                **base,
-                "kind": "create",
-                "slug": item.get("estimate_slug") or derived_slug(entry["slug"]),
-                "category": "estimates",
-                "ref": entry["slug"],
-                **tail,
-                "derived": True,
-            }
-            if entry.get("tags"):
-                derived["tags"] = list(entry["tags"])
-            derived["fields"] = {"type": "estimate", "kind": item.get("estimate_kind") or "QA"}
-            sections = {}
-            if "problem" in texts:
-                sections["Context"] = texts["problem"]
-            sections["Criterion"] = criterion_block(case, texts)
-            sections["Method"] = item["method"]
-            derived["sections"] = sections
-            if page_of_case(project_dir, "estimates", derived["slug"], derived["origin"]):
-                derived["exists"] = True
-            missing = [n for n in ("problem", "when", "then") if n not in texts]
-            if missing:
-                derived["incomplete"] = missing
-            out.append(derived)
-        elif entry["kind"] == "update" and item.get("contract") == "changed":
-            estimates = page_estimates(project_dir, entry["category"], entry["slug"]) or []
-            named = item.get("estimate_slug") or (estimates[0] if len(estimates) == 1 else None)
-            derived = {
-                **base,
-                "kind": "update",
-                "slug": named,
-                "category": "estimates",
-                **tail,
-                "derived": True,
-                "criterion_block": criterion_block(case, texts),
-                "set": {"status": "pending"},
-            }
-            if item.get("method") is not None:
-                derived["sections"] = {"Method": item["method"]}
-            derived["change"] = f"criterion: case {case} added"
-            missing = [n for n in ("when", "then") if n not in texts]
-            if named is None:  # none to take, or a choice the item did not make (case 90.1)
-                missing.append("estimate")
-            if missing:
-                derived["incomplete"] = missing
-            out.append(derived)
-    if entry.get("supersedes"):
-        removed = entry["supersedes"]
-        out.append(
-            {
-                **base,
-                "kind": "remove_criterion",
-                "category": "estimates",
-                **tail,
-                "derived": True,
-                "case_removed": removed,
-                "change": f"criterion: case {removed} removed",
-            }
-        )
-    return out
 
 
 def estimate_entry(record: dict, number: int, text: str, date: str) -> dict:
@@ -724,11 +689,8 @@ def decision_record(
     targets = []
     tags: list[str] = []
     supersedes: list[str] = []
-    criterion: list[dict] = []
     for entry in entries_of_case:
-        if entry.get("derived"):  # the Estimate a Case shaped, named under criterion (72.3)
-            if entry.get("slug"):
-                criterion.append({"estimate": entry["slug"], "case": case})
+        if entry.get("derived"):  # an entry of the shape before case 189, kept as it is
             continue
         target = {"kind": entry["kind"], "category": entry["category"], "slug": entry["slug"]}
         if entry.get("category") == "file":
@@ -752,8 +714,6 @@ def decision_record(
     }
     if spec is not None:
         record["spec"] = spec
-    if criterion:
-        record["criterion"] = criterion
     if supersedes:
         record["supersedes"] = supersedes
     needed = ("context", "problem")
@@ -807,14 +767,11 @@ def lift_line(
     entry = decision_entry(record, number, text, date, block, project_dir)
     if errors and "then" in (entry.get("incomplete") or []):
         entry["incomplete"] = [e for e in entry["incomplete"] if e != "then"] + errors
-    entries.append(entry)
-    added = 1
-    item, nested = find_item(block, record["kind"], record["slug"])
     if case not in texts_of:
         texts_of[case] = case_texts(cases, case)
-    for derived in derived_entries(entry, None if nested else item, texts_of[case], project_dir):
-        entries.append(derived)  # no line of its own (case 72.3)
-        added += 1
+    lift_criterion(entry, texts_of[case])  # an Estimate's own entry (cases 189, 194.1)
+    entries.append(entry)
+    added = 1
     if record.get("supersedes") and not mark_superseded(
         entries, decisions, record["supersedes"], case
     ):
@@ -1027,6 +984,13 @@ def units_with(project_dir: Path, name: str, date: str | None = None) -> list[st
     return units
 
 
+def is_carried_over(project_dir: Path, unit: str) -> bool:
+    """A unit whose folder holds `carry.md` — the mark `/carry` leaves on a session whose
+    Spec is ratified and whose work is not done (case 190.3). The walk passes it by:
+    its yaml is neither written nor extended; the mark's content is not read."""
+    return (project_dir / "vault" / "raw" / unit / "carry.md").is_file()
+
+
 def materialize_date(project_dir: Path, unit: str, now, stdout, stderr, show=False) -> int:
     """One unit: extend or write its yaml; one line on stdout. Exit 2 on an error of the
     unit itself (nothing written), 1 when a line failed alone and the yaml was written
@@ -1074,9 +1038,18 @@ def run(argv, *, stdout=None, stderr=None, project_dir: Path | None = None, now=
         print(f"materialize: {what}", file=stderr)
         return 1
     failed = False
-    for index, unit in enumerate(units):
-        if args.show and index:
+    shown = 0
+    for unit in units:
+        if is_carried_over(project_dir, unit):  # a conserved session (case 190.3)
+            print(
+                f"materialize: vault/raw/{unit}/ passed by — carry.md marks its Spec as "
+                "ratified and not done",
+                file=stdout,
+            )
+            continue
+        if args.show and shown:
             print("---", file=stdout)  # one yaml document per unit (case 76)
+        shown += 1
         code = materialize_date(project_dir, unit, now, stdout, stderr, show=args.show)
         if code == 2:  # an error of the unit itself stops the walk (case 142.4)
             return 1

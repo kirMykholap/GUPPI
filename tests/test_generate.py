@@ -354,6 +354,65 @@ def test_delete_archives_and_defer_writes_a_placeholder_or_a_history_line(tmp_pa
     assert f"- {DATE} deferred, placeholder · [[decision-case-3]]" in later
 
 
+# --- the purpose of a defer on the Decision page (case 186.1): `estimate-generate-writes`
+
+
+def defer_entry(case, slug, purpose=None, line=None):
+    entry = {
+        "line": line or int(case),
+        "text": "",
+        "case": case,
+        "kind": "defer",
+        "category": "rules",
+        "slug": slug,
+        "origin": f"raw/{DATE}/ledger.md#case-{case}",
+        "decision": f"decision-case-{case}",
+    }
+    if purpose is not None:
+        entry["fields"] = {"type": "rule", "purpose": purpose}
+    return entry
+
+
+LONG_PURPOSE = "Slice 3d — the model.\n\n1. One promise per Estimate.\n2. No blocks.\n"
+
+
+def test_a_defer_writes_its_purpose_verbatim_under_deferred_on_the_decision_page(tmp_path):
+    entries = [ROOT, defer_entry("3", "rule-root", LONG_PURPOSE)]  # a page that exists
+    seed(tmp_path, entries=entries)
+    code, _, err = run(tmp_path)
+    assert code == 0 and err == ""
+    decision = page(tmp_path, "decisions", "decision-case-3")
+    assert "\n## Deferred\n\n### [[rule-root]]\n\n" + LONG_PURPOSE.strip() + "\n" in decision
+    assert decision.index("## Deferred") < decision.index("## History")
+    assert props(page(tmp_path, "rules", "rule-root"))["purpose"] == "Prevents root"  # untouched
+
+
+def test_two_targets_give_two_headings_in_the_order_of_the_defer_list(tmp_path):
+    entries = [
+        ROOT,
+        defer_entry("3", "rule-zeta", "The last alphabetically, the first deferred", line=3),
+        defer_entry("3", "rule-alpha", "The placeholder's own purpose", line=4),
+    ]
+    seed(tmp_path, entries=entries)
+    code, _, err = run(tmp_path)
+    assert code == 0 and err == ""
+    decision = page(tmp_path, "decisions", "decision-case-3")
+    section = decision.split("## Deferred\n", 1)[1].split("## History", 1)[0]
+    assert section.strip() == (
+        "### [[rule-zeta]]\n\nThe last alphabetically, the first deferred\n\n"
+        "### [[rule-alpha]]\n\nThe placeholder's own purpose"
+    )
+    alpha = page(tmp_path, "rules", "rule-alpha")  # the placeholder still gets its field
+    assert props(alpha)["purpose"] == "The placeholder's own purpose"
+
+
+def test_a_defer_without_a_purpose_writes_no_deferred_section(tmp_path):
+    seed(tmp_path, entries=[ROOT, defer_entry("3", "rule-root")])
+    run(tmp_path)
+    decision = page(tmp_path, "decisions", "decision-case-3")
+    assert "## Deferred" not in decision and "## History" in decision
+
+
 # --- a create over a placeholder (case 101.1) -------------------------------------------
 
 PLACEHOLDER = (

@@ -18,6 +18,16 @@ tags: []
 
 Case 182 puts Slice 3d — the Estimate model — before 3b: Work Mode leans on "an Estimate is the red test written before the work", and its rules cannot be written until that model stands. The two pages stay placeholders one more session; the postponement count goes to 15.
 
+## Deferred
+
+### [[rule-work-mode]]
+
+Slice 3b — Work Mode: the Spec as tasks with code, the ticked boxes in spec.md, the test of each Estimate written first and turned green; the Plan Mode of a session of its own, after Slice 3d (case 182) and before Slice 4
+
+### [[rule-subagent-guppi]]
+
+Slice 3b — what a subagent may do in Work Mode, and the fork that comes back to the main agent as a Case; with rule-work-mode, after Slice 3d
+
 ## History
 
 - 2026-09-16 created · raw/2026-09-15/2225/ledger.md#case-183

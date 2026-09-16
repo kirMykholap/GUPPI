@@ -26,7 +26,7 @@ page (`draft` while in `docs/migration/`), `here` this row. Rule-class; imported
 |---|---|---|
 | Entity | The thing that gets built; MOC or Leaf; a Leaf carries `code_ref` | entities/schema.md |
 | Rule | How the work happens; force by `hook`, `check` or `render`; needs an Estimate | rules/schema.md |
-| Estimate | How a behaviour was checked and the outcome; its own Leaf page under an Entity or Rule only, slug `estimate-<target minus its prefix>`; `QA` checks a known criterion, `Research` finds out; its Criterion is the `when` and `then` of its Cases, one `### case N` block per Case, its Context the `problem` of the Case that made it; a contract change (`contract: changed`) appends a block, never spawns a page; no index, reached through the target's `estimates` | estimates/schema.md, §7, §11 |
+| Estimate | One promise, one way to check it, the last result with its date (case 182); its own Leaf page under an Entity or Rule only, an explicit `create` with its slug in the Case, `estimate-<target minus its prefix>-<promise>`; fields `purpose`, `method`, `checked`; `QA` checks a known criterion, `Research` finds out; its Criterion is the `given`, `when` and `then` of one Case, replaced whole by the `update` that names it, which alone sets `pending`; no index, reached through the target's `estimates` (case 193) | estimates/schema.md, §7, §11 |
 | Lesson | Something learned; a fact the hook writes, no Case, no Estimate; slug = area + cause; a `knowledge` claim is checked by the Rule that leans on it | lessons/schema.md, §8 |
 | Insight | Over Lessons sharing a root cause, made by the librarian on the second; surfaces in the brief's Deferred list and is the target of the `update` that actions or rejects it, or of a `defer`; never created or deleted by a Decision; `actioned` reopens (case 124) | insights/schema.md, §8 |
 | Issue | Tracked on GitHub; never a page, a `ref` only | here |
@@ -38,8 +38,8 @@ page (`draft` while in `docs/migration/`), `here` this row. Rule-class; imported
 | Page fields | `type` the kind; `purpose` one line the index is built from; `children` MOC only, ordered on a Rule; `estimates` cross-cutting on a MOC; `code_ref` (Entity Leaf), `implementation_ref` (`hook`, `check` rules) | schema.md |
 | `deferred_by` | On an Entity, Rule or Insight, the Decision pages whose `defer` targets it; set by `generate`, cleared by a `supersedes`, shown in the index line, followed by `ask-guppi` | §5, §11, rules/schema.md |
 | `origin` | The Decision that created or deleted the page, as `raw/<date>/<HHMM>/ledger.md#case-N` — the date form on older pages; kept when archived, never rewritten; `#case-N` is a grep target lint checks in `raw/` or in the archive (case 103.6) | §4 |
-| Category fields | Estimate: `criterion`, `method`, `result`. Lesson: `trigger`, `root_cause`, `source` (in a ledger line, the external origin). Insight: `severity` (children not archived), `addressed_by` | schema.md |
-| `ref`, `slug`, `supersedes` | A pointer to an existing page (absent: query the vault before a `create`; present: `update`); the page id = filename; the earlier case a ledger line corrects, written `{supersedes:case N}`, which also removes that Case's block from the Estimate's Criterion (case 72.1) | §3, §4, §5 |
+| Category fields | Estimate: `purpose`, `method`, `checked`, the sections `Criterion` and `Result` (case 193). Lesson: `trigger`, `root_cause`, `source` (in a ledger line, the external origin). Insight: `severity` (children not archived), `addressed_by` | schema.md |
+| `ref`, `slug`, `supersedes` | A pointer to an existing page (absent: query the vault before a `create`; present: `update`); the page id = filename; the earlier case a ledger line corrects, written `{supersedes:case N}`, which marks every entry of that Case superseded and clears its `deferred_by` (case 200.2) | §3, §4, §5 |
 
 ## Status models
 
@@ -55,7 +55,7 @@ page (`draft` while in `docs/migration/`), `here` this row. Rule-class; imported
 | term | meaning | where |
 |---|---|---|
 | Decision | The atomic unit of work: `create`, `update`, `delete`, `defer`; Read is never one | §3 |
-| Types | `create` a page (a Leaf brings its Estimate through `method` in the `then` block); `update` fields, `result`/`status` included; `delete` sets `status: deleted` after an impact analysis, the librarian archives; `defer` postpones, a placeholder page when no `ref` | §3, §5 |
+| Types | `create` a page (an Estimate is its own `create`, with `ref` on its target, case 193); `update` fields, `result`/`status` included; `delete` sets `status: deleted` after an impact analysis, the librarian archives; `defer` postpones, a placeholder page when no `ref` | §3, §5 |
 | Delegate | The agent deciding without ratification; rejected, parked | here |
 | Routing Table, Decision page | (type × `ref` × category) to vault action, mechanical; one page per Case in `wiki/decisions/`, slug `decision-case-<N>`, one list per kind present: `create`, `update`, `delete`, `defer`, body Context, Problem, Given, When; never indexed, reached through `deferred_by`, a History wikilink or `origin` | §5, §11, decisions/schema.md |
 
@@ -65,8 +65,8 @@ page (`draft` while in `docs/migration/`), `here` this row. Rule-class; imported
 |---|---|---|
 | Session | Session Start, Plan Mode, Work Mode, End of Session | §9 |
 | `/hi`, Frontier | Opens a working session and records `hi`; the open items it assembles (brief, sprint, issues, an unfinished plan, the ledger tail) are the Plan Mode agenda | rule-skill-hi, rule-ledger-tail |
-| Sprint, `brief.md` | The backlog giving the session its scope (`migration` during the move); the handover between sessions, deferred items capped at 7, ranked by Insight severity then postponements | sprint.md, rule-brief |
-| Case | The unit of dialogue, not a page: `context`, `problem`, `recommend`, `given`, `when`, `then`, `tasks`, `ratification` (case 163); `when` + `then` is the Estimate criterion; the page content is a `then` block in the Spec; splits into dotted sub-cases the parent's sign-off never covers | case-schema.md |
+| Sprint, `brief.md` | The backlog giving the session its scope (`migration` during the move); the handover between sessions, written by the librarian — deferred items capped at 7, ranked by Insight severity then postponements — or by `/carry`, which conserves a Spec and keeps the previous list whole (case 200.2) | sprint.md, rule-brief |
+| Case | The unit of dialogue, not a page: `context`, `problem`, `recommend`, `given`, `when`, `then`, `tasks`, `ratification` (case 163); `given` + `when` + `then` is the Estimate criterion, the Estimate named by slug (case 193); the page content is a `then` block in the Spec; splits into dotted sub-cases the parent's sign-off never covers | case-schema.md |
 | Plan Mode, Pre-task | Frontier items discussed as Cases until each is ratified or deferred; the vault query before a `create` without `ref`, `draft` pages included | rule-plan-mode, rule-pretask |
 | Ledger, Event log | The record of decisions (routing only), estimates and lessons (with text), written by the `Stop` hook into `raw/<date>/<HHMM>/ledger.md`, the session's folder (case 103.1); the gitignored log of tool calls and commits of the day, written by hooks | §4, rule-ledger-write, rule-event-log |
 | Spec | The ratified Cases as one document, approved as Claude Code's plan, copied to `raw/<date>/<hi HHMM>/spec.md`, the session's folder (case 73.1) | rule-spec-capture |

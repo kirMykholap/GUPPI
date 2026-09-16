@@ -1,5 +1,5 @@
 """`guppi spec` — the `PostToolUse ExitPlanMode` hook that copies the approved plan into
-the session's folder, `vault/raw/<hi date>/<hi HHMM>/spec.md`.
+the session's folder, `vault/raw/<hi date>/<hi HHMM>/spec.md`, and prints the fork.
 
 The plan arrives whole in `tool_response.plan` (measured 2026-09-09, Slice 1 probe). It is
 appended after a `---` separator when the file already has content, under a stamp line
@@ -9,7 +9,17 @@ again. Any other tool, or a payload without a plan: nothing. The folder is named
 the way the ledger hook finds it, across the event logs of the window (case 73.2); the
 folder is created when missing. Without a `hi` recorded for this session the hook exits 2
 with the reason, so the person is told rather than left believing the Spec was copied.
-Rule page: `vault/wiki/rules/rule-spec-capture.md`.
+
+The file has three writers: this hook, once per approval; Work Mode, which ticks the boxes
+of the `tasks` blocks and nothing else; and the agent, who appends the short-form Cases
+under `## Deferred` at the close of Plan Mode and at Retro, before their ledger lines.
+
+Written or already there, the hook then prints one line on stdout, which the client adds
+to the agent's context: the fork the person chooses at — Work Mode on the Spec, or `/carry`
+to conserve it for a later session — naming the session folder and the Spec file (case
+190.5). A `PostToolUse` hook cannot block: the tool has run; the agent asks, the person
+chooses, and nothing starts until the answer (case 190.2). Rule page:
+`vault/wiki/rules/rule-spec-capture.md`.
 """
 
 import sys
@@ -57,8 +67,27 @@ def append_plan(path: Path, plan: str, now, session: str) -> bool:
     return True
 
 
-def run(argv, *, stdin=None, stderr=None, project_dir: Path | None = None, now=None) -> int:
+def fork_line(path: Path, project_dir: Path) -> str:
+    """The one line printed after the Spec is in place (case 190.5): the fork between Work
+    Mode and `/carry`, with the session folder and the Spec file."""
+    try:
+        spec = path.relative_to(project_dir).as_posix()
+    except ValueError:
+        spec = path.as_posix()
+    folder = spec.rsplit("/", 1)[0]
+    return (
+        f"spec: the Spec is in {spec}. Ask the person which end this session takes, and "
+        f"start nothing until it is answered: Work Mode on the Spec — or /carry, which "
+        f"conserves it for a later session (the brief rewritten, {folder}/carry.md as the "
+        "mark, a commit, nothing else run)."
+    )
+
+
+def run(
+    argv, *, stdin=None, stdout=None, stderr=None, project_dir: Path | None = None, now=None
+) -> int:
     stdin = sys.stdin if stdin is None else stdin
+    stdout = sys.stdout if stdout is None else stdout
     stderr = sys.stderr if stderr is None else stderr
     project_dir = project_root() if project_dir is None else Path(project_dir)
     now = datetime.now().astimezone() if now is None else now
@@ -78,6 +107,7 @@ def run(argv, *, stdin=None, stderr=None, project_dir: Path | None = None, now=N
             )
             return 2
         append_plan(path, plan, now, session)
+        print(fork_line(path, project_dir), file=stdout)
     except Exception as exc:  # noqa: BLE001 — a hook that raises would fail the session
         print(f"spec: spec.md not written: {exc}", file=stderr)
     return 0

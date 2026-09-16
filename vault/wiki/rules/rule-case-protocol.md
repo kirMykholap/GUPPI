@@ -84,16 +84,6 @@ Write the `- decision[...]` lines only in the reply that acknowledges ratificati
 exists. Without `/hi` the hook refuses and says so: tell the person, do not retry. A reply that carries a `LEDGER` block ends in that text. No tool call follows it in the same reply: the text before a tool call is never kept, and the hook reads nothing.
 <!-- /rule-case-protocol -->
 
-## How it works
-
-Spliced into `CLAUDE.md` between its markers. The eight Case sections are not repeated here:
-they arrive through `@vault/wiki/case-schema.md`, imported by the same file. What this
-section adds is the discipline around them — one Case at a time, when a Case splits, the
-vault query before a `create`, the shape of a section, and the LEDGER-block rule the ledger
-hook relies on.
-
-`parent: rule-claude-md` names the file the Render is spliced into; `rule-plan-mode` is the rule of the phase in which a Case is held.
-
 ## History
 
 - 2026-09-09 created · raw/2026-09-09/ledger.md#case-13

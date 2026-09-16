@@ -5,16 +5,19 @@ type: estimate
 properties:
   required: [type, kind, status, target, origin, sprint, created, tags]
 # `target` names an Entity or a Rule; lint reports any other category (case 53.1).
-  optional: []
+# `purpose`, `method` and `checked` are the fields of the model of case 182: one line each,
+# written on a page born since case 193; the 42 older pages carry none until their recut at
+# their first touch (case 191), so none is required yet (case 193).
+  optional: [purpose, method, checked]
   values:
     kind: [QA, Research]
     status: [pending, passed, failed]
 body:
-  required: ["## Context", "## Criterion", "## Method", "## History"]
-# `## Context` is written once, from the Case's `problem`; `## Criterion` may hold one
-# `### case N` sub-block per Case that shaped the Estimate, in ledger order; `## Method` is
-# the Case's `method`. All three stay required (case 72.2).
-  optional: ["## Result"]
+  required: ["## Criterion", "## History"]
+# `## Criterion` is the Given, When and Then of one Case, replaced whole by the update that
+# names the Estimate. `## Context` and `## Method` are the shape before case 193: kept on
+# the pages that carry them, never written to a new page (case 193).
+  optional: ["## Context", "## Method", "## Result"]
   conditional:
     - when: {status: passed}
       required: ["## Result"]

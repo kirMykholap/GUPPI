@@ -83,11 +83,11 @@ update:
 
 ```tasks
 - [ ] update `rule-page-generation`, `contract: changed`, `estimate_slug: estimate-generate-writes`, two `replace` in How it works
-- [ ] `guppi/generate.py`: a `defer` entry writes `## Deferred` on the decision page, one `### [[slug]]` heading per target, purpose verbatim, in the order of the `defer` list
-- [ ] `tests/test_generate.py`: purpose written verbatim; two targets give two headings; a multi-line purpose is not collapsed; the order follows the `defer` list
-- [ ] `vault/wiki/decisions/schema.md`: `## Deferred` described as optional (Rule-class, by hand)
-- [ ] `vault/wiki/decisions/schema.yaml`: `## Deferred` added to optional sections (Rule-class, by hand)
-- [ ] one-off migration: write `## Deferred` on `decision-case-182`, `183` and `185` from the defer entries of `vault/raw/2026-09-15/2225/materialize.yaml`
+- [x] `guppi/generate.py`: a `defer` entry writes `## Deferred` on the decision page, one `### [[slug]]` heading per target, purpose verbatim, in the order of the `defer` list
+- [x] `tests/test_generate.py`: purpose written verbatim; two targets give two headings; a multi-line purpose is not collapsed; the order follows the `defer` list
+- [x] `vault/wiki/decisions/schema.md`: `## Deferred` described as optional (Rule-class, by hand)
+- [x] `vault/wiki/decisions/schema.yaml`: `## Deferred` added to optional sections (Rule-class, by hand)
+- [x] one-off migration: write `## Deferred` on `decision-case-182`, `183` and `185` from the defer entries of `vault/raw/2026-09-15/2225/materialize.yaml`
 - [ ] the Cases of Slice 3d that replace the Criterion of `estimate-generate-writes` whole carry the promise of 186.1 into the replacing text
 - [ ] read `estimate-generate-writes`, block 186.1
 ```
@@ -150,8 +150,8 @@ update:
 
 ```tasks
 - [ ] update `rule-lint`, `contract: changed`, one `replace` in How it works
-- [ ] `guppi/lint.py`: a placeholder is recognised and reports `deferred: <N> times since case <M>` instead of the `schema` and `orphan` findings
-- [ ] `tests/test_lint.py`: a placeholder gives one finding carrying its count; a page with `deferred_by` whose fields are in place gives none
+- [x] `guppi/lint.py`: a placeholder is recognised and reports `deferred: <N> times since case <M>` instead of the `schema` and `orphan` findings
+- [x] `tests/test_lint.py`: a placeholder gives one finding carrying its count; a page with `deferred_by` whose fields are in place gives none
 - [ ] the Cases of Slice 3d that replace the Criterion of `estimate-lint-catches` whole carry the promise of 186.3 into the replacing text
 - [ ] read `estimate-lint-catches`, block 186.3
 ```
@@ -235,7 +235,7 @@ update:
 - [ ] create `estimate-plan-mode-names-its-estimates`, QA, `ref: rule-plan-mode`, tags `session`, `workflow`
 - [ ] update `rule-plan-mode`: the `Purpose` section gains the paragraph on the Case's judgment; the new Estimate enters `estimates`
 - [ ] read `estimate-plan-mode-names-its-estimates` from this session's Spec: a Case that changes a rule named its Estimate by slug; a Case that changes only `Purpose` named none
-- [ ] `{supersedes:case 182}` goes on the last Case of the group 187–192, not here
+- [x] `{supersedes:case 182}` goes on the last Case of the group 187–192, not here
 ```
 
 ## Case 188 — the form of a Case carries the whole contract
@@ -398,7 +398,7 @@ update:
 - [ ] create `estimate-case-protocol-acknowledging-reply`, QA, tags `session`, `workflow`, `ledger`; block 167 verbatim
 - [ ] create `estimate-case-protocol-ledger-line-form`, QA, tags `session`, `workflow`, `ledger`; blocks 75.1 and 144.1 without the `＋` line on the render
 - [ ] update `estimate-case-protocol-loaded`: the Criterion replaced whole — the head text without the dead `method` clause, plus 73.9
-- [ ] `vault/wiki/case-schema.md` rewritten by points 6, 7 and 9 (Rule-class, by hand)
+- [x] `vault/wiki/case-schema.md` rewritten by points 6, 7 and 9 (Rule-class, by hand)
 - [ ] `guppi render --check` exit 0, `CLAUDE.md` equal to the Render
 - [ ] snapshot `vault/wiki/estimates/` before the librarian's run; diff after `generate`, the divergences named in the handoff
 - [ ] read `estimate-case-protocol-case-form`
@@ -605,8 +605,8 @@ update:
 
 ```tasks
 - [ ] update `rule-materialize`: `## How it works` dropped, the mechanism and the full field list moved into the docstring of `guppi/materialize.py`
-- [ ] `guppi/materialize.py`: the `contract` branch, the Estimate derived from `method`, `estimate_slug` and `estimate_kind`, and the derived `remove_criterion` all removed; the `criterion` of an Estimate entry lifted from the Case's `given`, `when` and `then`
-- [ ] `tests/test_materialize.py`: an `update` without `contract` yields no Estimate entry; a `create` without `method` yields none; an Estimate line yields its own entry with `criterion` and `pending`; a `supersedes` yields no `remove_criterion`
+- [x] `guppi/materialize.py`: the `contract` branch, the Estimate derived from `method`, `estimate_slug` and `estimate_kind`, and the derived `remove_criterion` all removed; the `criterion` of an Estimate entry lifted from the Case's `given`, `when` and `then`
+- [x] `tests/test_materialize.py`: an `update` without `contract` yields no Estimate entry; a `create` without `method` yields none; an Estimate line yields its own entry with `criterion` and `pending`; a `supersedes` yields no `remove_criterion`
 - [ ] update `estimate-materialize-assembles`: the Criterion replaced whole by this Case; Method and Result stay
 - [ ] update `estimate-materialize-walks-dates`: block 73.5 merged — the yaml's `spec` field names the file each Case was found in
 - [ ] snapshot `vault/wiki/estimates/` before the librarian's run; diff after `generate`, the divergences named in the handoff
@@ -774,7 +774,7 @@ update:
 
 ```tasks
 - [ ] update `rule-materialize`: the skip of a marked unit
-- [ ] `guppi/materialize.py` and `tests/test_materialize.py`: a unit with `carry.md` is skipped with its line; without it, as before
+- [x] `guppi/materialize.py` and `tests/test_materialize.py`: a unit with `carry.md` is skipped with its line; without it, as before
 - [ ] create `estimate-materialize-skips-a-carried-over-unit`, QA, `ref: rule-materialize`
 - [ ] read `estimate-materialize-skips-a-carried-over-unit`
 ```
@@ -836,7 +836,7 @@ update:
 
 ```tasks
 - [ ] update `rule-spec-capture`: the new promise, the fork in the context
-- [ ] `guppi/spec.py` and its tests
+- [x] `guppi/spec.py` and its tests
 - [ ] create `estimate-spec-capture-offers-the-fork`, QA, `ref: rule-spec-capture`
 - [ ] read `estimate-spec-capture-offers-the-fork`
 ```

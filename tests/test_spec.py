@@ -140,6 +140,42 @@ def test_a_write_failure_never_fails_the_hook(tmp_path):
     assert "spec.md" in err
 
 
+def run_with_stdout(stdin, project_dir):
+    out, err = io.StringIO(), io.StringIO()
+    code = spec.run([], stdin=stdin, stdout=out, stderr=err, project_dir=project_dir, now=NOW)
+    return code, out.getvalue(), err.getvalue()
+
+
+# the fork after the Spec is written (case 190.5): `estimate-spec-capture-offers-the-fork`
+
+
+def test_after_the_spec_the_hook_prints_the_fork_with_the_folder_and_the_file(tmp_path):
+    with_event_log(tmp_path)
+    code, out, err = run_with_stdout(payload(), tmp_path)
+    assert (code, err) == (0, "")
+    assert out.count("\n") == 1
+    assert "vault/raw/2026-09-09/1501/spec.md" in out
+    assert "vault/raw/2026-09-09/1501/carry.md" in out
+    assert "Work Mode" in out and "/carry" in out
+    assert "start nothing until it is answered" in out
+
+
+def test_the_fork_is_printed_again_when_the_plan_was_already_there(tmp_path):
+    with_event_log(tmp_path)
+    run(payload(), tmp_path)
+    code, out, _ = run_with_stdout(payload(), tmp_path)
+    assert code == 0 and "/carry" in out
+
+
+def test_no_fork_without_a_spec(tmp_path):
+    with_event_log(tmp_path, EVENT_LOG_WITHOUT_HI)
+    code, out, _ = run_with_stdout(payload(), tmp_path)
+    assert (code, out) == (2, "")
+    with_event_log(tmp_path)
+    code, out, _ = run_with_stdout(payload(tool="Write"), tmp_path)
+    assert (code, out) == (0, "")
+
+
 def test_cli_dispatches_to_spec(tmp_path, monkeypatch, capsys):
     from guppi import cli
 

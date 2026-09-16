@@ -20,15 +20,6 @@ repository. The ledger's decision lines are routing only; their content is the S
 page `origin` fields point at both. A Spec copied by hand is copied late, partially, or
 not at all.
 
-## How it works
-
-`uv run guppi spec` on `PostToolUse` of `ExitPlanMode` appends the approved plan to `raw/<hi date>/<hi HHMM>/spec.md` — the session's folder, named by the time of its `hi` line (case 73) — a `---` separator when the file has content, the stamp
-`<!-- approved HH:MM:SS · session xxxxxxxx -->`, the plan text, once. The file has
-two more writers: in Work Mode the agent ticks the boxes of the `tasks` blocks, and
-nothing else; at the close of Plan Mode and at Retro the agent appends the short-form Cases
-under the `## Deferred` heading, before their ledger lines (`rule-retro`). `guppi materialize` reads both by
-their `## Case N` headings, so a Retro defer gets its Decision page like any other.
-
 ## History
 
 - 2026-09-09 created · raw/2026-09-09/ledger.md#case-20

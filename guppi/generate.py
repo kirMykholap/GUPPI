@@ -11,8 +11,11 @@ from `purpose` on a rule or an entity; a `ref` lands in the parent's `children` 
 target's `estimates`, History `child <slug> added` / `estimate <slug> added`, settled at
 the end of the run when the parent comes later in the yaml. An Estimate page carries
 `purpose`, `method` and `checked` as fields after `target`, its `## Criterion` from
-`sections`; `## Context` and `## Method` are the shape before case 193, kept where a page
-carries them and never written to a new one. A `create` whose slug is a placeholder —
+`sections`; `## Context` and `## Method` are the shape before case 193, never written to a
+new page and dropped by the `update` whose `set` carries `method` — the field replaces the
+section (case 211.1); an `update` with `sections.Criterion` on a page without a `method`
+field, and no `set.method`, fails alone as `a recut without method` (case 211.2). A
+`create` whose slug is a placeholder —
 `status: draft`, no `kind` — fills it, `created` and `deferred_by` kept, History `created
 over placeholder` (case 101.1); any other existing page is a collision, never a rename. An
 `update` applies `set` to the frontmatter, `sections` as whole replacements — an Estimate's
@@ -456,11 +459,25 @@ class Vault:
                 file=self.stdout,
             )
             return
-        for key, value in (entry.get("set") or {}).items():
+        sets = entry.get("set") or {}
+        sections = entry.get("sections") or {}
+        if (
+            page.category == "estimates"
+            and "Criterion" in sections
+            and "method" not in page.props
+            and "method" not in sets
+        ):  # a recut that would leave the page in the old shape (case 211.2)
+            self.error(slug, "a recut without method (case 211)")
+            return
+        for key, value in sets.items():
             page.props[key] = value
             if key == "tags":
                 self.used_tags.update(as_list(value))
-        for name, text in (entry.get("sections") or {}).items():
+        if page.category == "estimates" and "method" in sets:
+            # the field replaces the section; the Case is reached by origin (case 211.1)
+            page.sections.pop("## Context", None)
+            page.sections.pop("## Method", None)
+        for name, text in sections.items():
             page.sections[f"## {name}"] = str(text).strip("\n")
         replaces = entry.get("replace") or []
         if not isinstance(replaces, list) or not all(isinstance(i, dict) for i in replaces):

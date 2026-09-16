@@ -7,7 +7,7 @@ origin: raw/2026-09-12/ledger.md#case-59.2
 sprint: migration
 created: 2026-09-12
 tags: [session, harness, workflow]
-ref: rule-skill-hi
+
 ---
 
 ## Context
@@ -57,3 +57,4 @@ raw/2026-09-14/0747/frontier.md written at /hi with F1–F10, F11 and F12 added 
 - 2026-09-12 status: pending → passed · raw/2026-09-12/ledger.md#L151
 - 2026-09-13 criterion: case 101.4 added · [[decision-case-101.4]]
 - 2026-09-14 status: pending → passed · raw/2026-09-14/0747/ledger.md#L37
+- 2026-09-17 ref removed · one-off migration · raw/2026-09-16/2238/spec.md#case-210

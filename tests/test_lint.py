@@ -858,6 +858,37 @@ def test_a_case_block_heading_is_not_a_section_boundary():
     }
 
 
+def test_a_moc_reading_passes_beside_a_sibling_estimate_naming_a_make_target(tmp_path):
+    # case 212: a second, cross-cutting Estimate of the MOC is a reading; the pipeline is
+    # the sibling's, so nothing is hidden
+    wiki = seed(tmp_path, rule=rule_page(status="built"))
+    write(
+        wiki / "rules" / "rule-root.md",
+        root_page().replace(
+            "estimates: []", "estimates: [estimate-root-holds, estimate-root-names]"
+        ),
+    )
+    write(
+        wiki / "estimates" / "estimate-root-holds.md",
+        estimate_page(target="rule-root", method="`make test-root`, the pipeline."),
+    )
+    write(
+        wiki / "estimates" / "estimate-root-names.md",
+        estimate_page(target="rule-root", method="One reading of the Spec at the close, by hand."),
+    )
+    assert run(tmp_path) == (0, [], "")
+    # the sibling names no make target: the reading is a finding as before
+    write(
+        wiki / "estimates" / "estimate-root-holds.md",
+        estimate_page(target="rule-root", method="`make test-nope`, the pipeline."),
+    )
+    _, lines, _ = run(tmp_path)
+    assert (
+        "estimates/estimate-root-names: method: says by hand while estimate-x-works names a test file"
+        in lines
+    )
+
+
 def test_a_moc_method_naming_a_make_target_passes_whatever_else_it_says(tmp_path):
     # case 112.1: the target is looked for first; "by hand" beside it is not a finding
     wiki = seed(tmp_path, rule=rule_page(status="built"))

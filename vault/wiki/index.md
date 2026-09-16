@@ -62,7 +62,7 @@ wiki/
   glossary.md        terms
   case-schema.md     Case structure — imported into CLAUDE.md
   brief.md           handover to the next session
-  sprint.md          current sprint scope
+  sprint.md          the sprint page rendered: written by `guppi sprint`
   tags.md            registry of tags in use
   log.md             every page change, written mechanically by the scripts
 ```
@@ -112,7 +112,8 @@ Every file that governs how the system behaves changes **only** through a ratifi
 | `glossary.md` | Rule | ratified `decision update` |
 | `<category>/schema.yaml`, `schema.md` | Rule | ratified `decision update` |
 | `tags.md` | registry | written during the session — but only registering tags already ratified in a Case |
-| `brief.md`, `sprint.md` | working | written by the librarian each session; `brief.md` also by `/carry`, when a session conserves its Spec (case 200.2) |
+| `brief.md` | working | written by the librarian each session; also by `/carry`, when a session conserves its Spec (case 200.2) |
+| `sprint.md` | rendered | written by `guppi sprint` from the sprint page `entity-sprint-<id>` — its Estimates the Definition of done, its `## Backlog` the Slices, one tick per item by the status of the page it names; not a page, no schema, exempt from lint; the governed-files hook refuses a hand edit — the backlog changes by an `update` of the sprint page (case 209) |
 | `log.md`, page `History` | generated | appended by `guppi generate` and `guppi cleanup` |
 
 The distinction: **Rule-class files decide what the system does, so changing them is a decision.** Registries and generated files record what already happened, so they are written mechanically.
@@ -272,7 +273,7 @@ Always its own page. Never inline, never composite. Its `target` is an Entity or
 - **QA** — the expected result is known in advance. Check against a stated criterion.
 - **Research** — the result is not known in advance. Investigating produces new content.
 
-One promise, one way to check it, the last result with its date (case 182). Fields: `kind`, `status` (`pending`/`passed`/`failed`), `target`, `purpose` (the promise in one line, for the list on the target), `method` (the test command, or where and when it is read), `checked` (the date of the last reading), `origin`; sections `Criterion` and `Result`. `Context` and `Method` as sections are the shape before case 193 and stand on the older pages until their recut.
+One promise, one way to check it, the last result with its date (case 182). Fields: `kind`, `status` (`pending`/`passed`/`failed`), `target`, `purpose` (the promise in one line, for the list on the target), `method` (the test command, or where and when it is read), `checked` (the date of the last reading), `origin`; sections `Criterion` and `Result`. `Context` and `Method` as sections are the shape before case 193 and stand on the older pages until the `update` that sets `method` — the recut: `generate` drops the two sections when `set` carries `method`, and refuses an `update` with `sections.Criterion` on a page without a `method` field and no `set.method` (case 211).
 
 The Criterion is written once: the `given`, `when` and `then` of one Case, as `Given:`, `When:`, `Then:`. The Case that creates the Estimate writes it; a Case that changes the promise names the Estimate by slug and its `update` replaces the Criterion whole — with the Case's `given`, `when` and `then`, or with the text the item writes under `sections: Criterion`, which stands on an `update` as on a `create` (case 204) — and sets the page `pending` — only a replaced Criterion does; an `update` of the rule's `Purpose` touches no Estimate, an `update` of its `Render` touches the Estimate of the live reading of that Render (cases 187, 193). No `### case N` block exists and nothing is appended; the Criterion that was replaced stays in the Spec of the session that wrote it, reached by `origin`, and in History. A reading overwrites `Result` — one run of one check, opening with its date and command (case 199) — and appends a History line; it never makes a page. The slug of an Estimate is `estimate-<target minus its prefix>-<promise>`; the older ones keep theirs. A second Estimate on one target is made by the atomicity rule of §6 — one action, one Estimate; a line with a test or a reading of its own is split off — with its slug named in the Case. So the count of Estimates follows the count of promises, not the count of sessions.
 

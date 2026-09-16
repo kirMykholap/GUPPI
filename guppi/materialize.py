@@ -51,7 +51,9 @@ prefix; a Rule-class file is `file` with its `path`), `slug`, `ref`, `source`,
 `text`, `decision` (`decision-case-<N>`). From the `then` block: `fields`, `sections`
 (`Criterion` lifted from the Case when the item wrote none), `replace`, `change`, `impact`,
 `incomplete` (what the block lacks: a required field, `then`, `change`, `criterion`,
-`purpose`, `source`), `exists` (a create whose page is on disk with an `origin` carrying
+`purpose`, `source`), `unknown` (a key of a `create` or `defer` item that the category's
+`schema.yaml` names as no field and that is not structural — never lifted into `fields`,
+case 214.1), `exists` (a create whose page is on disk with an `origin` carrying
 this line's `#case-N`, case 105.2; a defer whose page exists). Set by this script: `set`
 (`status: pending` on an Estimate update), and `status`, `result`, `folded` of a reading
 folded into a create; `superseded_by` from a later `{supersedes}` in any unit; `failed`
@@ -459,7 +461,7 @@ def decision_entry(record: dict, number: int, text: str, date: str, block: dict,
     if item is None:
         incomplete.append("then")
     else:
-        _lift_item(entry, item, kind, nested, incomplete)
+        _lift_item(entry, item, kind, nested, incomplete, schema_fields(project_dir, entry))
     if (
         kind == "create"
         and entry["category"] in CATEGORIES
@@ -473,12 +475,48 @@ def decision_entry(record: dict, number: int, text: str, date: str, block: dict,
     return entry
 
 
-def _lift_item(entry: dict, item: dict, kind: str, nested: str | None, incomplete: list[str]):
+STRUCTURAL_KEYS = ("slug", "sections", "estimate", "file", "ref", "parent_create", "parent_tags")
+
+
+def schema_fields(project_dir: Path, entry: dict) -> set[str] | None:
+    """The fields the category's `schema.yaml` names — `required` and `optional` — the
+    only keys of an item that reach `fields` (case 214.1); None without a schema file, and
+    then nothing is filtered."""
+    category = entry.get("category")
+    path = project_dir / "vault" / "wiki" / str(category) / "schema.yaml"
+    if category not in CATEGORIES or not path.exists():
+        return None
+    data = yaml.safe_load(path.read_text(encoding="utf-8")) or {}
+    props = data.get("properties") if isinstance(data, dict) else None
+    if not isinstance(props, dict):
+        return None
+    return {str(k) for k in (props.get("required") or [])} | {
+        str(k) for k in (props.get("optional") or [])
+    }
+
+
+def _lift_item(
+    entry: dict,
+    item: dict,
+    kind: str,
+    nested: str | None,
+    incomplete: list[str],
+    known: set[str] | None = None,
+):
     if kind == "create":
         skipped = ("slug", "sections", "estimate", "file", "parent_create", "parent_tags")
         if nested != "estimate" and entry.get("category") != "estimates":
             skipped += IGNORED_KEYS  # the old shape's keys stay off the target (194.1)
         fields = {k: v for k, v in item.items() if k not in skipped}
+        if known is not None:  # the lift by the schema (case 214.1)
+            unknown = [
+                k for k in item if k not in known and k not in skipped and k not in STRUCTURAL_KEYS
+            ]
+            if unknown:
+                entry["unknown"] = unknown
+            fields = {k: v for k, v in fields.items() if k in known}
+            if item.get("ref") and not entry.get("ref"):  # the item's ref is the entry's
+                entry["ref"] = str(item["ref"])
         if nested == "estimate" or entry.get("category") == "estimates":
             fields.setdefault("type", "estimate")
             fields.pop("estimate_kind", None)
@@ -525,6 +563,11 @@ def _lift_item(entry: dict, item: dict, kind: str, nested: str | None, incomplet
             incomplete.append("change")
     elif kind == "defer":
         fields = {k: v for k, v in item.items() if k not in ("slug", "file")}
+        if known is not None:  # the lift by the schema (case 214.1)
+            unknown = [k for k in fields if k not in known and k not in STRUCTURAL_KEYS]
+            if unknown:
+                entry["unknown"] = unknown
+            fields = {k: v for k, v in fields.items() if k in known}
         entry["fields"] = fields
         if "purpose" not in fields:
             incomplete.append("purpose")

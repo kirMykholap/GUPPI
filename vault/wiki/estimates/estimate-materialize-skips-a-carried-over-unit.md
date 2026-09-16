@@ -7,7 +7,6 @@ origin: raw/2026-09-16/1034/ledger.md#case-190.3
 sprint: migration
 created: 2026-09-16
 tags: [harness, workflow, ledger]
-ref: rule-materialize
 purpose: A unit holding carry.md is skipped, with one line on stdout
 method: pytest in tests/test_materialize.py, the tests of the skip
 ---
@@ -57,3 +56,4 @@ before.
 
 - 2026-09-16 created · [[decision-case-190.3]]
 - 2026-09-16 status: pending → passed · raw/2026-09-16/1651/ledger.md#L34
+- 2026-09-17 ref removed · one-off migration · raw/2026-09-16/2238/spec.md#case-210

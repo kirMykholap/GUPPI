@@ -1,6 +1,7 @@
 """`guppi materialize`: the ledger and the Spec become one yaml, one entry per record line."""
 
 import io
+from pathlib import Path
 
 import yaml
 
@@ -1548,3 +1549,130 @@ def test_an_error_of_the_unit_itself_still_stops_the_walk(tmp_path, monkeypatch)
     assert code == 1 and "Case 5 found in two files" in err
     assert not (a / "materialize.yaml").exists()
     assert not (b / "materialize.yaml").exists()
+
+
+# --- the lift by the schema (case 214.1): `estimate-materialize-assembles` ----------------
+
+SCHEMA_LEDGER = """- decision[case 21][create][rule-by-schema]{ref:rule-old}{tags:harness}
+- decision[case 22][create][estimate-by-schema-holds]{ref:rule-by-schema}{tags:harness}
+- decision[case 23][defer][rule-later]{ref:rule-later}
+"""
+
+SCHEMA_SPEC = """# Spec
+
+## Case 21 — a rule item with a key the schema does not know
+
+> **context:**
+> c.
+
+```then
+create:
+  - slug: rule-by-schema
+    type: rule
+    kind: Leaf
+    ref: rule-old
+    purpose: p
+    enforcement: check
+    implementation_ref: [guppi/x.py]
+    contract_note: nobody ratified this key
+    tags: [harness]
+    sections:
+      Purpose: |
+        The purpose.
+```
+
+## Case 22 — an Estimate item with ref, a field and a stray key
+
+> **when:**
+> w.
+
+> **then:**
+> t.
+
+```then
+create:
+  - slug: estimate-by-schema-holds
+    type: estimate
+    ref: rule-by-schema
+    kind: QA
+    purpose: p
+    method: pytest tests/test_x.py
+    stray: x
+    tags: [harness]
+```
+
+## Case 23 — a defer with a key the schema does not know
+
+```then
+defer:
+  - slug: rule-later
+    type: rule
+    purpose: later
+    stray: x
+```
+"""
+
+
+def seed_schemas(tmp_path):
+    import shutil
+
+    seed(tmp_path, ledger=SCHEMA_LEDGER, spec=SCHEMA_SPEC)
+    wiki = tmp_path / "vault" / "wiki"
+    repo = Path(__file__).resolve().parents[1] / "vault" / "wiki"
+    for category in ("rules", "entities", "estimates", "lessons", "insights"):
+        (wiki / category).mkdir(exist_ok=True)
+        shutil.copy(repo / category / "schema.yaml", wiki / category / "schema.yaml")
+    return tmp_path
+
+
+def test_only_the_keys_the_schema_names_reach_fields_and_a_stray_key_is_marked_unknown(tmp_path):
+    seed_schemas(tmp_path)
+    code, _, err = run(tmp_path)
+    assert code == 0 and err == "", err
+    data = load(tmp_path)
+    (rule,) = of_case(data, "21")
+    assert rule["fields"] == {
+        "type": "rule",
+        "kind": "Leaf",
+        "purpose": "p",
+        "enforcement": "check",
+        "implementation_ref": ["guppi/x.py"],
+        "tags": ["harness"],
+    }
+    assert rule["ref"] == "rule-old" and rule["sections"] == {"Purpose": "The purpose."}
+    assert rule["unknown"] == ["contract_note"] and "incomplete" not in rule
+    (estimate,) = of_case(data, "22")
+    assert estimate["ref"] == "rule-by-schema" and "ref" not in estimate["fields"]
+    assert estimate["fields"] == {
+        "type": "estimate",
+        "kind": "QA",
+        "purpose": "p",
+        "method": "pytest tests/test_x.py",
+        "tags": ["harness"],
+    }
+    assert estimate["unknown"] == ["stray"]
+    (defer,) = of_case(data, "23")
+    assert defer["fields"] == {"type": "rule", "purpose": "later"}
+    assert defer["unknown"] == ["stray"] and "incomplete" not in defer
+
+
+def test_the_keys_of_the_old_shape_stay_ignored_and_never_unknown(tmp_path):
+    seed_schemas(tmp_path)
+    spec = (tmp_path / "vault" / "raw" / DATE / "spec.md").read_text(encoding="utf-8")
+    spec = spec.replace(
+        "    contract_note: nobody ratified this key\n", "    contract: changed\n    method: m\n"
+    )
+    (tmp_path / "vault" / "raw" / DATE / "spec.md").write_text(spec, encoding="utf-8", newline="\n")
+    run(tmp_path)
+    (rule,) = of_case(load(tmp_path), "21")
+    assert (
+        "unknown" not in rule
+        and "method" not in rule["fields"]
+        and "contract" not in rule["fields"]
+    )
+
+
+def test_show_prints_the_unknown_mark(tmp_path):
+    seed_schemas(tmp_path)
+    code, out, _ = run(tmp_path, argv=["--show"])
+    assert code == 0 and "  unknown:\n  - contract_note" in out

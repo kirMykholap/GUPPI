@@ -1275,7 +1275,7 @@ def test_an_estimate_create_writes_purpose_method_and_criterion_and_no_old_secti
     assert props(page(tmp_path, "rules", "rule-child"))["estimates"] == ["estimate-child"]
 
 
-def test_an_estimate_update_replaces_the_criterion_whole_and_keeps_the_old_sections(tmp_path):
+def recut_entry(set_fields, sections=None, change="the Criterion replaced whole"):
     entry = {
         "line": 5,
         "text": "",
@@ -1285,25 +1285,73 @@ def test_an_estimate_update_replaces_the_criterion_whole_and_keeps_the_old_secti
         "slug": "estimate-child",
         "origin": f"raw/{DATE}/ledger.md#case-5",
         "decision": "decision-case-5",
-        "sections": {"Criterion": "Given:\nnothing.\n\nWhen:\nasked.\n\nThen:\nanswered."},
-        "set": {"status": "pending"},
-        "change": "the Criterion replaced whole",
+        "set": set_fields,
+        "change": change,
     }
-    seed(
-        tmp_path,
-        entries=[entry],
-        pages=[
-            ("estimates", "estimate-child", estimate_page("### case 1\n\nold", status="passed"))
-        ],
+    if sections is not None:
+        entry["sections"] = sections
+    return entry
+
+
+NEW_CRITERION = "Given:\nnothing.\n\nWhen:\nasked.\n\nThen:\nanswered."
+
+
+def test_an_estimate_update_with_method_replaces_the_criterion_and_drops_the_old_sections(
+    tmp_path,
+):
+    """Case 211.1: `set.method` writes the field after `purpose` and drops `## Context` and
+    `## Method`; the Criterion is replaced whole as before."""
+    entry = recut_entry(
+        {"status": "pending", "method": "pytest tests/test_x.py"},
+        sections={"Criterion": NEW_CRITERION},
     )
+    old = estimate_page("### case 1\n\nold", status="passed").replace(
+        "target: rule-child\n", "target: rule-child\npurpose: the promise\n"
+    )
+    seed(tmp_path, entries=[entry], pages=[("estimates", "estimate-child", old)])
     code, _, err = run(tmp_path)
     assert code == 0 and err == "", err
     text = page(tmp_path, "estimates", "estimate-child")
-    assert props(text)["status"] == "pending"
-    assert "## Criterion\n\nGiven:\nnothing.\n\nWhen:\nasked.\n\nThen:\nanswered.\n" in text
-    assert "### case 1" not in text and "old" not in text.split("## Method")[0]
-    assert "## Context\n\nWhy.\n" in text and "## Method\n\nold method\n" in text  # kept as is
+    fields = props(text)
+    assert fields["status"] == "pending" and fields["method"] == "pytest tests/test_x.py"
+    keys = list(yaml.safe_load(text.split("---")[1]))
+    assert keys.index("purpose") < keys.index("method") < keys.index("origin")
+    assert f"## Criterion\n\n{NEW_CRITERION}\n" in text
+    assert "### case 1" not in text
+    assert "## Context" not in text and "## Method" not in text
+    assert "## History\n\n- old\n" in text
     assert f"- {DATE} updated: the Criterion replaced whole · [[decision-case-5]]" in text
+
+
+def test_an_estimate_update_without_method_touches_no_section_of_a_page_with_the_field(
+    tmp_path,
+):
+    """Case 211.1: without `set.method` no section is dropped; a page that carries the
+    field takes a new Criterion as before."""
+    entry = recut_entry({"status": "pending"}, sections={"Criterion": NEW_CRITERION})
+    old = estimate_page("c", status="passed").replace(
+        "target: rule-child\n", "target: rule-child\nmethod: by hand\n"
+    )
+    seed(tmp_path, entries=[entry], pages=[("estimates", "estimate-child", old)])
+    code, _, err = run(tmp_path)
+    assert code == 0 and err == "", err
+    text = page(tmp_path, "estimates", "estimate-child")
+    assert f"## Criterion\n\n{NEW_CRITERION}\n" in text
+    assert "## Context\n\nWhy.\n" in text and "## Method\n\nold method\n" in text  # kept
+
+
+def test_a_recut_without_method_on_a_page_of_the_old_shape_fails_alone(tmp_path):
+    """Case 211.2: `sections.Criterion` on a page without a `method` field, and no
+    `set.method`, fails the entry alone; the page is untouched, the rest apply."""
+    entry = recut_entry({"status": "pending"}, sections={"Criterion": NEW_CRITERION})
+    old = estimate_page("the old criterion", status="passed")
+    seed(tmp_path, entries=[ROOT, entry], pages=[("estimates", "estimate-child", old)])
+    code, _, err = run(tmp_path)
+    assert code == 1
+    assert "generate: estimate-child: a recut without method (case 211)" in err
+    assert page(tmp_path, "estimates", "estimate-child") == old
+    assert "failed" in load_yaml(tmp_path)["entries"][1]
+    assert (tmp_path / "vault" / "wiki" / "rules" / "rule-root.md").exists()  # the rest apply
 
 
 def test_a_reading_writes_checked_from_the_result_date_or_the_yamls_date(tmp_path):

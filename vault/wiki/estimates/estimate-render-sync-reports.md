@@ -7,7 +7,7 @@ origin: raw/2026-09-12/ledger.md#case-59.7
 sprint: migration
 created: 2026-09-12
 tags: [harness, render, hooks]
-ref: rule-render-harness
+
 ---
 
 ## Context
@@ -41,3 +41,4 @@ live 2026-09-13 session L start, after the librarian of K rendered nothing: the 
 - 2026-09-12 status: pending → passed · raw/2026-09-12/ledger.md#L166
 - 2026-09-12 updated: the live clause is read against a tree the librarian already rendered (case 89.3) · [[decision-case-89.3]]
 - 2026-09-13 status: pending → passed · raw/2026-09-13/ledger.md#L44
+- 2026-09-17 ref removed · one-off migration · raw/2026-09-16/2238/spec.md#case-210

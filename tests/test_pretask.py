@@ -614,3 +614,91 @@ def test_a_parsed_line_of_a_later_date_of_the_window_is_read(tmp_path):
         ),
         "case 2: line [update][rule-y]: no Case 2 heading in the plan",
     ]
+
+
+# --- the session bound by its stamp, not by position (case 213) --------------------------
+
+YESTERDAY = date(2026, 9, 8)
+
+
+def test_check_without_a_stamp_refuses_and_names_the_hi_line(tmp_path, monkeypatch):
+    """Case 213.1: no `--session`, no `CLAUDE_SESSION_ID` — one line on stderr, exit 2,
+    nothing checked; the last `session-start` of today's log is not a fallback."""
+    monkeypatch.delenv("CLAUDE_SESSION_ID", raising=False)
+    with_event_log(tmp_path, START + HI)
+    with_ledger(tmp_path, LINE)
+    plan_file = tmp_path / "plan.md"
+    plan_file.write_text(PLAN, encoding="utf-8", newline="\n")
+    out, err = io.StringIO(), io.StringIO()
+    code = pretask.run(
+        ["--check", str(plan_file)], stdout=out, stderr=err, project_dir=tmp_path, now=NOW
+    )
+    assert code == 2 and out.getvalue() == ""
+    assert (
+        err.getvalue().strip() == "pretask: no session id; pass --session <stamp> from the hi: line"
+    )
+
+
+def test_check_finds_yesterdays_hi_after_midnight(tmp_path):
+    """Case 213.1: the window is the ledger hook's — the stamped `hi` of yesterday's log
+    opens it, and the session's ledger of yesterday is read."""
+    with_event_log(tmp_path, START + HI, day=YESTERDAY)
+    with_event_log(tmp_path, "- 00:05:00 99999999 session-start startup\n")
+    with_session_ledger(tmp_path, LINE.replace("16:00:00", "23:50:00"), day=YESTERDAY)
+    with_frontier(tmp_path, CLEAN_FRONTIER, day=YESTERDAY)
+    plan_file = tmp_path / "plan.md"
+    plan_file.write_text(PLAN, encoding="utf-8", newline="\n")
+    out, err = io.StringIO(), io.StringIO()
+    code = pretask.run(
+        ["--check", str(plan_file), "--session", SESSION],
+        stdout=out,
+        stderr=err,
+        project_dir=tmp_path,
+        now=datetime(2026, 9, 9, 0, 30, 0, tzinfo=UTC),
+    )
+    assert (code, out.getvalue(), err.getvalue()) == (0, "", "")
+
+
+def test_the_hook_finds_yesterdays_hi_and_pretask_after_midnight(tmp_path):
+    """Case 213.2: the hook reads the logs the ledger hook reads — back to the date of this
+    session's start — so yesterday's `hi` gates and yesterday's `pretask` releases."""
+    after_midnight = datetime(2026, 9, 9, 0, 30, 0, tzinfo=UTC)
+    with_event_log(tmp_path, START + HI, day=YESTERDAY)
+    with_event_log(tmp_path, "- 00:05:00 99999999 session-start startup\n")
+    err = io.StringIO()
+    code = pretask.run([], stdin=payload(), stderr=err, project_dir=tmp_path, now=after_midnight)
+    assert code == 2 and "/pre-task" in err.getvalue()
+    with_event_log(tmp_path, START + HI + PRETASK, day=YESTERDAY)
+    err = io.StringIO()
+    code = pretask.run([], stdin=payload(), stderr=err, project_dir=tmp_path, now=after_midnight)
+    assert (code, err.getvalue()) == (0, "")
+
+
+# --- a ref to a page the same plan creates (case 221) ------------------------------------
+
+RULE_AND_ESTIMATE = (
+    "create:\n  - slug: rule-new\n    type: rule\n    kind: Leaf\n    ref: rule-x\n"
+    "    purpose: p\n    tags: [a]\n"
+    "  - slug: estimate-x-again\n    type: estimate\n    ref: rule-new\n"
+    "    kind: QA\n    purpose: p\n    method: pytest tests/test_x.py\n    tags: [a]\n"
+)
+RULE_AND_ESTIMATE_LINES = (
+    "- 16:00:00 decision[case 1][create][rule-new]{ref:rule-x}{tags:a}\n"
+    "- 16:00:01 decision[case 1][create][estimate-x-again]{ref:rule-new}{tags:a}\n"
+)
+
+
+def test_an_estimate_ref_to_a_rule_the_same_plan_creates_is_no_finding(tmp_path):
+    with_page(tmp_path, "rules", "rule-x")
+    code, out, _ = check(
+        tmp_path, plan=create_plan(RULE_AND_ESTIMATE), ledger=RULE_AND_ESTIMATE_LINES
+    )
+    assert (code, out) == (0, "")
+    # a ref to a slug no create of the plan carries is still a finding
+    plan = create_plan(RULE_AND_ESTIMATE.replace("ref: rule-new", "ref: rule-nowhere"))
+    lines = RULE_AND_ESTIMATE_LINES.replace("{ref:rule-new}", "{ref:rule-nowhere}")
+    code, out, _ = check(tmp_path, plan=plan, ledger=lines)
+    assert code == 1
+    assert out.splitlines() == [
+        "case 1: create estimate-x-again: ref rule-nowhere names no live page"
+    ]

@@ -20,7 +20,8 @@ Estimate `pending` or `failed`, one finding each — red between a change of a p
 its reading, by design; cases 182, 202), `method` (the `method` field, or on a page of the
 shape before case 193 the `## Method` section: for a MOC's Estimate a `make <target>` of the
 Makefile passes whatever else it says, and one that names none may be a reading when its
-children's Estimates are all readings, case 112.1; for a Leaf's Estimate a `tests/` file
+children's Estimates are all readings, case 112.1, or when a sibling Estimate of the MOC
+names a `make <target>` of the Makefile, case 212; for a Leaf's Estimate a `tests/` file
 that exists, the word `pytest`, a `make <target>` of the Makefile, or a reading — "by hand",
 "reading" — case 202), `decision` (a decision page with none of the four
 kind lists `create`, `update`, `delete`, `defer`, or with `kind` or `target_slug` still
@@ -537,11 +538,25 @@ def check_unmigrated(pages: list[Page]) -> list[Finding]:
     ]
 
 
+def sibling_names_a_target(page: Page, target: Page, by_slug: dict[str, Page], text: str) -> bool:
+    """True when another Estimate of the same MOC names a `make <target>` the Makefile
+    holds: the pipeline over the children is that sibling's (case 212)."""
+    for slug in as_list(target.props.get("estimates")):
+        other = by_slug.get(slug)
+        if other is None or other is page:
+            continue
+        match = MAKE_TARGET.search(method_of(other) or "")
+        if match and re.search(rf"^{re.escape(match.group(1))}:", text, re.MULTILINE):
+            return True
+    return False
+
+
 def check_method(page: Page, by_slug: dict[str, Page], project_dir: Path) -> list[Finding]:
     """The `method` of an Estimate — the field, or the section of a page of the old shape:
     for a MOC's Estimate a `make <target>` of the Makefile passes whatever else it says,
-    without one "by hand" passes only when every child's Estimate is a reading (case
-    112.1); for a Leaf's Estimate a `tests/` file that exists, the word `pytest`, a `make
+    without one "by hand" passes when every child's Estimate is a reading (case 112.1) or
+    when a sibling Estimate of the MOC names a `make <target>` of the Makefile (case 212);
+    for a Leaf's Estimate a `tests/` file that exists, the word `pytest`, a `make
     <target>` of the Makefile, or a reading — "by hand", "reading" (case 202)."""
     if page.category != "estimates":
         return []
@@ -553,6 +568,8 @@ def check_method(page: Page, by_slug: dict[str, Page], project_dir: Path) -> lis
     text = makefile.read_text(encoding="utf-8") if makefile.exists() else ""
     match = MAKE_TARGET.search(method)  # the target first (case 112.1)
     if str(target.props.get("kind")) == "MOC":
+        if not match and is_reading(method) and sibling_names_a_target(page, target, by_slug, text):
+            return []  # the pipeline is a sibling Estimate's; nothing is hidden (case 212)
         if not match and is_reading(method):
             return [
                 Finding(page, "method", f"says by hand while {child.slug} names a test file")

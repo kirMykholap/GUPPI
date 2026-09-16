@@ -66,8 +66,8 @@ update:
 ```
 
 ```tasks
-- [ ] update `rule-page-generation`: `## Purpose` rewritten with the text of the model; `## How it works` dropped by hand, a one-off; the mechanism in the docstring of `guppi/generate.py`
-- [ ] update `estimate-generate-writes`: the Criterion replaced whole by this sub-case, `pending`
+- [x] update `rule-page-generation`: `## Purpose` rewritten with the text of the model; `## How it works` dropped by hand, a one-off; the mechanism in the docstring of `guppi/generate.py`
+- [x] update `estimate-generate-writes`: the Criterion replaced whole by this sub-case, `pending`
 - [x] `guppi/generate.py`: `KEY_ORDER["estimates"]` with `purpose`, `method`, `checked` after `target`; `estimate()` writes `checked`; `criterion_block`, `remove_criterion`, `drop_case_block`, `CASE_BLOCK` removed; the docstring rewritten
 - [x] `tests/test_generate.py`: `checked` from the date of the Result and from the yaml's date; the Estimate fields in order; `criterion_block` and `remove_criterion` fail on stderr; the tests of the old paths removed
 - [x] read `estimate-generate-writes`
@@ -104,7 +104,7 @@ update:
 ```
 
 ```tasks
-- [ ] create `estimate-generate-writes-the-decision-page`
+- [x] create `estimate-generate-writes-the-decision-page`
 - [x] `vault/wiki/decisions/schema.md` and `schema.yaml`: `## Given` and `## Criterion` — the shape before case 201.2, kept where they stand, not written to a new page (Rule-class, by hand)
 - [x] `guppi/generate.py`: `decision()` without `Given` and without the Criterion list
 - [x] `tests/test_generate.py`: a new page without `## Given` and `## Criterion`; the rest as it is
@@ -136,7 +136,7 @@ create:
 ```
 
 ```tasks
-- [ ] create `estimate-generate-fails-alone`
+- [x] create `estimate-generate-fails-alone`
 - [x] `tests/test_generate.py`: the existing tests of failures, marks and skips green; none new beyond 201.1
 - [x] read `estimate-generate-fails-alone`
 ```
@@ -165,7 +165,7 @@ create:
 ```
 
 ```tasks
-- [ ] create `estimate-generate-cascades`
+- [x] create `estimate-generate-cascades`
 - [x] `tests/test_generate.py`: the existing tests of the cascade green; none new
 - [x] read `estimate-generate-cascades`
 ```
@@ -190,7 +190,7 @@ update:
 ```
 
 ```tasks
-- [ ] update `estimate-generate-walks-dates`: the Criterion replaced whole by this sub-case, `pending`; block 103.3 merged
+- [x] update `estimate-generate-walks-dates`: the Criterion replaced whole by this sub-case, `pending`; block 103.3 merged
 - [x] `tests/test_generate.py`: the existing tests of the walk green; none new
 - [x] read `estimate-generate-walks-dates`
 ```
@@ -251,8 +251,8 @@ update:
 ```
 
 ```tasks
-- [ ] update `rule-lint`: `## Purpose` rewritten; `## How it works` dropped by hand, a one-off; the classes and their order in the docstring of `guppi/lint.py`
-- [ ] update `estimate-lint-catches`: the Criterion replaced whole by this Case, `pending`
+- [x] update `rule-lint`: `## Purpose` rewritten; `## How it works` dropped by hand, a one-off; the classes and their order in the docstring of `guppi/lint.py`
+- [x] update `estimate-lint-catches`: the Criterion replaced whole by this Case, `pending`
 - [x] `guppi/lint.py`: `unread`; `check_method` on the `method` field, the section only without the field, the classes of a test and of a reading; `unmigrated` as one line; the docstring
 - [x] `tests/test_lint.py`: `pending` and `failed` each one `unread` finding; a `method` field with `tests/`, `pytest`, `make`, `reading` clean, without them a finding; a page of the old shape counted in `unmigrated`, no line at zero
 - [x] read `estimate-lint-catches`
@@ -300,7 +300,7 @@ create:
 ```
 
 ```tasks
-- [ ] create `estimate-pretask-checks-the-plan`
+- [x] create `estimate-pretask-checks-the-plan`
 - [x] `guppi/pretask.py`: `check_form` rewritten — two Estimate items without a written Criterion, an `update` of an Estimate without a page, a `create` of an Estimate with a `ref` without a page; `leaf_page`, `derived_estimate_slug`, `page_estimates` removed when no longer used; the docstring
 - [x] `tests/test_pretask.py`: two items with the Case's Criterion a finding, one plus one with a written Criterion clean; an `update` of an Estimate without a page a finding; a `create` with a `ref` without a page a finding; the tests of the old findings removed
 - [x] read `estimate-pretask-checks-the-plan`
@@ -333,12 +333,12 @@ update:
 ```
 
 ```tasks
-- [ ] update `rule-pretask`: two `replace` in the Render — the findings of `--check` by the new model; the list for `ask-guppi` with the page's `estimates` and the named Estimates
-- [ ] update `estimate-pretask-reconciles`: the Criterion replaced whole by this sub-case, `pending`; the blocks 73.4, 74, 75.2, 90.2, 103.4 to `-checks-the-plan`, 128 here
-- [ ] `uv run guppi render`: `.claude/skills/pre-task/SKILL.md`
+- [x] update `rule-pretask`: two `replace` in the Render — the findings of `--check` by the new model; the list for `ask-guppi` with the page's `estimates` and the named Estimates
+- [x] update `estimate-pretask-reconciles`: the Criterion replaced whole by this sub-case, `pending`; the blocks 73.4, 74, 75.2, 90.2, 103.4 to `-checks-the-plan`, 128 here
+- [x] `uv run guppi render`: `.claude/skills/pre-task/SKILL.md`
 - [x] `tests/test_render.py`: the existing tests of the render green
 - [x] read `estimate-pretask-reconciles` — at the `/pre-task` of this session
-- [ ] `{supersedes:case 191}`: `decision-case-191` superseded, the three rules lose `deferred_by`
+- [x] `{supersedes:case 191}`: `decision-case-191` superseded, the three rules lose `deferred_by`
 ```
 
 ## Case 204 — a written Criterion wins over the Case's text
@@ -381,8 +381,8 @@ update:
 ```
 
 ```tasks
-- [ ] update `rule-materialize`: one `replace` in Purpose — a written Criterion stands on a `create` and on an `update`
-- [ ] update `estimate-materialize-assembles`: the Criterion replaced whole by this Case, `pending`
+- [x] update `rule-materialize`: one `replace` in Purpose — a written Criterion stands on a `create` and on an `update`
+- [x] update `estimate-materialize-assembles`: the Criterion replaced whole by this Case, `pending`
 - [x] `tests/test_materialize.py`: an Estimate `update` with a written `sections: Criterion` keeps it and is set `pending`; with `set: {status: passed}` on the item, the item's status
 - [x] read `estimate-materialize-assembles`
 ```
@@ -461,10 +461,10 @@ update:
 ```
 
 ```tasks
-- [ ] update `rule-case-protocol`: one `replace` in the Render — "copy them whole, replacing", unless the item wrote the Criterion itself (case 204)
-- [ ] update `estimate-case-protocol-case-form`: the Criterion replaced whole by this sub-case, `pending`
-- [ ] `uv run guppi render`: `CLAUDE.md`; `render --check` exit 0
-- [ ] read `estimate-case-protocol-case-form` — the Cases of this session at its close
+- [x] update `rule-case-protocol`: one `replace` in the Render — "copy them whole, replacing", unless the item wrote the Criterion itself (case 204)
+- [x] update `estimate-case-protocol-case-form`: the Criterion replaced whole by this sub-case, `pending`
+- [x] `uv run guppi render`: `CLAUDE.md`; `render --check` exit 0
+- [x] read `estimate-case-protocol-case-form` — the Cases of this session at its close
 ```
 
 ### Case 208.3 — the sentence on two questions in the Render of `rule-pretask`
@@ -486,8 +486,8 @@ update:
 ```
 
 ```tasks
-- [ ] update `rule-pretask`: a third `replace` in the Render — "and the question: …" → "and two questions: …"
-- [ ] `uv run guppi render`: `.claude/skills/pre-task/SKILL.md` (with 203.2)
+- [x] update `rule-pretask`: a third `replace` in the Render — "and the question: …" → "and two questions: …"
+- [x] `uv run guppi render`: `.claude/skills/pre-task/SKILL.md` (with 203.2)
 ```
 
 ## Deferred

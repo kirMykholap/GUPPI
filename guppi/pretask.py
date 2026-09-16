@@ -2,8 +2,10 @@
 `/pre-task` has run in this session; `guppi pretask --check <plan> [--session ID]` — the
 check of that Plan Mode's artifacts against each other.
 
-The hook reads the event log by the session's stamp (case 136.2): the session is a working
-one when the log holds a `hi` of its stamp. In a working session with no `pretask` line of
+The hook reads the event logs by the session's stamp (case 136.2) — the logs from today
+back to the date of this session's `session-start`, as the ledger hook reads them, so a
+session across midnight keeps its `hi` and its `pretask` (case 213.2): the session is a
+working one when the logs hold a `hi` of its stamp. In a working session with no `pretask` line of
 the same stamp after that `hi`, the hook exits 2 with the reason on stderr, which Claude
 Code shows the agent and which blocks the tool; the agent runs `/pre-task` — `guppi gate`
 writes the stamped line on the Skill call (case 136.1) — and exits Plan Mode again. A mark
@@ -13,8 +15,9 @@ Any other tool: exit 0. Rule page: `vault/wiki/rules/rule-pretask-hook.md`.
 
 The check prints one finding per line on stdout and exits 1 on any, 0 and silent when
 clean; without a `hi` in the session's window it exits 0 with one line on stderr. The
-session is `--session`, else `CLAUDE_SESSION_ID`, else the last `session-start` of today's
-event log. The session's window is the one the ledger hook walks (`ledger.session_dir`):
+session is `--session`, else `CLAUDE_SESSION_ID`; with neither it exits 2 with one line on
+stderr naming the `hi:` line, and nothing is guessed from the event log (case 213.1). The
+session's window is the one the ledger hook walks (`ledger.session_dir`):
 the ledgers of its dates, on the `hi` date from the `hi` time on, and its folder
 `raw/<hi date>/<hi HHMM>/` (case 73). Findings (cases 59.1, 59.2, 59.3, 59.6, 74,
 75.2):
@@ -34,8 +37,9 @@ the ledgers of its dates, on the `hi` date from the `hi` time on, and its folder
 - the form of an Estimate item (case 203.1): a Case whose `then` block holds two or more
   Estimate items — a `create`, or an `update` with `set: {status: pending}` — without a
   written `sections: Criterion` (one promise per Case: split it); an `update` of an
-  Estimate whose page does not exist; a `create` of an Estimate whose `ref` names no live
-  rule or entity; the keys of the shape before case 189 — `method`, `contract`,
+  Estimate whose page does not exist; a `create` of an Estimate whose `ref` names neither
+  a live rule or entity nor one a `create` of the same plan carries (case 221); the keys of
+  the shape before case 189 — `method`, `contract`,
   `estimate_slug` — are not read;
 - a record line of the window — `- decision[`, `- estimate[`, `- lesson[`, timed — that
   `materialize.parse_line` does not read, with its date and line number (case 75.2).
@@ -48,8 +52,14 @@ import sys
 from datetime import datetime
 from pathlib import Path
 
-from guppi.event import log_path, project_root, read_payload, session_stamp
-from guppi.ledger import hi_moment, hi_recorded, session_dir, session_event_logs
+from guppi.event import project_root, read_payload, session_stamp
+from guppi.ledger import (
+    hi_moment,
+    hi_recorded,
+    session_dir,
+    session_event_log,
+    session_event_logs,
+)
 from guppi.materialize import (
     DECISION_KINDS,
     FENCE,
@@ -96,25 +106,19 @@ def window(event_log: str, stamp: str) -> tuple[bool, bool]:
 # --- the session's window -------------------------------------------------------------
 
 
-def last_session_start(event_log: str) -> str | None:
-    """The stamp of the last `session-start` line of an event log."""
-    stamp = None
-    for line in event_log.splitlines():
-        parts = line.split(" ", 3)
-        if len(parts) >= 4 and parts[0] == "-" and parts[3].split(" ", 1)[0] == "session-start":
-            stamp = parts[2]
-    return stamp
+NO_SESSION = "pretask: no session id; pass --session <stamp> from the hi: line"
 
 
-def resolve_session(option: str | None, project_dir: Path, now) -> str:
+def resolve_session(option: str | None) -> str | None:
+    """The stamp of `--session`, else of `CLAUDE_SESSION_ID`; None with neither. The last
+    `session-start` of today's log was the fallback until case 213.1: a foreign start beside
+    a parallel session, none after midnight — the session is never guessed."""
     if option:
         return session_stamp(option, {})
     env = os.environ.get("CLAUDE_SESSION_ID")
     if env:
         return session_stamp(env, {})
-    log = log_path(project_dir, now)
-    text = log.read_text(encoding="utf-8") if log.exists() else ""
-    return last_session_start(text) or session_stamp(None, {})
+    return None
 
 
 def window_lines(project_dir: Path, hi: tuple[str, str], today: str) -> list[tuple]:
@@ -371,10 +375,17 @@ def check_form(blocks: dict, project_dir: Path) -> list[str]:
     """The form of an Estimate item (case 203.1): a Case whose `then` block holds two or
     more Estimate items — a `create`, or an `update` with `set: {status: pending}` — without
     a written `sections: Criterion` is one promise too many (split it); an `update` of an
-    Estimate whose page does not exist, and a `create` of an Estimate whose `ref` names no
-    live rule or entity, are each a finding. The keys of the shape before case 189 —
+    Estimate whose page does not exist, and a `create` of an Estimate whose `ref` names
+    neither a live rule or entity nor a rule or entity a `create` item of the same plan
+    carries (case 221), are each a finding. The keys of the shape before case 189 —
     `method`, `contract`, `estimate_slug` — are not read."""
     findings: list[str] = []
+    created = {  # the rules and entities the plan itself creates (case 221)
+        str(item.get("slug"))
+        for block in blocks.values()
+        for item in block.get("create") or []
+        if isinstance(item, dict) and category_of(str(item.get("slug") or "")) in LEAF_CATEGORIES
+    }
     for case, block in blocks.items():
         promises = 0
         for item in block.get("create") or []:
@@ -384,7 +395,9 @@ def check_form(blocks: dict, project_dir: Path) -> list[str]:
             if not written_criterion(item):
                 promises += 1
             ref = str(item.get("ref") or "")
-            if category_of(ref) not in LEAF_CATEGORIES or not live_page(project_dir, ref):
+            if category_of(ref) not in LEAF_CATEGORIES or not (
+                live_page(project_dir, ref) or ref in created
+            ):
                 findings.append(f"case {case}: create {slug}: ref {ref or '?'} names no live page")
         for item in block.get("update") or []:
             slug = item.get("slug") if isinstance(item, dict) else None
@@ -453,16 +466,19 @@ def run(
             print(f"pretask: no plan file at {plan_file}", file=stderr)
             return 2
         plan = plan_file.read_text(encoding="utf-8")
-        stamp = resolve_session(args.session, project_dir, now)
+        stamp = resolve_session(args.session)
+        if stamp is None:
+            print(NO_SESSION, file=stderr)
+            return 2
         return check(plan, project_dir, stamp, now, stdout, stderr)
     try:
         payload = read_payload(stdin)
         if payload.get("tool_name") != TOOL:
             return 0
         stamp = session_stamp(None, payload)
-        log = log_path(project_dir, now)
-        event_log = log.read_text(encoding="utf-8") if log.exists() else ""
-        hi, done = window(event_log, stamp)
+        # the logs from today back to this session's start, as the ledger hook reads them,
+        # so yesterday's `hi` and `pretask` are found after midnight (case 213.2)
+        hi, done = window(session_event_log(project_dir, now, stamp), stamp)
         if hi and not done:
             print(
                 f"pretask: Plan Mode is closing without /pre-task in session {stamp}. "

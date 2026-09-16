@@ -19,6 +19,7 @@ from guppi import (
     pretask,
     render,
     spec,
+    sprint,
     tail,
 )
 
@@ -35,6 +36,7 @@ COMMANDS = {
     "materialize": materialize.run,
     "pretask": pretask.run,
     "render": render.run,
+    "sprint": sprint.run,
     "spec": spec.run,
     "tail": tail.run,
 }

@@ -1,0 +1,55 @@
+- 22:42:45 estimate[estimate-materialize-marks-superseded][passed] 2026-09-16, pytest tests/test_materialize.py -k supersed (5 passed) and the 1034 yaml after the librarian's run of 1955: the three defer entries of case 191 and its decisions record carry superseded_by 203.2, the estimate entry none, all three already applied so generate applied nothing new; a foreign yaml marked by the same rule
+- 22:42:45 estimate[estimate-end-of-work-order][passed] 2026-09-16, make test-end-of-work (30 passed) and the event log of session 1955: retro 22:14:35, commit 8fd804e 22:18:59, handoff 22:19:10 on a clean tree, handoff.md written 22:19:47 before the dispatch, the librarian's commit ebaef1e 22:25:58 with nothing between; rule-carry-over a child after rule-handoff
+- 22:42:45 estimate[estimate-brief-written][passed] 2026-09-16, the brief of session 1955 read by hand: the five sections in order; Where things stand from the handoff and the yaml counts per category; Readings due the four pending after generate, each with the draft rule and the place from its method, no failed; Deferred five of seven ranked by severity then briefs; Flags with near, folded, synthesis, stale defers, the contradiction and the lint output; Readings at the close with test, lint and page counts; no decision stated, sprint.md untouched as the handoff said
+- 23:53:41 decision[case 209][create][rule-sprint]{ref:rule-documentation}{tags:session,workflow,harness,librarian,sprint}
+- 23:53:41 decision[case 209.1][create][estimate-sprint-renders-the-backlog]{ref:rule-sprint}{tags:harness,sprint}
+- 23:53:41 decision[case 209.2][create][entity-sprint-migration]{tags:sprint,workflow}
+- 23:53:41 decision[case 209.2][create][estimate-sprint-migration-lint-clean]{ref:entity-sprint-migration}{tags:sprint,tests}
+- 23:53:41 decision[case 209.3][create][estimate-sprint-migration-leftovers-gone]{ref:entity-sprint-migration}{tags:sprint,git}
+- 23:53:41 decision[case 209.4][create][estimate-sprint-migration-merges]{ref:entity-sprint-migration}{tags:sprint,git,tests}
+- 23:53:41 decision[case 209.5][update][rule-documentation]{ref:rule-documentation}
+- 23:53:41 decision[case 209.5][update][estimate-documentation-completes]{ref:estimate-documentation-completes}
+- 23:53:41 decision[case 209.6][update][rule-brief]{ref:rule-brief}
+- 23:53:41 decision[case 209.6][update][estimate-brief-written]{ref:estimate-brief-written}
+- 23:53:41 decision[case 209.7][update][index]{ref:index}
+- 23:53:41 decision[case 209.7][update][glossary]{ref:glossary}
+- 23:53:41 decision[case 209.7][update][rules-schema]{ref:rules-schema}
+- 00:09:40 decision[case 211.1][update][estimate-generate-writes]{ref:estimate-generate-writes}
+- 00:09:40 decision[case 211.2][update][estimate-generate-fails-alone]{ref:estimate-generate-fails-alone}
+- 00:09:40 decision[case 211.3][update][estimate-generate-writes]{ref:estimate-generate-writes}
+- 00:09:40 decision[case 211.3][update][estimate-generate-walks-dates]{ref:estimate-generate-walks-dates}
+- 00:09:40 decision[case 211.3][update][estimate-lint-catches]{ref:estimate-lint-catches}
+- 00:09:40 decision[case 211.3][update][estimate-pretask-reconciles]{ref:estimate-pretask-reconciles}
+- 00:09:40 decision[case 211.3][update][estimate-materialize-assembles]{ref:estimate-materialize-assembles}
+- 00:09:40 decision[case 211.4][update][case-schema]{ref:case-schema}
+- 00:09:40 decision[case 211.4][update][estimates-schema]{ref:estimates-schema}
+- 00:09:40 decision[case 211.4][update][estimates-schema-yaml]{ref:estimates-schema-yaml}
+- 00:09:40 decision[case 211.4][update][index]{ref:index}
+- 00:15:13 decision[case 212][update][estimate-lint-catches]{ref:estimate-lint-catches}
+- 00:21:30 decision[case 213.1][update][estimate-pretask-checks-the-plan]{ref:estimate-pretask-checks-the-plan}
+- 00:21:30 decision[case 213.2][update][estimate-pretask-hook-gates]{ref:estimate-pretask-hook-gates}
+- 00:21:30 decision[case 213.3][update][rule-pretask]{ref:rule-pretask}
+- 00:21:30 decision[case 213.3][update][estimate-pretask-reconciles]{ref:estimate-pretask-reconciles}
+- 00:21:30 decision[case 213.4][update][insight-ledger-hi-tied-to-its-session-by-position]{ref:insight-ledger-hi-tied-to-its-session-by-position}
+- 00:30:36 decision[case 214.1][update][estimate-materialize-assembles]{ref:estimate-materialize-assembles}
+- 00:30:36 decision[case 214.2][update][insight-materialize-lift-loses-a-schema-field]{ref:insight-materialize-lift-loses-a-schema-field}
+- 00:32:46 estimate[estimate-case-protocol-loaded][passed] 2026-09-17, the first turn of session 2238 read by hand: the reply to /hi stated the LEDGER-block rule and the one-Case-at-a-time rule before the Frontier, with no read of the rule or of CLAUDE.md; the Spec named as raw/<date>/<hi HHMM>/spec.md with its ## Deferred heading and the Frontier as raw/2026-09-16/2238/frontier.md; every ledger line of the session so far inside a LEDGER block
+- 00:38:08 decision[case 215][update][estimate-permissions]{ref:estimate-permissions}
+- 00:38:08 estimate[estimate-permissions][passed] 2026-09-17, the live probe at this session's /hi in Plan Mode: the Write of raw/2026-09-16/2238/frontier.md and its later Edits returned without a prompt; .claude/settings.json allow holds the nine entries the Criterion names — Edit and Write for frontier.md, spec.md, handoff.md, Write for carry.md under vault/raw/**, Edit and Write for vault/wiki/brief.md — deny and ask empty
+- 01:03:22 decision[case 217][defer][rule-page-generation]{ref:rule-page-generation}
+- 01:05:49 decision[case 218][defer][rule-work-mode]{ref:rule-work-mode}
+- 01:05:49 decision[case 218][defer][rule-subagent-guppi]{ref:rule-subagent-guppi}
+- 01:05:49 decision[case 219][defer][rule-spec-box]{ref:rule-spec-box}
+- 01:05:49 decision[case 220][defer][rule-git-context]{ref:rule-git-context}
+- 01:05:49 decision[case 220][defer][rule-github-issues]{ref:rule-github-issues}
+- 01:10:40 decision[case 221][update][estimate-pretask-checks-the-plan]{ref:estimate-pretask-checks-the-plan}
+- 01:25:46 decision[case 222][update][insight-ledger-hi-tied-to-its-session-by-position]{ref:insight-ledger-hi-tied-to-its-session-by-position}{supersedes:case 205}
+- 01:25:46 decision[case 222][update][insight-ledger-hi-tied-to-its-session-by-position]{ref:insight-ledger-hi-tied-to-its-session-by-position}{supersedes:case 192}
+- 01:25:46 lesson[error][lesson-ledger-block-followed-by-a-tool-call]{tags:ledger,harness} trigger: the reply that acknowledged case 222 carried its LEDGER block and then called ToolSearch to load ExitPlanMode; the Stop hook read nothing and the two decision lines were not written root_cause: the Case protocol says a reply with a LEDGER block ends in that text and no tool call follows, and the agent loaded a deferred tool in the same reply instead of the next one
+- 01:39:15 estimate[estimate-generate-writes][passed] 2026-09-17, `pytest tests/test_generate.py`: 48 green — an Estimate update whose set carries method writes the field after purpose and drops ## Context and ## Method, an update without set.method touches no section; the live reading is the librarian's run of this session, on the five recuts of 211.3
+- 01:39:15 estimate[estimate-generate-fails-alone][passed] 2026-09-17, `pytest tests/test_generate.py`: 48 green — an update with sections.Criterion on a page without a method field and no set.method fails alone with `generate: <slug>: a recut without method (case 211)`, failed in the yaml, the page untouched, the rest applied, exit 1
+- 01:39:15 estimate[estimate-lint-catches][passed] 2026-09-17, `pytest tests/test_lint.py`: 55 green — a reading on a MOC's Estimate passes beside a sibling naming a make target of the Makefile and is a finding when the sibling's target is not there; live, `make lint`: the finding on estimate-plan-mode-names-its-estimates left, the other classes unchanged
+- 01:39:15 estimate[estimate-pretask-checks-the-plan][passed] 2026-09-17, `pytest tests/test_pretask.py`: 52 green — no stamp exits 2 with the line naming the hi: line, yesterday's hi found after midnight, a ref to a rule the same plan creates no finding; live, `guppi pretask --check` on this session's plan with --session cf5992b5: exit 0 after Cases 209–222
+- 01:39:15 estimate[estimate-pretask-hook-gates][passed] 2026-09-17, `pytest tests/test_pretask.py`: 52 green — the ExitPlanMode hook reads the logs back to the session's start: yesterday's hi gates and yesterday's pretask releases after midnight; the live reading is the approval of this plan, which passed after /pre-task
+- 01:39:15 estimate[estimate-materialize-assembles][passed] 2026-09-17, `pytest tests/test_materialize.py`: 55 green — only the keys the category's schema.yaml names reach fields, a stray key is marked unknown and printed by --show, the old-shape keys stay ignored; live, `guppi materialize --date 2026-09-16 --show` over the four units of the date: no unknown mark
+- 01:44:34 decision[case 223][defer][rule-carry-over]{ref:rule-carry-over}

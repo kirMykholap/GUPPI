@@ -7,7 +7,6 @@ origin: raw/2026-09-16/1034/ledger.md#case-189
 sprint: migration
 created: 2026-09-16
 tags: [harness, workflow, ledger, librarian]
-ref: rule-materialize
 purpose: A supersedes marks every entry of the earlier Case, in any unit
 method: pytest in tests/test_materialize.py, the tests of the supersedes mark, plus one live reading of a librarian's run
 ---
@@ -28,3 +27,4 @@ derived from them; the `decisions` record of Case N as today.
 ## History
 
 - 2026-09-16 created · [[decision-case-189]]
+- 2026-09-17 ref removed · one-off migration · raw/2026-09-16/2238/spec.md#case-210

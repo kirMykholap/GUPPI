@@ -10,7 +10,7 @@ origin: raw/2026-09-16/1034/ledger.md#case-188
 sprint: migration
 created: 2026-09-16
 tags: [session, workflow]
-ref: rule-case-protocol
+
 ---
 
 ## Criterion
@@ -42,3 +42,4 @@ Then:
 - 2026-09-16 created · [[decision-case-188]]
 - 2026-09-16 updated: the Criterion replaced whole by case 208.2 — the text of 188 with the given recut and the line on a written Criterion (case 208.2) · [[decision-case-208.2]]
 - 2026-09-16 status: pending → passed · raw/2026-09-16/1955/ledger.md#L41
+- 2026-09-17 ref removed · one-off migration · raw/2026-09-16/2238/spec.md#case-210

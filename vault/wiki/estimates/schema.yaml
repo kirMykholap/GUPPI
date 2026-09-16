@@ -7,7 +7,8 @@ properties:
 # `target` names an Entity or a Rule; lint reports any other category (case 53.1).
 # `purpose`, `method` and `checked` are the fields of the model of case 182: one line each,
 # written on a page born since case 193; the older pages carry none until their recut at
-# their first touch, counted by lint as `unmigrated` (case 202), so none is required yet (case 193).
+# their first touch — the update that sets `method` (case 211) — counted by lint as `unmigrated`
+# (case 202), so none is required yet (case 193).
   optional: [purpose, method, checked]
   values:
     kind: [QA, Research]
@@ -15,8 +16,8 @@ properties:
 body:
   required: ["## Criterion", "## History"]
 # `## Criterion` is the Given, When and Then of one Case, replaced whole by the update that
-# names the Estimate. `## Context` and `## Method` are the shape before case 193: kept on
-# the pages that carry them, never written to a new page (case 193).
+# names the Estimate. `## Context` and `## Method` are the shape before case 193: never
+# written to a new page (case 193), dropped by the update that sets `method` (case 211).
   optional: ["## Context", "## Method", "## Result"]
   conditional:
     - when: {status: passed}

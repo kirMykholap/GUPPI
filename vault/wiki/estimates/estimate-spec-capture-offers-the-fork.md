@@ -7,7 +7,6 @@ origin: raw/2026-09-16/1034/ledger.md#case-190.5
 sprint: migration
 created: 2026-09-16
 tags: [session, workflow, harness]
-ref: rule-spec-capture
 purpose: The hook prints the fork between Work Mode and /carry after the Spec is written
 method: pytest in the tests of guppi/spec.py, the tests of the printed fork
 ---
@@ -58,3 +57,4 @@ It prints the fork into the context: Work Mode — or `/carry`.
 
 - 2026-09-16 created · [[decision-case-190.5]]
 - 2026-09-16 status: pending → passed · raw/2026-09-16/1651/ledger.md#L36
+- 2026-09-17 ref removed · one-off migration · raw/2026-09-16/2238/spec.md#case-210

@@ -1,0 +1,2142 @@
+date: '2026-09-16'
+sprint: migration
+ledger: vault/raw/2026-09-16/1651/ledger.md
+spec:
+- vault/raw/2026-09-16/1651/spec.md
+entries:
+- line: 1
+  text: decision[case 193][update][estimates-schema-yaml]{ref:estimates-schema-yaml}
+  case: '193'
+  kind: update
+  slug: estimates-schema-yaml
+  origin: raw/2026-09-16/1651/ledger.md#case-193
+  decision: decision-case-193
+  ref: estimates-schema-yaml
+  category: file
+  path: vault/wiki/estimates/schema.yaml
+  change: 'optional properties purpose, method, checked; body required ## Criterion and ## History, optional
+    ## Context, ## Method, ## Result; the conditional ## Result on passed and failed kept (case 193)'
+  applied: '19:45:25'
+- line: 2
+  text: decision[case 193][update][estimates-schema]{ref:estimates-schema}
+  case: '193'
+  kind: update
+  slug: estimates-schema
+  origin: raw/2026-09-16/1651/ledger.md#case-193
+  decision: decision-case-193
+  ref: estimates-schema
+  category: file
+  path: vault/wiki/estimates/schema.md
+  change: 'the table of the yaml; ## Criterion is the Given, When and Then of one Case, replaced whole
+    by an update that names the Estimate; ## Context and ## Method are the shape before case 193, not
+    written to a new page; method, purpose, checked described; both examples in the new shape (case 193)'
+  applied: '19:45:25'
+- line: 3
+  text: decision[case 193][update][index]{ref:index}
+  case: '193'
+  kind: update
+  slug: index
+  origin: raw/2026-09-16/1651/ledger.md#case-193
+  decision: decision-case-193
+  ref: index
+  category: file
+  path: vault/wiki/index.md
+  change: '§2 given, when and then are the Criterion; §3 Paired Estimate on create replaced by the explicit
+    create of an Estimate with ref, the pre-task paragraph without contract: changed; §5 the Leaf create
+    row replaced by the Estimate create row; §7 the new fields and sections, the Criterion replaced whole,
+    pending only on a replacement; §12 without the Leaf create with no method (case 193)'
+  applied: '19:45:25'
+- line: 4
+  text: decision[case 193][update][glossary]{ref:glossary}
+  case: '193'
+  kind: update
+  slug: glossary
+  origin: raw/2026-09-16/1651/ledger.md#case-193
+  decision: decision-case-193
+  ref: glossary
+  category: file
+  path: vault/wiki/glossary.md
+  change: 'the row Estimate without ### case N and contract: changed, with purpose, method, checked; the
+    row Case: given + when + then is the Estimate criterion (case 193)'
+  applied: '19:45:25'
+- line: 5
+  text: decision[case 193][update][rules-schema]{ref:rules-schema}
+  case: '193'
+  kind: update
+  slug: rules-schema
+  origin: raw/2026-09-16/1651/ledger.md#case-193
+  decision: decision-case-193
+  ref: rules-schema
+  category: file
+  path: vault/wiki/rules/schema.md
+  change: '## How it works is MOC only; on a Leaf the mechanism lives in the docstring of its code; a
+    Leaf that still carries the section keeps it until its next touch (case 193)'
+  applied: '19:45:25'
+- line: 6
+  text: decision[case 194.1][update][rule-materialize]{ref:rule-materialize}
+  case: '194.1'
+  kind: update
+  slug: rule-materialize
+  origin: raw/2026-09-16/1651/ledger.md#case-194.1
+  decision: decision-case-194.1
+  ref: rule-materialize
+  category: rules
+  sections:
+    Purpose: 'Prevents the librarian from reading the ledger and the Spec itself, or from routing
+
+      a decision by guesswork. The yaml is the one input a clean context needs. Every line
+
+      of the ledger is an entry. Its route is computed from `index.md` §5. Its content is
+
+      lifted from the `then` block of its Case in the Spec. What is missing is named, not
+
+      invented. If a route cannot be derived from the ledger and the Spec alone, that is a
+
+      defect of the ledger, and it shows here.
+
+
+      It also prevents a promise from being written by derivation. No Estimate is derived
+
+      from a flag: an Estimate has its own ledger line and its own entry, and its Criterion
+
+      is the `given`, `when` and `then` of the Case that names it, lifted verbatim into the
+
+      entry''s `sections` and replacing what stood on the page (cases 189, 194.1). A unit
+
+      whose folder holds `carry.md` is passed by with one line on stdout: its Spec was
+
+      ratified and its work not done (case 190.3). The mechanism and the full list of an
+
+      entry''s fields, each with its writer, live in the docstring of `guppi/materialize.py`.
+
+      '
+  change: Purpose carries the text of 189 and 190.3; How it works dropped by hand, the mechanism and the
+    field list in the docstring (case 194.1)
+  applied: '19:45:25'
+- line: 7
+  text: decision[case 194.1][update][estimate-materialize-assembles]{ref:estimate-materialize-assembles}
+  case: '194.1'
+  kind: update
+  slug: estimate-materialize-assembles
+  origin: raw/2026-09-16/1651/ledger.md#case-194.1
+  decision: decision-case-194.1
+  ref: estimate-materialize-assembles
+  category: estimates
+  set:
+    status: pending
+  change: the Criterion replaced whole by case 194.1 — the head recut, the lines of 189 and the shape
+    of the entry; the nine blocks leave (case 194.1)
+  sections:
+    Criterion: 'Given:
+
+      A unit `raw/<date>/<HHMM>/` holds `ledger.md` and `spec.md`; a Case in the Spec has a heading, the
+      sections `given`, `when`, `then` and a `then` block.
+
+      **＋** `guppi generate` applies the `sections` of an `update` entry as whole replacements and writes
+      every field of a `create` entry''s `fields` into the frontmatter.
+
+      **＋** Cases 189 and 190.3 are ratified; their entries for these same pages apply before the entries
+      of this Case, in ledger order.
+
+      **－** The tests in `tests/test_materialize.py` fix the behaviour; the live reading is the librarian''s
+      run of this session.
+
+
+      When:
+
+      `guppi materialize` lifts a record line of a ledger against its Spec.
+
+
+      Then:
+
+      One entry per record line, in ledger order: `case`, `kind`, `category` from the slug prefix, `slug`,
+      `ref`, `source`, `supersedes`, `tags`, `origin`, `line`, `text`, `decision`; from the `then` block
+      — `fields`, `sections`, `replace`, `change`, `impact`; what the block lacks is `incomplete`, never
+      invented.
+
+      **＋** An Estimate has its own line and its own entry; the `ref` of the line is the Estimate itself.
+
+      **＋** An `update` entry for an Estimate carries the `given`, `when` and `then` of its Case verbatim
+      with their operands as `sections.Criterion` — `Given:`, `When:`, `Then:` — replacing what stood
+      there, and `set: {status: pending}`; the `given` of a sub-case is its parent''s when it has none
+      of its own.
+
+      **＋** A `create` entry for an Estimate keeps `kind`, `purpose`, `method`, `tags` as fields; its
+      Criterion comes from the block''s `sections` when one is written, else from the Case''s `given`,
+      `when`, `then` the same way; `## Context` and `## Method` are not written.
+
+      **＋** One decision entry per Case: `decision`, `case_text`, `targets`; a sub-case inherits `context`,
+      `problem`, `recommend`, `given`, never `when`.
+
+      **＋** An `estimate` line for a page of the same ledger is folded into its `create`; for an earlier
+      page it is an `estimate` entry, an update. The `new_tags` of any Case reach the yaml once. An existing
+      yaml is extended, never rewritten.
+
+      **－** An `update` entry carries no `contract`, and no Estimate is derived from it; a `create` carries
+      no `method`, `estimate_kind` or `estimate_slug`; neither `criterion_block`, `case_removed` nor `remove_criterion`
+      is derived.
+
+      **－** The keys `contract`, `estimate_slug`, `estimate_kind` and `method` on a rule''s item are ignored:
+      they reach neither the page nor `incomplete`; the blocks of Case 186 stay as signed.
+
+      **－** A line the grammar does not parse goes under `unparsed`; the run goes on.'
+  applied: '19:45:25'
+- line: 8
+  text: decision[case 194.2][update][estimate-materialize-walks-dates]{ref:estimate-materialize-walks-dates}
+  case: '194.2'
+  kind: update
+  slug: estimate-materialize-walks-dates
+  origin: raw/2026-09-16/1651/ledger.md#case-194.2
+  decision: decision-case-194.2
+  ref: estimate-materialize-walks-dates
+  category: estimates
+  set:
+    status: pending
+  change: the Criterion replaced whole by case 194.2 — the head, 103.2, 142.4 and the spec field of 73.5
+    recut into one (case 194.2)
+  sections:
+    Criterion: 'Given:
+
+      A unit `raw/<date>/<HHMM>/` holds `ledger.md` and `spec.md`; a Case in the Spec has a heading, the
+      sections `given`, `when`, `then` and a `then` block.
+
+      **＋** `guppi generate` applies the `sections` of an `update` entry as whole replacements and writes
+      every field of a `create` entry''s `fields` into the frontmatter.
+
+      **＋** Cases 189 and 190.3 are ratified; their entries for these same pages apply before the entries
+      of this Case, in ledger order.
+
+      **－** The tests in `tests/test_materialize.py` fix the behaviour; the live reading is the librarian''s
+      run of this session.
+
+
+      When:
+
+      `uv run guppi materialize` runs, with `--date` or without.
+
+
+      Then:
+
+      The unit of the walk is a session folder `raw/<date>/<HHMM>/` holding a `ledger.md`: its yaml `raw/<date>/<HHMM>/materialize.yaml`,
+      its Spec `raw/<date>/<HHMM>/spec.md` alone, the `origin` of its entries `raw/<date>/<HHMM>/ledger.md#case-N`
+      and `#L<n>`.
+
+      **＋** A date-level `raw/<date>/ledger.md` (the shape before case 103) is a unit of the old shape:
+      every Spec of the date in folder order and `raw/<date>/spec.md` when it exists, the yaml `raw/<date>/materialize.yaml`,
+      `origin` in the date form; on a date with both shapes the date-level unit goes first; the yaml''s
+      `spec` field names the file each Case was found in.
+
+      **＋** Without `--date` the walk covers every unit under `raw/`, dates ascending; `--date` walks
+      the date-level ledger and every session of the date; stdout carries one line per yaml; a line written
+      after the librarian''s commit of its date is lifted by the next run.
+
+      **＋** An error of a unit — no `ledger.md`, a Case heading in two files — stops the walk with exit
+      1; a line whose lift failed marks its entry, the unit exits 1 and the walk goes on.
+
+      **－** A unit whose folder holds `carry.md` is skipped — that is `estimate-materialize-skips-a-carried-over-unit`,
+      not this one.'
+  applied: '19:45:25'
+- line: 9
+  text: decision[case 195][update][rule-case-protocol]{ref:rule-case-protocol}
+  case: '195'
+  kind: update
+  slug: rule-case-protocol
+  origin: raw/2026-09-16/1651/ledger.md#case-195
+  decision: decision-case-195
+  ref: rule-case-protocol
+  category: rules
+  sections:
+    Render: '<!-- rule-case-protocol -->
+
+      ## Case protocol
+
+
+      One reply is one Case, in the eight sections of `case-schema.md`: context, problem,
+
+      recommend, given, when, then, tasks, ratification. That is the form of Plan Mode. A deferred
+
+      decision — an item left open when the person closes Plan Mode, or an item Retro ends
+
+      in a defer — is its own Case in the short form: context, problem, a `defer` block with
+
+      `purpose`, under the `## Deferred` heading of `raw/<date>/<hi HHMM>/spec.md`, the session''s folder
+      (case 73), before its ledger line (cases 56, 59.5); a page-less Slice task goes to `sprint.md` instead.
+      Taking a
+
+      deferred decision up means building its full Case from its page — recommend, given,
+
+      when, then added — and writing `{supersedes:case N}` on the line. Never move to the
+
+      next Case until this one is ratified or deferred. The Frontier is `raw/<date>/<hi HHMM>/frontier.md`,
+      written at `/hi`;
+
+      close its line in the reply that ends the item. Plan Mode does not end while a line is
+
+      open; `/pre-task` checks it.
+
+
+      A follow-up question that asks you to justify a choice does not split the Case; one
+
+      whose answer needs a new choice does — into sub-cases `N.1`, `N.2`. Ratifying a
+
+      parent does not ratify its children.
+
+
+      A Case renders as `## Case N — name`, then one blockquote per section: its first
+
+      line `**name:**`, its text on the following quoted lines, a blank line between
+
+      sections. `context`, `problem` and `recommend` carry no operand, name the slug of the thing described
+      only, and run to seven sentences each at most: `context` says what the thing is and how it works
+      today, for a reader who has not opened the pages — the state of the pages the Case changes lives
+      here — and names which Estimates of the rule the Case touches and which it does not, with no line
+      numbers and no quotation unless the Case is about one; `problem` says what is wrong, or the question
+      answered, in one paragraph; `recommend` says the choice and why, the rejected option in one sentence.
+      `given` holds the conditions of the behaviour, one per line, and only a condition a line of `then`
+      depends on — the rule that constrains, the test that fixes the behaviour; no state of pages, no
+      history, no quotation for its own sake (case 188). In `given`, `when` and `then` every line after
+      the first starts with a
+
+      bold operand: **＋** for one more condition or action — "and also", **－** for a limit or an
+
+      exception — "but not", "does not apply here". `then` holds behaviour only: no `contract` mark, no
+      Estimate block, no reading, no `supersedes`; those are lines of `tasks`, a section between `then`
+      and `ratification`, a checklist in its blockquote — one line per page `update`, file, test, command,
+      one-off migration and reading, without `contract` and without "block N" — the same lines that go
+      into the Spec''s `tasks` block. Slugs, file names and field values sit in code spans; bold is for
+      section labels and operands only. One horizontal rule at most, after the Case or its last sub-case,
+      and only when the agent''s own text follows (case 159). `given`, `when` and `then` together are
+      the Criterion of the Estimate the Case creates or changes: the scripts copy them whole, replacing
+      what stood there; the Case names that Estimate by slug in its `then` block, and only a replaced
+      Criterion sets it `pending` — an `update` of a rule''s `Purpose` touches no Estimate, an `update`
+      of its `Render` touches the Estimate of the live reading of that Render (case 187). A new promise
+      is an explicit `create` of an Estimate with `ref` naming its target and its slug in the Case; a
+      `create` carries no `method`, `estimate_kind` or `estimate_slug`, an `update` no `contract`; one
+      promise per Case or sub-case — two touched promises are two sub-cases (case 188). Write short sentences,
+      one idea each, in the active voice. A sub-case is
+
+      `### Case N.M — name` under its parent, with its own `when`, `then`, `tasks` and
+
+      `ratification`, and its own `given` unless it is the parent''s word for word; the
+
+      sections the children share live on the parent, and `materialize` reads them there. The
+
+      `ratification` section ends with a preview of the ledger lines in an untagged
+
+      fence, and the turn ends with a plain question in the chat, never a picker tool.
+
+      When the person answers with a change, show the Case again: `context` and
+
+      `problem` if they changed, always `given`, `when`, `then`, `tasks` and `ratification`, and
+
+      no `recommend` — the variant is theirs. The page content itself — fields, prose sections, and for
+      an Estimate its `purpose` and `method` — is a YAML
+
+      block tagged `then` under the Case in the Spec, not in the chat; `guppi
+
+      materialize` reads it, and what is not in that block was signed by nobody.
+
+
+      The Spec is the plan file, written as each Case is ratified, in the reply that
+
+      carries its ledger lines: `context`, `problem`, `given`, `when`, `then`, the `then`
+
+      block and a block tagged `tasks` — one `- [ ] <what>` per file, test, command and
+
+      one-off migration, and one per reading of an Estimate the Case creates or sets
+
+      `pending`, by its slug; no `recommend`, no `ratification`, no code. Work Mode ticks the boxes in
+      `raw/<date>/<hi HHMM>/spec.md` in the reply that finishes the task; Retro
+
+      counts the unticked.
+
+
+      The reply that acknowledges a ratification has four parts, in this order: the `LEDGER` block first;
+      a heading `## Case N — ratified` and a paragraph **Changes:** — what changes, in one or two sentences;
+      a paragraph **Notes:** — facts that did not enter the Case, omitted when there are none; a heading
+      `## Frontier` and the lines of `frontier.md` as a checklist — the closed lines folded into one,
+      the open ones one per line with a short title, the deferred as `[-] … · defer case N` — and the
+      question which item is next, last. Headings and labels in the language of the chat (case 167, supersedes
+      157).
+
+
+      The harness — hooks, skills, agents, `settings.json`, this section of `CLAUDE.md` —
+
+      is rendered from `rules/`. A harness file changes through an `update` of its Rule
+
+      page, never by hand; a hook refuses the edit.
+
+
+      Before a `create` without a `ref`, ask the vault first: does this exist, what
+
+      conflicts, what sits in `draft`, which tags fit. Put the answer in `given`.
+
+      Dispatch the `ask-guppi` agent with one short question.
+
+
+      Ledger lines are written by the `Stop` hook, from the reply, verbatim, each with
+
+      the time of writing. A record is a `- decision[case 12][update][rule-x]{ref:rule-x}`, `- estimate[...]`
+      or `- lesson[...]` line inside a fenced block opened with the `LEDGER` tag — the id is `case N`,
+      the word and a space, in `{supersedes:case N}` too; the same
+
+      line anywhere else — bare, or in a block with another tag or none — is a preview
+
+      and is never written. A `create` line carries the ratified tags: `{tags:a,b}`. A `knowledge` lesson
+      line carries `{source:...}`, the url or reference the lesson studied — a file of the harness, a
+      probe, a client version; the schema requires it, and a line without it is `incomplete: [source]`
+      in the yaml and a lint finding on the page. An `error` lesson never carries one.
+
+      Write the `- decision[...]` lines only in the reply that acknowledges ratification;
+
+      `- estimate[...]` and `- lesson[...]` lines the moment the measurement or the lesson
+
+      exists. Without `/hi` the hook refuses and says so: tell the person, do not retry. A reply that
+      carries a `LEDGER` block ends in that text. No tool call follows it in the same reply: the text
+      before a tool call is never kept, and the hook reads nothing.
+
+      <!-- /rule-case-protocol -->
+
+      '
+  change: the Render rewritten by cases 187 and 188 — given as conditions, context with the state of pages
+    and the Estimates touched, the Criterion replaced whole and named by slug, no method or contract keys;
+    How it works dropped by hand (case 195)
+  superseded_by: '200.1'
+- line: 10
+  text: decision[case 196.1][update][rule-carry-over]{ref:rule-carry-over}
+  case: '196.1'
+  kind: update
+  slug: rule-carry-over
+  origin: raw/2026-09-16/1651/ledger.md#case-196.1
+  decision: decision-case-196.1
+  ref: rule-carry-over
+  category: rules
+  sections:
+    Render: "<!-- rule-carry-over -->\n---\nname: carry\ndescription: Conserve a ratified Spec whose work\
+      \ is not done — rewrite the brief, mark the session folder, commit; run nothing else. Called by\
+      \ the agent after the person chose to conserve at the fork ExitPlanMode prints.\n---\n\n\nTree:\
+      \ !`git status --porcelain`\n\nCalled after `ExitPlanMode`, when the person answered the fork with\
+      \ \"conserve\". If Tree\nabove holds a path outside `vault/raw/<hi date>/<hi HHMM>/` and `vault/wiki/brief.md`,\n\
+      stop and say: work was done, the ordinary exit applies — Work Mode, `/retro`, `/handoff`.\n\nOtherwise:\n\
+      1. Rewrite `vault/wiki/brief.md` by the frame of `rule-brief` (the Render in\n   `.claude/agents/librarian-guppi.md`),\
+      \ in its short shape as that frame says: Where\n   things stand names the conserved Spec — `vault/raw/<hi\
+      \ date>/<hi HHMM>/spec.md`, its\n   Cases, what is not done on it; no Readings due, no Readings\
+      \ at the close; Deferred is\n   the previous brief's list as it stands plus the `defer` items of\
+      \ this Spec by slug;\n   Flags say what the vault does not know about this session. No cap, no ranking.\n\
+      2. Write `vault/raw/<hi date>/<hi HHMM>/carry.md` with one line: `conserved — delete\n   this file\
+      \ when the work of spec.md is done`. Its presence tells `guppi materialize`\n   to pass the unit\
+      \ by.\n3. Run `make style`, then commit `vault/raw/` and `vault/wiki/brief.md`:\n   `docs(vault):\
+      \ Spec of session <HHMM> conserved, Cases <N>–<M>`.\n\nRun nothing else: no Work Mode, no `/retro`,\
+      \ no `/handoff`, no librarian, no `guppi\nmaterialize`, `generate`, `cleanup` or `render`; write\
+      \ no page under `vault/wiki/` but\nthe brief. The session that finishes the Spec deletes `carry.md`.\n\
+      <!-- /rule-carry-over -->\n"
+  change: the Render written — the skill's text, called by the agent after the fork (case 196.1)
+  applied: '19:45:25'
+- line: 11
+  text: decision[case 196.1][update][estimate-carry-over-writes]{ref:estimate-carry-over-writes}
+  case: '196.1'
+  kind: update
+  slug: estimate-carry-over-writes
+  origin: raw/2026-09-16/1651/ledger.md#case-196.1
+  decision: decision-case-196.1
+  ref: estimate-carry-over-writes
+  category: estimates
+  set:
+    status: pending
+  change: the Criterion replaced whole by case 196.1 — the agent's call after the fork, the brief, the
+    flag, the commit, nothing else run (case 196.1)
+  sections:
+    Criterion: 'Given:
+
+      The hook `guppi spec` on `PostToolUse` of `ExitPlanMode` wrote the Spec and printed the fork into
+      the context: go on — Work Mode — or conserve until the next session.
+
+      **＋** The agent asked the person which of the two and got "conserve".
+
+      **＋** `guppi materialize` knows a conserved unit by the file `carry.md` in the session folder (case
+      190.3) — by its presence, not its content.
+
+      **－** The person does not type `/carry`; the path of the skill is the agent''s call on `PreToolUse
+      Skill`.
+
+
+      When:
+
+      The agent calls the skill `carry` after the person''s answer at the fork.
+
+
+      Then:
+
+      The skill reads the tree; when it holds changes outside the session folder and `vault/wiki/brief.md`,
+      it stops and says: work was done, the ordinary exit applies.
+
+      **＋** Otherwise it rewrites `brief.md` — that is the conservation: the next session starts from
+      it.
+
+      **＋** It puts `carry.md` into the session folder — one line, a flag for `materialize`, not a document;
+      the session that finishes the work deletes it.
+
+      **＋** It runs `make style` and commits `vault/raw/` and `vault/wiki/brief.md`.
+
+      **－** It runs no Work Mode, `/retro`, `/handoff`, librarian, `materialize`, `generate`, `cleanup`
+      or `render`; it writes no page of `vault/wiki/` but the brief.
+
+      **－** The work stays sequential, session after session: one conserved Spec, no parallelism.
+
+      **－** `.claude/skills/carry/SKILL.md` equals the Render of the page; it is not edited by hand.'
+  applied: '19:45:25'
+- line: 12
+  text: decision[case 196.2][update][rule-end-of-work]{ref:rule-end-of-work}
+  case: '196.2'
+  kind: update
+  slug: rule-end-of-work
+  origin: raw/2026-09-16/1651/ledger.md#case-196.2
+  decision: decision-case-196.2
+  ref: rule-end-of-work
+  category: rules
+  sections:
+    Purpose: 'Prevents a session being handed over without a settled account of what happened. It
+
+      also prevents the librarian''s writes from being indistinguishable from the
+
+      session''s own, by forcing a commit between the two. Three steps: the Retro
+
+      conversation, the commit gate on the way to handoff, then handoff itself.
+
+
+      A session has a second end: `/carry` straight after Plan Mode, when the Spec is
+
+      ratified and its work is not done — no Work Mode, no Retro, no handoff, no
+
+      librarian; the brief is rewritten and the session folder marked, so the next session
+
+      picks the Spec up and the librarian does not apply it blind. On leaving Plan Mode the
+
+      agent asks the person which of the two ends and starts nothing until it is answered
+
+      (case 190.2).
+
+      '
+  change: the second end — /carry straight after Plan Mode — and the question on leaving Plan Mode (case
+    196.2, the text of 190.2)
+  applied: '19:45:25'
+- line: 13
+  text: decision[case 196.2][update][estimate-end-of-work-order]{ref:estimate-end-of-work-order}
+  case: '196.2'
+  kind: update
+  slug: estimate-end-of-work-order
+  origin: raw/2026-09-16/1651/ledger.md#case-196.2
+  decision: decision-case-196.2
+  ref: estimate-end-of-work-order
+  category: estimates
+  set:
+    status: pending
+  change: the Criterion replaced whole by case 196.2 — the head recut with the second end (case 196.2)
+  sections:
+    Criterion: 'Given:
+
+      The Spec is written by the hook `guppi spec` into the session folder `raw/<date>/<hi HHMM>/spec.md`;
+      the `hi` and the folder are known from the context.
+
+      **＋** `generate` appends `rule-carry-over` to the `children` of `rule-end-of-work` from the `ref`
+      of its `create`; the `update` of 190.2 writes no field.
+
+      **＋** The methods of the Estimates do not change: `estimate-carry-over-writes` — pytest over the
+      skill''s Render and one live reading; `-end-of-work-order` — `make test-end-of-work` and the live
+      reading of the order; `-brief-written` — a reading of the brief by hand.
+
+      **－** The entries of 190.x apply before the entries of this Case, in ledger order.
+
+
+      When:
+
+      A session ends.
+
+
+      Then:
+
+      It ends one of two ways: Work Mode, Retro, the commit, handoff and the librarian — or `/carry` straight
+      after Plan Mode.
+
+      **＋** In the ordinary way the order holds: `/handoff` is refused while the tree is dirty; `handoff.md`
+      exists before the librarian is dispatched; no other commit stands between the handoff and the librarian''s;
+      `make test-end-of-work` is green.
+
+      **＋** On leaving Plan Mode the agent asks which of the two, and starts nothing until it is answered.
+
+      **＋** `rule-carry-over` is a child of this MOC, after `rule-handoff`.
+
+      **－** The order of the three steps of the ordinary way does not change.'
+  applied: '19:45:25'
+- line: 14
+  text: decision[case 196.3][update][rule-brief]{ref:rule-brief}
+  case: '196.3'
+  kind: update
+  slug: rule-brief
+  origin: raw/2026-09-16/1651/ledger.md#case-196.3
+  decision: decision-case-196.3
+  ref: rule-brief
+  category: rules
+  replace:
+  - old: Change `vault/wiki/sprint.md` only when `handoff.md` tells you to, and only as it says.
+    new: 'Change `vault/wiki/sprint.md` only when `handoff.md` tells you to, and only as it says.
+
+
+      The brief has a second writer, the skill `carry` (`rule-carry-over`): it writes the same frame in
+      the short shape — Where things stand names the conserved Spec by path, its Cases and what is not
+      done on it; Readings due and Readings at the close are omitted; Deferred is the previous brief''s
+      list as it stands plus the `defer` items of this Spec by slug; Flags say what the vault does not
+      know about this session; no cap of seven and no ranking (case 190.4).'
+  change: the second writer and the short shape of the brief, one paragraph at the end of the Render (case
+    196.3, the text of 190.4)
+  applied: '19:45:25'
+- line: 15
+  text: decision[case 196.4][update][rule-spec-capture]{ref:rule-spec-capture}
+  case: '196.4'
+  kind: update
+  slug: rule-spec-capture
+  origin: raw/2026-09-16/1651/ledger.md#case-196.4
+  decision: decision-case-196.4
+  ref: rule-spec-capture
+  category: rules
+  replace:
+  - old: '`<!-- approved HH:MM:SS · session xxxxxxxx -->`, the plan text, once.'
+    new: '`<!-- approved HH:MM:SS · session xxxxxxxx -->`, the plan text, once; then it prints the fork
+      into the context — Work Mode, or `/carry` to conserve the Spec — naming the session folder and the
+      Spec file; it blocks nothing, the agent asks and the person chooses (case 190.5).'
+  change: the fork printed after the Spec is written, one sentence in How it works (case 196.4, the text
+    of 190.5)
+  superseded_by: '200.4'
+- line: 16
+  text: decision[case 197][update][estimate-brief-written]{ref:estimate-brief-written}
+  case: '197'
+  kind: update
+  slug: estimate-brief-written
+  origin: raw/2026-09-16/1651/ledger.md#case-197
+  decision: decision-case-197
+  ref: estimate-brief-written
+  category: estimates
+  set:
+    status: pending
+  change: the Criterion replaced whole by case 197 — the head, 124.1 and 168 recut into one; the short
+    shape of /carry left to estimate-carry-over-writes (case 197)
+  sections:
+    Criterion: 'Given:
+
+      The librarian writes `brief.md` by the frame — the Render of `rule-brief` — after `generate`, from
+      the yaml of the run, `handoff.md` and the output of `make lint`.
+
+      **＋** A fact no input carries — the status of an Estimate, the `severity` of an Insight — is read
+      from the page, and the page is named in the report.
+
+      **－** The brief of `/carry` is the promise of `estimate-carry-over-writes`, not of this one.
+
+
+      When:
+
+      The librarian rewrites `vault/wiki/brief.md` at the end of its run.
+
+
+      Then:
+
+      The brief holds five sections in order: Where things stand, Readings due, Deferred, Flags, Readings
+      at the close.
+
+      **＋** Where things stand — from "What actually got done" of `handoff.md` and the counts of the yaml:
+      pages created and updated per category.
+
+      **＋** Readings due — every Estimate `pending` or `failed` after `generate`: the Estimate, the rule
+      that stands `draft`, and where it is read — from the unticked `read` line of the session''s Spec
+      or from the page''s `method`; a `failed` one first, with the result of its reading in one line;
+      nothing from the previous brief.
+
+      **＋** Deferred — at most seven: the targets of the `defer` entries of this run, the items of the
+      previous list whose decision no `supersedes` retired, every `open` Insight; ranked by `severity`
+      — its own or that of the related Insight — then by the number of briefs the item stood in; an Insight''s
+      line carries its slug, `severity`, `pattern` and its Proposal in one or two sentences.
+
+      **＋** Flags, no limit: entries `incomplete`, `failed`, `near`, `unparsed`; `failed` Estimates; MOC
+      candidates; stale defers; contradictions; the lint output.
+
+      **＋** Readings at the close — `make test`, `make lint`, page counts.
+
+      **－** The brief states no decision and no judgment of the work; `sprint.md` changes only when `handoff.md`
+      says so, and only as it says.'
+  applied: '19:45:25'
+- line: 17
+  text: decision[case 198][update][rule-pretask]{ref:rule-pretask}
+  case: '198'
+  kind: update
+  slug: rule-pretask
+  origin: raw/2026-09-16/1651/ledger.md#case-198
+  decision: decision-case-198
+  ref: rule-pretask
+  category: rules
+  replace:
+  - old: 'List every decision ratified in this Plan Mode, one line each: slug — decision type — purpose;'
+    new: 'List every decision ratified in this Plan Mode, one line each: slug — decision type — `purpose`
+      for a `create`, an `update` and a `delete`, a `defer` by its slug and the word `defer` alone (case
+      198);'
+  change: the first sentence of the list no longer asks a purpose of a defer, in line with 186.2 (case
+    198)
+  applied: '19:45:25'
+- line: 18
+  text: decision[case 199][update][estimates-schema]{ref:estimates-schema}
+  case: '199'
+  kind: update
+  slug: estimates-schema
+  origin: raw/2026-09-16/1651/ledger.md#case-199
+  decision: decision-case-199
+  ref: estimates-schema
+  category: file
+  path: vault/wiki/estimates/schema.md
+  change: '## Result opens with the date of the reading and the command, or the place of a live reading;
+    the result follows; both examples show it (case 199)'
+  applied: '19:45:25'
+- line: 19
+  text: 'lesson[error][lesson-plan-mode-frontier-refused-on-the-client-text]{tags:session,workflow,harness}
+    trigger: sessions 1034 and 1651 of 2026-09-16 did not write raw/<date>/<hi HHMM>/frontier.md at /hi,
+    the agent saying Plan Mode blocks every write but the plan file; 1034 wrote that as a flag into brief.md
+    and its frontier, and 1651 leaned on the flag root_cause: the client''s generic Plan Mode text — no
+    edits but the plan file — was put above the project''s rule and its harness: settings.json has carried
+    defaultMode plan since 2026-08-20 with an allow list for Write and Edit of vault/raw/**/frontier.md,
+    spec.md and handoff.md for exactly this, and the sessions of 2026-09-14 and 2026-09-15 wrote and ticked
+    the frontier in Plan Mode; nothing in the harness refuses the write, the agent did'
+  kind: lesson
+  category: lessons
+  slug: lesson-plan-mode-frontier-refused-on-the-client-text
+  origin: raw/2026-09-16/1651/ledger.md#L19
+  fields:
+    type: lesson
+    kind: error
+    root_cause: 'the client''s generic Plan Mode text — no edits but the plan file — was put above the
+      project''s rule and its harness: settings.json has carried defaultMode plan since 2026-08-20 with
+      an allow list for Write and Edit of vault/raw/**/frontier.md, spec.md and handoff.md for exactly
+      this, and the sessions of 2026-09-14 and 2026-09-15 wrote and ticked the frontier in Plan Mode;
+      nothing in the harness refuses the write, the agent did'
+  sections:
+    Trigger: sessions 1034 and 1651 of 2026-09-16 did not write raw/<date>/<hi HHMM>/frontier.md at /hi,
+      the agent saying Plan Mode blocks every write but the plan file; 1034 wrote that as a flag into
+      brief.md and its frontier, and 1651 leaned on the flag
+    Root cause: 'the client''s generic Plan Mode text — no edits but the plan file — was put above the
+      project''s rule and its harness: settings.json has carried defaultMode plan since 2026-08-20 with
+      an allow list for Write and Edit of vault/raw/**/frontier.md, spec.md and handoff.md for exactly
+      this, and the sessions of 2026-09-14 and 2026-09-15 wrote and ticked the frontier in Plan Mode;
+      nothing in the harness refuses the write, the agent did'
+  tags:
+  - session
+  - workflow
+  - harness
+  applied: '19:45:25'
+- line: 20
+  text: decision[case 200.1][update][rule-case-protocol]{ref:rule-case-protocol}{supersedes:case 195}
+  case: '200.1'
+  kind: update
+  slug: rule-case-protocol
+  origin: raw/2026-09-16/1651/ledger.md#case-200.1
+  decision: decision-case-200.1
+  ref: rule-case-protocol
+  supersedes: '195'
+  category: rules
+  sections:
+    Render: '<!-- rule-case-protocol -->
+
+      ## Case protocol
+
+
+      One reply is one Case, in the eight sections of `case-schema.md`: context, problem,
+
+      recommend, given, when, then, tasks, ratification. That is the form of Plan Mode. A deferred
+
+      decision — an item left open when the person closes Plan Mode, or an item Retro ends
+
+      in a defer — is its own Case in the short form: context, problem, a `defer` block with
+
+      `purpose`, under the `## Deferred` heading of `raw/<date>/<hi HHMM>/spec.md`, the session''s folder
+      (case 73), before its ledger line (cases 56, 59.5); a page-less Slice task goes to `sprint.md` instead.
+      Taking a
+
+      deferred decision up means building its full Case from its page — recommend, given,
+
+      when, then added — and writing `{supersedes:case N}` on the line. Never move to the
+
+      next Case until this one is ratified or deferred. The Frontier is `raw/<date>/<hi HHMM>/frontier.md`,
+      written at `/hi`;
+
+      close its line in the reply that ends the item. Plan Mode does not end while a line is
+
+      open; `/pre-task` checks it.
+
+
+      A follow-up question that asks you to justify a choice does not split the Case; one
+
+      whose answer needs a new choice does — into sub-cases `N.1`, `N.2`. Ratifying a
+
+      parent does not ratify its children.
+
+
+      A Case renders as `## Case N — name`, then one blockquote per section: its first
+
+      line `**name:**`, its text on the following quoted lines, a blank line between
+
+      sections. `context`, `problem` and `recommend` carry no operand, name the slug of the thing described
+      only, and run to seven sentences each at most: `context` says what the thing is and how it works
+      today, for a reader who has not opened the pages — the state of the pages the Case changes lives
+      here — and names which Estimates of the rule the Case touches and which it does not, with no line
+      numbers and no quotation unless the Case is about one; `problem` says what is wrong, or the question
+      answered, in one paragraph; `recommend` says the choice and why, the rejected option in one sentence.
+      `given` holds the conditions of the behaviour, one per line, and only a condition a line of `then`
+      depends on — the rule that constrains, the test that fixes the behaviour; no state of pages, no
+      history, no quotation for its own sake (case 188). In `given`, `when` and `then` every line after
+      the first starts with a
+
+      bold operand: **＋** for one more condition or action — "and also", **－** for a limit or an
+
+      exception — "but not", "does not apply here". `then` holds behaviour only: no Estimate block, no
+      reading, no `supersedes`; those are lines of `tasks`, a section between `then` and `ratification`,
+      a checklist in its blockquote — one line per page `update`, file, test, command, one-off migration
+      and reading, without `contract` and without "block N" — the same lines that go into the Spec''s
+      `tasks` block. Slugs, file names and field values sit in code spans; bold is for section labels
+      and operands only. One horizontal rule at most, after the Case or its last sub-case, and only when
+      the agent''s own text follows (case 159). `given`, `when` and `then` together are the Criterion
+      of the Estimate the Case creates or changes: the scripts copy them whole, replacing what stood there;
+      the Case names that Estimate by slug in its `then` block, and only a replaced Criterion sets it
+      `pending` — an `update` of a rule''s `Purpose` touches no Estimate, an `update` of its `Render`
+      touches the Estimate of the live reading of that Render (case 187). A new promise is an explicit
+      `create` of an Estimate with `ref` naming its target and its slug in the Case; a `create` of a rule
+      or an entity carries no `method`, `estimate_kind` or `estimate_slug`, an `update` no `contract`;
+      one promise per Case or sub-case — two touched promises are two sub-cases (case 188). Write short
+      sentences, one idea each, in the active voice. A sub-case is
+
+      `### Case N.M — name` under its parent, with its own `when`, `then`, `tasks` and
+
+      `ratification`, and its own `given` unless it is the parent''s word for word; the
+
+      sections the children share live on the parent, and `materialize` reads them there. The
+
+      `ratification` section ends with a preview of the ledger lines in an untagged
+
+      fence, and the turn ends with a plain question in the chat, never a picker tool.
+
+      When the person answers with a change, show the Case again: `context` and
+
+      `problem` if they changed, always `given`, `when`, `then`, `tasks` and `ratification`, and
+
+      no `recommend` — the variant is theirs. The page content itself — fields, prose sections, and for
+      an Estimate its `purpose` and `method` — is a YAML
+
+      block tagged `then` under the Case in the Spec, not in the chat; `guppi
+
+      materialize` reads it, and what is not in that block was signed by nobody.
+
+
+      The Spec is the plan file, written as each Case is ratified, in the reply that
+
+      carries its ledger lines: `context`, `problem`, `given`, `when`, `then`, the `then`
+
+      block and a block tagged `tasks` — one `- [ ] <what>` per file, test, command and
+
+      one-off migration, and one per reading of an Estimate the Case creates or sets
+
+      `pending`, by its slug; no `recommend`, no `ratification`, no code. Work Mode ticks the boxes in
+      `raw/<date>/<hi HHMM>/spec.md` in the reply that finishes the task; Retro
+
+      counts the unticked.
+
+
+      The reply that acknowledges a ratification has four parts, in this order: the `LEDGER` block first;
+      a heading `## Case N — ratified` and a paragraph **Changes:** — what changes, in one or two sentences;
+      a paragraph **Notes:** — facts that did not enter the Case, omitted when there are none; a heading
+      `## Frontier` and the lines of `frontier.md` as a checklist — the closed lines folded into one,
+      the open ones one per line with a short title, the deferred as `[-] … · defer case N` — and the
+      question which item is next, last. Headings and labels in the language of the chat (case 167, supersedes
+      157).
+
+
+      The harness — hooks, skills, agents, `settings.json`, this section of `CLAUDE.md` —
+
+      is rendered from `rules/`. A harness file changes through an `update` of its Rule
+
+      page, never by hand; a hook refuses the edit.
+
+
+      Before a `create` without a `ref`, ask the vault first: does this exist, what
+
+      conflicts, what sits in `draft`, which tags fit. Put the answer in `context`.
+
+      Dispatch the `ask-guppi` agent with one short question.
+
+
+      Ledger lines are written by the `Stop` hook, from the reply, verbatim, each with
+
+      the time of writing. A record is a `- decision[case 12][update][rule-x]{ref:rule-x}`, `- estimate[...]`
+      or `- lesson[...]` line inside a fenced block opened with the `LEDGER` tag — the id is `case N`,
+      the word and a space, in `{supersedes:case N}` too; the same
+
+      line anywhere else — bare, or in a block with another tag or none — is a preview
+
+      and is never written. A `create` line carries the ratified tags: `{tags:a,b}`. A `knowledge` lesson
+      line carries `{source:...}`, the url or reference the lesson studied — a file of the harness, a
+      probe, a client version; the schema requires it, and a line without it is `incomplete: [source]`
+      in the yaml and a lint finding on the page. An `error` lesson never carries one.
+
+      Write the `- decision[...]` lines only in the reply that acknowledges ratification;
+
+      `- estimate[...]` and `- lesson[...]` lines the moment the measurement or the lesson
+
+      exists, an `estimate[...]` line opening with the date of the reading and the command or the place
+      it was read (case 199). Without `/hi` the hook refuses and says so: tell the person, do not retry.
+      A reply that carries a `LEDGER` block ends in that text. No tool call follows it in the same reply:
+      the text before a tool call is never kept, and the hook reads nothing.
+
+      <!-- /rule-case-protocol -->
+
+      '
+  change: the Render of 195 corrected — the then sentence without the self-contradiction, the vault's
+    answer in context, the create clause on rules and entities only, the reading line opens with its date
+    and command; supersedes 195 (case 200.1)
+  applied: '19:45:25'
+- line: 21
+  text: decision[case 200.2][update][index]{ref:index}
+  case: '200.2'
+  kind: update
+  slug: index
+  origin: raw/2026-09-16/1651/ledger.md#case-200.2
+  decision: decision-case-200.2
+  ref: index
+  category: file
+  path: vault/wiki/index.md
+  change: §1 carry.md in the session folder, brief.md written by the librarian or by /carry; §3 the vault's
+    answer in context, then alongside purpose and an Estimate's method; §10 brief.md under /carry the
+    one exception to the librarian as the writer of wiki/; §12 the Criterion is given, when and then (case
+    200.2)
+  applied: '19:45:25'
+- line: 22
+  text: decision[case 200.2][update][glossary]{ref:glossary}
+  case: '200.2'
+  kind: update
+  slug: glossary
+  origin: raw/2026-09-16/1651/ledger.md#case-200.2
+  decision: decision-case-200.2
+  ref: glossary
+  category: file
+  path: vault/wiki/glossary.md
+  change: 'rows Types, ref/slug/supersedes, Category fields, Sprint/brief.md brought to the model: no
+    method on a Leaf, no block removed by supersedes, the Estimate fields purpose, method, checked, the
+    cap of seven on the librarian''s brief only (case 200.2)'
+  applied: '19:45:25'
+- line: 23
+  text: decision[case 200.2][update][rules-schema]{ref:rules-schema}
+  case: '200.2'
+  kind: update
+  slug: rules-schema
+  origin: raw/2026-09-16/1651/ledger.md#case-200.2
+  decision: decision-case-200.2
+  ref: rules-schema
+  category: file
+  path: vault/wiki/rules/schema.md
+  change: 'row ## How it works: the mechanism lives in the docstring of its code, or in its Render (case
+    200.2)'
+  applied: '19:45:25'
+- line: 24
+  text: decision[case 200.2][update][case-schema]{ref:case-schema}
+  case: '200.2'
+  kind: update
+  slug: case-schema
+  origin: raw/2026-09-16/1651/ledger.md#case-200.2
+  decision: decision-case-200.2
+  ref: case-schema
+  category: file
+  path: vault/wiki/case-schema.md
+  change: 'the estimate row of the outcome table: the result opens with the date of the reading and the
+    command or the place (case 200.2, the rule of 199)'
+  applied: '19:45:25'
+- line: 25
+  text: decision[case 200.3][update][rule-brief]{ref:rule-brief}
+  case: '200.3'
+  kind: update
+  slug: rule-brief
+  origin: raw/2026-09-16/1651/ledger.md#case-200.3
+  decision: decision-case-200.3
+  ref: rule-brief
+  category: rules
+  replace:
+  - old: 'every Estimate whose `status` is `pending` or `failed` — one line per `### case N` block: the
+      Estimate, the block, the rule that stands `draft`, and where it is read, from the unticked `- [
+      ] read …` line of the session''s `spec.md` or, when there is none, from the `Method` of the page;'
+    new: 'every Estimate whose `status` is `pending` or `failed` — one line per Estimate: the Estimate,
+      the rule that stands `draft`, and where it is read, from the unticked `- [ ] read …` line of the
+      session''s `spec.md` or, when there is none, from the page''s `method` (case 200.3);'
+  change: Readings due one line per Estimate, no block, the page's method field (case 200.3)
+  applied: '19:45:25'
+- line: 26
+  text: decision[case 200.4][update][rule-spec-capture]{ref:rule-spec-capture}{supersedes:case 196.4}
+  case: '200.4'
+  kind: update
+  slug: rule-spec-capture
+  origin: raw/2026-09-16/1651/ledger.md#case-200.4
+  decision: decision-case-200.4
+  ref: rule-spec-capture
+  supersedes: '196.4'
+  category: rules
+  sections:
+    Purpose: 'Prevents an approved Spec from existing only in Claude Code''s plan file, outside the
+
+      repository. The ledger''s decision lines are routing only; their content is the Spec, and
+
+      page `origin` fields point at both. A Spec copied by hand is copied late, partially, or
+
+      not at all.
+
+
+      The file has three writers: the hook `guppi spec` on `PostToolUse` of `ExitPlanMode`,
+
+      which appends the approved plan to `raw/<hi date>/<hi HHMM>/spec.md` once, stamped;
+
+      Work Mode, which ticks the boxes of the `tasks` blocks and nothing else; and the agent,
+
+      who appends the short-form Cases under `## Deferred` at the close of Plan Mode and at
+
+      Retro, before their ledger lines. Having written the Spec, the hook prints the fork
+
+      into the context — Work Mode, or `/carry` to conserve the Spec — naming the session
+
+      folder and the Spec file; it blocks nothing, the agent asks and the person chooses
+
+      (case 190.5). The mechanism lives in the docstring of `guppi/spec.py` (case 200.4).
+
+      '
+  change: How it works dropped, its facts and the fork of 190.5 in Purpose; supersedes 196.4 (case 200.4)
+  applied: '19:45:25'
+- line: 27
+  text: decision[case 200.5][update][rule-permissions]{ref:rule-permissions}
+  case: '200.5'
+  kind: update
+  slug: rule-permissions
+  origin: raw/2026-09-16/1651/ledger.md#case-200.5
+  decision: decision-case-200.5
+  ref: rule-permissions
+  category: rules
+  sections:
+    Render: "<!-- rule-permissions -->\n    \"allow\": [\n      \"Edit(vault/raw/**/frontier.md)\",\n\
+      \      \"Write(vault/raw/**/frontier.md)\",\n      \"Edit(vault/raw/**/spec.md)\",\n      \"Write(vault/raw/**/spec.md)\"\
+      ,\n      \"Edit(vault/raw/**/handoff.md)\",\n      \"Write(vault/raw/**/handoff.md)\",\n      \"\
+      Write(vault/raw/**/carry.md)\",\n      \"Edit(vault/wiki/brief.md)\",\n      \"Write(vault/wiki/brief.md)\"\
+      \n    ]\n<!-- /rule-permissions -->\n"
+  replace:
+  - old: 'The Frontier, the Spec and the handoff are the session''s own record of itself: `/hi` writes
+      the Frontier, every closed item edits it, Work Mode ticks the boxes of the Spec, `/handoff` writes
+      the note.'
+    new: 'The Frontier, the Spec, the handoff, the carry mark and the brief of `/carry` are the session''s
+      own record of itself: `/hi` writes the Frontier, every closed item edits it, Work Mode ticks the
+      boxes of the Spec, `/handoff` writes the note, `/carry` writes `carry.md` and rewrites `brief.md`
+      (case 200.5).'
+  change: carry.md and brief.md join the allow list for /carry (case 200.5)
+  applied: '19:45:25'
+- line: 28
+  text: decision[case 200.5][update][estimate-permissions]{ref:estimate-permissions}
+  case: '200.5'
+  kind: update
+  slug: estimate-permissions
+  origin: raw/2026-09-16/1651/ledger.md#case-200.5
+  decision: decision-case-200.5
+  ref: estimate-permissions
+  category: estimates
+  set:
+    status: pending
+  change: the Criterion replaced whole by case 200.5 — nine allow entries, carry.md and brief.md among
+    them (case 200.5)
+  sections:
+    Criterion: 'Given:
+
+      The Render of `rule-case-protocol` is spliced into `CLAUDE.md`; the text of 195 stands in the Spec
+      of this session.
+
+      **＋** A `replace` in `generate` is one occurrence, whitespace collapsed; `sections` is a whole replacement.
+
+      **＋** `settings.json` is rendered from `rule-permissions`; `estimate-permissions` promises six allow
+      entries.
+
+      **－** A `supersedes` marks every entry of the named Case: 195 and 196.4 carry one each, 189 nine,
+      so 189 is not superseded.
+
+
+      When:
+
+      The skill `carry` writes `vault/wiki/brief.md` or `vault/raw/<date>/<HHMM>/carry.md`.
+
+
+      Then:
+
+      The client does not ask: the allow list of `settings.json` holds eight entries — Edit and Write
+      for `frontier.md`, `spec.md`, `handoff.md`, `carry.md` under `vault/raw/**` and for `vault/wiki/brief.md`.
+
+      **－** `deny` and `ask` are empty; nothing else under `wiki/` is allowed.'
+  applied: '19:45:25'
+- line: 29
+  text: 'estimate[estimate-materialize-shows][passed] 2026-09-16, `pytest tests/test_materialize.py`:
+    51 green, the three --show tests among them — the yaml of each unit on stdout, one document per unit
+    with `---` between, nothing written under raw/, exit 1 on a unit error as without --show; a carried-over
+    unit is passed by in --show too, with no separator for it'
+  kind: estimate
+  category: estimates
+  slug: estimate-materialize-shows
+  status: passed
+  result: '2026-09-16, `pytest tests/test_materialize.py`: 51 green, the three --show tests among them
+    — the yaml of each unit on stdout, one document per unit with `---` between, nothing written under
+    raw/, exit 1 on a unit error as without --show; a carried-over unit is passed by in --show too, with
+    no separator for it'
+  origin: raw/2026-09-16/1651/ledger.md#L29
+  applied: '19:45:25'
+- line: 30
+  text: 'estimate[estimate-materialize-lifts-a-lesson][passed] 2026-09-16, `pytest tests/test_materialize.py`:
+    51 green; a lesson line with {source:...} carries source in its fields, a knowledge lesson without
+    one is incomplete: [source], an error lesson never'
+  kind: estimate
+  category: estimates
+  slug: estimate-materialize-lifts-a-lesson
+  status: passed
+  result: '2026-09-16, `pytest tests/test_materialize.py`: 51 green; a lesson line with {source:...} carries
+    source in its fields, a knowledge lesson without one is incomplete: [source], an error lesson never'
+  origin: raw/2026-09-16/1651/ledger.md#L30
+  applied: '19:45:25'
+- line: 31
+  text: 'estimate[estimate-materialize-marks-exists][passed] 2026-09-16, `pytest tests/test_materialize.py`:
+    51 green; a create is marked exists only when the page on disk carries this line''s #case-N in its
+    origin, otherwise it stays a create; live, `materialize --show` over raw/2026-09-16/1034 and 1651:
+    no exists mark, every create a create'
+  kind: estimate
+  category: estimates
+  slug: estimate-materialize-marks-exists
+  status: passed
+  result: '2026-09-16, `pytest tests/test_materialize.py`: 51 green; a create is marked exists only when
+    the page on disk carries this line''s #case-N in its origin, otherwise it stays a create; live, `materialize
+    --show` over raw/2026-09-16/1034 and 1651: no exists mark, every create a create'
+  origin: raw/2026-09-16/1651/ledger.md#L31
+  applied: '19:45:25'
+- line: 32
+  text: 'estimate[estimate-materialize-fails-alone][passed] 2026-09-16, `pytest tests/test_materialize.py`:
+    51 green — a raising lift becomes a {line, text, failed} entry, the unit exits 1, the walk goes on,
+    the entry is lifted again on the next run, an unreadable existing entry is left alone and named once,
+    the librarian''s entry without a line is kept silently; the field list in the docstring of guppi/materialize.py
+    rewritten whole with every writer, the keys of the old shape (derived, criterion_block, case_removed)
+    named as kept on entries already written; no key the code writes is missing from it'
+  kind: estimate
+  category: estimates
+  slug: estimate-materialize-fails-alone
+  status: passed
+  result: '2026-09-16, `pytest tests/test_materialize.py`: 51 green — a raising lift becomes a {line,
+    text, failed} entry, the unit exits 1, the walk goes on, the entry is lifted again on the next run,
+    an unreadable existing entry is left alone and named once, the librarian''s entry without a line is
+    kept silently; the field list in the docstring of guppi/materialize.py rewritten whole with every
+    writer, the keys of the old shape (derived, criterion_block, case_removed) named as kept on entries
+    already written; no key the code writes is missing from it'
+  origin: raw/2026-09-16/1651/ledger.md#L32
+  applied: '19:45:25'
+- line: 33
+  text: 'estimate[estimate-materialize-finds-a-rule-class-item][passed] 2026-09-16, `pytest tests/test_materialize.py`:
+    51 green; a Rule-class item is found by slug or by file equal to rule_class_path(slug), change lifted,
+    category file with its path; live, `materialize --show` over raw/2026-09-16/1651: the nine Rule-class
+    items of cases 193, 199 and 200.2 found by file, none incomplete'
+  kind: estimate
+  category: estimates
+  slug: estimate-materialize-finds-a-rule-class-item
+  status: passed
+  result: '2026-09-16, `pytest tests/test_materialize.py`: 51 green; a Rule-class item is found by slug
+    or by file equal to rule_class_path(slug), change lifted, category file with its path; live, `materialize
+    --show` over raw/2026-09-16/1651: the nine Rule-class items of cases 193, 199 and 200.2 found by file,
+    none incomplete'
+  origin: raw/2026-09-16/1651/ledger.md#L33
+  applied: '19:45:25'
+- line: 34
+  text: 'estimate[estimate-materialize-skips-a-carried-over-unit][passed] 2026-09-16, `pytest tests/test_materialize.py`:
+    51 green, four tests of the skip — a unit whose folder holds carry.md is passed by with one line on
+    stdout naming it, its yaml neither written nor extended, a foreign supersedes not written into it,
+    the content of the mark not read, --show passes it by too, and a unit without the mark is read as
+    before'
+  kind: estimate
+  category: estimates
+  slug: estimate-materialize-skips-a-carried-over-unit
+  status: passed
+  result: '2026-09-16, `pytest tests/test_materialize.py`: 51 green, four tests of the skip — a unit whose
+    folder holds carry.md is passed by with one line on stdout naming it, its yaml neither written nor
+    extended, a foreign supersedes not written into it, the content of the mark not read, --show passes
+    it by too, and a unit without the mark is read as before'
+  origin: raw/2026-09-16/1651/ledger.md#L34
+  applied: '19:45:25'
+- line: 35
+  text: 'estimate[estimate-materialize-walks-dates][passed] 2026-09-16, `pytest tests/test_materialize.py`:
+    51 green, the walk tests unchanged — the session folder as the unit with its own yaml, Spec and origin,
+    the date-level ledger of the old shape first, --date on one date, one stdout line per yaml, a unit
+    error stopping the walk with exit 1 and a failed line letting it go on; live, `materialize --show`
+    without --date walked 2026-09-15/2225, 2026-09-16/1034 and 2026-09-16/1651 in that order'
+  kind: estimate
+  category: estimates
+  slug: estimate-materialize-walks-dates
+  status: passed
+  result: '2026-09-16, `pytest tests/test_materialize.py`: 51 green, the walk tests unchanged — the session
+    folder as the unit with its own yaml, Spec and origin, the date-level ledger of the old shape first,
+    --date on one date, one stdout line per yaml, a unit error stopping the walk with exit 1 and a failed
+    line letting it go on; live, `materialize --show` without --date walked 2026-09-15/2225, 2026-09-16/1034
+    and 2026-09-16/1651 in that order'
+  origin: raw/2026-09-16/1651/ledger.md#L35
+  applied: '19:45:25'
+- line: 36
+  text: 'estimate[estimate-spec-capture-offers-the-fork][passed] 2026-09-16, `pytest tests/test_spec.py`:
+    14 green, three of the fork — after the Spec is written the hook prints one line naming vault/raw/<date>/<HHMM>/spec.md
+    and <folder>/carry.md, Work Mode and /carry, and that nothing starts until the person answers; the
+    line is printed again when the plan was already there, and never without a Spec; the live print in
+    the client is read at the next ExitPlanMode, this session''s ran the old code'
+  kind: estimate
+  category: estimates
+  slug: estimate-spec-capture-offers-the-fork
+  status: passed
+  result: '2026-09-16, `pytest tests/test_spec.py`: 14 green, three of the fork — after the Spec is written
+    the hook prints one line naming vault/raw/<date>/<HHMM>/spec.md and <folder>/carry.md, Work Mode and
+    /carry, and that nothing starts until the person answers; the line is printed again when the plan
+    was already there, and never without a Spec; the live print in the client is read at the next ExitPlanMode,
+    this session''s ran the old code'
+  origin: raw/2026-09-16/1651/ledger.md#L36
+  applied: '19:45:25'
+- line: 37
+  text: 'estimate[estimate-generate-writes][passed] 2026-09-16, `pytest tests/test_generate.py`: 47 green,
+    186.1 — a defer with a purpose writes ## Deferred on the Decision page, one ### [[slug]] heading per
+    target in the order of the defer list, the purpose verbatim and a multi-line one not collapsed, before
+    ## History; a placeholder still gets its purpose field; a defer without a purpose writes no section;
+    the one-off over decision-case-182, 183 and 185 from raw/2026-09-15/2225/materialize.yaml wrote 5,
+    2 and 1 headings'
+  kind: estimate
+  category: estimates
+  slug: estimate-generate-writes
+  status: passed
+  result: '2026-09-16, `pytest tests/test_generate.py`: 47 green, 186.1 — a defer with a purpose writes
+    ## Deferred on the Decision page, one ### [[slug]] heading per target in the order of the defer list,
+    the purpose verbatim and a multi-line one not collapsed, before ## History; a placeholder still gets
+    its purpose field; a defer without a purpose writes no section; the one-off over decision-case-182,
+    183 and 185 from raw/2026-09-15/2225/materialize.yaml wrote 5, 2 and 1 headings'
+  origin: raw/2026-09-16/1651/ledger.md#L37
+  applied: '19:45:25'
+- line: 38
+  text: 'estimate[estimate-lint-catches][passed] 2026-09-16, `pytest tests/test_lint.py`: 50 green, 186.3
+    — a placeholder earns one finding `deferred: <N> times since case <M>` in place of the three schema
+    findings and orphan, a page with deferred_by whose fields are in place earns none, a placeholder missing
+    another field still earns that schema finding; live, `make lint`: 70 → 64, rules/rule-work-mode and
+    rules/rule-subagent-guppi each `deferred: 13 times since case 29`, M read from the ledger pointer
+    of the placeholder line of 2026-09-10'
+  kind: estimate
+  category: estimates
+  slug: estimate-lint-catches
+  status: passed
+  result: '2026-09-16, `pytest tests/test_lint.py`: 50 green, 186.3 — a placeholder earns one finding
+    `deferred: <N> times since case <M>` in place of the three schema findings and orphan, a page with
+    deferred_by whose fields are in place earns none, a placeholder missing another field still earns
+    that schema finding; live, `make lint`: 70 → 64, rules/rule-work-mode and rules/rule-subagent-guppi
+    each `deferred: 13 times since case 29`, M read from the ledger pointer of the placeholder line of
+    2026-09-10'
+  origin: raw/2026-09-16/1651/ledger.md#L38
+  applied: '19:45:25'
+- line: 39
+  text: 'estimate[estimate-plan-mode-names-its-estimates][passed] 2026-09-16, the live reading of this
+    session''s Spec, raw/2026-09-16/1651/spec.md, Cases 193–200: every Case that replaced a Criterion
+    named the Estimate by slug in its then block — 194.1 estimate-materialize-assembles, 194.2 -walks-dates,
+    196.1 estimate-carry-over-writes, 196.2 estimate-end-of-work-order, 197 estimate-brief-written, 200.5
+    estimate-permissions — and the Cases that changed a Render or a Purpose without replacing a promise
+    named the touched Estimate in context and none in the block: 195/200.1 (estimate-case-protocol-loaded,
+    pending by 188), 196.3 and 200.3 (estimate-brief-written, replaced by 197), 198 (estimate-pretask-reconciles,
+    its recut deferred by 191), 196.2 and 194.1 Purpose updates touched none beyond the one they replaced;
+    193, 199, 200.2 changed Rule-class files and named none'
+  kind: estimate
+  category: estimates
+  slug: estimate-plan-mode-names-its-estimates
+  status: passed
+  result: '2026-09-16, the live reading of this session''s Spec, raw/2026-09-16/1651/spec.md, Cases 193–200:
+    every Case that replaced a Criterion named the Estimate by slug in its then block — 194.1 estimate-materialize-assembles,
+    194.2 -walks-dates, 196.1 estimate-carry-over-writes, 196.2 estimate-end-of-work-order, 197 estimate-brief-written,
+    200.5 estimate-permissions — and the Cases that changed a Render or a Purpose without replacing a
+    promise named the touched Estimate in context and none in the block: 195/200.1 (estimate-case-protocol-loaded,
+    pending by 188), 196.3 and 200.3 (estimate-brief-written, replaced by 197), 198 (estimate-pretask-reconciles,
+    its recut deferred by 191), 196.2 and 194.1 Purpose updates touched none beyond the one they replaced;
+    193, 199, 200.2 changed Rule-class files and named none'
+  origin: raw/2026-09-16/1651/ledger.md#L39
+  applied: '19:45:25'
+decisions:
+- case: '193'
+  decision: decision-case-193
+  origin: raw/2026-09-16/1651/ledger.md#case-193
+  targets:
+  - kind: update
+    category: file
+    slug: estimates-schema-yaml
+    path: vault/wiki/estimates/schema.yaml
+    ref: estimates-schema-yaml
+  - kind: update
+    category: file
+    slug: estimates-schema
+    path: vault/wiki/estimates/schema.md
+    ref: estimates-schema
+  - kind: update
+    category: file
+    slug: index
+    path: vault/wiki/index.md
+    ref: index
+  - kind: update
+    category: file
+    slug: glossary
+    path: vault/wiki/glossary.md
+    ref: glossary
+  - kind: update
+    category: file
+    slug: rules-schema
+    path: vault/wiki/rules/schema.md
+    ref: rules-schema
+  tags: []
+  case_text:
+    context: 'The Estimate model of case 182 is ratified by Cases 187–189 of session 1034: an Estimate
+      is one promise, one way to check it and the last result; its Criterion is the `given`, `when` and
+      `then` of one Case, replaced whole; `contract` on an `update`, `method`, `estimate_kind` and `estimate_slug`
+      on a `create` go. The Rule-class files that describe the model are untouched. `index.md` in §2,
+      §3, §5, §7 and §12 speaks of `### case N` blocks, of `method` on a Leaf `create` and of `contract:
+      changed`. `estimates/schema.yaml` requires `## Context` and `## Method`; `estimates/schema.md` describes
+      the Criterion as blocks. `glossary.md` repeats this in the rows Estimate and Case; `rules/schema.md`
+      describes `## How it works` on a Leaf. Point 16 of the model named these files; no Case was written.
+      This Case touches no Estimate: a Rule-class file has none.'
+    problem: 'While the schemas and the map say the old model, Spec 1034 applies with contradictions:
+      the ten new Estimates without `## Context` give ten lint findings, a reader of `index.md` gets a
+      rule opposite to `case-schema.md`, and the table of `schema.md` stops agreeing with `schema.yaml`,
+      which lint also checks. The question: the smallest set of changes to the Rule-class files that makes
+      Spec 1034 applicable.'
+    given: 'Cases 187, 188 and 189 are ratified and are applied by the same librarian run as this Case.
+
+      **＋** lint reads `estimates/schema.yaml` and checks the table of `estimates/schema.md` against it.
+
+      **＋** `guppi generate` writes every field of an entry''s `fields` into the frontmatter, with no
+      list of allowed fields.
+
+      **－** `rule-page-generation`, `rule-lint` and `rule-pretask` are deferred by case 191; this Case
+      does not touch them, and point 10 of the model (Given and the Criterion list leave the Decision
+      page) waits there too.'
+    when: Someone reads `index.md`, `glossary.md`, `estimates/schema.md` or `rules/schema.md`; `guppi
+      lint` reads `estimates/schema.yaml`.
+    then: '`estimates/schema.yaml`: the required fields as today; optional `purpose`, `method`, `checked`;
+      body — required `## Criterion` and `## History`, optional `## Context`, `## Method`, `## Result`;
+      `## Result` required on `passed` and `failed`, as today.
+
+      **＋** `estimates/schema.md`: the same table; `## Criterion` — the Given, When and Then of one Case,
+      replaced whole by an `update` that names the Estimate by slug; `## Context` and `## Method` — the
+      shape before case 193, not written to a new page; `method` — one line: the test command, or where
+      and when it is read, or what is measured in Research; `purpose` — one line for the list on the rule;
+      `checked` — the date of the reading; both examples in the new shape.
+
+      **＋** `index.md`: §2 — "`given`, `when` and `then` are the Criterion of the Estimate"; §3 — the
+      subsection "Paired Estimate on create" replaced: a new promise is an explicit `create` of an Estimate
+      with `ref` and its slug in the Case, and the pre-task paragraph without `contract: changed`; §5
+      — the row `create | — (Leaf)` replaced by `create | target | a new Estimate page, added to the target''s
+      `estimates``; §7 — the new fields and sections, the Criterion replaced whole by the Case that names
+      the Estimate, `pending` only on a replacement, `Result` overwritten; §12 — without "a Leaf `create`
+      with no `method`".
+
+      **＋** `glossary.md`: the row Estimate — without `### case N` and `contract: changed`, with the fields
+      `purpose`, `method`, `checked`; the row Case — "`given` + `when` + `then` is the Estimate criterion".
+
+      **＋** `rules/schema.md`: `## How it works` — MOC only; on a Leaf the mechanism lives in the docstring
+      of its code; a Leaf that still carries the section keeps it until its next touch.
+
+      **－** `rules/schema.yaml` does not change: `## How it works` is optional there already.
+
+      **－** No field becomes required: the 42 old pages stay valid until the migration of case 191.'
+  spec: vault/raw/2026-09-16/1651/spec.md
+  applied: '19:45:25'
+- case: '194.1'
+  decision: decision-case-194.1
+  origin: raw/2026-09-16/1651/ledger.md#case-194.1
+  targets:
+  - kind: update
+    category: rules
+    slug: rule-materialize
+    ref: rule-materialize
+  - kind: update
+    category: estimates
+    slug: estimate-materialize-assembles
+    ref: estimate-materialize-assembles
+  tags: []
+  case_text:
+    when: '`guppi materialize` lifts a record line of a ledger against its Spec.'
+    then: 'One entry per record line, in ledger order: `case`, `kind`, `category` from the slug prefix,
+      `slug`, `ref`, `source`, `supersedes`, `tags`, `origin`, `line`, `text`, `decision`; from the `then`
+      block — `fields`, `sections`, `replace`, `change`, `impact`; what the block lacks is `incomplete`,
+      never invented.
+
+      **＋** An Estimate has its own line and its own entry; the `ref` of the line is the Estimate itself.
+
+      **＋** An `update` entry for an Estimate carries the `given`, `when` and `then` of its Case verbatim
+      with their operands as `sections.Criterion` — `Given:`, `When:`, `Then:` — replacing what stood
+      there, and `set: {status: pending}`; the `given` of a sub-case is its parent''s when it has none
+      of its own.
+
+      **＋** A `create` entry for an Estimate keeps `kind`, `purpose`, `method`, `tags` as fields; its
+      Criterion comes from the block''s `sections` when one is written, else from the Case''s `given`,
+      `when`, `then` the same way; `## Context` and `## Method` are not written.
+
+      **＋** One decision entry per Case: `decision`, `case_text`, `targets`; a sub-case inherits `context`,
+      `problem`, `recommend`, `given`, never `when`.
+
+      **＋** An `estimate` line for a page of the same ledger is folded into its `create`; for an earlier
+      page it is an `estimate` entry, an update. The `new_tags` of any Case reach the yaml once. An existing
+      yaml is extended, never rewritten.
+
+      **－** An `update` entry carries no `contract`, and no Estimate is derived from it; a `create` carries
+      no `method`, `estimate_kind` or `estimate_slug`; neither `criterion_block`, `case_removed` nor `remove_criterion`
+      is derived.
+
+      **－** The keys `contract`, `estimate_slug`, `estimate_kind` and `method` on a rule''s item are ignored:
+      they reach neither the page nor `incomplete`; the blocks of Case 186 stay as signed.
+
+      **－** A line the grammar does not parse goes under `unparsed`; the run goes on.'
+    context: '`rule-materialize` is a Leaf, `enforcement: check`, its code `guppi/materialize.py`; two
+      Estimates: `estimate-materialize-assembles` (a head Criterion and nine blocks) and `estimate-materialize-walks-dates`
+      (a head and two blocks). Case 189 ratified: the script derives no Estimate from `contract`, `method`
+      or `supersedes`; an Estimate has its own line and its own entry, its Criterion taken from the Case;
+      `## How it works` goes into the docstring; six blocks became their own pages, 73.5 goes to `-walks-dates`,
+      90.1 dies. Case 190.3 added the skip of a unit holding `carry.md`. But neither 189 nor 190.3 gave
+      the page one line of text, both Estimates carry `set: {status: pending}` with no new Criterion,
+      and `generate` can neither drop a section nor apply a `criterion` key on an `update`: it applies
+      `set`, `sections`, `replace`. The blocks of Case 186 carry `contract: changed` and `estimate_slug`,
+      which 189 does not read. This Case touches both Estimates of the page and not the six new ones:
+      their Criterion is written in the blocks of 189.'
+    problem: 'How 189 and 190.3 reach the page and the code without three holes: the text of `## Purpose`
+      after `## How it works` leaves; the shape of the entry in which the lifted Criterion reaches the
+      page through the existing `generate`; and the Criterion of both Estimates replaced whole without
+      losing the promise of the head. And what to do with the keys of the old shape in the blocks of 186.'
+    given: 'A unit `raw/<date>/<HHMM>/` holds `ledger.md` and `spec.md`; a Case in the Spec has a heading,
+      the sections `given`, `when`, `then` and a `then` block.
+
+      **＋** `guppi generate` applies the `sections` of an `update` entry as whole replacements and writes
+      every field of a `create` entry''s `fields` into the frontmatter.
+
+      **＋** Cases 189 and 190.3 are ratified; their entries for these same pages apply before the entries
+      of this Case, in ledger order.
+
+      **－** The tests in `tests/test_materialize.py` fix the behaviour; the live reading is the librarian''s
+      run of this session.'
+  spec: vault/raw/2026-09-16/1651/spec.md
+  applied: '19:45:25'
+- case: '194.2'
+  decision: decision-case-194.2
+  origin: raw/2026-09-16/1651/ledger.md#case-194.2
+  targets:
+  - kind: update
+    category: estimates
+    slug: estimate-materialize-walks-dates
+    ref: estimate-materialize-walks-dates
+  tags: []
+  case_text:
+    when: '`uv run guppi materialize` runs, with `--date` or without.'
+    then: 'The unit of the walk is a session folder `raw/<date>/<HHMM>/` holding a `ledger.md`: its yaml
+      `raw/<date>/<HHMM>/materialize.yaml`, its Spec `raw/<date>/<HHMM>/spec.md` alone, the `origin` of
+      its entries `raw/<date>/<HHMM>/ledger.md#case-N` and `#L<n>`.
+
+      **＋** A date-level `raw/<date>/ledger.md` (the shape before case 103) is a unit of the old shape:
+      every Spec of the date in folder order and `raw/<date>/spec.md` when it exists, the yaml `raw/<date>/materialize.yaml`,
+      `origin` in the date form; on a date with both shapes the date-level unit goes first; the yaml''s
+      `spec` field names the file each Case was found in.
+
+      **＋** Without `--date` the walk covers every unit under `raw/`, dates ascending; `--date` walks
+      the date-level ledger and every session of the date; stdout carries one line per yaml; a line written
+      after the librarian''s commit of its date is lifted by the next run.
+
+      **＋** An error of a unit — no `ledger.md`, a Case heading in two files — stops the walk with exit
+      1; a line whose lift failed marks its entry, the unit exits 1 and the walk goes on.
+
+      **－** A unit whose folder holds `carry.md` is skipped — that is `estimate-materialize-skips-a-carried-over-unit`,
+      not this one.'
+    context: '`rule-materialize` is a Leaf, `enforcement: check`, its code `guppi/materialize.py`; two
+      Estimates: `estimate-materialize-assembles` (a head Criterion and nine blocks) and `estimate-materialize-walks-dates`
+      (a head and two blocks). Case 189 ratified: the script derives no Estimate from `contract`, `method`
+      or `supersedes`; an Estimate has its own line and its own entry, its Criterion taken from the Case;
+      `## How it works` goes into the docstring; six blocks became their own pages, 73.5 goes to `-walks-dates`,
+      90.1 dies. Case 190.3 added the skip of a unit holding `carry.md`. But neither 189 nor 190.3 gave
+      the page one line of text, both Estimates carry `set: {status: pending}` with no new Criterion,
+      and `generate` can neither drop a section nor apply a `criterion` key on an `update`: it applies
+      `set`, `sections`, `replace`. The blocks of Case 186 carry `contract: changed` and `estimate_slug`,
+      which 189 does not read. This Case touches both Estimates of the page and not the six new ones:
+      their Criterion is written in the blocks of 189.'
+    problem: 'How 189 and 190.3 reach the page and the code without three holes: the text of `## Purpose`
+      after `## How it works` leaves; the shape of the entry in which the lifted Criterion reaches the
+      page through the existing `generate`; and the Criterion of both Estimates replaced whole without
+      losing the promise of the head. And what to do with the keys of the old shape in the blocks of 186.'
+    given: 'A unit `raw/<date>/<HHMM>/` holds `ledger.md` and `spec.md`; a Case in the Spec has a heading,
+      the sections `given`, `when`, `then` and a `then` block.
+
+      **＋** `guppi generate` applies the `sections` of an `update` entry as whole replacements and writes
+      every field of a `create` entry''s `fields` into the frontmatter.
+
+      **＋** Cases 189 and 190.3 are ratified; their entries for these same pages apply before the entries
+      of this Case, in ledger order.
+
+      **－** The tests in `tests/test_materialize.py` fix the behaviour; the live reading is the librarian''s
+      run of this session.'
+  spec: vault/raw/2026-09-16/1651/spec.md
+  applied: '19:45:25'
+- case: '195'
+  decision: decision-case-195
+  origin: raw/2026-09-16/1651/ledger.md#case-195
+  targets:
+  - kind: update
+    category: rules
+    slug: rule-case-protocol
+    ref: rule-case-protocol
+  tags: []
+  case_text:
+    context: '`rule-case-protocol` is a Leaf, `enforcement: render`, `governs: CLAUDE.md`, `render_mode:
+      partial`; its Render is the "Case protocol" section of the system prompt. Case 188 ratified the
+      new form of a Case: `given` holds the conditions of the behaviour, the state of pages goes to `context`,
+      `context` names the Estimates touched, `given` + `when` + `then` are the Criterion replaced whole,
+      the Case names the Estimate by slug, `tasks` without `contract` and "block N", a `create` without
+      `method`, `estimate_kind`, `estimate_slug`. But the block of 188 carries only `sections: Purpose`
+      and `change`; there is no new Render text, and the task of 188 demands `render --check` exit 0,
+      which would splice the old Render into `CLAUDE.md`. Case 187 added a rule the Render must carry
+      too: only a replaced Criterion sets `pending`, an `update` of `Purpose` touches no Estimate, an
+      `update` of the Render touches the Estimate of the live reading. This Case touches `estimate-case-protocol-loaded`
+      — the Estimate of the live reading of the Render, already `pending` by 188 with a replaced Criterion
+      this Case does not change; it does not touch `estimate-case-protocol-case-form`, `-acknowledging-reply`,
+      `-ledger-line-form` or `estimate-claude-md-rendered`.'
+    problem: The Render is the one text the agent writes a Case by, and it still says the old model. Without
+      the new text Cases 187 and 188 are ratified but every next session writes Cases the old way, and
+      `guppi render` rewrites `CLAUDE.md` with what contradicts `case-schema.md` after 188.
+    given: '`CLAUDE.md` is in the system prompt from the first turn; the Render is spliced between the
+      `rule-case-protocol` markers.
+
+      **＋** `case-schema.md` is rewritten by 188 in the same run; the Render does not repeat it, it adds
+      the discipline around it.
+
+      **＋** `guppi render --check` compares the file with the page''s Render; `estimate-claude-md-rendered`
+      promises the equality.
+
+      **－** The live reading of the Render is `estimate-case-protocol-loaded`, `pending` by 188; this
+      Case does not change its Criterion and does not name it in the block.'
+    when: The agent writes a Case in the chat, reading the "Case protocol" section of `CLAUDE.md` — at
+      its first showing, when shown again after the owner's change, and with sub-cases.
+    then: 'The third paragraph of the Render says: `context` holds the state of the pages the Case changes
+      and names which Estimates of the rule the Case touches and which it does not; `given` holds the
+      conditions of the behaviour, one per line, and only those a line of `then` depends on — the rule,
+      the test; no state of pages, no history, no quotation.
+
+      **＋** It says: `given`, `when` and `then` together are the Criterion of the Estimate the Case creates
+      or changes, copied whole and replacing what stood there; the Case names it by slug in its `then`
+      block; only a replaced Criterion sets `pending`; an `update` of a rule''s `Purpose` touches no Estimate;
+      an `update` of its Render touches the Estimate of the live reading of that Render (case 187).
+
+      **＋** It says: a new promise is an explicit `create` of an Estimate with `ref` naming the target
+      and its slug in the Case; a `create` carries no `method`, `estimate_kind` or `estimate_slug`; an
+      `update` no `contract`; one promise per Case or sub-case — two touched promises are two sub-cases
+      (case 188).
+
+      **＋** It says: `tasks` is one line per page `update`, file, test, command, one-off migration and
+      reading, without `contract` and without "block N".
+
+      **＋** The sentence on the page content names, for an Estimate, its `purpose` and `method` as fields
+      of the `then` block.
+
+      **－** The paragraphs on the ledger, the Frontier, the harness, the vault query and the acknowledging
+      reply do not change by a word.
+
+      **－** The eight sections of the chat form do not change.'
+  spec: vault/raw/2026-09-16/1651/spec.md
+  superseded_by:
+  - decision-case-200.1
+  applied: '19:45:25'
+- case: '196.1'
+  decision: decision-case-196.1
+  origin: raw/2026-09-16/1651/ledger.md#case-196.1
+  targets:
+  - kind: update
+    category: rules
+    slug: rule-carry-over
+    ref: rule-carry-over
+  - kind: update
+    category: estimates
+    slug: estimate-carry-over-writes
+    ref: estimate-carry-over-writes
+  tags: []
+  case_text:
+    given: 'The hook `guppi spec` on `PostToolUse` of `ExitPlanMode` wrote the Spec and printed the fork
+      into the context: go on — Work Mode — or conserve until the next session.
+
+      **＋** The agent asked the person which of the two and got "conserve".
+
+      **＋** `guppi materialize` knows a conserved unit by the file `carry.md` in the session folder (case
+      190.3) — by its presence, not its content.
+
+      **－** The person does not type `/carry`; the path of the skill is the agent''s call on `PreToolUse
+      Skill`.'
+    when: The agent calls the skill `carry` after the person's answer at the fork.
+    then: 'The skill reads the tree; when it holds changes outside the session folder and `vault/wiki/brief.md`,
+      it stops and says: work was done, the ordinary exit applies.
+
+      **＋** Otherwise it rewrites `brief.md` — that is the conservation: the next session starts from
+      it.
+
+      **＋** It puts `carry.md` into the session folder — one line, a flag for `materialize`, not a document;
+      the session that finishes the work deletes it.
+
+      **＋** It runs `make style` and commits `vault/raw/` and `vault/wiki/brief.md`.
+
+      **－** It runs no Work Mode, `/retro`, `/handoff`, librarian, `materialize`, `generate`, `cleanup`
+      or `render`; it writes no page of `vault/wiki/` but the brief.
+
+      **－** The work stays sequential, session after session: one conserved Spec, no parallelism.
+
+      **－** `.claude/skills/carry/SKILL.md` equals the Render of the page; it is not edited by hand.'
+    context: 'Case 190 ratified a second end of a session: `rule-carry-over` — a new Leaf, `enforcement:
+      render`, `governs: .claude/skills/carry/SKILL.md`, with the Estimate `estimate-carry-over-writes`;
+      `rule-end-of-work` gets the second end and a new child; `rule-brief` a second writer; `rule-spec-capture`
+      the fork in the context; `rule-materialize` the skip (closed by case 194). But the block of 190.1
+      carries no `sections: Render` — the text of the skill is signed by nobody; 190.2, 190.4 and 190.5
+      carry `change` only; `estimate-end-of-work-order` and `estimate-brief-written` stand `pending` with
+      no new Criterion. The `status: draft` and `parent` in the block of 190.1 are overwritten by `generate`
+      with its own values — no harm, nothing to fix. The skill is not typed by the person: the hook of
+      `guppi spec` prints the fork, the agent asks, and on "conserve" the agent calls the skill. `carry.md`
+      is a flag for `materialize`, not a document: its presence in the session folder tells the walk which
+      unit to pass by (case 190.3). This Case touches `estimate-carry-over-writes` and `estimate-end-of-work-order`;
+      it touches `estimate-brief-written` as the Estimate of the live reading of the Render of `rule-brief`
+      without replacing its Criterion — that is Case 197; it does not touch `estimate-spec-capture-offers-the-fork`
+      (its Criterion is 190.5), `estimate-spec-capture-appends` or `estimate-materialize-skips-a-carried-over-unit`.'
+    problem: '`/carry` is the first thing built in this session and the only exit if Work Mode does not
+      fit in the context; without its Render text there is no skill, and without a Criterion the two `pending`
+      Estimates cannot be read. The question: what text each of the four pages carries, and how the promises
+      of the old Estimates read after the recut.'
+  spec: vault/raw/2026-09-16/1651/spec.md
+  applied: '19:45:25'
+- case: '196.2'
+  decision: decision-case-196.2
+  origin: raw/2026-09-16/1651/ledger.md#case-196.2
+  targets:
+  - kind: update
+    category: rules
+    slug: rule-end-of-work
+    ref: rule-end-of-work
+  - kind: update
+    category: estimates
+    slug: estimate-end-of-work-order
+    ref: estimate-end-of-work-order
+  tags: []
+  case_text:
+    when: A session ends.
+    then: 'It ends one of two ways: Work Mode, Retro, the commit, handoff and the librarian — or `/carry`
+      straight after Plan Mode.
+
+      **＋** In the ordinary way the order holds: `/handoff` is refused while the tree is dirty; `handoff.md`
+      exists before the librarian is dispatched; no other commit stands between the handoff and the librarian''s;
+      `make test-end-of-work` is green.
+
+      **＋** On leaving Plan Mode the agent asks which of the two, and starts nothing until it is answered.
+
+      **＋** `rule-carry-over` is a child of this MOC, after `rule-handoff`.
+
+      **－** The order of the three steps of the ordinary way does not change.'
+    context: 'Case 190 ratified a second end of a session: `rule-carry-over` — a new Leaf, `enforcement:
+      render`, `governs: .claude/skills/carry/SKILL.md`, with the Estimate `estimate-carry-over-writes`;
+      `rule-end-of-work` gets the second end and a new child; `rule-brief` a second writer; `rule-spec-capture`
+      the fork in the context; `rule-materialize` the skip (closed by case 194). But the block of 190.1
+      carries no `sections: Render` — the text of the skill is signed by nobody; 190.2, 190.4 and 190.5
+      carry `change` only; `estimate-end-of-work-order` and `estimate-brief-written` stand `pending` with
+      no new Criterion. The `status: draft` and `parent` in the block of 190.1 are overwritten by `generate`
+      with its own values — no harm, nothing to fix. The skill is not typed by the person: the hook of
+      `guppi spec` prints the fork, the agent asks, and on "conserve" the agent calls the skill. `carry.md`
+      is a flag for `materialize`, not a document: its presence in the session folder tells the walk which
+      unit to pass by (case 190.3). This Case touches `estimate-carry-over-writes` and `estimate-end-of-work-order`;
+      it touches `estimate-brief-written` as the Estimate of the live reading of the Render of `rule-brief`
+      without replacing its Criterion — that is Case 197; it does not touch `estimate-spec-capture-offers-the-fork`
+      (its Criterion is 190.5), `estimate-spec-capture-appends` or `estimate-materialize-skips-a-carried-over-unit`.'
+    problem: '`/carry` is the first thing built in this session and the only exit if Work Mode does not
+      fit in the context; without its Render text there is no skill, and without a Criterion the two `pending`
+      Estimates cannot be read. The question: what text each of the four pages carries, and how the promises
+      of the old Estimates read after the recut.'
+    given: 'The Spec is written by the hook `guppi spec` into the session folder `raw/<date>/<hi HHMM>/spec.md`;
+      the `hi` and the folder are known from the context.
+
+      **＋** `generate` appends `rule-carry-over` to the `children` of `rule-end-of-work` from the `ref`
+      of its `create`; the `update` of 190.2 writes no field.
+
+      **＋** The methods of the Estimates do not change: `estimate-carry-over-writes` — pytest over the
+      skill''s Render and one live reading; `-end-of-work-order` — `make test-end-of-work` and the live
+      reading of the order; `-brief-written` — a reading of the brief by hand.
+
+      **－** The entries of 190.x apply before the entries of this Case, in ledger order.'
+  spec: vault/raw/2026-09-16/1651/spec.md
+  applied: '19:45:25'
+- case: '196.3'
+  decision: decision-case-196.3
+  origin: raw/2026-09-16/1651/ledger.md#case-196.3
+  targets:
+  - kind: update
+    category: rules
+    slug: rule-brief
+    ref: rule-brief
+  tags: []
+  case_text:
+    given: 'The frame of the brief is the Render of `rule-brief`, spliced into `.claude/agents/librarian-guppi.md`;
+      `/carry` refers to it and does not copy it.
+
+      **－** The promise of the librarian''s brief does not change; `estimate-brief-written` is touched
+      as the Estimate of the live reading of the Render, but this sub-case does not replace its Criterion
+      — that is Case 197.'
+    when: Someone reads the Render of `rule-brief` — the librarian at its run, or the agent that called
+      `carry`.
+    then: 'The Render ends with a paragraph: the brief has a second writer, the skill `carry` (`rule-carry-over`);
+      it writes the same frame in the short shape: Where things stand names the conserved Spec by path,
+      its Cases and what is not done; Readings due and Readings at the close are omitted; Deferred is
+      the previous brief''s list as it stands plus the `defer` items of this Spec by slug; Flags say what
+      the vault does not know about this session; no cap of seven and no ranking (case 190.4).
+
+      **－** The rest of the Render does not change.'
+    context: 'Case 190 ratified a second end of a session: `rule-carry-over` — a new Leaf, `enforcement:
+      render`, `governs: .claude/skills/carry/SKILL.md`, with the Estimate `estimate-carry-over-writes`;
+      `rule-end-of-work` gets the second end and a new child; `rule-brief` a second writer; `rule-spec-capture`
+      the fork in the context; `rule-materialize` the skip (closed by case 194). But the block of 190.1
+      carries no `sections: Render` — the text of the skill is signed by nobody; 190.2, 190.4 and 190.5
+      carry `change` only; `estimate-end-of-work-order` and `estimate-brief-written` stand `pending` with
+      no new Criterion. The `status: draft` and `parent` in the block of 190.1 are overwritten by `generate`
+      with its own values — no harm, nothing to fix. The skill is not typed by the person: the hook of
+      `guppi spec` prints the fork, the agent asks, and on "conserve" the agent calls the skill. `carry.md`
+      is a flag for `materialize`, not a document: its presence in the session folder tells the walk which
+      unit to pass by (case 190.3). This Case touches `estimate-carry-over-writes` and `estimate-end-of-work-order`;
+      it touches `estimate-brief-written` as the Estimate of the live reading of the Render of `rule-brief`
+      without replacing its Criterion — that is Case 197; it does not touch `estimate-spec-capture-offers-the-fork`
+      (its Criterion is 190.5), `estimate-spec-capture-appends` or `estimate-materialize-skips-a-carried-over-unit`.'
+    problem: '`/carry` is the first thing built in this session and the only exit if Work Mode does not
+      fit in the context; without its Render text there is no skill, and without a Criterion the two `pending`
+      Estimates cannot be read. The question: what text each of the four pages carries, and how the promises
+      of the old Estimates read after the recut.'
+  spec: vault/raw/2026-09-16/1651/spec.md
+  applied: '19:45:25'
+- case: '196.4'
+  decision: decision-case-196.4
+  origin: raw/2026-09-16/1651/ledger.md#case-196.4
+  targets:
+  - kind: update
+    category: rules
+    slug: rule-spec-capture
+    ref: rule-spec-capture
+  tags: []
+  case_text:
+    when: Someone reads `## How it works` of `rule-spec-capture`.
+    then: 'The paragraph says: having written the Spec, the hook prints the fork into the context — Work
+      Mode or `/carry` — naming the session folder and the Spec file (case 190.5).
+
+      **－** The promise of writing the Spec and of the three writers of the file does not change; this
+      sub-case touches no Estimate.'
+    context: 'Case 190 ratified a second end of a session: `rule-carry-over` — a new Leaf, `enforcement:
+      render`, `governs: .claude/skills/carry/SKILL.md`, with the Estimate `estimate-carry-over-writes`;
+      `rule-end-of-work` gets the second end and a new child; `rule-brief` a second writer; `rule-spec-capture`
+      the fork in the context; `rule-materialize` the skip (closed by case 194). But the block of 190.1
+      carries no `sections: Render` — the text of the skill is signed by nobody; 190.2, 190.4 and 190.5
+      carry `change` only; `estimate-end-of-work-order` and `estimate-brief-written` stand `pending` with
+      no new Criterion. The `status: draft` and `parent` in the block of 190.1 are overwritten by `generate`
+      with its own values — no harm, nothing to fix. The skill is not typed by the person: the hook of
+      `guppi spec` prints the fork, the agent asks, and on "conserve" the agent calls the skill. `carry.md`
+      is a flag for `materialize`, not a document: its presence in the session folder tells the walk which
+      unit to pass by (case 190.3). This Case touches `estimate-carry-over-writes` and `estimate-end-of-work-order`;
+      it touches `estimate-brief-written` as the Estimate of the live reading of the Render of `rule-brief`
+      without replacing its Criterion — that is Case 197; it does not touch `estimate-spec-capture-offers-the-fork`
+      (its Criterion is 190.5), `estimate-spec-capture-appends` or `estimate-materialize-skips-a-carried-over-unit`.'
+    problem: '`/carry` is the first thing built in this session and the only exit if Work Mode does not
+      fit in the context; without its Render text there is no skill, and without a Criterion the two `pending`
+      Estimates cannot be read. The question: what text each of the four pages carries, and how the promises
+      of the old Estimates read after the recut.'
+    given: 'The Spec is written by the hook `guppi spec` into the session folder `raw/<date>/<hi HHMM>/spec.md`;
+      the `hi` and the folder are known from the context.
+
+      **＋** `generate` appends `rule-carry-over` to the `children` of `rule-end-of-work` from the `ref`
+      of its `create`; the `update` of 190.2 writes no field.
+
+      **＋** The methods of the Estimates do not change: `estimate-carry-over-writes` — pytest over the
+      skill''s Render and one live reading; `-end-of-work-order` — `make test-end-of-work` and the live
+      reading of the order; `-brief-written` — a reading of the brief by hand.
+
+      **－** The entries of 190.x apply before the entries of this Case, in ledger order.'
+  spec: vault/raw/2026-09-16/1651/spec.md
+  superseded_by:
+  - decision-case-200.4
+  applied: '19:45:25'
+- case: '197'
+  decision: decision-case-197
+  origin: raw/2026-09-16/1651/ledger.md#case-197
+  targets:
+  - kind: update
+    category: estimates
+    slug: estimate-brief-written
+    ref: estimate-brief-written
+  tags: []
+  case_text:
+    context: '`estimate-brief-written` is the Estimate of `rule-brief`, QA, `passed`; its Criterion is
+      the head text of case 35.3 and two blocks, 124.1 (Deferred: seven items, ranked by `severity`) and
+      168 (Readings due). Case 190.4 set it `pending` with "the Criterion replaced whole" and gave no
+      text; under the `materialize` of 194.1 its Criterion would become the text of 190.4 — the two writers
+      — and the promise of the librarian''s brief itself would leave the vault. The short shape of `/carry`
+      is the promise of `estimate-carry-over-writes` (196.1); the reference to it sits in the Render of
+      `rule-brief` (196.3). This Case touches one Estimate, `estimate-brief-written`; it does not change
+      `rule-brief`.'
+    problem: 'How the promise of the librarian''s brief reads as one text, without blocks and without
+      a new contract: a recut of signed text, point 15 of the model.'
+    given: 'The librarian writes `brief.md` by the frame — the Render of `rule-brief` — after `generate`,
+      from the yaml of the run, `handoff.md` and the output of `make lint`.
+
+      **＋** A fact no input carries — the status of an Estimate, the `severity` of an Insight — is read
+      from the page, and the page is named in the report.
+
+      **－** The brief of `/carry` is the promise of `estimate-carry-over-writes`, not of this one.'
+    when: The librarian rewrites `vault/wiki/brief.md` at the end of its run.
+    then: 'The brief holds five sections in order: Where things stand, Readings due, Deferred, Flags,
+      Readings at the close.
+
+      **＋** Where things stand — from "What actually got done" of `handoff.md` and the counts of the yaml:
+      pages created and updated per category.
+
+      **＋** Readings due — every Estimate `pending` or `failed` after `generate`: the Estimate, the rule
+      that stands `draft`, and where it is read — from the unticked `read` line of the session''s Spec
+      or from the page''s `method`; a `failed` one first, with the result of its reading in one line;
+      nothing from the previous brief.
+
+      **＋** Deferred — at most seven: the targets of the `defer` entries of this run, the items of the
+      previous list whose decision no `supersedes` retired, every `open` Insight; ranked by `severity`
+      — its own or that of the related Insight — then by the number of briefs the item stood in; an Insight''s
+      line carries its slug, `severity`, `pattern` and its Proposal in one or two sentences.
+
+      **＋** Flags, no limit: entries `incomplete`, `failed`, `near`, `unparsed`; `failed` Estimates; MOC
+      candidates; stale defers; contradictions; the lint output.
+
+      **＋** Readings at the close — `make test`, `make lint`, page counts.
+
+      **－** The brief states no decision and no judgment of the work; `sprint.md` changes only when `handoff.md`
+      says so, and only as it says.'
+  spec: vault/raw/2026-09-16/1651/spec.md
+  applied: '19:45:25'
+- case: '198'
+  decision: decision-case-198
+  origin: raw/2026-09-16/1651/ledger.md#case-198
+  targets:
+  - kind: update
+    category: rules
+    slug: rule-pretask
+    ref: rule-pretask
+  tags: []
+  case_text:
+    context: '`rule-pretask` is a Leaf, `enforcement: render`, `governs: .claude/skills/pre-task/SKILL.md`;
+      its Estimate `estimate-pretask-reconciles`, six blocks, is deferred for its recut by case 191. The
+      second paragraph of the Render builds the list of decisions for `ask-guppi`. Case 186.2 replaced
+      its second sentence: a deferred decision enters the list by its slug and the word `defer`, without
+      its `purpose`, and its body is not read. But the first sentence of the paragraph stands as it was:
+      "slug — decision type — purpose" for every decision — and demands a `purpose` of a `defer`, contradicting
+      the next one. This Case touches `estimate-pretask-reconciles` as the Estimate of the live reading
+      of the Render but does not replace its Criterion: the recut is deferred by 191, and the promise
+      of 186.2 and of this change goes into it. It touches no other Estimate.'
+    problem: Two neighbouring sentences of one paragraph demand the opposite; an agent reading the skill
+      picks either. Defect 7 of the brief.
+    given: '`/pre-task` builds the list from the decisions of this Plan Mode and hands it to `ask-guppi`
+      in one dispatch.
+
+      **－** The body of a deferred Case is not read — 186.2; this Case repeats the condition, it does
+      not change it.'
+    when: The agent calls `pre-task` and builds the list of decisions.
+    then: 'The first sentence of the paragraph reads: every decision on one line — slug — decision type
+      — `purpose` for a `create`, an `update` and a `delete`; a `defer` by its slug and the word `defer`.
+
+      **－** The rest of the paragraph, the sentence of 186.2 included, does not change.'
+  spec: vault/raw/2026-09-16/1651/spec.md
+  applied: '19:45:25'
+- case: '199'
+  decision: decision-case-199
+  origin: raw/2026-09-16/1651/ledger.md#case-199
+  targets:
+  - kind: update
+    category: file
+    slug: estimates-schema
+    path: vault/wiki/estimates/schema.md
+    ref: estimates-schema
+  tags: []
+  case_text:
+    context: '`estimates/schema.md` describes `## Result`: omitted while `pending`, one line for QA, the
+      substance of the page for Research; overwritten, never appended. Case 193 rewrote the table and
+      the Criterion but said of the content of Result only "overwritten". Point 11 of the model: a reading
+      is the line `estimate[slug][passed|failed] text`, the date and the command are the first line of
+      Result; Result is about one run of one check. Today the date of a reading shows only in History,
+      the command nowhere but in `method`, which need not repeat it. This Case touches no Estimate: a
+      Rule-class file.'
+    problem: 'A reader of Result does not know when and by what it was checked: "tests green (379)" without
+      a date and a command is an opinion, not a result. Point 11 did not enter 193.'
+    given: 'The `estimate[...]` line is written by the agent at the moment of the reading; `generate`
+      puts its text into `## Result` whole.
+
+      **－** `schema.yaml` does not change: the same section, the same requiredness.'
+    when: The agent writes a line `estimate[slug][passed|failed]`, or someone reads `estimates/schema.md`.
+    then: 'The text of the line opens with the date of the reading and the command — `make test-x`, `pytest
+      tests/test_x.py` — or the place of a live reading; the result follows.
+
+      **＋** `estimates/schema.md` says so in the row `## Result` and in both examples.
+
+      **－** Lines written earlier are not rewritten.'
+  spec: vault/raw/2026-09-16/1651/spec.md
+  applied: '19:45:25'
+- case: '200.1'
+  decision: decision-case-200.1
+  origin: raw/2026-09-16/1651/ledger.md#case-200.1
+  targets:
+  - kind: update
+    category: rules
+    slug: rule-case-protocol
+    ref: rule-case-protocol
+  tags: []
+  case_text:
+    when: The agent writes a Case in the chat by the "Case protocol" section of `CLAUDE.md`.
+    then: 'The sentence on `then` reads: "`then` holds behaviour only: no Estimate block, no reading,
+      no `supersedes`; those are lines of `tasks`… without `contract` and without "block N"".
+
+      **＋** The paragraph on the vault query says: "Put the answer in `context`".
+
+      **＋** The sentence on a `create` reads: "a `create` of a rule or an entity carries no `method`,
+      `estimate_kind` or `estimate_slug`".
+
+      **＋** The ledger paragraph says: an `estimate[...]` line opens with the date of the reading and
+      the command or the place of the reading (case 199).
+
+      **－** Everything else as in 195.'
+    context: 'Cases 193–199 are ratified; `ask-guppi` read them against the vault and Spec 1034. In the
+      Render of 195 one sentence contradicts itself: "`then` without `contract` — those are lines of `tasks`…
+      `tasks` without `contract`"; the paragraph on the vault query says to put the answer in `given`,
+      while 188 sent the answer to `context`; "a `create` carries no `method`" is said of every `create`,
+      the Estimate included, whose `method` is a field; the rule of 199 on the date in the reading line
+      did not reach the Render. The Render of `rule-brief` still says in Readings due "one line per `###
+      case N` block… from the `Method` of the page" — there are no blocks since 193. 196.4 extends the
+      `## How it works` of a Leaf while 193 says the section leaves at the next touch. In `index.md` §1,
+      §3, §10, §12 and four rows of the glossary, sentences of the old model stand that 193 did not name;
+      `rules/schema.md` by 193 says "the mechanism lives in the docstring of its code", and a `render`
+      Leaf has no code. `rule-permissions` allows without a question only `frontier.md`, `spec.md`, `handoff.md`
+      — `/carry` writes `brief.md` and `carry.md` and would ask. Estimates touched: `estimate-permissions`
+      (200.5, its Criterion replaced); `estimate-case-protocol-loaded`, `estimate-brief-written`, `estimate-spec-capture-appends`
+      do not change.'
+    problem: Seven places where signed text contradicts other signed text, or is silent where the new
+      model needs a word; all consequences of 193–199, none a new decision of substance.
+    given: 'The Render of `rule-case-protocol` is spliced into `CLAUDE.md`; the text of 195 stands in
+      the Spec of this session.
+
+      **＋** A `replace` in `generate` is one occurrence, whitespace collapsed; `sections` is a whole replacement.
+
+      **＋** `settings.json` is rendered from `rule-permissions`; `estimate-permissions` promises six allow
+      entries.
+
+      **－** A `supersedes` marks every entry of the named Case: 195 and 196.4 carry one each, 189 nine,
+      so 189 is not superseded.'
+  spec: vault/raw/2026-09-16/1651/spec.md
+  supersedes:
+  - decision-case-195
+  applied: '19:45:25'
+- case: '200.2'
+  decision: decision-case-200.2
+  origin: raw/2026-09-16/1651/ledger.md#case-200.2
+  targets:
+  - kind: update
+    category: file
+    slug: index
+    path: vault/wiki/index.md
+    ref: index
+  - kind: update
+    category: file
+    slug: glossary
+    path: vault/wiki/glossary.md
+    ref: glossary
+  - kind: update
+    category: file
+    slug: rules-schema
+    path: vault/wiki/rules/schema.md
+    ref: rules-schema
+  - kind: update
+    category: file
+    slug: case-schema
+    path: vault/wiki/case-schema.md
+    ref: case-schema
+  tags: []
+  case_text:
+    when: Someone reads `index.md`, `glossary.md`, `rules/schema.md` or `case-schema.md`.
+    then: '`index.md`: §1 — `carry.md` in the layout of the session folder, "`brief.md` — written by the
+      librarian, or by `/carry`"; §3 — "Put the result in `context`", "Put them in `then` alongside `purpose`;
+      an Estimate''s `method` the same way"; §10 — the librarian the only writer to `wiki/`, but for `brief.md`
+      under `/carry`; §12 — "the Criterion is its `given`, `when` and `then`".
+
+      **＋** `glossary.md`: the rows Types, "`ref`, `slug`, `supersedes`", Category fields, "Sprint, `brief.md`"
+      — no `method` on a Leaf, no block, the Estimate fields `purpose`, `method`, `checked`, the cap of
+      seven on the librarian''s brief only.
+
+      **＋** `rules/schema.md`: "the mechanism lives in the docstring of its code, or in its Render".
+
+      **＋** `case-schema.md`: the row `- estimate[slug][passed|failed] <result>` — "opens with the date
+      and the command" (case 199).'
+    context: 'Cases 193–199 are ratified; `ask-guppi` read them against the vault and Spec 1034. In the
+      Render of 195 one sentence contradicts itself: "`then` without `contract` — those are lines of `tasks`…
+      `tasks` without `contract`"; the paragraph on the vault query says to put the answer in `given`,
+      while 188 sent the answer to `context`; "a `create` carries no `method`" is said of every `create`,
+      the Estimate included, whose `method` is a field; the rule of 199 on the date in the reading line
+      did not reach the Render. The Render of `rule-brief` still says in Readings due "one line per `###
+      case N` block… from the `Method` of the page" — there are no blocks since 193. 196.4 extends the
+      `## How it works` of a Leaf while 193 says the section leaves at the next touch. In `index.md` §1,
+      §3, §10, §12 and four rows of the glossary, sentences of the old model stand that 193 did not name;
+      `rules/schema.md` by 193 says "the mechanism lives in the docstring of its code", and a `render`
+      Leaf has no code. `rule-permissions` allows without a question only `frontier.md`, `spec.md`, `handoff.md`
+      — `/carry` writes `brief.md` and `carry.md` and would ask. Estimates touched: `estimate-permissions`
+      (200.5, its Criterion replaced); `estimate-case-protocol-loaded`, `estimate-brief-written`, `estimate-spec-capture-appends`
+      do not change.'
+    problem: Seven places where signed text contradicts other signed text, or is silent where the new
+      model needs a word; all consequences of 193–199, none a new decision of substance.
+    given: 'The Render of `rule-case-protocol` is spliced into `CLAUDE.md`; the text of 195 stands in
+      the Spec of this session.
+
+      **＋** A `replace` in `generate` is one occurrence, whitespace collapsed; `sections` is a whole replacement.
+
+      **＋** `settings.json` is rendered from `rule-permissions`; `estimate-permissions` promises six allow
+      entries.
+
+      **－** A `supersedes` marks every entry of the named Case: 195 and 196.4 carry one each, 189 nine,
+      so 189 is not superseded.'
+  spec: vault/raw/2026-09-16/1651/spec.md
+  applied: '19:45:25'
+- case: '200.3'
+  decision: decision-case-200.3
+  origin: raw/2026-09-16/1651/ledger.md#case-200.3
+  targets:
+  - kind: update
+    category: rules
+    slug: rule-brief
+    ref: rule-brief
+  tags: []
+  case_text:
+    when: The librarian reads the frame of the brief.
+    then: 'The item Readings due reads: "one line per Estimate: the Estimate, the rule that stands `draft`,
+      and where it is read, from the unticked `- [ ] read …` line of the session''s `spec.md` or, when
+      there is none, from the page''s `method`" — no block, no `Method`.
+
+      **－** The Criterion of `estimate-brief-written` (197) says so already; it does not change.'
+    context: 'Cases 193–199 are ratified; `ask-guppi` read them against the vault and Spec 1034. In the
+      Render of 195 one sentence contradicts itself: "`then` without `contract` — those are lines of `tasks`…
+      `tasks` without `contract`"; the paragraph on the vault query says to put the answer in `given`,
+      while 188 sent the answer to `context`; "a `create` carries no `method`" is said of every `create`,
+      the Estimate included, whose `method` is a field; the rule of 199 on the date in the reading line
+      did not reach the Render. The Render of `rule-brief` still says in Readings due "one line per `###
+      case N` block… from the `Method` of the page" — there are no blocks since 193. 196.4 extends the
+      `## How it works` of a Leaf while 193 says the section leaves at the next touch. In `index.md` §1,
+      §3, §10, §12 and four rows of the glossary, sentences of the old model stand that 193 did not name;
+      `rules/schema.md` by 193 says "the mechanism lives in the docstring of its code", and a `render`
+      Leaf has no code. `rule-permissions` allows without a question only `frontier.md`, `spec.md`, `handoff.md`
+      — `/carry` writes `brief.md` and `carry.md` and would ask. Estimates touched: `estimate-permissions`
+      (200.5, its Criterion replaced); `estimate-case-protocol-loaded`, `estimate-brief-written`, `estimate-spec-capture-appends`
+      do not change.'
+    problem: Seven places where signed text contradicts other signed text, or is silent where the new
+      model needs a word; all consequences of 193–199, none a new decision of substance.
+    given: 'The Render of `rule-case-protocol` is spliced into `CLAUDE.md`; the text of 195 stands in
+      the Spec of this session.
+
+      **＋** A `replace` in `generate` is one occurrence, whitespace collapsed; `sections` is a whole replacement.
+
+      **＋** `settings.json` is rendered from `rule-permissions`; `estimate-permissions` promises six allow
+      entries.
+
+      **－** A `supersedes` marks every entry of the named Case: 195 and 196.4 carry one each, 189 nine,
+      so 189 is not superseded.'
+  spec: vault/raw/2026-09-16/1651/spec.md
+  applied: '19:45:25'
+- case: '200.4'
+  decision: decision-case-200.4
+  origin: raw/2026-09-16/1651/ledger.md#case-200.4
+  targets:
+  - kind: update
+    category: rules
+    slug: rule-spec-capture
+    ref: rule-spec-capture
+  tags: []
+  case_text:
+    when: Someone reads `rule-spec-capture`.
+    then: '`## Purpose` carries both facts: the three writers of `spec.md` — the hook, Work Mode with
+      its ticks, the agent under `## Deferred`; and the fork after the Spec is written — Work Mode or
+      `/carry` (190.5).
+
+      **＋** `## How it works` is dropped; the mechanism is in the docstring of `guppi/spec.py`.
+
+      **－** The promises of `-spec-capture-appends` and `-spec-capture-offers-the-fork` do not change.'
+    context: 'Cases 193–199 are ratified; `ask-guppi` read them against the vault and Spec 1034. In the
+      Render of 195 one sentence contradicts itself: "`then` without `contract` — those are lines of `tasks`…
+      `tasks` without `contract`"; the paragraph on the vault query says to put the answer in `given`,
+      while 188 sent the answer to `context`; "a `create` carries no `method`" is said of every `create`,
+      the Estimate included, whose `method` is a field; the rule of 199 on the date in the reading line
+      did not reach the Render. The Render of `rule-brief` still says in Readings due "one line per `###
+      case N` block… from the `Method` of the page" — there are no blocks since 193. 196.4 extends the
+      `## How it works` of a Leaf while 193 says the section leaves at the next touch. In `index.md` §1,
+      §3, §10, §12 and four rows of the glossary, sentences of the old model stand that 193 did not name;
+      `rules/schema.md` by 193 says "the mechanism lives in the docstring of its code", and a `render`
+      Leaf has no code. `rule-permissions` allows without a question only `frontier.md`, `spec.md`, `handoff.md`
+      — `/carry` writes `brief.md` and `carry.md` and would ask. Estimates touched: `estimate-permissions`
+      (200.5, its Criterion replaced); `estimate-case-protocol-loaded`, `estimate-brief-written`, `estimate-spec-capture-appends`
+      do not change.'
+    problem: Seven places where signed text contradicts other signed text, or is silent where the new
+      model needs a word; all consequences of 193–199, none a new decision of substance.
+    given: 'The Render of `rule-case-protocol` is spliced into `CLAUDE.md`; the text of 195 stands in
+      the Spec of this session.
+
+      **＋** A `replace` in `generate` is one occurrence, whitespace collapsed; `sections` is a whole replacement.
+
+      **＋** `settings.json` is rendered from `rule-permissions`; `estimate-permissions` promises six allow
+      entries.
+
+      **－** A `supersedes` marks every entry of the named Case: 195 and 196.4 carry one each, 189 nine,
+      so 189 is not superseded.'
+  spec: vault/raw/2026-09-16/1651/spec.md
+  supersedes:
+  - decision-case-196.4
+  applied: '19:45:25'
+- case: '200.5'
+  decision: decision-case-200.5
+  origin: raw/2026-09-16/1651/ledger.md#case-200.5
+  targets:
+  - kind: update
+    category: rules
+    slug: rule-permissions
+    ref: rule-permissions
+  - kind: update
+    category: estimates
+    slug: estimate-permissions
+    ref: estimate-permissions
+  tags: []
+  case_text:
+    when: The skill `carry` writes `vault/wiki/brief.md` or `vault/raw/<date>/<HHMM>/carry.md`.
+    then: 'The client does not ask: the allow list of `settings.json` holds eight entries — Edit and Write
+      for `frontier.md`, `spec.md`, `handoff.md`, `carry.md` under `vault/raw/**` and for `vault/wiki/brief.md`.
+
+      **－** `deny` and `ask` are empty; nothing else under `wiki/` is allowed.'
+    context: 'Cases 193–199 are ratified; `ask-guppi` read them against the vault and Spec 1034. In the
+      Render of 195 one sentence contradicts itself: "`then` without `contract` — those are lines of `tasks`…
+      `tasks` without `contract`"; the paragraph on the vault query says to put the answer in `given`,
+      while 188 sent the answer to `context`; "a `create` carries no `method`" is said of every `create`,
+      the Estimate included, whose `method` is a field; the rule of 199 on the date in the reading line
+      did not reach the Render. The Render of `rule-brief` still says in Readings due "one line per `###
+      case N` block… from the `Method` of the page" — there are no blocks since 193. 196.4 extends the
+      `## How it works` of a Leaf while 193 says the section leaves at the next touch. In `index.md` §1,
+      §3, §10, §12 and four rows of the glossary, sentences of the old model stand that 193 did not name;
+      `rules/schema.md` by 193 says "the mechanism lives in the docstring of its code", and a `render`
+      Leaf has no code. `rule-permissions` allows without a question only `frontier.md`, `spec.md`, `handoff.md`
+      — `/carry` writes `brief.md` and `carry.md` and would ask. Estimates touched: `estimate-permissions`
+      (200.5, its Criterion replaced); `estimate-case-protocol-loaded`, `estimate-brief-written`, `estimate-spec-capture-appends`
+      do not change.'
+    problem: Seven places where signed text contradicts other signed text, or is silent where the new
+      model needs a word; all consequences of 193–199, none a new decision of substance.
+    given: 'The Render of `rule-case-protocol` is spliced into `CLAUDE.md`; the text of 195 stands in
+      the Spec of this session.
+
+      **＋** A `replace` in `generate` is one occurrence, whitespace collapsed; `sections` is a whole replacement.
+
+      **＋** `settings.json` is rendered from `rule-permissions`; `estimate-permissions` promises six allow
+      entries.
+
+      **－** A `supersedes` marks every entry of the named Case: 195 and 196.4 carry one each, 189 nine,
+      so 189 is not superseded.'
+  spec: vault/raw/2026-09-16/1651/spec.md
+  applied: '19:45:25'
+unparsed: []
+session: '1651'

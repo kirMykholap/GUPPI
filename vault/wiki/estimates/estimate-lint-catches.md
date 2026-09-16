@@ -75,7 +75,7 @@ written into the estimate line.
 
 ## Result
 
-block 156: tests/test_lint.py seeds an actioned Insight nothing names and expects no orphan finding, 47 green; live 2026-09-15: guppi lint 84 → 74 findings, none under insights/, the two placeholders still orphans
+2026-09-16, `pytest tests/test_lint.py`: 50 green, 186.3 — a placeholder earns one finding `deferred: <N> times since case <M>` in place of the three schema findings and orphan, a page with deferred_by whose fields are in place earns none, a placeholder missing another field still earns that schema finding; live, `make lint`: 70 → 64, rules/rule-work-mode and rules/rule-subagent-guppi each `deferred: 13 times since case 29`, M read from the ledger pointer of the placeholder line of 2026-09-10
 
 ## History
 
@@ -98,3 +98,4 @@ block 156: tests/test_lint.py seeds an actioned Insight nothing names and expect
 - 2026-09-15 status: pending → passed · raw/2026-09-15/1110/ledger.md#L1
 - 2026-09-15 criterion: case 156 added · [[decision-case-156]]
 - 2026-09-15 status: pending → passed · raw/2026-09-15/1110/ledger.md#L24
+- 2026-09-16 status: passed → passed · raw/2026-09-16/1651/ledger.md#L38

@@ -2,12 +2,11 @@
 type: rule
 kind: Leaf
 purpose: Prevents the librarian from reading the ledger and the Spec itself, or from routing a decision by guesswork
-status: built
+status: draft
 enforcement: check
 implementation_ref: [guppi/materialize.py, tests/test_materialize.py]
 parent: "[[rule-documentation]]"
-estimates: ["[[estimate-materialize-assembles]]", "[[estimate-materialize-walks-dates]]"]
-deferred_by: ["[[decision-case-182]]"]
+estimates: ["[[estimate-materialize-assembles]]", "[[estimate-materialize-walks-dates]]", "[[estimate-materialize-shows]]", "[[estimate-materialize-lifts-a-lesson]]", "[[estimate-materialize-marks-exists]]", "[[estimate-materialize-fails-alone]]", "[[estimate-materialize-finds-a-rule-class-item]]", "[[estimate-materialize-marks-superseded]]", "[[estimate-materialize-skips-a-carried-over-unit]]"]
 origin: raw/2026-09-10/ledger.md#case-31
 sprint: migration
 created: 2026-09-10
@@ -22,6 +21,14 @@ of the ledger is an entry. Its route is computed from `index.md` §5. Its conten
 lifted from the `then` block of its Case in the Spec. What is missing is named, not
 invented. If a route cannot be derived from the ledger and the Spec alone, that is a
 defect of the ledger, and it shows here.
+
+It also prevents a promise from being written by derivation. No Estimate is derived
+from a flag: an Estimate has its own ledger line and its own entry, and its Criterion
+is the `given`, `when` and `then` of the Case that names it, lifted verbatim into the
+entry's `sections` and replacing what stood on the page (cases 189, 194.1). A unit
+whose folder holds `carry.md` is passed by with one line on stdout: its Spec was
+ratified and its work not done (case 190.3). The mechanism and the full list of an
+entry's fields, each with its writer, live in the docstring of `guppi/materialize.py`.
 
 ## History
 
@@ -64,3 +71,15 @@ defect of the ledger, and it shows here.
 - 2026-09-15 status: built → draft · cascade
 - 2026-09-16 deferred · [[decision-case-182]]
 - 2026-09-16 status: draft → built · cascade
+- 2026-09-16 updated: materialize derives no Estimate from contract, method or supersedes; an Estimate has its own line and its own entry, its Criterion lifted from the Case; How it works dropped, the mechanism and the full field list moved to the docstring of guppi/materialize.py (case 189) · [[decision-case-189]]
+- 2026-09-16 estimate estimate-materialize-shows added · [[decision-case-189]]
+- 2026-09-16 estimate estimate-materialize-lifts-a-lesson added · [[decision-case-189]]
+- 2026-09-16 estimate estimate-materialize-marks-exists added · [[decision-case-189]]
+- 2026-09-16 estimate estimate-materialize-fails-alone added · [[decision-case-189]]
+- 2026-09-16 estimate estimate-materialize-finds-a-rule-class-item added · [[decision-case-189]]
+- 2026-09-16 estimate estimate-materialize-marks-superseded added · [[decision-case-189]]
+- 2026-09-16 updated: a unit whose folder holds carry.md is skipped with one line on stdout; no yaml is written for it (case 190.3) · [[decision-case-190.3]]
+- 2026-09-16 estimate estimate-materialize-skips-a-carried-over-unit added · [[decision-case-190.3]]
+- 2026-09-16 defer by decision-case-182 superseded · [[decision-case-191]]
+- 2026-09-16 status: built → draft · cascade
+- 2026-09-16 updated: Purpose carries the text of 189 and 190.3; How it works dropped by hand, the mechanism and the field list in the docstring (case 194.1) · [[decision-case-194.1]]

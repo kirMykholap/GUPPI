@@ -1,7 +1,7 @@
 ---
 type: estimate
 kind: QA
-status: passed
+status: pending
 target: "[[rule-materialize]]"
 origin: raw/2026-09-10/ledger.md#case-31
 sprint: migration
@@ -15,131 +15,25 @@ The yaml is the librarian's whole view of the session. An entry routed wrong, or
 
 ## Criterion
 
-Against a temp vault: a ledger with timed and untimed lines, HTML comments, a create
-with ref and tags, a Leaf create whose estimate sits nested in the Spec's then
-block, an update with set, sections and replace, a delete, a defer without ref, a
-supersedes chain, an estimate line for a page of this ledger and one for an earlier
-page, a lesson line and one unparsable line yields a yaml with one entry per record
-line in ledger order, each with case, kind, category, slug, origin, line, text and
-the decision slug of its Case; the nested estimate is its own create entry; a Leaf create with method yields its Estimate's create entry with the derived slug, ref, tags, Context from problem, Criterion as a ### case N block of when and then, and Method; an update with contract: changed yields an update entry of the target's Estimate with the criterion block and status pending, contract: same yields none; a supersedes yields the removal of the block of case N; the decision entry names the Estimates the Case shaped; the
-superseded entry carries superseded_by; the first estimate line is folded into its
-create, the second is an estimate entry; the lesson entry carries root_cause and
-origin `#L<n>`; the unparsable line is under unparsed; a create without a then block
-is marked incomplete, a create whose page exists is marked exists; a Rule-class slug
-routes to file with its path; one decision entry per Case carries case_text and targets, and takes a missing context, problem, recommend or given from its parent Case, never when, and is marked incomplete for a section neither has, or a missing when, only when a kind other than defer is among its lines; a standalone estimate create with ref carries context, criterion and method as sections, as the nested one does. The new_tags of a Case with no decision line reach the yaml once. An existing yaml gains only the entries of ledger lines it does not hold,
-keeps its edited and applied entries, reports a text mismatch, gains superseded_by
-from a later supersedes, and turns an estimate line for an applied create into an
-estimate entry. Live: --date 2026-09-09 over the 85-line ledger yields no unparsed
-line and every create marked exists; the reading records the counts per kind.
-
-### case 73.5
+Given:
+A unit `raw/<date>/<HHMM>/` holds `ledger.md` and `spec.md`; a Case in the Spec has a heading, the sections `given`, `when`, `then` and a `then` block.
+**＋** `guppi generate` applies the `sections` of an `update` entry as whole replacements and writes every field of a `create` entry's `fields` into the frontmatter.
+**＋** Cases 189 and 190.3 are ratified; their entries for these same pages apply before the entries of this Case, in ledger order.
+**－** The tests in `tests/test_materialize.py` fix the behaviour; the live reading is the librarian's run of this session.
 
 When:
-`guppi materialize` reads a date.
+`guppi materialize` lifts a record line of a ledger against its Spec.
 
 Then:
-The `then` blocks of a Case come from every `<HHMM>/spec.md` under the date, in folder
-order, and from `raw/<date>/spec.md` when the date has one (older dates); the yaml's
-`spec` field names the file the Case was found in.
-**－** Case numbers are unique across sessions; a Case found in two files is an error,
-the walk stops.
-
-### case 76
-
-When:
-`uv run guppi materialize --show [--date YYYY-MM-DD]` runs.
-
-Then:
-Stdout holds the yaml each date would be written with — entries, `unparsed`,
-`incomplete` marks, decision groups — one document per date, and no file under
-`raw/` changes; exit 0, or 1 on an error of the walk as without `--show`.
-**＋** Without `--show` the command writes as before.
-
-### case 87
-
-When:
-`guppi materialize` reads a `- lesson[...]` ledger line whose braces carry `{source:...}`.
-
-Then:
-The entry carries `source` in its `fields`, and `generate` writes it into the page's
-frontmatter.
-**＋** A `knowledge` lesson whose line carries no `source` is still marked
-`incomplete: [source]`; an `error` lesson never is.
-**＋** A one-off run sets `source` on the five live pages whose line carries one and whose
-page lacks it, taking the value from the line.
-**－** The six `knowledge` pages whose lines carry no source keep their lint finding;
-nothing invents one.
-**－** The applied entries of the earlier yamls are not rewritten: they record what the
-parser did that day.
-
-### case 90.1
-
-When:
-`guppi materialize` meets an `update` whose item carries `contract: changed`.
-
-Then:
-When the item carries `estimate_slug`, the derived entry goes to that Estimate.
-**＋** When it does not, and the page carries exactly one Estimate, it goes to that one.
-**＋** When the page carries none or more than one and the item names none, the entry goes
-without a slug and is marked `incomplete: [estimate]`.
-**－** The `create` branch does not change: it reads `estimate_slug` already.
-
-### case 105.2
-
-When:
-`uv run guppi materialize` reads a `create` line whose slug is already on disk — live or archived.
-
-Then:
-The entry is marked `exists` only when the `origin` of the page carries the `#case-N` of this line; a derived Estimate the same way, by the `origin` of the Estimate page.
-**＋** Otherwise the entry stays an ordinary `create`; `generate` answers with a collision on stderr, the entry is `failed`, the unit stays in `raw/`.
-**＋** `estimate-materialize-assembles` gets a `### case 105.2` block, `pending`.
-**－** A placeholder (no `kind`) is not a collision: 101.1 fills it.
-
-### case 142.1
-
-When:
-`guppi materialize` lifts a record line of the ledger and the lift raises — a `then` item of an unexpected shape, any error in `decision_entry`, `derived_entries`, `estimate_entry`, `lesson_entry`.
-
-Then:
-The line becomes an entry `{line, text, failed: "<Type>: <message>"}` without `kind`; one line on stderr, `materialize: line N: <message>`; the other lines are lifted; the yaml is written; the unit's exit is 1; the walk goes on to the next unit.
-**＋** On the next run an entry with `failed` and no `kind` is lifted again from its line and replaced when the lift succeeds — the Spec fixed, the run repeated (the class of 53.3).
-**＋** An existing entry the script cannot read — not a mapping, or a mapping without `line` and without `derived` — is left as it is, named on stderr, and does not end the run.
-**＋** The field list in "How it works" of `rule-materialize` is complete, every field with its writer: from the ledger line, from the `then` block, derived (`derived`, `decision`, `criterion_block`, `set`, `case_removed`), a folded reading (`status`, `result`, `folded`), a `file` with `path`, the marks of `generate` (`applied`, `failed`), the marks of the librarian (`near`, and `librarian` with the value `merged` or `synthesis` — by `rule-documentation`), `superseded_by` from any unit. A key the code writes and the list does not name is a finding of the reading.
-**－** A `MaterializeError` — no `ledger.md`, a Case heading in two files — still stops the walk with exit 1.
-**－** `unparsed` does not change: a line the grammar does not parse goes there, as today.
-
-### case 158
-
-When:
-`guppi materialize` meets an existing entry in `materialize.yaml`.
-
-Then:
-The entry is readable when it is a mapping with at least one of `line`, `derived`, `librarian`; the librarian's entry — `librarian: synthesis` (or `merged`), no `line` — is left as it is, with no line on stderr.
-**＋** An unreadable one — not a mapping, or a mapping with none of the three — is left as it is, named on stderr once, and the run goes on, as in 142.1.
-**＋** The text of `rule-materialize` and the docstring of `materialize.py`: "a mapping with none of `line`, `derived`, `librarian`" in place of "without `line` and without `derived`".
-**＋** `rule-materialize` `contract: changed`; `estimate-materialize-assembles` gets a `### case 158` block, `pending`; the reading in Work Mode: tests 486 and 1336 green, the stderr of the run of P empty.
-**－** No line of code beyond the docstring; `walks-dates` untouched.
-
-### case 161
-
-When:
-`guppi materialize` lifts a line `decision[case N][update][<rule-class slug>]` and looks for its item in the `then` block of the Spec.
-
-Then:
-The item is found when its `slug` equals the slug of the line, or its `file` equals `rule_class_path(slug)`; `change` is lifted, `incomplete` is empty, `category: file`, `path` from `file`.
-**＋** An item with both keys is found as before.
-**－** A Rule-class slug with no item in `then` stays `incomplete: [then]`.
-
-### case 175
-
-When:
-`guppi materialize` reads a line with `{supersedes:case N}`, and the entries of Case N lie in this yaml or in the yaml of another session under `raw/`.
-
-Then:
-Every entry with `case: N` gets `superseded_by` — the lines of Case N and everything derived from them: the Estimate, the criterion block, the block removal; the `decisions` record of Case N as today.
-**＋** `generate` applies none of them; the block a superseded Case meant to remove stands until a live Case removes it.
-**＋** A foreign yaml is marked by the same rule.
-**－** An entry without `case` — `estimate`, `lesson` — gets no mark.
+One entry per record line, in ledger order: `case`, `kind`, `category` from the slug prefix, `slug`, `ref`, `source`, `supersedes`, `tags`, `origin`, `line`, `text`, `decision`; from the `then` block — `fields`, `sections`, `replace`, `change`, `impact`; what the block lacks is `incomplete`, never invented.
+**＋** An Estimate has its own line and its own entry; the `ref` of the line is the Estimate itself.
+**＋** An `update` entry for an Estimate carries the `given`, `when` and `then` of its Case verbatim with their operands as `sections.Criterion` — `Given:`, `When:`, `Then:` — replacing what stood there, and `set: {status: pending}`; the `given` of a sub-case is its parent's when it has none of its own.
+**＋** A `create` entry for an Estimate keeps `kind`, `purpose`, `method`, `tags` as fields; its Criterion comes from the block's `sections` when one is written, else from the Case's `given`, `when`, `then` the same way; `## Context` and `## Method` are not written.
+**＋** One decision entry per Case: `decision`, `case_text`, `targets`; a sub-case inherits `context`, `problem`, `recommend`, `given`, never `when`.
+**＋** An `estimate` line for a page of the same ledger is folded into its `create`; for an earlier page it is an `estimate` entry, an update. The `new_tags` of any Case reach the yaml once. An existing yaml is extended, never rewritten.
+**－** An `update` entry carries no `contract`, and no Estimate is derived from it; a `create` carries no `method`, `estimate_kind` or `estimate_slug`; neither `criterion_block`, `case_removed` nor `remove_criterion` is derived.
+**－** The keys `contract`, `estimate_slug`, `estimate_kind` and `method` on a rule's item are ignored: they reach neither the page nor `incomplete`; the blocks of Case 186 stay as signed.
+**－** A line the grammar does not parse goes under `unparsed`; the run goes on.
 
 ## Method
 
@@ -179,3 +73,5 @@ block 175: tests green (379); live, the librarian's run of session S read from t
 - 2026-09-15 criterion: case 175 added · [[decision-case-175]]
 - 2026-09-15 criterion: case 130.2 removed · [[decision-case-177]]
 - 2026-09-16 status: pending → passed · raw/2026-09-15/2225/ledger.md#L2
+- 2026-09-16 updated: the Criterion replaced whole by this Case; the nine blocks leave — 73.5 to walks-dates, six to their own pages, 90.1 dies with the derivation (case 189) · [[decision-case-189]]
+- 2026-09-16 updated: the Criterion replaced whole by case 194.1 — the head recut, the lines of 189 and the shape of the entry; the nine blocks leave (case 194.1) · [[decision-case-194.1]]

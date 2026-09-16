@@ -7,7 +7,10 @@
       "Edit(vault/raw/**/spec.md)",
       "Write(vault/raw/**/spec.md)",
       "Edit(vault/raw/**/handoff.md)",
-      "Write(vault/raw/**/handoff.md)"
+      "Write(vault/raw/**/handoff.md)",
+      "Write(vault/raw/**/carry.md)",
+      "Edit(vault/wiki/brief.md)",
+      "Write(vault/wiki/brief.md)"
     ]
   },
   "hooks": {

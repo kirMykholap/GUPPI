@@ -158,7 +158,7 @@ pytest in tests/test_generate.py against a temp vault; the live reading once by 
 
 ## Result
 
-blocks 166.2, 166.3, 172, live 2026-09-15 session S: tests green (377 passed); the librarian's run of session R wrote insight-retro-typed-command-is-never-a-tool-call with ## Pattern and ## Proposal and no ## Children, log.md holds no insight section derived line of 2026-09-15, a Grep of the seven derived headings over rules/, entities/, lessons/ and insights/ gives 0 hits; the owner's half in Obsidian — the backlinks of rule-documentation are its eight children, its Estimate and its Decisions, the backlinks of the Insight are its two lessons, unresolved is empty
+2026-09-16, `pytest tests/test_generate.py`: 47 green, 186.1 — a defer with a purpose writes ## Deferred on the Decision page, one ### [[slug]] heading per target in the order of the defer list, the purpose verbatim and a multi-line one not collapsed, before ## History; a placeholder still gets its purpose field; a defer without a purpose writes no section; the one-off over decision-case-182, 183 and 185 from raw/2026-09-15/2225/materialize.yaml wrote 5, 2 and 1 headings
 
 ## History
 
@@ -192,3 +192,4 @@ blocks 166.2, 166.3, 172, live 2026-09-15 session S: tests green (377 passed); t
 - 2026-09-15 criterion: case 148.1 removed · [[decision-case-172]]
 - 2026-09-15 updated: head Criterion: no ## Children, no ## Estimates — the text of 166.2 (case 174) · [[decision-case-174]]
 - 2026-09-15 status: pending → passed · raw/2026-09-15/1809/ledger.md#L9
+- 2026-09-16 status: passed → passed · raw/2026-09-16/1651/ledger.md#L37

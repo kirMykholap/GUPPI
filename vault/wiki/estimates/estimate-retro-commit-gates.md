@@ -1,7 +1,7 @@
 ---
 type: estimate
 kind: QA
-status: pending
+status: passed
 target: "[[rule-retro-commit]]"
 origin: raw/2026-09-10/ledger.md#case-38.2
 sprint: migration
@@ -48,7 +48,7 @@ pytest in tests/test_gate.py with piped payloads against a temp repository; the 
 
 ## Result
 
-block 169.1: tests/test_gate.py green (379 total); live 2026-09-15 22:34, session 2225: `/retro` typed before any plan, Spec absent, ledger empty — the gate let it through, the skill loaded with tests and style, and `raw/2026-09-15/event_log.md` carries the mark `22:34:01 8836b091 retro` with no `tool Skill: retro` line after it, the typed path; the refusal text on a Spec item without its line was not seen live — nothing to refuse — and stands on the test `unwritten_item_is_refused_for_the_person`
+block 180: tests/test_gate.py 30 tests green at commit 572df74 (385 total, read 2026-09-16 01:32 on the line of block 184), and both guppi/gate.py and tests/test_gate.py byte-identical at HEAD e970693 with a clean worktree — nothing changed since that run; live, session 1034 of 2026-09-16, after the hi of 10:34:45 — a typed /retro as the first command of the session, with no spec.md in the folder, no plan file named by the event log and no record line in the window, was blocked at UserPromptSubmit with "gate: /retro refused — nothing to review: no Spec and no ledger line in raw/2026-09-16/1034/. Ratify a Case or write a reading or a lesson first, then type /retro again." — the person's advice tail and the session's own folder in the path; no retro mark in raw/2026-09-16/event_log.md, as a refused call leaves none
 
 ## History
 
@@ -57,3 +57,4 @@ block 169.1: tests/test_gate.py green (379 total); live 2026-09-15 22:34, sessio
 - 2026-09-15 criterion: case 169.1 added · [[decision-case-169.1]]
 - 2026-09-16 status: pending → passed · raw/2026-09-15/2225/ledger.md#L1
 - 2026-09-16 criterion: case 180 added · [[decision-case-180]]
+- 2026-09-16 status: pending → passed · raw/2026-09-16/1034/ledger.md#L1

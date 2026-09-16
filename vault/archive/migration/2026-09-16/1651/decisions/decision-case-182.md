@@ -1,9 +1,10 @@
 ---
 type: decision
 case: "182"
-status: current
+status: archived
 defer: ["[[rule-plan-mode]]", "[[rule-page-generation]]", "[[rule-materialize]]", "[[rule-lint]]", "[[rule-pretask]]"]
 supersedes: ["[[decision-case-178]]"]
+superseded_by: ["[[decision-case-191]]"]
 origin: raw/2026-09-15/2225/ledger.md#case-182
 sprint: migration
 created: 2026-09-15
@@ -67,3 +68,6 @@ Slice 3d — pre-task checks the Estimates of the rule named in context and asks
 ## History
 
 - 2026-09-16 created · raw/2026-09-15/2225/ledger.md#case-182
+- 2026-09-16 superseded by decision-case-191 · [[decision-case-191]]
+- 2026-09-16 archived · superseded
+- 2026-09-16 archived · cleanup

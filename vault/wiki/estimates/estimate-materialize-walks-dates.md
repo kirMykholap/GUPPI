@@ -15,27 +15,21 @@ tags: [harness, workflow, ledger]
 
 ## Criterion
 
-Without --date, materialize walks every vault/raw/<date>/ with a ledger.md in date order, extends or writes each yaml, prints one line per date, and a ledger line written after its date's librarian commit is materialized by the next run on a later date; --date keeps one date; an error on one date stops the walk with exit 1.
-
-### case 103.2
+Given:
+A unit `raw/<date>/<HHMM>/` holds `ledger.md` and `spec.md`; a Case in the Spec has a heading, the sections `given`, `when`, `then` and a `then` block.
+**＋** `guppi generate` applies the `sections` of an `update` entry as whole replacements and writes every field of a `create` entry's `fields` into the frontmatter.
+**＋** Cases 189 and 190.3 are ratified; their entries for these same pages apply before the entries of this Case, in ledger order.
+**－** The tests in `tests/test_materialize.py` fix the behaviour; the live reading is the librarian's run of this session.
 
 When:
 `uv run guppi materialize` runs, with `--date` or without.
 
 Then:
 The unit of the walk is a session folder `raw/<date>/<HHMM>/` holding a `ledger.md`: its yaml `raw/<date>/<HHMM>/materialize.yaml`, its Spec `raw/<date>/<HHMM>/spec.md` alone, the `origin` of its entries `raw/<date>/<HHMM>/ledger.md#case-N` and `#L<n>`.
-**＋** A date-level `raw/<date>/ledger.md` (the shape before this Case) is walked as today: the Specs of the date, `raw/<date>/materialize.yaml`, the date form of `origin`; on a date with both shapes the date-level one goes first, then the sessions in folder order.
-**＋** `--date` walks the date-level ledger and every session of the date; stdout carries one line per yaml.
-**＋** `estimate-materialize-walks-dates` gets a `### case 103.2` block, `pending`.
-
-### case 142.4
-
-When:
-`guppi materialize` walks the units and in one of them the lift of a line raised.
-
-Then:
-Line 30 reads: "An error of a unit — no `ledger.md`, a Case heading in two files — stops the walk with exit 1; a line whose lift failed marks its entry, the unit exits 1 and the walk goes on (case 142.4)."
-**＋** Test: two units, a failing lift in the first — the second is written, the exit is 1.
+**＋** A date-level `raw/<date>/ledger.md` (the shape before case 103) is a unit of the old shape: every Spec of the date in folder order and `raw/<date>/spec.md` when it exists, the yaml `raw/<date>/materialize.yaml`, `origin` in the date form; on a date with both shapes the date-level unit goes first; the yaml's `spec` field names the file each Case was found in.
+**＋** Without `--date` the walk covers every unit under `raw/`, dates ascending; `--date` walks the date-level ledger and every session of the date; stdout carries one line per yaml; a line written after the librarian's commit of its date is lifted by the next run.
+**＋** An error of a unit — no `ledger.md`, a Case heading in two files — stops the walk with exit 1; a line whose lift failed marks its entry, the unit exits 1 and the walk goes on.
+**－** A unit whose folder holds `carry.md` is skipped — that is `estimate-materialize-skips-a-carried-over-unit`, not this one.
 
 ## Method
 
@@ -43,7 +37,7 @@ tests/test_materialize.py with two dated folders; live, the librarian's first ru
 
 ## Result
 
-block 142.4, 2026-09-14: two units, a failing lift in the first — both yamls written, exit 1, the second unit's entries lifted; a MaterializeError of the first unit still stops the walk with nothing written; tests green
+2026-09-16, `pytest tests/test_materialize.py`: 51 green, the walk tests unchanged — the session folder as the unit with its own yaml, Spec and origin, the date-level ledger of the old shape first, --date on one date, one stdout line per yaml, a unit error stopping the walk with exit 1 and a failed line letting it go on; live, `materialize --show` without --date walked 2026-09-15/2225, 2026-09-16/1034 and 2026-09-16/1651 in that order
 
 ## History
 
@@ -55,3 +49,6 @@ block 142.4, 2026-09-14: two units, a failing lift in the first — both yamls w
 - 2026-09-14 status: pending → passed · raw/2026-09-14/0747/ledger.md#L42
 - 2026-09-14 criterion: case 142.4 added · [[decision-case-142.4]]
 - 2026-09-14 status: pending → passed · raw/2026-09-14/1633/ledger.md#L56
+- 2026-09-16 updated: block 73.5 merged into the Criterion — the yaml's spec field names the file each Case was found in; the rest of 73.5 already stood there in blocks 103.2 and 142.4 (case 189) · [[decision-case-189]]
+- 2026-09-16 updated: the Criterion replaced whole by case 194.2 — the head, 103.2, 142.4 and the spec field of 73.5 recut into one (case 194.2) · [[decision-case-194.2]]
+- 2026-09-16 status: pending → passed · raw/2026-09-16/1651/ledger.md#L35

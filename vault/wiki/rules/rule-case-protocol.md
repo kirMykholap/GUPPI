@@ -2,13 +2,12 @@
 type: rule
 kind: Leaf
 purpose: Prevents a decision from being acted on before it is ratified, or ratified without its content in view
-status: built
+status: draft
 enforcement: render
 governs: CLAUDE.md
 render_mode: partial
 parent: "[[rule-claude-md]]"
-estimates: ["[[estimate-case-protocol-loaded]]"]
-deferred_by: ["[[decision-case-185]]"]
+estimates: ["[[estimate-case-protocol-loaded]]", "[[estimate-case-protocol-case-form]]", "[[estimate-case-protocol-acknowledging-reply]]", "[[estimate-case-protocol-ledger-line-form]]"]
 origin: raw/2026-09-09/ledger.md#case-13
 sprint: migration
 created: 2026-09-09
@@ -18,9 +17,14 @@ tags: [session, workflow, ledger]
 ## Purpose
 
 Prevents a decision from being acted on before it is ratified, or ratified without its
-content in view. This is instruction, not enforcement — no hook can check "did you finish
-the Frontier" or "did you wait for the sign-off" — so it is written where the agent always
-sees it: `CLAUDE.md`, which is in the system prompt from the first turn.
+content in view. This is instruction, not enforcement — no hook can check "did you
+finish the Frontier" or "did you wait for the sign-off" — so it is written where the
+agent always sees it: `CLAUDE.md`, which is in the system prompt from the first turn.
+
+The eight Case sections are not repeated in the Render: they arrive through
+`@vault/wiki/case-schema.md`, imported by the same file. `parent: rule-claude-md`
+names the file the Render is spliced into; `rule-plan-mode` is the rule of the phase
+in which a Case is held (case 188).
 
 ## Render
 
@@ -44,9 +48,9 @@ parent does not ratify its children.
 
 A Case renders as `## Case N — name`, then one blockquote per section: its first
 line `**name:**`, its text on the following quoted lines, a blank line between
-sections. `context`, `problem` and `recommend` carry no operand, name the slug of the thing described only, and run to seven sentences each at most: `context` says what the thing is and how it works today, for a reader who has not opened the pages, with no line numbers and no quotation unless the Case is about one; `problem` says what is wrong, or the question answered, in one paragraph; `recommend` says the choice and why, the rejected option in one sentence. `given` holds one fact per line, and only a fact a line of `then` depends on: the state of the pages the Case changes, the rule that constrains, the vault's answer, the test that fixes the behaviour; no history, no quotation for its own sake. In `given`, `when` and `then` every line after the first starts with a
+sections. `context`, `problem` and `recommend` carry no operand, name the slug of the thing described only, and run to seven sentences each at most: `context` says what the thing is and how it works today, for a reader who has not opened the pages — the state of the pages the Case changes lives here — and names which Estimates of the rule the Case touches and which it does not, with no line numbers and no quotation unless the Case is about one; `problem` says what is wrong, or the question answered, in one paragraph; `recommend` says the choice and why, the rejected option in one sentence. `given` holds the conditions of the behaviour, one per line, and only a condition a line of `then` depends on — the rule that constrains, the test that fixes the behaviour; no state of pages, no history, no quotation for its own sake (case 188). In `given`, `when` and `then` every line after the first starts with a
 bold operand: **＋** for one more condition or action — "and also", **－** for a limit or an
-exception — "but not", "does not apply here". `then` holds behaviour only: no `contract` mark, no Estimate block, no reading, no `supersedes`; those are lines of `tasks`, a section between `then` and `ratification`, a checklist in its blockquote — one line per page `update` with its `contract`, Estimate block, file, test, command and reading — the same lines that go into the Spec's `tasks` block. Slugs, file names and field values sit in code spans; bold is for section labels and operands only. One horizontal rule at most, after the Case or its last sub-case, and only when the agent's own text follows (case 159). `when` and `then` together are the criterion of the Estimate the Case creates or changes: the scripts copy them as its `### case N` block and `problem` as its Context at birth; a Leaf `create` carries `method`, a Leaf `update` `contract: same` or `changed`; one contract per Case or sub-case. Write short sentences, one idea each, in the active voice. A sub-case is
+exception — "but not", "does not apply here". `then` holds behaviour only: no Estimate block, no reading, no `supersedes`; those are lines of `tasks`, a section between `then` and `ratification`, a checklist in its blockquote — one line per page `update`, file, test, command, one-off migration and reading, without `contract` and without "block N" — the same lines that go into the Spec's `tasks` block. Slugs, file names and field values sit in code spans; bold is for section labels and operands only. One horizontal rule at most, after the Case or its last sub-case, and only when the agent's own text follows (case 159). `given`, `when` and `then` together are the Criterion of the Estimate the Case creates or changes: the scripts copy them whole, replacing what stood there; the Case names that Estimate by slug in its `then` block, and only a replaced Criterion sets it `pending` — an `update` of a rule's `Purpose` touches no Estimate, an `update` of its `Render` touches the Estimate of the live reading of that Render (case 187). A new promise is an explicit `create` of an Estimate with `ref` naming its target and its slug in the Case; a `create` of a rule or an entity carries no `method`, `estimate_kind` or `estimate_slug`, an `update` no `contract`; one promise per Case or sub-case — two touched promises are two sub-cases (case 188). Write short sentences, one idea each, in the active voice. A sub-case is
 `### Case N.M — name` under its parent, with its own `when`, `then`, `tasks` and
 `ratification`, and its own `given` unless it is the parent's word for word; the
 sections the children share live on the parent, and `materialize` reads them there. The
@@ -54,7 +58,7 @@ sections the children share live on the parent, and `materialize` reads them the
 fence, and the turn ends with a plain question in the chat, never a picker tool.
 When the person answers with a change, show the Case again: `context` and
 `problem` if they changed, always `given`, `when`, `then`, `tasks` and `ratification`, and
-no `recommend` — the variant is theirs. The page content itself — fields, prose sections, the `method` of its check — is a YAML
+no `recommend` — the variant is theirs. The page content itself — fields, prose sections, and for an Estimate its `purpose` and `method` — is a YAML
 block tagged `then` under the Case in the Spec, not in the chat; `guppi
 materialize` reads it, and what is not in that block was signed by nobody.
 
@@ -72,7 +76,7 @@ is rendered from `rules/`. A harness file changes through an `update` of its Rul
 page, never by hand; a hook refuses the edit.
 
 Before a `create` without a `ref`, ask the vault first: does this exist, what
-conflicts, what sits in `draft`, which tags fit. Put the answer in `given`.
+conflicts, what sits in `draft`, which tags fit. Put the answer in `context`.
 Dispatch the `ask-guppi` agent with one short question.
 
 Ledger lines are written by the `Stop` hook, from the reply, verbatim, each with
@@ -81,7 +85,7 @@ line anywhere else — bare, or in a block with another tag or none — is a pre
 and is never written. A `create` line carries the ratified tags: `{tags:a,b}`. A `knowledge` lesson line carries `{source:...}`, the url or reference the lesson studied — a file of the harness, a probe, a client version; the schema requires it, and a line without it is `incomplete: [source]` in the yaml and a lint finding on the page. An `error` lesson never carries one.
 Write the `- decision[...]` lines only in the reply that acknowledges ratification;
 `- estimate[...]` and `- lesson[...]` lines the moment the measurement or the lesson
-exists. Without `/hi` the hook refuses and says so: tell the person, do not retry. A reply that carries a `LEDGER` block ends in that text. No tool call follows it in the same reply: the text before a tool call is never kept, and the hook reads nothing.
+exists, an `estimate[...]` line opening with the date of the reading and the command or the place it was read (case 199). Without `/hi` the hook refuses and says so: tell the person, do not retry. A reply that carries a `LEDGER` block ends in that text. No tool call follows it in the same reply: the text before a tool call is never kept, and the hook reads nothing.
 <!-- /rule-case-protocol -->
 
 ## History
@@ -122,3 +126,10 @@ exists. Without `/hi` the hook refuses and says so: tell the person, do not retr
 - 2026-09-16 defer by decision-case-179 superseded · [[decision-case-181]]
 - 2026-09-16 updated: How it works says eight sections, not six, and names the real parent; supersedes the defer of 179 (case 181) · [[decision-case-181]]
 - 2026-09-16 deferred · [[decision-case-185]]
+- 2026-09-16 defer by decision-case-185 superseded · [[decision-case-188]]
+- 2026-09-16 updated: the Render rewritten by points 6, 7 and 9 of the model of 182; How it works dropped, its two facts moved into Purpose (case 188) · [[decision-case-188]]
+- 2026-09-16 estimate estimate-case-protocol-case-form added · [[decision-case-188]]
+- 2026-09-16 estimate estimate-case-protocol-acknowledging-reply added · [[decision-case-188]]
+- 2026-09-16 estimate estimate-case-protocol-ledger-line-form added · [[decision-case-188]]
+- 2026-09-16 status: built → draft · cascade
+- 2026-09-16 updated: the Render of 195 corrected — the then sentence without the self-contradiction, the vault's answer in context, the create clause on rules and entities only, the reading line opens with its date and command; supersedes 195 (case 200.1) · [[decision-case-200.1]]

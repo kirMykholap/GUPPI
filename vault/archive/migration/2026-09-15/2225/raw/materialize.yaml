@@ -260,6 +260,7 @@ entries:
       '
   exists: true
   applied: 01:37:05
+  superseded_by: '191'
 - line: 6
   text: decision[case 182][defer][rule-plan-mode]{ref:rule-plan-mode}{supersedes:case 178}
   case: '182'
@@ -271,6 +272,7 @@ entries:
   case_removed: '178'
   change: 'criterion: case 178 removed'
   applied: 01:37:05
+  superseded_by: '191'
 - line: 7
   text: decision[case 182][defer][rule-page-generation]{ref:rule-page-generation}
   case: '182'
@@ -286,6 +288,7 @@ entries:
       whole; the fields purpose, method, checked; see the purpose on rule-plan-mode
   exists: true
   applied: 01:37:05
+  superseded_by: '191'
 - line: 8
   text: decision[case 182][defer][rule-materialize]{ref:rule-materialize}
   case: '182'
@@ -301,6 +304,7 @@ entries:
       on create; an update of an Estimate = a replaced Criterion; see rule-plan-mode
   exists: true
   applied: 01:37:05
+  superseded_by: '191'
 - line: 9
   text: decision[case 182][defer][rule-lint]{ref:rule-lint}
   case: '182'
@@ -316,6 +320,7 @@ entries:
       Context and the Method section, with purpose, method, checked; see rule-plan-mode
   exists: true
   applied: 01:37:05
+  superseded_by: '191'
 - line: 10
   text: decision[case 182][defer][rule-pretask]{ref:rule-pretask}
   case: '182'
@@ -331,6 +336,7 @@ entries:
       whether an unnamed one speaks of the same thing; see rule-plan-mode
   exists: true
   applied: 01:37:05
+  superseded_by: '191'
 - line: 11
   text: decision[case 183][defer][rule-work-mode]{ref:rule-work-mode}{supersedes:case 176}
   case: '183'
@@ -438,6 +444,7 @@ entries:
       on create and no contract on update, tasks without contract lines; see the purpose on rule-plan-mode'
   exists: true
   applied: 01:37:05
+  superseded_by: '188'
 - line: 15
   text: 'estimate[estimate-ledger-write-lifts][passed] block 184: tests/test_gate.py 30 green (385 total),
     2026-09-16 session 2225 — `test_pretask_and_handoff_in_an_empty_session_pass_as_before` (no source:
@@ -656,6 +663,8 @@ decisions:
   supersedes:
   - decision-case-178
   applied: 01:37:05
+  superseded_by:
+  - decision-case-191
 - case: '183'
   decision: decision-case-183
   origin: raw/2026-09-15/2225/ledger.md#case-183
@@ -742,5 +751,7 @@ decisions:
       is not in the list of 182, and point 16 names only `case-schema.md`.
   spec: vault/raw/2026-09-15/2225/spec.md
   applied: 01:37:05
+  superseded_by:
+  - decision-case-188
 unparsed: []
 session: '2225'

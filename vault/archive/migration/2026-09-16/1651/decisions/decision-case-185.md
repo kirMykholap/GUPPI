@@ -1,8 +1,9 @@
 ---
 type: decision
 case: "185"
-status: current
+status: archived
 defer: ["[[rule-case-protocol]]"]
+superseded_by: ["[[decision-case-188]]"]
 origin: raw/2026-09-15/2225/ledger.md#case-185
 sprint: migration
 created: 2026-09-15
@@ -26,3 +27,6 @@ Slice 3d — the Render is rewritten by points 6, 7 and 9 of the model of 182: g
 ## History
 
 - 2026-09-16 created · raw/2026-09-15/2225/ledger.md#case-185
+- 2026-09-16 superseded by decision-case-188 · [[decision-case-188]]
+- 2026-09-16 archived · superseded
+- 2026-09-16 archived · cleanup

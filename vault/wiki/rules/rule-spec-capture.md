@@ -6,7 +6,7 @@ status: built
 enforcement: hook
 implementation_ref: [guppi/spec.py, .claude/settings.json]
 parent: "[[rule-plan-mode]]"
-estimates: ["[[estimate-spec-capture-appends]]"]
+estimates: ["[[estimate-spec-capture-appends]]", "[[estimate-spec-capture-offers-the-fork]]"]
 origin: raw/2026-09-09/ledger.md#case-20
 sprint: migration
 created: 2026-09-09
@@ -20,6 +20,15 @@ repository. The ledger's decision lines are routing only; their content is the S
 page `origin` fields point at both. A Spec copied by hand is copied late, partially, or
 not at all.
 
+The file has three writers: the hook `guppi spec` on `PostToolUse` of `ExitPlanMode`,
+which appends the approved plan to `raw/<hi date>/<hi HHMM>/spec.md` once, stamped;
+Work Mode, which ticks the boxes of the `tasks` blocks and nothing else; and the agent,
+who appends the short-form Cases under `## Deferred` at the close of Plan Mode and at
+Retro, before their ledger lines. Having written the Spec, the hook prints the fork
+into the context — Work Mode, or `/carry` to conserve the Spec — naming the session
+folder and the Spec file; it blocks nothing, the agent asks and the person chooses
+(case 190.5). The mechanism lives in the docstring of `guppi/spec.py` (case 200.4).
+
 ## History
 
 - 2026-09-09 created · raw/2026-09-09/ledger.md#case-20
@@ -32,3 +41,8 @@ not at all.
 - 2026-09-12 updated: the Spec lands in the session's folder raw/<hi date>/<hi HHMM>/ (case 73.2) · [[decision-case-73.2]]
 - 2026-09-12 status: built → draft · cascade
 - 2026-09-14 status: draft → built · cascade
+- 2026-09-16 updated: after writing the Spec the hook prints the fork — Work Mode or /carry — naming the session folder and the Spec file (case 190.5) · [[decision-case-190.5]]
+- 2026-09-16 estimate estimate-spec-capture-offers-the-fork added · [[decision-case-190.5]]
+- 2026-09-16 status: built → draft · cascade
+- 2026-09-16 updated: How it works dropped, its facts and the fork of 190.5 in Purpose; supersedes 196.4 (case 200.4) · [[decision-case-200.4]]
+- 2026-09-16 status: draft → built · cascade

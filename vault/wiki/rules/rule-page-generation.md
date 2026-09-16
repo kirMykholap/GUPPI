@@ -7,7 +7,7 @@ enforcement: check
 implementation_ref: [guppi/generate.py, tests/test_generate.py]
 parent: "[[rule-documentation]]"
 estimates: ["[[estimate-generate-writes]]", "[[estimate-generate-walks-dates]]"]
-deferred_by: ["[[decision-case-182]]"]
+deferred_by: ["[[decision-case-191]]"]
 origin: raw/2026-09-10/ledger.md#case-32
 sprint: migration
 created: 2026-09-10
@@ -44,11 +44,11 @@ with History `deleted`; there is no `deleted` status. A `delete` whose slug is n
 a category prefix nor a Rule-class file (`category: unknown` in the yaml) names
 something outside the vault: it is printed on stdout as `outside the vault, nothing to
 archive` and marked applied, no page is written; a `delete` with a category and no
-page fails. A `defer` with a page appends History `deferred` and the decision slug to its `deferred_by` — a Rule, an Entity or an Insight (case 124.2); without one it writes a placeholder page, `status: draft`, with only the fields the Case gave and `deferred_by`. A later `create` of that slug fills the placeholder: fields and sections as for a new page, `origin` the create's, `created` and `deferred_by` kept, History `created over placeholder`; its Estimate is made from `method` as for any Leaf. Any other existing page is a collision (case 101.1). A `create` in `insights/` from a ledger line is refused — an Insight is made by the librarian, never by a decision; a `create` the librarian appended at synthesis, marked `librarian`, applies as any create, its `origin` the lesson line it grew from; a `delete` of an Insight is refused always: the cascade archives it (case 171, the text of 164; supersedes 124.2).
+page fails. A `defer` with a page appends History `deferred` and the decision slug to its `deferred_by` — a Rule, an Entity or an Insight (case 124.2); without one it writes a placeholder page, `status: draft`, with only the fields the Case gave and `deferred_by`. Either way the entry's `purpose` is written to the Case's Decision page under `## Deferred`, so the body of a deferred decision is never dropped (case 186.1). A later `create` of that slug fills the placeholder: fields and sections as for a new page, `origin` the create's, `created` and `deferred_by` kept, History `created over placeholder`; its Estimate is made from `method` as for any Leaf. Any other existing page is a collision (case 101.1). A `create` in `insights/` from a ledger line is refused — an Insight is made by the librarian, never by a decision; a `create` the librarian appended at synthesis, marked `librarian`, applies as any create, its `origin` the lesson line it grew from; a `delete` of an Insight is refused always: the cascade archives it (case 171, the text of 164; supersedes 124.2).
 
 A lesson entry writes the lesson only: a lesson is a recorded fact and has no Estimate. A missing `source` is not invented; lint names it.
 
-One Decision page per Case, `decisions/decision-case-<N>.md`: `case`, `status: current`, one list per kind present among the Case's ledger lines — `create`, `update`, `delete`, `defer`, in that order, each the slugs of those lines in ledger order (the category is derived from the slug prefix or the Rule-class map, never written), `source` when a line carries one, `supersedes`, `origin`, `sprint`, `created`, `tags` (the union of the targets' tags); body `Context`, `Problem`, `Given` from `case_text`, and `Criterion` — one `[[estimate-x]] § case N` line per Estimate the Case shaped — when the entry carries `criterion`; no `When` (case 72.4; pages written before keep theirs). A `supersedes` sets the earlier page `status: superseded`, appends the new slug to its `superseded_by`, and removes the earlier decision's slug from the `deferred_by` of every target in its `defer` list; an empty `deferred_by` is dropped. A decision page that exists is
+One Decision page per Case, `decisions/decision-case-<N>.md`: `case`, `status: current`, one list per kind present among the Case's ledger lines — `create`, `update`, `delete`, `defer`, in that order, each the slugs of those lines in ledger order (the category is derived from the slug prefix or the Rule-class map, never written), `source` when a line carries one, `supersedes`, `origin`, `sprint`, `created`, `tags` (the union of the targets' tags); body `Context`, `Problem`, `Given` from `case_text`, `Criterion` — one `[[estimate-x]] § case N` line per Estimate the Case shaped — when the entry carries `criterion`, and `Deferred` — one `### [[slug]]` heading per target of the Case's `defer` lines, in that order, each followed by that target's `purpose` verbatim, however long, and written for a defer with a `ref` and for a placeholder alike (case 186.1); no `When` (case 72.4; pages written before keep theirs). A `supersedes` sets the earlier page `status: superseded`, appends the new slug to its `superseded_by`, and removes the earlier decision's slug from the `deferred_by` of every target in its `defer` list; an empty `deferred_by` is dropped. A decision page that exists is
 skipped. A `create` marked `exists` writes no page and no History; its decision
 page is still written.
 
@@ -112,3 +112,6 @@ declared and not registered is reported on stderr and left on the page.
 - 2026-09-15 status: built → draft · cascade
 - 2026-09-15 status: draft → built · cascade
 - 2026-09-16 deferred · [[decision-case-182]]
+- 2026-09-16 updated: a defer writes its purpose to the decision page under · [[decision-case-186.1]]
+- 2026-09-16 defer by decision-case-182 superseded · [[decision-case-191]]
+- 2026-09-16 deferred · [[decision-case-191]]

@@ -1,7 +1,7 @@
 ---
 type: estimate
 kind: QA
-status: passed
+status: pending
 target: "[[rule-permissions]]"
 origin: raw/2026-09-12/ledger.md#case-85.5
 sprint: migration
@@ -16,20 +16,18 @@ its own and the hooks have their own, while the file keeps one source.
 
 ## Criterion
 
-### case 85.5
+Given:
+The Render of `rule-case-protocol` is spliced into `CLAUDE.md`; the text of 195 stands in the Spec of this session.
+**＋** A `replace` in `generate` is one occurrence, whitespace collapsed; `sections` is a whole replacement.
+**＋** `settings.json` is rendered from `rule-permissions`; `estimate-permissions` promises six allow entries.
+**－** A `supersedes` marks every entry of the named Case: 195 and 196.4 carry one each, 189 nine, so 189 is not superseded.
 
 When:
-The agent writes or edits `frontier.md`, `spec.md` or `handoff.md` under
-`vault/raw/<date>/<HHMM>/`, in Plan Mode or in Work Mode.
+The skill `carry` writes `vault/wiki/brief.md` or `vault/raw/<date>/<HHMM>/carry.md`.
 
 Then:
-The write happens with no question to the person, allowed by the six entries of the
-Render of `rule-permissions`: `Edit` and `Write` for the three names.
-**＋** Nothing else is allowed: `ledger.md`, `event_log.md`, `materialize.yaml` and every
-file a Rule page governs stay outside the list.
-**－** `deny` and `ask` stay empty.
-**－** If Claude Code reads `settings.json` only at a session start, the effect begins at
-the next start; the reading records which it was.
+The client does not ask: the allow list of `settings.json` holds eight entries — Edit and Write for `frontier.md`, `spec.md`, `handoff.md`, `carry.md` under `vault/raw/**` and for `vault/wiki/brief.md`.
+**－** `deny` and `ask` are empty; nothing else under `wiki/` is allowed.
 
 ## Method
 
@@ -43,3 +41,4 @@ the six allow entries stand in the rendered .claude/settings.json, Edit and Writ
 
 - 2026-09-12 created · [[decision-case-85.5]]
 - 2026-09-13 status: pending → passed · raw/2026-09-13/ledger.md#L47
+- 2026-09-16 updated: the Criterion replaced whole by case 200.5 — nine allow entries, carry.md and brief.md among them (case 200.5) · [[decision-case-200.5]]

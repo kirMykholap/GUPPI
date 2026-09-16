@@ -1643,3 +1643,135 @@ instruction. The global feed; a page's own `## History` is the per-page view.
 - 2026-09-16 decisions/decision-case-176 archived · cleanup
 - 2026-09-16 decisions/decision-case-178 archived · cleanup
 - 2026-09-16 decisions/decision-case-179 archived · cleanup
+- 2026-09-16 estimates/estimate-retro-commit-gates status: pending → passed · raw/2026-09-16/1034/ledger.md#L1 · generate
+- 2026-09-16 decisions/decision-case-186.1 created · raw/2026-09-16/1034/ledger.md#case-186.1 · generate
+- 2026-09-16 rules/rule-page-generation updated: a defer writes its purpose to the decision page under · [[decision-case-186.1]] · generate
+- 2026-09-16 decisions/decision-case-186.2 created · raw/2026-09-16/1034/ledger.md#case-186.2 · generate
+- 2026-09-16 rules/rule-pretask updated: a deferred Case enters the ask-guppi dispatch by slug and type only; its body is not read (case 186.2) · [[decision-case-186.2]] · generate
+- 2026-09-16 decisions/decision-case-186.3 created · raw/2026-09-16/1034/ledger.md#case-186.3 · generate
+- 2026-09-16 rules/rule-lint updated: a placeholder earns one deferred finding with its count instead of the schema and orphan findings (case 186.3) · [[decision-case-186.3]] · generate
+- 2026-09-16 decisions/decision-case-187 created · raw/2026-09-16/1034/ledger.md#case-187 · generate
+- 2026-09-16 estimates/estimate-plan-mode-names-its-estimates created · [[decision-case-187]] · generate
+- 2026-09-16 rules/rule-plan-mode estimate estimate-plan-mode-names-its-estimates added · [[decision-case-187]] · generate
+- 2026-09-16 rules/rule-plan-mode updated: which Estimate a Case changes is the judgment of the Case, named by slug, not derived from a flag (case 187) · [[decision-case-187]] · generate
+- 2026-09-16 decisions/decision-case-188 created · raw/2026-09-16/1034/ledger.md#case-188 · generate
+- 2026-09-16 decisions/decision-case-185 superseded by decision-case-188 · [[decision-case-188]] · generate
+- 2026-09-16 rules/rule-case-protocol defer by decision-case-185 superseded · [[decision-case-188]] · generate
+- 2026-09-16 rules/rule-case-protocol updated: the Render rewritten by points 6, 7 and 9 of the model of 182; How it works dropped, its two facts moved into Purpose (case 188) · [[decision-case-188]] · generate
+- 2026-09-16 estimates/estimate-case-protocol-case-form created · [[decision-case-188]] · generate
+- 2026-09-16 rules/rule-case-protocol estimate estimate-case-protocol-case-form added · [[decision-case-188]] · generate
+- 2026-09-16 estimates/estimate-case-protocol-acknowledging-reply created · [[decision-case-188]] · generate
+- 2026-09-16 rules/rule-case-protocol estimate estimate-case-protocol-acknowledging-reply added · [[decision-case-188]] · generate
+- 2026-09-16 estimates/estimate-case-protocol-ledger-line-form created · [[decision-case-188]] · generate
+- 2026-09-16 rules/rule-case-protocol estimate estimate-case-protocol-ledger-line-form added · [[decision-case-188]] · generate
+- 2026-09-16 estimates/estimate-case-protocol-loaded updated: the Criterion replaced whole — the head text without the dead method clause, plus block 73.9; the other blocks move to their own Estimates (case 188) · [[decision-case-188]] · generate
+- 2026-09-16 decisions/decision-case-189 created · raw/2026-09-16/1034/ledger.md#case-189 · generate
+- 2026-09-16 rules/rule-materialize updated: materialize derives no Estimate from contract, method or supersedes; an Estimate has its own line and its own entry, its Criterion lifted from the Case; How it works dropped, the mechanism and the full field list moved to the docstring of guppi/materialize.py (case 189) · [[decision-case-189]] · generate
+- 2026-09-16 estimates/estimate-materialize-assembles updated: the Criterion replaced whole by this Case; the nine blocks leave — 73.5 to walks-dates, six to their own pages, 90.1 dies with the derivation (case 189) · [[decision-case-189]] · generate
+- 2026-09-16 estimates/estimate-materialize-walks-dates updated: block 73.5 merged into the Criterion — the yaml's spec field names the file each Case was found in; the rest of 73.5 already stood there in blocks 103.2 and 142.4 (case 189) · [[decision-case-189]] · generate
+- 2026-09-16 estimates/estimate-materialize-shows created · [[decision-case-189]] · generate
+- 2026-09-16 rules/rule-materialize estimate estimate-materialize-shows added · [[decision-case-189]] · generate
+- 2026-09-16 estimates/estimate-materialize-lifts-a-lesson created · [[decision-case-189]] · generate
+- 2026-09-16 rules/rule-materialize estimate estimate-materialize-lifts-a-lesson added · [[decision-case-189]] · generate
+- 2026-09-16 estimates/estimate-materialize-marks-exists created · [[decision-case-189]] · generate
+- 2026-09-16 rules/rule-materialize estimate estimate-materialize-marks-exists added · [[decision-case-189]] · generate
+- 2026-09-16 estimates/estimate-materialize-fails-alone created · [[decision-case-189]] · generate
+- 2026-09-16 rules/rule-materialize estimate estimate-materialize-fails-alone added · [[decision-case-189]] · generate
+- 2026-09-16 estimates/estimate-materialize-finds-a-rule-class-item created · [[decision-case-189]] · generate
+- 2026-09-16 rules/rule-materialize estimate estimate-materialize-finds-a-rule-class-item added · [[decision-case-189]] · generate
+- 2026-09-16 estimates/estimate-materialize-marks-superseded created · [[decision-case-189]] · generate
+- 2026-09-16 rules/rule-materialize estimate estimate-materialize-marks-superseded added · [[decision-case-189]] · generate
+- 2026-09-16 decisions/decision-case-190.1 created · raw/2026-09-16/1034/ledger.md#case-190.1 · generate
+- 2026-09-16 rules/rule-carry-over created · [[decision-case-190.1]] · generate
+- 2026-09-16 rules/rule-end-of-work child rule-carry-over added · [[decision-case-190.1]] · generate
+- 2026-09-16 estimates/estimate-carry-over-writes created · [[decision-case-190.1]] · generate
+- 2026-09-16 rules/rule-carry-over estimate estimate-carry-over-writes added · [[decision-case-190.1]] · generate
+- 2026-09-16 decisions/decision-case-190.2 created · raw/2026-09-16/1034/ledger.md#case-190.2 · generate
+- 2026-09-16 rules/rule-end-of-work updated: a session has a second end — /carry straight after Plan Mode, without Work Mode, retro, handoff or the librarian; the agent asks which of the two on leaving Plan Mode (case 190.2) · [[decision-case-190.2]] · generate
+- 2026-09-16 estimates/estimate-end-of-work-order updated: the Criterion replaced whole by this Case; its earlier blocks recut by point 1 at this touch (case 190.2) · [[decision-case-190.2]] · generate
+- 2026-09-16 decisions/decision-case-190.3 created · raw/2026-09-16/1034/ledger.md#case-190.3 · generate
+- 2026-09-16 rules/rule-materialize updated: a unit whose folder holds carry.md is skipped with one line on stdout; no yaml is written for it (case 190.3) · [[decision-case-190.3]] · generate
+- 2026-09-16 estimates/estimate-materialize-skips-a-carried-over-unit created · [[decision-case-190.3]] · generate
+- 2026-09-16 rules/rule-materialize estimate estimate-materialize-skips-a-carried-over-unit added · [[decision-case-190.3]] · generate
+- 2026-09-16 decisions/decision-case-190.4 created · raw/2026-09-16/1034/ledger.md#case-190.4 · generate
+- 2026-09-16 rules/rule-brief updated: the brief has two writers — the librarian and /carry; the short shape omits the sections of a run that did not happen and names the conserved Spec (case 190.4) · [[decision-case-190.4]] · generate
+- 2026-09-16 estimates/estimate-brief-written updated: the Criterion replaced whole by this Case; its earlier blocks recut by point 1 at this touch (case 190.4) · [[decision-case-190.4]] · generate
+- 2026-09-16 decisions/decision-case-190.5 created · raw/2026-09-16/1034/ledger.md#case-190.5 · generate
+- 2026-09-16 rules/rule-spec-capture updated: after writing the Spec the hook prints the fork — Work Mode or /carry — naming the session folder and the Spec file (case 190.5) · [[decision-case-190.5]] · generate
+- 2026-09-16 estimates/estimate-spec-capture-offers-the-fork created · [[decision-case-190.5]] · generate
+- 2026-09-16 rules/rule-spec-capture estimate estimate-spec-capture-offers-the-fork added · [[decision-case-190.5]] · generate
+- 2026-09-16 decisions/decision-case-191 created · raw/2026-09-16/1034/ledger.md#case-191 · generate
+- 2026-09-16 decisions/decision-case-182 superseded by decision-case-191 · [[decision-case-191]] · generate
+- 2026-09-16 rules/rule-plan-mode defer by decision-case-182 superseded · [[decision-case-191]] · generate
+- 2026-09-16 rules/rule-page-generation defer by decision-case-182 superseded · [[decision-case-191]] · generate
+- 2026-09-16 rules/rule-materialize defer by decision-case-182 superseded · [[decision-case-191]] · generate
+- 2026-09-16 rules/rule-lint defer by decision-case-182 superseded · [[decision-case-191]] · generate
+- 2026-09-16 rules/rule-pretask defer by decision-case-182 superseded · [[decision-case-191]] · generate
+- 2026-09-16 rules/rule-page-generation deferred · [[decision-case-191]] · generate
+- 2026-09-16 rules/rule-lint deferred · [[decision-case-191]] · generate
+- 2026-09-16 rules/rule-pretask deferred · [[decision-case-191]] · generate
+- 2026-09-16 decisions/decision-case-192 created · raw/2026-09-16/1034/ledger.md#case-192 · generate
+- 2026-09-16 insights/insight-ledger-hi-tied-to-its-session-by-position deferred · [[decision-case-192]] · generate
+- 2026-09-16 rules/rule-brief status: built → draft · cascade · generate
+- 2026-09-16 rules/rule-case-protocol status: built → draft · cascade · generate
+- 2026-09-16 rules/rule-end-of-work status: built → draft · cascade · generate
+- 2026-09-16 rules/rule-materialize status: built → draft · cascade · generate
+- 2026-09-16 rules/rule-plan-mode status: built → draft · cascade · generate
+- 2026-09-16 rules/rule-retro-commit status: draft → built · cascade · generate
+- 2026-09-16 rules/rule-spec-capture status: built → draft · cascade · generate
+- 2026-09-16 decisions/decision-case-182 archived · superseded · generate
+- 2026-09-16 decisions/decision-case-185 archived · superseded · generate
+- 2026-09-16 decisions/decision-case-193 created · raw/2026-09-16/1651/ledger.md#case-193 · generate
+- 2026-09-16 decisions/decision-case-194.1 created · raw/2026-09-16/1651/ledger.md#case-194.1 · generate
+- 2026-09-16 rules/rule-materialize updated: Purpose carries the text of 189 and 190.3; How it works dropped by hand, the mechanism and the field list in the docstring (case 194.1) · [[decision-case-194.1]] · generate
+- 2026-09-16 estimates/estimate-materialize-assembles updated: the Criterion replaced whole by case 194.1 — the head recut, the lines of 189 and the shape of the entry; the nine blocks leave (case 194.1) · [[decision-case-194.1]] · generate
+- 2026-09-16 decisions/decision-case-194.2 created · raw/2026-09-16/1651/ledger.md#case-194.2 · generate
+- 2026-09-16 estimates/estimate-materialize-walks-dates updated: the Criterion replaced whole by case 194.2 — the head, 103.2, 142.4 and the spec field of 73.5 recut into one (case 194.2) · [[decision-case-194.2]] · generate
+- 2026-09-16 decisions/decision-case-195 created · raw/2026-09-16/1651/ledger.md#case-195 · generate
+- 2026-09-16 decisions/decision-case-196.1 created · raw/2026-09-16/1651/ledger.md#case-196.1 · generate
+- 2026-09-16 rules/rule-carry-over updated: the Render written — the skill's text, called by the agent after the fork (case 196.1) · [[decision-case-196.1]] · generate
+- 2026-09-16 estimates/estimate-carry-over-writes updated: the Criterion replaced whole by case 196.1 — the agent's call after the fork, the brief, the flag, the commit, nothing else run (case 196.1) · [[decision-case-196.1]] · generate
+- 2026-09-16 decisions/decision-case-196.2 created · raw/2026-09-16/1651/ledger.md#case-196.2 · generate
+- 2026-09-16 rules/rule-end-of-work updated: the second end — /carry straight after Plan Mode — and the question on leaving Plan Mode (case 196.2, the text of 190.2) · [[decision-case-196.2]] · generate
+- 2026-09-16 estimates/estimate-end-of-work-order updated: the Criterion replaced whole by case 196.2 — the head recut with the second end (case 196.2) · [[decision-case-196.2]] · generate
+- 2026-09-16 decisions/decision-case-196.3 created · raw/2026-09-16/1651/ledger.md#case-196.3 · generate
+- 2026-09-16 rules/rule-brief updated: the second writer and the short shape of the brief, one paragraph at the end of the Render (case 196.3, the text of 190.4) · [[decision-case-196.3]] · generate
+- 2026-09-16 decisions/decision-case-196.4 created · raw/2026-09-16/1651/ledger.md#case-196.4 · generate
+- 2026-09-16 decisions/decision-case-197 created · raw/2026-09-16/1651/ledger.md#case-197 · generate
+- 2026-09-16 estimates/estimate-brief-written updated: the Criterion replaced whole by case 197 — the head, 124.1 and 168 recut into one; the short shape of /carry left to estimate-carry-over-writes (case 197) · [[decision-case-197]] · generate
+- 2026-09-16 decisions/decision-case-198 created · raw/2026-09-16/1651/ledger.md#case-198 · generate
+- 2026-09-16 rules/rule-pretask updated: the first sentence of the list no longer asks a purpose of a defer, in line with 186.2 (case 198) · [[decision-case-198]] · generate
+- 2026-09-16 decisions/decision-case-199 created · raw/2026-09-16/1651/ledger.md#case-199 · generate
+- 2026-09-16 lessons/lesson-plan-mode-frontier-refused-on-the-client-text created · raw/2026-09-16/1651/ledger.md#L19 · generate
+- 2026-09-16 decisions/decision-case-200.1 created · raw/2026-09-16/1651/ledger.md#case-200.1 · generate
+- 2026-09-16 decisions/decision-case-195 superseded by decision-case-200.1 · [[decision-case-200.1]] · generate
+- 2026-09-16 rules/rule-case-protocol updated: the Render of 195 corrected — the then sentence without the self-contradiction, the vault's answer in context, the create clause on rules and entities only, the reading line opens with its date and command; supersedes 195 (case 200.1) · [[decision-case-200.1]] · generate
+- 2026-09-16 decisions/decision-case-200.2 created · raw/2026-09-16/1651/ledger.md#case-200.2 · generate
+- 2026-09-16 decisions/decision-case-200.3 created · raw/2026-09-16/1651/ledger.md#case-200.3 · generate
+- 2026-09-16 rules/rule-brief updated: Readings due one line per Estimate, no block, the page's method field (case 200.3) · [[decision-case-200.3]] · generate
+- 2026-09-16 decisions/decision-case-200.4 created · raw/2026-09-16/1651/ledger.md#case-200.4 · generate
+- 2026-09-16 decisions/decision-case-196.4 superseded by decision-case-200.4 · [[decision-case-200.4]] · generate
+- 2026-09-16 rules/rule-spec-capture updated: How it works dropped, its facts and the fork of 190.5 in Purpose; supersedes 196.4 (case 200.4) · [[decision-case-200.4]] · generate
+- 2026-09-16 decisions/decision-case-200.5 created · raw/2026-09-16/1651/ledger.md#case-200.5 · generate
+- 2026-09-16 rules/rule-permissions updated: carry.md and brief.md join the allow list for /carry (case 200.5) · [[decision-case-200.5]] · generate
+- 2026-09-16 estimates/estimate-permissions updated: the Criterion replaced whole by case 200.5 — nine allow entries, carry.md and brief.md among them (case 200.5) · [[decision-case-200.5]] · generate
+- 2026-09-16 estimates/estimate-materialize-shows status: pending → passed · raw/2026-09-16/1651/ledger.md#L29 · generate
+- 2026-09-16 estimates/estimate-materialize-lifts-a-lesson status: pending → passed · raw/2026-09-16/1651/ledger.md#L30 · generate
+- 2026-09-16 estimates/estimate-materialize-marks-exists status: pending → passed · raw/2026-09-16/1651/ledger.md#L31 · generate
+- 2026-09-16 estimates/estimate-materialize-fails-alone status: pending → passed · raw/2026-09-16/1651/ledger.md#L32 · generate
+- 2026-09-16 estimates/estimate-materialize-finds-a-rule-class-item status: pending → passed · raw/2026-09-16/1651/ledger.md#L33 · generate
+- 2026-09-16 estimates/estimate-materialize-skips-a-carried-over-unit status: pending → passed · raw/2026-09-16/1651/ledger.md#L34 · generate
+- 2026-09-16 estimates/estimate-materialize-walks-dates status: pending → passed · raw/2026-09-16/1651/ledger.md#L35 · generate
+- 2026-09-16 estimates/estimate-spec-capture-offers-the-fork status: pending → passed · raw/2026-09-16/1651/ledger.md#L36 · generate
+- 2026-09-16 estimates/estimate-generate-writes status: passed → passed · raw/2026-09-16/1651/ledger.md#L37 · generate
+- 2026-09-16 estimates/estimate-lint-catches status: passed → passed · raw/2026-09-16/1651/ledger.md#L38 · generate
+- 2026-09-16 estimates/estimate-plan-mode-names-its-estimates status: pending → passed · raw/2026-09-16/1651/ledger.md#L39 · generate
+- 2026-09-16 rules/rule-permissions status: built → draft · cascade · generate
+- 2026-09-16 rules/rule-plan-mode status: draft → built · cascade · generate
+- 2026-09-16 rules/rule-spec-capture status: draft → built · cascade · generate
+- 2026-09-16 decisions/decision-case-195 archived · superseded · generate
+- 2026-09-16 decisions/decision-case-196.4 archived · superseded · generate
+- 2026-09-16 decisions/decision-case-182 archived · cleanup
+- 2026-09-16 decisions/decision-case-185 archived · cleanup
+- 2026-09-16 decisions/decision-case-195 archived · cleanup
+- 2026-09-16 decisions/decision-case-196.4 archived · cleanup

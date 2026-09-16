@@ -5,7 +5,7 @@ status: open
 children: ["[[lesson-ledger-hook-hi-lost-at-midnight]]", "[[lesson-hi-taken-by-a-session-started-in-the-same-second]]", "[[lesson-pretask-line-unstamped-and-bound-by-position]]", "[[lesson-pretask-check-session-fallback-stops-at-midnight]]"]
 severity: 1
 addressed_by: "[[decision-case-136.4]]"
-deferred_by: ["[[decision-case-192]]"]
+deferred_by: ["[[decision-case-192]]", "[[decision-case-205]]"]
 origin: raw/2026-09-14/0747/ledger.md#L2
 sprint: migration
 created: 2026-09-14
@@ -46,3 +46,4 @@ command, the fallback keeps both lessons live and a Case on 111.4 is due.
 - 2026-09-14 updated: actioned: the hi is stamped by 111, the marks pretask/retro/handoff by guppi gate (136.1), pretask.window and the ledger window read by stamp only (136.2, 136.3) (case 136.4) · [[decision-case-136.4]]
 - 2026-09-16 updated: synthesis: lesson-pretask-check-session-fallback-stops-at-midnight added, the pre-task check resolves its session from the session-start lines of today's event log when no id is given, and a start on yesterday's log is outside that window as the hi was for the hook; reopened from actioned · raw/2026-09-15/2225/ledger.md#L16
 - 2026-09-16 deferred · [[decision-case-192]]
+- 2026-09-16 deferred · [[decision-case-205]]

@@ -1,8 +1,9 @@
 ---
 type: estimate
 kind: QA
-status: pending
+status: passed
 target: "[[rule-case-protocol]]"
+checked: 2026-09-16
 origin: raw/2026-09-09/ledger.md#case-13
 sprint: migration
 created: 2026-09-09
@@ -35,7 +36,7 @@ One reading at a session start, by hand, plus the preview cases of `tests/test_l
 
 ## Result
 
-block 167: the first acknowledging reply of session S (Case 173) — the LEDGER block first, then the heading "Case 173 — ратифицирован" with Changes and Notes, then the heading "Frontier" as a checklist with the closed line folded, the question last; headings and labels in Russian, the language of the chat
+2026-09-16, the first turn of this session read by hand: the frontier written to raw/2026-09-16/1955/frontier.md and the Spec to raw/2026-09-16/1955/spec.md with its ## Deferred heading without a read of the rule; one Case at a time, the ledger lines only inside LEDGER blocks; the rules were followed, not recited
 
 ## History
 
@@ -57,3 +58,4 @@ block 167: the first acknowledging reply of session S (Case 173) — the LEDGER 
 - 2026-09-15 criterion: case 157 removed · [[decision-case-167]]
 - 2026-09-15 status: pending → passed · raw/2026-09-15/1809/ledger.md#L3
 - 2026-09-16 updated: the Criterion replaced whole — the head text without the dead method clause, plus block 73.9; the other blocks move to their own Estimates (case 188) · [[decision-case-188]]
+- 2026-09-16 status: pending → passed · raw/2026-09-16/1955/ledger.md#L37

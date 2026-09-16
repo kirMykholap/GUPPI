@@ -1576,6 +1576,7 @@ entries:
       '
   exists: true
   applied: '19:45:25'
+  superseded_by: '203.2'
 - line: 35
   text: decision[case 191][defer][rule-lint]{ref:rule-lint}
   case: '191'
@@ -1600,6 +1601,7 @@ entries:
       '
   exists: true
   applied: '19:45:25'
+  superseded_by: '203.2'
 - line: 36
   text: decision[case 191][defer][rule-pretask]{ref:rule-pretask}
   case: '191'
@@ -1622,6 +1624,7 @@ entries:
       defer.'
   exists: true
   applied: '19:45:25'
+  superseded_by: '203.2'
 - line: 37
   text: decision[case 192][defer][insight-ledger-hi-tied-to-its-session-by-position]{ref:insight-ledger-hi-tied-to-its-session-by-position}
   case: '192'
@@ -2884,6 +2887,8 @@ decisions:
   supersedes:
   - decision-case-182
   applied: '19:45:25'
+  superseded_by:
+  - decision-case-203.2
 - case: '192'
   decision: decision-case-192
   origin: raw/2026-09-16/1034/ledger.md#case-192

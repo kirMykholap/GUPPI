@@ -1,15 +1,16 @@
 ---
 type: estimate
 kind: QA
-status: pending
+status: passed
 target: "[[rule-case-protocol]]"
+purpose: The reply that acknowledges a ratification has four parts in order
+method: one reading by hand of the first acknowledging reply of a session
+checked: 2026-09-16
 origin: raw/2026-09-16/1034/ledger.md#case-188
 sprint: migration
 created: 2026-09-16
 tags: [session, workflow, ledger]
 ref: rule-case-protocol
-purpose: The reply that acknowledges a ratification has four parts in order
-method: one reading by hand of the first acknowledging reply of a session
 ---
 
 ## Criterion
@@ -30,6 +31,11 @@ last.
 **－** The replies on readings and lessons, the reply that carries a Case and the
 short form of a defer stay as today; no tool call follows the block in the same reply.
 
+## Result
+
+2026-09-16, the acknowledging replies of Cases 201, 202, 203, 204, 208 read by hand: the LEDGER block first, `## Case N — ратифицирован`, Изменения, Заметки when present, `## Frontier` as a checklist with the closed lines folded and the deferred as `[-] … · defer case N`, the question last; headings in Russian; no tool call after the block
+
 ## History
 
 - 2026-09-16 created · [[decision-case-188]]
+- 2026-09-16 status: pending → passed · raw/2026-09-16/1955/ledger.md#L36

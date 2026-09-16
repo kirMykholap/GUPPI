@@ -3,6 +3,7 @@ type: estimate
 kind: QA
 status: passed
 target: "[[rule-pretask]]"
+checked: 2026-09-16
 origin: raw/2026-09-09/ledger.md#case-24.2
 sprint: migration
 created: 2026-09-09
@@ -17,81 +18,21 @@ than per decision, and that nothing it returns is dropped on the floor.
 
 ## Criterion
 
-Unit: `guppi pretask --check <plan>` against a temp vault — a decision line with its item
-under its own Case passes; a line without an item, an item without a line, and an item
-under another sub-case's heading are each one finding, exit 1; a `defer` line matches a
-`defer` item and a `file` line an item with that `file`; no `hi`, exit 0 with a line on
-stderr; the frontier of the `hi` date: a missing file, an open line, a `case N` without
-its heading and a `defer case N` without its item are each one finding; a Case with decision lines and
-no `tasks` block, and an Estimate created or set `pending` by a `then` block that no
-task names, and a `file` item on a path a Rule page governs, a Leaf `create` item without `method`, a Leaf `update` item without `contract`, a Case with two or more Leaf items that create or say `contract: changed`, and a derived Estimate slug naming an existing page with no `slug` on the item, are each one finding; a Leaf's Estimate without a line of its own is none. One live run before a plan approval: the check runs first and its findings are
-fixed in the plan; the event log gains a `pretask` line, the `ask-guppi`
-agent is dispatched once with the list of this Plan Mode's decisions, and every finding it
-returns is either raised as a Case or named as already known in the reply.
-
-### case 73.4
+Given:
+`guppi pretask --check <plan>` reads the Cases of the plan by their headings, the `then` blocks, the session's `frontier.md` and the session's ledger window; `guppi gate` writes the `pretask` line with the session's stamp on the Skill call.
+**＋** An Estimate item of a `then` block is a `create` with `ref`, or an `update` with `set: {status: pending}`; its Criterion is the Case's `given`, `when` and `then` unless the item wrote `sections: Criterion` itself (194.1).
+**＋** The tests in `tests/test_pretask.py` fix `--check`; the live reading is the `/pre-task` of this session.
+**－** The `PreToolUse ExitPlanMode` hook (`rule-pretask-hook`) does not change.
 
 When:
-`guppi pretask --check <plan>` runs.
+The person invokes `/pre-task`, or the agent calls the skill, before the Spec is approved.
 
 Then:
-The frontier it checks is `raw/<hi date>/<hi HHMM>/frontier.md`; a missing file is one
-finding, as before.
-
-### case 74
-
-When:
-`guppi pretask --check <plan>` reads a ratified Case.
-
-Then:
-A Case with a line of a kind other than `defer` and no fenced block tagged `tasks` is
-one finding; a Case whose lines are all `defer` is none.
-**＋** The Render of `rule-pretask` says so in those words.
-**－** The code does not change; the unit test of the exemption is the reading.
-
-### case 75.2
-
-When:
-`guppi pretask --check <plan>` runs.
-
-Then:
-Every record line of the session's window — the ledgers of the window's dates, on the
-`hi` date from the `hi` time on — goes through `materialize.parse_line`; each that
-returns none is one finding with its date and line number, exit 1.
-**－** Lines before the `hi` are not read; a preview outside a LEDGER block is not a
-record and is not checked.
-
-### case 90.2
-
-When:
-`guppi pretask --check` runs against the plan of this Plan Mode.
-
-Then:
-It prints one line for every `update` with `contract: changed` whose page carries no
-Estimate or more than one while the item names no `estimate_slug`.
-**＋** The line names the Case, the page and the page's Estimates, so the person can see
-the choice.
-**－** A page with exactly one Estimate is no finding.
-
-### case 103.4
-
-When:
-`uv run guppi pretask --check` gathers the lines of the window.
-
-Then:
-The window is `raw/<hi date>/<hi HHMM>/ledger.md` whole, plus the date-level ledgers from the `hi` date to today from the `hi` time on, as today, while any exist.
-**＋** A grammar finding names the file: `raw/<date>/<HHMM>/ledger.md:<n>` or `raw/<date>/ledger.md:<n>`.
-**＋** `estimate-pretask-reconciles` gets a `### case 103.4` block, `pending`.
-
-### case 128
-
-When:
-The person invokes `/pre-task` and the agent assembles the dispatch for `ask-guppi`.
-
-Then:
-The Render of `rule-pretask`: "Dispatch the `ask-guppi` agent once with that list and the question" → "Dispatch the `ask-guppi` agent once with that list, the absolute path of the plan file, the instruction to read for every Case there its `when` and `then` sections and its `then` block — `replace` old and new, `set`, `sections` — before judging a page, so that a finding can name a wrong wording or a wrong place, and the question".
-**＋** `estimate-pretask-reconciles` gets a `### case 128` block, `pending`; read at this session's `/pre-task`: the dispatch carries the path and the instruction on `when`, `then` and the blocks, and no finding answers what the plan already does.
-**－** `{supersedes:case 121}`: `decision-case-121` is superseded, `rule-pretask` loses `deferred_by`.
+The agent runs `guppi pretask --check` on the plan file and fixes the plan, the frontier or the line for every finding until the command prints nothing; `guppi gate` writes the stamped `pretask` line into the event log on the Skill call.
+**＋** The agent lists every decision of this Plan Mode, one line each: slug — kind — `purpose` for a `create`, an `update`, a `delete`; a `defer` by its slug and the word `defer`; for an `update` of a rule or an entity, the page's `estimates` and which of them the Case names by slug.
+**＋** `ask-guppi` is dispatched once with the list, the absolute path of the plan file, the instruction to read every Case outside `## Deferred` — `when`, `then`, the `then` block — and two questions: which decisions contradict a page, `index.md` or each other; whether an Estimate the Case does not name speaks of the thing the Case changes.
+**＋** Every finding returned is raised as a Case or named in one line as already known; then Plan Mode exits again.
+**－** The body of a deferred decision is not read; a Case that changes a page another Case of the plan defers is still a finding.
 
 ## Method
 
@@ -100,7 +41,7 @@ allows.
 
 ## Result
 
-block 128 at the /pre-task of session N: the dispatch carried the plan file's absolute path and the instruction to read every Case's when, then and then block; ask-guppi returned ten findings, each naming a page and a sentence, and none answered what a then block already does; four were wrong places or absent old texts in the blocks themselves, which a summary would not have shown
+2026-09-16, the /pre-task of this session: `--check` run and its four old-form findings named known in one line; the list carried every decision with its type and purpose, defers by slug and the word defer, and for each rule update the page's estimates and which the Case names; ask-guppi dispatched once with the plan path, the instruction to read every Case outside ## Deferred and both questions; three findings raised as Case 208, the rest named known; read against the Criterion of 203.2 with the Render still of 198
 
 ## History
 
@@ -121,3 +62,5 @@ block 128 at the /pre-task of session N: the dispatch carried the plan file's ab
 - 2026-09-14 status: pending → passed · raw/2026-09-14/0747/ledger.md#L38
 - 2026-09-14 criterion: case 128 added · [[decision-case-128]]
 - 2026-09-14 status: pending → passed · raw/2026-09-14/1029/ledger.md#L25
+- 2026-09-16 updated: the Criterion replaced whole by case 203.2 — the live run of the skill; the blocks 73.4, 74, 75.2, 90.2, 103.4 go to -checks-the-plan, 128 stays here (case 203.2) · [[decision-case-203.2]]
+- 2026-09-16 status: pending → passed · raw/2026-09-16/1955/ledger.md#L34

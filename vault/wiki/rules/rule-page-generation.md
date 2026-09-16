@@ -6,8 +6,7 @@ status: built
 enforcement: check
 implementation_ref: [guppi/generate.py, tests/test_generate.py]
 parent: "[[rule-documentation]]"
-estimates: ["[[estimate-generate-writes]]", "[[estimate-generate-walks-dates]]"]
-deferred_by: ["[[decision-case-191]]"]
+estimates: ["[[estimate-generate-writes]]", "[[estimate-generate-walks-dates]]", "[[estimate-generate-writes-the-decision-page]]", "[[estimate-generate-fails-alone]]", "[[estimate-generate-cascades]]"]
 origin: raw/2026-09-10/ledger.md#case-32
 sprint: migration
 created: 2026-09-10
@@ -18,10 +17,19 @@ tags: [harness, workflow, ledger]
 
 Prevents a ratified decision from ending the session without a page, or a page from
 carrying a field nobody ratified. The script is the only writer to `wiki/`. It lays
-the content of `materialize.yaml` into schema fields, derives what is derivable and
-writes nothing else. A page is always created, even incomplete: red lint is an
-accurate signal of debt, a decision with no page is the ledger and the vault
-disagreeing silently. A slug collision is an error, never a rename — with one exception: a `create` whose slug is a placeholder page, `status: draft` and no `kind`, fills that page (case 101.1).
+the content of `materialize.yaml` into schema fields and writes nothing else: no
+section is derived from a ref field, no Estimate from a flag, and the Criterion of an
+Estimate is replaced whole by the text its Case signed (cases 166.2, 194.1, 201.1). A
+page is always created, even incomplete: red lint is an accurate signal of debt, a
+decision with no page is the ledger and the vault disagreeing silently. A slug
+collision is an error, never a rename — with one exception: a `create` whose slug is a
+placeholder page, `status: draft` and no `kind`, fills that page (case 101.1). One bad
+entry never stops the run: it is marked `failed`, reported, and the rest apply (case
+47). The Decision page of a Case is written before its entries and carries the body of
+every defer (cases 52.4, 186.1); the cascade after all entries computes what is
+computed — `built`, the archive of a superseded decision, the severity of an Insight —
+never by hand (case 104). The mechanism — the shape of every entry and every History
+line — lives in the docstring of `guppi/generate.py`.
 
 ## History
 
@@ -80,3 +88,8 @@ disagreeing silently. A slug collision is an error, never a rename — with one 
 - 2026-09-16 updated: a defer writes its purpose to the decision page under · [[decision-case-186.1]]
 - 2026-09-16 defer by decision-case-182 superseded · [[decision-case-191]]
 - 2026-09-16 deferred · [[decision-case-191]]
+- 2026-09-16 updated: Purpose carries the text of the model; How it works dropped by hand, the mechanism in the docstring of guppi/generate.py (case 201.1) · [[decision-case-201.1]]
+- 2026-09-16 estimate estimate-generate-writes-the-decision-page added · [[decision-case-201.2]]
+- 2026-09-16 estimate estimate-generate-fails-alone added · [[decision-case-201.3]]
+- 2026-09-16 estimate estimate-generate-cascades added · [[decision-case-201.4]]
+- 2026-09-16 defer by decision-case-191 superseded · [[decision-case-203.2]]

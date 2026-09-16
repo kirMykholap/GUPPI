@@ -1,9 +1,10 @@
 ---
 type: decision
 case: "191"
-status: current
+status: archived
 defer: ["[[rule-page-generation]]", "[[rule-lint]]", "[[rule-pretask]]"]
 supersedes: ["[[decision-case-182]]"]
+superseded_by: ["[[decision-case-203.2]]"]
 origin: raw/2026-09-16/1034/ledger.md#case-191
 sprint: migration
 created: 2026-09-16
@@ -54,3 +55,6 @@ defer.
 ## History
 
 - 2026-09-16 created · raw/2026-09-16/1034/ledger.md#case-191
+- 2026-09-16 superseded by decision-case-203.2 · [[decision-case-203.2]]
+- 2026-09-16 archived · superseded
+- 2026-09-16 archived · cleanup

@@ -1,15 +1,16 @@
 ---
 type: estimate
 kind: QA
-status: pending
+status: passed
 target: "[[rule-case-protocol]]"
+purpose: The written shape of a ledger line, as the documents state it
+method: one reading by hand of `case-schema.md`, `index.md` §4 and the ledger paragraph of the Render, at a session start
+checked: 2026-09-16
 origin: raw/2026-09-16/1034/ledger.md#case-188
 sprint: migration
 created: 2026-09-16
 tags: [session, workflow, ledger]
 ref: rule-case-protocol
-purpose: The written shape of a ledger line, as the documents state it
-method: one reading by hand of `case-schema.md`, `index.md` §4 and the ledger paragraph of the Render, at a session start
 ---
 
 ## Criterion
@@ -32,6 +33,11 @@ never carries one."
 **－** `rule-ledger-write` does not change: the hook writes verbatim and checks
 nothing.
 
+## Result
+
+2026-09-16, `case-schema.md`, `index.md` §4 and the ledger paragraph of the Render read by hand: the two example lines with `case N` as the word and a space stand in all three, the sentence on `{source:...}` stands in the Render and in CLAUDE.md
+
 ## History
 
 - 2026-09-16 created · [[decision-case-188]]
+- 2026-09-16 status: pending → passed · raw/2026-09-16/1955/ledger.md#L38

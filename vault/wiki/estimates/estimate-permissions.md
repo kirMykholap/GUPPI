@@ -1,8 +1,9 @@
 ---
 type: estimate
 kind: QA
-status: pending
+status: passed
 target: "[[rule-permissions]]"
+checked: 2026-09-16
 origin: raw/2026-09-12/ledger.md#case-85.5
 sprint: migration
 created: 2026-09-12
@@ -35,10 +36,11 @@ the six entries in the rendered .claude/settings.json and the JSON case of tests
 
 ## Result
 
-the six allow entries stand in the rendered .claude/settings.json, Edit and Write for frontier.md, spec.md and handoff.md under vault/raw/**, deny and ask absent; live 2026-09-13 session L: six Edit calls on raw/2026-09-13/0652/frontier.md in Plan Mode, where only the plan file is otherwise allowed, and two on 0652/spec.md in Work Mode, none asked the person; the file written by render --sync at this session's start took effect within the same session
+2026-09-16, the live probe at this session's /hi in Plan Mode: the Write of raw/2026-09-16/1955/frontier.md returned without a prompt; `.claude/settings.json` allow holds nine entries — Edit and Write for frontier.md, spec.md, handoff.md, Write for carry.md under vault/raw/**, Edit and Write for vault/wiki/brief.md — deny and ask empty; the Criterion says eight and lists nine: its own count is off by one, the set it names is what stands
 
 ## History
 
 - 2026-09-12 created · [[decision-case-85.5]]
 - 2026-09-13 status: pending → passed · raw/2026-09-13/ledger.md#L47
 - 2026-09-16 updated: the Criterion replaced whole by case 200.5 — nine allow entries, carry.md and brief.md among them (case 200.5) · [[decision-case-200.5]]
+- 2026-09-16 status: pending → passed · raw/2026-09-16/1955/ledger.md#L39

@@ -7,7 +7,6 @@ enforcement: check
 implementation_ref: [guppi/lint.py, tests/test_lint.py, Makefile]
 parent: "[[rule-harness]]"
 estimates: ["[[estimate-lint-catches]]"]
-deferred_by: ["[[decision-case-191]]"]
 origin: raw/2026-09-09/ledger.md#case-21
 sprint: migration
 created: 2026-09-09
@@ -16,12 +15,17 @@ tags: [harness, workflow]
 
 ## Purpose
 
-Prevents a page that breaks its schema, points at nothing, or claims a status its
-Estimates do not support from sitting in the vault unnoticed. Pages are written by hand
-until the generator exists and by script after; both drift, and nothing else reads the
-whole graph at once. `make lint` runs it after `render --check`; both only report, so the Makefile's rule — no target writes to the tree — holds (case 147.7).
-
-`parent: rule-harness` names the MOC of the harness tools: lint runs with the renderer, in no phase of the session.
+Prevents a page that breaks its schema, points at nothing, claims a status its
+Estimates do not support, or waits for a reading nobody took from sitting in the vault
+unnoticed. Pages are written by the generator and, for the Rule-class files, by hand;
+both drift, and nothing else reads the whole graph at once. Red is a signal, not a
+gate: a `pending` Estimate is red until its reading (case 182, point 13), a
+placeholder is red with the count of its defers (case 186.3), the pages of the shape
+before case 193 are red as one counted line until the last is recut (case 202).
+`make lint` runs it after `render --check`; both only report, so the Makefile's rule
+— no target writes to the tree — holds (case 147.7). `parent: rule-harness` names the
+MOC of the harness tools: lint runs with the renderer, in no phase of the session. The
+classes and their order live in the docstring of `guppi/lint.py`.
 
 ## History
 
@@ -53,3 +57,5 @@ whole graph at once. `make lint` runs it after `render --check`; both only repor
 - 2026-09-16 updated: a placeholder earns one deferred finding with its count instead of the schema and orphan findings (case 186.3) · [[decision-case-186.3]]
 - 2026-09-16 defer by decision-case-182 superseded · [[decision-case-191]]
 - 2026-09-16 deferred · [[decision-case-191]]
+- 2026-09-16 updated: Purpose carries unread, deferred and unmigrated; How it works dropped by hand, the classes in the docstring of guppi/lint.py (case 202) · [[decision-case-202]]
+- 2026-09-16 defer by decision-case-191 superseded · [[decision-case-203.2]]

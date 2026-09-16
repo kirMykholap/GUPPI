@@ -24,8 +24,7 @@ defect of the ledger, and it shows here.
 
 It also prevents a promise from being written by derivation. No Estimate is derived
 from a flag: an Estimate has its own ledger line and its own entry, and its Criterion
-is the `given`, `when` and `then` of the Case that names it, lifted verbatim into the
-entry's `sections` and replacing what stood on the page (cases 189, 194.1). A unit
+is the `given`, `when` and `then` of the Case that names it, lifted verbatim into the entry's `sections` and replacing what stood on the page (cases 189, 194.1); a Criterion the item writes under `sections` itself stands instead, on a `create` and on an `update` alike — it is signed in the same block, and it is how one Case touches two promises (case 204). A unit
 whose folder holds `carry.md` is passed by with one line on stdout: its Spec was
 ratified and its work not done (case 190.3). The mechanism and the full list of an
 entry's fields, each with its writer, live in the docstring of `guppi/materialize.py`.
@@ -83,3 +82,4 @@ entry's fields, each with its writer, live in the docstring of `guppi/materializ
 - 2026-09-16 defer by decision-case-182 superseded · [[decision-case-191]]
 - 2026-09-16 status: built → draft · cascade
 - 2026-09-16 updated: Purpose carries the text of 189 and 190.3; How it works dropped by hand, the mechanism and the field list in the docstring (case 194.1) · [[decision-case-194.1]]
+- 2026-09-16 updated: a written Criterion stands on a create and on an update alike (case 204) · [[decision-case-204]]

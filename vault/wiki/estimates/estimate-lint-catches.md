@@ -3,6 +3,7 @@ type: estimate
 kind: QA
 status: passed
 target: "[[rule-lint]]"
+checked: 2026-09-16
 origin: raw/2026-09-09/ledger.md#case-21
 sprint: migration
 created: 2026-09-09
@@ -17,56 +18,30 @@ pages written by hand since Slice 0, whose findings are the debt the brief carri
 
 ## Criterion
 
-Against a temp vault seeded with one page per defect class, `guppi lint` names each
-defective page with the class and nothing else, exits 1, and exits 0 with no output on a
-clean vault; the two Method classes (case 26.2) are seeded too, and the classes of cases 52 and 53: a decision page with none of the four kind lists or with kind or target_slug still present, a slug in one of the lists naming neither a live nor an archived page, a deferred_by naming no decision, a History wikilink resolving to nothing, an estimate whose target is not an entity or a rule; a lesson without estimates is not a finding; a decision page without ## When is not a finding, a ## Criterion link resolving to no Estimate page is one, and a ### case N block of an Estimate naming no decision page is one. Against the live vault:
-the first run's findings are each either an item of the brief's known-false list or
-become a Case.
-
-### case 103.5
+Given:
+`guppi lint` reads every live page of `wiki/<category>/` against the category's `schema.yaml` and writes nothing.
+**＋** `estimates/schema.yaml` (193): `purpose`, `method`, `checked` are optional fields; `## Context`, `## Method` optional sections; `## Result` required on `passed` and `failed`.
+**＋** The tests in `tests/test_lint.py` fix the behaviour, one per class; the live reading is `make lint` in the librarian's run of this session.
+**－** `render --check` and the Makefile do not change.
 
 When:
-`uv run guppi lint` checks an `origin` and gathers the known slugs.
+`uv run guppi lint` reads the live pages of the vault.
 
 Then:
-`raw/<date>/ledger.md#…` is looked for at `vault/raw/<date>/ledger.md`, then at `vault/archive/*/<date>/raw/ledger.md`; `raw/<date>/<HHMM>/ledger.md#…` at `vault/raw/<date>/<HHMM>/ledger.md`, then at `vault/archive/*/<date>/<HHMM>/raw/ledger.md`; the `[case N]` or line-number check runs on the file found.
-**＋** In neither: the finding `no such ledger`; in both: the finding `two ledgers for <path>`.
-**＋** The archived slugs are every `*.md` under `vault/archive/` except those under a `raw/` folder.
-**＋** `estimate-lint-catches` gets a `### case 103.5` block; the block of 100.3 is removed.
-
-### case 112.1
-
-When:
-`guppi lint` checks the Method of an Estimate whose target is a MOC.
-
-Then:
-A Method that names a `make <target>` present in the Makefile passes, whatever else it says.
-**＋** Only a Method with no target is judged on "by hand": it passes when every child's Estimate says by hand, and is a finding naming the first child that names a test file.
-**＋** `estimate-lint-catches` gets a `### case 112.1` block, `pending`; a test in `tests/test_lint.py` seeds a MOC's Estimate with `make lint` and "by hand" and expects no finding.
-
-### case 149.3
-
-When:
-`guppi lint` checks a `[[…]]` in the body of a page.
-
-Then:
-The link resolves when its text is the slug of a live or archived page, the stem of a file `vault/wiki/*.md` (`brief`, `sprint`, `tags`, `log`, `index`, `glossary`, `case-schema`) or the path of a file under `vault/wiki/` without `.md` (`rules/schema`); otherwise a `ref` finding as today.
-**＋** Test: `[[brief]]` and `[[rules/schema]]` in a body — no finding; `[[nowhere]]` — a finding.
-**－** Frontmatter fields — page slugs only, as today.
-
-### case 156
-
-When:
-`uv run guppi lint` checks orphans.
-
-Then:
-An Insight is not an orphan finding, whatever its `status`: its owners are its children, which it names itself in `children`, live or archived; `check_orphans` excludes `insights` beside `decisions` and `lessons`.
-**＋** The text of `rule-lint`: "orphans (a live entity, rule or estimate no other live page names in its frontmatter; a lesson is a record and an Insight names it or not; an Insight owns its children through `children` and is named by no live page once they are archived — neither is one, case 156)"; the docstring of `lint.py` says the same.
-**＋** `rule-lint` `contract: changed`; `estimate-lint-catches` gets a `### case 156` block, `pending`; a test: an Insight nothing names, `status: actioned` — no finding; a rule without an owner — a finding as before.
-**＋** The reading in Work Mode: the test green, live `guppi lint` 84 → 74, no `orphan` on `insights/`.
-**＋** `decision-case-146` superseded, `rule-lint` loses `deferred_by`.
-**－** The definition for entity, rule and estimate does not change; decision pages and bodies do not become ownership — Obsidian's notion is not adopted, the lesson stands.
-**－** The orphans of the Obsidian graph (the placeholders of F1, the hub files) are not this Case.
+Every live page is checked against the `schema.yaml` of its category; one line per finding, `<category>/<slug>: <class>: <what>`; exit 1 on any finding, 0 and no output on a clean vault; nothing is written.
+**＋** `schema`: a missing required field or section, a value outside the list, a conditional not met; `## When` is never required on a Decision page; `schema-prose`: `schema.md` and `schema.yaml` naming different fields or sections.
+**＋** `ref`: a slug in `parent`, `children`, `estimates`, `target`, `insight`, `addressed_by`, `deferred_by` or in a History wikilink that no live or archived page carries; a `[[…]]` in a body may name a hub file under `wiki/` by stem or path; a `[[slug]]` under a Decision page's `## Criterion` that is no Estimate; a `### case N` block of an Estimate with no decision page.
+**＋** `origin`: both forms resolve in `raw/` or in `vault/archive/`; in neither, or in both, a finding.
+**＋** `path`: a file of `implementation_ref` or `governs` that does not exist.
+**＋** `orphan`: a live entity, rule or estimate that no live page's frontmatter names; a lesson and an Insight never.
+**＋** `status`: `built` with an Estimate not `passed`, `draft` with every one `passed`; an Estimate `passed` or `failed` without `## Result`; an Estimate whose target is not an entity or a rule, or does not list it in `estimates`.
+**＋** `unread`: every Estimate `pending` or `failed` — one finding each, `unread: <status>`; red between a change of a promise and its reading, by design.
+**＋** `method`: the `method` field, or on a page of the old shape the `## Method` section; for a MOC's Estimate a named `make <target>` of the Makefile passes whatever stands beside it, without one `by hand` passes only when the Estimates of every child are by hand; for a Leaf's Estimate a `tests/` file that exists, the word `pytest`, a `make <target>` of the Makefile or a reading (`by hand`, `reading`); else a finding.
+**＋** `decision`: a decision page with none of the four lists, or with `kind`/`target_slug`; a listed slug with a category prefix and no page.
+**＋** `deferred`: a placeholder earns one finding `deferred: <N> times since case <M>` in place of its `schema` and `orphan` findings; a page with `deferred_by` whose fields are in place earns none.
+**＋** `unmigrated`: one line, `estimates: unmigrated: <N> pages in the shape before case 193` — the live Estimates without a `method` field, or with `## Context`, `## Method` or a `### case N` block; no line at zero.
+**－** `make lint` runs it after `render --check`; neither writes.
+**－** The checks of the old shape — `## Method` as a section, the `### case N` blocks — leave by a separate `update` of this rule once the counter reads zero; not this Case.
 
 ## Method
 
@@ -75,7 +50,7 @@ written into the estimate line.
 
 ## Result
 
-2026-09-16, `pytest tests/test_lint.py`: 50 green, 186.3 — a placeholder earns one finding `deferred: <N> times since case <M>` in place of the three schema findings and orphan, a page with deferred_by whose fields are in place earns none, a placeholder missing another field still earns that schema finding; live, `make lint`: 70 → 64, rules/rule-work-mode and rules/rule-subagent-guppi each `deferred: 13 times since case 29`, M read from the ledger pointer of the placeholder line of 2026-09-10
+2026-09-16, `pytest tests/test_lint.py`: 54 green — unread on pending and failed, the method field read with a test path, pytest, a make target or a reading passing, the ## Method section read on a page of the old shape, unmigrated as one line and none at zero; live, `make lint`: 77 findings — 62 of Cases 1–28, 2 deferred, 10 unread, 1 method (estimate-plan-mode-names-its-estimates says by hand while estimate-spec-capture-offers-the-fork names a test file — new, the MOC rule of 112.1 now reads the field), `estimates: unmigrated: 42 pages in the shape before case 193`; the body [[slug]] finding on estimate-generate-writes leaves with its recut
 
 ## History
 
@@ -99,3 +74,5 @@ written into the estimate line.
 - 2026-09-15 criterion: case 156 added · [[decision-case-156]]
 - 2026-09-15 status: pending → passed · raw/2026-09-15/1110/ledger.md#L24
 - 2026-09-16 status: passed → passed · raw/2026-09-16/1651/ledger.md#L38
+- 2026-09-16 updated: the Criterion replaced whole by case 202 — the head and the blocks 103.5, 112.1, 149.3, 156 recut into one, with unread, the method field and unmigrated (case 202) · [[decision-case-202]]
+- 2026-09-16 status: pending → passed · raw/2026-09-16/1955/ledger.md#L32

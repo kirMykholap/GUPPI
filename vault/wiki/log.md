@@ -1775,3 +1775,67 @@ instruction. The global feed; a page's own `## History` is the per-page view.
 - 2026-09-16 decisions/decision-case-185 archived · cleanup
 - 2026-09-16 decisions/decision-case-195 archived · cleanup
 - 2026-09-16 decisions/decision-case-196.4 archived · cleanup
+- 2026-09-16 decisions/decision-case-201.1 created · raw/2026-09-16/1955/ledger.md#case-201.1 · generate
+- 2026-09-16 rules/rule-page-generation updated: Purpose carries the text of the model; How it works dropped by hand, the mechanism in the docstring of guppi/generate.py (case 201.1) · [[decision-case-201.1]] · generate
+- 2026-09-16 estimates/estimate-generate-writes updated: the Criterion replaced whole by case 201.1 — the head recut with 101.1, 105.3, 166.2, 171 and 172; 104.x and 166.3 go to -cascades, 142.2 and 151 to -fails-alone; the ten blocks leave (case 201.1) · [[decision-case-201.1]] · generate
+- 2026-09-16 decisions/decision-case-201.2 created · raw/2026-09-16/1955/ledger.md#case-201.2 · generate
+- 2026-09-16 estimates/estimate-generate-writes-the-decision-page created · [[decision-case-201.2]] · generate
+- 2026-09-16 estimates/estimate-generate-writes-the-decision-page status: pending → passed · raw/2026-09-16/1955/ledger.md#L28 · generate
+- 2026-09-16 rules/rule-page-generation estimate estimate-generate-writes-the-decision-page added · [[decision-case-201.2]] · generate
+- 2026-09-16 decisions/decision-case-201.3 created · raw/2026-09-16/1955/ledger.md#case-201.3 · generate
+- 2026-09-16 estimates/estimate-generate-fails-alone created · [[decision-case-201.3]] · generate
+- 2026-09-16 estimates/estimate-generate-fails-alone status: pending → passed · raw/2026-09-16/1955/ledger.md#L29 · generate
+- 2026-09-16 rules/rule-page-generation estimate estimate-generate-fails-alone added · [[decision-case-201.3]] · generate
+- 2026-09-16 decisions/decision-case-201.4 created · raw/2026-09-16/1955/ledger.md#case-201.4 · generate
+- 2026-09-16 estimates/estimate-generate-cascades created · [[decision-case-201.4]] · generate
+- 2026-09-16 estimates/estimate-generate-cascades status: pending → passed · raw/2026-09-16/1955/ledger.md#L30 · generate
+- 2026-09-16 rules/rule-page-generation estimate estimate-generate-cascades added · [[decision-case-201.4]] · generate
+- 2026-09-16 decisions/decision-case-201.5 created · raw/2026-09-16/1955/ledger.md#case-201.5 · generate
+- 2026-09-16 estimates/estimate-generate-walks-dates updated: the Criterion replaced whole by case 201.5 — the head and block 103.3 recut into one (case 201.5) · [[decision-case-201.5]] · generate
+- 2026-09-16 decisions/decision-case-202 created · raw/2026-09-16/1955/ledger.md#case-202 · generate
+- 2026-09-16 rules/rule-lint updated: Purpose carries unread, deferred and unmigrated; How it works dropped by hand, the classes in the docstring of guppi/lint.py (case 202) · [[decision-case-202]] · generate
+- 2026-09-16 estimates/estimate-lint-catches updated: the Criterion replaced whole by case 202 — the head and the blocks 103.5, 112.1, 149.3, 156 recut into one, with unread, the method field and unmigrated (case 202) · [[decision-case-202]] · generate
+- 2026-09-16 decisions/decision-case-203.1 created · raw/2026-09-16/1955/ledger.md#case-203.1 · generate
+- 2026-09-16 estimates/estimate-pretask-checks-the-plan created · [[decision-case-203.1]] · generate
+- 2026-09-16 estimates/estimate-pretask-checks-the-plan status: pending → passed · raw/2026-09-16/1955/ledger.md#L33 · generate
+- 2026-09-16 rules/rule-pretask estimate estimate-pretask-checks-the-plan added · [[decision-case-203.1]] · generate
+- 2026-09-16 decisions/decision-case-203.2 created · raw/2026-09-16/1955/ledger.md#case-203.2 · generate
+- 2026-09-16 decisions/decision-case-191 superseded by decision-case-203.2 · [[decision-case-203.2]] · generate
+- 2026-09-16 rules/rule-page-generation defer by decision-case-191 superseded · [[decision-case-203.2]] · generate
+- 2026-09-16 rules/rule-lint defer by decision-case-191 superseded · [[decision-case-203.2]] · generate
+- 2026-09-16 rules/rule-pretask defer by decision-case-191 superseded · [[decision-case-203.2]] · generate
+- 2026-09-16 rules/rule-pretask updated: the findings of --check by the Estimate model; the list for ask-guppi carries the page's estimates and the ones the Case names; supersedes 191 (case 203.2) · [[decision-case-203.2]] · generate
+- 2026-09-16 estimates/estimate-pretask-reconciles updated: the Criterion replaced whole by case 203.2 — the live run of the skill; the blocks 73.4, 74, 75.2, 90.2, 103.4 go to -checks-the-plan, 128 stays here (case 203.2) · [[decision-case-203.2]] · generate
+- 2026-09-16 decisions/decision-case-204 created · raw/2026-09-16/1955/ledger.md#case-204 · generate
+- 2026-09-16 rules/rule-materialize updated: a written Criterion stands on a create and on an update alike (case 204) · [[decision-case-204]] · generate
+- 2026-09-16 estimates/estimate-materialize-assembles updated: the Criterion replaced whole by case 204 — the text of 194.1 with the written Criterion winning on an update, the given without the state of pages (case 204) · [[decision-case-204]] · generate
+- 2026-09-16 decisions/decision-case-205 created · raw/2026-09-16/1955/ledger.md#case-205 · generate
+- 2026-09-16 insights/insight-ledger-hi-tied-to-its-session-by-position deferred · [[decision-case-205]] · generate
+- 2026-09-16 decisions/decision-case-206 created · raw/2026-09-16/1955/ledger.md#case-206 · generate
+- 2026-09-16 rules/rule-work-mode deferred · [[decision-case-206]] · generate
+- 2026-09-16 rules/rule-subagent-guppi deferred · [[decision-case-206]] · generate
+- 2026-09-16 decisions/decision-case-207 created · raw/2026-09-16/1955/ledger.md#case-207 · generate
+- 2026-09-16 rules/rule-spec-box deferred, placeholder · [[decision-case-207]] · generate
+- 2026-09-16 decisions/decision-case-208.1 created · raw/2026-09-16/1955/ledger.md#case-208.1 · generate
+- 2026-09-16 decisions/decision-case-208.2 created · raw/2026-09-16/1955/ledger.md#case-208.2 · generate
+- 2026-09-16 rules/rule-case-protocol updated: a written Criterion stands on an update as on a create; the Case's text is the Criterion of the one item that writes none (case 208.2) · [[decision-case-208.2]] · generate
+- 2026-09-16 estimates/estimate-case-protocol-case-form updated: the Criterion replaced whole by case 208.2 — the text of 188 with the given recut and the line on a written Criterion (case 208.2) · [[decision-case-208.2]] · generate
+- 2026-09-16 decisions/decision-case-208.3 created · raw/2026-09-16/1955/ledger.md#case-208.3 · generate
+- 2026-09-16 rules/rule-pretask updated: the dispatch sentence names the two questions of 203.2 (case 208.3) · [[decision-case-208.3]] · generate
+- 2026-09-16 estimates/estimate-generate-writes status: pending → passed · raw/2026-09-16/1955/ledger.md#L27 · generate
+- 2026-09-16 estimates/estimate-generate-walks-dates status: pending → passed · raw/2026-09-16/1955/ledger.md#L31 · generate
+- 2026-09-16 estimates/estimate-lint-catches status: pending → passed · raw/2026-09-16/1955/ledger.md#L32 · generate
+- 2026-09-16 estimates/estimate-pretask-reconciles status: pending → passed · raw/2026-09-16/1955/ledger.md#L34 · generate
+- 2026-09-16 estimates/estimate-materialize-assembles status: pending → passed · raw/2026-09-16/1955/ledger.md#L35 · generate
+- 2026-09-16 estimates/estimate-case-protocol-acknowledging-reply status: pending → passed · raw/2026-09-16/1955/ledger.md#L36 · generate
+- 2026-09-16 estimates/estimate-case-protocol-loaded status: pending → passed · raw/2026-09-16/1955/ledger.md#L37 · generate
+- 2026-09-16 estimates/estimate-case-protocol-ledger-line-form status: pending → passed · raw/2026-09-16/1955/ledger.md#L38 · generate
+- 2026-09-16 estimates/estimate-permissions status: pending → passed · raw/2026-09-16/1955/ledger.md#L39 · generate
+- 2026-09-16 lessons/lesson-materialize-item-ref-lifted-as-a-page-field created · raw/2026-09-16/1955/ledger.md#L40 · generate
+- 2026-09-16 estimates/estimate-case-protocol-case-form status: pending → passed · raw/2026-09-16/1955/ledger.md#L41 · generate
+- 2026-09-16 insights/insight-materialize-lift-loses-a-schema-field updated: reopened by librarian: a third lesson of the same pattern — _lift_item copies every key of a then item into fields except a fixed list, and case 194.1 added ref to the Estimate item without extending the list, so the page carries a field the schema does not know; the parser decides what a page gets by a fixed list, not by the schema (lesson-materialize-item-ref-lifted-as-a-page-field) · generate
+- 2026-09-16 lessons/lesson-materialize-item-ref-lifted-as-a-page-field updated: clustered by librarian under insight-materialize-lift-loses-a-schema-field · generate
+- 2026-09-16 rules/rule-case-protocol status: draft → built · cascade · generate
+- 2026-09-16 rules/rule-permissions status: draft → built · cascade · generate
+- 2026-09-16 decisions/decision-case-191 archived · superseded · generate
+- 2026-09-16 decisions/decision-case-191 archived · cleanup

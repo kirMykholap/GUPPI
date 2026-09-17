@@ -8,6 +8,7 @@ import io
 import json
 
 import pytest
+import yaml
 
 from guppi import render
 
@@ -384,3 +385,86 @@ def test_sync_on_a_json_target_that_does_not_parse_exits_0_and_writes_nothing(tm
     assert (code, out) == (0, "")
     assert "does not parse as JSON" in err
     assert not (tmp_path / ".claude" / "settings.json").exists()
+
+
+# --- the tick of the `guppi render` lines (case 226.2) ----------------------------------
+
+
+RENDER_SPEC = """# Spec
+
+## Case 5 — x
+
+```tasks
+- [ ] update `rule-one`: one `replace`
+- [ ] `uv run guppi render`: `out/SKILL.md`
+- [ ] `guppi render`; `render --check` exit 0
+- [ ] read `estimate-one`
+```
+"""
+
+
+def raw_unit(tmp_path, unit, applied=True, failed=False, carry=False, spec=RENDER_SPEC):
+    folder = tmp_path / "vault" / "raw" / unit
+    folder.mkdir(parents=True)
+    entries = [{"line": 1, "kind": "update", "slug": "rule-one", "case": "5"}]
+    if applied:
+        entries[0]["applied"] = "10:00:00"
+    if failed:
+        entries[0]["failed"] = "generate: rule-one: boom"
+    data = {"date": unit.split("/")[0], "entries": entries, "decisions": []}
+    (folder / "materialize.yaml").write_text(yaml.safe_dump(data), encoding="utf-8")
+    (folder / "spec.md").write_text(spec, encoding="utf-8", newline="\n")
+    if carry:
+        (folder / "carry.md").write_text("carried\n", encoding="utf-8")
+    return folder / "spec.md"
+
+
+def test_a_plain_render_ticks_the_render_lines_of_every_applied_unit(tmp_path):
+    frame_vault(tmp_path)
+    session = raw_unit(tmp_path, "2026-09-17/1119")
+    date_level = raw_unit(tmp_path, "2026-09-16")
+    code, _, err = run([], tmp_path)
+    assert (code, err) == (0, "")
+    for spec in (session, date_level):
+        text = spec.read_text(encoding="utf-8")
+        assert "- [x] `uv run guppi render`: `out/SKILL.md`" in text
+        assert "- [x] `guppi render`; `render --check` exit 0" in text
+        assert "- [ ] update `rule-one`: one `replace`" in text
+        assert "- [ ] read `estimate-one`" in text
+
+
+def test_check_sync_and_a_failed_render_tick_nothing(tmp_path):
+    frame_vault(tmp_path)
+    spec = raw_unit(tmp_path, "2026-09-17/1119")
+    assert run(["--check"], tmp_path)[0] == 1
+    assert spec.read_text(encoding="utf-8") == RENDER_SPEC
+    assert run(["--sync"], tmp_path)[0] == 0
+    assert spec.read_text(encoding="utf-8") == RENDER_SPEC
+    page(  # rule-two no longer renders, yet the frame names it: the render fails
+        tmp_path,
+        "rule-two",
+        {
+            "type": "rule",
+            "kind": "Leaf",
+            "purpose": "x",
+            "status": "draft",
+            "enforcement": "hook",
+            "parent": "rule-frame",
+        },
+    )
+    code, _, err = run([], tmp_path)
+    assert code == 1 and err
+    assert spec.read_text(encoding="utf-8") == RENDER_SPEC
+
+
+def test_an_unapplied_a_failed_and_a_carried_over_unit_are_not_touched(tmp_path):
+    frame_vault(tmp_path)
+    unapplied = raw_unit(tmp_path, "2026-09-17/1000", applied=False)
+    failed = raw_unit(tmp_path, "2026-09-17/1100", failed=True)
+    carried = raw_unit(tmp_path, "2026-09-17/1200", carry=True)
+    no_yaml = tmp_path / "vault" / "raw" / "2026-09-17" / "1300"
+    no_yaml.mkdir(parents=True)
+    (no_yaml / "spec.md").write_text(RENDER_SPEC, encoding="utf-8", newline="\n")
+    assert run([], tmp_path)[0] == 0
+    for spec in (unapplied, failed, carried, no_yaml / "spec.md"):
+        assert spec.read_text(encoding="utf-8") == RENDER_SPEC

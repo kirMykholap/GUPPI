@@ -26,7 +26,8 @@ raw/                 session artifacts land here first; a session moves whole in
       ledger.md      ratified decisions, readings and lessons of the session (case 103.1)
       materialize.yaml action list for the generation script, one per session (case 103.2)
       spec.md        Plan Mode output: the Cases, their `then` blocks and their `tasks`,
-                     ticked in Work Mode (case 59.3)
+                     ticked in Work Mode; the page and render lines by `generate` and
+                     `render` (cases 59.3, 226)
       frontier.md    the Frontier of the session, one line per item, closed as the
                      session goes (case 59.2)
       handoff.md     the main agent's notes + direct instructions
@@ -113,7 +114,7 @@ Every file that governs how the system behaves changes **only** through a ratifi
 | `<category>/schema.yaml`, `schema.md` | Rule | ratified `decision update` |
 | `tags.md` | registry | written during the session — but only registering tags already ratified in a Case |
 | `brief.md` | working | written by the librarian each session; also by `/carry`, when a session conserves its Spec (case 200.2) |
-| `sprint.md` | rendered | written by `guppi sprint` from the sprint page `entity-sprint-<id>` — its Estimates the Definition of done, its `## Backlog` the Slices, one tick per item by the status of the page it names; not a page, no schema, exempt from lint; the governed-files hook refuses a hand edit — the backlog changes by an `update` of the sprint page (case 209) |
+| `sprint.md` | rendered | written by `guppi sprint` from the sprint page `entity-sprint-<id>` — its Estimates the Definition of done, its `## Milestones` the Slices in order — the current one rendered whole, the others one line — and its `## Backlog` the items without a turn, one tick per item by the status of the page it names, a plain line never ticked; not a page, no schema, exempt from lint; `sprint --check` in `make lint` names a drift; the governed-files hook refuses a hand edit — the sprint changes by an `update` of the sprint page (cases 209, 227, 229) |
 | `log.md`, page `History` | generated | appended by `guppi generate` and `guppi cleanup` |
 
 The distinction: **Rule-class files decide what the system does, so changing them is a decision.** Registries and generated files record what already happened, so they are written mechanically.

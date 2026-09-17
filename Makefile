@@ -26,8 +26,9 @@ style: ## ruff over the Python in this repository; must be clean before every co
 test: ## pytest over the harness's own suite
 	@uv run pytest -q < /dev/null
 
-lint: ## the vault: the rendered harness matches its pages, pages pass the checks
+lint: ## the vault: the rendered harness and the sprint file match their pages, pages pass the checks
 	@uv run guppi render --check < /dev/null
+	@uv run guppi sprint --check < /dev/null
 	@uv run guppi lint < /dev/null
 
 test-session-start: ## the pipeline over rule-session-start's children

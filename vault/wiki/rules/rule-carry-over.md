@@ -13,7 +13,6 @@ origin: raw/2026-09-16/1034/ledger.md#case-190.1
 sprint: migration
 created: 2026-09-16
 tags: [session, workflow, harness, render]
-ref: rule-end-of-work
 ---
 
 ## Purpose

@@ -1621,3 +1621,152 @@ def test_an_entry_with_superseded_by_is_not_applied_and_its_decision_page_is_wri
     assert props(page(tmp_path, "decisions", "decision-case-3"))["supersedes"] == [
         "decision-case-2"
     ]
+
+
+# --- the tick of the Spec beside the yaml (case 226.1) -----------------------------------
+
+
+SPEC = """# Spec
+
+## Case 1 — the root
+
+```tasks
+- [ ] create `rule-root` (no `ref`)
+- [ ] `guppi/x.py`: the code, tests first
+```
+
+### Case 1.1 — the child
+
+```tasks
+- [ ] create `rule-child` (`ref: rule-root`)
+```
+
+## Case 2 — the root again
+
+```tasks
+- [ ] update `rule-root`: `set`, `change`
+- [ ] update `rule-root`: a second time
+- [ ] read `estimate-root-works`
+```
+
+## Deferred
+
+## Case 3 — later
+
+```then
+defer:
+  - slug: rule-later
+```
+"""
+
+
+def with_spec(tmp_path, text=SPEC):
+    spec = tmp_path / "vault" / "raw" / DATE / "spec.md"
+    spec.write_text(text, encoding="utf-8", newline="\n")
+    return spec
+
+
+def spec_update(case, slug="rule-root", line=2, **extra):
+    entry = {
+        "line": line,
+        "text": "",
+        "case": case,
+        "kind": "update",
+        "category": "rules",
+        "slug": slug,
+        "origin": f"raw/{DATE}/ledger.md#case-{case}",
+        "decision": f"decision-case-{case}",
+        "change": f"change of {case}",
+    }
+    entry.update(extra)
+    return entry
+
+
+def test_an_applied_entry_ticks_its_line_under_its_own_case(tmp_path):
+    child = dict(CHILD, case="1.1")
+    seed(tmp_path, entries=[ROOT, child, spec_update("2")])
+    spec = with_spec(tmp_path)
+    code, _, err = run(tmp_path)
+    assert code == 0 and err == ""
+    text = spec.read_text(encoding="utf-8")
+    assert "- [x] create `rule-root` (no `ref`)" in text
+    assert "- [x] create `rule-child` (`ref: rule-root`)" in text
+    assert "- [x] update `rule-root`: `set`, `change`" in text
+    assert "- [ ] update `rule-root`: a second time" in text  # one entry, one line
+    assert "- [ ] `guppi/x.py`: the code, tests first" in text  # the agent's line
+    assert "- [ ] read `estimate-root-works`" in text
+
+
+def test_two_entries_of_one_kind_and_slug_tick_two_lines_in_order(tmp_path):
+    seed(tmp_path, entries=[ROOT, spec_update("2"), spec_update("2", line=3)])
+    spec = with_spec(tmp_path)
+    assert run(tmp_path)[0] == 0
+    text = spec.read_text(encoding="utf-8")
+    assert "- [x] update `rule-root`: `set`, `change`" in text
+    assert "- [x] update `rule-root`: a second time" in text
+
+
+def test_a_missing_spec_section_or_line_is_no_error(tmp_path):
+    entries = [ROOT, spec_update("2"), spec_update("9", line=3)]
+    without = seed(tmp_path / "a", entries=entries)
+    code, out, err = run(without)  # no spec at all
+    assert code == 0 and err == "" and "spec" not in out.lower()
+    assert all(e.get("applied") for e in load_yaml(without)["entries"])
+    partial = seed(tmp_path / "b", entries=entries)
+    text = "## Case 2 — only\n\n- [ ] update `rule-other`\n"
+    spec = with_spec(partial, text)  # no line for case 2's slug, no section for case 9
+    code, _, err = run(partial)
+    assert code == 0 and err == ""
+    assert spec.read_text(encoding="utf-8") == text
+    assert all(e.get("applied") for e in load_yaml(partial)["entries"])
+
+
+def test_a_failed_entry_a_file_entry_and_an_estimate_entry_tick_nothing(tmp_path):
+    bad = spec_update("2", replace=[{"old": "no such words", "new": "x"}])
+    file_entry = {
+        "line": 3,
+        "text": "",
+        "case": "2",
+        "kind": "update",
+        "category": "file",
+        "slug": "glossary",
+        "path": "vault/wiki/glossary.md",
+        "origin": ORIGIN,
+        "decision": "decision-case-2",
+        "change": "by hand",
+    }
+    seed(tmp_path, entries=[ROOT, bad, file_entry])
+    spec = with_spec(
+        tmp_path,
+        "## Case 2 — x\n\n- [ ] update `rule-root`\n- [ ] update `glossary`, by hand\n",
+    )
+    code, _, _ = run(tmp_path)
+    assert code == 1
+    assert spec.read_text(encoding="utf-8") == (
+        "## Case 2 — x\n\n- [ ] update `rule-root`\n- [ ] update `glossary`, by hand\n"
+    )
+
+
+def test_a_sprint_page_keeps_milestones_backlog_and_closed_in_order(tmp_path):
+    sprint = create(
+        "entity-sprint-x",
+        "entities",
+        {"type": "entity", "kind": "MOC", "purpose": "The sprint"},
+        sections={"Purpose": "The sprint.", "Closed": "Nothing yet."},
+        tags=["harness"],
+    )
+    later = spec_update(
+        "2",
+        slug="entity-sprint-x",
+        sections={"Milestones": "### Slice 1\n\n- [[rule-root]] — x", "Backlog": "- a plain line"},
+    )
+    later["category"] = "entities"
+    seed(tmp_path, entries=[ROOT, sprint, later])
+    code, _, err = run(tmp_path)
+    assert code == 0 and err == ""
+    text = page(tmp_path, "entities", "entity-sprint-x")
+    order = [
+        text.index(h)
+        for h in ("## Purpose", "## Milestones", "## Backlog", "## Closed", "## History")
+    ]
+    assert order == sorted(order)

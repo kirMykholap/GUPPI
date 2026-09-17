@@ -98,7 +98,11 @@ def test_an_item_of_the_plan_without_its_line_refuses_the_skill(tmp_path):
     code, err = run(skill("pre-task"), tmp_path, status="")
     assert code == 2
     assert "/pre-task refused" in err and "1 item(s)" in err and "(case 5)" in err
-    assert "end this reply in text with the LEDGER block" in err
+    assert (
+        "The text before a tool call waits for the next Stop: end this reply in text with "
+        "the LEDGER block" in err
+    )
+    assert "never kept" not in err
 
 
 def test_the_item_with_its_line_in_the_session_ledger_passes(tmp_path):

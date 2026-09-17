@@ -38,6 +38,9 @@ Meaningful, written by the main agent in the Case and checked by pre-task for co
 |---|---|---|
 | `## Purpose` | yes | Expands the `purpose` property: what problem this solves, why it exists in this shape. |
 | `## How it works` | no | How it is built. For a Leaf, the mechanics. For a MOC, the principle by which it splits into children — why *these* children and not some other cut. Omitted while `draft`. |
+| `## Milestones` | sprint page | The sprint page only (`entity-sprint-<id>`): the Slices in order under `### <name>` headings; the first with an item not done, or with none, is current. An item is a line `- [[slug]] — <text>` or a plain line `- <text>`; `guppi sprint` renders the file from them (cases 209, 229.1). |
+| `## Backlog` | sprint page | The items without a turn, the same lines; after Milestones. |
+| `## Closed` | sprint page | The closed Slices as prose, copied into the render as they are; after Backlog. |
 
 ### `How it works` is unratified, and that is fine
 

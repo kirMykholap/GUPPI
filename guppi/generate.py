@@ -63,6 +63,14 @@ kept and one stderr line (case 142.2); an entry with `superseded_by` is not appl
 leaves no line, only its Case's Decision page is written (case 151); a Rule-class file
 entry is printed `applied by hand` and marked applied.
 
+The Spec (case 226.1): once a `create`, `update`, `delete` or `defer` entry is applied, the
+first unticked line `- [ ] <kind> `<slug>`` in the section of the entry's Case — from its
+`## Case N` or `### Case N.M` heading to the next heading — of the `spec.md` beside the
+yaml becomes `- [x]`. Two entries of one kind and slug tick two lines, in order. No Spec,
+no section, no line: nothing is written and nothing is said. An `estimate` or `lesson`
+entry, a Rule-class file entry and a failed entry tick nothing; the lines on code, tests,
+migrations and readings stay the agent's.
+
 The cascade after all entries (case 201.4): an entity or rule whose Estimates are all
 `passed` becomes `built`, a `built` one with an Estimate not passed returns to `draft`,
 History `· cascade`; a `superseded` Decision page becomes `archived` (case 104.1); the
@@ -128,7 +136,7 @@ KEY_ORDER = {
 KINDS = ("create", "update", "delete", "defer")  # a decision page's lists, in this order
 SECTION_ORDER = {  # no section derived from a ref field (case 166.2)
     "rules": ["Purpose", "Render", "How it works"],
-    "entities": ["Purpose", "How it works"],
+    "entities": ["Purpose", "How it works", "Milestones", "Backlog", "Closed"],  # 229.1
     "estimates": ["Context", "Criterion", "Method", "Result"],
     "lessons": ["Trigger", "Root cause"],
     "insights": ["Pattern", "Proposal"],
@@ -236,6 +244,39 @@ def write_page(path: Path, props: dict, sections: dict[str, str], category: str)
     path.write_text(text, encoding="utf-8", newline="\n")
 
 
+TICKED_KINDS = ("create", "update", "delete", "defer")
+CASE_HEADING = re.compile(r"^#{2,3} Case (\S+)")
+ANY_HEADING = re.compile(r"^#{1,6} ")
+TASK_LINE = re.compile(r"^- \[ \] (create|update|delete|defer) `([^`]+)`")
+
+
+def tick_spec(spec: Path, case: str, kind: str, slug: str) -> bool:
+    """Case 226.1: in `spec`, under the heading `## Case <case>` or `### Case <case>` and
+    before the next heading, the first line `- [ ] <kind> `<slug>`` becomes `- [x] …`.
+    True when a line was ticked; False when the file, the section or the line is absent —
+    no error either way, the entry is applied all the same."""
+    if not spec.is_file():
+        return False
+    lines = spec.read_text(encoding="utf-8").split("\n")
+    inside = False
+    for index, line in enumerate(lines):
+        heading = CASE_HEADING.match(line)
+        if heading:
+            inside = heading.group(1) == case
+            continue
+        if ANY_HEADING.match(line):
+            inside = False
+            continue
+        if not inside:
+            continue
+        task = TASK_LINE.match(line)
+        if task and task.group(1) == kind and task.group(2) == slug:
+            lines[index] = "- [x]" + line[len("- [ ]") :]
+            spec.write_text("\n".join(lines), encoding="utf-8", newline="\n")
+            return True
+    return False
+
+
 def as_list(value) -> list[str]:
     if value is None:
         return []
@@ -277,6 +318,16 @@ class Vault:
         self.pending: list[
             tuple[str, str, str, str]
         ] = []  # backlinks whose parent is not there yet
+        self.spec: Path | None = None  # the Spec beside the yaml, whose page lines are ticked
+
+    # the Spec (case 226.1)
+
+    def tick(self, entry: dict) -> None:
+        """The first unticked `- [ ] <kind> `<slug>`` line in the section of the entry's
+        Case becomes `- [x]`; nothing found — no Spec, no section, no line — is no error."""
+        if self.spec is None or entry.get("kind") not in TICKED_KINDS or "case" not in entry:
+            return
+        tick_spec(self.spec, str(entry["case"]), str(entry["kind"]), str(entry.get("slug")))
 
     # pages
 
@@ -856,6 +907,7 @@ def apply(vault: Vault, data: dict) -> None:
         if len(vault.errors) == before:
             entry["applied"] = stamp
             entry.pop("failed", None)  # a failure that is over is not shown (53.3)
+            vault.tick(entry)  # the Spec's page line, once the entry applied (226.1)
         else:
             entry["failed"] = vault.errors[-1]
         vault.write_log()
@@ -891,6 +943,7 @@ def generate_date(project_dir: Path, unit: str, now, stdout, stderr) -> int:
     vault = Vault(
         project_dir, date, str(data.get("sprint") or sprint_id(project_dir)), now, stdout, stderr
     )
+    vault.spec = path.parent / "spec.md"  # the Spec beside the yaml (226.1)
     try:
         apply(vault, data)
     except GenerateError as exc:

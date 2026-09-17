@@ -17,6 +17,10 @@ render error goes to stderr and nothing is written. `--sync` always exits 0, sin
 `SessionStart` hook cannot block and its stdout is added to the agent's context.
 Every `.json` target is parsed before anything is written; one that does not parse stops
 the whole write and names the file and its page on stderr (case 89.4).
+Once the plain `guppi render` wrote the files and exits 0, it ticks — in the `spec.md` of
+every unit under `vault/raw/` whose `materialize.yaml` is applied whole, a carried-over
+unit passed by — every unticked task line holding `guppi render` in a code span (case
+226.2); `--check`, `--sync` and an exit 1 tick nothing, and nothing is said either way.
 Rule page: `vault/wiki/rules/rule-render-harness.md`.
 """
 
@@ -29,6 +33,7 @@ from dataclasses import dataclass
 from pathlib import Path
 
 from guppi.event import project_root
+from guppi.materialize import is_carried_over, load_yaml, units_with, yaml_path
 from guppi.pages import Page, read_category, wiki_root
 
 RENDER = "## Render"
@@ -196,6 +201,43 @@ def write_all(project_dir: Path, outputs: dict[str, str]) -> None:
         path.write_text(text, encoding="utf-8", newline="\n")
 
 
+RENDER_LINE = re.compile(r"^- \[ \] .*`[^`]*guppi render[^`]*`")
+
+
+def applied_whole(data: dict | None) -> bool:
+    """A yaml whose every entry carries `applied` and none `failed`; an empty or absent
+    yaml is not one."""
+    if not data:
+        return False
+    entries = [e for e in data.get("entries") or [] if isinstance(e, dict)]
+    return bool(entries) and all(e.get("applied") and not e.get("failed") for e in entries)
+
+
+def tick_render_lines(project_dir: Path) -> int:
+    """Case 226.2: in the `spec.md` of every unit under `raw/` whose yaml is applied whole
+    — a carried-over unit passed by — every unticked task line holding `guppi render` in
+    a code span becomes `- [x]`. The count of lines ticked; nothing is said."""
+    ticked = 0
+    for unit in units_with(project_dir, "materialize.yaml"):
+        if is_carried_over(project_dir, unit):
+            continue
+        if not applied_whole(load_yaml(yaml_path(project_dir, unit))):
+            continue
+        spec = yaml_path(project_dir, unit).parent / "spec.md"
+        if not spec.is_file():
+            continue
+        lines = spec.read_text(encoding="utf-8").split("\n")
+        changed = False
+        for index, line in enumerate(lines):
+            if RENDER_LINE.match(line):
+                lines[index] = "- [x]" + line[len("- [ ]") :]
+                changed = True
+                ticked += 1
+        if changed:
+            spec.write_text("\n".join(lines), encoding="utf-8", newline="\n")
+    return ticked
+
+
 def sync(project_dir: Path, outputs: dict[str, str], stdout) -> None:
     """For each file that differs: its unified diff to the rendered text, then the write.
     A missing file diffs against nothing; an identical one is neither printed nor written."""
@@ -258,4 +300,5 @@ def run(argv, *, stdout=None, stderr=None, project_dir: Path | None = None) -> i
             print(f"render: {governs} differs from its Rule page", file=stdout)
         return 1 if stale else 0
     write_all(project_dir, outputs)
+    tick_render_lines(project_dir)  # the `guppi render` lines of the applied Specs (226.2)
     return 0

@@ -14,16 +14,19 @@ blocking the prompt: the agent must end its reply with the LEDGER block, or comm
 other prompt, `/hi` included, is exit 0 with no output and no mark; a `PreToolUse`
 payload goes as before.
 
-The Spec first (case 122): the text of a reply emitted before a tool call is never kept —
-not in the transcript, not in `last_assistant_message` — so a `LEDGER` block followed by a
-`Skill` call in the same reply is lost. The Spec is edited by a tool call in that same
-reply, so it is always ahead of a lost block: the hook reads the `then` items of every
+The Spec first (case 122): the text of a reply emitted before a tool call is kept in the
+transcript and read at the next `Stop` of the session (case 224.1) — but a `Skill` call
+in the same reply as a `LEDGER` block runs before that `Stop`, so the block is not yet in
+the ledger when the skill needs it, and the last reply of a session has no `Stop` at all.
+The Spec is edited by a tool call in that same reply, so it is always ahead of the
+unwritten block: the hook reads the `then` items of every
 Case in the session's `spec.md` and in the plan file the session's event log names last
 under `.claude/plans/` (a `tool Write:` or `tool Edit:` line of this session's stamp), and
 the decision lines of the session's window as `guppi pretask --check` reads them. An item
 with no decision line of its Case refuses the call: `gate: /<skill> refused — N item(s) of
-the Spec have no ledger line (case A, case B). The text before a tool call is never kept:
-end this reply in text with the LEDGER block, then call /<skill> in the next reply.` No
+the Spec have no ledger line (case A, case B). The text before a tool call waits for the
+next Stop: end this reply in text with the LEDGER block, then call /<skill> in the next
+reply.` No
 `hi`, no Spec and no plan path: nothing to check.
 
 Before the Spec, for `/retro` only (case 180): a session with a `hi` but no `spec.md` in
@@ -224,7 +227,7 @@ def run(
                 advice = f"Ask the agent to end its reply with the LEDGER block, then type /{skill} again."
             else:
                 advice = (
-                    "The text before a tool call is never kept: end this reply in text with "
+                    "The text before a tool call waits for the next Stop: end this reply in text with "
                     f"the LEDGER block, then call /{skill} in the next reply."
                 )
             print(

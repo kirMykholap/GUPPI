@@ -19,4 +19,4 @@ properties:
 # `code_ref` are the link, seen by Obsidian since case 148.1 (case 166.1).
 body:
   required: ["## Purpose", "## History"]
-  optional: ["## How it works"]
+  optional: ["## How it works", "## Milestones", "## Backlog", "## Closed"]  # the sprint page (case 234)

@@ -1,0 +1,43 @@
+- 11:35:29 decision[case 224.1][update][rule-ledger-write]{ref:rule-ledger-write}
+- 11:35:29 decision[case 224.1][update][estimate-ledger-write-lifts]{ref:estimate-ledger-write-lifts}
+- 11:35:29 decision[case 224.2][update][rule-case-protocol]{ref:rule-case-protocol}
+- 11:35:29 decision[case 224.2][update][estimate-case-protocol-loaded]{ref:estimate-case-protocol-loaded}
+- 11:35:29 decision[case 224.3][update][insight-ledger-hook-reads-only-the-final-text]{ref:insight-ledger-hook-reads-only-the-final-text}
+- 11:35:29 lesson[knowledge][lesson-transcript-keeps-the-text-before-a-tool-call]{tags:ledger,hooks,harness}{source:~/.claude/projects/c--PROJECTS-GUPPI/cf5992b5-9102-4632-9a42-7a37b684ffe5.jsonl} trigger: the LEDGER block of case 222 stood in a text followed by a ToolSearch call in the same turn and the agent called it lost before the turn ended; the transcript of session 2238 (Claude Code 2.1.272) holds that text and 18 others followed by a tool call, and the Stop hook wrote its lines at 01:25:46, at the end of the same turn; the blocks of case 117 (2.1.270, written 13 seconds later) and case 101 (2.1.269, written at the next Stop 22 minutes later) show the same; only the block of case 109 (2.1.269) is absent from its transcript and unexplained root_cause: the transcript keeps the text before a tool call and transcript_texts collects it since case 55.2, so a block followed by a tool call reaches the ledger at the next Stop of the session; the claim "never kept" was measured on one turn (109) and the loss of 222 was a check of ledger.md before the turn's Stop had fired
+- 11:44:32 decision[case 225][update][rule-carry-over]{ref:rule-carry-over}{supersedes:case 223}
+- 12:08:34 decision[case 226.1][create][estimate-generate-ticks-the-spec]{ref:rule-page-generation}{tags:harness,workflow,ledger}
+- 12:08:34 decision[case 226.1][update][rule-page-generation]{ref:rule-page-generation}{supersedes:case 217}
+- 12:08:34 decision[case 226.2][create][estimate-render-harness-ticks-the-spec]{ref:rule-render-harness}{tags:harness,render}
+- 12:08:34 decision[case 226.2][update][rule-render-harness]{ref:rule-render-harness}
+- 22:12:45 decision[case 227][create][estimate-sprint-checks-the-file]{ref:rule-sprint}{tags:harness,sprint}
+- 22:12:45 decision[case 227][update][rule-sprint]{ref:rule-sprint}
+- 22:12:45 decision[case 227][update][rule-lint]{ref:rule-lint}
+- 22:22:41 decision[case 229.1][update][entity-sprint-migration]{ref:entity-sprint-migration}
+- 22:22:41 decision[case 229.1][update][entities-schema]{ref:entities-schema}
+- 22:22:41 decision[case 229.2][update][rule-sprint]{ref:rule-sprint}
+- 22:22:41 decision[case 229.2][update][estimate-sprint-renders-the-backlog]{ref:estimate-sprint-renders-the-backlog}
+- 22:22:41 decision[case 229.3][update][rule-skill-hi]{ref:rule-skill-hi}
+- 22:22:41 decision[case 229.3][update][estimate-hi-writes-frontier]{ref:estimate-hi-writes-frontier}
+- 22:22:41 decision[case 229.4][update][rule-brief]{ref:rule-brief}
+- 22:22:41 decision[case 229.4][update][estimate-brief-written]{ref:estimate-brief-written}
+- 22:34:51 decision[case 230][defer][index]{ref:index}
+- 22:37:32 estimate[estimate-generate-walks-dates][passed] 2026-09-17, `uv run pytest -q tests/test_generate.py` 48 passed, and the pages after the librarian's run of 2238 (commit be891c1): `estimate-generate-writes`, `-generate-walks-dates`, `-lint-catches`, `-pretask-reconciles`, `-materialize-assembles` each carry a `method` field and no `## Context` or `## Method` section; `uv run guppi lint` reads `unmigrated: 34 pages in the shape before case 193`; the walk of that run took four units — 1034, 1651, 1955, 2238 — dates ascending, per the brief
+- 22:37:32 estimate[estimate-documentation-completes][passed] 2026-09-17, `make test-documentation` 111 passed; live, the librarian's run of 2238 per its brief and commit be891c1: materialize, index check, synthesis, generate, cleanup, render, sprint, brief, archive, commit in that order, no stderr from any script, 27 Decision pages for the 27 Cases of the ledger, every entry `applied`, the commit separate from the session's a4c3509, `render --check` exit 0 at `/hi`; the inputs read as the frame names them, by the librarian's own report — no refusal reported
+- 22:42:10 decision[case 231][defer][rule-work-mode]{ref:rule-work-mode}
+- 22:42:10 decision[case 231][defer][rule-subagent-guppi]{ref:rule-subagent-guppi}
+- 22:42:10 decision[case 232][defer][rule-spec-box]{ref:rule-spec-box}
+- 22:58:27 decision[case 233.1][update][rule-harness]{ref:rule-harness}
+- 22:58:27 decision[case 233.1][update][estimate-harness-pipeline]{ref:estimate-harness-pipeline}
+- 22:58:27 decision[case 233.2][update][rule-retro]{ref:rule-retro}
+- 22:58:27 decision[case 233.2][update][estimate-retro-loads]{ref:estimate-retro-loads}
+- 22:58:27 decision[case 233.3][update][index]{ref:index}
+- 22:58:27 decision[case 233.3][update][glossary]{ref:glossary}
+- 22:58:27 decision[case 233.3][update][case-schema]{ref:case-schema}
+- 22:58:27 decision[case 233.4][update][rule-carry-over]{ref:rule-carry-over}
+- 22:58:27 decision[case 233.4][update][estimate-carry-over-writes]{ref:estimate-carry-over-writes}
+- 22:58:27 decision[case 233.5][update][estimate-sprint-migration-lint-clean]{ref:estimate-sprint-migration-lint-clean}
+- 23:10:43 estimate[estimate-pretask-reconciles][passed] 2026-09-17, the /pre-task of session 1119 by hand: `guppi pretask --check <plan> --session 03093688` run three times — three findings of form fixed (the defer of index without `file:`, F5 closed by the wrong word, F9 pointing at a defer of another plan), then exit 0; the stamped `pretask` line in event_log.md at 22:43:23; the list of every decision with the estimates of each updated rule; ask-guppi dispatched once with the plan path and the two questions; ten findings raised as Case 233 or named as known; the Case changing index while 230 defers it flagged; Plan Mode exited again
+- 23:10:43 estimate[estimate-ledger-write-lifts][passed] 2026-09-17, `uv run pytest -q tests/test_ledger.py tests/test_gate.py` 67 passed; live: the six lines of Case 224 stand in raw/2026-09-17/1119/ledger.md at 11:35:29, written by the Stop hook from the reply that ended in its LEDGER block, each once with its time; the gate's advice now reads "The text before a tool call waits for the next Stop" (test_an_item_of_the_plan_without_its_line_refuses_the_skill)
+- 23:14:16 decision[case 234][update][entities-schema-yaml]{ref:entities-schema-yaml}
+- 23:15:50 lesson[knowledge][lesson-hi-substitution-refused-when-the-permission-classifier-is-unavailable]{tags:harness,session,hooks}{source:the local-command-stderr of /hi in session 1119, 2026-09-17 11:19} trigger: at /hi the skill's `!`uv run guppi render --sync`` substitution was refused — "Shell command permission check failed … claude-opus-5[1m] is temporarily unavailable, so auto mode cannot determine the safety of Bash"; the Render: line came back empty and `render --check` run by hand exited 0 root_cause: in auto mode a `!` command of a skill goes through the same permission classifier as a Bash call, and when the classifier's model is unavailable the command is not run at all; the SessionStart hook is not affected, so a hand edit is still caught there, and `render --check` by hand is the fallback at /hi
+- 23:55:25 lesson[error][lesson-work-mode-check-reads-a-page-the-same-spec-changes]{tags:harness,workflow,session} trigger: case 227 put `sprint --check` into `make lint` and case 229.1 moved the Slices of the sprint page under `## Milestones`; in Work Mode the code ran at once and the page waited for the librarian, so `make lint` went red on the sprint step until the run, as `render --check` does after an `update` of a Render root_cause: the code of a Case runs in Work Mode and the pages of a Case change at the librarian's run, so a check that reads a page the same Spec updates is red in between by construction; the interval is a property of the session, not of pre-task — its place is one sentence in rule-work-mode (Slice 3b): such a check is read after the run, and its red in Work Mode is an expectation named in the handoff, not a finding

@@ -1,5 +1,7 @@
 """`guppi sprint`: `vault/wiki/sprint.md` written from the sprint page, one tick per item
-by the status of the page it names (case 209.1, `estimate-sprint-renders-the-backlog`)."""
+by the status of the page it names, the current milestone whole and the others one line
+(cases 209.1, 229.2, `estimate-sprint-renders-the-backlog`); `--check` names the file when
+it differs and writes nothing (case 227, `estimate-sprint-checks-the-file`)."""
 
 import io
 
@@ -21,7 +23,7 @@ tags: [sprint]
 
 Open since 2026-09-09. The repository works by the model.
 
-## Backlog
+## Milestones
 
 ### Slice 3b — Work Mode
 
@@ -38,6 +40,11 @@ Open since 2026-09-09. The repository works by the model.
 - [[rule-done]] — a rule built
 
 ### Slice 6 — nothing yet
+
+## Backlog
+
+- the categories as data of the project
+- [[rule-subagent-guppi]] — also here, by mistake
 
 ## Closed
 
@@ -115,23 +122,21 @@ Open since 2026-09-09. The repository works by the model.
 - [ ] make lint exits 0 · pending
 - [x] the branch merged · passed
 
-## Backlog
+## Milestones
 
 ### [ ] Slice 3b — Work Mode
 
 - [ ] [[rule-work-mode]] — Work Mode, the Spec as tasks · draft · decision-case-183, decision-case-206
 - [ ] [[rule-subagent-guppi]] — the subagent and the fork · draft
 
-### [ ] Slice 4 — conversion
-
-- [ ] [[estimate-sprint-migration-lint-clean]] — lint exit 0 · pending
-
+### [ ] Slice 4 — conversion — 1 item
 ### [x] Slice 5 — closing
+### [ ] Slice 6 — nothing yet — 0 items
 
-- [x] [[rule-old-thing]] — an archived rule · archived
-- [x] [[rule-done]] — a rule built · built
+## Backlog
 
-### [ ] Slice 6 — nothing yet
+- [ ] the categories as data of the project
+- [ ] [[rule-subagent-guppi]] — also here, by mistake · draft
 
 ## Closed
 
@@ -176,3 +181,66 @@ def test_the_cli_knows_the_command(monkeypatch, tmp_path, capsys):
     monkeypatch.setenv("CLAUDE_PROJECT_DIR", str(tmp_path))
     assert cli.main(["sprint"]) == 0
     assert rendered(tmp_path) == EXPECTED
+
+
+# --- the current milestone, the plain line (case 229.2) ---------------------------------
+
+
+def test_a_closed_first_milestone_makes_the_next_one_current(tmp_path):
+    seed(
+        tmp_path,
+        SPRINT_PAGE.replace("[[rule-work-mode]]", "[[rule-done]]").replace(
+            "[[rule-subagent-guppi]] — the subagent", "[[rule-old-thing]] — the subagent"
+        ),
+    )
+    assert run(tmp_path) == (0, "", "")
+    text = rendered(tmp_path)
+    assert (
+        "### [x] Slice 3b — Work Mode\n### [ ] Slice 4 — conversion\n\n- [ ] [[estimate-sprint-migration-lint-clean]] — lint exit 0 · pending\n\n### [x] Slice 5 — closing\n"
+        in text
+    )
+
+
+def test_an_empty_first_milestone_is_current_and_a_plain_line_never_closes_one(tmp_path):
+    seed(
+        tmp_path,
+        SPRINT_PAGE.replace(
+            "### Slice 3b — Work Mode\n", "### Slice 3a — empty\n\n### Slice 3b — Work Mode\n"
+        ).replace(
+            "- [[rule-done]] — a rule built", "- [[rule-done]] — a rule built\n- a plain task"
+        ),
+    )
+    assert run(tmp_path) == (0, "", "")
+    text = rendered(tmp_path)
+    assert "### [ ] Slice 3a — empty\n\n### [ ] Slice 3b — Work Mode — 2 items\n" in text
+    assert "### [ ] Slice 5 — closing — 3 items\n" in text  # the plain line keeps it open
+
+
+# --- `--check` (case 227) ----------------------------------------------------------------
+
+
+def check(project_dir):
+    out, err = io.StringIO(), io.StringIO()
+    code = sprint.run(["--check"], stdout=out, stderr=err, project_dir=project_dir)
+    return code, out.getvalue(), err.getvalue()
+
+
+def test_check_names_a_drifted_file_and_writes_nothing(tmp_path):
+    seed(tmp_path)
+    code, out, err = check(tmp_path)
+    assert (code, err) == (1, "")
+    assert out.strip() == "sprint: vault/wiki/sprint.md differs from entity-sprint-migration"
+    assert rendered(tmp_path) == "# Sprint\n\n## migration — by hand\n"
+
+
+def test_check_is_silent_on_the_rendered_file(tmp_path):
+    seed(tmp_path)
+    run(tmp_path)
+    assert check(tmp_path) == (0, "", "")
+
+
+def test_check_reports_a_render_error_like_the_write(tmp_path):
+    seed(tmp_path, SPRINT_PAGE.replace("[[rule-done]]", "[[rule-nowhere]]"))
+    code, out, err = check(tmp_path)
+    assert code == 1 and out == ""
+    assert err.strip() == "sprint: rule-nowhere: no live or archived page"

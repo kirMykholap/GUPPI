@@ -190,6 +190,14 @@ superseded by 225).
      `lesson-hi-substitution-refused-when-the-permission-classifier-is-unavailable`.
   5. `rule-git-context` / `rule-github-issues` (defer 220) still at the close of the
      sprint (Deferred items 2, 3).
+  6. Added by the person after the run: a later milestone renders as one line with a
+     count — `### [ ] Slice 4 — conversion of the parked pages by group — 1 item` — and
+     the reader of `sprint.md` cannot see what the item is without opening the page;
+     nothing is lost (the page holds Slice 4's one item and Slice 5's three, word for
+     word), the render alone hides it. Two variants for a Case: the collapsed line
+     names its items by slug, or the next milestone renders whole and only the ones
+     after it collapse. An `update` of the Criterion of 229.2
+     (`estimate-sprint-renders-the-backlog`, `rule-sprint`).
 - `estimate-ledger-write-lifts`: recut to `pending` by 224.1 and read `passed` in the same
   session (ledger line 40); the page ends `passed`, `rule-ledger-write` `built`.
 - `estimate-generate-walks-dates`: read `passed` against the Criterion as recut by 211.3

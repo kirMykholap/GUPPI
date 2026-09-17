@@ -1,9 +1,10 @@
 ---
 type: estimate
 kind: QA
-status: pending
+status: passed
 target: "[[rule-documentation]]"
 method: make test-documentation, the pipeline over tests/test_materialize.py, tests/test_generate.py and tests/test_cleanup.py; the live reading by hand
+checked: 2026-09-17
 origin: raw/2026-09-10/ledger.md#case-36
 sprint: migration
 created: 2026-09-10
@@ -83,7 +84,7 @@ Then:
 
 ## Result
 
-block 147.5: .claude/agents/librarian-guppi.md line 16 carries the ratified sentence of the replace pair of Spec 1633 ("Your inputs are three ... the Greps of the category the index check and the synthesis name, run by you"), the four reasons to open a page unchanged; the first run under this frame is this session's librarian
+2026-09-17, `make test-documentation` 111 passed; live, the librarian's run of 2238 per its brief and commit be891c1: materialize, index check, synthesis, generate, cleanup, render, sprint, brief, archive, commit in that order, no stderr from any script, 27 Decision pages for the 27 Cases of the ledger, every entry `applied`, the commit separate from the session's a4c3509, `render --check` exit 0 at `/hi`; the inputs read as the frame names them, by the librarian's own report — no refusal reported
 
 ## History
 
@@ -104,3 +105,4 @@ block 147.5: .claude/agents/librarian-guppi.md line 16 carries the ratified sent
 - 2026-09-14 criterion: case 147.5 added · [[decision-case-147.5]]
 - 2026-09-15 status: pending → passed · raw/2026-09-15/1110/ledger.md#L5
 - 2026-09-17 updated: one line in the block of case 89.1 — guppi sprint after render and before the brief (case 209.5) · [[decision-case-209.5]]
+- 2026-09-18 status: pending → passed · raw/2026-09-17/1119/ledger.md#L25

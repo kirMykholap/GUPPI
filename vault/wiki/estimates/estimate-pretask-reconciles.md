@@ -1,10 +1,10 @@
 ---
 type: estimate
 kind: QA
-status: pending
+status: passed
 target: "[[rule-pretask]]"
 method: One reading by hand, written into the estimate line — the exception the Method rule allows
-checked: 2026-09-16
+checked: 2026-09-17
 origin: raw/2026-09-09/ledger.md#case-24.2
 sprint: migration
 created: 2026-09-09
@@ -31,7 +31,7 @@ The agent runs `guppi pretask --check` on the plan file with `--session <stamp>`
 
 ## Result
 
-2026-09-16, the /pre-task of this session: `--check` run and its four old-form findings named known in one line; the list carried every decision with its type and purpose, defers by slug and the word defer, and for each rule update the page's estimates and which the Case names; ask-guppi dispatched once with the plan path, the instruction to read every Case outside ## Deferred and both questions; three findings raised as Case 208, the rest named known; read against the Criterion of 203.2 with the Render still of 198
+2026-09-17, the /pre-task of session 1119 by hand: `guppi pretask --check <plan> --session 03093688` run three times — three findings of form fixed (the defer of index without `file:`, F5 closed by the wrong word, F9 pointing at a defer of another plan), then exit 0; the stamped `pretask` line in event_log.md at 22:43:23; the list of every decision with the estimates of each updated rule; ask-guppi dispatched once with the plan path and the two questions; ten findings raised as Case 233 or named as known; the Case changing index while 230 defers it flagged; Plan Mode exited again
 
 ## History
 
@@ -56,3 +56,4 @@ The agent runs `guppi pretask --check` on the plan file with `--session <stamp>`
 - 2026-09-16 status: pending → passed · raw/2026-09-16/1955/ledger.md#L34
 - 2026-09-17 updated: method as a field, the old sections dropped — the recut completed (case 211.3) · [[decision-case-211.3]]
 - 2026-09-17 updated: the first line of Then — the check runs with --session from the hi line (case 213.3) · [[decision-case-213.3]]
+- 2026-09-18 status: pending → passed · raw/2026-09-17/1119/ledger.md#L39

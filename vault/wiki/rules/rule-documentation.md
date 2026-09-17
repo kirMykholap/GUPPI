@@ -2,7 +2,7 @@
 type: rule
 kind: MOC
 purpose: Prevents a ratified decision from ending the session without becoming a vault page
-status: draft
+status: built
 enforcement: render
 governs: .claude/agents/librarian-guppi.md
 render_mode: full
@@ -128,3 +128,4 @@ project's hooks; the hook is part of this Render and is ratified with it.
 - 2026-09-17 child rule-sprint added · [[decision-case-209]]
 - 2026-09-17 updated: step 5 of the frame — guppi sprint after render, before the brief (case 209.5) · [[decision-case-209.5]]
 - 2026-09-17 status: built → draft · cascade
+- 2026-09-18 status: draft → built · cascade

@@ -2,7 +2,7 @@
 type: rule
 kind: Leaf
 purpose: Prevents a set of ratified decisions from reaching the Spec with a contradiction between them or with the vault
-status: draft
+status: built
 enforcement: render
 governs: .claude/skills/pre-task/SKILL.md
 render_mode: full
@@ -77,3 +77,4 @@ finding as a Case, or say in one line why it is already known. Then exit Plan Mo
 - 2026-09-16 updated: the dispatch sentence names the two questions of 203.2 (case 208.3) · [[decision-case-208.3]]
 - 2026-09-17 updated: the check takes --session with the stamp of the hi line (case 213.3) · [[decision-case-213.3]]
 - 2026-09-17 status: built → draft · cascade
+- 2026-09-18 status: draft → built · cascade

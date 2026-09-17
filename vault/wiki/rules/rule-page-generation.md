@@ -6,8 +6,7 @@ status: draft
 enforcement: check
 implementation_ref: [guppi/generate.py, tests/test_generate.py]
 parent: "[[rule-documentation]]"
-estimates: ["[[estimate-generate-writes]]", "[[estimate-generate-walks-dates]]", "[[estimate-generate-writes-the-decision-page]]", "[[estimate-generate-fails-alone]]", "[[estimate-generate-cascades]]"]
-deferred_by: ["[[decision-case-217]]"]
+estimates: ["[[estimate-generate-writes]]", "[[estimate-generate-walks-dates]]", "[[estimate-generate-writes-the-decision-page]]", "[[estimate-generate-fails-alone]]", "[[estimate-generate-cascades]]", "[[estimate-generate-ticks-the-spec]]"]
 origin: raw/2026-09-10/ledger.md#case-32
 sprint: migration
 created: 2026-09-10
@@ -29,8 +28,7 @@ entry never stops the run: it is marked `failed`, reported, and the rest apply (
 47). The Decision page of a Case is written before its entries and carries the body of
 every defer (cases 52.4, 186.1); the cascade after all entries computes what is
 computed — `built`, the archive of a superseded decision, the severity of an Insight —
-never by hand (case 104). The mechanism — the shape of every entry and every History
-line — lives in the docstring of `guppi/generate.py`.
+never by hand (case 104). Once an entry is applied, the script ticks its line in the Spec beside the yaml — `- [ ] <kind> `<slug>`` in the section of the entry's Case — so the Spec's page lines are closed by the one who did the work, and a line not found is no error (case 226.1). The mechanism — the shape of every entry and every History line — lives in the docstring of `guppi/generate.py`.
 
 ## History
 
@@ -96,3 +94,6 @@ line — lives in the docstring of `guppi/generate.py`.
 - 2026-09-16 defer by decision-case-191 superseded · [[decision-case-203.2]]
 - 2026-09-17 deferred · [[decision-case-217]]
 - 2026-09-17 status: built → draft · cascade
+- 2026-09-18 defer by decision-case-217 superseded · [[decision-case-226.1]]
+- 2026-09-18 estimate estimate-generate-ticks-the-spec added · [[decision-case-226.1]]
+- 2026-09-18 updated: generate ticks the page line of the Spec once the entry is applied (case 226.1) · [[decision-case-226.1]]

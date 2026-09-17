@@ -1939,3 +1939,83 @@ instruction. The global feed; a page's own `## History` is the per-page view.
 - 2026-09-17 lessons/lesson-pretask-check-session-fallback-stops-at-midnight archived · cleanup
 - 2026-09-17 decisions/decision-case-192 archived · cleanup
 - 2026-09-17 decisions/decision-case-205 archived · cleanup
+- 2026-09-18 decisions/decision-case-224.1 created · raw/2026-09-17/1119/ledger.md#case-224.1 · generate
+- 2026-09-18 rules/rule-ledger-write updated: the text before a tool call is kept in the transcript and read at the next Stop; the gate's advice says so (case 224.1) · [[decision-case-224.1]] · generate
+- 2026-09-18 estimates/estimate-ledger-write-lifts updated: the Criterion replaced whole — the text before a tool call is read at the next Stop, the gate's advice reworded (case 224.1) · [[decision-case-224.1]] · generate
+- 2026-09-18 decisions/decision-case-224.2 created · raw/2026-09-17/1119/ledger.md#case-224.2 · generate
+- 2026-09-18 rules/rule-case-protocol updated: the text before a tool call waits for the next Stop, not "never kept"; a block is not called lost before that Stop; the page and render lines are ticked by generate and render (cases 224.2, 233) · [[decision-case-224.2]] · generate
+- 2026-09-18 estimates/estimate-case-protocol-loaded updated: three lines added to the Criterion — the wait for the next Stop, no loss called before it, who ticks which line (cases 224.2, 233) · [[decision-case-224.2]] · generate
+- 2026-09-18 decisions/decision-case-224.3 created · raw/2026-09-17/1119/ledger.md#case-224.3 · generate
+- 2026-09-18 insights/insight-ledger-hook-reads-only-the-final-text updated: the question of the Proposal answered by reading the transcripts — the intermediate text is kept and read at the next Stop; the rule, CLAUDE.md and the gate's advice corrected; the pattern says what was measured (cases 224, 233) · [[decision-case-224.3]] · generate
+- 2026-09-18 lessons/lesson-transcript-keeps-the-text-before-a-tool-call created · raw/2026-09-17/1119/ledger.md#L6 · generate
+- 2026-09-18 decisions/decision-case-225 created · raw/2026-09-17/1119/ledger.md#case-225 · generate
+- 2026-09-18 decisions/decision-case-223 superseded by decision-case-225 · [[decision-case-225]] · generate
+- 2026-09-18 rules/rule-carry-over defer by decision-case-223 superseded · [[decision-case-225]] · generate
+- 2026-09-18 rules/rule-carry-over updated: the stray ref field removed by a one-off script (case 225) · [[decision-case-225]] · generate
+- 2026-09-18 decisions/decision-case-226.1 created · raw/2026-09-17/1119/ledger.md#case-226.1 · generate
+- 2026-09-18 decisions/decision-case-217 superseded by decision-case-226.1 · [[decision-case-226.1]] · generate
+- 2026-09-18 rules/rule-page-generation defer by decision-case-217 superseded · [[decision-case-226.1]] · generate
+- 2026-09-18 estimates/estimate-generate-ticks-the-spec created · [[decision-case-226.1]] · generate
+- 2026-09-18 rules/rule-page-generation estimate estimate-generate-ticks-the-spec added · [[decision-case-226.1]] · generate
+- 2026-09-18 rules/rule-page-generation updated: generate ticks the page line of the Spec once the entry is applied (case 226.1) · [[decision-case-226.1]] · generate
+- 2026-09-18 decisions/decision-case-226.2 created · raw/2026-09-17/1119/ledger.md#case-226.2 · generate
+- 2026-09-18 estimates/estimate-render-harness-ticks-the-spec created · [[decision-case-226.2]] · generate
+- 2026-09-18 rules/rule-render-harness estimate estimate-render-harness-ticks-the-spec added · [[decision-case-226.2]] · generate
+- 2026-09-18 rules/rule-render-harness updated: render ticks the guppi render lines of the applied Specs under raw/; the Purpose names the librarian's step (cases 226.2, 233) · [[decision-case-226.2]] · generate
+- 2026-09-18 decisions/decision-case-227 created · raw/2026-09-17/1119/ledger.md#case-227 · generate
+- 2026-09-18 estimates/estimate-sprint-checks-the-file created · [[decision-case-227]] · generate
+- 2026-09-18 rules/rule-sprint estimate estimate-sprint-checks-the-file added · [[decision-case-227]] · generate
+- 2026-09-18 rules/rule-sprint updated: sprint --check, run by make lint, names a drifted sprint.md (case 227) · [[decision-case-227]] · generate
+- 2026-09-18 rules/rule-lint updated: make lint has three steps — sprint --check between render --check and lint (case 227) · [[decision-case-227]] · generate
+- 2026-09-18 decisions/decision-case-229.1 created · raw/2026-09-17/1119/ledger.md#case-229.1 · generate
+- 2026-09-18 entities/entity-sprint-migration updated: the Slices under Milestones, a Backlog of two plain lines without a page (case 229.1) · [[decision-case-229.1]] · generate
+- 2026-09-18 decisions/decision-case-229.2 created · raw/2026-09-17/1119/ledger.md#case-229.2 · generate
+- 2026-09-18 rules/rule-sprint updated: the render by milestone — the current one whole, the others one line, the Backlog a list, a plain item never ticked; the Purpose names the two sections (cases 229.2, 233) · [[decision-case-229.2]] · generate
+- 2026-09-18 estimates/estimate-sprint-renders-the-backlog updated: the Criterion replaced whole — the render by milestone (case 229.2) · [[decision-case-229.2]] · generate
+- 2026-09-18 decisions/decision-case-229.3 created · raw/2026-09-17/1119/ledger.md#case-229.3 · generate
+- 2026-09-18 rules/rule-skill-hi updated: the Frontier takes the current milestone of the sprint only (case 229.3) · [[decision-case-229.3]] · generate
+- 2026-09-18 estimates/estimate-hi-writes-frontier updated: the Criterion replaced whole — the Frontier from the current milestone, the lines and their closing kept (case 229.3) · [[decision-case-229.3]] · generate
+- 2026-09-18 decisions/decision-case-229.4 created · raw/2026-09-17/1119/ledger.md#case-229.4 · generate
+- 2026-09-18 rules/rule-brief updated: Deferred leaves out a target the sprint page names, in the librarian's brief and in the /carry brief alike (cases 229.4, 233) · [[decision-case-229.4]] · generate
+- 2026-09-18 estimates/estimate-brief-written updated: the Deferred line — never a target the sprint page names (case 229.4) · [[decision-case-229.4]] · generate
+- 2026-09-18 decisions/decision-case-230 created · raw/2026-09-17/1119/ledger.md#case-230 · generate
+- 2026-09-18 estimates/estimate-generate-walks-dates status: pending → passed · raw/2026-09-17/1119/ledger.md#L24 · generate
+- 2026-09-18 estimates/estimate-documentation-completes status: pending → passed · raw/2026-09-17/1119/ledger.md#L25 · generate
+- 2026-09-18 decisions/decision-case-231 created · raw/2026-09-17/1119/ledger.md#case-231 · generate
+- 2026-09-18 rules/rule-work-mode deferred · [[decision-case-231]] · generate
+- 2026-09-18 rules/rule-subagent-guppi deferred · [[decision-case-231]] · generate
+- 2026-09-18 decisions/decision-case-232 created · raw/2026-09-17/1119/ledger.md#case-232 · generate
+- 2026-09-18 rules/rule-spec-box deferred · [[decision-case-232]] · generate
+- 2026-09-18 decisions/decision-case-233.1 created · raw/2026-09-17/1119/ledger.md#case-233.1 · generate
+- 2026-09-18 rules/rule-harness updated: sprint --check joins make lint between render --check and lint (case 233.1) · [[decision-case-233.1]] · generate
+- 2026-09-18 estimates/estimate-harness-pipeline updated: the Criterion replaced whole — make lint with three steps (case 233.1) · [[decision-case-233.1]] · generate
+- 2026-09-18 decisions/decision-case-233.2 created · raw/2026-09-17/1119/ledger.md#case-233.2 · generate
+- 2026-09-18 rules/rule-retro updated: the page and render lines of the Spec wait for the librarian and are not debt at Retro (case 233.2) · [[decision-case-233.2]] · generate
+- 2026-09-18 estimates/estimate-retro-loads updated: the Criterion replaced whole — the page and render lines are not debt (case 233.2) · [[decision-case-233.2]] · generate
+- 2026-09-18 decisions/decision-case-233.3 created · raw/2026-09-17/1119/ledger.md#case-233.3 · generate
+- 2026-09-18 decisions/decision-case-233.4 created · raw/2026-09-17/1119/ledger.md#case-233.4 · generate
+- 2026-09-18 rules/rule-carry-over updated: the /carry brief leaves out a target the sprint page names (case 233.4) · [[decision-case-233.4]] · generate
+- 2026-09-18 estimates/estimate-carry-over-writes updated: the Render changed under it — the Deferred paragraph; the Criterion stands as it was (case 233.4) · [[decision-case-233.4]] · generate
+- 2026-09-18 decisions/decision-case-233.5 created · raw/2026-09-17/1119/ledger.md#case-233.5 · generate
+- 2026-09-18 estimates/estimate-sprint-migration-lint-clean updated: the Slices under Milestones, a Backlog of two plain lines (cases 229.1, 233.5) · [[decision-case-233.5]] · generate
+- 2026-09-18 estimates/estimate-pretask-reconciles status: pending → passed · raw/2026-09-17/1119/ledger.md#L39 · generate
+- 2026-09-18 estimates/estimate-ledger-write-lifts status: pending → passed · raw/2026-09-17/1119/ledger.md#L40 · generate
+- 2026-09-18 decisions/decision-case-234 created · raw/2026-09-17/1119/ledger.md#case-234 · generate
+- 2026-09-18 lessons/lesson-hi-substitution-refused-when-the-permission-classifier-is-unavailable created · raw/2026-09-17/1119/ledger.md#L42 · generate
+- 2026-09-18 lessons/lesson-work-mode-check-reads-a-page-the-same-spec-changes created · raw/2026-09-17/1119/ledger.md#L43 · generate
+- 2026-09-18 insights/insight-workflow-code-live-before-the-page-it-reads created · raw/2026-09-17/1119/ledger.md#L43 · generate
+- 2026-09-18 lessons/lesson-reader-changed-before-its-writer-closed-the-live-session updated: clustered by librarian under insight-workflow-code-live-before-the-page-it-reads · raw/2026-09-17/1119/ledger.md#L43 · generate
+- 2026-09-18 lessons/lesson-work-mode-check-reads-a-page-the-same-spec-changes updated: clustered by librarian under insight-workflow-code-live-before-the-page-it-reads · raw/2026-09-17/1119/ledger.md#L43 · generate
+- 2026-09-18 rules/rule-case-protocol status: built → draft · cascade · generate
+- 2026-09-18 rules/rule-documentation status: draft → built · cascade · generate
+- 2026-09-18 rules/rule-harness status: built → draft · cascade · generate
+- 2026-09-18 rules/rule-pretask status: draft → built · cascade · generate
+- 2026-09-18 rules/rule-render-harness status: built → draft · cascade · generate
+- 2026-09-18 rules/rule-retro status: built → draft · cascade · generate
+- 2026-09-18 rules/rule-skill-hi status: built → draft · cascade · generate
+- 2026-09-18 decisions/decision-case-217 archived · superseded · generate
+- 2026-09-18 decisions/decision-case-223 archived · superseded · generate
+- 2026-09-18 lessons/lesson-ledger-block-followed-by-a-tool-call archived · insight actioned · generate
+- 2026-09-18 lessons/lesson-ledger-block-followed-by-a-tool-call archived · cleanup
+- 2026-09-18 decisions/decision-case-217 archived · cleanup
+- 2026-09-18 decisions/decision-case-223 archived · cleanup

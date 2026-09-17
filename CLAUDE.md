@@ -76,8 +76,7 @@ The Spec is the plan file, written as each Case is ratified, in the reply that
 carries its ledger lines: `context`, `problem`, `given`, `when`, `then`, the `then`
 block and a block tagged `tasks` — one `- [ ] <what>` per file, test, command and
 one-off migration, and one per reading of an Estimate the Case creates or sets
-`pending`, by its slug; no `recommend`, no `ratification`, no code. Work Mode ticks the boxes in `raw/<date>/<hi HHMM>/spec.md` in the reply that finishes the task; Retro
-counts the unticked.
+`pending`, by its slug; no `recommend`, no `ratification`, no code. Work Mode ticks the boxes on code, tests, migrations and readings in `raw/<date>/<hi HHMM>/spec.md` in the reply that finishes the task; `generate` and `render` tick the page and render lines (case 226); Retro counts the unticked.
 
 The reply that acknowledges a ratification has four parts, in this order: the `LEDGER` block first; a heading `## Case N — ratified` and a paragraph **Changes:** — what changes, in one or two sentences; a paragraph **Notes:** — facts that did not enter the Case, omitted when there are none; a heading `## Frontier` and the lines of `frontier.md` as a checklist — the closed lines folded into one, the open ones one per line with a short title, the deferred as `[-] … · defer case N` — and the question which item is next, last. Headings and labels in the language of the chat (case 167, supersedes 157).
 
@@ -95,7 +94,7 @@ line anywhere else — bare, or in a block with another tag or none — is a pre
 and is never written. A `create` line carries the ratified tags: `{tags:a,b}`. A `knowledge` lesson line carries `{source:...}`, the url or reference the lesson studied — a file of the harness, a probe, a client version; the schema requires it, and a line without it is `incomplete: [source]` in the yaml and a lint finding on the page. An `error` lesson never carries one.
 Write the `- decision[...]` lines only in the reply that acknowledges ratification;
 `- estimate[...]` and `- lesson[...]` lines the moment the measurement or the lesson
-exists, an `estimate[...]` line opening with the date of the reading and the command or the place it was read (case 199). Without `/hi` the hook refuses and says so: tell the person, do not retry. A reply that carries a `LEDGER` block ends in that text. No tool call follows it in the same reply: the text before a tool call is never kept, and the hook reads nothing.
+exists, an `estimate[...]` line opening with the date of the reading and the command or the place it was read (case 199). Without `/hi` the hook refuses and says so: tell the person, do not retry. A reply that carries a `LEDGER` block ends in that text. No tool call follows it in the same reply: the text before a tool call waits for the next `Stop` of the session, and the last reply of a session has none. A block a tool call did follow is not lost until that `Stop` has passed: check the ledger then, and only a line missing there is a lesson.
 <!-- /rule-case-protocol -->
 
 ## Language

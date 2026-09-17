@@ -25,7 +25,7 @@ Then:
 The brief holds five sections in order: Where things stand, Readings due, Deferred, Flags, Readings at the close.
 **＋** Where things stand — from "What actually got done" of `handoff.md` and the counts of the yaml: pages created and updated per category.
 **＋** Readings due — every Estimate `pending` or `failed` after `generate`: the Estimate, the rule that stands `draft`, and where it is read — from the unticked `read` line of the session's Spec or from the page's `method`; a `failed` one first, with the result of its reading in one line; nothing from the previous brief.
-**＋** Deferred — at most seven: the targets of the `defer` entries of this run, the items of the previous list whose decision no `supersedes` retired, every `open` Insight; ranked by `severity` — its own or that of the related Insight — then by the number of briefs the item stood in; an Insight's line carries its slug, `severity`, `pattern` and its Proposal in one or two sentences.
+**＋** Deferred — at most seven: the targets of the `defer` entries of this run, the items of the previous list whose decision no `supersedes` retired, every `open` Insight; never a target the sprint page names under a milestone or in its Backlog, whose count of briefs does not grow (case 229.4); ranked by `severity` — its own or that of the related Insight — then by the number of briefs the item stood in; an Insight's line carries its slug, `severity`, `pattern` and its Proposal in one or two sentences.
 **＋** Flags, no limit: entries `incomplete`, `failed`, `near`, `unparsed`; `failed` Estimates; MOC candidates; stale defers; contradictions; the lint output; a handoff flag that asks for a change of the sprint, as a Case of the next Plan Mode.
 **＋** Readings at the close — `make test`, `make lint`, page counts.
 **－** The brief states no decision and no judgment of the work; a change of the sprint is a Case, never the librarian's edit.
@@ -47,3 +47,4 @@ The brief holds five sections in order: Where things stand, Readings due, Deferr
 - 2026-09-16 updated: the Criterion replaced whole by case 197 — the head, 124.1 and 168 recut into one; the short shape of /carry left to estimate-carry-over-writes (case 197) · [[decision-case-197]]
 - 2026-09-17 status: pending → passed · raw/2026-09-16/2238/ledger.md#L3
 - 2026-09-17 updated: the last line of the Criterion — a change of the sprint is a Case, never the librarian's edit; the sprint flag lands in Flags (case 209.6) · [[decision-case-209.6]]
+- 2026-09-18 updated: the Deferred line — never a target the sprint page names (case 229.4) · [[decision-case-229.4]]

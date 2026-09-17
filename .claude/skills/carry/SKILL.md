@@ -15,7 +15,7 @@ Otherwise:
    `.claude/agents/librarian-guppi.md`), in its short shape as that frame says: Where
    things stand names the conserved Spec — `vault/raw/<hi date>/<hi HHMM>/spec.md`, its
    Cases, what is not done on it; no Readings due, no Readings at the close; Deferred is
-   the previous brief's list as it stands plus the `defer` items of this Spec by slug;
+   the previous brief's list as it stands plus the `defer` items of this Spec by slug, less the targets the sprint page names (case 229.4);
    Flags say what the vault does not know about this session. No cap, no ranking.
 2. Write `vault/raw/<hi date>/<hi HHMM>/carry.md` with one line: `conserved — delete
    this file when the work of spec.md is done`. Its presence tells `guppi materialize`

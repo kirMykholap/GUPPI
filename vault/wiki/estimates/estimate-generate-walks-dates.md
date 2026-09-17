@@ -1,10 +1,10 @@
 ---
 type: estimate
 kind: QA
-status: pending
+status: passed
 target: "[[rule-page-generation]]"
 method: tests/test_generate.py with two dated folders; live, the librarian's first run
-checked: 2026-09-16
+checked: 2026-09-17
 origin: raw/2026-09-10/ledger.md#case-43
 sprint: migration
 created: 2026-09-10
@@ -29,7 +29,7 @@ Then:
 
 ## Result
 
-2026-09-16, `pytest tests/test_generate.py`: 46 green — every unit with a yaml walked in date and folder order, a unit with nothing unapplied silent, a failure on one unit reported and the walk going on with exit 1, a missing yaml named on stderr
+2026-09-17, `uv run pytest -q tests/test_generate.py` 48 passed, and the pages after the librarian's run of 2238 (commit be891c1): `estimate-generate-writes`, `-generate-walks-dates`, `-lint-catches`, `-pretask-reconciles`, `-materialize-assembles` each carry a `method` field and no `## Context` or `## Method` section; `uv run guppi lint` reads `unmigrated: 34 pages in the shape before case 193`; the walk of that run took four units — 1034, 1651, 1955, 2238 — dates ascending, per the brief
 
 ## History
 
@@ -42,3 +42,4 @@ Then:
 - 2026-09-16 updated: the Criterion replaced whole by case 201.5 — the head and block 103.3 recut into one (case 201.5) · [[decision-case-201.5]]
 - 2026-09-16 status: pending → passed · raw/2026-09-16/1955/ledger.md#L31
 - 2026-09-17 updated: method as a field, the old sections dropped — the recut completed (case 211.3) · [[decision-case-211.3]]
+- 2026-09-18 status: pending → passed · raw/2026-09-17/1119/ledger.md#L24

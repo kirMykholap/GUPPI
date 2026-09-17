@@ -328,7 +328,7 @@ update:
 ```tasks
 - [ ] update `rule-documentation`: one `replace` in the Render — the step after `render`
 - [ ] update `estimate-documentation-completes`: `sections: Criterion` — the current text plus the line on `guppi sprint`; `set: {status: pending}`
-- [ ] `guppi render`: `.claude/agents/librarian-guppi.md`; `render --check` exit 0
+- [x] `guppi render`: `.claude/agents/librarian-guppi.md`; `render --check` exit 0
 - [ ] read `estimate-documentation-completes`
 ```
 
@@ -378,7 +378,7 @@ update:
 ```tasks
 - [ ] update `rule-brief`: one `replace` in the Render
 - [ ] update `estimate-brief-written`: `sections: Criterion` — the current text with the last line replaced; `set: {status: pending}`
-- [ ] `guppi render`; `render --check` exit 0
+- [x] `guppi render`; `render --check` exit 0
 - [ ] read `estimate-brief-written`
 ```
 
@@ -821,7 +821,7 @@ update:
 ```tasks
 - [ ] update `rule-pretask`: one `replace` in the Render — the command line
 - [ ] update `estimate-pretask-reconciles`: `sections: Criterion` — the current text with the first line of `then` changed; `set: {status: pending}`
-- [ ] `guppi render`: `.claude/skills/pre-task/SKILL.md`; `render --check` exit 0
+- [x] `guppi render`: `.claude/skills/pre-task/SKILL.md`; `render --check` exit 0
 - [ ] read `estimate-pretask-reconciles`
 ```
 

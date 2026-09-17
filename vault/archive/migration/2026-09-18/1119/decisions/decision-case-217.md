@@ -1,8 +1,9 @@
 ---
 type: decision
 case: "217"
-status: current
+status: archived
 defer: ["[[rule-page-generation]]"]
+superseded_by: ["[[decision-case-226.1]]"]
 origin: raw/2026-09-16/2238/ledger.md#case-217
 sprint: migration
 created: 2026-09-16
@@ -26,3 +27,6 @@ generate ticks, in the session's spec.md, the task line under the entry's Case w
 ## History
 
 - 2026-09-17 created · raw/2026-09-16/2238/ledger.md#case-217
+- 2026-09-18 superseded by decision-case-226.1 · [[decision-case-226.1]]
+- 2026-09-18 archived · superseded
+- 2026-09-18 archived · cleanup

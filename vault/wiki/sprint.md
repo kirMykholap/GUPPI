@@ -13,22 +13,20 @@ Estimates of this page pass: lint clean, the leftovers gone, the branch merged.
 - [ ] vault/parked/, the 2026-08 documents, the old archive root and the empty raw date folders are gone by decision at the close of the sprint · pending
 - [ ] make test green on the last commit of migration and the branch merged into main · pending
 
-## Backlog
+## Milestones
 
 ### [ ] Slice 3b — Work Mode
 
-- [ ] [[rule-work-mode]] — Work Mode: the Spec as tasks with code, the ticked boxes in `spec.md`, the test of each Estimate written first and turned green; cases 183, 206 · draft · decision-case-183, decision-case-206, decision-case-218
-- [ ] [[rule-subagent-guppi]] — what a subagent may do in Work Mode, and the fork that comes back to the main agent as a Case; cases 183, 206 · draft · decision-case-183, decision-case-206, decision-case-218
+- [ ] [[rule-work-mode]] — Work Mode: the Spec as tasks with code, the ticked boxes in `spec.md`, the test of each Estimate written first and turned green; cases 183, 206 · draft · decision-case-183, decision-case-206, decision-case-218, decision-case-231
+- [ ] [[rule-subagent-guppi]] — what a subagent may do in Work Mode, and the fork that comes back to the main agent as a Case; cases 183, 206 · draft · decision-case-183, decision-case-206, decision-case-218, decision-case-231
 
-### [ ] Slice 4 — conversion of the parked pages by group
+### [ ] Slice 4 — conversion of the parked pages by group — 1 item
+### [ ] Slice 5 — closing — 3 items
 
-- [ ] [[estimate-sprint-migration-leftovers-gone]] — every page of `vault/parked/` and every document of 2026-08 under `docs/` converted, archived or deleted by a decision · pending
+## Backlog
 
-### [ ] Slice 5 — closing
-
-- [ ] [[estimate-sprint-migration-lint-clean]] — `make lint` exit 0: the 31 Decision pages of Cases 1–28 decided, `unmigrated` at zero · pending
-- [ ] [[estimate-sprint-migration-merges]] — `make test` green, `migration` merged into `main` · pending
-- [ ] [[rule-spec-box]] — the Spec box, case 207, after Slice 3b · draft · decision-case-207, decision-case-219
+- [ ] the categories as data of the project: `generate`, `lint`, `materialize` and `ask-guppi` read the category set from `wiki/<category>/schema.yaml`; the development set — entity, rule, estimate — is the default (session 1119)
+- [ ] the product model: `applies_to` on a Rule and `rules` on an Entity, `kind: test | measurement | reading`, `ask-guppi` through Entities, the pre-task questions before a product's records (session 1119)
 
 ## Closed
 

@@ -1,20 +1,15 @@
 ---
 type: estimate
 kind: QA
-status: passed
+status: pending
 target: "[[rule-case-protocol]]"
+method: One reading at a session start, by hand, plus the preview cases of tests/test_ledger.py.
 checked: 2026-09-17
 origin: raw/2026-09-09/ledger.md#case-13
 sprint: migration
 created: 2026-09-09
 tags: [session, workflow, ledger]
 ---
-
-## Context
-
-An instruction in `CLAUDE.md` has force only if it is in the system prompt from the first
-turn. The LEDGER-block rule is the half of it a test can hold; the rest is read off the agent's
-first reply.
 
 ## Criterion
 
@@ -27,12 +22,16 @@ call.
 **＋** The Case protocol says the Spec is `raw/<date>/<hi HHMM>/spec.md` — the
 `## Deferred` heading, the ticked boxes — and the Frontier
 `raw/<date>/<hi HHMM>/frontier.md`.
+**＋** A reply with a `LEDGER` block ends in that text; no tool call follows in the
+same reply — the text before a tool call waits for the next `Stop` of the session,
+and the last reply of a session has none.
+**＋** A block a tool call did follow the agent does not call lost before the `Stop`
+of that turn; at the next `Stop` it checks the ledger, and only a line missing there
+is a lesson.
+**＋** The Case protocol says Work Mode ticks the boxes on code, tests, migrations and
+readings, and `generate` and `render` tick the page and render lines (case 226).
 **－** A reply whose ledger lines sit outside a `LEDGER` block — bare, or in a fence
 with another tag or none — adds nothing to the session's ledger.
-
-## Method
-
-One reading at a session start, by hand, plus the preview cases of `tests/test_ledger.py`.
 
 ## Result
 
@@ -60,3 +59,4 @@ One reading at a session start, by hand, plus the preview cases of `tests/test_l
 - 2026-09-16 updated: the Criterion replaced whole — the head text without the dead method clause, plus block 73.9; the other blocks move to their own Estimates (case 188) · [[decision-case-188]]
 - 2026-09-16 status: pending → passed · raw/2026-09-16/1955/ledger.md#L37
 - 2026-09-17 status: passed → passed · raw/2026-09-16/2238/ledger.md#L36
+- 2026-09-18 updated: three lines added to the Criterion — the wait for the next Stop, no loss called before it, who ticks which line (cases 224.2, 233) · [[decision-case-224.2]]

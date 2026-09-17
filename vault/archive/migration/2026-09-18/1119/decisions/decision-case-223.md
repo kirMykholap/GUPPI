@@ -1,8 +1,9 @@
 ---
 type: decision
 case: "223"
-status: current
+status: archived
 defer: ["[[rule-carry-over]]"]
+superseded_by: ["[[decision-case-225]]"]
 origin: raw/2026-09-16/2238/ledger.md#case-223
 sprint: migration
 created: 2026-09-16
@@ -26,3 +27,6 @@ drop the stray `ref` field from `rule-carry-over`, a one-off like case 210 — a
 ## History
 
 - 2026-09-17 created · raw/2026-09-16/2238/ledger.md#case-223
+- 2026-09-18 superseded by decision-case-225 · [[decision-case-225]]
+- 2026-09-18 archived · superseded
+- 2026-09-18 archived · cleanup

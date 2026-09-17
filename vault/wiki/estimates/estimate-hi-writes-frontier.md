@@ -1,50 +1,29 @@
 ---
 type: estimate
 kind: QA
-status: passed
+status: pending
 target: "[[rule-skill-hi]]"
+method: "one reading by hand at the first /hi of the next session, written into the estimate line; unit: the frontier findings of guppi pretask --check in tests/test_pretask.py"
 origin: raw/2026-09-12/ledger.md#case-59.2
 sprint: migration
 created: 2026-09-12
 tags: [session, harness, workflow]
-
 ---
-
-## Context
-
-The Frontier lived in the agent's memory; a plan was closed on one item of it
-(lesson-plan-mode-exited-per-frontier-item). The file makes the rule checkable.
 
 ## Criterion
 
-After `/hi`, `raw/<date>/frontier.md` exists with one line per item the agent presented,
-each `- [ ] F<n> — <title> · <source>`. At `/pre-task` of the same session every line is
-`[x] … · case N`, `[x] … · work` or `[-] … · defer case N`, and `guppi pretask --check`
-prints no frontier finding; unit: a missing file, an open line, a `case N` without its
-heading, a `defer case N` without its item are each one finding, exit 1.
-
-### case 73.3
+Given:
+`/hi` puts `sprint.md` into the context on the first turn; the Frontier is written to `raw/<date>/<hi HHMM>/frontier.md`, one line per item; `/pre-task` fails on an open line.
+**＋** `sprint.md` shows the current milestone whole and a later one as one line.
 
 When:
-The person invokes `/hi`.
+The person invokes `/hi`, and the agent assembles the Frontier.
 
 Then:
-The Frontier goes to `raw/<hi date>/<hi HHMM>/frontier.md`, the folder made at that
-moment; the lines and their closing are as in case 59.2.
-
-### case 101.4
-
-When:
-The agent assembles the Frontier from the text of `/hi`.
-
-Then:
-The skill text: "A `failed` reading or a lesson in the Tail above is an item; a decision line of the tail is not — its page comes with the next librarian."
-**＋** `estimate-hi-writes-frontier` gets a `### case 101.4` block, `pending`.
-
-## Method
-
-pytest in `tests/test_pretask.py` against a temp plan and frontier; the live reading at
-this session's `/hi` (the file written by hand from the presented list) and `/pre-task`.
+The items of the current milestone are Frontier lines; a later milestone, the Backlog and Closed are not.
+**＋** The other sources as today: an unfinished plan first, a hand edit from `Render:`, a failed pull and an unavailable `gh`, a `failed` reading and a lesson of the Tail, the readings `pending`, the flags of the brief; an item the person adds is a new line.
+**＋** Each line `- [ ] F<n> — <title> · <source>`; closed as `[x] … · case N`, `[x] … · work` or `[-] … · defer case N`.
+**－** A decision line of the Tail is not an item.
 
 ## Result
 
@@ -58,3 +37,4 @@ raw/2026-09-14/0747/frontier.md written at /hi with F1–F10, F11 and F12 added 
 - 2026-09-13 criterion: case 101.4 added · [[decision-case-101.4]]
 - 2026-09-14 status: pending → passed · raw/2026-09-14/0747/ledger.md#L37
 - 2026-09-17 ref removed · one-off migration · raw/2026-09-16/2238/spec.md#case-210
+- 2026-09-18 updated: the Criterion replaced whole — the Frontier from the current milestone, the lines and their closing kept (case 229.3) · [[decision-case-229.3]]

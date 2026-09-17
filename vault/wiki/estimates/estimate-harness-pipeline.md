@@ -1,36 +1,27 @@
 ---
 type: estimate
 kind: QA
-status: passed
+status: pending
 target: "[[rule-harness]]"
+method: make test-harness over tests/test_render.py and tests/test_lint.py; the live reading of make lint by hand
 origin: raw/2026-09-10/ledger.md#case-37
 sprint: migration
 created: 2026-09-10
 tags: [harness, workflow]
 ---
 
-## Context
-
-The four tools guard each other: a renderer that drifts is caught by lint, an index that lags by its check.
-
 ## Criterion
 
-make test-harness runs the tests of the renderer, lint and the indexes as one
-pipeline, green; make lint runs render --check, then index --check, then guppi
-lint, and the first two exit 0 on the committed tree.
-
-### case 153
+Given:
+`make lint` is `render --check`, `sprint --check`, `guppi lint` (case 227); `rule-sprint` is a child of `rule-documentation`, not of `rule-harness`.
+**＋** `estimate-harness-pipeline` is the old shape — a recut with `set.method`.
 
 When:
 `make lint` and `make test-harness` run; someone reads `rule-harness`.
 
 Then:
-The Purpose: "Three rules belong to no phase of the session: the renderer, the page `.claude/settings.json` is assembled from, and lint. They run together in `make lint`, in this order: the harness files are checked against their pages before the pages. Four more belong here and run in no pipeline: the hook that refuses a hand edit of a rendered file, the hook that refuses a heredoc with a backslash or a file write, the page `CLAUDE.md` is rendered from, and the pinned clock of the tests (cases 59.6, 59.8, 127, 145.1)."
-**＋** `estimate-harness-pipeline`: block 153, `pending`; Method: "`make test-harness` over `tests/test_render.py` and `tests/test_lint.py`; the live reading of `make lint` by hand".
-
-## Method
-
-`make test-harness` over tests/test_render.py and tests/test_lint.py; the live reading of make lint by hand
+The Purpose says: three rules belong to no phase of the session — the renderer, the page `settings.json` is assembled from, lint — and with them the check of `rule-sprint` runs in `make lint`, in this order: the harness files against their pages, the sprint file against its page, then the pages.
+**＋** `make test-harness` is green; `make lint` exits 0 on the committed tree by its first two steps.
 
 ## Result
 
@@ -42,3 +33,4 @@ block 153: rule-harness Purpose carries the ratified text; make test-harness run
 - 2026-09-10 status: pending → passed · raw/2026-09-10/ledger.md#L74
 - 2026-09-14 criterion: case 153 added · [[decision-case-153]]
 - 2026-09-15 status: pending → passed · raw/2026-09-15/1110/ledger.md#L3
+- 2026-09-18 updated: the Criterion replaced whole — make lint with three steps (case 233.1) · [[decision-case-233.1]]

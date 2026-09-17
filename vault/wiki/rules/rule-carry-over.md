@@ -8,7 +8,6 @@ governs: .claude/skills/carry/SKILL.md
 render_mode: full
 parent: "[[rule-end-of-work]]"
 estimates: ["[[estimate-carry-over-writes]]"]
-deferred_by: ["[[decision-case-223]]"]
 origin: raw/2026-09-16/1034/ledger.md#case-190.1
 sprint: migration
 created: 2026-09-16
@@ -43,7 +42,7 @@ Otherwise:
    `.claude/agents/librarian-guppi.md`), in its short shape as that frame says: Where
    things stand names the conserved Spec — `vault/raw/<hi date>/<hi HHMM>/spec.md`, its
    Cases, what is not done on it; no Readings due, no Readings at the close; Deferred is
-   the previous brief's list as it stands plus the `defer` items of this Spec by slug;
+   the previous brief's list as it stands plus the `defer` items of this Spec by slug, less the targets the sprint page names (case 229.4);
    Flags say what the vault does not know about this session. No cap, no ranking.
 2. Write `vault/raw/<hi date>/<hi HHMM>/carry.md` with one line: `conserved — delete
    this file when the work of spec.md is done`. Its presence tells `guppi materialize`
@@ -62,3 +61,6 @@ the brief. The session that finishes the Spec deletes `carry.md`.
 - 2026-09-16 estimate estimate-carry-over-writes added · [[decision-case-190.1]]
 - 2026-09-16 updated: the Render written — the skill's text, called by the agent after the fork (case 196.1) · [[decision-case-196.1]]
 - 2026-09-17 deferred · [[decision-case-223]]
+- 2026-09-18 defer by decision-case-223 superseded · [[decision-case-225]]
+- 2026-09-18 updated: the stray ref field removed by a one-off script (case 225) · [[decision-case-225]]
+- 2026-09-18 updated: the /carry brief leaves out a target the sprint page names (case 233.4) · [[decision-case-233.4]]

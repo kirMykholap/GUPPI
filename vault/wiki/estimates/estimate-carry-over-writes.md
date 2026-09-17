@@ -3,12 +3,12 @@ type: estimate
 kind: QA
 status: pending
 target: "[[rule-carry-over]]"
+purpose: /carry writes the brief and the mark and runs nothing else
+method: pytest over the skill's render, plus one live reading of a carried-over session
 origin: raw/2026-09-16/1034/ledger.md#case-190.1
 sprint: migration
 created: 2026-09-16
 tags: [session, workflow, harness]
-purpose: /carry writes the brief and the mark and runs nothing else
-method: pytest over the skill's render, plus one live reading of a carried-over session
 ---
 
 ## Criterion
@@ -36,3 +36,4 @@ The skill reads the tree; when it holds changes outside the session folder and `
 - 2026-09-16 created · [[decision-case-190.1]]
 - 2026-09-16 updated: the Criterion replaced whole by case 196.1 — the agent's call after the fork, the brief, the flag, the commit, nothing else run (case 196.1) · [[decision-case-196.1]]
 - 2026-09-17 ref removed · one-off migration · raw/2026-09-16/2238/spec.md#case-210
+- 2026-09-18 updated: the Render changed under it — the Deferred paragraph; the Criterion stands as it was (case 233.4) · [[decision-case-233.4]]

@@ -2,7 +2,7 @@
 type: rule
 kind: MOC
 purpose: Prevents the tools of the harness from drifting apart from the pages that describe them
-status: built
+status: draft
 children: ["[[rule-render-harness]]", "[[rule-settings]]", "[[rule-lint]]", "[[rule-governed-files-hook]]", "[[rule-claude-md]]", "[[rule-bash-guard]]", "[[rule-tests-clock-pinned]]"]
 estimates: ["[[estimate-harness-pipeline]]"]
 origin: raw/2026-09-10/ledger.md#case-37
@@ -15,7 +15,7 @@ tags: [harness, workflow]
 
 Prevents the tools of the harness from drifting apart from the pages that describe
 them. Three rules belong to no phase of the session: the renderer, the page
-`.claude/settings.json` is assembled from, and lint. They run together in `make lint`, in this order: the harness files are checked against their pages before the pages. Four more belong here and run in no pipeline: the hook that refuses a hand edit of a rendered file, the hook that refuses a heredoc with a backslash or a file write, the page `CLAUDE.md` is rendered from, and the pinned clock of the tests (cases 59.6, 59.8, 127, 145.1).
+`.claude/settings.json` is assembled from, and lint. They run together in `make lint`, with the check of `rule-sprint` (a child of `rule-documentation`) between them, in this order: the harness files are checked against their pages, the sprint file against its page, then the pages (case 227). Four more belong here and run in no pipeline: the hook that refuses a hand edit of a rendered file, the hook that refuses a heredoc with a backslash or a file write, the page `CLAUDE.md` is rendered from, and the pinned clock of the tests (cases 59.6, 59.8, 127, 145.1).
 
 ## History
 
@@ -36,3 +36,5 @@ them. Three rules belong to no phase of the session: the renderer, the page
 - 2026-09-14 status: built → draft · cascade
 - 2026-09-14 child rule-index archived · cleanup
 - 2026-09-15 status: draft → built · cascade
+- 2026-09-18 updated: sprint --check joins make lint between render --check and lint (case 233.1) · [[decision-case-233.1]]
+- 2026-09-18 status: built → draft · cascade

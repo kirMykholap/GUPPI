@@ -1608,6 +1608,7 @@ entries:
       not this; with Slice 3b, which fixes who ticks what
   exists: true
   applied: 01:48:01
+  superseded_by: '226.1'
 - line: 40
   text: decision[case 218][defer][rule-work-mode]{ref:rule-work-mode}
   case: '218'
@@ -1920,6 +1921,7 @@ entries:
       once by path and a History line with the pointer; the next Plan Mode
   exists: true
   applied: 01:48:01
+  superseded_by: '225'
 - kind: update
   category: insights
   slug: insight-ledger-hook-reads-only-the-final-text
@@ -2907,6 +2909,8 @@ decisions:
       Spec ends its session with them open, and Retro counts them as debt — 21 in the Spec of 1955.'
   spec: vault/raw/2026-09-16/2238/spec.md
   applied: 01:48:01
+  superseded_by:
+  - decision-case-226.1
 - case: '218'
   decision: decision-case-218
   origin: raw/2026-09-16/2238/ledger.md#case-218
@@ -3059,6 +3063,8 @@ decisions:
       and Retro ratifies no update.
   spec: vault/raw/2026-09-16/2238/spec.md
   applied: 01:48:01
+  superseded_by:
+  - decision-case-225
 unparsed: []
 session: '2238'
 new_tags:

@@ -2,7 +2,7 @@
 type: rule
 kind: MOC
 purpose: Prevents a session from being loaded piecemeal by read-tool calls
-status: built
+status: draft
 enforcement: render
 governs: .claude/skills/hi/SKILL.md
 render_mode: full
@@ -35,8 +35,7 @@ disable-model-invocation: true
 <!-- rule-ledger-tail -->
 
 
-Assemble the Frontier from the above and present it as a list: tasks, problems, debt
-carried over, where the sprint stands; on a plan branch the unfinished plan comes first;
+Assemble the Frontier from the above and present it as a list: tasks, problems, debt carried over, the items of the sprint's current milestone — the first with an open item or with none — and none of a later milestone, of the Backlog or of Closed (case 229.3); on a plan branch the unfinished plan comes first;
 what `guppi render --sync` printed at session start or on the `Render:` line above is an item when it shows a hand edit.
 A failed pull or an unavailable `gh` is an item on that list, not a reason to stop. A `failed` reading or a lesson in the Tail above is an item; a decision line of the tail is not — its page comes with the next librarian. Write the same list to `vault/raw/<date>/<hi HHMM>/frontier.md` — the session's folder, `HHMM` from the `hi:` line the `UserPromptSubmit` hook put in context (cases 73, 125) — one line per item:
 `- [ ] F<n> — <title> · <source>`. Close a line when its item ends: `[x] … · case N`
@@ -78,3 +77,5 @@ session. The skill writes no event line of its own since case 111.4: a `!` subst
 - 2026-09-14 status: draft → built · cascade
 - 2026-09-14 updated: the time of the session's folder comes from the hook's hi line in context, not from a line the skill no longer prints (case 125) · [[decision-case-125]]
 - 2026-09-14 updated: the hub file linked for the graph (case 149.4) · [[decision-case-149.4]]
+- 2026-09-18 updated: the Frontier takes the current milestone of the sprint only (case 229.3) · [[decision-case-229.3]]
+- 2026-09-18 status: built → draft · cascade

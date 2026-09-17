@@ -18,7 +18,7 @@ Open since 2026-09-09. The repository works by the model in `wiki/index.md`: Pha
 conformance) of `docs/migration/migration-plan.md` are closed. Done when the three
 Estimates of this page pass: lint clean, the leftovers gone, the branch merged.
 
-## Backlog
+## Milestones
 
 ### Slice 3b — Work Mode
 
@@ -34,6 +34,11 @@ Estimates of this page pass: lint clean, the leftovers gone, the branch merged.
 - [[estimate-sprint-migration-lint-clean]] — `make lint` exit 0: the 31 Decision pages of Cases 1–28 decided, `unmigrated` at zero
 - [[estimate-sprint-migration-merges]] — `make test` green, `migration` merged into `main`
 - [[rule-spec-box]] — the Spec box, case 207, after Slice 3b
+
+## Backlog
+
+- the categories as data of the project: `generate`, `lint`, `materialize` and `ask-guppi` read the category set from `wiki/<category>/schema.yaml`; the development set — entity, rule, estimate — is the default (session 1119)
+- the product model: `applies_to` on a Rule and `rules` on an Entity, `kind: test | measurement | reading`, `ask-guppi` through Entities, the pre-task questions before a product's records (session 1119)
 
 ## Closed
 
@@ -57,3 +62,4 @@ both decided again at the close (`estimate-sprint-migration-leftovers-gone`).
 - 2026-09-17 estimate estimate-sprint-migration-lint-clean added · [[decision-case-209.2]]
 - 2026-09-17 estimate estimate-sprint-migration-leftovers-gone added · [[decision-case-209.3]]
 - 2026-09-17 estimate estimate-sprint-migration-merges added · [[decision-case-209.4]]
+- 2026-09-18 updated: the Slices under Milestones, a Backlog of two plain lines without a page (case 229.1) · [[decision-case-229.1]]

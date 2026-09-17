@@ -2,7 +2,7 @@
 type: lesson
 kind: error
 root_cause: the Case protocol says a reply with a LEDGER block ends in that text and no tool call follows, and the agent loaded a deferred tool in the same reply instead of the next one
-status: clustered
+status: archived
 insight: "[[insight-ledger-hook-reads-only-the-final-text]]"
 origin: raw/2026-09-16/2238/ledger.md#L48
 sprint: migration
@@ -22,3 +22,5 @@ the Case protocol says a reply with a LEDGER block ends in that text and no tool
 
 - 2026-09-17 created · raw/2026-09-16/2238/ledger.md#L48
 - 2026-09-17 updated: clustered by librarian under insight-ledger-hook-reads-only-the-final-text
+- 2026-09-18 archived · insight actioned
+- 2026-09-18 archived · cleanup

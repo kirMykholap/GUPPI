@@ -42,8 +42,8 @@ update:
 ```
 
 ```tasks
-- [ ] update `rule-ledger-write`: two `replace` pairs in How it works, `change`
-- [ ] update `estimate-ledger-write-lifts`: `set: {status: pending, method}`, `change`
+- [x] update `rule-ledger-write`: two `replace` pairs in How it works, `change`
+- [x] update `estimate-ledger-write-lifts`: `set: {status: pending, method}`, `change`
 - [x] `guppi/gate.py`: the advice to the agent — "waits for the next Stop"
 - [x] `tests/test_gate.py`: an assertion on the new advice on the `Skill` path
 - [x] read `estimate-ledger-write-lifts`: `pytest tests/test_ledger.py tests/test_gate.py`, plus the lines of this Case in `raw/2026-09-17/1119/ledger.md` written by the hook
@@ -100,9 +100,9 @@ update:
 ```
 
 ```tasks
-- [ ] update `rule-case-protocol`: one `replace` pair in the Render, `change`
-- [ ] update `estimate-case-protocol-loaded`: `set: {status: pending, method}`, `sections: Criterion`, `change`
-- [ ] `uv run guppi render`: `CLAUDE.md`
+- [x] update `rule-case-protocol`: one `replace` pair in the Render, `change`
+- [x] update `estimate-case-protocol-loaded`: `set: {status: pending, method}`, `sections: Criterion`, `change`
+- [x] `uv run guppi render`: `CLAUDE.md`
 - [ ] read `estimate-case-protocol-loaded`: the first turn of the next session, by hand
 ```
 
@@ -129,7 +129,7 @@ update:
 ```
 
 ```tasks
-- [ ] update `insight-ledger-hook-reads-only-the-final-text`: `set: {status: actioned, addressed_by}`, `change`
+- [x] update `insight-ledger-hook-reads-only-the-final-text`: `set: {status: actioned, addressed_by}`, `change`
 - [x] the lesson line `lesson-transcript-keeps-the-text-before-a-tool-call` in the reply that acknowledges ratification
 ```
 
@@ -166,7 +166,7 @@ migration:
 
 ```tasks
 - [x] one-off migration script, run once by path from the scratchpad: remove `^ref: ` from `vault/wiki/rules/rule-carry-over.md`
-- [ ] update `rule-carry-over`: `change` alone; `{supersedes:case 223}` on the line
+- [x] update `rule-carry-over`: `change` alone; `{supersedes:case 223}` on the line
 - [x] `make lint`: no new finding; `git diff --stat` — exactly one file (of `vault/wiki/rules/`; the tree holds the code of the other Cases)
 ```
 
@@ -213,8 +213,8 @@ update:
 ```
 
 ```tasks
-- [ ] create `estimate-generate-ticks-the-spec` (`ref: rule-page-generation`)
-- [ ] update `rule-page-generation`: one `replace` in Purpose, `change`; `{supersedes:case 217}` on the line
+- [x] create `estimate-generate-ticks-the-spec` (`ref: rule-page-generation`)
+- [x] update `rule-page-generation`: one `replace` in Purpose, `change`; `{supersedes:case 217}` on the line
 - [x] `guppi/generate.py`: `tick_spec(unit, case, kind, slug)` after `applied`; docstring; tests first in `tests/test_generate.py`
 - [ ] read `estimate-generate-ticks-the-spec`: pytest, plus the page lines of this Spec ticked by the librarian's run
 ```
@@ -254,10 +254,10 @@ update:
 ```
 
 ```tasks
-- [ ] create `estimate-render-harness-ticks-the-spec` (`ref: rule-render-harness`)
-- [ ] update `rule-render-harness`: one `replace` in How it works, `change`
+- [x] create `estimate-render-harness-ticks-the-spec` (`ref: rule-render-harness`)
+- [x] update `rule-render-harness`: one `replace` in How it works, `change`
 - [x] `guppi/render.py`: the tick after `write_all`; docstring; tests first in `tests/test_render.py`
-- [ ] read `estimate-render-harness-ticks-the-spec`: pytest, plus the `guppi render` lines of this Spec ticked by the librarian's run
+- [x] read `estimate-render-harness-ticks-the-spec`: pytest, plus the `guppi render` lines of this Spec ticked by the librarian's run
 ```
 
 ## Case 227 — `sprint.md` is checked, not rendered, at `SessionStart`
@@ -305,9 +305,9 @@ update:
 ```
 
 ```tasks
-- [ ] create `estimate-sprint-checks-the-file` (`ref: rule-sprint`)
-- [ ] update `rule-sprint`: one `replace` in Purpose, `change`
-- [ ] update `rule-lint`: one `replace`, `change`
+- [x] create `estimate-sprint-checks-the-file` (`ref: rule-sprint`)
+- [x] update `rule-sprint`: one `replace` in Purpose, `change`
+- [x] update `rule-lint`: one `replace`, `change`
 - [x] `guppi/sprint.py`: `--check`; docstring; tests first in `tests/test_sprint.py`
 - [x] `Makefile`: `lint` — `uv run guppi sprint --check` as the second line
 - [ ] read `estimate-sprint-checks-the-file`: pytest, plus `make lint` after the librarian's run — no `sprint:` line
@@ -365,7 +365,7 @@ update:
 ```
 
 ```tasks
-- [ ] update `entity-sprint-migration`: `sections: Milestones, Backlog`, `change`
+- [x] update `entity-sprint-migration`: `sections: Milestones, Backlog`, `change`
 - [x] update `entities/schema.md`, by hand: the sections of a sprint page
 - [x] `guppi/generate.py`: `SECTION_ORDER["entities"]` — `Milestones`, `Backlog`, `Closed` after `How it works`; a test in `tests/test_generate.py`
 ```
@@ -402,8 +402,8 @@ update:
 ```
 
 ```tasks
-- [ ] update `rule-sprint`: one `replace` in Purpose, `change`
-- [ ] update `estimate-sprint-renders-the-backlog`: `set: {status: pending}`, `change`
+- [x] update `rule-sprint`: one `replace` in Purpose, `change`
+- [x] update `estimate-sprint-renders-the-backlog`: `set: {status: pending}`, `change`
 - [x] `guppi/sprint.py`: `## Milestones` — current, later, closed; the plain line; docstring; tests first in `tests/test_sprint.py`
 - [ ] read `estimate-sprint-renders-the-backlog`: pytest, plus `sprint.md` after the librarian's run
 ```
@@ -436,9 +436,9 @@ update:
 ```
 
 ```tasks
-- [ ] update `rule-skill-hi`: one `replace` in the Render, `change`
-- [ ] update `estimate-hi-writes-frontier`: `set: {status: pending, method}`, `change`
-- [ ] `uv run guppi render`: `.claude/skills/hi/SKILL.md`
+- [x] update `rule-skill-hi`: one `replace` in the Render, `change`
+- [x] update `estimate-hi-writes-frontier`: `set: {status: pending, method}`, `change`
+- [x] `uv run guppi render`: `.claude/skills/hi/SKILL.md`
 - [ ] read `estimate-hi-writes-frontier`: the first `/hi` of the next session — a Frontier without Slices 4 and 5
 ```
 
@@ -489,9 +489,9 @@ update:
 ```
 
 ```tasks
-- [ ] update `rule-brief`: one `replace` in the Render, `change`
-- [ ] update `estimate-brief-written`: `set: {status: pending}`, `sections: Criterion`, `change`
-- [ ] `uv run guppi render`: `.claude/agents/librarian-guppi.md`
+- [x] update `rule-brief`: one `replace` in the Render, `change`
+- [x] update `estimate-brief-written`: `set: {status: pending}`, `sections: Criterion`, `change`
+- [x] `uv run guppi render`: `.claude/agents/librarian-guppi.md`
 - [ ] read `estimate-brief-written`: the brief after the librarian's run — `rule-work-mode`, `rule-subagent-guppi`, `rule-spec-box` not in Deferred
 ```
 
@@ -529,8 +529,8 @@ update:
 ```
 
 ```tasks
-- [ ] update `rule-harness`: one `replace` in Purpose, `change`
-- [ ] update `estimate-harness-pipeline`: `set: {status: pending, method}`, `change`
+- [x] update `rule-harness`: one `replace` in Purpose, `change`
+- [x] update `estimate-harness-pipeline`: `set: {status: pending, method}`, `change`
 - [ ] read `estimate-harness-pipeline`: `make test-harness`, `make lint` after the build of 227
 ```
 
@@ -560,9 +560,9 @@ update:
 ```
 
 ```tasks
-- [ ] update `rule-retro`: one `replace` in the Render, `change`
-- [ ] update `estimate-retro-loads`: `set: {status: pending, method}`, `change`
-- [ ] `uv run guppi render`: `.claude/skills/retro/SKILL.md`
+- [x] update `rule-retro`: one `replace` in the Render, `change`
+- [x] update `estimate-retro-loads`: `set: {status: pending, method}`, `change`
+- [x] `uv run guppi render`: `.claude/skills/retro/SKILL.md`
 - [ ] read `estimate-retro-loads`: the `/retro` of this session
 ```
 
@@ -641,9 +641,9 @@ update:
 ```
 
 ```tasks
-- [ ] update `rule-carry-over`: one `replace` in the Render, `change`
-- [ ] update `estimate-carry-over-writes`: `sections: Criterion` as it stands, `change`
-- [ ] `uv run guppi render`: `.claude/skills/carry/SKILL.md`
+- [x] update `rule-carry-over`: one `replace` in the Render, `change`
+- [x] update `estimate-carry-over-writes`: `sections: Criterion` as it stands, `change`
+- [x] `uv run guppi render`: `.claude/skills/carry/SKILL.md`
 ```
 
 ### Case 233.5 — `estimate-sprint-migration-lint-clean`: a word on the page
@@ -678,7 +678,7 @@ update:
 ```
 
 ```tasks
-- [ ] update `estimate-sprint-migration-lint-clean`: `sections: Criterion`, `change`
+- [x] update `estimate-sprint-migration-lint-clean`: `sections: Criterion`, `change`
 ```
 
 ## Case 234 — `entities/schema.yaml`: the sections of the sprint page

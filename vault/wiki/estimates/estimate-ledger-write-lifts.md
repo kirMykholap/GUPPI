@@ -3,96 +3,34 @@ type: estimate
 kind: QA
 status: passed
 target: "[[rule-ledger-write]]"
+method: pytest in tests/test_ledger.py and tests/test_gate.py with piped payloads against a temp vault; the live reading once by hand — the lines of the Case in the session's ledger.md, written by the hook
+checked: 2026-09-17
 origin: raw/2026-09-09/ledger.md#case-10
 sprint: migration
 created: 2026-09-09
 tags: [session, hooks, harness, ledger]
 ---
 
-## Context
-
-This is the hook the whole migration waits on: item 5 of the definition of done says the
-final session's ledger is written by it, not by hand. The unit cases pin the contract; the
-live reading proves the registration.
-
 ## Criterion
 
-Given a `Stop` payload whose reply carries a decision line and an estimate line inside a
-`LEDGER` block, and a third decision line both bare and inside an untagged fence, with a
-`hi` recorded for the session: the ledger gains exactly the two lines of the block, their
-text verbatim and the time of writing in front, once, even when the hook runs twice on the
-same payload; a line already present by hand, without a time, is not written again.
-Without `hi` the hook exits 2 with a reason naming the count and the session, and
-the ledger is untouched. With `stop_hook_active` true it exits 0 and writes nothing. With the `session-start` and the `hi` in yesterday's event log and only `tool` lines
-in today's, the lines are written into today's ledger. A reply carrying a `LEDGER` block
-that ends in `/pre-task` reaches the ledger once, at the next `Stop` of the session. In a
-live session, the last lines of this slice reach `raw/2026-09-09/ledger.md` written by the
-hook, not by hand.
-
-### case 103.1
+Given:
+The `Stop` hook `uv run guppi ledger` receives `transcript_path` and `last_assistant_message` at the end of every turn of the main agent.
+**＋** The session's transcript holds every assistant text, a text followed by a tool call in the same turn included (Claude Code 2.1.269–2.1.272, the sessions of 2026-09-13, 2026-09-14 and 2238).
+**＋** `tests/test_ledger.py` and `tests/test_gate.py` fix the behaviour with piped payloads against a temp vault.
 
 When:
-The `Stop` hook (`uv run guppi ledger`) writes record lines.
+The `Stop` hook fires in a session with a `hi` recorded, or `guppi gate` refuses a `Skill` call for an item of the Spec without a ledger line.
 
 Then:
-The lines go to `raw/<hi date>/<hi HHMM>/ledger.md` — the session folder from `session_dir`, the same folder across midnight.
-**＋** The dedupe reads every `ledger.md` under `raw/` at any depth.
-**－** Without a `hi` the hook refuses as today; `event_log.md` stays per day as today.
-
-### case 111.3
-
-When:
-The `Stop` hook has lines to write, or a script asks `session_dir` for the session's folder.
-
-Then:
-The session is a working one when a `hi` line of this session's stamp follows its first `session-start` in the logs walked; the folder is the first such `hi`.
-**＋** A `session-start` of another session, before or after, changes nothing; a `resume` or `compact` of our own still does not close the window (case 14).
-**－** A `hi` with `--------` or another stamp does not count.
-**＋** `estimate-ledger-write-lifts` gets a `### case 111.3` block, `pending`; the test seeds our start, a foreign `resume` and a stamped `hi` and expects the window open, and a `--------` `hi` alone and expects it refused.
-
-### case 122
-
-When:
-The agent calls a skill through the `Skill` tool and `guppi gate` runs.
-
-Then:
-The gate reads the `then` items of every Case in the session's `spec.md` and in the plan file the session's event log names last under `.claude/plans/`, and the decision lines of the session's window as `guppi pretask --check` reads them.
-**＋** When an item has no decision line of its Case, the gate exits 2 and writes nothing: `gate: /<skill> refused — N item(s) of the Spec have no ledger line (case A, case B). The text before a tool call is never kept: end this reply in text with the LEDGER block, then call /<skill> in the next reply.`
-**＋** Every item with its line, or no source found: exit 0, silent; the `/handoff` check of the dirty tree runs as before.
-**＋** `rule-ledger-write` gains `guppi/gate.py` and `tests/test_gate.py` in `implementation_ref`; its "How it works" says the gate, not the agent's memory, holds the reply back.
-**＋** `rule-case-protocol` says, after the paragraph on the `Stop` hook: "A reply that carries a `LEDGER` block ends in that text. No tool call follows it in the same reply: the text before a tool call is never kept, and the hook reads nothing." — rendered into `CLAUDE.md`, `contract: same`.
-**＋** `estimate-ledger-write-lifts` gets a `### case 122` block, `pending`; the test seeds a plan with one item and an empty ledger and expects exit 2 with the case named, then the item's line and expects 0, then no plan path and no `spec.md` and expects 0; the live half is read at the first `/pre-task` of this session after its lines are written: the call passes.
-**－** `{supersedes:case 117}`: `decision-case-117` is superseded, `rule-ledger-write` loses `deferred_by`.
-
-### case 136.3
-
-When:
-The `Stop` hook, `pretask`, `spec`, `gate` or `cleanup` asks whether the session has a `hi`, and where its folder is.
-
-Then:
-Only a `hi` of the session's stamp after its first `session-start` opens the window (111.3); with no such line there is no window, the ledger refuses "no /hi recorded", `unstamped_hi_moment` is removed.
-**＋** `rule-ledger-write` `contract: changed`; `estimate-ledger-write-lifts` gets a `### case 136.3` block, `pending`; the test of 111.6 flips: a `--------` `hi` under our start → refused.
-**＋** The `### case 111.6` block leaves the criterion: `{supersedes:case 111.6}`.
-**－** `hi_recorded`, `session_dir`, `ledger_path` — unchanged beyond the removal of the fallback.
-
-### case 184
-
-When:
-`guppi gate` receives `/pre-task`, `/retro` or `/handoff` — typed, or through `Skill` — and the session has no Spec source.
-
-Then:
-`/pre-task` and `/handoff`: as in 122 — exit 0, silent; for `/handoff` the tree check follows.
-**＋** `/retro` with at least one `decision`, `estimate` or `lesson` line in the session's ledger window: as in 122.
-**－** `/retro` with no source and none of those lines: the refusal of `rule-retro-commit` (case 180), not a pass.
-
-## Method
-
-pytest in `tests/test_ledger.py` with piped payloads against a temp vault; the live
-reading is taken once by hand and written into the estimate line.
+Every line `- decision[`, `- estimate[`, `- lesson[` inside a `LEDGER` block of any text of the main agent in the transcript, the reply just finished included, lands in `raw/<hi date>/<hi HHMM>/ledger.md` with the time of writing, once — a body already in any `ledger.md` under `raw/` is not written again.
+**＋** A block in a text followed by a tool call in the same turn reaches the ledger at the next `Stop` of the session, with the time of that `Stop`; the reply that ends in the text lands it now.
+**＋** The gate's advice to the agent reads: `The text before a tool call waits for the next Stop: end this reply in text with the LEDGER block, then call /<skill> in the next reply.`
+**－** Without a `hi`: exit 2 with the reason, the ledger untouched; with `stop_hook_active`: exit 0, nothing written.
+**－** The last turn of a session that ends in a tool call has no `Stop` after it; its lines are a finding of Retro, not of the hook.
 
 ## Result
 
-block 184: tests/test_gate.py 30 green (385 total), 2026-09-16 session 2225 — `test_pretask_and_handoff_in_an_empty_session_pass_as_before` (no source: exit 0 for /pre-task and /handoff, the tree check after), `test_one_reading_line_is_something_to_review` (a /retro with one estimate line: exit 0 and the mark), `test_a_typed_retro_in_an_empty_session_is_refused` and `test_a_skill_retro_in_an_empty_session_is_refused_for_the_agent` (no source and no line: exit 2, nothing to review, no mark); no live half of its own
+2026-09-17, `uv run pytest -q tests/test_ledger.py tests/test_gate.py` 67 passed; live: the six lines of Case 224 stand in raw/2026-09-17/1119/ledger.md at 11:35:29, written by the Stop hook from the reply that ended in its LEDGER block, each once with its time; the gate's advice now reads "The text before a tool call waits for the next Stop" (test_an_item_of_the_plan_without_its_line_refuses_the_skill)
 
 ## History
 
@@ -114,3 +52,5 @@ block 184: tests/test_gate.py 30 green (385 total), 2026-09-16 session 2225 — 
 - 2026-09-14 status: pending → passed · raw/2026-09-14/1229/ledger.md#L27
 - 2026-09-16 criterion: case 184 added · [[decision-case-184]]
 - 2026-09-16 status: pending → passed · raw/2026-09-15/2225/ledger.md#L15
+- 2026-09-18 updated: the Criterion replaced whole — the text before a tool call is read at the next Stop, the gate's advice reworded (case 224.1) · [[decision-case-224.1]]
+- 2026-09-18 status: pending → passed · raw/2026-09-17/1119/ledger.md#L40

@@ -11,8 +11,7 @@ Style: !`make style`
 Ledger: !`uv run guppi tail`
 
 Retro is an analysis of this session, not planning. Open with the frontier, in one
-message and with no read call: what was ratified (the lines of the Tail above grouped by Case, this session's folder first, one line per Case); the `tasks` of `raw/<date>/<hi HHMM>/spec.md` (the session's folder, case 73), the unticked boxes
-per Case; what
+message and with no read call: what was ratified (the lines of the Tail above grouped by Case, this session's folder first, one line per Case); the `tasks` of `raw/<date>/<hi HHMM>/spec.md` (the session's folder, case 73), the unticked boxes per Case — a `create`, `update` or `defer` line of a page and a `guppi render` line listed as waiting for the librarian, who ticks them (case 226), not as debt; what
 you noticed during Work Mode, as a numbered list — bugs, forks, a contract that
 turned out imprecise. The person adds their own observations. Every item, theirs or
 yours, ends in one of four ways: a `- lesson[...]` line; a `- estimate[...]` line, a

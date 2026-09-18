@@ -2,7 +2,7 @@
 type: rule
 kind: Leaf
 purpose: Prevents a Rule page and the harness file it governs from becoming two copies of one text
-status: built
+status: draft
 enforcement: check
 implementation_ref: [guppi/render.py, tests/test_render.py, .claude/settings.json]
 parent: "[[rule-harness]]"
@@ -58,3 +58,4 @@ file, so nothing is lost but the label in the file itself (case 85.1).
 - 2026-09-18 status: built → draft · cascade
 - 2026-09-18 updated: a render line opens with the code span holding guppi render; a read line that names the command later is not ticked (case 235) · [[decision-case-235]]
 - 2026-09-18 status: draft → built · cascade
+- 2026-09-18 status: built → draft · cascade

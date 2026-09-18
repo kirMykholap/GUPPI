@@ -1,7 +1,7 @@
 ---
 type: estimate
 kind: QA
-status: passed
+status: pending
 target: "[[rule-retro]]"
 method: one reading by hand at the first /retro, recorded in the estimate line
 checked: 2026-09-18
@@ -14,14 +14,13 @@ tags: [session, workflow, harness]
 ## Criterion
 
 Given:
-Retro runs before the librarian; `generate` and `render` tick the page and render lines after it (case 226).
-**＋** `estimate-retro-loads` is the old shape — a recut with `set.method`.
+Retro runs before the librarian; `generate`, `render` and `sprint` tick the page, render and sprint lines after it (cases 226, 250).
 
 When:
 The person invokes `/retro`, and the agent counts the unticked `tasks` of the Spec.
 
 Then:
-A `create`, `update` or `defer` line of a page and a `guppi render` line are listed as waiting for the librarian and end in none of the four ways; every other unticked line is debt, as today.
+A `create`, `update` or `defer` line of a page, a `guppi render` line and a `guppi sprint` line are listed as waiting for the librarian and end in none of the four ways; every other unticked line is debt, as today.
 **－** Nothing else in Retro changes.
 
 ## Result
@@ -48,3 +47,4 @@ A `create`, `update` or `defer` line of a page and a `guppi render` line are lis
 - 2026-09-15 status: pending → passed · raw/2026-09-15/1809/ledger.md#L14
 - 2026-09-18 updated: the Criterion replaced whole — the page and render lines are not debt (case 233.2) · [[decision-case-233.2]]
 - 2026-09-18 status: pending → passed · raw/2026-09-18/1252/ledger.md#L37
+- 2026-09-18 updated: the Criterion replaced whole — a guppi sprint line waits for the librarian too (case 253.2) · [[decision-case-253.2]]

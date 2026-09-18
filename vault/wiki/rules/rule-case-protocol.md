@@ -2,7 +2,7 @@
 type: rule
 kind: Leaf
 purpose: Prevents a decision from being acted on before it is ratified, or ratified without its content in view
-status: built
+status: draft
 enforcement: render
 governs: CLAUDE.md
 render_mode: partial
@@ -66,7 +66,7 @@ The Spec is the plan file, written as each Case is ratified, in the reply that
 carries its ledger lines: `context`, `problem`, `given`, `when`, `then`, the `then`
 block and a block tagged `tasks` — one `- [ ] <what>` per file, test, command and
 one-off migration, and one per reading of an Estimate the Case creates or sets
-`pending`, by its slug; no `recommend`, no `ratification`, no code. Work Mode ticks the boxes on code, tests, migrations and readings in `raw/<date>/<hi HHMM>/spec.md` in the reply that finishes the task; `generate` and `render` tick the page and render lines (case 226); Retro counts the unticked.
+`pending`, by its slug; no `recommend`, no `ratification`, no code. Work Mode ticks the boxes on code, tests, migrations and readings in `raw/<date>/<hi HHMM>/spec.md` in the reply that finishes the task; `generate`, `render` and `sprint` tick the page, render and sprint lines (cases 226, 250); Retro counts the unticked.
 
 The reply that acknowledges a ratification has four parts, in this order: the `LEDGER` block first; a heading `## Case N — ratified` and a paragraph **Changes:** — what changes, in one or two sentences; a paragraph **Notes:** — facts that did not enter the Case, omitted when there are none; a heading `## Frontier` and the lines of `frontier.md` as a checklist — the closed lines folded into one, the open ones one per line with a short title, the deferred as `[-] … · defer case N` — and the question which item is next, last. Headings and labels in the language of the chat (case 167, supersedes 157).
 
@@ -137,3 +137,5 @@ exists, an `estimate[...]` line opening with the date of the reading and the com
 - 2026-09-18 updated: the text before a tool call waits for the next Stop, not "never kept"; a block is not called lost before that Stop; the page and render lines are ticked by generate and render (cases 224.2, 233) · [[decision-case-224.2]]
 - 2026-09-18 status: built → draft · cascade
 - 2026-09-18 status: draft → built · cascade
+- 2026-09-18 updated: sprint is the third ticker of the Spec — the sprint lines (case 253.1) · [[decision-case-253.1]]
+- 2026-09-18 status: built → draft · cascade

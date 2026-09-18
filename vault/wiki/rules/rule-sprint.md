@@ -2,12 +2,12 @@
 type: rule
 kind: Leaf
 purpose: Prevents the sprint's backlog from drifting from the pages it names
-status: built
+status: draft
 enforcement: check
 implementation_ref: [guppi/sprint.py, tests/test_sprint.py]
 governs: vault/wiki/sprint.md
 parent: "[[rule-documentation]]"
-estimates: ["[[estimate-sprint-renders-the-backlog]]", "[[estimate-sprint-checks-the-file]]"]
+estimates: ["[[estimate-sprint-renders-the-backlog]]", "[[estimate-sprint-checks-the-file]]", "[[estimate-sprint-ticks-the-spec]]"]
 origin: raw/2026-09-16/2238/ledger.md#case-209
 sprint: migration
 created: 2026-09-16
@@ -22,7 +22,7 @@ is not a document: `guppi sprint` writes it from that page, one tick per item by
 `render`, before the brief, so the file shows the pages of that same run; `/hi`
 reads the file as before. `governs` names the file, so the governed-files hook
 refuses a hand edit; the backlog changes by an `update` of the sprint page, a Case.
-The first `## <id>` heading of the file is the sprint id `sprint_id`, `cleanup` and `archive` read, unchanged. `guppi sprint --check` renders in memory and names the file when it differs, exit 1, writing nothing; `make lint` runs it after `render --check` (case 227).
+The first `## <id>` heading of the file is the sprint id `sprint_id`, `cleanup` and `archive` read, unchanged. `guppi sprint --check` renders in memory and names the file when it differs, exit 1, writing nothing; `make lint` runs it after `render --check` (case 227). Once the plain `guppi sprint` wrote the file and exits 0, it ticks every unticked task line that opens with a code span holding `guppi sprint` — never a `read` line that names the command later — in the `spec.md` of every unit under `raw/` whose yaml is applied whole; `--check` and an exit 1 tick nothing (case 250.2).
 
 ## History
 
@@ -34,3 +34,6 @@ The first `## <id>` heading of the file is the sprint id `sprint_id`, `cleanup` 
 - 2026-09-18 updated: a later milestone's line names its items by slug after the count (case 236) · [[decision-case-236]]
 - 2026-09-18 updated: the sprint page is a Leaf under the MOC entity-sprint (case 241) · [[decision-case-241]]
 - 2026-09-18 status: draft → built · cascade
+- 2026-09-18 updated: sprint, once it wrote sprint.md and exits 0, ticks the guppi sprint lines of every applied Spec under raw/ (case 250.2) · [[decision-case-250.2]]
+- 2026-09-18 estimate estimate-sprint-ticks-the-spec added · [[decision-case-250.2]]
+- 2026-09-18 status: built → draft · cascade

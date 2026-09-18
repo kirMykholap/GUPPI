@@ -34,7 +34,7 @@ update:
 
 ```tasks
 - [x] update `entity-sprint-migration`: `replace` on the `rule-work-mode` line of Slice 3b
-- [ ] `uv run guppi sprint` at the librarian's run
+- [x] `uv run guppi sprint` at the librarian's run
 ```
 
 ## Case 246 — `insight-hi-skill-substitution-checked-by-a-model-call`: rejected
@@ -100,7 +100,7 @@ update:
 
 ```tasks
 - [ ] update `entity-sprint-migration`: `replace` on the `estimate-sprint-migration-merges` line of Slice 5
-- [ ] `uv run guppi sprint` at the librarian's run
+- [x] `uv run guppi sprint` at the librarian's run
 ```
 
 ## Case 249 — `entity-sprint-migration`: the item text of Slice 5 names the reading
@@ -134,7 +134,7 @@ update:
 
 ```tasks
 - [x] update `entity-sprint-migration`: `replace` on the `estimate-sprint-migration-merges` line of Slice 5, in place of case 247
-- [ ] `uv run guppi sprint` at the librarian's run
+- [x] `uv run guppi sprint` at the librarian's run
 ```
 
 ## Deferred

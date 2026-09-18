@@ -76,7 +76,7 @@ The Spec is the plan file, written as each Case is ratified, in the reply that
 carries its ledger lines: `context`, `problem`, `given`, `when`, `then`, the `then`
 block and a block tagged `tasks` — one `- [ ] <what>` per file, test, command and
 one-off migration, and one per reading of an Estimate the Case creates or sets
-`pending`, by its slug; no `recommend`, no `ratification`, no code. Work Mode ticks the boxes on code, tests, migrations and readings in `raw/<date>/<hi HHMM>/spec.md` in the reply that finishes the task; `generate` and `render` tick the page and render lines (case 226); Retro counts the unticked.
+`pending`, by its slug; no `recommend`, no `ratification`, no code. Work Mode ticks the boxes on code, tests, migrations and readings in `raw/<date>/<hi HHMM>/spec.md` in the reply that finishes the task; `generate`, `render` and `sprint` tick the page, render and sprint lines (cases 226, 250); Retro counts the unticked.
 
 The reply that acknowledges a ratification has four parts, in this order: the `LEDGER` block first; a heading `## Case N — ratified` and a paragraph **Changes:** — what changes, in one or two sentences; a paragraph **Notes:** — facts that did not enter the Case, omitted when there are none; a heading `## Frontier` and the lines of `frontier.md` as a checklist — the closed lines folded into one, the open ones one per line with a short title, the deferred as `[-] … · defer case N` — and the question which item is next, last. Headings and labels in the language of the chat (case 167, supersedes 157).
 

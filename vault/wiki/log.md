@@ -2094,3 +2094,31 @@ instruction. The global feed; a page's own `## History` is the per-page view.
 - 2026-09-18 lessons/lesson-hi-substitution-fails-when-the-login-has-lapsed archived · cleanup
 - 2026-09-18 lessons/lesson-hi-substitution-refused-when-the-permission-classifier-is-unavailable archived · cleanup
 - 2026-09-18 decisions/decision-case-247 archived · cleanup
+- 2026-09-18 decisions/decision-case-250.1 created · raw/2026-09-18/2054/ledger.md#case-250.1 · generate
+- 2026-09-18 estimates/estimate-render-harness-ticks-the-spec updated: the Criterion replaced whole — a yaml is applied whole when every entry carries applied or superseded_by and none failed, as guppi archive counts it (case 250.1) · [[decision-case-250.1]] · generate
+- 2026-09-18 decisions/decision-case-250.2 created · raw/2026-09-18/2054/ledger.md#case-250.2 · generate
+- 2026-09-18 rules/rule-sprint updated: sprint, once it wrote sprint.md and exits 0, ticks the guppi sprint lines of every applied Spec under raw/ (case 250.2) · [[decision-case-250.2]] · generate
+- 2026-09-18 estimates/estimate-sprint-ticks-the-spec created · [[decision-case-250.2]] · generate
+- 2026-09-18 rules/rule-sprint estimate estimate-sprint-ticks-the-spec added · [[decision-case-250.2]] · generate
+- 2026-09-18 decisions/decision-case-252 created · raw/2026-09-18/2054/ledger.md#case-252 · generate
+- 2026-09-18 rules/rule-work-mode deferred · [[decision-case-252]] · generate
+- 2026-09-18 rules/rule-subagent-guppi deferred · [[decision-case-252]] · generate
+- 2026-09-18 decisions/decision-case-253.1 created · raw/2026-09-18/2054/ledger.md#case-253.1 · generate
+- 2026-09-18 rules/rule-case-protocol updated: sprint is the third ticker of the Spec — the sprint lines (case 253.1) · [[decision-case-253.1]] · generate
+- 2026-09-18 estimates/estimate-case-protocol-loaded updated: one line of the Criterion — sprint is the third ticker (case 253.1) · [[decision-case-253.1]] · generate
+- 2026-09-18 decisions/decision-case-253.2 created · raw/2026-09-18/2054/ledger.md#case-253.2 · generate
+- 2026-09-18 rules/rule-retro updated: a guppi sprint line of the Spec waits for the librarian and is not debt at Retro (case 253.2) · [[decision-case-253.2]] · generate
+- 2026-09-18 estimates/estimate-retro-loads updated: the Criterion replaced whole — a guppi sprint line waits for the librarian too (case 253.2) · [[decision-case-253.2]] · generate
+- 2026-09-18 estimates/estimate-carry-over-writes status: pending → passed · raw/2026-09-18/2054/ledger.md#L12 · generate
+- 2026-09-18 rules/rule-carry-over status: draft → built · cascade · generate
+- 2026-09-18 rules/rule-case-protocol status: built → draft · cascade · generate
+- 2026-09-18 rules/rule-render-harness status: built → draft · cascade · generate
+- 2026-09-18 rules/rule-retro status: built → draft · cascade · generate
+- 2026-09-18 rules/rule-sprint status: built → draft · cascade · generate
+- 2026-09-18 decisions/decision-case-254 created · raw/2026-09-18/2253/ledger.md#case-254 · generate
+- 2026-09-18 rules/rule-work-mode deferred · [[decision-case-254]] · generate
+- 2026-09-18 rules/rule-subagent-guppi deferred · [[decision-case-254]] · generate
+- 2026-09-18 lessons/lesson-pretask-session-flag-took-the-folder-for-the-stamp created · raw/2026-09-18/2253/ledger.md#L3 · generate
+- 2026-09-18 insights/insight-pretask-session-flag-takes-the-id-not-the-hi-line created · raw/2026-09-18/2253/ledger.md#L3 · generate
+- 2026-09-18 lessons/lesson-pretask-session-flag-takes-the-id-not-the-hi-line updated: clustered by librarian under insight-pretask-session-flag-takes-the-id-not-the-hi-line · raw/2026-09-18/2253/ledger.md#L3 · generate
+- 2026-09-18 lessons/lesson-pretask-session-flag-took-the-folder-for-the-stamp updated: clustered by librarian under insight-pretask-session-flag-takes-the-id-not-the-hi-line · raw/2026-09-18/2253/ledger.md#L3 · generate

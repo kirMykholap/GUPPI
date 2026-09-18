@@ -1,7 +1,7 @@
 ---
 type: estimate
 kind: QA
-status: passed
+status: pending
 target: "[[rule-case-protocol]]"
 method: One reading at a session start, by hand, plus the preview cases of tests/test_ledger.py.
 checked: 2026-09-18
@@ -29,7 +29,8 @@ and the last reply of a session has none.
 of that turn; at the next `Stop` it checks the ledger, and only a line missing there
 is a lesson.
 **＋** The Case protocol says Work Mode ticks the boxes on code, tests, migrations and
-readings, and `generate` and `render` tick the page and render lines (case 226).
+readings, and `generate`, `render` and `sprint` tick the page, render and sprint lines
+(cases 226, 250).
 **－** A reply whose ledger lines sit outside a `LEDGER` block — bare, or in a fence
 with another tag or none — adds nothing to the session's ledger.
 
@@ -61,3 +62,4 @@ with another tag or none — adds nothing to the session's ledger.
 - 2026-09-17 status: passed → passed · raw/2026-09-16/2238/ledger.md#L36
 - 2026-09-18 updated: three lines added to the Criterion — the wait for the next Stop, no loss called before it, who ticks which line (cases 224.2, 233) · [[decision-case-224.2]]
 - 2026-09-18 status: pending → passed · raw/2026-09-18/1252/ledger.md#L1
+- 2026-09-18 updated: one line of the Criterion — sprint is the third ticker (case 253.1) · [[decision-case-253.1]]

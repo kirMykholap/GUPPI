@@ -2,7 +2,7 @@
 type: rule
 kind: Leaf
 purpose: Prevents a Spec whose work was not done from being applied to the vault
-status: draft
+status: built
 enforcement: render
 governs: .claude/skills/carry/SKILL.md
 render_mode: full
@@ -64,3 +64,4 @@ the brief. The session that finishes the Spec deletes `carry.md`.
 - 2026-09-18 defer by decision-case-223 superseded · [[decision-case-225]]
 - 2026-09-18 updated: the stray ref field removed by a one-off script (case 225) · [[decision-case-225]]
 - 2026-09-18 updated: the /carry brief leaves out a target the sprint page names (case 233.4) · [[decision-case-233.4]]
+- 2026-09-18 status: draft → built · cascade

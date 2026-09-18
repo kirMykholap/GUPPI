@@ -1,10 +1,10 @@
 ---
 type: estimate
 kind: QA
-status: pending
+status: passed
 target: "[[rule-brief]]"
 method: one reading by hand after the first librarian run, recorded in the estimate line
-checked: 2026-09-16
+checked: 2026-09-18
 origin: raw/2026-09-10/ledger.md#case-35.3
 sprint: migration
 created: 2026-09-10
@@ -32,7 +32,7 @@ The brief holds five sections in order: Where things stand, Readings due, Deferr
 
 ## Result
 
-2026-09-16, the brief of session 1955 read by hand: the five sections in order; Where things stand from the handoff and the yaml counts per category; Readings due the four pending after generate, each with the draft rule and the place from its method, no failed; Deferred five of seven ranked by severity then briefs; Flags with near, folded, synthesis, stale defers, the contradiction and the lint output; Readings at the close with test, lint and page counts; no decision stated, sprint.md untouched as the handoff said
+2026-09-18, the brief of the 1119 run read by hand at /hi: five sections in order; Where things stand from the handoff and the yaml counts per category; Readings due the thirteen pending after generate, each with its draft rule and the place from the Spec line or the method, no failed; Deferred four items, ranked by severity then briefs, without rule-work-mode, rule-subagent-guppi and rule-spec-box, which the sprint page names; Flags with the synthesis, the render tick, the contradiction, the handoff flags as Cases and the lint output; Readings at the close with test, lint and page counts; no decision stated
 
 ## History
 
@@ -48,3 +48,4 @@ The brief holds five sections in order: Where things stand, Readings due, Deferr
 - 2026-09-17 status: pending → passed · raw/2026-09-16/2238/ledger.md#L3
 - 2026-09-17 updated: the last line of the Criterion — a change of the sprint is a Case, never the librarian's edit; the sprint flag lands in Flags (case 209.6) · [[decision-case-209.6]]
 - 2026-09-18 updated: the Deferred line — never a target the sprint page names (case 229.4) · [[decision-case-229.4]]
+- 2026-09-18 status: pending → passed · raw/2026-09-18/1252/ledger.md#L3

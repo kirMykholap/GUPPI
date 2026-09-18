@@ -2,7 +2,7 @@
 type: rule
 kind: Leaf
 purpose: Prevents a decision from being acted on before it is ratified, or ratified without its content in view
-status: draft
+status: built
 enforcement: render
 governs: CLAUDE.md
 render_mode: partial
@@ -136,3 +136,4 @@ exists, an `estimate[...]` line opening with the date of the reading and the com
 - 2026-09-16 status: draft → built · cascade
 - 2026-09-18 updated: the text before a tool call waits for the next Stop, not "never kept"; a block is not called lost before that Stop; the page and render lines are ticked by generate and render (cases 224.2, 233) · [[decision-case-224.2]]
 - 2026-09-18 status: built → draft · cascade
+- 2026-09-18 status: draft → built · cascade

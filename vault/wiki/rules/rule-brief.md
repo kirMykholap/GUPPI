@@ -2,7 +2,7 @@
 type: rule
 kind: Leaf
 purpose: Prevents the next session from starting without the facts and the flags of this one
-status: draft
+status: built
 enforcement: render
 governs: .claude/agents/librarian-guppi.md
 render_mode: partial
@@ -62,3 +62,4 @@ The brief has a second writer, the skill `carry` (`rule-carry-over`): it writes 
 - 2026-09-16 updated: Readings due one line per Estimate, no block, the page's method field (case 200.3) · [[decision-case-200.3]]
 - 2026-09-17 updated: the librarian never edits sprint.md — a sprint change is a Case, the file is the render of guppi sprint (case 209.6) · [[decision-case-209.6]]
 - 2026-09-18 updated: Deferred leaves out a target the sprint page names, in the librarian's brief and in the /carry brief alike (cases 229.4, 233) · [[decision-case-229.4]]
+- 2026-09-18 status: draft → built · cascade

@@ -17,15 +17,14 @@ Estimates of this page pass: lint clean, the leftovers gone, the branch merged.
 
 ### [ ] Slice 3b — Work Mode
 
-- [ ] [[rule-work-mode]] — Work Mode: the Spec as tasks with code, the ticked boxes in `spec.md`, the test of each Estimate written first and turned green; cases 183, 206 · draft · decision-case-183, decision-case-206, decision-case-218, decision-case-231
-- [ ] [[rule-subagent-guppi]] — what a subagent may do in Work Mode, and the fork that comes back to the main agent as a Case; cases 183, 206 · draft · decision-case-183, decision-case-206, decision-case-218, decision-case-231
+- [ ] [[rule-work-mode]] — Work Mode: the Spec as tasks with code, the ticked boxes in `spec.md`, the test of each Estimate written first and turned green; cases 183, 206 · draft · decision-case-183, decision-case-206, decision-case-218, decision-case-231, decision-case-242
+- [ ] [[rule-subagent-guppi]] — what a subagent may do in Work Mode, and the fork that comes back to the main agent as a Case; cases 183, 206 · draft · decision-case-183, decision-case-206, decision-case-218, decision-case-231, decision-case-242
 
 ### [ ] Slice 4 — conversion of the parked pages by group — 1 item: [[estimate-sprint-migration-leftovers-gone]]
-### [ ] Slice 5 — closing — 3 items: [[estimate-sprint-migration-lint-clean]], [[estimate-sprint-migration-merges]], [[rule-spec-box]]
+### [ ] Slice 5 — closing — 4 items: [[estimate-sprint-migration-lint-clean]], [[estimate-sprint-migration-merges]], [[rule-spec-box]], [[rule-morph]]
 
 ## Backlog
 
-- [ ] the categories as data of the project: `generate`, `lint`, `materialize` and `ask-guppi` read the category set from `wiki/<category>/schema.yaml`; the development set — entity, rule, estimate — is the default (session 1119)
 - [ ] the product model: `applies_to` on a Rule and `rules` on an Entity, `kind: test | measurement | reading`, `ask-guppi` through Entities, the pre-task questions before a product's records (session 1119)
 
 ## Closed

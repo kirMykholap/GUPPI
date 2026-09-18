@@ -22,10 +22,12 @@ When:
 `guppi render` without a flag wrote the files and exits 0.
 
 Then:
-In the `spec.md` of every unit under `raw/` whose yaml is applied whole, every unticked task line holding `guppi render` in a code span becomes `- [x]`; nothing else changes.
+In the `spec.md` of every unit under `raw/` whose yaml is applied whole, every unticked task line whose text opens with a code span holding `guppi render` becomes `- [x]`; nothing else changes.
+**－** A line where `guppi render` sits in a later code span — a `read `<slug>`` line, a line that names the command in its description — is not ticked.
 **－** `--check` and `--sync` tick nothing; exit 1 ticks nothing.
 **－** A unit without a yaml, with an unapplied or `failed` entry, or marked by `carry.md`, is not touched.
 
 ## History
 
 - 2026-09-18 created · [[decision-case-226.2]]
+- 2026-09-18 updated: the Criterion replaced whole — a render line opens with the code span holding guppi render (case 235) · [[decision-case-235]]

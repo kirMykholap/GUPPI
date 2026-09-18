@@ -1,8 +1,9 @@
 ---
 type: entity
-kind: MOC
+kind: Leaf
 purpose: The repository works by the model in wiki/index.md — Phase 1 and Phase 2 of docs/migration/migration-plan.md closed
 status: draft
+parent: "[[entity-sprint]]"
 estimates: ["[[estimate-sprint-migration-lint-clean]]", "[[estimate-sprint-migration-leftovers-gone]]", "[[estimate-sprint-migration-merges]]"]
 origin: raw/2026-09-16/2238/ledger.md#case-209.2
 sprint: migration
@@ -33,10 +34,10 @@ Estimates of this page pass: lint clean, the leftovers gone, the branch merged.
 - [[estimate-sprint-migration-lint-clean]] — `make lint` exit 0: the 31 Decision pages of Cases 1–28 decided, `unmigrated` at zero
 - [[estimate-sprint-migration-merges]] — `make test` green, `migration` merged into `main`
 - [[rule-spec-box]] — the Spec box, case 207, after Slice 3b
+- [[rule-morph]] — the morph mechanism: the initiation at install sets the category set of the project, the development set by default, held as data so that a changed set rewrites no rule; case 239
 
 ## Backlog
 
-- the categories as data of the project: `generate`, `lint`, `materialize` and `ask-guppi` read the category set from `wiki/<category>/schema.yaml`; the development set — entity, rule, estimate — is the default (session 1119)
 - the product model: `applies_to` on a Rule and `rules` on an Entity, `kind: test | measurement | reading`, `ask-guppi` through Entities, the pre-task questions before a product's records (session 1119)
 
 ## Closed
@@ -62,3 +63,5 @@ both decided again at the close (`estimate-sprint-migration-leftovers-gone`).
 - 2026-09-17 estimate estimate-sprint-migration-leftovers-gone added · [[decision-case-209.3]]
 - 2026-09-17 estimate estimate-sprint-migration-merges added · [[decision-case-209.4]]
 - 2026-09-18 updated: the Slices under Milestones, a Backlog of two plain lines without a page (case 229.1) · [[decision-case-229.1]]
+- 2026-09-18 updated: the morph mechanism as rule-morph in Slice 5; the Backlog line on the categories as data folded into it (case 239) · [[decision-case-239]]
+- 2026-09-18 updated: a Leaf under entity-sprint — the sprint by id is a thing with no parts named (cases 240.1, 241) · [[decision-case-241]]

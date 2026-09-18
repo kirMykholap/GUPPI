@@ -1,10 +1,10 @@
 ---
 type: estimate
 kind: QA
-status: pending
+status: passed
 target: "[[rule-case-protocol]]"
 method: One reading at a session start, by hand, plus the preview cases of tests/test_ledger.py.
-checked: 2026-09-17
+checked: 2026-09-18
 origin: raw/2026-09-09/ledger.md#case-13
 sprint: migration
 created: 2026-09-09
@@ -35,7 +35,7 @@ with another tag or none — adds nothing to the session's ledger.
 
 ## Result
 
-2026-09-17, the first turn of session 2238 read by hand: the reply to /hi stated the LEDGER-block rule and the one-Case-at-a-time rule before the Frontier, with no read of the rule or of CLAUDE.md; the Spec named as raw/<date>/<hi HHMM>/spec.md with its ## Deferred heading and the Frontier as raw/2026-09-16/2238/frontier.md; every ledger line of the session so far inside a LEDGER block
+2026-09-18, the first turn of session 1252 read by hand: the reply to /hi states the LEDGER-block rule and the one-Case-at-a-time rule without a read of the rule or of CLAUDE.md; the Spec named as raw/<date>/<hi HHMM>/spec.md with its ## Deferred heading, the Frontier as raw/2026-09-18/1252/frontier.md; the wait for the next Stop, no loss called before it, and who ticks which line stated
 
 ## History
 
@@ -60,3 +60,4 @@ with another tag or none — adds nothing to the session's ledger.
 - 2026-09-16 status: pending → passed · raw/2026-09-16/1955/ledger.md#L37
 - 2026-09-17 status: passed → passed · raw/2026-09-16/2238/ledger.md#L36
 - 2026-09-18 updated: three lines added to the Criterion — the wait for the next Stop, no loss called before it, who ticks which line (cases 224.2, 233) · [[decision-case-224.2]]
+- 2026-09-18 status: pending → passed · raw/2026-09-18/1252/ledger.md#L1

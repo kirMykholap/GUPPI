@@ -18,7 +18,7 @@ tags: [harness, session]
 
 Lets the session write its own working files without asking, and nothing else. The Frontier, the Spec, the handoff, the carry mark and the brief of `/carry` are the session's own record of itself: `/hi` writes the Frontier, every closed item edits it, Work Mode ticks the boxes of the Spec, `/handoff` writes the note, `/carry` writes `carry.md` and rewrites `brief.md` (case 200.5). A question before each of those writes buys
 nothing — the content is the agent's own, and the person reads it in the reply
-anyway.
+anyway. The list states that intent; in Plan Mode the client asks before every edit outside the plan file all the same, the person approves, and whether it asked is the person's word, never the agent's, which cannot see the prompt (case 237).
 
 What stays outside the list is the point of the list. `ledger.md` and
 `event_log.md` are written by hooks, `materialize.yaml` by a script, and a harness
@@ -50,3 +50,4 @@ a refusal that matters has a hook behind it (case 85.5).
 - 2026-09-16 updated: carry.md and brief.md join the allow list for /carry (case 200.5) · [[decision-case-200.5]]
 - 2026-09-16 status: built → draft · cascade
 - 2026-09-16 status: draft → built · cascade
+- 2026-09-18 updated: the allow list as intent; in Plan Mode the client asks all the same, and the prompt is read by the person (case 237) · [[decision-case-237]]

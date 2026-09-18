@@ -741,6 +741,7 @@ entries:
     purpose: the definitions of Entity, Rule and Estimate for development — or the category set as data
       of the project; from raw/2026-09-17/1119/categories-discussion.md; the next session
   applied: 00:00:26
+  superseded_by: '240.1'
 - line: 24
   text: 'estimate[estimate-generate-walks-dates][passed] 2026-09-17, `uv run pytest -q tests/test_generate.py`
     48 passed, and the pages after the librarian''s run of 2238 (commit be891c1): `estimate-generate-writes`,
@@ -1836,6 +1837,8 @@ decisions:
       several, not the universal one.
   spec: vault/raw/2026-09-17/1119/spec.md
   applied: 00:00:26
+  superseded_by:
+  - decision-case-240.1
 - case: '231'
   decision: decision-case-231
   origin: raw/2026-09-17/1119/ledger.md#case-231

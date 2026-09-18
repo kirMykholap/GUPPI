@@ -4,6 +4,7 @@ pattern: A Case changes a reader in code and the text it reads in a page or a go
 status: open
 children: ["[[lesson-reader-changed-before-its-writer-closed-the-live-session]]", "[[lesson-work-mode-check-reads-a-page-the-same-spec-changes]]"]
 severity: 2
+deferred_by: ["[[decision-case-238]]"]
 origin: raw/2026-09-17/1119/ledger.md#L43
 sprint: migration
 created: 2026-09-17
@@ -21,3 +22,4 @@ One sentence in `rule-work-mode` (Slice 3b, defer 231): a check that reads a pag
 ## History
 
 - 2026-09-18 created · raw/2026-09-17/1119/ledger.md#L43
+- 2026-09-18 deferred · [[decision-case-238]]

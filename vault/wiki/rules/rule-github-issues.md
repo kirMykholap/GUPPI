@@ -8,7 +8,7 @@ governs: .claude/skills/hi/SKILL.md
 render_mode: partial
 parent: "[[rule-skill-hi]]"
 estimates: ["[[estimate-github-issues-listed]]"]
-deferred_by: ["[[decision-case-220]]"]
+deferred_by: ["[[decision-case-220]]", "[[decision-case-243]]"]
 origin: raw/2026-09-09/ledger.md#case-11
 sprint: migration
 created: 2026-09-09
@@ -40,3 +40,4 @@ remote exists.
 - 2026-09-09 created · raw/2026-09-09/ledger.md#case-11
 - 2026-09-10 status: draft → built · cascade
 - 2026-09-17 deferred · [[decision-case-220]]
+- 2026-09-18 deferred · [[decision-case-243]]

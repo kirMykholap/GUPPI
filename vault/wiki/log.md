@@ -2019,3 +2019,56 @@ instruction. The global feed; a page's own `## History` is the per-page view.
 - 2026-09-18 lessons/lesson-ledger-block-followed-by-a-tool-call archived · cleanup
 - 2026-09-18 decisions/decision-case-217 archived · cleanup
 - 2026-09-18 decisions/decision-case-223 archived · cleanup
+- 2026-09-18 estimates/estimate-case-protocol-loaded status: pending → passed · raw/2026-09-18/1252/ledger.md#L1 · generate
+- 2026-09-18 estimates/estimate-hi-writes-frontier status: pending → passed · raw/2026-09-18/1252/ledger.md#L2 · generate
+- 2026-09-18 estimates/estimate-brief-written status: pending → passed · raw/2026-09-18/1252/ledger.md#L3 · generate
+- 2026-09-18 decisions/decision-case-235 created · raw/2026-09-18/1252/ledger.md#case-235 · generate
+- 2026-09-18 rules/rule-render-harness updated: a render line opens with the code span holding guppi render; a read line that names the command later is not ticked (case 235) · [[decision-case-235]] · generate
+- 2026-09-18 estimates/estimate-render-harness-ticks-the-spec updated: the Criterion replaced whole — a render line opens with the code span holding guppi render (case 235) · [[decision-case-235]] · generate
+- 2026-09-18 decisions/decision-case-236 created · raw/2026-09-18/1252/ledger.md#case-236 · generate
+- 2026-09-18 rules/rule-sprint updated: a later milestone's line names its items by slug after the count (case 236) · [[decision-case-236]] · generate
+- 2026-09-18 estimates/estimate-sprint-renders-the-backlog updated: the Criterion replaced whole — the collapsed line of a later milestone names its items (case 236) · [[decision-case-236]] · generate
+- 2026-09-18 lessons/lesson-hi-substitution-fails-when-the-login-has-lapsed created · raw/2026-09-18/1252/ledger.md#L8 · generate
+- 2026-09-18 lessons/lesson-permissions-reading-taken-by-the-agent-who-cannot-see-the-prompt created · raw/2026-09-18/1252/ledger.md#L9 · generate
+- 2026-09-18 decisions/decision-case-237 created · raw/2026-09-18/1252/ledger.md#case-237 · generate
+- 2026-09-18 estimates/estimate-permissions updated: the Criterion replaced whole — the prompt is read by the person, a prompt in Plan Mode is not a finding (case 237) · [[decision-case-237]] · generate
+- 2026-09-18 rules/rule-permissions updated: the allow list as intent; in Plan Mode the client asks all the same, and the prompt is read by the person (case 237) · [[decision-case-237]] · generate
+- 2026-09-18 estimates/estimate-permissions status: pending → passed · raw/2026-09-18/1252/ledger.md#L12 · generate
+- 2026-09-18 estimates/estimate-generate-ticks-the-spec status: pending → passed · raw/2026-09-18/1252/ledger.md#L13 · generate
+- 2026-09-18 estimates/estimate-sprint-checks-the-file status: pending → passed · raw/2026-09-18/1252/ledger.md#L14 · generate
+- 2026-09-18 estimates/estimate-harness-pipeline status: pending → passed · raw/2026-09-18/1252/ledger.md#L15 · generate
+- 2026-09-18 lessons/lesson-lint-schema-body-table-one-section-per-row created · raw/2026-09-18/1252/ledger.md#L16 · generate
+- 2026-09-18 decisions/decision-case-238 created · raw/2026-09-18/1252/ledger.md#case-238 · generate
+- 2026-09-18 insights/insight-workflow-code-live-before-the-page-it-reads deferred · [[decision-case-238]] · generate
+- 2026-09-18 decisions/decision-case-239 created · raw/2026-09-18/1252/ledger.md#case-239 · generate
+- 2026-09-18 rules/rule-morph deferred, placeholder · [[decision-case-239]] · generate
+- 2026-09-18 entities/entity-sprint-migration updated: the morph mechanism as rule-morph in Slice 5; the Backlog line on the categories as data folded into it (case 239) · [[decision-case-239]] · generate
+- 2026-09-18 decisions/decision-case-240.1 created · raw/2026-09-18/1252/ledger.md#case-240.1 · generate
+- 2026-09-18 decisions/decision-case-230 superseded by decision-case-240.1 · [[decision-case-240.1]] · generate
+- 2026-09-18 decisions/decision-case-240.2 created · raw/2026-09-18/1252/ledger.md#case-240.2 · generate
+- 2026-09-18 decisions/decision-case-240.3 created · raw/2026-09-18/1252/ledger.md#case-240.3 · generate
+- 2026-09-18 decisions/decision-case-241 created · raw/2026-09-18/1252/ledger.md#case-241 · generate
+- 2026-09-18 entities/entity-sprint created · [[decision-case-241]] · generate
+- 2026-09-18 entities/entity-sprint-migration updated: a Leaf under entity-sprint — the sprint by id is a thing with no parts named (cases 240.1, 241) · [[decision-case-241]] · generate
+- 2026-09-18 rules/rule-sprint updated: the sprint page is a Leaf under the MOC entity-sprint (case 241) · [[decision-case-241]] · generate
+- 2026-09-18 decisions/decision-case-242 created · raw/2026-09-18/1252/ledger.md#case-242 · generate
+- 2026-09-18 rules/rule-work-mode deferred · [[decision-case-242]] · generate
+- 2026-09-18 rules/rule-subagent-guppi deferred · [[decision-case-242]] · generate
+- 2026-09-18 decisions/decision-case-243 created · raw/2026-09-18/1252/ledger.md#case-243 · generate
+- 2026-09-18 rules/rule-git-context deferred · [[decision-case-243]] · generate
+- 2026-09-18 rules/rule-github-issues deferred · [[decision-case-243]] · generate
+- 2026-09-18 decisions/decision-case-244 created · raw/2026-09-18/1252/ledger.md#case-244 · generate
+- 2026-09-18 estimates/estimate-sprint-migration-lint-clean updated: the Criterion replaced whole — the sprint page a Leaf under entity-sprint, its Slices and Backlog as the page holds them, no item named (case 244) · [[decision-case-244]] · generate
+- 2026-09-18 estimates/estimate-retro-loads status: pending → passed · raw/2026-09-18/1252/ledger.md#L37 · generate
+- 2026-09-18 lessons/lesson-pretask-session-flag-takes-the-id-not-the-hi-line created · raw/2026-09-18/1252/ledger.md#L38 · generate
+- 2026-09-18 insights/insight-hi-skill-substitution-checked-by-a-model-call created · raw/2026-09-18/1252/ledger.md#L8 · generate
+- 2026-09-18 lessons/lesson-hi-substitution-refused-when-the-permission-classifier-is-unavailable updated: clustered by librarian under insight-hi-skill-substitution-checked-by-a-model-call · raw/2026-09-18/1252/ledger.md#L8 · generate
+- 2026-09-18 lessons/lesson-hi-substitution-fails-when-the-login-has-lapsed updated: clustered by librarian under insight-hi-skill-substitution-checked-by-a-model-call · raw/2026-09-18/1252/ledger.md#L8 · generate
+- 2026-09-18 rules/rule-brief status: draft → built · cascade · generate
+- 2026-09-18 rules/rule-case-protocol status: draft → built · cascade · generate
+- 2026-09-18 rules/rule-harness status: draft → built · cascade · generate
+- 2026-09-18 rules/rule-page-generation status: draft → built · cascade · generate
+- 2026-09-18 rules/rule-retro status: draft → built · cascade · generate
+- 2026-09-18 rules/rule-skill-hi status: draft → built · cascade · generate
+- 2026-09-18 decisions/decision-case-230 archived · superseded · generate
+- 2026-09-18 decisions/decision-case-230 archived · cleanup

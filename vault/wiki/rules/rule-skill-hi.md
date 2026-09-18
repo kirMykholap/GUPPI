@@ -2,7 +2,7 @@
 type: rule
 kind: MOC
 purpose: Prevents a session from being loaded piecemeal by read-tool calls
-status: draft
+status: built
 enforcement: render
 governs: .claude/skills/hi/SKILL.md
 render_mode: full
@@ -79,3 +79,4 @@ session. The skill writes no event line of its own since case 111.4: a `!` subst
 - 2026-09-14 updated: the hub file linked for the graph (case 149.4) · [[decision-case-149.4]]
 - 2026-09-18 updated: the Frontier takes the current milestone of the sprint only (case 229.3) · [[decision-case-229.3]]
 - 2026-09-18 status: built → draft · cascade
+- 2026-09-18 status: draft → built · cascade

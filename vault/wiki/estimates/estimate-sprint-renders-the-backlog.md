@@ -23,7 +23,7 @@ When:
 `guppi sprint` runs with a live page `entity-sprint-<id>`.
 
 Then:
-The file: `# Sprint`; `## <id>`; Purpose; `**Done when**` — as today; then `## Milestones`: a closed milestone as one line `### [x] <name>`; the current one as the heading `### [ ] <name>` and each item with its status and `deferred_by`, as today; each later one as one line `### [ ] <name> — N items`; then `## Backlog` — each item a line; then `## Closed` as it is.
+The file: `# Sprint`; `## <id>`; Purpose; `**Done when**` — as today; then `## Milestones`: a closed milestone as one line `### [x] <name>`; the current one as the heading `### [ ] <name>` and each item with its status and `deferred_by`, as today; each later one as one line `### [ ] <name> — N items: ` and its items separated by commas, an item with a wikilink as `[[slug]]`, an item without one by its text, with no tick and no status; then `## Backlog` — each item a line; then `## Closed` as it is.
 **＋** An item `- [[slug]] — <text>` is ticked by the status of its page, as today; an item `- <text>` without a wikilink renders `- [ ] <text>` and is never ticked.
 **＋** A milestone is closed when every item is `[x]`; with no item it is open.
 **－** A slug with no live or archived page: stderr, exit 1, the file not written. `--check` (case 227) compares this same render.
@@ -32,3 +32,4 @@ The file: `# Sprint`; `## <id>`; Purpose; `**Done when**` — as today; then `##
 
 - 2026-09-17 created · [[decision-case-209.1]]
 - 2026-09-18 updated: the Criterion replaced whole — the render by milestone (case 229.2) · [[decision-case-229.2]]
+- 2026-09-18 updated: the Criterion replaced whole — the collapsed line of a later milestone names its items (case 236) · [[decision-case-236]]

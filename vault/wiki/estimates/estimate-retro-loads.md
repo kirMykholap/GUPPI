@@ -1,9 +1,10 @@
 ---
 type: estimate
 kind: QA
-status: pending
+status: passed
 target: "[[rule-retro]]"
 method: one reading by hand at the first /retro, recorded in the estimate line
+checked: 2026-09-18
 origin: raw/2026-09-10/ledger.md#case-38.1
 sprint: migration
 created: 2026-09-10
@@ -25,7 +26,7 @@ A `create`, `update` or `defer` line of a page and a `guppi render` line are lis
 
 ## Result
 
-block 169.3, live 2026-09-15 session S: /retro typed by the person at 20:31:22 and called by the agent through the Skill tool at 21:12:53; the event log carries two marks retro, both after the gate's check of the Spec against the ledger, all then items with their lines; neither prompt refused
+2026-09-18, the /retro of session 1252 typed by the person, read by hand: the opening listed the unticked lines of raw/2026-09-18/1252/spec.md per Case — the create, update and defer lines of 235, 236, 237, 239, 241 and 244 as waiting for the librarian, not debt, the three read lines by the moment of their reading; no other unticked line, no debt; nothing else of Retro changed
 
 ## History
 
@@ -46,3 +47,4 @@ block 169.3, live 2026-09-15 session S: /retro typed by the person at 20:31:22 a
 - 2026-09-15 criterion: case 150 removed · [[decision-case-169.3]]
 - 2026-09-15 status: pending → passed · raw/2026-09-15/1809/ledger.md#L14
 - 2026-09-18 updated: the Criterion replaced whole — the page and render lines are not debt (case 233.2) · [[decision-case-233.2]]
+- 2026-09-18 status: pending → passed · raw/2026-09-18/1252/ledger.md#L37

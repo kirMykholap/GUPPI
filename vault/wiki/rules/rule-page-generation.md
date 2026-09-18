@@ -2,7 +2,7 @@
 type: rule
 kind: Leaf
 purpose: Prevents a ratified decision from ending the session without a page, or a page from carrying a field nobody ratified
-status: draft
+status: built
 enforcement: check
 implementation_ref: [guppi/generate.py, tests/test_generate.py]
 parent: "[[rule-documentation]]"
@@ -97,3 +97,4 @@ never by hand (case 104). Once an entry is applied, the script ticks its line in
 - 2026-09-18 defer by decision-case-217 superseded · [[decision-case-226.1]]
 - 2026-09-18 estimate estimate-generate-ticks-the-spec added · [[decision-case-226.1]]
 - 2026-09-18 updated: generate ticks the page line of the Spec once the entry is applied (case 226.1) · [[decision-case-226.1]]
+- 2026-09-18 status: draft → built · cascade

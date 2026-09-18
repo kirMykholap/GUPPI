@@ -1,112 +1,95 @@
-# Brief — 2026-09-18, after session 1119 of 2026-09-17 (the ledger Insight settled; the Spec ticked by the scripts; the sprint as milestones; the categories discussion deferred)
+# Brief — 2026-09-18, after session 1252 of 2026-09-18 (the definitions of the categories; the sprint as a kind; the render line opens with the command; the collapsed milestone names its items; Slice 3b deferred again)
 
-Written by the librarian from `raw/2026-09-17/1119/handoff.md`, the yamls of
-`raw/2026-09-16/2238` and `raw/2026-09-17/1119`, and the index Greps.
+Written by the librarian from `raw/2026-09-18/1252/handoff.md`, the yamls of
+`raw/2026-09-17/1119` and `raw/2026-09-18/1252`, and the index Greps.
 
 ## Where things stand
 
-- Ratified in session 1119: 224.1–224.3, 225, 226.1, 226.2, 227, 229.1–229.4, 233.1–233.5,
-  234; deferred 230 (`index`), 231 (`rule-work-mode`, `rule-subagent-guppi`), 232
-  (`rule-spec-box`). Readings `passed` in the ledger: `estimate-generate-walks-dates`,
-  `estimate-documentation-completes`, `estimate-pretask-reconciles`,
-  `estimate-ledger-write-lifts`. Three lessons.
-- Code, commit `d64a399` on `migration`: `guppi/gate.py` (the advice), `guppi/generate.py`
-  (`tick_spec`, `SECTION_ORDER`), `guppi/render.py` (`tick_render_lines`), `guppi/sprint.py`
-  (`--check`, the render by milestone, the plain line), `Makefile` (`lint` — three steps);
-  tests 411 → 424, all green; `make style` clean.
-- One-off: the `ref` field removed from `rule-carry-over` by a script (225). Rule-class by
-  hand: `entities/schema.md` and `schema.yaml`, `index.md` (the `sprint.md` row, §2),
-  `glossary.md` (the Sprint row), `case-schema.md`.
-- Not done in the session: every page create and update (this run); the five renders (this
-  run); the first `guppi sprint` on the milestones page (this run); the readings below;
-  Slice 3b; the definitions of the categories (230).
-- This run. `materialize` walked two units: 2238 extended with 0 entries (its entries of
-  cases 217 and 223 gained `superseded_by` 226.1 and 225), 1119 written with 43 entries, no
-  `unknown`, no `incomplete`, no `failed`, `unparsed: []`. Three synthesis entries appended
-  (46). `generate`: 61 pages written or changed from 1119, 0 from 2238; stderr empty; exit
-  0; every entry `applied`. Counts of the 1119 yaml:
-  - `create`: 3 estimates (`estimate-generate-ticks-the-spec` on `rule-page-generation`,
-    `estimate-render-harness-ticks-the-spec` on `rule-render-harness`,
-    `estimate-sprint-checks-the-file` on `rule-sprint`); 3 lessons
-    (`lesson-transcript-keeps-the-text-before-a-tool-call` knowledge,
-    `lesson-hi-substitution-refused-when-the-permission-classifier-is-unavailable`
-    knowledge, `lesson-work-mode-check-reads-a-page-the-same-spec-changes` error); 1
-    insight by synthesis (`insight-workflow-code-live-before-the-page-it-reads`); 20
-    Decision pages (224.1–224.3, 225, 226.1, 226.2, 227, 229.1–229.4, 230, 231, 232,
-    233.1–233.5, 234). No new tag.
-  - `update`: 13 rule entries on 11 pages (`rule-ledger-write` 224.1, `rule-case-protocol`
-    224.2, `rule-carry-over` 225 and 233.4, `rule-page-generation` 226.1,
-    `rule-render-harness` 226.2, `rule-sprint` 227 and 229.2, `rule-lint` 227,
-    `rule-skill-hi` 229.3, `rule-brief` 229.4, `rule-harness` 233.1, `rule-retro` 233.2);
-    9 Estimate entries (`estimate-ledger-write-lifts` 224.1, `-case-protocol-loaded` 224.2,
-    `-sprint-renders-the-backlog` 229.2, `-hi-writes-frontier` 229.3, `-brief-written`
-    229.4, `-harness-pipeline` 233.1, `-retro-loads` 233.2, `-carry-over-writes` 233.4,
-    `-sprint-migration-lint-clean` 233.5); 1 entity (`entity-sprint-migration` 229.1,
-    `## Milestones` and `## Backlog`); 1 insight (`insight-ledger-hook-reads-only-the-final-text`
-    224.3, `actioned`, `addressed_by: decision-case-224.3`, the `pattern` set); 2 lessons by
-    synthesis; 6 Rule-class file entries printed "a Rule-class file, applied by hand"
-    (`entities-schema` 229.1, `index`, `glossary`, `case-schema` 233.3, `entities-schema-yaml`
-    234).
-  - `defer`: 4 targets in 3 Cases — `index` (230, a Rule-class file, no page, the Decision
-    page alone), `rule-work-mode` and `rule-subagent-guppi` (231), `rule-spec-box` (232);
-    the three rules `exists`, `deferred_by` appended, no placeholder.
-  - `estimate`: 4 reading entries, all `passed`. `lesson`: 3.
-  - Cascade: `rule-documentation` and `rule-pretask` `draft` → `built`;
-    `rule-case-protocol`, `rule-harness`, `rule-render-harness`, `rule-retro`,
-    `rule-skill-hi` `built` → `draft` (an Estimate of each recut to `pending`);
-    `rule-page-generation`, `rule-sprint`, `rule-brief`, `rule-carry-over` stay `draft`;
-    `insight-ledger-hook-reads-only-the-final-text` `actioned`, severity 1 → 0;
-    `lesson-ledger-block-followed-by-a-tool-call` `archived` (its Insight actioned);
-    `decision-case-217` and `decision-case-223` `superseded`; `deferred_by` cleared on
-    `rule-page-generation` and `rule-carry-over`.
-  - The Spec `raw/2026-09-17/1119/spec.md`: `generate` ticked 27 page lines (the first live
-    tick, 226.1); `render` ticked 5 render lines here and 3 in the 2238 Spec, plus one
-    reading line (Flags).
-  - `cleanup`: 3 pages moved to `archive/migration/2026-09-18/1119/` —
-    `decisions/decision-case-217`, `decisions/decision-case-223`,
-    `lessons/lesson-ledger-block-followed-by-a-tool-call`. `render`: `CLAUDE.md` (224.2),
-    `.claude/skills/hi/SKILL.md` (229.3), `.claude/agents/librarian-guppi.md` (229.4),
-    `.claude/skills/retro/SKILL.md` (233.2), `.claude/skills/carry/SKILL.md` (233.4);
-    `render --check` exit 0.
-  - `guppi sprint` (step 5): exit 0, stderr empty; `vault/wiki/sprint.md` written from the
-    milestones page — Slice 3b whole (two items, `draft`, four `deferred_by` each), Slices 4
-    and 5 one line each, the Backlog two plain lines, the three Done-when lines `pending`.
-    `make lint`'s `sprint --check` step is green after this run.
-  - `deferred_by` now: `rule-work-mode`, `rule-subagent-guppi` by `decision-case-183`, `-206`,
-    `-218`, `-231`; `rule-spec-box` by `-207`, `-219`, `-232`; `rule-git-context`,
-    `rule-github-issues` by `-220`.
+- Ratified in session 1252: 235, 236, 237, 239, 240.1–240.3, 241, 244; deferred 238
+  (`insight-workflow-code-live-before-the-page-it-reads`), 242 (`rule-work-mode`,
+  `rule-subagent-guppi`), 243 (`rule-git-context`, `rule-github-issues`). Readings `passed`
+  in the ledger: `estimate-case-protocol-loaded`, `-hi-writes-frontier`, `-brief-written`,
+  `-permissions`, `-generate-ticks-the-spec`, `-sprint-checks-the-file`,
+  `-harness-pipeline`, `-retro-loads`. Four lessons.
+- Code, commit `6843c93` on `migration`: `guppi/render.py` (`RENDER_LINE`), `guppi/sprint.py`
+  (`item_name`, the collapsed line); tests 424 → 425; `make style` clean; `sprint.md`
+  rewritten by `guppi sprint`.
+- Rule-class by hand: `entities/schema.md`, `rules/schema.md` (the definition and a
+  paragraph at the end of `### Enforcement`), `estimates/schema.md`, `glossary.md` (rows
+  MOC, Leaf, Entity, Rule, Estimate, Sprint), `index.md` §6 (two paragraphs).
+- One-off: `children: []` removed from `entity-sprint-migration`; the reading line of
+  `estimate-render-harness-ticks-the-spec` in `raw/2026-09-17/1119/spec.md` back to `[ ]`.
+- Not done in the session: every page create, update and defer of the Spec (this run); the
+  readings below; `estimate-sprint-migration-lint-clean` (the close);
+  `estimate-carry-over-writes` (a live `/carry`, none yet); Slice 3b (defer 242, the next
+  session's first item); `rule-git-context` / `rule-github-issues` (defer 243, the close).
+- This run. `materialize` walked two units: 1119 extended with 0 entries (its entry of case
+  230 gained `superseded_by` 240.1), 1252 written with 38 entries, `unparsed: []`, no
+  `failed`, one `incomplete` (Flags). Three synthesis entries appended (41). `generate`: 47
+  pages written or changed from 1252, 0 from 1119; stderr empty; exit 0; every entry
+  `applied`. Counts of the 1252 yaml:
+  - `create`: 1 entity (`entity-sprint`, MOC, 241, `children` `[[entity-sprint-migration]]`);
+    4 lessons (`lesson-hi-substitution-fails-when-the-login-has-lapsed` knowledge,
+    `lesson-permissions-reading-taken-by-the-agent-who-cannot-see-the-prompt` error,
+    `lesson-lint-schema-body-table-one-section-per-row` error,
+    `lesson-pretask-session-flag-takes-the-id-not-the-hi-line` knowledge); 1 insight by
+    synthesis (`insight-hi-skill-substitution-checked-by-a-model-call`); 1 placeholder rule
+    (`rule-morph`, defer 239 without `ref`, `draft`); 12 Decision pages (235, 236, 237, 238,
+    239, 240.1–240.3, 241, 242, 243, 244). No new tag.
+  - `update`: 4 rule entries on 3 pages (`rule-render-harness` 235, `rule-sprint` 236 and
+    241, `rule-permissions` 237); 4 Estimate entries (`estimate-render-harness-ticks-the-spec`
+    235, `-sprint-renders-the-backlog` 236, `-permissions` 237,
+    `-sprint-migration-lint-clean` 244, its Criterion under `sections: Criterion`); 2
+    entity entries on `entity-sprint-migration` (239 `replace` on Slice 5 and the Backlog —
+    the Backlog holds one line after; 241 `kind: Leaf`, `parent: [[entity-sprint]]`); 2
+    lessons by synthesis (`clustered`); 9 Rule-class file entries printed "a Rule-class
+    file, applied by hand" (`entities-schema`, `rules-schema`, `estimates-schema`,
+    `glossary` ×4, `index` ×2; the handoff counted 8).
+  - `defer`: 6 targets in 4 Cases — `insight-workflow-code-live-before-the-page-it-reads`
+    (238), `rule-morph` (239, no page: a placeholder written), `rule-work-mode` and
+    `rule-subagent-guppi` (242), `rule-git-context` and `rule-github-issues` (243); the five
+    that exist got `deferred_by` appended.
+  - `estimate`: 8 reading entries, all `passed`. `lesson`: 4.
+  - Cascade: `rule-brief`, `rule-case-protocol`, `rule-harness`, `rule-page-generation`,
+    `rule-retro`, `rule-skill-hi` `draft` → `built`; `rule-render-harness` and `rule-sprint`
+    stay `draft` (an Estimate of each recut to `pending`); `rule-permissions` stays `built`
+    (`estimate-permissions` `pending` by 237 and `passed` by the estimate line, `checked`
+    2026-09-18); `decision-case-230` `superseded` by 240.1 (`index` has no page, nothing to
+    clear); `entity-sprint-migration` `draft`, `kind: Leaf`; `entity-sprint` `draft`.
+  - The Spec `raw/2026-09-18/1252/spec.md`: `generate` ticked 12 page lines; the Spec holds
+    no `uv run guppi render` line, so `render` ticked nothing; three `- [ ] read` lines
+    stand unticked (Readings due). The read line of the 1119 Spec (line 260, returned to
+    `[ ]` in the session) stands `[ ]` after this render.
+  - `cleanup`: 1 page moved to `archive/migration/2026-09-18/1252/` —
+    `decisions/decision-case-230`. `render`: exit 0, stderr empty, no governed file changed
+    (`CLAUDE.md` and `.claude/` clean after the run).
+  - `guppi sprint` (step 5): exit 0, stderr empty; `vault/wiki/sprint.md` — Slice 3b whole
+    (two items, `draft`, five `deferred_by` each), Slice 4 one line with its one item named,
+    Slice 5 one line with four names, `[[rule-morph]]` the fourth; the Backlog one line;
+    the three Done-when lines `pending`.
+  - `deferred_by` now: `rule-work-mode`, `rule-subagent-guppi` by `decision-case-183`,
+    `-206`, `-218`, `-231`, `-242`; `rule-spec-box` by `-207`, `-219`, `-232`;
+    `rule-git-context`, `rule-github-issues` by `-220`, `-243`; `rule-morph` by `-239`;
+    `insight-workflow-code-live-before-the-page-it-reads` by `-238`.
 
 ## Readings due
 
-Thirteen Estimates stand `pending`, none `failed`. The 1119 Spec carries a `- [ ] read <slug>`
-line for eight of them; for the other five the place is the page's `method`.
+Six Estimates stand `pending`, none `failed`. The 1252 Spec carries a `- [ ] read <slug>`
+line for three of them; for the other three the place is the page's `method`.
 
-- `estimate-case-protocol-loaded` — `rule-case-protocol` (`draft`); read: the first turn of
-  the next session, by hand (Spec line).
-- `estimate-generate-ticks-the-spec` — `rule-page-generation` (`draft`); read: pytest, plus
-  the page lines of the 1119 Spec ticked by this run — 27 ticked (Spec line).
 - `estimate-render-harness-ticks-the-spec` — `rule-render-harness` (`draft`); read: pytest,
-  plus the `guppi render` lines of the 1119 Spec ticked by this run — 5 ticked, and the read
-  line itself was ticked by the render (Flags); the Spec line stands `[x]` although the
-  reading is not taken.
-- `estimate-sprint-checks-the-file` — `rule-sprint` (`draft`); read: pytest, plus `make lint`
-  after this run — no `sprint:` line: this run's `make lint` printed none (Spec line).
+  plus this session's Spec after the librarian's run — the `uv run guppi render` lines
+  ticked, this reading line not (Spec line 45). Fact of this run: the 1252 Spec has no
+  render line; the read line of the 1119 Spec, returned to `[ ]`, was not ticked by
+  `render`.
 - `estimate-sprint-renders-the-backlog` — `rule-sprint` (`draft`); read: pytest, plus
-  `sprint.md` after this run (Spec line).
-- `estimate-hi-writes-frontier` — `rule-skill-hi` (`draft`); read: the first `/hi` of the
-  next session — a Frontier without Slices 4 and 5 (Spec line).
-- `estimate-brief-written` — `rule-brief` (`draft`); read: this brief — `rule-work-mode`,
-  `rule-subagent-guppi`, `rule-spec-box` not in Deferred (Spec line).
-- `estimate-harness-pipeline` — `rule-harness` (`draft`); read: `make test-harness`,
-  `make lint` after the build of 227 (Spec line).
-- `estimate-retro-loads` — `rule-retro` (`draft`); read: the `/retro` of this session (Spec
-  line, written before the session's own Retro; the next `/retro`).
+  `sprint.md` after the librarian's run — the lines of Slice 4 and Slice 5 with the names of
+  their items (Spec line 89). Fact of this run: `sprint.md` above.
+- `estimate-sprint-migration-lint-clean` — `entity-sprint-migration` (`draft`); read: `make
+  lint` at the close of the sprint (Spec line 417).
 - `estimate-carry-over-writes` — `rule-carry-over` (`draft`); read: pytest over the skill's
   render, plus one live reading of a carried-over session — a live `/carry`, none yet
   (`method`).
-- `estimate-sprint-migration-lint-clean` — `entity-sprint-migration` (`draft`); read: `make
-  lint` exit 0, or only `unread` lines on the Estimates of `entity-sprint-migration`; the
-  close of the sprint (`method`).
 - `estimate-sprint-migration-leftovers-gone` — `entity-sprint-migration` (`draft`); read:
   one reading of the tree by hand at the close of the sprint, each path and decision named
   in the estimate line (`method`).
@@ -115,119 +98,120 @@ line for eight of them; for the other five the place is the page's `method`.
 
 ## Deferred
 
-1. **`insight-workflow-code-live-before-the-page-it-reads`** — `open`, severity 2, created
-   by this run over `lesson-reader-changed-before-its-writer-closed-the-live-session` (case
-   111) and `lesson-work-mode-check-reads-a-page-the-same-spec-changes` (session 1119).
-   Pattern: a Case changes a reader in code and the text it reads in a page or a governed
-   file; the code of the working tree runs at once, the page lands at the librarian's run
-   and the file at the render, so the reader refuses or goes red in between, by
-   construction. Proposal: one sentence in `rule-work-mode` (Slice 3b, defer 231) — a check
-   that reads a page or a file the same Spec updates is read after the librarian's run or
-   the render, its red in Work Mode is an expectation named in the handoff, not a finding;
-   a reader that drops an old form keeps it as a fallback until its writer is measured
-   live. In Plan Mode a Case whose `recommend` starts from that Proposal, ending in an
-   `update` of the Insight (`status: actioned`, `addressed_by`), a rejection written the
-   same way, or a `defer` with the Insight as its target. (stood in 1 brief)
-2. **`rule-git-context`** — case 220, the close of the sprint: "the pull without an upstream
-   at /hi — set the upstream of `migration`, or keep the printed failure as the decision
-   11.1 made it; at the close of the sprint, read by
-   estimate-sprint-migration-leftovers-gone." `built`. (stood in 2 briefs)
-3. **`rule-github-issues`** — case 220, the close of the sprint: "gh not logged in, no GitHub
-   remote — log in and add the remote, or keep the printed line as decision 11.2 made it; at
-   the close of the sprint, read by estimate-sprint-migration-leftovers-gone." `built`.
-   (stood in 2 briefs)
-4. **`index`** — case 230, the next session, a Rule-class file without a page: "the
-   definitions of Entity, Rule and Estimate for development — or the category set as data of
-   the project; from raw/2026-09-17/1119/categories-discussion.md; the next session."
-   `decision-case-230`. (stood in 1 brief)
+1. **`insight-workflow-code-live-before-the-page-it-reads`** — `open`, severity 2, deferred
+   by case 238 (`decision-case-238`; the defer's `purpose` is missing in the yaml, Flags).
+   Children `lesson-reader-changed-before-its-writer-closed-the-live-session` and
+   `lesson-work-mode-check-reads-a-page-the-same-spec-changes`. Pattern: a Case changes a
+   reader in code and the text it reads in a page or a governed file; the code of the
+   working tree runs at once, the page lands at the librarian's run and the file at the
+   render, so the reader refuses or goes red in between, by construction. Proposal: one
+   sentence in `rule-work-mode` (Slice 3b, defer 242) — a check that reads a page or a file
+   the same Spec updates is read after the librarian's run or the render, its red in Work
+   Mode is an expectation named in the handoff, not a finding; a reader that drops an old
+   form keeps it as a fallback until its writer is measured live. In Plan Mode a Case whose
+   `recommend` starts from that Proposal, ending in an `update` of the Insight (`status:
+   actioned`, `addressed_by`), a rejection written the same way, or a `defer` with the
+   Insight as its target. (stood in 2 briefs)
+2. **`insight-hi-skill-substitution-checked-by-a-model-call`** — `open`, severity 2, created
+   by this run over `lesson-hi-substitution-refused-when-the-permission-classifier-is-unavailable`
+   (session 1119) and `lesson-hi-substitution-fails-when-the-login-has-lapsed` (session
+   1252). Pattern: a `!` command of a skill is checked by a model call before it runs; when
+   that call fails — a lapsed login, reported as the model unavailable — the substitution is
+   refused and the Render: line comes back empty, while the SessionStart hook is not
+   affected. Proposal: one sentence in `rule-skill-hi` — a refused `!` substitution at `/hi`
+   is a lapsed login; the cure is `/login` and `/hi` again, not `render --check` by hand and
+   not an allow entry for the command. In Plan Mode a Case whose `recommend` starts from
+   that Proposal, ending in an `update` of the Insight (`status: actioned`, `addressed_by`),
+   a rejection written the same way, or a `defer` with the Insight as its target. (stood in
+   1 brief)
+3. **`rule-git-context`** — case 243 (after 220), the close of the sprint: "the pull without
+   an upstream at /hi — set the upstream of migration, or keep the printed failure as
+   decision 11.1 made it; at the close of the sprint, read by
+   estimate-sprint-migration-leftovers-gone." `built`. (stood in 3 briefs)
+4. **`rule-github-issues`** — case 243 (after 220), the close of the sprint: "gh not logged
+   in, no GitHub remote — log in and add the remote, or keep the printed line as decision
+   11.2 made it; at the close of the sprint, read by
+   estimate-sprint-migration-leftovers-gone." `built`. (stood in 3 briefs)
 
 Left out by case 229.4, the sprint page names them: `rule-work-mode` and
-`rule-subagent-guppi` (defers 183, 206, 218, 231; Slice 3b, the first open milestone),
-`rule-spec-box` (defers 207, 219, 232; Slice 5). Retired from the previous brief:
-`insight-ledger-hook-reads-only-the-final-text` (`actioned` by 224.3),
-`rule-page-generation` (defer 217 superseded by 226.1), `rule-carry-over` (defer 223
-superseded by 225).
+`rule-subagent-guppi` (defers 183, 206, 218, 231, 242; Slice 3b, the first open milestone),
+`rule-spec-box` (defers 207, 219, 232; Slice 5), `rule-morph` (defer 239; Slice 5, the
+placeholder). Retired from the previous brief: `index` (defer 230 superseded by 240.1).
 
 ## Flags
 
-- Entries: no `incomplete`, `failed`, `near` or `unparsed` in the two yamls; no `unknown`
-  key. Index check: the three creates are Estimates, which have no index — no Grep run for
-  them.
-- Synthesis, against 30 lesson lines and 12 insight lines:
-  - `lesson-work-mode-check-reads-a-page-the-same-spec-changes` and
-    `lesson-reader-changed-before-its-writer-closed-the-live-session` (`new`, case 111)
-    share the cause — the code of the working tree is live in the session that writes it,
-    the page or file it reads lands later; no Insight had it. Created
-    `insight-workflow-code-live-before-the-page-it-reads` (Deferred item 1), both lessons
-    `clustered`. The handoff expected the lesson alone and one sentence for
-    `rule-work-mode` in Slice 3b; the Proposal says that.
-  - `lesson-transcript-keeps-the-text-before-a-tool-call` not clustered, as the handoff
-    said: its cause is the opposite of the old pattern of
-    `insight-ledger-hook-reads-only-the-final-text`; the Insight's `pattern` was set by
-    224.3 and it stays `actioned`. Stays `new`.
-  - `lesson-hi-substitution-refused-when-the-permission-classifier-is-unavailable` — no
-    lesson or Insight with the cause (the closest by subject,
-    `insight-retro-typed-command-is-never-a-tool-call`, is about the Skill tool, not the
-    permission classifier). Stays `new`.
-- `render` ticked a reading line: `- [ ] read estimate-render-harness-ticks-the-spec: pytest,
-  plus the `guppi render` lines of this Spec …` holds `guppi render` in a code span and
-  `tick_render_lines` took it for a render line. The Estimate stands `pending`; the Spec
-  line is `[x]` without a reading. The handoff expected 5 render ticks; 6 were made in the
-  1119 Spec, and 3 in the 2238 Spec (its yaml applied whole). A Case of the next Plan Mode
-  (`rule-render-harness`, the Criterion of 226.2).
-- Contradiction: `lesson-transcript-keeps-the-text-before-a-tool-call` (knowledge, session
-  1119) states the opposite of `lesson-transcript-omits-text-emitted-before-tool-calls`
-  (archived, a child of `insight-ledger-hook-reads-only-the-final-text`); settled by 224
-  in favour of the new one, the old lesson stays archived as it is.
+- `incomplete`: the defer of case 238 (`insight-workflow-code-live-before-the-page-it-reads`)
+  — `incomplete: [purpose]`, `unknown: [purpose]`: the `## Deferred` Case of the Spec
+  carries no `purpose`. `deferred_by` was appended; the Decision page holds no purpose. The
+  entry stands as it is. No `failed`, no `near`, `unparsed: []` in the two yamls.
+- Index check: one create outside estimates, `entity-sprint`, against the Grep
+  `^(purpose|deferred_by):` over `wiki/entities/` — 3 lines, one live page
+  (`entity-sprint-migration`, the sprint of one id) and two schema examples. Not the same
+  page and not a near one: the migration page is the child the entry names. No page
+  opened.
+- Synthesis, against 32 lesson lines (30 live pages, 2 schema examples) and 13 insight lines
+  (12 live, 1 schema example):
+  - `lesson-hi-substitution-fails-when-the-login-has-lapsed` and
+    `lesson-hi-substitution-refused-when-the-permission-classifier-is-unavailable` (`new`,
+    session 1119) share the cause — the `!` command of a skill is checked by a model call,
+    and the call fails; the new lesson names the login as the cause the old one saw as
+    the classifier's model. No Insight had it. Created
+    `insight-hi-skill-substitution-checked-by-a-model-call` (Deferred item 2), both
+    lessons `clustered`. The handoff expected this cluster.
+  - `lesson-permissions-reading-taken-by-the-agent-who-cannot-see-the-prompt` — no lesson
+    or Insight with the cause. Stays `new`.
+  - `lesson-lint-schema-body-table-one-section-per-row` — no lesson or Insight with the
+    cause. Stays `new`.
+  - `lesson-pretask-session-flag-takes-the-id-not-the-hi-line` — no lesson or Insight with
+    the cause (`insight-ledger-hi-tied-to-its-session-by-position` is about the event log's
+    window, not the flag). Stays `new`.
+- Contradiction: `lesson-plan-mode-frontier-refused-on-the-client-text` (root cause: the
+  allow list of `settings.json` for `frontier.md`, `spec.md`, `handoff.md` exists "for
+  exactly this" and nothing in the harness refuses the write) against
+  `lesson-permissions-reading-taken-by-the-agent-who-cannot-see-the-prompt` and case 237
+  (in Plan Mode the client asks before every edit outside the plan file, and the allow
+  list does not lift that). Both stand `new`; 237 settled the promise in
+  `estimate-permissions`, the old lesson is as it was.
+- `estimate-permissions`: recut to `pending` by 237 and read `passed` in the same session
+  from the person's word (ledger line 12); the page ends `passed`, `checked` 2026-09-18,
+  `rule-permissions` `built`. The Result records a prompt in Plan Mode, approved.
+- `rule-morph`: the defer of 239 carried no `ref` and the scripts wrote the placeholder page
+  `rules/rule-morph.md` (`draft`, `deferred_by: decision-case-239`); the handoff expected
+  "a placeholder, no page today". Lint: `deferred: 1 time since case 239`; no schema line
+  on it.
 - Handoff flags, each a Case of the next Plan Mode:
-  1. The definitions of the categories — defer 230, the record in
-     `raw/2026-09-17/1119/categories-discussion.md` (Deferred item 4).
-  2. One sentence for `rule-work-mode` on a check that reads a page the Spec updates —
-     Slice 3b, defer 231 (the Proposal of Deferred item 1).
-  3. `schema-prose` in lint reads one section per table row of a `schema.md` — three
-     sections in one cell gave two false findings; the row was split in the session.
-  4. `render --sync` at `/hi` refused by the permission classifier once — the lesson
-     `lesson-hi-substitution-refused-when-the-permission-classifier-is-unavailable`.
-  5. `rule-git-context` / `rule-github-issues` (defer 220) still at the close of the
-     sprint (Deferred items 2, 3).
-  6. Added by the person after the run: a later milestone renders as one line with a
-     count — `### [ ] Slice 4 — conversion of the parked pages by group — 1 item` — and
-     the reader of `sprint.md` cannot see what the item is without opening the page;
-     nothing is lost (the page holds Slice 4's one item and Slice 5's three, word for
-     word), the render alone hides it. Two variants for a Case: the collapsed line
-     names its items by slug, or the next milestone renders whole and only the ones
-     after it collapse. An `update` of the Criterion of 229.2
-     (`estimate-sprint-renders-the-backlog`, `rule-sprint`).
-- `estimate-ledger-write-lifts`: recut to `pending` by 224.1 and read `passed` in the same
-  session (ledger line 40); the page ends `passed`, `rule-ledger-write` `built`.
-- `estimate-generate-walks-dates`: read `passed` against the Criterion as recut by 211.3
-  (the `method` fields), not against "walks dates"; the person accepted (handoff).
+  1. Slice 3b — `rule-work-mode`, `rule-subagent-guppi` (defer 242, the next session's
+     first item), with the sentence of Deferred item 1 written into `rule-work-mode`.
+  2. The Proposal of Deferred item 2 — one sentence in `rule-skill-hi` on the refused `!`
+     substitution.
+  3. `rule-git-context` / `rule-github-issues` (defer 243) at the close of the sprint
+     (Deferred items 3, 4).
+  4. The person's doubt on the Rule / Entity-Estimate criterion of 240.2, noted in the
+     handoff as a caveat, not a change.
 - `rule-spec-box` (placeholder): lint `schema: missing field kind`, `missing field
   estimates`, `orphan: no other live page names it in its frontmatter`.
-- Stale defers: `rule-work-mode` and `rule-subagent-guppi`, `deferred: 16 times since case
-  29` (lint), 20 briefs; on the sprint page, not in Deferred (229.4).
-- The archive folder of this run is `archive/migration/2026-09-18/1119/`: the run's clock
-  passed midnight, the unit is `raw/2026-09-17/1119`.
-- MOC candidates: none. `entities/` holds one live page, `entity-sprint-migration` (MOC).
-- Lint at the close of the run, 81 findings (78 after the previous run):
+- Stale defers: `rule-work-mode` and `rule-subagent-guppi`, `deferred: 17 times since case
+  29` (lint), 21 briefs; on the sprint page, not in Deferred (229.4).
+- MOC candidates: none new. `entity-sprint` (MOC, one child) was created by 241.
+- The `entities/entity-sprint-migration: schema: missing field children (given kind MOC)`
+  line the handoff expected between the one-off and this run is gone after the 241 `set`.
+- Lint at the close of the run, 75 findings (81 after the previous run):
   - 62 × `decisions/decision-case-<1–28>: schema: missing section ## Context` /
     `## Problem` (31 pages, the Cases 1–28 — `estimate-sprint-migration-lint-clean`).
   - `rules/rule-spec-box: schema: missing field kind`, `missing field estimates`,
     `orphan: no other live page names it in its frontmatter` (3).
-  - `rules/rule-subagent-guppi: deferred: 16 times since case 29`
-  - `rules/rule-work-mode: deferred: 16 times since case 29`
-  - `estimates/estimate-brief-written`, `-carry-over-writes`, `-case-protocol-loaded`,
-    `-generate-ticks-the-spec`, `-harness-pipeline`, `-hi-writes-frontier`,
-    `-render-harness-ticks-the-spec`, `-retro-loads`, `-sprint-checks-the-file`,
+  - `rules/rule-morph: deferred: 1 time since case 239`
+  - `rules/rule-subagent-guppi: deferred: 17 times since case 29`
+  - `rules/rule-work-mode: deferred: 17 times since case 29`
+  - `estimates/estimate-carry-over-writes`, `-render-harness-ticks-the-spec`,
     `-sprint-migration-leftovers-gone`, `-sprint-migration-lint-clean`,
-    `-sprint-migration-merges`, `-sprint-renders-the-backlog`: `unread: pending` (13).
-  - `estimates: unmigrated: 29 pages in the shape before case 193` (34 before this run).
+    `-sprint-migration-merges`, `-sprint-renders-the-backlog`: `unread: pending` (6).
+  - `estimates: unmigrated: 29 pages in the shape before case 193` (29 before this run).
   - No `render:` line and no `sprint:` line: the first two steps of `make lint` are green.
 
 ## Readings at the close
 
-- `make test`: 424 passed.
-- `make lint`: 81 findings, exit 1 (the list above).
-- Live pages: rules 43, estimates 66, lessons 30, insights 12, decisions 328, entities 1.
-  Archived this run: 2 decision pages (`decision-case-217`, `decision-case-223`), 1 lesson
-  (`lesson-ledger-block-followed-by-a-tool-call`).
+- `make test`: 425 passed.
+- `make lint`: 75 findings, exit 1 (the list above).
+- Live pages: rules 44, estimates 66, lessons 34, insights 13, decisions 339, entities 2.
+  Archived this run: 1 decision page (`decision-case-230`).

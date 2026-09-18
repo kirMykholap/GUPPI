@@ -1,8 +1,9 @@
 ---
 type: decision
 case: "230"
-status: current
+status: archived
 defer: [index]
+superseded_by: ["[[decision-case-240.1]]"]
 origin: raw/2026-09-17/1119/ledger.md#case-230
 sprint: migration
 created: 2026-09-17
@@ -26,3 +27,6 @@ the definitions of Entity, Rule and Estimate for development — or the category
 ## History
 
 - 2026-09-18 created · raw/2026-09-17/1119/ledger.md#case-230
+- 2026-09-18 superseded by decision-case-240.1 · [[decision-case-240.1]]
+- 2026-09-18 archived · superseded
+- 2026-09-18 archived · cleanup

@@ -39,8 +39,8 @@ update:
 ```tasks
 - [x] `guppi/render.py`: `RENDER_LINE` — the code span holding `guppi render` directly after `- [ ] `
 - [x] `tests/test_render.py`: a `read` line with `guppi render` in a later code span stays `[ ]`
-- [ ] update `rule-render-harness`: the How-it-works sentence of 226.2 — a line that opens with the code span holding the command
-- [ ] update `estimate-render-harness-ticks-the-spec`: `status: pending`, the Criterion replaced whole
+- [x] update `rule-render-harness`: the How-it-works sentence of 226.2 — a line that opens with the code span holding the command
+- [x] update `estimate-render-harness-ticks-the-spec`: `status: pending`, the Criterion replaced whole
 - [x] one-off: `raw/2026-09-17/1119/spec.md` — the reading line of `estimate-render-harness-ticks-the-spec` returned to `[ ]`
 - [ ] read `estimate-render-harness-ticks-the-spec`: pytest, plus this session's Spec after the librarian's run — the `uv run guppi render` lines ticked, this reading line not
 ```
@@ -84,8 +84,8 @@ update:
 - [x] `guppi/sprint.py`: the collapsed line — the count and the list of items
 - [x] `tests/test_sprint.py`: a later milestone with a wikilink item and a plain item renders as one line with the names
 - [x] `uv run guppi sprint`: `vault/wiki/sprint.md` rewritten in the working tree, `make lint` without a `sprint:` line
-- [ ] update `rule-sprint`: the Purpose sentence on a later milestone — one line with the count and the items
-- [ ] update `estimate-sprint-renders-the-backlog`: `status: pending`, the Criterion replaced whole
+- [x] update `rule-sprint`: the Purpose sentence on a later milestone — one line with the count and the items
+- [x] update `estimate-sprint-renders-the-backlog`: `status: pending`, the Criterion replaced whole
 - [ ] read `estimate-sprint-renders-the-backlog`: pytest, plus `sprint.md` after the librarian's run — the lines of Slice 4 and Slice 5 with the names of their items
 ```
 
@@ -127,8 +127,8 @@ update:
 ```
 
 ```tasks
-- [ ] update `estimate-permissions`: `status: pending`, `method` — the probe from the person's word, the Criterion replaced whole
-- [ ] update `rule-permissions`: the Purpose sentence — the list as intent; in Plan Mode the client asks all the same, the person approves
+- [x] update `estimate-permissions`: `status: pending`, `method` — the probe from the person's word, the Criterion replaced whole
+- [x] update `rule-permissions`: the Purpose sentence — the list as intent; in Plan Mode the client asks all the same, the person approves
 - [x] read `estimate-permissions`: nine entries in `settings.json`; the person's word in session 1252 — the prompt in Plan Mode appears, approved
 ```
 
@@ -168,8 +168,8 @@ update:
 ```
 
 ```tasks
-- [ ] defer `rule-morph`: placeholder, `purpose`
-- [ ] update `entity-sprint-migration`: the Backlog line on the categories removed, `[[rule-morph]]` in Slice 5
+- [x] defer `rule-morph`: placeholder, `purpose`
+- [x] update `entity-sprint-migration`: the Backlog line on the categories removed, `[[rule-morph]]` in Slice 5
 ```
 
 ## Case 240 — the definitions of the categories for development
@@ -362,10 +362,10 @@ update:
 ```
 
 ```tasks
-- [ ] create `entity-sprint`
-- [ ] update `entity-sprint-migration`: `kind: Leaf`, `parent`
+- [x] create `entity-sprint`
+- [x] update `entity-sprint-migration`: `kind: Leaf`, `parent`
 - [x] one-off: the field `children` removed from `entity-sprint-migration` by a script, as `ref` in case 225 — between this and the librarian's `set: {kind: Leaf}` lint reads a MOC without `children`: an expectation for the handoff (insight-workflow-code-live-before-the-page-it-reads), not a finding
-- [ ] update `rule-sprint`: the Purpose — a Leaf under the MOC
+- [x] update `rule-sprint`: the Purpose — a Leaf under the MOC
 - [x] update `glossary.md`, by hand: the Sprint row
 - [x] `tests/test_sprint.py`: a page `entity-sprint` beside `entity-sprint-<id>` does not disturb `sprint_page`
 ```
@@ -413,7 +413,7 @@ update:
 ```
 
 ```tasks
-- [ ] update `estimate-sprint-migration-lint-clean`: `status: pending`, the Criterion replaced whole under `sections: Criterion`
+- [x] update `estimate-sprint-migration-lint-clean`: `status: pending`, the Criterion replaced whole under `sections: Criterion`
 - [ ] read `estimate-sprint-migration-lint-clean`: `make lint` at the close of the sprint (the place from `method`)
 ```
 

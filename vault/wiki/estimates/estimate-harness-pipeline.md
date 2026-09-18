@@ -1,9 +1,10 @@
 ---
 type: estimate
 kind: QA
-status: pending
+status: passed
 target: "[[rule-harness]]"
 method: make test-harness over tests/test_render.py and tests/test_lint.py; the live reading of make lint by hand
+checked: 2026-09-18
 origin: raw/2026-09-10/ledger.md#case-37
 sprint: migration
 created: 2026-09-10
@@ -25,7 +26,7 @@ The Purpose says: three rules belong to no phase of the session — the renderer
 
 ## Result
 
-block 153: rule-harness Purpose carries the ratified text; make test-harness runs pytest over tests/test_render.py and tests/test_lint.py, 67 passed; make lint by hand 2026-09-15: render --check exit 0, then guppi lint 84 findings exit 1, in that order
+2026-09-18, make test-harness and make lint in session 1252: test-harness 79 passed over tests/test_render.py and tests/test_lint.py; make lint — render --check silent, sprint --check silent, then guppi lint 82 lines exit 1, in that order; the Purpose of rule-harness names the three rules of no phase and the check of rule-sprint between them, in the ratified order
 
 ## History
 
@@ -34,3 +35,4 @@ block 153: rule-harness Purpose carries the ratified text; make test-harness run
 - 2026-09-14 criterion: case 153 added · [[decision-case-153]]
 - 2026-09-15 status: pending → passed · raw/2026-09-15/1110/ledger.md#L3
 - 2026-09-18 updated: the Criterion replaced whole — make lint with three steps (case 233.1) · [[decision-case-233.1]]
+- 2026-09-18 status: pending → passed · raw/2026-09-18/1252/ledger.md#L15

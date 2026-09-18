@@ -1,9 +1,10 @@
 ---
 type: estimate
 kind: QA
-status: pending
+status: passed
 target: "[[rule-skill-hi]]"
 method: "one reading by hand at the first /hi of the next session, written into the estimate line; unit: the frontier findings of guppi pretask --check in tests/test_pretask.py"
+checked: 2026-09-18
 origin: raw/2026-09-12/ledger.md#case-59.2
 sprint: migration
 created: 2026-09-12
@@ -27,7 +28,7 @@ The items of the current milestone are Frontier lines; a later milestone, the Ba
 
 ## Result
 
-raw/2026-09-14/0747/frontier.md written at /hi with F1–F10, F11 and F12 added by the person and by the hi failure; at /pre-task every line closed as case N, work or defer case N; guppi pretask --check named the one malformed closing (F8) as a finding and printed none after the fix (blocks 73.3, 101.4)
+2026-09-18, the first /hi of session 1252: raw/2026-09-18/1252/frontier.md written with F1–F11 — the two items of Slice 3b, none of Slices 4 and 5, the Backlog or Closed; the failed pull, the unavailable gh, the pending readings and the flags of the brief as lines; the Tail empty; each line in the form F<n> — title · source
 
 ## History
 
@@ -38,3 +39,4 @@ raw/2026-09-14/0747/frontier.md written at /hi with F1–F10, F11 and F12 added 
 - 2026-09-14 status: pending → passed · raw/2026-09-14/0747/ledger.md#L37
 - 2026-09-17 ref removed · one-off migration · raw/2026-09-16/2238/spec.md#case-210
 - 2026-09-18 updated: the Criterion replaced whole — the Frontier from the current milestone, the lines and their closing kept (case 229.3) · [[decision-case-229.3]]
+- 2026-09-18 status: pending → passed · raw/2026-09-18/1252/ledger.md#L2

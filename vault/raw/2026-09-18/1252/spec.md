@@ -42,7 +42,7 @@ update:
 - [x] update `rule-render-harness`: the How-it-works sentence of 226.2 — a line that opens with the code span holding the command
 - [x] update `estimate-render-harness-ticks-the-spec`: `status: pending`, the Criterion replaced whole
 - [x] one-off: `raw/2026-09-17/1119/spec.md` — the reading line of `estimate-render-harness-ticks-the-spec` returned to `[ ]`
-- [ ] read `estimate-render-harness-ticks-the-spec`: pytest, plus this session's Spec after the librarian's run — the `uv run guppi render` lines ticked, this reading line not
+- [x] read `estimate-render-harness-ticks-the-spec`: pytest, plus this session's Spec after the librarian's run — the `uv run guppi render` lines ticked, this reading line not
 ```
 
 ## Case 236 — `rule-sprint`: a collapsed milestone names its items
@@ -86,7 +86,7 @@ update:
 - [x] `uv run guppi sprint`: `vault/wiki/sprint.md` rewritten in the working tree, `make lint` without a `sprint:` line
 - [x] update `rule-sprint`: the Purpose sentence on a later milestone — one line with the count and the items
 - [x] update `estimate-sprint-renders-the-backlog`: `status: pending`, the Criterion replaced whole
-- [ ] read `estimate-sprint-renders-the-backlog`: pytest, plus `sprint.md` after the librarian's run — the lines of Slice 4 and Slice 5 with the names of their items
+- [x] read `estimate-sprint-renders-the-backlog`: pytest, plus `sprint.md` after the librarian's run — the lines of Slice 4 and Slice 5 with the names of their items
 ```
 
 ## Case 237 — `estimate-permissions`: the reading is the person's word

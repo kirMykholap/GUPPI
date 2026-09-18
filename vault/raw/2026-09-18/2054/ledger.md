@@ -9,3 +9,4 @@
 - 22:49:47 decision[case 253.1][update][index]{ref:index}
 - 22:49:47 decision[case 253.2][update][rule-retro]{ref:rule-retro}
 - 22:49:47 decision[case 253.2][update][estimate-retro-loads]{ref:estimate-retro-loads}
+- 22:52:12 estimate[estimate-carry-over-writes][passed] 2026-09-18, the live /carry of session 2054 after ExitPlanMode and the person's "conserve": Tree held only raw/2026-09-18/2054/; brief.md rewritten in the short shape, carry.md one line, make style clean, commit ba0240b of vault/raw/ and vault/wiki/brief.md; nothing else run, no page of wiki/ but the brief; the fork line of guppi spec was not visible in the ExitPlanMode result — the agent asked the fork itself

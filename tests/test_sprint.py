@@ -260,3 +260,77 @@ def test_check_reports_a_render_error_like_the_write(tmp_path):
     code, out, err = check(tmp_path)
     assert code == 1 and out == ""
     assert err.strip() == "sprint: rule-nowhere: no live or archived page"
+
+
+# --- the tick of the `guppi sprint` lines (case 250.2, `estimate-sprint-ticks-the-spec`) --
+
+
+SPRINT_SPEC = """# Spec
+
+## Case 5 — x
+
+```tasks
+- [ ] update `entity-sprint-migration`: one item
+- [ ] `uv run guppi sprint` at the librarian's run
+- [ ] `guppi sprint`; `sprint --check` exit 0
+- [ ] `uv run guppi render` at the librarian's run
+- [ ] read `estimate-sprint-ticks-the-spec`: pytest, plus the `guppi sprint` lines of this Spec
+```
+"""
+
+
+def raw_unit(tmp_path, unit, applied=True, carry=False):
+    import yaml
+
+    folder = tmp_path / "vault" / "raw" / unit
+    folder.mkdir(parents=True)
+    entry = {"line": 1, "kind": "update", "slug": "entity-sprint-migration", "case": "5"}
+    if applied:
+        entry["applied"] = "10:00:00"
+    data = {"date": unit.split("/")[0], "entries": [entry], "decisions": []}
+    (folder / "materialize.yaml").write_text(yaml.safe_dump(data), encoding="utf-8")
+    (folder / "spec.md").write_text(SPRINT_SPEC, encoding="utf-8", newline="\n")
+    if carry:
+        (folder / "carry.md").write_text("carried\n", encoding="utf-8")
+    return folder / "spec.md"
+
+
+def test_a_plain_sprint_ticks_the_sprint_lines_of_every_applied_unit(tmp_path):
+    seed(tmp_path)
+    session = raw_unit(tmp_path, "2026-09-18/1957")
+    date_level = raw_unit(tmp_path, "2026-09-16")
+    assert run(tmp_path) == (0, "", "")
+    for spec in (session, date_level):
+        text = spec.read_text(encoding="utf-8")
+        assert "- [x] `uv run guppi sprint` at the librarian's run" in text
+        assert "- [x] `guppi sprint`; `sprint --check` exit 0" in text
+        assert "- [ ] update `entity-sprint-migration`: one item" in text
+        assert "- [ ] `uv run guppi render` at the librarian's run" in text
+        # the command in a later code span is not a sprint line (case 235)
+        assert (
+            "- [ ] read `estimate-sprint-ticks-the-spec`: pytest, plus the `guppi sprint`" in text
+        )
+
+
+def test_check_and_an_exit_1_tick_nothing(tmp_path):
+    seed(tmp_path)
+    spec = raw_unit(tmp_path, "2026-09-18/1957")
+    assert check(tmp_path)[0] == 1
+    assert spec.read_text(encoding="utf-8") == SPRINT_SPEC
+    (tmp_path / "vault" / "wiki" / "entities" / "entity-sprint-migration.md").write_text(
+        SPRINT_PAGE.replace("[[rule-done]]", "[[rule-nowhere]]"), encoding="utf-8", newline="\n"
+    )
+    assert run(tmp_path)[0] == 1
+    assert spec.read_text(encoding="utf-8") == SPRINT_SPEC
+
+
+def test_an_unapplied_and_a_carried_over_unit_are_not_touched(tmp_path):
+    seed(tmp_path)
+    unapplied = raw_unit(tmp_path, "2026-09-18/1000", applied=False)
+    carried = raw_unit(tmp_path, "2026-09-18/1100", carry=True)
+    no_yaml = tmp_path / "vault" / "raw" / "2026-09-18" / "1200"
+    no_yaml.mkdir(parents=True)
+    (no_yaml / "spec.md").write_text(SPRINT_SPEC, encoding="utf-8", newline="\n")
+    assert run(tmp_path) == (0, "", "")
+    for spec in (unapplied, carried, no_yaml / "spec.md"):
+        assert spec.read_text(encoding="utf-8") == SPRINT_SPEC

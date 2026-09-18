@@ -48,8 +48,8 @@ update:
 
 ```tasks
 - [ ] update `estimate-render-harness-ticks-the-spec`: the Criterion replaced whole, `pending`
-- [ ] `guppi/render.py`: `applied_whole` counts `superseded_by`
-- [ ] `tests/test_render.py`: a yaml with a superseded entry is ticked; one with an unmarked entry is not
+- [x] `guppi/render.py`: `applied_whole` counts `superseded_by`
+- [x] `tests/test_render.py`: a yaml with a superseded entry is ticked; one with an unmarked entry is not
 - [ ] read `estimate-render-harness-ticks-the-spec`
 ```
 
@@ -89,8 +89,8 @@ create:
 ```tasks
 - [ ] update `rule-sprint`: one sentence on the tick in Purpose
 - [ ] create `estimate-sprint-ticks-the-spec`
-- [ ] `guppi/render.py`, `guppi/sprint.py`: one shared helper that ticks the lines of a command in every applied Spec; `sprint` calls it after the write
-- [ ] `tests/test_sprint.py`: the tick, `--check`, a later code span, an unapplied unit, a carried-over unit
+- [x] `guppi/render.py`, `guppi/sprint.py`: one shared helper that ticks the lines of a command in every applied Spec; `sprint` calls it after the write
+- [x] `tests/test_sprint.py`: the tick, `--check`, a later code span, an unapplied unit, a carried-over unit
 - [ ] `uv run guppi sprint` at the librarian's run
 - [ ] read `estimate-sprint-ticks-the-spec`
 ```
@@ -157,8 +157,8 @@ update:
 ```tasks
 - [ ] update `rule-case-protocol`: `replace` in the Render
 - [ ] update `estimate-case-protocol-loaded`: one line of the Criterion, `pending`
-- [ ] `vault/wiki/case-schema.md`: the same sentence, by hand
-- [ ] `vault/wiki/index.md` §1: the `spec.md` line, by hand
+- [x] `vault/wiki/case-schema.md`: the same sentence, by hand
+- [x] `vault/wiki/index.md` §1: the `spec.md` line, by hand
 - [ ] `uv run guppi render` at the librarian's run
 - [ ] read `estimate-case-protocol-loaded` — the first turn of the next session
 ```

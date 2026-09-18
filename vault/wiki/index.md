@@ -26,8 +26,8 @@ raw/                 session artifacts land here first; a session moves whole in
       ledger.md      ratified decisions, readings and lessons of the session (case 103.1)
       materialize.yaml action list for the generation script, one per session (case 103.2)
       spec.md        Plan Mode output: the Cases, their `then` blocks and their `tasks`,
-                     ticked in Work Mode; the page and render lines by `generate` and
-                     `render` (cases 59.3, 226)
+                     ticked in Work Mode; the page, render and sprint lines by `generate`,
+                     `render` and `sprint` (cases 59.3, 226, 250)
       frontier.md    the Frontier of the session, one line per item, closed as the
                      session goes (case 59.2)
       handoff.md     the main agent's notes + direct instructions

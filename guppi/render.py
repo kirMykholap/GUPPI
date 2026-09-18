@@ -21,7 +21,10 @@ Once the plain `guppi render` wrote the files and exits 0, it ticks — in the `
 every unit under `vault/raw/` whose `materialize.yaml` is applied whole, a carried-over
 unit passed by — every unticked task line that opens with a code span holding `guppi
 render` (cases 226.2, 235; a `read` line that names the command later is not one);
-`--check`, `--sync` and an exit 1 tick nothing, and nothing is said either way.
+`--check`, `--sync` and an exit 1 tick nothing, and nothing is said either way. A yaml is
+applied whole when every entry carries `applied` or `superseded_by` and none `failed`, as
+`guppi archive` counts it (case 250.1). The tick is `tick_command_lines`, shared with
+`guppi sprint`, which ticks its own lines the same way (case 250.2).
 Rule page: `vault/wiki/rules/rule-render-harness.md`.
 """
 
@@ -202,25 +205,30 @@ def write_all(project_dir: Path, outputs: dict[str, str]) -> None:
         path.write_text(text, encoding="utf-8", newline="\n")
 
 
-# A render line opens with the code span holding the command; a `read` line that names
-# `guppi render` in a later span is not one (case 235).
-RENDER_LINE = re.compile(r"^- \[ \] `[^`]*guppi render[^`]*`")
+def command_line(command: str) -> re.Pattern[str]:
+    """An unticked task line that opens with the code span holding `command`; a `read`
+    line that names the command in a later span is not one (case 235)."""
+    return re.compile(r"^- \[ \] `[^`]*" + re.escape(command) + r"[^`]*`")
 
 
 def applied_whole(data: dict | None) -> bool:
-    """A yaml whose every entry carries `applied` and none `failed`; an empty or absent
-    yaml is not one."""
+    """A yaml whose every entry carries `applied` or `superseded_by` and none `failed`, as
+    `guppi archive` counts it (case 250.1); an empty or absent yaml is not one."""
     if not data:
         return False
     entries = [e for e in data.get("entries") or [] if isinstance(e, dict)]
-    return bool(entries) and all(e.get("applied") and not e.get("failed") for e in entries)
+    return bool(entries) and all(
+        (e.get("applied") or e.get("superseded_by")) and not e.get("failed") for e in entries
+    )
 
 
-def tick_render_lines(project_dir: Path) -> int:
-    """Case 226.2: in the `spec.md` of every unit under `raw/` whose yaml is applied whole
-    — a carried-over unit passed by — every unticked task line that opens with a code
-    span holding `guppi render` becomes `- [x]` (case 235). The count of lines ticked;
-    nothing is said."""
+def tick_command_lines(project_dir: Path, command: str) -> int:
+    """Cases 226.2, 250.2: in the `spec.md` of every unit under `raw/` whose yaml is
+    applied whole — a carried-over unit passed by — every unticked task line that opens
+    with a code span holding `command` becomes `- [x]` (case 235). `render` calls it with
+    `guppi render`, `sprint` with `guppi sprint`. The count of lines ticked; nothing is
+    said."""
+    pattern = command_line(command)
     ticked = 0
     for unit in units_with(project_dir, "materialize.yaml"):
         if is_carried_over(project_dir, unit):
@@ -233,7 +241,7 @@ def tick_render_lines(project_dir: Path) -> int:
         lines = spec.read_text(encoding="utf-8").split("\n")
         changed = False
         for index, line in enumerate(lines):
-            if RENDER_LINE.match(line):
+            if pattern.match(line):
                 lines[index] = "- [x]" + line[len("- [ ]") :]
                 changed = True
                 ticked += 1
@@ -304,5 +312,5 @@ def run(argv, *, stdout=None, stderr=None, project_dir: Path | None = None) -> i
             print(f"render: {governs} differs from its Rule page", file=stdout)
         return 1 if stale else 0
     write_all(project_dir, outputs)
-    tick_render_lines(project_dir)  # the `guppi render` lines of the applied Specs (226.2)
+    tick_command_lines(project_dir, "guppi render")  # the render lines of the applied Specs
     return 0

@@ -404,7 +404,9 @@ RENDER_SPEC = """# Spec
 """
 
 
-def raw_unit(tmp_path, unit, applied=True, failed=False, carry=False, spec=RENDER_SPEC):
+def raw_unit(
+    tmp_path, unit, applied=True, failed=False, carry=False, superseded=False, spec=RENDER_SPEC
+):
     folder = tmp_path / "vault" / "raw" / unit
     folder.mkdir(parents=True)
     entries = [{"line": 1, "kind": "update", "slug": "rule-one", "case": "5"}]
@@ -412,6 +414,16 @@ def raw_unit(tmp_path, unit, applied=True, failed=False, carry=False, spec=RENDE
         entries[0]["applied"] = "10:00:00"
     if failed:
         entries[0]["failed"] = "generate: rule-one: boom"
+    if superseded:  # a second entry, superseded and never applied (case 250.1)
+        entries.append(
+            {
+                "line": 2,
+                "kind": "update",
+                "slug": "rule-one",
+                "case": "4",
+                "superseded_by": "case 5",
+            }
+        )
     data = {"date": unit.split("/")[0], "entries": entries, "decisions": []}
     (folder / "materialize.yaml").write_text(yaml.safe_dump(data), encoding="utf-8")
     (folder / "spec.md").write_text(spec, encoding="utf-8", newline="\n")
@@ -471,3 +483,16 @@ def test_an_unapplied_a_failed_and_a_carried_over_unit_are_not_touched(tmp_path)
     assert run([], tmp_path)[0] == 0
     for spec in (unapplied, failed, carried, no_yaml / "spec.md"):
         assert spec.read_text(encoding="utf-8") == RENDER_SPEC
+
+
+def test_a_yaml_with_a_superseded_entry_counts_as_applied_whole(tmp_path):
+    """Case 250.1: an entry with `superseded_by` and no `applied` is closed, as `guppi
+    archive` counts it; an entry with neither mark, or with `failed`, still is not."""
+    frame_vault(tmp_path)
+    superseded = raw_unit(tmp_path, "2026-09-17/1000", superseded=True)
+    unmarked = raw_unit(tmp_path, "2026-09-17/1100", applied=False, superseded=True)
+    failed = raw_unit(tmp_path, "2026-09-17/1200", failed=True, superseded=True)
+    assert run([], tmp_path)[0] == 0
+    assert "- [x] `uv run guppi render`: `out/SKILL.md`" in superseded.read_text(encoding="utf-8")
+    assert unmarked.read_text(encoding="utf-8") == RENDER_SPEC
+    assert failed.read_text(encoding="utf-8") == RENDER_SPEC

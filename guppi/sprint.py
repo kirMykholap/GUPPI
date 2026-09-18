@@ -20,9 +20,14 @@ live or archived page, or no sprint page, or two: one line on stderr, exit 1, th
 not written. `--check` renders in memory and compares: one line on stdout — `sprint:
 vault/wiki/sprint.md differs from entity-sprint-<id>` — and exit 1 when the file differs,
 silence and exit 0 when it is the same, nothing written either way; `make lint` runs it
-after `render --check` (case 227). The file holds nothing beyond this: the librarian runs
-the script after `cleanup` and `render`, and the governed-files hook refuses a hand edit
-(`governs` on `rule-sprint`). Rule page: `vault/wiki/rules/rule-sprint.md`.
+after `render --check` (case 227). Once the plain `guppi sprint` wrote the file and exits
+0, it ticks every unticked task line that opens with a code span holding `guppi sprint` —
+never a `read` line that names the command later — in the `spec.md` of every unit under
+`raw/` whose yaml is applied whole, a carried-over unit passed by; `--check` and an exit 1
+tick nothing (case 250.2; the helper is `render.tick_command_lines`). The file holds
+nothing beyond this: the librarian runs the script after `cleanup` and `render`, and the
+governed-files hook refuses a hand edit (`governs` on `rule-sprint`). Rule page:
+`vault/wiki/rules/rule-sprint.md`.
 """
 
 import argparse
@@ -33,6 +38,7 @@ from pathlib import Path
 from guppi.event import project_root
 from guppi.lint import archived_slugs, as_list
 from guppi.pages import Page, read_vault, wiki_root
+from guppi.render import tick_command_lines
 
 PREFIX = "entity-sprint-"
 DONE = {"built", "passed", "archived"}
@@ -212,4 +218,5 @@ def run(argv, *, stdin=None, stdout=None, stderr=None, project_dir: Path | None 
         print(f"sprint: vault/wiki/sprint.md differs from {page.slug}", file=stdout)
         return 1
     target.write_text(text, encoding="utf-8", newline="\n")
+    tick_command_lines(project_dir, "guppi sprint")  # the sprint lines of the applied Specs
     return 0

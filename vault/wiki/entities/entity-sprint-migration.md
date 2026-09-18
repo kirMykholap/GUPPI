@@ -3,7 +3,6 @@ type: entity
 kind: MOC
 purpose: The repository works by the model in wiki/index.md — Phase 1 and Phase 2 of docs/migration/migration-plan.md closed
 status: draft
-children: []
 estimates: ["[[estimate-sprint-migration-lint-clean]]", "[[estimate-sprint-migration-leftovers-gone]]", "[[estimate-sprint-migration-merges]]"]
 origin: raw/2026-09-16/2238/ledger.md#case-209.2
 sprint: migration

@@ -257,7 +257,7 @@ update:
 - [x] create `estimate-render-harness-ticks-the-spec` (`ref: rule-render-harness`)
 - [x] update `rule-render-harness`: one `replace` in How it works, `change`
 - [x] `guppi/render.py`: the tick after `write_all`; docstring; tests first in `tests/test_render.py`
-- [x] read `estimate-render-harness-ticks-the-spec`: pytest, plus the `guppi render` lines of this Spec ticked by the librarian's run
+- [ ] read `estimate-render-harness-ticks-the-spec`: pytest, plus the `guppi render` lines of this Spec ticked by the librarian's run
 ```
 
 ## Case 227 — `sprint.md` is checked, not rendered, at `SessionStart`

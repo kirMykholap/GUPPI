@@ -4,7 +4,7 @@
 
 Three blocks: **properties**, **body**, **history**. Mirrors Entity, with three differences that matter: how it is enforced, what a MOC means, and that children are ordered.
 
-A Rule is something that can be broken, where breaking it will be detected. That single definition covers both harness hooks and code constraints — see *Enforcement* below.
+A Rule is a standing condition one case can break, with a guard that refuses that case when it occurs. The check: can one case refute it, and is there something to refuse that case? Yes to both → a Rule, and its Estimate is the test that the guard works. A condition no single case can break — a measure of the whole — is not a Rule but an Estimate on an Entity; a condition with no guard is not one either. A Leaf is a condition on each case; a MOC a sequence whose Estimate promises the order — one run out of order breaks it. A Rule is of the harness or of an Entity: on an Entity it is a checkable requirement, and its Estimate promises how the requirement is controlled. That single definition covers both harness hooks and code constraints — see *Enforcement* below (case 240.2).
 
 ## Properties
 
@@ -66,6 +66,8 @@ Three ways a rule has force:
 A constraint that no hook, check or render can detect is not a Rule at all. It is a sentence in an Entity's `How it works`. Keeping that line sharp is what stops `rules/` from filling with unenforceable declarations.
 
 **Every Rule requires an Estimate.** A broken hook breaks the workflow as thoroughly as broken product code breaks the product — there is no "documentation-class" exemption.
+
+In the harness a thing is a Rule when its code is a guard — it refuses a case: a hook, a check, a render that refuses drift. A thing is an Entity when it is measured and has no guard of its own; its guard is a separate Rule. The sprint is an Entity by this criterion — its Definition of done is read, and `rule-sprint` is its guard — not an exception (case 240.2).
 
 ## Body
 

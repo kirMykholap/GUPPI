@@ -4,6 +4,8 @@
 
 Three blocks: **properties**, **body**, **history**. One schema for both kinds; sections that do not apply are omitted rather than left empty.
 
+An Estimate is the evidence. On a Rule it is a test that the guard works; on an Entity it is a reading of the whole, which no single case can break. Which of the two it is, the prefix of `target` says; the agent does not choose (case 240.3).
+
 An Estimate is one promise, one way to check it and the last result with its date (case 182). It is always a Leaf — never inline on another page, never a MOC. Grouping is what the parent Entity's recursion already does. One action (`when`) — one Estimate; the ＋/－ lines stay in its `then` while one run checks them; a line with a test or a reading of its own is split off, and the axis of the split is the promise, not the method.
 
 ## Properties
@@ -11,7 +13,7 @@ An Estimate is one promise, one way to check it and the last result with its dat
 | Field | Required | Values / format | Purpose |
 |---|---|---|---|
 | `type` | yes | `estimate` | Page category. |
-| `kind` | yes | `QA` \| `Research` | QA: the expected result is known in advance and checked against a stated criterion. Research: the result is not known, and finding it produces new content; its `then` is a question, its Result the finding. Reading a known criterion by eye is QA by hand, not Research. |
+| `kind` | yes | `QA` \| `Research` | QA: the expected result is known in advance and checked against a stated criterion. Research: the result is not known, and finding it produces new content — on an Entity only, since a Rule has its criterion by definition; `failed` on a Research Estimate means the finding does not serve the purpose the Estimate was made for — no answer, or the answer "not this way" — which of the two, the person says in the estimate line; both are debt, a Case on a changed approach or archival; when a bar grows out of the finding, it becomes a QA Estimate or a Rule (case 240.3); its `then` is a question, its Result the finding. Reading a known criterion by eye is QA by hand, not Research. |
 | `status` | yes | `pending` \| `passed` \| `failed` | Short state, from a fixed list. The narrative belongs in the body. |
 | `target` | yes | quoted wikilink `"[[slug]]"` of an Entity or Rule | The page with a contract this verifies; the scripts read the slug through the brackets (case 148.2); a Lesson or an Insight has no Estimate (case 53.1). Written by the script from the ledger. Without it the cascade — an Entity is `built` only once all its Estimates pass — cannot be computed. |
 | `purpose` | no | one line | The promise, for the list on the target page: the reader of a rule sees its Estimates by `purpose` and opens only the touched ones. Written from the Case on every page born since case 193; absent on the older pages until their recut, counted by lint as `unmigrated` (case 202). |

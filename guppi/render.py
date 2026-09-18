@@ -19,8 +19,9 @@ Every `.json` target is parsed before anything is written; one that does not par
 the whole write and names the file and its page on stderr (case 89.4).
 Once the plain `guppi render` wrote the files and exits 0, it ticks — in the `spec.md` of
 every unit under `vault/raw/` whose `materialize.yaml` is applied whole, a carried-over
-unit passed by — every unticked task line holding `guppi render` in a code span (case
-226.2); `--check`, `--sync` and an exit 1 tick nothing, and nothing is said either way.
+unit passed by — every unticked task line that opens with a code span holding `guppi
+render` (cases 226.2, 235; a `read` line that names the command later is not one);
+`--check`, `--sync` and an exit 1 tick nothing, and nothing is said either way.
 Rule page: `vault/wiki/rules/rule-render-harness.md`.
 """
 
@@ -201,7 +202,9 @@ def write_all(project_dir: Path, outputs: dict[str, str]) -> None:
         path.write_text(text, encoding="utf-8", newline="\n")
 
 
-RENDER_LINE = re.compile(r"^- \[ \] .*`[^`]*guppi render[^`]*`")
+# A render line opens with the code span holding the command; a `read` line that names
+# `guppi render` in a later span is not one (case 235).
+RENDER_LINE = re.compile(r"^- \[ \] `[^`]*guppi render[^`]*`")
 
 
 def applied_whole(data: dict | None) -> bool:
@@ -215,8 +218,9 @@ def applied_whole(data: dict | None) -> bool:
 
 def tick_render_lines(project_dir: Path) -> int:
     """Case 226.2: in the `spec.md` of every unit under `raw/` whose yaml is applied whole
-    — a carried-over unit passed by — every unticked task line holding `guppi render` in
-    a code span becomes `- [x]`. The count of lines ticked; nothing is said."""
+    — a carried-over unit passed by — every unticked task line that opens with a code
+    span holding `guppi render` becomes `- [x]` (case 235). The count of lines ticked;
+    nothing is said."""
     ticked = 0
     for unit in units_with(project_dir, "materialize.yaml"):
         if is_carried_over(project_dir, unit):

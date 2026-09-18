@@ -20,8 +20,8 @@ Estimates of this page pass: lint clean, the leftovers gone, the branch merged.
 - [ ] [[rule-work-mode]] — Work Mode: the Spec as tasks with code, the ticked boxes in `spec.md`, the test of each Estimate written first and turned green; cases 183, 206 · draft · decision-case-183, decision-case-206, decision-case-218, decision-case-231
 - [ ] [[rule-subagent-guppi]] — what a subagent may do in Work Mode, and the fork that comes back to the main agent as a Case; cases 183, 206 · draft · decision-case-183, decision-case-206, decision-case-218, decision-case-231
 
-### [ ] Slice 4 — conversion of the parked pages by group — 1 item
-### [ ] Slice 5 — closing — 3 items
+### [ ] Slice 4 — conversion of the parked pages by group — 1 item: [[estimate-sprint-migration-leftovers-gone]]
+### [ ] Slice 5 — closing — 3 items: [[estimate-sprint-migration-lint-clean]], [[estimate-sprint-migration-merges]], [[rule-spec-box]]
 
 ## Backlog
 

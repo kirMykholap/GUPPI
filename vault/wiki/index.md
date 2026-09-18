@@ -253,7 +253,7 @@ Test it mechanically: list the conditions of "done". For each pair, ask whether 
 
 **Entity vs Estimate.** If two conditions are genuinely different behaviors (fixing one doesn't touch the other) → two child Entities. If they're the same logic checked from different angles (one fix covers both) → one Entity, two Estimates.
 
-A MOC has no direct criteria — its `children` are the functional requirements, and its `estimates` cover only cross-cutting/non-functional checks that belong to no single child.
+A MOC has no direct criteria — its `children` are the parts the person named as things that are built, and its `estimates` cover only what no single child owns. A part comes from the person's words, through a Case; the agent proposes a cut here, in Retro, and never makes it (case 240.1).
 
 Do not impose a fixed hierarchy of levels. Depth follows the rule, nothing else. The one question worth asking when a brand-new top-level Entity appears: is this a new deployment unit, or a feature inside an existing one? The answer becomes content in that Entity's `estimates`, not a field.
 
@@ -263,7 +263,7 @@ Do not impose a fixed hierarchy of levels. Depth follows the rule, nothing else.
 
 **Rule MOC = workflow.** Children are an **ordered** sequence, and the order is the content: `retro → handoff → documentation`. Scripts rebuilding backlinks must preserve it; lint must not normalize it. A Rule MOC's Estimate checks the sequence itself — that handoff cannot start before Retro closes.
 
-This is why our own process is described as Rule MOCs — session-start, plan-mode, work-mode, end-of-work, documentation — each holding ordered children, recursing where the atomicity rule calls for it.
+This is why our own process is described as Rule MOCs — session-start, plan-mode, work-mode, end-of-work, documentation — each holding ordered children, recursing where the atomicity rule calls for it. In the harness a thing is a Rule when its code is a guard, and an Entity when it is measured and its guard is a separate Rule; the sprint is the Entity of the harness by that criterion, not an exception (case 240.2).
 
 ---
 

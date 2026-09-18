@@ -129,7 +129,7 @@ Open since 2026-09-09. The repository works by the model.
 - [ ] [[rule-work-mode]] — Work Mode, the Spec as tasks · draft · decision-case-183, decision-case-206
 - [ ] [[rule-subagent-guppi]] — the subagent and the fork · draft
 
-### [ ] Slice 4 — conversion — 1 item
+### [ ] Slice 4 — conversion — 1 item: [[estimate-sprint-migration-lint-clean]]
 ### [x] Slice 5 — closing
 ### [ ] Slice 6 — nothing yet — 0 items
 
@@ -212,8 +212,24 @@ def test_an_empty_first_milestone_is_current_and_a_plain_line_never_closes_one(t
     )
     assert run(tmp_path) == (0, "", "")
     text = rendered(tmp_path)
-    assert "### [ ] Slice 3a — empty\n\n### [ ] Slice 3b — Work Mode — 2 items\n" in text
-    assert "### [ ] Slice 5 — closing — 3 items\n" in text  # the plain line keeps it open
+    assert (
+        "### [ ] Slice 3a — empty\n\n### [ ] Slice 3b — Work Mode — 2 items: "
+        "[[rule-work-mode]], [[rule-subagent-guppi]]\n" in text
+    )
+    # the plain line keeps it open, and the collapsed line names it by its text (case 236)
+    assert (
+        "### [ ] Slice 5 — closing — 3 items: [[rule-old-thing]], [[rule-done]], a plain task\n"
+        in text
+    )
+
+
+def test_a_page_entity_sprint_beside_the_sprint_by_id_is_not_the_sprint_page(tmp_path):
+    seed(tmp_path)  # case 241: the MOC `entity-sprint` does not match the prefix
+    (tmp_path / "vault" / "wiki" / "entities" / "entity-sprint.md").write_text(
+        page({"type": "entity", "kind": "MOC", "status": "draft"}), encoding="utf-8"
+    )
+    assert run(tmp_path) == (0, "", "")
+    assert rendered(tmp_path) == EXPECTED
 
 
 # --- `--check` (case 227) ----------------------------------------------------------------

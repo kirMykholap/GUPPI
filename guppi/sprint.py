@@ -12,8 +12,9 @@ with an item not done or with no item, whole: its heading `### [ ] <name>` and e
 `- [[slug]] — <text>` as `- [x]` when the page `slug` is `built`, `passed` or `archived`,
 `- [ ]` otherwise, its status and, when present, its `deferred_by` after ` · `; a closed
 milestone — every item `[x]`, at least one — as one line `### [x] <name>`; every later one
-as one line `### [ ] <name> — N items`; a plain item `- <text>` renders `- [ ] <text>` and
-is never ticked, so a milestone holding one stays open; then `## Backlog`, each item a
+as one line `### [ ] <name> — N items: ` and its items by name, `[[slug]]` or the plain
+text, without a tick or a status (case 236); a plain item `- <text>` renders `- [ ] <text>`
+and is never ticked, so a milestone holding one stays open; then `## Backlog`, each item a
 line the same way; the `## Closed` section copied as it is. An item whose slug has no
 live or archived page, or no sprint page, or two: one line on stderr, exit 1, the file
 not written. `--check` renders in memory and compares: one line on stdout — `sprint:
@@ -77,6 +78,13 @@ def plain_or_item(
     return line, None
 
 
+def item_name(line: str) -> str:
+    """The name of an item on a collapsed milestone line (case 236): `[[slug]]` for a
+    wikilink item, the text itself for a plain one; no tick, no status."""
+    item = ITEM.match(line)
+    return f"[[{item.group(1).strip()}]]" if item else line[2:]
+
+
 def split_milestones(text: str) -> list[tuple[str, list[str]]]:
     """`(name, item lines)` per `### <name>` heading, in order; a line before the first
     heading is dropped."""
@@ -112,14 +120,16 @@ def render_milestones(
             current = index
             break
     out: list[str] = []
-    for index, ((name, _items), lines) in enumerate(zip(milestones, rendered, strict=True)):
+    for index, ((name, items), lines) in enumerate(zip(milestones, rendered, strict=True)):
         closed = bool(lines) and all(line.startswith("- [x]") for line in lines)
         if index == current:
             out += [f"### [ ] {name}", ""] + lines + ([""] if lines else [])
         elif closed:
             out.append(f"### [x] {name}")
-        else:
-            out.append(f"### [ ] {name} — {len(lines)} item{'' if len(lines) == 1 else 's'}")
+        else:  # a later one: the count, then its items by name (case 236)
+            count = f"{len(lines)} item{'' if len(lines) == 1 else 's'}"
+            names = ", ".join(item_name(line) for line in items)
+            out.append(f"### [ ] {name} — {count}" + (f": {names}" if names else ""))
     while out and out[-1] == "":
         out.pop()
     return out, None

@@ -399,6 +399,7 @@ RENDER_SPEC = """# Spec
 - [ ] `uv run guppi render`: `out/SKILL.md`
 - [ ] `guppi render`; `render --check` exit 0
 - [ ] read `estimate-one`
+- [ ] read `estimate-two`: pytest, plus the `guppi render` lines of this Spec
 ```
 """
 
@@ -431,6 +432,8 @@ def test_a_plain_render_ticks_the_render_lines_of_every_applied_unit(tmp_path):
         assert "- [x] `guppi render`; `render --check` exit 0" in text
         assert "- [ ] update `rule-one`: one `replace`" in text
         assert "- [ ] read `estimate-one`" in text
+        # the command in a later code span is not a render line (case 235)
+        assert "- [ ] read `estimate-two`: pytest, plus the `guppi render` lines" in text
 
 
 def test_check_sync_and_a_failed_render_tick_nothing(tmp_path):

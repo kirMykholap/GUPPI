@@ -2072,3 +2072,25 @@ instruction. The global feed; a page's own `## History` is the per-page view.
 - 2026-09-18 rules/rule-skill-hi status: draft → built · cascade · generate
 - 2026-09-18 decisions/decision-case-230 archived · superseded · generate
 - 2026-09-18 decisions/decision-case-230 archived · cleanup
+- 2026-09-18 estimates/estimate-render-harness-ticks-the-spec status: pending → passed · raw/2026-09-18/1957/ledger.md#L1 · generate
+- 2026-09-18 estimates/estimate-sprint-renders-the-backlog status: pending → passed · raw/2026-09-18/1957/ledger.md#L2 · generate
+- 2026-09-18 decisions/decision-case-245 created · raw/2026-09-18/1957/ledger.md#case-245 · generate
+- 2026-09-18 entities/entity-sprint-migration updated: the item rule-work-mode of Slice 3b names the Insight deferred to it by case 238 (case 245) · [[decision-case-245]] · generate
+- 2026-09-18 decisions/decision-case-246 created · raw/2026-09-18/1957/ledger.md#case-246 · generate
+- 2026-09-18 insights/insight-hi-skill-substitution-checked-by-a-model-call updated: rejected — the check of a `!` command is the client's, the harness has no guard for a lapsed login, and the cure stands in the pattern and in lesson 1252; rule-skill-hi unchanged (case 246) · [[decision-case-246]] · generate
+- 2026-09-18 decisions/decision-case-247 created · raw/2026-09-18/1957/ledger.md#case-247 · generate
+- 2026-09-18 decisions/decision-case-248 created · raw/2026-09-18/1957/ledger.md#case-248 · generate
+- 2026-09-18 rules/rule-work-mode deferred · [[decision-case-248]] · generate
+- 2026-09-18 rules/rule-subagent-guppi deferred · [[decision-case-248]] · generate
+- 2026-09-18 decisions/decision-case-249 created · raw/2026-09-18/1957/ledger.md#case-249 · generate
+- 2026-09-18 decisions/decision-case-247 superseded by decision-case-249 · [[decision-case-249]] · generate
+- 2026-09-18 entities/entity-sprint-migration updated: the item estimate-sprint-migration-merges of Slice 5 names rule-git-context and rule-github-issues, read by estimate-sprint-migration-leftovers-gone at the close (case 249, supersedes 247) · [[decision-case-249]] · generate
+- 2026-09-18 lessons/lesson-defer-to-a-milestone-leaves-the-sprint-page-silent created · raw/2026-09-18/1957/ledger.md#L9 · generate
+- 2026-09-18 rules/rule-render-harness status: draft → built · cascade · generate
+- 2026-09-18 rules/rule-sprint status: draft → built · cascade · generate
+- 2026-09-18 decisions/decision-case-247 archived · superseded · generate
+- 2026-09-18 lessons/lesson-hi-substitution-refused-when-the-permission-classifier-is-unavailable archived · insight actioned · generate
+- 2026-09-18 lessons/lesson-hi-substitution-fails-when-the-login-has-lapsed archived · insight actioned · generate
+- 2026-09-18 lessons/lesson-hi-substitution-fails-when-the-login-has-lapsed archived · cleanup
+- 2026-09-18 lessons/lesson-hi-substitution-refused-when-the-permission-classifier-is-unavailable archived · cleanup
+- 2026-09-18 decisions/decision-case-247 archived · cleanup

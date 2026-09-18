@@ -1,10 +1,11 @@
 ---
 type: estimate
 kind: QA
-status: pending
+status: passed
 target: "[[rule-render-harness]]"
 purpose: render, once it wrote the harness and exits 0, ticks the guppi render lines of every Spec under raw/ whose yaml is applied whole
 method: pytest tests/test_render.py, plus one reading of this session's spec.md after the librarian's run
+checked: 2026-09-18
 origin: raw/2026-09-17/1119/ledger.md#case-226.2
 sprint: migration
 created: 2026-09-17
@@ -27,7 +28,12 @@ In the `spec.md` of every unit under `raw/` whose yaml is applied whole, every u
 **－** `--check` and `--sync` tick nothing; exit 1 ticks nothing.
 **－** A unit without a yaml, with an unapplied or `failed` entry, or marked by `carry.md`, is not touched.
 
+## Result
+
+2026-09-18, `uv run pytest tests/test_render.py` and the Spec of `archive/migration/2026-09-17/1119/raw/spec.md` after the librarian's run of 1252: tests green (35 with test_sprint.py); the five `- [x] `uv run guppi render`: …` lines ticked (105, 441, 494, 565, 646); the read line 260, returned to `[ ]` in session 1252, still `[ ]` — a `guppi render` in a later code span is not ticked; the 1252 Spec holds no render line and nothing there changed
+
 ## History
 
 - 2026-09-18 created · [[decision-case-226.2]]
 - 2026-09-18 updated: the Criterion replaced whole — a render line opens with the code span holding guppi render (case 235) · [[decision-case-235]]
+- 2026-09-18 status: pending → passed · raw/2026-09-18/1957/ledger.md#L1

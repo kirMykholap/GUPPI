@@ -2,7 +2,7 @@
 type: lesson
 kind: knowledge
 root_cause: the session's login had lapsed — the client checks a `!` command of a skill by a model call, and on a lapsed login that call fails as "unavailable"; the lesson of session 1119 named the classifier's model as the cause, the cause is the login; the fix is /login and /hi again, not `render --check` by hand, and not an allow entry for the command; the client's "auto mode" in the message is its name for that check, the session's defaultMode is plan
-status: clustered
+status: archived
 source: the person's report at /hi of session 1252, 2026-09-18 12:52, with the local-command-stderr of that /hi
 insight: "[[insight-hi-skill-substitution-checked-by-a-model-call]]"
 origin: raw/2026-09-18/1252/ledger.md#L8
@@ -23,3 +23,5 @@ the session's login had lapsed — the client checks a `!` command of a skill by
 
 - 2026-09-18 created · raw/2026-09-18/1252/ledger.md#L8
 - 2026-09-18 updated: clustered by librarian under insight-hi-skill-substitution-checked-by-a-model-call · raw/2026-09-18/1252/ledger.md#L8
+- 2026-09-18 archived · insight actioned
+- 2026-09-18 archived · cleanup

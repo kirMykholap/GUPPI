@@ -33,7 +33,7 @@ update:
 ```
 
 ```tasks
-- [ ] update `entity-sprint-migration`: `replace` on the `rule-work-mode` line of Slice 3b
+- [x] update `entity-sprint-migration`: `replace` on the `rule-work-mode` line of Slice 3b
 - [ ] `uv run guppi sprint` at the librarian's run
 ```
 
@@ -66,7 +66,7 @@ update:
 ```
 
 ```tasks
-- [ ] update `insight-hi-skill-substitution-checked-by-a-model-call`: `status: actioned`, `addressed_by: [[decision-case-246]]`, rejected
+- [x] update `insight-hi-skill-substitution-checked-by-a-model-call`: `status: actioned`, `addressed_by: [[decision-case-246]]`, rejected
 ```
 
 ## Case 247 — `entity-sprint-migration`: `rule-git-context` and `rule-github-issues` in Slice 5
@@ -133,7 +133,7 @@ update:
 ```
 
 ```tasks
-- [ ] update `entity-sprint-migration`: `replace` on the `estimate-sprint-migration-merges` line of Slice 5, in place of case 247
+- [x] update `entity-sprint-migration`: `replace` on the `estimate-sprint-migration-merges` line of Slice 5, in place of case 247
 - [ ] `uv run guppi sprint` at the librarian's run
 ```
 

@@ -2,7 +2,7 @@
 type: rule
 kind: Leaf
 purpose: Prevents the sprint's backlog from drifting from the pages it names
-status: draft
+status: built
 enforcement: check
 implementation_ref: [guppi/sprint.py, tests/test_sprint.py]
 governs: vault/wiki/sprint.md
@@ -33,3 +33,4 @@ The first `## <id>` heading of the file is the sprint id `sprint_id`, `cleanup` 
 - 2026-09-18 updated: the render by milestone — the current one whole, the others one line, the Backlog a list, a plain item never ticked; the Purpose names the two sections (cases 229.2, 233) · [[decision-case-229.2]]
 - 2026-09-18 updated: a later milestone's line names its items by slug after the count (case 236) · [[decision-case-236]]
 - 2026-09-18 updated: the sprint page is a Leaf under the MOC entity-sprint (case 241) · [[decision-case-241]]
+- 2026-09-18 status: draft → built · cascade

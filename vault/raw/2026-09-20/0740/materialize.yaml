@@ -486,6 +486,24 @@ entries:
     of 09:10:20 said 72 by mistake, this line stands for it'
   origin: raw/2026-09-20/0740/ledger.md#L16
   applied: 09:34:03
+- line: 17
+  text: 'estimate[estimate-generate-renames][passed] 2026-09-20, the librarian''s run on Case 261 (commit
+    0666763): five pages moved to the prespec slugs, none old; children of rule-plan-mode, estimates of
+    both rules, target of the three Estimates and every wikilink in live pages (32 Decision pages) retargeted,
+    zero old links in wiki/; origin, earlier History and Result keep the old; History renamed from and
+    ref old → new under decision-case-261; deferred_by of 259 cleared by the supersedes, 259 archived;
+    pytest 434 green at 738e3ef'
+  kind: estimate
+  category: estimates
+  slug: estimate-generate-renames
+  status: passed
+  result: '2026-09-20, the librarian''s run on Case 261 (commit 0666763): five pages moved to the prespec
+    slugs, none old; children of rule-plan-mode, estimates of both rules, target of the three Estimates
+    and every wikilink in live pages (32 Decision pages) retargeted, zero old links in wiki/; origin,
+    earlier History and Result keep the old; History renamed from and ref old → new under decision-case-261;
+    deferred_by of 259 cleared by the supersedes, 259 archived; pytest 434 green at 738e3ef'
+  origin: raw/2026-09-20/0740/ledger.md#L17
+  applied: '13:00:26'
 decisions:
 - case: '261'
   decision: decision-case-261

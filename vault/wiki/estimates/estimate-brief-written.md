@@ -1,7 +1,7 @@
 ---
 type: estimate
 kind: QA
-status: passed
+status: pending
 target: "[[rule-brief]]"
 method: one reading by hand after the first librarian run, recorded in the estimate line
 checked: 2026-09-18
@@ -14,21 +14,20 @@ tags: [harness, workflow, librarian]
 ## Criterion
 
 Given:
-The librarian writes `brief.md` by the frame — the Render of `rule-brief` — after `generate`, from the yaml of the run, `handoff.md` and the output of `make lint`.
-**＋** A fact no input carries — the status of an Estimate, the `severity` of an Insight — is read from the page, and the page is named in the report.
-**－** The brief of `/carry` is the promise of `estimate-carry-over-writes`, not of this one.
+The librarian writes `brief.md` by the frame — the Render of `rule-brief`; `/hi` reads `sprint.md`, `brief.md`, the tail of the ledger, `git status` and the output of its own commands — and nothing else.
+**＋** `prespec.check_frontier`: the id is the first token after `[ ]`, the closer the last segment after ` · `; a line without `[ ]` is not checked.
+**＋** The reading of `estimate-brief-written` is by hand after the librarian's run; of `estimate-hi-writes-frontier` by hand at the first `/hi` of the next session.
 
 When:
 The librarian rewrites `vault/wiki/brief.md` at the end of its run.
 
 Then:
-The brief holds five sections in order: Where things stand, Readings due, Deferred, Flags, Readings at the close.
-**＋** Where things stand — from "What actually got done" of `handoff.md` and the counts of the yaml: pages created and updated per category.
-**＋** Readings due — every Estimate `pending` or `failed` after `generate`: the Estimate, the rule that stands `draft`, and where it is read — from the unticked `read` line of the session's Spec or from the page's `method`; a `failed` one first, with the result of its reading in one line; nothing from the previous brief.
-**＋** Deferred — at most seven: the targets of the `defer` entries of this run, the items of the previous list whose decision no `supersedes` retired, every `open` Insight; never a target the sprint page names under a milestone or in its Backlog, whose count of briefs does not grow (case 229.4); ranked by `severity` — its own or that of the related Insight — then by the number of briefs the item stood in; an Insight's line carries its slug, `severity`, `pattern` and its Proposal in one or two sentences.
-**＋** Flags, no limit: entries `incomplete`, `failed`, `near`, `unparsed`; `failed` Estimates; MOC candidates; stale defers; contradictions; the lint output; a handoff flag that asks for a change of the sprint, as a Case of the next Plan Mode.
-**＋** Readings at the close — `make test`, `make lint`, page counts.
-**－** The brief states no decision and no judgment of the work; a change of the sprint is a Case, never the librarian's edit.
+The brief holds six sections in order: Where things stand, Readings due, Deferred, Flags, Next session, Readings at the close.
+**＋** Where things stand, Readings due, Deferred, Flags and Readings at the close are as today, their content unchanged.
+**＋** Next session — two lists. `Cases`: what needs a decision — a handoff flag with a question or a request to change the sprint, a `failed` Estimate, a contradiction, a defect the librarian found; one line per item, what and from where. `Work`: what is done without a decision — every `pending` reading of Readings due by its slug, the unticked boxes of the Specs, a ledger line this run did not apply, a dirty tree; one line per item.
+**＋** An item stands in one of the two lists, never in both; a list with no item is the line "none".
+**－** The brief still states no decision: the sort by kind is not a judgment of the work.
+**－** The brief of `/carry` keeps its short shape, without Next session — `rule-brief` and `rule-carry-over` both say so.
 
 ## Result
 
@@ -49,3 +48,4 @@ The brief holds five sections in order: Where things stand, Readings due, Deferr
 - 2026-09-17 updated: the last line of the Criterion — a change of the sprint is a Case, never the librarian's edit; the sprint flag lands in Flags (case 209.6) · [[decision-case-209.6]]
 - 2026-09-18 updated: the Deferred line — never a target the sprint page names (case 229.4) · [[decision-case-229.4]]
 - 2026-09-18 status: pending → passed · raw/2026-09-18/1252/ledger.md#L3
+- 2026-09-20 updated: the Criterion replaced whole — six sections, Next session with the lists Cases and Work (case 268.1) · [[decision-case-268.1]]

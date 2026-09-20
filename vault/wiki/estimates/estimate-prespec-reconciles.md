@@ -1,7 +1,7 @@
 ---
 type: estimate
 kind: QA
-status: pending
+status: passed
 target: "[[rule-prespec]]"
 method: One reading by hand of the first /pre-spec after the render, written into the estimate line — the exception the Method rule allows
 checked: 2026-09-20
@@ -34,7 +34,7 @@ The agent runs `guppi prespec --check` on the plan file with `--session <id>`, t
 
 ## Result
 
-2026-09-20, the /pre-task of session 0527 by hand, on the skill text before the render of case 256: `guppi pretask --check <plan> --session 8ce3afdd` — the eight-character id, the second token of the hi: line — run four times, its first line read each time: two findings of form fixed (four file items under create, an unquoted change with a colon), then one line for 258.3 before its Stop, then empty with exit 0; the stamped pretask line written by guppi gate on the Skill call; the list of every decision with the estimates of each updated rule; ask-guppi dispatched once with the plan path and the two questions; eight findings raised as Case 258.3, as changes to 258.1, or named as known; Plan Mode exited again
+2026-09-20, the /pre-spec of session 0958 typed by the person, on the skill as rendered by 261: `uv run guppi prespec --check <plan> --session c27cd9be` — the eight-character id from the hi: line — printed nothing and exited 0 on the first run, 22 ledger lines against the plan's items, the frontier's nine lines closed; the stamped prespec mark written by guppi gate on the typed command; the list of 20 decisions with the estimates of each updated rule and which the Case names; ask-guppi dispatched once with the list, the plan path and the two questions; six findings on Q1 — a failed Estimate in both lists of 268.1, two copies of the carry omissions and of the pull sentence on rule-carry-over and rule-git-context, two stale sentences of rule-skill-hi, the method of estimate-hi-writes-frontier lost between 265 and 268.2, the decisions 220/243 — taken as changes to 265, 268.1, 268.2 or named as known; none on Q2, every replace old verified once on its page; Plan Mode exited again after the ratification of the changes
 
 ## History
 
@@ -66,3 +66,4 @@ The agent runs `guppi prespec --check` on the plan file with `--session <id>`, t
 - 2026-09-20 ref `rule-pretask-hook` → `rule-prespec-hook` · [[decision-case-261]]
 - 2026-09-20 renamed from `estimate-pretask-reconciles` · [[decision-case-261]]
 - 2026-09-20 updated: renamed with rule-prespec — the Criterion names /pre-spec, guppi prespec, the mark prespec and tests/test_prespec.py (case 261) · [[decision-case-261]]
+- 2026-09-20 status: pending → passed · raw/2026-09-20/0958/ledger.md#L25

@@ -17,13 +17,13 @@ Given:
 `guppi generate` applies `set` to the frontmatter and `sections` as whole replacements; the failure of one entry touches no other (`estimate-generate-fails-alone`).
 **＋** The field `method` is one line; `## Method` of the old shape is the same text as a section.
 **＋** The tests in `tests/test_generate.py` fix the behaviour; the live reading is the librarian's run of this session.
-**－** `lint`, `materialize` and `pretask` do not change.
+**－** `lint`, `materialize` and `prespec` do not change.
 
 When:
 The librarian applies the yaml of this session after the build of 211.1.
 
 Then:
-`estimate-generate-writes`, `-generate-walks-dates`, `-lint-catches`, `-pretask-reconciles`, `-materialize-assembles` carry a `method` field with the text of their `## Method` sections in one line; `## Context` and `## Method` are dropped.
+`estimate-generate-writes`, `-generate-walks-dates`, `-lint-catches`, `-prespec-reconciles`, `-materialize-assembles` carry a `method` field with the text of their `## Method` sections in one line; `## Context` and `## Method` are dropped.
 **＋** `unmigrated` reads 34 after the run: these five, `estimate-prespec-hook-gates` (213.2), `estimate-permissions` (215) and `estimate-brief-written` (209.6) leave the old shape; `estimate-documentation-completes` keeps its `### case` blocks.
 **－** The Criterion of these pages does not change; no `pending` is set — except on `estimate-generate-writes`, whose Criterion 211.1 changes.
 
@@ -70,3 +70,4 @@ Then:
 - 2026-09-17 updated: method as a field, the old sections dropped — the recut completed (case 211.3) · [[decision-case-211.3]]
 - 2026-09-17 status: pending → passed · raw/2026-09-16/2238/ledger.md#L49
 - 2026-09-20 ref `estimate-pretask-hook-gates` → `estimate-prespec-hook-gates` · [[decision-case-261]]
+- 2026-09-20 updated: the word moved: the module pretask → prespec and the slug -pretask-reconciles → -prespec-reconciles in the Criterion; the promise and the reading unchanged, passed kept (case 265) · [[decision-case-265]]

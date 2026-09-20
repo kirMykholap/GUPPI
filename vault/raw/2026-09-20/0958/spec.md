@@ -55,7 +55,7 @@ update:
 
 ```tasks
 - [x] by hand: `vault/wiki/estimates/estimate-generate-renames.md`, the History line of 262 — `[[decision-case-N]]` in backticks, a one-off migration
-- [ ] update `estimate-generate-renames`: `sections: Criterion` the text of 262 verbatim, `set: {status: passed}`, `change`
+- [x] update `estimate-generate-renames`: `sections: Criterion` the text of 262 verbatim, `set: {status: passed}`, `change`
 ```
 
 ### Case 264.2 — pre-spec: a bare `[[slug]]` in the plan file
@@ -94,9 +94,9 @@ update:
 ```tasks
 - [x] `guppi/prespec.py`: `check_bare_links` — code spans stripped, wikilinks found in the blockquotes and in the strings of the `then` blocks, each slug checked against `wiki/`, `archive/`, the `create` items of the plan and the hub files; called from `check`
 - [x] `tests/test_prespec.py`: a bare slug — one line; in backticks — none; a slug of a `create` of the plan — none; a hub file — none; one slug twice — one line; a fenced block tagged other than `then` — none
-- [ ] create `estimate-prespec-catches-bare-wikilinks`, ref `rule-prespec`, kind `QA`
-- [ ] update `rule-prespec`: `replace` in the Render — the list of what `--check` prints gains the bare `[[slug]]`; `estimates` filled by `generate`
-- [ ] `uv run guppi render`: `.claude/skills/pre-spec/SKILL.md`
+- [x] create `estimate-prespec-catches-bare-wikilinks`, ref `rule-prespec`, kind `QA`
+- [x] update `rule-prespec`: `replace` in the Render — the list of what `--check` prints gains the bare `[[slug]]`; `estimates` filled by `generate`
+- [x] `uv run guppi render`: `.claude/skills/pre-spec/SKILL.md`
 - [x] read `estimate-prespec-catches-bare-wikilinks`: pytest
 ```
 
@@ -185,9 +185,9 @@ update:
 ```
 
 ```tasks
-- [ ] update `estimate-hi-writes-frontier`: `sections: Criterion` verbatim with `/pre-spec`, `set: {method: …prespec…, status: passed}`, `change`
-- [ ] update `estimate-generate-writes`: `sections: Criterion` verbatim with `prespec`, `-prespec-reconciles`, `set: {status: passed}`, `change`
-- [ ] update `estimate-generate-walks-dates`: the same
+- [x] update `estimate-hi-writes-frontier`: `sections: Criterion` verbatim with `/pre-spec`, `set: {method: …prespec…, status: passed}`, `change`
+- [x] update `estimate-generate-writes`: `sections: Criterion` verbatim with `prespec`, `-prespec-reconciles`, `set: {status: passed}`, `change`
+- [x] update `estimate-generate-walks-dates`: the same
 - [ ] `make lint` after the librarian: no `pre-task`/`pretask` in the Criterion and `method` of the seven pages; `unmigrated: 25`
 ```
 
@@ -216,7 +216,7 @@ update:
 ```
 
 ```tasks
-- [ ] update `estimate-event-log-records`: `set: {status: pending, method}`, `change`; the Criterion lifted from this sub-case
+- [x] update `estimate-event-log-records`: `set: {status: pending, method}`, `change`; the Criterion lifted from this sub-case
 - [x] read `estimate-event-log-records`: pytest tests/test_event.py tests/test_gate.py; live — this session's log (`hi` 09:58:48, the mark `prespec` on `/pre-spec`), `git check-ignore`, the time through a pipe
 ```
 
@@ -245,7 +245,7 @@ update:
 ```
 
 ```tasks
-- [ ] update `estimate-retro-commit-gates`: `set: {status: pending, method}`, `change`; the Criterion lifted from this sub-case
+- [x] update `estimate-retro-commit-gates`: `set: {status: pending, method}`, `change`; the Criterion lifted from this sub-case
 - [ ] read `estimate-retro-commit-gates`: pytest tests/test_gate.py; live — the `/retro` and `/handoff` of this session
 ```
 
@@ -272,7 +272,7 @@ update:
 ```
 
 ```tasks
-- [ ] update `estimate-plan-mode-verified`: `set: {status: pending, method}`, `change`; the Criterion lifted from this sub-case
+- [x] update `estimate-plan-mode-verified`: `set: {status: pending, method}`, `change`; the Criterion lifted from this sub-case
 - [x] read `estimate-plan-mode-verified`: `make test-plan-mode`; live — the approval of this session's plan after `/pre-spec`; 264.2, a `create` with the vault's answer in `context`
 ```
 
@@ -304,7 +304,7 @@ update:
 ```
 
 ```tasks
-- [ ] update `estimate-documentation-completes`: `set: {status: pending}`, `change`; the Criterion lifted from this sub-case
+- [x] update `estimate-documentation-completes`: `set: {status: pending}`, `change`; the Criterion lifted from this sub-case
 - [ ] read `estimate-documentation-completes`: `make test-documentation`; live — the librarian's run of this session, read in the next
 ```
 
@@ -363,7 +363,7 @@ update:
 ```tasks
 - [x] `guppi/materialize.py`: the `defer` branch of `_lift_item` — `type` and `purpose` pass the filter by the schema
 - [x] `tests/test_materialize.py`: a defer of an Insight with `purpose` → `fields.purpose`, no `unknown`, no `incomplete`; a stray key on the same defer → `unknown`; a defer without `purpose` → `incomplete: [purpose]`
-- [ ] update `estimate-materialize-assembles`: `sections: Criterion` whole with the line of 266 in place of 214.1, `set: {status: pending}`, `change`
+- [x] update `estimate-materialize-assembles`: `sections: Criterion` whole with the line of 266 in place of 214.1, `set: {status: pending}`, `change`
 - [x] read `estimate-materialize-assembles`: pytest; live — the librarian's run of this session
 ```
 
@@ -425,10 +425,10 @@ update:
 ```
 
 ```tasks
-- [ ] update `rule-case-protocol`: `replace` in the Render — the sentence on the story sections
+- [x] update `rule-case-protocol`: `replace` in the Render — the sentence on the story sections
 - [x] `vault/wiki/case-schema.md`: the same sentence in the paragraph on the story sections, by hand
-- [ ] `uv run guppi render`: `CLAUDE.md`
-- [ ] update `estimate-case-protocol-case-form`: `sections: Criterion` whole, the line on `context` replaced, `set: {status: pending}`, `change`
+- [x] `uv run guppi render`: `CLAUDE.md`
+- [x] update `estimate-case-protocol-case-form`: `sections: Criterion` whole, the line on `context` replaced, `set: {status: pending}`, `change`
 - [ ] read `estimate-case-protocol-case-form`: the Cases of this session at its close, by hand — 267 and after
 ```
 
@@ -481,10 +481,10 @@ update:
 ```
 
 ```tasks
-- [ ] update `rule-brief`: `replace` in the Render — the section Next session after Flags, the handoff flag sentence, the carry sentence; each `old` checked against the page by grep before the librarian
-- [ ] update `rule-carry-over`: `replace` — "no Readings due, no Next session, no Readings at the close"
-- [ ] `uv run guppi render`: `.claude/agents/librarian-guppi.md`, `.claude/skills/carry/SKILL.md`
-- [ ] update `estimate-brief-written`: `set: {status: pending}`, `change`; the Criterion lifted from this sub-case
+- [x] update `rule-brief`: `replace` in the Render — the section Next session after Flags, the handoff flag sentence, the carry sentence; each `old` checked against the page by grep before the librarian
+- [x] update `rule-carry-over`: `replace` — "no Readings due, no Next session, no Readings at the close"
+- [x] `uv run guppi render`: `.claude/agents/librarian-guppi.md`, `.claude/skills/carry/SKILL.md`
+- [x] update `estimate-brief-written`: `set: {status: pending}`, `change`; the Criterion lifted from this sub-case
 - [ ] read `estimate-brief-written`: the brief after the librarian's run of this session, by hand — in the next session
 ```
 
@@ -535,12 +535,12 @@ update:
 ```
 
 ```tasks
-- [ ] update `rule-skill-hi`: `replace` in the Render — six pairs: the Frontier paragraph, the `render --sync` sentence, pull and gh, "Write the same list", `F<n>`, "an item the person adds"; each `old` checked against the page by grep before the librarian
-- [ ] update `rule-git-context`: `replace` in How it works — "becomes a Frontier item unless `sprint.md` names its decision"
-- [ ] `uv run guppi render`: `.claude/skills/hi/SKILL.md`
+- [x] update `rule-skill-hi`: `replace` in the Render — six pairs: the Frontier paragraph, the `render --sync` sentence, pull and gh, "Write the same list", `F<n>`, "an item the person adds"; each `old` checked against the page by grep before the librarian
+- [x] update `rule-git-context`: `replace` in How it works — "becomes a Frontier item unless `sprint.md` names its decision"
+- [x] `uv run guppi render`: `.claude/skills/hi/SKILL.md`
 - [x] `vault/wiki/glossary.md`: the row `/hi`, Frontier — two lists, by hand
 - [x] `tests/test_prespec.py`: `check_frontier` reads `C1`/`W1` under headings, an open `W` is a finding, a line without `[ ]` is not checked
-- [ ] update `estimate-hi-writes-frontier`: `set: {status: pending, method}`, `change`; the Criterion lifted from this sub-case
+- [x] update `estimate-hi-writes-frontier`: `set: {status: pending, method}`, `change`; the Criterion lifted from this sub-case
 - [ ] read `estimate-hi-writes-frontier`: the first `/hi` of the next session, by hand
 ```
 

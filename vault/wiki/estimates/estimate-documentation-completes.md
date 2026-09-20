@@ -1,7 +1,7 @@
 ---
 type: estimate
 kind: QA
-status: passed
+status: pending
 target: "[[rule-documentation]]"
 method: make test-documentation, the pipeline over tests/test_materialize.py, tests/test_generate.py and tests/test_cleanup.py; the live reading by hand
 checked: 2026-09-17
@@ -13,74 +13,22 @@ tags: [session, workflow, harness, librarian]
 
 ## Criterion
 
-make test-documentation runs the tests of materialize, generate and cleanup as one
-pipeline, green. Live, after a librarian run: every decision line of the session's
-ledger has a Decision page and its target page; no page exists that no ledger line
-produced; the agent read only handoff.md, the yamls materialize named, the four
-indexes and tags.md, plus the wiki pages it names in the report with one of the
-four reasons of its frame (same or near; a candidate cluster; a script's error; a
-fact for the brief) and the outcome, and no ledger, Spec, plan, Decision page or archive file (the Makefile,
-guppi/ and tests/ are the scripts' own and may be read); it edited no yaml entry beyond the marks and the entries of the index
-check and the synthesis; its commands are in event_log.md; its commit is separate
-from the session's; it did not stop to ask.
-
-### case 73.8
+Given:
+The librarian's frame is the Render of `rule-documentation`; its inputs are three: the `handoff.md` of the session's folder, every `materialize.yaml` the walk named, and `tags.md`; the index lines are the Greps `rule-index-check` and `rule-synthesis` name.
+**＋** The librarian works in a clean context; the person is gone.
 
 When:
-`librarian-guppi` starts.
+`librarian-guppi` starts after the handoff and runs to the end.
 
 Then:
-Its first input is the `handoff.md` the dispatch names, `raw/<hi date>/<hi HHMM>/handoff.md`;
-the other three inputs are unchanged.
-
-### case 89.1
-
-When:
-The librarian reaches the end of its run.
-
-Then:
-After `cleanup` and before the brief it runs `uv run guppi render`, and the governed
-files are written from the pages of that same run.
-**＋** Every line on its stderr is a flag for the brief.
-**＋** After `render` and before the brief it runs `uv run guppi sprint`; every line on its stderr is a flag (case 209.5).
-**＋** `make lint` at the close then passes its `render --check` step.
-**－** A file the render could not write is left to the next session start; the librarian
-does not write it by hand.
-
-### case 90.3
-
-When:
-The handoff tells the librarian to do what the criterion of `rule-documentation` forbids
-— repair an entry of the yaml, or read `ledger.md`, a Spec, a decision page or the
-archive.
-
-Then:
-The librarian does not do it.
-**＋** It names the instruction in the report: what was asked, and why it was refused.
-**－** The handoff itself is checked by nothing: it is written from memory, and the
-refusal is the librarian's work, not its author's.
-**－** A refusal does not stop the run: the librarian asks no questions, the person is
-gone.
-
-### case 100.2
-
-When:
-The librarian works by its frame (the Render of `rule-documentation`).
-
-Then:
-A step between Brief and Close (shown again at pre-task: the brief reads the yamls the walk named, so the archive runs after it): "Archive. Run `uv run guppi archive`. Every line on its stderr is a flag; the units it moved and the units it kept, with the reason, go into the report." The brief is already written; the commit picks the move up.
-**＋** `rule-raw-archive` is the sixth child of `rule-documentation`, after `rule-cleanup`.
-**＋** The ban on reading `vault/archive/` stays.
-**＋** The session of the run is found as `cleanup` finds it — the latest `<HHMM>/` folder of the run day, else the nearest date back — and is skipped even when dated before the run day (a session across midnight).
-**＋** `estimate-documentation-completes` gets a `### case 100.2` block, `pending`.
-
-### case 147.5
-
-When:
-`guppi render` writes `librarian-guppi.md`.
-
-Then:
-"Your inputs are three: the `handoff.md` …, every `materialize.yaml` …, and `vault/wiki/tags.md`; the index lines you compare with are the Greps `rule-index-check` and `rule-synthesis` name"; the four reasons to open a page — as they are.
+`make test-documentation` — materialize, generate and cleanup as one pipeline — is green.
+**＋** Live, after the run: every decision line of the session's ledger has a Decision page and its target page; no page exists that no ledger line produced.
+**＋** It read only `handoff.md`, the yamls, the four index lines and `tags.md`, plus the wiki pages it names in the report with one of the four reasons of its frame (same or near; a candidate cluster; a script's error; a fact for the brief) and the outcome; no ledger, Spec, plan, Decision page or archive file (the Makefile, `guppi/` and `tests/` are the scripts' own and may be read).
+**＋** It edited no yaml entry beyond the marks and the entries of the index check and the synthesis; its commands are in `event_log.md`; its commit is separate from the session's; it did not stop to ask.
+**＋** After `cleanup` and before the brief it runs `uv run guppi render`, then `uv run guppi sprint`; every line on their stderr is a flag; a file the render could not write is left to the next session start; `make lint` then passes its `render --check` step.
+**＋** After the brief and before the close it runs `uv run guppi archive`; every line on its stderr is a flag; the units it moved and the units it kept, with the reason, go into the report; the session of the run — the latest `<HHMM>/` folder of the run day, else the nearest date back — is skipped, across midnight too; the commit picks the move up.
+**－** An instruction of the handoff to repair a yaml entry, or to read the ledger, a Spec, a Decision page or the archive, is refused and named in the report — what was asked and why; the refusal does not stop the run.
+**－** The ban on reading `vault/archive/` stays.
 
 ## Result
 
@@ -106,3 +54,4 @@ Then:
 - 2026-09-15 status: pending → passed · raw/2026-09-15/1110/ledger.md#L5
 - 2026-09-17 updated: one line in the block of case 89.1 — guppi sprint after render and before the brief (case 209.5) · [[decision-case-209.5]]
 - 2026-09-18 status: pending → passed · raw/2026-09-17/1119/ledger.md#L25
+- 2026-09-20 updated: the recut to the shape of case 193: the base text and the blocks 73.8, 89.1, 90.3, 100.2, 147.5 folded into one Criterion, pre-task gone from it; pending for the reading (case 265.4) · [[decision-case-265.4]]

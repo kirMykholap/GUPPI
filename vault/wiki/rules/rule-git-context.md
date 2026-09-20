@@ -40,7 +40,7 @@ Status: !`git status --short`
 
 `--ff-only` so a pull can never open a merge inside a session start. The `Render:` line after it runs `uv run guppi render --sync` once more, so what the pull brought reaches its governed files in the same session; a diff on that line is a Frontier item like the one of the session start (case 115). A failing pull — no
 upstream, a remote that is not this project, a conflict — prints its message into the
-context and becomes a Frontier item; `|| true` keeps the skill going. As of 2026-09-09 the
+context and becomes a Frontier item unless `sprint.md` names its decision (case 268.2); `|| true` keeps the skill going. As of 2026-09-09 the
 remote is the product repository this vault was split from and `migration` has no upstream;
 the owner left both as they are until Slice 5.
 
@@ -53,3 +53,4 @@ the owner left both as they are until Slice 5.
 - 2026-09-14 status: draft → built · cascade
 - 2026-09-17 deferred · [[decision-case-220]]
 - 2026-09-18 deferred · [[decision-case-243]]
+- 2026-09-20 updated: a failing pull is a Frontier item unless sprint.md names its decision (case 268.2) · [[decision-case-268.2]]

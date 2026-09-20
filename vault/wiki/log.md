@@ -2204,3 +2204,53 @@ instruction. The global feed; a page's own `## History` is the per-page view.
 - 2026-09-20 rules/rule-spec-capture status: draft → built · cascade · generate
 - 2026-09-20 decisions/decision-case-259 archived · superseded · generate
 - 2026-09-20 decisions/decision-case-259 archived · cleanup
+- 2026-09-20 estimates/estimate-generate-renames status: pending → passed · raw/2026-09-20/0740/ledger.md#L17 · generate
+- 2026-09-20 rules/rule-page-generation status: draft → built · cascade · generate
+- 2026-09-20 lessons/lesson-spec-change-text-quotes-a-wikilink-bare created · raw/2026-09-20/0958/ledger.md#L1 · generate
+- 2026-09-20 decisions/decision-case-264.1 created · raw/2026-09-20/0958/ledger.md#case-264.1 · generate
+- 2026-09-20 estimates/estimate-generate-renames updated: the History line of 262 quoted by hand — its placeholder `[[decision-case-N]]` in a code span — a one-off migration; the Criterion the text of 262; the status the one the reading of 09:38:37 in raw/2026-09-20/0740 leaves (case 264.1) · [[decision-case-264.1]] · generate
+- 2026-09-20 decisions/decision-case-264.2 created · raw/2026-09-20/0958/ledger.md#case-264.2 · generate
+- 2026-09-20 estimates/estimate-prespec-catches-bare-wikilinks created · [[decision-case-264.2]] · generate
+- 2026-09-20 estimates/estimate-prespec-catches-bare-wikilinks status: pending → passed · raw/2026-09-20/0958/ledger.md#L26 · generate
+- 2026-09-20 rules/rule-prespec estimate estimate-prespec-catches-bare-wikilinks added · [[decision-case-264.2]] · generate
+- 2026-09-20 rules/rule-prespec updated: the Render names the finding of --check on a bare `[[slug]]` in the plan file that names no page; the guard of case 264.2 · [[decision-case-264.2]] · generate
+- 2026-09-20 decisions/decision-case-265 created · raw/2026-09-20/0958/ledger.md#case-265 · generate
+- 2026-09-20 estimates/estimate-hi-writes-frontier updated: the word moved: /pre-task → /pre-spec in the Criterion, guppi prespec --check and tests/test_prespec.py in method; the promise and the reading unchanged, passed kept (case 265) · [[decision-case-265]] · generate
+- 2026-09-20 estimates/estimate-generate-writes updated: the word moved: the module pretask → prespec and the slug -pretask-reconciles → -prespec-reconciles in the Criterion; the promise and the reading unchanged, passed kept (case 265) · [[decision-case-265]] · generate
+- 2026-09-20 estimates/estimate-generate-walks-dates updated: the word moved: the module pretask → prespec and the slug -pretask-reconciles → -prespec-reconciles in the Criterion; the promise and the reading unchanged, passed kept (case 265) · [[decision-case-265]] · generate
+- 2026-09-20 decisions/decision-case-265.1 created · raw/2026-09-20/0958/ledger.md#case-265.1 · generate
+- 2026-09-20 estimates/estimate-event-log-records updated: the recut to the shape of case 193: the base text and the blocks 111.1, 125, 136.1 folded into one Criterion, the mark pretask now prespec, method as a field; pending for the reading (case 265.1) · [[decision-case-265.1]] · generate
+- 2026-09-20 decisions/decision-case-265.2 created · raw/2026-09-20/0958/ledger.md#case-265.2 · generate
+- 2026-09-20 estimates/estimate-retro-commit-gates updated: the recut to the shape of case 193: the base text and the blocks 169.1, 180 folded into one Criterion, /pre-task and pretask now /pre-spec and prespec, method as a field; pending for the reading (case 265.2) · [[decision-case-265.2]] · generate
+- 2026-09-20 decisions/decision-case-265.3 created · raw/2026-09-20/0958/ledger.md#case-265.3 · generate
+- 2026-09-20 estimates/estimate-plan-mode-verified updated: the recut to the shape of case 193: the paragraph as Given/When/Then, the flag in context by 188, the pre-spec hook, tests/test_prespec.py in method as a field; pending for the reading (case 265.3) · [[decision-case-265.3]] · generate
+- 2026-09-20 decisions/decision-case-265.4 created · raw/2026-09-20/0958/ledger.md#case-265.4 · generate
+- 2026-09-20 estimates/estimate-documentation-completes updated: the recut to the shape of case 193: the base text and the blocks 73.8, 89.1, 90.3, 100.2, 147.5 folded into one Criterion, pre-task gone from it; pending for the reading (case 265.4) · [[decision-case-265.4]] · generate
+- 2026-09-20 decisions/decision-case-266 created · raw/2026-09-20/0958/ledger.md#case-266 · generate
+- 2026-09-20 estimates/estimate-materialize-assembles updated: one line of the Criterion: type and purpose of a defer item reach fields whatever the target's category, the other keys by the schema as 214.1 said; pending for the reading (case 266) · [[decision-case-266]] · generate
+- 2026-09-20 decisions/decision-case-267 created · raw/2026-09-20/0958/ledger.md#case-267 · generate
+- 2026-09-20 rules/rule-case-protocol updated: the sentence on the story sections of the Render: context opens with the mechanism and closes with one sentence of bookkeeping, a case number only when the Case is about it, the cap of seven sentences dropped for the shape of each section (case 267) · [[decision-case-267]] · generate
+- 2026-09-20 estimates/estimate-case-protocol-case-form updated: the line on context replaced: the mechanism first, the bookkeeping one closing sentence, a case number only when the Case is about it, no cap of sentences; the other lines as 208.2 left them; pending for the reading (case 267) · [[decision-case-267]] · generate
+- 2026-09-20 decisions/decision-case-268.1 created · raw/2026-09-20/0958/ledger.md#case-268.1 · generate
+- 2026-09-20 rules/rule-brief updated: the section Next session between Flags and Readings at the close — the lists Cases and Work, the librarian's sort of what the next session decides and what it does; a handoff flag on the sprint goes there; the carry brief without it (case 268.1) · [[decision-case-268.1]] · generate
+- 2026-09-20 estimates/estimate-brief-written updated: the Criterion replaced whole — six sections, Next session with the lists Cases and Work (case 268.1) · [[decision-case-268.1]] · generate
+- 2026-09-20 decisions/decision-case-268.2 created · raw/2026-09-20/0958/ledger.md#case-268.2 · generate
+- 2026-09-20 rules/rule-skill-hi updated: the Frontier in two lists, Cases and Work, the kind of an item by its source — sprint, the brief's Next session and Deferred, the tail, git status, the person; pull and gh not an item when sprint.md names their decision; C<n> and W<n> lines (case 268.2) · [[decision-case-268.2]] · generate
+- 2026-09-20 estimates/estimate-hi-writes-frontier updated: the Criterion replaced whole — the Frontier in two lists, the kind of an item by its source, pull and gh by the sprint page; method names prespec (case 268.2) · [[decision-case-268.2]] · generate
+- 2026-09-20 decisions/decision-case-269 created · raw/2026-09-20/0958/ledger.md#case-269 · generate
+- 2026-09-20 rules/rule-work-mode deferred · [[decision-case-269]] · generate
+- 2026-09-20 rules/rule-subagent-guppi deferred · [[decision-case-269]] · generate
+- 2026-09-20 rules/rule-carry-over updated: the carry brief's list of omitted sections names Next session, as the carry sentence of rule-brief does (case 268.1) · [[decision-case-268.1]] · generate
+- 2026-09-20 rules/rule-git-context updated: a failing pull is a Frontier item unless sprint.md names its decision (case 268.2) · [[decision-case-268.2]] · generate
+- 2026-09-20 estimates/estimate-prespec-reconciles status: pending → passed · raw/2026-09-20/0958/ledger.md#L25 · generate
+- 2026-09-20 estimates/estimate-event-log-records status: pending → passed · raw/2026-09-20/0958/ledger.md#L27 · generate
+- 2026-09-20 estimates/estimate-plan-mode-verified status: pending → passed · raw/2026-09-20/0958/ledger.md#L28 · generate
+- 2026-09-20 estimates/estimate-materialize-assembles status: pending → passed · raw/2026-09-20/0958/ledger.md#L29 · generate
+- 2026-09-20 estimates/estimate-retro-commit-gates status: pending → passed · raw/2026-09-20/0958/ledger.md#L30 · generate
+- 2026-09-20 estimates/estimate-case-protocol-case-form status: pending → passed · raw/2026-09-20/0958/ledger.md#L31 · generate
+- 2026-09-20 lessons/lesson-estimate-update-must-carry-its-criterion-whole created · raw/2026-09-20/0958/ledger.md#L32 · generate
+- 2026-09-20 lessons/lesson-agent-memory-is-not-the-product created · raw/2026-09-20/0958/ledger.md#L33 · generate
+- 2026-09-20 rules/rule-brief status: built → draft · cascade · generate
+- 2026-09-20 rules/rule-documentation status: built → draft · cascade · generate
+- 2026-09-20 rules/rule-prespec status: draft → built · cascade · generate
+- 2026-09-20 rules/rule-skill-hi status: built → draft · cascade · generate

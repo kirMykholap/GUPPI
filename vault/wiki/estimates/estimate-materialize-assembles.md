@@ -24,7 +24,7 @@ When:
 
 Then:
 One entry per record line, in ledger order: `case`, `kind`, `category` from the slug prefix, `slug`, `ref`, `source`, `supersedes`, `tags`, `origin`, `line`, `text`, `decision`; from the `then` block — `fields`, `sections`, `replace`, `change`, `rename`, `impact`; what the block lacks is `incomplete`, never invented (case 258.3).
-**＋** Only the keys the category's `schema.yaml` names as fields reach `fields` of a `create` or `defer` entry; the structural keys of the item go where they go — `ref` to the entry, `sections`, `tags`, `file`; a key that is neither is marked `unknown: [key]` on the entry, printed by `--show`, never written to the page, and the entry applies; `incomplete` is counted by `REQUIRED` as before (case 214.1).
+**＋** Only the keys the category's `schema.yaml` names as fields reach `fields` of a `create` entry, and of a `defer` entry but for `type` and `purpose` — the defer's own keys, which reach `fields` whatever the target's category, for the placeholder page and for the `## Deferred` of the Decision page; the structural keys of the item go where they go — `ref` to the entry, `sections`, `tags`, `file`; a key that is neither is marked `unknown: [key]` on the entry, printed by `--show`, never written to the page, and the entry applies; `incomplete` is counted by `REQUIRED` as before, and a `defer` without `purpose` is `incomplete: [purpose]` (cases 214.1, 266).
 **＋** An Estimate has its own line and its own entry; the `ref` of the line is the Estimate itself.
 **＋** An `update` entry for an Estimate carries `sections.Criterion` — the text the item wrote under `sections: Criterion` itself, else the `given`, `when` and `then` of its Case verbatim with their operands as `Given:`, `When:`, `Then:` — replacing what stood there, and `set: {status: pending}` unless the item set a status itself; the `given` of a sub-case is its parent's when it has none of its own.
 **＋** A `create` entry for an Estimate keeps `kind`, `purpose`, `method`, `tags` as fields; its Criterion the same way: the written text when there is one, else the Case's; `## Context` and `## Method` are not written.
@@ -36,7 +36,7 @@ One entry per record line, in ledger order: `case`, `kind`, `category` from the 
 
 ## Result
 
-2026-09-20, pytest tests/test_materialize.py: 56 green, one new — an update item with `rename: rule-new` reaches its entry as `rename`, beside `set` and `change`, nothing `incomplete`, the earlier update of the same slug without it; the docstring's field list names `rename` (cases 258.2, 258.3); the live reading is the librarian's run of this session
+2026-09-20, `uv run pytest -q tests/test_materialize.py` 57 green, one new — a defer of an Insight with `purpose` reaches `fields` `{type, purpose}`, a stray key on it still `unknown`, a defer without `purpose` `incomplete: [purpose]`; the live reading is the librarian's run of this session, read in the next
 
 ## History
 
@@ -77,3 +77,5 @@ One entry per record line, in ledger order: `case`, `kind`, `category` from the 
 - 2026-09-17 status: pending → passed · raw/2026-09-16/2238/ledger.md#L54
 - 2026-09-20 updated: the Criterion names rename among the keys lifted from the then block (case 258.3) · [[decision-case-258.3]]
 - 2026-09-20 status: pending → passed · raw/2026-09-20/0527/ledger.md#L20
+- 2026-09-20 updated: one line of the Criterion: type and purpose of a defer item reach fields whatever the target's category, the other keys by the schema as 214.1 said; pending for the reading (case 266) · [[decision-case-266]]
+- 2026-09-20 status: pending → passed · raw/2026-09-20/0958/ledger.md#L29

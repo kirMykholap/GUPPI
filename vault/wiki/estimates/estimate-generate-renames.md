@@ -1,10 +1,11 @@
 ---
 type: estimate
 kind: QA
-status: pending
+status: passed
 target: "[[rule-page-generation]]"
 purpose: An update with rename moves the page to its new slug and rewrites every link to it in the live pages, History and Result untouched
 method: pytest in tests/test_generate.py against a temp vault; the live reading once by hand, the librarian's run on a real rename
+checked: 2026-09-20
 origin: raw/2026-09-20/0527/ledger.md#case-258.1
 sprint: migration
 created: 2026-09-20
@@ -30,7 +31,13 @@ The file `wiki/<category>/<old>.md` becomes `<new>.md`; the page's History gets 
 **－** A taken slug or a foreign prefix: the entry is `failed`, nothing is moved.
 **－** `origin`, `## History` and `## Result` of any page, the archive, `raw/`, `log.md` and `brief.md` are untouched; `guppi sprint` redraws `sprint.md` from the sprint page.
 
+## Result
+
+2026-09-20, the librarian's run on Case 261 (commit 0666763): five pages moved to the prespec slugs, none old; children of rule-plan-mode, estimates of both rules, target of the three Estimates and every wikilink in live pages (32 Decision pages) retargeted, zero old links in wiki/; origin, earlier History and Result keep the old; History renamed from and ref old → new under decision-case-261; deferred_by of 259 cleared by the supersedes, 259 archived; pytest 434 green at 738e3ef
+
 ## History
 
 - 2026-09-20 created · [[decision-case-258.1]]
 - 2026-09-20 updated: the two placeholders `[[decision-case-N]]` of the Criterion in code spans, so lint reads no link; the text of 258.1 otherwise (case 262) · [[decision-case-262]]
+- 2026-09-20 status: pending → passed · raw/2026-09-20/0740/ledger.md#L17
+- 2026-09-20 updated: the History line of 262 quoted by hand — its placeholder `[[decision-case-N]]` in a code span — a one-off migration; the Criterion the text of 262; the status the one the reading of 09:38:37 in raw/2026-09-20/0740 leaves (case 264.1) · [[decision-case-264.1]]

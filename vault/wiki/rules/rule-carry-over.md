@@ -41,7 +41,7 @@ Otherwise:
 1. Rewrite `vault/wiki/brief.md` by the frame of `rule-brief` (the Render in
    `.claude/agents/librarian-guppi.md`), in its short shape as that frame says: Where
    things stand names the conserved Spec — `vault/raw/<hi date>/<hi HHMM>/spec.md`, its
-   Cases, what is not done on it; no Readings due, no Readings at the close; Deferred is
+   Cases, what is not done on it; no Readings due, no Next session, no Readings at the close; Deferred is
    the previous brief's list as it stands plus the `defer` items of this Spec by slug, less the targets the sprint page names (case 229.4);
    Flags say what the vault does not know about this session. No cap, no ranking.
 2. Write `vault/raw/<hi date>/<hi HHMM>/carry.md` with one line: `conserved — delete
@@ -65,3 +65,4 @@ the brief. The session that finishes the Spec deletes `carry.md`.
 - 2026-09-18 updated: the stray ref field removed by a one-off script (case 225) · [[decision-case-225]]
 - 2026-09-18 updated: the /carry brief leaves out a target the sprint page names (case 233.4) · [[decision-case-233.4]]
 - 2026-09-18 status: draft → built · cascade
+- 2026-09-20 updated: the carry brief's list of omitted sections names Next session, as the carry sentence of rule-brief does (case 268.1) · [[decision-case-268.1]]

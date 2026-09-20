@@ -2,7 +2,7 @@
 type: rule
 kind: Leaf
 purpose: Prevents a ratified decision from ending the session without a page, or a page from carrying a field nobody ratified
-status: draft
+status: built
 enforcement: check
 implementation_ref: [guppi/generate.py, tests/test_generate.py]
 parent: "[[rule-documentation]]"
@@ -101,3 +101,4 @@ never by hand (case 104). Once an entry is applied, the script ticks its line in
 - 2026-09-20 updated: an update with rename moves the page and rewrites its links; a taken or foreign slug fails the entry (case 258.1) · [[decision-case-258.1]]
 - 2026-09-20 estimate estimate-generate-renames added · [[decision-case-258.1]]
 - 2026-09-20 status: built → draft · cascade
+- 2026-09-20 status: draft → built · cascade

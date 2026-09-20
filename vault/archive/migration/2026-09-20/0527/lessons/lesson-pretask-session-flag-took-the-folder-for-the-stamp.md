@@ -2,7 +2,7 @@
 type: lesson
 kind: error
 root_cause: the `/pre-task` skill still says "the stamp from the `hi:` line" and the line carries three tokens — time, session id, folder; `--session` takes the eight-character id alone, and the message cuts the value to eight characters so the wrong token is not obvious; the same cause as `lesson-pretask-session-flag-takes-the-id-not-the-hi-line` of session 1252, which changed no text of the skill
-status: clustered
+status: archived
 insight: "[[insight-pretask-session-flag-takes-the-id-not-the-hi-line]]"
 origin: raw/2026-09-18/2253/ledger.md#L3
 sprint: migration
@@ -22,3 +22,5 @@ the `/pre-task` skill still says "the stamp from the `hi:` line" and the line ca
 
 - 2026-09-18 created · raw/2026-09-18/2253/ledger.md#L3
 - 2026-09-18 updated: clustered by librarian under insight-pretask-session-flag-takes-the-id-not-the-hi-line · raw/2026-09-18/2253/ledger.md#L3
+- 2026-09-20 archived · insight actioned
+- 2026-09-20 archived · cleanup

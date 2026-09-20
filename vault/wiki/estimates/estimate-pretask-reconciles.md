@@ -4,7 +4,7 @@ kind: QA
 status: passed
 target: "[[rule-pretask]]"
 method: One reading by hand, written into the estimate line — the exception the Method rule allows
-checked: 2026-09-17
+checked: 2026-09-20
 origin: raw/2026-09-09/ledger.md#case-24.2
 sprint: migration
 created: 2026-09-09
@@ -15,23 +15,26 @@ tags: [session, workflow, harness]
 
 Given:
 `guppi pretask --check <plan>` reads the Cases of the plan by their headings, the `then` blocks, the session's `frontier.md` and the session's ledger window; `guppi gate` writes the `pretask` line with the session's stamp on the Skill call.
+**＋** `--session` takes the eight-character session id — the second token of the `hi:` line, between the time and the folder; `session_stamp` cuts any value to eight characters, so a wrong token answers "no hi recorded for session <8 characters>; nothing checked" on stderr with exit 0, and nothing was checked.
 **＋** An Estimate item of a `then` block is a `create` with `ref`, or an `update` with `set: {status: pending}`; its Criterion is the Case's `given`, `when` and `then` unless the item wrote `sections: Criterion` itself (194.1).
 **＋** The tests in `tests/test_pretask.py` fix `--check`; the live reading is the `/pre-task` of this session.
 **－** The `PreToolUse ExitPlanMode` hook (`rule-pretask-hook`) does not change here.
+**－** The code of `guppi pretask` does not change: the exit 0 without a `hi` is the design of case 213.
 
 When:
 The person invokes `/pre-task`, or the agent calls the skill, before the Spec is approved.
 
 Then:
-The agent runs `guppi pretask --check` on the plan file with `--session <stamp>`, the stamp from the `hi:` line of this session in the context (case 213.3), and fixes the plan, the frontier or the line for every finding until the command prints nothing; `guppi gate` writes the stamped `pretask` line into the event log on the Skill call.
+The agent runs `guppi pretask --check` on the plan file with `--session <id>`, the eight-character session id — the second token of the `hi:` line the `UserPromptSubmit` hook put in the context at `/hi`, between the time and the folder (cases 213.3, 256) — and reads the first line of the output before the exit code: "no hi recorded for session …; nothing checked" means the wrong value, and the check did not run; it fixes the plan, the frontier or the line for every finding until the command prints nothing; `guppi gate` writes the stamped `pretask` line into the event log on the Skill call.
 **＋** The agent lists every decision of this Plan Mode, one line each: slug — kind — `purpose` for a `create`, an `update`, a `delete`; a `defer` by its slug and the word `defer`; for an `update` of a rule or an entity, the page's `estimates` and which of them the Case names by slug.
 **＋** `ask-guppi` is dispatched once with the list, the absolute path of the plan file, the instruction to read every Case outside `## Deferred` — `when`, `then`, the `then` block — and two questions: which decisions contradict a page, `index.md` or each other; whether an Estimate the Case does not name speaks of the thing the Case changes.
 **＋** Every finding returned is raised as a Case or named in one line as already known; then Plan Mode exits again.
+**＋** The Insight `insight-pretask-session-flag-takes-the-id-not-the-hi-line` is `actioned`; its two lessons go to the archive by the cascade; a third lesson with the same cause reopens it.
 **－** The body of a deferred decision is not read; a Case that changes a page another Case of the plan defers is still a finding.
 
 ## Result
 
-2026-09-17, the /pre-task of session 1119 by hand: `guppi pretask --check <plan> --session 03093688` run three times — three findings of form fixed (the defer of index without `file:`, F5 closed by the wrong word, F9 pointing at a defer of another plan), then exit 0; the stamped `pretask` line in event_log.md at 22:43:23; the list of every decision with the estimates of each updated rule; ask-guppi dispatched once with the plan path and the two questions; ten findings raised as Case 233 or named as known; the Case changing index while 230 defers it flagged; Plan Mode exited again
+2026-09-20, the /pre-task of session 0527 by hand, on the skill text before the render of case 256: `guppi pretask --check <plan> --session 8ce3afdd` — the eight-character id, the second token of the hi: line — run four times, its first line read each time: two findings of form fixed (four file items under create, an unquoted change with a colon), then one line for 258.3 before its Stop, then empty with exit 0; the stamped pretask line written by guppi gate on the Skill call; the list of every decision with the estimates of each updated rule; ask-guppi dispatched once with the plan path and the two questions; eight findings raised as Case 258.3, as changes to 258.1, or named as known; Plan Mode exited again
 
 ## History
 
@@ -57,3 +60,5 @@ The agent runs `guppi pretask --check` on the plan file with `--session <stamp>`
 - 2026-09-17 updated: method as a field, the old sections dropped — the recut completed (case 211.3) · [[decision-case-211.3]]
 - 2026-09-17 updated: the first line of Then — the check runs with --session from the hi line (case 213.3) · [[decision-case-213.3]]
 - 2026-09-18 status: pending → passed · raw/2026-09-17/1119/ledger.md#L39
+- 2026-09-20 updated: the Criterion replaced whole — the session id named as the second token of the hi: line, the first line of the output read (case 256) · [[decision-case-256]]
+- 2026-09-20 status: pending → passed · raw/2026-09-20/0527/ledger.md#L21

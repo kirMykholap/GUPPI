@@ -4,7 +4,7 @@ kind: QA
 status: passed
 target: "[[rule-materialize]]"
 method: pytest in tests/test_materialize.py against a temp vault; the live reading once by hand
-checked: 2026-09-17
+checked: 2026-09-20
 origin: raw/2026-09-10/ledger.md#case-31
 sprint: migration
 created: 2026-09-10
@@ -23,7 +23,7 @@ When:
 `guppi materialize` lifts a record line of a ledger against its Spec.
 
 Then:
-One entry per record line, in ledger order: `case`, `kind`, `category` from the slug prefix, `slug`, `ref`, `source`, `supersedes`, `tags`, `origin`, `line`, `text`, `decision`; from the `then` block — `fields`, `sections`, `replace`, `change`, `impact`; what the block lacks is `incomplete`, never invented.
+One entry per record line, in ledger order: `case`, `kind`, `category` from the slug prefix, `slug`, `ref`, `source`, `supersedes`, `tags`, `origin`, `line`, `text`, `decision`; from the `then` block — `fields`, `sections`, `replace`, `change`, `rename`, `impact`; what the block lacks is `incomplete`, never invented (case 258.3).
 **＋** Only the keys the category's `schema.yaml` names as fields reach `fields` of a `create` or `defer` entry; the structural keys of the item go where they go — `ref` to the entry, `sections`, `tags`, `file`; a key that is neither is marked `unknown: [key]` on the entry, printed by `--show`, never written to the page, and the entry applies; `incomplete` is counted by `REQUIRED` as before (case 214.1).
 **＋** An Estimate has its own line and its own entry; the `ref` of the line is the Estimate itself.
 **＋** An `update` entry for an Estimate carries `sections.Criterion` — the text the item wrote under `sections: Criterion` itself, else the `given`, `when` and `then` of its Case verbatim with their operands as `Given:`, `When:`, `Then:` — replacing what stood there, and `set: {status: pending}` unless the item set a status itself; the `given` of a sub-case is its parent's when it has none of its own.
@@ -36,7 +36,7 @@ One entry per record line, in ledger order: `case`, `kind`, `category` from the 
 
 ## Result
 
-2026-09-17, `pytest tests/test_materialize.py`: 55 green — only the keys the category's schema.yaml names reach fields, a stray key is marked unknown and printed by --show, the old-shape keys stay ignored; live, `guppi materialize --date 2026-09-16 --show` over the four units of the date: no unknown mark
+2026-09-20, pytest tests/test_materialize.py: 56 green, one new — an update item with `rename: rule-new` reaches its entry as `rename`, beside `set` and `change`, nothing `incomplete`, the earlier update of the same slug without it; the docstring's field list names `rename` (cases 258.2, 258.3); the live reading is the librarian's run of this session
 
 ## History
 
@@ -75,3 +75,5 @@ One entry per record line, in ledger order: `case`, `kind`, `category` from the 
 - 2026-09-17 updated: method as a field, the old sections dropped — the recut completed (case 211.3) · [[decision-case-211.3]]
 - 2026-09-17 updated: one line in the Criterion — fields lifted by the category's schema.yaml, an unknown key marked unknown and never written (case 214.1) · [[decision-case-214.1]]
 - 2026-09-17 status: pending → passed · raw/2026-09-16/2238/ledger.md#L54
+- 2026-09-20 updated: the Criterion names rename among the keys lifted from the then block (case 258.3) · [[decision-case-258.3]]
+- 2026-09-20 status: pending → passed · raw/2026-09-20/0527/ledger.md#L20

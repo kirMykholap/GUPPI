@@ -1,10 +1,10 @@
 ---
 type: estimate
 kind: QA
-status: pending
+status: passed
 target: "[[rule-retro]]"
 method: one reading by hand at the first /retro, recorded in the estimate line
-checked: 2026-09-18
+checked: 2026-09-20
 origin: raw/2026-09-10/ledger.md#case-38.1
 sprint: migration
 created: 2026-09-10
@@ -25,7 +25,7 @@ A `create`, `update` or `defer` line of a page, a `guppi render` line and a `gup
 
 ## Result
 
-2026-09-18, the /retro of session 1252 typed by the person, read by hand: the opening listed the unticked lines of raw/2026-09-18/1252/spec.md per Case — the create, update and defer lines of 235, 236, 237, 239, 241 and 244 as waiting for the librarian, not debt, the three read lines by the moment of their reading; no other unticked line, no debt; nothing else of Retro changed
+2026-09-20, the first live /retro after the render of commit 3e1251f, read by hand: the unticked lines of raw/2026-09-20/0527/spec.md counted per Case — the create, update and defer lines of pages and the uv run guppi render line listed as waiting for the librarian, ending in none of the four ways; the three read lines counted as debt or taken; nothing else of Retro changed
 
 ## History
 
@@ -48,3 +48,4 @@ A `create`, `update` or `defer` line of a page, a `guppi render` line and a `gup
 - 2026-09-18 updated: the Criterion replaced whole — the page and render lines are not debt (case 233.2) · [[decision-case-233.2]]
 - 2026-09-18 status: pending → passed · raw/2026-09-18/1252/ledger.md#L37
 - 2026-09-18 updated: the Criterion replaced whole — a guppi sprint line waits for the librarian too (case 253.2) · [[decision-case-253.2]]
+- 2026-09-20 status: pending → passed · raw/2026-09-20/0527/ledger.md#L22

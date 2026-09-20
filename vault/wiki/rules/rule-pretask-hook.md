@@ -7,6 +7,7 @@ enforcement: hook
 implementation_ref: [guppi/pretask.py, .claude/settings.json]
 parent: "[[rule-plan-mode]]"
 estimates: ["[[estimate-pretask-hook-gates]]"]
+deferred_by: ["[[decision-case-259]]"]
 origin: raw/2026-09-09/ledger.md#case-24.1
 sprint: migration
 created: 2026-09-09
@@ -30,3 +31,4 @@ it, the hook does not.
 - 2026-09-10 status: draft → built · cascade
 - 2026-09-12 updated: guppi pretask --check lives here and serves /pre-task (case 66) · [[decision-case-66]]
 - 2026-09-14 updated: the ExitPlanMode hook binds the pretask mark by the session's stamp, not by position (case 136.2) · [[decision-case-136.2]]
+- 2026-09-20 deferred · [[decision-case-259]]

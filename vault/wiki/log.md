@@ -2122,3 +2122,42 @@ instruction. The global feed; a page's own `## History` is the per-page view.
 - 2026-09-18 insights/insight-pretask-session-flag-takes-the-id-not-the-hi-line created · raw/2026-09-18/2253/ledger.md#L3 · generate
 - 2026-09-18 lessons/lesson-pretask-session-flag-takes-the-id-not-the-hi-line updated: clustered by librarian under insight-pretask-session-flag-takes-the-id-not-the-hi-line · raw/2026-09-18/2253/ledger.md#L3 · generate
 - 2026-09-18 lessons/lesson-pretask-session-flag-took-the-folder-for-the-stamp updated: clustered by librarian under insight-pretask-session-flag-takes-the-id-not-the-hi-line · raw/2026-09-18/2253/ledger.md#L3 · generate
+- 2026-09-20 estimates/estimate-sprint-ticks-the-spec status: pending → passed · raw/2026-09-18/2253/ledger.md#L4 · generate
+- 2026-09-20 estimates/estimate-render-harness-ticks-the-spec status: pending → passed · raw/2026-09-18/2253/ledger.md#L5 · generate
+- 2026-09-20 rules/rule-render-harness status: draft → built · cascade · generate
+- 2026-09-20 rules/rule-sprint status: draft → built · cascade · generate
+- 2026-09-20 estimates/estimate-case-protocol-loaded status: pending → passed · raw/2026-09-20/0527/ledger.md#L1 · generate
+- 2026-09-20 lessons/lesson-hooks-posttooluse-stdout-not-in-context created · raw/2026-09-20/0527/ledger.md#L2 · generate
+- 2026-09-20 decisions/decision-case-255 created · raw/2026-09-20/0527/ledger.md#case-255 · generate
+- 2026-09-20 rules/rule-spec-capture updated: the fork line goes to the agent as additionalContext, not as plain stdout (case 255) · [[decision-case-255]] · generate
+- 2026-09-20 estimates/estimate-spec-capture-offers-the-fork updated: the Criterion replaced whole — the fork as additionalContext, read live (case 255) · [[decision-case-255]] · generate
+- 2026-09-20 decisions/decision-case-256 created · raw/2026-09-20/0527/ledger.md#case-256 · generate
+- 2026-09-20 rules/rule-pretask updated: --session takes the eight-character session id, the second token of the hi: line; the first line of the output is read before the exit code (case 256) · [[decision-case-256]] · generate
+- 2026-09-20 estimates/estimate-pretask-reconciles updated: the Criterion replaced whole — the session id named as the second token of the hi: line, the first line of the output read (case 256) · [[decision-case-256]] · generate
+- 2026-09-20 insights/insight-pretask-session-flag-takes-the-id-not-the-hi-line updated: actioned — the Render of rule-pretask names the eight-character id and the reading of the output's first line (case 256) · [[decision-case-256]] · generate
+- 2026-09-20 decisions/decision-case-258.1 created · raw/2026-09-20/0527/ledger.md#case-258.1 · generate
+- 2026-09-20 rules/rule-page-generation updated: an update with rename moves the page and rewrites its links; a taken or foreign slug fails the entry (case 258.1) · [[decision-case-258.1]] · generate
+- 2026-09-20 estimates/estimate-generate-renames created · [[decision-case-258.1]] · generate
+- 2026-09-20 rules/rule-page-generation estimate estimate-generate-renames added · [[decision-case-258.1]] · generate
+- 2026-09-20 decisions/decision-case-258.2 created · raw/2026-09-20/0527/ledger.md#case-258.2 · generate
+- 2026-09-20 rules/rule-materialize updated: the rename key of an update item is carried into the entry (case 258.2) · [[decision-case-258.2]] · generate
+- 2026-09-20 decisions/decision-case-259 created · raw/2026-09-20/0527/ledger.md#case-259 · generate
+- 2026-09-20 rules/rule-pretask deferred · [[decision-case-259]] · generate
+- 2026-09-20 rules/rule-pretask-hook deferred · [[decision-case-259]] · generate
+- 2026-09-20 decisions/decision-case-260 created · raw/2026-09-20/0527/ledger.md#case-260 · generate
+- 2026-09-20 rules/rule-work-mode deferred · [[decision-case-260]] · generate
+- 2026-09-20 rules/rule-subagent-guppi deferred · [[decision-case-260]] · generate
+- 2026-09-20 decisions/decision-case-258.3 created · raw/2026-09-20/0527/ledger.md#case-258.3 · generate
+- 2026-09-20 estimates/estimate-materialize-assembles updated: the Criterion names rename among the keys lifted from the then block (case 258.3) · [[decision-case-258.3]] · generate
+- 2026-09-20 estimates/estimate-materialize-assembles status: pending → passed · raw/2026-09-20/0527/ledger.md#L20 · generate
+- 2026-09-20 estimates/estimate-pretask-reconciles status: pending → passed · raw/2026-09-20/0527/ledger.md#L21 · generate
+- 2026-09-20 estimates/estimate-retro-loads status: pending → passed · raw/2026-09-20/0527/ledger.md#L22 · generate
+- 2026-09-20 lessons/lesson-spec-change-line-with-a-colon-breaks-the-then-block created · raw/2026-09-20/0527/ledger.md#L23 · generate
+- 2026-09-20 rules/rule-case-protocol status: draft → built · cascade · generate
+- 2026-09-20 rules/rule-page-generation status: built → draft · cascade · generate
+- 2026-09-20 rules/rule-retro status: draft → built · cascade · generate
+- 2026-09-20 rules/rule-spec-capture status: built → draft · cascade · generate
+- 2026-09-20 lessons/lesson-pretask-session-flag-takes-the-id-not-the-hi-line archived · insight actioned · generate
+- 2026-09-20 lessons/lesson-pretask-session-flag-took-the-folder-for-the-stamp archived · insight actioned · generate
+- 2026-09-20 lessons/lesson-pretask-session-flag-takes-the-id-not-the-hi-line archived · cleanup
+- 2026-09-20 lessons/lesson-pretask-session-flag-took-the-folder-for-the-stamp archived · cleanup

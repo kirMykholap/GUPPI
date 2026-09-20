@@ -2,7 +2,7 @@
 type: rule
 kind: Leaf
 purpose: Prevents the sprint's backlog from drifting from the pages it names
-status: draft
+status: built
 enforcement: check
 implementation_ref: [guppi/sprint.py, tests/test_sprint.py]
 governs: vault/wiki/sprint.md
@@ -37,3 +37,4 @@ The first `## <id>` heading of the file is the sprint id `sprint_id`, `cleanup` 
 - 2026-09-18 updated: sprint, once it wrote sprint.md and exits 0, ticks the guppi sprint lines of every applied Spec under raw/ (case 250.2) · [[decision-case-250.2]]
 - 2026-09-18 estimate estimate-sprint-ticks-the-spec added · [[decision-case-250.2]]
 - 2026-09-18 status: built → draft · cascade
+- 2026-09-20 status: draft → built · cascade

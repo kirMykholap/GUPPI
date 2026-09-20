@@ -18,7 +18,7 @@ tags: [harness, workflow, ledger]
 Prevents the librarian from reading the ledger and the Spec itself, or from routing
 a decision by guesswork. The yaml is the one input a clean context needs. Every line
 of the ledger is an entry. Its route is computed from `index.md` §5. Its content is
-lifted from the `then` block of its Case in the Spec. What is missing is named, not
+lifted from the `then` block of its Case in the Spec — `set`, `sections`, `replace`, `change`, and `rename` when the item carries it (case 258.2). What is missing is named, not
 invented. If a route cannot be derived from the ledger and the Spec alone, that is a
 defect of the ledger, and it shows here.
 
@@ -84,3 +84,4 @@ entry's fields, each with its writer, live in the docstring of `guppi/materializ
 - 2026-09-16 updated: Purpose carries the text of 189 and 190.3; How it works dropped by hand, the mechanism and the field list in the docstring (case 194.1) · [[decision-case-194.1]]
 - 2026-09-16 updated: a written Criterion stands on a create and on an update alike (case 204) · [[decision-case-204]]
 - 2026-09-17 status: draft → built · cascade
+- 2026-09-20 updated: the rename key of an update item is carried into the entry (case 258.2) · [[decision-case-258.2]]

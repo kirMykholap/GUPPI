@@ -2,11 +2,11 @@
 type: rule
 kind: Leaf
 purpose: Prevents a ratified decision from ending the session without a page, or a page from carrying a field nobody ratified
-status: built
+status: draft
 enforcement: check
 implementation_ref: [guppi/generate.py, tests/test_generate.py]
 parent: "[[rule-documentation]]"
-estimates: ["[[estimate-generate-writes]]", "[[estimate-generate-walks-dates]]", "[[estimate-generate-writes-the-decision-page]]", "[[estimate-generate-fails-alone]]", "[[estimate-generate-cascades]]", "[[estimate-generate-ticks-the-spec]]"]
+estimates: ["[[estimate-generate-writes]]", "[[estimate-generate-walks-dates]]", "[[estimate-generate-writes-the-decision-page]]", "[[estimate-generate-fails-alone]]", "[[estimate-generate-cascades]]", "[[estimate-generate-ticks-the-spec]]", "[[estimate-generate-renames]]"]
 origin: raw/2026-09-10/ledger.md#case-32
 sprint: migration
 created: 2026-09-10
@@ -23,7 +23,7 @@ Estimate is replaced whole by the text its Case signed (cases 166.2, 194.1, 201.
 page is always created, even incomplete: red lint is an accurate signal of debt, a
 decision with no page is the ledger and the vault disagreeing silently. A slug
 collision is an error, never a rename — with one exception: a `create` whose slug is a
-placeholder page, `status: draft` and no `kind`, fills that page (case 101.1). One bad
+placeholder page, `status: draft` and no `kind`, fills that page (case 101.1). An `update` whose item carries `rename: <new slug>` moves the page to the new slug, the same category prefix, and rewrites every link and ref field to it in the live pages of `wiki/`, Decision pages included; a taken or foreign slug fails the entry (case 258.1). One bad
 entry never stops the run: it is marked `failed`, reported, and the rest apply (case
 47). The Decision page of a Case is written before its entries and carries the body of
 every defer (cases 52.4, 186.1); the cascade after all entries computes what is
@@ -98,3 +98,6 @@ never by hand (case 104). Once an entry is applied, the script ticks its line in
 - 2026-09-18 estimate estimate-generate-ticks-the-spec added · [[decision-case-226.1]]
 - 2026-09-18 updated: generate ticks the page line of the Spec once the entry is applied (case 226.1) · [[decision-case-226.1]]
 - 2026-09-18 status: draft → built · cascade
+- 2026-09-20 updated: an update with rename moves the page and rewrites its links; a taken or foreign slug fails the entry (case 258.1) · [[decision-case-258.1]]
+- 2026-09-20 estimate estimate-generate-renames added · [[decision-case-258.1]]
+- 2026-09-20 status: built → draft · cascade

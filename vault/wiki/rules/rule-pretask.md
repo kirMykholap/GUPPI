@@ -8,6 +8,7 @@ governs: .claude/skills/pre-task/SKILL.md
 render_mode: full
 parent: "[[rule-plan-mode]]"
 estimates: ["[[estimate-pretask-reconciles]]", "[[estimate-pretask-checks-the-plan]]"]
+deferred_by: ["[[decision-case-259]]"]
 origin: raw/2026-09-09/ledger.md#case-24.2
 sprint: migration
 created: 2026-09-09
@@ -29,7 +30,7 @@ description: Check this Plan Mode's ratified decisions against each other and th
 ---
 
 
-Run `uv run guppi pretask --check <the plan file of this Plan Mode> --session <stamp>`, the stamp from the `hi:` line the `UserPromptSubmit` hook put in the context at `/hi` (case 213.3). It prints one line
+Run `uv run guppi pretask --check <the plan file of this Plan Mode> --session <id>`, the eight-character session id — the second token of the `hi:` line the `UserPromptSubmit` hook put in the context at `/hi`, between the time and the folder (cases 213.3, 256). Read the first line of the output before the exit code: 'no hi recorded for session …; nothing checked' means the wrong value, and the check did not run. It prints one line
 for every decision line of this session that has no item under its own Case in the plan,
 for every item that has no line, for every line of `raw/<hi date>/<hi HHMM>/frontier.md` (the session's folder, case 73) still open or closed by a Case the plan does not hold, for every ratified Case with a line of a kind other than `defer` and no `tasks` block (a defer-only Case has no work, case 74), for every Estimate a `then` block creates or sets `pending` that no
 task names, for every `file` item on a path a Rule page governs, for every Case whose `then` block holds two or more Estimate items — a `create`, or an `update` with `set: {status: pending}` — without a written `sections: Criterion` (one promise per Case: split it), for every `update` of an Estimate whose page does not exist, and for every `create` of an Estimate whose `ref` names no live rule or entity (case 203.1); an Estimate has its own line and its own item (case 189). It also runs every record line of the session's window — `raw/<hi date>/<hi HHMM>/ledger.md` whole, plus the date-level ledgers from the `hi` date to today from the `hi` time on, while any exist (case 103.4) — through `materialize.parse_line` and prints one line for each that does not parse, with its file and line number (case 75.2). Fix the plan, the frontier or the line for each, then run it again until it prints nothing.
@@ -78,3 +79,5 @@ finding as a Case, or say in one line why it is already known. Then exit Plan Mo
 - 2026-09-17 updated: the check takes --session with the stamp of the hi line (case 213.3) · [[decision-case-213.3]]
 - 2026-09-17 status: built → draft · cascade
 - 2026-09-18 status: draft → built · cascade
+- 2026-09-20 updated: --session takes the eight-character session id, the second token of the hi: line; the first line of the output is read before the exit code (case 256) · [[decision-case-256]]
+- 2026-09-20 deferred · [[decision-case-259]]

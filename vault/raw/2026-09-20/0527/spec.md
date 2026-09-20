@@ -39,8 +39,8 @@ update:
 ```
 
 ```tasks
-- [ ] update `rule-spec-capture`: `replace` in Purpose — the line goes as `additionalContext`, not as plain stdout
-- [ ] update `estimate-spec-capture-offers-the-fork`: the Criterion replaced whole, `method` — pytest and a live reading, `pending`
+- [x] update `rule-spec-capture`: `replace` in Purpose — the line goes as `additionalContext`, not as plain stdout
+- [x] update `estimate-spec-capture-offers-the-fork`: the Criterion replaced whole, `method` — pytest and a live reading, `pending`
 - [x] `guppi/spec.py`: `fork_line` returns the JSON object; the docstring without "which the client adds to the agent's context", with the `hookSpecificOutput` shape
 - [x] `tests/test_spec.py`: the three fork tests parse the JSON — `hookEventName`, `additionalContext` with the folder, the file, Work Mode and `/carry`; without a Spec the stdout is empty
 - [ ] read `estimate-spec-capture-offers-the-fork`: pytest and the `ExitPlanMode` result of this session
@@ -89,10 +89,10 @@ update:
 ```
 
 ```tasks
-- [ ] update `rule-pretask`: `replace` in the Render — the id in place of "stamp", the sentence on the first line of the output
-- [ ] update `estimate-pretask-reconciles`: the Criterion replaced whole, `pending`
-- [ ] update `insight-pretask-session-flag-takes-the-id-not-the-hi-line`: `status: actioned`, `addressed_by: [[decision-case-256]]`
-- [ ] `uv run guppi render` at the librarian's run
+- [x] update `rule-pretask`: `replace` in the Render — the id in place of "stamp", the sentence on the first line of the output
+- [x] update `estimate-pretask-reconciles`: the Criterion replaced whole, `pending`
+- [x] update `insight-pretask-session-flag-takes-the-id-not-the-hi-line`: `status: actioned`, `addressed_by: [[decision-case-256]]`
+- [x] `uv run guppi render` at the librarian's run
 - [x] read `estimate-pretask-reconciles`: the first `/pre-task` after the render — this session's `/pre-task` with `--session 8ce3afdd` and the first line of the output read, if the person counts it
 ```
 
@@ -149,8 +149,8 @@ create:
 ```
 
 ```tasks
-- [ ] update `rule-page-generation`: `replace` in Purpose — one sentence on `rename`
-- [ ] create `estimate-generate-renames`
+- [x] update `rule-page-generation`: `replace` in Purpose — one sentence on `rename`
+- [x] create `estimate-generate-renames`
 - [x] `guppi/generate.py`: `rename` in `update` — the move, the History line, the walk of the live pages, the Decision page, the refusal on a taken or foreign slug
 - [x] `tests/test_generate.py`: the move and its History; links, ref fields and the word in a body rewritten, History and Result not; the Decision page; a taken slug; a foreign prefix; `set` after `rename`
 - [x] `vault/wiki/index.md` §3 and §5: `update` carries `rename`, by hand
@@ -179,7 +179,7 @@ update:
 ```
 
 ```tasks
-- [ ] update `rule-materialize`: `replace` in Purpose — the `rename` key
+- [x] update `rule-materialize`: `replace` in Purpose — the `rename` key
 - [x] `guppi/materialize.py`: `rename` among the copied keys of an update and in the docstring's field list
 - [x] `tests/test_materialize.py`: an item with `rename` reaches the entry
 ```
@@ -222,7 +222,7 @@ update:
 ```
 
 ```tasks
-- [ ] update `estimate-materialize-assembles`: `sections: Criterion` — one line with `rename`, `pending`
+- [x] update `estimate-materialize-assembles`: `sections: Criterion` — one line with `rename`, `pending`
 - [x] read `estimate-materialize-assembles`: pytest, one reading for 258.2 and 258.3
 ```
 

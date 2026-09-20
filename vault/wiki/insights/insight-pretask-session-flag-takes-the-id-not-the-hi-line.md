@@ -1,9 +1,10 @@
 ---
 type: insight
 pattern: The `/pre-task` skill says "the stamp from the `hi:` line", but `--session` of `guppi pretask` takes the eight-character session id alone, one of the three tokens of that line; a wrong token answers "no hi recorded" with exit 0 and the value cut to eight characters, so the run looks clean and nothing was checked.
-status: open
+status: actioned
 children: ["[[lesson-pretask-session-flag-takes-the-id-not-the-hi-line]]", "[[lesson-pretask-session-flag-took-the-folder-for-the-stamp]]"]
-severity: 2
+severity: 0
+addressed_by: "[[decision-case-256]]"
 origin: raw/2026-09-18/2253/ledger.md#L3
 sprint: migration
 created: 2026-09-18
@@ -21,3 +22,4 @@ An `update` of the Render of `rule-pretask` that names the eight-character sessi
 ## History
 
 - 2026-09-18 created · raw/2026-09-18/2253/ledger.md#L3
+- 2026-09-20 updated: actioned — the Render of rule-pretask names the eight-character id and the reading of the output's first line (case 256) · [[decision-case-256]]

@@ -120,6 +120,40 @@ entries:
   change: clustered by librarian under insight-pretask-session-flag-takes-the-id-not-the-hi-line
   librarian: synthesis
   applied: '23:17:45'
+- line: 4
+  text: 'estimate[estimate-sprint-ticks-the-spec][passed] 2026-09-18, pytest tests/test_sprint.py (3 tests
+    of the tick, 429 green) and the librarian''s `uv run guppi sprint` of commit 3e1251f: the `uv run
+    guppi sprint` lines 37, 103, 137 of the 1957 Spec — a yaml with two `superseded_by` entries — and
+    line 94 of the 2054 Spec ticked; the `read` line that names the command later, the page lines and
+    the render lines untouched; `--check` and exit 1 tick nothing in the tests'
+  kind: estimate
+  category: estimates
+  slug: estimate-sprint-ticks-the-spec
+  status: passed
+  result: '2026-09-18, pytest tests/test_sprint.py (3 tests of the tick, 429 green) and the librarian''s
+    `uv run guppi sprint` of commit 3e1251f: the `uv run guppi sprint` lines 37, 103, 137 of the 1957
+    Spec — a yaml with two `superseded_by` entries — and line 94 of the 2054 Spec ticked; the `read` line
+    that names the command later, the page lines and the render lines untouched; `--check` and exit 1
+    tick nothing in the tests'
+  origin: raw/2026-09-18/2253/ledger.md#L4
+  applied: 07:30:56
+- line: 5
+  text: 'estimate[estimate-render-harness-ticks-the-spec][passed] 2026-09-18, pytest tests/test_render.py
+    (a yaml with a superseded entry ticked, an unmarked and a failed one not) and the librarian''s `uv
+    run guppi render` of commit 3e1251f: the `uv run guppi render` lines 162, 193 of the 2054 Spec ticked,
+    nothing else changed; the 1957 Spec holds no render line, so the superseded entry is read live through
+    `sprint` on the same `applied_whole`, and in the test for `render` itself'
+  kind: estimate
+  category: estimates
+  slug: estimate-render-harness-ticks-the-spec
+  status: passed
+  result: '2026-09-18, pytest tests/test_render.py (a yaml with a superseded entry ticked, an unmarked
+    and a failed one not) and the librarian''s `uv run guppi render` of commit 3e1251f: the `uv run guppi
+    render` lines 162, 193 of the 2054 Spec ticked, nothing else changed; the 1957 Spec holds no render
+    line, so the superseded entry is read live through `sprint` on the same `applied_whole`, and in the
+    test for `render` itself'
+  origin: raw/2026-09-18/2253/ledger.md#L5
+  applied: 07:30:56
 decisions:
 - case: '254'
   decision: decision-case-254

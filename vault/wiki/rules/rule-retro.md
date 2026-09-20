@@ -2,7 +2,7 @@
 type: rule
 kind: Leaf
 purpose: Prevents a session from closing on work nobody reviewed, or on a change that traces to no decision
-status: draft
+status: built
 enforcement: render
 governs: .claude/skills/retro/SKILL.md
 render_mode: full
@@ -98,3 +98,4 @@ got done; what did not. When the person approves, commit (`make style` clean,
 - 2026-09-18 status: draft → built · cascade
 - 2026-09-18 updated: a guppi sprint line of the Spec waits for the librarian and is not debt at Retro (case 253.2) · [[decision-case-253.2]]
 - 2026-09-18 status: built → draft · cascade
+- 2026-09-20 status: draft → built · cascade

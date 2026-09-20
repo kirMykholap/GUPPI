@@ -2,7 +2,7 @@
 type: rule
 kind: Leaf
 purpose: Prevents an approved Spec from existing only in Claude Code's plan file, outside the repository
-status: built
+status: draft
 enforcement: hook
 implementation_ref: [guppi/spec.py, .claude/settings.json]
 parent: "[[rule-plan-mode]]"
@@ -24,7 +24,7 @@ The file has three writers: the hook `guppi spec` on `PostToolUse` of `ExitPlanM
 which appends the approved plan to `raw/<hi date>/<hi HHMM>/spec.md` once, stamped;
 Work Mode, which ticks the boxes of the `tasks` blocks and nothing else; and the agent,
 who appends the short-form Cases under `## Deferred` at the close of Plan Mode and at
-Retro, before their ledger lines. Having written the Spec, the hook prints the fork
+Retro, before their ledger lines. Having written the Spec, the hook prints the fork as `hookSpecificOutput.additionalContext`, the one shape in which the stdout of a `PostToolUse` hook reaches the agent (case 255),
 into the context — Work Mode, or `/carry` to conserve the Spec — naming the session
 folder and the Spec file; it blocks nothing, the agent asks and the person chooses
 (case 190.5). The mechanism lives in the docstring of `guppi/spec.py` (case 200.4).
@@ -46,3 +46,5 @@ folder and the Spec file; it blocks nothing, the agent asks and the person choos
 - 2026-09-16 status: built → draft · cascade
 - 2026-09-16 updated: How it works dropped, its facts and the fork of 190.5 in Purpose; supersedes 196.4 (case 200.4) · [[decision-case-200.4]]
 - 2026-09-16 status: draft → built · cascade
+- 2026-09-20 updated: the fork line goes to the agent as additionalContext, not as plain stdout (case 255) · [[decision-case-255]]
+- 2026-09-20 status: built → draft · cascade

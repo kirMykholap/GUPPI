@@ -2,7 +2,7 @@
 type: rule
 kind: Leaf
 purpose: Prevents a decision from being acted on before it is ratified, or ratified without its content in view
-status: draft
+status: built
 enforcement: render
 governs: CLAUDE.md
 render_mode: partial
@@ -139,3 +139,4 @@ exists, an `estimate[...]` line opening with the date of the reading and the com
 - 2026-09-18 status: draft → built · cascade
 - 2026-09-18 updated: sprint is the third ticker of the Spec — the sprint lines (case 253.1) · [[decision-case-253.1]]
 - 2026-09-18 status: built → draft · cascade
+- 2026-09-20 status: draft → built · cascade

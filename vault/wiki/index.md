@@ -146,7 +146,7 @@ Four types. There are no others.
 | Type | Use when |
 |---|---|
 | `create` | a new page must exist |
-| `update` | an existing page's fields change (including setting an Estimate's `result`/`status`) |
+| `update` | an existing page's fields change (including setting an Estimate's `result`/`status`); an item that carries `rename: <new slug>` moves the page to that slug, the same category prefix, and every link to it in the live pages follows (case 258.1) |
 | `delete` | a page or part of one should stop being active |
 | `defer` | postpone something not started, or pause something in progress |
 
@@ -225,14 +225,14 @@ The librarian reads the log as a chain and applies the last link.
 
 ## 5. Routing
 
-**Every ratified Case produces two things**: one page in `wiki/decisions/` (`decision-case-<N>`) recording the decision — one list per kind present, `create`, `update`, `delete`, `defer`, the slugs of its ledger lines (case 59.4) — and an effect on each target page. The table below describes the second; the first happens unconditionally, and is written before the effects so their History lines can name it (case 52.4).
+**Every ratified Case produces two things**: one page in `wiki/decisions/` (`decision-case-<N>`) recording the decision — one list per kind present, `create`, `update`, `delete`, `defer`, the slugs of its ledger lines (case 59.4); a later `rename` retargets such a link like any link (case 258.1) — and an effect on each target page. The table below describes the second; the first happens unconditionally, and is written before the effects so their History lines can name it (case 52.4).
 
 | Decision | `ref` | Effect on the target |
 |---|---|---|
 | `create` | none | Query vault. Nothing found → new top-level page |
 | `create` | parent | New child page, added to the parent's `children` |
 | `create` | target (an Estimate) | A new Estimate page, added to the target's `estimates`; its own line and its own item, the Criterion from the Case (case 193) |
-| `update` | target | Edit the target's fields |
+| `update` | target | Edit the target's fields; with `rename`, move the page first and rewrite every link to it in the live pages, `origin`, History and Result kept (case 258.1) |
 | `update` | none | **Invalid.** This Case should have been a `create` |
 | `delete` | target | Impact analysis in-case → librarian archives → `origin` preserved |
 | `delete` | none, no category | Outside the vault (a doc, a file): the decision page records it, `generate` marks it applied, nothing to archive |

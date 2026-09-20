@@ -21,7 +21,14 @@ over placeholder` (case 101.1); any other existing page is a collision, never a 
 `update` applies `set` to the frontmatter, `sections` as whole replacements — an Estimate's
 Criterion is replaced whole this way (case 194.1) — `replace` inside the body (whitespace
 collapsed, exactly one occurrence), History `updated: <change>`; an update with none of
-those prints `applied by hand`. An `update`, `estimate`, `delete` or `defer` whose slug is
+those prints `applied by hand`. An `update` whose entry carries `rename: <new slug>` moves
+the page first — `wiki/<category>/<old>.md` to `<new>.md`, the same category prefix, History
+`renamed from <old>` — then applies the rest to the new file; every live page of `wiki/`,
+Decision pages included, that names the old slug — a `[[link]]`, a ref field, the bare slug
+as a word in a body — names the new one, with History `ref <old> → <new>` on every page but
+a Decision page; `origin`, `## History`, `## Result`, the archive and `raw/` keep the old
+name, they are records; a taken slug, live or archived, or one of another prefix fails the
+entry and moves nothing (case 258.1). An `update`, `estimate`, `delete` or `defer` whose slug is
 not under `wiki/` reaches the page under `vault/archive/`, `raw/` folders excluded, and
 edits it there (case 105.3). An `estimate` sets `status`, overwrites `## Result`, writes
 `checked` — the date the result opens with (case 199), else the yaml's date — and appends
@@ -162,6 +169,7 @@ SINGULAR = {
     "decisions": "decision",
 }
 HISTORY = "## History"
+RESULT = "## Result"  # a reading's record; a rename leaves it as it is (case 258.1)
 NEEDS_QUOTE = re.compile(r"""^[\s\[\]{}"'&*!|>%@,#`-]|: | #|:$|\s$|\n""")
 LOOKS_SPECIAL = re.compile(r"^(true|false|null|yes|no|on|off|~|[-+]?\d[\d.]*)$", re.IGNORECASE)
 TAG_ROW = re.compile(r"^\|\s*([\w-]+)\s*\|")
@@ -503,13 +511,17 @@ class Vault:
         if entry.get("criterion_block"):  # the shape before case 189: not applied (201.1)
             self.error(slug, "criterion_block: a shape the script no longer knows (case 201.1)")
             return
-        keys = ("set", "sections", "replace", "change")
+        keys = ("set", "sections", "replace", "change", "rename")
         if not any(entry.get(k) for k in keys):
             print(
                 f"generate: {slug}: an update with no content in the Spec; applied by hand",
                 file=self.stdout,
             )
             return
+        if entry.get("rename"):  # the page moves first; the rest lands on the new file (258.1)
+            page = self.rename(page, str(entry["rename"]), self.pointer(entry))
+            if page is None:
+                return
         sets = entry.get("set") or {}
         sections = entry.get("sections") or {}
         if (
@@ -541,6 +553,73 @@ class Vault:
         change = entry.get("change") or "updated"
         self.history(page, f"updated: {change}", self.pointer(entry))
         self.save(page)
+
+    # rename (case 258.1)
+
+    def rename(self, page: Page, new: str, pointer: str | None) -> Page | None:
+        """The page moves to `<category>/<new>.md`, History `renamed from`, and every live
+        page of `wiki/` that names the old slug — a `[[link]]`, a ref field, the bare slug
+        as a word in a body — names the new one; `## History`, `## Result` and `origin`
+        keep the old name, they are records. A taken or foreign slug is an error."""
+        old = page.slug
+        prefix = next((p for p, c in PREFIXES.items() if c == page.category), None)
+        if prefix is None or not new.startswith(prefix):
+            self.error(old, f"rename: {new} is not a {page.category} slug")
+            return None
+        if self.find(new) is not None:
+            self.error(old, f"rename: {new} is taken")
+            return None
+        if page.path.parent != self.wiki / page.category:
+            self.error(old, "rename: the page is in the archive; bring it back first")
+            return None
+        target = self.path(page.category, new)
+        page.path.unlink()
+        page.slug, page.path = new, target
+        self.reword(page, old, new)  # its own body names itself by the new slug too
+        self.history(page, f"renamed from `{old}`", pointer)
+        self.save(page)
+        self.retarget(old, new, pointer, skip=new)
+        return page
+
+    @staticmethod
+    def reword(page: Page, old: str, new: str) -> bool:
+        """The old slug as a whole word becomes the new one in the ref fields and in every
+        section but History and Result; True when anything changed."""
+        word = re.compile(rf"(?<![\w-]){re.escape(old)}(?![\w-])")
+        changed = False
+        for key in REF_FIELDS:
+            value = page.props.get(key)
+            if isinstance(value, list) and old in value:
+                page.props[key] = [new if v == old else v for v in value]
+                changed = True
+            elif value == old:
+                page.props[key] = new
+                changed = True
+        for name, text in page.sections.items():
+            if name in (HISTORY, RESULT) or not word.search(text):
+                continue
+            page.sections[name] = word.sub(new, text)
+            changed = True
+        return changed
+
+    def retarget(self, old: str, new: str, pointer: str | None, skip: str) -> None:
+        """Every live page but `skip` is reworded; a page that changed gets History
+        `ref old → new`, a Decision page none — its lists are a record kept readable,
+        not a change of the decision."""
+        for category in CATEGORIES:
+            folder = self.wiki / category
+            if not folder.is_dir():
+                continue
+            for path in sorted(folder.glob("*.md")):
+                if path.stem == skip or path.stem == "schema":
+                    continue
+                other = read_page(path, category)
+                if other.error or not self.reword(other, old, new):
+                    continue
+                if category != "decisions":
+                    self.history(other, f"ref `{old}` → `{new}`", pointer)
+                self.written[other.slug] = category  # counted, History or not
+                self.save(other)
 
     def replace(self, page: Page, old: str, new: str) -> bool:
         tokens = [re.escape(t) for t in old.split()]

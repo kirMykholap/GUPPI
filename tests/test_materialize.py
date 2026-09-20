@@ -121,6 +121,16 @@ defer:
     purpose: Prevents something, later
 ```
 
+## Case 6 — a rename
+
+```then
+update:
+  - slug: rule-old
+    rename: rule-new
+    set: {tags: [harness]}
+    change: rule-old becomes rule-new
+```
+
 ## Case 7 — glossary
 
 ```then
@@ -223,6 +233,17 @@ def test_estimate_lines_fold_into_this_ledgers_create_or_become_an_entry(tmp_pat
     (old,) = by_slug(data, "estimate-old-holds", "estimate")
     assert old["status"] == "failed" and old["result"] == "the reading was red"
     assert old["origin"] == f"raw/{DATE}/ledger.md#L10"
+
+
+def test_an_update_with_rename_carries_the_key_into_the_entry(tmp_path):
+    """Case 258.2: `rename` reaches the entry as it is; `materialize` checks nothing of it."""
+    seed(tmp_path)
+    run(tmp_path)
+    data = load(tmp_path)
+    earlier, later = by_slug(data, "rule-old", "update")
+    assert later["case"] == "6" and later["rename"] == "rule-new"
+    assert later["set"] == {"tags": ["harness"]} and "incomplete" not in later
+    assert "rename" not in earlier
 
 
 def test_a_supersedes_chain_marks_the_earlier_entry(tmp_path):

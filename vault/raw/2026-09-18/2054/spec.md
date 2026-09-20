@@ -50,7 +50,7 @@ update:
 - [x] update `estimate-render-harness-ticks-the-spec`: the Criterion replaced whole, `pending`
 - [x] `guppi/render.py`: `applied_whole` counts `superseded_by`
 - [x] `tests/test_render.py`: a yaml with a superseded entry is ticked; one with an unmarked entry is not
-- [ ] read `estimate-render-harness-ticks-the-spec`
+- [x] read `estimate-render-harness-ticks-the-spec`
 ```
 
 ### Case 250.2 — `guppi sprint` ticks its lines
@@ -92,7 +92,7 @@ create:
 - [x] `guppi/render.py`, `guppi/sprint.py`: one shared helper that ticks the lines of a command in every applied Spec; `sprint` calls it after the write
 - [x] `tests/test_sprint.py`: the tick, `--check`, a later code span, an unapplied unit, a carried-over unit
 - [x] `uv run guppi sprint` at the librarian's run
-- [ ] read `estimate-sprint-ticks-the-spec`
+- [x] read `estimate-sprint-ticks-the-spec`
 ```
 
 ## Case 253 — a third ticker: the Case protocol and Retro know `sprint`
@@ -160,7 +160,7 @@ update:
 - [x] `vault/wiki/case-schema.md`: the same sentence, by hand
 - [x] `vault/wiki/index.md` §1: the `spec.md` line, by hand
 - [x] `uv run guppi render` at the librarian's run
-- [ ] read `estimate-case-protocol-loaded` — the first turn of the next session
+- [x] read `estimate-case-protocol-loaded` — the first turn of the next session
 ```
 
 ### Case 253.2 — `rule-retro`: a `guppi sprint` line waits for the librarian
@@ -191,7 +191,7 @@ update:
 - [x] update `rule-retro`: `replace` in the Render
 - [x] update `estimate-retro-loads`: the Criterion replaced whole, `pending`
 - [x] `uv run guppi render` at the librarian's run
-- [ ] read `estimate-retro-loads` — the first live `/retro`
+- [x] read `estimate-retro-loads` — the first live `/retro`
 ```
 
 ## Deferred

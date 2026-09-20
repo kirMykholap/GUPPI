@@ -55,7 +55,7 @@ page (`draft` while in `docs/migration/`), `here` this row. Rule-class; imported
 | term | meaning | where |
 |---|---|---|
 | Decision | The atomic unit of work: `create`, `update`, `delete`, `defer`; Read is never one | §3 |
-| Types | `create` a page (an Estimate is its own `create`, with `ref` on its target, case 193); `update` fields, `result`/`status` included; `delete` sets `status: deleted` after an impact analysis, the librarian archives; `defer` postpones, a placeholder page when no `ref` | §3, §5 |
+| Types | `create` a page (an Estimate is its own `create`, with `ref` on its target, case 193); `update` fields, `result`/`status` included, or `rename` — the page moves to the new slug and every link follows (case 258.1); `delete` sets `status: deleted` after an impact analysis, the librarian archives; `defer` postpones, a placeholder page when no `ref` | §3, §5 |
 | Delegate | The agent deciding without ratification; rejected, parked | here |
 | Routing Table, Decision page | (type × `ref` × category) to vault action, mechanical; one page per Case in `wiki/decisions/`, slug `decision-case-<N>`, one list per kind present: `create`, `update`, `delete`, `defer`, body Context, Problem, Given, When; never indexed, reached through `deferred_by`, a History wikilink or `origin` | §5, §11, decisions/schema.md |
 

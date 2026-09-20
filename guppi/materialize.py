@@ -49,7 +49,8 @@ The fields of an entry, each with its writer. From the ledger line: `case`, `kin
 prefix; a Rule-class file is `file` with its `path`), `slug`, `ref`, `source`,
 `supersedes`, `tags`, `origin` (`raw/<unit>/ledger.md#case-N`; a lesson `#L<n>`), `line`,
 `text`, `decision` (`decision-case-<N>`). From the `then` block: `fields`, `sections`
-(`Criterion` lifted from the Case when the item wrote none), `replace`, `change`, `impact`,
+(`Criterion` lifted from the Case when the item wrote none), `replace`, `change`, `rename`
+(an update's new slug, carried as written; `generate` checks it, case 258.2), `impact`,
 `incomplete` (what the block lacks: a required field, `then`, `change`, `criterion`,
 `purpose`, `source`), `unknown` (a key of a `create` or `defer` item that the category's
 `schema.yaml` names as no field and that is not structural — never lifted into `fields`,
@@ -556,8 +557,8 @@ def _lift_item(
         ):
             incomplete.append("parent")
     elif kind == "update":
-        for key in ("set", "sections", "replace", "change"):
-            if item.get(key) is not None:
+        for key in ("set", "sections", "replace", "change", "rename"):
+            if item.get(key) is not None:  # `rename`: the new slug, checked by generate (258.2)
                 entry[key] = item[key]
         if "change" not in item:
             incomplete.append("change")

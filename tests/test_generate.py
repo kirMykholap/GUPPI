@@ -1770,3 +1770,202 @@ def test_a_sprint_page_keeps_milestones_backlog_and_closed_in_order(tmp_path):
         for h in ("## Purpose", "## Milestones", "## Backlog", "## Closed", "## History")
     ]
     assert order == sorted(order)
+
+
+# --- an update with `rename` (case 258.1): `estimate-generate-renames` ---------------------
+
+OLD_RULE = """\
+---
+type: rule
+kind: Leaf
+purpose: Prevents the old thing
+status: draft
+enforcement: check
+parent: "[[rule-parent]]"
+estimates: ["[[estimate-old-holds]]"]
+origin: raw/2026-09-01/ledger.md#case-9
+sprint: migration
+created: 2026-09-01
+tags: [harness]
+---
+
+## Purpose
+
+Prevents the old thing; `rule-old` is its own name here.
+
+## History
+
+- 2026-09-01 created · [[decision-case-9]]
+"""
+
+PARENT_RULE = """\
+---
+type: rule
+kind: MOC
+purpose: Holds the old thing
+status: draft
+children: ["[[rule-old]]"]
+origin: raw/2026-09-01/ledger.md#case-9
+sprint: migration
+created: 2026-09-01
+tags: [harness]
+---
+
+## Purpose
+
+Holds [[rule-old]] and names `rule-old` in prose; `rule-older` is another slug.
+
+## History
+
+- 2026-09-01 child rule-old added · [[decision-case-9]]
+"""
+
+OLD_ESTIMATE = """\
+---
+type: estimate
+kind: QA
+status: passed
+target: "[[rule-old]]"
+purpose: The old thing holds
+method: pytest
+checked: 2026-09-01
+origin: raw/2026-09-01/ledger.md#case-9
+sprint: migration
+created: 2026-09-01
+tags: [harness]
+---
+
+## Criterion
+
+When:
+`rule-old` is read.
+
+Then:
+It holds.
+
+## Result
+
+2026-09-01, pytest: rule-old holds
+
+## History
+
+- 2026-09-01 created · [[decision-case-9]]
+"""
+
+OLD_DECISION = """\
+---
+type: decision
+case: "9"
+status: current
+update: ["[[rule-old]]"]
+origin: raw/2026-09-01/ledger.md#case-9
+sprint: migration
+created: 2026-09-01
+tags: [harness]
+---
+
+## Context
+
+The Case that touched [[rule-old]].
+
+## Problem
+
+p
+
+## History
+
+- 2026-09-01 created · raw/2026-09-01/ledger.md#case-9
+"""
+
+RENAME_PAGES = [
+    ("rules", "rule-old", OLD_RULE),
+    ("rules", "rule-parent", PARENT_RULE),
+    ("estimates", "estimate-old-holds", OLD_ESTIMATE),
+    ("decisions", "decision-case-9", OLD_DECISION),
+]
+
+
+def rename_entry(new="rule-new", **extra):
+    entry = {
+        "line": 2,
+        "text": "",
+        "case": "2",
+        "kind": "update",
+        "category": "rules",
+        "slug": "rule-old",
+        "origin": f"raw/{DATE}/ledger.md#case-2",
+        "decision": "decision-case-2",
+        "rename": new,
+        "set": {"purpose": "Prevents the new thing"},
+        "change": "rule-old becomes rule-new",
+    }
+    entry.update(extra)
+    return entry
+
+
+def test_a_rename_moves_the_page_applies_the_rest_and_writes_its_history(tmp_path):
+    seed(tmp_path, entries=[rename_entry()], pages=RENAME_PAGES)
+    code, _, err = run(tmp_path)
+    assert code == 0 and err == ""
+    wiki = tmp_path / "vault" / "wiki"
+    assert not (wiki / "rules" / "rule-old.md").exists()
+    text = page(tmp_path, "rules", "rule-new")
+    assert props(text)["purpose"] == "Prevents the new thing"  # `set` lands on the new file
+    assert props(text)["origin"] == "raw/2026-09-01/ledger.md#case-9"  # never rewritten
+    assert "`rule-new` is its own name here" in text
+    assert f"- {DATE} renamed from `rule-old` · [[decision-case-2]]" in text
+    assert f"- {DATE} updated: rule-old becomes rule-new · [[decision-case-2]]" in text
+    assert load_yaml(tmp_path)["entries"][0]["applied"]
+
+
+def test_a_rename_rewrites_links_ref_fields_and_the_word_in_live_pages(tmp_path):
+    seed(tmp_path, entries=[rename_entry()], pages=RENAME_PAGES)
+    assert run(tmp_path)[0] == 0
+    parent = page(tmp_path, "rules", "rule-parent")
+    assert props(parent)["children"] == ["rule-new"]
+    assert (
+        "Holds [[rule-new]] and names `rule-new` in prose; `rule-older` is another slug." in parent
+    )
+    assert f"- {DATE} ref `rule-old` → `rule-new` · [[decision-case-2]]" in parent
+    assert "- 2026-09-01 child rule-old added" in parent  # History is not rewritten
+    estimate = page(tmp_path, "estimates", "estimate-old-holds")
+    assert props(estimate)["target"] == "rule-new"
+    assert "`rule-new` is read." in estimate
+    assert "2026-09-01, pytest: rule-old holds" in estimate  # Result is not rewritten
+    assert f"- {DATE} ref `rule-old` → `rule-new`" in estimate
+
+
+def test_a_rename_retargets_the_decision_pages_without_a_history_line(tmp_path):
+    seed(tmp_path, entries=[rename_entry()], pages=RENAME_PAGES)
+    assert run(tmp_path)[0] == 0
+    earlier = page(tmp_path, "decisions", "decision-case-9")
+    assert props(earlier)["update"] == ["rule-new"]
+    assert "The Case that touched [[rule-new]]." in earlier
+    assert "ref `rule-old`" not in earlier
+    own = page(tmp_path, "decisions", "decision-case-2")  # written before the entry (52.4)
+    assert props(own)["update"] == ["rule-new"]
+
+
+def test_a_rename_to_a_taken_or_foreign_slug_fails_the_entry_alone(tmp_path):
+    seed(tmp_path, entries=[rename_entry(new="rule-parent"), CHILD], pages=RENAME_PAGES)
+    code, _, err = run(tmp_path)
+    assert code == 1 and "rule-old: rename: rule-parent is taken" in err
+    wiki = tmp_path / "vault" / "wiki"
+    assert (wiki / "rules" / "rule-old.md").exists() and (wiki / "rules" / "rule-child.md").exists()
+    assert props(page(tmp_path, "rules", "rule-parent"))["children"] == ["rule-old"]
+    data = load_yaml(tmp_path)
+    assert "failed" in data["entries"][0] and data["entries"][1]["applied"]
+
+    seed(tmp_path / "b", entries=[rename_entry(new="entity-new")], pages=RENAME_PAGES)
+    code, _, err = run(tmp_path / "b")
+    assert code == 1 and "rule-old: rename: entity-new is not a rules slug" in err
+    assert (tmp_path / "b" / "vault" / "wiki" / "rules" / "rule-old.md").exists()
+
+    seed(tmp_path / "c", entries=[rename_entry(new="rule-gone")], pages=RENAME_PAGES)
+    archived = tmp_path / "c" / "vault" / "archive" / "migration" / "2026-09-01" / "rules"
+    archived.mkdir(parents=True)
+    (archived / "rule-gone.md").write_text(
+        page_text("rules", "rule-gone", "archived"), encoding="utf-8"
+    )
+    code, _, err = run(tmp_path / "c")
+    assert code == 1 and "rule-old: rename: rule-gone is taken" in err

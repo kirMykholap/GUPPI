@@ -14,14 +14,17 @@ The file has three writers: this hook, once per approval; Work Mode, which ticks
 of the `tasks` blocks and nothing else; and the agent, who appends the short-form Cases
 under `## Deferred` at the close of Plan Mode and at Retro, before their ledger lines.
 
-Written or already there, the hook then prints one line on stdout, which the client adds
-to the agent's context: the fork the person chooses at — Work Mode on the Spec, or `/carry`
-to conserve it for a later session — naming the session folder and the Spec file (case
-190.5). A `PostToolUse` hook cannot block: the tool has run; the agent asks, the person
-chooses, and nothing starts until the answer (case 190.2). Rule page:
-`vault/wiki/rules/rule-spec-capture.md`.
+Written or already there, the hook then prints one JSON object on stdout —
+`{"hookSpecificOutput": {"hookEventName": "PostToolUse", "additionalContext": <line>}}` —
+the one shape in which the stdout of a `PostToolUse` hook reaches the agent: plain stdout
+with exit 0 goes to the client's debug log and never to the context (case 255). The line is
+the fork the person chooses at — Work Mode on the Spec, or `/carry` to conserve it for a
+later session — naming the session folder and the Spec file (case 190.5). A `PostToolUse`
+hook cannot block: the tool has run; the agent asks, the person chooses, and nothing starts
+until the answer (case 190.2). Rule page: `vault/wiki/rules/rule-spec-capture.md`.
 """
 
+import json
 import sys
 from datetime import datetime
 from pathlib import Path
@@ -68,8 +71,8 @@ def append_plan(path: Path, plan: str, now, session: str) -> bool:
 
 
 def fork_line(path: Path, project_dir: Path) -> str:
-    """The one line printed after the Spec is in place (case 190.5): the fork between Work
-    Mode and `/carry`, with the session folder and the Spec file."""
+    """The one line the agent reads after the Spec is in place (case 190.5): the fork
+    between Work Mode and `/carry`, with the session folder and the Spec file."""
     try:
         spec = path.relative_to(project_dir).as_posix()
     except ValueError:
@@ -80,6 +83,20 @@ def fork_line(path: Path, project_dir: Path) -> str:
         f"start nothing until it is answered: Work Mode on the Spec — or /carry, which "
         f"conserves it for a later session (the brief rewritten, {folder}/carry.md as the "
         "mark, a commit, nothing else run)."
+    )
+
+
+def fork_output(path: Path, project_dir: Path) -> str:
+    """`fork_line` wrapped as `hookSpecificOutput.additionalContext`, the JSON a
+    `PostToolUse` hook prints so that the client adds the line to the context (case 255)."""
+    return json.dumps(
+        {
+            "hookSpecificOutput": {
+                "hookEventName": "PostToolUse",
+                "additionalContext": fork_line(path, project_dir),
+            }
+        },
+        ensure_ascii=False,
     )
 
 
@@ -107,7 +124,7 @@ def run(
             )
             return 2
         append_plan(path, plan, now, session)
-        print(fork_line(path, project_dir), file=stdout)
+        print(fork_output(path, project_dir), file=stdout)
     except Exception as exc:  # noqa: BLE001 — a hook that raises would fail the session
         print(f"spec: spec.md not written: {exc}", file=stderr)
     return 0

@@ -351,7 +351,7 @@ def write_transcript(tmp_path, *lines):
 
 
 def test_a_block_of_an_earlier_reply_lands_at_the_next_stop(working):
-    earlier = f"Ratified.\n\n{ledger_block(DECISION)}\nRunning /pre-task now."
+    earlier = f"Ratified.\n\n{ledger_block(DECISION)}\nRunning /pre-spec now."
     transcript = write_transcript(
         working,
         transcript_line("Earlier still, no block."),

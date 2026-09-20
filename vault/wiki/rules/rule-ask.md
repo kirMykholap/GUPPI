@@ -18,11 +18,11 @@ tags: [session, workflow, harness]
 
 Prevents a `create` from being proposed without the vault having been asked whether it
 already holds the thing, or forbids it. One entry point for every caller — the agent at
-pre-task, the librarian, the person — so the search is tuned once, and its cost stays in
+pre-task and at pre-spec, the librarian, the person — so the search is tuned once, and its cost stays in
 the searcher's own context: the index lines and pages never enter the caller's. A subagent
 with read-only tools, dispatched through the `Agent` tool, so the event log records each
 call. The main agent asks at two moments: before a `create` without a `ref`, and once at
-pre-task for the set of ratified Cases; the librarian asks by finished content afterwards, as
+pre-spec for the set of ratified Cases; the librarian asks by finished content afterwards, as
 §11 of the map says. An `update` with a `ref` does not ask: the page itself and a Grep give
 the `given` (case 154).
 
@@ -31,7 +31,7 @@ the `given` (case 154).
 <!-- rule-ask -->
 ---
 name: ask-guppi
-description: Ask the vault what already exists, what is close, what is missing, which rule the proposal touches, which tags fit and whether a slug is free. One question before a `create` without a `ref`, and one at pre-task for the whole set; an `update` with a `ref` reads the page itself.
+description: Ask the vault what already exists, what is close, what is missing, which rule the proposal touches, which tags fit and whether a slug is free. One question before a `create` without a `ref`, and one at pre-spec for the whole set; an `update` with a `ref` reads the page itself.
 model: opus
 tools: Read, Grep, Glob
 ---

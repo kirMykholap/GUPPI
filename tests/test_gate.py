@@ -1,6 +1,6 @@
 """`guppi gate`: `/handoff` through the Skill tool is refused while the tree is dirty, and
 any skill is refused while a `then` item of the session's Spec or plan file has no
-decision line in the ledger (case 122); a typed `/pre-task`, `/retro` or `/handoff` on
+decision line in the ledger (case 122); a typed `/pre-spec`, `/retro` or `/handoff` on
 `UserPromptSubmit` gets the same checks and the same mark (case 169.1)."""
 
 import io
@@ -23,7 +23,7 @@ def payload(**fields):
     return io.StringIO(json.dumps(fields))
 
 
-def skill(name="pre-task", session=SESSION):
+def skill(name="pre-spec", session=SESSION):
     return payload(session_id=session, tool_name="Skill", tool_input={"skill": name})
 
 
@@ -95,9 +95,9 @@ def test_the_tree_is_read_from_git(tmp_path):
 def test_an_item_of_the_plan_without_its_line_refuses_the_skill(tmp_path):
     plan = with_plan(tmp_path)
     with_event_log(tmp_path, START + HI + f"- 10:35:00 19037d1c tool Write: {plan}\n")
-    code, err = run(skill("pre-task"), tmp_path, status="")
+    code, err = run(skill("pre-spec"), tmp_path, status="")
     assert code == 2
-    assert "/pre-task refused" in err and "1 item(s)" in err and "(case 5)" in err
+    assert "/pre-spec refused" in err and "1 item(s)" in err and "(case 5)" in err
     assert (
         "The text before a tool call waits for the next Stop: end this reply in text with "
         "the LEDGER block" in err
@@ -109,13 +109,13 @@ def test_the_item_with_its_line_in_the_session_ledger_passes(tmp_path):
     plan = with_plan(tmp_path)
     with_event_log(tmp_path, START + HI + f"- 10:35:00 19037d1c tool Edit: {plan}\n")
     with_ledger(tmp_path, LINE)
-    assert run(skill("pre-task"), tmp_path, status="") == (0, "")
+    assert run(skill("pre-spec"), tmp_path, status="") == (0, "")
 
 
 def test_no_plan_path_in_the_log_and_no_spec_passes(tmp_path):
     with_plan(tmp_path)  # exists, but no log line names it
     with_event_log(tmp_path, START + HI + "- 10:35:00 19037d1c tool Edit: C:\\x\\notes.md\n")
-    assert run(skill("pre-task"), tmp_path, status="") == (0, "")
+    assert run(skill("pre-spec"), tmp_path, status="") == (0, "")
 
 
 def test_a_defer_item_of_the_session_spec_without_its_line_refuses(tmp_path):
@@ -138,13 +138,13 @@ def test_the_spec_check_precedes_the_tree_check(tmp_path):
 def test_without_a_hi_the_spec_is_not_checked(tmp_path):
     plan = with_plan(tmp_path)
     with_event_log(tmp_path, START + f"- 10:35:00 19037d1c tool Write: {plan}\n")
-    assert run(skill("pre-task"), tmp_path, status="") == (0, "")
+    assert run(skill("pre-spec"), tmp_path, status="") == (0, "")
 
 
 def test_a_plan_path_of_another_session_does_not_count(tmp_path):
     plan = with_plan(tmp_path)
     with_event_log(tmp_path, START + HI + f"- 10:35:00 fde37e7c tool Write: {plan}\n")
-    assert run(skill("pre-task"), tmp_path, status="") == (0, "")
+    assert run(skill("pre-spec"), tmp_path, status="") == (0, "")
 
 
 def test_plan_path_takes_the_last_line_under_claude_plans(tmp_path):
@@ -167,10 +167,10 @@ def event_log(project_dir):
     )
 
 
-def test_a_pretask_call_that_passes_leaves_the_stamped_mark(tmp_path):
+def test_a_prespec_call_that_passes_leaves_the_stamped_mark(tmp_path):
     with_event_log(tmp_path, START + HI)
-    assert run(skill("pre-task"), tmp_path, status="") == (0, "")
-    assert event_log(tmp_path).endswith("- 11:00:00 19037d1c pretask\n")
+    assert run(skill("pre-spec"), tmp_path, status="") == (0, "")
+    assert event_log(tmp_path).endswith("- 11:00:00 19037d1c prespec\n")
 
 
 def test_retro_and_handoff_leave_their_marks(tmp_path):
@@ -187,8 +187,8 @@ def test_a_refused_call_leaves_no_mark(tmp_path):
     assert code == 2 and "handoff" not in event_log(tmp_path)
     plan = with_plan(tmp_path)
     with_event_log(tmp_path, START + HI + f"- 10:35:00 19037d1c tool Edit: {plan}\n")
-    code, _ = run(skill("pre-task"), tmp_path, status="")
-    assert code == 2 and "pretask" not in event_log(tmp_path)
+    code, _ = run(skill("pre-spec"), tmp_path, status="")
+    assert code == 2 and "prespec" not in event_log(tmp_path)
 
 
 def test_another_skill_leaves_no_mark(tmp_path):
@@ -198,8 +198,8 @@ def test_another_skill_leaves_no_mark(tmp_path):
 
 
 def test_the_mark_without_a_log_creates_the_day_folder(tmp_path):
-    assert run(skill("pre-task"), tmp_path, status="") == (0, "")
-    assert event_log(tmp_path) == "- 11:00:00 19037d1c pretask\n"
+    assert run(skill("pre-spec"), tmp_path, status="") == (0, "")
+    assert event_log(tmp_path) == "- 11:00:00 19037d1c prespec\n"
 
 
 # --- the typed command on UserPromptSubmit (case 169.1) -----------------------------------
@@ -237,8 +237,8 @@ def test_a_typed_command_may_carry_arguments(tmp_path):
     with_event_log(tmp_path, START + HI)
     with_ledger(tmp_path, READING)
     assert run(typed("/retro --check  "), tmp_path, status="") == (0, "")
-    assert run(typed("  /pre-task now"), tmp_path, status="") == (0, "")
-    assert event_log(tmp_path).endswith("19037d1c retro\n- 11:00:00 19037d1c pretask\n")
+    assert run(typed("  /pre-spec now"), tmp_path, status="") == (0, "")
+    assert event_log(tmp_path).endswith("19037d1c retro\n- 11:00:00 19037d1c prespec\n")
 
 
 def test_any_other_prompt_passes_silently_without_a_mark(tmp_path):
@@ -287,9 +287,9 @@ def test_a_spec_or_a_plan_path_is_something_to_review(tmp_path):
     assert run(typed("/retro"), tmp_path, status="") == (0, "")
 
 
-def test_pretask_and_handoff_in_an_empty_session_pass_as_before(tmp_path):
+def test_prespec_and_handoff_in_an_empty_session_pass_as_before(tmp_path):
     with_event_log(tmp_path, START + HI)
-    assert run(typed("/pre-task"), tmp_path, status="") == (0, "")
+    assert run(typed("/pre-spec"), tmp_path, status="") == (0, "")
     assert run(skill("handoff"), tmp_path, status="") == (0, "")
     code, err = run(typed("/handoff"), tmp_path, status=" M a.py")
     assert code == 2 and "commit first" in err and "nothing to review" not in err

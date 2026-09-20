@@ -1,0 +1,16 @@
+- 08:07:24 decision[case 261][update][rule-pretask]{ref:rule-pretask}{supersedes:case 259}
+- 08:07:24 decision[case 261][update][rule-pretask-hook]{ref:rule-pretask-hook}
+- 08:07:24 decision[case 261][update][estimate-pretask-reconciles]{ref:estimate-pretask-reconciles}
+- 08:07:24 decision[case 261][update][estimate-pretask-checks-the-plan]{ref:estimate-pretask-checks-the-plan}
+- 08:07:24 decision[case 261][update][estimate-pretask-hook-gates]{ref:estimate-pretask-hook-gates}
+- 08:07:24 decision[case 261][update][index]{ref:index}
+- 08:07:24 decision[case 261][update][case-schema]{ref:case-schema}
+- 08:07:24 decision[case 261][update][glossary]{ref:glossary}
+- 08:35:07 decision[case 262][update][estimate-generate-renames]{ref:estimate-generate-renames}
+- 08:40:55 decision[case 263][defer][rule-work-mode]{ref:rule-work-mode}
+- 08:40:55 decision[case 263][defer][rule-subagent-guppi]{ref:rule-subagent-guppi}
+- 08:55:44 estimate[estimate-spec-capture-offers-the-fork][passed] 2026-09-20, the first ExitPlanMode of session 0740 (08:55:25): the result carried the fork as PostToolUse additionalContext — the Spec in vault/raw/2026-09-20/0740/spec.md, Work Mode or /carry with carry.md as the mark, nothing started until the person answers; the Spec copied whole, 245 lines; pytest tests/test_spec.py green at e69fd95
+- 09:10:20 estimate[estimate-prespec-checks-the-plan][passed] 2026-09-20, `pytest tests/test_prespec.py` after `git mv` from tests/test_pretask.py and the word swap in guppi/prespec.py: 72 green in the file, 434 in `make test`; the stderr prefix reads `prespec:`; `guppi prespec --check` not yet run live under the new name — the skill /pre-spec is rendered by the librarian
+- 09:10:20 estimate[estimate-prespec-hook-gates][passed] 2026-09-20, `pytest tests/test_prespec.py` after the move: the ExitPlanMode hook looks for the mark `prespec` of the session's stamp after its `hi`, yesterday's mark releases after midnight, the refusal names /pre-spec; `guppi gate` writes `prespec` on a call of `pre-spec` (tests/test_gate.py, 119 green with test_ledger); the live part is the approval of the next plan after the render
+- 09:26:38 lesson[error][lesson-ledger-estimate-line-carried-a-count-not-read]{tags:session,workflow,tests} trigger: the estimate line of estimate-prespec-checks-the-plan at 09:10:20 said "72 green in the file"; pytest tests/test_prespec.py alone gives 52 — the 119 of the three files was split from memory, not read root_cause: the reading's line was composed after one combined pytest run of three files; the per-file number was never printed, and the agent filled it in instead of running the file alone or naming the combined count only
+- 09:26:38 estimate[estimate-prespec-checks-the-plan][passed] 2026-09-20, `pytest tests/test_prespec.py` alone at Retro: 52 green; `make test` 434; the line of 09:10:20 said 72 by mistake, this line stands for it

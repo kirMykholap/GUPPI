@@ -43,13 +43,13 @@ Estimates of this page pass: lint clean, the leftovers gone, the branch merged.
 ## Closed
 
 Slices 0–2 closed by 2026-09-10: layout; ledger, event log, `/hi`; renderer, lint,
-indexes, `/ask`, pre-task. Slice 3 (materialize, generate, cleanup, librarian, retro,
+indexes, `/ask`, pre-spec (then `/pre-task`). Slice 3 (materialize, generate, cleanup, librarian, retro,
 handoff) built 2026-09-10, closed 2026-09-12. Slice 3c (the raw lifecycle: the archive
 of an applied session, the tail, one archive root, the ledger of a session, the status
 cascades, the slug checked against the archive) built 2026-09-13. Slice 3d (the
 Estimate model, case 182) opened and closed 2026-09-16: Cases 187–190 ratified in
 session 1034 and conserved, repaired by 193–198 and built in session 1651, case 191
-taken up by 201–203 and built in session 1955 — `generate`, `lint`, `pre-task` by the
+taken up by 201–203 and built in session 1955 — `generate`, `lint`, `pre-spec` by the
 model. The recut of each old Estimate at its first touch runs on past the Slice: lint
 counts the remainder as `unmigrated` (42 at the close of 3d) and the old shape is
 removed when it reaches zero. Kept without a page: `/grill-me`; `git pull` in `/hi`

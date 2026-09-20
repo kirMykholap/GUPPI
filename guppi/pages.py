@@ -1,6 +1,6 @@
 """Reading vault pages: frontmatter, `## ` sections, and the folders they live in.
 
-Shared by `render`, `lint`, `generate`, `cleanup`, `pretask` and `archive`. A page is a
+Shared by `render`, `lint`, `generate`, `cleanup`, `prespec` and `archive`. A page is a
 Markdown file under `vault/wiki/<category>/`, its properties in a YAML block between `---`
 lines, its body in H2 sections. A ref field — `REF_FIELDS` — holds its slugs as quoted
 wikilinks, `"[[slug]]"`, so Obsidian's graph, backlinks and Bases see them; `read_page`

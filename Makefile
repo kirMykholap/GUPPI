@@ -35,7 +35,7 @@ test-session-start: ## the pipeline over rule-session-start's children
 	@uv run pytest -q tests/test_event.py tests/test_ledger.py < /dev/null
 
 test-plan-mode: ## the pipeline over rule-plan-mode's children
-	@uv run pytest -q tests/test_spec.py tests/test_pretask.py < /dev/null
+	@uv run pytest -q tests/test_spec.py tests/test_prespec.py < /dev/null
 
 test-documentation: ## the pipeline over rule-documentation's scripts
 	@uv run pytest -q tests/test_materialize.py tests/test_generate.py tests/test_cleanup.py < /dev/null

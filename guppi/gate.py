@@ -1,6 +1,6 @@
 """`guppi gate` — the hook that refuses `/handoff` on a dirty tree, and any skill while the
 Spec is ahead of the ledger: on `PreToolUse` for the agent's call through the `Skill`
-tool, on `UserPromptSubmit` for the person's typed `/pre-task`, `/retro` or `/handoff`.
+tool, on `UserPromptSubmit` for the person's typed `/pre-spec`, `/retro` or `/handoff`.
 
 Reads the hook payload from stdin. Two refusals, each exit 2 with the reason on stderr,
 which blocks the call once; the hook writes nothing and commits nothing.
@@ -22,7 +22,7 @@ The Spec is edited by a tool call in that same reply, so it is always ahead of t
 unwritten block: the hook reads the `then` items of every
 Case in the session's `spec.md` and in the plan file the session's event log names last
 under `.claude/plans/` (a `tool Write:` or `tool Edit:` line of this session's stamp), and
-the decision lines of the session's window as `guppi pretask --check` reads them. An item
+the decision lines of the session's window as `guppi prespec --check` reads them. An item
 with no decision line of its Case refuses the call: `gate: /<skill> refused — N item(s) of
 the Spec have no ledger line (case A, case B). The text before a tool call waits for the
 next Stop: end this reply in text with the LEDGER block, then call /<skill> in the next
@@ -35,7 +35,7 @@ or lesson — in its ledger window has nothing to review, and the call is refuse
 /retro refused — nothing to review: no Spec and no ledger line in raw/<date>/<HHMM>/.
 Ratify a Case or write a reading or a lesson first,` then the advice of the path — `then
 type /retro again.` for the person, `then call /retro in the next reply.` for the agent.
-No mark. `/pre-task` and `/handoff` in the same session go as before; without a `hi`
+No mark. `/pre-spec` and `/handoff` in the same session go as before; without a `hi`
 nothing is checked.
 
 Then the tree: when the skill is `handoff` and `git status --porcelain` is not empty, the
@@ -43,8 +43,8 @@ reason is `commit first`. A clean tree, another skill or another tool: exit 0. T
 skill still checks the tree itself, a second net. Rule pages:
 `vault/wiki/rules/rule-retro-commit.md`, `vault/wiki/rules/rule-ledger-write.md`.
 
-Last the mark (case 136.1): a call of `pre-task`, `retro` or `handoff` that passes both
-checks leaves one line `- HH:MM:SS <stamp> pretask|retro|handoff` in the day's event log,
+Last the mark (case 136.1): a call of `pre-spec`, `retro` or `handoff` that passes both
+checks leaves one line `- HH:MM:SS <stamp> prespec|retro|handoff` in the day's event log,
 the stamp from the payload's `session_id` — the line the skills wrote through a `!`
 substitution until 136.1, where `CLAUDE_SESSION_ID` is empty and every mark read
 `--------`. A refused call and any other skill leave no mark. Rule page:
@@ -59,12 +59,12 @@ from pathlib import Path
 from guppi.event import append, format_line, log_path, project_root, read_payload, session_stamp
 from guppi.ledger import hi_moment, session_dir, session_event_logs
 from guppi.materialize import split_cases, then_blocks
-from guppi.pretask import item_has_line, item_name, items_of, session_decisions, window_lines
+from guppi.prespec import item_has_line, item_name, items_of, session_decisions, window_lines
 
 TOOL = "Skill"
 SKILL = "handoff"
 PLAN_TOOLS = ("Write", "Edit", "MultiEdit")
-MARKS = {"pre-task": "pretask", "retro": "retro", "handoff": "handoff"}
+MARKS = {"pre-spec": "prespec", "retro": "retro", "handoff": "handoff"}
 
 
 def skill_of(payload: dict) -> str:
@@ -125,7 +125,7 @@ def plan_path(logs: list[tuple[str, str]], stamp: str) -> Path | None:
 def unwritten_items(specs: list[str], records: list[dict]) -> list[str]:
     """`case N: [kind][slug]` for every `then` item of every Case of the Specs given that
     has no decision line of its Case among the records — the second half of
-    `pretask.check_lines` — each once, in Spec order."""
+    `prespec.check_lines` — each once, in Spec order."""
     findings: list[str] = []
     for spec in specs:
         cases = split_cases(spec)

@@ -1,8 +1,8 @@
-"""`guppi pretask`: the `PreToolUse ExitPlanMode` hook that holds Plan Mode open until
-`/pre-task` has run in this session, and `guppi pretask --check <plan>`, the check of the
+"""`guppi prespec`: the `PreToolUse ExitPlanMode` hook that holds Plan Mode open until
+`/pre-spec` has run in this session, and `guppi prespec --check <plan>`, the check of the
 session's decision lines, frontier, tasks, the form of its Leaf items and the grammar of
 its record lines against the plan (cases 59.1, 59.2, 59.3, 59.6, 72.5, 73.4, 74, 75.2).
-Rule page: `vault/wiki/rules/rule-pretask-hook.md`.
+Rule page: `vault/wiki/rules/rule-prespec-hook.md`.
 
 Every hook test feeds the payload through a stream, the shape a hook is really handed. The
 check tests build a temp project: an event log with the session's `hi`, a ledger written
@@ -13,16 +13,16 @@ import io
 import json
 from datetime import UTC, date, datetime
 
-from guppi import pretask
+from guppi import prespec
 
 TODAY = date(2026, 9, 9)
 NOW = datetime(2026, 9, 9, 18, 40, 5, tzinfo=UTC)
 SESSION = "44c1aae1-4076-4a58-a7c0-d20bc274047c"
 START = "- 15:01:00 44c1aae1 session-start startup\n"
 HI = "- 15:01:30 44c1aae1 hi\n"
-PRETASK = "- 16:20:00 44c1aae1 pretask\n"
-UNSTAMPED_PRETASK = "- 16:20:00 -------- pretask\n"
-FOREIGN_PRETASK = "- 16:20:00 99999999 pretask\n"
+PRETASK = "- 16:20:00 44c1aae1 prespec\n"
+UNSTAMPED_PRETASK = "- 16:20:00 -------- prespec\n"
+FOREIGN_PRETASK = "- 16:20:00 99999999 prespec\n"
 OTHER_START = "- 14:00:00 99999999 session-start startup\n"
 
 
@@ -39,35 +39,35 @@ def with_event_log(project_dir, text, day=TODAY):
 
 def run(stdin, project_dir):
     err = io.StringIO()
-    code = pretask.run([], stdin=stdin, stderr=err, project_dir=project_dir, now=NOW)
+    code = prespec.run([], stdin=stdin, stderr=err, project_dir=project_dir, now=NOW)
     return code, err.getvalue()
 
 
-def test_pretask_after_hi_lets_the_plan_close(tmp_path):
+def test_prespec_after_hi_lets_the_plan_close(tmp_path):
     with_event_log(tmp_path, START + HI + PRETASK)
     assert run(payload(), tmp_path) == (0, "")
 
 
-def test_hi_without_pretask_holds_plan_mode_open(tmp_path):
+def test_hi_without_prespec_holds_plan_mode_open(tmp_path):
     with_event_log(tmp_path, START + HI)
     code, err = run(payload(), tmp_path)
     assert code == 2
-    assert "/pre-task" in err and "44c1aae1" in err
+    assert "/pre-spec" in err and "44c1aae1" in err
 
 
-def test_a_pretask_of_another_stamp_does_not_count(tmp_path):
+def test_a_prespec_of_another_stamp_does_not_count(tmp_path):
     with_event_log(tmp_path, START + HI + OTHER_START + FOREIGN_PRETASK)
     code, err = run(payload(), tmp_path)
     assert code == 2
-    assert "/pre-task" in err
+    assert "/pre-spec" in err
 
 
-def test_an_unstamped_pretask_does_not_count(tmp_path):
+def test_an_unstamped_prespec_does_not_count(tmp_path):
     with_event_log(tmp_path, START + HI + UNSTAMPED_PRETASK)
     assert run(payload(), tmp_path)[0] == 2
 
 
-def test_a_foreign_start_between_hi_and_pretask_resets_nothing(tmp_path):
+def test_a_foreign_start_between_hi_and_prespec_resets_nothing(tmp_path):
     with_event_log(tmp_path, START + HI + OTHER_START + PRETASK)
     assert run(payload(), tmp_path) == (0, "")
 
@@ -91,7 +91,7 @@ def test_garbage_on_stdin_never_fails_the_session(tmp_path):
     assert run(io.StringIO("not json"), tmp_path) == (0, "")
 
 
-def test_cli_dispatches_to_pretask(tmp_path, monkeypatch, capsys, pinned_clock):
+def test_cli_dispatches_to_prespec(tmp_path, monkeypatch, capsys, pinned_clock):
     from guppi import cli
 
     today = pinned_clock.date()  # the CLI reads the clock, pinned by conftest (case 145.1)
@@ -99,11 +99,11 @@ def test_cli_dispatches_to_pretask(tmp_path, monkeypatch, capsys, pinned_clock):
     with_event_log(tmp_path, START + HI, day=today)
     monkeypatch.setenv("CLAUDE_PROJECT_DIR", str(tmp_path))
     monkeypatch.setattr("sys.stdin", payload())
-    assert cli.main(["pretask"]) == 2
-    assert "/pre-task" in capsys.readouterr().err
+    assert cli.main(["prespec"]) == 2
+    assert "/pre-spec" in capsys.readouterr().err
 
 
-# --- `guppi pretask --check <plan>` ---------------------------------------------------
+# --- `guppi prespec --check <plan>` ---------------------------------------------------
 
 LINE = "- 16:00:00 decision[case 1][update][rule-x]{ref:rule-x}\n"
 BEFORE_HI = "- 15:01:00 decision[case 1][update][rule-x]{ref:rule-x}\n"
@@ -177,7 +177,7 @@ def check(project_dir, plan=PLAN, ledger=LINE, frontier=CLEAN_FRONTIER, event_lo
     plan_file = project_dir / "plan.md"
     plan_file.write_text(plan, encoding="utf-8", newline="\n")
     out, err = io.StringIO(), io.StringIO()
-    code = pretask.run(
+    code = prespec.run(
         ["--check", str(plan_file), "--session", SESSION],
         stdout=out,
         stderr=err,
@@ -393,7 +393,7 @@ def test_a_file_item_on_a_governed_path_is_a_finding(tmp_path):
 def test_check_without_a_plan_file_says_so(tmp_path):
     with_event_log(tmp_path, START + HI)
     err = io.StringIO()
-    code = pretask.run(
+    code = prespec.run(
         ["--check", str(tmp_path / "none.md"), "--session", SESSION],
         stdout=io.StringIO(),
         stderr=err,
@@ -599,7 +599,7 @@ def test_a_parsed_line_of_a_later_date_of_the_window_is_read(tmp_path):
     plan_file = tmp_path / "plan.md"
     plan_file.write_text(PLAN, encoding="utf-8", newline="\n")
     out = io.StringIO()
-    code = pretask.run(
+    code = prespec.run(
         ["--check", str(plan_file), "--session", SESSION],
         stdout=out,
         stderr=io.StringIO(),
@@ -630,12 +630,12 @@ def test_check_without_a_stamp_refuses_and_names_the_hi_line(tmp_path, monkeypat
     plan_file = tmp_path / "plan.md"
     plan_file.write_text(PLAN, encoding="utf-8", newline="\n")
     out, err = io.StringIO(), io.StringIO()
-    code = pretask.run(
+    code = prespec.run(
         ["--check", str(plan_file)], stdout=out, stderr=err, project_dir=tmp_path, now=NOW
     )
     assert code == 2 and out.getvalue() == ""
     assert (
-        err.getvalue().strip() == "pretask: no session id; pass --session <stamp> from the hi: line"
+        err.getvalue().strip() == "prespec: no session id; pass --session <stamp> from the hi: line"
     )
 
 
@@ -649,7 +649,7 @@ def test_check_finds_yesterdays_hi_after_midnight(tmp_path):
     plan_file = tmp_path / "plan.md"
     plan_file.write_text(PLAN, encoding="utf-8", newline="\n")
     out, err = io.StringIO(), io.StringIO()
-    code = pretask.run(
+    code = prespec.run(
         ["--check", str(plan_file), "--session", SESSION],
         stdout=out,
         stderr=err,
@@ -659,18 +659,18 @@ def test_check_finds_yesterdays_hi_after_midnight(tmp_path):
     assert (code, out.getvalue(), err.getvalue()) == (0, "", "")
 
 
-def test_the_hook_finds_yesterdays_hi_and_pretask_after_midnight(tmp_path):
+def test_the_hook_finds_yesterdays_hi_and_prespec_after_midnight(tmp_path):
     """Case 213.2: the hook reads the logs the ledger hook reads — back to the date of this
-    session's start — so yesterday's `hi` gates and yesterday's `pretask` releases."""
+    session's start — so yesterday's `hi` gates and yesterday's `prespec` releases."""
     after_midnight = datetime(2026, 9, 9, 0, 30, 0, tzinfo=UTC)
     with_event_log(tmp_path, START + HI, day=YESTERDAY)
     with_event_log(tmp_path, "- 00:05:00 99999999 session-start startup\n")
     err = io.StringIO()
-    code = pretask.run([], stdin=payload(), stderr=err, project_dir=tmp_path, now=after_midnight)
-    assert code == 2 and "/pre-task" in err.getvalue()
+    code = prespec.run([], stdin=payload(), stderr=err, project_dir=tmp_path, now=after_midnight)
+    assert code == 2 and "/pre-spec" in err.getvalue()
     with_event_log(tmp_path, START + HI + PRETASK, day=YESTERDAY)
     err = io.StringIO()
-    code = pretask.run([], stdin=payload(), stderr=err, project_dir=tmp_path, now=after_midnight)
+    code = prespec.run([], stdin=payload(), stderr=err, project_dir=tmp_path, now=after_midnight)
     assert (code, err.getvalue()) == (0, "")
 
 

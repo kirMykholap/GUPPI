@@ -1,17 +1,17 @@
-"""`guppi pretask` — the `PreToolUse ExitPlanMode` hook that holds Plan Mode open until
-`/pre-task` has run in this session; `guppi pretask --check <plan> [--session ID]` — the
+"""`guppi prespec` — the `PreToolUse ExitPlanMode` hook that holds Plan Mode open until
+`/pre-spec` has run in this session; `guppi prespec --check <plan> [--session ID]` — the
 check of that Plan Mode's artifacts against each other.
 
 The hook reads the event logs by the session's stamp (case 136.2) — the logs from today
 back to the date of this session's `session-start`, as the ledger hook reads them, so a
-session across midnight keeps its `hi` and its `pretask` (case 213.2): the session is a
-working one when the logs hold a `hi` of its stamp. In a working session with no `pretask` line of
+session across midnight keeps its `hi` and its `prespec` (case 213.2): the session is a
+working one when the logs hold a `hi` of its stamp. In a working session with no `prespec` line of
 the same stamp after that `hi`, the hook exits 2 with the reason on stderr, which Claude
-Code shows the agent and which blocks the tool; the agent runs `/pre-task` — `guppi gate`
+Code shows the agent and which blocks the tool; the agent runs `/pre-spec` — `guppi gate`
 writes the stamped line on the Skill call (case 136.1) — and exits Plan Mode again. A mark
 of another stamp or `--------` does not count, and a `session-start` of another session
 resets nothing. An ordinary session — no `hi` — is not gated: no governance applies there.
-Any other tool: exit 0. Rule page: `vault/wiki/rules/rule-pretask-hook.md`.
+Any other tool: exit 0. Rule page: `vault/wiki/rules/rule-prespec-hook.md`.
 
 The check prints one finding per line on stdout and exits 1 on any, 0 and silent when
 clean; without a `hi` in the session's window it exits 0 with one line on stderr. The
@@ -86,11 +86,11 @@ CLOSERS = re.compile(r"^(work|case (\S+)|defer case (\S+))$")
 
 
 def window(event_log: str, stamp: str) -> tuple[bool, bool]:
-    """`(hi, pretask)`: whether the log holds a `hi` of this session's stamp, and a `pretask`
+    """`(hi, prespec)`: whether the log holds a `hi` of this session's stamp, and a `prespec`
     of the same stamp after it (case 136.2). A mark of another stamp or `--------` does not
     count, and a `session-start` of another session resets nothing: the marks bind by stamp,
     not by position."""
-    seen_hi = seen_pretask = False
+    seen_hi = seen_prespec = False
     for line in event_log.splitlines():
         parts = line.split(" ", 3)
         if len(parts) < 4 or parts[0] != "-" or parts[2] != stamp:
@@ -98,15 +98,15 @@ def window(event_log: str, stamp: str) -> tuple[bool, bool]:
         event = parts[3].split(" ", 1)[0]
         if event == "hi":
             seen_hi = True
-        elif event == "pretask" and seen_hi:
-            seen_pretask = True
-    return seen_hi, seen_pretask
+        elif event == "prespec" and seen_hi:
+            seen_prespec = True
+    return seen_hi, seen_prespec
 
 
 # --- the session's window -------------------------------------------------------------
 
 
-NO_SESSION = "pretask: no session id; pass --session <stamp> from the hi: line"
+NO_SESSION = "prespec: no session id; pass --session <stamp> from the hi: line"
 
 
 def resolve_session(option: str | None) -> str | None:
@@ -419,7 +419,7 @@ def check(plan: str, project_dir: Path, stamp: str, now, stdout, stderr) -> int:
     hi = hi_moment(logs, stamp)
     folder = session_dir(project_dir, now, stamp)
     if hi is None or folder is None or not hi_recorded("".join(t for _, t in logs), stamp):
-        print(f"pretask: no hi recorded for session {stamp}; nothing checked", file=stderr)
+        print(f"prespec: no hi recorded for session {stamp}; nothing checked", file=stderr)
         return 0
     cases = split_cases(plan)
     blocks: dict[str, dict] = {}
@@ -442,7 +442,7 @@ def check(plan: str, project_dir: Path, stamp: str, now, stdout, stderr) -> int:
 
 
 def parser() -> argparse.ArgumentParser:
-    p = argparse.ArgumentParser(prog="guppi pretask", description=__doc__.split("\n\n")[1])
+    p = argparse.ArgumentParser(prog="guppi prespec", description=__doc__.split("\n\n")[1])
     p.add_argument("--check", metavar="PLAN", help="the plan file to check against the session")
     p.add_argument("--session", default=None, help="session id; else CLAUDE_SESSION_ID or the log")
     return p
@@ -463,7 +463,7 @@ def run(
             return 2
         plan_file = Path(args.check)
         if not plan_file.is_file():
-            print(f"pretask: no plan file at {plan_file}", file=stderr)
+            print(f"prespec: no plan file at {plan_file}", file=stderr)
             return 2
         plan = plan_file.read_text(encoding="utf-8")
         stamp = resolve_session(args.session)
@@ -477,15 +477,15 @@ def run(
             return 0
         stamp = session_stamp(None, payload)
         # the logs from today back to this session's start, as the ledger hook reads them,
-        # so yesterday's `hi` and `pretask` are found after midnight (case 213.2)
+        # so yesterday's `hi` and `prespec` are found after midnight (case 213.2)
         hi, done = window(session_event_log(project_dir, now, stamp), stamp)
         if hi and not done:
             print(
-                f"pretask: Plan Mode is closing without /pre-task in session {stamp}. "
-                "Run /pre-task, then exit Plan Mode again.",
+                f"prespec: Plan Mode is closing without /pre-spec in session {stamp}. "
+                "Run /pre-spec, then exit Plan Mode again.",
                 file=stderr,
             )
             return 2
     except Exception as exc:  # noqa: BLE001 — a hook that raises would fail the session
-        print(f"pretask: check skipped: {exc}", file=stderr)
+        print(f"prespec: check skipped: {exc}", file=stderr)
     return 0

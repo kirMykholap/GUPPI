@@ -50,7 +50,7 @@ deferred decision up means building its full Case from its page — recommend, g
 when, then added — and writing `{supersedes:case N}` on the line. Never move to the
 next Case until this one is ratified or deferred. The Frontier is `raw/<date>/<hi HHMM>/frontier.md`, written at `/hi`;
 close its line in the reply that ends the item. Plan Mode does not end while a line is
-open; `/pre-task` checks it.
+open; `/pre-spec` checks it.
 
 A follow-up question that asks you to justify a choice does not split the Case; one
 whose answer needs a new choice does — into sub-cases `N.1`, `N.2`. Ratifying a

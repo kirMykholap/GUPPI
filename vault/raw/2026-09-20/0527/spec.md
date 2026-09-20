@@ -43,7 +43,7 @@ update:
 - [x] update `estimate-spec-capture-offers-the-fork`: the Criterion replaced whole, `method` — pytest and a live reading, `pending`
 - [x] `guppi/spec.py`: `fork_line` returns the JSON object; the docstring without "which the client adds to the agent's context", with the `hookSpecificOutput` shape
 - [x] `tests/test_spec.py`: the three fork tests parse the JSON — `hookEventName`, `additionalContext` with the folder, the file, Work Mode and `/carry`; without a Spec the stdout is empty
-- [ ] read `estimate-spec-capture-offers-the-fork`: pytest and the `ExitPlanMode` result of this session
+- [x] read `estimate-spec-capture-offers-the-fork`: pytest and the `ExitPlanMode` result of this session
 ```
 
 ## Case 256 — `rule-pretask`: `--session` takes the eight-character session id

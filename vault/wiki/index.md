@@ -323,7 +323,7 @@ drift.
 | Phase | Rule MOC | What it covers |
 |---|---|---|
 | Session Start | `rule-session-start` | `/hi`, context loading, the event-log and ledger hooks |
-| Plan Mode | `rule-plan-mode` | Case protocol, the `ask-guppi` agent, pre-task reconciliation |
+| Plan Mode | `rule-plan-mode` | Case protocol, the `ask-guppi` agent, pre-spec reconciliation |
 | Work Mode | `rule-work-mode` | the tasks of the Spec, branch, `subagent-guppi`, harness tests — deferred to Slice 3b, a `draft` placeholder until then |
 | — | `rule-subagent-guppi` | task dispatch, review, model tiers |
 | End of Work | `rule-end-of-work` | Retro, the commit hook, handoff |

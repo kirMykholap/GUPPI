@@ -40,7 +40,7 @@ agent's Render and is ratified with it; this page holds the registrations only.
 "PreToolUse": [
 
       { "matcher": "ExitPlanMode",
-        "hooks": [ { "type": "command", "command": "uv run guppi pretask", "timeout": 30 } ] },
+        "hooks": [ { "type": "command", "command": "uv run guppi prespec", "timeout": 30 } ] },
       { "matcher": "Skill",
         "hooks": [ { "type": "command", "command": "uv run guppi gate", "timeout": 30 } ] },
       { "matcher": "Edit|Write|MultiEdit",

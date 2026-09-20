@@ -33,4 +33,4 @@ The file `wiki/<category>/<old>.md` becomes `<new>.md`; the page's History gets 
 ## History
 
 - 2026-09-20 created · [[decision-case-258.1]]
-- 2026-09-20 updated: the two placeholders [[decision-case-N]] of the Criterion in code spans, so lint reads no link; the text of 258.1 otherwise (case 262) · [[decision-case-262]]
+- 2026-09-20 updated: the two placeholders `[[decision-case-N]]` of the Criterion in code spans, so lint reads no link; the text of 258.1 otherwise (case 262) · [[decision-case-262]]

@@ -1,0 +1,11 @@
+# Frontier — 2026-09-20, hi 0958
+
+- [-] F1 — Slice 3b: `rule-work-mode` and `rule-subagent-guppi`, the sentence of `insight-workflow-code-live-before-the-page-it-reads` written into `rule-work-mode`; defer 263, the tenth · sprint.md, brief Flags · defer case 269
+- [x] F2 — the tree is dirty: the `estimate[estimate-generate-renames][passed]` line of 09:38:37 in `raw/2026-09-20/0740/ledger.md` and the two ticks in the 0740 and 0527 Specs, written after the librarian's commit 0666763; the page stands `pending` until the next librarian applies the line · git status, ledger tail · work
+- [x] F3 — the reading of `estimate-prespec-reconciles`: the first `/pre-spec` after the render, in this session; `rule-prespec` stands `draft` · brief Readings due, spec 0740 line 172 · work
+- [x] F8 — the `context` of a Case reads as pointers, not substance: case numbers, page statuses and lists of Estimates in place of how the thing works; the person's three-sentence summary of 266 was right · the person · case 267
+- [x] F9 — the Frontier mixes items that need a decision with readings and commits and with what the sprint page already decided; the kind of an item by its source, the librarian sorts, `/hi` places · the person · case 268
+- [x] F4 — lint: `estimates/estimate-generate-renames: ref: body names decision-case-N` — the History line of 262 carries the bare wikilink from the ratified `change` text; not repaired · brief Flags · case 264
+- [x] F5 — seven Estimates keep "pre-task" in Criterion and `method` until their next `update`: `estimate-hi-writes-frontier`, `estimate-event-log-records`, `estimate-retro-commit-gates`, `estimate-plan-mode-verified`, `estimate-generate-writes`, `estimate-generate-walks-dates`, `estimate-documentation-completes`; debt by 261 · brief Not done · case 265
+- [x] F6 — standing: the defer of 238 on `insight-workflow-code-live-before-the-page-it-reads` without a `purpose`; `materialize` of 2026-09-18/1252 line 8 and 2253 line 3 "changed since the yaml was written; entry left alone" — the two warnings need no decision: archived yamls of applied entries · brief Flags · case 266
+- [x] F7 — `git pull` fails, no upstream for `migration`; `gh` not logged in — decisions 11.1, 11.2, decided again at the close of the sprint; by 268.2 not an item while the sprint page names them · rule-git-context, rule-github-issues · work

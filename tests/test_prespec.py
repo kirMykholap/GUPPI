@@ -702,3 +702,77 @@ def test_an_estimate_ref_to_a_rule_the_same_plan_creates_is_no_finding(tmp_path)
     assert out.splitlines() == [
         "case 1: create estimate-x-again: ref rule-nowhere names no live page"
     ]
+
+
+# --- a bare wikilink in the plan (case 264.2) -------------------------------------------
+
+
+def bare_plan(sentence, block="update:\n  - slug: rule-x\n    change: one line\n"):
+    plan = PLAN.replace("> Something.\n", f"> {sentence}\n")
+    return plan.replace("update:\n  - slug: rule-x\n    change: one line\n", block)
+
+
+def test_a_bare_wikilink_that_names_no_page_is_a_finding(tmp_path):
+    code, out, _ = check(tmp_path, plan=bare_plan("History ends with [[decision-case-N]]."))
+    assert code == 1
+    assert out.splitlines() == ["case 1: [[decision-case-N]] outside a code span names no page"]
+
+
+def test_a_wikilink_in_a_code_span_is_not_read(tmp_path):
+    plan = bare_plan("History ends with `· [[decision-case-N]]`.")
+    assert check(tmp_path, plan=plan) == (0, "", "")
+
+
+def test_a_wikilink_to_a_live_an_archived_or_a_hub_page_is_no_finding(tmp_path):
+    with_page(tmp_path, "rules", "rule-x")
+    archive = tmp_path / "vault" / "archive" / "s" / "2026-01-01" / "0900" / "rules"
+    archive.mkdir(parents=True)
+    (archive / "rule-old.md").write_text("---\ntype: rule\n---\n", encoding="utf-8")
+    (tmp_path / "vault" / "wiki" / "index.md").write_text("# Index\n", encoding="utf-8")
+    plan = bare_plan("See [[rule-x]], [[rule-old]] and [[index]].")
+    assert check(tmp_path, plan=plan) == (0, "", "")
+
+
+def test_a_wikilink_to_a_slug_the_same_plan_creates_is_no_finding(tmp_path):
+    with_page(tmp_path, "rules", "rule-x")
+    block = (
+        "create:\n  - slug: rule-new\n    type: rule\n    kind: Leaf\n"
+        "    purpose: p\n    tags: [a]\n"
+    )
+    plan = bare_plan("The new rule is [[rule-new]].", block)
+    ledger = "- 16:00:00 decision[case 1][create][rule-new]{ref:rule-x}{tags:a}\n"
+    assert check(tmp_path, plan=plan, ledger=ledger) == (0, "", "")
+
+
+def test_one_bare_slug_twice_in_a_case_is_one_line(tmp_path):
+    plan = bare_plan("[[gone]] here and [[gone]] there.")
+    plan = plan.replace("    change: one line\n", "    change: the [[gone]] line\n")
+    _, out, _ = check(tmp_path, plan=plan)
+    assert out.splitlines() == ["case 1: [[gone]] outside a code span names no page"]
+
+
+def test_a_wikilink_in_a_then_block_string_is_read(tmp_path):
+    plan = PLAN.replace("    change: one line\n", "    change: the [[gone]] line\n")
+    _, out, _ = check(tmp_path, plan=plan)
+    assert out.splitlines() == ["case 1: [[gone]] outside a code span names no page"]
+
+
+def test_a_wikilink_in_a_tasks_fence_or_an_untagged_fence_is_not_read(tmp_path):
+    plan = PLAN.replace("- [ ] guppi/x.py: the change\n", "- [ ] fix [[gone]]\n")
+    plan += "\n```\n- decision[case 1][update][[gone]]\n```\n"
+    assert check(tmp_path, plan=plan) == (0, "", "")
+
+
+# --- the Frontier in two lists (case 268.2) -----------------------------------------------
+
+
+def test_the_frontier_reads_cases_and_work_lines_under_their_headings(tmp_path):
+    frontier = (
+        "# Frontier\n\n## Cases\n\n- [x] C1 — the one item · sprint · case 1\n"
+        "- the pull fails, decided by the sprint page\n\n"
+        "## Work\n\n- [x] W1 — a reading · brief · work\n"
+    )
+    assert check(tmp_path, frontier=frontier) == (0, "", "")
+    code, out, _ = check(tmp_path, frontier=frontier + "- [ ] W2 — a commit · git status\n")
+    assert code == 1
+    assert out.splitlines() == ["frontier: W2 is open"]

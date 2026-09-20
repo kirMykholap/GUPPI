@@ -42,7 +42,11 @@ the ledgers of its dates, on the `hi` date from the `hi` time on, and its folder
   the shape before case 189 — `method`, `contract`,
   `estimate_slug` — are not read;
 - a record line of the window — `- decision[`, `- estimate[`, `- lesson[`, timed — that
-  `materialize.parse_line` does not read, with its date and line number (case 75.2).
+  `materialize.parse_line` does not read, with its date and line number (case 75.2);
+- a `[[slug]]` outside a code span in the plan — in the blockquotes and in the strings of
+  the `then` blocks, never in a fence with another tag — that names neither a live or
+  archived page, nor a slug a `create` of the same plan carries, nor a hub file of `wiki/`;
+  one line per slug and Case (case 264.2).
 """
 
 import argparse
@@ -60,6 +64,7 @@ from guppi.ledger import (
     session_event_log,
     session_event_logs,
 )
+from guppi.lint import CODE_SPAN, WIKILINK, archived_slugs, hub_files
 from guppi.materialize import (
     DECISION_KINDS,
     FENCE,
@@ -71,7 +76,7 @@ from guppi.materialize import (
     then_blocks,
     unquote,
 )
-from guppi.pages import read_category, wiki_root
+from guppi.pages import CATEGORIES, read_category, wiki_root
 
 TOOL = "ExitPlanMode"
 TIMED_RECORD = re.compile(r"^- (\d\d:\d\d:\d\d) (decision|estimate|lesson)\[")
@@ -414,6 +419,61 @@ def check_form(blocks: dict, project_dir: Path) -> list[str]:
     return findings
 
 
+# --- a bare wikilink in the plan (case 264.2) -------------------------------------------
+
+
+def plan_prose(lines: list[str]) -> list[str]:
+    """The lines of a Case a `[[slug]]` is read from: the ones outside any fence and the
+    ones inside a fence tagged `then`; a fence with another tag or none is skipped."""
+    out: list[str] = []
+    fence_open = reading = False
+    for raw in lines:
+        line = unquote(raw)
+        match = FENCE.match(line)
+        if match:
+            if not fence_open:
+                fence_open, reading = True, match.group(1).lower() == "then"
+            else:
+                fence_open = False
+            continue
+        if not fence_open or reading:
+            out.append(line)
+    return out
+
+
+def known_slugs(project_dir: Path) -> set[str]:
+    """What a `[[…]]` may name: a live page, an archived page, a hub file (case 149.3)."""
+    wiki = wiki_root(project_dir)
+    live = {p.stem for category in CATEGORIES for p in (wiki / category).glob("*.md")}
+    return live | archived_slugs(wiki) | hub_files(wiki)
+
+
+def check_bare_links(cases: dict, blocks: dict, project_dir: Path) -> list[str]:
+    """264.2: a `[[slug]]` outside a code span in the plan — in the blockquotes and in the
+    strings of the `then` blocks — that names neither a live or archived page, nor a slug a
+    `create` of the same plan carries, nor a hub file of `wiki/`; one line per slug and
+    Case. The text would reach a page as it stands, and lint would read it as a broken
+    link (cases 130.1, 140, 160, 262)."""
+    known = known_slugs(project_dir)
+    created = {
+        str(item.get("slug"))
+        for block in blocks.values()
+        for item in block.get("create") or []
+        if isinstance(item, dict) and item.get("slug")
+    }
+    findings: list[str] = []
+    for case, lines in cases.items():
+        seen: set[str] = set()
+        prose = CODE_SPAN.sub("", "\n".join(plan_prose(lines)))
+        for slug in WIKILINK.findall(prose):
+            slug = slug.strip()
+            if slug in known or slug in created or slug in seen:
+                continue
+            seen.add(slug)
+            findings.append(f"case {case}: [[{slug}]] outside a code span names no page")
+    return findings
+
+
 def check(plan: str, project_dir: Path, stamp: str, now, stdout, stderr) -> int:
     logs = session_event_logs(project_dir, now, stamp)
     hi = hi_moment(logs, stamp)
@@ -436,6 +496,7 @@ def check(plan: str, project_dir: Path, stamp: str, now, stdout, stderr) -> int:
     findings += check_tasks(cases, blocks, records)
     findings += check_governed(blocks, governed_paths(project_dir))
     findings += check_form(blocks, project_dir)
+    findings += check_bare_links(cases, blocks, project_dir)
     for finding in findings:
         print(finding, file=stdout)
     return 1 if findings else 0

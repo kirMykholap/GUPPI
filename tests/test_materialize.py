@@ -1577,6 +1577,8 @@ def test_an_error_of_the_unit_itself_still_stops_the_walk(tmp_path, monkeypatch)
 SCHEMA_LEDGER = """- decision[case 21][create][rule-by-schema]{ref:rule-old}{tags:harness}
 - decision[case 22][create][estimate-by-schema-holds]{ref:rule-by-schema}{tags:harness}
 - decision[case 23][defer][rule-later]{ref:rule-later}
+- decision[case 24][defer][insight-by-schema]{ref:insight-by-schema}
+- decision[case 25][defer][rule-no-purpose]{ref:rule-no-purpose}
 """
 
 SCHEMA_SPEC = """# Spec
@@ -1631,6 +1633,24 @@ defer:
     purpose: later
     stray: x
 ```
+
+## Case 24 — a defer of an Insight, whose schema has no purpose field
+
+```then
+defer:
+  - slug: insight-by-schema
+    type: insight
+    purpose: taken up with the rule it names
+    stray: x
+```
+
+## Case 25 — a defer without a purpose
+
+```then
+defer:
+  - slug: rule-no-purpose
+    type: rule
+```
 """
 
 
@@ -1675,6 +1695,21 @@ def test_only_the_keys_the_schema_names_reach_fields_and_a_stray_key_is_marked_u
     (defer,) = of_case(data, "23")
     assert defer["fields"] == {"type": "rule", "purpose": "later"}
     assert defer["unknown"] == ["stray"] and "incomplete" not in defer
+
+
+def test_the_type_and_purpose_of_a_defer_are_its_own_keys_whatever_the_target(tmp_path):
+    """Case 266: an Insight has no `purpose` field, and the defer's purpose still reaches
+    `fields` — for the placeholder page and the Decision page's Deferred section."""
+    seed_schemas(tmp_path)
+    code, _, err = run(tmp_path)
+    assert code == 0 and err == "", err
+    data = load(tmp_path)
+    (insight,) = of_case(data, "24")
+    assert insight["fields"] == {"type": "insight", "purpose": "taken up with the rule it names"}
+    assert insight["unknown"] == ["stray"] and "incomplete" not in insight
+    (bare,) = of_case(data, "25")
+    assert bare["fields"] == {"type": "rule"} and bare["incomplete"] == ["purpose"]
+    assert "unknown" not in bare
 
 
 def test_the_keys_of_the_old_shape_stay_ignored_and_never_unknown(tmp_path):

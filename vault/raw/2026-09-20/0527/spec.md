@@ -157,7 +157,7 @@ create:
 - [x] `vault/wiki/case-schema.md`: "An `update` holds … `rename`", by hand
 - [x] `vault/wiki/decisions/schema.md`: the `update` row — the ledger slug, retargeted by a later rename, by hand
 - [x] `vault/wiki/glossary.md`: the Types row, by hand
-- [ ] read `estimate-generate-renames`: pytest, and the librarian's run on the first real rename
+- [x] read `estimate-generate-renames`: pytest, and the librarian's run on the first real rename
 ```
 
 ### Case 258.2 — `rule-materialize`: `rename` reaches the yaml

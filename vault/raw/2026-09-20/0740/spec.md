@@ -221,7 +221,7 @@ update:
 
 ```tasks
 - [x] update `estimate-generate-renames`: `sections: Criterion` — the text of 258.1 with the two `[[decision-case-N]]` in code spans, `pending`
-- [ ] read `estimate-generate-renames`: the librarian's run on Case 261 — the same reading as line 160 of the 0527 Spec
+- [x] read `estimate-generate-renames`: the librarian's run on Case 261 — the same reading as line 160 of the 0527 Spec
 ```
 
 ## Deferred

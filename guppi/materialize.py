@@ -54,7 +54,8 @@ prefix; a Rule-class file is `file` with its `path`), `slug`, `ref`, `source`,
 `incomplete` (what the block lacks: a required field, `then`, `change`, `criterion`,
 `purpose`, `source`), `unknown` (a key of a `create` or `defer` item that the category's
 `schema.yaml` names as no field and that is not structural — never lifted into `fields`,
-case 214.1), `exists` (a create whose page is on disk with an `origin` carrying
+case 214.1; the `type` and `purpose` of a `defer` are its own keys and reach `fields`
+whatever the target's category, an Insight's too, case 266), `exists` (a create whose page is on disk with an `origin` carrying
 this line's `#case-N`, case 105.2; a defer whose page exists). Set by this script: `set`
 (`status: pending` on an Estimate update), and `status`, `result`, `folded` of a reading
 folded into a create; `superseded_by` from a later `{supersedes}` in any unit; `failed`
@@ -477,6 +478,7 @@ def decision_entry(record: dict, number: int, text: str, date: str, block: dict,
 
 
 STRUCTURAL_KEYS = ("slug", "sections", "estimate", "file", "ref", "parent_create", "parent_tags")
+DEFER_KEYS = ("type", "purpose")  # a defer's own keys, not fields of its target (case 266)
 
 
 def schema_fields(project_dir: Path, entry: dict) -> set[str] | None:
@@ -564,11 +566,13 @@ def _lift_item(
             incomplete.append("change")
     elif kind == "defer":
         fields = {k: v for k, v in item.items() if k not in ("slug", "file")}
-        if known is not None:  # the lift by the schema (case 214.1)
-            unknown = [k for k in fields if k not in known and k not in STRUCTURAL_KEYS]
+        if known is not None:  # the lift by the schema (case 214.1); `type` and `purpose`
+            # are the defer's own keys, kept whatever the target's category (case 266)
+            kept = set(known) | set(DEFER_KEYS)
+            unknown = [k for k in fields if k not in kept and k not in STRUCTURAL_KEYS]
             if unknown:
                 entry["unknown"] = unknown
-            fields = {k: v for k, v in fields.items() if k in known}
+            fields = {k: v for k, v in fields.items() if k in kept}
         entry["fields"] = fields
         if "purpose" not in fields:
             incomplete.append("purpose")

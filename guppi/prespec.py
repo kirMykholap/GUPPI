@@ -46,7 +46,10 @@ the ledgers of its dates, on the `hi` date from the `hi` time on, and its folder
 - a `[[slug]]` outside a code span in the plan — in the blockquotes and in the strings of
   the `then` blocks, never in a fence with another tag — that names neither a live or
   archived page, nor a slug a `create` of the same plan carries, nor a hub file of `wiki/`;
-  one line per slug and Case (case 264.2).
+  one line per slug and Case (case 264.2);
+- a `tasks` line that opens with the bare word `render` or `sprint`, or with the command
+  outside a code span — the tickers of `render` and `sprint` match the command in the
+  first code span (case 235), a line of another form stays debt (case 279.2).
 """
 
 import argparse
@@ -88,6 +91,9 @@ BARE_CASE = re.compile(r"^(- (?:\d\d:\d\d:\d\d )?decision\[)(?!case )")
 FRONTIER_LINE = re.compile(r"^- \[([ x-])\] (\S+)(.*)$")
 FRONTIER_SEPARATOR = " · "
 CLOSERS = re.compile(r"^(work|case (\S+)|defer case (\S+))$")
+# Case 279.2: a task line the tickers of `render` and `sprint` would not match — the bare
+# word, or the command outside a code span, right after the box.
+OFF_FORM_LINE = re.compile(r"^- \[[ x]\] (?:uv run )?(?:guppi )?(?:render|sprint)\b")
 
 
 def window(event_log: str, stamp: str) -> tuple[bool, bool]:
@@ -325,7 +331,8 @@ def estimates_to_read(block: dict) -> list[str]:
 
 
 def check_tasks(cases: dict, blocks: dict, records: list[dict]) -> list[str]:
-    """59.3: a ratified Case has a `tasks` block; an Estimate to read has its task line."""
+    """59.3: a ratified Case has a `tasks` block; an Estimate to read has its task line.
+    279.2: a render or sprint line is in the form the tickers match."""
     findings: list[str] = []
     with_work = {r["case"] for r in records if r.get("kind") != "defer"}
     for case, lines in cases.items():
@@ -335,6 +342,9 @@ def check_tasks(cases: dict, blocks: dict, records: list[dict]) -> list[str]:
         for slug in estimates_to_read(blocks[case]):
             if not any(slug in line for line in tasks.splitlines()):
                 findings.append(f"case {case}: {slug} has no task line")
+        for line in tasks.splitlines():
+            if OFF_FORM_LINE.match(line):
+                findings.append(f"case {case}: render line off form: {line}")
     return findings
 
 

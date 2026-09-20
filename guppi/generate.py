@@ -87,7 +87,10 @@ no section, no line: nothing is written and nothing is said. A reading (case 270
 `estimate` entry, and a `create` with a folded reading, tick the first unticked line
 `- [ ] read `<slug>`` — in the Spec beside the yaml first, then in the `spec.md` of the
 other units of `raw/`, oldest first, in any Case, since the entry carries no Case; the
-archive is not read. A `lesson` entry, a Rule-class file entry and a failed entry tick
+archive is not read. In the Spec beside the yaml an `estimate` entry skips the section of
+a Case whose first decision entry carries a `line` greater than its own — a Case ratified
+after the reading, whose line waits for a reading of its own (case 280); a folded reading
+skips nothing, its Case is the reading's. A `lesson` entry, a Rule-class file entry and a failed entry tick
 nothing; the lines on code, tests, migrations and `by hand` checks stay the agent's.
 
 The cascade after all entries (case 201.4): an entity or rule whose Estimates are all
@@ -273,21 +276,45 @@ TASK_LINE = re.compile(r"^- \[ \] (create|update|delete|defer) `([^`]+)`")
 READ_LINE = re.compile(r"^- \[ \] read `([^`]+)`")
 
 
-def tick_read(specs: list[Path], slug: str) -> bool:
+def tick_read(specs: list[Path], slug: str, skip: set[str] = frozenset()) -> bool:
     """Case 270.1: in the first of `specs` that holds one, the first unticked line
     `- [ ] read `<slug>`` — in any Case, a reading carries no Case — becomes `- [x] …`.
-    True when a line was ticked; False when no Spec holds one — no error either way."""
-    for spec in specs:
+    Case 280: in the first Spec, the Spec beside the yaml, a line in the section of a Case
+    of `skip` — a Case ratified after the reading — is not the reading's line. True when a
+    line was ticked; False when no Spec holds one — no error either way."""
+    for position, spec in enumerate(specs):
         if not spec.is_file():
             continue
+        skipped = skip if position == 0 else frozenset()
         lines = spec.read_text(encoding="utf-8").split("\n")
+        case = ""
         for index, line in enumerate(lines):
+            heading = CASE_HEADING.match(line)
+            if heading:
+                case = heading.group(1)
+                continue
             task = READ_LINE.match(line)
-            if task and task.group(1) == slug:
+            if task and task.group(1) == slug and case not in skipped:
                 lines[index] = "- [x]" + line[len("- [ ]") :]
                 spec.write_text("\n".join(lines), encoding="utf-8", newline="\n")
                 return True
     return False
+
+
+def later_cases(entries: list, line) -> set[str]:
+    """Case 280: the Cases whose first decision entry carries a `line` greater than `line`
+    — ratified after the reading recorded at that ledger line."""
+    first: dict[str, int] = {}
+    for entry in entries:
+        if not isinstance(entry, dict) or "case" not in entry or "line" not in entry:
+            continue
+        case = str(entry["case"])
+        first[case] = min(first.get(case, int(entry["line"])), int(entry["line"]))
+    try:
+        reading = int(line)
+    except (TypeError, ValueError):
+        return set()
+    return {case for case, number in first.items() if number > reading}
 
 
 def raw_specs(project_dir: Path, first: Path | None) -> list[Path]:
@@ -370,6 +397,7 @@ class Vault:
             tuple[str, str, str, str]
         ] = []  # backlinks whose parent is not there yet
         self.spec: Path | None = None  # the Spec beside the yaml, whose page lines are ticked
+        self.entries: list = []  # the yaml's entries, for the Cases later than a reading (280)
 
     # the Spec (case 226.1)
 
@@ -377,11 +405,16 @@ class Vault:
         """The first unticked `- [ ] <kind> `<slug>`` line in the section of the entry's
         Case becomes `- [x]`; a reading — an `estimate` entry, or a `create` with `folded` —
         ticks the first unticked `- [ ] read `<slug>`` line across the Specs of `raw/`
-        (270.1); nothing found — no Spec, no section, no line — is no error."""
+        (270.1); an `estimate` entry skips, in the Spec beside the yaml, the Cases whose
+        first decision entry stands after it in the ledger (280); nothing found — no Spec,
+        no section, no line — is no error."""
         kind = entry.get("kind")
         if self.spec is not None and kind in TICKED_KINDS and "case" in entry:
             tick_spec(self.spec, str(entry["case"]), str(kind), str(entry.get("slug")))
-        if kind == "estimate" or (kind == "create" and entry.get("folded")):
+        if kind == "estimate":
+            skip = later_cases(self.entries, entry.get("line")) if self.spec else set()
+            tick_read(raw_specs(self.project_dir, self.spec), str(entry.get("slug")), skip)
+        elif kind == "create" and entry.get("folded"):
             tick_read(raw_specs(self.project_dir, self.spec), str(entry.get("slug")))
 
     # pages
@@ -1077,7 +1110,8 @@ def apply(vault: Vault, data: dict) -> None:
     stamp = vault.now.strftime("%H:%M:%S")
     records = {str(r.get("case")): r for r in data.get("decisions") or []}
     deferred = deferred_of(data)
-    for entry in data.get("entries") or []:
+    vault.entries = data.get("entries") or []
+    for entry in vault.entries:
         if not isinstance(entry, dict) or entry.get("applied"):
             continue
         if entry.get("superseded_by"):  # a later Case did its work; only the Decision page

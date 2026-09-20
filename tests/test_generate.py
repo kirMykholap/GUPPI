@@ -2272,3 +2272,73 @@ def test_the_owner_check_ignores_case(tmp_path):
     assert code == 0 and err == ""
     assert "The agent at Widget and at retro" in page(tmp_path, "rules", "rule-other")
     assert "the gadget is what it was called." in page(tmp_path, "rules", "rule-owner")  # case kept
+
+
+# --- the read line of a Case ratified after the reading (case 280) ---------------------
+
+LATER_SPEC = """# Spec
+
+## Case 1 — the root
+
+```tasks
+- [ ] create `rule-root` (no `ref`)
+```
+
+## Case 2 — the recut, ratified after the reading
+
+```tasks
+- [ ] update `rule-root`: `set`, `change`
+- [ ] read `estimate-child-works`: the next session, by hand
+```
+"""
+
+
+def with_older_spec(tmp_path):
+    older = tmp_path / "vault" / "raw" / "2026-09-09" / "0900" / "spec.md"
+    older.parent.mkdir(parents=True)
+    older.write_text(
+        "## Case 7 — y\n\n- [ ] read `estimate-child-works`: by hand\n",
+        encoding="utf-8",
+        newline="\n",
+    )
+    return older
+
+
+def test_a_reading_before_the_case_skips_its_line_and_ticks_the_older_spec(tmp_path):
+    seed(
+        tmp_path,
+        entries=[CHILD, CHILD_ESTIMATE, ROOT, child_reading(line=4), spec_update("2", line=6)],
+    )
+    spec = with_spec(tmp_path, LATER_SPEC)
+    older = with_older_spec(tmp_path)
+    code, _, err = run(tmp_path)
+    assert code == 0 and err == ""
+    text = spec.read_text(encoding="utf-8")
+    assert "- [x] update `rule-root`: `set`, `change`" in text  # the page line, as before
+    assert "- [ ] read `estimate-child-works`: the next session" in text  # Case 2 came after
+    assert "- [x] read `estimate-child-works`: by hand" in older.read_text(encoding="utf-8")
+
+
+def test_a_reading_after_the_case_ticks_its_line(tmp_path):
+    seed(
+        tmp_path,
+        entries=[CHILD, CHILD_ESTIMATE, ROOT, spec_update("2", line=6), child_reading(line=8)],
+    )
+    spec = with_spec(tmp_path, LATER_SPEC)
+    older = with_older_spec(tmp_path)
+    code, _, err = run(tmp_path)
+    assert code == 0 and err == ""
+    assert "- [x] read `estimate-child-works`: the next session" in spec.read_text(encoding="utf-8")
+    assert "- [ ] read `estimate-child-works`: by hand" in older.read_text(encoding="utf-8")
+
+
+def test_a_reading_before_the_case_with_no_other_line_ticks_nothing(tmp_path):
+    seed(
+        tmp_path,
+        entries=[CHILD, CHILD_ESTIMATE, ROOT, child_reading(line=4), spec_update("2", line=6)],
+    )
+    spec = with_spec(tmp_path, LATER_SPEC)
+    code, out, err = run(tmp_path)
+    assert code == 0 and err == "" and "read" not in out.lower()
+    assert "- [ ] read `estimate-child-works`: the next session" in spec.read_text(encoding="utf-8")
+    assert all(e.get("applied") for e in load_yaml(tmp_path)["entries"])

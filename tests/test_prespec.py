@@ -776,3 +776,43 @@ def test_the_frontier_reads_cases_and_work_lines_under_their_headings(tmp_path):
     code, out, _ = check(tmp_path, frontier=frontier + "- [ ] W2 — a commit · git status\n")
     assert code == 1
     assert out.splitlines() == ["frontier: W2 is open"]
+
+
+# --- the form of a render or sprint task line (case 279.2) ----------------------------
+
+
+def tasks_plan(line):
+    return PLAN.replace("- [ ] guppi/x.py: the change", line)
+
+
+def test_a_render_line_opening_with_the_bare_word_is_a_finding(tmp_path):
+    code, out, _ = check(tmp_path, plan=tasks_plan("- [ ] render `CLAUDE.md`"))
+    assert code == 1
+    assert out.splitlines() == ["case 1: render line off form: - [ ] render `CLAUDE.md`"]
+
+
+def test_the_command_outside_a_code_span_is_a_finding(tmp_path):
+    for line in (
+        "- [ ] uv run guppi render: `CLAUDE.md`",
+        "- [ ] guppi sprint after the render",
+        "- [ ] sprint `vault/wiki/sprint.md`",
+    ):
+        code, out, _ = check(tmp_path, plan=tasks_plan(line))
+        assert code == 1, line
+        assert out.splitlines() == [f"case 1: render line off form: {line}"]
+
+
+def test_the_tickers_form_is_no_finding(tmp_path):
+    for line in (
+        "- [ ] `uv run guppi render`: `CLAUDE.md`",
+        "- [ ] `uv run guppi sprint`",
+        "- [x] `uv run guppi render`: `.claude/skills/hi/SKILL.md`",
+    ):
+        assert check(tmp_path, plan=tasks_plan(line)) == (0, "", ""), line
+
+
+def test_a_read_line_naming_the_command_later_is_no_finding(tmp_path):
+    line = "- [ ] read `estimate-x`: `uv run guppi render` and `--check` after the build"
+    assert check(tmp_path, plan=tasks_plan(line)) == (0, "", "")
+    line = "- [ ] the rendered `CLAUDE.md` read by hand after `guppi render`"
+    assert check(tmp_path, plan=tasks_plan(line)) == (0, "", "")

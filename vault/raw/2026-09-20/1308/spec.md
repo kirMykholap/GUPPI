@@ -94,7 +94,7 @@ update:
 - [x] update `rule-case-protocol`: `replace` of the tick sentence in the Render
 - [x] update `estimate-case-protocol-loaded`: the Criterion replaced whole, `pending`
 - [x] `vault/wiki/case-schema.md` by hand: the tick sentence in "The Spec is written as each Case is ratified"
-- [ ] render `CLAUDE.md`
+- [x] render `CLAUDE.md`
 - [ ] read `estimate-case-protocol-loaded`: the first turn of the next session, by hand
 ```
 
@@ -128,7 +128,7 @@ update:
 ```tasks
 - [x] update `rule-retro`: `replace` of the waiting-for-the-librarian sentence in the Render
 - [x] update `estimate-retro-loads`: the Criterion replaced whole, `pending`
-- [ ] render `.claude/skills/retro/SKILL.md`
+- [x] render `.claude/skills/retro/SKILL.md`
 - [ ] read `estimate-retro-loads`: the first `/retro` after the render, by hand — this session
 ```
 
@@ -184,7 +184,7 @@ update:
 ```tasks
 - [x] update `rule-documentation`: `replace` of the two ban sentences in the Render — `spec.md` beyond its unticked `- [ ]` lines
 - [x] update `estimate-documentation-completes`: the Criterion replaced whole, `pending`
-- [ ] render `.claude/agents/librarian-guppi.md`
+- [x] render `.claude/agents/librarian-guppi.md`
 - [x] read `estimate-documentation-completes`: `make test-documentation`; live — the librarian's run of this session, read in the next
 ```
 
@@ -255,7 +255,7 @@ update:
 ```tasks
 - [x] update `rule-claude-md`: the memory sentence in the first paragraph of the Render; `## Language` and `## Style` → marker lines; How it works names three children
 - [x] update `estimate-claude-md-rendered`: the recut to the shape of case 193 — `method`, the Criterion replaced whole, `pending`
-- [ ] render `CLAUDE.md`
+- [x] render `CLAUDE.md`
 - [ ] read `estimate-claude-md-rendered`: `uv run guppi render` and `--check` after the build; the next session start, by hand
 ```
 
@@ -309,7 +309,7 @@ create:
 ```tasks
 - [x] create `rule-language`, `ref: rule-claude-md`
 - [x] create `estimate-language-followed`, `ref: rule-language`
-- [ ] render `CLAUDE.md`
+- [x] render `CLAUDE.md`
 - [ ] read `estimate-language-followed`: the next session, by hand — the section in `CLAUDE.md`, the commit, the Spec and the chat of the session
 ```
 
@@ -363,7 +363,7 @@ create:
 ```tasks
 - [x] create `rule-agent-writing`, `ref: rule-claude-md`
 - [x] create `estimate-agent-writing-followed`, `ref: rule-agent-writing`
-- [ ] render `CLAUDE.md`
+- [x] render `CLAUDE.md`
 - [ ] read `estimate-agent-writing-followed`: the next session, by hand — the section in `CLAUDE.md` and one reply of the agent against it
 ```
 
@@ -572,9 +572,9 @@ update:
 - [x] update `estimate-case-protocol-loaded`: the Criterion replaced whole — loaded by `/hi`, `method`, `pending`
 - [x] `vault/wiki/glossary.md` by hand: the rows Rule-class files and `CLAUDE.md`, `index.md`
 - [x] `vault/wiki/index.md` by hand: the §1 line of `case-schema.md`, the §2 sentence "imported into CLAUDE.md" → "loaded by /hi"
-- [ ] render `vault/wiki/case-schema.md` — the first write of the file by the renderer, a one-off migration: the diff against the hand-written file read before the commit
+- [x] render `vault/wiki/case-schema.md` — the first write of the file by the renderer, a one-off migration: the diff against the hand-written file read before the commit
 - [x] `tests/test_render.py`: a `full` page into a file outside `.claude/`
-- [ ] read `estimate-case-protocol-loaded`: the first turn after the `/hi` of the next session, by hand; `tests/test_ledger.py`
+- [x] read `estimate-case-protocol-loaded`: the first turn after the `/hi` of the next session, by hand; `tests/test_ledger.py`
 ```
 
 ### Case 273.2 — `/hi` expands the schema
@@ -623,7 +623,7 @@ update:
 ```tasks
 - [x] update `rule-internal-context`: `@vault/wiki/case-schema.md` in the Render; How it works — the glossary through `CLAUDE.md`, the schema here
 - [x] update `estimate-internal-context-loaded`: the recut to the shape of case 193 — `method`, the Criterion replaced whole, `pending`
-- [ ] render `.claude/skills/hi/SKILL.md`
+- [x] render `.claude/skills/hi/SKILL.md`
 - [ ] read `estimate-internal-context-loaded`: the `/hi` of the next session, by hand
 ```
 
@@ -689,8 +689,8 @@ update:
 ```tasks
 - [x] update `rule-claude-md`: the protocol marker and the schema import removed, the paragraph "What is loaded here", the Purpose, How it works; `children` set
 - [x] update `estimate-claude-md-rendered`: the Criterion replaced whole — the text of 272.1 plus the absence of the protocol, `pending`
-- [ ] render `CLAUDE.md`
-- [ ] read `estimate-claude-md-rendered`: `render` and `--check` after the build; the next session start, by hand
+- [x] render `CLAUDE.md`
+- [x] read `estimate-claude-md-rendered`: `render` and `--check` after the build; the next session start, by hand
 ```
 
 ## Case 274 — `reword`: the rename of a word without a page
@@ -860,7 +860,7 @@ update:
 
 ```tasks
 - [x] update `lesson-spec-change-text-quotes-a-wikilink-bare`: `sections: Trigger` — the placeholder in a code span
-- [ ] `make lint` after the librarian's run: no `ref` finding on the lesson
+- [x] `make lint` after the librarian's run: no `ref` finding on the lesson
 ```
 
 ## Case 277 — the findings of pre-spec
@@ -1028,7 +1028,7 @@ update:
 - [x] update `rule-ask`, `rule-index-check`, `rule-brief`: `replace` in the Purpose
 - [x] update `entity-sprint-migration`: `replace` of the Backlog line
 - [x] `guppi sprint` → `sprint.md`
-- [ ] `grep -rn "pre-task" vault/wiki/rules vault/wiki/entities vault/wiki/estimates` after: History and Result only
+- [x] `grep -rn "pre-task" vault/wiki/rules vault/wiki/entities vault/wiki/estimates` after: History and Result only
 ```
 
 ### Case 277.5 — `estimate-case-protocol-case-form`: the carrier

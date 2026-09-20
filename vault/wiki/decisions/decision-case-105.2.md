@@ -25,7 +25,7 @@ Ask-guppi (the first question of the session): 94 is the one defer on `rule-ask`
 **＋** `rule-materialize` has two Estimates (`estimate_slug: estimate-materialize-assembles`); `rule-page-generation` two (`estimate-generate-writes`, its fourth block of the session after 101.1 and 104.x).
 **＋** The glossary row `Index, ask-guppi` — "the search agent over them, one entry point" — gains one phrase; `index.md` §3 "query the vault before a create" stays.
 **－** The archive is not searched by meaning: no `exists` or `near` on an archived page; the librarian's index check and the synthesis do not change.
-**－** The agent never reads the `raw/` of the archive; `rule-pretask` does not change — it checks the slug through the answer of `ask-guppi`.
+**－** The agent never reads the `raw/` of the archive; `rule-prespec` does not change — it checks the slug through the answer of `ask-guppi`.
 
 ## Criterion
 

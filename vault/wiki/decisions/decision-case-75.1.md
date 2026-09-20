@@ -37,7 +37,7 @@ holds it; and nothing in the session reports a line that will not parse.
 and `heads[0]` starting with `case `; `supersedes` goes through `_case_of`.
 **＋** `guppi pretask --check` already reads the ledgers of the window for the
 then-item comparison (59.1); `parse_line` is importable from `guppi.materialize`.
-**＋** 72.5, 73.4 and 74 update the Render of `rule-pretask` this session; 72.1 and
+**＋** 72.5, 73.4 and 74 update the Render of `rule-prespec` this session; 72.1 and
 73.9 the Render of `rule-case-protocol`; each `replace` its own sentence.
 **－** The 30 unparsed lines of 2026-09-12 stay as the trace; nothing rewrites them.
 

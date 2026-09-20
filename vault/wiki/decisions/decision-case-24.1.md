@@ -2,7 +2,7 @@
 type: decision
 case: "24.1"
 status: current
-create: ["[[rule-pretask-hook]]", "[[estimate-pretask-hook-gates]]"]
+create: ["[[rule-prespec-hook]]", "[[estimate-prespec-hook-gates]]"]
 update: ["[[rule-hook-registry]]"]
 origin: raw/2026-09-09/ledger.md#case-24.1
 sprint: migration
@@ -14,7 +14,7 @@ tags: [session, workflow, hooks, harness, render]
 
 ```
 create:
-  slug: rule-pretask-hook
+  slug: rule-prespec-hook
   type: rule
   kind: Leaf
   purpose: Prevents a Spec from being approved before its decisions were checked against each other and the vault
@@ -23,7 +23,7 @@ create:
   parent: rule-plan-mode
   tags: [session, workflow, hooks, harness]
   estimate:
-    slug: estimate-pretask-hook-gates
+    slug: estimate-prespec-hook-gates
     kind: QA
     criterion: given a PreToolUse payload naming ExitPlanMode — with no `pretask` line after this session's `hi` in the event log, exit 2 with a reason naming /pre-task and the session; with the line, exit 0; any other tool, exit 0; the live approval of the next plan passes only after /pre-task ran
     method: pytest in tests/test_pretask.py with piped payloads against a temp event log; the live reading once by hand

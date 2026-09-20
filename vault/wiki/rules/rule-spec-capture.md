@@ -2,7 +2,7 @@
 type: rule
 kind: Leaf
 purpose: Prevents an approved Spec from existing only in Claude Code's plan file, outside the repository
-status: draft
+status: built
 enforcement: hook
 implementation_ref: [guppi/spec.py, .claude/settings.json]
 parent: "[[rule-plan-mode]]"
@@ -48,3 +48,4 @@ folder and the Spec file; it blocks nothing, the agent asks and the person choos
 - 2026-09-16 status: draft → built · cascade
 - 2026-09-20 updated: the fork line goes to the agent as additionalContext, not as plain stdout (case 255) · [[decision-case-255]]
 - 2026-09-20 status: built → draft · cascade
+- 2026-09-20 status: draft → built · cascade

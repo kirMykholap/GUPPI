@@ -21,7 +21,7 @@ The path half is done: 59.6 — the `guard` hook refuses a hand edit of a govern
 
 `insight-workflow-contract-change-leaves-its-derived-text-stale`: `open`, `severity: 3`, children `lesson-estimates-criterion-stale-after-contract-change`, `lesson-render-governed-file-updated-as-rule-class-file`, `lesson-estimates-live-clause-stale-at-first-render`; all `clustered`, the last of 2026-09-12.
 **＋** `rule-governed-files-hook` (`guard` on `Edit|Write|MultiEdit`, 59.6): a hand edit of a file a Rule governs is refused; `rule-claude-md` (59.8): `CLAUDE.md` is a Render, not a Rule-class file.
-**＋** `rule-pretask` `built`, `estimate-pretask-reconciles` `passed`: `check_governed` — "an `update` item with `file:` on a path a live Rule page `governs`" — a finding (59.6).
+**＋** `rule-prespec` `built`, `estimate-prespec-reconciles` `passed`: `check_governed` — "an `update` item with `file:` on a path a live Rule page `governs`" — a finding (59.6).
 **＋** `case-schema.md`, "`when` and `then` are the criterion" (72.1): the scripts copy `when`/`then` as a `### case N` block; `contract: changed` appends a block and sets `pending`; `{supersedes:case N}` removes a block; "nothing is signed in two wordings".
 **＋** `estimate-claude-md-rendered`: 88.2 — "the stale live clause of case 59.8 leaves the Criterion prose"; passed today.
 **＋** The cascade of 104.2: the three children go `archived`.

@@ -3,7 +3,7 @@ type: rule
 kind: MOC
 purpose: Prevents work being planned against stale or contradictory vault state
 status: built
-children: ["[[rule-ask]]", "[[rule-pretask-hook]]", "[[rule-pretask]]", "[[rule-spec-capture]]"]
+children: ["[[rule-ask]]", "[[rule-prespec-hook]]", "[[rule-prespec]]", "[[rule-spec-capture]]"]
 estimates: ["[[estimate-plan-mode-verified]]", "[[estimate-plan-mode-names-its-estimates]]"]
 origin: raw/2026-09-09/ledger.md#case-19
 sprint: migration
@@ -37,3 +37,5 @@ reading of that Render (case 187).
 - 2026-09-16 defer by decision-case-182 superseded · [[decision-case-191]]
 - 2026-09-16 status: built → draft · cascade
 - 2026-09-16 status: draft → built · cascade
+- 2026-09-20 ref `rule-pretask` → `rule-prespec` · [[decision-case-261]]
+- 2026-09-20 ref `rule-pretask-hook` → `rule-prespec-hook` · [[decision-case-261]]

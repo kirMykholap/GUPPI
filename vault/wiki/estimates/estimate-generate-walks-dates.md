@@ -24,7 +24,7 @@ The librarian applies the yaml of this session after the build of 211.1.
 
 Then:
 `estimate-generate-writes`, `-generate-walks-dates`, `-lint-catches`, `-pretask-reconciles`, `-materialize-assembles` carry a `method` field with the text of their `## Method` sections in one line; `## Context` and `## Method` are dropped.
-**＋** `unmigrated` reads 34 after the run: these five, `estimate-pretask-hook-gates` (213.2), `estimate-permissions` (215) and `estimate-brief-written` (209.6) leave the old shape; `estimate-documentation-completes` keeps its `### case` blocks.
+**＋** `unmigrated` reads 34 after the run: these five, `estimate-prespec-hook-gates` (213.2), `estimate-permissions` (215) and `estimate-brief-written` (209.6) leave the old shape; `estimate-documentation-completes` keeps its `### case` blocks.
 **－** The Criterion of these pages does not change; no `pending` is set — except on `estimate-generate-writes`, whose Criterion 211.1 changes.
 
 ## Result
@@ -43,3 +43,4 @@ Then:
 - 2026-09-16 status: pending → passed · raw/2026-09-16/1955/ledger.md#L31
 - 2026-09-17 updated: method as a field, the old sections dropped — the recut completed (case 211.3) · [[decision-case-211.3]]
 - 2026-09-18 status: pending → passed · raw/2026-09-17/1119/ledger.md#L24
+- 2026-09-20 ref `estimate-pretask-hook-gates` → `estimate-prespec-hook-gates` · [[decision-case-261]]

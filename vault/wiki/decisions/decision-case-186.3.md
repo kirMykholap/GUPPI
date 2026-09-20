@@ -14,7 +14,7 @@ tags: [harness, workflow]
 `rule-page-generation` governs `guppi generate`. A `defer` on an existing page sets
 `deferred_by` and appends History `deferred`; a `defer` without a `ref` writes a
 placeholder page, `status: draft`, carrying the fields the Case gave. The Decision page
-of the Case holds `Context`, `Problem` and `Given`. `rule-pretask` governs the pre-task
+of the Case holds `Context`, `Problem` and `Given`. `rule-prespec` governs the pre-task
 skill, which dispatches `ask-guppi` once with the plan file and the instruction to read
 every Case there. `rule-lint` governs `guppi lint`, which reports missing schema fields
 and orphans.
@@ -51,9 +51,9 @@ file path, and the instruction to read every Case's `when`, `then` and `then` bl
 **＋** `rule-work-mode` and `rule-subagent-guppi` are placeholders with 13 `deferred` lines
 each in History; they produce eight lint findings — three `schema` each (`kind`,
 `estimates`, `tags`) and one `orphan` each.
-**＋** `rule-page-generation` carries two Estimates; `rule-lint` and `rule-pretask` carry
+**＋** `rule-page-generation` carries two Estimates; `rule-lint` and `rule-prespec` carry
 one each.
-**＋** `rule-page-generation`, `rule-lint` and `rule-pretask` are all
+**＋** `rule-page-generation`, `rule-lint` and `rule-prespec` are all
 `deferred_by: decision-case-182`, so Slice 3d rewrites them in this same session.
 **－** `rule-ask` is not changed by this Case.
 

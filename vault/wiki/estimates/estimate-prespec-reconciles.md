@@ -1,9 +1,9 @@
 ---
 type: estimate
 kind: QA
-status: passed
-target: "[[rule-pretask]]"
-method: One reading by hand, written into the estimate line — the exception the Method rule allows
+status: pending
+target: "[[rule-prespec]]"
+method: One reading by hand of the first /pre-spec after the render, written into the estimate line — the exception the Method rule allows
 checked: 2026-09-20
 origin: raw/2026-09-09/ledger.md#case-24.2
 sprint: migration
@@ -14,18 +14,18 @@ tags: [session, workflow, harness]
 ## Criterion
 
 Given:
-`guppi pretask --check <plan>` reads the Cases of the plan by their headings, the `then` blocks, the session's `frontier.md` and the session's ledger window; `guppi gate` writes the `pretask` line with the session's stamp on the Skill call.
+`guppi prespec --check <plan>` reads the Cases of the plan by their headings, the `then` blocks, the session's `frontier.md` and the session's ledger window; `guppi gate` writes the `prespec` line with the session's stamp on the Skill call.
 **＋** `--session` takes the eight-character session id — the second token of the `hi:` line, between the time and the folder; `session_stamp` cuts any value to eight characters, so a wrong token answers "no hi recorded for session <8 characters>; nothing checked" on stderr with exit 0, and nothing was checked.
 **＋** An Estimate item of a `then` block is a `create` with `ref`, or an `update` with `set: {status: pending}`; its Criterion is the Case's `given`, `when` and `then` unless the item wrote `sections: Criterion` itself (194.1).
-**＋** The tests in `tests/test_pretask.py` fix `--check`; the live reading is the `/pre-task` of this session.
-**－** The `PreToolUse ExitPlanMode` hook (`rule-pretask-hook`) does not change here.
-**－** The code of `guppi pretask` does not change: the exit 0 without a `hi` is the design of case 213.
+**＋** The tests in `tests/test_prespec.py` fix `--check`; the live reading is the first `/pre-spec` after the render of case 261.
+**－** The `PreToolUse ExitPlanMode` hook (`rule-prespec-hook`) does not change here.
+**－** The code of `guppi prespec` does not change: the exit 0 without a `hi` is the design of case 213.
 
 When:
-The person invokes `/pre-task`, or the agent calls the skill, before the Spec is approved.
+The person invokes `/pre-spec`, or the agent calls the skill, before the Spec is approved.
 
 Then:
-The agent runs `guppi pretask --check` on the plan file with `--session <id>`, the eight-character session id — the second token of the `hi:` line the `UserPromptSubmit` hook put in the context at `/hi`, between the time and the folder (cases 213.3, 256) — and reads the first line of the output before the exit code: "no hi recorded for session …; nothing checked" means the wrong value, and the check did not run; it fixes the plan, the frontier or the line for every finding until the command prints nothing; `guppi gate` writes the stamped `pretask` line into the event log on the Skill call.
+The agent runs `guppi prespec --check` on the plan file with `--session <id>`, the eight-character session id — the second token of the `hi:` line the `UserPromptSubmit` hook put in the context at `/hi`, between the time and the folder (cases 213.3, 256) — and reads the first line of the output before the exit code: "no hi recorded for session …; nothing checked" means the wrong value, and the check did not run; it fixes the plan, the frontier or the line for every finding until the command prints nothing; `guppi gate` writes the stamped `prespec` line into the event log on the Skill call.
 **＋** The agent lists every decision of this Plan Mode, one line each: slug — kind — `purpose` for a `create`, an `update`, a `delete`; a `defer` by its slug and the word `defer`; for an `update` of a rule or an entity, the page's `estimates` and which of them the Case names by slug.
 **＋** `ask-guppi` is dispatched once with the list, the absolute path of the plan file, the instruction to read every Case outside `## Deferred` — `when`, `then`, the `then` block — and two questions: which decisions contradict a page, `index.md` or each other; whether an Estimate the Case does not name speaks of the thing the Case changes.
 **＋** Every finding returned is raised as a Case or named in one line as already known; then Plan Mode exits again.
@@ -62,3 +62,7 @@ The agent runs `guppi pretask --check` on the plan file with `--session <id>`, t
 - 2026-09-18 status: pending → passed · raw/2026-09-17/1119/ledger.md#L39
 - 2026-09-20 updated: the Criterion replaced whole — the session id named as the second token of the hi: line, the first line of the output read (case 256) · [[decision-case-256]]
 - 2026-09-20 status: pending → passed · raw/2026-09-20/0527/ledger.md#L21
+- 2026-09-20 ref `rule-pretask` → `rule-prespec` · [[decision-case-261]]
+- 2026-09-20 ref `rule-pretask-hook` → `rule-prespec-hook` · [[decision-case-261]]
+- 2026-09-20 renamed from `estimate-pretask-reconciles` · [[decision-case-261]]
+- 2026-09-20 updated: renamed with rule-prespec — the Criterion names /pre-spec, guppi prespec, the mark prespec and tests/test_prespec.py (case 261) · [[decision-case-261]]

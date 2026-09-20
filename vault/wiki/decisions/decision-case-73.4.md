@@ -2,7 +2,7 @@
 type: decision
 case: "73.4"
 status: current
-update: ["[[rule-pretask]]"]
+update: ["[[rule-prespec]]"]
 origin: raw/2026-09-12/ledger.md#case-73.4
 sprint: migration
 created: 2026-09-12
@@ -28,7 +28,7 @@ session's, and how every hook and script finds them.
 (case 55.1); the `hi` line carries the time and no session id.
 **＋** `guppi spec` writes `raw/<date>/spec.md`, appending under `---` and a stamp
 (`rule-spec-capture`); `/hi` writes `raw/<date>/frontier.md` (`rule-skill-hi`);
-`pretask --check` reads `raw/<hi date>/frontier.md` (`rule-pretask`); `materialize`
+`pretask --check` reads `raw/<hi date>/frontier.md` (`rule-prespec`); `materialize`
 reads `raw/<date>/spec.md` (`rule-materialize`); Retro appends under `## Deferred` of
 `raw/<date>/spec.md` (`rule-retro`); `/handoff` writes `raw/<today>/handoff.md`, `---`
 before a new document (`rule-handoff`); the librarian's first input is
@@ -51,7 +51,7 @@ without a path and do not change.
 
 ## Criterion
 
-- [[estimate-pretask-reconciles]] § case 73.4
+- [[estimate-prespec-reconciles]] § case 73.4
 
 ## History
 

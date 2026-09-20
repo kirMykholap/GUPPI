@@ -23,8 +23,8 @@ When:
 `guppi generate` applies an `update` whose item carries `rename`.
 
 Then:
-The file `wiki/<category>/<old>.md` becomes `<new>.md`; the page's History gets "renamed from `<old>` · [[decision-case-N]]"; the item's `set`, `sections` and `replace` apply to the new file.
-**＋** In every live page of `wiki/` — Decision pages included — every `[[old]]` becomes `[[new]]`, every `REF_FIELDS` value holding the old slug becomes the new one, and the old slug as a whole word in the body outside `## History` and `## Result` becomes the new one; every page touched, Decision pages excepted, gets the History line "ref `<old>` → `<new>` · [[decision-case-N]]".
+The file `wiki/<category>/<old>.md` becomes `<new>.md`; the page's History gets "renamed from `<old>` · `[[decision-case-N]]`"; the item's `set`, `sections` and `replace` apply to the new file.
+**＋** In every live page of `wiki/` — Decision pages included — every `[[old]]` becomes `[[new]]`, every `REF_FIELDS` value holding the old slug becomes the new one, and the old slug as a whole word in the body outside `## History` and `## Result` becomes the new one; every page touched, Decision pages excepted, gets the History line "ref `<old>` → `<new>` · `[[decision-case-N]]`".
 **＋** The Decision page of the Case is written as today — by the slug of the ledger line, before the entries; the walk retargets its link like any other.
 **＋** The order of application is the order of the yaml: an `update` of the same page from an earlier Case lands on the old file, and the `rename` moves it with the page.
 **－** A taken slug or a foreign prefix: the entry is `failed`, nothing is moved.
@@ -33,3 +33,4 @@ The file `wiki/<category>/<old>.md` becomes `<new>.md`; the page's History gets 
 ## History
 
 - 2026-09-20 created · [[decision-case-258.1]]
+- 2026-09-20 updated: the two placeholders [[decision-case-N]] of the Criterion in code spans, so lint reads no link; the text of 258.1 otherwise (case 262) · [[decision-case-262]]

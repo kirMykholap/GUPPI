@@ -2,7 +2,7 @@
 type: decision
 case: "72.5"
 status: current
-update: ["[[rule-pretask]]", "[[estimate-pretask-reconciles]]"]
+update: ["[[rule-prespec]]", "[[estimate-prespec-reconciles]]"]
 origin: raw/2026-09-12/ledger.md#case-72.5
 sprint: migration
 created: 2026-09-12
@@ -52,11 +52,11 @@ missing `method`, a missing `contract`, or two contracts in one Case. `lint` req
 `estimate-<target minus its prefix>` collides with none of the 34.
 **＋** The Rule pages touched: `rule-case-protocol` (render, governs `CLAUDE.md`,
 `estimate-case-protocol-loaded`), `rule-materialize` (check, `estimate-materialize-assembles`),
-`rule-page-generation` (check, `estimate-generate-writes`), `rule-pretask` (render,
-`estimate-pretask-reconciles`), `rule-lint` (check, `estimate-lint-catches`).
+`rule-page-generation` (check, `estimate-generate-writes`), `rule-prespec` (render,
+`estimate-prespec-reconciles`), `rule-lint` (check, `estimate-lint-catches`).
 **－** Case 53.2 stays: a second Estimate on one target only for a condition that fails
 and is fixed apart, named by `slug` in that Case. Case 68 (deferred, the `defer`-only
-wording of `rule-pretask`) is not taken up here.
+wording of `rule-prespec`) is not taken up here.
 **－** MOC pages get an Estimate the same way, only when a Case gives them `method`;
 without it, none.
 

@@ -20,7 +20,7 @@ Both halves of the Proposal were ratified on the day the Insight was created —
 ## Given
 
 `insight-ledger-line-written-unchecked`: `open`, `severity: 4`, children `lesson-spec-then-items-unchecked-against-ledger-lines`, `lesson-ledger-decision-line-written-without-the-case-word`, `lesson-ledger-preview-in-ratification-taken-for-the-record`, `lesson-pretask-nested-estimate-exempt-from-the-line-check`; all `clustered`.
-**＋** `rule-pretask` `built`, `estimate-pretask-reconciles` `passed`: the `### case 75.2` block — every record line of the window through `materialize.parse_line`, one that does not read is a finding with its date and line number, exit 1; `check_grammar` in `guppi/pretask.py`; the blocks of 59.1 and 72.5 on the same page.
+**＋** `rule-prespec` `built`, `estimate-prespec-reconciles` `passed`: the `### case 75.2` block — every record line of the window through `materialize.parse_line`, one that does not read is a finding with its date and line number, exit 1; `check_grammar` in `guppi/pretask.py`; the blocks of 59.1 and 72.5 on the same page.
 **＋** `case-schema.md`, the table "What a Case produces": `- decision[case 12][update][rule-x]{ref:rule-x}`; "The id is `case N` — the word and a space … (case 75.1)".
 **＋** `rule-ledger-write` `built`, `estimate-ledger-write-lifts` `passed` with the block of 122: `guppi gate` on `PreToolUse Skill` refuses while a `then` item of the Spec has no decision line.
 **＋** `CLAUDE.md` (Case protocol): a line outside a `LEDGER` fence is a preview, never a record.

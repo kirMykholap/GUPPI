@@ -2,13 +2,12 @@
 type: rule
 kind: Leaf
 purpose: Prevents a set of ratified decisions from reaching the Spec with a contradiction between them or with the vault
-status: built
+status: draft
 enforcement: render
-governs: .claude/skills/pre-task/SKILL.md
+governs: .claude/skills/pre-spec/SKILL.md
 render_mode: full
 parent: "[[rule-plan-mode]]"
-estimates: ["[[estimate-pretask-reconciles]]", "[[estimate-pretask-checks-the-plan]]"]
-deferred_by: ["[[decision-case-259]]"]
+estimates: ["[[estimate-prespec-reconciles]]", "[[estimate-prespec-checks-the-plan]]"]
 origin: raw/2026-09-09/ledger.md#case-24.2
 sprint: migration
 created: 2026-09-09
@@ -19,25 +18,25 @@ tags: [session, workflow, harness]
 
 Prevents a set of ratified decisions from reaching the Spec with a contradiction between
 them or with the vault. The question to `ask-guppi` before a `create` without a `ref` asks "does this exist"; this
-one asks, once, "does this set hold together". Its run is recorded by `guppi gate` on the `Skill` call, one `pretask` line with the session's stamp, which is what the pre-task hook looks for (case 136.1).
+one asks, once, "does this set hold together". Its run is recorded by `guppi gate` on the `Skill` call, one `prespec` line with the session's stamp, which is what the pre-spec hook looks for (case 136.1).
 
 ## Render
 
-<!-- rule-pretask -->
+<!-- rule-prespec -->
 ---
-name: pre-task
+name: pre-spec
 description: Check this Plan Mode's ratified decisions against each other and the vault before the Spec is approved.
 ---
 
 
-Run `uv run guppi pretask --check <the plan file of this Plan Mode> --session <id>`, the eight-character session id — the second token of the `hi:` line the `UserPromptSubmit` hook put in the context at `/hi`, between the time and the folder (cases 213.3, 256). Read the first line of the output before the exit code: 'no hi recorded for session …; nothing checked' means the wrong value, and the check did not run. It prints one line
+Run `uv run guppi prespec --check <the plan file of this Plan Mode> --session <id>`, the eight-character session id — the second token of the `hi:` line the `UserPromptSubmit` hook put in the context at `/hi`, between the time and the folder (cases 213.3, 256). Read the first line of the output before the exit code: 'no hi recorded for session …; nothing checked' means the wrong value, and the check did not run. It prints one line
 for every decision line of this session that has no item under its own Case in the plan,
 for every item that has no line, for every line of `raw/<hi date>/<hi HHMM>/frontier.md` (the session's folder, case 73) still open or closed by a Case the plan does not hold, for every ratified Case with a line of a kind other than `defer` and no `tasks` block (a defer-only Case has no work, case 74), for every Estimate a `then` block creates or sets `pending` that no
 task names, for every `file` item on a path a Rule page governs, for every Case whose `then` block holds two or more Estimate items — a `create`, or an `update` with `set: {status: pending}` — without a written `sections: Criterion` (one promise per Case: split it), for every `update` of an Estimate whose page does not exist, and for every `create` of an Estimate whose `ref` names no live rule or entity (case 203.1); an Estimate has its own line and its own item (case 189). It also runs every record line of the session's window — `raw/<hi date>/<hi HHMM>/ledger.md` whole, plus the date-level ledgers from the `hi` date to today from the `hi` time on, while any exist (case 103.4) — through `materialize.parse_line` and prints one line for each that does not parse, with its file and line number (case 75.2). Fix the plan, the frontier or the line for each, then run it again until it prints nothing.
 
-List every decision ratified in this Plan Mode, one line each: slug — decision type — `purpose` for a `create`, an `update` and a `delete`, a `defer` by its slug and the word `defer` alone (case 198); for an `update` of a rule or an entity, add the page's `estimates` and which of them the Case names by slug — `ask-guppi` is asked whether an Estimate the Case does not name speaks of the thing the Case changes; one that does is a finding (case 203.2). Dispatch the `ask-guppi` agent once with that list, the absolute path of the plan file, the instruction to read for every Case there outside the `## Deferred` heading its `when` and `then` sections and its `then` block — `replace` old and new, `set`, `sections` — before judging a page, so that a finding can name a wrong wording or a wrong place, and two questions: which of these contradict a page of the vault, a rule of `index.md`, or each other; whether an Estimate the Case does not name speaks of the thing the Case changes. A deferred decision enters the list by its slug and the word `defer` alone, without its `purpose`, and its body is not read: the session that takes the defer up judges it with its own pre-task. A Case of this plan that changes a page another Case of this plan defers is still a finding (case 186.2). Raise each
+List every decision ratified in this Plan Mode, one line each: slug — decision type — `purpose` for a `create`, an `update` and a `delete`, a `defer` by its slug and the word `defer` alone (case 198); for an `update` of a rule or an entity, add the page's `estimates` and which of them the Case names by slug — `ask-guppi` is asked whether an Estimate the Case does not name speaks of the thing the Case changes; one that does is a finding (case 203.2). Dispatch the `ask-guppi` agent once with that list, the absolute path of the plan file, the instruction to read for every Case there outside the `## Deferred` heading its `when` and `then` sections and its `then` block — `replace` old and new, `set`, `sections` — before judging a page, so that a finding can name a wrong wording or a wrong place, and two questions: which of these contradict a page of the vault, a rule of `index.md`, or each other; whether an Estimate the Case does not name speaks of the thing the Case changes. A deferred decision enters the list by its slug and the word `defer` alone, without its `purpose`, and its body is not read: the session that takes the defer up judges it with its own pre-spec. A Case of this plan that changes a page another Case of this plan defers is still a finding (case 186.2). Raise each
 finding as a Case, or say in one line why it is already known. Then exit Plan Mode again.
-<!-- /rule-pretask -->
+<!-- /rule-prespec -->
 
 ## History
 
@@ -81,3 +80,9 @@ finding as a Case, or say in one line why it is already known. Then exit Plan Mo
 - 2026-09-18 status: draft → built · cascade
 - 2026-09-20 updated: --session takes the eight-character session id, the second token of the hi: line; the first line of the output is read before the exit code (case 256) · [[decision-case-256]]
 - 2026-09-20 deferred · [[decision-case-259]]
+- 2026-09-20 defer by decision-case-259 superseded · [[decision-case-261]]
+- 2026-09-20 renamed from `rule-pretask` · [[decision-case-261]]
+- 2026-09-20 updated: renamed to rule-prespec — the skill /pre-spec, the command guppi prespec, the mark prespec (case 261, supersedes 259) · [[decision-case-261]]
+- 2026-09-20 ref `estimate-pretask-reconciles` → `estimate-prespec-reconciles` · [[decision-case-261]]
+- 2026-09-20 ref `estimate-pretask-checks-the-plan` → `estimate-prespec-checks-the-plan` · [[decision-case-261]]
+- 2026-09-20 status: built → draft · cascade

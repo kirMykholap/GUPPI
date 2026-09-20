@@ -2,7 +2,7 @@
 type: decision
 case: "59.1"
 status: current
-update: ["[[rule-pretask]]", "[[estimate-pretask-reconciles]]"]
+update: ["[[rule-prespec]]", "[[estimate-prespec-reconciles]]"]
 origin: raw/2026-09-12/ledger.md#case-59.1
 sprint: migration
 created: 2026-09-12
@@ -31,11 +31,11 @@ stays unfinished until the next session (the owner, 2026-09-12; a clause of
 
 ## Given
 
-`rule-pretask` (Leaf, `built`, `render`, governs `.claude/skills/pre-task/SKILL.md`, no
+`rule-prespec` (Leaf, `built`, `render`, governs `.claude/skills/pre-task/SKILL.md`, no
 `implementation_ref`) lists the decisions and dispatches `ask-guppi`; its Estimate
-`estimate-pretask-reconciles` (`passed`) reads "the event log gains a `pretask` line, the
+`estimate-prespec-reconciles` (`passed`) reads "the event log gains a `pretask` line, the
 `ask-guppi` agent is dispatched once … every finding raised as a Case or named as known".
-**＋** `rule-pretask-hook` (`built`, `hook`, `guppi/pretask.py`) gates `ExitPlanMode` on
+**＋** `rule-prespec-hook` (`built`, `hook`, `guppi/pretask.py`) gates `ExitPlanMode` on
 the `pretask` line; its payload has no plan (`lesson-hooks-exitplanmode-payload`).
 **＋** `guppi/materialize.py` has `split_cases`, `then_blocks` and `find_item`, the
 parsers the check reuses; `guppi/ledger.py` has `session_event_log`, the `hi` window.

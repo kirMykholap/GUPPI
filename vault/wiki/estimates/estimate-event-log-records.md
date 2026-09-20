@@ -52,9 +52,9 @@ The agent calls the Skill tool with `pre-task`, `retro` or `handoff`, and `guppi
 
 Then:
 The gate appends one line `- HH:MM:SS <stamp> <mark>` to `raw/<date>/event_log.md` — `pretask`, `retro` or `handoff`, the stamp from the payload's `session_id` — in the form `guppi event` writes; on a refusal there is no line.
-**＋** The Render of `rule-pretask`, `rule-retro`, `rule-handoff` loses its `Recorded:` line; `guppi event <name>` stays as a CLI, the skills do not call it.
+**＋** The Render of `rule-prespec`, `rule-retro`, `rule-handoff` loses its `Recorded:` line; `guppi event <name>` stays as a CLI, the skills do not call it.
 **＋** `rule-event-log`: `implementation_ref` gains `guppi/gate.py`, `tests/test_gate.py`; the paragraph on the marks says who writes them; `contract: changed`; `estimate-event-log-records` gets a `### case 136.1` block, `pending`: the test — a Skill payload `pre-task` → the line `<stamp> pretask`; `handoff` on a dirty tree → refused and no line; the live reading — the `/pre-task` of this session with the stamp `07a95bd2`.
-**＋** `rule-pretask`, `rule-retro`, `rule-handoff`: `contract: same`.
+**＋** `rule-prespec`, `rule-retro`, `rule-handoff`: `contract: same`.
 **－** Other skills (`hi`, `grill-me`) get no mark.
 **－** The Frontier line F12 closes on this sub-case.
 
@@ -79,3 +79,4 @@ block 136.1, test and live: tests/test_gate.py — pre-task → `<stamp> pretask
 - 2026-09-14 status: passed → passed · raw/2026-09-14/1229/ledger.md#L1
 - 2026-09-14 criterion: case 136.1 added · [[decision-case-136.1]]
 - 2026-09-14 status: pending → passed · raw/2026-09-14/1229/ledger.md#L25
+- 2026-09-20 ref `rule-pretask` → `rule-prespec` · [[decision-case-261]]

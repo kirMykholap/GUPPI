@@ -19,7 +19,7 @@ Retro без рамки. Коммит — инструкция, которую �
 
 ## Given
 
-`/hi` показал образец skill'а. `rule-pretask-hook` — образец `PreToolUse`-отказа.
+`/hi` показал образец skill'а. `rule-prespec-hook` — образец `PreToolUse`-отказа.
 **＋** Команда человека не проходит через `Skill`. `guppi event tool` читает поле `skill`.
 **－** `gh` не авторизован.
 

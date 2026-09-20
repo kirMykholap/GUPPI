@@ -2,7 +2,7 @@
 type: decision
 case: "66"
 status: current
-update: ["[[rule-case-protocol]]", "[[rule-plan-mode]]", "[[rule-pretask-hook]]", index, "[[rule-harness]]", "[[estimate-retro-loads]]", "[[estimate-spec-capture-appends]]", "[[estimate-render-harness-reproduces]]"]
+update: ["[[rule-case-protocol]]", "[[rule-plan-mode]]", "[[rule-prespec-hook]]", index, "[[rule-harness]]", "[[estimate-retro-loads]]", "[[estimate-spec-capture-appends]]", "[[estimate-render-harness-reproduces]]"]
 origin: raw/2026-09-12/ledger.md#case-66
 sprint: migration
 created: 2026-09-12
@@ -29,7 +29,7 @@ case 58; (6) `rule-harness` says its four children run together in `make lint` a
 59.8 add two that do not; and the criteria of `estimate-retro-loads`,
 `estimate-spec-capture-appends` (`## Retro`) and `estimate-render-harness-reproduces`
 ("no change to `CLAUDE.md`") quote wording 59.5 and 59.8 change. Four findings do not
-hold: `rule-pretask-hook` gates on the `pretask` line and the check is content, not a
+hold: `rule-prespec-hook` gates on the `pretask` line and the check is content, not a
 duplicate; `estimate-brief-written`'s clause on `sprint.md` binds the librarian, and 59.5
 has the agent edit it in Work Mode; 59.3 and 62 replace different sentences of the Render;
 the Render of `rule-claude-md` carries the whole present text of `CLAUDE.md` in its block.
@@ -39,9 +39,9 @@ the Render of `rule-claude-md` carries the whole present text of `CLAUDE.md` in 
 `rules/schema.md`: `parent` is one slug; `implementation_ref` and `## Implementation` for
 `hook` and `check` only; a MOC's `estimates` are cross-cutting. `estimates/schema.md`:
 one `target`.
-**＋** `rule-plan-mode` `children: [rule-case-protocol, rule-ask, rule-pretask-hook,
-rule-pretask, rule-spec-capture]`; `rule-case-protocol` `parent: rule-plan-mode`.
-**＋** `rule-pretask-hook` (`hook`, `guppi/pretask.py`, `.claude/settings.json`) gates
+**＋** `rule-plan-mode` `children: [rule-case-protocol, rule-ask, rule-prespec-hook,
+rule-prespec, rule-spec-capture]`; `rule-case-protocol` `parent: rule-plan-mode`.
+**＋** `rule-prespec-hook` (`hook`, `guppi/pretask.py`, `.claude/settings.json`) gates
 `ExitPlanMode` on the `pretask` line.
 **＋** `rule-harness` Purpose: "Four rules belong to no phase of the session: the renderer,
 the hook registry, lint and the indexes. They run together in `make lint`…";

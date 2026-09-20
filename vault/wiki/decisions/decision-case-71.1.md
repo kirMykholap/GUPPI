@@ -33,16 +33,16 @@ only for a decision line with the Estimate's slug (test
 **＋** `pretask.items_of` marks a nested `estimate` as `nested: True`, "covered by its
 parent's line since case 53.1"; Case 53.1 says "a lesson entry writes the lesson only;
 no paired Estimate" and nothing about Leaf creates.
-**＋** `rule-pretask` Render: "It prints one line for every decision line of this session
+**＋** `rule-prespec` Render: "It prints one line for every decision line of this session
 that has no item under its own Case in the plan, for every item that has no line, …".
-`estimate-pretask-reconciles` Criterion: "a line without an item, an item without a
+`estimate-prespec-reconciles` Criterion: "a line without an item, an item without a
 line, and an item under another sub-case's heading are each one finding, exit 1".
 **＋** `generate` on a `create` of category `estimates` with `ref` appends the slug to
 the target's `estimates` and its `## Estimates` section (`generate.py` lines 278–281,
 335–341). Both slugs are free in `wiki/` and `archived/`.
 **＋** Tags: `rule-governed-files-hook` [hooks, harness, render], `rule-claude-md`
 [harness, render]; the Estimates take their Rule's tags, as a nested one would.
-**－** Case 68 (deferred) is the other wording of `rule-pretask`, the `defer`-only
+**－** Case 68 (deferred) is the other wording of `rule-prespec`, the `defer`-only
 exemption; this Case does not touch it.
 
 ## History

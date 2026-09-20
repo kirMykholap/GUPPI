@@ -2,7 +2,7 @@
 type: decision
 case: "90.2"
 status: current
-update: ["[[rule-pretask]]"]
+update: ["[[rule-prespec]]"]
 origin: raw/2026-09-12/ledger.md#case-90.2
 sprint: migration
 created: 2026-09-12
@@ -48,7 +48,7 @@ the next Plan Mode fixes, instead of a hand nobody signed.
 
 ## Criterion
 
-- [[estimate-pretask-reconciles]] § case 90.2
+- [[estimate-prespec-reconciles]] § case 90.2
 
 ## History
 

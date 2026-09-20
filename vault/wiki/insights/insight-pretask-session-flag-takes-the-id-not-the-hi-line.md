@@ -17,9 +17,10 @@ Two lessons, one cause. In session 1252 the agent passed the whole `hi:` line �
 
 ## Proposal
 
-An `update` of the Render of `rule-pretask` that names the eight-character session id — the second token of the `hi:` line — as the value of `--session`, and one line on the reading of the output: the first line, not the exit code. A suggestion, not a decision.
+An `update` of the Render of `rule-prespec` that names the eight-character session id — the second token of the `hi:` line — as the value of `--session`, and one line on the reading of the output: the first line, not the exit code. A suggestion, not a decision.
 
 ## History
 
 - 2026-09-18 created · raw/2026-09-18/2253/ledger.md#L3
 - 2026-09-20 updated: actioned — the Render of rule-pretask names the eight-character id and the reading of the output's first line (case 256) · [[decision-case-256]]
+- 2026-09-20 ref `rule-pretask` → `rule-prespec` · [[decision-case-261]]

@@ -2,7 +2,7 @@
 type: decision
 case: "59.3"
 status: current
-update: ["[[rule-case-protocol]]", case-schema, index, "[[rule-retro]]", "[[rule-spec-capture]]", "[[rule-pretask]]", "[[estimate-pretask-reconciles]]"]
+update: ["[[rule-case-protocol]]", case-schema, index, "[[rule-retro]]", "[[rule-spec-capture]]", "[[rule-prespec]]", "[[estimate-prespec-reconciles]]"]
 origin: raw/2026-09-12/ledger.md#case-59.3
 sprint: migration
 created: 2026-09-12

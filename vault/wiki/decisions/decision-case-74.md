@@ -2,7 +2,7 @@
 type: decision
 case: "74"
 status: current
-update: ["[[rule-pretask]]"]
+update: ["[[rule-prespec]]"]
 supersedes: ["[[decision-case-68]]"]
 origin: raw/2026-09-12/ledger.md#case-74
 sprint: migration
@@ -20,17 +20,17 @@ not. Deferred as Case 68.
 
 ## Problem
 
-The Render of `rule-pretask` and the criterion of `estimate-pretask-reconciles` say "a
+The Render of `rule-prespec` and the criterion of `estimate-prespec-reconciles` say "a
 Case with decision lines". The code says "a Case with a line other than `defer`". One
 of them yields.
 
 ## Given
 
-`rule-pretask` Render: "for every ratified Case without a `tasks` block"; `deferred_by:
+`rule-prespec` Render: "for every ratified Case without a `tasks` block"; `deferred_by:
 [decision-case-68]`. `guppi/pretask.py` `check_tasks`: `with_work` is the Cases with a
 line whose kind is not `defer`; the finding "decision lines and no tasks block" fires
 for those only, with the comment "a defer-only Case has no work (case 59.5)".
-**＋** `estimate-pretask-reconciles` Criterion: "a Case with decision lines and no
+**＋** `estimate-prespec-reconciles` Criterion: "a Case with decision lines and no
 `tasks` block ... are each one finding"; `pending` since 72.5; its Criterion gains this
 Case's block by 72.3 and the `### case 68` removal finds nothing to remove.
 **＋** Case 59.5: a short-form defer has `context`, `problem` and a `defer` block only.
@@ -40,7 +40,7 @@ touch different sentences.
 
 ## Criterion
 
-- [[estimate-pretask-reconciles]] § case 74
+- [[estimate-prespec-reconciles]] § case 74
 
 ## History
 

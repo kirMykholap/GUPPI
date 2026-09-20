@@ -3,7 +3,7 @@ type: decision
 case: "59.2"
 status: current
 create: ["[[estimate-hi-writes-frontier]]"]
-update: ["[[rule-skill-hi]]", "[[rule-pretask]]", "[[estimate-pretask-reconciles]]", "[[rule-case-protocol]]", index]
+update: ["[[rule-skill-hi]]", "[[rule-prespec]]", "[[estimate-prespec-reconciles]]", "[[rule-case-protocol]]", index]
 origin: raw/2026-09-12/ledger.md#case-59.2
 sprint: migration
 created: 2026-09-12
@@ -38,7 +38,7 @@ pick the order or defer items"; its Estimate `estimate-hi-no-read-calls` (`passe
 the loading and the `hi` line, not what the agent writes.
 **＋** `rule-case-protocol` (Render in `CLAUDE.md`) says "Plan Mode does not end while a
 Frontier item is neither ratified nor deferred" and names no file.
-**＋** `rule-pretask` gains `guppi pretask --check <plan>` by case 59.1; `guppi/pretask.py`
+**＋** `rule-prespec` gains `guppi pretask --check <plan>` by case 59.1; `guppi/pretask.py`
 already reads the session's window from the event log.
 **＋** `index.md` §1 lists the files of `raw/<date>/`: `ledger.md`, `event_log.md`,
 `spec.md`, `plan.md`, `handoff.md`, `materialize.yaml`; no `frontier.md`.

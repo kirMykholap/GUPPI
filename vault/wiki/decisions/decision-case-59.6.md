@@ -3,7 +3,7 @@ type: decision
 case: "59.6"
 status: current
 create: ["[[rule-governed-files-hook]]"]
-update: ["[[rule-hook-registry]]", "[[rule-case-protocol]]", "[[rule-pretask]]", "[[estimate-pretask-reconciles]]"]
+update: ["[[rule-hook-registry]]", "[[rule-case-protocol]]", "[[rule-prespec]]", "[[estimate-prespec-reconciles]]"]
 origin: raw/2026-09-12/ledger.md#case-59.6
 sprint: migration
 created: 2026-09-12

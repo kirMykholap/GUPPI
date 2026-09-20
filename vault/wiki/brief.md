@@ -1,67 +1,82 @@
-# Brief — 2026-09-20, after session 0527 of 2026-09-20 (the fork of `guppi spec` as `additionalContext`, `--session` is the session id, `update` with `rename` in materialize and generate; the rename to `prespec` deferred to 259, Slice 3b to 260)
+# Brief — 2026-09-20, after session 0740 of 2026-09-20 (the rename `pretask → prespec` by Case 261, the placeholder of `estimate-generate-renames` by 262, Slice 3b deferred to 263)
 
-Written by the librarian from `raw/2026-09-20/0527/handoff.md`, the yamls of
-`raw/2026-09-20/0527` and `raw/2026-09-18/2253`, and the Greps of the indexes.
+Written by the librarian from `raw/2026-09-20/0740/handoff.md`, the yamls of
+`raw/2026-09-20/0740` and `raw/2026-09-20/0527`, and the Greps of the indexes.
 
 ## Where things stand
 
-- Code, commit `8252674` on `migration`: `guppi/spec.py` — the fork printed as JSON
-  `hookSpecificOutput.additionalContext` (255), three tests parse it; `guppi/materialize.py`
-  — `rename` carried into an update entry, named in the docstring (258.2), one test;
-  `guppi/generate.py` — `Vault.rename`, `reword`, `retarget`: the move, History
-  `renamed from`, the walk of every live page with `ref old → new` History lines (Decision
-  pages retargeted without one), the refusal on a taken (live or archived) or foreign slug,
-  an archived page refused (258.1), four tests. By hand: `index.md` §3 and §5,
-  `case-schema.md`, `decisions/schema.md`, `glossary.md`. 434 tests green, style clean.
-- Spec 0527: 13 lines ticked in the session — code, tests, four files, three readings;
-  this run ticked the 12 page lines and the `render` line. Two `read` lines stay unticked
-  (below). Spec 2054: its four `read` lines ticked in the session; nothing unticked.
-- Readings in the session: `estimate-case-protocol-loaded`, `estimate-materialize-assembles`,
-  `estimate-pretask-reconciles`, `estimate-retro-loads` — all `passed`. The reading of
-  `estimate-pretask-reconciles` ran on the old skill text and followed the new Criterion
-  (`--session 8ce3afdd`, the first line of the output read); the person counted it.
-- Not done: Case 257 — the rename `pretask → prespec` in every form (skill, pages, module,
-  command, mark, tests, the word in Renders and live pages) — deferred by 259, first next
-  session; Slice 3b — defer 260, the ninth; the live parts of two readings (below); F4 to
-  Slice 5.
-- Two units materialized. `raw/2026-09-20/0527`: 23 entries — 7 Decision pages created
-  (255, 256, 258.1, 258.2, 258.3, 259, 260); rules: 4 updated (`rule-spec-capture`,
-  `rule-pretask`, `rule-page-generation`, `rule-materialize`), 4 deferred (`rule-pretask`,
-  `rule-pretask-hook` by 259; `rule-work-mode`, `rule-subagent-guppi` by 260); estimates:
-  1 created (`estimate-generate-renames`, `pending`), 3 updated
-  (`estimate-spec-capture-offers-the-fork` to `pending`; `estimate-pretask-reconciles` and
-  `estimate-materialize-assembles` to `pending`, then `passed` by their readings later in the
-  ledger), 4 readings applied (`passed`); lessons: 2 created
-  (`lesson-hooks-posttooluse-stdout-not-in-context`,
-  `lesson-spec-change-line-with-a-colon-breaks-the-then-block`), both `new`; insights: 1
-  updated (`insight-pretask-session-flag-takes-the-id-not-the-hi-line`, `actioned`,
-  `addressed_by: [[decision-case-256]]`); 4 Rule-class files (`index`, `case-schema`,
-  `decisions-schema`, `glossary`) marked applied by hand by `generate`. 27 pages written or
-  changed. `raw/2026-09-18/2253`: 2 entries new since the last run — the readings of
-  `estimate-sprint-ticks-the-spec` and `estimate-render-harness-ticks-the-spec` (`passed`);
-  4 pages changed. Cleanup moved 2 pages: the two lessons of the actioned Insight, to
-  `archive/migration/2026-09-20/0527/lessons/`.
-- Statuses computed by `generate`: `rule-sprint`, `rule-render-harness`, `rule-case-protocol`,
-  `rule-retro` `draft` → `built` (their readings passed); `rule-spec-capture` and
-  `rule-page-generation` `built` → `draft` (one Estimate of each `pending`); `rule-pretask`
-  and `rule-materialize` stay `built` (set `pending`, then `passed` in the same unit).
-  `deferred_by` of `rule-pretask` and `rule-pretask-hook` is `decision-case-259`; of
-  `rule-work-mode` and `rule-subagent-guppi` now ends at `decision-case-260`.
-- Rendered: `.claude/skills/pre-task/SKILL.md` (256, one line: the eight-character session
-  id as `--session`, the first line of the output read). `CLAUDE.md` unchanged
-  (`rule-case-protocol` was not touched). `vault/wiki/sprint.md` rewritten by `guppi sprint`:
-  Slice 3b current, both items `draft` with defers to 260.
-- Tests: 434 green (`make test`), style clean at `8252674`.
+- Code, commit `738e3ef` on `migration`: `guppi/pretask.py` → `guppi/prespec.py`,
+  `tests/test_pretask.py` → `tests/test_prespec.py` by `git mv`; the word swapped in
+  `guppi/cli.py`, `guppi/gate.py` (`MARKS = {"pre-spec": "prespec", …}`, the mark
+  `prespec`), `guppi/pages.py`, `tests/test_gate.py`, `tests/test_ledger.py`, `Makefile`;
+  the stderr prefix `prespec:`. By hand: `index.md`, `case-schema.md`, `glossary.md`; the
+  word migrated in `rule-skill-hi`, `rule-case-protocol`, `rule-ask`, `rule-hook-registry`,
+  `rule-event-log`, `rule-ledger-write`, `rule-retro-commit`, `entity-sprint-migration`;
+  `guppi render` in the session rewrote `CLAUDE.md`, `.claude/agents/ask-guppi.md`,
+  `.claude/skills/hi/SKILL.md`, `.claude/settings.json`; `.claude/skills/pre-task/` removed.
+  434 tests green, style clean.
+- Closed in the session: Case 261 (8 update lines, `{supersedes:case 259}`), Case 262
+  (1 update), Case 263 (2 defer). Readings passed: `estimate-spec-capture-offers-the-fork`
+  (the fork arrived as `PostToolUse` `additionalContext` at 08:55:25, the first time in four
+  sessions), `estimate-prespec-checks-the-plan` (52 green in `tests/test_prespec.py`; the
+  line of 09:10:20 said 72, the line of 09:26:38 corrects it and is the one applied),
+  `estimate-prespec-hook-gates` (pytest; the live part is the approval of the next plan).
+- Spec 0740: 17 lines ticked — 11 in the session, the five page updates of 261 and the
+  update of 262 by this run; unticked: the read of `estimate-prespec-reconciles` (line 172,
+  next session) and the read of `estimate-generate-renames` (line 224; below). Spec 0527:
+  line 160, the same reading, unticked.
+- Not done: the live part of `estimate-prespec-hook-gates`; `estimate-prespec-reconciles`;
+  Slice 3b (defer 263, the tenth); the seven Estimates whose Criteria and `method` keep the
+  old word until their next `update` — `estimate-hi-writes-frontier`,
+  `estimate-event-log-records`, `estimate-retro-commit-gates`, `estimate-plan-mode-verified`,
+  `estimate-generate-writes`, `estimate-generate-walks-dates`,
+  `estimate-documentation-completes` — debt by 261.
+- Two units in the walk. `raw/2026-09-20/0740`: 16 entries — 3 Decision pages created
+  (261, 262, 263); rules: 2 updated with `rename` (`rule-pretask` → `rule-prespec`,
+  `rule-pretask-hook` → `rule-prespec-hook`), 2 deferred (`rule-work-mode`,
+  `rule-subagent-guppi` by 263); estimates: 4 updated (`estimate-pretask-reconciles` →
+  `estimate-prespec-reconciles`, `estimate-pretask-checks-the-plan` →
+  `estimate-prespec-checks-the-plan`, `estimate-pretask-hook-gates` →
+  `estimate-prespec-hook-gates`, each `pending` with a written Criterion;
+  `estimate-generate-renames`, the placeholders in code spans), 4 reading lines applied on 3
+  pages (`estimate-spec-capture-offers-the-fork`, `estimate-prespec-checks-the-plan` twice,
+  `estimate-prespec-hook-gates` — all `passed`); lessons: 1 created
+  (`lesson-ledger-estimate-line-carried-a-count-not-read`, `new`); 3 Rule-class files
+  (`index`, `case-schema`, `glossary`) marked applied by hand. 95 pages written or changed:
+  the rename walk rewrote every live page with a link to one of the five old slugs, Decision
+  pages included. `raw/2026-09-20/0527`: 0 new entries; its two defers of 259 marked
+  `superseded_by: 261`. Cleanup moved 1 page: `decision-case-259` (superseded) to
+  `archive/migration/2026-09-20/0740/decisions/`.
+- The rename, as read after `generate`: the five files exist under the new slugs and none
+  under the old; `children` of `rule-plan-mode`, `estimates` of the two rules, `target` of
+  the three Estimates and every wikilink in live pages (32 Decision pages among them) name
+  the new slugs — zero `[[rule-pretask…]]` or `[[estimate-pretask…]]` left in `wiki/`;
+  `origin` of each page keeps the old ledger anchor; History keeps the old word in its
+  earlier lines and gained `renamed from` and `ref old → new` lines under
+  `[[decision-case-261]]`; the Result of `estimate-prespec-checks-the-plan` is the 52 line;
+  `deferred_by: decision-case-259` left both rules through the `supersedes` on line 1 of
+  261, and 259 is archived. `guppi render` wrote `.claude/skills/pre-spec/SKILL.md`; no other
+  harness file differed.
+- Statuses computed by `generate`: `rule-prespec` `built` → `draft`
+  (`estimate-prespec-reconciles` `pending`); `rule-spec-capture` `draft` → `built` (its
+  reading passed); `rule-prespec-hook` stays `built`; `rule-page-generation` stays `draft`
+  (`estimate-generate-renames` `pending`). `deferred_by` of `rule-work-mode` and
+  `rule-subagent-guppi` now ends at `decision-case-263`.
+- `vault/wiki/sprint.md` rewritten by `guppi sprint`: Slice 3b current, both items `draft`
+  with defers to 263.
+- Tests: 434 green (`make test`), style clean at `738e3ef`.
 
 ## Readings due
 
-- `estimate-spec-capture-offers-the-fork` — `rule-spec-capture` stands `draft` — read at
-  line 46 of `raw/2026-09-20/0527/spec.md`: pytest and the `ExitPlanMode` result of a
-  session after the change. Pytest is green; every `ExitPlanMode` of session 0527 ran the
-  old code, so the live part is the first `ExitPlanMode` of the next session.
-- `estimate-generate-renames` — `rule-page-generation` stands `draft` — read at line 160 of
-  the 0527 Spec: pytest, and the librarian's run on the first real rename. Pytest is green;
-  the first real rename is Case 259, next session; no entry of this unit carried `rename`.
+- `estimate-generate-renames` — `rule-page-generation` stands `draft` — read at line 224 of
+  `raw/2026-09-20/0740/spec.md` (and line 160 of the 0527 Spec): the librarian's run on
+  Case 261. The run is done and every check of the Criterion held (the paragraph on the
+  rename above). The `estimate[estimate-generate-renames][passed]` line is the main agent's
+  to write; the librarian returned it in its report. The page stands `pending` until that
+  line is applied.
+- `estimate-prespec-reconciles` — `rule-prespec` stands `draft` — read at line 172 of the
+  0740 Spec: the first `/pre-spec` after the render, one reading by hand written into the
+  estimate line — the next session.
 - `estimate-sprint-migration-lint-clean` — `entity-sprint-migration` — by its `method`:
   `make lint` exit 0, or only unread lines on the sprint page's own Estimates, at the close
   of the sprint.
@@ -74,77 +89,76 @@ No Estimate stands `failed`.
 
 ## Deferred
 
-1. `rule-pretask` — defer 259, first brief. Purpose of the defer: rename to `rule-prespec`
-   by an `update` with `rename` (case 258), with the skill `/pre-spec`, the module
-   `guppi/prespec.py`, the command `guppi prespec`, the mark `prespec`, the three Estimates
-   and the word in every Render and live page; the first item of the next session, so that
-   the mechanism of 258 is used after it is built and tested. The handoff names it first.
-2. `rule-pretask-hook` — defer 259, first brief. Purpose of the defer: rename to
-   `rule-prespec-hook` in the same Case as `rule-pretask`; the refusal names `/pre-spec`,
-   the mark it looks for is `prespec`.
+Nothing stands in the list.
 
-Left the list: `insight-pretask-session-flag-takes-the-id-not-the-hi-line` — `actioned` by
-256 (`addressed_by: [[decision-case-256]]`), its two lessons archived by the cascade.
+Left the list: `rule-pretask` and `rule-pretask-hook` — the defer of 259 retired by the
+`supersedes` on line 1 of Case 261; the pages are `rule-prespec` and `rule-prespec-hook`.
 
 Left out, the sprint page names them (case 229.4): `rule-work-mode` and
-`rule-subagent-guppi` (defer 260 this walk; 183, 206, 218, 231, 242, 248, 252, 254 before —
-Slice 3b, the current milestone); `insight-workflow-code-live-before-the-page-it-reads`
-(`open`, severity 2, defer 238; in the text of the `rule-work-mode` item);
-`rule-git-context`, `rule-github-issues` (defers 220, 243; Slice 5, in the text of the
-`estimate-sprint-migration-merges` item); `rule-spec-box` (defers 207, 219, 232; Slice 5);
-`rule-morph` (defer 239; Slice 5).
+`rule-subagent-guppi` (defer 263 this walk, the tenth; 183, 206, 218, 231, 242, 248, 252,
+254, 260 before — Slice 3b, the current milestone);
+`insight-workflow-code-live-before-the-page-it-reads` (`open`, severity 2, defer 238; in the
+text of the `rule-work-mode` item); `rule-git-context`, `rule-github-issues` (defers 220,
+243; Slice 5, in the text of the `estimate-sprint-migration-merges` item); `rule-spec-box`
+(defers 207, 219, 232; Slice 5); `rule-morph` (defer 239; Slice 5).
 
 ## Flags
 
-- Handoff flags, each a Case of the next Plan Mode: Case 257, the rename `pretask →
-  prespec` (defer 259, "the first item of the next session"); Slice 3b — `rule-work-mode`,
-  `rule-subagent-guppi` (defer 260, after the rename), with the sentence of
-  `insight-workflow-code-live-before-the-page-it-reads` written into `rule-work-mode`.
-- `near`: `lesson-hooks-posttooluse-stdout-not-in-context` is close to
-  `lesson-hooks-messagedisplay-cannot-block` — both are a fact on what a hook event delivers
-  to the agent, on different events; not the same cause, no Insight. The second lesson,
-  `lesson-spec-change-line-with-a-colon-breaks-the-then-block`, shares its cause with no live
-  lesson and no Insight; `insight-ledger-line-written-unchecked` is a different mechanism
-  (nothing reads a ledger line back; the `then` block was caught by `pretask --check`); no
-  YAML-form lesson stands in the live lesson index. Both lessons stay `new`.
-- Lint, new: `estimates/estimate-generate-renames: ref: body names decision-case-N, which no
-  live or archived page carries` — the Criterion of 258.1 writes the History line with the
-  placeholder `[[decision-case-N]]` literally, twice; ratified text, not repaired.
+- Handoff flag, a Case of the next Plan Mode: Slice 3b — `rule-work-mode`,
+  `rule-subagent-guppi` (defer 263, "the first item of the next session"), with the sentence
+  of `insight-workflow-code-live-before-the-page-it-reads` written into `rule-work-mode`.
+- The handoff asked the librarian to write the `estimate[estimate-generate-renames]` line.
+  A ledger line is the main agent's (a subagent returns a measurement); the librarian did
+  not write it and returned the reading in its report: every check passed. Until the line
+  is written and applied the Estimate stands `pending` and lint names it `unread`.
+- Synthesis: `lesson-ledger-estimate-line-carried-a-count-not-read` was compared with
+  `insight-ledger-line-written-unchecked`, as the handoff asked. The Insight is `actioned`
+  (case 135, `addressed_by: [[decision-case-135]]`), not `open` as the handoff says; its
+  pattern is a line that does not parse or does not match the Spec — a form checked by
+  `prespec --check` since 75.2. The new lesson's line parsed and matched; its count was
+  composed from memory after one combined pytest run. Not the same cause; not clustered;
+  the lesson stays `new`. No live lesson shares the cause.
+- Lint, standing after 262: `estimates/estimate-generate-renames: ref: body names
+  decision-case-N, which no live or archived page carries`. The two placeholders of the
+  Criterion are in code spans now (lines 26–27 of the page) and lint reads no link there;
+  the finding comes from the History line of 262 itself, written from the ratified `change`
+  text "the two placeholders [[decision-case-N]] of the Criterion in code spans…" — a bare
+  wikilink in History, which lint counts as a ref. Not repaired.
+- The reading of `estimate-prespec-checks-the-plan` at 09:10:20 carried "72 green in the
+  file"; the true count is 52. The lesson above and the second estimate line at 09:26:38
+  stand for it; `generate` applied both lines in order and the Result is the 52 line.
 - Two readings cannot close this session and stand `pending` after this run:
-  `estimate-spec-capture-offers-the-fork` (the fork line was absent a third time in 0527,
-  on the old code) and `estimate-generate-renames` (the live part is the run on 259).
-- The 2253 session wrote its two readings after its retro commit without ticking their
-  Spec lines; ticked in 0527 by hand (2054 Spec lines 53, 95, 163, 194) and committed with
-  the ledger of 2253. The cause is not known; no lesson.
-- `render --sync` at `/hi` of 0527 hit a failed permission check (the classifier
-  unavailable); no harness file differed.
-- F4 of the Frontier: the failed `git pull` without an upstream and `gh` not logged in in
-  `/hi` close as `work` until Slice 5 (the defer of 243 stands).
-- The handoff's note on `rename` and History: History is not rewritten by design (258.1);
-  lint reads wikilinks in History, `generate` writes History slugs bare; the one non-decision
-  wikilink in a live History section is `[[entity-cart]]` in `estimates/schema.md`. A
-  hand-written `[[slug]]` in a History section is the one case the rename of 259 would
-  leave stale — a known boundary.
+  `estimate-prespec-reconciles` (the first `/pre-spec`, next session) and
+  `estimate-generate-renames` (its line, above). The live part of
+  `estimate-prespec-hook-gates` — the approval of the next plan through the rendered
+  `/pre-spec` — is not an Estimate status; the page is `passed` on pytest.
+- The word "pre-task" stands in live pages where it names the query before a Case (the
+  `tags` rows of the schemas, `index.md`, `case-schema.md`, `rule-brief`, `entities/schema.md`,
+  `decisions/schema.md`, `rule-index-check`, line 41 of `entity-sprint-migration`); by the
+  Case, not a miss. The Criteria and `method` of seven Estimates keep the old word (the
+  "Not done" item above); debt by 261.
+- `make lint` no longer names `.claude/skills/pre-task/SKILL.md`; the render finding of the
+  previous session is gone.
 - `materialize`, standing: `raw/2026-09-18/1252/materialize.yaml` — "line 8 changed since
-  the yaml was written; entry left alone". New this run: "line 3 changed since the yaml was
-  written; entry left alone" — the script names no unit; the yaml whose line 3 the last run
-  extended with the synthesis entries is `raw/2026-09-18/2253/materialize.yaml`.
+  the yaml was written; entry left alone"; `raw/2026-09-18/2253/materialize.yaml` — "line 3
+  changed since the yaml was written; entry left alone". Neither was printed this run: the
+  walk named 0527 and 0740 only.
 - Standing: the defer of 238 on `insight-workflow-code-live-before-the-page-it-reads`
   without a `purpose`; `estimate-hi-no-read-calls` in the shape before case 193 by choice;
   `rule-spec-box` placeholder findings (`kind`, `estimates`, orphan).
-- Stale defers by lint: `rule-work-mode` and `rule-subagent-guppi` 21 times since case 29;
+- Stale defers by lint: `rule-work-mode` and `rule-subagent-guppi` 22 times since case 29;
   `rule-morph` 1 time since case 239.
-- No entry marked `incomplete`, `failed` or `unparsed` in either yaml; one `near` (above);
-  no failed Estimate; no MOC candidate; four `exists` marks on the defers of pages already
-  on disk (expected: a `defer` with a `ref`).
+- No entry marked `incomplete`, `failed`, `near` or `unparsed` in either yaml; no failed
+  Estimate; no MOC candidate; two `exists` marks on the defers of 263 (expected: a `defer`
+  with a `ref`).
 - Lint, 75 findings: 2 `rules/rule-spec-box` schema (`kind`, `estimates`) and 1 orphan;
-  62 `decisions/decision-case-<3–28>` missing `## Context` and `## Problem` (31 pages,
+  62 `decisions/decision-case-<1–28>` missing `## Context` and `## Problem` (31 pages,
   Slice 5); 1 `ref` on `estimate-generate-renames` (above); 3 deferred (`rule-morph` 1,
-  `rule-subagent-guppi` 21, `rule-work-mode` 21); 5 unread pending (the Readings due);
+  `rule-subagent-guppi` 22, `rule-work-mode` 22); 5 unread pending (the Readings due);
   `estimates: unmigrated: 29 pages in the shape before case 193`.
 
 ## Readings at the close
 
 - `make test`: 434 passed.
 - `make lint`: 75 findings, exit 1 (the list above).
-- Pages: entities 2, rules 44, estimates 68, lessons 34, insights 14, decisions 356.
+- Pages: entities 2, rules 44, estimates 68, lessons 35, insights 14, decisions 358.

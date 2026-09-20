@@ -2,7 +2,7 @@
 type: decision
 case: "211.3"
 status: current
-update: ["[[estimate-generate-writes]]", "[[estimate-generate-walks-dates]]", "[[estimate-lint-catches]]", "[[estimate-pretask-reconciles]]", "[[estimate-materialize-assembles]]"]
+update: ["[[estimate-generate-writes]]", "[[estimate-generate-walks-dates]]", "[[estimate-lint-catches]]", "[[estimate-prespec-reconciles]]", "[[estimate-materialize-assembles]]"]
 origin: raw/2026-09-16/2238/ledger.md#case-211.3
 sprint: migration
 created: 2026-09-16

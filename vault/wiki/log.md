@@ -2161,3 +2161,46 @@ instruction. The global feed; a page's own `## History` is the per-page view.
 - 2026-09-20 lessons/lesson-pretask-session-flag-took-the-folder-for-the-stamp archived · insight actioned · generate
 - 2026-09-20 lessons/lesson-pretask-session-flag-takes-the-id-not-the-hi-line archived · cleanup
 - 2026-09-20 lessons/lesson-pretask-session-flag-took-the-folder-for-the-stamp archived · cleanup
+- 2026-09-20 decisions/decision-case-261 created · raw/2026-09-20/0740/ledger.md#case-261 · generate
+- 2026-09-20 decisions/decision-case-259 superseded by decision-case-261 · [[decision-case-261]] · generate
+- 2026-09-20 rules/rule-pretask defer by decision-case-259 superseded · [[decision-case-261]] · generate
+- 2026-09-20 rules/rule-pretask-hook defer by decision-case-259 superseded · [[decision-case-261]] · generate
+- 2026-09-20 rules/rule-prespec renamed from `rule-pretask` · [[decision-case-261]] · generate
+- 2026-09-20 rules/rule-plan-mode ref `rule-pretask` → `rule-prespec` · [[decision-case-261]] · generate
+- 2026-09-20 estimates/estimate-event-log-records ref `rule-pretask` → `rule-prespec` · [[decision-case-261]] · generate
+- 2026-09-20 estimates/estimate-pretask-checks-the-plan ref `rule-pretask` → `rule-prespec` · [[decision-case-261]] · generate
+- 2026-09-20 estimates/estimate-pretask-hook-gates ref `rule-pretask` → `rule-prespec` · [[decision-case-261]] · generate
+- 2026-09-20 estimates/estimate-pretask-reconciles ref `rule-pretask` → `rule-prespec` · [[decision-case-261]] · generate
+- 2026-09-20 insights/insight-pretask-session-flag-takes-the-id-not-the-hi-line ref `rule-pretask` → `rule-prespec` · [[decision-case-261]] · generate
+- 2026-09-20 rules/rule-prespec updated: renamed to rule-prespec — the skill /pre-spec, the command guppi prespec, the mark prespec (case 261, supersedes 259) · [[decision-case-261]] · generate
+- 2026-09-20 rules/rule-prespec-hook renamed from `rule-pretask-hook` · [[decision-case-261]] · generate
+- 2026-09-20 rules/rule-plan-mode ref `rule-pretask-hook` → `rule-prespec-hook` · [[decision-case-261]] · generate
+- 2026-09-20 estimates/estimate-pretask-checks-the-plan ref `rule-pretask-hook` → `rule-prespec-hook` · [[decision-case-261]] · generate
+- 2026-09-20 estimates/estimate-pretask-hook-gates ref `rule-pretask-hook` → `rule-prespec-hook` · [[decision-case-261]] · generate
+- 2026-09-20 estimates/estimate-pretask-reconciles ref `rule-pretask-hook` → `rule-prespec-hook` · [[decision-case-261]] · generate
+- 2026-09-20 rules/rule-prespec-hook updated: renamed to rule-prespec-hook — the hook guppi prespec, the mark prespec, the refusal names /pre-spec (case 261) · [[decision-case-261]] · generate
+- 2026-09-20 estimates/estimate-prespec-reconciles renamed from `estimate-pretask-reconciles` · [[decision-case-261]] · generate
+- 2026-09-20 rules/rule-prespec ref `estimate-pretask-reconciles` → `estimate-prespec-reconciles` · [[decision-case-261]] · generate
+- 2026-09-20 estimates/estimate-prespec-reconciles updated: renamed with rule-prespec — the Criterion names /pre-spec, guppi prespec, the mark prespec and tests/test_prespec.py (case 261) · [[decision-case-261]] · generate
+- 2026-09-20 estimates/estimate-prespec-checks-the-plan renamed from `estimate-pretask-checks-the-plan` · [[decision-case-261]] · generate
+- 2026-09-20 rules/rule-prespec ref `estimate-pretask-checks-the-plan` → `estimate-prespec-checks-the-plan` · [[decision-case-261]] · generate
+- 2026-09-20 estimates/estimate-prespec-checks-the-plan updated: renamed with rule-prespec — the Criterion names guppi prespec, the mark prespec, the stderr prefix prespec and tests/test_prespec.py (case 261) · [[decision-case-261]] · generate
+- 2026-09-20 estimates/estimate-prespec-hook-gates renamed from `estimate-pretask-hook-gates` · [[decision-case-261]] · generate
+- 2026-09-20 rules/rule-prespec-hook ref `estimate-pretask-hook-gates` → `estimate-prespec-hook-gates` · [[decision-case-261]] · generate
+- 2026-09-20 estimates/estimate-generate-walks-dates ref `estimate-pretask-hook-gates` → `estimate-prespec-hook-gates` · [[decision-case-261]] · generate
+- 2026-09-20 estimates/estimate-generate-writes ref `estimate-pretask-hook-gates` → `estimate-prespec-hook-gates` · [[decision-case-261]] · generate
+- 2026-09-20 estimates/estimate-prespec-hook-gates updated: renamed with rule-prespec-hook — the Criterion names guppi prespec, the mark prespec and /pre-spec (case 261) · [[decision-case-261]] · generate
+- 2026-09-20 decisions/decision-case-262 created · raw/2026-09-20/0740/ledger.md#case-262 · generate
+- 2026-09-20 estimates/estimate-generate-renames updated: the two placeholders [[decision-case-N]] of the Criterion in code spans, so lint reads no link; the text of 258.1 otherwise (case 262) · [[decision-case-262]] · generate
+- 2026-09-20 decisions/decision-case-263 created · raw/2026-09-20/0740/ledger.md#case-263 · generate
+- 2026-09-20 rules/rule-work-mode deferred · [[decision-case-263]] · generate
+- 2026-09-20 rules/rule-subagent-guppi deferred · [[decision-case-263]] · generate
+- 2026-09-20 estimates/estimate-spec-capture-offers-the-fork status: pending → passed · raw/2026-09-20/0740/ledger.md#L12 · generate
+- 2026-09-20 estimates/estimate-prespec-checks-the-plan status: pending → passed · raw/2026-09-20/0740/ledger.md#L13 · generate
+- 2026-09-20 estimates/estimate-prespec-hook-gates status: pending → passed · raw/2026-09-20/0740/ledger.md#L14 · generate
+- 2026-09-20 lessons/lesson-ledger-estimate-line-carried-a-count-not-read created · raw/2026-09-20/0740/ledger.md#L15 · generate
+- 2026-09-20 estimates/estimate-prespec-checks-the-plan status: passed → passed · raw/2026-09-20/0740/ledger.md#L16 · generate
+- 2026-09-20 rules/rule-prespec status: built → draft · cascade · generate
+- 2026-09-20 rules/rule-spec-capture status: draft → built · cascade · generate
+- 2026-09-20 decisions/decision-case-259 archived · superseded · generate
+- 2026-09-20 decisions/decision-case-259 archived · cleanup

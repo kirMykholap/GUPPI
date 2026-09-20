@@ -12,8 +12,8 @@ tags: [session, workflow]
 
 ## Context
 
-`rule-plan-mode` is the MOC of Plan Mode, with `rule-ask`, `rule-pretask-hook`,
-`rule-pretask` and `rule-spec-capture` as its children. It carries one Estimate,
+`rule-plan-mode` is the MOC of Plan Mode, with `rule-ask`, `rule-prespec-hook`,
+`rule-prespec` and `rule-spec-capture` as its children. It carries one Estimate,
 `estimate-plan-mode-verified`, whose promise is another action: the vault query before a
 `create` and the firing of the pre-task hook. Today the script decides which Estimate a
 ratified Case changes: `materialize` reads `contract: changed` from the `then` block and

@@ -2,7 +2,7 @@
 type: decision
 case: "203.1"
 status: current
-create: ["[[estimate-pretask-checks-the-plan]]"]
+create: ["[[estimate-prespec-checks-the-plan]]"]
 origin: raw/2026-09-16/1955/ledger.md#case-203.1
 sprint: migration
 created: 2026-09-16
@@ -11,7 +11,7 @@ tags: [session, workflow, harness, tests]
 
 ## Context
 
-`rule-pretask` is a Leaf, `enforcement: render`, it governs `.claude/skills/pre-task/SKILL.md`; the code of the check is `guppi/pretask.py` (`--check`), its tests `tests/test_pretask.py`. The page carries `## Purpose` and `## Render`, no `## How it works`; one Estimate — `estimate-pretask-reconciles`: a head plus six blocks (73.4, 74, 75.2, 90.2, 103.4, 128), `passed`, its `## Method` "one reading by hand" although half of the blocks are checked by pytest. The Render still names the findings of the old shape: a Leaf `create` without `method`, an `update` without `contract`, two contracts in one Case, a derived slug without `estimate_slug`; `check_form` in the code prints them — five times on the plan of 1651, as the brief knows. Decision 191 deferred the page with the text: pre-task checks the Estimates of the rule named in `context` and asks `ask-guppi` whether an unnamed one speaks of the same thing; the checks of the old model are removed; the changes of 186.2 (the body of a defer is not read) and 198 stand. The vault was asked: `estimate-pretask-checks-the-plan` is free in the vault and in the archive. The Case touches the one Estimate of the rule and creates one.
+`rule-prespec` is a Leaf, `enforcement: render`, it governs `.claude/skills/pre-task/SKILL.md`; the code of the check is `guppi/pretask.py` (`--check`), its tests `tests/test_pretask.py`. The page carries `## Purpose` and `## Render`, no `## How it works`; one Estimate — `estimate-prespec-reconciles`: a head plus six blocks (73.4, 74, 75.2, 90.2, 103.4, 128), `passed`, its `## Method` "one reading by hand" although half of the blocks are checked by pytest. The Render still names the findings of the old shape: a Leaf `create` without `method`, an `update` without `contract`, two contracts in one Case, a derived slug without `estimate_slug`; `check_form` in the code prints them — five times on the plan of 1651, as the brief knows. Decision 191 deferred the page with the text: pre-task checks the Estimates of the rule named in `context` and asks `ask-guppi` whether an unnamed one speaks of the same thing; the checks of the old model are removed; the changes of 186.2 (the body of a defer is not read) and 198 stand. The vault was asked: `estimate-prespec-checks-the-plan` is free in the vault and in the archive. The Case touches the one Estimate of the rule and creates one.
 
 ## Problem
 

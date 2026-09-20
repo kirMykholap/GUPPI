@@ -2,7 +2,7 @@
 type: decision
 case: "99"
 status: current
-update: ["[[estimate-hook-registry-rendered]]", "[[rule-pretask]]", "[[rule-materialize]]", "[[rule-harness]]"]
+update: ["[[estimate-hook-registry-rendered]]", "[[rule-prespec]]", "[[rule-materialize]]", "[[rule-harness]]"]
 origin: raw/2026-09-12/ledger.md#case-99
 sprint: migration
 created: 2026-09-12
@@ -27,9 +27,9 @@ render readings failed today.
 `.claude/settings.json` "byte-identical to the ratified Render body" of that page. After
 85.3 the page renders the `"hooks"` key alone, and the clause is false by construction;
 85.3 appends a block and does not touch the prose.
-**＋** `rule-pretask` (line 37) and `rule-materialize` (line 47) name the item's key
+**＋** `rule-prespec` (line 37) and `rule-materialize` (line 47) name the item's key
 `slug` where the code reads `estimate_slug`. Case 86 ratifies the prefixed names; the two
-texts are left from the earlier wording. `estimate-pretask-reconciles` does not carry the
+texts are left from the earlier wording. `estimate-prespec-reconciles` does not carry the
 phrase — checked.
 **＋** The Purpose of `rule-harness` names its four children "the renderer, the hook
 registry, lint and the indexes". After 85.2 the hook registry is a child of
@@ -38,7 +38,7 @@ registry, lint and the indexes". After 85.2 the hook registry is a child of
 so the slot swap leaves it alone — checked.
 **－** No contract moves here: all four bring the words to what is already signed. Hence
 `contract: same` on the two Leaf pages and no new criterion block.
-**－** The anchor of the `rule-pretask` pair is the text 90.2 leaves behind, so it matches
+**－** The anchor of the `rule-prespec` pair is the text 90.2 leaves behind, so it matches
 only after that entry applies.
 
 ## History

@@ -153,11 +153,11 @@ update:
 ```
 
 ```tasks
-- [ ] update `rule-pretask`: `rename: rule-prespec`, `set` `governs`, `replace` in Purpose (the mark, "the pre-task hook") and in the Render — four pairs: `name: pre-spec`, `guppi prespec --check`, "its own pre-spec"
-- [ ] update `rule-pretask-hook`: `rename: rule-prespec-hook`, `set` `implementation_ref`, `sections: Purpose` whole with the new names
-- [ ] update `estimate-pretask-reconciles`: `rename`, `sections: Criterion` with the new names, `set.method`, `pending`
-- [ ] update `estimate-pretask-checks-the-plan`: `rename`, `sections: Criterion`, `set.method`, `pending`
-- [ ] update `estimate-pretask-hook-gates`: `rename`, `sections: Criterion`, `set.method`, `pending`
+- [x] update `rule-pretask`: `rename: rule-prespec`, `set` `governs`, `replace` in Purpose (the mark, "the pre-task hook") and in the Render — four pairs: `name: pre-spec`, `guppi prespec --check`, "its own pre-spec"
+- [x] update `rule-pretask-hook`: `rename: rule-prespec-hook`, `set` `implementation_ref`, `sections: Purpose` whole with the new names
+- [x] update `estimate-pretask-reconciles`: `rename`, `sections: Criterion` with the new names, `set.method`, `pending`
+- [x] update `estimate-pretask-checks-the-plan`: `rename`, `sections: Criterion`, `set.method`, `pending`
+- [x] update `estimate-pretask-hook-gates`: `rename`, `sections: Criterion`, `set.method`, `pending`
 - [x] `vault/wiki/index.md`: "pre-task reconciliation" → "pre-spec reconciliation", by hand
 - [x] `vault/wiki/case-schema.md`: "pre-task asks for the split" → "pre-spec asks for the split", twice, by hand
 - [x] `vault/wiki/glossary.md`: the row Plan Mode, Pre-task — `/pre-spec` and `rule-prespec`, by hand
@@ -220,7 +220,7 @@ update:
 ```
 
 ```tasks
-- [ ] update `estimate-generate-renames`: `sections: Criterion` — the text of 258.1 with the two `[[decision-case-N]]` in code spans, `pending`
+- [x] update `estimate-generate-renames`: `sections: Criterion` — the text of 258.1 with the two `[[decision-case-N]]` in code spans, `pending`
 - [ ] read `estimate-generate-renames`: the librarian's run on Case 261 — the same reading as line 160 of the 0527 Spec
 ```
 

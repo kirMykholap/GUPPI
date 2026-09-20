@@ -17,8 +17,8 @@ Estimates of this page pass: lint clean, the leftovers gone, the branch merged.
 
 ### [ ] Slice 3b — Work Mode
 
-- [ ] [[rule-work-mode]] — Work Mode: the Spec as tasks with code, the ticked boxes in `spec.md`, the test of each Estimate written first and turned green; the sentence of [[insight-workflow-code-live-before-the-page-it-reads]] on a check that reads a page the same Spec changes; cases 183, 206, 238 · draft · decision-case-183, decision-case-206, decision-case-218, decision-case-231, decision-case-242, decision-case-248, decision-case-252, decision-case-254, decision-case-260
-- [ ] [[rule-subagent-guppi]] — what a subagent may do in Work Mode, and the fork that comes back to the main agent as a Case; cases 183, 206 · draft · decision-case-183, decision-case-206, decision-case-218, decision-case-231, decision-case-242, decision-case-248, decision-case-252, decision-case-254, decision-case-260
+- [ ] [[rule-work-mode]] — Work Mode: the Spec as tasks with code, the ticked boxes in `spec.md`, the test of each Estimate written first and turned green; the sentence of [[insight-workflow-code-live-before-the-page-it-reads]] on a check that reads a page the same Spec changes; cases 183, 206, 238 · draft · decision-case-183, decision-case-206, decision-case-218, decision-case-231, decision-case-242, decision-case-248, decision-case-252, decision-case-254, decision-case-260, decision-case-263
+- [ ] [[rule-subagent-guppi]] — what a subagent may do in Work Mode, and the fork that comes back to the main agent as a Case; cases 183, 206 · draft · decision-case-183, decision-case-206, decision-case-218, decision-case-231, decision-case-242, decision-case-248, decision-case-252, decision-case-254, decision-case-260, decision-case-263
 
 ### [ ] Slice 4 — conversion of the parked pages by group — 1 item: [[estimate-sprint-migration-leftovers-gone]]
 ### [ ] Slice 5 — closing — 4 items: [[estimate-sprint-migration-lint-clean]], [[estimate-sprint-migration-merges]], [[rule-spec-box]], [[rule-morph]]
@@ -30,13 +30,13 @@ Estimates of this page pass: lint clean, the leftovers gone, the branch merged.
 ## Closed
 
 Slices 0–2 closed by 2026-09-10: layout; ledger, event log, `/hi`; renderer, lint,
-indexes, `/ask`, pre-task. Slice 3 (materialize, generate, cleanup, librarian, retro,
+indexes, `/ask`, pre-spec (then `/pre-task`). Slice 3 (materialize, generate, cleanup, librarian, retro,
 handoff) built 2026-09-10, closed 2026-09-12. Slice 3c (the raw lifecycle: the archive
 of an applied session, the tail, one archive root, the ledger of a session, the status
 cascades, the slug checked against the archive) built 2026-09-13. Slice 3d (the
 Estimate model, case 182) opened and closed 2026-09-16: Cases 187–190 ratified in
 session 1034 and conserved, repaired by 193–198 and built in session 1651, case 191
-taken up by 201–203 and built in session 1955 — `generate`, `lint`, `pre-task` by the
+taken up by 201–203 and built in session 1955 — `generate`, `lint`, `pre-spec` by the
 model. The recut of each old Estimate at its first touch runs on past the Slice: lint
 counts the remainder as `unmigrated` (42 at the close of 3d) and the old shape is
 removed when it reaches zero. Kept without a page: `/grill-me`; `git pull` in `/hi`

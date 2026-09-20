@@ -22,7 +22,7 @@ While the schemas and the map say the old model, Spec 1034 applies with contradi
 Cases 187, 188 and 189 are ratified and are applied by the same librarian run as this Case.
 **＋** lint reads `estimates/schema.yaml` and checks the table of `estimates/schema.md` against it.
 **＋** `guppi generate` writes every field of an entry's `fields` into the frontmatter, with no list of allowed fields.
-**－** `rule-page-generation`, `rule-lint` and `rule-pretask` are deferred by case 191; this Case does not touch them, and point 10 of the model (Given and the Criterion list leave the Decision page) waits there too.
+**－** `rule-page-generation`, `rule-lint` and `rule-prespec` are deferred by case 191; this Case does not touch them, and point 10 of the model (Given and the Criterion list leave the Decision page) waits there too.
 
 ## History
 

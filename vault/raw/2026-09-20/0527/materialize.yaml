@@ -401,6 +401,7 @@ entries:
       word in every Render and live page; the first item of the next session
   exists: true
   applied: 07:30:56
+  superseded_by: '261'
 - line: 16
   text: decision[case 259][defer][rule-pretask-hook]{ref:rule-pretask-hook}
   case: '259'
@@ -416,6 +417,7 @@ entries:
       the mark it looks for is prespec
   exists: true
   applied: 07:30:56
+  superseded_by: '261'
 - line: 17
   text: decision[case 260][defer][rule-work-mode]{ref:rule-work-mode}
   case: '260'
@@ -897,6 +899,8 @@ decisions:
       rename is the first item of the next session.
   spec: vault/raw/2026-09-20/0527/spec.md
   applied: 07:30:56
+  superseded_by:
+  - decision-case-261
 - case: '260'
   decision: decision-case-260
   origin: raw/2026-09-20/0527/ledger.md#case-260

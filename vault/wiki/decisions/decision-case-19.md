@@ -17,7 +17,7 @@ create:
   type: rule
   kind: MOC
   purpose: Prevents work being planned against stale or contradictory vault state
-  children: [rule-case-protocol, rule-ask, rule-pretask-hook, rule-pretask, rule-spec-capture]   # after case 20
+  children: [rule-case-protocol, rule-ask, rule-prespec-hook, rule-prespec, rule-spec-capture]   # after case 20
   tags: [session, workflow]
   estimate:
     slug: estimate-plan-mode-verified

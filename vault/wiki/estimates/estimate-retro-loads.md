@@ -1,7 +1,7 @@
 ---
 type: estimate
 kind: QA
-status: pending
+status: passed
 target: "[[rule-retro]]"
 method: one reading by hand at the first /retro, recorded in the estimate line
 checked: 2026-09-20
@@ -15,18 +15,20 @@ tags: [session, workflow, harness]
 
 Given:
 Retro runs before the librarian; `generate` after it ticks the page lines and the `read` lines whose reading stands in the ledger, `render` and `sprint` the render and sprint lines (cases 226, 250, 270.1).
+**＋** A ledger line `{supersedes:case N}` marks every entry of Case N `superseded_by`; `generate` neither applies nor ticks them (200.2).
 
 When:
 The person invokes `/retro`, and the agent counts the unticked `tasks` of the Spec.
 
 Then:
 A `create`, `update` or `defer` line of a page, a `guppi render` line, a `guppi sprint` line and a `read` line whose `estimate[...]` stands in the ledger of this session are listed as waiting for the librarian and end in none of the four ways; every other unticked line is debt, as today.
+**＋** The lines of a Case a `{supersedes:case N}` line of this session's ledger names are not counted: its work stands under the superseding Case.
 **－** A `read` line without its line in the ledger is debt: the reading was not done.
 **－** Nothing else in Retro changes.
 
 ## Result
 
-2026-09-20, the first live /retro after the render of commit 3e1251f, read by hand: the unticked lines of raw/2026-09-20/0527/spec.md counted per Case — the create, update and defer lines of pages and the uv run guppi render line listed as waiting for the librarian, ending in none of the four ways; the three read lines counted as debt or taken; nothing else of Retro changed
+2026-09-20, the /retro of session 1749 read by hand, the Criterion of 270.3 — the SKILL rendered before 282: the unticked lines of raw/2026-09-20/1749/spec.md counted per Case; the update, create, defer and uv run guppi render lines and the read lines whose estimate[...] stands in the Tail (129, 220) listed as waiting for the librarian, ending in none of the four ways; the read lines without a line in the Tail (88, 179) counted as debt and carried to the handoff; the two lines of the superseded 278 (38, 39) left out of the count by 282, ratified this session and not yet rendered — the one departure from the text of 270.3; nothing else of Retro changed
 
 ## History
 
@@ -51,3 +53,5 @@ A `create`, `update` or `defer` line of a page, a `guppi render` line, a `guppi 
 - 2026-09-18 updated: the Criterion replaced whole — a guppi sprint line waits for the librarian too (case 253.2) · [[decision-case-253.2]]
 - 2026-09-20 status: pending → passed · raw/2026-09-20/0527/ledger.md#L22
 - 2026-09-20 updated: the Criterion replaced whole — the read line with its ledger line waits for the librarian (case 270.3) · [[decision-case-270.3]]
+- 2026-09-20 updated: the Criterion replaced whole — the lines of a superseded Case are not counted (case 282) · [[decision-case-282]]
+- 2026-09-20 status: pending → passed · raw/2026-09-20/1749/ledger.md#L20

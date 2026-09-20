@@ -2,7 +2,7 @@
 type: rule
 kind: MOC
 purpose: Prevents a ratified decision from ending the session without becoming a vault page
-status: draft
+status: built
 enforcement: render
 governs: .claude/agents/librarian-guppi.md
 render_mode: full
@@ -131,3 +131,4 @@ project's hooks; the hook is part of this Render and is ratified with it.
 - 2026-09-18 status: draft → built · cascade
 - 2026-09-20 status: built → draft · cascade
 - 2026-09-20 updated: the ban on spec.md excepts its unticked lines, which Readings due and Next session take (case 271) · [[decision-case-271]]
+- 2026-09-20 status: draft → built · cascade

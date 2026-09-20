@@ -95,7 +95,7 @@ update:
 - [x] update `estimate-case-protocol-loaded`: the Criterion replaced whole, `pending`
 - [x] `vault/wiki/case-schema.md` by hand: the tick sentence in "The Spec is written as each Case is ratified"
 - [x] render `CLAUDE.md`
-- [ ] read `estimate-case-protocol-loaded`: the first turn of the next session, by hand
+- [x] read `estimate-case-protocol-loaded`: the first turn of the next session, by hand
 ```
 
 ### Case 270.3 — Retro does not count as debt a reading that stands in the ledger
@@ -256,7 +256,7 @@ update:
 - [x] update `rule-claude-md`: the memory sentence in the first paragraph of the Render; `## Language` and `## Style` → marker lines; How it works names three children
 - [x] update `estimate-claude-md-rendered`: the recut to the shape of case 193 — `method`, the Criterion replaced whole, `pending`
 - [x] render `CLAUDE.md`
-- [ ] read `estimate-claude-md-rendered`: `uv run guppi render` and `--check` after the build; the next session start, by hand
+- [x] read `estimate-claude-md-rendered`: `uv run guppi render` and `--check` after the build; the next session start, by hand
 ```
 
 ### Case 272.2 — `rule-language`
@@ -310,7 +310,7 @@ create:
 - [x] create `rule-language`, `ref: rule-claude-md`
 - [x] create `estimate-language-followed`, `ref: rule-language`
 - [x] render `CLAUDE.md`
-- [ ] read `estimate-language-followed`: the next session, by hand — the section in `CLAUDE.md`, the commit, the Spec and the chat of the session
+- [x] read `estimate-language-followed`: the next session, by hand — the section in `CLAUDE.md`, the commit, the Spec and the chat of the session
 ```
 
 ### Case 272.3 — `rule-agent-writing`
@@ -364,7 +364,7 @@ create:
 - [x] create `rule-agent-writing`, `ref: rule-claude-md`
 - [x] create `estimate-agent-writing-followed`, `ref: rule-agent-writing`
 - [x] render `CLAUDE.md`
-- [ ] read `estimate-agent-writing-followed`: the next session, by hand — the section in `CLAUDE.md` and one reply of the agent against it
+- [x] read `estimate-agent-writing-followed`: the next session, by hand — the section in `CLAUDE.md` and one reply of the agent against it
 ```
 
 ## Case 273 — `case-schema.md` as the Render of `rule-case-protocol`, the import moved to `/hi`
@@ -624,7 +624,7 @@ update:
 - [x] update `rule-internal-context`: `@vault/wiki/case-schema.md` in the Render; How it works — the glossary through `CLAUDE.md`, the schema here
 - [x] update `estimate-internal-context-loaded`: the recut to the shape of case 193 — `method`, the Criterion replaced whole, `pending`
 - [x] render `.claude/skills/hi/SKILL.md`
-- [ ] read `estimate-internal-context-loaded`: the `/hi` of the next session, by hand
+- [x] read `estimate-internal-context-loaded`: the `/hi` of the next session, by hand
 ```
 
 ### Case 273.3 — `CLAUDE.md` without the protocol
@@ -1087,7 +1087,7 @@ update:
 
 ```tasks
 - [x] update `estimate-case-protocol-ledger-line-form`: the Criterion replaced whole, `method` — two documents, `pending`
-- [ ] read `estimate-case-protocol-ledger-line-form`: `case-schema.md` and `index.md` §4 after the render, by hand
+- [x] read `estimate-case-protocol-ledger-line-form`: `case-schema.md` and `index.md` §4 after the render, by hand
 ```
 
 ## Deferred

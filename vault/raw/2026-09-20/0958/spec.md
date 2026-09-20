@@ -305,7 +305,7 @@ update:
 
 ```tasks
 - [x] update `estimate-documentation-completes`: `set: {status: pending}`, `change`; the Criterion lifted from this sub-case
-- [ ] read `estimate-documentation-completes`: `make test-documentation`; live — the librarian's run of this session, read in the next
+- [x] read `estimate-documentation-completes`: `make test-documentation`; live — the librarian's run of this session, read in the next
 ```
 
 ## Case 266 — `estimate-materialize-assembles`: the `purpose` of a defer is its own key, not a field of the target page

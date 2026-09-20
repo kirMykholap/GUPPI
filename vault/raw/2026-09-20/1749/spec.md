@@ -81,9 +81,9 @@ update:
 ```
 
 ```tasks
-- [ ] update `rule-case-protocol`: `replace` in the Render — the sentence on the form after the tick sentence
-- [ ] update `estimate-case-protocol-loaded`: `set: {status: pending, purpose: ...}`, the Criterion replaced whole (the text of 278 plus one line)
-- [ ] `uv run guppi render`: `vault/wiki/case-schema.md`
+- [x] update `rule-case-protocol`: `replace` in the Render — the sentence on the form after the tick sentence
+- [x] update `estimate-case-protocol-loaded`: `set: {status: pending, purpose: ...}`, the Criterion replaced whole (the text of 278 plus one line)
+- [x] `uv run guppi render`: `vault/wiki/case-schema.md`
 - [x] by hand, a one-off: `[x]` on the nine render lines of `raw/2026-09-20/1308/spec.md` — 97, 131, 187, 258, 312, 366, 575, 626, 692
 - [ ] read `estimate-case-protocol-loaded`: the `/hi` of the next session, by hand; `tests/test_ledger.py`
 ```
@@ -121,12 +121,12 @@ create:
 ```
 
 ```tasks
-- [ ] update `rule-prespec`: the sentence in the Render on the form of the command lines
-- [ ] create `estimate-prespec-catches-a-command-line-off-form`, `ref: rule-prespec`
+- [x] update `rule-prespec`: the sentence in the Render on the form of the command lines
+- [x] create `estimate-prespec-catches-a-command-line-off-form`, `ref: rule-prespec`
 - [x] `guppi/prespec.py`: the check in `check_tasks`, the module docstring — one item in the list of findings
 - [x] `tests/test_prespec.py`: `render `X`` — a finding; `uv run guppi render` as a bare word — a finding; `- [ ] `uv run guppi render`: …` — clean; a `read` line with `guppi render` in a later span — clean
-- [ ] `uv run guppi render`: `.claude/skills/pre-spec/SKILL.md`
-- [ ] read `estimate-prespec-catches-a-command-line-off-form`: pytest; live — `/pre-spec` of this session on its own plan
+- [x] `uv run guppi render`: `.claude/skills/pre-spec/SKILL.md`
+- [x] read `estimate-prespec-catches-a-command-line-off-form`: pytest; live — `/pre-spec` of this session on its own plan
 ```
 
 ## Case 280 — a reading does not close the `read` line of a Case ratified after it
@@ -172,8 +172,8 @@ update:
 ```
 
 ```tasks
-- [ ] update `rule-page-generation`: the tick sentence of the Purpose — the section of a Case ratified after the reading is skipped
-- [ ] update `estimate-generate-ticks-the-spec`: the Criterion replaced whole, `pending`
+- [x] update `rule-page-generation`: the tick sentence of the Purpose — the section of a Case ratified after the reading is skipped
+- [x] update `estimate-generate-ticks-the-spec`: the Criterion replaced whole, `pending`
 - [x] `guppi/generate.py`: `tick_read` skips, in the Spec beside the yaml, the sections of the Cases whose first decision entry carries a `line` greater than the `estimate` entry's; the docstring
 - [x] `tests/test_generate.py`: a reading before the Case's decision line — its line skipped, the older Spec's line ticked; a reading after — the Case's line ticked; `folded` unfiltered
 - [ ] read `estimate-generate-ticks-the-spec`: pytest; live — the librarian's run of this session: the reading of `estimate-case-protocol-loaded` ticks 1308:98, the line of 279.1 stays open, 0958:308 closed by the reading of `estimate-documentation-completes`
@@ -214,10 +214,10 @@ update:
 ```
 
 ```tasks
-- [ ] update `rule-retro`: `replace` in the Render — the sentence on a superseded Case
-- [ ] update `estimate-retro-loads`: the Criterion replaced whole, `pending`
-- [ ] `uv run guppi render`: `.claude/skills/retro/SKILL.md`
-- [ ] read `estimate-retro-loads`: the first `/retro` after the render, by hand — this session, the lines of 278 out of the count
+- [x] update `rule-retro`: `replace` in the Render — the sentence on a superseded Case
+- [x] update `estimate-retro-loads`: the Criterion replaced whole, `pending`
+- [x] `uv run guppi render`: `.claude/skills/retro/SKILL.md`
+- [x] read `estimate-retro-loads`: the first `/retro` after the render, by hand — this session, the lines of 278 out of the count
 ```
 
 ## Deferred

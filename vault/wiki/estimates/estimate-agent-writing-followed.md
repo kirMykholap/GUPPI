@@ -1,10 +1,11 @@
 ---
 type: estimate
 kind: QA
-status: pending
+status: passed
 target: "[[rule-agent-writing]]"
 purpose: The section stands in CLAUDE.md and one reply of the session holds to it — facts with a source, short sentences, the answer first, the not-done named
 method: one reading by hand in the next session — the section in CLAUDE.md and one reply of the agent against it
+checked: 2026-09-20
 origin: raw/2026-09-20/1308/ledger.md#case-272.3
 sprint: migration
 created: 2026-09-20
@@ -24,6 +25,11 @@ Then:
 The facts stay and the sales pitch goes; a claim names a real source or goes; short sentences, active voice, a common word over a term; the answer first; what is done and what is not done are named, the not-done never implied.
 **－** The rule is about the agent's text, not about code — `make style` holds the style of the code.
 
+## Result
+
+2026-09-20, CLAUDE.md lines 47–53 and the /hi reply of session 1749 read by hand: the section stands in its marker; the reply gives the state first, names its sources, short sentences, names the not-done
+
 ## History
 
 - 2026-09-20 created · [[decision-case-272.3]]
+- 2026-09-20 status: pending → passed · raw/2026-09-20/1749/ledger.md#L4

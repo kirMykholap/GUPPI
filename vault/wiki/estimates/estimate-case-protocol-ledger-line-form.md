@@ -1,11 +1,11 @@
 ---
 type: estimate
 kind: QA
-status: pending
+status: passed
 target: "[[rule-case-protocol]]"
 purpose: The written shape of a ledger line, as the documents state it
 method: one reading by hand of `case-schema.md` and `index.md` §4 after the render, at a session start
-checked: 2026-09-16
+checked: 2026-09-20
 origin: raw/2026-09-16/1034/ledger.md#case-188
 sprint: migration
 created: 2026-09-16
@@ -27,7 +27,7 @@ The table of `case-schema.md` and §4 of the map show `- decision[case 12][updat
 
 ## Result
 
-2026-09-16, `case-schema.md`, `index.md` §4 and the ledger paragraph of the Render read by hand: the two example lines with `case N` as the word and a space stand in all three, the sentence on `{source:...}` stands in the Render and in CLAUDE.md
+2026-09-20, case-schema.md and index.md §4 read by hand at session 1749: the table shows the two example lines and says the id is case N, the word and a space, in {supersedes:case N} too; the ledger paragraph carries the {source:...} sentence, incomplete: [source] without it, an error lesson never; §4 shows the general form with {source} and {tags}, the {supersedes:case 4} form and the case N sentence — the create example stands in the schema only
 
 ## History
 
@@ -35,3 +35,4 @@ The table of `case-schema.md` and §4 of the map show `- decision[case 12][updat
 - 2026-09-16 status: pending → passed · raw/2026-09-16/1955/ledger.md#L38
 - 2026-09-17 ref removed · one-off migration · raw/2026-09-16/2238/spec.md#case-210
 - 2026-09-20 updated: the Criterion replaced whole — the table and the ledger paragraph are one document since 273.1, two documents read, not three (case 277.6) · [[decision-case-277.6]]
+- 2026-09-20 status: pending → passed · raw/2026-09-20/1749/ledger.md#L3

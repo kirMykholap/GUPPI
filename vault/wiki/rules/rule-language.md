@@ -2,7 +2,7 @@
 type: rule
 kind: Leaf
 purpose: Keeps the repository in English and the chat with the owner in Russian, with slugs, paths and quotations unchanged in either
-status: draft
+status: built
 enforcement: render
 governs: CLAUDE.md
 render_mode: partial
@@ -34,3 +34,4 @@ English for everything written into the repository: code, identifiers, comments,
 
 - 2026-09-20 created · [[decision-case-272.2]]
 - 2026-09-20 estimate estimate-language-followed added · [[decision-case-272.2]]
+- 2026-09-20 status: draft → built · cascade

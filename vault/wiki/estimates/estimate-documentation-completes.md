@@ -1,7 +1,7 @@
 ---
 type: estimate
 kind: QA
-status: pending
+status: passed
 target: "[[rule-documentation]]"
 method: make test-documentation, the pipeline over tests/test_materialize.py, tests/test_generate.py and tests/test_cleanup.py; the live reading by hand
 checked: 2026-09-20
@@ -33,7 +33,7 @@ Then:
 
 ## Result
 
-2026-09-20, `make test-documentation` 122 passed; live, the librarian's run of session 0958 by `event_log.md` 12:59:03–13:04:37 and commit 12b62ae: materialize, generate, render, sprint, brief, lint, commit, handback in that order, no refusal and no question; 12 Decision pages for the 12 Cases of the 0958 ledger, every entry `applied`, the commit separate from the session's ad57dc0; `render --sync` printed nothing at the `/hi` of 1308; archive moved nothing, the three units are of the run day; the run grepped the unticked lines of the three Specs (13:01:55) — the frame's Readings due and Next session ask for it (cases 200.3, 268.1), the Criterion of 265.4 says no Spec — a contradiction between the Criterion and the frame, not a fault of the run
+2026-09-20, make test-documentation 133 passed; live, the librarian's run of session 1308 by event_log.md 17:34:07–17:41:01 and commit 82aa2a1: handoff, materialize, the four Greps, one lesson page for the synthesis, generate, the unticked lines of two Specs, cleanup, render, sprint, brief, archive, commit, handback; no ledger, Decision page or archive file read; 21 Decision pages for the 21 Cases of the 1308 ledger, 274.2 archived as superseded; the commit separate from 10baf3d; archive moved nothing; no question asked
 
 ## History
 
@@ -58,3 +58,4 @@ Then:
 - 2026-09-20 updated: the recut to the shape of case 193: the base text and the blocks 73.8, 89.1, 90.3, 100.2, 147.5 folded into one Criterion, pre-task gone from it; pending for the reading (case 265.4) · [[decision-case-265.4]]
 - 2026-09-20 status: pending → passed · raw/2026-09-20/1308/ledger.md#L8
 - 2026-09-20 updated: the Criterion replaced whole — the unticked lines of the Specs read for Readings due and Next session, the rest of the Spec still banned (case 271) · [[decision-case-271]]
+- 2026-09-20 status: pending → passed · raw/2026-09-20/1749/ledger.md#L5

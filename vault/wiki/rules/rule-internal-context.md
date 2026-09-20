@@ -2,7 +2,7 @@
 type: rule
 kind: Leaf
 purpose: Prevents work starting without the current sprint and the previous session's handover
-status: draft
+status: built
 enforcement: render
 governs: .claude/skills/hi/SKILL.md
 render_mode: partial
@@ -42,3 +42,4 @@ written.
 - 2026-09-10 status: draft → built · cascade
 - 2026-09-20 updated: case-schema.md joins the imports of /hi; the glossary stays with CLAUDE.md (case 273.2) · [[decision-case-273.2]]
 - 2026-09-20 status: built → draft · cascade
+- 2026-09-20 status: draft → built · cascade

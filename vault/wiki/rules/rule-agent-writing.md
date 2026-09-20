@@ -2,7 +2,7 @@
 type: rule
 kind: Leaf
 purpose: Keeps the agent's text to facts with a source, short active sentences, the answer first and the not-done named
-status: draft
+status: built
 enforcement: render
 governs: CLAUDE.md
 render_mode: partial
@@ -35,3 +35,4 @@ and what is not done; never leave the not-done implied.
 
 - 2026-09-20 created · [[decision-case-272.3]]
 - 2026-09-20 estimate estimate-agent-writing-followed added · [[decision-case-272.3]]
+- 2026-09-20 status: draft → built · cascade

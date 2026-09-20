@@ -1,9 +1,9 @@
 ---
 type: insight
 pattern: A fact the vault holds does not reach the session that needs it; only brief.md, CLAUDE.md, the skills and the agent frames are loaded, and everything else waits for a read the agent must first think to make.
-status: actioned
-children: ["[[lesson-readings-after-librarian-invisible-to-next-hi]]", "[[lesson-vault-lesson-absent-at-the-moment-it-applies]]", "[[lesson-heredoc-trap-hit-twice-with-its-lesson-live]]", "[[lesson-heredoc-trap-hit-a-third-time-in-work-mode]]", "[[lesson-heredoc-trap-hit-a-fourth-time-in-the-session-that-ratified-its-hook]]"]
-severity: 0
+status: open
+children: ["[[lesson-readings-after-librarian-invisible-to-next-hi]]", "[[lesson-vault-lesson-absent-at-the-moment-it-applies]]", "[[lesson-heredoc-trap-hit-twice-with-its-lesson-live]]", "[[lesson-heredoc-trap-hit-a-third-time-in-work-mode]]", "[[lesson-heredoc-trap-hit-a-fourth-time-in-the-session-that-ratified-its-hook]]", "[[lesson-spec-render-line-form-unmatched-by-the-ticker]]"]
+severity: 1
 addressed_by: "[[decision-case-134]]"
 origin: raw/2026-09-12/ledger.md#L210
 sprint: migration
@@ -32,3 +32,4 @@ A suggestion, not a decision. Give the session a second channel beside the brief
 - 2026-09-14 updated: synthesis: lesson-heredoc-trap-hit-a-third-time-in-work-mode added, the same trap a third time with the Insight live · raw/2026-09-14/0747/ledger.md#L51
 - 2026-09-14 updated: synthesis: lesson-heredoc-trap-hit-a-fourth-time-in-the-session-that-ratified-its-hook added, the same trap a fourth time, in the session that ratified the hook against it · raw/2026-09-14/1029/ledger.md#L39
 - 2026-09-14 updated: actioned: the ledger tail (rule-ledger-tail, 101.2) answers the first child, the bash guard (rule-bash-guard, 127) the four heredoc children; a lessons list on a Rule page rejected — a text to remember is the channel that failed (case 134) · [[decision-case-134]]
+- 2026-09-20 updated: synthesis: lesson-spec-render-line-form-unmatched-by-the-ticker added, the form of a render line held in rule-render-harness (case 235) and in no text the Spec is written from; reopened from actioned · raw/2026-09-20/1749/ledger.md#L8

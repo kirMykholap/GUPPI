@@ -2334,3 +2334,41 @@ instruction. The global feed; a page's own `## History` is the per-page view.
 - 2026-09-20 rules/rule-skill-hi status: draft → built · cascade · generate
 - 2026-09-20 decisions/decision-case-274.2 archived · superseded · generate
 - 2026-09-20 decisions/decision-case-274.2 archived · cleanup
+- 2026-09-20 estimates/estimate-internal-context-loaded status: pending → passed · raw/2026-09-20/1749/ledger.md#L1 · generate
+- 2026-09-20 estimates/estimate-claude-md-rendered status: pending → passed · raw/2026-09-20/1749/ledger.md#L2 · generate
+- 2026-09-20 estimates/estimate-case-protocol-ledger-line-form status: pending → passed · raw/2026-09-20/1749/ledger.md#L3 · generate
+- 2026-09-20 estimates/estimate-agent-writing-followed status: pending → passed · raw/2026-09-20/1749/ledger.md#L4 · generate
+- 2026-09-20 estimates/estimate-documentation-completes status: pending → passed · raw/2026-09-20/1749/ledger.md#L5 · generate
+- 2026-09-20 estimates/estimate-case-protocol-loaded status: pending → failed · raw/2026-09-20/1749/ledger.md#L6 · generate
+- 2026-09-20 decisions/decision-case-278 created · raw/2026-09-20/1749/ledger.md#case-278 · generate
+- 2026-09-20 lessons/lesson-spec-render-line-form-unmatched-by-the-ticker created · raw/2026-09-20/1749/ledger.md#L8 · generate
+- 2026-09-20 decisions/decision-case-279.1 created · raw/2026-09-20/1749/ledger.md#case-279.1 · generate
+- 2026-09-20 decisions/decision-case-278 superseded by decision-case-279.1 · [[decision-case-279.1]] · generate
+- 2026-09-20 rules/rule-case-protocol updated: the Spec paragraph names the form of the render and sprint lines the scripts tick (case 279.1) · [[decision-case-279.1]] · generate
+- 2026-09-20 estimates/estimate-case-protocol-loaded updated: the Criterion replaced whole — the text of 278 plus the form of the render and sprint lines; the line on the agent stating two rules at /hi removed; purpose added (case 279.1, supersedes 278) · [[decision-case-279.1]] · generate
+- 2026-09-20 decisions/decision-case-279.2 created · raw/2026-09-20/1749/ledger.md#case-279.2 · generate
+- 2026-09-20 rules/rule-prespec updated: pre-spec flags a render or sprint task line the tickers would not match (case 279.2) · [[decision-case-279.2]] · generate
+- 2026-09-20 estimates/estimate-prespec-catches-a-command-line-off-form created · [[decision-case-279.2]] · generate
+- 2026-09-20 estimates/estimate-prespec-catches-a-command-line-off-form status: pending → passed · raw/2026-09-20/1749/ledger.md#L19 · generate
+- 2026-09-20 rules/rule-prespec estimate estimate-prespec-catches-a-command-line-off-form added · [[decision-case-279.2]] · generate
+- 2026-09-20 decisions/decision-case-280 created · raw/2026-09-20/1749/ledger.md#case-280 · generate
+- 2026-09-20 rules/rule-page-generation updated: a reading does not tick the read line of a Case ratified after it in the same session (case 280) · [[decision-case-280]] · generate
+- 2026-09-20 estimates/estimate-generate-ticks-the-spec updated: the Criterion replaced whole — the read line of a later Case of the same unit is skipped by the ledger line numbers (case 280) · [[decision-case-280]] · generate
+- 2026-09-20 decisions/decision-case-281 created · raw/2026-09-20/1749/ledger.md#case-281 · generate
+- 2026-09-20 rules/rule-work-mode deferred · [[decision-case-281]] · generate
+- 2026-09-20 rules/rule-subagent-guppi deferred · [[decision-case-281]] · generate
+- 2026-09-20 decisions/decision-case-282 created · raw/2026-09-20/1749/ledger.md#case-282 · generate
+- 2026-09-20 rules/rule-retro updated: the lines of a superseded Case are not debt at Retro (case 282) · [[decision-case-282]] · generate
+- 2026-09-20 estimates/estimate-retro-loads updated: the Criterion replaced whole — the lines of a superseded Case are not counted (case 282) · [[decision-case-282]] · generate
+- 2026-09-20 estimates/estimate-retro-loads status: pending → passed · raw/2026-09-20/1749/ledger.md#L20 · generate
+- 2026-09-20 estimates/estimate-language-followed status: pending → passed · raw/2026-09-20/1749/ledger.md#L21 · generate
+- 2026-09-20 insights/insight-session-vault-knowledge-not-loaded updated: synthesis: lesson-spec-render-line-form-unmatched-by-the-ticker added, the form of a render line held in rule-render-harness (case 235) and in no text the Spec is written from; reopened from actioned · raw/2026-09-20/1749/ledger.md#L8 · generate
+- 2026-09-20 lessons/lesson-spec-render-line-form-unmatched-by-the-ticker updated: synthesis: clustered under insight-session-vault-knowledge-not-loaded, the same pattern · raw/2026-09-20/1749/ledger.md#L8 · generate
+- 2026-09-20 rules/rule-agent-writing status: draft → built · cascade · generate
+- 2026-09-20 rules/rule-claude-md status: draft → built · cascade · generate
+- 2026-09-20 rules/rule-documentation status: draft → built · cascade · generate
+- 2026-09-20 rules/rule-internal-context status: draft → built · cascade · generate
+- 2026-09-20 rules/rule-language status: draft → built · cascade · generate
+- 2026-09-20 rules/rule-retro status: draft → built · cascade · generate
+- 2026-09-20 decisions/decision-case-278 archived · superseded · generate
+- 2026-09-20 decisions/decision-case-278 archived · cleanup

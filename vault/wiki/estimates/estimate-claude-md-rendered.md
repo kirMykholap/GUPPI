@@ -1,10 +1,11 @@
 ---
 type: estimate
 kind: QA
-status: pending
+status: passed
 target: "[[rule-claude-md]]"
 purpose: CLAUDE.md equals the Render of rule-claude-md with each child between its markers, and every session loads that text
 method: uv run guppi render and guppi render --check after the build, plus one reading of CLAUDE.md at the next session start, by hand
+checked: 2026-09-20
 origin: raw/2026-09-12/ledger.md#case-71.1
 sprint: migration
 created: 2026-09-12
@@ -27,7 +28,7 @@ Then:
 
 ## Result
 
-live 2026-09-14 session O: CLAUDE.md loaded with the `## Language` section of 123 and the sentence of 122 ("A reply that carries a `LEDGER` block ends in that text…"), the two @ imports expanded; render --check exits 0 at 12:34; the render of session N's librarian wrote it, nothing differs from HEAD fc3d439
+2026-09-20, uv run guppi render --check exit 0 at the start of session 1749, CLAUDE.md read by hand: markers rule-language (41–45) and rule-agent-writing (47–53) only, no rule-case-protocol marker, no import of case-schema.md; the first paragraph says the vault is the only memory; What is loaded here names one import, glossary.md, and the schema at /hi; children of rule-claude-md are rule-language and rule-agent-writing
 
 ## History
 
@@ -40,3 +41,4 @@ live 2026-09-14 session O: CLAUDE.md loaded with the `## Language` section of 12
 - 2026-09-14 status: passed → passed · raw/2026-09-14/1229/ledger.md#L2
 - 2026-09-20 updated: the recut to the shape of case 193 — purpose, method, the Criterion replaced whole; three children spliced, the memory sentence (case 272.1) · [[decision-case-272.1]]
 - 2026-09-20 updated: the Criterion replaced whole — the text of 272.1 plus no protocol in CLAUDE.md, one import (case 273.3) · [[decision-case-273.3]]
+- 2026-09-20 status: pending → passed · raw/2026-09-20/1749/ledger.md#L2

@@ -2,7 +2,7 @@
 type: rule
 kind: MOC
 purpose: Prevents the system prompt from holding a line nobody ratified
-status: draft
+status: built
 enforcement: render
 governs: CLAUDE.md
 render_mode: full
@@ -101,3 +101,4 @@ migration, by an `update` of this page. `rule-language` and `rule-agent-writing`
 - 2026-09-20 child rule-agent-writing added · [[decision-case-272.3]]
 - 2026-09-20 updated: the Case protocol leaves CLAUDE.md — no marker, no import of the schema; the glossary stays; children rule-language and rule-agent-writing (case 273.3) · [[decision-case-273.3]]
 - 2026-09-20 status: built → draft · cascade
+- 2026-09-20 status: draft → built · cascade

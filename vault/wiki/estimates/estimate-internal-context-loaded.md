@@ -1,27 +1,28 @@
 ---
 type: estimate
 kind: QA
-status: passed
+status: pending
 target: "[[rule-internal-context]]"
+purpose: The text of sprint.md, brief.md and case-schema.md is present in the first turn's context after /hi, without a read call
+method: one reading at the /hi of a session, by hand
 origin: raw/2026-09-09/ledger.md#case-11
 sprint: migration
 created: 2026-09-09
 tags: [session, harness]
 ---
 
-## Context
-
-`@`-imports inside a skill body are the one mechanism here that the old harness never
-used; whether they expand the way they do in `CLAUDE.md` is exactly what this check
-settles.
-
 ## Criterion
 
-The text of `sprint.md` and `brief.md` is present in the first turn's context.
+Given:
+The `/hi` SKILL is the Render of `rule-skill-hi` with its children in markers; `rule-internal-context` is the block of `@` lines Claude Code expands when the skill is invoked.
+**＋** `tests/test_render.py` fixes the text of the block.
 
-## Method
+When:
+The person invokes `/hi`.
 
-One reading at a session start, by hand.
+Then:
+The text of `sprint.md`, `brief.md` and `case-schema.md` is present in the first turn's context, in that order, without a read call.
+**－** The glossary is not in the list — it arrives through `CLAUDE.md`.
 
 ## Result
 
@@ -32,3 +33,4 @@ the skill body (2026-09-09 16:11, session B).
 
 - 2026-09-09 created · raw/2026-09-09/ledger.md#case-11
 - 2026-09-09 status: pending → passed · written by hand, no generator yet
+- 2026-09-20 updated: the recut to the shape of case 193 — purpose, method, the Criterion replaced whole; three texts expanded, case-schema.md the third (case 273.2) · [[decision-case-273.2]]

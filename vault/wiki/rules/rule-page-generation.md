@@ -2,11 +2,11 @@
 type: rule
 kind: Leaf
 purpose: Prevents a ratified decision from ending the session without a page, or a page from carrying a field nobody ratified
-status: built
+status: draft
 enforcement: check
 implementation_ref: [guppi/generate.py, tests/test_generate.py]
 parent: "[[rule-documentation]]"
-estimates: ["[[estimate-generate-writes]]", "[[estimate-generate-walks-dates]]", "[[estimate-generate-writes-the-decision-page]]", "[[estimate-generate-fails-alone]]", "[[estimate-generate-cascades]]", "[[estimate-generate-ticks-the-spec]]", "[[estimate-generate-renames]]"]
+estimates: ["[[estimate-generate-writes]]", "[[estimate-generate-walks-dates]]", "[[estimate-generate-writes-the-decision-page]]", "[[estimate-generate-fails-alone]]", "[[estimate-generate-cascades]]", "[[estimate-generate-ticks-the-spec]]", "[[estimate-generate-renames]]", "[[estimate-generate-rewords]]"]
 origin: raw/2026-09-10/ledger.md#case-32
 sprint: migration
 created: 2026-09-10
@@ -23,12 +23,12 @@ Estimate is replaced whole by the text its Case signed (cases 166.2, 194.1, 201.
 page is always created, even incomplete: red lint is an accurate signal of debt, a
 decision with no page is the ledger and the vault disagreeing silently. A slug
 collision is an error, never a rename — with one exception: a `create` whose slug is a
-placeholder page, `status: draft` and no `kind`, fills that page (case 101.1). An `update` whose item carries `rename: <new slug>` moves the page to the new slug, the same category prefix, and rewrites every link and ref field to it in the live pages of `wiki/`, Decision pages included; a taken or foreign slug fails the entry (case 258.1). One bad
+placeholder page, `status: draft` and no `kind`, fills that page (case 101.1). An `update` whose item carries `rename: <new slug>` moves the page to the new slug, the same category prefix, and rewrites every link and ref field to it in the live pages of `wiki/`, Decision pages included; a taken or foreign slug fails the entry (case 258.1). An `update` whose item carries `reword` — a list of `{old, new}` pairs — replaces each pair as a whole word in every section but History and Result, and in `purpose` and `method`, of every live page of `wiki/`, one History line per page touched; the page is the owner, and a `new` absent from its own text, or a pair with no hit, fails the entry; a slug goes through `rename`, not `reword` (case 274.1). One bad
 entry never stops the run: it is marked `failed`, reported, and the rest apply (case
 47). The Decision page of a Case is written before its entries and carries the body of
 every defer (cases 52.4, 186.1); the cascade after all entries computes what is
 computed — `built`, the archive of a superseded decision, the severity of an Insight —
-never by hand (case 104). Once an entry is applied, the script ticks its line in the Spec beside the yaml — `- [ ] <kind> `<slug>`` in the section of the entry's Case — so the Spec's page lines are closed by the one who did the work, and a line not found is no error (case 226.1). The mechanism — the shape of every entry and every History line — lives in the docstring of `guppi/generate.py`.
+never by hand (case 104). Once an entry is applied, the script ticks its line in the Spec — a page entry the line `- [ ] <kind> `<slug>`` in the section of the entry's Case of the Spec beside the yaml; an `estimate` entry, or a `create` with a folded reading, the first unticked `- [ ] read `<slug>`` line, in the Spec beside the yaml first and then in the `spec.md` of the other session folders of `raw/`, oldest first — so the Spec's page lines and reading lines are closed by the one who did the work, and a line not found is no error (cases 226.1, 270.1). The mechanism — the shape of every entry and every History line — lives in the docstring of `guppi/generate.py`.
 
 ## History
 
@@ -102,3 +102,7 @@ never by hand (case 104). Once an entry is applied, the script ticks its line in
 - 2026-09-20 estimate estimate-generate-renames added · [[decision-case-258.1]]
 - 2026-09-20 status: built → draft · cascade
 - 2026-09-20 status: draft → built · cascade
+- 2026-09-20 updated: generate ticks the read line of the Spec when it applies a reading, in this unit's Spec first and then in the other sessions of raw/ (case 270.1) · [[decision-case-270.1]]
+- 2026-09-20 updated: reword on an update item — pairs replaced as whole words across the live pages, the owner check, failed on no hit (case 274.1) · [[decision-case-274.1]]
+- 2026-09-20 estimate estimate-generate-rewords added · [[decision-case-274.1]]
+- 2026-09-20 status: built → draft · cascade

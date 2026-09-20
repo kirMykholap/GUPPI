@@ -16,8 +16,8 @@ tags: [harness, workflow, librarian]
 
 ## Purpose
 
-Prevents a page from being born twice under two names. Pre-task asked the vault
-before the Case; this asks once more, with the finished content, before the page is
+Prevents a page from being born twice under two names. The vault query before the Case asked
+once; this asks once more, with the finished content, before the page is
 written. It is the one judgment the librarian acts on. Catching a duplicate here
 avoids a page created and merged in the same session.
 
@@ -42,3 +42,4 @@ When the index line does not settle same or near, open the page and name it in t
 - 2026-09-14 updated: the index lines come from the librarian's own Grep of the category, not a file (case 147.3) · [[decision-case-147.3]]
 - 2026-09-14 status: built → draft · cascade
 - 2026-09-15 status: draft → built · cascade
+- 2026-09-20 updated: Pre-task → the vault query before the Case (case 277.4) · [[decision-case-277.4]]

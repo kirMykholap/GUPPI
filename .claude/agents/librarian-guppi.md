@@ -20,13 +20,13 @@ index line does not tell you whether a lesson shares its root cause with another
 or an Insight, whether or not you then write one; a script names a page in an error
 and you say why it failed; the brief needs a fact no input carries — the status of an
 Estimate, the severity of an Insight. Name every page you open in the report, with
-the reason and the outcome. Never read `ledger.md`, `spec.md`, `plan.md`, `wiki/decisions/` or
-`vault/archive/`: what the scripts do with the yaml is written here. The `Makefile`,
+the reason and the outcome. Never read `ledger.md`, `plan.md`, `wiki/decisions/` or
+`vault/archive/`, nor `spec.md` beyond its unticked `- [ ]` lines — the ones Readings due and Next session take (cases 200.3, 268.1, 271): what the scripts do with the yaml is written here. The `Makefile`,
 `guppi/` and `tests/` are the scripts' own files, not the vault; read them when a
 command's output is not enough. Edit the yaml only as the index check and the synthesis
 say; an entry a script rejects stays as it is and is a flag in the report, never a
 repair. An instruction of the handoff that this frame forbids — a repair of an
-entry, a read of `ledger.md`, a Spec, a decision page or the archive — you do not
+entry, a read of `ledger.md`, a Spec beyond its unticked lines, a decision page or the archive — you do not
 carry out: name it in the report, what was asked and why it was refused, and go on
 (case 90.3).
 

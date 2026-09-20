@@ -1,9 +1,9 @@
 ---
 type: estimate
 kind: QA
-status: passed
+status: pending
 target: "[[rule-case-protocol]]"
-method: One reading at a session start, by hand, plus the preview cases of tests/test_ledger.py.
+method: one reading at the first /hi of a session, by hand, plus the preview cases of tests/test_ledger.py
 checked: 2026-09-20
 origin: raw/2026-09-09/ledger.md#case-13
 sprint: migration
@@ -13,26 +13,20 @@ tags: [session, workflow, ledger]
 
 ## Criterion
 
+Given:
+A `full` page writes the whole file named by `governs`, without its outer markers; a child of a `full` page governs the same file as its parent, otherwise `render` errors (case 277).
+**＋** The `children` of a Rule MOC is an ordered list, set explicitly.
+**＋** `tests/test_render.py` fixes a `full` render into a file outside `.claude/`.
+
 When:
-A session starts with `CLAUDE.md`.
+The first `uv run guppi render` after `rule-case-protocol` changed, and the `/hi` of the next session.
 
 Then:
-The agent states the LEDGER-block rule and the one-Case-at-a-time rule without a read
-call.
-**＋** The Case protocol says the Spec is `raw/<date>/<hi HHMM>/spec.md` — the
-`## Deferred` heading, the ticked boxes — and the Frontier
-`raw/<date>/<hi HHMM>/frontier.md`.
-**＋** A reply with a `LEDGER` block ends in that text; no tool call follows in the
-same reply — the text before a tool call waits for the next `Stop` of the session,
-and the last reply of a session has none.
-**＋** A block a tool call did follow the agent does not call lost before the `Stop`
-of that turn; at the next `Stop` it checks the ledger, and only a line missing there
-is a lesson.
-**＋** The Case protocol says Work Mode ticks the boxes on code, tests, migrations and
-readings, and `generate`, `render` and `sprint` tick the page, render and sprint lines
-(cases 226, 250).
-**－** A reply whose ledger lines sit outside a `LEDGER` block — bare, or in a fence
-with another tag or none — adds nothing to the session's ledger.
+`vault/wiki/case-schema.md` equals the Render of `rule-case-protocol`; `render --check` exits 0; the file is no longer edited by hand — the hook refuses.
+**＋** The schema holds one text: what stood in it, plus from the old Render — the Frontier `frontier.md` and the closing of its lines, Plan Mode not ending while a line is open; the acknowledging reply of four parts; the harness rendered from `rules/`, never by hand; `ask-guppi` before a `create` without a `ref`, the answer in `context`; the ledger mechanics — the `LEDGER` block, the `Stop` hook, `{tags}`, `{source}`, when each line is written, the refusal without `/hi`, a reply with the block ending in it, a block a tool call followed not lost before `Stop`.
+**＋** The tick sentence in the wording of 270.2; the Language section of the schema on the manner of the English of the vault, the language of the repository and the chat being `rule-language`.
+**＋** At `/hi` the agent states the LEDGER-block rule and the one-Case-at-a-time rule without a read call.
+**－** Nothing of the schema is repeated in `CLAUDE.md`; `rule-case-protocol` is a child of `rule-plan-mode`, the last of its list.
 
 ## Result
 
@@ -64,3 +58,5 @@ with another tag or none — adds nothing to the session's ledger.
 - 2026-09-18 status: pending → passed · raw/2026-09-18/1252/ledger.md#L1
 - 2026-09-18 updated: one line of the Criterion — sprint is the third ticker (case 253.1) · [[decision-case-253.1]]
 - 2026-09-20 status: pending → passed · raw/2026-09-20/0527/ledger.md#L1
+- 2026-09-20 updated: the Criterion replaced whole — the tick sentence names generate on the read lines (case 270.2) · [[decision-case-270.2]]
+- 2026-09-20 updated: the Criterion replaced whole — the schema is the Render of rule-case-protocol, loaded by /hi, and holds the ledger, Frontier and acknowledging-reply paragraphs (case 273.1) · [[decision-case-273.1]]

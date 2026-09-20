@@ -2,7 +2,7 @@
 type: rule
 kind: Leaf
 purpose: Prevents the next session from starting without the facts and the flags of this one
-status: draft
+status: built
 enforcement: render
 governs: .claude/agents/librarian-guppi.md
 render_mode: partial
@@ -17,7 +17,7 @@ tags: [harness, workflow, librarian]
 ## Purpose
 
 Prevents the next session from starting without the facts and the flags of this one,
-written to [[brief]]. [[brief]] is a shop window, not storage: every deferred item lives on as a page — a draft placeholder, or the open Insight itself — and pre-task finds it there. So the deferred list is capped, the flags are not,
+written to [[brief]]. [[brief]] is a shop window, not storage: every deferred item lives on as a page — a draft placeholder, or the open Insight itself — and the vault query before a `create` finds it there. So the deferred list is capped, the flags are not,
 and nothing in the brief is a decision.
 
 ## Render
@@ -66,3 +66,5 @@ The brief has a second writer, the skill `carry` (`rule-carry-over`): it writes 
 - 2026-09-18 status: draft → built · cascade
 - 2026-09-20 updated: the section Next session between Flags and Readings at the close — the lists Cases and Work, the librarian's sort of what the next session decides and what it does; a handoff flag on the sprint goes there; the carry brief without it (case 268.1) · [[decision-case-268.1]]
 - 2026-09-20 status: built → draft · cascade
+- 2026-09-20 updated: pre-task → the vault query before a create (case 277.4) · [[decision-case-277.4]]
+- 2026-09-20 status: draft → built · cascade

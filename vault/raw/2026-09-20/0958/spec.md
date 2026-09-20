@@ -485,7 +485,7 @@ update:
 - [x] update `rule-carry-over`: `replace` — "no Readings due, no Next session, no Readings at the close"
 - [x] `uv run guppi render`: `.claude/agents/librarian-guppi.md`, `.claude/skills/carry/SKILL.md`
 - [x] update `estimate-brief-written`: `set: {status: pending}`, `change`; the Criterion lifted from this sub-case
-- [ ] read `estimate-brief-written`: the brief after the librarian's run of this session, by hand — in the next session
+- [x] read `estimate-brief-written`: the brief after the librarian's run of this session, by hand — in the next session
 ```
 
 ### Case 268.2 — `rule-skill-hi`: the Frontier as `## Cases` and `## Work`
@@ -541,7 +541,7 @@ update:
 - [x] `vault/wiki/glossary.md`: the row `/hi`, Frontier — two lists, by hand
 - [x] `tests/test_prespec.py`: `check_frontier` reads `C1`/`W1` under headings, an open `W` is a finding, a line without `[ ]` is not checked
 - [x] update `estimate-hi-writes-frontier`: `set: {status: pending, method}`, `change`; the Criterion lifted from this sub-case
-- [ ] read `estimate-hi-writes-frontier`: the first `/hi` of the next session, by hand
+- [x] read `estimate-hi-writes-frontier`: the first `/hi` of the next session, by hand
 ```
 
 ## Deferred

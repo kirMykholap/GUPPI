@@ -4,7 +4,7 @@ kind: QA
 status: pending
 target: "[[rule-documentation]]"
 method: make test-documentation, the pipeline over tests/test_materialize.py, tests/test_generate.py and tests/test_cleanup.py; the live reading by hand
-checked: 2026-09-17
+checked: 2026-09-20
 origin: raw/2026-09-10/ledger.md#case-36
 sprint: migration
 created: 2026-09-10
@@ -16,6 +16,7 @@ tags: [session, workflow, harness, librarian]
 Given:
 The librarian's frame is the Render of `rule-documentation`; its inputs are three: the `handoff.md` of the session's folder, every `materialize.yaml` the walk named, and `tags.md`; the index lines are the Greps `rule-index-check` and `rule-synthesis` name.
 **＋** The librarian works in a clean context; the person is gone.
+**＋** Readings due takes the place of a reading from the unticked `- [ ] read …` line of the session's Spec, Next session the unticked lines of the Specs (cases 200.3, 268.1).
 
 When:
 `librarian-guppi` starts after the handoff and runs to the end.
@@ -23,16 +24,16 @@ When:
 Then:
 `make test-documentation` — materialize, generate and cleanup as one pipeline — is green.
 **＋** Live, after the run: every decision line of the session's ledger has a Decision page and its target page; no page exists that no ledger line produced.
-**＋** It read only `handoff.md`, the yamls, the four index lines and `tags.md`, plus the wiki pages it names in the report with one of the four reasons of its frame (same or near; a candidate cluster; a script's error; a fact for the brief) and the outcome; no ledger, Spec, plan, Decision page or archive file (the Makefile, `guppi/` and `tests/` are the scripts' own and may be read).
+**＋** It read only `handoff.md`, the yamls, the four index lines and `tags.md`, plus the wiki pages it names in the report with one of the four reasons of its frame (same or near; a candidate cluster; a script's error; a fact for the brief) and the outcome, plus the unticked `- [ ]` lines of the `spec.md` files for Readings due and Next session; no ledger, no other part of a Spec, no plan, Decision page or archive file (the `Makefile`, `guppi/` and `tests/` are the scripts' own and may be read).
 **＋** It edited no yaml entry beyond the marks and the entries of the index check and the synthesis; its commands are in `event_log.md`; its commit is separate from the session's; it did not stop to ask.
 **＋** After `cleanup` and before the brief it runs `uv run guppi render`, then `uv run guppi sprint`; every line on their stderr is a flag; a file the render could not write is left to the next session start; `make lint` then passes its `render --check` step.
 **＋** After the brief and before the close it runs `uv run guppi archive`; every line on its stderr is a flag; the units it moved and the units it kept, with the reason, go into the report; the session of the run — the latest `<HHMM>/` folder of the run day, else the nearest date back — is skipped, across midnight too; the commit picks the move up.
-**－** An instruction of the handoff to repair a yaml entry, or to read the ledger, a Spec, a Decision page or the archive, is refused and named in the report — what was asked and why; the refusal does not stop the run.
+**－** An instruction of the handoff to repair a yaml entry, or to read the ledger, a Spec beyond its `- [ ]` lines, a Decision page or the archive, is refused and named in the report — what was asked and why; the refusal does not stop the run.
 **－** The ban on reading `vault/archive/` stays.
 
 ## Result
 
-2026-09-17, `make test-documentation` 111 passed; live, the librarian's run of 2238 per its brief and commit be891c1: materialize, index check, synthesis, generate, cleanup, render, sprint, brief, archive, commit in that order, no stderr from any script, 27 Decision pages for the 27 Cases of the ledger, every entry `applied`, the commit separate from the session's a4c3509, `render --check` exit 0 at `/hi`; the inputs read as the frame names them, by the librarian's own report — no refusal reported
+2026-09-20, `make test-documentation` 122 passed; live, the librarian's run of session 0958 by `event_log.md` 12:59:03–13:04:37 and commit 12b62ae: materialize, generate, render, sprint, brief, lint, commit, handback in that order, no refusal and no question; 12 Decision pages for the 12 Cases of the 0958 ledger, every entry `applied`, the commit separate from the session's ad57dc0; `render --sync` printed nothing at the `/hi` of 1308; archive moved nothing, the three units are of the run day; the run grepped the unticked lines of the three Specs (13:01:55) — the frame's Readings due and Next session ask for it (cases 200.3, 268.1), the Criterion of 265.4 says no Spec — a contradiction between the Criterion and the frame, not a fault of the run
 
 ## History
 
@@ -55,3 +56,5 @@ Then:
 - 2026-09-17 updated: one line in the block of case 89.1 — guppi sprint after render and before the brief (case 209.5) · [[decision-case-209.5]]
 - 2026-09-18 status: pending → passed · raw/2026-09-17/1119/ledger.md#L25
 - 2026-09-20 updated: the recut to the shape of case 193: the base text and the blocks 73.8, 89.1, 90.3, 100.2, 147.5 folded into one Criterion, pre-task gone from it; pending for the reading (case 265.4) · [[decision-case-265.4]]
+- 2026-09-20 status: pending → passed · raw/2026-09-20/1308/ledger.md#L8
+- 2026-09-20 updated: the Criterion replaced whole — the unticked lines of the Specs read for Readings due and Next session, the rest of the Spec still banned (case 271) · [[decision-case-271]]

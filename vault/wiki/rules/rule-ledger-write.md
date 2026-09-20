@@ -17,8 +17,8 @@ tags: [session, hooks, harness, ledger]
 
 Prevents a ratified line from existing only in a chat reply, or landing in a session no
 `/hi` opened. The instruction to write `- decision[...]`, `- estimate[...]` and
-`- lesson[...]` lines lives in `CLAUDE.md`, so the agent produces them in *any* session —
-including one with no sprint, no branch context and no brief. Without this hook's check the
+`- lesson[...]` lines lives in `case-schema.md`, the Render of `rule-case-protocol` that `/hi` loads (case 273), so a session without `/hi` produces none — and would produce them in *any* session
+if the instruction stood in `CLAUDE.md` again, including one with no sprint, no branch context and no brief. Without this hook's check the
 ledger would silently gain a session that was never a working session, and the librarian
 would materialize pages from it the next day.
 
@@ -80,3 +80,4 @@ the implementation arrives in the session after the probe (Slice 1, session B).
 - 2026-09-15 updated: the refusal on an unwritten ledger line quoted with both advices, the agent's and the person's (case 174) · [[decision-case-174]]
 - 2026-09-16 updated: the pass on "no source found" of 122 narrowed — a /retro with no source and no ledger line is refused by rule-retro-commit (case 180) · [[decision-case-184]]
 - 2026-09-18 updated: the text before a tool call is kept in the transcript and read at the next Stop; the gate's advice says so (case 224.1) · [[decision-case-224.1]]
+- 2026-09-20 updated: the ledger instruction lives in the Case schema loaded by /hi, not in CLAUDE.md (case 277.2) · [[decision-case-277.2]]

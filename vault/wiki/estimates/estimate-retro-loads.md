@@ -1,7 +1,7 @@
 ---
 type: estimate
 kind: QA
-status: passed
+status: pending
 target: "[[rule-retro]]"
 method: one reading by hand at the first /retro, recorded in the estimate line
 checked: 2026-09-20
@@ -14,13 +14,14 @@ tags: [session, workflow, harness]
 ## Criterion
 
 Given:
-Retro runs before the librarian; `generate`, `render` and `sprint` tick the page, render and sprint lines after it (cases 226, 250).
+Retro runs before the librarian; `generate` after it ticks the page lines and the `read` lines whose reading stands in the ledger, `render` and `sprint` the render and sprint lines (cases 226, 250, 270.1).
 
 When:
 The person invokes `/retro`, and the agent counts the unticked `tasks` of the Spec.
 
 Then:
-A `create`, `update` or `defer` line of a page, a `guppi render` line and a `guppi sprint` line are listed as waiting for the librarian and end in none of the four ways; every other unticked line is debt, as today.
+A `create`, `update` or `defer` line of a page, a `guppi render` line, a `guppi sprint` line and a `read` line whose `estimate[...]` stands in the ledger of this session are listed as waiting for the librarian and end in none of the four ways; every other unticked line is debt, as today.
+**－** A `read` line without its line in the ledger is debt: the reading was not done.
 **－** Nothing else in Retro changes.
 
 ## Result
@@ -49,3 +50,4 @@ A `create`, `update` or `defer` line of a page, a `guppi render` line and a `gup
 - 2026-09-18 status: pending → passed · raw/2026-09-18/1252/ledger.md#L37
 - 2026-09-18 updated: the Criterion replaced whole — a guppi sprint line waits for the librarian too (case 253.2) · [[decision-case-253.2]]
 - 2026-09-20 status: pending → passed · raw/2026-09-20/0527/ledger.md#L22
+- 2026-09-20 updated: the Criterion replaced whole — the read line with its ledger line waits for the librarian (case 270.3) · [[decision-case-270.3]]

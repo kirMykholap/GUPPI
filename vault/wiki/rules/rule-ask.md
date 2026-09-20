@@ -18,7 +18,7 @@ tags: [session, workflow, harness]
 
 Prevents a `create` from being proposed without the vault having been asked whether it
 already holds the thing, or forbids it. One entry point for every caller — the agent at
-pre-task and at pre-spec, the librarian, the person — so the search is tuned once, and its cost stays in
+the vault query before a `create` and at pre-spec, the librarian, the person — so the search is tuned once, and its cost stays in
 the searcher's own context: the index lines and pages never enter the caller's. A subagent
 with read-only tools, dispatched through the `Agent` tool, so the event log records each
 call. The main agent asks at two moments: before a `create` without a `ref`, and once at
@@ -78,3 +78,4 @@ Answer with exactly these five lines, each present, "none" when empty:
 - 2026-09-15 defer by decision-case-154 superseded · [[decision-case-155]]
 - 2026-09-15 updated: the question has two moments — before a create without a ref, and once at pre-task; an update with a ref reads the page itself; supersedes case 154 (case 155) · [[decision-case-155]]
 - 2026-09-15 status: draft → built · cascade
+- 2026-09-20 updated: pre-task → the vault query before a create, the first of the two moments (case 277.4, supersedes 274.2) · [[decision-case-277.4]]

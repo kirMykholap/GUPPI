@@ -15,8 +15,8 @@ tags: [session, workflow]
 ## Criterion
 
 Given:
-`index.md`, `case-schema.md`, `estimates/schema.md` and `schema.yaml` are Rule-class files: an `update` with `file` and `change`, applied by hand in Work Mode.
-**＋** `CLAUDE.md` is rendered from `rule-case-protocol`; an `update` of the Render touches the Estimate of the live reading of that Render (187).
+`index.md`, `estimates/schema.md` and `schema.yaml` are Rule-class files: an `update` with `file` and `change`, applied by hand in Work Mode; `case-schema.md` is the Render of `rule-case-protocol`, loaded by `/hi` (case 273).
+**＋** An `update` of the Render of `rule-case-protocol` touches the Estimate of the live reading of that Render (187).
 **＋** The reading of `estimate-case-protocol-case-form` is the Cases of this session at its close, by hand.
 
 When:
@@ -34,7 +34,7 @@ Then:
 
 ## Result
 
-2026-09-20, the Cases of session 0958 read by hand at its close: 267, 268, 268.1, 268.2 and the changes after pre-spec open context with the mechanism and close with one sentence of bookkeeping, name a case number only when the Case is about it, run past no cap; given holds conditions only, every Case names its Estimate by slug, tasks carry no contract line; 264–266 were written before the rule and keep the old density
+2026-09-20, the Cases 270–277 of session 1308 read by hand at its close: each opens context with the mechanism and closes with one sentence of bookkeeping, given holds conditions only, the Estimate named by slug, tasks without a contract line, a case number in context only when the Case is about it; two departures — the three amendments to signed text after pre-spec went as a numbered block outside the Case form, and the given of 273.1 needed a correction at pre-spec
 
 ## History
 
@@ -44,3 +44,5 @@ Then:
 - 2026-09-17 ref removed · one-off migration · raw/2026-09-16/2238/spec.md#case-210
 - 2026-09-20 updated: the line on context replaced: the mechanism first, the bookkeeping one closing sentence, a case number only when the Case is about it, no cap of sentences; the other lines as 208.2 left them; pending for the reading (case 267) · [[decision-case-267]]
 - 2026-09-20 status: pending → passed · raw/2026-09-20/0958/ledger.md#L31
+- 2026-09-20 updated: the Criterion replaced whole — case-schema.md the Render of rule-case-protocol loaded by /hi, not a Rule-class file by hand; CLAUDE.md no longer the carrier (case 277.5) · [[decision-case-277.5]]
+- 2026-09-20 status: pending → passed · raw/2026-09-20/1308/ledger.md#L55

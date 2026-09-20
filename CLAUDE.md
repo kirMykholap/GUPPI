@@ -4,16 +4,16 @@ A Claude Code harness governed by ratified decisions, and the Obsidian vault it 
 The vault is `vault/`; its map is `vault/wiki/index.md`. Nothing in the vault or the codebase
 changes without a Decision ratified by the human. You have full autonomy over *how* to
 implement something once its contract is ratified, and none over the contract itself. When you
-are unsure whether something needs ratification: it does.
+are unsure whether something needs ratification: it does. The vault is the only memory: write no note outside the repository — not the harness's local memory directory, not a file outside `vault/`; what is worth keeping is a `lesson` line or a Case on a Rule page (case 272.1).
 
 ## What is loaded here
 
-The glossary and the Case schema arrive through the imports below, so the terms and the shape
-of a Case are present from the first turn without a read.
+The glossary arrives through the import below, so the terms are present from the first turn
+without a read. The shape of a Case — `vault/wiki/case-schema.md`, the Render of
+`rule-case-protocol` — arrives with `/hi`, which opens a working session; a session without
+`/hi` holds no Case.
 
 @vault/wiki/glossary.md
-
-@vault/wiki/case-schema.md
 
 `vault/wiki/index.md` is not imported: it is the map of the vault and the rules that hold in
 every phase, read section by section when a section is needed (§0 the one rule, §1 layout,
@@ -38,74 +38,19 @@ move closes:
   holds the drafts of Work Mode and the plan of the move.
 - **Each slice is its own Plan Mode and its own approval.** The approved plan is copied to `vault/raw/<date>/<hi HHMM>/spec.md`, the session's folder, by the `PostToolUse ExitPlanMode` hook `guppi spec` since Slice 2 (the folder since case 73); the Specs of Slices 0–2 were copied by hand.
 
-<!-- rule-case-protocol -->
-## Case protocol
-
-One reply is one Case, in the eight sections of `case-schema.md`: context, problem,
-recommend, given, when, then, tasks, ratification. That is the form of Plan Mode. A deferred
-decision — an item left open when the person closes Plan Mode, or an item Retro ends
-in a defer — is its own Case in the short form: context, problem, a `defer` block with
-`purpose`, under the `## Deferred` heading of `raw/<date>/<hi HHMM>/spec.md`, the session's folder (case 73), before its ledger line (cases 56, 59.5); a page-less Slice task goes to `sprint.md` instead. Taking a
-deferred decision up means building its full Case from its page — recommend, given,
-when, then added — and writing `{supersedes:case N}` on the line. Never move to the
-next Case until this one is ratified or deferred. The Frontier is `raw/<date>/<hi HHMM>/frontier.md`, written at `/hi`;
-close its line in the reply that ends the item. Plan Mode does not end while a line is
-open; `/pre-spec` checks it.
-
-A follow-up question that asks you to justify a choice does not split the Case; one
-whose answer needs a new choice does — into sub-cases `N.1`, `N.2`. Ratifying a
-parent does not ratify its children.
-
-A Case renders as `## Case N — name`, then one blockquote per section: its first
-line `**name:**`, its text on the following quoted lines, a blank line between
-sections. `context`, `problem` and `recommend` carry no operand and name the slug of the thing described only; no count of sentences — the shape of each bounds it: `context` opens with the mechanism in plain words — what the thing does today and where it goes wrong — for a reader who has not opened the pages, and closes with one sentence of bookkeeping — the state of the pages the Case changes, the vault's answer, the Estimates of the rule the Case touches and the ones it does not; a case number stands in `context` or `problem` only when the Case is about that case; no line numbers and no quotation unless the Case is about one; `problem` says what is wrong, or the question answered, in one paragraph; `recommend` says the choice and why, the rejected option in one sentence (case 267). `given` holds the conditions of the behaviour, one per line, and only a condition a line of `then` depends on — the rule that constrains, the test that fixes the behaviour; no state of pages, no history, no quotation for its own sake (case 188). In `given`, `when` and `then` every line after the first starts with a
-bold operand: **＋** for one more condition or action — "and also", **－** for a limit or an
-exception — "but not", "does not apply here". `then` holds behaviour only: no Estimate block, no reading, no `supersedes`; those are lines of `tasks`, a section between `then` and `ratification`, a checklist in its blockquote — one line per page `update`, file, test, command, one-off migration and reading, without `contract` and without "block N" — the same lines that go into the Spec's `tasks` block. Slugs, file names and field values sit in code spans; bold is for section labels and operands only. One horizontal rule at most, after the Case or its last sub-case, and only when the agent's own text follows (case 159). `given`, `when` and `then` together are the Criterion of the Estimate the Case creates or changes: the scripts copy them whole, replacing what stood there, unless the item writes `sections: Criterion` itself — that text stands, on an `update` as on a `create`, and it is how one Case touches two promises (case 204); the Case names that Estimate by slug in its `then` block, and only a replaced Criterion sets it `pending` — an `update` of a rule's `Purpose` touches no Estimate, an `update` of its `Render` touches the Estimate of the live reading of that Render (case 187). A new promise is an explicit `create` of an Estimate with `ref` naming its target and its slug in the Case; a `create` of a rule or an entity carries no `method`, `estimate_kind` or `estimate_slug`, an `update` no `contract`; one promise per Case or sub-case — two touched promises are two sub-cases (case 188). Write short sentences, one idea each, in the active voice. A sub-case is
-`### Case N.M — name` under its parent, with its own `when`, `then`, `tasks` and
-`ratification`, and its own `given` unless it is the parent's word for word; the
-sections the children share live on the parent, and `materialize` reads them there. The
-`ratification` section ends with a preview of the ledger lines in an untagged
-fence, and the turn ends with a plain question in the chat, never a picker tool.
-When the person answers with a change, show the Case again: `context` and
-`problem` if they changed, always `given`, `when`, `then`, `tasks` and `ratification`, and
-no `recommend` — the variant is theirs. The page content itself — fields, prose sections, and for an Estimate its `purpose` and `method` — is a YAML
-block tagged `then` under the Case in the Spec, not in the chat; `guppi
-materialize` reads it, and what is not in that block was signed by nobody.
-
-The Spec is the plan file, written as each Case is ratified, in the reply that
-carries its ledger lines: `context`, `problem`, `given`, `when`, `then`, the `then`
-block and a block tagged `tasks` — one `- [ ] <what>` per file, test, command and
-one-off migration, and one per reading of an Estimate the Case creates or sets
-`pending`, by its slug; no `recommend`, no `ratification`, no code. Work Mode ticks the boxes on code, tests, migrations and readings in `raw/<date>/<hi HHMM>/spec.md` in the reply that finishes the task; `generate`, `render` and `sprint` tick the page, render and sprint lines (cases 226, 250); Retro counts the unticked.
-
-The reply that acknowledges a ratification has four parts, in this order: the `LEDGER` block first; a heading `## Case N — ratified` and a paragraph **Changes:** — what changes, in one or two sentences; a paragraph **Notes:** — facts that did not enter the Case, omitted when there are none; a heading `## Frontier` and the lines of `frontier.md` as a checklist — the closed lines folded into one, the open ones one per line with a short title, the deferred as `[-] … · defer case N` — and the question which item is next, last. Headings and labels in the language of the chat (case 167, supersedes 157).
-
-The harness — hooks, skills, agents, `settings.json`, this section of `CLAUDE.md` —
-is rendered from `rules/`. A harness file changes through an `update` of its Rule
-page, never by hand; a hook refuses the edit.
-
-Before a `create` without a `ref`, ask the vault first: does this exist, what
-conflicts, what sits in `draft`, which tags fit. Put the answer in `context`.
-Dispatch the `ask-guppi` agent with one short question.
-
-Ledger lines are written by the `Stop` hook, from the reply, verbatim, each with
-the time of writing. A record is a `- decision[case 12][update][rule-x]{ref:rule-x}`, `- estimate[...]` or `- lesson[...]` line inside a fenced block opened with the `LEDGER` tag — the id is `case N`, the word and a space, in `{supersedes:case N}` too; the same
-line anywhere else — bare, or in a block with another tag or none — is a preview
-and is never written. A `create` line carries the ratified tags: `{tags:a,b}`. A `knowledge` lesson line carries `{source:...}`, the url or reference the lesson studied — a file of the harness, a probe, a client version; the schema requires it, and a line without it is `incomplete: [source]` in the yaml and a lint finding on the page. An `error` lesson never carries one.
-Write the `- decision[...]` lines only in the reply that acknowledges ratification;
-`- estimate[...]` and `- lesson[...]` lines the moment the measurement or the lesson
-exists, an `estimate[...]` line opening with the date of the reading and the command or the place it was read (case 199). Without `/hi` the hook refuses and says so: tell the person, do not retry. A reply that carries a `LEDGER` block ends in that text. No tool call follows it in the same reply: the text before a tool call waits for the next `Stop` of the session, and the last reply of a session has none. A block a tool call did follow is not lost until that `Stop` has passed: check the ledger then, and only a line missing there is a lesson.
-<!-- /rule-case-protocol -->
-
+<!-- rule-language -->
 ## Language
 
 English for everything written into the repository: code, identifiers, comments, pages, commit messages, documents — the Spec included. Russian for chat with the owner: a Case is discussed in the chat in Russian, all its sections, and enters the Spec translated into English. Slugs, field names, ledger lines, paths and quotations from pages stay as they are in either language. English technical terms are not transliterated into Cyrillic.
+<!-- /rule-language -->
 
-## Style
+<!-- rule-agent-writing -->
+## How the agent writes
 
 Keep the facts and remove the sales pitch. Name a real source or remove the claim. Short
 sentences, active voice, a common word over a term. Give the answer first. Say what is done
 and what is not done; never leave the not-done implied.
+<!-- /rule-agent-writing -->
 
 ## Commands
 

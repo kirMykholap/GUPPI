@@ -11,7 +11,7 @@ tags: [workflow, harness, librarian]
 
 ## Trigger
 
-the `change` of Case 262 on `estimate-generate-renames` — "the two placeholders [[decision-case-N]] of the Criterion in code spans" — went into the page's History as written, and lint raised the same `ref: body names decision-case-N` the Case had just cured in the Criterion; the fourth time on this class (130.1, 140, 160)
+the `change` of Case 262 on `estimate-generate-renames` — "the two placeholders `[[decision-case-N]]` of the Criterion in code spans" — went into the page's History as written, and lint raised the same `ref: body names decision-case-N` the Case had just cured in the Criterion; the fourth time on this class (130.1, 140, 160)
 
 ## Root cause
 
@@ -20,3 +20,4 @@ the `change` string of a Spec item is prose that lands in History and log.md ver
 ## History
 
 - 2026-09-20 created · raw/2026-09-20/0958/ledger.md#L1
+- 2026-09-20 updated: the placeholder of the Trigger in a code span — the lesson no longer carries the bare link it is about (case 275) · [[decision-case-275]]

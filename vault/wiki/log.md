@@ -2254,3 +2254,83 @@ instruction. The global feed; a page's own `## History` is the per-page view.
 - 2026-09-20 rules/rule-documentation status: built → draft · cascade · generate
 - 2026-09-20 rules/rule-prespec status: draft → built · cascade · generate
 - 2026-09-20 rules/rule-skill-hi status: built → draft · cascade · generate
+- 2026-09-20 decisions/decision-case-270.1 created · raw/2026-09-20/1308/ledger.md#case-270.1 · generate
+- 2026-09-20 rules/rule-page-generation updated: generate ticks the read line of the Spec when it applies a reading, in this unit's Spec first and then in the other sessions of raw/ (case 270.1) · [[decision-case-270.1]] · generate
+- 2026-09-20 estimates/estimate-generate-ticks-the-spec updated: the Criterion replaced whole — an estimate entry and a create with a folded reading tick the read line, across the Specs of raw/ (case 270.1) · [[decision-case-270.1]] · generate
+- 2026-09-20 decisions/decision-case-270.2 created · raw/2026-09-20/1308/ledger.md#case-270.2 · generate
+- 2026-09-20 rules/rule-case-protocol updated: the tick sentence of the Render — readings ticked by generate, not by Work Mode (case 270.2) · [[decision-case-270.2]] · generate
+- 2026-09-20 estimates/estimate-case-protocol-loaded updated: the Criterion replaced whole — the tick sentence names generate on the read lines (case 270.2) · [[decision-case-270.2]] · generate
+- 2026-09-20 decisions/decision-case-270.3 created · raw/2026-09-20/1308/ledger.md#case-270.3 · generate
+- 2026-09-20 rules/rule-retro updated: a read line whose reading stands in the ledger waits for the librarian, not debt (case 270.3) · [[decision-case-270.3]] · generate
+- 2026-09-20 estimates/estimate-retro-loads updated: the Criterion replaced whole — the read line with its ledger line waits for the librarian (case 270.3) · [[decision-case-270.3]] · generate
+- 2026-09-20 estimates/estimate-documentation-completes status: pending → passed · raw/2026-09-20/1308/ledger.md#L8 · generate
+- 2026-09-20 estimates/estimate-brief-written status: pending → passed · raw/2026-09-20/1308/ledger.md#L9 · generate
+- 2026-09-20 estimates/estimate-hi-writes-frontier status: pending → passed · raw/2026-09-20/1308/ledger.md#L10 · generate
+- 2026-09-20 decisions/decision-case-271 created · raw/2026-09-20/1308/ledger.md#case-271 · generate
+- 2026-09-20 rules/rule-documentation updated: the ban on spec.md excepts its unticked lines, which Readings due and Next session take (case 271) · [[decision-case-271]] · generate
+- 2026-09-20 estimates/estimate-documentation-completes updated: the Criterion replaced whole — the unticked lines of the Specs read for Readings due and Next session, the rest of the Spec still banned (case 271) · [[decision-case-271]] · generate
+- 2026-09-20 decisions/decision-case-272.1 created · raw/2026-09-20/1308/ledger.md#case-272.1 · generate
+- 2026-09-20 rules/rule-claude-md updated: the memory sentence in the first paragraph; Language and Style leave the Render for the children rule-language and rule-agent-writing, marker lines in their place (case 272.1) · [[decision-case-272.1]] · generate
+- 2026-09-20 estimates/estimate-claude-md-rendered updated: the recut to the shape of case 193 — purpose, method, the Criterion replaced whole; three children spliced, the memory sentence (case 272.1) · [[decision-case-272.1]] · generate
+- 2026-09-20 decisions/decision-case-272.2 created · raw/2026-09-20/1308/ledger.md#case-272.2 · generate
+- 2026-09-20 rules/rule-language created · [[decision-case-272.2]] · generate
+- 2026-09-20 rules/rule-claude-md child rule-language added · [[decision-case-272.2]] · generate
+- 2026-09-20 estimates/estimate-language-followed created · [[decision-case-272.2]] · generate
+- 2026-09-20 rules/rule-language estimate estimate-language-followed added · [[decision-case-272.2]] · generate
+- 2026-09-20 decisions/decision-case-272.3 created · raw/2026-09-20/1308/ledger.md#case-272.3 · generate
+- 2026-09-20 rules/rule-agent-writing created · [[decision-case-272.3]] · generate
+- 2026-09-20 rules/rule-claude-md child rule-agent-writing added · [[decision-case-272.3]] · generate
+- 2026-09-20 estimates/estimate-agent-writing-followed created · [[decision-case-272.3]] · generate
+- 2026-09-20 rules/rule-agent-writing estimate estimate-agent-writing-followed added · [[decision-case-272.3]] · generate
+- 2026-09-20 decisions/decision-case-273.1 created · raw/2026-09-20/1308/ledger.md#case-273.1 · generate
+- 2026-09-20 rules/rule-case-protocol updated: the page renders vault/wiki/case-schema.md in full, the five paragraphs of the old CLAUDE.md Render folded into the schema, the duplicates gone; parent rule-plan-mode (case 273.1) · [[decision-case-273.1]] · generate
+- 2026-09-20 rules/rule-plan-mode updated: rule-case-protocol joins the children, last (case 273.1) · [[decision-case-273.1]] · generate
+- 2026-09-20 estimates/estimate-case-protocol-loaded updated: the Criterion replaced whole — the schema is the Render of rule-case-protocol, loaded by /hi, and holds the ledger, Frontier and acknowledging-reply paragraphs (case 273.1) · [[decision-case-273.1]] · generate
+- 2026-09-20 decisions/decision-case-273.2 created · raw/2026-09-20/1308/ledger.md#case-273.2 · generate
+- 2026-09-20 rules/rule-internal-context updated: case-schema.md joins the imports of /hi; the glossary stays with CLAUDE.md (case 273.2) · [[decision-case-273.2]] · generate
+- 2026-09-20 estimates/estimate-internal-context-loaded updated: the recut to the shape of case 193 — purpose, method, the Criterion replaced whole; three texts expanded, case-schema.md the third (case 273.2) · [[decision-case-273.2]] · generate
+- 2026-09-20 decisions/decision-case-273.3 created · raw/2026-09-20/1308/ledger.md#case-273.3 · generate
+- 2026-09-20 rules/rule-claude-md updated: the Case protocol leaves CLAUDE.md — no marker, no import of the schema; the glossary stays; children rule-language and rule-agent-writing (case 273.3) · [[decision-case-273.3]] · generate
+- 2026-09-20 estimates/estimate-claude-md-rendered updated: the Criterion replaced whole — the text of 272.1 plus no protocol in CLAUDE.md, one import (case 273.3) · [[decision-case-273.3]] · generate
+- 2026-09-20 decisions/decision-case-274.1 created · raw/2026-09-20/1308/ledger.md#case-274.1 · generate
+- 2026-09-20 rules/rule-page-generation updated: reword on an update item — pairs replaced as whole words across the live pages, the owner check, failed on no hit (case 274.1) · [[decision-case-274.1]] · generate
+- 2026-09-20 estimates/estimate-generate-rewords created · [[decision-case-274.1]] · generate
+- 2026-09-20 rules/rule-page-generation estimate estimate-generate-rewords added · [[decision-case-274.1]] · generate
+- 2026-09-20 decisions/decision-case-274.2 created · raw/2026-09-20/1308/ledger.md#case-274.2 · generate
+- 2026-09-20 decisions/decision-case-274.3 created · raw/2026-09-20/1308/ledger.md#case-274.3 · generate
+- 2026-09-20 rules/rule-materialize updated: reword carried from the then block to the entry as a list of pairs (case 274.3) · [[decision-case-274.3]] · generate
+- 2026-09-20 estimates/estimate-materialize-assembles updated: the Criterion replaced whole — reword among the keys carried from the then block, a list of pairs or incomplete (case 274.3) · [[decision-case-274.3]] · generate
+- 2026-09-20 decisions/decision-case-275 created · raw/2026-09-20/1308/ledger.md#case-275 · generate
+- 2026-09-20 lessons/lesson-spec-change-text-quotes-a-wikilink-bare updated: the placeholder of the Trigger in a code span — the lesson no longer carries the bare link it is about (case 275) · [[decision-case-275]] · generate
+- 2026-09-20 decisions/decision-case-276 created · raw/2026-09-20/1308/ledger.md#case-276 · generate
+- 2026-09-20 rules/rule-work-mode deferred · [[decision-case-276]] · generate
+- 2026-09-20 rules/rule-subagent-guppi deferred · [[decision-case-276]] · generate
+- 2026-09-20 decisions/decision-case-277.1 created · raw/2026-09-20/1308/ledger.md#case-277.1 · generate
+- 2026-09-20 rules/rule-materialize updated: the ban on the Spec excepts its unticked lines; reword in the list of the item's keys (case 277.1) · [[decision-case-277.1]] · generate
+- 2026-09-20 decisions/decision-case-277.2 created · raw/2026-09-20/1308/ledger.md#case-277.2 · generate
+- 2026-09-20 rules/rule-ledger-write updated: the ledger instruction lives in the Case schema loaded by /hi, not in CLAUDE.md (case 277.2) · [[decision-case-277.2]] · generate
+- 2026-09-20 decisions/decision-case-277.3 created · raw/2026-09-20/1308/ledger.md#case-277.3 · generate
+- 2026-09-20 decisions/decision-case-277.4 created · raw/2026-09-20/1308/ledger.md#case-277.4 · generate
+- 2026-09-20 decisions/decision-case-274.2 superseded by decision-case-277.4 · [[decision-case-277.4]] · generate
+- 2026-09-20 rules/rule-ask updated: pre-task → the vault query before a create, the first of the two moments (case 277.4, supersedes 274.2) · [[decision-case-277.4]] · generate
+- 2026-09-20 rules/rule-index-check updated: Pre-task → the vault query before the Case (case 277.4) · [[decision-case-277.4]] · generate
+- 2026-09-20 rules/rule-brief updated: pre-task → the vault query before a create (case 277.4) · [[decision-case-277.4]] · generate
+- 2026-09-20 entities/entity-sprint-migration updated: the Backlog line — pre-task → the vault query (case 277.4) · [[decision-case-277.4]] · generate
+- 2026-09-20 decisions/decision-case-277.5 created · raw/2026-09-20/1308/ledger.md#case-277.5 · generate
+- 2026-09-20 estimates/estimate-case-protocol-case-form updated: the Criterion replaced whole — case-schema.md the Render of rule-case-protocol loaded by /hi, not a Rule-class file by hand; CLAUDE.md no longer the carrier (case 277.5) · [[decision-case-277.5]] · generate
+- 2026-09-20 decisions/decision-case-277.6 created · raw/2026-09-20/1308/ledger.md#case-277.6 · generate
+- 2026-09-20 estimates/estimate-case-protocol-ledger-line-form updated: the Criterion replaced whole — the table and the ledger paragraph are one document since 273.1, two documents read, not three (case 277.6) · [[decision-case-277.6]] · generate
+- 2026-09-20 estimates/estimate-generate-ticks-the-spec status: pending → passed · raw/2026-09-20/1308/ledger.md#L53 · generate
+- 2026-09-20 estimates/estimate-materialize-assembles status: pending → passed · raw/2026-09-20/1308/ledger.md#L54 · generate
+- 2026-09-20 estimates/estimate-case-protocol-case-form status: pending → passed · raw/2026-09-20/1308/ledger.md#L55 · generate
+- 2026-09-20 lessons/lesson-work-mode-check-widened-the-list-and-the-agent-acted created · raw/2026-09-20/1308/ledger.md#L56 · generate
+- 2026-09-20 lessons/lesson-reword-pairs-signed-before-the-places-were-read created · raw/2026-09-20/1308/ledger.md#L57 · generate
+- 2026-09-20 rules/rule-brief status: draft → built · cascade · generate
+- 2026-09-20 rules/rule-case-protocol status: built → draft · cascade · generate
+- 2026-09-20 rules/rule-claude-md status: built → draft · cascade · generate
+- 2026-09-20 rules/rule-internal-context status: built → draft · cascade · generate
+- 2026-09-20 rules/rule-page-generation status: built → draft · cascade · generate
+- 2026-09-20 rules/rule-retro status: built → draft · cascade · generate
+- 2026-09-20 rules/rule-skill-hi status: draft → built · cascade · generate
+- 2026-09-20 decisions/decision-case-274.2 archived · superseded · generate
+- 2026-09-20 decisions/decision-case-274.2 archived · cleanup

@@ -1,10 +1,10 @@
 ---
 type: estimate
 kind: QA
-status: pending
+status: passed
 target: "[[rule-skill-hi]]"
 method: "one reading by hand at the first /hi of the next session, written into the estimate line; unit: the frontier findings of guppi prespec --check in tests/test_prespec.py"
-checked: 2026-09-18
+checked: 2026-09-20
 origin: raw/2026-09-12/ledger.md#case-59.2
 sprint: migration
 created: 2026-09-12
@@ -32,7 +32,7 @@ The Frontier, written to `raw/<date>/<hi HHMM>/frontier.md`, is two lists: `## C
 
 ## Result
 
-2026-09-18, the first /hi of session 1252: raw/2026-09-18/1252/frontier.md written with F1–F11 — the two items of Slice 3b, none of Slices 4 and 5, the Backlog or Closed; the failed pull, the unavailable gh, the pending readings and the flags of the brief as lines; the Tail empty; each line in the form F<n> — title · source
+2026-09-20, the first `/hi` of session 1308 read by hand: `raw/2026-09-20/1308/frontier.md` written as `## Cases` C1–C5 and `## Work` W1–W5, each `- [ ] <id> — <title> · <source>`; the kind by the source — C1–C2 the two items of the current milestone Slice 3b, none of Slices 4–5, the Backlog or Closed, C3–C5 the Cases list of the brief's Next session, W1–W5 its Work list; the Deferred list, `Render:` and the Tail empty, `Pull:` and `Open issues:` not items since `sprint.md` names 11.1 and 11.2; in the chat the Cases with their detail, the Work one block; W5 turned out to need a decision and closed `· case 270`, the person's item C6 added as a Cases line
 
 ## History
 
@@ -46,3 +46,4 @@ The Frontier, written to `raw/<date>/<hi HHMM>/frontier.md`, is two lists: `## C
 - 2026-09-18 status: pending → passed · raw/2026-09-18/1252/ledger.md#L2
 - 2026-09-20 updated: the word moved: /pre-task → /pre-spec in the Criterion, guppi prespec --check and tests/test_prespec.py in method; the promise and the reading unchanged, passed kept (case 265) · [[decision-case-265]]
 - 2026-09-20 updated: the Criterion replaced whole — the Frontier in two lists, the kind of an item by its source, pull and gh by the sprint page; method names prespec (case 268.2) · [[decision-case-268.2]]
+- 2026-09-20 status: pending → passed · raw/2026-09-20/1308/ledger.md#L10

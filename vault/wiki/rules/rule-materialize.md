@@ -1,7 +1,7 @@
 ---
 type: rule
 kind: Leaf
-purpose: Prevents the librarian from reading the ledger and the Spec itself, or from routing a decision by guesswork
+purpose: Prevents the librarian from reading the ledger and the Spec beyond its unticked lines, or from routing a decision by guesswork
 status: built
 enforcement: check
 implementation_ref: [guppi/materialize.py, tests/test_materialize.py]
@@ -15,16 +15,16 @@ tags: [harness, workflow, ledger]
 
 ## Purpose
 
-Prevents the librarian from reading the ledger and the Spec itself, or from routing
+Prevents the librarian from reading the ledger and the Spec beyond its unticked lines (case 271), or from routing
 a decision by guesswork. The yaml is the one input a clean context needs. Every line
 of the ledger is an entry. Its route is computed from `index.md` §5. Its content is
-lifted from the `then` block of its Case in the Spec — `set`, `sections`, `replace`, `change`, and `rename` when the item carries it (case 258.2). What is missing is named, not
+lifted from the `then` block of its Case in the Spec — `set`, `sections`, `replace`, `change`, and `rename` or `reword` when the item carries it (cases 258.2, 274.3). What is missing is named, not
 invented. If a route cannot be derived from the ledger and the Spec alone, that is a
 defect of the ledger, and it shows here.
 
 It also prevents a promise from being written by derivation. No Estimate is derived
 from a flag: an Estimate has its own ledger line and its own entry, and its Criterion
-is the `given`, `when` and `then` of the Case that names it, lifted verbatim into the entry's `sections` and replacing what stood on the page (cases 189, 194.1); a Criterion the item writes under `sections` itself stands instead, on a `create` and on an `update` alike — it is signed in the same block, and it is how one Case touches two promises (case 204). A unit
+is the `given`, `when` and `then` of the Case that names it, lifted verbatim into the entry's `sections` and replacing what stood on the page (cases 189, 194.1); a Criterion the item writes under `sections` itself stands instead, on a `create` and on an `update` alike — it is signed in the same block, and it is how one Case touches two promises (case 204). An `update` item's `reword` — a list of `{old, new}` pairs — is carried to the entry as written, for `generate` to apply; a mapping or a scalar under it is `incomplete: [reword]` (case 274.3). A unit
 whose folder holds `carry.md` is passed by with one line on stdout: its Spec was
 ratified and its work not done (case 190.3). The mechanism and the full list of an
 entry's fields, each with its writer, live in the docstring of `guppi/materialize.py`.
@@ -85,3 +85,5 @@ entry's fields, each with its writer, live in the docstring of `guppi/materializ
 - 2026-09-16 updated: a written Criterion stands on a create and on an update alike (case 204) · [[decision-case-204]]
 - 2026-09-17 status: draft → built · cascade
 - 2026-09-20 updated: the rename key of an update item is carried into the entry (case 258.2) · [[decision-case-258.2]]
+- 2026-09-20 updated: reword carried from the then block to the entry as a list of pairs (case 274.3) · [[decision-case-274.3]]
+- 2026-09-20 updated: the ban on the Spec excepts its unticked lines; reword in the list of the item's keys (case 277.1) · [[decision-case-277.1]]

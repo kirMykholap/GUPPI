@@ -2,7 +2,7 @@
 type: rule
 kind: Leaf
 purpose: Prevents work starting without the current sprint and the previous session's handover
-status: built
+status: draft
 enforcement: render
 governs: .claude/skills/hi/SKILL.md
 render_mode: partial
@@ -25,15 +25,20 @@ one rule rather than two.
 <!-- rule-internal-context -->
 @vault/wiki/sprint.md
 @vault/wiki/brief.md
+@vault/wiki/case-schema.md
 <!-- /rule-internal-context -->
 
 ## How it works
 
-The glossary, `case-schema.md` and the category schemas are not listed here: they arrive
-through `@import` in `CLAUDE.md`, and re-reading them would duplicate context that is
-already present.
+`case-schema.md` is listed since case 273: the Render of `rule-case-protocol`, it reaches
+a working session here and not through `CLAUDE.md`, so a session without `/hi` carries no
+Case text. The glossary and the category schemas are not listed: the glossary arrives
+through `@import` in `CLAUDE.md`, the schemas are read when a page of their category is
+written.
 
 ## History
 
 - 2026-09-09 created · raw/2026-09-09/ledger.md#case-11
 - 2026-09-10 status: draft → built · cascade
+- 2026-09-20 updated: case-schema.md joins the imports of /hi; the glossary stays with CLAUDE.md (case 273.2) · [[decision-case-273.2]]
+- 2026-09-20 status: built → draft · cascade

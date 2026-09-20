@@ -38,7 +38,7 @@ Estimates of this page pass: lint clean, the leftovers gone, the branch merged.
 
 ## Backlog
 
-- the product model: `applies_to` on a Rule and `rules` on an Entity, `kind: test | measurement | reading`, `ask-guppi` through Entities, the pre-task questions before a product's records (session 1119)
+- the product model: `applies_to` on a Rule and `rules` on an Entity, `kind: test | measurement | reading`, `ask-guppi` through Entities, the vault-query questions before a product's records (session 1119)
 
 ## Closed
 
@@ -67,3 +67,4 @@ both decided again at the close (`estimate-sprint-migration-leftovers-gone`).
 - 2026-09-18 updated: a Leaf under entity-sprint — the sprint by id is a thing with no parts named (cases 240.1, 241) · [[decision-case-241]]
 - 2026-09-18 updated: the item rule-work-mode of Slice 3b names the Insight deferred to it by case 238 (case 245) · [[decision-case-245]]
 - 2026-09-18 updated: the item estimate-sprint-migration-merges of Slice 5 names rule-git-context and rule-github-issues, read by estimate-sprint-migration-leftovers-gone at the close (case 249, supersedes 247) · [[decision-case-249]]
+- 2026-09-20 updated: the Backlog line — pre-task → the vault query (case 277.4) · [[decision-case-277.4]]

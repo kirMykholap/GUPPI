@@ -2,7 +2,7 @@
 type: rule
 purpose: Prevents implementation drifting from the ratified plan while it is being executed
 status: draft
-deferred_by: ["[[decision-case-183]]", "[[decision-case-206]]", "[[decision-case-218]]", "[[decision-case-231]]", "[[decision-case-242]]", "[[decision-case-248]]", "[[decision-case-252]]", "[[decision-case-254]]", "[[decision-case-260]]", "[[decision-case-263]]", "[[decision-case-269]]"]
+deferred_by: ["[[decision-case-183]]", "[[decision-case-206]]", "[[decision-case-218]]", "[[decision-case-231]]", "[[decision-case-242]]", "[[decision-case-248]]", "[[decision-case-252]]", "[[decision-case-254]]", "[[decision-case-260]]", "[[decision-case-263]]", "[[decision-case-269]]", "[[decision-case-276]]"]
 origin: raw/2026-09-10/ledger.md#case-29
 sprint: migration
 created: 2026-09-10
@@ -50,3 +50,4 @@ Prevents implementation drifting from the ratified plan while it is being execut
 - 2026-09-20 deferred · [[decision-case-260]]
 - 2026-09-20 deferred · [[decision-case-263]]
 - 2026-09-20 deferred · [[decision-case-269]]
+- 2026-09-20 deferred · [[decision-case-276]]

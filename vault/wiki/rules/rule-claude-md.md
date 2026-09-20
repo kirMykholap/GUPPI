@@ -2,12 +2,12 @@
 type: rule
 kind: MOC
 purpose: Prevents the system prompt from holding a line nobody ratified
-status: built
+status: draft
 enforcement: render
 governs: CLAUDE.md
 render_mode: full
 parent: "[[rule-harness]]"
-children: ["[[rule-case-protocol]]"]
+children: ["[[rule-language]]", "[[rule-agent-writing]]"]
 estimates: ["[[estimate-claude-md-rendered]]"]
 origin: raw/2026-09-12/ledger.md#case-59.8
 sprint: migration
@@ -20,8 +20,7 @@ tags: [harness, render]
 Prevents the system prompt from holding a line nobody ratified. `CLAUDE.md` is the
 one file every session reads first; until this page it was hand-written around one
 rendered section, and a ratified sentence went into the file instead of the page
-(case 56). Now the file is the Render of this page, whole, with the Case protocol
-spliced from `rule-case-protocol`; a change to it is an `update` of one of the two. The Render imports [[glossary]] and [[case-schema]] and points at [[index]].
+(case 56). Now the file is the Render of this page, whole, with `rule-language` and `rule-agent-writing` spliced into their markers; a change to it is an `update` of one of the three. The Render imports [[glossary]] and points at [[index]]; the Case schema is the Render of `rule-case-protocol`, loaded by `/hi` (cases 272, 273.3).
 
 ## Render
 
@@ -32,16 +31,16 @@ A Claude Code harness governed by ratified decisions, and the Obsidian vault it 
 The vault is `vault/`; its map is `vault/wiki/index.md`. Nothing in the vault or the codebase
 changes without a Decision ratified by the human. You have full autonomy over *how* to
 implement something once its contract is ratified, and none over the contract itself. When you
-are unsure whether something needs ratification: it does.
+are unsure whether something needs ratification: it does. The vault is the only memory: write no note outside the repository — not the harness's local memory directory, not a file outside `vault/`; what is worth keeping is a `lesson` line or a Case on a Rule page (case 272.1).
 
 ## What is loaded here
 
-The glossary and the Case schema arrive through the imports below, so the terms and the shape
-of a Case are present from the first turn without a read.
+The glossary arrives through the import below, so the terms are present from the first turn
+without a read. The shape of a Case — `vault/wiki/case-schema.md`, the Render of
+`rule-case-protocol` — arrives with `/hi`, which opens a working session; a session without
+`/hi` holds no Case.
 
 @vault/wiki/glossary.md
-
-@vault/wiki/case-schema.md
 
 `vault/wiki/index.md` is not imported: it is the map of the vault and the rules that hold in
 every phase, read section by section when a section is needed (§0 the one rule, §1 layout,
@@ -66,17 +65,9 @@ move closes:
   holds the drafts of Work Mode and the plan of the move.
 - **Each slice is its own Plan Mode and its own approval.** The approved plan is copied to `vault/raw/<date>/<hi HHMM>/spec.md`, the session's folder, by the `PostToolUse ExitPlanMode` hook `guppi spec` since Slice 2 (the folder since case 73); the Specs of Slices 0–2 were copied by hand.
 
-<!-- rule-case-protocol -->
+<!-- rule-language -->
 
-## Language
-
-English for everything written into the repository: code, identifiers, comments, pages, commit messages, documents — the Spec included. Russian for chat with the owner: a Case is discussed in the chat in Russian, all its sections, and enters the Spec translated into English. Slugs, field names, ledger lines, paths and quotations from pages stay as they are in either language. English technical terms are not transliterated into Cyrillic.
-
-## Style
-
-Keep the facts and remove the sales pitch. Name a real source or remove the claim. Short
-sentences, active voice, a common word over a term. Give the answer first. Say what is done
-and what is not done; never leave the not-done implied.
+<!-- rule-agent-writing -->
 
 ## Commands
 
@@ -86,10 +77,10 @@ dependencies, Python or otherwise.
 
 ## How it works
 
-Rendered in full into `CLAUDE.md`; `rule-case-protocol` splices into its marker. The
+Rendered in full into `CLAUDE.md`; each child — `rule-language`, `rule-agent-writing` — splices into its marker line. The
 `@` lines are text here and imports for Claude Code. The section "Migration mode"
 is carried from the hand-written file as it stood on 2026-09-12 and leaves with the
-migration, by an `update` of this page. `rule-case-protocol` has this page as its parent since case 66 and is its one child; the renderer splices it into the marker.
+migration, by an `update` of this page. `rule-language` and `rule-agent-writing` have this page as their parent since case 272; the renderer splices each into its marker. `rule-case-protocol` was a child from case 66 to case 273, when its Render became `case-schema.md` and its parent `rule-plan-mode`.
 
 ## History
 
@@ -105,3 +96,8 @@ migration, by an `update` of this page. `rule-case-protocol` has this page as it
 - 2026-09-14 updated: a Case is discussed in the chat in Russian and enters the Spec in English; the plan the owner approves is the Spec (case 123) · [[decision-case-123]]
 - 2026-09-14 updated: the hub file linked for the graph (case 149.4) · [[decision-case-149.4]]
 - 2026-09-14 updated: the agent may call /retro after Work Mode (case 150.1) · [[decision-case-150.1]]
+- 2026-09-20 updated: the memory sentence in the first paragraph; Language and Style leave the Render for the children rule-language and rule-agent-writing, marker lines in their place (case 272.1) · [[decision-case-272.1]]
+- 2026-09-20 child rule-language added · [[decision-case-272.2]]
+- 2026-09-20 child rule-agent-writing added · [[decision-case-272.3]]
+- 2026-09-20 updated: the Case protocol leaves CLAUDE.md — no marker, no import of the schema; the glossary stays; children rule-language and rule-agent-writing (case 273.3) · [[decision-case-273.3]]
+- 2026-09-20 status: built → draft · cascade

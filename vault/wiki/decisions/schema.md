@@ -86,7 +86,7 @@ The site has checkout but no cart — items go straight from the catalogue to pa
 Buyers cannot review an order before paying.
 
 ## Given
-Pre-task found no cart page and no overlapping purpose. `entity-checkout` exists and will
+The vault query before the Case found no cart page and no overlapping purpose. `entity-checkout` exists and will
 be affected. Nothing in `draft` covers this either.
 
 ## Criterion

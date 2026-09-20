@@ -169,7 +169,7 @@ update:
 - [x] `make test`, `make style`
 - [x] read `estimate-prespec-checks-the-plan`: `pytest tests/test_prespec.py` after the move
 - [x] read `estimate-prespec-hook-gates`: pytest after the move; the live part is the approval of the next plan after the render
-- [ ] read `estimate-prespec-reconciles`: the first `/pre-spec` — the next session
+- [x] read `estimate-prespec-reconciles`: the first `/pre-spec` — the next session
 ```
 
 ## Case 262 — `estimate-generate-renames`: the placeholder `[[decision-case-N]]` in the Criterion

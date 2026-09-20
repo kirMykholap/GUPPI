@@ -1721,7 +1721,7 @@ def test_a_missing_spec_section_or_line_is_no_error(tmp_path):
     assert all(e.get("applied") for e in load_yaml(partial)["entries"])
 
 
-def test_a_failed_entry_a_file_entry_and_an_estimate_entry_tick_nothing(tmp_path):
+def test_a_failed_entry_a_file_entry_and_a_lesson_entry_tick_nothing(tmp_path):
     bad = spec_update("2", replace=[{"old": "no such words", "new": "x"}])
     file_entry = {
         "line": 3,
@@ -1735,16 +1735,117 @@ def test_a_failed_entry_a_file_entry_and_an_estimate_entry_tick_nothing(tmp_path
         "decision": "decision-case-2",
         "change": "by hand",
     }
-    seed(tmp_path, entries=[ROOT, bad, file_entry])
-    spec = with_spec(
-        tmp_path,
-        "## Case 2 — x\n\n- [ ] update `rule-root`\n- [ ] update `glossary`, by hand\n",
+    lesson = {
+        "line": 4,
+        "text": "",
+        "kind": "lesson",
+        "category": "lessons",
+        "slug": "lesson-hooks-late-fire",
+        "origin": f"raw/{DATE}/ledger.md#L4",
+        "tags": ["harness"],
+        "fields": {"type": "lesson", "kind": "error", "root_cause": "the matcher was wrong"},
+        "sections": {"Trigger": "the hook fired late", "Root cause": "the matcher was wrong"},
+    }
+    seed(tmp_path, entries=[ROOT, bad, file_entry, lesson])
+    text = (
+        "## Case 2 — x\n\n- [ ] update `rule-root`\n- [ ] update `glossary`, by hand\n"
+        "- [ ] read `lesson-hooks-late-fire`\n"
     )
+    spec = with_spec(tmp_path, text)
     code, _, _ = run(tmp_path)
     assert code == 1
-    assert spec.read_text(encoding="utf-8") == (
-        "## Case 2 — x\n\n- [ ] update `rule-root`\n- [ ] update `glossary`, by hand\n"
+    assert spec.read_text(encoding="utf-8") == text
+
+
+# --- the tick of a reading (case 270.1) --------------------------------------------------
+
+
+def child_reading(line=4):
+    return reading("estimate-child-works", "twelve tests green", line=line)
+
+
+READ_SPEC = """# Spec
+
+## Case 1 — the root
+
+```tasks
+- [ ] create `rule-root` (no `ref`)
+- [ ] read `estimate-child-works`: pytest, then live
+- [ ] `guppi/x.py`: the code
+```
+
+## Case 2 — the root again
+
+```tasks
+- [ ] read `estimate-child-works`: a second reading, another Criterion
+```
+"""
+
+
+def test_a_reading_ticks_the_first_unticked_read_line_of_its_slug(tmp_path):
+    seed(tmp_path, entries=[CHILD, CHILD_ESTIMATE, ROOT, child_reading()])
+    spec = with_spec(tmp_path, READ_SPEC)
+    code, _, err = run(tmp_path)
+    assert code == 0 and err == ""
+    text = spec.read_text(encoding="utf-8")
+    assert "- [x] read `estimate-child-works`: pytest, then live" in text
+    assert "- [ ] read `estimate-child-works`: a second reading" in text  # one entry, one line
+    assert "- [ ] `guppi/x.py`: the code" in text
+
+
+def test_two_readings_tick_two_read_lines_in_order(tmp_path):
+    seed(tmp_path, entries=[CHILD, CHILD_ESTIMATE, ROOT, child_reading(), child_reading(line=5)])
+    spec = with_spec(tmp_path, READ_SPEC)
+    assert run(tmp_path)[0] == 0
+    assert "- [ ] read `estimate-child-works`" not in spec.read_text(encoding="utf-8")
+
+
+def test_a_create_with_a_folded_reading_ticks_the_page_line_and_the_read_line(tmp_path):
+    folded = dict(CHILD_ESTIMATE, status="passed", result="green", folded=[4])
+    seed(tmp_path, entries=[CHILD, folded, ROOT])
+    spec = with_spec(
+        tmp_path,
+        "## Case 1 — x\n\n- [ ] create `estimate-child-works`\n"
+        "- [ ] read `estimate-child-works`: pytest\n",
     )
+    code, _, err = run(tmp_path)
+    assert code == 0 and err == ""
+    text = spec.read_text(encoding="utf-8")
+    assert "- [x] create `estimate-child-works`" in text
+    assert "- [x] read `estimate-child-works`: pytest" in text
+
+
+def test_a_reading_ticks_the_read_line_in_another_sessions_spec_oldest_first(tmp_path):
+    seed(tmp_path, entries=[CHILD, CHILD_ESTIMATE, ROOT, child_reading()])
+    with_spec(tmp_path, "## Case 1 — x\n\n- [ ] create `rule-root`\n")  # no read line here
+    raw = tmp_path / "vault" / "raw"
+    older = raw / "2026-09-09" / "0900" / "spec.md"
+    newer = raw / DATE / "0800" / "spec.md"
+    for path in (older, newer):
+        path.parent.mkdir(parents=True)
+        path.write_text(
+            "## Case 7 — y\n\n- [ ] read `estimate-child-works`: by hand\n",
+            encoding="utf-8",
+            newline="\n",
+        )
+    archived = tmp_path / "vault" / "archive" / "migration" / "2026-09-08" / "0700" / "raw"
+    archived.mkdir(parents=True)
+    (archived / "spec.md").write_text(
+        "## Case 5 — z\n\n- [ ] read `estimate-child-works`: archived\n", encoding="utf-8"
+    )
+    code, _, err = run(tmp_path)
+    assert code == 0 and err == ""
+    assert "- [x] read `estimate-child-works`: by hand" in older.read_text(encoding="utf-8")
+    assert "- [ ] read `estimate-child-works`: by hand" in newer.read_text(encoding="utf-8")
+    assert "- [ ] read" in (archived / "spec.md").read_text(encoding="utf-8")
+
+
+def test_a_reading_with_no_read_line_anywhere_is_applied_without_a_word(tmp_path):
+    seed(tmp_path, entries=[CHILD, CHILD_ESTIMATE, ROOT, child_reading()])
+    with_spec(tmp_path, "## Case 1 — x\n\n- [ ] create `rule-root`\n")
+    code, out, err = run(tmp_path)
+    assert code == 0 and err == "" and "read" not in out.lower()
+    assert all(e.get("applied") for e in load_yaml(tmp_path)["entries"])
 
 
 def test_a_sprint_page_keeps_milestones_backlog_and_closed_in_order(tmp_path):
@@ -1969,3 +2070,205 @@ def test_a_rename_to_a_taken_or_foreign_slug_fails_the_entry_alone(tmp_path):
     )
     code, _, err = run(tmp_path / "c")
     assert code == 1 and "rule-old: rename: rule-gone is taken" in err
+
+
+# --- reword: the rename of a word without a page (case 274.1) ----------------------------
+
+
+OWNER_RULE = """\
+---
+type: rule
+kind: Leaf
+purpose: Prevents the gadget from drifting
+status: draft
+enforcement: render
+governs: .claude/skills/widget/SKILL.md
+origin: raw/2026-09-01/ledger.md#case-9
+sprint: migration
+created: 2026-09-01
+tags: [harness]
+---
+
+## Purpose
+
+Prevents the gadget from drifting; the skill is `/widget` since case 9.
+
+## Render
+
+<!-- rule-owner -->
+Run `/widget` once; the gadget is what it was called.
+<!-- /rule-owner -->
+
+## History
+
+- 2026-09-01 created · [[decision-case-9]]
+"""
+
+OTHER_RULE = """\
+---
+type: rule
+kind: Leaf
+purpose: Asks the vault at gadget time
+status: draft
+enforcement: check
+origin: raw/2026-09-01/ledger.md#case-9
+sprint: migration
+created: 2026-09-01
+tags: [harness]
+---
+
+## Purpose
+
+The agent at gadget and at retro asks once; a `/gadget` call is the same moment; `rule-gadget-hook` is another slug.
+
+## History
+
+- 2026-09-01 gadget added · [[decision-case-9]]
+"""
+
+WORD_ESTIMATE = """\
+---
+type: estimate
+kind: QA
+status: passed
+target: "[[rule-other]]"
+purpose: The gadget check runs
+method: pytest, then one gadget by hand
+checked: 2026-09-01
+origin: raw/2026-09-01/ledger.md#case-9
+sprint: migration
+created: 2026-09-01
+tags: [harness]
+---
+
+## Criterion
+
+When:
+The person invokes gadget.
+
+Then:
+It holds.
+
+## Result
+
+2026-09-01, pytest: gadget holds
+
+## History
+
+- 2026-09-01 created · [[decision-case-9]]
+"""
+
+REWORD_PAGES = [
+    ("rules", "rule-owner", OWNER_RULE),
+    ("rules", "rule-other", OTHER_RULE),
+    ("estimates", "estimate-other-runs", WORD_ESTIMATE),
+    ("decisions", "decision-case-9", OLD_DECISION.replace("touched", "touched gadget and")),
+    (
+        "lessons",
+        "lesson-gadget-late",
+        lesson_text("lesson-gadget-late", "new").replace("\n\nt\n", "\n\nthe gadget fired late\n"),
+    ),
+    (
+        "insights",
+        "insight-gadget-flag",
+        insight_text("insight-gadget-flag", "open", []).replace("\n\np\n", "\n\nthe gadget flag\n"),
+    ),
+]
+
+
+def reword_entry(pairs=None, **extra):
+    entry = {
+        "line": 2,
+        "text": "",
+        "case": "2",
+        "kind": "update",
+        "category": "rules",
+        "slug": "rule-owner",
+        "origin": f"raw/{DATE}/ledger.md#case-2",
+        "decision": "decision-case-2",
+        "reword": pairs if pairs is not None else [{"old": "gadget", "new": "widget"}],
+        "change": "gadget is called widget",
+    }
+    entry.update(extra)
+    return entry
+
+
+def test_a_reword_replaces_the_word_on_the_live_rules_entities_and_estimates(tmp_path):
+    seed(tmp_path, entries=[reword_entry()], pages=REWORD_PAGES)
+    code, out, err = run(tmp_path)
+    assert code == 0 and err == ""
+    owner = page(tmp_path, "rules", "rule-owner")
+    assert props(owner)["purpose"] == "Prevents the widget from drifting"
+    assert "Prevents the widget from drifting; the skill is `/widget` since case 9." in owner
+    assert "the widget is what it was called." in owner
+    assert f"- {DATE} reworded: `gadget` → `widget` · [[decision-case-2]]" in owner
+    assert f"- {DATE} updated: gadget is called widget · [[decision-case-2]]" in owner
+    other = page(tmp_path, "rules", "rule-other")
+    assert props(other)["purpose"] == "Asks the vault at widget time"
+    assert (
+        "The agent at widget and at retro asks once; a `/widget` call is the same moment; "
+        "`rule-gadget-hook` is another slug." in other
+    )
+    assert "- 2026-09-01 gadget added" in other  # History is a record
+    assert f"- {DATE} reworded: `gadget` → `widget` · [[decision-case-2]]" in other
+    estimate = page(tmp_path, "estimates", "estimate-other-runs")
+    assert props(estimate)["purpose"] == "The widget check runs"
+    assert props(estimate)["method"] == "pytest, then one widget by hand"
+    assert props(estimate)["status"] == "passed"  # the status of no Estimate changes
+    assert "The person invokes widget." in estimate
+    assert "2026-09-01, pytest: gadget holds" in estimate  # Result is a record
+    assert "generate: reword `gadget` → `widget`: rules/rule-other (3)" in out
+    assert "generate: reword `gadget` → `widget`: estimates/estimate-other-runs (3)" in out
+
+
+def test_a_reword_leaves_decisions_lessons_insights_and_the_archive_alone(tmp_path):
+    seed(tmp_path, entries=[reword_entry()], pages=REWORD_PAGES)
+    archived = tmp_path / "vault" / "archive" / "migration" / "2026-09-01" / "rules"
+    archived.mkdir(parents=True)
+    (archived / "rule-gone.md").write_text(OTHER_RULE, encoding="utf-8")
+    assert run(tmp_path)[0] == 0
+    assert "touched gadget and" in page(tmp_path, "decisions", "decision-case-9")
+    assert "the gadget fired late" in page(tmp_path, "lessons", "lesson-gadget-late")
+    assert "the gadget flag" in page(tmp_path, "insights", "insight-gadget-flag")
+    assert "at gadget and" in (archived / "rule-gone.md").read_text(encoding="utf-8")
+
+
+def test_a_reword_alone_is_content_and_applies(tmp_path):
+    entry = reword_entry()
+    entry.pop("change")
+    seed(tmp_path, entries=[entry], pages=REWORD_PAGES)
+    code, out, err = run(tmp_path)
+    assert code == 0 and err == "" and "applied by hand" not in out
+    assert "the widget is what it was called." in page(tmp_path, "rules", "rule-owner")
+    assert load_yaml(tmp_path)["entries"][0]["applied"]
+
+
+def test_a_reword_pair_with_no_hit_or_a_new_the_owner_lacks_fails_the_entry(tmp_path):
+    pairs = [{"old": "gadget", "new": "widget"}, {"old": "sprocket", "new": "widget"}]
+    seed(tmp_path, entries=[reword_entry(pairs)], pages=REWORD_PAGES)
+    code, _, err = run(tmp_path)
+    assert code == 1 and "rule-owner: reword: `sprocket` has no hit on a live page" in err
+    assert "gadget" in page(tmp_path, "rules", "rule-other")  # nothing applied
+    assert "failed" in load_yaml(tmp_path)["entries"][0]
+
+    pairs = [{"old": "gadget", "new": "cog"}]
+    seed(tmp_path / "b", entries=[reword_entry(pairs)], pages=REWORD_PAGES)
+    code, _, err = run(tmp_path / "b")
+    assert code == 1 and "rule-owner: reword: `cog` is not in the owner's text" in err
+    assert "gadget" in page(tmp_path / "b", "rules", "rule-other")
+
+    mapping = {"old": "gadget", "new": "widget"}
+    seed(tmp_path / "c", entries=[reword_entry(mapping)], pages=REWORD_PAGES)
+    code, _, err = run(tmp_path / "c")
+    assert code == 1 and "rule-owner: reword: expected a list of old/new pairs" in err
+
+
+def test_the_owner_check_ignores_case(tmp_path):
+    pairs = [{"old": "Gadget", "new": "Widget"}]
+    other = OTHER_RULE.replace("The agent at gadget", "The agent at Gadget")
+    pages = [p if p[1] != "rule-other" else ("rules", "rule-other", other) for p in REWORD_PAGES]
+    seed(tmp_path, entries=[reword_entry(pairs)], pages=pages)
+    code, _, err = run(tmp_path)
+    assert code == 0 and err == ""
+    assert "The agent at Widget and at retro" in page(tmp_path, "rules", "rule-other")
+    assert "the gadget is what it was called." in page(tmp_path, "rules", "rule-owner")  # case kept

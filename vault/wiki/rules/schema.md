@@ -16,7 +16,7 @@ A Rule is a standing condition one case can break, with a guard that refuses tha
 | `status` | yes | `draft` \| `built` \| `archived` | Set by lint once every Estimate passes, never by hand. |
 | `enforcement` | no | `hook` \| `check` \| `render` | How the rule has force, and which of the fields below apply. On a Leaf, any of the three. **On a MOC, only `render`** — see below. |
 | `implementation_ref` | `hook`, `check` | list of paths | The hook script, or the linter/test that performs the check. The field is the link; no body section repeats it (case 166.1). |
-| `governs` | `render`, `check` | path | The harness file this rule's text is rendered into; on a `check` rule, the file its script writes — the governed-files hook refuses a hand edit of either (case 209.7). |
+| `governs` | `render`, `check` | path | The file this rule's text is rendered into — a harness file, or a Rule-class file of the vault such as `case-schema.md` (case 273.1); on a `check` rule, the file its script writes — the governed-files hook refuses a hand edit of either (case 209.7). |
 | `render_mode` | `render` | `full` \| `partial` | Whether the rule's body becomes the whole target file, or is spliced between markers inside it. |
 | `parent` | Leaf | quoted wikilink `"[[slug]]"` | The workflow MOC above it. The scripts read the slug through the brackets; a slug without a category prefix stays bare (case 148.2). The field is the link; no body section repeats it (case 166.1). |
 | `children` | MOC | **ordered** list of quoted wikilink `"[[slug]]"` | See *Ordering* below. The field is the link; no body section repeats it (case 166.1). |
@@ -61,7 +61,7 @@ Three ways a rule has force:
 
 **`render` is what closes the self-improvement loop.** Where `hook` and `check` describe something implemented elsewhere, a `render` rule *is* the implementation — the page is the source of truth and a script regenerates the harness from it. Change the rule through a ratified decision and the skill changes; there is no second copy to drift.
 
-**`render` applies only to harness rules.** A constraint on an Entity — async in the pricing module — is a `check`: it has no `render_mode`, because there is nothing in the harness to write it into; a `check` rule whose script writes a file names that file in `governs`, so the guard reads the field alike (`rule-sprint`, case 209.7).
+**`render` applies to harness rules, and to the one Rule-class file a rule renders — `case-schema.md` from `rule-case-protocol` (case 273.1).** A constraint on an Entity — async in the pricing module — is a `check`: it has no `render_mode`, because there is nothing in the harness to write it into; a `check` rule whose script writes a file names that file in `governs`, so the guard reads the field alike (`rule-sprint`, case 209.7).
 
 A constraint that no hook, check or render can detect is not a Rule at all. It is a sentence in an Entity's `How it works`. Keeping that line sharp is what stops `rules/` from filling with unenforceable declarations.
 
@@ -154,9 +154,9 @@ Both are vault files, both fail the same way — missing file or wrong path — 
 one rule rather than two.
 
 ## How it works
-The glossary, `case-schema.md` and the category schemas are not listed here: they arrive
-through `@import` in `CLAUDE.md` and re-reading them would duplicate context that is
-already present.
+`case-schema.md` is listed here since case 273; the glossary arrives through `@import`
+in `CLAUDE.md`, the category schemas are read when a page of their category is written,
+and re-reading either would duplicate context that is already present.
 
 ## Render
 <!-- rule-internal-context -->

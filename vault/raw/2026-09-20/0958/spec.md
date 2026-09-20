@@ -188,7 +188,7 @@ update:
 - [x] update `estimate-hi-writes-frontier`: `sections: Criterion` verbatim with `/pre-spec`, `set: {method: …prespec…, status: passed}`, `change`
 - [x] update `estimate-generate-writes`: `sections: Criterion` verbatim with `prespec`, `-prespec-reconciles`, `set: {status: passed}`, `change`
 - [x] update `estimate-generate-walks-dates`: the same
-- [ ] `make lint` after the librarian: no `pre-task`/`pretask` in the Criterion and `method` of the seven pages; `unmigrated: 25`
+- [x] `make lint` after the librarian: no `pre-task`/`pretask` in the Criterion and `method` of the seven pages; `unmigrated: 25`
 ```
 
 ### Case 265.1 — the recut of `estimate-event-log-records`
@@ -246,7 +246,7 @@ update:
 
 ```tasks
 - [x] update `estimate-retro-commit-gates`: `set: {status: pending, method}`, `change`; the Criterion lifted from this sub-case
-- [ ] read `estimate-retro-commit-gates`: pytest tests/test_gate.py; live — the `/retro` and `/handoff` of this session
+- [x] read `estimate-retro-commit-gates`: pytest tests/test_gate.py; live — the `/retro` and `/handoff` of this session
 ```
 
 ### Case 265.3 — the recut of `estimate-plan-mode-verified`
@@ -429,7 +429,7 @@ update:
 - [x] `vault/wiki/case-schema.md`: the same sentence in the paragraph on the story sections, by hand
 - [x] `uv run guppi render`: `CLAUDE.md`
 - [x] update `estimate-case-protocol-case-form`: `sections: Criterion` whole, the line on `context` replaced, `set: {status: pending}`, `change`
-- [ ] read `estimate-case-protocol-case-form`: the Cases of this session at its close, by hand — 267 and after
+- [x] read `estimate-case-protocol-case-form`: the Cases of this session at its close, by hand — 267 and after
 ```
 
 ## Case 268 — the Frontier in two lists: Cases and Work

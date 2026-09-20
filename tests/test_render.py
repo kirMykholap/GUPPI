@@ -106,6 +106,52 @@ def test_full_frame_takes_its_children_in_order_and_drops_its_own_markers(tmp_pa
     assert (tmp_path / "out" / "SKILL.md").read_text(encoding="utf-8") == EXPECTED_FULL
 
 
+SCHEMA = """<!-- rule-schema -->
+# Case — schema
+
+## Sections
+
+Eight, in this order.
+
+```then
+update:
+  - slug: entity-x
+```
+
+## Splitting
+
+Never move on.
+<!-- /rule-schema -->"""
+
+
+def test_full_page_renders_a_rule_class_file_of_the_vault_under_a_parent_that_governs_nothing(
+    tmp_path,
+):
+    """Case 273.1: `governs` may name a file under `vault/wiki/`; the headings and the fence
+    inside the Render land as they are; the parent is a MOC without a Render."""
+    page(
+        tmp_path,
+        "rule-phase",
+        {"type": "rule", "kind": "MOC", "purpose": "The phase", "status": "draft"},
+    )
+    (tmp_path / "vault" / "wiki" / "rules" / "rule-phase.md").write_text(
+        (tmp_path / "vault" / "wiki" / "rules" / "rule-phase.md")
+        .read_text(encoding="utf-8")
+        .replace("status: draft", "status: draft\nchildren: [rule-schema]"),
+        encoding="utf-8",
+        newline="\n",
+    )
+    rule(tmp_path, "rule-schema", "full", "vault/wiki/case-schema.md", SCHEMA, parent="rule-phase")
+    code, _out, err = run([], tmp_path)
+    assert (code, err) == (0, "")
+    text = (tmp_path / "vault" / "wiki" / "case-schema.md").read_text(encoding="utf-8")
+    assert text.startswith("# Case — schema\n\n## Sections\n")
+    assert "```then\nupdate:\n  - slug: entity-x\n```" in text
+    assert text.endswith("## Splitting\n\nNever move on.\n")
+    assert "<!--" not in text
+    assert run(["--check"], tmp_path)[0] == 0
+
+
 def test_partial_splices_between_the_markers_of_an_existing_file(tmp_path):
     rule(tmp_path, "rule-one", "partial", "CLAUDE.md", ONE, parent="rule-x")
     target = tmp_path / "CLAUDE.md"

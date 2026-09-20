@@ -26,11 +26,11 @@ No Entity for a "why": the reason behind a rule lives in the Decision that made 
 | `origin` | yes | `raw/YYYY-MM-DD/HHMM/ledger.md#case-N` (the date form, `raw/YYYY-MM-DD/ledger.md#case-N`, on pages born before 2026-09-13; case 103.6) | The ratified decision that created it. |
 | `sprint` | yes | sprint id | |
 | `created` | yes | date | |
-| `tags` | yes | list | Chosen at pre-task, ratified in the Case. |
+| `tags` | yes | list | Chosen at the vault query before the Case, ratified in the Case. |
 
 ### Slug
 
-Meaningful, written by the main agent in the Case and checked by pre-task for collisions. The decision that created it is `decision-case-<N>`, reachable through the page's `origin`; the relationship is readable without opening either page.
+Meaningful, written by the main agent in the Case and checked by pre-spec for collisions. The decision that created it is `decision-case-<N>`, reachable through the page's `origin`; the relationship is readable without opening either page.
 
 ### `built` is not a field you set
 

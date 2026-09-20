@@ -22,7 +22,7 @@ An Estimate is one promise, one way to check it and the last result with its dat
 | `origin` | yes | `raw/YYYY-MM-DD/HHMM/ledger.md#case-N` (the date form, `raw/YYYY-MM-DD/ledger.md#case-N`, on pages born before 2026-09-13; case 103.6) | The ratified decision that created it. |
 | `sprint` | yes | sprint id | |
 | `created` | yes | date | |
-| `tags` | yes | list | Chosen at pre-task, ratified in the Case. |
+| `tags` | yes | list | Chosen at the vault query before the Case, ratified in the Case. |
 
 A `failed` Estimate is debt, not an endpoint: its target stays `draft` and the librarian surfaces it in `brief.md` until a human decides. Absent a decision to fix, the default is archival — something that cannot pass its own criterion should not sit in the vault pretending to be work in progress.
 

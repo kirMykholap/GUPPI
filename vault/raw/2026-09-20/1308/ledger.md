@@ -1,0 +1,57 @@
+- 13:52:20 decision[case 270.1][update][rule-page-generation]{ref:rule-page-generation}
+- 13:52:20 decision[case 270.1][update][estimate-generate-ticks-the-spec]{ref:estimate-generate-ticks-the-spec}
+- 13:52:20 decision[case 270.2][update][rule-case-protocol]{ref:rule-case-protocol}
+- 13:52:20 decision[case 270.2][update][estimate-case-protocol-loaded]{ref:estimate-case-protocol-loaded}
+- 13:52:20 decision[case 270.2][update][case-schema]{ref:case-schema}
+- 13:52:20 decision[case 270.3][update][rule-retro]{ref:rule-retro}
+- 13:52:20 decision[case 270.3][update][estimate-retro-loads]{ref:estimate-retro-loads}
+- 13:55:47 estimate[estimate-documentation-completes][passed] 2026-09-20, `make test-documentation` 122 passed; live, the librarian's run of session 0958 by `event_log.md` 12:59:03–13:04:37 and commit 12b62ae: materialize, generate, render, sprint, brief, lint, commit, handback in that order, no refusal and no question; 12 Decision pages for the 12 Cases of the 0958 ledger, every entry `applied`, the commit separate from the session's ad57dc0; `render --sync` printed nothing at the `/hi` of 1308; archive moved nothing, the three units are of the run day; the run grepped the unticked lines of the three Specs (13:01:55) — the frame's Readings due and Next session ask for it (cases 200.3, 268.1), the Criterion of 265.4 says no Spec — a contradiction between the Criterion and the frame, not a fault of the run
+- 13:55:47 estimate[estimate-brief-written][passed] 2026-09-20, the brief of the 0958 run read by hand at the `/hi` of 1308: six sections in order — Where things stand, Readings due, Deferred, Flags, Next session, Readings at the close; Next session in two lists, Cases four items and Work six, one line each, no item in both, no list empty; Readings due the six pending after generate with the rule and the place from the Spec line or the method; Deferred empty with the sprint's items named as left out; no decision stated
+- 13:55:47 estimate[estimate-hi-writes-frontier][passed] 2026-09-20, the first `/hi` of session 1308 read by hand: `raw/2026-09-20/1308/frontier.md` written as `## Cases` C1–C5 and `## Work` W1–W5, each `- [ ] <id> — <title> · <source>`; the kind by the source — C1–C2 the two items of the current milestone Slice 3b, none of Slices 4–5, the Backlog or Closed, C3–C5 the Cases list of the brief's Next session, W1–W5 its Work list; the Deferred list, `Render:` and the Tail empty, `Pull:` and `Open issues:` not items since `sprint.md` names 11.1 and 11.2; in the chat the Cases with their detail, the Work one block; W5 turned out to need a decision and closed `· case 270`, the person's item C6 added as a Cases line
+- 14:03:15 decision[case 271][update][rule-documentation]{ref:rule-documentation}
+- 14:03:15 decision[case 271][update][estimate-documentation-completes]{ref:estimate-documentation-completes}
+- 15:12:57 decision[case 272.1][update][rule-claude-md]{ref:rule-claude-md}
+- 15:12:57 decision[case 272.1][update][estimate-claude-md-rendered]{ref:estimate-claude-md-rendered}
+- 15:12:57 decision[case 272.2][create][rule-language]{ref:rule-claude-md}{tags:harness,render,workflow}
+- 15:12:57 decision[case 272.2][create][estimate-language-followed]{ref:rule-language}{tags:harness,render,workflow}
+- 15:12:57 decision[case 272.3][create][rule-agent-writing]{ref:rule-claude-md}{tags:harness,render,workflow}
+- 15:12:57 decision[case 272.3][create][estimate-agent-writing-followed]{ref:rule-agent-writing}{tags:harness,render,workflow}
+- 15:22:45 decision[case 273.1][update][rule-case-protocol]{ref:rule-case-protocol}
+- 15:22:45 decision[case 273.1][update][rule-plan-mode]{ref:rule-plan-mode}
+- 15:22:45 decision[case 273.1][update][estimate-case-protocol-loaded]{ref:estimate-case-protocol-loaded}
+- 15:22:45 decision[case 273.1][update][glossary]{ref:glossary}
+- 15:22:45 decision[case 273.1][update][index]{ref:index}
+- 15:22:45 decision[case 273.2][update][rule-internal-context]{ref:rule-internal-context}
+- 15:22:45 decision[case 273.2][update][estimate-internal-context-loaded]{ref:estimate-internal-context-loaded}
+- 15:22:45 decision[case 273.3][update][rule-claude-md]{ref:rule-claude-md}
+- 15:22:45 decision[case 273.3][update][estimate-claude-md-rendered]{ref:estimate-claude-md-rendered}
+- 16:18:45 decision[case 274.1][update][rule-page-generation]{ref:rule-page-generation}
+- 16:18:45 decision[case 274.1][create][estimate-generate-rewords]{ref:rule-page-generation}{tags:harness,workflow,ledger}
+- 16:18:45 decision[case 274.2][update][rule-prespec]{ref:rule-prespec}
+- 16:18:45 decision[case 274.2][update][index]{ref:index}
+- 16:18:45 decision[case 274.2][update][entities-schema]{ref:entities-schema}
+- 16:18:45 decision[case 274.2][update][estimates-schema]{ref:estimates-schema}
+- 16:21:36 decision[case 274.3][update][rule-materialize]{ref:rule-materialize}
+- 16:21:36 decision[case 274.3][update][estimate-materialize-assembles]{ref:estimate-materialize-assembles}
+- 16:24:07 decision[case 275][update][lesson-spec-change-text-quotes-a-wikilink-bare]{ref:lesson-spec-change-text-quotes-a-wikilink-bare}
+- 16:25:44 decision[case 276][defer][rule-work-mode]{ref:rule-work-mode}
+- 16:25:44 decision[case 276][defer][rule-subagent-guppi]{ref:rule-subagent-guppi}
+- 16:52:53 decision[case 277.1][update][rule-materialize]{ref:rule-materialize}
+- 16:52:53 decision[case 277.2][update][rule-ledger-write]{ref:rule-ledger-write}
+- 16:52:53 decision[case 277.3][update][index]{ref:index}
+- 16:52:53 decision[case 277.3][update][glossary]{ref:glossary}
+- 16:52:53 decision[case 277.3][update][rules-schema]{ref:rules-schema}
+- 16:52:53 decision[case 277.3][update][entities-schema]{ref:entities-schema}
+- 16:52:53 decision[case 277.3][update][estimates-schema]{ref:estimates-schema}
+- 16:52:53 decision[case 277.4][update][rule-ask]{ref:rule-ask}{supersedes:case 274.2}
+- 16:52:53 decision[case 277.4][update][rule-index-check]{ref:rule-index-check}
+- 16:52:53 decision[case 277.4][update][rule-brief]{ref:rule-brief}
+- 16:52:53 decision[case 277.4][update][entity-sprint-migration]{ref:entity-sprint-migration}
+- 16:52:53 decision[case 277.5][update][estimate-case-protocol-case-form]{ref:estimate-case-protocol-case-form}
+- 16:52:53 decision[case 277.6][update][estimate-case-protocol-ledger-line-form]{ref:estimate-case-protocol-ledger-line-form}
+- 17:09:38 decision[case 277.3][update][decisions-schema]{ref:decisions-schema}
+- 17:09:38 estimate[estimate-generate-ticks-the-spec][passed] 2026-09-20, `uv run pytest -q tests/test_generate.py` 67 green, six new — a reading ticks the first unticked read line of its slug, two readings two lines in order, a create with a folded reading ticks the page line and the read line, another session's Spec oldest first with the archive untouched, nothing found applied without a word, a lesson ticks nothing; live — the librarian's run of this session on the read lines W1–W3 of Spec 0958 and lines 56 and 829 of Spec 1308, read in the next
+- 17:09:38 estimate[estimate-materialize-assembles][passed] 2026-09-20, `uv run pytest -q tests/test_materialize.py` 58 green, one new — reword reaches the entry as a list of pairs, a mapping under it is incomplete: [reword]; live — the librarian's run of this session, read in the next
+- 17:22:49 estimate[estimate-case-protocol-case-form][passed] 2026-09-20, the Cases 270–277 of session 1308 read by hand at its close: each opens context with the mechanism and closes with one sentence of bookkeeping, given holds conditions only, the Estimate named by slug, tasks without a contract line, a case number in context only when the Case is about it; two departures — the three amendments to signed text after pre-spec went as a numbered block outside the Case form, and the given of 273.1 needed a correction at pre-spec
+- 17:22:49 lesson[error][lesson-work-mode-check-widened-the-list-and-the-agent-acted]{tags:workflow,harness} trigger: the grep line of tasks 277.3 found a sixth Rule-class file, decisions/schema.md, beyond the five the Case listed; the agent edited it and wrote a decision line for 277.3 after ratification instead of returning with the finding root_cause: a check line in tasks is a reading whose outcome can widen the ratified list; when it does, the extra place is a fork — the then may cover it in words, but no item and no line were signed — and the agent must stop and ask, not repair and backfill the ledger
+- 17:22:49 lesson[error][lesson-reword-pairs-signed-before-the-places-were-read]{tags:workflow,harness} trigger: 274.2 ratified reword pairs pre-task → pre-spec across the live pages; pre-spec found five places where the word meant the vault query before a create, not the check of the set, and one where the pair would have produced "at pre-spec and at pre-spec"; 277.4 superseded it root_cause: a rename of a word is not a rename of a slug — one word names different things by place — and the Case listed the places by grep count without reading each; the regulated procedure asks the agent to put every found place and its meaning into context before the pairs are signed

@@ -28,7 +28,16 @@ Decision pages included, that names the old slug — a `[[link]]`, a ref field, 
 as a word in a body — names the new one, with History `ref <old> → <new>` on every page but
 a Decision page; `origin`, `## History`, `## Result`, the archive and `raw/` keep the old
 name, they are records; a taken slug, live or archived, or one of another prefix fails the
-entry and moves nothing (case 258.1). An `update`, `estimate`, `delete` or `defer` whose slug is
+entry. An `update` whose entry carries `reword` — a list of `{old, new}` pairs — replaces
+each pair as a whole word (the boundary of `rename`) on every live rule, entity and
+estimate, in `purpose`, `method` and every section but History and Result, with History
+`reworded: old → new` on each page touched and one stdout line with the count; the page is
+the owner, so a `new` its own text lacks — `purpose`, `governs`, `implementation_ref`,
+Purpose, Render, compared without regard to case — or a pair with no hit fails the entry
+before anything is written; Decision pages, lessons and Insights are records and stay; an
+entry with `reword` alone is content (case 274.1). A rename of a slug goes through `rename`,
+not `reword`; on a taken slug `rename` fails the entry and moves nothing (case 258.1). An
+`update`, `estimate`, `delete` or `defer` whose slug is
 not under `wiki/` reaches the page under `vault/archive/`, `raw/` folders excluded, and
 edits it there (case 105.3). An `estimate` sets `status`, overwrites `## Result`, writes
 `checked` — the date the result opens with (case 199), else the yaml's date — and appends
@@ -74,9 +83,12 @@ The Spec (case 226.1): once a `create`, `update`, `delete` or `defer` entry is a
 first unticked line `- [ ] <kind> `<slug>`` in the section of the entry's Case — from its
 `## Case N` or `### Case N.M` heading to the next heading — of the `spec.md` beside the
 yaml becomes `- [x]`. Two entries of one kind and slug tick two lines, in order. No Spec,
-no section, no line: nothing is written and nothing is said. An `estimate` or `lesson`
-entry, a Rule-class file entry and a failed entry tick nothing; the lines on code, tests,
-migrations and readings stay the agent's.
+no section, no line: nothing is written and nothing is said. A reading (case 270.1): an
+`estimate` entry, and a `create` with a folded reading, tick the first unticked line
+`- [ ] read `<slug>`` — in the Spec beside the yaml first, then in the `spec.md` of the
+other units of `raw/`, oldest first, in any Case, since the entry carries no Case; the
+archive is not read. A `lesson` entry, a Rule-class file entry and a failed entry tick
+nothing; the lines on code, tests, migrations and `by hand` checks stay the agent's.
 
 The cascade after all entries (case 201.4): an entity or rule whose Estimates are all
 `passed` becomes `built`, a `built` one with an Estimate not passed returns to `draft`,
@@ -170,6 +182,8 @@ SINGULAR = {
 }
 HISTORY = "## History"
 RESULT = "## Result"  # a reading's record; a rename leaves it as it is (case 258.1)
+REWORD_CATEGORIES = ("rules", "entities", "estimates")  # not the journal, not the records (274.1)
+REWORD_FIELDS = ("purpose", "method")
 NEEDS_QUOTE = re.compile(r"""^[\s\[\]{}"'&*!|>%@,#`-]|: | #|:$|\s$|\n""")
 LOOKS_SPECIAL = re.compile(r"^(true|false|null|yes|no|on|off|~|[-+]?\d[\d.]*)$", re.IGNORECASE)
 TAG_ROW = re.compile(r"^\|\s*([\w-]+)\s*\|")
@@ -256,6 +270,35 @@ TICKED_KINDS = ("create", "update", "delete", "defer")
 CASE_HEADING = re.compile(r"^#{2,3} Case (\S+)")
 ANY_HEADING = re.compile(r"^#{1,6} ")
 TASK_LINE = re.compile(r"^- \[ \] (create|update|delete|defer) `([^`]+)`")
+READ_LINE = re.compile(r"^- \[ \] read `([^`]+)`")
+
+
+def tick_read(specs: list[Path], slug: str) -> bool:
+    """Case 270.1: in the first of `specs` that holds one, the first unticked line
+    `- [ ] read `<slug>`` — in any Case, a reading carries no Case — becomes `- [x] …`.
+    True when a line was ticked; False when no Spec holds one — no error either way."""
+    for spec in specs:
+        if not spec.is_file():
+            continue
+        lines = spec.read_text(encoding="utf-8").split("\n")
+        for index, line in enumerate(lines):
+            task = READ_LINE.match(line)
+            if task and task.group(1) == slug:
+                lines[index] = "- [x]" + line[len("- [ ]") :]
+                spec.write_text("\n".join(lines), encoding="utf-8", newline="\n")
+                return True
+    return False
+
+
+def raw_specs(project_dir: Path, first: Path | None) -> list[Path]:
+    """The `spec.md` beside the yaml first, then every other one under `vault/raw/` — a
+    date-level `raw/<date>/spec.md` or a session's `raw/<date>/<HHMM>/spec.md` — oldest
+    first by path; nothing from the archive (case 270.1)."""
+    raw = project_dir / "vault" / "raw"
+    others = sorted(raw.glob("*/spec.md")) + sorted(raw.glob("*/*/spec.md")) if raw.is_dir() else []
+    others.sort(key=lambda p: p.relative_to(raw).parts)
+    head = [first] if first is not None else []
+    return head + [p for p in others if first is None or p.resolve() != first.resolve()]
 
 
 def tick_spec(spec: Path, case: str, kind: str, slug: str) -> bool:
@@ -332,10 +375,14 @@ class Vault:
 
     def tick(self, entry: dict) -> None:
         """The first unticked `- [ ] <kind> `<slug>`` line in the section of the entry's
-        Case becomes `- [x]`; nothing found — no Spec, no section, no line — is no error."""
-        if self.spec is None or entry.get("kind") not in TICKED_KINDS or "case" not in entry:
-            return
-        tick_spec(self.spec, str(entry["case"]), str(entry["kind"]), str(entry.get("slug")))
+        Case becomes `- [x]`; a reading — an `estimate` entry, or a `create` with `folded` —
+        ticks the first unticked `- [ ] read `<slug>`` line across the Specs of `raw/`
+        (270.1); nothing found — no Spec, no section, no line — is no error."""
+        kind = entry.get("kind")
+        if self.spec is not None and kind in TICKED_KINDS and "case" in entry:
+            tick_spec(self.spec, str(entry["case"]), str(kind), str(entry.get("slug")))
+        if kind == "estimate" or (kind == "create" and entry.get("folded")):
+            tick_read(raw_specs(self.project_dir, self.spec), str(entry.get("slug")))
 
     # pages
 
@@ -511,7 +558,7 @@ class Vault:
         if entry.get("criterion_block"):  # the shape before case 189: not applied (201.1)
             self.error(slug, "criterion_block: a shape the script no longer knows (case 201.1)")
             return
-        keys = ("set", "sections", "replace", "change", "rename")
+        keys = ("set", "sections", "replace", "change", "rename", "reword")
         if not any(entry.get(k) for k in keys):
             print(
                 f"generate: {slug}: an update with no content in the Spec; applied by hand",
@@ -522,6 +569,10 @@ class Vault:
             page = self.rename(page, str(entry["rename"]), self.pointer(entry))
             if page is None:
                 return
+        if entry.get("reword") and not self.reword_pairs(  # the word changes first (274.1)
+            page, entry["reword"], self.pointer(entry)
+        ):
+            return
         sets = entry.get("set") or {}
         sections = entry.get("sections") or {}
         if (
@@ -620,6 +671,89 @@ class Vault:
                     self.history(other, f"ref `{old}` → `{new}`", pointer)
                 self.written[other.slug] = category  # counted, History or not
                 self.save(other)
+
+    # reword (case 274.1)
+
+    @staticmethod
+    def owner_text(page: Page) -> str:
+        """What a rule owns, lowercased: its `purpose`, `governs`, `implementation_ref`, its
+        Purpose and its Render — the `new` of a pair must stand there (274.1)."""
+        parts = [str(page.props.get(k, "")) for k in ("purpose", "governs", "implementation_ref")]
+        parts += [page.sections.get(name, "") for name in ("## Purpose", "## Render")]
+        return "\n".join(parts).lower()
+
+    @staticmethod
+    def reword_text(page: Page, old: str, new: str) -> int:
+        """`old` as a whole word becomes `new` in `purpose`, `method` and every section but
+        History and Result; the number of replacements."""
+        word = re.compile(rf"(?<![\w-]){re.escape(old)}(?![\w-])")
+        count = 0
+        for key in REWORD_FIELDS:
+            value = page.props.get(key)
+            if isinstance(value, str):
+                page.props[key], n = word.subn(new, value)
+                count += n
+        for name, text in page.sections.items():
+            if name in (HISTORY, RESULT):
+                continue
+            page.sections[name], n = word.subn(new, text)
+            count += n
+        return count
+
+    def reword_pairs(self, owner: Page, pairs, pointer: str | None) -> bool:
+        """Every pair of `reword` replaced as a whole word on every live rule, entity and
+        estimate, the owner included; one History line per page touched, one stdout line
+        with the count. A pair with no hit, or with a `new` the owner's text lacks (compared
+        without regard to case), fails the entry before anything is written (274.1)."""
+        shape = isinstance(pairs, list) and all(
+            isinstance(p, dict) and p.get("old") and p.get("new") for p in pairs
+        )
+        if not shape:
+            self.error(owner.slug, "reword: expected a list of old/new pairs")
+            return False
+        owned = self.owner_text(owner)
+        for pair in pairs:
+            if str(pair["new"]).lower() not in owned:
+                self.error(owner.slug, f"reword: `{pair['new']}` is not in the owner's text")
+                return False
+        pages = [owner]
+        for category in REWORD_CATEGORIES:
+            folder = self.wiki / category
+            if not folder.is_dir():
+                continue
+            for path in sorted(folder.glob("*.md")):
+                if path.stem == "schema" or (category, path.stem) == (owner.category, owner.slug):
+                    continue
+                other = read_page(path, category)
+                if not other.error:
+                    pages.append(other)
+        for pair in pairs:  # every pair must hit before any is written
+            word = re.compile(rf"(?<![\w-]){re.escape(str(pair['old']))}(?![\w-])")
+            hit = any(
+                word.search(str(page.props.get(k) or "")) for page in pages for k in REWORD_FIELDS
+            ) or any(
+                word.search(text)
+                for page in pages
+                for name, text in page.sections.items()
+                if name not in (HISTORY, RESULT)
+            )
+            if not hit:
+                self.error(owner.slug, f"reword: `{pair['old']}` has no hit on a live page")
+                return False
+        for pair in pairs:
+            old, new = str(pair["old"]), str(pair["new"])
+            for page in pages:
+                count = self.reword_text(page, old, new)
+                if not count:
+                    continue
+                self.history(page, f"reworded: `{old}` → `{new}`", pointer)
+                print(
+                    f"generate: reword `{old}` → `{new}`: {page.category}/{page.slug} ({count})",
+                    file=self.stdout,
+                )
+                if page is not owner:  # the owner is saved with the rest of its update
+                    self.save(page)
+        return True
 
     def replace(self, page: Page, old: str, new: str) -> bool:
         tokens = [re.escape(t) for t in old.split()]

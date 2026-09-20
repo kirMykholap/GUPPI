@@ -127,6 +127,8 @@ defer:
 update:
   - slug: rule-old
     rename: rule-new
+    reword:
+      - {old: old-word, new: new-word}
     set: {tags: [harness]}
     change: rule-old becomes rule-new
 ```
@@ -244,6 +246,25 @@ def test_an_update_with_rename_carries_the_key_into_the_entry(tmp_path):
     assert later["case"] == "6" and later["rename"] == "rule-new"
     assert later["set"] == {"tags": ["harness"]} and "incomplete" not in later
     assert "rename" not in earlier
+
+
+def test_an_update_with_reword_carries_the_pairs_or_is_incomplete(tmp_path):
+    """Case 274.3: `reword` reaches the entry as a list of pairs; a mapping or a scalar
+    under it is `incomplete: [reword]`."""
+    seed(tmp_path)
+    run(tmp_path)
+    data = load(tmp_path)
+    earlier, later = by_slug(data, "rule-old", "update")
+    assert later["reword"] == [{"old": "old-word", "new": "new-word"}]
+    assert "reword" not in earlier
+    spec = SPEC.replace(
+        "    reword:\n      - {old: old-word, new: new-word}\n",
+        "    reword: {old: old-word, new: new-word}\n",
+    )
+    seed(tmp_path / "b", spec=spec)
+    run(tmp_path / "b")
+    _, later = by_slug(load(tmp_path / "b"), "rule-old", "update")
+    assert "reword" not in later and later["incomplete"] == ["reword"]
 
 
 def test_a_supersedes_chain_marks_the_earlier_entry(tmp_path):

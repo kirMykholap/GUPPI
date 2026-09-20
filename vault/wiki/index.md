@@ -61,7 +61,7 @@ wiki/
     schema.yaml  schema.md
   index.md           routing table, archival rules, the map of the vault
   glossary.md        terms
-  case-schema.md     Case structure — imported into CLAUDE.md
+  case-schema.md     Case structure — the Render of rule-case-protocol, loaded by /hi
   brief.md           handover to the next session
   sprint.md          the sprint page rendered: written by `guppi sprint`
   tags.md            registry of tags in use
@@ -131,7 +131,7 @@ A new term appearing mid-session is not an exception. If it belongs in the gloss
 
 The Case is the unit of dialogue — roughly one agent response — and the only place content gets ratified. Whatever is not in a Case was signed by nobody.
 
-**Its structure lives in `wiki/case-schema.md`**, imported into `CLAUDE.md` so it is present from the first turn. Eight sections: `context`, `problem`, `recommend`, `given`, `when`, `then`, `tasks`, `ratification` (case 163). `given` holds the conditions of the behaviour, `when` the action, `then` what holds after it, `tasks` the work it leaves; `given`, `when` and `then` together are the Criterion of the Estimate the Case creates or changes, named in the Case by slug (§7, case 193). The page content itself is a YAML block tagged `then` under the Case in the Spec — the human signs content, not the fact that a decision occurred.
+**Its structure lives in `wiki/case-schema.md`**, the Render of `rule-case-protocol`, loaded by `/hi` with the sprint and the brief so it is present from the first turn of a working session (case 273). Eight sections: `context`, `problem`, `recommend`, `given`, `when`, `then`, `tasks`, `ratification` (case 163). `given` holds the conditions of the behaviour, `when` the action, `then` what holds after it, `tasks` the work it leaves; `given`, `when` and `then` together are the Criterion of the Estimate the Case creates or changes, named in the Case by slug (§7, case 193). The page content itself is a YAML block tagged `then` under the Case in the Spec — the human signs content, not the fact that a decision occurred.
 
 Not duplicated here: one description, one place to change it.
 
@@ -156,7 +156,7 @@ Four types. There are no others.
 
 If the Case has no `ref`, you must query the vault first to confirm nothing already covers this. Put the result in `context` (case 200.2). Only after that may you propose `create`.
 
-**Pre-task is not a name lookup.** It asks the broader question: does this already exist, are there similar cases, what might obstruct this, what contradicts the plan. The Estimate a Case changes is named in the Case by slug — in `context` which Estimates of the page are touched and which are not, in the `then` block the `update` of the Estimate itself — and only a replaced Criterion sets it `pending` (cases 187, 193); it is reached through the page's `estimates` field, never searched.
+**The vault query before a `create` is not a name lookup.** It asks the broader question: does this already exist, are there similar cases, what might obstruct this, what contradicts the plan. The Estimate a Case changes is named in the Case by slug — in `context` which Estimates of the page are touched and which are not, in the `then` block the `update` of the Estimate itself — and only a replaced Criterion sets it `pending` (cases 187, 193); it is reached through the page's `estimates` field, never searched.
 
 **It also returns relevant tags** from `tags.md`. Put them in `then` alongside `purpose`; an Estimate's `method` the same way (case 200.2), so the human ratifies the tagging with everything else. If no existing tag fits, propose a new one explicitly — the human sees "a new tag X will be created" and signs or objects. This is why `tags.md` cannot grow uncontrolled: every new tag was ratified, and the librarian only registers what is already signed.
 
@@ -196,7 +196,7 @@ Restoring is an ordinary `update` setting `status` back to `draft` or `built`.
 - `slug` — the affected page
 - `ref` — the parent, for a `create` that adds a child; on an `update` or a `delete` it repeats the target's own `slug`. Every decision line carries it (case 92).
 - `source` — optional external origin (a GitHub issue). Traceability only; never affects routing.
-- `tags` — the ratified tags, on a `create`. The page's category comes from the slug prefix (`rule-`, `entity-`, `estimate-`, `lesson-`, `insight-`), which pre-task guards.
+- `tags` — the ratified tags, on a `create`. The page's category comes from the slug prefix (`rule-`, `entity-`, `estimate-`, `lesson-`, `insight-`), which pre-spec guards.
 
 The id is `case N` everywhere the line carries one — the first bracket and `{supersedes:case N}` — the word and a space (case 75.1).
 
@@ -239,7 +239,7 @@ The librarian reads the log as a chain and applies the last link.
 | `defer` | existing | The decision slug is appended to the target's `deferred_by`; the index line shows it, so `ask-guppi` reaches the deferred decision without opening the page (case 52.3) |
 | `defer` | none | Librarian creates a minimal placeholder page, born with `deferred_by` |
 
-The category of a `target_slug` is derived from the slug prefix, which pre-task guards, or from the Rule-class map (`case-schema`, `rules-schema-yaml`); it is never written. The Case that takes up a deferred item writes `{supersedes:case N}` on its line: the earlier decision becomes `superseded` and its slug leaves the target's `deferred_by` (case 52.3).
+The category of a `target_slug` is derived from the slug prefix, which pre-spec guards, or from the Rule-class map (`rules-schema-yaml`; `case-schema` left it with case 273, it is rendered); it is never written. The Case that takes up a deferred item writes `{supersedes:case N}` on its line: the earlier decision becomes `superseded` and its slug leaves the target's `deferred_by` (case 52.3).
 
 ---
 
@@ -349,7 +349,7 @@ so there is nothing to isolate until there is a plan to execute.
 
 Runs every session, in a clean context. **The only actor that writes to `wiki/`** — everything reaches the vault through the scripts it invokes; the one exception is `brief.md`, which `/carry` rewrites when a session conserves its Spec without a librarian run (case 200.2).
 
-**Reads:** three inputs — `handoff.md`, every `materialize.yaml` the walk names and `tags.md`; the index lines it compares with are its own Greps of the category (§11). Not `ledger.md`, not `spec.md`, not `plan.md`, not `wiki/decisions/`, not the archive — the yaml is assembled by script and already carries every `purpose`, `criterion` and tag. The Makefile, `guppi/` and `tests/` are the scripts' own files and may be read when a command's output is not enough (case 58). A page under `wiki/` is opened for one of four reasons, each named in the report with its outcome: an index line does not settle same-or-near at the index check; an index line does not settle whether a lesson shares a root cause with another, whether or not an Insight follows; a script names the page in an error; the brief needs a fact no input carries — the status of an Estimate, the severity of an Insight (case 54).
+**Reads:** three inputs — `handoff.md`, every `materialize.yaml` the walk names and `tags.md`; the index lines it compares with are its own Greps of the category (§11). Not `ledger.md`, not `spec.md` beyond its unticked `- [ ]` lines — the ones Readings due and Next session take (case 271) — not `plan.md`, not `wiki/decisions/`, not the archive — the yaml is assembled by script and already carries every `purpose`, `criterion` and tag. The Makefile, `guppi/` and `tests/` are the scripts' own files and may be read when a command's output is not enough (case 58). A page under `wiki/` is opened for one of four reasons, each named in the report with its outcome: an index line does not settle same-or-near at the index check; an index line does not settle whether a lesson shares a root cause with another, whether or not an Insight follows; a script names the page in an error; the brief needs a fact no input carries — the status of an Estimate, the severity of an Insight (case 54).
 
 **Does three things:** checks new pages against the index lines, synthesizes Lessons, and writes the brief. Statuses, backlinks and cascades are all script or lint work.
 
@@ -400,7 +400,7 @@ check.
 **There is no index of decisions, and Decision pages are never archived on completion.**
 Everything worth searching for is reachable through entities and rules: if something was
 decided and built, its page is in its category's lines; if it was deferred, it exists as a
-`draft` page and pre-task finds it. Decisions are a journal — read by following a page's
+`draft` page and the vault query before a `create` finds it. Decisions are a journal — read by following a page's
 `origin` to ask "why is this the way it is", never by scanning. Since nothing scans them,
 they cost nothing to leave in place, and a decision stays valid for exactly as long as the
 page it created. It leaves the live vault only when superseded, or by cascade when its
@@ -412,7 +412,7 @@ index line to give the deferred decision's Problem (case 52.3); a reader follows
 decision a new one supersedes — goes by the case id the ledger line carries. Decision slugs
 are `decision-case-<N>`, one page per Case.
 
-The `ask-guppi` agent is the search mechanism over these lines. One tool, two moments: pre-task queries
+The `ask-guppi` agent is the search mechanism over these lines. One tool, two moments: the vault query before a `create` asks
 by intent before a decision exists; the librarian queries by finished content afterwards.
 
 ---

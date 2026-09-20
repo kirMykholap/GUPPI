@@ -1753,3 +1753,45 @@ def test_show_prints_the_unknown_mark(tmp_path):
     seed_schemas(tmp_path)
     code, out, _ = run(tmp_path, argv=["--show"])
     assert code == 0 and "  unknown:\n  - contract_note" in out
+
+
+# --- a decision line's {addresses} reaches the lesson's entry (case 284.3) ----------------
+
+
+def test_an_addresses_mark_lands_on_the_lesson_entry_as_addressed_by(tmp_path):
+    seed(tmp_path)
+    raw = tmp_path / "vault" / "raw" / DATE
+    with (raw / "ledger.md").open("a", encoding="utf-8", newline="\n") as fh:
+        fh.write(
+            "- 11:00:00 lesson[error][lesson-second]{tags:hooks} trigger: t root_cause: r\n"
+            "- 11:00:01 decision[case 3][update][rule-old]{ref:rule-old}"
+            "{addresses:lesson-hooks-late-fire}{addresses:lesson-second}\n"
+        )
+    run(tmp_path)
+    data = load(tmp_path)
+    (decision,) = [e for e in by_slug(data, "rule-old", "update") if e.get("addresses")]
+    assert decision["addresses"] == ["lesson-hooks-late-fire", "lesson-second"]
+    assert "addresses" not in (decision.get("incomplete") or [])
+    for slug in ("lesson-hooks-late-fire", "lesson-second"):
+        (lesson,) = by_slug(data, slug)
+        assert lesson["addressed_by"] == "decision-case-3"
+        assert "addressed_by" not in lesson["fields"]  # the page gets no field
+    (plain,) = [e for e in by_slug(data, "rule-old", "update") if e["line"] == 5]
+    assert "addresses" not in plain  # a line without the mark carries no key
+
+
+def test_an_addresses_mark_without_its_lesson_is_incomplete(tmp_path):
+    seed(tmp_path)
+    raw = tmp_path / "vault" / "raw" / DATE
+    with (raw / "ledger.md").open("a", encoding="utf-8", newline="\n") as fh:
+        fh.write(
+            "- 11:00:01 decision[case 3][update][rule-old]{ref:rule-old}"
+            "{addresses:lesson-not-here}\n"
+        )
+    code, _, err = run(tmp_path)
+    assert code == 0 and "line" not in err  # not an error: lifted, named incomplete
+    data = load(tmp_path)
+    (decision,) = [e for e in by_slug(data, "rule-old", "update") if e.get("addresses")]
+    assert decision["addresses"] == ["lesson-not-here"]
+    assert decision["incomplete"] == ["addresses"]
+    assert not [e for e in data["entries"] if e.get("addressed_by")]

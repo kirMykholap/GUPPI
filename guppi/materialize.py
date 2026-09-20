@@ -47,20 +47,24 @@ becomes its own `create` entry, for a line with its slug.
 The fields of an entry, each with its writer. From the ledger line: `case`, `kind`
 (`create`, `update`, `delete`, `defer`, `estimate`, `lesson`), `category` (from the slug
 prefix; a Rule-class file is `file` with its `path`), `slug`, `ref`, `source`,
-`supersedes`, `tags`, `origin` (`raw/<unit>/ledger.md#case-N`; a lesson `#L<n>`), `line`,
-`text`, `decision` (`decision-case-<N>`). From the `then` block: `fields`, `sections`
+`supersedes`, `tags`, `addresses` (the lesson slugs of a decision line's `{addresses:...}`
+marks, one per mark, case 284.2), `origin` (`raw/<unit>/ledger.md#case-N`; a lesson
+`#L<n>`), `line`, `text`, `decision` (`decision-case-<N>`). From the `then` block: `fields`, `sections`
 (`Criterion` lifted from the Case when the item wrote none), `replace`, `change`, `rename`
 (an update's new slug, carried as written; `generate` checks it, case 258.2), `reword` (a
 list of `{old, new}` pairs, carried as written; a mapping or a scalar under it is
 `incomplete: [reword]`, case 274.3), `impact`,
 `incomplete` (what the block lacks: a required field, `then`, `change`, `criterion`,
-`purpose`, `source`, `reword`), `unknown` (a key of a `create` or `defer` item that the category's
+`purpose`, `source`, `reword`; `addresses` when the mark names no lesson of this unit,
+case 284.3), `unknown` (a key of a `create` or `defer` item that the category's
 `schema.yaml` names as no field and that is not structural — never lifted into `fields`,
 case 214.1; the `type` and `purpose` of a `defer` are its own keys and reach `fields`
 whatever the target's category, an Insight's too, case 266), `exists` (a create whose page is on disk with an `origin` carrying
 this line's `#case-N`, case 105.2; a defer whose page exists). Set by this script: `set`
 (`status: pending` on an Estimate update), and `status`, `result`, `folded` of a reading
-folded into a create; `superseded_by` from a later `{supersedes}` in any unit; `failed`
+folded into a create; `superseded_by` from a later `{supersedes}` in any unit; `addressed_by`
+(`decision-case-<N>`) on a lesson entry a decision line of the same unit marked with
+`{addresses:<its slug>}` — at the entry's level, never a page field (case 284.3); `failed`
 from a lift that raised. Kept from the shape before case 189 on entries already written:
 `derived`, `criterion_block`, `case_removed`. Set by `guppi generate`: `applied` (the time
 applied) and `failed` (the error). Set by the librarian: `near`, and `librarian` with the
@@ -152,7 +156,8 @@ def parse_line(text: str) -> dict | None:
     if kind == "decision":
         if len(heads) < 3 or not heads[0].startswith("case "):
             return None
-        options = {k: v.strip() for k, v in BRACES.findall(tail)}
+        pairs = BRACES.findall(tail)
+        options = {k: v.strip() for k, v in pairs}
         if heads[1] not in DECISION_KINDS:
             return None
         return {
@@ -164,6 +169,8 @@ def parse_line(text: str) -> dict | None:
             "source": options.get("source"),
             "supersedes": _case_of(options.get("supersedes")),
             "tags": _tags(options.get("tags")),
+            # one mark per lesson the Case closes, so the key may repeat (case 284.2)
+            "addresses": [v.strip() for k, v in pairs if k == "addresses" and v.strip()],
         }
     if kind == "estimate":
         if len(heads) < 2 or heads[1] not in ("passed", "failed"):
@@ -443,7 +450,7 @@ def decision_entry(record: dict, number: int, text: str, date: str, block: dict,
         "origin": f"raw/{date}/ledger.md#case-{record['case']}",
         "decision": f"decision-case-{record['case']}",
     }
-    for key in ("ref", "source", "supersedes"):
+    for key in ("ref", "source", "supersedes", "addresses"):
         if record.get(key):
             entry[key] = record[key]
     if record.get("tags"):
@@ -836,7 +843,23 @@ def lift_line(
         entries, decisions, record["supersedes"], case
     ):
         elsewhere.append((record["supersedes"], case))  # another unit's yaml (130.2)
+    if record.get("addresses") and not mark_addressed(entries, record["addresses"], case):
+        entry.setdefault("incomplete", []).append("addresses")  # a mark without its lesson
     return added
+
+
+def mark_addressed(entries: list[dict], slugs: list[str], case: str) -> bool:
+    """A decision line's `{addresses:<lesson slug>}` reaches the lesson entry of this unit
+    as `addressed_by: decision-case-N`, at the entry's level — never a page field, the
+    lesson page carries none (case 284.3). True when every named lesson was here."""
+    found = True
+    for slug in slugs:
+        lessons = [e for e in entries if e.get("kind") == "lesson" and e.get("slug") == slug]
+        if not lessons:
+            found = False
+        for lesson in lessons:
+            lesson["addressed_by"] = f"decision-case-{case}"
+    return found
 
 
 def assemble(

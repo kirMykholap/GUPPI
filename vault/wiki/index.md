@@ -197,6 +197,7 @@ Restoring is an ordinary `update` setting `status` back to `draft` or `built`.
 - `ref` — the parent, for a `create` that adds a child; on an `update` or a `delete` it repeats the target's own `slug`. Every decision line carries it (case 92).
 - `source` — optional external origin (a GitHub issue). Traceability only; never affects routing.
 - `tags` — the ratified tags, on a `create`. The page's category comes from the slug prefix (`rule-`, `entity-`, `estimate-`, `lesson-`, `insight-`), which pre-spec guards.
+- `addresses` — optional, the slug of a lesson of this session whose root cause the Case closes, written when the lesson line already stands in the ledger; one mark per lesson. Materialize carries it to the lesson's entry as `addressed_by` (case 284.2).
 
 The id is `case N` everywhere the line carries one — the first bracket and `{supersedes:case N}` — the word and a space (case 75.1).
 
@@ -312,7 +313,7 @@ Created by the librarian on the **second** Lesson sharing a root cause — one o
 
 `severity` = count of children not archived, recomputed by lint.
 
-An Insight is never created or deleted by a Decision. Every `open` Insight stands in the brief's Deferred list, ranked by `severity`, and is a Case of the next Plan Mode: its Proposal is ratified into an `update` of the Insight (`status: actioned`, `addressed_by`) with what it needs, or rejected the same way, or deferred with the Insight as the target (case 124). `actioned` is not terminal: a new matching Lesson reopens it, previously archived children stay archived, and `severity` counts only the current run.
+An Insight is never created or deleted by a Decision. Every `open` Insight stands in the brief's Deferred list, ranked by `severity`, and is a Case of the next Plan Mode: its Proposal is ratified into an `update` of the Insight (`status: actioned`, `addressed_by`) with what it needs, or rejected the same way, or deferred with the Insight as the target (case 124). `actioned` is not terminal: a new matching Lesson reopens it, previously archived children stay archived, and `severity` counts only the current run — unless the Lesson's entry carries `addressed_by`, a decision of its own session that closed its cause; then `addressed_by` moves to that decision and the Insight stays `actioned` (case 284.4).
 
 ## 9. The session workflow
 

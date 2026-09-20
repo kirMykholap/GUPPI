@@ -46,7 +46,7 @@ page (`draft` while in `docs/migration/`), `here` this row. Rule-class; imported
 | term | meaning | where |
 |---|---|---|
 | Entity / Rule | `draft` / `built` / `archived`; `built` is computed once every Estimate passes, never by hand | §7 |
-| Decision, Lesson, Insight | `current`/`superseded`/`archived`; `new`/`clustered`/`archived`; `open`/`actioned`/`archived`, a new Lesson reopens `actioned` | schema.md |
+| Decision, Lesson, Insight | `current`/`superseded`/`archived`; `new`/`clustered`/`archived`; `open`/`actioned`/`archived`, a new Lesson reopens `actioned` unless a decision of its own session closed its cause (case 284.4) | schema.md |
 | Estimate | `pending` / `passed` / `failed`; `failed` is debt, archival the default outcome | §7 |
 | `archived` | Set by `delete`, or by the cascade of `guppi generate` — a superseded Decision, the lessons of an actioned Insight, an open Insight with no live child (case 104); `guppi cleanup` moves the file to `vault/archive/<sprint>/<date>/<HHMM>/<category>/` and brings it back on an `update` of `status`; `guppi archive` moves an applied session of `raw/` whole (case 100.1); never physical deletion | §1, §3, rule-cleanup, rule-raw-archive |
 

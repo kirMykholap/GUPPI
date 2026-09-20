@@ -14,7 +14,7 @@ Created by the librarian, never by a decision; an `update` actions or rejects it
 |---|---|---|---|
 | `type` | yes | `insight` | Page category. |
 | `pattern` | yes | one line | The shared root cause, stated once. `insights.index` is built from it. |
-| `status` | yes | `open` \| `actioned` \| `archived` | `actioned` when a ratified decision has addressed it. Not terminal — a new Lesson with the same root cause reopens it. `archived` when the cascade of `generate` finds an `open` Insight with no live child (case 104.3); an `actioned` Insight is never archived by the cascade, it is kept for the recurrence. |
+| `status` | yes | `open` \| `actioned` \| `archived` | `actioned` when a ratified decision has addressed it. Not terminal — a new Lesson with the same root cause reopens it, unless its entry carries `addressed_by`: a decision of its own session closed its cause, and the Insight stays `actioned` (case 284.4). `archived` when the cascade of `generate` finds an `open` Insight with no live child (case 104.3); an `actioned` Insight is never archived by the cascade, it is kept for the recurrence. |
 | `children` | yes | list of quoted wikilink `"[[slug]]"` | The Lessons clustered here. Unordered. The scripts read the slug through the brackets; a slug without a category prefix stays bare (case 148.2). The field is the link; no body section repeats it (case 166.1). |
 | `severity` | yes | integer | `count(children where status != archived)`. Recomputed by the cascade of `generate` (case 104.3), a child read in `wiki/lessons/` or in the archive (case 110), never written by hand (case 110.1). |
 | `addressed_by` | no | decision quoted wikilink `"[[slug]]"` | The ratified decision that fixed the pattern, or rejected it (case 124). The field is the link; no body section repeats it (case 166.1). |
@@ -33,6 +33,8 @@ The archive is not searched. A Lesson is archived only when its Insight was acti
 ### Reopening
 
 `actioned` is not an end state. When a new Lesson matches the root cause of an `actioned` Insight, the Insight returns to `open` and the new Lesson becomes a child. Previously archived children stay archived, so `severity` counts only the current run. No separate recurrence counter — the fact is legible from History plus the retained `addressed_by`.
+
+One exception: a Lesson whose entry carries `addressed_by` — a decision line of its own session marked it with `{addresses:<its slug>}`, the Case that closed its cause. Then the Insight stays `actioned`, `addressed_by` moves to that decision, the Lesson becomes a child and is archived with the other children by the cascade (case 284.4).
 
 ### Slug
 

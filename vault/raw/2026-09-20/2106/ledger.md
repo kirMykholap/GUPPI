@@ -1,0 +1,18 @@
+- 21:10:38 estimate[estimate-case-protocol-loaded][passed] 2026-09-20, uv run guppi render --check exit 0, tests/test_ledger.py green, case-schema.md as loaded at the /hi of session 2106 read by hand: the schema holds the Frontier and the closing of its lines, the acknowledging reply of four parts, the harness rendered from rules/, ask-guppi before a create, the ledger mechanics, the tick sentence of 270.2, the Language section naming rule-language, the form of the render and sprint lines in the Spec paragraph; rule-case-protocol the last child of rule-plan-mode; CLAUDE.md repeats no paragraph of the schema — its Migration mode section names the LEDGER block in one sentence as the fact that the hook exists since Slice 1, not as the rule
+- 21:10:38 estimate[estimate-generate-ticks-the-spec][passed] 2026-09-20, uv run pytest tests/test_generate.py green; live — the librarian's run of session 1749 (commit 3d445a6) read by git show: the three Specs changed in ticks only (1749 13 lines, 1308 6, 0958 1); the reading of estimate-case-protocol-loaded (yaml line 6) skipped the read lines of 278 (first decision entry line 7) and 279.1 (line 9) in the 1749 Spec and ticked 1308:98, 1749:88 open; estimate-documentation-completes ticked 0958:308; lines 1-4 and 21 ticked 1308:627, 259, 1090, 367, 313; the folded create of 279.2 ticked 1749:129; the reading of estimate-retro-loads (line 20) ticked 1749:220 under 282, whose entries stand at 17-18, before it, and left 1308:132 open — by the rule of 280
+- 22:18:43 decision[case 283][update][rule-retro]{ref:rule-retro}
+- 22:18:43 decision[case 283][update][estimate-retro-loads]{ref:estimate-retro-loads}
+- 22:18:43 lesson[error][lesson-retro-reading-of-a-replaced-criterion]{tags:session,workflow} trigger: the Retro of session 1749 wrote estimate[estimate-retro-loads][passed] on the Criterion of 270.3 after 282 had replaced it in the same session; generate applied the update, then the reading — passed on a Criterion nobody measured, rule-retro built on it root_cause: the Render of Retro asks for the readings of Estimates whose work is finished and no text says which Criterion a reading measures; the old read line of the 1308 Spec asked for a reading and the agent served the line
+- 22:56:36 decision[case 284.1][update][insight-session-vault-knowledge-not-loaded]{ref:insight-session-vault-knowledge-not-loaded}
+- 22:56:36 decision[case 284.2][update][rule-case-protocol]{ref:rule-case-protocol}
+- 22:56:36 decision[case 284.2][update][estimate-case-protocol-ledger-line-form]{ref:estimate-case-protocol-ledger-line-form}
+- 22:56:36 decision[case 284.2][update][index]{ref:index}
+- 22:56:36 decision[case 284.3][update][rule-materialize]{ref:rule-materialize}
+- 22:56:36 decision[case 284.3][create][estimate-materialize-carries-addresses]{ref:rule-materialize}{tags:harness,workflow,ledger}
+- 22:56:36 decision[case 284.4][update][rule-synthesis]{ref:rule-synthesis}
+- 22:56:36 decision[case 284.4][create][estimate-synthesis-keeps-actioned-by-the-mark]{ref:rule-synthesis}{tags:harness,workflow,librarian}
+- 23:04:58 decision[case 285][defer][rule-work-mode]{ref:rule-work-mode}
+- 23:04:58 decision[case 285][defer][rule-subagent-guppi]{ref:rule-subagent-guppi}
+- 23:43:10 decision[case 284.4][update][insights-schema]{ref:insights-schema}
+- 23:43:10 decision[case 284.4][update][index]{ref:index}
+- 23:43:10 decision[case 284.4][update][glossary]{ref:glossary}

@@ -1,7 +1,7 @@
 ---
 type: estimate
 kind: QA
-status: pending
+status: passed
 target: "[[rule-case-protocol]]"
 purpose: The Case schema is present in a session from the first turn after /hi, as one text — the Render of rule-case-protocol — and nothing of it repeated in CLAUDE.md
 method: one reading at the first /hi of a session, by hand, plus the preview cases of tests/test_ledger.py
@@ -34,7 +34,7 @@ Then:
 
 ## Result
 
-2026-09-20, uv run guppi render --check exit 0, tests/test_ledger.py 37 passed, case-schema.md and the /hi reply of session 1749 read by hand: the schema holds the Frontier, the acknowledging reply, the harness, ask-guppi, the ledger mechanics, the tick sentence of 270.2 and the Language section; rule-case-protocol the last child of rule-plan-mode; CLAUDE.md repeats none of it — but the /hi reply did not state the LEDGER-block rule and the one-Case-at-a-time rule; no instruction of the SKILL or the schema asks for that statement
+2026-09-20, uv run guppi render --check exit 0, tests/test_ledger.py green, case-schema.md as loaded at the /hi of session 2106 read by hand: the schema holds the Frontier and the closing of its lines, the acknowledging reply of four parts, the harness rendered from rules/, ask-guppi before a create, the ledger mechanics, the tick sentence of 270.2, the Language section naming rule-language, the form of the render and sprint lines in the Spec paragraph; rule-case-protocol the last child of rule-plan-mode; CLAUDE.md repeats no paragraph of the schema — its Migration mode section names the LEDGER block in one sentence as the fact that the hook exists since Slice 1, not as the rule
 
 ## History
 
@@ -66,3 +66,4 @@ Then:
 - 2026-09-20 updated: the Criterion replaced whole — the schema is the Render of rule-case-protocol, loaded by /hi, and holds the ledger, Frontier and acknowledging-reply paragraphs (case 273.1) · [[decision-case-273.1]]
 - 2026-09-20 status: pending → failed · raw/2026-09-20/1749/ledger.md#L6
 - 2026-09-20 updated: the Criterion replaced whole — the text of 278 plus the form of the render and sprint lines; the line on the agent stating two rules at /hi removed; purpose added (case 279.1, supersedes 278) · [[decision-case-279.1]]
+- 2026-09-21 status: pending → passed · raw/2026-09-20/2106/ledger.md#L1

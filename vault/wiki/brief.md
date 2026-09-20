@@ -1,196 +1,202 @@
-# Brief — 2026-09-20, after session 1749 of 2026-09-20 (the readings due of 1308; the form of a render line named in the schema by 279.1 and refused by pre-spec by 279.2; the skip of a later Case's read line by 280; the lines of a superseded Case out of the Retro count by 282; Slice 3b deferred to 281)
+# Brief — 2026-09-21, after session 2106 of 2026-09-20 (a replaced Criterion is not read at the Retro of its session by 283; the mark `{addresses}` on a decision line by 284.2, carried by materialize by 284.3, kept by synthesis by 284.4; `insight-session-vault-knowledge-not-loaded` actioned by 284.1; Slice 3b deferred to 285)
 
-Written by the librarian from `raw/2026-09-20/1749/handoff.md`, the yamls of
-`raw/2026-09-20/1749`, `raw/2026-09-20/1308`, `raw/2026-09-20/0958`, `raw/2026-09-20/0740`
-and `raw/2026-09-20/0527`, and the Greps of the indexes.
+Written by the librarian from `raw/2026-09-20/2106/handoff.md`, the yamls of
+`raw/2026-09-20/2106`, `raw/2026-09-20/1749`, `raw/2026-09-20/1308`, `raw/2026-09-20/0958`,
+`raw/2026-09-20/0740` and `raw/2026-09-20/0527`, and the Greps of the indexes.
 
 ## Where things stand
 
-- Code, commit `3f53aa6` on `migration` (then `5b15281`, one ledger line): `guppi/prespec.py` —
-  `OFF_FORM_LINE`, the finding `case N: render line off form: <line>` in `check_tasks`;
-  `tests/test_prespec.py` +4. `guppi/generate.py` — `tick_read(specs, slug, skip)`,
-  `later_cases`, `Vault.entries`, the skip in `Vault.tick` for `estimate` entries only;
-  `tests/test_generate.py` +3. 462 green, style clean. By hand in `raw/2026-09-20/1308/spec.md`:
-  the nine `render` lines (97, 131, 187, 258, 312, 366, 575, 626, 692), the checks 863, 575,
-  1031, the second `read` lines 577 and 693 — all `[x]`.
-- Closed in the session: 278 (superseded by 279.1), 279.1, 279.2, 280, 282; 281 the defer of
-  Slice 3b (`rule-work-mode`, `rule-subagent-guppi`, the thirteenth). Readings in the 1749
-  ledger, `passed`: `estimate-internal-context-loaded`, `estimate-claude-md-rendered`,
-  `estimate-case-protocol-ledger-line-form`, `estimate-agent-writing-followed`,
-  `estimate-documentation-completes`, `estimate-prespec-catches-a-command-line-off-form`,
-  `estimate-retro-loads`, `estimate-language-followed`; `failed`:
-  `estimate-case-protocol-loaded` (line 6, the one Criterion line on the agent restating two
-  rules at `/hi`; the line removed by 279.1). Lesson:
-  `lesson-spec-render-line-form-unmatched-by-the-ticker` (error).
+- Code, commit `17ffa7d` on `migration`: `guppi/materialize.py` — `parse_line` collects the
+  `addresses` marks (one per lesson, the key repeated), `decision_entry` carries `addresses`,
+  `mark_addressed` in `lift_line` sets `addressed_by: decision-case-N` on the lesson entries of
+  the unit and `incomplete: [addresses]` on a decision entry without a pair; the docstring names
+  `addresses`, `addressed_by` and the new `incomplete` value. `tests/test_materialize.py` +2.
+  464 green, style clean. By hand, committed: `vault/wiki/index.md` §4 (the `addresses` item)
+  and §8 (the exception), `vault/wiki/insights/schema.md` (the `status` row, a paragraph under
+  Reopening), `vault/wiki/glossary.md` (the Status models row). Spec 2106: 7 task lines ticked
+  by the session.
+- Closed in the session: 283, 284.1, 284.2, 284.3, 284.4; 285 the defer of Slice 3b
+  (`rule-work-mode`, `rule-subagent-guppi`, the fourteenth). Readings in the 2106 ledger,
+  `passed`: `estimate-case-protocol-loaded` (L1, the schema as loaded at `/hi`),
+  `estimate-generate-ticks-the-spec` (L2, the librarian's run of 1749 read by `git show`).
+  Lesson: `lesson-retro-reading-of-a-replaced-criterion` (L5, error).
 - Not done by the session's own account: the pages, the three renders and `guppi sprint` —
-  this run; the readings of Readings due — the next session; Slice 3b — defer 281.
-- Five units in the walk. `raw/2026-09-20/1749`: 22 entries — 20 lifted from the ledger
-  (line 19, the reading of `estimate-prespec-catches-a-command-line-off-form`, folded into
-  the `create` of line 12) and 2 added at synthesis; all applied but the one `superseded_by`.
-  Decisions: 6 pages written (278, 279.1, 279.2, 280, 281, 282), `decision-case-278`
-  `superseded` by 279.1 and moved by cleanup to
-  `vault/archive/migration/2026-09-20/1749/decisions/`. Rules: 4 updated
-  (`rule-case-protocol` 279.1, `rule-prespec` 279.2, `rule-page-generation` 280, `rule-retro`
-  282), 2 deferred (`rule-work-mode`, `rule-subagent-guppi` by 281, both marked `exists`).
-  Estimates: 1 created (`estimate-prespec-catches-a-command-line-off-form`, `passed` by its
-  folded reading), 3 `update` entries applied (`estimate-case-protocol-loaded` 279.1,
-  `estimate-generate-ticks-the-spec` 280, `estimate-retro-loads` 282), the `update` of 278
-  `superseded_by: 279.1` and not applied, 9 reading lines applied on 9 pages (8 `passed`,
-  1 `failed`). Lessons: 1 created, then `clustered` by synthesis. Insights: 1 updated
-  (`insight-session-vault-knowledge-not-loaded`, `actioned → open`, `severity` 1). 29 pages
-  written or changed. `1308`, `0958`, `0740`, `0527`: 0 new entries. Cleanup moved 1 page.
-- The check the handoff asked first held: the entry of 278 carries `superseded_by: '279.1'`
-  and stays unapplied; the entry of 279.1 carries the whole Criterion (the text of 278 plus
-  the line on the form of the render and sprint lines) and `set.purpose`; only 279.1's
-  Decision page and Criterion stand on `estimate-case-protocol-loaded`.
-- Statuses computed by `generate`: `rule-agent-writing`, `rule-claude-md`, `rule-documentation`,
-  `rule-internal-context`, `rule-language`, `rule-retro` `draft → built` (their Estimates
-  `passed`); `rule-case-protocol` stays `draft` (`estimate-case-protocol-loaded` `pending` by
-  279.1); `rule-page-generation` stays `draft` (`estimate-generate-ticks-the-spec` `pending`
-  by 280, `estimate-generate-rewords` `pending`); `rule-prespec` `built`. `deferred_by` of
-  `rule-work-mode` and `rule-subagent-guppi` now ends at `decision-case-281`.
-- `guppi render` wrote `vault/wiki/case-schema.md` (279.1), `.claude/skills/pre-spec/SKILL.md`
-  (279.2) and `.claude/skills/retro/SKILL.md` (282) — the three the handoff named, no other;
-  `uv run guppi render --check` after it exits 0. `guppi sprint` rewrote `vault/wiki/sprint.md`:
-  Slice 3b current, both items `draft`, their defers ending at 281.
-- The `read` lines ticked by this run's `generate`, the first live run of 280: 1308 line 98
-  (`estimate-case-protocol-loaded`, the `failed` reading of line 6 — the line of 279.1 in the
-  1749 Spec, line 88, stays `[ ]`); 0958 line 308 (`estimate-documentation-completes`, line 5);
-  1308 lines 259, 313, 367, 627, 1090 (`estimate-claude-md-rendered`,
-  `estimate-language-followed`, `estimate-agent-writing-followed`,
-  `estimate-internal-context-loaded`, `estimate-case-protocol-ledger-line-form`); 1749 line 129
-  (`estimate-prespec-catches-a-command-line-off-form`, folded) and line 220
-  (`estimate-retro-loads`, line 20) — see Flags for the last.
-- Tests: 462 green (`make test`), style clean at `3f53aa6`.
+  this run; the readings of `estimate-retro-loads` and
+  `estimate-case-protocol-ledger-line-form` — the next session; the readings of the two new
+  Estimates — the first marked lesson, no date; Slice 3b — defer 285. No red test, no patch.
+- Six units in the walk. `raw/2026-09-20/2106`: 18 entries lifted from the ledger, as the
+  handoff expected — 2 readings, 1 lesson, 15 decision entries — plus 6 Decision pages added
+  by `generate`; all 24 applied, no stderr. Decisions: 6 pages written (283, 284.1, 284.2,
+  284.3, 284.4, 285). Rules: 4 updated by `replace` (`rule-retro` 283, `rule-case-protocol`
+  284.2, `rule-materialize` 284.3, `rule-synthesis` 284.4), 2 deferred (`rule-work-mode`,
+  `rule-subagent-guppi` by 285, both marked `exists`). Estimates: 2 created
+  (`estimate-materialize-carries-addresses` on `rule-materialize`,
+  `estimate-synthesis-keeps-actioned-by-the-mark` on `rule-synthesis`, both `pending`), 2
+  `update` entries applied (`estimate-retro-loads` 283, `estimate-case-protocol-ledger-line-form`
+  284.2, both the Criterion replaced whole and `pending`), 2 reading lines applied on 2 pages
+  (`passed`). Lessons: 1 created (`new`, no pair at synthesis);
+  `lesson-spec-render-line-form-unmatched-by-the-ticker` `archived` by the cascade of 284.1.
+  Insights: 1 updated (`insight-session-vault-knowledge-not-loaded`, `open → actioned`,
+  `addressed_by: [[decision-case-284.1]]`, `severity` 0). Rule-class `file` items: 4 reported
+  by `generate` as applied by hand (`index` 284.2; `insights-schema`, `index`, `glossary`
+  284.4). 21 pages written or changed. `1749`, `1308`, `0958`, `0740`, `0527`: 0 new entries.
+  Cleanup moved 1 page.
+- The check the handoff asked first held: 18 entries in the yaml; the `update` of
+  `estimate-retro-loads` carries the Criterion of 283 and `set: {status: pending}`; after the
+  run the page stands `pending` and `rule-retro` `built → draft`.
+- Statuses computed by `generate`: `rule-retro` `built → draft` (`estimate-retro-loads`
+  `pending`); `rule-materialize` and `rule-synthesis` `built → draft` (their new Estimates
+  `pending`); `rule-case-protocol` stays `draft` (`estimate-case-protocol-ledger-line-form`
+  `pending` by 284.2); `rule-page-generation` stays `draft` (`estimate-generate-rewords`
+  `pending`). `deferred_by` of `rule-work-mode` and `rule-subagent-guppi` now ends at
+  `decision-case-285`.
+- `guppi render` wrote `.claude/skills/retro/SKILL.md` (283), `vault/wiki/case-schema.md`
+  (284.2) and `.claude/agents/librarian-guppi.md` (284.4) — the three the handoff named, one
+  line each, no other; `uv run guppi render --check` after it exits 0. `guppi sprint` rewrote
+  `vault/wiki/sprint.md`: Slice 3b current, both items `draft`, their defers ending at 285.
+- The `read` lines ticked by this run's `generate`: 1749 line 39
+  (`estimate-case-protocol-loaded`, L1 — the first unticked `read` of that slug in the oldest
+  Spec that holds one; line 88 of the same Spec stays `[ ]`) and 1749 line 179
+  (`estimate-generate-ticks-the-spec`, L2). The 2106 Spec holds no `read` line of either slug,
+  and its four `read` lines (44, 119, 158, 210) stay `[ ]`. 1308 line 132
+  (`estimate-retro-loads`, the old Criterion) stays `[ ]` — not debt by 283.
+- `guppi archive` moved five applied units whole — `raw/2026-09-20/0527`, `0740`, `0958`,
+  `1308`, `1749` — to `archive/migration/2026-09-20/<HHMM>/raw/`; `raw/2026-09-20/2106`, the
+  session of the run, stays. The Spec lines this brief names for 1308 and 1749 are read there
+  now.
+- Tests: 464 green (`make test`), style clean at `17ffa7d`.
 
 ## Readings due
 
-- `estimate-case-protocol-loaded` — `rule-case-protocol` stands `draft` — read at line 88 of
-  `raw/2026-09-20/1749/spec.md`: the `/hi` of the next session, by hand; `tests/test_ledger.py`.
-  The Criterion is the one of 279.1; the reading of this walk (line 6) `failed` on the line
-  279.1 removed, then the `update` set `pending`. Line 39 of the same Spec, under the
-  superseded 278, is not its line (282).
-- `estimate-generate-ticks-the-spec` — `rule-page-generation` stands `draft` — read at line 179
-  of `raw/2026-09-20/1749/spec.md`: pytest; live — the librarian's run of this session. The
-  facts of this run stand under Flags.
+No Estimate stands `failed` after `generate`.
+
+- `estimate-retro-loads` — `rule-retro` stands `draft` — read at line 44 of
+  `raw/2026-09-20/2106/spec.md`: the first `/retro` after the render, by hand — the next
+  session, by the rule of 283. The Criterion is the one of 283; the line 132 of the 1308 Spec
+  is the old Criterion's and is not read.
+- `estimate-case-protocol-ledger-line-form` — `rule-case-protocol` stands `draft` — read at
+  line 119 of `raw/2026-09-20/2106/spec.md`: `case-schema.md` and `index.md` §4 after the
+  render, by hand — at the next session start.
+- `estimate-materialize-carries-addresses` — `rule-materialize` stands `draft` — read at line
+  158 of `raw/2026-09-20/2106/spec.md`: pytest; live — the librarian's run on the first marked
+  lesson. No marked lesson in this walk. No date.
+- `estimate-synthesis-keeps-actioned-by-the-mark` — `rule-synthesis` stands `draft` — read at
+  line 210 of `raw/2026-09-20/2106/spec.md`: the librarian's run on the first marked lesson
+  under an actioned Insight, by hand. No date.
 - `estimate-generate-rewords` — `rule-page-generation` stands `draft` — read at line 745 of
-  `raw/2026-09-20/1308/spec.md`: pytest now; live — the first `reword` applied, in a later
+  the 1308 Spec, now `archive/migration/2026-09-20/1308/raw/spec.md` (moved by this run's
+  `guppi archive`): pytest now; live — the first `reword` applied, in a later
   session (case 277.4). No `reword` in this walk. No date.
-- `estimate-sprint-migration-lint-clean` — `entity-sprint-migration` — by its `method`:
-  `make lint`, exit 0 — or only unread lines on the Estimates of `entity-sprint-migration`.
+- `estimate-sprint-migration-lint-clean` — `entity-sprint-migration` stands `draft` — by its
+  `method`: `make lint`, exit 0 — or only unread lines on the Estimates of
+  `entity-sprint-migration`.
 - `estimate-sprint-migration-leftovers-gone` — `entity-sprint-migration` — by its `method`:
   one reading of the tree by hand at the close of the sprint, each path and decision named in
   the estimate line.
 - `estimate-sprint-migration-merges` — `entity-sprint-migration` — by its `method`:
   `make test` on the last commit of `migration`, then `git log` of `main` after the merge.
 
-No Estimate stands `failed` after `generate`.
-
 ## Deferred
 
-1. `insight-session-vault-knowledge-not-loaded` — `severity` 1, `open` (reopened from
-   `actioned` this run, the sixth child added), 1 brief. Pattern: a fact the vault holds does
-   not reach the session that needs it; only `brief.md`, `CLAUDE.md`, the skills and the agent
-   frames are loaded, and everything else waits for a read the agent must first think to make.
-   Proposal, as the page has it: a second channel beside the brief — the ledger tail at `/hi`
-   (done, 101.2) and a way for a Rule page to name the lessons that bear on it (rejected by
-   134: a text to remember is the channel that failed). The new child put the missing fact
-   into the loaded text itself (279.1); in Plan Mode a Case whose `recommend` starts from
-   the Proposal, ending in an `update` of the Insight (`status: actioned`, `addressed_by`), a
-   rejection written the same way, or a `defer` with the Insight as its target.
+The list is empty. `insight-session-vault-knowledge-not-loaded`, item 1 of the previous brief,
+is `actioned` by 284.1 this run and leaves the list.
 
-Left out, the sprint page names them (case 229.4): `rule-work-mode` and
-`rule-subagent-guppi` (defer 281 this walk, the thirteenth; 183, 206, 218, 231, 242, 248,
-252, 254, 260, 263, 269, 276 before — Slice 3b, the current milestone);
-`insight-workflow-code-live-before-the-page-it-reads` (`open`, severity 2, defer 238; in the
+Left out, the sprint page names them (case 229.4): `rule-work-mode` and `rule-subagent-guppi`
+(defer 285 this walk, the fourteenth; 183, 206, 218, 231, 242, 248, 252, 254, 260, 263, 269,
+276, 281 before — Slice 3b, the current milestone);
+`insight-workflow-code-live-before-the-page-it-reads` (`open`, `severity` 2, defer 238; in the
 text of the `rule-work-mode` item); `rule-git-context`, `rule-github-issues` (in the text of
 the `estimate-sprint-migration-merges` item, Slice 5); `rule-spec-box` (Slice 5); `rule-morph`
 (Slice 5).
 
 ## Flags
 
-- The reading of `estimate-retro-loads` (1749 ledger line 20) ticked line 220 of the 1749 Spec,
-  under Case 282, and left line 132 of the 1308 Spec `[ ]`; the handoff expected the reverse,
-  "L20, before 282's decision lines". In the yaml the entries of 282 stand at lines 17 and 18,
-  before the reading at line 20, so 282 is not a later Case by the rule of 280 (`later_cases`:
-  the first decision entry with a `line` greater than the reading's), and its `read` line is
-  the first unticked one in the Spec beside the yaml. The three expectations written into the
-  Criterion line 179 of the 1749 Spec held: 1308:98 ticked, 1749:88 open, 0958:308 ticked.
-  Not repaired.
-- `estimate-retro-loads` stands `passed`, not `pending` as the handoff expected: the `update`
-  of 282 (yaml line 18) replaced the Criterion and set `pending`, and the reading of line 20,
-  applied after it in the same run, set `passed` — the Result measures the Criterion of 270.3
-  while the page carries the Criterion of 282. `rule-retro` moved `draft → built` on it. The
-  same shape as `estimate-generate-ticks-the-spec` after the last run; 1308 line 132 stays
-  `[ ]` for a reading of the new Criterion.
-- `estimate-case-protocol-loaded`: `failed` by the reading of line 6, then `pending` by the
-  `update` of 279.1 in the same run; the History carries both. The `failed` was on the one
-  Criterion line 279.1 removed (the agent restating two rules at `/hi`); no lesson, by the
-  handoff: a stale line, not an act of the agent.
-- Index check: the one `create` with an index is the lesson; the Grep
-  `^(root_cause|deferred_by):` over `vault/wiki/lessons/` returned 42 lines. None names the
-  form of a task line or a fact held by one Rule page and absent from the text the Spec is
-  written from; the nearest by subject, `lesson-spec-change-text-quotes-a-wikilink-bare` (one
-  string of the agent's writing left unchecked) and
-  `lesson-spec-change-line-with-a-colon-breaks-the-then-block` (a YAML form error of the
-  `then` block), are other causes. The lesson stands as a `create`; no `near`.
-- Synthesis: the Greps `^(root_cause|deferred_by):` over `vault/wiki/lessons/` (42 lines) and
+- The tick of `estimate-case-protocol-loaded` (2106 L1) landed on 1749 line 39, under the
+  superseded 278, not on line 88 under 279.1 as the handoff expected; line 39 is the first
+  unticked `read` of that slug in the oldest Spec that holds one, and the reading of 2106 is
+  later than 278 and 279.1 alike, so the rule of 280 skips neither. Line 88 stays `[ ]`. Not
+  repaired. The previous brief named line 39 as "not its line (282)"; 282 keeps the lines of a
+  superseded Case out of the Retro count, and `generate` does not read `superseded_by` when it
+  ticks.
+- Two `exists` marks on the defers of 285 (expected: a `defer` with a `ref`). No entry marked
+  `incomplete`, `failed` or `unparsed` in the six yamls; no `near`; no failed Estimate; no MOC
+  candidate.
+- Index check: the two `create` entries are Estimates, no index. The lesson (L5): the Grep
+  `^(root_cause|deferred_by):` over `vault/wiki/lessons/` returned 43 lines; none names a
+  reading taken on a Criterion a Case of the same session replaced, nor a Render that leaves
+  unsaid which Criterion a reading measures. The nearest by subject,
+  `lesson-estimate-update-must-carry-its-criterion-whole` (the mechanism of a Criterion
+  replacement, heavy for a correction of a word) and
+  `lesson-spec-render-line-form-unmatched-by-the-ticker` (a form held in one page and absent
+  from the text the Spec is written from), are other causes. No `near`.
+- Synthesis: the Greps `^(root_cause|deferred_by):` over `vault/wiki/lessons/` (43 lines) and
   `^(pattern|deferred_by):` over `vault/wiki/insights/` (16 lines).
-  `insight-session-vault-knowledge-not-loaded` (page read: Pattern and History) — the same
-  pattern: the form of a render line is fixed in `rule-render-harness` (case 235), a page the
-  vault holds, and in no text the agent writes the Spec from; clustered — the Insight reopened
-  `actioned → open`, `children` plus the lesson, the lesson `clustered` with `insight` set.
-  `insight-workflow-contract-change-leaves-its-derived-text-stale` (page read: Pattern) — not
-  the same: its children are one contract in two places with one changed; the render form
-  never changed and the schema paragraph was written without it. Both entries carry
-  `librarian: synthesis`; `generate` applied both, no stderr.
-- The five older children of `insight-session-vault-knowledge-not-loaded` are archived
-  (the cascade of 134); `severity` is 1, the live child alone. The `addressed_by` of 134
-  stands on the page beside `status: open`.
-- Two `exists` marks on the defers of 281 (expected: a `defer` with a `ref`). No entry marked
-  `incomplete`, `failed` or `unparsed` in the five yamls; no failed Estimate; no MOC candidate.
-- The lines 779–783 of the 1308 Spec (`[ ]`) belong to the superseded 274.2 and are not debt
-  (282, from the handoff); the lines 38–39 of the 1749 Spec belong to the superseded 278, the
-  same. Line 745 of 1308 waits for the first `reword`.
-- The handoff's note on `guppi/generate.py`: the working copy holds CRLF, the committed blob
-  LF; a diff of line endings only is that.
-- Lint, gone since the previous brief: 6 `unread: pending` (the readings of this walk).
-  `unmigrated` stays 23.
+  `insight-workflow-contract-change-leaves-its-derived-text-stale` (page read: Pattern and
+  History) — not the same: its children are one contract in two places with only one changed
+  and no pointer between them; here the Estimate page was replaced by 282 through the
+  mechanism, and the gap is in the Retro Render itself (no text said which Criterion a reading
+  measures), closed by 283 in the same session. `insight-session-vault-knowledge-not-loaded`
+  (index line) — not the same: no page held the missing fact. Not clustered; the lesson stays
+  `new`, no entry added. The Insight of 284.1 was not reopened.
+- The lesson of 283 (L5) carries no `addresses` mark — 283's decision lines (L3–L4) were
+  written before 284.2 existed; `mark_addressed` set no `addressed_by`. The cause is closed
+  by 283 in this session (from the handoff). No `incomplete: [addresses]`, since 283's lines
+  carry no mark at all.
+- `lesson-spec-render-line-form-unmatched-by-the-ticker` `archived` by the cascade of 284.1
+  (the lessons of an actioned Insight), moved by cleanup to
+  `vault/archive/migration/2026-09-21/2106/lessons/`; `insight-session-vault-knowledge-not-loaded`
+  keeps it in `children`, `severity` 0.
+- The `update` of `estimate-case-protocol-ledger-line-form` (284.2) replaced the Criterion
+  whole and set `pending` while the page stood `passed` by the reading of 1749; the History
+  carries both. Same for `estimate-retro-loads` (283) — the `passed` of 1749 on the Criterion
+  of 270.3 is undone by this `pending`, as the handoff expected.
+- Rule-class `file` items of 284.2 and 284.4 (`index` ×2, `insights-schema`, `glossary`):
+  `generate` reported "a Rule-class file, applied by hand" for each, on stdout; all four are
+  ticked in the 2106 Spec by the session.
+- The 2106 Spec's four `read` lines (44, 119, 158, 210) stay `[ ]`; 1308 line 132 stays `[ ]`
+  and is not debt by 283; 1308 line 745 waits for the first `reword`; 1749 line 88 stays `[ ]`
+  (see the first flag). The lines 38–39 of the 1749 Spec belong to the superseded 278: line 38
+  `[x]` by 1749's librarian, line 39 `[x]` by this run.
+- The Deferred list of the previous brief had one item, `insight-session-vault-knowledge-not-loaded`;
+  it left by the `update` of 284.1 (`status: actioned`), not by a `supersedes`; no `defer` of
+  this walk has a target outside the sprint page, and the one `open` Insight is named there.
+- Lint, gone since the previous brief: none. New: 4 `unread: pending` (`estimate-retro-loads`,
+  `estimate-case-protocol-ledger-line-form`, `estimate-materialize-carries-addresses`,
+  `estimate-synthesis-keeps-actioned-by-the-mark`); gone: 2 (`estimate-case-protocol-loaded`,
+  `estimate-generate-ticks-the-spec`, `passed`). `unmigrated` stays 23.
 - Standing: the defer of 238 on `insight-workflow-code-live-before-the-page-it-reads` without a
   `purpose`; `estimate-hi-no-read-calls` in the shape before case 193 by choice;
   `rule-spec-box` placeholder findings (`kind`, `estimates`, orphan).
-- Stale defers by lint: `rule-work-mode` and `rule-subagent-guppi` 25 times since case 29;
+- Stale defers by lint: `rule-work-mode` and `rule-subagent-guppi` 26 times since case 29;
   `rule-morph` 1 time since case 239.
-- Lint, 75 findings: 2 `rules/rule-spec-box` schema (`kind`, `estimates`) and 1 orphan;
+- Lint, 77 findings: 2 `rules/rule-spec-box` schema (`kind`, `estimates`) and 1 orphan;
   62 `decisions/decision-case-<1–28>` missing `## Context` and `## Problem` (31 pages,
-  Slice 5); 3 deferred (`rule-morph` 1, `rule-subagent-guppi` 25, `rule-work-mode` 25);
-  6 unread pending (`estimate-case-protocol-loaded`, `estimate-generate-rewords`,
-  `estimate-generate-ticks-the-spec`, the three sprint Estimates);
+  Slice 5); 3 deferred (`rule-morph` 1, `rule-subagent-guppi` 26, `rule-work-mode` 26);
+  8 unread pending (`estimate-case-protocol-ledger-line-form`, `estimate-generate-rewords`,
+  `estimate-materialize-carries-addresses`, `estimate-retro-loads`,
+  `estimate-synthesis-keeps-actioned-by-the-mark`, the three sprint Estimates);
   `estimates: unmigrated: 23 pages in the shape before case 193`.
 
 ## Next session
 
 Cases
 
-- Slice 3b — `rule-work-mode`, `rule-subagent-guppi` (defer 281, the thirteenth), with the
+- Slice 3b — `rule-work-mode`, `rule-subagent-guppi` (defer 285, the fourteenth), with the
   sentence of `insight-workflow-code-live-before-the-page-it-reads` written into
   `rule-work-mode`; from the handoff and the sprint page.
-- `estimate-retro-loads` `passed` on the Criterion of 270.3 while the page carries the
-  Criterion of 282, and `rule-retro` `built` on it — from the Flags of this run; whether the
-  reading at 1308 line 132 settles it or the order of an `update` and a reading of one session
-  in `generate` is a contract question.
-- The handoff's expectation on the tick of `estimate-retro-loads` (1308:132) against the yaml's
-  order (282 at lines 17–18, the reading at 20) — from the Flags; a fact for the reading of
-  `estimate-generate-ticks-the-spec`, a Case only if that reading finds the rule of 280 wrong.
-- `insight-session-vault-knowledge-not-loaded` `open` again (Deferred, item 1): a Case from its
-  Proposal, or a rejection or a `defer` — from the synthesis of this run.
+- The tick of `estimate-case-protocol-loaded` on 1749 line 39, under the superseded 278, while
+  line 88 under 279.1 stays open — from the Flags; whether a `read` line of a superseded Case
+  is one `generate` may tick is a contract question, a fact for the reading of
+  `estimate-generate-ticks-the-spec` otherwise.
 
 Work
 
-- Read `estimate-case-protocol-loaded` at the `/hi` (1749 line 88),
-  `estimate-generate-ticks-the-spec` by this run's ticks (1749 line 179).
-- Read `estimate-retro-loads` at the first `/retro` after this render (1308 line 132, the
-  line left `[ ]`).
+- Read `estimate-retro-loads` at the first `/retro` after this render (2106 line 44).
+- Read `estimate-case-protocol-ledger-line-form` on `case-schema.md` and `index.md` §4 at the
+  session start (2106 line 119).
+- Read `estimate-materialize-carries-addresses` (2106 line 158) and
+  `estimate-synthesis-keeps-actioned-by-the-mark` (2106 line 210) at the first marked lesson;
+  no date.
 - Read `estimate-generate-rewords` at the first `reword` (1308 line 745); no date.
 - Read `estimate-sprint-migration-lint-clean`, `estimate-sprint-migration-leftovers-gone`,
   `estimate-sprint-migration-merges` — at the close of the sprint, by their `method`.
@@ -198,6 +204,6 @@ Work
 
 ## Readings at the close
 
-- `make test`: 462 passed.
-- `make lint`: 75 findings, exit 1 (the list above).
-- Pages: entities 2, rules 46, estimates 73, lessons 41, insights 14, decisions 395.
+- `make test`: 464 passed.
+- `make lint`: 77 findings, exit 1 (the list above).
+- Pages: entities 2, rules 46, estimates 75, lessons 41, insights 14, decisions 401.

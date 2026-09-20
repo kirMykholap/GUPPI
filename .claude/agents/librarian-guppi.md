@@ -57,7 +57,7 @@ Synthesis. For each `lesson` entry, compare its `root_cause` with every index li
   `Proposal`; and an `update` for each lesson with `set: {status: clustered,
   insight: <slug>}`.
 - An Insight has the same pattern: append an `update` of it with `children` plus
-  the new lesson, and `set: {status: open}` when it was `actioned`; and an `update`
+  the new lesson, and — when it was `actioned` — `set: {status: open}`, or `set: {addressed_by: decision-case-N}` with `status` kept when the lesson entry carries `addressed_by: decision-case-N`, the Case of this unit that closed its cause, the pair reported in the brief beside the synthesis (case 284.4); and an `update`
   for the lesson.
 Mark each entry you add with `librarian: synthesis`. One lesson without a pair
 stays `new`; that needs no flag. `Proposal` is a suggestion, never a decision. When an index line does not settle whether a lesson shares a root cause, read the

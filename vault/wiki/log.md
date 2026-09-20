@@ -2372,3 +2372,30 @@ instruction. The global feed; a page's own `## History` is the per-page view.
 - 2026-09-20 rules/rule-retro status: draft → built · cascade · generate
 - 2026-09-20 decisions/decision-case-278 archived · superseded · generate
 - 2026-09-20 decisions/decision-case-278 archived · cleanup
+- 2026-09-21 estimates/estimate-case-protocol-loaded status: pending → passed · raw/2026-09-20/2106/ledger.md#L1 · generate
+- 2026-09-21 estimates/estimate-generate-ticks-the-spec status: pending → passed · raw/2026-09-20/2106/ledger.md#L2 · generate
+- 2026-09-21 decisions/decision-case-283 created · raw/2026-09-20/2106/ledger.md#case-283 · generate
+- 2026-09-21 rules/rule-retro updated: a reading measures the last ratified Criterion; an Estimate whose Criterion this session replaced and whose build is not finished has no reading at this Retro (case 283) · [[decision-case-283]] · generate
+- 2026-09-21 estimates/estimate-retro-loads updated: the Criterion replaced whole — a replaced Criterion is not read at the Retro of its session; the reading of 270.3 written after 282 undone by this pending (case 283) · [[decision-case-283]] · generate
+- 2026-09-21 lessons/lesson-retro-reading-of-a-replaced-criterion created · raw/2026-09-20/2106/ledger.md#L5 · generate
+- 2026-09-21 decisions/decision-case-284.1 created · raw/2026-09-20/2106/ledger.md#case-284.1 · generate
+- 2026-09-21 insights/insight-session-vault-knowledge-not-loaded updated: actioned: the sixth child, the form of a render line, closed in its own session by 279.1 (the form in the schema /hi loads) and 279.2 (pre-spec refuses a line of another form); the Proposal's first half done by 101.2, its second rejected by 134 (case 284.1) · [[decision-case-284.1]] · generate
+- 2026-09-21 decisions/decision-case-284.2 created · raw/2026-09-20/2106/ledger.md#case-284.2 · generate
+- 2026-09-21 rules/rule-case-protocol updated: the mark {addresses:<lesson slug>} on a decision line whose Case closes the root cause of a lesson of this session (case 284.2) · [[decision-case-284.2]] · generate
+- 2026-09-21 estimates/estimate-case-protocol-ledger-line-form updated: the Criterion replaced whole — the mark {addresses:<lesson slug>} beside {source} and {supersedes} (case 284.2) · [[decision-case-284.2]] · generate
+- 2026-09-21 decisions/decision-case-284.3 created · raw/2026-09-20/2106/ledger.md#case-284.3 · generate
+- 2026-09-21 rules/rule-materialize updated: the mark addresses on a decision line reaches the lesson's entry as addressed_by (case 284.3) · [[decision-case-284.3]] · generate
+- 2026-09-21 estimates/estimate-materialize-carries-addresses created · [[decision-case-284.3]] · generate
+- 2026-09-21 rules/rule-materialize estimate estimate-materialize-carries-addresses added · [[decision-case-284.3]] · generate
+- 2026-09-21 decisions/decision-case-284.4 created · raw/2026-09-20/2106/ledger.md#case-284.4 · generate
+- 2026-09-21 rules/rule-synthesis updated: an actioned Insight stays actioned when the lesson entry carries addressed_by from a decision of the same unit; addressed_by moves to that decision (case 284.4) · [[decision-case-284.4]] · generate
+- 2026-09-21 estimates/estimate-synthesis-keeps-actioned-by-the-mark created · [[decision-case-284.4]] · generate
+- 2026-09-21 rules/rule-synthesis estimate estimate-synthesis-keeps-actioned-by-the-mark added · [[decision-case-284.4]] · generate
+- 2026-09-21 decisions/decision-case-285 created · raw/2026-09-20/2106/ledger.md#case-285 · generate
+- 2026-09-21 rules/rule-work-mode deferred · [[decision-case-285]] · generate
+- 2026-09-21 rules/rule-subagent-guppi deferred · [[decision-case-285]] · generate
+- 2026-09-21 rules/rule-materialize status: built → draft · cascade · generate
+- 2026-09-21 rules/rule-retro status: built → draft · cascade · generate
+- 2026-09-21 rules/rule-synthesis status: built → draft · cascade · generate
+- 2026-09-21 lessons/lesson-spec-render-line-form-unmatched-by-the-ticker archived · insight actioned · generate
+- 2026-09-21 lessons/lesson-spec-render-line-form-unmatched-by-the-ticker archived · cleanup

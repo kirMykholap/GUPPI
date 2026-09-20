@@ -1,7 +1,7 @@
 ---
 type: estimate
 kind: QA
-status: passed
+status: pending
 target: "[[rule-retro]]"
 method: one reading by hand at the first /retro, recorded in the estimate line
 checked: 2026-09-20
@@ -14,16 +14,17 @@ tags: [session, workflow, harness]
 ## Criterion
 
 Given:
-Retro runs before the librarian; `generate` after it ticks the page lines and the `read` lines whose reading stands in the ledger, `render` and `sprint` the render and sprint lines (cases 226, 250, 270.1).
-**＋** A ledger line `{supersedes:case N}` marks every entry of Case N `superseded_by`; `generate` neither applies nor ticks them (200.2).
+Retro takes the readings of this session's Estimates whose work is finished and writes their lines; `generate` applies the entries of the yaml in ledger order — an `estimate` entry sets `status` and overwrites the Result (case 53.2); `built` is computed once every Estimate is `passed`.
+**＋** An `update` of an Estimate replaces its Criterion whole and sets `pending`; the render of a Rule comes with the librarian, after Retro.
+**＋** `estimate-retro-loads` is read by hand at the first `/retro` after the render.
 
 When:
-The person invokes `/retro`, and the agent counts the unticked `tasks` of the Spec.
+The person invokes `/retro`, and the agent takes the readings of the session's Estimates.
 
 Then:
-A `create`, `update` or `defer` line of a page, a `guppi render` line, a `guppi sprint` line and a `read` line whose `estimate[...]` stands in the ledger of this session are listed as waiting for the librarian and end in none of the four ways; every other unticked line is debt, as today.
-**＋** The lines of a Case a `{supersedes:case N}` line of this session's ledger names are not counted: its work stands under the superseding Case.
-**－** A `read` line without its line in the ledger is debt: the reading was not done.
+A reading measures the Criterion the page carries at the moment of the reading — the one ratified last; its line is written only when the work that Criterion names is built — rendered, written, run.
+**＋** An Estimate whose Criterion a Case of this session replaced, and whose build is not finished at Retro, gets no reading in this session: the `read` line of the old Criterion in an earlier Spec is not debt and is not read; the reading of the new Criterion closes it, at the moment its `method` names; the handoff names the Estimate as one whose reading cannot be taken yet.
+**－** Nothing in `generate` changes: an `update` and a reading of one slug in one session apply in ledger order, and the reading of a Criterion built in the session sets its status.
 **－** Nothing else in Retro changes.
 
 ## Result
@@ -55,3 +56,4 @@ A `create`, `update` or `defer` line of a page, a `guppi render` line, a `guppi 
 - 2026-09-20 updated: the Criterion replaced whole — the read line with its ledger line waits for the librarian (case 270.3) · [[decision-case-270.3]]
 - 2026-09-20 updated: the Criterion replaced whole — the lines of a superseded Case are not counted (case 282) · [[decision-case-282]]
 - 2026-09-20 status: pending → passed · raw/2026-09-20/1749/ledger.md#L20
+- 2026-09-21 updated: the Criterion replaced whole — a replaced Criterion is not read at the Retro of its session; the reading of 270.3 written after 282 undone by this pending (case 283) · [[decision-case-283]]

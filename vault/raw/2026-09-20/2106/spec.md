@@ -38,9 +38,9 @@ update:
 ```
 
 ```tasks
-- [ ] update `rule-retro`: `replace` in the Render — the sentence on a replaced Criterion after "name in the handoff any Estimate whose reading cannot be taken yet"
-- [ ] update `estimate-retro-loads`: the Criterion replaced whole, `pending`
-- [ ] `uv run guppi render`: `.claude/skills/retro/SKILL.md`
+- [x] update `rule-retro`: `replace` in the Render — the sentence on a replaced Criterion after "name in the handoff any Estimate whose reading cannot be taken yet"
+- [x] update `estimate-retro-loads`: the Criterion replaced whole, `pending`
+- [x] `uv run guppi render`: `.claude/skills/retro/SKILL.md`
 - [ ] read `estimate-retro-loads`: the first `/retro` after the render, by hand — the next session, by the rule of this Case
 ```
 
@@ -78,7 +78,7 @@ update:
 ```
 
 ```tasks
-- [ ] update `insight-session-vault-knowledge-not-loaded`: `set: {status: actioned, addressed_by: decision-case-284.1}` — generate writes the field as a wikilink
+- [x] update `insight-session-vault-knowledge-not-loaded`: `set: {status: actioned, addressed_by: decision-case-284.1}` — generate writes the field as a wikilink
 ```
 
 ### Case 284.2 — the mark `{addresses:<lesson slug>}` on a decision line
@@ -112,10 +112,10 @@ update:
 ```
 
 ```tasks
-- [ ] update `rule-case-protocol`: `replace` in the Render — the sentence on `{source}` and `{supersedes}` gains `{addresses:<lesson slug>}`
-- [ ] update `estimate-case-protocol-ledger-line-form`: the Criterion replaced whole, `pending`
+- [x] update `rule-case-protocol`: `replace` in the Render — the sentence on `{source}` and `{supersedes}` gains `{addresses:<lesson slug>}`
+- [x] update `estimate-case-protocol-ledger-line-form`: the Criterion replaced whole, `pending`
 - [x] update `index.md` §4 by hand: the `addresses` item under the decision line
-- [ ] `uv run guppi render`: `vault/wiki/case-schema.md`
+- [x] `uv run guppi render`: `vault/wiki/case-schema.md`
 - [ ] read `estimate-case-protocol-ledger-line-form`: `case-schema.md` and `index.md` §4 after the render, by hand
 ```
 
@@ -153,8 +153,8 @@ create:
 - [x] `guppi/materialize.py`: the key `addresses` lifted from the braces, the join onto the lesson entry of the unit, `incomplete: [addresses]` without a pair
 - [x] `tests/test_materialize.py`: the mark reaches the lesson entry; a mark without its lesson is `incomplete`; the lesson page's fields untouched
 - [x] `guppi/materialize.py` docstring: `addresses` and `addressed_by` in the field list, each with its writer — the list `estimate-materialize-fails-alone` reads stays complete
-- [ ] update `rule-materialize`: `replace` in the Purpose — the sentence on the mark
-- [ ] create `estimate-materialize-carries-addresses`, `ref: rule-materialize`
+- [x] update `rule-materialize`: `replace` in the Purpose — the sentence on the mark
+- [x] create `estimate-materialize-carries-addresses`, `ref: rule-materialize`
 - [ ] read `estimate-materialize-carries-addresses`: pytest; live — the librarian's run on the first marked lesson
 ```
 
@@ -201,12 +201,12 @@ create:
 ```
 
 ```tasks
-- [ ] update `rule-synthesis`: `replace` in the Render — the branch on `addressed_by`
+- [x] update `rule-synthesis`: `replace` in the Render — the branch on `addressed_by`
 - [x] update `insights/schema.md` by hand: the `status` row and the Reopening section
 - [x] update `index.md` §8 by hand: the exception to the reopening
 - [x] update `glossary.md` by hand: the Status models row
-- [ ] create `estimate-synthesis-keeps-actioned-by-the-mark`, `ref: rule-synthesis`
-- [ ] `uv run guppi render`: `.claude/agents/librarian-guppi.md`
+- [x] create `estimate-synthesis-keeps-actioned-by-the-mark`, `ref: rule-synthesis`
+- [x] `uv run guppi render`: `.claude/agents/librarian-guppi.md`
 - [ ] read `estimate-synthesis-keeps-actioned-by-the-mark`: the librarian's run on the first marked lesson under an actioned Insight, by hand; no date
 ```
 

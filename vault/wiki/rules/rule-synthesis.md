@@ -2,12 +2,12 @@
 type: rule
 kind: Leaf
 purpose: Prevents a pattern of failures from staying a list of unrelated incidents
-status: built
+status: draft
 enforcement: render
 governs: .claude/agents/librarian-guppi.md
 render_mode: partial
 parent: "[[rule-documentation]]"
-estimates: ["[[estimate-synthesis-clusters]]"]
+estimates: ["[[estimate-synthesis-clusters]]", "[[estimate-synthesis-keeps-actioned-by-the-mark]]"]
 origin: raw/2026-09-10/ledger.md#case-35.2
 sprint: migration
 created: 2026-09-10
@@ -32,7 +32,7 @@ Synthesis. For each `lesson` entry, compare its `root_cause` with every index li
   `Proposal`; and an `update` for each lesson with `set: {status: clustered,
   insight: <slug>}`.
 - An Insight has the same pattern: append an `update` of it with `children` plus
-  the new lesson, and `set: {status: open}` when it was `actioned`; and an `update`
+  the new lesson, and — when it was `actioned` — `set: {status: open}`, or `set: {addressed_by: decision-case-N}` with `status` kept when the lesson entry carries `addressed_by: decision-case-N`, the Case of this unit that closed its cause, the pair reported in the brief beside the synthesis (case 284.4); and an `update`
   for the lesson.
 Mark each entry you add with `librarian: synthesis`. One lesson without a pair
 stays `new`; that needs no flag. `Proposal` is a suggestion, never a decision. When an index line does not settle whether a lesson shares a root cause, read the
@@ -56,3 +56,6 @@ outcome, clustered or not. Do not read the archive and do not write pages yourse
 - 2026-09-14 updated: the index lines come from the librarian's own Greps of lessons and insights (case 147.4) · [[decision-case-147.4]]
 - 2026-09-14 status: built → draft · cascade
 - 2026-09-15 status: draft → built · cascade
+- 2026-09-21 updated: an actioned Insight stays actioned when the lesson entry carries addressed_by from a decision of the same unit; addressed_by moves to that decision (case 284.4) · [[decision-case-284.4]]
+- 2026-09-21 estimate estimate-synthesis-keeps-actioned-by-the-mark added · [[decision-case-284.4]]
+- 2026-09-21 status: built → draft · cascade

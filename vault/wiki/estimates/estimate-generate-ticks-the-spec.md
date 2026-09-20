@@ -1,7 +1,7 @@
 ---
 type: estimate
 kind: QA
-status: pending
+status: passed
 target: "[[rule-page-generation]]"
 purpose: generate ticks, in the Spec beside its yaml, the page line of the Case whose entry it applied
 method: pytest tests/test_generate.py with a Spec beside the yaml, plus one reading of this session's spec.md after the librarian's run
@@ -37,7 +37,7 @@ For a `create`, `update`, `delete` or `defer` entry, in the `spec.md` of the sam
 
 ## Result
 
-2026-09-20, `uv run pytest -q tests/test_generate.py` 67 green, six new — a reading ticks the first unticked read line of its slug, two readings two lines in order, a create with a folded reading ticks the page line and the read line, another session's Spec oldest first with the archive untouched, nothing found applied without a word, a lesson ticks nothing; live — the librarian's run of this session on the read lines W1–W3 of Spec 0958 and lines 56 and 829 of Spec 1308, read in the next
+2026-09-20, uv run pytest tests/test_generate.py green; live — the librarian's run of session 1749 (commit 3d445a6) read by git show: the three Specs changed in ticks only (1749 13 lines, 1308 6, 0958 1); the reading of estimate-case-protocol-loaded (yaml line 6) skipped the read lines of 278 (first decision entry line 7) and 279.1 (line 9) in the 1749 Spec and ticked 1308:98, 1749:88 open; estimate-documentation-completes ticked 0958:308; lines 1-4 and 21 ticked 1308:627, 259, 1090, 367, 313; the folded create of 279.2 ticked 1749:129; the reading of estimate-retro-loads (line 20) ticked 1749:220 under 282, whose entries stand at 17-18, before it, and left 1308:132 open — by the rule of 280
 
 ## History
 
@@ -46,3 +46,4 @@ For a `create`, `update`, `delete` or `defer` entry, in the `spec.md` of the sam
 - 2026-09-20 updated: the Criterion replaced whole — an estimate entry and a create with a folded reading tick the read line, across the Specs of raw/ (case 270.1) · [[decision-case-270.1]]
 - 2026-09-20 status: pending → passed · raw/2026-09-20/1308/ledger.md#L53
 - 2026-09-20 updated: the Criterion replaced whole — the read line of a later Case of the same unit is skipped by the ledger line numbers (case 280) · [[decision-case-280]]
+- 2026-09-21 status: pending → passed · raw/2026-09-20/2106/ledger.md#L2

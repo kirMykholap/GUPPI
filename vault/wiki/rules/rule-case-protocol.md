@@ -132,7 +132,7 @@ A question that only asks you to justify a choice already on the table ("why thi
 | a measurement taken | `- estimate[slug][passed\|failed] <date, command or place; the result>` (case 199) |
 | something learned | `- lesson[error\|knowledge][slug]{tags:a,b} trigger: <...> root_cause: <...>` |
 
-The id is `case N` — the word and a space — in the first bracket and in `{supersedes:case N}` alike; `{source:...}` and `{supersedes:...}` are present only when they apply (case 75.1).
+The id is `case N` — the word and a space — in the first bracket and in `{supersedes:case N}` alike; `{source:...}` and `{supersedes:...}` are present only when they apply (case 75.1); `{addresses:<lesson slug>}` stands on a decision line whose Case closes the root cause of a lesson of this session — written when the lesson line already stands in the session's ledger, one mark per lesson; a lesson whose fix is ratified in another session gets no mark (case 284.2).
 
 **Decision lines are markup only** — their content already sits ratified in the Spec, so the
 line just names what happens to which page, and the tags a `create` was ratified with.
@@ -225,3 +225,4 @@ The harness — hooks, skills, agents, `settings.json`, `CLAUDE.md`, this file �
 - 2026-09-20 updated: the page renders vault/wiki/case-schema.md in full, the five paragraphs of the old CLAUDE.md Render folded into the schema, the duplicates gone; parent rule-plan-mode (case 273.1) · [[decision-case-273.1]]
 - 2026-09-20 status: built → draft · cascade
 - 2026-09-20 updated: the Spec paragraph names the form of the render and sprint lines the scripts tick (case 279.1) · [[decision-case-279.1]]
+- 2026-09-21 updated: the mark {addresses:<lesson slug>} on a decision line whose Case closes the root cause of a lesson of this session (case 284.2) · [[decision-case-284.2]]

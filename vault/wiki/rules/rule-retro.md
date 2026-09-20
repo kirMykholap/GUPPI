@@ -2,7 +2,7 @@
 type: rule
 kind: Leaf
 purpose: Prevents a session from closing on work nobody reviewed, or on a change that traces to no decision
-status: built
+status: draft
 enforcement: render
 governs: .claude/skills/retro/SKILL.md
 render_mode: full
@@ -58,7 +58,7 @@ cause says why Retro was reached with a regression; the handoff still needs gree
 Do not run `make lint` here: the vault is written after handoff, by the librarian.
 
 Take the readings of this session's Estimates whose work is finished and write their
-lines; name in the handoff any Estimate whose reading cannot be taken yet.
+lines; name in the handoff any Estimate whose reading cannot be taken yet. A reading measures the Criterion the page carries at the moment of the reading, the one ratified last, and its line is written only when the work that Criterion names is built; an Estimate whose Criterion a Case of this session replaced and whose build is not finished at Retro has no reading in this session — the `read` line of the old Criterion in an earlier Spec is not debt and is not read, the reading of the new Criterion closes it at the moment its `method` names (case 283).
 
 Close with three lists: every ratification of this session, one line each; what
 got done; what did not. When the person approves, commit (`make style` clean,
@@ -103,3 +103,5 @@ got done; what did not. When the person approves, commit (`make style` clean,
 - 2026-09-20 status: built → draft · cascade
 - 2026-09-20 updated: the lines of a superseded Case are not debt at Retro (case 282) · [[decision-case-282]]
 - 2026-09-20 status: draft → built · cascade
+- 2026-09-21 updated: a reading measures the last ratified Criterion; an Estimate whose Criterion this session replaced and whose build is not finished has no reading at this Retro (case 283) · [[decision-case-283]]
+- 2026-09-21 status: built → draft · cascade

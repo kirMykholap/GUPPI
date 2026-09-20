@@ -36,7 +36,7 @@ update:
 
 ```tasks
 - [ ] update `estimate-case-protocol-loaded`: `set: {status: pending, purpose: ...}`, the Criterion replaced whole by the `given`, `when` and `then` of this Case
-- [ ] read `estimate-case-protocol-loaded`: the `/hi` of the next session, by hand; `tests/test_ledger.py`
+- [x] read `estimate-case-protocol-loaded`: the `/hi` of the next session, by hand; `tests/test_ledger.py`
 ```
 
 ## Case 279 — the form of the `render` and `sprint` lines of the Spec, named where the agent writes it and refused by pre-spec
@@ -176,7 +176,7 @@ update:
 - [x] update `estimate-generate-ticks-the-spec`: the Criterion replaced whole, `pending`
 - [x] `guppi/generate.py`: `tick_read` skips, in the Spec beside the yaml, the sections of the Cases whose first decision entry carries a `line` greater than the `estimate` entry's; the docstring
 - [x] `tests/test_generate.py`: a reading before the Case's decision line — its line skipped, the older Spec's line ticked; a reading after — the Case's line ticked; `folded` unfiltered
-- [ ] read `estimate-generate-ticks-the-spec`: pytest; live — the librarian's run of this session: the reading of `estimate-case-protocol-loaded` ticks 1308:98, the line of 279.1 stays open, 0958:308 closed by the reading of `estimate-documentation-completes`
+- [x] read `estimate-generate-ticks-the-spec`: pytest; live — the librarian's run of this session: the reading of `estimate-case-protocol-loaded` ticks 1308:98, the line of 279.1 stays open, 0958:308 closed by the reading of `estimate-documentation-completes`
 ```
 
 ## Case 282 — the lines of a superseded Case are not debt at Retro

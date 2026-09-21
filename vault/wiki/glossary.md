@@ -1,7 +1,7 @@
 # Glossary
 
 One line per term and where it is defined: `§N` a section of [[index]], a slug the Rule
-page (`draft` while in `docs/migration/`), `here` this row. Rule-class; imported into `CLAUDE.md`.
+page (`draft` while in `docs/migration/`), `here` this row. Rule-class; loaded by `/hi` with the Case schema.
 
 ## Core principle
 
@@ -85,7 +85,7 @@ page (`draft` while in `docs/migration/`), `here` this row. Rule-class; imported
 | Working files | `log.md` and page `History`, the feed of page changes by hook; `raw/`: `event_log.md` of the day and one folder per session, named by its `hi` time (case 73.1), with its ledger, yaml, Spec, Frontier and handoff, moved whole into the archive once applied (cases 100.1, 103.6); `tags.md`, ratified tags with Russian aliases | §1 |
 | Rule-class files | `index.md`, `glossary.md`, every schema; change only by ratified `update` with `file`, by hand; `case-schema.md` left the list with case 273 — it is the Render of `rule-case-protocol` | §1 |
 | Harness, Hook | Hooks, agents, skills rendered from `rules/` pages; a hook is an event-triggered script behind a Rule page, the ledger writer on `Stop`, which reads the session's transcript back, keeps its `hi` window across midnight, and can block | §9, rule-ledger-write |
-| `CLAUDE.md`, `case-schema.md`, `index.md` | The system prompt, the Render of `rule-claude-md`, whole, with `rule-language` and `rule-agent-writing` in their markers (cases 59.8, 272): `@path` expands this file inline and points at the sections of the map — layout, routing, ledger, splitting, librarian — read one at a time; the Case schema is the Render of `rule-case-protocol`, loaded by `/hi` (case 273) | rule-claude-md, rule-case-protocol |
+| `CLAUDE.md`, `case-schema.md`, `index.md` | The system prompt, the Render of `rule-claude-md`, whole — the description of the project, `rule-language` and `rule-agent-writing` in their markers (cases 59.8, 272, 288.3); the Case schema is the Render of `rule-case-protocol`, opened by the one rule, and it arrives with `/hi` together with this glossary (cases 273, 288); the map is read a section at a time — layout, routing, ledger, splitting, librarian | rule-claude-md, rule-case-protocol |
 
 ## Retired terms
 

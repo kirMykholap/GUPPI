@@ -2342,3 +2342,96 @@ def test_a_reading_before_the_case_with_no_other_line_ticks_nothing(tmp_path):
     assert code == 0 and err == "" and "read" not in out.lower()
     assert "- [ ] read `estimate-child-works`: the next session" in spec.read_text(encoding="utf-8")
     assert all(e.get("applied") for e in load_yaml(tmp_path)["entries"])
+
+
+# --- the read line of a superseded Case (case 286) -------------------------------------
+
+SUPERSEDED_SPEC = """# Spec
+
+## Case 1 — the root
+
+```tasks
+- [ ] create `rule-root` (no `ref`)
+```
+
+## Case 2 — the first cut, superseded by 3
+
+```tasks
+- [ ] update `rule-root`: `set`, `change`
+- [ ] read `estimate-child-works`: the next session, by hand
+```
+
+## Case 3 — the recut; supersedes 2
+
+```tasks
+- [ ] update `rule-root`: `set`, `change`, again
+- [ ] read `estimate-child-works`: the next session, by hand, on the recut
+```
+"""
+
+
+def other_session(tmp_path, folder="0900", date="2026-09-09", superseded=True, with_yaml=True):
+    unit = tmp_path / "vault" / "raw" / date / folder
+    unit.mkdir(parents=True)
+    spec = unit / "spec.md"
+    spec.write_text(
+        "## Case 7 — y\n\n- [ ] read `estimate-child-works`: by hand\n\n"
+        "## Case 8 — z\n\n- [ ] read `estimate-child-works`: by hand, on the recut\n",
+        encoding="utf-8",
+        newline="\n",
+    )
+    if with_yaml:
+        entry = dict(spec_update("7", line=2), applied="10:00:00")
+        if superseded:
+            entry["superseded_by"] = "8"
+        data = {"date": date, "sprint": "migration", "entries": [entry], "decisions": []}
+        (unit / "materialize.yaml").write_text(
+            yaml.safe_dump(data, allow_unicode=True, sort_keys=False), encoding="utf-8"
+        )
+    return spec
+
+
+def test_a_reading_skips_the_read_line_of_a_superseded_case_beside_the_yaml(tmp_path):
+    superseded = dict(spec_update("2", line=4), superseded_by="3")
+    recut = spec_update("3", line=6, supersedes="2")
+    seed(tmp_path, entries=[CHILD, CHILD_ESTIMATE, ROOT, superseded, recut, child_reading(line=8)])
+    spec = with_spec(tmp_path, SUPERSEDED_SPEC)
+    code, _, err = run(tmp_path)
+    assert code == 0 and err == ""
+    text = spec.read_text(encoding="utf-8")
+    assert "- [ ] read `estimate-child-works`: the next session, by hand\n" in text  # Case 2
+    assert "- [x] read `estimate-child-works`: the next session, by hand, on the recut" in text
+
+
+def test_a_reading_skips_the_superseded_case_of_another_sessions_yaml(tmp_path):
+    seed(tmp_path, entries=[CHILD, CHILD_ESTIMATE, ROOT, child_reading()])
+    with_spec(tmp_path, "## Case 1 — x\n\n- [ ] create `rule-root`\n")  # no read line here
+    other = other_session(tmp_path)
+    code, _, err = run(tmp_path)
+    assert code == 0 and err == ""
+    text = other.read_text(encoding="utf-8")
+    assert "- [ ] read `estimate-child-works`: by hand\n" in text  # Case 7, superseded by 8
+    assert "- [x] read `estimate-child-works`: by hand, on the recut" in text
+
+
+def test_no_yaml_beside_another_sessions_spec_skips_nothing(tmp_path):
+    seed(tmp_path, entries=[CHILD, CHILD_ESTIMATE, ROOT, child_reading()])
+    with_spec(tmp_path, "## Case 1 — x\n\n- [ ] create `rule-root`\n")
+    other = other_session(tmp_path, with_yaml=False)
+    assert run(tmp_path)[0] == 0
+    text = other.read_text(encoding="utf-8")
+    assert "- [x] read `estimate-child-works`: by hand\n" in text  # the first line, Case 7
+    assert "- [ ] read `estimate-child-works`: by hand, on the recut" in text
+
+
+def test_a_folded_reading_skips_a_superseded_case_too(tmp_path):
+    folded = dict(CHILD_ESTIMATE, status="passed", result="green", folded=[4])
+    seed(tmp_path, entries=[CHILD, folded, ROOT])
+    spec = with_spec(tmp_path, "## Case 1 — x\n\n- [ ] create `estimate-child-works`\n")
+    other = other_session(tmp_path)  # the read line is in the other session's Spec only
+    code, _, err = run(tmp_path)
+    assert code == 0 and err == ""
+    assert "- [x] create `estimate-child-works`" in spec.read_text(encoding="utf-8")
+    text = other.read_text(encoding="utf-8")
+    assert "- [ ] read `estimate-child-works`: by hand\n" in text  # Case 7, superseded by 8
+    assert "- [x] read `estimate-child-works`: by hand, on the recut" in text

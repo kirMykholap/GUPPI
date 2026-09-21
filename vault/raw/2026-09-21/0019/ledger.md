@@ -1,0 +1,21 @@
+- 00:21:30 estimate[estimate-case-protocol-ledger-line-form][passed] 2026-09-21, case-schema.md and index.md §4 read by hand at session 0019: the ledger paragraph of the schema and the field list of §4 both say a decision line whose Case closes the root cause of a lesson of this session carries {addresses:<lesson slug>}, written when the lesson line already stands in the ledger, one mark per lesson; the schema alone says a lesson fixed in another session gets no mark, §4 says it through "of this session"; the lesson line and the estimate line of the schema table and of §4 carry no addressed_by; the general form of §4 shows {source}{tags} and not {addresses} — the mark stands in the field list, not the example
+- 00:35:38 decision[case 286][update][rule-page-generation]{ref:rule-page-generation}
+- 00:35:38 decision[case 286][update][estimate-generate-ticks-the-spec]{ref:estimate-generate-ticks-the-spec}
+- 09:41:56 decision[case 287][create][rule-compact-recall]{ref:rule-session-start}{tags:session,hooks,harness}
+- 09:41:56 decision[case 287][create][estimate-compact-recall-reloads]{ref:rule-compact-recall}{tags:session,hooks,harness}
+- 09:41:56 decision[case 287][update][rule-session-start]{ref:rule-session-start}
+- 09:41:56 decision[case 287][update][rule-hook-registry]{ref:rule-hook-registry}
+- 10:09:26 decision[case 288.1][update][rule-internal-context]{ref:rule-internal-context}
+- 10:09:26 decision[case 288.1][update][estimate-internal-context-loaded]{ref:estimate-internal-context-loaded}
+- 10:09:26 decision[case 288.2][update][rule-case-protocol]{ref:rule-case-protocol}
+- 10:09:26 decision[case 288.2][update][estimate-case-protocol-loaded]{ref:estimate-case-protocol-loaded}
+- 10:09:26 decision[case 288.3][update][rule-claude-md]{ref:rule-claude-md}
+- 10:09:26 decision[case 288.3][update][estimate-claude-md-rendered]{ref:estimate-claude-md-rendered}
+- 10:10:51 decision[case 289][defer][rule-work-mode]{ref:rule-work-mode}
+- 10:10:51 decision[case 289][defer][rule-subagent-guppi]{ref:rule-subagent-guppi}
+- 10:20:35 decision[case 290.1][update][glossary]{ref:glossary}
+- 10:20:35 decision[case 290.2][update][rule-session-start]{ref:rule-session-start}
+- 10:20:35 decision[case 290.3][update][estimate-generate-ticks-the-spec]{ref:estimate-generate-ticks-the-spec}
+- 10:20:35 decision[case 290.3][update][estimate-internal-context-loaded]{ref:estimate-internal-context-loaded}
+- 10:20:35 decision[case 290.3][update][rule-case-protocol]{ref:rule-case-protocol}
+- 10:30:58 estimate[estimate-retro-loads][passed] 2026-09-21, the /retro of session 0019 read by hand, the Criterion of 283, the SKILL rendered by the librarian of 2106: four Estimates whose Criterion a Case of this session replaced — estimate-generate-ticks-the-spec (286), estimate-internal-context-loaded (288.1), estimate-case-protocol-loaded (288.2), estimate-claude-md-rendered (288.3) — and whose build waits for the librarian's pages and renders got no reading, their read lines of this Spec (56, 214, 251, 299) carried to the handoff as the moment their method names, no old-Criterion line in an earlier Spec read; the readings taken were of Criteria built before the session (estimate-case-protocol-ledger-line-form, L1) or by the render of 2106 (this one); the page, create, defer and render lines listed as waiting for the librarian; no superseded Case in the Tail; nothing else of Retro changed

@@ -36,7 +36,7 @@ update:
 
 ```tasks
 - [ ] update `estimate-case-protocol-loaded`: `set: {status: pending, purpose: ...}`, the Criterion replaced whole by the `given`, `when` and `then` of this Case
-- [x] read `estimate-case-protocol-loaded`: the `/hi` of the next session, by hand; `tests/test_ledger.py`
+- [ ] read `estimate-case-protocol-loaded`: the `/hi` of the next session, by hand; `tests/test_ledger.py`
 ```
 
 ## Case 279 — the form of the `render` and `sprint` lines of the Spec, named where the agent writes it and refused by pre-spec
@@ -85,7 +85,7 @@ update:
 - [x] update `estimate-case-protocol-loaded`: `set: {status: pending, purpose: ...}`, the Criterion replaced whole (the text of 278 plus one line)
 - [x] `uv run guppi render`: `vault/wiki/case-schema.md`
 - [x] by hand, a one-off: `[x]` on the nine render lines of `raw/2026-09-20/1308/spec.md` — 97, 131, 187, 258, 312, 366, 575, 626, 692
-- [ ] read `estimate-case-protocol-loaded`: the `/hi` of the next session, by hand; `tests/test_ledger.py`
+- [x] read `estimate-case-protocol-loaded`: the `/hi` of the next session, by hand; `tests/test_ledger.py`
 ```
 
 ### Case 279.2 — pre-spec refuses a `render` or `sprint` line of another form

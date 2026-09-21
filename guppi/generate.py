@@ -90,7 +90,11 @@ other units of `raw/`, oldest first, in any Case, since the entry carries no Cas
 archive is not read. In the Spec beside the yaml an `estimate` entry skips the section of
 a Case whose first decision entry carries a `line` greater than its own — a Case ratified
 after the reading, whose line waits for a reading of its own (case 280); a folded reading
-skips nothing, its Case is the reading's. A `lesson` entry, a Rule-class file entry and a failed entry tick
+skips nothing of that, its Case is the reading's. In every Spec both skip the section of a
+Case whose entries the yaml beside that Spec mark `superseded_by` — the run's entries for
+the Spec beside the yaml, the `materialize.yaml` of the other unit's folder otherwise, read
+for the marks alone; no yaml, nothing skipped there — its work stands under the superseding
+Case (case 286). A `lesson` entry, a Rule-class file entry and a failed entry tick
 nothing; the lines on code, tests, migrations and `by hand` checks stay the agent's.
 
 The cascade after all entries (case 201.4): an entity or rule whose Estimates are all
@@ -276,16 +280,24 @@ TASK_LINE = re.compile(r"^- \[ \] (create|update|delete|defer) `([^`]+)`")
 READ_LINE = re.compile(r"^- \[ \] read `([^`]+)`")
 
 
-def tick_read(specs: list[Path], slug: str, skip: set[str] = frozenset()) -> bool:
+def tick_read(
+    specs: list[Path],
+    slug: str,
+    skip: set[str] = frozenset(),
+    superseded: set[str] = frozenset(),
+) -> bool:
     """Case 270.1: in the first of `specs` that holds one, the first unticked line
     `- [ ] read `<slug>`` — in any Case, a reading carries no Case — becomes `- [x] …`.
     Case 280: in the first Spec, the Spec beside the yaml, a line in the section of a Case
-    of `skip` — a Case ratified after the reading — is not the reading's line. True when a
-    line was ticked; False when no Spec holds one — no error either way."""
+    of `skip` — a Case ratified after the reading — is not the reading's line. Case 286: in
+    any Spec, a line in the section of a superseded Case is not the reading's line either —
+    `superseded` for the first Spec, the marks of the run's entries; for every other Spec
+    the marks of the `materialize.yaml` beside it. True when a line was ticked; False when
+    no Spec holds one — no error either way."""
     for position, spec in enumerate(specs):
         if not spec.is_file():
             continue
-        skipped = skip if position == 0 else frozenset()
+        skipped = set(skip) | set(superseded) if position == 0 else superseded_beside(spec)
         lines = spec.read_text(encoding="utf-8").split("\n")
         case = ""
         for index, line in enumerate(lines):
@@ -315,6 +327,26 @@ def later_cases(entries: list, line) -> set[str]:
     except (TypeError, ValueError):
         return set()
     return {case for case, number in first.items() if number > reading}
+
+
+def superseded_cases(entries: list) -> set[str]:
+    """Case 286: the Cases whose entries carry `superseded_by` — their work stands under
+    the superseding Case, so their lines are nobody's to tick."""
+    return {
+        str(entry["case"])
+        for entry in entries
+        if isinstance(entry, dict) and "case" in entry and entry.get("superseded_by")
+    }
+
+
+def superseded_beside(spec: Path) -> set[str]:
+    """Case 286: the superseded Cases of the `materialize.yaml` beside `spec`, read for
+    the marks alone; none without a yaml, or with one that does not load."""
+    try:
+        data = load_yaml(spec.parent / "materialize.yaml")
+    except Exception:  # noqa: BLE001 — a yaml that does not load skips nothing
+        return set()
+    return superseded_cases((data or {}).get("entries") or [])
 
 
 def raw_specs(project_dir: Path, first: Path | None) -> list[Path]:
@@ -406,16 +438,22 @@ class Vault:
         Case becomes `- [x]`; a reading — an `estimate` entry, or a `create` with `folded` —
         ticks the first unticked `- [ ] read `<slug>`` line across the Specs of `raw/`
         (270.1); an `estimate` entry skips, in the Spec beside the yaml, the Cases whose
-        first decision entry stands after it in the ledger (280); nothing found — no Spec,
-        no section, no line — is no error."""
+        first decision entry stands after it in the ledger (280); both skip, in every
+        Spec, the Cases the yaml beside it marks `superseded_by` (286); nothing found — no
+        Spec, no section, no line — is no error."""
         kind = entry.get("kind")
         if self.spec is not None and kind in TICKED_KINDS and "case" in entry:
             tick_spec(self.spec, str(entry["case"]), str(kind), str(entry.get("slug")))
+        superseded = superseded_cases(self.entries) if self.spec else set()
         if kind == "estimate":
             skip = later_cases(self.entries, entry.get("line")) if self.spec else set()
-            tick_read(raw_specs(self.project_dir, self.spec), str(entry.get("slug")), skip)
+            tick_read(
+                raw_specs(self.project_dir, self.spec), str(entry.get("slug")), skip, superseded
+            )
         elif kind == "create" and entry.get("folded"):
-            tick_read(raw_specs(self.project_dir, self.spec), str(entry.get("slug")))
+            tick_read(
+                raw_specs(self.project_dir, self.spec), str(entry.get("slug")), set(), superseded
+            )
 
     # pages
 

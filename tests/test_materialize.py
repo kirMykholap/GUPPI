@@ -1094,6 +1094,148 @@ def test_an_estimate_create_with_nothing_to_lift_is_incomplete(tmp_path):
     assert bare["incomplete"] == ["purpose", "criterion"]
 
 
+# --- an update item names the part it changes (case 296) ------------------------------
+
+PART_LEDGER = """- decision[case 23][update][estimate-part-purpose]{ref:estimate-part-purpose}
+- decision[case 24][update][estimate-part-pair]{ref:estimate-part-pair}
+- decision[case 25][update][estimate-part-result]{ref:estimate-part-result}
+- decision[case 26][update][estimate-part-absent]{ref:estimate-part-absent}
+- decision[case 27][update][estimate-part-both]{ref:estimate-part-both}
+- decision[case 28][update][estimate-part-written]{ref:estimate-part-written}
+"""
+
+PART_CASE = """## Case {n} — {title}
+
+> **given:**
+> The Case's own.
+
+> **when:**
+> The Case's own.
+
+> **then:**
+> The Case's own.
+
+```then
+update:
+  - slug: {slug}
+{item}    change: {title}
+```
+
+"""
+
+PART_ITEMS = [
+    ("23", "estimate-part-purpose", "a field alone", "    set: {purpose: The new line}\n"),
+    (
+        "24",
+        "estimate-part-pair",
+        "a pair inside the Criterion",
+        '    replace:\n      - old: "The page says old."\n        new: "The page says new."\n',
+    ),
+    (
+        "25",
+        "estimate-part-result",
+        "a pair in the Result",
+        '    replace:\n      - old: "read on Monday"\n        new: "read on Tuesday"\n',
+    ),
+    (
+        "26",
+        "estimate-part-absent",
+        "a pair with no old on the page",
+        '    replace:\n      - old: "nowhere on the page"\n        new: "still nowhere"\n',
+    ),
+    (
+        "27",
+        "estimate-part-both",
+        "a field and the status",
+        "    set: {purpose: The new line, status: pending}\n",
+    ),
+    (
+        "28",
+        "estimate-part-written",
+        "a written Criterion beside a field",
+        "    set: {purpose: The new line}\n    sections:\n      Criterion: |\n        When:\n        The written one.\n",
+    ),
+]
+
+PART_PAGE = """---
+type: estimate
+kind: QA
+status: passed
+target: "[[rule-old]]"
+purpose: The old line
+method: m
+---
+
+## Criterion
+
+Given:
+The page says old.
+
+When:
+The page is read.
+
+Then:
+It says old.
+
+## Result
+
+2026-09-01, read on Monday: green
+"""
+
+
+def seed_parts(tmp_path):
+    spec = "# Spec\n\n" + "".join(
+        PART_CASE.format(n=n, slug=slug, title=title, item=item)
+        for n, slug, title, item in PART_ITEMS
+    )
+    seed(tmp_path, ledger=PART_LEDGER, spec=spec)
+    estimates = tmp_path / "vault" / "wiki" / "estimates"
+    estimates.mkdir()
+    for _, slug, _, _ in PART_ITEMS:
+        (estimates / f"{slug}.md").write_text(PART_PAGE, encoding="utf-8", newline="\n")
+    run(tmp_path)
+    return load(tmp_path)
+
+
+def test_a_field_alone_lifts_nothing_and_sets_no_status(tmp_path):
+    (entry,) = of_case(seed_parts(tmp_path), "23")
+    assert entry["set"] == {"purpose": "The new line"}
+    assert "sections" not in entry and "incomplete" not in entry
+
+
+def test_a_pair_inside_the_criterion_sets_pending_and_lifts_nothing(tmp_path):
+    (entry,) = of_case(seed_parts(tmp_path), "24")
+    assert entry["replace"] == [{"old": "The page says old.", "new": "The page says new."}]
+    assert entry["set"] == {"status": "pending"}
+    assert "sections" not in entry and "incomplete" not in entry
+
+
+def test_a_pair_outside_the_criterion_sets_no_status(tmp_path):
+    (entry,) = of_case(seed_parts(tmp_path), "25")
+    assert entry["replace"] == [{"old": "read on Monday", "new": "read on Tuesday"}]
+    assert "set" not in entry and "sections" not in entry and "incomplete" not in entry
+
+
+def test_a_pair_absent_from_the_page_is_not_judged_here(tmp_path):
+    (entry,) = of_case(seed_parts(tmp_path), "26")
+    assert entry["replace"] == [{"old": "nowhere on the page", "new": "still nowhere"}]
+    assert "set" not in entry and "sections" not in entry and "incomplete" not in entry
+
+
+def test_a_status_named_is_the_whole_replacement_beside_the_field(tmp_path):
+    (entry,) = of_case(seed_parts(tmp_path), "27")
+    assert entry["set"] == {"purpose": "The new line", "status": "pending"}
+    assert entry["sections"] == {
+        "Criterion": "Given:\nThe Case's own.\n\nWhen:\nThe Case's own.\n\nThen:\nThe Case's own."
+    }
+
+
+def test_a_written_criterion_beside_a_field_stands_and_sets_pending(tmp_path):
+    (entry,) = of_case(seed_parts(tmp_path), "28")
+    assert entry["sections"]["Criterion"].strip() == "When:\nThe written one."
+    assert entry["set"] == {"purpose": "The new line", "status": "pending"}
+
+
 def test_the_decision_entry_carries_no_criterion_list(tmp_path):
     seed_estimates(tmp_path)
     run(tmp_path)

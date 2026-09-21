@@ -33,7 +33,10 @@ and `then` of its Case, verbatim with their operands, as `Given:`, `When:`, `The
 lifted into the entry's `sections.Criterion` — the shape `generate` applies as a whole
 replacement; a `given` a sub-case lacks is its parent's. A Criterion the item wrote under
 `sections` stands. An Estimate `update` also carries `set: {status: pending}` unless the
-item set a status itself. An Estimate `create` keeps `kind`, `purpose`, `method` and
+item set a status itself. An `update` item that names a part of the page — `set` without
+`status`, a `replace` pair, a section other than `Criterion` — and writes no Criterion
+changes that part alone: nothing is lifted, and `set: {status: pending}` is added only
+when a pair's `old` stands in the page's `## Criterion` (case 296). An Estimate `create` keeps `kind`, `purpose`, `method` and
 `tags` as fields — a `ref` on the item is the entry's `ref`, never a page field (case 201.1);
 `## Context` and `## Method` are not written, and a `context` key of the
 old shape is dropped; a `criterion` key of the old shape goes to `sections.Criterion`. On a
@@ -613,12 +616,53 @@ def criterion_text(texts: dict[str, str]) -> str:
     return "\n\n".join(parts)
 
 
-def lift_criterion(entry: dict, texts: dict[str, str]) -> None:
+def names_a_part(entry: dict) -> bool:
+    """An `update` item of an Estimate that names a part of the page and writes no
+    Criterion: `set` without `status`, a `replace` pair, a section other than `Criterion`.
+    One that carries `change` alone, or `set.status`, is the whole replacement (case 296)."""
+    sets = entry.get("set") or {}
+    sections = entry.get("sections") or {}
+    if "status" in sets or sections.get("Criterion"):
+        return False
+    return bool(sets or entry.get("replace") or sections)
+
+
+def touches_criterion(project_dir: Path, slug: str, replaces) -> bool:
+    """Whether the `old` of a `replace` pair stands in the `## Criterion` of the live
+    Estimate page; no page, no pair, or an `old` elsewhere — False. An `old` absent from
+    the page is not judged here: `generate` refuses the pair (case 296)."""
+    if not isinstance(replaces, list):
+        return False
+    path = project_dir / "vault" / "wiki" / "estimates" / f"{slug}.md"
+    if not path.is_file():
+        return False
+    body = path.read_text(encoding="utf-8")
+    start = body.find("\n## Criterion")
+    if start < 0:
+        return False
+    end = body.find("\n## ", start + 1)
+    criterion = body[start:] if end < 0 else body[start:end]
+    return any(
+        isinstance(pair, dict) and str(pair.get("old", "")) in criterion for pair in replaces
+    )
+
+
+def lift_criterion(entry: dict, texts: dict[str, str], project_dir: Path | None = None) -> None:
     """An Estimate's `create` or `update` carries its Criterion under `sections` — the
     shape `generate` applies as a whole replacement. A Criterion the item wrote under
     `sections` stands; otherwise the Case's own text is lifted. An `update` is set
-    `pending` unless the item set a status itself (case 194.1)."""
+    `pending` unless the item set a status itself (case 194.1). An `update` that names a
+    part of the page — `set` without `status`, a `replace` pair, a section other than
+    `Criterion` — and writes no Criterion changes that part alone: nothing is lifted, and
+    it is set `pending` only when a pair's `old` stands in the page's `## Criterion`
+    (case 296)."""
     if entry.get("category") != "estimates" or entry.get("kind") not in ("create", "update"):
+        return
+    if entry["kind"] == "update" and names_a_part(entry):
+        if project_dir is not None and touches_criterion(
+            project_dir, str(entry.get("slug", "")), entry.get("replace")
+        ):
+            entry.setdefault("set", {})["status"] = "pending"
         return
     sections = entry.setdefault("sections", {})
     if not sections.get("Criterion"):
@@ -836,7 +880,7 @@ def lift_line(
         entry["incomplete"] = [e for e in entry["incomplete"] if e != "then"] + errors
     if case not in texts_of:
         texts_of[case] = case_texts(cases, case)
-    lift_criterion(entry, texts_of[case])  # an Estimate's own entry (cases 189, 194.1)
+    lift_criterion(entry, texts_of[case], project_dir)  # an Estimate's own entry (189, 194.1, 296)
     entries.append(entry)
     added = 1
     if record.get("supersedes") and not mark_superseded(

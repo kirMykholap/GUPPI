@@ -2,12 +2,11 @@
 type: rule
 kind: Leaf
 purpose: Prevents the librarian from reading the ledger and the Spec beyond its unticked lines, or from routing a decision by guesswork
-status: draft
+status: built
 enforcement: check
 implementation_ref: [guppi/materialize.py, tests/test_materialize.py]
 parent: "[[rule-documentation]]"
 estimates: ["[[estimate-materialize-assembles]]", "[[estimate-materialize-walks-dates]]", "[[estimate-materialize-shows]]", "[[estimate-materialize-lifts-a-lesson]]", "[[estimate-materialize-marks-exists]]", "[[estimate-materialize-fails-alone]]", "[[estimate-materialize-finds-a-rule-class-item]]", "[[estimate-materialize-marks-superseded]]", "[[estimate-materialize-skips-a-carried-over-unit]]", "[[estimate-materialize-carries-addresses]]"]
-deferred_by: ["[[decision-case-298]]"]
 origin: raw/2026-09-10/ledger.md#case-31
 sprint: migration
 created: 2026-09-10
@@ -20,7 +19,7 @@ Prevents the librarian from reading the ledger and the Spec beyond its unticked 
 a decision by guesswork. The yaml is the one input a clean context needs. Every line
 of the ledger is an entry. Its route is computed from `index.md` §5. Its content is
 lifted from the `then` block of its Case in the Spec — `set`, `sections`, `replace`, `change`, and `rename` or `reword` when the item carries it (cases 258.2, 274.3). What is missing is named, not
-invented. If a route cannot be derived from the ledger and the Spec alone, that is a
+invented — but for a Case superseded in its own session and gone from the Spec: its entries, marked `superseded_by`, carry no `incomplete: [then]`, and its `decisions` record no `case_text` and no missing section; the mark alone is its completeness (case 299.3). If a route cannot be derived from the ledger and the Spec alone, that is a
 defect of the ledger, and it shows here.
 
 It also prevents a promise from being written by derivation. No Estimate is derived
@@ -93,3 +92,6 @@ entry's fields, each with its writer, live in the docstring of `guppi/materializ
 - 2026-09-21 status: built → draft · cascade
 - 2026-09-21 updated: an update item of an Estimate that names a part changes that part alone; a part inside the Criterion sets pending; a part not named is the whole Criterion (case 296) · [[decision-case-296]]
 - 2026-09-21 deferred · [[decision-case-298]]
+- 2026-09-22 defer by decision-case-298 superseded · [[decision-case-299.2]]
+- 2026-09-22 updated: an entry of a Case superseded in its own session and gone from the Spec is complete by the mark alone (case 299.3) · [[decision-case-299.3]]
+- 2026-09-22 status: draft → built · cascade

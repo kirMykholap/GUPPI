@@ -191,7 +191,7 @@ update:
 - [x] update `rule-case-protocol`: `replace` in the Render — one sentence after "(case 204)."
 - [x] update `estimate-case-protocol-loaded`: the Criterion whole under `sections`, one line added to Then, `pending`
 - [x] `uv run guppi render`: `vault/wiki/case-schema.md`
-- [ ] read `estimate-case-protocol-loaded`: `render --check` after the render; the `/hi` of the next session, by hand
+- [x] read `estimate-case-protocol-loaded`: `render --check` after the render; the `/hi` of the next session, by hand
 ```
 
 ## Case 295 — three `given` lines of `rule-page-generation`'s Estimates: an `update` entry "carries both" — no longer always
@@ -237,9 +237,9 @@ update:
 - [x] update `estimate-generate-writes-the-decision-page`: one `replace` pair in the Criterion, `pending` by the script
 - [x] update `estimate-generate-fails-alone`: one `replace` pair in the Criterion, `pending` by the script
 - [x] by hand, at Retro: `uv run guppi materialize --show` — the three entries of 295 carry `replace` and `set: {status: pending}`, no `sections`; else no handoff
-- [ ] read `estimate-generate-cascades`: `pytest tests/test_generate.py` at the librarian's run of this session or the next `/hi`
-- [ ] read `estimate-generate-writes-the-decision-page`: the same run
-- [ ] read `estimate-generate-fails-alone`: the same run
+- [x] read `estimate-generate-cascades`: `pytest tests/test_generate.py` at the librarian's run of this session or the next `/hi`
+- [x] read `estimate-generate-writes-the-decision-page`: the same run
+- [x] read `estimate-generate-fails-alone`: the same run
 ```
 
 ## Case 296 — the item names the part; a touched Criterion sets `pending` (supersedes 291.1)

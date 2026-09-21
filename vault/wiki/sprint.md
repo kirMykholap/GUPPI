@@ -12,20 +12,29 @@ Estimates of this page pass: lint clean, the leftovers gone, the branch merged.
 - [ ] make lint exits 0 at the close of the sprint, unmigrated included, but for the unread of the sprint page's own Estimates · pending
 - [ ] vault/parked/, the 2026-08 documents, the old archive root and the empty raw date folders are gone by decision at the close of the sprint · pending
 - [ ] make test green on the last commit of migration and the branch merged into main · pending
+- [ ] No Rule-class file at the close of Slice 3f — the schemas rendered from rule pages, the glossary from terms, index.md gone, the file route out of the scripts · pending
 
 ## Milestones
 
-### [ ] Slice 3b — Work Mode
+### [ ] Slice 3f — the Rule-class files into the graph
 
-- [ ] [[rule-work-mode]] — Work Mode: the Spec as tasks with code, the ticked boxes in `spec.md`, the test of each Estimate written first and turned green; the sentence of [[insight-workflow-code-live-before-the-page-it-reads]] on a check that reads a page the same Spec changes; cases 183, 206, 238 · draft · decision-case-183, decision-case-206, decision-case-218, decision-case-231, decision-case-242, decision-case-248, decision-case-252, decision-case-254, decision-case-260, decision-case-263, decision-case-269, decision-case-276, decision-case-281, decision-case-285, decision-case-289, decision-case-293
-- [ ] [[rule-subagent-guppi]] — what a subagent may do in Work Mode, and the fork that comes back to the main agent as a Case; cases 183, 206 · draft · decision-case-183, decision-case-206, decision-case-218, decision-case-231, decision-case-242, decision-case-248, decision-case-252, decision-case-254, decision-case-260, decision-case-263, decision-case-269, decision-case-276, decision-case-281, decision-case-285, decision-case-289, decision-case-293
+The vault is a graph of pages; fourteen files stand outside it — `index.md`, `glossary.md`, six `schema.md` and six `schema.yaml` — changed by hand, without `purpose`, History or Estimates, and kept by a route of their own in the scripts. The Slice brings each into the graph by its nature and removes the "by hand" route: a developer's vault changes only by the scripts, from decisions (case 301).
+- [ ] [[estimate-sprint-migration-rule-class-files-dissolved]] — no Rule-class file: the schemas rendered from rule pages, the glossary from `terms`, `index.md` gone, the `file` route out of the scripts · pending
+- [ ] 1. schemas — six Leaves `rule-<category>-schema`, `enforcement: render`, the Render the `schema.yaml` with the description of its fields as yaml data; `schema.md` gone; one rule per category, never two
+- [ ] 2. audit of the rules — the parent of every rule: under a category's MOC a rule that holds for that category alone, the MOC made at two or more such rules, else the schemas under `rule-page-schemas`; `applies_to` on a Rule and `rules` on an Entity, the edge Rule → Entity, `rule-sprint` → `entity-sprint` the first (from the Backlog, session 1119)
+- [ ] 3. glossary — `terms` on the page that defines a term; `guppi glossary` writes `glossary.md`, grouped by the parent MOC, under `rule-glossary` with `governs`, `implementation_ref` and `--check`, the pattern of `rule-sprint`; the rows on `§N` resolved as the index dissolves, "Retired terms" into the history of decisions
+- [ ] 4. `index.md` — one Case per §: covered by a rule page, the § leaves; not covered, a rule is made; the last Case removes the file and every `§N` pointer in the vault
+- [ ] 5. scripts — the audit "script — what it assumes — what changes"; the `file` route and "applied by hand" removed from `materialize`, `generate`, `prespec`, `lint`; the grep of `index.md` out of `rule-ask`; `rule-morph` (Slice 5) kept compatible with six schema rules
+- [ ] 6. close — "Rule-class" retired in the Case schema and the glossary; the Estimate read; the Slice moved to Closed
 
+### [ ] Slice 3b — Work Mode — 2 items: [[rule-work-mode]], [[rule-subagent-guppi]]
 ### [ ] Slice 4 — conversion of the parked pages by group — 1 item: [[estimate-sprint-migration-leftovers-gone]]
 ### [ ] Slice 5 — closing — 4 items: [[estimate-sprint-migration-lint-clean]], [[estimate-sprint-migration-merges]], [[rule-spec-box]], [[rule-morph]]
 
 ## Backlog
 
-- [ ] the product model: `applies_to` on a Rule and `rules` on an Entity, `kind: test | measurement | reading`, `ask-guppi` through Entities, the vault-query questions before a product's records (session 1119)
+- [ ] the product model: `kind: test | measurement | reading`, `ask-guppi` through Entities, the vault-query questions before a product's records (session 1119); `applies_to` and `rules` taken into Slice 3f (case 301)
+- [ ] a template engine for the rendered files — one script with the shape of each file declared, once a third render beside `sprint.md` and `glossary.md` appears (case 301)
 
 ## Closed
 

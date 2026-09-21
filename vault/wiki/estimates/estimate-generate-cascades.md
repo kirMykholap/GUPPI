@@ -1,10 +1,11 @@
 ---
 type: estimate
 kind: QA
-status: pending
+status: passed
 target: "[[rule-page-generation]]"
 purpose: The cascade computes built, the archive of a superseded decision and the severity of an Insight, never by hand
 method: pytest tests/test_generate.py, the tests of the cascade
+checked: 2026-09-21
 origin: raw/2026-09-16/1955/ledger.md#case-201.4
 sprint: migration
 created: 2026-09-16
@@ -32,10 +33,11 @@ An entity or rule whose Estimates are all `passed` becomes `built`; a `built` on
 
 ## Result
 
-2026-09-16, `pytest tests/test_generate.py`: 46 green — built and draft from the Estimates, a superseded decision archived, the clustered children of an actioned Insight archived, severity recounted with the archive read, an open Insight at 0 archived and an actioned one kept
+2026-09-21, uv run pytest tests/test_generate.py: 74 green; live — the librarian's run of 1315 by the brief: rule-internal-context and rule-claude-md draft → built, rule-case-protocol, rule-page-generation and rule-materialize kept draft by a pending Estimate, decision-case-291.1 archived as superseded, the severity of the new Insight counted
 
 ## History
 
 - 2026-09-16 created · [[decision-case-201.4]]
 - 2026-09-16 status: pending → passed · raw/2026-09-16/1955/ledger.md#L30
 - 2026-09-21 updated: one given line — an update entry of an Estimate carries the Criterion and pending when it replaces the promise, not always (case 295) · [[decision-case-295]]
+- 2026-09-22 status: pending → passed · raw/2026-09-21/1853/ledger.md#L2

@@ -1,11 +1,11 @@
 ---
 type: estimate
 kind: QA
-status: pending
+status: passed
 target: "[[rule-page-generation]]"
 purpose: One bad entry never stops the run; every entry carries its mark
 method: pytest tests/test_generate.py, the tests of the failed, skipped and marked entries
-checked: 2026-09-17
+checked: 2026-09-21
 origin: raw/2026-09-16/1955/ledger.md#case-201.3
 sprint: migration
 created: 2026-09-16
@@ -35,7 +35,7 @@ An entry that fails — a collision, a `ref` naming no page, a `replace` absent 
 
 ## Result
 
-2026-09-17, `pytest tests/test_generate.py`: 48 green — an update with sections.Criterion on a page without a method field and no set.method fails alone with `generate: <slug>: a recut without method (case 211)`, failed in the yaml, the page untouched, the rest applied, exit 1
+2026-09-21, uv run pytest tests/test_generate.py: 74 green; live — the librarian's run of 1315: the two entries of 291.1 with superseded_by not applied and no stderr line, the two Rule-class file entries of 297 printed as applied by hand and marked applied, no entry failed
 
 ## History
 
@@ -44,3 +44,4 @@ An entry that fails — a collision, a `ref` naming no page, a `replace` absent 
 - 2026-09-17 updated: one line in the Criterion — a recut without method fails alone (case 211.2) · [[decision-case-211.2]]
 - 2026-09-17 status: pending → passed · raw/2026-09-16/2238/ledger.md#L50
 - 2026-09-21 updated: one given line — an update entry of an Estimate carries the Criterion and pending when it replaces the promise, not always (case 295) · [[decision-case-295]]
+- 2026-09-22 status: pending → passed · raw/2026-09-21/1853/ledger.md#L4

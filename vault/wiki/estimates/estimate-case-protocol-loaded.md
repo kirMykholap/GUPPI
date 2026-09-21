@@ -26,12 +26,13 @@ Then:
 `case-schema.md` opens with the section "The one rule" right under its title: nothing in the vault or the codebase changes without a Decision ratified by the human; the agent has full autonomy over how to implement something once its contract is ratified, and none over the contract itself; when unsure whether something needs ratification, it does; the vault is the only memory — no note outside the repository, what is worth keeping is a `lesson` line or a Case on a Rule page (272.1).
 **＋** The paragraph after it says, as before, that the schema is the Render loaded by `/hi` with `sprint.md`, `brief.md` and `glossary.md`, and that a session without `/hi` holds no Case.
 **＋** The Spec paragraph names the field-only `update` of an Estimate: a part named changes alone, a part inside the Criterion sets `pending` (294, 296).
+**＋** The paragraph on the Criterion says that a Case superseded in its own session, before the Spec is approved, leaves the Spec and the superseding Case is written whole; a supersede from a later session leaves the earlier Spec as it is (299.1).
 **＋** `render --check` after the render exits 0.
 **－** The other sections of the schema do not change; the description of the project is not in the schema.
 
 ## Result
 
-2026-09-21, the /hi of session 1315 read by hand, uv run guppi render --check exit 0, tests/test_ledger.py 37 passed: case-schema.md in the first turn, opens with "## The one rule" right under the title with the text of 288.2; the paragraph after names sprint.md, brief.md and glossary.md and the refusal without /hi; the other sections as at the 2106 reading; no description of the project in the schema; CLAUDE.md repeats no paragraph of it
+2026-09-21, the /hi of session 1853 read by hand, uv run guppi render --check exit 0, tests/test_ledger.py green: case-schema.md in the first turn, opens with "## The one rule" right under the title; the paragraph after names sprint.md, brief.md and glossary.md and the refusal without /hi; the Spec paragraph names the field-only update of an Estimate — a part named changes alone, a part inside the Criterion sets pending (294, 296); the other sections as at the 1315 reading; no description of the project in the schema; CLAUDE.md repeats no paragraph of it
 
 ## History
 
@@ -67,3 +68,5 @@ Then:
 - 2026-09-21 updated: the Criterion replaced whole — the schema opens with the one rule, the glossary among the files /hi loads (case 288.2) · [[decision-case-288.2]]
 - 2026-09-21 status: pending → passed · raw/2026-09-21/1315/ledger.md#L1
 - 2026-09-21 updated: one line of the Criterion — the Spec paragraph names the field-only update of an Estimate (case 294) · [[decision-case-294]]
+- 2026-09-22 status: pending → passed · raw/2026-09-21/1853/ledger.md#L1
+- 2026-09-22 updated: one line of the Criterion — the Spec paragraph says a Case superseded in its own session leaves the Spec (case 299.1) · [[decision-case-299.1]]

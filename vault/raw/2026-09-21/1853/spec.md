@@ -64,10 +64,10 @@ update:
 ```
 
 ```tasks
-- [ ] update `rule-case-protocol`: one `replace` pair in the Render — the sentence after "nothing removed by a `{supersedes:case N}`"
-- [ ] update `estimate-case-protocol-loaded`: the Criterion whole under `sections`, one line added, `pending`
+- [x] update `rule-case-protocol`: one `replace` pair in the Render — the sentence after "nothing removed by a `{supersedes:case N}`"
+- [x] update `estimate-case-protocol-loaded`: the Criterion whole under `sections`, one line added, `pending`
 - [x] update `index` (`vault/wiki/index.md`, §7): one sentence after "reached by `origin`, and in History", by hand
-- [ ] `uv run guppi render`: `vault/wiki/case-schema.md`
+- [x] `uv run guppi render`: `vault/wiki/case-schema.md`
 - [ ] read `estimate-case-protocol-loaded`: `render --check` after the render; the `/hi` of the next session, by hand
 ```
 
@@ -108,12 +108,12 @@ update:
 ```
 
 ```tasks
-- [ ] update `rule-prespec`: one `replace` pair in the Render — the new finding in the list
-- [ ] create `estimate-prespec-catches-a-superseded-case` (ref `rule-prespec`)
+- [x] update `rule-prespec`: one `replace` pair in the Render — the new finding in the list
+- [x] create `estimate-prespec-catches-a-superseded-case` (ref `rule-prespec`)
 - [x] `guppi/prespec.py`: `check_lines` — the set of superseded Cases from the window's records, the finding on a heading, their lines freed
 - [x] `tests/test_prespec.py`: the heading of a superseded Case in the plan — a finding; a line of a superseded Case with no heading — no finding; a sub-case; a supersedes of a Case of an earlier session — nothing
-- [ ] `uv run guppi render`: `.claude/skills/pre-spec/SKILL.md`
-- [ ] read `estimate-prespec-catches-a-superseded-case`: pytest now; live — the first `/pre-spec` of a later session whose window holds a `{supersedes:case N}` of a Case of that session; this session's `/pre-spec` ran on the old check (`lesson-pretask-runs-before-the-check-it-adds`)
+- [x] `uv run guppi render`: `.claude/skills/pre-spec/SKILL.md`
+- [x] read `estimate-prespec-catches-a-superseded-case`: pytest now; live — the first `/pre-spec` of a later session whose window holds a `{supersedes:case N}` of a Case of that session; this session's `/pre-spec` ran on the old check (`lesson-pretask-runs-before-the-check-it-adds`)
 ```
 
 ### Case 299.3 — `materialize`: the entry of a superseded Case is complete by the mark alone
@@ -148,11 +148,11 @@ update:
 ```
 
 ```tasks
-- [ ] update `rule-materialize`: one `replace` pair in the Purpose — after "What is missing is named, not invented."
-- [ ] update `estimate-materialize-marks-superseded`: the Criterion from this sub-case, `pending`
+- [x] update `rule-materialize`: one `replace` pair in the Purpose — after "What is missing is named, not invented."
+- [x] update `estimate-materialize-marks-superseded`: the Criterion from this sub-case, `pending`
 - [x] `guppi/materialize.py`: `mark_superseded` drops `then` from the `incomplete` of an entry whose Case is not in the Spec; `decision_record` without `case_text` and without missing sections for such a Case; the docstring
 - [x] `tests/test_materialize.py`: a superseded Case with no heading — entries without `incomplete`, the record without `case_text`; with a heading — as before
-- [ ] read `estimate-materialize-marks-superseded`: pytest now; live — the librarian's run of the first session where a Case is superseded in it and removed from the Spec
+- [x] read `estimate-materialize-marks-superseded`: pytest now; live — the librarian's run of the first session where a Case is superseded in it and removed from the Spec
 ```
 
 ### Case 299.4 — `generate`: the Decision page of a superseded Case, and the repair of 298
@@ -203,12 +203,12 @@ update:
 ```
 
 ```tasks
-- [ ] update `rule-page-generation`: one `replace` pair in the Purpose — after "carries the body of every defer (cases 52.4, 186.1)"
-- [ ] update `estimate-generate-writes-the-decision-page`: the Criterion whole under `sections`, one line added, `pending`
+- [x] update `rule-page-generation`: one `replace` pair in the Purpose — after "carries the body of every defer (cases 52.4, 186.1)"
+- [x] update `estimate-generate-writes-the-decision-page`: the Criterion whole under `sections`, one line added, `pending`
 - [x] `guppi/generate.py`: `decision` — the two-line body for a record with `superseded_by` and no `case_text`; the docstring
 - [x] `tests/test_generate.py`: the page of a superseded Case without `case_text` — the two-line body, then `superseded` and `archived`
 - [x] by hand, a one-off migration: `## Deferred` of `vault/wiki/decisions/decision-case-298.md` — three `### [[slug]]` with the `purpose` from Spec 1315, lines 379–387
-- [ ] read `estimate-generate-writes-the-decision-page`: pytest now; live — the librarian's run of this session
+- [x] read `estimate-generate-writes-the-decision-page`: pytest now; live — the librarian's run of this session
 ```
 
 ### Case 299.5 — `estimate-prespec-checks-the-plan` names the exemption
@@ -235,8 +235,8 @@ update:
 ```
 
 ```tasks
-- [ ] update `estimate-prespec-checks-the-plan`: one `replace` pair in the `Lines` line (inside the Criterion — `pending`)
-- [ ] read `estimate-prespec-checks-the-plan`: pytest now; live — with the reading of `estimate-prespec-catches-a-superseded-case`
+- [x] update `estimate-prespec-checks-the-plan`: one `replace` pair in the `Lines` line (inside the Criterion — `pending`)
+- [x] read `estimate-prespec-checks-the-plan`: pytest now; live — with the reading of `estimate-prespec-catches-a-superseded-case`
 ```
 
 ## Case 301 — Slice 3f: the Rule-class files into the graph
@@ -312,9 +312,9 @@ update:
 ```
 
 ```tasks
-- [ ] update `entity-sprint-migration`: `sections` — `Milestones` whole (Slice 3f first: the vision, the Estimate, six themes; 3b, 4, 5 unchanged), `Backlog` whole (`applies_to` moved into theme 2; the template engine added)
-- [ ] create `estimate-sprint-migration-rule-class-files-dissolved` (ref `entity-sprint-migration`)
-- [ ] `uv run guppi sprint`
+- [x] update `entity-sprint-migration`: `sections` — `Milestones` whole (Slice 3f first: the vision, the Estimate, six themes; 3b, 4, 5 unchanged), `Backlog` whole (`applies_to` moved into theme 2; the template engine added)
+- [x] create `estimate-sprint-migration-rule-class-files-dissolved` (ref `entity-sprint-migration`)
+- [x] `uv run guppi sprint`
 - [ ] read `estimate-sprint-migration-rule-class-files-dissolved`: at the close of Slice 3f, by its `method`
 ```
 
@@ -346,7 +346,7 @@ update:
 ```
 
 ```tasks
-- [ ] update `insight-materialize-estimate-update-lifts-the-criterion-whole`: `set: {status: actioned, addressed_by: decision-case-296}`
+- [x] update `insight-materialize-estimate-update-lifts-the-criterion-whole`: `set: {status: actioned, addressed_by: decision-case-296}`
 ```
 
 ### Case 302.2 — synthesis: an Insight born from a marked lesson is `actioned`
@@ -399,10 +399,10 @@ update:
 ```
 
 ```tasks
-- [ ] update `rule-synthesis`: one `replace` pair in the Render — the item "no Insight exists"
-- [ ] update `estimate-synthesis-keeps-actioned-by-the-mark`: the Criterion whole under `sections`, both cases; `purpose`; `pending`
+- [x] update `rule-synthesis`: one `replace` pair in the Render — the item "no Insight exists"
+- [x] update `estimate-synthesis-keeps-actioned-by-the-mark`: the Criterion whole under `sections`, both cases; `purpose`; `pending`
 - [x] update `insights-schema` (`vault/wiki/insights/schema.md`, the `status` row): the birth `actioned` by the mark, by hand
-- [ ] `uv run guppi render`: `.claude/agents/librarian-guppi.md`
+- [x] `uv run guppi render`: `.claude/agents/librarian-guppi.md`
 - [ ] read `estimate-synthesis-keeps-actioned-by-the-mark`: the librarian's run on the first marked lesson — under an `actioned` Insight, or the second of a new pattern; no date
 ```
 

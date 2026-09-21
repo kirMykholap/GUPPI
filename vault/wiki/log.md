@@ -2469,3 +2469,54 @@ instruction. The global feed; a page's own `## History` is the per-page view.
 - 2026-09-21 rules/rule-internal-context status: draft → built · cascade · generate
 - 2026-09-21 decisions/decision-case-291.1 archived · superseded · generate
 - 2026-09-21 decisions/decision-case-291.1 archived · cleanup
+- 2026-09-22 estimates/estimate-case-protocol-loaded status: pending → passed · raw/2026-09-21/1853/ledger.md#L1 · generate
+- 2026-09-22 estimates/estimate-generate-cascades status: pending → passed · raw/2026-09-21/1853/ledger.md#L2 · generate
+- 2026-09-22 estimates/estimate-generate-writes-the-decision-page status: pending → passed · raw/2026-09-21/1853/ledger.md#L3 · generate
+- 2026-09-22 estimates/estimate-generate-fails-alone status: pending → passed · raw/2026-09-21/1853/ledger.md#L4 · generate
+- 2026-09-22 estimates/estimate-generate-ticks-the-spec status: pending → passed · raw/2026-09-21/1853/ledger.md#L5 · generate
+- 2026-09-22 estimates/estimate-materialize-carries-addresses status: pending → passed · raw/2026-09-21/1853/ledger.md#L6 · generate
+- 2026-09-22 decisions/decision-case-299.1 created · raw/2026-09-21/1853/ledger.md#case-299.1 · generate
+- 2026-09-22 rules/rule-case-protocol updated: the Spec paragraph on the Criterion — a Case superseded in its own session leaves the Spec, the superseding Case is written whole (case 299.1) · [[decision-case-299.1]] · generate
+- 2026-09-22 estimates/estimate-case-protocol-loaded updated: one line of the Criterion — the Spec paragraph says a Case superseded in its own session leaves the Spec (case 299.1) · [[decision-case-299.1]] · generate
+- 2026-09-22 decisions/decision-case-299.2 created · raw/2026-09-21/1853/ledger.md#case-299.2 · generate
+- 2026-09-22 decisions/decision-case-298 superseded by decision-case-299.2 · [[decision-case-299.2]] · generate
+- 2026-09-22 rules/rule-prespec defer by decision-case-298 superseded · [[decision-case-299.2]] · generate
+- 2026-09-22 rules/rule-materialize defer by decision-case-298 superseded · [[decision-case-299.2]] · generate
+- 2026-09-22 rules/rule-page-generation defer by decision-case-298 superseded · [[decision-case-299.2]] · generate
+- 2026-09-22 rules/rule-prespec updated: a supersedes of the window whose Case still stands in the plan is a finding; a line of the superseded Case needs no item (case 299.2) · [[decision-case-299.2]] · generate
+- 2026-09-22 estimates/estimate-prespec-catches-a-superseded-case created · [[decision-case-299.2]] · generate
+- 2026-09-22 estimates/estimate-prespec-catches-a-superseded-case status: pending → passed · raw/2026-09-21/1853/ledger.md#L25 · generate
+- 2026-09-22 rules/rule-prespec estimate estimate-prespec-catches-a-superseded-case added · [[decision-case-299.2]] · generate
+- 2026-09-22 decisions/decision-case-299.3 created · raw/2026-09-21/1853/ledger.md#case-299.3 · generate
+- 2026-09-22 decisions/decision-case-298 superseded by decision-case-299.3 · [[decision-case-299.3]] · generate
+- 2026-09-22 rules/rule-materialize updated: an entry of a Case superseded in its own session and gone from the Spec is complete by the mark alone (case 299.3) · [[decision-case-299.3]] · generate
+- 2026-09-22 estimates/estimate-materialize-marks-superseded updated: the Criterion replaced whole — the entries of a superseded Case gone from the Spec carry no incomplete, the record no case_text; Given added, the shape of case 193 (case 299.3) · [[decision-case-299.3]] · generate
+- 2026-09-22 decisions/decision-case-299.4 created · raw/2026-09-21/1853/ledger.md#case-299.4 · generate
+- 2026-09-22 decisions/decision-case-298 superseded by decision-case-299.4 · [[decision-case-299.4]] · generate
+- 2026-09-22 rules/rule-page-generation updated: the Decision page of a Case superseded in its own session has a two-line body naming the superseding Decision (case 299.4) · [[decision-case-299.4]] · generate
+- 2026-09-22 estimates/estimate-generate-writes-the-decision-page updated: one line of the Criterion — the page of a superseded Case without case_text has a two-line body (case 299.4) · [[decision-case-299.4]] · generate
+- 2026-09-22 decisions/decision-case-301 created · raw/2026-09-21/1853/ledger.md#case-301 · generate
+- 2026-09-22 entities/entity-sprint-migration updated: Slice 3f — the Rule-class files into the graph — the current milestone, with its Estimate and six themes; applies_to moved from the Backlog into the Slice, the template engine added to it (case 301) · [[decision-case-301]] · generate
+- 2026-09-22 estimates/estimate-sprint-migration-rule-class-files-dissolved created · [[decision-case-301]] · generate
+- 2026-09-22 entities/entity-sprint-migration estimate estimate-sprint-migration-rule-class-files-dissolved added · [[decision-case-301]] · generate
+- 2026-09-22 decisions/decision-case-302.1 created · raw/2026-09-21/1853/ledger.md#case-302.1 · generate
+- 2026-09-22 insights/insight-materialize-estimate-update-lifts-the-criterion-whole updated: actioned — the pattern was closed by case 296 in the session of the second lesson; the Proposal's further check is not taken (case 302.1) · [[decision-case-302.1]] · generate
+- 2026-09-22 decisions/decision-case-302.2 created · raw/2026-09-21/1853/ledger.md#case-302.2 · generate
+- 2026-09-22 rules/rule-synthesis updated: an Insight born from a lesson whose entry carries addressed_by is set actioned by an update right after its create (case 302.2) · [[decision-case-302.2]] · generate
+- 2026-09-22 estimates/estimate-synthesis-keeps-actioned-by-the-mark updated: the Criterion replaced whole — the second case of the mark, an Insight born from a marked lesson (case 302.2) · [[decision-case-302.2]] · generate
+- 2026-09-22 decisions/decision-case-303 created · raw/2026-09-21/1853/ledger.md#case-303 · generate
+- 2026-09-22 rules/rule-work-mode deferred · [[decision-case-303]] · generate
+- 2026-09-22 rules/rule-subagent-guppi deferred · [[decision-case-303]] · generate
+- 2026-09-22 decisions/decision-case-299.5 created · raw/2026-09-21/1853/ledger.md#case-299.5 · generate
+- 2026-09-22 estimates/estimate-prespec-checks-the-plan updated: one line of the Criterion — the lines of a Case superseded by a line of the window need no item, its heading in the plan is a finding (case 299.5) · [[decision-case-299.5]] · generate
+- 2026-09-22 estimates/estimate-materialize-marks-superseded status: pending → passed · raw/2026-09-21/1853/ledger.md#L26 · generate
+- 2026-09-22 estimates/estimate-generate-writes-the-decision-page status: pending → passed · raw/2026-09-21/1853/ledger.md#L27 · generate
+- 2026-09-22 estimates/estimate-prespec-checks-the-plan status: pending → passed · raw/2026-09-21/1853/ledger.md#L28 · generate
+- 2026-09-22 lessons/lesson-sub-case-given-the-parents-plus-lines-has-no-form created · raw/2026-09-21/1853/ledger.md#L29 · generate
+- 2026-09-22 rules/rule-materialize status: draft → built · cascade · generate
+- 2026-09-22 decisions/decision-case-298 archived · superseded · generate
+- 2026-09-22 lessons/lesson-estimate-update-must-carry-its-criterion-whole archived · insight actioned · generate
+- 2026-09-22 lessons/lesson-estimate-purpose-update-replaced-the-signed-criterion archived · insight actioned · generate
+- 2026-09-22 lessons/lesson-estimate-purpose-update-replaced-the-signed-criterion archived · cleanup
+- 2026-09-22 lessons/lesson-estimate-update-must-carry-its-criterion-whole archived · cleanup
+- 2026-09-22 decisions/decision-case-298 archived · cleanup

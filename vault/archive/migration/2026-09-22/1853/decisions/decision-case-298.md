@@ -1,8 +1,9 @@
 ---
 type: decision
 case: "298"
-status: current
+status: archived
 defer: ["[[rule-prespec]]", "[[rule-materialize]]", "[[rule-page-generation]]"]
+superseded_by: ["[[decision-case-299.2]]", "[[decision-case-299.3]]", "[[decision-case-299.4]]"]
 origin: raw/2026-09-21/1315/ledger.md#case-298
 sprint: migration
 created: 2026-09-21
@@ -35,3 +36,8 @@ the Decision page of a Case superseded in its own session is written with status
 
 - 2026-09-21 created · raw/2026-09-21/1315/ledger.md#case-298
 - 2026-09-21 ## Deferred written by hand from Spec 1315 lines 379–387 — the then block of 298 was not YAML · one-off migration · raw/2026-09-21/1853/spec.md#case-299.4
+- 2026-09-22 superseded by decision-case-299.2 · [[decision-case-299.2]]
+- 2026-09-22 superseded by decision-case-299.3 · [[decision-case-299.3]]
+- 2026-09-22 superseded by decision-case-299.4 · [[decision-case-299.4]]
+- 2026-09-22 archived · superseded
+- 2026-09-22 archived · cleanup

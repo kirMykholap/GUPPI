@@ -26,11 +26,7 @@ a recurrence is caught there at the cost of one Grep line.
 
 <!-- rule-synthesis -->
 Synthesis. For each `lesson` entry, compare its `root_cause` with every index line of `vault/wiki/lessons/` and of `vault/wiki/insights/` — the Greps `^(root_cause|deferred_by):` and `^(pattern|deferred_by):`, run by you — by meaning (case 147.4).
-- A live lesson has the same cause and no Insight exists: append to the yaml a
-  `create` in `insights` with `slug` (`insight-<area>-<pattern>`), `pattern`,
-  `children` (both lessons), `tags` (the union), and `sections` `Pattern` and
-  `Proposal`; and an `update` for each lesson with `set: {status: clustered,
-  insight: <slug>}`.
+- A live lesson has the same cause and no Insight exists: append to the yaml a `create` in `insights` with `slug` (`insight-<area>-<pattern>`), `pattern`, `children` (both lessons), `tags` (the union), and `sections` `Pattern` and `Proposal`; and an `update` for each lesson with `set: {status: clustered, insight: <slug>}`. When the lesson entry carries `addressed_by: decision-case-N` — the Case of this unit that closed its cause — append right after the `create` an `update` of the new Insight with `set: {status: actioned, addressed_by: decision-case-N}`: the Insight is born closed, its lessons go to the archive by the cascade, and the pair is reported in the brief beside the synthesis (case 302.2).
 - An Insight has the same pattern: append an `update` of it with `children` plus
   the new lesson, and — when it was `actioned` — `set: {status: open}`, or `set: {addressed_by: decision-case-N}` with `status` kept when the lesson entry carries `addressed_by: decision-case-N`, the Case of this unit that closed its cause, the pair reported in the brief beside the synthesis (case 284.4); and an `update`
   for the lesson.
@@ -59,3 +55,4 @@ outcome, clustered or not. Do not read the archive and do not write pages yourse
 - 2026-09-21 updated: an actioned Insight stays actioned when the lesson entry carries addressed_by from a decision of the same unit; addressed_by moves to that decision (case 284.4) · [[decision-case-284.4]]
 - 2026-09-21 estimate estimate-synthesis-keeps-actioned-by-the-mark added · [[decision-case-284.4]]
 - 2026-09-21 status: built → draft · cascade
+- 2026-09-22 updated: an Insight born from a lesson whose entry carries addressed_by is set actioned by an update right after its create (case 302.2) · [[decision-case-302.2]]

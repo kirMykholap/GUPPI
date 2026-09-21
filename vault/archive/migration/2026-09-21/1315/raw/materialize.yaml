@@ -681,6 +681,7 @@ entries:
     \ 136:\n     ... y the mark alone — no incomplete: [then], no case_text; the repl ... \n         \
     \                                ^"
   applied: '18:37:05'
+  superseded_by: '299.4'
 - line: 23
   text: decision[case 298][defer][rule-materialize]{ref:rule-materialize}
   case: '298'
@@ -696,6 +697,7 @@ entries:
     \ 136:\n     ... y the mark alone — no incomplete: [then], no case_text; the repl ... \n         \
     \                                ^"
   applied: '18:37:05'
+  superseded_by: '299.4'
 - line: 24
   text: decision[case 298][defer][rule-page-generation]{ref:rule-page-generation}
   case: '298'
@@ -711,6 +713,7 @@ entries:
     \ 136:\n     ... y the mark alone — no incomplete: [then], no case_text; the repl ... \n         \
     \                                ^"
   applied: '18:37:05'
+  superseded_by: '299.4'
 - kind: create
   category: insights
   slug: insight-materialize-estimate-update-lifts-the-criterion-whole
@@ -1135,5 +1138,9 @@ decisions:
     \ 136:\n     ... y the mark alone — no incomplete: [then], no case_text; the repl ... \n         \
     \                                ^"
   applied: '18:37:05'
+  superseded_by:
+  - decision-case-299.2
+  - decision-case-299.3
+  - decision-case-299.4
 unparsed: []
 session: '1315'

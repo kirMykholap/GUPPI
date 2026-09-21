@@ -2,7 +2,7 @@
 type: lesson
 kind: error
 root_cause: lift_criterion in guppi/materialize.py lifts the Case's given/when/then into every update of an Estimate and sets pending, an update of purpose alone included — the schema and the code know one kind of Estimate update, the promise change; the Case's then promised what the mechanism cannot keep, pre-spec did not check the then against lift_criterion, and the librarian recorded the replacement without a flag; second case of the root cause of lesson-estimate-update-must-carry-its-criterion-whole
-status: clustered
+status: archived
 insight: "[[insight-materialize-estimate-update-lifts-the-criterion-whole]]"
 origin: raw/2026-09-21/1315/ledger.md#L3
 sprint: migration
@@ -22,3 +22,5 @@ lift_criterion in guppi/materialize.py lifts the Case's given/when/then into eve
 
 - 2026-09-21 created · raw/2026-09-21/1315/ledger.md#L3
 - 2026-09-21 updated: clustered under insight-materialize-estimate-update-lifts-the-criterion-whole by the librarian's synthesis: the same root cause as lesson-estimate-update-must-carry-its-criterion-whole · raw/2026-09-21/1315/ledger.md#L3
+- 2026-09-22 archived · insight actioned
+- 2026-09-22 archived · cleanup

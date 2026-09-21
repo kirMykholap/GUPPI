@@ -5,7 +5,7 @@ status: passed
 target: "[[rule-prespec]]"
 purpose: The check of the plan against the session's lines, frontier, tasks, governed paths and the form of an Estimate item
 method: pytest tests/test_prespec.py, the tests of --check
-checked: 2026-09-20
+checked: 2026-09-21
 origin: raw/2026-09-16/1955/ledger.md#case-203.1
 sprint: migration
 created: 2026-09-16
@@ -29,7 +29,7 @@ Then:
 One finding per line on stdout, exit 1 on any, 0 and silent when clean; without a `hi` in the session's window, exit 0 and one line on stderr.
 **＋** The stamp is `--session`, else `CLAUDE_SESSION_ID`; with neither, one line on stderr `prespec: no session id; pass --session <stamp> from the hi: line`, exit 2, nothing checked; the last `session-start` of today's log is not read (case 213.1).
 **＋** The session's window is found as the ledger hook finds it — by the stamped `hi`, over the logs back to the date of its `session-start` — so the `hi` of yesterday's session is found after midnight (case 213.1).
-**＋** Lines: a decision line of the window with no item of its kind under its own Case heading; an item with no line; a `defer` line matches a `defer` item, a Rule-class file line an `update` with that `file` or `slug`; an item under another sub-case's heading is a finding.
+**＋** Lines: a decision line of the window with no item of its kind under its own Case heading — unless a `{supersedes:case N}` of the window names its Case, whose heading still in the plan is a finding of its own (299.2); an item with no line; a `defer` line matches a `defer` item, a Rule-class file line an `update` with that `file` or `slug`; an item under another sub-case's heading is a finding.
 **＋** The frontier `raw/<hi date>/<hi HHMM>/frontier.md`: a missing file, an open line, a `case N` whose heading the plan lacks, a `defer case N` with no `defer` item under Case N.
 **＋** Tasks: a Case with a line of a kind other than `defer` and no `tasks` block; an Estimate a `then` block creates or sets `pending` with no task line naming its slug.
 **＋** Governed: an `update` item with `file` on a path a live Rule page governs.
@@ -40,7 +40,7 @@ One finding per line on stdout, exit 1 on any, 0 and silent when clean; without 
 
 ## Result
 
-2026-09-20, `pytest tests/test_prespec.py` alone at Retro: 52 green; `make test` 434; the line of 09:10:20 said 72 by mistake, this line stands for it
+2026-09-21, uv run pytest tests/test_prespec.py 68 green — the Lines check exempts a Case a supersedes of the window names and reports its heading still in the plan; the 64 earlier tests of --check unchanged
 
 ## History
 
@@ -55,3 +55,5 @@ One finding per line on stdout, exit 1 on any, 0 and silent when clean; without 
 - 2026-09-20 updated: renamed with rule-prespec — the Criterion names guppi prespec, the mark prespec, the stderr prefix prespec and tests/test_prespec.py (case 261) · [[decision-case-261]]
 - 2026-09-20 status: pending → passed · raw/2026-09-20/0740/ledger.md#L13
 - 2026-09-20 status: passed → passed · raw/2026-09-20/0740/ledger.md#L16
+- 2026-09-22 updated: one line of the Criterion — the lines of a Case superseded by a line of the window need no item, its heading in the plan is a finding (case 299.5) · [[decision-case-299.5]]
+- 2026-09-22 status: pending → passed · raw/2026-09-21/1853/ledger.md#L28

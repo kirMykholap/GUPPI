@@ -1,11 +1,11 @@
 ---
 type: estimate
 kind: QA
-status: pending
+status: passed
 target: "[[rule-page-generation]]"
 purpose: generate ticks the page line of a Case in the Spec beside its yaml, and the read line of a reading across the Specs of raw/ — never a line of a later or a superseded Case
 method: pytest tests/test_generate.py with a Spec beside the yaml, plus one reading of this session's spec.md after the librarian's run
-checked: 2026-09-20
+checked: 2026-09-21
 origin: raw/2026-09-17/1119/ledger.md#case-226.1
 sprint: migration
 created: 2026-09-17
@@ -40,7 +40,7 @@ For a `create`, `update`, `delete` or `defer` entry, in the `spec.md` of the sam
 
 ## Result
 
-2026-09-20, uv run pytest tests/test_generate.py green; live — the librarian's run of session 1749 (commit 3d445a6) read by git show: the three Specs changed in ticks only (1749 13 lines, 1308 6, 0958 1); the reading of estimate-case-protocol-loaded (yaml line 6) skipped the read lines of 278 (first decision entry line 7) and 279.1 (line 9) in the 1749 Spec and ticked 1308:98, 1749:88 open; estimate-documentation-completes ticked 0958:308; lines 1-4 and 21 ticked 1308:627, 259, 1090, 367, 313; the folded create of 279.2 ticked 1749:129; the reading of estimate-retro-loads (line 20) ticked 1749:220 under 282, whose entries stand at 17-18, before it, and left 1308:132 open — by the rule of 280
+2026-09-21, uv run pytest tests/test_generate.py: 74 green; live — Spec 1315 after the librarian's run: line 311, the read line of estimate-materialize-assembles under 296, is [x]; line 72, the read line of the same slug under 291.1, superseded by 296 in the same yaml, is [ ] — the filter by superseded_by
 
 ## History
 
@@ -53,3 +53,4 @@ For a `create`, `update`, `delete` or `defer` entry, in the `spec.md` of the sam
 - 2026-09-21 updated: the Criterion replaced whole — the read line of a superseded Case is skipped by the marks of the yaml beside the Spec (case 286) · [[decision-case-286]]
 - 2026-09-21 updated: the purpose by the Criterion of 286 (case 290.3) · [[decision-case-290.3]]
 - 2026-09-21 updated: the Criterion of 286 restored whole, replaced by the purpose update of 290.3 (case 291.2) · [[decision-case-291.2]]
+- 2026-09-22 status: pending → passed · raw/2026-09-21/1853/ledger.md#L5

@@ -53,7 +53,7 @@ update:
 - [x] `guppi/generate.py`: `superseded_cases(entries)`; `tick_read` skips them in every Spec — the run's entries for the first, the `materialize.yaml` beside each other Spec; the docstring
 - [x] `tests/test_generate.py`: a `read` line under a superseded Case in the Spec beside the yaml — skipped, the next one ticked; in another session's Spec with its yaml — skipped; no yaml beside it — ticked
 - [x] by hand, a one-off: `vault/archive/migration/2026-09-20/1749/raw/spec.md` — line 39 back to `[ ]`, line 88 to `[x]`
-- [ ] read `estimate-generate-ticks-the-spec`: pytest now; live — the first librarian's run whose ledger holds a `{supersedes:case N}` and a reading of a slug with a `read` line under Case N; no date
+- [x] read `estimate-generate-ticks-the-spec`: pytest now; live — the first librarian's run whose ledger holds a `{supersedes:case N}` and a reading of a slug with a `read` line under Case N; no date
 ```
 
 ## Case 287 — a `SessionStart compact` hook brings back what `/hi` loaded

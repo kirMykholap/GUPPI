@@ -7,7 +7,6 @@ enforcement: check
 implementation_ref: [guppi/generate.py, tests/test_generate.py]
 parent: "[[rule-documentation]]"
 estimates: ["[[estimate-generate-writes]]", "[[estimate-generate-walks-dates]]", "[[estimate-generate-writes-the-decision-page]]", "[[estimate-generate-fails-alone]]", "[[estimate-generate-cascades]]", "[[estimate-generate-ticks-the-spec]]", "[[estimate-generate-renames]]", "[[estimate-generate-rewords]]"]
-deferred_by: ["[[decision-case-298]]"]
 origin: raw/2026-09-10/ledger.md#case-32
 sprint: migration
 created: 2026-09-10
@@ -27,7 +26,7 @@ collision is an error, never a rename — with one exception: a `create` whose s
 placeholder page, `status: draft` and no `kind`, fills that page (case 101.1). An `update` whose item carries `rename: <new slug>` moves the page to the new slug, the same category prefix, and rewrites every link and ref field to it in the live pages of `wiki/`, Decision pages included; a taken or foreign slug fails the entry (case 258.1). An `update` whose item carries `reword` — a list of `{old, new}` pairs — replaces each pair as a whole word in every section but History and Result, and in `purpose` and `method`, of every live page of `wiki/`, one History line per page touched; the page is the owner, and a `new` absent from its own text, or a pair with no hit, fails the entry; a slug goes through `rename`, not `reword` (case 274.1). One bad
 entry never stops the run: it is marked `failed`, reported, and the rest apply (case
 47). The Decision page of a Case is written before its entries and carries the body of
-every defer (cases 52.4, 186.1); the cascade after all entries computes what is
+every defer (cases 52.4, 186.1); the page of a Case superseded in its own session and gone from the Spec — its record carries `superseded_by` and no `case_text` — has a two-line body naming the superseding Decision, and its status follows the mechanism as for any superseded page (case 299.4); the cascade after all entries computes what is
 computed — `built`, the archive of a superseded decision, the severity of an Insight —
 never by hand (case 104). Once an entry is applied, the script ticks its line in the Spec — a page entry the line `- [ ] <kind> `<slug>`` in the section of the entry's Case of the Spec beside the yaml; an `estimate` entry, or a `create` with a folded reading, the first unticked `- [ ] read `<slug>`` line, in the Spec beside the yaml first — skipping the section of a Case whose first decision entry stands after the reading in the ledger, a Case ratified after it — and then in the `spec.md` of the other session folders of `raw/`, oldest first, skipping in every Spec the section of a Case whose entries the yaml beside it marks `superseded_by`, its work standing under the superseding Case — so the Spec's page lines and reading lines are closed by the one who did the work, and a line not found is no error (cases 226.1, 270.1, 280, 286). The mechanism — the shape of every entry and every History line — lives in the docstring of `guppi/generate.py`.
 
@@ -110,3 +109,5 @@ never by hand (case 104). Once an entry is applied, the script ticks its line in
 - 2026-09-20 updated: a reading does not tick the read line of a Case ratified after it in the same session (case 280) · [[decision-case-280]]
 - 2026-09-21 updated: a reading does not tick the read line of a superseded Case, in any Spec of raw/ (case 286) · [[decision-case-286]]
 - 2026-09-21 deferred · [[decision-case-298]]
+- 2026-09-22 defer by decision-case-298 superseded · [[decision-case-299.2]]
+- 2026-09-22 updated: the Decision page of a Case superseded in its own session has a two-line body naming the superseding Decision (case 299.4) · [[decision-case-299.4]]

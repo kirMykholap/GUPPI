@@ -7,6 +7,7 @@ enforcement: check
 implementation_ref: [guppi/generate.py, tests/test_generate.py]
 parent: "[[rule-documentation]]"
 estimates: ["[[estimate-generate-writes]]", "[[estimate-generate-walks-dates]]", "[[estimate-generate-writes-the-decision-page]]", "[[estimate-generate-fails-alone]]", "[[estimate-generate-cascades]]", "[[estimate-generate-ticks-the-spec]]", "[[estimate-generate-renames]]", "[[estimate-generate-rewords]]"]
+deferred_by: ["[[decision-case-298]]"]
 origin: raw/2026-09-10/ledger.md#case-32
 sprint: migration
 created: 2026-09-10
@@ -108,3 +109,4 @@ never by hand (case 104). Once an entry is applied, the script ticks its line in
 - 2026-09-20 status: built → draft · cascade
 - 2026-09-20 updated: a reading does not tick the read line of a Case ratified after it in the same session (case 280) · [[decision-case-280]]
 - 2026-09-21 updated: a reading does not tick the read line of a superseded Case, in any Spec of raw/ (case 286) · [[decision-case-286]]
+- 2026-09-21 deferred · [[decision-case-298]]

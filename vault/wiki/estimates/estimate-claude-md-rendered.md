@@ -1,11 +1,11 @@
 ---
 type: estimate
 kind: QA
-status: pending
+status: passed
 target: "[[rule-claude-md]]"
 purpose: CLAUDE.md equals the Render of rule-claude-md with each child between its markers, and every session loads that text
 method: uv run guppi render and guppi render --check after the build, plus one reading of CLAUDE.md at the next session start, by hand
-checked: 2026-09-20
+checked: 2026-09-21
 origin: raw/2026-09-12/ledger.md#case-71.1
 sprint: migration
 created: 2026-09-12
@@ -30,7 +30,7 @@ Then:
 
 ## Result
 
-2026-09-20, uv run guppi render --check exit 0 at the start of session 1749, CLAUDE.md read by hand: markers rule-language (41–45) and rule-agent-writing (47–53) only, no rule-case-protocol marker, no import of case-schema.md; the first paragraph says the vault is the only memory; What is loaded here names one import, glossary.md, and the schema at /hi; children of rule-claude-md are rule-language and rule-agent-writing
+2026-09-21, uv run guppi render --check exit 0 at the start of session 1315, CLAUDE.md read by hand: 18 lines — # GUPPI, one paragraph of the description, the markers rule-language (5–9) and rule-agent-writing (11–17); no @ import, no What is loaded here, no Migration mode, no Commands, no one rule, no sentence on memory; children of rule-claude-md are rule-language and rule-agent-writing; loaded as the system prompt of this session
 
 ## History
 
@@ -45,3 +45,4 @@ Then:
 - 2026-09-20 updated: the Criterion replaced whole — the text of 272.1 plus no protocol in CLAUDE.md, one import (case 273.3) · [[decision-case-273.3]]
 - 2026-09-20 status: pending → passed · raw/2026-09-20/1749/ledger.md#L2
 - 2026-09-21 updated: the Criterion replaced whole — the title, the description and the two markers, nothing else (case 288.3) · [[decision-case-288.3]]
+- 2026-09-21 status: pending → passed · raw/2026-09-21/1315/ledger.md#L2

@@ -2433,3 +2433,39 @@ instruction. The global feed; a page's own `## History` is the per-page view.
 - 2026-09-21 rules/rule-claude-md status: built → draft · cascade · generate
 - 2026-09-21 rules/rule-internal-context status: built → draft · cascade · generate
 - 2026-09-21 rules/rule-retro status: draft → built · cascade · generate
+- 2026-09-21 estimates/estimate-case-protocol-loaded status: pending → passed · raw/2026-09-21/1315/ledger.md#L1 · generate
+- 2026-09-21 estimates/estimate-claude-md-rendered status: pending → passed · raw/2026-09-21/1315/ledger.md#L2 · generate
+- 2026-09-21 lessons/lesson-estimate-purpose-update-replaced-the-signed-criterion created · raw/2026-09-21/1315/ledger.md#L3 · generate
+- 2026-09-21 decisions/decision-case-291.1 created · raw/2026-09-21/1315/ledger.md#case-291.1 · generate
+- 2026-09-21 decisions/decision-case-291.2 created · raw/2026-09-21/1315/ledger.md#case-291.2 · generate
+- 2026-09-21 estimates/estimate-generate-ticks-the-spec updated: the Criterion of 286 restored whole, replaced by the purpose update of 290.3 (case 291.2) · [[decision-case-291.2]] · generate
+- 2026-09-21 estimates/estimate-internal-context-loaded updated: the Criterion of 288.1 restored whole, replaced by the purpose update of 290.3 (case 291.2) · [[decision-case-291.2]] · generate
+- 2026-09-21 decisions/decision-case-293 created · raw/2026-09-21/1315/ledger.md#case-293 · generate
+- 2026-09-21 rules/rule-work-mode deferred · [[decision-case-293]] · generate
+- 2026-09-21 rules/rule-subagent-guppi deferred · [[decision-case-293]] · generate
+- 2026-09-21 decisions/decision-case-294 created · raw/2026-09-21/1315/ledger.md#case-294 · generate
+- 2026-09-21 rules/rule-case-protocol updated: the Spec paragraph names the field-only update of an Estimate — a part named changes alone, a part inside the Criterion sets pending (case 294) · [[decision-case-294]] · generate
+- 2026-09-21 estimates/estimate-case-protocol-loaded updated: one line of the Criterion — the Spec paragraph names the field-only update of an Estimate (case 294) · [[decision-case-294]] · generate
+- 2026-09-21 decisions/decision-case-295 created · raw/2026-09-21/1315/ledger.md#case-295 · generate
+- 2026-09-21 estimates/estimate-generate-cascades updated: one given line — an update entry of an Estimate carries the Criterion and pending when it replaces the promise, not always (case 295) · [[decision-case-295]] · generate
+- 2026-09-21 estimates/estimate-generate-writes-the-decision-page updated: one given line — an update entry of an Estimate carries the Criterion and pending when it replaces the promise, not always (case 295) · [[decision-case-295]] · generate
+- 2026-09-21 estimates/estimate-generate-fails-alone updated: one given line — an update entry of an Estimate carries the Criterion and pending when it replaces the promise, not always (case 295) · [[decision-case-295]] · generate
+- 2026-09-21 decisions/decision-case-296 created · raw/2026-09-21/1315/ledger.md#case-296 · generate
+- 2026-09-21 decisions/decision-case-291.1 superseded by decision-case-296 · [[decision-case-296]] · generate
+- 2026-09-21 rules/rule-materialize updated: an update item of an Estimate that names a part changes that part alone; a part inside the Criterion sets pending; a part not named is the whole Criterion (case 296) · [[decision-case-296]] · generate
+- 2026-09-21 estimates/estimate-materialize-assembles updated: one line of the Criterion — an update item that names a part of the page changes that part alone, pending when the part is inside the Criterion; one that names none, or carries set.status, replaces the Criterion whole (case 296) · [[decision-case-296]] · generate
+- 2026-09-21 decisions/decision-case-297 created · raw/2026-09-21/1315/ledger.md#case-297 · generate
+- 2026-09-21 estimates/estimate-materialize-assembles status: pending → passed · raw/2026-09-21/1315/ledger.md#L19 · generate
+- 2026-09-21 estimates/estimate-internal-context-loaded status: pending → passed · raw/2026-09-21/1315/ledger.md#L20 · generate
+- 2026-09-21 lessons/lesson-retro-answered-in-the-skills-language created · raw/2026-09-21/1315/ledger.md#L21 · generate
+- 2026-09-21 decisions/decision-case-298 created · raw/2026-09-21/1315/ledger.md#case-298 · generate
+- 2026-09-21 rules/rule-prespec deferred · [[decision-case-298]] · generate
+- 2026-09-21 rules/rule-materialize deferred · [[decision-case-298]] · generate
+- 2026-09-21 rules/rule-page-generation deferred · [[decision-case-298]] · generate
+- 2026-09-21 insights/insight-materialize-estimate-update-lifts-the-criterion-whole created · raw/2026-09-21/1315/ledger.md#L3 · generate
+- 2026-09-21 lessons/lesson-estimate-update-must-carry-its-criterion-whole updated: clustered under insight-materialize-estimate-update-lifts-the-criterion-whole by the librarian's synthesis: the same root cause as lesson-estimate-purpose-update-replaced-the-signed-criterion · raw/2026-09-21/1315/ledger.md#L3 · generate
+- 2026-09-21 lessons/lesson-estimate-purpose-update-replaced-the-signed-criterion updated: clustered under insight-materialize-estimate-update-lifts-the-criterion-whole by the librarian's synthesis: the same root cause as lesson-estimate-update-must-carry-its-criterion-whole · raw/2026-09-21/1315/ledger.md#L3 · generate
+- 2026-09-21 rules/rule-claude-md status: draft → built · cascade · generate
+- 2026-09-21 rules/rule-internal-context status: draft → built · cascade · generate
+- 2026-09-21 decisions/decision-case-291.1 archived · superseded · generate
+- 2026-09-21 decisions/decision-case-291.1 archived · cleanup

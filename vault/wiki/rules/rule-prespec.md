@@ -8,6 +8,7 @@ governs: .claude/skills/pre-spec/SKILL.md
 render_mode: full
 parent: "[[rule-plan-mode]]"
 estimates: ["[[estimate-prespec-reconciles]]", "[[estimate-prespec-checks-the-plan]]", "[[estimate-prespec-catches-bare-wikilinks]]", "[[estimate-prespec-catches-a-command-line-off-form]]"]
+deferred_by: ["[[decision-case-298]]"]
 origin: raw/2026-09-09/ledger.md#case-24.2
 sprint: migration
 created: 2026-09-09
@@ -91,3 +92,4 @@ finding as a Case, or say in one line why it is already known. Then exit Plan Mo
 - 2026-09-20 status: draft → built · cascade
 - 2026-09-20 updated: pre-spec flags a render or sprint task line the tickers would not match (case 279.2) · [[decision-case-279.2]]
 - 2026-09-20 estimate estimate-prespec-catches-a-command-line-off-form added · [[decision-case-279.2]]
+- 2026-09-21 deferred · [[decision-case-298]]

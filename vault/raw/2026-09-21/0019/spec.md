@@ -211,7 +211,7 @@ update:
 - [x] update `rule-internal-context`: the Render — a fourth `@` line; How it works — the sentence on the glossary
 - [x] update `estimate-internal-context-loaded`: the Criterion replaced whole, `pending`
 - [x] `uv run guppi render`: `.claude/skills/hi/SKILL.md`
-- [ ] read `estimate-internal-context-loaded`: the `/hi` of the next session, by hand
+- [x] read `estimate-internal-context-loaded`: the `/hi` of the next session, by hand
 ```
 
 ### Case 288.2 — the one rule opens the Case schema
@@ -248,7 +248,7 @@ update:
 - [x] update `rule-case-protocol`: `replace` in the Render — the opening paragraph; `replace` in the Purpose — the sentence on `CLAUDE.md`
 - [x] update `estimate-case-protocol-loaded`: the Criterion replaced whole, `pending`
 - [x] `uv run guppi render`: `vault/wiki/case-schema.md`
-- [ ] read `estimate-case-protocol-loaded`: the `/hi` of the next session, by hand
+- [x] read `estimate-case-protocol-loaded`: the `/hi` of the next session, by hand
 ```
 
 ### Case 288.3 — `CLAUDE.md`: the title, the description, two markers
@@ -296,7 +296,7 @@ update:
 - [x] update `rule-claude-md`: the Render whole; How it works whole; `replace` in the Purpose — the sentence on the import
 - [x] update `estimate-claude-md-rendered`: the Criterion replaced whole, `pending`
 - [x] `uv run guppi render`: `CLAUDE.md`
-- [ ] read `estimate-claude-md-rendered`: `render --check` after the build; the start of the next session, by hand
+- [x] read `estimate-claude-md-rendered`: `render --check` after the build; the start of the next session, by hand
 ```
 
 ## Case 290 — the tails of pre-spec: the pages 287 and 288 left at odds with themselves

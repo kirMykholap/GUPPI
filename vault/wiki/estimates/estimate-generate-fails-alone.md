@@ -1,7 +1,7 @@
 ---
 type: estimate
 kind: QA
-status: passed
+status: pending
 target: "[[rule-page-generation]]"
 purpose: One bad entry never stops the run; every entry carries its mark
 method: pytest tests/test_generate.py, the tests of the failed, skipped and marked entries
@@ -16,7 +16,7 @@ tags: [harness, workflow, ledger, tests]
 
 Given:
 `guppi generate` applies the entries of a `materialize.yaml` in order; the `sections` of an `update` entry are whole replacements, `set` writes fields.
-**＋** An `update` entry for an Estimate carries `sections.Criterion` and `set: {status: pending}`; a `create` entry carries `kind`, `purpose`, `method`, `tags` as fields (194.1).
+**＋** An `update` entry for an Estimate that replaces the promise carries `sections.Criterion` and `set: {status: pending}`; one that names a part alone carries neither, and a part inside the Criterion sets `pending` (296); a `create` entry carries `kind`, `purpose`, `method`, `tags` as fields (194.1).
 **＋** An `estimate` entry carries `status` and `result`; the `result` opens with the date of the reading and the command (199).
 **＋** The tests in `tests/test_generate.py` fix the behaviour; the live reading is the librarian's run of this session.
 **－** `materialize`, `cleanup` and `lint` do not change here.
@@ -43,3 +43,4 @@ An entry that fails — a collision, a `ref` naming no page, a `replace` absent 
 - 2026-09-16 status: pending → passed · raw/2026-09-16/1955/ledger.md#L29
 - 2026-09-17 updated: one line in the Criterion — a recut without method fails alone (case 211.2) · [[decision-case-211.2]]
 - 2026-09-17 status: pending → passed · raw/2026-09-16/2238/ledger.md#L50
+- 2026-09-21 updated: one given line — an update entry of an Estimate carries the Criterion and pending when it replaces the promise, not always (case 295) · [[decision-case-295]]

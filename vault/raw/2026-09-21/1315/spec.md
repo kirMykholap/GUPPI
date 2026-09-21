@@ -136,8 +136,8 @@ update:
 ```
 
 ```tasks
-- [ ] update `estimate-generate-ticks-the-spec`: the Criterion of 286 under `sections: Criterion`, `pending`; its read line stands in Spec 0019 line 56
-- [ ] update `estimate-internal-context-loaded`: the Criterion of 288.1 under `sections: Criterion`, `pending`; its read line stands in Spec 0019 line 214 — the reading in this session after the ratification, by hand, on the facts of this `/hi`
+- [x] update `estimate-generate-ticks-the-spec`: the Criterion of 286 under `sections: Criterion`, `pending`; its read line stands in Spec 0019 line 56
+- [x] update `estimate-internal-context-loaded`: the Criterion of 288.1 under `sections: Criterion`, `pending`; its read line stands in Spec 0019 line 214 — the reading in this session after the ratification, by hand, on the facts of this `/hi`
 ```
 
 ## Case 294 — the Case schema names the field-only `update` of an Estimate
@@ -188,9 +188,9 @@ update:
 ```
 
 ```tasks
-- [ ] update `rule-case-protocol`: `replace` in the Render — one sentence after "(case 204)."
-- [ ] update `estimate-case-protocol-loaded`: the Criterion whole under `sections`, one line added to Then, `pending`
-- [ ] `uv run guppi render`: `vault/wiki/case-schema.md`
+- [x] update `rule-case-protocol`: `replace` in the Render — one sentence after "(case 204)."
+- [x] update `estimate-case-protocol-loaded`: the Criterion whole under `sections`, one line added to Then, `pending`
+- [x] `uv run guppi render`: `vault/wiki/case-schema.md`
 - [ ] read `estimate-case-protocol-loaded`: `render --check` after the render; the `/hi` of the next session, by hand
 ```
 
@@ -233,9 +233,9 @@ update:
 ```
 
 ```tasks
-- [ ] update `estimate-generate-cascades`: one `replace` pair in the Criterion, `pending` by the script
-- [ ] update `estimate-generate-writes-the-decision-page`: one `replace` pair in the Criterion, `pending` by the script
-- [ ] update `estimate-generate-fails-alone`: one `replace` pair in the Criterion, `pending` by the script
+- [x] update `estimate-generate-cascades`: one `replace` pair in the Criterion, `pending` by the script
+- [x] update `estimate-generate-writes-the-decision-page`: one `replace` pair in the Criterion, `pending` by the script
+- [x] update `estimate-generate-fails-alone`: one `replace` pair in the Criterion, `pending` by the script
 - [x] by hand, at Retro: `uv run guppi materialize --show` — the three entries of 295 carry `replace` and `set: {status: pending}`, no `sections`; else no handoff
 - [ ] read `estimate-generate-cascades`: `pytest tests/test_generate.py` at the librarian's run of this session or the next `/hi`
 - [ ] read `estimate-generate-writes-the-decision-page`: the same run
@@ -304,11 +304,11 @@ update:
 ```
 
 ```tasks
-- [ ] update `rule-materialize`: `replace` in the Purpose — a part named changes alone; a part inside the Criterion sets `pending`
-- [ ] update `estimate-materialize-assembles`: the Criterion whole under `sections`, one line changed, `pending`
+- [x] update `rule-materialize`: `replace` in the Purpose — a part named changes alone; a part inside the Criterion sets `pending`
+- [x] update `estimate-materialize-assembles`: the Criterion whole under `sections`, one line changed, `pending`
 - [x] `guppi/materialize.py`: `lift_criterion` — the branch "a part is named"; `touches_criterion(page, replaces)` reads the page's `## Criterion`; the docstring
 - [x] `tests/test_materialize.py`: `set: {purpose}` alone — no `sections`, no `set.status`; a pair with `old` in the Criterion — `set: {status: pending}`, no `sections`; a pair with `old` in Result — nothing; a pair with `old` not on the page — nothing; `set: {purpose, status: pending}` — lifted and the field; the test of Case 17 (`change` alone) stands
-- [ ] read `estimate-materialize-assembles`: pytest now; live — the librarian's run of this session, `--show`: the three entries of 295 carry `replace` and `set: {status: pending}`, no `sections`
+- [x] read `estimate-materialize-assembles`: pytest now; live — the librarian's run of this session, `--show`: the three entries of 295 carry `replace` and `set: {status: pending}`, no `sections`
 ```
 
 ## Case 297 — two Rule-class texts say the old form of an Estimate `update`

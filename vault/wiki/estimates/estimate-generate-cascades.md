@@ -1,7 +1,7 @@
 ---
 type: estimate
 kind: QA
-status: passed
+status: pending
 target: "[[rule-page-generation]]"
 purpose: The cascade computes built, the archive of a superseded decision and the severity of an Insight, never by hand
 method: pytest tests/test_generate.py, the tests of the cascade
@@ -15,7 +15,7 @@ tags: [harness, workflow, ledger]
 
 Given:
 `guppi generate` applies the entries of a `materialize.yaml` in order; the `sections` of an `update` entry are whole replacements, `set` writes fields.
-**＋** An `update` entry for an Estimate carries `sections.Criterion` and `set: {status: pending}`; a `create` entry carries `kind`, `purpose`, `method`, `tags` as fields (194.1).
+**＋** An `update` entry for an Estimate that replaces the promise carries `sections.Criterion` and `set: {status: pending}`; one that names a part alone carries neither, and a part inside the Criterion sets `pending` (296); a `create` entry carries `kind`, `purpose`, `method`, `tags` as fields (194.1).
 **＋** An `estimate` entry carries `status` and `result`; the `result` opens with the date of the reading and the command (199).
 **＋** The tests in `tests/test_generate.py` fix the behaviour; the live reading is the librarian's run of this session.
 **－** `materialize`, `cleanup` and `lint` do not change here.
@@ -38,3 +38,4 @@ An entity or rule whose Estimates are all `passed` becomes `built`; a `built` on
 
 - 2026-09-16 created · [[decision-case-201.4]]
 - 2026-09-16 status: pending → passed · raw/2026-09-16/1955/ledger.md#L30
+- 2026-09-21 updated: one given line — an update entry of an Estimate carries the Criterion and pending when it replaces the promise, not always (case 295) · [[decision-case-295]]

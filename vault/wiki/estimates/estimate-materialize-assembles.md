@@ -4,7 +4,7 @@ kind: QA
 status: passed
 target: "[[rule-materialize]]"
 method: pytest in tests/test_materialize.py against a temp vault; the live reading once by hand
-checked: 2026-09-20
+checked: 2026-09-21
 origin: raw/2026-09-10/ledger.md#case-31
 sprint: migration
 created: 2026-09-10
@@ -27,7 +27,7 @@ One entry per record line, in ledger order: `case`, `kind`, `category` from the 
 **＋** `reword` is a list of `{old, new}` pairs, carried as written; a mapping or a scalar under `reword` is `incomplete: [reword]` (case 274.3).
 **＋** Only the keys the category's `schema.yaml` names as fields reach `fields` of a `create` entry, and of a `defer` entry but for `type` and `purpose` — the defer's own keys, which reach `fields` whatever the target's category, for the placeholder page and for the `## Deferred` of the Decision page; the structural keys of the item go where they go — `ref` to the entry, `sections`, `tags`, `file`; a key that is neither is marked `unknown: [key]` on the entry, printed by `--show`, never written to the page, and the entry applies; `incomplete` is counted by `REQUIRED` as before, and a `defer` without `purpose` is `incomplete: [purpose]` (cases 214.1, 266).
 **＋** An Estimate has its own line and its own entry; the `ref` of the line is the Estimate itself.
-**＋** An `update` entry for an Estimate carries `sections.Criterion` — the text the item wrote under `sections: Criterion` itself, else the `given`, `when` and `then` of its Case verbatim with their operands as `Given:`, `When:`, `Then:` — replacing what stood there, and `set: {status: pending}` unless the item set a status itself; the `given` of a sub-case is its parent's when it has none of its own.
+**＋** An `update` entry for an Estimate that names no part of the page — `change` alone — or carries `set.status` carries `sections.Criterion` — the text the item wrote under `sections: Criterion` itself, else the `given`, `when` and `then` of its Case verbatim with their operands as `Given:`, `When:`, `Then:` — replacing what stood there, and `set: {status: pending}` unless the item set a status itself; the `given` of a sub-case is its parent's when it has none of its own. One that names a part — `set` without `status`, `replace`, `sections` without `Criterion` — and writes no Criterion carries that part alone, nothing lifted; it carries `set: {status: pending}` when the `old` of a `replace` pair stands in the page's `## Criterion`, and no status otherwise; a written `sections.Criterion` beside any other part stands and sets `pending` (case 296).
 **＋** A `create` entry for an Estimate keeps `kind`, `purpose`, `method`, `tags` as fields; its Criterion the same way: the written text when there is one, else the Case's; `## Context` and `## Method` are not written.
 **＋** One decision entry per Case: `decision`, `case_text`, `targets`; a sub-case inherits `context`, `problem`, `recommend`, `given`, never `when`.
 **＋** An `estimate` line for a page of the same ledger is folded into its `create`; for an earlier page it is an `estimate` entry. The `new_tags` of any Case reach the yaml once. An existing yaml is extended, never rewritten.
@@ -37,7 +37,7 @@ One entry per record line, in ledger order: `case`, `kind`, `category` from the 
 
 ## Result
 
-2026-09-20, `uv run pytest -q tests/test_materialize.py` 58 green, one new — reword reaches the entry as a list of pairs, a mapping under it is incomplete: [reword]; live — the librarian's run of this session, read in the next
+2026-09-21, uv run pytest tests/test_materialize.py 66 green, six new — a field alone lifts nothing and sets no status, a pair inside the Criterion sets pending and lifts nothing, a pair in the Result or absent from the page sets nothing, a status named or a written Criterion beside a field is the whole replacement; live — uv run guppi materialize --show over raw/2026-09-21/1315: the three entries of 295 carry replace and set status pending and no sections, 291.2 and 296 carry the written Criterion and pending, 291.1 superseded_by 296, no incomplete
 
 ## History
 
@@ -82,3 +82,5 @@ One entry per record line, in ledger order: `case`, `kind`, `category` from the 
 - 2026-09-20 status: pending → passed · raw/2026-09-20/0958/ledger.md#L29
 - 2026-09-20 updated: the Criterion replaced whole — reword among the keys carried from the then block, a list of pairs or incomplete (case 274.3) · [[decision-case-274.3]]
 - 2026-09-20 status: pending → passed · raw/2026-09-20/1308/ledger.md#L54
+- 2026-09-21 updated: one line of the Criterion — an update item that names a part of the page changes that part alone, pending when the part is inside the Criterion; one that names none, or carries set.status, replaces the Criterion whole (case 296) · [[decision-case-296]]
+- 2026-09-21 status: pending → passed · raw/2026-09-21/1315/ledger.md#L19

@@ -2,7 +2,7 @@
 type: rule
 kind: Leaf
 purpose: Prevents work starting without the current sprint and the previous session's handover
-status: draft
+status: built
 enforcement: render
 governs: .claude/skills/hi/SKILL.md
 render_mode: partial
@@ -47,3 +47,4 @@ prints the paths of these lines back (case 287).
 - 2026-09-20 status: draft → built · cascade
 - 2026-09-21 updated: the glossary is the fourth @ line — it arrives with /hi and reaches no subagent, which pays for CLAUDE.md alone (case 288.1) · [[decision-case-288.1]]
 - 2026-09-21 status: built → draft · cascade
+- 2026-09-21 status: draft → built · cascade

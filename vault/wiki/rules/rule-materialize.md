@@ -7,6 +7,7 @@ enforcement: check
 implementation_ref: [guppi/materialize.py, tests/test_materialize.py]
 parent: "[[rule-documentation]]"
 estimates: ["[[estimate-materialize-assembles]]", "[[estimate-materialize-walks-dates]]", "[[estimate-materialize-shows]]", "[[estimate-materialize-lifts-a-lesson]]", "[[estimate-materialize-marks-exists]]", "[[estimate-materialize-fails-alone]]", "[[estimate-materialize-finds-a-rule-class-item]]", "[[estimate-materialize-marks-superseded]]", "[[estimate-materialize-skips-a-carried-over-unit]]", "[[estimate-materialize-carries-addresses]]"]
+deferred_by: ["[[decision-case-298]]"]
 origin: raw/2026-09-10/ledger.md#case-31
 sprint: migration
 created: 2026-09-10
@@ -24,7 +25,7 @@ defect of the ledger, and it shows here.
 
 It also prevents a promise from being written by derivation. No Estimate is derived
 from a flag: an Estimate has its own ledger line and its own entry, and its Criterion
-is the `given`, `when` and `then` of the Case that names it, lifted verbatim into the entry's `sections` and replacing what stood on the page (cases 189, 194.1); a Criterion the item writes under `sections` itself stands instead, on a `create` and on an `update` alike — it is signed in the same block, and it is how one Case touches two promises (case 204). An `update` item's `reword` — a list of `{old, new}` pairs — is carried to the entry as written, for `generate` to apply; a mapping or a scalar under it is `incomplete: [reword]` (case 274.3). A decision line's `{addresses:<lesson slug>}` is carried to the entry as `addresses`, a list, and the lesson entry of that slug in the same unit gets `addressed_by: decision-case-N` at the entry's level, never as a page field; a mark whose lesson is not in the unit is `incomplete: [addresses]` on the decision entry (case 284.3). A unit
+is the `given`, `when` and `then` of the Case that names it, lifted verbatim into the entry's `sections` and replacing what stood on the page (cases 189, 194.1); a Criterion the item writes under `sections` itself stands instead, on a `create` and on an `update` alike — it is signed in the same block, and it is how one Case touches two promises (case 204). An `update` item names the part it changes: one that names a part — `set` without `status`, `replace`, a section other than `Criterion` — and writes no Criterion changes that part alone, nothing lifted; it is set `pending` when the part is inside the Criterion — the `old` of a `replace` pair stands in the page's `## Criterion` — and left as it is otherwise; a written `sections.Criterion` beside any other part stands and sets `pending`; one that names no part, or carries `set.status`, replaces the Criterion whole (case 296). An `update` item's `reword` — a list of `{old, new}` pairs — is carried to the entry as written, for `generate` to apply; a mapping or a scalar under it is `incomplete: [reword]` (case 274.3). A decision line's `{addresses:<lesson slug>}` is carried to the entry as `addresses`, a list, and the lesson entry of that slug in the same unit gets `addressed_by: decision-case-N` at the entry's level, never as a page field; a mark whose lesson is not in the unit is `incomplete: [addresses]` on the decision entry (case 284.3). A unit
 whose folder holds `carry.md` is passed by with one line on stdout: its Spec was
 ratified and its work not done (case 190.3). The mechanism and the full list of an
 entry's fields, each with its writer, live in the docstring of `guppi/materialize.py`.
@@ -90,3 +91,5 @@ entry's fields, each with its writer, live in the docstring of `guppi/materializ
 - 2026-09-21 updated: the mark addresses on a decision line reaches the lesson's entry as addressed_by (case 284.3) · [[decision-case-284.3]]
 - 2026-09-21 estimate estimate-materialize-carries-addresses added · [[decision-case-284.3]]
 - 2026-09-21 status: built → draft · cascade
+- 2026-09-21 updated: an update item of an Estimate that names a part changes that part alone; a part inside the Criterion sets pending; a part not named is the whole Criterion (case 296) · [[decision-case-296]]
+- 2026-09-21 deferred · [[decision-case-298]]

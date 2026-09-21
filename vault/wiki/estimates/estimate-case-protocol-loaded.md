@@ -5,7 +5,7 @@ status: pending
 target: "[[rule-case-protocol]]"
 purpose: The Case schema is present in a session from the first turn after /hi, as one text — the Render of rule-case-protocol — and nothing of it repeated in CLAUDE.md
 method: one reading at the first /hi of a session, by hand, plus the preview cases of tests/test_ledger.py
-checked: 2026-09-20
+checked: 2026-09-21
 origin: raw/2026-09-09/ledger.md#case-13
 sprint: migration
 created: 2026-09-09
@@ -25,12 +25,13 @@ The first `uv run guppi render` after `rule-case-protocol` changed, and the `/hi
 Then:
 `case-schema.md` opens with the section "The one rule" right under its title: nothing in the vault or the codebase changes without a Decision ratified by the human; the agent has full autonomy over how to implement something once its contract is ratified, and none over the contract itself; when unsure whether something needs ratification, it does; the vault is the only memory — no note outside the repository, what is worth keeping is a `lesson` line or a Case on a Rule page (272.1).
 **＋** The paragraph after it says, as before, that the schema is the Render loaded by `/hi` with `sprint.md`, `brief.md` and `glossary.md`, and that a session without `/hi` holds no Case.
+**＋** The Spec paragraph names the field-only `update` of an Estimate: a part named changes alone, a part inside the Criterion sets `pending` (294, 296).
 **＋** `render --check` after the render exits 0.
 **－** The other sections of the schema do not change; the description of the project is not in the schema.
 
 ## Result
 
-2026-09-20, uv run guppi render --check exit 0, tests/test_ledger.py green, case-schema.md as loaded at the /hi of session 2106 read by hand: the schema holds the Frontier and the closing of its lines, the acknowledging reply of four parts, the harness rendered from rules/, ask-guppi before a create, the ledger mechanics, the tick sentence of 270.2, the Language section naming rule-language, the form of the render and sprint lines in the Spec paragraph; rule-case-protocol the last child of rule-plan-mode; CLAUDE.md repeats no paragraph of the schema — its Migration mode section names the LEDGER block in one sentence as the fact that the hook exists since Slice 1, not as the rule
+2026-09-21, the /hi of session 1315 read by hand, uv run guppi render --check exit 0, tests/test_ledger.py 37 passed: case-schema.md in the first turn, opens with "## The one rule" right under the title with the text of 288.2; the paragraph after names sprint.md, brief.md and glossary.md and the refusal without /hi; the other sections as at the 2106 reading; no description of the project in the schema; CLAUDE.md repeats no paragraph of it
 
 ## History
 
@@ -64,3 +65,5 @@ Then:
 - 2026-09-20 updated: the Criterion replaced whole — the text of 278 plus the form of the render and sprint lines; the line on the agent stating two rules at /hi removed; purpose added (case 279.1, supersedes 278) · [[decision-case-279.1]]
 - 2026-09-21 status: pending → passed · raw/2026-09-20/2106/ledger.md#L1
 - 2026-09-21 updated: the Criterion replaced whole — the schema opens with the one rule, the glossary among the files /hi loads (case 288.2) · [[decision-case-288.2]]
+- 2026-09-21 status: pending → passed · raw/2026-09-21/1315/ledger.md#L1
+- 2026-09-21 updated: one line of the Criterion — the Spec paragraph names the field-only update of an Estimate (case 294) · [[decision-case-294]]

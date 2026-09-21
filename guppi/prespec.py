@@ -26,7 +26,9 @@ the ledgers of its dates, on the `hi` date from the `hi` time on, and its folder
   Case heading of the plan, and an item of a `then` block with no decision line of its Case;
   a `defer` line matches a `defer` item, a Rule-class `file` line an `update` with that
   `file`; an Estimate has its own line and its own item (case 189); a nested `estimate` of an
-  older Spec is covered by its parent's create line;
+  older Spec is covered by its parent's create line; the lines of a Case a `{supersedes:case
+  N}` of the window names need no item — the Case left the plan — and its heading still in
+  the plan is a finding of its own (case 299.2);
 - the frontier `raw/<hi date>/<hi HHMM>/frontier.md` (case 73.4): missing, an open `[ ]`
   line, a `[x] … · case N` whose heading the plan lacks, a `[-] … · defer case N` with no
   `defer` item under Case N;
@@ -262,12 +264,29 @@ def item_has_line(entry: dict, records: list[dict]) -> bool:
     return False
 
 
+def superseded_in_window(records: list[dict]) -> dict[str, str]:
+    """299.2: the Cases a `{supersedes:case N}` of the window names, each with the Case that
+    superseded it — a Case superseded in its own session leaves the plan."""
+    by: dict[str, str] = {}
+    for record in records:
+        if record.get("supersedes"):
+            by.setdefault(str(record["supersedes"]), str(record["case"]))
+    return by
+
+
 def check_lines(cases: dict, blocks: dict, records: list[dict]) -> list[str]:
     """59.1: every line has its item under its own Case; every item has its line, a nested
-    estimate through its parent's create line."""
+    estimate through its parent's create line. 299.2: a Case superseded by a line of the
+    window needs no item, and its heading still in the plan is a finding."""
     findings: list[str] = []
+    superseded = superseded_in_window(records)
+    for case, by in superseded.items():
+        if case in cases:
+            findings.append(f"case {case}: superseded by case {by}, still in the plan")
     for record in records:
         case, tag = record["case"], f"[{record['kind']}][{record['slug']}]"
+        if case in superseded:  # its work stands under the superseding Case
+            continue
         if case not in cases:
             findings.append(f"case {case}: line {tag}: no Case {case} heading in the plan")
         elif not line_has_item(blocks[case], record):
@@ -334,7 +353,10 @@ def check_tasks(cases: dict, blocks: dict, records: list[dict]) -> list[str]:
     """59.3: a ratified Case has a `tasks` block; an Estimate to read has its task line.
     279.2: a render or sprint line is in the form the tickers match."""
     findings: list[str] = []
-    with_work = {r["case"] for r in records if r.get("kind") != "defer"}
+    superseded = superseded_in_window(records)  # a superseded Case has no work here (299.2)
+    with_work = {
+        r["case"] for r in records if r.get("kind") != "defer" and r["case"] not in superseded
+    }
     for case, lines in cases.items():
         tasks = "\n".join(tagged_blocks(lines, "tasks"))
         if case in with_work and not tasks:  # a defer-only Case has no work, case 74

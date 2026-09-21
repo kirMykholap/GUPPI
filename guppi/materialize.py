@@ -44,8 +44,11 @@ rule's or entity's item the keys `method`, `contract`, `estimate_slug` and `esti
 are ignored: they reach neither the page nor `incomplete`. A line with `{supersedes:case
 N}` marks every entry carrying `case: N` `superseded_by`, whatever its kind (case 175), in
 whichever unit's yaml holds them — this one or any other under `raw/`, written with that
-mark only (case 130.2); nothing is derived from it. A nested `estimate` in an older Spec
-becomes its own `create` entry, for a line with its slug.
+mark only (case 130.2); nothing is derived from it. A Case superseded in its own session
+leaves the Spec (case 299.1): its entries, marked `superseded_by` while no heading of its
+number stands in the Spec, carry no `incomplete: [then]`, and its `decisions` record no
+`case_text` and no missing section — the mark alone is its completeness (case 299.3). A
+nested `estimate` in an older Spec becomes its own `create` entry, for a line with its slug.
 
 The fields of an entry, each with its writer. From the ledger line: `case`, `kind`
 (`create`, `update`, `delete`, `defer`, `estimate`, `lesson`), `category` (from the slug
@@ -748,16 +751,26 @@ def fold_estimate(entries: list[dict], record: dict, number: int) -> bool:
     return False
 
 
-def mark_superseded(entries: list[dict], decisions: list[dict], case: str, by: str) -> bool:
+def mark_superseded(
+    entries: list[dict], decisions: list[dict], case: str, by: str, in_spec: bool = True
+) -> bool:
     """Mark every entry carrying `case` `superseded_by` — the lines' own and the derived
     ones, the block removal included, whatever its kind (case 175) — and its decision
     record likewise; True when an entry or a record of that case was here to mark. An
-    `estimate` or `lesson` entry carries no `case` and is never marked."""
+    `estimate` or `lesson` entry carries no `case` and is never marked. A Case gone from
+    the Spec (`in_spec` False) is complete by the mark: `then` leaves its `incomplete`
+    (case 299.3)."""
     marked = False
     for entry in entries:
         if entry.get("case") == case:
             entry["superseded_by"] = by
             marked = True
+            if not in_spec and "then" in (entry.get("incomplete") or []):
+                rest = [i for i in entry["incomplete"] if i != "then"]
+                if rest:
+                    entry["incomplete"] = rest
+                else:
+                    del entry["incomplete"]
     for decision in decisions:
         if decision.get("case") == case:
             done = decision.setdefault("superseded_by", [])
@@ -796,7 +809,11 @@ def decision_record(
     texts: dict,
     block_errors,
     spec: str | None = None,
+    gone_from_spec: bool = False,
 ):
+    """The `decisions` record of one Case. `gone_from_spec`: every entry of the Case is
+    marked `superseded_by` and no heading of its number stands in the Spec — the Case left
+    it (299.1); the record carries no `case_text` and no `incomplete` (case 299.3)."""
     targets = []
     tags: list[str] = []
     supersedes: list[str] = []
@@ -827,6 +844,9 @@ def decision_record(
         record["spec"] = spec
     if supersedes:
         record["supersedes"] = supersedes
+    if gone_from_spec:  # superseded in its own session: complete by the mark (299.3)
+        del record["case_text"]
+        return record
     needed = ("context", "problem")
     if any(e.get("kind") != "defer" for e in entries_of_case):  # the short form of Retro (56)
         needed += ("given", "when")
@@ -884,7 +904,7 @@ def lift_line(
     entries.append(entry)
     added = 1
     if record.get("supersedes") and not mark_superseded(
-        entries, decisions, record["supersedes"], case
+        entries, decisions, record["supersedes"], case, record["supersedes"] in cases
     ):
         elsewhere.append((record["supersedes"], case))  # another unit's yaml (130.2)
     if record.get("addresses") and not mark_addressed(entries, record["addresses"], case):
@@ -1014,7 +1034,10 @@ def assemble(
         _block, errors = blocks.get(case) or then_blocks(cases.get(case, []))
         if case not in texts_of:
             texts_of[case] = case_texts(cases, case)
-        record = decision_record(case, group, date, texts_of[case], errors, spec_of.get(case))
+        gone = case not in cases and all(e.get("superseded_by") for e in group)
+        record = decision_record(
+            case, group, date, texts_of[case], errors, spec_of.get(case), gone_from_spec=gone
+        )
         if case in present:
             present[case]["targets"] = record["targets"]
             present[case]["tags"] = record["tags"]

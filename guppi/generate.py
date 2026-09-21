@@ -64,7 +64,10 @@ ledger order (case 59.4) — `source`, `supersedes`, `origin`, `sprint`, `create
 (the union of the targets' tags); the body `## Context` and `## Problem` from `case_text`
 and `## Deferred`, one `### [[slug]]` heading per target of the Case's `defer` lines with
 its `purpose` verbatim (case 186.1); no `## Given`, no `## When`, no `## Criterion` list —
-the contract lives on the Estimate; pages written before keep theirs. A `supersedes` sets
+the contract lives on the Estimate; pages written before keep theirs. A record with
+`superseded_by` and no `case_text` — a Case superseded in its own session and gone from the
+Spec (case 299.1) — gets a two-line body naming the superseding Decision; its status
+follows the mechanism as for any superseded page (case 299.4). A `supersedes` sets
 the earlier page `superseded`, appends to its `superseded_by` and removes its slug from
 the `deferred_by` of every target of its `defer` list. An existing page is skipped; a
 `create` marked `exists` writes no page, its Decision page is still written.
@@ -979,6 +982,13 @@ class Vault:
         for name, key in (("Context", "context"), ("Problem", "problem")):
             if text.get(key):
                 sections[f"## {name}"] = text[key]
+        if not text and record.get("superseded_by"):  # gone from the Spec (299.4)
+            by = ", ".join(f"[[{s}]]" for s in as_list(record["superseded_by"]))
+            sections["## Context"] = (
+                f"Superseded by {by} in its own session, before the Spec was approved; "
+                "the Case left the Spec (case 299)."
+            )
+            sections["## Problem"] = f"Decided under {by}."
         if deferred:  # the body of a deferred decision is never dropped (case 186.1)
             sections["## Deferred"] = "\n\n".join(
                 f"### [[{target}]]\n\n{str(purpose).strip()}" for target, purpose in deferred

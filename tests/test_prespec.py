@@ -229,6 +229,46 @@ def test_a_line_of_a_case_the_plan_lacks_is_a_finding(tmp_path):
     assert out.splitlines() == ["case 2: line [update][rule-y]: no Case 2 heading in the plan"]
 
 
+# --- a Case superseded in its own session leaves the plan (case 299.2) --------------------
+
+SUPERSEDING = "- 16:00:02 decision[case 3][update][rule-x]{ref:rule-x}{supersedes:case 1}\n"
+PLAN_3 = PLAN.replace("## Case 1 — one", "## Case 3 — three")
+
+
+def test_a_superseded_case_still_in_the_plan_is_a_finding(tmp_path):
+    # Case 1 stands in the plan, Case 3 supersedes it in the window: one finding for the
+    # heading; the line of Case 1 is not reported although its item is gone with the heading
+    plan = PLAN_3 + "\n## Case 1 — one\n\n> **context:**\n> Old.\n"
+    code, out, _ = check(tmp_path, ledger=LINE + SUPERSEDING, plan=plan)
+    assert code == 1
+    assert out.splitlines() == ["case 1: superseded by case 3, still in the plan"]
+
+
+def test_a_line_of_a_superseded_case_needs_no_heading_and_no_item(tmp_path):
+    # the frontier line closes with the superseding Case, as the agent closes it (299.1)
+    frontier = CLEAN_FRONTIER.replace("case 1", "case 3")
+    code, out, _ = check(tmp_path, ledger=LINE + SUPERSEDING, plan=PLAN_3, frontier=frontier)
+    assert code == 0 and out == ""
+
+
+def test_a_superseded_sub_case_leaves_alone_and_its_parent_stays(tmp_path):
+    line = "- 16:00:00 decision[case 1.1][update][rule-x]{ref:rule-x}\n"
+    superseding = "- 16:00:02 decision[case 1.2][update][rule-x]{ref:rule-x}{supersedes:case 1.1}\n"
+    plan = PLAN.replace("## Case 1 — one", "## Case 1 — one\n\n### Case 1.2 — two")
+    code, out, _ = check(tmp_path, ledger=line + superseding, plan=plan)
+    assert code == 0 and out == ""
+    still = plan.replace("### Case 1.2 — two", "### Case 1.1 — one\n\n### Case 1.2 — two")
+    code, out, _ = check(tmp_path, ledger=line + superseding, plan=still)
+    assert out.splitlines() == ["case 1.1: superseded by case 1.2, still in the plan"]
+
+
+def test_a_supersedes_of_an_earlier_sessions_case_is_no_finding(tmp_path):
+    # Case 7 was ratified in another session: no heading in this plan, no line of it here
+    taken_up = "- 16:00:00 decision[case 1][update][rule-x]{ref:rule-x}{supersedes:case 7}\n"
+    code, out, _ = check(tmp_path, ledger=taken_up)
+    assert code == 0 and out == ""
+
+
 def test_a_defer_line_matches_a_defer_item(tmp_path):
     ledger = LINE + "- 16:00:01 decision[case 1][defer][rule-later]\n"
     plan = PLAN.replace(

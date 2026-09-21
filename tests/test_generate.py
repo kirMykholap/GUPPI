@@ -1623,6 +1623,54 @@ def test_an_entry_with_superseded_by_is_not_applied_and_its_decision_page_is_wri
     ]
 
 
+def test_the_decision_page_of_a_case_gone_from_the_spec_has_a_two_line_body(tmp_path):
+    # case 299.4: the record of Case 2 carries superseded_by and no case_text — Case 2 was
+    # superseded in its own session and left the Spec
+    superseded = {
+        "line": 2,
+        "text": "",
+        "case": "2",
+        "kind": "update",
+        "category": "rules",
+        "slug": "rule-root",
+        "origin": f"raw/{DATE}/ledger.md#case-2",
+        "decision": "decision-case-2",
+        "superseded_by": "3",
+    }
+    later = {
+        "line": 3,
+        "text": "",
+        "case": "3",
+        "kind": "update",
+        "category": "rules",
+        "slug": "rule-root",
+        "origin": f"raw/{DATE}/ledger.md#case-3",
+        "decision": "decision-case-3",
+        "set": {"purpose": "Prevents root, the new words"},
+        "change": "the new words",
+        "supersedes": "2",
+    }
+    decisions = records_for([ROOT, superseded, later])
+    del decisions[1]["case_text"]
+    decisions[1]["superseded_by"] = ["decision-case-3"]
+    decisions[2]["supersedes"] = ["decision-case-2"]
+    seed(tmp_path, entries=[ROOT, superseded, later], decisions=decisions)
+    code, _, err = run(tmp_path)
+    assert code == 0 and err == ""
+    text = page(tmp_path, "decisions", "decision-case-2")
+    early = props(text)
+    assert early["status"] == "archived" and early["superseded_by"] == ["decision-case-3"]
+    assert (
+        "## Context\n\nSuperseded by [[decision-case-3]] in its own session, before the Spec "
+        "was approved; the Case left the Spec (case 299).\n\n## Problem\n\nDecided under "
+        "[[decision-case-3]].\n"
+    ) in text
+    assert early["update"] == ["rule-root"]
+    with_text = props(page(tmp_path, "decisions", "decision-case-3"))
+    assert with_text["status"] == "current"
+    assert "## Context\n\nc\n" in page(tmp_path, "decisions", "decision-case-3")
+
+
 # --- the tick of the Spec beside the yaml (case 226.1) -----------------------------------
 
 

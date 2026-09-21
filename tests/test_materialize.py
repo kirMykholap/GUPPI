@@ -1303,6 +1303,85 @@ def test_a_supersedes_marks_every_entry_of_the_earlier_case(tmp_path):
     assert decisions["13"]["superseded_by"] == ["decision-case-21"]
 
 
+# --- a Case superseded in its own session leaves the Spec (case 299.3) --------------------
+
+GONE_LEDGER = """- decision[case 30][update][rule-old]{ref:rule-old}
+- decision[case 30][update][rule-other]{ref:rule-other}
+- decision[case 31][update][rule-old]{ref:rule-old}{supersedes:case 30}
+"""
+
+GONE_SPEC = """# Spec
+
+## Case 31 — the one that stands
+
+> **context:**
+> Case 30 was superseded before the Spec was approved and left it.
+
+> **problem:**
+> Only words.
+
+> **given:**
+> The page says newer.
+
+> **when:**
+> The page is read.
+
+> **then:**
+> It says newest.
+
+```then
+update:
+  - slug: rule-old
+    change: newest words
+```
+"""
+
+
+def test_the_entries_of_a_superseded_case_gone_from_the_spec_are_complete_by_the_mark(tmp_path):
+    seed(tmp_path, ledger=GONE_LEDGER, spec=GONE_SPEC)
+    run(tmp_path)
+    data = load(tmp_path)
+    thirty = of_case(data, "30")
+    assert [e["slug"] for e in thirty] == ["rule-old", "rule-other"]
+    assert all(e["superseded_by"] == "31" for e in thirty)
+    assert all("incomplete" not in e for e in thirty)  # no `then`, no missing change
+    (record,) = [d for d in data["decisions"] if d["case"] == "30"]
+    assert record["superseded_by"] == ["decision-case-31"]
+    assert "case_text" not in record and "incomplete" not in record
+    (mine,) = of_case(data, "31")
+    assert mine["supersedes"] == "30" and "incomplete" not in mine
+
+
+def test_a_superseded_case_still_in_the_spec_is_lifted_as_before(tmp_path):
+    # the heading of Case 30 stands in the Spec: its entries lift the block, incomplete as any
+    spec = (
+        GONE_SPEC
+        + """
+## Case 30 — the one that was replaced
+
+> **context:**
+> Old.
+
+> **problem:**
+> Old.
+
+```then
+update:
+  - slug: rule-old
+    change: old words
+```
+"""
+    )
+    seed(tmp_path, ledger=GONE_LEDGER, spec=spec)
+    run(tmp_path)
+    data = load(tmp_path)
+    old, other = of_case(data, "30")
+    assert old["change"] == "old words" and old["superseded_by"] == "31"
+    assert other["incomplete"] == ["then"]  # rule-other has no item, as before
+    (record,) = [d for d in data["decisions"] if d["case"] == "30"]
+    assert record["case_text"]["context"] == "Old." and "given" in record["incomplete"]
+
+
 # --- every Spec of the date (case 73.5) ---------------------------------------------
 
 SESSION_LEDGER = """- decision[case 3][update][rule-old]

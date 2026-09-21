@@ -48,8 +48,8 @@ update:
 ```
 
 ```tasks
-- [ ] update `rule-page-generation`: `replace` in the Purpose — the tick sentence names the superseded Case
-- [ ] update `estimate-generate-ticks-the-spec`: the Criterion replaced whole, `pending`
+- [x] update `rule-page-generation`: `replace` in the Purpose — the tick sentence names the superseded Case
+- [x] update `estimate-generate-ticks-the-spec`: the Criterion replaced whole, `pending`
 - [x] `guppi/generate.py`: `superseded_cases(entries)`; `tick_read` skips them in every Spec — the run's entries for the first, the `materialize.yaml` beside each other Spec; the docstring
 - [x] `tests/test_generate.py`: a `read` line under a superseded Case in the Spec beside the yaml — skipped, the next one ticked; in another session's Spec with its yaml — skipped; no yaml beside it — ticked
 - [x] by hand, a one-off: `vault/archive/migration/2026-09-20/1749/raw/spec.md` — line 39 back to `[ ]`, line 88 to `[x]`
@@ -148,13 +148,13 @@ update:
 ```
 
 ```tasks
-- [ ] create `rule-compact-recall`, child of `rule-session-start`
-- [ ] create `estimate-compact-recall-reloads`, `ref: rule-compact-recall`
-- [ ] update `rule-session-start`: `children` — the fourth
-- [ ] update `rule-hook-registry`: the `SessionStart` entry with the matcher `compact`
+- [x] create `rule-compact-recall`, child of `rule-session-start`
+- [x] create `estimate-compact-recall-reloads`, `ref: rule-compact-recall`
+- [x] update `rule-session-start`: `children` — the fourth
+- [x] update `rule-hook-registry`: the `SessionStart` entry with the matcher `compact`
 - [x] `guppi/recall.py`: the hook; `guppi/cli.py`: the `recall` command
 - [x] `tests/test_recall.py`: compact with a `hi` — the header, the paths in order, the Frontier's text; a fourth `@` line in the skill file — a fourth path; compact without a `hi` — nothing; another `source` — nothing; no frontier, no Spec — the lines absent; the Spec from the plan file before the approval and from `spec.md` after
-- [ ] `uv run guppi render`: `.claude/settings.json`
+- [x] `uv run guppi render`: `.claude/settings.json`
 - [ ] read `estimate-compact-recall-reloads`: pytest; live — the first compaction of a working session, by hand; no date
 ```
 
@@ -208,9 +208,9 @@ update:
 ```
 
 ```tasks
-- [ ] update `rule-internal-context`: the Render — a fourth `@` line; How it works — the sentence on the glossary
-- [ ] update `estimate-internal-context-loaded`: the Criterion replaced whole, `pending`
-- [ ] `uv run guppi render`: `.claude/skills/hi/SKILL.md`
+- [x] update `rule-internal-context`: the Render — a fourth `@` line; How it works — the sentence on the glossary
+- [x] update `estimate-internal-context-loaded`: the Criterion replaced whole, `pending`
+- [x] `uv run guppi render`: `.claude/skills/hi/SKILL.md`
 - [ ] read `estimate-internal-context-loaded`: the `/hi` of the next session, by hand
 ```
 
@@ -245,9 +245,9 @@ update:
 ```
 
 ```tasks
-- [ ] update `rule-case-protocol`: `replace` in the Render — the opening paragraph; `replace` in the Purpose — the sentence on `CLAUDE.md`
-- [ ] update `estimate-case-protocol-loaded`: the Criterion replaced whole, `pending`
-- [ ] `uv run guppi render`: `vault/wiki/case-schema.md`
+- [x] update `rule-case-protocol`: `replace` in the Render — the opening paragraph; `replace` in the Purpose — the sentence on `CLAUDE.md`
+- [x] update `estimate-case-protocol-loaded`: the Criterion replaced whole, `pending`
+- [x] `uv run guppi render`: `vault/wiki/case-schema.md`
 - [ ] read `estimate-case-protocol-loaded`: the `/hi` of the next session, by hand
 ```
 
@@ -293,9 +293,9 @@ update:
 ```
 
 ```tasks
-- [ ] update `rule-claude-md`: the Render whole; How it works whole; `replace` in the Purpose — the sentence on the import
-- [ ] update `estimate-claude-md-rendered`: the Criterion replaced whole, `pending`
-- [ ] `uv run guppi render`: `CLAUDE.md`
+- [x] update `rule-claude-md`: the Render whole; How it works whole; `replace` in the Purpose — the sentence on the import
+- [x] update `estimate-claude-md-rendered`: the Criterion replaced whole, `pending`
+- [x] `uv run guppi render`: `CLAUDE.md`
 - [ ] read `estimate-claude-md-rendered`: `render --check` after the build; the start of the next session, by hand
 ```
 
@@ -357,7 +357,7 @@ update:
 ```
 
 ```tasks
-- [ ] update `rule-session-start`: `replace` in How it works — the two sentences on children 2–3
+- [x] update `rule-session-start`: `replace` in How it works — the two sentences on children 2–3
 ```
 
 ### Case 290.3 — the index lines and the Purpose by the new promise
@@ -390,9 +390,9 @@ update:
 ```
 
 ```tasks
-- [ ] update `estimate-generate-ticks-the-spec`: `set: {purpose}`
-- [ ] update `estimate-internal-context-loaded`: `set: {purpose}`
-- [ ] update `rule-case-protocol`: `replace` in the Purpose — the sentence on the files `/hi` loads
+- [x] update `estimate-generate-ticks-the-spec`: `set: {purpose}`
+- [x] update `estimate-internal-context-loaded`: `set: {purpose}`
+- [x] update `rule-case-protocol`: `replace` in the Purpose — the sentence on the files `/hi` loads
 ```
 
 ## Deferred

@@ -1,6 +1,10 @@
 # Case — schema
 
-`wiki/case-schema.md` — the Render of `rule-case-protocol`, loaded by `/hi` with `sprint.md` and `brief.md`, so the structure is present from the first turn of a working session rather than read as a file; the map of the vault is [[index]]. A session without `/hi` holds no Case: the ledger hook refuses it.
+## The one rule
+
+Nothing in the vault or the codebase changes without a Decision ratified by the human. The agent has full autonomy over *how* to implement something once its contract is ratified, and none over the contract itself. When unsure whether something needs ratification: it does. The vault is the only memory: no note outside the repository — not the harness's memory directory, not a file outside `vault/`; what is worth keeping is a `lesson` line or a Case on a Rule page (case 272.1).
+
+`wiki/case-schema.md` — the Render of `rule-case-protocol`, loaded by `/hi` with `sprint.md`, `brief.md` and `glossary.md`, so the structure and the terms are present from the first turn of a working session rather than read as a file; the map of the vault is [[index]]. A session without `/hi` holds no Case: the ledger hook refuses it.
 
 A Case is the unit of dialogue, not a vault page. It lives only inside a session. This schema exists because the Case is where content gets ratified: whatever is not in a Case was never signed by anyone.
 

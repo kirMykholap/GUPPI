@@ -2399,3 +2399,37 @@ instruction. The global feed; a page's own `## History` is the per-page view.
 - 2026-09-21 rules/rule-synthesis status: built → draft · cascade · generate
 - 2026-09-21 lessons/lesson-spec-render-line-form-unmatched-by-the-ticker archived · insight actioned · generate
 - 2026-09-21 lessons/lesson-spec-render-line-form-unmatched-by-the-ticker archived · cleanup
+- 2026-09-21 estimates/estimate-case-protocol-ledger-line-form status: pending → passed · raw/2026-09-21/0019/ledger.md#L1 · generate
+- 2026-09-21 decisions/decision-case-286 created · raw/2026-09-21/0019/ledger.md#case-286 · generate
+- 2026-09-21 rules/rule-page-generation updated: a reading does not tick the read line of a superseded Case, in any Spec of raw/ (case 286) · [[decision-case-286]] · generate
+- 2026-09-21 estimates/estimate-generate-ticks-the-spec updated: the Criterion replaced whole — the read line of a superseded Case is skipped by the marks of the yaml beside the Spec (case 286) · [[decision-case-286]] · generate
+- 2026-09-21 decisions/decision-case-287 created · raw/2026-09-21/0019/ledger.md#case-287 · generate
+- 2026-09-21 rules/rule-compact-recall created · [[decision-case-287]] · generate
+- 2026-09-21 rules/rule-session-start child rule-compact-recall added · [[decision-case-287]] · generate
+- 2026-09-21 estimates/estimate-compact-recall-reloads created · [[decision-case-287]] · generate
+- 2026-09-21 rules/rule-compact-recall estimate estimate-compact-recall-reloads added · [[decision-case-287]] · generate
+- 2026-09-21 rules/rule-session-start updated: rule-compact-recall is the fourth child — the hook that brings the session's load back after a compaction (case 287) · [[decision-case-287]] · generate
+- 2026-09-21 rules/rule-hook-registry updated: guppi recall registered on SessionStart with the matcher compact (case 287) · [[decision-case-287]] · generate
+- 2026-09-21 decisions/decision-case-288.1 created · raw/2026-09-21/0019/ledger.md#case-288.1 · generate
+- 2026-09-21 rules/rule-internal-context updated: the glossary is the fourth @ line — it arrives with /hi and reaches no subagent, which pays for CLAUDE.md alone (case 288.1) · [[decision-case-288.1]] · generate
+- 2026-09-21 estimates/estimate-internal-context-loaded updated: the Criterion replaced whole — four texts expanded, glossary.md the fourth (case 288.1) · [[decision-case-288.1]] · generate
+- 2026-09-21 decisions/decision-case-288.2 created · raw/2026-09-21/0019/ledger.md#case-288.2 · generate
+- 2026-09-21 rules/rule-case-protocol updated: the one rule opens the schema, moved from CLAUDE.md; the opening line names the glossary among the files /hi loads (case 288.2) · [[decision-case-288.2]] · generate
+- 2026-09-21 estimates/estimate-case-protocol-loaded updated: the Criterion replaced whole — the schema opens with the one rule, the glossary among the files /hi loads (case 288.2) · [[decision-case-288.2]] · generate
+- 2026-09-21 decisions/decision-case-288.3 created · raw/2026-09-21/0019/ledger.md#case-288.3 · generate
+- 2026-09-21 rules/rule-claude-md updated: the Render is the title, the description of the project and the two markers — the import, What is loaded here, the index paragraph, Migration mode and Commands leave; the one rule to the schema (case 288.3) · [[decision-case-288.3]] · generate
+- 2026-09-21 estimates/estimate-claude-md-rendered updated: the Criterion replaced whole — the title, the description and the two markers, nothing else (case 288.3) · [[decision-case-288.3]] · generate
+- 2026-09-21 decisions/decision-case-289 created · raw/2026-09-21/0019/ledger.md#case-289 · generate
+- 2026-09-21 rules/rule-work-mode deferred · [[decision-case-289]] · generate
+- 2026-09-21 rules/rule-subagent-guppi deferred · [[decision-case-289]] · generate
+- 2026-09-21 decisions/decision-case-290.1 created · raw/2026-09-21/0019/ledger.md#case-290.1 · generate
+- 2026-09-21 decisions/decision-case-290.2 created · raw/2026-09-21/0019/ledger.md#case-290.2 · generate
+- 2026-09-21 rules/rule-session-start updated: How it works counts four children — the fourth fires after a compaction only (case 290.2) · [[decision-case-290.2]] · generate
+- 2026-09-21 decisions/decision-case-290.3 created · raw/2026-09-21/0019/ledger.md#case-290.3 · generate
+- 2026-09-21 estimates/estimate-generate-ticks-the-spec updated: the purpose by the Criterion of 286 (case 290.3) · [[decision-case-290.3]] · generate
+- 2026-09-21 estimates/estimate-internal-context-loaded updated: the purpose by the Criterion of 288.1 (case 290.3) · [[decision-case-290.3]] · generate
+- 2026-09-21 rules/rule-case-protocol updated: the Purpose names the glossary among the files /hi loads (case 290.3) · [[decision-case-290.3]] · generate
+- 2026-09-21 estimates/estimate-retro-loads status: pending → passed · raw/2026-09-21/0019/ledger.md#L21 · generate
+- 2026-09-21 rules/rule-claude-md status: built → draft · cascade · generate
+- 2026-09-21 rules/rule-internal-context status: built → draft · cascade · generate
+- 2026-09-21 rules/rule-retro status: draft → built · cascade · generate

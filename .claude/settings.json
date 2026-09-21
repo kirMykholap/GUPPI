@@ -16,7 +16,9 @@
   "hooks": {
     "SessionStart": [
       { "hooks": [ { "type": "command", "command": "uv run guppi event session-start", "timeout": 30 },
-                   { "type": "command", "command": "uv run guppi render --sync", "timeout": 60 } ] }
+                   { "type": "command", "command": "uv run guppi render --sync", "timeout": 60 } ] },
+      { "matcher": "compact",
+        "hooks": [ { "type": "command", "command": "uv run guppi recall", "timeout": 30 } ] }
 ],
 "UserPromptSubmit": [
   { "hooks": [ { "type": "command", "command": "uv run guppi event prompt", "timeout": 30 },

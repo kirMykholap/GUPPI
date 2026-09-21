@@ -20,9 +20,9 @@ Prevents a decision from being acted on before it is ratified, or ratified witho
 content in view. This is instruction, not enforcement — no hook can check "did you
 finish the Frontier" or "did you wait for the sign-off" — so it is written where the
 agent sees it in every working session: `vault/wiki/case-schema.md`, the Render of this
-page, loaded by `/hi` with `sprint.md` and `brief.md` (case 273.1). A session without
+page, loaded by `/hi` with `sprint.md`, `brief.md` and `glossary.md` (cases 273.1, 288.1). A session without
 `/hi` holds no Case — the ledger hook refuses — and carries none of this text; `CLAUDE.md`
-keeps the one rule and the glossary. Until case 273 the Render was a section of `CLAUDE.md`
+keeps the description of the project, the language and the writing rules; the one rule opens this Render, and the glossary comes with it (case 288.2). Until case 273 the Render was a section of `CLAUDE.md`
 and the schema a file edited by hand; the two said the same thing twice and were signed
 twice. `parent: rule-plan-mode` is the rule of the phase in which a Case is held (case 188).
 
@@ -31,7 +31,11 @@ twice. `parent: rule-plan-mode` is the rule of the phase in which a Case is held
 <!-- rule-case-protocol -->
 # Case — schema
 
-`wiki/case-schema.md` — the Render of `rule-case-protocol`, loaded by `/hi` with `sprint.md` and `brief.md`, so the structure is present from the first turn of a working session rather than read as a file; the map of the vault is [[index]]. A session without `/hi` holds no Case: the ledger hook refuses it.
+## The one rule
+
+Nothing in the vault or the codebase changes without a Decision ratified by the human. The agent has full autonomy over *how* to implement something once its contract is ratified, and none over the contract itself. When unsure whether something needs ratification: it does. The vault is the only memory: no note outside the repository — not the harness's memory directory, not a file outside `vault/`; what is worth keeping is a `lesson` line or a Case on a Rule page (case 272.1).
+
+`wiki/case-schema.md` — the Render of `rule-case-protocol`, loaded by `/hi` with `sprint.md`, `brief.md` and `glossary.md`, so the structure and the terms are present from the first turn of a working session rather than read as a file; the map of the vault is [[index]]. A session without `/hi` holds no Case: the ledger hook refuses it.
 
 A Case is the unit of dialogue, not a vault page. It lives only inside a session. This schema exists because the Case is where content gets ratified: whatever is not in a Case was never signed by anyone.
 
@@ -226,3 +230,5 @@ The harness — hooks, skills, agents, `settings.json`, `CLAUDE.md`, this file �
 - 2026-09-20 status: built → draft · cascade
 - 2026-09-20 updated: the Spec paragraph names the form of the render and sprint lines the scripts tick (case 279.1) · [[decision-case-279.1]]
 - 2026-09-21 updated: the mark {addresses:<lesson slug>} on a decision line whose Case closes the root cause of a lesson of this session (case 284.2) · [[decision-case-284.2]]
+- 2026-09-21 updated: the one rule opens the schema, moved from CLAUDE.md; the opening line names the glossary among the files /hi loads (case 288.2) · [[decision-case-288.2]]
+- 2026-09-21 updated: the Purpose names the glossary among the files /hi loads (case 290.3) · [[decision-case-290.3]]

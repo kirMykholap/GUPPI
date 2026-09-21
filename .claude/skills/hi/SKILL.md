@@ -7,6 +7,7 @@ disable-model-invocation: true
 @vault/wiki/sprint.md
 @vault/wiki/brief.md
 @vault/wiki/case-schema.md
+@vault/wiki/glossary.md
 <!-- /rule-internal-context -->
 
 <!-- rule-git-context -->

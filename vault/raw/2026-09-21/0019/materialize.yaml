@@ -1,0 +1,1253 @@
+date: '2026-09-21'
+sprint: migration
+ledger: vault/raw/2026-09-21/0019/ledger.md
+spec:
+- vault/raw/2026-09-21/0019/spec.md
+entries:
+- line: 1
+  text: 'estimate[estimate-case-protocol-ledger-line-form][passed] 2026-09-21, case-schema.md and index.md
+    §4 read by hand at session 0019: the ledger paragraph of the schema and the field list of §4 both
+    say a decision line whose Case closes the root cause of a lesson of this session carries {addresses:<lesson
+    slug>}, written when the lesson line already stands in the ledger, one mark per lesson; the schema
+    alone says a lesson fixed in another session gets no mark, §4 says it through "of this session"; the
+    lesson line and the estimate line of the schema table and of §4 carry no addressed_by; the general
+    form of §4 shows {source}{tags} and not {addresses} — the mark stands in the field list, not the example'
+  kind: estimate
+  category: estimates
+  slug: estimate-case-protocol-ledger-line-form
+  status: passed
+  result: '2026-09-21, case-schema.md and index.md §4 read by hand at session 0019: the ledger paragraph
+    of the schema and the field list of §4 both say a decision line whose Case closes the root cause of
+    a lesson of this session carries {addresses:<lesson slug>}, written when the lesson line already stands
+    in the ledger, one mark per lesson; the schema alone says a lesson fixed in another session gets no
+    mark, §4 says it through "of this session"; the lesson line and the estimate line of the schema table
+    and of §4 carry no addressed_by; the general form of §4 shows {source}{tags} and not {addresses} —
+    the mark stands in the field list, not the example'
+  origin: raw/2026-09-21/0019/ledger.md#L1
+  applied: '10:37:53'
+- line: 2
+  text: decision[case 286][update][rule-page-generation]{ref:rule-page-generation}
+  case: '286'
+  kind: update
+  slug: rule-page-generation
+  origin: raw/2026-09-21/0019/ledger.md#case-286
+  decision: decision-case-286
+  ref: rule-page-generation
+  category: rules
+  replace:
+  - old: in the Spec beside the yaml first — skipping the section of a Case whose first decision entry
+      stands after the reading in the ledger, a Case ratified after it — and then in the `spec.md` of
+      the other session folders of `raw/`, oldest first — so the Spec's page lines and reading lines are
+      closed by the one who did the work, and a line not found is no error (cases 226.1, 270.1, 280).
+    new: in the Spec beside the yaml first — skipping the section of a Case whose first decision entry
+      stands after the reading in the ledger, a Case ratified after it — and then in the `spec.md` of
+      the other session folders of `raw/`, oldest first, skipping in every Spec the section of a Case
+      whose entries the yaml beside it marks `superseded_by`, its work standing under the superseding
+      Case — so the Spec's page lines and reading lines are closed by the one who did the work, and a
+      line not found is no error (cases 226.1, 270.1, 280, 286).
+  change: a reading does not tick the read line of a superseded Case, in any Spec of raw/ (case 286)
+  applied: '10:37:53'
+- line: 3
+  text: decision[case 286][update][estimate-generate-ticks-the-spec]{ref:estimate-generate-ticks-the-spec}
+  case: '286'
+  kind: update
+  slug: estimate-generate-ticks-the-spec
+  origin: raw/2026-09-21/0019/ledger.md#case-286
+  decision: decision-case-286
+  ref: estimate-generate-ticks-the-spec
+  category: estimates
+  set:
+    status: pending
+  change: the Criterion replaced whole — the read line of a superseded Case is skipped by the marks of
+    the yaml beside the Spec (case 286)
+  sections:
+    Criterion: 'Given:
+
+      A yaml entry of kind `estimate` carries `slug`, `status`, `result`, `line` and no `case`; a decision
+      entry carries `case` and `line`, the number of its line in the ledger.
+
+      **＋** A line `{supersedes:case N}` marks every entry of Case N `superseded_by`, in the yaml of any
+      session under `raw/` (130.2, 175); `generate` neither applies them nor ticks their page lines (151,
+      200.2).
+
+      **＋** The lines of a superseded Case are not counted at Retro — its work stands under the superseding
+      Case (282).
+
+      **＋** The Spec of a session lies beside its `materialize.yaml` — `raw/<date>/<HHMM>/spec.md`; the
+      Specs of the other sessions are the `spec.md` of their folders under `raw/`.
+
+      **＋** A Case heading in the Spec is `## Case N — …` or `### Case N.M — …`; its section runs to the
+      next such heading.
+
+      **＋** A reading line of the Spec is `- [ ] read `<slug>`` with text after it, in any Case.
+
+      **＋** `tests/test_generate.py` fixes the behaviour on a temp vault with a Spec beside the yaml and
+      a second Spec with a yaml of its own in another session folder.
+
+      **－** A Rule-class file entry `generate` does not apply — "applied by hand".
+
+
+      When:
+
+      `guppi generate` applied an entry and marked it `applied`.
+
+
+      Then:
+
+      For a `create`, `update`, `delete` or `defer` entry, in the `spec.md` of the same unit the first
+      unticked line `- [ ] <kind> `<slug>`` in the section of the entry''s Case becomes `- [x]`; nothing
+      else in the file changes.
+
+      **＋** Two entries of one kind and slug in one Case tick two lines, in order.
+
+      **＋** For an `estimate` entry, and for a `create` entry with `folded`, the first unticked line `-
+      [ ] read `<slug>`` becomes `- [x]` — in the Spec beside the yaml first, then in the `spec.md` of
+      the other session folders of `raw/`, oldest first; one line per entry.
+
+      **＋** In the Spec beside the yaml, a `read` line in the section of a Case whose first decision entry
+      of the yaml carries a `line` greater than the `line` of the `estimate` entry is not the reading''s
+      line — the Case was ratified after it; the search goes on to the next line, then to the other sessions.
+
+      **＋** In any Spec, a `read` line in the section of a Case whose entries in the yaml of that session
+      are marked `superseded_by` is not the reading''s line — its work stands under the superseding Case;
+      the search goes on. For the Spec beside the yaml the marks are the run''s entries; for the Spec
+      of another session its `materialize.yaml` beside it, read for the marks alone; no yaml beside it
+      — nothing is skipped there.
+
+      **＋** A `create` entry with `folded` ticks both lines: the page line and the reading line; its Case
+      is the reading''s Case, the filter of 280 does not apply to it; the filter by `superseded_by` does.
+
+      **－** A line not found, a section not found, no Spec — no error and no stderr line; the entry is
+      `applied` all the same.
+
+      **－** `lesson` and Rule-class file entries, and an entry marked `failed`, tick no line; the lines
+      on code, tests, migrations and `by hand` are the agent''s.
+
+      **－** A Spec under `vault/archive/` is not read; the Specs of the other sessions are not filtered
+      by `line`.'
+  applied: '10:37:53'
+- line: 4
+  text: decision[case 287][create][rule-compact-recall]{ref:rule-session-start}{tags:session,hooks,harness}
+  case: '287'
+  kind: create
+  slug: rule-compact-recall
+  origin: raw/2026-09-21/0019/ledger.md#case-287
+  decision: decision-case-287
+  ref: rule-session-start
+  tags:
+  - session
+  - hooks
+  - harness
+  category: rules
+  fields:
+    type: rule
+    kind: Leaf
+    purpose: Prevents a working session from going on after a compaction without the Case schema, the
+      Frontier and the Spec in its context
+    enforcement: hook
+    implementation_ref:
+    - guppi/recall.py
+    - guppi/cli.py
+    - tests/test_recall.py
+    - .claude/settings.json
+    tags:
+    - session
+    - hooks
+    - harness
+  sections:
+    Purpose: 'Prevents a working session from going on after a compaction without the Case schema, the
+      Frontier and the Spec in its context. `/hi` loads the session''s texts once, through the `@` lines
+      of its skill; a compaction keeps `CLAUDE.md` and a capped part of the skill''s body, and the rest
+      survives only in the summary. This hook fires on `SessionStart` with `source: compact` and prints
+      what to read back: the paths of the files `/hi` imports, the session''s `frontier.md` and its Spec,
+      and the Frontier''s text itself. Paths, not texts: a hook''s stdout over 10,000 characters is saved
+      to a file and the agent gets a preview (case 287).
+
+      '
+    How it works: '`uv run guppi recall`, registered on `SessionStart` with the matcher `compact` (`rule-hook-registry`).
+      Reads the payload from stdin; with a `source` other than `compact` or without a `hi` in the session''s
+      window — `session_dir` of `guppi/ledger.py`, the ledger hook''s own — it prints nothing, exit 0.
+      Otherwise stdout holds one header line naming the time and the session''s folder, then one path
+      per line: the `@` lines of `.claude/skills/hi/SKILL.md` in their order, the folder''s `frontier.md`
+      when it exists, the Spec — `spec.md` of the folder, or before the approval the plan file the event
+      log names last under `.claude/plans/`, as `guppi gate` finds it (case 122) — then `Frontier:` and
+      the text of `frontier.md`. The list of files is the skill file''s, never a copy in the code. Exit
+      0 always; the hook writes nothing.
+
+      '
+  applied: '10:37:53'
+- line: 5
+  text: decision[case 287][create][estimate-compact-recall-reloads]{ref:rule-compact-recall}{tags:session,hooks,harness}
+  case: '287'
+  kind: create
+  slug: estimate-compact-recall-reloads
+  origin: raw/2026-09-21/0019/ledger.md#case-287
+  decision: decision-case-287
+  ref: rule-compact-recall
+  tags:
+  - session
+  - hooks
+  - harness
+  category: estimates
+  fields:
+    type: estimate
+    kind: QA
+    purpose: After a compaction of a working session the hook's header, the paths of the /hi files, the
+      Spec and the Frontier's text stand in the context; an ordinary session and another source get nothing
+    method: pytest tests/test_recall.py on a temp project; live — the first compaction of a working session,
+      by hand, the hook's text in the context after it
+    tags:
+    - session
+    - hooks
+    - harness
+  sections:
+    Criterion: 'Given:
+
+      `SessionStart` fires after a compaction with `source: compact`; the hook''s stdout on exit 0 enters
+      the context as text; output over 10,000 characters is saved to a file and the agent gets a preview
+      and the path (Claude Code docs, hooks guide).
+
+      **＋** A `SessionStart` hook cannot block (`lesson-hooks-sessionstart-cannot-block`).
+
+      **＋** The session''s window and folder are the ones the ledger hook finds: `session_dir` in `guppi/ledger.py`,
+      the first `hi` of the stamp after its first `session-start`; `compact` does not close the window
+      (case 14).
+
+      **＋** The files `/hi` imports are the `@` lines of `.claude/skills/hi/SKILL.md`, the Render of `rule-internal-context`;
+      the glossary joins them by C4.1.
+
+      **＋** The Spec of a session is `spec.md` in its folder after the approval; before it, the plan file
+      the event log names last under `.claude/plans/`, as `guppi gate` reads it (case 122).
+
+      **＋** `tests/test_recall.py` fixes the behaviour on a temp project with an event log, a skill file
+      and a session folder.
+
+
+      When:
+
+      The client compacted the context of the session — `/compact` or on its own — and `SessionStart`
+      fired with `source: compact`.
+
+
+      Then:
+
+      With a `hi` in the session''s window, stdout holds: the line `recall: the context was compacted
+      at HH:MM:SS; the session is raw/<date>/<HHMM>/. Read before the next reply:`; then one path per
+      line — the `@` files of the `/hi` skill in their order, the session''s `frontier.md` when it exists,
+      the Spec when one exists; then the line `Frontier:` and the text of `frontier.md` as it stands.
+
+      **＋** The list of paths is the `@` lines of the skill file at the moment the hook fires, no copy
+      in the code: a file added to `rule-internal-context` — the glossary by C4.1 — is in the list without
+      a change to the hook.
+
+      **＋** The texts of the files, the Frontier apart, are not printed — the paths only; the output stays
+      under 10,000 characters.
+
+      **－** Without a `hi` in the window — nothing on stdout, exit 0.
+
+      **－** Another `source` — nothing: the matcher keeps the hook from firing, and the code checks `source`
+      itself.
+
+      **－** Exit 0 always; an error prints nothing and blocks nothing; the hook writes no file and no
+      event line — `session-start compact` is already written by `guppi event`.'
+  applied: '10:37:53'
+- line: 6
+  text: decision[case 287][update][rule-session-start]{ref:rule-session-start}
+  case: '287'
+  kind: update
+  slug: rule-session-start
+  origin: raw/2026-09-21/0019/ledger.md#case-287
+  decision: decision-case-287
+  ref: rule-session-start
+  category: rules
+  set:
+    children:
+    - '[[rule-skill-hi]]'
+    - '[[rule-event-log]]'
+    - '[[rule-ledger-write]]'
+    - '[[rule-compact-recall]]'
+  change: rule-compact-recall is the fourth child — the hook that brings the session's load back after
+    a compaction (case 287)
+  applied: '10:37:53'
+- line: 7
+  text: decision[case 287][update][rule-hook-registry]{ref:rule-hook-registry}
+  case: '287'
+  kind: update
+  slug: rule-hook-registry
+  origin: raw/2026-09-21/0019/ledger.md#case-287
+  decision: decision-case-287
+  ref: rule-hook-registry
+  category: rules
+  sections:
+    Render: "<!-- rule-hook-registry -->\n    \"SessionStart\": [\n      { \"hooks\": [ { \"type\": \"\
+      command\", \"command\": \"uv run guppi event session-start\", \"timeout\": 30 },\n             \
+      \      { \"type\": \"command\", \"command\": \"uv run guppi render --sync\", \"timeout\": 60 } ]\
+      \ },\n      { \"matcher\": \"compact\",\n        \"hooks\": [ { \"type\": \"command\", \"command\"\
+      : \"uv run guppi recall\", \"timeout\": 30 } ] }\n],\n\"UserPromptSubmit\": [\n  { \"hooks\": [\
+      \ { \"type\": \"command\", \"command\": \"uv run guppi event prompt\", \"timeout\": 30 },\n    \
+      \           { \"type\": \"command\", \"command\": \"uv run guppi gate\", \"timeout\": 30 } ] }\n\
+      ],\n\"PreToolUse\": [\n\n      { \"matcher\": \"ExitPlanMode\",\n        \"hooks\": [ { \"type\"\
+      : \"command\", \"command\": \"uv run guppi prespec\", \"timeout\": 30 } ] },\n      { \"matcher\"\
+      : \"Skill\",\n        \"hooks\": [ { \"type\": \"command\", \"command\": \"uv run guppi gate\",\
+      \ \"timeout\": 30 } ] },\n      { \"matcher\": \"Edit|Write|MultiEdit\",\n  \"hooks\": [ { \"type\"\
+      : \"command\", \"command\": \"uv run guppi guard\", \"timeout\": 30 } ] },\n{ \"matcher\": \"Bash\"\
+      ,\n  \"hooks\": [ { \"type\": \"command\", \"command\": \"uv run guppi bashguard\", \"timeout\"\
+      : 30 } ] }\n\n    ],\n    \"PostToolUse\": [\n      { \"hooks\": [ { \"type\": \"command\", \"command\"\
+      : \"uv run guppi event tool\", \"timeout\": 30 } ] },\n      { \"matcher\": \"ExitPlanMode\",\n\
+      \        \"hooks\": [ { \"type\": \"command\", \"command\": \"uv run guppi spec\", \"timeout\":\
+      \ 30 } ] }\n    ],\n    \"Stop\": [\n      { \"hooks\": [ { \"type\": \"command\", \"command\":\
+      \ \"uv run guppi ledger\", \"timeout\": 30 } ] }\n    ]\n<!-- /rule-hook-registry -->"
+  change: guppi recall registered on SessionStart with the matcher compact (case 287)
+  applied: '10:37:53'
+- line: 8
+  text: decision[case 288.1][update][rule-internal-context]{ref:rule-internal-context}
+  case: '288.1'
+  kind: update
+  slug: rule-internal-context
+  origin: raw/2026-09-21/0019/ledger.md#case-288.1
+  decision: decision-case-288.1
+  ref: rule-internal-context
+  category: rules
+  sections:
+    Render: '<!-- rule-internal-context -->
+
+      @vault/wiki/sprint.md
+
+      @vault/wiki/brief.md
+
+      @vault/wiki/case-schema.md
+
+      @vault/wiki/glossary.md
+
+      <!-- /rule-internal-context -->
+
+      '
+    How it works: '`case-schema.md` is listed since case 273: the Render of `rule-case-protocol`, it reaches
+
+      a working session here and not through `CLAUDE.md`, so a session without `/hi` carries no
+
+      Case text. `glossary.md` is listed since case 288.1: it left the `@` import of `CLAUDE.md`,
+
+      which every subagent loads and none of them needs. The category schemas are not listed:
+
+      they are read when a page of their category is written. After a compaction `guppi recall`
+
+      prints the paths of these lines back (case 287).
+
+      '
+  change: the glossary is the fourth @ line — it arrives with /hi and reaches no subagent, which pays
+    for CLAUDE.md alone (case 288.1)
+  applied: '10:37:53'
+- line: 9
+  text: decision[case 288.1][update][estimate-internal-context-loaded]{ref:estimate-internal-context-loaded}
+  case: '288.1'
+  kind: update
+  slug: estimate-internal-context-loaded
+  origin: raw/2026-09-21/0019/ledger.md#case-288.1
+  decision: decision-case-288.1
+  ref: estimate-internal-context-loaded
+  category: estimates
+  set:
+    status: pending
+  change: the Criterion replaced whole — four texts expanded, glossary.md the fourth (case 288.1)
+  sections:
+    Criterion: 'Given:
+
+      The `/hi` skill is the Render of `rule-skill-hi` with its children in markers; `rule-internal-context`
+      is the block of `@` lines Claude Code expands when the skill is invoked.
+
+      **＋** A subagent receives the `CLAUDE.md` hierarchy and not the content of an invoked skill (Claude
+      Code docs, sub-agents).
+
+      **＋** `guppi recall` prints the `@` lines of the skill file after a compaction (287).
+
+      **＋** `guppi render --check` keeps the skill file equal to the page.
+
+
+      When:
+
+      The person invokes `/hi`.
+
+
+      Then:
+
+      The text of `sprint.md`, `brief.md`, `case-schema.md` and `glossary.md` is present in the first
+      turn''s context, in that order, without a read call.
+
+      **＋** The glossary reaches a session through this block alone; after a compaction its path is in
+      the list of `guppi recall`.
+
+      **－** A subagent — `librarian-guppi`, `ask-guppi`, one of Work Mode — carries no glossary; its prompt
+      names what it needs.'
+  applied: '10:37:53'
+- line: 10
+  text: decision[case 288.2][update][rule-case-protocol]{ref:rule-case-protocol}
+  case: '288.2'
+  kind: update
+  slug: rule-case-protocol
+  origin: raw/2026-09-21/0019/ledger.md#case-288.2
+  decision: decision-case-288.2
+  ref: rule-case-protocol
+  category: rules
+  replace:
+  - old: '`wiki/case-schema.md` — the Render of `rule-case-protocol`, loaded by `/hi` with `sprint.md`
+      and `brief.md`, so the structure is present from the first turn of a working session rather than
+      read as a file; the map of the vault is [[index]]. A session without `/hi` holds no Case: the ledger
+      hook refuses it.'
+    new: '## The one rule
+
+
+      Nothing in the vault or the codebase changes without a Decision ratified by the human. The agent
+      has full autonomy over *how* to implement something once its contract is ratified, and none over
+      the contract itself. When unsure whether something needs ratification: it does. The vault is the
+      only memory: no note outside the repository — not the harness''s memory directory, not a file outside
+      `vault/`; what is worth keeping is a `lesson` line or a Case on a Rule page (case 272.1).
+
+
+      `wiki/case-schema.md` — the Render of `rule-case-protocol`, loaded by `/hi` with `sprint.md`, `brief.md`
+      and `glossary.md`, so the structure and the terms are present from the first turn of a working session
+      rather than read as a file; the map of the vault is [[index]]. A session without `/hi` holds no
+      Case: the ledger hook refuses it.'
+  - old: keeps the one rule and the glossary.
+    new: keeps the description of the project, the language and the writing rules; the one rule opens
+      this Render, and the glossary comes with it (case 288.2).
+  change: the one rule opens the schema, moved from CLAUDE.md; the opening line names the glossary among
+    the files /hi loads (case 288.2)
+  applied: '10:37:53'
+- line: 11
+  text: decision[case 288.2][update][estimate-case-protocol-loaded]{ref:estimate-case-protocol-loaded}
+  case: '288.2'
+  kind: update
+  slug: estimate-case-protocol-loaded
+  origin: raw/2026-09-21/0019/ledger.md#case-288.2
+  decision: decision-case-288.2
+  ref: estimate-case-protocol-loaded
+  category: estimates
+  set:
+    status: pending
+  change: the Criterion replaced whole — the schema opens with the one rule, the glossary among the files
+    /hi loads (case 288.2)
+  sections:
+    Criterion: 'Given:
+
+      `case-schema.md` is the Render of `rule-case-protocol`, loaded by `/hi`; the hook refuses a hand
+      edit.
+
+      **＋** The one rule stood as the first paragraph of `CLAUDE.md` until this Case (59.8, 272.1).
+
+      **＋** `guppi render --check` keeps the file equal to the page.
+
+
+      When:
+
+      The first `uv run guppi render` after `rule-case-protocol` changed, and the `/hi` of the next session.
+
+
+      Then:
+
+      `case-schema.md` opens with the section "The one rule" right under its title: nothing in the vault
+      or the codebase changes without a Decision ratified by the human; the agent has full autonomy over
+      how to implement something once its contract is ratified, and none over the contract itself; when
+      unsure whether something needs ratification, it does; the vault is the only memory — no note outside
+      the repository, what is worth keeping is a `lesson` line or a Case on a Rule page (272.1).
+
+      **＋** The paragraph after it says, as before, that the schema is the Render loaded by `/hi` with
+      `sprint.md`, `brief.md` and `glossary.md`, and that a session without `/hi` holds no Case.
+
+      **＋** `render --check` after the render exits 0.
+
+      **－** The other sections of the schema do not change; the description of the project is not in the
+      schema.'
+  applied: '10:37:53'
+- line: 12
+  text: decision[case 288.3][update][rule-claude-md]{ref:rule-claude-md}
+  case: '288.3'
+  kind: update
+  slug: rule-claude-md
+  origin: raw/2026-09-21/0019/ledger.md#case-288.3
+  decision: decision-case-288.3
+  ref: rule-claude-md
+  category: rules
+  sections:
+    Render: '<!-- rule-claude-md -->
+
+      # GUPPI
+
+
+      A Claude Code harness governed by ratified decisions, and the Obsidian vault it compiles into. The
+      vault is `vault/`; its map is `vault/wiki/index.md`; its terms are `vault/wiki/glossary.md`. A working
+      session opens with `/hi`.
+
+
+      <!-- rule-language -->
+
+
+      <!-- rule-agent-writing -->
+
+      <!-- /rule-claude-md -->
+
+      '
+    How it works: 'Rendered in full into `CLAUDE.md`; each child — `rule-language`, `rule-agent-writing`
+      — splices into its marker line. The file is the system prompt of every session and of every subagent,
+      so it holds what each of them needs and no more: the description of the project and the two standing
+      rules. The glossary and the Case schema arrive with `/hi` through `rule-internal-context`, and the
+      one rule opens the schema (case 288). The section "Migration mode", carried from the hand-written
+      file of 2026-09-12, left with case 288.3, each of its items a Rule with a Render of its own by then;
+      "Commands" left with it — `make style` before a commit is `rule-retro`''s, and "no new dependencies"
+      came with the file in 59.8 and was never decided on its own. `rule-language` and `rule-agent-writing`
+      have this page as their parent since case 272. `rule-case-protocol` was a child from case 66 to
+      case 273, when its Render became `case-schema.md` and its parent `rule-plan-mode`.
+
+      '
+  replace:
+  - old: The Render imports [[glossary]] and points at [[index]]; the Case schema is the Render of `rule-case-protocol`,
+      loaded by `/hi` (cases 272, 273.3).
+    new: The Render holds the description of the project and the two children; the glossary and the Case
+      schema arrive with `/hi`, the one rule opens the schema (cases 272, 273.3, 288.3).
+  change: the Render is the title, the description of the project and the two markers — the import, What
+    is loaded here, the index paragraph, Migration mode and Commands leave; the one rule to the schema
+    (case 288.3)
+  applied: '10:37:53'
+- line: 13
+  text: decision[case 288.3][update][estimate-claude-md-rendered]{ref:estimate-claude-md-rendered}
+  case: '288.3'
+  kind: update
+  slug: estimate-claude-md-rendered
+  origin: raw/2026-09-21/0019/ledger.md#case-288.3
+  decision: decision-case-288.3
+  ref: estimate-claude-md-rendered
+  category: estimates
+  set:
+    status: pending
+  change: the Criterion replaced whole — the title, the description and the two markers, nothing else
+    (case 288.3)
+  sections:
+    Criterion: 'Given:
+
+      `CLAUDE.md` is the Render of `rule-claude-md` whole (`render_mode: full`), the children `rule-language`
+      and `rule-agent-writing` in their markers; the hook refuses a hand edit.
+
+      **＋** Each item of "Migration mode" is a Rule with its own Render: `rule-internal-context`, `rule-ledger-write`,
+      `rule-retro`, `rule-handoff`, `rule-documentation`, `rule-spec-capture`; "`make style` clean before
+      the commit" is in the Render of `rule-retro`.
+
+      **＋** The glossary and the schema arrive with `/hi` (273.3, 288.1); the one rule stands in the schema
+      (288.2).
+
+      **＋** `guppi render --check` keeps the file equal to the page.
+
+
+      When:
+
+      The first `uv run guppi render` after `rule-claude-md` changed, and the start of the next session
+      with `CLAUDE.md`.
+
+
+      Then:
+
+      `CLAUDE.md` is: `# GUPPI`; one paragraph — a Claude Code harness governed by ratified decisions,
+      and the Obsidian vault it compiles into; the vault is `vault/`, its map `vault/wiki/index.md`, its
+      terms `vault/wiki/glossary.md`; a working session opens with `/hi`; then the text of `rule-language`
+      and `rule-agent-writing` in their markers.
+
+      **＋** `render --check` after the render exits 0; every session and every subagent loads this text.
+
+      **－** No `@` import, no "What is loaded here", no paragraph on `index.md`, no "Migration mode",
+      no "Commands", no one rule and no sentence on memory — the one rule is in the schema; the `children`
+      of `rule-claude-md` are `rule-language` and `rule-agent-writing`.'
+  applied: '10:37:53'
+- line: 14
+  text: decision[case 289][defer][rule-work-mode]{ref:rule-work-mode}
+  case: '289'
+  kind: defer
+  slug: rule-work-mode
+  origin: raw/2026-09-21/0019/ledger.md#case-289
+  decision: decision-case-289
+  ref: rule-work-mode
+  category: rules
+  fields:
+    type: rule
+    purpose: Work Mode as a rule — the Spec as tasks with code, the ticked boxes on code, tests, migrations
+      and by-hand checks in spec.md (the readings are generate's since case 270, the render and sprint
+      lines in the form of case 279.1), the test of each Estimate written first and turned green, the
+      sentence of insight-workflow-code-live-before-the-page-it-reads on a check that reads a page the
+      same Spec changes; the first item of the next session
+  exists: true
+  applied: '10:37:53'
+- line: 15
+  text: decision[case 289][defer][rule-subagent-guppi]{ref:rule-subagent-guppi}
+  case: '289'
+  kind: defer
+  slug: rule-subagent-guppi
+  origin: raw/2026-09-21/0019/ledger.md#case-289
+  decision: decision-case-289
+  ref: rule-subagent-guppi
+  category: rules
+  fields:
+    type: rule
+    purpose: what a subagent may do in Work Mode, and the fork that comes back to the main agent as a
+      Case; a subagent loads CLAUDE.md and no glossary (case 288.1); with rule-work-mode, the first item
+      of the next session
+  exists: true
+  applied: '10:37:53'
+- line: 16
+  text: decision[case 290.1][update][glossary]{ref:glossary}
+  case: '290.1'
+  kind: update
+  slug: glossary
+  origin: raw/2026-09-21/0019/ledger.md#case-290.1
+  decision: decision-case-290.1
+  ref: glossary
+  category: file
+  path: vault/wiki/glossary.md
+  change: the header and the CLAUDE.md row say the glossary and the schema arrive with /hi, and what CLAUDE.md
+    holds since 288.3 (case 290.1)
+  applied: '10:37:53'
+- line: 17
+  text: decision[case 290.2][update][rule-session-start]{ref:rule-session-start}
+  case: '290.2'
+  kind: update
+  slug: rule-session-start
+  origin: raw/2026-09-21/0019/ledger.md#case-290.2
+  decision: decision-case-290.2
+  ref: rule-session-start
+  category: rules
+  replace:
+  - old: Children 2–3 are hooks. They run in **every** session, ordinary ones included, and that is
+    new: Children 2–4 are hooks. Children 2–3 run in **every** session, ordinary ones included, and that
+      is
+  - old: The hook registry that records the registration of children 2–3 is not a step of the session;
+      it lives under `rule-harness` with the other tools.
+    new: Child 4, `rule-compact-recall`, runs only after a compaction, and prints only with a `hi` in
+      the window (case 287). The hook registry that records the registration of children 2–4 is not a
+      step of the session; it lives under `rule-harness` with the other tools.
+  change: How it works counts four children — the fourth fires after a compaction only (case 290.2)
+  applied: '10:37:53'
+- line: 18
+  text: decision[case 290.3][update][estimate-generate-ticks-the-spec]{ref:estimate-generate-ticks-the-spec}
+  case: '290.3'
+  kind: update
+  slug: estimate-generate-ticks-the-spec
+  origin: raw/2026-09-21/0019/ledger.md#case-290.3
+  decision: decision-case-290.3
+  ref: estimate-generate-ticks-the-spec
+  category: estimates
+  set:
+    purpose: generate ticks the page line of a Case in the Spec beside its yaml, and the read line of
+      a reading across the Specs of raw/ — never a line of a later or a superseded Case
+    status: pending
+  change: the purpose by the Criterion of 286 (case 290.3)
+  sections:
+    Criterion: 'Given:
+
+      The `purpose` of an Estimate is the line the index is built from, not the Criterion; `set.purpose`
+      changes no promise.
+
+      **＋** An `update` of a rule''s Purpose touches no Estimate (187).
+
+      **＋** The Criterion of `estimate-generate-ticks-the-spec` is 286''s, of `estimate-internal-context-loaded`
+      288.1''s, both `pending`.
+
+
+      When:
+
+      Someone reads the index line of an Estimate, or the Purpose of `rule-case-protocol`.
+
+
+      Then:
+
+      The `purpose` of `estimate-generate-ticks-the-spec`: generate ticks the page line of a Case in the
+      Spec beside its yaml, and the read line of a reading across the Specs of raw/ — never a line of
+      a later or a superseded Case. The `purpose` of `estimate-internal-context-loaded`: the text of sprint.md,
+      brief.md, case-schema.md and glossary.md is present in the first turn''s context after /hi, without
+      a read call. The Purpose of `rule-case-protocol`: "loaded by `/hi` with `sprint.md`, `brief.md`
+      and `glossary.md` (cases 273.1, 288.1)".
+
+      **－** The Criterion and the `status` do not change.'
+  applied: '10:37:53'
+- line: 19
+  text: decision[case 290.3][update][estimate-internal-context-loaded]{ref:estimate-internal-context-loaded}
+  case: '290.3'
+  kind: update
+  slug: estimate-internal-context-loaded
+  origin: raw/2026-09-21/0019/ledger.md#case-290.3
+  decision: decision-case-290.3
+  ref: estimate-internal-context-loaded
+  category: estimates
+  set:
+    purpose: The text of sprint.md, brief.md, case-schema.md and glossary.md is present in the first turn's
+      context after /hi, without a read call
+    status: pending
+  change: the purpose by the Criterion of 288.1 (case 290.3)
+  sections:
+    Criterion: 'Given:
+
+      The `purpose` of an Estimate is the line the index is built from, not the Criterion; `set.purpose`
+      changes no promise.
+
+      **＋** An `update` of a rule''s Purpose touches no Estimate (187).
+
+      **＋** The Criterion of `estimate-generate-ticks-the-spec` is 286''s, of `estimate-internal-context-loaded`
+      288.1''s, both `pending`.
+
+
+      When:
+
+      Someone reads the index line of an Estimate, or the Purpose of `rule-case-protocol`.
+
+
+      Then:
+
+      The `purpose` of `estimate-generate-ticks-the-spec`: generate ticks the page line of a Case in the
+      Spec beside its yaml, and the read line of a reading across the Specs of raw/ — never a line of
+      a later or a superseded Case. The `purpose` of `estimate-internal-context-loaded`: the text of sprint.md,
+      brief.md, case-schema.md and glossary.md is present in the first turn''s context after /hi, without
+      a read call. The Purpose of `rule-case-protocol`: "loaded by `/hi` with `sprint.md`, `brief.md`
+      and `glossary.md` (cases 273.1, 288.1)".
+
+      **－** The Criterion and the `status` do not change.'
+  applied: '10:37:53'
+- line: 20
+  text: decision[case 290.3][update][rule-case-protocol]{ref:rule-case-protocol}
+  case: '290.3'
+  kind: update
+  slug: rule-case-protocol
+  origin: raw/2026-09-21/0019/ledger.md#case-290.3
+  decision: decision-case-290.3
+  ref: rule-case-protocol
+  category: rules
+  replace:
+  - old: page, loaded by `/hi` with `sprint.md` and `brief.md` (case 273.1). A session without
+    new: page, loaded by `/hi` with `sprint.md`, `brief.md` and `glossary.md` (cases 273.1, 288.1). A
+      session without
+  change: the Purpose names the glossary among the files /hi loads (case 290.3)
+  applied: '10:37:53'
+- line: 21
+  text: 'estimate[estimate-retro-loads][passed] 2026-09-21, the /retro of session 0019 read by hand, the
+    Criterion of 283, the SKILL rendered by the librarian of 2106: four Estimates whose Criterion a Case
+    of this session replaced — estimate-generate-ticks-the-spec (286), estimate-internal-context-loaded
+    (288.1), estimate-case-protocol-loaded (288.2), estimate-claude-md-rendered (288.3) — and whose build
+    waits for the librarian''s pages and renders got no reading, their read lines of this Spec (56, 214,
+    251, 299) carried to the handoff as the moment their method names, no old-Criterion line in an earlier
+    Spec read; the readings taken were of Criteria built before the session (estimate-case-protocol-ledger-line-form,
+    L1) or by the render of 2106 (this one); the page, create, defer and render lines listed as waiting
+    for the librarian; no superseded Case in the Tail; nothing else of Retro changed'
+  kind: estimate
+  category: estimates
+  slug: estimate-retro-loads
+  status: passed
+  result: '2026-09-21, the /retro of session 0019 read by hand, the Criterion of 283, the SKILL rendered
+    by the librarian of 2106: four Estimates whose Criterion a Case of this session replaced — estimate-generate-ticks-the-spec
+    (286), estimate-internal-context-loaded (288.1), estimate-case-protocol-loaded (288.2), estimate-claude-md-rendered
+    (288.3) — and whose build waits for the librarian''s pages and renders got no reading, their read
+    lines of this Spec (56, 214, 251, 299) carried to the handoff as the moment their method names, no
+    old-Criterion line in an earlier Spec read; the readings taken were of Criteria built before the session
+    (estimate-case-protocol-ledger-line-form, L1) or by the render of 2106 (this one); the page, create,
+    defer and render lines listed as waiting for the librarian; no superseded Case in the Tail; nothing
+    else of Retro changed'
+  origin: raw/2026-09-21/0019/ledger.md#L21
+  applied: '10:37:53'
+decisions:
+- case: '286'
+  decision: decision-case-286
+  origin: raw/2026-09-21/0019/ledger.md#case-286
+  targets:
+  - kind: update
+    category: rules
+    slug: rule-page-generation
+    ref: rule-page-generation
+  - kind: update
+    category: estimates
+    slug: estimate-generate-ticks-the-spec
+    ref: estimate-generate-ticks-the-spec
+  tags: []
+  case_text:
+    context: '`generate`, once it applied an `estimate` entry of the yaml, ticks the first unticked line
+      `- [ ] read `<slug>`` — in the Spec beside the yaml first, then in the Specs of the other sessions
+      of `raw/`, oldest first. In the Spec beside the yaml it skips the sections of the Cases ratified
+      after the reading (280); in the other Specs it skips nothing and looks at no Case. When a Case is
+      superseded by another (`{supersedes:case N}`), its yaml entries are marked `superseded_by`: `generate`
+      neither applies them nor ticks their page lines (151, 200.2), and Retro does not count their lines
+      (282). But the `read` line of such a Case is an ordinary line to `tick_read`: in the run of 2106
+      the reading of `estimate-case-protocol-loaded` landed on 1749:39 (Case 278, superseded by 279.1)
+      and 1749:88 (279.1) stayed open. The Estimate page is right — `passed` on the Criterion of 279.1;
+      the Spec says the opposite: a Criterion that is not there was read, and the signed one was not.
+      The 1749 Spec is in the archive now, `generate` does not read it, and line 88 stays `[ ]` for good.
+      The brief also names 1749:38 as ticked by the librarian of 1749 — in the file it is `[ ]`, as it
+      should be for a superseded Case.
+
+      `rule-page-generation` `draft` (`estimate-generate-rewords` pending); of the eight Estimates of
+      the rule one is touched — `estimate-generate-ticks-the-spec` (`passed` 2106), the other seven not;
+      an `update` with a `ref`, no vault query due.'
+    problem: A reading closes the line of a Case whose work stands under another Case. The record in the
+      Spec is wrong, and the line of the superseding Case never closes. Either this is contract — and
+      `tick_read` skips the sections of superseded Cases by the marks of the yaml — or a fact for the
+      reading of the Estimate, and the record stays wrong.
+    given: 'A yaml entry of kind `estimate` carries `slug`, `status`, `result`, `line` and no `case`;
+      a decision entry carries `case` and `line`, the number of its line in the ledger.
+
+      **＋** A line `{supersedes:case N}` marks every entry of Case N `superseded_by`, in the yaml of any
+      session under `raw/` (130.2, 175); `generate` neither applies them nor ticks their page lines (151,
+      200.2).
+
+      **＋** The lines of a superseded Case are not counted at Retro — its work stands under the superseding
+      Case (282).
+
+      **＋** The Spec of a session lies beside its `materialize.yaml` — `raw/<date>/<HHMM>/spec.md`; the
+      Specs of the other sessions are the `spec.md` of their folders under `raw/`.
+
+      **＋** A Case heading in the Spec is `## Case N — …` or `### Case N.M — …`; its section runs to the
+      next such heading.
+
+      **＋** A reading line of the Spec is `- [ ] read `<slug>`` with text after it, in any Case.
+
+      **＋** `tests/test_generate.py` fixes the behaviour on a temp vault with a Spec beside the yaml and
+      a second Spec with a yaml of its own in another session folder.
+
+      **－** A Rule-class file entry `generate` does not apply — "applied by hand".'
+    when: '`guppi generate` applied an entry and marked it `applied`.'
+    then: 'For a `create`, `update`, `delete` or `defer` entry, in the `spec.md` of the same unit the
+      first unticked line `- [ ] <kind> `<slug>`` in the section of the entry''s Case becomes `- [x]`;
+      nothing else in the file changes.
+
+      **＋** Two entries of one kind and slug in one Case tick two lines, in order.
+
+      **＋** For an `estimate` entry, and for a `create` entry with `folded`, the first unticked line `-
+      [ ] read `<slug>`` becomes `- [x]` — in the Spec beside the yaml first, then in the `spec.md` of
+      the other session folders of `raw/`, oldest first; one line per entry.
+
+      **＋** In the Spec beside the yaml, a `read` line in the section of a Case whose first decision entry
+      of the yaml carries a `line` greater than the `line` of the `estimate` entry is not the reading''s
+      line — the Case was ratified after it; the search goes on to the next line, then to the other sessions.
+
+      **＋** In any Spec, a `read` line in the section of a Case whose entries in the yaml of that session
+      are marked `superseded_by` is not the reading''s line — its work stands under the superseding Case;
+      the search goes on. For the Spec beside the yaml the marks are the run''s entries; for the Spec
+      of another session its `materialize.yaml` beside it, read for the marks alone; no yaml beside it
+      — nothing is skipped there.
+
+      **＋** A `create` entry with `folded` ticks both lines: the page line and the reading line; its Case
+      is the reading''s Case, the filter of 280 does not apply to it; the filter by `superseded_by` does.
+
+      **－** A line not found, a section not found, no Spec — no error and no stderr line; the entry is
+      `applied` all the same.
+
+      **－** `lesson` and Rule-class file entries, and an entry marked `failed`, tick no line; the lines
+      on code, tests, migrations and `by hand` are the agent''s.
+
+      **－** A Spec under `vault/archive/` is not read; the Specs of the other sessions are not filtered
+      by `line`.'
+  spec: vault/raw/2026-09-21/0019/spec.md
+  applied: '10:37:53'
+- case: '287'
+  decision: decision-case-287
+  origin: raw/2026-09-21/0019/ledger.md#case-287
+  targets:
+  - kind: create
+    category: rules
+    slug: rule-compact-recall
+    ref: rule-session-start
+  - kind: create
+    category: estimates
+    slug: estimate-compact-recall-reloads
+    ref: rule-compact-recall
+  - kind: update
+    category: rules
+    slug: rule-session-start
+    ref: rule-session-start
+  - kind: update
+    category: rules
+    slug: rule-hook-registry
+    ref: rule-hook-registry
+  tags:
+  - session
+  - hooks
+  - harness
+  case_text:
+    context: '`/hi` brings `sprint.md`, `brief.md`, `case-schema.md` (and the glossary after C4.1) into
+      the first turn through the `@` lines of the skill; `CLAUDE.md` lives in the system prompt. When
+      the client compacts the context, `CLAUDE.md` is read again from disk, but the body of an invoked
+      skill comes back capped at 5,000 tokens — after a compaction the Case schema, the Frontier and the
+      Spec stand in the context only as far as the summary kept them. Two hooks run on `SessionStart`,
+      both without a matcher: `guppi event session-start` (writes `session-start compact`; the `hi` window
+      survives, case 14) and `guppi render --sync`. Nothing brings the session''s load back. A hook''s
+      stdout over 10,000 characters is saved to a file, so the hook prints paths and the Frontier, not
+      the texts.
+
+      The vault: no page on compaction, `rule-compact-recall` free; the nearest is `rule-internal-context`
+      (`built`), whose `estimate-internal-context-loaded` measures the first turn after `/hi`, not a compaction
+      — not touched; `rule-session-start` (`built`, MOC) takes a fourth child, its `estimate-session-start-context`
+      not touched; `rule-hook-registry` (`built`) — the registration, `estimate-hook-registry-rendered`
+      measures the file against the page, its Criterion unchanged.'
+    problem: After a compaction a working session goes on in Plan Mode or Work Mode without the Case schema,
+      without the Frontier and without the exact text of the Spec — the agent works from a summary. A
+      hook is needed that, after `compact`, brings back into the context what `/hi` brought at the start.
+    given: '`SessionStart` fires after a compaction with `source: compact`; the hook''s stdout on exit
+      0 enters the context as text; output over 10,000 characters is saved to a file and the agent gets
+      a preview and the path (Claude Code docs, hooks guide).
+
+      **＋** A `SessionStart` hook cannot block (`lesson-hooks-sessionstart-cannot-block`).
+
+      **＋** The session''s window and folder are the ones the ledger hook finds: `session_dir` in `guppi/ledger.py`,
+      the first `hi` of the stamp after its first `session-start`; `compact` does not close the window
+      (case 14).
+
+      **＋** The files `/hi` imports are the `@` lines of `.claude/skills/hi/SKILL.md`, the Render of `rule-internal-context`;
+      the glossary joins them by C4.1.
+
+      **＋** The Spec of a session is `spec.md` in its folder after the approval; before it, the plan file
+      the event log names last under `.claude/plans/`, as `guppi gate` reads it (case 122).
+
+      **＋** `tests/test_recall.py` fixes the behaviour on a temp project with an event log, a skill file
+      and a session folder.'
+    when: 'The client compacted the context of the session — `/compact` or on its own — and `SessionStart`
+      fired with `source: compact`.'
+    then: 'With a `hi` in the session''s window, stdout holds: the line `recall: the context was compacted
+      at HH:MM:SS; the session is raw/<date>/<HHMM>/. Read before the next reply:`; then one path per
+      line — the `@` files of the `/hi` skill in their order, the session''s `frontier.md` when it exists,
+      the Spec when one exists; then the line `Frontier:` and the text of `frontier.md` as it stands.
+
+      **＋** The list of paths is the `@` lines of the skill file at the moment the hook fires, no copy
+      in the code: a file added to `rule-internal-context` — the glossary by C4.1 — is in the list without
+      a change to the hook.
+
+      **＋** The texts of the files, the Frontier apart, are not printed — the paths only; the output stays
+      under 10,000 characters.
+
+      **－** Without a `hi` in the window — nothing on stdout, exit 0.
+
+      **－** Another `source` — nothing: the matcher keeps the hook from firing, and the code checks `source`
+      itself.
+
+      **－** Exit 0 always; an error prints nothing and blocks nothing; the hook writes no file and no
+      event line — `session-start compact` is already written by `guppi event`.'
+  spec: vault/raw/2026-09-21/0019/spec.md
+  applied: '10:37:53'
+- case: '288.1'
+  decision: decision-case-288.1
+  origin: raw/2026-09-21/0019/ledger.md#case-288.1
+  targets:
+  - kind: update
+    category: rules
+    slug: rule-internal-context
+    ref: rule-internal-context
+  - kind: update
+    category: estimates
+    slug: estimate-internal-context-loaded
+    ref: estimate-internal-context-loaded
+  tags: []
+  case_text:
+    given: 'The `/hi` skill is the Render of `rule-skill-hi` with its children in markers; `rule-internal-context`
+      is the block of `@` lines Claude Code expands when the skill is invoked.
+
+      **＋** A subagent receives the `CLAUDE.md` hierarchy and not the content of an invoked skill (Claude
+      Code docs, sub-agents).
+
+      **＋** `guppi recall` prints the `@` lines of the skill file after a compaction (287).
+
+      **＋** `guppi render --check` keeps the skill file equal to the page.'
+    when: The person invokes `/hi`.
+    then: 'The text of `sprint.md`, `brief.md`, `case-schema.md` and `glossary.md` is present in the first
+      turn''s context, in that order, without a read call.
+
+      **＋** The glossary reaches a session through this block alone; after a compaction its path is in
+      the list of `guppi recall`.
+
+      **－** A subagent — `librarian-guppi`, `ask-guppi`, one of Work Mode — carries no glossary; its prompt
+      names what it needs.'
+    context: '`CLAUDE.md` is the Render of `rule-claude-md` whole, with `rule-language` and `rule-agent-writing`
+      in their markers. It enters the system prompt of every session and of every subagent — the librarian,
+      `ask-guppi`, the subagents of Work Mode. Today it holds: the first paragraph (the description of
+      the project and the one rule — ratification, autonomy over the how, "when unsure: it does", the
+      vault as the only memory), "What is loaded here", the `@` import of the glossary, a paragraph on
+      `index.md` not being imported, "Migration mode" (four items, each a Rule with its Render in the
+      harness by now; "nothing prints it yet" stale since case 125) and "Commands" (`make style` before
+      a commit stands in the Render of `rule-retro`; "no new dependencies" came with the hand-written
+      file in 59.8, never decided on its own). The glossary through `CLAUDE.md` is paid by every subagent;
+      a subagent receives the `CLAUDE.md` hierarchy and not the content of an invoked skill (Claude Code
+      docs, sub-agents). `case-schema.md` opens with a line on how it is loaded and holds the form of
+      a Case; the one rule is not in it.
+
+      The pages: `rule-claude-md` `built` — `estimate-claude-md-rendered` `passed` 1749, touched; `rule-internal-context`
+      `built` — `estimate-internal-context-loaded` `passed` 1749, touched, its How it works says the glossary
+      arrives through `CLAUDE.md`; `rule-case-protocol` `draft` — `estimate-case-protocol-loaded` `passed`
+      2106, touched, the other three Estimates not, its Purpose says "`CLAUDE.md` keeps the one rule and
+      the glossary". Three `update` with a `ref`, no vault query due. `rule-info` rejected in the chat:
+      the description of a project is no Rule by the glossary''s check.'
+    problem: The system prompt carries a retelling of rules that live in their own Renders, stale lines
+      and a glossary every subagent pays for, and the one rule stands where no Case is held. What stays
+      in `CLAUDE.md`, where the glossary goes and where the one rule.
+  spec: vault/raw/2026-09-21/0019/spec.md
+  applied: '10:37:53'
+- case: '288.2'
+  decision: decision-case-288.2
+  origin: raw/2026-09-21/0019/ledger.md#case-288.2
+  targets:
+  - kind: update
+    category: rules
+    slug: rule-case-protocol
+    ref: rule-case-protocol
+  - kind: update
+    category: estimates
+    slug: estimate-case-protocol-loaded
+    ref: estimate-case-protocol-loaded
+  tags: []
+  case_text:
+    given: '`case-schema.md` is the Render of `rule-case-protocol`, loaded by `/hi`; the hook refuses
+      a hand edit.
+
+      **＋** The one rule stood as the first paragraph of `CLAUDE.md` until this Case (59.8, 272.1).
+
+      **＋** `guppi render --check` keeps the file equal to the page.'
+    when: The first `uv run guppi render` after `rule-case-protocol` changed, and the `/hi` of the next
+      session.
+    then: '`case-schema.md` opens with the section "The one rule" right under its title: nothing in the
+      vault or the codebase changes without a Decision ratified by the human; the agent has full autonomy
+      over how to implement something once its contract is ratified, and none over the contract itself;
+      when unsure whether something needs ratification, it does; the vault is the only memory — no note
+      outside the repository, what is worth keeping is a `lesson` line or a Case on a Rule page (272.1).
+
+      **＋** The paragraph after it says, as before, that the schema is the Render loaded by `/hi` with
+      `sprint.md`, `brief.md` and `glossary.md`, and that a session without `/hi` holds no Case.
+
+      **＋** `render --check` after the render exits 0.
+
+      **－** The other sections of the schema do not change; the description of the project is not in the
+      schema.'
+    context: '`CLAUDE.md` is the Render of `rule-claude-md` whole, with `rule-language` and `rule-agent-writing`
+      in their markers. It enters the system prompt of every session and of every subagent — the librarian,
+      `ask-guppi`, the subagents of Work Mode. Today it holds: the first paragraph (the description of
+      the project and the one rule — ratification, autonomy over the how, "when unsure: it does", the
+      vault as the only memory), "What is loaded here", the `@` import of the glossary, a paragraph on
+      `index.md` not being imported, "Migration mode" (four items, each a Rule with its Render in the
+      harness by now; "nothing prints it yet" stale since case 125) and "Commands" (`make style` before
+      a commit stands in the Render of `rule-retro`; "no new dependencies" came with the hand-written
+      file in 59.8, never decided on its own). The glossary through `CLAUDE.md` is paid by every subagent;
+      a subagent receives the `CLAUDE.md` hierarchy and not the content of an invoked skill (Claude Code
+      docs, sub-agents). `case-schema.md` opens with a line on how it is loaded and holds the form of
+      a Case; the one rule is not in it.
+
+      The pages: `rule-claude-md` `built` — `estimate-claude-md-rendered` `passed` 1749, touched; `rule-internal-context`
+      `built` — `estimate-internal-context-loaded` `passed` 1749, touched, its How it works says the glossary
+      arrives through `CLAUDE.md`; `rule-case-protocol` `draft` — `estimate-case-protocol-loaded` `passed`
+      2106, touched, the other three Estimates not, its Purpose says "`CLAUDE.md` keeps the one rule and
+      the glossary". Three `update` with a `ref`, no vault query due. `rule-info` rejected in the chat:
+      the description of a project is no Rule by the glossary''s check.'
+    problem: The system prompt carries a retelling of rules that live in their own Renders, stale lines
+      and a glossary every subagent pays for, and the one rule stands where no Case is held. What stays
+      in `CLAUDE.md`, where the glossary goes and where the one rule.
+  spec: vault/raw/2026-09-21/0019/spec.md
+  applied: '10:37:53'
+- case: '288.3'
+  decision: decision-case-288.3
+  origin: raw/2026-09-21/0019/ledger.md#case-288.3
+  targets:
+  - kind: update
+    category: rules
+    slug: rule-claude-md
+    ref: rule-claude-md
+  - kind: update
+    category: estimates
+    slug: estimate-claude-md-rendered
+    ref: estimate-claude-md-rendered
+  tags: []
+  case_text:
+    given: '`CLAUDE.md` is the Render of `rule-claude-md` whole (`render_mode: full`), the children `rule-language`
+      and `rule-agent-writing` in their markers; the hook refuses a hand edit.
+
+      **＋** Each item of "Migration mode" is a Rule with its own Render: `rule-internal-context`, `rule-ledger-write`,
+      `rule-retro`, `rule-handoff`, `rule-documentation`, `rule-spec-capture`; "`make style` clean before
+      the commit" is in the Render of `rule-retro`.
+
+      **＋** The glossary and the schema arrive with `/hi` (273.3, 288.1); the one rule stands in the schema
+      (288.2).
+
+      **＋** `guppi render --check` keeps the file equal to the page.'
+    when: The first `uv run guppi render` after `rule-claude-md` changed, and the start of the next session
+      with `CLAUDE.md`.
+    then: '`CLAUDE.md` is: `# GUPPI`; one paragraph — a Claude Code harness governed by ratified decisions,
+      and the Obsidian vault it compiles into; the vault is `vault/`, its map `vault/wiki/index.md`, its
+      terms `vault/wiki/glossary.md`; a working session opens with `/hi`; then the text of `rule-language`
+      and `rule-agent-writing` in their markers.
+
+      **＋** `render --check` after the render exits 0; every session and every subagent loads this text.
+
+      **－** No `@` import, no "What is loaded here", no paragraph on `index.md`, no "Migration mode",
+      no "Commands", no one rule and no sentence on memory — the one rule is in the schema; the `children`
+      of `rule-claude-md` are `rule-language` and `rule-agent-writing`.'
+    context: '`CLAUDE.md` is the Render of `rule-claude-md` whole, with `rule-language` and `rule-agent-writing`
+      in their markers. It enters the system prompt of every session and of every subagent — the librarian,
+      `ask-guppi`, the subagents of Work Mode. Today it holds: the first paragraph (the description of
+      the project and the one rule — ratification, autonomy over the how, "when unsure: it does", the
+      vault as the only memory), "What is loaded here", the `@` import of the glossary, a paragraph on
+      `index.md` not being imported, "Migration mode" (four items, each a Rule with its Render in the
+      harness by now; "nothing prints it yet" stale since case 125) and "Commands" (`make style` before
+      a commit stands in the Render of `rule-retro`; "no new dependencies" came with the hand-written
+      file in 59.8, never decided on its own). The glossary through `CLAUDE.md` is paid by every subagent;
+      a subagent receives the `CLAUDE.md` hierarchy and not the content of an invoked skill (Claude Code
+      docs, sub-agents). `case-schema.md` opens with a line on how it is loaded and holds the form of
+      a Case; the one rule is not in it.
+
+      The pages: `rule-claude-md` `built` — `estimate-claude-md-rendered` `passed` 1749, touched; `rule-internal-context`
+      `built` — `estimate-internal-context-loaded` `passed` 1749, touched, its How it works says the glossary
+      arrives through `CLAUDE.md`; `rule-case-protocol` `draft` — `estimate-case-protocol-loaded` `passed`
+      2106, touched, the other three Estimates not, its Purpose says "`CLAUDE.md` keeps the one rule and
+      the glossary". Three `update` with a `ref`, no vault query due. `rule-info` rejected in the chat:
+      the description of a project is no Rule by the glossary''s check.'
+    problem: The system prompt carries a retelling of rules that live in their own Renders, stale lines
+      and a glossary every subagent pays for, and the one rule stands where no Case is held. What stays
+      in `CLAUDE.md`, where the glossary goes and where the one rule.
+  spec: vault/raw/2026-09-21/0019/spec.md
+  applied: '10:37:53'
+- case: '289'
+  decision: decision-case-289
+  origin: raw/2026-09-21/0019/ledger.md#case-289
+  targets:
+  - kind: defer
+    category: rules
+    slug: rule-work-mode
+    ref: rule-work-mode
+  - kind: defer
+    category: rules
+    slug: rule-subagent-guppi
+    ref: rule-subagent-guppi
+  tags: []
+  case_text:
+    context: 'Slice 3b is the current milestone of the sprint: `rule-work-mode` — Work Mode, the Spec
+      as tasks with code, the ticked boxes, the test of each Estimate first, the sentence of `insight-workflow-code-live-before-the-page-it-reads`;
+      `rule-subagent-guppi` — what a subagent may do and the fork that comes back as a Case. Both are
+      `draft` placeholders, deferred fourteen times, the last by 285. This session took the `read` line
+      of a superseded Case (286), the `SessionStart compact` hook (287) and the review of `CLAUDE.md`
+      — the glossary with `/hi`, the one rule in the schema, the Render cut (288) — ahead of it.'
+    problem: 'The person closes this Plan Mode with three Cases and goes to pre-spec; Slice 3b waits for
+      the next session, the fifteenth defer. Two lines of this session bear on it: a subagent loads `CLAUDE.md`
+      and not the glossary (288.1), and `guppi recall` brings the session''s load back after a compaction
+      (287) — the rule of Work Mode is written with both.'
+  spec: vault/raw/2026-09-21/0019/spec.md
+  applied: '10:37:53'
+- case: '290.1'
+  decision: decision-case-290.1
+  origin: raw/2026-09-21/0019/ledger.md#case-290.1
+  targets:
+  - kind: update
+    category: file
+    slug: glossary
+    path: vault/wiki/glossary.md
+    ref: glossary
+  tags: []
+  case_text:
+    given: '`glossary.md` is a Rule-class file: it changes only by a ratified `update` with `file`, by
+      hand (§1).
+
+      **＋** The glossary arrives with `/hi` as the fourth `@` line (288.1); `CLAUDE.md` is the title,
+      the description and two markers (288.3).'
+    when: Someone reads `glossary.md` — in the first turn after `/hi`, or as a file.
+    then: 'The header says "Rule-class; loaded by `/hi` with the Case schema"; the row "`CLAUDE.md`, `case-schema.md`,
+      `index.md`" says `CLAUDE.md` is the Render of `rule-claude-md` — the description of the project,
+      `rule-language` and `rule-agent-writing` in their markers; the schema and the glossary arrive with
+      `/hi` (288); the map is read a section at a time.
+
+      **－** The other rows do not change.'
+    context: '288.1 and 288.3 take the glossary out of `CLAUDE.md`, but `glossary.md` itself says in its
+      header "Rule-class; imported into `CLAUDE.md`", and its row "`CLAUDE.md`, `case-schema.md`, `index.md`"
+      that `@path` expands it inline. It is a Rule-class file, changed only by an `update` with `file`,
+      by hand. 287 gives `rule-session-start` a fourth child, but the page''s How it works says "Children
+      2–3 are hooks. They run in every session" and "the registration of children 2–3". 286 and 288.1
+      replaced the Criterion of two Estimates, and their `purpose` — "in the Spec beside its yaml", "sprint.md,
+      brief.md and case-schema.md" — stayed from the old promise; the Purpose of `rule-case-protocol`,
+      one line above the replace of 288.2, still says "loaded by `/hi` with `sprint.md` and `brief.md`".
+
+      Three pages and two Estimates; no Criterion is touched: a `purpose` is the index line, not the promise;
+      the Purpose of a rule touches no Estimate (187). Updates with a `ref`; the vault asked at pre-spec.'
+    problem: 'After this session''s render four texts contradict what is ratified: the glossary names
+      its old path, the page of the session start counts its children, two index lines and a Purpose describe
+      the previous promise.'
+  spec: vault/raw/2026-09-21/0019/spec.md
+  applied: '10:37:53'
+- case: '290.2'
+  decision: decision-case-290.2
+  origin: raw/2026-09-21/0019/ledger.md#case-290.2
+  targets:
+  - kind: update
+    category: rules
+    slug: rule-session-start
+    ref: rule-session-start
+  tags: []
+  case_text:
+    given: '`rule-compact-recall` is the fourth child of `rule-session-start`, the hook on `SessionStart
+      compact` in a working session (287).
+
+      **＋** `rule-session-start` renders nothing; a change of its How it works touches no Estimate.'
+    when: Someone reads the page `rule-session-start`.
+    then: 'How it works says: children 2–4 are hooks; 2 and 3 run in every session, 4 only after a compaction
+      and only with a `hi` in the window; the registration of children 2–4 is in `rule-hook-registry`.
+
+      **－** The other sections do not change.'
+    context: '288.1 and 288.3 take the glossary out of `CLAUDE.md`, but `glossary.md` itself says in its
+      header "Rule-class; imported into `CLAUDE.md`", and its row "`CLAUDE.md`, `case-schema.md`, `index.md`"
+      that `@path` expands it inline. It is a Rule-class file, changed only by an `update` with `file`,
+      by hand. 287 gives `rule-session-start` a fourth child, but the page''s How it works says "Children
+      2–3 are hooks. They run in every session" and "the registration of children 2–3". 286 and 288.1
+      replaced the Criterion of two Estimates, and their `purpose` — "in the Spec beside its yaml", "sprint.md,
+      brief.md and case-schema.md" — stayed from the old promise; the Purpose of `rule-case-protocol`,
+      one line above the replace of 288.2, still says "loaded by `/hi` with `sprint.md` and `brief.md`".
+
+      Three pages and two Estimates; no Criterion is touched: a `purpose` is the index line, not the promise;
+      the Purpose of a rule touches no Estimate (187). Updates with a `ref`; the vault asked at pre-spec.'
+    problem: 'After this session''s render four texts contradict what is ratified: the glossary names
+      its old path, the page of the session start counts its children, two index lines and a Purpose describe
+      the previous promise.'
+  spec: vault/raw/2026-09-21/0019/spec.md
+  applied: '10:37:53'
+- case: '290.3'
+  decision: decision-case-290.3
+  origin: raw/2026-09-21/0019/ledger.md#case-290.3
+  targets:
+  - kind: update
+    category: estimates
+    slug: estimate-generate-ticks-the-spec
+    ref: estimate-generate-ticks-the-spec
+  - kind: update
+    category: estimates
+    slug: estimate-internal-context-loaded
+    ref: estimate-internal-context-loaded
+  - kind: update
+    category: rules
+    slug: rule-case-protocol
+    ref: rule-case-protocol
+  tags: []
+  case_text:
+    given: 'The `purpose` of an Estimate is the line the index is built from, not the Criterion; `set.purpose`
+      changes no promise.
+
+      **＋** An `update` of a rule''s Purpose touches no Estimate (187).
+
+      **＋** The Criterion of `estimate-generate-ticks-the-spec` is 286''s, of `estimate-internal-context-loaded`
+      288.1''s, both `pending`.'
+    when: Someone reads the index line of an Estimate, or the Purpose of `rule-case-protocol`.
+    then: 'The `purpose` of `estimate-generate-ticks-the-spec`: generate ticks the page line of a Case
+      in the Spec beside its yaml, and the read line of a reading across the Specs of raw/ — never a line
+      of a later or a superseded Case. The `purpose` of `estimate-internal-context-loaded`: the text of
+      sprint.md, brief.md, case-schema.md and glossary.md is present in the first turn''s context after
+      /hi, without a read call. The Purpose of `rule-case-protocol`: "loaded by `/hi` with `sprint.md`,
+      `brief.md` and `glossary.md` (cases 273.1, 288.1)".
+
+      **－** The Criterion and the `status` do not change.'
+    context: '288.1 and 288.3 take the glossary out of `CLAUDE.md`, but `glossary.md` itself says in its
+      header "Rule-class; imported into `CLAUDE.md`", and its row "`CLAUDE.md`, `case-schema.md`, `index.md`"
+      that `@path` expands it inline. It is a Rule-class file, changed only by an `update` with `file`,
+      by hand. 287 gives `rule-session-start` a fourth child, but the page''s How it works says "Children
+      2–3 are hooks. They run in every session" and "the registration of children 2–3". 286 and 288.1
+      replaced the Criterion of two Estimates, and their `purpose` — "in the Spec beside its yaml", "sprint.md,
+      brief.md and case-schema.md" — stayed from the old promise; the Purpose of `rule-case-protocol`,
+      one line above the replace of 288.2, still says "loaded by `/hi` with `sprint.md` and `brief.md`".
+
+      Three pages and two Estimates; no Criterion is touched: a `purpose` is the index line, not the promise;
+      the Purpose of a rule touches no Estimate (187). Updates with a `ref`; the vault asked at pre-spec.'
+    problem: 'After this session''s render four texts contradict what is ratified: the glossary names
+      its old path, the page of the session start counts its children, two index lines and a Purpose describe
+      the previous promise.'
+  spec: vault/raw/2026-09-21/0019/spec.md
+  applied: '10:37:53'
+unparsed: []
+session: 0019

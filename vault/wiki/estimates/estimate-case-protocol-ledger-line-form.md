@@ -1,11 +1,11 @@
 ---
 type: estimate
 kind: QA
-status: pending
+status: passed
 target: "[[rule-case-protocol]]"
 purpose: The written shape of a ledger line, as the documents state it
 method: one reading by hand of `case-schema.md` and `index.md` §4 after the render, at a session start
-checked: 2026-09-20
+checked: 2026-09-21
 origin: raw/2026-09-16/1034/ledger.md#case-188
 sprint: migration
 created: 2026-09-16
@@ -29,7 +29,7 @@ The ledger paragraph of the schema and §4 of the map say: a decision line whose
 
 ## Result
 
-2026-09-20, case-schema.md and index.md §4 read by hand at session 1749: the table shows the two example lines and says the id is case N, the word and a space, in {supersedes:case N} too; the ledger paragraph carries the {source:...} sentence, incomplete: [source] without it, an error lesson never; §4 shows the general form with {source} and {tags}, the {supersedes:case 4} form and the case N sentence — the create example stands in the schema only
+2026-09-21, case-schema.md and index.md §4 read by hand at session 0019: the ledger paragraph of the schema and the field list of §4 both say a decision line whose Case closes the root cause of a lesson of this session carries {addresses:<lesson slug>}, written when the lesson line already stands in the ledger, one mark per lesson; the schema alone says a lesson fixed in another session gets no mark, §4 says it through "of this session"; the lesson line and the estimate line of the schema table and of §4 carry no addressed_by; the general form of §4 shows {source}{tags} and not {addresses} — the mark stands in the field list, not the example
 
 ## History
 
@@ -39,3 +39,4 @@ The ledger paragraph of the schema and §4 of the map say: a decision line whose
 - 2026-09-20 updated: the Criterion replaced whole — the table and the ledger paragraph are one document since 273.1, two documents read, not three (case 277.6) · [[decision-case-277.6]]
 - 2026-09-20 status: pending → passed · raw/2026-09-20/1749/ledger.md#L3
 - 2026-09-21 updated: the Criterion replaced whole — the mark {addresses:<lesson slug>} beside {source} and {supersedes} (case 284.2) · [[decision-case-284.2]]
+- 2026-09-21 status: pending → passed · raw/2026-09-21/0019/ledger.md#L1

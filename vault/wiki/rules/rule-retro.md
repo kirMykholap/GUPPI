@@ -2,7 +2,7 @@
 type: rule
 kind: Leaf
 purpose: Prevents a session from closing on work nobody reviewed, or on a change that traces to no decision
-status: draft
+status: built
 enforcement: render
 governs: .claude/skills/retro/SKILL.md
 render_mode: full
@@ -105,3 +105,4 @@ got done; what did not. When the person approves, commit (`make style` clean,
 - 2026-09-20 status: draft → built · cascade
 - 2026-09-21 updated: a reading measures the last ratified Criterion; an Estimate whose Criterion this session replaced and whose build is not finished has no reading at this Retro (case 283) · [[decision-case-283]]
 - 2026-09-21 status: built → draft · cascade
+- 2026-09-21 status: draft → built · cascade

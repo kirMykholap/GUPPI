@@ -31,7 +31,9 @@ agent's Render and is ratified with it; this page holds the registrations only.
 <!-- rule-hook-registry -->
     "SessionStart": [
       { "hooks": [ { "type": "command", "command": "uv run guppi event session-start", "timeout": 30 },
-                   { "type": "command", "command": "uv run guppi render --sync", "timeout": 60 } ] }
+                   { "type": "command", "command": "uv run guppi render --sync", "timeout": 60 } ] },
+      { "matcher": "compact",
+        "hooks": [ { "type": "command", "command": "uv run guppi recall", "timeout": 30 } ] }
 ],
 "UserPromptSubmit": [
   { "hooks": [ { "type": "command", "command": "uv run guppi event prompt", "timeout": 30 },
@@ -77,3 +79,4 @@ agent's Render and is ratified with it; this page holds the registrations only.
 - 2026-09-15 updated: UserPromptSubmit runs guppi gate after guppi event prompt (case 169.2) · [[decision-case-169.2]]
 - 2026-09-15 status: built → draft · cascade
 - 2026-09-15 status: draft → built · cascade
+- 2026-09-21 updated: guppi recall registered on SessionStart with the matcher compact (case 287) · [[decision-case-287]]

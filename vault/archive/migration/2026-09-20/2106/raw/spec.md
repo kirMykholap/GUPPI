@@ -41,7 +41,7 @@ update:
 - [x] update `rule-retro`: `replace` in the Render — the sentence on a replaced Criterion after "name in the handoff any Estimate whose reading cannot be taken yet"
 - [x] update `estimate-retro-loads`: the Criterion replaced whole, `pending`
 - [x] `uv run guppi render`: `.claude/skills/retro/SKILL.md`
-- [ ] read `estimate-retro-loads`: the first `/retro` after the render, by hand — the next session, by the rule of this Case
+- [x] read `estimate-retro-loads`: the first `/retro` after the render, by hand — the next session, by the rule of this Case
 ```
 
 ## Case 284 — `insight-session-vault-knowledge-not-loaded` reopened for a cause the same session closed
@@ -116,7 +116,7 @@ update:
 - [x] update `estimate-case-protocol-ledger-line-form`: the Criterion replaced whole, `pending`
 - [x] update `index.md` §4 by hand: the `addresses` item under the decision line
 - [x] `uv run guppi render`: `vault/wiki/case-schema.md`
-- [ ] read `estimate-case-protocol-ledger-line-form`: `case-schema.md` and `index.md` §4 after the render, by hand
+- [x] read `estimate-case-protocol-ledger-line-form`: `case-schema.md` and `index.md` §4 after the render, by hand
 ```
 
 ### Case 284.3 — materialize carries the mark to the lesson's entry

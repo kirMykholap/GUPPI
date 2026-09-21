@@ -1,7 +1,7 @@
 ---
 type: estimate
 kind: QA
-status: passed
+status: pending
 target: "[[rule-case-protocol]]"
 purpose: The Case schema is present in a session from the first turn after /hi, as one text — the Render of rule-case-protocol — and nothing of it repeated in CLAUDE.md
 method: one reading at the first /hi of a session, by hand, plus the preview cases of tests/test_ledger.py
@@ -15,22 +15,18 @@ tags: [session, workflow, ledger]
 ## Criterion
 
 Given:
-A `full` page writes the whole file named by `governs`, without its outer markers; a child of a `full` page governs the same file as its parent, otherwise `render` errors (case 277).
-**＋** The `children` of a Rule MOC is an ordered list, set explicitly.
-**＋** `tests/test_render.py` fixes a `full` render into a file outside `.claude/`.
-**＋** The presence of the schema's text in the first turn is checked by `estimate-internal-context-loaded`, not by this Estimate.
-**＋** The tickers of `render` and `sprint` match a line that opens with a code span holding the command (case 235); `tests/test_render.py` fixes it.
+`case-schema.md` is the Render of `rule-case-protocol`, loaded by `/hi`; the hook refuses a hand edit.
+**＋** The one rule stood as the first paragraph of `CLAUDE.md` until this Case (59.8, 272.1).
+**＋** `guppi render --check` keeps the file equal to the page.
 
 When:
 The first `uv run guppi render` after `rule-case-protocol` changed, and the `/hi` of the next session.
 
 Then:
-`vault/wiki/case-schema.md` equals the Render of `rule-case-protocol`; `render --check` exits 0; the file is no longer edited by hand — the hook refuses.
-**＋** The schema holds one text: what stood in it, plus from the old Render — the Frontier `frontier.md` and the closing of its lines, Plan Mode not ending while a line is open; the acknowledging reply of four parts; the harness rendered from `rules/`, never by hand; `ask-guppi` before a `create` without a `ref`, the answer in `context`; the ledger mechanics — the `LEDGER` block, the `Stop` hook, `{tags}`, `{source}`, when each line is written, the refusal without `/hi`, a reply with the block ending in it, a block a tool call followed not lost before `Stop`.
-**＋** The tick sentence in the wording of 270.2; the Language section of the schema on the manner of the English of the vault, the language of the repository and the chat being `rule-language`.
-**＋** The Spec paragraph of the schema names the form of the lines the command scripts tick: `- [ ] `uv run guppi render`: `<file>`` and `- [ ] `uv run guppi sprint`` — the command in the first code span; a line of another form stays debt at Retro.
-**－** Nothing of the schema is repeated in `CLAUDE.md`; `rule-case-protocol` is a child of `rule-plan-mode`, the last of its list.
-**－** The agent's reply to `/hi` does not have to restate the rules of the schema.
+`case-schema.md` opens with the section "The one rule" right under its title: nothing in the vault or the codebase changes without a Decision ratified by the human; the agent has full autonomy over how to implement something once its contract is ratified, and none over the contract itself; when unsure whether something needs ratification, it does; the vault is the only memory — no note outside the repository, what is worth keeping is a `lesson` line or a Case on a Rule page (272.1).
+**＋** The paragraph after it says, as before, that the schema is the Render loaded by `/hi` with `sprint.md`, `brief.md` and `glossary.md`, and that a session without `/hi` holds no Case.
+**＋** `render --check` after the render exits 0.
+**－** The other sections of the schema do not change; the description of the project is not in the schema.
 
 ## Result
 
@@ -67,3 +63,4 @@ Then:
 - 2026-09-20 status: pending → failed · raw/2026-09-20/1749/ledger.md#L6
 - 2026-09-20 updated: the Criterion replaced whole — the text of 278 plus the form of the render and sprint lines; the line on the agent stating two rules at /hi removed; purpose added (case 279.1, supersedes 278) · [[decision-case-279.1]]
 - 2026-09-21 status: pending → passed · raw/2026-09-20/2106/ledger.md#L1
+- 2026-09-21 updated: the Criterion replaced whole — the schema opens with the one rule, the glossary among the files /hi loads (case 288.2) · [[decision-case-288.2]]

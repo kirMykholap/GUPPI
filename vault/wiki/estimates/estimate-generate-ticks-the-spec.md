@@ -1,9 +1,9 @@
 ---
 type: estimate
 kind: QA
-status: passed
+status: pending
 target: "[[rule-page-generation]]"
-purpose: generate ticks, in the Spec beside its yaml, the page line of the Case whose entry it applied
+purpose: generate ticks the page line of a Case in the Spec beside its yaml, and the read line of a reading across the Specs of raw/ — never a line of a later or a superseded Case
 method: pytest tests/test_generate.py with a Spec beside the yaml, plus one reading of this session's spec.md after the librarian's run
 checked: 2026-09-20
 origin: raw/2026-09-17/1119/ledger.md#case-226.1
@@ -15,25 +15,16 @@ tags: [harness, workflow, ledger]
 ## Criterion
 
 Given:
-A yaml entry of kind `estimate` carries `slug`, `status`, `result`, `line` and no `case`; a decision entry carries `case` and `line`, the number of its line in the ledger.
-**＋** The Spec of the unit lies beside the yaml — `raw/<date>/<HHMM>/spec.md`; the Specs of the other sessions are the `spec.md` of their folders under `raw/`.
-**＋** A Case heading in the Spec is `## Case N — …` or `### Case N.M — …`; its section runs to the next such heading.
-**＋** A reading line of the Spec is `- [ ] read `<slug>`` with text after it, in any Case.
-**＋** `tests/test_generate.py` fixes the behaviour on a temp vault with a Spec beside the yaml and a second Spec in another session folder.
-**－** A Rule-class file entry `generate` does not apply — "applied by hand".
+The `purpose` of an Estimate is the line the index is built from, not the Criterion; `set.purpose` changes no promise.
+**＋** An `update` of a rule's Purpose touches no Estimate (187).
+**＋** The Criterion of `estimate-generate-ticks-the-spec` is 286's, of `estimate-internal-context-loaded` 288.1's, both `pending`.
 
 When:
-`guppi generate` applied an entry and marked it `applied`.
+Someone reads the index line of an Estimate, or the Purpose of `rule-case-protocol`.
 
 Then:
-For a `create`, `update`, `delete` or `defer` entry, in the `spec.md` of the same unit the first unticked line `- [ ] <kind> `<slug>`` in the section of the entry's Case becomes `- [x]`; nothing else in the file changes.
-**＋** Two entries of one kind and slug in one Case tick two lines, in order.
-**＋** For an `estimate` entry, and for a `create` entry with `folded`, the first unticked line `- [ ] read `<slug>`` becomes `- [x]` — in the Spec beside the yaml first, then in the `spec.md` of the other session folders of `raw/`, oldest first; one line per entry.
-**＋** In the Spec beside the yaml, a `read` line in the section of a Case whose first decision entry of the yaml carries a `line` greater than the `line` of the `estimate` entry is not the reading's line — the Case was ratified after it; the search goes on to the next line, then to the other sessions.
-**＋** A `create` entry with `folded` ticks both lines: the page line and the reading line; its Case is the reading's Case, the filter does not apply to it.
-**－** A line not found, a section not found, no Spec — no error and no stderr line; the entry is `applied` all the same.
-**－** `lesson` and Rule-class file entries, and an entry marked `failed`, tick no line; the lines on code, tests, migrations and `by hand` are the agent's.
-**－** A Spec under `vault/archive/` is not read; the Specs of the other sessions are not filtered by `line`.
+The `purpose` of `estimate-generate-ticks-the-spec`: generate ticks the page line of a Case in the Spec beside its yaml, and the read line of a reading across the Specs of raw/ — never a line of a later or a superseded Case. The `purpose` of `estimate-internal-context-loaded`: the text of sprint.md, brief.md, case-schema.md and glossary.md is present in the first turn's context after /hi, without a read call. The Purpose of `rule-case-protocol`: "loaded by `/hi` with `sprint.md`, `brief.md` and `glossary.md` (cases 273.1, 288.1)".
+**－** The Criterion and the `status` do not change.
 
 ## Result
 
@@ -47,3 +38,5 @@ For a `create`, `update`, `delete` or `defer` entry, in the `spec.md` of the sam
 - 2026-09-20 status: pending → passed · raw/2026-09-20/1308/ledger.md#L53
 - 2026-09-20 updated: the Criterion replaced whole — the read line of a later Case of the same unit is skipped by the ledger line numbers (case 280) · [[decision-case-280]]
 - 2026-09-21 status: pending → passed · raw/2026-09-20/2106/ledger.md#L2
+- 2026-09-21 updated: the Criterion replaced whole — the read line of a superseded Case is skipped by the marks of the yaml beside the Spec (case 286) · [[decision-case-286]]
+- 2026-09-21 updated: the purpose by the Criterion of 286 (case 290.3) · [[decision-case-290.3]]

@@ -28,7 +28,7 @@ entry never stops the run: it is marked `failed`, reported, and the rest apply (
 47). The Decision page of a Case is written before its entries and carries the body of
 every defer (cases 52.4, 186.1); the cascade after all entries computes what is
 computed — `built`, the archive of a superseded decision, the severity of an Insight —
-never by hand (case 104). Once an entry is applied, the script ticks its line in the Spec — a page entry the line `- [ ] <kind> `<slug>`` in the section of the entry's Case of the Spec beside the yaml; an `estimate` entry, or a `create` with a folded reading, the first unticked `- [ ] read `<slug>`` line, in the Spec beside the yaml first — skipping the section of a Case whose first decision entry stands after the reading in the ledger, a Case ratified after it — and then in the `spec.md` of the other session folders of `raw/`, oldest first — so the Spec's page lines and reading lines are closed by the one who did the work, and a line not found is no error (cases 226.1, 270.1, 280). The mechanism — the shape of every entry and every History line — lives in the docstring of `guppi/generate.py`.
+never by hand (case 104). Once an entry is applied, the script ticks its line in the Spec — a page entry the line `- [ ] <kind> `<slug>`` in the section of the entry's Case of the Spec beside the yaml; an `estimate` entry, or a `create` with a folded reading, the first unticked `- [ ] read `<slug>`` line, in the Spec beside the yaml first — skipping the section of a Case whose first decision entry stands after the reading in the ledger, a Case ratified after it — and then in the `spec.md` of the other session folders of `raw/`, oldest first, skipping in every Spec the section of a Case whose entries the yaml beside it marks `superseded_by`, its work standing under the superseding Case — so the Spec's page lines and reading lines are closed by the one who did the work, and a line not found is no error (cases 226.1, 270.1, 280, 286). The mechanism — the shape of every entry and every History line — lives in the docstring of `guppi/generate.py`.
 
 ## History
 
@@ -107,3 +107,4 @@ never by hand (case 104). Once an entry is applied, the script ticks its line in
 - 2026-09-20 estimate estimate-generate-rewords added · [[decision-case-274.1]]
 - 2026-09-20 status: built → draft · cascade
 - 2026-09-20 updated: a reading does not tick the read line of a Case ratified after it in the same session (case 280) · [[decision-case-280]]
+- 2026-09-21 updated: a reading does not tick the read line of a superseded Case, in any Spec of raw/ (case 286) · [[decision-case-286]]

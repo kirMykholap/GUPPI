@@ -1,0 +1,34 @@
+- 17:39:34 decision[case 324][update][rule-atomicity]{ref:rule-atomicity}
+- 17:39:34 decision[case 324][update][rule-case-protocol]{ref:rule-case-protocol}
+- 17:54:35 decision[case 325.1][update][rule-prespec]{ref:rule-prespec}
+- 17:54:35 decision[case 325.1][create][estimate-prespec-catches-an-unwrapped-render]{ref:rule-prespec}{tags:harness,workflow}
+- 17:54:35 decision[case 325.2][update][rule-lint]{ref:rule-lint}
+- 17:54:35 decision[case 325.2][update][estimate-lint-catches]{ref:estimate-lint-catches}
+- 18:04:29 decision[case 326][update][rule-page-generation]{ref:rule-page-generation}
+- 18:04:29 decision[case 326][update][estimate-generate-ticks-the-spec]{ref:estimate-generate-ticks-the-spec}
+- 18:38:07 decision[case 327][update][rule-prespec]{ref:rule-prespec}
+- 18:38:07 decision[case 327][update][estimate-prespec-checks-the-plan]{ref:estimate-prespec-checks-the-plan}
+- 18:42:33 decision[case 328][update][rule-page-generation]{ref:rule-page-generation}
+- 18:42:33 decision[case 328][update][estimate-generate-cascades]{ref:estimate-generate-cascades}
+- 19:13:48 decision[case 329][update][estimate-sprint-migration-index-dissolved]{ref:estimate-sprint-migration-index-dissolved}
+- 19:15:25 decision[case 330.1][update][estimate-lint-catches]{ref:estimate-lint-catches}
+- 19:15:25 decision[case 330.1][update][rule-lint]{ref:rule-lint}
+- 19:15:25 decision[case 330.1][update][estimate-plan-mode-names-its-estimates]{ref:estimate-plan-mode-names-its-estimates}
+- 19:15:25 decision[case 330.2][update][rule-estimates-schema]{ref:rule-estimates-schema}
+- 19:18:43 decision[case 331][create][estimate-prespec-catches-a-method-without-a-form]{ref:rule-prespec}{tags:harness,workflow}
+- 19:18:43 decision[case 331][update][rule-prespec]{ref:rule-prespec}
+- 19:30:59 decision[case 332.1][update][rule-case-protocol]{ref:rule-case-protocol}
+- 19:30:59 decision[case 332.2][create][estimate-prespec-simulates-the-pairs]{ref:rule-prespec}{tags:harness,workflow}
+- 19:30:59 decision[case 332.2][update][rule-prespec]{ref:rule-prespec}
+- 19:30:59 decision[case 332.2][update][insight-workflow-edit-pair-signed-from-a-grep-fragment]{ref:insight-workflow-edit-pair-signed-from-a-grep-fragment}
+- 19:38:39 decision[case 333][defer][rule-documentation]{ref:rule-documentation}
+- 19:38:39 decision[case 334][defer][rule-skill-hi]{ref:rule-skill-hi}
+- 19:57:36 decision[case 336][update][rule-estimates-schema]{ref:rule-estimates-schema}{supersedes:case 330.2}
+- 19:57:36 decision[case 336][update][estimate-estimates-schema-checked]{ref:estimate-estimates-schema-checked}
+- 20:07:06 decision[case 337][update][rule-case-protocol]{ref:rule-case-protocol}{supersedes:case 332.1}
+- 20:25:17 decision[case 338.1][update][estimate-prespec-binds-a-sprint-line]{ref:estimate-prespec-binds-a-sprint-line}
+- 20:25:17 decision[case 338.2][update][estimate-prespec-checks-the-plan]{ref:estimate-prespec-checks-the-plan}
+- 20:26:40 decision[case 339][defer][rule-skill-hi]{ref:rule-skill-hi}{supersedes:case 334}
+- 20:29:28 decision[case 340][update][rule-case-protocol]{ref:rule-case-protocol}
+- 20:35:17 decision[case 335][update][rule-prespec]{ref:rule-prespec}
+- 20:35:17 decision[case 335][update][estimate-prespec-checks-the-plan]{ref:estimate-prespec-checks-the-plan}

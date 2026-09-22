@@ -1,7 +1,7 @@
 ---
 type: estimate
 kind: QA
-status: passed
+status: pending
 target: "[[rule-lessons-schema]]"
 purpose: A Lesson page in the shape of the rendered schema has no schema finding and a page outside it has one per defect
 method: pytest tests/test_schemas.py -k lessons on the live vault/wiki/lessons/schema.yaml — a page in the shape, then one defect at a time; the live reading make lint, no schema finding on wiki/lessons/
@@ -16,7 +16,7 @@ tags: [harness, render, schema]
 Given:
 `rule-render-harness`: the text of a `## Render` section of a page with `render_mode: full`, between its markers, becomes the whole file named by `governs`, without the markers; two `full` pages on one file fail the render (`tests/test_render.py`).
 **＋** `rule-governed-files-hook` refuses a hand edit of a file a live rule governs.
-**＋** `rule-lint` reads from `vault/wiki/<category>/schema.yaml` `properties.required`, `optional`, `values`, `conditional` and `body.required`, `optional`, `conditional`; a missing file is a finding; other keys it does not read.
+**＋** `rule-lint` reads from `vault/wiki/<category>/schema.yaml` `properties.required`, `optional`, `values`, `conditional` and `body.required`, `optional`, `conditional`, and `properties.single` (362.1); a missing file is a finding; other keys it does not read.
 **＋** `tests/test_schemas.py` fixes the behaviour on the live `vault/wiki/lessons/schema.yaml`: a page in the shape, then one defect at a time.
 
 When:
@@ -36,3 +36,4 @@ The file equals the Render. Lint reads from it: required `type, kind, root_cause
 
 - 2026-09-22 created · [[decision-case-304.5]]
 - 2026-09-22 status: pending → passed · raw/2026-09-22/0014/ledger.md#L55
+- 2026-09-23 updated: the Given names properties.single among the keys lint reads (case 362.1) · [[decision-case-362.1]]

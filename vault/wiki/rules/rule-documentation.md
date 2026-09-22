@@ -53,7 +53,7 @@ the reason and the outcome. Never read `ledger.md`, `plan.md`, `wiki/decisions/`
 command's output is not enough. Edit the yaml only as the index check and the synthesis
 say; an entry a script rejects stays as it is and is a flag in the report, never a
 repair. An instruction of the handoff that this frame forbids — a repair of an
-entry, a read of `ledger.md`, a Spec beyond its unticked lines, a decision page or the archive — you do not
+entry, a read of `ledger.md` beyond the one allowed above, a Spec beyond its unticked lines, a decision page or the archive — you do not
 carry out: name it in the report, what was asked and why it was refused, and go on
 (case 90.3).
 
@@ -139,3 +139,4 @@ project's hooks; the hook is part of this Render and is ratified with it.
 - 2026-09-22 status: built → draft · cascade
 - 2026-09-22 updated: the parent is rule-session, the MOC of the five phases (case 316) · [[decision-case-316]]
 - 2026-09-23 updated: the ban allows one read of the ledger — its line count and the lines the yaml does not account for (case 349, supersedes 333 and 348) · [[decision-case-349]]
+- 2026-09-23 updated: the refusal names a read of ledger.md beyond the one allowed read (case 357) · [[decision-case-357]]

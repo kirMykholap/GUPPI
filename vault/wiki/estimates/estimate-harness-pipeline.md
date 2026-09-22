@@ -1,10 +1,10 @@
 ---
 type: estimate
 kind: QA
-status: pending
+status: passed
 target: "[[rule-harness]]"
 method: make test-harness over tests/test_render.py and tests/test_lint.py; the live reading of make lint by hand
-checked: 2026-09-18
+checked: 2026-09-23
 origin: raw/2026-09-10/ledger.md#case-37
 sprint: migration
 created: 2026-09-10
@@ -26,7 +26,7 @@ The Purpose says: three rules belong to no phase of the session, and five more s
 
 ## Result
 
-2026-09-18, make test-harness and make lint in session 1252: test-harness 79 passed over tests/test_render.py and tests/test_lint.py; make lint — render --check silent, sprint --check silent, then guppi lint 82 lines exit 1, in that order; the Purpose of rule-harness names the three rules of no phase and the check of rule-sprint between them, in the ratified order
+2026-09-23, make test-harness: 95 passed; uv run guppi render --check, guppi sprint --check, guppi glossary --check each exit 0 with no output; the Purpose of rule-harness read by hand: three rules in make lint in the order harness files, sprint file, glossary file, then the pages, five more outside the pipeline
 
 ## History
 
@@ -39,3 +39,4 @@ The Purpose says: three rules belong to no phase of the session, and five more s
 - 2026-09-22 updated: two lines of the Criterion — glossary --check the third step of make lint (case 306.5; pre-spec) · [[decision-case-306.5]]
 - 2026-09-22 updated: the then line counts three file checks, glossary --check the third (case 311) · [[decision-case-311]]
 - 2026-09-22 updated: the Purpose it reads names five rules outside the pipeline (case 323) · [[decision-case-323]]
+- 2026-09-23 status: pending → passed · raw/2026-09-23/0034/ledger.md#L60

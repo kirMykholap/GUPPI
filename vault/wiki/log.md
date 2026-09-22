@@ -2911,3 +2911,115 @@ instruction. The global feed; a page's own `## History` is the per-page view.
 - 2026-09-23 decisions/decision-case-345 archived · cleanup
 - 2026-09-23 decisions/decision-case-346 archived · cleanup
 - 2026-09-23 decisions/decision-case-348 archived · cleanup
+- 2026-09-23 entities/entity-sprint-migration moved to the Backlog: rule-work-mode passed over in 29 sessions in a row — 0034, 2046, 1121, 0014, 1853, 1315, 0019, 2106, 1749, 1308, 0958, 0740, 0527, 2253, 2054, 1957, 1252, 1119, 2238, 1955, 2225, 1809, 1448, 1110, 1633, 1229, 1029, 0747, 0652 · generate · generate
+- 2026-09-23 entities/entity-sprint-migration moved to the Backlog: rule-subagent-guppi passed over in 29 sessions in a row — 0034, 2046, 1121, 0014, 1853, 1315, 0019, 2106, 1749, 1308, 0958, 0740, 0527, 2253, 2054, 1957, 1252, 1119, 2238, 1955, 2225, 1809, 1448, 1110, 1633, 1229, 1029, 0747, 0652 · generate · generate
+- 2026-09-23 entities/entity-sprint-migration milestone Slice 3b — Work Mode left the Milestones: its items moved to the Backlog · generate · generate
+- 2026-09-23 decisions/decision-case-354.1 created · raw/2026-09-23/0034/ledger.md#case-354.1 · generate
+- 2026-09-23 rules/rule-sprint updated: a milestone item passed over in three sessions in a row goes to the Backlog by generate (case 354.1) · [[decision-case-354.1]] · generate
+- 2026-09-23 rules/rule-page-generation updated: after the cascade, the move of a passed-over sprint item to the Backlog (case 354.1) · [[decision-case-354.1]] · generate
+- 2026-09-23 estimates/estimate-sprint-moves-a-passed-over-item created · [[decision-case-354.1]] · generate
+- 2026-09-23 rules/rule-sprint estimate estimate-sprint-moves-a-passed-over-item added · [[decision-case-354.1]] · generate
+- 2026-09-23 decisions/decision-case-354.2 created · raw/2026-09-23/0034/ledger.md#case-354.2 · generate
+- 2026-09-23 rules/rule-sprint updated: a milestone the move left with no line leaves the Milestones (case 354.2) · [[decision-case-354.2]] · generate
+- 2026-09-23 rules/rule-page-generation updated: the move drops a milestone it left with no line (case 354.2) · [[decision-case-354.2]] · generate
+- 2026-09-23 estimates/estimate-sprint-drops-an-emptied-milestone created · [[decision-case-354.2]] · generate
+- 2026-09-23 rules/rule-sprint estimate estimate-sprint-drops-an-emptied-milestone added · [[decision-case-354.2]] · generate
+- 2026-09-23 decisions/decision-case-354.3 created · raw/2026-09-23/0034/ledger.md#case-354.3 · generate
+- 2026-09-23 rules/rule-skill-hi updated: a sprint item in the Frontier is one line, its title opening with its slugs in code spans (case 354.3) · [[decision-case-354.3]] · generate
+- 2026-09-23 estimates/estimate-hi-writes-frontier updated: the Criterion names the line of a sprint item with its slugs in code spans (case 354.3) · [[decision-case-354.3]] · generate
+- 2026-09-23 decisions/decision-case-354.4 created · raw/2026-09-23/0034/ledger.md#case-354.4 · generate
+- 2026-09-23 rules/rule-brief updated: Flags name the items generate moved to the Backlog and the milestones it dropped (case 354.4) · [[decision-case-354.4]] · generate
+- 2026-09-23 estimates/estimate-brief-written updated: the Criterion names the Flags line of a move to the Backlog (case 354.4) · [[decision-case-354.4]] · generate
+- 2026-09-23 decisions/decision-case-355.1 created · raw/2026-09-23/0034/ledger.md#case-355.1 · generate
+- 2026-09-23 rules/rule-case-protocol updated: ratification in the chat is the ledger preview alone, the agent's text after one horizontal rule (case 355.1) · [[decision-case-355.1]] · generate
+- 2026-09-23 estimates/estimate-case-protocol-loaded updated: the Criterion names the row of ratification (case 355.1) · [[decision-case-355.1]] · generate
+- 2026-09-23 estimates/estimate-case-protocol-case-form updated: the Criterion names ratification as the ledger preview alone (case 355.1) · [[decision-case-355.1]] · generate
+- 2026-09-23 decisions/decision-case-355.2 created · raw/2026-09-23/0034/ledger.md#case-355.2 · generate
+- 2026-09-23 rules/rule-case-protocol updated: a Case with sub-cases is shown in one reply, ratified at once or by ids (case 355.2) · [[decision-case-355.2]] · generate
+- 2026-09-23 estimates/estimate-case-protocol-loaded updated: the Criterion names the sub-cases shown in one reply (case 355.2) · [[decision-case-355.2]] · generate
+- 2026-09-23 estimates/estimate-case-protocol-case-form updated: the Criterion names the sub-cases shown in one reply (case 355.2) · [[decision-case-355.2]] · generate
+- 2026-09-23 decisions/decision-case-356.1 created · raw/2026-09-23/0034/ledger.md#case-356.1 · generate
+- 2026-09-23 decisions/decision-case-352 superseded by decision-case-356.1 · [[decision-case-356.1]] · generate
+- 2026-09-23 rules/rule-skill-hi defer by decision-case-352 superseded · [[decision-case-356.1]] · generate
+- 2026-09-23 rules/rule-skill-hi updated: pre-spec fails on an open Cases line; a W line closes when its work is done (case 356.1, supersedes 352) · [[decision-case-356.1]] · generate
+- 2026-09-23 rules/rule-prespec updated: an open line under Work is no finding (case 356.1) · [[decision-case-356.1]] · generate
+- 2026-09-23 estimates/estimate-hi-writes-frontier updated: the Criterion names the W line open until its work is done (case 356.1) · [[decision-case-356.1]] · generate
+- 2026-09-23 estimates/estimate-prespec-checks-the-plan updated: the Criterion names an open Work line clean (case 356.1) · [[decision-case-356.1]] · generate
+- 2026-09-23 decisions/decision-case-356.2 created · raw/2026-09-23/0034/ledger.md#case-356.2 · generate
+- 2026-09-23 rules/rule-skill-hi updated: a sprint line never closes defer case N (case 356.2) · [[decision-case-356.2]] · generate
+- 2026-09-23 rules/rule-prespec updated: a sprint line closed defer case N is a finding (case 356.2) · [[decision-case-356.2]] · generate
+- 2026-09-23 estimates/estimate-hi-writes-frontier updated: the Criterion names the sprint line never deferred (case 356.2) · [[decision-case-356.2]] · generate
+- 2026-09-23 estimates/estimate-prespec-checks-the-plan updated: the Criterion names the finding on a deferred sprint line (case 356.2) · [[decision-case-356.2]] · generate
+- 2026-09-23 decisions/decision-case-357 created · raw/2026-09-23/0034/ledger.md#case-357 · generate
+- 2026-09-23 rules/rule-documentation updated: the refusal names a read of ledger.md beyond the one allowed read (case 357) · [[decision-case-357]] · generate
+- 2026-09-23 estimates/estimate-documentation-completes updated: the Criterion refuses a read of the ledger beyond the one allowed (case 357) · [[decision-case-357]] · generate
+- 2026-09-23 decisions/decision-case-358 created · raw/2026-09-23/0034/ledger.md#case-358 · generate
+- 2026-09-23 decisions/decision-case-347 updated: the Context rewritten after ratification to cite the event log, signed after the fact (case 358) · [[decision-case-358]] · generate
+- 2026-09-23 decisions/decision-case-359 created · raw/2026-09-23/0034/ledger.md#case-359 · generate
+- 2026-09-23 rules/rule-agent-writing updated: a claim no wider than the output it rests on (case 359) · [[decision-case-359]] · generate
+- 2026-09-23 estimates/estimate-agent-writing-followed updated: the Criterion names the width of a claim (case 359) · [[decision-case-359]] · generate
+- 2026-09-23 insights/insight-workflow-fact-signed-from-a-check-that-does-not-cover-it updated: actioned by rule-agent-writing — a claim no wider than its check (case 359) · [[decision-case-359]] · generate
+- 2026-09-23 decisions/decision-case-360 created · raw/2026-09-23/0034/ledger.md#case-360 · generate
+- 2026-09-23 rules/rule-one-judgment-one-implementation created · [[decision-case-360]] · generate
+- 2026-09-23 rules/rule-claude-md child rule-one-judgment-one-implementation added · [[decision-case-360]] · generate
+- 2026-09-23 estimates/estimate-one-judgment-one-implementation-followed created · [[decision-case-360]] · generate
+- 2026-09-23 rules/rule-one-judgment-one-implementation estimate estimate-one-judgment-one-implementation-followed added · [[decision-case-360]] · generate
+- 2026-09-23 rules/rule-claude-md updated: the third child rule-one-judgment-one-implementation, its marker in the Render (case 360) · [[decision-case-360]] · generate
+- 2026-09-23 estimates/estimate-claude-md-rendered updated: the Criterion names the third child and drops index.md, gone since case 318 (case 360) · [[decision-case-360]] · generate
+- 2026-09-23 insights/insight-harness-one-rule-implemented-twice-drifts updated: actioned by rule-one-judgment-one-implementation (case 360) · [[decision-case-360]] · generate
+- 2026-09-23 decisions/decision-case-362.1 created · raw/2026-09-23/0034/ledger.md#case-362.1 · generate
+- 2026-09-23 rules/rule-lint updated: the class schema reads properties.single — a field holding a list where one value is its shape (case 362.1) · [[decision-case-362.1]] · generate
+- 2026-09-23 estimates/estimate-lint-catches updated: the Criterion names the finding on a single field holding a list (case 362.1) · [[decision-case-362.1]] · generate
+- 2026-09-23 decisions/decision-case-362.2 created · raw/2026-09-23/0034/ledger.md#case-362.2 · generate
+- 2026-09-23 rules/rule-insights-schema updated: addressed_by listed under properties.single (case 362.2) · [[decision-case-362.2]] · generate
+- 2026-09-23 estimates/estimate-insights-schema-checked updated: the Criterion names properties.single and addressed_by under it (case 362.2) · [[decision-case-362.2]] · generate
+- 2026-09-23 decisions/decision-case-361 created · raw/2026-09-23/0034/ledger.md#case-361 · generate
+- 2026-09-23 rules/rule-insights-schema updated: addressed_by is one link, the latest; a list is not its shape (case 361) · [[decision-case-361]] · generate
+- 2026-09-23 estimates/estimate-insights-schema-checked updated: the Criterion names the one link of addressed_by (case 361) · [[decision-case-361]] · generate
+- 2026-09-23 lessons/lesson-ledger-ratification-with-a-new-item-lost-its-block created · raw/2026-09-23/0034/ledger.md#L42 · generate
+- 2026-09-23 estimates/estimate-case-protocol-acknowledging-reply updated: the Criterion names the one acknowledging reply of a Case with sub-cases (case 355.2) · [[decision-case-355.2]] · generate
+- 2026-09-23 rules/rule-case-protocol updated: Plan Mode ends with no open line under Cases (case 356.1) · [[decision-case-356.1]] · generate
+- 2026-09-23 estimates/estimate-case-protocol-loaded updated: the Criterion names the open Cases line of the Plan Mode paragraph (case 356.1) · [[decision-case-356.1]] · generate
+- 2026-09-23 rules/rule-case-protocol updated: the Plan Mode paragraph names the closer sprint (case 356.2) · [[decision-case-356.2]] · generate
+- 2026-09-23 estimates/estimate-case-protocol-loaded updated: the Criterion names the closer sprint of the Plan Mode paragraph (case 356.2) · [[decision-case-356.2]] · generate
+- 2026-09-23 rules/rule-decisions-schema updated: a Decision's History takes one updated line of a Case that signs its text after the fact (case 358) · [[decision-case-358]] · generate
+- 2026-09-23 estimates/estimate-decisions-schema-checked updated: the Criterion names the updated line of a Decision's History (case 358) · [[decision-case-358]] · generate
+- 2026-09-23 estimates/estimate-decisions-schema-checked updated: the Given names properties.single among the keys lint reads (case 362.1) · [[decision-case-362.1]] · generate
+- 2026-09-23 estimates/estimate-entities-schema-checked updated: the Given names properties.single among the keys lint reads (case 362.1) · [[decision-case-362.1]] · generate
+- 2026-09-23 estimates/estimate-estimates-schema-checked updated: the Given names properties.single among the keys lint reads (case 362.1) · [[decision-case-362.1]] · generate
+- 2026-09-23 estimates/estimate-insights-schema-checked updated: the Given names properties.single among the keys lint reads (case 362.1) · [[decision-case-362.1]] · generate
+- 2026-09-23 estimates/estimate-lessons-schema-checked updated: the Given names properties.single among the keys lint reads (case 362.1) · [[decision-case-362.1]] · generate
+- 2026-09-23 estimates/estimate-rules-schema-checked updated: the Given names properties.single among the keys lint reads (case 362.1) · [[decision-case-362.1]] · generate
+- 2026-09-23 estimates/estimate-page-schemas-one-file-per-rule updated: the Given names properties.single among the keys lint reads (case 362.1) · [[decision-case-362.1]] · generate
+- 2026-09-23 estimates/estimate-generate-cascades status: pending → passed · raw/2026-09-23/0034/ledger.md#L57 · generate
+- 2026-09-23 estimates/estimate-generate-fails-alone status: pending → failed · raw/2026-09-23/0034/ledger.md#L58 · generate
+- 2026-09-23 estimates/estimate-prespec-binds-a-sprint-line status: pending → passed · raw/2026-09-23/0034/ledger.md#L59 · generate
+- 2026-09-23 estimates/estimate-harness-pipeline status: pending → passed · raw/2026-09-23/0034/ledger.md#L60 · generate
+- 2026-09-23 estimates/estimate-case-protocol-ledger-line-form status: pending → passed · raw/2026-09-23/0034/ledger.md#L61 · generate
+- 2026-09-23 estimates/estimate-prespec-reconciles status: pending → passed · raw/2026-09-23/0034/ledger.md#L62 · generate
+- 2026-09-23 estimates/estimate-sprint-migration-index-dissolved status: pending → failed · raw/2026-09-23/0034/ledger.md#L63 · generate
+- 2026-09-23 lessons/lesson-spec-text-repaired-after-ratification-without-a-showing created · raw/2026-09-23/0034/ledger.md#L64 · generate
+- 2026-09-23 insights/insight-workflow-ratified-content-changed-on-the-agents-own-finding created · raw/2026-09-23/0034/ledger.md#L64 · generate
+- 2026-09-23 lessons/lesson-work-mode-check-widened-the-list-and-the-agent-acted updated: clustered into insight-workflow-ratified-content-changed-on-the-agents-own-finding by the librarian's synthesis · raw/2026-09-23/0034/ledger.md#L64 · generate
+- 2026-09-23 lessons/lesson-spec-text-repaired-after-ratification-without-a-showing updated: clustered into insight-workflow-ratified-content-changed-on-the-agents-own-finding by the librarian's synthesis · raw/2026-09-23/0034/ledger.md#L64 · generate
+- 2026-09-23 rules/rule-agent-writing status: built → draft · cascade · generate
+- 2026-09-23 rules/rule-brief status: built → draft · cascade · generate
+- 2026-09-23 rules/rule-claude-md status: built → draft · cascade · generate
+- 2026-09-23 rules/rule-decisions-schema status: built → draft · cascade · generate
+- 2026-09-23 rules/rule-entities-schema status: built → draft · cascade · generate
+- 2026-09-23 rules/rule-harness status: draft → built · cascade · generate
+- 2026-09-23 rules/rule-insights-schema status: built → draft · cascade · generate
+- 2026-09-23 rules/rule-lessons-schema status: built → draft · cascade · generate
+- 2026-09-23 rules/rule-page-schemas status: built → draft · cascade · generate
+- 2026-09-23 rules/rule-rules-schema status: built → draft · cascade · generate
+- 2026-09-23 rules/rule-sprint status: built → draft · cascade · generate
+- 2026-09-23 decisions/decision-case-352 archived · superseded · generate
+- 2026-09-23 lessons/lesson-prespec-a-second-copy-of-a-matching-rule-drifts archived · insight actioned · generate
+- 2026-09-23 lessons/lesson-lint-decision-target-archived-counts-as-missing archived · insight actioned · generate
+- 2026-09-23 lessons/lesson-fact-asserted-from-a-partial-check archived · insight actioned · generate
+- 2026-09-23 lessons/lesson-ledger-estimate-line-carried-a-count-not-read archived · insight actioned · generate
+- 2026-09-23 lessons/lesson-fact-asserted-from-a-partial-check archived · cleanup
+- 2026-09-23 lessons/lesson-ledger-estimate-line-carried-a-count-not-read archived · cleanup
+- 2026-09-23 lessons/lesson-lint-decision-target-archived-counts-as-missing archived · cleanup
+- 2026-09-23 lessons/lesson-prespec-a-second-copy-of-a-matching-rule-drifts archived · cleanup
+- 2026-09-23 decisions/decision-case-352 archived · cleanup

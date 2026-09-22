@@ -2,7 +2,7 @@
 type: rule
 kind: Leaf
 purpose: Prevents the next session from starting without the facts and the flags of this one
-status: built
+status: draft
 enforcement: render
 governs: .claude/agents/librarian-guppi.md
 render_mode: partial
@@ -30,12 +30,12 @@ with these sections in this order:
 - Readings due: after `generate`, every Estimate whose `status` is `pending` or `failed` — one line per Estimate: the Estimate, the rule that stands `draft`, and where it is read, from the unticked `- [ ] read …` line of the session's `spec.md` or, when there is none, from the page's `method` (case 200.3); a `failed` one first, with the result of its reading in one line; nothing from the previous brief (case 168).
 - Deferred: at most seven items — one per target of a `defer` entry in the yamls the walk named, every item of the previous brief's list whose decision no `supersedes` retired, and every Insight whose `status` is `open` — but never a target the sprint page names, under a milestone or in its Backlog: the sprint is its window, and its count of briefs does not grow (case 229.4). Rank by `severity` — the Insight's own, or that of the Insight related to a deferred Case — then by the number of briefs the item has stood in: the previous brief's count plus one. An Insight's line carries its slug, its `severity`, its `pattern` and its Proposal in one or two sentences; in Plan Mode it is a Case whose `recommend` starts from that Proposal, and it ends in an `update` of the Insight (`status: actioned`, `addressed_by`), a rejection written the same way, or a `defer` with the Insight as its target.
 - Flags, no limit: entries marked `incomplete`, `failed`, `near` or `unparsed`;
-  failed Estimates; MOC candidates; stale defers; contradictions; the lint output.
+  failed Estimates; MOC candidates; stale defers; contradictions; every item `generate` moved to the Backlog in this run — its slug, its milestone, the count and the sessions — and every milestone it dropped, from the lines it printed (case 354.4); the lint output.
 - Next session: two lists, one line per item, an item in one list only, a list with no item the line "none" (case 268.1). `Cases`, what needs a decision: a handoff flag with a question or a request to change the sprint, a `failed` Estimate, a contradiction, a defect you found — what and from where. `Work`, what is done without a decision: every `pending` reading of Readings due by its slug, the unticked boxes of the Specs, a ledger line this run did not apply, a dirty tree.
 - Readings at the close: `make test`, `make lint`, page counts.
 When a fact the brief needs is in no input — the status of an Estimate, the severity
 of an Insight — read it from the page and name the page in the report. Write facts
-and flags only. Add no decision and no judgment of the work. A handoff flag that asks for a change of the sprint goes into the `Cases` of Next session; the sprint page changes by a Case, and `vault/wiki/sprint.md` is written by `guppi sprint`, never by you (case 209.6).
+and flags only. Add no decision and no judgment of the work. A handoff flag that asks for a change of the sprint goes into the `Cases` of Next session; the sprint page changes by a Case, or by the move of `generate` (case 354.1), and `vault/wiki/sprint.md` is written by `guppi sprint`, never by you (case 209.6).
 
 The brief has a second writer, the skill `carry` (`rule-carry-over`): it writes the same frame in the short shape — Where things stand names the conserved Spec by path, its Cases and what is not done on it; Readings due, Next session and Readings at the close are omitted; Deferred is the previous brief's list as it stands plus the `defer` items of this Spec by slug, less the targets the sprint page names (case 229.4); Flags say what the vault does not know about this session; no cap of seven and no ranking (case 190.4).
 <!-- /rule-brief -->
@@ -68,3 +68,5 @@ The brief has a second writer, the skill `carry` (`rule-carry-over`): it writes 
 - 2026-09-20 status: built → draft · cascade
 - 2026-09-20 updated: pre-task → the vault query before a create (case 277.4) · [[decision-case-277.4]]
 - 2026-09-20 status: draft → built · cascade
+- 2026-09-23 updated: Flags name the items generate moved to the Backlog and the milestones it dropped (case 354.4) · [[decision-case-354.4]]
+- 2026-09-23 status: built → draft · cascade

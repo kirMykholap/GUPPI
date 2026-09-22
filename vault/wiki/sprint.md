@@ -14,17 +14,15 @@ Rule-class files dissolved, `index.md` gone, the `file` route out of the scripts
 - [ ] vault/parked/, the 2026-08 documents, the old archive root and the empty raw date folders are gone by decision at the close of the sprint · pending
 - [ ] make test green on the last commit of migration and the branch merged into main · pending
 - [ ] No Rule-class file at the close of Slice 3f — the schemas rendered from rule pages, the glossary from entity-glossary, index.md gone, the file route out of the scripts · pending
-- [ ] index.md is gone and no live page, harness file or script docstring points at a §N of it or at the file as a source · pending
+- [ ] index.md is gone and no live page, harness file or script docstring points at a §N of it or at the file as a source · failed
 - [x] The file route is out of the scripts — no RULE_CLASS, rule_class, applied by hand or prose_names in guppi/; an update item with file is a pre-spec finding; a slug without a prefix lands category unknown; tests green and lint clean on the schemas · passed
 
 ## Milestones
 
-### [ ] Slice 3b — Work Mode
+### [ ] Slice 4 — conversion of the parked pages by group
 
-- [ ] [[rule-work-mode]] — Work Mode: the Spec as tasks with code, the ticked boxes in `spec.md`, the test of each Estimate written first and turned green; the sentence of [[insight-workflow-code-live-before-the-page-it-reads]] on a check that reads a page the same Spec changes; cases 183, 206, 238 · draft · decision-case-183, decision-case-206, decision-case-218, decision-case-231, decision-case-242, decision-case-248, decision-case-252, decision-case-254, decision-case-260, decision-case-263, decision-case-269, decision-case-276, decision-case-281, decision-case-285, decision-case-289, decision-case-293, decision-case-303, decision-case-307, decision-case-322
-- [ ] [[rule-subagent-guppi]] — what a subagent may do in Work Mode, and the fork that comes back to the main agent as a Case; cases 183, 206 · draft · decision-case-183, decision-case-206, decision-case-218, decision-case-231, decision-case-242, decision-case-248, decision-case-252, decision-case-254, decision-case-260, decision-case-263, decision-case-269, decision-case-276, decision-case-281, decision-case-285, decision-case-289, decision-case-293, decision-case-303, decision-case-307, decision-case-322
+- [ ] [[estimate-sprint-migration-leftovers-gone]] — every page of `vault/parked/` and every document of 2026-08 under `docs/` converted, archived or deleted by a decision · pending
 
-### [ ] Slice 4 — conversion of the parked pages by group — 1 item: [[estimate-sprint-migration-leftovers-gone]]
 ### [ ] Slice 5 — closing — 4 items: [[estimate-sprint-migration-lint-clean]], [[estimate-sprint-migration-merges]], [[rule-spec-box]], [[rule-morph]]
 
 ## Backlog
@@ -34,6 +32,8 @@ Rule-class files dissolved, `index.md` gone, the `file` route out of the scripts
 - [ ] reuse, the question: the vault query before a `create` asks a second question — what of the existing this thing could use, by the index lines of the Entities — and the answer stands in `context`; the Case names what it found in `uses` or says why it is not used (case 319)
 - [ ] reuse, the hook: a lint finding on two live Entities naming one path in `code_ref` with no edge between them; a new module written beside an existing one in another file is caught by the question alone, not by a script (case 319)
 - [ ] a template engine for the rendered files — one script with the shape of each file declared, once a third render beside `sprint.md` and `glossary.md` appears (case 301)
+- [ ] [[rule-work-mode]] — Work Mode: the Spec as tasks with code, the ticked boxes in `spec.md`, the test of each Estimate written first and turned green; the sentence of [[insight-workflow-code-live-before-the-page-it-reads]] on a check that reads a page the same Spec changes; cases 183, 206, 238 · draft · decision-case-183, decision-case-206, decision-case-218, decision-case-231, decision-case-242, decision-case-248, decision-case-252, decision-case-254, decision-case-260, decision-case-263, decision-case-269, decision-case-276, decision-case-281, decision-case-285, decision-case-289, decision-case-293, decision-case-303, decision-case-307, decision-case-322
+- [ ] [[rule-subagent-guppi]] — what a subagent may do in Work Mode, and the fork that comes back to the main agent as a Case; cases 183, 206 · draft · decision-case-183, decision-case-206, decision-case-218, decision-case-231, decision-case-242, decision-case-248, decision-case-252, decision-case-254, decision-case-260, decision-case-263, decision-case-269, decision-case-276, decision-case-281, decision-case-285, decision-case-289, decision-case-293, decision-case-303, decision-case-307, decision-case-322
 
 ## Closed
 

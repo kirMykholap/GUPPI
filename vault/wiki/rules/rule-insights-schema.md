@@ -2,7 +2,7 @@
 type: rule
 kind: Leaf
 purpose: Prevents an Insight page from carrying a field or section outside the shape lint checks, or lacking one it needs
-status: built
+status: draft
 enforcement: render
 governs: vault/wiki/insights/schema.yaml
 render_mode: full
@@ -39,6 +39,7 @@ description: |
 properties:
   required: [type, pattern, status, children, severity, origin, sprint, created, tags]
   optional: [addressed_by, deferred_by]
+  single: [addressed_by]
   values:
     status: [open, actioned, archived]
   conditional:
@@ -60,7 +61,7 @@ fields:
   severity: |
     required; integer. `count(children where status != archived)`. Recomputed by the cascade of `generate` (case 104.3), a child read in `wiki/lessons/` or in the archive (case 110), never written by hand (case 110.1).
   addressed_by: |
-    required on `actioned`; decision quoted wikilink `"[[slug]]"`. The ratified decision that fixed the pattern, or rejected it (case 124). The field is the link; no body section repeats it (case 166.1).
+    required on `actioned`; decision quoted wikilink `"[[slug]]"`. The ratified decision that fixed the pattern, or rejected it (case 124) — one, the latest; a list is not a shape of this field, and of two Cases of one plan only one actions the Insight (case 361). The field is the link; no body section repeats it (case 166.1).
   deferred_by: |
     optional; list of decision quoted wikilinks `"[[slug]]"`. The `defer` decisions that postponed it; set by `generate`, cleared by a `supersedes` (case 124.2).
   origin: |
@@ -112,3 +113,6 @@ examples:
 
 - 2026-09-22 created · [[decision-case-304.6]]
 - 2026-09-22 status: draft → built · cascade
+- 2026-09-23 updated: addressed_by listed under properties.single (case 362.2) · [[decision-case-362.2]]
+- 2026-09-23 updated: addressed_by is one link, the latest; a list is not its shape (case 361) · [[decision-case-361]]
+- 2026-09-23 status: built → draft · cascade

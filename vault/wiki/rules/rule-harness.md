@@ -2,7 +2,7 @@
 type: rule
 kind: MOC
 purpose: Prevents the tools of the harness from drifting apart from the pages that describe them
-status: draft
+status: built
 children: ["[[rule-render-harness]]", "[[rule-settings]]", "[[rule-lint]]", "[[rule-page-schemas]]", "[[rule-vault-layout]]", "[[rule-governed-files-hook]]", "[[rule-claude-md]]", "[[rule-bash-guard]]", "[[rule-tests-clock-pinned]]"]
 estimates: ["[[estimate-harness-pipeline]]"]
 applies_to: ["[[entity-guppi]]"]
@@ -47,3 +47,4 @@ them. Three rules belong to no phase of the session: the renderer, the page
 - 2026-09-22 child rule-vault-layout added · [[decision-case-315]]
 - 2026-09-22 updated: rule-vault-layout, the layout of the vault, after rule-page-schemas (case 315) · [[decision-case-315]]
 - 2026-09-22 updated: the glossary step of make lint and the fifth rule outside the pipeline (case 323) · [[decision-case-323]]
+- 2026-09-23 status: draft → built · cascade

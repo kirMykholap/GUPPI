@@ -28,7 +28,7 @@ Then:
 **＋** It edited no yaml entry beyond the marks and the entries of the index check and the synthesis; its commands are in `event_log.md`; its commit is separate from the session's; it did not stop to ask.
 **＋** After `cleanup` and before the brief it runs `uv run guppi render`, then `uv run guppi sprint`, then `uv run guppi glossary`; every line on their stderr is a flag; a file the render could not write is left to the next session start; `make lint` then passes its `render --check` step.
 **＋** After the brief and before the close it runs `uv run guppi archive`; every line on its stderr is a flag; the units it moved and the units it kept, with the reason, go into the report; the session of the run — the latest `<HHMM>/` folder of the run day, else the nearest date back — is skipped, across midnight too; the commit picks the move up.
-**－** An instruction of the handoff to repair a yaml entry, or to read the ledger, a Spec beyond its `- [ ]` lines, a Decision page or the archive, is refused and named in the report — what was asked and why; the refusal does not stop the run.
+**－** An instruction of the handoff to repair a yaml entry, or to read the ledger beyond the one read of case 349, a Spec beyond its `- [ ]` lines, a Decision page or the archive, is refused and named in the report — what was asked and why; the refusal does not stop the run.
 **－** The ban on reading `vault/archive/` stays.
 
 ## Result
@@ -62,3 +62,4 @@ Then:
 - 2026-09-22 updated: the frame's step 6, guppi glossary (case 306.4) · [[decision-case-306.4]]
 - 2026-09-22 status: pending → failed · raw/2026-09-22/1121/ledger.md#L85
 - 2026-09-23 updated: the Criterion names the one allowed read of the ledger (case 349) · [[decision-case-349]]
+- 2026-09-23 updated: the Criterion refuses a read of the ledger beyond the one allowed (case 357) · [[decision-case-357]]

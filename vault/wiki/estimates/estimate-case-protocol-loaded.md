@@ -27,6 +27,10 @@ Then:
 **＋** The paragraph after it says, as before, that the schema is the Render loaded by `/hi` with `sprint.md`, `brief.md` and `glossary.md`, and that a session without `/hi` holds no Case.
 **＋** The Spec paragraph names the field-only `update` of an Estimate: a part named changes alone, a part inside the Criterion sets `pending` (294, 296); it names `reword` among the keys of an `update`, between `replace` and `change`, and, at the end of the description of an `update`, the requirement for signing a pair of either kind and the step that a Case changing a page reads the page's `estimates` (353).
 **＋** The paragraph on the Criterion says that a Case superseded in its own session, before the Spec is approved, leaves the Spec and the superseding Case is written whole; a supersede from a later session leaves the earlier Spec as it is (299.1); the Spec paragraph names `glossary` as the fourth ticker, the glossary lines (306.6).
+**＋** The row of `ratification` says that in the chat the section is the preview of the ledger lines alone, and the agent's own text stands after the Case, after one horizontal rule (355.1).
+**＋** The section Splitting says that a Case with sub-cases is shown in one reply, ratified at once or by ids, with one `LEDGER` block and one Frontier (355.2).
+**＋** The Plan Mode paragraph says Plan Mode does not end while a line under `## Cases` is open (356.1).
+**＋** The Plan Mode paragraph names `[-] … · sprint` for a sprint item left for later, never `· defer case N` (356.2).
 **＋** `render --check` after the render exits 0.
 **－** The other sections of the schema do not change; the description of the project is not in the schema.
 
@@ -74,3 +78,7 @@ Then:
 - 2026-09-22 updated: one line of the Criterion — glossary the fourth ticker (case 306.6) · [[decision-case-306.6]]
 - 2026-09-22 status: pending → passed · raw/2026-09-22/1121/ledger.md#L83
 - 2026-09-23 updated: the Criterion names reword among the keys of an update and the two steps of the author (case 353) · [[decision-case-353]]
+- 2026-09-23 updated: the Criterion names the row of ratification (case 355.1) · [[decision-case-355.1]]
+- 2026-09-23 updated: the Criterion names the sub-cases shown in one reply (case 355.2) · [[decision-case-355.2]]
+- 2026-09-23 updated: the Criterion names the open Cases line of the Plan Mode paragraph (case 356.1) · [[decision-case-356.1]]
+- 2026-09-23 updated: the Criterion names the closer sprint of the Plan Mode paragraph (case 356.2) · [[decision-case-356.2]]

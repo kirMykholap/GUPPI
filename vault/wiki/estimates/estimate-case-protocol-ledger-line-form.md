@@ -1,11 +1,11 @@
 ---
 type: estimate
 kind: QA
-status: pending
+status: passed
 target: "[[rule-case-protocol]]"
 purpose: The written shape of a ledger line, as the documents state it
 method: one reading by hand of case-schema.md after the render, at a session start
-checked: 2026-09-21
+checked: 2026-09-23
 origin: raw/2026-09-16/1034/ledger.md#case-188
 sprint: migration
 created: 2026-09-16
@@ -29,7 +29,7 @@ The ledger paragraph of the schema says: a decision line whose Case closes the r
 
 ## Result
 
-2026-09-21, case-schema.md and index.md §4 read by hand at session 0019: the ledger paragraph of the schema and the field list of §4 both say a decision line whose Case closes the root cause of a lesson of this session carries {addresses:<lesson slug>}, written when the lesson line already stands in the ledger, one mark per lesson; the schema alone says a lesson fixed in another session gets no mark, §4 says it through "of this session"; the lesson line and the estimate line of the schema table and of §4 carry no addressed_by; the general form of §4 shows {source}{tags} and not {addresses} — the mark stands in the field list, not the example
+2026-09-23, case-schema.md as loaded at the /hi of session 0034, read by hand: the ledger paragraph says a decision line whose Case closes the root cause of a lesson of this session carries {addresses:<lesson slug>}, written when the lesson line already stands in the ledger, one mark per lesson, and a lesson fixed in another session gets no mark; the lesson and estimate rows of the table carry no addressed_by; the writing leg had no instance — no Case of this session closed the cause of its one lesson
 
 ## History
 
@@ -41,3 +41,4 @@ The ledger paragraph of the schema says: a decision line whose Case closes the r
 - 2026-09-21 updated: the Criterion replaced whole — the mark {addresses:<lesson slug>} beside {source} and {supersedes} (case 284.2) · [[decision-case-284.2]]
 - 2026-09-21 status: pending → passed · raw/2026-09-21/0019/ledger.md#L1
 - 2026-09-22 updated: the Criterion reads case-schema.md alone; the second copy in index.md is gone (case 318) · [[decision-case-318]]
+- 2026-09-23 status: pending → passed · raw/2026-09-23/0034/ledger.md#L61

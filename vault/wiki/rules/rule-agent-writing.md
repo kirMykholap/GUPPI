@@ -2,7 +2,7 @@
 type: rule
 kind: Leaf
 purpose: Keeps the agent's text to facts with a source, short active sentences, the answer first and the not-done named
-status: built
+status: draft
 enforcement: render
 governs: CLAUDE.md
 render_mode: partial
@@ -26,7 +26,7 @@ no page and no Estimate. It is about the agent's prose; the style of the code is
 <!-- rule-agent-writing -->
 ## How the agent writes
 
-Keep the facts and remove the sales pitch. Name a real source or remove the claim. Short
+Keep the facts and remove the sales pitch. Name a real source or remove the claim. A claim is no wider than the output it rests on: a count comes from the run that printed it, and a claim about a whole set — every line, every entry — from a count on both sides; where no command covers it, write what was seen. Short
 sentences, active voice, a common word over a term. Give the answer first. Say what is done
 and what is not done; never leave the not-done implied.
 <!-- /rule-agent-writing -->
@@ -36,3 +36,5 @@ and what is not done; never leave the not-done implied.
 - 2026-09-20 created · [[decision-case-272.3]]
 - 2026-09-20 estimate estimate-agent-writing-followed added · [[decision-case-272.3]]
 - 2026-09-20 status: draft → built · cascade
+- 2026-09-23 updated: a claim no wider than the output it rests on (case 359) · [[decision-case-359]]
+- 2026-09-23 status: built → draft · cascade

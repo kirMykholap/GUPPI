@@ -11,7 +11,13 @@ English for everything written into the repository: code, identifiers, comments,
 <!-- rule-agent-writing -->
 ## How the agent writes
 
-Keep the facts and remove the sales pitch. Name a real source or remove the claim. Short
+Keep the facts and remove the sales pitch. Name a real source or remove the claim. A claim is no wider than the output it rests on: a count comes from the run that printed it, and a claim about a whole set — every line, every entry — from a count on both sides; where no command covers it, write what was seen. Short
 sentences, active voice, a common word over a term. Give the answer first. Say what is done
 and what is not done; never leave the not-done implied.
 <!-- /rule-agent-writing -->
+
+<!-- rule-one-judgment-one-implementation -->
+## One judgment, one implementation
+
+Where code judges the same text in two places — a check and a writer, a ticker or another check — the pattern or the predicate lives in one module and both sides import it; a second copy of one judgment is a defect on the day it is written. Where the two sides cannot share the code, one test runs both over the same input and asserts they answer alike.
+<!-- /rule-one-judgment-one-implementation -->

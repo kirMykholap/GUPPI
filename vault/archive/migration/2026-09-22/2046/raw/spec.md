@@ -161,7 +161,7 @@ update:
 
 ```tasks
 - [x] update `estimate-prespec-binds-a-sprint-line` — two `replace` pairs inside the Criterion and `set: {method: …}`
-- [ ] read `estimate-prespec-binds-a-sprint-line`
+- [x] read `estimate-prespec-binds-a-sprint-line`
 ```
 
 ## Case 351 — the machine that simulates the pairs, with the live reading named (supersedes 345)
@@ -260,7 +260,7 @@ update:
 - [x] `tests/test_prespec.py` — an anchor that misses; an anchor that hits twice; a pair whose `old` an earlier Case produces is clean
 - [x] `uv run guppi render`: `.claude/skills/pre-spec/SKILL.md`
 - [x] read `estimate-prespec-simulates-the-pairs`
-- [ ] read `estimate-prespec-reconciles`
+- [x] read `estimate-prespec-reconciles`
 ```
 
 ## Case 347 — step 1 of `/carry` names the place of the brief frame, not only the file

@@ -2,12 +2,12 @@
 type: rule
 kind: MOC
 purpose: Prevents the system prompt from holding a line nobody ratified
-status: built
+status: draft
 enforcement: render
 governs: CLAUDE.md
 render_mode: full
 parent: "[[rule-harness]]"
-children: ["[[rule-language]]", "[[rule-agent-writing]]"]
+children: ["[[rule-language]]", "[[rule-agent-writing]]", "[[rule-one-judgment-one-implementation]]"]
 estimates: ["[[estimate-claude-md-rendered]]"]
 origin: raw/2026-09-12/ledger.md#case-59.8
 sprint: migration
@@ -20,7 +20,7 @@ tags: [harness, render]
 Prevents the system prompt from holding a line nobody ratified. `CLAUDE.md` is the
 one file every session reads first; until this page it was hand-written around one
 rendered section, and a ratified sentence went into the file instead of the page
-(case 56). Now the file is the Render of this page, whole, with `rule-language` and `rule-agent-writing` spliced into their markers; a change to it is an `update` of one of the three. The Render holds the description of the project and the two children; the glossary and the Case schema arrive with `/hi`, the one rule opens the schema (cases 272, 273.3, 288.3).
+(case 56). Now the file is the Render of this page, whole, with `rule-language`, `rule-agent-writing` and `rule-one-judgment-one-implementation` spliced into their markers; a change to it is an `update` of one of the four. The Render holds the description of the project and the three children; the glossary and the Case schema arrive with `/hi`, the one rule opens the schema (cases 272, 273.3, 288.3).
 
 ## Render
 
@@ -32,11 +32,13 @@ A Claude Code harness governed by ratified decisions, and the Obsidian vault it 
 <!-- rule-language -->
 
 <!-- rule-agent-writing -->
+
+<!-- rule-one-judgment-one-implementation -->
 <!-- /rule-claude-md -->
 
 ## How it works
 
-Rendered in full into `CLAUDE.md`; each child — `rule-language`, `rule-agent-writing` — splices into its marker line. The file is the system prompt of every session and of every subagent, so it holds what each of them needs and no more: the description of the project and the two standing rules. The glossary and the Case schema arrive with `/hi` through `rule-internal-context`, and the one rule opens the schema (case 288). The section "Migration mode", carried from the hand-written file of 2026-09-12, left with case 288.3, each of its items a Rule with a Render of its own by then; "Commands" left with it — `make style` before a commit is `rule-retro`'s, and "no new dependencies" came with the file in 59.8 and was never decided on its own. `rule-language` and `rule-agent-writing` have this page as their parent since case 272. `rule-case-protocol` was a child from case 66 to case 273, when its Render became `case-schema.md` and its parent `rule-plan-mode`.
+Rendered in full into `CLAUDE.md`; each child — `rule-language`, `rule-agent-writing`, `rule-one-judgment-one-implementation` — splices into its marker line. The file is the system prompt of every session and of every subagent, so it holds what each of them needs and no more: the description of the project and the three standing rules. The glossary and the Case schema arrive with `/hi` through `rule-internal-context`, and the one rule opens the schema (case 288). The section "Migration mode", carried from the hand-written file of 2026-09-12, left with case 288.3, each of its items a Rule with a Render of its own by then; "Commands" left with it — `make style` before a commit is `rule-retro`'s, and "no new dependencies" came with the file in 59.8 and was never decided on its own. `rule-language` and `rule-agent-writing` have this page as their parent since case 272. `rule-case-protocol` was a child from case 66 to case 273, when its Render became `case-schema.md` and its parent `rule-plan-mode`.
 
 ## History
 
@@ -62,3 +64,6 @@ Rendered in full into `CLAUDE.md`; each child — `rule-language`, `rule-agent-w
 - 2026-09-21 status: built → draft · cascade
 - 2026-09-21 status: draft → built · cascade
 - 2026-09-22 updated: CLAUDE.md names the glossary alone; the map is gone (case 318) · [[decision-case-318]]
+- 2026-09-23 child rule-one-judgment-one-implementation added · [[decision-case-360]]
+- 2026-09-23 updated: the third child rule-one-judgment-one-implementation, its marker in the Render (case 360) · [[decision-case-360]]
+- 2026-09-23 status: built → draft · cascade

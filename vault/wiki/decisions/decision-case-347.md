@@ -21,3 +21,4 @@ The instruction names the file that holds the frame and not the place in it, so 
 ## History
 
 - 2026-09-23 created · raw/2026-09-22/2046/ledger.md#case-347
+- 2026-09-23 updated: the Context rewritten after ratification to cite the event log, signed after the fact (case 358) · [[decision-case-358]]

@@ -1,7 +1,7 @@
 ---
 type: estimate
 kind: QA
-status: passed
+status: pending
 target: "[[rule-case-protocol]]"
 purpose: The reply that acknowledges a ratification has four parts in order
 method: one reading by hand of the first acknowledging reply of a session
@@ -10,7 +10,6 @@ origin: raw/2026-09-16/1034/ledger.md#case-188
 sprint: migration
 created: 2026-09-16
 tags: [session, workflow, ledger]
-
 ---
 
 ## Criterion
@@ -27,6 +26,7 @@ there are none; the heading `## Frontier` and the lines of `frontier.md` as a
 checklist — the closed lines folded into one, the open ones one per line with a short
 title, the deferred as `[-] … · defer case N` — and the question which item is next,
 last.
+**＋** For a Case with sub-cases, one reply acknowledges every sub-case ratified: one `LEDGER` block with all their lines, one heading `## Case N — ratified` naming the ids, one Frontier (355.2).
 **＋** The headings and labels are in the language of the chat.
 **－** The replies on readings and lessons, the reply that carries a Case and the
 short form of a defer stay as today; no tool call follows the block in the same reply.
@@ -40,3 +40,4 @@ short form of a defer stay as today; no tool call follows the block in the same 
 - 2026-09-16 created · [[decision-case-188]]
 - 2026-09-16 status: pending → passed · raw/2026-09-16/1955/ledger.md#L36
 - 2026-09-17 ref removed · one-off migration · raw/2026-09-16/2238/spec.md#case-210
+- 2026-09-23 updated: the Criterion names the one acknowledging reply of a Case with sub-cases (case 355.2) · [[decision-case-355.2]]

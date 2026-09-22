@@ -2,7 +2,7 @@
 type: lesson
 kind: error
 root_cause: the agent read the shape of the record as the completeness of the record — the question it put to the file was "does this field exist", while the claim it was about to sign was "every line is here"; the second question costs one more command and was not asked.
-status: clustered
+status: archived
 insight: "[[insight-workflow-fact-signed-from-a-check-that-does-not-cover-it]]"
 origin: raw/2026-09-22/2046/ledger.md#L21
 sprint: migration
@@ -22,3 +22,5 @@ the agent read the shape of the record as the completeness of the record — the
 
 - 2026-09-23 created · raw/2026-09-22/2046/ledger.md#L21
 - 2026-09-23 updated: clustered by librarian: a fact signed on a check that does not cover it, with lesson-ledger-estimate-line-carried-a-count-not-read · raw/2026-09-22/2046/ledger.md#L21
+- 2026-09-23 archived · insight actioned
+- 2026-09-23 archived · cleanup

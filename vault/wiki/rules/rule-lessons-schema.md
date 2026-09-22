@@ -2,7 +2,7 @@
 type: rule
 kind: Leaf
 purpose: Prevents a Lesson page from carrying a field or section outside the shape lint checks, or lacking one it needs
-status: built
+status: draft
 enforcement: render
 governs: vault/wiki/lessons/schema.yaml
 render_mode: full
@@ -133,3 +133,4 @@ examples:
 
 - 2026-09-22 created · [[decision-case-304.5]]
 - 2026-09-22 status: draft → built · cascade
+- 2026-09-23 status: built → draft · cascade

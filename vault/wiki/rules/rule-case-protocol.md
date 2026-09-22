@@ -44,7 +44,7 @@ A Case is the unit of dialogue, not a vault page. It lives only inside a session
 
 ## Plan Mode and the Frontier
 
-One reply is one Case, in the eight sections below. That is the form of Plan Mode. The Frontier is `raw/<date>/<hi HHMM>/frontier.md`, written at `/hi`; close its line in the reply that ends the item — `· case N` when ratified, `· work` when it needed no decision, `· defer case N` when deferred. Plan Mode does not end while a line is open; `/pre-spec` checks it. Never move to the next Case until this one is ratified or deferred.
+One reply is one Case, in the eight sections below. That is the form of Plan Mode. The Frontier is `raw/<date>/<hi HHMM>/frontier.md`, written at `/hi`; close its line in the reply that ends the item — `· case N` when ratified, `· work` when it needed no decision, `· defer case N` when deferred, `[-] … · sprint` for an item of the sprint left for later — never `· defer case N` (case 356.2). Plan Mode does not end while a line under `## Cases` is open — a `W` line closes when its work is done (case 356.1); `/pre-spec` checks it. Never move to the next Case until this one is ratified or deferred.
 
 ## Sections
 
@@ -59,7 +59,7 @@ Eight, in this order. Each is one blockquote: the first line `**name:**`, the te
 | `when` | yes | The action that triggers the behaviour: a hook fires, a script runs, the person invokes a skill. For a change to a document, the moment someone reads it. |
 | `then` | yes | What holds after the action, once the recommendation is accepted. Behaviour only: no Estimate block, no reading, no `supersedes` — those are lines of `tasks` (cases 159, 188). |
 | `tasks` | yes | The work the Case leaves: a checklist, one line per page `update`, file, test, command, one-off migration and reading; no `contract` line, no "block N" line (case 188). In the chat a blockquote with the checklist; in the Spec the block tagged `tasks` — the same lines (case 159). |
-| `ratification` | yes | The human's sign-off, question, or their own alternative. Ends with a preview of the ledger lines in an untagged fence, and the turn ends with a plain question in the chat, never a picker tool. A Case the person changed is shown again: `context` and `problem` if they changed, always `given`, `when`, `then`, `tasks` and `ratification`, and no `recommend` (cases 62, 163). |
+| `ratification` | yes | In the chat, the preview of the ledger lines in an untagged fence and nothing else; the human's sign-off, question or own alternative is their reply. The agent's own text stands after the Case, after one horizontal rule, and the turn ends with a plain question in the chat, never a picker tool (case 355.1). A Case the person changed is shown again: `context` and `problem` if they changed, always `given`, `when`, `then`, `tasks` and `ratification`, and no `recommend` (cases 62, 163). |
 
 ## Operands
 
@@ -125,7 +125,7 @@ A deferred decision is its own Case in the short form — `## Case N — name`, 
 
 ## Splitting
 
-If the human's reply to a Case is a follow-up question, the Case was not atomic. Detect this and propose splitting into sub-cases — recursive dotted ids, `1.1`, `1.1.1`. A sub-case is `### Case N.M — name` under its parent, with its own `when`, `then`, `tasks` and `ratification` (case 159), and its own `given` unless it is the parent's word for word; `context`, `problem`, `recommend` and a shared `given` live on the parent, and `materialize` reads a missing one there (case 60). Ratifying a parent does not ratify its children.
+If the human's reply to a Case is a follow-up question, the Case was not atomic. Detect this and propose splitting into sub-cases — recursive dotted ids, `1.1`, `1.1.1`. A sub-case is `### Case N.M — name` under its parent, with its own `when`, `then`, `tasks` and `ratification` (case 159), and its own `given` unless it is the parent's word for word; `context`, `problem`, `recommend` and a shared `given` live on the parent, and `materialize` reads a missing one there (case 60). Ratifying a parent does not ratify its children. A Case with sub-cases is shown in one reply — the parent's `context`, `problem`, `recommend`, then every sub-case whole; the person ratifies them all at once or names the ids, and the acknowledging reply carries one `LEDGER` block with the lines of every sub-case ratified, one heading `## Case N — ratified` naming those ids, and one Frontier; a sub-case the person questions or changes is shown again alone (case 355.2).
 
 A question that only asks you to justify a choice already on the table ("why this approach?") does **not** split the Case. A question whose answer requires a new choice with its own consequences ("how will we handle X?") **does**.
 
@@ -244,3 +244,7 @@ The harness — hooks, skills, agents, `settings.json`, `CLAUDE.md`, this file �
 - 2026-09-22 updated: the Rule-class file route is gone from the Case schema (case 320) · [[decision-case-320]]
 - 2026-09-23 updated: the extra closing marker of rule-atomicity removed from the Render, a parent carrying one marker line per child — the hand fix of commit 94277ea signed after the fact (case 324) · [[decision-case-324]]
 - 2026-09-23 updated: reword among the keys of an update, and the two steps of the author at the end of the description of an update (case 353, supersedes 332.1, 337, 340, 341 and 342) · [[decision-case-353]]
+- 2026-09-23 updated: ratification in the chat is the ledger preview alone, the agent's text after one horizontal rule (case 355.1) · [[decision-case-355.1]]
+- 2026-09-23 updated: a Case with sub-cases is shown in one reply, ratified at once or by ids (case 355.2) · [[decision-case-355.2]]
+- 2026-09-23 updated: Plan Mode ends with no open line under Cases (case 356.1) · [[decision-case-356.1]]
+- 2026-09-23 updated: the Plan Mode paragraph names the closer sprint (case 356.2) · [[decision-case-356.2]]

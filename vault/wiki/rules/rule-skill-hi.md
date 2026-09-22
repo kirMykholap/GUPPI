@@ -9,7 +9,6 @@ render_mode: full
 parent: "[[rule-session-start]]"
 children: ["[[rule-internal-context]]", "[[rule-git-context]]", "[[rule-github-issues]]", "[[rule-ledger-tail]]"]
 estimates: ["[[estimate-hi-no-read-calls]]", "[[estimate-hi-writes-frontier]]"]
-deferred_by: ["[[decision-case-352]]"]
 origin: raw/2026-09-09/ledger.md#case-11
 sprint: migration
 created: 2026-09-09
@@ -39,9 +38,9 @@ disable-model-invocation: true
 Assemble the Frontier from the above in two lists, the kind of each item by its source and no page opened (case 268.2). `## Cases`, what needs a decision: on a plan branch the unfinished plan, first; the items of the sprint's current milestone — the first with an open item or with none — and none of a later milestone, of the Backlog or of Closed (case 229.3); the `Cases` list of the brief's Next session; the brief's Deferred list; a hand edit shown by `Render:`; a `failed` reading or a lesson of the Tail; an item the person adds. `## Work`, what needs none: the `Work` list of the brief's Next session; a dirty tree in `Status:`. In the chat the Cases are the agenda of Plan Mode, one line each with its detail; the Work is one block; sub-cases are cut in Cases only;
 the hand edit is what `guppi render --sync` printed at session start or on the `Render:` line above.
 A failed pull or an unavailable `gh` is a Cases item when `sprint.md` names no decision on it, and not an item when it does; neither is a reason to stop. A `failed` reading or a lesson in the Tail above is an item; a decision line of the tail is not — its page comes with the next librarian. Write the same two lists, under `## Cases` and `## Work`, to `vault/raw/<date>/<hi HHMM>/frontier.md` — the session's folder, `HHMM` from the `hi:` line the `UserPromptSubmit` hook put in context (cases 73, 125) — one line per item:
-`- [ ] C<n> — <title> · <source>` under `## Cases`, `- [ ] W<n> — <title> · <source>` under `## Work`. Close a line when its item ends, the closer appended and the source kept — `- [x] C2 — <title> · sprint · case 315` (case 314.1): `[x] … · case N`
+`- [ ] C<n> — <title> · <source>` under `## Cases`, `- [ ] W<n> — <title> · <source>` under `## Work`. An item of the sprint's milestone is a line of its own whose title opens with the slug of each page it names, each in a code span — ``- [ ] C1 — `rule-x`, <milestone> · sprint`` — so that `generate` counts it (case 354.3). Close a line when its item ends, the closer appended and the source kept — `- [x] C2 — <title> · sprint · case 315` (case 314.1): `[x] … · case N`
 when ratified, `[x] … · work` when it needs no decision, `[-] … · defer case N` when
-deferred, `[-] … · sprint` when the item is a line of the sprint page left for a later session — no decision, no `deferred_by` (case 310.5); an item the person adds is a new Cases line; a `W` that turns out to need a decision closes `· case N`, a `C` that needs none closes `· work`. `/pre-spec` fails on an open line. Wait
+deferred, `[-] … · sprint` when the item is a line of the sprint page left for a later session — no decision, no `deferred_by` (case 310.5), never `· defer case N` (case 356.2); an item the person adds is a new Cases line; a `W` that turns out to need a decision closes `· case N`, a `C` that needs none closes `· work`. `/pre-spec` fails on an open line under `## Cases`; a `W` line closes `· work` when its work is done, in Work Mode (case 356.1). Wait
 for the human to pick the order or defer items. Before any `create`, ask the vault first
 ([[rule-ask]]).
 <!-- /rule-skill-hi -->
@@ -89,3 +88,7 @@ session. The skill writes no event line of its own since case 111.4: a `!` subst
 - 2026-09-22 updated: the vault query is named by rule-ask (case 318) · [[decision-case-318]]
 - 2026-09-22 status: built → draft · cascade
 - 2026-09-23 deferred · [[decision-case-352]]
+- 2026-09-23 updated: a sprint item in the Frontier is one line, its title opening with its slugs in code spans (case 354.3) · [[decision-case-354.3]]
+- 2026-09-23 defer by decision-case-352 superseded · [[decision-case-356.1]]
+- 2026-09-23 updated: pre-spec fails on an open Cases line; a W line closes when its work is done (case 356.1, supersedes 352) · [[decision-case-356.1]]
+- 2026-09-23 updated: a sprint line never closes defer case N (case 356.2) · [[decision-case-356.2]]

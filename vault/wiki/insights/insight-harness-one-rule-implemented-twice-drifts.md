@@ -1,9 +1,10 @@
 ---
 type: insight
 pattern: A judgment the pipeline makes in two places is implemented twice — a check re-states what a writer, a ticker or another check does — and the two copies drift apart, with no test about the difference between them.
-status: open
+status: actioned
 children: ["[[lesson-prespec-a-second-copy-of-a-matching-rule-drifts]]", "[[lesson-lint-decision-target-archived-counts-as-missing]]"]
-severity: 2
+severity: 0
+addressed_by: "[[decision-case-360]]"
 origin: raw/2026-09-22/2046/ledger.md#L37
 sprint: migration
 created: 2026-09-22
@@ -44,3 +45,4 @@ Neither half is decided here.
 ## History
 
 - 2026-09-23 created · raw/2026-09-22/2046/ledger.md#L37
+- 2026-09-23 updated: actioned by rule-one-judgment-one-implementation (case 360) · [[decision-case-360]]

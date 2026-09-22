@@ -24,7 +24,7 @@ When:
 
 Then:
 Every live page is checked against the `schema.yaml` of its category; one line per finding, `<category>/<slug>: <class>: <what>`; exit 1 on any finding, 0 and no output on a clean vault; nothing is written.
-**＋** `schema`: a missing required field or section, a value outside the list, a conditional not met; `## When` is never required on a Decision page; `layout`: a page whose `type` does not match its folder, a page whose slug is not its filename, a `.md` at the root of `wiki/` that no live rule page names (case 315); `schema-description`: a field or section the lists of `schema.yaml` name without a description under `fields` or `sections`, or a description of a name no list carries (case 304.8).
+**＋** `schema`: a missing required field or section, a value outside the list, a conditional not met, a field of `properties.single` holding a list (362.1); `## When` is never required on a Decision page; `layout`: a page whose `type` does not match its folder, a page whose slug is not its filename, a `.md` at the root of `wiki/` that no live rule page names (case 315); `schema-description`: a field or section the lists of `schema.yaml` name without a description under `fields` or `sections`, or a description of a name no list carries (case 304.8).
 **＋** `ref`: a slug in `parent`, `children`, `estimates`, `target`, `insight`, `addressed_by`, `deferred_by`, `applies_to`, `rules` or in a History wikilink that no live or archived page carries; a `[[…]]` in a body may name a hub file under `wiki/` by stem or path; a `[[slug]]` under a Decision page's `## Criterion` that is no Estimate; a `### case N` block of an Estimate with no decision page; an `applies_to` that names no Entity, and an Entity's `rules` that differs from the live rules whose `applies_to` names it (case 305.5).
 **＋** `origin`: both forms resolve in `raw/` or in `vault/archive/`; in neither, or in both, a finding.
 **＋** `path`: a file of `implementation_ref` or `governs` that does not exist.
@@ -77,3 +77,4 @@ Every live page is checked against the `schema.yaml` of its category; one line p
 - 2026-09-22 status: pending → passed · raw/2026-09-22/1121/ledger.md#L93
 - 2026-09-23 updated: the class `markers` added to the Criterion (case 325.2) · [[decision-case-325.2]]
 - 2026-09-23 updated: one spelling of a reading in the Criterion — `by hand` (case 330.1) · [[decision-case-330.1]]
+- 2026-09-23 updated: the Criterion names the finding on a single field holding a list (case 362.1) · [[decision-case-362.1]]

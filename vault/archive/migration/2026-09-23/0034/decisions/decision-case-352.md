@@ -1,9 +1,10 @@
 ---
 type: decision
 case: "352"
-status: current
+status: archived
 defer: ["[[rule-skill-hi]]"]
 supersedes: ["[[decision-case-346]]"]
+superseded_by: ["[[decision-case-356.1]]"]
 origin: raw/2026-09-22/2046/ledger.md#case-352
 sprint: migration
 created: 2026-09-22
@@ -28,3 +29,6 @@ What a Frontier closer must tell apart — whether a Work line closes in a secon
 ## History
 
 - 2026-09-23 created · raw/2026-09-22/2046/ledger.md#case-352
+- 2026-09-23 superseded by decision-case-356.1 · [[decision-case-356.1]]
+- 2026-09-23 archived · superseded
+- 2026-09-23 archived · cleanup

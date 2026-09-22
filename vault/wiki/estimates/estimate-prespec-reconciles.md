@@ -1,10 +1,10 @@
 ---
 type: estimate
 kind: QA
-status: pending
+status: passed
 target: "[[rule-prespec]]"
 method: One reading by hand of the first /pre-spec after the render, written into the estimate line — the exception the Method rule allows
-checked: 2026-09-20
+checked: 2026-09-23
 origin: raw/2026-09-09/ledger.md#case-24.2
 sprint: migration
 created: 2026-09-09
@@ -34,7 +34,7 @@ The agent runs `guppi prespec --check` on the plan file with `--session <id>`, t
 
 ## Result
 
-2026-09-20, the /pre-spec of session 0958 typed by the person, on the skill as rendered by 261: `uv run guppi prespec --check <plan> --session c27cd9be` — the eight-character id from the hi: line — printed nothing and exited 0 on the first run, 22 ledger lines against the plan's items, the frontier's nine lines closed; the stamped prespec mark written by guppi gate on the typed command; the list of 20 decisions with the estimates of each updated rule and which the Case names; ask-guppi dispatched once with the list, the plan path and the two questions; six findings on Q1 — a failed Estimate in both lists of 268.1, two copies of the carry omissions and of the pull sentence on rule-carry-over and rule-git-context, two stale sentences of rule-skill-hi, the method of estimate-hi-writes-frontier lost between 265 and 268.2, the decisions 220/243 — taken as changes to 265, 268.1, 268.2 or named as known; none on Q2, every replace old verified once on its page; Plan Mode exited again after the ratification of the changes
+2026-09-23, the /pre-spec of session 0034 read by hand: guppi prespec --check with --session c9c18452, its first line a finding and not "no hi recorded"; the plan fixed until exit 0 (two bare-slug fixes, then the ledger lines of the amended Cases); guppi gate wrote "01:39:57 c9c18452 prespec" on the Skill call; every decision listed with the estimates of each updated rule and which the Case names, ask-guppi dispatched once with the list, the plan path and the two questions; 15 contradictions and 2 unnamed Estimates returned, 11 raised as amended Cases re-ratified, 4 named as known; Plan Mode exited after exit 0; insight-pretask-session-flag-takes-the-id-not-the-hi-line stands actioned
 
 ## History
 
@@ -68,3 +68,4 @@ The agent runs `guppi prespec --check` on the plan file with `--session <id>`, t
 - 2026-09-20 updated: renamed with rule-prespec — the Criterion names /pre-spec, guppi prespec, the mark prespec and tests/test_prespec.py (case 261) · [[decision-case-261]]
 - 2026-09-20 status: pending → passed · raw/2026-09-20/0958/ledger.md#L25
 - 2026-09-23 updated: the live reading is due again — the Render gained the simulation of the pairs; the Criterion stands (case 351) · [[decision-case-351]]
+- 2026-09-23 status: pending → passed · raw/2026-09-23/0034/ledger.md#L62

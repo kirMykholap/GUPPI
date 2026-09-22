@@ -1,9 +1,10 @@
 ---
 type: insight
 pattern: "A fact is signed — in a Case, in a reading, in a ledger line — on a check narrower than the claim: the command that ran answered one question and the sentence it supports makes a wider one, while the wider check was one more command away."
-status: open
+status: actioned
 children: ["[[lesson-fact-asserted-from-a-partial-check]]", "[[lesson-ledger-estimate-line-carried-a-count-not-read]]"]
-severity: 2
+severity: 0
+addressed_by: "[[decision-case-359]]"
 origin: raw/2026-09-22/2046/ledger.md#L21
 sprint: migration
 created: 2026-09-22
@@ -45,3 +46,4 @@ Neither half is decided here.
 ## History
 
 - 2026-09-23 created · raw/2026-09-22/2046/ledger.md#L21
+- 2026-09-23 updated: actioned by rule-agent-writing — a claim no wider than its check (case 359) · [[decision-case-359]]

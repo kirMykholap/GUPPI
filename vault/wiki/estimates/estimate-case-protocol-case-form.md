@@ -29,8 +29,9 @@ Then:
 **＋** An item that writes `sections: Criterion` itself signs that text, on a `create` and on an `update` alike; the Case's `given`, `when`, `then` are the Criterion of the one Estimate that writes none; that is how one Case touches two Estimates.
 **＋** The Case names by slug the Estimate it changes.
 **＋** `tasks` carries no `contract` line and no "block N" line.
+**＋** A Case with sub-cases is shown in one reply — the parent's `context`, `problem`, `recommend`, then every sub-case whole; a sub-case questioned or changed is shown again alone (355.2).
 **－** A `create` carries no `method`, `estimate_kind` or `estimate_slug`: a new promise is an explicit `create` of an Estimate with its own slug.
-**－** The eight sections of the chat form do not change.
+**－** The eight sections of the chat form do not change; in the chat `ratification` holds the preview of the ledger lines alone, and the agent's own text stands after the Case, after one horizontal rule (355.1).
 
 ## Result
 
@@ -47,3 +48,5 @@ Then:
 - 2026-09-20 updated: the Criterion replaced whole — case-schema.md the Render of rule-case-protocol loaded by /hi, not a Rule-class file by hand; CLAUDE.md no longer the carrier (case 277.5) · [[decision-case-277.5]]
 - 2026-09-20 status: pending → passed · raw/2026-09-20/1308/ledger.md#L55
 - 2026-09-22 updated: the Criterion names the Renders, not the file route (case 320) · [[decision-case-320]]
+- 2026-09-23 updated: the Criterion names ratification as the ledger preview alone (case 355.1) · [[decision-case-355.1]]
+- 2026-09-23 updated: the Criterion names the sub-cases shown in one reply (case 355.2) · [[decision-case-355.2]]

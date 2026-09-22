@@ -21,11 +21,6 @@ Rule-class files dissolved, `index.md` gone, the `file` route out of the scripts
 
 ## Milestones
 
-### Slice 3b — Work Mode
-
-- [[rule-work-mode]] — Work Mode: the Spec as tasks with code, the ticked boxes in `spec.md`, the test of each Estimate written first and turned green; the sentence of [[insight-workflow-code-live-before-the-page-it-reads]] on a check that reads a page the same Spec changes; cases 183, 206, 238
-- [[rule-subagent-guppi]] — what a subagent may do in Work Mode, and the fork that comes back to the main agent as a Case; cases 183, 206
-
 ### Slice 4 — conversion of the parked pages by group
 
 - [[estimate-sprint-migration-leftovers-gone]] — every page of `vault/parked/` and every document of 2026-08 under `docs/` converted, archived or deleted by a decision
@@ -44,6 +39,8 @@ Rule-class files dissolved, `index.md` gone, the `file` route out of the scripts
 - reuse, the question: the vault query before a `create` asks a second question — what of the existing this thing could use, by the index lines of the Entities — and the answer stands in `context`; the Case names what it found in `uses` or says why it is not used (case 319)
 - reuse, the hook: a lint finding on two live Entities naming one path in `code_ref` with no edge between them; a new module written beside an existing one in another file is caught by the question alone, not by a script (case 319)
 - a template engine for the rendered files — one script with the shape of each file declared, once a third render beside `sprint.md` and `glossary.md` appears (case 301)
+- [[rule-work-mode]] — Work Mode: the Spec as tasks with code, the ticked boxes in `spec.md`, the test of each Estimate written first and turned green; the sentence of [[insight-workflow-code-live-before-the-page-it-reads]] on a check that reads a page the same Spec changes; cases 183, 206, 238
+- [[rule-subagent-guppi]] — what a subagent may do in Work Mode, and the fork that comes back to the main agent as a Case; cases 183, 206
 
 ## Closed
 
@@ -92,3 +89,6 @@ No file of `vault/wiki/` is written by hand.
 - 2026-09-22 updated: theme 5 done — the file route out of the scripts (case 320) · [[decision-case-320]]
 - 2026-09-22 updated: Slice 3f closed — out of Milestones, named in Closed with its cases (case 321) · [[decision-case-321]]
 - 2026-09-22 updated: the Purpose off index.md and off a count of Estimates (case 323) · [[decision-case-323]]
+- 2026-09-23 moved to the Backlog: rule-work-mode passed over in 29 sessions in a row — 0034, 2046, 1121, 0014, 1853, 1315, 0019, 2106, 1749, 1308, 0958, 0740, 0527, 2253, 2054, 1957, 1252, 1119, 2238, 1955, 2225, 1809, 1448, 1110, 1633, 1229, 1029, 0747, 0652 · generate
+- 2026-09-23 moved to the Backlog: rule-subagent-guppi passed over in 29 sessions in a row — 0034, 2046, 1121, 0014, 1853, 1315, 0019, 2106, 1749, 1308, 0958, 0740, 0527, 2253, 2054, 1957, 1252, 1119, 2238, 1955, 2225, 1809, 1448, 1110, 1633, 1229, 1029, 0747, 0652 · generate
+- 2026-09-23 milestone Slice 3b — Work Mode left the Milestones: its items moved to the Backlog · generate

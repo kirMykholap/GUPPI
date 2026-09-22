@@ -2,7 +2,7 @@
 type: lesson
 kind: error
 root_cause: the reading's line was composed after one combined pytest run of three files; the per-file number was never printed, and the agent filled it in instead of running the file alone or naming the combined count only
-status: clustered
+status: archived
 insight: "[[insight-workflow-fact-signed-from-a-check-that-does-not-cover-it]]"
 origin: raw/2026-09-20/0740/ledger.md#L15
 sprint: migration
@@ -22,3 +22,5 @@ the reading's line was composed after one combined pytest run of three files; th
 
 - 2026-09-20 created · raw/2026-09-20/0740/ledger.md#L15
 - 2026-09-23 updated: clustered by librarian: a fact signed on a check that does not cover it, with lesson-fact-asserted-from-a-partial-check · raw/2026-09-22/2046/ledger.md#L21
+- 2026-09-23 archived · insight actioned
+- 2026-09-23 archived · cleanup

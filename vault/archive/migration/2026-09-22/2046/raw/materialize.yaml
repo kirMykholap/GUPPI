@@ -762,6 +762,7 @@ entries:
       344 rewrite and whose Render case 351 changes, so that page carries no deferred_by
   exists: true
   applied: 00:11:21
+  superseded_by: '356.1'
 - line: 32
   text: decision[case 353][update][rule-case-protocol]{ref:rule-case-protocol}{supersedes:case 341}
   case: '353'
@@ -1545,6 +1546,8 @@ decisions:
   supersedes:
   - decision-case-346
   applied: 00:11:21
+  superseded_by:
+  - decision-case-356.1
 - case: '353'
   decision: decision-case-353
   origin: raw/2026-09-22/2046/ledger.md#case-353

@@ -55,9 +55,9 @@ create:
 ```
 
 ```tasks
-- [ ] update `rule-sprint` — one `replace` pair in Purpose, `implementation_ref` + `guppi/generate.py`, `tests/test_generate.py`
-- [ ] update `rule-page-generation` — one `replace` pair in Purpose
-- [ ] create `estimate-sprint-moves-a-passed-over-item`
+- [x] update `rule-sprint` — one `replace` pair in Purpose, `implementation_ref` + `guppi/generate.py`, `tests/test_generate.py`
+- [x] update `rule-page-generation` — one `replace` pair in Purpose
+- [x] create `estimate-sprint-moves-a-passed-over-item`
 - [x] `guppi/generate.py` — the move as a step after `cascade()`, on `sprint.split_milestones` and `sprint.item_slugs`, no second parse; the History line `· generate`, not `· cascade`; the docstring names the move
 - [x] `tests/test_generate.py` — three `[-]` in a row move the item; an `[x]` between them does not; a session without the line is passed by; a note is not moved; the History line; `raw/` and the archive read together
 - [ ] read `estimate-sprint-moves-a-passed-over-item`
@@ -104,9 +104,9 @@ create:
 ```
 
 ```tasks
-- [ ] update `rule-sprint` — one `replace` pair in Purpose, over the text of 354.1
-- [ ] update `rule-page-generation` — one `replace` pair in Purpose, over the text of 354.1
-- [ ] create `estimate-sprint-drops-an-emptied-milestone`
+- [x] update `rule-sprint` — one `replace` pair in Purpose, over the text of 354.1
+- [x] update `rule-page-generation` — one `replace` pair in Purpose, over the text of 354.1
+- [x] create `estimate-sprint-drops-an-emptied-milestone`
 - [x] `guppi/generate.py` — in the step of the move, the heading of a milestone left with no line removed, the History line; the docstring
 - [x] `tests/test_generate.py` — a milestone emptied by the move leaves; one empty before the run stays; one with a note stays; the History line
 - [ ] read `estimate-sprint-drops-an-emptied-milestone`
@@ -142,9 +142,9 @@ update:
 ```
 
 ```tasks
-- [ ] update `rule-skill-hi` — one `replace` pair in the Render
-- [ ] update `estimate-hi-writes-frontier` — one `replace` pair inside the Criterion; the page goes `pending`
-- [ ] `uv run guppi render`: `.claude/skills/hi/SKILL.md`
+- [x] update `rule-skill-hi` — one `replace` pair in the Render
+- [x] update `estimate-hi-writes-frontier` — one `replace` pair inside the Criterion; the page goes `pending`
+- [x] `uv run guppi render`: `.claude/skills/hi/SKILL.md`
 - [ ] read `estimate-hi-writes-frontier`
 ```
 
@@ -181,9 +181,9 @@ update:
 ```
 
 ```tasks
-- [ ] update `rule-brief` — two `replace` pairs in the Render: the Flags line, and the sprint page changed by a Case or by the move of `generate`
-- [ ] update `estimate-brief-written` — one `replace` pair inside the Criterion; the page goes `pending`
-- [ ] `uv run guppi render`: `.claude/agents/librarian-guppi.md`
+- [x] update `rule-brief` — two `replace` pairs in the Render: the Flags line, and the sprint page changed by a Case or by the move of `generate`
+- [x] update `estimate-brief-written` — one `replace` pair inside the Criterion; the page goes `pending`
+- [x] `uv run guppi render`: `.claude/agents/librarian-guppi.md`
 - [ ] read `estimate-brief-written`
 ```
 
@@ -234,9 +234,9 @@ update:
 ```
 
 ```tasks
-- [ ] update `rule-case-protocol` — one `replace` pair in the Render, the row of `ratification`
-- [ ] update `estimate-case-protocol-loaded` — one `replace` pair inside the Criterion; the page goes `pending`
-- [ ] update `estimate-case-protocol-case-form` — one `replace` pair inside the Criterion; the page goes `pending`
+- [x] update `rule-case-protocol` — one `replace` pair in the Render, the row of `ratification`
+- [x] update `estimate-case-protocol-loaded` — one `replace` pair inside the Criterion; the page goes `pending`
+- [x] update `estimate-case-protocol-case-form` — one `replace` pair inside the Criterion; the page goes `pending`
 - [ ] read `estimate-case-protocol-loaded`
 - [ ] read `estimate-case-protocol-case-form`
 ```
@@ -288,11 +288,11 @@ update:
 ```
 
 ```tasks
-- [ ] update `rule-case-protocol` — one `replace` pair in the Render, the section Splitting
-- [ ] update `estimate-case-protocol-loaded` — one `replace` pair inside the Criterion
-- [ ] update `estimate-case-protocol-case-form` — one `replace` pair inside the Criterion
-- [ ] update `estimate-case-protocol-acknowledging-reply` — one `replace` pair inside the Criterion; the page goes `pending`
-- [ ] `uv run guppi render`: `vault/wiki/case-schema.md`
+- [x] update `rule-case-protocol` — one `replace` pair in the Render, the section Splitting
+- [x] update `estimate-case-protocol-loaded` — one `replace` pair inside the Criterion
+- [x] update `estimate-case-protocol-case-form` — one `replace` pair inside the Criterion
+- [x] update `estimate-case-protocol-acknowledging-reply` — one `replace` pair inside the Criterion; the page goes `pending`
+- [x] `uv run guppi render`: `vault/wiki/case-schema.md`
 - [ ] read `estimate-case-protocol-loaded`
 - [ ] read `estimate-case-protocol-case-form`
 - [ ] read `estimate-case-protocol-acknowledging-reply`
@@ -363,17 +363,17 @@ update:
 ```
 
 ```tasks
-- [ ] update `rule-skill-hi` — one `replace` pair in the Render
-- [ ] update `rule-prespec` — one `replace` pair in the Render
-- [ ] update `estimate-hi-writes-frontier` — one `replace` pair inside the Criterion; the page goes `pending`
-- [ ] update `estimate-prespec-checks-the-plan` — one `replace` pair inside the Criterion; the page goes `pending`
-- [ ] update `rule-case-protocol` — one `replace` pair in the Render, the Plan Mode paragraph
-- [ ] update `estimate-case-protocol-loaded` — one `replace` pair inside the Criterion
+- [x] update `rule-skill-hi` — one `replace` pair in the Render
+- [x] update `rule-prespec` — one `replace` pair in the Render
+- [x] update `estimate-hi-writes-frontier` — one `replace` pair inside the Criterion; the page goes `pending`
+- [x] update `estimate-prespec-checks-the-plan` — one `replace` pair inside the Criterion; the page goes `pending`
+- [x] update `rule-case-protocol` — one `replace` pair in the Render, the Plan Mode paragraph
+- [x] update `estimate-case-protocol-loaded` — one `replace` pair inside the Criterion
 - [x] `guppi/prespec.py` — `check_frontier` tells `## Cases` from `## Work`, an open line under `## Work` no finding; the docstring
 - [x] `tests/test_prespec.py` — an open `C` a finding; an open `W` none; a closed `W` with a `case N` absent from the plan a finding
-- [ ] `uv run guppi render`: `.claude/skills/hi/SKILL.md`
-- [ ] `uv run guppi render`: `.claude/skills/pre-spec/SKILL.md`
-- [ ] `uv run guppi render`: `vault/wiki/case-schema.md`
+- [x] `uv run guppi render`: `.claude/skills/hi/SKILL.md`
+- [x] `uv run guppi render`: `.claude/skills/pre-spec/SKILL.md`
+- [x] `uv run guppi render`: `vault/wiki/case-schema.md`
 - [ ] read `estimate-hi-writes-frontier`
 - [ ] read `estimate-prespec-checks-the-plan`
 - [ ] read `estimate-case-protocol-loaded`
@@ -435,12 +435,12 @@ update:
 ```
 
 ```tasks
-- [ ] update `rule-skill-hi` — one `replace` pair in the Render
-- [ ] update `rule-prespec` — one `replace` pair in the Render
-- [ ] update `estimate-hi-writes-frontier` — one `replace` pair inside the Criterion
-- [ ] update `estimate-prespec-checks-the-plan` — one `replace` pair inside the Criterion
-- [ ] update `rule-case-protocol` — one `replace` pair in the Render, the Plan Mode paragraph
-- [ ] update `estimate-case-protocol-loaded` — one `replace` pair inside the Criterion
+- [x] update `rule-skill-hi` — one `replace` pair in the Render
+- [x] update `rule-prespec` — one `replace` pair in the Render
+- [x] update `estimate-hi-writes-frontier` — one `replace` pair inside the Criterion
+- [x] update `estimate-prespec-checks-the-plan` — one `replace` pair inside the Criterion
+- [x] update `rule-case-protocol` — one `replace` pair in the Render, the Plan Mode paragraph
+- [x] update `estimate-case-protocol-loaded` — one `replace` pair inside the Criterion
 - [x] `guppi/prespec.py` — in `check_frontier`, a finding on a line whose source is `sprint` and whose closer is `defer case N`; the docstring
 - [x] `tests/test_prespec.py` — a sprint line closed `· defer case N` a finding; a `brief` line closed the same way none
 - [ ] read `estimate-hi-writes-frontier`
@@ -485,9 +485,9 @@ update:
 ```
 
 ```tasks
-- [ ] update `rule-documentation` — one `replace` pair in the Render
-- [ ] update `estimate-documentation-completes` — one `replace` pair inside the Criterion; the page stays `pending`
-- [ ] `uv run guppi render`: `.claude/agents/librarian-guppi.md`
+- [x] update `rule-documentation` — one `replace` pair in the Render
+- [x] update `estimate-documentation-completes` — one `replace` pair inside the Criterion; the page stays `pending`
+- [x] `uv run guppi render`: `.claude/agents/librarian-guppi.md`
 - [ ] read `estimate-documentation-completes`
 ```
 
@@ -534,10 +534,10 @@ update:
 ```
 
 ```tasks
-- [ ] update `decision-case-347` — `change` alone
-- [ ] update `rule-decisions-schema` — two `replace` pairs in the Render
-- [ ] update `estimate-decisions-schema-checked` — one `replace` pair inside the Criterion; the page goes `pending`
-- [ ] `uv run guppi render`: `vault/wiki/decisions/schema.yaml`
+- [x] update `decision-case-347` — `change` alone
+- [x] update `rule-decisions-schema` — two `replace` pairs in the Render
+- [x] update `estimate-decisions-schema-checked` — one `replace` pair inside the Criterion; the page goes `pending`
+- [x] `uv run guppi render`: `vault/wiki/decisions/schema.yaml`
 - [ ] read `estimate-decisions-schema-checked`
 ```
 
@@ -580,10 +580,10 @@ update:
 ```
 
 ```tasks
-- [ ] update `rule-agent-writing` — one `replace` pair in the Render
-- [ ] update `estimate-agent-writing-followed` — one `replace` pair inside the Criterion; the page goes `pending`
-- [ ] update `insight-workflow-fact-signed-from-a-check-that-does-not-cover-it` — `status: actioned`, `addressed_by`
-- [ ] `uv run guppi render`: `CLAUDE.md`
+- [x] update `rule-agent-writing` — one `replace` pair in the Render
+- [x] update `estimate-agent-writing-followed` — one `replace` pair inside the Criterion; the page goes `pending`
+- [x] update `insight-workflow-fact-signed-from-a-check-that-does-not-cover-it` — `status: actioned`, `addressed_by`
+- [x] `uv run guppi render`: `CLAUDE.md`
 - [ ] read `estimate-agent-writing-followed`
 ```
 
@@ -669,12 +669,12 @@ update:
 ```
 
 ```tasks
-- [ ] create `rule-one-judgment-one-implementation`
-- [ ] create `estimate-one-judgment-one-implementation-followed`
-- [ ] update `rule-claude-md` — four `replace` pairs; `children` is written by `generate` from the `ref` of the `create`
-- [ ] update `estimate-claude-md-rendered` — four `replace` pairs inside the Criterion; the page goes `pending`
-- [ ] update `insight-harness-one-rule-implemented-twice-drifts` — `status: actioned`, `addressed_by`
-- [ ] `uv run guppi render`: `CLAUDE.md`
+- [x] create `rule-one-judgment-one-implementation`
+- [x] create `estimate-one-judgment-one-implementation-followed`
+- [x] update `rule-claude-md` — four `replace` pairs; `children` is written by `generate` from the `ref` of the `create`
+- [x] update `estimate-claude-md-rendered` — four `replace` pairs inside the Criterion; the page goes `pending`
+- [x] update `insight-harness-one-rule-implemented-twice-drifts` — `status: actioned`, `addressed_by`
+- [x] `uv run guppi render`: `CLAUDE.md`
 - [ ] read `estimate-one-judgment-one-implementation-followed`
 - [ ] read `estimate-claude-md-rendered`
 ```
@@ -715,9 +715,9 @@ update:
 ```
 
 ```tasks
-- [ ] update `rule-insights-schema` — one `replace` pair in the Render
-- [ ] update `estimate-insights-schema-checked` — one `replace` pair inside the Criterion; the page goes `pending`
-- [ ] `uv run guppi render`: `vault/wiki/insights/schema.yaml`
+- [x] update `rule-insights-schema` — one `replace` pair in the Render
+- [x] update `estimate-insights-schema-checked` — one `replace` pair inside the Criterion; the page goes `pending`
+- [x] `uv run guppi render`: `vault/wiki/insights/schema.yaml`
 - [ ] read `estimate-insights-schema-checked`
 ```
 
@@ -793,9 +793,9 @@ update:
 ```
 
 ```tasks
-- [ ] update `rule-lint` — `change` alone; the classes live in the docstring
-- [ ] update `estimate-lint-catches` — one `replace` pair inside the Criterion
-- [ ] update `estimate-decisions-schema-checked`, `estimate-entities-schema-checked`, `estimate-estimates-schema-checked`, `estimate-insights-schema-checked`, `estimate-lessons-schema-checked`, `estimate-rules-schema-checked`, `estimate-page-schemas-one-file-per-rule` — one `replace` pair each inside the Criterion; the pages go `pending`
+- [x] update `rule-lint` — `change` alone; the classes live in the docstring
+- [x] update `estimate-lint-catches` — one `replace` pair inside the Criterion
+- [x] update `estimate-decisions-schema-checked`, `estimate-entities-schema-checked`, `estimate-estimates-schema-checked`, `estimate-insights-schema-checked`, `estimate-lessons-schema-checked`, `estimate-rules-schema-checked`, `estimate-page-schemas-one-file-per-rule` — one `replace` pair each inside the Criterion; the pages go `pending`
 - [x] `guppi/lint.py` — `check_schema` reads `properties.single`; the class `schema` in the docstring
 - [x] `tests/test_lint.py` — a list in a `single` field a finding; one value none; a schema without the key none
 - [ ] read `estimate-lint-catches`
@@ -839,8 +839,8 @@ update:
 ```
 
 ```tasks
-- [ ] update `rule-insights-schema` — one `replace` pair in the Render
-- [ ] update `estimate-insights-schema-checked` — one `replace` pair inside the Criterion; the pair on the keys lint reads is 362.1's
-- [ ] `uv run guppi render`: `vault/wiki/insights/schema.yaml`
+- [x] update `rule-insights-schema` — one `replace` pair in the Render
+- [x] update `estimate-insights-schema-checked` — one `replace` pair inside the Criterion; the pair on the keys lint reads is 362.1's
+- [x] `uv run guppi render`: `vault/wiki/insights/schema.yaml`
 - [ ] read `estimate-insights-schema-checked`
 ```

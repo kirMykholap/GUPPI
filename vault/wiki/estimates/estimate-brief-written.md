@@ -1,7 +1,7 @@
 ---
 type: estimate
 kind: QA
-status: passed
+status: pending
 target: "[[rule-brief]]"
 method: one reading by hand after the first librarian run, recorded in the estimate line
 checked: 2026-09-20
@@ -23,7 +23,7 @@ The librarian rewrites `vault/wiki/brief.md` at the end of its run.
 
 Then:
 The brief holds six sections in order: Where things stand, Readings due, Deferred, Flags, Next session, Readings at the close.
-**＋** Where things stand, Readings due, Deferred, Flags and Readings at the close are as today, their content unchanged.
+**＋** Where things stand, Readings due, Deferred, Flags and Readings at the close are as today, their content unchanged, but Flags also name every item `generate` moved to the Backlog and every milestone it dropped in the run (354.4).
 **＋** Next session — two lists. `Cases`: what needs a decision — a handoff flag with a question or a request to change the sprint, a `failed` Estimate, a contradiction, a defect the librarian found; one line per item, what and from where. `Work`: what is done without a decision — every `pending` reading of Readings due by its slug, the unticked boxes of the Specs, a ledger line this run did not apply, a dirty tree; one line per item.
 **＋** An item stands in one of the two lists, never in both; a list with no item is the line "none".
 **－** The brief still states no decision: the sort by kind is not a judgment of the work.
@@ -50,3 +50,4 @@ The brief holds six sections in order: Where things stand, Readings due, Deferre
 - 2026-09-18 status: pending → passed · raw/2026-09-18/1252/ledger.md#L3
 - 2026-09-20 updated: the Criterion replaced whole — six sections, Next session with the lists Cases and Work (case 268.1) · [[decision-case-268.1]]
 - 2026-09-20 status: pending → passed · raw/2026-09-20/1308/ledger.md#L9
+- 2026-09-23 updated: the Criterion names the Flags line of a move to the Backlog (case 354.4) · [[decision-case-354.4]]

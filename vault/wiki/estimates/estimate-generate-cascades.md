@@ -1,11 +1,11 @@
 ---
 type: estimate
 kind: QA
-status: pending
+status: passed
 target: "[[rule-page-generation]]"
 purpose: The cascade computes built, the archive of a superseded decision, the severity of an Insight and the rules of an Entity, never by hand
 method: pytest tests/test_generate.py, the tests of the cascade
-checked: 2026-09-22
+checked: 2026-09-23
 origin: raw/2026-09-16/1955/ledger.md#case-201.4
 sprint: migration
 created: 2026-09-16
@@ -34,7 +34,7 @@ An entity or rule whose live Estimates are all `passed` becomes `built`; a `buil
 
 ## Result
 
-2026-09-22, uv run pytest tests/test_generate.py, 77 passed, the tests of the cascade: built and draft by the Estimates, a superseded decision archived, the lessons of an actioned Insight archived and the severity recounted, and the rules of every live Entity recounted from the applies_to of the live rules; the live leg, the librarian's run of this session, not taken
+2026-09-23, uv run pytest tests/test_generate.py: 85 passed, among them 13 selected by -k "cascade or archived or severity or recount or insight or built"; the move of case 354 is a step after the cascade and writes `· generate`, so no section is touched by the cascade; the live leg, the librarian's run of this session, not taken
 
 ## History
 
@@ -45,3 +45,4 @@ An entity or rule whose live Estimates are all `passed` becomes `built`; a `buil
 - 2026-09-22 updated: one line of the Criterion — the cascade recounts rules (case 305.3; pre-spec) · [[decision-case-305.3]]
 - 2026-09-22 status: pending → passed · raw/2026-09-22/0014/ledger.md#L60
 - 2026-09-23 updated: the archived Estimate out of the count in the Criterion (case 328) · [[decision-case-328]]
+- 2026-09-23 status: pending → passed · raw/2026-09-23/0034/ledger.md#L57

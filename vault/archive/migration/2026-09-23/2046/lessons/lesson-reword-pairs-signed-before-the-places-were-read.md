@@ -2,7 +2,7 @@
 type: lesson
 kind: error
 root_cause: a rename of a word is not a rename of a slug — one word names different things by place — and the Case listed the places by grep count without reading each; the regulated procedure asks the agent to put every found place and its meaning into context before the pairs are signed
-status: clustered
+status: archived
 insight: "[[insight-workflow-edit-pair-signed-from-a-grep-fragment]]"
 origin: raw/2026-09-20/1308/ledger.md#L57
 sprint: migration
@@ -22,3 +22,5 @@ a rename of a word is not a rename of a slug — one word names different things
 
 - 2026-09-20 created · raw/2026-09-20/1308/ledger.md#L57
 - 2026-09-22 updated: clustered by librarian: an edit pair signed from a grep fragment, with lesson-replace-anchors-overlap-in-one-spec · raw/2026-09-22/1121/ledger.md#L96
+- 2026-09-23 archived · insight actioned
+- 2026-09-23 archived · cleanup

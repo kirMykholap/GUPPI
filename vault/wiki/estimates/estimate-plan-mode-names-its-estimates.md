@@ -3,12 +3,12 @@ type: estimate
 kind: QA
 status: passed
 target: "[[rule-plan-mode]]"
+purpose: A ratified Case names by slug the Estimate it changes
+method: read by hand at the close of this session's Spec — every Case that changes a rule names the Estimate it changes by slug, and a Case that changes only the Purpose section names none
 origin: raw/2026-09-16/1034/ledger.md#case-187
 sprint: migration
 created: 2026-09-16
 tags: [session, workflow]
-purpose: A ratified Case names by slug the Estimate it changes
-method: live reading of this session's Spec at its close — every Case that changes a rule names the Estimate it changes by slug, and a Case that changes only the Purpose section names none
 ---
 
 ## Criterion
@@ -51,3 +51,4 @@ not name, and only that promise's own test catches it.
 - 2026-09-16 created · [[decision-case-187]]
 - 2026-09-16 status: pending → passed · raw/2026-09-16/1651/ledger.md#L39
 - 2026-09-17 ref removed · one-off migration · raw/2026-09-16/2238/spec.md#case-210
+- 2026-09-23 updated: the method names its reading with the one spelling, by hand (case 330.1) · [[decision-case-330.1]]

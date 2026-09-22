@@ -1,7 +1,7 @@
 ---
 type: estimate
 kind: QA
-status: passed
+status: pending
 target: "[[rule-case-protocol]]"
 purpose: The Case schema is present in a session from the first turn after /hi, as one text — the Render of rule-case-protocol — and nothing of it repeated in CLAUDE.md
 method: one reading at the first /hi of a session, by hand, plus the preview cases of tests/test_ledger.py
@@ -25,7 +25,7 @@ The first `uv run guppi render` after `rule-case-protocol` changed, and the `/hi
 Then:
 `case-schema.md` opens with the section "The one rule" right under its title: nothing in the vault or the codebase changes without a Decision ratified by the human; the agent has full autonomy over how to implement something once its contract is ratified, and none over the contract itself; when unsure whether something needs ratification, it does; the vault is the only memory — no note outside the repository, what is worth keeping is a `lesson` line or a Case on a Rule page (272.1).
 **＋** The paragraph after it says, as before, that the schema is the Render loaded by `/hi` with `sprint.md`, `brief.md` and `glossary.md`, and that a session without `/hi` holds no Case.
-**＋** The Spec paragraph names the field-only `update` of an Estimate: a part named changes alone, a part inside the Criterion sets `pending` (294, 296).
+**＋** The Spec paragraph names the field-only `update` of an Estimate: a part named changes alone, a part inside the Criterion sets `pending` (294, 296); it names `reword` among the keys of an `update`, between `replace` and `change`, and, at the end of the description of an `update`, the requirement for signing a pair of either kind and the step that a Case changing a page reads the page's `estimates` (353).
 **＋** The paragraph on the Criterion says that a Case superseded in its own session, before the Spec is approved, leaves the Spec and the superseding Case is written whole; a supersede from a later session leaves the earlier Spec as it is (299.1); the Spec paragraph names `glossary` as the fourth ticker, the glossary lines (306.6).
 **＋** `render --check` after the render exits 0.
 **－** The other sections of the schema do not change; the description of the project is not in the schema.
@@ -73,3 +73,4 @@ Then:
 - 2026-09-22 status: pending → passed · raw/2026-09-22/0014/ledger.md#L1
 - 2026-09-22 updated: one line of the Criterion — glossary the fourth ticker (case 306.6) · [[decision-case-306.6]]
 - 2026-09-22 status: pending → passed · raw/2026-09-22/1121/ledger.md#L83
+- 2026-09-23 updated: the Criterion names reword among the keys of an update and the two steps of the author (case 353) · [[decision-case-353]]

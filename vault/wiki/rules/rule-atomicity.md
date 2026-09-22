@@ -33,3 +33,4 @@ It holds for a Case, an Entity, a Rule and an Estimate alike. Not for a Lesson: 
 ## History
 
 - 2026-09-22 created · [[decision-case-317]]
+- 2026-09-23 updated: the Render carries its own markers, so the page renders into case-schema.md — the hand fix of commit 94277ea signed after the fact (case 324) · [[decision-case-324]]

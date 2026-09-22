@@ -47,9 +47,9 @@ update:
 ```
 
 ```tasks
-- [ ] update `rule-atomicity` — `sections: Render`, the text as it stands on disk, with its markers
-- [ ] update `rule-case-protocol` — one `change`
-- [ ] `uv run guppi render`: `vault/wiki/case-schema.md`
+- [x] update `rule-atomicity` — `sections: Render`, the text as it stands on disk, with its markers
+- [x] update `rule-case-protocol` — one `change`
+- [x] `uv run guppi render`: `vault/wiki/case-schema.md`
 ```
 
 ## Case 325 — a rendering page without its own markers is refused
@@ -96,11 +96,11 @@ update:
 ```
 
 ```tasks
-- [ ] update `rule-prespec` — the replace pair in the Render, the finding after the `file` item
-- [ ] create `estimate-prespec-catches-an-unwrapped-render`, `ref: rule-prespec`
+- [x] update `rule-prespec` — the replace pair in the Render, the finding after the `file` item
+- [x] create `estimate-prespec-catches-an-unwrapped-render`, `ref: rule-prespec`
 - [x] `guppi/prespec.py` — the check on the pattern of `check_form`, wired into `check()`
 - [x] `tests/test_prespec.py` — a create with an unwrapped Render, an update writing `sections: Render` unwrapped, a wrapped one clean
-- [ ] `uv run guppi render`: `.claude/skills/pre-spec/SKILL.md`
+- [x] `uv run guppi render`: `.claude/skills/pre-spec/SKILL.md`
 - [x] read `estimate-prespec-catches-an-unwrapped-render`
 ```
 
@@ -135,8 +135,8 @@ update:
 ```
 
 ```tasks
-- [ ] update `rule-lint` — one `change`
-- [ ] update `estimate-lint-catches` — the replace pair inside the Criterion, the new class
+- [x] update `rule-lint` — one `change`
+- [x] update `estimate-lint-catches` — the replace pair inside the Criterion, the new class
 - [x] `guppi/lint.py` — the check of the class `markers`, the class named in the docstring
 - [x] `tests/test_lint.py` — an unwrapped Render, a stray closing marker in a full page
 - [ ] read `estimate-lint-catches`
@@ -186,8 +186,8 @@ update:
 ```
 
 ```tasks
-- [ ] update `rule-page-generation` — the replace pair in the sentence on the ticker
-- [ ] update `estimate-generate-ticks-the-spec` — the replace pair inside the Criterion
+- [x] update `rule-page-generation` — the replace pair in the sentence on the ticker
+- [x] update `estimate-generate-ticks-the-spec` — the replace pair inside the Criterion
 - [x] `guppi/generate.py` — `tick_read` walks every Spec; the docstring
 - [x] `tests/test_generate.py -k tick` — two Specs with a line of one slug, both tick
 - [ ] read `estimate-generate-ticks-the-spec`
@@ -233,11 +233,11 @@ update:
 ```
 
 ```tasks
-- [ ] update `rule-prespec` — the replace pair in the Render, the clause on the task line
-- [ ] update `estimate-prespec-checks-the-plan` — the replace pair inside the Criterion
+- [x] update `rule-prespec` — the replace pair in the Render, the clause on the task line
+- [x] update `estimate-prespec-checks-the-plan` — the replace pair inside the Criterion
 - [x] `guppi/prespec.py` — `check_tasks` matches a read line as `generate` does, with the second wording
 - [x] `tests/test_prespec.py` — a read line of three slugs; an Estimate named by an `update` line alone; a proper read line clean
-- [ ] `uv run guppi render`: `.claude/skills/pre-spec/SKILL.md`
+- [x] `uv run guppi render`: `.claude/skills/pre-spec/SKILL.md`
 - [ ] read `estimate-prespec-checks-the-plan`
 ```
 
@@ -276,8 +276,8 @@ update:
 ```
 
 ```tasks
-- [ ] update `rule-page-generation` — one `change`
-- [ ] update `estimate-generate-cascades` — the replace pair inside the Criterion
+- [x] update `rule-page-generation` — one `change`
+- [x] update `estimate-generate-cascades` — the replace pair inside the Criterion
 - [x] `guppi/generate.py` — the cascade passes over an `archived` Estimate; the docstring
 - [x] `tests/test_generate.py` — a rule with one archived Estimate and the rest passed becomes `built`
 - [ ] by hand, after the librarian's run: `rule-materialize` stands `built`, with no lint finding on it
@@ -315,7 +315,7 @@ update:
 ```
 
 ```tasks
-- [ ] update `estimate-sprint-migration-index-dissolved` — `set: {method: …}`
+- [x] update `estimate-sprint-migration-index-dissolved` — `set: {method: …}`
 - [ ] by hand, after the librarian's run: no finding of the class `method` on the page
 ```
 
@@ -360,9 +360,9 @@ update:
 ```
 
 ```tasks
-- [ ] update `estimate-lint-catches` — the replace pair in the line of the class `method`
-- [ ] update `rule-lint` — one `change`
-- [ ] update `estimate-plan-mode-names-its-estimates` — `set: {method: …}` with the words `by hand`
+- [x] update `estimate-lint-catches` — the replace pair in the line of the class `method`
+- [x] update `rule-lint` — one `change`
+- [x] update `estimate-plan-mode-names-its-estimates` — `set: {method: …}` with the words `by hand`
 - [x] `guppi/lint.py` — `READING` removed, `is_reading` by `by hand`; the docstring of `check_method`
 - [x] `tests/test_lint.py` — a `method` with the word `reading` alone earns a finding; `by hand` is clean
 - [ ] read `estimate-lint-catches`
@@ -424,7 +424,7 @@ update:
 ```tasks
 - [ ] update `rule-estimates-schema` — the replace pair in the description of `method` inside the Render
 - [ ] update `estimate-estimates-schema-checked` — `set: {status: pending}` and `sections: Criterion` verbatim
-- [ ] `uv run guppi render`: `vault/wiki/estimates/schema.yaml`
+- [x] `uv run guppi render`: `vault/wiki/estimates/schema.yaml`
 - [ ] read `estimate-estimates-schema-checked`
 ```
 
@@ -472,12 +472,12 @@ update:
 ```
 
 ```tasks
-- [ ] create `estimate-prespec-catches-a-method-without-a-form`, `ref: rule-prespec`
-- [ ] update `rule-prespec` — the replace pair in the Render, after the clause on `ref` (case 203.1)
+- [x] create `estimate-prespec-catches-a-method-without-a-form`, `ref: rule-prespec`
+- [x] update `rule-prespec` — the replace pair in the Render, after the clause on `ref` (case 203.1)
 - [x] `guppi/lint.py` — the predicate that names a form lifted out, `check_method` calling it; the behaviour unchanged
 - [x] `guppi/prespec.py` — the check over the `create` and `update` items of Estimates, calling lint's predicate
 - [x] `tests/test_prespec.py` — a create with a prose method; a create with no method; each of the four forms clean
-- [ ] `uv run guppi render`: `.claude/skills/pre-spec/SKILL.md`
+- [x] `uv run guppi render`: `.claude/skills/pre-spec/SKILL.md`
 - [x] read `estimate-prespec-catches-a-method-without-a-form`
 ```
 
@@ -535,7 +535,7 @@ update:
 - [ ] update `insight-workflow-edit-pair-signed-from-a-grep-fragment` — `set: {status: actioned, addressed_by: […]}`
 - [ ] `guppi/prespec.py` — the simulation of the pairs in entry order, whitespace collapsed as in `generate`
 - [ ] `tests/test_prespec.py` — an anchor that misses; an anchor that hits twice; a pair whose `old` an earlier Case produces is clean
-- [ ] `uv run guppi render`: `.claude/skills/pre-spec/SKILL.md`
+- [x] `uv run guppi render`: `.claude/skills/pre-spec/SKILL.md`
 - [ ] read `estimate-prespec-simulates-the-pairs`
 ```
 
@@ -574,7 +574,7 @@ update:
 
 ```tasks
 - [ ] update `rule-case-protocol` — the replace pair in the list of the keys of an `update` inside the Render
-- [ ] `uv run guppi render`: `vault/wiki/case-schema.md`
+- [x] `uv run guppi render`: `vault/wiki/case-schema.md`
 ```
 
 ## Case 335 — `check_frontier` judges by the source segment, not by the whole line
@@ -615,11 +615,11 @@ update:
 ```
 
 ```tasks
-- [ ] update `rule-prespec` — the replace pair in the Render, the clause on the segments
-- [ ] update `estimate-prespec-checks-the-plan` — the replace pair in the line of the Criterion on the Frontier
+- [x] update `rule-prespec` — the replace pair in the Render, the clause on the segments
+- [x] update `estimate-prespec-checks-the-plan` — the replace pair in the line of the Criterion on the Frontier
 - [x] `guppi/prespec.py` — `check_frontier` takes the source segment
 - [x] `tests/test_prespec.py` — a title holding an `estimate-sprint-*` slug is clean; a source `sprint` with no `update` gives the finding
-- [ ] `uv run guppi render`: `.claude/skills/pre-spec/SKILL.md`
+- [x] `uv run guppi render`: `.claude/skills/pre-spec/SKILL.md`
 - [ ] read `estimate-prespec-checks-the-plan`
 ```
 
@@ -688,7 +688,7 @@ update:
 ```
 
 ```tasks
-- [ ] update `estimate-prespec-checks-the-plan` — the replace pair in line 39 of the Criterion
+- [x] update `estimate-prespec-checks-the-plan` — the replace pair in line 39 of the Criterion
 - [ ] read `estimate-prespec-checks-the-plan`
 ```
 
@@ -727,7 +727,7 @@ update:
 
 ```tasks
 - [ ] update `rule-case-protocol` — the replace pair at the end of the description of an `update` inside the Render
-- [ ] `uv run guppi render`: `vault/wiki/case-schema.md`
+- [x] `uv run guppi render`: `vault/wiki/case-schema.md`
 ```
 
 ## Deferred

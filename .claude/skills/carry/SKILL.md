@@ -11,8 +11,7 @@ above holds a path outside `vault/raw/<hi date>/<hi HHMM>/` and `vault/wiki/brie
 stop and say: work was done, the ordinary exit applies — Work Mode, `/retro`, `/handoff`.
 
 Otherwise:
-1. Rewrite `vault/wiki/brief.md` by the frame of `rule-brief` (the Render in
-   `.claude/agents/librarian-guppi.md`), in its short shape as that frame says: Where
+1. Rewrite `vault/wiki/brief.md` by the frame of `rule-brief` — the text between the `rule-brief` markers of `.claude/agents/librarian-guppi.md` — in its short shape as that frame says: Where
    things stand names the conserved Spec — `vault/raw/<hi date>/<hi HHMM>/spec.md`, its
    Cases, what is not done on it; no Readings due, no Next session, no Readings at the close; Deferred is
    the previous brief's list as it stands plus the `defer` items of this Spec by slug, less the targets the sprint page names (case 229.4);

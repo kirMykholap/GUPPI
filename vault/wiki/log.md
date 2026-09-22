@@ -2765,3 +2765,149 @@ instruction. The global feed; a page's own `## History` is the per-page view.
 - 2026-09-22 decisions/decision-case-310.1 archived · cleanup
 - 2026-09-22 decisions/decision-case-310.4 archived · cleanup
 - 2026-09-22 rules/rule-materialize estimate estimate-materialize-finds-a-rule-class-item archived · cleanup
+- 2026-09-23 rules/rule-materialize status: draft → built · cascade · generate
+- 2026-09-23 decisions/decision-case-324 created · raw/2026-09-22/1724/ledger.md#case-324 · generate
+- 2026-09-23 rules/rule-atomicity updated: the Render carries its own markers, so the page renders into case-schema.md — the hand fix of commit 94277ea signed after the fact (case 324) · [[decision-case-324]] · generate
+- 2026-09-23 rules/rule-case-protocol updated: the extra closing marker of rule-atomicity removed from the Render, a parent carrying one marker line per child — the hand fix of commit 94277ea signed after the fact (case 324) · [[decision-case-324]] · generate
+- 2026-09-23 decisions/decision-case-325.1 created · raw/2026-09-22/1724/ledger.md#case-325.1 · generate
+- 2026-09-23 rules/rule-prespec updated: a finding for a Render written without the page's own markers (case 325.1) · [[decision-case-325.1]] · generate
+- 2026-09-23 estimates/estimate-prespec-catches-an-unwrapped-render created · [[decision-case-325.1]] · generate
+- 2026-09-23 rules/rule-prespec estimate estimate-prespec-catches-an-unwrapped-render added · [[decision-case-325.1]] · generate
+- 2026-09-23 decisions/decision-case-325.2 created · raw/2026-09-22/1724/ledger.md#case-325.2 · generate
+- 2026-09-23 rules/rule-lint updated: the class `markers` — a Render not wrapped in the page's own markers, and a closing marker line for a child in a full page (case 325.2) · [[decision-case-325.2]] · generate
+- 2026-09-23 estimates/estimate-lint-catches updated: the class `markers` added to the Criterion (case 325.2) · [[decision-case-325.2]] · generate
+- 2026-09-23 decisions/decision-case-326 created · raw/2026-09-22/1724/ledger.md#case-326 · generate
+- 2026-09-23 rules/rule-page-generation updated: a reading ticks the lines of its slug in every live Spec of raw/, not in the first that holds one (case 326) · [[decision-case-326]] · generate
+- 2026-09-23 estimates/estimate-generate-ticks-the-spec updated: the walk of the Specs in the Criterion — every live Spec, not the first that holds one (case 326) · [[decision-case-326]] · generate
+- 2026-09-23 decisions/decision-case-327 created · raw/2026-09-22/1724/ledger.md#case-327 · generate
+- 2026-09-23 rules/rule-prespec updated: a reading's task line is matched as generate ticks it — one line per slug (case 327) · [[decision-case-327]] · generate
+- 2026-09-23 estimates/estimate-prespec-checks-the-plan updated: the task line of a reading in the Criterion — matched as generate ticks it (case 327) · [[decision-case-327]] · generate
+- 2026-09-23 decisions/decision-case-328 created · raw/2026-09-22/1724/ledger.md#case-328 · generate
+- 2026-09-23 rules/rule-page-generation updated: the cascade counts the live Estimates alone — one standing archived is not counted (case 328) · [[decision-case-328]] · generate
+- 2026-09-23 estimates/estimate-generate-cascades updated: the archived Estimate out of the count in the Criterion (case 328) · [[decision-case-328]] · generate
+- 2026-09-23 decisions/decision-case-329 created · raw/2026-09-22/1724/ledger.md#case-329 · generate
+- 2026-09-23 estimates/estimate-sprint-migration-index-dissolved updated: the method names its reading — read by hand — and drops the moment of theme 4 (case 329) · [[decision-case-329]] · generate
+- 2026-09-23 decisions/decision-case-330.1 created · raw/2026-09-22/1724/ledger.md#case-330.1 · generate
+- 2026-09-23 estimates/estimate-lint-catches updated: one spelling of a reading in the Criterion — `by hand` (case 330.1) · [[decision-case-330.1]] · generate
+- 2026-09-23 rules/rule-lint updated: a reading in `method` has one spelling, `by hand`; the constant READING is gone (case 330.1) · [[decision-case-330.1]] · generate
+- 2026-09-23 estimates/estimate-plan-mode-names-its-estimates updated: the method names its reading with the one spelling, by hand (case 330.1) · [[decision-case-330.1]] · generate
+- 2026-09-23 decisions/decision-case-330.2 created · raw/2026-09-22/1724/ledger.md#case-330.2 · generate
+- 2026-09-23 decisions/decision-case-331 created · raw/2026-09-22/1724/ledger.md#case-331 · generate
+- 2026-09-23 estimates/estimate-prespec-catches-a-method-without-a-form created · [[decision-case-331]] · generate
+- 2026-09-23 rules/rule-prespec estimate estimate-prespec-catches-a-method-without-a-form added · [[decision-case-331]] · generate
+- 2026-09-23 rules/rule-prespec updated: a finding for a method that names none of the forms lint classifies (case 331) · [[decision-case-331]] · generate
+- 2026-09-23 decisions/decision-case-332.1 created · raw/2026-09-22/1724/ledger.md#case-332.1 · generate
+- 2026-09-23 decisions/decision-case-332.2 created · raw/2026-09-22/1724/ledger.md#case-332.2 · generate
+- 2026-09-23 decisions/decision-case-333 created · raw/2026-09-22/1724/ledger.md#case-333 · generate
+- 2026-09-23 decisions/decision-case-334 created · raw/2026-09-22/1724/ledger.md#case-334 · generate
+- 2026-09-23 decisions/decision-case-336 created · raw/2026-09-22/1724/ledger.md#case-336 · generate
+- 2026-09-23 decisions/decision-case-330.2 superseded by decision-case-336 · [[decision-case-336]] · generate
+- 2026-09-23 decisions/decision-case-337 created · raw/2026-09-22/1724/ledger.md#case-337 · generate
+- 2026-09-23 decisions/decision-case-332.1 superseded by decision-case-337 · [[decision-case-337]] · generate
+- 2026-09-23 decisions/decision-case-338.1 created · raw/2026-09-22/1724/ledger.md#case-338.1 · generate
+- 2026-09-23 decisions/decision-case-338.2 created · raw/2026-09-22/1724/ledger.md#case-338.2 · generate
+- 2026-09-23 estimates/estimate-prespec-checks-the-plan updated: the line on a create without method makes room for the finding of case 331 (case 338.2) · [[decision-case-338.2]] · generate
+- 2026-09-23 decisions/decision-case-339 created · raw/2026-09-22/1724/ledger.md#case-339 · generate
+- 2026-09-23 decisions/decision-case-334 superseded by decision-case-339 · [[decision-case-339]] · generate
+- 2026-09-23 decisions/decision-case-340 created · raw/2026-09-22/1724/ledger.md#case-340 · generate
+- 2026-09-23 decisions/decision-case-335 created · raw/2026-09-22/1724/ledger.md#case-335 · generate
+- 2026-09-23 rules/rule-prespec updated: the sprint test reads the source segment of a Frontier line, not every segment (case 335) · [[decision-case-335]] · generate
+- 2026-09-23 estimates/estimate-prespec-checks-the-plan updated: the source segment of a Frontier line in the Criterion (case 335) · [[decision-case-335]] · generate
+- 2026-09-23 rules/rule-lint status: built → draft · cascade · generate
+- 2026-09-23 rules/rule-prespec status: built → draft · cascade · generate
+- 2026-09-23 decisions/decision-case-330.2 archived · superseded · generate
+- 2026-09-23 decisions/decision-case-332.1 archived · superseded · generate
+- 2026-09-23 decisions/decision-case-334 archived · superseded · generate
+- 2026-09-23 decisions/decision-case-341 created · raw/2026-09-22/2046/ledger.md#case-341 · generate
+- 2026-09-23 decisions/decision-case-337 superseded by decision-case-341 · [[decision-case-341]] · generate
+- 2026-09-23 decisions/decision-case-342 created · raw/2026-09-22/2046/ledger.md#case-342 · generate
+- 2026-09-23 decisions/decision-case-340 superseded by decision-case-342 · [[decision-case-342]] · generate
+- 2026-09-23 decisions/decision-case-343 created · raw/2026-09-22/2046/ledger.md#case-343 · generate
+- 2026-09-23 decisions/decision-case-336 superseded by decision-case-343 · [[decision-case-343]] · generate
+- 2026-09-23 lessons/lesson-case-form-the-spec-free-sections-written-last created · raw/2026-09-22/2046/ledger.md#L7 · generate
+- 2026-09-23 decisions/decision-case-344 created · raw/2026-09-22/2046/ledger.md#case-344 · generate
+- 2026-09-23 decisions/decision-case-338.1 superseded by decision-case-344 · [[decision-case-344]] · generate
+- 2026-09-23 estimates/estimate-prespec-binds-a-sprint-line updated: the Criterion and the method speak of the source segment of a Frontier line (case 344, supersedes 338.1) · [[decision-case-344]] · generate
+- 2026-09-23 decisions/decision-case-345 created · raw/2026-09-22/2046/ledger.md#case-345 · generate
+- 2026-09-23 decisions/decision-case-332.2 superseded by decision-case-345 · [[decision-case-345]] · generate
+- 2026-09-23 lessons/lesson-case-form-ratification-used-for-the-agents-caveats created · raw/2026-09-22/2046/ledger.md#L12 · generate
+- 2026-09-23 lessons/lesson-ledger-error-answered-in-the-chat-instead-of-recorded created · raw/2026-09-22/2046/ledger.md#L13 · generate
+- 2026-09-23 decisions/decision-case-346 created · raw/2026-09-22/2046/ledger.md#case-346 · generate
+- 2026-09-23 decisions/decision-case-339 superseded by decision-case-346 · [[decision-case-346]] · generate
+- 2026-09-23 lessons/lesson-case-built-on-the-persons-premise-without-checking-it created · raw/2026-09-22/2046/ledger.md#L16 · generate
+- 2026-09-23 decisions/decision-case-347 created · raw/2026-09-22/2046/ledger.md#case-347 · generate
+- 2026-09-23 rules/rule-carry-over updated: step 1 names the place of the brief frame, not only the file that holds it (case 347) · [[decision-case-347]] · generate
+- 2026-09-23 estimates/estimate-carry-over-writes updated: the Render changed under it — step 1 names the place of the frame; the Criterion stands (case 347) · [[decision-case-347]] · generate
+- 2026-09-23 decisions/decision-case-348 created · raw/2026-09-22/2046/ledger.md#case-348 · generate
+- 2026-09-23 decisions/decision-case-333 superseded by decision-case-348 · [[decision-case-348]] · generate
+- 2026-09-23 lessons/lesson-fact-asserted-from-a-partial-check created · raw/2026-09-22/2046/ledger.md#L21 · generate
+- 2026-09-23 lessons/lesson-materialize-a-folded-reading-into-a-skipped-entry-leaves-no-entry created · raw/2026-09-22/2046/ledger.md#L22 · generate
+- 2026-09-23 decisions/decision-case-349 created · raw/2026-09-22/2046/ledger.md#case-349 · generate
+- 2026-09-23 decisions/decision-case-348 superseded by decision-case-349 · [[decision-case-349]] · generate
+- 2026-09-23 rules/rule-documentation updated: the ban allows one read of the ledger — its line count and the lines the yaml does not account for (case 349, supersedes 333 and 348) · [[decision-case-349]] · generate
+- 2026-09-23 estimates/estimate-documentation-completes updated: the Criterion names the one allowed read of the ledger (case 349) · [[decision-case-349]] · generate
+- 2026-09-23 decisions/decision-case-350 created · raw/2026-09-22/2046/ledger.md#case-350 · generate
+- 2026-09-23 decisions/decision-case-343 superseded by decision-case-350 · [[decision-case-350]] · generate
+- 2026-09-23 rules/rule-estimates-schema updated: the description of method names the four forms, what lint checks besides naming one, and the four triggers of the old shape (case 350, supersedes 330.2, 336 and 343) · [[decision-case-350]] · generate
+- 2026-09-23 estimates/estimate-estimates-schema-checked updated: the live reading is due again — the description of method in the Render changed; the Criterion stands (case 350) · [[decision-case-350]] · generate
+- 2026-09-23 decisions/decision-case-351 created · raw/2026-09-22/2046/ledger.md#case-351 · generate
+- 2026-09-23 decisions/decision-case-345 superseded by decision-case-351 · [[decision-case-351]] · generate
+- 2026-09-23 estimates/estimate-prespec-simulates-the-pairs created · [[decision-case-351]] · generate
+- 2026-09-23 estimates/estimate-prespec-simulates-the-pairs status: pending → passed · raw/2026-09-22/2046/ledger.md#L36 · generate
+- 2026-09-23 rules/rule-prespec estimate estimate-prespec-simulates-the-pairs added · [[decision-case-351]] · generate
+- 2026-09-23 rules/rule-prespec updated: the pairs of the Spec simulated in entry order, an anchor that misses or is not unique reported with its Case (case 351, supersedes 332.2 and 345) · [[decision-case-351]] · generate
+- 2026-09-23 estimates/estimate-prespec-reconciles updated: the live reading is due again — the Render gained the simulation of the pairs; the Criterion stands (case 351) · [[decision-case-351]] · generate
+- 2026-09-23 insights/insight-workflow-edit-pair-signed-from-a-grep-fragment updated: actioned by the two halves of its Proposal — the requirement for signing a pair in case-schema.md and the simulation in pre-spec (case 351) · [[decision-case-351]] · generate
+- 2026-09-23 decisions/decision-case-352 created · raw/2026-09-22/2046/ledger.md#case-352 · generate
+- 2026-09-23 decisions/decision-case-346 superseded by decision-case-352 · [[decision-case-352]] · generate
+- 2026-09-23 rules/rule-skill-hi deferred · [[decision-case-352]] · generate
+- 2026-09-23 decisions/decision-case-353 created · raw/2026-09-22/2046/ledger.md#case-353 · generate
+- 2026-09-23 decisions/decision-case-341 superseded by decision-case-353 · [[decision-case-353]] · generate
+- 2026-09-23 decisions/decision-case-342 superseded by decision-case-353 · [[decision-case-353]] · generate
+- 2026-09-23 rules/rule-case-protocol updated: reword among the keys of an update, and the two steps of the author at the end of the description of an update (case 353, supersedes 332.1, 337, 340, 341 and 342) · [[decision-case-353]] · generate
+- 2026-09-23 estimates/estimate-case-protocol-loaded updated: the Criterion names reword among the keys of an update and the two steps of the author (case 353) · [[decision-case-353]] · generate
+- 2026-09-23 estimates/estimate-prespec-catches-an-unwrapped-render status: pending → passed · raw/2026-09-22/2046/ledger.md#L34 · generate
+- 2026-09-23 estimates/estimate-prespec-catches-a-method-without-a-form status: pending → passed · raw/2026-09-22/2046/ledger.md#L35 · generate
+- 2026-09-23 lessons/lesson-prespec-a-second-copy-of-a-matching-rule-drifts created · raw/2026-09-22/2046/ledger.md#L37 · generate
+- 2026-09-23 lessons/lesson-style-a-split-string-inside-a-collection-needs-parentheses created · raw/2026-09-22/2046/ledger.md#L38 · generate
+- 2026-09-23 insights/insight-workflow-fact-signed-from-a-check-that-does-not-cover-it created · raw/2026-09-22/2046/ledger.md#L21 · generate
+- 2026-09-23 lessons/lesson-fact-asserted-from-a-partial-check updated: clustered by librarian: a fact signed on a check that does not cover it, with lesson-ledger-estimate-line-carried-a-count-not-read · raw/2026-09-22/2046/ledger.md#L21 · generate
+- 2026-09-23 lessons/lesson-ledger-estimate-line-carried-a-count-not-read updated: clustered by librarian: a fact signed on a check that does not cover it, with lesson-fact-asserted-from-a-partial-check · raw/2026-09-22/2046/ledger.md#L21 · generate
+- 2026-09-23 insights/insight-harness-one-rule-implemented-twice-drifts created · raw/2026-09-22/2046/ledger.md#L37 · generate
+- 2026-09-23 lessons/lesson-prespec-a-second-copy-of-a-matching-rule-drifts updated: clustered by librarian: one rule of the pipeline implemented twice and drifting, with lesson-lint-decision-target-archived-counts-as-missing · raw/2026-09-22/2046/ledger.md#L37 · generate
+- 2026-09-23 lessons/lesson-lint-decision-target-archived-counts-as-missing updated: clustered by librarian: one rule of the pipeline implemented twice and drifting, with lesson-prespec-a-second-copy-of-a-matching-rule-drifts · raw/2026-09-22/2046/ledger.md#L37 · generate
+- 2026-09-23 rules/rule-carry-over status: built → draft · cascade · generate
+- 2026-09-23 rules/rule-estimates-schema status: built → draft · cascade · generate
+- 2026-09-23 decisions/decision-case-332.2 archived · superseded · generate
+- 2026-09-23 decisions/decision-case-333 archived · superseded · generate
+- 2026-09-23 decisions/decision-case-336 archived · superseded · generate
+- 2026-09-23 decisions/decision-case-337 archived · superseded · generate
+- 2026-09-23 decisions/decision-case-338.1 archived · superseded · generate
+- 2026-09-23 decisions/decision-case-339 archived · superseded · generate
+- 2026-09-23 decisions/decision-case-340 archived · superseded · generate
+- 2026-09-23 decisions/decision-case-341 archived · superseded · generate
+- 2026-09-23 decisions/decision-case-342 archived · superseded · generate
+- 2026-09-23 decisions/decision-case-343 archived · superseded · generate
+- 2026-09-23 decisions/decision-case-345 archived · superseded · generate
+- 2026-09-23 decisions/decision-case-346 archived · superseded · generate
+- 2026-09-23 decisions/decision-case-348 archived · superseded · generate
+- 2026-09-23 lessons/lesson-reword-pairs-signed-before-the-places-were-read archived · insight actioned · generate
+- 2026-09-23 lessons/lesson-replace-anchors-overlap-in-one-spec archived · insight actioned · generate
+- 2026-09-23 lessons/lesson-replace-anchors-overlap-in-one-spec archived · cleanup
+- 2026-09-23 lessons/lesson-reword-pairs-signed-before-the-places-were-read archived · cleanup
+- 2026-09-23 decisions/decision-case-330.2 archived · cleanup
+- 2026-09-23 decisions/decision-case-332.1 archived · cleanup
+- 2026-09-23 decisions/decision-case-332.2 archived · cleanup
+- 2026-09-23 decisions/decision-case-333 archived · cleanup
+- 2026-09-23 decisions/decision-case-334 archived · cleanup
+- 2026-09-23 decisions/decision-case-336 archived · cleanup
+- 2026-09-23 decisions/decision-case-337 archived · cleanup
+- 2026-09-23 decisions/decision-case-338.1 archived · cleanup
+- 2026-09-23 decisions/decision-case-339 archived · cleanup
+- 2026-09-23 decisions/decision-case-340 archived · cleanup
+- 2026-09-23 decisions/decision-case-341 archived · cleanup
+- 2026-09-23 decisions/decision-case-342 archived · cleanup
+- 2026-09-23 decisions/decision-case-343 archived · cleanup
+- 2026-09-23 decisions/decision-case-345 archived · cleanup
+- 2026-09-23 decisions/decision-case-346 archived · cleanup
+- 2026-09-23 decisions/decision-case-348 archived · cleanup

@@ -4,7 +4,7 @@ kind: QA
 status: pending
 target: "[[entity-sprint-migration]]"
 purpose: index.md is gone and no live page, harness file or script docstring points at a §N of it or at the file as a source
-method: at the close of theme 4 — test -e vault/wiki/index.md false; rg over vault/wiki, .claude, guppi and CLAUDE.md for §N and index.md, every hit read by eye, only a live pointer — a page that sends a reader to the file — a failure; the archive and raw/ are not read
+method: test -e vault/wiki/index.md false; rg over vault/wiki, .claude, guppi and CLAUDE.md for §N and index.md, every hit read by hand — only a live pointer, a page that sends a reader to the file, is a failure; the archive and raw/ are not read
 origin: raw/2026-09-22/1121/ledger.md#case-310.3
 sprint: migration
 created: 2026-09-22
@@ -28,3 +28,4 @@ Then:
 ## History
 
 - 2026-09-22 created · [[decision-case-310.3]]
+- 2026-09-23 updated: the method names its reading — read by hand — and drops the moment of theme 4 (case 329) · [[decision-case-329]]

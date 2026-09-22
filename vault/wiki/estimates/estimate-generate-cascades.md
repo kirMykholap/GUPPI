@@ -1,7 +1,7 @@
 ---
 type: estimate
 kind: QA
-status: passed
+status: pending
 target: "[[rule-page-generation]]"
 purpose: The cascade computes built, the archive of a superseded decision, the severity of an Insight and the rules of an Entity, never by hand
 method: pytest tests/test_generate.py, the tests of the cascade
@@ -25,7 +25,7 @@ When:
 `guppi generate` runs the cascade after all entries of a unit.
 
 Then:
-An entity or rule whose Estimates are all `passed` becomes `built`; a `built` one with an Estimate not `passed` returns to `draft`; History `status: a → b · cascade`.
+An entity or rule whose live Estimates are all `passed` becomes `built`; a `built` one with a live Estimate not `passed` returns to `draft`; an Estimate standing `archived` — one a `delete` of the same run retired, its file still under `wiki/estimates/` until `cleanup` — is not counted, as a slug with no page is not counted (case 328); History `status: a → b · cascade`.
 **＋** A Decision page with `status: superseded` becomes `archived` with History `archived · superseded`; `superseded_by` and `deferred_by` are not touched.
 **＋** Every `clustered` child of an Insight with `status: actioned` becomes `archived` with History `archived · insight actioned`; the Insight's `children` does not change.
 **＋** The `severity` of every Insight is recounted: a child's status is read under `wiki/lessons/`, else in the archive; a child with no page counts live; an `open` Insight at 0 becomes `archived` with History `archived · no live child`, `children` kept; an `actioned` one at 0 stays.
@@ -44,3 +44,4 @@ An entity or rule whose Estimates are all `passed` becomes `built`; a `built` on
 - 2026-09-22 status: pending → passed · raw/2026-09-21/1853/ledger.md#L2
 - 2026-09-22 updated: one line of the Criterion — the cascade recounts rules (case 305.3; pre-spec) · [[decision-case-305.3]]
 - 2026-09-22 status: pending → passed · raw/2026-09-22/0014/ledger.md#L60
+- 2026-09-23 updated: the archived Estimate out of the count in the Criterion (case 328) · [[decision-case-328]]

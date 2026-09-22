@@ -1,7 +1,7 @@
 ---
 type: estimate
 kind: QA
-status: passed
+status: pending
 target: "[[rule-estimates-schema]]"
 purpose: An Estimate page in the shape of the rendered schema has no schema finding and a page outside it has one per defect
 method: pytest tests/test_schemas.py -k estimates on the live vault/wiki/estimates/schema.yaml — a page in the shape, then one defect at a time; the live reading make lint, no schema finding on wiki/estimates/
@@ -36,3 +36,4 @@ The file equals the Render. Lint reads from it: required `type, kind, status, ta
 
 - 2026-09-22 created · [[decision-case-304.4]]
 - 2026-09-22 status: pending → passed · raw/2026-09-22/0014/ledger.md#L54
+- 2026-09-23 updated: the live reading is due again — the description of method in the Render changed; the Criterion stands (case 350) · [[decision-case-350]]

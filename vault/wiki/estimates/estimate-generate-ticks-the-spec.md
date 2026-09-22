@@ -1,7 +1,7 @@
 ---
 type: estimate
 kind: QA
-status: passed
+status: pending
 target: "[[rule-page-generation]]"
 purpose: generate ticks the page line of a Case in the Spec beside its yaml, and the read line of a reading across the Specs of raw/ — never a line of a later or a superseded Case
 method: pytest tests/test_generate.py with a Spec beside the yaml, plus one reading of this session's spec.md after the librarian's run
@@ -30,7 +30,7 @@ When:
 Then:
 For a `create`, `update`, `delete` or `defer` entry, in the `spec.md` of the same unit the first unticked line `- [ ] <kind> `<slug>`` in the section of the entry's Case becomes `- [x]`; nothing else in the file changes.
 **＋** Two entries of one kind and slug in one Case tick two lines, in order.
-**＋** For an `estimate` entry, and for a `create` entry with `folded`, every unticked line `- [ ] read `<slug>`` of the first Spec that holds one becomes `- [x]` — the Spec beside the yaml first, then the `spec.md` of the other session folders of `raw/`, oldest first; one Spec per entry, every line of the slug in it but those in the section of a Case ratified after the reading or superseded (case 312).
+**＋** For an `estimate` entry, and for a `create` entry with `folded`, every unticked line `- [ ] read `<slug>`` of every live Spec of `raw/` becomes `- [x]` — the Spec beside the yaml first, then the `spec.md` of the other session folders of `raw/`, oldest first; every line of the slug in each, but those in the section of a Case ratified after the reading or superseded; the archive is not read (cases 312, 326).
 **＋** In the Spec beside the yaml, a `read` line in the section of a Case whose first decision entry of the yaml carries a `line` greater than the `line` of the `estimate` entry is not the reading's line — the Case was ratified after it; the search goes on to the next line, then to the other sessions.
 **＋** In any Spec, a `read` line in the section of a Case whose entries in the yaml of that session are marked `superseded_by` is not the reading's line — its work stands under the superseding Case; the search goes on. For the Spec beside the yaml the marks are the run's entries; for the Spec of another session its `materialize.yaml` beside it, read for the marks alone; no yaml beside it — nothing is skipped there.
 **＋** A `create` entry with `folded` ticks both lines: the page line and the reading line; its Case is the reading's Case, the filter of 280 does not apply to it; the filter by `superseded_by` does.
@@ -57,3 +57,4 @@ For a `create`, `update`, `delete` or `defer` entry, in the `spec.md` of the sam
 - 2026-09-22 updated: every read line of the slug in the first Spec, not the first line (case 312) · [[decision-case-312]]
 - 2026-09-22 updated: no Rule-class entry reaches generate (case 320) · [[decision-case-320]]
 - 2026-09-22 status: pending → passed · raw/2026-09-22/1121/ledger.md#L88
+- 2026-09-23 updated: the walk of the Specs in the Criterion — every live Spec, not the first that holds one (case 326) · [[decision-case-326]]

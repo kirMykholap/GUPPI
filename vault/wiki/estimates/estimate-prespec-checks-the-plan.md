@@ -1,7 +1,7 @@
 ---
 type: estimate
 kind: QA
-status: passed
+status: pending
 target: "[[rule-prespec]]"
 purpose: The check of the plan against the session's lines, frontier, tasks, governed paths and the form of an Estimate item
 method: pytest tests/test_prespec.py, the tests of --check
@@ -30,13 +30,13 @@ One finding per line on stdout, exit 1 on any, 0 and silent when clean; without 
 **＋** The stamp is `--session`, else `CLAUDE_SESSION_ID`; with neither, one line on stderr `prespec: no session id; pass --session <stamp> from the hi: line`, exit 2, nothing checked; the last `session-start` of today's log is not read (case 213.1).
 **＋** The session's window is found as the ledger hook finds it — by the stamped `hi`, over the logs back to the date of its `session-start` — so the `hi` of yesterday's session is found after midnight (case 213.1).
 **＋** Lines: a decision line of the window with no item of its kind under its own Case heading — unless a `{supersedes:case N}` of the window names its Case, whose heading still in the plan is a finding of its own (299.2); an item with no line; a `defer` line matches a `defer` item; an `update` item carrying `file` is a finding of its own (case 320); an item under another sub-case's heading is a finding.
-**＋** The frontier `raw/<hi date>/<hi HHMM>/frontier.md`: a missing file, an open line, a `case N` whose heading the plan lacks, a `defer case N` with no `defer` item under Case N; `[-] … · sprint` is clean, `[x] … · sprint` a finding (case 310.6).
-**＋** Tasks: a Case with a line of a kind other than `defer` and no `tasks` block; an Estimate a `then` block creates or sets `pending` with no task line naming its slug.
+**＋** The frontier `raw/<hi date>/<hi HHMM>/frontier.md`: a missing file, an open line, a `case N` whose heading the plan lacks, a `defer case N` with no `defer` item under Case N; `[-] … · sprint` is clean, `[x] … · sprint` a finding (case 310.6). A line closed `· case N` whose source segment — the one before the closer — is `sprint` needs an `update` of the sprint page under Case N; the word inside the slug of a title is not the source (cases 314.2, 335).
+**＋** Tasks: a Case with a line of a kind other than `defer` and no `tasks` block; an Estimate a `then` block creates or sets `pending` with no line `- [ ] read `<slug>`` whose first backticked slug is that Estimate, as `generate` matches it when it ticks; a slug named on another Estimate's read line gives the finding in its own words (case 327).
 **＋** Governed: an `update` item carrying `file` — the file route is gone (case 320).
 **＋** Form: a Case whose `then` block holds two or more Estimate items without a written `sections: Criterion` — one promise per Case, split it; an `update` of an Estimate whose page does not exist; a `create` of an Estimate whose `ref` names neither a live rule or entity nor the slug of a `create` item of category `rules` or `entities` in the same plan (case 221).
 **＋** Grammar: every record line of the window — the session's ledger whole plus the date-level ledgers from the `hi` time on — through `materialize.parse_line`; one that does not parse is a finding with its file and line number.
 **＋** A `then` block that does not parse: the error as a finding of its Case.
-**－** No finding on a Leaf `create` without `method`, an `update` without `contract` or a derived slug: those keys are not read.
+**－** No finding on a `create` of a rule or an entity without `method`, an `update` without `contract` or a derived slug: those keys are not read. A `create` of an Estimate with no `method`, or with a `method` naming none of the four forms lint classifies, is a finding (case 331).
 
 ## Result
 
@@ -61,3 +61,6 @@ One finding per line on stdout, exit 1 on any, 0 and silent when clean; without 
 - 2026-09-22 updated: the file route is a finding, not a route (case 320) · [[decision-case-320]]
 - 2026-09-22 updated: any file item is a finding (case 323) · [[decision-case-323]]
 - 2026-09-22 status: pending → passed · raw/2026-09-22/1121/ledger.md#L87
+- 2026-09-23 updated: the task line of a reading in the Criterion — matched as generate ticks it (case 327) · [[decision-case-327]]
+- 2026-09-23 updated: the line on a create without method makes room for the finding of case 331 (case 338.2) · [[decision-case-338.2]]
+- 2026-09-23 updated: the source segment of a Frontier line in the Criterion (case 335) · [[decision-case-335]]

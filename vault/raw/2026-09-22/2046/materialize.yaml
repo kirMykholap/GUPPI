@@ -1,0 +1,1629 @@
+date: '2026-09-22'
+sprint: migration
+ledger: vault/raw/2026-09-22/2046/ledger.md
+spec:
+- vault/raw/2026-09-22/2046/spec.md
+entries:
+- line: 1
+  text: decision[case 341][update][rule-case-protocol]{ref:rule-case-protocol}{supersedes:case 337}
+  case: '341'
+  kind: update
+  slug: rule-case-protocol
+  origin: raw/2026-09-22/2046/ledger.md#case-341
+  decision: decision-case-341
+  ref: rule-case-protocol
+  supersedes: '337'
+  category: rules
+  superseded_by: '353'
+- line: 2
+  text: decision[case 341][update][estimate-case-protocol-loaded]{ref:estimate-case-protocol-loaded}
+  case: '341'
+  kind: update
+  slug: estimate-case-protocol-loaded
+  origin: raw/2026-09-22/2046/ledger.md#case-341
+  decision: decision-case-341
+  ref: estimate-case-protocol-loaded
+  category: estimates
+  incomplete:
+  - criterion
+  set:
+    status: pending
+  superseded_by: '353'
+- line: 3
+  text: decision[case 342][update][rule-case-protocol]{ref:rule-case-protocol}{supersedes:case 340}
+  case: '342'
+  kind: update
+  slug: rule-case-protocol
+  origin: raw/2026-09-22/2046/ledger.md#case-342
+  decision: decision-case-342
+  ref: rule-case-protocol
+  supersedes: '340'
+  category: rules
+  superseded_by: '353'
+- line: 4
+  text: decision[case 342][update][estimate-case-protocol-loaded]{ref:estimate-case-protocol-loaded}
+  case: '342'
+  kind: update
+  slug: estimate-case-protocol-loaded
+  origin: raw/2026-09-22/2046/ledger.md#case-342
+  decision: decision-case-342
+  ref: estimate-case-protocol-loaded
+  category: estimates
+  incomplete:
+  - criterion
+  set:
+    status: pending
+  superseded_by: '353'
+- line: 5
+  text: decision[case 343][update][rule-estimates-schema]{ref:rule-estimates-schema}{supersedes:case 336}
+  case: '343'
+  kind: update
+  slug: rule-estimates-schema
+  origin: raw/2026-09-22/2046/ledger.md#case-343
+  decision: decision-case-343
+  ref: rule-estimates-schema
+  supersedes: '336'
+  category: rules
+  superseded_by: '350'
+- line: 6
+  text: decision[case 343][update][estimate-estimates-schema-checked]{ref:estimate-estimates-schema-checked}
+  case: '343'
+  kind: update
+  slug: estimate-estimates-schema-checked
+  origin: raw/2026-09-22/2046/ledger.md#case-343
+  decision: decision-case-343
+  ref: estimate-estimates-schema-checked
+  category: estimates
+  incomplete:
+  - criterion
+  set:
+    status: pending
+  superseded_by: '350'
+- line: 7
+  text: 'lesson[error][lesson-case-form-the-spec-free-sections-written-last]{tags:workflow} trigger: Cases
+    341, 342 and 343 of this session were written with `recommend` after `tasks`, not in the schema''s
+    eight-section order; the person saw it, no script did. root_cause: `recommend` and `ratification`
+    are the two sections that do not enter the Spec, and the agent grouped them at the end of the reply
+    by where they live instead of keeping the schema''s order — the Case was composed in the order the
+    Spec needs (context, problem, given, when, then, tasks) and the two chat-only sections appended as
+    a trailer; nothing checks the order, since no script reads the chat form of a Case.'
+  kind: lesson
+  category: lessons
+  slug: lesson-case-form-the-spec-free-sections-written-last
+  origin: raw/2026-09-22/2046/ledger.md#L7
+  fields:
+    type: lesson
+    kind: error
+    root_cause: '`recommend` and `ratification` are the two sections that do not enter the Spec, and the
+      agent grouped them at the end of the reply by where they live instead of keeping the schema''s order
+      — the Case was composed in the order the Spec needs (context, problem, given, when, then, tasks)
+      and the two chat-only sections appended as a trailer; nothing checks the order, since no script
+      reads the chat form of a Case.'
+  sections:
+    Trigger: Cases 341, 342 and 343 of this session were written with `recommend` after `tasks`, not in
+      the schema's eight-section order; the person saw it, no script did.
+    Root cause: '`recommend` and `ratification` are the two sections that do not enter the Spec, and the
+      agent grouped them at the end of the reply by where they live instead of keeping the schema''s order
+      — the Case was composed in the order the Spec needs (context, problem, given, when, then, tasks)
+      and the two chat-only sections appended as a trailer; nothing checks the order, since no script
+      reads the chat form of a Case.'
+  tags:
+  - workflow
+  applied: 00:11:21
+- line: 8
+  text: decision[case 344][update][estimate-prespec-binds-a-sprint-line]{ref:estimate-prespec-binds-a-sprint-line}{supersedes:case
+    338.1}
+  case: '344'
+  kind: update
+  slug: estimate-prespec-binds-a-sprint-line
+  origin: raw/2026-09-22/2046/ledger.md#case-344
+  decision: decision-case-344
+  ref: estimate-prespec-binds-a-sprint-line
+  supersedes: '338.1'
+  category: estimates
+  set:
+    method: uv run pytest tests/test_prespec.py -k sprint — a line `· sprint · case N` with and without
+      an update of entity-sprint-<id> under Case N, a `[-] … · sprint` line, a line whose source segment
+      is not `sprint` while the word stands inside the slug of its title
+    status: pending
+  replace:
+  - old: reads a Frontier line whose segments hold `sprint` and whose closer is `case N`.
+    new: reads a Frontier line whose source segment — the one before the closer — is `sprint` and whose
+      closer is `case N`.
+  - old: '**－** A line without `sprint` among its segments is read as today.'
+    new: '**－** A line whose source segment is not `sprint` is read as today; the word inside the slug
+      of a title is not the source (case 335).'
+  change: the Criterion and the method speak of the source segment of a Frontier line (case 344, supersedes
+    338.1)
+  applied: 00:11:21
+- line: 9
+  text: decision[case 345][create][estimate-prespec-simulates-the-pairs]{ref:rule-prespec}{supersedes:case
+    332.2}{tags:harness,workflow}
+  case: '345'
+  kind: create
+  slug: estimate-prespec-simulates-the-pairs
+  origin: raw/2026-09-22/2046/ledger.md#case-345
+  decision: decision-case-345
+  ref: rule-prespec
+  supersedes: '332.2'
+  tags:
+  - harness
+  - workflow
+  category: estimates
+  incomplete:
+  - criterion
+  superseded_by: '351'
+- line: 10
+  text: decision[case 345][update][rule-prespec]{ref:rule-prespec}
+  case: '345'
+  kind: update
+  slug: rule-prespec
+  origin: raw/2026-09-22/2046/ledger.md#case-345
+  decision: decision-case-345
+  ref: rule-prespec
+  category: rules
+  superseded_by: '351'
+- line: 11
+  text: decision[case 345][update][insight-workflow-edit-pair-signed-from-a-grep-fragment]{ref:insight-workflow-edit-pair-signed-from-a-grep-fragment}
+  case: '345'
+  kind: update
+  slug: insight-workflow-edit-pair-signed-from-a-grep-fragment
+  origin: raw/2026-09-22/2046/ledger.md#case-345
+  decision: decision-case-345
+  ref: insight-workflow-edit-pair-signed-from-a-grep-fragment
+  category: insights
+  superseded_by: '351'
+- line: 12
+  text: 'lesson[error][lesson-case-form-ratification-used-for-the-agents-caveats]{tags:workflow} trigger:
+    every Case of this session — 341, 342, 343, 344, 345 — carried the agent''s own caveats in `ratification`:
+    a note on the order of the work, on a field form used for the first time, on the section order itself;
+    the person asked which instruction says to do that. root_cause: `ratification` is the human''s sign-off,
+    question or their own alternative, and it ends with the preview of the ledger lines; the agent had
+    caveats that belong in `context` as bookkeeping or in `recommend` as the reason for the choice, found
+    no obvious slot and used the last section as a notes field — nothing reads the chat form of a Case,
+    so no check refused it.'
+  kind: lesson
+  category: lessons
+  slug: lesson-case-form-ratification-used-for-the-agents-caveats
+  origin: raw/2026-09-22/2046/ledger.md#L12
+  fields:
+    type: lesson
+    kind: error
+    root_cause: '`ratification` is the human''s sign-off, question or their own alternative, and it ends
+      with the preview of the ledger lines; the agent had caveats that belong in `context` as bookkeeping
+      or in `recommend` as the reason for the choice, found no obvious slot and used the last section
+      as a notes field — nothing reads the chat form of a Case, so no check refused it.'
+  sections:
+    Trigger: 'every Case of this session — 341, 342, 343, 344, 345 — carried the agent''s own caveats
+      in `ratification`: a note on the order of the work, on a field form used for the first time, on
+      the section order itself; the person asked which instruction says to do that.'
+    Root cause: '`ratification` is the human''s sign-off, question or their own alternative, and it ends
+      with the preview of the ledger lines; the agent had caveats that belong in `context` as bookkeeping
+      or in `recommend` as the reason for the choice, found no obvious slot and used the last section
+      as a notes field — nothing reads the chat form of a Case, so no check refused it.'
+  tags:
+  - workflow
+  applied: 00:11:21
+- line: 13
+  text: 'lesson[error][lesson-ledger-error-answered-in-the-chat-instead-of-recorded]{tags:workflow,ledger}
+    trigger: the section-order error of Cases 341–343 was found by the person, answered in the reply with
+    a promise that the next Case would be right, and no `lesson` line was written until the person asked
+    why. root_cause: the agent treated a mistake it could correct at once as one that needs no record;
+    a lesson is the fact that the error happened, and the fix does not cancel the fact — a correction
+    spoken in a reply reaches no later session, while the vault is the only memory.'
+  kind: lesson
+  category: lessons
+  slug: lesson-ledger-error-answered-in-the-chat-instead-of-recorded
+  origin: raw/2026-09-22/2046/ledger.md#L13
+  fields:
+    type: lesson
+    kind: error
+    root_cause: the agent treated a mistake it could correct at once as one that needs no record; a lesson
+      is the fact that the error happened, and the fix does not cancel the fact — a correction spoken
+      in a reply reaches no later session, while the vault is the only memory.
+  sections:
+    Trigger: the section-order error of Cases 341–343 was found by the person, answered in the reply with
+      a promise that the next Case would be right, and no `lesson` line was written until the person asked
+      why.
+    Root cause: the agent treated a mistake it could correct at once as one that needs no record; a lesson
+      is the fact that the error happened, and the fix does not cancel the fact — a correction spoken
+      in a reply reaches no later session, while the vault is the only memory.
+  tags:
+  - workflow
+  - ledger
+  applied: 00:11:21
+- line: 14
+  text: decision[case 346][defer][rule-skill-hi]{ref:rule-skill-hi}{supersedes:case 339}
+  case: '346'
+  kind: defer
+  slug: rule-skill-hi
+  origin: raw/2026-09-22/2046/ledger.md#case-346
+  decision: decision-case-346
+  ref: rule-skill-hi
+  supersedes: '339'
+  category: rules
+  exists: true
+  superseded_by: '352'
+- line: 15
+  text: decision[case 346][defer][rule-prespec]{ref:rule-prespec}
+  case: '346'
+  kind: defer
+  slug: rule-prespec
+  origin: raw/2026-09-22/2046/ledger.md#case-346
+  decision: decision-case-346
+  ref: rule-prespec
+  category: rules
+  exists: true
+  superseded_by: '352'
+- line: 16
+  text: 'lesson[error][lesson-case-built-on-the-persons-premise-without-checking-it]{tags:workflow,harness}
+    trigger: the person said that `/carry` does not name the brief''s path and that the agent greps for
+    it; the agent built Case 347 on that premise without opening the event log of the day, where the call
+    at 20:43:03 shows the grep ran over `.claude/agents/librarian-guppi.md`, while step 1 of the skill
+    names `vault/wiki/brief.md` in full. root_cause: a remark from the person was taken as a finding instead
+    of as a report to verify, so the agent searched for a defect that would make the remark true rather
+    than reading the record of what happened; the event log holds every tool call of the day and was one
+    read away.'
+  kind: lesson
+  category: lessons
+  slug: lesson-case-built-on-the-persons-premise-without-checking-it
+  origin: raw/2026-09-22/2046/ledger.md#L16
+  fields:
+    type: lesson
+    kind: error
+    root_cause: a remark from the person was taken as a finding instead of as a report to verify, so the
+      agent searched for a defect that would make the remark true rather than reading the record of what
+      happened; the event log holds every tool call of the day and was one read away.
+  sections:
+    Trigger: the person said that `/carry` does not name the brief's path and that the agent greps for
+      it; the agent built Case 347 on that premise without opening the event log of the day, where the
+      call at 20:43:03 shows the grep ran over `.claude/agents/librarian-guppi.md`, while step 1 of the
+      skill names `vault/wiki/brief.md` in full.
+    Root cause: a remark from the person was taken as a finding instead of as a report to verify, so the
+      agent searched for a defect that would make the remark true rather than reading the record of what
+      happened; the event log holds every tool call of the day and was one read away.
+  tags:
+  - workflow
+  - harness
+  applied: 00:11:21
+- line: 17
+  text: decision[case 347][update][rule-carry-over]{ref:rule-carry-over}
+  case: '347'
+  kind: update
+  slug: rule-carry-over
+  origin: raw/2026-09-22/2046/ledger.md#case-347
+  decision: decision-case-347
+  ref: rule-carry-over
+  category: rules
+  replace:
+  - old: 'by the frame of `rule-brief` (the Render in `.claude/agents/librarian-guppi.md`), in its short
+      shape as that frame says:'
+    new: 'by the frame of `rule-brief` — the text between the `rule-brief` markers of `.claude/agents/librarian-guppi.md`
+      — in its short shape as that frame says:'
+  change: step 1 names the place of the brief frame, not only the file that holds it (case 347)
+  applied: 00:11:21
+- line: 18
+  text: decision[case 347][update][estimate-carry-over-writes]{ref:estimate-carry-over-writes}
+  case: '347'
+  kind: update
+  slug: estimate-carry-over-writes
+  origin: raw/2026-09-22/2046/ledger.md#case-347
+  decision: decision-case-347
+  ref: estimate-carry-over-writes
+  category: estimates
+  set:
+    status: pending
+  sections:
+    Criterion: 'Given:
+
+      The hook `guppi spec` on `PostToolUse` of `ExitPlanMode` wrote the Spec and printed the fork into
+      the context: go on — Work Mode — or conserve until the next session.
+
+      **＋** The agent asked the person which of the two and got "conserve".
+
+      **＋** `guppi materialize` knows a conserved unit by the file `carry.md` in the session folder (case
+      190.3) — by its presence, not its content.
+
+      **－** The person does not type `/carry`; the path of the skill is the agent''s call on `PreToolUse
+      Skill`.
+
+
+      When:
+
+      The agent calls the skill `carry` after the person''s answer at the fork.
+
+
+      Then:
+
+      The skill reads the tree; when it holds changes outside the session folder and `vault/wiki/brief.md`,
+      it stops and says: work was done, the ordinary exit applies.
+
+      **＋** Otherwise it rewrites `brief.md` — that is the conservation: the next session starts from
+      it.
+
+      **＋** It puts `carry.md` into the session folder — one line, a flag for `materialize`, not a document;
+      the session that finishes the work deletes it.
+
+      **＋** It runs `make style` and commits `vault/raw/` and `vault/wiki/brief.md`.
+
+      **－** It runs no Work Mode, `/retro`, `/handoff`, librarian, `materialize`, `generate`, `cleanup`
+      or `render`; it writes no page of `vault/wiki/` but the brief.
+
+      **－** The work stays sequential, session after session: one conserved Spec, no parallelism.
+
+      **－** `.claude/skills/carry/SKILL.md` equals the Render of the page; it is not edited by hand.
+
+      '
+  change: the Render changed under it — step 1 names the place of the frame; the Criterion stands (case
+    347)
+  applied: 00:11:21
+- line: 19
+  text: decision[case 348][update][rule-documentation]{ref:rule-documentation}{supersedes:case 333}
+  case: '348'
+  kind: update
+  slug: rule-documentation
+  origin: raw/2026-09-22/2046/ledger.md#case-348
+  decision: decision-case-348
+  ref: rule-documentation
+  supersedes: '333'
+  category: rules
+  superseded_by: '349'
+- line: 20
+  text: decision[case 348][update][estimate-documentation-completes]{ref:estimate-documentation-completes}
+  case: '348'
+  kind: update
+  slug: estimate-documentation-completes
+  origin: raw/2026-09-22/2046/ledger.md#case-348
+  decision: decision-case-348
+  ref: estimate-documentation-completes
+  category: estimates
+  incomplete:
+  - criterion
+  set:
+    status: pending
+  superseded_by: '349'
+- line: 21
+  text: 'lesson[error][lesson-fact-asserted-from-a-partial-check]{tags:workflow,ledger} trigger: Case
+    348 was ratified on the claim that every ledger line stands in `materialize.yaml` with its `line`,
+    `text` and `origin`; the agent had checked that those fields exist on the entries it looked at, never
+    that an entry exists for every line. `vault/raw/2026-09-22/0014/materialize.yaml` holds entries for
+    lines 1–51, 58 and 60 of a 64-line ledger, and `unparsed` is empty. root_cause: the agent read the
+    shape of the record as the completeness of the record — the question it put to the file was "does
+    this field exist", while the claim it was about to sign was "every line is here"; the second question
+    costs one more command and was not asked.'
+  kind: lesson
+  category: lessons
+  slug: lesson-fact-asserted-from-a-partial-check
+  origin: raw/2026-09-22/2046/ledger.md#L21
+  fields:
+    type: lesson
+    kind: error
+    root_cause: the agent read the shape of the record as the completeness of the record — the question
+      it put to the file was "does this field exist", while the claim it was about to sign was "every
+      line is here"; the second question costs one more command and was not asked.
+  sections:
+    Trigger: Case 348 was ratified on the claim that every ledger line stands in `materialize.yaml` with
+      its `line`, `text` and `origin`; the agent had checked that those fields exist on the entries it
+      looked at, never that an entry exists for every line. `vault/raw/2026-09-22/0014/materialize.yaml`
+      holds entries for lines 1–51, 58 and 60 of a 64-line ledger, and `unparsed` is empty.
+    Root cause: the agent read the shape of the record as the completeness of the record — the question
+      it put to the file was "does this field exist", while the claim it was about to sign was "every
+      line is here"; the second question costs one more command and was not asked.
+  tags:
+  - workflow
+  - ledger
+  applied: 00:11:21
+- line: 22
+  text: 'lesson[knowledge][lesson-materialize-a-folded-reading-into-a-skipped-entry-leaves-no-entry]{tags:harness,ledger}{source:vault/raw/2026-09-22/0014/materialize.yaml}
+    trigger: the brief of the 0014 walk had to name the ledger lines the run did not apply, and the yaml
+    held no entry for them — the librarian read the ledger instead and flagged the breach. root_cause:
+    materialize folds an `estimate[...]` reading into the live `create` entry of its slug, and when that
+    entry is skipped or marked superseded the reading lands nowhere and no `estimate` entry of its own
+    is made; case 309 promises that second path, but the 0014 yaml carries entries for lines 1–51, 58
+    and 60 of a 64-line ledger with `unparsed: []`, so the yaml is not a complete record of the ledger
+    and cannot answer which line a run did not apply.'
+  kind: lesson
+  category: lessons
+  slug: lesson-materialize-a-folded-reading-into-a-skipped-entry-leaves-no-entry
+  origin: raw/2026-09-22/2046/ledger.md#L22
+  fields:
+    type: lesson
+    kind: knowledge
+    root_cause: 'materialize folds an `estimate[...]` reading into the live `create` entry of its slug,
+      and when that entry is skipped or marked superseded the reading lands nowhere and no `estimate`
+      entry of its own is made; case 309 promises that second path, but the 0014 yaml carries entries
+      for lines 1–51, 58 and 60 of a 64-line ledger with `unparsed: []`, so the yaml is not a complete
+      record of the ledger and cannot answer which line a run did not apply.'
+    source: vault/raw/2026-09-22/0014/materialize.yaml
+  sections:
+    Trigger: the brief of the 0014 walk had to name the ledger lines the run did not apply, and the yaml
+      held no entry for them — the librarian read the ledger instead and flagged the breach.
+    Root cause: 'materialize folds an `estimate[...]` reading into the live `create` entry of its slug,
+      and when that entry is skipped or marked superseded the reading lands nowhere and no `estimate`
+      entry of its own is made; case 309 promises that second path, but the 0014 yaml carries entries
+      for lines 1–51, 58 and 60 of a 64-line ledger with `unparsed: []`, so the yaml is not a complete
+      record of the ledger and cannot answer which line a run did not apply.'
+  tags:
+  - harness
+  - ledger
+  applied: 00:11:21
+- line: 23
+  text: decision[case 349][update][rule-documentation]{ref:rule-documentation}{supersedes:case 348}
+  case: '349'
+  kind: update
+  slug: rule-documentation
+  origin: raw/2026-09-22/2046/ledger.md#case-349
+  decision: decision-case-349
+  ref: rule-documentation
+  supersedes: '348'
+  category: rules
+  replace:
+  - old: what the scripts do with the yaml is written here.
+    new: 'what the scripts do with the yaml is written here. One read of `ledger.md` is allowed and no
+      other: the count of its lines and the lines the yaml does not account for, for the `Work` line of
+      the brief — a reading that folded into an entry the run skipped gets no entry of its own, so the
+      yaml does not hold every line; name that read in the report (case 349).'
+  change: the ban allows one read of the ledger — its line count and the lines the yaml does not account
+    for (case 349, supersedes 333 and 348)
+  applied: 00:11:21
+- line: 24
+  text: decision[case 349][update][estimate-documentation-completes]{ref:estimate-documentation-completes}
+  case: '349'
+  kind: update
+  slug: estimate-documentation-completes
+  origin: raw/2026-09-22/2046/ledger.md#case-349
+  decision: decision-case-349
+  ref: estimate-documentation-completes
+  category: estimates
+  replace:
+  - old: no ledger, no other part of a Spec, no plan, Decision page or archive file
+    new: of the ledger only the count of its lines and the lines the yaml does not account for, named
+      in the report (case 349); no other part of a Spec, no plan, Decision page or archive file
+  change: the Criterion names the one allowed read of the ledger (case 349)
+  set:
+    status: pending
+  applied: 00:11:21
+- line: 25
+  text: decision[case 350][update][rule-estimates-schema]{ref:rule-estimates-schema}{supersedes:case 343}
+  case: '350'
+  kind: update
+  slug: rule-estimates-schema
+  origin: raw/2026-09-22/2046/ledger.md#case-350
+  decision: decision-case-350
+  ref: rule-estimates-schema
+  supersedes: '343'
+  category: rules
+  replace:
+  - old: 'optional; one line. How the promise is checked: the test command (`make test-x`, `pytest tests/test_x.py`);
+      or where and when it is read by hand — a live reading of a session start, the brief of a librarian''s
+      run; or, for Research, what is measured. Written from the Case since case 193.'
+    new: 'optional; one line. How the promise is checked, in one of the four forms lint classifies: a
+      `make <target>` of the Makefile; the word `pytest`; a path under `tests/`; or the words `by hand`
+      — the one spelling of a reading — with where and when it is taken, a session start, the brief of
+      a librarian''s run. Naming a form is not enough by itself: a path under `tests/` must exist and
+      a `make <target>` must stand in the Makefile. On the Estimate of a MOC the form is a `make <target>`
+      of the Makefile alone — there `pytest` or a path by itself earns a finding, and `by hand` passes
+      only when every child''s Estimate is a reading or a sibling Estimate of the MOC names such a target.
+      A `method` that names none of the forms earns a finding of the class `method`. A page counts as
+      the shape before case 193 on any of four triggers — no `method` field, a `## Context` section, a
+      `## Method` section, a `### case N` block in the Criterion — and goes into the line `unmigrated`;
+      one with no field that keeps a `## Method` section has that section read as its `method`, so it
+      can earn a `method` finding as well. For `Research` what is measured stands beside one of the forms,
+      never instead of one. Written from the Case since case 193 (case 350).'
+  change: the description of method names the four forms, what lint checks besides naming one, and the
+    four triggers of the old shape (case 350, supersedes 330.2, 336 and 343)
+  applied: 00:11:21
+- line: 26
+  text: decision[case 350][update][estimate-estimates-schema-checked]{ref:estimate-estimates-schema-checked}
+  case: '350'
+  kind: update
+  slug: estimate-estimates-schema-checked
+  origin: raw/2026-09-22/2046/ledger.md#case-350
+  decision: decision-case-350
+  ref: estimate-estimates-schema-checked
+  category: estimates
+  set:
+    status: pending
+  sections:
+    Criterion: 'Given:
+
+      `rule-render-harness`: the text of a `## Render` section of a page with `render_mode: full`, between
+      its markers, becomes the whole file named by `governs`, without the markers; two `full` pages on
+      one file fail the render (`tests/test_render.py`).
+
+      **＋** `rule-governed-files-hook` refuses a hand edit of a file a live rule governs.
+
+      **＋** `rule-lint` reads from `vault/wiki/<category>/schema.yaml` `properties.required`, `optional`,
+      `values`, `conditional` and `body.required`, `optional`, `conditional`; a missing file is a finding;
+      other keys it does not read.
+
+      **＋** `tests/test_schemas.py` fixes the behaviour on the live `vault/wiki/estimates/schema.yaml`:
+      a page in the shape, then one defect at a time.
+
+
+      When:
+
+      `guppi render` writes `vault/wiki/estimates/schema.yaml` from `rule-estimates-schema`; `guppi lint`
+      reads a page of `wiki/estimates/`.
+
+
+      Then:
+
+      The file equals the Render. Lint reads from it: required `type, kind, status, target, origin, sprint,
+      created, tags`; optional `purpose, method, checked`; values `kind: QA | Research`, `status: pending
+      | passed | failed`; the sections `## Criterion` and `## History` required, `## Context`, `## Method`,
+      `## Result` optional, `## Result` required on `passed` and on `failed`.
+
+      **＋** An Estimate page with these fields, values and sections has no `schema` finding; one lacking
+      a required field, with a value outside the list, with a conditional not met or lacking a required
+      section has one finding per defect.
+
+      **＋** The prose of the former `schema.md` stands in the file as data: `description` — the introduction,
+      the `failed` paragraph, the fields deliberately absent, the two kinds, the Result and Criterion
+      paragraph, verbatim; `fields` and `sections` — the rows of the tables whole; `examples` — the two
+      example pages.
+
+      **－** `vault/wiki/estimates/schema.md` does not exist.
+
+      '
+  change: the live reading is due again — the description of method in the Render changed; the Criterion
+    stands (case 350)
+  applied: 00:11:21
+- line: 27
+  text: decision[case 351][create][estimate-prespec-simulates-the-pairs]{ref:rule-prespec}{supersedes:case
+    345}{tags:harness,workflow}
+  case: '351'
+  kind: create
+  slug: estimate-prespec-simulates-the-pairs
+  origin: raw/2026-09-22/2046/ledger.md#case-351
+  decision: decision-case-351
+  ref: rule-prespec
+  supersedes: '345'
+  tags:
+  - harness
+  - workflow
+  category: estimates
+  fields:
+    type: estimate
+    kind: QA
+    purpose: Whether pre-spec catches an anchor that misses or is not unique once the pairs of the Spec
+      are applied in entry order
+    method: pytest tests/test_prespec.py on a temp plan over temp pages — an anchor that misses, one that
+      hits twice, and a pair whose old is produced by an earlier Case
+    tags:
+    - harness
+    - workflow
+  sections:
+    Criterion: 'Given:
+
+      `prespec --check` reads the plan and the live pages of the vault; it has no check of an anchor at
+      all.
+
+      **＋** `generate` applies the pairs in entry order and matches with whitespace collapsed, exactly
+      one occurrence.
+
+      **＋** The pairs of one Spec can touch one span: 314.2 against 310.6.
+
+      **＋** `tests/test_prespec.py` fixes `--check` on a temp plan over temp pages.
+
+
+      When:
+
+      `uv run guppi prespec --check <plan> --session <id>` reads the plan before the Spec is approved.
+
+
+      Then:
+
+      The `replace` and `reword` pairs of every Case of the plan are applied in entry order to copies
+      of the pages in memory, whitespace collapsed as `generate` collapses it; nothing is written to disk.
+
+      **＋** An anchor that misses, or hits more than once, gives one line with its Case, the page''s slug
+      and the opening of its `old`.
+
+      **＋** The anchor is judged against the page as the Spec leaves it, not as it stands today.
+
+      **－** The meaning of the words in their place is not judged by a machine.
+
+      '
+  status: passed
+  result: '2026-09-22, uv run pytest tests/test_prespec.py -k "anchor or earlier_case or reword or writes_nothing":
+    7 passed — the first reading of this page covered `replace` alone while the Criterion names both kinds
+    of pair, so three cases were added: a `reword` pair no live page holds gives `case 1: rule-x: a reword
+    pair hits no live page: FIRST`, one a live page holds is clean, and the page on disk still holds `FIRST`
+    and not `SECOND` after a clean run, so nothing is written; the four `replace` cases stand as read
+    before'
+  folded:
+  - 36
+  - 39
+  applied: 00:11:21
+- line: 28
+  text: decision[case 351][update][rule-prespec]{ref:rule-prespec}
+  case: '351'
+  kind: update
+  slug: rule-prespec
+  origin: raw/2026-09-22/2046/ledger.md#case-351
+  decision: decision-case-351
+  ref: rule-prespec
+  category: rules
+  replace:
+  - old: an Estimate has its own line and its own item (case 189).
+    new: an Estimate has its own line and its own item (case 189). It then applies the `replace` and `reword`
+      pairs of every Case of the plan to copies of the pages in memory, in entry order, whitespace collapsed
+      as `generate` collapses it, writing nothing, and prints one line for every anchor that misses or
+      hits more than once, with its Case, the page's slug and the opening of its `old` — the anchor judged
+      against the page as the Spec leaves it, not as it stands today (case 351).
+  change: the pairs of the Spec simulated in entry order, an anchor that misses or is not unique reported
+    with its Case (case 351, supersedes 332.2 and 345)
+  applied: 00:11:21
+- line: 29
+  text: decision[case 351][update][estimate-prespec-reconciles]{ref:estimate-prespec-reconciles}
+  case: '351'
+  kind: update
+  slug: estimate-prespec-reconciles
+  origin: raw/2026-09-22/2046/ledger.md#case-351
+  decision: decision-case-351
+  ref: estimate-prespec-reconciles
+  category: estimates
+  set:
+    status: pending
+  sections:
+    Criterion: 'Given:
+
+      `guppi prespec --check <plan>` reads the Cases of the plan by their headings, the `then` blocks,
+      the session''s `frontier.md` and the session''s ledger window; `guppi gate` writes the `prespec`
+      line with the session''s stamp on the Skill call.
+
+      **＋** `--session` takes the eight-character session id — the second token of the `hi:` line, between
+      the time and the folder; `session_stamp` cuts any value to eight characters, so a wrong token answers
+      "no hi recorded for session <8 characters>; nothing checked" on stderr with exit 0, and nothing
+      was checked.
+
+      **＋** An Estimate item of a `then` block is a `create` with `ref`, or an `update` with `set: {status:
+      pending}`; its Criterion is the Case''s `given`, `when` and `then` unless the item wrote `sections:
+      Criterion` itself (194.1).
+
+      **＋** The tests in `tests/test_prespec.py` fix `--check`; the live reading is the first `/pre-spec`
+      after the render of case 261.
+
+      **－** The `PreToolUse ExitPlanMode` hook (`rule-prespec-hook`) does not change here.
+
+      **－** The code of `guppi prespec` does not change: the exit 0 without a `hi` is the design of case
+      213.
+
+
+      When:
+
+      The person invokes `/pre-spec`, or the agent calls the skill, before the Spec is approved.
+
+
+      Then:
+
+      The agent runs `guppi prespec --check` on the plan file with `--session <id>`, the eight-character
+      session id — the second token of the `hi:` line the `UserPromptSubmit` hook put in the context at
+      `/hi`, between the time and the folder (cases 213.3, 256) — and reads the first line of the output
+      before the exit code: "no hi recorded for session …; nothing checked" means the wrong value, and
+      the check did not run; it fixes the plan, the frontier or the line for every finding until the command
+      prints nothing; `guppi gate` writes the stamped `prespec` line into the event log on the Skill call.
+
+      **＋** The agent lists every decision of this Plan Mode, one line each: slug — kind — `purpose` for
+      a `create`, an `update`, a `delete`; a `defer` by its slug and the word `defer`; for an `update`
+      of a rule or an entity, the page''s `estimates` and which of them the Case names by slug.
+
+      **＋** `ask-guppi` is dispatched once with the list, the absolute path of the plan file, the instruction
+      to read every Case outside `## Deferred` — `when`, `then`, the `then` block — and two questions:
+      which decisions contradict a page, `index.md` or each other; whether an Estimate the Case does not
+      name speaks of the thing the Case changes.
+
+      **＋** Every finding returned is raised as a Case or named in one line as already known; then Plan
+      Mode exits again.
+
+      **＋** The Insight `insight-pretask-session-flag-takes-the-id-not-the-hi-line` is `actioned`; its
+      two lessons go to the archive by the cascade; a third lesson with the same cause reopens it.
+
+      **－** The body of a deferred decision is not read; a Case that changes a page another Case of the
+      plan defers is still a finding.
+
+      '
+  change: the live reading is due again — the Render gained the simulation of the pairs; the Criterion
+    stands (case 351)
+  applied: 00:11:21
+- line: 30
+  text: decision[case 351][update][insight-workflow-edit-pair-signed-from-a-grep-fragment]{ref:insight-workflow-edit-pair-signed-from-a-grep-fragment}
+  case: '351'
+  kind: update
+  slug: insight-workflow-edit-pair-signed-from-a-grep-fragment
+  origin: raw/2026-09-22/2046/ledger.md#case-351
+  decision: decision-case-351
+  ref: insight-workflow-edit-pair-signed-from-a-grep-fragment
+  category: insights
+  set:
+    status: actioned
+    addressed_by: decision-case-351
+  change: actioned by the two halves of its Proposal — the requirement for signing a pair in case-schema.md
+    and the simulation in pre-spec (case 351)
+  applied: 00:11:21
+- line: 31
+  text: decision[case 352][defer][rule-skill-hi]{ref:rule-skill-hi}{supersedes:case 346}
+  case: '352'
+  kind: defer
+  slug: rule-skill-hi
+  origin: raw/2026-09-22/2046/ledger.md#case-352
+  decision: decision-case-352
+  ref: rule-skill-hi
+  supersedes: '346'
+  category: rules
+  fields:
+    type: rule
+    purpose: What a Frontier closer must tell apart — whether a Work line closes in a second moment of
+      its own, whether pre-spec requires closed lines under Cases alone, and whether sprint and defer
+      case N stay two closers or become one, the file living one session while the state lives on the
+      pages; and whether a session that passes over an item of the sprint leaves any trace at all, since
+      today it leaves none. The question binds rule-prespec as well, whose closer clause cases 335 and
+      344 rewrite and whose Render case 351 changes, so that page carries no deferred_by
+  exists: true
+  applied: 00:11:21
+- line: 32
+  text: decision[case 353][update][rule-case-protocol]{ref:rule-case-protocol}{supersedes:case 341}
+  case: '353'
+  kind: update
+  slug: rule-case-protocol
+  origin: raw/2026-09-22/2046/ledger.md#case-353
+  decision: decision-case-353
+  ref: rule-case-protocol
+  supersedes: '341'
+  category: rules
+  replace:
+  - old: a mapping under `replace` is a shape `generate` rejects), `change` (one line for History)
+    new: a mapping under `replace` is a shape `generate` rejects), `reword` (a list of `{old, new}` pairs
+      replaced as whole words over every live page of `wiki/`, the page of the item being the owner, for
+      a word that changes everywhere — a slug goes through `rename`, case 274.1), `change` (one line for
+      History)
+  - old: which sets `pending` (case 296).
+    new: which sets `pending` (case 296). A pair under `replace` or `reword` is signed only after the
+      sentence around every match is read whole and what it names there is said, never from the line a
+      grep printed (case 353). A Case that changes the behaviour of an existing page reads the page's
+      `estimates` and gives an `update` to each one whose Criterion speaks of the change — read as the
+      `then` block is written, not at pre-spec; an Estimate whose Criterion speaks of something else is
+      left alone, since naming a spare one replaces a sound Criterion (cases 53.2, 353).
+  change: reword among the keys of an update, and the two steps of the author at the end of the description
+    of an update (case 353, supersedes 332.1, 337, 340, 341 and 342)
+  applied: 00:11:21
+- line: 33
+  text: decision[case 353][update][estimate-case-protocol-loaded]{ref:estimate-case-protocol-loaded}{supersedes:case
+    342}
+  case: '353'
+  kind: update
+  slug: estimate-case-protocol-loaded
+  origin: raw/2026-09-22/2046/ledger.md#case-353
+  decision: decision-case-353
+  ref: estimate-case-protocol-loaded
+  supersedes: '342'
+  category: estimates
+  replace:
+  - old: a part inside the Criterion sets `pending` (294, 296).
+    new: a part inside the Criterion sets `pending` (294, 296); it names `reword` among the keys of an
+      `update`, between `replace` and `change`, and, at the end of the description of an `update`, the
+      requirement for signing a pair of either kind and the step that a Case changing a page reads the
+      page's `estimates` (353).
+  change: the Criterion names reword among the keys of an update and the two steps of the author (case
+    353)
+  set:
+    status: pending
+  applied: 00:11:21
+- line: 34
+  text: 'estimate[estimate-prespec-catches-an-unwrapped-render][passed] 2026-09-22, uv run pytest tests/test_prespec.py
+    -k "markers or wrapped": 3 passed — an update writing an unwrapped Render on a page with `enforcement:
+    render` gives `case 1: update rule-x: Render is not wrapped in <!-- rule-x --> … <!-- /rule-x -->`,
+    a create carrying the field in the item itself gives the same for its own slug, a wrapped text and
+    a target that does not enforce by render are both clean'
+  kind: estimate
+  category: estimates
+  slug: estimate-prespec-catches-an-unwrapped-render
+  status: passed
+  result: '2026-09-22, uv run pytest tests/test_prespec.py -k "markers or wrapped": 3 passed — an update
+    writing an unwrapped Render on a page with `enforcement: render` gives `case 1: update rule-x: Render
+    is not wrapped in <!-- rule-x --> … <!-- /rule-x -->`, a create carrying the field in the item itself
+    gives the same for its own slug, a wrapped text and a target that does not enforce by render are both
+    clean'
+  origin: raw/2026-09-22/2046/ledger.md#L34
+  applied: 00:11:21
+- line: 35
+  text: 'estimate[estimate-prespec-catches-a-method-without-a-form][passed] 2026-09-22, uv run pytest
+    tests/test_prespec.py -k form: 5 passed — a create whose method is prose gives `case 1: create estimate-x-again:
+    method names no form — a make target, pytest, a tests/ file or "by hand"`, a create with no method
+    at all gives the same line, an update carrying `set: {method: …}` gives it for its slug, and each
+    of the four forms is clean; the predicate is `lint.names_a_form`, called by both scripts'
+  kind: estimate
+  category: estimates
+  slug: estimate-prespec-catches-a-method-without-a-form
+  status: passed
+  result: '2026-09-22, uv run pytest tests/test_prespec.py -k form: 5 passed — a create whose method is
+    prose gives `case 1: create estimate-x-again: method names no form — a make target, pytest, a tests/
+    file or "by hand"`, a create with no method at all gives the same line, an update carrying `set: {method:
+    …}` gives it for its slug, and each of the four forms is clean; the predicate is `lint.names_a_form`,
+    called by both scripts'
+  origin: raw/2026-09-22/2046/ledger.md#L35
+  applied: 00:11:21
+- line: 37
+  text: 'lesson[knowledge][lesson-prespec-a-second-copy-of-a-matching-rule-drifts]{tags:harness,workflow}{source:guppi/prespec.py}
+    trigger: two of the eight findings of the second `ask-guppi` pass on the conserved Spec were one shape
+    — `check_tasks` matched a reading''s task line by substring while `generate` ticked it by `READ_LINE`,
+    and the classification of the four forms of a `method` was open-coded in `check_method` where `pre-spec`
+    needed the same judgment (cases 327, 331). root_cause: a check that judges the same text as a writer
+    or a ticker had been written as a second implementation of the one rule, and the two drifted apart
+    without a test noticing; the repair in both places was to import the one pattern — `generate.READ_LINE`,
+    `lint.names_a_form` — so the check cannot judge by anything but what the other side does, and `generate.replace_once`
+    was lifted out for the same reason when `pre-spec` came to simulate the pairs of a Spec (case 351).'
+  kind: lesson
+  category: lessons
+  slug: lesson-prespec-a-second-copy-of-a-matching-rule-drifts
+  origin: raw/2026-09-22/2046/ledger.md#L37
+  fields:
+    type: lesson
+    kind: knowledge
+    root_cause: a check that judges the same text as a writer or a ticker had been written as a second
+      implementation of the one rule, and the two drifted apart without a test noticing; the repair in
+      both places was to import the one pattern — `generate.READ_LINE`, `lint.names_a_form` — so the check
+      cannot judge by anything but what the other side does, and `generate.replace_once` was lifted out
+      for the same reason when `pre-spec` came to simulate the pairs of a Spec (case 351).
+    source: guppi/prespec.py
+  sections:
+    Trigger: two of the eight findings of the second `ask-guppi` pass on the conserved Spec were one shape
+      — `check_tasks` matched a reading's task line by substring while `generate` ticked it by `READ_LINE`,
+      and the classification of the four forms of a `method` was open-coded in `check_method` where `pre-spec`
+      needed the same judgment (cases 327, 331).
+    Root cause: a check that judges the same text as a writer or a ticker had been written as a second
+      implementation of the one rule, and the two drifted apart without a test noticing; the repair in
+      both places was to import the one pattern — `generate.READ_LINE`, `lint.names_a_form` — so the check
+      cannot judge by anything but what the other side does, and `generate.replace_once` was lifted out
+      for the same reason when `pre-spec` came to simulate the pairs of a Spec (case 351).
+  tags:
+  - harness
+  - workflow
+  applied: 00:11:21
+- line: 38
+  text: 'lesson[error][lesson-style-a-split-string-inside-a-collection-needs-parentheses]{tags:tests,harness}
+    trigger: `make style` failed three times in this session''s Work Mode, each time ISC004 on a new test''s
+    `assert out.splitlines() == ["…" "…"]` — two string parts concatenated implicitly inside a list. root_cause:
+    a finding''s message is long enough that the agent splits it over two source lines by habit, and ruff
+    refuses an unparenthesized implicit concatenation inside a collection; the forms that pass are the
+    parts wrapped in their own parentheses, or the message held in a module constant and reused, which
+    the test file already does with `NO_FORM`.'
+  kind: lesson
+  category: lessons
+  slug: lesson-style-a-split-string-inside-a-collection-needs-parentheses
+  origin: raw/2026-09-22/2046/ledger.md#L38
+  fields:
+    type: lesson
+    kind: error
+    root_cause: a finding's message is long enough that the agent splits it over two source lines by habit,
+      and ruff refuses an unparenthesized implicit concatenation inside a collection; the forms that pass
+      are the parts wrapped in their own parentheses, or the message held in a module constant and reused,
+      which the test file already does with `NO_FORM`.
+  sections:
+    Trigger: '`make style` failed three times in this session''s Work Mode, each time ISC004 on a new
+      test''s `assert out.splitlines() == ["…" "…"]` — two string parts concatenated implicitly inside
+      a list.'
+    Root cause: a finding's message is long enough that the agent splits it over two source lines by habit,
+      and ruff refuses an unparenthesized implicit concatenation inside a collection; the forms that pass
+      are the parts wrapped in their own parentheses, or the message held in a module constant and reused,
+      which the test file already does with `NO_FORM`.
+  tags:
+  - tests
+  - harness
+  applied: 00:11:21
+- kind: create
+  category: insights
+  slug: insight-workflow-fact-signed-from-a-check-that-does-not-cover-it
+  origin: raw/2026-09-22/2046/ledger.md#L21
+  fields:
+    pattern: 'A fact is signed — in a Case, in a reading, in a ledger line — on a check narrower than
+      the claim: the command that ran answered one question and the sentence it supports makes a wider
+      one, while the wider check was one more command away.'
+    children:
+    - '[[lesson-fact-asserted-from-a-partial-check]]'
+    - '[[lesson-ledger-estimate-line-carried-a-count-not-read]]'
+  sections:
+    Pattern: 'Two lessons where the check that was made is narrower than the claim it was used to sign.
+
+
+      `lesson-ledger-estimate-line-carried-a-count-not-read`: the reading line of
+
+      `estimate-prespec-checks-the-plan` said "72 green in the file" after one combined pytest run
+
+      over three files; the per-file number was never printed and was split from memory.
+
+      `pytest tests/test_prespec.py` alone gives 52.
+
+
+      `lesson-fact-asserted-from-a-partial-check`: Case 348 was ratified on the claim that every
+
+      ledger line stands in `materialize.yaml`; what had been checked was that `line`, `text` and
+
+      `origin` exist on the entries the agent looked at. `vault/raw/2026-09-22/0014/materialize.yaml`
+
+      holds entries for lines 1–51, 58 and 60 of a 64-line ledger, with `unparsed` empty.
+
+
+      In both, the question put to the tool was about a sample or about a shape, and the sentence
+
+      signed was about a whole — a file''s count, every line of a ledger.
+
+      '
+    Proposal: 'A suggestion, not a decision.
+
+
+      A claim that enters a Case, a reading or a ledger line names the command its output rests on,
+
+      and is no wider than that output: a per-file count comes from a run of that file alone, a
+
+      combined run gives a combined number and nothing else.
+
+
+      A claim about a whole set — every line of a ledger, every entry of a yaml — is checked by a
+
+      count on both sides, not by the shape of the entries read. Where that check is a command, it
+
+      belongs in the Case''s `tasks` as a reading; where it is not, the claim is written as what was
+
+      actually seen.
+
+
+      Neither half is decided here.
+
+      '
+  tags:
+  - workflow
+  - ledger
+  - session
+  - tests
+  librarian: synthesis
+  applied: 00:11:21
+- kind: update
+  category: lessons
+  slug: lesson-fact-asserted-from-a-partial-check
+  origin: raw/2026-09-22/2046/ledger.md#L21
+  set:
+    status: clustered
+    insight: '[[insight-workflow-fact-signed-from-a-check-that-does-not-cover-it]]'
+  change: 'clustered by librarian: a fact signed on a check that does not cover it, with lesson-ledger-estimate-line-carried-a-count-not-read'
+  librarian: synthesis
+  applied: 00:11:21
+- kind: update
+  category: lessons
+  slug: lesson-ledger-estimate-line-carried-a-count-not-read
+  origin: raw/2026-09-22/2046/ledger.md#L21
+  set:
+    status: clustered
+    insight: '[[insight-workflow-fact-signed-from-a-check-that-does-not-cover-it]]'
+  change: 'clustered by librarian: a fact signed on a check that does not cover it, with lesson-fact-asserted-from-a-partial-check'
+  librarian: synthesis
+  applied: 00:11:21
+- kind: create
+  category: insights
+  slug: insight-harness-one-rule-implemented-twice-drifts
+  origin: raw/2026-09-22/2046/ledger.md#L37
+  fields:
+    pattern: A judgment the pipeline makes in two places is implemented twice — a check re-states what
+      a writer, a ticker or another check does — and the two copies drift apart, with no test about the
+      difference between them.
+    children:
+    - '[[lesson-prespec-a-second-copy-of-a-matching-rule-drifts]]'
+    - '[[lesson-lint-decision-target-archived-counts-as-missing]]'
+  sections:
+    Pattern: 'Two lessons where one rule lived in two implementations and they drifted.
+
+
+      `lesson-lint-decision-target-archived-counts-as-missing`: `check_decision` resolved a
+
+      `target_slug` against the live pages while `check_refs` resolved every other slug against live
+
+      and archived pages. After the librarian archived the 21 Estimates of Cases 53.1 and 53.2, lint
+
+      reported 25 decision findings for targets that are archived and whose decisions are current.
+
+
+      `lesson-prespec-a-second-copy-of-a-matching-rule-drifts`: `check_tasks` matched a reading''s task
+
+      line by substring while `generate` ticked it by `READ_LINE`, and the classification of the four
+
+      forms of a `method` was open-coded in `check_method` where pre-spec needed the same judgment
+
+      (cases 327, 331). The repair was to import the one pattern in both places —
+
+      `generate.READ_LINE`, `lint.names_a_form` — and `generate.replace_once` was lifted out for the
+
+      same reason when pre-spec came to simulate the pairs of a Spec (case 351).
+
+
+      In both, the suite was green while the copies disagreed: every test was about one side.
+
+      '
+    Proposal: 'A suggestion, not a decision.
+
+
+      Where a check judges the same text as a writer, a ticker or another check, the pattern or the
+
+      predicate lives in one module and both sides import it; a second implementation of the one rule
+
+      is a defect on the day it is written, not on the day it disagrees.
+
+
+      Where the two sides cannot share the code, a test runs both over the same input and asserts
+
+      they answer alike, so the drift fails the suite instead of a session.
+
+
+      Neither half is decided here.
+
+      '
+  tags:
+  - harness
+  - workflow
+  librarian: synthesis
+  applied: 00:11:21
+- kind: update
+  category: lessons
+  slug: lesson-prespec-a-second-copy-of-a-matching-rule-drifts
+  origin: raw/2026-09-22/2046/ledger.md#L37
+  set:
+    status: clustered
+    insight: '[[insight-harness-one-rule-implemented-twice-drifts]]'
+  change: 'clustered by librarian: one rule of the pipeline implemented twice and drifting, with lesson-lint-decision-target-archived-counts-as-missing'
+  librarian: synthesis
+  applied: 00:11:21
+- kind: update
+  category: lessons
+  slug: lesson-lint-decision-target-archived-counts-as-missing
+  origin: raw/2026-09-22/2046/ledger.md#L37
+  set:
+    status: clustered
+    insight: '[[insight-harness-one-rule-implemented-twice-drifts]]'
+  change: 'clustered by librarian: one rule of the pipeline implemented twice and drifting, with lesson-prespec-a-second-copy-of-a-matching-rule-drifts'
+  librarian: synthesis
+  applied: 00:11:21
+decisions:
+- case: '341'
+  decision: decision-case-341
+  origin: raw/2026-09-22/2046/ledger.md#case-341
+  targets:
+  - kind: update
+    category: rules
+    slug: rule-case-protocol
+    ref: rule-case-protocol
+  - kind: update
+    category: estimates
+    slug: estimate-case-protocol-loaded
+    ref: estimate-case-protocol-loaded
+  tags: []
+  supersedes:
+  - decision-case-337
+  superseded_by:
+  - decision-case-353
+  applied: 00:11:21
+- case: '342'
+  decision: decision-case-342
+  origin: raw/2026-09-22/2046/ledger.md#case-342
+  targets:
+  - kind: update
+    category: rules
+    slug: rule-case-protocol
+    ref: rule-case-protocol
+  - kind: update
+    category: estimates
+    slug: estimate-case-protocol-loaded
+    ref: estimate-case-protocol-loaded
+  tags: []
+  supersedes:
+  - decision-case-340
+  superseded_by:
+  - decision-case-353
+  applied: 00:11:21
+- case: '343'
+  decision: decision-case-343
+  origin: raw/2026-09-22/2046/ledger.md#case-343
+  targets:
+  - kind: update
+    category: rules
+    slug: rule-estimates-schema
+    ref: rule-estimates-schema
+  - kind: update
+    category: estimates
+    slug: estimate-estimates-schema-checked
+    ref: estimate-estimates-schema-checked
+  tags: []
+  supersedes:
+  - decision-case-336
+  superseded_by:
+  - decision-case-350
+  applied: 00:11:21
+- case: '344'
+  decision: decision-case-344
+  origin: raw/2026-09-22/2046/ledger.md#case-344
+  targets:
+  - kind: update
+    category: estimates
+    slug: estimate-prespec-binds-a-sprint-line
+    ref: estimate-prespec-binds-a-sprint-line
+  tags: []
+  case_text:
+    context: 'Case 338.1 of the conserved Spec brings the Criterion of `estimate-prespec-binds-a-sprint-line`
+      to what the code does after case 335: the test runs on the source segment of a Frontier line — the
+      one before the closer — and not on every segment. It changes the `When` and the `－` line and leaves
+      the `method` field in the old wording: the last case of the run there still reads "a line without
+      sprint among its segments". After 335 that case distinguishes nothing. The case that does is a line
+      where the word `sprint` stands inside the slug of a title while the source segment is another word
+      — the false positive `prespec --check` prints today on line C6 of session 1724, whose source is
+      `brief` and whose title holds `estimate-sprint-migration-index-dissolved`.
+
+      The page stands `passed`, its target is `rule-prespec`. Case 335 of the same Spec changes `prespec.check_frontier`
+      and `estimate-prespec-checks-the-plan`, not this page. The page carries no `estimates` field of
+      its own.'
+    problem: The Criterion moves to the source segment while the `method` still tells the reader to run
+      the old case; a reading taken by that method measures what the code no longer distinguishes.
+    given: 'The `When` of the Criterion reads "a Frontier line whose segments hold `sprint`", its `－`
+      line "A line without `sprint` among its segments is read as today".
+
+      **＋** Its `method` ends with the words "a line without sprint among its segments".
+
+      **＋** Case 335 narrows the test to the segment standing before the closer.
+
+      **＋** A `replace` pair whose `old` stands in `## Criterion` changes a part and sets the page `pending`
+      (296); a `set` of a field other than `status` changes that field alone (296).
+
+      **＋** The command of the method stays `uv run pytest tests/test_prespec.py -k sprint`, so the form
+      of `method` holds for lint.'
+    when: '`uv run guppi prespec --check` reads a Frontier line closed `· case N`.
+
+      **＋** The next reading of the page is taken by its `method` field.'
+    then: 'The `When` of the Criterion speaks of the source segment — the one before the closer — and
+      not of every segment.
+
+      **＋** The `－` line says: a line whose source segment is not `sprint` is read as today; the word
+      inside the slug of a title is not the source.
+
+      **＋** The `method` names as the last case of its run a line whose source segment is not `sprint`
+      while the word stands inside the slug of its title.
+
+      **＋** The `method` keeps its command, `uv run pytest tests/test_prespec.py -k sprint`.
+
+      **－** The rest of the Criterion does not change; the page goes to `pending` and is read again.'
+  spec: vault/raw/2026-09-22/2046/spec.md
+  supersedes:
+  - decision-case-338.1
+  applied: 00:11:21
+- case: '345'
+  decision: decision-case-345
+  origin: raw/2026-09-22/2046/ledger.md#case-345
+  targets:
+  - kind: create
+    category: estimates
+    slug: estimate-prespec-simulates-the-pairs
+    ref: rule-prespec
+  - kind: update
+    category: rules
+    slug: rule-prespec
+    ref: rule-prespec
+  - kind: update
+    category: insights
+    slug: insight-workflow-edit-pair-signed-from-a-grep-fragment
+    ref: insight-workflow-edit-pair-signed-from-a-grep-fragment
+  tags:
+  - harness
+  - workflow
+  supersedes:
+  - decision-case-332.2
+  superseded_by:
+  - decision-case-351
+  applied: 00:11:21
+- case: '346'
+  decision: decision-case-346
+  origin: raw/2026-09-22/2046/ledger.md#case-346
+  targets:
+  - kind: defer
+    category: rules
+    slug: rule-skill-hi
+    ref: rule-skill-hi
+  - kind: defer
+    category: rules
+    slug: rule-prespec
+    ref: rule-prespec
+  tags: []
+  supersedes:
+  - decision-case-339
+  superseded_by:
+  - decision-case-352
+  applied: 00:11:21
+- case: '347'
+  decision: decision-case-347
+  origin: raw/2026-09-22/2046/ledger.md#case-347
+  targets:
+  - kind: update
+    category: rules
+    slug: rule-carry-over
+    ref: rule-carry-over
+  - kind: update
+    category: estimates
+    slug: estimate-carry-over-writes
+    ref: estimate-carry-over-writes
+  tags: []
+  case_text:
+    context: 'Step 1 of the `/carry` skill — the Render of `rule-carry-over` — tells the agent to rewrite
+      `vault/wiki/brief.md` "by the frame of `rule-brief` (the Render in `.claude/agents/librarian-guppi.md`)".
+      It names the file and not the place in it. The frame stands between the `rule-brief` markers of
+      that file, lines 77–93 today, and nothing in the instruction says so. The event log of the day records
+      what follows: at 20:43:03, five seconds after `Skill: carry`, `grep -n -i "brief" .claude/agents/librarian-guppi.md`,
+      and at 20:43:05 `sed -n ''77,92p''` of the same file — the search for the frame and then the read
+      of the marker range. The path of the brief itself is not the defect: step 1 names `vault/wiki/brief.md`
+      in full, and step 3 commits it by name.
+
+      `rule-carry-over` stands `built`, a Leaf, `render_mode: full` over `.claude/skills/carry/SKILL.md`.
+      Its one Estimate is `estimate-carry-over-writes`, `passed`, whose Criterion ends with a `－` line
+      that the skill file equals the Render of the page; case 233.4 handled a change of this Render the
+      same way — the page set `pending`, the Criterion kept. The reading of that Estimate needs a live
+      `/carry`, so it falls to the next conserved session unless this one conserves again.'
+    problem: The instruction names the file that holds the frame and not the place in it, so the agent
+      searches for what the instruction could have pointed at.
+    given: 'The Render of `rule-carry-over` becomes `.claude/skills/carry/SKILL.md` whole; the file is
+      not edited by hand.
+
+      **＋** The frame of `rule-brief` stands between its markers in `.claude/agents/librarian-guppi.md`,
+      which is itself a Render.
+
+      **＋** `guppi render` replaces a line that is exactly `<!-- slug -->` inside a Render with that child''s
+      text, so a marker written on a line of its own inside this Render would become an inclusion.
+
+      **＋** An `update` of a rule''s `Render` touches the Estimate of the live reading of that Render
+      (187); the live reading here is `estimate-carry-over-writes`, `passed`.'
+    when: The agent calls the skill `carry` after the person's answer at the fork and reads step 1.
+    then: 'Step 1 of the skill names the frame by its place: the text between the `rule-brief` markers
+      of `.claude/agents/librarian-guppi.md`.
+
+      **＋** The markers are named in words, not written as markers, so the renderer does not read the
+      line as an inclusion.
+
+      **＋** `estimate-carry-over-writes` goes to `pending` with its Criterion unchanged, and is read again.
+
+      **－** Nothing else of step 1 changes: the short shape, the omitted sections, the rule for Deferred
+      and the Flags stand as they are.
+
+      **－** `rule-brief` does not change.'
+  spec: vault/raw/2026-09-22/2046/spec.md
+  applied: 00:11:21
+- case: '348'
+  decision: decision-case-348
+  origin: raw/2026-09-22/2046/ledger.md#case-348
+  targets:
+  - kind: update
+    category: rules
+    slug: rule-documentation
+    ref: rule-documentation
+  - kind: update
+    category: estimates
+    slug: estimate-documentation-completes
+    ref: estimate-documentation-completes
+  tags: []
+  supersedes:
+  - decision-case-333
+  superseded_by:
+  - decision-case-349
+  applied: 00:11:21
+- case: '349'
+  decision: decision-case-349
+  origin: raw/2026-09-22/2046/ledger.md#case-349
+  targets:
+  - kind: update
+    category: rules
+    slug: rule-documentation
+    ref: rule-documentation
+  - kind: update
+    category: estimates
+    slug: estimate-documentation-completes
+    ref: estimate-documentation-completes
+  tags: []
+  case_text:
+    context: 'Case 348 wrote into the ban of the librarian''s frame that every ledger line already stands
+      in `materialize.yaml` with its `line`, `text` and `origin`, so the file is never needed. That is
+      false. The ledger of session 0014 holds 64 lines; the yaml''s entries cover 1–51, 58 and 60, and
+      `unparsed` is empty. Lines 52–57, 59 and 61–64 have no entry: they are `estimate[...]` readings
+      that folded into entries the run skipped. So the librarian went to the file not because the frame
+      invited it but because the fact was nowhere else — "a ledger line this run did not apply" is the
+      one fact the yaml lacks. A second inaccuracy: the entries the librarian appends at the synthesis
+      carry no `line`, `text` or `origin`, and the frame reads those too.
+
+      `rule-documentation` stands `draft`, a MOC; `estimate-documentation-completes` stands `failed` on
+      this very reading. The gap in `materialize` is recorded as a lesson of this session and is not repaired
+      here.'
+    problem: The ban sends the librarian to a place that does not answer the question the brief asks,
+      which makes breaching the frame the only way to obey it.
+    given: 'The frame of `rule-documentation` bans reading `ledger.md`, `plan.md`, `wiki/decisions/` and
+      `vault/archive/`, and `spec.md` beyond its unticked `- [ ]` lines.
+
+      **＋** The `Work` line of the brief requires the ledger line this run did not apply to be named.
+
+      **＋** `materialize.yaml` holds no entry for a line whose reading folded into an entry the run skipped,
+      and `unparsed` stays empty.
+
+      **＋** A part inside a Criterion sets the page `pending` with no `set.status` (296).
+
+      **＋** An `update` of a rule''s `Render` touches the Estimate of the live reading of that Render
+      (187); here it is `estimate-documentation-completes`.'
+    when: The librarian writes the `Work` line of the brief and must name the ledger line this run did
+      not apply.
+    then: 'The ban allows one read of `ledger.md` and no other: the count of its lines and the lines the
+      yaml does not account for; the read is named in the report.
+
+      **＋** The frame says why: a reading that folded into an entry the run skipped gets no entry of its
+      own, so the yaml does not hold every line.
+
+      **＋** Everything else in the ban stands: `plan.md`, `wiki/decisions/`, `vault/archive/`, a Spec
+      beyond its unticked lines, and the ledger for any other purpose stay closed.
+
+      **＋** The Criterion of `estimate-documentation-completes` names that one carve-out in place of its
+      bare "no ledger"; the page goes to `pending`.
+
+      **－** `rule-brief` does not change.
+
+      **－** `rule-materialize` is not repaired here: the gap stands as a lesson.'
+  spec: vault/raw/2026-09-22/2046/spec.md
+  supersedes:
+  - decision-case-348
+  applied: 00:11:21
+- case: '350'
+  decision: decision-case-350
+  origin: raw/2026-09-22/2046/ledger.md#case-350
+  targets:
+  - kind: update
+    category: rules
+    slug: rule-estimates-schema
+    ref: rule-estimates-schema
+  - kind: update
+    category: estimates
+    slug: estimate-estimates-schema-checked
+    ref: estimate-estimates-schema-checked
+  tags: []
+  case_text:
+    context: 'Case 343 set out to repair the promise that a `method` naming one of the four forms earns
+      no finding, and repaired half of it. It made the exception for the Estimate of a MOC and none for
+      the Estimate of a Leaf: `check_method` earns a finding on a `tests/…` path that is not on disk,
+      and on a `make <target>` the Makefile does not hold. A reader of the schema signs `pytest tests/test_x.py`
+      for a file that does not exist and believes it clean. Its second error: the text says a page of
+      the old shape is one with no `method` field, while `is_old_shape` counts a page as old-shaped on
+      any of four triggers — no `method` field, a `## Context` section, a `## Method` section, or a `###
+      case N` block in the Criterion; three of the four hold for pages that do carry the field.
+
+      `rule-estimates-schema` renders `vault/wiki/estimates/schema.yaml`; the live reading is `estimate-estimates-schema-checked`,
+      `passed`, whose Criterion covers the prose as data and does not itself change. The words "the one
+      spelling of a reading" hold once the code task of case 330.1 of the conserved Spec lands: `READING`
+      still stands in `guppi/lint.py`.'
+    problem: 'The text that is to bring the schema into agreement with lint disagrees with it in two more
+      places: what the Estimate of a Leaf may name, and what makes a page old-shaped.'
+    given: '`vault/wiki/estimates/schema.yaml` is the Render of `rule-estimates-schema`; the agent reads
+      it before a `create` of an Estimate.
+
+      **＋** `check_method` on the Estimate of a Leaf: a path under `tests/` that does not exist earns
+      a finding; a `make <target>` the Makefile does not hold earns a finding; `by hand` is clean; no
+      path, no `pytest` and no target earns a finding.
+
+      **＋** `check_method` on the Estimate of a MOC: a `make <target>` of the Makefile is required; without
+      one `by hand` passes when every child''s Estimate is a reading (112.1) or a sibling Estimate of
+      the MOC names such a target (212); `pytest` or a path alone earns a finding.
+
+      **＋** `is_old_shape` counts a page as old-shaped on any of four triggers: no `method` field, a `##
+      Context` section, a `## Method` section, a `### case N` block in the Criterion.
+
+      **＋** `method_of` takes the `method` field, and without it the `## Method` section; 23 live Estimates
+      carry no field and keep the section.
+
+      **＋** An `update` of an Estimate with `sections: Criterion` keeps the written text and does not
+      take the Criterion from the Case (204); the page carries a `method` field, so case 211.2 does not
+      refuse it.'
+    when: The agent reads `vault/wiki/estimates/schema.yaml` before writing a `create` of an Estimate.
+    then: 'The description of `method` names the four forms as a list: a `make <target>` of the Makefile;
+      the word `pytest`; a path under `tests/`; or the words `by hand` — the one spelling of a reading
+      — with where and when it is taken.
+
+      **＋** It says that naming a form is not enough by itself: a path under `tests/` must exist and a
+      `make <target>` must stand in the Makefile.
+
+      **＋** It says that on the Estimate of a MOC the form is a `make <target>` of the Makefile alone;
+      there `pytest` or a path by itself earns a finding, and `by hand` passes only when every child''s
+      Estimate is a reading or a sibling Estimate of the MOC names such a target.
+
+      **＋** It says that a page counts as the shape before case 193 on any of four triggers — no `method`
+      field, a `## Context` section, a `## Method` section, a `### case N` block in the Criterion — and
+      goes into the line `unmigrated`; and that a page with no field which keeps a `## Method` section
+      has that section read as its `method`, so it can earn a `method` finding as well.
+
+      **＋** A `method` that names none of the forms earns a finding of the class `method`.
+
+      **＋** For `Research` what is measured stands beside one of the forms, never instead of one.
+
+      **＋** `estimate-estimates-schema-checked` goes to `pending` with its Criterion unchanged, and is
+      read again after the render.
+
+      **－** The field stays `optional`.'
+  spec: vault/raw/2026-09-22/2046/spec.md
+  supersedes:
+  - decision-case-343
+  applied: 00:11:21
+- case: '351'
+  decision: decision-case-351
+  origin: raw/2026-09-22/2046/ledger.md#case-351
+  targets:
+  - kind: create
+    category: estimates
+    slug: estimate-prespec-simulates-the-pairs
+    ref: rule-prespec
+  - kind: update
+    category: rules
+    slug: rule-prespec
+    ref: rule-prespec
+  - kind: update
+    category: estimates
+    slug: estimate-prespec-reconciles
+    ref: estimate-prespec-reconciles
+  - kind: update
+    category: insights
+    slug: insight-workflow-edit-pair-signed-from-a-grep-fragment
+    ref: insight-workflow-edit-pair-signed-from-a-grep-fragment
+  tags:
+  - harness
+  - workflow
+  case_text:
+    context: 'Case 345 gives `pre-spec` a check of the anchors and leaves two defects. First: it changes
+      the Render of `rule-prespec` and does not name `estimate-prespec-reconciles`, the live reading of
+      that Render, `passed`, whose method is one reading by hand of the first `/pre-spec` after the render.
+      That is the breach of case 187 which 341 and 342 exist to repair and which 347, 349 and 350 of this
+      plan all observe. Second: it gives the Insight `addressed_by` as a list of two links, while the
+      schema of an Insight requires one quoted wikilink — unlike `deferred_by`, which the same schema
+      calls a list; all nine live Insights carry one.
+
+      `rule-prespec` stands `built`, a Leaf; the anchor of the pair stands once in it; the pair of case
+      335 of the conserved Spec touches another span. Two Estimate items in one `then` block each need
+      a written `sections: Criterion`, or one wording is signed twice, so the Criterion of the created
+      Estimate is written out. `estimate-prespec-checks-the-plan` is not named: a new check of `--check`
+      has its own Estimate, as in cases 327 and 331.'
+    problem: The Case changes a Render without naming its live reading, and writes `addressed_by` in a
+      form the schema does not know.
+    given: '`prespec --check` reads the plan and the live pages of the vault; it has no check of an anchor
+      at all.
+
+      **＋** `generate` applies the pairs in entry order and matches with whitespace collapsed, exactly
+      one occurrence.
+
+      **＋** The pairs of one Spec can touch one span: 314.2 against 310.6.
+
+      **＋** An Insight is the target of the `update` that closes or rejects it; `actioned` sends its `clustered`
+      children to the archive by the cascade.'
+    when: '`uv run guppi prespec --check <plan> --session <id>` reads the plan before the Spec is approved.'
+    then: 'The `replace` and `reword` pairs of every Case of the plan are applied in entry order to copies
+      of the pages in memory, whitespace collapsed as `generate` collapses it; nothing is written to disk.
+
+      **＋** An anchor that misses, or hits more than once, gives one line with its Case, the page''s slug
+      and the opening of its `old`.
+
+      **＋** The anchor is judged against the page as the Spec leaves it, not as it stands today.
+
+      **＋** The Insight moves to `actioned`, its `addressed_by` naming the Decision of this Case.
+
+      **＋** `estimate-prespec-reconciles` goes to `pending` with its Criterion unchanged, and is read
+      again after the render.
+
+      **－** The meaning of the words in their place is not judged by a machine: that half is the requirement
+      for signing a pair in `case-schema.md`.'
+  spec: vault/raw/2026-09-22/2046/spec.md
+  supersedes:
+  - decision-case-345
+  applied: 00:11:21
+- case: '352'
+  decision: decision-case-352
+  origin: raw/2026-09-22/2046/ledger.md#case-352
+  targets:
+  - kind: defer
+    category: rules
+    slug: rule-skill-hi
+    ref: rule-skill-hi
+  tags: []
+  case_text:
+    context: 'Case 346 of this plan defers `rule-skill-hi` and `rule-prespec` with one question — what
+      a Frontier closer must tell apart. Case 351 of the same plan changes the Render of `rule-prespec`.
+      Case 186.2 stands in the Render of `rule-prespec` itself and in the Criterion of `estimate-prespec-reconciles`:
+      a Case that changes a page another Case of the same plan defers is a finding, with no exception
+      for disjoint spans. The mechanism is the reason — a defer writes `deferred_by` and the cascade takes
+      the page from `built` to `draft`, so the text 351 ratifies would land on a page marked as carrying
+      an open question.
+
+      `rule-skill-hi` stands `draft`, a MOC; `rule-prespec` stands `built`, a Leaf, and this plan changes
+      it in 351 while the conserved Spec changes it in 331 and 335. Case 334 was superseded by 339, 339
+      by 346; this Case supersedes 346. The `purpose` carries what neither 339 nor 346 said: a session
+      that passes over an item of the sprint leaves no trace anywhere but the Frontier, which dies with
+      the session.'
+    problem: The defer of a page and the change of that page stand in one plan. Either the question loses
+      its second page, or the change waits a session.
+  spec: vault/raw/2026-09-22/2046/spec.md
+  supersedes:
+  - decision-case-346
+  applied: 00:11:21
+- case: '353'
+  decision: decision-case-353
+  origin: raw/2026-09-22/2046/ledger.md#case-353
+  targets:
+  - kind: update
+    category: rules
+    slug: rule-case-protocol
+    ref: rule-case-protocol
+  - kind: update
+    category: estimates
+    slug: estimate-case-protocol-loaded
+    ref: estimate-case-protocol-loaded
+  tags: []
+  case_text:
+    context: 'Cases 341 and 342 of this plan both change one paragraph of the Render of `rule-case-protocol`
+      — the one that describes an `update` — and both add a line to the Criterion of `estimate-case-protocol-loaded`.
+      As a pair they carry three faults. Each writes into the live text the number of the Case it replaced,
+      337 and 340, whose edits never land and whose Decision pages go to the archive marked superseded,
+      so a reader of `case-schema.md` is sent to a Case that did nothing. They judge one position by opposite
+      standards: 341 puts the requirement for signing a pair — a step of the author — right after the
+      words "it carries no `contract`.", while the `context` of 342 argues that text at that anchor reads
+      as a condition on the shape of an `update` and not as a step of the author. And two `given` lines
+      carry traces: 342''s says the paragraph turns to `delete` and `defer` after the anchor, while the
+      next sentence is the one on one promise per Case; 341''s names the anchor of case 340, which is
+      gone.
+
+      `rule-case-protocol` stands `draft`; the live reading of its Render is `estimate-case-protocol-loaded`,
+      `passed`; the page''s three other Estimates are not touched. `estimate-case-protocol-case-form`
+      stands `pending` and its Criterion already says that a Case names by slug the Estimate it changes;
+      this Case does not change that Criterion, and its reading over the Cases of a session will meet
+      the new step when it is taken.'
+    problem: Two Cases divide one paragraph between them, cite the Cases they replaced, and disagree on
+      where a step of the author belongs.
+    given: '`case-schema.md` is the Render of `rule-case-protocol`, loaded by `/hi` in every working session;
+      its sentence on the keys of an `update` runs "`set` … `sections` … `replace` (…), `change` (one
+      line for History) and, when the page changes its slug, `rename` (… case 258.1); it carries no `contract`."
+
+      **＋** The description of an `update` ends with the words "unless the part is inside the Criterion,
+      which sets `pending` (case 296)."; the next sentence is the one on one promise per Case.
+
+      **＋** `reword` is a key of a `then` block: `materialize` carries it into the entry (274.3), `generate`
+      replaces the pairs as whole words over every live page, checks the owner and refuses the entry on
+      a pair with no hit (274.1); a slug changes through `rename` (274.1).
+
+      **＋** An `update` of a rule''s `Render` touches the Estimate of the live reading of that Render
+      (187); a part inside a Criterion sets the page `pending` with no `set.status` (296).
+
+      **＋** Both anchors stand once each in the page and do not overlap.'
+    when: The agent writes the `then` block of a Case that changes an existing page, and reads the description
+      of an `update` in `case-schema.md`.
+    then: 'In the sentence of `case-schema.md` that enumerates the keys of an `update`, `reword` stands
+      between `replace` and `change`: a list of `{old, new}` pairs replaced as whole words over every
+      live page of `wiki/`, the page of the item being the owner, for a word that changes everywhere —
+      a slug goes through `rename`.
+
+      **＋** `change` and `rename` keep their place: the sentence reads as one list of keys.
+
+      **＋** At the end of the description of an `update`, after the sentence that ends "which sets `pending`
+      (case 296)", two sentences stand: a pair under `replace` or `reword` is signed only after the sentence
+      around every match is read whole and what it names there is said, never from the line a grep printed;
+      and a Case that changes the behaviour of an existing page reads the page''s `estimates` and gives
+      an `update` to each one whose Criterion speaks of the change, read as the `then` block is written,
+      not at pre-spec.
+
+      **＋** An Estimate whose Criterion speaks of something else is not named: naming a spare one replaces
+      a sound Criterion.
+
+      **＋** The Criterion of `estimate-case-protocol-loaded` names both additions; the page goes `pending`.
+
+      **－** The words "it carries no `contract`." keep their place, and nothing is added after them.
+
+      **－** `rule-page-generation` does not change: the mechanics of applying a `reword` are described
+      there and stay.
+
+      **－** The Case has no Estimate of its own; the refusal for the pair procedure is 351.'
+  spec: vault/raw/2026-09-22/2046/spec.md
+  supersedes:
+  - decision-case-341
+  - decision-case-342
+  applied: 00:11:21
+unparsed: []
+session: '2046'

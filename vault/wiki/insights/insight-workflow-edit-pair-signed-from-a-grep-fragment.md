@@ -1,9 +1,10 @@
 ---
 type: insight
 pattern: "An edit pair — a `reword` or a `replace` — is signed from a grep fragment: the matched words are copied out as the anchor, and neither the sentence they sit in nor what an earlier Case of the same Spec leaves of it is read before the Case is ratified."
-status: open
+status: actioned
 children: ["[[lesson-reword-pairs-signed-before-the-places-were-read]]", "[[lesson-replace-anchors-overlap-in-one-spec]]"]
-severity: 2
+severity: 0
+addressed_by: "[[decision-case-351]]"
 origin: raw/2026-09-22/1121/ledger.md#L96
 sprint: migration
 created: 2026-09-22
@@ -50,3 +51,4 @@ Neither half is decided here.
 ## History
 
 - 2026-09-22 created · raw/2026-09-22/1121/ledger.md#L96
+- 2026-09-23 updated: actioned by the two halves of its Proposal — the requirement for signing a pair in case-schema.md and the simulation in pre-spec (case 351) · [[decision-case-351]]

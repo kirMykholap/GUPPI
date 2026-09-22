@@ -2,7 +2,7 @@
 type: rule
 kind: Leaf
 purpose: Prevents a Spec whose work was not done from being applied to the vault
-status: built
+status: draft
 enforcement: render
 governs: .claude/skills/carry/SKILL.md
 render_mode: full
@@ -38,8 +38,7 @@ above holds a path outside `vault/raw/<hi date>/<hi HHMM>/` and `vault/wiki/brie
 stop and say: work was done, the ordinary exit applies — Work Mode, `/retro`, `/handoff`.
 
 Otherwise:
-1. Rewrite `vault/wiki/brief.md` by the frame of `rule-brief` (the Render in
-   `.claude/agents/librarian-guppi.md`), in its short shape as that frame says: Where
+1. Rewrite `vault/wiki/brief.md` by the frame of `rule-brief` — the text between the `rule-brief` markers of `.claude/agents/librarian-guppi.md` — in its short shape as that frame says: Where
    things stand names the conserved Spec — `vault/raw/<hi date>/<hi HHMM>/spec.md`, its
    Cases, what is not done on it; no Readings due, no Next session, no Readings at the close; Deferred is
    the previous brief's list as it stands plus the `defer` items of this Spec by slug, less the targets the sprint page names (case 229.4);
@@ -66,3 +65,5 @@ the brief. The session that finishes the Spec deletes `carry.md`.
 - 2026-09-18 updated: the /carry brief leaves out a target the sprint page names (case 233.4) · [[decision-case-233.4]]
 - 2026-09-18 status: draft → built · cascade
 - 2026-09-20 updated: the carry brief's list of omitted sections names Next session, as the carry sentence of rule-brief does (case 268.1) · [[decision-case-268.1]]
+- 2026-09-23 updated: step 1 names the place of the brief frame, not only the file that holds it (case 347) · [[decision-case-347]]
+- 2026-09-23 status: built → draft · cascade

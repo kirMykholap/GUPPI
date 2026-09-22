@@ -48,9 +48,9 @@ update:
 ```
 
 ```tasks
-- [ ] update `rule-case-protocol` — two `replace` pairs inside the Render: `reword` into the enumeration, the two author's steps at the end of the description of an `update`
-- [ ] update `estimate-case-protocol-loaded` — one `replace` pair inside the Criterion; the page goes `pending`
-- [ ] `uv run guppi render`: `vault/wiki/case-schema.md`
+- [x] update `rule-case-protocol` — two `replace` pairs inside the Render: `reword` into the enumeration, the two author's steps at the end of the description of an `update`
+- [x] update `estimate-case-protocol-loaded` — one `replace` pair inside the Criterion; the page goes `pending`
+- [x] `uv run guppi render`: `vault/wiki/case-schema.md`
 - [ ] read `estimate-case-protocol-loaded` by its method — one reading at the first `/hi` of a session, by hand, plus the preview cases of `tests/test_ledger.py`
 ```
 
@@ -113,9 +113,9 @@ update:
 ```
 
 ```tasks
-- [ ] update `rule-estimates-schema` — the replace pair in the description of `method` inside the Render
-- [ ] update `estimate-estimates-schema-checked` — `set: {status: pending}` and `sections: Criterion` verbatim
-- [ ] `uv run guppi render`: `vault/wiki/estimates/schema.yaml`
+- [x] update `rule-estimates-schema` — the replace pair in the description of `method` inside the Render
+- [x] update `estimate-estimates-schema-checked` — `set: {status: pending}` and `sections: Criterion` verbatim
+- [x] `uv run guppi render`: `vault/wiki/estimates/schema.yaml`
 - [ ] read `estimate-estimates-schema-checked`
 ```
 
@@ -160,7 +160,7 @@ update:
 ```
 
 ```tasks
-- [ ] update `estimate-prespec-binds-a-sprint-line` — two `replace` pairs inside the Criterion and `set: {method: …}`
+- [x] update `estimate-prespec-binds-a-sprint-line` — two `replace` pairs inside the Criterion and `set: {method: …}`
 - [ ] read `estimate-prespec-binds-a-sprint-line`
 ```
 
@@ -252,13 +252,13 @@ update:
 ```
 
 ```tasks
-- [ ] create `estimate-prespec-simulates-the-pairs`, `ref: rule-prespec`, with its Criterion written out
-- [ ] update `rule-prespec` — the replace pair in the Render, after the clause on an Estimate's line (case 189)
-- [ ] update `estimate-prespec-reconciles` — `set: {status: pending}` and `sections: Criterion` verbatim
-- [ ] update `insight-workflow-edit-pair-signed-from-a-grep-fragment` — `set: {status: actioned, addressed_by: decision-case-351}`
+- [x] create `estimate-prespec-simulates-the-pairs`, `ref: rule-prespec`, with its Criterion written out
+- [x] update `rule-prespec` — the replace pair in the Render, after the clause on an Estimate's line (case 189)
+- [x] update `estimate-prespec-reconciles` — `set: {status: pending}` and `sections: Criterion` verbatim
+- [x] update `insight-workflow-edit-pair-signed-from-a-grep-fragment` — `set: {status: actioned, addressed_by: decision-case-351}`
 - [x] `guppi/prespec.py` — the simulation of the pairs in entry order, whitespace collapsed as in `generate`
 - [x] `tests/test_prespec.py` — an anchor that misses; an anchor that hits twice; a pair whose `old` an earlier Case produces is clean
-- [ ] `uv run guppi render`: `.claude/skills/pre-spec/SKILL.md`
+- [x] `uv run guppi render`: `.claude/skills/pre-spec/SKILL.md`
 - [x] read `estimate-prespec-simulates-the-pairs`
 - [ ] read `estimate-prespec-reconciles`
 ```
@@ -320,9 +320,9 @@ update:
 ```
 
 ```tasks
-- [ ] update `rule-carry-over` — the replace pair in step 1 inside the Render
-- [ ] update `estimate-carry-over-writes` — `set: {status: pending}` and `sections: Criterion` verbatim
-- [ ] `uv run guppi render`: `.claude/skills/carry/SKILL.md`
+- [x] update `rule-carry-over` — the replace pair in step 1 inside the Render
+- [x] update `estimate-carry-over-writes` — `set: {status: pending}` and `sections: Criterion` verbatim
+- [x] `uv run guppi render`: `.claude/skills/carry/SKILL.md`
 - [ ] read `estimate-carry-over-writes`
 ```
 
@@ -368,9 +368,9 @@ update:
 ```
 
 ```tasks
-- [ ] update `rule-documentation` — the replace pair in the ban clause inside the Render
-- [ ] update `estimate-documentation-completes` — the replace pair in the line on what it read; the page goes `pending`
-- [ ] `uv run guppi render`: `.claude/agents/librarian-guppi.md`
+- [x] update `rule-documentation` — the replace pair in the ban clause inside the Render
+- [x] update `estimate-documentation-completes` — the replace pair in the line on what it read; the page goes `pending`
+- [x] `uv run guppi render`: `.claude/agents/librarian-guppi.md`
 - [ ] read `estimate-documentation-completes`
 ```
 

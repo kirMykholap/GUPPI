@@ -1,7 +1,7 @@
 ---
 type: estimate
 kind: QA
-status: passed
+status: pending
 target: "[[rule-carry-over]]"
 purpose: /carry writes the brief and the mark and runs nothing else
 method: pytest over the skill's render, plus one live reading of a carried-over session
@@ -43,3 +43,4 @@ The skill reads the tree; when it holds changes outside the session folder and `
 - 2026-09-17 ref removed · one-off migration · raw/2026-09-16/2238/spec.md#case-210
 - 2026-09-18 updated: the Render changed under it — the Deferred paragraph; the Criterion stands as it was (case 233.4) · [[decision-case-233.4]]
 - 2026-09-18 status: pending → passed · raw/2026-09-18/2054/ledger.md#L12
+- 2026-09-23 updated: the Render changed under it — step 1 names the place of the frame; the Criterion stands (case 347) · [[decision-case-347]]

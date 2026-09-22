@@ -1,10 +1,10 @@
 ---
 type: estimate
 kind: QA
-status: passed
+status: pending
 target: "[[rule-prespec]]"
 purpose: A Frontier line of the sprint closed by a Case is a finding of prespec --check unless that Case updates the sprint page; a line left [-] with sprint needs nothing
-method: uv run pytest tests/test_prespec.py -k sprint — a line `· sprint · case N` with and without an update of entity-sprint-<id> under Case N, a `[-] … · sprint` line, a line without sprint among its segments
+method: uv run pytest tests/test_prespec.py -k sprint — a line `· sprint · case N` with and without an update of entity-sprint-<id> under Case N, a `[-] … · sprint` line, a line whose source segment is not `sprint` while the word stands inside the slug of its title
 origin: raw/2026-09-22/1121/ledger.md#case-314.2
 sprint: migration
 created: 2026-09-22
@@ -19,12 +19,12 @@ Given:
 **＋** `tests/test_prespec.py` fixes `--check`.
 
 When:
-`guppi prespec --check` reads a Frontier line whose segments hold `sprint` and whose closer is `case N`.
+`guppi prespec --check` reads a Frontier line whose source segment — the one before the closer — is `sprint` and whose closer is `case N`.
 
 Then:
 An `update` item naming the sprint page under Case N — the parent or any sub-case — is required; without one the finding is `frontier: C<n> closes a sprint item with case N, no update of <sprint slug> under Case N`.
 **＋** A line closed `[-] … · sprint` needs nothing: the item stays on the page as it is.
-**－** A line without `sprint` among its segments is read as today.
+**－** A line whose source segment is not `sprint` is read as today; the word inside the slug of a title is not the source (case 335).
 
 ## Result
 
@@ -34,3 +34,4 @@ An `update` item naming the sprint page under Case N — the parent or any sub-c
 
 - 2026-09-22 created · [[decision-case-314.2]]
 - 2026-09-22 status: pending → passed · raw/2026-09-22/1121/ledger.md#L91
+- 2026-09-23 updated: the Criterion and the method speak of the source segment of a Frontier line (case 344, supersedes 338.1) · [[decision-case-344]]

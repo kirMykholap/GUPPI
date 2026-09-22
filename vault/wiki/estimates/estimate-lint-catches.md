@@ -1,7 +1,7 @@
 ---
 type: estimate
 kind: QA
-status: passed
+status: pending
 target: "[[rule-lint]]"
 method: pytest in tests/test_lint.py, one test per defect class; the live reading once by hand, written into the estimate line
 checked: 2026-09-22
@@ -28,10 +28,11 @@ Every live page is checked against the `schema.yaml` of its category; one line p
 **＋** `ref`: a slug in `parent`, `children`, `estimates`, `target`, `insight`, `addressed_by`, `deferred_by`, `applies_to`, `rules` or in a History wikilink that no live or archived page carries; a `[[…]]` in a body may name a hub file under `wiki/` by stem or path; a `[[slug]]` under a Decision page's `## Criterion` that is no Estimate; a `### case N` block of an Estimate with no decision page; an `applies_to` that names no Entity, and an Entity's `rules` that differs from the live rules whose `applies_to` names it (case 305.5).
 **＋** `origin`: both forms resolve in `raw/` or in `vault/archive/`; in neither, or in both, a finding.
 **＋** `path`: a file of `implementation_ref` or `governs` that does not exist.
+**＋** `markers`: a page with `enforcement: render` whose `## Render` is absent, or whose text does not open with `<!-- slug -->` and close with `<!-- /slug -->`; a page with `render_mode: full` whose Render carries a closing marker line `<!-- /child -->` for one of its `children` — a parent carries one opening line per child (case 325.2).
 **＋** `orphan`: a live entity, rule or estimate that no live page's frontmatter names; a lesson and an Insight never.
 **＋** `status`: `built` with an Estimate not `passed`, `draft` with every one `passed`; an Estimate `passed` or `failed` without `## Result`; an Estimate whose target is not an entity or a rule, or does not list it in `estimates`.
 **＋** `unread`: every Estimate `pending` or `failed` — one finding each, `unread: <status>`; red between a change of a promise and its reading, by design.
-**＋** `method`: the `method` field, or on a page of the old shape the `## Method` section; for a MOC's Estimate a named `make <target>` of the Makefile passes whatever stands beside it, and a reading (`by hand`, `reading`) passes when the Estimates of every child are readings or when another Estimate of the same MOC names a `make <target>` of the Makefile (case 212); for a Leaf's Estimate a `tests/` file that exists, the word `pytest`, a `make <target>` of the Makefile or a reading; else a finding.
+**＋** `method`: the `method` field, or on a page of the old shape the `## Method` section; for a MOC's Estimate a named `make <target>` of the Makefile passes whatever stands beside it, and a reading (`by hand`, the one spelling since case 330.1) passes when the Estimates of every child are readings or when another Estimate of the same MOC names a `make <target>` of the Makefile (case 212); for a Leaf's Estimate a `tests/` file that exists, the word `pytest`, a `make <target>` of the Makefile or a reading; else a finding.
 **＋** `decision`: a decision page with none of the four lists, or with `kind`/`target_slug`; a listed slug with a category prefix and no page.
 **＋** `deferred`: a placeholder earns one finding `deferred: <N> times since case <M>` in place of its `schema` and `orphan` findings; a page with `deferred_by` whose fields are in place earns none.
 **＋** `unmigrated`: one line, `estimates: unmigrated: <N> pages in the shape before case 193` — the live Estimates without a `method` field, or with `## Context`, `## Method` or a `### case N` block; no line at zero.
@@ -74,3 +75,5 @@ Every live page is checked against the `schema.yaml` of its category; one line p
 - 2026-09-22 status: pending → passed · raw/2026-09-22/0014/ledger.md#L58
 - 2026-09-22 updated: the layout class of lint (case 323) · [[decision-case-323]]
 - 2026-09-22 status: pending → passed · raw/2026-09-22/1121/ledger.md#L93
+- 2026-09-23 updated: the class `markers` added to the Criterion (case 325.2) · [[decision-case-325.2]]
+- 2026-09-23 updated: one spelling of a reading in the Criterion — `by hand` (case 330.1) · [[decision-case-330.1]]

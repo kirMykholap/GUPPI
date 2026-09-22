@@ -1,7 +1,7 @@
 ---
 type: estimate
 kind: QA
-status: failed
+status: pending
 target: "[[rule-documentation]]"
 method: make test-documentation, the pipeline over tests/test_materialize.py, tests/test_generate.py and tests/test_cleanup.py; the live reading by hand
 checked: 2026-09-22
@@ -24,7 +24,7 @@ When:
 Then:
 `make test-documentation` — materialize, generate and cleanup as one pipeline — is green.
 **＋** Live, after the run: every decision line of the session's ledger has a Decision page and its target page; no page exists that no ledger line produced.
-**＋** It read only `handoff.md`, the yamls, the four index lines and `tags.md`, plus the wiki pages it names in the report with one of the four reasons of its frame (same or near; a candidate cluster; a script's error; a fact for the brief) and the outcome, plus the unticked `- [ ]` lines of the `spec.md` files for Readings due and Next session; no ledger, no other part of a Spec, no plan, Decision page or archive file (the `Makefile`, `guppi/` and `tests/` are the scripts' own and may be read).
+**＋** It read only `handoff.md`, the yamls, the four index lines and `tags.md`, plus the wiki pages it names in the report with one of the four reasons of its frame (same or near; a candidate cluster; a script's error; a fact for the brief) and the outcome, plus the unticked `- [ ]` lines of the `spec.md` files for Readings due and Next session; of the ledger only the count of its lines and the lines the yaml does not account for, named in the report (case 349); no other part of a Spec, no plan, Decision page or archive file (the `Makefile`, `guppi/` and `tests/` are the scripts' own and may be read).
 **＋** It edited no yaml entry beyond the marks and the entries of the index check and the synthesis; its commands are in `event_log.md`; its commit is separate from the session's; it did not stop to ask.
 **＋** After `cleanup` and before the brief it runs `uv run guppi render`, then `uv run guppi sprint`, then `uv run guppi glossary`; every line on their stderr is a flag; a file the render could not write is left to the next session start; `make lint` then passes its `render --check` step.
 **＋** After the brief and before the close it runs `uv run guppi archive`; every line on its stderr is a flag; the units it moved and the units it kept, with the reason, go into the report; the session of the run — the latest `<HHMM>/` folder of the run day, else the nearest date back — is skipped, across midnight too; the commit picks the move up.
@@ -61,3 +61,4 @@ Then:
 - 2026-09-20 status: pending → passed · raw/2026-09-20/1749/ledger.md#L5
 - 2026-09-22 updated: the frame's step 6, guppi glossary (case 306.4) · [[decision-case-306.4]]
 - 2026-09-22 status: pending → failed · raw/2026-09-22/1121/ledger.md#L85
+- 2026-09-23 updated: the Criterion names the one allowed read of the ledger (case 349) · [[decision-case-349]]

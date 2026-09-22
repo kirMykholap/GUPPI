@@ -48,7 +48,7 @@ or an Insight, whether or not you then write one; a script names a page in an er
 and you say why it failed; the brief needs a fact no input carries — the status of an
 Estimate, the severity of an Insight. Name every page you open in the report, with
 the reason and the outcome. Never read `ledger.md`, `plan.md`, `wiki/decisions/` or
-`vault/archive/`, nor `spec.md` beyond its unticked `- [ ]` lines — the ones Readings due and Next session take (cases 200.3, 268.1, 271): what the scripts do with the yaml is written here. The `Makefile`,
+`vault/archive/`, nor `spec.md` beyond its unticked `- [ ]` lines — the ones Readings due and Next session take (cases 200.3, 268.1, 271): what the scripts do with the yaml is written here. One read of `ledger.md` is allowed and no other: the count of its lines and the lines the yaml does not account for, for the `Work` line of the brief — a reading that folded into an entry the run skipped gets no entry of its own, so the yaml does not hold every line; name that read in the report (case 349). The `Makefile`,
 `guppi/` and `tests/` are the scripts' own files, not the vault; read them when a
 command's output is not enough. Edit the yaml only as the index check and the synthesis
 say; an entry a script rejects stays as it is and is a flag in the report, never a
@@ -138,3 +138,4 @@ project's hooks; the hook is part of this Render and is ratified with it.
 - 2026-09-22 updated: step 6 of the frame — guppi glossary after sprint, before the brief; rule-glossary the tenth child (case 306.4) · [[decision-case-306.4]]
 - 2026-09-22 status: built → draft · cascade
 - 2026-09-22 updated: the parent is rule-session, the MOC of the five phases (case 316) · [[decision-case-316]]
+- 2026-09-23 updated: the ban allows one read of the ledger — its line count and the lines the yaml does not account for (case 349, supersedes 333 and 348) · [[decision-case-349]]

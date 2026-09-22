@@ -9,6 +9,7 @@ render_mode: full
 parent: "[[rule-session-start]]"
 children: ["[[rule-internal-context]]", "[[rule-git-context]]", "[[rule-github-issues]]", "[[rule-ledger-tail]]"]
 estimates: ["[[estimate-hi-no-read-calls]]", "[[estimate-hi-writes-frontier]]"]
+deferred_by: ["[[decision-case-352]]"]
 origin: raw/2026-09-09/ledger.md#case-11
 sprint: migration
 created: 2026-09-09
@@ -87,3 +88,4 @@ session. The skill writes no event line of its own since case 111.4: a `!` subst
 - 2026-09-22 updated: the closer is appended, the source of a line stays (case 314.1) · [[decision-case-314.1]]
 - 2026-09-22 updated: the vault query is named by rule-ask (case 318) · [[decision-case-318]]
 - 2026-09-22 status: built → draft · cascade
+- 2026-09-23 deferred · [[decision-case-352]]

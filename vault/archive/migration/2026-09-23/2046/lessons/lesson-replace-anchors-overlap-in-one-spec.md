@@ -2,7 +2,7 @@
 type: lesson
 kind: error
 root_cause: a replace anchor was taken from a grep fragment of the page as it stands today, without reading the whole sentence and without asking what an earlier Case of the same Spec leaves of it
-status: clustered
+status: archived
 insight: "[[insight-workflow-edit-pair-signed-from-a-grep-fragment]]"
 origin: raw/2026-09-22/1121/ledger.md#L96
 sprint: migration
@@ -22,3 +22,5 @@ a replace anchor was taken from a grep fragment of the page as it stands today, 
 
 - 2026-09-22 created · raw/2026-09-22/1121/ledger.md#L96
 - 2026-09-22 updated: clustered by librarian: an edit pair signed from a grep fragment, with lesson-reword-pairs-signed-before-the-places-were-read · raw/2026-09-22/1121/ledger.md#L96
+- 2026-09-23 archived · insight actioned
+- 2026-09-23 archived · cleanup

@@ -3,7 +3,8 @@
 Reads every page under `vault/wiki/<category>/` (archive excluded) against that category's
 `schema.yaml` and reports `<category>/<slug>: <class>: <what>`; writes nothing. The
 classes, in the order they are checked: `schema` (a missing field or section, a value
-outside the list, a conditional not met), `schema-description` (a field or section the
+outside the list, a conditional not met, a field `properties.single` names holding a list —
+one value is its shape, case 362.1), `schema-description` (a field or section the
 lists of `schema.yaml` name without a description under its `fields` or `sections`, or a
 description of a name no list carries — the prose of the schema lives in the yaml since
 case 304.8), `ref` (a slug no live or archived page carries; a
@@ -166,6 +167,9 @@ def check_schema(page: Page, schema: dict) -> list[Finding]:
             out.append(
                 Finding(page, "schema", f"{field} is {page.props[field]!r}, not one of {allowed}")
             )
+    for field in props.get("single") or []:  # one value is its shape, never a list (362.1)
+        if isinstance(page.props.get(field), list):
+            out.append(Finding(page, "schema", f"{field} holds a list; one link is its shape"))
     for rule in props.get("conditional") or []:
         if not matches(page, rule.get("when") or {}):
             continue

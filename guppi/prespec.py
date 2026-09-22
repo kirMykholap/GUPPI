@@ -29,8 +29,10 @@ the ledgers of its dates, on the `hi` date from the `hi` time on, and its folder
   N}` of the window names need no item — the Case left the plan — and its heading still in
   the plan is a finding of its own (case 299.2);
 - the frontier `raw/<hi date>/<hi HHMM>/frontier.md` (case 73.4): missing, an open `[ ]`
-  line, a `[x] … · case N` whose heading the plan lacks, a `[-] … · defer case N` with no
-  `defer` item under Case N; `sprint` is a closer of its own — an item of the sprint page
+  line under `## Cases` — an open line under `## Work` waits for Work Mode and is no finding
+  (case 356.1) — a `[x] … · case N` whose heading the plan lacks, a `[-] … · defer case N`
+  with no `defer` item under Case N, and one whose source segment is `sprint` — a sprint
+  item is never deferred (case 356.2); `sprint` is a closer of its own — an item of the sprint page
   left for a later session — legal on `[-]`, a finding on `[x]` (case 310.6); a line closed
   `· case N` whose source segment — the one standing immediately before the closer — is
   `sprint` needs an `update` of the sprint page `entity-sprint-<id>` under Case N, the
@@ -79,7 +81,13 @@ from datetime import datetime
 from pathlib import Path
 
 from guppi.event import project_root, read_payload, session_stamp
-from guppi.generate import READ_LINE, Vault, replace_once  # the ticker and the pairs
+from guppi.generate import (  # the ticker, the pairs, the Frontier line (case 360)
+    FRONTIER_LINE,
+    FRONTIER_SEPARATOR,
+    READ_LINE,
+    Vault,
+    replace_once,
+)
 from guppi.ledger import (
     hi_moment,
     hi_recorded,
@@ -107,8 +115,7 @@ LINE_PREVIEW = 80
 # `case-schema.md` writes the line as `decision[case_id]…`; `parse_line` reads `[case N]`.
 # A bare id is read as the same line rather than skipped (the lines of 2026-09-12).
 BARE_CASE = re.compile(r"^(- (?:\d\d:\d\d:\d\d )?decision\[)(?!case )")
-FRONTIER_LINE = re.compile(r"^- \[([ x-])\] (\S+)(.*)$")
-FRONTIER_SEPARATOR = " · "
+WORK_LIST = "## Work"  # the list whose open lines wait for Work Mode (case 356.1)
 CLOSERS = re.compile(r"^(work|sprint|case (\S+)|defer case (\S+))$")
 SPRINT_SOURCE = "sprint"
 SPRINT_PAGE = "entity-sprint-"
@@ -330,17 +337,25 @@ def check_frontier(path: Path, relative: str, cases: dict, blocks: dict) -> list
     for a later session — legal on a `[-]` box and a finding on an `[x]`. Case 314.2: a line
     closed `case N` whose source segment — the one standing immediately before the closer —
     is `sprint` needs an `update` of the sprint page under Case N; the word inside the slug
-    of a title is not the source, and six live Estimates carry it there (case 335)."""
+    of a title is not the source, and six live Estimates carry it there (case 335). Case
+    356.1: an open line under `## Work` is no finding — its work waits for Work Mode; a closed
+    one is checked as any. Case 356.2: a line whose source segment is `sprint` closed `defer
+    case N` is a finding — a sprint item left for later closes `[-]` with `sprint`."""
     if not path.exists():
         return [f"frontier: {relative} is missing"]
     findings: list[str] = []
+    work = False
     for line in path.read_text(encoding="utf-8").splitlines():
+        if line.startswith("## "):
+            work = line.strip() == WORK_LIST
+            continue
         match = FRONTIER_LINE.match(line)
         if not match:
             continue
         box, item, rest = match.groups()
         if box == " ":
-            findings.append(f"frontier: {item} is open")
+            if not work:
+                findings.append(f"frontier: {item} is open")
             continue
         segments = [s.strip() for s in rest.split(FRONTIER_SEPARATOR)]
         closer = CLOSERS.match(segments[-1])
@@ -364,6 +379,10 @@ def check_frontier(path: Path, relative: str, cases: dict, blocks: dict) -> list
                     f"frontier: {item} closes a sprint item with case {case}, "
                     f"no update of the sprint page under Case {case}"
                 )
+        elif closer.group(3) is not None and segments[-2:-1] == [SPRINT_SOURCE]:
+            findings.append(
+                f"frontier: {item} defers a sprint item; an item left for later closes [-] with sprint"
+            )
         elif closer.group(3) is not None:
             case = closer.group(3)
             defers = blocks.get(case, {}).get("defer") or []

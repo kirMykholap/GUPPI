@@ -196,6 +196,22 @@ def test_a_forbidden_value_is_a_schema_finding(tmp_path):
     ]
 
 
+def test_a_list_in_a_single_field_is_a_schema_finding(tmp_path):
+    # case 362.1: a field `properties.single` names holds one value, never a list
+    wiki = seed(tmp_path, rule=rule_page(parent="[rule-root, rule-x]"))
+    single = RULES_YAML.replace("  values:\n", "  single: [parent]\n  values:\n", 1)
+    write(wiki / "rules" / "schema.yaml", described(single))
+    _, lines, _ = run(tmp_path)
+    assert lines == ["rules/rule-x: schema: parent holds a list; one link is its shape"]
+    write(wiki / "rules" / "rule-x.md", rule_page())  # one value: no finding
+    assert run(tmp_path) == (0, [], "")
+
+
+def test_a_list_in_a_field_no_single_names_is_no_finding(tmp_path):
+    seed(tmp_path, rule=rule_page(parent="[rule-root]"))  # the schema has no `single`
+    assert run(tmp_path) == (0, [], "")
+
+
 def test_a_missing_section_is_a_schema_finding(tmp_path):
     seed(tmp_path, estimate=estimate_page().replace("## Criterion\n\ncr\n\n", ""))
     _, lines, _ = run(tmp_path)

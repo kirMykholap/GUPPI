@@ -1,0 +1,64 @@
+- 00:51:32 decision[case 354.1][update][rule-sprint]{ref:rule-sprint}
+- 00:51:32 decision[case 354.1][update][rule-page-generation]{ref:rule-page-generation}
+- 00:51:32 decision[case 354.1][create][estimate-sprint-moves-a-passed-over-item]{ref:rule-sprint}{tags:sprint,harness}
+- 00:53:21 decision[case 354.2][update][rule-sprint]{ref:rule-sprint}
+- 00:53:21 decision[case 354.2][update][rule-page-generation]{ref:rule-page-generation}
+- 00:53:21 decision[case 354.2][create][estimate-sprint-drops-an-emptied-milestone]{ref:rule-sprint}{tags:sprint,harness}
+- 00:55:02 decision[case 354.3][update][rule-skill-hi]{ref:rule-skill-hi}
+- 00:55:02 decision[case 354.3][update][estimate-hi-writes-frontier]{ref:estimate-hi-writes-frontier}
+- 00:57:00 decision[case 354.4][update][rule-brief]{ref:rule-brief}
+- 00:57:00 decision[case 354.4][update][estimate-brief-written]{ref:estimate-brief-written}
+- 01:06:50 decision[case 355.1][update][rule-case-protocol]{ref:rule-case-protocol}
+- 01:06:50 decision[case 355.1][update][estimate-case-protocol-loaded]{ref:estimate-case-protocol-loaded}
+- 01:06:50 decision[case 355.1][update][estimate-case-protocol-case-form]{ref:estimate-case-protocol-case-form}
+- 01:06:50 decision[case 355.2][update][rule-case-protocol]{ref:rule-case-protocol}
+- 01:06:50 decision[case 355.2][update][estimate-case-protocol-loaded]{ref:estimate-case-protocol-loaded}
+- 01:06:50 decision[case 355.2][update][estimate-case-protocol-case-form]{ref:estimate-case-protocol-case-form}
+- 01:12:35 decision[case 356.1][update][rule-skill-hi]{ref:rule-skill-hi}{supersedes:case 352}
+- 01:12:35 decision[case 356.1][update][rule-prespec]{ref:rule-prespec}
+- 01:12:35 decision[case 356.1][update][estimate-hi-writes-frontier]{ref:estimate-hi-writes-frontier}
+- 01:12:35 decision[case 356.1][update][estimate-prespec-checks-the-plan]{ref:estimate-prespec-checks-the-plan}
+- 01:12:35 decision[case 356.2][update][rule-skill-hi]{ref:rule-skill-hi}
+- 01:12:35 decision[case 356.2][update][rule-prespec]{ref:rule-prespec}
+- 01:12:35 decision[case 356.2][update][estimate-hi-writes-frontier]{ref:estimate-hi-writes-frontier}
+- 01:12:35 decision[case 356.2][update][estimate-prespec-checks-the-plan]{ref:estimate-prespec-checks-the-plan}
+- 01:19:26 decision[case 357][update][rule-documentation]{ref:rule-documentation}
+- 01:19:26 decision[case 357][update][estimate-documentation-completes]{ref:estimate-documentation-completes}
+- 01:22:51 decision[case 358][update][decision-case-347]{ref:decision-case-347}
+- 01:26:21 decision[case 359][update][rule-agent-writing]{ref:rule-agent-writing}
+- 01:26:21 decision[case 359][update][estimate-agent-writing-followed]{ref:estimate-agent-writing-followed}
+- 01:26:21 decision[case 359][update][insight-workflow-fact-signed-from-a-check-that-does-not-cover-it]{ref:insight-workflow-fact-signed-from-a-check-that-does-not-cover-it}
+- 01:32:27 decision[case 360][create][rule-one-judgment-one-implementation]{ref:rule-claude-md}{tags:harness,workflow,render,tests}
+- 01:32:27 decision[case 360][create][estimate-one-judgment-one-implementation-followed]{ref:rule-one-judgment-one-implementation}{tags:harness,workflow,tests}
+- 01:32:27 decision[case 360][update][rule-claude-md]{ref:rule-claude-md}
+- 01:32:27 decision[case 360][update][estimate-claude-md-rendered]{ref:estimate-claude-md-rendered}
+- 01:32:27 decision[case 360][update][insight-harness-one-rule-implemented-twice-drifts]{ref:insight-harness-one-rule-implemented-twice-drifts}
+- 01:38:29 decision[case 362.1][update][rule-lint]{ref:rule-lint}
+- 01:38:29 decision[case 362.1][update][estimate-lint-catches]{ref:estimate-lint-catches}
+- 01:38:29 decision[case 362.2][update][rule-insights-schema]{ref:rule-insights-schema}
+- 01:38:29 decision[case 362.2][update][estimate-insights-schema-checked]{ref:estimate-insights-schema-checked}
+- 01:39:48 decision[case 361][update][rule-insights-schema]{ref:rule-insights-schema}
+- 01:39:48 decision[case 361][update][estimate-insights-schema-checked]{ref:estimate-insights-schema-checked}
+- 01:39:48 lesson[error][lesson-ledger-ratification-with-a-new-item-lost-its-block]{tags:session,ledger,workflow} trigger: the person's reply "Ратифицирую. И думаю, что lint должен проверять, что в поле всего одна ссылка" ratified Case 361 and raised a new item; the agent wrote 361 into the Spec, closed its Frontier line and showed Case 362, but no reply carried the LEDGER block of 361, and /pre-spec was refused by guppi gate: two items of the Spec have no ledger line root_cause: a reply that ratifies and adds an item in one message was answered as the new item alone; the acknowledging reply — the LEDGER block first — was skipped because the agent's turn went straight to the next Case, and nothing between ratification and pre-spec checks that each ratified Case has its lines
+- 01:58:19 decision[case 355.2][update][estimate-case-protocol-acknowledging-reply]{ref:estimate-case-protocol-acknowledging-reply}
+- 01:58:19 decision[case 356.1][update][rule-case-protocol]{ref:rule-case-protocol}
+- 01:58:19 decision[case 356.1][update][estimate-case-protocol-loaded]{ref:estimate-case-protocol-loaded}
+- 01:58:19 decision[case 356.2][update][rule-case-protocol]{ref:rule-case-protocol}
+- 01:58:19 decision[case 356.2][update][estimate-case-protocol-loaded]{ref:estimate-case-protocol-loaded}
+- 02:00:59 decision[case 358][update][rule-decisions-schema]{ref:rule-decisions-schema}
+- 02:00:59 decision[case 358][update][estimate-decisions-schema-checked]{ref:estimate-decisions-schema-checked}
+- 02:00:59 decision[case 362.1][update][estimate-decisions-schema-checked]{ref:estimate-decisions-schema-checked}
+- 02:00:59 decision[case 362.1][update][estimate-entities-schema-checked]{ref:estimate-entities-schema-checked}
+- 02:00:59 decision[case 362.1][update][estimate-estimates-schema-checked]{ref:estimate-estimates-schema-checked}
+- 02:00:59 decision[case 362.1][update][estimate-insights-schema-checked]{ref:estimate-insights-schema-checked}
+- 02:00:59 decision[case 362.1][update][estimate-lessons-schema-checked]{ref:estimate-lessons-schema-checked}
+- 02:00:59 decision[case 362.1][update][estimate-rules-schema-checked]{ref:estimate-rules-schema-checked}
+- 02:00:59 decision[case 362.1][update][estimate-page-schemas-one-file-per-rule]{ref:estimate-page-schemas-one-file-per-rule}
+- 02:09:58 estimate[estimate-generate-cascades][passed] 2026-09-23, uv run pytest tests/test_generate.py: 85 passed, among them 13 selected by -k "cascade or archived or severity or recount or insight or built"; the move of case 354 is a step after the cascade and writes `· generate`, so no section is touched by the cascade; the live leg, the librarian's run of this session, not taken
+- 02:09:58 estimate[estimate-generate-fails-alone][failed] 2026-09-23, uv run pytest tests/test_generate.py: 85 passed, 23 selected by -k "fail or skip or mark or superseded or rerun or stale"; but the Criterion's line "An update with no content prints `an update with no content in the Spec; applied by hand`" does not hold: guppi/generate.py:763 prints "an update with no content in the Spec; nothing applied" (the words since case 320), and no test asserts the message — the Criterion is stale, not the code
+- 02:09:58 estimate[estimate-prespec-binds-a-sprint-line][passed] 2026-09-23, uv run pytest tests/test_prespec.py -k sprint: 7 passed, 85 deselected — a `· sprint · case N` line with and without the update of the sprint page, a `[-] … · sprint` line clean, the word inside a slug not the source
+- 02:09:58 estimate[estimate-harness-pipeline][passed] 2026-09-23, make test-harness: 95 passed; uv run guppi render --check, guppi sprint --check, guppi glossary --check each exit 0 with no output; the Purpose of rule-harness read by hand: three rules in make lint in the order harness files, sprint file, glossary file, then the pages, five more outside the pipeline
+- 02:09:58 estimate[estimate-case-protocol-ledger-line-form][passed] 2026-09-23, case-schema.md as loaded at the /hi of session 0034, read by hand: the ledger paragraph says a decision line whose Case closes the root cause of a lesson of this session carries {addresses:<lesson slug>}, written when the lesson line already stands in the ledger, one mark per lesson, and a lesson fixed in another session gets no mark; the lesson and estimate rows of the table carry no addressed_by; the writing leg had no instance — no Case of this session closed the cause of its one lesson
+- 02:09:58 estimate[estimate-prespec-reconciles][passed] 2026-09-23, the /pre-spec of session 0034 read by hand: guppi prespec --check with --session c9c18452, its first line a finding and not "no hi recorded"; the plan fixed until exit 0 (two bare-slug fixes, then the ledger lines of the amended Cases); guppi gate wrote "01:39:57 c9c18452 prespec" on the Skill call; every decision listed with the estimates of each updated rule and which the Case names, ask-guppi dispatched once with the list, the plan path and the two questions; 15 contradictions and 2 unnamed Estimates returned, 11 raised as amended Cases re-ratified, 4 named as known; Plan Mode exited after exit 0; insight-pretask-session-flag-takes-the-id-not-the-hi-line stands actioned
+- 02:09:58 estimate[estimate-sprint-migration-index-dissolved][failed] 2026-09-23, test -e vault/wiki/index.md exit 1 (absent); rg '§ ?[0-9]|index\.md' over vault/wiki, .claude, guppi, CLAUDE.md, every hit read by hand: two live pointers — the docstring of guppi/materialize.py:11 "its route computed from `index.md` §5", and the Given of estimate-case-protocol-case-form.md:18 "`index.md`, `estimates/schema.md` and `schema.yaml` are the Renders of their rule pages"; every other hit is a History line, a Result, a Decision page's record, a negation or the sprint's own goal
+- 02:15:30 lesson[error][lesson-spec-text-repaired-after-ratification-without-a-showing]{tags:session,workflow} trigger: in session 0034 the agent wrote into the Spec a `problem` for Case 359 that the chat form had not shown, and removed a sentence from the `context` of Case 361 after its re-ratification; both were named in the Notes of the acknowledging reply, neither was shown as a changed Case — the pattern Case 358 signed after the fact for Case 347 in the same session root_cause: a gap or an error the agent found in ratified text was repaired in the plan file directly, because the Spec is the agent's file to write, while the rule for a changed Case — shown again, context and problem when they change — was read as applying to the person's changes only

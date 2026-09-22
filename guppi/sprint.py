@@ -104,18 +104,28 @@ def item_name(line: str) -> str:
     return head if item_slugs(body) else body
 
 
+def milestone_blocks(text: str) -> list[tuple[str | None, list[str]]]:
+    """`(heading line, lines)` of `## Milestones` in order, the text before the first `### `
+    under `None`; blank lines kept, so `generate`'s move (case 354) writes an untouched block
+    back as it stood. The one parse of the section: `split_milestones` reads it too."""
+    blocks: list[tuple[str | None, list[str]]] = [(None, [])]
+    for raw in text.splitlines():
+        line = raw.rstrip()
+        if SLICE.match(line):
+            blocks.append((line, []))
+        else:
+            blocks[-1][1].append(line)
+    return blocks
+
+
 def split_milestones(text: str) -> list[tuple[str, list[str]]]:
     """`(name, item lines)` per `### <name>` heading, in order; a line before the first
     heading is dropped."""
-    out: list[tuple[str, list[str]]] = []
-    for raw in text.splitlines():
-        line = raw.rstrip()
-        heading = SLICE.match(line)
-        if heading:
-            out.append((heading.group(1), []))
-        elif out and line:
-            out[-1][1].append(line)
-    return out
+    return [
+        (SLICE.match(heading).group(1), [line for line in lines if line])
+        for heading, lines in milestone_blocks(text)
+        if heading is not None
+    ]
 
 
 def render_milestones(

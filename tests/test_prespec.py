@@ -916,9 +916,16 @@ def test_the_frontier_reads_cases_and_work_lines_under_their_headings(tmp_path):
         "## Work\n\n- [x] W1 — a reading · brief · work\n"
     )
     assert check(tmp_path, frontier=frontier) == (0, "", "")
-    code, out, _ = check(tmp_path, frontier=frontier + "- [ ] W2 — a commit · git status\n")
+    # case 356.1: an open line under `## Work` waits for Work Mode; one under `## Cases` is open
+    assert check(tmp_path, frontier=frontier + "- [ ] W2 — a commit · git status\n") == (0, "", "")
+    cases_open = frontier.replace("## Work", "- [ ] C2 — a question · brief\n\n## Work")
+    code, out, _ = check(tmp_path, frontier=cases_open)
     assert code == 1
-    assert out.splitlines() == ["frontier: W2 is open"]
+    assert out.splitlines() == ["frontier: C2 is open"]
+    # a closed `W` is read as any closed line
+    code, out, _ = check(tmp_path, frontier=frontier + "- [x] W2 — a decision · brief · case 7\n")
+    assert code == 1
+    assert out.splitlines() == ["frontier: W2 closes with case 7, no Case 7 heading in the plan"]
 
 
 # --- the closer `sprint` and the sprint page (cases 310.6, 314.2) ---------------------
@@ -937,6 +944,20 @@ SPRINT_LEDGER = (
 def test_a_left_sprint_item_closes_with_sprint(tmp_path):
     frontier = "# Frontier\n\n- [-] C1 — a theme left for later · sprint\n"
     assert check(tmp_path, frontier=frontier) == (0, "", "")
+
+
+def test_a_sprint_item_closed_with_a_defer_is_a_finding(tmp_path):
+    # case 356.2: a sprint item left for later closes `[-]` with `sprint`, never a defer
+    frontier = "# Frontier\n\n- [-] C1 — `rule-x`, Slice 3b · sprint · defer case 1\n"
+    code, out, _ = check(tmp_path, frontier=frontier)
+    assert code == 1
+    assert out.splitlines() == [
+        "frontier: C1 defers a sprint item; an item left for later closes [-] with sprint"
+    ]
+    # a line of another source defers as before: the defer item is what it needs
+    brief = "# Frontier\n\n- [-] C1 — `rule-x` · brief · defer case 1\n"
+    _, out, _ = check(tmp_path, frontier=brief)
+    assert out.splitlines() == ["frontier: C1 defers to case 1, no defer item under Case 1"]
 
 
 def test_a_sprint_closer_on_a_ticked_line_is_a_finding(tmp_path):

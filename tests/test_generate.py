@@ -2564,3 +2564,160 @@ def test_an_archived_rule_gives_no_edge_and_an_unchanged_rules_writes_no_history
     assert code == 0 and err == ""
     thing = page(tmp_path, "entities", "entity-thing")
     assert props(thing)["rules"] == ["rule-a"] and "cascade" not in thing
+
+
+# --- the move of a passed-over sprint item (case 354): `estimate-sprint-moves-a-passed-over-
+# item`, `estimate-sprint-drops-an-emptied-milestone` ------------------------------------
+
+SPRINT_PAGE = """\
+---
+type: entity
+kind: Leaf
+purpose: The sprint
+status: draft
+origin: x
+sprint: migration
+created: 2026-09-01
+tags: [sprint]
+---
+
+## Purpose
+
+The sprint.
+
+## Milestones
+
+### Slice 3b — Work Mode
+
+- [[rule-work]] — the work
+- [[rule-agent]] — the agent
+
+### Slice 4 — later
+
+- [[rule-later]] — the later one
+
+## Backlog
+
+- an old note
+
+## History
+
+- 2026-09-01 created · x
+"""
+
+
+def frontier(tmp_path, where, *lines):
+    """The Frontier of one session; `where` is `raw/<date>/<HHMM>`, or
+    `archive/<sprint>/<date>/<HHMM>/raw` for an archived one."""
+    path = tmp_path / "vault" / where / "frontier.md"
+    path.parent.mkdir(parents=True, exist_ok=True)
+    text = "# Frontier" + NL + NL + "## Cases" + NL + NL + NL.join(lines) + NL
+    path.write_text(text, encoding="utf-8", newline=NL)
+
+
+def passed(slug, closer="· sprint · sprint", box="-"):
+    return f"- [{box}] C1 — `{slug}`, Slice 3b {closer}"
+
+
+def seed_sprint(tmp_path, text=SPRINT_PAGE):
+    return seed(tmp_path, pages=[("entities", "entity-sprint-x", text)])
+
+
+def sections_of(text):
+    milestones = text.split("## Milestones")[1].split("## Backlog")[0]
+    backlog = text.split("## Backlog")[1].split("## History")[0]
+    return milestones, backlog
+
+
+def test_an_item_passed_over_in_three_sessions_in_a_row_moves_to_the_backlog(tmp_path):
+    seed_sprint(tmp_path)
+    frontier(
+        tmp_path, "archive/migration/2026-09-01/0900/raw", passed("rule-work", "· defer case 7")
+    )
+    frontier(tmp_path, "archive/migration/2026-09-02/0900/raw", passed("rule-work"))
+    frontier(tmp_path, "raw/2026-09-03/0900", passed("rule-work"))
+    code, out, err = run(tmp_path)
+    assert code == 0 and err == ""
+    text = page(tmp_path, "entities", "entity-sprint-x")
+    milestones, backlog = sections_of(text)
+    # the archive and raw/ read together; a `[-]` line counts whatever its closer (354.1)
+    assert "rule-work" not in milestones and "- [[rule-agent]] — the agent" in milestones
+    assert backlog.strip().splitlines() == ["- an old note", "- [[rule-work]] — the work"]
+    assert (
+        "moved to the Backlog: rule-work passed over in 3 sessions in a row — 0900, 0900, 0900"
+        " · generate" in text
+    )
+    assert "generate: rule-work moved to the Backlog of entity-sprint-x" in out
+
+
+def test_an_item_taken_up_between_the_passes_stays(tmp_path):
+    seed_sprint(tmp_path)
+    frontier(tmp_path, "raw/2026-09-01/0900", passed("rule-work"))
+    frontier(tmp_path, "raw/2026-09-02/0900", passed("rule-work"))
+    frontier(tmp_path, "raw/2026-09-03/0900", passed("rule-work", "· sprint · case 9", box="x"))
+    frontier(tmp_path, "raw/2026-09-04/0900", passed("rule-work"))
+    frontier(tmp_path, "raw/2026-09-05/0900", passed("rule-work"))
+    code, out, err = run(tmp_path)
+    assert code == 0 and err == ""
+    assert page(tmp_path, "entities", "entity-sprint-x") == SPRINT_PAGE and "moved" not in out
+
+
+def test_a_session_without_the_line_or_with_it_open_is_passed_by(tmp_path):
+    seed_sprint(tmp_path)
+    frontier(tmp_path, "raw/2026-09-01/0900", passed("rule-work"))
+    frontier(tmp_path, "raw/2026-09-02/0900", "- [x] C1 — `rule-other` · brief · work")
+    frontier(tmp_path, "raw/2026-09-03/0900", passed("rule-work"))
+    frontier(tmp_path, "raw/2026-09-04/0900", passed("rule-work", "· sprint", box=" "))
+    frontier(tmp_path, "raw/2026-09-05/0900", passed("rule-work"))
+    frontier(tmp_path, "raw/2026-09-05/1400", "- [-] C2 — rule-work bare · sprint · sprint")
+    code, _, err = run(tmp_path)
+    assert code == 0 and err == ""
+    text = page(tmp_path, "entities", "entity-sprint-x")
+    assert "passed over in 3 sessions in a row — 0900, 0900, 0900" in text
+
+
+def test_two_passes_move_nothing(tmp_path):
+    seed_sprint(tmp_path)
+    frontier(tmp_path, "raw/2026-09-01/0900", passed("rule-work"))
+    frontier(tmp_path, "raw/2026-09-02/0900", passed("rule-work"))
+    code, _, err = run(tmp_path)
+    assert code == 0 and err == ""
+    assert page(tmp_path, "entities", "entity-sprint-x") == SPRINT_PAGE
+
+
+def test_a_milestone_the_move_left_empty_leaves_and_the_next_one_is_current(tmp_path):
+    seed_sprint(tmp_path)
+    for day in ("01", "02", "03"):
+        frontier(tmp_path, f"raw/2026-09-{day}/0900", passed("rule-work"), passed("rule-agent"))
+    code, out, err = run(tmp_path)
+    assert code == 0 and err == ""
+    text = page(tmp_path, "entities", "entity-sprint-x")
+    milestones, backlog = sections_of(text)
+    assert (
+        milestones.strip() == "### Slice 4 — later" + NL + NL + "- [[rule-later]] — the later one"
+    )
+    assert backlog.strip().splitlines()[1:] == [
+        "- [[rule-work]] — the work",
+        "- [[rule-agent]] — the agent",
+    ]
+    assert (
+        "milestone Slice 3b — Work Mode left the Milestones: its items moved to the Backlog"
+        " · generate" in text
+    )
+    assert "generate: milestone Slice 3b — Work Mode left the Milestones" in out
+    assert "## Closed" not in text
+
+
+def test_a_milestone_with_a_note_left_or_empty_before_the_run_stays(tmp_path):
+    text = SPRINT_PAGE.replace("- [[rule-agent]] — the agent", "- a note not yet cut").replace(
+        "## Backlog", "### Slice 9 — empty" + NL + NL + "## Backlog"
+    )
+    seed_sprint(tmp_path, text)
+    for day in ("01", "02", "03"):
+        frontier(tmp_path, f"raw/2026-09-{day}/0900", passed("rule-work"))
+    code, _, err = run(tmp_path)
+    assert code == 0 and err == ""
+    after = page(tmp_path, "entities", "entity-sprint-x")
+    milestones, _ = sections_of(after)
+    assert "### Slice 3b — Work Mode" + NL + NL + "- a note not yet cut" in milestones
+    assert "### Slice 9 — empty" in milestones and "left the Milestones" not in after

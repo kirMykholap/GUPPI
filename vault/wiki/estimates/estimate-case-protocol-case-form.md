@@ -1,7 +1,7 @@
 ---
 type: estimate
 kind: QA
-status: passed
+status: pending
 target: "[[rule-case-protocol]]"
 purpose: A Case in the chat carries the whole contract in given, when and then
 method: one reading by hand of the Cases of a session, at its close
@@ -15,7 +15,7 @@ tags: [session, workflow]
 ## Criterion
 
 Given:
-`index.md`, `estimates/schema.md` and `schema.yaml` are Rule-class files: an `update` with `file` and `change`, applied by hand in Work Mode; `case-schema.md` is the Render of `rule-case-protocol`, loaded by `/hi` (case 273).
+`index.md`, `estimates/schema.md` and `schema.yaml` are the Renders of their rule pages (case 304); `case-schema.md` is the Render of `rule-case-protocol`, loaded by `/hi` (case 273).
 **＋** An `update` of the Render of `rule-case-protocol` touches the Estimate of the live reading of that Render (187).
 **＋** The reading of `estimate-case-protocol-case-form` is the Cases of this session at its close, by hand.
 
@@ -46,3 +46,4 @@ Then:
 - 2026-09-20 status: pending → passed · raw/2026-09-20/0958/ledger.md#L31
 - 2026-09-20 updated: the Criterion replaced whole — case-schema.md the Render of rule-case-protocol loaded by /hi, not a Rule-class file by hand; CLAUDE.md no longer the carrier (case 277.5) · [[decision-case-277.5]]
 - 2026-09-20 status: pending → passed · raw/2026-09-20/1308/ledger.md#L55
+- 2026-09-22 updated: the Criterion names the Renders, not the file route (case 320) · [[decision-case-320]]

@@ -26,9 +26,10 @@ Then:
 On an existing `actioned` Insight the `update` carries `children` plus the lesson and `set: {addressed_by: decision-case-N}` — the bare slug, `generate` writes the wikilink — with `status` kept `actioned`; the lesson is `clustered` with `insight` set, the cascade archives it; the brief reports the pair beside the synthesis, as it reports a clustering.
 **＋** On a new Insight an `update` of its slug follows the `create` with `set: {status: actioned, addressed_by: decision-case-N}`; the Insight stands `actioned`, both lessons `clustered` go to the archive by the cascade; the brief reports the pair (302.2).
 **＋** Without `addressed_by` — `set: {status: open}` on an existing Insight, a new one `open`, as today.
-**＋** The schema of Insights, §8 of the map and the glossary name the exception: a new Lesson reopens `actioned` unless its entry carries `addressed_by`; the schema names the birth by the mark too.
+**＋** The schema of Insights, the schema of Insights and the glossary name the exception: a new Lesson reopens `actioned` unless its entry carries `addressed_by`; the schema names the birth by the mark too.
 
 ## History
 
 - 2026-09-21 created · [[decision-case-284.4]]
 - 2026-09-22 updated: the Criterion replaced whole — the second case of the mark, an Insight born from a marked lesson (case 302.2) · [[decision-case-302.2]]
+- 2026-09-22 updated: the exception is named by the schema and the glossary, not by §8 (case 318) · [[decision-case-318]]

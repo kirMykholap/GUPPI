@@ -19,7 +19,7 @@ tags: [session, workflow, harness, librarian, sprint]
 
 Prevents the sprint's backlog from drifting from the pages it names. The sprint is
 a page — an Entity Leaf `entity-sprint-<id>` under the MOC `entity-sprint` (case 241), whose `estimates` are its Definition of done and whose `## Milestones` lists the Slices in order and whose `## Backlog` the items without a turn, each a wikilink to a page or a plain line (case 229). `vault/wiki/sprint.md`
-is not a document: `guppi sprint` writes it from that page, one tick per item by the status of the page it names; the `## Milestones` of the page render in order — a closed one as one line, the current one whole, a later one as one line with its count and its items by slug (case 236) — and the `## Backlog`, the items without a turn, as a list; an item without a wikilink is a plain line, never ticked (case 229.2). The librarian runs the script after `cleanup` and
+is not a document: `guppi sprint` writes it from that page, one tick per item by the status of the page it names; the `## Milestones` of the page render in order — a closed one as one line, the current one whole, a later one as one line with its count and its items by slug (case 236) — and the `## Backlog`, the items without a turn, as a list; an item names its pages by every `[[slug]]` before the first ` — `, and is ticked when each of them is `built`, `passed` or `archived`, the statuses after ` · ` in the order of the slugs; a wikilink after the ` — ` is text. A line with no wikilink before the ` — ` is a note — a task not yet cut into pages: `- [ ] <text>`, no status, never ticked, keeping its milestone open until the `update` of the Case that cuts it into items or removes it (cases 229.2, 313). The librarian runs the script after `cleanup` and
 `render`, before the brief, so the file shows the pages of that same run; `/hi`
 reads the file as before. `governs` names the file, so the governed-files hook
 refuses a hand edit; the backlog changes by an `update` of the sprint page, a Case.
@@ -40,3 +40,4 @@ The first `## <id>` heading of the file is the sprint id `sprint_id`, `cleanup` 
 - 2026-09-18 status: built → draft · cascade
 - 2026-09-20 status: draft → built · cascade
 - 2026-09-22 updated: the first edge Rule → Entity — rule-sprint is the guard of entity-sprint (cases 240.2, 305.4) · [[decision-case-305.4]]
+- 2026-09-22 updated: an item names one or more pages before the ` — `; a note keeps its box and is never ticked (case 313) · [[decision-case-313]]

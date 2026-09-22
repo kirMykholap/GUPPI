@@ -17,7 +17,7 @@ Given:
 The cascade of `generate` computes `built` on an Entity or a Rule once each of its Estimates is `passed`; `cleanup` sets `archived`.
 **＋** The guard refuses `Edit` and `Write` of a file a live Rule page names in `governs`.
 **＋** `sprint_id` reads the first `## <id>` heading of `sprint.md`.
-**＋** Order is the content of a page, not a field of an Entity MOC (`index.md` §6).
+**＋** Order is the content of a page, not a field of an Entity MOC ([[rule-atomicity]], [[rule-entities-schema]]).
 **－** The script writes no page of `wiki/`: it reads statuses and writes one file.
 
 When:
@@ -31,3 +31,4 @@ Then:
 ## History
 
 - 2026-09-17 created · [[decision-case-209.4]]
+- 2026-09-22 updated: order as the content of a page named by its rules (case 318) · [[decision-case-318]]

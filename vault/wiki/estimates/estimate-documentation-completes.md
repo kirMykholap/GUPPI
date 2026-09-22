@@ -1,10 +1,10 @@
 ---
 type: estimate
 kind: QA
-status: pending
+status: failed
 target: "[[rule-documentation]]"
 method: make test-documentation, the pipeline over tests/test_materialize.py, tests/test_generate.py and tests/test_cleanup.py; the live reading by hand
-checked: 2026-09-20
+checked: 2026-09-22
 origin: raw/2026-09-10/ledger.md#case-36
 sprint: migration
 created: 2026-09-10
@@ -33,7 +33,7 @@ Then:
 
 ## Result
 
-2026-09-20, make test-documentation 133 passed; live, the librarian's run of session 1308 by event_log.md 17:34:07–17:41:01 and commit 82aa2a1: handoff, materialize, the four Greps, one lesson page for the synthesis, generate, the unticked lines of two Specs, cleanup, render, sprint, brief, archive, commit, handback; no ledger, Decision page or archive file read; 21 Decision pages for the 21 Cases of the 1308 ledger, 274.2 archived as superseded; the commit separate from 10baf3d; archive moved nothing; no question asked
+2026-09-22, the librarian's run of session 0014 read from its brief and the event log: step 6 ran (glossary.md written, 49 rows in nine groups, glossary --check exit 0 now), the librarian's commit 1603a9b is separate from the session's 2031718, make test-documentation green (159 passed) — but the frame was breached: the run read lines 52-64 of raw/2026-09-22/0014/ledger.md while counting the entries, and the Criterion says no ledger
 
 ## History
 
@@ -60,3 +60,4 @@ Then:
 - 2026-09-20 updated: the Criterion replaced whole — the unticked lines of the Specs read for Readings due and Next session, the rest of the Spec still banned (case 271) · [[decision-case-271]]
 - 2026-09-20 status: pending → passed · raw/2026-09-20/1749/ledger.md#L5
 - 2026-09-22 updated: the frame's step 6, guppi glossary (case 306.4) · [[decision-case-306.4]]
+- 2026-09-22 status: pending → failed · raw/2026-09-22/1121/ledger.md#L85

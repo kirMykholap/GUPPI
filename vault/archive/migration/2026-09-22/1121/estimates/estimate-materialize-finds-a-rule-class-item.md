@@ -1,14 +1,14 @@
 ---
 type: estimate
 kind: QA
-status: passed
+status: archived
 target: "[[rule-materialize]]"
+purpose: A Rule-class item is found by slug or by file
+method: pytest in tests/test_materialize.py, the tests of the Rule-class item
 origin: raw/2026-09-16/1034/ledger.md#case-189
 sprint: migration
 created: 2026-09-16
 tags: [harness, workflow, ledger]
-purpose: A Rule-class item is found by slug or by file
-method: pytest in tests/test_materialize.py, the tests of the Rule-class item
 ---
 
 ## Criterion
@@ -33,3 +33,5 @@ The item is found when its `slug` equals the slug of the line, or its `file` equ
 - 2026-09-16 created · [[decision-case-189]]
 - 2026-09-16 status: pending → passed · raw/2026-09-16/1651/ledger.md#L33
 - 2026-09-17 ref removed · one-off migration · raw/2026-09-16/2238/spec.md#case-210
+- 2026-09-22 deleted · [[decision-case-320]]
+- 2026-09-22 archived · cleanup

@@ -14,7 +14,7 @@ tags: [sprint, workflow, harness]
 ## Criterion
 
 Given:
-A Rule-class file — `index.md`, `glossary.md`, `<category>/schema.md` and `schema.yaml` — changes only by a ratified `update` with `file`, by hand (§1 of `index.md`); its route in the scripts is `RULE_CLASS` and `category: file` in `materialize.py`, "applied by hand" in `generate.py`, `rule_class_path` and `check_governed` in `prespec.py`, `prose_names` in `lint.py`.
+A Rule-class file — `index.md`, `glossary.md`, `<category>/schema.md` and `schema.yaml` — changes only by a ratified `update` with `file`, by hand; its route in the scripts is `RULE_CLASS` and `category: file` in `materialize.py`, "applied by hand" in `generate.py`, `rule_class_path` and `check_governed` in `prespec.py`, `prose_names` in `lint.py`.
 **＋** The Render of a rule with `render_mode: full` becomes the file of `governs` whole; `render --check` and the governed-files hook keep them equal (273).
 **＋** `guppi sprint` writes `sprint.md` from the sprint page under `rule-sprint`, which carries `governs`, `implementation_ref` and `--check` under `make lint` (209, 227, 229).
 **＋** A page has one `parent`; the tree of rules is built by mechanism; the schema has no edge Rule → Entity.
@@ -35,3 +35,4 @@ No Rule-class file: every `<category>/schema.yaml` is the Render of the Leaf `ru
 
 - 2026-09-22 created · [[decision-case-301]]
 - 2026-09-22 updated: the glossary is rendered from entity-glossary, not from a terms field (case 306.7) · [[decision-case-306.7]]
+- 2026-09-22 updated: the pointer at §1 of index.md is gone with the file (case 321) · [[decision-case-321]]

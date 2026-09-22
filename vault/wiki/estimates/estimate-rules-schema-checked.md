@@ -1,10 +1,11 @@
 ---
 type: estimate
 kind: QA
-status: pending
+status: passed
 target: "[[rule-rules-schema]]"
 purpose: A Rule page in the shape of the rendered schema has no schema finding and a page outside it has one per defect
 method: pytest tests/test_schemas.py -k rules on the live vault/wiki/rules/schema.yaml — a page in the shape, then one defect at a time; the live reading make lint, no schema finding on wiki/rules/ but the placeholders
+checked: 2026-09-22
 origin: raw/2026-09-22/0014/ledger.md#case-305.1
 sprint: migration
 created: 2026-09-22
@@ -28,6 +29,11 @@ The file equals the Render. Lint reads from it: required `type, kind, purpose, s
 **＋** The prose of the former `schema.md` stands in the file as data: `description` — the introduction, Ordering, MOCs and enforcement, Enforcement, verbatim, and one sentence on the edge Rule → Entity after the paragraph of case 240.2; `fields` and `sections` — the rows of the tables whole, `applies_to` among them; `examples` — the four example pages.
 **－** `vault/wiki/rules/schema.md` does not exist.
 
+## Result
+
+2026-09-22, uv run pytest tests/test_schemas.py -k rules: 5 passed, 25 deselected; make lint — no finding on rules/schema
+
 ## History
 
 - 2026-09-22 created · [[decision-case-305.1]]
+- 2026-09-22 status: pending → passed · raw/2026-09-22/1121/ledger.md#L80

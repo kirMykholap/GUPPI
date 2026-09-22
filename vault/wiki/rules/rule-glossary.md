@@ -8,6 +8,7 @@ implementation_ref: [guppi/glossary.py, tests/test_glossary.py]
 governs: vault/wiki/glossary.md
 parent: "[[rule-documentation]]"
 estimates: ["[[estimate-glossary-renders-the-terms]]", "[[estimate-glossary-checks-the-file]]", "[[estimate-glossary-ticks-the-spec]]"]
+applies_to: ["[[entity-glossary]]"]
 origin: raw/2026-09-22/0014/ledger.md#case-306.4
 sprint: migration
 created: 2026-09-22
@@ -22,3 +23,4 @@ Prevents `vault/wiki/glossary.md` from drifting from the terms of `entity-glossa
 
 - 2026-09-22 created · [[decision-case-306.4]]
 - 2026-09-22 status: draft → built · cascade
+- 2026-09-22 updated: the edge to entity-glossary, dropped by materialize as unknown against the old schema in session 0014 (case 308.1) · [[decision-case-308.1]]

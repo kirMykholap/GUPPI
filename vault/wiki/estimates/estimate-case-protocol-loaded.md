@@ -1,7 +1,7 @@
 ---
 type: estimate
 kind: QA
-status: pending
+status: passed
 target: "[[rule-case-protocol]]"
 purpose: The Case schema is present in a session from the first turn after /hi, as one text — the Render of rule-case-protocol — and nothing of it repeated in CLAUDE.md
 method: one reading at the first /hi of a session, by hand, plus the preview cases of tests/test_ledger.py
@@ -32,7 +32,7 @@ Then:
 
 ## Result
 
-2026-09-22, the /hi of session 0014 read by hand, uv run guppi render --check exit 0: case-schema.md in the first turn as one text, opens with "## The one rule" right under the title; the paragraph after names sprint.md, brief.md and glossary.md and the refusal without /hi; the Spec paragraph names the field-only update of an Estimate (294, 296); the paragraph on the Criterion says a Case superseded in its own session leaves the Spec and the superseding Case is written whole (299.1); the other sections as at the 1853 reading; no description of the project in the schema; CLAUDE.md repeats no paragraph of it
+2026-09-22, case-schema.md read at the /hi of session 1121: "The one rule" opens the file under the title with the memory sentence; the paragraph after names the Render loaded by /hi with sprint.md, brief.md and glossary.md; the Spec paragraph names the field-only update of an Estimate and guppi glossary as the fourth ticker (cases 226, 250, 270, 306); the Criterion paragraph names a Case superseded in its own session leaving the Spec; render --check exit 0
 
 ## History
 
@@ -72,3 +72,4 @@ Then:
 - 2026-09-22 updated: one line of the Criterion — the Spec paragraph says a Case superseded in its own session leaves the Spec (case 299.1) · [[decision-case-299.1]]
 - 2026-09-22 status: pending → passed · raw/2026-09-22/0014/ledger.md#L1
 - 2026-09-22 updated: one line of the Criterion — glossary the fourth ticker (case 306.6) · [[decision-case-306.6]]
+- 2026-09-22 status: pending → passed · raw/2026-09-22/1121/ledger.md#L83

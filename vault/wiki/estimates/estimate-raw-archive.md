@@ -11,7 +11,7 @@ tags: [harness, librarian, ledger]
 
 ## Context
 
-Nothing says when a unit of `raw/` is done with, and nothing takes it away. The `origin` of every page (`raw/<date>/ledger.md#case-N`) points in, lint checks it, `rule-cleanup` and `index.md` §1 say "`raw/` stays". The migration plan meant a move "by run stamp with every path rewritten": 82 pages point at 2026-09-09 alone, plus History lines and `log.md`.
+Nothing says when a unit of `raw/` is done with, and nothing takes it away. The `origin` of every page (`raw/<date>/ledger.md#case-N`) points in, lint checks it, `rule-cleanup` and [[rule-vault-layout]] say "`raw/` stays". The migration plan meant a move "by run stamp with every path rewritten": 82 pages point at 2026-09-09 alone, plus History lines and `log.md`.
 
 ## Criterion
 
@@ -56,3 +56,4 @@ unit: tests/test_archive.py 7 green — a date-level unit and a done session mov
 
 - 2026-09-13 created · [[decision-case-100.1]]
 - 2026-09-13 status: pending → passed · raw/2026-09-13/0652/ledger.md#L1
+- 2026-09-22 updated: the layout named by its rules (case 318) · [[decision-case-318]]

@@ -2,11 +2,11 @@
 type: rule
 kind: Leaf
 purpose: Prevents the librarian from reading the ledger and the Spec beyond its unticked lines, or from routing a decision by guesswork
-status: built
+status: draft
 enforcement: check
 implementation_ref: [guppi/materialize.py, tests/test_materialize.py]
 parent: "[[rule-documentation]]"
-estimates: ["[[estimate-materialize-assembles]]", "[[estimate-materialize-walks-dates]]", "[[estimate-materialize-shows]]", "[[estimate-materialize-lifts-a-lesson]]", "[[estimate-materialize-marks-exists]]", "[[estimate-materialize-fails-alone]]", "[[estimate-materialize-finds-a-rule-class-item]]", "[[estimate-materialize-marks-superseded]]", "[[estimate-materialize-skips-a-carried-over-unit]]", "[[estimate-materialize-carries-addresses]]"]
+estimates: ["[[estimate-materialize-assembles]]", "[[estimate-materialize-walks-dates]]", "[[estimate-materialize-shows]]", "[[estimate-materialize-lifts-a-lesson]]", "[[estimate-materialize-marks-exists]]", "[[estimate-materialize-fails-alone]]", "[[estimate-materialize-marks-superseded]]", "[[estimate-materialize-skips-a-carried-over-unit]]", "[[estimate-materialize-carries-addresses]]", "[[estimate-materialize-lifts-unfiltered-on-a-schema-change]]", "[[estimate-materialize-refolds-a-reading-on-a-supersede]]"]
 origin: raw/2026-09-10/ledger.md#case-31
 sprint: migration
 created: 2026-09-10
@@ -17,16 +17,16 @@ tags: [harness, workflow, ledger]
 
 Prevents the librarian from reading the ledger and the Spec beyond its unticked lines (case 271), or from routing
 a decision by guesswork. The yaml is the one input a clean context needs. Every line
-of the ledger is an entry. Its route is computed from `index.md` §5. Its content is
+of the ledger is an entry. Its route is the Routing Table of this page. Its content is
 lifted from the `then` block of its Case in the Spec — `set`, `sections`, `replace`, `change`, and `rename` or `reword` when the item carries it (cases 258.2, 274.3). What is missing is named, not
 invented — but for a Case superseded in its own session and gone from the Spec: its entries, marked `superseded_by`, carry no `incomplete: [then]`, and its `decisions` record no `case_text` and no missing section; the mark alone is its completeness (case 299.3). If a route cannot be derived from the ledger and the Spec alone, that is a
-defect of the ledger, and it shows here.
+defect of the ledger, and it shows here. The keys of a `create` are lifted by the category's `schema.yaml` on disk (case 214.1) — but for a category whose `rule-<category>-schema` the same unit creates or updates: its `create` items are lifted whole, no `unknown`, since the schema on disk catches up only at the render after `generate` (case 308.2).
 
 It also prevents a promise from being written by derivation. No Estimate is derived
 from a flag: an Estimate has its own ledger line and its own entry, and its Criterion
 is the `given`, `when` and `then` of the Case that names it, lifted verbatim into the entry's `sections` and replacing what stood on the page (cases 189, 194.1); a Criterion the item writes under `sections` itself stands instead, on a `create` and on an `update` alike — it is signed in the same block, and it is how one Case touches two promises (case 204). An `update` item names the part it changes: one that names a part — `set` without `status`, `replace`, a section other than `Criterion` — and writes no Criterion changes that part alone, nothing lifted; it is set `pending` when the part is inside the Criterion — the `old` of a `replace` pair stands in the page's `## Criterion` — and left as it is otherwise; a written `sections.Criterion` beside any other part stands and sets `pending`; one that names no part, or carries `set.status`, replaces the Criterion whole (case 296). An `update` item's `reword` — a list of `{old, new}` pairs — is carried to the entry as written, for `generate` to apply; a mapping or a scalar under it is `incomplete: [reword]` (case 274.3). A decision line's `{addresses:<lesson slug>}` is carried to the entry as `addresses`, a list, and the lesson entry of that slug in the same unit gets `addressed_by: decision-case-N` at the entry's level, never as a page field; a mark whose lesson is not in the unit is `incomplete: [addresses]` on the decision entry (case 284.3). A unit
 whose folder holds `carry.md` is passed by with one line on stdout: its Spec was
-ratified and its work not done (case 190.3). The mechanism and the full list of an
+ratified and its work not done (case 190.3). A reading — an `estimate` line — folds into the unapplied `create` of its slug in the unit; a `create` a `{supersedes}` marks is never folded into, and the readings already folded into it move to the live `create` of the same slug in the unit, or each becomes an entry of its own from its ledger line (case 309). The mechanism and the full list of an
 entry's fields, each with its writer, live in the docstring of `guppi/materialize.py`.
 
 ## History
@@ -95,3 +95,10 @@ entry's fields, each with its writer, live in the docstring of `guppi/materializ
 - 2026-09-22 defer by decision-case-298 superseded · [[decision-case-299.2]]
 - 2026-09-22 updated: an entry of a Case superseded in its own session and gone from the Spec is complete by the mark alone (case 299.3) · [[decision-case-299.3]]
 - 2026-09-22 status: draft → built · cascade
+- 2026-09-22 updated: a create of a category whose schema rule the same unit changes is lifted whole (case 308.2) · [[decision-case-308.2]]
+- 2026-09-22 estimate estimate-materialize-lifts-unfiltered-on-a-schema-change added · [[decision-case-308.2]]
+- 2026-09-22 updated: a reading folded into a superseded create moves to the live create of the slug or becomes an entry of its own (case 309) · [[decision-case-309]]
+- 2026-09-22 estimate estimate-materialize-refolds-a-reading-on-a-supersede added · [[decision-case-309]]
+- 2026-09-22 updated: the route is this page, not §5 of index.md (case 318) · [[decision-case-318]]
+- 2026-09-22 status: built → draft · cascade
+- 2026-09-22 estimate estimate-materialize-finds-a-rule-class-item archived · cleanup

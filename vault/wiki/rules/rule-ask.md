@@ -22,8 +22,7 @@ the vault query before a `create` and at pre-spec, the librarian, the person —
 the searcher's own context: the index lines and pages never enter the caller's. A subagent
 with read-only tools, dispatched through the `Agent` tool, so the event log records each
 call. The main agent asks at two moments: before a `create` without a `ref`, and once at
-pre-spec for the set of ratified Cases; the librarian asks by finished content afterwards, as
-§11 of the map says. An `update` with a `ref` does not ask: the page itself and a Grep give
+pre-spec for the set of ratified Cases; the librarian asks by finished content afterwards ([[rule-index-check]]). An `update` with a `ref` does not ask: the page itself and a Grep give
 the `given` (case 154).
 
 ## Render
@@ -41,7 +40,7 @@ decide nothing and propose nothing.
 Always start with the Grep of the rules, whatever the question: pattern `^(purpose|deferred_by):` over `vault/wiki/rules/`, output with content; the harness is governed by these pages, and a proposal that crosses one of them must be named. Then one Grep per other category the question touches: `^(purpose|deferred_by):` over `vault/wiki/entities/`, `^(root_cause|deferred_by):` over `vault/wiki/lessons/`, `^(pattern|deferred_by):` over `vault/wiki/insights/`. One line per page — `<category>/<slug>.md:<field>: <text>` — is the index line; decisions and estimates have none (case 147.2). When the question is about a check, reach the Estimates through the `estimates` field of the page it is about, and open them only when the question asks what they say. Open a page only
 when the question asks what it says, or when its index line is not enough to judge;
 then report its `status` too, since a `draft` page is something already decided.
-Grep `vault/wiki/index.md` when the proposal may cross a rule of the vault itself. Do not open or grep `vault/wiki/decisions/` except for two reasons: a page in your answer carries `deferred_by` — open the decision it names and give its `## Problem` on the `exists` or `near` line, since a deferred decision is something already decided; or the question asks why something was decided — reach the Decision through the page's `origin`. Decisions have no index on purpose.
+Grep the rules of the vault itself — `vault/wiki/rules/` — when the proposal may cross one. Do not open or grep `vault/wiki/decisions/` except for two reasons: a page in your answer carries `deferred_by` — open the decision it names and give its `## Problem` on the `exists` or `near` line, since a deferred decision is something already decided; or the question asks why something was decided — reach the Decision through the page's `origin`. Decisions have no index on purpose.
 Compare meanings, not words; the aliases column of `vault/wiki/tags.md` maps Russian
 words to tags. Never compare across categories.
 
@@ -79,3 +78,4 @@ Answer with exactly these five lines, each present, "none" when empty:
 - 2026-09-15 updated: the question has two moments — before a create without a ref, and once at pre-task; an update with a ref reads the page itself; supersedes case 154 (case 155) · [[decision-case-155]]
 - 2026-09-15 status: draft → built · cascade
 - 2026-09-20 updated: pre-task → the vault query before a create, the first of the two moments (case 277.4, supersedes 274.2) · [[decision-case-277.4]]
+- 2026-09-22 updated: the index lines and the vault's own rules named by their pages, not by a § of index.md (case 318) · [[decision-case-318]]

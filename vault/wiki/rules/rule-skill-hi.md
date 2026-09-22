@@ -2,7 +2,7 @@
 type: rule
 kind: MOC
 purpose: Prevents a session from being loaded piecemeal by read-tool calls
-status: built
+status: draft
 enforcement: render
 governs: .claude/skills/hi/SKILL.md
 render_mode: full
@@ -38,11 +38,11 @@ disable-model-invocation: true
 Assemble the Frontier from the above in two lists, the kind of each item by its source and no page opened (case 268.2). `## Cases`, what needs a decision: on a plan branch the unfinished plan, first; the items of the sprint's current milestone — the first with an open item or with none — and none of a later milestone, of the Backlog or of Closed (case 229.3); the `Cases` list of the brief's Next session; the brief's Deferred list; a hand edit shown by `Render:`; a `failed` reading or a lesson of the Tail; an item the person adds. `## Work`, what needs none: the `Work` list of the brief's Next session; a dirty tree in `Status:`. In the chat the Cases are the agenda of Plan Mode, one line each with its detail; the Work is one block; sub-cases are cut in Cases only;
 the hand edit is what `guppi render --sync` printed at session start or on the `Render:` line above.
 A failed pull or an unavailable `gh` is a Cases item when `sprint.md` names no decision on it, and not an item when it does; neither is a reason to stop. A `failed` reading or a lesson in the Tail above is an item; a decision line of the tail is not — its page comes with the next librarian. Write the same two lists, under `## Cases` and `## Work`, to `vault/raw/<date>/<hi HHMM>/frontier.md` — the session's folder, `HHMM` from the `hi:` line the `UserPromptSubmit` hook put in context (cases 73, 125) — one line per item:
-`- [ ] C<n> — <title> · <source>` under `## Cases`, `- [ ] W<n> — <title> · <source>` under `## Work`. Close a line when its item ends: `[x] … · case N`
+`- [ ] C<n> — <title> · <source>` under `## Cases`, `- [ ] W<n> — <title> · <source>` under `## Work`. Close a line when its item ends, the closer appended and the source kept — `- [x] C2 — <title> · sprint · case 315` (case 314.1): `[x] … · case N`
 when ratified, `[x] … · work` when it needs no decision, `[-] … · defer case N` when
-deferred; an item the person adds is a new Cases line; a `W` that turns out to need a decision closes `· case N`, a `C` that needs none closes `· work`. `/pre-spec` fails on an open line. Wait
+deferred, `[-] … · sprint` when the item is a line of the sprint page left for a later session — no decision, no `deferred_by` (case 310.5); an item the person adds is a new Cases line; a `W` that turns out to need a decision closes `· case N`, a `C` that needs none closes `· work`. `/pre-spec` fails on an open line. Wait
 for the human to pick the order or defer items. Before any `create`, ask the vault first
-(§3 of `vault/wiki/index.md`).
+([[rule-ask]]).
 <!-- /rule-skill-hi -->
 
 ## How it works
@@ -83,3 +83,7 @@ session. The skill writes no event line of its own since case 111.4: a `!` subst
 - 2026-09-20 updated: the Frontier in two lists, Cases and Work, the kind of an item by its source — sprint, the brief's Next session and Deferred, the tail, git status, the person; pull and gh not an item when sprint.md names their decision; C<n> and W<n> lines (case 268.2) · [[decision-case-268.2]]
 - 2026-09-20 status: built → draft · cascade
 - 2026-09-20 status: draft → built · cascade
+- 2026-09-22 updated: the closer `· sprint` for a sprint item left for later (case 310.5) · [[decision-case-310.5]]
+- 2026-09-22 updated: the closer is appended, the source of a line stays (case 314.1) · [[decision-case-314.1]]
+- 2026-09-22 updated: the vault query is named by rule-ask (case 318) · [[decision-case-318]]
+- 2026-09-22 status: built → draft · cascade

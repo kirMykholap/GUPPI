@@ -2622,3 +2622,146 @@ instruction. The global feed; a page's own `## History` is the per-page view.
 - 2026-09-22 decisions/decision-case-304.2 archived · cleanup
 - 2026-09-22 decisions/decision-case-304.3 archived · cleanup
 - 2026-09-22 decisions/decision-case-305.2 archived · cleanup
+- 2026-09-22 decisions/decision-case-308.1 created · raw/2026-09-22/1121/ledger.md#case-308.1 · generate
+- 2026-09-22 rules/rule-glossary updated: the edge to entity-glossary, dropped by materialize as unknown against the old schema in session 0014 (case 308.1) · [[decision-case-308.1]] · generate
+- 2026-09-22 decisions/decision-case-308.2 created · raw/2026-09-22/1121/ledger.md#case-308.2 · generate
+- 2026-09-22 rules/rule-materialize updated: a create of a category whose schema rule the same unit changes is lifted whole (case 308.2) · [[decision-case-308.2]] · generate
+- 2026-09-22 estimates/estimate-materialize-lifts-unfiltered-on-a-schema-change created · [[decision-case-308.2]] · generate
+- 2026-09-22 estimates/estimate-materialize-lifts-unfiltered-on-a-schema-change status: pending → passed · raw/2026-09-22/1121/ledger.md#L89 · generate
+- 2026-09-22 rules/rule-materialize estimate estimate-materialize-lifts-unfiltered-on-a-schema-change added · [[decision-case-308.2]] · generate
+- 2026-09-22 decisions/decision-case-309 created · raw/2026-09-22/1121/ledger.md#case-309 · generate
+- 2026-09-22 rules/rule-materialize updated: a reading folded into a superseded create moves to the live create of the slug or becomes an entry of its own (case 309) · [[decision-case-309]] · generate
+- 2026-09-22 estimates/estimate-materialize-refolds-a-reading-on-a-supersede created · [[decision-case-309]] · generate
+- 2026-09-22 estimates/estimate-materialize-refolds-a-reading-on-a-supersede status: pending → passed · raw/2026-09-22/1121/ledger.md#L90 · generate
+- 2026-09-22 rules/rule-materialize estimate estimate-materialize-refolds-a-reading-on-a-supersede added · [[decision-case-309]] · generate
+- 2026-09-22 decisions/decision-case-310.1 created · raw/2026-09-22/1121/ledger.md#case-310.1 · generate
+- 2026-09-22 decisions/decision-case-310.2 created · raw/2026-09-22/1121/ledger.md#case-310.2 · generate
+- 2026-09-22 entities/entity-sprint-migration updated: Slice 3f as page items — themes 1–3 by the pages of 304–306, themes 4–5 by their Estimates, theme 6 into the description; the Estimate line and the Purpose reworded (case 310.2) · [[decision-case-310.2]] · generate
+- 2026-09-22 decisions/decision-case-310.3 created · raw/2026-09-22/1121/ledger.md#case-310.3 · generate
+- 2026-09-22 estimates/estimate-sprint-migration-index-dissolved created · [[decision-case-310.3]] · generate
+- 2026-09-22 entities/entity-sprint-migration estimate estimate-sprint-migration-index-dissolved added · [[decision-case-310.3]] · generate
+- 2026-09-22 decisions/decision-case-310.4 created · raw/2026-09-22/1121/ledger.md#case-310.4 · generate
+- 2026-09-22 decisions/decision-case-310.5 created · raw/2026-09-22/1121/ledger.md#case-310.5 · generate
+- 2026-09-22 rules/rule-skill-hi updated: the closer `· sprint` for a sprint item left for later (case 310.5) · [[decision-case-310.5]] · generate
+- 2026-09-22 estimates/estimate-hi-writes-frontier updated: the closer `· sprint` (case 310.5) · [[decision-case-310.5]] · generate
+- 2026-09-22 decisions/decision-case-310.6 created · raw/2026-09-22/1121/ledger.md#case-310.6 · generate
+- 2026-09-22 rules/rule-prespec updated: the closer `· sprint` accepted on a `[-]` line, a finding on `[x]` (case 310.6) · [[decision-case-310.6]] · generate
+- 2026-09-22 estimates/estimate-prespec-checks-the-plan updated: the closer `· sprint` (case 310.6) · [[decision-case-310.6]] · generate
+- 2026-09-22 decisions/decision-case-311 created · raw/2026-09-22/1121/ledger.md#case-311 · generate
+- 2026-09-22 estimates/estimate-harness-pipeline updated: the then line counts three file checks, glossary --check the third (case 311) · [[decision-case-311]] · generate
+- 2026-09-22 decisions/decision-case-312 created · raw/2026-09-22/1121/ledger.md#case-312 · generate
+- 2026-09-22 rules/rule-page-generation updated: one reading ticks every read line of its slug in the first Spec that holds one (case 312) · [[decision-case-312]] · generate
+- 2026-09-22 estimates/estimate-generate-ticks-the-spec updated: every read line of the slug in the first Spec, not the first line (case 312) · [[decision-case-312]] · generate
+- 2026-09-22 decisions/decision-case-313 created · raw/2026-09-22/1121/ledger.md#case-313 · generate
+- 2026-09-22 decisions/decision-case-310.1 superseded by decision-case-313 · [[decision-case-313]] · generate
+- 2026-09-22 rules/rule-sprint updated: an item names one or more pages before the ` — `; a note keeps its box and is never ticked (case 313) · [[decision-case-313]] · generate
+- 2026-09-22 estimates/estimate-sprint-renders-the-backlog updated: the Criterion names the pages of an item and the note (case 313) · [[decision-case-313]] · generate
+- 2026-09-22 decisions/decision-case-314.1 created · raw/2026-09-22/1121/ledger.md#case-314.1 · generate
+- 2026-09-22 rules/rule-skill-hi updated: the closer is appended, the source of a line stays (case 314.1) · [[decision-case-314.1]] · generate
+- 2026-09-22 estimates/estimate-hi-writes-frontier updated: the closer is appended, the source stays (case 314.1) · [[decision-case-314.1]] · generate
+- 2026-09-22 decisions/decision-case-314.2 created · raw/2026-09-22/1121/ledger.md#case-314.2 · generate
+- 2026-09-22 rules/rule-prespec updated: a Frontier line of the sprint closed by a Case needs an update of the sprint page under it (case 314.2) · [[decision-case-314.2]] · generate
+- 2026-09-22 estimates/estimate-prespec-binds-a-sprint-line created · [[decision-case-314.2]] · generate
+- 2026-09-22 estimates/estimate-prespec-binds-a-sprint-line status: pending → passed · raw/2026-09-22/1121/ledger.md#L91 · generate
+- 2026-09-22 rules/rule-prespec estimate estimate-prespec-binds-a-sprint-line added · [[decision-case-314.2]] · generate
+- 2026-09-22 decisions/decision-case-315 created · raw/2026-09-22/1121/ledger.md#case-315 · generate
+- 2026-09-22 rules/rule-vault-layout created · [[decision-case-315]] · generate
+- 2026-09-22 rules/rule-harness child rule-vault-layout added · [[decision-case-315]] · generate
+- 2026-09-22 estimates/estimate-vault-layout-holds created · [[decision-case-315]] · generate
+- 2026-09-22 estimates/estimate-vault-layout-holds status: pending → passed · raw/2026-09-22/1121/ledger.md#L92 · generate
+- 2026-09-22 rules/rule-harness updated: rule-vault-layout, the layout of the vault, after rule-page-schemas (case 315) · [[decision-case-315]] · generate
+- 2026-09-22 decisions/decision-case-316 created · raw/2026-09-22/1121/ledger.md#case-316 · generate
+- 2026-09-22 rules/rule-session created · [[decision-case-316]] · generate
+- 2026-09-22 estimates/estimate-session-phases-in-order created · [[decision-case-316]] · generate
+- 2026-09-22 rules/rule-session-start updated: the parent is rule-session, the MOC of the five phases (case 316) · [[decision-case-316]] · generate
+- 2026-09-22 rules/rule-plan-mode updated: the parent is rule-session, the MOC of the five phases (case 316) · [[decision-case-316]] · generate
+- 2026-09-22 rules/rule-work-mode updated: the parent is rule-session, the MOC of the five phases (case 316) · [[decision-case-316]] · generate
+- 2026-09-22 rules/rule-end-of-work updated: the parent is rule-session, the MOC of the five phases (case 316) · [[decision-case-316]] · generate
+- 2026-09-22 rules/rule-documentation updated: the parent is rule-session, the MOC of the five phases (case 316) · [[decision-case-316]] · generate
+- 2026-09-22 decisions/decision-case-317 created · raw/2026-09-22/1121/ledger.md#case-317 · generate
+- 2026-09-22 rules/rule-atomicity created · [[decision-case-317]] · generate
+- 2026-09-22 rules/rule-case-protocol child rule-atomicity added · [[decision-case-317]] · generate
+- 2026-09-22 estimates/estimate-atomicity-rendered created · [[decision-case-317]] · generate
+- 2026-09-22 rules/rule-case-protocol updated: a MOC with the child rule-atomicity, whose marker line stands above Splitting (case 317) · [[decision-case-317]] · generate
+- 2026-09-22 rules/rule-entities-schema updated: the atomicity rule is named by its page, not by a § of index.md (case 317) · [[decision-case-317]] · generate
+- 2026-09-22 rules/rule-rules-schema updated: the atomicity rule is named by its page (case 317) · [[decision-case-317]] · generate
+- 2026-09-22 rules/rule-prespec updated: the one promise per Case check names rule-atomicity (case 317) · [[decision-case-317]] · generate
+- 2026-09-22 entities/entity-glossary updated: the term Atomicity Rule is defined by rule-atomicity (case 317) · [[decision-case-317]] · generate
+- 2026-09-22 decisions/decision-case-318 created · raw/2026-09-22/1121/ledger.md#case-318 · generate
+- 2026-09-22 rules/rule-ask updated: the index lines and the vault's own rules named by their pages, not by a § of index.md (case 318) · [[decision-case-318]] · generate
+- 2026-09-22 rules/rule-materialize updated: the route is this page, not §5 of index.md (case 318) · [[decision-case-318]] · generate
+- 2026-09-22 rules/rule-skill-hi updated: the vault query is named by rule-ask (case 318) · [[decision-case-318]] · generate
+- 2026-09-22 rules/rule-case-protocol updated: the map replaced by rule-vault-layout and rule-session; index.md out of the Rule-class list (case 318) · [[decision-case-318]] · generate
+- 2026-09-22 rules/rule-claude-md updated: CLAUDE.md names the glossary alone; the map is gone (case 318) · [[decision-case-318]] · generate
+- 2026-09-22 rules/rule-prespec updated: the vault's rules named as pages, not as index.md (case 318) · [[decision-case-318]] · generate
+- 2026-09-22 entities/entity-glossary updated: index.md out of the two rows that named it (case 318) · [[decision-case-318]] · generate
+- 2026-09-22 entities/entity-sprint-migration updated: theme 4 done — the § covered by pages, the file and its pointers gone (case 318) · [[decision-case-318]] · generate
+- 2026-09-22 estimates/estimate-case-protocol-ledger-line-form updated: the Criterion reads case-schema.md alone; the second copy in index.md is gone (case 318) · [[decision-case-318]] · generate
+- 2026-09-22 estimates/estimate-glossary-terms-defined updated: the rows on §N are gone with index.md (case 318) · [[decision-case-318]] · generate
+- 2026-09-22 estimates/estimate-synthesis-keeps-actioned-by-the-mark updated: the exception is named by the schema and the glossary, not by §8 (case 318) · [[decision-case-318]] · generate
+- 2026-09-22 estimates/estimate-sprint-migration-merges updated: order as the content of a page named by its rules (case 318) · [[decision-case-318]] · generate
+- 2026-09-22 estimates/estimate-raw-archive updated: the layout named by its rules (case 318) · [[decision-case-318]] · generate
+- 2026-09-22 decisions/decision-case-319 created · raw/2026-09-22/1121/ledger.md#case-319 · generate
+- 2026-09-22 entities/entity-sprint-migration updated: three notes of the reuse model in the Backlog — the edge, the question, the hook (case 319) · [[decision-case-319]] · generate
+- 2026-09-22 decisions/decision-case-320 created · raw/2026-09-22/1121/ledger.md#case-320 · generate
+- 2026-09-22 decisions/decision-case-310.4 superseded by decision-case-320 · [[decision-case-320]] · generate
+- 2026-09-22 estimates/estimate-sprint-migration-file-route-gone created · [[decision-case-320]] · generate
+- 2026-09-22 estimates/estimate-sprint-migration-file-route-gone status: pending → passed · raw/2026-09-22/1121/ledger.md#L95 · generate
+- 2026-09-22 entities/entity-sprint-migration estimate estimate-sprint-migration-file-route-gone added · [[decision-case-320]] · generate
+- 2026-09-22 estimates/estimate-materialize-finds-a-rule-class-item deleted · [[decision-case-320]] · generate
+- 2026-09-22 rules/rule-case-protocol updated: the Rule-class file route is gone from the Case schema (case 320) · [[decision-case-320]] · generate
+- 2026-09-22 rules/rule-lint updated: no page is written by hand (case 320) · [[decision-case-320]] · generate
+- 2026-09-22 rules/rule-decisions-schema updated: a Decision target is a page; the Rule-class map is gone (case 320) · [[decision-case-320]] · generate
+- 2026-09-22 rules/rule-prespec updated: any file item is a finding, not only one on a governed path (case 320) · [[decision-case-320]] · generate
+- 2026-09-22 estimates/estimate-case-protocol-case-form updated: the Criterion names the Renders, not the file route (case 320) · [[decision-case-320]] · generate
+- 2026-09-22 estimates/estimate-generate-fails-alone updated: no Rule-class branch in generate (case 320) · [[decision-case-320]] · generate
+- 2026-09-22 estimates/estimate-generate-ticks-the-spec updated: no Rule-class entry reaches generate (case 320) · [[decision-case-320]] · generate
+- 2026-09-22 estimates/estimate-prespec-checks-the-plan updated: the file route is a finding, not a route (case 320) · [[decision-case-320]] · generate
+- 2026-09-22 entities/entity-sprint-migration updated: theme 5 done — the file route out of the scripts (case 320) · [[decision-case-320]] · generate
+- 2026-09-22 decisions/decision-case-321 created · raw/2026-09-22/1121/ledger.md#case-321 · generate
+- 2026-09-22 entities/entity-glossary updated: the term Rule-class files retired with its thing; the map leaves the CLAUDE.md row (case 321) · [[decision-case-321]] · generate
+- 2026-09-22 estimates/estimate-sprint-migration-rule-class-files-dissolved updated: the pointer at §1 of index.md is gone with the file (case 321) · [[decision-case-321]] · generate
+- 2026-09-22 estimates/estimate-glossary-terms-defined updated: the Rule-class row is retired, not rewritten (case 321) · [[decision-case-321]] · generate
+- 2026-09-22 entities/entity-sprint-migration updated: Slice 3f closed — out of Milestones, named in Closed with its cases (case 321) · [[decision-case-321]] · generate
+- 2026-09-22 decisions/decision-case-322 created · raw/2026-09-22/1121/ledger.md#case-322 · generate
+- 2026-09-22 rules/rule-work-mode deferred · [[decision-case-322]] · generate
+- 2026-09-22 rules/rule-subagent-guppi deferred · [[decision-case-322]] · generate
+- 2026-09-22 decisions/decision-case-323 created · raw/2026-09-22/1121/ledger.md#case-323 · generate
+- 2026-09-22 entities/entity-sprint-migration updated: the Purpose off index.md and off a count of Estimates (case 323) · [[decision-case-323]] · generate
+- 2026-09-22 estimates/estimate-lint-catches updated: the layout class of lint (case 323) · [[decision-case-323]] · generate
+- 2026-09-22 estimates/estimate-prespec-checks-the-plan updated: any file item is a finding (case 323) · [[decision-case-323]] · generate
+- 2026-09-22 rules/rule-harness updated: the glossary step of make lint and the fifth rule outside the pipeline (case 323) · [[decision-case-323]] · generate
+- 2026-09-22 estimates/estimate-harness-pipeline updated: the Purpose it reads names five rules outside the pipeline (case 323) · [[decision-case-323]] · generate
+- 2026-09-22 estimates/estimate-materialize-marks-superseded updated: the mark moves a folded reading (case 323) · [[decision-case-323]] · generate
+- 2026-09-22 entities/entity-glossary updated: the rows Sprint and Session by cases 313 and 316 (case 323) · [[decision-case-323]] · generate
+- 2026-09-22 estimates/estimate-rules-schema-checked status: pending → passed · raw/2026-09-22/1121/ledger.md#L80 · generate
+- 2026-09-22 estimates/estimate-entities-schema-checked status: pending → passed · raw/2026-09-22/1121/ledger.md#L81 · generate
+- 2026-09-22 estimates/estimate-page-schemas-one-file-per-rule status: pending → passed · raw/2026-09-22/1121/ledger.md#L82 · generate
+- 2026-09-22 estimates/estimate-case-protocol-loaded status: pending → passed · raw/2026-09-22/1121/ledger.md#L83 · generate
+- 2026-09-22 estimates/estimate-glossary-terms-defined status: pending → passed · raw/2026-09-22/1121/ledger.md#L84 · generate
+- 2026-09-22 estimates/estimate-documentation-completes status: pending → failed · raw/2026-09-22/1121/ledger.md#L85 · generate
+- 2026-09-22 estimates/estimate-sprint-renders-the-backlog status: pending → passed · raw/2026-09-22/1121/ledger.md#L86 · generate
+- 2026-09-22 estimates/estimate-prespec-checks-the-plan status: pending → passed · raw/2026-09-22/1121/ledger.md#L87 · generate
+- 2026-09-22 estimates/estimate-generate-ticks-the-spec status: pending → passed · raw/2026-09-22/1121/ledger.md#L88 · generate
+- 2026-09-22 estimates/estimate-lint-catches status: pending → passed · raw/2026-09-22/1121/ledger.md#L93 · generate
+- 2026-09-22 estimates/estimate-materialize-marks-superseded status: pending → passed · raw/2026-09-22/1121/ledger.md#L94 · generate
+- 2026-09-22 lessons/lesson-replace-anchors-overlap-in-one-spec created · raw/2026-09-22/1121/ledger.md#L96 · generate
+- 2026-09-22 lessons/lesson-tests-coupled-to-a-signature-or-a-whole-finding-list created · raw/2026-09-22/1121/ledger.md#L97 · generate
+- 2026-09-22 insights/insight-workflow-edit-pair-signed-from-a-grep-fragment created · raw/2026-09-22/1121/ledger.md#L96 · generate
+- 2026-09-22 lessons/lesson-reword-pairs-signed-before-the-places-were-read updated: clustered by librarian: an edit pair signed from a grep fragment, with lesson-replace-anchors-overlap-in-one-spec · raw/2026-09-22/1121/ledger.md#L96 · generate
+- 2026-09-22 lessons/lesson-replace-anchors-overlap-in-one-spec updated: clustered by librarian: an edit pair signed from a grep fragment, with lesson-reword-pairs-signed-before-the-places-were-read · raw/2026-09-22/1121/ledger.md#L96 · generate
+- 2026-09-22 entities/entity-glossary status: draft → built · cascade · generate
+- 2026-09-22 rules/rule-entities-schema status: draft → built · cascade · generate
+- 2026-09-22 rules/rule-materialize status: built → draft · cascade · generate
+- 2026-09-22 rules/rule-page-generation status: built → draft · cascade · generate
+- 2026-09-22 rules/rule-page-schemas status: draft → built · cascade · generate
+- 2026-09-22 rules/rule-rules-schema status: draft → built · cascade · generate
+- 2026-09-22 rules/rule-skill-hi status: built → draft · cascade · generate
+- 2026-09-22 rules/rule-vault-layout status: draft → built · cascade · generate
+- 2026-09-22 entities/entity-glossary rules: [rule-glossary] · cascade · generate
+- 2026-09-22 decisions/decision-case-310.1 archived · superseded · generate
+- 2026-09-22 decisions/decision-case-310.4 archived · superseded · generate
+- 2026-09-22 estimates/estimate-materialize-finds-a-rule-class-item archived · cleanup
+- 2026-09-22 decisions/decision-case-310.1 archived · cleanup
+- 2026-09-22 decisions/decision-case-310.4 archived · cleanup
+- 2026-09-22 rules/rule-materialize estimate estimate-materialize-finds-a-rule-class-item archived · cleanup

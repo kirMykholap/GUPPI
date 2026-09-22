@@ -32,7 +32,7 @@ update:
 ```
 
 ```tasks
-- [ ] update `rule-glossary`
+- [x] update `rule-glossary`
 - [ ] by hand, after the librarian's run: `entity-glossary` carries `rules: ["[[rule-glossary]]"]`, `make lint` — no `ref` finding on the pair
 ```
 
@@ -68,11 +68,11 @@ update:
 ```
 
 ```tasks
-- [ ] update `rule-materialize`
-- [ ] create `estimate-materialize-lifts-unfiltered-on-a-schema-change`
+- [x] update `rule-materialize`
+- [x] create `estimate-materialize-lifts-unfiltered-on-a-schema-change`
 - [x] `guppi/materialize.py`: the schema-rule entries of the unit collected before the lift; `_lift_item` gets `known=None` for their categories; the docstring
 - [x] `tests/test_materialize.py`: a unit with `create rule-rules-schema` and `create rule-x` carrying a key the disk schema lacks — the key in `fields`, no `unknown`; the same `create` without the schema entry — `unknown` as before
-- [ ] read `estimate-materialize-lifts-unfiltered-on-a-schema-change`: `uv run pytest tests/test_materialize.py -k schema_change`
+- [x] read `estimate-materialize-lifts-unfiltered-on-a-schema-change`: `uv run pytest tests/test_materialize.py -k schema_change`
 ```
 
 ## Case 309 — a reading folded into a superseded `create` moves
@@ -115,11 +115,11 @@ update:
 ```
 
 ```tasks
-- [ ] update `rule-materialize`
-- [ ] create `estimate-materialize-refolds-a-reading-on-a-supersede`
+- [x] update `rule-materialize`
+- [x] create `estimate-materialize-refolds-a-reading-on-a-supersede`
 - [x] `guppi/materialize.py`: `fold_estimate` skips a `superseded_by` create; `lift_line` after a local mark moves `folded` readings to the live create or appends `estimate` entries; the docstring
 - [x] `tests/test_materialize.py`: create A, reading, create B `{supersedes}` A — the reading on B; create A, reading, `{supersedes}` A without a new create — an `estimate` entry; a reading after the mark — not on A
-- [ ] read `estimate-materialize-refolds-a-reading-on-a-supersede`: `uv run pytest tests/test_materialize.py -k refold`
+- [x] read `estimate-materialize-refolds-a-reading-on-a-supersede`: `uv run pytest tests/test_materialize.py -k refold`
 ```
 
 ## Case 310 — a sprint item is a page; a note is a task not yet cut into pages
@@ -168,8 +168,8 @@ update:
 ```
 
 ```tasks
-- [ ] update `entity-sprint-migration`
-- [ ] `uv run guppi sprint`
+- [x] update `entity-sprint-migration`
+- [x] `uv run guppi sprint`
 ```
 
 ### Case 310.3 — `estimate-sprint-migration-index-dissolved`
@@ -198,7 +198,7 @@ create:
 ```
 
 ```tasks
-- [ ] create `estimate-sprint-migration-index-dissolved`
+- [x] create `estimate-sprint-migration-index-dissolved`
 - [ ] read `estimate-sprint-migration-index-dissolved`: at the close of theme 4 — `test -e vault/wiki/index.md` false; `rg '§|index\.md' vault/wiki .claude guppi CLAUDE.md` empty but for the archive
 ```
 
@@ -230,8 +230,8 @@ update:
 ```
 
 ```tasks
-- [ ] update `rule-skill-hi`
-- [ ] update `estimate-hi-writes-frontier`
+- [x] update `rule-skill-hi`
+- [x] update `estimate-hi-writes-frontier`
 - [ ] `uv run guppi render`: `.claude/skills/hi/SKILL.md`
 - [ ] read `estimate-hi-writes-frontier`: by hand at the first `/hi` of the next session
 ```
@@ -264,11 +264,11 @@ update:
 ```
 
 ```tasks
-- [ ] update `rule-prespec`
-- [ ] update `estimate-prespec-checks-the-plan`
+- [x] update `rule-prespec`
+- [x] update `estimate-prespec-checks-the-plan`
 - [x] `guppi/prespec.py`: `CLOSERS` with `sprint`; `[x]` with `sprint` a finding; the docstring
 - [x] `tests/test_prespec.py`: `[-] · sprint` clean, `[x] · sprint` a finding
-- [ ] read `estimate-prespec-checks-the-plan`: `uv run pytest tests/test_prespec.py`
+- [x] read `estimate-prespec-checks-the-plan`: `uv run pytest tests/test_prespec.py`
 ```
 
 ## Case 311 — `estimate-harness-pipeline`: three file checks, not two
@@ -300,7 +300,7 @@ update:
 ```
 
 ```tasks
-- [ ] update `estimate-harness-pipeline`
+- [x] update `estimate-harness-pipeline`
 - [ ] read `estimate-harness-pipeline`: `make test-harness`, then `make lint` — the three checks silent, `guppi lint` its own count
 ```
 
@@ -339,11 +339,11 @@ update:
 ```
 
 ```tasks
-- [ ] update `rule-page-generation`
-- [ ] update `estimate-generate-ticks-the-spec`
+- [x] update `rule-page-generation`
+- [x] update `estimate-generate-ticks-the-spec`
 - [x] `guppi/generate.py`: `tick_read` ticks every matching line of the first Spec that holds one; the docstring
 - [x] `tests/test_generate.py`: two `read` lines of one slug in one Spec, one reading — both ticked; one in a later Case's section — left
-- [ ] read `estimate-generate-ticks-the-spec`: `uv run pytest tests/test_generate.py -k tick`
+- [x] read `estimate-generate-ticks-the-spec`: `uv run pytest tests/test_generate.py -k tick`
 ```
 
 ## Case 313 — a sprint item names one or more pages; a note keeps its box and is never ticked
@@ -383,12 +383,12 @@ update:
 ```
 
 ```tasks
-- [ ] update `rule-sprint`
-- [ ] update `estimate-sprint-renders-the-backlog`
+- [x] update `rule-sprint`
+- [x] update `estimate-sprint-renders-the-backlog`
 - [x] `guppi/sprint.py`: the pages of an item are the wikilinks before the first ` — `; `[x]` when each is done, the statuses in order; a note keeps `- [ ]`; the docstring
 - [x] `tests/test_sprint.py`: an item of two pages, one `draft` — `[ ]` with both statuses, both `built` — `[x]`; a wikilink after the ` — ` holds no tick back; a note renders `- [ ] <text>` and keeps its milestone open
-- [ ] read `estimate-sprint-renders-the-backlog`: `uv run pytest tests/test_sprint.py`
-- [ ] `uv run guppi sprint`
+- [x] read `estimate-sprint-renders-the-backlog`: `uv run pytest tests/test_sprint.py`
+- [x] `uv run guppi sprint`
 ```
 
 ## Case 314 — a Frontier line of the sprint keeps its source, and its Case changes the sprint page
@@ -428,8 +428,8 @@ update:
 ```
 
 ```tasks
-- [ ] update `rule-skill-hi`
-- [ ] update `estimate-hi-writes-frontier`
+- [x] update `rule-skill-hi`
+- [x] update `estimate-hi-writes-frontier`
 - [ ] `uv run guppi render`: `.claude/skills/hi/SKILL.md`
 - [ ] read `estimate-hi-writes-frontier`: by hand at the first `/hi` of the next session
 ```
@@ -467,11 +467,11 @@ update:
 ```
 
 ```tasks
-- [ ] update `rule-prespec`
-- [ ] create `estimate-prespec-binds-a-sprint-line`
+- [x] update `rule-prespec`
+- [x] create `estimate-prespec-binds-a-sprint-line`
 - [x] `guppi/prespec.py`: `check_frontier` finds the sprint slug, requires an `update` of it under the closing Case of a `sprint` line; the docstring
 - [x] `tests/test_prespec.py`: `· sprint · case N` with and without the `update`; `[-] … · sprint`; a line without `sprint`
-- [ ] read `estimate-prespec-binds-a-sprint-line`: `uv run pytest tests/test_prespec.py -k sprint`
+- [x] read `estimate-prespec-binds-a-sprint-line`: `uv run pytest tests/test_prespec.py -k sprint`
 ```
 
 ## Case 315 — `rule-vault-layout`: no file of `wiki/` is written by hand
@@ -526,12 +526,12 @@ update:
 ```
 
 ```tasks
-- [ ] create `rule-vault-layout` (parent `rule-harness`)
-- [ ] create `estimate-vault-layout-holds` (ref `rule-vault-layout`)
-- [ ] update `rule-harness`: `children` with `rule-vault-layout` after `rule-page-schemas`
+- [x] create `rule-vault-layout` (parent `rule-harness`)
+- [x] create `estimate-vault-layout-holds` (ref `rule-vault-layout`)
+- [x] update `rule-harness`: `children` with `rule-vault-layout` after `rule-page-schemas`
 - [x] `guppi/lint.py`: `check_layout` — `type` against the folder, `slug` against the filename, a root `.md` no live rule names; the docstring
 - [x] `tests/test_lint.py`: a page of the wrong `type` in a folder; a page whose slug differs from its filename; an unnamed file at the root; the six live root files clean
-- [ ] read `estimate-vault-layout-holds`: `uv run pytest tests/test_lint.py -k layout`, then `make lint` — no `layout` finding on the live vault
+- [x] read `estimate-vault-layout-holds`: `uv run pytest tests/test_lint.py -k layout`, then `make lint` — no `layout` finding on the live vault
 ```
 
 ## Case 316 — `rule-session`: the root MOC over the five phases
@@ -593,9 +593,9 @@ update:
 ```
 
 ```tasks
-- [ ] create `rule-session` (MOC, root, five children in order)
-- [ ] create `estimate-session-phases-in-order` (ref `rule-session`)
-- [ ] update `rule-session-start`, `rule-plan-mode`, `rule-work-mode`, `rule-end-of-work`, `rule-documentation`: `parent: rule-session`
+- [x] create `rule-session` (MOC, root, five children in order)
+- [x] create `estimate-session-phases-in-order` (ref `rule-session`)
+- [x] update `rule-session-start`, `rule-plan-mode`, `rule-work-mode`, `rule-end-of-work`, `rule-documentation`: `parent: rule-session`
 - [ ] read `estimate-session-phases-in-order`: by hand at the close of this session — the six marks in order
 ```
 
@@ -682,15 +682,15 @@ update:
 ```
 
 ```tasks
-- [ ] create `rule-atomicity` (parent `rule-case-protocol`, `render_mode: partial`, `governs: vault/wiki/case-schema.md`)
-- [ ] create `estimate-atomicity-rendered` (ref `rule-atomicity`)
-- [ ] update `rule-case-protocol`: `kind: MOC`, `children: [rule-atomicity]`, the marker line in its Render
-- [ ] update `rule-entities-schema`: `[[rule-atomicity]]` in place of the `§6 of index.md` pointer
-- [ ] update `rule-rules-schema`: `[[rule-atomicity]]` beside the order of a Rule MOC's children
-- [ ] update `rule-prespec`: `[[rule-atomicity]]` beside "one promise per Case"
-- [ ] update `entity-glossary`: the row "Atomicity Rule" — `where` is `[[rule-atomicity]]`
+- [x] create `rule-atomicity` (parent `rule-case-protocol`, `render_mode: partial`, `governs: vault/wiki/case-schema.md`)
+- [x] create `estimate-atomicity-rendered` (ref `rule-atomicity`)
+- [x] update `rule-case-protocol`: `kind: MOC`, `children: [rule-atomicity]`, the marker line in its Render
+- [x] update `rule-entities-schema`: `[[rule-atomicity]]` in place of the `§6 of index.md` pointer
+- [x] update `rule-rules-schema`: `[[rule-atomicity]]` beside the order of a Rule MOC's children
+- [x] update `rule-prespec`: `[[rule-atomicity]]` beside "one promise per Case"
+- [x] update `entity-glossary`: the row "Atomicity Rule" — `where` is `[[rule-atomicity]]`
 - [ ] `uv run guppi render`: `vault/wiki/case-schema.md`
-- [ ] `uv run guppi glossary`
+- [x] `uv run guppi glossary`
 - [ ] read `estimate-atomicity-rendered`: `make lint` — `render --check` exit 0; the text between the markers of `case-schema.md` read by hand
 ```
 
@@ -802,14 +802,14 @@ update:
 
 ```tasks
 - [x] delete `vault/wiki/index.md` by hand in Work Mode
-- [ ] update `rule-ask`, `rule-materialize`, `rule-skill-hi`, `rule-case-protocol`, `rule-claude-md`, `rule-prespec`
-- [ ] update `entity-glossary`: the rows "Rule-class files" and "`CLAUDE.md`, `case-schema.md`, `index.md`"
-- [ ] update `estimate-case-protocol-ledger-line-form`, `estimate-glossary-terms-defined`, `estimate-synthesis-keeps-actioned-by-the-mark`, `estimate-sprint-migration-merges`, `estimate-raw-archive`
-- [ ] update `entity-sprint-migration`: theme 4 closed
+- [x] update `rule-ask`, `rule-materialize`, `rule-skill-hi`, `rule-case-protocol`, `rule-claude-md`, `rule-prespec`
+- [x] update `entity-glossary`: the rows "Rule-class files" and "`CLAUDE.md`, `case-schema.md`, `index.md`"
+- [x] update `estimate-case-protocol-ledger-line-form`, `estimate-glossary-terms-defined`, `estimate-synthesis-keeps-actioned-by-the-mark`, `estimate-sprint-migration-merges`, `estimate-raw-archive`
+- [x] update `entity-sprint-migration`: theme 4 closed
 - [x] `guppi/materialize.py`: `RULE_CLASS` without `index`
 - [ ] `uv run guppi render`: `CLAUDE.md`, `.claude/agents/ask-guppi.md`, `.claude/skills/hi/SKILL.md`, `.claude/skills/pre-spec/SKILL.md`, `vault/wiki/case-schema.md`, `vault/wiki/entities/schema.yaml`
-- [ ] `uv run guppi glossary`
-- [ ] `uv run guppi sprint`
+- [x] `uv run guppi glossary`
+- [x] `uv run guppi sprint`
 - [ ] read `estimate-sprint-migration-index-dissolved`: `test -e vault/wiki/index.md` false; `rg` over `vault/wiki`, `.claude`, `guppi`, `CLAUDE.md` — empty but for the archive and `raw/`
 - [ ] read `estimate-case-protocol-ledger-line-form`: by hand at a session start — `case-schema.md` alone now
 ```
@@ -845,8 +845,8 @@ update:
 ```
 
 ```tasks
-- [ ] update `entity-sprint-migration`: three notes in `## Backlog`
-- [ ] `uv run guppi sprint`
+- [x] update `entity-sprint-migration`: three notes in `## Backlog`
+- [x] `uv run guppi sprint`
 ```
 
 ## Case 320 — the `file` route leaves the scripts
@@ -944,18 +944,18 @@ update:
 ```
 
 ```tasks
-- [ ] create `estimate-sprint-migration-file-route-gone` (ref `entity-sprint-migration`, supersedes 310.4)
-- [ ] delete `estimate-materialize-finds-a-rule-class-item`
-- [ ] update `rule-case-protocol`, `rule-lint`, `rule-decisions-schema`, `rule-prespec`
-- [ ] update `estimate-case-protocol-case-form`, `estimate-generate-fails-alone`, `estimate-generate-ticks-the-spec`, `estimate-prespec-checks-the-plan`
-- [ ] update `entity-sprint-migration`: theme 5 closed
+- [x] create `estimate-sprint-migration-file-route-gone` (ref `entity-sprint-migration`, supersedes 310.4)
+- [x] delete `estimate-materialize-finds-a-rule-class-item`
+- [x] update `rule-case-protocol`, `rule-lint`, `rule-decisions-schema`, `rule-prespec`
+- [x] update `estimate-case-protocol-case-form`, `estimate-generate-fails-alone`, `estimate-generate-ticks-the-spec`, `estimate-prespec-checks-the-plan`
+- [x] update `entity-sprint-migration`: theme 5 closed
 - [x] `guppi/materialize.py`: `RULE_CLASS`, `rule_class_path`, `category: file` and `path` gone; the docstring
 - [x] `guppi/generate.py`: the `category == "file"` branch gone; "an update with no content in the Spec" reworded off "applied by hand"; the docstring
 - [x] `guppi/prespec.py`: `rule_class_path` out of `line_has_item` and `item_has_line`; `check_governed` refuses any `update` item with `file`; the docstring
 - [x] `tests/test_materialize.py`, `tests/test_generate.py`, `tests/test_prespec.py`: a `file` item is a pre-spec finding; a slug without a prefix lands `category: unknown`; no Rule-class branch remains
 - [ ] `uv run guppi render`: `.claude/skills/pre-spec/SKILL.md`, `vault/wiki/case-schema.md`, `vault/wiki/decisions/schema.yaml`
-- [ ] `uv run guppi sprint`
-- [ ] read `estimate-sprint-migration-file-route-gone`: the `rg`, `make test`, `make lint`
+- [x] `uv run guppi sprint`
+- [x] read `estimate-sprint-migration-file-route-gone`: the `rg`, `make test`, `make lint`
 - [ ] read `estimate-case-protocol-case-form`, `estimate-generate-fails-alone`, `estimate-generate-ticks-the-spec` — their Criteria changed
 ```
 
@@ -1045,12 +1045,12 @@ update:
 ```
 
 ```tasks
-- [ ] update `entity-glossary`: the row "Rule-class files" gone; the tail of the `CLAUDE.md` row on reading the map gone
-- [ ] update `estimate-sprint-migration-rule-class-files-dissolved`: the `§1 of index.md` pointer gone
-- [ ] update `estimate-glossary-terms-defined`: the fragment on the Rule-class row
-- [ ] update `entity-sprint-migration`: `## Milestones` without Slice 3f, `## Closed` with it
-- [ ] `uv run guppi glossary`
-- [ ] `uv run guppi sprint`
+- [x] update `entity-glossary`: the row "Rule-class files" gone; the tail of the `CLAUDE.md` row on reading the map gone
+- [x] update `estimate-sprint-migration-rule-class-files-dissolved`: the `§1 of index.md` pointer gone
+- [x] update `estimate-glossary-terms-defined`: the fragment on the Rule-class row
+- [x] update `entity-sprint-migration`: `## Milestones` without Slice 3f, `## Closed` with it
+- [x] `uv run guppi glossary`
+- [x] `uv run guppi sprint`
 - [ ] read `estimate-sprint-migration-rule-class-files-dissolved`: by its `method` — `ls vault/wiki/*/schema.md` empty, `vault/wiki/index.md` absent, the `rg` over `guppi/` empty, `render --check`, `glossary --check`, `make lint` exit 0
 ```
 
@@ -1122,17 +1122,17 @@ update:
 ```
 
 ```tasks
-- [ ] update `entity-sprint-migration`: `purpose` and `## Purpose` off `index.md`, no count of Estimates
-- [ ] update `estimate-lint-catches`: the `layout` class
-- [ ] update `estimate-prespec-checks-the-plan`: the Governed line
-- [ ] update `rule-harness`: the glossary step, five rules outside the pipeline
-- [ ] update `estimate-harness-pipeline`: the Purpose it reads
-- [ ] update `estimate-materialize-marks-superseded`: the readings moved by the mark
-- [ ] update `entity-glossary`: the rows Sprint and Session
-- [ ] `uv run guppi glossary`
-- [ ] `uv run guppi sprint`
-- [ ] read `estimate-lint-catches`: `uv run pytest tests/test_lint.py`, then `make lint`
-- [ ] read `estimate-materialize-marks-superseded`: `uv run pytest tests/test_materialize.py -k supersede`
+- [x] update `entity-sprint-migration`: `purpose` and `## Purpose` off `index.md`, no count of Estimates
+- [x] update `estimate-lint-catches`: the `layout` class
+- [x] update `estimate-prespec-checks-the-plan`: the Governed line
+- [x] update `rule-harness`: the glossary step, five rules outside the pipeline
+- [x] update `estimate-harness-pipeline`: the Purpose it reads
+- [x] update `estimate-materialize-marks-superseded`: the readings moved by the mark
+- [x] update `entity-glossary`: the rows Sprint and Session
+- [x] `uv run guppi glossary`
+- [x] `uv run guppi sprint`
+- [x] read `estimate-lint-catches`: `uv run pytest tests/test_lint.py`, then `make lint`
+- [x] read `estimate-materialize-marks-superseded`: `uv run pytest tests/test_materialize.py -k supersede`
 ```
 
 ## Deferred

@@ -5,7 +5,7 @@ status: passed
 target: "[[rule-materialize]]"
 purpose: A supersedes marks every entry of the earlier Case, in any unit
 method: pytest in tests/test_materialize.py, the tests of the supersedes mark, plus one live reading of a librarian's run
-checked: 2026-09-21
+checked: 2026-09-22
 origin: raw/2026-09-16/1034/ledger.md#case-189
 sprint: migration
 created: 2026-09-16
@@ -24,7 +24,7 @@ When:
 `guppi materialize` reads a line with `{supersedes:case N}`, and the entries of Case N lie in this yaml or in the yaml of another session under `raw/`.
 
 Then:
-Every entry with `case: N` gets `superseded_by` — the lines of Case N and everything derived from them; the `decisions` record of Case N as today.
+Every entry with `case: N` gets `superseded_by` — the lines of Case N and everything derived from them; the `decisions` record of Case N as today. A marked `create` loses the readings folded into it: each moves to the live `create` of its slug in the unit, or becomes an `estimate` entry of its own (case 309).
 **＋** `generate` applies none of them.
 **＋** A foreign yaml is marked by the same rule.
 **＋** An entry of Case N marked `superseded_by` while no heading N stands in the Spec of the unit carries no `incomplete: [then]`; its `decisions` record carries no `case_text` and no `incomplete` for `context`, `problem`, `given`, `when`; the mark alone is its completeness.
@@ -33,7 +33,7 @@ Every entry with `case: N` gets `superseded_by` — the lines of Case N and ever
 
 ## Result
 
-2026-09-21, uv run pytest tests/test_materialize.py 68 green, two new — the entries of a Case superseded and gone from the Spec carry superseded_by and no incomplete, its decisions record superseded_by and no case_text and no incomplete; the same Case with its heading in the Spec is lifted as before, incomplete then on the line without an item; the supersedes tests of 175 and 130.2 unchanged; live — the librarian's run of the first session where a Case is superseded in it and removed from the Spec, not this one
+2026-09-22, uv run pytest tests/test_materialize.py -k supersede: 8 passed, 65 deselected
 
 ## History
 
@@ -42,3 +42,5 @@ Every entry with `case: N` gets `superseded_by` — the lines of Case N and ever
 - 2026-09-17 status: pending → passed · raw/2026-09-16/2238/ledger.md#L1
 - 2026-09-22 updated: the Criterion replaced whole — the entries of a superseded Case gone from the Spec carry no incomplete, the record no case_text; Given added, the shape of case 193 (case 299.3) · [[decision-case-299.3]]
 - 2026-09-22 status: pending → passed · raw/2026-09-21/1853/ledger.md#L26
+- 2026-09-22 updated: the mark moves a folded reading (case 323) · [[decision-case-323]]
+- 2026-09-22 status: pending → passed · raw/2026-09-22/1121/ledger.md#L94

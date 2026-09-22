@@ -1,10 +1,11 @@
 ---
 type: estimate
 kind: QA
-status: pending
+status: passed
 target: "[[rule-page-schemas]]"
 purpose: Each vault/wiki/<category>/schema.yaml is written by guppi render from exactly one rule page, no schema.md remains, lint reads every file and a hand edit is refused
 method: make lint — render --check exit 0 and no path or schema-description finding on a <category>/schema; tests/test_render.py for two full pages on one file; the live reading by hand after the librarian's first render
+checked: 2026-09-22
 origin: raw/2026-09-22/0014/ledger.md#case-304.1
 sprint: migration
 created: 2026-09-22
@@ -27,6 +28,11 @@ The six `vault/wiki/<category>/schema.yaml` are written, each from the one Leaf 
 **＋** A hand edit of any of the six is refused by the hook.
 **－** A second `full` page on one of the files fails the render with the two slugs.
 
+## Result
+
+2026-09-22, by hand: six vault/wiki/<category>/schema.yaml, no schema.md in any category, guppi render --check exit 0, guppi lint — no path, schema-description or layout finding on a <category>/schema
+
 ## History
 
 - 2026-09-22 created · [[decision-case-304.1]]
+- 2026-09-22 status: pending → passed · raw/2026-09-22/1121/ledger.md#L82

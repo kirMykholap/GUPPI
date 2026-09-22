@@ -29,7 +29,7 @@ description: |
 
   Fields deliberately absent. `ratification` — a Decision page cannot exist without it. The Case does not close, no ledger line is written, no page is generated. A field with one possible value carries no information; the fact is recorded by the page existing and by `origin`. `recommend` — if the human accepted the proposal it became `Then`; if they changed it, `Then` holds the change. Either way the original is conversation history, recoverable from the archived ledger. `last_updated` — a decision is not edited. Only `status` and `superseded_by` ever change, and both are dated in History. `authority` — dropped. It overlapped with tags on one reading and with `ref` on the other. If a real need appears later, it comes back as a ratified decision.
 
-  The body is the Case that produced it, minus what belongs to the conversation rather than the decision. `create`, `update`, `delete`, `defer`: one list per kind present among the Case's ledger lines, in that order, each the slugs of those lines in ledger order (a page, or a Rule-class file such as `case-schema`); a kind with no line is absent, at least one is present. The category is derived from the slug prefix or the Rule-class map, never written. Lint checks every page slug names a live or archived page, and that neither `kind` nor `target_slug` is present (case 59.4).
+  The body is the Case that produced it, minus what belongs to the conversation rather than the decision. `create`, `update`, `delete`, `defer`: one list per kind present among the Case's ledger lines, in that order, each the slugs of those lines in ledger order; a kind with no line is absent, at least one is present. The category is derived from the slug prefix, never written. Lint checks every page slug names a live or archived page, and that neither `kind` nor `target_slug` is present (case 59.4).
 properties:
   required: [type, case, status, origin, sprint, created, tags]
   optional: [create, update, delete, defer, source, supersedes, superseded_by]
@@ -46,7 +46,7 @@ fields:
   status: |
     required; `current` | `superseded` | `archived`. Lifecycle of this page, not of the work. `superseded` once a later Case names it in `supersedes`, and `archived` the moment the cascade of `generate` meets it so: a superseded Decision no longer describes the present (case 104.1).
   create: |
-    one of the four; list of quoted wikilinks `"[[slug]]"`. The slugs of the Case's `create` lines, in ledger order: a page, or a Rule-class file by its ledger slug (`case-schema`, `rules-schema-yaml`). One list per kind present, in the order create, update, delete, defer; a kind with no line is absent. Lists of quoted wikilinks for page slugs, a Rule-class slug bare, so Obsidian shows them as links (case 148.2); the kind of every target is its key (case 59.4, replacing the aligned `kind` and `target_slug` of case 52.1). The category is derived from the slug prefix or the Rule-class map and never written; the parent of a `create` is on the child page as `parent` or `target`.
+    one of the four; list of quoted wikilinks `"[[slug]]"`. The slugs of the Case's `create` lines, in ledger order: a page. One list per kind present, in the order create, update, delete, defer; a kind with no line is absent. Lists of quoted wikilinks for page slugs, so Obsidian shows them as links (case 148.2); the kind of every target is its key (case 59.4, replacing the aligned `kind` and `target_slug` of case 52.1). The category is derived from the slug prefix and never written; the parent of a `create` is on the child page as `parent` or `target`.
   update: |
     one of the four; list of quoted wikilinks `"[[slug]]"`. The slugs of the Case's `update` lines, in ledger order; a later `rename` retargets the link like any link (case 258.1).
   delete: |
@@ -118,3 +118,4 @@ examples:
 
 - 2026-09-22 created · [[decision-case-304.7]]
 - 2026-09-22 status: draft → built · cascade
+- 2026-09-22 updated: a Decision target is a page; the Rule-class map is gone (case 320) · [[decision-case-320]]

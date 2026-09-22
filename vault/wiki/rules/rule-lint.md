@@ -17,7 +17,7 @@ tags: [harness, workflow]
 
 Prevents a page that breaks its schema, points at nothing, claims a status its
 Estimates do not support, or waits for a reading nobody took from sitting in the vault
-unnoticed. Pages are written by the generator and, for the Rule-class files, by hand;
+unnoticed. Pages are written by the generator;
 both drift, and nothing else reads the whole graph at once. Red is a signal, not a
 gate: a `pending` Estimate is red until its reading (case 182, point 13), a
 placeholder is red with the count of its defers (case 186.3), the pages of the shape
@@ -60,3 +60,4 @@ classes and their order live in the docstring of `guppi/lint.py`.
 - 2026-09-16 defer by decision-case-191 superseded · [[decision-case-203.2]]
 - 2026-09-18 updated: make lint has three steps — sprint --check between render --check and lint (case 227) · [[decision-case-227]]
 - 2026-09-22 updated: make lint runs glossary --check too (case 306.5) · [[decision-case-306.5]]
+- 2026-09-22 updated: no page is written by hand (case 320) · [[decision-case-320]]

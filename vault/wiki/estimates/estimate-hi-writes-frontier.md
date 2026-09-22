@@ -1,7 +1,7 @@
 ---
 type: estimate
 kind: QA
-status: passed
+status: pending
 target: "[[rule-skill-hi]]"
 method: "one reading by hand at the first /hi of the next session, written into the estimate line; unit: the frontier findings of guppi prespec --check in tests/test_prespec.py"
 checked: 2026-09-20
@@ -22,7 +22,7 @@ When:
 The person invokes `/hi`, and the agent assembles the Frontier.
 
 Then:
-The Frontier, written to `raw/<date>/<hi HHMM>/frontier.md`, is two lists: `## Cases`, lines `- [ ] C<n> — <title> · <source>`, and `## Work`, lines `- [ ] W<n> — <title> · <source>`; closed as today — `[x] … · case N`, `[x] … · work`, `[-] … · defer case N`.
+The Frontier, written to `raw/<date>/<hi HHMM>/frontier.md`, is two lists: `## Cases`, lines `- [ ] C<n> — <title> · <source>`, and `## Work`, lines `- [ ] W<n> — <title> · <source>`; closed by appending the closer and keeping the source — `- [x] C2 — <title> · sprint · case 315` (case 314.1) — `[x] … · case N`, `[x] … · work`, `[-] … · defer case N`, and `[-] … · sprint` when the item is a line of the sprint page left for a later session — no decision, no `deferred_by` (case 310.5).
 **＋** The kind comes from the source. Cases: on a plan branch the unfinished plan, first; the items of the current milestone of `sprint.md`; the `Cases` list of the brief's Next session; the brief's Deferred list; a hand edit shown by `Render:` — the same thing `render --sync` printed at session start; a `failed` reading or a lesson of the ledger's Tail; an item the person adds. Work: the `Work` list of the brief's Next session; a dirty tree by `git status`.
 **＋** The milestone is the current one only; a later one, the Backlog and Closed are not items; a decision line of the Tail is not an item.
 **＋** In the chat the Cases are shown as a list with their detail — the agenda of Plan Mode; the Work as one block; sub-cases are cut in Cases only.
@@ -47,3 +47,5 @@ The Frontier, written to `raw/<date>/<hi HHMM>/frontier.md`, is two lists: `## C
 - 2026-09-20 updated: the word moved: /pre-task → /pre-spec in the Criterion, guppi prespec --check and tests/test_prespec.py in method; the promise and the reading unchanged, passed kept (case 265) · [[decision-case-265]]
 - 2026-09-20 updated: the Criterion replaced whole — the Frontier in two lists, the kind of an item by its source, pull and gh by the sprint page; method names prespec (case 268.2) · [[decision-case-268.2]]
 - 2026-09-20 status: pending → passed · raw/2026-09-20/1308/ledger.md#L10
+- 2026-09-22 updated: the closer `· sprint` (case 310.5) · [[decision-case-310.5]]
+- 2026-09-22 updated: the closer is appended, the source stays (case 314.1) · [[decision-case-314.1]]

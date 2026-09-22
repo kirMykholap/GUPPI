@@ -6,6 +6,7 @@ status: draft
 enforcement: render
 governs: .claude/agents/librarian-guppi.md
 render_mode: full
+parent: "[[rule-session]]"
 children: ["[[rule-materialize]]", "[[rule-index-check]]", "[[rule-synthesis]]", "[[rule-page-generation]]", "[[rule-cleanup]]", "[[rule-raw-archive]]", "[[rule-brief]]", "[[rule-close]]", "[[rule-sprint]]", "[[rule-glossary]]"]
 estimates: ["[[estimate-documentation-completes]]"]
 origin: raw/2026-09-10/ledger.md#case-36
@@ -136,3 +137,4 @@ project's hooks; the hook is part of this Render and is ratified with it.
 - 2026-09-22 child rule-glossary added · [[decision-case-306.4]]
 - 2026-09-22 updated: step 6 of the frame — guppi glossary after sprint, before the brief; rule-glossary the tenth child (case 306.4) · [[decision-case-306.4]]
 - 2026-09-22 status: built → draft · cascade
+- 2026-09-22 updated: the parent is rule-session, the MOC of the five phases (case 316) · [[decision-case-316]]

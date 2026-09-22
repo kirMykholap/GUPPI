@@ -3,6 +3,7 @@ type: rule
 kind: MOC
 purpose: Prevents work being planned against stale or contradictory vault state
 status: built
+parent: "[[rule-session]]"
 children: ["[[rule-ask]]", "[[rule-prespec-hook]]", "[[rule-prespec]]", "[[rule-spec-capture]]", "[[rule-case-protocol]]"]
 estimates: ["[[estimate-plan-mode-verified]]", "[[estimate-plan-mode-names-its-estimates]]"]
 origin: raw/2026-09-09/ledger.md#case-19
@@ -40,3 +41,4 @@ reading of that Render (case 187).
 - 2026-09-20 ref `rule-pretask` → `rule-prespec` · [[decision-case-261]]
 - 2026-09-20 ref `rule-pretask-hook` → `rule-prespec-hook` · [[decision-case-261]]
 - 2026-09-20 updated: rule-case-protocol joins the children, last (case 273.1) · [[decision-case-273.1]]
+- 2026-09-22 updated: the parent is rule-session, the MOC of the five phases (case 316) · [[decision-case-316]]

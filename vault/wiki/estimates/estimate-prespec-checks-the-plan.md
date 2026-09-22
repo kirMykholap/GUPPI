@@ -5,7 +5,7 @@ status: passed
 target: "[[rule-prespec]]"
 purpose: The check of the plan against the session's lines, frontier, tasks, governed paths and the form of an Estimate item
 method: pytest tests/test_prespec.py, the tests of --check
-checked: 2026-09-21
+checked: 2026-09-22
 origin: raw/2026-09-16/1955/ledger.md#case-203.1
 sprint: migration
 created: 2026-09-16
@@ -29,10 +29,10 @@ Then:
 One finding per line on stdout, exit 1 on any, 0 and silent when clean; without a `hi` in the session's window, exit 0 and one line on stderr.
 **＋** The stamp is `--session`, else `CLAUDE_SESSION_ID`; with neither, one line on stderr `prespec: no session id; pass --session <stamp> from the hi: line`, exit 2, nothing checked; the last `session-start` of today's log is not read (case 213.1).
 **＋** The session's window is found as the ledger hook finds it — by the stamped `hi`, over the logs back to the date of its `session-start` — so the `hi` of yesterday's session is found after midnight (case 213.1).
-**＋** Lines: a decision line of the window with no item of its kind under its own Case heading — unless a `{supersedes:case N}` of the window names its Case, whose heading still in the plan is a finding of its own (299.2); an item with no line; a `defer` line matches a `defer` item, a Rule-class file line an `update` with that `file` or `slug`; an item under another sub-case's heading is a finding.
-**＋** The frontier `raw/<hi date>/<hi HHMM>/frontier.md`: a missing file, an open line, a `case N` whose heading the plan lacks, a `defer case N` with no `defer` item under Case N.
+**＋** Lines: a decision line of the window with no item of its kind under its own Case heading — unless a `{supersedes:case N}` of the window names its Case, whose heading still in the plan is a finding of its own (299.2); an item with no line; a `defer` line matches a `defer` item; an `update` item carrying `file` is a finding of its own (case 320); an item under another sub-case's heading is a finding.
+**＋** The frontier `raw/<hi date>/<hi HHMM>/frontier.md`: a missing file, an open line, a `case N` whose heading the plan lacks, a `defer case N` with no `defer` item under Case N; `[-] … · sprint` is clean, `[x] … · sprint` a finding (case 310.6).
 **＋** Tasks: a Case with a line of a kind other than `defer` and no `tasks` block; an Estimate a `then` block creates or sets `pending` with no task line naming its slug.
-**＋** Governed: an `update` item with `file` on a path a live Rule page governs.
+**＋** Governed: an `update` item carrying `file` — the file route is gone (case 320).
 **＋** Form: a Case whose `then` block holds two or more Estimate items without a written `sections: Criterion` — one promise per Case, split it; an `update` of an Estimate whose page does not exist; a `create` of an Estimate whose `ref` names neither a live rule or entity nor the slug of a `create` item of category `rules` or `entities` in the same plan (case 221).
 **＋** Grammar: every record line of the window — the session's ledger whole plus the date-level ledgers from the `hi` time on — through `materialize.parse_line`; one that does not parse is a finding with its file and line number.
 **＋** A `then` block that does not parse: the error as a finding of its Case.
@@ -40,7 +40,7 @@ One finding per line on stdout, exit 1 on any, 0 and silent when clean; without 
 
 ## Result
 
-2026-09-21, uv run pytest tests/test_prespec.py 68 green — the Lines check exempts a Case a supersedes of the window names and reports its heading still in the plan; the 64 earlier tests of --check unchanged
+2026-09-22, uv run pytest tests/test_prespec.py: 73 passed — the closer sprint on [-], the finding on [x], the sprint line bound to its update, a file item a finding
 
 ## History
 
@@ -57,3 +57,7 @@ One finding per line on stdout, exit 1 on any, 0 and silent when clean; without 
 - 2026-09-20 status: passed → passed · raw/2026-09-20/0740/ledger.md#L16
 - 2026-09-22 updated: one line of the Criterion — the lines of a Case superseded by a line of the window need no item, its heading in the plan is a finding (case 299.5) · [[decision-case-299.5]]
 - 2026-09-22 status: pending → passed · raw/2026-09-21/1853/ledger.md#L28
+- 2026-09-22 updated: the closer `· sprint` (case 310.6) · [[decision-case-310.6]]
+- 2026-09-22 updated: the file route is a finding, not a route (case 320) · [[decision-case-320]]
+- 2026-09-22 updated: any file item is a finding (case 323) · [[decision-case-323]]
+- 2026-09-22 status: pending → passed · raw/2026-09-22/1121/ledger.md#L87

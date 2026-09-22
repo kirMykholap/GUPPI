@@ -3,6 +3,7 @@ type: rule
 kind: MOC
 purpose: Prevents a working session from starting against unknown state
 status: built
+parent: "[[rule-session]]"
 children: ["[[rule-skill-hi]]", "[[rule-event-log]]", "[[rule-ledger-write]]", "[[rule-compact-recall]]"]
 estimates: ["[[estimate-session-start-context]]"]
 origin: raw/2026-09-09/ledger.md#case-12
@@ -67,3 +68,4 @@ items outright.
 - 2026-09-21 child rule-compact-recall added · [[decision-case-287]]
 - 2026-09-21 updated: rule-compact-recall is the fourth child — the hook that brings the session's load back after a compaction (case 287) · [[decision-case-287]]
 - 2026-09-21 updated: How it works counts four children — the fourth fires after a compaction only (case 290.2) · [[decision-case-290.2]]
+- 2026-09-22 updated: the parent is rule-session, the MOC of the five phases (case 316) · [[decision-case-316]]

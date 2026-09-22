@@ -67,7 +67,7 @@ new_tags:
 - [x] create `rule-page-schemas` (parent `rule-harness`, six children)
 - [x] create `estimate-page-schemas-one-file-per-rule` (ref `rule-page-schemas`)
 - [x] update `rule-harness`: `children` with `rule-page-schemas` after `rule-lint`
-- [ ] read `estimate-page-schemas-one-file-per-rule`: by hand after the librarian's first render — `make lint`, no `path` or `schema-description` finding on a `<category>/schema`, `render --check` exit 0
+- [x] read `estimate-page-schemas-one-file-per-rule`: by hand after the librarian's first render — `make lint`, no `path` or `schema-description` finding on a `<category>/schema`, `render --check` exit 0
 ```
 
 ### Case 304.4 — `rule-estimates-schema` and `estimate-estimates-schema-checked`
@@ -1005,7 +1005,7 @@ create:
 - [x] `tests/test_schemas.py`: one parametrized case per category on the live `vault/wiki/<category>/schema.yaml` — a page in the shape has no `schema` finding; a required field missing, a value outside the list, a conditional not met, a required section missing — one finding each
 - [x] `git rm vault/wiki/rules/schema.md`
 - [x] `uv run guppi render`: `vault/wiki/rules/schema.yaml`
-- [ ] read `estimate-rules-schema-checked`: `uv run pytest tests/test_schemas.py -k rules`, then `make lint` in the librarian's run
+- [x] read `estimate-rules-schema-checked`: `uv run pytest tests/test_schemas.py -k rules`, then `make lint` in the librarian's run
 ```
 
 ### Case 305.3 — `generate` writes `rules` from `applies_to`
@@ -1304,7 +1304,7 @@ create:
 - [x] create `estimate-entities-schema-checked` (ref `rule-entities-schema`)
 - [x] `git rm vault/wiki/entities/schema.md`
 - [x] `uv run guppi render`: `vault/wiki/entities/schema.yaml`
-- [ ] read `estimate-entities-schema-checked`: `uv run pytest tests/test_schemas.py -k entities`, then `make lint` in the librarian's run
+- [x] read `estimate-entities-schema-checked`: `uv run pytest tests/test_schemas.py -k entities`, then `make lint` in the librarian's run
 ```
 
 ### Case 306.2 — `entity-guppi`, the root
@@ -1441,7 +1441,7 @@ create:
 ```tasks
 - [x] create `entity-glossary` (Leaf, parent `entity-guppi`), the 49 rows above
 - [x] create `estimate-glossary-terms-defined` (ref `entity-glossary`)
-- [ ] read `estimate-glossary-terms-defined`: by hand after the librarian's run; `make lint` — no `ref` finding on `entity-glossary`
+- [x] read `estimate-glossary-terms-defined`: by hand after the librarian's run; `make lint` — no `ref` finding on `entity-glossary`
 ```
 
 ### Case 306.4 — `rule-glossary` and `estimate-glossary-renders-the-terms`
@@ -1501,7 +1501,7 @@ update:
 - [x] `tests/test_glossary.py`: the render, the grouping, a `where` with no page, a row of another shape, a term twice
 - [x] `uv run guppi render`: `.claude/agents/librarian-guppi.md`
 - [x] read `estimate-glossary-renders-the-terms`: `uv run pytest tests/test_glossary.py`; live — the librarian's run of this session, `glossary.md` read
-- [ ] read `estimate-documentation-completes`: live — the librarian's run of this session, step 6 in `event_log.md`
+- [x] read `estimate-documentation-completes`: live — the librarian's run of this session, step 6 in `event_log.md`
 ```
 
 ### Case 306.5 — `estimate-glossary-checks-the-file`
@@ -1588,7 +1588,7 @@ update:
 - [x] `uv run guppi render`: `vault/wiki/case-schema.md`
 - [x] `uv run guppi glossary`: `vault/wiki/glossary.md`
 - [x] read `estimate-glossary-ticks-the-spec`: `uv run pytest tests/test_glossary.py`; live — this Spec after the librarian's run
-- [ ] read `estimate-case-protocol-loaded`: the `/hi` of the next session, by hand
+- [x] read `estimate-case-protocol-loaded`: the `/hi` of the next session, by hand
 ```
 
 ### Case 306.7 — the Definition of done of Slice 3f: the glossary from `entity-glossary`

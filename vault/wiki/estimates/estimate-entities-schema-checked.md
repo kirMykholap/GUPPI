@@ -1,10 +1,11 @@
 ---
 type: estimate
 kind: QA
-status: pending
+status: passed
 target: "[[rule-entities-schema]]"
 purpose: An Entity page in the shape of the rendered schema has no schema finding and a page outside it has one per defect
 method: pytest tests/test_schemas.py -k entities on the live vault/wiki/entities/schema.yaml — a page in the shape, then one defect at a time; the live reading make lint, no schema finding on wiki/entities/
+checked: 2026-09-22
 origin: raw/2026-09-22/0014/ledger.md#case-306.1
 sprint: migration
 created: 2026-09-22
@@ -28,6 +29,11 @@ The file equals the Render. Lint reads from it: required `type, kind, purpose, s
 **＋** The prose of the former `schema.md` stands in the file as data: `description` — the introduction, the Slug, `built`, `How it works` and Constraints notes, verbatim, one sentence on the edge after Constraints and one on the glossary page; `fields` and `sections` — the rows of the tables whole, `rules` and `## Terms` among them; `examples` — the two example pages.
 **－** `vault/wiki/entities/schema.md` does not exist.
 
+## Result
+
+2026-09-22, uv run pytest tests/test_schemas.py -k entities: 5 passed, 25 deselected; make lint — no finding on entities/schema
+
 ## History
 
 - 2026-09-22 created · [[decision-case-306.1]]
+- 2026-09-22 status: pending → passed · raw/2026-09-22/1121/ledger.md#L81

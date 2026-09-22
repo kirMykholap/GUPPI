@@ -24,7 +24,7 @@ When:
 
 Then:
 Every live page is checked against the `schema.yaml` of its category; one line per finding, `<category>/<slug>: <class>: <what>`; exit 1 on any finding, 0 and no output on a clean vault; nothing is written.
-**＋** `schema`: a missing required field or section, a value outside the list, a conditional not met; `## When` is never required on a Decision page; `schema-description`: a field or section the lists of `schema.yaml` name without a description under `fields` or `sections`, or a description of a name no list carries (case 304.8).
+**＋** `schema`: a missing required field or section, a value outside the list, a conditional not met; `## When` is never required on a Decision page; `layout`: a page whose `type` does not match its folder, a page whose slug is not its filename, a `.md` at the root of `wiki/` that no live rule page names (case 315); `schema-description`: a field or section the lists of `schema.yaml` name without a description under `fields` or `sections`, or a description of a name no list carries (case 304.8).
 **＋** `ref`: a slug in `parent`, `children`, `estimates`, `target`, `insight`, `addressed_by`, `deferred_by`, `applies_to`, `rules` or in a History wikilink that no live or archived page carries; a `[[…]]` in a body may name a hub file under `wiki/` by stem or path; a `[[slug]]` under a Decision page's `## Criterion` that is no Estimate; a `### case N` block of an Estimate with no decision page; an `applies_to` that names no Entity, and an Entity's `rules` that differs from the live rules whose `applies_to` names it (case 305.5).
 **＋** `origin`: both forms resolve in `raw/` or in `vault/archive/`; in neither, or in both, a finding.
 **＋** `path`: a file of `implementation_ref` or `governs` that does not exist.
@@ -40,7 +40,7 @@ Every live page is checked against the `schema.yaml` of its category; one line p
 
 ## Result
 
-2026-09-22, uv run pytest tests/test_lint.py, 58 passed: schema-description on a listed name without a description and on a described name no list carries, both for fields and sections; ref on an applies_to that names no page or a page that is not an entity, and on a rules that differs from the applies_to of the live rules, +extra -missing; the other classes as before; the live reading, make lint in the librarian's run, not taken
+2026-09-22, uv run pytest tests/test_lint.py: 62 passed; make lint — 81 findings, the layout class among them
 
 ## History
 
@@ -72,3 +72,5 @@ Every live page is checked against the `schema.yaml` of its category; one line p
 - 2026-09-22 updated: schema-description for schema-prose — the descriptions live in the yaml, schema.md is gone (case 304.8) · [[decision-case-304.8]]
 - 2026-09-22 updated: applies_to and rules under ref — the slugs and the agreement of the pair (case 305.5) · [[decision-case-305.5]]
 - 2026-09-22 status: pending → passed · raw/2026-09-22/0014/ledger.md#L58
+- 2026-09-22 updated: the layout class of lint (case 323) · [[decision-case-323]]
+- 2026-09-22 status: pending → passed · raw/2026-09-22/1121/ledger.md#L93

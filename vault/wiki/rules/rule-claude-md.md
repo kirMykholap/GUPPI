@@ -27,7 +27,7 @@ rendered section, and a ratified sentence went into the file instead of the page
 <!-- rule-claude-md -->
 # GUPPI
 
-A Claude Code harness governed by ratified decisions, and the Obsidian vault it compiles into. The vault is `vault/`; its map is `vault/wiki/index.md`; its terms are `vault/wiki/glossary.md`. A working session opens with `/hi`.
+A Claude Code harness governed by ratified decisions, and the Obsidian vault it compiles into. The vault is `vault/`; its terms are `vault/wiki/glossary.md`. A working session opens with `/hi`.
 
 <!-- rule-language -->
 
@@ -61,3 +61,4 @@ Rendered in full into `CLAUDE.md`; each child — `rule-language`, `rule-agent-w
 - 2026-09-21 updated: the Render is the title, the description of the project and the two markers — the import, What is loaded here, the index paragraph, Migration mode and Commands leave; the one rule to the schema (case 288.3) · [[decision-case-288.3]]
 - 2026-09-21 status: built → draft · cascade
 - 2026-09-21 status: draft → built · cascade
+- 2026-09-22 updated: CLAUDE.md names the glossary alone; the map is gone (case 318) · [[decision-case-318]]

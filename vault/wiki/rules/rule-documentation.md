@@ -2,11 +2,11 @@
 type: rule
 kind: MOC
 purpose: Prevents a ratified decision from ending the session without becoming a vault page
-status: built
+status: draft
 enforcement: render
 governs: .claude/agents/librarian-guppi.md
 render_mode: full
-children: ["[[rule-materialize]]", "[[rule-index-check]]", "[[rule-synthesis]]", "[[rule-page-generation]]", "[[rule-cleanup]]", "[[rule-raw-archive]]", "[[rule-brief]]", "[[rule-close]]", "[[rule-sprint]]"]
+children: ["[[rule-materialize]]", "[[rule-index-check]]", "[[rule-synthesis]]", "[[rule-page-generation]]", "[[rule-cleanup]]", "[[rule-raw-archive]]", "[[rule-brief]]", "[[rule-close]]", "[[rule-sprint]]", "[[rule-glossary]]"]
 estimates: ["[[estimate-documentation-completes]]"]
 origin: raw/2026-09-10/ledger.md#case-36
 sprint: migration
@@ -78,8 +78,9 @@ Do the steps in this order.
    files are written from them here. Every line on its stderr is a flag; a file it
    could not write is left to the next session start.
 
-5. Run `uv run guppi sprint`. It writes `vault/wiki/sprint.md` from the sprint page
-   by the statuses of this run. Every line on its stderr is a flag.
+5. Run `uv run guppi sprint`. It writes `vault/wiki/sprint.md` from the sprint page by the statuses of this run. Every line on its stderr is a flag.
+
+6. Run `uv run guppi glossary`. It writes `vault/wiki/glossary.md` from the `## Terms` of `entity-glossary`. Every line on its stderr is a flag.
 
 
 <!-- rule-brief -->
@@ -132,3 +133,6 @@ project's hooks; the hook is part of this Render and is ratified with it.
 - 2026-09-20 status: built → draft · cascade
 - 2026-09-20 updated: the ban on spec.md excepts its unticked lines, which Readings due and Next session take (case 271) · [[decision-case-271]]
 - 2026-09-20 status: draft → built · cascade
+- 2026-09-22 child rule-glossary added · [[decision-case-306.4]]
+- 2026-09-22 updated: step 6 of the frame — guppi glossary after sprint, before the brief; rule-glossary the tenth child (case 306.4) · [[decision-case-306.4]]
+- 2026-09-22 status: built → draft · cascade

@@ -2520,3 +2520,105 @@ instruction. The global feed; a page's own `## History` is the per-page view.
 - 2026-09-22 lessons/lesson-estimate-purpose-update-replaced-the-signed-criterion archived · cleanup
 - 2026-09-22 lessons/lesson-estimate-update-must-carry-its-criterion-whole archived · cleanup
 - 2026-09-22 decisions/decision-case-298 archived · cleanup
+- 2026-09-22 estimates/estimate-case-protocol-loaded status: pending → passed · raw/2026-09-22/0014/ledger.md#L1 · generate
+- 2026-09-22 estimates/estimate-compact-recall-reloads status: pending → passed · raw/2026-09-22/0014/ledger.md#L2 · generate
+- 2026-09-22 estimates/estimate-generate-rewords status: pending → passed · raw/2026-09-22/0014/ledger.md#L3 · generate
+- 2026-09-22 decisions/decision-case-304.1 created · raw/2026-09-22/0014/ledger.md#case-304.1 · generate
+- 2026-09-22 rules/rule-page-schemas created · [[decision-case-304.1]] · generate
+- 2026-09-22 rules/rule-harness child rule-page-schemas added · [[decision-case-304.1]] · generate
+- 2026-09-22 estimates/estimate-page-schemas-one-file-per-rule created · [[decision-case-304.1]] · generate
+- 2026-09-22 rules/rule-harness updated: rule-page-schemas, the MOC of the six category schemas, after rule-lint (case 304.1) · [[decision-case-304.1]] · generate
+- 2026-09-22 decisions/decision-case-304.2 created · raw/2026-09-22/0014/ledger.md#case-304.2 · generate
+- 2026-09-22 decisions/decision-case-304.3 created · raw/2026-09-22/0014/ledger.md#case-304.3 · generate
+- 2026-09-22 decisions/decision-case-304.4 created · raw/2026-09-22/0014/ledger.md#case-304.4 · generate
+- 2026-09-22 rules/rule-estimates-schema created · [[decision-case-304.4]] · generate
+- 2026-09-22 estimates/estimate-estimates-schema-checked created · [[decision-case-304.4]] · generate
+- 2026-09-22 estimates/estimate-estimates-schema-checked status: pending → passed · raw/2026-09-22/0014/ledger.md#L54 · generate
+- 2026-09-22 decisions/decision-case-304.5 created · raw/2026-09-22/0014/ledger.md#case-304.5 · generate
+- 2026-09-22 rules/rule-lessons-schema created · [[decision-case-304.5]] · generate
+- 2026-09-22 estimates/estimate-lessons-schema-checked created · [[decision-case-304.5]] · generate
+- 2026-09-22 estimates/estimate-lessons-schema-checked status: pending → passed · raw/2026-09-22/0014/ledger.md#L55 · generate
+- 2026-09-22 decisions/decision-case-304.6 created · raw/2026-09-22/0014/ledger.md#case-304.6 · generate
+- 2026-09-22 rules/rule-insights-schema created · [[decision-case-304.6]] · generate
+- 2026-09-22 estimates/estimate-insights-schema-checked created · [[decision-case-304.6]] · generate
+- 2026-09-22 estimates/estimate-insights-schema-checked status: pending → passed · raw/2026-09-22/0014/ledger.md#L56 · generate
+- 2026-09-22 decisions/decision-case-304.7 created · raw/2026-09-22/0014/ledger.md#case-304.7 · generate
+- 2026-09-22 rules/rule-decisions-schema created · [[decision-case-304.7]] · generate
+- 2026-09-22 estimates/estimate-decisions-schema-checked created · [[decision-case-304.7]] · generate
+- 2026-09-22 estimates/estimate-decisions-schema-checked status: pending → passed · raw/2026-09-22/0014/ledger.md#L57 · generate
+- 2026-09-22 decisions/decision-case-304.8 created · raw/2026-09-22/0014/ledger.md#case-304.8 · generate
+- 2026-09-22 estimates/estimate-lint-catches updated: schema-description for schema-prose — the descriptions live in the yaml, schema.md is gone (case 304.8) · [[decision-case-304.8]] · generate
+- 2026-09-22 decisions/decision-case-305.1 created · raw/2026-09-22/0014/ledger.md#case-305.1 · generate
+- 2026-09-22 decisions/decision-case-304.2 superseded by decision-case-305.1 · [[decision-case-305.1]] · generate
+- 2026-09-22 rules/rule-rules-schema created · [[decision-case-305.1]] · generate
+- 2026-09-22 estimates/estimate-rules-schema-checked created · [[decision-case-305.1]] · generate
+- 2026-09-22 decisions/decision-case-305.2 created · raw/2026-09-22/0014/ledger.md#case-305.2 · generate
+- 2026-09-22 decisions/decision-case-304.3 superseded by decision-case-305.2 · [[decision-case-305.2]] · generate
+- 2026-09-22 decisions/decision-case-305.3 created · raw/2026-09-22/0014/ledger.md#case-305.3 · generate
+- 2026-09-22 estimates/estimate-generate-writes-rules-from-applies-to created · [[decision-case-305.3]] · generate
+- 2026-09-22 estimates/estimate-generate-writes-rules-from-applies-to status: pending → passed · raw/2026-09-22/0014/ledger.md#L59 · generate
+- 2026-09-22 rules/rule-page-generation estimate estimate-generate-writes-rules-from-applies-to added · [[decision-case-305.3]] · generate
+- 2026-09-22 rules/rule-page-generation updated: the cascade writes rules on an Entity from the applies_to of the live rules (case 305.3) · [[decision-case-305.3]] · generate
+- 2026-09-22 decisions/decision-case-305.4 created · raw/2026-09-22/0014/ledger.md#case-305.4 · generate
+- 2026-09-22 rules/rule-sprint updated: the first edge Rule → Entity — rule-sprint is the guard of entity-sprint (cases 240.2, 305.4) · [[decision-case-305.4]] · generate
+- 2026-09-22 decisions/decision-case-305.5 created · raw/2026-09-22/0014/ledger.md#case-305.5 · generate
+- 2026-09-22 estimates/estimate-lint-catches updated: applies_to and rules under ref — the slugs and the agreement of the pair (case 305.5) · [[decision-case-305.5]] · generate
+- 2026-09-22 decisions/decision-case-306.1 created · raw/2026-09-22/0014/ledger.md#case-306.1 · generate
+- 2026-09-22 decisions/decision-case-305.2 superseded by decision-case-306.1 · [[decision-case-306.1]] · generate
+- 2026-09-22 rules/rule-entities-schema created · [[decision-case-306.1]] · generate
+- 2026-09-22 estimates/estimate-entities-schema-checked created · [[decision-case-306.1]] · generate
+- 2026-09-22 decisions/decision-case-306.2 created · raw/2026-09-22/0014/ledger.md#case-306.2 · generate
+- 2026-09-22 entities/entity-guppi created · [[decision-case-306.2]] · generate
+- 2026-09-22 estimates/estimate-guppi-tests-green created · [[decision-case-306.2]] · generate
+- 2026-09-22 estimates/estimate-guppi-tests-green status: pending → passed · raw/2026-09-22/0014/ledger.md#L64 · generate
+- 2026-09-22 entities/entity-sprint updated: the sprint as a kind is a part of entity-guppi (case 306.2) · [[decision-case-306.2]] · generate
+- 2026-09-22 rules/rule-harness updated: rule-harness is the guard of entity-guppi — the edge Rule → Entity (case 306.2) · [[decision-case-306.2]] · generate
+- 2026-09-22 decisions/decision-case-306.3 created · raw/2026-09-22/0014/ledger.md#case-306.3 · generate
+- 2026-09-22 entities/entity-glossary created · [[decision-case-306.3]] · generate
+- 2026-09-22 estimates/estimate-glossary-terms-defined created · [[decision-case-306.3]] · generate
+- 2026-09-22 decisions/decision-case-306.4 created · raw/2026-09-22/0014/ledger.md#case-306.4 · generate
+- 2026-09-22 rules/rule-glossary created · [[decision-case-306.4]] · generate
+- 2026-09-22 rules/rule-documentation child rule-glossary added · [[decision-case-306.4]] · generate
+- 2026-09-22 estimates/estimate-glossary-renders-the-terms created · [[decision-case-306.4]] · generate
+- 2026-09-22 estimates/estimate-glossary-renders-the-terms status: pending → passed · raw/2026-09-22/0014/ledger.md#L61 · generate
+- 2026-09-22 rules/rule-documentation updated: step 6 of the frame — guppi glossary after sprint, before the brief; rule-glossary the tenth child (case 306.4) · [[decision-case-306.4]] · generate
+- 2026-09-22 estimates/estimate-documentation-completes updated: the frame's step 6, guppi glossary (case 306.4) · [[decision-case-306.4]] · generate
+- 2026-09-22 decisions/decision-case-306.5 created · raw/2026-09-22/0014/ledger.md#case-306.5 · generate
+- 2026-09-22 estimates/estimate-glossary-checks-the-file created · [[decision-case-306.5]] · generate
+- 2026-09-22 estimates/estimate-glossary-checks-the-file status: pending → passed · raw/2026-09-22/0014/ledger.md#L62 · generate
+- 2026-09-22 rules/rule-lint updated: make lint runs glossary --check too (case 306.5) · [[decision-case-306.5]] · generate
+- 2026-09-22 decisions/decision-case-306.6 created · raw/2026-09-22/0014/ledger.md#case-306.6 · generate
+- 2026-09-22 estimates/estimate-glossary-ticks-the-spec created · [[decision-case-306.6]] · generate
+- 2026-09-22 estimates/estimate-glossary-ticks-the-spec status: pending → passed · raw/2026-09-22/0014/ledger.md#L63 · generate
+- 2026-09-22 rules/rule-case-protocol updated: glossary is the fourth ticker of the Spec — the glossary lines (case 306.6) · [[decision-case-306.6]] · generate
+- 2026-09-22 estimates/estimate-case-protocol-loaded updated: one line of the Criterion — glossary the fourth ticker (case 306.6) · [[decision-case-306.6]] · generate
+- 2026-09-22 decisions/decision-case-306.7 created · raw/2026-09-22/0014/ledger.md#case-306.7 · generate
+- 2026-09-22 estimates/estimate-sprint-migration-rule-class-files-dissolved updated: the glossary is rendered from entity-glossary, not from a terms field (case 306.7) · [[decision-case-306.7]] · generate
+- 2026-09-22 lessons/lesson-plan-mode-render-ratified-before-the-themes-that-change-it created · raw/2026-09-22/0014/ledger.md#L46 · generate
+- 2026-09-22 decisions/decision-case-307 created · raw/2026-09-22/0014/ledger.md#case-307 · generate
+- 2026-09-22 rules/rule-work-mode deferred · [[decision-case-307]] · generate
+- 2026-09-22 rules/rule-subagent-guppi deferred · [[decision-case-307]] · generate
+- 2026-09-22 lessons/lesson-frontier-has-no-closer-for-a-milestone-item-left-on-the-sprint-page created · raw/2026-09-22/0014/ledger.md#L49 · generate
+- 2026-09-22 estimates/estimate-generate-cascades updated: one line of the Criterion — the cascade recounts rules (case 305.3; pre-spec) · [[decision-case-305.3]] · generate
+- 2026-09-22 estimates/estimate-harness-pipeline updated: two lines of the Criterion — glossary --check the third step of make lint (case 306.5; pre-spec) · [[decision-case-306.5]] · generate
+- 2026-09-22 estimates/estimate-lint-catches status: pending → passed · raw/2026-09-22/0014/ledger.md#L58 · generate
+- 2026-09-22 estimates/estimate-generate-cascades status: pending → passed · raw/2026-09-22/0014/ledger.md#L60 · generate
+- 2026-09-22 entities/entity-guppi status: draft → built · cascade · generate
+- 2026-09-22 rules/rule-compact-recall status: draft → built · cascade · generate
+- 2026-09-22 rules/rule-decisions-schema status: draft → built · cascade · generate
+- 2026-09-22 rules/rule-documentation status: built → draft · cascade · generate
+- 2026-09-22 rules/rule-estimates-schema status: draft → built · cascade · generate
+- 2026-09-22 rules/rule-glossary status: draft → built · cascade · generate
+- 2026-09-22 rules/rule-harness status: built → draft · cascade · generate
+- 2026-09-22 rules/rule-insights-schema status: draft → built · cascade · generate
+- 2026-09-22 rules/rule-lessons-schema status: draft → built · cascade · generate
+- 2026-09-22 rules/rule-page-generation status: draft → built · cascade · generate
+- 2026-09-22 entities/entity-guppi rules: [rule-harness] · cascade · generate
+- 2026-09-22 entities/entity-sprint rules: [rule-sprint] · cascade · generate
+- 2026-09-22 decisions/decision-case-304.2 archived · superseded · generate
+- 2026-09-22 decisions/decision-case-304.3 archived · superseded · generate
+- 2026-09-22 decisions/decision-case-305.2 archived · superseded · generate
+- 2026-09-22 tags.md registers schema · generate
+- 2026-09-22 decisions/decision-case-304.2 archived · cleanup
+- 2026-09-22 decisions/decision-case-304.3 archived · cleanup
+- 2026-09-22 decisions/decision-case-305.2 archived · cleanup

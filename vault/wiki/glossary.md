@@ -1,97 +1,97 @@
 # Glossary
 
-One line per term and where it is defined: `§N` a section of [[index]], a slug the Rule
-page (`draft` while in `docs/migration/`), `here` this row. Rule-class; loaded by `/hi` with the Case schema.
+Written by `guppi glossary` from the `## Terms` of `entity-glossary`; a term changes by an `update` of that page.
 
-## Core principle
-
-| term | meaning | where |
-|---|---|---|
-| Ratification | Human sign-off on a Decision; nothing in vault or code changes without one | §0 |
-| Contract vs implementation | A Decision fixes what "done" means, never how; a contract change is a new Case | §0 |
-| Atomicity Rule | A unit splits when its closing judgment breaks into parts that fail and are fixed apart | §6 |
-
-## Structure
+## [[rule-plan-mode]]
 
 | term | meaning | where |
 |---|---|---|
-| Vault | The folder of Markdown pages, one per category below | §1 |
-| MOC | A thing whose parts the person named as things that are built; `children` lists them; its Estimates measure what no child owns; a part comes from the person's words through a Case — the agent proposes a cut, never makes it (case 240.1) | §6, entities/schema.md |
-| Leaf | A thing whose parts the person has not named; holds `estimates` — empty is legal, the person said nothing yet — and a code pointer; its inner workings are `## How it works`, not pages (case 240.1) | §6, entities/schema.md |
-| C4 model | Not adopted; one question kept for a new top-level Entity, deployment unit or feature, answered as a criterion in `estimates` | here |
+| Ratification | Human sign-off on a Decision; nothing in vault or code changes without one | [[rule-case-protocol]] |
+| Contract vs implementation | A Decision fixes what "done" means, never how; a contract change is a new Case | [[rule-case-protocol]] |
+| `ref`, `slug`, `supersedes` | A pointer to an existing page (absent: query the vault before a `create`; present: `update`); the page id = filename; the earlier case a ledger line corrects, written `{supersedes:case N}`, which marks every entry of that Case superseded and clears its `deferred_by` (case 200.2) | [[rule-case-protocol]] |
+| Decision | The atomic unit of work: `create`, `update`, `delete`, `defer`; Read is never one | [[rule-case-protocol]] |
+| Types | `create` a page (an Estimate is its own `create`, with `ref` on its target, case 193); `update` fields, `result`/`status` included, or `rename` — the page moves to the new slug and every link follows (case 258.1); `delete` sets `status: deleted` after an impact analysis, the librarian archives; `defer` postpones, a placeholder page when no `ref` | [[rule-case-protocol]] |
+| Case | The unit of dialogue, not a page: `context`, `problem`, `recommend`, `given`, `when`, `then`, `tasks`, `ratification` (case 163); `given` + `when` + `then` is the Estimate criterion, the Estimate named by slug (case 193); the page content is a `then` block in the Spec; splits into dotted sub-cases the parent's sign-off never covers | [[rule-case-protocol]] |
+| Main agent, Subagent | Runs Cases and writes ledger lines, until the Retro commit; executes plan tasks, never decides, a fork returns | [[rule-case-protocol]] |
+| Plan Mode | Frontier items discussed as Cases until each is ratified or deferred | [[rule-plan-mode]] |
+| the vault query | The vault query before a `create` without `ref`, `draft` pages included (case 277.3) | [[rule-ask]] |
+| Index line, `ask-guppi` | The Grep of a category's frontmatter — `purpose`, `root_cause` or `pattern`, and `deferred_by` — one line per live page, never compared across categories; no index file (case 147.8); the search agent over these lines, one entry point; Estimates through the target, Decisions through `deferred_by`; the archive answered by slug alone — `free`, `live` or `archived at <path>` — never by meaning (case 105.1) | [[rule-ask]] |
+| `/pre-spec` | The check of the ratified set against each other and the vault before the Spec is approved (case 261) | [[rule-prespec]] |
+| Spec | The ratified Cases as one document, approved as Claude Code's plan, copied to `raw/<date>/<hi HHMM>/spec.md`, the session's folder (case 73.1) | [[rule-spec-capture]] |
 
-## Page categories
-
-| term | meaning | where |
-|---|---|---|
-| Entity | A thing the developer builds, a noun the person named as part of what is built; the check before a `create`: who makes it — the developer → an Entity; the product's user or the running product → data, outside the vault; MOC or Leaf; never a page for a "why", that is a Decision (case 240.1) | entities/schema.md |
-| Rule | A standing condition one case can break, with a guard that refuses that case when it occurs; the check: can one case refute it, and is there something to refuse it; a Leaf a condition on each case, a MOC a sequence whose Estimate promises the order; of the harness or of an Entity; force by `hook`, `check` or `render`; in the harness a thing is a Rule when its code is a guard, an Entity when it is measured and its guard is a separate Rule (case 240.2) | rules/schema.md |
-| Estimate | The evidence: on a Rule a test that the guard works, on an Entity a reading of the whole no single case can break — the target's prefix says which; `QA` the answer is known, `Research` the reading finds it, on an Entity only, `failed` when the finding does not serve the purpose (case 240.3); one promise, one way to check it, the last result with its date (case 182); its own Leaf page under an Entity or Rule only, an explicit `create` with its slug in the Case, `estimate-<target minus its prefix>-<promise>`; fields `purpose`, `method`, `checked`; `QA` checks a known criterion, `Research` finds out; its Criterion is the `given`, `when` and `then` of one Case, replaced whole by the `update` that names it, which alone sets `pending`; no index, reached through the target's `estimates` (case 193) | estimates/schema.md, §7, §11 |
-| Lesson | Something learned; a fact the hook writes, no Case, no Estimate; slug = area + cause; a `knowledge` claim is checked by the Rule that leans on it | lessons/schema.md, §8 |
-| Insight | Over Lessons sharing a root cause, made by the librarian on the second; surfaces in the brief's Deferred list and is the target of the `update` that actions or rejects it, or of a `defer`; never created or deleted by a Decision; `actioned` reopens (case 124) | insights/schema.md, §8 |
-| Issue | Tracked on GitHub; never a page, a `ref` only | here |
-
-## Fields
+## [[rule-harness]]
 
 | term | meaning | where |
 |---|---|---|
-| Page fields | `type` the kind; `purpose` one line the index is built from; `children` MOC only, ordered on a Rule; `estimates` cross-cutting on a MOC; `code_ref` (Entity Leaf), `implementation_ref` (`hook`, `check` rules) | schema.md |
-| `deferred_by` | On an Entity, Rule or Insight, the Decision pages whose `defer` targets it; set by `generate`, cleared by a `supersedes`, shown in the index line, followed by `ask-guppi` | §5, §11, rules/schema.md |
-| `origin` | The Decision that created or deleted the page, as `raw/<date>/<HHMM>/ledger.md#case-N` — the date form on older pages; kept when archived, never rewritten; `#case-N` is a grep target lint checks in `raw/` or in the archive (case 103.6) | §4 |
-| Category fields | Estimate: `purpose`, `method`, `checked`, the sections `Criterion` and `Result` (case 193). Lesson: `trigger`, `root_cause`, `source` (in a ledger line, the external origin). Insight: `severity` (children not archived), `addressed_by` | schema.md |
-| `ref`, `slug`, `supersedes` | A pointer to an existing page (absent: query the vault before a `create`; present: `update`); the page id = filename; the earlier case a ledger line corrects, written `{supersedes:case N}`, which marks every entry of that Case superseded and clears its `deferred_by` (case 200.2) | §3, §4, §5 |
+| Vault | The folder of Markdown pages, one per category | [[rule-page-schemas]] |
+| Page fields | `type` the kind; `purpose` one line the index is built from; `children` MOC only, ordered on a Rule; `estimates` cross-cutting on a MOC; `code_ref` (Entity Leaf), `implementation_ref` (`hook`, `check` rules) | [[rule-page-schemas]] |
+| Category fields | Estimate: `purpose`, `method`, `checked`, the sections `Criterion` and `Result` (case 193). Lesson: `trigger`, `root_cause`, `source` (in a ledger line, the external origin). Insight: `severity` (children not archived), `addressed_by` | [[rule-page-schemas]] |
+| Rule-class files | `index.md`, changed by a ratified `update` with `file`, by hand; `glossary.md` left the list with case 306 — rendered from `entity-glossary` — the schemas with case 304 — each the Render of a rule page — and `case-schema.md` with case 273; the term is retired with theme 6 of Slice 3f | [[rule-page-schemas]] |
+| Scripts | Page generation (fills `origin`, `slug`, `status`); cleanup (moves `archived` pages); lint (refs, schema, statuses, orphans); renderer (Rule body into the file it governs) | [[rule-harness]] |
+| Harness | Hooks, agents, skills rendered from `rules/` pages | [[rule-harness]] |
+| `CLAUDE.md`, `case-schema.md`, `index.md` | The system prompt, the Render of `rule-claude-md`, whole — the description of the project, `rule-language` and `rule-agent-writing` in their markers (cases 59.8, 272, 288.3); the Case schema is the Render of `rule-case-protocol`, opened by the one rule, and it arrives with `/hi` together with the glossary (cases 273, 288); the map is read a section at a time — layout, routing, ledger, splitting, librarian | [[rule-claude-md]] |
 
-## Status models
-
-| term | meaning | where |
-|---|---|---|
-| Entity / Rule | `draft` / `built` / `archived`; `built` is computed once every Estimate passes, never by hand | §7 |
-| Decision, Lesson, Insight | `current`/`superseded`/`archived`; `new`/`clustered`/`archived`; `open`/`actioned`/`archived`, a new Lesson reopens `actioned` unless a decision of its own session closed its cause (case 284.4) | schema.md |
-| Estimate | `pending` / `passed` / `failed`; `failed` is debt, archival the default outcome | §7 |
-| `archived` | Set by `delete`, or by the cascade of `guppi generate` — a superseded Decision, the lessons of an actioned Insight, an open Insight with no live child (case 104); `guppi cleanup` moves the file to `vault/archive/<sprint>/<date>/<HHMM>/<category>/` and brings it back on an `update` of `status`; `guppi archive` moves an applied session of `raw/` whole (case 100.1); never physical deletion | §1, §3, rule-cleanup, rule-raw-archive |
-
-## Decisions
+## [[rule-page-schemas]]
 
 | term | meaning | where |
 |---|---|---|
-| Decision | The atomic unit of work: `create`, `update`, `delete`, `defer`; Read is never one | §3 |
-| Types | `create` a page (an Estimate is its own `create`, with `ref` on its target, case 193); `update` fields, `result`/`status` included, or `rename` — the page moves to the new slug and every link follows (case 258.1); `delete` sets `status: deleted` after an impact analysis, the librarian archives; `defer` postpones, a placeholder page when no `ref` | §3, §5 |
-| Delegate | The agent deciding without ratification; rejected, parked | here |
-| Routing Table, Decision page | (type × `ref` × category) to vault action, mechanical; one page per Case in `wiki/decisions/`, slug `decision-case-<N>`, one list per kind present: `create`, `update`, `delete`, `defer`, body Context, Problem, Given, When; never indexed, reached through `deferred_by`, a History wikilink or `origin` | §5, §11, decisions/schema.md |
+| Atomicity Rule | A unit splits when its closing judgment breaks into parts that fail and are fixed apart | [[rule-entities-schema]] |
+| MOC | A thing whose parts the person named as things that are built; `children` lists them; its Estimates measure what no child owns; a part comes from the person's words through a Case — the agent proposes a cut, never makes it (case 240.1) | [[rule-entities-schema]] |
+| Leaf | A thing whose parts the person has not named; holds `estimates` — empty is legal, the person said nothing yet — and a code pointer; its inner workings are `## How it works`, not pages (case 240.1) | [[rule-entities-schema]] |
+| Entity | A thing the developer builds, a noun the person named as part of what is built; the check before a `create`: who makes it — the developer → an Entity; the product's user or the running product → data, outside the vault; MOC or Leaf; never a page for a "why", that is a Decision (case 240.1) | [[rule-entities-schema]] |
+| Rule | A standing condition one case can break, with a guard that refuses that case when it occurs; the check: can one case refute it, and is there something to refuse it; a Leaf a condition on each case, a MOC a sequence whose Estimate promises the order; of the harness or of an Entity; force by `hook`, `check` or `render`; in the harness a thing is a Rule when its code is a guard, an Entity when it is measured and its guard is a separate Rule (case 240.2) | [[rule-rules-schema]] |
+| Estimate | The evidence: on a Rule a test that the guard works, on an Entity a reading of the whole no single case can break — the target's prefix says which; `QA` the answer is known, `Research` the reading finds it, on an Entity only, `failed` when the finding does not serve the purpose (case 240.3); one promise, one way to check it, the last result with its date (case 182); its own Leaf page under an Entity or Rule only, an explicit `create` with its slug in the Case, `estimate-<target minus its prefix>-<promise>`; fields `purpose`, `method`, `checked`; `QA` checks a known criterion, `Research` finds out; its Criterion is the `given`, `when` and `then` of one Case, replaced whole by the `update` that names it, which alone sets `pending`; no index, reached through the target's `estimates` (case 193) | [[rule-estimates-schema]] |
+| Estimate (status) | `pending` / `passed` / `failed`; `failed` is debt, archival the default outcome | [[rule-estimates-schema]] |
+| Lesson | Something learned; a fact the hook writes, no Case, no Estimate; slug = area + cause; a `knowledge` claim is checked by the Rule that leans on it | [[rule-lessons-schema]] |
+| Insight | Over Lessons sharing a root cause, made by the librarian on the second; surfaces in the brief's Deferred list and is the target of the `update` that actions or rejects it, or of a `defer`; never created or deleted by a Decision; `actioned` reopens (case 124) | [[rule-insights-schema]] |
+| Decision page | One page per Case in `wiki/decisions/`, slug `decision-case-<N>`, one list per kind present: `create`, `update`, `delete`, `defer`, body Context, Problem, Given, When; never indexed, reached through `deferred_by`, a History wikilink or `origin` | [[rule-decisions-schema]] |
 
-## Session
-
-| term | meaning | where |
-|---|---|---|
-| Session | Session Start, Plan Mode, Work Mode, End of Session | §9 |
-| `/hi`, Frontier | Opens a working session and records `hi`; the open items it assembles (brief, sprint, issues, an unfinished plan, the ledger tail) in two lists, the kind of each by its source — Cases, the Plan Mode agenda, and Work, what needs no decision (case 268.2) | rule-skill-hi, rule-ledger-tail |
-| Sprint, `brief.md` | An Entity Leaf `entity-sprint-<id>` under the MOC `entity-sprint`, the sprint as a kind (case 241), whose Estimates are the Definition of done, whose `## Milestones` holds the Slices in order — the first with an open item is current — and whose `## Backlog` the items without a turn, each a wikilink or a plain line; `sprint.md` is its render, written by `guppi sprint` with one tick per item by the status of the page it names, the current milestone whole and the others one line (cases 209, 229); `/hi` takes the Frontier from the current milestone only, and the brief's Deferred leaves out what the sprint page names; the handover between sessions, written by the librarian — deferred items capped at 7, ranked by Insight severity then postponements — or by `/carry`, which conserves a Spec and keeps the previous list whole (case 200.2) | sprint.md, rule-brief |
-| Case | The unit of dialogue, not a page: `context`, `problem`, `recommend`, `given`, `when`, `then`, `tasks`, `ratification` (case 163); `given` + `when` + `then` is the Estimate criterion, the Estimate named by slug (case 193); the page content is a `then` block in the Spec; splits into dotted sub-cases the parent's sign-off never covers | case-schema.md |
-| Plan Mode, the vault query, `/pre-spec` | Frontier items discussed as Cases until each is ratified or deferred; the vault query before a `create` without `ref`, `draft` pages included (case 277.3); `/pre-spec` the check of the ratified set against each other and the vault before the Spec is approved (case 261) | rule-plan-mode, rule-prespec |
-| Ledger, Event log | The record of decisions (routing only), estimates and lessons (with text), written by the `Stop` hook into `raw/<date>/<HHMM>/ledger.md`, the session's folder (case 103.1); the gitignored log of tool calls and commits of the day, written by hooks | §4, rule-ledger-write, rule-event-log |
-| Spec | The ratified Cases as one document, approved as Claude Code's plan, copied to `raw/<date>/<hi HHMM>/spec.md`, the session's folder (case 73.1) | rule-spec-capture |
-| Executable plan, Work Mode | The Spec as tasks with code, paths, checkboxes; subagents transcribe, a fork comes back as a Case | rule-work-mode (draft) |
-| Retro, Handoff | `/retro`: an analysis of this session only — the frontier first, then every item ends as a lesson, a reading, a short defer (a Case of `context`, `problem`, `purpose` under `## Retro` in the Spec) or a handoff note; edits only finish ratified work; red tests are fixed or reverted into a patch in `raw/`; ends with a commit. `/handoff`, gated by `guppi gate` on a dirty tree: `handoff.md` from memory, then the librarian | rule-end-of-work, rule-retro |
-| Index line, `ask-guppi` | The Grep of a category's frontmatter — `purpose`, `root_cause` or `pattern`, and `deferred_by` — one line per live page, never compared across categories; no index file (case 147.8); the search agent over these lines, one entry point; Estimates through the target, Decisions through `deferred_by`; the archive answered by slug alone — `free`, `live` or `archived at <path>` — never by meaning (case 105.1) | §11, rule-ask |
-| Documentation | The librarian's phase, the agent `librarian-guppi`: materialize, index check, synthesis, generate, cleanup, brief, close | rule-documentation |
-
-## Agents and machinery
+## [[rule-settings]]
 
 | term | meaning | where |
 |---|---|---|
-| Main agent, Subagent | Runs Cases and writes ledger lines, until the Retro commit; executes plan tasks, never decides, a fork returns | §9, case-schema.md |
-| Librarian | Clean context; the only writer to `wiki/`; reads handoff, yaml, indexes; one judgment, `create` to `update` on a duplicate; flags the rest | §10 |
-| Scripts | Page generation (fills `origin`, `slug`, `status`); cleanup (moves `archived` pages); lint (refs, schema, statuses, orphans); renderer (Rule body into the file it governs) | rule-lint, rule-render-harness |
-| Working files | `log.md` and page `History`, the feed of page changes by hook; `raw/`: `event_log.md` of the day and one folder per session, named by its `hi` time (case 73.1), with its ledger, yaml, Spec, Frontier and handoff, moved whole into the archive once applied (cases 100.1, 103.6); `tags.md`, ratified tags with Russian aliases | §1 |
-| Rule-class files | `index.md`, `glossary.md`, every schema; change only by ratified `update` with `file`, by hand; `case-schema.md` left the list with case 273 — it is the Render of `rule-case-protocol` | §1 |
-| Harness, Hook | Hooks, agents, skills rendered from `rules/` pages; a hook is an event-triggered script behind a Rule page, the ledger writer on `Stop`, which reads the session's transcript back, keeps its `hi` window across midnight, and can block | §9, rule-ledger-write |
-| `CLAUDE.md`, `case-schema.md`, `index.md` | The system prompt, the Render of `rule-claude-md`, whole — the description of the project, `rule-language` and `rule-agent-writing` in their markers (cases 59.8, 272, 288.3); the Case schema is the Render of `rule-case-protocol`, opened by the one rule, and it arrives with `/hi` together with this glossary (cases 273, 288); the map is read a section at a time — layout, routing, ledger, splitting, librarian | rule-claude-md, rule-case-protocol |
+| Hook | An event-triggered script behind a Rule page, the ledger writer on `Stop`, which reads the session's transcript back, keeps its `hi` window across midnight, and can block | [[rule-hook-registry]] |
 
-## Retired terms
+## [[rule-documentation]]
 
-| term | was | now |
+| term | meaning | where |
 |---|---|---|
-| Proposal | A page category, "specification + plan" | An Entity with `status: draft`, plus the Spec |
-| Verify, Accept, Revoke | Decision types | `create` + Estimate ref; `update` of `result`/`status`; `delete` or `defer` |
-| `deployment_unit`, `authority` | An Entity field; a slug grouping pages | Removed; a MOC's `children` and `tags.md` |
-| Librarian Report, Session Digest | Separate artifacts | Lint output + a `brief.md` section; `ledger.md` |
+| `deferred_by` | On an Entity, Rule or Insight, the Decision pages whose `defer` targets it; set by `generate`, cleared by a `supersedes`, shown in the index line, followed by `ask-guppi` | [[rule-page-generation]] |
+| `origin` | The Decision that created or deleted the page, as `raw/<date>/<HHMM>/ledger.md#case-N` — the date form on older pages; kept when archived, never rewritten; `#case-N` is a grep target lint checks in `raw/` or in the archive (case 103.6) | [[rule-page-generation]] |
+| Entity / Rule (status) | `draft` / `built` / `archived`; `built` is computed once every Estimate passes, never by hand | [[rule-page-generation]] |
+| Decision, Lesson, Insight (status) | `current`/`superseded`/`archived`; `new`/`clustered`/`archived`; `open`/`actioned`/`archived`, a new Lesson reopens `actioned` unless a decision of its own session closed its cause (case 284.4) | [[rule-page-generation]] |
+| `archived` | Set by `delete`, or by the cascade of `guppi generate` — a superseded Decision, the lessons of an actioned Insight, an open Insight with no live child (case 104); `guppi cleanup` moves the file to `vault/archive/<sprint>/<date>/<HHMM>/<category>/` and brings it back on an `update` of `status`; `guppi archive` moves an applied session of `raw/` whole (case 100.1); never physical deletion | [[rule-cleanup]] |
+| Routing Table | (type × `ref` × category) to vault action, mechanical | [[rule-materialize]] |
+| Sprint | An Entity Leaf `entity-sprint-<id>` under the MOC `entity-sprint`, the sprint as a kind (case 241), whose Estimates are the Definition of done, whose `## Milestones` holds the Slices in order — the first with an open item is current — and whose `## Backlog` the items without a turn, each a wikilink or a plain line; `sprint.md` is its render, written by `guppi sprint` with one tick per item by the status of the page it names, the current milestone whole and the others one line (cases 209, 229); `/hi` takes the Frontier from the current milestone only | [[rule-sprint]] |
+| `brief.md` | The handover between sessions, written by the librarian — deferred items capped at 7, ranked by Insight severity then postponements, leaving out what the sprint page names — or by `/carry`, which conserves a Spec and keeps the previous list whole (case 200.2) | [[rule-brief]] |
+| Working files | `log.md` and page `History`, the feed of page changes by hook; `raw/`: `event_log.md` of the day and one folder per session, named by its `hi` time (case 73.1), with its ledger, yaml, Spec, Frontier and handoff, moved whole into the archive once applied (cases 100.1, 103.6); `tags.md`, ratified tags with Russian aliases | [[rule-raw-archive]] |
+| Documentation | The librarian's phase, the agent `librarian-guppi`: materialize, index check, synthesis, generate, cleanup, brief, close | [[rule-documentation]] |
+| Librarian | Clean context; the only writer to `wiki/`; reads handoff, yaml, indexes; one judgment, `create` to `update` on a duplicate; flags the rest | [[rule-documentation]] |
+
+## [[rule-session-start]]
+
+| term | meaning | where |
+|---|---|---|
+| Session | Session Start, Plan Mode, Work Mode, End of Session | [[rule-session-start]] |
+| `/hi`, Frontier | Opens a working session and records `hi`; the open items it assembles (brief, sprint, issues, an unfinished plan, the ledger tail) in two lists, the kind of each by its source — Cases, the Plan Mode agenda, and Work, what needs no decision (case 268.2) | [[rule-skill-hi]] |
+| Ledger | The record of decisions (routing only), estimates and lessons (with text), written by the `Stop` hook into `raw/<date>/<HHMM>/ledger.md`, the session's folder (case 103.1) | [[rule-ledger-write]] |
+| Event log | The gitignored log of tool calls and commits of the day, written by hooks | [[rule-event-log]] |
+
+## [[rule-skill-hi]]
+
+| term | meaning | where |
+|---|---|---|
+| Issue | Tracked on GitHub; never a page, a `ref` only | [[rule-github-issues]] |
+
+## [[rule-work-mode]]
+
+| term | meaning | where |
+|---|---|---|
+| Executable plan, Work Mode | The Spec as tasks with code, paths, checkboxes; subagents transcribe, a fork comes back as a Case | [[rule-work-mode]] |
+
+## [[rule-end-of-work]]
+
+| term | meaning | where |
+|---|---|---|
+| Retro | `/retro`: an analysis of this session only — the frontier first, then every item ends as a lesson, a reading, a short defer (a Case of `context`, `problem`, `purpose` under `## Retro` in the Spec) or a handoff note; edits only finish ratified work; red tests are fixed or reverted into a patch in `raw/`; ends with a commit | [[rule-retro]] |
+| Handoff | `/handoff`, gated by `guppi gate` on a dirty tree: `handoff.md` from memory, then the librarian | [[rule-handoff]] |

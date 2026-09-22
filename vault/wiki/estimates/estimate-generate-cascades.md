@@ -3,9 +3,9 @@ type: estimate
 kind: QA
 status: passed
 target: "[[rule-page-generation]]"
-purpose: The cascade computes built, the archive of a superseded decision and the severity of an Insight, never by hand
+purpose: The cascade computes built, the archive of a superseded decision, the severity of an Insight and the rules of an Entity, never by hand
 method: pytest tests/test_generate.py, the tests of the cascade
-checked: 2026-09-21
+checked: 2026-09-22
 origin: raw/2026-09-16/1955/ledger.md#case-201.4
 sprint: migration
 created: 2026-09-16
@@ -29,11 +29,12 @@ An entity or rule whose Estimates are all `passed` becomes `built`; a `built` on
 **＋** A Decision page with `status: superseded` becomes `archived` with History `archived · superseded`; `superseded_by` and `deferred_by` are not touched.
 **＋** Every `clustered` child of an Insight with `status: actioned` becomes `archived` with History `archived · insight actioned`; the Insight's `children` does not change.
 **＋** The `severity` of every Insight is recounted: a child's status is read under `wiki/lessons/`, else in the archive; a child with no page counts live; an `open` Insight at 0 becomes `archived` with History `archived · no live child`, `children` kept; an `actioned` one at 0 stays.
+**＋** The `rules` of every live Entity is recounted from the `applies_to` of the live rules (305.3).
 **－** A page without Estimates keeps its status; no section of any page is derived or touched by the cascade.
 
 ## Result
 
-2026-09-21, uv run pytest tests/test_generate.py: 74 green; live — the librarian's run of 1315 by the brief: rule-internal-context and rule-claude-md draft → built, rule-case-protocol, rule-page-generation and rule-materialize kept draft by a pending Estimate, decision-case-291.1 archived as superseded, the severity of the new Insight counted
+2026-09-22, uv run pytest tests/test_generate.py, 77 passed, the tests of the cascade: built and draft by the Estimates, a superseded decision archived, the lessons of an actioned Insight archived and the severity recounted, and the rules of every live Entity recounted from the applies_to of the live rules; the live leg, the librarian's run of this session, not taken
 
 ## History
 
@@ -41,3 +42,5 @@ An entity or rule whose Estimates are all `passed` becomes `built`; a `built` on
 - 2026-09-16 status: pending → passed · raw/2026-09-16/1955/ledger.md#L30
 - 2026-09-21 updated: one given line — an update entry of an Estimate carries the Criterion and pending when it replaces the promise, not always (case 295) · [[decision-case-295]]
 - 2026-09-22 status: pending → passed · raw/2026-09-21/1853/ledger.md#L2
+- 2026-09-22 updated: one line of the Criterion — the cascade recounts rules (case 305.3; pre-spec) · [[decision-case-305.3]]
+- 2026-09-22 status: pending → passed · raw/2026-09-22/0014/ledger.md#L60

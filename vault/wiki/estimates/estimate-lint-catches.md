@@ -4,7 +4,7 @@ kind: QA
 status: passed
 target: "[[rule-lint]]"
 method: pytest in tests/test_lint.py, one test per defect class; the live reading once by hand, written into the estimate line
-checked: 2026-09-17
+checked: 2026-09-22
 origin: raw/2026-09-09/ledger.md#case-21
 sprint: migration
 created: 2026-09-09
@@ -24,8 +24,8 @@ When:
 
 Then:
 Every live page is checked against the `schema.yaml` of its category; one line per finding, `<category>/<slug>: <class>: <what>`; exit 1 on any finding, 0 and no output on a clean vault; nothing is written.
-**＋** `schema`: a missing required field or section, a value outside the list, a conditional not met; `## When` is never required on a Decision page; `schema-prose`: `schema.md` and `schema.yaml` naming different fields or sections.
-**＋** `ref`: a slug in `parent`, `children`, `estimates`, `target`, `insight`, `addressed_by`, `deferred_by` or in a History wikilink that no live or archived page carries; a `[[…]]` in a body may name a hub file under `wiki/` by stem or path; a `[[slug]]` under a Decision page's `## Criterion` that is no Estimate; a `### case N` block of an Estimate with no decision page.
+**＋** `schema`: a missing required field or section, a value outside the list, a conditional not met; `## When` is never required on a Decision page; `schema-description`: a field or section the lists of `schema.yaml` name without a description under `fields` or `sections`, or a description of a name no list carries (case 304.8).
+**＋** `ref`: a slug in `parent`, `children`, `estimates`, `target`, `insight`, `addressed_by`, `deferred_by`, `applies_to`, `rules` or in a History wikilink that no live or archived page carries; a `[[…]]` in a body may name a hub file under `wiki/` by stem or path; a `[[slug]]` under a Decision page's `## Criterion` that is no Estimate; a `### case N` block of an Estimate with no decision page; an `applies_to` that names no Entity, and an Entity's `rules` that differs from the live rules whose `applies_to` names it (case 305.5).
 **＋** `origin`: both forms resolve in `raw/` or in `vault/archive/`; in neither, or in both, a finding.
 **＋** `path`: a file of `implementation_ref` or `governs` that does not exist.
 **＋** `orphan`: a live entity, rule or estimate that no live page's frontmatter names; a lesson and an Insight never.
@@ -40,7 +40,7 @@ Every live page is checked against the `schema.yaml` of its category; one line p
 
 ## Result
 
-2026-09-17, `pytest tests/test_lint.py`: 55 green — a reading on a MOC's Estimate passes beside a sibling naming a make target of the Makefile and is a finding when the sibling's target is not there; live, `make lint`: the finding on estimate-plan-mode-names-its-estimates left, the other classes unchanged
+2026-09-22, uv run pytest tests/test_lint.py, 58 passed: schema-description on a listed name without a description and on a described name no list carries, both for fields and sections; ref on an applies_to that names no page or a page that is not an entity, and on a rules that differs from the applies_to of the live rules, +extra -missing; the other classes as before; the live reading, make lint in the librarian's run, not taken
 
 ## History
 
@@ -69,3 +69,6 @@ Every live page is checked against the `schema.yaml` of its category; one line p
 - 2026-09-17 updated: method as a field, the old sections dropped — the recut completed (case 211.3) · [[decision-case-211.3]]
 - 2026-09-17 updated: the method line of the Criterion — a reading on a MOC's Estimate passes beside a sibling Estimate that names a make target (case 212) · [[decision-case-212]]
 - 2026-09-17 status: pending → passed · raw/2026-09-16/2238/ledger.md#L51
+- 2026-09-22 updated: schema-description for schema-prose — the descriptions live in the yaml, schema.md is gone (case 304.8) · [[decision-case-304.8]]
+- 2026-09-22 updated: applies_to and rules under ref — the slugs and the agreement of the pair (case 305.5) · [[decision-case-305.5]]
+- 2026-09-22 status: pending → passed · raw/2026-09-22/0014/ledger.md#L58

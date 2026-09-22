@@ -8,6 +8,7 @@ implementation_ref: [guppi/sprint.py, tests/test_sprint.py]
 governs: vault/wiki/sprint.md
 parent: "[[rule-documentation]]"
 estimates: ["[[estimate-sprint-renders-the-backlog]]", "[[estimate-sprint-checks-the-file]]", "[[estimate-sprint-ticks-the-spec]]"]
+applies_to: ["[[entity-sprint]]"]
 origin: raw/2026-09-16/2238/ledger.md#case-209
 sprint: migration
 created: 2026-09-16
@@ -38,3 +39,4 @@ The first `## <id>` heading of the file is the sprint id `sprint_id`, `cleanup` 
 - 2026-09-18 estimate estimate-sprint-ticks-the-spec added · [[decision-case-250.2]]
 - 2026-09-18 status: built → draft · cascade
 - 2026-09-20 status: draft → built · cascade
+- 2026-09-22 updated: the first edge Rule → Entity — rule-sprint is the guard of entity-sprint (cases 240.2, 305.4) · [[decision-case-305.4]]

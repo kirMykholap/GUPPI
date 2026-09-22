@@ -2,7 +2,7 @@
 type: rule
 kind: Leaf
 purpose: Prevents a working session from going on after a compaction without the Case schema, the Frontier and the Spec in its context
-status: draft
+status: built
 enforcement: hook
 implementation_ref: [guppi/recall.py, guppi/cli.py, tests/test_recall.py, .claude/settings.json]
 parent: "[[rule-session-start]]"
@@ -25,3 +25,4 @@ Prevents a working session from going on after a compaction without the Case sch
 
 - 2026-09-21 created · [[decision-case-287]]
 - 2026-09-21 estimate estimate-compact-recall-reloads added · [[decision-case-287]]
+- 2026-09-22 status: draft → built · cascade

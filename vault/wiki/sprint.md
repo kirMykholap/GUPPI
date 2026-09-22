@@ -12,7 +12,7 @@ Estimates of this page pass: lint clean, the leftovers gone, the branch merged.
 - [ ] make lint exits 0 at the close of the sprint, unmigrated included, but for the unread of the sprint page's own Estimates · pending
 - [ ] vault/parked/, the 2026-08 documents, the old archive root and the empty raw date folders are gone by decision at the close of the sprint · pending
 - [ ] make test green on the last commit of migration and the branch merged into main · pending
-- [ ] No Rule-class file at the close of Slice 3f — the schemas rendered from rule pages, the glossary from terms, index.md gone, the file route out of the scripts · pending
+- [ ] No Rule-class file at the close of Slice 3f — the schemas rendered from rule pages, the glossary from entity-glossary, index.md gone, the file route out of the scripts · pending
 
 ## Milestones
 

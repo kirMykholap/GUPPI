@@ -3,8 +3,10 @@ type: entity
 kind: MOC
 purpose: The sprint as a kind — a unit of work over the project with a Definition of done and milestones; its children the sprints, one Leaf per id
 status: draft
+parent: "[[entity-guppi]]"
 children: ["[[entity-sprint-migration]]"]
 estimates: []
+rules: ["[[rule-sprint]]"]
 origin: raw/2026-09-18/1252/ledger.md#case-241
 sprint: migration
 created: 2026-09-18
@@ -18,3 +20,5 @@ The sprint as a kind. A sprint is a unit of work over the project: its Estimates
 ## History
 
 - 2026-09-18 created · [[decision-case-241]]
+- 2026-09-22 updated: the sprint as a kind is a part of entity-guppi (case 306.2) · [[decision-case-306.2]]
+- 2026-09-22 rules: [rule-sprint] · cascade

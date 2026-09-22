@@ -18,3 +18,4 @@ another.
 | librarian | the Documentation phase and its agent | библиотекарь |
 | tests | the harness's own test suite, its fixtures and clocks | тесты |
 | sprint | the sprint page, its backlog and its render | спринт |
+| schema | the shape of a page category — its fields, their values and its sections | схема, схема страницы |

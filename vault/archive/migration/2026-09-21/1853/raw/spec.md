@@ -68,7 +68,7 @@ update:
 - [x] update `estimate-case-protocol-loaded`: the Criterion whole under `sections`, one line added, `pending`
 - [x] update `index` (`vault/wiki/index.md`, §7): one sentence after "reached by `origin`, and in History", by hand
 - [x] `uv run guppi render`: `vault/wiki/case-schema.md`
-- [ ] read `estimate-case-protocol-loaded`: `render --check` after the render; the `/hi` of the next session, by hand
+- [x] read `estimate-case-protocol-loaded`: `render --check` after the render; the `/hi` of the next session, by hand
 ```
 
 ### Case 299.2 — pre-spec catches a superseded Case still in the plan

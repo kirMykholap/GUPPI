@@ -1,7 +1,7 @@
 ---
 type: estimate
 kind: QA
-status: passed
+status: pending
 target: "[[rule-harness]]"
 method: make test-harness over tests/test_render.py and tests/test_lint.py; the live reading of make lint by hand
 checked: 2026-09-18
@@ -14,14 +14,14 @@ tags: [harness, workflow]
 ## Criterion
 
 Given:
-`make lint` is `render --check`, `sprint --check`, `guppi lint` (case 227); `rule-sprint` is a child of `rule-documentation`, not of `rule-harness`.
+`make lint` is `render --check`, `sprint --check`, `glossary --check`, `guppi lint` (cases 227, 306.5); `rule-sprint` and `rule-glossary` are children of `rule-documentation`, not of `rule-harness`.
 **＋** `estimate-harness-pipeline` is the old shape — a recut with `set.method`.
 
 When:
 `make lint` and `make test-harness` run; someone reads `rule-harness`.
 
 Then:
-The Purpose says: three rules belong to no phase of the session — the renderer, the page `settings.json` is assembled from, lint — and with them the check of `rule-sprint` runs in `make lint`, in this order: the harness files against their pages, the sprint file against its page, then the pages.
+The Purpose says: three rules belong to no phase of the session — the renderer, the page `settings.json` is assembled from, lint — and with them the check of `rule-sprint` runs in `make lint`, in this order: the harness files against their pages, the sprint file against its page, the glossary file against its page, then the pages.
 **＋** `make test-harness` is green; `make lint` exits 0 on the committed tree by its first two steps.
 
 ## Result
@@ -36,3 +36,4 @@ The Purpose says: three rules belong to no phase of the session — the renderer
 - 2026-09-15 status: pending → passed · raw/2026-09-15/1110/ledger.md#L3
 - 2026-09-18 updated: the Criterion replaced whole — make lint with three steps (case 233.1) · [[decision-case-233.1]]
 - 2026-09-18 status: pending → passed · raw/2026-09-18/1252/ledger.md#L15
+- 2026-09-22 updated: two lines of the Criterion — glossary --check the third step of make lint (case 306.5; pre-spec) · [[decision-case-306.5]]

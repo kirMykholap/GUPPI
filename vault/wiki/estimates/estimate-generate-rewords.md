@@ -1,10 +1,11 @@
 ---
 type: estimate
 kind: QA
-status: pending
+status: passed
 target: "[[rule-page-generation]]"
 purpose: An update item with reword replaces its pairs as whole words on every live page but History and Result, one History line each, and fails on a pair with no hit or a new the owner does not carry
 method: pytest tests/test_generate.py on a temp vault with three pages and an archive; the live reading the librarian's run that applies the first reword
+checked: 2026-09-22
 origin: raw/2026-09-20/1308/ledger.md#case-274.1
 sprint: migration
 created: 2026-09-20
@@ -27,6 +28,11 @@ Every pair is replaced as a whole word on every live page of `wiki/rules/`, `wik
 **－** A pair with no hit on any live page, or with a `new` absent from the owner's text, fails the entry with the reason; nothing is applied.
 **－** `wiki/decisions/` (the journal, without History), `wiki/lessons/` and `wiki/insights/` (records of the past), the archive, `raw/`, the Rule-class files, `log.md`, `brief.md` and `sprint.md` are not touched; the status of no Estimate changes (case 277).
 
+## Result
+
+2026-09-22, uv run pytest tests/test_generate.py -k reword, 4 passed: a reword pair is replaced as a whole word on the live rules, entities and estimates with one History line per page and one stdout line per page; decisions, lessons, insights and the archive untouched; reword alone is content and applies; a pair with no hit, a new absent from the owner or a mapping fails the entry with the reason; the live leg, the librarian's run that applies the first reword, not taken
+
 ## History
 
 - 2026-09-20 created · [[decision-case-274.1]]
+- 2026-09-22 status: pending → passed · raw/2026-09-22/0014/ledger.md#L3

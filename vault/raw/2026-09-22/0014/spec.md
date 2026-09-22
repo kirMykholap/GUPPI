@@ -64,9 +64,9 @@ new_tags:
 ```
 
 ```tasks
-- [ ] create `rule-page-schemas` (parent `rule-harness`, six children)
-- [ ] create `estimate-page-schemas-one-file-per-rule` (ref `rule-page-schemas`)
-- [ ] update `rule-harness`: `children` with `rule-page-schemas` after `rule-lint`
+- [x] create `rule-page-schemas` (parent `rule-harness`, six children)
+- [x] create `estimate-page-schemas-one-file-per-rule` (ref `rule-page-schemas`)
+- [x] update `rule-harness`: `children` with `rule-page-schemas` after `rule-lint`
 - [ ] read `estimate-page-schemas-one-file-per-rule`: by hand after the librarian's first render — `make lint`, no `path` or `schema-description` finding on a `<category>/schema`, `render --check` exit 0
 ```
 
@@ -251,11 +251,11 @@ create:
 ```
 
 ```tasks
-- [ ] create `rule-estimates-schema` (parent `rule-page-schemas`), the Render above
-- [ ] create `estimate-estimates-schema-checked` (ref `rule-estimates-schema`)
+- [x] create `rule-estimates-schema` (parent `rule-page-schemas`), the Render above
+- [x] create `estimate-estimates-schema-checked` (ref `rule-estimates-schema`)
 - [x] `git rm vault/wiki/estimates/schema.md`
-- [ ] `uv run guppi render`: `vault/wiki/estimates/schema.yaml`
-- [ ] read `estimate-estimates-schema-checked`: `uv run pytest tests/test_schemas.py -k estimates`, then `make lint` in the librarian's run
+- [x] `uv run guppi render`: `vault/wiki/estimates/schema.yaml`
+- [x] read `estimate-estimates-schema-checked`: `uv run pytest tests/test_schemas.py -k estimates`, then `make lint` in the librarian's run
 ```
 
 ### Case 304.5 — `rule-lessons-schema` and `estimate-lessons-schema-checked`
@@ -409,11 +409,11 @@ create:
 ```
 
 ```tasks
-- [ ] create `rule-lessons-schema` (parent `rule-page-schemas`), the Render above
-- [ ] create `estimate-lessons-schema-checked` (ref `rule-lessons-schema`)
+- [x] create `rule-lessons-schema` (parent `rule-page-schemas`), the Render above
+- [x] create `estimate-lessons-schema-checked` (ref `rule-lessons-schema`)
 - [x] `git rm vault/wiki/lessons/schema.md`
-- [ ] `uv run guppi render`: `vault/wiki/lessons/schema.yaml`
-- [ ] read `estimate-lessons-schema-checked`: `uv run pytest tests/test_schemas.py -k lessons`, then `make lint` in the librarian's run
+- [x] `uv run guppi render`: `vault/wiki/lessons/schema.yaml`
+- [x] read `estimate-lessons-schema-checked`: `uv run pytest tests/test_schemas.py -k lessons`, then `make lint` in the librarian's run
 ```
 
 ### Case 304.6 — `rule-insights-schema` and `estimate-insights-schema-checked`
@@ -546,11 +546,11 @@ create:
 ```
 
 ```tasks
-- [ ] create `rule-insights-schema` (parent `rule-page-schemas`), the Render above
-- [ ] create `estimate-insights-schema-checked` (ref `rule-insights-schema`)
+- [x] create `rule-insights-schema` (parent `rule-page-schemas`), the Render above
+- [x] create `estimate-insights-schema-checked` (ref `rule-insights-schema`)
 - [x] `git rm vault/wiki/insights/schema.md`
-- [ ] `uv run guppi render`: `vault/wiki/insights/schema.yaml`
-- [ ] read `estimate-insights-schema-checked`: `uv run pytest tests/test_schemas.py -k insights`, then `make lint` in the librarian's run
+- [x] `uv run guppi render`: `vault/wiki/insights/schema.yaml`
+- [x] read `estimate-insights-schema-checked`: `uv run pytest tests/test_schemas.py -k insights`, then `make lint` in the librarian's run
 ```
 
 ### Case 304.7 — `rule-decisions-schema` and `estimate-decisions-schema-checked`
@@ -689,11 +689,11 @@ create:
 ```
 
 ```tasks
-- [ ] create `rule-decisions-schema` (parent `rule-page-schemas`), the Render above
-- [ ] create `estimate-decisions-schema-checked` (ref `rule-decisions-schema`)
+- [x] create `rule-decisions-schema` (parent `rule-page-schemas`), the Render above
+- [x] create `estimate-decisions-schema-checked` (ref `rule-decisions-schema`)
 - [x] `git rm vault/wiki/decisions/schema.md`
-- [ ] `uv run guppi render`: `vault/wiki/decisions/schema.yaml`
-- [ ] read `estimate-decisions-schema-checked`: `uv run pytest tests/test_schemas.py -k decisions`, then `make lint` in the librarian's run
+- [x] `uv run guppi render`: `vault/wiki/decisions/schema.yaml`
+- [x] read `estimate-decisions-schema-checked`: `uv run pytest tests/test_schemas.py -k decisions`, then `make lint` in the librarian's run
 ```
 
 ### Case 304.8 — lint: `schema-description` for `schema-prose`
@@ -720,10 +720,10 @@ update:
 ```
 
 ```tasks
-- [ ] update `estimate-lint-catches`: one `replace` pair inside the Criterion, `pending` by 296
+- [x] update `estimate-lint-catches`: one `replace` pair inside the Criterion, `pending` by 296
 - [x] `guppi/lint.py`: `check_descriptions` for `check_prose`, `prose_names` removed, the docstring — `schema-description` for `schema-prose`
 - [x] `tests/test_lint.py`: the fixtures without `schema.md`, `fields` and `sections` in the yaml fixtures, one test per direction of the finding; `tests/test_generate.py`: the fixture without `schema.md`
-- [ ] read `estimate-lint-catches`: `uv run pytest tests/test_lint.py`, then `make lint` in the librarian's run
+- [x] read `estimate-lint-catches`: `uv run pytest tests/test_lint.py`, then `make lint` in the librarian's run
 ```
 
 ## Case 305 — Slice 3f, theme 2: the audit of the parents and the edge Rule → Entity
@@ -1000,11 +1000,11 @@ create:
 ```
 
 ```tasks
-- [ ] create `rule-rules-schema` (parent `rule-page-schemas`), the Render above
-- [ ] create `estimate-rules-schema-checked` (ref `rule-rules-schema`)
+- [x] create `rule-rules-schema` (parent `rule-page-schemas`), the Render above
+- [x] create `estimate-rules-schema-checked` (ref `rule-rules-schema`)
 - [x] `tests/test_schemas.py`: one parametrized case per category on the live `vault/wiki/<category>/schema.yaml` — a page in the shape has no `schema` finding; a required field missing, a value outside the list, a conditional not met, a required section missing — one finding each
 - [x] `git rm vault/wiki/rules/schema.md`
-- [ ] `uv run guppi render`: `vault/wiki/rules/schema.yaml`
+- [x] `uv run guppi render`: `vault/wiki/rules/schema.yaml`
 - [ ] read `estimate-rules-schema-checked`: `uv run pytest tests/test_schemas.py -k rules`, then `make lint` in the librarian's run
 ```
 
@@ -1046,13 +1046,13 @@ update:
 ```
 
 ```tasks
-- [ ] create `estimate-generate-writes-rules-from-applies-to` (ref `rule-page-generation`)
-- [ ] update `rule-page-generation`: one `replace` pair in the Purpose — the cascade sentence
-- [ ] update `estimate-generate-cascades`: `purpose` and one `replace` pair inside the Criterion, `pending`
-- [ ] read `estimate-generate-cascades`: `uv run pytest tests/test_generate.py`; live — the librarian's run of this session
+- [x] create `estimate-generate-writes-rules-from-applies-to` (ref `rule-page-generation`)
+- [x] update `rule-page-generation`: one `replace` pair in the Purpose — the cascade sentence
+- [x] update `estimate-generate-cascades`: `purpose` and one `replace` pair inside the Criterion, `pending`
+- [x] read `estimate-generate-cascades`: `uv run pytest tests/test_generate.py`; live — the librarian's run of this session
 - [x] `guppi/generate.py`: `rules` in the cascade, the History line
 - [x] `tests/test_generate.py`: the edge appears, leaves when `applies_to` leaves, an archived rule does not count
-- [ ] read `estimate-generate-writes-rules-from-applies-to`: `uv run pytest tests/test_generate.py`; live — the librarian's run of this session, `entity-sprint` with `rules: [rule-sprint]`
+- [x] read `estimate-generate-writes-rules-from-applies-to`: `uv run pytest tests/test_generate.py`; live — the librarian's run of this session, `entity-sprint` with `rules: [rule-sprint]`
 ```
 
 ### Case 305.4 — the first edge: `rule-sprint` → `entity-sprint`
@@ -1072,7 +1072,7 @@ update:
 ```
 
 ```tasks
-- [ ] update `rule-sprint`: `set: {applies_to: [entity-sprint]}`
+- [x] update `rule-sprint`: `set: {applies_to: [entity-sprint]}`
 ```
 
 ### Case 305.5 — lint: `applies_to` and `rules` under `ref`
@@ -1099,7 +1099,7 @@ update:
 ```
 
 ```tasks
-- [ ] update `estimate-lint-catches`: two `replace` pairs inside the Criterion, `pending` by 296
+- [x] update `estimate-lint-catches`: two `replace` pairs inside the Criterion, `pending` by 296
 - [x] `guppi/lint.py`: `applies_to` and `rules` in `links_of` and `check_refs`, the check of the pair; the docstring
 - [x] `tests/test_lint.py`: an `applies_to` on no Entity; a `rules` that disagrees
 - [ ] read `estimate-lint-catches`: with 304.8 — `uv run pytest tests/test_lint.py`, then `make lint` in the librarian's run
@@ -1300,10 +1300,10 @@ create:
 ```
 
 ```tasks
-- [ ] create `rule-entities-schema` (parent `rule-page-schemas`), the Render above
-- [ ] create `estimate-entities-schema-checked` (ref `rule-entities-schema`)
+- [x] create `rule-entities-schema` (parent `rule-page-schemas`), the Render above
+- [x] create `estimate-entities-schema-checked` (ref `rule-entities-schema`)
 - [x] `git rm vault/wiki/entities/schema.md`
-- [ ] `uv run guppi render`: `vault/wiki/entities/schema.yaml`
+- [x] `uv run guppi render`: `vault/wiki/entities/schema.yaml`
 - [ ] read `estimate-entities-schema-checked`: `uv run pytest tests/test_schemas.py -k entities`, then `make lint` in the librarian's run
 ```
 
@@ -1347,11 +1347,11 @@ update:
 ```
 
 ```tasks
-- [ ] create `entity-guppi` (MOC, root; children `entity-sprint`, `entity-glossary`)
-- [ ] create `estimate-guppi-tests-green` (ref `entity-guppi`)
-- [ ] update `entity-sprint`: `set: {parent: entity-guppi}`
-- [ ] update `rule-harness`: `set: {applies_to: [entity-guppi]}`
-- [ ] read `estimate-guppi-tests-green`: `make test` after Work Mode
+- [x] create `entity-guppi` (MOC, root; children `entity-sprint`, `entity-glossary`)
+- [x] create `estimate-guppi-tests-green` (ref `entity-guppi`)
+- [x] update `entity-sprint`: `set: {parent: entity-guppi}`
+- [x] update `rule-harness`: `set: {applies_to: [entity-guppi]}`
+- [x] read `estimate-guppi-tests-green`: `make test` after Work Mode
 ```
 
 ### Case 306.3 — `entity-glossary` and `estimate-glossary-terms-defined`
@@ -1439,8 +1439,8 @@ create:
 ```
 
 ```tasks
-- [ ] create `entity-glossary` (Leaf, parent `entity-guppi`), the 49 rows above
-- [ ] create `estimate-glossary-terms-defined` (ref `entity-glossary`)
+- [x] create `entity-glossary` (Leaf, parent `entity-guppi`), the 49 rows above
+- [x] create `estimate-glossary-terms-defined` (ref `entity-glossary`)
 - [ ] read `estimate-glossary-terms-defined`: by hand after the librarian's run; `make lint` — no `ref` finding on `entity-glossary`
 ```
 
@@ -1493,14 +1493,14 @@ update:
 ```
 
 ```tasks
-- [ ] create `rule-glossary` (parent `rule-documentation`, `applies_to` `entity-glossary`)
-- [ ] create `estimate-glossary-renders-the-terms` (ref `rule-glossary`)
-- [ ] update `rule-documentation`: `children` with `rule-glossary` last; one `replace` pair in the Render — step 6 after step 5
-- [ ] update `estimate-documentation-completes`: one `replace` pair inside the Criterion, `pending`
+- [x] create `rule-glossary` (parent `rule-documentation`, `applies_to` `entity-glossary`)
+- [x] create `estimate-glossary-renders-the-terms` (ref `rule-glossary`)
+- [x] update `rule-documentation`: `children` with `rule-glossary` last; one `replace` pair in the Render — step 6 after step 5
+- [x] update `estimate-documentation-completes`: one `replace` pair inside the Criterion, `pending`
 - [x] `guppi/glossary.py`: the render from `entity-glossary`, the groups by parent MOC, the refusals; `guppi/cli.py`: the command
 - [x] `tests/test_glossary.py`: the render, the grouping, a `where` with no page, a row of another shape, a term twice
-- [ ] `uv run guppi render`: `.claude/agents/librarian-guppi.md`
-- [ ] read `estimate-glossary-renders-the-terms`: `uv run pytest tests/test_glossary.py`; live — the librarian's run of this session, `glossary.md` read
+- [x] `uv run guppi render`: `.claude/agents/librarian-guppi.md`
+- [x] read `estimate-glossary-renders-the-terms`: `uv run pytest tests/test_glossary.py`; live — the librarian's run of this session, `glossary.md` read
 - [ ] read `estimate-documentation-completes`: live — the librarian's run of this session, step 6 in `event_log.md`
 ```
 
@@ -1538,13 +1538,13 @@ update:
 ```
 
 ```tasks
-- [ ] create `estimate-glossary-checks-the-file` (ref `rule-glossary`)
-- [ ] update `rule-lint`: one `replace` pair in the Purpose — `glossary --check` in `make lint`
-- [ ] update `estimate-harness-pipeline`: two `replace` pairs inside the Criterion, `pending`
+- [x] create `estimate-glossary-checks-the-file` (ref `rule-glossary`)
+- [x] update `rule-lint`: one `replace` pair in the Purpose — `glossary --check` in `make lint`
+- [x] update `estimate-harness-pipeline`: two `replace` pairs inside the Criterion, `pending`
 - [ ] read `estimate-harness-pipeline`: `make test-harness`, then `make lint` by hand after the librarian's run — the four steps in order
 - [x] `Makefile`: `lint` — `glossary --check` after `sprint --check`
 - [x] `guppi/glossary.py`: `--check`; `tests/test_glossary.py`: differs, equal
-- [ ] read `estimate-glossary-checks-the-file`: `uv run pytest tests/test_glossary.py`, then `make lint` after the librarian's run
+- [x] read `estimate-glossary-checks-the-file`: `uv run pytest tests/test_glossary.py`, then `make lint` after the librarian's run
 ```
 
 ### Case 306.6 — `estimate-glossary-ticks-the-spec`
@@ -1581,13 +1581,13 @@ update:
 ```
 
 ```tasks
-- [ ] create `estimate-glossary-ticks-the-spec` (ref `rule-glossary`)
-- [ ] update `rule-case-protocol`: two `replace` pairs in the Render — the tickers and the line form
-- [ ] update `estimate-case-protocol-loaded`: one `replace` pair inside the Criterion, `pending`
+- [x] create `estimate-glossary-ticks-the-spec` (ref `rule-glossary`)
+- [x] update `rule-case-protocol`: two `replace` pairs in the Render — the tickers and the line form
+- [x] update `estimate-case-protocol-loaded`: one `replace` pair inside the Criterion, `pending`
 - [x] `guppi/glossary.py`: `tick_command_lines(project_dir, "guppi glossary")` after the write; `tests/test_glossary.py`: the tick, none on `--check`
-- [ ] `uv run guppi render`: `vault/wiki/case-schema.md`
-- [ ] `uv run guppi glossary`: `vault/wiki/glossary.md`
-- [ ] read `estimate-glossary-ticks-the-spec`: `uv run pytest tests/test_glossary.py`; live — this Spec after the librarian's run
+- [x] `uv run guppi render`: `vault/wiki/case-schema.md`
+- [x] `uv run guppi glossary`: `vault/wiki/glossary.md`
+- [x] read `estimate-glossary-ticks-the-spec`: `uv run pytest tests/test_glossary.py`; live — this Spec after the librarian's run
 - [ ] read `estimate-case-protocol-loaded`: the `/hi` of the next session, by hand
 ```
 
@@ -1610,7 +1610,7 @@ update:
 ```
 
 ```tasks
-- [ ] update `estimate-sprint-migration-rule-class-files-dissolved`: `purpose` and one `replace` pair inside the Criterion, `pending`
+- [x] update `estimate-sprint-migration-rule-class-files-dissolved`: `purpose` and one `replace` pair inside the Criterion, `pending`
 ```
 
 ## Deferred

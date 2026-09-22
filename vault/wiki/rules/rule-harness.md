@@ -2,9 +2,10 @@
 type: rule
 kind: MOC
 purpose: Prevents the tools of the harness from drifting apart from the pages that describe them
-status: built
-children: ["[[rule-render-harness]]", "[[rule-settings]]", "[[rule-lint]]", "[[rule-governed-files-hook]]", "[[rule-claude-md]]", "[[rule-bash-guard]]", "[[rule-tests-clock-pinned]]"]
+status: draft
+children: ["[[rule-render-harness]]", "[[rule-settings]]", "[[rule-lint]]", "[[rule-page-schemas]]", "[[rule-governed-files-hook]]", "[[rule-claude-md]]", "[[rule-bash-guard]]", "[[rule-tests-clock-pinned]]"]
 estimates: ["[[estimate-harness-pipeline]]"]
+applies_to: ["[[entity-guppi]]"]
 origin: raw/2026-09-10/ledger.md#case-37
 sprint: migration
 created: 2026-09-10
@@ -39,3 +40,7 @@ them. Three rules belong to no phase of the session: the renderer, the page
 - 2026-09-18 updated: sprint --check joins make lint between render --check and lint (case 233.1) · [[decision-case-233.1]]
 - 2026-09-18 status: built → draft · cascade
 - 2026-09-18 status: draft → built · cascade
+- 2026-09-22 child rule-page-schemas added · [[decision-case-304.1]]
+- 2026-09-22 updated: rule-page-schemas, the MOC of the six category schemas, after rule-lint (case 304.1) · [[decision-case-304.1]]
+- 2026-09-22 updated: rule-harness is the guard of entity-guppi — the edge Rule → Entity (case 306.2) · [[decision-case-306.2]]
+- 2026-09-22 status: built → draft · cascade

@@ -1,10 +1,11 @@
 ---
 type: estimate
 kind: QA
-status: pending
+status: passed
 target: "[[rule-compact-recall]]"
 purpose: After a compaction of a working session the hook's header, the paths of the /hi files, the Spec and the Frontier's text stand in the context; an ordinary session and another source get nothing
 method: pytest tests/test_recall.py on a temp project; live — the first compaction of a working session, by hand, the hook's text in the context after it
+checked: 2026-09-22
 origin: raw/2026-09-21/0019/ledger.md#case-287
 sprint: migration
 created: 2026-09-21
@@ -32,6 +33,11 @@ With a `hi` in the session's window, stdout holds: the line `recall: the context
 **－** Another `source` — nothing: the matcher keeps the hook from firing, and the code checks `source` itself.
 **－** Exit 0 always; an error prints nothing and blocks nothing; the hook writes no file and no event line — `session-start compact` is already written by `guppi event`.
 
+## Result
+
+2026-09-22, uv run pytest tests/test_recall.py, 7 passed: with a hi in the window the hook prints the recall header, the @ paths of the /hi skill in order, frontier.md and the Spec when they exist, then Frontier: and its text; a fourth @ line of the skill is a fourth path; the Spec is the plan file before the approval and spec.md after; without a hi, on another source or on a payload that is not JSON — nothing, exit 0; the live leg, the first compaction of a working session by hand, not taken
+
 ## History
 
 - 2026-09-21 created · [[decision-case-287]]
+- 2026-09-22 status: pending → passed · raw/2026-09-22/0014/ledger.md#L2

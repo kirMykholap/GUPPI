@@ -1,23 +1,91 @@
-# Decision — the machine-readable schema. Lint reads this file; schema.md beside it is the
-# same schema as prose with examples, and lint checks the two agree. Rule-class: changes only
-# through a ratified `decision update`.
 type: decision
+description: |
+  Every page has three blocks: properties (frontmatter), body (per-category sections), history (appended by hook). This is the schema for Decision. One page per Case, however many ledger lines the Case produced.
+
+  Slug. `decision-case-<N>`: `decision-case-18.1`. Mechanical, because the script writes the page and may not name anything; unique, because a Case id is. Nothing searches Decision pages, so the slug needs no meaning beyond the Case it points back at. A Decision is reached by reference only: from a target page's `deferred_by` (a deferred decision, case 52.3), from the `[[decision-case-N]]` wikilink of a History line (case 52.4), or by the case id a `supersedes` carries.
+
+  Fields deliberately absent. `ratification` — a Decision page cannot exist without it. The Case does not close, no ledger line is written, no page is generated. A field with one possible value carries no information; the fact is recorded by the page existing and by `origin`. `recommend` — if the human accepted the proposal it became `Then`; if they changed it, `Then` holds the change. Either way the original is conversation history, recoverable from the archived ledger. `last_updated` — a decision is not edited. Only `status` and `superseded_by` ever change, and both are dated in History. `authority` — dropped. It overlapped with tags on one reading and with `ref` on the other. If a real need appears later, it comes back as a ratified decision.
+
+  The body is the Case that produced it, minus what belongs to the conversation rather than the decision. `create`, `update`, `delete`, `defer`: one list per kind present among the Case's ledger lines, in that order, each the slugs of those lines in ledger order (a page, or a Rule-class file such as `case-schema`); a kind with no line is absent, at least one is present. The category is derived from the slug prefix or the Rule-class map, never written. Lint checks every page slug names a live or archived page, and that neither `kind` nor `target_slug` is present (case 59.4).
 properties:
   required: [type, case, status, origin, sprint, created, tags]
   optional: [create, update, delete, defer, source, supersedes, superseded_by]
   values:
     status: [current, superseded, archived]
-# `create`, `update`, `delete`, `defer`: one list per kind present among the Case's ledger
-# lines, in that order, each the slugs of those lines in ledger order (a page, or a
-# Rule-class file such as `case-schema`); a kind with no line is absent, at least one is
-# present. The category is derived from the slug prefix or the Rule-class map, never
-# written. Lint checks every page slug names a live or archived page, and that neither
-# `kind` nor `target_slug` is present (case 59.4).
 body:
   required: ["## Context", "## Problem", "## History"]
-  # `## Given`, `## When` and `## Criterion` are the shapes before cases 72.4 and 201.2:
-  # kept on the pages that carry them, never written to a new page — the contract lives on
-  # the Estimate (case 201.2).
-  # `## Deferred`: one `### [[slug]]` heading per target of the Case's `defer` lines, in
-  # that order, each followed by that target's `purpose` verbatim (case 186.1).
   optional: ["## Given", "## When", "## Criterion", "## Deferred", "## Note"]
+fields:
+  type: |
+    required; `decision`. Page category. Fixed for this schema.
+  case: |
+    required; case id, e.g. `18.1`. The Case this page records.
+  status: |
+    required; `current` | `superseded` | `archived`. Lifecycle of this page, not of the work. `superseded` once a later Case names it in `supersedes`, and `archived` the moment the cascade of `generate` meets it so: a superseded Decision no longer describes the present (case 104.1).
+  create: |
+    one of the four; list of quoted wikilinks `"[[slug]]"`. The slugs of the Case's `create` lines, in ledger order: a page, or a Rule-class file by its ledger slug (`case-schema`, `rules-schema-yaml`). One list per kind present, in the order create, update, delete, defer; a kind with no line is absent. Lists of quoted wikilinks for page slugs, a Rule-class slug bare, so Obsidian shows them as links (case 148.2); the kind of every target is its key (case 59.4, replacing the aligned `kind` and `target_slug` of case 52.1). The category is derived from the slug prefix or the Rule-class map and never written; the parent of a `create` is on the child page as `parent` or `target`.
+  update: |
+    one of the four; list of quoted wikilinks `"[[slug]]"`. The slugs of the Case's `update` lines, in ledger order; a later `rename` retargets the link like any link (case 258.1).
+  delete: |
+    one of the four; list of quoted wikilinks `"[[slug]]"`. The slugs of the Case's `delete` lines, in ledger order.
+  defer: |
+    one of the four; list of quoted wikilinks `"[[slug]]"`. The slugs of the Case's `defer` lines, in ledger order; each target carries this page in `deferred_by`.
+  source: |
+    optional; list. External ids the Case's lines carried (`{source:...}`), traceability only.
+  supersedes: |
+    optional; list of decision quoted wikilinks `"[[slug]]"`. Earlier Cases this one overrides, from the ledger's `{supersedes:case N}`.
+  superseded_by: |
+    optional; list of decision quoted wikilinks `"[[slug]]"`. Back-references, written by the script.
+  origin: |
+    required; `raw/YYYY-MM-DD/HHMM/ledger.md#case-N` — the date form, `raw/YYYY-MM-DD/ledger.md#case-N`, on pages born before 2026-09-13 (case 103.6). Where this was ratified. The folder also holds the Spec with the Case. The `raw/` of a session is archived with it once every line of it became a page, and the pointer is not rewritten (cases 100.1, 103.6).
+  sprint: |
+    required; the sprint id. Cheap slice of "what did we decide this sprint" without parsing dates.
+  created: |
+    required; date.
+  tags: |
+    required; list. The union of the targets' tags, as ratified in the Case.
+sections:
+  "## Context": |
+    required. What this is about.
+  "## Problem": |
+    required. What required a decision. On a defer, what is unresolved.
+  "## Given": |
+    optional. Only on pages written before case 201.2, which keep it: the Case's `given`. A page written after carries none — the contract lives on the Estimate (case 201.2).
+  "## When": |
+    optional. Only on pages written before case 72, which keep it: the Case's `when`. A page written after case 72 has no `## When` (case 72.2).
+  "## Criterion": |
+    optional. Only on pages written before case 201.2, which keep it: one `- [[estimate-x]] § case N` line per block the Case wrote under the shape before case 193. A page written after carries none: the Estimate named in the Case holds the Criterion whole (case 201.2).
+  "## Deferred": |
+    when the Case has a `defer` line with a `purpose`. The body of the deferred decision: one `### [[slug]]` heading per target of the Case's `defer` lines, in that order, each followed by that target's `purpose` verbatim, however long — written for a defer with a `ref` and for a placeholder alike, so the postponed work is never dropped; a `supersedes` does not edit it, the page is archived whole (case 186.1).
+  "## Note": |
+    optional. Only when ratification was non-trivial: a reservation, a condition, a rejected alternative worth remembering. Omit when the answer was simply yes.
+  "## History": |
+    required. Appended by hook, never by an agent. Always the last section, so `tail` reads it without loading the page: `- <date> created · <origin>`, `- <date> superseded by decision-case-N`.
+examples:
+  "a create": |
+    ---
+    type: decision
+    case: "1"
+    status: current
+    create: [entity-cart]
+    origin: raw/2026-09-08/ledger.md#case-1
+    sprint: 2026-Q3-s4
+    created: 2026-09-08
+    tags: [cart, checkout]
+    ---
+
+    ## Context
+    The site has checkout but no cart — items go straight from the catalogue to payment.
+
+    ## Problem
+    Buyers cannot review an order before paying.
+
+    ## Given
+    The vault query before the Case found no cart page and no overlapping purpose. `entity-checkout` exists and will
+    be affected. Nothing in `draft` covers this either.
+
+    ## Criterion
+    - estimate-cart § case 1
+
+    ## History
+    - 2026-09-08 created · raw/2026-09-08/ledger.md#case-1

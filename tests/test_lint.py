@@ -453,13 +453,78 @@ def test_a_leaf_method_naming_no_test_file_is_a_method_finding(tmp_path):
     ]
 
 
+# --- the class `markers` (case 325.2) ---------------------------------------------------
+
+WRAPPED = "\n## Render\n\n<!-- rule-x -->\nthe body\n<!-- /rule-x -->\n"
+
+
+def render_rule(body=WRAPPED, **over):
+    """A rule that forces by render: the Render section stands after Purpose, before History."""
+    props = {"enforcement": "render", "governs": ".claude/x.md", "render_mode": "full"}
+    props.update(over)
+    page = rule_page(**props)
+    return page.replace("\n## History\n", body + "\n## History\n")
+
+
+def test_a_render_page_without_a_render_section_is_a_markers_finding(tmp_path):
+    seed(tmp_path, rule=render_rule(body="\n"))
+    write(tmp_path / ".claude" / "x.md", "")
+    _, lines, _ = run(tmp_path)
+    assert lines == ["rules/rule-x: markers: no ## Render section"]
+
+
+def test_a_render_not_wrapped_in_its_own_markers_is_a_markers_finding(tmp_path):
+    seed(tmp_path, rule=render_rule(body="\n## Render\n\nthe body, bare\n"))
+    write(tmp_path / ".claude" / "x.md", "")
+    _, lines, _ = run(tmp_path)
+    assert lines == [
+        "rules/rule-x: markers: ## Render is not wrapped in <!-- rule-x --> … <!-- /rule-x -->"
+    ]
+
+
+def test_a_wrapped_render_is_no_markers_finding(tmp_path):
+    seed(tmp_path, rule=render_rule())
+    write(tmp_path / ".claude" / "x.md", "")
+    assert run(tmp_path) == (0, [], "")
+
+
+def test_a_closing_marker_for_a_child_in_a_full_render_is_a_markers_finding(tmp_path):
+    # case 325.2: a parent carries one opening line per child; the closing line is the
+    # renderer's own, and a stray one silently swallows the text after it
+    body = "\n## Render\n\n<!-- rule-x -->\nthe body\n<!-- /rule-root -->\nmore\n<!-- /rule-x -->\n"
+    seed(tmp_path, rule=render_rule(body=body, children="[rule-root]"))
+    write(tmp_path / ".claude" / "x.md", "")
+    _, lines, _ = run(tmp_path)
+    assert lines == [
+        (
+            "rules/rule-x: markers: a closing line <!-- /rule-root --> for the child rule-root; "
+            "a parent carries one opening line per child"
+        )
+    ]
+
+
+def test_a_leaf_method_naming_a_reading_without_by_hand_is_a_method_finding(tmp_path):
+    # case 330.1: `by hand` is the one spelling of a reading; the word `reading` alone is not one
+    seed(
+        tmp_path,
+        rule=rule_page(status="built"),
+        estimate=estimate_page(method="one reading of the first reply of a session"),
+    )
+    _, lines, _ = run(tmp_path)
+    assert lines == [
+        (
+            "estimates/estimate-x-works: method: names no tests/ file, pytest or make target "
+            "and is not a reading"
+        )
+    ]
+
+
 def test_a_leaf_method_field_names_a_test_a_make_target_or_a_reading(tmp_path):
     # case 202: the field is read; a test command, a make target or a reading passes
     for method in (
         "pytest tests/test_x.py, the tests of x",
         "pytest in the tests of guppi/x.py",
         "make test-root over the pipeline",
-        "one reading of the first reply of a session",
         "One reading by hand at a session start",
     ):
         seed(tmp_path, rule=rule_page(status="built"), estimate=estimate_page(method=method))

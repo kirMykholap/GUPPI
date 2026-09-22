@@ -31,21 +31,35 @@ the ledgers of its dates, on the `hi` date from the `hi` time on, and its folder
 - the frontier `raw/<hi date>/<hi HHMM>/frontier.md` (case 73.4): missing, an open `[ ]`
   line, a `[x] … · case N` whose heading the plan lacks, a `[-] … · defer case N` with no
   `defer` item under Case N; `sprint` is a closer of its own — an item of the sprint page
-  left for a later session — legal on `[-]`, a finding on `[x]` (case 310.6); a line whose
-  segments hold `sprint` and whose closer is `case N` needs an `update` of the sprint page
-  `entity-sprint-<id>` under Case N, the parent or a sub-case (case 314.2);
+  left for a later session — legal on `[-]`, a finding on `[x]` (case 310.6); a line closed
+  `· case N` whose source segment — the one standing immediately before the closer — is
+  `sprint` needs an `update` of the sprint page `entity-sprint-<id>` under Case N, the
+  parent or a sub-case (case 314.2); the word inside the slug of a title is not the source
+  (case 335);
 - a Case with a line of a kind other than `defer` and no fenced block tagged `tasks` (a
   defer-only Case has no work, case 74); an Estimate a `then` block creates or sets
-  `pending` that no line of the Case's `tasks` names;
+  `pending` with no task line of its own — a line `- [ ] read `<slug>`` whose first
+  backticked slug is that Estimate, matched by `generate.READ_LINE`, the ticker's own
+  pattern; a slug named on another Estimate's read line is a finding in its own words, and a
+  mention on a line that is not a read line is no task line (case 327);
 - an `update` item carrying `file:` — the file route is gone (case 320); the rule that
   governs the path is named when there is one;
 - the form of an Estimate item (case 203.1): a Case whose `then` block holds two or more
   Estimate items — a `create`, or an `update` with `set: {status: pending}` — without a
   written `sections: Criterion` (one promise per Case: split it); an `update` of an
   Estimate whose page does not exist; a `create` of an Estimate whose `ref` names neither
-  a live rule or entity nor one a `create` of the same plan carries (case 221); the keys of
-  the shape before case 189 — `method`, `contract`,
-  `estimate_slug` — are not read;
+  a live rule or entity nor one a `create` of the same plan carries (case 221); a `create` of
+  an Estimate, or an `update` carrying `set: {method: …}`, whose `method` names none of the
+  four forms lint classifies — by `lint.names_a_form`, the one predicate, the existence of
+  the file and of the target left to lint — and a `create` with no `method` at all (case
+  331); the keys of the shape before case 189 — `contract`, `estimate_slug` — are not read;
+- an item writing a `sections: Render` for a page that enforces by render whose text does
+  not open with `<!-- slug -->` and close with `<!-- /slug -->`; only the text the item
+  itself writes is judged, and a child's marker line in a parent is not (case 325.1);
+- a `replace` anchor of any Case of the plan that misses, or hits more than once, once the
+  pairs are applied in entry order to copies of the pages in memory by `generate`'s own
+  matching rule, and a `reword` pair no live page holds: the anchor is judged against the
+  page as the Spec leaves it, not as it stands today, and nothing is written (case 351);
 - a record line of the window — `- decision[`, `- estimate[`, `- lesson[`, timed — that
   `materialize.parse_line` does not read, with its date and line number (case 75.2);
 - a `[[slug]]` outside a code span in the plan — in the blockquotes and in the strings of
@@ -65,6 +79,7 @@ from datetime import datetime
 from pathlib import Path
 
 from guppi.event import project_root, read_payload, session_stamp
+from guppi.generate import READ_LINE, Vault, replace_once  # the ticker and the pairs
 from guppi.ledger import (
     hi_moment,
     hi_recorded,
@@ -72,7 +87,7 @@ from guppi.ledger import (
     session_event_log,
     session_event_logs,
 )
-from guppi.lint import CODE_SPAN, WIKILINK, archived_slugs, hub_files
+from guppi.lint import CODE_SPAN, WIKILINK, archived_slugs, hub_files, names_a_form
 from guppi.materialize import (
     DECISION_KINDS,
     FENCE,
@@ -83,7 +98,7 @@ from guppi.materialize import (
     then_blocks,
     unquote,
 )
-from guppi.pages import CATEGORIES, read_category, wiki_root
+from guppi.pages import CATEGORIES, Page, read_category, read_page, wiki_root
 
 TOOL = "ExitPlanMode"
 TIMED_RECORD = re.compile(r"^- (\d\d:\d\d:\d\d) (decision|estimate|lesson)\[")
@@ -313,8 +328,9 @@ def check_frontier(path: Path, relative: str, cases: dict, blocks: dict) -> list
     """59.2: the frontier of the session's folder (73.4), every line closed by a Case the
     plan holds. Case 310.6: `sprint` is a closer of its own — a line of the sprint page left
     for a later session — legal on a `[-]` box and a finding on an `[x]`. Case 314.2: a line
-    whose segments hold `sprint`, closed `case N`, needs an `update` of the sprint page
-    under Case N."""
+    closed `case N` whose source segment — the one standing immediately before the closer —
+    is `sprint` needs an `update` of the sprint page under Case N; the word inside the slug
+    of a title is not the source, and six live Estimates carry it there (case 335)."""
     if not path.exists():
         return [f"frontier: {relative} is missing"]
     findings: list[str] = []
@@ -343,9 +359,7 @@ def check_frontier(path: Path, relative: str, cases: dict, blocks: dict) -> list
                 findings.append(
                     f"frontier: {item} closes with case {case}, no Case {case} heading in the plan"
                 )
-            elif any(SPRINT_SOURCE in s for s in segments[:-1]) and not updates_the_sprint(
-                blocks, case
-            ):
+            elif segments[-2:-1] == [SPRINT_SOURCE] and not updates_the_sprint(blocks, case):
                 findings.append(
                     f"frontier: {item} closes a sprint item with case {case}, "
                     f"no update of the sprint page under Case {case}"
@@ -376,8 +390,13 @@ def estimates_to_read(block: dict) -> list[str]:
 
 
 def check_tasks(cases: dict, blocks: dict, records: list[dict]) -> list[str]:
-    """59.3: a ratified Case has a `tasks` block; an Estimate to read has its task line.
-    279.2: a render or sprint line is in the form the tickers match."""
+    """59.3: a ratified Case has a `tasks` block; an Estimate to read has its task line — a
+    line `- [ ] read `<slug>`` whose first backticked slug is that Estimate, matched by
+    `generate.READ_LINE`, the ticker's own pattern, so the check judges as the ticker ticks.
+    A slug named on another Estimate's read line has no line of its own and is a finding in
+    its own words; a mention on an `update` line, or on any line that is not a read line, is
+    no task line (case 327). 279.2: a render or sprint line is in the form the tickers
+    match."""
     findings: list[str] = []
     superseded = superseded_in_window(records)  # a superseded Case has no work here (299.2)
     with_work = {
@@ -387,8 +406,14 @@ def check_tasks(cases: dict, blocks: dict, records: list[dict]) -> list[str]:
         tasks = "\n".join(tagged_blocks(lines, "tasks"))
         if case in with_work and not tasks:  # a defer-only Case has no work, case 74
             findings.append(f"case {case}: decision lines and no tasks block")
+        read_lines = [line for line in tasks.splitlines() if READ_LINE.match(line)]
+        of_their_own = {READ_LINE.match(line).group(1) for line in read_lines}  # case 327
         for slug in estimates_to_read(blocks[case]):
-            if not any(slug in line for line in tasks.splitlines()):
+            if slug in of_their_own:
+                continue
+            if any(slug in line for line in read_lines):
+                findings.append(f"case {case}: {slug} is named on another read line, not its own")
+            else:
                 findings.append(f"case {case}: {slug} has no task line")
         for line in tasks.splitlines():
             if OFF_FORM_LINE.match(line):
@@ -437,14 +462,136 @@ def live_page(project_dir: Path, slug: str) -> bool:
     return bool(category) and (wiki_root(project_dir) / category / f"{slug}.md").exists()
 
 
+NO_FORM = 'method names no form — a make target, pytest, a tests/ file or "by hand"'
+
+
+def check_pairs(cases: dict, blocks: dict, project_dir: Path) -> list[str]:
+    """The `replace` and `reword` pairs of every Case of the plan, applied in entry order to
+    copies of the pages in memory by `generate`'s own matching rule — `replace_once`, the
+    tokens of the anchor joined by one `\\s+` — and nothing written to disk. A `replace`
+    anchor that misses, or hits more than once, is one finding with its Case, the page's slug
+    and the opening of its `old`; a `reword` pair no live page holds is one too. The anchor is
+    judged against the page as the Spec leaves it, not as it stands today: a pair of a later
+    Case sees what an earlier one wrote, which is how the pairs of one Spec collide (314.2
+    against 310.6). The meaning of the words in their place is not judged here (case 351)."""
+    findings: list[str] = []
+    pages: dict[str, Page | None] = {}
+    every_page = False
+
+    def load(slug: str) -> Page | None:
+        if slug not in pages:
+            category = category_of(slug)
+            path = wiki_root(project_dir) / category / f"{slug}.md" if category else None
+            pages[slug] = read_page(path, category) if path and path.exists() else None
+        return pages[slug]
+
+    def load_every() -> None:
+        nonlocal every_page
+        if every_page:
+            return
+        for category in CATEGORIES:
+            folder = wiki_root(project_dir) / category
+            for path in sorted(folder.glob("*.md")) if folder.is_dir() else []:
+                if path.stem != "schema" and path.stem not in pages:
+                    pages[path.stem] = read_page(path, category)
+        every_page = True
+
+    for case in cases:
+        for item in blocks.get(case, {}).get("update") or []:
+            if not isinstance(item, dict):
+                continue
+            slug = str(item.get("slug") or "")
+            for pair in item.get("replace") or []:
+                if not isinstance(pair, dict):
+                    continue
+                old = str(pair.get("old") or "")
+                page = load(slug)
+                if page is None or page.error or not old:
+                    continue
+                hits = replace_once(page, old, str(pair.get("new") or ""))
+                if hits == 1:
+                    continue
+                what = "is not in the page" if not hits else f"hits {hits} times"
+                findings.append(f"case {case}: {slug}: a replace anchor {what}: {preview(old)}")
+            for pair in item.get("reword") or []:
+                if not isinstance(pair, dict):
+                    continue
+                old, new = str(pair.get("old") or ""), str(pair.get("new") or "")
+                if not old:
+                    continue
+                load_every()
+                touched = sum(Vault.reword_text(page, old, new) for page in pages.values() if page)
+                if not touched:
+                    findings.append(
+                        f"case {case}: {slug}: a reword pair hits no live page: {preview(old)}"
+                    )
+    return findings
+
+
+def preview(text: str) -> str:
+    """The opening of an anchor, whitespace collapsed, for a finding's one line."""
+    one_line = " ".join(text.split())
+    return one_line if len(one_line) <= LINE_PREVIEW else one_line[:LINE_PREVIEW] + "…"
+
+
+def enforcement_of(item: dict, kind: str, project_dir: Path) -> str:
+    """How the target forces its rule: in a `create` the field stands in the item itself,
+    since no page exists yet; in an `update` it is read from the page (case 325.1)."""
+    if kind == "create":
+        return str(item.get("enforcement") or "")
+    slug = str(item.get("slug") or "")
+    category = category_of(slug)
+    if not category:
+        return ""
+    path = wiki_root(project_dir) / category / f"{slug}.md"
+    if not path.exists():
+        return ""
+    return str(read_page(path, category).props.get("enforcement") or "")
+
+
+def check_markers(blocks: dict, project_dir: Path) -> list[str]:
+    """An item that writes a `Render` section for a page which enforces by render carries the
+    page's own markers: the text opens with `<!-- slug -->` and closes with `<!-- /slug -->`,
+    or it is one finding. Only the text the item itself writes is judged — the Spec is not
+    simulated in entry order, and a child's marker line inside a parent's Render is not
+    checked, since its value is known only once every item is applied (case 325.1)."""
+    findings: list[str] = []
+    for case, block in blocks.items():
+        for kind in ("create", "update"):
+            for item in block.get(kind) or []:
+                if not isinstance(item, dict):
+                    continue
+                sections = item.get("sections")
+                if not isinstance(sections, dict):
+                    continue
+                text = str(sections.get("Render") or "").strip()
+                slug = str(item.get("slug") or "")
+                if not text or not slug:
+                    continue
+                if enforcement_of(item, kind, project_dir) != "render":
+                    continue
+                if text.startswith(f"<!-- {slug} -->") and text.endswith(f"<!-- /{slug} -->"):
+                    continue
+                findings.append(
+                    f"case {case}: {kind} {slug}: Render is not wrapped in "
+                    f"<!-- {slug} --> … <!-- /{slug} -->"
+                )
+    return findings
+
+
 def check_form(blocks: dict, project_dir: Path) -> list[str]:
     """The form of an Estimate item (case 203.1): a Case whose `then` block holds two or
     more Estimate items — a `create`, or an `update` with `set: {status: pending}` — without
     a written `sections: Criterion` is one promise too many (split it); an `update` of an
     Estimate whose page does not exist, and a `create` of an Estimate whose `ref` names
     neither a live rule or entity nor a rule or entity a `create` item of the same plan
-    carries (case 221), are each a finding. The keys of the shape before case 189 —
-    `method`, `contract`, `estimate_slug` — are not read."""
+    carries (case 221), are each a finding. A `create` of an Estimate, or an `update`
+    carrying `set: {method: …}`, whose `method` names none of the four forms lint
+    classifies — by `lint.names_a_form`, the one predicate — is a finding too; a `create`
+    with no `method` at all is the same one, and the existence of the file and of the target
+    is left to lint, since the test file is written in Work Mode (case 331). The branch of a
+    MOC stays with lint. The keys of the shape before case 189 — `contract`,
+    `estimate_slug` — are not read."""
     findings: list[str] = []
     created = {  # the rules and entities the plan itself creates (case 221)
         str(item.get("slug"))
@@ -465,6 +612,8 @@ def check_form(blocks: dict, project_dir: Path) -> list[str]:
                 live_page(project_dir, ref) or ref in created
             ):
                 findings.append(f"case {case}: create {slug}: ref {ref or '?'} names no live page")
+            if not names_a_form(str(item.get("method") or "")):  # case 331
+                findings.append(f"case {case}: create {slug}: {NO_FORM}")
         for item in block.get("update") or []:
             slug = item.get("slug") if isinstance(item, dict) else None
             if not slug or category_of(slug) != "estimates":
@@ -475,6 +624,9 @@ def check_form(blocks: dict, project_dir: Path) -> list[str]:
                 promises += 1
             if not live_page(project_dir, slug):
                 findings.append(f"case {case}: update {slug}: no such Estimate page")
+            method = set_fields.get("method") if isinstance(set_fields, dict) else None
+            if method is not None and not names_a_form(str(method)):  # case 331
+                findings.append(f"case {case}: update {slug}: {NO_FORM}")
         if promises >= 2:
             findings.append(f"case {case}: two promises in one Case — split it")
     return findings
@@ -557,6 +709,8 @@ def check(plan: str, project_dir: Path, stamp: str, now, stdout, stderr) -> int:
     findings += check_tasks(cases, blocks, records)
     findings += check_governed(blocks, governed_paths(project_dir))
     findings += check_form(blocks, project_dir)
+    findings += check_markers(blocks, project_dir)
+    findings += check_pairs(cases, blocks, project_dir)
     findings += check_bare_links(cases, blocks, project_dir)
     for finding in findings:
         print(finding, file=stdout)

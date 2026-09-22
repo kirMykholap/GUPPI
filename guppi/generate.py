@@ -101,8 +101,10 @@ for the marks alone; no yaml, nothing skipped there — its work stands under th
 Case (case 286). A `lesson` entry, a Rule-class file entry and a failed entry tick
 nothing; the lines on code, tests, migrations and `by hand` checks stay the agent's.
 
-The cascade after all entries (case 201.4): an entity or rule whose Estimates are all
-`passed` becomes `built`, a `built` one with an Estimate not passed returns to `draft`,
+The cascade after all entries (case 201.4): an entity or rule whose live Estimates are all
+`passed` becomes `built`, a `built` one with a live Estimate not passed returns to `draft` —
+an Estimate standing `archived` is not counted, as a slug with no page is not counted, since
+a `delete` of the same run leaves its file in place until `cleanup` (case 328),
 History `· cascade`; a `superseded` Decision page becomes `archived` (case 104.1); the
 `clustered` children of an `actioned` Insight become `archived` (case 104.2); every
 Insight's `severity` is recounted, a child's status read under `wiki/lessons/` or in the
@@ -287,6 +289,35 @@ TASK_LINE = re.compile(r"^- \[ \] (create|update|delete|defer) `([^`]+)`")
 READ_LINE = re.compile(r"^- \[ \] read `([^`]+)`")
 
 
+def replace_hits(page: Page, old: str) -> list[tuple[str, re.Match]]:
+    """Every hit of `old` in the page's sections but History, whitespace collapsed: the
+    tokens of `old` joined by one `\\s+`, so a line break inside the anchor still matches.
+    The one matching rule of a `replace` pair — `pre-spec` simulates the pairs of a Spec by
+    it before the Spec is approved (case 351)."""
+    tokens = [re.escape(t) for t in old.split()]
+    if not tokens:
+        return []
+    pattern = re.compile(r"\s+".join(tokens))
+    return [
+        (key, m)
+        for key, text in page.sections.items()
+        if key != HISTORY
+        for m in pattern.finditer(text)
+    ]
+
+
+def replace_once(page: Page, old: str, new: str) -> int:
+    """The number of hits of `old` in the page; when it is exactly one, `new` takes its
+    place. Anything else changes nothing: an anchor that misses or is not unique fails the
+    entry (case 274.1)."""
+    hits = replace_hits(page, old)
+    if len(hits) == 1:
+        key, match = hits[0]
+        text = page.sections[key]
+        page.sections[key] = text[: match.start()] + new + text[match.end() :]
+    return len(hits)
+
+
 def tick_read(
     specs: list[Path],
     slug: str,
@@ -302,7 +333,13 @@ def tick_read(
     any Spec, a line in the section of a superseded Case is not the reading's line either —
     `superseded` for the first Spec, the marks of the run's entries; for every other Spec
     the marks of the `materialize.yaml` beside it. True when a line was ticked; False when
-    no Spec holds one — no error either way."""
+    no Spec holds one — no error either way.
+    Case 326: every live Spec of `raw/` is ticked, not the first that holds a line. A promise
+    changed in two sessions leaves a read line in each, and one reading is of the page, so
+    the older line has no Case of its own and no later reading would ever reach it. The
+    archive is not read: an archived Spec keeps its open line as the record of a task nobody
+    performed."""
+    any_ticked = False
     for position, spec in enumerate(specs):
         if not spec.is_file():
             continue
@@ -321,8 +358,8 @@ def tick_read(
                 ticked = True
         if ticked:
             spec.write_text("\n".join(lines), encoding="utf-8", newline="\n")
-            return True
-    return False
+            any_ticked = True
+    return any_ticked
 
 
 def later_cases(entries: list, line) -> set[str]:
@@ -839,22 +876,7 @@ class Vault:
         return True
 
     def replace(self, page: Page, old: str, new: str) -> bool:
-        tokens = [re.escape(t) for t in old.split()]
-        if not tokens:
-            return False
-        pattern = re.compile(r"\s+".join(tokens))
-        hits = [
-            (key, m)
-            for key, text in page.sections.items()
-            if key != HISTORY
-            for m in pattern.finditer(text)
-        ]
-        if len(hits) != 1:
-            return False
-        key, match = hits[0]
-        text = page.sections[key]
-        page.sections[key] = text[: match.start()] + new + text[match.end() :]
-        return True
+        return replace_once(page, old, new) == 1
 
     # estimate
 
@@ -1063,7 +1085,10 @@ class Vault:
                 if page.error or str(page.props.get("status")) not in ("draft", "built"):
                     continue
                 own = [estimates.get(s) for s in as_list(page.props.get("estimates"))]
-                own = [e for e in own if e is not None]
+                # Case 328: a slug with no page is not counted, and neither is an Estimate
+                # standing `archived` — a `delete` of this run retired it and its file waits
+                # under `wiki/estimates/` until `cleanup`, which runs after this script.
+                own = [e for e in own if e is not None and str(e.props.get("status")) != "archived"]
                 if not own:
                     continue
                 all_passed = all(str(e.props.get("status")) == "passed" for e in own)

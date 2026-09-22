@@ -14,7 +14,11 @@ and, case 72.6, a `[[slug]]` under a decision page's `## Criterion` that is not 
 archived Estimate page, or a `### case N` block under an Estimate's `## Criterion` with no
 live or archived `decision-case-N`), `origin` (a ledger file or `[case N]` line that does
 not exist), `path` (a file named in
-`implementation_ref` or `governs` that does not exist), `layout` (a page whose `type` does
+`implementation_ref` or `governs` that does not exist), `markers` (a page with
+`enforcement: render` whose `## Render` is absent, or whose text does not open with
+`<!-- slug -->` and close with `<!-- /slug -->`; and a `render_mode: full` page whose Render
+holds a closing line for one of its `children` — a parent carries one opening line per
+child, and the closing line is the renderer's own, case 325.2), `layout` (a page whose `type` does
 not match the folder it sits in, a page whose `slug` field is not its filename, and a `.md`
 at the root of `wiki/` that no live rule page names — case 315), `orphan` (a live entity, rule or
 estimate no other live page's frontmatter names; a lesson is a record and an Insight names
@@ -29,7 +33,8 @@ Makefile passes whatever else it says, and one that names none may be a reading 
 children's Estimates are all readings, case 112.1, or when a sibling Estimate of the MOC
 names a `make <target>` of the Makefile, case 212; for a Leaf's Estimate a `tests/` file
 that exists, the word `pytest`, a `make <target>` of the Makefile, or a reading — "by hand",
-"reading" — case 202), `decision` (a decision page with none of the four
+the one spelling since case 330.1; the four forms are one predicate, `names_a_form`, which
+`pre-spec` calls over the plan, case 331), `decision` (a decision page with none of the four
 kind lists `create`, `update`, `delete`, `defer`, or with `kind` or `target_slug` still
 present, or a slug in a list with a category prefix that names neither a live nor an
 archived page, case 59.4), `deferred` (a placeholder — a rule or entity page that carries
@@ -55,7 +60,7 @@ from pathlib import Path
 import yaml
 
 from guppi.event import project_root
-from guppi.pages import CATEGORIES, Page, read_vault, wiki_root
+from guppi.pages import CATEGORIES, Page, read_vault, slug_of, wiki_root
 
 LINK_FIELDS = (
     "parent",
@@ -84,10 +89,10 @@ ORIGIN_CASE = re.compile(r"^raw/(\d{4}-\d\d-\d\d(?:/\d{4})?)/ledger\.md#case-([\
 ORIGIN_LINE = re.compile(r"^raw/(\d{4}-\d\d-\d\d(?:/\d{4})?)/ledger\.md#L(\d+)$")
 TEST_PATH = re.compile(r"`?(tests/[\w./-]+\.py)`?")
 MAKE_TARGET = re.compile(r"`?make ([\w-]+)`?")
-BY_HAND = "by hand"
-READING = "reading"  # a live reading is a method too (case 202)
+BY_HAND = "by hand"  # the one spelling of a reading (case 330.1)
 PYTEST = "pytest"
 CRITERION = "## Criterion"
+RENDER = "## Render"
 WHEN = "## When"
 CASE_BLOCK = re.compile(r"^### case ([\w.]+)\s*$", re.MULTILINE)  # an Estimate's Criterion block
 PLACEHOLDER_FIELDS = ("kind", "estimates", "tags")  # what a `create` fills (case 186.3)
@@ -542,7 +547,21 @@ def method_of(page: Page) -> str | None:
 
 
 def is_reading(method: str) -> bool:
-    return BY_HAND in method or READING in method
+    return BY_HAND in method
+
+
+def names_a_form(method: str) -> bool:
+    """Whether a `method` names one of the four forms this module classifies: a `make
+    <target>`, the word `pytest`, a path under `tests/`, or the words `by hand` — the one
+    spelling of a reading. The existence of the file and of the target is not judged here:
+    `pre-spec` calls this predicate over the plan, where the test file is not written yet,
+    and lint checks existence after it (case 331)."""
+    return bool(
+        is_reading(method)
+        or MAKE_TARGET.search(method)
+        or TEST_PATH.search(method)
+        or PYTEST in method
+    )
 
 
 def check_unread(page: Page) -> list[Finding]:
@@ -569,6 +588,38 @@ def is_old_shape(page: Page) -> bool:
             or bool(CASE_BLOCK.search(page.sections.get(CRITERION) or ""))
         )
     )
+
+
+def check_markers(page: Page) -> list[Finding]:
+    """A page that forces its rule by render carries its own marker pair around the text of
+    its `## Render`: the section opens with `<!-- slug -->` and closes with `<!-- /slug -->`,
+    or the renderer cannot tell the page's own text from a child's. A `full` page whose Render
+    holds a closing line for one of its `children` is the second finding of the class: a
+    parent carries one opening line per child, and the closing line is the renderer's own
+    (case 325.2)."""
+    if str(page.props.get("enforcement") or "") != "render":
+        return []
+    section = page.sections.get(RENDER)
+    if section is None:
+        return [Finding(page, "markers", f"no {RENDER} section")]
+    opening, closing = f"<!-- {page.slug} -->", f"<!-- /{page.slug} -->"
+    lines = section.splitlines()
+    if lines[:1] != [opening] or lines[-1:] != [closing]:
+        return [Finding(page, "markers", f"{RENDER} is not wrapped in {opening} … {closing}")]
+    if str(page.props.get("render_mode") or "") != "full":
+        return []
+    for child in as_list(page.props.get("children")):
+        slug = slug_of(child)
+        if f"<!-- /{slug} -->" in lines[1:-1]:
+            return [
+                Finding(
+                    page,
+                    "markers",
+                    f"a closing line <!-- /{slug} --> for the child {slug}; "
+                    "a parent carries one opening line per child",
+                )
+            ]
+    return []
 
 
 def check_unmigrated(pages: list[Page]) -> list[Finding]:
@@ -602,7 +653,7 @@ def check_method(page: Page, by_slug: dict[str, Page], project_dir: Path) -> lis
     without one "by hand" passes when every child's Estimate is a reading (case 112.1) or
     when a sibling Estimate of the MOC names a `make <target>` of the Makefile (case 212);
     for a Leaf's Estimate a `tests/` file that exists, the word `pytest`, a `make
-    <target>` of the Makefile, or a reading — "by hand", "reading" (case 202)."""
+    <target>` of the Makefile, or a reading — "by hand", the one spelling since case 330.1."""
     if page.category != "estimates":
         return []
     method = method_of(page)
@@ -636,7 +687,7 @@ def check_method(page: Page, by_slug: dict[str, Page], project_dir: Path) -> lis
         if not re.search(rf"^{re.escape(match.group(1))}:", text, re.MULTILINE):
             return [Finding(page, "method", f"the Makefile has no target {match.group(1)}")]
         return []
-    if not paths and PYTEST not in method:
+    if not names_a_form(method):  # the one predicate, shared with pre-spec (case 331)
         return [
             Finding(
                 page, "method", "names no tests/ file, pytest or make target and is not a reading"
@@ -672,6 +723,7 @@ def lint(project_dir: Path) -> list[str]:
         findings.extend(check_criterion(page, known))
         findings.extend(check_origin(page, project_dir))
         findings.extend(check_paths(page, project_dir))
+        findings.extend(check_markers(page))
     findings.extend(check_layout(wiki, pages, vault["rules"]))
     findings.extend(check_orphans([p for p in pages if not p.error]))
     for page in pages:

@@ -1859,7 +1859,7 @@ def test_a_create_with_a_folded_reading_ticks_the_page_line_and_the_read_line(tm
     assert "- [x] read `estimate-child-works`: pytest" in text
 
 
-def test_a_reading_ticks_the_read_line_in_another_sessions_spec_oldest_first(tmp_path):
+def test_a_reading_ticks_the_read_line_in_every_live_spec(tmp_path):
     seed(tmp_path, entries=[CHILD, CHILD_ESTIMATE, ROOT, child_reading()])
     with_spec(tmp_path, "## Case 1 — x\n\n- [ ] create `rule-root`\n")  # no read line here
     raw = tmp_path / "vault" / "raw"
@@ -1879,8 +1879,11 @@ def test_a_reading_ticks_the_read_line_in_another_sessions_spec_oldest_first(tmp
     )
     code, _, err = run(tmp_path)
     assert code == 0 and err == ""
+    # case 326: a promise changed in two sessions leaves a read line in each, and one
+    # reading is of the page — so every live Spec closes, not the first that holds a line
     assert "- [x] read `estimate-child-works`: by hand" in older.read_text(encoding="utf-8")
-    assert "- [ ] read `estimate-child-works`: by hand" in newer.read_text(encoding="utf-8")
+    assert "- [x] read `estimate-child-works`: by hand" in newer.read_text(encoding="utf-8")
+    # the archive keeps its open line: the record of a task nobody performed
     assert "- [ ] read" in (archived / "spec.md").read_text(encoding="utf-8")
 
 
@@ -2373,7 +2376,8 @@ def test_a_reading_after_the_case_ticks_its_line(tmp_path):
     code, _, err = run(tmp_path)
     assert code == 0 and err == ""
     assert "- [x] read `estimate-child-works`: the next session" in spec.read_text(encoding="utf-8")
-    assert "- [ ] read `estimate-child-works`: by hand" in older.read_text(encoding="utf-8")
+    # case 326: the walk no longer stops at the first Spec that holds a line
+    assert "- [x] read `estimate-child-works`: by hand" in older.read_text(encoding="utf-8")
 
 
 def test_a_reading_before_the_case_with_no_other_line_ticks_nothing(tmp_path):
@@ -2487,6 +2491,40 @@ def test_a_folded_reading_skips_a_superseded_case_too(tmp_path):
 
 def guard_text(slug, applies_to):
     return page_text("rules", slug, kind="Leaf", applies_to=f"[{', '.join(applies_to)}]")
+
+
+def estimate_text(slug, status, target):
+    return (
+        f"---\ntype: estimate\nkind: QA\nstatus: {status}\ntarget: {target}\n"
+        f"method: pytest tests/test_x.py\norigin: raw/2026-09-01/ledger.md#case-1\n"
+        f"sprint: migration\ncreated: 2026-09-01\ntags: [harness]\n---\n\n"
+        f"## Criterion\n\nc\n\n## Result\n\nr\n\n## History\n\n- 2026-09-01 created · x\n"
+    )
+
+
+def test_the_cascade_passes_over_an_archived_estimate(tmp_path):
+    # case 328: a `delete` of the same run left the file under wiki/estimates/ and the slug
+    # in the target's list; `cleanup` takes it out only after `generate`, so counting it
+    # dropped a page whose live promises all hold back to `draft` for a whole session
+    pages = [
+        (
+            "rules",
+            "rule-counted",
+            page_text(
+                "rules",
+                "rule-counted",
+                estimates="[estimate-counted-holds, estimate-counted-retired]",
+            ),
+        ),
+        ("estimates", "estimate-counted-holds", estimate_text("x", "passed", "rule-counted")),
+        ("estimates", "estimate-counted-retired", estimate_text("y", "archived", "rule-counted")),
+    ]
+    seed(tmp_path, entries=[ROOT], pages=pages)
+    code, _, err = run(tmp_path)
+    assert code == 0 and err == ""
+    rule = page(tmp_path, "rules", "rule-counted")
+    assert props(rule)["status"] == "built"
+    assert f"- {DATE} status: draft → built · cascade" in rule
 
 
 def test_the_cascade_recounts_rules_from_the_applies_to_of_the_live_rules(tmp_path):

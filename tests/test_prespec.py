@@ -144,10 +144,13 @@ def with_frontier(project_dir, text, day=TODAY, hhmm=HI_FOLDER):
     (folder / "frontier.md").write_text(text, encoding="utf-8", newline="\n")
 
 
-def with_rule(project_dir, slug, governs):
+def with_rule(project_dir, slug, governs, enforcement=None):
     folder = project_dir / "vault" / "wiki" / "rules"
     folder.mkdir(parents=True, exist_ok=True)
-    text = f"---\ntype: rule\nstatus: built\ngoverns: {governs}\n---\n\n## Purpose\n\nx\n"
+    text = f"---\ntype: rule\nstatus: built\ngoverns: {governs}\n"
+    if enforcement is not None:
+        text += f"enforcement: {enforcement}\n"
+    text += "---\n\n## Purpose\n\nx\n"
     (folder / f"{slug}.md").write_text(text, encoding="utf-8", newline="\n")
 
 
@@ -300,7 +303,7 @@ def test_a_nested_estimate_is_covered_by_its_parents_create_line(tmp_path):
     plan = PLAN.replace(
         "update:\n  - slug: rule-x\n    change: one line\n",
         "create:\n  - slug: rule-z\n    type: rule\n    estimate:\n      slug: estimate-z-works\n",
-    ).replace("- [ ] guppi/x.py: the change", "- [ ] take the reading of estimate-z-works")
+    ).replace("- [ ] guppi/x.py: the change", "- [ ] read `estimate-z-works`")
     assert check(tmp_path, plan=plan, ledger=parent) == (0, "", "")
     assert check(tmp_path, plan=plan, ledger=parent + paired) == (0, "", "")
 
@@ -308,8 +311,9 @@ def test_a_nested_estimate_is_covered_by_its_parents_create_line(tmp_path):
 def test_a_standalone_estimate_create_needs_its_own_line(tmp_path):
     plan = PLAN.replace(
         "update:\n  - slug: rule-x\n    change: one line\n",
-        "create:\n  - slug: estimate-alone\n    type: estimate\n    ref: rule-x\n",
-    ).replace("- [ ] guppi/x.py: the change", "- [ ] take the reading of estimate-alone")
+        "create:\n  - slug: estimate-alone\n    type: estimate\n    ref: rule-x\n"
+        "    method: pytest tests/test_x.py\n",
+    ).replace("- [ ] guppi/x.py: the change", "- [ ] read `estimate-alone`")
     with_page(tmp_path, "rules", "rule-x")
     _, out, _ = check(tmp_path, plan=plan, ledger="")
     assert out.splitlines() == ["case 1: item [create][estimate-alone] has no decision line"]
@@ -402,15 +406,63 @@ def test_an_estimate_without_its_task_line_is_a_finding(tmp_path):
     code, out, _ = check(tmp_path, plan=plan, ledger=ledger)
     assert code == 1
     assert out.splitlines() == ["case 1: estimate-x-holds has no task line"]
-    passing = plan.replace("- [ ] guppi/x.py: the change", "- [ ] the reading of estimate-x-holds")
+    passing = plan.replace("- [ ] guppi/x.py: the change", "- [ ] read `estimate-x-holds`")
     assert check(tmp_path, plan=passing, ledger=ledger) == (0, "", "")
+
+
+def test_an_estimate_named_on_another_read_line_has_no_line_of_its_own(tmp_path):
+    # case 327: `generate` ticks by the first backticked slug of a read line, so a line
+    # naming three Estimates closes the box of the first and says nothing of the rest
+    ledger = (
+        LINE
+        + "- 16:00:01 decision[case 1][update][estimate-x-holds]{ref:estimate-x-holds}\n"
+        + "- 16:00:02 decision[case 1][update][estimate-x-stands]{ref:estimate-x-stands}\n"
+    )
+    own_criterion = "    sections:\n      Criterion: |\n        Then:\n        t.\n"
+    plan = PLAN.replace(
+        "    change: one line\n",
+        "    change: one line\n  - slug: estimate-x-holds\n    set: {status: pending}\n"
+        + own_criterion
+        + "  - slug: estimate-x-stands\n    set: {status: pending}\n"
+        + own_criterion,
+    ).replace(
+        "- [ ] guppi/x.py: the change",
+        "- [ ] read `estimate-x-holds` and `estimate-x-stands`",
+    )
+    with_estimate(tmp_path, "estimate-x-holds")
+    with_estimate(tmp_path, "estimate-x-stands")
+    code, out, _ = check(tmp_path, plan=plan, ledger=ledger)
+    assert code == 1
+    assert out.splitlines() == [
+        "case 1: estimate-x-stands is named on another read line, not its own"
+    ]
+    # one line per reading, and both are clean
+    apart = plan.replace(
+        "- [ ] read `estimate-x-holds` and `estimate-x-stands`",
+        "- [ ] read `estimate-x-holds`\n- [ ] read `estimate-x-stands`",
+    )
+    assert check(tmp_path, plan=apart, ledger=ledger) == (0, "", "")
+
+
+def test_an_estimate_named_by_an_update_line_alone_has_no_task_line(tmp_path):
+    # case 327: a mention on a line that is not a read line is no task line
+    ledger = LINE + "- 16:00:01 decision[case 1][update][estimate-x-holds]{ref:estimate-x-holds}\n"
+    plan = PLAN.replace(
+        "    change: one line\n",
+        "    change: one line\n  - slug: estimate-x-holds\n    set: {status: pending}\n",
+    ).replace("- [ ] guppi/x.py: the change", "- [ ] update `estimate-x-holds` — the Criterion")
+    with_estimate(tmp_path, "estimate-x-holds")
+    code, out, _ = check(tmp_path, plan=plan, ledger=ledger)
+    assert code == 1
+    assert out.splitlines() == ["case 1: estimate-x-holds has no task line"]
 
 
 def test_a_created_estimate_without_its_task_line_is_a_finding(tmp_path):
     ledger = "- 16:00:00 decision[case 1][create][estimate-fresh]{ref:rule-x}{tags:a}\n"
     plan = PLAN.replace(
         "update:\n  - slug: rule-x\n    change: one line\n",
-        "create:\n  - slug: estimate-fresh\n    type: estimate\n    ref: rule-x\n",
+        "create:\n  - slug: estimate-fresh\n    type: estimate\n    ref: rule-x\n"
+        "    method: pytest tests/test_x.py\n",
     )
     with_page(tmp_path, "rules", "rule-x")
     _, out, _ = check(tmp_path, plan=plan, ledger=ledger)
@@ -478,7 +530,10 @@ UPDATE_LINE = "- 16:00:01 decision[case 1][update][estimate-x]{ref:estimate-x}\n
 WRITTEN = (
     "    sections:\n      Criterion: |\n        When:\n        w.\n\n        Then:\n        t.\n"
 )
-TASKS = "```tasks\n- [ ] guppi/x.py: the change\n- [ ] read estimate-x\n- [ ] read estimate-x-again\n```"
+TASKS = (
+    "```tasks\n- [ ] guppi/x.py: the change\n"
+    "- [ ] read `estimate-x`\n- [ ] read `estimate-x-again`\n```"
+)
 
 
 def create_plan(item=ESTIMATE_CREATE):
@@ -525,6 +580,58 @@ def test_two_estimate_items_with_the_cases_criterion_is_a_finding(tmp_path):
     )
     ledger = CREATE_LINE + UPDATE_LINE.replace("[case 1]", "[case 1.1]")
     assert check(tmp_path, plan=split, ledger=ledger) == (0, "", "")
+
+
+# --- the form of `method` in the plan (case 331) -----------------------------------------
+
+NO_FORM_CREATE = (
+    "create:\n  - slug: estimate-x-again\n    type: estimate\n    ref: rule-x\n"
+    "    kind: QA\n    purpose: p\n    method: Run it and look\n    tags: [a]\n"
+)
+NO_METHOD_CREATE = (
+    "create:\n  - slug: estimate-x-again\n    type: estimate\n    ref: rule-x\n"
+    "    kind: QA\n    purpose: p\n    tags: [a]\n"
+)
+NO_FORM = (
+    "case 1: create estimate-x-again: method names no form — "
+    'a make target, pytest, a tests/ file or "by hand"'
+)
+
+
+def test_an_estimate_create_whose_method_names_no_form_is_a_finding(tmp_path):
+    # case 331: the four forms lint classifies, judged in the plan by lint's own predicate
+    with_page(tmp_path, "rules", "rule-x")
+    code, out, _ = check(tmp_path, plan=create_plan(NO_FORM_CREATE), ledger=CREATE_LINE)
+    assert code == 1
+    assert out.splitlines() == [NO_FORM]
+
+
+def test_an_estimate_create_without_a_method_is_the_same_finding(tmp_path):
+    with_page(tmp_path, "rules", "rule-x")
+    code, out, _ = check(tmp_path, plan=create_plan(NO_METHOD_CREATE), ledger=CREATE_LINE)
+    assert code == 1
+    assert out.splitlines() == [NO_FORM]
+
+
+def test_each_of_the_four_forms_is_clean_in_the_plan(tmp_path):
+    with_page(tmp_path, "rules", "rule-x")
+    for method in (
+        "make test-x, the pipeline",
+        "pytest over the suite",
+        "tests/test_x.py, one case per defect",
+        "read by hand at the first /hi",
+    ):
+        item = NO_FORM_CREATE.replace("Run it and look", method)
+        assert check(tmp_path, plan=create_plan(item), ledger=CREATE_LINE) == (0, "", ""), method
+
+
+def test_an_estimate_update_setting_a_method_without_a_form_is_a_finding(tmp_path):
+    with_page(tmp_path, "rules", "rule-x")
+    with_estimate(tmp_path)
+    item = "update:\n  - slug: estimate-x\n    set: {method: Run it and look}\n    change: recut\n"
+    code, out, _ = check(tmp_path, plan=create_plan(item), ledger=UPDATE_LINE)
+    assert code == 1
+    assert out.splitlines() == [NO_FORM.replace("create estimate-x-again", "update estimate-x")]
 
 
 def test_the_keys_of_the_old_shape_are_not_read(tmp_path):
@@ -856,8 +963,181 @@ def test_a_decided_sprint_item_with_its_update_is_clean(tmp_path):
     assert check(tmp_path, plan=plan, ledger=SPRINT_LEDGER, frontier=frontier) == (0, "", "")
 
 
-def test_a_line_without_sprint_among_its_segments_needs_no_update(tmp_path):
+def test_a_line_whose_source_segment_is_not_sprint_needs_no_update(tmp_path):
     frontier = "# Frontier\n\n- [x] C1 — a reading · brief · case 1\n"
+    assert check(tmp_path, frontier=frontier) == (0, "", "")
+
+
+# --- the pairs of the Spec simulated in entry order (case 351) ----------------------------
+
+TWO_CASES = """# Plan
+
+## Case 1 — one
+
+> **context:**
+> Something.
+
+```then
+update:
+  - slug: rule-x
+    replace:
+      - old: "FIRST"
+        new: "SECOND"
+    change: one line
+```
+
+```tasks
+- [ ] guppi/x.py: the change
+```
+
+## Case 2 — two
+
+> **context:**
+> Something.
+
+```then
+update:
+  - slug: rule-x
+    replace:
+      - old: "SECOND"
+        new: "THIRD"
+    change: one line
+```
+
+```tasks
+- [ ] guppi/x.py: the change
+```
+"""
+TWO_LINES = LINE + "- 16:00:02 decision[case 2][update][rule-x]{ref:rule-x}\n"
+TWO_FRONTIER = "# Frontier\n\n- [x] F1 — one · owner · case 1\n- [x] F2 — two · owner · case 2\n"
+
+
+def with_body(project_dir, text, slug="rule-x"):
+    folder = project_dir / "vault" / "wiki" / "rules"
+    folder.mkdir(parents=True, exist_ok=True)
+    page = f"---\ntype: rule\nkind: Leaf\nstatus: built\n---\n\n## Purpose\n\n{text}\n"
+    (folder / f"{slug}.md").write_text(page, encoding="utf-8", newline="\n")
+
+
+def anchor_plan(old, new="SECOND"):
+    return (
+        TWO_CASES.split("## Case 2")[0]
+        .replace('- old: "FIRST"', f'- old: "{old}"')
+        .replace('        new: "SECOND"', f'        new: "{new}"')
+    )
+
+
+def test_a_replace_anchor_that_misses_is_a_finding(tmp_path):
+    # case 351: the pair is applied to a copy of the page in memory, nothing is written
+    with_body(tmp_path, "the body says nothing of it")
+    code, out, _ = check(tmp_path, plan=anchor_plan("FIRST"))
+    assert code == 1
+    assert out.splitlines() == ["case 1: rule-x: a replace anchor is not in the page: FIRST"]
+
+
+def test_a_replace_anchor_that_hits_twice_is_a_finding(tmp_path):
+    with_body(tmp_path, "FIRST and again FIRST")
+    code, out, _ = check(tmp_path, plan=anchor_plan("FIRST"))
+    assert code == 1
+    assert out.splitlines() == ["case 1: rule-x: a replace anchor hits 2 times: FIRST"]
+
+
+def test_an_anchor_an_earlier_case_produces_is_clean(tmp_path):
+    # the anchor is judged against the page as the Spec leaves it, not as it stands today:
+    # Case 1 writes SECOND, and the anchor of Case 2 finds it
+    with_body(tmp_path, "FIRST")
+    assert check(tmp_path, plan=TWO_CASES, ledger=TWO_LINES, frontier=TWO_FRONTIER) == (0, "", "")
+
+
+def test_the_simulation_writes_nothing_to_disk(tmp_path):
+    # the pairs are applied to copies in memory: the page on disk is untouched, whether the
+    # anchor hit or missed
+    with_body(tmp_path, "FIRST")
+    assert check(tmp_path, plan=anchor_plan("FIRST")) == (0, "", "")
+    page = tmp_path / "vault" / "wiki" / "rules" / "rule-x.md"
+    assert "FIRST" in page.read_text(encoding="utf-8")
+    assert "SECOND" not in page.read_text(encoding="utf-8")
+
+
+def test_a_reword_pair_no_live_page_holds_is_a_finding(tmp_path):
+    with_body(tmp_path, "the body says nothing of it")
+    plan = anchor_plan("FIRST").replace("    replace:\n", "    reword:\n")
+    code, out, _ = check(tmp_path, plan=plan)
+    assert code == 1
+    assert out.splitlines() == ["case 1: rule-x: a reword pair hits no live page: FIRST"]
+
+
+def test_a_reword_pair_a_live_page_holds_is_clean(tmp_path):
+    with_body(tmp_path, "FIRST stands here")
+    plan = anchor_plan("FIRST").replace("    replace:\n", "    reword:\n")
+    assert check(tmp_path, plan=plan) == (0, "", "")
+
+
+def test_a_pair_whose_anchor_an_earlier_case_removes_is_a_finding(tmp_path):
+    # the other side of the same coin: Case 1 takes FIRST away, so Case 2 cannot find it
+    with_body(tmp_path, "FIRST")
+    plan = TWO_CASES.replace('      - old: "SECOND"', '      - old: "FIRST"')
+    code, out, _ = check(tmp_path, plan=plan, ledger=TWO_LINES, frontier=TWO_FRONTIER)
+    assert code == 1
+    assert out.splitlines() == ["case 2: rule-x: a replace anchor is not in the page: FIRST"]
+
+
+# --- a Render written without the page's own markers (case 325.1) ------------------------
+
+UNWRAPPED_UPDATE = (
+    "update:\n  - slug: rule-x\n    sections:\n      Render: |\n        the body, no markers\n"
+    "    change: the Render rewritten\n"
+)
+WRAPPED_UPDATE = UNWRAPPED_UPDATE.replace(
+    "        the body, no markers\n",
+    "        <!-- rule-x -->\n        the body\n        <!-- /rule-x -->\n",
+)
+UNWRAPPED_CREATE = (
+    "create:\n  - slug: rule-z\n    type: rule\n    kind: Leaf\n    enforcement: render\n"
+    "    governs: .claude/x.md\n    sections:\n      Render: |\n        the body, no markers\n"
+)
+CREATE_RULE_LINE = "- 16:00:00 decision[case 1][create][rule-z]{ref:rule-x}{tags:a}\n"
+
+
+def unwrapped(slug, kind="update"):
+    return f"case 1: {kind} {slug}: Render is not wrapped in <!-- {slug} --> … <!-- /{slug} -->"
+
+
+def test_an_update_writing_a_render_without_its_markers_is_a_finding(tmp_path):
+    # case 325.1: the page enforces by render, so the text it writes carries its own markers
+    with_rule(tmp_path, "rule-x", ".claude/x.md", enforcement="render")
+    plan = PLAN.replace("update:\n  - slug: rule-x\n    change: one line\n", UNWRAPPED_UPDATE)
+    code, out, _ = check(tmp_path, plan=plan)
+    assert code == 1
+    assert out.splitlines() == [unwrapped("rule-x")]
+
+
+def test_a_wrapped_render_is_clean(tmp_path):
+    with_rule(tmp_path, "rule-x", ".claude/x.md", enforcement="render")
+    plan = PLAN.replace("update:\n  - slug: rule-x\n    change: one line\n", WRAPPED_UPDATE)
+    assert check(tmp_path, plan=plan) == (0, "", "")
+
+
+def test_a_render_on_a_page_that_does_not_enforce_by_render_is_clean(tmp_path):
+    with_rule(tmp_path, "rule-x", ".claude/x.md")
+    plan = PLAN.replace("update:\n  - slug: rule-x\n    change: one line\n", UNWRAPPED_UPDATE)
+    assert check(tmp_path, plan=plan) == (0, "", "")
+
+
+def test_a_create_writing_a_render_without_its_markers_is_a_finding(tmp_path):
+    # in a `create` the fields stand in the item itself: there is no page yet
+    plan = PLAN.replace("update:\n  - slug: rule-x\n    change: one line\n", UNWRAPPED_CREATE)
+    code, out, _ = check(tmp_path, plan=plan, ledger=CREATE_RULE_LINE)
+    assert code == 1
+    assert out.splitlines() == [unwrapped("rule-z", kind="create")]
+
+
+def test_the_word_sprint_inside_a_title_is_not_the_source(tmp_path):
+    # case 335: the source is the segment before the closer; six live Estimates hold
+    # `sprint` in their slug, and a title naming one is no item of the sprint
+    frontier = (
+        "# Frontier\n\n- [x] C1 — estimate-sprint-migration-index-dissolved · brief · case 1\n"
+    )
     assert check(tmp_path, frontier=frontier) == (0, "", "")
 
 

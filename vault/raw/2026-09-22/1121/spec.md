@@ -232,7 +232,7 @@ update:
 ```tasks
 - [x] update `rule-skill-hi`
 - [x] update `estimate-hi-writes-frontier`
-- [ ] `uv run guppi render`: `.claude/skills/hi/SKILL.md`
+- [x] `uv run guppi render`: `.claude/skills/hi/SKILL.md`
 - [ ] read `estimate-hi-writes-frontier`: by hand at the first `/hi` of the next session
 ```
 
@@ -430,7 +430,7 @@ update:
 ```tasks
 - [x] update `rule-skill-hi`
 - [x] update `estimate-hi-writes-frontier`
-- [ ] `uv run guppi render`: `.claude/skills/hi/SKILL.md`
+- [x] `uv run guppi render`: `.claude/skills/hi/SKILL.md`
 - [ ] read `estimate-hi-writes-frontier`: by hand at the first `/hi` of the next session
 ```
 
@@ -689,7 +689,7 @@ update:
 - [x] update `rule-rules-schema`: `[[rule-atomicity]]` beside the order of a Rule MOC's children
 - [x] update `rule-prespec`: `[[rule-atomicity]]` beside "one promise per Case"
 - [x] update `entity-glossary`: the row "Atomicity Rule" — `where` is `[[rule-atomicity]]`
-- [ ] `uv run guppi render`: `vault/wiki/case-schema.md`
+- [x] `uv run guppi render`: `vault/wiki/case-schema.md`
 - [x] `uv run guppi glossary`
 - [ ] read `estimate-atomicity-rendered`: `make lint` — `render --check` exit 0; the text between the markers of `case-schema.md` read by hand
 ```
@@ -807,7 +807,7 @@ update:
 - [x] update `estimate-case-protocol-ledger-line-form`, `estimate-glossary-terms-defined`, `estimate-synthesis-keeps-actioned-by-the-mark`, `estimate-sprint-migration-merges`, `estimate-raw-archive`
 - [x] update `entity-sprint-migration`: theme 4 closed
 - [x] `guppi/materialize.py`: `RULE_CLASS` without `index`
-- [ ] `uv run guppi render`: `CLAUDE.md`, `.claude/agents/ask-guppi.md`, `.claude/skills/hi/SKILL.md`, `.claude/skills/pre-spec/SKILL.md`, `vault/wiki/case-schema.md`, `vault/wiki/entities/schema.yaml`
+- [x] `uv run guppi render`: `CLAUDE.md`, `.claude/agents/ask-guppi.md`, `.claude/skills/hi/SKILL.md`, `.claude/skills/pre-spec/SKILL.md`, `vault/wiki/case-schema.md`, `vault/wiki/entities/schema.yaml`
 - [x] `uv run guppi glossary`
 - [x] `uv run guppi sprint`
 - [ ] read `estimate-sprint-migration-index-dissolved`: `test -e vault/wiki/index.md` false; `rg` over `vault/wiki`, `.claude`, `guppi`, `CLAUDE.md` — empty but for the archive and `raw/`
@@ -953,7 +953,7 @@ update:
 - [x] `guppi/generate.py`: the `category == "file"` branch gone; "an update with no content in the Spec" reworded off "applied by hand"; the docstring
 - [x] `guppi/prespec.py`: `rule_class_path` out of `line_has_item` and `item_has_line`; `check_governed` refuses any `update` item with `file`; the docstring
 - [x] `tests/test_materialize.py`, `tests/test_generate.py`, `tests/test_prespec.py`: a `file` item is a pre-spec finding; a slug without a prefix lands `category: unknown`; no Rule-class branch remains
-- [ ] `uv run guppi render`: `.claude/skills/pre-spec/SKILL.md`, `vault/wiki/case-schema.md`, `vault/wiki/decisions/schema.yaml`
+- [x] `uv run guppi render`: `.claude/skills/pre-spec/SKILL.md`, `vault/wiki/case-schema.md`, `vault/wiki/decisions/schema.yaml`
 - [x] `uv run guppi sprint`
 - [x] read `estimate-sprint-migration-file-route-gone`: the `rg`, `make test`, `make lint`
 - [ ] read `estimate-case-protocol-case-form`, `estimate-generate-fails-alone`, `estimate-generate-ticks-the-spec` — their Criteria changed

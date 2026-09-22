@@ -20,6 +20,7 @@ Prevents a unit from being split or kept whole by taste. The rule cannot be chec
 
 ## Render
 
+<!-- rule-atomicity -->
 ## Atomicity — when a unit splits
 
 A unit stays whole as long as its closing act — ratification, a reading, `built` — is one indivisible judgment. The moment it breaks into two or more conditions that can fail independently and need different fixes, it splits into children.
@@ -27,6 +28,7 @@ A unit stays whole as long as its closing act — ratification, a reading, `buil
 The test is mechanical. List the conditions of "done". For each pair, ask: could one fail while the other passes, and would the fix be a different one? Yes for any pair — split.
 
 It holds for a Case, an Entity, a Rule and an Estimate alike. Not for a Lesson: a recorded fact does not split. Not for an Insight: it is born by clustering, which is this rule running in reverse. Depth is not fixed in advance — it follows the rule and nothing else. Two conditions that are different behaviours are two children; the same behaviour checked from two angles is one page and two Estimates.
+<!-- /rule-atomicity -->
 
 ## History
 

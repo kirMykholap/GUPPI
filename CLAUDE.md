@@ -1,6 +1,6 @@
 # GUPPI
 
-A Claude Code harness governed by ratified decisions, and the Obsidian vault it compiles into. The vault is `vault/`; its map is `vault/wiki/index.md`; its terms are `vault/wiki/glossary.md`. A working session opens with `/hi`.
+A Claude Code harness governed by ratified decisions, and the Obsidian vault it compiles into. The vault is `vault/`; its terms are `vault/wiki/glossary.md`. A working session opens with `/hi`.
 
 <!-- rule-language -->
 ## Language

@@ -31,6 +31,8 @@ REF_FIELDS = (  # the fields whose values are slugs of pages (case 148.1)
     "defer",
     "supersedes",
     "superseded_by",
+    "applies_to",  # the edge Rule → Entity (case 305)
+    "rules",  # its backlink, computed by generate (case 305.3)
 )
 WIKILINK_VALUE = re.compile(r"^\[\[([^\]|#]+)(?:[|#][^\]]*)?\]\]$")
 

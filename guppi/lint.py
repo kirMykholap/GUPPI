@@ -3,9 +3,13 @@
 Reads every page under `vault/wiki/<category>/` (archive excluded) against that category's
 `schema.yaml` and reports `<category>/<slug>: <class>: <what>`; writes nothing. The
 classes, in the order they are checked: `schema` (a missing field or section, a value
-outside the list, a conditional not met), `schema-prose` (`schema.md` and `schema.yaml`
-naming different fields or sections), `ref` (a slug no live or archived page carries; a
-body `[[…]]` may also name a hub file under `wiki/` by its stem or its path, case 149.3),
+outside the list, a conditional not met), `schema-description` (a field or section the
+lists of `schema.yaml` name without a description under its `fields` or `sections`, or a
+description of a name no list carries — the prose of the schema lives in the yaml since
+case 304.8), `ref` (a slug no live or archived page carries; a
+body `[[…]]` may also name a hub file under `wiki/` by its stem or its path, case 149.3;
+an `applies_to` that names no live Entity, and an Entity's `rules` that differs from the
+live rules whose `applies_to` names it, case 305.5;
 and, case 72.6, a `[[slug]]` under a decision page's `## Criterion` that is not a live or
 archived Estimate page, or a `### case N` block under an Estimate's `## Criterion` with no
 live or archived `decision-case-N`), `origin` (a ledger file or `[case N]` line that does
@@ -59,6 +63,8 @@ LINK_FIELDS = (
     "addressed_by",
     "insight",
     "deferred_by",
+    "applies_to",  # the edge Rule → Entity, written in the Case (case 305)
+    "rules",  # its backlink on the Entity, computed by generate (case 305.3)
 )
 PREFIXES = {
     "entity-": "entities",
@@ -74,8 +80,6 @@ CODE_SPAN = re.compile(r"`[^`\n]*`")  # a `[[slug]]` quoted in prose is not a li
 # `raw/<date>/ledger.md#…` (the shape before case 103) or `raw/<date>/<HHMM>/ledger.md#…`
 ORIGIN_CASE = re.compile(r"^raw/(\d{4}-\d\d-\d\d(?:/\d{4})?)/ledger\.md#case-([\w.]+)$")
 ORIGIN_LINE = re.compile(r"^raw/(\d{4}-\d\d-\d\d(?:/\d{4})?)/ledger\.md#L(\d+)$")
-TABLE_FIELD = re.compile(r"^\|\s*`([^`]+)`")
-TABLE_SECTION = re.compile(r"^\|\s*`(## [^`]+)`")
 TEST_PATH = re.compile(r"`?(tests/[\w./-]+\.py)`?")
 MAKE_TARGET = re.compile(r"`?make ([\w-]+)`?")
 BY_HAND = "by hand"
@@ -184,71 +188,41 @@ def check_schema(page: Page, schema: dict) -> list[Finding]:
     return out
 
 
-def prose_names(text: str) -> tuple[set[str], set[str]]:
-    """The fields of the Properties table and the sections of the Body table in a
-    `schema.md`; `## History` counts as a section when the file has that heading."""
-    fields: set[str] = set()
-    sections: set[str] = set()
-    current = None
-    for line in text.splitlines():
-        if line.startswith("## "):
-            current = line.strip()
-            if current == "## History":
-                sections.add("## History")
-            continue
-        if current == "## Properties":
-            match = TABLE_FIELD.match(line)
-            if match:
-                fields.add(match.group(1))
-        elif current == "## Body":
-            match = TABLE_SECTION.match(line)
-            if match:
-                sections.add(match.group(1))
-    return fields, sections
+def listed_names(block: dict) -> set[str]:
+    """Every name the `required`, `optional` and conditional `required` lists of a
+    `properties` or `body` block carry."""
+    names = {str(n) for n in block.get("required") or []}
+    names |= {str(n) for n in block.get("optional") or []}
+    for rule in block.get("conditional") or []:
+        names |= {str(n) for n in (rule or {}).get("required") or []}
+    return names
 
 
-def check_prose(wiki: Path, category: str, schema: dict) -> list[Finding]:
-    path = wiki / category / "schema.md"
-    if not path.exists():
-        return [Finding(f"{category}/schema", "schema-prose", "schema.md is missing")]
-    fields, sections = prose_names(path.read_text(encoding="utf-8"))
-    props = schema.get("properties") or {}
-    body = schema.get("body") or {}
-    yaml_fields = set(props.get("required") or []) | set(props.get("optional") or [])
-    yaml_sections = set(body.get("required") or []) | set(body.get("optional") or [])
+def check_descriptions(category: str, schema: dict) -> list[Finding]:
+    """Case 304.8: the prose of a schema is data of its yaml — `fields` describes every
+    name the lists of `properties` carry and nothing else, `sections` the same for `body`;
+    one finding per name missing on either side, class `schema-description`."""
     out = []
-    for name in sorted(fields - yaml_fields):
-        out.append(
-            Finding(
-                f"{category}/schema",
-                "schema-prose",
-                f"schema.md names field {name}, schema.yaml does not",
+    for block, key, word in (("properties", "fields", "field"), ("body", "sections", "section")):
+        listed = listed_names(schema.get(block) or {})
+        described = schema.get(key)
+        described = {str(k) for k in described} if isinstance(described, dict) else set()
+        for name in sorted(listed - described):
+            out.append(
+                Finding(
+                    f"{category}/schema",
+                    "schema-description",
+                    f"{word} {name} has no description",
+                )
             )
-        )
-    for name in sorted(yaml_fields - fields):
-        out.append(
-            Finding(
-                f"{category}/schema",
-                "schema-prose",
-                f"schema.yaml names field {name}, schema.md does not",
+        for name in sorted(described - listed):
+            out.append(
+                Finding(
+                    f"{category}/schema",
+                    "schema-description",
+                    f"{key} describes {name}, which no list names",
+                )
             )
-        )
-    for name in sorted(sections - yaml_sections):
-        out.append(
-            Finding(
-                f"{category}/schema",
-                "schema-prose",
-                f"schema.md names section {name}, schema.yaml does not",
-            )
-        )
-    for name in sorted(yaml_sections - sections):
-        out.append(
-            Finding(
-                f"{category}/schema",
-                "schema-prose",
-                f"schema.yaml names section {name}, schema.md does not",
-            )
-        )
     return out
 
 
@@ -293,7 +267,7 @@ def links_of(page: Page) -> list[tuple[str, str]]:
 def hub_files(wiki: Path) -> set[str]:
     """What a body `[[…]]` may name besides a page (case 149.3): a file at the root of
     `wiki/` by its stem (`brief`, `index`, `glossary`, `case-schema`, `sprint`, `tags`,
-    `log`) or a file under `wiki/` by its path without the suffix (`rules/schema`)."""
+    `log`) or a file under `wiki/` by its path without the suffix — none since the schemas became pages (case 304)."""
     out = {p.stem for p in wiki.glob("*.md")}
     for category in CATEGORIES:
         out |= {f"{category}/{p.stem}" for p in (wiki / category).glob("*.md")}
@@ -312,6 +286,41 @@ def check_refs(page: Page, known: set[str], hubs: set[str] = frozenset()) -> lis
         out.append(
             Finding(page, "ref", f"{field} names {slug}, which no live or archived page carries")
         )
+    return out
+
+
+def rules_of(entity_slug: str, pages: list[Page]) -> list[str]:
+    """The live rules whose `applies_to` names the Entity, in slug order — what the
+    cascade of `generate` writes into its `rules` (case 305.3)."""
+    return sorted(
+        p.slug
+        for p in pages
+        if p.category == "rules"
+        and not p.error
+        and entity_slug in as_list(p.props.get("applies_to"))
+    )
+
+
+def check_edges(page: Page, pages: list[Page], by_slug: dict[str, Page]) -> list[Finding]:
+    """Case 305.5, class `ref`: an `applies_to` names a live Entity; an Entity's `rules`
+    is the live rules whose `applies_to` names it — a difference names what is extra
+    (`+`) and what is missing (`-`)."""
+    out = []
+    if page.category == "rules":
+        for slug in as_list(page.props.get("applies_to")):
+            target = by_slug.get(slug)
+            if target is not None and target.category != "entities":
+                out.append(Finding(page, "ref", f"applies_to names {slug}, which is not an entity"))
+    elif page.category == "entities":
+        listed = as_list(page.props.get("rules"))
+        expected = rules_of(page.slug, pages)
+        if sorted(listed) != expected:
+            extra = ", ".join(f"+{s}" for s in sorted(set(listed) - set(expected)))
+            missing = ", ".join(f"-{s}" for s in expected if s not in listed)
+            diff = ", ".join(part for part in (extra, missing) if part)
+            out.append(
+                Finding(page, "ref", f"rules differs from the applies_to of the live rules: {diff}")
+            )
     return out
 
 
@@ -614,7 +623,7 @@ def lint(project_dir: Path) -> list[str]:
             if vault[category]:
                 findings.append(Finding(f"{category}/schema", "schema", "schema.yaml is missing"))
             continue
-        findings.extend(check_prose(wiki, category, schema))
+        findings.extend(check_descriptions(category, schema))
         if category == "decisions":
             schema = without_when(schema)
         for page in vault[category]:
@@ -623,6 +632,7 @@ def lint(project_dir: Path) -> list[str]:
         if page.error:
             continue
         findings.extend(check_refs(page, known, hubs))
+        findings.extend(check_edges(page, pages, by_slug))
         findings.extend(check_criterion(page, known))
         findings.extend(check_origin(page, project_dir))
         findings.extend(check_paths(page, project_dir))

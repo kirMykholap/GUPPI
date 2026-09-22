@@ -1,7 +1,6 @@
 """`guppi generate`: pages from `materialize.yaml`, derived fields, backlinks, History, log."""
 
 import io
-import shutil
 from datetime import UTC, datetime
 from pathlib import Path
 
@@ -26,41 +25,6 @@ properties:
 body:
   required: ["## Context", "## Problem", "## History"]
   optional: ["## Given", "## When", "## Criterion", "## Note"]
-"""
-DECISIONS_MD = """\
-# Decision — page schema
-
-## Properties
-
-| Field | Required |
-|---|---|
-| `type` | yes |
-| `case` | yes |
-| `status` | yes |
-| `create` | no |
-| `update` | no |
-| `delete` | no |
-| `defer` | no |
-| `source` | no |
-| `supersedes` | no |
-| `superseded_by` | no |
-| `origin` | yes |
-| `sprint` | yes |
-| `created` | yes |
-| `tags` | yes |
-
-## Body
-
-| Section | Required |
-|---|---|
-| `## Context` | yes |
-| `## Problem` | yes |
-| `## Given` | no |
-| `## When` | no |
-| `## Criterion` | no |
-| `## Note` | no |
-
-## History
 """
 
 
@@ -88,16 +52,27 @@ def records_for(entries):
     return list(records.values())
 
 
+def described(text):
+    """The yaml with a description under `fields` and `sections` for every listed name,
+    the shape lint checks since case 304.8; a yaml that carries them already stands."""
+    data = yaml.safe_load(text)
+    for block, key in (("properties", "fields"), ("body", "sections")):
+        if key not in data:
+            data[key] = {n: "d" for n in sorted(lint.listed_names(data.get(block) or {}))}
+    return yaml.safe_dump(data, sort_keys=False, allow_unicode=True)
+
+
 def seed(tmp_path, entries=(), decisions=None, new_tags=(), pages=()):
     if decisions is None:
         decisions = records_for(entries)
     wiki = tmp_path / "vault" / "wiki"
     for category in ("entities", "rules", "estimates", "lessons", "insights", "decisions"):
         (wiki / category).mkdir(parents=True)
-        for name in ("schema.yaml", "schema.md"):
-            shutil.copy(REPO / "vault" / "wiki" / category / name, wiki / category / name)
-    (wiki / "decisions" / "schema.yaml").write_text(DECISIONS_YAML, encoding="utf-8", newline="\n")
-    (wiki / "decisions" / "schema.md").write_text(DECISIONS_MD, encoding="utf-8", newline="\n")
+        source = REPO / "vault" / "wiki" / category / "schema.yaml"
+        text = DECISIONS_YAML if category == "decisions" else source.read_text(encoding="utf-8")
+        (wiki / category / "schema.yaml").write_text(
+            described(text), encoding="utf-8", newline="\n"
+        )
     (wiki / "sprint.md").write_text("# Sprint\n\n## migration — open\n", encoding="utf-8")
     (wiki / "tags.md").write_text(
         "# Tags\n\n| tag | meaning | aliases (ru) |\n|---|---|---|\n| harness | the harness | харнесс |\n",
@@ -2483,3 +2458,49 @@ def test_a_folded_reading_skips_a_superseded_case_too(tmp_path):
     text = other.read_text(encoding="utf-8")
     assert "- [ ] read `estimate-child-works`: by hand\n" in text  # Case 7, superseded by 8
     assert "- [x] read `estimate-child-works`: by hand, on the recut" in text
+
+
+# --- case 305.3: the cascade writes rules on an Entity from the applies_to of the rules ----
+
+
+def guard_text(slug, applies_to):
+    return page_text("rules", slug, kind="Leaf", applies_to=f"[{', '.join(applies_to)}]")
+
+
+def test_the_cascade_recounts_rules_from_the_applies_to_of_the_live_rules(tmp_path):
+    pages = [
+        ("entities", "entity-thing", page_text("entities", "entity-thing")),
+        ("entities", "entity-other", page_text("entities", "entity-other", rules="[rule-b]")),
+        ("entities", "entity-plain", page_text("entities", "entity-plain")),
+        ("rules", "rule-b", guard_text("rule-b", ["entity-thing"])),
+        ("rules", "rule-a", guard_text("rule-a", ["entity-thing", "entity-nowhere"])),
+    ]
+    seed(tmp_path, entries=[ROOT], pages=pages)
+    code, _, err = run(tmp_path)
+    assert code == 0 and err == ""
+    thing = page(tmp_path, "entities", "entity-thing")
+    assert props(thing)["rules"] == ["rule-a", "rule-b"]  # slug order, as wikilinks
+    assert 'rules: ["[[rule-a]]", "[[rule-b]]"]' in thing
+    assert f"- {DATE} rules: [rule-a, rule-b] · cascade" in thing
+    other = page(tmp_path, "entities", "entity-other")
+    assert props(other)["rules"] == [] and f"- {DATE} rules: [] · cascade" in other
+    plain = page(tmp_path, "entities", "entity-plain")
+    assert "rules:" not in plain and "cascade" not in plain  # no edge, no field
+    assert "applies_to" not in thing  # never computed
+    rule_a = props(page(tmp_path, "rules", "rule-a"))
+    assert rule_a["applies_to"] == ["entity-thing", "entity-nowhere"]
+
+
+def test_an_archived_rule_gives_no_edge_and_an_unchanged_rules_writes_no_history(tmp_path):
+    pages = [
+        ("entities", "entity-thing", page_text("entities", "entity-thing", rules="[rule-a]")),
+        ("rules", "rule-a", guard_text("rule-a", ["entity-thing"])),
+    ]
+    seed(tmp_path, entries=[ROOT], pages=pages)
+    archived = tmp_path / "vault" / "archive" / "migration" / "2026-09-01" / "rules" / "rule-z.md"
+    archived.parent.mkdir(parents=True)
+    archived.write_text(guard_text("rule-z", ["entity-thing"]), encoding="utf-8", newline=NL)
+    code, _, err = run(tmp_path)
+    assert code == 0 and err == ""
+    thing = page(tmp_path, "entities", "entity-thing")
+    assert props(thing)["rules"] == ["rule-a"] and "cascade" not in thing

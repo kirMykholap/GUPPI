@@ -106,7 +106,10 @@ History `· cascade`; a `superseded` Decision page becomes `archived` (case 104.
 `clustered` children of an `actioned` Insight become `archived` (case 104.2); every
 Insight's `severity` is recounted, a child's status read under `wiki/lessons/` or in the
 archive, a child with no page counted live (case 110); an `open` Insight at 0 becomes
-`archived`, an `actioned` one stays (case 104.3). No section is derived by the cascade.
+`archived`, an `actioned` one stays (case 104.3); the `rules` of every live Entity is
+recounted — the live rules whose `applies_to` names it, in slug order — written when the
+list is not empty or the field already stands, History `rules: [...] · cascade` on a change
+(case 305.3). No section is derived by the cascade.
 
 The walk (case 201.5): without `--date` every unit under `vault/raw/` with a yaml is
 applied — the date-level yaml of a date first, then `raw/<date>/<HHMM>/materialize.yaml`
@@ -138,12 +141,12 @@ from guppi.pages import REF_FIELDS, Page, read_page, slug_of, wiki_root
 KEY_ORDER = {
     "rules": [
         "type", "kind", "purpose", "status", "enforcement", "implementation_ref", "governs",
-        "render_mode", "parent", "children", "estimates", "deferred_by", "origin", "sprint",
-        "created", "tags",
+        "render_mode", "parent", "children", "estimates", "applies_to", "deferred_by", "origin",
+        "sprint", "created", "tags",
     ],
     "entities": [
-        "type", "kind", "purpose", "status", "parent", "children", "estimates", "deferred_by",
-        "code_ref", "origin", "sprint", "created", "tags",
+        "type", "kind", "purpose", "status", "parent", "children", "estimates", "rules",
+        "deferred_by", "code_ref", "origin", "sprint", "created", "tags",
     ],
     "estimates": [
         "type", "kind", "status", "target", "purpose", "method", "checked", "origin", "sprint",
@@ -1010,6 +1013,37 @@ class Vault:
 
     # after all entries
 
+    def recount_rules(self) -> None:
+        """Case 305.3: the `rules` of every live Entity is the live rules whose
+        `applies_to` names it, in slug order — the backlink of the edge Rule → Entity.
+        The field is written when the list is not empty or already stands; an empty list
+        on a page without the field writes nothing. An archived rule gives no edge; an
+        `applies_to` on a slug with no page is left to lint."""
+        guards: dict[str, list[str]] = {}
+        for path in sorted((self.wiki / "rules").glob("*.md")):
+            if path.stem == "schema":
+                continue
+            rule = read_page(path, "rules")
+            if rule.error:
+                continue
+            for slug in as_list(rule.props.get("applies_to")):
+                guards.setdefault(slug, []).append(rule.slug)
+        for path in sorted((self.wiki / "entities").glob("*.md")):
+            if path.stem == "schema":
+                continue
+            page = read_page(path, "entities")
+            if page.error:
+                continue
+            expected = sorted(guards.get(page.slug, []))
+            if "rules" not in page.props and not expected:
+                continue
+            current = as_list(page.props.get("rules"))
+            if current == expected:
+                continue
+            page.props["rules"] = expected
+            self.history(page, f"rules: [{', '.join(expected)}]", "cascade")
+            self.save(page)
+
     def cascade(self) -> None:
         estimates: dict[str, Page] = {}
         for path in (self.wiki / "estimates").glob("*.md"):
@@ -1033,6 +1067,7 @@ class Vault:
                     page.props["status"] = after
                     self.history(page, f"status: {before} → {after}", "cascade")
                     self.save(page)
+        self.recount_rules()
         # 104.1: a superseded decision no longer describes the present
         for path in sorted((self.wiki / "decisions").glob("*.md")):
             if path.stem == "schema":

@@ -7,6 +7,8 @@ schemas, one page per defect, and asserts the finding names the page and the cla
 import io
 import textwrap
 
+import yaml
+
 from guppi import lint
 
 RULES_YAML = """\
@@ -29,36 +31,6 @@ body:
   optional: ["## Render"]
 """
 
-RULES_MD = """\
-# Rule — page schema
-
-## Properties
-
-| Field | Required |
-|---|---|
-| `type` | yes |
-| `kind` | yes |
-| `purpose` | yes |
-| `status` | yes |
-| `enforcement` | no |
-| `implementation_ref` | no |
-| `governs` | no |
-| `render_mode` | no |
-| `parent` | no |
-| `children` | no |
-| `estimates` | yes |
-| `origin` | yes |
-
-## Body
-
-| Section | Required |
-|---|---|
-| `## Purpose` | yes |
-| `## Render` | no |
-
-## History
-"""
-
 ESTIMATES_YAML = """\
 type: estimate
 properties:
@@ -72,33 +44,15 @@ body:
   optional: ["## Context", "## Method", "## Result"]
 """
 
-ESTIMATES_MD = """\
-# Estimate — page schema
 
-## Properties
+def described(text):
+    """The yaml with a one-line description under `fields` and `sections` for every name
+    its lists carry — the shape lint checks since case 304.8."""
+    data = yaml.safe_load(text)
+    for block, key in (("properties", "fields"), ("body", "sections")):
+        data[key] = {name: "d" for name in sorted(lint.listed_names(data.get(block) or {}))}
+    return yaml.safe_dump(data, sort_keys=False, allow_unicode=True)
 
-| Field | Required |
-|---|---|
-| `type` | yes |
-| `kind` | yes |
-| `status` | yes |
-| `target` | yes |
-| `purpose` | no |
-| `method` | no |
-| `checked` | no |
-| `origin` | yes |
-
-## Body
-
-| Section | Required |
-|---|---|
-| `## Criterion` | yes |
-| `## Context` | no |
-| `## Method` | no |
-| `## Result` | no |
-
-## History
-"""
 
 LEDGER = (
     "- decision[case 1][create][rule-x]\n- decision[case 1][create][estimate-x-works]{ref:rule-x}\n"
@@ -182,10 +136,8 @@ def root_page():
 
 def seed(tmp_path, rule=None, estimate=None):
     wiki = tmp_path / "vault" / "wiki"
-    write(wiki / "rules" / "schema.yaml", RULES_YAML)
-    write(wiki / "rules" / "schema.md", RULES_MD)
-    write(wiki / "estimates" / "schema.yaml", ESTIMATES_YAML)
-    write(wiki / "estimates" / "schema.md", ESTIMATES_MD)
+    write(wiki / "rules" / "schema.yaml", described(RULES_YAML))
+    write(wiki / "estimates" / "schema.yaml", described(ESTIMATES_YAML))
     write(wiki / "rules" / "rule-root.md", root_page())
     write(wiki / "rules" / "rule-x.md", rule_page() if rule is None else rule)
     write(
@@ -250,15 +202,19 @@ def test_a_missing_section_is_a_schema_finding(tmp_path):
     assert lines == ["estimates/estimate-x-works: schema: missing section ## Criterion"]
 
 
-def test_prose_and_yaml_naming_different_fields_is_a_schema_prose_finding(tmp_path):
+def test_a_listed_name_without_a_description_and_a_stray_one_are_schema_description_findings(
+    tmp_path,
+):
     wiki = seed(tmp_path)
-    write(
-        wiki / "rules" / "schema.md", RULES_MD.replace("| `governs` | no |\n", "| `owns` | no |\n")
-    )
+    text = described(RULES_YAML).replace("  governs: d\n", "  owns: d\n")
+    text = text.replace("  '## Render': d\n", "  '## Notes': d\n")
+    write(wiki / "rules" / "schema.yaml", text)
     _, lines, _ = run(tmp_path)
     assert lines == [
-        "rules/schema: schema-prose: schema.md names field owns, schema.yaml does not",
-        "rules/schema: schema-prose: schema.yaml names field governs, schema.md does not",
+        "rules/schema: schema-description: field governs has no description",
+        "rules/schema: schema-description: fields describes owns, which no list names",
+        "rules/schema: schema-description: section ## Render has no description",
+        "rules/schema: schema-description: sections describes ## Notes, which no list names",
     ]
 
 
@@ -312,8 +268,9 @@ def test_a_wikilink_to_a_hub_file_under_wiki_resolves(tmp_path):
     )
     write(tmp_path / "vault" / "wiki" / "brief.md", "# Brief\n")
     _, lines, _ = run(tmp_path)
-    assert lines == [  # case 149.3: the stem of a root file, the path of a schema
-        "rules/rule-x: ref: body names nowhere, which no live or archived page carries"
+    assert lines == [  # case 149.3: the stem of a root file; a schema is no file since case 304
+        "rules/rule-x: ref: body names rules/schema, which no live or archived page carries",
+        "rules/rule-x: ref: body names nowhere, which no live or archived page carries",
     ]
 
 
@@ -621,39 +578,6 @@ body:
   optional: ["## Given", "## When", "## Criterion", "## Note"]
 """
 
-DECISIONS_MD = """\
-# Decision — page schema
-
-## Properties
-
-| Field | Required |
-|---|---|
-| `type` | yes |
-| `case` | yes |
-| `status` | yes |
-| `create` | no |
-| `update` | no |
-| `delete` | no |
-| `defer` | no |
-| `source` | no |
-| `supersedes` | no |
-| `superseded_by` | no |
-| `origin` | yes |
-
-## Body
-
-| Section | Required |
-|---|---|
-| `## Context` | yes |
-| `## Problem` | yes |
-| `## Given` | no |
-| `## When` | no |
-| `## Criterion` | no |
-| `## Note` | no |
-
-## History
-"""
-
 
 def decision_page(lists="defer: [rule-x]"):
     """A decision page whose kind lists are the given frontmatter lines (case 59.4)."""
@@ -665,8 +589,7 @@ def decision_page(lists="defer: [rule-x]"):
 
 def seed_decisions(tmp_path, page=None):
     wiki = seed(tmp_path)
-    write(wiki / "decisions" / "schema.yaml", DECISIONS_YAML)
-    write(wiki / "decisions" / "schema.md", DECISIONS_MD)
+    write(wiki / "decisions" / "schema.yaml", described(DECISIONS_YAML))
     write(wiki / "decisions" / "decision-case-50.md", decision_page() if page is None else page)
     return wiki
 
@@ -742,10 +665,7 @@ def test_an_estimate_whose_target_is_not_an_entity_or_rule_is_a_status_finding(t
     wiki = seed(tmp_path, estimate=estimate_page(target="lesson-l"))
     write(
         wiki / "lessons" / "schema.yaml",
-        "type: lesson\nproperties:\n  required: [type]\n  optional: []\nbody:\n  required: []\n  optional: []\n",
-    )
-    write(
-        wiki / "lessons" / "schema.md", "# Lesson\n\n## Properties\n\n| `type` | yes |\n\n## Body\n"
+        "type: lesson\nproperties:\n  required: [type]\n  optional: []\nbody:\n  required: []\n  optional: []\nfields: {type: d}\n",
     )
     write(wiki / "lessons" / "lesson-l.md", "---\ntype: lesson\n---\n")
     _, lines, _ = run(tmp_path)
@@ -760,11 +680,7 @@ def test_an_insight_nothing_names_is_not_an_orphan_finding(tmp_path):  # case 15
     wiki = seed(tmp_path)
     write(
         wiki / "insights" / "schema.yaml",
-        "type: insight\nproperties:\n  required: [type]\n  optional: [status]\nbody:\n  required: []\n  optional: []\n",
-    )
-    write(
-        wiki / "insights" / "schema.md",
-        "# Insight\n\n## Properties\n\n| `type` | yes |\n\n## Body\n",
+        "type: insight\nproperties:\n  required: [type]\n  optional: [status]\nbody:\n  required: []\n  optional: []\nfields: {type: d, status: d}\n",
     )
     write(wiki / "insights" / "insight-i.md", "---\ntype: insight\nstatus: actioned\n---\n")
     _, lines, _ = run(tmp_path)
@@ -791,9 +707,11 @@ def test_a_decision_without_when_is_not_a_finding_even_when_the_yaml_requires_it
     wiki = seed_decisions(tmp_path)
     write(
         wiki / "decisions" / "schema.yaml",
-        DECISIONS_YAML.replace(
-            '"## Problem", "## History"', '"## Problem", "## When", "## History"'
-        ).replace('"## Given", "## When", "## Criterion"', '"## Given", "## Criterion"'),
+        described(
+            DECISIONS_YAML.replace(
+                '"## Problem", "## History"', '"## Problem", "## When", "## History"'
+            ).replace('"## Given", "## When", "## Criterion"', '"## Given", "## Criterion"')
+        ),
     )
     assert run(tmp_path) == (0, [], "")
 
@@ -904,3 +822,66 @@ def test_a_moc_method_naming_a_make_target_passes_whatever_else_it_says(tmp_path
         ),
     )
     assert run(tmp_path) == (0, [], "")
+
+
+# --- case 305.5: the edge Rule → Entity — applies_to and rules under ref -------------------
+
+ENTITIES_YAML = """\
+type: entity
+properties:
+  required: [type, kind, purpose, status, estimates, origin]
+  optional: [parent, children, rules]
+  values:
+    kind: [MOC, Leaf]
+    status: [draft, built, archived]
+body:
+  required: ["## Purpose", "## History"]
+"""
+
+
+def entity_page(**over):
+    props = {
+        "type": "entity",
+        "kind": "MOC",
+        "purpose": "The thing",
+        "status": "draft",
+        "children": "[]",
+        "estimates": "[]",
+        "origin": ORIGIN,
+    }
+    props.update(over)
+    front = "\n".join(f"{k}: {v}" for k, v in props.items() if v is not None)
+    return f"---\n{front}\n---\n\n## Purpose\n\nt\n\n## History\n\n- created\n"
+
+
+def seed_edge(tmp_path, applies_to="[entity-thing]", rules="[rule-x]"):
+    """rule-x guards entity-thing; the entity lists it back."""
+    wiki = seed(tmp_path, rule=rule_page(applies_to=applies_to))
+    write(wiki / "entities" / "schema.yaml", described(ENTITIES_YAML))
+    write(wiki / "entities" / "entity-thing.md", entity_page(rules=rules))
+    return wiki
+
+
+def test_an_edge_written_on_both_sides_is_no_finding(tmp_path):
+    seed_edge(tmp_path)
+    assert run(tmp_path) == (0, [], "")
+
+
+def test_an_applies_to_on_no_entity_is_a_ref_finding(tmp_path):
+    seed_edge(tmp_path, applies_to="[entity-nowhere, rule-root, entity-thing]", rules="[rule-x]")
+    _, lines, _ = run(tmp_path)
+    assert lines == [
+        "rules/rule-x: ref: applies_to names entity-nowhere, which no live or archived page carries",
+        "rules/rule-x: ref: applies_to names rule-root, which is not an entity",
+    ]
+
+
+def test_a_rules_that_disagrees_with_the_live_applies_to_is_a_ref_finding(tmp_path):
+    seed_edge(tmp_path, rules="[rule-root]")
+    _, lines, _ = run(tmp_path)
+    assert lines == [
+        (
+            "entities/entity-thing: ref: rules differs from the applies_to of the live rules: "
+            "+rule-root, -rule-x"
+        )
+    ]

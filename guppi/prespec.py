@@ -24,18 +24,21 @@ the ledgers of its dates, on the `hi` date from the `hi` time on, and its folder
 
 - a decision line written since the session's `hi` with no item of its kind under its own
   Case heading of the plan, and an item of a `then` block with no decision line of its Case;
-  a `defer` line matches a `defer` item, a Rule-class `file` line an `update` with that
-  `file`; an Estimate has its own line and its own item (case 189); a nested `estimate` of an
+  a `defer` line matches a `defer` item; an Estimate has its own line and its own item (case 189); a nested `estimate` of an
   older Spec is covered by its parent's create line; the lines of a Case a `{supersedes:case
   N}` of the window names need no item — the Case left the plan — and its heading still in
   the plan is a finding of its own (case 299.2);
 - the frontier `raw/<hi date>/<hi HHMM>/frontier.md` (case 73.4): missing, an open `[ ]`
   line, a `[x] … · case N` whose heading the plan lacks, a `[-] … · defer case N` with no
-  `defer` item under Case N;
+  `defer` item under Case N; `sprint` is a closer of its own — an item of the sprint page
+  left for a later session — legal on `[-]`, a finding on `[x]` (case 310.6); a line whose
+  segments hold `sprint` and whose closer is `case N` needs an `update` of the sprint page
+  `entity-sprint-<id>` under Case N, the parent or a sub-case (case 314.2);
 - a Case with a line of a kind other than `defer` and no fenced block tagged `tasks` (a
   defer-only Case has no work, case 74); an Estimate a `then` block creates or sets
   `pending` that no line of the Case's `tasks` names;
-- an `update` item with `file:` on a path a live Rule page `governs`;
+- an `update` item carrying `file:` — the file route is gone (case 320); the rule that
+  governs the path is named when there is one;
 - the form of an Estimate item (case 203.1): a Case whose `then` block holds two or more
   Estimate items — a `create`, or an `update` with `set: {status: pending}` — without a
   written `sections: Criterion` (one promise per Case: split it); an `update` of an
@@ -76,7 +79,6 @@ from guppi.materialize import (
     category_of,
     find_item,
     parse_line,
-    rule_class_path,
     split_cases,
     then_blocks,
     unquote,
@@ -92,7 +94,9 @@ LINE_PREVIEW = 80
 BARE_CASE = re.compile(r"^(- (?:\d\d:\d\d:\d\d )?decision\[)(?!case )")
 FRONTIER_LINE = re.compile(r"^- \[([ x-])\] (\S+)(.*)$")
 FRONTIER_SEPARATOR = " · "
-CLOSERS = re.compile(r"^(work|case (\S+)|defer case (\S+))$")
+CLOSERS = re.compile(r"^(work|sprint|case (\S+)|defer case (\S+))$")
+SPRINT_SOURCE = "sprint"
+SPRINT_PAGE = "entity-sprint-"
 # Case 279.2: a task line the tickers of `render` and `sprint` would not match — the bare
 # word, or the command outside a code span, right after the box.
 OFF_FORM_LINE = re.compile(r"^- \[[ x]\] (?:uv run )?(?:guppi )?(?:render|sprint)\b")
@@ -244,12 +248,6 @@ def item_name(entry: dict) -> str:
 
 
 def line_has_item(block: dict, record: dict) -> bool:
-    path = rule_class_path(record["slug"])
-    if path:
-        return any(
-            isinstance(i, dict) and same_path(i.get("file"), path)
-            for i in block.get(record["kind"]) or []
-        )
     return find_item(block, record["kind"], record["slug"])[0] is not None
 
 
@@ -258,8 +256,6 @@ def item_has_line(entry: dict, records: list[dict]) -> bool:
         if record["kind"] != entry["kind"]:
             continue
         if entry["slug"] and record["slug"] == entry["slug"]:
-            return True
-        if entry["file"] and same_path(entry["file"], rule_class_path(record["slug"])):
             return True
     return False
 
@@ -301,9 +297,24 @@ def check_lines(cases: dict, blocks: dict, records: list[dict]) -> list[str]:
     return findings
 
 
+def updates_the_sprint(blocks: dict, case: str) -> bool:
+    """Case 314.2: an `update` of the sprint page `entity-sprint-<id>` under Case N — the
+    parent or any of its sub-cases."""
+    for key, block in blocks.items():
+        if key != case and not key.startswith(f"{case}."):
+            continue
+        for item in (block or {}).get("update") or []:
+            if isinstance(item, dict) and str(item.get("slug") or "").startswith(SPRINT_PAGE):
+                return True
+    return False
+
+
 def check_frontier(path: Path, relative: str, cases: dict, blocks: dict) -> list[str]:
     """59.2: the frontier of the session's folder (73.4), every line closed by a Case the
-    plan holds."""
+    plan holds. Case 310.6: `sprint` is a closer of its own — a line of the sprint page left
+    for a later session — legal on a `[-]` box and a finding on an `[x]`. Case 314.2: a line
+    whose segments hold `sprint`, closed `case N`, needs an `update` of the sprint page
+    under Case N."""
     if not path.exists():
         return [f"frontier: {relative} is missing"]
     findings: list[str] = []
@@ -315,14 +326,29 @@ def check_frontier(path: Path, relative: str, cases: dict, blocks: dict) -> list
         if box == " ":
             findings.append(f"frontier: {item} is open")
             continue
-        closer = CLOSERS.match(rest.split(FRONTIER_SEPARATOR)[-1].strip())
+        segments = [s.strip() for s in rest.split(FRONTIER_SEPARATOR)]
+        closer = CLOSERS.match(segments[-1])
         if closer is None:
-            findings.append(f"frontier: {item} is closed without case N, work or defer case N")
+            findings.append(
+                f"frontier: {item} is closed without case N, work, sprint or defer case N"
+            )
+        elif closer.group(1) == SPRINT_SOURCE:
+            if box == "x":
+                findings.append(
+                    f"frontier: {item} closes [x] with sprint; an item left for later is [-]"
+                )
         elif closer.group(2) is not None:
             case = closer.group(2)
             if case not in cases:
                 findings.append(
                     f"frontier: {item} closes with case {case}, no Case {case} heading in the plan"
+                )
+            elif any(SPRINT_SOURCE in s for s in segments[:-1]) and not updates_the_sprint(
+                blocks, case
+            ):
+                findings.append(
+                    f"frontier: {item} closes a sprint item with case {case}, "
+                    f"no update of the sprint page under Case {case}"
                 )
         elif closer.group(3) is not None:
             case = closer.group(3)
@@ -384,7 +410,9 @@ def governed_paths(project_dir: Path) -> dict[str, str]:
 
 
 def check_governed(blocks: dict, governed: dict[str, str]) -> list[str]:
-    """59.6: a `file` item on a path a Rule page governs has no file route."""
+    """Case 320: an `update` item carrying `file` — the file route is gone; every file of
+    the vault is a page, the Render of a page or a record a script keeps. A path a live
+    Rule page governs is named with its rule (59.6)."""
     findings: list[str] = []
     for case, block in blocks.items():
         for item in block.get("update") or []:
@@ -392,8 +420,9 @@ def check_governed(blocks: dict, governed: dict[str, str]) -> list[str]:
             if not file:
                 continue
             key = str(file).replace("\\", "/").removeprefix("./")
-            if key in governed:
-                findings.append(f"case {case}: file {file} is governed by {governed[key]}")
+            rule = governed.get(key)
+            by = f", governed by {rule}" if rule else ""
+            findings.append(f"case {case}: file {file}{by}; the file route is gone (case 320)")
     return findings
 
 

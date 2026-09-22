@@ -52,7 +52,7 @@ nested `estimate` in an older Spec becomes its own `create` entry, for a line wi
 
 The fields of an entry, each with its writer. From the ledger line: `case`, `kind`
 (`create`, `update`, `delete`, `defer`, `estimate`, `lesson`), `category` (from the slug
-prefix; a Rule-class file is `file` with its `path`), `slug`, `ref`, `source`,
+prefix; a slug with no category prefix is `unknown` and `incomplete: [category]`, since case 320 removed the file route), `slug`, `ref`, `source`,
 `supersedes`, `tags`, `addresses` (the lesson slugs of a decision line's `{addresses:...}`
 marks, one per mark, case 284.2), `origin` (`raw/<unit>/ledger.md#case-N`; a lesson
 `#L<n>`), `line`, `text`, `decision` (`decision-case-<N>`). From the `then` block: `fields`, `sections`
@@ -65,10 +65,15 @@ list of `{old, new}` pairs, carried as written; a mapping or a scalar under it i
 case 284.3), `unknown` (a key of a `create` or `defer` item that the category's
 `schema.yaml` names as no field and that is not structural — never lifted into `fields`,
 case 214.1; the `type` and `purpose` of a `defer` are its own keys and reach `fields`
-whatever the target's category, an Insight's too, case 266), `exists` (a create whose page is on disk with an `origin` carrying
+whatever the target's category, an Insight's too, case 266; and nothing is filtered at all
+for a category whose `rule-<category>-schema` this unit creates or updates — the
+`schema.yaml` on disk catches up only at the render after `generate`, case 308.2),
+`exists` (a create whose page is on disk with an `origin` carrying
 this line's `#case-N`, case 105.2; a defer whose page exists). Set by this script: `set`
 (`status: pending` on an Estimate update), and `status`, `result`, `folded` of a reading
-folded into a create; `superseded_by` from a later `{supersedes}` in any unit; `addressed_by`
+folded into the live create of its slug — never into one already applied or marked
+`superseded_by`, and a `{supersedes}` moves the readings of the create it marks to the live
+create of the slug, or makes each an `estimate` entry of its own (case 309); `superseded_by` from a later `{supersedes}` in any unit; `addressed_by`
 (`decision-case-<N>`) on a lesson entry a decision line of the same unit marked with
 `{addresses:<its slug>}` — at the entry's level, never a page field (case 284.3); `failed`
 from a lift that raised. Kept from the shape before case 189 on entries already written:
@@ -122,13 +127,8 @@ PREFIXES = {
     "insight-": "insights",
     "decision-": "decisions",
 }
-RULE_CLASS = {
-    "index": "vault/wiki/index.md",
-    "glossary": "vault/wiki/glossary.md",
-    "case-schema": "vault/wiki/case-schema.md",
-    "migration-plan": "docs/migration/migration-plan.md",
-}
 CATEGORIES = ("entities", "rules", "estimates", "lessons", "insights", "decisions")
+SCHEMA_RULE = re.compile(r"^rule-([a-z]+)-schema$")
 REQUIRED = {
     "rules": ("type", "kind", "purpose", "tags"),
     "entities": ("type", "kind", "purpose", "tags"),
@@ -225,14 +225,21 @@ def category_of(slug: str) -> str | None:
     return None
 
 
-def rule_class_path(slug: str) -> str | None:
-    if slug in RULE_CLASS:
-        return RULE_CLASS[slug]
-    match = re.match(r"^(\w+)-schema(-yaml)?$", slug)
-    if match and match.group(1) in CATEGORIES:
-        name = "schema.yaml" if match.group(2) else "schema.md"
-        return f"vault/wiki/{match.group(1)}/{name}"
-    return None
+def schema_changed(ledger: list[str]) -> set[str]:
+    """Case 308.2: the categories whose `rule-<category>-schema` this unit creates or
+    updates. A `create` of such a category is lifted whole, no `unknown`: the `schema.yaml`
+    on disk catches up only at the render after `generate`."""
+    out: set[str] = set()
+    for line in ledger:
+        if not line.startswith("- "):
+            continue
+        record = parse_line(line)
+        if record is None or record.get("record") != "decision":
+            continue
+        match = SCHEMA_RULE.match(str(record.get("slug") or ""))
+        if match and match.group(1) in CATEGORIES:
+            out.add(match.group(1))
+    return out
 
 
 # --- the Spec -----------------------------------------------------------------------
@@ -385,17 +392,10 @@ def case_texts(cases: dict[str, list[str]], case: str) -> dict[str, str]:
 
 
 def find_item(block: dict, kind: str, slug: str) -> tuple[dict | None, str | None]:
-    """The `then` item for a decision, and the kind of the create it was nested in. A
-    Rule-class file's item carries `file` and no `slug` (case-schema.md); it is found by the
-    path its slug maps to (case 161)."""
+    """The `then` item for a decision, and the kind of the create it was nested in."""
     for item in block.get(kind) or []:
         if isinstance(item, dict) and item.get("slug") == slug:
             return item, None
-    path = rule_class_path(slug)
-    if path is not None:
-        for item in block.get(kind) or []:
-            if isinstance(item, dict) and "slug" not in item and item.get("file") == path:
-                return item, None
     if kind == "create":
         for item in block.get("create") or []:
             nested = item.get("estimate") if isinstance(item, dict) else None
@@ -445,7 +445,15 @@ def page_of_case(project_dir: Path, category: str, slug: str, origin: str) -> bo
     return False
 
 
-def decision_entry(record: dict, number: int, text: str, date: str, block: dict, project_dir: Path):
+def decision_entry(
+    record: dict,
+    number: int,
+    text: str,
+    date: str,
+    block: dict,
+    project_dir: Path,
+    schema_free: set[str] = frozenset(),
+):
     kind, slug = record["kind"], record["slug"]
     entry: dict = {
         "line": number,
@@ -463,22 +471,18 @@ def decision_entry(record: dict, number: int, text: str, date: str, block: dict,
         entry["tags"] = record["tags"]
     item, nested = find_item(block, kind, slug)
     incomplete: list[str] = []
-    path = rule_class_path(slug)
-    if item is not None and item.get("file"):
-        path = str(item["file"])
     category = category_of(slug)
-    if path is not None:
-        entry["category"] = "file"
-        entry["path"] = path
-    elif category is not None:
+    if category is not None:
         entry["category"] = category
-    else:
+    else:  # case 320: no file route — a slug without a category prefix names no page
         entry["category"] = "unknown"
         incomplete.append("category")
     if item is None:
         incomplete.append("then")
     else:
-        _lift_item(entry, item, kind, nested, incomplete, schema_fields(project_dir, entry))
+        _lift_item(
+            entry, item, kind, nested, incomplete, schema_fields(project_dir, entry, schema_free)
+        )
     if (
         kind == "create"
         and entry["category"] in CATEGORIES
@@ -496,11 +500,16 @@ STRUCTURAL_KEYS = ("slug", "sections", "estimate", "file", "ref", "parent_create
 DEFER_KEYS = ("type", "purpose")  # a defer's own keys, not fields of its target (case 266)
 
 
-def schema_fields(project_dir: Path, entry: dict) -> set[str] | None:
+def schema_fields(
+    project_dir: Path, entry: dict, schema_free: set[str] = frozenset()
+) -> set[str] | None:
     """The fields the category's `schema.yaml` names — `required` and `optional` — the
     only keys of an item that reach `fields` (case 214.1); None without a schema file, and
-    then nothing is filtered."""
+    then nothing is filtered — and None for a category whose schema rule this unit creates
+    or updates, whose items are lifted whole (case 308.2)."""
     category = entry.get("category")
+    if category in schema_free:
+        return None
     path = project_dir / "vault" / "wiki" / str(category) / "schema.yaml"
     if category not in CATEGORIES or not path.exists():
         return None
@@ -738,17 +747,54 @@ def lesson_entry(record: dict, number: int, text: str, date: str, project_dir: P
 
 
 def fold_estimate(entries: list[dict], record: dict, number: int) -> bool:
-    """Fold an estimate line into the create of its page in this yaml; False when none
-    is there or the create is already applied. The create remembers the folded line."""
+    """Fold an estimate line into the live create of its page in this yaml; False when none
+    is there. The create remembers the folded line. A create already applied, or marked
+    `superseded_by`, is passed by: a reading never folds into a create `generate` skips
+    (case 309)."""
     for entry in entries:
-        if entry.get("kind") == "create" and entry.get("slug") == record["slug"]:
-            if entry.get("applied"):
-                return False
-            entry["status"] = record["status"]
-            entry["result"] = record["result"]
-            entry.setdefault("folded", []).append(number)
-            return True
+        if entry.get("kind") != "create" or entry.get("slug") != record["slug"]:
+            continue
+        if entry.get("applied") or entry.get("superseded_by"):
+            continue
+        entry["status"] = record["status"]
+        entry["result"] = record["result"]
+        entry.setdefault("folded", []).append(number)
+        return True
     return False
+
+
+def refold(entries: list[dict], case: str, ledger: list[str], date: str) -> None:
+    """Case 309: the readings folded into a `create` this mark just superseded move to the
+    live `create` of the same slug in the unit; with none, each becomes an `estimate` entry
+    of its own from its ledger line. The marked entry keeps no reading."""
+    for entry in entries:
+        if entry.get("case") != case or entry.get("kind") != "create" or not entry.get("folded"):
+            continue
+        numbers = entry.pop("folded")
+        entry.pop("status", None)
+        entry.pop("result", None)
+        live = next(
+            (
+                e
+                for e in entries
+                if e.get("kind") == "create"
+                and e.get("slug") == entry.get("slug")
+                and not e.get("superseded_by")
+                and not e.get("applied")
+            ),
+            None,
+        )
+        for number in numbers:
+            line = ledger[number - 1] if 0 < number <= len(ledger) else ""
+            parsed = parse_line(line) if line.startswith("- ") else None
+            if parsed is None or parsed.get("record") != "estimate":
+                continue
+            if live is not None:
+                live["status"] = parsed["status"]
+                live["result"] = parsed["result"]
+                live.setdefault("folded", []).append(number)
+            else:
+                entries.append(estimate_entry(parsed, number, line_body(line), date))
 
 
 def mark_superseded(
@@ -821,8 +867,6 @@ def decision_record(
         if entry.get("derived"):  # an entry of the shape before case 189, kept as it is
             continue
         target = {"kind": entry["kind"], "category": entry["category"], "slug": entry["slug"]}
-        if entry.get("category") == "file":
-            target["path"] = entry.get("path")
         for key in ("ref", "source"):
             if entry.get(key):
                 target[key] = entry[key]
@@ -880,6 +924,8 @@ def lift_line(
     entries: list[dict],
     decisions: list[dict],
     elsewhere: list[tuple[str, str]],
+    schema_free: set[str] = frozenset(),
+    ledger: list[str] | None = None,
 ) -> int:
     """One record line into its entries; the count added. Any exception is the line's
     alone: `assemble` catches it and writes a `failed` entry instead (case 142.1)."""
@@ -895,7 +941,7 @@ def lift_line(
     if case not in blocks:
         blocks[case] = then_blocks(cases.get(case, []))
     block, errors = blocks[case]
-    entry = decision_entry(record, number, text, date, block, project_dir)
+    entry = decision_entry(record, number, text, date, block, project_dir, schema_free)
     if errors and "then" in (entry.get("incomplete") or []):
         entry["incomplete"] = [e for e in entry["incomplete"] if e != "then"] + errors
     if case not in texts_of:
@@ -903,10 +949,13 @@ def lift_line(
     lift_criterion(entry, texts_of[case], project_dir)  # an Estimate's own entry (189, 194.1, 296)
     entries.append(entry)
     added = 1
-    if record.get("supersedes") and not mark_superseded(
-        entries, decisions, record["supersedes"], case, record["supersedes"] in cases
-    ):
-        elsewhere.append((record["supersedes"], case))  # another unit's yaml (130.2)
+    if record.get("supersedes"):
+        if mark_superseded(
+            entries, decisions, record["supersedes"], case, record["supersedes"] in cases
+        ):
+            refold(entries, record["supersedes"], ledger or [], date)  # case 309
+        else:
+            elsewhere.append((record["supersedes"], case))  # another unit's yaml (130.2)
     if record.get("addresses") and not mark_addressed(entries, record["addresses"], case):
         entry.setdefault("incomplete", []).append("addresses")  # a mark without its lesson
     return added
@@ -937,6 +986,7 @@ def assemble(
     if not ledger_path.exists():
         raise MaterializeError(f"{ledger_path.relative_to(project_dir).as_posix()} does not exist")
     ledger = ledger_path.read_text(encoding="utf-8").splitlines()
+    schema_free = schema_changed(ledger)  # case 308.2
     cases, spec_of = read_specs(project_dir, unit)
     date = unit
     elsewhere: list[tuple[str, str]] = []
@@ -1007,6 +1057,8 @@ def assemble(
                 entries,
                 decisions,
                 elsewhere,
+                schema_free,
+                ledger,
             )
         except Exception as exc:  # noqa: BLE001 — one line fails alone, the rest are lifted (142.1)
             del entries[before:]

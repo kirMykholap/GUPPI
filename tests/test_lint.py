@@ -885,3 +885,43 @@ def test_a_rules_that_disagrees_with_the_live_applies_to_is_a_ref_finding(tmp_pa
             "+rule-root, -rule-x"
         )
     ]
+
+
+# --- layout (case 315) ----------------------------------------------------------------
+
+
+def test_a_page_under_the_folder_of_another_category_is_a_layout_finding(tmp_path):
+    wiki = seed(tmp_path)
+    write(wiki / "rules" / "estimate-stray.md", estimate_page())
+    _, lines, _ = run(tmp_path)
+    assert "rules/estimate-stray: layout: type is 'estimate' under rules/" in lines
+
+
+def test_a_slug_field_that_is_not_the_filename_is_a_layout_finding(tmp_path):
+    seed(tmp_path, rule=rule_page(slug="rule-other"))
+    _, lines, _ = run(tmp_path)
+    assert lines == ["rules/rule-x: layout: slug is 'rule-other', the file is rule-x"]
+
+
+def test_a_root_file_no_rule_names_is_a_layout_finding(tmp_path):
+    wiki = seed(tmp_path)
+    write(wiki / "stray.md", "# stray")
+    _, lines, _ = run(tmp_path)
+    assert lines == ["wiki/stray: layout: no live rule page names this file"]
+
+
+def test_a_root_file_a_rule_names_is_silent(tmp_path):
+    wiki = seed(tmp_path)
+    write(wiki / "kept.md", "# kept")
+    write(
+        wiki / "rules" / "rule-keeper.md",
+        rule_page(
+            purpose="Prevents kept.md from drifting",
+            estimates="[]",
+            status="draft",
+            enforcement="check",
+            implementation_ref=None,
+        ),
+    )
+    _, lines, _ = run(tmp_path)
+    assert [line for line in lines if "layout" in line] == []

@@ -21,7 +21,7 @@ over placeholder` (case 101.1); any other existing page is a collision, never a 
 `update` applies `set` to the frontmatter, `sections` as whole replacements — an Estimate's
 Criterion is replaced whole this way (case 194.1) — `replace` inside the body (whitespace
 collapsed, exactly one occurrence), History `updated: <change>`; an update with none of
-those prints `applied by hand`. An `update` whose entry carries `rename: <new slug>` moves
+those prints `nothing applied`. An `update` whose entry carries `rename: <new slug>` moves
 the page first — `wiki/<category>/<old>.md` to `<new>.md`, the same category prefix, History
 `renamed from <old>` — then applies the rest to the new file; every live page of `wiki/`,
 Decision pages included, that names the old slug — a `[[link]]`, a ref field, the bare slug
@@ -79,17 +79,18 @@ skipped; the rest apply; exit 1. Every applied entry is marked `applied: <time>`
 `failed` mark is dropped on apply (case 53.3), so a rerun writes nothing. An entry with
 `failed` and no `kind` — a line `materialize` could not lift — is skipped with its mark
 kept and one stderr line (case 142.2); an entry with `superseded_by` is not applied and
-leaves no line, only its Case's Decision page is written (case 151); a Rule-class file
-entry is printed `applied by hand` and marked applied.
+leaves no line, only its Case's Decision page is written (case 151).
 
 The Spec (case 226.1): once a `create`, `update`, `delete` or `defer` entry is applied, the
 first unticked line `- [ ] <kind> `<slug>`` in the section of the entry's Case — from its
 `## Case N` or `### Case N.M` heading to the next heading — of the `spec.md` beside the
 yaml becomes `- [x]`. Two entries of one kind and slug tick two lines, in order. No Spec,
 no section, no line: nothing is written and nothing is said. A reading (case 270.1): an
-`estimate` entry, and a `create` with a folded reading, tick the first unticked line
+`estimate` entry, and a `create` with a folded reading, tick every unticked line
 `- [ ] read `<slug>`` — in the Spec beside the yaml first, then in the `spec.md` of the
-other units of `raw/`, oldest first, in any Case, since the entry carries no Case; the
+other units of `raw/`, oldest first, in any Case, since the entry carries no Case; every
+line of the slug in the first Spec that holds one ticks — a reading is of the page, whose
+Criterion is one, however many Cases of the session touched it (case 312); the
 archive is not read. In the Spec beside the yaml an `estimate` entry skips the section of
 a Case whose first decision entry carries a `line` greater than its own — a Case ratified
 after the reading, whose line waits for a reading of its own (case 280); a folded reading
@@ -292,8 +293,10 @@ def tick_read(
     skip: set[str] = frozenset(),
     superseded: set[str] = frozenset(),
 ) -> bool:
-    """Case 270.1: in the first of `specs` that holds one, the first unticked line
-    `- [ ] read `<slug>`` — in any Case, a reading carries no Case — becomes `- [x] …`.
+    """Case 270.1: in the first of `specs` that holds one, every unticked line
+    `- [ ] read `<slug>`` — in any Case, a reading carries no Case — becomes `- [x] …`. One
+    reading is of the page, whose Criterion is one, however many Cases of the session
+    touched it (case 312).
     Case 280: in the first Spec, the Spec beside the yaml, a line in the section of a Case
     of `skip` — a Case ratified after the reading — is not the reading's line. Case 286: in
     any Spec, a line in the section of a superseded Case is not the reading's line either —
@@ -306,6 +309,7 @@ def tick_read(
         skipped = set(skip) | set(superseded) if position == 0 else superseded_beside(spec)
         lines = spec.read_text(encoding="utf-8").split("\n")
         case = ""
+        ticked = False
         for index, line in enumerate(lines):
             heading = CASE_HEADING.match(line)
             if heading:
@@ -314,8 +318,10 @@ def tick_read(
             task = READ_LINE.match(line)
             if task and task.group(1) == slug and case not in skipped:
                 lines[index] = "- [x]" + line[len("- [ ]") :]
-                spec.write_text("\n".join(lines), encoding="utf-8", newline="\n")
-                return True
+                ticked = True
+        if ticked:
+            spec.write_text("\n".join(lines), encoding="utf-8", newline="\n")
+            return True
     return False
 
 
@@ -638,7 +644,7 @@ class Vault:
         keys = ("set", "sections", "replace", "change", "rename", "reword")
         if not any(entry.get(k) for k in keys):
             print(
-                f"generate: {slug}: an update with no content in the Spec; applied by hand",
+                f"generate: {slug}: an update with no content in the Spec; nothing applied",
                 file=self.stdout,
             )
             return
@@ -1211,13 +1217,6 @@ def apply(vault: Vault, data: dict) -> None:
             case = str(entry["case"])
             apply_decision(vault, records[case], stamp, deferred.get(case))
         kind = entry.get("kind")
-        if entry.get("category") == "file":
-            print(
-                f"generate: {entry['slug']}: a Rule-class file, applied by hand", file=vault.stdout
-            )
-            entry["applied"] = stamp
-            entry.pop("failed", None)
-            continue
         before = len(vault.errors)
         try:
             if kind == "create" or kind == "lesson":

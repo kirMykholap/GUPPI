@@ -280,15 +280,15 @@ def test_a_defer_line_matches_a_defer_item(tmp_path):
     assert out.splitlines() == ["case 1: line [defer][rule-later] has no item in the plan"]
 
 
-def test_a_rule_class_file_line_matches_a_file_item(tmp_path):
-    ledger = LINE + "- 16:00:01 decision[case 1][update][index]{ref:index}\n"
+def test_a_file_item_is_a_finding_the_route_is_gone(tmp_path):
+    # case 320: no file of the vault changes by hand, so an `update` with `file` has no route
     plan = PLAN.replace(
         "    change: one line\n",
         "    change: one line\n  - file: vault/wiki/index.md\n    change: a row\n",
     )
-    assert check(tmp_path, plan=plan, ledger=ledger) == (0, "", "")
-    _, out, _ = check(tmp_path, plan=plan)
-    assert out.splitlines() == ["case 1: item [update][vault/wiki/index.md] has no decision line"]
+    code, out, _ = check(tmp_path, plan=plan)
+    assert code == 1
+    assert "case 1: file vault/wiki/index.md; the file route is gone (case 320)" in out.splitlines()
 
 
 def test_a_nested_estimate_is_covered_by_its_parents_create_line(tmp_path):
@@ -426,7 +426,8 @@ def test_a_file_item_on_a_governed_path_is_a_finding(tmp_path):
     code, out, _ = check(tmp_path, plan=plan)
     assert code == 1
     assert (
-        "case 1: file .claude/skills/hi/SKILL.md is governed by rule-skill-hi" in out.splitlines()
+        "case 1: file .claude/skills/hi/SKILL.md, governed by rule-skill-hi; "
+        "the file route is gone (case 320)" in out.splitlines()
     )
 
 
@@ -539,17 +540,12 @@ def test_the_keys_of_the_old_shape_are_not_read(tmp_path):
     assert check(tmp_path, plan=leaf, ledger=line) == (0, "", "")
 
 
-def test_file_and_defer_items_are_outside_the_form_checks(tmp_path):
+def test_a_defer_item_is_outside_the_form_checks(tmp_path):
     plan = PLAN.replace(
         "    change: one line\n",
-        "    change: one line\n  - file: vault/wiki/index.md\n    change: a row\n"
-        "defer:\n  - slug: rule-later\n    type: rule\n    purpose: p\n",
+        "    change: one line\ndefer:\n  - slug: rule-later\n    type: rule\n    purpose: p\n",
     )
-    ledger = (
-        LINE
-        + "- 16:00:01 decision[case 1][update][index]{ref:index}\n"
-        + "- 16:00:02 decision[case 1][defer][rule-later]\n"
-    )
+    ledger = LINE + "- 16:00:02 decision[case 1][defer][rule-later]\n"
     assert check(tmp_path, plan=plan, ledger=ledger) == (0, "", "")
 
 
@@ -808,7 +804,7 @@ def test_a_wikilink_in_a_tasks_fence_or_an_untagged_fence_is_not_read(tmp_path):
 
 def test_the_frontier_reads_cases_and_work_lines_under_their_headings(tmp_path):
     frontier = (
-        "# Frontier\n\n## Cases\n\n- [x] C1 — the one item · sprint · case 1\n"
+        "# Frontier\n\n## Cases\n\n- [x] C1 — the one item · brief · case 1\n"
         "- the pull fails, decided by the sprint page\n\n"
         "## Work\n\n- [x] W1 — a reading · brief · work\n"
     )
@@ -816,6 +812,53 @@ def test_the_frontier_reads_cases_and_work_lines_under_their_headings(tmp_path):
     code, out, _ = check(tmp_path, frontier=frontier + "- [ ] W2 — a commit · git status\n")
     assert code == 1
     assert out.splitlines() == ["frontier: W2 is open"]
+
+
+# --- the closer `sprint` and the sprint page (cases 310.6, 314.2) ---------------------
+
+
+SPRINT_UPDATE = (
+    "update:\n  - slug: rule-x\n    change: one line\n"
+    "  - slug: entity-sprint-migration\n    change: the theme closed\n"
+)
+SPRINT_LEDGER = (
+    LINE + "- 16:00:01 decision[case 1][update][entity-sprint-migration]"
+    "{ref:entity-sprint-migration}\n"
+)
+
+
+def test_a_left_sprint_item_closes_with_sprint(tmp_path):
+    frontier = "# Frontier\n\n- [-] C1 — a theme left for later · sprint\n"
+    assert check(tmp_path, frontier=frontier) == (0, "", "")
+
+
+def test_a_sprint_closer_on_a_ticked_line_is_a_finding(tmp_path):
+    frontier = "# Frontier\n\n- [x] C1 — a theme · sprint\n"
+    code, out, _ = check(tmp_path, frontier=frontier)
+    assert code == 1
+    assert out.splitlines() == [
+        "frontier: C1 closes [x] with sprint; an item left for later is [-]"
+    ]
+
+
+def test_a_decided_sprint_item_needs_an_update_of_the_sprint_page(tmp_path):
+    frontier = "# Frontier\n\n- [x] C1 — a theme · sprint · case 1\n"
+    code, out, _ = check(tmp_path, frontier=frontier)
+    assert code == 1
+    assert out.splitlines() == [
+        "frontier: C1 closes a sprint item with case 1, no update of the sprint page under Case 1"
+    ]
+
+
+def test_a_decided_sprint_item_with_its_update_is_clean(tmp_path):
+    frontier = "# Frontier\n\n- [x] C1 — a theme · sprint · case 1\n"
+    plan = PLAN.replace("update:\n  - slug: rule-x\n    change: one line\n", SPRINT_UPDATE)
+    assert check(tmp_path, plan=plan, ledger=SPRINT_LEDGER, frontier=frontier) == (0, "", "")
+
+
+def test_a_line_without_sprint_among_its_segments_needs_no_update(tmp_path):
+    frontier = "# Frontier\n\n- [x] C1 — a reading · brief · case 1\n"
+    assert check(tmp_path, frontier=frontier) == (0, "", "")
 
 
 # --- the form of a render or sprint task line (case 279.2) ----------------------------

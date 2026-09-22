@@ -1,0 +1,97 @@
+- 11:36:12 decision[case 308.1][update][rule-glossary]{ref:rule-glossary}
+- 11:36:12 decision[case 308.2][update][rule-materialize]{ref:rule-materialize}
+- 11:36:12 decision[case 308.2][create][estimate-materialize-lifts-unfiltered-on-a-schema-change]{ref:rule-materialize}{tags:harness,librarian}
+- 11:51:04 decision[case 309][update][rule-materialize]{ref:rule-materialize}
+- 11:51:04 decision[case 309][create][estimate-materialize-refolds-a-reading-on-a-supersede]{ref:rule-materialize}{tags:harness,librarian}
+- 13:16:45 decision[case 310.1][update][rule-sprint]{ref:rule-sprint}
+- 13:16:45 decision[case 310.1][update][estimate-sprint-renders-the-backlog]{ref:estimate-sprint-renders-the-backlog}
+- 13:16:45 decision[case 310.2][update][entity-sprint-migration]{ref:entity-sprint-migration}
+- 13:16:45 decision[case 310.3][create][estimate-sprint-migration-index-dissolved]{ref:entity-sprint-migration}{tags:sprint,workflow,harness}
+- 13:16:45 decision[case 310.4][create][estimate-sprint-migration-file-route-gone]{ref:entity-sprint-migration}{tags:sprint,workflow,harness}
+- 13:16:45 decision[case 310.5][update][rule-skill-hi]{ref:rule-skill-hi}
+- 13:16:45 decision[case 310.5][update][estimate-hi-writes-frontier]{ref:estimate-hi-writes-frontier}
+- 13:16:45 decision[case 310.6][update][rule-prespec]{ref:rule-prespec}
+- 13:16:45 decision[case 310.6][update][estimate-prespec-checks-the-plan]{ref:estimate-prespec-checks-the-plan}
+- 13:18:29 decision[case 311][update][estimate-harness-pipeline]{ref:estimate-harness-pipeline}
+- 13:47:12 decision[case 312][update][rule-page-generation]{ref:rule-page-generation}
+- 13:47:12 decision[case 312][update][estimate-generate-ticks-the-spec]{ref:estimate-generate-ticks-the-spec}
+- 14:06:02 decision[case 313][update][rule-sprint]{ref:rule-sprint}{supersedes:case 310.1}
+- 14:06:02 decision[case 313][update][estimate-sprint-renders-the-backlog]{ref:estimate-sprint-renders-the-backlog}
+- 14:06:02 decision[case 314.1][update][rule-skill-hi]{ref:rule-skill-hi}
+- 14:06:02 decision[case 314.1][update][estimate-hi-writes-frontier]{ref:estimate-hi-writes-frontier}
+- 14:06:02 decision[case 314.2][update][rule-prespec]{ref:rule-prespec}
+- 14:06:02 decision[case 314.2][create][estimate-prespec-binds-a-sprint-line]{ref:rule-prespec}{tags:harness,workflow,sprint}
+- 14:33:46 decision[case 315][create][rule-vault-layout]{ref:rule-harness}{tags:harness,workflow}
+- 14:33:46 decision[case 315][create][estimate-vault-layout-holds]{ref:rule-vault-layout}{tags:harness,workflow}
+- 14:33:46 decision[case 315][update][rule-harness]{ref:rule-harness}
+- 14:36:09 decision[case 316][create][rule-session]{tags:session,workflow}
+- 14:36:09 decision[case 316][create][estimate-session-phases-in-order]{ref:rule-session}{tags:session,workflow}
+- 14:36:09 decision[case 316][update][rule-session-start]{ref:rule-session-start}
+- 14:36:09 decision[case 316][update][rule-plan-mode]{ref:rule-plan-mode}
+- 14:36:09 decision[case 316][update][rule-work-mode]{ref:rule-work-mode}
+- 14:36:09 decision[case 316][update][rule-end-of-work]{ref:rule-end-of-work}
+- 14:36:09 decision[case 316][update][rule-documentation]{ref:rule-documentation}
+- 15:20:18 decision[case 317][create][rule-atomicity]{ref:rule-case-protocol}{tags:harness,workflow}
+- 15:20:18 decision[case 317][create][estimate-atomicity-rendered]{ref:rule-atomicity}{tags:harness,workflow}
+- 15:20:18 decision[case 317][update][rule-case-protocol]{ref:rule-case-protocol}
+- 15:20:18 decision[case 317][update][rule-entities-schema]{ref:rule-entities-schema}
+- 15:20:18 decision[case 317][update][rule-rules-schema]{ref:rule-rules-schema}
+- 15:20:18 decision[case 317][update][rule-prespec]{ref:rule-prespec}
+- 15:20:18 decision[case 317][update][entity-glossary]{ref:entity-glossary}
+- 15:29:40 decision[case 318][delete][index]{ref:index}
+- 15:29:40 decision[case 318][update][rule-ask]{ref:rule-ask}
+- 15:29:40 decision[case 318][update][rule-materialize]{ref:rule-materialize}
+- 15:29:40 decision[case 318][update][rule-skill-hi]{ref:rule-skill-hi}
+- 15:29:40 decision[case 318][update][rule-case-protocol]{ref:rule-case-protocol}
+- 15:29:40 decision[case 318][update][rule-claude-md]{ref:rule-claude-md}
+- 15:29:40 decision[case 318][update][rule-prespec]{ref:rule-prespec}
+- 15:29:40 decision[case 318][update][entity-glossary]{ref:entity-glossary}
+- 15:29:40 decision[case 318][update][entity-sprint-migration]{ref:entity-sprint-migration}
+- 15:29:40 decision[case 318][update][estimate-case-protocol-ledger-line-form]{ref:estimate-case-protocol-ledger-line-form}
+- 15:29:40 decision[case 318][update][estimate-glossary-terms-defined]{ref:estimate-glossary-terms-defined}
+- 15:29:40 decision[case 318][update][estimate-synthesis-keeps-actioned-by-the-mark]{ref:estimate-synthesis-keeps-actioned-by-the-mark}
+- 15:29:40 decision[case 318][update][estimate-sprint-migration-merges]{ref:estimate-sprint-migration-merges}
+- 15:29:40 decision[case 318][update][estimate-raw-archive]{ref:estimate-raw-archive}
+- 15:31:51 decision[case 319][update][entity-sprint-migration]{ref:entity-sprint-migration}
+- 15:56:09 decision[case 320][create][estimate-sprint-migration-file-route-gone]{ref:entity-sprint-migration}{supersedes:case 310.4}{tags:sprint,workflow,harness}
+- 15:56:09 decision[case 320][delete][estimate-materialize-finds-a-rule-class-item]{ref:estimate-materialize-finds-a-rule-class-item}
+- 15:56:09 decision[case 320][update][rule-case-protocol]{ref:rule-case-protocol}
+- 15:56:09 decision[case 320][update][rule-lint]{ref:rule-lint}
+- 15:56:09 decision[case 320][update][rule-decisions-schema]{ref:rule-decisions-schema}
+- 15:56:09 decision[case 320][update][rule-prespec]{ref:rule-prespec}
+- 15:56:09 decision[case 320][update][estimate-case-protocol-case-form]{ref:estimate-case-protocol-case-form}
+- 15:56:09 decision[case 320][update][estimate-generate-fails-alone]{ref:estimate-generate-fails-alone}
+- 15:56:09 decision[case 320][update][estimate-generate-ticks-the-spec]{ref:estimate-generate-ticks-the-spec}
+- 15:56:09 decision[case 320][update][estimate-prespec-checks-the-plan]{ref:estimate-prespec-checks-the-plan}
+- 15:56:09 decision[case 320][update][entity-sprint-migration]{ref:entity-sprint-migration}
+- 15:59:48 decision[case 321][update][entity-glossary]{ref:entity-glossary}
+- 15:59:48 decision[case 321][update][estimate-sprint-migration-rule-class-files-dissolved]{ref:estimate-sprint-migration-rule-class-files-dissolved}
+- 15:59:48 decision[case 321][update][estimate-glossary-terms-defined]{ref:estimate-glossary-terms-defined}
+- 15:59:48 decision[case 321][update][entity-sprint-migration]{ref:entity-sprint-migration}
+- 16:00:23 decision[case 322][defer][rule-work-mode]{ref:rule-work-mode}
+- 16:00:23 decision[case 322][defer][rule-subagent-guppi]{ref:rule-subagent-guppi}
+- 16:30:37 decision[case 323][update][entity-sprint-migration]{ref:entity-sprint-migration}
+- 16:30:37 decision[case 323][update][estimate-lint-catches]{ref:estimate-lint-catches}
+- 16:30:37 decision[case 323][update][estimate-prespec-checks-the-plan]{ref:estimate-prespec-checks-the-plan}
+- 16:30:37 decision[case 323][update][rule-harness]{ref:rule-harness}
+- 16:30:37 decision[case 323][update][estimate-harness-pipeline]{ref:estimate-harness-pipeline}
+- 16:30:37 decision[case 323][update][estimate-materialize-marks-superseded]{ref:estimate-materialize-marks-superseded}
+- 16:30:37 decision[case 323][update][entity-glossary]{ref:entity-glossary}
+- 16:56:22 estimate[estimate-rules-schema-checked][passed] 2026-09-22, uv run pytest tests/test_schemas.py -k rules: 5 passed, 25 deselected; make lint — no finding on rules/schema
+- 16:56:22 estimate[estimate-entities-schema-checked][passed] 2026-09-22, uv run pytest tests/test_schemas.py -k entities: 5 passed, 25 deselected; make lint — no finding on entities/schema
+- 16:56:22 estimate[estimate-page-schemas-one-file-per-rule][passed] 2026-09-22, by hand: six vault/wiki/<category>/schema.yaml, no schema.md in any category, guppi render --check exit 0, guppi lint — no path, schema-description or layout finding on a <category>/schema
+- 16:56:22 estimate[estimate-case-protocol-loaded][passed] 2026-09-22, case-schema.md read at the /hi of session 1121: "The one rule" opens the file under the title with the memory sentence; the paragraph after names the Render loaded by /hi with sprint.md, brief.md and glossary.md; the Spec paragraph names the field-only update of an Estimate and guppi glossary as the fourth ticker (cases 226, 250, 270, 306); the Criterion paragraph names a Case superseded in its own session leaving the Spec; render --check exit 0
+- 16:56:22 estimate[estimate-glossary-terms-defined][passed] 2026-09-22, by hand: the ## Terms of entity-glossary holds 49 rows under one header; guppi lint — no ref finding on entity-glossary
+- 16:56:22 estimate[estimate-documentation-completes][failed] 2026-09-22, the librarian's run of session 0014 read from its brief and the event log: step 6 ran (glossary.md written, 49 rows in nine groups, glossary --check exit 0 now), the librarian's commit 1603a9b is separate from the session's 2031718, make test-documentation green (159 passed) — but the frame was breached: the run read lines 52-64 of raw/2026-09-22/0014/ledger.md while counting the entries, and the Criterion says no ledger
+- 16:56:22 estimate[estimate-sprint-renders-the-backlog][passed] 2026-09-22, uv run pytest tests/test_sprint.py: 18 passed — an item of two pages ticks on both, a wikilink after the dash holds no tick back, a note renders - [ ] and keeps its milestone open; guppi sprint --check exit 0
+- 16:56:22 estimate[estimate-prespec-checks-the-plan][passed] 2026-09-22, uv run pytest tests/test_prespec.py: 73 passed — the closer sprint on [-], the finding on [x], the sprint line bound to its update, a file item a finding
+- 16:56:22 estimate[estimate-generate-ticks-the-spec][passed] 2026-09-22, uv run pytest tests/test_generate.py -k tick: 10 passed, 68 deselected — one reading ticks every read line of its slug in the first Spec that holds one
+- 16:56:22 estimate[estimate-materialize-lifts-unfiltered-on-a-schema-change][passed] 2026-09-22, uv run pytest tests/test_materialize.py -k "schema_rule or filters_as_before": 2 passed, 71 deselected — the key in fields with the schema line, unknown without it
+- 16:56:22 estimate[estimate-materialize-refolds-a-reading-on-a-supersede][passed] 2026-09-22, uv run pytest tests/test_materialize.py -k "folded or after_the_mark": 3 passed, 70 deselected — the reading moves to the live create, becomes its own entry without one, and does not fold into a marked create
+- 16:56:22 estimate[estimate-prespec-binds-a-sprint-line][passed] 2026-09-22, uv run pytest tests/test_prespec.py -k sprint: 5 passed, 68 deselected
+- 16:56:22 estimate[estimate-vault-layout-holds][passed] 2026-09-22, uv run pytest tests/test_lint.py: 62 passed; make lint on the live vault — no layout finding, 81 findings as before
+- 16:56:22 estimate[estimate-lint-catches][passed] 2026-09-22, uv run pytest tests/test_lint.py: 62 passed; make lint — 81 findings, the layout class among them
+- 16:56:22 estimate[estimate-materialize-marks-superseded][passed] 2026-09-22, uv run pytest tests/test_materialize.py -k supersede: 8 passed, 65 deselected
+- 16:56:22 estimate[estimate-sprint-migration-file-route-gone][passed] 2026-09-22, grep -rn "RULE_CLASS|rule_class|applied by hand|prose_names" guppi/: empty; make test 548 passed, 2 skipped; make lint — no finding on a <category>/schema
+- 17:00:46 lesson[error][lesson-replace-anchors-overlap-in-one-spec]{tags:workflow,librarian} trigger: pre-spec found that Case 314.2's `replace` old — a span of rule-prespec — no longer existed, because Case 310.6 of the same Spec rewrote that span first; three other anchors named text that was never on the page root_cause: a replace anchor was taken from a grep fragment of the page as it stands today, without reading the whole sentence and without asking what an earlier Case of the same Spec leaves of it
+- 17:00:46 lesson[error][lesson-tests-coupled-to-a-signature-or-a-whole-finding-list]{tags:tests,harness} trigger: adding a parameter to materialize.decision_entry broke two tests whose monkeypatched double copied the old signature, and adding the lint class `layout` broke two generate tests that asserted the whole finding list of a synthetic seed root_cause: a test double copies the exact signature instead of accepting extra positional arguments, and a test asserts the complete output of a checker rather than the finding it is about, so any additive change fails tests that are not about it

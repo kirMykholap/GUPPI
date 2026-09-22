@@ -14,7 +14,9 @@ and, case 72.6, a `[[slug]]` under a decision page's `## Criterion` that is not 
 archived Estimate page, or a `### case N` block under an Estimate's `## Criterion` with no
 live or archived `decision-case-N`), `origin` (a ledger file or `[case N]` line that does
 not exist), `path` (a file named in
-`implementation_ref` or `governs` that does not exist), `orphan` (a live entity, rule or
+`implementation_ref` or `governs` that does not exist), `layout` (a page whose `type` does
+not match the folder it sits in, a page whose `slug` field is not its filename, and a `.md`
+at the root of `wiki/` that no live rule page names — case 315), `orphan` (a live entity, rule or
 estimate no other live page's frontmatter names; a lesson is a record and an Insight names
 it or not; an Insight owns its children through `children`, archived or not, and is never
 one, case 156), `status` (a `built` page with an Estimate not `passed`, a `draft` one with
@@ -407,6 +409,40 @@ def check_paths(page: Page, project_dir: Path) -> list[Finding]:
     return out
 
 
+TYPES = {
+    "entities": "entity",
+    "rules": "rule",
+    "estimates": "estimate",
+    "lessons": "lesson",
+    "insights": "insight",
+    "decisions": "decision",
+}
+
+
+def check_layout(wiki: Path, pages: list[Page], rules: list[Page]) -> list[Finding]:
+    """Case 315: a page whose `type` does not match the folder it sits in, a page whose
+    `slug` field is not its filename, and a `.md` at the root of `wiki/` that no live rule
+    page names — it reached the vault without a decision."""
+    out: list[Finding] = []
+    for page in pages:
+        if page.error:
+            continue
+        expected = TYPES.get(page.category)
+        kind = str(page.props.get("type") or "")
+        if expected and kind and kind != expected:
+            out.append(Finding(page, "layout", f"type is {kind!r} under {page.category}/"))
+        written = page.props.get("slug")
+        if written and str(written) != page.path.stem:
+            out.append(
+                Finding(page, "layout", f"slug is {written!r}, the file is {page.path.stem}")
+            )
+    named = " ".join(p.path.read_text(encoding="utf-8") for p in rules if p.path.exists())
+    for file in sorted(wiki.glob("*.md")):
+        if file.name not in named and f"[[{file.stem}]]" not in named:
+            out.append(Finding(f"wiki/{file.stem}", "layout", "no live rule page names this file"))
+    return out
+
+
 def check_orphans(pages: list[Page]) -> list[Finding]:
     referenced: set[str] = set()
     for page in pages:
@@ -636,6 +672,7 @@ def lint(project_dir: Path) -> list[str]:
         findings.extend(check_criterion(page, known))
         findings.extend(check_origin(page, project_dir))
         findings.extend(check_paths(page, project_dir))
+    findings.extend(check_layout(wiki, pages, vault["rules"]))
     findings.extend(check_orphans([p for p in pages if not p.error]))
     for page in pages:
         if page.error:

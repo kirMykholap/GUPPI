@@ -9,12 +9,16 @@ path read what they read before; the `## Purpose` text as it is; `**Done when**`
 per Estimate of the page — `- [x]` when `passed`, `- [ ]` otherwise, the Estimate's
 `purpose` and its status; then `## Milestones` — the current milestone, the first `### `
 with an item not done or with no item, whole: its heading `### [ ] <name>` and each item
-`- [[slug]] — <text>` as `- [x]` when the page `slug` is `built`, `passed` or `archived`,
-`- [ ]` otherwise, its status and, when present, its `deferred_by` after ` · `; a closed
+`- [[slug]] — <text>` as `- [x]` when every page it names before the first ` — ` is
+`built`, `passed` or `archived`, `- [ ]` otherwise, their statuses in the order of the
+slugs and, when present, their `deferred_by` after ` · `; a wikilink after the ` — ` is
+text and holds no tick back (case 313); a closed
 milestone — every item `[x]`, at least one — as one line `### [x] <name>`; every later one
-as one line `### [ ] <name> — N items: ` and its items by name, `[[slug]]` or the plain
-text, without a tick or a status (case 236); a plain item `- <text>` renders `- [ ] <text>`
-and is never ticked, so a milestone holding one stays open; then `## Backlog`, each item a
+as one line `### [ ] <name> — N items: ` and its items by name, the pages it names or the
+text itself, without a tick or a status (case 236); a line naming no page before the
+` — ` is a note — a task not yet cut into pages: `- [ ] <text>`, never ticked, so a
+milestone holding one stays open, and it leaves only by the `update` of the Case that cuts
+it (case 313); then `## Backlog`, each item a
 line the same way; the `## Closed` section copied as it is. An item whose slug has no
 live or archived page, or no sprint page, or two: one line on stderr, exit 1, the file
 not written. `--check` renders in memory and compares: one line on stdout — `sprint:
@@ -42,7 +46,8 @@ from guppi.render import tick_command_lines
 
 PREFIX = "entity-sprint-"
 DONE = {"built", "passed", "archived"}
-ITEM = re.compile(r"^- \[\[([^\]|#]+)\]\](.*)$")
+WIKILINK = re.compile(r"\[\[([^\]|#]+)\]\]")
+DASH = " — "
 SLICE = re.compile(r"^### (.+)$")
 
 
@@ -55,40 +60,48 @@ def tick(done: bool) -> str:
     return "[x]" if done else "[ ]"
 
 
-def item_line(slug: str, text: str, by_slug: dict[str, Page], archived: set[str]) -> str | None:
-    page = by_slug.get(slug)
-    if page is not None:
-        status = str(page.props.get("status") or "")
-        deferred = as_list(page.props.get("deferred_by"))
-    elif slug in archived:
-        status, deferred = "archived", []
-    else:
-        return None
-    line = f"- {tick(status in DONE)} [[{slug}]]{text} · {status}"
-    if deferred:
-        line += " · " + ", ".join(deferred)
-    return line
+def item_slugs(body: str) -> list[str]:
+    """The pages of an item: every `[[slug]]` before the first ` — ` (case 313). An empty
+    list means a note — a task not yet cut into pages."""
+    return [s.strip() for s in WIKILINK.findall(body.split(DASH)[0])]
 
 
 def plain_or_item(
     line: str, by_slug: dict[str, Page], archived: set[str]
 ) -> tuple[str | None, str | None]:
-    """`(rendered, missing)`: a wikilink item by the status of its page, a plain item
-    `- <text>` as `- [ ] <text>`, never ticked; `missing` the slug without a page."""
-    item = ITEM.match(line)
-    if item:
-        rendered = item_line(item.group(1).strip(), item.group(2), by_slug, archived)
-        return (rendered, None) if rendered is not None else (None, item.group(1).strip())
-    if line.startswith("- "):
-        return f"- [ ] {line[2:]}", None
-    return line, None
+    """`(rendered, missing)`: an item by the statuses of every page it names before the
+    first ` — ` — `[x]` when each is `built`, `passed` or `archived`, the statuses after
+    ` · ` in the order of the slugs; a line naming none there is a note, `- [ ] <text>`,
+    never ticked (case 313). `missing` is the first slug without a page."""
+    if not line.startswith("- "):
+        return line, None
+    body = line[2:]
+    slugs = item_slugs(body)
+    if not slugs:
+        return f"- [ ] {body}", None
+    statuses: list[str] = []
+    deferred: list[str] = []
+    for slug in slugs:
+        page = by_slug.get(slug)
+        if page is not None:
+            statuses.append(str(page.props.get("status") or ""))
+            deferred += as_list(page.props.get("deferred_by"))
+        elif slug in archived:
+            statuses.append("archived")
+        else:
+            return None, slug
+    rendered = f"- {tick(all(s in DONE for s in statuses))} {body} · " + ", ".join(statuses)
+    if deferred:
+        rendered += " · " + ", ".join(deferred)
+    return rendered, None
 
 
 def item_name(line: str) -> str:
-    """The name of an item on a collapsed milestone line (case 236): `[[slug]]` for a
-    wikilink item, the text itself for a plain one; no tick, no status."""
-    item = ITEM.match(line)
-    return f"[[{item.group(1).strip()}]]" if item else line[2:]
+    """The name of an item on a collapsed milestone line (case 236): the pages it names, as
+    they stand, for an item; the text itself for a note; no tick, no status."""
+    body = line[2:]
+    head = body.split(DASH)[0].strip()
+    return head if item_slugs(body) else body
 
 
 def split_milestones(text: str) -> list[tuple[str, list[str]]]:

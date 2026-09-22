@@ -20,7 +20,7 @@ LEDGER = """<!-- a comment line -->
 - 10:00:05 estimate[estimate-child-works][passed] twelve tests green
 - 10:00:06 estimate[estimate-old-holds][failed] the reading was red
 - 10:00:07 lesson[error][lesson-hooks-late-fire]{tags:hooks} trigger: the hook fired late root_cause: the matcher was wrong
-- 10:00:08 decision[case 7][update][glossary]
+- 10:00:08 decision[case 7][update][entity-glossary]
 - this line is not a record
 """
 
@@ -137,8 +137,7 @@ update:
 
 ```then
 update:
-  - slug: glossary
-    file: vault/wiki/glossary.md
+  - slug: entity-glossary
     change: a row changes
 new_tags:
   - tag: git
@@ -343,35 +342,33 @@ def test_unparsable_lines_incomplete_creates_and_existing_pages_are_marked(tmp_p
     assert root["exists"] is True
 
 
-def test_a_rule_class_slug_routes_to_a_file_and_new_tags_are_kept(tmp_path):
+def test_a_page_update_carries_its_change_and_new_tags_are_kept(tmp_path):
     seed(tmp_path)
     run(tmp_path)
     data = load(tmp_path)
-    (glossary,) = by_slug(data, "glossary")
-    assert glossary["category"] == "file" and glossary["path"] == "vault/wiki/glossary.md"
+    (glossary,) = by_slug(data, "entity-glossary")
+    assert glossary["category"] == "entities" and glossary["change"] == "a row changes"
     assert data["new_tags"] == [{"tag": "git", "meaning": "the repository", "aliases": "гит"}]
 
 
-def test_a_rule_class_item_with_file_and_no_slug_is_found(tmp_path):  # case 161
+def test_an_item_with_file_and_no_slug_is_not_found(tmp_path):  # case 320: no file route
     spec = SPEC.replace(
-        "  - slug: glossary\n    file: vault/wiki/glossary.md\n",
+        "  - slug: entity-glossary\n",
         "  - file: vault/wiki/glossary.md\n",
     )
     assert spec != SPEC
     seed(tmp_path, spec=spec)
     run(tmp_path)
-    (glossary,) = by_slug(load(tmp_path), "glossary")
-    assert "incomplete" not in glossary
-    assert glossary["category"] == "file" and glossary["path"] == "vault/wiki/glossary.md"
-    assert glossary["change"] == "a row changes"
+    (glossary,) = by_slug(load(tmp_path), "entity-glossary")
+    assert glossary["incomplete"] == ["then"]
+    assert "path" not in glossary and "change" not in glossary
 
 
-def test_claude_md_is_not_a_rule_class_file(tmp_path):  # case 59.8
+def test_a_slug_without_a_category_prefix_is_unknown(tmp_path):  # cases 59.8, 320
     ledger = "- decision[case 8][update][claude-md]{ref:claude-md}\n"
     spec = "## Case 8 — the prompt\n\n```then\nupdate:\n  - slug: claude-md\n    change: a\n```\n"
     seed(tmp_path, ledger=ledger, spec=spec)
     run(tmp_path)
-    assert materialize.rule_class_path("claude-md") is None
     (entry,) = by_slug(load(tmp_path), "claude-md")
     assert entry["category"] == "unknown" and "path" not in entry
     assert entry["incomplete"] == ["category"]
@@ -506,7 +503,11 @@ def test_one_decision_entry_per_case_with_case_text_and_targets(tmp_path):
     assert "incomplete" not in decisions["1"]
     assert decisions["4"]["incomplete"] == ["context", "problem", "given", "when"]
     assert decisions["5"]["incomplete"] == ["context", "problem"]  # a defer alone: the short form
-    assert decisions["7"]["targets"][0]["path"] == "vault/wiki/glossary.md"
+    assert decisions["7"]["targets"][0] == {
+        "kind": "update",
+        "category": "entities",
+        "slug": "entity-glossary",
+    }
 
 
 def test_an_existing_yaml_gains_only_the_new_lines(tmp_path):
@@ -1733,7 +1734,7 @@ def test_without_carry_md_the_unit_is_read_as_before(tmp_path):
 def test_a_line_whose_lift_raises_fails_alone_and_the_yaml_is_written(tmp_path, monkeypatch):
     seed(tmp_path)
 
-    def boom(record, number, text, date, block, project_dir):
+    def boom(record, number, text, date, block, project_dir, *rest):
         raise ValueError("odd item")
 
     monkeypatch.setattr(materialize, "decision_entry", boom)
@@ -1783,11 +1784,11 @@ def test_a_failed_line_in_one_unit_does_not_stop_the_walk(tmp_path, monkeypatch)
     calls = {"n": 0}
     real = materialize.decision_entry
 
-    def first_fails(record, number, text, date, block, project_dir):
+    def first_fails(record, number, text, date, block, project_dir, *rest):
         calls["n"] += 1
         if calls["n"] == 1:
             raise RuntimeError("first unit")
-        return real(record, number, text, date, block, project_dir)
+        return real(record, number, text, date, block, project_dir, *rest)
 
     monkeypatch.setattr(materialize, "decision_entry", first_fails)
     code, _out, err = run_walk(tmp_path, ["--date", DATE])
@@ -2016,3 +2017,126 @@ def test_an_addresses_mark_without_its_lesson_is_incomplete(tmp_path):
     assert decision["addresses"] == ["lesson-not-here"]
     assert decision["incomplete"] == ["addresses"]
     assert not [e for e in data["entries"] if e.get("addressed_by")]
+
+
+# --- a create of a category whose schema rule this unit changes (case 308.2) -----------
+
+
+SCHEMA_CASE = """
+## Case 20 — the schema of rules
+
+```then
+update:
+  - slug: rule-rules-schema
+    change: a new field
+```
+"""
+
+
+def with_schema_line(tmp_path):
+    raw = tmp_path / "vault" / "raw" / DATE
+    ledger = raw / "ledger.md"
+    line = "- decision[case 20][update][rule-rules-schema]{ref:rule-rules-schema}\n"
+    ledger.write_text(line + ledger.read_text(encoding="utf-8"), encoding="utf-8", newline="\n")
+    spec = raw / "spec.md"
+    spec.write_text(spec.read_text(encoding="utf-8") + SCHEMA_CASE, encoding="utf-8", newline="\n")
+
+
+def test_a_create_of_a_category_whose_schema_rule_the_unit_changes_is_lifted_whole(tmp_path):
+    seed_schemas(tmp_path)
+    with_schema_line(tmp_path)
+    code, _, err = run(tmp_path)
+    assert code == 0 and err == "", err
+    data = load(tmp_path)
+    (rule,) = of_case(data, "21")
+    assert "unknown" not in rule
+    assert rule["fields"]["contract_note"] == "nobody ratified this key"
+    (estimate,) = of_case(data, "22")  # another category: filtered as before
+    assert estimate["unknown"] == ["stray"]
+
+
+def test_without_a_schema_line_the_lift_filters_as_before(tmp_path):
+    seed_schemas(tmp_path)
+    assert run(tmp_path)[0] == 0
+    (rule,) = of_case(load(tmp_path), "21")
+    assert rule["unknown"] == ["contract_note"]
+
+
+# --- a reading folded into a create a supersedes marks (case 309) ----------------------
+
+
+REFOLD_SPEC = """# Spec
+
+## Case 30 — the first create
+
+```then
+create:
+  - slug: estimate-a-holds
+    type: estimate
+    ref: rule-old
+    kind: QA
+    purpose: p
+    method: pytest tests/test_x.py
+    tags: [harness]
+```
+
+## Case 31 — the second
+
+```then
+create:
+  - slug: estimate-a-holds
+    type: estimate
+    ref: rule-old
+    kind: QA
+    purpose: p
+    method: pytest tests/test_x.py
+    tags: [harness]
+update:
+  - slug: rule-old
+    change: one line
+```
+"""
+
+CREATE_30 = "- decision[case 30][create][estimate-a-holds]{ref:rule-old}{tags:harness}\n"
+READING = "- estimate[estimate-a-holds][passed] the first reading\n"
+
+
+def refold_entries(tmp_path, ledger):
+    seed(tmp_path, ledger=ledger, spec=REFOLD_SPEC)
+    code, _, err = run(tmp_path)
+    assert code == 0 and err == "", err
+    return load(tmp_path)
+
+
+def test_a_folded_reading_moves_to_the_live_create(tmp_path):
+    ledger = (
+        CREATE_30 + READING + "- decision[case 31][create][estimate-a-holds]"
+        "{ref:rule-old}{supersedes:case 30}{tags:harness}\n"
+    )
+    data = refold_entries(tmp_path, ledger)
+    (marked,) = of_case(data, "30")
+    assert marked["superseded_by"] == "31"
+    assert "status" not in marked and "result" not in marked and "folded" not in marked
+    (live,) = of_case(data, "31")
+    assert live["status"] == "passed" and live["result"] == "the first reading"
+    assert live["folded"] == [2]
+    assert not [e for e in data["entries"] if e.get("kind") == "estimate"]
+
+
+def test_a_folded_reading_with_no_live_create_becomes_an_entry_of_its_own(tmp_path):
+    ledger = CREATE_30 + READING + "- decision[case 31][update][rule-old]{supersedes:case 30}\n"
+    data = refold_entries(tmp_path, ledger)
+    (marked,) = of_case(data, "30")
+    assert "status" not in marked and "folded" not in marked
+    (reading,) = [e for e in data["entries"] if e.get("kind") == "estimate"]
+    assert reading["line"] == 2 and reading["slug"] == "estimate-a-holds"
+    assert reading["status"] == "passed" and reading["result"] == "the first reading"
+
+
+def test_a_reading_after_the_mark_does_not_fold_into_the_superseded_create(tmp_path):
+    ledger = CREATE_30 + "- decision[case 31][update][rule-old]{supersedes:case 30}\n" + READING
+    data = refold_entries(tmp_path, ledger)
+    (marked,) = of_case(data, "30")
+    assert "status" not in marked and "folded" not in marked
+    (reading,) = [e for e in data["entries"] if e.get("kind") == "estimate"]
+    assert reading["line"] == 3 and reading["status"] == "passed"

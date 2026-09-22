@@ -324,6 +324,63 @@ def test_check_and_an_exit_1_tick_nothing(tmp_path):
     assert spec.read_text(encoding="utf-8") == SPRINT_SPEC
 
 
+# --- an item of several pages, and a note (case 313) ----------------------------------
+
+
+def test_an_item_of_two_pages_waits_for_both(tmp_path):
+    seed(
+        tmp_path,
+        SPRINT_PAGE.replace(
+            "- [[rule-subagent-guppi]] — the subagent and the fork",
+            "- [[rule-done]], [[rule-work-mode]] — two pages, one item",
+        ),
+    )
+    assert run(tmp_path) == (0, "", "")
+    text = rendered(tmp_path)
+    assert (
+        "- [ ] [[rule-done]], [[rule-work-mode]] — two pages, one item · built, draft"
+        " · decision-case-183, decision-case-206\n" in text
+    )
+
+
+def test_an_item_of_two_done_pages_is_ticked(tmp_path):
+    seed(
+        tmp_path,
+        SPRINT_PAGE.replace(
+            "- [[rule-subagent-guppi]] — the subagent and the fork",
+            "- [[rule-done]], [[rule-old-thing]] — two pages, both done",
+        ),
+    )
+    assert run(tmp_path) == (0, "", "")
+    assert (
+        "- [x] [[rule-done]], [[rule-old-thing]] — two pages, both done · built, archived\n"
+        in rendered(tmp_path)
+    )
+
+
+def test_a_wikilink_after_the_dash_is_text(tmp_path):
+    seed(
+        tmp_path,
+        SPRINT_PAGE.replace(
+            "- [[rule-subagent-guppi]] — the subagent and the fork",
+            "- [[rule-done]] — a rule built, with [[rule-work-mode]] in its text",
+        ),
+    )
+    assert run(tmp_path) == (0, "", "")
+    assert (
+        "- [x] [[rule-done]] — a rule built, with [[rule-work-mode]] in its text · built\n"
+        in rendered(tmp_path)
+    )
+
+
+def test_a_note_keeps_its_box_and_is_never_ticked(tmp_path):
+    seed(tmp_path)
+    assert run(tmp_path) == (0, "", "")
+    text = rendered(tmp_path)
+    assert "- [ ] the categories as data of the project\n" in text
+    assert "the categories as data of the project ·" not in text
+
+
 def test_an_unapplied_and_a_carried_over_unit_are_not_touched(tmp_path):
     seed(tmp_path)
     unapplied = raw_unit(tmp_path, "2026-09-18/1000", applied=False)

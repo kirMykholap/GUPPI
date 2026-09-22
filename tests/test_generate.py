@@ -211,7 +211,8 @@ def test_creates_yield_conformant_pages_with_backlinks_in_order(tmp_path):
     estimate = page(tmp_path, "estimates", "estimate-child-works")
     assert props(estimate)["target"] == "rule-child" and props(estimate)["status"] == "pending"
     assert "## Criterion\n\nthe child works" in estimate
-    findings = lint.lint(tmp_path)
+    # the seed is not a whole vault: its root files have no rule of their own (case 315)
+    findings = [f for f in lint.lint(tmp_path) if ": layout: " not in f]
     assert findings == ["estimates/estimate-child-works: unread: pending"], findings  # 202
     log = page(tmp_path, "", "log")
     assert (
@@ -816,7 +817,7 @@ def test_a_lesson_writes_the_lesson_and_no_estimate(tmp_path):
     assert "## Trigger\n\nthe hook fired late" in lesson and "## Estimates" not in lesson
     assert f"- {DATE} created · raw/{DATE}/ledger.md#L1" in lesson
     assert list((tmp_path / "vault" / "wiki" / "estimates").glob("estimate-*.md")) == []
-    assert lint.lint(tmp_path) == []
+    assert [f for f in lint.lint(tmp_path) if ": layout: " not in f] == []
 
 
 def test_one_decision_page_per_case_and_supersedes_marks_the_earlier(tmp_path):
@@ -899,7 +900,7 @@ def test_a_decision_page_lists_its_targets_by_kind_in_ledger_order(tmp_path):
     code, _, err = run(tmp_path)
     assert code == 0 and err == ""
     text = page(tmp_path, "decisions", "decision-case-1")
-    assert (  # page slugs as quoted wikilinks, Rule-class slugs bare (148.1)
+    assert (  # page slugs as quoted wikilinks, a slug with no category prefix bare (148.1)
         'create: ["[[rule-root]]", "[[estimate-root-holds]]"]\nupdate: [case-schema, index]\n'
         'defer: ["[[rule-later]]"]\n' in text
     )
@@ -1183,6 +1184,24 @@ def test_a_delete_outside_the_vault_applies_and_a_delete_of_a_missing_page_fails
     data = load_yaml(tmp_path)
     assert data["entries"][1]["applied"] and "failed" not in data["entries"][1]
     assert "failed" in data["entries"][2]
+
+
+def test_a_delete_of_an_unknown_category_is_outside_the_vault(tmp_path):
+    # case 320: with the file route gone, a slug without a category prefix takes this road
+    entry = {
+        "line": 2,
+        "case": "2",
+        "kind": "delete",
+        "category": "unknown",
+        "slug": "index",
+        "origin": ORIGIN,
+        "decision": "decision-case-2",
+    }
+    seed(tmp_path, entries=[ROOT, entry])
+    code, out, err = run_at(tmp_path)
+    assert code == 0 and err == ""
+    assert "generate: index: outside the vault, nothing to archive" in out
+    assert load_yaml(tmp_path)["entries"][1]["applied"]
     wiki = tmp_path / "vault" / "wiki"
     assert not list(wiki.glob("*/old-thing.md"))
     log = (wiki / "log.md").read_text(encoding="utf-8")
@@ -1805,14 +1824,16 @@ READ_SPEC = """# Spec
 """
 
 
-def test_a_reading_ticks_the_first_unticked_read_line_of_its_slug(tmp_path):
+def test_a_reading_ticks_every_read_line_of_its_slug_in_the_spec(tmp_path):
+    # case 312: one reading is of the page, whose Criterion is one, however many Cases of
+    # the session touched it
     seed(tmp_path, entries=[CHILD, CHILD_ESTIMATE, ROOT, child_reading()])
     spec = with_spec(tmp_path, READ_SPEC)
     code, _, err = run(tmp_path)
     assert code == 0 and err == ""
     text = spec.read_text(encoding="utf-8")
     assert "- [x] read `estimate-child-works`: pytest, then live" in text
-    assert "- [ ] read `estimate-child-works`: a second reading" in text  # one entry, one line
+    assert "- [x] read `estimate-child-works`: a second reading" in text
     assert "- [ ] `guppi/x.py`: the code" in text
 
 
@@ -2261,7 +2282,7 @@ def test_a_reword_alone_is_content_and_applies(tmp_path):
     entry.pop("change")
     seed(tmp_path, entries=[entry], pages=REWORD_PAGES)
     code, out, err = run(tmp_path)
-    assert code == 0 and err == "" and "applied by hand" not in out
+    assert code == 0 and err == "" and "nothing applied" not in out
     assert "the widget is what it was called." in page(tmp_path, "rules", "rule-owner")
     assert load_yaml(tmp_path)["entries"][0]["applied"]
 
@@ -2443,8 +2464,9 @@ def test_no_yaml_beside_another_sessions_spec_skips_nothing(tmp_path):
     other = other_session(tmp_path, with_yaml=False)
     assert run(tmp_path)[0] == 0
     text = other.read_text(encoding="utf-8")
-    assert "- [x] read `estimate-child-works`: by hand\n" in text  # the first line, Case 7
-    assert "- [ ] read `estimate-child-works`: by hand, on the recut" in text
+    # case 312: no yaml beside it, so no Case is skipped and both lines of the slug tick
+    assert "- [x] read `estimate-child-works`: by hand\n" in text
+    assert "- [x] read `estimate-child-works`: by hand, on the recut" in text
 
 
 def test_a_folded_reading_skips_a_superseded_case_too(tmp_path):

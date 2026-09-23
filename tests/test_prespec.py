@@ -1200,3 +1200,142 @@ def test_a_read_line_naming_the_command_later_is_no_finding(tmp_path):
     assert check(tmp_path, plan=tasks_plan(line)) == (0, "", "")
     line = "- [ ] the rendered `CLAUDE.md` read by hand after `guppi render`"
     assert check(tmp_path, plan=tasks_plan(line)) == (0, "", "")
+
+
+# --- a pair inside a Criterion (case 378.4) --------------------------------------------
+
+ESTIMATE_LINE = "- 16:00:00 decision[case 1][update][estimate-x]{ref:estimate-x}\n"
+
+
+def with_criterion(project_dir):
+    folder = project_dir / "vault" / "wiki" / "estimates"
+    folder.mkdir(parents=True, exist_ok=True)
+    text = (
+        "---\ntype: estimate\nkind: QA\nstatus: passed\ntarget: rule-x\nmethod: by hand\n---\n\n"
+        "## Criterion\n\nWhen:\nold words.\n\n## Result\n\nread on Monday\n"
+    )
+    (folder / "estimate-x.md").write_text(text, encoding="utf-8", newline="\n")
+
+
+def pair_plan(old):
+    block = (
+        "update:\n  - slug: estimate-x\n    replace:\n"
+        f'      - old: "{old}"\n        new: "new words."\n    change: one line\n'
+    )
+    return bare_plan("Something.", block)
+
+
+def test_a_replace_pair_inside_a_criterion_is_a_finding(tmp_path):
+    with_criterion(tmp_path)
+    code, out, _ = check(tmp_path, plan=pair_plan("old words."), ledger=ESTIMATE_LINE)
+    assert code == 1
+    assert out.splitlines() == [
+        (
+            "case 1: update estimate-x: a replace pair inside the Criterion — "
+            "a Criterion changes only whole: old words."
+        )
+    ]
+
+
+def test_a_replace_pair_outside_the_criterion_is_clean(tmp_path):
+    with_criterion(tmp_path)
+    plan = pair_plan("read on Monday")
+    assert check(tmp_path, plan=plan, ledger=ESTIMATE_LINE) == (0, "", "")
+
+
+# --- the frame of a Case (case 378.7) --------------------------------------------------
+
+
+def frame_plan(given, when, then, heading="## Case 1 — one"):
+    return f"""# Plan
+
+## Case 1 — one
+
+> **context:**
+> Something.
+
+> **given:**
+> {given}
+
+{heading if heading != "## Case 1 — one" else ""}
+
+> **when:**
+> {when}
+
+> **then:**
+> {then}
+
+```then
+update:
+  - slug: rule-x
+    change: one line
+```
+
+```tasks
+- [ ] guppi/x.py: the change
+```
+"""
+
+
+def test_a_case_inside_its_frame_is_clean(tmp_path):
+    plan = frame_plan(
+        "`rule-x` — the rule.\n> **＋** `/hi` — the skill.",
+        "The person types `/hi`.",
+        "`rule-x` holds.",
+    )
+    assert check(tmp_path, plan=plan) == (0, "", "")
+
+
+def test_a_slug_in_then_not_in_given_is_a_finding(tmp_path):
+    plan = frame_plan("`rule-x` — the rule.", "The agent writes.", "`rule-y` holds.")
+    assert check(tmp_path, plan=plan) == (1, "case 1: rule-y is not named in its given\n", "")
+
+
+def test_a_target_of_the_then_block_not_in_given_is_a_finding(tmp_path):
+    plan = frame_plan("`guppi/x.py` — the module.", "The agent writes.", "It holds.")
+    assert check(tmp_path, plan=plan) == (1, "case 1: rule-x is not named in its given\n", "")
+
+
+def test_a_slash_command_not_in_given_is_a_finding(tmp_path):
+    plan = frame_plan("`rule-x` — the rule.", "The person types `/hi`.", "It holds.")
+    assert check(tmp_path, plan=plan) == (1, "case 1: /hi is not named in its given\n", "")
+
+
+def test_a_lone_slash_span_is_no_path(tmp_path):
+    plan = frame_plan("`rule-x` — the rule.", "A span holds `/`.", "It holds.")
+    assert check(tmp_path, plan=plan) == (0, "", "")
+
+
+def test_a_sub_case_is_checked_against_its_parents_given(tmp_path):
+    plan = frame_plan(
+        "`rule-x` — the rule.", "The agent writes.", "`rule-x` holds.", heading="### Case 1.1 — sub"
+    )
+    ledger = "- 16:00:00 decision[case 1.1][update][rule-x]{ref:rule-x}\n"
+    frontier = "# Frontier\n\n- [x] F1 — the one item · owner · case 1.1\n"
+    assert check(tmp_path, plan=plan, ledger=ledger, frontier=frontier) == (0, "", "")
+    plan = plan.replace("`rule-x` holds.", "`rule-y` holds.")
+    code, out, _ = check(tmp_path, plan=plan, ledger=ledger, frontier=frontier)
+    assert (code, out) == (1, "case 1.1: rule-y is not named in its given\n")
+
+
+def test_a_case_without_given_is_not_checked(tmp_path):
+    assert check(tmp_path, plan=bare_plan("`rule-y` is named in context only.")) == (0, "", "")
+
+
+# --- a long chain of ＋ lines is a note (case 378.8) -----------------------------------
+
+
+def chain(count):
+    return "`rule-x` holds." + "".join(f"\n> **＋** `rule-x` holds {n}." for n in range(count))
+
+
+def test_eight_and_lines_in_then_are_a_note_and_exit_zero(tmp_path):
+    plan = frame_plan("`rule-x` — the rule.", "The agent writes.", chain(8))
+    code, out, _ = check(tmp_path, plan=plan)
+    assert code == 0
+    assert out == "note: case 1: then holds 8 ＋ lines — is the Case atomic?\n"
+
+
+def test_seven_and_lines_are_no_note(tmp_path):
+    plan = frame_plan("`rule-x` — the rule.", "The agent writes.", chain(7))
+    assert check(tmp_path, plan=plan) == (0, "", "")

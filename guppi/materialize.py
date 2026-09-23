@@ -50,15 +50,16 @@ The category of a slug comes from its prefix, which pre-spec guards; a slug with
 takes its slug out of the target's `deferred_by` (case 52.3).
 
 No Estimate is derived (cases 189, 194.1). An Estimate has its own ledger line and its own
-entry; the `ref` of the line is the Estimate itself. Its Criterion is the `given`, `when`
-and `then` of its Case, verbatim with their operands, as `Given:`, `When:`, `Then:`,
-lifted into the entry's `sections.Criterion` — the shape `generate` applies as a whole
-replacement; a `given` a sub-case lacks is its parent's. A Criterion the item wrote under
+entry; the `ref` of the line is the Estimate itself. Its Criterion is the `when` and
+`then` of its Case, verbatim with their operands, as `When:`, `Then:` — never its `given`,
+the frame of the Case, which stays in the decision record (case 378.2) — lifted into the
+entry's `sections.Criterion`, the shape `generate` applies as a whole replacement. A Criterion the item wrote under
 `sections` stands. An Estimate `update` also carries `set: {status: pending}` unless the
 item set a status itself. An `update` item that names a part of the page — `set` without
 `status`, a `replace` pair, a section other than `Criterion` — and writes no Criterion
-changes that part alone: nothing is lifted, and `set: {status: pending}` is added only
-when a pair's `old` stands in the page's `## Criterion` (case 296). An Estimate `create` keeps `kind`, `purpose`, `method` and
+changes that part alone: nothing is lifted and no status is set; a pair whose `old` stands
+in the page's `## Criterion` is `incomplete: [criterion]` — a Criterion changes only whole
+(case 378.4). An Estimate `create` keeps `kind`, `purpose`, `method` and
 `tags` as fields — a `ref` on the item is the entry's `ref`, never a page field (case 201.1);
 `## Context` and `## Method` are not written, and a `context` key of the
 old shape is dropped; a `criterion` key of the old shape goes to `sections.Criterion`. On a
@@ -84,7 +85,8 @@ list of `{old, new}` pairs, carried as written; a mapping or a scalar under it i
 `incomplete: [reword]`, case 274.3), `impact`,
 `incomplete` (what the block lacks: a required field, `then`, `change`, `criterion`,
 `purpose`, `source`, `reword`; `addresses` when the mark names no lesson of this unit,
-case 284.3), `unknown` (a key of a `create` or `defer` item that the category's
+case 284.3; `addressed_by` on a lesson whose mark names a Case with no decision line earlier
+in the unit, case 377.3), `unknown` (a key of a `create` or `defer` item that the category's
 `schema.yaml` names as no field and that is not structural — never lifted into `fields`,
 case 214.1; the `type` and `purpose` of a `defer` are its own keys and reach `fields`
 whatever the target's category, an Insight's too, case 266; and nothing is filtered at all
@@ -97,7 +99,9 @@ folded into the live create of its slug — never into one already applied or ma
 `superseded_by`, and a `{supersedes}` moves the readings of the create it marks to the live
 create of the slug, or makes each an `estimate` entry of its own (case 309); `superseded_by` from a later `{supersedes}` in any unit; `addressed_by`
 (`decision-case-<N>`) on a lesson entry a decision line of the same unit marked with
-`{addresses:<its slug>}` — at the entry's level, never a page field (case 284.3); `failed`
+`{addresses:<its slug>}`, or whose own line carries `{addressed_by:case N}` after a decision
+line of Case N — one function sets it for both marks, at the entry's level, never a page
+field (cases 284.3, 377.3); `failed`
 from a lift that raised. Kept from the shape before case 189 on entries already written:
 `derived`, `criterion_block`, `case_removed`. Set by `guppi generate`: `applied` (the time
 applied) and `failed` (the error). Set by the librarian: `near`, and `librarian` with the
@@ -162,7 +166,7 @@ INHERITED = ("context", "problem", "recommend", "given")  # a sub-case reads the
 # The keys of the shape before case 189 on a rule's or entity's item: once they derived an
 # Estimate; now they are ignored — they reach neither the page nor `incomplete` (194.1).
 IGNORED_KEYS = ("method", "contract", "estimate_slug", "estimate_kind")
-CRITERION_SECTIONS = ("given", "when", "then")  # the Criterion of an Estimate (188, 194.1)
+CRITERION_SECTIONS = ("when", "then")  # the Criterion of an Estimate, never `given` (378.2)
 SESSION_FOLDER = re.compile(r"^\d{4}$")  # raw/<date>/<HHMM>/, one session's Spec (case 73)
 
 
@@ -224,6 +228,7 @@ def parse_line(text: str) -> dict | None:
         "root_cause": root_cause.strip(),
         "tags": _tags(options.get("tags")),
         "source": options.get("source"),
+        "addressed_by": _case_of(options.get("addressed_by")),  # written after its fix (377.3)
     }
 
 
@@ -639,9 +644,9 @@ def _lift_item(
 
 
 def criterion_text(texts: dict[str, str]) -> str:
-    """The Criterion of an Estimate: the Case's `given`, `when` and `then` verbatim with
-    their operand lines, as `Given:`, `When:`, `Then:`; a missing section is left out,
-    never invented (case 194.1)."""
+    """The Criterion of an Estimate: the Case's `when` and `then` verbatim with their
+    operand lines, as `When:`, `Then:` — the `given` is the frame of the Case and stays out
+    (case 378.2); a missing section is left out, never invented (case 194.1)."""
     parts = []
     for name in CRITERION_SECTIONS:
         text = texts.get(name)
@@ -687,16 +692,16 @@ def lift_criterion(entry: dict, texts: dict[str, str], project_dir: Path | None 
     `sections` stands; otherwise the Case's own text is lifted. An `update` is set
     `pending` unless the item set a status itself (case 194.1). An `update` that names a
     part of the page — `set` without `status`, a `replace` pair, a section other than
-    `Criterion` — and writes no Criterion changes that part alone: nothing is lifted, and
-    it is set `pending` only when a pair's `old` stands in the page's `## Criterion`
-    (case 296)."""
+    `Criterion` — and writes no Criterion changes that part alone: nothing is lifted and no
+    status is set; a pair whose `old` stands in the page's `## Criterion` is
+    `incomplete: [criterion]` — a Criterion changes only whole (case 378.4)."""
     if entry.get("category") != "estimates" or entry.get("kind") not in ("create", "update"):
         return
     if entry["kind"] == "update" and names_a_part(entry):
         if project_dir is not None and touches_criterion(
             project_dir, str(entry.get("slug", "")), entry.get("replace")
         ):
-            entry.setdefault("set", {})["status"] = "pending"
+            entry.setdefault("incomplete", []).append("criterion")
         return
     sections = entry.setdefault("sections", {})
     if not sections.get("Criterion"):
@@ -957,7 +962,13 @@ def lift_line(
         entries.append(estimate_entry(record, number, text, date))
         return 1
     if record["record"] == "lesson":
-        entries.append(lesson_entry(record, number, text, date, project_dir))
+        lesson = lesson_entry(record, number, text, date, project_dir)
+        mark = record.get("addressed_by")
+        if mark and any(e.get("case") == mark and e.get("decision") for e in entries):
+            address(lesson, mark)
+        elif mark:
+            lesson.setdefault("incomplete", []).append("addressed_by")  # no decision line yet
+        entries.append(lesson)
         return 1
     case = record["case"]
     if case not in blocks:
@@ -983,6 +994,13 @@ def lift_line(
     return added
 
 
+def address(lesson: dict, case: str) -> None:
+    """The one writer of `addressed_by` on a lesson entry, for both marks: a decision line's
+    `{addresses:<lesson slug>}` and a lesson line's `{addressed_by:case N}` (cases 284.3,
+    377.3). At the entry's level — never a page field, the lesson page carries none."""
+    lesson["addressed_by"] = f"decision-case-{case}"
+
+
 def mark_addressed(entries: list[dict], slugs: list[str], case: str) -> bool:
     """A decision line's `{addresses:<lesson slug>}` reaches the lesson entry of this unit
     as `addressed_by: decision-case-N`, at the entry's level — never a page field, the
@@ -993,7 +1011,7 @@ def mark_addressed(entries: list[dict], slugs: list[str], case: str) -> bool:
         if not lessons:
             found = False
         for lesson in lessons:
-            lesson["addressed_by"] = f"decision-case-{case}"
+            address(lesson, case)
     return found
 
 

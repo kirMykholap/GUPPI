@@ -933,10 +933,8 @@ update:
 ```
 """
 
-CRITERION_16 = (
-    "Given:\nA seeded database.\n**＋** Three sizes.\n\n"
-    "When:\nA buyer opens the cart.\n\n"
-    "Then:\nIt renders in time.\n**－** Not above 120 items."
+CRITERION_16 = (  # the Case's `given` stays out of the Criterion (case 378.2)
+    "When:\nA buyer opens the cart.\n\nThen:\nIt renders in time.\n**－** Not above 120 items."
 )
 
 
@@ -1039,15 +1037,13 @@ def test_an_estimate_update_lifts_its_criterion_and_goes_pending(tmp_path):
     data = load(tmp_path)
     (update,) = of_case(data, "17")
     assert update["slug"] == "estimate-old-holds" and update["kind"] == "update"
-    assert update["sections"] == {
-        "Criterion": "Given:\nThe page says old.\n\nWhen:\nThe page is read.\n\nThen:\nIt says new."
-    }
+    assert update["sections"] == {"Criterion": "When:\nThe page is read.\n\nThen:\nIt says new."}
     assert update["set"] == {"status": "pending"}
     assert update["change"] == "the Criterion replaced whole"
     assert "incomplete" not in update and "derived" not in update
 
 
-def test_a_sub_case_lifts_its_parents_given_into_the_criterion(tmp_path):
+def test_a_sub_case_lifts_its_own_when_and_then_never_a_given(tmp_path):
     seed_estimates(tmp_path)
     ledger = tmp_path / "vault" / "raw" / DATE / "ledger.md"
     ledger.write_text(
@@ -1060,8 +1056,8 @@ def test_a_sub_case_lifts_its_parents_given_into_the_criterion(tmp_path):
     (_, sub) = by_slug(load(tmp_path), "estimate-old-holds", "update")
     assert sub["case"] == "17.1"
     assert sub["sections"]["Criterion"] == (
-        "Given:\nThe page says old.\n\nWhen:\nThe page is read twice.\n\nThen:\nIt says new twice."
-    )
+        "When:\nThe page is read twice.\n\nThen:\nIt says new twice."
+    )  # the parent's `given` stays in the decision record (case 378.2)
     assert sub["set"] == {"status": "pending"} and "incomplete" not in sub
 
 
@@ -1204,11 +1200,11 @@ def test_a_field_alone_lifts_nothing_and_sets_no_status(tmp_path):
     assert "sections" not in entry and "incomplete" not in entry
 
 
-def test_a_pair_inside_the_criterion_sets_pending_and_lifts_nothing(tmp_path):
+def test_a_pair_inside_the_criterion_is_incomplete_and_sets_no_status(tmp_path):
     (entry,) = of_case(seed_parts(tmp_path), "24")
     assert entry["replace"] == [{"old": "The page says old.", "new": "The page says new."}]
-    assert entry["set"] == {"status": "pending"}
-    assert "sections" not in entry and "incomplete" not in entry
+    assert entry["incomplete"] == ["criterion"]  # a Criterion changes only whole (case 378.4)
+    assert "set" not in entry and "sections" not in entry
 
 
 def test_a_pair_outside_the_criterion_sets_no_status(tmp_path):
@@ -1226,9 +1222,7 @@ def test_a_pair_absent_from_the_page_is_not_judged_here(tmp_path):
 def test_a_status_named_is_the_whole_replacement_beside_the_field(tmp_path):
     (entry,) = of_case(seed_parts(tmp_path), "27")
     assert entry["set"] == {"purpose": "The new line", "status": "pending"}
-    assert entry["sections"] == {
-        "Criterion": "Given:\nThe Case's own.\n\nWhen:\nThe Case's own.\n\nThen:\nThe Case's own."
-    }
+    assert entry["sections"] == {"Criterion": "When:\nThe Case's own.\n\nThen:\nThe Case's own."}
 
 
 def test_a_written_criterion_beside_a_field_stands_and_sets_pending(tmp_path):
@@ -2017,6 +2011,39 @@ def test_an_addresses_mark_without_its_lesson_is_incomplete(tmp_path):
     assert decision["addresses"] == ["lesson-not-here"]
     assert decision["incomplete"] == ["addresses"]
     assert not [e for e in data["entries"] if e.get("addressed_by")]
+
+
+# --- a lesson line's {addressed_by:case N}, written after its fix (case 377.3) ----------
+
+
+def test_a_lesson_marked_after_its_fix_lands_as_addressed_by(tmp_path):
+    seed(tmp_path)
+    raw = tmp_path / "vault" / "raw" / DATE
+    with (raw / "ledger.md").open("a", encoding="utf-8", newline="\n") as fh:
+        fh.write(
+            "- 11:00:00 lesson[error][lesson-late]{tags:hooks}{addressed_by:case 3}"
+            " trigger: t root_cause: r\n"
+        )
+    run(tmp_path)
+    (lesson,) = by_slug(load(tmp_path), "lesson-late")
+    assert lesson["addressed_by"] == "decision-case-3"  # the same field as the decision's mark
+    assert "addressed_by" not in lesson["fields"]  # the page gets no field
+    assert "incomplete" not in lesson
+
+
+def test_a_lesson_mark_with_no_decision_line_before_it_is_incomplete(tmp_path):
+    seed(tmp_path)
+    raw = tmp_path / "vault" / "raw" / DATE
+    with (raw / "ledger.md").open("a", encoding="utf-8", newline="\n") as fh:
+        fh.write(
+            "- 11:00:00 lesson[error][lesson-late]{tags:hooks}{addressed_by:case 99}"
+            " trigger: t root_cause: r\n"
+        )
+    code, _, err = run(tmp_path)
+    assert code == 0 and "line" not in err  # not an error: lifted, named incomplete
+    (lesson,) = by_slug(load(tmp_path), "lesson-late")
+    assert lesson["incomplete"] == ["addressed_by"]
+    assert "addressed_by" not in lesson
 
 
 # --- a create of a category whose schema rule this unit changes (case 308.2) -----------

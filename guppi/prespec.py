@@ -13,8 +13,9 @@ of another stamp or `--------` does not count, and a `session-start` of another 
 resets nothing. An ordinary session — no `hi` — is not gated: no governance applies there.
 Any other tool: exit 0. Rule page: `vault/wiki/rules/rule-prespec-hook.md`.
 
-The check prints one finding per line on stdout and exits 1 on any, 0 and silent when
-clean; without a `hi` in the session's window it exits 0 with one line on stderr. The
+The check prints one finding per line on stdout and exits 1 on any, 0 when there is none;
+a line opening with `note:` is no finding and sets no exit code (case 378.8); without a
+`hi` in the session's window it exits 0 with one line on stderr. The
 session is `--session`, else `CLAUDE_SESSION_ID`; with neither it exits 2 with one line on
 stderr naming the `hi:` line, and nothing is guessed from the event log (case 213.1). The
 session's window is the one the ledger hook walks (`ledger.session_dir`):
@@ -70,7 +71,18 @@ the ledgers of its dates, on the `hi` date from the `hi` time on, and its folder
   one line per slug and Case (case 264.2);
 - a `tasks` line that opens with the bare word `render` or `sprint`, or with the command
   outside a code span — the tickers of `render` and `sprint` match the command in the
-  first code span (case 235), a line of another form stays debt (case 279.2).
+  first code span (case 235), a line of another form stays debt (case 279.2);
+- a `replace` pair of an Estimate `update` whose `old` stands inside the page's
+  `## Criterion`, by `materialize.touches_criterion`, the one predicate — a Criterion
+  changes only whole (case 378.4);
+- the frame (case 378.7): a slug or path in a code span of a Case's `when` or `then` that
+  its `given` — its own or its parent's, by `materialize.case_texts` — does not name, and a
+  slug of its `then` block the `given` does not name; a slug is a span with a category
+  prefix by `materialize.category_of`, a path a span holding a `/` and one more character;
+  a Case without `given` is not checked.
+
+Notes (case 378.8): a Case whose `given` or `then` holds more than seven `**＋**` lines —
+a sign it is not atomic — is one line opening with `note:`, answered in the chat.
 """
 
 import argparse
@@ -99,11 +111,13 @@ from guppi.lint import CODE_SPAN, WIKILINK, archived_slugs, hub_files, names_a_f
 from guppi.materialize import (
     DECISION_KINDS,
     FENCE,
+    case_texts,
     category_of,
     find_item,
     parse_line,
     split_cases,
     then_blocks,
+    touches_criterion,
     unquote,
 )
 from guppi.pages import CATEGORIES, Page, read_category, read_page, wiki_root
@@ -122,6 +136,8 @@ SPRINT_PAGE = "entity-sprint-"
 # Case 279.2: a task line the tickers of `render` and `sprint` would not match — the bare
 # word, or the command outside a code span, right after the box.
 OFF_FORM_LINE = re.compile(r"^- \[[ x]\] (?:uv run )?(?:guppi )?(?:render|sprint)\b")
+AND = "**＋**"  # the operand "and" at the head of a line (case 378.6)
+LONG_CHAIN = 7  # more `＋` lines than this in `given` or `then` is a note (case 378.8)
 
 
 def window(event_log: str, stamp: str) -> tuple[bool, bool]:
@@ -651,6 +667,85 @@ def check_form(blocks: dict, project_dir: Path) -> list[str]:
     return findings
 
 
+def check_criterion_pairs(blocks: dict, project_dir: Path) -> list[str]:
+    """378.4: a `replace` pair of an Estimate `update` whose `old` stands inside the page's
+    `## Criterion` — judged by `materialize.touches_criterion`, the predicate `materialize`
+    marks `incomplete: [criterion]` by; a Criterion changes only whole."""
+    findings: list[str] = []
+    for case, block in blocks.items():
+        for item in block.get("update") or []:
+            slug = str(item.get("slug") or "") if isinstance(item, dict) else ""
+            if category_of(slug) != "estimates":
+                continue
+            for pair in item.get("replace") or []:
+                if touches_criterion(project_dir, slug, [pair]):
+                    findings.append(
+                        f"case {case}: update {slug}: a replace pair inside the Criterion — "
+                        f"a Criterion changes only whole: {preview(str(pair.get('old') or ''))}"
+                    )
+    return findings
+
+
+# --- the frame of a Case (cases 378.7, 378.8) ------------------------------------------
+
+
+def frame_name(span: str) -> bool:
+    """Whether a code span names a thing the frame must hold: a slug with a category prefix,
+    or a path — a `/` and one more character, a slash command included (case 378.7)."""
+    return bool(category_of(span)) or ("/" in span and len(span) > 1)
+
+
+def item_slugs(block: dict) -> list[str]:
+    return [
+        str(item["slug"])
+        for kind in DECISION_KINDS
+        for item in block.get(kind) or []
+        if isinstance(item, dict) and item.get("slug")
+    ]
+
+
+def check_frame(cases: dict, blocks: dict) -> list[str]:
+    """378.7: `when` and `then` name only what `given` names, and every slug of the `then`
+    block stands in `given`; a sub-case reads its parent's `given` by `case_texts`; a Case
+    without `given` — a defer, an older Spec — is not checked. One finding per name."""
+    findings: list[str] = []
+    for case in cases:
+        texts = case_texts(cases, case)
+        given = texts.get("given") or ""
+        if not given:
+            continue
+        named: list[str] = []
+        for section in ("when", "then"):
+            for span in CODE_SPAN.findall(texts.get(section) or ""):
+                name = span.strip("`").strip()
+                if frame_name(name) and name not in named:
+                    named.append(name)
+        for slug in item_slugs(blocks.get(case, {})):
+            if slug not in named:
+                named.append(slug)
+        for name in named:
+            if name not in given:
+                findings.append(f"case {case}: {name} is not named in its given")
+    return findings
+
+
+def chain_notes(cases: dict) -> list[str]:
+    """378.8: a Case whose own `given` or `then` holds more than seven `＋` lines — a sign
+    it is not atomic; a note, not a finding."""
+    notes: list[str] = []
+    for case in cases:
+        texts = case_texts(cases, case)
+        for section in ("given", "then"):
+            count = sum(
+                1 for line in (texts.get(section) or "").splitlines() if line.startswith(AND)
+            )
+            if count > LONG_CHAIN:
+                notes.append(
+                    f"note: case {case}: {section} holds {count} ＋ lines — is the Case atomic?"
+                )
+    return notes
+
+
 # --- a bare wikilink in the plan (case 264.2) -------------------------------------------
 
 
@@ -731,8 +826,10 @@ def check(plan: str, project_dir: Path, stamp: str, now, stdout, stderr) -> int:
     findings += check_markers(blocks, project_dir)
     findings += check_pairs(cases, blocks, project_dir)
     findings += check_bare_links(cases, blocks, project_dir)
-    for finding in findings:
-        print(finding, file=stdout)
+    findings += check_criterion_pairs(blocks, project_dir)
+    findings += check_frame(cases, blocks)
+    for line in findings + chain_notes(cases):
+        print(line, file=stdout)
     return 1 if findings else 0
 
 

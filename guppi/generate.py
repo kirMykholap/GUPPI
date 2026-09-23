@@ -61,10 +61,11 @@ The Decision page (case 201.2): one per Case, `decisions/decision-case-<N>.md`, 
 before the first entry of its lines so their History lines can name it; `case`, `status:
 current`, one list per kind present — `create`, `update`, `delete`, `defer`, the slugs in
 ledger order (case 59.4) — `source`, `supersedes`, `origin`, `sprint`, `created`, `tags`
-(the union of the targets' tags); the body `## Context` and `## Problem` from `case_text`
-and `## Deferred`, one `### [[slug]]` heading per target of the Case's `defer` lines with
-its `purpose` verbatim (case 186.1); no `## Given`, no `## When`, no `## Criterion` list —
-the contract lives on the Estimate; pages written before keep theirs. A record with
+(the union of the targets' tags); the body `## Context`, `## Problem` and `## Given` — the
+frame of the Case, which no Estimate holds (case 378.3) — from `case_text`, and
+`## Deferred`, one `### [[slug]]` heading per target of the Case's `defer` lines with its
+`purpose` verbatim (case 186.1); no `## When`, no `## Criterion` list — the contract lives
+on the Estimate; pages written before keep theirs. A record with
 `superseded_by` and no `case_text` — a Case superseded in its own session and gone from the
 Spec (case 299.1) — gets a two-line body naming the superseding Decision; its status
 follows the mechanism as for any superseded page (case 299.4). A `supersedes` sets
@@ -1089,8 +1090,8 @@ class Vault:
         props["sprint"] = self.sprint
         props["created"] = self.date
         props["tags"] = tags  # the union of the targets' tags; empty is a fact, not a gap
-        sections = {}  # no Given, no When, no Criterion list: the contract lives on the Estimate (201.2)
-        for name, key in (("Context", "context"), ("Problem", "problem")):
+        sections = {}  # no When, no Criterion list: the contract lives on the Estimate (201.2)
+        for name, key in (("Context", "context"), ("Problem", "problem"), ("Given", "given")):
             if text.get(key):
                 sections[f"## {name}"] = text[key]
         if not text and record.get("superseded_by"):  # gone from the Spec (299.4)

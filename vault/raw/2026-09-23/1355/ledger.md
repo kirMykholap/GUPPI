@@ -1,0 +1,45 @@
+- 14:07:39 decision[case 376][update][rule-retro]{ref:rule-retro}{supersedes:case 375}
+- 14:07:39 decision[case 376][create][estimate-retro-report-holds-each-fact-once]{ref:rule-retro}{tags:session,workflow,harness}
+- 14:17:49 decision[case 377.1][update][insight-session-vault-knowledge-not-loaded]{ref:insight-session-vault-knowledge-not-loaded}
+- 14:17:49 decision[case 377.2][update][rule-case-protocol]{ref:rule-case-protocol}
+- 14:17:49 decision[case 377.2][update][estimate-case-protocol-ledger-line-form]{ref:estimate-case-protocol-ledger-line-form}
+- 14:17:49 decision[case 377.2][update][estimate-case-protocol-loaded]{ref:estimate-case-protocol-loaded}
+- 14:17:49 decision[case 377.3][update][rule-materialize]{ref:rule-materialize}
+- 14:17:49 decision[case 377.3][update][estimate-materialize-carries-addresses]{ref:estimate-materialize-carries-addresses}
+- 17:02:45 decision[case 378.1][update][rule-case-protocol]{ref:rule-case-protocol}
+- 17:02:45 decision[case 378.2][update][rule-case-protocol]{ref:rule-case-protocol}
+- 17:02:45 decision[case 378.2][update][rule-estimates-schema]{ref:rule-estimates-schema}
+- 17:02:45 decision[case 378.2][update][rule-materialize]{ref:rule-materialize}
+- 17:02:45 decision[case 378.2][update][entity-glossary]{ref:entity-glossary}
+- 17:02:45 decision[case 378.2][create][estimate-materialize-lifts-when-and-then]{ref:rule-materialize}{tags:harness,workflow,ledger}
+- 17:02:45 decision[case 378.3][update][rule-decisions-schema]{ref:rule-decisions-schema}
+- 17:02:45 decision[case 378.3][update][entity-glossary]{ref:entity-glossary}
+- 17:02:45 decision[case 378.3][create][estimate-generate-writes-the-given]{ref:rule-page-generation}{tags:harness,workflow,librarian}
+- 17:02:45 decision[case 378.4][update][rule-prespec]{ref:rule-prespec}
+- 17:02:45 decision[case 378.4][update][rule-case-protocol]{ref:rule-case-protocol}
+- 17:02:45 decision[case 378.4][update][rule-estimates-schema]{ref:rule-estimates-schema}
+- 17:02:45 decision[case 378.4][update][rule-materialize]{ref:rule-materialize}
+- 17:02:45 decision[case 378.4][create][estimate-prespec-refuses-a-pair-inside-a-criterion]{ref:rule-prespec}{tags:harness,workflow}
+- 17:02:45 decision[case 378.5][update][rule-case-protocol]{ref:rule-case-protocol}
+- 17:02:45 decision[case 378.5][update][rule-plan-mode]{ref:rule-plan-mode}
+- 17:02:45 decision[case 378.5][update][insight-workflow-contract-change-leaves-its-derived-text-stale]{ref:insight-workflow-contract-change-leaves-its-derived-text-stale}
+- 17:02:45 decision[case 378.6][update][rule-case-protocol]{ref:rule-case-protocol}
+- 17:02:45 decision[case 378.7][update][rule-prespec]{ref:rule-prespec}
+- 17:02:45 decision[case 378.7][create][estimate-prespec-checks-the-frame]{ref:rule-prespec}{tags:harness,workflow}
+- 17:02:45 decision[case 378.8][update][rule-prespec]{ref:rule-prespec}
+- 17:02:45 decision[case 378.8][create][estimate-prespec-notes-a-long-chain]{ref:rule-prespec}{tags:harness,workflow}
+- 17:11:54 decision[case 379][update][rule-case-protocol]{ref:rule-case-protocol}{supersedes:case 377.2}
+- 17:11:54 decision[case 379][update][estimate-case-protocol-ledger-line-form]{ref:estimate-case-protocol-ledger-line-form}
+- 17:16:48 decision[case 380][defer][insight-workflow-fact-signed-from-a-check-that-does-not-cover-it]{ref:insight-workflow-fact-signed-from-a-check-that-does-not-cover-it}
+- 17:18:26 decision[case 381][update][entity-sprint-migration]{ref:entity-sprint-migration}
+- 18:11:51 lesson[error][lesson-case-context-bookkeeping-written-from-memory]{tags:session,workflow} trigger: at the pre-spec of session 1355 ask-guppi found three wrong facts in the context of Case 378 — a reference to "Case 379" for the migration, rule-plan-mode named draft though built, and "38 lines say does not change" for a grep over five phrases root_cause: the bookkeeping facts of the context were written from memory — a Case number not yet taken, a page status carried over from its neighbours, a count from an earlier run under a narrower wording — and none was checked at the moment the sentence was written
+- 18:11:51 lesson[knowledge][lesson-generate-replace-anchor-stays-in-one-section]{tags:harness,workflow}{source:guppi/generate.py replace_once} trigger: the first pair of Case 381 opened its old with the heading ## Milestones and ended inside the section; guppi prespec --check reported the anchor not in the page root_cause: generate applies a replace pair to the text of one section at a time, the section's heading outside it, so an anchor that crosses a section heading never matches; the Case schema does not say so
+- 18:11:51 lesson[error][lesson-case-appended-a-line-inside-another-criterion]{tags:session,workflow}{addressed_by:case 378.4} trigger: Case 377.2 at its first showing appended ＋ lines by replace pairs inside the Criteria of estimate-case-protocol-ledger-line-form and estimate-case-protocol-loaded root_cause: case 296 allowed a pair inside a Criterion, so a Case could add its promise to another Estimate's Criterion, and the Estimate grew into a journal of promises signed by different Cases
+- 18:11:51 estimate[estimate-materialize-carries-addresses][passed] 2026-09-23, uv run pytest tests/test_materialize.py -k "addresses_mark or marked_after_its_fix or lesson_mark": 4 passed — the decision's mark and the lesson's {addressed_by:case N} both land as addressed_by at the entry's level by one function, the page gets no field, a decision mark with no lesson is incomplete: [addresses], a lesson mark with no earlier decision line is incomplete: [addressed_by], neither fails the run
+- 18:11:51 estimate[estimate-materialize-lifts-when-and-then][passed] 2026-09-23, uv run pytest tests/test_materialize.py -k "criterion or sub_case_lifts": 9 passed — the lifted Criterion of a create, an update and a sub-case is When and Then with no Given; a written Criterion stands
+- 18:11:51 estimate[estimate-generate-writes-the-given][passed] 2026-09-23, uv run pytest tests/test_generate.py -k "decision_page_carries_the_given or case_without_given or supersedes_marks_the_earlier": 3 passed — the decision page body is Context, Problem, Given, History, the Given verbatim; a Case without given has no ## Given; no ## When, no ## Criterion
+- 18:11:51 estimate[estimate-prespec-refuses-a-pair-inside-a-criterion][passed] 2026-09-23, uv run pytest tests/test_prespec.py tests/test_materialize.py -k "replace_pair or pair_inside or pair_outside": 4 passed — a pair inside the Criterion is a prespec finding and exit 1, incomplete: [criterion] with no status in materialize; a pair outside is clean
+- 18:11:51 estimate[estimate-prespec-checks-the-frame][passed] 2026-09-23, uv run pytest tests/test_prespec.py -k "frame or slug_in_then or target_of_the_then or slash_command or lone_slash or sub_case_is_checked or without_given_is_not": 7 passed — a slug in then, a then-block target and /hi outside given are findings; a lone / span is clean; a sub-case is checked by its parent's given; a Case without given is not checked; live — guppi prespec --check on the Spec of session 1355 exit 0
+- 18:11:51 estimate[estimate-prespec-notes-a-long-chain][passed] 2026-09-23, uv run pytest tests/test_prespec.py -k "and_lines": 2 passed — eight ＋ lines in then give one note: line and exit 0; seven give nothing
+- 18:11:51 estimate[estimate-hi-writes-frontier][passed] 2026-09-23, the /hi of session 1355 read by hand: plan mode on, frontier.md written with no refusal; ## Cases C1–C8 and ## Work W1–W3 in the line form; C1 the one item of the current milestone Slice 4 with its slug in a code span, Slice 5 and the Backlog not items; C2 from the brief's Next session, C3–C6 its Deferred list, C7–C8 added; W1–W3 the brief's Work list; the failed pull and gh not items, sprint.md names decisions 11.1 and 11.2; closers kept the source (C1 · sprint · sprint, C3 · defer case 380); no W turned into a Case and no C closed · work — that leg had no instance
+- 18:44:09 decision[case 382][defer][rule-bash-guard]{ref:rule-bash-guard}

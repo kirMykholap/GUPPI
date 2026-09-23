@@ -880,9 +880,8 @@ def test_one_decision_page_per_case_and_supersedes_marks_the_earlier(tmp_path):
     assert (
         "## Context\n\nA root." in one
         and "## Problem\n\nNo root." in one
-        and "## Given" not in one  # the contract lives on the Estimate (cases 72.4, 201.2)
-        and "Nothing." not in one
-        and "## When" not in one
+        and "## Given\n\nNothing." in one  # the frame of the Case (case 378.3)
+        and "## When" not in one  # the contract lives on the Estimate (cases 72.4, 201.2)
         and "Someone asks." not in one
         and "## Then" not in one
         and "A root exists." not in one
@@ -1437,7 +1436,7 @@ def test_the_old_shape_criterion_block_and_remove_criterion_fail_alone(tmp_path)
     assert props(page(tmp_path, "rules", "rule-root"))["status"] == "draft"
 
 
-def test_a_decision_page_carries_no_given_and_no_criterion_list(tmp_path):
+def test_a_decision_page_carries_the_given_and_no_criterion_list(tmp_path):
     entries = [ROOT, CHILD, MODEL_ESTIMATE, CHILD_ESTIMATE]
     decisions = records_for(entries)
     decisions[0]["criterion"] = [{"estimate": "estimate-child", "case": "1"}]  # an old record
@@ -1445,10 +1444,22 @@ def test_a_decision_page_carries_no_given_and_no_criterion_list(tmp_path):
     code, _, err = run(tmp_path)
     assert code == 0 and err == "", err
     text = page(tmp_path, "decisions", "decision-case-1")
-    assert "## Context\n\nc\n\n## Problem\n\np\n\n## History" in text
-    assert "## Given" not in text and "## When" not in text and "## Criterion" not in text
+    # the frame of the Case, which no Estimate holds (case 378.3)
+    assert "## Context\n\nc\n\n## Problem\n\np\n\n## Given\n\ng\n\n## History" in text
+    assert "## When" not in text and "## Criterion" not in text
     assert "§ case" not in text
     assert not [f for f in lint.lint(tmp_path) if "decision-case-1" in f]
+
+
+def test_a_decision_page_of_a_case_without_given_has_no_given(tmp_path):
+    entries = [ROOT]
+    decisions = records_for(entries)
+    del decisions[0]["case_text"]["given"]  # a defer-only Case writes none
+    seed(tmp_path, entries=entries, decisions=decisions)
+    code, _, err = run(tmp_path)
+    assert code == 0 and err == "", err
+    text = page(tmp_path, "decisions", "decision-case-1")
+    assert "## Problem\n\np\n\n## History" in text and "## Given" not in text
 
 
 def test_a_defer_marks_an_insight_deferred_by_and_a_supersedes_clears_it(tmp_path):

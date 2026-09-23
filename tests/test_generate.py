@@ -254,6 +254,29 @@ def test_an_update_sets_fields_sections_and_text_and_appends_history(tmp_path):
     assert f"- {DATE} updated: the root gets a body · [[decision-case-2]]" in text
 
 
+def test_an_update_with_no_content_prints_nothing_applied_and_is_marked_applied(tmp_path):
+    empty = {
+        "line": 2,
+        "text": "",
+        "case": "2",
+        "kind": "update",
+        "category": "rules",
+        "slug": "rule-root",
+        "origin": f"raw/{DATE}/ledger.md#case-2",
+        "decision": "decision-case-2",
+    }
+    seed(tmp_path, entries=[ROOT, empty])
+    code, out, err = run(tmp_path)
+    text = page(tmp_path, "rules", "rule-root")
+    assert code == 0 and err == ""  # case 366: stdout, no error, the exit code alone
+    assert (
+        "generate: rule-root: an update with no content in the Spec; nothing applied"
+        in out.splitlines()
+    )
+    assert "updated:" not in text  # the page as the create left it
+    assert load_yaml(tmp_path)["entries"][1]["applied"]
+
+
 def test_a_replace_absent_or_not_unique_fails_that_entry_alone(tmp_path):
     bad = {
         "line": 2,

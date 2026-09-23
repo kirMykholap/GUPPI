@@ -35,7 +35,7 @@ def test_read_page_strips_the_brackets_and_reads_the_bare_form_the_same(tmp_path
         assert page.props["implementation_ref"] == ["guppi/x.py"]  # a path, not a ref
 
 
-def test_the_writer_wraps_page_slugs_and_leaves_rule_class_slugs_bare():
+def test_the_writer_wraps_page_slugs_and_leaves_slugs_without_a_prefix_bare():
     props = {
         "type": "decision",
         "case": "1",

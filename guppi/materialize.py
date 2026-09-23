@@ -8,8 +8,8 @@ before case 103 — is a unit read as before: the ledger and every Spec of the d
 (`vault/raw/<date>/spec.md` when the date has one, dates before case 73, then
 `vault/raw/<date>/<HHMM>/spec.md` in folder order), written to
 `vault/raw/<date>/materialize.yaml` with the date form of `origin`. Either way the yaml
-holds one entry per record line of the ledger, in ledger order, with its route computed from `index.md` §5 and its content
-lifted from the `then` block of its Case in the Spec. The yaml's `spec` field lists the
+holds one entry per record line of the ledger, in ledger order, with its route computed by
+the Routing Table below and its content lifted from the `then` block of its Case in the Spec. The yaml's `spec` field lists the
 files read and each decision entry names the file its Case was found in; a Case heading
 found in two files stops the walk with exit 1 (case 73.5). One decision entry per Case; a
 sub-case's `context`, `problem`, `recommend` and `given` are its own when present and its
@@ -21,11 +21,33 @@ other lines are lifted, the yaml is written, the unit exits 1 and the walk goes 
 next unit; on the next run such an entry is lifted again and replaced when the lift succeeds.
 An existing entry the script cannot read — not a mapping, or a mapping with none of `line`,
 `derived`, `librarian` — is left as it is and named on stderr (cases 142.1, 142.4, 158); the
-librarian's own entries carry `librarian` and no `line`. The `then` item of a Rule-class file
-is found by `slug`, or by `file` equal to the path the slug maps to, since the schema writes
-such an item with `file` and `change` alone (case 161). `new_tags`
-declared in the `then` block of any Case, with decision lines or without, reach the yaml
-once each.
+librarian's own entries carry `librarian` and no `line`. The `then` item is found by `slug`
+alone (case 320). `new_tags` declared in the `then` block of any Case, with decision lines or
+without, reach the yaml once each.
+
+The Routing Table (case 364.1). Every ratified Case produces its Decision page
+`decision-case-<N>`, written by `generate` before the effects so that their History lines
+can name it (case 52.4), and an effect on each target:
+
+    decision  ref                   effect on the target
+    create    none                  the vault asked first; nothing found → a new top-level page
+    create    parent                a new child page, added to the parent's `children`
+    create    target (an Estimate)  a new Estimate, added to the target's `estimates`; its own
+                                    line and its own item, the Criterion from the Case (193)
+    update    target                the target's fields; with `rename` the page moves first and
+                                    every link to it in the live pages follows (case 258.1)
+    update    none                  invalid: the Case should have been a `create`
+    delete    target                impact analysis in the Case → archived by the librarian →
+                                    `origin` kept
+    delete    none, no category     outside the vault: the Decision page records it, `generate`
+                                    marks it applied, nothing to archive
+    defer     existing              the Decision's slug appended to the target's `deferred_by`,
+                                    shown in its index line (case 52.3)
+    defer     none                  a minimal placeholder page, born with `deferred_by`
+
+The category of a slug comes from its prefix, which pre-spec guards; a slug with no prefix is
+`unknown` (case 320). A `{supersedes:case N}` makes the earlier decision `superseded` and
+takes its slug out of the target's `deferred_by` (case 52.3).
 
 No Estimate is derived (cases 189, 194.1). An Estimate has its own ledger line and its own
 entry; the `ref` of the line is the Estimate itself. Its Criterion is the `given`, `when`

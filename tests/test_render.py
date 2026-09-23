@@ -124,7 +124,7 @@ Never move on.
 <!-- /rule-schema -->"""
 
 
-def test_full_page_renders_a_rule_class_file_of_the_vault_under_a_parent_that_governs_nothing(
+def test_full_page_renders_a_file_of_the_vault_under_a_parent_that_governs_nothing(
     tmp_path,
 ):
     """Case 273.1: `governs` may name a file under `vault/wiki/`; the headings and the fence

@@ -717,7 +717,7 @@ def test_a_list_slug_naming_an_archived_page_is_not_a_finding(tmp_path):
     assert run(tmp_path) == (0, [], "")
 
 
-def test_a_rule_class_slug_in_a_list_is_not_looked_up(tmp_path):
+def test_a_slug_without_a_prefix_in_a_list_is_not_looked_up(tmp_path):
     seed_decisions(tmp_path, decision_page("update: [case-schema]"))
     assert run(tmp_path) == (0, [], "")
 

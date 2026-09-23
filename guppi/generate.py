@@ -98,8 +98,9 @@ skips nothing of that, its Case is the reading's. In every Spec both skip the se
 Case whose entries the yaml beside that Spec mark `superseded_by` — the run's entries for
 the Spec beside the yaml, the `materialize.yaml` of the other unit's folder otherwise, read
 for the marks alone; no yaml, nothing skipped there — its work stands under the superseding
-Case (case 286). A `lesson` entry, a Rule-class file entry and a failed entry tick
-nothing; the lines on code, tests, migrations and `by hand` checks stay the agent's.
+Case (case 286). A `lesson` entry, an entry with no category (`unknown`, case 320) and a
+failed entry tick nothing; the lines on code, tests, migrations and `by hand` checks stay the
+agent's.
 
 The cascade after all entries (case 201.4): an entity or rule whose live Estimates are all
 `passed` becomes `built`, a `built` one with a live Estimate not passed returns to `draft` —
@@ -252,8 +253,8 @@ def flow(value) -> str:
 
 
 def wikilink(value):
-    """A slug with a category prefix as `[[slug]]`; a Rule-class slug, or anything else,
-    as it is (case 148.1). `scalar` quotes the brackets."""
+    """A slug with a category prefix as `[[slug]]`; a slug without a category prefix, or
+    anything else, as it is (case 148.1). `scalar` quotes the brackets."""
     if isinstance(value, str):
         slug = slug_of(value)
         if any(slug.startswith(prefix) for prefix in PREFIXES):

@@ -2,7 +2,7 @@
 type: lesson
 kind: error
 root_cause: the agent judged the Estimates of the rule by their slugs rather than reading each Criterion as the then block was written (case 353), and did not apply case 187, by which an update of a Render touches the Estimate of its live reading
-status: clustered
+status: archived
 insight: "[[insight-workflow-contract-change-leaves-its-derived-text-stale]]"
 origin: raw/2026-09-23/1126/ledger.md#L43
 sprint: migration
@@ -22,3 +22,5 @@ the agent judged the Estimates of the rule by their slugs rather than reading ea
 
 - 2026-09-23 created · raw/2026-09-23/1126/ledger.md#L43
 - 2026-09-23 updated: clustered into insight-workflow-contract-change-leaves-its-derived-text-stale by the librarian's synthesis · raw/2026-09-23/1126/ledger.md#L43
+- 2026-09-23 archived · insight actioned
+- 2026-09-23 archived · cleanup

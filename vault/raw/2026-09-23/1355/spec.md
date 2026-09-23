@@ -64,9 +64,9 @@ create:
 ```
 
 ```tasks
-- [ ] update `rule-retro` — four `replace` pairs in the Render
-- [ ] create `estimate-retro-report-holds-each-fact-once`
-- [ ] `uv run guppi render`: `.claude/skills/retro/SKILL.md`
+- [x] update `rule-retro` — four `replace` pairs in the Render
+- [x] create `estimate-retro-report-holds-each-fact-once`
+- [x] `uv run guppi render`: `.claude/skills/retro/SKILL.md`
 - [ ] read `estimate-retro-report-holds-each-fact-once` — by hand at the first `/retro` after the render
 ```
 
@@ -104,7 +104,7 @@ update:
 ```
 
 ```tasks
-- [ ] update `insight-session-vault-knowledge-not-loaded` — `actioned`, `addressed_by`
+- [x] update `insight-session-vault-knowledge-not-loaded` — `actioned`, `addressed_by`
 ```
 
 ### Case 377.3 — materialize carries `{addressed_by:case N}` to the lesson entry
@@ -152,12 +152,12 @@ update:
 ```
 
 ```tasks
-- [ ] update `rule-materialize` — one `replace` pair in the body
-- [ ] update `estimate-materialize-carries-addresses` — `purpose` and the Criterion whole, `pending`
+- [x] update `rule-materialize` — one `replace` pair in the body
+- [x] update `estimate-materialize-carries-addresses` — `purpose` and the Criterion whole, `pending`
 - [x] `guppi/materialize.py`: `parse_line` lifts `addressed_by` from the braces of a lesson line; one function sets `addressed_by` for both marks, `mark_addressed` through it; the docstring names the lesson line's mark
 - [x] `tests/test_materialize.py`: the lesson line's mark reaches its entry; a mark with no decision line of its Case is `incomplete: [addressed_by]`
 - [x] `uv run pytest tests/test_materialize.py`
-- [ ] read `estimate-materialize-carries-addresses`
+- [x] read `estimate-materialize-carries-addresses`
 ```
 
 ## Case 378 — the model of the Criterion: `given` is the frame of the Case, an Estimate is When and Then
@@ -202,8 +202,8 @@ update:
 ```
 
 ```tasks
-- [ ] update `rule-case-protocol` — five `replace` pairs in the Render
-- [ ] `uv run guppi render`: `vault/wiki/case-schema.md`
+- [x] update `rule-case-protocol` — five `replace` pairs in the Render
+- [x] `uv run guppi render`: `vault/wiki/case-schema.md`
 ```
 
 ### Case 378.2 — the Criterion of an Estimate is `When:` and `Then:` only
@@ -270,18 +270,18 @@ create:
 ```
 
 ```tasks
-- [ ] update `rule-case-protocol` — four `replace` pairs in the Render
-- [ ] update `rule-estimates-schema` — three `replace` pairs in the Render
-- [ ] update `rule-materialize` — one `replace` pair in the Purpose
-- [ ] update `entity-glossary` — two `replace` pairs in `## Terms`
-- [ ] create `estimate-materialize-lifts-when-and-then`
+- [x] update `rule-case-protocol` — four `replace` pairs in the Render
+- [x] update `rule-estimates-schema` — three `replace` pairs in the Render
+- [x] update `rule-materialize` — one `replace` pair in the Purpose
+- [x] update `entity-glossary` — two `replace` pairs in `## Terms`
+- [x] create `estimate-materialize-lifts-when-and-then`
 - [x] `guppi/materialize.py`: `CRITERION_SECTIONS = ("when", "then")`; the docstring
 - [x] `tests/test_materialize.py`: the lifted Criterion holds no `Given:`; a sub-case without `given` carries its parent's in `case_text`
 - [x] `uv run pytest tests/test_materialize.py`
-- [ ] `uv run guppi render`: `vault/wiki/case-schema.md`
-- [ ] `uv run guppi render`: `vault/wiki/estimates/schema.yaml`
-- [ ] `uv run guppi glossary`
-- [ ] read `estimate-materialize-lifts-when-and-then`
+- [x] `uv run guppi render`: `vault/wiki/case-schema.md`
+- [x] `uv run guppi render`: `vault/wiki/estimates/schema.yaml`
+- [x] `uv run guppi glossary`
+- [x] read `estimate-materialize-lifts-when-and-then`
 ```
 
 ### Case 378.3 — the decision page holds `## Given`
@@ -327,15 +327,15 @@ create:
 ```
 
 ```tasks
-- [ ] update `rule-decisions-schema` — two `replace` pairs in the Render
-- [ ] update `entity-glossary` — one `replace` pair in `## Terms`
-- [ ] create `estimate-generate-writes-the-given`
+- [x] update `rule-decisions-schema` — two `replace` pairs in the Render
+- [x] update `entity-glossary` — one `replace` pair in `## Terms`
+- [x] create `estimate-generate-writes-the-given`
 - [x] `guppi/generate.py`: `## Given` from `case_text` on the decision page; the docstring
 - [x] `tests/test_generate.py`: `test_a_decision_page_carries_no_given_and_no_criterion_list` rewritten — `## Given` present, no `## When`, no `## Criterion`; a defer-only Case has no `## Given`
 - [x] `uv run pytest tests/test_generate.py`
-- [ ] `uv run guppi render`: `vault/wiki/decisions/schema.yaml`
-- [ ] `uv run guppi glossary`
-- [ ] read `estimate-generate-writes-the-given`
+- [x] `uv run guppi render`: `vault/wiki/decisions/schema.yaml`
+- [x] `uv run guppi glossary`
+- [x] read `estimate-generate-writes-the-given`
 ```
 
 ### Case 378.4 — a Criterion changes only whole
@@ -391,20 +391,20 @@ create:
 ```
 
 ```tasks
-- [ ] update `rule-prespec` — one `replace` pair in the Render
-- [ ] update `rule-case-protocol` — one `replace` pair in the Render
-- [ ] update `rule-estimates-schema` — one `replace` pair in the Render
-- [ ] update `rule-materialize` — one `replace` pair in the Purpose
-- [ ] create `estimate-prespec-refuses-a-pair-inside-a-criterion`
+- [x] update `rule-prespec` — one `replace` pair in the Render
+- [x] update `rule-case-protocol` — one `replace` pair in the Render
+- [x] update `rule-estimates-schema` — one `replace` pair in the Render
+- [x] update `rule-materialize` — one `replace` pair in the Purpose
+- [x] create `estimate-prespec-refuses-a-pair-inside-a-criterion`
 - [x] `guppi/prespec.py`: the finding through `materialize.touches_criterion`, no second copy of the predicate
 - [x] `guppi/materialize.py`: the branch of 296 sets `incomplete: [criterion]` instead of `pending`; the docstring
 - [x] `tests/test_prespec.py`: a pair inside a Criterion is a finding; a pair outside is clean
 - [x] `tests/test_materialize.py`: `test_a_pair_inside_the_criterion_sets_pending_and_lifts_nothing` rewritten to `incomplete: [criterion]`
 - [x] `uv run pytest tests/test_prespec.py tests/test_materialize.py`
-- [ ] `uv run guppi render`: `.claude/skills/pre-spec/SKILL.md`
-- [ ] `uv run guppi render`: `vault/wiki/case-schema.md`
-- [ ] `uv run guppi render`: `vault/wiki/estimates/schema.yaml`
-- [ ] read `estimate-prespec-refuses-a-pair-inside-a-criterion`
+- [x] `uv run guppi render`: `.claude/skills/pre-spec/SKILL.md`
+- [x] `uv run guppi render`: `vault/wiki/case-schema.md`
+- [x] `uv run guppi render`: `vault/wiki/estimates/schema.yaml`
+- [x] read `estimate-prespec-refuses-a-pair-inside-a-criterion`
 ```
 
 ### Case 378.5 — the live reading of a Render does not depend on its content
@@ -440,10 +440,10 @@ update:
 ```
 
 ```tasks
-- [ ] update `rule-case-protocol` — one `replace` pair in the Render
-- [ ] update `rule-plan-mode` — one `replace` pair in the Purpose
-- [ ] update `insight-workflow-contract-change-leaves-its-derived-text-stale` — `actioned`, `addressed_by`
-- [ ] `uv run guppi render`: `vault/wiki/case-schema.md`
+- [x] update `rule-case-protocol` — one `replace` pair in the Render
+- [x] update `rule-plan-mode` — one `replace` pair in the Purpose
+- [x] update `insight-workflow-contract-change-leaves-its-derived-text-stale` — `actioned`, `addressed_by`
+- [x] `uv run guppi render`: `vault/wiki/case-schema.md`
 ```
 
 ### Case 378.6 — the operands
@@ -470,8 +470,8 @@ update:
 ```
 
 ```tasks
-- [ ] update `rule-case-protocol` — one `replace` pair in the Render
-- [ ] `uv run guppi render`: `vault/wiki/case-schema.md`
+- [x] update `rule-case-protocol` — one `replace` pair in the Render
+- [x] `uv run guppi render`: `vault/wiki/case-schema.md`
 ```
 
 ### Case 378.7 — pre-spec checks the frame, hard
@@ -511,13 +511,13 @@ create:
 ```
 
 ```tasks
-- [ ] update `rule-prespec` — one `replace` pair in the Render
-- [ ] create `estimate-prespec-checks-the-frame`
+- [x] update `rule-prespec` — one `replace` pair in the Render
+- [x] create `estimate-prespec-checks-the-frame`
 - [x] `guppi/prespec.py`: `check_frame` through `materialize.split_cases`, `case_texts`, `category_of` and `lint.CODE_SPAN`
 - [x] `tests/test_prespec.py`: a slug in `then` not in `given` is a finding; a target of the `then` block not in `given` is a finding; `/hi` not in `given` is a finding; a lone `/` span is clean; a sub-case by its parent's `given`; a defer without `given` is clean
 - [x] `uv run pytest tests/test_prespec.py`
-- [ ] `uv run guppi render`: `.claude/skills/pre-spec/SKILL.md`
-- [ ] read `estimate-prespec-checks-the-frame`
+- [x] `uv run guppi render`: `.claude/skills/pre-spec/SKILL.md`
+- [x] read `estimate-prespec-checks-the-frame`
 ```
 
 ### Case 378.8 — pre-spec notes a long chain, soft
@@ -554,13 +554,13 @@ create:
 ```
 
 ```tasks
-- [ ] update `rule-prespec` — one `replace` pair in the Render
-- [ ] create `estimate-prespec-notes-a-long-chain`
+- [x] update `rule-prespec` — one `replace` pair in the Render
+- [x] create `estimate-prespec-notes-a-long-chain`
 - [x] `guppi/prespec.py`: the `note:` lines apart from the findings, the exit code by the findings alone
 - [x] `tests/test_prespec.py`: eight `＋` give a `note:` and exit 0; seven give nothing
 - [x] `uv run pytest tests/test_prespec.py`
-- [ ] `uv run guppi render`: `.claude/skills/pre-spec/SKILL.md`
-- [ ] read `estimate-prespec-notes-a-long-chain`
+- [x] `uv run guppi render`: `.claude/skills/pre-spec/SKILL.md`
+- [x] read `estimate-prespec-notes-a-long-chain`
 ```
 
 ## Case 379 — the mark `{addressed_by:case N}` in the Case schema (replaces 377.2)
@@ -610,9 +610,9 @@ update:
 ```
 
 ```tasks
-- [ ] update `rule-case-protocol` — one `replace` pair in the Render
-- [ ] update `estimate-case-protocol-ledger-line-form` — the Criterion whole, `purpose`, `method`, `pending`
-- [ ] `uv run guppi render`: `vault/wiki/case-schema.md`
+- [x] update `rule-case-protocol` — one `replace` pair in the Render
+- [x] update `estimate-case-protocol-ledger-line-form` — the Criterion whole, `purpose`, `method`, `pending`
+- [x] `uv run guppi render`: `vault/wiki/case-schema.md`
 - [ ] read `estimate-case-protocol-ledger-line-form`
 ```
 
@@ -646,8 +646,8 @@ update:
 ```
 
 ```tasks
-- [ ] update `entity-sprint-migration` — one `replace` pair in `## Milestones`
-- [ ] `uv run guppi sprint`
+- [x] update `entity-sprint-migration` — one `replace` pair in `## Milestones`
+- [x] `uv run guppi sprint`
 ```
 
 ## Deferred

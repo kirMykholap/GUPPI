@@ -21,6 +21,10 @@ Rule-class files dissolved, `index.md` gone, the `file` route out of the scripts
 
 ## Milestones
 
+### Slice 3g — the model of the Criterion, one pass over the Estimates
+
+- the one pass of Case 378: `Given:` out of the 104 Estimates, the input of the scenario into `When:`, the `－` lines on the bounds of an edit, the journals split, the eleven Estimates of the old model named by Case 378 rewritten whole
+
 ### Slice 4 — conversion of the parked pages by group
 
 - [[estimate-sprint-migration-leftovers-gone]] — every page of `vault/parked/` and every document of 2026-08 under `docs/` converted, archived or deleted by a decision
@@ -92,3 +96,4 @@ No file of `vault/wiki/` is written by hand.
 - 2026-09-23 moved to the Backlog: rule-work-mode passed over in 29 sessions in a row — 0034, 2046, 1121, 0014, 1853, 1315, 0019, 2106, 1749, 1308, 0958, 0740, 0527, 2253, 2054, 1957, 1252, 1119, 2238, 1955, 2225, 1809, 1448, 1110, 1633, 1229, 1029, 0747, 0652 · generate
 - 2026-09-23 moved to the Backlog: rule-subagent-guppi passed over in 29 sessions in a row — 0034, 2046, 1121, 0014, 1853, 1315, 0019, 2106, 1749, 1308, 0958, 0740, 0527, 2253, 2054, 1957, 1252, 1119, 2238, 1955, 2225, 1809, 1448, 1110, 1633, 1229, 1029, 0747, 0652 · generate
 - 2026-09-23 milestone Slice 3b — Work Mode left the Milestones: its items moved to the Backlog · generate
+- 2026-09-23 updated: Slice 3g, the one pass over the Estimates, ahead of Slice 4 (case 381) · [[decision-case-381]]

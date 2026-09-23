@@ -42,7 +42,7 @@ update:
 - [x] update `rule-skill-hi` — one `replace` pair in the Render
 - [x] update `estimate-hi-writes-frontier` — one `replace` pair in the Criterion, `pending`
 - [x] `uv run guppi render`: `.claude/skills/hi/SKILL.md`
-- [ ] read `estimate-hi-writes-frontier`
+- [x] read `estimate-hi-writes-frontier`
 ```
 
 ## Case 364 — the live pointers at `index.md`, and the Routing Table back on a live text

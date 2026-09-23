@@ -2,7 +2,7 @@
 type: rule
 kind: MOC
 purpose: Prevents a session from being loaded piecemeal by read-tool calls
-status: draft
+status: built
 enforcement: render
 governs: .claude/skills/hi/SKILL.md
 render_mode: full
@@ -93,3 +93,4 @@ session. The skill writes no event line of its own since case 111.4: a `!` subst
 - 2026-09-23 updated: pre-spec fails on an open Cases line; a W line closes when its work is done (case 356.1, supersedes 352) · [[decision-case-356.1]]
 - 2026-09-23 updated: a sprint line never closes defer case N (case 356.2) · [[decision-case-356.2]]
 - 2026-09-23 updated: plan mode does not stop the write of frontier.md or the closing of its lines (case 363) · [[decision-case-363]]
+- 2026-09-23 status: draft → built · cascade

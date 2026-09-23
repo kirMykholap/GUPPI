@@ -1,8 +1,9 @@
 ---
 type: decision
 case: "375"
-status: current
+status: archived
 defer: ["[[rule-retro]]"]
+superseded_by: ["[[decision-case-376]]"]
 origin: raw/2026-09-23/1126/ledger.md#case-375
 sprint: migration
 created: 2026-09-23
@@ -27,3 +28,6 @@ The report of /retro holds each fact once — the ratifications in one list, the
 ## History
 
 - 2026-09-23 created · raw/2026-09-23/1126/ledger.md#case-375
+- 2026-09-23 superseded by decision-case-376 · [[decision-case-376]]
+- 2026-09-23 archived · superseded
+- 2026-09-23 archived · cleanup

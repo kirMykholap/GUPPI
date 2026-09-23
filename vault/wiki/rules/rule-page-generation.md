@@ -6,7 +6,7 @@ status: draft
 enforcement: check
 implementation_ref: [guppi/generate.py, tests/test_generate.py]
 parent: "[[rule-documentation]]"
-estimates: ["[[estimate-generate-writes]]", "[[estimate-generate-walks-dates]]", "[[estimate-generate-writes-the-decision-page]]", "[[estimate-generate-fails-alone]]", "[[estimate-generate-cascades]]", "[[estimate-generate-ticks-the-spec]]", "[[estimate-generate-renames]]", "[[estimate-generate-rewords]]", "[[estimate-generate-writes-rules-from-applies-to]]"]
+estimates: ["[[estimate-generate-writes]]", "[[estimate-generate-walks-dates]]", "[[estimate-generate-writes-the-decision-page]]", "[[estimate-generate-fails-alone]]", "[[estimate-generate-cascades]]", "[[estimate-generate-ticks-the-spec]]", "[[estimate-generate-renames]]", "[[estimate-generate-rewords]]", "[[estimate-generate-writes-rules-from-applies-to]]", "[[estimate-generate-writes-the-given]]"]
 origin: raw/2026-09-10/ledger.md#case-32
 sprint: migration
 created: 2026-09-10
@@ -119,3 +119,4 @@ every defer (cases 52.4, 186.1); the page of a Case superseded in its own sessio
 - 2026-09-23 updated: the move drops a milestone it left with no line (case 354.2) · [[decision-case-354.2]]
 - 2026-09-23 updated: the docstrings of guppi/generate.py name an entry with no category, not a Rule-class file (case 365) · [[decision-case-365]]
 - 2026-09-23 updated: the script invents nothing; what it writes beyond the yaml is computed by the steps the page names (case 369) · [[decision-case-369]]
+- 2026-09-23 estimate estimate-generate-writes-the-given added · [[decision-case-378.3]]

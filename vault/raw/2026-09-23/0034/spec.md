@@ -145,7 +145,7 @@ update:
 - [x] update `rule-skill-hi` — one `replace` pair in the Render
 - [x] update `estimate-hi-writes-frontier` — one `replace` pair inside the Criterion; the page goes `pending`
 - [x] `uv run guppi render`: `.claude/skills/hi/SKILL.md`
-- [ ] read `estimate-hi-writes-frontier`
+- [x] read `estimate-hi-writes-frontier`
 ```
 
 ### Case 354.4 — the brief names in Flags the items moved to the Backlog
@@ -374,7 +374,7 @@ update:
 - [x] `uv run guppi render`: `.claude/skills/hi/SKILL.md`
 - [x] `uv run guppi render`: `.claude/skills/pre-spec/SKILL.md`
 - [x] `uv run guppi render`: `vault/wiki/case-schema.md`
-- [ ] read `estimate-hi-writes-frontier`
+- [x] read `estimate-hi-writes-frontier`
 - [x] read `estimate-prespec-checks-the-plan`
 - [ ] read `estimate-case-protocol-loaded`
 ```
@@ -443,7 +443,7 @@ update:
 - [x] update `estimate-case-protocol-loaded` — one `replace` pair inside the Criterion
 - [x] `guppi/prespec.py` — in `check_frontier`, a finding on a line whose source is `sprint` and whose closer is `defer case N`; the docstring
 - [x] `tests/test_prespec.py` — a sprint line closed `· defer case N` a finding; a `brief` line closed the same way none
-- [ ] read `estimate-hi-writes-frontier`
+- [x] read `estimate-hi-writes-frontier`
 - [x] read `estimate-prespec-checks-the-plan`
 - [ ] read `estimate-case-protocol-loaded`
 ```

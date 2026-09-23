@@ -11,8 +11,8 @@ Style: !`make style`
 Ledger: !`uv run guppi tail`
 
 Retro is an analysis of this session, not planning. Open with the frontier, in one
-message and with no read call: what was ratified (the lines of the Tail above grouped by Case, this session's folder first, one line per Case); the `tasks` of `raw/<date>/<hi HHMM>/spec.md` (the session's folder, case 73), the unticked boxes per Case — a `create`, `update` or `defer` line of a page, a `guppi render` line, a `guppi sprint` line and a `read` line whose `estimate[...]` stands in the Tail above listed as waiting for the librarian, whose scripts tick them (cases 226, 250, 270), not as debt — a `read` line without its line in the Tail is debt, and the lines of a Case a `{supersedes:case N}` line of the Tail names are not counted at all, its work stands under the superseding Case (case 282); what
-you noticed during Work Mode, as a numbered list — bugs, forks, a contract that
+message and with no read call: the list of what is not done, numbered: the unticked boxes of the `tasks` of `raw/<date>/<hi HHMM>/spec.md` (the session's folder, case 73), per Case — a `create`, `update` or `defer` line of a page, a `guppi render` line, a `guppi sprint` line and a `read` line whose `estimate[...]` stands in the Tail above listed as waiting for the librarian, whose scripts tick them (cases 226, 250, 270), not as debt — a `read` line without its line in the Tail is debt, and the lines of a Case a `{supersedes:case N}` line of the Tail names are not counted at all, its work stands under the superseding Case (case 282); what
+you noticed during Work Mode, in the same list — bugs, forks, a contract that
 turned out imprecise. The person adds their own observations. Every item, theirs or
 yours, ends in one of four ways: a `- lesson[...]` line; a `- estimate[...]` line, a
 reading of an Estimate whose work is finished; a short defer; or a note for the
@@ -34,6 +34,6 @@ Do not run `make lint` here: the vault is written after handoff, by the libraria
 Take the readings of this session's Estimates whose work is finished and write their
 lines; name in the handoff any Estimate whose reading cannot be taken yet. A reading measures the Criterion the page carries at the moment of the reading, the one ratified last, and its line is written only when the work that Criterion names is built; an Estimate whose Criterion a Case of this session replaced and whose build is not finished at Retro has no reading in this session — the `read` line of the old Criterion in an earlier Spec is not debt and is not read, the reading of the new Criterion closes it at the moment its `method` names (case 283).
 
-Close with three lists: every ratification of this session, one line each; what
-got done; what did not. When the person approves, commit (`make style` clean,
+Close with three lists: every ratification of this session, one line per Case, by the Tail above grouped by Case, this session's folder first, a Case a `{supersedes:case N}` line names not counted; what
+got done; what is not done — the opening list by its numbers, each item with the end it took. When the person approves, commit (`make style` clean,
 `make test` green), then call `/handoff`.

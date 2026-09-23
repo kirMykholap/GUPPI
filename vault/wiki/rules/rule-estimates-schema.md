@@ -77,7 +77,7 @@ fields:
     required; list. Chosen at the vault query before the Case, ratified in the Case.
 sections:
   "## Criterion": |
-    required. The promise, written once: the `given`, `when` and `then` of one Case, verbatim with their operands, as `Given:`, `When:`, `Then:`. The Case that creates the Estimate writes it; an `update` that changes the promise replaces it whole and sets the page `pending`; an `update` that names a part alone — a field, a `replace` pair — keeps it, and a pair inside it sets `pending` (case 296); nothing is appended and no `### case N` block exists (case 193; the blocks of the shape before it stand on the older pages until their recut, counted by lint as `unmigrated`, case 202). The Criterion that was replaced stays in the Spec of the session that wrote it, reached by `origin`, and in History. For Research the `then` may legitimately be broad ("determine whether we stay inside the latency budget"); for QA it should be exact.
+    required. The promise, written once: the `when` and `then` of one Case, verbatim with their operands, as `When:`, `Then:` — no `Given:`: the frame of the Case stays on its Decision page (case 378.2); a page written before carries its `Given:` until the one pass of its migration. The Case that creates the Estimate writes it; an `update` that changes the promise replaces it whole and sets the page `pending`; an `update` that names a part alone — a field, a `replace` pair outside it — keeps it; a pair inside it is refused, a changed promise is a Criterion replaced whole (case 378.4); nothing is appended and no `### case N` block exists (case 193; the blocks of the shape before it stand on the older pages until their recut, counted by lint as `unmigrated`, case 202). The Criterion that was replaced stays in the Spec of the session that wrote it, reached by `origin`, and in History. For Research the `then` may legitimately be broad ("determine whether we stay inside the latency budget"); for QA it should be exact.
   "## Result": |
     optional; required on `passed` and `failed`. Omitted while `pending`. Its first line is the date of the reading and the command — `make test-x`, `pytest tests/test_x.py` — or the place of a live reading; the result follows (case 199). For QA usually one line more. For Research this is the substance of the page — findings, numbers, the conclusion drawn.
   "## Context": |
@@ -104,11 +104,8 @@ examples:
 
     ## Criterion
 
-    Given:
-    The discount pipeline runs every rule in order and takes the first that applies.
-
     When:
-    A client with zero completed orders asks for a discount.
+    A client with zero completed orders asks for a discount; the discount pipeline runs every rule in order and takes the first that applies.
 
     Then:
     The discount is 0%.
@@ -138,11 +135,8 @@ examples:
 
     ## Criterion
 
-    Given:
-    A seeded database with carts of 10, 50 and 200 line items.
-
     When:
-    A buyer opens the cart.
+    A buyer opens a cart of 10, 50 or 200 line items against a seeded database.
 
     Then:
     Determine whether the cart renders within 200ms, and what dominates the time if not.
@@ -166,3 +160,5 @@ examples:
 - 2026-09-23 updated: the description of method names the four forms, what lint checks besides naming one, and the four triggers of the old shape (case 350, supersedes 330.2, 336 and 343) · [[decision-case-350]]
 - 2026-09-23 status: built → draft · cascade
 - 2026-09-23 status: draft → built · cascade
+- 2026-09-23 updated: the Criterion holds When and Then (case 378.2) · [[decision-case-378.2]]
+- 2026-09-23 updated: a Criterion changes only whole (case 378.4) · [[decision-case-378.4]]

@@ -19,10 +19,11 @@ Rule-class files dissolved, `index.md` gone, the `file` route out of the scripts
 
 ## Milestones
 
-### [ ] Slice 4 — conversion of the parked pages by group
+### [ ] Slice 3g — the model of the Criterion, one pass over the Estimates
 
-- [ ] [[estimate-sprint-migration-leftovers-gone]] — every page of `vault/parked/` and every document of 2026-08 under `docs/` converted, archived or deleted by a decision · pending
+- [ ] the one pass of Case 378: `Given:` out of the 104 Estimates, the input of the scenario into `When:`, the `－` lines on the bounds of an edit, the journals split, the eleven Estimates of the old model named by Case 378 rewritten whole
 
+### [ ] Slice 4 — conversion of the parked pages by group — 1 item: [[estimate-sprint-migration-leftovers-gone]]
 ### [ ] Slice 5 — closing — 4 items: [[estimate-sprint-migration-lint-clean]], [[estimate-sprint-migration-merges]], [[rule-spec-box]], [[rule-morph]]
 
 ## Backlog

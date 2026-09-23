@@ -73,7 +73,7 @@ sections:
   "## Problem": |
     required. What required a decision. On a defer, what is unresolved.
   "## Given": |
-    optional. Only on pages written before case 201.2, which keep it: the Case's `given`. A page written after carries none — the contract lives on the Estimate (case 201.2).
+    optional. The Case's `given`, verbatim: the frame of the Case — the pages, modules, files and tests it touches and the rule that constrains — written by `generate` on the page of a Case that has one (case 378.3); a page written between case 201.2 and case 378.3 carries none.
   "## When": |
     optional. Only on pages written before case 72, which keep it: the Case's `when`. A page written after case 72 has no `## When` (case 72.2).
   "## Criterion": |
@@ -104,11 +104,8 @@ examples:
     Buyers cannot review an order before paying.
 
     ## Given
-    The vault query before the Case found no cart page and no overlapping purpose. `entity-checkout` exists and will
-    be affected. Nothing in `draft` covers this either.
-
-    ## Criterion
-    - estimate-cart § case 1
+    `entity-cart` — the page this Case creates.
+    **＋** `entity-checkout` — the page the cart precedes.
 
     ## History
     - 2026-09-08 created · raw/2026-09-08/ledger.md#case-1
@@ -122,3 +119,4 @@ examples:
 - 2026-09-23 updated: a Decision's History takes one updated line of a Case that signs its text after the fact (case 358) · [[decision-case-358]]
 - 2026-09-23 status: built → draft · cascade
 - 2026-09-23 status: draft → built · cascade
+- 2026-09-23 updated: the decision page carries the Case's given again (case 378.3) · [[decision-case-378.3]]

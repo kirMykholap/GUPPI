@@ -21,8 +21,7 @@ other or with what is already there.
 It also prevents a promise being sent for re-reading by derivation. Which Estimate a
 ratified Case changes is the judgment of the Case, named in it by slug; only a
 replaced Criterion sets an Estimate `pending`. An `update` of this page's `Purpose`
-touches no Estimate; an `update` of a `Render` touches the Estimate of the live
-reading of that Render (case 187).
+touches no Estimate; an `update` of a `Render` touches no Estimate of the live reading, which promises only that the file equals the Render and is loaded (case 378.5).
 
 ## History
 
@@ -42,3 +41,4 @@ reading of that Render (case 187).
 - 2026-09-20 ref `rule-pretask-hook` → `rule-prespec-hook` · [[decision-case-261]]
 - 2026-09-20 updated: rule-case-protocol joins the children, last (case 273.1) · [[decision-case-273.1]]
 - 2026-09-22 updated: the parent is rule-session, the MOC of the five phases (case 316) · [[decision-case-316]]
+- 2026-09-23 updated: the live reading of a Render does not depend on its content (case 378.5) · [[decision-case-378.5]]

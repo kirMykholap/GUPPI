@@ -7,6 +7,7 @@ enforcement: hook
 implementation_ref: [guppi/bashguard.py, tests/test_bashguard.py, .claude/settings.json]
 parent: "[[rule-harness]]"
 estimates: ["[[estimate-bash-guard]]"]
+deferred_by: ["[[decision-case-382]]"]
 origin: raw/2026-09-14/1029/ledger.md#case-127
 sprint: migration
 created: 2026-09-14
@@ -42,3 +43,4 @@ cannot read: exit 0, the last with one line on stderr. The hook never raises (ca
 - 2026-09-14 created over placeholder · [[decision-case-127]]
 - 2026-09-14 estimate estimate-bash-guard added · [[decision-case-127]]
 - 2026-09-14 status: draft → built · cascade
+- 2026-09-23 deferred · [[decision-case-382]]

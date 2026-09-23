@@ -3104,3 +3104,89 @@ instruction. The global feed; a page's own `## History` is the per-page view.
 - 2026-09-23 lessons/lesson-spec-text-repaired-after-ratification-without-a-showing archived · insight actioned · generate
 - 2026-09-23 lessons/lesson-spec-text-repaired-after-ratification-without-a-showing archived · cleanup
 - 2026-09-23 lessons/lesson-work-mode-check-widened-the-list-and-the-agent-acted archived · cleanup
+- 2026-09-23 decisions/decision-case-376 created · raw/2026-09-23/1355/ledger.md#case-376 · generate
+- 2026-09-23 decisions/decision-case-375 superseded by decision-case-376 · [[decision-case-376]] · generate
+- 2026-09-23 rules/rule-retro defer by decision-case-375 superseded · [[decision-case-376]] · generate
+- 2026-09-23 rules/rule-retro updated: the report of /retro holds each fact once — the ratifications in the closing list only, the unticked boxes inside the numbered list of what is not done (case 376) · [[decision-case-376]] · generate
+- 2026-09-23 estimates/estimate-retro-report-holds-each-fact-once created · [[decision-case-376]] · generate
+- 2026-09-23 rules/rule-retro estimate estimate-retro-report-holds-each-fact-once added · [[decision-case-376]] · generate
+- 2026-09-23 decisions/decision-case-377.1 created · raw/2026-09-23/1355/ledger.md#case-377.1 · generate
+- 2026-09-23 insights/insight-session-vault-knowledge-not-loaded updated: actioned: the seventh child closed in its own session by case 363, the leave of plan mode in the text of /hi; the /hi of session 1355 wrote frontier.md in plan mode with no refusal (case 377.1) · [[decision-case-377.1]] · generate
+- 2026-09-23 decisions/decision-case-377.2 created · raw/2026-09-23/1355/ledger.md#case-377.2 · generate
+- 2026-09-23 decisions/decision-case-377.3 created · raw/2026-09-23/1355/ledger.md#case-377.3 · generate
+- 2026-09-23 rules/rule-materialize updated: a lesson line's {addressed_by:case N} reaches its entry as addressed_by (case 377.3) · [[decision-case-377.3]] · generate
+- 2026-09-23 estimates/estimate-materialize-carries-addresses updated: the Criterion replaced whole — both marks land on the lesson entry by one function (case 377.3) · [[decision-case-377.3]] · generate
+- 2026-09-23 decisions/decision-case-378.1 created · raw/2026-09-23/1355/ledger.md#case-378.1 · generate
+- 2026-09-23 rules/rule-case-protocol updated: given is the frame of the Case, context is prose (case 378.1) · [[decision-case-378.1]] · generate
+- 2026-09-23 decisions/decision-case-378.2 created · raw/2026-09-23/1355/ledger.md#case-378.2 · generate
+- 2026-09-23 rules/rule-case-protocol updated: the Criterion is the when and then of the Case; given stays in the Case (case 378.2) · [[decision-case-378.2]] · generate
+- 2026-09-23 rules/rule-estimates-schema updated: the Criterion holds When and Then (case 378.2) · [[decision-case-378.2]] · generate
+- 2026-09-23 rules/rule-materialize updated: the Criterion lifted is when and then (case 378.2) · [[decision-case-378.2]] · generate
+- 2026-09-23 entities/entity-glossary updated: the Criterion is when and then (case 378.2) · [[decision-case-378.2]] · generate
+- 2026-09-23 estimates/estimate-materialize-lifts-when-and-then created · [[decision-case-378.2]] · generate
+- 2026-09-23 estimates/estimate-materialize-lifts-when-and-then status: pending → passed · raw/2026-09-23/1355/ledger.md#L39 · generate
+- 2026-09-23 rules/rule-materialize estimate estimate-materialize-lifts-when-and-then added · [[decision-case-378.2]] · generate
+- 2026-09-23 decisions/decision-case-378.3 created · raw/2026-09-23/1355/ledger.md#case-378.3 · generate
+- 2026-09-23 rules/rule-decisions-schema updated: the decision page carries the Case's given again (case 378.3) · [[decision-case-378.3]] · generate
+- 2026-09-23 entities/entity-glossary updated: the body of a decision page (case 378.3) · [[decision-case-378.3]] · generate
+- 2026-09-23 estimates/estimate-generate-writes-the-given created · [[decision-case-378.3]] · generate
+- 2026-09-23 estimates/estimate-generate-writes-the-given status: pending → passed · raw/2026-09-23/1355/ledger.md#L40 · generate
+- 2026-09-23 rules/rule-page-generation estimate estimate-generate-writes-the-given added · [[decision-case-378.3]] · generate
+- 2026-09-23 decisions/decision-case-378.4 created · raw/2026-09-23/1355/ledger.md#case-378.4 · generate
+- 2026-09-23 rules/rule-prespec updated: a pair inside a Criterion is a finding (case 378.4) · [[decision-case-378.4]] · generate
+- 2026-09-23 rules/rule-case-protocol updated: a Criterion changes only whole (case 378.4) · [[decision-case-378.4]] · generate
+- 2026-09-23 rules/rule-estimates-schema updated: a Criterion changes only whole (case 378.4) · [[decision-case-378.4]] · generate
+- 2026-09-23 rules/rule-materialize updated: a pair inside a Criterion is incomplete (case 378.4) · [[decision-case-378.4]] · generate
+- 2026-09-23 estimates/estimate-prespec-refuses-a-pair-inside-a-criterion created · [[decision-case-378.4]] · generate
+- 2026-09-23 estimates/estimate-prespec-refuses-a-pair-inside-a-criterion status: pending → passed · raw/2026-09-23/1355/ledger.md#L41 · generate
+- 2026-09-23 rules/rule-prespec estimate estimate-prespec-refuses-a-pair-inside-a-criterion added · [[decision-case-378.4]] · generate
+- 2026-09-23 decisions/decision-case-378.5 created · raw/2026-09-23/1355/ledger.md#case-378.5 · generate
+- 2026-09-23 rules/rule-case-protocol updated: the live reading of a Render does not depend on its content (case 378.5) · [[decision-case-378.5]] · generate
+- 2026-09-23 rules/rule-plan-mode updated: the live reading of a Render does not depend on its content (case 378.5) · [[decision-case-378.5]] · generate
+- 2026-09-23 insights/insight-workflow-contract-change-leaves-its-derived-text-stale updated: actioned: the live child's dependency was case 187 — a Render change had to touch the live reading's Criterion; 378.5 removes it, 378.4 stops journals (case 378.5) · [[decision-case-378.5]] · generate
+- 2026-09-23 decisions/decision-case-378.6 created · raw/2026-09-23/1355/ledger.md#case-378.6 · generate
+- 2026-09-23 rules/rule-case-protocol updated: the operands and and but, bounded by the frame (case 378.6) · [[decision-case-378.6]] · generate
+- 2026-09-23 decisions/decision-case-378.7 created · raw/2026-09-23/1355/ledger.md#case-378.7 · generate
+- 2026-09-23 rules/rule-prespec updated: when, then and the then block stay inside the frame of given (case 378.7) · [[decision-case-378.7]] · generate
+- 2026-09-23 estimates/estimate-prespec-checks-the-frame created · [[decision-case-378.7]] · generate
+- 2026-09-23 estimates/estimate-prespec-checks-the-frame status: pending → passed · raw/2026-09-23/1355/ledger.md#L42 · generate
+- 2026-09-23 rules/rule-prespec estimate estimate-prespec-checks-the-frame added · [[decision-case-378.7]] · generate
+- 2026-09-23 decisions/decision-case-378.8 created · raw/2026-09-23/1355/ledger.md#case-378.8 · generate
+- 2026-09-23 rules/rule-prespec updated: a soft note on a long chain (case 378.8) · [[decision-case-378.8]] · generate
+- 2026-09-23 estimates/estimate-prespec-notes-a-long-chain created · [[decision-case-378.8]] · generate
+- 2026-09-23 estimates/estimate-prespec-notes-a-long-chain status: pending → passed · raw/2026-09-23/1355/ledger.md#L43 · generate
+- 2026-09-23 rules/rule-prespec estimate estimate-prespec-notes-a-long-chain added · [[decision-case-378.8]] · generate
+- 2026-09-23 decisions/decision-case-379 created · raw/2026-09-23/1355/ledger.md#case-379 · generate
+- 2026-09-23 decisions/decision-case-377.2 superseded by decision-case-379 · [[decision-case-379]] · generate
+- 2026-09-23 rules/rule-case-protocol updated: a lesson line written after the Case that closed its cause carries {addressed_by:case N} (case 379) · [[decision-case-379]] · generate
+- 2026-09-23 estimates/estimate-case-protocol-ledger-line-form updated: the Criterion replaced whole — the shape of a decision line and the two marks, by the order of the lines (case 379) · [[decision-case-379]] · generate
+- 2026-09-23 decisions/decision-case-380 created · raw/2026-09-23/1355/ledger.md#case-380 · generate
+- 2026-09-23 insights/insight-workflow-fact-signed-from-a-check-that-does-not-cover-it deferred · [[decision-case-380]] · generate
+- 2026-09-23 decisions/decision-case-381 created · raw/2026-09-23/1355/ledger.md#case-381 · generate
+- 2026-09-23 entities/entity-sprint-migration updated: Slice 3g, the one pass over the Estimates, ahead of Slice 4 (case 381) · [[decision-case-381]] · generate
+- 2026-09-23 lessons/lesson-case-context-bookkeeping-written-from-memory created · raw/2026-09-23/1355/ledger.md#L35 · generate
+- 2026-09-23 lessons/lesson-generate-replace-anchor-stays-in-one-section created · raw/2026-09-23/1355/ledger.md#L36 · generate
+- 2026-09-23 lessons/lesson-case-appended-a-line-inside-another-criterion created · raw/2026-09-23/1355/ledger.md#L37 · generate
+- 2026-09-23 estimates/estimate-materialize-carries-addresses status: pending → passed · raw/2026-09-23/1355/ledger.md#L38 · generate
+- 2026-09-23 estimates/estimate-hi-writes-frontier status: pending → passed · raw/2026-09-23/1355/ledger.md#L44 · generate
+- 2026-09-23 decisions/decision-case-382 created · raw/2026-09-23/1355/ledger.md#case-382 · generate
+- 2026-09-23 rules/rule-bash-guard deferred · [[decision-case-382]] · generate
+- 2026-09-23 insights/insight-workflow-fact-signed-from-a-check-that-does-not-cover-it updated: synthesis: lesson-case-context-bookkeeping-written-from-memory added, the bookkeeping facts of a Case's context written from memory and none checked when the sentence was written · raw/2026-09-23/1355/ledger.md#L35 · generate
+- 2026-09-23 lessons/lesson-case-context-bookkeeping-written-from-memory updated: clustered into insight-workflow-fact-signed-from-a-check-that-does-not-cover-it by the librarian's synthesis · raw/2026-09-23/1355/ledger.md#L35 · generate
+- 2026-09-23 insights/insight-workflow-case-schema-silent-on-what-the-scripts-accept created · raw/2026-09-23/1355/ledger.md#L36 · generate
+- 2026-09-23 lessons/lesson-sub-case-given-the-parents-plus-lines-has-no-form updated: clustered into insight-workflow-case-schema-silent-on-what-the-scripts-accept by the librarian's synthesis · raw/2026-09-23/1355/ledger.md#L36 · generate
+- 2026-09-23 lessons/lesson-generate-replace-anchor-stays-in-one-section updated: clustered into insight-workflow-case-schema-silent-on-what-the-scripts-accept by the librarian's synthesis · raw/2026-09-23/1355/ledger.md#L36 · generate
+- 2026-09-23 insights/insight-workflow-contract-change-leaves-its-derived-text-stale updated: synthesis: lesson-case-appended-a-line-inside-another-criterion added, a Case appended its promise inside another Estimate's Criterion, the pairs case 187 and case 296 allowed; status kept actioned, its cause closed by case 378.4 in its own session (case 284.4) · raw/2026-09-23/1355/ledger.md#L37 · generate
+- 2026-09-23 lessons/lesson-case-appended-a-line-inside-another-criterion updated: clustered into insight-workflow-contract-change-leaves-its-derived-text-stale by the librarian's synthesis · raw/2026-09-23/1355/ledger.md#L37 · generate
+- 2026-09-23 rules/rule-retro status: built → draft · cascade · generate
+- 2026-09-23 rules/rule-skill-hi status: draft → built · cascade · generate
+- 2026-09-23 decisions/decision-case-375 archived · superseded · generate
+- 2026-09-23 decisions/decision-case-377.2 archived · superseded · generate
+- 2026-09-23 lessons/lesson-plan-mode-frontier-refused-at-hi-again archived · insight actioned · generate
+- 2026-09-23 lessons/lesson-case-render-update-skipped-the-live-reading-estimate archived · insight actioned · generate
+- 2026-09-23 lessons/lesson-case-appended-a-line-inside-another-criterion archived · insight actioned · generate
+- 2026-09-23 lessons/lesson-case-appended-a-line-inside-another-criterion archived · cleanup
+- 2026-09-23 lessons/lesson-case-render-update-skipped-the-live-reading-estimate archived · cleanup
+- 2026-09-23 lessons/lesson-plan-mode-frontier-refused-at-hi-again archived · cleanup
+- 2026-09-23 decisions/decision-case-375 archived · cleanup
+- 2026-09-23 decisions/decision-case-377.2 archived · cleanup

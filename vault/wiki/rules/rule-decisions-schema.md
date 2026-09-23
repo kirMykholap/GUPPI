@@ -2,7 +2,7 @@
 type: rule
 kind: Leaf
 purpose: Prevents a Decision page from carrying a field or section outside the shape lint checks, or lacking one it needs
-status: draft
+status: built
 enforcement: render
 governs: vault/wiki/decisions/schema.yaml
 render_mode: full
@@ -121,3 +121,4 @@ examples:
 - 2026-09-22 updated: a Decision target is a page; the Rule-class map is gone (case 320) · [[decision-case-320]]
 - 2026-09-23 updated: a Decision's History takes one updated line of a Case that signs its text after the fact (case 358) · [[decision-case-358]]
 - 2026-09-23 status: built → draft · cascade
+- 2026-09-23 status: draft → built · cascade

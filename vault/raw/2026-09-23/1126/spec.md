@@ -39,9 +39,9 @@ update:
 ```
 
 ```tasks
-- [ ] update `rule-skill-hi` — one `replace` pair in the Render
-- [ ] update `estimate-hi-writes-frontier` — one `replace` pair in the Criterion, `pending`
-- [ ] `uv run guppi render`: `.claude/skills/hi/SKILL.md`
+- [x] update `rule-skill-hi` — one `replace` pair in the Render
+- [x] update `estimate-hi-writes-frontier` — one `replace` pair in the Criterion, `pending`
+- [x] `uv run guppi render`: `.claude/skills/hi/SKILL.md`
 - [ ] read `estimate-hi-writes-frontier`
 ```
 
@@ -82,7 +82,7 @@ update:
 ```
 
 ```tasks
-- [ ] update `rule-materialize` — one `replace` pair in Purpose
+- [x] update `rule-materialize` — one `replace` pair in Purpose
 - [x] `guppi/materialize.py` — the docstring: "computed from `index.md` §5" → "computed by the Routing Table below"; the table — the nine rows of §5 as they stood when the file was removed; the Rule-class map sentence out, in its place "the category from the slug prefix; a slug with no prefix is `unknown` (case 320)"
 ```
 
@@ -108,7 +108,7 @@ update:
 ```
 
 ```tasks
-- [ ] update `estimate-case-protocol-case-form` — one `replace` pair inside the Criterion
+- [x] update `estimate-case-protocol-case-form` — one `replace` pair inside the Criterion
 ```
 
 ### Case 364.3 — the Then of `estimate-prespec-reconciles` names no `index.md`
@@ -133,7 +133,7 @@ update:
 ```
 
 ```tasks
-- [ ] update `estimate-prespec-reconciles` — one `replace` pair inside the Criterion, `pending`
+- [x] update `estimate-prespec-reconciles` — one `replace` pair inside the Criterion, `pending`
 - [ ] read `estimate-prespec-reconciles`
 - [ ] read `estimate-sprint-migration-index-dissolved`
 ```
@@ -171,8 +171,8 @@ update:
 ```
 
 ```tasks
-- [ ] update `rule-page-generation` — `change` alone; the mechanism lives in the docstring
-- [ ] update `rule-materialize` — `change` alone
+- [x] update `rule-page-generation` — `change` alone; the mechanism lives in the docstring
+- [x] update `rule-materialize` — `change` alone
 - [x] `guppi/materialize.py` — the docstring sentence on the "Rule-class file" and `file` → "The `then` item is found by `slug` alone (case 320)."
 - [x] `guppi/generate.py` — the docstring "a Rule-class file entry" → "an entry with no category (`unknown`, case 320)"; `wikilink` "a Rule-class slug" → "a slug without a category prefix"
 - [x] `tests/test_lint.py`, `tests/test_pages.py`, `tests/test_render.py` — the three test names without "rule_class": "a slug without a prefix" or "a file of the vault"
@@ -209,7 +209,7 @@ update:
 ```
 
 ```tasks
-- [ ] update `estimate-generate-fails-alone` — one `replace` pair inside the Criterion, `pending`
+- [x] update `estimate-generate-fails-alone` — one `replace` pair inside the Criterion, `pending`
 - [x] `tests/test_generate.py` — an `update` with no content: the line on stdout, exit 0, the page unchanged, `applied` in the yaml
 - [ ] read `estimate-generate-fails-alone`
 ```
@@ -249,7 +249,7 @@ update:
 ```
 
 ```tasks
-- [ ] update `estimate-sprint-migration-rule-class-files-dissolved` — `set.method`, two `replace` pairs inside the Criterion
+- [x] update `estimate-sprint-migration-rule-class-files-dissolved` — `set.method`, two `replace` pairs inside the Criterion
 - [ ] read `estimate-sprint-migration-rule-class-files-dissolved` — after the tasks of Case 365
 ```
 
@@ -299,11 +299,11 @@ update:
 ```
 
 ```tasks
-- [ ] update `rule-case-protocol` — one `replace` pair in the Render, the Sections paragraph
-- [ ] update `estimate-case-protocol-case-form` — one `replace` pair inside the Criterion
-- [ ] update `estimate-case-protocol-loaded` — one `replace` pair inside the Criterion
-- [ ] update `estimate-case-protocol-acknowledging-reply` — one `replace` pair inside the Criterion
-- [ ] `uv run guppi render`: `vault/wiki/case-schema.md`
+- [x] update `rule-case-protocol` — one `replace` pair in the Render, the Sections paragraph
+- [x] update `estimate-case-protocol-case-form` — one `replace` pair inside the Criterion
+- [x] update `estimate-case-protocol-loaded` — one `replace` pair inside the Criterion
+- [x] update `estimate-case-protocol-acknowledging-reply` — one `replace` pair inside the Criterion
+- [x] `uv run guppi render`: `vault/wiki/case-schema.md`
 - [ ] read `estimate-case-protocol-case-form`
 - [ ] read `estimate-case-protocol-loaded`
 - [ ] read `estimate-case-protocol-acknowledging-reply`
@@ -338,7 +338,7 @@ update:
 ```
 
 ```tasks
-- [ ] update `rule-page-generation` — one `replace` pair in Purpose
+- [x] update `rule-page-generation` — one `replace` pair in Purpose
 ```
 
 ## Case 370 — a `replace` pair in the chat as sub-points under its task
@@ -383,10 +383,10 @@ update:
 ```
 
 ```tasks
-- [ ] update `rule-case-protocol` — two `replace` pairs in the Render, the `tasks` row of Sections and the paragraph on the `then` block
-- [ ] update `estimate-case-protocol-case-form` — one `replace` pair inside the Criterion
-- [ ] update `estimate-case-protocol-loaded` — one `replace` pair inside the Criterion
-- [ ] `uv run guppi render`: `vault/wiki/case-schema.md`
+- [x] update `rule-case-protocol` — two `replace` pairs in the Render, the `tasks` row of Sections and the paragraph on the `then` block
+- [x] update `estimate-case-protocol-case-form` — one `replace` pair inside the Criterion
+- [x] update `estimate-case-protocol-loaded` — one `replace` pair inside the Criterion
+- [x] `uv run guppi render`: `vault/wiki/case-schema.md`
 - [ ] read `estimate-case-protocol-case-form`
 - [ ] read `estimate-case-protocol-loaded`
 ```
@@ -421,7 +421,7 @@ update:
 ```
 
 ```tasks
-- [ ] update `estimate-prespec-binds-a-sprint-line` — one `replace` pair inside the Criterion, `pending`
+- [x] update `estimate-prespec-binds-a-sprint-line` — one `replace` pair inside the Criterion, `pending`
 - [ ] read `estimate-prespec-binds-a-sprint-line`
 ```
 
@@ -461,9 +461,9 @@ update:
 ```
 
 ```tasks
-- [ ] update `rule-rules-schema` — one `replace` pair in the Render, the Enforcement paragraph
-- [ ] update `estimate-rules-schema-checked` — one `replace` pair inside the Criterion
-- [ ] `uv run guppi render`: `vault/wiki/rules/schema.yaml`
+- [x] update `rule-rules-schema` — one `replace` pair in the Render, the Enforcement paragraph
+- [x] update `estimate-rules-schema-checked` — one `replace` pair inside the Criterion
+- [x] `uv run guppi render`: `vault/wiki/rules/schema.yaml`
 - [ ] `uv run pytest tests/test_schemas.py -k rules` green
 - [ ] read `estimate-rules-schema-checked`
 ```
@@ -512,11 +512,11 @@ update:
 ```
 
 ```tasks
-- [ ] update `rule-case-protocol` — one `replace` pair in the Render, the `ratification` row of Sections
-- [ ] update `estimate-case-protocol-case-form` — one `replace` pair inside the Criterion
-- [ ] update `estimate-case-protocol-loaded` — one `replace` pair inside the Criterion
-- [ ] update `insight-workflow-ratified-content-changed-on-the-agents-own-finding` — `actioned`, `addressed_by`
-- [ ] `uv run guppi render`: `vault/wiki/case-schema.md`
+- [x] update `rule-case-protocol` — one `replace` pair in the Render, the `ratification` row of Sections
+- [x] update `estimate-case-protocol-case-form` — one `replace` pair inside the Criterion
+- [x] update `estimate-case-protocol-loaded` — one `replace` pair inside the Criterion
+- [x] update `insight-workflow-ratified-content-changed-on-the-agents-own-finding` — `actioned`, `addressed_by`
+- [x] `uv run guppi render`: `vault/wiki/case-schema.md`
 - [ ] read `estimate-case-protocol-case-form`
 - [ ] read `estimate-case-protocol-loaded`
 ```
@@ -549,8 +549,8 @@ update:
 ```
 
 ```tasks
-- [ ] update `estimate-atomicity-rendered` — `set.method`
-- [ ] read `estimate-atomicity-rendered`
+- [x] update `estimate-atomicity-rendered` — `set.method`
+- [x] read `estimate-atomicity-rendered`
 ```
 
 ## Deferred

@@ -3023,3 +3023,84 @@ instruction. The global feed; a page's own `## History` is the per-page view.
 - 2026-09-23 lessons/lesson-lint-decision-target-archived-counts-as-missing archived · cleanup
 - 2026-09-23 lessons/lesson-prespec-a-second-copy-of-a-matching-rule-drifts archived · cleanup
 - 2026-09-23 decisions/decision-case-352 archived · cleanup
+- 2026-09-23 decisions/decision-case-363 created · raw/2026-09-23/1126/ledger.md#case-363 · generate
+- 2026-09-23 rules/rule-skill-hi updated: plan mode does not stop the write of frontier.md or the closing of its lines (case 363) · [[decision-case-363]] · generate
+- 2026-09-23 estimates/estimate-hi-writes-frontier updated: the Criterion names the write of frontier.md in plan mode (case 363) · [[decision-case-363]] · generate
+- 2026-09-23 decisions/decision-case-364.1 created · raw/2026-09-23/1126/ledger.md#case-364.1 · generate
+- 2026-09-23 rules/rule-materialize updated: the Routing Table lives in the docstring of guppi/materialize.py (case 364.1) · [[decision-case-364.1]] · generate
+- 2026-09-23 decisions/decision-case-364.2 created · raw/2026-09-23/1126/ledger.md#case-364.2 · generate
+- 2026-09-23 estimates/estimate-case-protocol-case-form updated: the Given names no removed file (case 364.2) · [[decision-case-364.2]] · generate
+- 2026-09-23 decisions/decision-case-364.3 created · raw/2026-09-23/1126/ledger.md#case-364.3 · generate
+- 2026-09-23 estimates/estimate-prespec-reconciles updated: the question on contradictions as the Render asks it (case 364.3) · [[decision-case-364.3]] · generate
+- 2026-09-23 decisions/decision-case-365 created · raw/2026-09-23/1126/ledger.md#case-365 · generate
+- 2026-09-23 rules/rule-page-generation updated: the docstrings of guppi/generate.py name an entry with no category, not a Rule-class file (case 365) · [[decision-case-365]] · generate
+- 2026-09-23 rules/rule-materialize updated: the docstring of guppi/materialize.py finds a then item by slug alone, no Rule-class file (case 365) · [[decision-case-365]] · generate
+- 2026-09-23 decisions/decision-case-366 created · raw/2026-09-23/1126/ledger.md#case-366 · generate
+- 2026-09-23 estimates/estimate-generate-fails-alone updated: the message of an update with no content as the code prints it since case 320 (case 366) · [[decision-case-366]] · generate
+- 2026-09-23 decisions/decision-case-367 created · raw/2026-09-23/1126/ledger.md#case-367 · generate
+- 2026-09-23 estimates/estimate-sprint-migration-rule-class-files-dissolved updated: the reading of the Slice without make lint, the grep widened to the retired term over guppi/ and tests/ (case 367) · [[decision-case-367]] · generate
+- 2026-09-23 lessons/lesson-case-protocol-chat-case-without-heading created · raw/2026-09-23/1126/ledger.md#L10 · generate
+- 2026-09-23 decisions/decision-case-368 created · raw/2026-09-23/1126/ledger.md#case-368 · generate
+- 2026-09-23 rules/rule-case-protocol updated: a Case opens with the heading `## Case N — name` in the chat and in the Spec (case 368) · [[decision-case-368]] · generate
+- 2026-09-23 estimates/estimate-case-protocol-case-form updated: the Criterion names the heading of a Case in the chat (case 368) · [[decision-case-368]] · generate
+- 2026-09-23 decisions/decision-case-369 created · raw/2026-09-23/1126/ledger.md#case-369 · generate
+- 2026-09-23 rules/rule-page-generation updated: the script invents nothing; what it writes beyond the yaml is computed by the steps the page names (case 369) · [[decision-case-369]] · generate
+- 2026-09-23 decisions/decision-case-370 created · raw/2026-09-23/1126/ledger.md#case-370 · generate
+- 2026-09-23 rules/rule-case-protocol updated: in the chat the content of an item stands as sub-points under its task line (case 370) · [[decision-case-370]] · generate
+- 2026-09-23 estimates/estimate-case-protocol-case-form updated: the Criterion names the sub-points of an item's content in the chat (case 370) · [[decision-case-370]] · generate
+- 2026-09-23 decisions/decision-case-371 created · raw/2026-09-23/1126/ledger.md#case-371 · generate
+- 2026-09-23 estimates/estimate-prespec-binds-a-sprint-line updated: a sprint line put off needs nothing from prespec; the item stays until generate moves it (case 371) · [[decision-case-371]] · generate
+- 2026-09-23 decisions/decision-case-372 created · raw/2026-09-23/1126/ledger.md#case-372 · generate
+- 2026-09-23 rules/rule-rules-schema updated: the guard of a rule on the agent's own conduct is its text in the context (case 372) · [[decision-case-372]] · generate
+- 2026-09-23 estimates/estimate-rules-schema-checked updated: the Criterion names the sentence on the guard of the agent's own conduct (case 372) · [[decision-case-372]] · generate
+- 2026-09-23 decisions/decision-case-373 created · raw/2026-09-23/1126/ledger.md#case-373 · generate
+- 2026-09-23 rules/rule-case-protocol updated: a Case the agent finds changed after ratification is shown again before anything of the change is written (case 373) · [[decision-case-373]] · generate
+- 2026-09-23 estimates/estimate-case-protocol-case-form updated: the When names the showing again after the agent's own finding (case 373) · [[decision-case-373]] · generate
+- 2026-09-23 insights/insight-workflow-ratified-content-changed-on-the-agents-own-finding updated: actioned by the update of rule-case-protocol (case 373) · [[decision-case-373]] · generate
+- 2026-09-23 decisions/decision-case-374 created · raw/2026-09-23/1126/ledger.md#case-374 · generate
+- 2026-09-23 estimates/estimate-atomicity-rendered updated: the method names render --check, not make lint (case 374) · [[decision-case-374]] · generate
+- 2026-09-23 estimates/estimate-case-protocol-loaded updated: the Criterion names the heading of a Case in the Render (case 368) · [[decision-case-368]] · generate
+- 2026-09-23 estimates/estimate-case-protocol-acknowledging-reply updated: the other replies are not measured here, their form stands in the schema (case 368) · [[decision-case-368]] · generate
+- 2026-09-23 estimates/estimate-case-protocol-loaded updated: the Criterion names the sub-points of tasks in the Render (case 370) · [[decision-case-370]] · generate
+- 2026-09-23 estimates/estimate-case-protocol-loaded updated: the Criterion names the showing again after the agent's own finding in the Render (case 373) · [[decision-case-373]] · generate
+- 2026-09-23 estimates/estimate-decisions-schema-checked status: pending → passed · raw/2026-09-23/1126/ledger.md#L27 · generate
+- 2026-09-23 estimates/estimate-entities-schema-checked status: pending → passed · raw/2026-09-23/1126/ledger.md#L28 · generate
+- 2026-09-23 estimates/estimate-estimates-schema-checked status: pending → passed · raw/2026-09-23/1126/ledger.md#L29 · generate
+- 2026-09-23 estimates/estimate-insights-schema-checked status: pending → passed · raw/2026-09-23/1126/ledger.md#L30 · generate
+- 2026-09-23 estimates/estimate-lessons-schema-checked status: pending → passed · raw/2026-09-23/1126/ledger.md#L31 · generate
+- 2026-09-23 estimates/estimate-page-schemas-one-file-per-rule status: pending → passed · raw/2026-09-23/1126/ledger.md#L32 · generate
+- 2026-09-23 estimates/estimate-lint-catches status: pending → passed · raw/2026-09-23/1126/ledger.md#L33 · generate
+- 2026-09-23 estimates/estimate-claude-md-rendered status: pending → passed · raw/2026-09-23/1126/ledger.md#L34 · generate
+- 2026-09-23 estimates/estimate-sprint-moves-a-passed-over-item status: pending → passed · raw/2026-09-23/1126/ledger.md#L35 · generate
+- 2026-09-23 estimates/estimate-sprint-drops-an-emptied-milestone status: pending → passed · raw/2026-09-23/1126/ledger.md#L36 · generate
+- 2026-09-23 estimates/estimate-generate-ticks-the-spec status: pending → passed · raw/2026-09-23/1126/ledger.md#L37 · generate
+- 2026-09-23 estimates/estimate-brief-written status: pending → passed · raw/2026-09-23/1126/ledger.md#L38 · generate
+- 2026-09-23 estimates/estimate-atomicity-rendered status: pending → passed · raw/2026-09-23/1126/ledger.md#L39 · generate
+- 2026-09-23 estimates/estimate-prespec-checks-the-plan status: pending → passed · raw/2026-09-23/1126/ledger.md#L40 · generate
+- 2026-09-23 lessons/lesson-case-check-command-signed-without-a-run created · raw/2026-09-23/1126/ledger.md#L41 · generate
+- 2026-09-23 lessons/lesson-case-context-claim-wider-than-its-search created · raw/2026-09-23/1126/ledger.md#L42 · generate
+- 2026-09-23 lessons/lesson-case-render-update-skipped-the-live-reading-estimate created · raw/2026-09-23/1126/ledger.md#L43 · generate
+- 2026-09-23 lessons/lesson-plan-mode-frontier-refused-at-hi-again created · raw/2026-09-23/1126/ledger.md#L44 · generate
+- 2026-09-23 decisions/decision-case-375 created · raw/2026-09-23/1126/ledger.md#case-375 · generate
+- 2026-09-23 rules/rule-retro deferred · [[decision-case-375]] · generate
+- 2026-09-23 insights/insight-workflow-fact-signed-from-a-check-that-does-not-cover-it updated: synthesis: lesson-case-context-claim-wider-than-its-search added, the claim of a Case's context covered the whole vault while its grep covered a few phrases; reopened from actioned · raw/2026-09-23/1126/ledger.md#L42 · generate
+- 2026-09-23 lessons/lesson-case-context-claim-wider-than-its-search updated: clustered into insight-workflow-fact-signed-from-a-check-that-does-not-cover-it by the librarian's synthesis · raw/2026-09-23/1126/ledger.md#L42 · generate
+- 2026-09-23 insights/insight-workflow-contract-change-leaves-its-derived-text-stale updated: synthesis: lesson-case-render-update-skipped-the-live-reading-estimate added, a change of a Render named one of its Estimates and left the live reading's Criterion out; reopened from actioned · raw/2026-09-23/1126/ledger.md#L43 · generate
+- 2026-09-23 lessons/lesson-case-render-update-skipped-the-live-reading-estimate updated: clustered into insight-workflow-contract-change-leaves-its-derived-text-stale by the librarian's synthesis · raw/2026-09-23/1126/ledger.md#L43 · generate
+- 2026-09-23 insights/insight-session-vault-knowledge-not-loaded updated: synthesis: lesson-plan-mode-frontier-refused-at-hi-again added, the leave of plan mode stands in rule-permissions, settings.json and a lesson, none of them in the context at /hi; reopened from actioned · raw/2026-09-23/1126/ledger.md#L44 · generate
+- 2026-09-23 lessons/lesson-plan-mode-frontier-refused-at-hi-again updated: clustered into insight-session-vault-knowledge-not-loaded by the librarian's synthesis · raw/2026-09-23/1126/ledger.md#L44 · generate
+- 2026-09-23 rules/rule-atomicity status: draft → built · cascade · generate
+- 2026-09-23 rules/rule-brief status: draft → built · cascade · generate
+- 2026-09-23 rules/rule-claude-md status: draft → built · cascade · generate
+- 2026-09-23 rules/rule-decisions-schema status: draft → built · cascade · generate
+- 2026-09-23 rules/rule-entities-schema status: draft → built · cascade · generate
+- 2026-09-23 rules/rule-estimates-schema status: draft → built · cascade · generate
+- 2026-09-23 rules/rule-insights-schema status: draft → built · cascade · generate
+- 2026-09-23 rules/rule-lessons-schema status: draft → built · cascade · generate
+- 2026-09-23 rules/rule-lint status: draft → built · cascade · generate
+- 2026-09-23 rules/rule-page-schemas status: draft → built · cascade · generate
+- 2026-09-23 rules/rule-sprint status: draft → built · cascade · generate
+- 2026-09-23 lessons/lesson-work-mode-check-widened-the-list-and-the-agent-acted archived · insight actioned · generate
+- 2026-09-23 lessons/lesson-spec-text-repaired-after-ratification-without-a-showing archived · insight actioned · generate
+- 2026-09-23 lessons/lesson-spec-text-repaired-after-ratification-without-a-showing archived · cleanup
+- 2026-09-23 lessons/lesson-work-mode-check-widened-the-list-and-the-agent-acted archived · cleanup

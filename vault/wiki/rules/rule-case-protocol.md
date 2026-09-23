@@ -48,7 +48,7 @@ One reply is one Case, in the eight sections below. That is the form of Plan Mod
 
 ## Sections
 
-Eight, in this order. Each is one blockquote: the first line `**name:**`, the text on the following quoted lines.
+Eight, in this order, under the heading `## Case N — name` — in the chat at every showing, the name in the language of the chat; in the Spec the same heading in English; a sub-case under `### Case N.M — name` beneath its parent (case 368). Each section is one blockquote: the first line `**name:**`, the text on the following quoted lines.
 
 | Section | Required | Content |
 |---|---|---|
@@ -58,8 +58,8 @@ Eight, in this order. Each is one blockquote: the first line `**name:**`, the te
 | `given` | yes | The conditions of the behaviour: one per line, and only a condition a line of `then` depends on — the rule that constrains, the test that fixes the behaviour. The state of the pages the Case changes, what conflicts, what sits in `draft`, the vault's answer and which Estimates of the rule the Case touches go to `context` (case 188). |
 | `when` | yes | The action that triggers the behaviour: a hook fires, a script runs, the person invokes a skill. For a change to a document, the moment someone reads it. |
 | `then` | yes | What holds after the action, once the recommendation is accepted. Behaviour only: no Estimate block, no reading, no `supersedes` — those are lines of `tasks` (cases 159, 188). |
-| `tasks` | yes | The work the Case leaves: a checklist, one line per page `update`, file, test, command, one-off migration and reading; no `contract` line, no "block N" line (case 188). In the chat a blockquote with the checklist; in the Spec the block tagged `tasks` — the same lines (case 159). |
-| `ratification` | yes | In the chat, the preview of the ledger lines in an untagged fence and nothing else; the human's sign-off, question or own alternative is their reply. The agent's own text stands after the Case, after one horizontal rule, and the turn ends with a plain question in the chat, never a picker tool (case 355.1). A Case the person changed is shown again: `context` and `problem` if they changed, always `given`, `when`, `then`, `tasks` and `ratification`, and no `recommend` (cases 62, 163). |
+| `tasks` | yes | The work the Case leaves: a checklist, one line per page `update`, file, test, command, one-off migration and reading; no `contract` line, no "block N" line (case 188). In the chat a blockquote with the checklist, and under a line whose item writes content that content as sub-points — `old` and `new` of each `replace` or `reword` pair, the value of a `set`, the text of a `sections`, the fields of a `create` — each on its own sub-point (case 370); in the Spec the block tagged `tasks`, the same lines without the sub-points, whose content is the `then` block (case 159). |
+| `ratification` | yes | In the chat, the preview of the ledger lines in an untagged fence and nothing else; the human's sign-off, question or own alternative is their reply. The agent's own text stands after the Case, after one horizontal rule, and the turn ends with a plain question in the chat, never a picker tool (case 355.1). A Case the person changed, or one whose text or scope the agent finds wrong or too narrow after its ratification — in the Spec, at pre-spec or in Work Mode — is shown again: `context` and `problem` if they changed, always `given`, `when`, `then`, `tasks` and `ratification`, and no `recommend` (cases 62, 163); until it is ratified again, nothing of the change is written or acted on; the translation of a Case into the Spec is no change (case 373). |
 
 ## Operands
 
@@ -77,7 +77,7 @@ The Case that creates an Estimate writes its Criterion; the Case that changes a 
 
 ## The `then` block lives in the Spec
 
-Ratifying "create entity-x" without seeing what that page will claim is an empty ratification. The human signs content, not the fact that a decision occurred. The content is a YAML block tagged `then` under the Case in the Spec — the plan the human approves at the end of Plan Mode — not in the chat. A list under each decision type present, one entry per target, `slug` first.
+Ratifying "create entity-x" without seeing what that page will claim is an empty ratification. The human signs content, not the fact that a decision occurred. The content is a YAML block tagged `then` under the Case in the Spec — the plan the human approves at the end of Plan Mode — not in the chat, where its content stands as sub-points of `tasks` (case 370). A list under each decision type present, one entry per target, `slug` first.
 
 ```then
 create:
@@ -248,3 +248,6 @@ The harness — hooks, skills, agents, `settings.json`, `CLAUDE.md`, this file �
 - 2026-09-23 updated: a Case with sub-cases is shown in one reply, ratified at once or by ids (case 355.2) · [[decision-case-355.2]]
 - 2026-09-23 updated: Plan Mode ends with no open line under Cases (case 356.1) · [[decision-case-356.1]]
 - 2026-09-23 updated: the Plan Mode paragraph names the closer sprint (case 356.2) · [[decision-case-356.2]]
+- 2026-09-23 updated: a Case opens with the heading `## Case N — name` in the chat and in the Spec (case 368) · [[decision-case-368]]
+- 2026-09-23 updated: in the chat the content of an item stands as sub-points under its task line (case 370) · [[decision-case-370]]
+- 2026-09-23 updated: a Case the agent finds changed after ratification is shown again before anything of the change is written (case 373) · [[decision-case-373]]

@@ -29,6 +29,7 @@ The Frontier, written to `raw/<date>/<hi HHMM>/frontier.md`, is two lists: `## C
 **＋** A `W` that turns out to need a decision closes `· case N`; a `C` that needs none closes `· work`.
 **－** `Pull:` and `Open issues:` are a Cases item only when `sprint.md` names no decision on them; named, they are not an item — `rule-git-context` says the same.
 **－** `/pre-spec` finds an open line under `## Cases`; a `W` line stands open until its work is done and closes `· work` in Work Mode (356.1).
+**＋** Claude Code's plan mode is on at `/hi`; the agent writes `frontier.md` and closes its lines all the same, with no refusal in the chat (363).
 
 ## Result
 
@@ -52,3 +53,4 @@ The Frontier, written to `raw/<date>/<hi HHMM>/frontier.md`, is two lists: `## C
 - 2026-09-23 updated: the Criterion names the line of a sprint item with its slugs in code spans (case 354.3) · [[decision-case-354.3]]
 - 2026-09-23 updated: the Criterion names the W line open until its work is done (case 356.1) · [[decision-case-356.1]]
 - 2026-09-23 updated: the Criterion names the sprint line never deferred (case 356.2) · [[decision-case-356.2]]
+- 2026-09-23 updated: the Criterion names the write of frontier.md in plan mode (case 363) · [[decision-case-363]]

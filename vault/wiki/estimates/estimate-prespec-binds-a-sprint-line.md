@@ -1,7 +1,7 @@
 ---
 type: estimate
 kind: QA
-status: passed
+status: pending
 target: "[[rule-prespec]]"
 purpose: A Frontier line of the sprint closed by a Case is a finding of prespec --check unless that Case updates the sprint page; a line left [-] with sprint needs nothing
 method: uv run pytest tests/test_prespec.py -k sprint — a line `· sprint · case N` with and without an update of entity-sprint-<id> under Case N, a `[-] … · sprint` line, a line whose source segment is not `sprint` while the word stands inside the slug of its title
@@ -24,7 +24,7 @@ When:
 
 Then:
 An `update` item naming the sprint page under Case N — the parent or any sub-case — is required; without one the finding is `frontier: C<n> closes a sprint item with case N, no update of <sprint slug> under Case N`.
-**＋** A line closed `[-] … · sprint` needs nothing: the item stays on the page as it is.
+**＋** A line closed `[-] … · sprint` needs nothing from `prespec`: no finding; the item stays in its milestone until `generate` moves it to the Backlog after three such sessions in a row (354.1).
 **－** A line whose source segment is not `sprint` is read as today; the word inside the slug of a title is not the source (case 335).
 
 ## Result
@@ -37,3 +37,4 @@ An `update` item naming the sprint page under Case N — the parent or any sub-c
 - 2026-09-22 status: pending → passed · raw/2026-09-22/1121/ledger.md#L91
 - 2026-09-23 updated: the Criterion and the method speak of the source segment of a Frontier line (case 344, supersedes 338.1) · [[decision-case-344]]
 - 2026-09-23 status: pending → passed · raw/2026-09-23/0034/ledger.md#L59
+- 2026-09-23 updated: a sprint line put off needs nothing from prespec; the item stays until generate moves it (case 371) · [[decision-case-371]]

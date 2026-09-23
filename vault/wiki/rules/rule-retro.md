@@ -8,6 +8,7 @@ governs: .claude/skills/retro/SKILL.md
 render_mode: full
 parent: "[[rule-end-of-work]]"
 estimates: ["[[estimate-retro-loads]]"]
+deferred_by: ["[[decision-case-375]]"]
 origin: raw/2026-09-10/ledger.md#case-38.1
 sprint: migration
 created: 2026-09-10
@@ -106,3 +107,4 @@ got done; what did not. When the person approves, commit (`make style` clean,
 - 2026-09-21 updated: a reading measures the last ratified Criterion; an Estimate whose Criterion this session replaced and whose build is not finished has no reading at this Retro (case 283) · [[decision-case-283]]
 - 2026-09-21 status: built → draft · cascade
 - 2026-09-21 status: draft → built · cascade
+- 2026-09-23 deferred · [[decision-case-375]]

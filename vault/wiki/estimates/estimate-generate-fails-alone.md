@@ -1,7 +1,7 @@
 ---
 type: estimate
 kind: QA
-status: failed
+status: pending
 target: "[[rule-page-generation]]"
 purpose: One bad entry never stops the run; every entry carries its mark
 method: pytest tests/test_generate.py, the tests of the failed, skipped and marked entries
@@ -30,7 +30,7 @@ An entry that fails — a collision, a `ref` naming no page, a `replace` absent 
 **＋** Every applied entry is marked `applied: <time>`; a stale `failed` mark is dropped on apply; a rerun writes nothing.
 **＋** An entry with `failed` and no `kind` is skipped with its mark kept and the line `generate: line N: not lifted by materialize; <message>`, exit 1.
 **＋** An entry with `superseded_by` is not applied and leaves no line; the Decision page of its Case is still written.
-**＋** An `update` with no content prints `an update with no content in the Spec; applied by hand` and is marked applied.
+**＋** An `update` with no content prints `generate: <slug>: an update with no content in the Spec; nothing applied` on stdout, changes no page and is marked applied (case 320).
 **－** The failure of one entry changes no other page: `log.md` after it is level with the pages.
 
 ## Result
@@ -47,3 +47,4 @@ An entry that fails — a collision, a `ref` naming no page, a `replace` absent 
 - 2026-09-22 status: pending → passed · raw/2026-09-21/1853/ledger.md#L4
 - 2026-09-22 updated: no Rule-class branch in generate (case 320) · [[decision-case-320]]
 - 2026-09-23 status: pending → failed · raw/2026-09-23/0034/ledger.md#L58
+- 2026-09-23 updated: the message of an update with no content as the code prints it since case 320 (case 366) · [[decision-case-366]]

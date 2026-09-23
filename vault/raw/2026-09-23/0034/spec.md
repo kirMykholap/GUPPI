@@ -60,7 +60,7 @@ create:
 - [x] create `estimate-sprint-moves-a-passed-over-item`
 - [x] `guppi/generate.py` — the move as a step after `cascade()`, on `sprint.split_milestones` and `sprint.item_slugs`, no second parse; the History line `· generate`, not `· cascade`; the docstring names the move
 - [x] `tests/test_generate.py` — three `[-]` in a row move the item; an `[x]` between them does not; a session without the line is passed by; a note is not moved; the History line; `raw/` and the archive read together
-- [ ] read `estimate-sprint-moves-a-passed-over-item`
+- [x] read `estimate-sprint-moves-a-passed-over-item`
 ```
 
 ### Case 354.2 — a milestone the move left empty leaves the Milestones
@@ -109,7 +109,7 @@ create:
 - [x] create `estimate-sprint-drops-an-emptied-milestone`
 - [x] `guppi/generate.py` — in the step of the move, the heading of a milestone left with no line removed, the History line; the docstring
 - [x] `tests/test_generate.py` — a milestone emptied by the move leaves; one empty before the run stays; one with a note stays; the History line
-- [ ] read `estimate-sprint-drops-an-emptied-milestone`
+- [x] read `estimate-sprint-drops-an-emptied-milestone`
 ```
 
 ### Case 354.3 — a sprint item in the Frontier is one line, its slug in a code span
@@ -184,7 +184,7 @@ update:
 - [x] update `rule-brief` — two `replace` pairs in the Render: the Flags line, and the sprint page changed by a Case or by the move of `generate`
 - [x] update `estimate-brief-written` — one `replace` pair inside the Criterion; the page goes `pending`
 - [x] `uv run guppi render`: `.claude/agents/librarian-guppi.md`
-- [ ] read `estimate-brief-written`
+- [x] read `estimate-brief-written`
 ```
 
 ## Case 355 — the chat form of a Case: the section of the person, and sub-cases in one reply
@@ -375,7 +375,7 @@ update:
 - [x] `uv run guppi render`: `.claude/skills/pre-spec/SKILL.md`
 - [x] `uv run guppi render`: `vault/wiki/case-schema.md`
 - [ ] read `estimate-hi-writes-frontier`
-- [ ] read `estimate-prespec-checks-the-plan`
+- [x] read `estimate-prespec-checks-the-plan`
 - [ ] read `estimate-case-protocol-loaded`
 ```
 
@@ -444,7 +444,7 @@ update:
 - [x] `guppi/prespec.py` — in `check_frontier`, a finding on a line whose source is `sprint` and whose closer is `defer case N`; the docstring
 - [x] `tests/test_prespec.py` — a sprint line closed `· defer case N` a finding; a `brief` line closed the same way none
 - [ ] read `estimate-hi-writes-frontier`
-- [ ] read `estimate-prespec-checks-the-plan`
+- [x] read `estimate-prespec-checks-the-plan`
 - [ ] read `estimate-case-protocol-loaded`
 ```
 
@@ -538,7 +538,7 @@ update:
 - [x] update `rule-decisions-schema` — two `replace` pairs in the Render
 - [x] update `estimate-decisions-schema-checked` — one `replace` pair inside the Criterion; the page goes `pending`
 - [x] `uv run guppi render`: `vault/wiki/decisions/schema.yaml`
-- [ ] read `estimate-decisions-schema-checked`
+- [x] read `estimate-decisions-schema-checked`
 ```
 
 ## Case 359 — a claim no wider than its check (`insight-workflow-fact-signed-from-a-check-that-does-not-cover-it`)
@@ -676,7 +676,7 @@ update:
 - [x] update `insight-harness-one-rule-implemented-twice-drifts` — `status: actioned`, `addressed_by`
 - [x] `uv run guppi render`: `CLAUDE.md`
 - [ ] read `estimate-one-judgment-one-implementation-followed`
-- [ ] read `estimate-claude-md-rendered`
+- [x] read `estimate-claude-md-rendered`
 ```
 
 ## Case 361 — `addressed_by` on an Insight is one link, the latest
@@ -718,7 +718,7 @@ update:
 - [x] update `rule-insights-schema` — one `replace` pair in the Render
 - [x] update `estimate-insights-schema-checked` — one `replace` pair inside the Criterion; the page goes `pending`
 - [x] `uv run guppi render`: `vault/wiki/insights/schema.yaml`
-- [ ] read `estimate-insights-schema-checked`
+- [x] read `estimate-insights-schema-checked`
 ```
 
 ## Case 362 — lint checks that `addressed_by` holds one link
@@ -798,14 +798,14 @@ update:
 - [x] update `estimate-decisions-schema-checked`, `estimate-entities-schema-checked`, `estimate-estimates-schema-checked`, `estimate-insights-schema-checked`, `estimate-lessons-schema-checked`, `estimate-rules-schema-checked`, `estimate-page-schemas-one-file-per-rule` — one `replace` pair each inside the Criterion; the pages go `pending`
 - [x] `guppi/lint.py` — `check_schema` reads `properties.single`; the class `schema` in the docstring
 - [x] `tests/test_lint.py` — a list in a `single` field a finding; one value none; a schema without the key none
-- [ ] read `estimate-lint-catches`
-- [ ] read `estimate-decisions-schema-checked`
-- [ ] read `estimate-entities-schema-checked`
-- [ ] read `estimate-estimates-schema-checked`
-- [ ] read `estimate-insights-schema-checked`
-- [ ] read `estimate-lessons-schema-checked`
+- [x] read `estimate-lint-catches`
+- [x] read `estimate-decisions-schema-checked`
+- [x] read `estimate-entities-schema-checked`
+- [x] read `estimate-estimates-schema-checked`
+- [x] read `estimate-insights-schema-checked`
+- [x] read `estimate-lessons-schema-checked`
 - [ ] read `estimate-rules-schema-checked`
-- [ ] read `estimate-page-schemas-one-file-per-rule`
+- [x] read `estimate-page-schemas-one-file-per-rule`
 ```
 
 ### Case 362.2 — the Insight schema lists `addressed_by` under `single`
@@ -842,5 +842,5 @@ update:
 - [x] update `rule-insights-schema` — one `replace` pair in the Render
 - [x] update `estimate-insights-schema-checked` — one `replace` pair inside the Criterion; the pair on the keys lint reads is 362.1's
 - [x] `uv run guppi render`: `vault/wiki/insights/schema.yaml`
-- [ ] read `estimate-insights-schema-checked`
+- [x] read `estimate-insights-schema-checked`
 ```

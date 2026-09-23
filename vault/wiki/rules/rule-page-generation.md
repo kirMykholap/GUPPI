@@ -17,8 +17,7 @@ tags: [harness, workflow, ledger]
 
 Prevents a ratified decision from ending the session without a page, or a page from
 carrying a field nobody ratified. The script is the only writer to `wiki/`. It lays
-the content of `materialize.yaml` into schema fields and writes nothing else: no
-section is derived from a ref field, no Estimate from a flag, and the Criterion of an
+the content of `materialize.yaml` into schema fields and invents nothing: what it writes beyond that content is computed from the pages, the Specs, the ledgers and the Frontiers of `raw/` and the archive by the steps this page names — the cascade, the move of the sprint, the ticks of the Spec, the links of a `rename`, the words of a `reword` (case 369); no section is derived from a ref field, no Estimate from a flag, and the Criterion of an
 Estimate is replaced whole by the text its Case signed (cases 166.2, 194.1, 201.1). A
 page is always created, even incomplete: red lint is an accurate signal of debt, a
 decision with no page is the ledger and the vault disagreeing silently. A slug
@@ -118,3 +117,5 @@ every defer (cases 52.4, 186.1); the page of a Case superseded in its own sessio
 - 2026-09-23 updated: the cascade counts the live Estimates alone — one standing archived is not counted (case 328) · [[decision-case-328]]
 - 2026-09-23 updated: after the cascade, the move of a passed-over sprint item to the Backlog (case 354.1) · [[decision-case-354.1]]
 - 2026-09-23 updated: the move drops a milestone it left with no line (case 354.2) · [[decision-case-354.2]]
+- 2026-09-23 updated: the docstrings of guppi/generate.py name an entry with no category, not a Rule-class file (case 365) · [[decision-case-365]]
+- 2026-09-23 updated: the script invents nothing; what it writes beyond the yaml is computed by the steps the page names (case 369) · [[decision-case-369]]

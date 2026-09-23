@@ -1,10 +1,11 @@
 ---
 type: estimate
 kind: QA
-status: pending
+status: passed
 target: "[[rule-estimates-schema]]"
 purpose: An Estimate page in the shape of the rendered schema has no schema finding and a page outside it has one per defect
 method: pytest tests/test_schemas.py -k estimates on the live vault/wiki/estimates/schema.yaml — a page in the shape, then one defect at a time; the live reading make lint, no schema finding on wiki/estimates/
+checked: 2026-09-23
 origin: raw/2026-09-22/0014/ledger.md#case-304.4
 sprint: migration
 created: 2026-09-22
@@ -30,7 +31,7 @@ The file equals the Render. Lint reads from it: required `type, kind, status, ta
 
 ## Result
 
-2026-09-22, uv run pytest tests/test_schemas.py -k estimates, 5 passed on the live vault/wiki/estimates/schema.yaml: the same four defects, one finding each, a page in the shape none; the live leg, make lint after the librarian's render, not taken
+2026-09-23, uv run pytest tests/test_schemas.py -k estimates: 4 passed, 1 skipped (no conditional on a field); the live yaml carries required type, kind, status, target, origin, sprint, created, tags, optional purpose, method, checked, Result required on passed and failed; uv run guppi lint: no schema finding on wiki/estimates/, the unmigrated counter apart; no schema.md
 
 ## History
 
@@ -38,3 +39,4 @@ The file equals the Render. Lint reads from it: required `type, kind, status, ta
 - 2026-09-22 status: pending → passed · raw/2026-09-22/0014/ledger.md#L54
 - 2026-09-23 updated: the live reading is due again — the description of method in the Render changed; the Criterion stands (case 350) · [[decision-case-350]]
 - 2026-09-23 updated: the Given names properties.single among the keys lint reads (case 362.1) · [[decision-case-362.1]]
+- 2026-09-23 status: pending → passed · raw/2026-09-23/1126/ledger.md#L29

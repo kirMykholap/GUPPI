@@ -1,10 +1,11 @@
 ---
 type: estimate
 kind: QA
-status: pending
+status: passed
 target: "[[rule-insights-schema]]"
 purpose: An Insight page in the shape of the rendered schema has no schema finding and a page outside it has one per defect
 method: pytest tests/test_schemas.py -k insights on the live vault/wiki/insights/schema.yaml — a page in the shape, then one defect at a time; the live reading make lint, no schema finding on wiki/insights/
+checked: 2026-09-23
 origin: raw/2026-09-22/0014/ledger.md#case-304.6
 sprint: migration
 created: 2026-09-22
@@ -30,7 +31,7 @@ The file equals the Render. Lint reads from it: required `type, pattern, status,
 
 ## Result
 
-2026-09-22, uv run pytest tests/test_schemas.py -k insights, 4 passed and 1 skipped on the live vault/wiki/insights/schema.yaml: no conditional on a field to break, the other three defects one finding each, a page in the shape none; the live leg, make lint after the librarian's render, not taken
+2026-09-23, uv run pytest tests/test_schemas.py -k insights: 5 passed; the live yaml carries single [addressed_by], actioned requires addressed_by, computed [severity], fields.addressed_by names one decision, the latest, a list not its shape; uv run guppi lint: no schema finding on wiki/insights/
 
 ## History
 
@@ -39,3 +40,4 @@ The file equals the Render. Lint reads from it: required `type, pattern, status,
 - 2026-09-23 updated: the Criterion names properties.single and addressed_by under it (case 362.2) · [[decision-case-362.2]]
 - 2026-09-23 updated: the Criterion names the one link of addressed_by (case 361) · [[decision-case-361]]
 - 2026-09-23 updated: the Given names properties.single among the keys lint reads (case 362.1) · [[decision-case-362.1]]
+- 2026-09-23 status: pending → passed · raw/2026-09-23/1126/ledger.md#L30

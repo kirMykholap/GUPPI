@@ -2,7 +2,7 @@
 type: rule
 kind: Leaf
 purpose: Prevents the next session from starting without the facts and the flags of this one
-status: draft
+status: built
 enforcement: render
 governs: .claude/agents/librarian-guppi.md
 render_mode: partial
@@ -70,3 +70,4 @@ The brief has a second writer, the skill `carry` (`rule-carry-over`): it writes 
 - 2026-09-20 status: draft → built · cascade
 - 2026-09-23 updated: Flags name the items generate moved to the Backlog and the milestones it dropped (case 354.4) · [[decision-case-354.4]]
 - 2026-09-23 status: built → draft · cascade
+- 2026-09-23 status: draft → built · cascade

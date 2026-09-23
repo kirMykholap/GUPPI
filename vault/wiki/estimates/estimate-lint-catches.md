@@ -1,10 +1,10 @@
 ---
 type: estimate
 kind: QA
-status: pending
+status: passed
 target: "[[rule-lint]]"
 method: pytest in tests/test_lint.py, one test per defect class; the live reading once by hand, written into the estimate line
-checked: 2026-09-22
+checked: 2026-09-23
 origin: raw/2026-09-09/ledger.md#case-21
 sprint: migration
 created: 2026-09-09
@@ -41,7 +41,7 @@ Every live page is checked against the `schema.yaml` of its category; one line p
 
 ## Result
 
-2026-09-22, uv run pytest tests/test_lint.py: 62 passed; make lint — 81 findings, the layout class among them
+2026-09-23, uv run pytest tests/test_lint.py: 69 passed; live uv run guppi lint: 100 lines, exit 1, every line in the form <category>/<slug>: <class>: <what> — schema 64, unread 31, deferred 3, orphan 1, unmigrated 1; git status after the run shows no file written by it
 
 ## History
 
@@ -78,3 +78,4 @@ Every live page is checked against the `schema.yaml` of its category; one line p
 - 2026-09-23 updated: the class `markers` added to the Criterion (case 325.2) · [[decision-case-325.2]]
 - 2026-09-23 updated: one spelling of a reading in the Criterion — `by hand` (case 330.1) · [[decision-case-330.1]]
 - 2026-09-23 updated: the Criterion names the finding on a single field holding a list (case 362.1) · [[decision-case-362.1]]
+- 2026-09-23 status: pending → passed · raw/2026-09-23/1126/ledger.md#L33

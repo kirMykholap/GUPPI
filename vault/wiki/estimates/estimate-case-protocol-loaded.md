@@ -31,6 +31,9 @@ Then:
 **＋** The section Splitting says that a Case with sub-cases is shown in one reply, ratified at once or by ids, with one `LEDGER` block and one Frontier (355.2).
 **＋** The Plan Mode paragraph says Plan Mode does not end while a line under `## Cases` is open (356.1).
 **＋** The Plan Mode paragraph names `[-] … · sprint` for a sprint item left for later, never `· defer case N` (356.2).
+**＋** The section Sections says a Case opens with the heading `## Case N — name`, in the chat and in the Spec, a sub-case with `### Case N.M — name` (368).
+**＋** The `tasks` row says the content of an item stands in the chat as sub-points under its line, and the paragraph on the `then` block that its content stands there as sub-points of `tasks` (370).
+**＋** The `ratification` row says a Case the agent finds changed after its ratification is shown again, and nothing of the change is written or acted on until it is ratified again (373).
 **＋** `render --check` after the render exits 0.
 **－** The other sections of the schema do not change; the description of the project is not in the schema.
 
@@ -82,3 +85,6 @@ Then:
 - 2026-09-23 updated: the Criterion names the sub-cases shown in one reply (case 355.2) · [[decision-case-355.2]]
 - 2026-09-23 updated: the Criterion names the open Cases line of the Plan Mode paragraph (case 356.1) · [[decision-case-356.1]]
 - 2026-09-23 updated: the Criterion names the closer sprint of the Plan Mode paragraph (case 356.2) · [[decision-case-356.2]]
+- 2026-09-23 updated: the Criterion names the heading of a Case in the Render (case 368) · [[decision-case-368]]
+- 2026-09-23 updated: the Criterion names the sub-points of tasks in the Render (case 370) · [[decision-case-370]]
+- 2026-09-23 updated: the Criterion names the showing again after the agent's own finding in the Render (case 373) · [[decision-case-373]]

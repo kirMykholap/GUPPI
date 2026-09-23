@@ -2,7 +2,7 @@
 type: rule
 kind: Leaf
 purpose: Prevents an Estimate page from carrying a field or section outside the shape lint checks, or lacking one it needs
-status: draft
+status: built
 enforcement: render
 governs: vault/wiki/estimates/schema.yaml
 render_mode: full
@@ -165,3 +165,4 @@ examples:
 - 2026-09-22 status: draft → built · cascade
 - 2026-09-23 updated: the description of method names the four forms, what lint checks besides naming one, and the four triggers of the old shape (case 350, supersedes 330.2, 336 and 343) · [[decision-case-350]]
 - 2026-09-23 status: built → draft · cascade
+- 2026-09-23 status: draft → built · cascade

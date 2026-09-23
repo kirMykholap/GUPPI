@@ -2,7 +2,7 @@
 type: rule
 kind: Leaf
 purpose: Prevents a page that breaks the schema, points nowhere, or claims a status its Estimates do not support from sitting in the vault unnoticed
-status: draft
+status: built
 enforcement: check
 implementation_ref: [guppi/lint.py, tests/test_lint.py, Makefile]
 parent: "[[rule-harness]]"
@@ -65,3 +65,4 @@ classes and their order live in the docstring of `guppi/lint.py`.
 - 2026-09-23 updated: a reading in `method` has one spelling, `by hand`; the constant READING is gone (case 330.1) · [[decision-case-330.1]]
 - 2026-09-23 status: built → draft · cascade
 - 2026-09-23 updated: the class schema reads properties.single — a field holding a list where one value is its shape (case 362.1) · [[decision-case-362.1]]
+- 2026-09-23 status: draft → built · cascade

@@ -15,12 +15,12 @@ tags: [session, workflow]
 ## Criterion
 
 Given:
-`index.md`, `estimates/schema.md` and `schema.yaml` are the Renders of their rule pages (case 304); `case-schema.md` is the Render of `rule-case-protocol`, loaded by `/hi` (case 273).
+the six `schema.yaml` are the Renders of their rule pages (case 304); `case-schema.md` is the Render of `rule-case-protocol`, loaded by `/hi` (case 273).
 **＋** An `update` of the Render of `rule-case-protocol` touches the Estimate of the live reading of that Render (187).
 **＋** The reading of `estimate-case-protocol-case-form` is the Cases of this session at its close, by hand.
 
 When:
-The agent writes a Case in the chat — at its first showing, when shown again after the owner's change, and with sub-cases.
+The agent writes a Case in the chat — at its first showing, when shown again after the owner's change or after its own finding in ratified text (373), and with sub-cases.
 
 Then:
 `given` holds the conditions of the behaviour; the state of the pages the Case changes goes to `context`.
@@ -28,8 +28,9 @@ Then:
 **＋** `given`, `when` and `then` together are the Criterion of the Estimate, copied whole and replacing what stood there.
 **＋** An item that writes `sections: Criterion` itself signs that text, on a `create` and on an `update` alike; the Case's `given`, `when`, `then` are the Criterion of the one Estimate that writes none; that is how one Case touches two Estimates.
 **＋** The Case names by slug the Estimate it changes.
-**＋** `tasks` carries no `contract` line and no "block N" line.
+**＋** `tasks` carries no `contract` line and no "block N" line; in the chat the content of an item stands as sub-points under its line — `old` and `new` of a pair, the value of a `set` or a `sections`, the fields of a `create` (370).
 **＋** A Case with sub-cases is shown in one reply — the parent's `context`, `problem`, `recommend`, then every sub-case whole; a sub-case questioned or changed is shown again alone (355.2).
+**＋** The Case opens with the heading `## Case N — name` at every showing, a sub-case with `### Case N.M — name` (368).
 **－** A `create` carries no `method`, `estimate_kind` or `estimate_slug`: a new promise is an explicit `create` of an Estimate with its own slug.
 **－** The eight sections of the chat form do not change; in the chat `ratification` holds the preview of the ledger lines alone, and the agent's own text stands after the Case, after one horizontal rule (355.1).
 
@@ -50,3 +51,7 @@ Then:
 - 2026-09-22 updated: the Criterion names the Renders, not the file route (case 320) · [[decision-case-320]]
 - 2026-09-23 updated: the Criterion names ratification as the ledger preview alone (case 355.1) · [[decision-case-355.1]]
 - 2026-09-23 updated: the Criterion names the sub-cases shown in one reply (case 355.2) · [[decision-case-355.2]]
+- 2026-09-23 updated: the Given names no removed file (case 364.2) · [[decision-case-364.2]]
+- 2026-09-23 updated: the Criterion names the heading of a Case in the chat (case 368) · [[decision-case-368]]
+- 2026-09-23 updated: the Criterion names the sub-points of an item's content in the chat (case 370) · [[decision-case-370]]
+- 2026-09-23 updated: the When names the showing again after the agent's own finding (case 373) · [[decision-case-373]]

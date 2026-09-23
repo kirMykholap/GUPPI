@@ -2,7 +2,7 @@
 type: rule
 kind: Leaf
 purpose: Prevents an Entity page from carrying a field or section outside the shape lint checks, or lacking one it needs
-status: draft
+status: built
 enforcement: render
 governs: vault/wiki/entities/schema.yaml
 render_mode: full
@@ -163,3 +163,4 @@ examples:
 - 2026-09-22 updated: the atomicity rule is named by its page, not by a § of index.md (case 317) · [[decision-case-317]]
 - 2026-09-22 status: draft → built · cascade
 - 2026-09-23 status: built → draft · cascade
+- 2026-09-23 status: draft → built · cascade

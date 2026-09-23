@@ -2,7 +2,7 @@
 type: lesson
 kind: error
 root_cause: a gap or an error the agent found in ratified text was repaired in the plan file directly, because the Spec is the agent's file to write, while the rule for a changed Case — shown again, context and problem when they change — was read as applying to the person's changes only
-status: clustered
+status: archived
 insight: "[[insight-workflow-ratified-content-changed-on-the-agents-own-finding]]"
 origin: raw/2026-09-23/0034/ledger.md#L64
 sprint: migration
@@ -22,3 +22,5 @@ a gap or an error the agent found in ratified text was repaired in the plan file
 
 - 2026-09-23 created · raw/2026-09-23/0034/ledger.md#L64
 - 2026-09-23 updated: clustered into insight-workflow-ratified-content-changed-on-the-agents-own-finding by the librarian's synthesis · raw/2026-09-23/0034/ledger.md#L64
+- 2026-09-23 archived · insight actioned
+- 2026-09-23 archived · cleanup

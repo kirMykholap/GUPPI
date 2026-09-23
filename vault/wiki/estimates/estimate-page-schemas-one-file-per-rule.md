@@ -1,11 +1,11 @@
 ---
 type: estimate
 kind: QA
-status: pending
+status: passed
 target: "[[rule-page-schemas]]"
 purpose: Each vault/wiki/<category>/schema.yaml is written by guppi render from exactly one rule page, no schema.md remains, lint reads every file and a hand edit is refused
 method: make lint — render --check exit 0 and no path or schema-description finding on a <category>/schema; tests/test_render.py for two full pages on one file; the live reading by hand after the librarian's first render
-checked: 2026-09-22
+checked: 2026-09-23
 origin: raw/2026-09-22/0014/ledger.md#case-304.1
 sprint: migration
 created: 2026-09-22
@@ -30,10 +30,11 @@ The six `vault/wiki/<category>/schema.yaml` are written, each from the one Leaf 
 
 ## Result
 
-2026-09-22, by hand: six vault/wiki/<category>/schema.yaml, no schema.md in any category, guppi render --check exit 0, guppi lint — no path, schema-description or layout finding on a <category>/schema
+2026-09-23, six vault/wiki/*/schema.yaml, each named by the governs of one rule page, no seventh file and no schema.md; uv run guppi render --check exit 0; uv run guppi lint: no path and no schema-description finding; tests/test_render.py 26 passed, the two full pages on one file among them; the hook leg by tests/test_guard.py, 20 passed, a governed path refused
 
 ## History
 
 - 2026-09-22 created · [[decision-case-304.1]]
 - 2026-09-22 status: pending → passed · raw/2026-09-22/1121/ledger.md#L82
 - 2026-09-23 updated: the Given names properties.single among the keys lint reads (case 362.1) · [[decision-case-362.1]]
+- 2026-09-23 status: pending → passed · raw/2026-09-23/1126/ledger.md#L32

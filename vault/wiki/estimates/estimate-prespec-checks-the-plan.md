@@ -1,11 +1,11 @@
 ---
 type: estimate
 kind: QA
-status: pending
+status: passed
 target: "[[rule-prespec]]"
 purpose: The check of the plan against the session's lines, frontier, tasks, governed paths and the form of an Estimate item
 method: pytest tests/test_prespec.py, the tests of --check
-checked: 2026-09-22
+checked: 2026-09-23
 origin: raw/2026-09-16/1955/ledger.md#case-203.1
 sprint: migration
 created: 2026-09-16
@@ -40,7 +40,7 @@ One finding per line on stdout, exit 1 on any, 0 and silent when clean; without 
 
 ## Result
 
-2026-09-22, uv run pytest tests/test_prespec.py: 73 passed — the closer sprint on [-], the finding on [x], the sprint line bound to its update, a file item a finding
+2026-09-23, uv run pytest tests/test_prespec.py: 92 passed; live, the /pre-spec of session 1126: guppi prespec --check printed "frontier: C11 is open" (the box left unticked), then after the amended Cases four items without a decision line, then exit 0 once the lines stood in the ledger
 
 ## History
 
@@ -66,3 +66,4 @@ One finding per line on stdout, exit 1 on any, 0 and silent when clean; without 
 - 2026-09-23 updated: the source segment of a Frontier line in the Criterion (case 335) · [[decision-case-335]]
 - 2026-09-23 updated: the Criterion names an open Work line clean (case 356.1) · [[decision-case-356.1]]
 - 2026-09-23 updated: the Criterion names the finding on a deferred sprint line (case 356.2) · [[decision-case-356.2]]
+- 2026-09-23 status: pending → passed · raw/2026-09-23/1126/ledger.md#L40

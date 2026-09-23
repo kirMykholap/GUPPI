@@ -2,7 +2,7 @@
 type: rule
 kind: MOC
 purpose: Prevents the system prompt from holding a line nobody ratified
-status: draft
+status: built
 enforcement: render
 governs: CLAUDE.md
 render_mode: full
@@ -67,3 +67,4 @@ Rendered in full into `CLAUDE.md`; each child — `rule-language`, `rule-agent-w
 - 2026-09-23 child rule-one-judgment-one-implementation added · [[decision-case-360]]
 - 2026-09-23 updated: the third child rule-one-judgment-one-implementation, its marker in the Render (case 360) · [[decision-case-360]]
 - 2026-09-23 status: built → draft · cascade
+- 2026-09-23 status: draft → built · cascade

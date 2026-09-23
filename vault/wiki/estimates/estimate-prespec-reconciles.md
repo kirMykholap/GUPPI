@@ -1,7 +1,7 @@
 ---
 type: estimate
 kind: QA
-status: passed
+status: pending
 target: "[[rule-prespec]]"
 method: One reading by hand of the first /pre-spec after the render, written into the estimate line — the exception the Method rule allows
 checked: 2026-09-23
@@ -27,7 +27,7 @@ The person invokes `/pre-spec`, or the agent calls the skill, before the Spec is
 Then:
 The agent runs `guppi prespec --check` on the plan file with `--session <id>`, the eight-character session id — the second token of the `hi:` line the `UserPromptSubmit` hook put in the context at `/hi`, between the time and the folder (cases 213.3, 256) — and reads the first line of the output before the exit code: "no hi recorded for session …; nothing checked" means the wrong value, and the check did not run; it fixes the plan, the frontier or the line for every finding until the command prints nothing; `guppi gate` writes the stamped `prespec` line into the event log on the Skill call.
 **＋** The agent lists every decision of this Plan Mode, one line each: slug — kind — `purpose` for a `create`, an `update`, a `delete`; a `defer` by its slug and the word `defer`; for an `update` of a rule or an entity, the page's `estimates` and which of them the Case names by slug.
-**＋** `ask-guppi` is dispatched once with the list, the absolute path of the plan file, the instruction to read every Case outside `## Deferred` — `when`, `then`, the `then` block — and two questions: which decisions contradict a page, `index.md` or each other; whether an Estimate the Case does not name speaks of the thing the Case changes.
+**＋** `ask-guppi` is dispatched once with the list, the absolute path of the plan file, the instruction to read every Case outside `## Deferred` — `when`, `then`, the `then` block — and two questions: which decisions contradict a page of the vault, a rule of the vault, or each other; whether an Estimate the Case does not name speaks of the thing the Case changes.
 **＋** Every finding returned is raised as a Case or named in one line as already known; then Plan Mode exits again.
 **＋** The Insight `insight-pretask-session-flag-takes-the-id-not-the-hi-line` is `actioned`; its two lessons go to the archive by the cascade; a third lesson with the same cause reopens it.
 **－** The body of a deferred decision is not read; a Case that changes a page another Case of the plan defers is still a finding.
@@ -69,3 +69,4 @@ The agent runs `guppi prespec --check` on the plan file with `--session <id>`, t
 - 2026-09-20 status: pending → passed · raw/2026-09-20/0958/ledger.md#L25
 - 2026-09-23 updated: the live reading is due again — the Render gained the simulation of the pairs; the Criterion stands (case 351) · [[decision-case-351]]
 - 2026-09-23 status: pending → passed · raw/2026-09-23/0034/ledger.md#L62
+- 2026-09-23 updated: the question on contradictions as the Render asks it (case 364.3) · [[decision-case-364.3]]

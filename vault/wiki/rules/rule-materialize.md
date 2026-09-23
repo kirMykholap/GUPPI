@@ -17,7 +17,7 @@ tags: [harness, workflow, ledger]
 
 Prevents the librarian from reading the ledger and the Spec beyond its unticked lines (case 271), or from routing
 a decision by guesswork. The yaml is the one input a clean context needs. Every line
-of the ledger is an entry. Its route is the Routing Table of this page. Its content is
+of the ledger is an entry. Its route is the Routing Table in the docstring of `guppi/materialize.py` (case 364.1). Its content is
 lifted from the `then` block of its Case in the Spec — `set`, `sections`, `replace`, `change`, and `rename` or `reword` when the item carries it (cases 258.2, 274.3). What is missing is named, not
 invented — but for a Case superseded in its own session and gone from the Spec: its entries, marked `superseded_by`, carry no `incomplete: [then]`, and its `decisions` record no `case_text` and no missing section; the mark alone is its completeness (case 299.3). If a route cannot be derived from the ledger and the Spec alone, that is a
 defect of the ledger, and it shows here. The keys of a `create` are lifted by the category's `schema.yaml` on disk (case 214.1) — but for a category whose `rule-<category>-schema` the same unit creates or updates: its `create` items are lifted whole, no `unknown`, since the schema on disk catches up only at the render after `generate` (case 308.2).
@@ -103,3 +103,5 @@ entry's fields, each with its writer, live in the docstring of `guppi/materializ
 - 2026-09-22 status: built → draft · cascade
 - 2026-09-22 estimate estimate-materialize-finds-a-rule-class-item archived · cleanup
 - 2026-09-23 status: draft → built · cascade
+- 2026-09-23 updated: the Routing Table lives in the docstring of guppi/materialize.py (case 364.1) · [[decision-case-364.1]]
+- 2026-09-23 updated: the docstring of guppi/materialize.py finds a then item by slug alone, no Rule-class file (case 365) · [[decision-case-365]]

@@ -1,10 +1,11 @@
 ---
 type: estimate
 kind: QA
-status: pending
+status: passed
 target: "[[rule-sprint]]"
 purpose: A milestone the move left with no line leaves the Milestones, so the next one becomes current
 method: pytest tests/test_generate.py, the tests of the move
+checked: 2026-09-23
 origin: raw/2026-09-23/0034/ledger.md#case-354.2
 sprint: migration
 created: 2026-09-23
@@ -29,6 +30,11 @@ The heading `### <name>` of that milestone leaves `## Milestones`; the next mile
 **－** A milestone where a note is left stays.
 **－** Nothing is written to `## Closed`: nothing of that milestone was built.
 
+## Result
+
+2026-09-23, uv run pytest tests/test_generate.py, the tests of the move: 7 passed; the History of entity-sprint-migration: "milestone Slice 3b — Work Mode left the Milestones: its items moved to the Backlog · generate"; Slice 4 is the current milestone, nothing written to ## Closed
+
 ## History
 
 - 2026-09-23 created · [[decision-case-354.2]]
+- 2026-09-23 status: pending → passed · raw/2026-09-23/1126/ledger.md#L36

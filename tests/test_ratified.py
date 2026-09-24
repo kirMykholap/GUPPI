@@ -234,6 +234,18 @@ def test_write_a_sub_point_off_the_form_is_refused_and_nothing_is_written(workin
     assert "Case 7" not in plan_of(working).read_text(encoding="utf-8")
 
 
+def test_write_a_value_at_a_backtick_takes_an_outer_span_padded_by_one_space():
+    """Case 393: CommonMark's reading, which `code_value` shares."""
+    value = "`uv run guppi x` on `Stop`"
+    padded = f"- [ ] create `rule-x` — the rule\n  - sections.How it works: `` {value} ``\n"
+    _, block, errors = ratified.read_tasks(padded)
+    assert errors == [] and block["create"][0]["sections"]["How it works"] == value
+    opening = "`uv run guppi x` on `Stop`. It prints."
+    unpadded = f"- [ ] create `rule-x` — the rule\n  - sections.How it works: ``{opening}``\n"
+    _, _, errors = ratified.read_tasks(unpadded)
+    assert errors == ["`sections.How it works`: the value is not one code span"]
+
+
 def test_write_nothing_outside_a_working_session_and_nothing_on_the_re_fire(working, tmp_path):
     assert stop(working, ACK, SHOWING, ACK, session_id="ffffffff-0000") == (0, "")
     assert stop(working, ACK, SHOWING, ACK, stop_hook_active=True) == (0, "")

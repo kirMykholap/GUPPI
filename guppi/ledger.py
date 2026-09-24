@@ -45,11 +45,17 @@ def reply_text(payload: dict) -> str:
     return str(payload.get("last_assistant_message") or "")
 
 
-def transcript_texts(payload: dict) -> list[str]:
-    """The text of every main-agent assistant message in `transcript_path`, in order. Empty
-    when the path is absent or unreadable; a line that is not JSON is skipped. The transcript
-    is JSONL: one object per API block, `type: assistant`, `message.content` a list of blocks
-    (measured 2026-09-11, session H)."""
+def is_main(record) -> bool:
+    """A record of the main agent's conversation: a JSON object, not a subagent's
+    (`isSidechain`). The one judgment of the ledger and of `guppi context` (case 392.1)."""
+    return isinstance(record, dict) and not record.get("isSidechain")
+
+
+def transcript_records(payload: dict) -> list[dict]:
+    """The main-agent records of `transcript_path`, in order. Empty when the path is absent
+    or unreadable; a line that is not JSON is skipped. The transcript is JSONL: one object per
+    API block, `type: assistant`, `message.content` a list of blocks (measured 2026-09-11,
+    session H)."""
     path = payload.get("transcript_path")
     if not path:
         return []
@@ -57,15 +63,22 @@ def transcript_texts(payload: dict) -> list[str]:
         raw = Path(str(path)).read_text(encoding="utf-8")
     except (OSError, ValueError):
         return []
-    texts: list[str] = []
+    records: list[dict] = []
     for line in raw.splitlines():
         try:
             record = json.loads(line)
         except ValueError:
             continue
-        if not isinstance(record, dict) or record.get("type") != "assistant":
-            continue
-        if record.get("isSidechain"):
+        if is_main(record):
+            records.append(record)
+    return records
+
+
+def transcript_texts(payload: dict) -> list[str]:
+    """The text of every main-agent assistant message in `transcript_path`, in order."""
+    texts: list[str] = []
+    for record in transcript_records(payload):
+        if record.get("type") != "assistant":
             continue
         content = (record.get("message") or {}).get("content")
         if isinstance(content, str):

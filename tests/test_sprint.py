@@ -130,7 +130,9 @@ Open since 2026-09-09. The repository works by the model.
 - [ ] [[rule-subagent-guppi]] — the subagent and the fork · draft
 
 ### [ ] Slice 4 — conversion — 1 item: [[estimate-sprint-migration-lint-clean]]
+
 ### [x] Slice 5 — closing
+
 ### [ ] Slice 6 — nothing yet — 0 items
 
 ## Backlog
@@ -196,7 +198,7 @@ def test_a_closed_first_milestone_makes_the_next_one_current(tmp_path):
     assert run(tmp_path) == (0, "", "")
     text = rendered(tmp_path)
     assert (
-        "### [x] Slice 3b — Work Mode\n### [ ] Slice 4 — conversion\n\n- [ ] [[estimate-sprint-migration-lint-clean]] — lint exit 0 · pending\n\n### [x] Slice 5 — closing\n"
+        "### [x] Slice 3b — Work Mode\n\n### [ ] Slice 4 — conversion\n\n- [ ] [[estimate-sprint-migration-lint-clean]] — lint exit 0 · pending\n\n### [x] Slice 5 — closing\n"
         in text
     )
 
@@ -214,7 +216,7 @@ def test_an_empty_first_milestone_is_current_and_a_plain_line_never_closes_one(t
     text = rendered(tmp_path)
     assert (
         "### [ ] Slice 3a — empty\n\n### [ ] Slice 3b — Work Mode — 2 items: "
-        "[[rule-work-mode]], [[rule-subagent-guppi]]\n" in text
+        "[[rule-work-mode]], [[rule-subagent-guppi]]\n\n" in text
     )
     # the plain line keeps it open, and the collapsed line names it by its text (case 236)
     assert (

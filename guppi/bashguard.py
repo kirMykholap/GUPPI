@@ -11,9 +11,10 @@ The hook reads `tool_input.command`, finds every heredoc (`<<` or `<<-`, the mar
 or not) and its body up to the closing line. A body with a backslash, or a marker line that
 redirects into a file (`>` or `>>` to a path other than `/dev/null`, or `tee`), exits 2 with
 the reason on stderr — `bashguard: heredoc refused — <reason>. Write the script with the
-Write tool into the scratchpad and run it by path; change a file with Edit.` — which blocks
-the call; one line `bashguard: <reason>` goes to `vault/raw/<date>/event_log.md` before
-that (case 91). A `<<<` here-string, a heredoc without a backslash whose output goes to a
+Write tool into the scratchpad and run it by path; change a file with Edit. The refusal is
+this guard working as designed, not an event of the session: do not report it at Retro.` —
+which blocks the call (case 384); one line `bashguard refused: <reason>` goes to
+`vault/raw/<date>/event_log.md` before that (case 91). A `<<<` here-string, a heredoc without a backslash whose output goes to a
 pipe or the screen, a command without a heredoc, any other tool, or a payload the hook
 cannot read: exit 0, the last with one line on stderr. The hook never raises. Rule page:
 `vault/wiki/rules/rule-bash-guard.md`.
@@ -116,7 +117,8 @@ def run(argv, *, stdin=None, stderr=None, project_dir: Path | None = None, now=N
         log_refusal(project_dir, payload, reason, now, stderr)
         print(
             f"bashguard: heredoc refused — {reason}. Write the script with the Write tool into "
-            "the scratchpad and run it by path; change a file with Edit.",
+            "the scratchpad and run it by path; change a file with Edit. The refusal is this "
+            "guard working as designed, not an event of the session: do not report it at Retro.",
             file=stderr,
         )
         return 2

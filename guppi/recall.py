@@ -25,8 +25,7 @@ from datetime import datetime
 from pathlib import Path
 
 from guppi.event import project_root, read_payload, session_stamp
-from guppi.gate import plan_path
-from guppi.ledger import session_dir, session_event_logs
+from guppi.ledger import plan_path, session_dir, session_event_logs
 
 SKILL = Path(".claude") / "skills" / "hi" / "SKILL.md"
 SOURCE = "compact"

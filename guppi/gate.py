@@ -57,13 +57,12 @@ from datetime import datetime
 from pathlib import Path
 
 from guppi.event import append, format_line, log_path, project_root, read_payload, session_stamp
-from guppi.ledger import hi_moment, session_dir, session_event_logs
+from guppi.ledger import hi_moment, plan_path, session_dir, session_event_logs
 from guppi.materialize import split_cases, then_blocks
 from guppi.prespec import item_has_line, item_name, items_of, session_decisions, window_lines
 
 TOOL = "Skill"
 SKILL = "handoff"
-PLAN_TOOLS = ("Write", "Edit", "MultiEdit")
 MARKS = {"pre-spec": "prespec", "retro": "retro", "handoff": "handoff"}
 
 
@@ -100,26 +99,6 @@ def dirty(project_dir: Path) -> str:
         check=False,
     )
     return result.stdout.strip()
-
-
-def plan_path(logs: list[tuple[str, str]], stamp: str) -> Path | None:
-    """The plan file of the session: the path of the last `tool Write:` / `tool Edit:` /
-    `tool MultiEdit:` line of this session's stamp that lies under `.claude/plans/` (case
-    122). None when no such line exists; a path the log truncated does not exist and is
-    skipped by the caller."""
-    last = None
-    for _, text in logs:
-        for line in text.splitlines():
-            parts = line.split(" ", 4)
-            if len(parts) < 5 or parts[0] != "-" or parts[2] != stamp or parts[3] != "tool":
-                continue
-            tool, sep, path = parts[4].partition(": ")
-            if not sep or tool not in PLAN_TOOLS:
-                continue
-            candidate = Path(path.strip())
-            if candidate.parent.name == "plans" and candidate.parent.parent.name == ".claude":
-                last = candidate
-    return last
 
 
 def unwritten_items(specs: list[str], records: list[dict]) -> list[str]:

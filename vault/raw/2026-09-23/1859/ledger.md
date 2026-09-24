@@ -1,0 +1,28 @@
+- 19:15:31 estimate[estimate-sprint-migration-index-dissolved][passed] 2026-09-23, test -e vault/wiki/index.md exit 1 (absent); rg '§ ?[0-9]|index\.md' over .claude, guppi, CLAUDE.md: no hit; over vault/wiki/{entities,estimates,rules,lessons,insights}: 33 hits, each read by hand — History lines, Results, negations, the sprint's own goal, and the Givens of this page and of estimate-sprint-migration-rule-class-files-dissolved, which state the old state and send no reader to the file; the hits in decisions/, log.md, sprint.md and brief.md counted by file and taken as records by category, not read line by line; outside the method, .gitignore:46 still names index.md §1
+- 19:22:17 decision[case 383][update][rule-case-protocol]{ref:rule-case-protocol}
+- 19:22:17 decision[case 383][update][insight-workflow-case-schema-silent-on-what-the-scripts-accept]{ref:insight-workflow-case-schema-silent-on-what-the-scripts-accept}
+- 19:25:52 decision[case 384][update][rule-bash-guard]{ref:rule-bash-guard}{supersedes:case 382}
+- 19:25:52 decision[case 384][update][estimate-bash-guard]{ref:estimate-bash-guard}
+- 19:28:52 decision[case 385][update][rule-synthesis]{ref:rule-synthesis}
+- 19:28:52 decision[case 385][update][rule-insights-schema]{ref:rule-insights-schema}
+- 19:28:52 decision[case 385][update][estimate-synthesis-keeps-actioned-by-the-mark]{ref:estimate-synthesis-keeps-actioned-by-the-mark}
+- 19:28:52 decision[case 385][update][insight-workflow-contract-change-leaves-its-derived-text-stale]{ref:insight-workflow-contract-change-leaves-its-derived-text-stale}
+- 19:32:23 decision[case 386][update][estimate-sprint-renders-the-backlog]{ref:estimate-sprint-renders-the-backlog}
+- 21:00:44 decision[case 387.1][update][rule-language]{ref:rule-language}
+- 21:00:44 decision[case 387.1][update][rule-case-protocol]{ref:rule-case-protocol}
+- 21:00:44 decision[case 387.1][update][estimate-language-followed]{ref:estimate-language-followed}
+- 21:00:44 decision[case 387.2][create][rule-spec-write]{ref:rule-plan-mode}{tags:hooks,harness,workflow,session}
+- 21:00:44 decision[case 387.2][create][estimate-spec-write-copies-the-ratified-case]{ref:rule-spec-write}{tags:hooks,harness,workflow}
+- 21:00:44 decision[case 387.2][update][rule-case-protocol]{ref:rule-case-protocol}
+- 21:00:44 decision[case 387.2][update][rule-hook-registry]{ref:rule-hook-registry}
+- 21:00:44 decision[case 387.3][create][rule-spec-reconcile]{ref:rule-plan-mode}{tags:hooks,harness,workflow,session}
+- 21:00:44 decision[case 387.3][create][estimate-spec-reconcile-shows-a-changed-case]{ref:rule-spec-reconcile}{tags:hooks,harness,workflow}
+- 21:00:44 decision[case 387.3][update][rule-case-protocol]{ref:rule-case-protocol}
+- 21:00:44 decision[case 387.3][update][rule-hook-registry]{ref:rule-hook-registry}
+- 21:00:44 decision[case 387.4][update][rule-prespec]{ref:rule-prespec}
+- 21:00:44 decision[case 387.4][create][estimate-prespec-checks-the-ratified-copy]{ref:rule-prespec}{tags:session,workflow,harness}
+- 21:31:20 decision[case 388][update][rule-prespec]{ref:rule-prespec}
+- 21:31:20 decision[case 388][update][estimate-prespec-reconciles]{ref:estimate-prespec-reconciles}
+- 21:31:20 decision[case 388][update][insight-workflow-fact-signed-from-a-check-that-does-not-cover-it]{ref:insight-workflow-fact-signed-from-a-check-that-does-not-cover-it}{supersedes:case 380}
+- 03:15:12 estimate[estimate-prespec-checks-the-ratified-copy][passed] 2026-09-24, uv run pytest tests/test_prespec.py -k ratified: 5 passed — a copy equal but the name passes, a difference in the then block, a missing section either way, a superseded Case no finding, Russian prose a finding with or without a copy
+- 03:15:12 estimate[estimate-bash-guard][passed] 2026-09-24, uv run pytest tests/test_bashguard.py: 15 passed, the refusal test checks the new sentence; live in session 1859: two heredoc refusals after the change carried on stderr "The refusal is this guard working as designed, not an event of the session: do not report it at Retro."

@@ -1339,3 +1339,45 @@ def test_eight_and_lines_in_then_are_a_note_and_exit_zero(tmp_path):
 def test_seven_and_lines_are_no_note(tmp_path):
     plan = frame_plan("`rule-x` — the rule.", "The agent writes.", chain(7))
     assert check(tmp_path, plan=plan) == (0, "", "")
+
+
+# --- the ratified copy (case 387.4) ---------------------------------------------------
+
+
+def with_copy(project_dir, text):
+    (project_dir / "plan.ratified.md").write_text(text, encoding="utf-8", newline="\n")
+
+
+def test_ratified_a_plan_equal_to_its_copy_but_the_name_passes(tmp_path):
+    with_copy(tmp_path, PLAN.replace("## Case 1 — one", "## Case 1 — один"))
+    assert check(tmp_path) == (0, "", "")
+
+
+def test_ratified_a_plan_that_differs_from_its_copy_is_a_finding(tmp_path):
+    with_copy(tmp_path, PLAN.replace("change: one line", "change: another line"))
+    code, out, _ = check(tmp_path)
+    assert code == 1
+    assert "case 1: differs from its ratified copy in then block" in out
+
+
+def test_ratified_a_missing_section_either_way_is_a_finding(tmp_path):
+    with_copy(tmp_path, PLAN.replace("## Case 1 — one", "## Case 2 — two"))
+    code, out, _ = check(tmp_path)
+    assert code == 1
+    assert "case 1: no section in the ratified copy" in out
+    assert "case 2: in the ratified copy, not in the plan" in out
+
+
+def test_ratified_a_superseded_case_in_the_copy_is_no_finding(tmp_path):
+    with_copy(tmp_path, PLAN + PLAN.replace("## Case 1 — one", "## Case 2 — two"))
+    superseding = "- 16:10:00 decision[case 1][update][rule-x]{ref:rule-x}{supersedes:case 2}"
+    _, out, _ = check(tmp_path, ledger=LINE + superseding + "\n")
+    assert "case 2" not in out
+
+
+def test_ratified_prose_still_in_russian_is_a_finding_with_or_without_a_copy(tmp_path):
+    plan = PLAN.replace("## Case 1 — one", "## Case 1 — один").replace("Something.", "Что-то.")
+    code, out, _ = check(tmp_path, plan=plan)
+    assert code == 1
+    assert "case 1: its name still holds Cyrillic — translate it" in out
+    assert "case 1: its context still holds Cyrillic — translate it" in out

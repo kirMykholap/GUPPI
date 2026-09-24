@@ -15,7 +15,9 @@ slugs and, when present, their `deferred_by` after ` · `; a wikilink after the 
 text and holds no tick back (case 313); a closed
 milestone — every item `[x]`, at least one — as one line `### [x] <name>`; every later one
 as one line `### [ ] <name> — N items: ` and its items by name, the pages it names or the
-text itself, without a tick or a status (case 236); a line naming no page before the
+text itself, without a tick or a status (case 236); a blank line follows every `### `
+line, collapsed or whole, so each heading stands between blank lines (case 386); a line
+naming no page before the
 ` — ` is a note — a task not yet cut into pages: `- [ ] <text>`, never ticked, so a
 milestone holding one stays open, and it leaves only by the `update` of the Case that cuts
 it (case 313); then `## Backlog`, each item a
@@ -154,11 +156,11 @@ def render_milestones(
         if index == current:
             out += [f"### [ ] {name}", ""] + lines + ([""] if lines else [])
         elif closed:
-            out.append(f"### [x] {name}")
+            out += [f"### [x] {name}", ""]
         else:  # a later one: the count, then its items by name (case 236)
             count = f"{len(lines)} item{'' if len(lines) == 1 else 's'}"
             names = ", ".join(item_name(line) for line in items)
-            out.append(f"### [ ] {name} — {count}" + (f": {names}" if names else ""))
+            out += [f"### [ ] {name} — {count}" + (f": {names}" if names else ""), ""]
     while out and out[-1] == "":
         out.pop()
     return out, None

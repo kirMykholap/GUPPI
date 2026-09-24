@@ -79,7 +79,14 @@ the ledgers of its dates, on the `hi` date from the `hi` time on, and its folder
   its `given` — its own or its parent's, by `materialize.case_texts` — does not name, and a
   slug of its `then` block the `given` does not name; a slug is a span with a category
   prefix by `materialize.category_of`, a path a span holding a `/` and one more character;
-  a Case without `given` is not checked.
+  a Case without `given` is not checked;
+- the ratified copy (case 387.4): beside a plan file with a copy `<plan>.ratified.md`, a Case
+  whose `given`, `when`, `then`, `then` block or `tasks` differ from its section there, by
+  `ratified.differences` — the one comparison the hooks of `rule-spec-reconcile` use — a Case
+  of the plan with no section in the copy, and a section of the copy with no Case in the
+  plan, a Case a `{supersedes:case N}` of the window names excepted, the Cases under
+  `## Deferred` not compared; and every name, `context` or `problem` that still holds a
+  Cyrillic letter — the agent translates them before the check.
 
 Notes (case 378.8): a Case whose `given` or `then` holds more than seven `**＋**` lines —
 a sign it is not atomic — is one line opening with `note:`, answered in the chat.
@@ -92,6 +99,7 @@ import sys
 from datetime import datetime
 from pathlib import Path
 
+from guppi import ratified
 from guppi.event import project_root, read_payload, session_stamp
 from guppi.generate import (  # the ticker, the pairs, the Frontier line (case 360)
     FRONTIER_LINE,
@@ -116,6 +124,7 @@ from guppi.materialize import (
     find_item,
     parse_line,
     split_cases,
+    tagged_blocks,
     then_blocks,
     touches_criterion,
     unquote,
@@ -230,28 +239,6 @@ def check_grammar(lines: list[tuple]) -> list[str]:
 
 
 # --- the plan ---------------------------------------------------------------------------
-
-
-def tagged_blocks(lines: list[str], tag: str) -> list[str]:
-    """The text of every fenced block tagged `tag` under a Case, quotes removed."""
-    blocks: list[str] = []
-    fence_open = recording = False
-    buffer: list[str] = []
-    for raw in lines:
-        line = unquote(raw)
-        match = FENCE.match(line)
-        if match:
-            if not fence_open:
-                fence_open, recording, buffer = True, match.group(1).lower() == tag, []
-            else:
-                fence_open = False
-                if recording:
-                    blocks.append("\n".join(buffer))
-                recording = False
-            continue
-        if recording:
-            buffer.append(line)
-    return blocks
 
 
 def items_of(block: dict) -> list[dict]:
@@ -801,7 +788,38 @@ def check_bare_links(cases: dict, blocks: dict, project_dir: Path) -> list[str]:
     return findings
 
 
-def check(plan: str, project_dir: Path, stamp: str, now, stdout, stderr) -> int:
+def check_ratified(plan: str, plan_file: Path | None, records: list[dict]) -> list[str]:
+    """387.4: the plan against its ratified copy `<plan>.ratified.md` by `ratified.differences`,
+    the one comparison — a Case that differs in what the scripts apply, a Case with no section
+    in the copy, a section of the copy with no Case in the plan, a Case a `{supersedes:case N}`
+    of the window names excepted; then every name, `context` or `problem` of the plan that
+    still holds a Cyrillic letter. No copy — a plan written before case 387 — no comparison."""
+    findings: list[str] = []
+    copy = ratified.copy_of(plan_file) if plan_file is not None else None
+    if copy is not None and copy.is_file():
+        text = copy.read_text(encoding="utf-8")
+        superseded = superseded_in_window(records)
+        for case, parts in ratified.differences(plan, text).items():
+            findings.append(f"case {case}: differs from its ratified copy in {', '.join(parts)}")
+        ours, theirs = ratified.outside_deferred(plan), ratified.outside_deferred(text)
+        findings += [
+            f"case {case}: no section in the ratified copy" for case in ours if case not in theirs
+        ]
+        findings += [
+            f"case {case}: in the ratified copy, not in the plan"
+            for case in theirs
+            if case not in ours and case not in superseded
+        ]
+    findings += [
+        f"case {case}: its {part} still holds Cyrillic — translate it"
+        for case, part in ratified.untranslated(plan)
+    ]
+    return findings
+
+
+def check(
+    plan: str, project_dir: Path, stamp: str, now, stdout, stderr, plan_file: Path | None = None
+) -> int:
     logs = session_event_logs(project_dir, now, stamp)
     hi = hi_moment(logs, stamp)
     folder = session_dir(project_dir, now, stamp)
@@ -828,6 +846,7 @@ def check(plan: str, project_dir: Path, stamp: str, now, stdout, stderr) -> int:
     findings += check_bare_links(cases, blocks, project_dir)
     findings += check_criterion_pairs(blocks, project_dir)
     findings += check_frame(cases, blocks)
+    findings += check_ratified(plan, plan_file, records)
     for line in findings + chain_notes(cases):
         print(line, file=stdout)
     return 1 if findings else 0
@@ -862,7 +881,7 @@ def run(
         if stamp is None:
             print(NO_SESSION, file=stderr)
             return 2
-        return check(plan, project_dir, stamp, now, stdout, stderr)
+        return check(plan, project_dir, stamp, now, stdout, stderr, plan_file)
     try:
         payload = read_payload(stdin)
         if payload.get("tool_name") != TOOL:

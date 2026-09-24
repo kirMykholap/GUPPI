@@ -51,6 +51,11 @@ def test_a_backslash_in_the_body_is_refused_and_names_write(tmp_path):
     assert code == 2
     assert "bashguard: heredoc refused — a backslash in its body." in err
     assert "Write tool" in err and "Edit" in err
+    # case 384: the refusal says it is by design, so it is no finding for Retro
+    assert (
+        "The refusal is this guard working as designed, not an event of the session: "
+        "do not report it at Retro." in err
+    )
 
 
 def test_a_heredoc_that_writes_a_file_is_refused_with_the_path(tmp_path):

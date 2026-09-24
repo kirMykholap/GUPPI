@@ -37,6 +37,7 @@ PREFIXES = ("- decision[", "- estimate[", "- lesson[")
 FENCE = re.compile(r"^ {0,3}(```|~~~)\s*(\S*)")
 TIMED = re.compile(r"^- (?:\d\d:\d\d:\d\d )?(.*)$")
 LEDGER_TAG = "ledger"
+PLAN_TOOLS = ("Write", "Edit", "MultiEdit")
 
 
 def reply_text(payload: dict) -> str:
@@ -194,6 +195,27 @@ def session_dir(project_dir: Path, now, stamp: str) -> Path | None:
         return None
     day, time = hi
     return project_dir / "vault" / "raw" / day / (time[:2] + time[3:5])
+
+
+def plan_path(logs: list[tuple[str, str]], stamp: str) -> Path | None:
+    """The plan file of the session: the path of the last `tool Write:` / `tool Edit:` /
+    `tool MultiEdit:` line of this session's stamp that lies under `.claude/plans/` (case
+    122). None when no such line exists; a path the log truncated does not exist and is
+    skipped by the caller. Lives here beside the window it reads, so that `gate`, `recall`
+    and `ratified` import one reading (case 387.2)."""
+    last = None
+    for _, text in logs:
+        for line in text.splitlines():
+            parts = line.split(" ", 4)
+            if len(parts) < 5 or parts[0] != "-" or parts[2] != stamp or parts[3] != "tool":
+                continue
+            tool, sep, path = parts[4].partition(": ")
+            if not sep or tool not in PLAN_TOOLS:
+                continue
+            candidate = Path(path.strip())
+            if candidate.parent.name == "plans" and candidate.parent.parent.name == ".claude":
+                last = candidate
+    return last
 
 
 def session_event_log(project_dir: Path, now, stamp: str) -> str:

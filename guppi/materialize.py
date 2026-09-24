@@ -355,6 +355,29 @@ def then_blocks(lines: list[str]) -> tuple[dict, list[str]]:
     return merged, errors
 
 
+def tagged_blocks(lines: list[str], tag: str) -> list[str]:
+    """The text of every fenced block tagged `tag` under a Case, quotes removed; the one
+    reading of a tagged fence for `prespec` and `ratified` (case 387.3)."""
+    blocks: list[str] = []
+    fence_open = recording = False
+    buffer: list[str] = []
+    for raw in lines:
+        line = unquote(raw)
+        match = FENCE.match(line)
+        if match:
+            if not fence_open:
+                fence_open, recording, buffer = True, match.group(1).lower() == tag, []
+            else:
+                fence_open = False
+                if recording:
+                    blocks.append("\n".join(buffer))
+                recording = False
+            continue
+        if recording:
+            buffer.append(line)
+    return blocks
+
+
 def _merge_block(merged: dict, text: str, errors: list[str]) -> None:
     try:
         data = yaml.safe_load(text) or {}

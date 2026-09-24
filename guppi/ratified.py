@@ -16,7 +16,8 @@ reply shows them. The chat form the hook reads: a task line opening with `create
 `delete` or `defer` and the slug in its first code span is an item; its sub-points are its
 keys — `old` and `new` in pairs under `replace`, `reword old` and `reword new` under
 `reword`, `set` (a YAML flow mapping), `change`, `rename`, `sections.<Name>`, the fields of a
-`create` — each value one code span, with as many backticks as the value needs, or a fenced
+`create` — each value one code span, with as many backticks as the value needs and padded by
+one space on each side when it holds a backtick, an unpadded one refused (case 402), or a fenced
 block under the sub-point; a `create` of an Estimate takes its `ref` from its ledger line when
 no sub-point gives one. A last mention that is a fence tagged `DIFF` naming the Case writes
 nothing for it. A Case whose lines are all `defer` is the agent's, under `## Deferred`.
@@ -160,22 +161,23 @@ def outside_deferred(text: str) -> dict[str, list[str]]:
 # --- the chat form of `tasks` -------------------------------------------------------
 
 
-def code_value(text: str) -> str | None:
-    """The content of one code span, as many backticks as it needs; one space is trimmed
-    from each side when both stand (CommonMark), and one space that only pads a backtick
-    at the edge of the content. None when the text is not one span."""
+UNPADDED = "a value holding a backtick takes its outer span padded by one space"
+
+
+def code_value(text: str) -> tuple[str | None, str | None]:
+    """The content of one code span, as many backticks as it needs, and the refusal. One
+    space is trimmed from each side when both stand (CommonMark). A content that holds a
+    backtick must stand so padded: unpadded, CommonMark eats a backtick at its edge and
+    nothing shows it (case 402). `(None, None)` when the text is not one span."""
     text = text.strip()
     ticks = len(text) - len(text.lstrip("`"))
     if not ticks or len(text) <= 2 * ticks or not text.endswith("`" * ticks):
-        return None
+        return None, None
     inner = text[ticks:-ticks]
-    if len(inner) > 1 and inner.startswith(" ") and inner.endswith(" ") and inner.strip():
-        return inner[1:-1]
-    if inner.startswith(" `"):
-        inner = inner[1:]
-    if inner.endswith("` "):
-        inner = inner[:-1]
-    return inner
+    padded = len(inner) > 1 and inner.startswith(" ") and inner.endswith(" ") and inner.strip()
+    if "`" in inner and not padded:
+        return None, UNPADDED
+    return (inner[1:-1] if padded else inner), None
 
 
 def fenced_value(lines: list[str], start: int) -> tuple[str | None, int]:
@@ -254,8 +256,11 @@ def read_tasks(text: str) -> tuple[list[str], dict, list[str]]:
         if point:
             key, rest = point.group(2).strip(), point.group(3)
             if rest and rest.strip():
-                value = code_value(rest)
+                value, refusal = code_value(rest)
                 index += 1
+                if refusal:
+                    errors.append(f"`{key}`: {refusal}")
+                    continue
                 if value is None:
                     errors.append(f"`{key}`: the value is not one code span")
                     continue

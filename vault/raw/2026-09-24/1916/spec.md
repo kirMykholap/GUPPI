@@ -1029,8 +1029,8 @@ update:
 - [ ] update `rule-spec-write` — one clause in `How it works`: the refusal of an unpadded value holding a backtick
 - [ ] update `rule-case-protocol` — the form of a sub-point value in the Language paragraph of the Render
 - [ ] update `estimate-spec-write-copies-the-ratified-case` — the Criterion replaced whole by the `when` and `then` of this Case
-- [ ] `guppi/ratified.py` — `code_value` or `read_tasks`: a value holding a backtick in an outer span not padded on both sides returns the refusal with its reason; the one-sided pad trimming goes
-- [ ] `tests/test_ratified.py` — the padding test: an unpadded value opening and closing with a code span is refused with the reason, a padded one read; the `old` of `SHOWING` padded
+- [x] `guppi/ratified.py` — `code_value` or `read_tasks`: a value holding a backtick in an outer span not padded on both sides returns the refusal with its reason; the one-sided pad trimming goes
+- [x] `tests/test_ratified.py` — the padding test: an unpadded value opening and closing with a code span is refused with the reason, a padded one read; the `old` of `SHOWING` padded
 - [ ] `uv run guppi render`: `vault/wiki/case-schema.md`
 - [ ] read `estimate-spec-write-copies-the-ratified-case` — `uv run pytest tests/test_ratified.py`
 ```

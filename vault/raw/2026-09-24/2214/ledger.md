@@ -1,0 +1,50 @@
+- 22:52:58 decision[case 406][update][rule-case-protocol]{ref:rule-case-protocol}
+- 22:52:58 decision[case 406][update][estimate-case-protocol-case-form]{ref:estimate-case-protocol-case-form}
+- 23:27:35 decision[case 407.1][update][rule-prespec]{ref:rule-prespec}
+- 23:27:35 decision[case 407.1][create][estimate-prespec-checks-one-case]{ref:rule-prespec}{tags:session,workflow,harness}
+- 23:27:35 decision[case 407.2][update][rule-spec-write]{ref:rule-spec-write}
+- 23:27:35 decision[case 407.2][create][estimate-spec-write-checks-the-written-case]{ref:rule-spec-write}{tags:hooks,harness,workflow}
+- 23:27:35 decision[case 407.3][update][rule-spec-reconcile]{ref:rule-spec-reconcile}
+- 23:27:35 decision[case 407.3][update][estimate-spec-reconcile-shows-a-changed-case]{ref:estimate-spec-reconcile-shows-a-changed-case}
+- 23:27:35 decision[case 407.3][update][rule-hook-registry]{ref:rule-hook-registry}
+- 23:27:35 decision[case 407.4][update][rule-case-protocol]{ref:rule-case-protocol}
+- 23:27:35 decision[case 407.4][create][estimate-spec-reconcile-writes-a-fragment]{ref:rule-spec-reconcile}{tags:hooks,harness,workflow}
+- 23:27:35 decision[case 407.5][update][rule-prespec]{ref:rule-prespec}
+- 23:27:35 decision[case 407.5][update][rule-case-protocol]{ref:rule-case-protocol}
+- 23:27:35 decision[case 407.5][update][estimate-prespec-checks-the-ratified-copy]{ref:estimate-prespec-checks-the-ratified-copy}
+- 23:31:34 decision[case 408][defer][rule-frame-check]{ref:rule-frame-check}
+- 23:31:34 decision[case 409][defer][rule-context-size]{ref:rule-context-size}
+- 23:31:34 decision[case 410][defer][rule-case-protocol]{ref:rule-case-protocol}
+- 23:31:34 decision[case 411][defer][rule-case-protocol]{ref:rule-case-protocol}
+- 23:44:08 decision[case 412][defer][rule-prespec]{ref:rule-prespec}{supersedes:case 407.1}
+- 23:44:08 decision[case 412][defer][rule-prespec]{ref:rule-prespec}{supersedes:case 407.5}
+- 23:44:08 decision[case 412][defer][rule-spec-write]{ref:rule-spec-write}{supersedes:case 407.2}
+- 23:44:08 decision[case 412][defer][rule-spec-reconcile]{ref:rule-spec-reconcile}{supersedes:case 407.3}
+- 23:44:08 decision[case 412][defer][rule-spec-reconcile]{ref:rule-spec-reconcile}{supersedes:case 407.4}
+- 23:44:08 decision[case 412][defer][rule-spec-reconcile]{ref:rule-spec-reconcile}{supersedes:case 410}
+- 23:44:08 decision[case 413][defer][rule-prespec]{ref:rule-prespec}{supersedes:case 411}
+- 23:45:34 lesson[error][lesson-prespec-parent-of-superseded-sub-cases]{tags:session,workflow,harness} trigger: after Case 412 superseded each of 407.1–407.5, `prespec --check` still printed `case 407: in the ratified copy, not in the plan` root_cause: `check_ratified` excepts only the ids a `{supersedes:case N}` of the window names; a parent Case with no ledger lines of its own, whose every sub-case is superseded, is named by no supersedes, so its section in the ratified copy stays a finding
+- 23:51:24 estimate[estimate-materialize-assembles][passed] 2026-09-24, `uv run pytest tests/test_materialize.py`: 75 passed
+- 23:51:24 estimate[estimate-materialize-lifts-a-create-by-the-schema][passed] 2026-09-24, `uv run pytest tests/test_materialize.py`: 75 passed
+- 23:51:24 estimate[estimate-materialize-changes-a-named-part-alone][passed] 2026-09-24, `uv run pytest tests/test_materialize.py`: 75 passed
+- 23:51:24 estimate[estimate-materialize-walks-dates][passed] 2026-09-24, `uv run pytest tests/test_materialize.py`: 75 passed
+- 23:51:24 estimate[estimate-materialize-marks-superseded][passed] 2026-09-24, `uv run pytest tests/test_materialize.py`: 75 passed
+- 23:51:24 estimate[estimate-materialize-skips-a-carried-over-unit][passed] 2026-09-24, `uv run pytest tests/test_materialize.py`: 75 passed
+- 23:51:24 estimate[estimate-generate-writes-the-decision-page][passed] 2026-09-24, `uv run pytest tests/test_generate.py`: 87 passed
+- 23:51:24 estimate[estimate-generate-fails-alone][passed] 2026-09-24, `uv run pytest tests/test_generate.py`: 87 passed
+- 23:51:24 estimate[estimate-generate-cascades][passed] 2026-09-24, `uv run pytest tests/test_generate.py`: 87 passed
+- 23:51:24 estimate[estimate-generate-ticks-the-spec][passed] 2026-09-24, `uv run pytest tests/test_generate.py`: 87 passed
+- 23:51:24 estimate[estimate-prespec-checks-the-plan][passed] 2026-09-24, `uv run pytest tests/test_prespec.py`: 108 passed
+- 23:51:24 estimate[estimate-prespec-matches-lines-and-items][passed] 2026-09-24, `uv run pytest tests/test_prespec.py`: 108 passed
+- 23:51:24 estimate[estimate-prespec-checks-the-frontier][passed] 2026-09-24, `uv run pytest tests/test_prespec.py`: 108 passed
+- 23:51:24 estimate[estimate-prespec-requires-a-task-line][passed] 2026-09-24, `uv run pytest tests/test_prespec.py`: 108 passed
+- 23:51:24 estimate[estimate-prespec-checks-the-form-of-an-item][passed] 2026-09-24, `uv run pytest tests/test_prespec.py`: 108 passed
+- 23:51:24 estimate[estimate-lint-catches][passed] 2026-09-24, `uv run pytest tests/test_lint.py`: 69 passed
+- 23:51:24 estimate[estimate-lint-finds-a-broken-link][passed] 2026-09-24, `uv run pytest tests/test_lint.py`: 69 passed
+- 23:51:24 estimate[estimate-lint-checks-the-statuses][passed] 2026-09-24, `uv run pytest tests/test_lint.py`: 69 passed
+- 23:51:24 estimate[estimate-lint-checks-the-method][passed] 2026-09-24, `uv run pytest tests/test_lint.py`: 69 passed
+- 23:51:24 estimate[estimate-lint-counts-the-unmigrated][passed] 2026-09-24, `uv run pytest tests/test_lint.py`: 69 passed
+- 23:51:24 estimate[estimate-spec-write-copies-the-ratified-case][passed] 2026-09-24, `uv run pytest tests/test_ratified.py`: 18 passed, with the code of Case 402 — an unpadded value holding a backtick refused with its reason, a padded one read, the fixture `SHOWING` padded
+- 23:51:24 estimate[estimate-case-protocol-loaded][passed] 2026-09-24, `uv run guppi render --check`: exit 0; by hand, the `/hi` of session 2214 carried `vault/wiki/case-schema.md` whole in its context
+- 23:52:54 estimate[estimate-plan-mode-names-its-estimates][passed] 2026-09-24, by hand, the Cases of session 2214 at its close: the one Case left that updates a Render, 406 on `rule-case-protocol`, names `estimate-case-protocol-case-form`, the Estimate of the behaviour it changes, and not `estimate-case-protocol-loaded`, the live reading of the Render; no Case left updates a Purpose — 407.1 did and is superseded by 412
+- 23:52:54 lesson[error][lesson-case-ratification-preview-before-its-targets]{tags:session,workflow,ledger} trigger: the `ratification` section of Case 407.5 showed the line `decision[case 407.5][update][guppi-ratified-comparison-placeholder]`, a slug no page carries, and the right lines came only after the rule root_cause: the agent wrote the preview before choosing the pages that own the behaviour — the comparison lives in `guppi/ratified.py`, which has no page of its own — and did not check the preview against the item lines of `tasks` before showing

@@ -42,7 +42,7 @@ SHOWING = """## Case 7 — пример
 
 > **tasks:**
 > - [ ] update `rule-x` — one `replace` pair
->   - old: ``the `old` text``
+>   - old: `` the `old` text ``
 >   - new: `the new text`
 >   - set: `{status: draft}`
 >   - change: `the text changed (case 7)`
@@ -244,6 +244,28 @@ def test_write_a_value_at_a_backtick_takes_an_outer_span_padded_by_one_space():
     unpadded = f"- [ ] create `rule-x` — the rule\n  - sections.How it works: ``{opening}``\n"
     _, _, errors = ratified.read_tasks(unpadded)
     assert errors == ["`sections.How it works`: the value is not one code span"]
+
+
+def test_write_a_value_holding_a_backtick_unpadded_is_refused_padded_read():
+    """Case 402: a value that opens and closes with a code span, unpadded, would lose its edge
+    backticks as CommonMark reads it; the hook refuses it with the reason."""
+    value = "`a` and `b`"
+    unpadded = f"- [ ] update `rule-x` — a pair\n  - old: ``{value}``\n  - new: `x`\n"
+    _, _, errors = ratified.read_tasks(unpadded)
+    assert errors[0] == f"`old`: {ratified.UNPADDED}"
+    inside = "- [ ] update `rule-x` — a pair\n  - old: ``the `a` text``\n  - new: `x`\n"
+    _, _, errors = ratified.read_tasks(inside)
+    assert errors[0] == f"`old`: {ratified.UNPADDED}"
+    padded = f"- [ ] update `rule-x` — a pair\n  - old: `` {value} ``\n  - new: `x`\n"
+    _, block, errors = ratified.read_tasks(padded)
+    assert errors == [] and block["update"][0]["replace"] == [{"old": value, "new": "x"}]
+
+
+def test_write_an_unpadded_value_refuses_the_case_whole(working):
+    broken = SHOWING.replace("`` the `old` text ``", "``the `old` text``")
+    code, err = stop(working, ACK, broken, ACK)
+    assert code == 2 and f"`old`: {ratified.UNPADDED}" in err
+    assert "Case 7" not in plan_of(working).read_text(encoding="utf-8")
 
 
 def test_write_nothing_outside_a_working_session_and_nothing_on_the_re_fire(working, tmp_path):

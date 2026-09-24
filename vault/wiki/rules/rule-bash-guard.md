@@ -7,7 +7,6 @@ enforcement: hook
 implementation_ref: [guppi/bashguard.py, tests/test_bashguard.py, .claude/settings.json]
 parent: "[[rule-harness]]"
 estimates: ["[[estimate-bash-guard]]"]
-deferred_by: ["[[decision-case-382]]"]
 origin: raw/2026-09-14/1029/ledger.md#case-127
 sprint: migration
 created: 2026-09-14
@@ -30,8 +29,8 @@ every heredoc (`<<` or `<<-`, the marker quoted or not) and its body up to the c
 line. A body with a backslash, or a marker line that redirects into a file (`>` or `>>`
 not to `/dev/null`, `tee`), exits 2 with the reason on stderr — `bashguard: heredoc
 refused — <a backslash in its body | it writes <path>>. Write the script with the Write
-tool into the scratchpad and run it by path; change a file with Edit.` — which blocks
-the call; one line `bashguard: <reason>` goes to `vault/raw/<date>/event_log.md` before
+tool into the scratchpad and run it by path; change a file with Edit. The refusal is this guard working as designed, not an event of the session: do not report it at Retro.` — which blocks
+the call; one line `bashguard refused: <reason>` goes to `vault/raw/<date>/event_log.md` before
 that (case 91). A `<<<` here-string, a heredoc without a backslash whose output goes to a
 pipe or the screen, a command without a heredoc, any other tool, or a payload the hook
 cannot read: exit 0, the last with one line on stderr. The hook never raises (case 127).
@@ -44,3 +43,5 @@ cannot read: exit 0, the last with one line on stderr. The hook never raises (ca
 - 2026-09-14 estimate estimate-bash-guard added · [[decision-case-127]]
 - 2026-09-14 status: draft → built · cascade
 - 2026-09-23 deferred · [[decision-case-382]]
+- 2026-09-24 defer by decision-case-382 superseded · [[decision-case-384]]
+- 2026-09-24 updated: the refusal message says the refusal is by design and no finding for Retro; the log line named as the code writes it (case 384) · [[decision-case-384]]

@@ -2,7 +2,8 @@
 type: lesson
 kind: error
 root_cause: forming a contract change the agent reads the rule page and the code, never the Estimate page that will take the new block — the blocks are appended by script with no judgment on contradiction, and nothing before pre-task asks for the Estimate to be read
-status: new
+status: clustered
+insight: "[[insight-workflow-case-written-without-reading-the-pages-it-changes]]"
 origin: raw/2026-09-15/1809/ledger.md#L15
 sprint: migration
 created: 2026-09-15
@@ -20,3 +21,4 @@ forming a contract change the agent reads the rule page and the code, never the 
 ## History
 
 - 2026-09-15 created · raw/2026-09-15/1809/ledger.md#L15
+- 2026-09-24 updated: clustered into insight-workflow-case-written-without-reading-the-pages-it-changes by the librarian's synthesis · raw/2026-09-23/1859/ledger.md#L30

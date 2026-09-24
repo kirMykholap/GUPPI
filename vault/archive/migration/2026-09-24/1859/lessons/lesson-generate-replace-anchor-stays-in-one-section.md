@@ -2,7 +2,7 @@
 type: lesson
 kind: knowledge
 root_cause: generate applies a replace pair to the text of one section at a time, the section's heading outside it, so an anchor that crosses a section heading never matches; the Case schema does not say so
-status: clustered
+status: archived
 source: guppi/generate.py replace_once
 insight: "[[insight-workflow-case-schema-silent-on-what-the-scripts-accept]]"
 origin: raw/2026-09-23/1355/ledger.md#L36
@@ -23,3 +23,5 @@ generate applies a replace pair to the text of one section at a time, the sectio
 
 - 2026-09-23 created · raw/2026-09-23/1355/ledger.md#L36
 - 2026-09-23 updated: clustered into insight-workflow-case-schema-silent-on-what-the-scripts-accept by the librarian's synthesis · raw/2026-09-23/1355/ledger.md#L36
+- 2026-09-24 archived · insight actioned
+- 2026-09-24 archived · cleanup

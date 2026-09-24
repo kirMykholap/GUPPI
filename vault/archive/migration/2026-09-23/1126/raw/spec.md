@@ -135,7 +135,7 @@ update:
 ```tasks
 - [x] update `estimate-prespec-reconciles` — one `replace` pair inside the Criterion, `pending`
 - [ ] read `estimate-prespec-reconciles`
-- [ ] read `estimate-sprint-migration-index-dissolved`
+- [x] read `estimate-sprint-migration-index-dissolved`
 ```
 
 ## Case 365 — the retired term "Rule-class" and the `file` route out of the docstrings and test names

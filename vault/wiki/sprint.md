@@ -14,7 +14,7 @@ Rule-class files dissolved, `index.md` gone, the `file` route out of the scripts
 - [ ] vault/parked/, the 2026-08 documents, the old archive root and the empty raw date folders are gone by decision at the close of the sprint · pending
 - [ ] make test green on the last commit of migration and the branch merged into main · pending
 - [ ] No Rule-class file at the close of Slice 3f — the schemas rendered from rule pages, the glossary from entity-glossary, index.md gone, the file route out of the scripts · pending
-- [ ] index.md is gone and no live page, harness file or script docstring points at a §N of it or at the file as a source · failed
+- [x] index.md is gone and no live page, harness file or script docstring points at a §N of it or at the file as a source · passed
 - [x] The file route is out of the scripts — no RULE_CLASS, rule_class, applied by hand or prose_names in guppi/; an update item with file is a pre-spec finding; a slug without a prefix lands category unknown; tests green and lint clean on the schemas · passed
 
 ## Milestones
@@ -24,6 +24,7 @@ Rule-class files dissolved, `index.md` gone, the `file` route out of the scripts
 - [ ] the one pass of Case 378: `Given:` out of the 104 Estimates, the input of the scenario into `When:`, the `－` lines on the bounds of an edit, the journals split, the eleven Estimates of the old model named by Case 378 rewritten whole
 
 ### [ ] Slice 4 — conversion of the parked pages by group — 1 item: [[estimate-sprint-migration-leftovers-gone]]
+
 ### [ ] Slice 5 — closing — 4 items: [[estimate-sprint-migration-lint-clean]], [[estimate-sprint-migration-merges]], [[rule-spec-box]], [[rule-morph]]
 
 ## Backlog

@@ -805,6 +805,7 @@ entries:
       enough or a check is due
   exists: true
   applied: '18:53:02'
+  superseded_by: '388'
 - line: 34
   text: decision[case 381][update][entity-sprint-migration]{ref:entity-sprint-migration}
   case: '381'
@@ -961,6 +962,7 @@ entries:
     purpose: The refusal message says the refusal is by design — use Write, and do not report it at Retro
   exists: true
   applied: '18:53:02'
+  superseded_by: '384'
 - kind: update
   category: insights
   slug: insight-workflow-fact-signed-from-a-check-that-does-not-cover-it
@@ -1839,6 +1841,8 @@ decisions:
     problem: The session went to the model of the Criterion, and the Insight is not taken up in it.
   spec: vault/raw/2026-09-23/1355/spec.md
   applied: '18:53:02'
+  superseded_by:
+  - decision-case-388
 - case: '381'
   decision: decision-case-381
   origin: raw/2026-09-23/1355/ledger.md#case-381
@@ -1892,5 +1896,7 @@ decisions:
       agent takes it for an event of the session each time.
   spec: vault/raw/2026-09-23/1355/spec.md
   applied: '18:53:02'
+  superseded_by:
+  - decision-case-384
 unparsed: []
 session: '1355'

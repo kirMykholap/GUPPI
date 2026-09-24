@@ -2,7 +2,7 @@
 type: lesson
 kind: error
 root_cause: the search was a grep for phrases on plan mode, not for the Frontier or its write; the claim covered the whole vault while the command covered those phrases alone
-status: clustered
+status: archived
 insight: "[[insight-workflow-fact-signed-from-a-check-that-does-not-cover-it]]"
 origin: raw/2026-09-23/1126/ledger.md#L42
 sprint: migration
@@ -22,3 +22,5 @@ the search was a grep for phrases on plan mode, not for the Frontier or its writ
 
 - 2026-09-23 created · raw/2026-09-23/1126/ledger.md#L42
 - 2026-09-23 updated: clustered into insight-workflow-fact-signed-from-a-check-that-does-not-cover-it by the librarian's synthesis · raw/2026-09-23/1126/ledger.md#L42
+- 2026-09-24 archived · insight actioned
+- 2026-09-24 archived · cleanup

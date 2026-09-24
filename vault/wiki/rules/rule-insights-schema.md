@@ -31,7 +31,7 @@ description: |
 
   Threshold. An Insight is created on the second Lesson sharing a root cause. One occurrence is an incident; two is a pattern. The archive is not searched. A Lesson is archived only when its Insight was actioned — its `clustered` children are archived by the cascade of `generate` (case 104.2) — and that Insight stays live with its `pattern` in its index line; a recurrence after the pattern was supposedly fixed is caught there, at the cost of one index line, and reopens the Insight.
 
-  Reopening. `actioned` is not an end state. When a new Lesson matches the root cause of an `actioned` Insight, the Insight returns to `open` and the new Lesson becomes a child. Previously archived children stay archived, so `severity` counts only the current run. No separate recurrence counter — the fact is legible from History plus the retained `addressed_by`. One exception: a Lesson whose entry carries `addressed_by` — a decision line of its own session marked it with `{addresses:<its slug>}`, the Case that closed its cause. Then the Insight stays `actioned`, `addressed_by` moves to that decision, the Lesson becomes a child and is archived with the other children by the cascade (case 284.4).
+  Reopening. `actioned` is not an end state. When a new Lesson matches the root cause of an `actioned` Insight, the Insight returns to `open` and the new Lesson becomes a child. Previously archived children stay archived, so `severity` counts only the current run. No separate recurrence counter — the fact is legible from History plus the retained `addressed_by`. One exception: a Lesson whose entry carries `addressed_by` — a decision line of its own session marked it with `{addresses:<its slug>}`, the Case that closed its cause. Then the Insight stays `actioned`, `addressed_by` moves to that decision when its case is later than the one the field names, and stands otherwise — one link, the latest (cases 361, 385) — the Lesson becomes a child and is archived with the other children by the cascade (case 284.4).
 
   Slug. Area + pattern, as for Lessons: `insight-hooks-lifecycle-assumptions`.
 
@@ -117,3 +117,4 @@ examples:
 - 2026-09-23 updated: addressed_by is one link, the latest; a list is not its shape (case 361) · [[decision-case-361]]
 - 2026-09-23 status: built → draft · cascade
 - 2026-09-23 status: draft → built · cascade
+- 2026-09-24 updated: the move of addressed_by only to a later case (case 385) · [[decision-case-385]]

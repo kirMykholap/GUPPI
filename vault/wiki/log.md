@@ -3190,3 +3190,69 @@ instruction. The global feed; a page's own `## History` is the per-page view.
 - 2026-09-23 lessons/lesson-plan-mode-frontier-refused-at-hi-again archived · cleanup
 - 2026-09-23 decisions/decision-case-375 archived · cleanup
 - 2026-09-23 decisions/decision-case-377.2 archived · cleanup
+- 2026-09-24 estimates/estimate-sprint-migration-index-dissolved status: failed → passed · raw/2026-09-23/1859/ledger.md#L1 · generate
+- 2026-09-24 decisions/decision-case-383 created · raw/2026-09-23/1859/ledger.md#case-383 · generate
+- 2026-09-24 rules/rule-case-protocol updated: the Case schema names the limit of a replace pair and of a sub-case's given (case 383) · [[decision-case-383]] · generate
+- 2026-09-24 insights/insight-workflow-case-schema-silent-on-what-the-scripts-accept updated: actioned: the Case schema names, beside each form, the limit the scripts put on it — a replace pair inside one section, a sub-case's given taken as it stands (case 383) · [[decision-case-383]] · generate
+- 2026-09-24 decisions/decision-case-384 created · raw/2026-09-23/1859/ledger.md#case-384 · generate
+- 2026-09-24 decisions/decision-case-382 superseded by decision-case-384 · [[decision-case-384]] · generate
+- 2026-09-24 rules/rule-bash-guard defer by decision-case-382 superseded · [[decision-case-384]] · generate
+- 2026-09-24 rules/rule-bash-guard updated: the refusal message says the refusal is by design and no finding for Retro; the log line named as the code writes it (case 384) · [[decision-case-384]] · generate
+- 2026-09-24 estimates/estimate-bash-guard updated: the Criterion replaced whole — the message says the refusal is by design; recut to the shape of case 193 (case 384) · [[decision-case-384]] · generate
+- 2026-09-24 decisions/decision-case-385 created · raw/2026-09-23/1859/ledger.md#case-385 · generate
+- 2026-09-24 rules/rule-synthesis updated: addressed_by moves to the lesson's decision only when it is the later case (case 385) · [[decision-case-385]] · generate
+- 2026-09-24 rules/rule-insights-schema updated: the move of addressed_by only to a later case (case 385) · [[decision-case-385]] · generate
+- 2026-09-24 estimates/estimate-synthesis-keeps-actioned-by-the-mark updated: the Criterion replaced whole — addressed_by takes the later case (case 385) · [[decision-case-385]] · generate
+- 2026-09-24 insights/insight-workflow-contract-change-leaves-its-derived-text-stale updated: addressed_by back to the later case, decision-case-378.5 (case 385) · [[decision-case-385]] · generate
+- 2026-09-24 decisions/decision-case-386 created · raw/2026-09-23/1859/ledger.md#case-386 · generate
+- 2026-09-24 estimates/estimate-sprint-renders-the-backlog updated: the Criterion replaced whole — a blank line after every milestone heading (case 386) · [[decision-case-386]] · generate
+- 2026-09-24 decisions/decision-case-387.1 created · raw/2026-09-23/1859/ledger.md#case-387.1 · generate
+- 2026-09-24 rules/rule-language updated: a Case's given, when, then and tasks are English in the chat (case 387.1) · [[decision-case-387.1]] · generate
+- 2026-09-24 rules/rule-case-protocol updated: the language of the Case sections in the chat (case 387.1) · [[decision-case-387.1]] · generate
+- 2026-09-24 estimates/estimate-language-followed updated: the Criterion replaced whole — given, when, then and tasks English in the chat (case 387.1) · [[decision-case-387.1]] · generate
+- 2026-09-24 decisions/decision-case-387.2 created · raw/2026-09-23/1859/ledger.md#case-387.2 · generate
+- 2026-09-24 rules/rule-spec-write created · [[decision-case-387.2]] · generate
+- 2026-09-24 rules/rule-plan-mode child rule-spec-write added · [[decision-case-387.2]] · generate
+- 2026-09-24 estimates/estimate-spec-write-copies-the-ratified-case created · [[decision-case-387.2]] · generate
+- 2026-09-24 rules/rule-spec-write estimate estimate-spec-write-copies-the-ratified-case added · [[decision-case-387.2]] · generate
+- 2026-09-24 rules/rule-case-protocol updated: the Spec is written by the hook of rule-spec-write, which reads the chat form (case 387.2) · [[decision-case-387.2]] · generate
+- 2026-09-24 rules/rule-hook-registry updated: guppi ratified registered on Stop beside guppi ledger (case 387.2) · [[decision-case-387.2]] · generate
+- 2026-09-24 decisions/decision-case-387.3 created · raw/2026-09-23/1859/ledger.md#case-387.3 · generate
+- 2026-09-24 rules/rule-spec-reconcile created · [[decision-case-387.3]] · generate
+- 2026-09-24 rules/rule-plan-mode child rule-spec-reconcile added · [[decision-case-387.3]] · generate
+- 2026-09-24 estimates/estimate-spec-reconcile-shows-a-changed-case created · [[decision-case-387.3]] · generate
+- 2026-09-24 rules/rule-spec-reconcile estimate estimate-spec-reconcile-shows-a-changed-case added · [[decision-case-387.3]] · generate
+- 2026-09-24 rules/rule-case-protocol updated: a ratified Case is shown whole again when what the scripts apply changed, as a DIFF when only its prose changed (case 387.3) · [[decision-case-387.3]] · generate
+- 2026-09-24 rules/rule-hook-registry updated: guppi ratified --edit registered on PostToolUse of Edit, Write and MultiEdit (case 387.3) · [[decision-case-387.3]] · generate
+- 2026-09-24 decisions/decision-case-387.4 created · raw/2026-09-23/1859/ledger.md#case-387.4 · generate
+- 2026-09-24 rules/rule-prespec updated: pre-spec checks the plan against its ratified copy and finds untranslated prose (case 387.4) · [[decision-case-387.4]] · generate
+- 2026-09-24 estimates/estimate-prespec-checks-the-ratified-copy created · [[decision-case-387.4]] · generate
+- 2026-09-24 estimates/estimate-prespec-checks-the-ratified-copy status: pending → passed · raw/2026-09-23/1859/ledger.md#L27 · generate
+- 2026-09-24 rules/rule-prespec estimate estimate-prespec-checks-the-ratified-copy added · [[decision-case-387.4]] · generate
+- 2026-09-24 decisions/decision-case-388 created · raw/2026-09-23/1859/ledger.md#case-388 · generate
+- 2026-09-24 decisions/decision-case-380 superseded by decision-case-388 · [[decision-case-388]] · generate
+- 2026-09-24 insights/insight-workflow-fact-signed-from-a-check-that-does-not-cover-it defer by decision-case-380 superseded · [[decision-case-388]] · generate
+- 2026-09-24 rules/rule-prespec updated: ask-guppi reads the plan and the context itself; the agent answers the findings with one report before any Case is shown again (case 388) · [[decision-case-388]] · generate
+- 2026-09-24 estimates/estimate-prespec-reconciles updated: the Criterion replaced whole — the translation, ask-guppi reading the plan and the context, the report before the re-showing (case 388) · [[decision-case-388]] · generate
+- 2026-09-24 insights/insight-workflow-fact-signed-from-a-check-that-does-not-cover-it updated: actioned: a fact of a context is checked by ask-guppi at pre-spec; the text rule of rule-agent-writing stays (case 388) · [[decision-case-388]] · generate
+- 2026-09-24 estimates/estimate-bash-guard status: pending → passed · raw/2026-09-23/1859/ledger.md#L28 · generate
+- 2026-09-24 decisions/decision-case-389 created · raw/2026-09-23/1859/ledger.md#case-389 · generate
+- 2026-09-24 rules/rule-case-protocol deferred · [[decision-case-389]] · generate
+- 2026-09-24 lessons/lesson-case-designed-in-dialogue-not-checked-against-its-rules created · raw/2026-09-23/1859/ledger.md#L30 · generate
+- 2026-09-24 insights/insight-workflow-case-written-without-reading-the-pages-it-changes created · raw/2026-09-23/1859/ledger.md#L30 · generate
+- 2026-09-24 lessons/lesson-plan-mode-contract-change-skips-the-estimates-blocks updated: clustered into insight-workflow-case-written-without-reading-the-pages-it-changes by the librarian's synthesis · raw/2026-09-23/1859/ledger.md#L30 · generate
+- 2026-09-24 lessons/lesson-case-designed-in-dialogue-not-checked-against-its-rules updated: clustered into insight-workflow-case-written-without-reading-the-pages-it-changes by the librarian's synthesis · raw/2026-09-23/1859/ledger.md#L30 · generate
+- 2026-09-24 rules/rule-language status: built → draft · cascade · generate
+- 2026-09-24 rules/rule-sprint status: built → draft · cascade · generate
+- 2026-09-24 decisions/decision-case-380 archived · superseded · generate
+- 2026-09-24 decisions/decision-case-382 archived · superseded · generate
+- 2026-09-24 lessons/lesson-sub-case-given-the-parents-plus-lines-has-no-form archived · insight actioned · generate
+- 2026-09-24 lessons/lesson-generate-replace-anchor-stays-in-one-section archived · insight actioned · generate
+- 2026-09-24 lessons/lesson-case-context-claim-wider-than-its-search archived · insight actioned · generate
+- 2026-09-24 lessons/lesson-case-context-bookkeeping-written-from-memory archived · insight actioned · generate
+- 2026-09-24 lessons/lesson-case-context-bookkeeping-written-from-memory archived · cleanup
+- 2026-09-24 lessons/lesson-case-context-claim-wider-than-its-search archived · cleanup
+- 2026-09-24 lessons/lesson-generate-replace-anchor-stays-in-one-section archived · cleanup
+- 2026-09-24 lessons/lesson-sub-case-given-the-parents-plus-lines-has-no-form archived · cleanup
+- 2026-09-24 decisions/decision-case-380 archived · cleanup
+- 2026-09-24 decisions/decision-case-382 archived · cleanup

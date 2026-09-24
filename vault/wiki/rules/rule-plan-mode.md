@@ -4,7 +4,7 @@ kind: MOC
 purpose: Prevents work being planned against stale or contradictory vault state
 status: built
 parent: "[[rule-session]]"
-children: ["[[rule-ask]]", "[[rule-prespec-hook]]", "[[rule-prespec]]", "[[rule-spec-capture]]", "[[rule-case-protocol]]"]
+children: ["[[rule-ask]]", "[[rule-prespec-hook]]", "[[rule-prespec]]", "[[rule-spec-capture]]", "[[rule-case-protocol]]", "[[rule-spec-write]]", "[[rule-spec-reconcile]]"]
 estimates: ["[[estimate-plan-mode-verified]]", "[[estimate-plan-mode-names-its-estimates]]"]
 origin: raw/2026-09-09/ledger.md#case-19
 sprint: migration
@@ -42,3 +42,5 @@ touches no Estimate; an `update` of a `Render` touches no Estimate of the live r
 - 2026-09-20 updated: rule-case-protocol joins the children, last (case 273.1) · [[decision-case-273.1]]
 - 2026-09-22 updated: the parent is rule-session, the MOC of the five phases (case 316) · [[decision-case-316]]
 - 2026-09-23 updated: the live reading of a Render does not depend on its content (case 378.5) · [[decision-case-378.5]]
+- 2026-09-24 child rule-spec-write added · [[decision-case-387.2]]
+- 2026-09-24 child rule-spec-reconcile added · [[decision-case-387.3]]

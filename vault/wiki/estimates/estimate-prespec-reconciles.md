@@ -13,23 +13,17 @@ tags: [session, workflow, harness]
 
 ## Criterion
 
-Given:
-`guppi prespec --check <plan>` reads the Cases of the plan by their headings, the `then` blocks, the session's `frontier.md` and the session's ledger window; `guppi gate` writes the `prespec` line with the session's stamp on the Skill call.
-**＋** `--session` takes the eight-character session id — the second token of the `hi:` line, between the time and the folder; `session_stamp` cuts any value to eight characters, so a wrong token answers "no hi recorded for session <8 characters>; nothing checked" on stderr with exit 0, and nothing was checked.
-**＋** An Estimate item of a `then` block is a `create` with `ref`, or an `update` with `set: {status: pending}`; its Criterion is the Case's `given`, `when` and `then` unless the item wrote `sections: Criterion` itself (194.1).
-**＋** The tests in `tests/test_prespec.py` fix `--check`; the live reading is the first `/pre-spec` after the render of case 261.
-**－** The `PreToolUse ExitPlanMode` hook (`rule-prespec-hook`) does not change here.
-**－** The code of `guppi prespec` does not change: the exit 0 without a `hi` is the design of case 213.
-
 When:
 The person invokes `/pre-spec`, or the agent calls the skill, before the Spec is approved.
 
 Then:
-The agent runs `guppi prespec --check` on the plan file with `--session <id>`, the eight-character session id — the second token of the `hi:` line the `UserPromptSubmit` hook put in the context at `/hi`, between the time and the folder (cases 213.3, 256) — and reads the first line of the output before the exit code: "no hi recorded for session …; nothing checked" means the wrong value, and the check did not run; it fixes the plan, the frontier or the line for every finding until the command prints nothing; `guppi gate` writes the stamped `prespec` line into the event log on the Skill call.
-**＋** The agent lists every decision of this Plan Mode, one line each: slug — kind — `purpose` for a `create`, an `update`, a `delete`; a `defer` by its slug and the word `defer`; for an `update` of a rule or an entity, the page's `estimates` and which of them the Case names by slug.
-**＋** `ask-guppi` is dispatched once with the list, the absolute path of the plan file, the instruction to read every Case outside `## Deferred` — `when`, `then`, the `then` block — and two questions: which decisions contradict a page of the vault, a rule of the vault, or each other; whether an Estimate the Case does not name speaks of the thing the Case changes.
-**＋** Every finding returned is raised as a Case or named in one line as already known; then Plan Mode exits again.
-**＋** The Insight `insight-pretask-session-flag-takes-the-id-not-the-hi-line` is `actioned`; its two lessons go to the archive by the cascade; a third lesson with the same cause reopens it.
+The agent translates the name, `context` and `problem` of every Case of the plan into English, then runs `guppi prespec --check` on the plan file with `--session <id>`, the eight-character id of the `hi:` line, and reads the first line of the output before the exit code — "no hi recorded for session …; nothing checked" means the wrong value; it fixes the plan, the frontier or the line for every finding until the command prints no finding.
+**＋** `ask-guppi` is dispatched once with the absolute path of the plan file and the instruction to read every Case outside `## Deferred` — `context`, `when`, `then`, the `then` block — and, for an `update` of a rule or an entity, the page's `estimates`; of a Case under `## Deferred` it reads only the slugs of its `defer` items.
+**＋** Three questions: which decisions contradict a page of the vault, a rule of the vault, or each other; whether an Estimate the Case does not name speaks of the thing the Case changes; which fact of a `context` — a page's status, a count, a case number, a claim that no page holds a thing — the vault does not bear out.
+**＋** The agent answers the findings with one report before any Case is shown again: each finding numbered, with the fix it proposes or why it is already known, and the decisions it needs from the person.
+**＋** Then the changed Cases are shown again in one reply; a wrong fact of a `context` is fixed in the plan as a change of prose.
+**＋** `guppi gate` writes the stamped `prespec` line on the Skill call; then Plan Mode exits again.
+**－** The agent writes no list of the decisions: the plan is the list.
 **－** The body of a deferred decision is not read; a Case that changes a page another Case of the plan defers is still a finding.
 
 ## Result
@@ -70,3 +64,4 @@ The agent runs `guppi prespec --check` on the plan file with `--session <id>`, t
 - 2026-09-23 updated: the live reading is due again — the Render gained the simulation of the pairs; the Criterion stands (case 351) · [[decision-case-351]]
 - 2026-09-23 status: pending → passed · raw/2026-09-23/0034/ledger.md#L62
 - 2026-09-23 updated: the question on contradictions as the Render asks it (case 364.3) · [[decision-case-364.3]]
+- 2026-09-24 updated: the Criterion replaced whole — the translation, ask-guppi reading the plan and the context, the report before the re-showing (case 388) · [[decision-case-388]]

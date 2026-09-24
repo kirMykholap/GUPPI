@@ -1,8 +1,9 @@
 ---
 type: decision
 case: "380"
-status: current
+status: archived
 defer: ["[[insight-workflow-fact-signed-from-a-check-that-does-not-cover-it]]"]
+superseded_by: ["[[decision-case-388]]"]
 origin: raw/2026-09-23/1355/ledger.md#case-380
 sprint: migration
 created: 2026-09-23
@@ -26,3 +27,6 @@ A fact is signed on a check narrower than the claim; whether the text rule of CL
 ## History
 
 - 2026-09-23 created · raw/2026-09-23/1355/ledger.md#case-380
+- 2026-09-24 superseded by decision-case-388 · [[decision-case-388]]
+- 2026-09-24 archived · superseded
+- 2026-09-24 archived · cleanup

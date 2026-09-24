@@ -2,7 +2,7 @@
 type: lesson
 kind: error
 root_cause: the bookkeeping facts of the context were written from memory — a Case number not yet taken, a page status carried over from its neighbours, a count from an earlier run under a narrower wording — and none was checked at the moment the sentence was written
-status: clustered
+status: archived
 insight: "[[insight-workflow-fact-signed-from-a-check-that-does-not-cover-it]]"
 origin: raw/2026-09-23/1355/ledger.md#L35
 sprint: migration
@@ -22,3 +22,5 @@ the bookkeeping facts of the context were written from memory — a Case number 
 
 - 2026-09-23 created · raw/2026-09-23/1355/ledger.md#L35
 - 2026-09-23 updated: clustered into insight-workflow-fact-signed-from-a-check-that-does-not-cover-it by the librarian's synthesis · raw/2026-09-23/1355/ledger.md#L35
+- 2026-09-24 archived · insight actioned
+- 2026-09-24 archived · cleanup

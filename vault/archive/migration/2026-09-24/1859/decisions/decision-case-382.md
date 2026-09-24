@@ -1,8 +1,9 @@
 ---
 type: decision
 case: "382"
-status: current
+status: archived
 defer: ["[[rule-bash-guard]]"]
+superseded_by: ["[[decision-case-384]]"]
 origin: raw/2026-09-23/1355/ledger.md#case-382
 sprint: migration
 created: 2026-09-23
@@ -26,3 +27,6 @@ The refusal message says the refusal is by design — use Write, and do not repo
 ## History
 
 - 2026-09-23 created · raw/2026-09-23/1355/ledger.md#case-382
+- 2026-09-24 superseded by decision-case-384 · [[decision-case-384]]
+- 2026-09-24 archived · superseded
+- 2026-09-24 archived · cleanup

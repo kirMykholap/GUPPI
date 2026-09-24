@@ -3,41 +3,35 @@ type: estimate
 kind: QA
 status: passed
 target: "[[rule-bash-guard]]"
+purpose: A heredoc with a backslash or a file write is refused before it runs, with a message that sends the agent to Write and says the refusal is no finding
+method: uv run pytest tests/test_bashguard.py; the live reading is the first refusal of a session, its message read on stderr
+checked: 2026-09-24
 origin: raw/2026-09-14/1029/ledger.md#case-127
 sprint: migration
 created: 2026-09-14
 tags: [hooks, harness]
 ---
 
-## Context
-
-A lesson the agent has to remember is not a rule. A `PreToolUse Bash` hook that refuses a command whose heredoc body carries a backslash escape — or refuses a heredoc that writes a file at all, pointing at Write and Edit — makes the trap impossible instead of remembered. (Case 120 as it stands.)
-
 ## Criterion
 
-### case 127
-
 When:
-The agent calls the `Bash` tool and the hook `uv run guppi bashguard` runs on `PreToolUse`.
+The agent calls `Bash`, and `uv run guppi bashguard` on `PreToolUse` reads `tool_input.command` of the payload and finds every heredoc (`<<` or `<<-`, the marker quoted or not) and its body up to the closing line.
 
 Then:
-The hook reads `tool_input.command`, finds every heredoc (`<<` or `<<-`, the marker quoted or not) and its body up to the closing line. A body with a backslash, or a marker line that redirects into a file (`>` / `>>` not to `/dev/null`, `tee`) — exit 2, the reason on stderr: `bashguard: heredoc refused — <a backslash in its body | it writes <path>>. Write the script with the Write tool into the scratchpad and run it by path; change a file with Edit.`
-**＋** Before the refusal one line `- HH:MM:SS <stamp> bashguard: <reason>` goes to `raw/<date>/event_log.md` (case 91).
-**＋** Any other tool, a command without a heredoc, a heredoc without a backslash and without a file write, an unreadable payload — exit 0, the last with a line on stderr; the hook never raises.
-**＋** `rule-bash-guard` is a `Leaf`, `enforcement: hook`, `implementation_ref: [guppi/bashguard.py, tests/test_bashguard.py, .claude/settings.json]`, `parent: rule-harness`, `tags: [hooks, harness]`; `estimate-bash-guard` (`QA`), `pending`: the test on `python - <<'EOF'` with `\n` in the body → 2; `cat > f <<EOF` → 2; a heredoc with a clean body into a pipe → 0; a command without a heredoc → 0; an unreadable payload → 0; the live reading is the first refusal in Work Mode or, without one, the test.
-**＋** `rule-hook-registry`: in `PreToolUse` after the matcher `Edit|Write|MultiEdit` — `{ "matcher": "Bash", "hooks": [ { "type": "command", "command": "uv run guppi bashguard", "timeout": 30 } ] }`; `contract: same`; `rule-harness` gets `rule-bash-guard` as its seventh child through the `ref`.
-**－** `{supersedes:case 120}`: `decision-case-120` is superseded, `rule-bash-guard` loses `deferred_by`.
-
-## Method
-
-pytest in `tests/test_bashguard.py` with piped payloads — a `python - <<'EOF'` body with `\n` → 2, `cat > f <<EOF` → 2, a clean heredoc into a pipe → 0, no heredoc → 0, an unreadable payload → 0; the live reading is the first refusal of a Work Mode, written into the estimate line, or the test alone when none occurs
+A body with a backslash, or a marker line that writes a file (`>` or `>>` not to `/dev/null`, `tee`), exits 2 with the reason on stderr: `bashguard: heredoc refused — <a backslash in its body | it writes <path>>. Write the script with the Write tool into the scratchpad and run it by path; change a file with Edit. The refusal is this guard working as designed, not an event of the session: do not report it at Retro.`
+**＋** Before the refusal one line `- HH:MM:SS <stamp> bashguard refused: <reason>` goes to `raw/<date>/event_log.md`.
+**＋** A `<<<` here-string, a heredoc with no backslash and no file write, a command without a heredoc, another tool — exit 0.
+**＋** A payload the hook cannot read — exit 0 with one line on stderr.
+**－** The hook never raises.
 
 ## Result
 
-live 2026-09-14 session O, block 127: the first heredoc with a backslash in its body (`cat <<'EOF' | head -1`) was refused, exit 2, the reason naming Write and Edit and the scratchpad; the event log carries `12:34:26 07a95bd2 bashguard refused: a backslash in its body` before the refusal
+2026-09-24, uv run pytest tests/test_bashguard.py: 15 passed, the refusal test checks the new sentence; live in session 1859: two heredoc refusals after the change carried on stderr "The refusal is this guard working as designed, not an event of the session: do not report it at Retro."
 
 ## History
 
 - 2026-09-14 created · [[decision-case-127]]
 - 2026-09-14 status: pending → passed · raw/2026-09-14/1029/ledger.md#L35
 - 2026-09-14 status: passed → passed · raw/2026-09-14/1229/ledger.md#L3
+- 2026-09-24 updated: the Criterion replaced whole — the message says the refusal is by design; recut to the shape of case 193 (case 384) · [[decision-case-384]]
+- 2026-09-24 status: pending → passed · raw/2026-09-23/1859/ledger.md#L28

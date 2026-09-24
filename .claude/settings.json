@@ -39,10 +39,10 @@
     "PostToolUse": [
       { "hooks": [ { "type": "command", "command": "uv run guppi event tool", "timeout": 30 } ] },
       { "matcher": "ExitPlanMode",
-        "hooks": [ { "type": "command", "command": "uv run guppi spec", "timeout": 30 } ] }
+        "hooks": [ { "type": "command", "command": "uv run guppi spec", "timeout": 30 } ] }, { "matcher": "Edit|Write|MultiEdit", "hooks": [ { "type": "command", "command": "uv run guppi ratified --edit", "timeout": 30 } ] }
     ],
     "Stop": [
-      { "hooks": [ { "type": "command", "command": "uv run guppi ledger", "timeout": 30 } ] }
+      { "hooks": [ { "type": "command", "command": "uv run guppi ledger", "timeout": 30 }, { "type": "command", "command": "uv run guppi ratified", "timeout": 30 } ] }
     ]
   }
 }

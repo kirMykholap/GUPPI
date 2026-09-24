@@ -44,9 +44,9 @@ update:
 ```
 
 ```tasks
-- [ ] update `rule-case-protocol` — two `replace` pairs
-- [ ] update `insight-workflow-case-schema-silent-on-what-the-scripts-accept` — `actioned`, `addressed_by`
-- [ ] `uv run guppi render`: `vault/wiki/case-schema.md`
+- [x] update `rule-case-protocol` — two `replace` pairs
+- [x] update `insight-workflow-case-schema-silent-on-what-the-scripts-accept` — `actioned`, `addressed_by`
+- [x] `uv run guppi render`: `vault/wiki/case-schema.md`
 ```
 
 ## Case 384 — the `bashguard` refusal says it is by design
@@ -94,11 +94,11 @@ update:
 ```
 
 ```tasks
-- [ ] update `rule-bash-guard` — two `replace` pairs, `{supersedes:case 382}`
-- [ ] update `estimate-bash-guard` — the Criterion replaced whole, `purpose`, `method`, `pending`
+- [x] update `rule-bash-guard` — two `replace` pairs, `{supersedes:case 382}`
+- [x] update `estimate-bash-guard` — the Criterion replaced whole, `purpose`, `method`, `pending`
 - [x] `guppi/bashguard.py` — the new sentence in the message of `run` and in the module docstring
 - [x] `tests/test_bashguard.py` — the refusal test checks the new sentence
-- [ ] read `estimate-bash-guard`
+- [x] read `estimate-bash-guard`
 ```
 
 ## Case 385 — `addressed_by` of an `actioned` Insight takes the later of the two
@@ -152,12 +152,12 @@ update:
 ```
 
 ```tasks
-- [ ] update `rule-synthesis` — one `replace` pair
-- [ ] update `rule-insights-schema` — one `replace` pair
-- [ ] update `estimate-synthesis-keeps-actioned-by-the-mark` — the Criterion replaced whole, `purpose`, `pending`
-- [ ] update `insight-workflow-contract-change-leaves-its-derived-text-stale` — `addressed_by: decision-case-378.5`
-- [ ] `uv run guppi render`: `.claude/agents/librarian-guppi.md`
-- [ ] `uv run guppi render`: `vault/wiki/insights/schema.yaml`
+- [x] update `rule-synthesis` — one `replace` pair
+- [x] update `rule-insights-schema` — one `replace` pair
+- [x] update `estimate-synthesis-keeps-actioned-by-the-mark` — the Criterion replaced whole, `purpose`, `pending`
+- [x] update `insight-workflow-contract-change-leaves-its-derived-text-stale` — `addressed_by: decision-case-378.5`
+- [x] `uv run guppi render`: `.claude/agents/librarian-guppi.md`
+- [x] `uv run guppi render`: `vault/wiki/insights/schema.yaml`
 - [ ] read `estimate-synthesis-keeps-actioned-by-the-mark`
 ```
 
@@ -198,8 +198,8 @@ update:
 ```tasks
 - [x] `guppi/sprint.py` — a blank line after each collapsed heading in `render_milestones`; the sentence in the docstring
 - [x] `tests/test_sprint.py` — `EXPECTED` and the two assertions with a blank line between headings
-- [ ] update `estimate-sprint-renders-the-backlog` — the Criterion replaced whole, `pending`
-- [ ] `uv run guppi sprint`
+- [x] update `estimate-sprint-renders-the-backlog` — the Criterion replaced whole, `pending`
+- [x] `uv run guppi sprint`
 - [ ] read `estimate-sprint-renders-the-backlog`
 ```
 
@@ -253,11 +253,11 @@ update:
 ```
 
 ```tasks
-- [ ] update `rule-language` — two `replace` pairs and `purpose`
-- [ ] update `rule-case-protocol` — one `replace` pair
-- [ ] update `estimate-language-followed` — the Criterion replaced whole, `pending`
-- [ ] `uv run guppi render`: `CLAUDE.md`
-- [ ] `uv run guppi render`: `vault/wiki/case-schema.md`
+- [x] update `rule-language` — two `replace` pairs and `purpose`
+- [x] update `rule-case-protocol` — one `replace` pair
+- [x] update `estimate-language-followed` — the Criterion replaced whole, `pending`
+- [x] `uv run guppi render`: `CLAUDE.md`
+- [x] `uv run guppi render`: `vault/wiki/case-schema.md`
 - [ ] read `estimate-language-followed`
 ```
 
@@ -321,15 +321,15 @@ update:
 ```
 
 ```tasks
-- [ ] create `rule-spec-write`
-- [ ] create `estimate-spec-write-copies-the-ratified-case`
-- [ ] update `rule-case-protocol` — two `replace` pairs
-- [ ] update `rule-hook-registry` — one `replace` pair
+- [x] create `rule-spec-write`
+- [x] create `estimate-spec-write-copies-the-ratified-case`
+- [x] update `rule-case-protocol` — two `replace` pairs
+- [x] update `rule-hook-registry` — one `replace` pair
 - [x] `guppi/ratified.py` — the `Stop` writer: find the showing, read the sub-points, write the plan file and the ratified copy
 - [x] `guppi/cli.py` — the command `ratified`
 - [x] `tests/test_ratified.py` — the write, the section replaced, a `DIFF` and a defer skipped, exit 2 without a plan file
-- [ ] `uv run guppi render`: `.claude/settings.json`
-- [ ] `uv run guppi render`: `vault/wiki/case-schema.md`
+- [x] `uv run guppi render`: `.claude/settings.json`
+- [x] `uv run guppi render`: `vault/wiki/case-schema.md`
 - [ ] read `estimate-spec-write-copies-the-ratified-case`
 ```
 
@@ -389,14 +389,14 @@ update:
 ```
 
 ```tasks
-- [ ] create `rule-spec-reconcile`
-- [ ] create `estimate-spec-reconcile-shows-a-changed-case`
-- [ ] update `rule-case-protocol` — one `replace` pair
-- [ ] update `rule-hook-registry` — one `replace` pair
+- [x] create `rule-spec-reconcile`
+- [x] create `estimate-spec-reconcile-shows-a-changed-case`
+- [x] update `rule-case-protocol` — one `replace` pair
+- [x] update `rule-hook-registry` — one `replace` pair
 - [x] `guppi/ratified.py` — the comparison function, `--edit` with the mark, and the check at `Stop` after the write
 - [x] `tests/test_ratified.py` — blocks changed → show whole and the mark; prose only → silence; `Stop` without the showing → exit 2 and the mark cleared; the next reply → 0; the re-fire → 0
-- [ ] `uv run guppi render`: `.claude/settings.json`
-- [ ] `uv run guppi render`: `vault/wiki/case-schema.md`
+- [x] `uv run guppi render`: `.claude/settings.json`
+- [x] `uv run guppi render`: `vault/wiki/case-schema.md`
 - [ ] read `estimate-spec-reconcile-shows-a-changed-case`
 ```
 
@@ -437,12 +437,12 @@ update:
 ```
 
 ```tasks
-- [ ] update `rule-prespec` — one `replace` pair
-- [ ] create `estimate-prespec-checks-the-ratified-copy`
+- [x] update `rule-prespec` — one `replace` pair
+- [x] create `estimate-prespec-checks-the-ratified-copy`
 - [x] `guppi/prespec.py` — the findings on the copy and on Cyrillic, the comparison from `guppi/ratified.py`; the line in the docstring
 - [x] `tests/test_prespec.py` — a difference, a missing section, Cyrillic, a supersede
-- [ ] `uv run guppi render`: `.claude/skills/pre-spec/SKILL.md`
-- [ ] read `estimate-prespec-checks-the-ratified-copy`
+- [x] `uv run guppi render`: `.claude/skills/pre-spec/SKILL.md`
+- [x] read `estimate-prespec-checks-the-ratified-copy`
 ```
 
 ## Case 388 — pre-spec: ask-guppi reads the plan itself, the agent answers with one report
@@ -490,10 +490,10 @@ update:
 ```
 
 ```tasks
-- [ ] update `rule-prespec` — one `replace` pair
-- [ ] update `estimate-prespec-reconciles` — the Criterion replaced whole, `pending`
-- [ ] update `insight-workflow-fact-signed-from-a-check-that-does-not-cover-it` — `actioned`, `addressed_by`, `{supersedes:case 380}`
-- [ ] `uv run guppi render`: `.claude/skills/pre-spec/SKILL.md`
+- [x] update `rule-prespec` — one `replace` pair
+- [x] update `estimate-prespec-reconciles` — the Criterion replaced whole, `pending`
+- [x] update `insight-workflow-fact-signed-from-a-check-that-does-not-cover-it` — `actioned`, `addressed_by`, `{supersedes:case 380}`
+- [x] `uv run guppi render`: `.claude/skills/pre-spec/SKILL.md`
 - [ ] read `estimate-prespec-reconciles`
 ```
 

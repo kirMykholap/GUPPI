@@ -1,11 +1,10 @@
 ---
 type: insight
 pattern: "A fact is signed — in a Case, in a reading, in a ledger line — on a check narrower than the claim: the command that ran answered one question and the sentence it supports makes a wider one, while the wider check was one more command away."
-status: open
+status: actioned
 children: ["[[lesson-fact-asserted-from-a-partial-check]]", "[[lesson-ledger-estimate-line-carried-a-count-not-read]]", "[[lesson-case-context-claim-wider-than-its-search]]", "[[lesson-case-context-bookkeeping-written-from-memory]]"]
-severity: 2
-addressed_by: "[[decision-case-359]]"
-deferred_by: ["[[decision-case-380]]"]
+severity: 0
+addressed_by: "[[decision-case-388]]"
 origin: raw/2026-09-22/2046/ledger.md#L21
 sprint: migration
 created: 2026-09-22
@@ -51,3 +50,5 @@ Neither half is decided here.
 - 2026-09-23 updated: synthesis: lesson-case-context-claim-wider-than-its-search added, the claim of a Case's context covered the whole vault while its grep covered a few phrases; reopened from actioned · raw/2026-09-23/1126/ledger.md#L42
 - 2026-09-23 deferred · [[decision-case-380]]
 - 2026-09-23 updated: synthesis: lesson-case-context-bookkeeping-written-from-memory added, the bookkeeping facts of a Case's context written from memory and none checked when the sentence was written · raw/2026-09-23/1355/ledger.md#L35
+- 2026-09-24 defer by decision-case-380 superseded · [[decision-case-388]]
+- 2026-09-24 updated: actioned: a fact of a context is checked by ask-guppi at pre-spec; the text rule of rule-agent-writing stays (case 388) · [[decision-case-388]]

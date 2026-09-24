@@ -1,9 +1,10 @@
 ---
 type: insight
 pattern: The Case schema does not say how the scripts read the text a Case writes — which forms they resolve, how far an edit pair reaches — so the agent writes a form the scripts do not handle, and only the pre-spec check finds it.
-status: open
+status: actioned
 children: ["[[lesson-sub-case-given-the-parents-plus-lines-has-no-form]]", "[[lesson-generate-replace-anchor-stays-in-one-section]]"]
-severity: 2
+severity: 0
+addressed_by: "[[decision-case-383]]"
 origin: raw/2026-09-23/1355/ledger.md#L36
 sprint: migration
 created: 2026-09-23
@@ -21,3 +22,4 @@ A suggestion, not a decision: the Case schema of `rule-case-protocol` could stat
 ## History
 
 - 2026-09-23 created · raw/2026-09-23/1355/ledger.md#L36
+- 2026-09-24 updated: actioned: the Case schema names, beside each form, the limit the scripts put on it — a replace pair inside one section, a sub-case's given taken as it stands (case 383) · [[decision-case-383]]

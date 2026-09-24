@@ -54,10 +54,10 @@ agent's Render and is ratified with it; this page holds the registrations only.
     "PostToolUse": [
       { "hooks": [ { "type": "command", "command": "uv run guppi event tool", "timeout": 30 } ] },
       { "matcher": "ExitPlanMode",
-        "hooks": [ { "type": "command", "command": "uv run guppi spec", "timeout": 30 } ] }
+        "hooks": [ { "type": "command", "command": "uv run guppi spec", "timeout": 30 } ] }, { "matcher": "Edit|Write|MultiEdit", "hooks": [ { "type": "command", "command": "uv run guppi ratified --edit", "timeout": 30 } ] }
     ],
     "Stop": [
-      { "hooks": [ { "type": "command", "command": "uv run guppi ledger", "timeout": 30 } ] }
+      { "hooks": [ { "type": "command", "command": "uv run guppi ledger", "timeout": 30 }, { "type": "command", "command": "uv run guppi ratified", "timeout": 30 } ] }
     ]
 <!-- /rule-hook-registry -->
 
@@ -80,3 +80,5 @@ agent's Render and is ratified with it; this page holds the registrations only.
 - 2026-09-15 status: built → draft · cascade
 - 2026-09-15 status: draft → built · cascade
 - 2026-09-21 updated: guppi recall registered on SessionStart with the matcher compact (case 287) · [[decision-case-287]]
+- 2026-09-24 updated: guppi ratified registered on Stop beside guppi ledger (case 387.2) · [[decision-case-387.2]]
+- 2026-09-24 updated: guppi ratified --edit registered on PostToolUse of Edit, Write and MultiEdit (case 387.3) · [[decision-case-387.3]]

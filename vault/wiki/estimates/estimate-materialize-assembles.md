@@ -3,8 +3,9 @@ type: estimate
 kind: QA
 status: passed
 target: "[[rule-materialize]]"
+purpose: One entry per record line of a ledger, its content lifted from the then block of its Case, nothing invented
 method: pytest in tests/test_materialize.py against a temp vault; the live reading once by hand
-checked: 2026-09-21
+checked: 2026-09-24
 origin: raw/2026-09-10/ledger.md#case-31
 sprint: migration
 created: 2026-09-10
@@ -13,31 +14,22 @@ tags: [harness, workflow, ledger]
 
 ## Criterion
 
-Given:
-A unit `raw/<date>/<HHMM>/` holds `ledger.md` and `spec.md`; a Case in the Spec has a heading, the sections `given`, `when`, `then` and a `then` block.
-**＋** `guppi generate` applies the `sections` of an `update` entry as whole replacements, `replace` and `reword` as pairs, and writes every field of a `create` entry's `fields` into the frontmatter.
-**＋** The `schema.yaml` of each category lists the fields of its page: `required` and `optional` (case 214).
-**＋** The tests in `tests/test_materialize.py` fix the behaviour; the live reading is the librarian's run.
-
 When:
-`guppi materialize` lifts a record line of a ledger against its Spec.
+`uv run guppi materialize` lifts the record lines of a unit's `ledger.md` against the `then` blocks of its `spec.md`.
 
 Then:
-One entry per record line, in ledger order: `case`, `kind`, `category` from the slug prefix, `slug`, `ref`, `source`, `supersedes`, `tags`, `origin`, `line`, `text`, `decision`; from the `then` block — `fields`, `sections`, `replace`, `reword`, `change`, `rename`, `impact`; what the block lacks is `incomplete`, never invented (case 258.3).
-**＋** `reword` is a list of `{old, new}` pairs, carried as written; a mapping or a scalar under `reword` is `incomplete: [reword]` (case 274.3).
-**＋** Only the keys the category's `schema.yaml` names as fields reach `fields` of a `create` entry, and of a `defer` entry but for `type` and `purpose` — the defer's own keys, which reach `fields` whatever the target's category, for the placeholder page and for the `## Deferred` of the Decision page; the structural keys of the item go where they go — `ref` to the entry, `sections`, `tags`, `file`; a key that is neither is marked `unknown: [key]` on the entry, printed by `--show`, never written to the page, and the entry applies; `incomplete` is counted by `REQUIRED` as before, and a `defer` without `purpose` is `incomplete: [purpose]` (cases 214.1, 266).
-**＋** An Estimate has its own line and its own entry; the `ref` of the line is the Estimate itself.
-**＋** An `update` entry for an Estimate that names no part of the page — `change` alone — or carries `set.status` carries `sections.Criterion` — the text the item wrote under `sections: Criterion` itself, else the `given`, `when` and `then` of its Case verbatim with their operands as `Given:`, `When:`, `Then:` — replacing what stood there, and `set: {status: pending}` unless the item set a status itself; the `given` of a sub-case is its parent's when it has none of its own. One that names a part — `set` without `status`, `replace`, `sections` without `Criterion` — and writes no Criterion carries that part alone, nothing lifted; it carries `set: {status: pending}` when the `old` of a `replace` pair stands in the page's `## Criterion`, and no status otherwise; a written `sections.Criterion` beside any other part stands and sets `pending` (case 296).
-**＋** A `create` entry for an Estimate keeps `kind`, `purpose`, `method`, `tags` as fields; its Criterion the same way: the written text when there is one, else the Case's; `## Context` and `## Method` are not written.
-**＋** One decision entry per Case: `decision`, `case_text`, `targets`; a sub-case inherits `context`, `problem`, `recommend`, `given`, never `when`.
-**＋** An `estimate` line for a page of the same ledger is folded into its `create`; for an earlier page it is an `estimate` entry. The `new_tags` of any Case reach the yaml once. An existing yaml is extended, never rewritten.
-**－** An `update` entry carries no `contract`, and no Estimate is derived from it; a `create` carries no `method`, `estimate_kind` or `estimate_slug`; neither `criterion_block`, `case_removed` nor `remove_criterion` is derived.
-**－** The keys `contract`, `estimate_slug`, `estimate_kind` and `method` on a rule's item are ignored: they reach neither the page, nor `incomplete`, nor `unknown`.
-**－** A line the grammar does not parse goes under `unparsed`; the run goes on.
+`materialize.yaml` holds one entry per record line, in ledger order: `case`, `kind`, `category` from the slug prefix, `slug`, `ref`, `source`, `supersedes`, `tags`, `addresses`, `origin`, `line`, `text`, `decision`; from the `then` item found by its slug — `fields`, `sections`, `replace`, `reword`, `change`, `rename`, `impact`; what the block lacks is `incomplete`, never invented.
+**＋** `reword` is carried as a list of `{old, new}` pairs; a mapping or a scalar under it is `incomplete: [reword]`.
+**＋** An Estimate has its own line and its own entry, the `ref` of the line the Estimate itself; the entry of its `create` keeps `kind`, `purpose`, `method` and `tags` as fields.
+**＋** One decision record per Case: `decision`, `case_text`, `targets`; a sub-case reads a missing `context`, `problem`, `recommend` and `given` from its parent, never `when`.
+**＋** An `estimate` line whose slug has a `create` in the same unit is folded into it; one for a page of an earlier unit is an `estimate` entry of its own.
+**＋** The `new_tags` of any Case reach the yaml once each; an existing `materialize.yaml` is extended with the lines it does not hold, never rewritten.
+**＋** A line the grammar does not parse goes under `unparsed`, and the run goes on.
+**－** The keys `method`, `contract`, `estimate_slug` and `estimate_kind` on the item of a rule or an entity reach neither the page, nor `incomplete`, nor `unknown`: no Estimate is derived from them.
 
 ## Result
 
-2026-09-21, uv run pytest tests/test_materialize.py 66 green, six new — a field alone lifts nothing and sets no status, a pair inside the Criterion sets pending and lifts nothing, a pair in the Result or absent from the page sets nothing, a status named or a written Criterion beside a field is the whole replacement; live — uv run guppi materialize --show over raw/2026-09-21/1315: the three entries of 295 carry replace and set status pending and no sections, 291.2 and 296 carry the written Criterion and pending, 291.1 superseded_by 296, no incomplete
+2026-09-24, `uv run pytest tests/test_materialize.py`: 75 passed
 
 ## History
 
@@ -84,3 +76,5 @@ One entry per record line, in ledger order: `case`, `kind`, `category` from the 
 - 2026-09-20 status: pending → passed · raw/2026-09-20/1308/ledger.md#L54
 - 2026-09-21 updated: one line of the Criterion — an update item that names a part of the page changes that part alone, pending when the part is inside the Criterion; one that names none, or carries set.status, replaces the Criterion whole (case 296) · [[decision-case-296]]
 - 2026-09-21 status: pending → passed · raw/2026-09-21/1315/ledger.md#L19
+- 2026-09-25 updated: the Criterion replaced whole — the assembly of an entry by the model of case 378; the filter of keys and the update of an Estimate moved to their own Estimates (case 397.1) · [[decision-case-397.1]]
+- 2026-09-25 status: pending → passed · raw/2026-09-24/2214/ledger.md#L27

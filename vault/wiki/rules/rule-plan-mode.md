@@ -45,3 +45,5 @@ touches no Estimate; an `update` of a `Render` touches no Estimate of the live r
 - 2026-09-24 child rule-spec-write added · [[decision-case-387.2]]
 - 2026-09-24 child rule-spec-reconcile added · [[decision-case-387.3]]
 - 2026-09-24 child rule-frame-check added · [[decision-case-391.1]]
+- 2026-09-25 status: built → draft · cascade
+- 2026-09-25 status: draft → built · cascade

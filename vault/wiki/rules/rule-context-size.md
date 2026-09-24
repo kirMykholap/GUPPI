@@ -7,6 +7,7 @@ enforcement: hook
 implementation_ref: [guppi/context.py, tests/test_context.py, .claude/settings.json]
 parent: "[[rule-harness]]"
 estimates: ["[[estimate-context-size-shown-after-each-reply]]", "[[estimate-context-size-warns-past-the-limit]]"]
+deferred_by: ["[[decision-case-404]]", "[[decision-case-409]]"]
 origin: raw/2026-09-24/1303/ledger.md#case-392.1
 sprint: migration
 created: 2026-09-24
@@ -27,3 +28,5 @@ Prevents a session from running on while the person cannot see how full the cont
 - 2026-09-24 estimate estimate-context-size-shown-after-each-reply added · [[decision-case-392.1]]
 - 2026-09-24 updated: the warning past 400 000 tokens (case 392.2) · [[decision-case-392.2]]
 - 2026-09-24 estimate estimate-context-size-warns-past-the-limit added · [[decision-case-392.2]]
+- 2026-09-25 deferred · [[decision-case-404]]
+- 2026-09-25 deferred · [[decision-case-409]]

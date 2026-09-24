@@ -6,7 +6,7 @@ status: built
 enforcement: check
 implementation_ref: [guppi/materialize.py, tests/test_materialize.py]
 parent: "[[rule-documentation]]"
-estimates: ["[[estimate-materialize-assembles]]", "[[estimate-materialize-walks-dates]]", "[[estimate-materialize-shows]]", "[[estimate-materialize-lifts-a-lesson]]", "[[estimate-materialize-marks-exists]]", "[[estimate-materialize-fails-alone]]", "[[estimate-materialize-marks-superseded]]", "[[estimate-materialize-skips-a-carried-over-unit]]", "[[estimate-materialize-carries-addresses]]", "[[estimate-materialize-lifts-unfiltered-on-a-schema-change]]", "[[estimate-materialize-refolds-a-reading-on-a-supersede]]", "[[estimate-materialize-lifts-when-and-then]]"]
+estimates: ["[[estimate-materialize-assembles]]", "[[estimate-materialize-walks-dates]]", "[[estimate-materialize-shows]]", "[[estimate-materialize-lifts-a-lesson]]", "[[estimate-materialize-marks-exists]]", "[[estimate-materialize-fails-alone]]", "[[estimate-materialize-marks-superseded]]", "[[estimate-materialize-skips-a-carried-over-unit]]", "[[estimate-materialize-carries-addresses]]", "[[estimate-materialize-lifts-unfiltered-on-a-schema-change]]", "[[estimate-materialize-refolds-a-reading-on-a-supersede]]", "[[estimate-materialize-lifts-when-and-then]]", "[[estimate-materialize-lifts-a-create-by-the-schema]]", "[[estimate-materialize-changes-a-named-part-alone]]"]
 origin: raw/2026-09-10/ledger.md#case-31
 sprint: migration
 created: 2026-09-10
@@ -108,3 +108,7 @@ entry's fields, each with its writer, live in the docstring of `guppi/materializ
 - 2026-09-23 updated: the Criterion lifted is when and then (case 378.2) · [[decision-case-378.2]]
 - 2026-09-23 estimate estimate-materialize-lifts-when-and-then added · [[decision-case-378.2]]
 - 2026-09-23 updated: a pair inside a Criterion is incomplete (case 378.4) · [[decision-case-378.4]]
+- 2026-09-25 estimate estimate-materialize-lifts-a-create-by-the-schema added · [[decision-case-397.2]]
+- 2026-09-25 estimate estimate-materialize-changes-a-named-part-alone added · [[decision-case-397.3]]
+- 2026-09-25 status: built → draft · cascade
+- 2026-09-25 status: draft → built · cascade

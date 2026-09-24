@@ -8,6 +8,7 @@ governs: .claude/agents/frame-guppi.md
 render_mode: full
 parent: "[[rule-plan-mode]]"
 estimates: ["[[estimate-frame-check-finds-a-contradiction]]"]
+deferred_by: ["[[decision-case-403]]", "[[decision-case-408]]"]
 origin: raw/2026-09-24/1303/ledger.md#case-391.1
 sprint: migration
 created: 2026-09-24
@@ -43,3 +44,5 @@ Answer with nothing else:
 
 - 2026-09-24 created · [[decision-case-391.1]]
 - 2026-09-24 estimate estimate-frame-check-finds-a-contradiction added · [[decision-case-391.1]]
+- 2026-09-25 deferred · [[decision-case-403]]
+- 2026-09-25 deferred · [[decision-case-408]]

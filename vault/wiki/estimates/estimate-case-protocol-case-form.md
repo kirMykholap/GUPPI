@@ -14,25 +14,18 @@ tags: [session, workflow]
 
 ## Criterion
 
-Given:
-the six `schema.yaml` are the Renders of their rule pages (case 304); `case-schema.md` is the Render of `rule-case-protocol`, loaded by `/hi` (case 273).
-**＋** An `update` of the Render of `rule-case-protocol` touches the Estimate of the live reading of that Render (187).
-**＋** The reading of `estimate-case-protocol-case-form` is the Cases of this session at its close, by hand.
-
 When:
-The agent writes a Case in the chat — at its first showing, when shown again after the owner's change or after its own finding in ratified text (373), and with sub-cases.
+The agent shows a Case in the chat, at its first showing or again.
 
 Then:
-`given` holds the conditions of the behaviour; the state of the pages the Case changes goes to `context`.
-**＋** `context` opens with the mechanism in plain words — what the thing does today and where it goes wrong — and closes with one sentence of bookkeeping: the state of the pages, the vault's answer, the Estimates of the rule the Case touches and the ones it does not; a case number stands in `context` or `problem` only when the Case is about that case; no count of sentences — the shape of each story section bounds it (case 267).
-**＋** `given`, `when` and `then` together are the Criterion of the Estimate, copied whole and replacing what stood there.
-**＋** An item that writes `sections: Criterion` itself signs that text, on a `create` and on an `update` alike; the Case's `given`, `when`, `then` are the Criterion of the one Estimate that writes none; that is how one Case touches two Estimates.
-**＋** The Case names by slug the Estimate it changes.
-**＋** `tasks` carries no `contract` line and no "block N" line; in the chat the content of an item stands as sub-points under its line — `old` and `new` of a pair, the value of a `set` or a `sections`, the fields of a `create` (370).
-**＋** A Case with sub-cases is shown in one reply — the parent's `context`, `problem`, `recommend`, then every sub-case whole; a sub-case questioned or changed is shown again alone (355.2).
-**＋** The Case opens with the heading `## Case N — name` at every showing, a sub-case with `### Case N.M — name` (368).
-**－** A `create` carries no `method`, `estimate_kind` or `estimate_slug`: a new promise is an explicit `create` of an Estimate with its own slug.
-**－** The eight sections of the chat form do not change; in the chat `ratification` holds the preview of the ledger lines alone, and the agent's own text stands after the Case, after one horizontal rule (355.1).
+The Case opens with the heading `## Case N — name`, a sub-case with `### Case N.M — name` under its parent, and holds its sections in the order of the Sections table, each one blockquote whose first line is `**name:**`.
+**＋** `context` is prose: the mechanism in plain words first, then the state of the pages the Case changes, the vault's answer and why an Estimate of the rule is not touched; a case number stands in `context` or `problem` only when the Case is about that case, and a count of items stands in none of the story sections unless the Case is about that count.
+**＋** `given` holds the frame, one thing per line — each page, module, file and test the Case touches and the rule that constrains, its slug or path in a code span and its role — and no state; `when` and `then` name only what `given` names.
+**＋** In `given`, `when` and `then` each line after the first opens with `**＋**` or `**－**`, a `**－**` line names something of `given` or `when`, and `then` holds behaviour only.
+**＋** `tasks` names by slug each Estimate the Case creates or replaces, and under a line whose item writes content that content stands as sub-points; no `contract` line and no "block N" line.
+**＋** A pair under `replace` or `reword` stands only when the Case says what the sentence around each match names; a Case that changes the behaviour of a page gives an `update` to each Estimate of that page whose Criterion speaks of the change.
+**＋** `ratification` holds only the preview of the ledger lines in an untagged fence; the agent's own text stands after the Case, after one horizontal rule, and the reply ends with a plain question.
+**＋** A Case with sub-cases is shown in one reply: the parent's `context`, `problem` and `recommend`, then each sub-case whole.
 
 ## Result
 
@@ -55,3 +48,5 @@ Then:
 - 2026-09-23 updated: the Criterion names the heading of a Case in the chat (case 368) · [[decision-case-368]]
 - 2026-09-23 updated: the Criterion names the sub-points of an item's content in the chat (case 370) · [[decision-case-370]]
 - 2026-09-23 updated: the When names the showing again after the agent's own finding (case 373) · [[decision-case-373]]
+- 2026-09-25 updated: the Criterion replaced whole — the form of a Case in the chat by the model of case 378, the line of case 353 taken from estimate-case-protocol-loaded (case 396.1) · [[decision-case-396.1]]
+- 2026-09-25 updated: the Criterion replaced whole — the line on context names no count of items in the story sections; the rest as case 396.1 wrote it (case 406) · [[decision-case-406]]

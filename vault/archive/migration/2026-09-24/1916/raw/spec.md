@@ -38,8 +38,8 @@ update:
 ```
 
 ```tasks
-- [ ] update `entity-sprint-migration` — Slice 3g: the one note cut into four
-- [ ] `uv run guppi sprint`
+- [x] update `entity-sprint-migration` — Slice 3g: the one note cut into four
+- [x] `uv run guppi sprint`
 ```
 
 ## Case 396 — `rule-case-protocol`: two Estimates of the old model rewritten whole
@@ -88,7 +88,7 @@ update:
 ```
 
 ```tasks
-- [ ] update `estimate-case-protocol-case-form` — the Criterion replaced whole by the `when` and `then` of this Case
+- [x] update `estimate-case-protocol-case-form` — the Criterion replaced whole by the `when` and `then` of this Case
 - [ ] read `estimate-case-protocol-case-form` — by hand, the Cases of this session at its close
 ```
 
@@ -119,8 +119,8 @@ update:
 ```
 
 ```tasks
-- [ ] update `estimate-case-protocol-loaded` — the Criterion replaced whole by the `when` and `then` of this Case, and its `method`
-- [ ] read `estimate-case-protocol-loaded` — `uv run guppi render --check`, and by hand the `/hi` of this session
+- [x] update `estimate-case-protocol-loaded` — the Criterion replaced whole by the `when` and `then` of this Case, and its `method`
+- [x] read `estimate-case-protocol-loaded` — `uv run guppi render --check`, and by hand the `/hi` of this session
 ```
 
 ## Case 397 — `rule-materialize`: three Estimates of the old model, the journal `-assembles` split
@@ -168,8 +168,8 @@ update:
 ```
 
 ```tasks
-- [ ] update `estimate-materialize-assembles` — the Criterion replaced whole by the `when` and `then` of this Case, and its `purpose`
-- [ ] read `estimate-materialize-assembles` — `uv run pytest tests/test_materialize.py`
+- [x] update `estimate-materialize-assembles` — the Criterion replaced whole by the `when` and `then` of this Case, and its `purpose`
+- [x] read `estimate-materialize-assembles` — `uv run pytest tests/test_materialize.py`
 ```
 
 ### Case 397.2 — The keys of a `create` and a `defer` by `schema.yaml`
@@ -203,8 +203,8 @@ create:
 ```
 
 ```tasks
-- [ ] create `estimate-materialize-lifts-a-create-by-the-schema` — the promise of cases 214.1 and 266, moved out of `estimate-materialize-assembles`
-- [ ] read `estimate-materialize-lifts-a-create-by-the-schema` — `uv run pytest tests/test_materialize.py`
+- [x] create `estimate-materialize-lifts-a-create-by-the-schema` — the promise of cases 214.1 and 266, moved out of `estimate-materialize-assembles`
+- [x] read `estimate-materialize-lifts-a-create-by-the-schema` — `uv run pytest tests/test_materialize.py`
 ```
 
 ### Case 397.3 — An `update` of an Estimate: a part or the whole
@@ -238,8 +238,8 @@ create:
 ```
 
 ```tasks
-- [ ] create `estimate-materialize-changes-a-named-part-alone` — the promise of cases 296 and 378.4, moved out of `estimate-materialize-assembles`
-- [ ] read `estimate-materialize-changes-a-named-part-alone` — `uv run pytest tests/test_materialize.py`
+- [x] create `estimate-materialize-changes-a-named-part-alone` — the promise of cases 296 and 378.4, moved out of `estimate-materialize-assembles`
+- [x] read `estimate-materialize-changes-a-named-part-alone` — `uv run pytest tests/test_materialize.py`
 ```
 
 ### Case 397.4 — The walk of the units under `raw/`
@@ -271,8 +271,8 @@ update:
 ```
 
 ```tasks
-- [ ] update `estimate-materialize-walks-dates` — the Criterion replaced whole by the `when` and `then` of this Case, its `purpose` and `method`; `## Context` and `## Method` go with `set.method`
-- [ ] read `estimate-materialize-walks-dates` — `uv run pytest tests/test_materialize.py`
+- [x] update `estimate-materialize-walks-dates` — the Criterion replaced whole by the `when` and `then` of this Case, its `purpose` and `method`; `## Context` and `## Method` go with `set.method`
+- [x] read `estimate-materialize-walks-dates` — `uv run pytest tests/test_materialize.py`
 ```
 
 ### Case 397.5 — The mark of a `supersedes`
@@ -302,8 +302,8 @@ update:
 ```
 
 ```tasks
-- [ ] update `estimate-materialize-marks-superseded` — the Criterion replaced whole by the `when` and `then` of this Case
-- [ ] read `estimate-materialize-marks-superseded` — `uv run pytest tests/test_materialize.py`
+- [x] update `estimate-materialize-marks-superseded` — the Criterion replaced whole by the `when` and `then` of this Case
+- [x] read `estimate-materialize-marks-superseded` — `uv run pytest tests/test_materialize.py`
 ```
 
 ## Case 398 — `rule-page-generation`: three Estimates of the old model
@@ -350,8 +350,8 @@ update:
 ```
 
 ```tasks
-- [ ] update `estimate-generate-writes-the-decision-page` — the Criterion replaced whole by the `when` and `then` of this Case
-- [ ] read `estimate-generate-writes-the-decision-page` — `uv run pytest tests/test_generate.py`
+- [x] update `estimate-generate-writes-the-decision-page` — the Criterion replaced whole by the `when` and `then` of this Case
+- [x] read `estimate-generate-writes-the-decision-page` — `uv run pytest tests/test_generate.py`
 ```
 
 ### Case 398.2 — One bad entry does not stop the run
@@ -384,8 +384,8 @@ update:
 ```
 
 ```tasks
-- [ ] update `estimate-generate-fails-alone` — the Criterion replaced whole by the `when` and `then` of this Case
-- [ ] read `estimate-generate-fails-alone` — `uv run pytest tests/test_generate.py`
+- [x] update `estimate-generate-fails-alone` — the Criterion replaced whole by the `when` and `then` of this Case
+- [x] read `estimate-generate-fails-alone` — `uv run pytest tests/test_generate.py`
 ```
 
 ### Case 398.3 — The cascade
@@ -417,8 +417,8 @@ update:
 ```
 
 ```tasks
-- [ ] update `estimate-generate-cascades` — the Criterion replaced whole by the `when` and `then` of this Case, and its `purpose`
-- [ ] read `estimate-generate-cascades` — `uv run pytest tests/test_generate.py`
+- [x] update `estimate-generate-cascades` — the Criterion replaced whole by the `when` and `then` of this Case, and its `purpose`
+- [x] read `estimate-generate-cascades` — `uv run pytest tests/test_generate.py`
 ```
 
 ## Case 399 — `rule-prespec`: the journal `-checks-the-plan` split by check
@@ -470,8 +470,8 @@ update:
 ```
 
 ```tasks
-- [ ] update `estimate-prespec-checks-the-plan` — the Criterion replaced whole by the `when` and `then` of this Case, and its `purpose`
-- [ ] read `estimate-prespec-checks-the-plan` — `uv run pytest tests/test_prespec.py`
+- [x] update `estimate-prespec-checks-the-plan` — the Criterion replaced whole by the `when` and `then` of this Case, and its `purpose`
+- [x] read `estimate-prespec-checks-the-plan` — `uv run pytest tests/test_prespec.py`
 ```
 
 ### Case 399.2 — The ledger lines and the items of the plan
@@ -504,8 +504,8 @@ create:
 ```
 
 ```tasks
-- [ ] create `estimate-prespec-matches-lines-and-items` — the check of case 59.1, moved out of `estimate-prespec-checks-the-plan`
-- [ ] read `estimate-prespec-matches-lines-and-items` — `uv run pytest tests/test_prespec.py`
+- [x] create `estimate-prespec-matches-lines-and-items` — the check of case 59.1, moved out of `estimate-prespec-checks-the-plan`
+- [x] read `estimate-prespec-matches-lines-and-items` — `uv run pytest tests/test_prespec.py`
 ```
 
 ### Case 399.3 — The Frontier of the session
@@ -541,8 +541,8 @@ create:
 ```
 
 ```tasks
-- [ ] create `estimate-prespec-checks-the-frontier` — the check of cases 59.2 and 310.6, moved out of `estimate-prespec-checks-the-plan`
-- [ ] read `estimate-prespec-checks-the-frontier` — `uv run pytest tests/test_prespec.py`
+- [x] create `estimate-prespec-checks-the-frontier` — the check of cases 59.2 and 310.6, moved out of `estimate-prespec-checks-the-plan`
+- [x] read `estimate-prespec-checks-the-frontier` — `uv run pytest tests/test_prespec.py`
 ```
 
 ### Case 399.4 — `tasks` and the read line
@@ -577,8 +577,8 @@ create:
 ```
 
 ```tasks
-- [ ] create `estimate-prespec-requires-a-task-line` — the check of cases 59.3 and 327, moved out of `estimate-prespec-checks-the-plan`
-- [ ] read `estimate-prespec-requires-a-task-line` — `uv run pytest tests/test_prespec.py`
+- [x] create `estimate-prespec-requires-a-task-line` — the check of cases 59.3 and 327, moved out of `estimate-prespec-checks-the-plan`
+- [x] read `estimate-prespec-requires-a-task-line` — `uv run pytest tests/test_prespec.py`
 ```
 
 ### Case 399.5 — The form of an item
@@ -612,8 +612,8 @@ create:
 ```
 
 ```tasks
-- [ ] create `estimate-prespec-checks-the-form-of-an-item` — the checks of cases 203.1, 221 and 320, moved out of `estimate-prespec-checks-the-plan`
-- [ ] read `estimate-prespec-checks-the-form-of-an-item` — `uv run pytest tests/test_prespec.py`
+- [x] create `estimate-prespec-checks-the-form-of-an-item` — the checks of cases 203.1, 221 and 320, moved out of `estimate-prespec-checks-the-plan`
+- [x] read `estimate-prespec-checks-the-form-of-an-item` — `uv run pytest tests/test_prespec.py`
 ```
 
 ## Case 400 — `rule-plan-mode`: the last Estimate of the old model; the note of the eleven leaves Slice 3g
@@ -656,8 +656,8 @@ update:
 ```
 
 ```tasks
-- [ ] update `estimate-plan-mode-names-its-estimates` — the Criterion replaced whole by the `when` and `then` of this Case, its `purpose` and `method`
-- [ ] read `estimate-plan-mode-names-its-estimates` — by hand, the Cases of this session at its close
+- [x] update `estimate-plan-mode-names-its-estimates` — the Criterion replaced whole by the `when` and `then` of this Case, its `purpose` and `method`
+- [x] read `estimate-plan-mode-names-its-estimates` — by hand, the Cases of this session at its close
 ```
 
 ### Case 400.2 — The note of the eleven leaves Slice 3g
@@ -685,8 +685,8 @@ update:
 ```
 
 ```tasks
-- [ ] update `entity-sprint-migration` — the note of the eleven Estimates out of Slice 3g
-- [ ] `uv run guppi sprint`
+- [x] update `entity-sprint-migration` — the note of the eleven Estimates out of Slice 3g
+- [x] `uv run guppi sprint`
 ```
 
 ## Case 401 — The journals: `estimate-lint-catches` split by class, `Given:` out of the other two
@@ -740,8 +740,8 @@ update:
 ```
 
 ```tasks
-- [ ] update `estimate-lint-catches` — the Criterion replaced whole by the `when` and `then` of this Case, and its `purpose`
-- [ ] read `estimate-lint-catches` — `uv run pytest tests/test_lint.py`
+- [x] update `estimate-lint-catches` — the Criterion replaced whole by the `when` and `then` of this Case, and its `purpose`
+- [x] read `estimate-lint-catches` — `uv run pytest tests/test_lint.py`
 ```
 
 ### Case 401.2 — Links
@@ -777,8 +777,8 @@ create:
 ```
 
 ```tasks
-- [ ] create `estimate-lint-finds-a-broken-link` — the classes `ref`, `origin`, `decision` and `orphan`, moved out of `estimate-lint-catches`
-- [ ] read `estimate-lint-finds-a-broken-link` — `uv run pytest tests/test_lint.py`
+- [x] create `estimate-lint-finds-a-broken-link` — the classes `ref`, `origin`, `decision` and `orphan`, moved out of `estimate-lint-catches`
+- [x] read `estimate-lint-finds-a-broken-link` — `uv run pytest tests/test_lint.py`
 ```
 
 ### Case 401.3 — Statuses
@@ -811,8 +811,8 @@ create:
 ```
 
 ```tasks
-- [ ] create `estimate-lint-checks-the-statuses` — the classes `status`, `unread` and `deferred`, moved out of `estimate-lint-catches`
-- [ ] read `estimate-lint-checks-the-statuses` — `uv run pytest tests/test_lint.py`
+- [x] create `estimate-lint-checks-the-statuses` — the classes `status`, `unread` and `deferred`, moved out of `estimate-lint-catches`
+- [x] read `estimate-lint-checks-the-statuses` — `uv run pytest tests/test_lint.py`
 ```
 
 ### Case 401.4 — `method`
@@ -845,8 +845,8 @@ create:
 ```
 
 ```tasks
-- [ ] create `estimate-lint-checks-the-method` — the class `method`, moved out of `estimate-lint-catches`
-- [ ] read `estimate-lint-checks-the-method` — `uv run pytest tests/test_lint.py`
+- [x] create `estimate-lint-checks-the-method` — the class `method`, moved out of `estimate-lint-catches`
+- [x] read `estimate-lint-checks-the-method` — `uv run pytest tests/test_lint.py`
 ```
 
 ### Case 401.5 — The `unmigrated` count
@@ -877,8 +877,8 @@ create:
 ```
 
 ```tasks
-- [ ] create `estimate-lint-counts-the-unmigrated` — the class `unmigrated`, moved out of `estimate-lint-catches`
-- [ ] read `estimate-lint-counts-the-unmigrated` — `uv run pytest tests/test_lint.py`
+- [x] create `estimate-lint-counts-the-unmigrated` — the class `unmigrated`, moved out of `estimate-lint-catches`
+- [x] read `estimate-lint-counts-the-unmigrated` — `uv run pytest tests/test_lint.py`
 ```
 
 ### Case 401.6 — `generate` ticks the lines of a Spec
@@ -912,8 +912,8 @@ update:
 ```
 
 ```tasks
-- [ ] update `estimate-generate-ticks-the-spec` — the Criterion replaced whole by the `when` and `then` of this Case
-- [ ] read `estimate-generate-ticks-the-spec` — `uv run pytest tests/test_generate.py`
+- [x] update `estimate-generate-ticks-the-spec` — the Criterion replaced whole by the `when` and `then` of this Case
+- [x] read `estimate-generate-ticks-the-spec` — `uv run pytest tests/test_generate.py`
 ```
 
 ### Case 401.7 — A unit with `carry.md` is skipped
@@ -940,8 +940,8 @@ update:
 ```
 
 ```tasks
-- [ ] update `estimate-materialize-skips-a-carried-over-unit` — the Criterion replaced whole by the `when` and `then` of this Case
-- [ ] read `estimate-materialize-skips-a-carried-over-unit` — `uv run pytest tests/test_materialize.py`
+- [x] update `estimate-materialize-skips-a-carried-over-unit` — the Criterion replaced whole by the `when` and `then` of this Case
+- [x] read `estimate-materialize-skips-a-carried-over-unit` — `uv run pytest tests/test_materialize.py`
 ```
 
 ### Case 401.8 — The note of the journals leaves Slice 3g
@@ -969,8 +969,8 @@ update:
 ```
 
 ```tasks
-- [ ] update `entity-sprint-migration` — the note of the journals out of Slice 3g
-- [ ] `uv run guppi sprint`
+- [x] update `entity-sprint-migration` — the note of the journals out of Slice 3g
+- [x] `uv run guppi sprint`
 ```
 
 ## Case 402 — `rule-spec-write`: a value holding a backtick only in a padded span
@@ -1026,13 +1026,13 @@ update:
 ```
 
 ```tasks
-- [ ] update `rule-spec-write` — one clause in `How it works`: the refusal of an unpadded value holding a backtick
-- [ ] update `rule-case-protocol` — the form of a sub-point value in the Language paragraph of the Render
-- [ ] update `estimate-spec-write-copies-the-ratified-case` — the Criterion replaced whole by the `when` and `then` of this Case
+- [x] update `rule-spec-write` — one clause in `How it works`: the refusal of an unpadded value holding a backtick
+- [x] update `rule-case-protocol` — the form of a sub-point value in the Language paragraph of the Render
+- [x] update `estimate-spec-write-copies-the-ratified-case` — the Criterion replaced whole by the `when` and `then` of this Case
 - [x] `guppi/ratified.py` — `code_value` or `read_tasks`: a value holding a backtick in an outer span not padded on both sides returns the refusal with its reason; the one-sided pad trimming goes
 - [x] `tests/test_ratified.py` — the padding test: an unpadded value opening and closing with a code span is refused with the reason, a padded one read; the `old` of `SHOWING` padded
-- [ ] `uv run guppi render`: `vault/wiki/case-schema.md`
-- [ ] read `estimate-spec-write-copies-the-ratified-case` — `uv run pytest tests/test_ratified.py`
+- [x] `uv run guppi render`: `vault/wiki/case-schema.md`
+- [x] read `estimate-spec-write-copies-the-ratified-case` — `uv run pytest tests/test_ratified.py`
 ```
 
 ## Case 405 — A defer is written in the reply that asks for it, with no ratification of its own
@@ -1087,9 +1087,9 @@ update:
 ```
 
 ```tasks
-- [ ] update `rule-case-protocol` — the section on the short form in the Render: no `ratification` section, the defer written in the reply that asks for it
-- [ ] create `estimate-case-protocol-defers-in-one-reply` — the new promise of the short form
-- [ ] `uv run guppi render`: `vault/wiki/case-schema.md`
+- [x] update `rule-case-protocol` — the section on the short form in the Render: no `ratification` section, the defer written in the reply that asks for it
+- [x] create `estimate-case-protocol-defers-in-one-reply` — the new promise of the short form
+- [x] `uv run guppi render`: `vault/wiki/case-schema.md`
 - [ ] read `estimate-case-protocol-defers-in-one-reply` — by hand, the first defer the person asks for after the render
 ```
 

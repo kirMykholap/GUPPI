@@ -3,8 +3,9 @@ type: estimate
 kind: QA
 status: passed
 target: "[[rule-plan-mode]]"
-purpose: A ratified Case names by slug the Estimate it changes
-method: read by hand at the close of this session's Spec — every Case that changes a rule names the Estimate it changes by slug, and a Case that changes only the Purpose section names none
+purpose: A Case that updates a Purpose or a Render names no Estimate for it but the Estimate of the behaviour it changes
+method: "by hand at the close of a session: each Case that updates a Purpose or a Render of a rule, and the Estimates its then block names"
+checked: 2026-09-24
 origin: raw/2026-09-16/1034/ledger.md#case-187
 sprint: migration
 created: 2026-09-16
@@ -13,38 +14,16 @@ tags: [session, workflow]
 
 ## Criterion
 
-Given:
-`materialize.py:583` derives the Estimate update from `item.get("contract") == "changed"`;
-`contract` sits in `DERIVED_KEYS`, so it never reaches a page field.
-**＋** `estimate-plan-mode-verified` is QA, `passed`, Method `make test-plan-mode`, its
-Criterion the two verification points of Plan Mode — another action.
-**＋** the slug `estimate-plan-mode-names-its-estimates` is free: no live page and no hit
-in the archive.
-**＋** the tags `session` and `workflow` are already on `rule-plan-mode`; `harness` does not
-apply, the scripts are Cases 189 and 190.
-**＋** `rule-materialize` holds today's opposite and is deferred by the same case 182.
-**＋** the librarian runs `materialize` and `generate` once, at the close of the session,
-with the new code; so the `then` blocks of this Spec from Case 187 on are written in the
-new form, and the blocks of Case 186 are rewritten by a Work Mode task.
-**－** `{supersedes:case 182}` is not written on this Case: one such mark clears
-`deferred_by` from all five targets of 182 at once. It goes on the last Case of the group.
-
 When:
-A Case that changes a rule page is ratified.
+The person ratifies a Case that updates the `Purpose` or the `Render` of a rule page.
 
 Then:
-The Case names by slug the Estimate it changes, in its `then` block.
-**＋** only a replaced Criterion sets an Estimate `pending`.
-**＋** an `update` of the rule's `Purpose` section touches no Estimate.
-**＋** an `update` of the rule's `Render` section touches the Estimate of the live reading
-of that Render.
-**－** the `contract` flag decides nothing: no Estimate is derived from it.
-**－** the hole is named, not closed: code in Work Mode can touch a promise the Case did
-not name, and only that promise's own test catches it.
+A Case that updates a rule's `Purpose` names no Estimate for it in its `then` block.
+**＋** A Case that updates a rule's `Render` names no Estimate of the live reading of that Render.
 
 ## Result
 
-2026-09-16, the live reading of this session's Spec, raw/2026-09-16/1651/spec.md, Cases 193–200: every Case that replaced a Criterion named the Estimate by slug in its then block — 194.1 estimate-materialize-assembles, 194.2 -walks-dates, 196.1 estimate-carry-over-writes, 196.2 estimate-end-of-work-order, 197 estimate-brief-written, 200.5 estimate-permissions — and the Cases that changed a Render or a Purpose without replacing a promise named the touched Estimate in context and none in the block: 195/200.1 (estimate-case-protocol-loaded, pending by 188), 196.3 and 200.3 (estimate-brief-written, replaced by 197), 198 (estimate-pretask-reconciles, its recut deferred by 191), 196.2 and 194.1 Purpose updates touched none beyond the one they replaced; 193, 199, 200.2 changed Rule-class files and named none
+2026-09-24, by hand, the Cases of session 2214 at its close: the one Case left that updates a Render, 406 on `rule-case-protocol`, names `estimate-case-protocol-case-form`, the Estimate of the behaviour it changes, and not `estimate-case-protocol-loaded`, the live reading of the Render; no Case left updates a Purpose — 407.1 did and is superseded by 412
 
 ## History
 
@@ -52,3 +31,5 @@ not name, and only that promise's own test catches it.
 - 2026-09-16 status: pending → passed · raw/2026-09-16/1651/ledger.md#L39
 - 2026-09-17 ref removed · one-off migration · raw/2026-09-16/2238/spec.md#case-210
 - 2026-09-23 updated: the method names its reading with the one spelling, by hand (case 330.1) · [[decision-case-330.1]]
+- 2026-09-25 updated: the Criterion replaced whole — what a Case does not name, by case 378.5; the given of case 187 out, the lines other Estimates hold left to them (case 400.1) · [[decision-case-400.1]]
+- 2026-09-25 status: pending → passed · raw/2026-09-24/2214/ledger.md#L49

@@ -5,7 +5,7 @@ status: passed
 target: "[[rule-page-generation]]"
 purpose: generate ticks the page line of a Case in the Spec beside its yaml, and the read line of a reading across the Specs of raw/ — never a line of a later or a superseded Case
 method: pytest tests/test_generate.py with a Spec beside the yaml, plus one reading of this session's spec.md after the librarian's run
-checked: 2026-09-23
+checked: 2026-09-24
 origin: raw/2026-09-17/1119/ledger.md#case-226.1
 sprint: migration
 created: 2026-09-17
@@ -14,33 +14,22 @@ tags: [harness, workflow, ledger]
 
 ## Criterion
 
-Given:
-A yaml entry of kind `estimate` carries `slug`, `status`, `result`, `line` and no `case`; a decision entry carries `case` and `line`, the number of its line in the ledger.
-**＋** A line `{supersedes:case N}` marks every entry of Case N `superseded_by`, in the yaml of any session under `raw/` (130.2, 175); `generate` neither applies them nor ticks their page lines (151, 200.2).
-**＋** The lines of a superseded Case are not counted at Retro — its work stands under the superseding Case (282).
-**＋** The Spec of a session lies beside its `materialize.yaml` — `raw/<date>/<HHMM>/spec.md`; the Specs of the other sessions are the `spec.md` of their folders under `raw/`.
-**＋** A Case heading in the Spec is `## Case N — …` or `### Case N.M — …`; its section runs to the next such heading.
-**＋** A reading line of the Spec is `- [ ] read `<slug>`` with text after it, in any Case.
-**＋** `tests/test_generate.py` fixes the behaviour on a temp vault with a Spec beside the yaml and a second Spec with a yaml of its own in another session folder.
-**－** An `update` item carrying `file` is a pre-spec finding and never reaches `generate` (case 320).
-
 When:
-`guppi generate` applied an entry and marked it `applied`.
+`uv run guppi generate` applied an entry of `materialize.yaml` and marked it `applied`.
 
 Then:
-For a `create`, `update`, `delete` or `defer` entry, in the `spec.md` of the same unit the first unticked line `- [ ] <kind> `<slug>`` in the section of the entry's Case becomes `- [x]`; nothing else in the file changes.
-**＋** Two entries of one kind and slug in one Case tick two lines, in order.
-**＋** For an `estimate` entry, and for a `create` entry with `folded`, every unticked line `- [ ] read `<slug>`` of every live Spec of `raw/` becomes `- [x]` — the Spec beside the yaml first, then the `spec.md` of the other session folders of `raw/`, oldest first; every line of the slug in each, but those in the section of a Case ratified after the reading or superseded; the archive is not read (cases 312, 326).
-**＋** In the Spec beside the yaml, a `read` line in the section of a Case whose first decision entry of the yaml carries a `line` greater than the `line` of the `estimate` entry is not the reading's line — the Case was ratified after it; the search goes on to the next line, then to the other sessions.
-**＋** In any Spec, a `read` line in the section of a Case whose entries in the yaml of that session are marked `superseded_by` is not the reading's line — its work stands under the superseding Case; the search goes on. For the Spec beside the yaml the marks are the run's entries; for the Spec of another session its `materialize.yaml` beside it, read for the marks alone; no yaml beside it — nothing is skipped there.
-**＋** A `create` entry with `folded` ticks both lines: the page line and the reading line; its Case is the reading's Case, the filter of 280 does not apply to it; the filter by `superseded_by` does.
-**－** A line not found, a section not found, no Spec — no error and no stderr line; the entry is `applied` all the same.
-**－** `lesson` entries and an entry marked `failed` tick no line; the lines on code, tests, migrations and `by hand` are the agent's.
-**－** A Spec under `vault/archive/` is not read; the Specs of the other sessions are not filtered by `line`.
+For a `create`, `update`, `delete` or `defer` entry, in the `spec.md` of the same unit the first unticked line `` - [ ] <kind> `<slug>` `` in the section of the entry's Case becomes `- [x]`; nothing else in the file changes; two entries of one kind and slug in one Case tick two lines, in order.
+**＋** For an `estimate` entry, and for a `create` entry with `folded`, every unticked line `` - [ ] read `<slug>` `` of every `spec.md` under `vault/raw/` becomes `- [x]` — the Spec beside the yaml first, then those of the other session folders, oldest first.
+**＋** In the Spec beside the yaml, a `read` line in the section of a Case whose first decision entry carries a `line` greater than the `line` of the `estimate` entry is not the reading's line; the search goes on.
+**＋** In any Spec, a `read` line in the section of a Case whose entries are marked `superseded_by` — among the run's entries for the Spec beside the yaml, in the `materialize.yaml` beside it for another Spec — is not the reading's line; with no yaml beside a Spec nothing is skipped there.
+**＋** A `create` entry with `folded` ticks both its page line and its read line; the filter by `line` does not apply to it, the filter by `superseded_by` does.
+**－** A line, a section or a Spec not found raises no error and prints nothing on stderr; the entry is `applied` all the same.
+**－** A `lesson` entry and an entry marked `failed` tick no line.
+**－** A `spec.md` under `vault/archive/` is not read.
 
 ## Result
 
-2026-09-23, uv run pytest tests/test_generate.py -k tick: 10 passed; vault/raw/2026-09-23/0034/spec.md after the librarian's run: 71 lines ticked, the 30 unticked are all read lines of Estimates not read since, and none of the seven slugs read in 0034 (L57–L63) has an unticked read line there
+2026-09-24, `uv run pytest tests/test_generate.py`: 87 passed
 
 ## History
 
@@ -59,3 +48,5 @@ For a `create`, `update`, `delete` or `defer` entry, in the `spec.md` of the sam
 - 2026-09-22 status: pending → passed · raw/2026-09-22/1121/ledger.md#L88
 - 2026-09-23 updated: the walk of the Specs in the Criterion — every live Spec, not the first that holds one (case 326) · [[decision-case-326]]
 - 2026-09-23 status: pending → passed · raw/2026-09-23/1126/ledger.md#L37
+- 2026-09-25 updated: the Criterion replaced whole — Given out by the model of case 378, the When and Then as they stood, the case numbers out of the lines (case 401.6) · [[decision-case-401.6]]
+- 2026-09-25 status: pending → passed · raw/2026-09-24/2214/ledger.md#L36

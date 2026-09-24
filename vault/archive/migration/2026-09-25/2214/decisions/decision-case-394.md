@@ -1,8 +1,9 @@
 ---
 type: decision
 case: "394"
-status: current
+status: archived
 defer: ["[[rule-spec-write]]"]
+superseded_by: ["[[decision-case-402]]"]
 origin: raw/2026-09-24/1303/ledger.md#case-394
 sprint: migration
 created: 2026-09-24
@@ -26,3 +27,6 @@ A sub-point value whose outer span is unpadded and whose content opens and close
 ## History
 
 - 2026-09-24 created · raw/2026-09-24/1303/ledger.md#case-394
+- 2026-09-25 superseded by decision-case-402 · [[decision-case-402]]
+- 2026-09-25 archived · superseded
+- 2026-09-25 archived · cleanup

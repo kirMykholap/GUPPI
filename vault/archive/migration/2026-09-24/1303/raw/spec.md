@@ -258,7 +258,7 @@ update:
 - [x] `guppi/cli.py` — the command `guppi context`
 - [x] `tests/test_context.py` — N and D on a written transcript, a sidechain record skipped, the re-fire silent, no `usage` silent
 - [x] `uv run guppi render`: `.claude/settings.json`
-- [ ] read `estimate-context-size-shown-after-each-reply` — `uv run pytest tests/test_context.py`, then by hand in the VS Code chat in the next session
+- [x] read `estimate-context-size-shown-after-each-reply` — `uv run pytest tests/test_context.py`, then by hand in the VS Code chat in the next session
 ```
 
 ### Case 392.2 — A warning past 400 000 tokens

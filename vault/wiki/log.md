@@ -3319,3 +3319,161 @@ instruction. The global feed; a page's own `## History` is the per-page view.
 - 2026-09-24 lessons/lesson-plan-mode-contract-change-skips-the-estimates-blocks archived · cleanup
 - 2026-09-24 lessons/lesson-spec-write-sub-point-opening-with-a-code-span-unpadded archived · cleanup
 - 2026-09-24 decisions/decision-case-389 archived · cleanup
+- 2026-09-25 estimates/estimate-context-size-shown-after-each-reply status: pending → passed · raw/2026-09-24/1916/ledger.md#L1 · generate
+- 2026-09-25 decisions/decision-case-395 created · raw/2026-09-24/1916/ledger.md#case-395 · generate
+- 2026-09-25 entities/entity-sprint-migration updated: Slice 3g cut into four notes — the eleven, the journals, Given: out of the rest, the old shape (case 395) · [[decision-case-395]] · generate
+- 2026-09-25 decisions/decision-case-396.1 created · raw/2026-09-24/1916/ledger.md#case-396.1 · generate
+- 2026-09-25 estimates/estimate-case-protocol-case-form updated: the Criterion replaced whole — the form of a Case in the chat by the model of case 378, the line of case 353 taken from estimate-case-protocol-loaded (case 396.1) · [[decision-case-396.1]] · generate
+- 2026-09-25 decisions/decision-case-396.2 created · raw/2026-09-24/1916/ledger.md#case-396.2 · generate
+- 2026-09-25 estimates/estimate-case-protocol-loaded updated: the Criterion replaced whole — the Render present from the first turn after /hi and equal to the page, the journal of its paragraphs out (cases 378.5, 396.2) · [[decision-case-396.2]] · generate
+- 2026-09-25 decisions/decision-case-397.1 created · raw/2026-09-24/1916/ledger.md#case-397.1 · generate
+- 2026-09-25 estimates/estimate-materialize-assembles updated: the Criterion replaced whole — the assembly of an entry by the model of case 378; the filter of keys and the update of an Estimate moved to their own Estimates (case 397.1) · [[decision-case-397.1]] · generate
+- 2026-09-25 decisions/decision-case-397.2 created · raw/2026-09-24/1916/ledger.md#case-397.2 · generate
+- 2026-09-25 estimates/estimate-materialize-lifts-a-create-by-the-schema created · [[decision-case-397.2]] · generate
+- 2026-09-25 rules/rule-materialize estimate estimate-materialize-lifts-a-create-by-the-schema added · [[decision-case-397.2]] · generate
+- 2026-09-25 decisions/decision-case-397.3 created · raw/2026-09-24/1916/ledger.md#case-397.3 · generate
+- 2026-09-25 estimates/estimate-materialize-changes-a-named-part-alone created · [[decision-case-397.3]] · generate
+- 2026-09-25 rules/rule-materialize estimate estimate-materialize-changes-a-named-part-alone added · [[decision-case-397.3]] · generate
+- 2026-09-25 decisions/decision-case-397.4 created · raw/2026-09-24/1916/ledger.md#case-397.4 · generate
+- 2026-09-25 estimates/estimate-materialize-walks-dates updated: the Criterion replaced whole — the walk by the model of case 378, the error of a line and of a unit left to estimate-materialize-fails-alone; purpose and method as fields (case 397.4) · [[decision-case-397.4]] · generate
+- 2026-09-25 decisions/decision-case-397.5 created · raw/2026-09-24/1916/ledger.md#case-397.5 · generate
+- 2026-09-25 estimates/estimate-materialize-marks-superseded updated: the Criterion replaced whole — the mark by the model of case 378; what generate skips and the readings of a marked create left to their own Estimates (case 397.5) · [[decision-case-397.5]] · generate
+- 2026-09-25 decisions/decision-case-398.1 created · raw/2026-09-24/1916/ledger.md#case-398.1 · generate
+- 2026-09-25 estimates/estimate-generate-writes-the-decision-page updated: the Criterion replaced whole — the Decision page by the model of case 378; the false line on no Given out, the Given left to estimate-generate-writes-the-given (case 398.1) · [[decision-case-398.1]] · generate
+- 2026-09-25 decisions/decision-case-398.2 created · raw/2026-09-24/1916/ledger.md#case-398.2 · generate
+- 2026-09-25 estimates/estimate-generate-fails-alone updated: the Criterion replaced whole — Given out by the model of case 378, the When and Then as they stood (case 398.2) · [[decision-case-398.2]] · generate
+- 2026-09-25 decisions/decision-case-398.3 created · raw/2026-09-24/1916/ledger.md#case-398.3 · generate
+- 2026-09-25 estimates/estimate-generate-cascades updated: the Criterion replaced whole — the cascade by the model of case 378; the rules of an Entity left to estimate-generate-writes-rules-from-applies-to (case 398.3) · [[decision-case-398.3]] · generate
+- 2026-09-25 decisions/decision-case-399.1 created · raw/2026-09-24/1916/ledger.md#case-399.1 · generate
+- 2026-09-25 estimates/estimate-prespec-checks-the-plan updated: the Criterion replaced whole — the run of prespec --check by the model of case 378; the lines, the frontier, the tasks and the form of an item moved to their own Estimates (case 399.1) · [[decision-case-399.1]] · generate
+- 2026-09-25 decisions/decision-case-399.2 created · raw/2026-09-24/1916/ledger.md#case-399.2 · generate
+- 2026-09-25 estimates/estimate-prespec-matches-lines-and-items created · [[decision-case-399.2]] · generate
+- 2026-09-25 rules/rule-prespec estimate estimate-prespec-matches-lines-and-items added · [[decision-case-399.2]] · generate
+- 2026-09-25 decisions/decision-case-399.3 created · raw/2026-09-24/1916/ledger.md#case-399.3 · generate
+- 2026-09-25 estimates/estimate-prespec-checks-the-frontier created · [[decision-case-399.3]] · generate
+- 2026-09-25 rules/rule-prespec estimate estimate-prespec-checks-the-frontier added · [[decision-case-399.3]] · generate
+- 2026-09-25 decisions/decision-case-399.4 created · raw/2026-09-24/1916/ledger.md#case-399.4 · generate
+- 2026-09-25 estimates/estimate-prespec-requires-a-task-line created · [[decision-case-399.4]] · generate
+- 2026-09-25 rules/rule-prespec estimate estimate-prespec-requires-a-task-line added · [[decision-case-399.4]] · generate
+- 2026-09-25 decisions/decision-case-399.5 created · raw/2026-09-24/1916/ledger.md#case-399.5 · generate
+- 2026-09-25 estimates/estimate-prespec-checks-the-form-of-an-item created · [[decision-case-399.5]] · generate
+- 2026-09-25 rules/rule-prespec estimate estimate-prespec-checks-the-form-of-an-item added · [[decision-case-399.5]] · generate
+- 2026-09-25 decisions/decision-case-400.1 created · raw/2026-09-24/1916/ledger.md#case-400.1 · generate
+- 2026-09-25 estimates/estimate-plan-mode-names-its-estimates updated: the Criterion replaced whole — what a Case does not name, by case 378.5; the given of case 187 out, the lines other Estimates hold left to them (case 400.1) · [[decision-case-400.1]] · generate
+- 2026-09-25 decisions/decision-case-400.2 created · raw/2026-09-24/1916/ledger.md#case-400.2 · generate
+- 2026-09-25 entities/entity-sprint-migration updated: Slice 3g: the note of the eleven Estimates done — cases 396 to 400, 388 for estimate-prespec-reconciles (case 400.2) · [[decision-case-400.2]] · generate
+- 2026-09-25 decisions/decision-case-401.1 created · raw/2026-09-24/1916/ledger.md#case-401.1 · generate
+- 2026-09-25 estimates/estimate-lint-catches updated: the Criterion replaced whole — the run, schema, layout, paths and markers by the model of case 378; links, statuses, method and the unmigrated count moved to their own Estimates (case 401.1) · [[decision-case-401.1]] · generate
+- 2026-09-25 decisions/decision-case-401.2 created · raw/2026-09-24/1916/ledger.md#case-401.2 · generate
+- 2026-09-25 estimates/estimate-lint-finds-a-broken-link created · [[decision-case-401.2]] · generate
+- 2026-09-25 rules/rule-lint estimate estimate-lint-finds-a-broken-link added · [[decision-case-401.2]] · generate
+- 2026-09-25 decisions/decision-case-401.3 created · raw/2026-09-24/1916/ledger.md#case-401.3 · generate
+- 2026-09-25 estimates/estimate-lint-checks-the-statuses created · [[decision-case-401.3]] · generate
+- 2026-09-25 rules/rule-lint estimate estimate-lint-checks-the-statuses added · [[decision-case-401.3]] · generate
+- 2026-09-25 decisions/decision-case-401.4 created · raw/2026-09-24/1916/ledger.md#case-401.4 · generate
+- 2026-09-25 estimates/estimate-lint-checks-the-method created · [[decision-case-401.4]] · generate
+- 2026-09-25 rules/rule-lint estimate estimate-lint-checks-the-method added · [[decision-case-401.4]] · generate
+- 2026-09-25 decisions/decision-case-401.5 created · raw/2026-09-24/1916/ledger.md#case-401.5 · generate
+- 2026-09-25 estimates/estimate-lint-counts-the-unmigrated created · [[decision-case-401.5]] · generate
+- 2026-09-25 rules/rule-lint estimate estimate-lint-counts-the-unmigrated added · [[decision-case-401.5]] · generate
+- 2026-09-25 decisions/decision-case-401.6 created · raw/2026-09-24/1916/ledger.md#case-401.6 · generate
+- 2026-09-25 estimates/estimate-generate-ticks-the-spec updated: the Criterion replaced whole — Given out by the model of case 378, the When and Then as they stood, the case numbers out of the lines (case 401.6) · [[decision-case-401.6]] · generate
+- 2026-09-25 decisions/decision-case-401.7 created · raw/2026-09-24/1916/ledger.md#case-401.7 · generate
+- 2026-09-25 estimates/estimate-materialize-skips-a-carried-over-unit updated: the Criterion replaced whole — the Given of case 190.3 out by the model of case 378 (case 401.7) · [[decision-case-401.7]] · generate
+- 2026-09-25 decisions/decision-case-401.8 created · raw/2026-09-24/1916/ledger.md#case-401.8 · generate
+- 2026-09-25 entities/entity-sprint-migration updated: Slice 3g: the note of the journals done (case 401) · [[decision-case-401.8]] · generate
+- 2026-09-25 decisions/decision-case-402 created · raw/2026-09-24/1916/ledger.md#case-402 · generate
+- 2026-09-25 decisions/decision-case-394 superseded by decision-case-402 · [[decision-case-402]] · generate
+- 2026-09-25 rules/rule-spec-write defer by decision-case-394 superseded · [[decision-case-402]] · generate
+- 2026-09-25 rules/rule-spec-write updated: a value holding a backtick is refused unless its outer span is padded by one space on each side (case 402, supersedes 394) · [[decision-case-402]] · generate
+- 2026-09-25 rules/rule-case-protocol updated: a value that holds a backtick takes its outer span padded by one space on each side (case 402) · [[decision-case-402]] · generate
+- 2026-09-25 estimates/estimate-spec-write-copies-the-ratified-case updated: the Criterion replaced whole — a value holding a backtick padded by one space, an unpadded one refused (case 402) · [[decision-case-402]] · generate
+- 2026-09-25 decisions/decision-case-403 created · raw/2026-09-24/1916/ledger.md#case-403 · generate
+- 2026-09-25 rules/rule-frame-check deferred · [[decision-case-403]] · generate
+- 2026-09-25 decisions/decision-case-404 created · raw/2026-09-24/1916/ledger.md#case-404 · generate
+- 2026-09-25 rules/rule-context-size deferred · [[decision-case-404]] · generate
+- 2026-09-25 decisions/decision-case-405 created · raw/2026-09-24/1916/ledger.md#case-405 · generate
+- 2026-09-25 rules/rule-case-protocol updated: a defer is written in the reply that asks for it, the person's words its ratification (case 405) · [[decision-case-405]] · generate
+- 2026-09-25 estimates/estimate-case-protocol-defers-in-one-reply created · [[decision-case-405]] · generate
+- 2026-09-25 rules/rule-case-protocol estimate estimate-case-protocol-defers-in-one-reply added · [[decision-case-405]] · generate
+- 2026-09-25 rules/rule-lint status: built → draft · cascade · generate
+- 2026-09-25 rules/rule-materialize status: built → draft · cascade · generate
+- 2026-09-25 rules/rule-page-generation status: built → draft · cascade · generate
+- 2026-09-25 rules/rule-plan-mode status: built → draft · cascade · generate
+- 2026-09-25 rules/rule-spec-write status: built → draft · cascade · generate
+- 2026-09-25 decisions/decision-case-394 archived · superseded · generate
+- 2026-09-25 decisions/decision-case-406 created · raw/2026-09-24/2214/ledger.md#case-406 · generate
+- 2026-09-25 rules/rule-case-protocol updated: the story sections name no count of items unless the Case is about that count (case 406) · [[decision-case-406]] · generate
+- 2026-09-25 estimates/estimate-case-protocol-case-form updated: the Criterion replaced whole — the line on context names no count of items in the story sections; the rest as case 396.1 wrote it (case 406) · [[decision-case-406]] · generate
+- 2026-09-25 decisions/decision-case-407.1 created · raw/2026-09-24/2214/ledger.md#case-407.1 · generate
+- 2026-09-25 decisions/decision-case-407.2 created · raw/2026-09-24/2214/ledger.md#case-407.2 · generate
+- 2026-09-25 decisions/decision-case-407.3 created · raw/2026-09-24/2214/ledger.md#case-407.3 · generate
+- 2026-09-25 decisions/decision-case-407.4 created · raw/2026-09-24/2214/ledger.md#case-407.4 · generate
+- 2026-09-25 decisions/decision-case-407.5 created · raw/2026-09-24/2214/ledger.md#case-407.5 · generate
+- 2026-09-25 decisions/decision-case-408 created · raw/2026-09-24/2214/ledger.md#case-408 · generate
+- 2026-09-25 rules/rule-frame-check deferred · [[decision-case-408]] · generate
+- 2026-09-25 decisions/decision-case-409 created · raw/2026-09-24/2214/ledger.md#case-409 · generate
+- 2026-09-25 rules/rule-context-size deferred · [[decision-case-409]] · generate
+- 2026-09-25 decisions/decision-case-410 created · raw/2026-09-24/2214/ledger.md#case-410 · generate
+- 2026-09-25 decisions/decision-case-411 created · raw/2026-09-24/2214/ledger.md#case-411 · generate
+- 2026-09-25 decisions/decision-case-412 created · raw/2026-09-24/2214/ledger.md#case-412 · generate
+- 2026-09-25 decisions/decision-case-407.1 superseded by decision-case-412 · [[decision-case-412]] · generate
+- 2026-09-25 decisions/decision-case-407.5 superseded by decision-case-412 · [[decision-case-412]] · generate
+- 2026-09-25 decisions/decision-case-407.2 superseded by decision-case-412 · [[decision-case-412]] · generate
+- 2026-09-25 decisions/decision-case-407.3 superseded by decision-case-412 · [[decision-case-412]] · generate
+- 2026-09-25 decisions/decision-case-407.4 superseded by decision-case-412 · [[decision-case-412]] · generate
+- 2026-09-25 decisions/decision-case-410 superseded by decision-case-412 · [[decision-case-412]] · generate
+- 2026-09-25 rules/rule-prespec deferred · [[decision-case-412]] · generate
+- 2026-09-25 rules/rule-prespec deferred · [[decision-case-412]] · generate
+- 2026-09-25 rules/rule-spec-write deferred · [[decision-case-412]] · generate
+- 2026-09-25 rules/rule-spec-reconcile deferred · [[decision-case-412]] · generate
+- 2026-09-25 rules/rule-spec-reconcile deferred · [[decision-case-412]] · generate
+- 2026-09-25 rules/rule-spec-reconcile deferred · [[decision-case-412]] · generate
+- 2026-09-25 decisions/decision-case-413 created · raw/2026-09-24/2214/ledger.md#case-413 · generate
+- 2026-09-25 decisions/decision-case-411 superseded by decision-case-413 · [[decision-case-413]] · generate
+- 2026-09-25 rules/rule-prespec deferred · [[decision-case-413]] · generate
+- 2026-09-25 lessons/lesson-prespec-parent-of-superseded-sub-cases created · raw/2026-09-24/2214/ledger.md#L26 · generate
+- 2026-09-25 estimates/estimate-materialize-assembles status: pending → passed · raw/2026-09-24/2214/ledger.md#L27 · generate
+- 2026-09-25 estimates/estimate-materialize-lifts-a-create-by-the-schema status: pending → passed · raw/2026-09-24/2214/ledger.md#L28 · generate
+- 2026-09-25 estimates/estimate-materialize-changes-a-named-part-alone status: pending → passed · raw/2026-09-24/2214/ledger.md#L29 · generate
+- 2026-09-25 estimates/estimate-materialize-walks-dates status: pending → passed · raw/2026-09-24/2214/ledger.md#L30 · generate
+- 2026-09-25 estimates/estimate-materialize-marks-superseded status: pending → passed · raw/2026-09-24/2214/ledger.md#L31 · generate
+- 2026-09-25 estimates/estimate-materialize-skips-a-carried-over-unit status: pending → passed · raw/2026-09-24/2214/ledger.md#L32 · generate
+- 2026-09-25 estimates/estimate-generate-writes-the-decision-page status: pending → passed · raw/2026-09-24/2214/ledger.md#L33 · generate
+- 2026-09-25 estimates/estimate-generate-fails-alone status: pending → passed · raw/2026-09-24/2214/ledger.md#L34 · generate
+- 2026-09-25 estimates/estimate-generate-cascades status: pending → passed · raw/2026-09-24/2214/ledger.md#L35 · generate
+- 2026-09-25 estimates/estimate-generate-ticks-the-spec status: pending → passed · raw/2026-09-24/2214/ledger.md#L36 · generate
+- 2026-09-25 estimates/estimate-prespec-checks-the-plan status: pending → passed · raw/2026-09-24/2214/ledger.md#L37 · generate
+- 2026-09-25 estimates/estimate-prespec-matches-lines-and-items status: pending → passed · raw/2026-09-24/2214/ledger.md#L38 · generate
+- 2026-09-25 estimates/estimate-prespec-checks-the-frontier status: pending → passed · raw/2026-09-24/2214/ledger.md#L39 · generate
+- 2026-09-25 estimates/estimate-prespec-requires-a-task-line status: pending → passed · raw/2026-09-24/2214/ledger.md#L40 · generate
+- 2026-09-25 estimates/estimate-prespec-checks-the-form-of-an-item status: pending → passed · raw/2026-09-24/2214/ledger.md#L41 · generate
+- 2026-09-25 estimates/estimate-lint-catches status: pending → passed · raw/2026-09-24/2214/ledger.md#L42 · generate
+- 2026-09-25 estimates/estimate-lint-finds-a-broken-link status: pending → passed · raw/2026-09-24/2214/ledger.md#L43 · generate
+- 2026-09-25 estimates/estimate-lint-checks-the-statuses status: pending → passed · raw/2026-09-24/2214/ledger.md#L44 · generate
+- 2026-09-25 estimates/estimate-lint-checks-the-method status: pending → passed · raw/2026-09-24/2214/ledger.md#L45 · generate
+- 2026-09-25 estimates/estimate-lint-counts-the-unmigrated status: pending → passed · raw/2026-09-24/2214/ledger.md#L46 · generate
+- 2026-09-25 estimates/estimate-spec-write-copies-the-ratified-case status: pending → passed · raw/2026-09-24/2214/ledger.md#L47 · generate
+- 2026-09-25 estimates/estimate-case-protocol-loaded status: pending → passed · raw/2026-09-24/2214/ledger.md#L48 · generate
+- 2026-09-25 estimates/estimate-plan-mode-names-its-estimates status: pending → passed · raw/2026-09-24/2214/ledger.md#L49 · generate
+- 2026-09-25 lessons/lesson-case-ratification-preview-before-its-targets created · raw/2026-09-24/2214/ledger.md#L50 · generate
+- 2026-09-25 rules/rule-lint status: draft → built · cascade · generate
+- 2026-09-25 rules/rule-materialize status: draft → built · cascade · generate
+- 2026-09-25 rules/rule-page-generation status: draft → built · cascade · generate
+- 2026-09-25 rules/rule-plan-mode status: draft → built · cascade · generate
+- 2026-09-25 rules/rule-spec-write status: draft → built · cascade · generate
+- 2026-09-25 decisions/decision-case-407.1 archived · superseded · generate
+- 2026-09-25 decisions/decision-case-407.2 archived · superseded · generate
+- 2026-09-25 decisions/decision-case-407.3 archived · superseded · generate
+- 2026-09-25 decisions/decision-case-407.4 archived · superseded · generate
+- 2026-09-25 decisions/decision-case-407.5 archived · superseded · generate
+- 2026-09-25 decisions/decision-case-410 archived · superseded · generate
+- 2026-09-25 decisions/decision-case-411 archived · superseded · generate
+- 2026-09-25 decisions/decision-case-394 archived · cleanup
+- 2026-09-25 decisions/decision-case-407.1 archived · cleanup
+- 2026-09-25 decisions/decision-case-407.2 archived · cleanup
+- 2026-09-25 decisions/decision-case-407.3 archived · cleanup
+- 2026-09-25 decisions/decision-case-407.4 archived · cleanup
+- 2026-09-25 decisions/decision-case-407.5 archived · cleanup
+- 2026-09-25 decisions/decision-case-410 archived · cleanup
+- 2026-09-25 decisions/decision-case-411 archived · cleanup

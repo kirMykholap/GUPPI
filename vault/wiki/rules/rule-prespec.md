@@ -7,7 +7,8 @@ enforcement: render
 governs: .claude/skills/pre-spec/SKILL.md
 render_mode: full
 parent: "[[rule-plan-mode]]"
-estimates: ["[[estimate-prespec-reconciles]]", "[[estimate-prespec-checks-the-plan]]", "[[estimate-prespec-catches-bare-wikilinks]]", "[[estimate-prespec-catches-a-command-line-off-form]]", "[[estimate-prespec-catches-a-superseded-case]]", "[[estimate-prespec-binds-a-sprint-line]]", "[[estimate-prespec-catches-an-unwrapped-render]]", "[[estimate-prespec-catches-a-method-without-a-form]]", "[[estimate-prespec-simulates-the-pairs]]", "[[estimate-prespec-refuses-a-pair-inside-a-criterion]]", "[[estimate-prespec-checks-the-frame]]", "[[estimate-prespec-notes-a-long-chain]]", "[[estimate-prespec-checks-the-ratified-copy]]"]
+estimates: ["[[estimate-prespec-reconciles]]", "[[estimate-prespec-checks-the-plan]]", "[[estimate-prespec-catches-bare-wikilinks]]", "[[estimate-prespec-catches-a-command-line-off-form]]", "[[estimate-prespec-catches-a-superseded-case]]", "[[estimate-prespec-binds-a-sprint-line]]", "[[estimate-prespec-catches-an-unwrapped-render]]", "[[estimate-prespec-catches-a-method-without-a-form]]", "[[estimate-prespec-simulates-the-pairs]]", "[[estimate-prespec-refuses-a-pair-inside-a-criterion]]", "[[estimate-prespec-checks-the-frame]]", "[[estimate-prespec-notes-a-long-chain]]", "[[estimate-prespec-checks-the-ratified-copy]]", "[[estimate-prespec-matches-lines-and-items]]", "[[estimate-prespec-checks-the-frontier]]", "[[estimate-prespec-requires-a-task-line]]", "[[estimate-prespec-checks-the-form-of-an-item]]"]
+deferred_by: ["[[decision-case-412]]", "[[decision-case-413]]"]
 origin: raw/2026-09-09/ledger.md#case-24.2
 sprint: migration
 created: 2026-09-09
@@ -120,3 +121,10 @@ finding as a Case, or say in one line why it is already known. Then exit Plan Mo
 - 2026-09-24 updated: pre-spec checks the plan against its ratified copy and finds untranslated prose (case 387.4) · [[decision-case-387.4]]
 - 2026-09-24 estimate estimate-prespec-checks-the-ratified-copy added · [[decision-case-387.4]]
 - 2026-09-24 updated: ask-guppi reads the plan and the context itself; the agent answers the findings with one report before any Case is shown again (case 388) · [[decision-case-388]]
+- 2026-09-25 estimate estimate-prespec-matches-lines-and-items added · [[decision-case-399.2]]
+- 2026-09-25 estimate estimate-prespec-checks-the-frontier added · [[decision-case-399.3]]
+- 2026-09-25 estimate estimate-prespec-requires-a-task-line added · [[decision-case-399.4]]
+- 2026-09-25 estimate estimate-prespec-checks-the-form-of-an-item added · [[decision-case-399.5]]
+- 2026-09-25 deferred · [[decision-case-412]]
+- 2026-09-25 deferred · [[decision-case-412]]
+- 2026-09-25 deferred · [[decision-case-413]]

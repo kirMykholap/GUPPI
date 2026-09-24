@@ -1,0 +1,987 @@
+date: '2026-09-24'
+sprint: migration
+ledger: vault/raw/2026-09-24/2214/ledger.md
+spec:
+- vault/raw/2026-09-24/2214/spec.md
+entries:
+- line: 1
+  text: decision[case 406][update][rule-case-protocol]{ref:rule-case-protocol}
+  case: '406'
+  kind: update
+  slug: rule-case-protocol
+  origin: raw/2026-09-24/2214/ledger.md#case-406
+  decision: decision-case-406
+  ref: rule-case-protocol
+  category: rules
+  replace:
+  - old: no line numbers and no quotation unless the Case is about one;
+    new: 'no line numbers and no quotation unless the Case is about one; no count of items — lines, pages,
+      Estimates, Cases — unless the Case is about that count: a count goes stale first, and what can be
+      counted a script counts;'
+  change: the story sections name no count of items unless the Case is about that count (case 406)
+  applied: 00:44:46
+- line: 2
+  text: decision[case 406][update][estimate-case-protocol-case-form]{ref:estimate-case-protocol-case-form}
+  case: '406'
+  kind: update
+  slug: estimate-case-protocol-case-form
+  origin: raw/2026-09-24/2214/ledger.md#case-406
+  decision: decision-case-406
+  ref: estimate-case-protocol-case-form
+  category: estimates
+  set:
+    status: pending
+  change: the Criterion replaced whole — the line on context names no count of items in the story sections;
+    the rest as case 396.1 wrote it (case 406)
+  sections:
+    Criterion: 'When:
+
+      The agent shows a Case in the chat, at its first showing or again.
+
+
+      Then:
+
+      The Case opens with the heading `## Case N — name`, a sub-case with `### Case N.M — name` under
+      its parent, and holds its sections in the order of the Sections table, each one blockquote whose
+      first line is `**name:**`.
+
+      **＋** `context` is prose: the mechanism in plain words first, then the state of the pages the Case
+      changes, the vault''s answer and why an Estimate of the rule is not touched; a case number stands
+      in `context` or `problem` only when the Case is about that case, and a count of items stands in
+      none of the story sections unless the Case is about that count.
+
+      **＋** `given` holds the frame, one thing per line — each page, module, file and test the Case touches
+      and the rule that constrains, its slug or path in a code span and its role — and no state; `when`
+      and `then` name only what `given` names.
+
+      **＋** In `given`, `when` and `then` each line after the first opens with `**＋**` or `**－**`, a `**－**`
+      line names something of `given` or `when`, and `then` holds behaviour only.
+
+      **＋** `tasks` names by slug each Estimate the Case creates or replaces, and under a line whose item
+      writes content that content stands as sub-points; no `contract` line and no "block N" line.
+
+      **＋** A pair under `replace` or `reword` stands only when the Case says what the sentence around
+      each match names; a Case that changes the behaviour of a page gives an `update` to each Estimate
+      of that page whose Criterion speaks of the change.
+
+      **＋** `ratification` holds only the preview of the ledger lines in an untagged fence; the agent''s
+      own text stands after the Case, after one horizontal rule, and the reply ends with a plain question.
+
+      **＋** A Case with sub-cases is shown in one reply: the parent''s `context`, `problem` and `recommend`,
+      then each sub-case whole.'
+  applied: 00:44:46
+- line: 3
+  text: decision[case 407.1][update][rule-prespec]{ref:rule-prespec}
+  case: '407.1'
+  kind: update
+  slug: rule-prespec
+  origin: raw/2026-09-24/2214/ledger.md#case-407.1
+  decision: decision-case-407.1
+  ref: rule-prespec
+  category: rules
+  superseded_by: '412'
+- line: 4
+  text: decision[case 407.1][create][estimate-prespec-checks-one-case]{ref:rule-prespec}{tags:session,workflow,harness}
+  case: '407.1'
+  kind: create
+  slug: estimate-prespec-checks-one-case
+  origin: raw/2026-09-24/2214/ledger.md#case-407.1
+  decision: decision-case-407.1
+  ref: rule-prespec
+  tags:
+  - session
+  - workflow
+  - harness
+  category: estimates
+  incomplete:
+  - criterion
+  superseded_by: '412'
+- line: 5
+  text: decision[case 407.2][update][rule-spec-write]{ref:rule-spec-write}
+  case: '407.2'
+  kind: update
+  slug: rule-spec-write
+  origin: raw/2026-09-24/2214/ledger.md#case-407.2
+  decision: decision-case-407.2
+  ref: rule-spec-write
+  category: rules
+  superseded_by: '412'
+- line: 6
+  text: decision[case 407.2][create][estimate-spec-write-checks-the-written-case]{ref:rule-spec-write}{tags:hooks,harness,workflow}
+  case: '407.2'
+  kind: create
+  slug: estimate-spec-write-checks-the-written-case
+  origin: raw/2026-09-24/2214/ledger.md#case-407.2
+  decision: decision-case-407.2
+  ref: rule-spec-write
+  tags:
+  - hooks
+  - harness
+  - workflow
+  category: estimates
+  incomplete:
+  - criterion
+  superseded_by: '412'
+- line: 7
+  text: decision[case 407.3][update][rule-spec-reconcile]{ref:rule-spec-reconcile}
+  case: '407.3'
+  kind: update
+  slug: rule-spec-reconcile
+  origin: raw/2026-09-24/2214/ledger.md#case-407.3
+  decision: decision-case-407.3
+  ref: rule-spec-reconcile
+  category: rules
+  superseded_by: '412'
+- line: 8
+  text: decision[case 407.3][update][estimate-spec-reconcile-shows-a-changed-case]{ref:estimate-spec-reconcile-shows-a-changed-case}
+  case: '407.3'
+  kind: update
+  slug: estimate-spec-reconcile-shows-a-changed-case
+  origin: raw/2026-09-24/2214/ledger.md#case-407.3
+  decision: decision-case-407.3
+  ref: estimate-spec-reconcile-shows-a-changed-case
+  category: estimates
+  incomplete:
+  - criterion
+  set:
+    status: pending
+  superseded_by: '412'
+- line: 9
+  text: decision[case 407.3][update][rule-hook-registry]{ref:rule-hook-registry}
+  case: '407.3'
+  kind: update
+  slug: rule-hook-registry
+  origin: raw/2026-09-24/2214/ledger.md#case-407.3
+  decision: decision-case-407.3
+  ref: rule-hook-registry
+  category: rules
+  superseded_by: '412'
+- line: 10
+  text: decision[case 407.4][update][rule-case-protocol]{ref:rule-case-protocol}
+  case: '407.4'
+  kind: update
+  slug: rule-case-protocol
+  origin: raw/2026-09-24/2214/ledger.md#case-407.4
+  decision: decision-case-407.4
+  ref: rule-case-protocol
+  category: rules
+  superseded_by: '412'
+- line: 11
+  text: decision[case 407.4][create][estimate-spec-reconcile-writes-a-fragment]{ref:rule-spec-reconcile}{tags:hooks,harness,workflow}
+  case: '407.4'
+  kind: create
+  slug: estimate-spec-reconcile-writes-a-fragment
+  origin: raw/2026-09-24/2214/ledger.md#case-407.4
+  decision: decision-case-407.4
+  ref: rule-spec-reconcile
+  tags:
+  - hooks
+  - harness
+  - workflow
+  category: estimates
+  incomplete:
+  - criterion
+  superseded_by: '412'
+- line: 12
+  text: decision[case 407.5][update][rule-prespec]{ref:rule-prespec}
+  case: '407.5'
+  kind: update
+  slug: rule-prespec
+  origin: raw/2026-09-24/2214/ledger.md#case-407.5
+  decision: decision-case-407.5
+  ref: rule-prespec
+  category: rules
+  superseded_by: '412'
+- line: 13
+  text: decision[case 407.5][update][rule-case-protocol]{ref:rule-case-protocol}
+  case: '407.5'
+  kind: update
+  slug: rule-case-protocol
+  origin: raw/2026-09-24/2214/ledger.md#case-407.5
+  decision: decision-case-407.5
+  ref: rule-case-protocol
+  category: rules
+  superseded_by: '412'
+- line: 14
+  text: decision[case 407.5][update][estimate-prespec-checks-the-ratified-copy]{ref:estimate-prespec-checks-the-ratified-copy}
+  case: '407.5'
+  kind: update
+  slug: estimate-prespec-checks-the-ratified-copy
+  origin: raw/2026-09-24/2214/ledger.md#case-407.5
+  decision: decision-case-407.5
+  ref: estimate-prespec-checks-the-ratified-copy
+  category: estimates
+  incomplete:
+  - criterion
+  set:
+    status: pending
+  superseded_by: '412'
+- line: 15
+  text: decision[case 408][defer][rule-frame-check]{ref:rule-frame-check}
+  case: '408'
+  kind: defer
+  slug: rule-frame-check
+  origin: raw/2026-09-24/2214/ledger.md#case-408
+  decision: decision-case-408
+  ref: rule-frame-check
+  category: rules
+  fields:
+    type: rule
+    purpose: Whether frame-guppi pays — the contradictions it finds against its tokens and time, with
+      the dispatches of sessions 1916 and 2214; rolled back by a Case if it does not
+  exists: true
+  applied: 00:44:46
+- line: 16
+  text: decision[case 409][defer][rule-context-size]{ref:rule-context-size}
+  case: '409'
+  kind: defer
+  slug: rule-context-size
+  origin: raw/2026-09-24/2214/ledger.md#case-409
+  decision: decision-case-409
+  ref: rule-context-size
+  category: rules
+  fields:
+    type: rule
+    purpose: The limit of 400 000 tokens in guppi/context.py, and the text of the UserPromptSubmit hook
+      past it — take no more work, not close the session; judged once a session reaches it
+  exists: true
+  applied: 00:44:46
+- line: 17
+  text: decision[case 410][defer][rule-case-protocol]{ref:rule-case-protocol}
+  case: '410'
+  kind: defer
+  slug: rule-case-protocol
+  origin: raw/2026-09-24/2214/ledger.md#case-410
+  decision: decision-case-410
+  ref: rule-case-protocol
+  category: rules
+  exists: true
+  superseded_by: '412'
+- line: 18
+  text: decision[case 411][defer][rule-case-protocol]{ref:rule-case-protocol}
+  case: '411'
+  kind: defer
+  slug: rule-case-protocol
+  origin: raw/2026-09-24/2214/ledger.md#case-411
+  decision: decision-case-411
+  ref: rule-case-protocol
+  category: rules
+  exists: true
+  superseded_by: '413'
+- line: 19
+  text: decision[case 412][defer][rule-prespec]{ref:rule-prespec}{supersedes:case 407.1}
+  case: '412'
+  kind: defer
+  slug: rule-prespec
+  origin: raw/2026-09-24/2214/ledger.md#case-412
+  decision: decision-case-412
+  ref: rule-prespec
+  supersedes: '407.1'
+  category: rules
+  fields:
+    type: rule
+    purpose: The check of one Case, prespec --check --case N, run by the hooks after each ratified Case
+      (case 407.1, 407.5)
+  exists: true
+  applied: 00:44:46
+- line: 20
+  text: decision[case 412][defer][rule-prespec]{ref:rule-prespec}{supersedes:case 407.5}
+  case: '412'
+  kind: defer
+  slug: rule-prespec
+  origin: raw/2026-09-24/2214/ledger.md#case-412
+  decision: decision-case-412
+  ref: rule-prespec
+  supersedes: '407.5'
+  category: rules
+  fields:
+    type: rule
+    purpose: The check of one Case, prespec --check --case N, run by the hooks after each ratified Case
+      (case 407.1, 407.5)
+  exists: true
+  applied: 00:44:46
+- line: 21
+  text: decision[case 412][defer][rule-spec-write]{ref:rule-spec-write}{supersedes:case 407.2}
+  case: '412'
+  kind: defer
+  slug: rule-spec-write
+  origin: raw/2026-09-24/2214/ledger.md#case-412
+  decision: decision-case-412
+  ref: rule-spec-write
+  supersedes: '407.2'
+  category: rules
+  fields:
+    type: rule
+    purpose: The Stop hook checks each Case it writes and gives the findings back (case 407.2)
+  exists: true
+  applied: 00:44:46
+- line: 22
+  text: decision[case 412][defer][rule-spec-reconcile]{ref:rule-spec-reconcile}{supersedes:case 407.3}
+  case: '412'
+  kind: defer
+  slug: rule-spec-reconcile
+  origin: raw/2026-09-24/2214/ledger.md#case-412
+  decision: decision-case-412
+  ref: rule-spec-reconcile
+  supersedes: '407.3'
+  category: rules
+  fields:
+    type: rule
+    purpose: The agent writes into the plan only through a fragment the guard merges and checks; when
+      the prose of a Case is translated (cases 407.3, 407.4, 410)
+  exists: true
+  applied: 00:44:46
+- line: 23
+  text: decision[case 412][defer][rule-spec-reconcile]{ref:rule-spec-reconcile}{supersedes:case 407.4}
+  case: '412'
+  kind: defer
+  slug: rule-spec-reconcile
+  origin: raw/2026-09-24/2214/ledger.md#case-412
+  decision: decision-case-412
+  ref: rule-spec-reconcile
+  supersedes: '407.4'
+  category: rules
+  fields:
+    type: rule
+    purpose: The agent writes into the plan only through a fragment the guard merges and checks; when
+      the prose of a Case is translated (cases 407.3, 407.4, 410)
+  exists: true
+  applied: 00:44:46
+- line: 24
+  text: decision[case 412][defer][rule-spec-reconcile]{ref:rule-spec-reconcile}{supersedes:case 410}
+  case: '412'
+  kind: defer
+  slug: rule-spec-reconcile
+  origin: raw/2026-09-24/2214/ledger.md#case-412
+  decision: decision-case-412
+  ref: rule-spec-reconcile
+  supersedes: '410'
+  category: rules
+  fields:
+    type: rule
+    purpose: The agent writes into the plan only through a fragment the guard merges and checks; when
+      the prose of a Case is translated (cases 407.3, 407.4, 410)
+  exists: true
+  applied: 00:44:46
+- line: 25
+  text: decision[case 413][defer][rule-prespec]{ref:rule-prespec}{supersedes:case 411}
+  case: '413'
+  kind: defer
+  slug: rule-prespec
+  origin: raw/2026-09-24/2214/ledger.md#case-413
+  decision: decision-case-413
+  ref: rule-prespec
+  supersedes: '411'
+  category: rules
+  fields:
+    type: rule
+    purpose: The line on the frame — when and then name only what given names — signed by estimate-case-protocol-case-form
+      and estimate-prespec-checks-the-frame; one of them keeps it
+  exists: true
+  applied: 00:44:46
+- line: 26
+  text: 'lesson[error][lesson-prespec-parent-of-superseded-sub-cases]{tags:session,workflow,harness} trigger:
+    after Case 412 superseded each of 407.1–407.5, `prespec --check` still printed `case 407: in the ratified
+    copy, not in the plan` root_cause: `check_ratified` excepts only the ids a `{supersedes:case N}` of
+    the window names; a parent Case with no ledger lines of its own, whose every sub-case is superseded,
+    is named by no supersedes, so its section in the ratified copy stays a finding'
+  kind: lesson
+  category: lessons
+  slug: lesson-prespec-parent-of-superseded-sub-cases
+  origin: raw/2026-09-24/2214/ledger.md#L26
+  fields:
+    type: lesson
+    kind: error
+    root_cause: '`check_ratified` excepts only the ids a `{supersedes:case N}` of the window names; a
+      parent Case with no ledger lines of its own, whose every sub-case is superseded, is named by no
+      supersedes, so its section in the ratified copy stays a finding'
+  sections:
+    Trigger: 'after Case 412 superseded each of 407.1–407.5, `prespec --check` still printed `case 407:
+      in the ratified copy, not in the plan`'
+    Root cause: '`check_ratified` excepts only the ids a `{supersedes:case N}` of the window names; a
+      parent Case with no ledger lines of its own, whose every sub-case is superseded, is named by no
+      supersedes, so its section in the ratified copy stays a finding'
+  tags:
+  - session
+  - workflow
+  - harness
+  applied: 00:44:46
+- line: 27
+  text: 'estimate[estimate-materialize-assembles][passed] 2026-09-24, `uv run pytest tests/test_materialize.py`:
+    75 passed'
+  kind: estimate
+  category: estimates
+  slug: estimate-materialize-assembles
+  status: passed
+  result: '2026-09-24, `uv run pytest tests/test_materialize.py`: 75 passed'
+  origin: raw/2026-09-24/2214/ledger.md#L27
+  applied: 00:44:46
+- line: 28
+  text: 'estimate[estimate-materialize-lifts-a-create-by-the-schema][passed] 2026-09-24, `uv run pytest
+    tests/test_materialize.py`: 75 passed'
+  kind: estimate
+  category: estimates
+  slug: estimate-materialize-lifts-a-create-by-the-schema
+  status: passed
+  result: '2026-09-24, `uv run pytest tests/test_materialize.py`: 75 passed'
+  origin: raw/2026-09-24/2214/ledger.md#L28
+  applied: 00:44:46
+- line: 29
+  text: 'estimate[estimate-materialize-changes-a-named-part-alone][passed] 2026-09-24, `uv run pytest
+    tests/test_materialize.py`: 75 passed'
+  kind: estimate
+  category: estimates
+  slug: estimate-materialize-changes-a-named-part-alone
+  status: passed
+  result: '2026-09-24, `uv run pytest tests/test_materialize.py`: 75 passed'
+  origin: raw/2026-09-24/2214/ledger.md#L29
+  applied: 00:44:46
+- line: 30
+  text: 'estimate[estimate-materialize-walks-dates][passed] 2026-09-24, `uv run pytest tests/test_materialize.py`:
+    75 passed'
+  kind: estimate
+  category: estimates
+  slug: estimate-materialize-walks-dates
+  status: passed
+  result: '2026-09-24, `uv run pytest tests/test_materialize.py`: 75 passed'
+  origin: raw/2026-09-24/2214/ledger.md#L30
+  applied: 00:44:46
+- line: 31
+  text: 'estimate[estimate-materialize-marks-superseded][passed] 2026-09-24, `uv run pytest tests/test_materialize.py`:
+    75 passed'
+  kind: estimate
+  category: estimates
+  slug: estimate-materialize-marks-superseded
+  status: passed
+  result: '2026-09-24, `uv run pytest tests/test_materialize.py`: 75 passed'
+  origin: raw/2026-09-24/2214/ledger.md#L31
+  applied: 00:44:46
+- line: 32
+  text: 'estimate[estimate-materialize-skips-a-carried-over-unit][passed] 2026-09-24, `uv run pytest tests/test_materialize.py`:
+    75 passed'
+  kind: estimate
+  category: estimates
+  slug: estimate-materialize-skips-a-carried-over-unit
+  status: passed
+  result: '2026-09-24, `uv run pytest tests/test_materialize.py`: 75 passed'
+  origin: raw/2026-09-24/2214/ledger.md#L32
+  applied: 00:44:46
+- line: 33
+  text: 'estimate[estimate-generate-writes-the-decision-page][passed] 2026-09-24, `uv run pytest tests/test_generate.py`:
+    87 passed'
+  kind: estimate
+  category: estimates
+  slug: estimate-generate-writes-the-decision-page
+  status: passed
+  result: '2026-09-24, `uv run pytest tests/test_generate.py`: 87 passed'
+  origin: raw/2026-09-24/2214/ledger.md#L33
+  applied: 00:44:46
+- line: 34
+  text: 'estimate[estimate-generate-fails-alone][passed] 2026-09-24, `uv run pytest tests/test_generate.py`:
+    87 passed'
+  kind: estimate
+  category: estimates
+  slug: estimate-generate-fails-alone
+  status: passed
+  result: '2026-09-24, `uv run pytest tests/test_generate.py`: 87 passed'
+  origin: raw/2026-09-24/2214/ledger.md#L34
+  applied: 00:44:46
+- line: 35
+  text: 'estimate[estimate-generate-cascades][passed] 2026-09-24, `uv run pytest tests/test_generate.py`:
+    87 passed'
+  kind: estimate
+  category: estimates
+  slug: estimate-generate-cascades
+  status: passed
+  result: '2026-09-24, `uv run pytest tests/test_generate.py`: 87 passed'
+  origin: raw/2026-09-24/2214/ledger.md#L35
+  applied: 00:44:46
+- line: 36
+  text: 'estimate[estimate-generate-ticks-the-spec][passed] 2026-09-24, `uv run pytest tests/test_generate.py`:
+    87 passed'
+  kind: estimate
+  category: estimates
+  slug: estimate-generate-ticks-the-spec
+  status: passed
+  result: '2026-09-24, `uv run pytest tests/test_generate.py`: 87 passed'
+  origin: raw/2026-09-24/2214/ledger.md#L36
+  applied: 00:44:46
+- line: 37
+  text: 'estimate[estimate-prespec-checks-the-plan][passed] 2026-09-24, `uv run pytest tests/test_prespec.py`:
+    108 passed'
+  kind: estimate
+  category: estimates
+  slug: estimate-prespec-checks-the-plan
+  status: passed
+  result: '2026-09-24, `uv run pytest tests/test_prespec.py`: 108 passed'
+  origin: raw/2026-09-24/2214/ledger.md#L37
+  applied: 00:44:46
+- line: 38
+  text: 'estimate[estimate-prespec-matches-lines-and-items][passed] 2026-09-24, `uv run pytest tests/test_prespec.py`:
+    108 passed'
+  kind: estimate
+  category: estimates
+  slug: estimate-prespec-matches-lines-and-items
+  status: passed
+  result: '2026-09-24, `uv run pytest tests/test_prespec.py`: 108 passed'
+  origin: raw/2026-09-24/2214/ledger.md#L38
+  applied: 00:44:46
+- line: 39
+  text: 'estimate[estimate-prespec-checks-the-frontier][passed] 2026-09-24, `uv run pytest tests/test_prespec.py`:
+    108 passed'
+  kind: estimate
+  category: estimates
+  slug: estimate-prespec-checks-the-frontier
+  status: passed
+  result: '2026-09-24, `uv run pytest tests/test_prespec.py`: 108 passed'
+  origin: raw/2026-09-24/2214/ledger.md#L39
+  applied: 00:44:46
+- line: 40
+  text: 'estimate[estimate-prespec-requires-a-task-line][passed] 2026-09-24, `uv run pytest tests/test_prespec.py`:
+    108 passed'
+  kind: estimate
+  category: estimates
+  slug: estimate-prespec-requires-a-task-line
+  status: passed
+  result: '2026-09-24, `uv run pytest tests/test_prespec.py`: 108 passed'
+  origin: raw/2026-09-24/2214/ledger.md#L40
+  applied: 00:44:46
+- line: 41
+  text: 'estimate[estimate-prespec-checks-the-form-of-an-item][passed] 2026-09-24, `uv run pytest tests/test_prespec.py`:
+    108 passed'
+  kind: estimate
+  category: estimates
+  slug: estimate-prespec-checks-the-form-of-an-item
+  status: passed
+  result: '2026-09-24, `uv run pytest tests/test_prespec.py`: 108 passed'
+  origin: raw/2026-09-24/2214/ledger.md#L41
+  applied: 00:44:46
+- line: 42
+  text: 'estimate[estimate-lint-catches][passed] 2026-09-24, `uv run pytest tests/test_lint.py`: 69 passed'
+  kind: estimate
+  category: estimates
+  slug: estimate-lint-catches
+  status: passed
+  result: '2026-09-24, `uv run pytest tests/test_lint.py`: 69 passed'
+  origin: raw/2026-09-24/2214/ledger.md#L42
+  applied: 00:44:46
+- line: 43
+  text: 'estimate[estimate-lint-finds-a-broken-link][passed] 2026-09-24, `uv run pytest tests/test_lint.py`:
+    69 passed'
+  kind: estimate
+  category: estimates
+  slug: estimate-lint-finds-a-broken-link
+  status: passed
+  result: '2026-09-24, `uv run pytest tests/test_lint.py`: 69 passed'
+  origin: raw/2026-09-24/2214/ledger.md#L43
+  applied: 00:44:46
+- line: 44
+  text: 'estimate[estimate-lint-checks-the-statuses][passed] 2026-09-24, `uv run pytest tests/test_lint.py`:
+    69 passed'
+  kind: estimate
+  category: estimates
+  slug: estimate-lint-checks-the-statuses
+  status: passed
+  result: '2026-09-24, `uv run pytest tests/test_lint.py`: 69 passed'
+  origin: raw/2026-09-24/2214/ledger.md#L44
+  applied: 00:44:46
+- line: 45
+  text: 'estimate[estimate-lint-checks-the-method][passed] 2026-09-24, `uv run pytest tests/test_lint.py`:
+    69 passed'
+  kind: estimate
+  category: estimates
+  slug: estimate-lint-checks-the-method
+  status: passed
+  result: '2026-09-24, `uv run pytest tests/test_lint.py`: 69 passed'
+  origin: raw/2026-09-24/2214/ledger.md#L45
+  applied: 00:44:46
+- line: 46
+  text: 'estimate[estimate-lint-counts-the-unmigrated][passed] 2026-09-24, `uv run pytest tests/test_lint.py`:
+    69 passed'
+  kind: estimate
+  category: estimates
+  slug: estimate-lint-counts-the-unmigrated
+  status: passed
+  result: '2026-09-24, `uv run pytest tests/test_lint.py`: 69 passed'
+  origin: raw/2026-09-24/2214/ledger.md#L46
+  applied: 00:44:46
+- line: 47
+  text: 'estimate[estimate-spec-write-copies-the-ratified-case][passed] 2026-09-24, `uv run pytest tests/test_ratified.py`:
+    18 passed, with the code of Case 402 — an unpadded value holding a backtick refused with its reason,
+    a padded one read, the fixture `SHOWING` padded'
+  kind: estimate
+  category: estimates
+  slug: estimate-spec-write-copies-the-ratified-case
+  status: passed
+  result: '2026-09-24, `uv run pytest tests/test_ratified.py`: 18 passed, with the code of Case 402 —
+    an unpadded value holding a backtick refused with its reason, a padded one read, the fixture `SHOWING`
+    padded'
+  origin: raw/2026-09-24/2214/ledger.md#L47
+  applied: 00:44:46
+- line: 48
+  text: 'estimate[estimate-case-protocol-loaded][passed] 2026-09-24, `uv run guppi render --check`: exit
+    0; by hand, the `/hi` of session 2214 carried `vault/wiki/case-schema.md` whole in its context'
+  kind: estimate
+  category: estimates
+  slug: estimate-case-protocol-loaded
+  status: passed
+  result: '2026-09-24, `uv run guppi render --check`: exit 0; by hand, the `/hi` of session 2214 carried
+    `vault/wiki/case-schema.md` whole in its context'
+  origin: raw/2026-09-24/2214/ledger.md#L48
+  applied: 00:44:46
+- line: 49
+  text: 'estimate[estimate-plan-mode-names-its-estimates][passed] 2026-09-24, by hand, the Cases of session
+    2214 at its close: the one Case left that updates a Render, 406 on `rule-case-protocol`, names `estimate-case-protocol-case-form`,
+    the Estimate of the behaviour it changes, and not `estimate-case-protocol-loaded`, the live reading
+    of the Render; no Case left updates a Purpose — 407.1 did and is superseded by 412'
+  kind: estimate
+  category: estimates
+  slug: estimate-plan-mode-names-its-estimates
+  status: passed
+  result: '2026-09-24, by hand, the Cases of session 2214 at its close: the one Case left that updates
+    a Render, 406 on `rule-case-protocol`, names `estimate-case-protocol-case-form`, the Estimate of the
+    behaviour it changes, and not `estimate-case-protocol-loaded`, the live reading of the Render; no
+    Case left updates a Purpose — 407.1 did and is superseded by 412'
+  origin: raw/2026-09-24/2214/ledger.md#L49
+  applied: 00:44:46
+- line: 50
+  text: 'lesson[error][lesson-case-ratification-preview-before-its-targets]{tags:session,workflow,ledger}
+    trigger: the `ratification` section of Case 407.5 showed the line `decision[case 407.5][update][guppi-ratified-comparison-placeholder]`,
+    a slug no page carries, and the right lines came only after the rule root_cause: the agent wrote the
+    preview before choosing the pages that own the behaviour — the comparison lives in `guppi/ratified.py`,
+    which has no page of its own — and did not check the preview against the item lines of `tasks` before
+    showing'
+  kind: lesson
+  category: lessons
+  slug: lesson-case-ratification-preview-before-its-targets
+  origin: raw/2026-09-24/2214/ledger.md#L50
+  fields:
+    type: lesson
+    kind: error
+    root_cause: the agent wrote the preview before choosing the pages that own the behaviour — the comparison
+      lives in `guppi/ratified.py`, which has no page of its own — and did not check the preview against
+      the item lines of `tasks` before showing
+  sections:
+    Trigger: the `ratification` section of Case 407.5 showed the line `decision[case 407.5][update][guppi-ratified-comparison-placeholder]`,
+      a slug no page carries, and the right lines came only after the rule
+    Root cause: the agent wrote the preview before choosing the pages that own the behaviour — the comparison
+      lives in `guppi/ratified.py`, which has no page of its own — and did not check the preview against
+      the item lines of `tasks` before showing
+  tags:
+  - session
+  - workflow
+  - ledger
+  applied: 00:44:46
+decisions:
+- case: '406'
+  decision: decision-case-406
+  origin: raw/2026-09-24/2214/ledger.md#case-406
+  targets:
+  - kind: update
+    category: rules
+    slug: rule-case-protocol
+    ref: rule-case-protocol
+  - kind: update
+    category: estimates
+    slug: estimate-case-protocol-case-form
+    ref: estimate-case-protocol-case-form
+  tags: []
+  case_text:
+    context: 'The agent writes counts in the story sections of a Case: how many lines a journal has, how
+      many Estimates are touched. A count goes stale first. An item is added or removed, the count stays
+      in the text and goes into the Spec and onto the Decision page. In session 1916 this was a source
+      of errors. `CLAUDE.md` already says that a count comes from the run that printed it. But a Case
+      is written before the run and edited after it, and nothing checks the count in it. Today the Language
+      paragraph of the Render of `rule-case-protocol` forbids in the story sections a count of sentences,
+      line numbers and quotations. It does not forbid a count of items. The rule goes into `case-schema.md`,
+      not into `CLAUDE.md`: `CLAUDE.md` works without GUPPI too, and only `/hi` loads the Case schema.
+      `estimate-case-protocol-case-form` stands `pending`. Case 396.1 of the conserved Spec of session
+      1916 already replaces its Criterion whole. This Case takes the `when` and `then` of 396.1 and extends
+      the line on `context`, so the Spec of 1916 is applied first. An `update` with a `ref`, no vault
+      query. `frame-guppi` found no contradiction. The other Estimates of the rule speak of other things,
+      and this Case does not touch them. `estimate-agent-writing-followed` speaks of the width of a claim
+      in any text of the agent, which this Case does not change, so it is not touched either.'
+    problem: The rule does not forbid a count of items in `context`, `problem` and `recommend`. A stale
+      count goes into the Spec and onto the Decision page, and neither the ratification nor a script catches
+      it.
+    given: '`rule-case-protocol` — its Render `vault/wiki/case-schema.md`: the Sections table and the
+      Language paragraph on the story sections.
+
+      **＋** `estimate-case-protocol-case-form` — the Estimate whose Criterion is replaced.
+
+      **＋** `rule-agent-writing` — the writing rule in `CLAUDE.md`: a count comes from the run that printed
+      it.'
+    when: The agent shows a Case in the chat, at its first showing or again.
+    then: 'The Case opens with the heading `## Case N — name`, a sub-case with `### Case N.M — name` under
+      its parent, and holds its sections in the order of the Sections table, each one blockquote whose
+      first line is `**name:**`.
+
+      **＋** `context` is prose: the mechanism in plain words first, then the state of the pages the Case
+      changes, the vault''s answer and why an Estimate of the rule is not touched; a case number stands
+      in `context` or `problem` only when the Case is about that case, and a count of items stands in
+      none of the story sections unless the Case is about that count.
+
+      **＋** `given` holds the frame, one thing per line — each page, module, file and test the Case touches
+      and the rule that constrains, its slug or path in a code span and its role — and no state; `when`
+      and `then` name only what `given` names.
+
+      **＋** In `given`, `when` and `then` each line after the first opens with `**＋**` or `**－**`, a `**－**`
+      line names something of `given` or `when`, and `then` holds behaviour only.
+
+      **＋** `tasks` names by slug each Estimate the Case creates or replaces, and under a line whose item
+      writes content that content stands as sub-points; no `contract` line and no "block N" line.
+
+      **＋** A pair under `replace` or `reword` stands only when the Case says what the sentence around
+      each match names; a Case that changes the behaviour of a page gives an `update` to each Estimate
+      of that page whose Criterion speaks of the change.
+
+      **＋** `ratification` holds only the preview of the ledger lines in an untagged fence; the agent''s
+      own text stands after the Case, after one horizontal rule, and the reply ends with a plain question.
+
+      **＋** A Case with sub-cases is shown in one reply: the parent''s `context`, `problem` and `recommend`,
+      then each sub-case whole.'
+  spec: vault/raw/2026-09-24/2214/spec.md
+  applied: 00:44:46
+- case: '407.1'
+  decision: decision-case-407.1
+  origin: raw/2026-09-24/2214/ledger.md#case-407.1
+  targets:
+  - kind: update
+    category: rules
+    slug: rule-prespec
+    ref: rule-prespec
+  - kind: create
+    category: estimates
+    slug: estimate-prespec-checks-one-case
+    ref: rule-prespec
+  tags:
+  - session
+  - workflow
+  - harness
+  superseded_by:
+  - decision-case-412
+  applied: 00:44:46
+- case: '407.2'
+  decision: decision-case-407.2
+  origin: raw/2026-09-24/2214/ledger.md#case-407.2
+  targets:
+  - kind: update
+    category: rules
+    slug: rule-spec-write
+    ref: rule-spec-write
+  - kind: create
+    category: estimates
+    slug: estimate-spec-write-checks-the-written-case
+    ref: rule-spec-write
+  tags:
+  - hooks
+  - harness
+  - workflow
+  superseded_by:
+  - decision-case-412
+  applied: 00:44:46
+- case: '407.3'
+  decision: decision-case-407.3
+  origin: raw/2026-09-24/2214/ledger.md#case-407.3
+  targets:
+  - kind: update
+    category: rules
+    slug: rule-spec-reconcile
+    ref: rule-spec-reconcile
+  - kind: update
+    category: estimates
+    slug: estimate-spec-reconcile-shows-a-changed-case
+    ref: estimate-spec-reconcile-shows-a-changed-case
+  - kind: update
+    category: rules
+    slug: rule-hook-registry
+    ref: rule-hook-registry
+  tags: []
+  superseded_by:
+  - decision-case-412
+  applied: 00:44:46
+- case: '407.4'
+  decision: decision-case-407.4
+  origin: raw/2026-09-24/2214/ledger.md#case-407.4
+  targets:
+  - kind: update
+    category: rules
+    slug: rule-case-protocol
+    ref: rule-case-protocol
+  - kind: create
+    category: estimates
+    slug: estimate-spec-reconcile-writes-a-fragment
+    ref: rule-spec-reconcile
+  tags:
+  - hooks
+  - harness
+  - workflow
+  superseded_by:
+  - decision-case-412
+  applied: 00:44:46
+- case: '407.5'
+  decision: decision-case-407.5
+  origin: raw/2026-09-24/2214/ledger.md#case-407.5
+  targets:
+  - kind: update
+    category: rules
+    slug: rule-prespec
+    ref: rule-prespec
+  - kind: update
+    category: rules
+    slug: rule-case-protocol
+    ref: rule-case-protocol
+  - kind: update
+    category: estimates
+    slug: estimate-prespec-checks-the-ratified-copy
+    ref: estimate-prespec-checks-the-ratified-copy
+  tags: []
+  superseded_by:
+  - decision-case-412
+  applied: 00:44:46
+- case: '408'
+  decision: decision-case-408
+  origin: raw/2026-09-24/2214/ledger.md#case-408
+  targets:
+  - kind: defer
+    category: rules
+    slug: rule-frame-check
+    ref: rule-frame-check
+  tags: []
+  case_text:
+    context: 'Case 403 deferred the question: whether `frame-guppi` pays, judged by the contradictions
+      it finds against its tokens and time. In session 2214 it was dispatched three times — twice for
+      Case 406, once for Case 407. It found no contradiction for Case 406 and one for Case 407: the circular
+      import between `guppi/prespec.py` and `guppi/ratified.py`, which would have broken the code of Cases
+      407.2 and 407.4 at the first load. The dispatch for Case 407 cost about 160 thousand tokens and
+      six minutes. The pre-spec of the same session then found in Case 407 contradictions that `frame-guppi`
+      had not reported, with the frame it had read. The person chose to spend the rest of the session
+      on Work Mode.'
+    problem: 'Keep `frame-guppi` or roll it back: decided in a later session, with the data of sessions
+      1916 and 2214.'
+  spec: vault/raw/2026-09-24/2214/spec.md
+  applied: 00:44:46
+- case: '409'
+  decision: decision-case-409
+  origin: raw/2026-09-24/2214/ledger.md#case-409
+  targets:
+  - kind: defer
+    category: rules
+    slug: rule-context-size
+    ref: rule-context-size
+  tags: []
+  case_text:
+    context: 'Case 404 deferred the limit of 400 000 tokens in `guppi/context.py`. The brief of session
+      1916 adds a second point on the same page: past the limit the `UserPromptSubmit` hook orders the
+      session closed with `/retro` and `/handoff`, and the person reads the mark as "take no more work",
+      not as a reason to leave Plan Mode for Retro. Both wait for a session that reaches the limit.'
+    problem: 'Which limit is right, and what the hook says past it: decided once a session reaches it.'
+  spec: vault/raw/2026-09-24/2214/spec.md
+  applied: 00:44:46
+- case: '410'
+  decision: decision-case-410
+  origin: raw/2026-09-24/2214/ledger.md#case-410
+  targets:
+  - kind: defer
+    category: rules
+    slug: rule-case-protocol
+    ref: rule-case-protocol
+  tags: []
+  superseded_by:
+  - decision-case-412
+  applied: 00:44:46
+- case: '411'
+  decision: decision-case-411
+  origin: raw/2026-09-24/2214/ledger.md#case-411
+  targets:
+  - kind: defer
+    category: rules
+    slug: rule-case-protocol
+    ref: rule-case-protocol
+  tags: []
+  superseded_by:
+  - decision-case-413
+  applied: 00:44:46
+- case: '412'
+  decision: decision-case-412
+  origin: raw/2026-09-24/2214/ledger.md#case-412
+  targets:
+  - kind: defer
+    category: rules
+    slug: rule-prespec
+    ref: rule-prespec
+  - kind: defer
+    category: rules
+    slug: rule-prespec
+    ref: rule-prespec
+  - kind: defer
+    category: rules
+    slug: rule-spec-write
+    ref: rule-spec-write
+  - kind: defer
+    category: rules
+    slug: rule-spec-reconcile
+    ref: rule-spec-reconcile
+  - kind: defer
+    category: rules
+    slug: rule-spec-reconcile
+    ref: rule-spec-reconcile
+  - kind: defer
+    category: rules
+    slug: rule-spec-reconcile
+    ref: rule-spec-reconcile
+  tags: []
+  case_text:
+    context: 'Case 407 was ratified in this session and leaves the Spec by this Case. Its mechanism: `prespec
+      --check --case N` checks one Case without the Frontier and the translation; the `Stop` hook of `rule-spec-write`
+      runs it on each Case it writes and gives the findings back by exit 2; a `PreToolUse` guard of `rule-spec-reconcile`
+      refuses every edit of the plan by the agent but its creation and the part below `## Deferred`; the
+      agent writes the name, `context`, `problem`, `given` and the task lines that are no items through
+      a `Write` of `<plan>.fragment.md`, which the guard refuses, merges into the plan and checks; the
+      comparison with the ratified copy drops `given` and the task lines that are no items. The full text
+      of Case 407 stands in the ratified copy of this plan. The pre-spec of this session found in it what
+      the next session answers first: a `given` written unshown still reaches the Decision page, against
+      the purposes of `rule-spec-write` and `rule-spec-reconcile`; the `ratification` row of the Case
+      schema keeps clauses on an edit of the plan and a `DIFF` of it, and a new task line on a file changes
+      the scope; `is_plan` takes the fragment and the plan of a subagent for plan files; the finding of
+      a ledger line that does not parse names no Case; `estimate-case-protocol-checks-its-frame` reads
+      a changed `given` before a showing again, which would no longer happen; an exit 2 after the acknowledging
+      reply makes the agent go on after its `LEDGER` block; no page says whether `guppi ledger` writes
+      its lines before `guppi ratified` checks them at the same `Stop`; in Plan Mode the client may ask
+      the person before a `Write` outside the plan file, by `lesson-permissions-reading-taken-by-the-agent-who-cannot-see-the-prompt`.
+      The question of Case 410 — when the prose of a Case is translated — waits for the same mechanism
+      and is taken in here.'
+    problem: 'How the Spec is written by hooks alone, with each Case checked at once: decided in a later
+      session, with the findings above answered.'
+  spec: vault/raw/2026-09-24/2214/spec.md
+  supersedes:
+  - decision-case-407.1
+  - decision-case-407.5
+  - decision-case-407.2
+  - decision-case-407.3
+  - decision-case-407.4
+  - decision-case-410
+  applied: 00:44:46
+- case: '413'
+  decision: decision-case-413
+  origin: raw/2026-09-24/2214/ledger.md#case-413
+  targets:
+  - kind: defer
+    category: rules
+    slug: rule-prespec
+    ref: rule-prespec
+  tags: []
+  case_text:
+    context: 'The pre-spec of session 1916 found a promise signed twice: `estimate-case-protocol-case-form`
+      (Case 396.1) and `estimate-prespec-checks-the-frame` both say that `when` and `then` name only what
+      `given` names — the first as the form of a Case, the second as the finding of `prespec --check`.
+      Case 406 carried the line of 396.1 on unchanged. Case 411 deferred the question on `rule-case-protocol`,
+      which Case 406 changes in the same Spec; this Case defers it on `rule-prespec`, the page of the
+      other Estimate, and supersedes 411.'
+    problem: 'Which of the two Estimates keeps the line: decided in a later session.'
+  spec: vault/raw/2026-09-24/2214/spec.md
+  supersedes:
+  - decision-case-411
+  applied: 00:44:46
+unparsed: []
+session: '2214'

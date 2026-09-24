@@ -1,11 +1,11 @@
 ---
 type: estimate
 kind: QA
-status: pending
+status: passed
 target: "[[rule-case-protocol]]"
 purpose: The Case schema is present in a session from the first turn after /hi, as one text — the Render of rule-case-protocol — and nothing of it repeated in CLAUDE.md
-method: one reading at the first /hi of a session, by hand, plus the preview cases of tests/test_ledger.py
-checked: 2026-09-22
+method: uv run guppi render --check; by hand at the first /hi of a session, vault/wiki/case-schema.md in the context
+checked: 2026-09-24
 origin: raw/2026-09-09/ledger.md#case-13
 sprint: migration
 created: 2026-09-09
@@ -14,32 +14,17 @@ tags: [session, workflow, ledger]
 
 ## Criterion
 
-Given:
-`case-schema.md` is the Render of `rule-case-protocol`, loaded by `/hi`; the hook refuses a hand edit.
-**＋** The one rule stood as the first paragraph of `CLAUDE.md` until this Case (59.8, 272.1).
-**＋** `guppi render --check` keeps the file equal to the page.
-
 When:
-The first `uv run guppi render` after `rule-case-protocol` changed, and the `/hi` of the next session.
+`/hi` opens a session after `uv run guppi render` wrote `vault/wiki/case-schema.md` from `rule-case-protocol`.
 
 Then:
-`case-schema.md` opens with the section "The one rule" right under its title: nothing in the vault or the codebase changes without a Decision ratified by the human; the agent has full autonomy over how to implement something once its contract is ratified, and none over the contract itself; when unsure whether something needs ratification, it does; the vault is the only memory — no note outside the repository, what is worth keeping is a `lesson` line or a Case on a Rule page (272.1).
-**＋** The paragraph after it says, as before, that the schema is the Render loaded by `/hi` with `sprint.md`, `brief.md` and `glossary.md`, and that a session without `/hi` holds no Case.
-**＋** The Spec paragraph names the field-only `update` of an Estimate: a part named changes alone, a part inside the Criterion sets `pending` (294, 296); it names `reword` among the keys of an `update`, between `replace` and `change`, and, at the end of the description of an `update`, the requirement for signing a pair of either kind and the step that a Case changing a page reads the page's `estimates` (353).
-**＋** The paragraph on the Criterion says that a Case superseded in its own session, before the Spec is approved, leaves the Spec and the superseding Case is written whole; a supersede from a later session leaves the earlier Spec as it is (299.1); the Spec paragraph names `glossary` as the fourth ticker, the glossary lines (306.6).
-**＋** The row of `ratification` says that in the chat the section is the preview of the ledger lines alone, and the agent's own text stands after the Case, after one horizontal rule (355.1).
-**＋** The section Splitting says that a Case with sub-cases is shown in one reply, ratified at once or by ids, with one `LEDGER` block and one Frontier (355.2).
-**＋** The Plan Mode paragraph says Plan Mode does not end while a line under `## Cases` is open (356.1).
-**＋** The Plan Mode paragraph names `[-] … · sprint` for a sprint item left for later, never `· defer case N` (356.2).
-**＋** The section Sections says a Case opens with the heading `## Case N — name`, in the chat and in the Spec, a sub-case with `### Case N.M — name` (368).
-**＋** The `tasks` row says the content of an item stands in the chat as sub-points under its line, and the paragraph on the `then` block that its content stands there as sub-points of `tasks` (370).
-**＋** The `ratification` row says a Case the agent finds changed after its ratification is shown again, and nothing of the change is written or acted on until it is ratified again (373).
-**＋** `render --check` after the render exits 0.
-**－** The other sections of the schema do not change; the description of the project is not in the schema.
+The context of the session holds `vault/wiki/case-schema.md` from the first turn after `/hi`, loaded with `sprint.md`, `brief.md` and `glossary.md`.
+**＋** `uv run guppi render --check` exits 0: the file equals the Render of `rule-case-protocol`.
+**－** `CLAUDE.md` repeats no paragraph of `vault/wiki/case-schema.md`.
 
 ## Result
 
-2026-09-22, case-schema.md read at the /hi of session 1121: "The one rule" opens the file under the title with the memory sentence; the paragraph after names the Render loaded by /hi with sprint.md, brief.md and glossary.md; the Spec paragraph names the field-only update of an Estimate and guppi glossary as the fourth ticker (cases 226, 250, 270, 306); the Criterion paragraph names a Case superseded in its own session leaving the Spec; render --check exit 0
+2026-09-24, `uv run guppi render --check`: exit 0; by hand, the `/hi` of session 2214 carried `vault/wiki/case-schema.md` whole in its context
 
 ## History
 
@@ -88,3 +73,5 @@ Then:
 - 2026-09-23 updated: the Criterion names the heading of a Case in the Render (case 368) · [[decision-case-368]]
 - 2026-09-23 updated: the Criterion names the sub-points of tasks in the Render (case 370) · [[decision-case-370]]
 - 2026-09-23 updated: the Criterion names the showing again after the agent's own finding in the Render (case 373) · [[decision-case-373]]
+- 2026-09-25 updated: the Criterion replaced whole — the Render present from the first turn after /hi and equal to the page, the journal of its paragraphs out (cases 378.5, 396.2) · [[decision-case-396.2]]
+- 2026-09-25 status: pending → passed · raw/2026-09-24/2214/ledger.md#L48

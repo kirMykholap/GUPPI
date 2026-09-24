@@ -20,17 +20,20 @@ The `Stop` hook `uv run guppi ratified` runs after a reply whose `LEDGER` block 
 Then:
 The hook writes that Case into the plan file `plan_path` finds, the section of Case N replaced when it stands, appended otherwise: the heading, `context`, `problem`, `given`, `when` and `then` as they stand in the chat; a block tagged `then` built from the sub-points of `tasks`; a block tagged `tasks` of the task lines without their sub-points.
 **＋** It writes the same text the same way into the ratified copy `<plan>.ratified.md` beside the plan file.
-**＋** A task line opening with `create`, `update`, `delete` or `defer` and the slug in its first code span is an item of the `then` block; its sub-points are its keys — `old` and `new` in pairs under `replace`, `reword old` and `reword new` under `reword`, `set`, `change`, `rename`, `sections.<Name>`, the fields of a `create` — each value one code span or a fenced block under the sub-point.
+**＋** A task line opening with `create`, `update`, `delete` or `defer` and the slug in its first code span is an item of the `then` block; its sub-points are its keys — `old` and `new` in pairs under `replace`, `reword old` and `reword new` under `reword`, `set`, `change`, `rename`, `sections.<Name>`, the fields of a `create` — each value one code span, padded by one space on each side when the value holds a backtick, or a fenced block under the sub-point.
+**＋** A value that holds a backtick in an outer span not padded on both sides is refused: exit 2 with `` `<key>`: a value holding a backtick takes its outer span padded by one space `` on stderr, and nothing of the Case is written.
 **＋** `recommend` and `ratification` are not written.
 **＋** When the last showing of Case N is a `DIFF` block, not the Case whole, the hook writes nothing for it.
 **＋** No plan file in the event log, no showing of Case N, or a sub-point it cannot read: exit 2 with the reason on stderr; on the re-fire (`stop_hook_active`) exit 0.
-**－** A Case whose lines are all `defer` is not written by the hook: the agent appends it under `## Deferred`, as before.
+**－** A Case whose lines are all `defer` is not written by the hook: the agent appends it under `## Deferred`.
 
 ## Result
 
-2026-09-24, uv run pytest tests/test_ratified.py -k write: 9 passed; live in session 1303: after the acknowledging reply of Case 390 the Stop hook wrote Case 390 into the plan file and its ratified copy — the heading, context, problem, given, when and then as in the chat, a then block built from the sub-points (replace old/new, set, change), a tasks block without the sub-points, no recommend and no ratification; the two files equal below their title lines
+2026-09-24, `uv run pytest tests/test_ratified.py`: 18 passed, with the code of Case 402 — an unpadded value holding a backtick refused with its reason, a padded one read, the fixture `SHOWING` padded
 
 ## History
 
 - 2026-09-24 created · [[decision-case-387.2]]
 - 2026-09-24 status: pending → passed · raw/2026-09-24/1303/ledger.md#L3
+- 2026-09-25 updated: the Criterion replaced whole — a value holding a backtick padded by one space, an unpadded one refused (case 402) · [[decision-case-402]]
+- 2026-09-25 status: pending → passed · raw/2026-09-24/2214/ledger.md#L47

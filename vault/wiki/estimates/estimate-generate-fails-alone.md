@@ -14,28 +14,21 @@ tags: [harness, workflow, ledger, tests]
 
 ## Criterion
 
-Given:
-`guppi generate` applies the entries of a `materialize.yaml` in order; the `sections` of an `update` entry are whole replacements, `set` writes fields.
-**＋** An `update` entry for an Estimate that replaces the promise carries `sections.Criterion` and `set: {status: pending}`; one that names a part alone carries neither, and a part inside the Criterion sets `pending` (296); a `create` entry carries `kind`, `purpose`, `method`, `tags` as fields (194.1).
-**＋** An `estimate` entry carries `status` and `result`; the `result` opens with the date of the reading and the command (199).
-**＋** The tests in `tests/test_generate.py` fix the behaviour; the live reading is the librarian's run of this session.
-**－** `materialize`, `cleanup` and `lint` do not change here.
-
 When:
-`guppi generate` meets an entry it cannot apply, or one already handled.
+`uv run guppi generate` meets an entry of `materialize.yaml` it cannot apply, or one already handled.
 
 Then:
 An entry that fails — a collision, a `ref` naming no page, a `replace` absent or not unique, a field of an unexpected shape, an unknown `kind`, any exception — is printed on stderr as `generate: <slug>: <what>`, marked `failed` in the yaml and skipped; the rest apply; the exit code is 1; no entry ends the run.
-**＋** An `update` with `sections.Criterion` on an Estimate page without a `method` field, whose `set` carries no `method`, fails the same way: `generate: <slug>: a recut without method (case 211)`; a page with the field takes the Criterion as before (case 211.2).
+**＋** An `update` with `sections.Criterion` on an Estimate page without a `method` field, whose `set` carries no `method`, fails the same way: `generate: <slug>: a recut without method (case 211)`.
 **＋** Every applied entry is marked `applied: <time>`; a stale `failed` mark is dropped on apply; a rerun writes nothing.
 **＋** An entry with `failed` and no `kind` is skipped with its mark kept and the line `generate: line N: not lifted by materialize; <message>`, exit 1.
 **＋** An entry with `superseded_by` is not applied and leaves no line; the Decision page of its Case is still written.
-**＋** An `update` with no content prints `generate: <slug>: an update with no content in the Spec; nothing applied` on stdout, changes no page and is marked applied (case 320).
-**－** The failure of one entry changes no other page: `log.md` after it is level with the pages.
+**＋** An `update` with no content prints `generate: <slug>: an update with no content in the Spec; nothing applied` on stdout, changes no page and is marked applied.
+**－** The failure of one entry changes no other page: `vault/wiki/log.md` after it is level with the pages.
 
 ## Result
 
-2026-09-24, uv run pytest tests/test_generate.py: 87 passed — the failed, skipped and marked entries among them
+2026-09-24, `uv run pytest tests/test_generate.py`: 87 passed
 
 ## History
 
@@ -49,3 +42,5 @@ An entry that fails — a collision, a `ref` naming no page, a `replace` absent 
 - 2026-09-23 status: pending → failed · raw/2026-09-23/0034/ledger.md#L58
 - 2026-09-23 updated: the message of an update with no content as the code prints it since case 320 (case 366) · [[decision-case-366]]
 - 2026-09-24 status: pending → passed · raw/2026-09-24/1303/ledger.md#L22
+- 2026-09-25 updated: the Criterion replaced whole — Given out by the model of case 378, the When and Then as they stood (case 398.2) · [[decision-case-398.2]]
+- 2026-09-25 status: pending → passed · raw/2026-09-24/2214/ledger.md#L34

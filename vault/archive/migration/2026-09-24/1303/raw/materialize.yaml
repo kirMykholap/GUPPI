@@ -714,6 +714,7 @@ entries:
       code span is read with its edge backticks eaten, not refused
   exists: true
   applied: '19:11:55'
+  superseded_by: '402'
 - kind: update
   category: insights
   slug: insight-workflow-case-schema-silent-on-what-the-scripts-accept
@@ -1314,5 +1315,7 @@ decisions:
       beyond what CommonMark reads?
   spec: vault/raw/2026-09-24/1303/spec.md
   applied: '19:11:55'
+  superseded_by:
+  - decision-case-402
 unparsed: []
 session: '1303'

@@ -3,8 +3,9 @@ type: estimate
 kind: QA
 status: passed
 target: "[[rule-lint]]"
+purpose: lint reads every live page against the schema of its category and prints one line per finding, exit 1 on any
 method: pytest in tests/test_lint.py, one test per defect class; the live reading once by hand, written into the estimate line
-checked: 2026-09-23
+checked: 2026-09-24
 origin: raw/2026-09-09/ledger.md#case-21
 sprint: migration
 created: 2026-09-09
@@ -13,35 +14,21 @@ tags: [harness, workflow]
 
 ## Criterion
 
-Given:
-`guppi lint` reads every live page of `wiki/<category>/` against the category's `schema.yaml` and writes nothing.
-**＋** `estimates/schema.yaml` (193): `purpose`, `method`, `checked` are optional fields; `## Context`, `## Method` optional sections; `## Result` required on `passed` and `failed`.
-**＋** The tests in `tests/test_lint.py` fix the behaviour, one per class; the live reading is `make lint` in the librarian's run of this session.
-**－** `render --check` and the Makefile do not change.
-
 When:
-`uv run guppi lint` reads the live pages of the vault.
+`uv run guppi lint` reads the live pages under `vault/wiki/<category>/`.
 
 Then:
-Every live page is checked against the `schema.yaml` of its category; one line per finding, `<category>/<slug>: <class>: <what>`; exit 1 on any finding, 0 and no output on a clean vault; nothing is written.
-**＋** `schema`: a missing required field or section, a value outside the list, a conditional not met, a field of `properties.single` holding a list (362.1); `## When` is never required on a Decision page; `layout`: a page whose `type` does not match its folder, a page whose slug is not its filename, a `.md` at the root of `wiki/` that no live rule page names (case 315); `schema-description`: a field or section the lists of `schema.yaml` name without a description under `fields` or `sections`, or a description of a name no list carries (case 304.8).
-**＋** `ref`: a slug in `parent`, `children`, `estimates`, `target`, `insight`, `addressed_by`, `deferred_by`, `applies_to`, `rules` or in a History wikilink that no live or archived page carries; a `[[…]]` in a body may name a hub file under `wiki/` by stem or path; a `[[slug]]` under a Decision page's `## Criterion` that is no Estimate; a `### case N` block of an Estimate with no decision page; an `applies_to` that names no Entity, and an Entity's `rules` that differs from the live rules whose `applies_to` names it (case 305.5).
-**＋** `origin`: both forms resolve in `raw/` or in `vault/archive/`; in neither, or in both, a finding.
-**＋** `path`: a file of `implementation_ref` or `governs` that does not exist.
-**＋** `markers`: a page with `enforcement: render` whose `## Render` is absent, or whose text does not open with `<!-- slug -->` and close with `<!-- /slug -->`; a page with `render_mode: full` whose Render carries a closing marker line `<!-- /child -->` for one of its `children` — a parent carries one opening line per child (case 325.2).
-**＋** `orphan`: a live entity, rule or estimate that no live page's frontmatter names; a lesson and an Insight never.
-**＋** `status`: `built` with an Estimate not `passed`, `draft` with every one `passed`; an Estimate `passed` or `failed` without `## Result`; an Estimate whose target is not an entity or a rule, or does not list it in `estimates`.
-**＋** `unread`: every Estimate `pending` or `failed` — one finding each, `unread: <status>`; red between a change of a promise and its reading, by design.
-**＋** `method`: the `method` field, or on a page of the old shape the `## Method` section; for a MOC's Estimate a named `make <target>` of the Makefile passes whatever stands beside it, and a reading (`by hand`, the one spelling since case 330.1) passes when the Estimates of every child are readings or when another Estimate of the same MOC names a `make <target>` of the Makefile (case 212); for a Leaf's Estimate a `tests/` file that exists, the word `pytest`, a `make <target>` of the Makefile or a reading; else a finding.
-**＋** `decision`: a decision page with none of the four lists, or with `kind`/`target_slug`; a listed slug with a category prefix and no page.
-**＋** `deferred`: a placeholder earns one finding `deferred: <N> times since case <M>` in place of its `schema` and `orphan` findings; a page with `deferred_by` whose fields are in place earns none.
-**＋** `unmigrated`: one line, `estimates: unmigrated: <N> pages in the shape before case 193` — the live Estimates without a `method` field, or with `## Context`, `## Method` or a `### case N` block; no line at zero.
-**－** `make lint` runs it after `render --check`; neither writes.
-**－** The checks of the old shape — `## Method` as a section, the `### case N` blocks — leave by a separate `update` of this rule once the counter reads zero; not this Case.
+Each finding is one line `<category>/<slug>: <class>: <what>`; exit 1 on any finding, 0 and no output on a clean vault; nothing is written.
+**＋** `schema`: a missing required field or section, a value outside the list of `values`, a conditional not met, a field of `properties.single` holding a list; `## When` is never required on a Decision page.
+**＋** `schema-description`: a field or section the lists of `schema.yaml` name without a description under `fields` or `sections`, or a description of a name no list carries.
+**＋** `layout`: a page whose `type` does not match its folder, a page whose `slug` field is not its filename, a `.md` at the root of `vault/wiki/` that no live rule page names.
+**＋** `path`: a file named in `implementation_ref` or `governs` that does not exist.
+**＋** `markers`: a page with `enforcement: render` without `## Render`, or whose Render does not open with `<!-- slug -->` and close with `<!-- /slug -->`; a page with `render_mode: full` whose Render holds a closing line `<!-- /child -->` for one of its `children`.
+**－** A page under `vault/archive/` is not read.
 
 ## Result
 
-2026-09-23, uv run pytest tests/test_lint.py: 69 passed; live uv run guppi lint: 100 lines, exit 1, every line in the form <category>/<slug>: <class>: <what> — schema 64, unread 31, deferred 3, orphan 1, unmigrated 1; git status after the run shows no file written by it
+2026-09-24, `uv run pytest tests/test_lint.py`: 69 passed
 
 ## History
 
@@ -79,3 +66,5 @@ Every live page is checked against the `schema.yaml` of its category; one line p
 - 2026-09-23 updated: one spelling of a reading in the Criterion — `by hand` (case 330.1) · [[decision-case-330.1]]
 - 2026-09-23 updated: the Criterion names the finding on a single field holding a list (case 362.1) · [[decision-case-362.1]]
 - 2026-09-23 status: pending → passed · raw/2026-09-23/1126/ledger.md#L33
+- 2026-09-25 updated: the Criterion replaced whole — the run, schema, layout, paths and markers by the model of case 378; links, statuses, method and the unmigrated count moved to their own Estimates (case 401.1) · [[decision-case-401.1]]
+- 2026-09-25 status: pending → passed · raw/2026-09-24/2214/ledger.md#L42

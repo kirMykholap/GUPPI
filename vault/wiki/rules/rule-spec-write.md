@@ -2,11 +2,12 @@
 type: rule
 kind: Leaf
 purpose: Prevents a ratified Case from entering the Spec in other words than the ones the person signed
-status: draft
+status: built
 enforcement: hook
 implementation_ref: [guppi/ratified.py, tests/test_ratified.py, .claude/settings.json]
 parent: "[[rule-plan-mode]]"
 estimates: ["[[estimate-spec-write-copies-the-ratified-case]]"]
+deferred_by: ["[[decision-case-394]]"]
 origin: raw/2026-09-23/1859/ledger.md#case-387.2
 sprint: migration
 created: 2026-09-23
@@ -25,3 +26,5 @@ Prevents a ratified Case from entering the Spec in other words than the ones the
 
 - 2026-09-24 created · [[decision-case-387.2]]
 - 2026-09-24 estimate estimate-spec-write-copies-the-ratified-case added · [[decision-case-387.2]]
+- 2026-09-24 deferred · [[decision-case-394]]
+- 2026-09-24 status: draft → built · cascade

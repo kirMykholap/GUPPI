@@ -1,7 +1,7 @@
 ---
 type: estimate
 kind: QA
-status: passed
+status: pending
 target: "[[rule-harness]]"
 method: make test-harness over tests/test_render.py and tests/test_lint.py; the live reading of make lint by hand
 checked: 2026-09-23
@@ -13,16 +13,13 @@ tags: [harness, workflow]
 
 ## Criterion
 
-Given:
-`make lint` is `render --check`, `sprint --check`, `glossary --check`, `guppi lint` (cases 227, 306.5); `rule-sprint` and `rule-glossary` are children of `rule-documentation`, not of `rule-harness`.
-**＋** `estimate-harness-pipeline` is the old shape — a recut with `set.method`.
-
 When:
-`make lint` and `make test-harness` run; someone reads `rule-harness`.
+`make lint` and `make test-harness` run, and someone reads the Purpose of `rule-harness`.
 
 Then:
-The Purpose says: three rules belong to no phase of the session, and five more stand outside the pipeline — the renderer, the page `settings.json` is assembled from, lint — and with them the check of `rule-sprint` runs in `make lint`, in this order: the harness files against their pages, the sprint file against its page, the glossary file against its page, then the pages.
-**＋** `make test-harness` is green; `make lint` exits 0 on the committed tree by its first three steps — the file checks, `render`, `sprint` and `glossary --check` silent; the fourth, `guppi lint`, is read by its own Estimates (case 311).
+The Purpose says: three rules belong to no phase of the session — the renderer, the page `settings.json` is assembled from, lint — and with them the check of `rule-sprint` runs in `make lint`, in this order: the harness files against their pages, the sprint file against its page, the glossary file against its page, then the pages.
+**＋** The Purpose names seven more rules that belong to it and run in no pipeline: the schemas of the pages, the layout of the vault, the hook that refuses a hand edit of a rendered file, the hook that refuses a heredoc with a backslash or a file write, the page `CLAUDE.md` is rendered from, the pinned clock of the tests, and the hook that shows the size of the context.
+**＋** `make test-harness` is green; the first three steps of `make lint` — `render`, `sprint` and `glossary --check` — exit 0 with no output on the committed tree; the fourth, `guppi lint`, is read by its own Estimates.
 
 ## Result
 
@@ -40,3 +37,4 @@ The Purpose says: three rules belong to no phase of the session, and five more s
 - 2026-09-22 updated: the then line counts three file checks, glossary --check the third (case 311) · [[decision-case-311]]
 - 2026-09-22 updated: the Purpose it reads names five rules outside the pipeline (case 323) · [[decision-case-323]]
 - 2026-09-23 status: pending → passed · raw/2026-09-23/0034/ledger.md#L60
+- 2026-09-24 updated: the Criterion replaced whole — seven rules outside the pipeline, no Given (case 392.3) · [[decision-case-392.3]]

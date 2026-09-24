@@ -2,7 +2,7 @@
 type: rule
 kind: Leaf
 purpose: Prevents a ratified decision from ending the session without a page, or a page from carrying a field nobody ratified
-status: draft
+status: built
 enforcement: check
 implementation_ref: [guppi/generate.py, tests/test_generate.py]
 parent: "[[rule-documentation]]"
@@ -120,3 +120,4 @@ every defer (cases 52.4, 186.1); the page of a Case superseded in its own sessio
 - 2026-09-23 updated: the docstrings of guppi/generate.py name an entry with no category, not a Rule-class file (case 365) · [[decision-case-365]]
 - 2026-09-23 updated: the script invents nothing; what it writes beyond the yaml is computed by the steps the page names (case 369) · [[decision-case-369]]
 - 2026-09-23 estimate estimate-generate-writes-the-given added · [[decision-case-378.3]]
+- 2026-09-24 status: draft → built · cascade

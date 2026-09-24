@@ -2,8 +2,8 @@
 type: rule
 kind: MOC
 purpose: Prevents the tools of the harness from drifting apart from the pages that describe them
-status: built
-children: ["[[rule-render-harness]]", "[[rule-settings]]", "[[rule-lint]]", "[[rule-page-schemas]]", "[[rule-vault-layout]]", "[[rule-governed-files-hook]]", "[[rule-claude-md]]", "[[rule-bash-guard]]", "[[rule-tests-clock-pinned]]"]
+status: draft
+children: ["[[rule-render-harness]]", "[[rule-settings]]", "[[rule-lint]]", "[[rule-page-schemas]]", "[[rule-vault-layout]]", "[[rule-governed-files-hook]]", "[[rule-claude-md]]", "[[rule-bash-guard]]", "[[rule-tests-clock-pinned]]", "[[rule-context-size]]"]
 estimates: ["[[estimate-harness-pipeline]]"]
 applies_to: ["[[entity-guppi]]"]
 origin: raw/2026-09-10/ledger.md#case-37
@@ -16,7 +16,7 @@ tags: [harness, workflow]
 
 Prevents the tools of the harness from drifting apart from the pages that describe
 them. Three rules belong to no phase of the session: the renderer, the page
-`.claude/settings.json` is assembled from, and lint. They run together in `make lint`, with the check of `rule-sprint` (a child of `rule-documentation`) between them, in this order: the harness files are checked against their pages, the sprint file against its page, the glossary file against its page, then the pages (cases 227, 306.5). Five more belong here and run in no pipeline: the hook that refuses a hand edit of a rendered file, the hook that refuses a heredoc with a backslash or a file write, the page `CLAUDE.md` is rendered from, and the pinned clock of the tests (cases 59.6, 59.8, 127, 145.1).
+`.claude/settings.json` is assembled from, and lint. They run together in `make lint`, with the check of `rule-sprint` (a child of `rule-documentation`) between them, in this order: the harness files are checked against their pages, the sprint file against its page, the glossary file against its page, then the pages (cases 227, 306.5). Seven more belong here and run in no pipeline: the schemas of the pages, the layout of the vault, the hook that refuses a hand edit of a rendered file, the hook that refuses a heredoc with a backslash or a file write, the page `CLAUDE.md` is rendered from, the pinned clock of the tests, and the hook that shows the size of the context (cases 59.6, 59.8, 127, 145.1, 304, 315, 392.3).
 
 ## History
 
@@ -48,3 +48,6 @@ them. Three rules belong to no phase of the session: the renderer, the page
 - 2026-09-22 updated: rule-vault-layout, the layout of the vault, after rule-page-schemas (case 315) · [[decision-case-315]]
 - 2026-09-22 updated: the glossary step of make lint and the fifth rule outside the pipeline (case 323) · [[decision-case-323]]
 - 2026-09-23 status: draft → built · cascade
+- 2026-09-24 child rule-context-size added · [[decision-case-392.1]]
+- 2026-09-24 updated: the Purpose names the seven rules outside the pipeline (case 392.3) · [[decision-case-392.3]]
+- 2026-09-24 status: built → draft · cascade

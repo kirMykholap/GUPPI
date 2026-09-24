@@ -330,7 +330,7 @@ update:
 - [x] `tests/test_ratified.py` — the write, the section replaced, a `DIFF` and a defer skipped, exit 2 without a plan file
 - [x] `uv run guppi render`: `.claude/settings.json`
 - [x] `uv run guppi render`: `vault/wiki/case-schema.md`
-- [ ] read `estimate-spec-write-copies-the-ratified-case`
+- [x] read `estimate-spec-write-copies-the-ratified-case`
 ```
 
 ### Case 387.3 — the reconciliation on an edit of a ratified Case
@@ -397,7 +397,7 @@ update:
 - [x] `tests/test_ratified.py` — blocks changed → show whole and the mark; prose only → silence; `Stop` without the showing → exit 2 and the mark cleared; the next reply → 0; the re-fire → 0
 - [x] `uv run guppi render`: `.claude/settings.json`
 - [x] `uv run guppi render`: `vault/wiki/case-schema.md`
-- [ ] read `estimate-spec-reconcile-shows-a-changed-case`
+- [x] read `estimate-spec-reconcile-shows-a-changed-case`
 ```
 
 ### Case 387.4 — pre-spec checks the plan against the ratified copy and finds untranslated prose

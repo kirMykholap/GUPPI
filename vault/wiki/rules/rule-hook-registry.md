@@ -2,7 +2,7 @@
 type: rule
 kind: Leaf
 purpose: Prevents a hook from being registered by hand, outside a ratified decision
-status: built
+status: draft
 enforcement: render
 governs: .claude/settings.json
 render_mode: partial
@@ -36,7 +36,7 @@ agent's Render and is ratified with it; this page holds the registrations only.
         "hooks": [ { "type": "command", "command": "uv run guppi recall", "timeout": 30 } ] }
 ],
 "UserPromptSubmit": [
-  { "hooks": [ { "type": "command", "command": "uv run guppi event prompt", "timeout": 30 },
+  { "hooks": [ { "type": "command", "command": "uv run guppi event prompt", "timeout": 30 }, { "type": "command", "command": "uv run guppi context --prompt", "timeout": 30 },
                { "type": "command", "command": "uv run guppi gate", "timeout": 30 } ] }
 ],
 "PreToolUse": [
@@ -57,7 +57,7 @@ agent's Render and is ratified with it; this page holds the registrations only.
         "hooks": [ { "type": "command", "command": "uv run guppi spec", "timeout": 30 } ] }, { "matcher": "Edit|Write|MultiEdit", "hooks": [ { "type": "command", "command": "uv run guppi ratified --edit", "timeout": 30 } ] }
     ],
     "Stop": [
-      { "hooks": [ { "type": "command", "command": "uv run guppi ledger", "timeout": 30 }, { "type": "command", "command": "uv run guppi ratified", "timeout": 30 } ] }
+      { "hooks": [ { "type": "command", "command": "uv run guppi ledger", "timeout": 30 }, { "type": "command", "command": "uv run guppi ratified", "timeout": 30 }, { "type": "command", "command": "uv run guppi context", "timeout": 30 } ] }
     ]
 <!-- /rule-hook-registry -->
 
@@ -82,3 +82,6 @@ agent's Render and is ratified with it; this page holds the registrations only.
 - 2026-09-21 updated: guppi recall registered on SessionStart with the matcher compact (case 287) · [[decision-case-287]]
 - 2026-09-24 updated: guppi ratified registered on Stop beside guppi ledger (case 387.2) · [[decision-case-387.2]]
 - 2026-09-24 updated: guppi ratified --edit registered on PostToolUse of Edit, Write and MultiEdit (case 387.3) · [[decision-case-387.3]]
+- 2026-09-24 updated: the Stop hook guppi context registered (case 392.1) · [[decision-case-392.1]]
+- 2026-09-24 updated: the UserPromptSubmit hook guppi context --prompt registered (case 392.2) · [[decision-case-392.2]]
+- 2026-09-24 status: built → draft · cascade

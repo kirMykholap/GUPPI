@@ -830,6 +830,7 @@ entries:
       again, so the hook of rule-spec-write writes it
   exists: true
   applied: 03:29:21
+  superseded_by: '390'
 - line: 30
   text: 'lesson[error][lesson-case-designed-in-dialogue-not-checked-against-its-rules]{tags:workflow,session}
     trigger: Case 387 was written in one pass from the discussion and ratified; the pre-spec of session
@@ -1557,5 +1558,7 @@ decisions:
       of a re-ratification go without its `LEDGER` block.
   spec: vault/raw/2026-09-23/1859/spec.md
   applied: 03:29:21
+  superseded_by:
+  - decision-case-390
 unparsed: []
 session: '1859'

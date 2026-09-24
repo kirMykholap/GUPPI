@@ -1,11 +1,11 @@
 ---
 type: estimate
 kind: QA
-status: pending
+status: passed
 target: "[[rule-page-generation]]"
 purpose: One bad entry never stops the run; every entry carries its mark
 method: pytest tests/test_generate.py, the tests of the failed, skipped and marked entries
-checked: 2026-09-23
+checked: 2026-09-24
 origin: raw/2026-09-16/1955/ledger.md#case-201.3
 sprint: migration
 created: 2026-09-16
@@ -35,7 +35,7 @@ An entry that fails — a collision, a `ref` naming no page, a `replace` absent 
 
 ## Result
 
-2026-09-23, uv run pytest tests/test_generate.py: 85 passed, 23 selected by -k "fail or skip or mark or superseded or rerun or stale"; but the Criterion's line "An update with no content prints `an update with no content in the Spec; applied by hand`" does not hold: guppi/generate.py:763 prints "an update with no content in the Spec; nothing applied" (the words since case 320), and no test asserts the message — the Criterion is stale, not the code
+2026-09-24, uv run pytest tests/test_generate.py: 87 passed — the failed, skipped and marked entries among them
 
 ## History
 
@@ -48,3 +48,4 @@ An entry that fails — a collision, a `ref` naming no page, a `replace` absent 
 - 2026-09-22 updated: no Rule-class branch in generate (case 320) · [[decision-case-320]]
 - 2026-09-23 status: pending → failed · raw/2026-09-23/0034/ledger.md#L58
 - 2026-09-23 updated: the message of an update with no content as the code prints it since case 320 (case 366) · [[decision-case-366]]
+- 2026-09-24 status: pending → passed · raw/2026-09-24/1303/ledger.md#L22

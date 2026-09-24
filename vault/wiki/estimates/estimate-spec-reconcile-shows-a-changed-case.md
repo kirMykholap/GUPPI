@@ -1,10 +1,11 @@
 ---
 type: estimate
 kind: QA
-status: pending
+status: passed
 target: "[[rule-spec-reconcile]]"
 purpose: An edit of a ratified Case that changes what the scripts apply is shown whole in the first reply after it
 method: uv run pytest tests/test_ratified.py -k reconcile; the live reading by hand, the first edit of a ratified Case in a session
+checked: 2026-09-24
 origin: raw/2026-09-23/1859/ledger.md#case-387.3
 sprint: migration
 created: 2026-09-23
@@ -24,6 +25,11 @@ The compared parts are the ids of the Case and its sub-cases, `given`, `when`, `
 **－** An edit of another file, or of the plan file outside a ratified Case — its title, `## Deferred` — is not compared.
 **－** A Case not yet in the ratified copy is not compared.
 
+## Result
+
+2026-09-24, uv run pytest tests/test_ratified.py -k reconcile: 5 passed; live in session 1303: ten edits of the plan file touching only a name or a context (four contexts, six headings) drew no message and no mark; eight edits touching compared parts drew additionalContext naming each Case and part — 391.2 then block and tasks, 392.1 given, then and tasks, 392.2 then block and tasks, 393 then; the next reply showed each marked Case whole, the Stop passed with no refusal and the marks file was gone after it; the exit 2 branch (a marked Case not shown) did not occur and was not read live
+
 ## History
 
 - 2026-09-24 created · [[decision-case-387.3]]
+- 2026-09-24 status: pending → passed · raw/2026-09-24/1303/ledger.md#L21

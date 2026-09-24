@@ -1,11 +1,11 @@
 ---
 type: estimate
 kind: QA
-status: pending
+status: passed
 target: "[[rule-rules-schema]]"
 purpose: A Rule page in the shape of the rendered schema has no schema finding and a page outside it has one per defect
 method: pytest tests/test_schemas.py -k rules on the live vault/wiki/rules/schema.yaml — a page in the shape, then one defect at a time; the live reading make lint, no schema finding on wiki/rules/ but the placeholders
-checked: 2026-09-22
+checked: 2026-09-24
 origin: raw/2026-09-22/0014/ledger.md#case-305.1
 sprint: migration
 created: 2026-09-22
@@ -31,7 +31,7 @@ The file equals the Render. Lint reads from it: required `type, kind, purpose, s
 
 ## Result
 
-2026-09-22, uv run pytest tests/test_schemas.py -k rules: 5 passed, 25 deselected; make lint — no finding on rules/schema
+2026-09-24, uv run pytest tests/test_schemas.py -k rules: 5 passed; guppi render --check exit 0; vault/wiki/rules/schema.md absent; guppi lint on wiki/rules/: schema findings only on the placeholder rule-spec-box (missing kind, missing estimates) and its orphan finding
 
 ## History
 
@@ -39,3 +39,4 @@ The file equals the Render. Lint reads from it: required `type, kind, purpose, s
 - 2026-09-22 status: pending → passed · raw/2026-09-22/1121/ledger.md#L80
 - 2026-09-23 updated: the Given names properties.single among the keys lint reads (case 362.1) · [[decision-case-362.1]]
 - 2026-09-23 updated: the Criterion names the sentence on the guard of the agent's own conduct (case 372) · [[decision-case-372]]
+- 2026-09-24 status: pending → passed · raw/2026-09-24/1303/ledger.md#L24

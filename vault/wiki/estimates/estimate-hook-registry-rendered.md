@@ -1,55 +1,23 @@
 ---
 type: estimate
 kind: QA
-status: passed
+status: pending
 target: "[[rule-hook-registry]]"
+method: the JSON case of tests/test_render.py; uv run guppi render --check after the render
 origin: raw/2026-09-09/ledger.md#case-18.2
 sprint: migration
 created: 2026-09-09
 tags: [hooks, harness, render]
 ---
 
-## Context
-
-The registry page is the only source of `.claude/settings.json` from Slice 2 on. The
-first render must reproduce the hand-written file exactly, or the page was ratified with
-a different registry than the one running; and a rendered file that no longer parses
-would silently unregister every hook.
-
 ## Criterion
 
-`uv run guppi render` writes the `"hooks"` key of `.claude/settings.json` from the Render
-of `rule-hook-registry`, byte for byte, and every registration the harness runs is one of
-its lines (case 85.3). That the assembled file parses and that the next session start
-still writes its `session-start` line into `event_log.md` belong to `estimate-settings`,
-which reads the whole file (case 99).
-
-### case 85.3
-
 When:
-`guppi render` runs.
+`uv run guppi render` writes `.claude/settings.json`.
 
 Then:
-`rule-hook-registry` renders the four event keys only, as a `partial` child of
-`rule-settings`.
-**＋** Its Purpose keeps the hooks and drops `defaultMode`, which is now
-`rule-default-mode`.
-**－** The whole-file clauses — the file parses, the next start still logs — belong to
-`estimate-settings` from now on; this page answers for the hook registrations.
-
-### case 169.2
-
-When:
-`guppi render` writes `.claude/settings.json`; then the person submits a prompt.
-
-Then:
-`UserPromptSubmit` carries two commands in order: `uv run guppi event prompt`, then `uv run guppi gate`, both with timeout 30.
-**－** The other events and matchers as today.
-
-## Method
-
-The JSON case in `tests/test_render.py`; the live reading once by hand, written into the
-estimate line.
+The `"hooks"` key of `.claude/settings.json` equals the Render of `rule-hook-registry` byte for byte, and every hook the harness runs is registered by one of its lines.
+**＋** `uv run guppi render --check` exits 0 after the render.
 
 ## Result
 
@@ -64,3 +32,4 @@ block 169.2, live 2026-09-15 session S: .claude/settings.json carries uv run gup
 - 2026-09-13 status: pending → passed · raw/2026-09-13/ledger.md#L46
 - 2026-09-15 criterion: case 169.2 added · [[decision-case-169.2]]
 - 2026-09-15 status: pending → passed · raw/2026-09-15/1809/ledger.md#L13
+- 2026-09-24 updated: the Criterion replaced whole — the live reading of the Render, no count of commands (case 392.4) · [[decision-case-392.4]]

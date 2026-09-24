@@ -2,7 +2,7 @@
 type: lesson
 kind: error
 root_cause: a Case that adds hooks was written from the dialogue alone; the rules it touches and the order in which its hooks run were not read against it before it was shown, so only the pre-spec check found the conflicts
-status: clustered
+status: archived
 insight: "[[insight-workflow-case-written-without-reading-the-pages-it-changes]]"
 origin: raw/2026-09-23/1859/ledger.md#L30
 sprint: migration
@@ -22,3 +22,5 @@ a Case that adds hooks was written from the dialogue alone; the rules it touches
 
 - 2026-09-24 created · raw/2026-09-23/1859/ledger.md#L30
 - 2026-09-24 updated: clustered into insight-workflow-case-written-without-reading-the-pages-it-changes by the librarian's synthesis · raw/2026-09-23/1859/ledger.md#L30
+- 2026-09-24 archived · insight actioned
+- 2026-09-24 archived · cleanup

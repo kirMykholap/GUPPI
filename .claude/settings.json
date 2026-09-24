@@ -21,7 +21,7 @@
         "hooks": [ { "type": "command", "command": "uv run guppi recall", "timeout": 30 } ] }
 ],
 "UserPromptSubmit": [
-  { "hooks": [ { "type": "command", "command": "uv run guppi event prompt", "timeout": 30 },
+  { "hooks": [ { "type": "command", "command": "uv run guppi event prompt", "timeout": 30 }, { "type": "command", "command": "uv run guppi context --prompt", "timeout": 30 },
                { "type": "command", "command": "uv run guppi gate", "timeout": 30 } ] }
 ],
 "PreToolUse": [
@@ -42,7 +42,7 @@
         "hooks": [ { "type": "command", "command": "uv run guppi spec", "timeout": 30 } ] }, { "matcher": "Edit|Write|MultiEdit", "hooks": [ { "type": "command", "command": "uv run guppi ratified --edit", "timeout": 30 } ] }
     ],
     "Stop": [
-      { "hooks": [ { "type": "command", "command": "uv run guppi ledger", "timeout": 30 }, { "type": "command", "command": "uv run guppi ratified", "timeout": 30 } ] }
+      { "hooks": [ { "type": "command", "command": "uv run guppi ledger", "timeout": 30 }, { "type": "command", "command": "uv run guppi ratified", "timeout": 30 }, { "type": "command", "command": "uv run guppi context", "timeout": 30 } ] }
     ]
   }
 }

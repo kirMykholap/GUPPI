@@ -42,10 +42,10 @@ update:
 ```
 
 ```tasks
-- [ ] update `rule-case-protocol` — one sentence at the end of `## The acknowledging reply` in the Render
-- [ ] update `estimate-case-protocol-acknowledging-reply` — the Criterion replaced whole by the `when` and `then` of this Case
-- [ ] `uv run guppi render`: `vault/wiki/case-schema.md`
-- [ ] read `estimate-case-protocol-acknowledging-reply` — by hand, the first acknowledging reply of a re-ratification and the ledger after it
+- [x] update `rule-case-protocol` — one sentence at the end of `## The acknowledging reply` in the Render
+- [x] update `estimate-case-protocol-acknowledging-reply` — the Criterion replaced whole by the `when` and `then` of this Case
+- [x] `uv run guppi render`: `vault/wiki/case-schema.md`
+- [x] read `estimate-case-protocol-acknowledging-reply` — by hand, the first acknowledging reply of a re-ratification and the ledger after it
 - [x] `{supersedes:case 389}` on the ledger line of `rule-case-protocol` — the defer taken up
 ```
 
@@ -125,9 +125,9 @@ create:
 ```
 
 ```tasks
-- [ ] create `rule-frame-check` — the rule of the agent
-- [ ] create `estimate-frame-check-finds-a-contradiction` — the promise of the agent
-- [ ] `uv run guppi render`: `.claude/agents/frame-guppi.md`
+- [x] create `rule-frame-check` — the rule of the agent
+- [x] create `estimate-frame-check-finds-a-contradiction` — the promise of the agent
+- [x] `uv run guppi render`: `.claude/agents/frame-guppi.md`
 - [ ] read `estimate-frame-check-finds-a-contradiction` — by hand, two live dispatches in the next session
 ```
 
@@ -177,10 +177,10 @@ update:
 ```
 
 ```tasks
-- [ ] update `rule-case-protocol` — one sentence after the vault query, and the close of `context` in the Language section, in its Render
-- [ ] create `estimate-case-protocol-checks-its-frame` — the promise of the check
-- [ ] update `insight-workflow-case-written-without-reading-the-pages-it-changes` — `actioned`
-- [ ] `uv run guppi render`: `vault/wiki/case-schema.md`
+- [x] update `rule-case-protocol` — one sentence after the vault query, and the close of `context` in the Language section, in its Render
+- [x] create `estimate-case-protocol-checks-its-frame` — the promise of the check
+- [x] update `insight-workflow-case-written-without-reading-the-pages-it-changes` — `actioned`
+- [x] `uv run guppi render`: `vault/wiki/case-schema.md`
 - [ ] read `estimate-case-protocol-checks-its-frame` — by hand, at the close of the first session with `frame-guppi`
 ```
 
@@ -250,14 +250,14 @@ update:
 ```
 
 ```tasks
-- [ ] create `rule-context-size` — the hook rule
-- [ ] create `estimate-context-size-shown-after-each-reply` — the promise of the line
-- [ ] update `rule-hook-registry` — the `Stop` hook `guppi context`, after `guppi ratified`
+- [x] create `rule-context-size` — the hook rule
+- [x] create `estimate-context-size-shown-after-each-reply` — the promise of the line
+- [x] update `rule-hook-registry` — the `Stop` hook `guppi context`, after `guppi ratified`
 - [x] `guppi/ledger.py` — the predicate of a main-agent record out of `transcript_texts`, imported by `guppi/context.py`
 - [x] `guppi/context.py` — the count of N and D, and the `Stop` output
 - [x] `guppi/cli.py` — the command `guppi context`
 - [x] `tests/test_context.py` — N and D on a written transcript, a sidechain record skipped, the re-fire silent, no `usage` silent
-- [ ] `uv run guppi render`: `.claude/settings.json`
+- [x] `uv run guppi render`: `.claude/settings.json`
 - [ ] read `estimate-context-size-shown-after-each-reply` — `uv run pytest tests/test_context.py`, then by hand in the VS Code chat in the next session
 ```
 
@@ -305,12 +305,12 @@ update:
 ```
 
 ```tasks
-- [ ] update `rule-context-size` — the limit in How it works
-- [ ] create `estimate-context-size-warns-past-the-limit` — the promise of the warning
-- [ ] update `rule-hook-registry` — the `UserPromptSubmit` hook `guppi context --prompt`, after `guppi event prompt`
+- [x] update `rule-context-size` — the limit in How it works
+- [x] create `estimate-context-size-warns-past-the-limit` — the promise of the warning
+- [x] update `rule-hook-registry` — the `UserPromptSubmit` hook `guppi context --prompt`, after `guppi event prompt`
 - [x] `guppi/context.py` — the limit, the `--prompt` output and the ending of the `Stop` line
 - [x] `tests/test_context.py` — below and at the limit, on both hooks
-- [ ] `uv run guppi render`: `.claude/settings.json`
+- [x] `uv run guppi render`: `.claude/settings.json`
 - [ ] read `estimate-context-size-warns-past-the-limit` — `uv run pytest tests/test_context.py -k limit`, then by hand at the first prompt past 400 000 tokens
 ```
 
@@ -344,8 +344,8 @@ update:
 ```
 
 ```tasks
-- [ ] update `rule-harness` — the rules outside the pipeline in its Purpose
-- [ ] update `estimate-harness-pipeline` — the Criterion replaced whole by the `when` and `then` of this Case
+- [x] update `rule-harness` — the rules outside the pipeline in its Purpose
+- [x] update `estimate-harness-pipeline` — the Criterion replaced whole by the `when` and `then` of this Case
 - [ ] read `estimate-harness-pipeline` — `make test-harness`, the first three steps of `make lint`, and the Purpose by hand
 ```
 
@@ -374,7 +374,7 @@ update:
 ```
 
 ```tasks
-- [ ] update `estimate-hook-registry-rendered` — the Criterion replaced whole, the page recut with a `method`
+- [x] update `estimate-hook-registry-rendered` — the Criterion replaced whole, the page recut with a `method`
 - [ ] read `estimate-hook-registry-rendered` — `uv run pytest tests/test_render.py` and `uv run guppi render --check` after the render
 ```
 
@@ -409,10 +409,10 @@ update:
 ```
 
 ```tasks
-- [ ] update `rule-case-protocol` — the form of a value in the Language section of its Render
+- [x] update `rule-case-protocol` — the form of a value in the Language section of its Render
 - [x] `tests/test_ratified.py` — a value that opens and closes with a code span, padded, is read whole; the same value unpadded is refused
 - [x] `uv run pytest tests/test_ratified.py`
-- [ ] `uv run guppi render`: `vault/wiki/case-schema.md`
+- [x] `uv run guppi render`: `vault/wiki/case-schema.md`
 ```
 
 ## Deferred

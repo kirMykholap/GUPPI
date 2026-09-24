@@ -1,8 +1,9 @@
 ---
 type: decision
 case: "389"
-status: current
+status: archived
 defer: ["[[rule-case-protocol]]"]
+superseded_by: ["[[decision-case-390]]"]
 origin: raw/2026-09-23/1859/ledger.md#case-389
 sprint: migration
 created: 2026-09-23
@@ -26,3 +27,6 @@ The acknowledging reply of a re-ratification carries the LEDGER block with the C
 ## History
 
 - 2026-09-24 created · raw/2026-09-23/1859/ledger.md#case-389
+- 2026-09-24 superseded by decision-case-390 · [[decision-case-390]]
+- 2026-09-24 archived · superseded
+- 2026-09-24 archived · cleanup

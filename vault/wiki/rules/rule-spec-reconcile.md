@@ -2,7 +2,7 @@
 type: rule
 kind: Leaf
 purpose: Prevents a ratified Case from changing in what the scripts apply without the person seeing it whole and ratifying it again
-status: draft
+status: built
 enforcement: hook
 implementation_ref: [guppi/ratified.py, tests/test_ratified.py, .claude/settings.json]
 parent: "[[rule-plan-mode]]"
@@ -25,3 +25,4 @@ Prevents a ratified Case from changing in what the scripts apply without the per
 
 - 2026-09-24 created · [[decision-case-387.3]]
 - 2026-09-24 estimate estimate-spec-reconcile-shows-a-changed-case added · [[decision-case-387.3]]
+- 2026-09-24 status: draft → built · cascade

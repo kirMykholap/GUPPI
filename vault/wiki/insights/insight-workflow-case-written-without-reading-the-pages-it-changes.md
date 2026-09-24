@@ -1,9 +1,10 @@
 ---
 type: insight
 pattern: A Case is composed from what the agent has in view — the dialogue, the rule page, the code — and the pages it changes or runs beside are not read against it before it is shown, so a contradiction with them is found only by a later check, pre-task or pre-spec.
-status: open
-children: ["[[lesson-plan-mode-contract-change-skips-the-estimates-blocks]]", "[[lesson-case-designed-in-dialogue-not-checked-against-its-rules]]"]
-severity: 2
+status: actioned
+children: ["[[lesson-plan-mode-contract-change-skips-the-estimates-blocks]]", "[[lesson-case-designed-in-dialogue-not-checked-against-its-rules]]", "[[lesson-case-frame-read-without-the-estimates-of-the-pages-it-edits]]"]
+severity: 0
+addressed_by: "[[decision-case-391.2]]"
 origin: raw/2026-09-23/1859/ledger.md#L30
 sprint: migration
 created: 2026-09-23
@@ -21,3 +22,5 @@ A suggestion, not a decision: before a Case that changes a contract or adds a ho
 ## History
 
 - 2026-09-24 created · raw/2026-09-23/1859/ledger.md#L30
+- 2026-09-24 updated: actioned: the frame of a Case is checked by frame-guppi before the showing (case 391.2) · [[decision-case-391.2]]
+- 2026-09-24 updated: lesson-case-frame-read-without-the-estimates-of-the-pages-it-edits added to children by the librarian's synthesis; addressed_by decision-case-391.2 stands (the lesson names the same case) · raw/2026-09-24/1303/ledger.md#L25

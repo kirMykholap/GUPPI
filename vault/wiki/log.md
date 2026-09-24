@@ -3256,3 +3256,66 @@ instruction. The global feed; a page's own `## History` is the per-page view.
 - 2026-09-24 lessons/lesson-sub-case-given-the-parents-plus-lines-has-no-form archived · cleanup
 - 2026-09-24 decisions/decision-case-380 archived · cleanup
 - 2026-09-24 decisions/decision-case-382 archived · cleanup
+- 2026-09-24 decisions/decision-case-390 created · raw/2026-09-24/1303/ledger.md#case-390 · generate
+- 2026-09-24 decisions/decision-case-389 superseded by decision-case-390 · [[decision-case-390]] · generate
+- 2026-09-24 rules/rule-case-protocol defer by decision-case-389 superseded · [[decision-case-390]] · generate
+- 2026-09-24 rules/rule-case-protocol updated: the acknowledging reply of a re-ratification carries the LEDGER block again (case 390, supersedes 389) · [[decision-case-390]] · generate
+- 2026-09-24 estimates/estimate-case-protocol-acknowledging-reply updated: the Criterion replaced whole — the LEDGER block of a re-ratification (case 390) · [[decision-case-390]] · generate
+- 2026-09-24 estimates/estimate-spec-write-copies-the-ratified-case status: pending → passed · raw/2026-09-24/1303/ledger.md#L3 · generate
+- 2026-09-24 decisions/decision-case-391.1 created · raw/2026-09-24/1303/ledger.md#case-391.1 · generate
+- 2026-09-24 rules/rule-frame-check created · [[decision-case-391.1]] · generate
+- 2026-09-24 rules/rule-plan-mode child rule-frame-check added · [[decision-case-391.1]] · generate
+- 2026-09-24 estimates/estimate-frame-check-finds-a-contradiction created · [[decision-case-391.1]] · generate
+- 2026-09-24 rules/rule-frame-check estimate estimate-frame-check-finds-a-contradiction added · [[decision-case-391.1]] · generate
+- 2026-09-24 decisions/decision-case-391.2 created · raw/2026-09-24/1303/ledger.md#case-391.2 · generate
+- 2026-09-24 rules/rule-case-protocol updated: the frame of a Case checked by frame-guppi before the showing (case 391.2) · [[decision-case-391.2]] · generate
+- 2026-09-24 estimates/estimate-case-protocol-checks-its-frame created · [[decision-case-391.2]] · generate
+- 2026-09-24 rules/rule-case-protocol estimate estimate-case-protocol-checks-its-frame added · [[decision-case-391.2]] · generate
+- 2026-09-24 insights/insight-workflow-case-written-without-reading-the-pages-it-changes updated: actioned: the frame of a Case is checked by frame-guppi before the showing (case 391.2) · [[decision-case-391.2]] · generate
+- 2026-09-24 decisions/decision-case-392.1 created · raw/2026-09-24/1303/ledger.md#case-392.1 · generate
+- 2026-09-24 rules/rule-context-size created · [[decision-case-392.1]] · generate
+- 2026-09-24 rules/rule-harness child rule-context-size added · [[decision-case-392.1]] · generate
+- 2026-09-24 estimates/estimate-context-size-shown-after-each-reply created · [[decision-case-392.1]] · generate
+- 2026-09-24 rules/rule-context-size estimate estimate-context-size-shown-after-each-reply added · [[decision-case-392.1]] · generate
+- 2026-09-24 rules/rule-hook-registry updated: the Stop hook guppi context registered (case 392.1) · [[decision-case-392.1]] · generate
+- 2026-09-24 decisions/decision-case-392.2 created · raw/2026-09-24/1303/ledger.md#case-392.2 · generate
+- 2026-09-24 rules/rule-context-size updated: the warning past 400 000 tokens (case 392.2) · [[decision-case-392.2]] · generate
+- 2026-09-24 estimates/estimate-context-size-warns-past-the-limit created · [[decision-case-392.2]] · generate
+- 2026-09-24 rules/rule-context-size estimate estimate-context-size-warns-past-the-limit added · [[decision-case-392.2]] · generate
+- 2026-09-24 rules/rule-hook-registry updated: the UserPromptSubmit hook guppi context --prompt registered (case 392.2) · [[decision-case-392.2]] · generate
+- 2026-09-24 lessons/lesson-spec-write-sub-point-opening-with-a-code-span-unpadded created · raw/2026-09-24/1303/ledger.md#L15 · generate
+- 2026-09-24 estimates/estimate-case-protocol-acknowledging-reply status: pending → passed · raw/2026-09-24/1303/ledger.md#L16 · generate
+- 2026-09-24 decisions/decision-case-393 created · raw/2026-09-24/1303/ledger.md#case-393 · generate
+- 2026-09-24 rules/rule-case-protocol updated: the outer span of a value that opens or closes with a backtick is padded by one space (case 393) · [[decision-case-393]] · generate
+- 2026-09-24 decisions/decision-case-392.3 created · raw/2026-09-24/1303/ledger.md#case-392.3 · generate
+- 2026-09-24 rules/rule-harness updated: the Purpose names the seven rules outside the pipeline (case 392.3) · [[decision-case-392.3]] · generate
+- 2026-09-24 estimates/estimate-harness-pipeline updated: the Criterion replaced whole — seven rules outside the pipeline, no Given (case 392.3) · [[decision-case-392.3]] · generate
+- 2026-09-24 decisions/decision-case-392.4 created · raw/2026-09-24/1303/ledger.md#case-392.4 · generate
+- 2026-09-24 estimates/estimate-hook-registry-rendered updated: the Criterion replaced whole — the live reading of the Render, no count of commands (case 392.4) · [[decision-case-392.4]] · generate
+- 2026-09-24 estimates/estimate-spec-reconcile-shows-a-changed-case status: pending → passed · raw/2026-09-24/1303/ledger.md#L21 · generate
+- 2026-09-24 estimates/estimate-generate-fails-alone status: pending → passed · raw/2026-09-24/1303/ledger.md#L22 · generate
+- 2026-09-24 estimates/estimate-prespec-binds-a-sprint-line status: pending → passed · raw/2026-09-24/1303/ledger.md#L23 · generate
+- 2026-09-24 estimates/estimate-rules-schema-checked status: pending → passed · raw/2026-09-24/1303/ledger.md#L24 · generate
+- 2026-09-24 lessons/lesson-case-frame-read-without-the-estimates-of-the-pages-it-edits created · raw/2026-09-24/1303/ledger.md#L25 · generate
+- 2026-09-24 decisions/decision-case-394 created · raw/2026-09-24/1303/ledger.md#case-394 · generate
+- 2026-09-24 rules/rule-spec-write deferred · [[decision-case-394]] · generate
+- 2026-09-24 insights/insight-workflow-case-schema-silent-on-what-the-scripts-accept updated: lesson-spec-write-sub-point-opening-with-a-code-span-unpadded added to children by the librarian's synthesis; addressed_by moves to decision-case-393 (later than 383), status kept · raw/2026-09-24/1303/ledger.md#L15 · generate
+- 2026-09-24 lessons/lesson-spec-write-sub-point-opening-with-a-code-span-unpadded updated: clustered into insight-workflow-case-schema-silent-on-what-the-scripts-accept by the librarian's synthesis · raw/2026-09-24/1303/ledger.md#L15 · generate
+- 2026-09-24 insights/insight-workflow-case-written-without-reading-the-pages-it-changes updated: lesson-case-frame-read-without-the-estimates-of-the-pages-it-edits added to children by the librarian's synthesis; addressed_by decision-case-391.2 stands (the lesson names the same case) · raw/2026-09-24/1303/ledger.md#L25 · generate
+- 2026-09-24 lessons/lesson-case-frame-read-without-the-estimates-of-the-pages-it-edits updated: clustered into insight-workflow-case-written-without-reading-the-pages-it-changes by the librarian's synthesis · raw/2026-09-24/1303/ledger.md#L25 · generate
+- 2026-09-24 rules/rule-harness status: built → draft · cascade · generate
+- 2026-09-24 rules/rule-hook-registry status: built → draft · cascade · generate
+- 2026-09-24 rules/rule-page-generation status: draft → built · cascade · generate
+- 2026-09-24 rules/rule-rules-schema status: draft → built · cascade · generate
+- 2026-09-24 rules/rule-spec-reconcile status: draft → built · cascade · generate
+- 2026-09-24 rules/rule-spec-write status: draft → built · cascade · generate
+- 2026-09-24 decisions/decision-case-389 archived · superseded · generate
+- 2026-09-24 lessons/lesson-spec-write-sub-point-opening-with-a-code-span-unpadded archived · insight actioned · generate
+- 2026-09-24 lessons/lesson-plan-mode-contract-change-skips-the-estimates-blocks archived · insight actioned · generate
+- 2026-09-24 lessons/lesson-case-designed-in-dialogue-not-checked-against-its-rules archived · insight actioned · generate
+- 2026-09-24 lessons/lesson-case-frame-read-without-the-estimates-of-the-pages-it-edits archived · insight actioned · generate
+- 2026-09-24 lessons/lesson-case-designed-in-dialogue-not-checked-against-its-rules archived · cleanup
+- 2026-09-24 lessons/lesson-case-frame-read-without-the-estimates-of-the-pages-it-edits archived · cleanup
+- 2026-09-24 lessons/lesson-plan-mode-contract-change-skips-the-estimates-blocks archived · cleanup
+- 2026-09-24 lessons/lesson-spec-write-sub-point-opening-with-a-code-span-unpadded archived · cleanup
+- 2026-09-24 decisions/decision-case-389 archived · cleanup

@@ -101,6 +101,19 @@ EXPECTED_BLOCK = {
 }
 
 
+RULE_X = """---
+type: rule
+kind: Leaf
+purpose: Prevents x
+status: draft
+---
+
+## Purpose
+
+Prevents x: the `old` text stands here.
+"""
+
+
 def transcript_line(text):
     return json.dumps(
         {
@@ -127,6 +140,9 @@ def working(tmp_path):
         f"- 15:02:00 44c1aae1 tool Write: {plan}\n",
         encoding="utf-8",
     )
+    rule = tmp_path / "vault" / "wiki" / "rules" / "rule-x.md"
+    rule.parent.mkdir(parents=True)
+    rule.write_text(RULE_X, encoding="utf-8")
     return tmp_path
 
 
@@ -287,6 +303,46 @@ def test_write_a_sub_case_brings_its_parents_prose(working):
     assert plan.index("## Case 9 — родитель") < plan.index("### Case 9.1 — ребёнок")
     parent = ratified.quoted_sections(split_cases(plan)["9"], ratified.SPEC_SECTIONS)
     assert parent == {"context": "Общий контекст.", "problem": "Вопрос."}
+
+
+# --- the check after the write (case 414.1) --------------------------------------------
+
+OUT_OF_FRAME = SHOWING.replace("The file is written.", "The file `guppi/y.py` is written.")
+
+
+def test_checks_the_written_case_a_finding_exits_2_and_the_case_stays(working):
+    code, err = stop(working, ACK, OUT_OF_FRAME, ACK)
+    assert code == 2
+    assert err.startswith("ratified: ") and "case 7: guppi/y.py is not named in its given" in err
+    for path in (plan_of(working), ratified.copy_of(plan_of(working))):
+        assert "## Case 7 — пример" in path.read_text(encoding="utf-8")
+
+
+def test_checks_the_written_case_a_clean_one_exits_0_on_the_lines_of_the_reply(working):
+    # no `ledger.md` yet: the ledger hook runs beside this one; the reply's lines count
+    assert not (working / "vault" / "raw" / TODAY.isoformat() / "1501" / "ledger.md").exists()
+    assert stop(working, ACK, SHOWING, ACK) == (0, "")
+
+
+def test_checks_the_written_case_a_line_both_in_the_ledger_and_the_reply_counts_once(working):
+    ledger = working / "vault" / "raw" / TODAY.isoformat() / "1501" / "ledger.md"
+    ledger.parent.mkdir(parents=True)
+    ledger.write_text("".join(f"- 15:20:00 {line[2:]}\n" for line in LINES.splitlines()))
+    assert stop(working, ACK, SHOWING, ACK) == (0, "")
+
+
+def test_checks_the_written_case_a_finding_of_another_case_is_not_reported(working):
+    other = (
+        OUT_OF_FRAME.replace("## Case 7 — пример", "## Case 8 — другой")
+        .replace("case 7", "case 8")
+        .replace("old: `` the `old` text ``", "old: `Prevents x:`")  # its own anchor
+    )
+    stop(working, ACK.replace("case 7", "case 8"), other, ACK.replace("case 7", "case 8"))
+    assert stop(working, ACK, SHOWING, ACK) == (0, "")
+
+
+def test_checks_the_written_case_the_re_fire_checks_nothing(working):
+    assert stop(working, ACK, OUT_OF_FRAME, ACK, stop_hook_active=True) == (0, "")
 
 
 # --- the reconciliation (case 387.3) -------------------------------------------------

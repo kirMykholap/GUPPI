@@ -84,15 +84,21 @@ the ledgers of its dates, on the `hi` date from the `hi` time on, and its folder
   whose `given`, `when`, `then`, `then` block or `tasks` differ from its section there, by
   `ratified.differences` — the one comparison the hooks of `rule-spec-reconcile` use — a Case
   of the plan with no section in the copy, and a section of the copy with no Case in the
-  plan, a Case a `{supersedes:case N}` of the window names excepted, the Cases under
+  plan, a Case a `{supersedes:case N}` of the window names excepted, and a parent with
+  sub-cases in the copy, every one of them named by such a line (case 417), the Cases under
   `## Deferred` not compared; and every name, `context` or `problem` that still holds a
   Cyrillic letter — the agent translates them before the check.
+
+The check after a write (case 414.1): `written_findings` runs the same checks, `judge`, for
+the `Stop` hook of `rule-spec-write` on the Cases it wrote, with the decision lines of the
+reply added, and without the Frontier, the ratified copy and the grammar of the window.
 
 Notes (case 378.8): a Case whose `given` or `then` holds more than seven `**＋**` lines —
 a sign it is not atomic — is one line opening with `note:`, answered in the chat.
 """
 
 import argparse
+import json
 import os
 import re
 import sys
@@ -792,8 +798,10 @@ def check_ratified(plan: str, plan_file: Path | None, records: list[dict]) -> li
     """387.4: the plan against its ratified copy `<plan>.ratified.md` by `ratified.differences`,
     the one comparison — a Case that differs in what the scripts apply, a Case with no section
     in the copy, a section of the copy with no Case in the plan, a Case a `{supersedes:case N}`
-    of the window names excepted; then every name, `context` or `problem` of the plan that
-    still holds a Cyrillic letter. No copy — a plan written before case 387 — no comparison."""
+    of the window names excepted, and a parent with sub-cases in the copy, every one of them
+    named by such a line, which left the plan with them (case 417); then every name, `context`
+    or `problem` of the plan that still holds a Cyrillic letter. No copy — a plan written
+    before case 387 — no comparison."""
     findings: list[str] = []
     copy = ratified.copy_of(plan_file) if plan_file is not None else None
     if copy is not None and copy.is_file():
@@ -805,15 +813,53 @@ def check_ratified(plan: str, plan_file: Path | None, records: list[dict]) -> li
         findings += [
             f"case {case}: no section in the ratified copy" for case in ours if case not in theirs
         ]
+
+        def left(case: str) -> bool:
+            subs = [other for other in theirs if other.startswith(case + ".")]
+            return case in superseded or (bool(subs) and all(s in superseded for s in subs))
+
         findings += [
             f"case {case}: in the ratified copy, not in the plan"
             for case in theirs
-            if case not in ours and case not in superseded
+            if case not in ours and not left(case)
         ]
     findings += [
         f"case {case}: its {part} still holds Cyrillic — translate it"
         for case, part in ratified.untranslated(plan)
     ]
+    return findings
+
+
+def judge(
+    plan: str,
+    project_dir: Path,
+    records: list[dict],
+    lines: list[tuple] | None = None,
+    frontier: tuple[Path, str] | None = None,
+) -> list[str]:
+    """The checks of `--check` on the plan's Cases, in the order they print. `lines`, the
+    window's record lines, adds their grammar (75.2); `frontier`, its path and the name a
+    finding gives it, adds the Frontier (59.2). The check after a write passes neither, and
+    the comparison with the ratified copy stays with `check` (case 414.1)."""
+    cases = split_cases(plan)
+    blocks: dict[str, dict] = {}
+    findings: list[str] = []
+    for case, case_lines in cases.items():
+        blocks[case], errors = then_blocks(case_lines)
+        findings += [f"case {case}: {e}" for e in errors]
+    if lines is not None:
+        findings += check_grammar(lines)
+    findings += check_lines(cases, blocks, records)
+    if frontier is not None:
+        findings += check_frontier(frontier[0], frontier[1], cases, blocks)
+    findings += check_tasks(cases, blocks, records)
+    findings += check_governed(blocks, governed_paths(project_dir))
+    findings += check_form(blocks, project_dir)
+    findings += check_markers(blocks, project_dir)
+    findings += check_pairs(cases, blocks, project_dir)
+    findings += check_bare_links(cases, blocks, project_dir)
+    findings += check_criterion_pairs(blocks, project_dir)
+    findings += check_frame(cases, blocks)
     return findings
 
 
@@ -826,30 +872,43 @@ def check(
     if hi is None or folder is None or not hi_recorded("".join(t for _, t in logs), stamp):
         print(f"prespec: no hi recorded for session {stamp}; nothing checked", file=stderr)
         return 0
-    cases = split_cases(plan)
-    blocks: dict[str, dict] = {}
-    findings: list[str] = []
-    for case, lines in cases.items():
-        blocks[case], errors = then_blocks(lines)
-        findings += [f"case {case}: {e}" for e in errors]
     lines = window_lines(project_dir, hi, now.date().isoformat())
     records = session_decisions(lines)
-    findings += check_grammar(lines)
-    findings += check_lines(cases, blocks, records)
     relative = folder.relative_to(project_dir).as_posix() + "/frontier.md"
-    findings += check_frontier(folder / "frontier.md", relative, cases, blocks)
-    findings += check_tasks(cases, blocks, records)
-    findings += check_governed(blocks, governed_paths(project_dir))
-    findings += check_form(blocks, project_dir)
-    findings += check_markers(blocks, project_dir)
-    findings += check_pairs(cases, blocks, project_dir)
-    findings += check_bare_links(cases, blocks, project_dir)
-    findings += check_criterion_pairs(blocks, project_dir)
-    findings += check_frame(cases, blocks)
+    findings = judge(plan, project_dir, records, lines, (folder / "frontier.md", relative))
     findings += check_ratified(plan, plan_file, records)
-    for line in findings + chain_notes(cases):
+    for line in findings + chain_notes(split_cases(plan)):
         print(line, file=stdout)
     return 1 if findings else 0
+
+
+FINDING_CASE = re.compile(r"^case (\S+?):")
+
+
+def written_findings(
+    plan: str, written: set[str], project_dir: Path, stamp: str, now, extra: list[dict]
+) -> list[str]:
+    """Case 414.1: the findings of `judge` on the Cases the `Stop` hook of `rule-spec-write`
+    wrote in one run and on their sub-cases, a finding of another Case left out. The records
+    are the window's decision lines and `extra`, the lines of the reply itself, each once: the
+    ledger hook runs in parallel on the same `Stop`, so `ledger.md` may not hold them yet. No
+    Frontier, no ratified copy, no grammar of the window: they stay with `/pre-spec`."""
+    hi = hi_moment(session_event_logs(project_dir, now, stamp), stamp)
+    lines = window_lines(project_dir, hi, now.date().isoformat()) if hi else []
+    records: list[dict] = []
+    seen: set[str] = set()
+    for record in session_decisions(lines) + list(extra):
+        key = json.dumps(record, sort_keys=True)
+        if key not in seen:
+            seen.add(key)
+            records.append(record)
+
+    def ours(finding: str) -> bool:
+        match = FINDING_CASE.match(finding)
+        case = match.group(1) if match else ""
+        return any(case == w or case.startswith(w + ".") for w in written)
+
+    return [f for f in judge(plan, project_dir, records) if ours(f)]
 
 
 def parser() -> argparse.ArgumentParser:

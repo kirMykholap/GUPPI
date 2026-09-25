@@ -22,6 +22,13 @@ block under the sub-point; a `create` of an Estimate takes its `ref` from its le
 no sub-point gives one. A last mention that is a fence tagged `DIFF` naming the Case writes
 nothing for it. A Case whose lines are all `defer` is the agent's, under `## Deferred`.
 
+The check after the write (case 414.1). Each Case written in the run, and its sub-cases, goes
+through the checks of `guppi prespec --check` — `prespec.written_findings`, imported inside
+the function since `guppi/prespec.py` imports this module — with the decision lines of the
+reply added to the window's, since the ledger hook runs in parallel on the same `Stop`; the
+Frontier, the ratified copy and the grammar of the window stay with `/pre-spec`. A finding is
+a refusal; the written Case stays.
+
 The reconciliation. On an `Edit`, `Write` or `MultiEdit` of a plan file under
 `.claude/plans/` with a ratified copy beside it, each Case of the copy is compared with its
 section in the plan — `given`, `when`, `then`, the `then` block and the `tasks` block, byte for
@@ -612,6 +619,13 @@ def stop(payload: dict, project_dir: Path, now, stderr) -> int:
                 written.add(case)
                 if "." in case:
                     write_parent(plan, case, text)
+            if written:
+                from guppi import prespec  # it imports this module at load (case 414.1)
+
+                text = plan.read_text(encoding="utf-8")
+                problems += prespec.written_findings(
+                    text, written, project_dir, stamp, now, records
+                )
     if plan is not None and plan.is_file():
         problems += check_marks(plan, reply, written)
     if problems:

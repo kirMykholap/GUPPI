@@ -1375,6 +1375,35 @@ def test_ratified_a_superseded_case_in_the_copy_is_no_finding(tmp_path):
     assert "case 2" not in out
 
 
+PARENT = "## Case 2 — two\n\n> **context:**\n> The parent.\n\n"
+SUB = PLAN.split("\n", 2)[2]  # Case 1's section, the title line of the plan dropped
+
+
+def sub_case(number):
+    return SUB.replace("## Case 1 — one", f"### Case 2.{number} — sub")
+
+
+def superseding(*cases):
+    return "".join(
+        f"- 16:10:00 decision[case 1][update][rule-x]{{ref:rule-x}}{{supersedes:case {c}}}\n"
+        for c in cases
+    )
+
+
+def test_ratified_a_parent_whose_sub_cases_are_all_superseded_is_no_finding(tmp_path):
+    with_copy(tmp_path, PLAN + "\n" + PARENT + sub_case(1) + "\n" + sub_case(2))
+    _, out, _ = check(tmp_path, ledger=superseding("2.1", "2.2"))
+    assert "case 2" not in out
+
+
+def test_ratified_a_parent_with_a_sub_case_not_superseded_is_still_a_finding(tmp_path):
+    with_copy(tmp_path, PLAN + "\n" + PARENT + sub_case(1) + "\n" + sub_case(2))
+    _, out, _ = check(tmp_path, ledger=superseding("2.1"))
+    assert "case 2: in the ratified copy, not in the plan" in out
+    assert "case 2.2: in the ratified copy, not in the plan" in out
+    assert "case 2.1:" not in out
+
+
 def test_ratified_prose_still_in_russian_is_a_finding_with_or_without_a_copy(tmp_path):
     plan = PLAN.replace("## Case 1 — one", "## Case 1 — один").replace("Something.", "Что-то.")
     code, out, _ = check(tmp_path, plan=plan)

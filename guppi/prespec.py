@@ -145,8 +145,10 @@ LINE_PREVIEW = 80
 # A bare id is read as the same line rather than skipped (the lines of 2026-09-12).
 BARE_CASE = re.compile(r"^(- (?:\d\d:\d\d:\d\d )?decision\[)(?!case )")
 WORK_LIST = "## Work"  # the list whose open lines wait for Work Mode (case 356.1)
-CLOSERS = re.compile(r"^(work|sprint|case (\S+)|defer case (\S+))$")
+CLOSERS = re.compile(r"^(work|sprint|kept|case (\S+)|defer case (\S+))$")
 SPRINT_SOURCE = "sprint"
+KEPT = "kept"  # an item of the brief's Deferred list left as it stands (case 421.3)
+DEFERRED_SOURCE = "deferred"
 SPRINT_PAGE = "entity-sprint-"
 # Case 279.2: a task line the tickers of `render` and `sprint` would not match — the bare
 # word, or the command outside a code span, right after the box.
@@ -349,7 +351,9 @@ def check_frontier(path: Path, relative: str, cases: dict, blocks: dict) -> list
     of a title is not the source, and six live Estimates carry it there (case 335). Case
     356.1: an open line under `## Work` is no finding — its work waits for Work Mode; a closed
     one is checked as any. Case 356.2: a line whose source segment is `sprint` closed `defer
-    case N` is a finding — a sprint item left for later closes `[-]` with `sprint`."""
+    case N` is a finding — a sprint item left for later closes `[-]` with `sprint`. Case 421.3:
+    `kept` is clean on a `[-]` box after the source `deferred` — an item of the brief's
+    Deferred list left as it stands, no Case — and a finding on `[x]` or after another source."""
     if not path.exists():
         return [f"frontier: {relative} is missing"]
     findings: list[str] = []
@@ -370,8 +374,14 @@ def check_frontier(path: Path, relative: str, cases: dict, blocks: dict) -> list
         closer = CLOSERS.match(segments[-1])
         if closer is None:
             findings.append(
-                f"frontier: {item} is closed without case N, work, sprint or defer case N"
+                f"frontier: {item} is closed without case N, work, sprint, kept or defer case N"
             )
+        elif closer.group(1) == KEPT:
+            if box == "x" or segments[-2:-1] != [DEFERRED_SOURCE]:
+                findings.append(
+                    f"frontier: {item} closes with kept; only an item of the brief's Deferred "
+                    "list, source deferred, closes [-] with kept"
+                )
         elif closer.group(1) == SPRINT_SOURCE:
             if box == "x":
                 findings.append(

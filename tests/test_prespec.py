@@ -384,6 +384,25 @@ def test_a_frontier_defer_without_its_item_is_a_finding(tmp_path):
     assert check(tmp_path, plan=plan, ledger=ledger, frontier=frontier) == (0, "", "")
 
 
+def test_a_frontier_kept_is_clean_on_a_deferred_item(tmp_path):
+    # case 421.3: an item of the brief's Deferred list left as it stands closes [-] kept
+    frontier = CLEAN_FRONTIER + "- [-] F2 — `rule-later`, as it stands · deferred · kept\n"
+    assert check(tmp_path, frontier=frontier) == (0, "", "")
+
+
+def test_a_frontier_kept_on_x_or_after_another_source_is_a_finding(tmp_path):
+    finding = (
+        "frontier: {} closes with kept; only an item of the brief's Deferred list, source "
+        "deferred, closes [-] with kept"
+    )
+    frontier = CLEAN_FRONTIER + (
+        "- [x] F2 — `rule-later` · deferred · kept\n- [-] F3 — a new item · person · kept\n"
+    )
+    code, out, _ = check(tmp_path, frontier=frontier)
+    assert code == 1
+    assert out.splitlines() == [finding.format("F2"), finding.format("F3")]
+
+
 def test_a_clean_frontier_passes(tmp_path):
     frontier = CLEAN_FRONTIER + "- [x] F2 — no decision · brief next 1 · work\n"
     assert check(tmp_path, frontier=frontier) == (0, "", "")

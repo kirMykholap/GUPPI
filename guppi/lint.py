@@ -61,7 +61,7 @@ from pathlib import Path
 import yaml
 
 from guppi.event import project_root
-from guppi.pages import CATEGORIES, Page, read_vault, slug_of, wiki_root
+from guppi.pages import CATEGORIES, HISTORY, Page, read_vault, slug_of, wiki_root
 
 LINK_FIELDS = (
     "parent",
@@ -144,7 +144,7 @@ def check_deferred(page: Page) -> list[Finding]:
         return []
     cases = [
         m.group(1)
-        for line in (page.sections.get("## History") or "").splitlines()
+        for line in (page.sections.get(HISTORY) or "").splitlines()
         if (m := DEFERRED_LINE.match(line.strip()))
     ]
     since = f" since case {cases[0]}" if cases else ""

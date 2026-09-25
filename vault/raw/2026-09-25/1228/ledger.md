@@ -1,0 +1,45 @@
+- 13:12:24 decision[case 419.1][update][rule-case-protocol]{ref:rule-case-protocol}
+- 13:12:24 decision[case 419.1][update][estimate-case-protocol-checks-its-frame]{ref:estimate-case-protocol-checks-its-frame}
+- 13:12:24 decision[case 419.1][update][rule-ask]{ref:rule-ask}
+- 13:12:24 decision[case 419.1][update][rule-skill-hi]{ref:rule-skill-hi}
+- 13:12:24 decision[case 419.1][update][rule-prespec]{ref:rule-prespec}
+- 13:12:24 decision[case 419.2][update][rule-frame-check]{ref:rule-frame-check}{supersedes:case 416}
+- 13:12:24 decision[case 419.2][update][estimate-frame-check-finds-a-contradiction]{ref:estimate-frame-check-finds-a-contradiction}{supersedes:case 403}
+- 13:12:24 decision[case 419.3][create][rule-case-check]{ref:rule-plan-mode}{tags:hooks,harness,workflow,session}
+- 13:12:24 decision[case 419.3][create][estimate-case-check-sends-back-a-faulty-case]{ref:rule-case-check}{tags:hooks,harness,workflow}
+- 13:12:24 decision[case 419.3][update][rule-hook-registry]{ref:rule-hook-registry}
+- 13:12:24 decision[case 419.3][update][insight-case-form-chat-form-read-by-no-script]{ref:insight-case-form-chat-form-read-by-no-script}
+- 13:12:24 decision[case 419.4][update][rule-case-check]{ref:rule-case-check}
+- 13:12:24 decision[case 419.4][create][estimate-case-check-shows-only-the-checked-case]{ref:rule-case-check}{tags:hooks,harness,workflow}
+- 13:12:24 decision[case 419.4][update][rule-hook-registry]{ref:rule-hook-registry}
+- 13:19:38 lesson[error][lesson-case-form-given-written-before-tasks]{tags:session,workflow}{addressed_by:case 419.3} trigger: Cases 419.3 and 419.4 were shown and ratified with the Estimates they create missing from their given; the Stop hook of rule-spec-write found it only after the ratification root_cause: the agent wrote given before tasks and did not read given again against the slugs of the then block, and no check reads a Case before the person ratifies it
+- 13:19:38 lesson[error][lesson-prespec-read-line-of-a-renamed-estimate]{tags:session,workflow} trigger: Cases 419.1 and 419.2 rename an Estimate and named its read line by the new slug; the Stop hook reported "has no task line" after the ratification root_cause: check_tasks of guppi/prespec.py matches a read line by the slug of the then item, the old slug of a rename, and the Case schema does not say which slug of a rename a read line names
+- 14:14:41 decision[case 420.1][create][rule-page-read]{ref:rule-harness}{tags:hooks,harness}
+- 14:14:41 decision[case 420.1][create][estimate-page-read-cuts-the-history]{ref:rule-page-read}{tags:hooks,harness}
+- 14:14:41 decision[case 420.1][update][rule-hook-registry]{ref:rule-hook-registry}
+- 14:14:41 decision[case 420.2][update][rule-harness]{ref:rule-harness}
+- 14:14:41 decision[case 420.2][update][estimate-harness-pipeline]{ref:estimate-harness-pipeline}
+- 14:56:39 decision[case 421.1][update][rule-spec-write]{ref:rule-spec-write}
+- 14:56:39 decision[case 421.1][update][estimate-spec-write-copies-the-ratified-case]{ref:estimate-spec-write-copies-the-ratified-case}
+- 14:56:39 decision[case 421.1][create][estimate-spec-write-writes-a-defer]{ref:rule-spec-write}{tags:hooks,harness,workflow}
+- 14:56:39 decision[case 421.2][update][rule-case-protocol]{ref:rule-case-protocol}
+- 14:56:39 decision[case 421.2][update][estimate-case-protocol-defers-in-one-reply]{ref:estimate-case-protocol-defers-in-one-reply}
+- 14:56:39 decision[case 421.3][update][rule-prespec]{ref:rule-prespec}
+- 14:56:39 decision[case 421.3][update][estimate-prespec-checks-the-frontier]{ref:estimate-prespec-checks-the-frontier}
+- 14:56:39 decision[case 421.4][update][rule-skill-hi]{ref:rule-skill-hi}
+- 14:56:39 decision[case 421.4][update][rule-case-protocol]{ref:rule-case-protocol}
+- 14:56:39 decision[case 421.4][update][estimate-hi-writes-frontier]{ref:estimate-hi-writes-frontier}
+- 14:59:51 decision[case 422][defer][rule-context-size]{ref:rule-context-size}
+- 14:59:51 decision[case 423][defer][rule-spec-reconcile]{ref:rule-spec-reconcile}
+- 14:59:51 decision[case 424][defer][rule-orchestration]
+- 15:13:29 decision[case 421.1][update][estimate-spec-write-checks-the-written-case]{ref:estimate-spec-write-checks-the-written-case}
+- 15:14:42 lesson[error][lesson-prespec-wikilink-to-a-decision-page-not-yet-written]{tags:session,workflow} trigger: Case 419.3 set addressed_by to "[[decision-case-419.3]]" on an Insight; the Stop hook of rule-spec-write refused it after the ratification as a wikilink that names no page root_cause: the bare-link check of case 264.2 accepts a slug a create of the same plan carries, but a Decision page is written by generate and no create carries it, so a Case cannot link its own Decision page; an earlier Spec (case 256) did so before the check existed
+- 15:29:51 lesson[knowledge][lesson-hooks-pretooluse-updatedinput-limits-a-read]{tags:hooks,harness}{source:live probe of session 1228 in the scratchpad, Claude Code 2.1.282} trigger: Case 420.1 needed a hook to cut the History of a vault page from a Read root_cause: a PreToolUse hook on Read that prints hookSpecificOutput.updatedInput with a limit and no permissionDecision changes the call in the main agent and in a subagent alike; PostToolUse then receives the changed tool_input, limit included, and its additionalContext reaches the agent; an Edit of the file after the cut Read succeeds
+- 15:29:51 estimate[estimate-case-protocol-acknowledging-reply][passed] 2026-09-25, by hand, session 1228: the acknowledging replies of Case 419 and of Case 419.3 were refused by the Stop hook of rule-spec-write (exit 2); the ledger holds their decision lines, written at that same Stop (13:12:24), and the answer to each refusal was a reply of its own that called tools
+- 15:29:51 estimate[estimate-case-protocol-ledger-line-form][passed] 2026-09-25, by hand, raw/2026-09-25/1228/ledger.md: lesson-case-form-given-written-before-tasks, written after Case 419.3 that closes its cause, carries {addressed_by:case 419.3}, and the decision line of 419.3 carries no {addresses}; one mark for the pair
+- 15:29:51 estimate[estimate-frame-check-finds-a-contradiction][passed] 2026-09-25, by hand, three live dispatches of session 1228: Case 419 — 155380 tokens, 424 s, one contradiction; Case 420 — 25605 tokens, 81 s, four; Case 421 — 126827 tokens, 264 s, four; each answer a read line and numbered lines of page, sentence, contradiction and fix; the first and the third read files the given did not name
+- 15:29:51 estimate[estimate-hook-registry-rendered][passed] 2026-09-25, uv run pytest tests/test_render.py -k json: 4 passed; uv run guppi render --check: exit 0, no output
+- 15:29:51 estimate[estimate-prespec-reconciles][passed] 2026-09-25, by hand, the /pre-spec of session 1228: the name, context and problem translated before the run; prespec --check printed one finding (C4 open), fixed, then none; ask-guppi dispatched once with the plan path; its 14 findings answered in one report before the changed Cases were shown again
+- 15:29:51 estimate[estimate-one-judgment-one-implementation-followed][passed] 2026-09-25, uv run guppi render --check exit 0; by hand, the diff of the Work Mode of session 1228: the History heading is one constant of guppi/pages.py that generate and lint import; history_line shares the walk of split_sections; one function, ratified.case_section, builds the Spec section of a Case for the write and for casecheck; casecheck imports prespec.judge
+- 15:34:45 lesson[error][lesson-retro-reading-of-a-criterion-this-spec-replaces]{tags:session,workflow} trigger: at the close of Work Mode of session 1228 the agent wrote the reading of estimate-frame-check-finds-a-contradiction (ledger line 40), whose Criterion Case 419.2 of the same Spec replaces and whose page it renames root_cause: the agent took the readings of the brief's Work list without holding each slug against the then blocks of this session's Spec; case 283 allows no reading of such an Estimate until the new Criterion is built, and no check compares an estimate line with the Spec of its own session
+- 15:34:45 estimate[estimate-context-size-warns-past-the-limit][failed] 2026-09-25, uv run pytest tests/test_context.py -k limit: 3 passed; by hand, session 1228: at the prompt that asked for /retro the UserPromptSubmit hook printed "context: 456 635 tokens, past 400 000" and the order to recommend /retro then /handoff, but the agent did not open its reply with that recommendation — it called /retro at once, as the person had just asked; the line of the Stop hook past the limit was not read

@@ -20,7 +20,15 @@ keys — `old` and `new` in pairs under `replace`, `reword old` and `reword new`
 one space on each side when it holds a backtick, an unpadded one refused (case 402), or a fenced
 block under the sub-point; a `create` of an Estimate takes its `ref` from its ledger line when
 no sub-point gives one. A last mention that is a fence tagged `DIFF` naming the Case writes
-nothing for it. A Case whose lines are all `defer` is the agent's, under `## Deferred`.
+nothing for it.
+
+The defer (case 421.1). A Case whose lines in the reply are all `defer` — beside the lines of
+other Cases or alone — is written from the same reply, which shows it in the short form: the
+heading, `context`, `problem` and its fence tagged `then`, each `defer` line with an item of
+`slug`, `type` and `purpose`. It goes under `## Deferred` of the plan file, or of `spec.md` in
+the session's folder once that file stands (Retro), its section replaced when it stands and
+appended otherwise; the ratified copy gets none, and the check after the write does not run
+on it. No showing or a missing item is a refusal.
 
 The check after the write (case 414.1). Each Case written in the run, and its sub-cases, goes
 through the checks of `guppi prespec --check` — `prespec.written_findings`, imported inside
@@ -417,25 +425,102 @@ def find_showing(messages: list[str], case: str):
     return None
 
 
-def write_case(plan: Path, case: str, heading: str, lines: list[str], refs: dict) -> list[str]:
-    """The Case into the plan and into its copy; the errors, empty when it was written."""
+def case_section(
+    case: str, heading: str, lines: list[str], refs: dict, held: dict | None = None
+) -> tuple[list[str], list[str]]:
+    """The Spec section of a Case shown in the chat form, built in memory, and the errors of
+    its form — the one reading of the write and of `casecheck` (case 419.3). A `context` or
+    `problem` the showing leaves out is taken from `held`, the sections the Spec holds."""
     chat = quoted_sections(lines, CHAT_SECTIONS)
     tasks, block, errors = read_tasks(chat.get("tasks", ""))
     if errors:
-        return errors
+        return [], errors
     for item in block.get("create") or []:
         ref = refs.get((case, item["slug"]))
         if ref and item["slug"].startswith("estimate-") and "ref" not in item:
             item["ref"] = ref
+    sections = {n: chat[n] for n in SPEC_SECTIONS if n in chat}
+    for name in PROSE:
+        if name not in sections and held and name in held:
+            sections[name] = held[name]
+    return spec_section(heading, sections, block, tasks), []
+
+
+def write_case(plan: Path, case: str, heading: str, lines: list[str], refs: dict) -> list[str]:
+    """The Case into the plan and into its copy; the errors, empty when it was written."""
     for path in (plan, copy_of(plan)):
         text = document(path, plan)
         held = quoted_sections(split_cases(text).get(case, []), SPEC_SECTIONS)
-        sections = {n: chat[n] for n in SPEC_SECTIONS if n in chat}
-        for name in PROSE:
-            if name not in sections and name in held:
-                sections[name] = held[name]
-        write_text(path, place(text, case, spec_section(heading, sections, block, tasks)))
+        section, errors = case_section(case, heading, lines, refs, held)
+        if errors:
+            return errors
+        write_text(path, place(text, case, section))
     return []
+
+
+# --- a deferred Case (case 421.1) ---------------------------------------------------
+
+
+def defer_only(records: list[dict]) -> list[str]:
+    """The Cases whose lines in a reply are all `defer`, in order; lines of other Cases may
+    stand beside them."""
+    kinds: dict[str, set[str]] = {}
+    for record in records:
+        kinds.setdefault(record["case"], set()).add(record["kind"])
+    return [case for case, seen in kinds.items() if seen == {"defer"}]
+
+
+def deferred_section(reply: str, case: str, records: list[dict]):
+    """`(section, errors)`: the short form of Case N as the reply shows it — the heading,
+    `context`, `problem` and its fence tagged `then` — checked against the reply's `defer`
+    lines of Case N."""
+    lines = split_cases(reply).get(case)
+    if lines is None:
+        return [], [f"case {case}: the reply that defers it does not show it"]
+    blocks = tagged_blocks(lines, "then")
+    try:
+        data = yaml.safe_load(blocks[0]) if blocks else None
+    except yaml.YAMLError:
+        data = None
+    items = data.get("defer") if isinstance(data, dict) else None
+    if not isinstance(items, list):
+        return [], [f"case {case}: no fence tagged then with its defer items"]
+    complete = {
+        str(item.get("slug"))
+        for item in items
+        if isinstance(item, dict) and all(item.get(k) for k in ("slug", "type", "purpose"))
+    }
+    missing = [r["slug"] for r in records if r["case"] == case and r["slug"] not in complete]
+    if missing:
+        return [], [
+            f"case {case}: no defer item with slug, type and purpose for {', '.join(missing)}"
+        ]
+    section = spec_section(headings(reply)[case], quoted_sections(lines, PROSE), {}, [])
+    return section + ["```then", *blocks[0].splitlines(), "```", ""], []
+
+
+def place_deferred(document: str, case: str, section: list[str]) -> str:
+    """The document with the section of `case` replaced where it stands, or appended at the
+    end of `## Deferred`, the heading added when the document has none."""
+    if case in split_cases(document):
+        return place(document, case, section)
+    lines = document.rstrip("\n").splitlines()
+    if not any(line.strip() == DEFERRED for line in lines):
+        lines += ["", DEFERRED]
+    return "\n".join(lines + [""] + section).rstrip("\n") + "\n"
+
+
+def write_defers(reply: str, records: list[dict], target: Path) -> list[str]:
+    """Each defer-only Case of the reply under `## Deferred` of `target`; the errors."""
+    problems: list[str] = []
+    for case in defer_only(records):
+        section, errors = deferred_section(reply, case, records)
+        if errors:
+            problems += errors
+            continue
+        text = target.read_text(encoding="utf-8") if target.is_file() else ""
+        write_text(target, place_deferred(text, case, section))
+    return problems
 
 
 def write_parent(plan: Path, case: str, text: str) -> None:
@@ -582,7 +667,8 @@ def stop(payload: dict, project_dir: Path, now, stderr) -> int:
     if payload.get("stop_hook_active"):
         return 0
     stamp = session_stamp(None, payload)
-    if session_dir(project_dir, now, stamp) is None:
+    folder = session_dir(project_dir, now, stamp)
+    if folder is None:
         return 0
     reply = reply_text(payload)
     records = [
@@ -626,6 +712,16 @@ def stop(payload: dict, project_dir: Path, now, stderr) -> int:
                 problems += prespec.written_findings(
                     text, written, project_dir, stamp, now, records
                 )
+    if defer_only(records):
+        retro = folder / "spec.md"  # the approved Spec: a defer at Retro goes there
+        target = retro if retro.is_file() else plan
+        if target is None or not target.is_file():
+            problems.append(
+                "no plan file of this session in the event log — create it with its title "
+                "line, then repeat the ledger lines"
+            )
+        else:
+            problems += write_defers(reply, records, target)
     if plan is not None and plan.is_file():
         problems += check_marks(plan, reply, written)
     if problems:

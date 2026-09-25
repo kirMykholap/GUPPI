@@ -223,9 +223,79 @@ def test_write_a_last_mention_in_a_diff_block_writes_nothing(working):
     assert "Case 7" not in plan_of(working).read_text(encoding="utf-8")
 
 
-def test_write_a_defer_only_case_is_left_to_the_agent(working):
-    reply = "```LEDGER\n- decision[case 8][defer][rule-y]{ref:rule-y}\n```\n"
+def short_case(case, slug, purpose="Later"):
+    return (
+        f"## Case {case} — отложено\n\n> **context:**\n> Контекст {case}.\n\n"
+        f"> **problem:**\n> Проблема {case}.\n\n"
+        f"```then\ndefer:\n  - slug: {slug}\n    type: rule\n    purpose: {purpose}\n```\n\n"
+    )
+
+
+def defer_line(case, slug):
+    return f"- decision[case {case}][defer][{slug}]{{ref:{slug}}}\n"
+
+
+def test_write_a_defer_goes_under_deferred_of_the_plan(working):
+    # case 421.1: the hook writes a defer-only Case from the reply that shows it
+    reply = short_case(8, "rule-y") + "```LEDGER\n" + defer_line(8, "rule-y") + "```\n"
     assert stop(working, reply, reply) == (0, "")
+    plan = plan_of(working).read_text(encoding="utf-8")
+    deferred = plan.split("## Deferred", 1)[1]
+    assert "## Case 8 — отложено" in deferred
+    lines = split_cases(plan)["8"]
+    assert ratified.quoted_sections(lines, ratified.PROSE) == {
+        "context": "Контекст 8.",
+        "problem": "Проблема 8.",
+    }
+    assert ratified.tagged_blocks(lines, "then") == [
+        "defer:\n  - slug: rule-y\n    type: rule\n    purpose: Later"
+    ]
+    assert not ratified.copy_of(plan_of(working)).exists()
+
+
+def test_write_several_defers_and_one_beside_a_ratified_case(working):
+    reply = (
+        short_case(8, "rule-y")
+        + short_case(9, "rule-z")
+        + "```LEDGER\n"
+        + LINES
+        + defer_line(8, "rule-y")
+        + defer_line(9, "rule-z")
+        + "```\n"
+    )
+    assert stop(working, reply, SHOWING, reply) == (0, "")
+    plan = plan_of(working).read_text(encoding="utf-8")
+    head, deferred = plan.split("## Deferred", 1)
+    assert "## Case 7 — пример" in head
+    assert deferred.index("## Case 8") < deferred.index("## Case 9")
+
+
+def test_write_a_defer_shown_again_replaces_its_section(working):
+    first = short_case(8, "rule-y") + "```LEDGER\n" + defer_line(8, "rule-y") + "```\n"
+    stop(working, first, first)
+    again = short_case(8, "rule-y", "Later, reworded") + "```LEDGER\n" + defer_line(8, "rule-y")
+    assert stop(working, again + "```\n", again + "```\n") == (0, "")
+    plan = plan_of(working).read_text(encoding="utf-8")
+    assert plan.count("## Case 8 —") == 1 and "Later, reworded" in plan
+
+
+def test_write_a_defer_at_retro_goes_into_the_spec_of_the_folder(working):
+    spec = working / "vault" / "raw" / TODAY.isoformat() / "1501" / "spec.md"
+    spec.parent.mkdir(parents=True)
+    spec.write_text("# Spec\n\n## Case 7 — done\n", encoding="utf-8")
+    reply = short_case(8, "rule-y") + "```LEDGER\n" + defer_line(8, "rule-y") + "```\n"
+    assert stop(working, reply, reply) == (0, "")
+    assert "## Case 8" in spec.read_text(encoding="utf-8").split("## Deferred", 1)[1]
+    assert "Case 8" not in plan_of(working).read_text(encoding="utf-8")
+
+
+def test_write_a_defer_not_shown_or_without_its_item_is_refused(working):
+    bare = "```LEDGER\n" + defer_line(8, "rule-y") + "```\n"
+    code, err = stop(working, bare, bare)
+    assert code == 2 and "case 8: the reply that defers it does not show it" in err
+    other = short_case(8, "rule-other") + bare
+    code, err = stop(working, other, other)
+    assert code == 2 and "no defer item with slug, type and purpose for rule-y" in err
     assert "Case 8" not in plan_of(working).read_text(encoding="utf-8")
 
 

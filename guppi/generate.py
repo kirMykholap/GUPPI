@@ -156,7 +156,7 @@ from guppi.materialize import (
     units_with,
     yaml_path,
 )
-from guppi.pages import REF_FIELDS, Page, read_page, slug_of, wiki_root
+from guppi.pages import HISTORY, REF_FIELDS, Page, read_page, slug_of, wiki_root
 from guppi.sprint import PREFIX as SPRINT_PREFIX
 from guppi.sprint import SLICE, item_slugs, milestone_blocks
 
@@ -215,7 +215,6 @@ SINGULAR = {
     "insights": "insight",
     "decisions": "decision",
 }
-HISTORY = "## History"
 RESULT = "## Result"  # a reading's record; a rename leaves it as it is (case 258.1)
 REWORD_CATEGORIES = ("rules", "entities", "estimates")  # not the journal, not the records (274.1)
 REWORD_FIELDS = ("purpose", "method")

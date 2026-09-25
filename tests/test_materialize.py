@@ -272,7 +272,7 @@ def test_a_supersedes_chain_marks_the_earlier_entry(tmp_path):
     data = load(tmp_path)
     earlier, later = by_slug(data, "rule-old", "update")
     assert earlier["case"] == "3" and earlier["superseded_by"] == "6"
-    assert later["supersedes"] == "3" and "superseded_by" not in later
+    assert later["supersedes"] == ["3"] and "superseded_by" not in later
     assert earlier["set"] == {"tags": ["harness", "git"]}
     assert earlier["replace"] == [{"old": "old words", "new": "new words"}]
     assert earlier["change"] == "old words become new words"
@@ -1009,7 +1009,7 @@ def test_a_supersedes_yields_no_removal_and_marks_the_earlier_entries(tmp_path):
     ]
     assert not any(e.get("derived") or e.get("case_removed") for e in data["entries"])
     (thirteen,) = of_case(data, "13")
-    assert thirteen["supersedes"] == "12"
+    assert thirteen["supersedes"] == ["12"]
     assert {e["case"] for e in data["entries"] if e.get("superseded_by")} == {"12"}
 
 
@@ -1291,7 +1291,7 @@ def test_a_supersedes_marks_every_entry_of_the_earlier_case(tmp_path):
     (thirteen,) = of_case(data, "13")
     assert thirteen["kind"] == "update" and thirteen["superseded_by"] == "21"
     (mine,) = of_case(data, "21")
-    assert mine["supersedes"] == "13"
+    assert mine["supersedes"] == ["13"]
     marked = {e["case"] for e in data["entries"] if e.get("superseded_by")}
     assert marked == {"12", "13"}  # 12 by 13 as before, 13 by 21; nothing else
     decisions = {d["case"]: d for d in data["decisions"]}
@@ -1344,7 +1344,7 @@ def test_the_entries_of_a_superseded_case_gone_from_the_spec_are_complete_by_the
     assert record["superseded_by"] == ["decision-case-31"]
     assert "case_text" not in record and "incomplete" not in record
     (mine,) = of_case(data, "31")
-    assert mine["supersedes"] == "30" and "incomplete" not in mine
+    assert mine["supersedes"] == ["30"] and "incomplete" not in mine
 
 
 def test_a_superseded_case_still_in_the_spec_is_lifted_as_before(tmp_path):
@@ -1649,7 +1649,7 @@ def test_a_supersedes_marks_the_earlier_entry_in_another_units_yaml(tmp_path):
     assert archive.kept_reason(tmp_path, f"{DATE}/0900") is None
     later = unit_yaml(b)
     (mine,) = [e for e in later["entries"] if e.get("case") == "9" and e.get("kind") == "update"]
-    assert mine["supersedes"] == "5" and "superseded_by" not in mine
+    assert mine["supersedes"] == ["5"] and "superseded_by" not in mine
     # the rest of A is untouched: a second walk changes nothing
     text_a = (a / "materialize.yaml").read_text(encoding="utf-8")
     code, _, err = run_walk(tmp_path, ["--date", DATE])
@@ -1671,7 +1671,50 @@ def test_a_supersedes_of_a_case_no_yaml_holds_changes_nothing(tmp_path):
     (mine,) = [
         e for e in unit_yaml(b)["entries"] if e.get("case") == "9" and e.get("kind") == "update"
     ]
-    assert mine["supersedes"] == "5"
+    assert mine["supersedes"] == ["5"]
+
+
+# --- several {supersedes:case N} blocks on one line (case 429) ----------------------------
+# `estimate-materialize-marks-superseded`
+
+
+def test_parse_line_gives_one_case_per_supersedes_block():
+    two = materialize.parse_line(
+        "- decision[case 9][update][rule-x]{ref:rule-x}{supersedes:case 5}{supersedes:case 8}"
+    )
+    assert two["supersedes"] == ["5", "8"]
+    assert materialize.parse_line("- decision[case 9][update][rule-x]")["supersedes"] == []
+
+
+def test_a_line_with_two_supersedes_blocks_marks_both_cases(tmp_path):
+    a, b = seed_two_units(tmp_path)
+    (b / "ledger.md").write_text(
+        "- 16:05:00 decision[case 8][update][rule-old]{ref:rule-old}\n"
+        "- 16:10:00 decision[case 9][update][rule-old]{ref:rule-old}"
+        "{supersedes:case 5}{supersedes:case 8}\n",
+        encoding="utf-8",
+        newline="\n",
+    )
+    code, _, err = run_walk(tmp_path, ["--date", DATE])
+    assert code == 0 and err == ""
+    earlier = unit_yaml(a)
+    (five,) = [e for e in earlier["entries"] if e.get("case") == "5"]
+    assert five["superseded_by"] == "9"  # in another unit's yaml (130.2)
+    assert earlier["decisions"][0]["superseded_by"] == ["decision-case-9"]
+    later = unit_yaml(b)
+    (eight,) = [e for e in later["entries"] if e.get("case") == "8"]
+    assert eight["superseded_by"] == "9" and "incomplete" not in eight  # in this unit
+    (mine,) = [e for e in later["entries"] if e.get("case") == "9"]
+    assert mine["supersedes"] == ["5", "8"]  # in the order of the blocks
+    decisions = {d["case"]: d for d in later["decisions"]}
+    assert decisions["8"]["superseded_by"] == ["decision-case-9"]
+    assert decisions["9"]["supersedes"] == ["decision-case-5", "decision-case-8"]
+
+
+def test_an_entry_of_an_older_yaml_with_one_supersedes_value_is_a_list_of_one():
+    entry = {"kind": "update", "category": "rules", "slug": "rule-old", "supersedes": "5"}
+    record = materialize.decision_record("9", [entry], DATE, {}, [])
+    assert record["supersedes"] == ["decision-case-5"]
 
 
 # --- a carried-over unit is passed by (case 190.3) ----------------------------------------
@@ -2167,3 +2210,20 @@ def test_a_reading_after_the_mark_does_not_fold_into_the_superseded_create(tmp_p
     assert "status" not in marked and "folded" not in marked
     (reading,) = [e for e in data["entries"] if e.get("kind") == "estimate"]
     assert reading["line"] == 3 and reading["status"] == "passed"
+
+
+def test_a_folded_reading_is_refolded_for_each_block_of_the_line(tmp_path):  # case 429
+    ledger = (
+        "- decision[case 29][update][rule-old]{ref:rule-old}\n"
+        + CREATE_30
+        + READING
+        + "- decision[case 31][create][estimate-a-holds]"
+        "{ref:rule-old}{supersedes:case 29}{supersedes:case 30}{tags:harness}\n"
+    )
+    data = refold_entries(tmp_path, ledger)
+    (twenty_nine,) = of_case(data, "29")
+    assert twenty_nine["superseded_by"] == "31"
+    (marked,) = of_case(data, "30")
+    assert marked["superseded_by"] == "31" and "folded" not in marked
+    (live,) = [e for e in of_case(data, "31") if e.get("kind") == "create"]
+    assert live["status"] == "passed" and live["folded"] == [3]

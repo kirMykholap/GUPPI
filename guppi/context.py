@@ -4,13 +4,16 @@ On `Stop`: N is the sum of the input, cache read, cache creation and output toke
 last main-agent call the transcript holds — at `Stop` the last call may not be there yet, so
 N may lag one call — and D is N less the same sum at the last call before the person's last
 prompt. It prints JSON with a `systemMessage`: `context: <N> tokens (<+D> since the last
-reply)`; at N of 400 000 or more the line ends with `— past 400 000: close the session`.
+reply)`; at N of 400 000 or more the line ends with `— past 400 000: costly, better take no
+more work`.
 On the re-fire (`stop_hook_active`), with a transcript it cannot read, or with no call
 carrying `usage`, it prints nothing (case 392.1).
 
 With `--prompt`, on `UserPromptSubmit`: at N of 400 000 or more it prints to the agent's
-context the size and the order to tell the person to close the session; below the limit it
-prints nothing (case 392.2). It exits 0 always. Rule page:
+context the size and a note for the agent to pass to the person, not an order: the session
+is already costly, taking on more work is not recommended, and while the Frontier holds open
+items, deferring them is the better course; nothing orders the session closed and nothing
+names /retro or /handoff (case 430). Below the limit it prints nothing (case 392.2). It exits 0 always. Rule page:
 `vault/wiki/rules/rule-context-size.md`.
 """
 
@@ -79,7 +82,7 @@ def stop_line(n: int, d: int) -> str:
     sign = "+" if d >= 0 else "-"
     line = f"context: {number(n)} tokens ({sign}{number(abs(d))} since the last reply)"
     if n >= LIMIT:
-        line += f" — past {number(LIMIT)}: close the session"
+        line += f" — past {number(LIMIT)}: costly, better take no more work"
     return line
 
 
@@ -87,8 +90,9 @@ def prompt_text(n: int) -> str | None:
     if n < LIMIT:
         return None
     return (
-        f"context: {number(n)} tokens, past {number(LIMIT)}. Open your reply by telling the "
-        "person to close the session with /retro, then /handoff, before the next Case "
+        f"context: {number(n)} tokens, past {number(LIMIT)} — the session is already costly. "
+        "A note for the agent to pass to the person, not an order: taking on more work is not "
+        "recommended; while the Frontier holds open items, deferring them is the better course "
         "(rule-context-size)."
     )
 

@@ -79,7 +79,7 @@ update:
 - [ ] `uv run guppi render`: `vault/wiki/case-schema.md`
 - [ ] `uv run guppi render`: `.claude/agents/ask-guppi.md`
 - [ ] `uv run guppi render`: `.claude/skills/hi/SKILL.md`
-- [ ] read `estimate-case-protocol-checks-its-frame` — renamed `estimate-case-protocol-shows-the-built-case`
+- [ ] read `estimate-case-protocol-shows-the-built-case`
 ```
 
 ### Case 419.2 — `case-guppi` builds the Case: the vault, the frame and the form
@@ -151,8 +151,8 @@ update:
 - [ ] update `rule-frame-check`
 - [x] update `estimate-frame-check-finds-a-contradiction`
 - [ ] `uv run guppi render`: `.claude/agents/case-guppi.md`
-- [ ] `git rm .claude/agents/frame-guppi.md` — the file no page governs after the rename
-- [ ] read `estimate-frame-check-finds-a-contradiction` — renamed `estimate-case-build-writes-the-case`
+- [x] `git rm .claude/agents/frame-guppi.md` — the file no page governs after the rename
+- [ ] read `estimate-case-build-writes-the-case`
 ```
 
 ### Case 419.3 — A `SubagentStop` hook checks the Case of `case-guppi`

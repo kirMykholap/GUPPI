@@ -480,3 +480,54 @@ def test_session_dir_is_none_without_a_hi_and_survives_a_foreign_start(tmp_path)
     assert ledger.session_dir(tmp_path, NOW, "44c1aae1") is None
     write_event_log(tmp_path, EVENT_LOG_WITH_HI + "- 15:03:00 deadbeef session-start startup\n")
     assert ledger.session_dir(tmp_path, NOW, "44c1aae1") is not None  # case 111.3
+
+
+# --- what a session changes, it does not measure (case 428.1) ----------------------------
+# `estimate-ledger-write-refuses-a-reading-of-a-change-of-the-session`
+
+READ_X = "- estimate[estimate-x-holds][passed] 2026-09-09, pytest; green"
+CREATE_X = "- decision[case 3][create][estimate-x-holds]{ref:rule-x}{tags:harness}"
+UPDATE_X = "- decision[case 4][update][estimate-x-holds]{ref:estimate-x-holds}"
+DEFER_X = "- decision[case 5][defer][estimate-x-holds]"
+REFUSAL = (
+    "ledger: estimate[estimate-x-holds] not written — case {} creates or updates "
+    "estimate-x-holds in this session; what a session changes it does not measure: take the "
+    "reading in a later session and name it in the handoff.\n"
+)
+
+
+def seed_ledger(project_dir, *lines):
+    path = ledger_file(project_dir)
+    path.parent.mkdir(parents=True, exist_ok=True)
+    path.write_text("".join(f"- 15:01:50 {line[2:]}\n" for line in lines), encoding="utf-8")
+
+
+@pytest.mark.parametrize("decision, case", [(CREATE_X, "3"), (UPDATE_X, "4")])
+def test_a_reading_of_a_slug_the_session_changes_is_refused(working, decision, case):
+    seed_ledger(working, decision)
+    code, err = run(payload(last_assistant_message=ledger_block(READ_X, LESSON)), working)
+    assert (code, err) == (2, REFUSAL.format(case))
+    assert ledger_text(working).splitlines() == [f"- 15:01:50 {decision[2:]}", timed(LESSON)]
+
+
+def test_a_decision_line_of_the_same_reply_refuses_it_too(working):
+    code, err = run(payload(last_assistant_message=ledger_block(UPDATE_X, READ_X)), working)
+    assert (code, err) == (2, REFUSAL.format("4"))
+    assert ledger_text(working) == f"{timed(UPDATE_X)}\n"
+
+
+def test_a_refused_line_of_an_earlier_text_is_skipped_without_a_word(working):
+    seed_ledger(working, UPDATE_X)
+    transcript = write_transcript(working, transcript_line(ledger_block(READ_X)))
+    stdin = payload(last_assistant_message="Nothing.", transcript_path=transcript)
+    assert run(stdin, working) == (0, "")
+    assert ledger_text(working) == f"- 15:01:50 {UPDATE_X[2:]}\n"
+
+
+def test_a_reading_with_a_defer_line_only_or_another_sessions_line_is_written(working):
+    seed_ledger(working, DEFER_X)
+    other = ledger_file(working, YESTERDAY)
+    other.parent.mkdir(parents=True, exist_ok=True)
+    other.write_text(f"- 20:50:18 {UPDATE_X[2:]}\n", encoding="utf-8")
+    assert run(payload(last_assistant_message=ledger_block(READ_X)), working) == (0, "")
+    assert ledger_text(working).splitlines()[-1] == timed(READ_X)

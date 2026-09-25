@@ -169,6 +169,15 @@ def test_subagent_a_finding_of_the_prespec_checks_sends_it_back(working):
     assert code == 2 and "case 7: estimate-x-works has no task line" in err
 
 
+def test_subagent_two_update_lines_of_one_slug_send_it_back(working):  # case 426
+    second = "> - [ ] update `rule-x` — the page renamed\n>   - rename: `rule-y`\n"
+    twice = ANSWER.replace(
+        "> - [ ] create `estimate-x-works`", second + "> - [ ] create `estimate-x-works`"
+    )
+    code, err = answer(working, twice)
+    assert code == 2 and "case 7: item [update][rule-x] stands twice" in err
+
+
 def test_subagent_the_re_fire_stores_the_findings_and_passes(working):
     no_read = ANSWER.replace("> - [ ] read `estimate-x-works`\n", "")
     assert answer(working, no_read, stop_hook_active=True) == (0, "")

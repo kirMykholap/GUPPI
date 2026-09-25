@@ -1199,7 +1199,7 @@ entries:
     answer a read line and numbered lines of page, sentence, contradiction and fix; the first and the
     third read files the given did not name'
   origin: raw/2026-09-25/1228/ledger.md#L40
-  failed: 'generate: estimate-frame-check-finds-a-contradiction: no estimate page to fill'
+  superseded_by: '427'
 - line: 41
   text: 'estimate[estimate-hook-registry-rendered][passed] 2026-09-25, uv run pytest tests/test_render.py
     -k json: 4 passed; uv run guppi render --check: exit 0, no output'

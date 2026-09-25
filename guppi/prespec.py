@@ -28,7 +28,9 @@ the ledgers of its dates, on the `hi` date from the `hi` time on, and its folder
   a `defer` line matches a `defer` item; an Estimate has its own line and its own item (case 189); a nested `estimate` of an
   older Spec is covered by its parent's create line; the lines of a Case a `{supersedes:case
   N}` of the window names need no item — the Case left the plan — and its heading still in
-  the plan is a finding of its own (case 299.2);
+  the plan is a finding of its own (case 299.2); a second item of one kind and slug under one
+  Case heading, in one fence tagged `then` or in another, is a finding: one decision line
+  covers one item, and `materialize` lifts only the first (case 426);
 - the frontier `raw/<hi date>/<hi HHMM>/frontier.md` (case 73.4): missing, an open `[ ]`
   line under `## Cases` — an open line under `## Work` waits for Work Mode and is no finding
   (case 356.1) — a `[x] … · case N` whose heading the plan lacks, a `[-] … · defer case N`
@@ -298,15 +300,17 @@ def superseded_in_window(records: list[dict]) -> dict[str, str]:
     superseded it — a Case superseded in its own session leaves the plan."""
     by: dict[str, str] = {}
     for record in records:
-        if record.get("supersedes"):
-            by.setdefault(str(record["supersedes"]), str(record["case"]))
+        for earlier in record.get("supersedes") or []:  # one block per Case (case 429)
+            by.setdefault(str(earlier), str(record["case"]))
     return by
 
 
 def check_lines(cases: dict, blocks: dict, records: list[dict]) -> list[str]:
     """59.1: every line has its item under its own Case; every item has its line, a nested
     estimate through its parent's create line. 299.2: a Case superseded by a line of the
-    window needs no item, and its heading still in the plan is a finding."""
+    window needs no item, and its heading still in the plan is a finding. 426: a second item
+    of one kind and slug under one Case heading, in one fence tagged `then` or in another, is
+    a finding — one decision line covers one item, and `materialize` lifts only the first."""
     findings: list[str] = []
     superseded = superseded_in_window(records)
     for case, by in superseded.items():
@@ -322,7 +326,15 @@ def check_lines(cases: dict, blocks: dict, records: list[dict]) -> list[str]:
             findings.append(f"case {case}: line {tag} has no item in the plan")
     for case, block in blocks.items():
         of_case = [r for r in records if r["case"] == case]
+        seen: set[tuple[str, str]] = set()
         for entry in items_of(block):
+            tag = (entry["kind"], item_name(entry))
+            if not entry["nested"] and tag in seen:  # materialize lifts only the first (426)
+                findings.append(
+                    f"case {case}: item [{tag[0]}][{tag[1]}] stands twice — one entry per target"
+                )
+                continue
+            seen.add(tag)
             if not entry["nested"] and not item_has_line(entry, of_case):
                 findings.append(
                     f"case {case}: item [{entry['kind']}][{item_name(entry)}] has no decision line"
@@ -413,7 +425,9 @@ def check_frontier(path: Path, relative: str, cases: dict, blocks: dict) -> list
 
 
 def estimates_to_read(block: dict) -> list[str]:
-    """The Estimates a `then` block creates or sets `pending`, by slug."""
+    """The Estimates a `then` block creates or sets `pending`, by slug. An `update` that
+    carries `rename` gives the slug of its `rename`: after `generate` the page lives under
+    it, the reading names it, and `tick_read` ticks the read line by it (case 432)."""
     slugs: list[str] = []
     for entry in items_of(block):
         if entry["kind"] == "create" and str(entry["slug"] or "").startswith("estimate-"):
@@ -423,7 +437,7 @@ def estimates_to_read(block: dict) -> list[str]:
             continue
         set_fields = item.get("set")
         if isinstance(set_fields, dict) and set_fields.get("status") == "pending":
-            slugs.append(item["slug"])
+            slugs.append(str(item.get("rename") or item["slug"]))
     return slugs
 
 

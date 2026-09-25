@@ -1,5 +1,6 @@
 """`guppi context`: the size of the context window after each reply, on `Stop` (case 392.1),
-and the warning past 400 000 tokens, on `UserPromptSubmit` (case 392.2).
+and the note past 400 000 tokens, on `UserPromptSubmit` (case 392.2) — a note for the
+person, not an order to close the session (case 430).
 
 Every test feeds the payload through a stream, the shape a hook is really handed, and a
 transcript written by the test in the shape Claude Code writes it.
@@ -110,15 +111,18 @@ def test_limit_below_it_the_prompt_hook_is_silent_and_the_line_plain(tmp_path):
     assert "past" not in message(out)
 
 
-def test_limit_at_it_both_hooks_tell_to_close_the_session(tmp_path):
+def test_limit_at_it_both_hooks_give_a_note_not_an_order(tmp_path):  # case 430
     records = [prompt(), call(390_000), prompt("C2"), call(400_000)]
     code, out, _ = hook(tmp_path, records, "--prompt")
     assert code == 0
-    assert out.startswith("context: 400 000 tokens, past 400 000.")
-    assert "/retro, then /handoff, before the next Case" in out
+    assert out.startswith("context: 400 000 tokens, past 400 000 — the session is already costly.")
+    assert "not an order" in out and "taking on more work is not recommended" in out
+    assert "deferring them is the better course" in out
+    assert "/retro" not in out and "/handoff" not in out and "close the session" not in out
     _, out, _ = hook(tmp_path, records)
     assert message(out) == (
-        "context: 400 000 tokens (+10 000 since the last reply) — past 400 000: close the session"
+        "context: 400 000 tokens (+10 000 since the last reply)"
+        " — past 400 000: costly, better take no more work"
     )
 
 

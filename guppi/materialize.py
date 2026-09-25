@@ -65,7 +65,9 @@ in the page's `## Criterion` is `incomplete: [criterion]` — a Criterion change
 old shape is dropped; a `criterion` key of the old shape goes to `sections.Criterion`. On a
 rule's or entity's item the keys `method`, `contract`, `estimate_slug` and `estimate_kind`
 are ignored: they reach neither the page nor `incomplete`. A line with `{supersedes:case
-N}` marks every entry carrying `case: N` `superseded_by`, whatever its kind (case 175), in
+N}` marks every entry carrying `case: N` `superseded_by`, whatever its kind (case 175); a
+line may carry several such blocks side by side, one per Case, and each Case is marked
+(case 429). The marks go to
 whichever unit's yaml holds them — this one or any other under `raw/`, written with that
 mark only (case 130.2); nothing is derived from it. A Case superseded in its own session
 leaves the Spec (case 299.1): its entries, marked `superseded_by` while no heading of its
@@ -76,7 +78,8 @@ nested `estimate` in an older Spec becomes its own `create` entry, for a line wi
 The fields of an entry, each with its writer. From the ledger line: `case`, `kind`
 (`create`, `update`, `delete`, `defer`, `estimate`, `lesson`), `category` (from the slug
 prefix; a slug with no category prefix is `unknown` and `incomplete: [category]`, since case 320 removed the file route), `slug`, `ref`, `source`,
-`supersedes`, `tags`, `addresses` (the lesson slugs of a decision line's `{addresses:...}`
+`supersedes` (a list, one Case per `{supersedes:case N}` block, case 429; one value in a
+yaml written before it), `tags`, `addresses` (the lesson slugs of a decision line's `{addresses:...}`
 marks, one per mark, case 284.2), `origin` (`raw/<unit>/ledger.md#case-N`; a lesson
 `#L<n>`), `line`, `text`, `decision` (`decision-case-<N>`). From the `then` block: `fields`, `sections`
 (`Criterion` lifted from the Case when the item wrote none), `replace`, `change`, `rename`
@@ -97,7 +100,10 @@ this line's `#case-N`, case 105.2; a defer whose page exists). Set by this scrip
 (`status: pending` on an Estimate update), and `status`, `result`, `folded` of a reading
 folded into the live create of its slug — never into one already applied or marked
 `superseded_by`, and a `{supersedes}` moves the readings of the create it marks to the live
-create of the slug, or makes each an `estimate` entry of its own (case 309); `superseded_by` from a later `{supersedes}` in any unit; `addressed_by`
+create of the slug, or makes each an `estimate` entry of its own (case 309); `superseded_by` from a later `{supersedes}` in any unit — an `estimate` entry carries no
+`case`, so no `{supersedes}` reaches it: a reading that must not apply is retired only by a
+ratified Case, whose one-off migration writes `superseded_by` with the number of that Case
+and removes the entry's `failed` (case 427); `addressed_by`
 (`decision-case-<N>`) on a lesson entry a decision line of the same unit marked with
 `{addresses:<its slug>}`, or whose own line carries `{addressed_by:case N}` after a decision
 line of Case N — one function sets it for both marks, at the entry's level, never a page
@@ -199,7 +205,8 @@ def parse_line(text: str) -> dict | None:
             "slug": heads[2].strip(),
             "ref": options.get("ref"),
             "source": options.get("source"),
-            "supersedes": _case_of(options.get("supersedes")),
+            # one block per Case it supersedes, so the key may repeat (case 429)
+            "supersedes": [_case_of(v) for k, v in pairs if k == "supersedes" and v.strip()],
             "tags": _tags(options.get("tags")),
             # one mark per lesson the Case closes, so the key may repeat (case 284.2)
             "addresses": [v.strip() for k, v in pairs if k == "addresses" and v.strip()],
@@ -237,6 +244,14 @@ def _case_of(value: str | None) -> str | None:
         return None
     value = value.strip()
     return value[5:].strip() if value.startswith("case ") else value
+
+
+def cases_of(value) -> list[str]:
+    """The Cases an entry's `supersedes` names: a list since case 429, one value in a yaml
+    written before it."""
+    if not value:
+        return []
+    return [str(v) for v in value] if isinstance(value, list) else [str(value)]
 
 
 def _tags(value: str | None) -> list[str]:
@@ -924,8 +939,9 @@ def decision_record(
         for tag in entry.get("tags") or []:
             if tag not in tags:
                 tags.append(tag)
-        if entry.get("supersedes") and f"decision-case-{entry['supersedes']}" not in supersedes:
-            supersedes.append(f"decision-case-{entry['supersedes']}")
+        for earlier in cases_of(entry.get("supersedes")):
+            if f"decision-case-{earlier}" not in supersedes:
+                supersedes.append(f"decision-case-{earlier}")
     record = {
         "case": case,
         "decision": f"decision-case-{case}",
@@ -1005,13 +1021,11 @@ def lift_line(
     lift_criterion(entry, texts_of[case], project_dir)  # an Estimate's own entry (189, 194.1, 296)
     entries.append(entry)
     added = 1
-    if record.get("supersedes"):
-        if mark_superseded(
-            entries, decisions, record["supersedes"], case, record["supersedes"] in cases
-        ):
-            refold(entries, record["supersedes"], ledger or [], date)  # case 309
+    for earlier in record.get("supersedes") or []:  # one block per Case (case 429)
+        if mark_superseded(entries, decisions, earlier, case, earlier in cases):
+            refold(entries, earlier, ledger or [], date)  # case 309
         else:
-            elsewhere.append((record["supersedes"], case))  # another unit's yaml (130.2)
+            elsewhere.append((earlier, case))  # another unit's yaml (130.2)
     if record.get("addresses") and not mark_addressed(entries, record["addresses"], case):
         entry.setdefault("incomplete", []).append("addresses")  # a mark without its lesson
     return added

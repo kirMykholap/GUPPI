@@ -226,6 +226,50 @@ def test_an_item_under_another_sub_case_is_a_finding_each_way(tmp_path):
     ]
 
 
+SECOND_ITEM = "  - slug: rule-x\n    rename: rule-y\n"
+TWICE = "case 1: item [update][rule-x] stands twice — one entry per target"
+
+
+def test_a_second_item_of_one_slug_in_one_fence_is_a_finding(tmp_path):  # case 426
+    plan = PLAN.replace("    change: one line\n", "    change: one line\n" + SECOND_ITEM)
+    code, out, _ = check(tmp_path, plan=plan)
+    assert code == 1
+    assert out.splitlines() == [TWICE]
+
+
+def test_a_second_item_of_one_slug_in_another_fence_is_a_finding(tmp_path):
+    plan = PLAN.replace("```tasks", "```then\nupdate:\n" + SECOND_ITEM + "```\n\n```tasks")
+    code, out, _ = check(tmp_path, plan=plan)
+    assert code == 1
+    assert out.splitlines() == [TWICE]
+
+
+def test_a_create_and_an_update_of_one_slug_are_no_second_item(tmp_path):
+    ledger = LINE + "- 16:00:01 decision[case 1][create][rule-x]{ref:rule-root}{tags:harness}\n"
+    plan = PLAN.replace(
+        "    change: one line\n",
+        "    change: one line\ncreate:\n  - slug: rule-x\n    type: rule\n",
+    )
+    _, out, _ = check(tmp_path, plan=plan, ledger=ledger)
+    assert "stands twice" not in out
+
+
+def test_one_slug_under_two_sub_cases_is_no_second_item(tmp_path):
+    lines = (
+        "- 16:00:00 decision[case 1.1][update][rule-x]{ref:rule-x}\n"
+        "- 16:00:01 decision[case 1.2][update][rule-x]{ref:rule-x}\n"
+    )
+    sub = PLAN.split("\n", 2)[2]
+    plan = (
+        "# Plan\n\n## Case 1 — one\n\n> **context:**\n> P.\n\n"
+        + sub.replace("## Case 1 — one", "### Case 1.1 — a")
+        + "\n"
+        + sub.replace("## Case 1 — one", "### Case 1.2 — b")
+    )
+    _, out, _ = check(tmp_path, plan=plan, ledger=lines)
+    assert "stands twice" not in out
+
+
 def test_a_line_of_a_case_the_plan_lacks_is_a_finding(tmp_path):
     extra = "- 16:00:01 decision[case 2][update][rule-y]{ref:rule-y}\n"
     _, out, _ = check(tmp_path, ledger=LINE + extra)
@@ -270,6 +314,32 @@ def test_a_supersedes_of_an_earlier_sessions_case_is_no_finding(tmp_path):
     taken_up = "- 16:00:00 decision[case 1][update][rule-x]{ref:rule-x}{supersedes:case 7}\n"
     code, out, _ = check(tmp_path, ledger=taken_up)
     assert code == 0 and out == ""
+
+
+TWO_LINES = LINE + "- 16:00:01 decision[case 2][update][rule-x]{ref:rule-x}\n"
+TWO_BLOCKS = "- 16:00:02 decision[case 3][update][rule-x]{ref:rule-x}{supersedes:case 1}{supersedes:case 2}\n"
+
+
+def test_a_line_with_two_supersedes_blocks_covers_both_cases(tmp_path):  # case 429
+    frontier = CLEAN_FRONTIER.replace("case 1", "case 3")
+    code, out, _ = check(tmp_path, ledger=TWO_LINES + TWO_BLOCKS, plan=PLAN_3, frontier=frontier)
+    assert code == 0 and out == ""  # neither Case needs its item
+    old = (
+        "\n## Case 1 — one\n\n> **context:**\n> Old.\n\n## Case 2 — two\n\n> **context:**\n> Old.\n"
+    )
+    _, out, _ = check(tmp_path, ledger=TWO_LINES + TWO_BLOCKS, plan=PLAN_3 + old, frontier=frontier)
+    assert out.splitlines() == [
+        "case 1: superseded by case 3, still in the plan",
+        "case 2: superseded by case 3, still in the plan",
+    ]
+
+
+def test_ratified_both_cases_of_a_two_block_line_in_the_copy_are_no_finding(tmp_path):
+    copy = PLAN_3 + "\n" + SUB + "\n" + SUB.replace("## Case 1 — one", "## Case 2 — two")
+    with_copy(tmp_path, copy)
+    frontier = CLEAN_FRONTIER.replace("case 1", "case 3")
+    _, out, _ = check(tmp_path, ledger=TWO_LINES + TWO_BLOCKS, plan=PLAN_3, frontier=frontier)
+    assert "case 1" not in out and "case 2" not in out
 
 
 def test_a_defer_line_matches_a_defer_item(tmp_path):
@@ -474,6 +544,22 @@ def test_an_estimate_named_by_an_update_line_alone_has_no_task_line(tmp_path):
     code, out, _ = check(tmp_path, plan=plan, ledger=ledger)
     assert code == 1
     assert out.splitlines() == ["case 1: estimate-x-holds has no task line"]
+
+
+def test_a_renamed_estimate_is_read_under_the_slug_of_its_rename(tmp_path):  # case 432
+    ledger = LINE + "- 16:00:01 decision[case 1][update][estimate-x-holds]{ref:estimate-x-holds}\n"
+    plan = PLAN.replace(
+        "    change: one line\n",
+        "    change: one line\n  - slug: estimate-x-holds\n    rename: estimate-x-stands\n"
+        "    set: {status: pending}\n",
+    )
+    with_estimate(tmp_path, "estimate-x-holds")
+    new = plan.replace("- [ ] guppi/x.py: the change", "- [ ] read `estimate-x-stands`")
+    assert check(tmp_path, plan=new, ledger=ledger) == (0, "", "")
+    old = plan.replace("- [ ] guppi/x.py: the change", "- [ ] read `estimate-x-holds`")
+    code, out, _ = check(tmp_path, plan=old, ledger=ledger)
+    assert code == 1
+    assert out.splitlines() == ["case 1: estimate-x-stands has no task line"]
 
 
 def test_a_created_estimate_without_its_task_line_is_a_finding(tmp_path):

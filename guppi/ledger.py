@@ -23,6 +23,16 @@ tool call — which has no `Stop` of its own — reaches the ledger at the next 
 session (case 55.2). A subagent's message (`isSidechain`) is skipped: only the main agent
 writes ledger lines. A line whose text is already in any `ledger.md` under `raw/`, at the
 date level or in a session folder, whatever its time, is not appended twice.
+
+What a session changes, it does not measure (case 428.1). An `estimate[<slug>]` line is not
+written when a decision line `create` or `update` of `<slug>` stands in the session's ledger
+or among the lines of the same `Stop`, each line read by `parse_line` of
+`guppi/materialize.py`; a reading of the old slug of a page an `update` renames falls under
+the same rule, since the decision line names the old slug. The judgment reads the ledger
+alone and holds the whole session, so a refused line of the transcript is refused again at
+every `Stop`: the hook exits 2 with one stderr line per refused line only when the line
+stands in the reply just finished, and skips an older one without a word. The other lines
+are written as before.
 """
 
 import json
@@ -36,6 +46,7 @@ from guppi.event import project_root, read_payload, session_stamp
 PREFIXES = ("- decision[", "- estimate[", "- lesson[")
 FENCE = re.compile(r"^ {0,3}(```|~~~)\s*(\S*)")
 TIMED = re.compile(r"^- (?:\d\d:\d\d:\d\d )?(.*)$")
+BRACKET = re.compile(r"\[([^\]]*)\]")
 LEDGER_TAG = "ledger"
 PLAN_TOOLS = ("Write", "Edit", "MultiEdit")
 
@@ -246,6 +257,33 @@ def existing_bodies(project_dir: Path) -> set[str]:
     return bodies
 
 
+def changed_by_session(lines: list[str]) -> dict[str, str]:
+    """Each slug a decision line `create` or `update` of these lines names, with its Case
+    (case 428.1). The lines are read by `parse_line` of `guppi/materialize.py`, the one
+    parse of a ledger line; imported here, since `materialize` imports this module."""
+    from guppi.materialize import parse_line
+
+    changed: dict[str, str] = {}
+    for line in lines:
+        record = parse_line(f"- {body(line)}")
+        if record and record["record"] == "decision" and record["kind"] in ("create", "update"):
+            changed.setdefault(record["slug"], record["case"])
+    return changed
+
+
+def refused_readings(lines: list[str], changed: dict[str, str]) -> list[tuple[str, str]]:
+    """`(line, case)` of each `estimate[<slug>]` line whose slug a decision line of the
+    session creates or updates: what a session changes, it does not measure (case 428.1)."""
+    from guppi.materialize import parse_line
+
+    refused: list[tuple[str, str]] = []
+    for line in lines:
+        record = parse_line(f"- {body(line)}")
+        if record and record["record"] == "estimate" and record["slug"] in changed:
+            refused.append((line, changed[record["slug"]]))
+    return refused
+
+
 def append(path: Path, lines: list[str]) -> None:
     path.parent.mkdir(parents=True, exist_ok=True)
     with path.open("a", encoding="utf-8", newline="\n") as handle:
@@ -277,7 +315,24 @@ def run(argv, *, stdin=None, stderr=None, project_dir: Path | None = None, now=N
         path = ledger_path(project_dir, now, stamp)
         if path is None:
             raise RuntimeError("no session folder for the hi")
-        append(path, fresh)
+        written = path.read_text(encoding="utf-8").splitlines() if path.exists() else []
+        refused = refused_readings(fresh, changed_by_session(written + fresh))
+        out = {line for line, _ in refused}
+        fresh = [line for line in fresh if line not in out]
+        if fresh:
+            append(path, fresh)
+        finished = {body(line) for line in ledger_lines(reply_text(payload))}
+        loud = [(line, case) for line, case in refused if body(line) in finished]
+        for line, case in loud:
+            slug = BRACKET.search(line).group(1)
+            print(
+                f"ledger: estimate[{slug}] not written — case {case} creates or updates {slug} "
+                "in this session; what a session changes it does not measure: take the "
+                "reading in a later session and name it in the handoff.",
+                file=stderr,
+            )
+        if loud:
+            return 2
     except Exception as exc:  # noqa: BLE001 — a hook that raises would fail the session
         print(f"ledger: ledger.md not written: {exc}", file=stderr)
     return 0

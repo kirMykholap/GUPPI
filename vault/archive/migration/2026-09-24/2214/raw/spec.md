@@ -45,7 +45,7 @@ update:
 - [x] update `rule-case-protocol` — the Language paragraph of the Render: no count of items in the story sections
 - [x] update `estimate-case-protocol-case-form` — the Criterion replaced whole by the `when` and `then` of this Case
 - [x] `uv run guppi render`: `vault/wiki/case-schema.md`
-- [ ] read `estimate-case-protocol-case-form` — by hand, the Cases of this session at its close
+- [x] read `estimate-case-protocol-case-form` — by hand, the Cases of this session at its close
 ```
 
 ## Deferred

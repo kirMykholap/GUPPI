@@ -1,9 +1,10 @@
 ---
 type: decision
 case: "413"
-status: current
+status: archived
 defer: ["[[rule-prespec]]"]
 supersedes: ["[[decision-case-411]]"]
+superseded_by: ["[[decision-case-415]]"]
 origin: raw/2026-09-24/2214/ledger.md#case-413
 sprint: migration
 created: 2026-09-24
@@ -27,3 +28,6 @@ The line on the frame — when and then name only what given names — signed by
 ## History
 
 - 2026-09-25 created · raw/2026-09-24/2214/ledger.md#case-413
+- 2026-09-25 superseded by decision-case-415 · [[decision-case-415]]
+- 2026-09-25 archived · superseded
+- 2026-09-25 archived · cleanup

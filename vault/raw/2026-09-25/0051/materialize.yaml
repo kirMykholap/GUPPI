@@ -1,0 +1,963 @@
+date: '2026-09-25'
+sprint: migration
+ledger: vault/raw/2026-09-25/0051/ledger.md
+spec:
+- vault/raw/2026-09-25/0051/spec.md
+entries:
+- line: 1
+  text: decision[case 414.1][update][rule-spec-write]{ref:rule-spec-write}{supersedes:case 412}
+  case: '414.1'
+  kind: update
+  slug: rule-spec-write
+  origin: raw/2026-09-25/0051/ledger.md#case-414.1
+  decision: decision-case-414.1
+  ref: rule-spec-write
+  supersedes: '412'
+  category: rules
+  replace:
+  - old: A last showing that is a `DIFF` block writes nothing.
+    new: A last showing that is a `DIFF` block writes nothing. After the write it runs the checks of `prespec
+      --check`, imported from `guppi/prespec.py`, on each Case it wrote, with the decision lines of the
+      reply added to those of the session's ledger — the ledger hook runs in parallel on the same `Stop`
+      — and without the Frontier, the ratified copy, the translation and the grammar of the ledger, which
+      stay with `/pre-spec`; on a finding it exits 2 with the findings on stderr, each naming its Case,
+      and the written Case stays (case 414.1).
+  change: the Stop hook checks each Case it wrote (case 414.1)
+  applied: 03:50:34
+- line: 2
+  text: decision[case 414.1][create][estimate-spec-write-checks-the-written-case]{ref:rule-spec-write}{tags:hooks,harness,workflow}
+  case: '414.1'
+  kind: create
+  slug: estimate-spec-write-checks-the-written-case
+  origin: raw/2026-09-25/0051/ledger.md#case-414.1
+  decision: decision-case-414.1
+  ref: rule-spec-write
+  tags:
+  - hooks
+  - harness
+  - workflow
+  category: estimates
+  fields:
+    kind: QA
+    purpose: Each Case the Stop hook writes into the plan is checked at once, and a finding comes back
+      to the agent
+    method: uv run pytest tests/test_ratified.py -k checks_the_written; by hand, the first ratification
+      of a session after the change
+    tags:
+    - hooks
+    - harness
+    - workflow
+    type: estimate
+  sections:
+    Criterion: 'When:
+
+      The `Stop` hook `uv run guppi ratified` has written Case N into the plan file and its ratified copy
+      after a reply whose `LEDGER` block holds the decision lines of Case N.
+
+
+      Then:
+
+      The hook runs the checks of `prespec --check`, imported from `guppi/prespec.py`, on each Case it
+      wrote in this run and its sub-cases, with the decision lines of the reply added to those of the
+      session''s ledger, each line once.
+
+      **＋** The `replace` and `reword` pairs of every Case of the plan are applied in entry order, and
+      only an anchor of a Case written in this run that misses or hits more than once is a finding.
+
+      **＋** On a finding: exit 2, the findings on stderr after `ratified:`, each naming its Case; the
+      written Case stays in the plan and in its ratified copy.
+
+      **＋** A finding of a Case not written in this run is not reported.
+
+      **－** On the re-fire (`stop_hook_active`) nothing is checked: exit 0.
+
+      **－** A Case not written in this run — a last showing that is a `DIFF` block, a defer-only Case
+      — is not checked.
+
+      **－** The Frontier `raw/<hi date>/<hi HHMM>/frontier.md` is not read.
+
+      **－** The plan is not compared with its ratified copy, and a name, `context` or `problem` that holds
+      a Cyrillic letter is no finding.
+
+      **－** A ledger line of the window that does not parse is no finding of this check.'
+  applied: 03:50:34
+- line: 3
+  text: decision[case 414.2][update][rule-case-protocol]{ref:rule-case-protocol}
+  case: '414.2'
+  kind: update
+  slug: rule-case-protocol
+  origin: raw/2026-09-25/0051/ledger.md#case-414.2
+  decision: decision-case-414.2
+  ref: rule-case-protocol
+  category: rules
+  replace:
+  - old: and the last reply of a session has none.
+    new: 'and the last reply of a session has none. When a `Stop` hook other than the ledger hook refuses
+      a reply that carries a `LEDGER` block — exit 2 — the ledger hook has written the block at that same
+      `Stop`: the agent''s answer to the refusal is a reply of its own and may call tools (case 414.2).'
+  change: the answer to a Stop hook's refusal after a LEDGER block is a reply of its own (case 414.2)
+  applied: 03:50:34
+- line: 4
+  text: decision[case 414.2][update][estimate-case-protocol-acknowledging-reply]{ref:estimate-case-protocol-acknowledging-reply}
+  case: '414.2'
+  kind: update
+  slug: estimate-case-protocol-acknowledging-reply
+  origin: raw/2026-09-25/0051/ledger.md#case-414.2
+  decision: decision-case-414.2
+  ref: estimate-case-protocol-acknowledging-reply
+  category: estimates
+  set:
+    status: pending
+  change: the Criterion replaced whole — the answer to a Stop hook's refusal is a reply of its own (case
+    414.2)
+  sections:
+    Criterion: 'When:
+
+      The person ratifies a Case, or ratifies again a Case shown again after its ratification, and the
+      agent writes the reply that acknowledges it.
+
+
+      Then:
+
+      The reply has four parts, in this order: the `LEDGER` block first; the heading `## Case N — ratified`
+      and a paragraph `Changes:` — what changes, in one or two sentences; a paragraph `Notes:` — facts
+      that did not enter the Case, omitted when there are none; the heading `## Frontier` and the lines
+      of `frontier.md` as a checklist — the closed lines folded into one, the open ones one per line with
+      a short title, the deferred as `[-] … · defer case N` — and the question which item is next, last.
+
+      **＋** For a Case with sub-cases, one reply acknowledges every sub-case ratified: one `LEDGER` block
+      with all their lines, one heading `## Case N — ratified` naming the ids, one Frontier.
+
+      **＋** The reply that acknowledges a re-ratification carries the `LEDGER` block with the decision
+      lines of each Case ratified again, as at its first ratification.
+
+      **＋** The headings and labels are in the language of the chat.
+
+      **＋** No tool call follows the `LEDGER` block in the same reply.
+
+      **－** The ledger hook of `rule-ledger-write` does not append a repeated decision line a second time.
+
+      **－** When a `Stop` hook other than the ledger hook of `rule-ledger-write` refuses the reply — exit
+      2 — the agent''s answer to the refusal is a reply of its own and may call tools; the `LEDGER` block
+      stands written.'
+  applied: 03:50:34
+- line: 5
+  text: decision[case 415][update][estimate-case-protocol-case-form]{ref:estimate-case-protocol-case-form}{supersedes:case
+    413}
+  case: '415'
+  kind: update
+  slug: estimate-case-protocol-case-form
+  origin: raw/2026-09-25/0051/ledger.md#case-415
+  decision: decision-case-415
+  ref: estimate-case-protocol-case-form
+  supersedes: '413'
+  category: estimates
+  set:
+    status: pending
+  change: the Criterion replaced whole — the line on the frame of when and then left to estimate-prespec-checks-the-frame
+    (case 415)
+  sections:
+    Criterion: 'When:
+
+      The agent shows a Case in the chat, at its first showing or again.
+
+
+      Then:
+
+      The Case opens with the heading `## Case N — name`, a sub-case with `### Case N.M — name` under
+      its parent, and holds its sections in the order of the Sections table, each one blockquote whose
+      first line is `**name:**`.
+
+      **＋** `context` is prose: the mechanism in plain words first, then the state of the pages the Case
+      changes, the vault''s answer and why an Estimate of the rule is not touched; a case number stands
+      in `context` or `problem` only when the Case is about that case, and a count of items stands in
+      none of the story sections unless the Case is about that count.
+
+      **＋** `given` holds the frame, one thing per line — each page, module, file and test the Case touches
+      and the rule that constrains, its slug or path in a code span and its role — and no state.
+
+      **＋** In `given`, `when` and `then` each line after the first opens with `**＋**` or `**－**`, a `**－**`
+      line names something of `given` or `when`, and `then` holds behaviour only.
+
+      **＋** `tasks` names by slug each Estimate the Case creates or replaces, and under a line whose item
+      writes content that content stands as sub-points; no `contract` line and no "block N" line.
+
+      **＋** A pair under `replace` or `reword` stands only when the Case says what the sentence around
+      each match names; a Case that changes the behaviour of a page gives an `update` to each Estimate
+      of that page whose Criterion speaks of the change.
+
+      **＋** `ratification` holds only the preview of the ledger lines in an untagged fence; the agent''s
+      own text stands after the Case, after one horizontal rule, and the reply ends with a plain question.
+
+      **＋** A Case with sub-cases is shown in one reply: the parent''s `context`, `problem` and `recommend`,
+      then each sub-case whole.'
+  applied: 03:50:34
+- line: 6
+  text: decision[case 416][defer][rule-frame-check]{ref:rule-frame-check}{supersedes:case 408}
+  case: '416'
+  kind: defer
+  slug: rule-frame-check
+  origin: raw/2026-09-25/0051/ledger.md#case-416
+  decision: decision-case-416
+  ref: rule-frame-check
+  supersedes: '408'
+  category: rules
+  fields:
+    type: rule
+    purpose: frame-guppi becomes case-guppi, which builds the Case from the Frontier item and the person's
+      choices — the vault query, the frame, the form — on Opus with effort medium, and is asked again
+      by SendMessage; whether it pays, measured by its dispatches (the question of case 408)
+  exists: true
+  applied: 03:50:34
+- line: 7
+  text: decision[case 416][defer][rule-case-protocol]{ref:rule-case-protocol}
+  case: '416'
+  kind: defer
+  slug: rule-case-protocol
+  origin: raw/2026-09-25/0051/ledger.md#case-416
+  decision: decision-case-416
+  ref: rule-case-protocol
+  category: rules
+  fields:
+    type: rule
+    purpose: case-schema.md read by case-guppi only; the orchestration of the main agent — the triage
+      of a Frontier item, the dispatch, the acknowledging reply, LEDGER, defers and the one rule — a rule
+      of its own loaded by /hi
+  exists: true
+  applied: 03:50:34
+- line: 8
+  text: decision[case 416][defer][rule-spec-write]{ref:rule-spec-write}
+  case: '416'
+  kind: defer
+  slug: rule-spec-write
+  origin: raw/2026-09-25/0051/ledger.md#case-416
+  decision: decision-case-416
+  ref: rule-spec-write
+  category: rules
+  fields:
+    type: rule
+    purpose: The Case checked on SubagentStop and shown by a hook from the answer of case-guppi; ratified
+      writes the Case the person saw, and writes the defers too
+  exists: true
+  applied: 03:50:34
+- line: 9
+  text: decision[case 416][defer][rule-spec-reconcile]{ref:rule-spec-reconcile}
+  case: '416'
+  kind: defer
+  slug: rule-spec-reconcile
+  origin: raw/2026-09-25/0051/ledger.md#case-416
+  decision: decision-case-416
+  ref: rule-spec-reconcile
+  category: rules
+  fields:
+    type: rule
+    purpose: The plan written by hooks alone — a guard refuses the agent's edits while a line under Cases
+      of the Frontier is open; when and how the prose of a Case is translated (the question of case 410)
+  exists: true
+  applied: 03:50:34
+- line: 10
+  text: decision[case 416][defer][rule-ask]{ref:rule-ask}
+  case: '416'
+  kind: defer
+  slug: rule-ask
+  origin: raw/2026-09-25/0051/ledger.md#case-416
+  decision: decision-case-416
+  ref: rule-ask
+  category: rules
+  fields:
+    type: rule
+    purpose: ask-guppi answers at pre-spec only; the vault query before a create moves to case-guppi
+  exists: true
+  applied: 03:50:34
+- line: 11
+  text: decision[case 417][update][rule-prespec]{ref:rule-prespec}
+  case: '417'
+  kind: update
+  slug: rule-prespec
+  origin: raw/2026-09-25/0051/ledger.md#case-417
+  decision: decision-case-417
+  ref: rule-prespec
+  category: rules
+  replace:
+  - old: a Case a `{supersedes:case N}` of the window names excepted
+    new: a Case a `{supersedes:case N}` of the window names excepted, and a parent with sub-cases in the
+      copy, every one of them named by such a line (case 417)
+  change: a parent whose every sub-case is superseded is no finding of the ratified copy (case 417)
+  applied: 03:50:34
+- line: 12
+  text: decision[case 417][update][estimate-prespec-checks-the-ratified-copy]{ref:estimate-prespec-checks-the-ratified-copy}
+  case: '417'
+  kind: update
+  slug: estimate-prespec-checks-the-ratified-copy
+  origin: raw/2026-09-25/0051/ledger.md#case-417
+  decision: decision-case-417
+  ref: estimate-prespec-checks-the-ratified-copy
+  category: estimates
+  set:
+    status: pending
+  change: the Criterion replaced whole — a parent whose every sub-case is superseded is no finding (case
+    417)
+  sections:
+    Criterion: 'When:
+
+      `guppi prespec --check <plan>` runs at `/pre-spec`, after the agent translated the names, `context`
+      and `problem` of the plan, and reads the plan and its ratified copy `<plan>.ratified.md`.
+
+
+      Then:
+
+      A Case of the plan whose ids, `given`, `when`, `then`, `then` block or `tasks` differ from its section
+      in the ratified copy: one finding naming the Case and the parts.
+
+      **＋** A Case of the plan with no section in the copy, and a section of the copy with no Case in
+      the plan: one finding each.
+
+      **＋** A name, `context` or `problem` that still holds a Cyrillic letter: one finding.
+
+      **－** The section of a Case a `{supersedes:case N}` of the session''s window names is no finding:
+      that Case left the plan (case 299.1).
+
+      **－** The section of a parent with sub-cases in the copy, every one of them named by such a line,
+      is no finding: the parent left the plan with them.
+
+      **－** A Case under `## Deferred` is not compared.'
+  applied: 03:50:34
+- line: 13
+  text: decision[case 418][defer][rule-context-size]{ref:rule-context-size}
+  case: '418'
+  kind: defer
+  slug: rule-context-size
+  origin: raw/2026-09-25/0051/ledger.md#case-418
+  decision: decision-case-418
+  ref: rule-context-size
+  category: rules
+  fields:
+    type: rule
+    purpose: The limit of 400 000 tokens in guppi/context.py, and the text of the UserPromptSubmit hook
+      past it — take no more work, not close the session; judged once a session reaches it
+  exists: true
+  applied: 03:50:34
+- line: 14
+  text: 'lesson[knowledge][lesson-harness-a-paths-rule-misses-a-new-file-and-a-compaction]{tags:harness,session}{source:vault/parked/2026-09-07/concepts/claude-code-loads-a-rules-file-at-launch-and-a-scoped-one-on-a-read.md}
+    trigger: a rule with paths: was weighed for text written into the vault outside a Case — the brief
+    of /carry, the librarian''s reports (session 2214, then session 0051) root_cause: a rules file with
+    paths: loads only on a read of a matching file, an Edit or Write of an existing file included; a Write
+    that creates a new file does not load it, /compact does not bring it back, and whether it loads inside
+    a subagent is not documented — so the librarian, who creates most pages new, would mostly not get
+    it; a rule every writer must follow goes where it loads for sure: CLAUDE.md, the agent''s definition
+    or the skill'
+  kind: lesson
+  category: lessons
+  slug: lesson-harness-a-paths-rule-misses-a-new-file-and-a-compaction
+  origin: raw/2026-09-25/0051/ledger.md#L14
+  fields:
+    type: lesson
+    kind: knowledge
+    root_cause: 'a rules file with paths: loads only on a read of a matching file, an Edit or Write of
+      an existing file included; a Write that creates a new file does not load it, /compact does not bring
+      it back, and whether it loads inside a subagent is not documented — so the librarian, who creates
+      most pages new, would mostly not get it; a rule every writer must follow goes where it loads for
+      sure: CLAUDE.md, the agent''s definition or the skill'
+    source: vault/parked/2026-09-07/concepts/claude-code-loads-a-rules-file-at-launch-and-a-scoped-one-on-a-read.md
+  sections:
+    Trigger: 'a rule with paths: was weighed for text written into the vault outside a Case — the brief
+      of /carry, the librarian''s reports (session 2214, then session 0051)'
+    Root cause: 'a rules file with paths: loads only on a read of a matching file, an Edit or Write of
+      an existing file included; a Write that creates a new file does not load it, /compact does not bring
+      it back, and whether it loads inside a subagent is not documented — so the librarian, who creates
+      most pages new, would mostly not get it; a rule every writer must follow goes where it loads for
+      sure: CLAUDE.md, the agent''s definition or the skill'
+  tags:
+  - harness
+  - session
+  applied: 03:50:34
+- line: 15
+  text: 'lesson[knowledge][lesson-hooks-matching-hooks-of-one-event-run-in-parallel]{tags:hooks,harness}{source:https://code.claude.com/docs/en/hooks.md}
+    trigger: frame-guppi read the Stop hooks of .claude/settings.json as running in the listed order —
+    guppi ledger before guppi ratified — from the History of rule-hook-registry, and no page of the vault
+    says otherwise root_cause: Claude Code runs all matching hooks of one event in parallel ("All matching
+    hooks run in parallel"); the order of a hooks array is no order of execution, so a hook that needs
+    what another hook of the same event writes reads it from the payload itself, never from that hook''s
+    file'
+  kind: lesson
+  category: lessons
+  slug: lesson-hooks-matching-hooks-of-one-event-run-in-parallel
+  origin: raw/2026-09-25/0051/ledger.md#L15
+  fields:
+    type: lesson
+    kind: knowledge
+    root_cause: Claude Code runs all matching hooks of one event in parallel ("All matching hooks run
+      in parallel"); the order of a hooks array is no order of execution, so a hook that needs what another
+      hook of the same event writes reads it from the payload itself, never from that hook's file
+    source: https://code.claude.com/docs/en/hooks.md
+  sections:
+    Trigger: frame-guppi read the Stop hooks of .claude/settings.json as running in the listed order —
+      guppi ledger before guppi ratified — from the History of rule-hook-registry, and no page of the
+      vault says otherwise
+    Root cause: Claude Code runs all matching hooks of one event in parallel ("All matching hooks run
+      in parallel"); the order of a hooks array is no order of execution, so a hook that needs what another
+      hook of the same event writes reads it from the payload itself, never from that hook's file
+  tags:
+  - hooks
+  - harness
+  applied: 03:50:34
+- line: 16
+  text: 'lesson[knowledge][lesson-hooks-a-stop-system-message-shows-no-markdown-in-vs-code]{tags:hooks,harness}{source:probe
+    session e56498c1 (claude-vscode) and 6bb485fc (CLI), scratchpad/probe of session 0051, 2026-09-25}
+    trigger: the scheme of case 416 would show a checked Case to the person by a systemMessage of a hook
+    root_cause: in the VS Code extension a Stop hook''s systemMessage is shown whole but line by line,
+    each line prefixed "Stop says:", with no markdown rendered; a SubagentStop hook''s systemMessage is
+    not shown at all, in the CLI or in VS Code, and stands only in the subagent''s transcript; a Stop
+    hook''s systemMessage does stand in the main transcript as an attachment hook_system_message — so
+    a hook can record what it showed, but a Case cannot be shown that way'
+  kind: lesson
+  category: lessons
+  slug: lesson-hooks-a-stop-system-message-shows-no-markdown-in-vs-code
+  origin: raw/2026-09-25/0051/ledger.md#L16
+  fields:
+    type: lesson
+    kind: knowledge
+    root_cause: in the VS Code extension a Stop hook's systemMessage is shown whole but line by line,
+      each line prefixed "Stop says:", with no markdown rendered; a SubagentStop hook's systemMessage
+      is not shown at all, in the CLI or in VS Code, and stands only in the subagent's transcript; a Stop
+      hook's systemMessage does stand in the main transcript as an attachment hook_system_message — so
+      a hook can record what it showed, but a Case cannot be shown that way
+    source: probe session e56498c1 (claude-vscode) and 6bb485fc (CLI), scratchpad/probe of session 0051,
+      2026-09-25
+  sections:
+    Trigger: the scheme of case 416 would show a checked Case to the person by a systemMessage of a hook
+    Root cause: in the VS Code extension a Stop hook's systemMessage is shown whole but line by line,
+      each line prefixed "Stop says:", with no markdown rendered; a SubagentStop hook's systemMessage
+      is not shown at all, in the CLI or in VS Code, and stands only in the subagent's transcript; a Stop
+      hook's systemMessage does stand in the main transcript as an attachment hook_system_message — so
+      a hook can record what it showed, but a Case cannot be shown that way
+  tags:
+  - hooks
+  - harness
+  applied: 03:50:34
+- line: 17
+  text: 'lesson[knowledge][lesson-hooks-subagentstop-exit-2-sends-the-subagent-back]{tags:hooks,harness}{source:probe
+    session e56498c1 (claude-vscode) and 6bb485fc (CLI), scratchpad/probe of session 0051, 2026-09-25}
+    trigger: the scheme of case 416 checks the Case of case-guppi on SubagentStop before the main agent
+    gets it root_cause: a SubagentStop hook matched by agent type gets agent_id, agent_type, agent_transcript_path,
+    the raw last_assistant_message and stop_hook_active; its exit 2 hands its stderr to the subagent as
+    "Stop hook feedback" and the subagent answers again, the second call with stop_hook_active true —
+    in the CLI and in VS Code alike; a hook in Python on Windows must read stdin as utf-8, or Cyrillic
+    in the payload comes out garbled'
+  kind: lesson
+  category: lessons
+  slug: lesson-hooks-subagentstop-exit-2-sends-the-subagent-back
+  origin: raw/2026-09-25/0051/ledger.md#L17
+  fields:
+    type: lesson
+    kind: knowledge
+    root_cause: a SubagentStop hook matched by agent type gets agent_id, agent_type, agent_transcript_path,
+      the raw last_assistant_message and stop_hook_active; its exit 2 hands its stderr to the subagent
+      as "Stop hook feedback" and the subagent answers again, the second call with stop_hook_active true
+      — in the CLI and in VS Code alike; a hook in Python on Windows must read stdin as utf-8, or Cyrillic
+      in the payload comes out garbled
+    source: probe session e56498c1 (claude-vscode) and 6bb485fc (CLI), scratchpad/probe of session 0051,
+      2026-09-25
+  sections:
+    Trigger: the scheme of case 416 checks the Case of case-guppi on SubagentStop before the main agent
+      gets it
+    Root cause: a SubagentStop hook matched by agent type gets agent_id, agent_type, agent_transcript_path,
+      the raw last_assistant_message and stop_hook_active; its exit 2 hands its stderr to the subagent
+      as "Stop hook feedback" and the subagent answers again, the second call with stop_hook_active true
+      — in the CLI and in VS Code alike; a hook in Python on Windows must read stdin as utf-8, or Cyrillic
+      in the payload comes out garbled
+  tags:
+  - hooks
+  - harness
+  near: lesson-hooks-windows-stdin-encoding
+  applied: 03:50:34
+- line: 18
+  text: 'estimate[estimate-prespec-checks-the-ratified-copy][passed] 2026-09-25, uv run pytest tests/test_prespec.py
+    -k ratified: 7 passed — a parent whose sub-cases in the copy are all superseded is no finding, a parent
+    with one sub-case not superseded still is, the plan against its copy and the Cyrillic finding as before'
+  kind: estimate
+  category: estimates
+  slug: estimate-prespec-checks-the-ratified-copy
+  status: passed
+  result: '2026-09-25, uv run pytest tests/test_prespec.py -k ratified: 7 passed — a parent whose sub-cases
+    in the copy are all superseded is no finding, a parent with one sub-case not superseded still is,
+    the plan against its copy and the Cyrillic finding as before'
+  origin: raw/2026-09-25/0051/ledger.md#L18
+  applied: 03:50:34
+- line: 19
+  text: 'estimate[estimate-case-protocol-case-form][failed] 2026-09-25, by hand, the Cases of session
+    0051 at its close: Case 414 showed "Case 407 предлагал две вещи" and "frame-guppi нашёл три вещи"
+    in its context, a count of items the Case is not about; Case 415 showed a － line in then that was
+    bookkeeping, not behaviour; both found by ask-guppi at pre-spec, fixed, 415 shown again; Cases 416,
+    417 and 418 hold the form'
+  kind: estimate
+  category: estimates
+  slug: estimate-case-protocol-case-form
+  status: failed
+  result: '2026-09-25, by hand, the Cases of session 0051 at its close: Case 414 showed "Case 407 предлагал
+    две вещи" and "frame-guppi нашёл три вещи" in its context, a count of items the Case is not about;
+    Case 415 showed a － line in then that was bookkeeping, not behaviour; both found by ask-guppi at pre-spec,
+    fixed, 415 shown again; Cases 416, 417 and 418 hold the form'
+  origin: raw/2026-09-25/0051/ledger.md#L19
+  applied: 03:50:34
+- line: 20
+  text: 'lesson[error][lesson-case-form-a-count-in-the-sentence-that-opens-a-list]{tags:session,workflow}
+    trigger: ask-guppi at the pre-spec of session 0051 found "proposed two things" and "found three things"
+    in the context of Case 414, a rule case 406 ratified the day before root_cause: the count stood in
+    the sentence that opens a list — the habit of announcing a list''s length — and no script reads the
+    story sections for a count, so the rule held only as far as the agent''s own reading at the showing,
+    and the first check was ask-guppi at pre-spec'
+  kind: lesson
+  category: lessons
+  slug: lesson-case-form-a-count-in-the-sentence-that-opens-a-list
+  origin: raw/2026-09-25/0051/ledger.md#L20
+  fields:
+    type: lesson
+    kind: error
+    root_cause: the count stood in the sentence that opens a list — the habit of announcing a list's length
+      — and no script reads the story sections for a count, so the rule held only as far as the agent's
+      own reading at the showing, and the first check was ask-guppi at pre-spec
+  sections:
+    Trigger: ask-guppi at the pre-spec of session 0051 found "proposed two things" and "found three things"
+      in the context of Case 414, a rule case 406 ratified the day before
+    Root cause: the count stood in the sentence that opens a list — the habit of announcing a list's length
+      — and no script reads the story sections for a count, so the rule held only as far as the agent's
+      own reading at the showing, and the first check was ask-guppi at pre-spec
+  tags:
+  - session
+  - workflow
+  applied: 03:50:34
+- kind: create
+  category: insights
+  slug: insight-case-form-chat-form-read-by-no-script
+  origin: raw/2026-09-25/0051/ledger.md#L20
+  fields:
+    type: insight
+    pattern: A rule of the form of a Case as shown in the chat — the order of its sections, what `ratification`
+      holds, a count in a story section — is read by no script, so it holds only as far as the agent's
+      own reading at the showing, and the fault is found later, by the person or by ask-guppi at pre-spec.
+    children:
+    - lesson-case-form-the-spec-free-sections-written-last
+    - lesson-case-form-ratification-used-for-the-agents-caveats
+    - lesson-case-form-a-count-in-the-sentence-that-opens-a-list
+  tags:
+  - session
+  - workflow
+  sections:
+    Pattern: A rule of the form of a Case as shown in the chat — the order of its sections, what `ratification`
+      holds, a count in a story section — is read by no script, so it holds only as far as the agent's
+      own reading at the showing, and the fault is found later, by the person or by ask-guppi at pre-spec.
+    Proposal: Let a check read the chat form of a Case before the person does — for example the check
+      on `SubagentStop` that the scheme deferred by Case 416 proposes — over the order of the sections,
+      the content of `ratification` and a count in a story section.
+  librarian: synthesis
+  applied: 03:50:34
+- kind: update
+  category: lessons
+  slug: lesson-case-form-the-spec-free-sections-written-last
+  origin: raw/2026-09-25/0051/ledger.md#L20
+  set:
+    status: clustered
+    insight: insight-case-form-chat-form-read-by-no-script
+  change: clustered into insight-case-form-chat-form-read-by-no-script
+  librarian: synthesis
+  applied: 03:50:34
+- kind: update
+  category: lessons
+  slug: lesson-case-form-ratification-used-for-the-agents-caveats
+  origin: raw/2026-09-25/0051/ledger.md#L20
+  set:
+    status: clustered
+    insight: insight-case-form-chat-form-read-by-no-script
+  change: clustered into insight-case-form-chat-form-read-by-no-script
+  librarian: synthesis
+  applied: 03:50:34
+- kind: update
+  category: lessons
+  slug: lesson-case-form-a-count-in-the-sentence-that-opens-a-list
+  origin: raw/2026-09-25/0051/ledger.md#L20
+  set:
+    status: clustered
+    insight: insight-case-form-chat-form-read-by-no-script
+  change: clustered into insight-case-form-chat-form-read-by-no-script
+  librarian: synthesis
+  applied: 03:50:34
+decisions:
+- case: '414.1'
+  decision: decision-case-414.1
+  origin: raw/2026-09-25/0051/ledger.md#case-414.1
+  targets:
+  - kind: update
+    category: rules
+    slug: rule-spec-write
+    ref: rule-spec-write
+  - kind: create
+    category: estimates
+    slug: estimate-spec-write-checks-the-written-case
+    ref: rule-spec-write
+  tags:
+  - hooks
+  - harness
+  - workflow
+  case_text:
+    given: '`rule-spec-write` — the `Stop` hook that writes a ratified Case into the plan; its `How it
+      works`.
+
+      **＋** `estimate-spec-write-checks-the-written-case` — the new promise.
+
+      **＋** `rule-prespec` — the checks of `prespec --check`, which the hook runs.
+
+      **＋** `guppi/ratified.py` — `stop`, which writes the Cases of a reply.
+
+      **＋** `guppi/prespec.py` — the checks, run for one Case.
+
+      **＋** `tests/test_ratified.py` — fixes the check after the write.
+
+      **＋** `raw/<hi date>/<hi HHMM>/frontier.md` — the Frontier, which the check after the write skips.'
+    when: The `Stop` hook `uv run guppi ratified` has written Case N into the plan file and its ratified
+      copy after a reply whose `LEDGER` block holds the decision lines of Case N.
+    then: 'The hook runs the checks of `prespec --check`, imported from `guppi/prespec.py`, on each Case
+      it wrote in this run and its sub-cases, with the decision lines of the reply added to those of the
+      session''s ledger, each line once.
+
+      **＋** The `replace` and `reword` pairs of every Case of the plan are applied in entry order, and
+      only an anchor of a Case written in this run that misses or hits more than once is a finding.
+
+      **＋** On a finding: exit 2, the findings on stderr after `ratified:`, each naming its Case; the
+      written Case stays in the plan and in its ratified copy.
+
+      **＋** A finding of a Case not written in this run is not reported.
+
+      **－** On the re-fire (`stop_hook_active`) nothing is checked: exit 0.
+
+      **－** A Case not written in this run — a last showing that is a `DIFF` block, a defer-only Case
+      — is not checked.
+
+      **－** The Frontier `raw/<hi date>/<hi HHMM>/frontier.md` is not read.
+
+      **－** The plan is not compared with its ratified copy, and a name, `context` or `problem` that holds
+      a Cyrillic letter is no finding.
+
+      **－** A ledger line of the window that does not parse is no finding of this check.'
+    context: 'Today the plan is checked once, at `/pre-spec`. The findings pile up until the end of Plan
+      Mode, and a Case written with a fault is found late. Case 407 proposed to check each Case right
+      after it is written and to close the plan to the agent''s edits by a guard and a fragment. The pre-spec
+      of session 2214 found contradictions in it, and Case 412 deferred it together with the question
+      of Case 410. This Case takes 412 up and keeps of 407 only the check at once: the `Stop` hook of
+      `rule-spec-write` writes a Case, runs the checks of `prespec --check` on it and gives the findings
+      back to the agent. The guard, the fragment and the comparison without `given` are withdrawn; most
+      findings fell on them. `ratified --edit` on `PostToolUse` still guards the plan.
+
+
+      The other findings are answered so:
+
+      - **The grammar of the ledger lines.** The check of one Case does not read it. A finding on a line
+      that does not parse names no Case, and `/pre-spec` keeps it.
+
+      - **The order of the hooks.** The Claude Code hooks documentation says: "All matching hooks run
+      in parallel". So the hook takes the decision lines from the reply itself and does not wait for `ledger.md`.
+
+      - **Exit 2 after the acknowledging reply.** The agent goes on after its `LEDGER` block. Sub-case
+      414.2 says that this is a reply of its own.
+
+
+      There is no separate option `prespec --check --case N`: the hook imports the checks, and with the
+      option the Criterion of the Estimates of `prespec --check` that promise to read the Frontier, the
+      ratified copy and the grammar of the window would have to change.
+
+
+      This Case does not decide the question of Case 410, when the prose of a Case is translated. But
+      `{supersedes:case 412}` also lifts the defer of `rule-spec-reconcile`, so the question stays a Frontier
+      item, and a new defer is due at the close of Plan Mode if this session does not decide it.
+
+
+      `frame-guppi` found:
+
+      - the option `--case` contradicted the Estimates of `prespec --check`, so the option is dropped;
+
+      - the sentence on the answer after a refusal was wider than the truth when the ledger hook itself
+      refuses, so it is narrowed to another `Stop` hook;
+
+      - it took the order of the hooks for sequential, which the documentation refutes.
+
+
+      `estimate-spec-write-copies-the-ratified-case` is not touched: its list of refusals is not closed,
+      and the new refusal does not contradict it. Every `create` here is an Estimate with a `ref`, so
+      no vault query is needed.'
+    problem: The agent learns of a fault in a written Case only at `/pre-spec`, when the Cases are already
+      many. Each Case should be checked right after it is written, by the same checks as at pre-spec,
+      and the result should not depend on the order of the hooks on one `Stop`.
+  spec: vault/raw/2026-09-25/0051/spec.md
+  supersedes:
+  - decision-case-412
+  applied: 03:50:34
+- case: '414.2'
+  decision: decision-case-414.2
+  origin: raw/2026-09-25/0051/ledger.md#case-414.2
+  targets:
+  - kind: update
+    category: rules
+    slug: rule-case-protocol
+    ref: rule-case-protocol
+  - kind: update
+    category: estimates
+    slug: estimate-case-protocol-acknowledging-reply
+    ref: estimate-case-protocol-acknowledging-reply
+  tags: []
+  case_text:
+    given: '`rule-case-protocol` — its Render `vault/wiki/case-schema.md`: the paragraph on ledger lines.
+
+      **＋** `estimate-case-protocol-acknowledging-reply` — the Estimate whose Criterion is replaced.
+
+      **＋** `rule-ledger-write` — the ledger hook on `Stop`, which writes the `LEDGER` block of the reply.'
+    when: The person ratifies a Case, or ratifies again a Case shown again after its ratification, and
+      the agent writes the reply that acknowledges it.
+    then: 'The reply has four parts, in this order: the `LEDGER` block first; the heading `## Case N —
+      ratified` and a paragraph `Changes:` — what changes, in one or two sentences; a paragraph `Notes:`
+      — facts that did not enter the Case, omitted when there are none; the heading `## Frontier` and
+      the lines of `frontier.md` as a checklist — the closed lines folded into one, the open ones one
+      per line with a short title, the deferred as `[-] … · defer case N` — and the question which item
+      is next, last.
+
+      **＋** For a Case with sub-cases, one reply acknowledges every sub-case ratified: one `LEDGER` block
+      with all their lines, one heading `## Case N — ratified` naming the ids, one Frontier.
+
+      **＋** The reply that acknowledges a re-ratification carries the `LEDGER` block with the decision
+      lines of each Case ratified again, as at its first ratification.
+
+      **＋** The headings and labels are in the language of the chat.
+
+      **＋** No tool call follows the `LEDGER` block in the same reply.
+
+      **－** The ledger hook of `rule-ledger-write` does not append a repeated decision line a second time.
+
+      **－** When a `Stop` hook other than the ledger hook of `rule-ledger-write` refuses the reply — exit
+      2 — the agent''s answer to the refusal is a reply of its own and may call tools; the `LEDGER` block
+      stands written.'
+    context: 'Today the plan is checked once, at `/pre-spec`. The findings pile up until the end of Plan
+      Mode, and a Case written with a fault is found late. Case 407 proposed to check each Case right
+      after it is written and to close the plan to the agent''s edits by a guard and a fragment. The pre-spec
+      of session 2214 found contradictions in it, and Case 412 deferred it together with the question
+      of Case 410. This Case takes 412 up and keeps of 407 only the check at once: the `Stop` hook of
+      `rule-spec-write` writes a Case, runs the checks of `prespec --check` on it and gives the findings
+      back to the agent. The guard, the fragment and the comparison without `given` are withdrawn; most
+      findings fell on them. `ratified --edit` on `PostToolUse` still guards the plan.
+
+
+      The other findings are answered so:
+
+      - **The grammar of the ledger lines.** The check of one Case does not read it. A finding on a line
+      that does not parse names no Case, and `/pre-spec` keeps it.
+
+      - **The order of the hooks.** The Claude Code hooks documentation says: "All matching hooks run
+      in parallel". So the hook takes the decision lines from the reply itself and does not wait for `ledger.md`.
+
+      - **Exit 2 after the acknowledging reply.** The agent goes on after its `LEDGER` block. Sub-case
+      414.2 says that this is a reply of its own.
+
+
+      There is no separate option `prespec --check --case N`: the hook imports the checks, and with the
+      option the Criterion of the Estimates of `prespec --check` that promise to read the Frontier, the
+      ratified copy and the grammar of the window would have to change.
+
+
+      This Case does not decide the question of Case 410, when the prose of a Case is translated. But
+      `{supersedes:case 412}` also lifts the defer of `rule-spec-reconcile`, so the question stays a Frontier
+      item, and a new defer is due at the close of Plan Mode if this session does not decide it.
+
+
+      `frame-guppi` found:
+
+      - the option `--case` contradicted the Estimates of `prespec --check`, so the option is dropped;
+
+      - the sentence on the answer after a refusal was wider than the truth when the ledger hook itself
+      refuses, so it is narrowed to another `Stop` hook;
+
+      - it took the order of the hooks for sequential, which the documentation refutes.
+
+
+      `estimate-spec-write-copies-the-ratified-case` is not touched: its list of refusals is not closed,
+      and the new refusal does not contradict it. Every `create` here is an Estimate with a `ref`, so
+      no vault query is needed.'
+    problem: The agent learns of a fault in a written Case only at `/pre-spec`, when the Cases are already
+      many. Each Case should be checked right after it is written, by the same checks as at pre-spec,
+      and the result should not depend on the order of the hooks on one `Stop`.
+  spec: vault/raw/2026-09-25/0051/spec.md
+  applied: 03:50:34
+- case: '415'
+  decision: decision-case-415
+  origin: raw/2026-09-25/0051/ledger.md#case-415
+  targets:
+  - kind: update
+    category: estimates
+    slug: estimate-case-protocol-case-form
+    ref: estimate-case-protocol-case-form
+  tags: []
+  case_text:
+    context: 'One promise is signed twice. `estimate-case-protocol-case-form` promises in its line on
+      `given`: "`when` and `then` name only what `given` names". It is read by hand at the close of a
+      session. `estimate-prespec-checks-the-frame` promises the same as a finding of `prespec --check`,
+      and a test reads it. `case-form` stands `pending`, `checks-the-frame` `passed`. The pre-spec of
+      session 1916 found the double, and Case 413 deferred the choice. The rule itself in the Render of
+      `rule-case-protocol` (the Sections table) does not change, so the behaviour of the rule and of the
+      hooks stays as it is and `frame-guppi` is not dispatched. Only the Criterion of one Estimate changes.
+      No vault query: it is an `update` with a `ref`.'
+    problem: Which of the two Estimates keeps the line on the frame, so that one promise is signed once?
+    given: '`estimate-case-protocol-case-form` — the Estimate whose Criterion is replaced.
+
+      **＋** `estimate-prespec-checks-the-frame` — the Estimate that keeps the line on the frame.
+
+      **＋** `rule-case-protocol` — the rule whose Case form the first Estimate reads.'
+    when: The agent shows a Case in the chat, at its first showing or again.
+    then: 'The Case opens with the heading `## Case N — name`, a sub-case with `### Case N.M — name` under
+      its parent, and holds its sections in the order of the Sections table, each one blockquote whose
+      first line is `**name:**`.
+
+      **＋** `context` is prose: the mechanism in plain words first, then the state of the pages the Case
+      changes, the vault''s answer and why an Estimate of the rule is not touched; a case number stands
+      in `context` or `problem` only when the Case is about that case, and a count of items stands in
+      none of the story sections unless the Case is about that count.
+
+      **＋** `given` holds the frame, one thing per line — each page, module, file and test the Case touches
+      and the rule that constrains, its slug or path in a code span and its role — and no state.
+
+      **＋** In `given`, `when` and `then` each line after the first opens with `**＋**` or `**－**`, a `**－**`
+      line names something of `given` or `when`, and `then` holds behaviour only.
+
+      **＋** `tasks` names by slug each Estimate the Case creates or replaces, and under a line whose item
+      writes content that content stands as sub-points; no `contract` line and no "block N" line.
+
+      **＋** A pair under `replace` or `reword` stands only when the Case says what the sentence around
+      each match names; a Case that changes the behaviour of a page gives an `update` to each Estimate
+      of that page whose Criterion speaks of the change.
+
+      **＋** `ratification` holds only the preview of the ledger lines in an untagged fence; the agent''s
+      own text stands after the Case, after one horizontal rule, and the reply ends with a plain question.
+
+      **＋** A Case with sub-cases is shown in one reply: the parent''s `context`, `problem` and `recommend`,
+      then each sub-case whole.'
+  spec: vault/raw/2026-09-25/0051/spec.md
+  supersedes:
+  - decision-case-413
+  applied: 03:50:34
+- case: '416'
+  decision: decision-case-416
+  origin: raw/2026-09-25/0051/ledger.md#case-416
+  targets:
+  - kind: defer
+    category: rules
+    slug: rule-frame-check
+    ref: rule-frame-check
+  - kind: defer
+    category: rules
+    slug: rule-case-protocol
+    ref: rule-case-protocol
+  - kind: defer
+    category: rules
+    slug: rule-spec-write
+    ref: rule-spec-write
+  - kind: defer
+    category: rules
+    slug: rule-spec-reconcile
+    ref: rule-spec-reconcile
+  - kind: defer
+    category: rules
+    slug: rule-ask
+    ref: rule-ask
+  tags: []
+  case_text:
+    context: 'Today the main agent reads the pages of a Case, then `frame-guppi` reads the same frame
+      again, and the main agent writes the Case into the chat; the agent also edits the plan to translate
+      it. In this session the person proposed a new scheme: the main agent reads only the Frontier item
+      and its source and decides — answer itself, discuss a fork, or dispatch; a Case is always built
+      by one subagent, `case-guppi` (the renamed `frame-guppi`, on Opus with effort medium), which asks
+      the vault, reads the frame and writes the Case; a `SubagentStop` hook checks it by the checks of
+      `prespec --check` and sends it back on a finding; a hook shows the checked Case to the person by
+      `systemMessage`; a question or a change goes to the same `case-guppi` by `SendMessage`; `ratified`
+      writes the Case the person saw; a guard refuses every edit of the plan by the agent while a line
+      under `## Cases` of the Frontier is open, the defers written by the hook too, and the translation
+      comes after; `ask-guppi` answers at pre-spec only; the orchestration of the main agent becomes a
+      rule of its own, loaded by `/hi`, and `case-schema.md` goes to `case-guppi`. Measured in this session
+      from the transcript: the answer of a subagent in the main transcript is wrapped and indented by
+      the harness, its raw text stands in `subagents/agent-<id>.jsonl`; the reply to `SendMessage` comes
+      as a `task-notification`; a `SendMessage` after a pause re-cached the agent''s whole context. Not
+      yet measured: how a long `systemMessage` renders, the live payload of `SubagentStop`, and whether
+      a `systemMessage` stands in the transcript — the live probe of this session''s Work Mode, reported
+      in the handoff. The question of Case 408 — whether `frame-guppi` pays — is taken into this one.'
+    problem: 'How a Case is built, checked, shown and written under the new scheme: decided in the next
+      session, with the results of the live probe.'
+  spec: vault/raw/2026-09-25/0051/spec.md
+  supersedes:
+  - decision-case-408
+  applied: 03:50:34
+- case: '417'
+  decision: decision-case-417
+  origin: raw/2026-09-25/0051/ledger.md#case-417
+  targets:
+  - kind: update
+    category: rules
+    slug: rule-prespec
+    ref: rule-prespec
+  - kind: update
+    category: estimates
+    slug: estimate-prespec-checks-the-ratified-copy
+    ref: estimate-prespec-checks-the-ratified-copy
+  tags: []
+  case_text:
+    context: '`prespec --check` compares the plan with its ratified copy. A section of the copy with no
+      Case in the plan is a finding. There is one exception: a Case a `{supersedes:case N}` of the session''s
+      window names. It breaks on a parent. A parent has no ledger lines of its own; its sub-cases carry
+      them. When every sub-case is superseded, the parent leaves the plan with them, but its heading stays
+      in the copy, and no `supersedes` line names it. In session 2214 this happened to Case 407: 412 superseded
+      407.1–407.5, and pre-spec still printed `case 407: in the ratified copy, not in the plan`. This
+      is `lesson-prespec-parent-of-superseded-sub-cases`. The change touches one sentence of the Render
+      of `rule-prespec` and the Criterion of `estimate-prespec-checks-the-ratified-copy`, and no other
+      Estimate. `frame-guppi` found no contradiction. The lesson gets no mark: it was written in another
+      session. No vault query: both items are an `update` with a `ref`.'
+    problem: A parent whose sub-cases are all superseded gives a false finding at every `/pre-spec` of
+      its session, and the agent has to explain it by hand.
+    given: '`rule-prespec` — its Render `.claude/skills/pre-spec/SKILL.md`: the sentence on the ratified
+      copy.
+
+      **＋** `estimate-prespec-checks-the-ratified-copy` — the Estimate whose Criterion is replaced.
+
+      **＋** `guppi/prespec.py` — `check_ratified`, the sections of the copy with no Case in the plan.
+
+      **＋** `tests/test_prespec.py` — fixes the comparison with the ratified copy.'
+    when: '`guppi prespec --check <plan>` runs at `/pre-spec`, after the agent translated the names, `context`
+      and `problem` of the plan, and reads the plan and its ratified copy `<plan>.ratified.md`.'
+    then: 'A Case of the plan whose ids, `given`, `when`, `then`, `then` block or `tasks` differ from
+      its section in the ratified copy: one finding naming the Case and the parts.
+
+      **＋** A Case of the plan with no section in the copy, and a section of the copy with no Case in
+      the plan: one finding each.
+
+      **＋** A name, `context` or `problem` that still holds a Cyrillic letter: one finding.
+
+      **－** The section of a Case a `{supersedes:case N}` of the session''s window names is no finding:
+      that Case left the plan (case 299.1).
+
+      **－** The section of a parent with sub-cases in the copy, every one of them named by such a line,
+      is no finding: the parent left the plan with them.
+
+      **－** A Case under `## Deferred` is not compared.'
+  spec: vault/raw/2026-09-25/0051/spec.md
+  applied: 03:50:34
+- case: '418'
+  decision: decision-case-418
+  origin: raw/2026-09-25/0051/ledger.md#case-418
+  targets:
+  - kind: defer
+    category: rules
+    slug: rule-context-size
+    ref: rule-context-size
+  tags: []
+  case_text:
+    context: 'Cases 404 and 409 deferred the limit of 400 000 tokens in `guppi/context.py` and the text
+      of the `UserPromptSubmit` hook past it: take no more work, not close the session. The session that
+      would judge them has not come yet; this session did not take the item up.'
+    problem: 'Which limit is right, and what the hook says past it: decided once a session reaches it.'
+  spec: vault/raw/2026-09-25/0051/spec.md
+  applied: 03:50:34
+unparsed: []
+session: '0051'

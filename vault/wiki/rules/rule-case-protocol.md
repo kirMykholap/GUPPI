@@ -9,6 +9,7 @@ render_mode: full
 parent: "[[rule-plan-mode]]"
 children: ["[[rule-atomicity]]"]
 estimates: ["[[estimate-case-protocol-loaded]]", "[[estimate-case-protocol-case-form]]", "[[estimate-case-protocol-acknowledging-reply]]", "[[estimate-case-protocol-ledger-line-form]]", "[[estimate-case-protocol-checks-its-frame]]", "[[estimate-case-protocol-defers-in-one-reply]]"]
+deferred_by: ["[[decision-case-416]]"]
 origin: raw/2026-09-09/ledger.md#case-13
 sprint: migration
 created: 2026-09-09
@@ -153,7 +154,7 @@ decision made it exist, the estimate line fills it.
 
 Only the **main agent** writes ledger lines. A subagent that takes a measurement returns it; the main agent records it. A subagent that hits a fork stops and returns — it never decides.
 
-Ledger lines are written by the `Stop` hook, from the reply, verbatim, each with the time of writing. A record is a `- decision[...]`, `- estimate[...]` or `- lesson[...]` line inside a fenced block opened with the `LEDGER` tag; the same line anywhere else — bare, or in a block with another tag or none — is a preview and is never written. A `create` line carries the ratified tags: `{tags:a,b}`. A `knowledge` lesson line carries `{source:...}`, the url or reference the lesson studied — a file of the harness, a probe, a client version; the schema requires it, and a line without it is `incomplete: [source]` in the yaml and a lint finding on the page. An `error` lesson never carries one. Write the `- decision[...]` lines only in the reply that acknowledges ratification; `- estimate[...]` and `- lesson[...]` lines the moment the measurement or the lesson exists, an `estimate[...]` line opening with the date of the reading and the command or the place it was read (case 199). Without `/hi` the hook refuses and says so: tell the person, do not retry. A reply that carries a `LEDGER` block ends in that text. No tool call follows it in the same reply: the text before a tool call waits for the next `Stop` of the session, and the last reply of a session has none. A block a tool call did follow is not lost until that `Stop` has passed: check the ledger then, and only a line missing there is a lesson.
+Ledger lines are written by the `Stop` hook, from the reply, verbatim, each with the time of writing. A record is a `- decision[...]`, `- estimate[...]` or `- lesson[...]` line inside a fenced block opened with the `LEDGER` tag; the same line anywhere else — bare, or in a block with another tag or none — is a preview and is never written. A `create` line carries the ratified tags: `{tags:a,b}`. A `knowledge` lesson line carries `{source:...}`, the url or reference the lesson studied — a file of the harness, a probe, a client version; the schema requires it, and a line without it is `incomplete: [source]` in the yaml and a lint finding on the page. An `error` lesson never carries one. Write the `- decision[...]` lines only in the reply that acknowledges ratification; `- estimate[...]` and `- lesson[...]` lines the moment the measurement or the lesson exists, an `estimate[...]` line opening with the date of the reading and the command or the place it was read (case 199). Without `/hi` the hook refuses and says so: tell the person, do not retry. A reply that carries a `LEDGER` block ends in that text. No tool call follows it in the same reply: the text before a tool call waits for the next `Stop` of the session, and the last reply of a session has none. When a `Stop` hook other than the ledger hook refuses a reply that carries a `LEDGER` block — exit 2 — the ledger hook has written the block at that same `Stop`: the agent's answer to the refusal is a reply of its own and may call tools (case 414.2). A block a tool call did follow is not lost until that `Stop` has passed: check the ledger then, and only a line missing there is a lesson.
 
 ## The acknowledging reply
 
@@ -271,3 +272,5 @@ The harness — hooks, skills, agents, `settings.json`, `CLAUDE.md`, this file �
 - 2026-09-25 updated: a defer is written in the reply that asks for it, the person's words its ratification (case 405) · [[decision-case-405]]
 - 2026-09-25 estimate estimate-case-protocol-defers-in-one-reply added · [[decision-case-405]]
 - 2026-09-25 updated: the story sections name no count of items unless the Case is about that count (case 406) · [[decision-case-406]]
+- 2026-09-25 updated: the answer to a Stop hook's refusal after a LEDGER block is a reply of its own (case 414.2) · [[decision-case-414.2]]
+- 2026-09-25 deferred · [[decision-case-416]]

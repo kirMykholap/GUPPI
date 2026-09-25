@@ -231,6 +231,7 @@ entries:
       the dispatches of sessions 1916 and 2214; rolled back by a Case if it does not
   exists: true
   applied: 00:44:46
+  superseded_by: '416'
 - line: 16
   text: decision[case 409][defer][rule-context-size]{ref:rule-context-size}
   case: '409'
@@ -284,6 +285,7 @@ entries:
       (case 407.1, 407.5)
   exists: true
   applied: 00:44:46
+  superseded_by: '414.1'
 - line: 20
   text: decision[case 412][defer][rule-prespec]{ref:rule-prespec}{supersedes:case 407.5}
   case: '412'
@@ -300,6 +302,7 @@ entries:
       (case 407.1, 407.5)
   exists: true
   applied: 00:44:46
+  superseded_by: '414.1'
 - line: 21
   text: decision[case 412][defer][rule-spec-write]{ref:rule-spec-write}{supersedes:case 407.2}
   case: '412'
@@ -315,6 +318,7 @@ entries:
     purpose: The Stop hook checks each Case it writes and gives the findings back (case 407.2)
   exists: true
   applied: 00:44:46
+  superseded_by: '414.1'
 - line: 22
   text: decision[case 412][defer][rule-spec-reconcile]{ref:rule-spec-reconcile}{supersedes:case 407.3}
   case: '412'
@@ -331,6 +335,7 @@ entries:
       the prose of a Case is translated (cases 407.3, 407.4, 410)
   exists: true
   applied: 00:44:46
+  superseded_by: '414.1'
 - line: 23
   text: decision[case 412][defer][rule-spec-reconcile]{ref:rule-spec-reconcile}{supersedes:case 407.4}
   case: '412'
@@ -347,6 +352,7 @@ entries:
       the prose of a Case is translated (cases 407.3, 407.4, 410)
   exists: true
   applied: 00:44:46
+  superseded_by: '414.1'
 - line: 24
   text: decision[case 412][defer][rule-spec-reconcile]{ref:rule-spec-reconcile}{supersedes:case 410}
   case: '412'
@@ -363,6 +369,7 @@ entries:
       the prose of a Case is translated (cases 407.3, 407.4, 410)
   exists: true
   applied: 00:44:46
+  superseded_by: '414.1'
 - line: 25
   text: decision[case 413][defer][rule-prespec]{ref:rule-prespec}{supersedes:case 411}
   case: '413'
@@ -379,6 +386,7 @@ entries:
       and estimate-prespec-checks-the-frame; one of them keeps it
   exists: true
   applied: 00:44:46
+  superseded_by: '415'
 - line: 26
   text: 'lesson[error][lesson-prespec-parent-of-superseded-sub-cases]{tags:session,workflow,harness} trigger:
     after Case 412 superseded each of 407.1–407.5, `prespec --check` still printed `case 407: in the ratified
@@ -861,6 +869,8 @@ decisions:
       1916 and 2214.'
   spec: vault/raw/2026-09-24/2214/spec.md
   applied: 00:44:46
+  superseded_by:
+  - decision-case-416
 - case: '409'
   decision: decision-case-409
   origin: raw/2026-09-24/2214/ledger.md#case-409
@@ -962,6 +972,8 @@ decisions:
   - decision-case-407.4
   - decision-case-410
   applied: 00:44:46
+  superseded_by:
+  - decision-case-414.1
 - case: '413'
   decision: decision-case-413
   origin: raw/2026-09-24/2214/ledger.md#case-413
@@ -983,5 +995,7 @@ decisions:
   supersedes:
   - decision-case-411
   applied: 00:44:46
+  superseded_by:
+  - decision-case-415
 unparsed: []
 session: '2214'

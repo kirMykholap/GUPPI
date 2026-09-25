@@ -7,7 +7,7 @@ enforcement: hook
 implementation_ref: [guppi/ratified.py, tests/test_ratified.py, .claude/settings.json]
 parent: "[[rule-plan-mode]]"
 estimates: ["[[estimate-spec-reconcile-shows-a-changed-case]]"]
-deferred_by: ["[[decision-case-412]]"]
+deferred_by: ["[[decision-case-416]]"]
 origin: raw/2026-09-23/1859/ledger.md#case-387.3
 sprint: migration
 created: 2026-09-23
@@ -30,3 +30,5 @@ Prevents a ratified Case from changing in what the scripts apply without the per
 - 2026-09-25 deferred · [[decision-case-412]]
 - 2026-09-25 deferred · [[decision-case-412]]
 - 2026-09-25 deferred · [[decision-case-412]]
+- 2026-09-25 defer by decision-case-412 superseded · [[decision-case-414.1]]
+- 2026-09-25 deferred · [[decision-case-416]]

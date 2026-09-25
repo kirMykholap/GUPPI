@@ -1,7 +1,7 @@
 ---
 type: estimate
 kind: QA
-status: passed
+status: pending
 target: "[[rule-case-protocol]]"
 purpose: The reply that acknowledges a ratification has four parts in order
 method: one reading by hand of the first acknowledging reply of a session
@@ -24,6 +24,7 @@ The reply has four parts, in this order: the `LEDGER` block first; the heading `
 **＋** The headings and labels are in the language of the chat.
 **＋** No tool call follows the `LEDGER` block in the same reply.
 **－** The ledger hook of `rule-ledger-write` does not append a repeated decision line a second time.
+**－** When a `Stop` hook other than the ledger hook of `rule-ledger-write` refuses the reply — exit 2 — the agent's answer to the refusal is a reply of its own and may call tools; the `LEDGER` block stands written.
 
 ## Result
 
@@ -38,3 +39,4 @@ The reply has four parts, in this order: the `LEDGER` block first; the heading `
 - 2026-09-23 updated: the other replies are not measured here, their form stands in the schema (case 368) · [[decision-case-368]]
 - 2026-09-24 updated: the Criterion replaced whole — the LEDGER block of a re-ratification (case 390) · [[decision-case-390]]
 - 2026-09-24 status: pending → passed · raw/2026-09-24/1303/ledger.md#L16
+- 2026-09-25 updated: the Criterion replaced whole — the answer to a Stop hook's refusal is a reply of its own (case 414.2) · [[decision-case-414.2]]

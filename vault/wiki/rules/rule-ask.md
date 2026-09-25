@@ -8,6 +8,7 @@ governs: .claude/agents/ask-guppi.md
 render_mode: full
 parent: "[[rule-plan-mode]]"
 estimates: ["[[estimate-ask-finds]]"]
+deferred_by: ["[[decision-case-416]]"]
 origin: raw/2026-09-09/ledger.md#case-23.1
 sprint: migration
 created: 2026-09-09
@@ -79,3 +80,4 @@ Answer with exactly these five lines, each present, "none" when empty:
 - 2026-09-15 status: draft → built · cascade
 - 2026-09-20 updated: pre-task → the vault query before a create, the first of the two moments (case 277.4, supersedes 274.2) · [[decision-case-277.4]]
 - 2026-09-22 updated: the index lines and the vault's own rules named by their pages, not by a § of index.md (case 318) · [[decision-case-318]]
+- 2026-09-25 deferred · [[decision-case-416]]

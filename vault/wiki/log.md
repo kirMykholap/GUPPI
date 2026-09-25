@@ -3477,3 +3477,49 @@ instruction. The global feed; a page's own `## History` is the per-page view.
 - 2026-09-25 decisions/decision-case-407.5 archived · cleanup
 - 2026-09-25 decisions/decision-case-410 archived · cleanup
 - 2026-09-25 decisions/decision-case-411 archived · cleanup
+- 2026-09-25 decisions/decision-case-414.1 created · raw/2026-09-25/0051/ledger.md#case-414.1 · generate
+- 2026-09-25 decisions/decision-case-412 superseded by decision-case-414.1 · [[decision-case-414.1]] · generate
+- 2026-09-25 rules/rule-prespec defer by decision-case-412 superseded · [[decision-case-414.1]] · generate
+- 2026-09-25 rules/rule-spec-write defer by decision-case-412 superseded · [[decision-case-414.1]] · generate
+- 2026-09-25 rules/rule-spec-reconcile defer by decision-case-412 superseded · [[decision-case-414.1]] · generate
+- 2026-09-25 rules/rule-spec-write updated: the Stop hook checks each Case it wrote (case 414.1) · [[decision-case-414.1]] · generate
+- 2026-09-25 estimates/estimate-spec-write-checks-the-written-case created · [[decision-case-414.1]] · generate
+- 2026-09-25 rules/rule-spec-write estimate estimate-spec-write-checks-the-written-case added · [[decision-case-414.1]] · generate
+- 2026-09-25 decisions/decision-case-414.2 created · raw/2026-09-25/0051/ledger.md#case-414.2 · generate
+- 2026-09-25 rules/rule-case-protocol updated: the answer to a Stop hook's refusal after a LEDGER block is a reply of its own (case 414.2) · [[decision-case-414.2]] · generate
+- 2026-09-25 estimates/estimate-case-protocol-acknowledging-reply updated: the Criterion replaced whole — the answer to a Stop hook's refusal is a reply of its own (case 414.2) · [[decision-case-414.2]] · generate
+- 2026-09-25 decisions/decision-case-415 created · raw/2026-09-25/0051/ledger.md#case-415 · generate
+- 2026-09-25 decisions/decision-case-413 superseded by decision-case-415 · [[decision-case-415]] · generate
+- 2026-09-25 rules/rule-prespec defer by decision-case-413 superseded · [[decision-case-415]] · generate
+- 2026-09-25 estimates/estimate-case-protocol-case-form updated: the Criterion replaced whole — the line on the frame of when and then left to estimate-prespec-checks-the-frame (case 415) · [[decision-case-415]] · generate
+- 2026-09-25 decisions/decision-case-416 created · raw/2026-09-25/0051/ledger.md#case-416 · generate
+- 2026-09-25 decisions/decision-case-408 superseded by decision-case-416 · [[decision-case-416]] · generate
+- 2026-09-25 rules/rule-frame-check defer by decision-case-408 superseded · [[decision-case-416]] · generate
+- 2026-09-25 rules/rule-frame-check deferred · [[decision-case-416]] · generate
+- 2026-09-25 rules/rule-case-protocol deferred · [[decision-case-416]] · generate
+- 2026-09-25 rules/rule-spec-write deferred · [[decision-case-416]] · generate
+- 2026-09-25 rules/rule-spec-reconcile deferred · [[decision-case-416]] · generate
+- 2026-09-25 rules/rule-ask deferred · [[decision-case-416]] · generate
+- 2026-09-25 decisions/decision-case-417 created · raw/2026-09-25/0051/ledger.md#case-417 · generate
+- 2026-09-25 rules/rule-prespec updated: a parent whose every sub-case is superseded is no finding of the ratified copy (case 417) · [[decision-case-417]] · generate
+- 2026-09-25 estimates/estimate-prespec-checks-the-ratified-copy updated: the Criterion replaced whole — a parent whose every sub-case is superseded is no finding (case 417) · [[decision-case-417]] · generate
+- 2026-09-25 decisions/decision-case-418 created · raw/2026-09-25/0051/ledger.md#case-418 · generate
+- 2026-09-25 rules/rule-context-size deferred · [[decision-case-418]] · generate
+- 2026-09-25 lessons/lesson-harness-a-paths-rule-misses-a-new-file-and-a-compaction created · raw/2026-09-25/0051/ledger.md#L14 · generate
+- 2026-09-25 lessons/lesson-hooks-matching-hooks-of-one-event-run-in-parallel created · raw/2026-09-25/0051/ledger.md#L15 · generate
+- 2026-09-25 lessons/lesson-hooks-a-stop-system-message-shows-no-markdown-in-vs-code created · raw/2026-09-25/0051/ledger.md#L16 · generate
+- 2026-09-25 lessons/lesson-hooks-subagentstop-exit-2-sends-the-subagent-back created · raw/2026-09-25/0051/ledger.md#L17 · generate
+- 2026-09-25 estimates/estimate-prespec-checks-the-ratified-copy status: pending → passed · raw/2026-09-25/0051/ledger.md#L18 · generate
+- 2026-09-25 estimates/estimate-case-protocol-case-form status: pending → failed · raw/2026-09-25/0051/ledger.md#L19 · generate
+- 2026-09-25 lessons/lesson-case-form-a-count-in-the-sentence-that-opens-a-list created · raw/2026-09-25/0051/ledger.md#L20 · generate
+- 2026-09-25 insights/insight-case-form-chat-form-read-by-no-script created · raw/2026-09-25/0051/ledger.md#L20 · generate
+- 2026-09-25 lessons/lesson-case-form-the-spec-free-sections-written-last updated: clustered into insight-case-form-chat-form-read-by-no-script · raw/2026-09-25/0051/ledger.md#L20 · generate
+- 2026-09-25 lessons/lesson-case-form-ratification-used-for-the-agents-caveats updated: clustered into insight-case-form-chat-form-read-by-no-script · raw/2026-09-25/0051/ledger.md#L20 · generate
+- 2026-09-25 lessons/lesson-case-form-a-count-in-the-sentence-that-opens-a-list updated: clustered into insight-case-form-chat-form-read-by-no-script · raw/2026-09-25/0051/ledger.md#L20 · generate
+- 2026-09-25 rules/rule-spec-write status: built → draft · cascade · generate
+- 2026-09-25 decisions/decision-case-408 archived · superseded · generate
+- 2026-09-25 decisions/decision-case-412 archived · superseded · generate
+- 2026-09-25 decisions/decision-case-413 archived · superseded · generate
+- 2026-09-25 decisions/decision-case-408 archived · cleanup
+- 2026-09-25 decisions/decision-case-412 archived · cleanup
+- 2026-09-25 decisions/decision-case-413 archived · cleanup

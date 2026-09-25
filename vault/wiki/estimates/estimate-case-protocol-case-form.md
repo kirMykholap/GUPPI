@@ -1,11 +1,11 @@
 ---
 type: estimate
 kind: QA
-status: pending
+status: failed
 target: "[[rule-case-protocol]]"
 purpose: A Case in the chat carries the whole contract in given, when and then
 method: one reading by hand of the Cases of a session, at its close
-checked: 2026-09-20
+checked: 2026-09-25
 origin: raw/2026-09-16/1034/ledger.md#case-188
 sprint: migration
 created: 2026-09-16
@@ -20,7 +20,7 @@ The agent shows a Case in the chat, at its first showing or again.
 Then:
 The Case opens with the heading `## Case N — name`, a sub-case with `### Case N.M — name` under its parent, and holds its sections in the order of the Sections table, each one blockquote whose first line is `**name:**`.
 **＋** `context` is prose: the mechanism in plain words first, then the state of the pages the Case changes, the vault's answer and why an Estimate of the rule is not touched; a case number stands in `context` or `problem` only when the Case is about that case, and a count of items stands in none of the story sections unless the Case is about that count.
-**＋** `given` holds the frame, one thing per line — each page, module, file and test the Case touches and the rule that constrains, its slug or path in a code span and its role — and no state; `when` and `then` name only what `given` names.
+**＋** `given` holds the frame, one thing per line — each page, module, file and test the Case touches and the rule that constrains, its slug or path in a code span and its role — and no state.
 **＋** In `given`, `when` and `then` each line after the first opens with `**＋**` or `**－**`, a `**－**` line names something of `given` or `when`, and `then` holds behaviour only.
 **＋** `tasks` names by slug each Estimate the Case creates or replaces, and under a line whose item writes content that content stands as sub-points; no `contract` line and no "block N" line.
 **＋** A pair under `replace` or `reword` stands only when the Case says what the sentence around each match names; a Case that changes the behaviour of a page gives an `update` to each Estimate of that page whose Criterion speaks of the change.
@@ -29,7 +29,7 @@ The Case opens with the heading `## Case N — name`, a sub-case with `### Case 
 
 ## Result
 
-2026-09-20, the Cases 270–277 of session 1308 read by hand at its close: each opens context with the mechanism and closes with one sentence of bookkeeping, given holds conditions only, the Estimate named by slug, tasks without a contract line, a case number in context only when the Case is about it; two departures — the three amendments to signed text after pre-spec went as a numbered block outside the Case form, and the given of 273.1 needed a correction at pre-spec
+2026-09-25, by hand, the Cases of session 0051 at its close: Case 414 showed "Case 407 предлагал две вещи" and "frame-guppi нашёл три вещи" in its context, a count of items the Case is not about; Case 415 showed a － line in then that was bookkeeping, not behaviour; both found by ask-guppi at pre-spec, fixed, 415 shown again; Cases 416, 417 and 418 hold the form
 
 ## History
 
@@ -50,3 +50,5 @@ The Case opens with the heading `## Case N — name`, a sub-case with `### Case 
 - 2026-09-23 updated: the When names the showing again after the agent's own finding (case 373) · [[decision-case-373]]
 - 2026-09-25 updated: the Criterion replaced whole — the form of a Case in the chat by the model of case 378, the line of case 353 taken from estimate-case-protocol-loaded (case 396.1) · [[decision-case-396.1]]
 - 2026-09-25 updated: the Criterion replaced whole — the line on context names no count of items in the story sections; the rest as case 396.1 wrote it (case 406) · [[decision-case-406]]
+- 2026-09-25 updated: the Criterion replaced whole — the line on the frame of when and then left to estimate-prespec-checks-the-frame (case 415) · [[decision-case-415]]
+- 2026-09-25 status: pending → failed · raw/2026-09-25/0051/ledger.md#L19

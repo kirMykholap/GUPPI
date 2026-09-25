@@ -1,8 +1,9 @@
 ---
 type: decision
 case: "408"
-status: current
+status: archived
 defer: ["[[rule-frame-check]]"]
+superseded_by: ["[[decision-case-416]]"]
 origin: raw/2026-09-24/2214/ledger.md#case-408
 sprint: migration
 created: 2026-09-24
@@ -26,3 +27,6 @@ Whether frame-guppi pays — the contradictions it finds against its tokens and 
 ## History
 
 - 2026-09-25 created · raw/2026-09-24/2214/ledger.md#case-408
+- 2026-09-25 superseded by decision-case-416 · [[decision-case-416]]
+- 2026-09-25 archived · superseded
+- 2026-09-25 archived · cleanup

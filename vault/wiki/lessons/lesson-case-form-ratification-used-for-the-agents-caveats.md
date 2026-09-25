@@ -2,7 +2,8 @@
 type: lesson
 kind: error
 root_cause: "`ratification` is the human's sign-off, question or their own alternative, and it ends with the preview of the ledger lines; the agent had caveats that belong in `context` as bookkeeping or in `recommend` as the reason for the choice, found no obvious slot and used the last section as a notes field — nothing reads the chat form of a Case, so no check refused it."
-status: new
+status: clustered
+insight: "[[insight-case-form-chat-form-read-by-no-script]]"
 origin: raw/2026-09-22/2046/ledger.md#L12
 sprint: migration
 created: 2026-09-22
@@ -20,3 +21,4 @@ every Case of this session — 341, 342, 343, 344, 345 — carried the agent's o
 ## History
 
 - 2026-09-23 created · raw/2026-09-22/2046/ledger.md#L12
+- 2026-09-25 updated: clustered into insight-case-form-chat-form-read-by-no-script · raw/2026-09-25/0051/ledger.md#L20

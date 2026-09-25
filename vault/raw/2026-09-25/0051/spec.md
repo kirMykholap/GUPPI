@@ -71,8 +71,8 @@ update:
 ```
 
 ```tasks
-- [ ] update `rule-spec-write` — one sentence in `How it works`: the check after the write
-- [ ] create `estimate-spec-write-checks-the-written-case` — the new promise of the check after the write
+- [x] update `rule-spec-write` — one sentence in `How it works`: the check after the write
+- [x] create `estimate-spec-write-checks-the-written-case` — the new promise of the check after the write
 - [x] `guppi/prespec.py` — the checks of `check` for a set of Cases and extra records, the Frontier, the ratified copy and the grammar left out; `check` calls the same function for the whole run
 - [x] `guppi/ratified.py` — `stop`: the checks on each Case written, the reply's decision records added to the window's, `guppi/prespec.py` imported inside the function; the module docstring
 - [x] `tests/test_ratified.py` — `-k checks_the_written`: a written Case with a finding exits 2 and stays written, a clean one exits 0, a finding of another Case not reported, a line of the reply not yet in the ledger counted, the re-fire checks nothing
@@ -112,9 +112,9 @@ update:
 ```
 
 ```tasks
-- [ ] update `rule-case-protocol` — the paragraph on ledger lines in the Render: the answer to a refusal
-- [ ] update `estimate-case-protocol-acknowledging-reply` — the Criterion replaced whole by the `when` and `then` of this Case
-- [ ] `uv run guppi render`: `vault/wiki/case-schema.md`
+- [x] update `rule-case-protocol` — the paragraph on ledger lines in the Render: the answer to a refusal
+- [x] update `estimate-case-protocol-acknowledging-reply` — the Criterion replaced whole by the `when` and `then` of this Case
+- [x] `uv run guppi render`: `vault/wiki/case-schema.md`
 - [ ] read `estimate-case-protocol-acknowledging-reply` — by hand, the first acknowledging reply a `Stop` hook refuses
 ```
 
@@ -153,8 +153,8 @@ update:
 ```
 
 ```tasks
-- [ ] update `estimate-case-protocol-case-form` — the Criterion replaced whole by the `when` and `then` of this Case
-- [ ] read `estimate-case-protocol-case-form` — by hand, the Cases of this session at its close
+- [x] update `estimate-case-protocol-case-form` — the Criterion replaced whole by the `when` and `then` of this Case
+- [x] read `estimate-case-protocol-case-form` — by hand, the Cases of this session at its close
 ```
 
 ## Case 417 — A parent whose sub-cases are all superseded is no finding of the ratified copy
@@ -196,12 +196,12 @@ update:
 ```
 
 ```tasks
-- [ ] update `rule-prespec` — the sentence on the ratified copy in the Render: the parent of superseded sub-cases excepted
-- [ ] update `estimate-prespec-checks-the-ratified-copy` — the Criterion replaced whole by the `when` and `then` of this Case
+- [x] update `rule-prespec` — the sentence on the ratified copy in the Render: the parent of superseded sub-cases excepted
+- [x] update `estimate-prespec-checks-the-ratified-copy` — the Criterion replaced whole by the `when` and `then` of this Case
 - [x] `guppi/prespec.py` — `check_ratified`: a section of the copy with no Case in the plan excepted when it is a parent with sub-cases in the copy, each named by a supersedes of the window
 - [x] `tests/test_prespec.py` — `-k ratified`: a parent whose sub-cases are all superseded no finding; a parent with one sub-case not superseded still a finding
-- [ ] `uv run guppi render`: `.claude/skills/pre-spec/SKILL.md`
-- [ ] read `estimate-prespec-checks-the-ratified-copy` — `uv run pytest tests/test_prespec.py -k ratified`
+- [x] `uv run guppi render`: `.claude/skills/pre-spec/SKILL.md`
+- [x] read `estimate-prespec-checks-the-ratified-copy` — `uv run pytest tests/test_prespec.py -k ratified`
 ```
 
 ## Deferred

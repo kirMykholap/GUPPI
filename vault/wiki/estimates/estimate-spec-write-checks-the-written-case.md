@@ -22,7 +22,7 @@ The hook runs the checks of `prespec --check`, imported from `guppi/prespec.py`,
 **＋** On a finding: exit 2, the findings on stderr after `ratified:`, each naming its Case; the written Case stays in the plan and in its ratified copy.
 **＋** A finding of a Case not written in this run is not reported.
 **－** On the re-fire (`stop_hook_active`) nothing is checked: exit 0.
-**－** A Case not written in this run — a last showing that is a `DIFF` block, a defer-only Case — is not checked.
+**－** A Case not written in this run — a last showing that is a `DIFF` block — and a defer-only Case, which the hook writes under `## Deferred`, are not checked.
 **－** The Frontier `raw/<hi date>/<hi HHMM>/frontier.md` is not read.
 **－** The plan is not compared with its ratified copy, and a name, `context` or `problem` that holds a Cyrillic letter is no finding.
 **－** A ledger line of the window that does not parse is no finding of this check.
@@ -30,3 +30,4 @@ The hook runs the checks of `prespec --check`, imported from `guppi/prespec.py`,
 ## History
 
 - 2026-09-25 created · [[decision-case-414.1]]
+- 2026-09-25 updated: the Criterion replaced whole — a defer-only Case is written by the hook and not checked (case 421.1) · [[decision-case-421.1]]

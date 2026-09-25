@@ -2,7 +2,7 @@
 type: rule
 kind: Leaf
 purpose: Prevents one judgment of the pipeline from living in two implementations that drift apart under a green suite
-status: draft
+status: built
 enforcement: render
 governs: CLAUDE.md
 render_mode: partial
@@ -30,3 +30,4 @@ Where code judges the same text in two places — a check and a writer, a ticker
 
 - 2026-09-23 created · [[decision-case-360]]
 - 2026-09-23 estimate estimate-one-judgment-one-implementation-followed added · [[decision-case-360]]
+- 2026-09-25 status: draft → built · cascade

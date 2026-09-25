@@ -1,7 +1,7 @@
 ---
 type: estimate
 kind: QA
-status: passed
+status: pending
 target: "[[rule-skill-hi]]"
 method: "one reading by hand at the first /hi of the next session, written into the estimate line; unit: the frontier findings of guppi prespec --check in tests/test_prespec.py"
 checked: 2026-09-23
@@ -13,23 +13,19 @@ tags: [session, harness, workflow]
 
 ## Criterion
 
-Given:
-The librarian writes `brief.md` by the frame — the Render of `rule-brief`; `/hi` reads `sprint.md`, `brief.md`, the tail of the ledger, `git status` and the output of its own commands — and nothing else.
-**＋** `prespec.check_frontier`: the id is the first token after `[ ]`, the closer the last segment after ` · `; a line without `[ ]` is not checked.
-**＋** The reading of `estimate-brief-written` is by hand after the librarian's run; of `estimate-hi-writes-frontier` by hand at the first `/hi` of the next session.
-
 When:
-The person invokes `/hi`, and the agent assembles the Frontier.
+The person invokes `/hi`, the agent assembles the Frontier, and its lines are closed in Plan Mode.
 
 Then:
-The Frontier, written to `raw/<date>/<hi HHMM>/frontier.md`, is two lists: `## Cases`, lines `- [ ] C<n> — <title> · <source>`, and `## Work`, lines `- [ ] W<n> — <title> · <source>`; an item of the current milestone is a line of its own whose title opens with the slug of each of its pages in a code span (354.3); closed by appending the closer and keeping the source — `- [x] C2 — <title> · sprint · case 315` (case 314.1) — `[x] … · case N`, `[x] … · work`, `[-] … · defer case N`, and `[-] … · sprint` when the item is a line of the sprint page left for a later session — no decision, no `deferred_by` (case 310.5); a line of the sprint never closes `· defer case N` (356.2).
-**＋** The kind comes from the source. Cases: on a plan branch the unfinished plan, first; the items of the current milestone of `sprint.md`; the `Cases` list of the brief's Next session; the brief's Deferred list; a hand edit shown by `Render:` — the same thing `render --sync` printed at session start; a `failed` reading or a lesson of the ledger's Tail; an item the person adds. Work: the `Work` list of the brief's Next session; a dirty tree by `git status`.
+The Frontier, written to `raw/<date>/<hi HHMM>/frontier.md`, is two lists: `## Cases`, lines `- [ ] C<n> — <title> · <source>`, and `## Work`, lines `- [ ] W<n> — <title> · <source>`; an item of the current milestone is a line of its own whose title opens with the slug of each of its pages in a code span; a line closes by appending the closer and keeping the source — `[x] … · case N`, `[x] … · work`, `[-] … · defer case N`, `[-] … · sprint` for a line of the sprint page left for a later session, and `[-] … · deferred · kept` for an item of the brief's Deferred list left deferred as it stands; a line of the sprint never closes `· defer case N`.
+**＋** An item closed `kept` has no short Case and no ledger line; its page keeps its `deferred_by`, and the brief carries the item on.
+**＋** The kind comes from the source. Cases: on a plan branch the unfinished plan, first; the items of the current milestone of `sprint.md`; the `Cases` list of the brief's Next session; the brief's Deferred list, source `deferred`; a hand edit shown by `Render:`; a `failed` reading or a lesson of the ledger's Tail; an item the person adds. Work: the `Work` list of the brief's Next session; a dirty tree by `git status`.
 **＋** The milestone is the current one only; a later one, the Backlog and Closed are not items; a decision line of the Tail is not an item.
 **＋** In the chat the Cases are shown as a list with their detail — the agenda of Plan Mode; the Work as one block; sub-cases are cut in Cases only.
 **＋** A `W` that turns out to need a decision closes `· case N`; a `C` that needs none closes `· work`.
-**－** `Pull:` and `Open issues:` are a Cases item only when `sprint.md` names no decision on them; named, they are not an item — `rule-git-context` says the same.
-**－** `/pre-spec` finds an open line under `## Cases`; a `W` line stands open until its work is done and closes `· work` in Work Mode (356.1).
-**＋** Claude Code's plan mode is on at `/hi`; the agent writes `frontier.md` and closes its lines all the same, with no refusal in the chat (363).
+**－** `Pull:` and `Open issues:` are a Cases item only when `sprint.md` names no decision on them.
+**－** Pre-spec finds an open line under `## Cases`; a `W` line stands open until its work is done and closes `· work` in Work Mode.
+**＋** Claude Code's plan mode is on at `/hi`; the agent writes `frontier.md` and closes its lines all the same, with no refusal in the chat.
 
 ## Result
 
@@ -55,3 +51,4 @@ The Frontier, written to `raw/<date>/<hi HHMM>/frontier.md`, is two lists: `## C
 - 2026-09-23 updated: the Criterion names the sprint line never deferred (case 356.2) · [[decision-case-356.2]]
 - 2026-09-23 updated: the Criterion names the write of frontier.md in plan mode (case 363) · [[decision-case-363]]
 - 2026-09-23 status: pending → passed · raw/2026-09-23/1355/ledger.md#L44
+- 2026-09-25 updated: the Criterion replaced whole — the closer kept; the old Given dropped (case 421.4) · [[decision-case-421.4]]

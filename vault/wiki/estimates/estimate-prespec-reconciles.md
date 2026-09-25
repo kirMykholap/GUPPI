@@ -1,10 +1,10 @@
 ---
 type: estimate
 kind: QA
-status: pending
+status: passed
 target: "[[rule-prespec]]"
 method: One reading by hand of the first /pre-spec after the render, written into the estimate line — the exception the Method rule allows
-checked: 2026-09-23
+checked: 2026-09-25
 origin: raw/2026-09-09/ledger.md#case-24.2
 sprint: migration
 created: 2026-09-09
@@ -28,7 +28,7 @@ The agent translates the name, `context` and `problem` of every Case of the plan
 
 ## Result
 
-2026-09-23, the /pre-spec of session 0034 read by hand: guppi prespec --check with --session c9c18452, its first line a finding and not "no hi recorded"; the plan fixed until exit 0 (two bare-slug fixes, then the ledger lines of the amended Cases); guppi gate wrote "01:39:57 c9c18452 prespec" on the Skill call; every decision listed with the estimates of each updated rule and which the Case names, ask-guppi dispatched once with the list, the plan path and the two questions; 15 contradictions and 2 unnamed Estimates returned, 11 raised as amended Cases re-ratified, 4 named as known; Plan Mode exited after exit 0; insight-pretask-session-flag-takes-the-id-not-the-hi-line stands actioned
+2026-09-25, by hand, the /pre-spec of session 1228: the name, context and problem translated before the run; prespec --check printed one finding (C4 open), fixed, then none; ask-guppi dispatched once with the plan path; its 14 findings answered in one report before the changed Cases were shown again
 
 ## History
 
@@ -65,3 +65,4 @@ The agent translates the name, `context` and `problem` of every Case of the plan
 - 2026-09-23 status: pending → passed · raw/2026-09-23/0034/ledger.md#L62
 - 2026-09-23 updated: the question on contradictions as the Render asks it (case 364.3) · [[decision-case-364.3]]
 - 2026-09-24 updated: the Criterion replaced whole — the translation, ask-guppi reading the plan and the context, the report before the re-showing (case 388) · [[decision-case-388]]
+- 2026-09-25 status: pending → passed · raw/2026-09-25/1228/ledger.md#L42

@@ -71,11 +71,11 @@ update:
 ```
 
 ```tasks
-- [ ] update `rule-case-protocol`
-- [ ] update `estimate-case-protocol-checks-its-frame`
-- [ ] update `rule-ask`
-- [ ] update `rule-skill-hi`
-- [ ] update `rule-prespec`
+- [x] update `rule-case-protocol`
+- [x] update `estimate-case-protocol-checks-its-frame`
+- [x] update `rule-ask`
+- [x] update `rule-skill-hi`
+- [x] update `rule-prespec`
 - [ ] `uv run guppi render`: `vault/wiki/case-schema.md`
 - [ ] `uv run guppi render`: `.claude/agents/ask-guppi.md`
 - [ ] `uv run guppi render`: `.claude/skills/hi/SKILL.md`
@@ -147,9 +147,9 @@ update:
 ```
 
 ```tasks
+- [x] update `rule-frame-check`
 - [ ] update `rule-frame-check`
-- [ ] update `rule-frame-check`
-- [ ] update `estimate-frame-check-finds-a-contradiction`
+- [x] update `estimate-frame-check-finds-a-contradiction`
 - [ ] `uv run guppi render`: `.claude/agents/case-guppi.md`
 - [ ] `git rm .claude/agents/frame-guppi.md` — the file no page governs after the rename
 - [ ] read `estimate-frame-check-finds-a-contradiction` — renamed `estimate-case-build-writes-the-case`
@@ -228,10 +228,10 @@ update:
 ```
 
 ```tasks
-- [ ] create `rule-case-check`
-- [ ] create `estimate-case-check-sends-back-a-faulty-case`
-- [ ] update `rule-hook-registry`
-- [ ] update `insight-case-form-chat-form-read-by-no-script`
+- [x] create `rule-case-check`
+- [x] create `estimate-case-check-sends-back-a-faulty-case`
+- [x] update `rule-hook-registry`
+- [x] update `insight-case-form-chat-form-read-by-no-script`
 - [x] `guppi/ratified.py`: the Spec section of a Case built in memory, apart from its write
 - [x] `guppi/casecheck.py`: the `SubagentStop` hook
 - [x] `guppi/cli.py`: the command `casecheck`, named among the hook commands of the docstring
@@ -290,9 +290,9 @@ update:
 ```
 
 ```tasks
-- [ ] update `rule-case-check`
-- [ ] create `estimate-case-check-shows-only-the-checked-case`
-- [ ] update `rule-hook-registry`
+- [x] update `rule-case-check`
+- [x] create `estimate-case-check-shows-only-the-checked-case`
+- [x] update `rule-hook-registry`
 - [x] `guppi/casecheck.py`: the `Stop` hook
 - [x] `tests/test_casecheck.py`: `-k stop` — a stored clean Case passes, a missing one, a changed one and one stored with findings exit 2, the acknowledging heading, a `DIFF` fence and a short-form defer pass, a re-shown Case without `recommend` compared, the re-fire exits 0
 - [ ] `uv run guppi render`: `.claude/settings.json`
@@ -371,9 +371,9 @@ update:
 
 ```tasks
 - [x] live probe in the scratchpad before any code: `updatedInput` sets `limit` on `Read` in the main agent and in a subagent, and `Edit` works after a cut read; a failure brings the Case back
-- [ ] create `rule-page-read`
-- [ ] create `estimate-page-read-cuts-the-history`
-- [ ] update `rule-hook-registry`
+- [x] create `rule-page-read`
+- [x] create `estimate-page-read-cuts-the-history`
+- [x] update `rule-hook-registry`
 - [x] `guppi/pages.py`: `history_line`, the line of the page's own `## History`, by the walk `split_sections` uses; the docstring names `pageread` among its users
 - [x] `guppi/pageread.py`: the two hooks
 - [x] `guppi/cli.py`: the command `pageread`, named among the hook commands of the docstring
@@ -412,8 +412,8 @@ update:
 ```
 
 ```tasks
-- [ ] update `rule-harness`
-- [ ] update `estimate-harness-pipeline`
+- [x] update `rule-harness`
+- [x] update `estimate-harness-pipeline`
 - [ ] read `estimate-harness-pipeline`
 ```
 
@@ -502,10 +502,10 @@ update:
 ```
 
 ```tasks
-- [ ] update `rule-spec-write`
-- [ ] update `estimate-spec-write-copies-the-ratified-case`
-- [ ] update `estimate-spec-write-checks-the-written-case`
-- [ ] create `estimate-spec-write-writes-a-defer`
+- [x] update `rule-spec-write`
+- [x] update `estimate-spec-write-copies-the-ratified-case`
+- [x] update `estimate-spec-write-checks-the-written-case`
+- [x] create `estimate-spec-write-writes-a-defer`
 - [x] `guppi/ratified.py`: the write of a defer-only Case under `## Deferred`, the docstring of the write said anew
 - [x] `tests/test_ratified.py`: `-k defer` — a defer written into the plan, into `spec.md` once it stands, replaced on a second showing, several defer-only Cases and one beside a ratified Case in one reply, no showing and a missing item exit 2; `test_write_a_defer_only_case_is_left_to_the_agent` rewritten
 - [ ] read `estimate-spec-write-copies-the-ratified-case`
@@ -547,8 +547,8 @@ update:
 ```
 
 ```tasks
-- [ ] update `rule-case-protocol`
-- [ ] update `estimate-case-protocol-defers-in-one-reply`
+- [x] update `rule-case-protocol`
+- [x] update `estimate-case-protocol-defers-in-one-reply`
 - [ ] `uv run guppi render`: `vault/wiki/case-schema.md`
 - [ ] read `estimate-case-protocol-defers-in-one-reply`
 ```
@@ -587,8 +587,8 @@ update:
 ```
 
 ```tasks
-- [ ] update `rule-prespec`
-- [ ] update `estimate-prespec-checks-the-frontier`
+- [x] update `rule-prespec`
+- [x] update `estimate-prespec-checks-the-frontier`
 - [x] `guppi/prespec.py`: `kept` among the `CLOSERS` of `check_frontier`, and the finding that names the closers
 - [x] `tests/test_prespec.py`: `-k frontier` — `kept` clean on `[-]` after `deferred`, a finding on `[x]` and after another source
 - [ ] `uv run guppi render`: `.claude/skills/pre-spec/SKILL.md`
@@ -641,9 +641,9 @@ update:
 ```
 
 ```tasks
-- [ ] update `rule-skill-hi`
-- [ ] update `rule-case-protocol`
-- [ ] update `estimate-hi-writes-frontier`
+- [x] update `rule-skill-hi`
+- [x] update `rule-case-protocol`
+- [x] update `estimate-hi-writes-frontier`
 - [ ] `uv run guppi render`: `.claude/skills/hi/SKILL.md`
 - [ ] `uv run guppi render`: `vault/wiki/case-schema.md`
 - [ ] read `estimate-hi-writes-frontier`

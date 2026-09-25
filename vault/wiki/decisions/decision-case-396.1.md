@@ -20,7 +20,7 @@ Two Estimates of `rule-case-protocol` describe a model of the Criterion that no 
 - "a session without `/hi` holds no Case" stands in `estimate-ledger-write-lifts`;
 - the line of 294 and 296 is out of date: since Case 378.4 a pair inside the Criterion is refused, as `estimate-prespec-refuses-a-pair-inside-a-criterion` promises.
 
-The line of 353 stands only in the journal: a `replace` or `reword` pair is signed after the sentence around each match is read, and a Case that changes a page reads its `estimates`. It moves to `estimate-case-protocol-case-form`. The first paragraph, "The one rule", has no Estimate of its behaviour, and this Case creates none. The language of the sections of a Case in the chat is promised by `estimate-language-followed`, the report of `frame-guppi` in `context` by `estimate-case-protocol-checks-its-frame`, so neither enters the form of a Case. Both Estimates stand `pending`, `rule-case-protocol` `draft`. The three other Estimates of the rule (`-acknowledging-reply`, `-ledger-line-form`, `-checks-its-frame`) are written in the new model already and are not touched. An `update` with a `ref`, no vault query; `frame-guppi` was not dispatched: the behaviour of the rule does not change. The agent read the Render itself; it is loaded by the `/hi` of this session.
+The line of 353 stands only in the journal: a `replace` or `reword` pair is signed after the sentence around each match is read, and a Case that changes a page reads its `estimates`. It moves to `estimate-case-protocol-case-form`. The first paragraph, "The one rule", has no Estimate of its behaviour, and this Case creates none. The language of the sections of a Case in the chat is promised by `estimate-language-followed`, the report of `frame-guppi` in `context` by `estimate-case-protocol-shows-the-built-case`, so neither enters the form of a Case. Both Estimates stand `pending`, `rule-case-protocol` `draft`. The three other Estimates of the rule (`-acknowledging-reply`, `-ledger-line-form`, `-checks-its-frame`) are written in the new model already and are not touched. An `update` with a `ref`, no vault query; `frame-guppi` was not dispatched: the behaviour of the rule does not change. The agent read the Render itself; it is loaded by the `/hi` of this session.
 
 ## Problem
 
@@ -30,7 +30,7 @@ The Criteria of two Estimates promise a model that no longer stands; one of them
 
 `estimate-case-protocol-case-form` — the Estimate whose Criterion is replaced.
 **＋** `rule-case-protocol` — its Render `vault/wiki/case-schema.md`: the Sections table, the Operands, the Language paragraph, the section Splitting.
-**＋** `frame-guppi` — named in `context` by the Render, promised by `estimate-case-protocol-checks-its-frame`.
+**＋** `frame-guppi` — named in `context` by the Render, promised by `estimate-case-protocol-shows-the-built-case`.
 
 ## History
 

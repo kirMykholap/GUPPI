@@ -115,7 +115,7 @@ update:
 - [x] update `rule-case-protocol` — the paragraph on ledger lines in the Render: the answer to a refusal
 - [x] update `estimate-case-protocol-acknowledging-reply` — the Criterion replaced whole by the `when` and `then` of this Case
 - [x] `uv run guppi render`: `vault/wiki/case-schema.md`
-- [ ] read `estimate-case-protocol-acknowledging-reply` — by hand, the first acknowledging reply a `Stop` hook refuses
+- [x] read `estimate-case-protocol-acknowledging-reply` — by hand, the first acknowledging reply a `Stop` hook refuses
 ```
 
 ## Case 415 — The pre-spec check holds the line on the frame

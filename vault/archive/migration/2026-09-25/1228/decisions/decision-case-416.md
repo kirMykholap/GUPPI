@@ -1,9 +1,10 @@
 ---
 type: decision
 case: "416"
-status: current
+status: archived
 defer: ["[[rule-frame-check]]", "[[rule-case-protocol]]", "[[rule-spec-write]]", "[[rule-spec-reconcile]]", "[[rule-ask]]"]
 supersedes: ["[[decision-case-408]]"]
+superseded_by: ["[[decision-case-419.2]]"]
 origin: raw/2026-09-25/0051/ledger.md#case-416
 sprint: migration
 created: 2026-09-25
@@ -43,3 +44,6 @@ ask-guppi answers at pre-spec only; the vault query before a create moves to cas
 ## History
 
 - 2026-09-25 created · raw/2026-09-25/0051/ledger.md#case-416
+- 2026-09-25 superseded by decision-case-419.2 · [[decision-case-419.2]]
+- 2026-09-25 archived · superseded
+- 2026-09-25 archived · cleanup

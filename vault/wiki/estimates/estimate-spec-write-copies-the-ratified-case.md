@@ -1,7 +1,7 @@
 ---
 type: estimate
 kind: QA
-status: passed
+status: pending
 target: "[[rule-spec-write]]"
 purpose: The ratified Case enters the plan file and its ratified copy in the words of the chat, the then block built from the sub-points
 method: uv run pytest tests/test_ratified.py -k write; the live reading by hand, the plan file and its ratified copy after the first ratification of a session
@@ -25,7 +25,6 @@ The hook writes that Case into the plan file `plan_path` finds, the section of C
 **＋** `recommend` and `ratification` are not written.
 **＋** When the last showing of Case N is a `DIFF` block, not the Case whole, the hook writes nothing for it.
 **＋** No plan file in the event log, no showing of Case N, or a sub-point it cannot read: exit 2 with the reason on stderr; on the re-fire (`stop_hook_active`) exit 0.
-**－** A Case whose lines are all `defer` is not written by the hook: the agent appends it under `## Deferred`.
 
 ## Result
 
@@ -37,3 +36,4 @@ The hook writes that Case into the plan file `plan_path` finds, the section of C
 - 2026-09-24 status: pending → passed · raw/2026-09-24/1303/ledger.md#L3
 - 2026-09-25 updated: the Criterion replaced whole — a value holding a backtick padded by one space, an unpadded one refused (case 402) · [[decision-case-402]]
 - 2026-09-25 status: pending → passed · raw/2026-09-24/2214/ledger.md#L47
+- 2026-09-25 updated: the Criterion replaced whole — the exception for a defer-only Case dropped, the hook writes it (case 421.1) · [[decision-case-421.1]]

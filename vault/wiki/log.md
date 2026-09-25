@@ -3523,3 +3523,101 @@ instruction. The global feed; a page's own `## History` is the per-page view.
 - 2026-09-25 decisions/decision-case-408 archived · cleanup
 - 2026-09-25 decisions/decision-case-412 archived · cleanup
 - 2026-09-25 decisions/decision-case-413 archived · cleanup
+- 2026-09-25 decisions/decision-case-419.1 created · raw/2026-09-25/1228/ledger.md#case-419.1 · generate
+- 2026-09-25 rules/rule-case-protocol updated: every Case is built by case-guppi and shown unchanged; ask-guppi at pre-spec only (case 419.1) · [[decision-case-419.1]] · generate
+- 2026-09-25 estimates/estimate-case-protocol-shows-the-built-case renamed from `estimate-case-protocol-checks-its-frame` · [[decision-case-419.1]] · generate
+- 2026-09-25 rules/rule-case-protocol ref `estimate-case-protocol-checks-its-frame` → `estimate-case-protocol-shows-the-built-case` · [[decision-case-419.1]] · generate
+- 2026-09-25 estimates/estimate-case-protocol-shows-the-built-case updated: renamed; the Criterion replaced whole — the Case built by case-guppi and shown unchanged (case 419.1) · [[decision-case-419.1]] · generate
+- 2026-09-25 rules/rule-ask updated: the vault query before a create is run by case-guppi; the main agent asks at pre-spec only (case 419.1) · [[decision-case-419.1]] · generate
+- 2026-09-25 rules/rule-skill-hi updated: the Case is built by case-guppi, which asks the vault itself (case 419.1) · [[decision-case-419.1]] · generate
+- 2026-09-25 rules/rule-prespec updated: the question before a create is case-guppi's (case 419.1) · [[decision-case-419.1]] · generate
+- 2026-09-25 decisions/decision-case-419.2 created · raw/2026-09-25/1228/ledger.md#case-419.2 · generate
+- 2026-09-25 decisions/decision-case-416 superseded by decision-case-419.2 · [[decision-case-419.2]] · generate
+- 2026-09-25 rules/rule-frame-check defer by decision-case-416 superseded · [[decision-case-419.2]] · generate
+- 2026-09-25 rules/rule-case-protocol defer by decision-case-416 superseded · [[decision-case-419.2]] · generate
+- 2026-09-25 rules/rule-spec-write defer by decision-case-416 superseded · [[decision-case-419.2]] · generate
+- 2026-09-25 rules/rule-spec-reconcile defer by decision-case-416 superseded · [[decision-case-419.2]] · generate
+- 2026-09-25 rules/rule-ask defer by decision-case-416 superseded · [[decision-case-419.2]] · generate
+- 2026-09-25 decisions/decision-case-403 superseded by decision-case-419.2 · [[decision-case-419.2]] · generate
+- 2026-09-25 rules/rule-frame-check defer by decision-case-403 superseded · [[decision-case-419.2]] · generate
+- 2026-09-25 rules/rule-frame-check updated: frame-guppi becomes case-guppi, which builds every Case (case 419.2) · [[decision-case-419.2]] · generate
+- 2026-09-25 estimates/estimate-case-build-writes-the-case renamed from `estimate-frame-check-finds-a-contradiction` · [[decision-case-419.2]] · generate
+- 2026-09-25 rules/rule-frame-check ref `estimate-frame-check-finds-a-contradiction` → `estimate-case-build-writes-the-case` · [[decision-case-419.2]] · generate
+- 2026-09-25 estimates/estimate-case-build-writes-the-case updated: renamed; the Criterion replaced whole — case-guppi builds the Case; the method measures its cost (case 419.2) · [[decision-case-419.2]] · generate
+- 2026-09-25 decisions/decision-case-419.3 created · raw/2026-09-25/1228/ledger.md#case-419.3 · generate
+- 2026-09-25 rules/rule-case-check created · [[decision-case-419.3]] · generate
+- 2026-09-25 rules/rule-plan-mode child rule-case-check added · [[decision-case-419.3]] · generate
+- 2026-09-25 estimates/estimate-case-check-sends-back-a-faulty-case created · [[decision-case-419.3]] · generate
+- 2026-09-25 rules/rule-case-check estimate estimate-case-check-sends-back-a-faulty-case added · [[decision-case-419.3]] · generate
+- 2026-09-25 rules/rule-hook-registry updated: guppi casecheck --subagent registered on SubagentStop (case 419.3) · [[decision-case-419.3]] · generate
+- 2026-09-25 insights/insight-case-form-chat-form-read-by-no-script updated: actioned: the chat form of a Case is checked on SubagentStop before the person sees it; a count in a story section stays unchecked (case 419.3) · [[decision-case-419.3]] · generate
+- 2026-09-25 decisions/decision-case-419.4 created · raw/2026-09-25/1228/ledger.md#case-419.4 · generate
+- 2026-09-25 rules/rule-case-check updated: the Stop hook compares the shown Case with the checked one (case 419.4) · [[decision-case-419.4]] · generate
+- 2026-09-25 estimates/estimate-case-check-shows-only-the-checked-case created · [[decision-case-419.4]] · generate
+- 2026-09-25 rules/rule-case-check estimate estimate-case-check-shows-only-the-checked-case added · [[decision-case-419.4]] · generate
+- 2026-09-25 rules/rule-hook-registry updated: guppi casecheck registered on Stop (case 419.4) · [[decision-case-419.4]] · generate
+- 2026-09-25 lessons/lesson-case-form-given-written-before-tasks created · raw/2026-09-25/1228/ledger.md#L15 · generate
+- 2026-09-25 lessons/lesson-prespec-read-line-of-a-renamed-estimate created · raw/2026-09-25/1228/ledger.md#L16 · generate
+- 2026-09-25 decisions/decision-case-420.1 created · raw/2026-09-25/1228/ledger.md#case-420.1 · generate
+- 2026-09-25 rules/rule-page-read created · [[decision-case-420.1]] · generate
+- 2026-09-25 rules/rule-harness child rule-page-read added · [[decision-case-420.1]] · generate
+- 2026-09-25 estimates/estimate-page-read-cuts-the-history created · [[decision-case-420.1]] · generate
+- 2026-09-25 rules/rule-page-read estimate estimate-page-read-cuts-the-history added · [[decision-case-420.1]] · generate
+- 2026-09-25 rules/rule-hook-registry updated: guppi pageread registered on PreToolUse and PostToolUse of Read (case 420.1) · [[decision-case-420.1]] · generate
+- 2026-09-25 decisions/decision-case-420.2 created · raw/2026-09-25/1228/ledger.md#case-420.2 · generate
+- 2026-09-25 rules/rule-harness updated: the hooks of rule-page-read named among the rules outside the pipeline (case 420.2) · [[decision-case-420.2]] · generate
+- 2026-09-25 estimates/estimate-harness-pipeline updated: the Criterion replaced whole — eight rules outside the pipeline, the hooks of rule-page-read among them (case 420.2) · [[decision-case-420.2]] · generate
+- 2026-09-25 decisions/decision-case-421.1 created · raw/2026-09-25/1228/ledger.md#case-421.1 · generate
+- 2026-09-25 rules/rule-spec-write updated: the hook writes a defer-only Case too (case 421.1) · [[decision-case-421.1]] · generate
+- 2026-09-25 estimates/estimate-spec-write-copies-the-ratified-case updated: the Criterion replaced whole — the exception for a defer-only Case dropped, the hook writes it (case 421.1) · [[decision-case-421.1]] · generate
+- 2026-09-25 estimates/estimate-spec-write-writes-a-defer created · [[decision-case-421.1]] · generate
+- 2026-09-25 rules/rule-spec-write estimate estimate-spec-write-writes-a-defer added · [[decision-case-421.1]] · generate
+- 2026-09-25 decisions/decision-case-421.2 created · raw/2026-09-25/1228/ledger.md#case-421.2 · generate
+- 2026-09-25 rules/rule-case-protocol updated: the deferred Case is shown by the agent and written by the hook of rule-spec-write (case 421.2) · [[decision-case-421.2]] · generate
+- 2026-09-25 estimates/estimate-case-protocol-defers-in-one-reply updated: the Criterion replaced whole — the agent shows the defer, the hook writes it (case 421.2) · [[decision-case-421.2]] · generate
+- 2026-09-25 decisions/decision-case-421.3 created · raw/2026-09-25/1228/ledger.md#case-421.3 · generate
+- 2026-09-25 rules/rule-prespec updated: the closer kept, clean on [-] after the source deferred (case 421.3) · [[decision-case-421.3]] · generate
+- 2026-09-25 estimates/estimate-prespec-checks-the-frontier updated: the Criterion replaced whole — the closer kept (case 421.3) · [[decision-case-421.3]] · generate
+- 2026-09-25 decisions/decision-case-421.4 created · raw/2026-09-25/1228/ledger.md#case-421.4 · generate
+- 2026-09-25 rules/rule-skill-hi updated: the closer kept for a deferred item left as it stands (case 421.4) · [[decision-case-421.4]] · generate
+- 2026-09-25 rules/rule-case-protocol updated: an item left deferred as it stands is no decision, closed kept (case 421.4) · [[decision-case-421.4]] · generate
+- 2026-09-25 estimates/estimate-hi-writes-frontier updated: the Criterion replaced whole — the closer kept; the old Given dropped (case 421.4) · [[decision-case-421.4]] · generate
+- 2026-09-25 decisions/decision-case-422 created · raw/2026-09-25/1228/ledger.md#case-422 · generate
+- 2026-09-25 rules/rule-context-size deferred · [[decision-case-422]] · generate
+- 2026-09-25 decisions/decision-case-423 created · raw/2026-09-25/1228/ledger.md#case-423 · generate
+- 2026-09-25 rules/rule-spec-reconcile deferred · [[decision-case-423]] · generate
+- 2026-09-25 decisions/decision-case-424 created · raw/2026-09-25/1228/ledger.md#case-424 · generate
+- 2026-09-25 rules/rule-orchestration deferred, placeholder · [[decision-case-424]] · generate
+- 2026-09-25 estimates/estimate-spec-write-checks-the-written-case updated: the Criterion replaced whole — a defer-only Case is written by the hook and not checked (case 421.1) · [[decision-case-421.1]] · generate
+- 2026-09-25 lessons/lesson-prespec-wikilink-to-a-decision-page-not-yet-written created · raw/2026-09-25/1228/ledger.md#L36 · generate
+- 2026-09-25 lessons/lesson-hooks-pretooluse-updatedinput-limits-a-read created · raw/2026-09-25/1228/ledger.md#L37 · generate
+- 2026-09-25 estimates/estimate-case-protocol-acknowledging-reply status: pending → passed · raw/2026-09-25/1228/ledger.md#L38 · generate
+- 2026-09-25 estimates/estimate-case-protocol-ledger-line-form status: pending → passed · raw/2026-09-25/1228/ledger.md#L39 · generate
+- 2026-09-25 estimates/estimate-hook-registry-rendered status: pending → passed · raw/2026-09-25/1228/ledger.md#L41 · generate
+- 2026-09-25 estimates/estimate-prespec-reconciles status: pending → passed · raw/2026-09-25/1228/ledger.md#L42 · generate
+- 2026-09-25 estimates/estimate-one-judgment-one-implementation-followed status: pending → passed · raw/2026-09-25/1228/ledger.md#L43 · generate
+- 2026-09-25 lessons/lesson-retro-reading-of-a-criterion-this-spec-replaces created · raw/2026-09-25/1228/ledger.md#L44 · generate
+- 2026-09-25 estimates/estimate-context-size-warns-past-the-limit status: pending → failed · raw/2026-09-25/1228/ledger.md#L45 · generate
+- 2026-09-25 insights/insight-case-form-chat-form-read-by-no-script updated: child lesson-case-form-given-written-before-tasks added; addressed_by stands, the lesson is closed by the same case 419.3 · raw/2026-09-25/1228/ledger.md#L15 · generate
+- 2026-09-25 lessons/lesson-case-form-given-written-before-tasks updated: clustered into insight-case-form-chat-form-read-by-no-script · raw/2026-09-25/1228/ledger.md#L15 · generate
+- 2026-09-25 insights/insight-workflow-case-schema-silent-on-what-the-scripts-accept updated: reopened: children lesson-prespec-read-line-of-a-renamed-estimate and lesson-prespec-wikilink-to-a-decision-page-not-yet-written added · raw/2026-09-25/1228/ledger.md#L16 · generate
+- 2026-09-25 lessons/lesson-prespec-read-line-of-a-renamed-estimate updated: clustered into insight-workflow-case-schema-silent-on-what-the-scripts-accept · raw/2026-09-25/1228/ledger.md#L16 · generate
+- 2026-09-25 lessons/lesson-prespec-wikilink-to-a-decision-page-not-yet-written updated: clustered into insight-workflow-case-schema-silent-on-what-the-scripts-accept · raw/2026-09-25/1228/ledger.md#L36 · generate
+- 2026-09-25 insights/insight-retro-reading-taken-on-a-criterion-the-session-replaces created · raw/2026-09-25/1228/ledger.md#L44 · generate
+- 2026-09-25 lessons/lesson-retro-reading-of-a-replaced-criterion updated: clustered into insight-retro-reading-taken-on-a-criterion-the-session-replaces · raw/2026-09-25/1228/ledger.md#L44 · generate
+- 2026-09-25 lessons/lesson-retro-reading-of-a-criterion-this-spec-replaces updated: clustered into insight-retro-reading-taken-on-a-criterion-the-session-replaces · raw/2026-09-25/1228/ledger.md#L44 · generate
+- 2026-09-25 rules/rule-hook-registry status: draft → built · cascade · generate
+- 2026-09-25 rules/rule-one-judgment-one-implementation status: draft → built · cascade · generate
+- 2026-09-25 rules/rule-skill-hi status: built → draft · cascade · generate
+- 2026-09-25 decisions/decision-case-403 archived · superseded · generate
+- 2026-09-25 decisions/decision-case-416 archived · superseded · generate
+- 2026-09-25 lessons/lesson-case-form-the-spec-free-sections-written-last archived · insight actioned · generate
+- 2026-09-25 lessons/lesson-case-form-ratification-used-for-the-agents-caveats archived · insight actioned · generate
+- 2026-09-25 lessons/lesson-case-form-a-count-in-the-sentence-that-opens-a-list archived · insight actioned · generate
+- 2026-09-25 lessons/lesson-case-form-given-written-before-tasks archived · insight actioned · generate
+- 2026-09-25 lessons/lesson-case-form-a-count-in-the-sentence-that-opens-a-list archived · cleanup
+- 2026-09-25 lessons/lesson-case-form-given-written-before-tasks archived · cleanup
+- 2026-09-25 lessons/lesson-case-form-ratification-used-for-the-agents-caveats archived · cleanup
+- 2026-09-25 lessons/lesson-case-form-the-spec-free-sections-written-last archived · cleanup
+- 2026-09-25 decisions/decision-case-403 archived · cleanup
+- 2026-09-25 decisions/decision-case-416 archived · cleanup

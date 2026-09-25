@@ -209,6 +209,7 @@ entries:
       by SendMessage; whether it pays, measured by its dispatches (the question of case 408)
   exists: true
   applied: 03:50:34
+  superseded_by: '419.2'
 - line: 7
   text: decision[case 416][defer][rule-case-protocol]{ref:rule-case-protocol}
   case: '416'
@@ -225,6 +226,7 @@ entries:
       of its own loaded by /hi
   exists: true
   applied: 03:50:34
+  superseded_by: '419.2'
 - line: 8
   text: decision[case 416][defer][rule-spec-write]{ref:rule-spec-write}
   case: '416'
@@ -240,6 +242,7 @@ entries:
       writes the Case the person saw, and writes the defers too
   exists: true
   applied: 03:50:34
+  superseded_by: '419.2'
 - line: 9
   text: decision[case 416][defer][rule-spec-reconcile]{ref:rule-spec-reconcile}
   case: '416'
@@ -255,6 +258,7 @@ entries:
       of the Frontier is open; when and how the prose of a Case is translated (the question of case 410)
   exists: true
   applied: 03:50:34
+  superseded_by: '419.2'
 - line: 10
   text: decision[case 416][defer][rule-ask]{ref:rule-ask}
   case: '416'
@@ -269,6 +273,7 @@ entries:
     purpose: ask-guppi answers at pre-spec only; the vault query before a create moves to case-guppi
   exists: true
   applied: 03:50:34
+  superseded_by: '419.2'
 - line: 11
   text: decision[case 417][update][rule-prespec]{ref:rule-prespec}
   case: '417'
@@ -890,6 +895,8 @@ decisions:
   supersedes:
   - decision-case-408
   applied: 03:50:34
+  superseded_by:
+  - decision-case-419.2
 - case: '417'
   decision: decision-case-417
   origin: raw/2026-09-25/0051/ledger.md#case-417

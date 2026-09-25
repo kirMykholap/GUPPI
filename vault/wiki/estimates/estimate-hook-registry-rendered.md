@@ -1,9 +1,10 @@
 ---
 type: estimate
 kind: QA
-status: pending
+status: passed
 target: "[[rule-hook-registry]]"
 method: the JSON case of tests/test_render.py; uv run guppi render --check after the render
+checked: 2026-09-25
 origin: raw/2026-09-09/ledger.md#case-18.2
 sprint: migration
 created: 2026-09-09
@@ -21,7 +22,7 @@ The `"hooks"` key of `.claude/settings.json` equals the Render of `rule-hook-reg
 
 ## Result
 
-block 169.2, live 2026-09-15 session S: .claude/settings.json carries uv run guppi event prompt and uv run guppi gate on UserPromptSubmit, guppi render --check exit 0; the day's event log has hi at 18:09:02 from the first and the marks pretask 20:01:16 (the agent's call) and retro 20:31:22 (typed) from the second
+2026-09-25, uv run pytest tests/test_render.py -k json: 4 passed; uv run guppi render --check: exit 0, no output
 
 ## History
 
@@ -33,3 +34,4 @@ block 169.2, live 2026-09-15 session S: .claude/settings.json carries uv run gup
 - 2026-09-15 criterion: case 169.2 added · [[decision-case-169.2]]
 - 2026-09-15 status: pending → passed · raw/2026-09-15/1809/ledger.md#L13
 - 2026-09-24 updated: the Criterion replaced whole — the live reading of the Render, no count of commands (case 392.4) · [[decision-case-392.4]]
+- 2026-09-25 status: pending → passed · raw/2026-09-25/1228/ledger.md#L41

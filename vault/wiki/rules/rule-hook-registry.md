@@ -2,7 +2,7 @@
 type: rule
 kind: Leaf
 purpose: Prevents a hook from being registered by hand, outside a ratified decision
-status: draft
+status: built
 enforcement: render
 governs: .claude/settings.json
 render_mode: partial
@@ -48,16 +48,21 @@ agent's Render and is ratified with it; this page holds the registrations only.
       { "matcher": "Edit|Write|MultiEdit",
   "hooks": [ { "type": "command", "command": "uv run guppi guard", "timeout": 30 } ] },
 { "matcher": "Bash",
-  "hooks": [ { "type": "command", "command": "uv run guppi bashguard", "timeout": 30 } ] }
+  "hooks": [ { "type": "command", "command": "uv run guppi bashguard", "timeout": 30 } ] },
+{ "matcher": "Read",
+  "hooks": [ { "type": "command", "command": "uv run guppi pageread", "timeout": 30 } ] }
 
     ],
     "PostToolUse": [
       { "hooks": [ { "type": "command", "command": "uv run guppi event tool", "timeout": 30 } ] },
       { "matcher": "ExitPlanMode",
-        "hooks": [ { "type": "command", "command": "uv run guppi spec", "timeout": 30 } ] }, { "matcher": "Edit|Write|MultiEdit", "hooks": [ { "type": "command", "command": "uv run guppi ratified --edit", "timeout": 30 } ] }
+        "hooks": [ { "type": "command", "command": "uv run guppi spec", "timeout": 30 } ] }, { "matcher": "Edit|Write|MultiEdit", "hooks": [ { "type": "command", "command": "uv run guppi ratified --edit", "timeout": 30 } ] }, { "matcher": "Read", "hooks": [ { "type": "command", "command": "uv run guppi pageread --after", "timeout": 30 } ] }
     ],
     "Stop": [
-      { "hooks": [ { "type": "command", "command": "uv run guppi ledger", "timeout": 30 }, { "type": "command", "command": "uv run guppi ratified", "timeout": 30 }, { "type": "command", "command": "uv run guppi context", "timeout": 30 } ] }
+      { "hooks": [ { "type": "command", "command": "uv run guppi ledger", "timeout": 30 }, { "type": "command", "command": "uv run guppi ratified", "timeout": 30 }, { "type": "command", "command": "uv run guppi casecheck", "timeout": 30 }, { "type": "command", "command": "uv run guppi context", "timeout": 30 } ] }
+    ],
+    "SubagentStop": [
+      { "hooks": [ { "type": "command", "command": "uv run guppi casecheck --subagent", "timeout": 30 } ] }
     ]
 <!-- /rule-hook-registry -->
 
@@ -85,3 +90,7 @@ agent's Render and is ratified with it; this page holds the registrations only.
 - 2026-09-24 updated: the Stop hook guppi context registered (case 392.1) · [[decision-case-392.1]]
 - 2026-09-24 updated: the UserPromptSubmit hook guppi context --prompt registered (case 392.2) · [[decision-case-392.2]]
 - 2026-09-24 status: built → draft · cascade
+- 2026-09-25 updated: guppi casecheck --subagent registered on SubagentStop (case 419.3) · [[decision-case-419.3]]
+- 2026-09-25 updated: guppi casecheck registered on Stop (case 419.4) · [[decision-case-419.4]]
+- 2026-09-25 updated: guppi pageread registered on PreToolUse and PostToolUse of Read (case 420.1) · [[decision-case-420.1]]
+- 2026-09-25 status: draft → built · cascade

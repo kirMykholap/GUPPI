@@ -1,10 +1,11 @@
 ---
 type: estimate
 kind: QA
-status: pending
+status: failed
 target: "[[rule-context-size]]"
 purpose: Past 400 000 tokens of context the agent tells the person to close the session
 method: uv run pytest tests/test_context.py -k limit; the live reading by hand at the first prompt past 400 000 tokens
+checked: 2026-09-25
 origin: raw/2026-09-24/1303/ledger.md#case-392.2
 sprint: migration
 created: 2026-09-24
@@ -22,6 +23,11 @@ At N of 400 000 or more, the `UserPromptSubmit` hook prints to the agent's conte
 **＋** At N of 400 000 or more, the line of the `Stop` hook ends with `— past 400 000: close the session`.
 **－** Below 400 000 the `UserPromptSubmit` hook prints nothing.
 
+## Result
+
+2026-09-25, uv run pytest tests/test_context.py -k limit: 3 passed; by hand, session 1228: at the prompt that asked for /retro the UserPromptSubmit hook printed "context: 456 635 tokens, past 400 000" and the order to recommend /retro then /handoff, but the agent did not open its reply with that recommendation — it called /retro at once, as the person had just asked; the line of the Stop hook past the limit was not read
+
 ## History
 
 - 2026-09-24 created · [[decision-case-392.2]]
+- 2026-09-25 status: pending → failed · raw/2026-09-25/1228/ledger.md#L45

@@ -18,7 +18,7 @@ When:
 
 Then:
 The Purpose says: three rules belong to no phase of the session — the renderer, the page `settings.json` is assembled from, lint — and with them the check of `rule-sprint` runs in `make lint`, in this order: the harness files against their pages, the sprint file against its page, the glossary file against its page, then the pages.
-**＋** The Purpose names seven more rules that belong to it and run in no pipeline: the schemas of the pages, the layout of the vault, the hook that refuses a hand edit of a rendered file, the hook that refuses a heredoc with a backslash or a file write, the page `CLAUDE.md` is rendered from, the pinned clock of the tests, and the hook that shows the size of the context.
+**＋** The Purpose names eight more rules that belong to it and run in no pipeline: the schemas of the pages, the layout of the vault, the hook that refuses a hand edit of a rendered file, the hook that refuses a heredoc with a backslash or a file write, the page `CLAUDE.md` is rendered from, the pinned clock of the tests, the hook that shows the size of the context, and the hooks that read a page of the vault without its History.
 **＋** `make test-harness` is green; the first three steps of `make lint` — `render`, `sprint` and `glossary --check` — exit 0 with no output on the committed tree; the fourth, `guppi lint`, is read by its own Estimates.
 
 ## Result
@@ -38,3 +38,4 @@ The Purpose says: three rules belong to no phase of the session — the renderer
 - 2026-09-22 updated: the Purpose it reads names five rules outside the pipeline (case 323) · [[decision-case-323]]
 - 2026-09-23 status: pending → passed · raw/2026-09-23/0034/ledger.md#L60
 - 2026-09-24 updated: the Criterion replaced whole — seven rules outside the pipeline, no Given (case 392.3) · [[decision-case-392.3]]
+- 2026-09-25 updated: the Criterion replaced whole — eight rules outside the pipeline, the hooks of rule-page-read among them (case 420.2) · [[decision-case-420.2]]

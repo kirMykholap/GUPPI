@@ -1,7 +1,7 @@
 ---
 type: estimate
 kind: QA
-status: passed
+status: pending
 target: "[[rule-prespec]]"
 purpose: The Frontier of the session exists, and every closed line names a closer the plan bears out
 method: uv run pytest tests/test_prespec.py
@@ -19,9 +19,10 @@ When:
 
 Then:
 A missing file is the finding `frontier: <path> is missing`.
-**＋** A closed line whose last segment after ` · ` is none of `case N`, `work`, `sprint`, `defer case N` is a finding.
+**＋** A closed line whose last segment after ` · ` is none of `case N`, `work`, `sprint`, `kept`, `defer case N` is a finding.
 **＋** A line closed `case N` with no heading of Case N in the plan is a finding; one closed `defer case N` with no `defer` item under Case N is a finding.
 **＋** A line closed `[x]` with `sprint` is a finding.
+**＋** A line closed `kept` is clean only on a `[-]` box whose source segment, the one before the closer, is `deferred`; on an `[x]` box or after another source it is a finding.
 
 ## Result
 
@@ -31,3 +32,4 @@ A missing file is the finding `frontier: <path> is missing`.
 
 - 2026-09-25 created · [[decision-case-399.3]]
 - 2026-09-25 status: pending → passed · raw/2026-09-24/2214/ledger.md#L39
+- 2026-09-25 updated: the Criterion replaced whole — the closer kept (case 421.3) · [[decision-case-421.3]]

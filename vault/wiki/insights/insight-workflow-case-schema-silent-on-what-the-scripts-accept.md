@@ -1,9 +1,9 @@
 ---
 type: insight
 pattern: The Case schema does not say how the scripts read the text a Case writes — which forms they resolve, how far an edit pair reaches — so the agent writes a form the scripts do not handle, and only the pre-spec check finds it.
-status: actioned
-children: ["[[lesson-sub-case-given-the-parents-plus-lines-has-no-form]]", "[[lesson-generate-replace-anchor-stays-in-one-section]]", "[[lesson-spec-write-sub-point-opening-with-a-code-span-unpadded]]"]
-severity: 0
+status: open
+children: ["[[lesson-sub-case-given-the-parents-plus-lines-has-no-form]]", "[[lesson-generate-replace-anchor-stays-in-one-section]]", "[[lesson-spec-write-sub-point-opening-with-a-code-span-unpadded]]", "[[lesson-prespec-read-line-of-a-renamed-estimate]]", "[[lesson-prespec-wikilink-to-a-decision-page-not-yet-written]]"]
+severity: 2
 addressed_by: "[[decision-case-393]]"
 origin: raw/2026-09-23/1355/ledger.md#L36
 sprint: migration
@@ -24,3 +24,4 @@ A suggestion, not a decision: the Case schema of `rule-case-protocol` could stat
 - 2026-09-23 created · raw/2026-09-23/1355/ledger.md#L36
 - 2026-09-24 updated: actioned: the Case schema names, beside each form, the limit the scripts put on it — a replace pair inside one section, a sub-case's given taken as it stands (case 383) · [[decision-case-383]]
 - 2026-09-24 updated: lesson-spec-write-sub-point-opening-with-a-code-span-unpadded added to children by the librarian's synthesis; addressed_by moves to decision-case-393 (later than 383), status kept · raw/2026-09-24/1303/ledger.md#L15
+- 2026-09-25 updated: reopened: children lesson-prespec-read-line-of-a-renamed-estimate and lesson-prespec-wikilink-to-a-decision-page-not-yet-written added · raw/2026-09-25/1228/ledger.md#L16

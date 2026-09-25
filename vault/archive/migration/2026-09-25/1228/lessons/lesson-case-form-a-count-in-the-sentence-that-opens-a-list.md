@@ -2,7 +2,7 @@
 type: lesson
 kind: error
 root_cause: the count stood in the sentence that opens a list — the habit of announcing a list's length — and no script reads the story sections for a count, so the rule held only as far as the agent's own reading at the showing, and the first check was ask-guppi at pre-spec
-status: clustered
+status: archived
 insight: "[[insight-case-form-chat-form-read-by-no-script]]"
 origin: raw/2026-09-25/0051/ledger.md#L20
 sprint: migration
@@ -22,3 +22,5 @@ the count stood in the sentence that opens a list — the habit of announcing a 
 
 - 2026-09-25 created · raw/2026-09-25/0051/ledger.md#L20
 - 2026-09-25 updated: clustered into insight-case-form-chat-form-read-by-no-script · raw/2026-09-25/0051/ledger.md#L20
+- 2026-09-25 archived · insight actioned
+- 2026-09-25 archived · cleanup

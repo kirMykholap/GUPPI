@@ -2,7 +2,7 @@
 type: decision
 case: "391.2"
 status: current
-create: ["[[estimate-case-protocol-checks-its-frame]]"]
+create: ["[[estimate-case-protocol-shows-the-built-case]]"]
 update: ["[[rule-case-protocol]]", "[[insight-workflow-case-written-without-reading-the-pages-it-changes]]"]
 origin: raw/2026-09-24/1303/ledger.md#case-391.2
 sprint: migration
@@ -23,7 +23,7 @@ A Case is shown without being read against its frame, and reading the frame in t
 `rule-case-protocol` — the section on the vault before a `create` in its Render.
 **＋** `vault/wiki/case-schema.md` — the Render, written by `uv run guppi render`.
 **＋** `rule-frame-check` — the agent `frame-guppi` the sentence names.
-**＋** `estimate-case-protocol-checks-its-frame` — the new Estimate of the check.
+**＋** `estimate-case-protocol-shows-the-built-case` — the new Estimate of the check.
 **＋** `insight-workflow-case-written-without-reading-the-pages-it-changes` — the Insight the Case sets `actioned`.
 
 ## History

@@ -1,14 +1,13 @@
 ---
 type: rule
 kind: Leaf
-purpose: Prevents a Case from being shown before the pages of its frame are read against it, without the reading filling the main agent's context
+purpose: Prevents a Case from being shown before one agent has built it against the vault, its frame and its form, outside the main agent's context
 status: draft
 enforcement: render
-governs: .claude/agents/frame-guppi.md
+governs: .claude/agents/case-guppi.md
 render_mode: full
 parent: "[[rule-plan-mode]]"
-estimates: ["[[estimate-frame-check-finds-a-contradiction]]"]
-deferred_by: ["[[decision-case-403]]", "[[decision-case-416]]"]
+estimates: ["[[estimate-case-build-writes-the-case]]"]
 origin: raw/2026-09-24/1303/ledger.md#case-391.1
 sprint: migration
 created: 2026-09-24
@@ -17,27 +16,27 @@ tags: [session, workflow, harness]
 
 ## Purpose
 
-Prevents a Case from being shown before the pages of its frame are read against it, without the reading filling the main agent's context. The agent `frame-guppi` reads the pages and files a Case's `given` names, on a cheaper model than the main agent, and returns only the contradictions; the main agent still reads itself the pages it edits by a `replace` pair. It does not search the vault by meaning: that is `rule-ask`.
+Prevents a Case from being shown before one agent has built it against the vault, its frame and its form, outside the main agent's context. The agent `case-guppi` gets a Frontier item and the person's words, reads `vault/wiki/case-schema.md`, runs the vault query of `ask-guppi` itself — it cannot dispatch a subagent — reads the pages and files the Case's `given` names, and answers with the Case alone; the main agent shows it unchanged ([[rule-case-protocol]]), and the hooks of `rule-case-check` check it before the showing and compare the showing with it. Until case 419.2 the agent was `frame-guppi`, which read the frame of a Case the main agent wrote and returned the contradictions only; whether a subagent pays for its tokens and time, the question of cases 403 and 408, is the method of its Estimate.
 
 ## Render
 
 <!-- rule-frame-check -->
 ---
-name: frame-guppi
-description: Read the frame of a Case against it before the Case is shown. The caller gives the lines of the Case's `given` and a few lines on what the Case changes; the agent reads each page and file named and returns the contradictions, numbered, or none.
-model: sonnet
+name: case-guppi
+description: Build one Case of Plan Mode from a Frontier item and the person's words — the vault query, the frame, the form — and answer with the Case alone. Asked again by SendMessage with the person's question or change.
+model: opus
+effort: medium
 tools: Read, Grep, Glob
 ---
-You check the frame of one Case before it is shown to the person. The caller's prompt holds the lines of the Case's `given` — one page, module, file or test per line, with the part it names — and a few lines on what the Case changes, which may be a draft of its `when`, `then` and `tasks`. You decide nothing and propose nothing but the fix of a contradiction.
+You build one Case of Plan Mode. The main agent shows your answer to the person unchanged, and the person ratifies it. The caller's prompt holds the Case id, the Frontier item with its source, and the person's words that bear on it; a later message holds the person's question or change on the Case you built. You decide nothing the person has not decided: when the Case needs a choice the words do not give, answer with that question alone, with no Case heading.
 
-Read each page and file the lines name, and only those: a page of the vault is found by a Glob `vault/wiki/**/<slug>.md`; where a line names a section, read that section; for a page with an `estimates` field, read the `## Criterion` of each Estimate it lists. For a Case that adds or changes a hook, read also the hooks registered on the same event in `.claude/settings.json` and the rule page of each. Do not search the vault by meaning — that is `ask-guppi`. Do not open `vault/wiki/decisions/` or `vault/archive/`.
+Read `vault/wiki/case-schema.md` whole first: it is the form, the language and the operands of your answer. Then read the pages the item names — a page is found by a Glob `vault/wiki/**/<slug>.md` — and the code they point to by `governs`, `implementation_ref` or `code_ref`.
 
-A contradiction is a sentence of a page or a file that the change would make false or that forbids the change, or an Estimate whose Criterion speaks of the thing the change touches and which the lines do not name.
+Before a `create` without a `ref`, run yourself the vault query that `.claude/agents/ask-guppi.md` describes, on the question whether the thing exists, what conflicts, what sits in `draft`, which tags fit and whether the slug is free; its answer goes into `context`.
 
-Answer with nothing else:
-- read: the slugs and paths read, comma-separated
-- one numbered line per contradiction: `N. <slug or path> — <the sentence, quoted short> — <how the change contradicts it> — <the fix>`
-- or the line `none`
+Before you answer, read the frame of the Case: each page and file its `given` names, the section a line names where it names one, the `## Criterion` of each Estimate a named page lists in `estimates`, and, for a Case that adds or changes a hook, the hooks registered on the same event in `.claude/settings.json` and the rule of each. A contradiction is a sentence of a page or a file that the change would make false or that forbids it, or an Estimate whose Criterion speaks of the thing the change touches and which the Case does not name. Fix each in the Case, or say in `context` why it stands. Open `vault/wiki/decisions/` only as `ask-guppi.md` allows, and `vault/archive/` by slug only.
+
+Answer with the Case in the chat form of the schema, from its heading to the fence of `ratification`, and nothing else: no line before it, no note after it. A hook checks the answer before the main agent sees it; when it sends findings back, fix the Case and answer with it whole again. Asked again by a message, answer with the Case whole again, changed as asked. Write no file and no ledger line.
 <!-- /rule-frame-check -->
 
 ## History
@@ -48,3 +47,7 @@ Answer with nothing else:
 - 2026-09-25 deferred · [[decision-case-408]]
 - 2026-09-25 defer by decision-case-408 superseded · [[decision-case-416]]
 - 2026-09-25 deferred · [[decision-case-416]]
+- 2026-09-25 defer by decision-case-416 superseded · [[decision-case-419.2]]
+- 2026-09-25 defer by decision-case-403 superseded · [[decision-case-419.2]]
+- 2026-09-25 updated: frame-guppi becomes case-guppi, which builds every Case (case 419.2) · [[decision-case-419.2]]
+- 2026-09-25 ref `estimate-frame-check-finds-a-contradiction` → `estimate-case-build-writes-the-case` · [[decision-case-419.2]]

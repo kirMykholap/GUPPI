@@ -8,7 +8,6 @@ governs: .claude/agents/ask-guppi.md
 render_mode: full
 parent: "[[rule-plan-mode]]"
 estimates: ["[[estimate-ask-finds]]"]
-deferred_by: ["[[decision-case-416]]"]
 origin: raw/2026-09-09/ledger.md#case-23.1
 sprint: migration
 created: 2026-09-09
@@ -17,21 +16,14 @@ tags: [session, workflow, harness]
 
 ## Purpose
 
-Prevents a `create` from being proposed without the vault having been asked whether it
-already holds the thing, or forbids it. One entry point for every caller — the agent at
-the vault query before a `create` and at pre-spec, the librarian, the person — so the search is tuned once, and its cost stays in
-the searcher's own context: the index lines and pages never enter the caller's. A subagent
-with read-only tools, dispatched through the `Agent` tool, so the event log records each
-call. The main agent asks at two moments: before a `create` without a `ref`, and once at
-pre-spec for the set of ratified Cases; the librarian asks by finished content afterwards ([[rule-index-check]]). An `update` with a `ref` does not ask: the page itself and a Grep give
-the `given` (case 154).
+Prevents a `create` from being proposed without the vault having been asked whether it already holds the thing, or forbids it. One recipe for every caller — the main agent at pre-spec, `case-guppi` at the vault query before a `create`, the librarian, the person — so the search is tuned once, and its cost stays in the searcher's own context: the index lines and pages never enter the main agent's. A subagent with read-only tools, dispatched through the `Agent` tool, so the event log records each call; `case-guppi`, which cannot dispatch a subagent, reads this file and runs the recipe itself (case 419.1). The main agent asks once, at pre-spec, for the set of ratified Cases; the librarian asks by finished content afterwards ([[rule-index-check]]). An `update` with a `ref` does not ask: the page itself and a Grep give the `given` (case 154).
 
 ## Render
 
 <!-- rule-ask -->
 ---
 name: ask-guppi
-description: Ask the vault what already exists, what is close, what is missing, which rule the proposal touches, which tags fit and whether a slug is free. One question before a `create` without a `ref`, and one at pre-spec for the whole set; an `update` with a `ref` reads the page itself.
+description: Ask the vault what already exists, what is close, what is missing, which rule the proposal touches, which tags fit and whether a slug is free. `case-guppi` runs this query itself before a `create` without a `ref`; the main agent asks once at pre-spec for the whole set; an `update` with a `ref` reads the page itself.
 model: opus
 tools: Read, Grep, Glob
 ---
@@ -81,3 +73,5 @@ Answer with exactly these five lines, each present, "none" when empty:
 - 2026-09-20 updated: pre-task → the vault query before a create, the first of the two moments (case 277.4, supersedes 274.2) · [[decision-case-277.4]]
 - 2026-09-22 updated: the index lines and the vault's own rules named by their pages, not by a § of index.md (case 318) · [[decision-case-318]]
 - 2026-09-25 deferred · [[decision-case-416]]
+- 2026-09-25 updated: the vault query before a create is run by case-guppi; the main agent asks at pre-spec only (case 419.1) · [[decision-case-419.1]]
+- 2026-09-25 defer by decision-case-416 superseded · [[decision-case-419.2]]

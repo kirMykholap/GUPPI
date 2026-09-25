@@ -1,9 +1,10 @@
 ---
 type: insight
 pattern: The Retro takes the readings a list asks for — a read line of an older Spec, the Work list of the brief — and writes each without holding its slug against the Cases of the same session, so an Estimate whose Criterion a Case of that Spec replaces gets a reading on a Criterion nobody built; no check compares an estimate line with the Spec of its own session.
-status: open
+status: actioned
 children: ["[[lesson-retro-reading-of-a-replaced-criterion]]", "[[lesson-retro-reading-of-a-criterion-this-spec-replaces]]"]
-severity: 2
+severity: 0
+addressed_by: "[[decision-case-428.1]]"
 origin: raw/2026-09-25/1228/ledger.md#L44
 sprint: migration
 created: 2026-09-25
@@ -21,3 +22,4 @@ A suggestion, not a decision: a check at the Retro, or at the ledger write, coul
 ## History
 
 - 2026-09-25 created · raw/2026-09-25/1228/ledger.md#L44
+- 2026-09-25 updated: actioned: the ledger hook refuses a reading of an Estimate that a decision line of the same session creates or updates (case 428.1) · [[decision-case-428.1]]

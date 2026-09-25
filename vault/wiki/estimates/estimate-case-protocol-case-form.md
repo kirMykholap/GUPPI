@@ -1,7 +1,7 @@
 ---
 type: estimate
 kind: QA
-status: failed
+status: pending
 target: "[[rule-case-protocol]]"
 purpose: A Case in the chat carries the whole contract in given, when and then
 method: one reading by hand of the Cases of a session, at its close
@@ -15,11 +15,11 @@ tags: [session, workflow]
 ## Criterion
 
 When:
-The agent shows a Case in the chat, at its first showing or again.
+The main agent shows in the chat a Case that `case-guppi` built, at its first showing or again.
 
 Then:
-The Case opens with the heading `## Case N — name`, a sub-case with `### Case N.M — name` under its parent, and holds its sections in the order of the Sections table, each one blockquote whose first line is `**name:**`.
-**＋** `context` is prose: the mechanism in plain words first, then the state of the pages the Case changes, the vault's answer and why an Estimate of the rule is not touched; a case number stands in `context` or `problem` only when the Case is about that case, and a count of items stands in none of the story sections unless the Case is about that count.
+The Case opens with the heading `## Case N — name`, a sub-case with `### Case N.M — name` under its parent, and holds its sections in the order of the Sections table of `vault/wiki/case-schema.md`, each one blockquote whose first line is `**name:**`.
+**＋** `context` is prose: the mechanism in plain words first, then the state of the pages the Case changes, the vault's answer, what `case-guppi` found in the frame and why an Estimate of the rule is not touched; a case number stands in `context` or `problem` only when the Case is about that case, and a count of items stands in none of the story sections unless the Case is about that count.
 **＋** `given` holds the frame, one thing per line — each page, module, file and test the Case touches and the rule that constrains, its slug or path in a code span and its role — and no state.
 **＋** In `given`, `when` and `then` each line after the first opens with `**＋**` or `**－**`, a `**－**` line names something of `given` or `when`, and `then` holds behaviour only.
 **＋** `tasks` names by slug each Estimate the Case creates or replaces, and under a line whose item writes content that content stands as sub-points; no `contract` line and no "block N" line.
@@ -52,3 +52,4 @@ The Case opens with the heading `## Case N — name`, a sub-case with `### Case 
 - 2026-09-25 updated: the Criterion replaced whole — the line on context names no count of items in the story sections; the rest as case 396.1 wrote it (case 406) · [[decision-case-406]]
 - 2026-09-25 updated: the Criterion replaced whole — the line on the frame of when and then left to estimate-prespec-checks-the-frame (case 415) · [[decision-case-415]]
 - 2026-09-25 status: pending → failed · raw/2026-09-25/0051/ledger.md#L19
+- 2026-09-25 updated: the Criterion replaced whole — a Case built by case-guppi, and its context says what case-guppi found in the frame (case 431) · [[decision-case-431]]

@@ -41,8 +41,8 @@ update:
 ```
 
 ```tasks
-- [ ] update `rule-frame-check` — the page renamed `rule-case-build`
-- [ ] `uv run guppi render`: `.claude/agents/case-guppi.md`
+- [x] update `rule-frame-check` — the page renamed `rule-case-build`
+- [x] `uv run guppi render`: `.claude/agents/case-guppi.md`
 - [ ] by hand: a Grep of `rule-frame-check` over `vault/wiki/` finds it only in History lines, `brief.md` and `log.md`
 ```
 
@@ -90,12 +90,12 @@ update:
 ```
 
 ```tasks
-- [ ] update `rule-prespec` — the Render names the finding of a second item of one kind and slug
-- [ ] update `estimate-prespec-matches-lines-and-items` — its Criterion replaced whole by the `when` and `then` of this Case
+- [x] update `rule-prespec` — the Render names the finding of a second item of one kind and slug
+- [x] update `estimate-prespec-matches-lines-and-items` — its Criterion replaced whole by the `when` and `then` of this Case
 - [x] `guppi/prespec.py`: `check_lines` reports a second item of one kind and slug under one Case; the docstring names the finding
 - [x] `tests/test_prespec.py`: two `update` items of one slug in one fence, and in two fences of one Case, are the finding; a `create` and an `update` of one slug, and one slug under two sub-cases, are none
 - [x] `tests/test_casecheck.py`: an answer of `case-guppi` whose `tasks` hold two `update` lines of one slug exits 2 with the finding
-- [ ] `uv run guppi render`: `.claude/skills/pre-spec/SKILL.md`
+- [x] `uv run guppi render`: `.claude/skills/pre-spec/SKILL.md`
 - [ ] read `estimate-prespec-matches-lines-and-items`
 ```
 
@@ -143,7 +143,7 @@ update:
 ```
 
 ```tasks
-- [ ] update `rule-materialize` — the Purpose names the retirement of a reading by a ratified Case
+- [x] update `rule-materialize` — the Purpose names the retirement of a reading by a ratified Case
 - [x] `guppi/materialize.py`: the docstring names the one-off migration of a ratified Case as the writer of `superseded_by` on an `estimate` entry, the number of that Case as the value (case 427)
 - [x] one-off migration: in `raw/2026-09-25/1228/materialize.yaml`, the entry `line: 40` gets `superseded_by: '427'` and loses `failed`
 - [ ] by hand: at the librarian's run after the migration, `generate` prints no line for `estimate-frame-check-finds-a-contradiction`, and `render` ticks the render lines of `raw/2026-09-25/1228/spec.md`
@@ -230,11 +230,11 @@ update:
 ```
 
 ```tasks
-- [ ] update `rule-ledger-write` — How it works names the refusal; `implementation_ref` names `guppi/materialize.py` and `tests/test_ledger.py`
-- [ ] create `estimate-ledger-write-refuses-a-reading-of-a-change-of-the-session`
-- [ ] update `rule-case-protocol` — an `estimate[...]` line of a change of the session waits for a later session
-- [ ] `uv run guppi render`: `vault/wiki/case-schema.md`
-- [ ] update `insight-retro-reading-taken-on-a-criterion-the-session-replaces` — actioned
+- [x] update `rule-ledger-write` — How it works names the refusal; `implementation_ref` names `guppi/materialize.py` and `tests/test_ledger.py`
+- [x] create `estimate-ledger-write-refuses-a-reading-of-a-change-of-the-session`
+- [x] update `rule-case-protocol` — an `estimate[...]` line of a change of the session waits for a later session
+- [x] `uv run guppi render`: `vault/wiki/case-schema.md`
+- [x] update `insight-retro-reading-taken-on-a-criterion-the-session-replaces` — actioned
 - [x] `guppi/ledger.py`: `run` parses the lines of the session's `ledger.md` and the fresh lines by `materialize.parse_line`, imported inside the function; an `estimate` line whose slug a `create` or `update` decision line names is not written; exit 2 with one stderr line per refused line of `last_assistant_message`, silence for an older one; the docstring names the refusal (case 428.1)
 - [x] `tests/test_ledger.py`: a reading of a slug with a `create` line, and with an `update` line, in the session's ledger is refused, the other lines written; a decision line in the same reply refuses it too; the stderr line and exit 2 for a refused line of the finished reply, exit 0 and no line for one of an earlier text; a reading of a slug with a `defer` line only, or with a decision line of another session, is written
 - [ ] read `estimate-ledger-write-refuses-a-reading-of-a-change-of-the-session`
@@ -270,7 +270,7 @@ update:
 ```
 
 ```tasks
-- [ ] update `estimate-ledger-write-lifts` — its Criterion replaced whole by the `when` and `then` of this Case
+- [x] update `estimate-ledger-write-lifts` — its Criterion replaced whole by the `when` and `then` of this Case
 - [ ] read `estimate-ledger-write-lifts`
 ```
 
@@ -307,9 +307,9 @@ update:
 ```
 
 ```tasks
-- [ ] update `rule-retro` — the Render: no reading of what the session changes, in this session
-- [ ] update `estimate-retro-loads` — its Criterion replaced whole by the `when` and `then` of this Case
-- [ ] `uv run guppi render`: `.claude/skills/retro/SKILL.md`
+- [x] update `rule-retro` — the Render: no reading of what the session changes, in this session
+- [x] update `estimate-retro-loads` — its Criterion replaced whole by the `when` and `then` of this Case
+- [x] `uv run guppi render`: `.claude/skills/retro/SKILL.md`
 - [ ] read `estimate-retro-loads`
 ```
 
@@ -348,9 +348,9 @@ update:
 ```
 
 ```tasks
-- [ ] update `rule-retro` — the Render: the opening list marks a `read` line of a change of the session as waiting for a later session
-- [ ] update `estimate-retro-report-holds-each-fact-once` — its Criterion replaced whole by the `when` and `then` of this Case
-- [ ] `uv run guppi render`: `.claude/skills/retro/SKILL.md`
+- [x] update `rule-retro` — the Render: the opening list marks a `read` line of a change of the session as waiting for a later session
+- [x] update `estimate-retro-report-holds-each-fact-once` — its Criterion replaced whole by the `when` and `then` of this Case
+- [x] `uv run guppi render`: `.claude/skills/retro/SKILL.md`
 - [ ] read `estimate-retro-report-holds-each-fact-once`
 ```
 
@@ -426,16 +426,16 @@ update:
 ```
 
 ```tasks
-- [ ] update `rule-case-protocol` — the Render: one `{supersedes:case N}` block per Case on a line; a deferred decision taken up names every Case of its `deferred_by`
-- [ ] update `entity-glossary` — the term `supersedes`: one block per Case, several on one line
-- [ ] update `estimate-materialize-marks-superseded` — its Criterion replaced whole by the `when` and `then` of this Case
-- [ ] update `estimate-case-protocol-ledger-line-form` — its Criterion replaced whole by the text below; the method names the first take-up of a decision deferred more than once
+- [x] update `rule-case-protocol` — the Render: one `{supersedes:case N}` block per Case on a line; a deferred decision taken up names every Case of its `deferred_by`
+- [x] update `entity-glossary` — the term `supersedes`: one block per Case, several on one line
+- [x] update `estimate-materialize-marks-superseded` — its Criterion replaced whole by the `when` and `then` of this Case
+- [x] update `estimate-case-protocol-ledger-line-form` — its Criterion replaced whole by the text below; the method names the first take-up of a decision deferred more than once
 - [x] `guppi/materialize.py`: `parse_line` returns `supersedes` as a list, one Case per `{supersedes:case N}` block, as it does for `addresses`; `lift_line` marks and refolds each Case of the list, here or in another unit's yaml; `decision_record` reads a list and the one value of an existing yaml; the docstring says a line may carry several blocks (case 429)
 - [x] `tests/test_materialize.py`: a line with two blocks marks the entries and the `decisions` records of both Cases, one in this unit and one in another unit's yaml; its entry carries both in order; a folded reading of a `create` of each Case is refolded; an existing entry with one value is read as a list of one; the assertions on one value become a list of one
 - [x] `guppi/prespec.py`: `superseded_in_window` takes each Case of the list
 - [x] `tests/test_prespec.py`: a line of the window with two blocks — both Cases need no item, both headings still in the plan are two findings, both sections of the ratified copy are no finding
-- [ ] `uv run guppi render`: `vault/wiki/case-schema.md`
-- [ ] `uv run guppi glossary`
+- [x] `uv run guppi render`: `vault/wiki/case-schema.md`
+- [x] `uv run guppi glossary`
 - [ ] read `estimate-materialize-marks-superseded` — in the next session (case 428.1)
 - [ ] read `estimate-case-protocol-ledger-line-form` — in the next session (case 428.1)
 ```
@@ -484,8 +484,8 @@ update:
 ```
 
 ```tasks
-- [ ] update `rule-context-size` — How it works: past the limit a note for the person, not an order
-- [ ] update `estimate-context-size-warns-past-the-limit` — its Criterion replaced whole by the `when` and `then` of this Case
+- [x] update `rule-context-size` — How it works: past the limit a note for the person, not an order
+- [x] update `estimate-context-size-warns-past-the-limit` — its Criterion replaced whole by the `when` and `then` of this Case
 - [x] `guppi/context.py`: `prompt_text` prints `context: <N> tokens, past 400 000 — the session is already costly.` and the note for the agent to pass to the person — taking on more work is not recommended; while the Frontier holds open items, deferring them is the better course (rule-context-size); `stop_line` ends with `— past 400 000: costly, better take no more work`; the docstring says the same (case 430)
 - [x] `tests/test_context.py`: past the limit the prompt text holds the note and neither `/retro` nor `/handoff`, and the `Stop` line ends with `— past 400 000: costly, better take no more work`; below the limit, as before; the docstring names case 430
 - [x] `uv run pytest tests/test_context.py`
@@ -531,7 +531,7 @@ update:
 ```
 
 ```tasks
-- [ ] update `estimate-case-protocol-case-form` — its Criterion replaced whole by the `when` and `then` of this Case
+- [x] update `estimate-case-protocol-case-form` — its Criterion replaced whole by the `when` and `then` of this Case
 - [ ] read `estimate-case-protocol-case-form`
 ```
 
@@ -586,12 +586,12 @@ update:
 ```
 
 ```tasks
-- [ ] update `rule-prespec` — the Render names the new slug of a renamed Estimate
-- [ ] update `estimate-prespec-requires-a-task-line` — its Criterion replaced whole by the `when` and `then` of this Case
-- [ ] update `insight-workflow-case-schema-silent-on-what-the-scripts-accept` — actioned
+- [x] update `rule-prespec` — the Render names the new slug of a renamed Estimate
+- [x] update `estimate-prespec-requires-a-task-line` — its Criterion replaced whole by the `when` and `then` of this Case
+- [x] update `insight-workflow-case-schema-silent-on-what-the-scripts-accept` — actioned
 - [x] `guppi/prespec.py`: `estimates_to_read` gives the slug under `rename` for an Estimate `update` that carries one; the docstring says so
 - [x] `tests/test_prespec.py`: a renamed Estimate set `pending` with a read line of its new slug is no finding; with a read line of its old slug alone, the finding names the new slug
 - [x] one-off migration: in `raw/2026-09-25/1228/spec.md`, the read lines of `estimate-case-protocol-checks-its-frame` and `estimate-frame-check-finds-a-contradiction` become `` - [ ] read `estimate-case-protocol-shows-the-built-case` `` and `` - [ ] read `estimate-case-build-writes-the-case` ``
-- [ ] `uv run guppi render`: `.claude/skills/pre-spec/SKILL.md`
+- [x] `uv run guppi render`: `.claude/skills/pre-spec/SKILL.md`
 - [ ] read `estimate-prespec-requires-a-task-line`
 ```

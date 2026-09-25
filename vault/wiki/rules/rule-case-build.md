@@ -20,7 +20,7 @@ Prevents a Case from being shown before one agent has built it against the vault
 
 ## Render
 
-<!-- rule-frame-check -->
+<!-- rule-case-build -->
 ---
 name: case-guppi
 description: Build one Case of Plan Mode from a Frontier item and the person's words — the vault query, the frame, the form — and answer with the Case alone. Asked again by SendMessage with the person's question or change.
@@ -37,7 +37,7 @@ Before a `create` without a `ref`, run yourself the vault query that `.claude/ag
 Before you answer, read the frame of the Case: each page and file its `given` names, the section a line names where it names one, the `## Criterion` of each Estimate a named page lists in `estimates`, and, for a Case that adds or changes a hook, the hooks registered on the same event in `.claude/settings.json` and the rule of each. A contradiction is a sentence of a page or a file that the change would make false or that forbids it, or an Estimate whose Criterion speaks of the thing the change touches and which the Case does not name. Fix each in the Case, or say in `context` why it stands. Open `vault/wiki/decisions/` only as `ask-guppi.md` allows, and `vault/archive/` by slug only.
 
 Answer with the Case in the chat form of the schema, from its heading to the fence of `ratification`, and nothing else: no line before it, no note after it. A hook checks the answer before the main agent sees it; when it sends findings back, fix the Case and answer with it whole again. Asked again by a message, answer with the Case whole again, changed as asked. Write no file and no ledger line.
-<!-- /rule-frame-check -->
+<!-- /rule-case-build -->
 
 ## History
 
@@ -51,3 +51,5 @@ Answer with the Case in the chat form of the schema, from its heading to the fen
 - 2026-09-25 defer by decision-case-403 superseded · [[decision-case-419.2]]
 - 2026-09-25 updated: frame-guppi becomes case-guppi, which builds every Case (case 419.2) · [[decision-case-419.2]]
 - 2026-09-25 ref `estimate-frame-check-finds-a-contradiction` → `estimate-case-build-writes-the-case` · [[decision-case-419.2]]
+- 2026-09-25 renamed from `rule-frame-check` · [[decision-case-425]]
+- 2026-09-25 updated: renamed: the rule of the agent case-guppi; the rename of case 419.2, lost by materialize, applied (case 425) · [[decision-case-425]]

@@ -1,7 +1,7 @@
 ---
 type: estimate
 kind: QA
-status: passed
+status: pending
 target: "[[rule-ledger-write]]"
 method: pytest in tests/test_ledger.py and tests/test_gate.py with piped payloads against a temp vault; the live reading once by hand — the lines of the Case in the session's ledger.md, written by the hook
 checked: 2026-09-17
@@ -13,18 +13,14 @@ tags: [session, hooks, harness, ledger]
 
 ## Criterion
 
-Given:
-The `Stop` hook `uv run guppi ledger` receives `transcript_path` and `last_assistant_message` at the end of every turn of the main agent.
-**＋** The session's transcript holds every assistant text, a text followed by a tool call in the same turn included (Claude Code 2.1.269–2.1.272, the sessions of 2026-09-13, 2026-09-14 and 2238).
-**＋** `tests/test_ledger.py` and `tests/test_gate.py` fix the behaviour with piped payloads against a temp vault.
-
 When:
-The `Stop` hook fires in a session with a `hi` recorded, or `guppi gate` refuses a `Skill` call for an item of the Spec without a ledger line.
+The `Stop` hook `uv run guppi ledger` fires at the end of a turn of the main agent, with `transcript_path` and `last_assistant_message` in its payload; or `guppi gate` refuses a `Skill` call for an item of the Spec without a ledger line.
 
 Then:
-Every line `- decision[`, `- estimate[`, `- lesson[` inside a `LEDGER` block of any text of the main agent in the transcript, the reply just finished included, lands in `raw/<hi date>/<hi HHMM>/ledger.md` with the time of writing, once — a body already in any `ledger.md` under `raw/` is not written again.
+In a session with a `hi` recorded, every line `- decision[`, `- estimate[`, `- lesson[` inside a `LEDGER` block of any text of the main agent in the transcript, the reply just finished included, lands in `raw/<hi date>/<hi HHMM>/ledger.md` with the time of writing, once — a body already in the ledger of any session is not written again.
 **＋** A block in a text followed by a tool call in the same turn reaches the ledger at the next `Stop` of the session, with the time of that `Stop`; the reply that ends in the text lands it now.
-**＋** The gate's advice to the agent reads: `The text before a tool call waits for the next Stop: end this reply in text with the LEDGER block, then call /<skill> in the next reply.`
+**＋** The gate's advice to the agent reads "The text before a tool call waits for the next Stop: end this reply in text with the LEDGER block, then call /<skill> in the next reply."
+**－** An `estimate[...]` line the hook refuses by `estimate-ledger-write-refuses-a-reading-of-a-change-of-the-session` does not land.
 **－** Without a `hi`: exit 2 with the reason, the ledger untouched; with `stop_hook_active`: exit 0, nothing written.
 **－** The last turn of a session that ends in a tool call has no `Stop` after it; its lines are a finding of Retro, not of the hook.
 
@@ -54,3 +50,4 @@ Every line `- decision[`, `- estimate[`, `- lesson[` inside a `LEDGER` block of 
 - 2026-09-16 status: pending → passed · raw/2026-09-15/2225/ledger.md#L15
 - 2026-09-18 updated: the Criterion replaced whole — the text before a tool call is read at the next Stop, the gate's advice reworded (case 224.1) · [[decision-case-224.1]]
 - 2026-09-18 status: pending → passed · raw/2026-09-17/1119/ledger.md#L40
+- 2026-09-25 updated: the Criterion replaced whole — a reading the hook refuses as a change of the session does not land; Given dropped, its input moved into When (case 428.2) · [[decision-case-428.2]]

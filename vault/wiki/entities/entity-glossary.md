@@ -22,7 +22,7 @@ The terms of GUPPI: one row per term — the term, its meaning in one line, and 
 |---|---|---|
 | Ratification | Human sign-off on a Decision; nothing in vault or code changes without one | [[rule-case-protocol]] |
 | Contract vs implementation | A Decision fixes what "done" means, never how; a contract change is a new Case | [[rule-case-protocol]] |
-| `ref`, `slug`, `supersedes` | A pointer to an existing page (absent: query the vault before a `create`; present: `update`); the page id = filename; the earlier case a ledger line corrects, written `{supersedes:case N}`, which marks every entry of that Case superseded and clears its `deferred_by` (case 200.2) | [[rule-case-protocol]] |
+| `ref`, `slug`, `supersedes` | A pointer to an existing page (absent: query the vault before a `create`; present: `update`); the page id = filename; the earlier case a ledger line corrects, written `{supersedes:case N}`, one block per Case and several on one line, each of which marks every entry of its Case superseded and clears its `deferred_by` (cases 200.2, 429) | [[rule-case-protocol]] |
 | Decision | The atomic unit of work: `create`, `update`, `delete`, `defer`; Read is never one | [[rule-case-protocol]] |
 | Types | `create` a page (an Estimate is its own `create`, with `ref` on its target, case 193); `update` fields, `result`/`status` included, or `rename` — the page moves to the new slug and every link follows (case 258.1); `delete` sets `status: deleted` after an impact analysis, the librarian archives; `defer` postpones, a placeholder page when no `ref` | [[rule-case-protocol]] |
 | Case | The unit of dialogue, not a page: `context`, `problem`, `recommend`, `given`, `when`, `then`, `tasks`, `ratification` (case 163); `given` is the frame of the Case; `when` + `then` is the Estimate criterion, the Estimate named by slug (cases 193, 378.2); the page content is a `then` block in the Spec; splits into dotted sub-cases the parent's sign-off never covers | [[rule-case-protocol]] |
@@ -80,3 +80,4 @@ The terms of GUPPI: one row per term — the term, its meaning in one line, and 
 - 2026-09-22 rules: [rule-glossary] · cascade
 - 2026-09-23 updated: the Criterion is when and then (case 378.2) · [[decision-case-378.2]]
 - 2026-09-23 updated: the body of a decision page (case 378.3) · [[decision-case-378.3]]
+- 2026-09-25 updated: the term supersedes: one block per Case, several on one line (case 429) · [[decision-case-429]]

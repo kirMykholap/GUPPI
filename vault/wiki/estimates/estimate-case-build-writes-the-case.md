@@ -2,7 +2,7 @@
 type: estimate
 kind: QA
 status: pending
-target: "[[rule-frame-check]]"
+target: "[[rule-case-build]]"
 purpose: case-guppi builds a Case against the vault and its frame and answers with the Case alone
 method: "by hand: two live dispatches in a session after the render, one Case with a create without a ref and one that changes a hook; the tokens and seconds of each dispatch in the estimate line"
 origin: raw/2026-09-24/1303/ledger.md#case-391.1
@@ -31,3 +31,4 @@ Then:
 - 2026-09-24 created · [[decision-case-391.1]]
 - 2026-09-25 renamed from `estimate-frame-check-finds-a-contradiction` · [[decision-case-419.2]]
 - 2026-09-25 updated: renamed; the Criterion replaced whole — case-guppi builds the Case; the method measures its cost (case 419.2) · [[decision-case-419.2]]
+- 2026-09-25 ref `rule-frame-check` → `rule-case-build` · [[decision-case-425]]

@@ -3621,3 +3621,79 @@ instruction. The global feed; a page's own `## History` is the per-page view.
 - 2026-09-25 lessons/lesson-case-form-the-spec-free-sections-written-last archived · cleanup
 - 2026-09-25 decisions/decision-case-403 archived · cleanup
 - 2026-09-25 decisions/decision-case-416 archived · cleanup
+- 2026-09-25 decisions/decision-case-425 created · raw/2026-09-25/1654/ledger.md#case-425 · generate
+- 2026-09-25 rules/rule-case-build renamed from `rule-frame-check` · [[decision-case-425]] · generate
+- 2026-09-25 rules/rule-plan-mode ref `rule-frame-check` → `rule-case-build` · [[decision-case-425]] · generate
+- 2026-09-25 estimates/estimate-case-build-writes-the-case ref `rule-frame-check` → `rule-case-build` · [[decision-case-425]] · generate
+- 2026-09-25 rules/rule-case-build updated: renamed: the rule of the agent case-guppi; the rename of case 419.2, lost by materialize, applied (case 425) · [[decision-case-425]] · generate
+- 2026-09-25 decisions/decision-case-426 created · raw/2026-09-25/1654/ledger.md#case-426 · generate
+- 2026-09-25 rules/rule-prespec updated: the Render names the finding of a second item of one kind and slug under one Case (case 426) · [[decision-case-426]] · generate
+- 2026-09-25 estimates/estimate-prespec-matches-lines-and-items updated: the Criterion replaced whole — a second item of one kind and slug under one Case is a finding (case 426) · [[decision-case-426]] · generate
+- 2026-09-25 decisions/decision-case-427 created · raw/2026-09-25/1654/ledger.md#case-427 · generate
+- 2026-09-25 rules/rule-materialize updated: a reading that must not apply is retired by a one-off migration of a ratified Case, superseded_by set to its number (case 427) · [[decision-case-427]] · generate
+- 2026-09-25 decisions/decision-case-428.1 created · raw/2026-09-25/1654/ledger.md#case-428.1 · generate
+- 2026-09-25 rules/rule-ledger-write updated: the hook refuses a reading of an Estimate that a decision line of the session creates or updates (case 428.1) · [[decision-case-428.1]] · generate
+- 2026-09-25 estimates/estimate-ledger-write-refuses-a-reading-of-a-change-of-the-session created · [[decision-case-428.1]] · generate
+- 2026-09-25 rules/rule-ledger-write estimate estimate-ledger-write-refuses-a-reading-of-a-change-of-the-session added · [[decision-case-428.1]] · generate
+- 2026-09-25 rules/rule-case-protocol updated: a reading of an Estimate the session creates or updates waits for a later session (case 428.1) · [[decision-case-428.1]] · generate
+- 2026-09-25 insights/insight-retro-reading-taken-on-a-criterion-the-session-replaces updated: actioned: the ledger hook refuses a reading of an Estimate that a decision line of the same session creates or updates (case 428.1) · [[decision-case-428.1]] · generate
+- 2026-09-25 decisions/decision-case-428.2 created · raw/2026-09-25/1654/ledger.md#case-428.2 · generate
+- 2026-09-25 estimates/estimate-ledger-write-lifts updated: the Criterion replaced whole — a reading the hook refuses as a change of the session does not land; Given dropped, its input moved into When (case 428.2) · [[decision-case-428.2]] · generate
+- 2026-09-25 decisions/decision-case-428.3 created · raw/2026-09-25/1654/ledger.md#case-428.3 · generate
+- 2026-09-25 rules/rule-retro updated: Retro takes no reading of an Estimate the session creates or updates, built or not (case 428.3) · [[decision-case-428.3]] · generate
+- 2026-09-25 estimates/estimate-retro-loads updated: the Criterion replaced whole — an Estimate the session creates or updates gets no reading at its Retro, built or not (case 428.3) · [[decision-case-428.3]] · generate
+- 2026-09-25 lessons/lesson-case-show-sub-case-ratification-retyped created · raw/2026-09-25/1654/ledger.md#L12 · generate
+- 2026-09-25 decisions/decision-case-429 created · raw/2026-09-25/1654/ledger.md#case-429 · generate
+- 2026-09-25 rules/rule-case-protocol updated: a decision line carries one {supersedes:case N} block per Case it supersedes; a deferred decision taken up names every Case of its deferred_by (case 429) · [[decision-case-429]] · generate
+- 2026-09-25 entities/entity-glossary updated: the term supersedes: one block per Case, several on one line (case 429) · [[decision-case-429]] · generate
+- 2026-09-25 estimates/estimate-materialize-marks-superseded updated: the Criterion replaced whole — a decision line may carry several {supersedes:case N} blocks, and each named Case is marked (case 429) · [[decision-case-429]] · generate
+- 2026-09-25 decisions/decision-case-430 created · raw/2026-09-25/1654/ledger.md#case-430 · generate
+- 2026-09-25 decisions/decision-case-404 superseded by decision-case-430 · [[decision-case-430]] · generate
+- 2026-09-25 rules/rule-context-size defer by decision-case-404 superseded · [[decision-case-430]] · generate
+- 2026-09-25 decisions/decision-case-409 superseded by decision-case-430 · [[decision-case-430]] · generate
+- 2026-09-25 rules/rule-context-size defer by decision-case-409 superseded · [[decision-case-430]] · generate
+- 2026-09-25 decisions/decision-case-418 superseded by decision-case-430 · [[decision-case-430]] · generate
+- 2026-09-25 rules/rule-context-size defer by decision-case-418 superseded · [[decision-case-430]] · generate
+- 2026-09-25 decisions/decision-case-422 superseded by decision-case-430 · [[decision-case-430]] · generate
+- 2026-09-25 rules/rule-context-size defer by decision-case-422 superseded · [[decision-case-430]] · generate
+- 2026-09-25 rules/rule-context-size updated: past 400 000 tokens both hooks give a note, not an order to close the session; the limit stays (case 430) · [[decision-case-430]] · generate
+- 2026-09-25 estimates/estimate-context-size-warns-past-the-limit updated: the Criterion replaced whole — past 400 000 tokens a note for the person, not an order to close the session (case 430) · [[decision-case-430]] · generate
+- 2026-09-25 decisions/decision-case-431 created · raw/2026-09-25/1654/ledger.md#case-431 · generate
+- 2026-09-25 estimates/estimate-case-protocol-case-form updated: the Criterion replaced whole — a Case built by case-guppi, and its context says what case-guppi found in the frame (case 431) · [[decision-case-431]] · generate
+- 2026-09-25 decisions/decision-case-432 created · raw/2026-09-25/1654/ledger.md#case-432 · generate
+- 2026-09-25 rules/rule-prespec updated: the Render: the read line of a renamed Estimate names its new slug (case 432) · [[decision-case-432]] · generate
+- 2026-09-25 estimates/estimate-prespec-requires-a-task-line updated: the Criterion replaced whole — a renamed Estimate is read under the slug of its rename (case 432) · [[decision-case-432]] · generate
+- 2026-09-25 insights/insight-workflow-case-schema-silent-on-what-the-scripts-accept updated: actioned: a form the scripts refuse is found by judge on SubagentStop before the Case is shown (case 419.3); a renamed Estimate is read under its new slug (case 432); the limits are not copied into the Case schema · [[decision-case-432]] · generate
+- 2026-09-25 decisions/decision-case-428.4 created · raw/2026-09-25/1654/ledger.md#case-428.4 · generate
+- 2026-09-25 rules/rule-retro updated: the opening list of Retro marks a read line of a change of the session as waiting for a later session (case 428.4) · [[decision-case-428.4]] · generate
+- 2026-09-25 estimates/estimate-retro-report-holds-each-fact-once updated: the Criterion replaced whole — a third mark in the opening list: a read line whose reading waits for a later session (case 428.4) · [[decision-case-428.4]] · generate
+- 2026-09-25 estimates/estimate-case-protocol-ledger-line-form updated: the Criterion replaced whole — one {supersedes:case N} block per Case, never a list; a deferred decision taken up names every Case of its deferred_by (case 429) · [[decision-case-429]] · generate
+- 2026-09-25 estimates/estimate-case-protocol-shows-the-built-case status: pending → failed · raw/2026-09-25/1654/ledger.md#L25 · generate
+- 2026-09-25 estimates/estimate-case-check-shows-only-the-checked-case status: pending → passed · raw/2026-09-25/1654/ledger.md#L26 · generate
+- 2026-09-25 estimates/estimate-page-read-cuts-the-history status: pending → passed · raw/2026-09-25/1654/ledger.md#L27 · generate
+- 2026-09-25 estimates/estimate-harness-pipeline status: pending → passed · raw/2026-09-25/1654/ledger.md#L28 · generate
+- 2026-09-25 estimates/estimate-spec-write-copies-the-ratified-case status: pending → passed · raw/2026-09-25/1654/ledger.md#L29 · generate
+- 2026-09-25 estimates/estimate-spec-write-checks-the-written-case status: pending → passed · raw/2026-09-25/1654/ledger.md#L30 · generate
+- 2026-09-25 estimates/estimate-prespec-checks-the-frontier status: pending → passed · raw/2026-09-25/1654/ledger.md#L31 · generate
+- 2026-09-25 estimates/estimate-hi-writes-frontier status: pending → passed · raw/2026-09-25/1654/ledger.md#L32 · generate
+- 2026-09-25 rules/rule-harness status: draft → built · cascade · generate
+- 2026-09-25 rules/rule-ledger-write status: built → draft · cascade · generate
+- 2026-09-25 rules/rule-materialize status: built → draft · cascade · generate
+- 2026-09-25 rules/rule-page-read status: draft → built · cascade · generate
+- 2026-09-25 rules/rule-skill-hi status: draft → built · cascade · generate
+- 2026-09-25 decisions/decision-case-404 archived · superseded · generate
+- 2026-09-25 decisions/decision-case-409 archived · superseded · generate
+- 2026-09-25 decisions/decision-case-418 archived · superseded · generate
+- 2026-09-25 decisions/decision-case-422 archived · superseded · generate
+- 2026-09-25 lessons/lesson-retro-reading-of-a-replaced-criterion archived · insight actioned · generate
+- 2026-09-25 lessons/lesson-retro-reading-of-a-criterion-this-spec-replaces archived · insight actioned · generate
+- 2026-09-25 lessons/lesson-prespec-read-line-of-a-renamed-estimate archived · insight actioned · generate
+- 2026-09-25 lessons/lesson-prespec-wikilink-to-a-decision-page-not-yet-written archived · insight actioned · generate
+- 2026-09-25 lessons/lesson-prespec-read-line-of-a-renamed-estimate archived · cleanup
+- 2026-09-25 lessons/lesson-prespec-wikilink-to-a-decision-page-not-yet-written archived · cleanup
+- 2026-09-25 lessons/lesson-retro-reading-of-a-criterion-this-spec-replaces archived · cleanup
+- 2026-09-25 lessons/lesson-retro-reading-of-a-replaced-criterion archived · cleanup
+- 2026-09-25 decisions/decision-case-404 archived · cleanup
+- 2026-09-25 decisions/decision-case-409 archived · cleanup
+- 2026-09-25 decisions/decision-case-418 archived · cleanup
+- 2026-09-25 decisions/decision-case-422 archived · cleanup

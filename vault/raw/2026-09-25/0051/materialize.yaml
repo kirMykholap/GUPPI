@@ -342,6 +342,7 @@ entries:
       past it — take no more work, not close the session; judged once a session reaches it
   exists: true
   applied: 03:50:34
+  superseded_by: '430'
 - line: 14
   text: 'lesson[knowledge][lesson-harness-a-paths-rule-misses-a-new-file-and-a-compaction]{tags:harness,session}{source:vault/parked/2026-09-07/concepts/claude-code-loads-a-rules-file-at-launch-and-a-scoped-one-on-a-read.md}
     trigger: a rule with paths: was weighed for text written into the vault outside a Case — the brief
@@ -966,5 +967,7 @@ decisions:
     problem: 'Which limit is right, and what the hook says past it: decided once a session reaches it.'
   spec: vault/raw/2026-09-25/0051/spec.md
   applied: 03:50:34
+  superseded_by:
+  - decision-case-430
 unparsed: []
 session: '0051'

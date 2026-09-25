@@ -1,10 +1,11 @@
 ---
 type: estimate
 kind: QA
-status: pending
+status: passed
 target: "[[rule-spec-write]]"
 purpose: Each Case the Stop hook writes into the plan is checked at once, and a finding comes back to the agent
 method: uv run pytest tests/test_ratified.py -k checks_the_written; by hand, the first ratification of a session after the change
+checked: 2026-09-25
 origin: raw/2026-09-25/0051/ledger.md#case-414.1
 sprint: migration
 created: 2026-09-25
@@ -27,7 +28,12 @@ The hook runs the checks of `prespec --check`, imported from `guppi/prespec.py`,
 **－** The plan is not compared with its ratified copy, and a name, `context` or `problem` that holds a Cyrillic letter is no finding.
 **－** A ledger line of the window that does not parse is no finding of this check.
 
+## Result
+
+2026-09-25, uv run pytest tests/test_ratified.py -k checks_the_written: 5 passed; by hand, the ratifications of session 1654 (425–432, and 428 and 429 again after pre-spec): no refusal of ratified on any of them, and prespec --check found nothing after them
+
 ## History
 
 - 2026-09-25 created · [[decision-case-414.1]]
 - 2026-09-25 updated: the Criterion replaced whole — a defer-only Case is written by the hook and not checked (case 421.1) · [[decision-case-421.1]]
+- 2026-09-25 status: pending → passed · raw/2026-09-25/1654/ledger.md#L30

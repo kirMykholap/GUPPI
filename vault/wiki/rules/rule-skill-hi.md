@@ -2,7 +2,7 @@
 type: rule
 kind: MOC
 purpose: Prevents a session from being loaded piecemeal by read-tool calls
-status: draft
+status: built
 enforcement: render
 governs: .claude/skills/hi/SKILL.md
 render_mode: full
@@ -96,3 +96,4 @@ session. The skill writes no event line of its own since case 111.4: a `!` subst
 - 2026-09-25 updated: the Case is built by case-guppi, which asks the vault itself (case 419.1) · [[decision-case-419.1]]
 - 2026-09-25 updated: the closer kept for a deferred item left as it stands (case 421.4) · [[decision-case-421.4]]
 - 2026-09-25 status: built → draft · cascade
+- 2026-09-25 status: draft → built · cascade

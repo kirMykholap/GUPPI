@@ -2,7 +2,7 @@
 type: lesson
 kind: error
 root_cause: check_tasks of guppi/prespec.py matches a read line by the slug of the then item, the old slug of a rename, and the Case schema does not say which slug of a rename a read line names
-status: clustered
+status: archived
 insight: "[[insight-workflow-case-schema-silent-on-what-the-scripts-accept]]"
 origin: raw/2026-09-25/1228/ledger.md#L16
 sprint: migration
@@ -22,3 +22,5 @@ check_tasks of guppi/prespec.py matches a read line by the slug of the then item
 
 - 2026-09-25 created · raw/2026-09-25/1228/ledger.md#L16
 - 2026-09-25 updated: clustered into insight-workflow-case-schema-silent-on-what-the-scripts-accept · raw/2026-09-25/1228/ledger.md#L16
+- 2026-09-25 archived · insight actioned
+- 2026-09-25 archived · cleanup

@@ -2,7 +2,7 @@
 type: decision
 case: "419.2"
 status: current
-update: ["[[rule-frame-check]]", "[[estimate-case-build-writes-the-case]]"]
+update: ["[[rule-case-build]]", "[[estimate-case-build-writes-the-case]]"]
 supersedes: ["[[decision-case-416]]", "[[decision-case-403]]"]
 origin: raw/2026-09-25/1228/ledger.md#case-419.2
 sprint: migration
@@ -20,7 +20,7 @@ How a Case is built, checked and shown, so that the person sees only a Case that
 
 ## Given
 
-`rule-frame-check` — the rule of the agent that reads a Case's frame, renamed `rule-case-build`
+`rule-case-build` — the rule of the agent that reads a Case's frame, renamed `rule-case-build`
 **＋** `.claude/agents/frame-guppi.md` — the agent file it renders today, removed
 **＋** `.claude/agents/case-guppi.md` — the agent file it renders after the rename
 **＋** `estimate-case-build-writes-the-case` — its Estimate, renamed `estimate-case-build-writes-the-case`

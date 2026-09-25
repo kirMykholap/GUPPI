@@ -1,8 +1,9 @@
 ---
 type: decision
 case: "404"
-status: current
+status: archived
 defer: ["[[rule-context-size]]"]
+superseded_by: ["[[decision-case-430]]"]
 origin: raw/2026-09-24/1916/ledger.md#case-404
 sprint: migration
 created: 2026-09-24
@@ -26,3 +27,6 @@ The limit of 400 000 tokens in guppi/context.py, proposed as a figure to discuss
 ## History
 
 - 2026-09-25 created · raw/2026-09-24/1916/ledger.md#case-404
+- 2026-09-25 superseded by decision-case-430 · [[decision-case-430]]
+- 2026-09-25 archived · superseded
+- 2026-09-25 archived · cleanup

@@ -17,7 +17,8 @@ When:
 The person invokes `/retro` in a session where `uv run guppi tail` prints its decision lines and `raw/<date>/<hi HHMM>/spec.md` holds unticked boxes; the agent writes the opening message and the close.
 
 Then:
-The opening message holds one numbered list of what is not done: the unticked boxes of `raw/<date>/<hi HHMM>/spec.md` per Case, each marked as waiting for the librarian or as debt, and what the agent noticed during Work Mode.
+The opening message holds one numbered list of what is not done: the unticked boxes of `raw/<date>/<hi HHMM>/spec.md` per Case, each marked as waiting for the librarian, as waiting for a later session, or as debt, and what the agent noticed during Work Mode.
+**＋** A `read` line is marked as waiting for a later session when this session creates or updates its slug — by a decision line of that slug, or by an `update` that renames a page to it; another `read` line without its line in the Tail is debt.
 **－** The opening message holds no list of the ratifications.
 **＋** The close holds every ratification of the session, one line per Case, from `uv run guppi tail` grouped by Case, this session's folder first, a Case a `{supersedes:case N}` line names not counted.
 **＋** The close holds what got done.
@@ -27,3 +28,4 @@ The opening message holds one numbered list of what is not done: the unticked bo
 ## History
 
 - 2026-09-23 created · [[decision-case-376]]
+- 2026-09-25 updated: the Criterion replaced whole — a third mark in the opening list: a read line whose reading waits for a later session (case 428.4) · [[decision-case-428.4]]

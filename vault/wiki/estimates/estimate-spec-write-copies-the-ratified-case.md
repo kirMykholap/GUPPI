@@ -1,11 +1,11 @@
 ---
 type: estimate
 kind: QA
-status: pending
+status: passed
 target: "[[rule-spec-write]]"
 purpose: The ratified Case enters the plan file and its ratified copy in the words of the chat, the then block built from the sub-points
 method: uv run pytest tests/test_ratified.py -k write; the live reading by hand, the plan file and its ratified copy after the first ratification of a session
-checked: 2026-09-24
+checked: 2026-09-25
 origin: raw/2026-09-23/1859/ledger.md#case-387.2
 sprint: migration
 created: 2026-09-23
@@ -28,7 +28,7 @@ The hook writes that Case into the plan file `plan_path` finds, the section of C
 
 ## Result
 
-2026-09-24, `uv run pytest tests/test_ratified.py`: 18 passed, with the code of Case 402 — an unpadded value holding a backtick refused with its reason, a padded one read, the fixture `SHOWING` padded
+2026-09-25, uv run pytest tests/test_ratified.py -k write: 16 passed; by hand, the plan file of session 1654 after the ratification of Case 425: the Case written with its then block built from the sub-points (rename, change) and its tasks block without sub-points, no recommend and no ratification; the ratified copy sparkling-floating-comet.ratified.md beside it holds the twelve Case headings 425–432 with 428.1–428.4
 
 ## History
 
@@ -37,3 +37,4 @@ The hook writes that Case into the plan file `plan_path` finds, the section of C
 - 2026-09-25 updated: the Criterion replaced whole — a value holding a backtick padded by one space, an unpadded one refused (case 402) · [[decision-case-402]]
 - 2026-09-25 status: pending → passed · raw/2026-09-24/2214/ledger.md#L47
 - 2026-09-25 updated: the Criterion replaced whole — the exception for a defer-only Case dropped, the hook writes it (case 421.1) · [[decision-case-421.1]]
+- 2026-09-25 status: pending → passed · raw/2026-09-25/1654/ledger.md#L29

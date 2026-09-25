@@ -2,7 +2,7 @@
 type: decision
 case: "391.1"
 status: current
-create: ["[[rule-frame-check]]", "[[estimate-case-build-writes-the-case]]"]
+create: ["[[rule-case-build]]", "[[estimate-case-build-writes-the-case]]"]
 origin: raw/2026-09-24/1303/ledger.md#case-391.1
 sprint: migration
 created: 2026-09-24
@@ -19,7 +19,7 @@ A Case is shown without being read against its frame, and reading the frame in t
 
 ## Given
 
-`rule-frame-check` — the new rule of the agent, a child of `rule-plan-mode`.
+`rule-case-build` — the new rule of the agent, a child of `rule-plan-mode`.
 **＋** `.claude/agents/frame-guppi.md` — its Render, written by `uv run guppi render`.
 **＋** `estimate-case-build-writes-the-case` — its Estimate.
 **＋** `rule-ask` — the search of the vault by meaning, which the new agent does not do.

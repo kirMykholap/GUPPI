@@ -2,7 +2,7 @@
 type: rule
 kind: Leaf
 purpose: Prevents an agent from reading the History of a vault page it did not ask for
-status: draft
+status: built
 enforcement: hook
 implementation_ref: [guppi/pageread.py, guppi/pages.py, tests/test_pageread.py, .claude/settings.json]
 parent: "[[rule-harness]]"
@@ -25,3 +25,4 @@ Prevents an agent from reading the History of a vault page it did not ask for. E
 
 - 2026-09-25 created · [[decision-case-420.1]]
 - 2026-09-25 estimate estimate-page-read-cuts-the-history added · [[decision-case-420.1]]
+- 2026-09-25 status: draft → built · cascade

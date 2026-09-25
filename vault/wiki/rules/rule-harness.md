@@ -2,7 +2,7 @@
 type: rule
 kind: MOC
 purpose: Prevents the tools of the harness from drifting apart from the pages that describe them
-status: draft
+status: built
 children: ["[[rule-render-harness]]", "[[rule-settings]]", "[[rule-lint]]", "[[rule-page-schemas]]", "[[rule-vault-layout]]", "[[rule-governed-files-hook]]", "[[rule-claude-md]]", "[[rule-bash-guard]]", "[[rule-tests-clock-pinned]]", "[[rule-context-size]]", "[[rule-page-read]]"]
 estimates: ["[[estimate-harness-pipeline]]"]
 applies_to: ["[[entity-guppi]]"]
@@ -53,3 +53,4 @@ them. Three rules belong to no phase of the session: the renderer, the page
 - 2026-09-24 status: built → draft · cascade
 - 2026-09-25 child rule-page-read added · [[decision-case-420.1]]
 - 2026-09-25 updated: the hooks of rule-page-read named among the rules outside the pipeline (case 420.2) · [[decision-case-420.2]]
+- 2026-09-25 status: draft → built · cascade

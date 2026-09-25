@@ -7,7 +7,6 @@ enforcement: hook
 implementation_ref: [guppi/context.py, tests/test_context.py, .claude/settings.json]
 parent: "[[rule-harness]]"
 estimates: ["[[estimate-context-size-shown-after-each-reply]]", "[[estimate-context-size-warns-past-the-limit]]"]
-deferred_by: ["[[decision-case-404]]", "[[decision-case-409]]", "[[decision-case-418]]", "[[decision-case-422]]"]
 origin: raw/2026-09-24/1303/ledger.md#case-392.1
 sprint: migration
 created: 2026-09-24
@@ -20,7 +19,7 @@ Prevents a session from running on while the person cannot see how full the cont
 
 ## How it works
 
-`uv run guppi context` on `Stop`. It reads the transcript at `transcript_path`, skips the records of a subagent (`isSidechain`), and takes N, the sum of the input, cache read, cache creation and output tokens of the last main-agent call the transcript holds — at `Stop` the last call may not be there yet, so N may lag one call — and D, N less the same sum at the last call before the person's last prompt. It prints JSON with a `systemMessage`: `context: <N> tokens (<+D> since the last reply)`. On the re-fire (`stop_hook_active`), with a transcript it cannot read, or with no call carrying `usage`, it prints nothing; it exits 0 always. At N of 400 000 or more the line ends with `— past 400 000: close the session`, and `uv run guppi context --prompt` on `UserPromptSubmit` prints to the agent's context the size and the order to tell the person to close the session with /retro, then /handoff, before the next Case; below the limit it prints nothing.
+`uv run guppi context` on `Stop`. It reads the transcript at `transcript_path`, skips the records of a subagent (`isSidechain`), and takes N, the sum of the input, cache read, cache creation and output tokens of the last main-agent call the transcript holds — at `Stop` the last call may not be there yet, so N may lag one call — and D, N less the same sum at the last call before the person's last prompt. It prints JSON with a `systemMessage`: `context: <N> tokens (<+D> since the last reply)`. On the re-fire (`stop_hook_active`), with a transcript it cannot read, or with no call carrying `usage`, it prints nothing; it exits 0 always. At N of 400 000 or more the line ends with `— past 400 000: costly, better take no more work`, and `uv run guppi context --prompt` on `UserPromptSubmit` prints to the agent's context the size and a note for the agent to pass to the person, not an order: the session is already costly, taking on more work is not recommended, and while the Frontier holds open items, deferring them is the better course (case 430); below the limit it prints nothing.
 
 ## History
 
@@ -32,3 +31,8 @@ Prevents a session from running on while the person cannot see how full the cont
 - 2026-09-25 deferred · [[decision-case-409]]
 - 2026-09-25 deferred · [[decision-case-418]]
 - 2026-09-25 deferred · [[decision-case-422]]
+- 2026-09-25 defer by decision-case-404 superseded · [[decision-case-430]]
+- 2026-09-25 defer by decision-case-409 superseded · [[decision-case-430]]
+- 2026-09-25 defer by decision-case-418 superseded · [[decision-case-430]]
+- 2026-09-25 defer by decision-case-422 superseded · [[decision-case-430]]
+- 2026-09-25 updated: past 400 000 tokens both hooks give a note, not an order to close the session; the limit stays (case 430) · [[decision-case-430]]

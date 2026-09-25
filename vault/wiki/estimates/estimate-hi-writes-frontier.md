@@ -1,10 +1,10 @@
 ---
 type: estimate
 kind: QA
-status: pending
+status: passed
 target: "[[rule-skill-hi]]"
 method: "one reading by hand at the first /hi of the next session, written into the estimate line; unit: the frontier findings of guppi prespec --check in tests/test_prespec.py"
-checked: 2026-09-23
+checked: 2026-09-25
 origin: raw/2026-09-12/ledger.md#case-59.2
 sprint: migration
 created: 2026-09-12
@@ -29,7 +29,7 @@ The Frontier, written to `raw/<date>/<hi HHMM>/frontier.md`, is two lists: `## C
 
 ## Result
 
-2026-09-23, the /hi of session 1355 read by hand: plan mode on, frontier.md written with no refusal; ## Cases C1–C8 and ## Work W1–W3 in the line form; C1 the one item of the current milestone Slice 4 with its slug in a code span, Slice 5 and the Backlog not items; C2 from the brief's Next session, C3–C6 its Deferred list, C7–C8 added; W1–W3 the brief's Work list; the failed pull and gh not items, sprint.md names decisions 11.1 and 11.2; closers kept the source (C1 · sprint · sprint, C3 · defer case 380); no W turned into a Case and no C closed · work — that leg had no instance
+2026-09-25, by hand, the /hi of session 1654: frontier.md written under plan mode with no refusal, two lists `## Cases` (C1–C11 from the sprint milestone, the brief's Next session and its Deferred list, source deferred) and `## Work` (W1–W28 from the brief's Next session); the failed pull and the unlogged gh were no items, since sprint.md names decisions 11.1 and 11.2; the Cases shown as a list with detail, the Work as one block; lines closed `· case N`, `[-] · sprint`, `[-] · deferred · kept`, `· work`; C12 and C13, added by the person, as new Cases lines
 
 ## History
 
@@ -52,3 +52,4 @@ The Frontier, written to `raw/<date>/<hi HHMM>/frontier.md`, is two lists: `## C
 - 2026-09-23 updated: the Criterion names the write of frontier.md in plan mode (case 363) · [[decision-case-363]]
 - 2026-09-23 status: pending → passed · raw/2026-09-23/1355/ledger.md#L44
 - 2026-09-25 updated: the Criterion replaced whole — the closer kept; the old Given dropped (case 421.4) · [[decision-case-421.4]]
+- 2026-09-25 status: pending → passed · raw/2026-09-25/1654/ledger.md#L32

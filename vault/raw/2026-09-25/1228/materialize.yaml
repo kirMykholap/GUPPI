@@ -1024,6 +1024,7 @@ entries:
       past it; judged once a session reaches it
   exists: true
   applied: '15:42:11'
+  superseded_by: '430'
 - line: 33
   text: decision[case 423][defer][rule-spec-reconcile]{ref:rule-spec-reconcile}
   case: '423'
@@ -2128,6 +2129,8 @@ decisions:
     problem: 'Which limit is right, and what the hook says past it: decided once a session reaches it.'
   spec: vault/raw/2026-09-25/1228/spec.md
   applied: '15:42:11'
+  superseded_by:
+  - decision-case-430
 - case: '423'
   decision: decision-case-423
   origin: raw/2026-09-25/1228/ledger.md#case-423

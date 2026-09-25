@@ -1,10 +1,11 @@
 ---
 type: estimate
 kind: QA
-status: pending
+status: passed
 target: "[[rule-page-read]]"
 purpose: A Read of a vault page returns its frontmatter and body, and its History only when asked for
 method: uv run pytest tests/test_pageread.py, then by hand a Read of a vault page in the main agent and in a subagent after the render
+checked: 2026-09-25
 origin: raw/2026-09-25/1228/ledger.md#case-420.1
 sprint: migration
 created: 2026-09-25
@@ -24,6 +25,11 @@ When the call carries neither `offset` nor `limit` and the file holds its own `#
 **－** A call with its own `offset` or `limit`, a file with no `## History`, and a file outside `vault/wiki/` are not changed, and no line is added.
 **－** The page on disk is not changed: in Obsidian it shows whole.
 
+## Result
+
+2026-09-25, uv run pytest tests/test_pageread.py: 10 passed; by hand, a Read of vault/wiki/rules/rule-context-size.md with no offset in the main agent and in a subagent (Explore): both got lines 1–24, no `## History` line, and the line `pageread: the History of rules/rule-context-size.md is cut, lines 25–34; a Read with offset 25 shows how the page changed (rule-page-read)`
+
 ## History
 
 - 2026-09-25 created · [[decision-case-420.1]]
+- 2026-09-25 status: pending → passed · raw/2026-09-25/1654/ledger.md#L27

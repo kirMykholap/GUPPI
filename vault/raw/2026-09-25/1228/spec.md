@@ -76,10 +76,10 @@ update:
 - [x] update `rule-ask`
 - [x] update `rule-skill-hi`
 - [x] update `rule-prespec`
-- [ ] `uv run guppi render`: `vault/wiki/case-schema.md`
-- [ ] `uv run guppi render`: `.claude/agents/ask-guppi.md`
-- [ ] `uv run guppi render`: `.claude/skills/hi/SKILL.md`
-- [ ] read `estimate-case-protocol-shows-the-built-case`
+- [x] `uv run guppi render`: `vault/wiki/case-schema.md`
+- [x] `uv run guppi render`: `.claude/agents/ask-guppi.md`
+- [x] `uv run guppi render`: `.claude/skills/hi/SKILL.md`
+- [x] read `estimate-case-protocol-shows-the-built-case`
 ```
 
 ### Case 419.2 — `case-guppi` builds the Case: the vault, the frame and the form
@@ -150,7 +150,7 @@ update:
 - [x] update `rule-frame-check`
 - [ ] update `rule-frame-check`
 - [x] update `estimate-frame-check-finds-a-contradiction`
-- [ ] `uv run guppi render`: `.claude/agents/case-guppi.md`
+- [x] `uv run guppi render`: `.claude/agents/case-guppi.md`
 - [x] `git rm .claude/agents/frame-guppi.md` — the file no page governs after the rename
 - [ ] read `estimate-case-build-writes-the-case`
 ```
@@ -236,7 +236,7 @@ update:
 - [x] `guppi/casecheck.py`: the `SubagentStop` hook
 - [x] `guppi/cli.py`: the command `casecheck`, named among the hook commands of the docstring
 - [x] `tests/test_casecheck.py`: `-k subagent` — a clean Case stored, a faulty one exit 2, the re-fire exit 0 with its findings stored, a question and another agent passed
-- [ ] `uv run guppi render`: `.claude/settings.json`
+- [x] `uv run guppi render`: `.claude/settings.json`
 - [ ] read `estimate-case-check-sends-back-a-faulty-case`
 ```
 
@@ -295,8 +295,8 @@ update:
 - [x] update `rule-hook-registry`
 - [x] `guppi/casecheck.py`: the `Stop` hook
 - [x] `tests/test_casecheck.py`: `-k stop` — a stored clean Case passes, a missing one, a changed one and one stored with findings exit 2, the acknowledging heading, a `DIFF` fence and a short-form defer pass, a re-shown Case without `recommend` compared, the re-fire exits 0
-- [ ] `uv run guppi render`: `.claude/settings.json`
-- [ ] read `estimate-case-check-shows-only-the-checked-case`
+- [x] `uv run guppi render`: `.claude/settings.json`
+- [x] read `estimate-case-check-shows-only-the-checked-case`
 ```
 
 ## Case 420 — A vault page read without its History unless the history is asked for
@@ -378,8 +378,8 @@ update:
 - [x] `guppi/pageread.py`: the two hooks
 - [x] `guppi/cli.py`: the command `pageread`, named among the hook commands of the docstring
 - [x] `tests/test_pageread.py`: a page cut before its History, a `## History` inside a render block not counted, a call with `offset` or `limit`, a hub file and a file outside `vault/wiki/` passed, the line of `--after`
-- [ ] `uv run guppi render`: `.claude/settings.json`
-- [ ] read `estimate-page-read-cuts-the-history`
+- [x] `uv run guppi render`: `.claude/settings.json`
+- [x] read `estimate-page-read-cuts-the-history`
 ```
 
 ### Case 420.2 — `rule-harness` names the new rule among the rules outside the pipeline
@@ -414,7 +414,7 @@ update:
 ```tasks
 - [x] update `rule-harness`
 - [x] update `estimate-harness-pipeline`
-- [ ] read `estimate-harness-pipeline`
+- [x] read `estimate-harness-pipeline`
 ```
 
 ## Case 421 — The hook writes a defer, and an unchanged item is not deferred again
@@ -508,8 +508,8 @@ update:
 - [x] create `estimate-spec-write-writes-a-defer`
 - [x] `guppi/ratified.py`: the write of a defer-only Case under `## Deferred`, the docstring of the write said anew
 - [x] `tests/test_ratified.py`: `-k defer` — a defer written into the plan, into `spec.md` once it stands, replaced on a second showing, several defer-only Cases and one beside a ratified Case in one reply, no showing and a missing item exit 2; `test_write_a_defer_only_case_is_left_to_the_agent` rewritten
-- [ ] read `estimate-spec-write-copies-the-ratified-case`
-- [ ] read `estimate-spec-write-checks-the-written-case`
+- [x] read `estimate-spec-write-copies-the-ratified-case`
+- [x] read `estimate-spec-write-checks-the-written-case`
 - [ ] read `estimate-spec-write-writes-a-defer`
 ```
 
@@ -549,7 +549,7 @@ update:
 ```tasks
 - [x] update `rule-case-protocol`
 - [x] update `estimate-case-protocol-defers-in-one-reply`
-- [ ] `uv run guppi render`: `vault/wiki/case-schema.md`
+- [x] `uv run guppi render`: `vault/wiki/case-schema.md`
 - [ ] read `estimate-case-protocol-defers-in-one-reply`
 ```
 
@@ -591,8 +591,8 @@ update:
 - [x] update `estimate-prespec-checks-the-frontier`
 - [x] `guppi/prespec.py`: `kept` among the `CLOSERS` of `check_frontier`, and the finding that names the closers
 - [x] `tests/test_prespec.py`: `-k frontier` — `kept` clean on `[-]` after `deferred`, a finding on `[x]` and after another source
-- [ ] `uv run guppi render`: `.claude/skills/pre-spec/SKILL.md`
-- [ ] read `estimate-prespec-checks-the-frontier`
+- [x] `uv run guppi render`: `.claude/skills/pre-spec/SKILL.md`
+- [x] read `estimate-prespec-checks-the-frontier`
 ```
 
 ### Case 421.4 — A deferred item left unchanged closes `kept`, with no decision
@@ -644,9 +644,9 @@ update:
 - [x] update `rule-skill-hi`
 - [x] update `rule-case-protocol`
 - [x] update `estimate-hi-writes-frontier`
-- [ ] `uv run guppi render`: `.claude/skills/hi/SKILL.md`
-- [ ] `uv run guppi render`: `vault/wiki/case-schema.md`
-- [ ] read `estimate-hi-writes-frontier`
+- [x] `uv run guppi render`: `.claude/skills/hi/SKILL.md`
+- [x] `uv run guppi render`: `vault/wiki/case-schema.md`
+- [x] read `estimate-hi-writes-frontier`
 ```
 
 ## Deferred

@@ -2,11 +2,11 @@
 type: rule
 kind: Leaf
 purpose: Prevents a ratified line from existing only in a chat reply, or landing in a session no /hi opened
-status: built
+status: draft
 enforcement: hook
-implementation_ref: [guppi/ledger.py, guppi/gate.py, tests/test_gate.py, .claude/settings.json]
+implementation_ref: [guppi/ledger.py, guppi/materialize.py, guppi/gate.py, tests/test_ledger.py, tests/test_gate.py, .claude/settings.json]
 parent: "[[rule-session-start]]"
-estimates: ["[[estimate-ledger-write-lifts]]"]
+estimates: ["[[estimate-ledger-write-lifts]]", "[[estimate-ledger-write-refuses-a-reading-of-a-change-of-the-session]]"]
 origin: raw/2026-09-09/ledger.md#case-10
 sprint: migration
 created: 2026-09-09
@@ -29,7 +29,7 @@ would materialize pages from it the next day.
 falling back to the reply that just finished (`last_assistant_message`) when the
 transcript is absent or unreadable, and finds every line that starts with `- decision[`,
 `- estimate[` or `- lesson[` **inside a fenced block opened with the `LEDGER` tag** (```` ```LEDGER ````, any case) and appends them to
-`vault/raw/<hi date>/<hi HHMM>/ledger.md` — the session's folder, the same across midnight (case 103.1) — interpreting nothing: the text verbatim, the time of writing
+`vault/raw/<hi date>/<hi HHMM>/ledger.md` — the session's folder, the same across midnight (case 103.1) — the text verbatim, the time of writing
 between the dash and the text — `- HH:MM:SS decision[...]`, the date being the folder's.
 A line anywhere else — bare, or in a block with no tag or another one — is a preview: a
 Case's `then` shows lines before they are ratified. The tagged block is what the chat
@@ -43,6 +43,8 @@ stderr — `ledger: N line(s) not written — no /hi recorded for session X. Tel
 run /hi, then repeat the lines.` — so the person is told rather than left believing their
 decisions were recorded. With `stop_hook_active` set (the re-fire after a block) it exits 0
 and writes nothing, so it cannot loop.
+
+**What a session changes, it does not measure** (case 428.1). An `estimate[<slug>]` line is not written when a decision line `create` or `update` of `<slug>` stands in the session's ledger or among the lines of the same `Stop`, each line read by `parse_line` of `guppi/materialize.py`; a reading of the old slug of a page an `update` renames falls under the same rule, since the decision line names the old slug. The reading waits for a later session. The judgment reads the ledger alone and holds the whole session, so a refused line of the transcript is refused again at every `Stop`: the hook exits 2 with one stderr line per refused line only when the line stands in the reply just finished, and skips an older one without a word. A reading of the new slug of a rename is not caught here: no decision line names it.
 
 A reply that ends in a tool call (`Skill`, `ExitPlanMode`) has no `Stop` of its own. The text before the call is kept in the transcript — measured on Claude Code 2.1.269–2.1.272: the blocks of cases 101, 117 and 222 stood in a text followed by a tool call and reached the ledger at the next `Stop` of the session, 22 minutes, 13 seconds and 14 seconds later; one block, case 109 on 2.1.269, was absent from the transcript and is not explained (case 224.1). A block followed by a tool call waits for the next `Stop`; the reply that ends in the text lands it now, with its own time. The harness holds the reply back instead of the agent's memory: `guppi gate` — on `PreToolUse Skill` for the agent's call, on `UserPromptSubmit` for a typed `/pre-spec`, `/retro` or `/handoff` (case 169.1) — reads the `then` items of every Case in the session's `spec.md` and in the plan file the session's event log names last under `.claude/plans/`, and the decision lines of the session's window as `guppi prespec --check` reads them; an item with no decision line of its Case refuses the call with exit 2 — `gate: /<skill> refused — N item(s) of the Spec have no ledger line (case A, case B).` followed by the advice of the path: to the agent `The text before a tool call waits for the next Stop: end this reply in text with the LEDGER block, then call /<skill> in the next reply.`, to the person `Ask the agent to end its reply with the LEDGER block, then type /<skill> again.` (case 174) — and every item with its line, or no source found, passes silently (case 122) — except a `/retro` with no source and no `decision`, `estimate` or `lesson` line in the session's ledger window, which `rule-retro-commit` refuses as nothing to review (case 180; case 184). `estimate[...]` and `lesson[...]` lines have no source but the text; a loss of one is a Retro finding. A block the agent repeats in a later text reaches the ledger at that `Stop`, with that time; only the last reply of a session can still be lost, and Retro sees it. A line whose text is already
 in today's ledger — whatever its time, or with none, as the
@@ -81,3 +83,6 @@ the implementation arrives in the session after the probe (Slice 1, session B).
 - 2026-09-16 updated: the pass on "no source found" of 122 narrowed — a /retro with no source and no ledger line is refused by rule-retro-commit (case 180) · [[decision-case-184]]
 - 2026-09-18 updated: the text before a tool call is kept in the transcript and read at the next Stop; the gate's advice says so (case 224.1) · [[decision-case-224.1]]
 - 2026-09-20 updated: the ledger instruction lives in the Case schema loaded by /hi, not in CLAUDE.md (case 277.2) · [[decision-case-277.2]]
+- 2026-09-25 updated: the hook refuses a reading of an Estimate that a decision line of the session creates or updates (case 428.1) · [[decision-case-428.1]]
+- 2026-09-25 estimate estimate-ledger-write-refuses-a-reading-of-a-change-of-the-session added · [[decision-case-428.1]]
+- 2026-09-25 status: built → draft · cascade

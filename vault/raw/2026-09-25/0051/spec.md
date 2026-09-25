@@ -76,7 +76,7 @@ update:
 - [x] `guppi/prespec.py` — the checks of `check` for a set of Cases and extra records, the Frontier, the ratified copy and the grammar left out; `check` calls the same function for the whole run
 - [x] `guppi/ratified.py` — `stop`: the checks on each Case written, the reply's decision records added to the window's, `guppi/prespec.py` imported inside the function; the module docstring
 - [x] `tests/test_ratified.py` — `-k checks_the_written`: a written Case with a finding exits 2 and stays written, a clean one exits 0, a finding of another Case not reported, a line of the reply not yet in the ledger counted, the re-fire checks nothing
-- [ ] read `estimate-spec-write-checks-the-written-case` — `uv run pytest tests/test_ratified.py -k checks_the_written`, then by hand at the first ratification after the change
+- [x] read `estimate-spec-write-checks-the-written-case` — `uv run pytest tests/test_ratified.py -k checks_the_written`, then by hand at the first ratification after the change
 ```
 
 ### Case 414.2 — The answer to a Stop hook's refusal is a reply of its own

@@ -1,10 +1,11 @@
 ---
 type: estimate
 kind: QA
-status: pending
+status: passed
 target: "[[rule-case-check]]"
 purpose: The main agent shows a Case only as case-guppi answered it and the checks passed it
 method: uv run pytest tests/test_casecheck.py -k stop, then by hand the first reply the hook refuses
+checked: 2026-09-25
 origin: raw/2026-09-25/1228/ledger.md#case-419.4
 sprint: migration
 created: 2026-09-25
@@ -23,6 +24,11 @@ Then:
 **－** A heading with no section, as in the acknowledging reply, a fence tagged `DIFF`, and a deferred decision in the short form — `context`, `problem` and a fence tagged `then` with `defer` items, no `given` and no `when` — are not compared.
 **－** On the re-fire (`stop_hook_active`) it exits 0.
 
+## Result
+
+2026-09-25, uv run pytest tests/test_casecheck.py -k stop: 8 passed; by hand, the first reply the hook refused in session 1654: the showing of Case 428 whose 428.3 ratification differed from the answer of case-guppi, refused with `case 428.3: differs from the answer of case-guppi — show that answer unchanged`; the acknowledging replies and the DIFF of the pre-spec prose fixes were not compared
+
 ## History
 
 - 2026-09-25 created · [[decision-case-419.4]]
+- 2026-09-25 status: pending → passed · raw/2026-09-25/1654/ledger.md#L26

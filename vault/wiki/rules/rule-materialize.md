@@ -2,7 +2,7 @@
 type: rule
 kind: Leaf
 purpose: Prevents the librarian from reading the ledger and the Spec beyond its unticked lines, or from routing a decision by guesswork
-status: built
+status: draft
 enforcement: check
 implementation_ref: [guppi/materialize.py, tests/test_materialize.py]
 parent: "[[rule-documentation]]"
@@ -25,7 +25,7 @@ defect of the ledger, and it shows here. The keys of a `create` are lifted by th
 It also prevents a promise from being written by derivation. No Estimate is derived
 from a flag: an Estimate has its own ledger line and its own entry, and its Criterion is the `when` and `then` of the Case that names it (case 378.2), lifted verbatim into the entry's `sections` and replacing what stood on the page (cases 189, 194.1); a Criterion the item writes under `sections` itself stands instead, on a `create` and on an `update` alike — it is signed in the same block, and it is how one Case touches two promises (case 204). An `update` item names the part it changes: one that names a part — `set` without `status`, `replace`, a section other than `Criterion` — and writes no Criterion changes that part alone, nothing lifted; a part inside the Criterion — the `old` of a `replace` pair stands in the page's `## Criterion` — is `incomplete: [criterion]` and sets no status, a Criterion changes only whole (case 378.4); a written `sections.Criterion` beside any other part stands and sets `pending`; one that names no part, or carries `set.status`, replaces the Criterion whole (case 296). An `update` item's `reword` — a list of `{old, new}` pairs — is carried to the entry as written, for `generate` to apply; a mapping or a scalar under it is `incomplete: [reword]` (case 274.3). A decision line's `{addresses:<lesson slug>}` is carried to the entry as `addresses`, a list, and the lesson entry of that slug in the same unit gets `addressed_by: decision-case-N` at the entry's level, never as a page field; a mark whose lesson is not in the unit is `incomplete: [addresses]` on the decision entry (case 284.3). A lesson line's `{addressed_by:case N}` gives its entry the same `addressed_by: decision-case-N` when a decision line of Case N stands earlier in the unit, and `incomplete: [addressed_by]` otherwise (case 377.3). A unit
 whose folder holds `carry.md` is passed by with one line on stdout: its Spec was
-ratified and its work not done (case 190.3). A reading — an `estimate` line — folds into the unapplied `create` of its slug in the unit; a `create` a `{supersedes}` marks is never folded into, and the readings already folded into it move to the live `create` of the same slug in the unit, or each becomes an entry of its own from its ledger line (case 309). The mechanism and the full list of an
+ratified and its work not done (case 190.3). A reading — an `estimate` line — folds into the unapplied `create` of its slug in the unit; a `create` a `{supersedes}` marks is never folded into, and the readings already folded into it move to the live `create` of the same slug in the unit, or each becomes an entry of its own from its ledger line (case 309). An `estimate` entry carries no `case`, so no `{supersedes}` reaches it: a reading that must not apply is retired only by a ratified Case, whose one-off migration sets `superseded_by` to the number of that Case on the entry and removes its `failed` (case 427). The mechanism and the full list of an
 entry's fields, each with its writer, live in the docstring of `guppi/materialize.py`.
 
 ## History
@@ -112,3 +112,5 @@ entry's fields, each with its writer, live in the docstring of `guppi/materializ
 - 2026-09-25 estimate estimate-materialize-changes-a-named-part-alone added · [[decision-case-397.3]]
 - 2026-09-25 status: built → draft · cascade
 - 2026-09-25 status: draft → built · cascade
+- 2026-09-25 updated: a reading that must not apply is retired by a one-off migration of a ratified Case, superseded_by set to its number (case 427) · [[decision-case-427]]
+- 2026-09-25 status: built → draft · cascade

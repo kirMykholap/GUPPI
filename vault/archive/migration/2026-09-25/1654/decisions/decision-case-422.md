@@ -1,8 +1,9 @@
 ---
 type: decision
 case: "422"
-status: current
+status: archived
 defer: ["[[rule-context-size]]"]
+superseded_by: ["[[decision-case-430]]"]
 origin: raw/2026-09-25/1228/ledger.md#case-422
 sprint: migration
 created: 2026-09-25
@@ -26,3 +27,6 @@ The limit of 400 000 tokens in guppi/context.py, and the text of the UserPromptS
 ## History
 
 - 2026-09-25 created · raw/2026-09-25/1228/ledger.md#case-422
+- 2026-09-25 superseded by decision-case-430 · [[decision-case-430]]
+- 2026-09-25 archived · superseded
+- 2026-09-25 archived · cleanup

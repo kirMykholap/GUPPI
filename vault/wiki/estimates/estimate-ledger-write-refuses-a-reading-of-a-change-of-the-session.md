@@ -1,10 +1,11 @@
 ---
 type: estimate
 kind: QA
-status: pending
+status: passed
 target: "[[rule-ledger-write]]"
 purpose: Whether the ledger hook refuses a reading of an Estimate that a decision line of the same session creates or updates, and says why only for the reply just finished
 method: uv run pytest tests/test_ledger.py — piped payloads and a session ledger in a temp vault
+checked: 2026-09-26
 origin: raw/2026-09-25/1654/ledger.md#case-428.1
 sprint: migration
 created: 2026-09-25
@@ -25,6 +26,11 @@ The line is not written: what a session changes, it does not measure, and the re
 **－** A reading of a slug that no decision line `create` or `update` of this session names is written as before; a `defer` line of the slug does not refuse it.
 **－** Without a `hi`, and with `stop_hook_active`, the hook acts as before and judges no line.
 
+## Result
+
+2026-09-26, `uv run pytest -q tests/test_ledger.py`; 42 passed, a reading of a slug a create or update of the session names is refused with exit 2 and the stderr line, an earlier text skipped silently, a defer or another session's line lets it through
+
 ## History
 
 - 2026-09-25 created · [[decision-case-428.1]]
+- 2026-09-26 status: pending → passed · raw/2026-09-26/1745/ledger.md#L29

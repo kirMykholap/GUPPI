@@ -1,11 +1,11 @@
 ---
 type: estimate
 kind: QA
-status: pending
+status: failed
 target: "[[rule-agent-writing]]"
 purpose: The section stands in CLAUDE.md and one reply of the session holds to it — facts with a source, short sentences, the answer first, the not-done named
 method: one reading by hand in the next session — the section in CLAUDE.md and one reply of the agent against it
-checked: 2026-09-20
+checked: 2026-09-26
 origin: raw/2026-09-20/1308/ledger.md#case-272.3
 sprint: migration
 created: 2026-09-20
@@ -27,10 +27,11 @@ The facts stay and the sales pitch goes; a claim names a real source or goes, an
 
 ## Result
 
-2026-09-20, CLAUDE.md lines 47–53 and the /hi reply of session 1749 read by hand: the section stands in its marker; the reply gives the state first, names its sources, short sentences, names the not-done
+2026-09-26, CLAUDE.md lines 11–17 and the replies of session 1745 read by hand; most replies give the answer first with counts from their runs, but the Work Mode report says 10 Estimates wait for the next session where the ledger names 12, and the retro reply announces "three more" and lists two
 
 ## History
 
 - 2026-09-20 created · [[decision-case-272.3]]
 - 2026-09-20 status: pending → passed · raw/2026-09-20/1749/ledger.md#L4
 - 2026-09-23 updated: the Criterion names the width of a claim (case 359) · [[decision-case-359]]
+- 2026-09-26 status: pending → failed · raw/2026-09-26/1745/ledger.md#L36

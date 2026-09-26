@@ -1,7 +1,7 @@
 ---
 type: estimate
 kind: QA
-status: passed
+status: pending
 target: "[[rule-prespec]]"
 method: One reading by hand of the first /pre-spec after the render, written into the estimate line — the exception the Method rule allows
 checked: 2026-09-25
@@ -17,11 +17,12 @@ When:
 The person invokes `/pre-spec`, or the agent calls the skill, before the Spec is approved.
 
 Then:
-The agent translates the name, `context` and `problem` of every Case of the plan into English, then runs `guppi prespec --check` on the plan file with `--session <id>`, the eight-character id of the `hi:` line, and reads the first line of the output before the exit code — "no hi recorded for session …; nothing checked" means the wrong value; it fixes the plan, the frontier or the line for every finding until the command prints no finding.
+The agent runs `guppi prespec --check` on the plan file with `--session <id>`, the eight-character id of the `hi:` line, and reads the first line of the output before the exit code — "no hi recorded for session …; nothing checked" means the wrong value; nothing is translated before the run.
+**＋** A finding in a Case — in its prose or in its body, a wrong fact of its `context` included — goes to the `case-guppi` of that Case by `SendMessage`; its new answer is shown and ratified again, and the hook of `rule-spec-write` writes it into the plan; the agent does not edit the text of a Case in the plan file.
+**＋** A finding in the Frontier or in a ledger line is fixed there, and the command runs again until it prints no finding.
 **＋** `ask-guppi` is dispatched once with the absolute path of the plan file and the instruction to read every Case outside `## Deferred` — `context`, `when`, `then`, the `then` block — and, for an `update` of a rule or an entity, the page's `estimates`; of a Case under `## Deferred` it reads only the slugs of its `defer` items.
 **＋** Three questions: which decisions contradict a page of the vault, a rule of the vault, or each other; whether an Estimate the Case does not name speaks of the thing the Case changes; which fact of a `context` — a page's status, a count, a case number, a claim that no page holds a thing — the vault does not bear out.
-**＋** The agent answers the findings with one report before any Case is shown again: each finding numbered, with the fix it proposes or why it is already known, and the decisions it needs from the person.
-**＋** Then the changed Cases are shown again in one reply; a wrong fact of a `context` is fixed in the plan as a change of prose.
+**＋** The agent answers the findings with one report before any Case is shown again: each finding numbered, with the fix it proposes or why it is already known, and the decisions it needs from the person; then the changed Cases are shown again in one reply.
 **＋** `guppi gate` writes the stamped `prespec` line on the Skill call; then Plan Mode exits again.
 **－** The agent writes no list of the decisions: the plan is the list.
 **－** The body of a deferred decision is not read; a Case that changes a page another Case of the plan defers is still a finding.
@@ -66,3 +67,4 @@ The agent translates the name, `context` and `problem` of every Case of the plan
 - 2026-09-23 updated: the question on contradictions as the Render asks it (case 364.3) · [[decision-case-364.3]]
 - 2026-09-24 updated: the Criterion replaced whole — the translation, ask-guppi reading the plan and the context, the report before the re-showing (case 388) · [[decision-case-388]]
 - 2026-09-25 status: pending → passed · raw/2026-09-25/1228/ledger.md#L42
+- 2026-09-26 updated: the Criterion replaced whole — no translation before the run, a finding in a Case to its case-guppi (case 441.4) · [[decision-case-441.4]]

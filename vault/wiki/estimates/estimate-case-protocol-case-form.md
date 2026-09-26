@@ -1,11 +1,11 @@
 ---
 type: estimate
 kind: QA
-status: pending
+status: failed
 target: "[[rule-case-protocol]]"
 purpose: A Case in the chat carries the whole contract in given, when and then
 method: one reading by hand of the Cases of a session, at its close
-checked: 2026-09-25
+checked: 2026-09-26
 origin: raw/2026-09-16/1034/ledger.md#case-188
 sprint: migration
 created: 2026-09-16
@@ -29,7 +29,7 @@ The Case opens with the heading `## Case N — name`, a sub-case with `### Case 
 
 ## Result
 
-2026-09-25, by hand, the Cases of session 0051 at its close: Case 414 showed "Case 407 предлагал две вещи" and "frame-guppi нашёл три вещи" in its context, a count of items the Case is not about; Case 415 showed a － line in then that was bookkeeping, not behaviour; both found by ask-guppi at pre-spec, fixed, 415 shown again; Cases 416, 417 and 418 hold the form
+2026-09-26, by hand, the Cases of session 1745 in the chat; the context of Case 439 (17:56) and of Case 441 shown again (22:20) holds bullet lists, not prose, and the given of 441.4 holds the state "deferred by case 438"; the headings, section order, ratification fences, closing questions and the one-reply showing of 440 and 441 hold
 
 ## History
 
@@ -53,3 +53,4 @@ The Case opens with the heading `## Case N — name`, a sub-case with `### Case 
 - 2026-09-25 updated: the Criterion replaced whole — the line on the frame of when and then left to estimate-prespec-checks-the-frame (case 415) · [[decision-case-415]]
 - 2026-09-25 status: pending → failed · raw/2026-09-25/0051/ledger.md#L19
 - 2026-09-25 updated: the Criterion replaced whole — a Case built by case-guppi, and its context says what case-guppi found in the frame (case 431) · [[decision-case-431]]
+- 2026-09-26 status: pending → failed · raw/2026-09-26/1745/ledger.md#L34

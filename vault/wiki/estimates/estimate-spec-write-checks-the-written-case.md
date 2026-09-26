@@ -1,7 +1,7 @@
 ---
 type: estimate
 kind: QA
-status: passed
+status: pending
 target: "[[rule-spec-write]]"
 purpose: Each Case the Stop hook writes into the plan is checked at once, and a finding comes back to the agent
 method: uv run pytest tests/test_ratified.py -k checks_the_written; by hand, the first ratification of a session after the change
@@ -23,7 +23,7 @@ The hook runs the checks of `prespec --check`, imported from `guppi/prespec.py`,
 **＋** On a finding: exit 2, the findings on stderr after `ratified:`, each naming its Case; the written Case stays in the plan and in its ratified copy.
 **＋** A finding of a Case not written in this run is not reported.
 **－** On the re-fire (`stop_hook_active`) nothing is checked: exit 0.
-**－** A Case not written in this run — a last showing that is a `DIFF` block — and a defer-only Case, which the hook writes under `## Deferred`, are not checked.
+**－** A Case not written in this run, and a defer-only Case, which the hook writes under `## Deferred`, are not checked.
 **－** The Frontier `raw/<hi date>/<hi HHMM>/frontier.md` is not read.
 **－** The plan is not compared with its ratified copy, and a name, `context` or `problem` that holds a Cyrillic letter is no finding.
 **－** A ledger line of the window that does not parse is no finding of this check.
@@ -37,3 +37,4 @@ The hook runs the checks of `prespec --check`, imported from `guppi/prespec.py`,
 - 2026-09-25 created · [[decision-case-414.1]]
 - 2026-09-25 updated: the Criterion replaced whole — a defer-only Case is written by the hook and not checked (case 421.1) · [[decision-case-421.1]]
 - 2026-09-25 status: pending → passed · raw/2026-09-25/1654/ledger.md#L30
+- 2026-09-26 updated: the Criterion replaced whole — a DIFF showing is no longer named (case 441.9) · [[decision-case-441.9]]

@@ -21,7 +21,7 @@ Then:
 **＋** Before a `create` without a `ref`, it runs the vault query of `.claude/agents/ask-guppi.md` itself, and the `context` of the Case gives the answer.
 **＋** It reads each page and file the `given` of the Case names, the Criterion of each Estimate such a page lists, and, for a Case that adds or changes a hook, the hooks on the same event in `.claude/settings.json`.
 **＋** Each contradiction it finds is fixed in the Case, or the `context` says why it stands.
-**＋** Its answer is the Case in the chat form of `vault/wiki/case-schema.md`, from the heading to the fence of `ratification`, and nothing else; asked again, it answers with the Case whole again.
+**＋** Its answer is the Case whole in English — the name, `context`, `problem` and `recommend` too — in the chat form of `vault/wiki/case-schema.md`, from the heading to the fence of `ratification`, and nothing else; asked again, it answers with the Case whole again, in English.
 **＋** An answer that needs a choice the person has not made is that question alone, with no Case heading.
 **＋** It runs on `model: opus` with `effort: medium` and the tools Read, Grep and Glob.
 **－** It writes no file and no ledger line.
@@ -32,3 +32,4 @@ Then:
 - 2026-09-25 renamed from `estimate-frame-check-finds-a-contradiction` · [[decision-case-419.2]]
 - 2026-09-25 updated: renamed; the Criterion replaced whole — case-guppi builds the Case; the method measures its cost (case 419.2) · [[decision-case-419.2]]
 - 2026-09-25 ref `rule-frame-check` → `rule-case-build` · [[decision-case-425]]
+- 2026-09-26 updated: the Criterion replaced whole — the answer is the whole Case in English (case 441.1) · [[decision-case-441.1]]

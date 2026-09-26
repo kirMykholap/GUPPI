@@ -274,7 +274,7 @@ update:
 - [x] update `rule-prespec`
 - [x] update `estimate-prespec-checks-the-form-of-an-item`
 - [x] `uv run guppi render`: `.claude/skills/pre-spec/SKILL.md`
-- [ ] read `estimate-prespec-checks-the-form-of-an-item`
+- [x] read `estimate-prespec-checks-the-form-of-an-item`
 ```
 
 ### Case 436.3 — The write of a deferred Case refuses a key a `defer` does not have
@@ -317,7 +317,7 @@ update:
 - [x] `uv run pytest`
 - [x] update `rule-spec-write`
 - [x] update `estimate-spec-write-writes-a-defer`
-- [ ] read `estimate-spec-write-writes-a-defer`
+- [x] read `estimate-spec-write-writes-a-defer`
 ```
 
 ### Case 436.4 — The check of case-guppi takes the schemas the session changes from the session's window

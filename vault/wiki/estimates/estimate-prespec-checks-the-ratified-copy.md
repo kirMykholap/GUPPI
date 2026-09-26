@@ -1,7 +1,7 @@
 ---
 type: estimate
 kind: QA
-status: passed
+status: pending
 target: "[[rule-prespec]]"
 purpose: Pre-spec finds a Case of the plan that differs from its ratified copy in what the scripts apply, or whose prose is still Russian
 method: uv run pytest tests/test_prespec.py -k ratified
@@ -15,12 +15,12 @@ tags: [session, workflow, harness]
 ## Criterion
 
 When:
-`guppi prespec --check <plan>` runs at `/pre-spec`, after the agent translated the names, `context` and `problem` of the plan, and reads the plan and its ratified copy `<plan>.ratified.md`.
+`guppi prespec --check <plan>` runs at `/pre-spec` and reads the plan and its ratified copy `<plan>.ratified.md`.
 
 Then:
 A Case of the plan whose ids, `given`, `when`, `then`, `then` block or `tasks` differ from its section in the ratified copy: one finding naming the Case and the parts.
 **＋** A Case of the plan with no section in the copy, and a section of the copy with no Case in the plan: one finding each.
-**＋** A name, `context` or `problem` that still holds a Cyrillic letter: one finding.
+**＋** A name, `context` or `problem` that holds a Cyrillic letter: one finding.
 **－** The section of a Case a `{supersedes:case N}` of the session's window names is no finding: that Case left the plan (case 299.1).
 **－** The section of a parent with sub-cases in the copy, every one of them named by such a line, is no finding: the parent left the plan with them.
 **－** A Case under `## Deferred` is not compared.
@@ -35,3 +35,4 @@ A Case of the plan whose ids, `given`, `when`, `then`, `then` block or `tasks` d
 - 2026-09-24 status: pending → passed · raw/2026-09-23/1859/ledger.md#L27
 - 2026-09-25 updated: the Criterion replaced whole — a parent whose every sub-case is superseded is no finding (case 417) · [[decision-case-417]]
 - 2026-09-25 status: pending → passed · raw/2026-09-25/0051/ledger.md#L18
+- 2026-09-26 updated: the Criterion replaced whole — the run follows no translation; the Cyrillic finding stays (case 441.5) · [[decision-case-441.5]]

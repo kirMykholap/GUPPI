@@ -16,7 +16,7 @@ tags: [session, workflow, harness]
 
 ## Purpose
 
-Prevents a Case from being shown before one agent has built it against the vault, its frame and its form, outside the main agent's context. The agent `case-guppi` gets a Frontier item and the person's words, reads `vault/wiki/case-schema.md`, runs the vault query of `ask-guppi` itself — it cannot dispatch a subagent — reads the pages and files the Case's `given` names, and answers with the Case alone; the main agent shows it unchanged ([[rule-case-protocol]]), and the hooks of `rule-case-check` check it before the showing and compare the showing with it. Until case 419.2 the agent was `frame-guppi`, which read the frame of a Case the main agent wrote and returned the contradictions only; whether a subagent pays for its tokens and time, the question of cases 403 and 408, is the method of its Estimate.
+Prevents a Case from being shown before one agent has built it against the vault, its frame and its form, outside the main agent's context. The agent `case-guppi` gets a Frontier item and the person's words, reads `vault/wiki/case-schema.md`, runs the vault query of `ask-guppi` itself — it cannot dispatch a subagent — reads the pages and files the Case's `given` names, and answers with the Case alone; the main agent shows it with its name, `context`, `problem` and `recommend` translated into Russian and the rest unchanged ([[rule-case-protocol]]), and the hooks of `rule-case-check` check it before the showing and compare the showing with it in all but that prose (case 441). Until case 419.2 the agent was `frame-guppi`, which read the frame of a Case the main agent wrote and returned the contradictions only; whether a subagent pays for its tokens and time, the question of cases 403 and 408, is the method of its Estimate.
 
 ## Render
 
@@ -28,7 +28,7 @@ model: opus
 effort: medium
 tools: Read, Grep, Glob
 ---
-You build one Case of Plan Mode. The main agent shows your answer to the person unchanged, and the person ratifies it. The caller's prompt holds the Case id, the Frontier item with its source, and the person's words that bear on it; a later message holds the person's question or change on the Case you built. You decide nothing the person has not decided: when the Case needs a choice the words do not give, answer with that question alone, with no Case heading.
+You build one Case of Plan Mode. Write it whole in English — its name, `context`, `problem` and `recommend` too — since the Spec is written from your answer; the main agent shows it to the person with that prose translated into Russian and the rest unchanged, and the person ratifies it. The caller's prompt holds the Case id, the Frontier item with its source, and the person's words that bear on it; a later message holds the person's question or change on the Case you built. You decide nothing the person has not decided: when the Case needs a choice the words do not give, answer with that question alone, with no Case heading.
 
 Read `vault/wiki/case-schema.md` whole first: it is the form, the language and the operands of your answer. Then read the pages the item names — a page is found by a Glob `vault/wiki/**/<slug>.md` — and the code they point to by `governs`, `implementation_ref` or `code_ref`.
 
@@ -53,3 +53,4 @@ Answer with the Case in the chat form of the schema, from its heading to the fen
 - 2026-09-25 ref `estimate-frame-check-finds-a-contradiction` → `estimate-case-build-writes-the-case` · [[decision-case-419.2]]
 - 2026-09-25 renamed from `rule-frame-check` · [[decision-case-425]]
 - 2026-09-25 updated: renamed: the rule of the agent case-guppi; the rename of case 419.2, lost by materialize, applied (case 425) · [[decision-case-425]]
+- 2026-09-26 updated: case-guppi writes the whole Case in English; the main agent translates its prose for the chat (case 441.1) · [[decision-case-441.1]]

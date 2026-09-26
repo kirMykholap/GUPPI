@@ -1,42 +1,26 @@
 ---
 type: estimate
 kind: QA
-status: passed
+status: pending
 target: "[[rule-spec-capture]]"
+method: pytest in tests/test_spec.py with piped payloads against a temp vault; by hand, the next approval of a session after the change
 origin: raw/2026-09-09/ledger.md#case-20
 sprint: migration
 created: 2026-09-09
 tags: [session, hooks, harness, workflow]
 ---
 
-## Context
-
-The Spec is the content every decision line of a session points at. The unit cases pin
-what the hook writes and when it refuses; the live reading proves the registration and
-records what a rejected plan hands the hook, which the Slice 1 probe did not measure.
-
 ## Criterion
 
-Given a `PostToolUse` payload naming `ExitPlanMode` with a plan and a `hi` recorded:
-`spec.md` gains a `---` separator (when the file has content), the stamp
-`<!-- approved HH:MM:SS · session xxxxxxxx -->` and the plan text, once, even when the
-hook runs twice; earlier documents stay intact. Without `hi`: exit 2 naming the session,
-file untouched. Another tool's payload: nothing written, exit 0. A `## Deferred` section appended by the agent stays intact under a later approval's separator, and materialize reads its Cases. Live: the next plan approval lands in `raw/<date>/spec.md` by the hook, not by hand, and the reading records what a rejected plan produces.
-
-### case 73.2
-
 When:
-`ExitPlanMode` is approved in a session with a `hi`.
+`ExitPlanMode` is approved, and `uv run guppi spec` runs on its `PostToolUse` with the plan in `tool_response.plan`.
 
 Then:
-The plan is copied to `raw/<hi date>/<hi HHMM>/spec.md`; a second approval of the same
-session appends under `---` and the stamp, as before.
-**－** Without a `hi` the hook refuses as before.
-
-## Method
-
-pytest in `tests/test_spec.py` with piped payloads against a temp vault; the live reading
-once by hand, written into the estimate line.
+In a session with a `hi`, the plan is appended to `raw/<hi date>/<hi HHMM>/spec.md` — a `---` separator when the file has content, the stamp `<!-- approved HH:MM:SS · session xxxxxxxx -->` and the plan text — once, even when the hook runs twice.
+**＋** A second approval of the same session appends under `---` and its stamp.
+**＋** The hook changes nothing that stands in the file: earlier documents, the sections the `Stop` hook of `rule-spec-write` wrote and a `## Deferred` section stay as they are, and `uv run guppi materialize` reads their Cases.
+**－** Without a `hi` the hook exits 2 naming the session, and the file is untouched.
+**－** The payload of another tool writes nothing: exit 0.
 
 ## Result
 
@@ -51,3 +35,4 @@ block 73.2 at the approval of 11:40:48: the plan copied whole to raw/2026-09-14/
 - 2026-09-12 updated: the Deferred heading (cases 59.5, 66) · [[decision-case-66]]
 - 2026-09-12 criterion: case 73.2 added · [[decision-case-73.2]]
 - 2026-09-14 status: pending → passed · raw/2026-09-14/1029/ledger.md#L37
+- 2026-09-26 updated: the Criterion replaced whole — the Stop hook of rule-spec-write, not the agent, writes the sections the append leaves (case 441.10) · [[decision-case-441.10]]

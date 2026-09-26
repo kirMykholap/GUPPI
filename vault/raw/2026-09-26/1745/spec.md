@@ -37,7 +37,7 @@ update:
 ```
 
 ```tasks
-- [ ] update `rule-skill-hi`
+- [x] update `rule-skill-hi`
 - [x] `uv run guppi render --check` exits 0: `.claude/skills/hi/SKILL.md` equals the Render
 ```
 
@@ -86,7 +86,7 @@ update:
 ```
 
 ```tasks
-- [ ] update `estimate-materialize-lifts-a-create-by-the-schema`: the Criterion replaced whole
+- [x] update `estimate-materialize-lifts-a-create-by-the-schema`: the Criterion replaced whole
 - [x] `guppi/materialize.py`: remove `IGNORED_KEYS`, its skip in `_lift_item` and in `accepted_keys` with the parameter `estimate`, the pops of `estimate_kind` and `estimate_slug` on an Estimate `create`, and the sentence on these keys in the module docstring
 - [x] `guppi/prespec.py`: remove the sentence on the keys of the shape before case 189 from the module docstring and from the docstring of `check_form`
 - [x] `tests/test_materialize.py`: `test_the_keys_of_the_old_shape_stay_ignored_and_never_unknown` becomes a test that `contract` and `method` on a rule's `create` are named under `unknown`; `test_item_keys_answers_for_each_kind_as_the_lift_does` asserts `method` and `contract` are not keys of a rule's `create`
@@ -126,7 +126,7 @@ update:
 ```
 
 ```tasks
-- [ ] update `estimate-materialize-assembles`: the Criterion replaced whole
+- [x] update `estimate-materialize-assembles`: the Criterion replaced whole
 - [x] `tests/test_materialize.py`: the fixtures of Cases 12 to 14 lose `contract`, `estimate_slug` and `method` on their `update` items; `test_a_create_with_the_old_method_key_yields_no_estimate_and_keeps_the_key_off` and `test_an_update_with_the_old_contract_keys_yields_one_entry_without_them` assert the keys of Cases 11 and 15 under `unknown` and no Estimate entry derived
 - [x] `uv run pytest tests/test_materialize.py`
 - [ ] read `estimate-materialize-assembles`
@@ -156,8 +156,8 @@ update:
 ```
 
 ```tasks
-- [ ] update `rule-case-protocol`: the Render drops the two sentences on the keys of the shape before case 189
-- [ ] `uv run guppi render`: `vault/wiki/case-schema.md`
+- [x] update `rule-case-protocol`: the Render drops the two sentences on the keys of the shape before case 189
+- [x] `uv run guppi render`: `vault/wiki/case-schema.md`
 ```
 
 ## Case 441 — case-guppi writes the Case in English, and the Spec is written from that answer, spec.md included
@@ -234,9 +234,9 @@ update:
 ```
 
 ```tasks
-- [ ] update `rule-case-build`
-- [ ] update `estimate-case-build-writes-the-case`
-- [ ] `uv run guppi render`: `.claude/agents/case-guppi.md`
+- [x] update `rule-case-build`
+- [x] update `estimate-case-build-writes-the-case`
+- [x] `uv run guppi render`: `.claude/agents/case-guppi.md`
 - [ ] read `estimate-case-build-writes-the-case`
 ```
 
@@ -281,9 +281,9 @@ update:
 ```
 
 ```tasks
-- [ ] update `rule-case-protocol`
-- [ ] update `estimate-case-protocol-shows-the-built-case`
-- [ ] `uv run guppi render`: `vault/wiki/case-schema.md`
+- [x] update `rule-case-protocol`
+- [x] update `estimate-case-protocol-shows-the-built-case`
+- [x] `uv run guppi render`: `vault/wiki/case-schema.md`
 - [ ] read `estimate-case-protocol-shows-the-built-case`
 ```
 
@@ -327,8 +327,8 @@ update:
 ```
 
 ```tasks
-- [ ] update `rule-case-check`
-- [ ] update `estimate-case-check-shows-only-the-checked-case`
+- [x] update `rule-case-check`
+- [x] update `estimate-case-check-shows-only-the-checked-case`
 - [x] `guppi/casecheck.py`: `against_store` compares the quoted `given`, `when`, `then`, `tasks` and `ratification` of the showing and of the stored text, the heading name and the prose left out; the module docstring says it
 - [x] `tests/test_casecheck.py`: a showing whose heading name, `context`, `problem` and `recommend` differ from the answer passes; one that differs in `given`, `then`, a task sub-point or a `ratification` line is refused; a compared section present in one and missing in the other is refused
 - [x] `uv run pytest tests/test_casecheck.py tests/test_ratified.py`
@@ -375,9 +375,9 @@ update:
 ```
 
 ```tasks
-- [ ] update `rule-prespec`
-- [ ] update `estimate-prespec-reconciles`
-- [ ] `uv run guppi render`: `.claude/skills/pre-spec/SKILL.md`
+- [x] update `rule-prespec`
+- [x] update `estimate-prespec-reconciles`
+- [x] `uv run guppi render`: `.claude/skills/pre-spec/SKILL.md`
 - [ ] read `estimate-prespec-reconciles`
 ```
 
@@ -409,7 +409,7 @@ update:
 ```
 
 ```tasks
-- [ ] update `estimate-prespec-checks-the-ratified-copy`
+- [x] update `estimate-prespec-checks-the-ratified-copy`
 - [ ] read `estimate-prespec-checks-the-ratified-copy`
 ```
 
@@ -467,15 +467,15 @@ update:
 ```
 
 ```tasks
-- [ ] update `rule-spec-write`
-- [ ] create `estimate-spec-write-reaches-the-approved-spec`
-- [ ] update `rule-spec-capture`
-- [ ] update `rule-case-protocol`
+- [x] update `rule-spec-write`
+- [x] create `estimate-spec-write-reaches-the-approved-spec`
+- [x] update `rule-spec-capture`
+- [x] update `rule-case-protocol`
 - [x] `guppi/ratified.py`: after `write_case` of Case N, when `spec.md` of the session folder stands, write the stored answer there — every section of Case N replaced, a new Case placed before the `## Deferred` of the last approved document — the boxes of task lines whose text stood in a replaced section kept; a parent's `context` and `problem` taken from its stored answer only; the module docstring says it
 - [x] `guppi/spec.py`: the sentence on the writers in the module docstring says what `rule-spec-capture` says
 - [x] `tests/test_ratified.py`: tests named `approved_spec` — a section replaced from the stored answer; two sections of Case N both replaced; a new Case placed; a ticked task line kept ticked and a changed one unticked; a refused showing writing nothing into `spec.md`; no `spec.md`, nothing written there; a parent's prose taken from the store when the reply shows it translated
 - [x] `uv run pytest tests/test_ratified.py tests/test_spec.py`
-- [ ] `uv run guppi render`: `vault/wiki/case-schema.md`
+- [x] `uv run guppi render`: `vault/wiki/case-schema.md`
 - [ ] read `estimate-spec-write-reaches-the-approved-spec`
 ```
 
@@ -527,13 +527,13 @@ update:
 ```
 
 ```tasks
-- [ ] update `rule-spec-write`
-- [ ] create `estimate-spec-write-removes-a-superseded-case`
-- [ ] update `rule-case-protocol`
+- [x] update `rule-spec-write`
+- [x] create `estimate-spec-write-removes-a-superseded-case`
+- [x] update `rule-case-protocol`
 - [x] `guppi/ratified.py`: after the writes of `stop`, for each decision line of the reply whose Case was written in this run, remove the sections its `{supersedes:case N}` names from the plan, the ratified copy and `spec.md` when it stands; the module docstring says it
 - [x] `tests/test_ratified.py`: tests named `superseded` — a Case and its sub-cases removed from the plan, the copy and `spec.md`; a sub-case removed alone; a section under `## Deferred` removed; a Case no file holds is no refusal; a refused Case removes nothing
 - [x] `uv run pytest tests/test_ratified.py tests/test_prespec.py`
-- [ ] `uv run guppi render`: `vault/wiki/case-schema.md`
+- [x] `uv run guppi render`: `vault/wiki/case-schema.md`
 - [ ] read `estimate-spec-write-removes-a-superseded-case`
 ```
 
@@ -582,8 +582,8 @@ update:
 ```
 
 ```tasks
-- [ ] update `rule-spec-write`
-- [ ] update `estimate-spec-write-copies-the-ratified-case`
+- [x] update `rule-spec-write`
+- [x] update `estimate-spec-write-copies-the-ratified-case`
 - [x] `guppi/ratified.py`: `find_showing` returns the last message that shows the Case whole, a `DIFF` fence no longer read; `names_in_diff` and `DIFF_TAG` removed; the module docstring says it
 - [x] `tests/test_ratified.py`: the test of a last `DIFF` showing becomes a test that a later `DIFF` fence naming Case N does not stop its write
 - [x] `uv run pytest tests/test_ratified.py -k write`
@@ -621,7 +621,7 @@ update:
 ```
 
 ```tasks
-- [ ] update `estimate-spec-write-checks-the-written-case`
+- [x] update `estimate-spec-write-checks-the-written-case`
 - [x] `uv run pytest tests/test_ratified.py -k checks_the_written`
 - [ ] read `estimate-spec-write-checks-the-written-case`
 ```
@@ -654,7 +654,7 @@ update:
 ```
 
 ```tasks
-- [ ] update `estimate-spec-capture-appends`
+- [x] update `estimate-spec-capture-appends`
 - [x] `uv run pytest tests/test_spec.py`
 - [ ] read `estimate-spec-capture-appends`
 ```

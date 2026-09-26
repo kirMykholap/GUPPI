@@ -1,8 +1,9 @@
 ---
 type: decision
 case: "438"
-status: current
+status: archived
 defer: ["[[rule-prespec]]"]
+superseded_by: ["[[decision-case-441.4]]"]
 origin: raw/2026-09-26/1337/ledger.md#case-438
 sprint: migration
 created: 2026-09-26
@@ -26,3 +27,6 @@ After case 437, a pre-spec finding in the body of a Case goes to its case-guppi 
 ## History
 
 - 2026-09-26 created · raw/2026-09-26/1337/ledger.md#case-438
+- 2026-09-26 superseded by decision-case-441.4 · [[decision-case-441.4]]
+- 2026-09-26 archived · superseded
+- 2026-09-26 archived · cleanup

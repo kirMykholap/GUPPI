@@ -3729,3 +3729,68 @@ instruction. The global feed; a page's own `## History` is the per-page view.
 - 2026-09-26 insights/insight-case-show-built-case-retyped-by-hand created · raw/2026-09-26/1337/ledger.md#L20 · generate
 - 2026-09-26 lessons/lesson-case-show-sub-case-ratification-retyped updated: clustered into insight-case-show-built-case-retyped-by-hand · raw/2026-09-26/1337/ledger.md#L20 · generate
 - 2026-09-26 lessons/lesson-case-show-ref-of-a-ratification-line-retyped updated: clustered into insight-case-show-built-case-retyped-by-hand · raw/2026-09-26/1337/ledger.md#L20 · generate
+- 2026-09-26 decisions/decision-case-439 created · raw/2026-09-26/1745/ledger.md#case-439 · generate
+- 2026-09-26 rules/rule-skill-hi updated: the allowed-tools line of the Render frontmatter allows the six ! commands of /hi; the server-side classifier of client 2.1.282 gives no verdict for a substitution the person types (commit 54509ed) · [[decision-case-439]] · generate
+- 2026-09-26 lessons/lesson-hi-substitution-gets-no-verdict-from-the-server-side-classifier created · raw/2026-09-26/1745/ledger.md#L2 · generate
+- 2026-09-26 decisions/decision-case-440.1 created · raw/2026-09-26/1745/ledger.md#case-440.1 · generate
+- 2026-09-26 estimates/estimate-materialize-lifts-a-create-by-the-schema updated: the Criterion replaced whole — the keys of the shape before case 189 are no own keys of a create (case 440.1) · [[decision-case-440.1]] · generate
+- 2026-09-26 decisions/decision-case-440.2 created · raw/2026-09-26/1745/ledger.md#case-440.2 · generate
+- 2026-09-26 estimates/estimate-materialize-assembles updated: the Criterion replaced whole — the line on the keys of the shape before case 189 gives way to the line that no Estimate is derived from a key (case 440.2) · [[decision-case-440.2]] · generate
+- 2026-09-26 decisions/decision-case-440.3 created · raw/2026-09-26/1745/ledger.md#case-440.3 · generate
+- 2026-09-26 rules/rule-case-protocol updated: the Render names no key of the shape before case 189 (case 440.3) · [[decision-case-440.3]] · generate
+- 2026-09-26 decisions/decision-case-441.1 created · raw/2026-09-26/1745/ledger.md#case-441.1 · generate
+- 2026-09-26 rules/rule-case-build updated: case-guppi writes the whole Case in English; the main agent translates its prose for the chat (case 441.1) · [[decision-case-441.1]] · generate
+- 2026-09-26 estimates/estimate-case-build-writes-the-case updated: the Criterion replaced whole — the answer is the whole Case in English (case 441.1) · [[decision-case-441.1]] · generate
+- 2026-09-26 decisions/decision-case-441.2 created · raw/2026-09-26/1745/ledger.md#case-441.2 · generate
+- 2026-09-26 rules/rule-case-protocol updated: the main agent translates the prose of the English answer for the chat and writes a short-form Case in English; a ratified Case changes only through its case-guppi and is shown again whole; the prose DIFF and the translation before the approval go (case 441.2) · [[decision-case-441.2]] · generate
+- 2026-09-26 estimates/estimate-case-protocol-shows-the-built-case updated: the Criterion replaced whole — the prose translated for the chat, every showing whole, a changed Case through its case-guppi, the short form in English (case 441.2) · [[decision-case-441.2]] · generate
+- 2026-09-26 decisions/decision-case-441.3 created · raw/2026-09-26/1745/ledger.md#case-441.3 · generate
+- 2026-09-26 rules/rule-case-check updated: the Stop comparison reads only given, when, then, tasks and ratification (case 441.3) · [[decision-case-441.3]] · generate
+- 2026-09-26 estimates/estimate-case-check-shows-only-the-checked-case updated: the Criterion replaced whole — the prose is not compared (case 441.3) · [[decision-case-441.3]] · generate
+- 2026-09-26 decisions/decision-case-441.4 created · raw/2026-09-26/1745/ledger.md#case-441.4 · generate
+- 2026-09-26 decisions/decision-case-438 superseded by decision-case-441.4 · [[decision-case-441.4]] · generate
+- 2026-09-26 rules/rule-prespec defer by decision-case-438 superseded · [[decision-case-441.4]] · generate
+- 2026-09-26 rules/rule-prespec updated: nothing is translated before the run; a finding in a Case goes to its case-guppi and a new ratification (case 441.4, supersedes 438) · [[decision-case-441.4]] · generate
+- 2026-09-26 estimates/estimate-prespec-reconciles updated: the Criterion replaced whole — no translation before the run, a finding in a Case to its case-guppi (case 441.4) · [[decision-case-441.4]] · generate
+- 2026-09-26 decisions/decision-case-441.5 created · raw/2026-09-26/1745/ledger.md#case-441.5 · generate
+- 2026-09-26 estimates/estimate-prespec-checks-the-ratified-copy updated: the Criterion replaced whole — the run follows no translation; the Cyrillic finding stays (case 441.5) · [[decision-case-441.5]] · generate
+- 2026-09-26 decisions/decision-case-441.6 created · raw/2026-09-26/1745/ledger.md#case-441.6 · generate
+- 2026-09-26 rules/rule-spec-write updated: once spec.md stands, a Case ratified after the approval is written into it too, its ticks kept (case 441.6) · [[decision-case-441.6]] · generate
+- 2026-09-26 estimates/estimate-spec-write-reaches-the-approved-spec created · [[decision-case-441.6]] · generate
+- 2026-09-26 rules/rule-spec-write estimate estimate-spec-write-reaches-the-approved-spec added · [[decision-case-441.6]] · generate
+- 2026-09-26 rules/rule-spec-capture updated: the writers of spec.md: the Stop hook of rule-spec-write writes a Case ratified after the approval, removes a superseded one and writes a defer at Retro (case 441.6) · [[decision-case-441.6]] · generate
+- 2026-09-26 rules/rule-case-protocol updated: the Spec hook writes into spec.md once it stands (case 441.6) · [[decision-case-441.6]] · generate
+- 2026-09-26 decisions/decision-case-442 created · raw/2026-09-26/1745/ledger.md#case-442 · generate
+- 2026-09-26 rules/rule-ledger-write deferred · [[decision-case-442]] · generate
+- 2026-09-26 decisions/decision-case-441.7 created · raw/2026-09-26/1745/ledger.md#case-441.7 · generate
+- 2026-09-26 rules/rule-spec-write updated: the Stop hook removes a Case superseded by a line of the reply from the plan, its copy and spec.md (case 441.7) · [[decision-case-441.7]] · generate
+- 2026-09-26 estimates/estimate-spec-write-removes-a-superseded-case created · [[decision-case-441.7]] · generate
+- 2026-09-26 rules/rule-spec-write estimate estimate-spec-write-removes-a-superseded-case added · [[decision-case-441.7]] · generate
+- 2026-09-26 rules/rule-case-protocol updated: the Stop hook removes a superseded Case from the Spec (case 441.7) · [[decision-case-441.7]] · generate
+- 2026-09-26 decisions/decision-case-441.8 created · raw/2026-09-26/1745/ledger.md#case-441.8 · generate
+- 2026-09-26 rules/rule-spec-write updated: the hook copies the stored English answer; a DIFF no longer skips a Case (case 441.8) · [[decision-case-441.8]] · generate
+- 2026-09-26 estimates/estimate-spec-write-copies-the-ratified-case updated: the Criterion replaced whole — the DIFF skip goes (case 441.8) · [[decision-case-441.8]] · generate
+- 2026-09-26 decisions/decision-case-441.9 created · raw/2026-09-26/1745/ledger.md#case-441.9 · generate
+- 2026-09-26 estimates/estimate-spec-write-checks-the-written-case updated: the Criterion replaced whole — a DIFF showing is no longer named (case 441.9) · [[decision-case-441.9]] · generate
+- 2026-09-26 decisions/decision-case-441.10 created · raw/2026-09-26/1745/ledger.md#case-441.10 · generate
+- 2026-09-26 estimates/estimate-spec-capture-appends updated: the Criterion replaced whole — the Stop hook of rule-spec-write, not the agent, writes the sections the append leaves (case 441.10) · [[decision-case-441.10]] · generate
+- 2026-09-26 estimates/estimate-prespec-checks-the-form-of-an-item status: pending → passed · raw/2026-09-26/1745/ledger.md#L27 · generate
+- 2026-09-26 estimates/estimate-prespec-matches-lines-and-items status: pending → passed · raw/2026-09-26/1745/ledger.md#L28 · generate
+- 2026-09-26 estimates/estimate-ledger-write-refuses-a-reading-of-a-change-of-the-session status: pending → passed · raw/2026-09-26/1745/ledger.md#L29 · generate
+- 2026-09-26 estimates/estimate-ledger-write-lifts status: pending → passed · raw/2026-09-26/1745/ledger.md#L30 · generate
+- 2026-09-26 estimates/estimate-prespec-requires-a-task-line status: pending → passed · raw/2026-09-26/1745/ledger.md#L31 · generate
+- 2026-09-26 estimates/estimate-materialize-marks-superseded status: pending → passed · raw/2026-09-26/1745/ledger.md#L32 · generate
+- 2026-09-26 estimates/estimate-spec-write-writes-a-defer status: pending → passed · raw/2026-09-26/1745/ledger.md#L33 · generate
+- 2026-09-26 estimates/estimate-case-protocol-case-form status: pending → failed · raw/2026-09-26/1745/ledger.md#L34 · generate
+- 2026-09-26 estimates/estimate-case-protocol-defers-in-one-reply status: pending → failed · raw/2026-09-26/1745/ledger.md#L35 · generate
+- 2026-09-26 estimates/estimate-agent-writing-followed status: pending → failed · raw/2026-09-26/1745/ledger.md#L36 · generate
+- 2026-09-26 estimates/estimate-language-followed status: pending → failed · raw/2026-09-26/1745/ledger.md#L37 · generate
+- 2026-09-26 lessons/lesson-case-build-a-criterion-replaced-whole-drops-a-line created · raw/2026-09-26/1745/ledger.md#L38 · generate
+- 2026-09-26 insights/insight-hi-skill-substitution-checked-by-a-model-call updated: child lesson-hi-substitution-gets-no-verdict-from-the-server-side-classifier added; addressed_by decision-case-439, later than decision-case-246, status actioned kept · raw/2026-09-26/1745/ledger.md#L2 · generate
+- 2026-09-26 lessons/lesson-hi-substitution-gets-no-verdict-from-the-server-side-classifier updated: clustered into insight-hi-skill-substitution-checked-by-a-model-call · raw/2026-09-26/1745/ledger.md#L2 · generate
+- 2026-09-26 rules/rule-ledger-write status: draft → built · cascade · generate
+- 2026-09-26 rules/rule-spec-capture status: built → draft · cascade · generate
+- 2026-09-26 decisions/decision-case-438 archived · superseded · generate
+- 2026-09-26 lessons/lesson-hi-substitution-gets-no-verdict-from-the-server-side-classifier archived · insight actioned · generate
+- 2026-09-26 lessons/lesson-hi-substitution-gets-no-verdict-from-the-server-side-classifier archived · cleanup
+- 2026-09-26 decisions/decision-case-438 archived · cleanup

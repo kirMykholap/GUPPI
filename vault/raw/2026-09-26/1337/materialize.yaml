@@ -583,6 +583,7 @@ entries:
       is the last step
   exists: true
   applied: '17:02:12'
+  superseded_by: '441.4'
 - line: 19
   text: 'lesson[knowledge][lesson-hooks-subagentstop-fires-before-and-after-the-handback]{tags:hooks,harness}{source:probe
     of session af4c2d33, Claude Code 2.1.282 (claude-vscode), 2026-09-26: a SubagentStop payload dump
@@ -1607,5 +1608,7 @@ decisions:
       not say that the translation is the last step, after every ratification again.
   spec: vault/raw/2026-09-26/1337/spec.md
   applied: '17:02:12'
+  superseded_by:
+  - decision-case-441.4
 unparsed: []
 session: '1337'

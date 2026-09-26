@@ -1,10 +1,10 @@
 ---
 type: estimate
 kind: QA
-status: pending
+status: passed
 target: "[[rule-ledger-write]]"
 method: pytest in tests/test_ledger.py and tests/test_gate.py with piped payloads against a temp vault; the live reading once by hand — the lines of the Case in the session's ledger.md, written by the hook
-checked: 2026-09-17
+checked: 2026-09-26
 origin: raw/2026-09-09/ledger.md#case-10
 sprint: migration
 created: 2026-09-09
@@ -26,7 +26,7 @@ In a session with a `hi` recorded, every line `- decision[`, `- estimate[`, `- l
 
 ## Result
 
-2026-09-17, `uv run pytest -q tests/test_ledger.py tests/test_gate.py` 67 passed; live: the six lines of Case 224 stand in raw/2026-09-17/1119/ledger.md at 11:35:29, written by the Stop hook from the reply that ended in its LEDGER block, each once with its time; the gate's advice now reads "The text before a tool call waits for the next Stop" (test_an_item_of_the_plan_without_its_line_refuses_the_skill)
+2026-09-26, `uv run pytest -q tests/test_ledger.py tests/test_gate.py`; 72 passed, and live the 26 lines of raw/2026-09-26/1745/ledger.md stand timed, each once, with no hand write in the event log; no live refusal observed
 
 ## History
 
@@ -51,3 +51,4 @@ In a session with a `hi` recorded, every line `- decision[`, `- estimate[`, `- l
 - 2026-09-18 updated: the Criterion replaced whole — the text before a tool call is read at the next Stop, the gate's advice reworded (case 224.1) · [[decision-case-224.1]]
 - 2026-09-18 status: pending → passed · raw/2026-09-17/1119/ledger.md#L40
 - 2026-09-25 updated: the Criterion replaced whole — a reading the hook refuses as a change of the session does not land; Given dropped, its input moved into When (case 428.2) · [[decision-case-428.2]]
+- 2026-09-26 status: pending → passed · raw/2026-09-26/1745/ledger.md#L30

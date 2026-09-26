@@ -2,11 +2,12 @@
 type: rule
 kind: Leaf
 purpose: Prevents a ratified line from existing only in a chat reply, or landing in a session no /hi opened
-status: draft
+status: built
 enforcement: hook
 implementation_ref: [guppi/ledger.py, guppi/materialize.py, guppi/gate.py, tests/test_ledger.py, tests/test_gate.py, .claude/settings.json]
 parent: "[[rule-session-start]]"
 estimates: ["[[estimate-ledger-write-lifts]]", "[[estimate-ledger-write-refuses-a-reading-of-a-change-of-the-session]]"]
+deferred_by: ["[[decision-case-442]]"]
 origin: raw/2026-09-09/ledger.md#case-10
 sprint: migration
 created: 2026-09-09
@@ -86,3 +87,5 @@ the implementation arrives in the session after the probe (Slice 1, session B).
 - 2026-09-25 updated: the hook refuses a reading of an Estimate that a decision line of the session creates or updates (case 428.1) · [[decision-case-428.1]]
 - 2026-09-25 estimate estimate-ledger-write-refuses-a-reading-of-a-change-of-the-session added · [[decision-case-428.1]]
 - 2026-09-25 status: built → draft · cascade
+- 2026-09-26 deferred · [[decision-case-442]]
+- 2026-09-26 status: draft → built · cascade

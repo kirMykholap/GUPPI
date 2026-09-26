@@ -20,13 +20,13 @@ The main agent takes up a Frontier item that needs a Case, the person answers a 
 Then:
 The main agent dispatches `case-guppi` with the Case id, the Frontier item and its source, and the person's words on it, in the prompt of the call; nothing of the Case stands in the chat before the answer.
 **＋** A question or a change of the person on a shown Case goes to the same `case-guppi` by `SendMessage`.
-**＋** The main agent shows the Case of the answer, and its own text stands after one horizontal rule.
-**＋** The Case the person answers is the Case of the answer, whole and unchanged.
-**＋** A showing that the `Stop` comparison of `uv run guppi casecheck` refuses as different from the answer is followed, before the person answers, by a reply that shows the answer whole and unchanged.
+**＋** The main agent shows the Case of the answer whole, at its first showing and at every showing again — its name, `context`, `problem` and `recommend` translated into Russian, its `given`, `when`, `then`, `tasks` and `ratification` as the answer holds them — and that is the Case the person answers; its own text stands after one horizontal rule.
+**＋** A showing that the `Stop` comparison of `uv run guppi casecheck` refuses is followed, before the person answers, by a reply that shows the answer whole, translated the same way.
+**＋** A ratified Case that changes — in its prose or in its body — changes through its `case-guppi`, and its new answer is shown and ratified again; the main agent edits no Case in the plan file.
 **＋** An answer that holds no Case heading is a question the main agent puts to the person, and no Case is shown.
 **＋** The plan file stands with its title line before the first dispatch of the session.
 **＋** The main agent dispatches `ask-guppi` once, at pre-spec, and neither `ask-guppi` nor `frame-guppi` before a showing.
-**－** A deferred decision in the short form is written by the main agent, with no dispatch.
+**－** A deferred decision in the short form is written by the main agent in English in the chat, with no dispatch.
 
 ## Result
 
@@ -39,3 +39,4 @@ The main agent dispatches `case-guppi` with the Case id, the Frontier item and i
 - 2026-09-25 updated: renamed; the Criterion replaced whole — the Case built by case-guppi and shown unchanged (case 419.1) · [[decision-case-419.1]]
 - 2026-09-25 status: pending → failed · raw/2026-09-25/1654/ledger.md#L25
 - 2026-09-26 updated: the Criterion replaced whole — the Case the person answers is the answer unchanged; a showing the Stop comparison refuses is followed by the answer shown unchanged (case 435) · [[decision-case-435]]
+- 2026-09-26 updated: the Criterion replaced whole — the prose translated for the chat, every showing whole, a changed Case through its case-guppi, the short form in English (case 441.2) · [[decision-case-441.2]]

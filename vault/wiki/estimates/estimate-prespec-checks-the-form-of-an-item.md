@@ -1,11 +1,11 @@
 ---
 type: estimate
 kind: QA
-status: pending
+status: passed
 target: "[[rule-prespec]]"
 purpose: An item of the plan carries one promise per Case, names a page that exists or is created, and no file
 method: uv run pytest tests/test_prespec.py
-checked: 2026-09-24
+checked: 2026-09-26
 origin: raw/2026-09-24/1916/ledger.md#case-399.5
 sprint: migration
 created: 2026-09-24
@@ -27,10 +27,11 @@ A Case whose `then` block holds two or more Estimate items — a `create`, or an
 
 ## Result
 
-2026-09-24, `uv run pytest tests/test_prespec.py`: 108 passed
+2026-09-26, `uv run pytest -q tests/test_prespec.py`; 120 passed, each finding of the Criterion asserted by its test, and the 308.2 exemption held in a probe through the file's check helper and in the item_keys test of test_materialize
 
 ## History
 
 - 2026-09-25 created · [[decision-case-399.5]]
 - 2026-09-25 status: pending → passed · raw/2026-09-24/2214/ledger.md#L41
 - 2026-09-26 updated: the Criterion replaced whole — a key of an item outside the keys item_keys gives it is a finding (case 436.2) · [[decision-case-436.2]]
+- 2026-09-26 status: pending → passed · raw/2026-09-26/1745/ledger.md#L27

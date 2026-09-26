@@ -98,3 +98,4 @@ session. `allowed-tools` names the six `!` commands of the skill: since client 2
 - 2026-09-25 updated: the closer kept for a deferred item left as it stands (case 421.4) · [[decision-case-421.4]]
 - 2026-09-25 status: built → draft · cascade
 - 2026-09-25 status: draft → built · cascade
+- 2026-09-26 updated: the allowed-tools line of the Render frontmatter allows the six ! commands of /hi; the server-side classifier of client 2.1.282 gives no verdict for a substitution the person types (commit 54509ed) · [[decision-case-439]]

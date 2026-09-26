@@ -1,10 +1,11 @@
 ---
 type: estimate
 kind: QA
-status: pending
+status: passed
 target: "[[rule-spec-write]]"
 purpose: The Stop hook writes a deferred Case into the Spec as the reply showed it
 method: uv run pytest tests/test_ratified.py -k defer, then by hand the first defer the person asks for after the change
+checked: 2026-09-26
 origin: raw/2026-09-25/1228/ledger.md#case-421.1
 sprint: migration
 created: 2026-09-25
@@ -24,7 +25,12 @@ The hook writes that Case under `## Deferred` of the plan file while Plan Mode l
 **－** A `defer` of a category with no schema file, or of one whose schema rule a decision line of the session or of the reply creates or updates, is not judged by its keys (case 308.2).
 **－** The ratified copy `<plan>.ratified.md` gets no defer, and the check after the write does not run on it.
 
+## Result
+
+2026-09-26, `uv run pytest tests/test_ratified.py -k defer`: 9 passed; live, Case 442 of session 1745: the Stop hook wrote its heading, context, problem and then block under ## Deferred of the plan file as the reply at 22:00:17 showed them, and the ratified copy holds no Case 442
+
 ## History
 
 - 2026-09-25 created · [[decision-case-421.1]]
 - 2026-09-26 updated: the Criterion replaced whole — a key of a defer item outside the keys item_keys gives it is refused (case 436.3) · [[decision-case-436.3]]
+- 2026-09-26 status: pending → passed · raw/2026-09-26/1745/ledger.md#L33

@@ -1,7 +1,7 @@
 ---
 type: estimate
 kind: QA
-status: passed
+status: pending
 target: "[[rule-case-check]]"
 purpose: The main agent shows a Case only as case-guppi answered it and the checks passed it
 method: uv run pytest tests/test_casecheck.py -k stop, then by hand the first reply the hook refuses
@@ -18,9 +18,11 @@ When:
 `Stop` fires after a reply of the main agent that shows a Case under `## Case N —` or `### Case N.M —` with at least one of its sections.
 
 Then:
-`uv run guppi casecheck` compares each such Case with the Case of the same id in `<plan>.checked.json`, line by line once line ends and trailing spaces are the same.
-**＋** A Case the store does not hold, a Case whose text differs from the stored one, or a Case stored with findings exits 2, the reason and the findings on stderr.
+`uv run guppi casecheck` compares each such Case with the Case of the same id in `<plan>.checked.json` in its `given`, `when`, `then`, `tasks` and `ratification`, line by line once line ends and trailing spaces are the same.
+**＋** The name of its heading, its `context`, `problem` and `recommend` are not compared: a showing that differs from the answer only in them passes.
+**＋** A Case the store does not hold, a Case that differs in a compared section, or a Case stored with findings exits 2, the reason and the findings on stderr.
 **＋** A parent shown with its sub-cases is compared part by part, as the store holds each.
+**＋** The Spec hook `guppi/ratified.py` judges a showing by the same comparison, imported.
 **－** A heading with no section, as in the acknowledging reply, a fence tagged `DIFF`, and a deferred decision in the short form — `context`, `problem` and a fence tagged `then` with `defer` items, no `given` and no `when` — are not compared.
 **－** On the re-fire (`stop_hook_active`) it exits 0.
 
@@ -32,3 +34,4 @@ Then:
 
 - 2026-09-25 created · [[decision-case-419.4]]
 - 2026-09-25 status: pending → passed · raw/2026-09-25/1654/ledger.md#L26
+- 2026-09-26 updated: the Criterion replaced whole — the prose is not compared (case 441.3) · [[decision-case-441.3]]

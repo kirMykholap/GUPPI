@@ -1,11 +1,11 @@
 ---
 type: estimate
 kind: QA
-status: pending
+status: passed
 target: "[[rule-materialize]]"
 purpose: A supersedes marks every entry of the earlier Case, in any unit
 method: pytest in tests/test_materialize.py, the tests of the supersedes mark, plus one live reading of a librarian's run
-checked: 2026-09-24
+checked: 2026-09-26
 origin: raw/2026-09-16/1034/ledger.md#case-189
 sprint: migration
 created: 2026-09-16
@@ -27,7 +27,7 @@ For each Case N that a block of the line names, every entry with `case: N` gets 
 
 ## Result
 
-2026-09-24, `uv run pytest tests/test_materialize.py`: 75 passed
+2026-09-26, `uv run pytest -q tests/test_materialize.py` and the librarian's run af86af6; 80 passed, and live case 430's four blocks landed as a list in block order with only the superseded_by mark written into the yamls of units 0051 and 1228
 
 ## History
 
@@ -41,3 +41,4 @@ For each Case N that a block of the line names, every entry with `case: N` gets 
 - 2026-09-25 updated: the Criterion replaced whole — the mark by the model of case 378; what generate skips and the readings of a marked create left to their own Estimates (case 397.5) · [[decision-case-397.5]]
 - 2026-09-25 status: pending → passed · raw/2026-09-24/2214/ledger.md#L31
 - 2026-09-25 updated: the Criterion replaced whole — a decision line may carry several {supersedes:case N} blocks, and each named Case is marked (case 429) · [[decision-case-429]]
+- 2026-09-26 status: pending → passed · raw/2026-09-26/1745/ledger.md#L32

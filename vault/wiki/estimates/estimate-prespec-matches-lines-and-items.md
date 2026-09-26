@@ -1,11 +1,11 @@
 ---
 type: estimate
 kind: QA
-status: pending
+status: passed
 target: "[[rule-prespec]]"
 purpose: Every decision line of the session has its item under its own Case in the plan, and every item its line
 method: uv run pytest tests/test_prespec.py
-checked: 2026-09-24
+checked: 2026-09-26
 origin: raw/2026-09-24/1916/ledger.md#case-399.2
 sprint: migration
 created: 2026-09-24
@@ -26,10 +26,11 @@ A decision line whose Case has no heading in the plan is the finding `case N: li
 
 ## Result
 
-2026-09-24, `uv run pytest tests/test_prespec.py`: 108 passed
+2026-09-26, `uv run pytest -q tests/test_prespec.py`; 120 passed, every line of the Criterion asserted, the second item in one fence and in another fence included
 
 ## History
 
 - 2026-09-25 created · [[decision-case-399.2]]
 - 2026-09-25 status: pending → passed · raw/2026-09-24/2214/ledger.md#L38
 - 2026-09-25 updated: the Criterion replaced whole — a second item of one kind and slug under one Case is a finding (case 426) · [[decision-case-426]]
+- 2026-09-26 status: pending → passed · raw/2026-09-26/1745/ledger.md#L28

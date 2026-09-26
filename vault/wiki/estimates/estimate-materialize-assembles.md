@@ -1,7 +1,7 @@
 ---
 type: estimate
 kind: QA
-status: passed
+status: pending
 target: "[[rule-materialize]]"
 purpose: One entry per record line of a ledger, its content lifted from the then block of its Case, nothing invented
 method: pytest in tests/test_materialize.py against a temp vault; the live reading once by hand
@@ -25,7 +25,7 @@ Then:
 **＋** An `estimate` line whose slug has a `create` in the same unit is folded into it; one for a page of an earlier unit is an `estimate` entry of its own.
 **＋** The `new_tags` of any Case reach the yaml once each; an existing `materialize.yaml` is extended with the lines it does not hold, never rewritten.
 **＋** A line the grammar does not parse goes under `unparsed`, and the run goes on.
-**－** The keys `method`, `contract`, `estimate_slug` and `estimate_kind` on the item of a rule or an entity reach neither the page, nor `incomplete`, nor `unknown`: no Estimate is derived from them.
+**－** No entry of an Estimate is derived from a key of the item of a rule or an entity: an Estimate comes only from its own line.
 
 ## Result
 
@@ -78,3 +78,4 @@ Then:
 - 2026-09-21 status: pending → passed · raw/2026-09-21/1315/ledger.md#L19
 - 2026-09-25 updated: the Criterion replaced whole — the assembly of an entry by the model of case 378; the filter of keys and the update of an Estimate moved to their own Estimates (case 397.1) · [[decision-case-397.1]]
 - 2026-09-25 status: pending → passed · raw/2026-09-24/2214/ledger.md#L27
+- 2026-09-26 updated: the Criterion replaced whole — the line on the keys of the shape before case 189 gives way to the line that no Estimate is derived from a key (case 440.2) · [[decision-case-440.2]]

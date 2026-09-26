@@ -1,0 +1,1611 @@
+date: '2026-09-26'
+sprint: migration
+ledger: vault/raw/2026-09-26/1337/ledger.md
+spec:
+- vault/raw/2026-09-26/1337/spec.md
+entries:
+- line: 1
+  text: decision[case 433][update][lesson-case-show-sub-case-ratification-retyped]{ref:lesson-case-show-sub-case-ratification-retyped}
+  case: '433'
+  kind: update
+  slug: lesson-case-show-sub-case-ratification-retyped
+  origin: raw/2026-09-26/1337/ledger.md#case-433
+  decision: decision-case-433
+  ref: lesson-case-show-sub-case-ratification-retyped
+  category: lessons
+  replace:
+  - old: the SubagentStop comparison of casecheck refused the reply
+    new: the comparison of casecheck on Stop refused the reply
+  change: the Trigger names the comparison on Stop, the one that refused the showing of 428.3 (case 433)
+  applied: '17:02:12'
+- line: 2
+  text: 'lesson[knowledge][lesson-hooks-subagentstop-reads-the-last-text-not-the-handback]{tags:hooks,harness}{source:transcript
+    subagents/agent-ae6c9dbed8844dfb3.jsonl of session af4c2d33, Claude Code 2.1.282 (claude-vscode),
+    2026-09-26} trigger: the first showing of Case 433 was refused on Stop with "case 433: not built and
+    checked by case-guppi", though case-guppi had built it; no checked.json stood beside the plan file
+    root_cause: in Claude Code 2.1.282 a subagent can hand its report to the main agent through the SubagentHandback
+    tool call and then end with a text of its own; case-guppi handed the Case back that way and ended
+    with a short summary, and guppi casecheck --subagent reads only last_assistant_message, so it found
+    no Case heading, took the answer for a question and stored nothing; asked again to end with the Case
+    as its text, case-guppi wrote it, called the handback, wrote it once more, and the check stored it
+    with no finding'
+  kind: lesson
+  category: lessons
+  slug: lesson-hooks-subagentstop-reads-the-last-text-not-the-handback
+  origin: raw/2026-09-26/1337/ledger.md#L2
+  fields:
+    type: lesson
+    kind: knowledge
+    root_cause: in Claude Code 2.1.282 a subagent can hand its report to the main agent through the SubagentHandback
+      tool call and then end with a text of its own; case-guppi handed the Case back that way and ended
+      with a short summary, and guppi casecheck --subagent reads only last_assistant_message, so it found
+      no Case heading, took the answer for a question and stored nothing; asked again to end with the
+      Case as its text, case-guppi wrote it, called the handback, wrote it once more, and the check stored
+      it with no finding
+    source: transcript subagents/agent-ae6c9dbed8844dfb3.jsonl of session af4c2d33, Claude Code 2.1.282
+      (claude-vscode), 2026-09-26
+  sections:
+    Trigger: 'the first showing of Case 433 was refused on Stop with "case 433: not built and checked
+      by case-guppi", though case-guppi had built it; no checked.json stood beside the plan file'
+    Root cause: in Claude Code 2.1.282 a subagent can hand its report to the main agent through the SubagentHandback
+      tool call and then end with a text of its own; case-guppi handed the Case back that way and ended
+      with a short summary, and guppi casecheck --subagent reads only last_assistant_message, so it found
+      no Case heading, took the answer for a question and stored nothing; asked again to end with the
+      Case as its text, case-guppi wrote it, called the handback, wrote it once more, and the check stored
+      it with no finding
+  tags:
+  - hooks
+  - harness
+  addressed_by: decision-case-434
+  applied: '17:02:12'
+- line: 3
+  text: decision[case 434][update][rule-case-check]{ref:rule-case-check}{addresses:lesson-hooks-subagentstop-reads-the-last-text-not-the-handback}
+  case: '434'
+  kind: update
+  slug: rule-case-check
+  origin: raw/2026-09-26/1337/ledger.md#case-434
+  decision: decision-case-434
+  ref: rule-case-check
+  addresses:
+  - lesson-hooks-subagentstop-reads-the-last-text-not-the-handback
+  category: rules
+  replace:
+  - old: For an answer of `case-guppi` (`agent_type`), it reads the Cases of `last_assistant_message`
+      by the functions of `guppi/ratified.py` that read the chat form,
+    new: For an answer of `case-guppi` (`agent_type`), it takes as the answer the newest output of the
+      subagent in `agent_transcript_path` that holds a Case heading — the `message` of a `SubagentHandback`
+      call or the text of an assistant message, whichever stands later — or `last_assistant_message` when
+      the transcript is not readable or holds none, and reads the Cases of the answer by the functions
+      of `guppi/ratified.py` that read the chat form,
+  - old: A finding exits 2 with the findings on stderr, and the agent answers again; on the re-fire (`stop_hook_active`)
+      the hook stores and exits 0.
+    new: 'A finding exits 2 with the findings on stderr, and the agent answers again, whatever `stop_hook_active`
+      says: Claude Code sets it on the second fire after a handback with no exit 2 of the hook. A finding
+      for a Case whose text the store already holds with findings is stored and exits 0, so an unchanged
+      answer is not sent back twice.'
+  - old: An answer with no Case heading is a question and is neither checked nor stored;
+    new: An answer with no Case heading, where no earlier output holds one either, is neither checked
+      nor stored;
+  change: the check reads the newest output of the subagent that holds a Case, a handback or a text, else
+    last_assistant_message; the loop guard is the store, not stop_hook_active
+  applied: '17:02:12'
+- line: 4
+  text: decision[case 434][update][estimate-case-check-sends-back-a-faulty-case]{ref:rule-case-check}
+  case: '434'
+  kind: update
+  slug: estimate-case-check-sends-back-a-faulty-case
+  origin: raw/2026-09-26/1337/ledger.md#case-434
+  decision: decision-case-434
+  ref: rule-case-check
+  category: estimates
+  set:
+    status: pending
+  change: the Criterion replaced whole — the answer is the newest output of the subagent that holds a
+    Case, else last_assistant_message; an unchanged answer is not sent back twice
+  sections:
+    Criterion: 'When:
+
+      `SubagentStop` fires when `case-guppi` answers; its payload carries `last_assistant_message`, `agent_transcript_path`
+      and `stop_hook_active`, and it may fire twice after one message to the subagent, the second time
+      after a `SubagentHandback` call, with `stop_hook_active` true though no hook exited 2.
+
+
+      Then:
+
+      `uv run guppi casecheck --subagent` takes as the answer the newest output of the subagent in `agent_transcript_path`
+      that holds a Case heading: the `message` input of a `SubagentHandback` tool call or the text of
+      an assistant message, whichever stands later.
+
+      **＋** When `agent_transcript_path` is not readable or holds no such output, the answer is `last_assistant_message`.
+
+      **＋** It reads each Case of the answer in the chat form, by the functions of `guppi/ratified.py`,
+      builds each Case''s section of the Spec in memory, as the Spec hook writes it, and runs `judge`
+      of `guppi/prespec.py` over them, the decision lines of the `ratification` fence standing for the
+      ledger.
+
+      **＋** It checks the chat form besides: the sections in the order of the schema, none missing that
+      the schema requires, and a `ratification` that holds one untagged fence of ledger lines and nothing
+      else.
+
+      **＋** Each Case of the answer is stored, its text as the answer holds it, with its findings in `<plan>.checked.json`
+      beside the plan file of the session.
+
+      **＋** A finding exits 2 with the findings on stderr, each naming its Case, and `case-guppi` answers
+      again, whatever `stop_hook_active` says.
+
+      **－** A finding for a Case whose text the store already holds with findings is stored again and
+      exits 0, so an unchanged answer is not sent back twice.
+
+      **－** An answer with no Case heading, an answer of another agent, or a session with no plan file
+      is not sent back and exits 0; the first two are not checked or stored.'
+  applied: '17:02:12'
+- line: 5
+  text: decision[case 435][update][rule-case-protocol]{ref:rule-case-protocol}
+  case: '435'
+  kind: update
+  slug: rule-case-protocol
+  origin: raw/2026-09-26/1337/ledger.md#case-435
+  decision: decision-case-435
+  ref: rule-case-protocol
+  category: rules
+  replace:
+  - old: The agent shows the Case of the answer whole and unchanged, its own text after one horizontal
+      rule;
+    new: The agent shows the Case of the answer whole and unchanged, its own text after one horizontal
+      rule; a showing that the `Stop` comparison of `rule-case-check` refuses as different from the answer
+      is followed, before the person answers, by a reply that shows the answer whole and unchanged;
+  change: Who builds a Case says that a showing the Stop comparison refuses is followed by the answer
+    shown unchanged (case 435)
+  applied: '17:02:12'
+- line: 6
+  text: decision[case 435][update][estimate-case-protocol-shows-the-built-case]{ref:estimate-case-protocol-shows-the-built-case}
+  case: '435'
+  kind: update
+  slug: estimate-case-protocol-shows-the-built-case
+  origin: raw/2026-09-26/1337/ledger.md#case-435
+  decision: decision-case-435
+  ref: estimate-case-protocol-shows-the-built-case
+  category: estimates
+  set:
+    status: pending
+  change: the Criterion replaced whole — the Case the person answers is the answer unchanged; a showing
+    the Stop comparison refuses is followed by the answer shown unchanged (case 435)
+  sections:
+    Criterion: 'When:
+
+      The main agent takes up a Frontier item that needs a Case, the person answers a shown Case with
+      a question or a change, or a ratified Case changes and is shown again, in Plan Mode or in Work Mode.
+
+
+      Then:
+
+      The main agent dispatches `case-guppi` with the Case id, the Frontier item and its source, and the
+      person''s words on it, in the prompt of the call; nothing of the Case stands in the chat before
+      the answer.
+
+      **＋** A question or a change of the person on a shown Case goes to the same `case-guppi` by `SendMessage`.
+
+      **＋** The main agent shows the Case of the answer, and its own text stands after one horizontal
+      rule.
+
+      **＋** The Case the person answers is the Case of the answer, whole and unchanged.
+
+      **＋** A showing that the `Stop` comparison of `uv run guppi casecheck` refuses as different from
+      the answer is followed, before the person answers, by a reply that shows the answer whole and unchanged.
+
+      **＋** An answer that holds no Case heading is a question the main agent puts to the person, and
+      no Case is shown.
+
+      **＋** The plan file stands with its title line before the first dispatch of the session.
+
+      **＋** The main agent dispatches `ask-guppi` once, at pre-spec, and neither `ask-guppi` nor `frame-guppi`
+      before a showing.
+
+      **－** A deferred decision in the short form is written by the main agent, with no dispatch.'
+  applied: '17:02:12'
+- line: 7
+  text: decision[case 436.1][update][rule-spec-write]{ref:rule-spec-write}
+  case: '436.1'
+  kind: update
+  slug: rule-spec-write
+  origin: raw/2026-09-26/1337/ledger.md#case-436.1
+  decision: decision-case-436.1
+  ref: rule-spec-write
+  category: rules
+  replace:
+  - old: exit 2 with the reason on stderr; on the re-fire (`stop_hook_active`) exit 0.
+    new: 'exit 2 with the reason on stderr; on the re-fire (`stop_hook_active`) exit 0. A sub-point that
+      reads into no key `item_keys` of `guppi/materialize.py` gives its item — `slug` a key of every kind;
+      the one judgment `materialize` lifts by and `generate` applies by — is refused the same way: exit
+      2, and nothing of the Case is written (case 436.1). A `create` or a `defer` of a category with no
+      schema file, or of one whose schema rule a decision line of the session or of the reply creates
+      or updates, is not judged by its keys (case 308.2).'
+  change: a sub-point outside the keys item_keys gives its item is refused (case 436.1)
+  applied: '17:02:12'
+- line: 8
+  text: decision[case 436.1][update][estimate-spec-write-copies-the-ratified-case]{ref:estimate-spec-write-copies-the-ratified-case}
+  case: '436.1'
+  kind: update
+  slug: estimate-spec-write-copies-the-ratified-case
+  origin: raw/2026-09-26/1337/ledger.md#case-436.1
+  decision: decision-case-436.1
+  ref: estimate-spec-write-copies-the-ratified-case
+  category: estimates
+  set:
+    status: pending
+  change: the Criterion replaced whole — a sub-point outside the keys item_keys gives its item is refused
+    (case 436.1)
+  sections:
+    Criterion: 'When:
+
+      The `Stop` hook `uv run guppi ratified` runs after a reply whose `LEDGER` block holds `- decision[case
+      N]` lines of a kind other than `defer`; it reads the session''s transcript and finds the last earlier
+      reply that shows `## Case N —` whole.
+
+
+      Then:
+
+      The hook writes that Case into the plan file `plan_path` finds, the section of Case N replaced when
+      it stands, appended otherwise: the heading, `context`, `problem`, `given`, `when` and `then` as
+      they stand in the chat; a block tagged `then` built from the sub-points of `tasks`; a block tagged
+      `tasks` of the task lines without their sub-points.
+
+      **＋** It writes the same text the same way into the ratified copy `<plan>.ratified.md` beside the
+      plan file.
+
+      **＋** A task line opening with `create`, `update`, `delete` or `defer` and the slug in its first
+      code span is an item of the `then` block; its sub-points are its keys — `old` and `new` in pairs
+      under `replace`, `reword old` and `reword new` under `reword`, `set`, `change`, `rename`, `sections.<Name>`,
+      the fields of a `create` — each value one code span, padded by one space on each side when the value
+      holds a backtick, or a fenced block under the sub-point.
+
+      **＋** A sub-point that reads into no key `item_keys` of `guppi/materialize.py` gives the kind and
+      the category of its item — `slug` a key of every kind; the one judgment `guppi/materialize.py` lifts
+      by and `guppi/generate.py` applies by — is refused: exit 2 with `` `<key>`: not a key of <kind>
+      <slug> `` on stderr, and nothing of the Case is written.
+
+      **＋** A value that holds a backtick in an outer span not padded on both sides is refused: exit 2
+      with `` `<key>`: a value holding a backtick takes its outer span padded by one space `` on stderr,
+      and nothing of the Case is written.
+
+      **＋** `recommend` and `ratification` are not written.
+
+      **＋** When the last showing of Case N is a `DIFF` block, not the Case whole, the hook writes nothing
+      for it.
+
+      **＋** No plan file in the event log, no showing of Case N, or a sub-point it cannot read: exit 2
+      with the reason on stderr; on the re-fire (`stop_hook_active`) exit 0.
+
+      **－** A `create` or a `defer` of a category with no schema file, or of one whose schema rule a decision
+      line of the session or of the reply creates or updates, is not judged by its keys (case 308.2).'
+  applied: '17:02:12'
+- line: 9
+  text: decision[case 436.2][update][rule-prespec]{ref:rule-prespec}
+  case: '436.2'
+  kind: update
+  slug: rule-prespec
+  origin: raw/2026-09-26/1337/ledger.md#case-436.2
+  decision: decision-case-436.2
+  ref: rule-prespec
+  category: rules
+  replace:
+  - old: for every `update` item carrying `file` — the file route is gone (case 320),
+    new: for every `update` item carrying `file` — the file route is gone (case 320), for every key of
+      an item that `item_keys` of `guppi/materialize.py` does not give its kind and category, `slug` a
+      key of every kind, where a `create` or a `defer` of a category with no schema file, or of one whose
+      schema rule a decision line of the session creates or updates, has no key judged — the one judgment
+      `materialize` lifts by and `generate` applies by (case 436.2),
+  change: a key of an item outside the keys item_keys gives it is a finding (case 436.2)
+  applied: '17:02:12'
+- line: 10
+  text: decision[case 436.2][update][estimate-prespec-checks-the-form-of-an-item]{ref:estimate-prespec-checks-the-form-of-an-item}
+  case: '436.2'
+  kind: update
+  slug: estimate-prespec-checks-the-form-of-an-item
+  origin: raw/2026-09-26/1337/ledger.md#case-436.2
+  decision: decision-case-436.2
+  ref: estimate-prespec-checks-the-form-of-an-item
+  category: estimates
+  set:
+    status: pending
+  change: the Criterion replaced whole — a key of an item outside the keys item_keys gives it is a finding
+    (case 436.2)
+  sections:
+    Criterion: 'When:
+
+      `uv run guppi prespec --check <plan>` reads the items of the plan''s `then` blocks.
+
+
+      Then:
+
+      A Case whose `then` block holds two or more Estimate items — a `create`, or an `update` with `set:
+      {status: pending}` — without a written `sections: Criterion` is the finding `case N: two promises
+      in one Case — split it`.
+
+      **＋** An `update` of an Estimate whose page does not exist is the finding `case N: update <slug>:
+      no such Estimate page`.
+
+      **＋** A `create` of an Estimate whose `ref` names neither a live rule or entity nor a rule or entity
+      a `create` item of the plan carries is the finding `case N: create <slug>: ref <ref> names no live
+      page`.
+
+      **＋** An `update` item carrying `file` is the finding `case N: file <path>; the file route is gone
+      (case 320)`, naming the rule that governs the path when one does.
+
+      **＋** A key of an item of any kind that `item_keys` of `guppi/materialize.py` does not give its
+      kind and category — `slug` a key of every kind — is the finding `case N: <kind> <slug>: key <key>
+      is not a key of this item`.
+
+      **－** A `create` or a `defer` of a category with no schema file, or of one whose schema rule a decision
+      line of the session creates or updates, is not judged by its keys (case 308.2).'
+  applied: '17:02:12'
+- line: 11
+  text: decision[case 436.3][update][rule-spec-write]{ref:rule-spec-write}
+  case: '436.3'
+  kind: update
+  slug: rule-spec-write
+  origin: raw/2026-09-26/1337/ledger.md#case-436.3
+  decision: decision-case-436.3
+  ref: rule-spec-write
+  category: rules
+  replace:
+  - old: the ratified copy gets none, and the check after the write does not run on it (case 421.1).
+    new: the ratified copy gets none, and the check after the write does not run on it (case 421.1); a
+      key of a `defer` item that `item_keys` of `guppi/materialize.py` does not give a `defer` of its
+      category is refused, exit 2, and nothing of the Case is written (case 436.3).
+  change: a key of a defer item outside the keys item_keys gives it is refused (case 436.3)
+  applied: '17:02:12'
+- line: 12
+  text: decision[case 436.3][update][estimate-spec-write-writes-a-defer]{ref:estimate-spec-write-writes-a-defer}
+  case: '436.3'
+  kind: update
+  slug: estimate-spec-write-writes-a-defer
+  origin: raw/2026-09-26/1337/ledger.md#case-436.3
+  decision: decision-case-436.3
+  ref: estimate-spec-write-writes-a-defer
+  category: estimates
+  set:
+    status: pending
+  change: the Criterion replaced whole — a key of a defer item outside the keys item_keys gives it is
+    refused (case 436.3)
+  sections:
+    Criterion: 'When:
+
+      The `Stop` hook `uv run guppi ratified` runs after a reply whose `LEDGER` block holds lines of a
+      Case N that are all `defer` — beside the lines of other Cases or alone — and the same reply shows
+      `## Case N —` in the short form: `context`, `problem` and a fence tagged `then` with its `defer`
+      items.
+
+
+      Then:
+
+      The hook writes that Case under `## Deferred` of the plan file while Plan Mode lasts, and of `raw/<date>/<hi
+      HHMM>/spec.md` once that file stands, at Retro: the heading, `context`, `problem` and the `then`
+      block as the reply shows them.
+
+      **＋** The section of Case N is replaced when it stands there, appended at the end of `## Deferred`
+      otherwise; the heading `## Deferred` is added when the file has none.
+
+      **＋** A reply with no showing of Case N, or a `then` block without a `defer` item carrying `slug`,
+      `type` and `purpose` for each `defer` line of the reply: exit 2 with the reason on stderr; on the
+      re-fire (`stop_hook_active`) exit 0.
+
+      **＋** A key of a `defer` item that `item_keys` of `guppi/materialize.py` does not give a `defer`
+      of its category: exit 2 with `` `<key>`: not a key of defer <slug> `` on stderr, and nothing of
+      the Case is written.
+
+      **－** A `defer` of a category with no schema file, or of one whose schema rule a decision line of
+      the session or of the reply creates or updates, is not judged by its keys (case 308.2).
+
+      **－** The ratified copy `<plan>.ratified.md` gets no defer, and the check after the write does not
+      run on it.'
+  applied: '17:02:12'
+- line: 13
+  text: decision[case 437][update][rule-spec-write]{ref:rule-spec-write}
+  case: '437'
+  kind: update
+  slug: rule-spec-write
+  origin: raw/2026-09-26/1337/ledger.md#case-437
+  decision: decision-case-437
+  ref: rule-spec-write
+  category: rules
+  replace:
+  - old: it reads the session's transcript, finds the last earlier reply that shows `## Case N —` whole,
+      and writes that Case into the plan file
+    new: it reads the session's transcript for the last earlier reply that shows `## Case N —` whole and
+      `<plan>.checked.json` for the answer of `case-guppi` stored under Case N by `rule-case-check`; a
+      showing that differs from that answer — by the one comparison of `guppi/casecheck.py` on `Stop`,
+      imported — a store with no Case N, or a Case N stored with findings is a refusal, exit 2, and nothing
+      of Case N is written (case 437); otherwise it writes the stored answer of Case N into the plan file
+  change: the Spec hook writes the stored answer of case-guppi and refuses a showing that differs from
+    it (case 437)
+  applied: '17:02:12'
+- line: 14
+  text: decision[case 437][update][estimate-spec-write-copies-the-ratified-case]{ref:estimate-spec-write-copies-the-ratified-case}
+  case: '437'
+  kind: update
+  slug: estimate-spec-write-copies-the-ratified-case
+  origin: raw/2026-09-26/1337/ledger.md#case-437
+  decision: decision-case-437
+  ref: estimate-spec-write-copies-the-ratified-case
+  category: estimates
+  set:
+    status: pending
+  change: the Criterion replaced whole — the Case is written from the stored answer of case-guppi, a differing
+    showing refused; the lines of case 436.1 carried (case 437)
+  sections:
+    Criterion: 'When:
+
+      The `Stop` hook `uv run guppi ratified` runs after a reply whose `LEDGER` block holds `- decision[case
+      N]` lines of a kind other than `defer`; it reads the session''s transcript for the last earlier
+      reply that shows `## Case N —` whole, and `<plan>.checked.json` beside the plan file for the answer
+      of `case-guppi` stored under Case N.
+
+
+      Then:
+
+      The hook writes the stored answer of Case N into the plan file `plan_path` finds, the section of
+      Case N replaced when it stands, appended otherwise: the heading, `context`, `problem`, `given`,
+      `when` and `then` as the answer holds them; a block tagged `then` built from the sub-points of `tasks`;
+      a block tagged `tasks` of the task lines without their sub-points; `recommend` and `ratification`
+      are not written.
+
+      **＋** It writes the same text the same way into the ratified copy `<plan>.ratified.md` beside the
+      plan file.
+
+      **＋** A last showing of Case N that differs from the stored answer — by the one comparison `uv run
+      guppi casecheck` makes on `Stop`, imported from `guppi/casecheck.py` — a store with no Case N, or
+      a Case N stored with findings: exit 2 with the reason on stderr, and nothing of Case N is written.
+
+      **＋** A task line opening with `create`, `update`, `delete` or `defer` and the slug in its first
+      code span is an item of the `then` block; its sub-points are its keys — `old` and `new` in pairs
+      under `replace`, `reword old` and `reword new` under `reword`, `set`, `change`, `rename`, `sections.<Name>`,
+      the fields of a `create` — each value one code span, padded by one space on each side when the value
+      holds a backtick, or a fenced block under the sub-point.
+
+      **＋** A sub-point that reads into no key `item_keys` of `guppi/materialize.py` gives the kind and
+      the category of its item — the one judgment `guppi/materialize.py` lifts by and `guppi/generate.py`
+      applies by — is refused: exit 2 with `` `<key>`: not a key of <kind> <slug> `` on stderr, and nothing
+      of the Case is written.
+
+      **＋** A value that holds a backtick in an outer span not padded on both sides is refused: exit 2
+      with `` `<key>`: a value holding a backtick takes its outer span padded by one space `` on stderr,
+      and nothing of the Case is written.
+
+      **＋** When the last showing of Case N is a `DIFF` block, not the Case whole, the hook writes nothing
+      for it.
+
+      **＋** No plan file in the event log, no showing of Case N, or a sub-point it cannot read: exit 2
+      with the reason on stderr; on the re-fire (`stop_hook_active`) exit 0.
+
+      **－** A `create` or a `defer` of a category with no schema file, or of one whose schema rule a decision
+      line of the session or of the reply creates or updates, is not judged by its keys (case 308.2).'
+  applied: '17:02:12'
+- line: 15
+  text: decision[case 437][update][rule-case-protocol]{ref:rule-case-protocol}
+  case: '437'
+  kind: update
+  slug: rule-case-protocol
+  origin: raw/2026-09-26/1337/ledger.md#case-437
+  decision: decision-case-437
+  ref: rule-case-protocol
+  category: rules
+  replace:
+  - old: it copies the Case from the reply that showed it into the plan file
+    new: it copies the Case as `case-guppi` answered it — the answer the check of `rule-case-check` stored,
+      never a showing that differs from it, which is refused (case 437) — into the plan file
+  change: the Spec hook copies the stored answer of case-guppi, not the showing (case 437)
+  applied: '17:02:12'
+- line: 16
+  text: decision[case 436.4][update][rule-case-check]{ref:rule-case-check}
+  case: '436.4'
+  kind: update
+  slug: rule-case-check
+  origin: raw/2026-09-26/1337/ledger.md#case-436.4
+  decision: decision-case-436.4
+  ref: rule-case-check
+  category: rules
+  replace:
+  - old: the decision lines of each `ratification` fence standing for the ledger,
+    new: the decision lines of each `ratification` fence standing for the ledger, and those lines with
+      the decision lines of the session's window naming the categories whose schema rule the session changes,
+      whose `create` and `defer` items `judge` does not judge by their keys (case 436.4),
+  change: the categories whose schema rule the session changes come from the ratification fences and the
+    session's window (case 436.4)
+  applied: '17:02:12'
+- line: 17
+  text: decision[case 436.4][update][estimate-case-check-sends-back-a-faulty-case]{ref:estimate-case-check-sends-back-a-faulty-case}
+  case: '436.4'
+  kind: update
+  slug: estimate-case-check-sends-back-a-faulty-case
+  origin: raw/2026-09-26/1337/ledger.md#case-436.4
+  decision: decision-case-436.4
+  ref: estimate-case-check-sends-back-a-faulty-case
+  category: estimates
+  set:
+    status: pending
+  change: the Criterion replaced whole — the categories whose schema rule the session changes come from
+    the ratification fences and the session's window (case 436.4)
+  sections:
+    Criterion: 'When:
+
+      `SubagentStop` fires when `case-guppi` answers; its payload carries `last_assistant_message`, `agent_transcript_path`
+      and `stop_hook_active`, and it may fire twice after one message to the subagent, the second time
+      after a `SubagentHandback` call, with `stop_hook_active` true though no hook exited 2.
+
+
+      Then:
+
+      `uv run guppi casecheck --subagent` takes as the answer the newest output of the subagent in `agent_transcript_path`
+      that holds a Case heading: the `message` input of a `SubagentHandback` tool call or the text of
+      an assistant message, whichever stands later.
+
+      **＋** When `agent_transcript_path` is not readable or holds no such output, the answer is `last_assistant_message`.
+
+      **＋** It reads each Case of the answer in the chat form, by the functions of `guppi/ratified.py`,
+      builds each Case''s section of the Spec in memory, as the Spec hook writes it, and runs `judge`
+      of `guppi/prespec.py` over them, the decision lines of the `ratification` fence standing for the
+      ledger.
+
+      **＋** The categories whose schema rule the session changes, whose `create` and `defer` items `judge`
+      does not judge by their keys, it takes from the decision lines of the `ratification` fences and
+      of the session''s window.
+
+      **＋** It checks the chat form besides: the sections in the order of the schema, none missing that
+      the schema requires, and a `ratification` that holds one untagged fence of ledger lines and nothing
+      else.
+
+      **＋** Each Case of the answer is stored, its text as the answer holds it, with its findings in `<plan>.checked.json`
+      beside the plan file of the session.
+
+      **＋** A finding exits 2 with the findings on stderr, each naming its Case, and `case-guppi` answers
+      again, whatever `stop_hook_active` says.
+
+      **－** A finding for a Case whose text the store already holds with findings is stored again and
+      exits 0, so an unchanged answer is not sent back twice.
+
+      **－** An answer with no Case heading, an answer of another agent, or a session with no plan file
+      is not sent back and exits 0; the first two are not checked or stored.'
+  applied: '17:02:12'
+- line: 18
+  text: decision[case 438][defer][rule-prespec]{ref:rule-prespec}
+  case: '438'
+  kind: defer
+  slug: rule-prespec
+  origin: raw/2026-09-26/1337/ledger.md#case-438
+  decision: decision-case-438
+  ref: rule-prespec
+  category: rules
+  fields:
+    type: rule
+    purpose: After case 437, a pre-spec finding in the body of a Case goes to its case-guppi and a new
+      ratification, prose is fixed in the plan as a DIFF, and the translation of name, context and problem
+      is the last step
+  exists: true
+  applied: '17:02:12'
+- line: 19
+  text: 'lesson[knowledge][lesson-hooks-subagentstop-fires-before-and-after-the-handback]{tags:hooks,harness}{source:probe
+    of session af4c2d33, Claude Code 2.1.282 (claude-vscode), 2026-09-26: a SubagentStop payload dump
+    in guppi/casecheck.py and the transcripts subagents/agent-a47709debf3034a82.jsonl and agent-ae6c9dbed8844dfb3.jsonl}
+    trigger: W28 checked on a live payload that SubagentStop carries agent_transcript_path before the
+    code of Case 434 root_cause: in Claude Code 2.1.282 the SubagentStop payload carries agent_transcript_path,
+    agent_id, agent_type, last_assistant_message and stop_hook_active; a subagent is told that only a
+    SubagentHandback call reaches its caller; when it ends with text and no handback, SubagentStop fires
+    with stop_hook_active false and last_assistant_message that text, then the harness sends it "[handback-send-enforce]
+    Your report has not been delivered", it calls SubagentHandback, the harness may send "[Your previous
+    response had no visible output…]", it writes a text again, and SubagentStop fires a second time with
+    stop_hook_active true though no hook exited 2; these harness messages stand in the subagent transcript
+    as user messages, and a SendMessage arrives as a user message "The coordinator sent a message while
+    you were working: …"'
+  kind: lesson
+  category: lessons
+  slug: lesson-hooks-subagentstop-fires-before-and-after-the-handback
+  origin: raw/2026-09-26/1337/ledger.md#L19
+  fields:
+    type: lesson
+    kind: knowledge
+    root_cause: 'in Claude Code 2.1.282 the SubagentStop payload carries agent_transcript_path, agent_id,
+      agent_type, last_assistant_message and stop_hook_active; a subagent is told that only a SubagentHandback
+      call reaches its caller; when it ends with text and no handback, SubagentStop fires with stop_hook_active
+      false and last_assistant_message that text, then the harness sends it "[handback-send-enforce] Your
+      report has not been delivered", it calls SubagentHandback, the harness may send "[Your previous
+      response had no visible output…]", it writes a text again, and SubagentStop fires a second time
+      with stop_hook_active true though no hook exited 2; these harness messages stand in the subagent
+      transcript as user messages, and a SendMessage arrives as a user message "The coordinator sent a
+      message while you were working: …"'
+    source: 'probe of session af4c2d33, Claude Code 2.1.282 (claude-vscode), 2026-09-26: a SubagentStop
+      payload dump in guppi/casecheck.py and the transcripts subagents/agent-a47709debf3034a82.jsonl and
+      agent-ae6c9dbed8844dfb3.jsonl'
+  sections:
+    Trigger: W28 checked on a live payload that SubagentStop carries agent_transcript_path before the
+      code of Case 434
+    Root cause: 'in Claude Code 2.1.282 the SubagentStop payload carries agent_transcript_path, agent_id,
+      agent_type, last_assistant_message and stop_hook_active; a subagent is told that only a SubagentHandback
+      call reaches its caller; when it ends with text and no handback, SubagentStop fires with stop_hook_active
+      false and last_assistant_message that text, then the harness sends it "[handback-send-enforce] Your
+      report has not been delivered", it calls SubagentHandback, the harness may send "[Your previous
+      response had no visible output…]", it writes a text again, and SubagentStop fires a second time
+      with stop_hook_active true though no hook exited 2; these harness messages stand in the subagent
+      transcript as user messages, and a SendMessage arrives as a user message "The coordinator sent a
+      message while you were working: …"'
+  tags:
+  - hooks
+  - harness
+  near: lesson-hooks-subagentstop-exit-2-sends-the-subagent-back
+  applied: '17:02:12'
+- line: 20
+  text: 'lesson[error][lesson-case-show-ref-of-a-ratification-line-retyped]{tags:session,harness} trigger:
+    the first showing of Case 436.4 again in Work Mode carried `{ref:rule-case-check}` on its second ratification
+    line where the answer of case-guppi held `{ref:estimate-case-check-sends-back-a-faulty-case}`; the
+    Stop comparison of casecheck refused it with "case 436.4: differs from the answer of case-guppi",
+    and the answer was shown again from the store root_cause: the main agent retyped the Case from the
+    subagent''s report instead of copying the stored answer, and changed a ref it took for a slip; a showing
+    retyped by hand can differ in any line, and only the comparison on Stop, which lets the re-fire through,
+    stands between it and the person'
+  kind: lesson
+  category: lessons
+  slug: lesson-case-show-ref-of-a-ratification-line-retyped
+  origin: raw/2026-09-26/1337/ledger.md#L20
+  fields:
+    type: lesson
+    kind: error
+    root_cause: the main agent retyped the Case from the subagent's report instead of copying the stored
+      answer, and changed a ref it took for a slip; a showing retyped by hand can differ in any line,
+      and only the comparison on Stop, which lets the re-fire through, stands between it and the person
+  sections:
+    Trigger: 'the first showing of Case 436.4 again in Work Mode carried `{ref:rule-case-check}` on its
+      second ratification line where the answer of case-guppi held `{ref:estimate-case-check-sends-back-a-faulty-case}`;
+      the Stop comparison of casecheck refused it with "case 436.4: differs from the answer of case-guppi",
+      and the answer was shown again from the store'
+    Root cause: the main agent retyped the Case from the subagent's report instead of copying the stored
+      answer, and changed a ref it took for a slip; a showing retyped by hand can differ in any line,
+      and only the comparison on Stop, which lets the re-fire through, stands between it and the person
+  tags:
+  - session
+  - harness
+  near: lesson-case-show-sub-case-ratification-retyped
+  applied: '17:02:12'
+- kind: create
+  category: insights
+  slug: insight-case-show-built-case-retyped-by-hand
+  origin: raw/2026-09-26/1337/ledger.md#L20
+  fields:
+    type: insight
+    pattern: The main agent writes the Case that case-guppi built out again by hand instead of copying
+      the answer, so a showing can differ from the answer in any line — a ratification block, a ref —
+      and only the comparison on Stop, which refuses a reply the person already sees and lets the re-fire
+      through, stands between the retyped Case and the person.
+    children:
+    - lesson-case-show-sub-case-ratification-retyped
+    - lesson-case-show-ref-of-a-ratification-line-retyped
+  tags:
+  - session
+  - workflow
+  - harness
+  sections:
+    Pattern: The main agent writes the Case that case-guppi built out again by hand instead of copying
+      the answer. In session 1654 the last ratification block of a sub-case repeated the one before; in
+      session 1337 a ref of a ratification line was changed because the agent took it for a slip. A showing
+      retyped by hand can differ from the answer in any line, and only the comparison on Stop, which refuses
+      a reply the person already sees and lets the re-fire through, stands between the retyped Case and
+      the person.
+    Proposal: Let the showing of a built Case not pass through the agent's retyping — for example a step
+      that puts the stored answer of case-guppi into the reply as it stands — or let the comparison on
+      Stop also refuse a second showing that differs.
+  librarian: synthesis
+  applied: '17:02:12'
+- kind: update
+  category: lessons
+  slug: lesson-case-show-sub-case-ratification-retyped
+  origin: raw/2026-09-26/1337/ledger.md#L20
+  set:
+    status: clustered
+    insight: insight-case-show-built-case-retyped-by-hand
+  change: clustered into insight-case-show-built-case-retyped-by-hand
+  librarian: synthesis
+  applied: '17:02:12'
+- kind: update
+  category: lessons
+  slug: lesson-case-show-ref-of-a-ratification-line-retyped
+  origin: raw/2026-09-26/1337/ledger.md#L20
+  set:
+    status: clustered
+    insight: insight-case-show-built-case-retyped-by-hand
+  change: clustered into insight-case-show-built-case-retyped-by-hand
+  librarian: synthesis
+  applied: '17:02:12'
+decisions:
+- case: '433'
+  decision: decision-case-433
+  origin: raw/2026-09-26/1337/ledger.md#case-433
+  targets:
+  - kind: update
+    category: lessons
+    slug: lesson-case-show-sub-case-ratification-retyped
+    ref: lesson-case-show-sub-case-ratification-retyped
+  tags: []
+  case_text:
+    context: '`casecheck` has two hooks. On `SubagentStop` it checks the answer of `case-guppi` and stores
+      each Case in `<plan>.checked.json`. On `Stop` it compares the Case the main agent shows with the
+      stored one. Only the function `stop` in `guppi/casecheck.py` prints the message `differs from the
+      answer of case-guppi — show that answer unchanged`. That is the comparison on `Stop`. The showing
+      of 428.3 in session 1654 got this message. The result of `estimate-case-check-shows-only-the-checked-case`,
+      the result of `estimate-case-protocol-shows-the-built-case` and the handoff say so. But the `##
+      Trigger` of the page `lesson-case-show-sub-case-ratification-retyped` names the comparison on `SubagentStop`.
+      The page states a thing that did not occur.
+
+
+      The ledger line the page came from, its entry in the `materialize.yaml` of session 1654, the handoff
+      and the brief are records. They stay as they are. The words of the handoff "the line stands as written"
+      are about the ledger line and stay true: the Case changes only the page. `root_cause` and `## Root
+      cause` are correct and do not change. A Grep of `SubagentStop comparison` over `vault/wiki/` found
+      the phrase only on the lesson page and in `brief.md`, and the librarian writes the brief again at
+      each run. `generate` applies `replace` to a page of any category. A pair whose `old` comes only
+      from `## Trigger` matches once.
+
+
+      What `case-guppi` found in the frame. `rule-lessons-schema` says a lesson is "a recorded fact",
+      it "does not go through a Case", and "nothing … is checked again" about it. These sentences describe
+      how a lesson is born and that it has no Estimate. The Case does not create a lesson and does not
+      add an Estimate to it. It corrects the account of a fact against the code, so these sentences stay
+      true. The lesson has no Estimate. `estimate-lessons-schema-checked` promises the form of a lesson
+      page, and the form does not change. `estimate-case-check-sends-back-a-faulty-case` and `estimate-case-check-shows-only-the-checked-case`
+      promise the behaviour of the hooks, and it does not change. So no Estimate is touched.
+
+
+      This Case closes C4 of the Frontier.'
+    problem: The `## Trigger` of the lesson names a check other than the one that refused the reply. A
+      reader of the lesson will look for the cause in the check on `SubagentStop`, but the comparison
+      on `Stop` refused the reply. The decision is whether to correct the page or to keep it as written.
+    given: '`lesson-case-show-sub-case-ratification-retyped` — the lesson of the retyped ratification
+      of a sub-case
+
+      **＋** `rule-case-check` — the rule of the two `casecheck` hooks: the check on `SubagentStop`, the
+      comparison on `Stop`
+
+      **＋** `rule-lessons-schema` — the `## Trigger` of a Lesson holds the full account of what happened'
+    when: A reader opens `lesson-case-show-sub-case-ratification-retyped` and reads its `## Trigger`.
+    then: 'The `## Trigger` names the comparison of `rule-case-check` on `Stop` as the check that refused
+      the showing of Case 428.
+
+      **－** The `## Trigger` does not name `SubagentStop`.
+
+      **－** The `root_cause`, `## Root cause`, `origin` and `status` of the page stay as they are.'
+  spec: vault/raw/2026-09-26/1337/spec.md
+  applied: '17:02:12'
+- case: '434'
+  decision: decision-case-434
+  origin: raw/2026-09-26/1337/ledger.md#case-434
+  targets:
+  - kind: update
+    category: rules
+    slug: rule-case-check
+    ref: rule-case-check
+  - kind: update
+    category: estimates
+    slug: estimate-case-check-sends-back-a-faulty-case
+    ref: rule-case-check
+  tags: []
+  case_text:
+    context: 'The hook `guppi casecheck --subagent` fires on `SubagentStop`. It checks the answer of `case-guppi`
+      and stores each Case in `<plan>.checked.json` beside the plan file. Then the `Stop` comparison compares
+      the shown Case with the stored one. Today the hook reads only `last_assistant_message`. But the
+      main agent gets the Case now as the `message` of a `SubagentHandback` call, now as a text. At the
+      first dispatch for Case 433, `case-guppi` gave the Case through the handback and ended with a short
+      summary. The hook found no Case, stored nothing, and the `Stop` comparison refused a Case that was
+      built (lesson `lesson-hooks-subagentstop-reads-the-last-text-not-the-handback`).
+
+
+      Probe W28 showed the order of events in Claude Code 2.1.282 (lesson `lesson-hooks-subagentstop-fires-before-and-after-the-handback`).
+      The payload carries `agent_transcript_path` and `stop_hook_active`. When a subagent ends with a
+      text and no handback, `SubagentStop` fires with `stop_hook_active: false`. Then the harness requires
+      a handback, the subagent calls it, may get a reminder about empty output, and writes a text. After
+      that `SubagentStop` fires a second time with `stop_hook_active: true`, though no hook exited 2.
+      In this same session Claude Code once told `case-guppi` that `SubagentHandback` was not available
+      in that run and the report had to be plain text. So a Case comes both ways.
+
+
+      The previous rebuild used rounds and recognised the harness notices by their text. The owner chose
+      a simpler rule. The answer is the newest output of the subagent in the transcript that holds a Case
+      heading: the `message` of a handback call or an assistant text, whichever stands later. A search
+      of handbacks only does not work. If version 1 came by handback, version 2 as text, and a question
+      by handback again, a search of handbacks finds version 1 and overwrites version 2 in the store.
+      A summary with no heading is skipped. If the newest output is a question, the check finds the earlier
+      Case and stores it again. That text is already in the store, so this does no harm. The harness sets
+      `stop_hook_active` without our exit 2, so the store is the guard against a loop: the same text with
+      the same findings is not sent back a second time. Whether an exit 2 with `stop_hook_active: true`
+      reaches the subagent in 2.1.282 is not measured. The reading by hand of the Estimate shows it.
+
+
+      The frame. How it works in `rule-case-check` says three things: the hook reads `last_assistant_message`;
+      an answer with no Case heading is not checked; on the re-fire the hook stores and exits 0. All three
+      become false, and the Case changes all three. The Criterion of `estimate-case-check-sends-back-a-faulty-case`
+      is replaced whole by the `when` and `then` of this Case. Case 436.4, ratified in this session, replaces
+      the same Criterion after 434 and carries the earlier `then` lines of Case 434 word for word. Those
+      lines are now out of date, and 436.4 must be shown again. It is not rebuilt here. `estimate-case-check-shows-only-the-checked-case`
+      is not touched: the comparison reads the reply of the main agent and the store, as before. The Render
+      of `rule-case-build` and `estimate-case-build-writes-the-case` stay true: the agent still answers
+      with a Case alone or a question alone. This is the only hook registered on `SubagentStop` in `.claude/settings.json`.
+      There is one parsing of a JSONL transcript, in `guppi/ledger.py`: the check imports it and does
+      not apply the filter `is_main` to the records of the subagent. The ratification lines stay as they
+      were, so the ledger hook does not write them a second time.'
+    problem: 'The check on `SubagentStop` must store the Case the main agent gets. It comes now through
+      `SubagentHandback`, now as a text, sometimes followed by a summary or a question, and the hook fires
+      twice with `stop_hook_active: true` without our exit 2. The ratified rule reads the wrong output
+      and lets through a faulty Case that came at the second fire.'
+    given: '`rule-case-check` — the rule of the check and the comparison; its How it works changes
+
+      **＋** `estimate-case-check-sends-back-a-faulty-case` — the promise of the check on `SubagentStop`
+
+      **＋** `guppi/casecheck.py` — the hook module; `subagent` reads the answer and guards the loop
+
+      **＋** `guppi/ledger.py` — the reading of a JSONL transcript, shared with the check
+
+      **＋** `guppi/ratified.py` — the reading of the chat form, used as it stands
+
+      **＋** `guppi/prespec.py` — `judge`, the checks of pre-spec, used as they stand
+
+      **＋** `tests/test_casecheck.py` — the tests of the hook
+
+      **＋** `rule-one-judgment-one-implementation` — one reader of a transcript, imported, not copied'
+    when: '`SubagentStop` fires when `case-guppi` answers; its payload carries `last_assistant_message`,
+      `agent_transcript_path` and `stop_hook_active`, and it may fire twice after one message to the subagent,
+      the second time after a `SubagentHandback` call, with `stop_hook_active` true though no hook exited
+      2.'
+    then: '`uv run guppi casecheck --subagent` takes as the answer the newest output of the subagent in
+      `agent_transcript_path` that holds a Case heading: the `message` input of a `SubagentHandback` tool
+      call or the text of an assistant message, whichever stands later.
+
+      **＋** When `agent_transcript_path` is not readable or holds no such output, the answer is `last_assistant_message`.
+
+      **＋** It reads each Case of the answer in the chat form, by the functions of `guppi/ratified.py`,
+      builds each Case''s section of the Spec in memory, as the Spec hook writes it, and runs `judge`
+      of `guppi/prespec.py` over them, the decision lines of the `ratification` fence standing for the
+      ledger.
+
+      **＋** It checks the chat form besides: the sections in the order of the schema, none missing that
+      the schema requires, and a `ratification` that holds one untagged fence of ledger lines and nothing
+      else.
+
+      **＋** Each Case of the answer is stored, its text as the answer holds it, with its findings in `<plan>.checked.json`
+      beside the plan file of the session.
+
+      **＋** A finding exits 2 with the findings on stderr, each naming its Case, and `case-guppi` answers
+      again, whatever `stop_hook_active` says.
+
+      **－** A finding for a Case whose text the store already holds with findings is stored again and
+      exits 0, so an unchanged answer is not sent back twice.
+
+      **－** An answer with no Case heading, an answer of another agent, or a session with no plan file
+      is not sent back and exits 0; the first two are not checked or stored.'
+  spec: vault/raw/2026-09-26/1337/spec.md
+  applied: '17:02:12'
+- case: '435'
+  decision: decision-case-435
+  origin: raw/2026-09-26/1337/ledger.md#case-435
+  targets:
+  - kind: update
+    category: rules
+    slug: rule-case-protocol
+    ref: rule-case-protocol
+  - kind: update
+    category: estimates
+    slug: estimate-case-protocol-shows-the-built-case
+    ref: estimate-case-protocol-shows-the-built-case
+  tags: []
+  case_text:
+    context: '`case-guppi` builds a Case, and the main agent shows it. `rule-case-protocol` requires the
+      answer shown whole and unchanged. But the main agent does not copy the text; it writes it again.
+      In session 1654 it retyped Case 428 this way and put the ledger line of 428.2 under the ratification
+      of 428.3. The comparison `uv run guppi casecheck` on `Stop` of `rule-case-check` refused that reply.
+      The next reply of the same turn showed 428.3 unchanged, and the person answered the correct Case.
+      The Criterion of `estimate-case-protocol-shows-the-built-case` promises that each showing is unchanged,
+      so the reading failed. The other lines of the Criterion held in that reading.
+
+
+      The guard is in place and it worked. The comparison on `Stop` ran in session 1654, and `estimate-case-check-shows-only-the-checked-case`
+      passed on exactly this refusal. There is no stronger guard. `Stop` fires on a reply the person already
+      sees, so the hook can only refuse a showing, not stop it. The retyping stays an error of the agent,
+      and the hook catches it. On the re-fire (`stop_hook_active`) the comparison exits 0. The hook does
+      not refuse a second showing that differs, and only the reading by hand finds it.
+
+
+      The refusal of Case 433 in this session ("not built and checked by case-guppi") was not a showing
+      that differed. Its cause is `SubagentHandback`, and Case 434 closes it. Case 434 does not change
+      the comparison on `Stop`. The new lines of the Criterion speak only of a showing the comparison
+      refused as different from the answer.
+
+
+      What `case-guppi` found in the frame. The section Who builds a Case in `rule-case-protocol` says
+      that the agent shows the answer "whole and unchanged". As an instruction to the agent this sentence
+      stays true. The Case adds to it what follows a refused showing, so that the Render and the Criterion
+      promise the same thing. The Render is `vault/wiki/case-schema.md`, so `tasks` holds a render line.
+      `estimate-case-check-shows-only-the-checked-case` does not change: it promises the comparison itself,
+      and the comparison does not change. The other Estimates of `rule-case-protocol` speak of the loading,
+      the form of a Case, the ledger lines, the acknowledging reply and deferred decisions, not of the
+      showing. `estimate-case-build-writes-the-case` speaks of how `case-guppi` builds a Case. The lesson
+      `lesson-case-show-sub-case-ratification-retyped` was recorded in another session, so the decision
+      line carries no `addresses`, and the lesson stays `new`. The Case has no `create`, so no vault query
+      is needed. The Criterion changes in this session, so its reading waits for the next one.'
+    problem: 'The reading failed, but the guard against this error is in place and it worked: the person
+      answered the correct Case. The decision is what the failure asks for: a new rule or guard, a new
+      Criterion, or a new reading under the old Criterion.'
+    given: '`rule-case-protocol` — the rule of how a built Case is shown; its Who builds a Case changes
+
+      **＋** `vault/wiki/case-schema.md` — the Render of `rule-case-protocol`
+
+      **＋** `estimate-case-protocol-shows-the-built-case` — the promise that the built Case is shown unchanged
+
+      **＋** `rule-case-check` — the `Stop` comparison of `uv run guppi casecheck`, which refuses a showing
+      that differs from the answer
+
+      **＋** `rule-case-build` — the agent `case-guppi` that builds a Case
+
+      **＋** `rule-ask` — the agent `ask-guppi`, dispatched at pre-spec'
+    when: The main agent takes up a Frontier item that needs a Case, the person answers a shown Case with
+      a question or a change, or a ratified Case changes and is shown again, in Plan Mode or in Work Mode.
+    then: 'The main agent dispatches `case-guppi` with the Case id, the Frontier item and its source,
+      and the person''s words on it, in the prompt of the call; nothing of the Case stands in the chat
+      before the answer.
+
+      **＋** A question or a change of the person on a shown Case goes to the same `case-guppi` by `SendMessage`.
+
+      **＋** The main agent shows the Case of the answer, and its own text stands after one horizontal
+      rule.
+
+      **＋** The Case the person answers is the Case of the answer, whole and unchanged.
+
+      **＋** A showing that the `Stop` comparison of `uv run guppi casecheck` refuses as different from
+      the answer is followed, before the person answers, by a reply that shows the answer whole and unchanged.
+
+      **＋** An answer that holds no Case heading is a question the main agent puts to the person, and
+      no Case is shown.
+
+      **＋** The plan file stands with its title line before the first dispatch of the session.
+
+      **＋** The main agent dispatches `ask-guppi` once, at pre-spec, and neither `ask-guppi` nor `frame-guppi`
+      before a showing.
+
+      **－** A deferred decision in the short form is written by the main agent, with no dispatch.'
+  spec: vault/raw/2026-09-26/1337/spec.md
+  applied: '17:02:12'
+- case: '436.1'
+  decision: decision-case-436.1
+  origin: raw/2026-09-26/1337/ledger.md#case-436.1
+  targets:
+  - kind: update
+    category: rules
+    slug: rule-spec-write
+    ref: rule-spec-write
+  - kind: update
+    category: estimates
+    slug: estimate-spec-write-copies-the-ratified-case
+    ref: estimate-spec-write-copies-the-ratified-case
+  tags: []
+  case_text:
+    given: '`guppi/materialize.py` — the home of `item_keys`, the one judgment of the keys of an item,
+      and of `ITEM_KEYS`
+
+      **＋** `guppi/ratified.py` — the Spec hook; `put` reads a sub-point into its item
+
+      **＋** `guppi/generate.py` — applies the keys of an `update`
+
+      **＋** `tests/test_ratified.py`, `tests/test_casecheck.py` and `tests/test_materialize.py` — the
+      tests of the refusal and of the lift
+
+      **＋** `rule-spec-write` — the rule of the Spec hook
+
+      **＋** `estimate-spec-write-copies-the-ratified-case` — the promise of the hook''s reading of the
+      chat form
+
+      **＋** `rule-one-judgment-one-implementation` — one judgment, imported, never copied'
+    when: The `Stop` hook `uv run guppi ratified` runs after a reply whose `LEDGER` block holds `- decision[case
+      N]` lines of a kind other than `defer`; it reads the session's transcript and finds the last earlier
+      reply that shows `## Case N —` whole.
+    then: 'The hook writes that Case into the plan file `plan_path` finds, the section of Case N replaced
+      when it stands, appended otherwise: the heading, `context`, `problem`, `given`, `when` and `then`
+      as they stand in the chat; a block tagged `then` built from the sub-points of `tasks`; a block tagged
+      `tasks` of the task lines without their sub-points.
+
+      **＋** It writes the same text the same way into the ratified copy `<plan>.ratified.md` beside the
+      plan file.
+
+      **＋** A task line opening with `create`, `update`, `delete` or `defer` and the slug in its first
+      code span is an item of the `then` block; its sub-points are its keys — `old` and `new` in pairs
+      under `replace`, `reword old` and `reword new` under `reword`, `set`, `change`, `rename`, `sections.<Name>`,
+      the fields of a `create` — each value one code span, padded by one space on each side when the value
+      holds a backtick, or a fenced block under the sub-point.
+
+      **＋** A sub-point that reads into no key `item_keys` of `guppi/materialize.py` gives the kind and
+      the category of its item — `slug` a key of every kind; the one judgment `guppi/materialize.py` lifts
+      by and `guppi/generate.py` applies by — is refused: exit 2 with `` `<key>`: not a key of <kind>
+      <slug> `` on stderr, and nothing of the Case is written.
+
+      **＋** A value that holds a backtick in an outer span not padded on both sides is refused: exit 2
+      with `` `<key>`: a value holding a backtick takes its outer span padded by one space `` on stderr,
+      and nothing of the Case is written.
+
+      **＋** `recommend` and `ratification` are not written.
+
+      **＋** When the last showing of Case N is a `DIFF` block, not the Case whole, the hook writes nothing
+      for it.
+
+      **＋** No plan file in the event log, no showing of Case N, or a sub-point it cannot read: exit 2
+      with the reason on stderr; on the re-fire (`stop_hook_active`) exit 0.
+
+      **－** A `create` or a `defer` of a category with no schema file, or of one whose schema rule a decision
+      line of the session or of the reply creates or updates, is not judged by its keys (case 308.2).'
+    context: 'The Spec hook `rule-spec-write` reads the sub-points of a `tasks` line and puts them into
+      an item of the `then` block. The function `put` in `guppi/ratified.py` knows `old`, `new`, `reword
+      old`, `reword new`, `set` and `sections.<Name>`. It puts any other key into the item as it is, whatever
+      the kind of the item. In Case 434 the sub-points `replace old:` and `replace new:` stood under `update
+      rule-case-check`. The hook wrote into the plan an item with the keys `replace old` and `replace
+      new`, not a list of `replace` pairs. `generate` will not apply such an item. Nothing refused it.
+      `guppi casecheck --subagent` did not: it builds the Spec section with the same `ratified.case_section`.
+      The write of `guppi ratified` and the check after it did not: `judge` in `guppi/prespec.py` does
+      not compare the keys of an item for any kind. The hook writes a deferred Case in the short form
+      from its fence `then`. There it checks only that `slug`, `type` and `purpose` are present, and it
+      lets other keys pass.
+
+
+      The judgment exists, but only in `materialize`, and in parts. `_lift_item` in `guppi/materialize.py`
+      lifts the keys `set`, `sections`, `replace`, `change`, `rename` and, apart, `reword` of an `update`,
+      and `impact` and `change` of a `delete`. It drops the other keys of these kinds without a word.
+      For a `create` and a `defer` it reads the fields of the category from its `schema.yaml` with the
+      function `schema_fields`. It marks `unknown` what is neither a field of the schema nor an own key
+      of the item. The own keys are `slug`, `ref`, `sections`, `file`, `estimate`, `parent_create`, `parent_tags`,
+      and for a `defer` also `type` and `purpose`. The old keys of a `create` of a rule or an entity,
+      `method`, `contract`, `estimate_slug` and `estimate_kind`, it lets pass without a word. A category
+      whose schema a decision of the same unit changes is not judged at all (`schema_changed`, case 308.2).
+      The method `update` in `guppi/generate.py` holds its own copy of the keys of an `update`. One function
+      can answer whether an item of a kind has a key, for all four kinds. For an `update` and a `delete`
+      it takes a closed list. For a `create` and a `defer` it takes the fields of the category''s schema
+      and the own keys. Where there is no judgment, it answers "not judged": for a category with no schema
+      file and for a category whose schema a decision of the session changes. This answer is the same
+      as how `materialize` lifts the items today. So `estimate-materialize-lifts-a-create-by-the-schema`
+      stays true and is not touched. The Estimates of `generate` are not touched either.
+
+
+      Today `materialize` lifts the schema fields of a `defer` into the placeholder page, and `generate`
+      writes them. To narrow the keys of a `defer` to `slug`, `type` and `purpose` would change that behaviour,
+      so this Case does not narrow them.
+
+
+      The Case touches three promises, so it splits into sub-cases: the reading of the chat form by the
+      Spec hook (`estimate-spec-write-copies-the-ratified-case`), the finding of pre-spec (`estimate-prespec-checks-the-form-of-an-item`)
+      and the write of a deferred Case (`estimate-spec-write-writes-a-defer`). `casecheck --subagent`
+      gets the refusal through `case_section` and the finding through `judge`. It needs one change: it
+      gives `judge` the schemas the session changes, taken from the lines of the session''s window. The
+      lines of its fence `ratification` still stand for the ledger. The Criteria of `estimate-case-check-sends-back-a-faulty-case`
+      and `estimate-spec-write-checks-the-written-case` speak of running `judge`, not of the keys, and
+      do not change. The page `rule-case-protocol` (`case-schema.md`) already says that a Case off the
+      form is not written. The change makes that true, and the page does not change. An `update` item
+      with `file` gets two findings: the new one and the one of case 320.
+
+
+      On `Stop`, `guppi ledger`, `guppi casecheck` and `guppi context` run beside `guppi ratified`. The
+      ledger hook writes the decision lines also when `ratified` refuses (case 414.2). So the line stays
+      without an item, and pre-spec names it — the same as at any refusal of the reading today. No vault
+      query is needed: the Case creates nothing.
+
+
+      What followed: after this Case was ratified, the ratified Case 434 changed. Its sub-points became
+      `old:` and `new:` in place of `replace old:` and `replace new:`; its own case-guppi showed it again,
+      and it was ratified again. That change is not part of this Case.'
+    problem: Only `materialize` knows which keys an item of each kind accepts, and it knows them in parts.
+      `generate` holds its own copy. The Spec hook and the checks of pre-spec do not know these keys at
+      all. So an item with a foreign key of any kind passes all the checks, and later it is dropped or
+      not applied without a word. The decision is where the one judgment lives and who refuses by it.
+  spec: vault/raw/2026-09-26/1337/spec.md
+  applied: '17:02:12'
+- case: '436.2'
+  decision: decision-case-436.2
+  origin: raw/2026-09-26/1337/ledger.md#case-436.2
+  targets:
+  - kind: update
+    category: rules
+    slug: rule-prespec
+    ref: rule-prespec
+  - kind: update
+    category: estimates
+    slug: estimate-prespec-checks-the-form-of-an-item
+    ref: estimate-prespec-checks-the-form-of-an-item
+  tags: []
+  case_text:
+    given: '`guppi/prespec.py` — `judge`, the checks of `--check`, of the check after a write and of `casecheck`
+
+      **＋** `guppi/materialize.py` — `item_keys`, the judgment the check imports
+
+      **＋** `tests/test_prespec.py` — the test of the finding
+
+      **＋** `rule-prespec` — the rule of `/pre-spec`; its Render lists the findings of the check
+
+      **＋** `.claude/skills/pre-spec/SKILL.md` — the Render of `rule-prespec`
+
+      **＋** `estimate-prespec-checks-the-form-of-an-item` — the promise on the form of an item
+
+      **＋** `rule-one-judgment-one-implementation` — one judgment, imported, never copied'
+    when: '`uv run guppi prespec --check <plan>` reads the items of the plan''s `then` blocks.'
+    then: 'A Case whose `then` block holds two or more Estimate items — a `create`, or an `update` with
+      `set: {status: pending}` — without a written `sections: Criterion` is the finding `case N: two promises
+      in one Case — split it`.
+
+      **＋** An `update` of an Estimate whose page does not exist is the finding `case N: update <slug>:
+      no such Estimate page`.
+
+      **＋** A `create` of an Estimate whose `ref` names neither a live rule or entity nor a rule or entity
+      a `create` item of the plan carries is the finding `case N: create <slug>: ref <ref> names no live
+      page`.
+
+      **＋** An `update` item carrying `file` is the finding `case N: file <path>; the file route is gone
+      (case 320)`, naming the rule that governs the path when one does.
+
+      **＋** A key of an item of any kind that `item_keys` of `guppi/materialize.py` does not give its
+      kind and category — `slug` a key of every kind — is the finding `case N: <kind> <slug>: key <key>
+      is not a key of this item`.
+
+      **－** A `create` or a `defer` of a category with no schema file, or of one whose schema rule a decision
+      line of the session creates or updates, is not judged by its keys (case 308.2).'
+    context: 'The Spec hook `rule-spec-write` reads the sub-points of a `tasks` line and puts them into
+      an item of the `then` block. The function `put` in `guppi/ratified.py` knows `old`, `new`, `reword
+      old`, `reword new`, `set` and `sections.<Name>`. It puts any other key into the item as it is, whatever
+      the kind of the item. In Case 434 the sub-points `replace old:` and `replace new:` stood under `update
+      rule-case-check`. The hook wrote into the plan an item with the keys `replace old` and `replace
+      new`, not a list of `replace` pairs. `generate` will not apply such an item. Nothing refused it.
+      `guppi casecheck --subagent` did not: it builds the Spec section with the same `ratified.case_section`.
+      The write of `guppi ratified` and the check after it did not: `judge` in `guppi/prespec.py` does
+      not compare the keys of an item for any kind. The hook writes a deferred Case in the short form
+      from its fence `then`. There it checks only that `slug`, `type` and `purpose` are present, and it
+      lets other keys pass.
+
+
+      The judgment exists, but only in `materialize`, and in parts. `_lift_item` in `guppi/materialize.py`
+      lifts the keys `set`, `sections`, `replace`, `change`, `rename` and, apart, `reword` of an `update`,
+      and `impact` and `change` of a `delete`. It drops the other keys of these kinds without a word.
+      For a `create` and a `defer` it reads the fields of the category from its `schema.yaml` with the
+      function `schema_fields`. It marks `unknown` what is neither a field of the schema nor an own key
+      of the item. The own keys are `slug`, `ref`, `sections`, `file`, `estimate`, `parent_create`, `parent_tags`,
+      and for a `defer` also `type` and `purpose`. The old keys of a `create` of a rule or an entity,
+      `method`, `contract`, `estimate_slug` and `estimate_kind`, it lets pass without a word. A category
+      whose schema a decision of the same unit changes is not judged at all (`schema_changed`, case 308.2).
+      The method `update` in `guppi/generate.py` holds its own copy of the keys of an `update`. One function
+      can answer whether an item of a kind has a key, for all four kinds. For an `update` and a `delete`
+      it takes a closed list. For a `create` and a `defer` it takes the fields of the category''s schema
+      and the own keys. Where there is no judgment, it answers "not judged": for a category with no schema
+      file and for a category whose schema a decision of the session changes. This answer is the same
+      as how `materialize` lifts the items today. So `estimate-materialize-lifts-a-create-by-the-schema`
+      stays true and is not touched. The Estimates of `generate` are not touched either.
+
+
+      Today `materialize` lifts the schema fields of a `defer` into the placeholder page, and `generate`
+      writes them. To narrow the keys of a `defer` to `slug`, `type` and `purpose` would change that behaviour,
+      so this Case does not narrow them.
+
+
+      The Case touches three promises, so it splits into sub-cases: the reading of the chat form by the
+      Spec hook (`estimate-spec-write-copies-the-ratified-case`), the finding of pre-spec (`estimate-prespec-checks-the-form-of-an-item`)
+      and the write of a deferred Case (`estimate-spec-write-writes-a-defer`). `casecheck --subagent`
+      gets the refusal through `case_section` and the finding through `judge`. It needs one change: it
+      gives `judge` the schemas the session changes, taken from the lines of the session''s window. The
+      lines of its fence `ratification` still stand for the ledger. The Criteria of `estimate-case-check-sends-back-a-faulty-case`
+      and `estimate-spec-write-checks-the-written-case` speak of running `judge`, not of the keys, and
+      do not change. The page `rule-case-protocol` (`case-schema.md`) already says that a Case off the
+      form is not written. The change makes that true, and the page does not change. An `update` item
+      with `file` gets two findings: the new one and the one of case 320.
+
+
+      On `Stop`, `guppi ledger`, `guppi casecheck` and `guppi context` run beside `guppi ratified`. The
+      ledger hook writes the decision lines also when `ratified` refuses (case 414.2). So the line stays
+      without an item, and pre-spec names it — the same as at any refusal of the reading today. No vault
+      query is needed: the Case creates nothing.
+
+
+      What followed: after this Case was ratified, the ratified Case 434 changed. Its sub-points became
+      `old:` and `new:` in place of `replace old:` and `replace new:`; its own case-guppi showed it again,
+      and it was ratified again. That change is not part of this Case.'
+    problem: Only `materialize` knows which keys an item of each kind accepts, and it knows them in parts.
+      `generate` holds its own copy. The Spec hook and the checks of pre-spec do not know these keys at
+      all. So an item with a foreign key of any kind passes all the checks, and later it is dropped or
+      not applied without a word. The decision is where the one judgment lives and who refuses by it.
+  spec: vault/raw/2026-09-26/1337/spec.md
+  applied: '17:02:12'
+- case: '436.3'
+  decision: decision-case-436.3
+  origin: raw/2026-09-26/1337/ledger.md#case-436.3
+  targets:
+  - kind: update
+    category: rules
+    slug: rule-spec-write
+    ref: rule-spec-write
+  - kind: update
+    category: estimates
+    slug: estimate-spec-write-writes-a-defer
+    ref: estimate-spec-write-writes-a-defer
+  tags: []
+  case_text:
+    given: '`guppi/ratified.py` — `deferred_section` reads the short form of a deferred Case
+
+      **＋** `guppi/materialize.py` — `item_keys`, the judgment the write imports
+
+      **＋** `tests/test_ratified.py` — the test of the refusal
+
+      **＋** `raw/<date>/<hi HHMM>/spec.md` — the Spec of the session at Retro
+
+      **＋** `rule-spec-write` — the rule of the Spec hook
+
+      **＋** `estimate-spec-write-writes-a-defer` — the promise of the write of a deferred Case'
+    when: 'The `Stop` hook `uv run guppi ratified` runs after a reply whose `LEDGER` block holds lines
+      of a Case N that are all `defer` — beside the lines of other Cases or alone — and the same reply
+      shows `## Case N —` in the short form: `context`, `problem` and a fence tagged `then` with its `defer`
+      items.'
+    then: 'The hook writes that Case under `## Deferred` of the plan file while Plan Mode lasts, and of
+      `raw/<date>/<hi HHMM>/spec.md` once that file stands, at Retro: the heading, `context`, `problem`
+      and the `then` block as the reply shows them.
+
+      **＋** The section of Case N is replaced when it stands there, appended at the end of `## Deferred`
+      otherwise; the heading `## Deferred` is added when the file has none.
+
+      **＋** A reply with no showing of Case N, or a `then` block without a `defer` item carrying `slug`,
+      `type` and `purpose` for each `defer` line of the reply: exit 2 with the reason on stderr; on the
+      re-fire (`stop_hook_active`) exit 0.
+
+      **＋** A key of a `defer` item that `item_keys` of `guppi/materialize.py` does not give a `defer`
+      of its category: exit 2 with `` `<key>`: not a key of defer <slug> `` on stderr, and nothing of
+      the Case is written.
+
+      **－** A `defer` of a category with no schema file, or of one whose schema rule a decision line of
+      the session or of the reply creates or updates, is not judged by its keys (case 308.2).
+
+      **－** The ratified copy `<plan>.ratified.md` gets no defer, and the check after the write does not
+      run on it.'
+    context: 'The Spec hook `rule-spec-write` reads the sub-points of a `tasks` line and puts them into
+      an item of the `then` block. The function `put` in `guppi/ratified.py` knows `old`, `new`, `reword
+      old`, `reword new`, `set` and `sections.<Name>`. It puts any other key into the item as it is, whatever
+      the kind of the item. In Case 434 the sub-points `replace old:` and `replace new:` stood under `update
+      rule-case-check`. The hook wrote into the plan an item with the keys `replace old` and `replace
+      new`, not a list of `replace` pairs. `generate` will not apply such an item. Nothing refused it.
+      `guppi casecheck --subagent` did not: it builds the Spec section with the same `ratified.case_section`.
+      The write of `guppi ratified` and the check after it did not: `judge` in `guppi/prespec.py` does
+      not compare the keys of an item for any kind. The hook writes a deferred Case in the short form
+      from its fence `then`. There it checks only that `slug`, `type` and `purpose` are present, and it
+      lets other keys pass.
+
+
+      The judgment exists, but only in `materialize`, and in parts. `_lift_item` in `guppi/materialize.py`
+      lifts the keys `set`, `sections`, `replace`, `change`, `rename` and, apart, `reword` of an `update`,
+      and `impact` and `change` of a `delete`. It drops the other keys of these kinds without a word.
+      For a `create` and a `defer` it reads the fields of the category from its `schema.yaml` with the
+      function `schema_fields`. It marks `unknown` what is neither a field of the schema nor an own key
+      of the item. The own keys are `slug`, `ref`, `sections`, `file`, `estimate`, `parent_create`, `parent_tags`,
+      and for a `defer` also `type` and `purpose`. The old keys of a `create` of a rule or an entity,
+      `method`, `contract`, `estimate_slug` and `estimate_kind`, it lets pass without a word. A category
+      whose schema a decision of the same unit changes is not judged at all (`schema_changed`, case 308.2).
+      The method `update` in `guppi/generate.py` holds its own copy of the keys of an `update`. One function
+      can answer whether an item of a kind has a key, for all four kinds. For an `update` and a `delete`
+      it takes a closed list. For a `create` and a `defer` it takes the fields of the category''s schema
+      and the own keys. Where there is no judgment, it answers "not judged": for a category with no schema
+      file and for a category whose schema a decision of the session changes. This answer is the same
+      as how `materialize` lifts the items today. So `estimate-materialize-lifts-a-create-by-the-schema`
+      stays true and is not touched. The Estimates of `generate` are not touched either.
+
+
+      Today `materialize` lifts the schema fields of a `defer` into the placeholder page, and `generate`
+      writes them. To narrow the keys of a `defer` to `slug`, `type` and `purpose` would change that behaviour,
+      so this Case does not narrow them.
+
+
+      The Case touches three promises, so it splits into sub-cases: the reading of the chat form by the
+      Spec hook (`estimate-spec-write-copies-the-ratified-case`), the finding of pre-spec (`estimate-prespec-checks-the-form-of-an-item`)
+      and the write of a deferred Case (`estimate-spec-write-writes-a-defer`). `casecheck --subagent`
+      gets the refusal through `case_section` and the finding through `judge`. It needs one change: it
+      gives `judge` the schemas the session changes, taken from the lines of the session''s window. The
+      lines of its fence `ratification` still stand for the ledger. The Criteria of `estimate-case-check-sends-back-a-faulty-case`
+      and `estimate-spec-write-checks-the-written-case` speak of running `judge`, not of the keys, and
+      do not change. The page `rule-case-protocol` (`case-schema.md`) already says that a Case off the
+      form is not written. The change makes that true, and the page does not change. An `update` item
+      with `file` gets two findings: the new one and the one of case 320.
+
+
+      On `Stop`, `guppi ledger`, `guppi casecheck` and `guppi context` run beside `guppi ratified`. The
+      ledger hook writes the decision lines also when `ratified` refuses (case 414.2). So the line stays
+      without an item, and pre-spec names it — the same as at any refusal of the reading today. No vault
+      query is needed: the Case creates nothing.
+
+
+      What followed: after this Case was ratified, the ratified Case 434 changed. Its sub-points became
+      `old:` and `new:` in place of `replace old:` and `replace new:`; its own case-guppi showed it again,
+      and it was ratified again. That change is not part of this Case.'
+    problem: Only `materialize` knows which keys an item of each kind accepts, and it knows them in parts.
+      `generate` holds its own copy. The Spec hook and the checks of pre-spec do not know these keys at
+      all. So an item with a foreign key of any kind passes all the checks, and later it is dropped or
+      not applied without a word. The decision is where the one judgment lives and who refuses by it.
+  spec: vault/raw/2026-09-26/1337/spec.md
+  applied: '17:02:12'
+- case: '437'
+  decision: decision-case-437
+  origin: raw/2026-09-26/1337/ledger.md#case-437
+  targets:
+  - kind: update
+    category: rules
+    slug: rule-spec-write
+    ref: rule-spec-write
+  - kind: update
+    category: estimates
+    slug: estimate-spec-write-copies-the-ratified-case
+    ref: estimate-spec-write-copies-the-ratified-case
+  - kind: update
+    category: rules
+    slug: rule-case-protocol
+    ref: rule-case-protocol
+  tags: []
+  case_text:
+    context: 'The hook `guppi ratified` on `Stop` writes a ratified Case into the plan file and into the
+      ratified copy `<plan>.ratified.md`. It takes the text from the last earlier reply of the main agent
+      that shows the Case whole. Apart from that, `guppi casecheck --subagent` stores each Case `case-guppi`
+      answered with in `<plan>.checked.json`. For each id it keeps the text in the chat form and the findings.
+      The comparison of `guppi casecheck` on `Stop` compares the showing with that text. On the re-fire
+      (`stop_hook_active`) it exits 0. So a second showing that the agent retyped with a difference is
+      not refused. Then the wrong text goes into both the plan and the copy. `guppi/ratified.py` and `guppi/prespec.py`
+      do not open `.checked.json`, and nothing finds the difference.
+
+
+      The person asked whether the copy is needed at all. The ratified Case can be found mechanically:
+      it is the last answer of `case-guppi` for that id at the time of ratification. But the store itself
+      cannot replace the copy. The store holds the last answer for each id, ratified or not. When a ratified
+      Case changes and `case-guppi` builds it again, the new answer replaces the old one before the new
+      ratification. The copy holds what the person signed, already in the Spec form. `guppi ratified --edit`
+      on each Edit or Write of the plan file, `guppi prespec --check` and the function `differences` compare
+      the plan with it byte for byte. Without the copy, the store would need a mark of which version is
+      ratified, and that mark is the copy. So the copy stays, and the source of the write changes. The
+      stored answer writes the plan and the copy, and the showing is only compared with it. The comparison
+      is the same one as on `Stop`: it moves into one function in `guppi/casecheck.py`, and `guppi/ratified.py`
+      imports it inside a function. `casecheck` already imports `ratified`, as `prespec` does. A refused
+      Case is not written. The ledger hook still writes its decision lines at the same `Stop`. The main
+      agent shows the answer unchanged, and the person ratifies again. The ledger hook does not write
+      a line twice. Until then pre-spec names a line with no item in the plan.
+
+
+      What stays as it is. A deferred decision in the short form is the agent''s own text, with no `case-guppi`
+      and no store. The hook still writes it from the reply that carries it, and the copy does not get
+      it. When the last showing of a Case is a fence `DIFF` with a change of prose only, the hook writes
+      nothing, as before. The translation of prose at pre-spec goes into the plan, and prose is not compared.
+      Case 435 promises that a refused showing is followed by a reply of the agent that shows the Case
+      unchanged. This Case adds a refusal at the write: it catches a retyping the re-fire let pass. The
+      Criterion of 435 does not become false by this, and the strictness of the refusal belongs to the
+      Estimate of the write.
+
+
+      What `case-guppi` found in the frame. How it works in `rule-spec-write` says that the hook writes
+      the Case from the showing. The Render of `rule-case-protocol` (`vault/wiki/case-schema.md`) says:
+      "it copies the Case from the reply that showed it". Both sentences become false, and the Case changes
+      them. The Criterion of `estimate-spec-write-copies-the-ratified-case` speaks of the same source,
+      so the Case replaces it whole. Case 436.1 of this session already replaced this Criterion. `generate`
+      applies the items in the order of the Cases, and the Criterion of the last Case stays, so the new
+      Criterion carries the lines of 436.1: all of them word for word but two — "as they stand in the
+      chat" becomes "as the answer holds them", the point of this Case, and the line "`recommend` and
+      `ratification` are not written" is folded into the first line. Case 436.1 does not change. `estimate-spec-write-checks-the-written-case`
+      speaks only of a Case already written, and a refused Case is not written. `estimate-spec-write-writes-a-defer`,
+      `estimate-spec-reconcile-shows-a-changed-case` and `estimate-prespec-checks-the-ratified-copy` speak
+      of the deferred Case and of the copy, and those do not change. `estimate-case-check-shows-only-the-checked-case`
+      is not touched: the comparison on `Stop` moves into one function, and its behaviour stays. How it
+      works in `rule-case-check` does not say who reads the store and stays true. On `Stop` in `.claude/settings.json`,
+      `guppi ledger`, `guppi casecheck` and `guppi context` stand beside it. There are no new hooks. The
+      Case has no `create`, so no vault query is needed. The Criterion changes in this session, so its
+      reading waits for the next one.'
+    problem: The plan and the ratified copy take the text from the showing, not from the answer of `case-guppi`.
+      A second showing that differs is not refused, and nothing compares it. So a text nobody built or
+      checked can enter the Spec. The decision is where the write hook takes the Case from, and whether
+      the copy is needed when the store exists.
+    given: '`rule-spec-write` — the rule of the Spec hook; its How it works changes
+
+      **＋** `estimate-spec-write-copies-the-ratified-case` — the promise of the write
+
+      **＋** `guppi/ratified.py` and `tests/test_ratified.py` — the Spec hook and its tests
+
+      **＋** `guppi/casecheck.py` — the store `<plan>.checked.json` and the comparison of a showing with
+      it, one function for both hooks
+
+      **＋** `guppi/materialize.py` and `guppi/generate.py` — `item_keys`, the one judgment of the keys
+      of an item, and the script that applies by it (case 436.1)
+
+      **＋** `rule-case-check` — the check that fills the store and the comparison on `Stop`
+
+      **＋** `rule-case-protocol` and its Render `vault/wiki/case-schema.md` — the sentence on where the
+      Spec hook takes the Case
+
+      **＋** `rule-one-judgment-one-implementation` — one comparison, imported, never copied'
+    when: The `Stop` hook `uv run guppi ratified` runs after a reply whose `LEDGER` block holds `- decision[case
+      N]` lines of a kind other than `defer`; it reads the session's transcript for the last earlier reply
+      that shows `## Case N —` whole, and `<plan>.checked.json` beside the plan file for the answer of
+      `case-guppi` stored under Case N.
+    then: 'The hook writes the stored answer of Case N into the plan file `plan_path` finds, the section
+      of Case N replaced when it stands, appended otherwise: the heading, `context`, `problem`, `given`,
+      `when` and `then` as the answer holds them; a block tagged `then` built from the sub-points of `tasks`;
+      a block tagged `tasks` of the task lines without their sub-points; `recommend` and `ratification`
+      are not written.
+
+      **＋** It writes the same text the same way into the ratified copy `<plan>.ratified.md` beside the
+      plan file.
+
+      **＋** A last showing of Case N that differs from the stored answer — by the one comparison `uv run
+      guppi casecheck` makes on `Stop`, imported from `guppi/casecheck.py` — a store with no Case N, or
+      a Case N stored with findings: exit 2 with the reason on stderr, and nothing of Case N is written.
+
+      **＋** A task line opening with `create`, `update`, `delete` or `defer` and the slug in its first
+      code span is an item of the `then` block; its sub-points are its keys — `old` and `new` in pairs
+      under `replace`, `reword old` and `reword new` under `reword`, `set`, `change`, `rename`, `sections.<Name>`,
+      the fields of a `create` — each value one code span, padded by one space on each side when the value
+      holds a backtick, or a fenced block under the sub-point.
+
+      **＋** A sub-point that reads into no key `item_keys` of `guppi/materialize.py` gives the kind and
+      the category of its item — the one judgment `guppi/materialize.py` lifts by and `guppi/generate.py`
+      applies by — is refused: exit 2 with `` `<key>`: not a key of <kind> <slug> `` on stderr, and nothing
+      of the Case is written.
+
+      **＋** A value that holds a backtick in an outer span not padded on both sides is refused: exit 2
+      with `` `<key>`: a value holding a backtick takes its outer span padded by one space `` on stderr,
+      and nothing of the Case is written.
+
+      **＋** When the last showing of Case N is a `DIFF` block, not the Case whole, the hook writes nothing
+      for it.
+
+      **＋** No plan file in the event log, no showing of Case N, or a sub-point it cannot read: exit 2
+      with the reason on stderr; on the re-fire (`stop_hook_active`) exit 0.
+
+      **－** A `create` or a `defer` of a category with no schema file, or of one whose schema rule a decision
+      line of the session or of the reply creates or updates, is not judged by its keys (case 308.2).'
+  spec: vault/raw/2026-09-26/1337/spec.md
+  applied: '17:02:12'
+- case: '436.4'
+  decision: decision-case-436.4
+  origin: raw/2026-09-26/1337/ledger.md#case-436.4
+  targets:
+  - kind: update
+    category: rules
+    slug: rule-case-check
+    ref: rule-case-check
+  - kind: update
+    category: estimates
+    slug: estimate-case-check-sends-back-a-faulty-case
+    ref: estimate-case-check-sends-back-a-faulty-case
+  tags: []
+  case_text:
+    given: '`rule-case-check` — the rule of the check and the comparison; its How it works names what
+      stands for the ledger
+
+      **＋** `estimate-case-check-sends-back-a-faulty-case` — the promise of the check on `SubagentStop`
+
+      **＋** `guppi/casecheck.py` — the hook module; `subagent` runs `judge`
+
+      **＋** `guppi/materialize.py` — `schema_changed`, the categories whose schema rule the session changes
+
+      **＋** `guppi/ratified.py` — the reading of the chat form, used as it stands
+
+      **＋** `guppi/prespec.py` — `judge`, which takes the categories not judged by their keys
+
+      **＋** `tests/test_casecheck.py` — the tests of the hook
+
+      **＋** `rule-one-judgment-one-implementation` — one judgment of the categories not judged, imported'
+    when: '`SubagentStop` fires when `case-guppi` answers; its payload carries `last_assistant_message`,
+      `agent_transcript_path` and `stop_hook_active`, and it may fire twice after one message to the subagent,
+      the second time after a `SubagentHandback` call, with `stop_hook_active` true though no hook exited
+      2.'
+    then: '`uv run guppi casecheck --subagent` takes as the answer the newest output of the subagent in
+      `agent_transcript_path` that holds a Case heading: the `message` input of a `SubagentHandback` tool
+      call or the text of an assistant message, whichever stands later.
+
+      **＋** When `agent_transcript_path` is not readable or holds no such output, the answer is `last_assistant_message`.
+
+      **＋** It reads each Case of the answer in the chat form, by the functions of `guppi/ratified.py`,
+      builds each Case''s section of the Spec in memory, as the Spec hook writes it, and runs `judge`
+      of `guppi/prespec.py` over them, the decision lines of the `ratification` fence standing for the
+      ledger.
+
+      **＋** The categories whose schema rule the session changes, whose `create` and `defer` items `judge`
+      does not judge by their keys, it takes from the decision lines of the `ratification` fences and
+      of the session''s window.
+
+      **＋** It checks the chat form besides: the sections in the order of the schema, none missing that
+      the schema requires, and a `ratification` that holds one untagged fence of ledger lines and nothing
+      else.
+
+      **＋** Each Case of the answer is stored, its text as the answer holds it, with its findings in `<plan>.checked.json`
+      beside the plan file of the session.
+
+      **＋** A finding exits 2 with the findings on stderr, each naming its Case, and `case-guppi` answers
+      again, whatever `stop_hook_active` says.
+
+      **－** A finding for a Case whose text the store already holds with findings is stored again and
+      exits 0, so an unchanged answer is not sent back twice.
+
+      **－** An answer with no Case heading, an answer of another agent, or a session with no plan file
+      is not sent back and exits 0; the first two are not checked or stored.'
+    context: 'The Spec hook `rule-spec-write` reads the sub-points of a `tasks` line and puts them into
+      an item of the `then` block. The function `put` in `guppi/ratified.py` knows `old`, `new`, `reword
+      old`, `reword new`, `set` and `sections.<Name>`. It puts any other key into the item as it is, whatever
+      the kind of the item. In Case 434 the sub-points `replace old:` and `replace new:` stood under `update
+      rule-case-check`. The hook wrote into the plan an item with the keys `replace old` and `replace
+      new`, not a list of `replace` pairs. `generate` will not apply such an item. Nothing refused it.
+      `guppi casecheck --subagent` did not: it builds the Spec section with the same `ratified.case_section`.
+      The write of `guppi ratified` and the check after it did not: `judge` in `guppi/prespec.py` does
+      not compare the keys of an item for any kind. The hook writes a deferred Case in the short form
+      from its fence `then`. There it checks only that `slug`, `type` and `purpose` are present, and it
+      lets other keys pass.
+
+
+      The judgment exists, but only in `materialize`, and in parts. `_lift_item` in `guppi/materialize.py`
+      lifts the keys `set`, `sections`, `replace`, `change`, `rename` and, apart, `reword` of an `update`,
+      and `impact` and `change` of a `delete`. It drops the other keys of these kinds without a word.
+      For a `create` and a `defer` it reads the fields of the category from its `schema.yaml` with the
+      function `schema_fields`. It marks `unknown` what is neither a field of the schema nor an own key
+      of the item. The own keys are `slug`, `ref`, `sections`, `file`, `estimate`, `parent_create`, `parent_tags`,
+      and for a `defer` also `type` and `purpose`. The old keys of a `create` of a rule or an entity,
+      `method`, `contract`, `estimate_slug` and `estimate_kind`, it lets pass without a word. A category
+      whose schema a decision of the same unit changes is not judged at all (`schema_changed`, case 308.2).
+      The method `update` in `guppi/generate.py` holds its own copy of the keys of an `update`. One function
+      can answer whether an item of a kind has a key, for all four kinds. For an `update` and a `delete`
+      it takes a closed list. For a `create` and a `defer` it takes the fields of the category''s schema
+      and the own keys. Where there is no judgment, it answers "not judged": for a category with no schema
+      file and for a category whose schema a decision of the session changes. This answer is the same
+      as how `materialize` lifts the items today. So `estimate-materialize-lifts-a-create-by-the-schema`
+      stays true and is not touched. The Estimates of `generate` are not touched either.
+
+
+      Today `materialize` lifts the schema fields of a `defer` into the placeholder page, and `generate`
+      writes them. To narrow the keys of a `defer` to `slug`, `type` and `purpose` would change that behaviour,
+      so this Case does not narrow them.
+
+
+      The Case touches three promises, so it splits into sub-cases: the reading of the chat form by the
+      Spec hook (`estimate-spec-write-copies-the-ratified-case`), the finding of pre-spec (`estimate-prespec-checks-the-form-of-an-item`)
+      and the write of a deferred Case (`estimate-spec-write-writes-a-defer`). `casecheck --subagent`
+      gets the refusal through `case_section` and the finding through `judge`. It needs one change: it
+      gives `judge` the schemas the session changes, taken from the lines of the session''s window. The
+      lines of its fence `ratification` still stand for the ledger. The Criteria of `estimate-case-check-sends-back-a-faulty-case`
+      and `estimate-spec-write-checks-the-written-case` speak of running `judge`, not of the keys, and
+      do not change. The page `rule-case-protocol` (`case-schema.md`) already says that a Case off the
+      form is not written. The change makes that true, and the page does not change. An `update` item
+      with `file` gets two findings: the new one and the one of case 320.
+
+
+      On `Stop`, `guppi ledger`, `guppi casecheck` and `guppi context` run beside `guppi ratified`. The
+      ledger hook writes the decision lines also when `ratified` refuses (case 414.2). So the line stays
+      without an item, and pre-spec names it — the same as at any refusal of the reading today. No vault
+      query is needed: the Case creates nothing.
+
+
+      What followed: after this Case was ratified, the ratified Case 434 changed. Its sub-points became
+      `old:` and `new:` in place of `replace old:` and `replace new:`; its own case-guppi showed it again,
+      and it was ratified again. That change is not part of this Case.'
+    problem: Only `materialize` knows which keys an item of each kind accepts, and it knows them in parts.
+      `generate` holds its own copy. The Spec hook and the checks of pre-spec do not know these keys at
+      all. So an item with a foreign key of any kind passes all the checks, and later it is dropped or
+      not applied without a word. The decision is where the one judgment lives and who refuses by it.
+  spec: vault/raw/2026-09-26/1337/spec.md
+  applied: '17:02:12'
+- case: '438'
+  decision: decision-case-438
+  origin: raw/2026-09-26/1337/ledger.md#case-438
+  targets:
+  - kind: defer
+    category: rules
+    slug: rule-prespec
+    ref: rule-prespec
+  tags: []
+  case_text:
+    context: 'After Case 437 the write hook writes the plan and the ratified copy from the answer of `case-guppi`
+      stored in `.checked.json`, not from the showing of the agent. The skill `/pre-spec` (the Render
+      of `rule-prespec`) says: "Fix the plan, the frontier or the line for each finding". If the agent
+      corrects the body of a Case in the plan by hand, the next ratification overwrites the correction
+      from the store, and before that the comparison with the copy marks the Case as changed. Also, the
+      store holds the Case in Russian, as `case-guppi` wrote it. If a rebuilt Case is shown with its `context`
+      and `problem` (or with the Russian heading of a sub-case), the write hook puts the Russian text
+      back into the plan over the English translation, and the translation must be done again.'
+    problem: The Render of `rule-prespec` does not say that a finding in `given`, `when`, `then`, the
+      `then` block or `tasks` is fixed by the `case-guppi` of that Case with a new ratification, while
+      the agent fixes prose (the name, `context`, `problem`) in the plan and shows a `DIFF`. It also does
+      not say that the translation is the last step, after every ratification again.
+  spec: vault/raw/2026-09-26/1337/spec.md
+  applied: '17:02:12'
+unparsed: []
+session: '1337'

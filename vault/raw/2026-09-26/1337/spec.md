@@ -39,7 +39,7 @@ update:
 ```
 
 ```tasks
-- [ ] update `lesson-case-show-sub-case-ratification-retyped` — one `replace` pair in `## Trigger`
+- [x] update `lesson-case-show-sub-case-ratification-retyped` — one `replace` pair in `## Trigger`
 - [ ] by hand: after `generate`, the `## Trigger` of `lesson-case-show-sub-case-ratification-retyped` names the comparison on `Stop` and holds no `SubagentStop`
 ```
 
@@ -98,8 +98,8 @@ update:
 ```
 
 ```tasks
-- [ ] update `rule-case-check`
-- [ ] update `estimate-case-check-sends-back-a-faulty-case`
+- [x] update `rule-case-check`
+- [x] update `estimate-case-check-sends-back-a-faulty-case`
 - [x] `guppi/ledger.py`: split the reading of a JSONL file into records out of `transcript_records` into one function, which `transcript_records` and the check both call
 - [x] `guppi/casecheck.py`: a function that returns the answer of `case-guppi` from `agent_transcript_path` and `last_assistant_message`, the newest handback message or assistant text that holds a Case heading; `subagent` exits 2 on a finding unless the store holds the same text with findings, not on `stop_hook_active`; the module docstring says both
 - [x] `tests/test_casecheck.py`: a handback then a summary stores the handback's Case; a Case by handback, a newer Case as text, then a question by handback stores the text's Case; a Case as text then a handback with the same Case and a summary stores it once; no output with a Case stores nothing; no transcript falls back to `last_assistant_message`; a faulty Case with `stop_hook_active` true exits 2; the same faulty text a second time exits 0
@@ -157,9 +157,9 @@ update:
 ```
 
 ```tasks
-- [ ] update `rule-case-protocol` — one `replace` pair in `## Render`, section Who builds a Case
-- [ ] update `estimate-case-protocol-shows-the-built-case`
-- [ ] `uv run guppi render`: `vault/wiki/case-schema.md`
+- [x] update `rule-case-protocol` — one `replace` pair in `## Render`, section Who builds a Case
+- [x] update `estimate-case-protocol-shows-the-built-case`
+- [x] `uv run guppi render`: `vault/wiki/case-schema.md`
 - [ ] read `estimate-case-protocol-shows-the-built-case`
 ```
 
@@ -227,8 +227,8 @@ update:
 - [x] `tests/test_ratified.py`: `replace old` and `replace new` under an `update` refused, nothing written; `old` under a `delete` refused; a key no field of the schema under a `create` refused; a field of the schema passes; a `create` of a category whose schema rule the reply updates passes
 - [x] `tests/test_casecheck.py`: an answer of `case-guppi` with `replace old` under an `update` is sent back
 - [x] `uv run pytest`
-- [ ] update `rule-spec-write`
-- [ ] update `estimate-spec-write-copies-the-ratified-case`
+- [x] update `rule-spec-write`
+- [x] update `estimate-spec-write-copies-the-ratified-case`
 - [ ] read `estimate-spec-write-copies-the-ratified-case`
 ```
 
@@ -271,9 +271,9 @@ update:
 - [x] `guppi/prespec.py`: a check in `judge` — a key of an item outside `item_keys`, imported from `guppi/materialize.py`; `judge` takes the categories not judged, by default by `schema_changed` over its records; the docstring
 - [x] `tests/test_prespec.py`: an `update` with `replace old` is a finding, one with `slug`, `replace` and `change` none; a `delete` with `old` is a finding; a `create` with a key no field of its schema is a finding, one with the fields of its schema none; a `defer` with `type`, `purpose` and a field of its schema is none; a `create` of a category whose schema rule a line of the window updates is none
 - [x] `uv run pytest`
-- [ ] update `rule-prespec`
-- [ ] update `estimate-prespec-checks-the-form-of-an-item`
-- [ ] `uv run guppi render`: `.claude/skills/pre-spec/SKILL.md`
+- [x] update `rule-prespec`
+- [x] update `estimate-prespec-checks-the-form-of-an-item`
+- [x] `uv run guppi render`: `.claude/skills/pre-spec/SKILL.md`
 - [ ] read `estimate-prespec-checks-the-form-of-an-item`
 ```
 
@@ -315,8 +315,8 @@ update:
 - [x] `guppi/ratified.py`: `deferred_section` refuses a key of a `defer` item outside `item_keys`, the categories not judged taken as in `put`; the docstring
 - [x] `tests/test_ratified.py`: a `defer` item with `old` refused, nothing written; one with `slug`, `type`, `purpose` and a field of its schema written
 - [x] `uv run pytest`
-- [ ] update `rule-spec-write`
-- [ ] update `estimate-spec-write-writes-a-defer`
+- [x] update `rule-spec-write`
+- [x] update `estimate-spec-write-writes-a-defer`
 - [ ] read `estimate-spec-write-writes-a-defer`
 ```
 
@@ -363,8 +363,8 @@ update:
 - [x] `guppi/casecheck.py`: passes `judge` the categories not judged, by `schema_changed` over the lines of the `ratification` fences and of the session's window; the records of `judge` stay the lines of the fences; the docstring
 - [x] `tests/test_casecheck.py`: a `create` of a category whose schema rule an earlier line of the session updates is not sent back; a line of the window with no item in the answer is no finding
 - [x] `uv run pytest`
-- [ ] update `rule-case-check`
-- [ ] update `estimate-case-check-sends-back-a-faulty-case`
+- [x] update `rule-case-check`
+- [x] update `estimate-case-check-sends-back-a-faulty-case`
 - [ ] read `estimate-case-check-sends-back-a-faulty-case`
 ```
 
@@ -425,14 +425,14 @@ update:
 ```
 
 ```tasks
-- [ ] update `rule-spec-write` — one `replace` pair in How it works
-- [ ] update `estimate-spec-write-copies-the-ratified-case`
-- [ ] update `rule-case-protocol` — one `replace` pair in `## Render`, section The `then` block lives in the Spec
+- [x] update `rule-spec-write` — one `replace` pair in How it works
+- [x] update `estimate-spec-write-copies-the-ratified-case`
+- [x] update `rule-case-protocol` — one `replace` pair in `## Render`, section The `then` block lives in the Spec
 - [x] `guppi/casecheck.py`: the comparison of a shown Case with its stored answer in one function, beside `store_of`, `read_store` and `shown_text`; `stop` calls it; the docstring says the Spec hook reads the store too
 - [x] `guppi/ratified.py`: `stop` compares the last showing of each ratified Case with its stored answer by that function, imported inside the function, refuses on a difference, a missing entry or stored findings, and writes the Case — and a sub-case's parent `context` and `problem` — from the stored answer; the docstring
 - [x] `tests/test_ratified.py`: the Case written is the stored answer; a last showing that differs from it is refused and nothing is written; no stored entry is refused; an entry with findings is refused; a `DIFF` last showing writes nothing; a defer in the short form is written from the reply with no store; a sub-case's parent is written from its stored answer
 - [x] `uv run pytest`
-- [ ] `uv run guppi render`: `vault/wiki/case-schema.md`
+- [x] `uv run guppi render`: `vault/wiki/case-schema.md`
 - [ ] read `estimate-spec-write-copies-the-ratified-case`
 ```
 

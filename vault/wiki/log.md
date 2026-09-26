@@ -3697,3 +3697,35 @@ instruction. The global feed; a page's own `## History` is the per-page view.
 - 2026-09-25 decisions/decision-case-409 archived · cleanup
 - 2026-09-25 decisions/decision-case-418 archived · cleanup
 - 2026-09-25 decisions/decision-case-422 archived · cleanup
+- 2026-09-26 decisions/decision-case-433 created · raw/2026-09-26/1337/ledger.md#case-433 · generate
+- 2026-09-26 lessons/lesson-case-show-sub-case-ratification-retyped updated: the Trigger names the comparison on Stop, the one that refused the showing of 428.3 (case 433) · [[decision-case-433]] · generate
+- 2026-09-26 lessons/lesson-hooks-subagentstop-reads-the-last-text-not-the-handback created · raw/2026-09-26/1337/ledger.md#L2 · generate
+- 2026-09-26 decisions/decision-case-434 created · raw/2026-09-26/1337/ledger.md#case-434 · generate
+- 2026-09-26 rules/rule-case-check updated: the check reads the newest output of the subagent that holds a Case, a handback or a text, else last_assistant_message; the loop guard is the store, not stop_hook_active · [[decision-case-434]] · generate
+- 2026-09-26 estimates/estimate-case-check-sends-back-a-faulty-case updated: the Criterion replaced whole — the answer is the newest output of the subagent that holds a Case, else last_assistant_message; an unchanged answer is not sent back twice · [[decision-case-434]] · generate
+- 2026-09-26 decisions/decision-case-435 created · raw/2026-09-26/1337/ledger.md#case-435 · generate
+- 2026-09-26 rules/rule-case-protocol updated: Who builds a Case says that a showing the Stop comparison refuses is followed by the answer shown unchanged (case 435) · [[decision-case-435]] · generate
+- 2026-09-26 estimates/estimate-case-protocol-shows-the-built-case updated: the Criterion replaced whole — the Case the person answers is the answer unchanged; a showing the Stop comparison refuses is followed by the answer shown unchanged (case 435) · [[decision-case-435]] · generate
+- 2026-09-26 decisions/decision-case-436.1 created · raw/2026-09-26/1337/ledger.md#case-436.1 · generate
+- 2026-09-26 rules/rule-spec-write updated: a sub-point outside the keys item_keys gives its item is refused (case 436.1) · [[decision-case-436.1]] · generate
+- 2026-09-26 estimates/estimate-spec-write-copies-the-ratified-case updated: the Criterion replaced whole — a sub-point outside the keys item_keys gives its item is refused (case 436.1) · [[decision-case-436.1]] · generate
+- 2026-09-26 decisions/decision-case-436.2 created · raw/2026-09-26/1337/ledger.md#case-436.2 · generate
+- 2026-09-26 rules/rule-prespec updated: a key of an item outside the keys item_keys gives it is a finding (case 436.2) · [[decision-case-436.2]] · generate
+- 2026-09-26 estimates/estimate-prespec-checks-the-form-of-an-item updated: the Criterion replaced whole — a key of an item outside the keys item_keys gives it is a finding (case 436.2) · [[decision-case-436.2]] · generate
+- 2026-09-26 decisions/decision-case-436.3 created · raw/2026-09-26/1337/ledger.md#case-436.3 · generate
+- 2026-09-26 rules/rule-spec-write updated: a key of a defer item outside the keys item_keys gives it is refused (case 436.3) · [[decision-case-436.3]] · generate
+- 2026-09-26 estimates/estimate-spec-write-writes-a-defer updated: the Criterion replaced whole — a key of a defer item outside the keys item_keys gives it is refused (case 436.3) · [[decision-case-436.3]] · generate
+- 2026-09-26 decisions/decision-case-437 created · raw/2026-09-26/1337/ledger.md#case-437 · generate
+- 2026-09-26 rules/rule-spec-write updated: the Spec hook writes the stored answer of case-guppi and refuses a showing that differs from it (case 437) · [[decision-case-437]] · generate
+- 2026-09-26 estimates/estimate-spec-write-copies-the-ratified-case updated: the Criterion replaced whole — the Case is written from the stored answer of case-guppi, a differing showing refused; the lines of case 436.1 carried (case 437) · [[decision-case-437]] · generate
+- 2026-09-26 rules/rule-case-protocol updated: the Spec hook copies the stored answer of case-guppi, not the showing (case 437) · [[decision-case-437]] · generate
+- 2026-09-26 decisions/decision-case-436.4 created · raw/2026-09-26/1337/ledger.md#case-436.4 · generate
+- 2026-09-26 rules/rule-case-check updated: the categories whose schema rule the session changes come from the ratification fences and the session's window (case 436.4) · [[decision-case-436.4]] · generate
+- 2026-09-26 estimates/estimate-case-check-sends-back-a-faulty-case updated: the Criterion replaced whole — the categories whose schema rule the session changes come from the ratification fences and the session's window (case 436.4) · [[decision-case-436.4]] · generate
+- 2026-09-26 decisions/decision-case-438 created · raw/2026-09-26/1337/ledger.md#case-438 · generate
+- 2026-09-26 rules/rule-prespec deferred · [[decision-case-438]] · generate
+- 2026-09-26 lessons/lesson-hooks-subagentstop-fires-before-and-after-the-handback created · raw/2026-09-26/1337/ledger.md#L19 · generate
+- 2026-09-26 lessons/lesson-case-show-ref-of-a-ratification-line-retyped created · raw/2026-09-26/1337/ledger.md#L20 · generate
+- 2026-09-26 insights/insight-case-show-built-case-retyped-by-hand created · raw/2026-09-26/1337/ledger.md#L20 · generate
+- 2026-09-26 lessons/lesson-case-show-sub-case-ratification-retyped updated: clustered into insight-case-show-built-case-retyped-by-hand · raw/2026-09-26/1337/ledger.md#L20 · generate
+- 2026-09-26 lessons/lesson-case-show-ref-of-a-ratification-line-retyped updated: clustered into insight-case-show-built-case-retyped-by-hand · raw/2026-09-26/1337/ledger.md#L20 · generate

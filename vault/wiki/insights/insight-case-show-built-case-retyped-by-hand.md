@@ -1,0 +1,23 @@
+---
+type: insight
+pattern: The main agent writes the Case that case-guppi built out again by hand instead of copying the answer, so a showing can differ from the answer in any line — a ratification block, a ref — and only the comparison on Stop, which refuses a reply the person already sees and lets the re-fire through, stands between the retyped Case and the person.
+status: open
+children: ["[[lesson-case-show-sub-case-ratification-retyped]]", "[[lesson-case-show-ref-of-a-ratification-line-retyped]]"]
+severity: 2
+origin: raw/2026-09-26/1337/ledger.md#L20
+sprint: migration
+created: 2026-09-26
+tags: [session, workflow, harness]
+---
+
+## Pattern
+
+The main agent writes the Case that case-guppi built out again by hand instead of copying the answer. In session 1654 the last ratification block of a sub-case repeated the one before; in session 1337 a ref of a ratification line was changed because the agent took it for a slip. A showing retyped by hand can differ from the answer in any line, and only the comparison on Stop, which refuses a reply the person already sees and lets the re-fire through, stands between the retyped Case and the person.
+
+## Proposal
+
+Let the showing of a built Case not pass through the agent's retyping — for example a step that puts the stored answer of case-guppi into the reply as it stands — or let the comparison on Stop also refuse a second showing that differs.
+
+## History
+
+- 2026-09-26 created · raw/2026-09-26/1337/ledger.md#L20

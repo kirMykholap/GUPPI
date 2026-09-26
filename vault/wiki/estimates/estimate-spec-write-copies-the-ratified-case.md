@@ -1,7 +1,7 @@
 ---
 type: estimate
 kind: QA
-status: passed
+status: pending
 target: "[[rule-spec-write]]"
 purpose: The ratified Case enters the plan file and its ratified copy in the words of the chat, the then block built from the sub-points
 method: uv run pytest tests/test_ratified.py -k write; the live reading by hand, the plan file and its ratified copy after the first ratification of a session
@@ -15,16 +15,18 @@ tags: [hooks, harness, workflow]
 ## Criterion
 
 When:
-The `Stop` hook `uv run guppi ratified` runs after a reply whose `LEDGER` block holds `- decision[case N]` lines of a kind other than `defer`; it reads the session's transcript and finds the last earlier reply that shows `## Case N —` whole.
+The `Stop` hook `uv run guppi ratified` runs after a reply whose `LEDGER` block holds `- decision[case N]` lines of a kind other than `defer`; it reads the session's transcript for the last earlier reply that shows `## Case N —` whole, and `<plan>.checked.json` beside the plan file for the answer of `case-guppi` stored under Case N.
 
 Then:
-The hook writes that Case into the plan file `plan_path` finds, the section of Case N replaced when it stands, appended otherwise: the heading, `context`, `problem`, `given`, `when` and `then` as they stand in the chat; a block tagged `then` built from the sub-points of `tasks`; a block tagged `tasks` of the task lines without their sub-points.
+The hook writes the stored answer of Case N into the plan file `plan_path` finds, the section of Case N replaced when it stands, appended otherwise: the heading, `context`, `problem`, `given`, `when` and `then` as the answer holds them; a block tagged `then` built from the sub-points of `tasks`; a block tagged `tasks` of the task lines without their sub-points; `recommend` and `ratification` are not written.
 **＋** It writes the same text the same way into the ratified copy `<plan>.ratified.md` beside the plan file.
+**＋** A last showing of Case N that differs from the stored answer — by the one comparison `uv run guppi casecheck` makes on `Stop`, imported from `guppi/casecheck.py` — a store with no Case N, or a Case N stored with findings: exit 2 with the reason on stderr, and nothing of Case N is written.
 **＋** A task line opening with `create`, `update`, `delete` or `defer` and the slug in its first code span is an item of the `then` block; its sub-points are its keys — `old` and `new` in pairs under `replace`, `reword old` and `reword new` under `reword`, `set`, `change`, `rename`, `sections.<Name>`, the fields of a `create` — each value one code span, padded by one space on each side when the value holds a backtick, or a fenced block under the sub-point.
+**＋** A sub-point that reads into no key `item_keys` of `guppi/materialize.py` gives the kind and the category of its item — the one judgment `guppi/materialize.py` lifts by and `guppi/generate.py` applies by — is refused: exit 2 with `` `<key>`: not a key of <kind> <slug> `` on stderr, and nothing of the Case is written.
 **＋** A value that holds a backtick in an outer span not padded on both sides is refused: exit 2 with `` `<key>`: a value holding a backtick takes its outer span padded by one space `` on stderr, and nothing of the Case is written.
-**＋** `recommend` and `ratification` are not written.
 **＋** When the last showing of Case N is a `DIFF` block, not the Case whole, the hook writes nothing for it.
 **＋** No plan file in the event log, no showing of Case N, or a sub-point it cannot read: exit 2 with the reason on stderr; on the re-fire (`stop_hook_active`) exit 0.
+**－** A `create` or a `defer` of a category with no schema file, or of one whose schema rule a decision line of the session or of the reply creates or updates, is not judged by its keys (case 308.2).
 
 ## Result
 
@@ -38,3 +40,5 @@ The hook writes that Case into the plan file `plan_path` finds, the section of C
 - 2026-09-25 status: pending → passed · raw/2026-09-24/2214/ledger.md#L47
 - 2026-09-25 updated: the Criterion replaced whole — the exception for a defer-only Case dropped, the hook writes it (case 421.1) · [[decision-case-421.1]]
 - 2026-09-25 status: pending → passed · raw/2026-09-25/1654/ledger.md#L29
+- 2026-09-26 updated: the Criterion replaced whole — a sub-point outside the keys item_keys gives its item is refused (case 436.1) · [[decision-case-436.1]]
+- 2026-09-26 updated: the Criterion replaced whole — the Case is written from the stored answer of case-guppi, a differing showing refused; the lines of case 436.1 carried (case 437) · [[decision-case-437]]

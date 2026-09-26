@@ -291,7 +291,35 @@ def test_stop_a_case_not_in_the_store_is_refused(working):
 def test_stop_a_changed_case_is_refused(working):
     answer(working, ANSWER)
     code, err = show(working, ANSWER.replace("The file is written.", "The file is written twice."))
-    assert code == 2 and "case 7: differs from the answer of case-guppi" in err
+    assert code == 2 and "case 7: its then differ from the answer of case-guppi" in err
+
+
+def test_stop_the_translated_prose_and_heading_pass(working):
+    # 441.3: the name of the heading, `context`, `problem` and `recommend` are not compared
+    answer(working, ANSWER)
+    translated = (
+        ANSWER.replace("## Case 7 — пример", "## Case 7 — an example")
+        .replace("> Контекст.", "> The context.\n> Two lines of it.")
+        .replace("> Проблема.", "> The problem.")
+        .replace("> Совет.", "> The advice.")
+    )
+    assert show(working, translated) == (0, "")
+
+
+def test_stop_a_changed_mechanical_part_is_refused(working):
+    # 441.3: `given`, `then`, a task sub-point, a `ratification` line, and a section present
+    # in one and missing in the other
+    answer(working, ANSWER)
+    changes = {
+        "given": ANSWER.replace("— its Estimate.", "— its promise."),
+        "tasks": ANSWER.replace("`the new text`", "`the newer text`"),
+        "ratification": ANSWER.replace("{ref:rule-x}", "{ref:rule-y}", 1),
+        "when": ANSWER.replace("> **when:**\n> The agent runs `guppi x`.\n\n", ""),
+    }
+    for part, shown in changes.items():
+        assert shown != ANSWER, part
+        code, err = show(working, shown)
+        assert code == 2 and f"its {part} differ" in err, (part, err)
 
 
 def test_stop_a_case_stored_with_findings_is_refused(working):
@@ -327,8 +355,9 @@ def test_stop_a_parent_is_compared_part_by_part(working):
     assert answer(working, parent + sub) == (0, "")
     assert set(store(working)) == {"9", "9.1"}
     assert show(working, parent + sub) == (0, "")
-    code, err = show(working, parent.replace("К.", "К!") + sub)
-    assert code == 2 and "case 9: differs" in err
+    assert show(working, parent.replace("К.", "К!") + sub) == (0, "")  # prose, not compared
+    code, err = show(working, parent + sub.replace("The file is written.", "Written twice."))
+    assert code == 2 and "case 9.1: its then differ" in err
 
 
 def test_stop_the_re_fire_passes(working):

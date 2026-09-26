@@ -739,20 +739,24 @@ def test_an_estimate_update_setting_a_method_without_a_form_is_a_finding(tmp_pat
     assert out.splitlines() == [NO_FORM.replace("create estimate-x-again", "update estimate-x")]
 
 
-def test_the_keys_of_the_old_shape_are_not_read(tmp_path):
-    # `method`, `contract`, `estimate_slug` on a rule's `create` raise no finding (cases 194.1,
-    # 203.1); on an `update`, whose keys are closed, `contract` is a finding (case 436.2)
+def test_the_keys_of_the_old_shape_are_a_finding_on_every_kind(tmp_path):
+    # case 440: `contract` on an `update` and `estimate_slug` on a rule's `create` are keys of
+    # no item, judged by `item_keys` like any other
     with_page(tmp_path, "rules", "rule-x", kind="Leaf")
     plan = PLAN.replace("    change: one line\n", "    change: one line\n    contract: changed\n")
     code, out, _ = check(tmp_path, plan=plan)
     assert code == 1
     assert out == "case 1: update rule-x: key contract is not a key of this item\n"
+    schema = tmp_path / "vault" / "wiki" / "rules" / "schema.yaml"
+    schema.write_text("properties:\n  required: [type, kind, purpose]\n", encoding="utf-8")
     leaf = PLAN.replace(
         "update:\n  - slug: rule-x\n    change: one line\n",
         "create:\n  - slug: rule-z\n    type: rule\n    kind: Leaf\n    estimate_slug: e\n",
     )
     line = "- 16:00:00 decision[case 1][create][rule-z]{ref:rule-root}{tags:a}\n"
-    assert check(tmp_path, plan=leaf, ledger=line) == (0, "", "")
+    code, out, _ = check(tmp_path, plan=leaf, ledger=line)
+    assert code == 1
+    assert out == "case 1: create rule-z: key estimate_slug is not a key of this item\n"
 
 
 def test_a_key_the_item_does_not_have_is_a_finding(tmp_path):

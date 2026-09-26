@@ -10,12 +10,16 @@ comparison of `casecheck.against_store`, refuses a showing that differs, a store
 N or one stored with findings, and writes the stored answer (case 437) into the plan file
 `ledger.plan_path` names and into the ratified copy
 `<plan>.ratified.md` beside it, outside the repository: the heading, `context`, `problem`,
-`given`, `when` and `then` as they stand in the chat — a `context` or `problem` the showing
-leaves out keeps the text the plan held — a block tagged `then` built from the sub-points of
-`tasks`, and a block tagged `tasks` of the task lines without their sub-points; the section of
-the Case is replaced when it stands, inserted after its family or before `## Deferred`
-otherwise. A sub-case's showing also writes its parent's `context` and `problem` when the same
-reply shows them. The chat form the hook reads: a task line opening with `create`, `update`,
+`given`, `when` and `then` as the stored answer holds them — a `context` or `problem` it
+leaves out keeps the text the file held — a block tagged `then` built from the sub-points of
+`tasks`, and a block tagged `tasks` of the task lines without their sub-points; every section
+of the Case is replaced when one stands, the section inserted after its family or before
+`## Deferred` otherwise. Once `spec.md` in the session's folder stands, the same answer goes
+into it too (case 441.6): every section of the Case there replaced — an approval repeated in
+one session leaves it twice — or the section placed in the last approved document; a task
+line whose text stood in a replaced section keeps its box. A sub-case also writes its
+parent's heading, `context` and `problem` from the parent's stored answer, never from the
+reply. The chat form the hook reads: a task line opening with `create`, `update`,
 `delete` or `defer` and the slug in its first code span is an item; its sub-points are its
 keys — `old` and `new` in pairs under `replace`, `reword old` and `reword new` under
 `reword`, `set` (a YAML flow mapping), `change`, `rename`, `sections.<Name>`, the fields of a
@@ -25,8 +29,12 @@ block under the sub-point; a sub-point that reads into no key `materialize.item_
 item is refused, and nothing of the Case is written — a `create` or a `defer` of a category with
 no schema file, or of one whose schema rule the session's ledger or the reply changes, not
 judged (cases 308.2, 436.1); a `create` of an Estimate takes its `ref` from its ledger line when
-no sub-point gives one. A last mention that is a fence tagged `DIFF` naming the Case writes
-nothing for it.
+no sub-point gives one. A fence tagged `DIFF` is not read (case 441.8).
+
+The removal (case 441.7). After the writes, a decision line of the reply that carries
+`{supersedes:case N}`, its own Case written in this run, removes the sections of Case N and of
+its sub-cases — or of `N.M` alone — from the plan, the ratified copy and `spec.md` when it
+stands, under `## Deferred` too; a Case N none of them holds is no refusal.
 
 The defer (case 421.1). A Case whose lines in the reply are all `defer` — beside the lines of
 other Cases or alone — is written from the same reply, which shows it in the short form: the
@@ -111,7 +119,8 @@ EDIT_TOOLS = ("Edit", "Write", "MultiEdit")
 COPY_SUFFIX = ".ratified.md"
 MARKS_SUFFIX = ".waiting.json"
 DEFERRED = "## Deferred"
-DIFF_TAG = "diff"
+APPROVED = "<!-- approved"  # the stamp `guppi spec` opens each approved document of spec.md with
+SPEC_FILE = "spec.md"
 TASK_LINE = re.compile(r"^- \[[ xX-]\] (.*)$")
 SUB_POINT = re.compile(r"^(\s+)- ([A-Za-z_][\w .]*?):(?:\s+(.*))?$")
 ITEM_LINE = re.compile(r"^(create|update|delete|defer) `([^`]+)`")
@@ -169,12 +178,6 @@ def shown_whole(lines: list[str]) -> bool:
     """A Case shown whole in the chat: its `when`, `then` and `tasks` stand."""
     sections = quoted_sections(lines, CHAT_SECTIONS)
     return all(name in sections for name in WHOLE)
-
-
-def names_in_diff(text: str, case: str) -> bool:
-    """True when a fence tagged `DIFF` of the reply names `Case <case>`."""
-    pattern = re.compile(rf"\bCase {re.escape(case)}(?![\d.])")
-    return any(pattern.search(block) for block in tagged_blocks(text.splitlines(), DIFF_TAG))
 
 
 def outside_deferred(text: str) -> dict[str, list[str]]:
@@ -377,32 +380,79 @@ def family(case: str, other: str) -> bool:
     return other == root or other.startswith(root + ".")
 
 
-def place(document: str, case: str, section: list[str]) -> str:
-    """The document with the section of `case` replaced, or inserted after the last section
-    of its family, or before `## Deferred`, or at the end."""
-    lines = document.splitlines()
-    starts = [
+def case_starts(lines: list[str]) -> list[tuple[int, str]]:
+    """`(index, case id)` of every Case heading among `lines`."""
+    return [
         (i, match.group(1).rstrip(":"))
         for i, match in ((i, CASE_HEADING.match(line)) for i, line in enumerate(lines))
         if match
     ]
-    for i, found in starts:
-        if found == case:
-            end = next((j for j in range(i + 1, len(lines)) if HEADING.match(lines[j])), len(lines))
-            return "\n".join(lines[:i] + section + lines[end:]).rstrip("\n") + "\n"
+
+
+def section_end(lines: list[str], start: int) -> int:
+    """The index of the next heading after `start`, or the end."""
+    return next((j for j in range(start + 1, len(lines)) if HEADING.match(lines[j])), len(lines))
+
+
+def place(document: str, case: str, section: list[str]) -> str:
+    """The document with every section of `case` replaced (case 441.6: an approval repeated
+    in one session leaves a Case twice in `spec.md`); with none, the section inserted in the
+    last approved document — the whole document when it holds no stamp — after the last
+    section of its family, or before its `## Deferred`, or at the end."""
+    lines = document.splitlines()
+    own = [i for i, found in case_starts(lines) if found == case]
+    if own:
+        for i in reversed(own):
+            lines[i : section_end(lines, i)] = section
+        return "\n".join(lines).rstrip("\n") + "\n"
+    base = max((i for i, line in enumerate(lines) if line.startswith(APPROVED)), default=0)
+    starts = [(i, found) for i, found in case_starts(lines) if i >= base]
     kin = [i for i, found in starts if family(case, found)]
     if kin and "." not in case:  # a parent stands before its sub-cases
         at = kin[0]
     elif kin:
-        at = next(
-            (j for j in range(kin[-1] + 1, len(lines)) if HEADING.match(lines[j])), len(lines)
-        )
+        at = section_end(lines, kin[-1])
     else:
-        at = next((j for j, line in enumerate(lines) if line.strip() == DEFERRED), len(lines))
+        at = next((j for j in range(base, len(lines)) if lines[j].strip() == DEFERRED), len(lines))
     before = lines[:at]
     if before and before[-1].strip():
         before.append("")
     return "\n".join(before + section + lines[at:]).rstrip("\n") + "\n"
+
+
+def keep_boxes(document: str, case: str, section: list[str]) -> list[str]:
+    """`section` with each task line whose text stood in a section of `case` in `document`
+    given the box it had there (case 441.6)."""
+    lines = document.splitlines()
+    boxes: dict[str, str] = {}
+    for i, found in case_starts(lines):
+        if found != case:
+            continue
+        for line in lines[i : section_end(lines, i)]:
+            match = TASK_LINE.match(line)
+            if match:
+                boxes[match.group(1)] = line[: line.index("]") + 1]
+    kept: list[str] = []
+    for line in section:
+        match = TASK_LINE.match(line)
+        if match and match.group(1) in boxes:
+            line = boxes[match.group(1)] + line[line.index("]") + 1 :]
+        kept.append(line)
+    return kept
+
+
+def remove_case(document: str, case: str) -> str:
+    """The document without the sections of `case` and of its sub-cases, under `## Deferred`
+    too (case 441.7)."""
+    lines = document.splitlines()
+    doomed = [i for i, found in case_starts(lines) if found == case or found.startswith(case + ".")]
+    if not doomed:
+        return document
+    for i in reversed(doomed):
+        del lines[i : section_end(lines, i)]
+        while 0 < i < len(lines) and not lines[i - 1].strip() and not lines[i].strip():
+            del lines[i]  # one blank line where the section stood
+    return "\n".join(lines).rstrip("\n") + "\n"
 
 
 def copy_of(plan: Path) -> Path:
@@ -446,14 +496,12 @@ def ratified_cases(records: list[dict]) -> tuple[list[str], dict]:
 
 
 def find_showing(messages: list[str], case: str):
-    """`(heading, lines, text)` of the last message that shows the Case whole; "diff" when
-    a later message names it in a `DIFF` fence; None when none shows it."""
+    """`(heading, lines, text)` of the last message that shows the Case whole; None when none
+    shows it. A fence tagged `DIFF` is not read (case 441.8)."""
     for text in reversed(messages):
         cases = split_cases(text)
         if case in cases and shown_whole(cases[case]):
             return headings(text)[case], cases[case], text
-        if names_in_diff(text, case):
-            return "diff"
     return None
 
 
@@ -506,17 +554,29 @@ def case_section(
 
 
 def write_case(
-    plan: Path, case: str, heading: str, lines: list[str], refs: dict, keys_for=None
+    plan: Path,
+    case: str,
+    heading: str,
+    lines: list[str],
+    refs: dict,
+    keys_for=None,
+    approved: Path | None = None,
 ) -> list[str]:
-    """The Case into the plan and into its copy; the errors, empty when it was written —
-    nothing is written when either section has an error."""
+    """The Case into the plan, into its copy and, when `approved` — the session's `spec.md` —
+    stands, into it too, the boxes of its unchanged task lines kept (case 441.6); the errors,
+    empty when it was written — nothing is written when any section has an error."""
+    targets = [plan, copy_of(plan)]
+    if approved is not None and approved.is_file():
+        targets.append(approved)
     sections: list[tuple[Path, str, list[str]]] = []
-    for path in (plan, copy_of(plan)):
+    for path in targets:
         text = document(path, plan)
         held = quoted_sections(split_cases(text).get(case, []), SPEC_SECTIONS)
         section, errors = case_section(case, heading, lines, refs, held, keys_for)
         if errors:
             return errors
+        if path == approved:
+            section = keep_boxes(text, case, section)
         sections.append((path, text, section))
     for path, text, section in sections:
         write_text(path, place(text, case, section))
@@ -590,8 +650,11 @@ def place_deferred(document: str, case: str, section: list[str]) -> str:
     return "\n".join(lines + [""] + section).rstrip("\n") + "\n"
 
 
-def write_defers(reply: str, records: list[dict], target: Path, keys_for=None) -> list[str]:
-    """Each defer-only Case of the reply under `## Deferred` of `target`; the errors."""
+def write_defers(
+    reply: str, records: list[dict], target: Path, keys_for=None, written: set | None = None
+) -> list[str]:
+    """Each defer-only Case of the reply under `## Deferred` of `target`; the errors. Each
+    Case written is added to `written`."""
     problems: list[str] = []
     for case in defer_only(records):
         section, errors = deferred_section(reply, case, records, keys_for)
@@ -600,12 +663,36 @@ def write_defers(reply: str, records: list[dict], target: Path, keys_for=None) -
             continue
         text = target.read_text(encoding="utf-8") if target.is_file() else ""
         write_text(target, place_deferred(text, case, section))
+        if written is not None:
+            written.add(case)
     return problems
 
 
-def write_parent(plan: Path, case: str, text: str) -> None:
-    """A sub-case's parent: its heading, `context` and `problem` as the same reply shows
-    them; its own `given`, `when`, `then` and blocks, if any, kept as they stand."""
+def remove_superseded(records: list[dict], written: set[str], targets: list[Path]) -> None:
+    """Each Case a `{supersedes:case N}` of a decision line names, the line's own Case
+    written in this run, out of every target that stands (case 441.7); a Case no target
+    holds is no refusal."""
+    doomed = [
+        earlier
+        for record in records
+        if record["case"] in written
+        for earlier in record.get("supersedes") or []
+    ]
+    for path in targets:
+        if not doomed or not path.is_file():
+            continue
+        text = path.read_text(encoding="utf-8")
+        new = text
+        for case in doomed:
+            new = remove_case(new, case)
+        if new != text:
+            write_text(path, new)
+
+
+def write_parent(plan: Path, case: str, text: str, approved: Path | None = None) -> None:
+    """A sub-case's parent: its heading, `context` and `problem` as `text` — its stored
+    answer (case 441.6) — holds them; its own `given`, `when`, `then` and blocks, if any,
+    kept as they stand; in the plan, its copy and `approved` when that stands."""
     parent = case.rsplit(".", 1)[0]
     lines = split_cases(text).get(parent)
     if lines is None:
@@ -614,7 +701,10 @@ def write_parent(plan: Path, case: str, text: str) -> None:
     if not shown:
         return
     heading = headings(text)[parent]
-    for path in (plan, copy_of(plan)):
+    targets = [plan, copy_of(plan)]
+    if approved is not None and approved.is_file():
+        targets.append(approved)
+    for path in targets:
         current = document(path, plan)
         held_lines = split_cases(current).get(parent, [])
         held = quoted_sections(held_lines, SPEC_SECTIONS)
@@ -759,6 +849,7 @@ def stop(payload: dict, project_dir: Path, now, stderr) -> int:
     cases, refs = ratified_cases(records)
     plan = plan_path(session_event_logs(project_dir, now, stamp), stamp)
     keys_for = key_judge(project_dir, window_schema_free(folder, reply))
+    approved = folder / SPEC_FILE  # the approved Spec, once `guppi spec` wrote it (441.6)
     problems: list[str] = []
     written: set[str] = set()
     if cases:
@@ -776,48 +867,48 @@ def stop(payload: dict, project_dir: Path, now, stderr) -> int:
                 messages = messages[:-1]
             for case in cases:
                 found = find_showing(messages, case)
-                if found == "diff":
-                    continue
                 if found is None:
                     problems.append(f"case {case}: no earlier reply shows it whole")
                     continue
-                heading, lines, text = found
+                heading, lines, _ = found
                 problem = against_store(case, heading, lines, store)  # case 437
                 if problem:
                     problems.append(problem)
                     continue
                 answer = store[case]["text"]  # the Case as case-guppi answered it
                 errors = write_case(
-                    plan, case, headings(answer)[case], split_cases(answer)[case], refs, keys_for
+                    plan,
+                    case,
+                    headings(answer)[case],
+                    split_cases(answer)[case],
+                    refs,
+                    keys_for,
+                    approved,
                 )
                 if errors:
                     problems += [f"case {case}: {error}" for error in errors]
                     continue
                 written.add(case)
-                if "." in case:
-                    parent = store.get(case.rsplit(".", 1)[0])
-                    shows_parent = quoted_sections(
-                        split_cases(text).get(case.rsplit(".", 1)[0], []), PROSE
-                    )
-                    source = parent["text"] if shows_parent and isinstance(parent, dict) else text
-                    write_parent(plan, case, source)
-            if written:
-                from guppi import prespec  # it imports this module at load (case 414.1)
-
-                text = plan.read_text(encoding="utf-8")
-                problems += prespec.written_findings(
-                    text, written, project_dir, stamp, now, records
-                )
+                parent = store.get(case.rsplit(".", 1)[0]) if "." in case else None
+                if isinstance(parent, dict):  # its prose from its stored answer only (441.6)
+                    write_parent(plan, case, str(parent.get("text") or ""), approved)
+    checked = set(written)  # the check after the write reads the Cases of `write_case` only
     if defer_only(records):
-        retro = folder / "spec.md"  # the approved Spec: a defer at Retro goes there
-        target = retro if retro.is_file() else plan
+        target = approved if approved.is_file() else plan  # a defer at Retro goes to spec.md
         if target is None or not target.is_file():
             problems.append(
                 "no plan file of this session in the event log — create it with its title "
                 "line, then repeat the ledger lines"
             )
         else:
-            problems += write_defers(reply, records, target, keys_for)
+            problems += write_defers(reply, records, target, keys_for, written)
+    targets = [approved] + ([plan, copy_of(plan)] if plan is not None else [])
+    remove_superseded(records, written, targets)  # case 441.7
+    if checked:
+        from guppi import prespec  # it imports this module at load (case 414.1)
+
+        text = plan.read_text(encoding="utf-8")
+        problems += prespec.written_findings(text, checked, project_dir, stamp, now, records)
     if plan is not None and plan.is_file():
         problems += check_marks(plan, reply, written)
     if problems:

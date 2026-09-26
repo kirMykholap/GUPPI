@@ -62,9 +62,10 @@ in the page's `## Criterion` is `incomplete: [criterion]` — a Criterion change
 (case 378.4). An Estimate `create` keeps `kind`, `purpose`, `method` and
 `tags` as fields — a `ref` on the item is the entry's `ref`, never a page field (case 201.1);
 `## Context` and `## Method` are not written, and a `context` key of the
-old shape is dropped; a `criterion` key of the old shape goes to `sections.Criterion`. On a
-rule's or entity's item the keys `method`, `contract`, `estimate_slug` and `estimate_kind`
-are ignored: they reach neither the page nor `incomplete`. A line with `{supersedes:case
+old shape is dropped; a `criterion` key of the old shape goes to `sections.Criterion`. The
+keys of the shape before case 189 — `method`, `contract`, `estimate_slug`, `estimate_kind`
+on a rule's or entity's item — are no keys of their own: like any key the schema does not
+name, they go under `unknown` (case 440). A line with `{supersedes:case
 N}` marks every entry carrying `case: N` `superseded_by`, whatever its kind (case 175); a
 line may carry several such blocks side by side, one per Case, and each Case is marked
 (case 429). The marks go to
@@ -169,9 +170,6 @@ REQUIRED = {
 }
 CASE_SECTIONS = ("context", "problem", "recommend", "given", "when", "then", "ratification")
 INHERITED = ("context", "problem", "recommend", "given")  # a sub-case reads these from its parent
-# The keys of the shape before case 189 on a rule's or entity's item: once they derived an
-# Estimate; now they are ignored — they reach neither the page nor `incomplete` (194.1).
-IGNORED_KEYS = ("method", "contract", "estimate_slug", "estimate_kind")
 CRITERION_SECTIONS = ("when", "then")  # the Criterion of an Estimate, never `given` (378.2)
 SESSION_FOLDER = re.compile(r"^\d{4}$")  # raw/<date>/<HHMM>/, one session's Spec (case 73)
 
@@ -577,14 +575,13 @@ ITEM_KEYS = {
 }
 
 
-def accepted_keys(kind: str, known: set[str], estimate: bool = False) -> set[str]:
+def accepted_keys(kind: str, known: set[str]) -> set[str]:
     """The keys a `create` or a `defer` accepts, given the fields `known` of its category's
-    schema: those fields and the item's own keys, as `_lift_item` counts them (case 436.1).
-    `estimate`: a `create` of an Estimate, which keeps the keys of the old shape."""
+    schema: those fields and the item's own keys, as `_lift_item` counts them (case 436.1);
+    the keys of the shape before case 189 are none of them (case 440)."""
     if kind == "defer":
         return set(known) | set(DEFER_KEYS) | set(STRUCTURAL_KEYS)
-    skipped = CREATE_SKIPPED if estimate else CREATE_SKIPPED + IGNORED_KEYS
-    return set(known) | set(skipped) | set(STRUCTURAL_KEYS)
+    return set(known) | set(CREATE_SKIPPED) | set(STRUCTURAL_KEYS)
 
 
 def item_keys(
@@ -602,7 +599,7 @@ def item_keys(
     known = schema_fields(project_dir, {"category": category}, schema_free)
     if known is None:
         return None
-    return accepted_keys(kind, known, estimate=category == "estimates")
+    return accepted_keys(kind, known)
 
 
 def schema_fields(
@@ -636,13 +633,9 @@ def _lift_item(
     known: set[str] | None = None,
 ):
     if kind == "create":
-        estimate = nested == "estimate" or entry.get("category") == "estimates"
-        skipped = CREATE_SKIPPED
-        if not estimate:
-            skipped += IGNORED_KEYS  # the old shape's keys stay off the target (194.1)
-        fields = {k: v for k, v in item.items() if k not in skipped}
+        fields = {k: v for k, v in item.items() if k not in CREATE_SKIPPED}
         if known is not None:  # the lift by the schema (case 214.1), by `accepted_keys` (436)
-            accepted = accepted_keys("create", known, estimate)
+            accepted = accepted_keys("create", known)
             unknown = [k for k in item if k not in accepted]
             if unknown:
                 entry["unknown"] = unknown
@@ -651,8 +644,6 @@ def _lift_item(
                 entry["ref"] = str(item["ref"])
         if nested == "estimate" or entry.get("category") == "estimates":
             fields.setdefault("type", "estimate")
-            fields.pop("estimate_kind", None)
-            fields.pop("estimate_slug", None)
             fields.pop("context", None)  # `## Context` is not written since case 193
             if "criterion" in fields:  # the shape before 194.1: a written Criterion
                 entry.setdefault("sections", {})["Criterion"] = fields.pop("criterion")

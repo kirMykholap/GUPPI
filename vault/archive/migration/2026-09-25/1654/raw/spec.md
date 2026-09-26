@@ -146,7 +146,7 @@ update:
 - [x] update `rule-materialize` — the Purpose names the retirement of a reading by a ratified Case
 - [x] `guppi/materialize.py`: the docstring names the one-off migration of a ratified Case as the writer of `superseded_by` on an `estimate` entry, the number of that Case as the value (case 427)
 - [x] one-off migration: in `raw/2026-09-25/1228/materialize.yaml`, the entry `line: 40` gets `superseded_by: '427'` and loses `failed`
-- [ ] by hand: at the librarian's run after the migration, `generate` prints no line for `estimate-frame-check-finds-a-contradiction`, and `render` ticks the render lines of `raw/2026-09-25/1228/spec.md`
+- [x] by hand: at the librarian's run after the migration, `generate` prints no line for `estimate-frame-check-finds-a-contradiction`, and `render` ticks the render lines of `raw/2026-09-25/1228/spec.md`
 ```
 
 ## Case 428 — What a session changes, it does not measure: the ledger hook refuses a reading of such an Estimate

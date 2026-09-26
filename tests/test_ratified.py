@@ -232,10 +232,159 @@ def test_write_a_second_showing_replaces_the_section_and_keeps_the_prose(working
     assert sections["context"] == "Контекст."  # a re-showing leaves it out; the plan keeps it
 
 
-def test_write_a_last_mention_in_a_diff_block_writes_nothing(working):
+def test_write_a_later_diff_fence_naming_the_case_does_not_stop_its_write(working):
+    # 441.8: a fence tagged `DIFF` is not read; the Case shown whole before it is written
     diff = "```DIFF\nCase 7 · context\n- old\n+ new\n```\n"
     assert stop(working, ACK, SHOWING, diff, ACK) == (0, "")
-    assert "Case 7" not in plan_of(working).read_text(encoding="utf-8")
+    assert "## Case 7 — пример" in plan_of(working).read_text(encoding="utf-8")
+
+
+# --- the approved Spec (case 441.6) ------------------------------------------------------
+
+STAMP = "<!-- approved 15:20:00 · session 44c1aae1 -->"
+SPEC_CASE_7 = """## Case 7 — example
+
+> **context:**
+> The context.
+
+> **problem:**
+> The problem.
+
+> **then:**
+> The old result.
+
+```tasks
+- [x] update `rule-x` — one `replace` pair
+- [x] `guppi/x.py` — the code
+- [ ] read `estimate-x-works`
+```
+"""
+
+
+def approved_spec(project, text):
+    spec = project / "vault" / "raw" / TODAY.isoformat() / "1501" / "spec.md"
+    spec.parent.mkdir(parents=True, exist_ok=True)
+    spec.write_text(text, encoding="utf-8")
+    return spec
+
+
+def test_write_approved_spec_a_section_replaced_from_the_stored_answer(working):
+    spec = approved_spec(working, f"{STAMP}\n\n# Spec\n\n{SPEC_CASE_7}\n## Case 8 — other\n")
+    showing = SHOWING.replace("one `replace` pair", "the `replace` pair")
+    assert stop(working, ACK, showing, ACK) == (0, "")
+    text = spec.read_text(encoding="utf-8")
+    assert text.count("## Case 7 —") == 1 and "## Case 8 — other" in text
+    sections = ratified.quoted_sections(split_cases(text)["7"], ratified.SPEC_SECTIONS)
+    assert sections["then"].startswith("The file is written.")
+    assert sections["context"] == "Контекст."  # the stored answer, not the held prose
+    tasks = "\n".join(ratified.tagged_blocks(split_cases(text)["7"], "tasks")).splitlines()
+    assert tasks == [
+        "- [ ] update `rule-x` — the `replace` pair",  # changed: unticked
+        "- [ ] create `estimate-x-works`",
+        "- [x] `guppi/x.py` — the code",  # unchanged: its box kept
+        "- [ ] read `estimate-x-works`",
+    ]
+
+
+def test_write_approved_spec_every_section_of_the_case_replaced(working):
+    twice = f"{STAMP}\n\n# Spec\n\n{SPEC_CASE_7}\n---\n\n{STAMP}\n\n# Spec\n\n{SPEC_CASE_7}"
+    spec = approved_spec(working, twice)
+    assert stop(working, ACK, SHOWING, ACK) == (0, "")
+    text = spec.read_text(encoding="utf-8")
+    assert text.count("## Case 7 —") == 2 and "The old result." not in text
+    assert text.count("The file is written.") == 2
+
+
+def test_write_approved_spec_a_new_case_placed_before_the_deferred_of_the_last_document(working):
+    first = f"{STAMP}\n\n# Spec\n\n## Case 5 — first\n\n## Deferred\n\n## Case 6 — later\n"
+    spec = approved_spec(
+        working, f"{first}\n---\n\n{STAMP}\n\n# Spec\n\n## Case 5 — first\n\n## Deferred\n"
+    )
+    assert stop(working, ACK, SHOWING, ACK) == (0, "")
+    text = spec.read_text(encoding="utf-8")
+    last = text.rsplit(STAMP, 1)[1]
+    assert text.count("## Case 7 —") == 1 and "## Case 7 —" in last
+    assert last.index("## Case 7 —") < last.index("## Deferred")
+
+
+def test_write_approved_spec_a_refused_showing_writes_nothing_there(working):
+    spec = approved_spec(working, f"{STAMP}\n\n# Spec\n\n{SPEC_CASE_7}")
+    build(working, SHOWING)
+    retyped = SHOWING.replace("The file is written.", "The file is written twice.")
+    code, _ = stop(working, ACK, retyped, ACK, built=False)
+    assert code == 2 and "The old result." in spec.read_text(encoding="utf-8")
+
+
+def test_write_approved_spec_none_standing_none_written(working):
+    assert stop(working, ACK, SHOWING, ACK) == (0, "")
+    assert not (working / "vault" / "raw" / TODAY.isoformat() / "1501" / "spec.md").exists()
+
+
+def test_write_approved_spec_a_parents_prose_from_the_store_when_shown_translated(working):
+    parent = (
+        "## Case 9 — родитель\n\n> **context:**\n> Общий контекст.\n\n> **problem:**\n> Вопрос.\n\n"
+    )
+    sub = (
+        SHOWING.replace("## Case 7 — пример", "### Case 9.1 — ребёнок")
+        .replace("case 7", "case 9.1")
+        .replace("> **context:**\n> Контекст.\n\n> **problem:**\n> Проблема.\n\n", "")
+    )
+    spec = approved_spec(
+        working, f"{STAMP}\n\n# Spec\n\n## Case 9 — parent\n\n### Case 9.1 — child\n"
+    )
+    build(working, parent + sub)
+    translated = parent.replace("Общий контекст.", "The shared context.") + sub
+    ack = ACK.replace("case 7", "case 9.1")
+    assert stop(working, ack, translated, ack, built=False) == (0, "")
+    for path in (plan_of(working), spec):
+        text = path.read_text(encoding="utf-8")
+        held = ratified.quoted_sections(split_cases(text)["9"], ratified.SPEC_SECTIONS)
+        assert held["context"] == "Общий контекст.", path
+
+
+# --- the removal of a superseded Case (case 441.7) ---------------------------------------
+
+OLD_CASES = "## Case 5 — old\n\n> **then:**\n> Old.\n\n### Case 5.1 — old part\n\n> **then:**\n> Part.\n\n### Case 5.2 — other part\n\n> **then:**\n> Other.\n\n"
+ACK_SUPERSEDES = ACK.replace("{ref:rule-x}\n", "{ref:rule-x}{supersedes:case 5}\n", 1)
+
+
+def seed_old(project, text=OLD_CASES):
+    for path in (plan_of(project), ratified.copy_of(plan_of(project))):
+        path.write_text(f"# Spec\n\n{text}", encoding="utf-8")
+    return approved_spec(project, f"{STAMP}\n\n# Spec\n\n{text}")
+
+
+def test_superseded_a_case_and_its_sub_cases_leave_the_plan_the_copy_and_the_spec(working):
+    spec = seed_old(working)
+    assert stop(working, ACK_SUPERSEDES, SHOWING, ACK_SUPERSEDES) == (0, "")
+    for path in (plan_of(working), ratified.copy_of(plan_of(working)), spec):
+        text = path.read_text(encoding="utf-8")
+        assert "Case 5" not in text and "## Case 7 —" in text, path
+        assert "\n\n\n" not in text
+
+
+def test_superseded_a_sub_case_leaves_alone(working):
+    seed_old(working)
+    ack = ACK.replace("{ref:rule-x}\n", "{ref:rule-x}{supersedes:case 5.1}\n", 1)
+    assert stop(working, ack, SHOWING, ack) == (0, "")
+    text = plan_of(working).read_text(encoding="utf-8")
+    assert "### Case 5.1" not in text and "## Case 5 — old" in text and "### Case 5.2" in text
+
+
+def test_superseded_a_section_under_deferred_leaves(working):
+    seed_old(working, "## Deferred\n\n## Case 5 — deferred\n\n```then\ndefer: []\n```\n")
+    assert stop(working, ACK_SUPERSEDES, SHOWING, ACK_SUPERSEDES) == (0, "")
+    assert "Case 5" not in plan_of(working).read_text(encoding="utf-8")
+
+
+def test_superseded_a_case_no_file_holds_is_no_refusal(working):
+    assert stop(working, ACK_SUPERSEDES, SHOWING, ACK_SUPERSEDES) == (0, "")
+
+
+def test_superseded_a_refused_case_removes_nothing(working):
+    seed_old(working)
+    code, _ = stop(working, ACK_SUPERSEDES, SHOWING, ACK_SUPERSEDES, built=False)
+    assert code == 2 and "## Case 5 — old" in plan_of(working).read_text(encoding="utf-8")
 
 
 def short_case(case, slug, purpose="Later"):
@@ -393,7 +542,7 @@ def test_write_the_answer_of_case_guppi_not_the_showing(working):
     build(working, SHOWING)
     retyped = SHOWING.replace("The file is written.", "The file is written twice.")
     code, err = stop(working, ACK, retyped, ACK, built=False)
-    assert code == 2 and "case 7: differs from the answer of case-guppi" in err
+    assert code == 2 and "case 7: its then differ from the answer of case-guppi" in err
     assert "Case 7" not in plan_of(working).read_text(encoding="utf-8")
     casecheck.store_of(plan_of(working)).unlink()
     code, err = stop(working, ACK, SHOWING, ACK, built=False)

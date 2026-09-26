@@ -57,7 +57,7 @@ the ledgers of its dates, on the `hi` date from the `hi` time on, and its folder
   an Estimate, or an `update` carrying `set: {method: …}`, whose `method` names none of the
   four forms lint classifies — by `lint.names_a_form`, the one predicate, the existence of
   the file and of the target left to lint — and a `create` with no `method` at all (case
-  331); the keys of the shape before case 189 — `contract`, `estimate_slug` — are not read;
+  331);
 - an item writing a `sections: Render` for a page that enforces by render whose text does
   not open with `<!-- slug -->` and close with `<!-- /slug -->`; only the text the item
   itself writes is judged, and a child's marker line in a parent is not (case 325.1);
@@ -666,8 +666,7 @@ def check_form(blocks: dict, project_dir: Path) -> list[str]:
     classifies — by `lint.names_a_form`, the one predicate — is a finding too; a `create`
     with no `method` at all is the same one, and the existence of the file and of the target
     is left to lint, since the test file is written in Work Mode (case 331). The branch of a
-    MOC stays with lint. The keys of the shape before case 189 — `contract`,
-    `estimate_slug` — are not read."""
+    MOC stays with lint."""
     findings: list[str] = []
     created = {  # the rules and entities the plan itself creates (case 221)
         str(item.get("slug"))

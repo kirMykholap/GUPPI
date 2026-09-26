@@ -705,7 +705,7 @@ create:
     method: pytest in tests/test_leaf.py
 ```
 
-## Case 12 — an update with the old contract keys
+## Case 12 — an update of a rule that has Estimates
 
 > **context:**
 > Old words.
@@ -725,9 +725,6 @@ create:
 ```then
 update:
   - slug: rule-old
-    contract: changed
-    estimate_slug: estimate-old-holds
-    method: the new way
     replace:
       - old: old words
         new: new words
@@ -754,7 +751,6 @@ update:
 ```then
 update:
   - slug: rule-old
-    contract: same
     change: newer words
 ```
 
@@ -769,7 +765,6 @@ update:
 ```then
 update:
   - slug: rule-none
-    contract: changed
     change: a change without an Estimate
 ```
 
@@ -955,17 +950,22 @@ def of_case(data, case):
 # --- no Estimate is derived (cases 189, 194.1): `estimate-materialize-assembles` -------
 
 
-def test_a_create_with_the_old_method_key_yields_no_estimate_and_keeps_the_key_off(tmp_path):
+def test_the_old_estimate_keys_of_a_create_are_unknown_and_derive_no_estimate(tmp_path):
+    # case 440: `method`, `estimate_slug` and `estimate_kind` on a rule's or an entity's
+    # `create` are keys of no item — named under `unknown`, never a field, never an Estimate
     seed_estimates(tmp_path)
+    copy_schemas(tmp_path)
     code, out, err = run(tmp_path)
     assert code == 0 and err == "" and "written with 11 entries" in out  # one per line
     data = load(tmp_path)
     (leaf,) = of_case(data, "11")
     assert leaf["slug"] == "rule-leaf" and leaf["kind"] == "create"
+    assert leaf["unknown"] == ["method"]
     assert "method" not in leaf["fields"] and leaf["fields"]["kind"] == "Leaf"
     assert "incomplete" not in leaf
     assert by_slug(data, "estimate-leaf") == []
-    (cart,) = of_case(data, "15")  # estimate_slug and estimate_kind ignored the same way
+    (cart,) = of_case(data, "15")
+    assert cart["unknown"] == ["method", "estimate_slug", "estimate_kind"]
     assert cart["fields"] == {
         "type": "entity",
         "kind": "MOC",
@@ -975,17 +975,18 @@ def test_a_create_with_the_old_method_key_yields_no_estimate_and_keeps_the_key_o
     assert "incomplete" not in cart and by_slug(data, "estimate-cart-renders") == []
 
 
-def test_an_update_with_the_old_contract_keys_yields_one_entry_without_them(tmp_path):
+def test_an_update_of_a_rule_yields_one_entry_and_derives_no_estimate(tmp_path):
+    # case 440.2: an Estimate comes only from its own line, never from a key of the rule's item
     seed_estimates(tmp_path)
     run(tmp_path)
     data = load(tmp_path)
     (update,) = of_case(data, "12")
     assert update["slug"] == "rule-old" and update["kind"] == "update"
-    assert set(update) & {"contract", "method", "estimate_slug", "fields"} == set()
+    assert "fields" not in update
     assert update["replace"] == [{"old": "old words", "new": "new words"}]
     assert "incomplete" not in update and update["superseded_by"] == "13"
     assert by_slug(data, "estimate-old-holds", "update") == [of_case(data, "17")[0]]
-    for case in ("13", "14"):  # contract: same, and contract: changed with no page
+    for case in ("13", "14"):  # a later update of the page, and one of a page that is none
         (only,) = of_case(data, case)
         assert only["kind"] == "update" and "incomplete" not in only
 
@@ -1934,15 +1935,19 @@ defer:
 """
 
 
-def seed_schemas(tmp_path):
+def copy_schemas(tmp_path):
     import shutil
 
-    seed(tmp_path, ledger=SCHEMA_LEDGER, spec=SCHEMA_SPEC)
     wiki = tmp_path / "vault" / "wiki"
     repo = Path(__file__).resolve().parents[1] / "vault" / "wiki"
     for category in ("rules", "entities", "estimates", "lessons", "insights"):
-        (wiki / category).mkdir(exist_ok=True)
+        (wiki / category).mkdir(parents=True, exist_ok=True)
         shutil.copy(repo / category / "schema.yaml", wiki / category / "schema.yaml")
+
+
+def seed_schemas(tmp_path):
+    seed(tmp_path, ledger=SCHEMA_LEDGER, spec=SCHEMA_SPEC)
+    copy_schemas(tmp_path)
     return tmp_path
 
 
@@ -1992,7 +1997,7 @@ def test_the_type_and_purpose_of_a_defer_are_its_own_keys_whatever_the_target(tm
     assert "unknown" not in bare
 
 
-def test_the_keys_of_the_old_shape_stay_ignored_and_never_unknown(tmp_path):
+def test_the_keys_of_the_old_shape_on_a_rule_create_are_unknown(tmp_path):  # case 440
     seed_schemas(tmp_path)
     spec = (tmp_path / "vault" / "raw" / DATE / "spec.md").read_text(encoding="utf-8")
     spec = spec.replace(
@@ -2001,11 +2006,8 @@ def test_the_keys_of_the_old_shape_stay_ignored_and_never_unknown(tmp_path):
     (tmp_path / "vault" / "raw" / DATE / "spec.md").write_text(spec, encoding="utf-8", newline="\n")
     run(tmp_path)
     (rule,) = of_case(load(tmp_path), "21")
-    assert (
-        "unknown" not in rule
-        and "method" not in rule["fields"]
-        and "contract" not in rule["fields"]
-    )
+    assert rule["unknown"] == ["contract", "method"]
+    assert "method" not in rule["fields"] and "contract" not in rule["fields"]
 
 
 def test_show_prints_the_unknown_mark(tmp_path):
@@ -2246,8 +2248,8 @@ def test_item_keys_answers_for_each_kind_as_the_lift_does(tmp_path):
     schema.parent.mkdir(parents=True)
     schema.write_text("properties:\n  required: [type, purpose]\n", encoding="utf-8")
     create = materialize.item_keys("create", "rules", tmp_path)
-    assert {"type", "purpose", "slug", "ref", "sections", "method", "contract"} <= create
-    assert "flavour" not in create
+    assert {"type", "purpose", "slug", "ref", "sections"} <= create
+    assert create & {"flavour", "method", "contract", "estimate_slug", "estimate_kind"} == set()
     defer = materialize.item_keys("defer", "rules", tmp_path)
     assert {"type", "purpose", "slug"} <= defer and "old" not in defer
     assert materialize.item_keys("create", "rules", tmp_path, {"rules"}) is None  # 308.2

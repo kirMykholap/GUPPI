@@ -31,9 +31,11 @@ The same comparison — `against_store` — serves this module's `stop` and the 
 writes the stored answer into the plan and refuses a showing that differs from it (case 437).
 
 The comparison. On `Stop`, each Case the reply shows under its heading with at least one of
-its sections is compared with the Case of the same id in the store — the heading and its
-lines up to the horizontal rule that opens the agent's own text, line ends and trailing
-spaces made the same. A parent shown with its sub-cases is compared part by part. A Case the
+its sections is compared with the Case of the same id in the store in its `given`, `when`,
+`then`, `tasks` and `ratification` — the lines up to the horizontal rule that opens the
+agent's own text, line ends and trailing spaces made the same. The name of its heading, its
+`context`, `problem` and `recommend`, which the main agent translates for the chat, are not
+compared (case 441.3). A parent shown with its sub-cases is compared part by part. A Case the
 store does not hold, one that differs, or one stored with findings exits 2 with the reason on
 stderr. A heading with no section — the acknowledging reply — a fence tagged `DIFF`, and a
 deferred decision in the short form — `context`, `problem` and a fence tagged `then` with
@@ -60,6 +62,9 @@ HANDBACK = "SubagentHandback"  # the tool a subagent gives its report through (c
 STORE_SUFFIX = ".checked.json"
 RULE = "---"  # the horizontal rule after which the agent's own text stands
 LEDGER_LINE = ("- decision[", "- estimate[", "- lesson[")
+# The parts of a shown Case compared with its stored answer; the heading name and the prose
+# — `context`, `problem`, `recommend` — the main agent translates, and they are free (441.3).
+MECHANICAL = ("given", "when", "then", "tasks", "ratification")
 
 
 def store_of(plan: Path) -> Path:
@@ -248,9 +253,24 @@ def ledger_of(folder: Path | None) -> list[str]:
     return (folder / "ledger.md").read_text(encoding="utf-8").splitlines()
 
 
+def mechanical_parts(lines: list[str]) -> dict[str, str]:
+    """The `given`, `when`, `then`, `tasks` and `ratification` of a Case, up to the horizontal
+    rule, each line's trailing spaces removed (case 441.3)."""
+    kept: list[str] = []
+    for line in lines:
+        if line.strip() == RULE:
+            break
+        kept.append(line)
+    return {
+        name: "\n".join(line.rstrip() for line in text.splitlines()).strip("\n")
+        for name, text in quoted_sections(kept, MECHANICAL).items()
+    }
+
+
 def against_store(case: str, heading: str, lines: list[str], store: dict) -> str | None:
-    """The one comparison of a shown Case with its stored answer (cases 419.4, 437): the
-    reason it fails, or None — shared by this module's `stop` and the Spec hook."""
+    """The one comparison of a shown Case with its stored answer (cases 419.4, 437, 441.3):
+    the reason it fails, or None — shared by this module's `stop` and the Spec hook. Only
+    the `MECHANICAL` parts are compared; `heading` is not."""
     entry = store.get(case)
     if not isinstance(entry, dict):
         return f"case {case}: not built and checked by case-guppi — dispatch it"
@@ -258,8 +278,14 @@ def against_store(case: str, heading: str, lines: list[str], store: dict) -> str
         return (
             f"case {case}: its check found {'; '.join(entry['findings'])} — send them to case-guppi"
         )
-    if entry.get("text") != shown_text(heading, lines):
-        return f"case {case}: differs from the answer of case-guppi — show that answer unchanged"
+    stored = mechanical_parts(str(entry.get("text") or "").splitlines()[1:])
+    shown = mechanical_parts(lines)
+    differ = [name for name in MECHANICAL if stored.get(name) != shown.get(name)]
+    if differ:
+        return (
+            f"case {case}: its {', '.join(differ)} differ from the answer of case-guppi — show "
+            "them as the answer holds them"
+        )
     return None
 
 

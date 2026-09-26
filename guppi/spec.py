@@ -10,9 +10,11 @@ the way the ledger hook finds it, across the event logs of the window (case 73.2
 folder is created when missing. Without a `hi` recorded for this session the hook exits 2
 with the reason, so the person is told rather than left believing the Spec was copied.
 
-The file has three writers: this hook, once per approval; Work Mode, which ticks the boxes
-of the `tasks` blocks and nothing else; and the agent, who appends the short-form Cases
-under `## Deferred` at the close of Plan Mode and at Retro, before their ledger lines.
+The file has three writers: this hook, once per approval; the `Stop` hook of
+`rule-spec-write`, which, once the file stands, writes each Case ratified after the approval
+— its sections replaced, or placed — removes a superseded Case, and writes a defer-only Case
+at Retro under `## Deferred` (cases 421.1, 441); and Work Mode, which ticks the boxes of the
+`tasks` blocks.
 
 Written or already there, the hook then prints one JSON object on stdout —
 `{"hookSpecificOutput": {"hookEventName": "PostToolUse", "additionalContext": <line>}}` —

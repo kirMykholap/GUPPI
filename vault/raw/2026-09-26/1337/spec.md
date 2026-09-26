@@ -40,7 +40,7 @@ update:
 
 ```tasks
 - [x] update `lesson-case-show-sub-case-ratification-retyped` — one `replace` pair in `## Trigger`
-- [ ] by hand: after `generate`, the `## Trigger` of `lesson-case-show-sub-case-ratification-retyped` names the comparison on `Stop` and holds no `SubagentStop`
+- [x] by hand: after `generate`, the `## Trigger` of `lesson-case-show-sub-case-ratification-retyped` names the comparison on `Stop` and holds no `SubagentStop`
 ```
 
 ## Case 434 — The check of case-guppi reads the newest output of the subagent that holds a Case

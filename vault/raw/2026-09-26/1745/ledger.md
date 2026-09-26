@@ -1,0 +1,38 @@
+- 18:01:16 decision[case 439][update][rule-skill-hi]{ref:rule-skill-hi}
+- 18:01:16 lesson[knowledge][lesson-hi-substitution-gets-no-verdict-from-the-server-side-classifier]{tags:harness,session}{source:Claude Code 2.1.282, session 1b191eaf 2026-09-26}{addressed_by:case 439} trigger: /hi failed at every run in VS Code with "Shell command permission check failed for pattern" on its ! commands, and a fresh /login did not help root_cause: since client 2.1.282 the check of a skill's ! substitution is a call to the server-side auto mode classifier, which gives no verdict for a substitution the person types ("the request that produced this action did not ask for one"); a command no allow rule matches is refused, and a matching rule in the skill's allowed-tools needs no classifier
+- 18:50:19 decision[case 440.1][update][estimate-materialize-lifts-a-create-by-the-schema]{ref:estimate-materialize-lifts-a-create-by-the-schema}
+- 18:50:19 decision[case 440.2][update][estimate-materialize-assembles]{ref:estimate-materialize-assembles}
+- 18:50:19 decision[case 440.3][update][rule-case-protocol]{ref:rule-case-protocol}
+- 21:59:07 decision[case 441.1][update][rule-case-build]{ref:rule-case-build}
+- 21:59:07 decision[case 441.1][update][estimate-case-build-writes-the-case]{ref:estimate-case-build-writes-the-case}
+- 21:59:07 decision[case 441.2][update][rule-case-protocol]{ref:rule-case-protocol}
+- 21:59:07 decision[case 441.2][update][estimate-case-protocol-shows-the-built-case]{ref:estimate-case-protocol-shows-the-built-case}
+- 21:59:07 decision[case 441.3][update][rule-case-check]{ref:rule-case-check}
+- 21:59:07 decision[case 441.3][update][estimate-case-check-shows-only-the-checked-case]{ref:estimate-case-check-shows-only-the-checked-case}
+- 21:59:07 decision[case 441.4][update][rule-prespec]{ref:rule-prespec}{supersedes:case 438}
+- 21:59:07 decision[case 441.4][update][estimate-prespec-reconciles]{ref:estimate-prespec-reconciles}
+- 21:59:07 decision[case 441.5][update][estimate-prespec-checks-the-ratified-copy]{ref:estimate-prespec-checks-the-ratified-copy}
+- 21:59:07 decision[case 441.6][update][rule-spec-write]{ref:rule-spec-write}
+- 21:59:07 decision[case 441.6][create][estimate-spec-write-reaches-the-approved-spec]{ref:rule-spec-write}{tags:hooks,harness,workflow}
+- 21:59:07 decision[case 441.6][update][rule-spec-capture]{ref:rule-spec-capture}
+- 21:59:07 decision[case 441.6][update][rule-case-protocol]{ref:rule-case-protocol}
+- 22:00:18 decision[case 442][defer][rule-ledger-write]{ref:rule-ledger-write}
+- 22:27:05 decision[case 441.7][update][rule-spec-write]{ref:rule-spec-write}
+- 22:27:05 decision[case 441.7][create][estimate-spec-write-removes-a-superseded-case]{ref:rule-spec-write}{tags:hooks,harness,workflow}
+- 22:27:05 decision[case 441.7][update][rule-case-protocol]{ref:rule-case-protocol}
+- 22:27:05 decision[case 441.8][update][rule-spec-write]{ref:rule-spec-write}
+- 22:27:05 decision[case 441.8][update][estimate-spec-write-copies-the-ratified-case]{ref:estimate-spec-write-copies-the-ratified-case}
+- 22:27:05 decision[case 441.9][update][estimate-spec-write-checks-the-written-case]{ref:estimate-spec-write-checks-the-written-case}
+- 22:27:05 decision[case 441.10][update][estimate-spec-capture-appends]{ref:estimate-spec-capture-appends}
+- 22:49:38 estimate[estimate-prespec-checks-the-form-of-an-item][passed] 2026-09-26, `uv run pytest -q tests/test_prespec.py`; 120 passed, each finding of the Criterion asserted by its test, and the 308.2 exemption held in a probe through the file's check helper and in the item_keys test of test_materialize
+- 22:49:38 estimate[estimate-prespec-matches-lines-and-items][passed] 2026-09-26, `uv run pytest -q tests/test_prespec.py`; 120 passed, every line of the Criterion asserted, the second item in one fence and in another fence included
+- 22:49:38 estimate[estimate-ledger-write-refuses-a-reading-of-a-change-of-the-session][passed] 2026-09-26, `uv run pytest -q tests/test_ledger.py`; 42 passed, a reading of a slug a create or update of the session names is refused with exit 2 and the stderr line, an earlier text skipped silently, a defer or another session's line lets it through
+- 22:49:38 estimate[estimate-ledger-write-lifts][passed] 2026-09-26, `uv run pytest -q tests/test_ledger.py tests/test_gate.py`; 72 passed, and live the 26 lines of raw/2026-09-26/1745/ledger.md stand timed, each once, with no hand write in the event log; no live refusal observed
+- 22:49:38 estimate[estimate-prespec-requires-a-task-line][passed] 2026-09-26, `uv run pytest -q tests/test_prespec.py`; 120 passed, the tasks block, the read line, the rename and the other-read-line findings asserted, and a superseded Case needs no tasks block
+- 22:49:38 estimate[estimate-materialize-marks-superseded][passed] 2026-09-26, `uv run pytest -q tests/test_materialize.py` and the librarian's run af86af6; 80 passed, and live case 430's four blocks landed as a list in block order with only the superseded_by mark written into the yamls of units 0051 and 1228
+- 22:49:38 estimate[estimate-spec-write-writes-a-defer][passed] 2026-09-26, `uv run pytest tests/test_ratified.py -k defer`: 9 passed; live, Case 442 of session 1745: the Stop hook wrote its heading, context, problem and then block under ## Deferred of the plan file as the reply at 22:00:17 showed them, and the ratified copy holds no Case 442
+- 22:49:38 estimate[estimate-case-protocol-case-form][failed] 2026-09-26, by hand, the Cases of session 1745 in the chat; the context of Case 439 (17:56) and of Case 441 shown again (22:20) holds bullet lists, not prose, and the given of 441.4 holds the state "deferred by case 438"; the headings, section order, ratification fences, closing questions and the one-reply showing of 440 and 441 hold
+- 22:49:38 estimate[estimate-case-protocol-defers-in-one-reply][failed] 2026-09-26, by hand, transcript of session 1745 at 22:00:17 and the plan edit at 22:01:43; Case 442 was shown in the short form with its LEDGER defer line and no tool call after it, but the agent then edited the plan file to translate its heading, context and problem, and text followed the Frontier in the reply
+- 22:49:38 estimate[estimate-agent-writing-followed][failed] 2026-09-26, CLAUDE.md lines 11–17 and the replies of session 1745 read by hand; most replies give the answer first with counts from their runs, but the Work Mode report says 10 Estimates wait for the next session where the ledger names 12, and the retro reply announces "three more" and lists two
+- 22:49:38 estimate[estimate-language-followed][failed] 2026-09-26, CLAUDE.md lines 5–9, commit 54509ed, the diff, raw/2026-09-26/1745/spec.md and the chat of session 1745 read by hand; the repository is English (spec.md 0 Cyrillic lines of 677), but Case 441 was shown in the chat with its name, context, problem and recommend in English, and the agent's own Russian text transliterates hook, commit, skill, insight and Case
+- 22:49:38 lesson[error][lesson-case-build-a-criterion-replaced-whole-drops-a-line]{tags:harness,workflow} trigger: at the pre-spec of session 1745, ask-guppi found that the first build of Case 441.2 replaced the Criterion of estimate-case-protocol-shows-the-built-case whole and dropped its line "The main agent dispatches ask-guppi once, at pre-spec, and neither ask-guppi nor frame-guppi before a showing", a promise the Render keeps root_cause: case-guppi writes a Criterion replaced whole anew from the old one and the change, and no check compares the old lines with the new beyond what the Case names; only the ask-guppi question of pre-spec on Estimates caught it

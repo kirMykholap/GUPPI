@@ -14,7 +14,7 @@ NOW = datetime(2026, 9, 14, 11, 0, 0, tzinfo=UTC)
 SESSION = "19037d1c-5d15-478c-87d3-2d0cf886f763"
 START = "- 10:29:02 19037d1c session-start startup\n"
 HI = "- 10:29:12 19037d1c hi\n"
-PLAN = "## Case 5 — a rule\n\n> **when:**\n> x.\n\n```then\nupdate:\n  - slug: rule-x\n    contract: same\n    change: y\n```\n"
+PLAN = "## Case 5 — a rule\n\n> **when:**\n> x.\n\n```then\nupdate:\n  - slug: rule-x\n    change: y\n```\n"
 LINE = "- 10:40:00 decision[case 5][update][rule-x]{ref:rule-x}\n"
 READING = "- 10:41:00 estimate[estimate-x][passed] block 5: green\n"
 

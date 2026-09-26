@@ -740,16 +740,43 @@ def test_an_estimate_update_setting_a_method_without_a_form_is_a_finding(tmp_pat
 
 
 def test_the_keys_of_the_old_shape_are_not_read(tmp_path):
-    # `method`, `contract`, `estimate_slug` on a rule's item raise no finding (cases 194.1, 203.1)
+    # `method`, `contract`, `estimate_slug` on a rule's `create` raise no finding (cases 194.1,
+    # 203.1); on an `update`, whose keys are closed, `contract` is a finding (case 436.2)
     with_page(tmp_path, "rules", "rule-x", kind="Leaf")
     plan = PLAN.replace("    change: one line\n", "    change: one line\n    contract: changed\n")
-    assert check(tmp_path, plan=plan) == (0, "", "")
+    code, out, _ = check(tmp_path, plan=plan)
+    assert code == 1
+    assert out == "case 1: update rule-x: key contract is not a key of this item\n"
     leaf = PLAN.replace(
         "update:\n  - slug: rule-x\n    change: one line\n",
         "create:\n  - slug: rule-z\n    type: rule\n    kind: Leaf\n    estimate_slug: e\n",
     )
     line = "- 16:00:00 decision[case 1][create][rule-z]{ref:rule-root}{tags:a}\n"
     assert check(tmp_path, plan=leaf, ledger=line) == (0, "", "")
+
+
+def test_a_key_the_item_does_not_have_is_a_finding(tmp_path):
+    # 436.2: `replace old` under an `update`, `old` under a `delete`; `slug`, `replace` and
+    # `change` are keys of an `update`
+    with_page(tmp_path, "rules", "rule-x", kind="Leaf")
+    plan = PLAN.replace("    change: one line\n", "    change: one line\n    replace old: a\n")
+    code, out, _ = check(tmp_path, plan=plan)
+    assert code == 1
+    assert out == "case 1: update rule-x: key replace old is not a key of this item\n"
+    fine = PLAN.replace(
+        "    change: one line\n",
+        "    change: one line\n    replace:\n      - old: a\n        new: b\n",
+    )
+    assert "is not a key" not in check(tmp_path, plan=fine)[1]
+    gone = PLAN.replace(
+        "update:\n  - slug: rule-x\n    change: one line\n",
+        "delete:\n  - slug: rule-x\n    impact: none\n    old: a\n",
+    )
+    line = "- 16:00:00 decision[case 1][delete][rule-x]{ref:rule-x}\n"
+    assert (
+        "case 1: delete rule-x: key old is not a key of this item"
+        in check(tmp_path, plan=gone, ledger=line)[1]
+    )
 
 
 def test_a_defer_item_is_outside_the_form_checks(tmp_path):

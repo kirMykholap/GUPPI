@@ -11,7 +11,7 @@ from datetime import UTC, date, datetime
 
 import pytest
 
-from guppi import ratified
+from guppi import casecheck, ratified
 from guppi.materialize import split_cases, then_blocks
 
 TODAY = date(2026, 9, 9)
@@ -150,7 +150,22 @@ def plan_of(project):
     return project / ".claude" / "plans" / "plan.md"
 
 
-def stop(project, reply, *messages, **fields):
+def build(project, *messages):
+    """Store every Case the messages show whole as `case-guppi` answered it — the store the
+    Spec hook writes from (case 437); a later showing of the same id replaces an earlier."""
+    path = casecheck.store_of(plan_of(project))
+    data = json.loads(path.read_text(encoding="utf-8")) if path.exists() else {}
+    for message in messages:
+        heads = ratified.headings(message)
+        for case, lines in split_cases(message).items():
+            if ratified.shown_whole(lines) or ratified.quoted_sections(lines, ratified.PROSE):
+                data[case] = {"text": casecheck.shown_text(heads[case], lines), "findings": []}
+    path.write_text(json.dumps(data, ensure_ascii=False), encoding="utf-8")
+
+
+def stop(project, reply, *messages, built=True, **fields):
+    if built:
+        build(project, *messages)
     transcript = project / "transcript.jsonl"
     transcript.write_text("\n".join(transcript_line(m) for m in messages) + "\n", encoding="utf-8")
     fields.setdefault("session_id", SESSION)
@@ -317,6 +332,77 @@ def test_write_a_sub_point_off_the_form_is_refused_and_nothing_is_written(workin
     broken = SHOWING.replace("  - kind: `QA`", "  - kind: QA")
     code, err = stop(working, ACK, broken, ACK)
     assert code == 2 and "`kind`: the value is not one code span" in err
+    assert "Case 7" not in plan_of(working).read_text(encoding="utf-8")
+
+
+def test_write_a_foreign_key_of_an_update_or_a_delete_is_refused(working):
+    # 436.1: `replace old` and `replace new` under an `update` are no keys of the item
+    wrong = SHOWING.replace("  - old: ``", "  - replace old: ``").replace(
+        "  - new: `the new text`", "  - replace new: `the new text`"
+    )
+    code, err = stop(working, ACK, wrong, ACK)
+    assert code == 2 and "`replace old`: not a key of update rule-x" in err
+    assert "Case 7" not in plan_of(working).read_text(encoding="utf-8")
+    assert not ratified.copy_of(plan_of(working)).exists()
+
+
+def test_read_an_old_under_a_delete_is_refused(working):
+    # 436.1: a `delete` takes `slug`, `impact` and `change` only
+    tasks = "- [ ] delete `rule-x`\n  - impact: `none`\n  - old: `a`\n"
+    _, _, errors = ratified.read_tasks(tasks, ratified.key_judge(working, set()))
+    assert errors == ["`old`: not a key of delete rule-x"]
+
+
+def test_write_the_keys_of_a_create_are_judged_by_its_schema(working, tmp_path):
+    schema = working / "vault" / "wiki" / "estimates" / "schema.yaml"
+    schema.parent.mkdir(parents=True)
+    fields = "properties:\n  required: [type, purpose, method]\n  optional: [kind, tags]\n"
+    schema.write_text(fields, encoding="utf-8")
+    assert stop(working, ACK, SHOWING, ACK) == (0, "")  # the fields of the schema pass
+    wrong = SHOWING.replace("  - kind: `QA`", "  - flavour: `QA`")
+    code, err = stop(working, ACK, wrong, ACK)
+    assert code == 2 and "`flavour`: not a key of create estimate-x-works" in err
+    judge = ratified.key_judge(working, {"estimates"})  # a schema the session changes
+    assert judge("create", "estimate-x-works") is None
+    assert judge("update", "rule-x") == {
+        "slug",
+        "set",
+        "sections",
+        "replace",
+        "reword",
+        "change",
+        "rename",
+    }
+
+
+def test_write_a_foreign_key_of_a_defer_is_refused(working):
+    # 436.3
+    schema = working / "vault" / "wiki" / "rules" / "schema.yaml"
+    schema.write_text("properties:\n  required: [type, purpose]\n", encoding="utf-8")
+    case = short_case("9", "rule-later").replace(
+        "    purpose: Later\n", "    purpose: Later\n    old: x\n"
+    )
+    code, err = stop(working, f"```LEDGER\n{defer_line('9', 'rule-later')}```\n\n{case}")
+    assert code == 2 and "`old`: not a key of defer rule-later" in err
+    assert "Case 9" not in plan_of(working).read_text(encoding="utf-8")
+
+
+def test_write_the_answer_of_case_guppi_not_the_showing(working):
+    # 437: a showing that differs from the stored answer, no stored answer, or one stored
+    # with findings is refused and nothing is written
+    build(working, SHOWING)
+    retyped = SHOWING.replace("The file is written.", "The file is written twice.")
+    code, err = stop(working, ACK, retyped, ACK, built=False)
+    assert code == 2 and "case 7: differs from the answer of case-guppi" in err
+    assert "Case 7" not in plan_of(working).read_text(encoding="utf-8")
+    casecheck.store_of(plan_of(working)).unlink()
+    code, err = stop(working, ACK, SHOWING, ACK, built=False)
+    assert code == 2 and "case 7: not built and checked by case-guppi" in err
+    path = casecheck.store_of(plan_of(working))
+    text = casecheck.shown_text(ratified.headings(SHOWING)["7"], split_cases(SHOWING)["7"])
+    path.write_text(json.dumps({"7": {"text": text, "findings": ["case 7: x"]}}), encoding="utf-8")
+    code, err = stop(working, ACK, SHOWING, ACK, built=False)
+    assert code == 2 and "its check found case 7: x" in err
     assert "Case 7" not in plan_of(working).read_text(encoding="utf-8")
 
 

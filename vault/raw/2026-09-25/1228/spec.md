@@ -148,7 +148,7 @@ update:
 
 ```tasks
 - [x] update `rule-frame-check`
-- [ ] update `rule-frame-check`
+- [x] update `rule-frame-check`
 - [x] update `estimate-frame-check-finds-a-contradiction`
 - [x] `uv run guppi render`: `.claude/agents/case-guppi.md`
 - [x] `git rm .claude/agents/frame-guppi.md` — the file no page governs after the rename

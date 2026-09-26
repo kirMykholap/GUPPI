@@ -62,27 +62,33 @@ def is_main(record) -> bool:
     return isinstance(record, dict) and not record.get("isSidechain")
 
 
-def transcript_records(payload: dict) -> list[dict]:
-    """The main-agent records of `transcript_path`, in order. Empty when the path is absent
-    or unreadable; a line that is not JSON is skipped. The transcript is JSONL: one object per
+def read_records(path) -> list[dict] | None:
+    """Every JSON object of the JSONL file at `path`, in order; a line that is not JSON is
+    skipped. None when the path is absent or unreadable. The one reading of a transcript, the
+    main agent's and a subagent's alike (case 434). The transcript is JSONL: one object per
     API block, `type: assistant`, `message.content` a list of blocks (measured 2026-09-11,
     session H)."""
-    path = payload.get("transcript_path")
     if not path:
-        return []
+        return None
     try:
         raw = Path(str(path)).read_text(encoding="utf-8")
     except (OSError, ValueError):
-        return []
+        return None
     records: list[dict] = []
     for line in raw.splitlines():
         try:
             record = json.loads(line)
         except ValueError:
             continue
-        if is_main(record):
+        if isinstance(record, dict):
             records.append(record)
     return records
+
+
+def transcript_records(payload: dict) -> list[dict]:
+    """The main-agent records of `transcript_path`, in order. Empty when the path is absent
+    or unreadable."""
+    return [r for r in read_records(payload.get("transcript_path")) or [] if is_main(r)]
 
 
 def transcript_texts(payload: dict) -> list[str]:

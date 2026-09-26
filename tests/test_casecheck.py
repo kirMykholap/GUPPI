@@ -178,10 +178,95 @@ def test_subagent_two_update_lines_of_one_slug_send_it_back(working):  # case 42
     assert code == 2 and "case 7: item [update][rule-x] stands twice" in err
 
 
-def test_subagent_the_re_fire_stores_the_findings_and_passes(working):
+def test_subagent_a_finding_is_sent_back_whatever_stop_hook_active_says(working):
+    # 434: Claude Code sets `stop_hook_active` on the second fire after a handback with no
+    # exit 2 of the hook; the store guards the loop — the same faulty text a second time passes
     no_read = ANSWER.replace("> - [ ] read `estimate-x-works`\n", "")
+    code, err = answer(working, no_read, stop_hook_active=True)
+    assert code == 2 and "estimate-x-works has no task line" in err
     assert answer(working, no_read, stop_hook_active=True) == (0, "")
     assert store(working)["7"]["findings"] == ["case 7: estimate-x-works has no task line"]
+
+
+def transcript(project, *records):
+    """A subagent transcript of assistant records, each a list of content blocks."""
+    path = project / "agent.jsonl"
+    lines = [
+        json.dumps({"type": "assistant", "isSidechain": True, "message": {"content": blocks}})
+        for blocks in records
+    ]
+    path.write_text("\n".join(lines) + "\n", encoding="utf-8")
+    return str(path)
+
+
+def text(value):
+    return {"type": "text", "text": value}
+
+
+def handback(value):
+    return {"type": "tool_use", "name": "SubagentHandback", "input": {"message": value}}
+
+
+def test_subagent_a_handback_then_a_summary_stores_the_handback_case(working):
+    path = transcript(working, [handback(ANSWER)], [text("I sent Case 7.")])
+    assert answer(working, "I sent Case 7.", agent_transcript_path=path) == (0, "")
+    assert store(working)["7"]["text"].startswith("## Case 7")
+
+
+def test_subagent_the_newest_output_with_a_case_is_the_answer(working):
+    # a Case by handback, a newer Case as text, then a question by handback: the text's Case
+    older = ANSWER.replace("The file is written.", "The old file is written.")
+    path = transcript(working, [handback(older)], [text(ANSWER)], [handback("Which page?")])
+    assert answer(working, "", agent_transcript_path=path) == (0, "")
+    assert "The old file" not in store(working)["7"]["text"]
+
+
+def test_subagent_a_case_as_text_then_by_handback_then_a_summary_is_stored_once(working):
+    path = transcript(working, [text(ANSWER)], [handback(ANSWER)], [text("Sent.")])
+    assert answer(working, "Sent.", agent_transcript_path=path) == (0, "")
+    assert list(store(working)) == ["7"]
+
+
+def test_subagent_no_output_with_a_case_and_no_transcript_fall_back(working):
+    path = transcript(working, [text("Which page?")], [handback("Which page?")])
+    assert answer(working, "Which page?", agent_transcript_path=path) == (0, "")
+    assert store(working) is None
+    missing = str(working / "none.jsonl")
+    assert answer(working, ANSWER, agent_transcript_path=missing) == (0, "")
+    assert "7" in store(working)
+
+
+def test_subagent_a_foreign_key_of_an_update_is_sent_back(working):
+    # 436.1: `replace old` under an `update` is not a key of the item
+    wrong = ANSWER.replace("  - old: ``", "  - replace old: ``").replace(
+        "  - new: `the new text`", "  - replace new: `the new text`"
+    )
+    code, err = answer(working, wrong)
+    assert code == 2 and "`replace old`: not a key of update rule-x" in err
+
+
+def test_subagent_a_schema_the_session_changes_is_not_judged(working):
+    # 436.4: the categories come from the fences and the session's ledger; a window line with
+    # no item in the answer is no finding
+    schema = working / "vault" / "wiki" / "estimates" / "schema.yaml"
+    schema.parent.mkdir(parents=True)
+    schema.write_text("properties:\n  required: [type, purpose, method]\n", encoding="utf-8")
+    odd = ANSWER.replace("  - kind: `QA`", "  - flavour: `QA`")
+    code, err = answer(working, odd)
+    assert code == 2 and "`flavour`: not a key of create estimate-x-works" in err
+    folder = working / "vault" / "raw" / TODAY.isoformat() / "1501"
+    folder.mkdir(parents=True)
+    (folder / "ledger.md").write_text(
+        "- 15:10:00 decision[case 5][update][rule-estimates-schema]{ref:rule-estimates-schema}\n",
+        encoding="utf-8",
+    )
+    assert answer(working, odd) == (0, "")
+
+
+def test_subagent_no_plan_file_sends_nothing_back(working):
+    (working / ".claude" / "plans" / "plan.md").unlink()
+    no_read = ANSWER.replace("> - [ ] read `estimate-x-works`\n", "")
+    assert answer(working, no_read) == (0, "")
 
 
 def test_subagent_a_question_and_another_agent_pass_unstored(working):

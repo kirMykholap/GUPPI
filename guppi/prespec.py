@@ -130,7 +130,9 @@ from guppi.materialize import (
     case_texts,
     category_of,
     find_item,
+    item_keys,
     parse_line,
+    schema_changed,
     split_cases,
     tagged_blocks,
     then_blocks,
@@ -484,6 +486,28 @@ def governed_paths(project_dir: Path) -> dict[str, str]:
             if path:
                 paths[str(path).replace("\\", "/").removeprefix("./")] = page.slug
     return paths
+
+
+def check_keys(blocks: dict, project_dir: Path, schema_free: set[str]) -> list[str]:
+    """Case 436.2: a key of an item that `materialize.item_keys` does not give its kind and
+    category — the one judgment the lift and `generate` go by; a `create` or a `defer` of a
+    category with no schema file, or of one in `schema_free`, is not judged (case 308.2)."""
+    findings: list[str] = []
+    for case, block in blocks.items():
+        for kind in DECISION_KINDS:
+            for item in block.get(kind) or []:
+                if not isinstance(item, dict):
+                    continue
+                slug = str(item.get("slug"))
+                accepted = item_keys(kind, category_of(slug), project_dir, schema_free)
+                if accepted is None:
+                    continue
+                findings += [
+                    f"case {case}: {kind} {slug}: key {key} is not a key of this item"
+                    for key in item
+                    if key not in accepted
+                ]
+    return findings
 
 
 def check_governed(blocks: dict, governed: dict[str, str]) -> list[str]:
@@ -860,11 +884,15 @@ def judge(
     records: list[dict],
     lines: list[tuple] | None = None,
     frontier: tuple[Path, str] | None = None,
+    schema_free: set[str] | None = None,
 ) -> list[str]:
     """The checks of `--check` on the plan's Cases, in the order they print. `lines`, the
     window's record lines, adds their grammar (75.2); `frontier`, its path and the name a
     finding gives it, adds the Frontier (59.2). The check after a write passes neither, and
-    the comparison with the ratified copy stays with `check` (case 414.1)."""
+    the comparison with the ratified copy stays with `check` (case 414.1). `schema_free`: the
+    categories whose keys are not judged, by default those `records` change (case 436.2)."""
+    if schema_free is None:
+        schema_free = schema_changed(records)
     cases = split_cases(plan)
     blocks: dict[str, dict] = {}
     findings: list[str] = []
@@ -878,6 +906,7 @@ def judge(
         findings += check_frontier(frontier[0], frontier[1], cases, blocks)
     findings += check_tasks(cases, blocks, records)
     findings += check_governed(blocks, governed_paths(project_dir))
+    findings += check_keys(blocks, project_dir, schema_free)
     findings += check_form(blocks, project_dir)
     findings += check_markers(blocks, project_dir)
     findings += check_pairs(cases, blocks, project_dir)

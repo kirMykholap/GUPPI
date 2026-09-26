@@ -43,7 +43,7 @@ update:
 ```tasks
 - [x] update `rule-frame-check` — the page renamed `rule-case-build`
 - [x] `uv run guppi render`: `.claude/agents/case-guppi.md`
-- [ ] by hand: a Grep of `rule-frame-check` over `vault/wiki/` finds it only in History lines, `brief.md` and `log.md`
+- [x] by hand: a Grep of `rule-frame-check` over `vault/wiki/` finds it only in History lines, `brief.md` and `log.md`
 ```
 
 ## Case 426 — Refuse a second item of one slug in a `then` block

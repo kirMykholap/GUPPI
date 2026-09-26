@@ -4,8 +4,11 @@ hook that compares an edited plan with that copy (`rule-spec-reconcile`, case 38
 
 The write. After a reply whose `LEDGER` block holds `- decision[case N]` lines of a kind other
 than `defer`, the hook reads the session's transcript, finds the last earlier reply that shows
-`## Case N —` (or `### Case N.M —`) whole — `when`, `then` and `tasks` present — and writes
-that Case into the plan file `ledger.plan_path` names and into the ratified copy
+`## Case N —` (or `### Case N.M —`) whole — `when`, `then` and `tasks` present — compares it
+with the answer of `case-guppi` stored under Case N in `<plan>.checked.json` by the one
+comparison of `casecheck.against_store`, refuses a showing that differs, a store with no Case
+N or one stored with findings, and writes the stored answer (case 437) into the plan file
+`ledger.plan_path` names and into the ratified copy
 `<plan>.ratified.md` beside it, outside the repository: the heading, `context`, `problem`,
 `given`, `when` and `then` as they stand in the chat — a `context` or `problem` the showing
 leaves out keeps the text the plan held — a block tagged `then` built from the sub-points of
@@ -18,7 +21,10 @@ keys — `old` and `new` in pairs under `replace`, `reword old` and `reword new`
 `reword`, `set` (a YAML flow mapping), `change`, `rename`, `sections.<Name>`, the fields of a
 `create` — each value one code span, with as many backticks as the value needs and padded by
 one space on each side when it holds a backtick, an unpadded one refused (case 402), or a fenced
-block under the sub-point; a `create` of an Estimate takes its `ref` from its ledger line when
+block under the sub-point; a sub-point that reads into no key `materialize.item_keys` gives its
+item is refused, and nothing of the Case is written — a `create` or a `defer` of a category with
+no schema file, or of one whose schema rule the session's ledger or the reply changes, not
+judged (cases 308.2, 436.1); a `create` of an Estimate takes its `ref` from its ledger line when
 no sub-point gives one. A last mention that is a fence tagged `DIFF` naming the Case writes
 nothing for it.
 
@@ -28,7 +34,8 @@ heading, `context`, `problem` and its fence tagged `then`, each `defer` line wit
 `slug`, `type` and `purpose`. It goes under `## Deferred` of the plan file, or of `spec.md` in
 the session's folder once that file stands (Retro), its section replaced when it stands and
 appended otherwise; the ratified copy gets none, and the check after the write does not run
-on it. No showing or a missing item is a refusal.
+on it. No showing, a missing item, or a key of a `defer` item that `materialize.item_keys`
+does not give it (case 436.3) is a refusal.
 
 The check after the write (case 414.1). Each Case written in the run, and its sub-cases, goes
 through the checks of `guppi prespec --check` — `prespec.written_findings`, imported inside
@@ -78,7 +85,10 @@ from guppi.materialize import (
     HEADING,
     QUOTE,
     SECTION_START,
+    category_of,
+    item_keys,
     parse_line,
+    schema_changed,
     split_cases,
     tagged_blocks,
 )
@@ -213,8 +223,25 @@ def fenced_value(lines: list[str], start: int) -> tuple[str | None, int]:
     return None, len(lines)
 
 
-def put(item: dict, key: str, value: str) -> str | None:
-    """One sub-point into its item; the error, or None."""
+def sub_point_key(key: str) -> str:
+    """The key of the item a sub-point reads into: `old` and `new` into `replace`, `reword
+    old` and `reword new` into `reword`, `sections.<Name>` into `sections`."""
+    if key in ("old", "new"):
+        return "replace"
+    if key in ("reword old", "reword new"):
+        return "reword"
+    if key.startswith("sections."):
+        return "sections"
+    return key
+
+
+def put(
+    item: dict, key: str, value: str, accepted: set[str] | None = None, label: str = ""
+) -> str | None:
+    """One sub-point into its item; the error, or None. `accepted`: the keys `item_keys`
+    gives the item, a sub-point outside them refused; None, nothing judged (case 436.1)."""
+    if accepted is not None and sub_point_key(key) not in accepted:
+        return f"`{key}`: not a key of {label}"
     if key in ("old", "reword old"):
         item.setdefault("replace" if key == "old" else "reword", []).append({"old": value})
         return None
@@ -246,14 +273,17 @@ def put(item: dict, key: str, value: str) -> str | None:
     return None
 
 
-def read_tasks(text: str) -> tuple[list[str], dict, list[str]]:
+def read_tasks(text: str, keys_for=None) -> tuple[list[str], dict, list[str]]:
     """The task lines without their sub-points, the `then` block their items make, and the
-    errors of the form."""
+    errors of the form. `keys_for(kind, slug)`: the keys an item accepts, or None when none
+    are judged (case 436.1)."""
     lines = text.splitlines()
     tasks: list[str] = []
     block: dict = {}
     errors: list[str] = []
     item: dict | None = None
+    accepted: set[str] | None = None
+    label = ""
     index = 0
     while index < len(lines):
         line = lines[index]
@@ -265,6 +295,8 @@ def read_tasks(text: str) -> tuple[list[str], dict, list[str]]:
             if head:
                 item = {"slug": head.group(2)}
                 block.setdefault(head.group(1), []).append(item)
+                accepted = keys_for(head.group(1), head.group(2)) if keys_for else None
+                label = f"{head.group(1)} {head.group(2)}"
             index += 1
             continue
         point = SUB_POINT.match(line)
@@ -288,7 +320,7 @@ def read_tasks(text: str) -> tuple[list[str], dict, list[str]]:
             if item is None:
                 errors.append(f"`{key}`: a sub-point under a line that is no item")
                 continue
-            error = put(item, key, value)
+            error = put(item, key, value, accepted, label)
             if error:
                 errors.append(error)
             continue
@@ -425,14 +457,41 @@ def find_showing(messages: list[str], case: str):
     return None
 
 
+def key_judge(project_dir: Path, schema_free: set[str]):
+    """`keys_for(kind, slug)` for `read_tasks`: `materialize.item_keys` of the item's kind
+    and category, the categories of `schema_free` not judged (cases 308.2, 436.1)."""
+
+    def keys_for(kind: str, slug: str) -> set[str] | None:
+        return item_keys(kind, category_of(slug), project_dir, schema_free)
+
+    return keys_for
+
+
+def window_schema_free(folder: Path | None, reply: str) -> set[str]:
+    """The categories whose schema rule a decision line of the session's ledger or of the
+    reply creates or updates — their `create` and `defer` items not judged by their keys."""
+    lines = list(ledger_lines(reply))
+    if folder is not None:
+        path = folder / "ledger.md"
+        if path.is_file():
+            lines += path.read_text(encoding="utf-8").splitlines()
+    return schema_changed(lines)
+
+
 def case_section(
-    case: str, heading: str, lines: list[str], refs: dict, held: dict | None = None
+    case: str,
+    heading: str,
+    lines: list[str],
+    refs: dict,
+    held: dict | None = None,
+    keys_for=None,
 ) -> tuple[list[str], list[str]]:
     """The Spec section of a Case shown in the chat form, built in memory, and the errors of
     its form — the one reading of the write and of `casecheck` (case 419.3). A `context` or
-    `problem` the showing leaves out is taken from `held`, the sections the Spec holds."""
+    `problem` the showing leaves out is taken from `held`, the sections the Spec holds.
+    `keys_for` judges the keys of each item (case 436.1)."""
     chat = quoted_sections(lines, CHAT_SECTIONS)
-    tasks, block, errors = read_tasks(chat.get("tasks", ""))
+    tasks, block, errors = read_tasks(chat.get("tasks", ""), keys_for)
     if errors:
         return [], errors
     for item in block.get("create") or []:
@@ -446,14 +505,20 @@ def case_section(
     return spec_section(heading, sections, block, tasks), []
 
 
-def write_case(plan: Path, case: str, heading: str, lines: list[str], refs: dict) -> list[str]:
-    """The Case into the plan and into its copy; the errors, empty when it was written."""
+def write_case(
+    plan: Path, case: str, heading: str, lines: list[str], refs: dict, keys_for=None
+) -> list[str]:
+    """The Case into the plan and into its copy; the errors, empty when it was written —
+    nothing is written when either section has an error."""
+    sections: list[tuple[Path, str, list[str]]] = []
     for path in (plan, copy_of(plan)):
         text = document(path, plan)
         held = quoted_sections(split_cases(text).get(case, []), SPEC_SECTIONS)
-        section, errors = case_section(case, heading, lines, refs, held)
+        section, errors = case_section(case, heading, lines, refs, held, keys_for)
         if errors:
             return errors
+        sections.append((path, text, section))
+    for path, text, section in sections:
         write_text(path, place(text, case, section))
     return []
 
@@ -470,10 +535,10 @@ def defer_only(records: list[dict]) -> list[str]:
     return [case for case, seen in kinds.items() if seen == {"defer"}]
 
 
-def deferred_section(reply: str, case: str, records: list[dict]):
+def deferred_section(reply: str, case: str, records: list[dict], keys_for=None):
     """`(section, errors)`: the short form of Case N as the reply shows it — the heading,
     `context`, `problem` and its fence tagged `then` — checked against the reply's `defer`
-    lines of Case N."""
+    lines of Case N, and each key of a `defer` item against `keys_for` (case 436.3)."""
     lines = split_cases(reply).get(case)
     if lines is None:
         return [], [f"case {case}: the reply that defers it does not show it"]
@@ -495,6 +560,21 @@ def deferred_section(reply: str, case: str, records: list[dict]):
         return [], [
             f"case {case}: no defer item with slug, type and purpose for {', '.join(missing)}"
         ]
+    if keys_for is not None:
+        foreign = []
+        for item in items:
+            if not isinstance(item, dict):
+                continue
+            accepted = keys_for("defer", str(item.get("slug")))
+            if accepted is None:
+                continue
+            foreign += [
+                f"case {case}: `{key}`: not a key of defer {item.get('slug')}"
+                for key in item
+                if key not in accepted
+            ]
+        if foreign:
+            return [], foreign
     section = spec_section(headings(reply)[case], quoted_sections(lines, PROSE), {}, [])
     return section + ["```then", *blocks[0].splitlines(), "```", ""], []
 
@@ -510,11 +590,11 @@ def place_deferred(document: str, case: str, section: list[str]) -> str:
     return "\n".join(lines + [""] + section).rstrip("\n") + "\n"
 
 
-def write_defers(reply: str, records: list[dict], target: Path) -> list[str]:
+def write_defers(reply: str, records: list[dict], target: Path, keys_for=None) -> list[str]:
     """Each defer-only Case of the reply under `## Deferred` of `target`; the errors."""
     problems: list[str] = []
     for case in defer_only(records):
-        section, errors = deferred_section(reply, case, records)
+        section, errors = deferred_section(reply, case, records, keys_for)
         if errors:
             problems += errors
             continue
@@ -678,6 +758,7 @@ def stop(payload: dict, project_dir: Path, now, stderr) -> int:
     ]
     cases, refs = ratified_cases(records)
     plan = plan_path(session_event_logs(project_dir, now, stamp), stamp)
+    keys_for = key_judge(project_dir, window_schema_free(folder, reply))
     problems: list[str] = []
     written: set[str] = set()
     if cases:
@@ -687,6 +768,9 @@ def stop(payload: dict, project_dir: Path, now, stderr) -> int:
                 "line, then repeat the ledger lines"
             )
         else:
+            from guppi.casecheck import against_store, read_store  # it imports this module
+
+            store = read_store(plan)
             messages = transcript_texts(payload)
             if messages and messages[-1].strip() == reply.strip():
                 messages = messages[:-1]
@@ -698,13 +782,25 @@ def stop(payload: dict, project_dir: Path, now, stderr) -> int:
                     problems.append(f"case {case}: no earlier reply shows it whole")
                     continue
                 heading, lines, text = found
-                errors = write_case(plan, case, heading, lines, refs)
+                problem = against_store(case, heading, lines, store)  # case 437
+                if problem:
+                    problems.append(problem)
+                    continue
+                answer = store[case]["text"]  # the Case as case-guppi answered it
+                errors = write_case(
+                    plan, case, headings(answer)[case], split_cases(answer)[case], refs, keys_for
+                )
                 if errors:
                     problems += [f"case {case}: {error}" for error in errors]
                     continue
                 written.add(case)
                 if "." in case:
-                    write_parent(plan, case, text)
+                    parent = store.get(case.rsplit(".", 1)[0])
+                    shows_parent = quoted_sections(
+                        split_cases(text).get(case.rsplit(".", 1)[0], []), PROSE
+                    )
+                    source = parent["text"] if shows_parent and isinstance(parent, dict) else text
+                    write_parent(plan, case, source)
             if written:
                 from guppi import prespec  # it imports this module at load (case 414.1)
 
@@ -721,7 +817,7 @@ def stop(payload: dict, project_dir: Path, now, stderr) -> int:
                 "line, then repeat the ledger lines"
             )
         else:
-            problems += write_defers(reply, records, target)
+            problems += write_defers(reply, records, target, keys_for)
     if plan is not None and plan.is_file():
         problems += check_marks(plan, reply, written)
     if problems:

@@ -2227,3 +2227,27 @@ def test_a_folded_reading_is_refolded_for_each_block_of_the_line(tmp_path):  # c
     assert marked["superseded_by"] == "31" and "folded" not in marked
     (live,) = [e for e in of_case(data, "31") if e.get("kind") == "create"]
     assert live["status"] == "passed" and live["folded"] == [3]
+
+
+def test_item_keys_answers_for_each_kind_as_the_lift_does(tmp_path):
+    # 436.1: one judgment of the keys of an item, for all four kinds
+    assert materialize.item_keys("update", "rules", tmp_path) == {
+        "slug",
+        "set",
+        "sections",
+        "replace",
+        "reword",
+        "change",
+        "rename",
+    }
+    assert materialize.item_keys("delete", "rules", tmp_path) == {"slug", "impact", "change"}
+    assert materialize.item_keys("create", "rules", tmp_path) is None  # no schema file
+    schema = tmp_path / "vault" / "wiki" / "rules" / "schema.yaml"
+    schema.parent.mkdir(parents=True)
+    schema.write_text("properties:\n  required: [type, purpose]\n", encoding="utf-8")
+    create = materialize.item_keys("create", "rules", tmp_path)
+    assert {"type", "purpose", "slug", "ref", "sections", "method", "contract"} <= create
+    assert "flavour" not in create
+    defer = materialize.item_keys("defer", "rules", tmp_path)
+    assert {"type", "purpose", "slug"} <= defer and "old" not in defer
+    assert materialize.item_keys("create", "rules", tmp_path, {"rules"}) is None  # 308.2

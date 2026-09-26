@@ -149,6 +149,7 @@ from guppi.event import project_root
 from guppi.lint import CODE_SPAN
 from guppi.materialize import (
     CATEGORIES,
+    ITEM_KEYS,
     PREFIXES,
     dump_yaml,
     load_yaml,
@@ -758,7 +759,7 @@ class Vault:
         if entry.get("criterion_block"):  # the shape before case 189: not applied (201.1)
             self.error(slug, "criterion_block: a shape the script no longer knows (case 201.1)")
             return
-        keys = ("set", "sections", "replace", "change", "rename", "reword")
+        keys = [k for k in ITEM_KEYS["update"] if k != "slug"]  # one list (case 436.1)
         if not any(entry.get(k) for k in keys):
             print(
                 f"generate: {slug}: an update with no content in the Spec; nothing applied",

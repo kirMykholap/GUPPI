@@ -267,15 +267,19 @@ def category_of(slug: str) -> str | None:
     return None
 
 
-def schema_changed(ledger: list[str]) -> set[str]:
+def schema_changed(ledger: list) -> set[str]:
     """Case 308.2: the categories whose `rule-<category>-schema` this unit creates or
     updates. A `create` of such a category is lifted whole, no `unknown`: the `schema.yaml`
-    on disk catches up only at the render after `generate`."""
+    on disk catches up only at the render after `generate`. `ledger` holds lines or records
+    `parse_line` made of them (case 436.1)."""
     out: set[str] = set()
     for line in ledger:
-        if not line.startswith("- "):
+        if isinstance(line, dict):
+            record = line
+        elif line.startswith("- "):
+            record = parse_line(line)
+        else:
             continue
-        record = parse_line(line)
         if record is None or record.get("record") != "decision":
             continue
         match = SCHEMA_RULE.match(str(record.get("slug") or ""))
@@ -563,6 +567,42 @@ def decision_entry(
 
 STRUCTURAL_KEYS = ("slug", "sections", "estimate", "file", "ref", "parent_create", "parent_tags")
 DEFER_KEYS = ("type", "purpose")  # a defer's own keys, not fields of its target (case 266)
+CREATE_SKIPPED = ("slug", "sections", "estimate", "file", "parent_create", "parent_tags")
+# The closed keys of an `update` and a `delete` (case 436.1): what `_lift_item` lifts and
+# `generate` applies; any other key of these kinds is dropped here and refused by the Spec
+# hook and by pre-spec, which import this list.
+ITEM_KEYS = {
+    "update": ("slug", "set", "sections", "replace", "reword", "change", "rename"),
+    "delete": ("slug", "impact", "change"),
+}
+
+
+def accepted_keys(kind: str, known: set[str], estimate: bool = False) -> set[str]:
+    """The keys a `create` or a `defer` accepts, given the fields `known` of its category's
+    schema: those fields and the item's own keys, as `_lift_item` counts them (case 436.1).
+    `estimate`: a `create` of an Estimate, which keeps the keys of the old shape."""
+    if kind == "defer":
+        return set(known) | set(DEFER_KEYS) | set(STRUCTURAL_KEYS)
+    skipped = CREATE_SKIPPED if estimate else CREATE_SKIPPED + IGNORED_KEYS
+    return set(known) | set(skipped) | set(STRUCTURAL_KEYS)
+
+
+def item_keys(
+    kind: str, category: str | None, project_dir: Path, schema_free: set[str] = frozenset()
+) -> set[str] | None:
+    """The keys an item of `kind` for a page of `category` accepts — the one judgment the
+    lift, `generate`, the Spec hook and pre-spec share (case 436). `ITEM_KEYS` for an
+    `update` and a `delete`; for a `create` and a `defer` the fields of the category's schema
+    and the item's own keys. None where no judgment is made: a category with no schema file,
+    or one whose schema rule the session changes (`schema_free`, case 308.2)."""
+    if kind in ITEM_KEYS:
+        return set(ITEM_KEYS[kind])
+    if kind not in ("create", "defer"):
+        return None
+    known = schema_fields(project_dir, {"category": category}, schema_free)
+    if known is None:
+        return None
+    return accepted_keys(kind, known, estimate=category == "estimates")
 
 
 def schema_fields(
@@ -596,14 +636,14 @@ def _lift_item(
     known: set[str] | None = None,
 ):
     if kind == "create":
-        skipped = ("slug", "sections", "estimate", "file", "parent_create", "parent_tags")
-        if nested != "estimate" and entry.get("category") != "estimates":
+        estimate = nested == "estimate" or entry.get("category") == "estimates"
+        skipped = CREATE_SKIPPED
+        if not estimate:
             skipped += IGNORED_KEYS  # the old shape's keys stay off the target (194.1)
         fields = {k: v for k, v in item.items() if k not in skipped}
-        if known is not None:  # the lift by the schema (case 214.1)
-            unknown = [
-                k for k in item if k not in known and k not in skipped and k not in STRUCTURAL_KEYS
-            ]
+        if known is not None:  # the lift by the schema (case 214.1), by `accepted_keys` (436)
+            accepted = accepted_keys("create", known, estimate)
+            unknown = [k for k in item if k not in accepted]
             if unknown:
                 entry["unknown"] = unknown
             fields = {k: v for k, v in fields.items() if k in known}
@@ -648,7 +688,9 @@ def _lift_item(
         ):
             incomplete.append("parent")
     elif kind == "update":
-        for key in ("set", "sections", "replace", "change", "rename"):
+        for key in ITEM_KEYS["update"]:
+            if key in ("slug", "reword"):  # the target, and the pairs checked below
+                continue
             if item.get(key) is not None:  # `rename`: the new slug, checked by generate (258.2)
                 entry[key] = item[key]
         if item.get("reword") is not None:  # a list of pairs, carried as written (274.3)
@@ -664,18 +706,18 @@ def _lift_item(
         if known is not None:  # the lift by the schema (case 214.1); `type` and `purpose`
             # are the defer's own keys, kept whatever the target's category (case 266)
             kept = set(known) | set(DEFER_KEYS)
-            unknown = [k for k in fields if k not in kept and k not in STRUCTURAL_KEYS]
+            accepted = accepted_keys("defer", known)
+            unknown = [k for k in fields if k not in accepted]
             if unknown:
                 entry["unknown"] = unknown
             fields = {k: v for k, v in fields.items() if k in kept}
         entry["fields"] = fields
         if "purpose" not in fields:
             incomplete.append("purpose")
-    else:  # delete
-        if item.get("impact") is not None:
-            entry["impact"] = item["impact"]
-        if item.get("change") is not None:
-            entry["change"] = item["change"]
+    else:  # delete: the keys of `ITEM_KEYS`, the others dropped (case 436.1)
+        for key in ITEM_KEYS["delete"]:
+            if key != "slug" and item.get(key) is not None:
+                entry[key] = item[key]
 
 
 # --- the Criterion of an Estimate (cases 188, 194.1) ----------------------------------

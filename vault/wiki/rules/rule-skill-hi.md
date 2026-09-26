@@ -28,6 +28,7 @@ is no step the agent can forget or reorder. The `hi` mark in the event log is le
 name: hi
 description: Open a working session — sprint, brief, git state, open issues, then the Frontier.
 disable-model-invocation: true
+allowed-tools: Bash(git pull --ff-only:*), Bash(uv run guppi render --sync), Bash(git branch --show-current), Bash(git status --short), Bash(gh issue list:*), Bash(uv run guppi tail)
 ---
 <!-- rule-internal-context -->
 <!-- rule-git-context -->
@@ -52,7 +53,7 @@ exists (Slice 2) — the next render overwrites it. Until then the file and this
 copies of one text, kept identical by hand.
 
 `disable-model-invocation: true` in the frontmatter: only the person opens a working
-session. The skill writes no event line of its own since case 111.4: a `!` substitution never saw `CLAUDE_SESSION_ID` (every `hi` of sessions A–M carried `--------`), so the `hi` line is the `UserPromptSubmit` hook's, which reads the session id from its payload (`rule-event-log`, case 111.1).
+session. `allowed-tools` names the six `!` commands of the skill: since client 2.1.282 the Bash check is server-side and a `!` substitution the person types gets no verdict ("The server-side auto mode classifier gave no verdict for Bash: the request that produced this action did not ask for one", session 1b191eaf, 2026-09-26), so a command no rule allows is refused and `/hi` does not open; a matching rule needs no classifier. The skill writes no event line of its own since case 111.4: a `!` substitution never saw `CLAUDE_SESSION_ID` (every `hi` of sessions A–M carried `--------`), so the `hi` line is the `UserPromptSubmit` hook's, which reads the session id from its payload (`rule-event-log`, case 111.1).
 
 ## History
 

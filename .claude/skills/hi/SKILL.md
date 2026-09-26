@@ -2,6 +2,7 @@
 name: hi
 description: Open a working session — sprint, brief, git state, open issues, then the Frontier.
 disable-model-invocation: true
+allowed-tools: Bash(git pull --ff-only:*), Bash(uv run guppi render --sync), Bash(git branch --show-current), Bash(git status --short), Bash(gh issue list:*), Bash(uv run guppi tail)
 ---
 <!-- rule-internal-context -->
 @vault/wiki/sprint.md

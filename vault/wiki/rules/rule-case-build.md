@@ -16,7 +16,7 @@ tags: [session, workflow, harness]
 
 ## Purpose
 
-Prevents a Case from being shown before one agent has built it against the vault, its frame and its form, outside the main agent's context. The agent `case-guppi` gets a Frontier item and the person's words, reads `vault/wiki/case-schema.md`, runs the vault query of `ask-guppi` itself — it cannot dispatch a subagent — reads the pages and files the Case's `given` names, and answers with a round of questions by the skill `grill-me` while a fork of the item is open, and with the Case alone when none is; the main agent shows it with its name, `context`, `problem` and `recommend` translated into Russian and the rest unchanged ([[rule-case-protocol]]), and the hooks of `rule-case-check` check it before the showing and compare the showing with it in all but that prose (case 441). Until case 419.2 the agent was `frame-guppi`, which read the frame of a Case the main agent wrote and returned the contradictions only; whether a subagent pays for its tokens and time, the question of cases 403 and 408, is the method of its Estimate.
+Prevents a Case from being shown before one agent has built it against the vault, its frame and its form, outside the main agent's context. The agent `case-guppi` gets a Frontier item and the person's words, reads `vault/wiki/case-schema.md`, runs the vault query of `ask-guppi` itself — it cannot dispatch a subagent — reads the pages and files the Case's `given` names, and answers with a round of questions by the skill `grill-me` while a fork of the item is open, and with the Case alone when none is; the hook of `rule-case-check` checks it and writes it into a file of the session, which the main agent sends the person with a short Russian text ([[rule-case-protocol]]), and the `Stop` hook compares what the chat shows of it with the answer (cases 441, 452.4). Until case 419.2 the agent was `frame-guppi`, which read the frame of a Case the main agent wrote and returned the contradictions only; whether a subagent pays for its tokens and time, the question of cases 403 and 408, is the method of its Estimate.
 
 ## Render
 
@@ -29,7 +29,7 @@ effort: medium
 tools: Read, Grep, Glob
 skills: [grill-me]
 ---
-You build one Case of Plan Mode. Write it whole in English — its name, `context`, `problem` and `recommend` too — since the Spec is written from your answer; the main agent shows it to the person with that prose translated into Russian and the rest unchanged, and the person ratifies it. The caller's prompt holds the Case id, the Frontier item with its source, and the person's words that bear on it; a later message holds the person's answers to your round of questions, verbatim and untranslated, or the person's question or change on the Case you built. You decide nothing the person has not decided.
+You build one Case of Plan Mode. Write it whole in English — its name, `context`, `problem` and `recommend` too — since the Spec is written from your answer; a hook writes your answer into a file that the main agent sends the person, who reads it in English, and the person ratifies it. The caller's prompt holds the Case id, the Frontier item with its source, and the person's words that bear on it; a later message holds the person's answers to your round of questions, verbatim and untranslated, or the person's question or change on the Case you built. You decide nothing the person has not decided.
 
 Read `vault/wiki/case-schema.md` whole first: it is the form, the language and the operands of your answer. Then read the pages the item names — a page is found by a Glob `vault/wiki/**/<slug>.md` — and the code they point to by `governs`, `implementation_ref` or `code_ref`.
 
@@ -58,3 +58,4 @@ When no fork is open, answer with the Case in the chat form of the schema, from 
 - 2026-09-25 updated: renamed: the rule of the agent case-guppi; the rename of case 419.2, lost by materialize, applied (case 425) · [[decision-case-425]]
 - 2026-09-26 updated: case-guppi writes the whole Case in English; the main agent translates its prose for the chat (case 441.1) · [[decision-case-441.1]]
 - 2026-09-27 updated: case-guppi loads grill-me by the skills field and answers with a round of questions while a fork is open (case 443.2) · [[decision-case-443.2]]
+- 2026-09-27 updated: the Case of case-guppi reaches the person as the file the hook writes, not translated in the chat (case 452.4) · [[decision-case-452.4]]

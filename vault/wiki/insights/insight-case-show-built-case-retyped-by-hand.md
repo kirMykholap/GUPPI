@@ -1,9 +1,10 @@
 ---
 type: insight
 pattern: The main agent writes the Case that case-guppi built out again by hand instead of copying the answer, so a showing can differ from the answer in any line — a ratification block, a ref — and only the comparison on Stop, which refuses a reply the person already sees and lets the re-fire through, stands between the retyped Case and the person.
-status: open
+status: actioned
 children: ["[[lesson-case-show-sub-case-ratification-retyped]]", "[[lesson-case-show-ref-of-a-ratification-line-retyped]]"]
-severity: 2
+severity: 0
+addressed_by: "[[decision-case-452.4]]"
 origin: raw/2026-09-26/1337/ledger.md#L20
 sprint: migration
 created: 2026-09-26
@@ -21,3 +22,4 @@ Let the showing of a built Case not pass through the agent's retyping — for ex
 ## History
 
 - 2026-09-26 created · raw/2026-09-26/1337/ledger.md#L20
+- 2026-09-27 updated: actioned: the hook writes the stored answer into a file the main agent sends, and the chat holds only a short text and the ratification, which the Stop comparison guards (case 452.4) · [[decision-case-452.4]]

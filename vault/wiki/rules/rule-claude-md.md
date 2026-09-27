@@ -9,6 +9,7 @@ render_mode: full
 parent: "[[rule-harness]]"
 children: ["[[rule-language]]", "[[rule-agent-writing]]", "[[rule-one-judgment-one-implementation]]"]
 estimates: ["[[estimate-claude-md-rendered]]"]
+deferred_by: ["[[decision-case-454]]"]
 origin: raw/2026-09-12/ledger.md#case-59.8
 sprint: migration
 created: 2026-09-12
@@ -68,3 +69,4 @@ Rendered in full into `CLAUDE.md`; each child — `rule-language`, `rule-agent-w
 - 2026-09-23 updated: the third child rule-one-judgment-one-implementation, its marker in the Render (case 360) · [[decision-case-360]]
 - 2026-09-23 status: built → draft · cascade
 - 2026-09-23 status: draft → built · cascade
+- 2026-09-27 deferred · [[decision-case-454]]

@@ -7,7 +7,7 @@ enforcement: render
 governs: .claude/agents/librarian-guppi.md
 render_mode: full
 parent: "[[rule-session]]"
-children: ["[[rule-materialize]]", "[[rule-index-check]]", "[[rule-synthesis]]", "[[rule-page-generation]]", "[[rule-cleanup]]", "[[rule-raw-archive]]", "[[rule-brief]]", "[[rule-close]]", "[[rule-sprint]]", "[[rule-glossary]]"]
+children: ["[[rule-materialize]]", "[[rule-index-check]]", "[[rule-synthesis]]", "[[rule-page-generation]]", "[[rule-cleanup]]", "[[rule-raw-archive]]", "[[rule-brief]]", "[[rule-close]]", "[[rule-sprint]]", "[[rule-glossary]]", "[[rule-backlog]]"]
 estimates: ["[[estimate-documentation-completes]]"]
 origin: raw/2026-09-10/ledger.md#case-36
 sprint: migration
@@ -79,7 +79,7 @@ Do the steps in this order.
    files are written from them here. Every line on its stderr is a flag; a file it
    could not write is left to the next session start.
 
-5. Run `uv run guppi sprint`. It writes `vault/wiki/sprint.md` from the sprint page by the statuses of this run. Every line on its stderr is a flag.
+5. Run `uv run guppi sprint`. It writes `vault/wiki/sprint.md` from the sprint page by the statuses of this run. Then run `uv run guppi backlog`. It writes `vault/wiki/backlog.md` from the conserved Specs, the pages with `deferred_by`, the open Insights and the `## Backlog` of the sprint page. Every line on the stderr of either is a flag.
 
 6. Run `uv run guppi glossary`. It writes `vault/wiki/glossary.md` from the `## Terms` of `entity-glossary`. Every line on its stderr is a flag.
 
@@ -140,3 +140,5 @@ project's hooks; the hook is part of this Render and is ratified with it.
 - 2026-09-22 updated: the parent is rule-session, the MOC of the five phases (case 316) · [[decision-case-316]]
 - 2026-09-23 updated: the ban allows one read of the ledger — its line count and the lines the yaml does not account for (case 349, supersedes 333 and 348) · [[decision-case-349]]
 - 2026-09-23 updated: the refusal names a read of ledger.md beyond the one allowed read (case 357) · [[decision-case-357]]
+- 2026-09-27 child rule-backlog added · [[decision-case-451.4]]
+- 2026-09-27 updated: the librarian runs guppi backlog after guppi sprint (case 451.13) · [[decision-case-451.13]]

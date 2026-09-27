@@ -2,7 +2,7 @@
 type: rule
 kind: Leaf
 purpose: Prevents an Insight page from carrying a field or section outside the shape lint checks, or lacking one it needs
-status: built
+status: draft
 enforcement: render
 governs: vault/wiki/insights/schema.yaml
 render_mode: full
@@ -27,7 +27,7 @@ description: |
 
   Insight is its own type, not a kind of Lesson. It shares no fields with one: no `trigger`, no `root_cause`, no `source`, no Estimate. It has `children`, `severity` and `addressed_by`, which a Lesson does not. Two schemas under one name would have meant a page where most fields are inapplicable whichever kind it is.
 
-  Created by the librarian, never by a decision; an `update` actions or rejects it, a `defer` postpones it (case 124). It reaches the human through the Deferred list of `brief.md` and becomes an ordinary ratified Case there.
+  Created by the librarian, never by a decision; an `update` actions or rejects it, a `defer` postpones it (case 124). It stands in `backlog.md` while `open`, and becomes an ordinary ratified Case when the person brings it onto a Frontier (case 451.4).
 
   Threshold. An Insight is created on the second Lesson sharing a root cause. One occurrence is an incident; two is a pattern. The archive is not searched. A Lesson is archived only when its Insight was actioned — its `clustered` children are archived by the cascade of `generate` (case 104.2) — and that Insight stays live with its `pattern` in its index line; a recurrence after the pattern was supposedly fixed is caught there, at the cost of one index line, and reopens the Insight.
 
@@ -118,3 +118,5 @@ examples:
 - 2026-09-23 status: built → draft · cascade
 - 2026-09-23 status: draft → built · cascade
 - 2026-09-24 updated: the move of addressed_by only to a later case (case 385) · [[decision-case-385]]
+- 2026-09-27 updated: an open Insight stands in backlog.md, a Case when the person brings it onto a Frontier (case 451.4) · [[decision-case-451.4]]
+- 2026-09-27 status: built → draft · cascade

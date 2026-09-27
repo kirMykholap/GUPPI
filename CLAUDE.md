@@ -5,7 +5,7 @@ A Claude Code harness governed by ratified decisions, and the Obsidian vault it 
 <!-- rule-language -->
 ## Language
 
-English for everything written into the repository: code, identifiers, comments, pages, commit messages, documents — the Spec included. Russian for chat with the owner: the name of a Case, its `context`, `problem` and `recommend` are Russian in the chat, and its name, `context` and `problem` are English in the Spec; its `given`, `when`, `then` and `tasks` are English in the chat, the words that enter the Spec and the vault unchanged; a short-form Case is English in the chat, as the Spec holds it. Slugs, field names, ledger lines, paths and quotations from pages stay as they are in either language. English technical terms are not transliterated into Cyrillic.
+English for everything written into the repository: code, identifiers, comments, pages, commit messages, documents — the Spec included. Russian for chat with the owner; a Case is English whole — its name, `context`, `problem` and `recommend` too — in the file the agent sends the person and in the Spec, and the chat holds a short Russian text on each Case and sub-case, its ledger lines in English as the file holds them; a short-form Case is English in the chat, as the Spec holds it. Slugs, field names, ledger lines, paths and quotations from pages stay as they are in either language. English technical terms are not transliterated into Cyrillic.
 <!-- /rule-language -->
 
 <!-- rule-agent-writing -->

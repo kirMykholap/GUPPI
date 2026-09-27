@@ -19,12 +19,12 @@ A session starts with `CLAUDE.md`, and the agent writes into the repository or i
 
 Then:
 Everything written into the repository — code, identifiers, comments, pages, commit messages, documents, the approved Spec in `raw/<date>/<hi HHMM>/spec.md` — is English.
-**＋** The chat with the owner is Russian: the name of a Case, its `context`, `problem` and `recommend`, and the agent's own text.
-**＋** The name, `context` and `problem` of a Case are English in `raw/<date>/<hi HHMM>/spec.md`.
-**＋** A Case's `given`, `when`, `then` and `tasks` — lines and sub-points — are English in the chat and enter `raw/<date>/<hi HHMM>/spec.md` unchanged.
+**＋** The chat with the owner is Russian: the short text on each Case and sub-case that goes with its file, the name in its heading, a round of questions of `case-guppi` translated from the answer, and the agent's own text.
+**＋** A Case built by `case-guppi` is English whole — its name, `context`, `problem`, `recommend`, `given`, `when`, `then`, `tasks` and `ratification` — in `raw/<date>/<hi HHMM>/cases/case-<N>.md`, and its name, `context` and `problem` are English in `raw/<date>/<hi HHMM>/spec.md`.
+**＋** The ledger lines of a Case's `ratification` stand in the chat in English as the file holds them, and its `given`, `when`, `then` and `tasks` enter `raw/<date>/<hi HHMM>/spec.md` unchanged.
 **＋** Slugs, field names, ledger lines, paths and quotations from pages stay as they are in either language; English technical terms are not transliterated into Cyrillic.
 **－** A short-form Case of `vault/wiki/case-schema.md` is not Russian in the chat: it stands there in English, as `raw/<date>/<hi HHMM>/spec.md` holds it.
-**－** The rule speaks of the language, not of the Case form — the form is `vault/wiki/case-schema.md`.
+**－** The rule speaks of the language, not of the Case form: the form is `vault/wiki/case-schema.md`.
 
 ## Result
 
@@ -37,3 +37,4 @@ Everything written into the repository — code, identifiers, comments, pages, c
 - 2026-09-24 updated: the Criterion replaced whole — given, when, then and tasks English in the chat (case 387.1) · [[decision-case-387.1]]
 - 2026-09-26 status: pending → failed · raw/2026-09-26/1745/ledger.md#L37
 - 2026-09-27 updated: the Criterion replaced whole — the name, context and problem are English in the Spec with no translation step since Case 441; a short-form Case is English in the chat (case 446) · [[decision-case-446]]
+- 2026-09-27 updated: the Criterion replaced whole — a built Case English whole in its file, a short Russian text in the chat (case 452.5) · [[decision-case-452.5]]

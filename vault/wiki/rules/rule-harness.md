@@ -2,7 +2,7 @@
 type: rule
 kind: MOC
 purpose: Prevents the tools of the harness from drifting apart from the pages that describe them
-status: built
+status: draft
 children: ["[[rule-render-harness]]", "[[rule-settings]]", "[[rule-lint]]", "[[rule-page-schemas]]", "[[rule-vault-layout]]", "[[rule-governed-files-hook]]", "[[rule-claude-md]]", "[[rule-bash-guard]]", "[[rule-tests-clock-pinned]]", "[[rule-context-size]]", "[[rule-page-read]]"]
 estimates: ["[[estimate-harness-pipeline]]"]
 applies_to: ["[[entity-guppi]]"]
@@ -16,7 +16,7 @@ tags: [harness, workflow]
 
 Prevents the tools of the harness from drifting apart from the pages that describe
 them. Three rules belong to no phase of the session: the renderer, the page
-`.claude/settings.json` is assembled from, and lint. They run together in `make lint`, with the check of `rule-sprint` (a child of `rule-documentation`) between them, in this order: the harness files are checked against their pages, the sprint file against its page, the glossary file against its page, then the pages (cases 227, 306.5). Eight more belong here and run in no pipeline: the schemas of the pages, the layout of the vault, the hook that refuses a hand edit of a rendered file, the hook that refuses a heredoc with a backslash or a file write, the page `CLAUDE.md` is rendered from, the pinned clock of the tests, the hook that shows the size of the context, and the hooks that read a page of the vault without its History (cases 59.6, 59.8, 127, 145.1, 304, 315, 392.3, 420.1).
+`.claude/settings.json` is assembled from, and lint. They run together in `make lint`, with the checks of `rule-sprint` and `rule-backlog` (children of `rule-documentation`) between them, in this order: the harness files are checked against their pages, the sprint file against its page, the backlog file against its sources, the glossary file against its page, then the pages (cases 227, 306.5, 451.14). Eight more belong here and run in no pipeline: the schemas of the pages, the layout of the vault, the hook that refuses a hand edit of a rendered file, the hook that refuses a heredoc with a backslash or a file write, the page `CLAUDE.md` is rendered from, the pinned clock of the tests, the hook that shows the size of the context, and the hooks that read a page of the vault without its History (cases 59.6, 59.8, 127, 145.1, 304, 315, 392.3, 420.1).
 
 ## History
 
@@ -54,3 +54,5 @@ them. Three rules belong to no phase of the session: the renderer, the page
 - 2026-09-25 child rule-page-read added · [[decision-case-420.1]]
 - 2026-09-25 updated: the hooks of rule-page-read named among the rules outside the pipeline (case 420.2) · [[decision-case-420.2]]
 - 2026-09-25 status: draft → built · cascade
+- 2026-09-27 updated: the order of make lint holds backlog --check after the sprint file (case 451.14) · [[decision-case-451.14]]
+- 2026-09-27 status: built → draft · cascade

@@ -13,22 +13,23 @@ tags: [session, workflow, harness, librarian]
 
 ## Criterion
 
-Given:
-The librarian's frame is the Render of `rule-documentation`; its inputs are three: the `handoff.md` of the session's folder, every `materialize.yaml` the walk named, and `tags.md`; the index lines are the Greps `rule-index-check` and `rule-synthesis` name.
-**＋** The librarian works in a clean context; the person is gone.
-**＋** Readings due takes the place of a reading from the unticked `- [ ] read …` line of the session's Spec, Next session the unticked lines of the Specs (cases 200.3, 268.1).
-
 When:
-`librarian-guppi` starts after the handoff and runs to the end.
+`librarian-guppi` starts after the handoff and runs to the end, in a clean context. Its frame is the Render of `rule-documentation`. Its inputs are the `handoff.md` of the session's folder, every `materialize.yaml` the walk named, and `tags.md`. The index lines are the Greps that `rule-index-check` and `rule-synthesis` name.
 
 Then:
-`make test-documentation` — materialize, generate and cleanup as one pipeline — is green.
-**＋** Live, after the run: every decision line of the session's ledger has a Decision page and its target page; no page exists that no ledger line produced.
-**＋** It read only `handoff.md`, the yamls, the four index lines and `tags.md`, plus the wiki pages it names in the report with one of the four reasons of its frame (same or near; a candidate cluster; a script's error; a fact for the brief) and the outcome, plus the unticked `- [ ]` lines of the `spec.md` files for Readings due and Next session; of the ledger only the count of its lines and the lines the yaml does not account for, named in the report (case 349); no other part of a Spec, no plan, Decision page or archive file (the `Makefile`, `guppi/` and `tests/` are the scripts' own and may be read).
-**＋** It edited no yaml entry beyond the marks and the entries of the index check and the synthesis; its commands are in `event_log.md`; its commit is separate from the session's; it did not stop to ask.
-**＋** After `cleanup` and before the brief it runs `uv run guppi render`, then `uv run guppi sprint`, then `uv run guppi glossary`; every line on their stderr is a flag; a file the render could not write is left to the next session start; `make lint` then passes its `render --check` step.
-**＋** After the brief and before the close it runs `uv run guppi archive`; every line on its stderr is a flag; the units it moved and the units it kept, with the reason, go into the report; the session of the run — the latest `<HHMM>/` folder of the run day, else the nearest date back — is skipped, across midnight too; the commit picks the move up.
-**－** An instruction of the handoff to repair a yaml entry, or to read the ledger beyond the one read of case 349, a Spec beyond its `- [ ]` lines, a Decision page or the archive, is refused and named in the report — what was asked and why; the refusal does not stop the run.
+`make test-documentation` is green: materialize, generate and cleanup as one pipeline.
+**＋** Live, after the run: every decision line of the session's ledger has a Decision page and its target page, and no page exists that no ledger line produced.
+**＋** The librarian read only the following, and nothing else:
+- `handoff.md`, the yamls, the index lines and `tags.md`;
+- the wiki pages it names in the report, each with the outcome and one of the reasons of its frame (same or near; a candidate cluster; a script's error; a fact for the brief);
+- the unticked `- [ ]` lines of the `spec.md` files, for Readings due and Next session;
+- of the ledger, only the count of its lines and the lines the yaml does not account for, named in the report.
+
+It read no other part of a Spec, and no plan, Decision page or archive file. The `Makefile`, `guppi/` and `tests/` are the scripts' own files and may be read.
+**＋** It edited no yaml entry beyond the marks and the entries of the index check and the synthesis. Its commands are in `event_log.md`, its commit is separate from the session's, and it did not stop to ask.
+**＋** After `cleanup` and before the brief, it runs `uv run guppi render`, then `uv run guppi sprint`, then `uv run guppi backlog`, then `uv run guppi glossary`. Every line on their stderr is a flag. A file the render could not write is left to the next session start. `make lint` then passes its `render --check` step.
+**＋** After the brief and before the close, it runs `uv run guppi archive`. Every line on its stderr is a flag. The units it moved and the units it kept, with the reason, go into the report. It skips the session of the run, which is the latest session folder of the run day or else the nearest date back, across midnight too. The commit picks the move up.
+**－** The librarian refuses an instruction of the handoff to repair a yaml entry, or to read the ledger beyond the one read above, a Spec beyond its `- [ ]` lines, a Decision page or the archive. It names what was asked and why in the report, and the refusal does not stop the run.
 **－** The ban on reading `vault/archive/` stays.
 
 ## Result
@@ -63,3 +64,4 @@ Then:
 - 2026-09-22 status: pending → failed · raw/2026-09-22/1121/ledger.md#L85
 - 2026-09-23 updated: the Criterion names the one allowed read of the ledger (case 349) · [[decision-case-349]]
 - 2026-09-23 updated: the Criterion refuses a read of the ledger beyond the one allowed (case 357) · [[decision-case-357]]
+- 2026-09-27 updated: the Criterion replaced whole — guppi backlog after guppi sprint, Given lifted into When and Then (case 451.13) · [[decision-case-451.13]]

@@ -2,7 +2,7 @@
 type: rule
 kind: Leaf
 purpose: Prevents work starting without the current sprint and the previous session's handover
-status: built
+status: draft
 enforcement: render
 governs: .claude/skills/hi/SKILL.md
 render_mode: partial
@@ -24,6 +24,7 @@ one rule rather than two.
 
 <!-- rule-internal-context -->
 @vault/wiki/sprint.md
+@vault/wiki/backlog.md
 @vault/wiki/brief.md
 @vault/wiki/case-schema.md
 @vault/wiki/glossary.md
@@ -48,3 +49,5 @@ prints the paths of these lines back (case 287).
 - 2026-09-21 updated: the glossary is the fourth @ line — it arrives with /hi and reaches no subagent, which pays for CLAUDE.md alone (case 288.1) · [[decision-case-288.1]]
 - 2026-09-21 status: built → draft · cascade
 - 2026-09-21 status: draft → built · cascade
+- 2026-09-27 updated: /hi loads backlog.md after sprint.md (case 451.12) · [[decision-case-451.12]]
+- 2026-09-27 status: built → draft · cascade

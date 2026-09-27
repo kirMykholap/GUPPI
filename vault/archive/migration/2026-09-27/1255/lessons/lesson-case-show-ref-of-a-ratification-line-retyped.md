@@ -2,7 +2,7 @@
 type: lesson
 kind: error
 root_cause: the main agent retyped the Case from the subagent's report instead of copying the stored answer, and changed a ref it took for a slip; a showing retyped by hand can differ in any line, and only the comparison on Stop, which lets the re-fire through, stands between it and the person
-status: clustered
+status: archived
 insight: "[[insight-case-show-built-case-retyped-by-hand]]"
 origin: raw/2026-09-26/1337/ledger.md#L20
 sprint: migration
@@ -22,3 +22,5 @@ the main agent retyped the Case from the subagent's report instead of copying th
 
 - 2026-09-26 created · raw/2026-09-26/1337/ledger.md#L20
 - 2026-09-26 updated: clustered into insight-case-show-built-case-retyped-by-hand · raw/2026-09-26/1337/ledger.md#L20
+- 2026-09-27 archived · insight actioned
+- 2026-09-27 archived · cleanup

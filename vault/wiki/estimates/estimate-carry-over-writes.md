@@ -3,7 +3,7 @@ type: estimate
 kind: QA
 status: pending
 target: "[[rule-carry-over]]"
-purpose: /carry writes the brief and the mark and runs nothing else
+purpose: /carry writes the brief and the mark and runs guppi backlog and nothing else
 method: pytest over the skill's render, plus one live reading of a carried-over session
 checked: 2026-09-18
 origin: raw/2026-09-16/1034/ledger.md#case-190.1
@@ -14,23 +14,18 @@ tags: [session, workflow, harness]
 
 ## Criterion
 
-Given:
-The hook `guppi spec` on `PostToolUse` of `ExitPlanMode` wrote the Spec and printed the fork into the context: go on — Work Mode — or conserve until the next session.
-**＋** The agent asked the person which of the two and got "conserve".
-**＋** `guppi materialize` knows a conserved unit by the file `carry.md` in the session folder (case 190.3) — by its presence, not its content.
-**－** The person does not type `/carry`; the path of the skill is the agent's call on `PreToolUse Skill`.
-
 When:
-The agent calls the skill `carry` after the person's answer at the fork.
+The agent calls the skill `/carry` on `PreToolUse Skill`, after the person answered "conserve" at the fork `ExitPlanMode` prints. The person never types it.
 
 Then:
-The skill reads the tree; when it holds changes outside the session folder and `vault/wiki/brief.md`, it stops and says: work was done, the ordinary exit applies.
-**＋** Otherwise it rewrites `brief.md` — that is the conservation: the next session starts from it.
-**＋** It puts `carry.md` into the session folder — one line, a flag for `materialize`, not a document; the session that finishes the work deletes it.
-**＋** It runs `make style` and commits `vault/raw/` and `vault/wiki/brief.md`.
-**－** It runs no Work Mode, `/retro`, `/handoff`, librarian, `materialize`, `generate`, `cleanup` or `render`; it writes no page of `vault/wiki/` but the brief.
-**－** The work stays sequential, session after session: one conserved Spec, no parallelism.
-**－** `.claude/skills/carry/SKILL.md` equals the Render of the page; it is not edited by hand.
+The skill reads the tree. When the tree holds changes outside the session folder and `vault/wiki/brief.md`, the skill stops and says that work was done and the ordinary exit applies.
+**＋** Otherwise it rewrites `vault/wiki/brief.md` in the short shape, with no Deferred list.
+**＋** It puts `carry.md` into the session folder: one line, a flag for `materialize` and `guppi backlog`, not a document. The session that finishes the work deletes it.
+**＋** It runs `uv run guppi backlog`, and `vault/wiki/backlog.md` then shows the conserved Spec with its targets.
+**＋** It runs `make style` and commits `vault/raw/`, `vault/wiki/brief.md` and `vault/wiki/backlog.md`.
+**－** It runs no Work Mode, `/retro`, `/handoff`, librarian, `materialize`, `generate`, `cleanup` or `render`, and it writes no decision. It writes no page of `vault/wiki/`.
+**－** The work stays sequential, session after session: one conserved Spec, no parallel work.
+**－** `.claude/skills/carry/SKILL.md` equals the Render of the page and is not edited by hand.
 
 ## Result
 
@@ -44,3 +39,4 @@ The skill reads the tree; when it holds changes outside the session folder and `
 - 2026-09-18 updated: the Render changed under it — the Deferred paragraph; the Criterion stands as it was (case 233.4) · [[decision-case-233.4]]
 - 2026-09-18 status: pending → passed · raw/2026-09-18/2054/ledger.md#L12
 - 2026-09-23 updated: the Render changed under it — step 1 names the place of the frame; the Criterion stands (case 347) · [[decision-case-347]]
+- 2026-09-27 updated: the Criterion replaced whole — no Deferred list, guppi backlog run and backlog.md committed (case 451.9) · [[decision-case-451.9]]

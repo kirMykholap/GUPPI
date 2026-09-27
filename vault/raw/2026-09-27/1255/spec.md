@@ -63,12 +63,12 @@ update:
 ```
 
 ```tasks
-- [ ] update `rule-case-protocol` — two `replace` pairs in the `## Language` section of the Render
-- [ ] update `estimate-case-protocol-case-form` — the Criterion replaced whole, the purpose set
-- [ ] update `rule-case-check` — one `replace` pair in the Purpose
-- [ ] update `insight-case-form-chat-form-read-by-no-script` — actioned
+- [x] update `rule-case-protocol` — two `replace` pairs in the `## Language` section of the Render
+- [x] update `estimate-case-protocol-case-form` — the Criterion replaced whole, the purpose set
+- [x] update `rule-case-check` — one `replace` pair in the Purpose
+- [x] update `insight-case-form-chat-form-read-by-no-script` — actioned
 - [x] `guppi/casecheck.py` — the docstring: the text of the story sections is not checked, the person judges it
-- [ ] `uv run guppi render`: `vault/wiki/case-schema.md`
+- [x] `uv run guppi render`: `vault/wiki/case-schema.md`
 - [ ] read `estimate-case-protocol-case-form` — by hand in a later session
 ```
 
@@ -106,7 +106,7 @@ update:
 ```
 
 ```tasks
-- [ ] update `estimate-agent-writing-followed` — the Criterion replaced whole, the purpose and the method set
+- [x] update `estimate-agent-writing-followed` — the Criterion replaced whole, the purpose and the method set
 - [ ] read `estimate-agent-writing-followed` — by hand in a later session
 ```
 
@@ -195,11 +195,11 @@ update:
 ```
 
 ```tasks
-- [ ] update `rule-skill-hi` — four `replace` pairs in the Render
-- [ ] update `rule-case-protocol` — two `replace` pairs in the Render
-- [ ] update `estimate-hi-writes-frontier` — the Criterion replaced whole
-- [ ] `uv run guppi render`: `.claude/skills/hi/SKILL.md`
-- [ ] `uv run guppi render`: `vault/wiki/case-schema.md`
+- [x] update `rule-skill-hi` — four `replace` pairs in the Render
+- [x] update `rule-case-protocol` — two `replace` pairs in the Render
+- [x] update `estimate-hi-writes-frontier` — the Criterion replaced whole
+- [x] `uv run guppi render`: `.claude/skills/hi/SKILL.md`
+- [x] `uv run guppi render`: `vault/wiki/case-schema.md`
 - [ ] read `estimate-hi-writes-frontier` — by hand at the first `/hi` of a later session
 ```
 
@@ -241,11 +241,11 @@ update:
 ```
 
 ```tasks
-- [ ] update `rule-prespec` — one `replace` pair in the Render
-- [ ] update `estimate-prespec-checks-the-frontier` — the Criterion replaced whole
+- [x] update `rule-prespec` — one `replace` pair in the Render
+- [x] update `estimate-prespec-checks-the-frontier` — the Criterion replaced whole
 - [x] `guppi/prespec.py` — `check_frontier`: the closers `case N`, `work`, `defer`, `kept`, `defer case N`; the box checked against the closer; `defer` only after `sprint`, `kept` only after `backlog`, `defer case N` a finding after either; the closer `sprint` and the source `deferred` gone; the docstring
 - [x] `tests/test_prespec.py` — a test per pairing of box and closer, per source of `defer`, `kept` and `defer case N`, and a `Backlog: N items` line and a `- near` line left unread; the tests of `sprint` and `kept` moved to the new closers
-- [ ] `uv run guppi render`: `.claude/skills/pre-spec/SKILL.md`
+- [x] `uv run guppi render`: `.claude/skills/pre-spec/SKILL.md`
 - [ ] read `estimate-prespec-checks-the-frontier` — `uv run pytest tests/test_prespec.py` in a later session
 ```
 
@@ -277,7 +277,7 @@ update:
 ```
 
 ```tasks
-- [ ] update `estimate-prespec-binds-a-sprint-line` — the Criterion replaced whole
+- [x] update `estimate-prespec-binds-a-sprint-line` — the Criterion replaced whole
 - [x] `tests/test_prespec.py` — `test_a_left_sprint_item_closes_with_sprint` on a line `[-] … · sprint · defer`
 - [ ] read `estimate-prespec-binds-a-sprint-line` — `uv run pytest tests/test_prespec.py -k sprint` in a later session
 ```
@@ -361,15 +361,15 @@ update:
 ```
 
 ```tasks
-- [ ] create `rule-backlog`
-- [ ] create `estimate-backlog-renders`
-- [ ] update `entity-glossary` — three `replace` pairs in `## Terms`
-- [ ] update `rule-insights-schema` — one `replace` pair in the Render
+- [x] create `rule-backlog`
+- [x] create `estimate-backlog-renders`
+- [x] update `entity-glossary` — three `replace` pairs in `## Terms`
+- [x] update `rule-insights-schema` — one `replace` pair in the Render
 - [x] `guppi/backlog.py` — the script: the sources, the two sections, the count by `generate.frontier_marks`, the Specs by the reader of `guppi/materialize.py`, `--check`
 - [x] `guppi/cli.py` — the command `backlog`
 - [x] `tests/test_backlog.py` — each source, a slug of two sources once, a slug under a conserved Spec not repeated, the count over `raw/` and the archive, a folder without `carry.md`, no page written
-- [ ] `uv run guppi render`: `vault/wiki/insights/schema.yaml`
-- [ ] `uv run guppi glossary`
+- [x] `uv run guppi render`: `vault/wiki/insights/schema.yaml`
+- [x] `uv run guppi glossary`
 - [ ] read `estimate-backlog-renders` — after the librarian's run of a later session
 ```
 
@@ -412,8 +412,8 @@ update:
 ```
 
 ```tasks
-- [ ] create `estimate-backlog-checks-the-file`
-- [ ] update `rule-lint` — one `replace` pair in the Purpose
+- [x] create `estimate-backlog-checks-the-file`
+- [x] update `rule-lint` — one `replace` pair in the Purpose
 - [x] `Makefile` — `uv run guppi backlog --check < /dev/null` in `lint`, after `sprint --check`; the help line of the target
 - [x] `tests/test_backlog.py` — `--check` on a file equal to the render and on one that differs; nothing written
 - [ ] read `estimate-backlog-checks-the-file` — after the librarian's run of a later session
@@ -456,11 +456,11 @@ update:
 ```
 
 ```tasks
-- [ ] update `rule-sprint` — one `replace` pair in the Purpose
-- [ ] update `estimate-sprint-renders-the-backlog` — the Criterion replaced whole
+- [x] update `rule-sprint` — one `replace` pair in the Purpose
+- [x] update `estimate-sprint-renders-the-backlog` — the Criterion replaced whole
 - [x] `guppi/sprint.py` — the render without `## Backlog`; the docstring
 - [x] `tests/test_sprint.py` — the render without `## Backlog`; a slug of the Backlog without a page no longer an error of `guppi sprint`
-- [ ] `uv run guppi sprint`
+- [x] `uv run guppi sprint`
 - [ ] read `estimate-sprint-renders-the-backlog` — `uv run pytest tests/test_sprint.py` and the rendered `sprint.md` after the librarian's run of a later session
 ```
 
@@ -492,7 +492,7 @@ update:
 ```
 
 ```tasks
-- [ ] update `estimate-sprint-moves-a-passed-over-item` — the Criterion replaced whole
+- [x] update `estimate-sprint-moves-a-passed-over-item` — the Criterion replaced whole
 - [ ] read `estimate-sprint-moves-a-passed-over-item` — `uv run pytest tests/test_generate.py` and the History of the sprint page after the librarian's run of a later session
 ```
 
@@ -536,9 +536,9 @@ update:
 ```
 
 ```tasks
-- [ ] update `rule-brief` — three `replace` pairs, in the Purpose and the Render
-- [ ] update `estimate-brief-written` — the Criterion replaced whole
-- [ ] `uv run guppi render`: `.claude/agents/librarian-guppi.md`
+- [x] update `rule-brief` — three `replace` pairs, in the Purpose and the Render
+- [x] update `estimate-brief-written` — the Criterion replaced whole
+- [x] `uv run guppi render`: `.claude/agents/librarian-guppi.md`
 - [ ] read `estimate-brief-written` — by hand after the librarian's run of a later session
 ```
 
@@ -589,9 +589,9 @@ update:
 ```
 
 ```tasks
-- [ ] update `rule-carry-over` — five `replace` pairs in the Render
-- [ ] update `estimate-carry-over-writes` — the Criterion replaced whole
-- [ ] `uv run guppi render`: `.claude/skills/carry/SKILL.md`
+- [x] update `rule-carry-over` — five `replace` pairs in the Render
+- [x] update `estimate-carry-over-writes` — the Criterion replaced whole
+- [x] `uv run guppi render`: `.claude/skills/carry/SKILL.md`
 - [ ] read `estimate-carry-over-writes` — the render and one live reading of a conserved session
 ```
 
@@ -629,9 +629,9 @@ update:
 ```
 
 ```tasks
-- [ ] update `rule-case-protocol` — one `replace` pair in the Render
-- [ ] update `estimate-case-protocol-acknowledging-reply` — the Criterion replaced whole
-- [ ] `uv run guppi render`: `vault/wiki/case-schema.md`
+- [x] update `rule-case-protocol` — one `replace` pair in the Render
+- [x] update `estimate-case-protocol-acknowledging-reply` — the Criterion replaced whole
+- [x] `uv run guppi render`: `vault/wiki/case-schema.md`
 - [ ] read `estimate-case-protocol-acknowledging-reply` — by hand, the first acknowledging reply of a later session
 ```
 
@@ -659,7 +659,7 @@ update:
 ```
 
 ```tasks
-- [ ] update `rule-vault-layout` — one `replace` pair in the Purpose
+- [x] update `rule-vault-layout` — one `replace` pair in the Purpose
 ```
 
 ### Case 451.12 — `/hi` loads the backlog
@@ -700,9 +700,9 @@ update:
 ```
 
 ```tasks
-- [ ] update `rule-internal-context` — the Render whole
-- [ ] update `estimate-internal-context-loaded` — the Criterion replaced whole
-- [ ] `uv run guppi render`: `.claude/skills/hi/SKILL.md`
+- [x] update `rule-internal-context` — the Render whole
+- [x] update `estimate-internal-context-loaded` — the Criterion replaced whole
+- [x] `uv run guppi render`: `.claude/skills/hi/SKILL.md`
 - [ ] read `estimate-internal-context-loaded` — by hand at the `/hi` of a later session
 ```
 
@@ -749,9 +749,9 @@ update:
 ```
 
 ```tasks
-- [ ] update `rule-documentation` — one `replace` pair in the Render
-- [ ] update `estimate-documentation-completes` — the Criterion replaced whole
-- [ ] `uv run guppi render`: `.claude/agents/librarian-guppi.md`
+- [x] update `rule-documentation` — one `replace` pair in the Render
+- [x] update `estimate-documentation-completes` — the Criterion replaced whole
+- [x] `uv run guppi render`: `.claude/agents/librarian-guppi.md`
 - [ ] read `estimate-documentation-completes` — `make test-documentation` and the live reading of the librarian's run of a later session
 ```
 
@@ -786,8 +786,8 @@ update:
 ```
 
 ```tasks
-- [ ] update `rule-harness` — one `replace` pair in the Purpose
-- [ ] update `estimate-harness-pipeline` — the Criterion replaced whole
+- [x] update `rule-harness` — one `replace` pair in the Purpose
+- [x] update `estimate-harness-pipeline` — the Criterion replaced whole
 - [ ] read `estimate-harness-pipeline` — `make test-harness` and the live reading of `make lint` in a later session
 ```
 
@@ -831,7 +831,7 @@ update:
 ```
 
 ```tasks
-- [ ] update `estimate-insights-schema-checked` — the Criterion replaced whole
+- [x] update `estimate-insights-schema-checked` — the Criterion replaced whole
 - [ ] read `estimate-insights-schema-checked` — `uv run pytest tests/test_schemas.py -k insights` and `make lint` in a later session
 ```
 
@@ -888,8 +888,8 @@ update:
 ```
 
 ```tasks
-- [ ] update `rule-case-check` — one `replace` pair in the Purpose, one in `How it works`
-- [ ] update `estimate-case-check-sends-back-a-faulty-case` — the Criterion replaced whole
+- [x] update `rule-case-check` — one `replace` pair in the Purpose, one in `How it works`
+- [x] update `estimate-case-check-sends-back-a-faulty-case` — the Criterion replaced whole
 - [x] `guppi/casecheck.py` — `subagent` stores the time of the store and writes `raw/<date>/<hi HHMM>/cases/case-<N>.md` from the stored text when no Case has findings; one function names the path of the file; the docstring
 - [x] `tests/test_casecheck.py` — the file written from the stored text, replaced whole, a sub-case section replaced alone, no file on a finding, the time in the store
 - [ ] read `estimate-case-check-sends-back-a-faulty-case` — by hand in a later session
@@ -937,8 +937,8 @@ update:
 ```
 
 ```tasks
-- [ ] update `rule-case-check` — three `replace` pairs in `How it works`
-- [ ] update `estimate-case-check-shows-only-the-checked-case` — the Criterion replaced whole
+- [x] update `rule-case-check` — three `replace` pairs in `How it works`
+- [x] update `estimate-case-check-shows-only-the-checked-case` — the Criterion replaced whole
 - [x] `guppi/casecheck.py` — `against_store` compares the shown sections only; one function reads the `SendUserFile` calls of a transcript; `stop` refuses a shown Case with no sending of its file in the turn; the docstring
 - [x] `tests/test_casecheck.py` — a showing of `ratification` alone that passes, one that differs, a shown Case with no sending, a sending of another file, the acknowledging reply not judged
 - [ ] read `estimate-case-check-shows-only-the-checked-case` — by hand in a later session
@@ -988,8 +988,8 @@ update:
 ```
 
 ```tasks
-- [ ] update `rule-spec-write` — three `replace` pairs in `How it works`
-- [ ] update `estimate-spec-write-copies-the-ratified-case` — the Criterion replaced whole
+- [x] update `rule-spec-write` — three `replace` pairs in `How it works`
+- [x] update `estimate-spec-write-copies-the-ratified-case` — the Criterion replaced whole
 - [x] `guppi/ratified.py` — the refusal with no sending of the file after the time of the store, the showing condition dropped, the reading of a sending imported from `guppi/casecheck.py`
 - [x] `tests/test_ratified.py` — a Case written after a sending with no showing, refused with no sending, refused with a sending older than the store, a sub-case judged by the file of its parent
 - [ ] read `estimate-spec-write-copies-the-ratified-case` — by hand in a later session
@@ -1056,12 +1056,12 @@ update:
 ```
 
 ```tasks
-- [ ] update `rule-case-protocol` — `replace` pairs in `## Sections` and its table, `## Who builds a Case` and `## Splitting` of the Render
-- [ ] update `estimate-case-protocol-shows-the-built-case` — the Criterion replaced whole
-- [ ] update `rule-case-build` — one `replace` pair in the Purpose, one in the Render
-- [ ] update `insight-case-show-built-case-retyped-by-hand` — actioned
-- [ ] `uv run guppi render`: `vault/wiki/case-schema.md`
-- [ ] `uv run guppi render`: `.claude/agents/case-guppi.md`
+- [x] update `rule-case-protocol` — `replace` pairs in `## Sections` and its table, `## Who builds a Case` and `## Splitting` of the Render
+- [x] update `estimate-case-protocol-shows-the-built-case` — the Criterion replaced whole
+- [x] update `rule-case-build` — one `replace` pair in the Purpose, one in the Render
+- [x] update `insight-case-show-built-case-retyped-by-hand` — actioned
+- [x] `uv run guppi render`: `vault/wiki/case-schema.md`
+- [x] `uv run guppi render`: `.claude/agents/case-guppi.md`
 - [ ] read `estimate-case-protocol-shows-the-built-case` — by hand in a later session
 ```
 
@@ -1109,11 +1109,11 @@ update:
 ```
 
 ```tasks
-- [ ] update `rule-language` — one `replace` pair in the Purpose, one in the Render, and the `purpose` field
-- [ ] update `estimate-language-followed` — the Criterion replaced whole
-- [ ] update `rule-case-protocol` — one `replace` pair in the `## Language` section of the Render
-- [ ] `uv run guppi render`: `CLAUDE.md`
-- [ ] `uv run guppi render`: `vault/wiki/case-schema.md`
+- [x] update `rule-language` — one `replace` pair in the Purpose, one in the Render, and the `purpose` field
+- [x] update `estimate-language-followed` — the Criterion replaced whole
+- [x] update `rule-case-protocol` — one `replace` pair in the `## Language` section of the Render
+- [x] `uv run guppi render`: `CLAUDE.md`
+- [x] `uv run guppi render`: `vault/wiki/case-schema.md`
 - [ ] read `estimate-language-followed` — by hand in a later session
 ```
 
@@ -1180,8 +1180,8 @@ update:
 ```
 
 ```tasks
-- [ ] update `rule-spec-reconcile` — one `replace` pair in the Purpose, two in `How it works`, and `implementation_ref` set
-- [ ] update `estimate-spec-reconcile-refuses-an-edit-of-the-plan` — the Criterion replaced whole
+- [x] update `rule-spec-reconcile` — one `replace` pair in the Purpose, two in `How it works`, and `implementation_ref` set
+- [x] update `estimate-spec-reconcile-refuses-an-edit-of-the-plan` — the Criterion replaced whole
 - [x] `guppi/casecheck.py` — one predicate: a path under the `cases/` folder of a session folder under `vault/raw/`; the path function of the writer of Case 452.1 stays inside it
 - [x] `guppi/ratified.py` — `guard_refusal` refuses every `Edit`, `Write` and `MultiEdit` of a path the predicate of `guppi/casecheck.py` names, with its reason; the docstrings of the module, `guard_refusal` and `guard`
 - [x] `tests/test_ratified.py` — an `Edit`, a `MultiEdit`, a `Write` of a new file and of an existing file under `cases/` refused and logged; a file of another name under `cases/` refused; a `cases/` folder outside a session folder let through

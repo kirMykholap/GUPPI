@@ -1,7 +1,7 @@
 ---
 type: estimate
 kind: QA
-status: passed
+status: pending
 target: "[[rule-brief]]"
 method: one reading by hand after the first librarian run, recorded in the estimate line
 checked: 2026-09-23
@@ -13,21 +13,17 @@ tags: [harness, workflow, librarian]
 
 ## Criterion
 
-Given:
-The librarian writes `brief.md` by the frame — the Render of `rule-brief`; `/hi` reads `sprint.md`, `brief.md`, the tail of the ledger, `git status` and the output of its own commands — and nothing else.
-**＋** `prespec.check_frontier`: the id is the first token after `[ ]`, the closer the last segment after ` · `; a line without `[ ]` is not checked.
-**＋** The reading of `estimate-brief-written` is by hand after the librarian's run; of `estimate-hi-writes-frontier` by hand at the first `/hi` of the next session.
-
 When:
 The librarian rewrites `vault/wiki/brief.md` at the end of its run.
 
 Then:
-The brief holds six sections in order: Where things stand, Readings due, Deferred, Flags, Next session, Readings at the close.
-**＋** Where things stand, Readings due, Deferred, Flags and Readings at the close are as today, their content unchanged, but Flags also name every item `generate` moved to the Backlog and every milestone it dropped in the run (354.4).
-**＋** Next session — two lists. `Cases`: what needs a decision — a handoff flag with a question or a request to change the sprint, a `failed` Estimate, a contradiction, a defect the librarian found; one line per item, what and from where. `Work`: what is done without a decision — every `pending` reading of Readings due by its slug, the unticked boxes of the Specs, a ledger line this run did not apply, a dirty tree; one line per item.
-**＋** An item stands in one of the two lists, never in both; a list with no item is the line "none".
-**－** The brief still states no decision: the sort by kind is not a judgment of the work.
-**－** The brief of `/carry` keeps its short shape, without Next session — `rule-brief` and `rule-carry-over` both say so.
+The brief holds, in order: Where things stand, Readings due, Flags, Next session, Readings at the close.
+**＋** It holds no Deferred list and no cap on deferred items. They stand in `vault/wiki/backlog.md`.
+**＋** Where things stand, Readings due, Flags and Readings at the close are as before. Flags also name every item `generate` moved to the sprint page's Backlog in the run, and every milestone it dropped.
+**＋** Next session holds `Cases` and `Work`. `Cases` is what needs a decision: a handoff flag with a question or a request to change the sprint, a `failed` Estimate, a contradiction, a defect the librarian found; one line per item, with what and from where. `Work` is what is done without a decision: every `pending` reading of Readings due by its slug, the unticked boxes of the Specs, a ledger line this run did not apply, a dirty tree; one line per item.
+**＋** An item stands in either `Cases` or `Work`, never in both. A list with no item is the line "none".
+**－** The brief states no decision: the sort by kind is not a judgment of the work.
+**－** The brief of the skill `carry` keeps its short shape, without Next session and without a Deferred list. `rule-brief` and `rule-carry-over` both say so.
 
 ## Result
 
@@ -52,3 +48,4 @@ The brief holds six sections in order: Where things stand, Readings due, Deferre
 - 2026-09-20 status: pending → passed · raw/2026-09-20/1308/ledger.md#L9
 - 2026-09-23 updated: the Criterion names the Flags line of a move to the Backlog (case 354.4) · [[decision-case-354.4]]
 - 2026-09-23 status: pending → passed · raw/2026-09-23/1126/ledger.md#L38
+- 2026-09-27 updated: the Criterion replaced whole — no Deferred list, the deferred items in backlog.md (case 451.8) · [[decision-case-451.8]]

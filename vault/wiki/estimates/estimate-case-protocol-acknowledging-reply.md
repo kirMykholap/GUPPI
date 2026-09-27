@@ -1,7 +1,7 @@
 ---
 type: estimate
 kind: QA
-status: passed
+status: pending
 target: "[[rule-case-protocol]]"
 purpose: The reply that acknowledges a ratification has four parts in order
 method: one reading by hand of the first acknowledging reply of a session
@@ -18,13 +18,13 @@ When:
 The person ratifies a Case, or ratifies again a Case shown again after its ratification, and the agent writes the reply that acknowledges it.
 
 Then:
-The reply has four parts, in this order: the `LEDGER` block first; the heading `## Case N — ratified` and a paragraph `Changes:` — what changes, in one or two sentences; a paragraph `Notes:` — facts that did not enter the Case, omitted when there are none; the heading `## Frontier` and the lines of `frontier.md` as a checklist — the closed lines folded into one, the open ones one per line with a short title, the deferred as `[-] … · defer case N` — and the question which item is next, last.
-**＋** For a Case with sub-cases, one reply acknowledges every sub-case ratified: one `LEDGER` block with all their lines, one heading `## Case N — ratified` naming the ids, one Frontier.
+The reply has four parts, in this order. First, the `LEDGER` block. Second, the heading `## Case N — ratified` and a paragraph `Changes:` that says what changes, in one or two sentences. Third, a paragraph `Notes:` with facts that did not enter the Case, left out when there are none. Last, the heading `## Frontier`, the lines of `frontier.md` as a checklist, and the question which item is next. In the checklist the closed lines are folded into one, the open ones stand one per line with a short title, and the lines put off stand as `[-] … · sprint · defer`, `[-] … · backlog · kept` or `[-] … · defer case N`.
+**＋** For a Case with sub-cases, one reply acknowledges every sub-case ratified: one `LEDGER` block with all their lines, one heading `## Case N — ratified` that names the ids, one Frontier.
 **＋** The reply that acknowledges a re-ratification carries the `LEDGER` block with the decision lines of each Case ratified again, as at its first ratification.
 **＋** The headings and labels are in the language of the chat.
 **＋** No tool call follows the `LEDGER` block in the same reply.
 **－** The ledger hook of `rule-ledger-write` does not append a repeated decision line a second time.
-**－** When a `Stop` hook other than the ledger hook of `rule-ledger-write` refuses the reply — exit 2 — the agent's answer to the refusal is a reply of its own and may call tools; the `LEDGER` block stands written.
+**－** When a `Stop` hook other than the ledger hook of `rule-ledger-write` refuses the reply with exit 2, the agent's answer to the refusal is a reply of its own and may call tools. The `LEDGER` block stands written.
 
 ## Result
 
@@ -41,3 +41,4 @@ The reply has four parts, in this order: the `LEDGER` block first; the heading `
 - 2026-09-24 status: pending → passed · raw/2026-09-24/1303/ledger.md#L16
 - 2026-09-25 updated: the Criterion replaced whole — the answer to a Stop hook's refusal is a reply of its own (case 414.2) · [[decision-case-414.2]]
 - 2026-09-25 status: pending → passed · raw/2026-09-25/1228/ledger.md#L38
+- 2026-09-27 updated: the Criterion replaced whole — the lines put off shown by the closers of case 451 (case 451.10) · [[decision-case-451.10]]

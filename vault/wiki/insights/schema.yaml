@@ -4,7 +4,7 @@ description: |
 
   Insight is its own type, not a kind of Lesson. It shares no fields with one: no `trigger`, no `root_cause`, no `source`, no Estimate. It has `children`, `severity` and `addressed_by`, which a Lesson does not. Two schemas under one name would have meant a page where most fields are inapplicable whichever kind it is.
 
-  Created by the librarian, never by a decision; an `update` actions or rejects it, a `defer` postpones it (case 124). It reaches the human through the Deferred list of `brief.md` and becomes an ordinary ratified Case there.
+  Created by the librarian, never by a decision; an `update` actions or rejects it, a `defer` postpones it (case 124). It stands in `backlog.md` while `open`, and becomes an ordinary ratified Case when the person brings it onto a Frontier (case 451.4).
 
   Threshold. An Insight is created on the second Lesson sharing a root cause. One occurrence is an incident; two is a pattern. The archive is not searched. A Lesson is archived only when its Insight was actioned — its `clustered` children are archived by the cascade of `generate` (case 104.2) — and that Insight stays live with its `pattern` in its index line; a recurrence after the pattern was supposedly fixed is caught there, at the cost of one index line, and reopens the Insight.
 

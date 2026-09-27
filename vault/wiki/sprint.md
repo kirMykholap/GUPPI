@@ -28,16 +28,6 @@ Rule-class files dissolved, `index.md` gone, the `file` route out of the scripts
 
 ### [ ] Slice 5 — closing — 4 items: [[estimate-sprint-migration-lint-clean]], [[estimate-sprint-migration-merges]], [[rule-spec-box]], [[rule-morph]]
 
-## Backlog
-
-- [ ] the product model: `kind: test | measurement | reading`, `ask-guppi` through Entities, the vault-query questions before a product's records (session 1119); `applies_to` and `rules` taken into Slice 3f (case 301)
-- [ ] reuse, the edge: `uses` / `used_by` between Entities — `uses` written in the Case on the side that uses, `used_by` computed by the cascade of `generate`, the pair checked by lint, the pattern of `applies_to` / `rules`; no edge Rule → Rule (cases 305, 319)
-- [ ] reuse, the question: the vault query before a `create` asks a second question — what of the existing this thing could use, by the index lines of the Entities — and the answer stands in `context`; the Case names what it found in `uses` or says why it is not used (case 319)
-- [ ] reuse, the hook: a lint finding on two live Entities naming one path in `code_ref` with no edge between them; a new module written beside an existing one in another file is caught by the question alone, not by a script (case 319)
-- [ ] a template engine for the rendered files — one script with the shape of each file declared, once a third render beside `sprint.md` and `glossary.md` appears (case 301)
-- [ ] [[rule-work-mode]] — Work Mode: the Spec as tasks with code, the ticked boxes in `spec.md`, the test of each Estimate written first and turned green; the sentence of [[insight-workflow-code-live-before-the-page-it-reads]] on a check that reads a page the same Spec changes; cases 183, 206, 238 · draft · decision-case-183, decision-case-206, decision-case-218, decision-case-231, decision-case-242, decision-case-248, decision-case-252, decision-case-254, decision-case-260, decision-case-263, decision-case-269, decision-case-276, decision-case-281, decision-case-285, decision-case-289, decision-case-293, decision-case-303, decision-case-307, decision-case-322, decision-case-447
-- [ ] [[rule-subagent-guppi]] — what a subagent may do in Work Mode, and the fork that comes back to the main agent as a Case; cases 183, 206 · draft · decision-case-183, decision-case-206, decision-case-218, decision-case-231, decision-case-242, decision-case-248, decision-case-252, decision-case-254, decision-case-260, decision-case-263, decision-case-269, decision-case-276, decision-case-281, decision-case-285, decision-case-289, decision-case-293, decision-case-303, decision-case-307, decision-case-322
-
 ## Closed
 
 Slices 0–2 closed by 2026-09-10: layout; ledger, event log, `/hi`; renderer, lint,

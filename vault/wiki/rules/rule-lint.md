@@ -22,7 +22,7 @@ both drift, and nothing else reads the whole graph at once. Red is a signal, not
 gate: a `pending` Estimate is red until its reading (case 182, point 13), a
 placeholder is red with the count of its defers (case 186.3), the pages of the shape
 before case 193 are red as one counted line until the last is recut (case 202).
-`make lint` runs it after `render --check`, `sprint --check` and `glossary --check`; all four only report, so the Makefile's rule — no target writes to the tree — holds (cases 147.7, 227). `parent: rule-harness` names the
+`make lint` runs it after `render --check`, `sprint --check`, `backlog --check` and `glossary --check`; all five only report, so the Makefile's rule — no target writes to the tree — holds (cases 147.7, 227). `parent: rule-harness` names the
 MOC of the harness tools: lint runs with the renderer, in no phase of the session. The
 classes and their order live in the docstring of `guppi/lint.py`.
 
@@ -72,3 +72,4 @@ classes and their order live in the docstring of `guppi/lint.py`.
 - 2026-09-25 estimate estimate-lint-counts-the-unmigrated added · [[decision-case-401.5]]
 - 2026-09-25 status: built → draft · cascade
 - 2026-09-25 status: draft → built · cascade
+- 2026-09-27 updated: make lint runs backlog --check (case 451.5) · [[decision-case-451.5]]

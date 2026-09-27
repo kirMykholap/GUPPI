@@ -27,7 +27,7 @@ such a session that would make the vault claim behaviour no code implements.
 <!-- rule-carry-over -->
 ---
 name: carry
-description: Conserve a ratified Spec whose work is not done — rewrite the brief, mark the session folder, commit; run nothing else. Called by the agent after the person chose to conserve at the fork ExitPlanMode prints.
+description: Conserve a ratified Spec whose work is not done — rewrite the brief, mark the session folder, run `guppi backlog`, commit; run nothing else. Called by the agent after the person chose to conserve at the fork ExitPlanMode prints.
 ---
 
 
@@ -40,18 +40,14 @@ stop and say: work was done, the ordinary exit applies — Work Mode, `/retro`, 
 Otherwise:
 1. Rewrite `vault/wiki/brief.md` by the frame of `rule-brief` — the text between the `rule-brief` markers of `.claude/agents/librarian-guppi.md` — in its short shape as that frame says: Where
    things stand names the conserved Spec — `vault/raw/<hi date>/<hi HHMM>/spec.md`, its
-   Cases, what is not done on it; no Readings due, no Next session, no Readings at the close; Deferred is
-   the previous brief's list as it stands plus the `defer` items of this Spec by slug, less the targets the sprint page names (case 229.4);
-   Flags say what the vault does not know about this session. No cap, no ranking.
+   Cases, what is not done on it; no Readings due, no Next session, no Readings at the close, no Deferred list — the conserved Spec and its targets stand in `backlog.md` (case 451.9); Flags say what the vault does not know about this session.
 2. Write `vault/raw/<hi date>/<hi HHMM>/carry.md` with one line: `conserved — delete
-   this file when the work of spec.md is done`. Its presence tells `guppi materialize`
-   to pass the unit by.
-3. Run `make style`, then commit `vault/raw/` and `vault/wiki/brief.md`:
+   this file when the work of spec.md is done`. Its presence tells `guppi materialize` to pass the unit by, and `guppi backlog` to show the Spec under its conserved Specs. Then run `uv run guppi backlog`; every line on its stderr goes into the reply.
+3. Run `make style`, then commit `vault/raw/`, `vault/wiki/brief.md` and `vault/wiki/backlog.md`:
    `docs(vault): Spec of session <HHMM> conserved, Cases <N>–<M>`.
 
 Run nothing else: no Work Mode, no `/retro`, no `/handoff`, no librarian, no `guppi
-materialize`, `generate`, `cleanup` or `render`; write no page under `vault/wiki/` but
-the brief. The session that finishes the Spec deletes `carry.md`.
+materialize`, `generate`, `cleanup` or `render`; write no page under `vault/wiki/` but the brief; `vault/wiki/backlog.md` is written by `guppi backlog` alone. The session that finishes the Spec deletes `carry.md`.
 <!-- /rule-carry-over -->
 
 ## History
@@ -67,3 +63,4 @@ the brief. The session that finishes the Spec deletes `carry.md`.
 - 2026-09-20 updated: the carry brief's list of omitted sections names Next session, as the carry sentence of rule-brief does (case 268.1) · [[decision-case-268.1]]
 - 2026-09-23 updated: step 1 names the place of the brief frame, not only the file that holds it (case 347) · [[decision-case-347]]
 - 2026-09-23 status: built → draft · cascade
+- 2026-09-27 updated: carry writes the brief without a Deferred list, runs guppi backlog and commits backlog.md (case 451.9) · [[decision-case-451.9]]

@@ -1,10 +1,10 @@
 ---
 type: estimate
 kind: QA
-status: failed
+status: pending
 target: "[[rule-agent-writing]]"
-purpose: The section stands in CLAUDE.md and one reply of the session holds to it — facts with a source, short sentences, the answer first, the not-done named
-method: one reading by hand in the next session — the section in CLAUDE.md and one reply of the agent against it
+purpose: The agent's text holds to the section How the agent writes of CLAUDE.md, and the person's complaint is the test
+method: by hand in a later session — the person's messages of one session read for a complaint about the agent's text, against the section in CLAUDE.md
 checked: 2026-09-27
 origin: raw/2026-09-20/1308/ledger.md#case-272.3
 sprint: migration
@@ -14,16 +14,13 @@ tags: [harness, render, workflow]
 
 ## Criterion
 
-Given:
-The conditions of the parent.
-**＋** `rule-agent-writing` is a Leaf, `enforcement: render`, `render_mode: partial`, `governs: CLAUDE.md`, a child of `rule-claude-md`; its Render is the section `## How the agent writes` inside the marker `<!-- rule-agent-writing -->`.
-
 When:
-A session starts with `CLAUDE.md`, and the agent writes a text — a reply, a page, a commit message, a document.
+A session starts with `CLAUDE.md` loaded, and the agent writes a text — a reply, a page, a commit message, a document.
 
 Then:
-The facts stay and the sales pitch goes; a claim names a real source or goes, and is no wider than the output it rests on — a count from the run that printed it, a claim about a whole set from a count on both sides (359); short sentences, active voice, a common word over a term; the answer first; what is done and what is not done are named, the not-done never implied.
-**－** The rule is about the agent's text, not about code — `make style` holds the style of the code.
+The person raised no complaint in the session that the agent's text broke the section `## How the agent writes` of `CLAUDE.md` — a claim with no real source or wider than the output it rests on, a sales pitch, a long or passive sentence, an answer not given first, a not-done left implied.
+**－** A slip in the agent's text that the agent found and corrected itself, with no complaint of the person, is no fault.
+**－** The code the agent writes is not a text of this rule; `make style` judges the code.
 
 ## Result
 
@@ -36,3 +33,4 @@ The facts stay and the sales pitch goes; a claim names a real source or goes, an
 - 2026-09-23 updated: the Criterion names the width of a claim (case 359) · [[decision-case-359]]
 - 2026-09-26 status: pending → failed · raw/2026-09-26/1745/ledger.md#L36
 - 2026-09-27 status: failed → failed · raw/2026-09-26/2300/ledger.md#L36
+- 2026-09-27 updated: the Criterion replaced whole — the person's complaint is the test of the agent's text, a slip the agent corrected itself no fault (case 450) · [[decision-case-450]]

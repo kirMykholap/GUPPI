@@ -15,15 +15,16 @@ tags: [harness, sprint]
 ## Criterion
 
 When:
-`guppi sprint` runs with a live page `entity-sprint-<id>` and reads its `estimates`, `## Purpose`, `## Milestones`, `## Backlog` and `## Closed`.
+`uv run guppi sprint` runs with a live page `entity-sprint-<id>` and reads its `estimates`, `## Purpose`, `## Milestones` and `## Closed`.
 
 Then:
-The file: `# Sprint`; `## <id>`; Purpose; `**Done when**`, one line per Estimate; then `## Milestones`: a closed milestone as one line `### [x] <name>`; the current one as the heading `### [ ] <name>` and each item with its status and `deferred_by`; each later one as one line `### [ ] <name> — N items: ` and its items separated by commas — an item with a wikilink as `[[slug]]`, an item without one by its text, no tick and no status; then `## Backlog`, each item a line; then `## Closed` as it is.
+The file `vault/wiki/sprint.md` holds, in order: `# Sprint`; `## <id>`; Purpose; `**Done when**`, one line per Estimate; then `## Milestones`; then `## Closed` as it is. Under `## Milestones`: a closed milestone is one line `### [x] <name>`. The current one is the heading `### [ ] <name>` and each item with its status and `deferred_by`. Each later one is one line `### [ ] <name> — N items: ` with its items separated by commas; an item with a wikilink stands as `[[slug]]`, an item without one by its text, with no tick and no status.
 **＋** Every heading of the file stands between blank lines: a blank line follows each `### ` line, collapsed or whole.
-**＋** An item is ticked by the statuses of every page its `[[slug]]` before the first ` — ` names — `[x]` when each is `built`, `passed` or `archived`, the statuses after ` · ` in the order of the slugs; a wikilink after the ` — ` is text; a line with no wikilink before the ` — ` is a note, `- [ ] <text>`, never ticked, keeping its milestone open.
-**＋** A milestone is closed when every item is `[x]`; with no item it is open.
-**－** A slug with no live or archived page: one line on stderr, exit 1, the file not written; `--check` compares this same render.
-**－** The script writes no page of `wiki/`, `entity-sprint-<id>` included.
+**＋** An item is ticked by the statuses of every page its `[[slug]]` before the first ` — ` names. It is `[x]` when each is `built`, `passed` or `archived`, with the statuses after ` · ` in the order of the slugs. A wikilink after the ` — ` is text. A line with no wikilink before the ` — ` is a note, `- [ ] <text>`, never ticked, and it keeps its milestone open.
+**＋** A milestone is closed when every item is `[x]`. With no item it is open.
+**－** The `## Backlog` of the page is not written into the file. `vault/wiki/backlog.md` shows it.
+**－** A slug with no live or archived page gives one line on stderr and exit 1, and the file is not written. `--check` compares this same render.
+**－** The script writes no page of `vault/wiki/`, `entity-sprint-<id>` included.
 
 ## Result
 
@@ -38,3 +39,4 @@ The file: `# Sprint`; `## <id>`; Purpose; `**Done when**`, one line per Estimate
 - 2026-09-22 updated: the Criterion names the pages of an item and the note (case 313) · [[decision-case-313]]
 - 2026-09-22 status: pending → passed · raw/2026-09-22/1121/ledger.md#L86
 - 2026-09-24 updated: the Criterion replaced whole — a blank line after every milestone heading (case 386) · [[decision-case-386]]
+- 2026-09-27 updated: the Criterion replaced whole — the Backlog of the page is not rendered into sprint.md (case 451.6) · [[decision-case-451.6]]

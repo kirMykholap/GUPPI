@@ -5,7 +5,7 @@ status: failed
 target: "[[rule-case-protocol]]"
 purpose: A defer the person asks for is shown and written in the same reply, with no round of ratification
 method: by hand, the first defer the person asks for after the render
-checked: 2026-09-26
+checked: 2026-09-27
 origin: raw/2026-09-24/1916/ledger.md#case-405
 sprint: migration
 created: 2026-09-24
@@ -26,10 +26,11 @@ In the same reply the agent shows the Case in the short form — `context`, `pro
 
 ## Result
 
-2026-09-26, by hand, transcript of session 1745 at 22:00:17 and the plan edit at 22:01:43; Case 442 was shown in the short form with its LEDGER defer line and no tool call after it, but the agent then edited the plan file to translate its heading, context and problem, and text followed the Frontier in the reply
+2026-09-27, by hand, the reply of session 1255 that deferred Cases 454, 455 and 456; the three short Cases were shown with context, problem and a then fence of one defer item each, the LEDGER block carried one defer line per target with no tool call after it, the agent wrote nothing into the plan or spec.md and the Stop hook wrote the three Cases under ## Deferred of both, no question asked for the defers; but the reply did not end with the Frontier: a paragraph proposing /pre-spec with a question followed it
 
 ## History
 
 - 2026-09-25 created · [[decision-case-405]]
 - 2026-09-25 updated: the Criterion replaced whole — the agent shows the defer, the hook writes it (case 421.2) · [[decision-case-421.2]]
 - 2026-09-26 status: pending → failed · raw/2026-09-26/1745/ledger.md#L35
+- 2026-09-27 status: failed → failed · raw/2026-09-27/1255/ledger.md#L53

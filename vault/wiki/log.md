@@ -3866,3 +3866,97 @@ instruction. The global feed; a page's own `## History` is the per-page view.
 - 2026-09-27 decisions/decision-case-423 archived · cleanup
 - 2026-09-27 decisions/decision-case-445.5 archived · cleanup
 - 2026-09-27 rules/rule-prespec estimate estimate-prespec-checks-the-ratified-copy archived · cleanup
+- 2026-09-27 decisions/decision-case-449 created · raw/2026-09-27/1255/ledger.md#case-449 · generate
+- 2026-09-27 rules/rule-case-protocol updated: the story sections explain briefly, may name a case number as a source, and are judged by the person; the rules on counts, line numbers and quotations in them removed; no count of items in given, when and then (case 449) · [[decision-case-449]] · generate
+- 2026-09-27 estimates/estimate-case-protocol-case-form updated: the Criterion replaced whole — the form stands in the file of a built Case; context, problem and recommend brief plain prose judged by the person's complaint, a case number, a count, a line number or a quotation there no fault; no count of items in given, when and then (case 449) · [[decision-case-449]] · generate
+- 2026-09-27 rules/rule-case-check updated: the Purpose says the person judges the text of the story sections, while the check requires them and their order (case 449) · [[decision-case-449]] · generate
+- 2026-09-27 insights/insight-case-form-chat-form-read-by-no-script updated: actioned: the proposal for the story sections rejected — the person judges the text of context, problem and recommend, and no script reads it; the order of the sections and ratification are checked since case 419.3 (case 449) · [[decision-case-449]] · generate
+- 2026-09-27 decisions/decision-case-450 created · raw/2026-09-27/1255/ledger.md#case-450 · generate
+- 2026-09-27 estimates/estimate-agent-writing-followed updated: the Criterion replaced whole — the person's complaint is the test of the agent's text, a slip the agent corrected itself no fault (case 450) · [[decision-case-450]] · generate
+- 2026-09-27 decisions/decision-case-451.1 created · raw/2026-09-27/1255/ledger.md#case-451.1 · generate
+- 2026-09-27 rules/rule-skill-hi updated: the Frontier closes a line [x] for an item ended and [-] for one put off — sprint · defer, backlog · kept, defer case N; conserved Specs first, the backlog counted and its near items named (case 451.1) · [[decision-case-451.1]] · generate
+- 2026-09-27 rules/rule-case-protocol updated: the closers of a Frontier line — [x] an item ended, [-] put off as sprint · defer, backlog · kept or defer case N; an item of backlog.md left as it stands keeps its source (case 451.1) · [[decision-case-451.1]] · generate
+- 2026-09-27 estimates/estimate-hi-writes-frontier updated: the Criterion replaced whole — the closers of the standard, conserved Specs first, the backlog counted and its near items named, no Deferred list of the brief (case 451.1) · [[decision-case-451.1]] · generate
+- 2026-09-27 decisions/decision-case-451.2 created · raw/2026-09-27/1255/ledger.md#case-451.2 · generate
+- 2026-09-27 rules/rule-prespec updated: the Frontier check ties the box, the closer and the source both ways — defer after sprint, kept after backlog, defer case N after any other source (case 451.2) · [[decision-case-451.2]] · generate
+- 2026-09-27 estimates/estimate-prespec-checks-the-frontier updated: the Criterion replaced whole — the box, the closer and the source checked both ways (case 451.2) · [[decision-case-451.2]] · generate
+- 2026-09-27 decisions/decision-case-451.3 created · raw/2026-09-27/1255/ledger.md#case-451.3 · generate
+- 2026-09-27 estimates/estimate-prespec-binds-a-sprint-line updated: the Criterion replaced whole — a sprint line put off closes [-] · sprint · defer (case 451.3) · [[decision-case-451.3]] · generate
+- 2026-09-27 decisions/decision-case-451.4 created · raw/2026-09-27/1255/ledger.md#case-451.4 · generate
+- 2026-09-27 rules/rule-backlog created · [[decision-case-451.4]] · generate
+- 2026-09-27 rules/rule-documentation child rule-backlog added · [[decision-case-451.4]] · generate
+- 2026-09-27 estimates/estimate-backlog-renders created · [[decision-case-451.4]] · generate
+- 2026-09-27 rules/rule-backlog estimate estimate-backlog-renders added · [[decision-case-451.4]] · generate
+- 2026-09-27 entities/entity-glossary updated: the term backlog.md added; the brief without a Deferred list, an open Insight in the backlog, the backlog among the sources of the Frontier (case 451.4) · [[decision-case-451.4]] · generate
+- 2026-09-27 rules/rule-insights-schema updated: an open Insight stands in backlog.md, a Case when the person brings it onto a Frontier (case 451.4) · [[decision-case-451.4]] · generate
+- 2026-09-27 decisions/decision-case-451.5 created · raw/2026-09-27/1255/ledger.md#case-451.5 · generate
+- 2026-09-27 estimates/estimate-backlog-checks-the-file created · [[decision-case-451.5]] · generate
+- 2026-09-27 rules/rule-backlog estimate estimate-backlog-checks-the-file added · [[decision-case-451.5]] · generate
+- 2026-09-27 rules/rule-lint updated: make lint runs backlog --check (case 451.5) · [[decision-case-451.5]] · generate
+- 2026-09-27 decisions/decision-case-451.6 created · raw/2026-09-27/1255/ledger.md#case-451.6 · generate
+- 2026-09-27 rules/rule-sprint updated: sprint.md no longer shows the Backlog; backlog.md does (case 451.6) · [[decision-case-451.6]] · generate
+- 2026-09-27 estimates/estimate-sprint-renders-the-backlog updated: the Criterion replaced whole — the Backlog of the page is not rendered into sprint.md (case 451.6) · [[decision-case-451.6]] · generate
+- 2026-09-27 decisions/decision-case-451.7 created · raw/2026-09-27/1255/ledger.md#case-451.7 · generate
+- 2026-09-27 estimates/estimate-sprint-moves-a-passed-over-item updated: the Criterion replaced whole — a line put off under the closers of case 451, Given lifted into When and Then (case 451.7) · [[decision-case-451.7]] · generate
+- 2026-09-27 decisions/decision-case-451.8 created · raw/2026-09-27/1255/ledger.md#case-451.8 · generate
+- 2026-09-27 rules/rule-brief updated: the brief carries no Deferred list and no cap; the deferred items stand in backlog.md (case 451.8) · [[decision-case-451.8]] · generate
+- 2026-09-27 estimates/estimate-brief-written updated: the Criterion replaced whole — no Deferred list, the deferred items in backlog.md (case 451.8) · [[decision-case-451.8]] · generate
+- 2026-09-27 decisions/decision-case-451.9 created · raw/2026-09-27/1255/ledger.md#case-451.9 · generate
+- 2026-09-27 rules/rule-carry-over updated: carry writes the brief without a Deferred list, runs guppi backlog and commits backlog.md (case 451.9) · [[decision-case-451.9]] · generate
+- 2026-09-27 estimates/estimate-carry-over-writes updated: the Criterion replaced whole — no Deferred list, guppi backlog run and backlog.md committed (case 451.9) · [[decision-case-451.9]] · generate
+- 2026-09-27 decisions/decision-case-451.10 created · raw/2026-09-27/1255/ledger.md#case-451.10 · generate
+- 2026-09-27 rules/rule-case-protocol updated: the acknowledging reply shows every line put off by its closer (case 451.10) · [[decision-case-451.10]] · generate
+- 2026-09-27 estimates/estimate-case-protocol-acknowledging-reply updated: the Criterion replaced whole — the lines put off shown by the closers of case 451 (case 451.10) · [[decision-case-451.10]] · generate
+- 2026-09-27 decisions/decision-case-451.11 created · raw/2026-09-27/1255/ledger.md#case-451.11 · generate
+- 2026-09-27 rules/rule-vault-layout updated: backlog.md named among the files at the root of wiki/ (case 451.11) · [[decision-case-451.11]] · generate
+- 2026-09-27 decisions/decision-case-451.12 created · raw/2026-09-27/1255/ledger.md#case-451.12 · generate
+- 2026-09-27 rules/rule-internal-context updated: /hi loads backlog.md after sprint.md (case 451.12) · [[decision-case-451.12]] · generate
+- 2026-09-27 estimates/estimate-internal-context-loaded updated: the Criterion replaced whole — backlog.md loaded by /hi (case 451.12) · [[decision-case-451.12]] · generate
+- 2026-09-27 decisions/decision-case-451.13 created · raw/2026-09-27/1255/ledger.md#case-451.13 · generate
+- 2026-09-27 rules/rule-documentation updated: the librarian runs guppi backlog after guppi sprint (case 451.13) · [[decision-case-451.13]] · generate
+- 2026-09-27 estimates/estimate-documentation-completes updated: the Criterion replaced whole — guppi backlog after guppi sprint, Given lifted into When and Then (case 451.13) · [[decision-case-451.13]] · generate
+- 2026-09-27 decisions/decision-case-452.1 created · raw/2026-09-27/1255/ledger.md#case-452.1 · generate
+- 2026-09-27 rules/rule-case-check updated: the check writes the file of a Case that passed, from the text it stores, and stores the time of the store (case 452.1) · [[decision-case-452.1]] · generate
+- 2026-09-27 estimates/estimate-case-check-sends-back-a-faulty-case updated: the Criterion replaced whole — the time of the store, and the file of a Case with no findings written from the stored text (case 452.1) · [[decision-case-452.1]] · generate
+- 2026-09-27 decisions/decision-case-452.2 created · raw/2026-09-27/1255/ledger.md#case-452.2 · generate
+- 2026-09-27 rules/rule-case-check updated: the Stop comparison covers the sections a reply shows, the prose is not translated, and a shown Case needs a sending of its file in the same turn (case 452.2) · [[decision-case-452.2]] · generate
+- 2026-09-27 estimates/estimate-case-check-shows-only-the-checked-case updated: the Criterion replaced whole — only the shown sections compared, and a sending of the file required in the turn (case 452.2) · [[decision-case-452.2]] · generate
+- 2026-09-27 decisions/decision-case-452.3 created · raw/2026-09-27/1255/ledger.md#case-452.3 · generate
+- 2026-09-27 rules/rule-spec-write updated: the Spec hook writes a Case whose file was sent after its newest store and no longer needs a showing whole; the function that names the plan file named right (case 452.3) · [[decision-case-452.3]] · generate
+- 2026-09-27 estimates/estimate-spec-write-copies-the-ratified-case updated: the Criterion replaced whole — a sending of the file after the newest store in place of a showing whole (case 452.3) · [[decision-case-452.3]] · generate
+- 2026-09-27 decisions/decision-case-452.4 created · raw/2026-09-27/1255/ledger.md#case-452.4 · generate
+- 2026-09-27 rules/rule-case-protocol updated: a built Case is shown by the file the hook writes, sent by SendUserFile, with a short Russian text and its ratification in the chat; the headings, the tasks, a showing again and a Case with sub-cases follow (case 452.4) · [[decision-case-452.4]] · generate
+- 2026-09-27 estimates/estimate-case-protocol-shows-the-built-case updated: the Criterion replaced whole — the Case sent as the file the hook writes, a short Russian text and the ratification in the chat, nothing retyped (case 452.4) · [[decision-case-452.4]] · generate
+- 2026-09-27 rules/rule-case-build updated: the Case of case-guppi reaches the person as the file the hook writes, not translated in the chat (case 452.4) · [[decision-case-452.4]] · generate
+- 2026-09-27 insights/insight-case-show-built-case-retyped-by-hand updated: actioned: the hook writes the stored answer into a file the main agent sends, and the chat holds only a short text and the ratification, which the Stop comparison guards (case 452.4) · [[decision-case-452.4]] · generate
+- 2026-09-27 decisions/decision-case-452.5 created · raw/2026-09-27/1255/ledger.md#case-452.5 · generate
+- 2026-09-27 rules/rule-language updated: a built Case is English whole in the file sent to the person; the chat holds a short Russian text and the ledger lines (case 452.5) · [[decision-case-452.5]] · generate
+- 2026-09-27 estimates/estimate-language-followed updated: the Criterion replaced whole — a built Case English whole in its file, a short Russian text in the chat (case 452.5) · [[decision-case-452.5]] · generate
+- 2026-09-27 rules/rule-case-protocol updated: the chat holds a short Russian text and the ledger lines of a built Case; the Case is English whole in its file (case 452.5) · [[decision-case-452.5]] · generate
+- 2026-09-27 decisions/decision-case-453 created · raw/2026-09-27/1255/ledger.md#case-453 · generate
+- 2026-09-27 rules/rule-spec-reconcile updated: the guard also refuses the agent's edit of a file under the cases/ folder of a session folder, judged by one function of guppi/casecheck.py (case 453) · [[decision-case-453]] · generate
+- 2026-09-27 estimates/estimate-spec-reconcile-refuses-an-edit-of-the-plan updated: the Criterion replaced whole — a file under the cases/ folder of a session folder refused like the store (case 453) · [[decision-case-453]] · generate
+- 2026-09-27 decisions/decision-case-454 created · raw/2026-09-27/1255/ledger.md#case-454 · generate
+- 2026-09-27 rules/rule-claude-md deferred · [[decision-case-454]] · generate
+- 2026-09-27 decisions/decision-case-455 created · raw/2026-09-27/1255/ledger.md#case-455 · generate
+- 2026-09-27 rules/rule-one-judgment-one-implementation deferred · [[decision-case-455]] · generate
+- 2026-09-27 decisions/decision-case-456 created · raw/2026-09-27/1255/ledger.md#case-456 · generate
+- 2026-09-27 rules/rule-page-generation deferred · [[decision-case-456]] · generate
+- 2026-09-27 decisions/decision-case-451.14 created · raw/2026-09-27/1255/ledger.md#case-451.14 · generate
+- 2026-09-27 rules/rule-harness updated: the order of make lint holds backlog --check after the sprint file (case 451.14) · [[decision-case-451.14]] · generate
+- 2026-09-27 estimates/estimate-harness-pipeline updated: the Criterion replaced whole — backlog --check in the order of make lint (case 451.14) · [[decision-case-451.14]] · generate
+- 2026-09-27 decisions/decision-case-451.15 created · raw/2026-09-27/1255/ledger.md#case-451.15 · generate
+- 2026-09-27 estimates/estimate-insights-schema-checked updated: the Criterion replaced whole — one sentence of the introduction changed by case 451.4, Given lifted into When and Then (case 451.15) · [[decision-case-451.15]] · generate
+- 2026-09-27 estimates/estimate-case-protocol-defers-in-one-reply status: failed → failed · raw/2026-09-27/1255/ledger.md#L53 · generate
+- 2026-09-27 lessons/harness-senduserfile-renders-a-markdown-file-on-the-phone created · raw/2026-09-27/1255/ledger.md#L54 · generate
+- 2026-09-27 rules/rule-brief status: built → draft · cascade · generate
+- 2026-09-27 rules/rule-harness status: built → draft · cascade · generate
+- 2026-09-27 rules/rule-insights-schema status: built → draft · cascade · generate
+- 2026-09-27 rules/rule-internal-context status: built → draft · cascade · generate
+- 2026-09-27 rules/rule-skill-hi status: built → draft · cascade · generate
+- 2026-09-27 lessons/lesson-case-build-a-list-in-context archived · insight actioned · generate
+- 2026-09-27 lessons/lesson-case-show-sub-case-ratification-retyped archived · insight actioned · generate
+- 2026-09-27 lessons/lesson-case-show-ref-of-a-ratification-line-retyped archived · insight actioned · generate
+- 2026-09-27 lessons/lesson-case-build-a-list-in-context archived · cleanup
+- 2026-09-27 lessons/lesson-case-show-ref-of-a-ratification-line-retyped archived · cleanup
+- 2026-09-27 lessons/lesson-case-show-sub-case-ratification-retyped archived · cleanup

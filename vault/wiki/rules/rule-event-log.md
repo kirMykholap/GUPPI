@@ -2,9 +2,9 @@
 type: rule
 kind: Leaf
 purpose: Prevents the ledger from being written into a session nothing recorded
-status: built
+status: draft
 enforcement: hook
-implementation_ref: [guppi/event.py, guppi/gate.py, guppi/cli.py, tests/test_gate.py, .claude/settings.json]
+implementation_ref: [guppi/event.py, guppi/gate.py, guppi/cli.py, tests/test_gate.py, tests/test_event.py, .claude/settings.json]
 parent: "[[rule-session-start]]"
 estimates: ["[[estimate-event-log-records]]"]
 origin: raw/2026-09-09/ledger.md#case-9
@@ -37,9 +37,9 @@ payload comes from stdin when a hook is the caller: `session_id`, `tool_name` an
 telling field of `tool_input` (`command` cut to 80 characters on one line, `subagent_type`,
 `skill`, `file_path`). Registered on `SessionStart` (`session-start`) and on `PostToolUse`
 with no matcher (`tool`) — every tool, because this is a debugging record and a filter is
-one more decision to maintain. The `hi` line is written by `guppi event prompt` on `UserPromptSubmit`: when the prompt, trimmed, is `/hi` or starts with `/hi `, and no `hi` of this session's stamp follows its first `session-start` in the logs the ledger hook walks, the log gains `- HH:MM:SS <stamp> hi`, the stamp from the payload's `session_id`; a second `/hi` of the same session and any other prompt write nothing (case 111.1). Having written the line, the hook prints `hi: HH:MM:SS <stamp> → raw/<date>/<HHMM>/` on stdout, which Claude Code adds to the context; when a `hi` of this session already exists it prints `hi: already recorded at HH:MM:SS → raw/<date>/<HHMM>/`; on any other prompt it is silent. The `/hi` skill takes the time of the session's folder from that line (case 125). The marks `prespec`, `retro` and `handoff` are written by `guppi gate` — on `PreToolUse Skill` for the agent's call, on `UserPromptSubmit` for the person's typed command (case 169.1) — when it lets the call through, one line `- HH:MM:SS <stamp> <mark>` with the stamp from the payload's `session_id`; a refused call leaves no mark. Until case 136.1 the three skills wrote them through a `!` substitution where `CLAUDE_SESSION_ID` is empty, so every mark read `--------` (case 136.1).
+one more decision to maintain. The `hi` line is written by `guppi event prompt` on `UserPromptSubmit`: when the prompt, trimmed, is `/hi` or starts with `/hi `, and no `hi` of this session's stamp follows its first `session-start` in the logs the ledger hook walks, the log gains `- HH:MM:SS <stamp> hi`, the stamp from the payload's `session_id`; a second `/hi` of the same session and any other prompt write nothing (case 111.1); a `/hi` whose `permission_mode` is not `plan`, missing or empty included, writes no line, prints nothing on stdout and exits 2 with the reason on stderr, and Claude Code blocks the prompt (case 445.6). Having written the line, the hook prints `hi: HH:MM:SS <stamp> → raw/<date>/<HHMM>/` on stdout, which Claude Code adds to the context; when a `hi` of this session already exists it prints `hi: already recorded at HH:MM:SS → raw/<date>/<HHMM>/`; on any other prompt it is silent. The `/hi` skill takes the time of the session's folder from that line (case 125). The marks `prespec`, `retro` and `handoff` are written by `guppi gate` — on `PreToolUse Skill` for the agent's call, on `UserPromptSubmit` for the person's typed command (case 169.1) — when it lets the call through, one line `- HH:MM:SS <stamp> <mark>` with the stamp from the payload's `session_id`; a refused call leaves no mark. Until case 136.1 the three skills wrote them through a `!` substitution where `CLAUDE_SESSION_ID` is empty, so every mark read `--------` (case 136.1).
 
-The hook never fails the session: any error goes to stderr and the exit code is 0.
+The hook never fails the session on an error: any error goes to stderr and the exit code is 0; its one exit 2 is the refusal of a `/hi` outside plan mode (case 445.6).
 
 **A limit lifted.** Until case 111 the `hi` line carried `--------` and the ledger hook looked for a `hi` after the last `session-start` of its own session, so two sessions open at once could not be told apart; on 2026-09-14 a session restored by `resume` in the same second took the `hi` of the session that typed it. With the stamp on the `hi` line a `hi` of one session never belongs to another (case 111.1).
 
@@ -54,3 +54,5 @@ The hook never fails the session: any error goes to stderr and the exit code is 
 - 2026-09-14 status: draft → built · cascade
 - 2026-09-14 updated: the marks pretask, retro, handoff written by guppi gate with the session's stamp; the skills' Recorded lines dropped (case 136.1) · [[decision-case-136.1]]
 - 2026-09-15 updated: the marks name the second entry of the gate, the typed command on UserPromptSubmit (case 169.1) · [[decision-case-169.1]]
+- 2026-09-27 updated: no hi line outside plan mode; the refusal exits 2 (case 445.6) · [[decision-case-445.6]]
+- 2026-09-27 status: built → draft · cascade

@@ -1,9 +1,9 @@
 ---
 type: estimate
 kind: QA
-status: passed
+status: pending
 target: "[[rule-event-log]]"
-method: pytest in tests/test_event.py and tests/test_gate.py with piped JSON payloads against a temp vault; the git-ignore and timing readings once by hand, through a pipe, written into the estimate line
+method: pytest in tests/test_event.py and tests/test_gate.py with piped JSON payloads against a temp vault; the git-ignore and timing readings once by hand, through a pipe, written into the estimate line; by hand, one /hi outside plan mode and one in it, the permission_mode of each payload written into the reading
 checked: 2026-09-20
 origin: raw/2026-09-09/ledger.md#case-9
 sprint: migration
@@ -13,18 +13,16 @@ tags: [session, hooks, harness]
 
 ## Criterion
 
-Given:
-The hooks `uv run guppi event <name>` and `uv run guppi gate` run through a pipe with a JSON payload; `session_id` is the stamp.
-**＋** `raw/<date>/event_log.md` is in `.gitignore`; the ledger hook reads the session's `hi` from it.
-
 When:
-A session starts, a tool call completes, the person submits a prompt, the agent calls a skill through `Skill`.
+A session starts, a tool call completes, the person submits a prompt, or the agent calls a skill through `Skill`; `uv run guppi event <name>` and `uv run guppi gate` read the JSON payload through a pipe, its `session_id` the stamp.
 
 Then:
-After the start and one tool call the log carries a `session-start` line with the session's stamp and a `tool` line after it.
-**＋** On `/hi` (trimmed, or `/hi …`), when no `hi` of this stamp follows its first `session-start`: the line `- HH:MM:SS <stamp> hi` and stdout `hi: HH:MM:SS <stamp> → raw/<date>/<HHMM>/`; a second `/hi` writes nothing, stdout `hi: already recorded at HH:MM:SS → raw/<date>/<HHMM>/`; any other prompt is silent; exit 0 either way, an error on stderr only.
+After the start and one tool call, `raw/<date>/event_log.md` carries a `session-start` line with the session's stamp and a `tool` line after it.
+**＋** On `/hi` whose `permission_mode` is `plan`, when no `hi` of this stamp follows its first `session-start`: the line `- HH:MM:SS <stamp> hi` and its `hi:` line on stdout, which names the session's folder; a second `/hi` writes nothing and prints `hi: already recorded`, with the time and the folder; exit 0.
+**＋** On `/hi` whose `permission_mode` is any other value — `default`, `acceptEdits`, `auto`, `dontAsk`, `bypassPermissions` — or is missing or empty, a second `/hi` included: no line, nothing on stdout, exit 2 with a reason on stderr that tells the person to turn plan mode on and type `/hi` again; Claude Code blocks the prompt, and the skill does not run.
+**＋** Any other prompt is silent, and its `permission_mode` is not read: exit 0; an error goes to stderr only, exit 0.
 **＋** A call of `pre-spec`, `retro` or `handoff` through `Skill` that the gate lets through appends `- HH:MM:SS <stamp> <mark>` — `prespec`, `retro`, `handoff` — in the form `guppi event` writes; a refusal writes no line; `hi` and other skills get no mark.
-**＋** `git check-ignore` reports the file ignored; a hook invocation with piped stdin exits 0 and finishes under 2 s.
+**＋** `git check-ignore` reports the log ignored by `.gitignore`; a hook invocation with piped stdin that refuses nothing exits 0 and finishes under 2 s.
 
 ## Result
 
@@ -44,3 +42,4 @@ After the start and one tool call the log carries a `session-start` line with th
 - 2026-09-20 ref `rule-pretask` → `rule-prespec` · [[decision-case-261]]
 - 2026-09-20 updated: the recut to the shape of case 193: the base text and the blocks 111.1, 125, 136.1 folded into one Criterion, the mark pretask now prespec, method as a field; pending for the reading (case 265.1) · [[decision-case-265.1]]
 - 2026-09-20 status: pending → passed · raw/2026-09-20/0958/ledger.md#L27
+- 2026-09-27 updated: the Criterion replaced whole — a /hi outside plan mode writes no hi and exits 2; the Given folded into When (case 445.6) · [[decision-case-445.6]]

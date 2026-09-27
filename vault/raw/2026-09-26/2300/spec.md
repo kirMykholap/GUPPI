@@ -91,11 +91,11 @@ update:
 ```
 
 ```tasks
-- [ ] create `rule-skill-grill-me`
-- [ ] create `estimate-skill-grill-me-asks-in-rounds`
-- [ ] update `entity-sprint-migration`
-- [ ] `uv run guppi render`: `.claude/skills/grill-me/SKILL.md`
-- [ ] `uv run guppi sprint`
+- [x] create `rule-skill-grill-me`
+- [x] create `estimate-skill-grill-me-asks-in-rounds`
+- [x] update `entity-sprint-migration`
+- [x] `uv run guppi render`: `.claude/skills/grill-me/SKILL.md`
+- [x] `uv run guppi sprint`
 - [ ] read `estimate-skill-grill-me-asks-in-rounds`
 ```
 
@@ -155,9 +155,9 @@ update:
 ```
 
 ```tasks
-- [ ] update `rule-case-build`
-- [ ] update `estimate-case-build-writes-the-case`
-- [ ] `uv run guppi render`: `.claude/agents/case-guppi.md`
+- [x] update `rule-case-build`
+- [x] update `estimate-case-build-writes-the-case`
+- [x] `uv run guppi render`: `.claude/agents/case-guppi.md`
 - [ ] read `estimate-case-build-writes-the-case`
 ```
 
@@ -203,9 +203,9 @@ update:
 ```
 
 ```tasks
-- [ ] update `rule-case-protocol`
-- [ ] update `estimate-case-protocol-shows-the-built-case`
-- [ ] `uv run guppi render`: `vault/wiki/case-schema.md`
+- [x] update `rule-case-protocol`
+- [x] update `estimate-case-protocol-shows-the-built-case`
+- [x] `uv run guppi render`: `vault/wiki/case-schema.md`
 - [ ] read `estimate-case-protocol-shows-the-built-case`
 ```
 
@@ -259,7 +259,7 @@ create:
 ```
 
 ```tasks
-- [ ] create `estimate-materialize-judges-a-fence`
+- [x] create `estimate-materialize-judges-a-fence`
 - [x] `guppi/materialize.py` — one function that reads the opening of a fence (its character, its length, its tag) and one that says whether a line closes it; `then_blocks`, `tagged_blocks`, `case_text` and `criterion_text` judge by them; `FENCE` replaced; the docstring names the judgment
 - [x] `guppi/ratified.py` — `quoted_sections` and `fenced_value` judge by the functions of `guppi/materialize.py`; `OPEN_FENCE` and the close on three backticks removed
 - [x] `guppi/prespec.py` — `plan_prose` judges by the functions of `guppi/materialize.py`
@@ -320,8 +320,8 @@ update:
 ```
 
 ```tasks
-- [ ] update `rule-spec-write` — one `replace` pair in `How it works`
-- [ ] update `estimate-spec-write-copies-the-ratified-case` — the Criterion replaced whole, the purpose and the method with no ratified copy
+- [x] update `rule-spec-write` — one `replace` pair in `How it works`
+- [x] update `estimate-spec-write-copies-the-ratified-case` — the Criterion replaced whole, the purpose and the method with no ratified copy
 - [x] `guppi/materialize.py` — one function that gives the fence for a text: backticks one longer than the longest run of backticks that opens a line of the text, three at the least
 - [x] `guppi/ratified.py` — `spec_section`, `deferred_section` and `write_parent` fence the `then` and `tasks` blocks by the function of `guppi/materialize.py`
 - [x] `tests/test_ratified.py` — a test named so that `-k write` picks it: a `sections` value that holds a fence of three and one of four backticks is written in a block fenced by five, and `tagged_blocks` reads it back whole; a block with no fence inside keeps three
@@ -351,8 +351,8 @@ update:
 ```
 
 ```tasks
-- [ ] update `rule-case-protocol` — one `replace` pair in its Render
-- [ ] `uv run guppi render`: `vault/wiki/case-schema.md`
+- [x] update `rule-case-protocol` — one `replace` pair in its Render
+- [x] `uv run guppi render`: `vault/wiki/case-schema.md`
 ```
 
 ## Case 445 — the plan is written by the hooks alone: a guard on the plan, the ratified copy removed, `/hi` only in plan mode
@@ -426,10 +426,10 @@ update:
 ```
 
 ```tasks
-- [ ] update `rule-spec-reconcile`
-- [ ] update `estimate-spec-reconcile-shows-a-changed-case`
-- [ ] update `rule-hook-registry`
-- [ ] `uv run guppi render`: `.claude/settings.json`
+- [x] update `rule-spec-reconcile`
+- [x] update `estimate-spec-reconcile-shows-a-changed-case`
+- [x] update `rule-hook-registry`
+- [x] `uv run guppi render`: `.claude/settings.json`
 - [x] `guppi/ledger.py` — one function judges whether a path is a `.md` file under `.claude/plans/`; `plan_path` uses it
 - [x] `guppi/ratified.py` — `--guard` for `PreToolUse`: refuses as the `then` says, writes the line of the refusal, judges a plan path by the function of `guppi/ledger.py`; `edit`, `check_marks`, `read_marks`, `marks_of`, `MARKS_SUFFIX`, `is_plan`, the `--edit` flag and the call of `check_marks` in `stop` removed; the docstring
 - [x] `tests/test_ratified.py` — tests named so that `-k guard` picks them: an `Edit` and a `MultiEdit` of a plan refused; a `Write` of an existing plan refused; a `Write` that creates a plan with one title line let through, with a title and a Case refused; every edit of a `.checked.json` refused; a file outside `.claude/plans/` let through; no `tool` line written on a refusal; the tests of the `--edit` hook and the marks removed
@@ -496,11 +496,11 @@ update:
 ```
 
 ```tasks
-- [ ] update `rule-spec-write`
-- [ ] update `rule-case-protocol`
-- [ ] update `rule-case-check`
-- [ ] update `estimate-spec-write-checks-the-written-case`
-- [ ] `uv run guppi render`: `vault/wiki/case-schema.md`
+- [x] update `rule-spec-write`
+- [x] update `rule-case-protocol`
+- [x] update `rule-case-check`
+- [x] update `estimate-spec-write-checks-the-written-case`
+- [x] `uv run guppi render`: `vault/wiki/case-schema.md`
 - [x] `guppi/ratified.py` — `write_case`, `write_parent` and `remove_superseded` write the plan and, once it stands, `spec.md`, and no copy; `copy_of`, `COPY_SUFFIX` and the title of a copy removed; the docstring
 - [x] `guppi/casecheck.py` — the docstring no longer names the ratified copy
 - [x] `tests/test_ratified.py` — the tests of the copy removed; a test named so that `-k write` picks it asserts that no `.ratified.md` file is written beside the plan
@@ -537,7 +537,7 @@ update:
 ```
 
 ```tasks
-- [ ] update `estimate-spec-write-removes-a-superseded-case`
+- [x] update `estimate-spec-write-removes-a-superseded-case`
 - [ ] read `estimate-spec-write-removes-a-superseded-case`
 ```
 
@@ -586,10 +586,10 @@ delete:
 ```
 
 ```tasks
-- [ ] delete `estimate-prespec-checks-the-ratified-copy`
-- [ ] create `estimate-language-spec-prose-in-english`
-- [ ] update `rule-prespec`
-- [ ] `uv run guppi render`: `.claude/skills/pre-spec/SKILL.md`
+- [x] delete `estimate-prespec-checks-the-ratified-copy`
+- [x] create `estimate-language-spec-prose-in-english`
+- [x] update `rule-prespec`
+- [x] `uv run guppi render`: `.claude/skills/pre-spec/SKILL.md`
 - [x] `guppi/ratified.py` — `differences`, `compared_parts`, `outside_deferred` and `COMPARED` removed; `untranslated` reads every Case of the plan, `## Deferred` included
 - [x] `guppi/prespec.py` — `--check` drops the comparison with the ratified copy and keeps the Cyrillic finding; the docstring
 - [x] `tests/test_prespec.py` — the tests of the ratified copy removed; tests named so that `-k cyrillic` picks them: a Cyrillic name, `context` and `problem` found, one under `## Deferred` found, Cyrillic in `given` or in a block not found, an English plan clean
@@ -644,8 +644,8 @@ update:
 ```
 
 ```tasks
-- [ ] update `rule-event-log`
-- [ ] update `estimate-event-log-records`
+- [x] update `rule-event-log`
+- [x] update `estimate-event-log-records`
 - [x] `guppi/event.py` — one function judges a `/hi` payload by its `permission_mode`; `run` on `prompt` writes no line, prints nothing on stdout and exits 2 with the reason on stderr when it refuses; the docstring: errors still exit 0, the refusal exits 2
 - [x] `tests/test_event.py` — tests named so that `-k plan_mode` picks them: `/hi` with `plan` writes the line; with `default`, `acceptEdits`, `auto`, `dontAsk` or `bypassPermissions`, with the field missing and empty: exit 2, no line, nothing on stdout; a second `/hi` outside plan mode refused; another prompt outside plan mode exit 0
 - [ ] read `estimate-event-log-records`
@@ -676,7 +676,7 @@ update:
 ```
 
 ```tasks
-- [ ] update `rule-skill-hi`
+- [x] update `rule-skill-hi`
 ```
 
 ## Case 446 — The rule of the language drops the translation step before approval
@@ -726,9 +726,9 @@ update:
 ```
 
 ```tasks
-- [ ] update `rule-language` — the sentence of the Render on the prose of a Case
-- [ ] update `estimate-language-followed` — the Criterion replaced whole
-- [ ] `uv run guppi render`: `CLAUDE.md`
+- [x] update `rule-language` — the sentence of the Render on the prose of a Case
+- [x] update `estimate-language-followed` — the Criterion replaced whole
+- [x] `uv run guppi render`: `CLAUDE.md`
 - [ ] read `estimate-language-followed` — by hand in a later session
 ```
 

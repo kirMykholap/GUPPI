@@ -3,8 +3,8 @@ type: estimate
 kind: QA
 status: pending
 target: "[[rule-spec-write]]"
-purpose: The ratified Case enters the plan file and its ratified copy in the words of the stored answer of case-guppi, the then block built from the sub-points
-method: uv run pytest tests/test_ratified.py -k write; the live reading by hand, the plan file and its ratified copy after the first ratification of a session
+purpose: The ratified Case enters the plan file in the words of the stored answer of case-guppi, the then block built from the sub-points, each block fenced by its content
+method: uv run pytest tests/test_ratified.py -k write; the live reading by hand, the plan file after the first ratification of a session
 checked: 2026-09-25
 origin: raw/2026-09-23/1859/ledger.md#case-387.2
 sprint: migration
@@ -19,7 +19,8 @@ The `Stop` hook `uv run guppi ratified` runs after a reply whose `LEDGER` block 
 
 Then:
 The hook writes the stored answer of Case N into the plan file `plan_path` finds, the section of Case N replaced when it stands, appended otherwise: the heading, `context`, `problem`, `given`, `when` and `then` as the answer holds them; a block tagged `then` built from the sub-points of `tasks`; a block tagged `tasks` of the task lines without their sub-points; `recommend` and `ratification` are not written.
-**＋** It writes the same text the same way into the ratified copy `<plan>.ratified.md` beside the plan file.
+**＋** Each of the two blocks opens and closes with a fence of backticks one longer than the longest run of backticks that opens a line inside it, three at the least; `tagged_blocks` of `guppi/materialize.py` reads it back whole.
+**＋** The same fence rule holds for the blocks the hook writes into `raw/<date>/<hi HHMM>/spec.md` once it stands, and for the `then` block of a short-form defer it writes under `## Deferred`.
 **＋** A last showing of Case N that differs from the stored answer — by the one comparison `uv run guppi casecheck` makes on `Stop`, imported from `guppi/casecheck.py` — a store with no Case N, or a Case N stored with findings: exit 2 with the reason on stderr, and nothing of Case N is written.
 **＋** A task line opening with `create`, `update`, `delete` or `defer` and the slug in its first code span is an item of the `then` block; its sub-points are its keys — `old` and `new` in pairs under `replace`, `reword old` and `reword new` under `reword`, `set`, `change`, `rename`, `sections.<Name>`, the fields of a `create` — each value one code span, padded by one space on each side when the value holds a backtick, or a fenced block under the sub-point.
 **＋** A sub-point that reads into no key `item_keys` of `guppi/materialize.py` gives the kind and the category of its item — the one judgment `guppi/materialize.py` lifts by and `guppi/generate.py` applies by — is refused: exit 2 with `` `<key>`: not a key of <kind> <slug> `` on stderr, and nothing of the Case is written.
@@ -42,3 +43,4 @@ The hook writes the stored answer of Case N into the plan file `plan_path` finds
 - 2026-09-26 updated: the Criterion replaced whole — a sub-point outside the keys item_keys gives its item is refused (case 436.1) · [[decision-case-436.1]]
 - 2026-09-26 updated: the Criterion replaced whole — the Case is written from the stored answer of case-guppi, a differing showing refused; the lines of case 436.1 carried (case 437) · [[decision-case-437]]
 - 2026-09-26 updated: the Criterion replaced whole — the DIFF skip goes (case 441.8) · [[decision-case-441.8]]
+- 2026-09-27 updated: the Criterion replaced whole — the fence of each written block is one longer than the longest fence inside it; the ratified copy no longer named (cases 444.2, 445.2) · [[decision-case-444.2]]

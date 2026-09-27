@@ -7,7 +7,7 @@ enforcement: render
 governs: CLAUDE.md
 render_mode: partial
 parent: "[[rule-claude-md]]"
-estimates: ["[[estimate-language-followed]]"]
+estimates: ["[[estimate-language-followed]]", "[[estimate-language-spec-prose-in-english]]"]
 origin: raw/2026-09-20/1308/ledger.md#case-272.2
 sprint: migration
 created: 2026-09-20
@@ -27,7 +27,7 @@ is the `## Language` section of `case-schema.md`, which this rule does not repea
 <!-- rule-language -->
 ## Language
 
-English for everything written into the repository: code, identifiers, comments, pages, commit messages, documents — the Spec included. Russian for chat with the owner: the name of a Case, its `context`, `problem` and `recommend` are Russian in the chat and are translated into English in the Spec before its approval; its `given`, `when`, `then` and `tasks` are English in the chat, the words that enter the Spec and the vault unchanged. Slugs, field names, ledger lines, paths and quotations from pages stay as they are in either language. English technical terms are not transliterated into Cyrillic.
+English for everything written into the repository: code, identifiers, comments, pages, commit messages, documents — the Spec included. Russian for chat with the owner: the name of a Case, its `context`, `problem` and `recommend` are Russian in the chat, and its name, `context` and `problem` are English in the Spec; its `given`, `when`, `then` and `tasks` are English in the chat, the words that enter the Spec and the vault unchanged; a short-form Case is English in the chat, as the Spec holds it. Slugs, field names, ledger lines, paths and quotations from pages stay as they are in either language. English technical terms are not transliterated into Cyrillic.
 <!-- /rule-language -->
 
 ## History
@@ -37,3 +37,5 @@ English for everything written into the repository: code, identifiers, comments,
 - 2026-09-20 status: draft → built · cascade
 - 2026-09-24 updated: a Case's given, when, then and tasks are English in the chat (case 387.1) · [[decision-case-387.1]]
 - 2026-09-24 status: built → draft · cascade
+- 2026-09-27 estimate estimate-language-spec-prose-in-english added · [[decision-case-445.4]]
+- 2026-09-27 updated: the prose of a Case is Russian in the chat and English in the Spec, with no translation step before approval since Case 441; a short-form Case is English in the chat (case 446) · [[decision-case-446]]

@@ -3,7 +3,7 @@ type: rule
 purpose: Prevents implementation starting before the plan, branch and baseline exist
 status: draft
 parent: "[[rule-session]]"
-deferred_by: ["[[decision-case-183]]", "[[decision-case-206]]", "[[decision-case-218]]", "[[decision-case-231]]", "[[decision-case-242]]", "[[decision-case-248]]", "[[decision-case-252]]", "[[decision-case-254]]", "[[decision-case-260]]", "[[decision-case-263]]", "[[decision-case-269]]", "[[decision-case-276]]", "[[decision-case-281]]", "[[decision-case-285]]", "[[decision-case-289]]", "[[decision-case-293]]", "[[decision-case-303]]", "[[decision-case-307]]", "[[decision-case-322]]"]
+deferred_by: ["[[decision-case-183]]", "[[decision-case-206]]", "[[decision-case-218]]", "[[decision-case-231]]", "[[decision-case-242]]", "[[decision-case-248]]", "[[decision-case-252]]", "[[decision-case-254]]", "[[decision-case-260]]", "[[decision-case-263]]", "[[decision-case-269]]", "[[decision-case-276]]", "[[decision-case-281]]", "[[decision-case-285]]", "[[decision-case-289]]", "[[decision-case-293]]", "[[decision-case-303]]", "[[decision-case-307]]", "[[decision-case-322]]", "[[decision-case-447]]"]
 origin: raw/2026-09-10/ledger.md#case-29
 sprint: migration
 created: 2026-09-10
@@ -60,3 +60,4 @@ Prevents implementation starting before the plan, branch and baseline exist
 - 2026-09-22 deferred · [[decision-case-307]]
 - 2026-09-22 updated: the parent is rule-session, the MOC of the five phases (case 316) · [[decision-case-316]]
 - 2026-09-22 deferred · [[decision-case-322]]
+- 2026-09-27 deferred · [[decision-case-447]]

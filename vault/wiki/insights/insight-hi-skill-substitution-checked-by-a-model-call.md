@@ -5,6 +5,7 @@ status: actioned
 children: ["[[lesson-hi-substitution-refused-when-the-permission-classifier-is-unavailable]]", "[[lesson-hi-substitution-fails-when-the-login-has-lapsed]]", "[[lesson-hi-substitution-gets-no-verdict-from-the-server-side-classifier]]"]
 severity: 0
 addressed_by: "[[decision-case-439]]"
+deferred_by: ["[[decision-case-448]]"]
 origin: raw/2026-09-18/1252/ledger.md#L8
 sprint: migration
 created: 2026-09-18
@@ -24,3 +25,4 @@ One sentence in `rule-skill-hi`: a refused `!` substitution at /hi is a lapsed l
 - 2026-09-18 created · raw/2026-09-18/1252/ledger.md#L8
 - 2026-09-18 updated: rejected — the check of a `!` command is the client's, the harness has no guard for a lapsed login, and the cure stands in the pattern and in lesson 1252; rule-skill-hi unchanged (case 246) · [[decision-case-246]]
 - 2026-09-26 updated: child lesson-hi-substitution-gets-no-verdict-from-the-server-side-classifier added; addressed_by decision-case-439, later than decision-case-246, status actioned kept · raw/2026-09-26/1745/ledger.md#L2
+- 2026-09-27 deferred · [[decision-case-448]]

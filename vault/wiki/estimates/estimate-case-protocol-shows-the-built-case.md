@@ -15,17 +15,16 @@ tags: [session, workflow]
 ## Criterion
 
 When:
-The main agent takes up a Frontier item that needs a Case, the person answers a shown Case with a question or a change, or a ratified Case changes and is shown again, in Plan Mode or in Work Mode.
+The main agent takes up a Frontier item, the person answers a round of questions or answers a shown Case with a question or a change, or a ratified Case changes and is shown again, in Plan Mode or in Work Mode.
 
 Then:
-The main agent dispatches `case-guppi` with the Case id, the Frontier item and its source, and the person's words on it, in the prompt of the call; nothing of the Case stands in the chat before the answer.
-**＋** A question or a change of the person on a shown Case goes to the same `case-guppi` by `SendMessage`.
-**＋** The main agent shows the Case of the answer whole, at its first showing and at every showing again — its name, `context`, `problem` and `recommend` translated into Russian, its `given`, `when`, `then`, `tasks` and `ratification` as the answer holds them — and that is the Case the person answers; its own text stands after one horizontal rule.
-**＋** A showing that the `Stop` comparison of `uv run guppi casecheck` refuses is followed, before the person answers, by a reply that shows the answer whole, translated the same way.
+The main agent dispatches `case-guppi` with the Case id, the Frontier item and its source, and the person's words on it, in the prompt of the call, after the plan file stands with its title line; nothing of the Case stands in the chat before the answer.
+**＋** The person's answers to a round go to the same `case-guppi` by `SendMessage`, verbatim and untranslated, and so does a question or a change of the person on a shown Case.
+**＋** An answer with no Case heading is a round of questions: the main agent shows it translated into Russian, slugs, paths and quotations unchanged, and no Case is shown.
+**＋** No step of confirmation follows the last round: the next showing is the Case.
+**＋** The main agent shows the Case of the answer whole at every showing — its name, `context`, `problem` and `recommend` translated into Russian, its `given`, `when`, `then`, `tasks` and `ratification` as the answer holds them — and its own text after one horizontal rule; a showing that the `Stop` comparison of `rule-case-check` refuses is followed, before the person answers, by a reply that shows the answer whole, translated the same way.
 **＋** A ratified Case that changes — in its prose or in its body — changes through its `case-guppi`, and its new answer is shown and ratified again; the main agent edits no Case in the plan file.
-**＋** An answer that holds no Case heading is a question the main agent puts to the person, and no Case is shown.
-**＋** The plan file stands with its title line before the first dispatch of the session.
-**＋** The main agent dispatches `ask-guppi` once, at pre-spec, and neither `ask-guppi` nor `frame-guppi` before a showing.
+**＋** An item that needs no decision the main agent closes alone, with no dispatch; it dispatches `ask-guppi` once, at pre-spec, and not before a showing.
 **－** A deferred decision in the short form is written by the main agent in English in the chat, with no dispatch.
 
 ## Result
@@ -40,3 +39,4 @@ The main agent dispatches `case-guppi` with the Case id, the Frontier item and i
 - 2026-09-25 status: pending → failed · raw/2026-09-25/1654/ledger.md#L25
 - 2026-09-26 updated: the Criterion replaced whole — the Case the person answers is the answer unchanged; a showing the Stop comparison refuses is followed by the answer shown unchanged (case 435) · [[decision-case-435]]
 - 2026-09-26 updated: the Criterion replaced whole — the prose translated for the chat, every showing whole, a changed Case through its case-guppi, the short form in English (case 441.2) · [[decision-case-441.2]]
+- 2026-09-27 updated: the Criterion replaced whole — a round shown translated, the answers passed verbatim, no step of confirmation (case 443.3) · [[decision-case-443.3]]

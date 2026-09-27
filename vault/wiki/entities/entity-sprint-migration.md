@@ -59,7 +59,7 @@ session 1034 and conserved, repaired by 193–198 and built in session 1651, cas
 taken up by 201–203 and built in session 1955 — `generate`, `lint`, `pre-spec` by the
 model. The recut of each old Estimate at its first touch runs on past the Slice: lint
 counts the remainder as `unmigrated` (42 at the close of 3d) and the old shape is
-removed when it reaches zero. Kept without a page: `/grill-me`; `git pull` in `/hi`
+removed when it reaches zero. `/grill-me` has its page since case 443.1, `rule-skill-grill-me`. Kept without a page: `git pull` in `/hi`
 without an upstream (decision 11.1); `gh` not logged in, no GitHub remote (11.2) —
 both decided again at the close (`estimate-sprint-migration-leftovers-gone`).
 
@@ -101,3 +101,4 @@ No file of `vault/wiki/` is written by hand.
 - 2026-09-25 updated: Slice 3g cut into four notes — the eleven, the journals, Given: out of the rest, the old shape (case 395) · [[decision-case-395]]
 - 2026-09-25 updated: Slice 3g: the note of the eleven Estimates done — cases 396 to 400, 388 for estimate-prespec-reconciles (case 400.2) · [[decision-case-400.2]]
 - 2026-09-25 updated: Slice 3g: the note of the journals done (case 401) · [[decision-case-401.8]]
+- 2026-09-27 updated: /grill-me has its rule page (case 443.1) · [[decision-case-443.1]]

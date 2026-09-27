@@ -6,7 +6,7 @@ status: draft
 enforcement: check
 implementation_ref: [guppi/materialize.py, tests/test_materialize.py]
 parent: "[[rule-documentation]]"
-estimates: ["[[estimate-materialize-assembles]]", "[[estimate-materialize-walks-dates]]", "[[estimate-materialize-shows]]", "[[estimate-materialize-lifts-a-lesson]]", "[[estimate-materialize-marks-exists]]", "[[estimate-materialize-fails-alone]]", "[[estimate-materialize-marks-superseded]]", "[[estimate-materialize-skips-a-carried-over-unit]]", "[[estimate-materialize-carries-addresses]]", "[[estimate-materialize-lifts-unfiltered-on-a-schema-change]]", "[[estimate-materialize-refolds-a-reading-on-a-supersede]]", "[[estimate-materialize-lifts-when-and-then]]", "[[estimate-materialize-lifts-a-create-by-the-schema]]", "[[estimate-materialize-changes-a-named-part-alone]]"]
+estimates: ["[[estimate-materialize-assembles]]", "[[estimate-materialize-walks-dates]]", "[[estimate-materialize-shows]]", "[[estimate-materialize-lifts-a-lesson]]", "[[estimate-materialize-marks-exists]]", "[[estimate-materialize-fails-alone]]", "[[estimate-materialize-marks-superseded]]", "[[estimate-materialize-skips-a-carried-over-unit]]", "[[estimate-materialize-carries-addresses]]", "[[estimate-materialize-lifts-unfiltered-on-a-schema-change]]", "[[estimate-materialize-refolds-a-reading-on-a-supersede]]", "[[estimate-materialize-lifts-when-and-then]]", "[[estimate-materialize-lifts-a-create-by-the-schema]]", "[[estimate-materialize-changes-a-named-part-alone]]", "[[estimate-materialize-judges-a-fence]]"]
 origin: raw/2026-09-10/ledger.md#case-31
 sprint: migration
 created: 2026-09-10
@@ -114,3 +114,4 @@ entry's fields, each with its writer, live in the docstring of `guppi/materializ
 - 2026-09-25 status: draft → built · cascade
 - 2026-09-25 updated: a reading that must not apply is retired by a one-off migration of a ratified Case, superseded_by set to its number (case 427) · [[decision-case-427]]
 - 2026-09-25 status: built → draft · cascade
+- 2026-09-27 estimate estimate-materialize-judges-a-fence added · [[decision-case-444.1]]

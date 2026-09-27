@@ -15,18 +15,18 @@ tags: [hooks, harness, workflow]
 ## Criterion
 
 When:
-The `Stop` hook `uv run guppi ratified` has written Case N into the plan file and its ratified copy after a reply whose `LEDGER` block holds the decision lines of Case N.
+The `Stop` hook `uv run guppi ratified` has written Case N into the plan file after a reply whose `LEDGER` block holds the decision lines of Case N.
 
 Then:
-The hook runs the checks of `prespec --check`, imported from `guppi/prespec.py`, on each Case it wrote in this run and its sub-cases, with the decision lines of the reply added to those of the session's ledger, each line once.
+The hook runs the checks of `prespec --check` on each Case it wrote in this run and its sub-cases, with the decision lines of the reply added to those of the session's ledger, each line once.
 **＋** The `replace` and `reword` pairs of every Case of the plan are applied in entry order, and only an anchor of a Case written in this run that misses or hits more than once is a finding.
-**＋** On a finding: exit 2, the findings on stderr after `ratified:`, each naming its Case; the written Case stays in the plan and in its ratified copy.
+**＋** On a finding: exit 2, the findings on stderr after `ratified:`, each naming its Case; the written Case stays in the plan file.
 **＋** A finding of a Case not written in this run is not reported.
 **－** On the re-fire (`stop_hook_active`) nothing is checked: exit 0.
 **－** A Case not written in this run, and a defer-only Case, which the hook writes under `## Deferred`, are not checked.
-**－** The Frontier `raw/<hi date>/<hi HHMM>/frontier.md` is not read.
-**－** The plan is not compared with its ratified copy, and a name, `context` or `problem` that holds a Cyrillic letter is no finding.
+**－** The Frontier is not read, and a name, `context` or `problem` that holds a Cyrillic letter is no finding.
 **－** A ledger line of the window that does not parse is no finding of this check.
+**－** The plan is compared with no other file, and no ratified copy `<plan>.ratified.md` is written.
 
 ## Result
 
@@ -38,3 +38,4 @@ The hook runs the checks of `prespec --check`, imported from `guppi/prespec.py`,
 - 2026-09-25 updated: the Criterion replaced whole — a defer-only Case is written by the hook and not checked (case 421.1) · [[decision-case-421.1]]
 - 2026-09-25 status: pending → passed · raw/2026-09-25/1654/ledger.md#L30
 - 2026-09-26 updated: the Criterion replaced whole — a DIFF showing is no longer named (case 441.9) · [[decision-case-441.9]]
+- 2026-09-27 updated: the Criterion replaced whole — the Case is written into the plan file alone, no ratified copy (case 445.2) · [[decision-case-445.2]]

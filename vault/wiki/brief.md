@@ -1,43 +1,48 @@
-# Brief — 2026-09-26, the librarian's run over session 1745
+# Brief — 2026-09-27, the librarian's run over session 2300 of 2026-09-26
 
 ## Where things stand
 
-- Session 1745 ratified Cases 439, 440 (440.1–440.3) and 441 (441.1–441.10), and deferred `rule-ledger-write` by Case 442. Commit e82477f; the `/hi` fix is commit 54509ed, made before `/hi` and outside a Case, ratified after the fact by Case 439 (handoff).
-- Code, commit e82477f: `guppi/materialize.py`, `guppi/prespec.py`, `guppi/casecheck.py`, `guppi/ratified.py`, `guppi/spec.py`; tests in `test_materialize.py`, `test_prespec.py`, `test_gate.py`, `test_casecheck.py`, `test_ratified.py`. The session's `make test` gave 707 passed, 2 skipped; `make style` was clean (handoff).
-- Readings of the session: 7 passed, 4 failed (handoff, ledger lines 27–37).
-- Not done in the session: the readings of the 12 Estimates the session changes or creates; the readings the handoff names not readable yet; Frontier Work lines W1–W3, W9, W10, W12, W13, W16, W19–W28 and W31 (handoff). Frontier C1 and C2 stay for the sprint; C7–C9 are deferred and kept (handoff).
-- The walk named `raw/2026-09-26/1337/` (0 new entries; `materialize` added the mark `superseded_by: 441.4` to its defer of `rule-prespec`, line 18) and `raw/2026-09-26/1745/`.
-- Yaml of 1745: 38 entries from the 38 lines of the ledger: 22 `update`, 2 `create`, 1 `defer` (`exists`), 11 `estimate`, 2 `lesson`. The librarian added 2 entries (synthesis): 1 `update` of an Insight, 1 `update` of a lesson. All 40 are `applied`. 15 Decisions applied.
-- Pages (`generate`: 50 pages written or changed; `cleanup`: 2 pages moved):
-  - decisions: 15 created (439, 440.1–440.3, 441.1–441.10, 442). `decision-case-438` became `superseded` by 441.4, then `archived`; `cleanup` moved it to the archive.
-  - estimates: 2 created, `pending`: `estimate-spec-write-reaches-the-approved-spec` (441.6), `estimate-spec-write-removes-a-superseded-case` (441.7). 10 updated by Cases, all `pending`: `estimate-materialize-lifts-a-create-by-the-schema` (440.1), `estimate-materialize-assembles` (440.2), `estimate-case-build-writes-the-case` (441.1), `estimate-case-protocol-shows-the-built-case` (441.2), `estimate-case-check-shows-only-the-checked-case` (441.3), `estimate-prespec-reconciles` (441.4), `estimate-prespec-checks-the-ratified-copy` (441.5), `estimate-spec-write-copies-the-ratified-case` (441.8), `estimate-spec-write-checks-the-written-case` (441.9), `estimate-spec-capture-appends` (441.10). 11 updated by readings: 7 `passed`, 4 `failed`.
-  - rules: 8 updated: `rule-skill-hi` (439), `rule-case-protocol` (440.3, 441.2, 441.6, 441.7), `rule-case-build` (441.1), `rule-case-check` (441.3), `rule-prespec` (441.4; its `deferred_by` 438 removed), `rule-spec-write` (441.6, 441.7, 441.8), `rule-spec-capture` (441.6). 1 deferred: `rule-ledger-write` (`deferred_by` 442). Cascade: `rule-ledger-write` draft → built; `rule-spec-capture` built → draft.
-  - lessons: 2 created: `lesson-case-build-a-criterion-replaced-whole-drops-a-line` (`new`); `lesson-hi-substitution-gets-no-verdict-from-the-server-side-classifier` (`clustered`, then `archived` by the cascade under an `actioned` Insight; `cleanup` moved it to the archive).
-  - insights: 1 updated: `insight-hi-skill-substitution-checked-by-a-model-call` (child added, `addressed_by` 246 → 439, `actioned` kept).
-  - entities: none changed.
-- Governed files `render` rewrote: `vault/wiki/case-schema.md`, `.claude/agents/case-guppi.md`, `.claude/skills/pre-spec/SKILL.md`. `guppi sprint` and `guppi glossary` changed nothing.
+- Session 2300 ratified Cases 443 (443.1–443.3), 444 (444.1–444.3), 445 (445.1–445.4, 445.6, 445.7) and 446, and deferred Cases 447 (`rule-work-mode`) and 448 (`insight-hi-skill-substitution-checked-by-a-model-call`). 445.7 supersedes 445.5. Frontier C1 and C2 stay for the sprint; C8, C10 and C11 are deferred and kept (handoff).
+- Code, commit b2825a0: `guppi/materialize.py`, `guppi/ratified.py`, `guppi/prespec.py`, `guppi/casecheck.py`, `guppi/ledger.py`, `guppi/event.py`, `guppi/cli.py`; tests in `test_materialize.py`, `test_ratified.py`, `test_prespec.py`, `test_event.py`. The session's `make test` gave 734 passed, 2 skipped; `make style` was clean (handoff).
+- Readings of the session: 2, both `failed`: `estimate-case-protocol-case-form` (W30) and `estimate-agent-writing-followed` (W31) (handoff, ledger lines 35–36).
+- Not done in the session: the `read` lines of the 11 Estimates the session creates or updates; Frontier Work lines W1–W29; W32 `estimate-language-followed`, whose Criterion Case 446 replaced (handoff).
+- The walk named `raw/2026-09-26/1337/` and `raw/2026-09-26/1745/` (0 new entries each, 0 pages written) and `raw/2026-09-26/2300/`.
+- Yaml of 2300: 36 entries from the 36 lines of the ledger: 23 `update`, 5 `create`, 1 `delete`, 2 `defer` (both `exists`), 3 `lesson`, 2 `estimate`. The librarian added 5 entries (synthesis): 1 `create` of an Insight, 1 `update` of an Insight, 3 `update` of lessons. 39 of 41 are `applied`; lines 23 and 24 (445.5) carry `superseded_by: 445.7` and were not applied.
+- Pages (`generate`: 67 pages written or changed; `cleanup`: 3 pages moved):
+  - decisions: 16 created (443.1–443.3, 444.1–444.3, 445.1–445.7, 446, 447, 448). `decision-case-423` became `superseded` by 445.1 and `decision-case-445.5` by 445.7; both `archived` and moved by `cleanup`.
+  - rules: 1 created: `rule-skill-grill-me` (443.1, child of `rule-plan-mode`). 10 updated: `rule-case-build` (443.2), `rule-case-protocol` (443.3, 444.3, 445.2), `rule-spec-write` (444.2, 445.2), `rule-spec-reconcile` (445.1; its defer by 423 superseded), `rule-hook-registry` (445.1), `rule-case-check` (445.2), `rule-prespec` (445.4), `rule-event-log` (445.6), `rule-language` (446), `rule-skill-hi` (445.7). 1 deferred: `rule-work-mode` (447). Cascade: `rule-event-log` and `rule-spec-reconcile` built → draft.
+  - estimates: 3 created, `pending`: `estimate-skill-grill-me-asks-in-rounds` (443.1), `estimate-materialize-judges-a-fence` (444.1), `estimate-language-spec-prose-in-english` (445.4). 1 renamed and updated: `estimate-spec-reconcile-shows-a-changed-case` → `estimate-spec-reconcile-refuses-an-edit-of-the-plan` (445.1). 7 updated by Cases, all `pending`: `estimate-case-build-writes-the-case` (443.2), `estimate-case-protocol-shows-the-built-case` (443.3), `estimate-spec-write-copies-the-ratified-case` (444.2), `estimate-spec-write-checks-the-written-case` (445.2), `estimate-spec-write-removes-a-superseded-case` (445.3), `estimate-event-log-records` (445.6), `estimate-language-followed` (446). 2 updated by readings, both `failed`. 1 deleted: `estimate-prespec-checks-the-ratified-copy` (445.4), moved by `cleanup`. `estimate-skill-hi-opens-only-in-plan-mode` was not created (445.5 superseded).
+  - lessons: 3 created: `lesson-case-build-a-list-in-context` (`clustered`), `lesson-case-build-one-promise-signed-in-two-sub-cases` (`clustered`), `lesson-ledger-a-dropped-item-needs-a-superseding-sub-case` (`new`). 1 updated: `lesson-case-build-a-criterion-replaced-whole-drops-a-line` (`clustered`).
+  - insights: 1 created: `insight-case-build-promise-lines-compared-by-no-check` (`open`). 2 updated: `insight-case-form-chat-form-read-by-no-script` (child added, `actioned` → `open`); `insight-hi-skill-substitution-checked-by-a-model-call` (deferred by 448).
+  - entities: 1 updated: `entity-sprint-migration` (443.1).
+  - git status also shows 14 decision pages of earlier Cases changed by `generate` with no line in `log.md`: 387.3, 396.1, 396.2, 437, 441.1–441.10; see Flags.
+- Governed files `render` rewrote: `.claude/settings.json` (`rule-hook-registry`: `guppi ratified --guard` on PreToolUse of Edit, Write and MultiEdit; `guppi ratified --edit` gone from PostToolUse), `.claude/skills/grill-me/SKILL.md`, `.claude/agents/case-guppi.md`, `.claude/skills/pre-spec/SKILL.md`, `CLAUDE.md`, `vault/wiki/case-schema.md`. `guppi sprint` rewrote `vault/wiki/sprint.md`; `guppi glossary` changed nothing.
 
 ## Readings due
 
-30 Estimates stand `pending` or `failed` after `generate`: 4 `failed`, 26 `pending`.
+34 Estimates stand `pending` or `failed` after `generate`: 3 `failed`, 31 `pending`.
 
-- `estimate-case-protocol-case-form` — `failed` — `rule-case-protocol` draft — by hand, the Cases of a session at its close (method). Result: the context of Case 439 and of Case 441 shown again holds bullet lists, not prose, and the given of 441.4 holds the state "deferred by case 438".
+- `estimate-case-protocol-case-form` — `failed` — `rule-case-protocol` draft — by hand, the Cases of a session at its close (method). Result: the context of Case 446 carries a count of items and case numbers it is not about (378.5, 428.1), and the problem of Case 445 cites case 410, which the Case is not about.
+- `estimate-agent-writing-followed` — `failed` — `rule-agent-writing` draft — by hand, the section in `CLAUDE.md` and one reply against it (method). Result: a reply said the ledger gained amended lines of 445.6 where the tail shows L31 alone new, and one reply gave W32 a closer the Frontier gives only to sprint items.
 - `estimate-case-protocol-defers-in-one-reply` — `failed` — `rule-case-protocol` draft — by hand, the first defer the person asks for after the render (method). Result: Case 442 was shown in the short form, but the agent then edited the plan file to translate its heading, context and problem, and text followed the Frontier in the reply.
-- `estimate-agent-writing-followed` — `failed` — `rule-agent-writing` draft — by hand, the section in `CLAUDE.md` and one reply against it (method). Result: the Work Mode report says 10 Estimates wait where the ledger names 12, and the retro reply announces "three more" and lists two.
-- `estimate-language-followed` — `failed` — `rule-language` draft — by hand, the section in `CLAUDE.md`, the session's commit, Spec and chat (method). Result: Case 441 was shown in the chat with its name, context, problem and recommend in English, and the agent's Russian text transliterates hook, commit, skill, insight and Case.
-- `estimate-materialize-lifts-a-create-by-the-schema` — `rule-materialize` draft — `raw/2026-09-26/1745/spec.md` line 96.
-- `estimate-materialize-assembles` — `rule-materialize` draft — `raw/2026-09-26/1745/spec.md` line 132.
-- `estimate-case-build-writes-the-case` — `rule-case-build` draft — `raw/2026-09-26/1745/spec.md` line 240.
-- `estimate-case-protocol-shows-the-built-case` — `rule-case-protocol` draft — `raw/2026-09-26/1745/spec.md` line 287; `raw/2026-09-26/1337/spec.md` line 163.
-- `estimate-case-check-shows-only-the-checked-case` — `rule-case-check` draft — `raw/2026-09-26/1745/spec.md` line 335.
-- `estimate-prespec-reconciles` — `rule-prespec` draft — `raw/2026-09-26/1745/spec.md` line 381.
-- `estimate-prespec-checks-the-ratified-copy` — `rule-prespec` draft — `raw/2026-09-26/1745/spec.md` line 413.
-- `estimate-spec-write-reaches-the-approved-spec` — `rule-spec-write` draft — `raw/2026-09-26/1745/spec.md` line 479.
-- `estimate-spec-write-removes-a-superseded-case` — `rule-spec-write` draft — `raw/2026-09-26/1745/spec.md` line 537.
-- `estimate-spec-write-copies-the-ratified-case` — `rule-spec-write` draft — `raw/2026-09-26/1745/spec.md` line 590; `raw/2026-09-26/1337/spec.md` lines 232 and 436.
-- `estimate-spec-write-checks-the-written-case` — `rule-spec-write` draft — `raw/2026-09-26/1745/spec.md` line 626.
-- `estimate-spec-capture-appends` — `rule-spec-capture` draft — `raw/2026-09-26/1745/spec.md` line 659.
-- `estimate-case-check-sends-back-a-faulty-case` — `rule-case-check` draft — `raw/2026-09-26/1337/spec.md` lines 107 and 368.
+- `estimate-skill-grill-me-asks-in-rounds` — `rule-skill-grill-me` draft — `raw/2026-09-26/2300/spec.md` line 99.
+- `estimate-case-build-writes-the-case` — `rule-case-build` draft — `raw/2026-09-26/2300/spec.md` line 161; `archive/migration/2026-09-26/1745/raw/spec.md` line 240.
+- `estimate-case-protocol-shows-the-built-case` — `rule-case-protocol` draft — `raw/2026-09-26/2300/spec.md` line 209; `archive/migration/2026-09-26/1745/raw/spec.md` line 287; `archive/migration/2026-09-26/1337/raw/spec.md` line 163.
+- `estimate-materialize-judges-a-fence` — `rule-materialize` draft — `raw/2026-09-26/2300/spec.md` line 269.
+- `estimate-spec-write-copies-the-ratified-case` — `rule-spec-write` draft — `raw/2026-09-26/2300/spec.md` line 328; `archive/migration/2026-09-26/1745/raw/spec.md` line 590; `archive/migration/2026-09-26/1337/raw/spec.md` lines 232 and 436.
+- `estimate-spec-reconcile-refuses-an-edit-of-the-plan` — `rule-spec-reconcile` draft — `raw/2026-09-26/2300/spec.md` line 436.
+- `estimate-spec-write-checks-the-written-case` — `rule-spec-write` draft — `raw/2026-09-26/2300/spec.md` line 507; `archive/migration/2026-09-26/1745/raw/spec.md` line 626.
+- `estimate-spec-write-removes-a-superseded-case` — `rule-spec-write` draft — `raw/2026-09-26/2300/spec.md` line 541; `archive/migration/2026-09-26/1745/raw/spec.md` line 537.
+- `estimate-language-spec-prose-in-english` — `rule-language` draft — `raw/2026-09-26/2300/spec.md` line 596.
+- `estimate-event-log-records` — `rule-event-log` draft — `raw/2026-09-26/2300/spec.md` line 651.
+- `estimate-language-followed` — `rule-language` draft — `raw/2026-09-26/2300/spec.md` line 732, by hand in a later session.
+- `estimate-materialize-lifts-a-create-by-the-schema` — `rule-materialize` draft — `archive/migration/2026-09-26/1745/raw/spec.md` line 96.
+- `estimate-materialize-assembles` — `rule-materialize` draft — `archive/migration/2026-09-26/1745/raw/spec.md` line 132.
+- `estimate-case-check-shows-only-the-checked-case` — `rule-case-check` draft — `archive/migration/2026-09-26/1745/raw/spec.md` line 335.
+- `estimate-prespec-reconciles` — `rule-prespec` draft — `archive/migration/2026-09-26/1745/raw/spec.md` line 381.
+- `estimate-spec-write-reaches-the-approved-spec` — `rule-spec-write` draft — `archive/migration/2026-09-26/1745/raw/spec.md` line 479.
+- `estimate-spec-capture-appends` — `rule-spec-capture` draft — `archive/migration/2026-09-26/1745/raw/spec.md` line 659.
+- `estimate-case-check-sends-back-a-faulty-case` — `rule-case-check` draft — `archive/migration/2026-09-26/1337/raw/spec.md` lines 107 and 368.
 - `estimate-case-protocol-ledger-line-form` — `rule-case-protocol` draft — by hand, the ledger and preview of the first session where a lesson and the Case that closes its cause stand together, and of the first Case that takes up a decision with more than one Case in its `deferred_by` (method).
 - `estimate-context-size-warns-past-the-limit` — `rule-context-size` draft — `uv run pytest tests/test_context.py -k limit`; by hand at the first prompt past 400 000 tokens (method).
 - `estimate-retro-loads` — `rule-retro` draft — by hand at the first `/retro` (method).
@@ -54,83 +59,95 @@
 
 ## Deferred
 
-1. `insight-case-show-built-case-retyped-by-hand` — severity 2 — The main agent writes the Case that case-guppi built out again by hand instead of copying the answer, so a showing can differ from the answer in any line, and only the comparison on Stop stands between the retyped Case and the person. Proposal: let the showing of a built Case not pass through the agent's retyping, or let the comparison on Stop also refuse a second showing that differs. Briefs: 2.
-2. `rule-spec-reconcile` — deferred by Case 423: a guard that refuses the agent's edits of the plan while a Cases line of the Frontier is open; when and how the prose of a Case is translated. Severity: none. Briefs: 6.
-3. `rule-orchestration` — deferred by Case 424: the orchestration of the main agent as a rule of its own loaded by `/hi`, and `case-schema.md` read by `case-guppi` alone. Severity: none. Briefs: 4.
-4. `rule-ledger-write` — deferred by Case 442: a lesson line whose cause a Case of the same session closed carries `addressed_by`, or the decision line carries `addresses`; nothing catches a missing mark. Severity: none. Briefs: 1.
+1. `insight-case-show-built-case-retyped-by-hand` — severity 2 — The main agent writes the Case that case-guppi built out again by hand instead of copying the answer, so a showing can differ from the answer in any line, and only the comparison on Stop stands between the retyped Case and the person. Proposal: let the showing of a built Case not pass through the agent's retyping, or let the comparison on Stop also refuse a second showing that differs. Briefs: 3.
+2. `insight-case-build-promise-lines-compared-by-no-check` — severity 2 — case-guppi writes the promise lines of a Case against the lines beside them (the Criterion it replaces, the then of a sibling sub-case) and no check of its answer compares them, so a dropped or doubled promise is found only by ask-guppi at pre-spec. Proposal: let a check of the answer of case-guppi compare the old lines of a Criterion replaced whole with the new ones, and the then lines of sibling sub-cases with each other, before the Case is shown. Briefs: 1.
+3. `insight-case-form-chat-form-read-by-no-script` — severity 1 — A rule of the form of a Case as shown in the chat is read by no script, so it holds only as far as the agent's own reading at the showing, and the fault is found later. Proposal: let a check read the chat form of a Case before the person does, over the order of the sections, the content of `ratification` and a count in a story section. Reopened this run (it stood `actioned` by Case 419.3). Briefs: 1.
+4. `insight-hi-skill-substitution-checked-by-a-model-call` — deferred by Case 448: its Pattern and Proposal name a lapsed login and `/login`, while the newest lesson and Case 439 name the server-side classifier of client 2.1.282. Severity 0. Briefs: 1.
+5. `rule-orchestration` — deferred by Case 424: the orchestration of the main agent as a rule of its own loaded by `/hi`, and `case-schema.md` read by `case-guppi` alone. Severity: none. Briefs: 5.
+6. `rule-ledger-write` — deferred by Case 442: a lesson line whose cause a Case of the same session closed carries `addressed_by`, or the decision line carries `addresses`; nothing catches a missing mark. Severity: none. Briefs: 2.
 
-The item `rule-prespec` (deferred by Case 438) is retired: 441.4 carries `{supersedes:case 438}`. The open Insight `insight-workflow-code-live-before-the-page-it-reads` is named by the sprint page, so it is not listed here.
+The item `rule-spec-reconcile` (deferred by Case 423) is retired: 445.1 carries `{supersedes:case 423}`. `rule-work-mode` (deferred by Case 447) and the open Insight `insight-workflow-code-live-before-the-page-it-reads` are named in the Backlog of the sprint page, so they are not listed here.
 
 ## Flags
 
-- `incomplete`, `failed`, `unparsed`: none in the yamls of 1337 and 1745.
-- `near`, this run: none. From the earlier run: `raw/2026-09-26/1337/materialize.yaml` line 19, `lesson-hooks-subagentstop-fires-before-and-after-the-handback` near `lesson-hooks-subagentstop-exit-2-sends-the-subagent-back`; line 20, `lesson-case-show-ref-of-a-ratification-line-retyped` near `lesson-case-show-sub-case-ratification-retyped`.
-- Synthesis: `lesson-hi-substitution-gets-no-verdict-from-the-server-side-classifier` clustered into `insight-hi-skill-substitution-checked-by-a-model-call`, which stood `actioned` by Case 246. The lesson entry carries `addressed_by: decision-case-439`; 439 is later than 246, so the update sets `addressed_by: decision-case-439` and keeps `actioned`. The cascade archived the lesson. `lesson-case-build-a-criterion-replaced-whole-drops-a-line` has no pair and stays `new`.
-- Contradiction: the Pattern and Proposal of `insight-hi-skill-substitution-checked-by-a-model-call` name a lapsed login as the cause and `/login` as the cure; the Root cause of `lesson-hi-substitution-gets-no-verdict-from-the-server-side-classifier` and Case 439 say the server-side classifier of client 2.1.282 gives no verdict for a typed substitution, and `/login` did not help (handoff). The Pattern and Proposal stand unchanged.
-- Failed Estimates: 4, listed first under Readings due.
-- The order the handoff asks: every `replace` pair of `rule-case-protocol` (440.3, 441.2, 441.6, 441.7) and of `rule-spec-write` (441.6, 441.7, 441.8) applied in one run; `generate` printed no line on stderr. `render` rewrote `vault/wiki/case-schema.md`, `.claude/agents/case-guppi.md` and `.claude/skills/pre-spec/SKILL.md`.
-- Handoff note: the `/hi` fix (commit 54509ed) was committed before `/hi` and outside a Case, with the owner's consent; Case 439 ratified it after the fact.
-- Handoff note: case-guppi found no item with the four keys of the shape before case 189 under `raw/` (Case 440); the agent did not check it.
-- Handoff note: Case 441 was ratified, then rebuilt to 441.1–441.10 after pre-spec found ten issues, and ratified again; 441.1–441.6 stand once in the ledger (21:59:07), 441.7–441.10 at 22:27:05.
-- Handoff note: pre-spec found three facts in `context` that the vault does not bear out (439: where `ITEM_KEYS` lives, "generate does not rewrite Insights"; 441: "translated, ticks kept"); the agent fixed them as prose in the plan.
-- Handoff note: the test names differ from those the Spec task lines give (`raw/2026-09-26/1745/spec.md` lines 92 and 130); the content matches the Cases.
-- Handoff note: the by-hand boxes of `raw/2026-09-26/1337/spec.md` line 43 and `archive/migration/2026-09-25/1654/raw/spec.md` line 149 were ticked; both checks held.
-- Handoff note: context passed 400 000 tokens during Retro.
+- `incomplete`: `raw/2026-09-26/2300/materialize.yaml` line 23, `estimate-skill-hi-opens-only-in-plan-mode`, lacks `criterion`; the entry carries `superseded_by: 445.7` and was not applied, so no page was written.
+- `failed`, `unparsed`, `merged`: none in the yamls of 1337, 1745 and 2300.
+- `near`, this run: line 33, `lesson-case-build-one-promise-signed-in-two-sub-cases` near `lesson-case-build-a-criterion-replaced-whole-drops-a-line` (the handoff named it); line 34, `lesson-ledger-a-dropped-item-needs-a-superseding-sub-case` near `lesson-supersedes-in-the-same-session-skips-the-earlier-cases-entries`.
+- Synthesis: `lesson-case-build-a-list-in-context` clustered into `insight-case-form-chat-form-read-by-no-script`, which stood `actioned` by Case 419.3; the lesson entry carries no `addressed_by`, so the update sets `status: open`. `lesson-case-build-one-promise-signed-in-two-sub-cases` and `lesson-case-build-a-criterion-replaced-whole-drops-a-line` (session 1745) clustered into the new `insight-case-build-promise-lines-compared-by-no-check`. `lesson-ledger-a-dropped-item-needs-a-superseding-sub-case` has no pair and stays `new`.
+- Handoff: the handoff pairs `lesson-case-build-a-list-in-context` with the failed reading of `estimate-case-protocol-case-form`; an Estimate is no lesson, so the pair is not a synthesis. Both stand: the lesson under the reopened Insight, the Estimate `failed`.
+- Failed Estimates: 3, listed first under Readings due.
+- Contradiction, from lint: `estimates/estimate-claude-md-rendered: method: says by hand while estimate-language-spec-prose-in-english names a test file`.
+- Contradiction, standing: the Pattern and Proposal of `insight-hi-skill-substitution-checked-by-a-model-call` against Case 439; Case 448 deferred it.
+- Defect, handoff: `materialize.case_text` and `ratified.quoted_sections` are two copies of one section reader, against "one judgment, one implementation"; both judge fences by the same functions.
+- Defect: `archive/migration/2026-09-26/1745/raw/spec.md` line 413 is an unticked `read` box of `estimate-prespec-checks-the-ratified-copy`, which Case 445.4 deleted and `cleanup` moved to the archive.
+- Defect, this run: before `render`, the PostToolUse hook `uv run guppi ratified --edit` failed on the librarian's own Write ("unrecognized arguments: --edit"), as the handoff foretold; `render` removed it from `.claude/settings.json`.
+- `generate` changed 14 pages under `wiki/decisions/` of earlier Cases (git status: 387.3, 396.1, 396.2, 437, 441.1–441.10) with no line in `log.md`; the librarian does not read decision pages, so what changed is not known here.
+- The order the handoff asks: `rule-hook-registry` rendered in this run; the `replace` pairs of `rule-case-protocol` (443.3, 444.3, 445.2) and of `rule-spec-write` (444.2, 445.2) applied in one run of `generate`, which printed no stderr line; the rename, the delete and the create of 445.1 and 445.4 applied; 445.5 not applied, `estimate-skill-hi-opens-only-in-plan-mode` not created.
+- Handoff note: C14 (the ticks out of the Spec into a work file) was deferred by Case 447 to `rule-work-mode`; the round's seven questions were not answered and the proposal stands in the chat only.
+- Handoff note: the first 445.5 created `estimate-skill-hi-opens-only-in-plan-mode`; the person moved the promise of the `/hi` refusal into 445.6 alone, and 445.7 supersedes 445.5 (ledger L31 over L23–L24).
+- Handoff note: the rounds of Case 443 were run by prompt in this session, before its render; Cases 445 and 447 each went through two or three rounds.
+- Handoff note: context passed 400 000 tokens during the re-ratification; Work Mode was delegated to one subagent.
 - MOC candidates: none named by lint.
-- Stale defers, from lint: `rule-subagent-guppi` and `rule-work-mode` have been deferred 31 times since case 29; `rule-morph` once since case 239; `rule-orchestration` once since case 424.
+- Stale defers, from lint: `rule-work-mode` deferred 32 times since case 29; `rule-subagent-guppi` 31 times since case 29; `rule-morph` once since case 239; `rule-orchestration` once since case 424.
 - Backlog moves by `generate`: none printed. Milestones dropped: none printed.
-- `archive` (run after the brief): no stdout or stderr line, nothing moved. Both units are dated 2026-09-26, the day of the run, and `archive` looks only at units dated before it; `raw/2026-09-26/1745/` is also the session of the run.
-- `generate`, `cleanup`, `render`, `sprint`, `glossary`: no stderr lines. `cleanup` moved 2 pages: `decision-case-438` and `lesson-hi-substitution-gets-no-verdict-from-the-server-side-classifier`, to `archive/migration/2026-09-26/1745/`.
-- `make lint`, after the render: exit 2, 100 findings.
+- `generate`, `cleanup`, `render`, `sprint`, `glossary`: no stderr lines. `cleanup` moved 3 pages to `archive/migration/2026-09-27/2300/`: `decision-case-423`, `decision-case-445.5`, `estimate-prespec-checks-the-ratified-copy`.
+- `archive` (run after the brief): no stderr line. It moved `raw/2026-09-26/1337` and `raw/2026-09-26/1745` to `archive/migration/2026-09-26/<HHMM>/raw`; the line numbers of their Specs above point there. It kept `raw/2026-09-26/2300/`, the session of the run.
+- `make lint`, after the render: exit 2, 105 findings.
   - `decisions/decision-case-N: schema: missing section ## Context` and `## Problem` on 31 pages. That is 62 findings.
   - `rules/rule-spec-box: schema: missing field kind`, `missing field estimates`, and `orphan: no other live page names it in its frontmatter`.
-  - `rules/rule-morph: deferred: 1 time since case 239`; `rules/rule-orchestration: deferred: 1 time since case 424`; `rules/rule-subagent-guppi: deferred: 31 times since case 29`; `rules/rule-work-mode: deferred: 31 times since case 29`.
-  - `unread: pending` on 26 Estimates and `unread: failed` on 4. These are the 30 Estimates of Readings due.
+  - `rules/rule-morph: deferred: 1 time since case 239`; `rules/rule-orchestration: deferred: 1 time since case 424`; `rules/rule-subagent-guppi: deferred: 31 times since case 29`; `rules/rule-work-mode: deferred: 32 times since case 29`.
+  - `estimates/estimate-claude-md-rendered: method: says by hand while estimate-language-spec-prose-in-english names a test file`.
+  - `unread: pending` on 31 Estimates and `unread: failed` on 3. These are the 34 Estimates of Readings due.
   - `estimates: unmigrated: 19 pages in the shape before case 193`.
 
 ## Next session
 
 Cases:
-- `estimate-case-protocol-case-form` failed: bullet lists in `context`, a state in `given` (reading of session 1745).
+- `estimate-case-protocol-case-form` failed: a count and unrelated case numbers in `context`, an unrelated case in `problem` (reading of session 2300).
+- `estimate-agent-writing-followed` failed: a reply that misstated the ledger tail, a closer given to the wrong item (reading of session 2300).
 - `estimate-case-protocol-defers-in-one-reply` failed: the plan edited after a short-form defer (reading of session 1745).
-- `estimate-agent-writing-followed` failed: counts in replies that differ from the ledger and from their own lists (reading of session 1745).
-- `estimate-language-followed` failed: a Case shown in English in the chat, English terms transliterated (reading of session 1745).
-- The Pattern and Proposal of `insight-hi-skill-substitution-checked-by-a-model-call` are contradicted by `lesson-hi-substitution-gets-no-verdict-from-the-server-side-classifier` and Case 439 (handoff, Notes from memory; Flags).
+- Contradiction from lint: the method of `estimate-claude-md-rendered` says by hand while `estimate-language-spec-prose-in-english` names a test file.
+- Defect from the handoff: `materialize.case_text` and `ratified.quoted_sections` are two copies of one section reader.
+- Defect found in this run: `archive/migration/2026-09-26/1745/raw/spec.md` line 413 holds an unticked `read` box of the deleted `estimate-prespec-checks-the-ratified-copy`.
 
 Work:
-- `estimate-materialize-lifts-a-create-by-the-schema`
-- `estimate-materialize-assembles`
+- `estimate-skill-grill-me-asks-in-rounds`
 - `estimate-case-build-writes-the-case`
 - `estimate-case-protocol-shows-the-built-case`
+- `estimate-materialize-judges-a-fence`
+- `estimate-spec-write-copies-the-ratified-case`
+- `estimate-spec-reconcile-refuses-an-edit-of-the-plan`
+- `estimate-spec-write-checks-the-written-case`
+- `estimate-spec-write-removes-a-superseded-case`
+- `estimate-language-spec-prose-in-english`
+- `estimate-event-log-records`
+- `estimate-language-followed` (W32)
+- `estimate-materialize-lifts-a-create-by-the-schema`
+- `estimate-materialize-assembles`
 - `estimate-case-check-shows-only-the-checked-case`
 - `estimate-prespec-reconciles`
-- `estimate-prespec-checks-the-ratified-copy`
 - `estimate-spec-write-reaches-the-approved-spec`
-- `estimate-spec-write-removes-a-superseded-case`
-- `estimate-spec-write-copies-the-ratified-case`
-- `estimate-spec-write-checks-the-written-case`
 - `estimate-spec-capture-appends`
 - `estimate-case-check-sends-back-a-faulty-case`
 - `estimate-case-protocol-ledger-line-form`
-- `estimate-context-size-warns-past-the-limit` (the handoff says it is readable from the transcript of session 1745, 400 025 tokens and later)
+- `estimate-context-size-warns-past-the-limit`
 - `estimate-retro-loads`
 - `estimate-retro-report-holds-each-fact-once`
 - `estimate-carry-over-writes`
 - `estimate-documentation-completes`
 - `estimate-session-phases-in-order`
 - `estimate-sprint-renders-the-backlog`
-- `estimate-synthesis-keeps-actioned-by-the-mark` (this run clustered a marked lesson under an actioned Insight; see Flags, Synthesis)
+- `estimate-synthesis-keeps-actioned-by-the-mark`
 - `estimate-sprint-migration-leftovers-gone`
 - `estimate-sprint-migration-lint-clean`
 - `estimate-sprint-migration-merges`
 - `estimate-sprint-migration-rule-class-files-dissolved`
-- The unticked boxes of the Specs are the `read` lines of the readings above: `raw/2026-09-26/1745/spec.md` lines 96, 132, 240, 287, 335, 381, 413, 479, 537, 590, 626, 659; `raw/2026-09-26/1337/spec.md` lines 107, 163, 232, 368, 436.
-- A check of Case 440: no item under `raw/` carries the four keys of the shape before case 189 (handoff: case-guppi found none, the agent did not check).
-- Frontier Work lines W1–W3, W9, W10, W12, W13, W16, W19–W28 and W31 (handoff).
-- Ledger lines not applied: none. All 38 lines of `raw/2026-09-26/1745/ledger.md` have an entry, and all are `applied`.
+- The unticked boxes of the Specs are the `read` lines of the readings above: `raw/2026-09-26/2300/spec.md` lines 99, 161, 209, 269, 328, 436, 507, 541, 596, 651, 732; `archive/migration/2026-09-26/1745/raw/spec.md` lines 96, 132, 240, 287, 335, 381, 479, 537, 590, 626, 659; `archive/migration/2026-09-26/1337/raw/spec.md` lines 107, 163, 232, 368, 436.
+- Frontier Work lines W1–W29 (handoff: the brief's readings, the `read` boxes of 1745 and 1337, the check of Case 440, the Work lines of 1745).
+- Ledger lines not applied: L23 and L24 of `raw/2026-09-26/2300/ledger.md` (445.5), superseded by 445.7. All 36 lines have an entry.
 
 ## Readings at the close
 
-- `make test`: 707 passed, 2 skipped.
-- `make lint`: exit 2, 100 findings (listed under Flags).
-- Pages in `vault/wiki/`: decisions 619, estimates 136, rules 66, lessons 57, insights 24, entities 4.
+- `make test`: 734 passed, 2 skipped.
+- `make lint`: exit 2, 105 findings (listed under Flags).
+- Pages in `vault/wiki/`: decisions 633, estimates 138, rules 67, lessons 60, insights 25, entities 4.

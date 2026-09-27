@@ -52,8 +52,7 @@ the order they are listed. Editing the skill directly is meaningless once the re
 exists (Slice 2) — the next render overwrites it. Until then the file and this page are two
 copies of one text, kept identical by hand.
 
-`disable-model-invocation: true` in the frontmatter: only the person opens a working
-session. `allowed-tools` names the six `!` commands of the skill: since client 2.1.282 the Bash check is server-side and a `!` substitution the person types gets no verdict ("The server-side auto mode classifier gave no verdict for Bash: the request that produced this action did not ask for one", session 1b191eaf, 2026-09-26), so a command no rule allows is refused and `/hi` does not open; a matching rule needs no classifier. The skill writes no event line of its own since case 111.4: a `!` substitution never saw `CLAUDE_SESSION_ID` (every `hi` of sessions A–M carried `--------`), so the `hi` line is the `UserPromptSubmit` hook's, which reads the session id from its payload (`rule-event-log`, case 111.1).
+`disable-model-invocation: true` in the frontmatter: only the person opens a working session, and only in plan mode: the hook of `rule-event-log` refuses a `/hi` whose `permission_mode` is not `plan`, missing or empty included, writes no `hi` line, and Claude Code blocks the prompt (case 445.6). `defaultMode: plan` in `.claude/settings.json` does not hold when the mode changes before `/hi`; a session begun outside plan mode once wrote its plan file under a second name. A session repaired without `/hi` stays possible: it holds no Case. `allowed-tools` names the six `!` commands of the skill: since client 2.1.282 the Bash check is server-side and a `!` substitution the person types gets no verdict ("The server-side auto mode classifier gave no verdict for Bash: the request that produced this action did not ask for one", session 1b191eaf, 2026-09-26), so a command no rule allows is refused and `/hi` does not open; a matching rule needs no classifier. The skill writes no event line of its own since case 111.4: a `!` substitution never saw `CLAUDE_SESSION_ID` (every `hi` of sessions A–M carried `--------`), so the `hi` line is the `UserPromptSubmit` hook's, which reads the session id from its payload (`rule-event-log`, case 111.1).
 
 ## History
 
@@ -99,3 +98,4 @@ session. `allowed-tools` names the six `!` commands of the skill: since client 2
 - 2026-09-25 status: built → draft · cascade
 - 2026-09-25 status: draft → built · cascade
 - 2026-09-26 updated: the allowed-tools line of the Render frontmatter allows the six ! commands of /hi; the server-side classifier of client 2.1.282 gives no verdict for a substitution the person types (commit 54509ed) · [[decision-case-439]]
+- 2026-09-27 updated: the page says /hi opens a session only in plan mode, refused by the hook of rule-event-log (case 445.7) · [[decision-case-445.7]]

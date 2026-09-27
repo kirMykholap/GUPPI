@@ -2,7 +2,8 @@
 type: lesson
 kind: error
 root_cause: case-guppi writes a Criterion replaced whole anew from the old one and the change, and no check compares the old lines with the new beyond what the Case names; only the ask-guppi question of pre-spec on Estimates caught it
-status: new
+status: clustered
+insight: "[[insight-case-build-promise-lines-compared-by-no-check]]"
 origin: raw/2026-09-26/1745/ledger.md#L38
 sprint: migration
 created: 2026-09-26
@@ -20,3 +21,4 @@ case-guppi writes a Criterion replaced whole anew from the old one and the chang
 ## History
 
 - 2026-09-26 created · raw/2026-09-26/1745/ledger.md#L38
+- 2026-09-27 updated: clustered into insight-case-build-promise-lines-compared-by-no-check · raw/2026-09-26/2300/ledger.md#L33

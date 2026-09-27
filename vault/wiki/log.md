@@ -3794,3 +3794,75 @@ instruction. The global feed; a page's own `## History` is the per-page view.
 - 2026-09-26 lessons/lesson-hi-substitution-gets-no-verdict-from-the-server-side-classifier archived · insight actioned · generate
 - 2026-09-26 lessons/lesson-hi-substitution-gets-no-verdict-from-the-server-side-classifier archived · cleanup
 - 2026-09-26 decisions/decision-case-438 archived · cleanup
+- 2026-09-27 decisions/decision-case-443.1 created · raw/2026-09-26/2300/ledger.md#case-443.1 · generate
+- 2026-09-27 rules/rule-skill-grill-me created · [[decision-case-443.1]] · generate
+- 2026-09-27 rules/rule-plan-mode child rule-skill-grill-me added · [[decision-case-443.1]] · generate
+- 2026-09-27 estimates/estimate-skill-grill-me-asks-in-rounds created · [[decision-case-443.1]] · generate
+- 2026-09-27 rules/rule-skill-grill-me estimate estimate-skill-grill-me-asks-in-rounds added · [[decision-case-443.1]] · generate
+- 2026-09-27 entities/entity-sprint-migration updated: /grill-me has its rule page (case 443.1) · [[decision-case-443.1]] · generate
+- 2026-09-27 decisions/decision-case-443.2 created · raw/2026-09-26/2300/ledger.md#case-443.2 · generate
+- 2026-09-27 rules/rule-case-build updated: case-guppi loads grill-me by the skills field and answers with a round of questions while a fork is open (case 443.2) · [[decision-case-443.2]] · generate
+- 2026-09-27 estimates/estimate-case-build-writes-the-case updated: the Criterion replaced whole — case-guppi answers with a round of questions while a fork is open (case 443.2) · [[decision-case-443.2]] · generate
+- 2026-09-27 decisions/decision-case-443.3 created · raw/2026-09-26/2300/ledger.md#case-443.3 · generate
+- 2026-09-27 rules/rule-case-protocol updated: the main agent shows a round of case-guppi translated and passes the person's answers verbatim (case 443.3) · [[decision-case-443.3]] · generate
+- 2026-09-27 estimates/estimate-case-protocol-shows-the-built-case updated: the Criterion replaced whole — a round shown translated, the answers passed verbatim, no step of confirmation (case 443.3) · [[decision-case-443.3]] · generate
+- 2026-09-27 decisions/decision-case-444.1 created · raw/2026-09-26/2300/ledger.md#case-444.1 · generate
+- 2026-09-27 estimates/estimate-materialize-judges-a-fence created · [[decision-case-444.1]] · generate
+- 2026-09-27 rules/rule-materialize estimate estimate-materialize-judges-a-fence added · [[decision-case-444.1]] · generate
+- 2026-09-27 decisions/decision-case-444.2 created · raw/2026-09-26/2300/ledger.md#case-444.2 · generate
+- 2026-09-27 rules/rule-spec-write updated: the fence of the then and tasks blocks is chosen by their content (case 444.2) · [[decision-case-444.2]] · generate
+- 2026-09-27 estimates/estimate-spec-write-copies-the-ratified-case updated: the Criterion replaced whole — the fence of each written block is one longer than the longest fence inside it; the ratified copy no longer named (cases 444.2, 445.2) · [[decision-case-444.2]] · generate
+- 2026-09-27 decisions/decision-case-444.3 created · raw/2026-09-26/2300/ledger.md#case-444.3 · generate
+- 2026-09-27 rules/rule-case-protocol updated: a fenced value opens with a fence longer than any fence inside it (case 444.3) · [[decision-case-444.3]] · generate
+- 2026-09-27 decisions/decision-case-445.1 created · raw/2026-09-26/2300/ledger.md#case-445.1 · generate
+- 2026-09-27 decisions/decision-case-423 superseded by decision-case-445.1 · [[decision-case-445.1]] · generate
+- 2026-09-27 rules/rule-spec-reconcile defer by decision-case-423 superseded · [[decision-case-445.1]] · generate
+- 2026-09-27 rules/rule-spec-reconcile updated: the guard refuses the agent's edits of the plan and its store, the title line that creates the plan excepted; the comparison with the ratified copy goes (case 445.1) · [[decision-case-445.1]] · generate
+- 2026-09-27 estimates/estimate-spec-reconcile-refuses-an-edit-of-the-plan renamed from `estimate-spec-reconcile-shows-a-changed-case` · [[decision-case-445.1]] · generate
+- 2026-09-27 rules/rule-spec-reconcile ref `estimate-spec-reconcile-shows-a-changed-case` → `estimate-spec-reconcile-refuses-an-edit-of-the-plan` · [[decision-case-445.1]] · generate
+- 2026-09-27 estimates/estimate-spec-reconcile-refuses-an-edit-of-the-plan updated: the Criterion replaced whole — the guard refuses the edit instead of comparing it with the ratified copy (case 445.1) · [[decision-case-445.1]] · generate
+- 2026-09-27 rules/rule-hook-registry updated: guppi ratified --guard registered on PreToolUse of Edit, Write and MultiEdit; guppi ratified --edit removed from PostToolUse (case 445.1) · [[decision-case-445.1]] · generate
+- 2026-09-27 decisions/decision-case-445.2 created · raw/2026-09-26/2300/ledger.md#case-445.2 · generate
+- 2026-09-27 rules/rule-spec-write updated: the hook writes no ratified copy (case 445.2) · [[decision-case-445.2]] · generate
+- 2026-09-27 rules/rule-case-protocol updated: the plan has no ratified copy, and the agent's edit of the plan is refused (cases 445.1, 445.2) · [[decision-case-445.2]] · generate
+- 2026-09-27 rules/rule-case-check updated: pre-spec compares the plan with no ratified copy (case 445.2) · [[decision-case-445.2]] · generate
+- 2026-09-27 estimates/estimate-spec-write-checks-the-written-case updated: the Criterion replaced whole — the Case is written into the plan file alone, no ratified copy (case 445.2) · [[decision-case-445.2]] · generate
+- 2026-09-27 decisions/decision-case-445.3 created · raw/2026-09-26/2300/ledger.md#case-445.3 · generate
+- 2026-09-27 estimates/estimate-spec-write-removes-a-superseded-case updated: the Criterion replaced whole — no ratified copy to remove it from (case 445.3) · [[decision-case-445.3]] · generate
+- 2026-09-27 decisions/decision-case-445.4 created · raw/2026-09-26/2300/ledger.md#case-445.4 · generate
+- 2026-09-27 estimates/estimate-prespec-checks-the-ratified-copy deleted · [[decision-case-445.4]] · generate
+- 2026-09-27 estimates/estimate-language-spec-prose-in-english created · [[decision-case-445.4]] · generate
+- 2026-09-27 rules/rule-language estimate estimate-language-spec-prose-in-english added · [[decision-case-445.4]] · generate
+- 2026-09-27 rules/rule-prespec updated: pre-spec compares the plan with no ratified copy; the Cyrillic finding reads Deferred too (case 445.4) · [[decision-case-445.4]] · generate
+- 2026-09-27 decisions/decision-case-445.5 created · raw/2026-09-26/2300/ledger.md#case-445.5 · generate
+- 2026-09-27 decisions/decision-case-445.6 created · raw/2026-09-26/2300/ledger.md#case-445.6 · generate
+- 2026-09-27 rules/rule-event-log updated: no hi line outside plan mode; the refusal exits 2 (case 445.6) · [[decision-case-445.6]] · generate
+- 2026-09-27 estimates/estimate-event-log-records updated: the Criterion replaced whole — a /hi outside plan mode writes no hi and exits 2; the Given folded into When (case 445.6) · [[decision-case-445.6]] · generate
+- 2026-09-27 decisions/decision-case-446 created · raw/2026-09-26/2300/ledger.md#case-446 · generate
+- 2026-09-27 rules/rule-language updated: the prose of a Case is Russian in the chat and English in the Spec, with no translation step before approval since Case 441; a short-form Case is English in the chat (case 446) · [[decision-case-446]] · generate
+- 2026-09-27 estimates/estimate-language-followed updated: the Criterion replaced whole — the name, context and problem are English in the Spec with no translation step since Case 441; a short-form Case is English in the chat (case 446) · [[decision-case-446]] · generate
+- 2026-09-27 decisions/decision-case-447 created · raw/2026-09-26/2300/ledger.md#case-447 · generate
+- 2026-09-27 rules/rule-work-mode deferred · [[decision-case-447]] · generate
+- 2026-09-27 decisions/decision-case-448 created · raw/2026-09-26/2300/ledger.md#case-448 · generate
+- 2026-09-27 insights/insight-hi-skill-substitution-checked-by-a-model-call deferred · [[decision-case-448]] · generate
+- 2026-09-27 decisions/decision-case-445.7 created · raw/2026-09-26/2300/ledger.md#case-445.7 · generate
+- 2026-09-27 decisions/decision-case-445.5 superseded by decision-case-445.7 · [[decision-case-445.7]] · generate
+- 2026-09-27 rules/rule-skill-hi updated: the page says /hi opens a session only in plan mode, refused by the hook of rule-event-log (case 445.7) · [[decision-case-445.7]] · generate
+- 2026-09-27 lessons/lesson-case-build-a-list-in-context created · raw/2026-09-26/2300/ledger.md#L32 · generate
+- 2026-09-27 lessons/lesson-case-build-one-promise-signed-in-two-sub-cases created · raw/2026-09-26/2300/ledger.md#L33 · generate
+- 2026-09-27 lessons/lesson-ledger-a-dropped-item-needs-a-superseding-sub-case created · raw/2026-09-26/2300/ledger.md#L34 · generate
+- 2026-09-27 estimates/estimate-case-protocol-case-form status: failed → failed · raw/2026-09-26/2300/ledger.md#L35 · generate
+- 2026-09-27 estimates/estimate-agent-writing-followed status: failed → failed · raw/2026-09-26/2300/ledger.md#L36 · generate
+- 2026-09-27 insights/insight-case-form-chat-form-read-by-no-script updated: child lesson-case-build-a-list-in-context added; status actioned reopened · raw/2026-09-26/2300/ledger.md#L32 · generate
+- 2026-09-27 lessons/lesson-case-build-a-list-in-context updated: clustered into insight-case-form-chat-form-read-by-no-script · raw/2026-09-26/2300/ledger.md#L32 · generate
+- 2026-09-27 insights/insight-case-build-promise-lines-compared-by-no-check created · raw/2026-09-26/2300/ledger.md#L33 · generate
+- 2026-09-27 lessons/lesson-case-build-a-criterion-replaced-whole-drops-a-line updated: clustered into insight-case-build-promise-lines-compared-by-no-check · raw/2026-09-26/2300/ledger.md#L33 · generate
+- 2026-09-27 lessons/lesson-case-build-one-promise-signed-in-two-sub-cases updated: clustered into insight-case-build-promise-lines-compared-by-no-check · raw/2026-09-26/2300/ledger.md#L33 · generate
+- 2026-09-27 rules/rule-event-log status: built → draft · cascade · generate
+- 2026-09-27 rules/rule-spec-reconcile status: built → draft · cascade · generate
+- 2026-09-27 decisions/decision-case-423 archived · superseded · generate
+- 2026-09-27 decisions/decision-case-445.5 archived · superseded · generate
+- 2026-09-27 estimates/estimate-prespec-checks-the-ratified-copy archived · cleanup
+- 2026-09-27 decisions/decision-case-423 archived · cleanup
+- 2026-09-27 decisions/decision-case-445.5 archived · cleanup
+- 2026-09-27 rules/rule-prespec estimate estimate-prespec-checks-the-ratified-copy archived · cleanup

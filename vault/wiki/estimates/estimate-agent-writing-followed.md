@@ -5,7 +5,7 @@ status: failed
 target: "[[rule-agent-writing]]"
 purpose: The section stands in CLAUDE.md and one reply of the session holds to it — facts with a source, short sentences, the answer first, the not-done named
 method: one reading by hand in the next session — the section in CLAUDE.md and one reply of the agent against it
-checked: 2026-09-26
+checked: 2026-09-27
 origin: raw/2026-09-20/1308/ledger.md#case-272.3
 sprint: migration
 created: 2026-09-20
@@ -27,7 +27,7 @@ The facts stay and the sales pitch goes; a claim names a real source or goes, an
 
 ## Result
 
-2026-09-26, CLAUDE.md lines 11–17 and the replies of session 1745 read by hand; most replies give the answer first with counts from their runs, but the Work Mode report says 10 Estimates wait for the next session where the ledger names 12, and the retro reply announces "three more" and lists two
+2026-09-27, by hand, the section How the agent writes of CLAUDE.md and the replies of session 2300; counts checked against their runs held (20 task lines, 15 findings, 734 passed), but the reply that acknowledged the re-ratification of 443 to 446 said the ledger gained amended lines of 445.6 while the tail shows L25 and L26 unchanged and L31 alone new, and one reply said W32 closes with sprint, a closer the Frontier gives only to sprint items, corrected in the next reply
 
 ## History
 
@@ -35,3 +35,4 @@ The facts stay and the sales pitch goes; a claim names a real source or goes, an
 - 2026-09-20 status: pending → passed · raw/2026-09-20/1749/ledger.md#L4
 - 2026-09-23 updated: the Criterion names the width of a claim (case 359) · [[decision-case-359]]
 - 2026-09-26 status: pending → failed · raw/2026-09-26/1745/ledger.md#L36
+- 2026-09-27 status: failed → failed · raw/2026-09-26/2300/ledger.md#L36

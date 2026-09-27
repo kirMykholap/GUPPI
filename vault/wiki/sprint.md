@@ -35,7 +35,7 @@ Rule-class files dissolved, `index.md` gone, the `file` route out of the scripts
 - [ ] reuse, the question: the vault query before a `create` asks a second question — what of the existing this thing could use, by the index lines of the Entities — and the answer stands in `context`; the Case names what it found in `uses` or says why it is not used (case 319)
 - [ ] reuse, the hook: a lint finding on two live Entities naming one path in `code_ref` with no edge between them; a new module written beside an existing one in another file is caught by the question alone, not by a script (case 319)
 - [ ] a template engine for the rendered files — one script with the shape of each file declared, once a third render beside `sprint.md` and `glossary.md` appears (case 301)
-- [ ] [[rule-work-mode]] — Work Mode: the Spec as tasks with code, the ticked boxes in `spec.md`, the test of each Estimate written first and turned green; the sentence of [[insight-workflow-code-live-before-the-page-it-reads]] on a check that reads a page the same Spec changes; cases 183, 206, 238 · draft · decision-case-183, decision-case-206, decision-case-218, decision-case-231, decision-case-242, decision-case-248, decision-case-252, decision-case-254, decision-case-260, decision-case-263, decision-case-269, decision-case-276, decision-case-281, decision-case-285, decision-case-289, decision-case-293, decision-case-303, decision-case-307, decision-case-322
+- [ ] [[rule-work-mode]] — Work Mode: the Spec as tasks with code, the ticked boxes in `spec.md`, the test of each Estimate written first and turned green; the sentence of [[insight-workflow-code-live-before-the-page-it-reads]] on a check that reads a page the same Spec changes; cases 183, 206, 238 · draft · decision-case-183, decision-case-206, decision-case-218, decision-case-231, decision-case-242, decision-case-248, decision-case-252, decision-case-254, decision-case-260, decision-case-263, decision-case-269, decision-case-276, decision-case-281, decision-case-285, decision-case-289, decision-case-293, decision-case-303, decision-case-307, decision-case-322, decision-case-447
 - [ ] [[rule-subagent-guppi]] — what a subagent may do in Work Mode, and the fork that comes back to the main agent as a Case; cases 183, 206 · draft · decision-case-183, decision-case-206, decision-case-218, decision-case-231, decision-case-242, decision-case-248, decision-case-252, decision-case-254, decision-case-260, decision-case-263, decision-case-269, decision-case-276, decision-case-281, decision-case-285, decision-case-289, decision-case-293, decision-case-303, decision-case-307, decision-case-322
 
 ## Closed
@@ -50,7 +50,7 @@ session 1034 and conserved, repaired by 193–198 and built in session 1651, cas
 taken up by 201–203 and built in session 1955 — `generate`, `lint`, `pre-spec` by the
 model. The recut of each old Estimate at its first touch runs on past the Slice: lint
 counts the remainder as `unmigrated` (42 at the close of 3d) and the old shape is
-removed when it reaches zero. Kept without a page: `/grill-me`; `git pull` in `/hi`
+removed when it reaches zero. `/grill-me` has its page since case 443.1, `rule-skill-grill-me`. Kept without a page: `git pull` in `/hi`
 without an upstream (decision 11.1); `gh` not logged in, no GitHub remote (11.2) —
 both decided again at the close (`estimate-sprint-migration-leftovers-gone`).
 

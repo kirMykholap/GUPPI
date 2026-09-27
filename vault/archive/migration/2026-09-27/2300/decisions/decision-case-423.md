@@ -1,8 +1,9 @@
 ---
 type: decision
 case: "423"
-status: current
+status: archived
 defer: ["[[rule-spec-reconcile]]"]
+superseded_by: ["[[decision-case-445.1]]"]
 origin: raw/2026-09-25/1228/ledger.md#case-423
 sprint: migration
 created: 2026-09-25
@@ -26,3 +27,6 @@ A guard that refuses the agent's edits of the plan while a line under Cases of t
 ## History
 
 - 2026-09-25 created · raw/2026-09-25/1228/ledger.md#case-423
+- 2026-09-27 superseded by decision-case-445.1 · [[decision-case-445.1]]
+- 2026-09-27 archived · superseded
+- 2026-09-27 archived · cleanup

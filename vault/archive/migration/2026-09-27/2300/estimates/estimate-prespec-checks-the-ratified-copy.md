@@ -1,7 +1,7 @@
 ---
 type: estimate
 kind: QA
-status: pending
+status: archived
 target: "[[rule-prespec]]"
 purpose: Pre-spec finds a Case of the plan that differs from its ratified copy in what the scripts apply, or whose prose is still Russian
 method: uv run pytest tests/test_prespec.py -k ratified
@@ -36,3 +36,5 @@ A Case of the plan whose ids, `given`, `when`, `then`, `then` block or `tasks` d
 - 2026-09-25 updated: the Criterion replaced whole — a parent whose every sub-case is superseded is no finding (case 417) · [[decision-case-417]]
 - 2026-09-25 status: pending → passed · raw/2026-09-25/0051/ledger.md#L18
 - 2026-09-26 updated: the Criterion replaced whole — the run follows no translation; the Cyrillic finding stays (case 441.5) · [[decision-case-441.5]]
+- 2026-09-27 deleted · [[decision-case-445.4]]
+- 2026-09-27 archived · cleanup

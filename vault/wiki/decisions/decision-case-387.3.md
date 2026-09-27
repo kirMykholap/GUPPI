@@ -2,7 +2,7 @@
 type: decision
 case: "387.3"
 status: current
-create: ["[[rule-spec-reconcile]]", "[[estimate-spec-reconcile-shows-a-changed-case]]"]
+create: ["[[rule-spec-reconcile]]", "[[estimate-spec-reconcile-refuses-an-edit-of-the-plan]]"]
 update: ["[[rule-case-protocol]]", "[[rule-hook-registry]]"]
 origin: raw/2026-09-23/1859/ledger.md#case-387.3
 sprint: migration
@@ -21,7 +21,7 @@ A small change of a signed Case costs a whole re-showing, and the English the va
 ## Given
 
 `rule-spec-reconcile` — the new hook rule, a child of `rule-plan-mode`.
-**＋** `estimate-spec-reconcile-shows-a-changed-case` — its Estimate.
+**＋** `estimate-spec-reconcile-refuses-an-edit-of-the-plan` — its Estimate.
 **＋** `guppi/ratified.py` — one comparison function for the edit hook, `Stop` and pre-spec; `tests/test_ratified.py` — its tests.
 **＋** `<plan>.ratified.md` — the ratified copy 387.2 writes.
 **＋** `rule-case-protocol` — the `ratification` row of its Render says when a Case is shown again.

@@ -16,7 +16,7 @@ Two Estimates of `rule-case-protocol` describe a model of the Criterion that no 
 - 356.1 and 356.2 stand in `estimate-hi-writes-frontier`;
 - 299.1 stands in `estimate-prespec-catches-a-superseded-case`;
 - 306.6 stands in `estimate-glossary-ticks-the-spec`;
-- 373 stands in `estimate-spec-reconcile-shows-a-changed-case`;
+- 373 stands in `estimate-spec-reconcile-refuses-an-edit-of-the-plan`;
 - "a session without `/hi` holds no Case" stands in `estimate-ledger-write-lifts`;
 - the line of 294 and 296 is out of date: since Case 378.4 a pair inside the Criterion is refused, as `estimate-prespec-refuses-a-pair-inside-a-criterion` promises.
 

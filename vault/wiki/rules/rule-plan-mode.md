@@ -4,7 +4,7 @@ kind: MOC
 purpose: Prevents work being planned against stale or contradictory vault state
 status: built
 parent: "[[rule-session]]"
-children: ["[[rule-ask]]", "[[rule-prespec-hook]]", "[[rule-prespec]]", "[[rule-spec-capture]]", "[[rule-case-protocol]]", "[[rule-spec-write]]", "[[rule-spec-reconcile]]", "[[rule-case-build]]", "[[rule-case-check]]"]
+children: ["[[rule-ask]]", "[[rule-prespec-hook]]", "[[rule-prespec]]", "[[rule-spec-capture]]", "[[rule-case-protocol]]", "[[rule-spec-write]]", "[[rule-spec-reconcile]]", "[[rule-case-build]]", "[[rule-case-check]]", "[[rule-skill-grill-me]]"]
 estimates: ["[[estimate-plan-mode-verified]]", "[[estimate-plan-mode-names-its-estimates]]"]
 origin: raw/2026-09-09/ledger.md#case-19
 sprint: migration
@@ -49,3 +49,4 @@ touches no Estimate; an `update` of a `Render` touches no Estimate of the live r
 - 2026-09-25 status: draft → built · cascade
 - 2026-09-25 child rule-case-check added · [[decision-case-419.3]]
 - 2026-09-25 ref `rule-frame-check` → `rule-case-build` · [[decision-case-425]]
+- 2026-09-27 child rule-skill-grill-me added · [[decision-case-443.1]]

@@ -5,7 +5,7 @@ status: failed
 target: "[[rule-case-protocol]]"
 purpose: A Case in the chat carries the whole contract in given, when and then
 method: one reading by hand of the Cases of a session, at its close
-checked: 2026-09-26
+checked: 2026-09-27
 origin: raw/2026-09-16/1034/ledger.md#case-188
 sprint: migration
 created: 2026-09-16
@@ -29,7 +29,7 @@ The Case opens with the heading `## Case N — name`, a sub-case with `### Case 
 
 ## Result
 
-2026-09-26, by hand, the Cases of session 1745 in the chat; the context of Case 439 (17:56) and of Case 441 shown again (22:20) holds bullet lists, not prose, and the given of 441.4 holds the state "deferred by case 438"; the headings, section order, ratification fences, closing questions and the one-reply showing of 440 and 441 hold
+2026-09-27, by hand, the Cases of session 2300 shown in the chat; the headings, section order, ratification fences, one-reply showing of 443, 444 and 445 and the closing questions hold, and no context shown holds a list, but the context of Case 446 carries a count of items ("in three places only") and case numbers it is not about (378.5, 428.1), and the context of Case 444 names nine Estimates by count-free list yet the problem of Case 445 cites case 410, which the Case is not about
 
 ## History
 
@@ -54,3 +54,4 @@ The Case opens with the heading `## Case N — name`, a sub-case with `### Case 
 - 2026-09-25 status: pending → failed · raw/2026-09-25/0051/ledger.md#L19
 - 2026-09-25 updated: the Criterion replaced whole — a Case built by case-guppi, and its context says what case-guppi found in the frame (case 431) · [[decision-case-431]]
 - 2026-09-26 status: pending → failed · raw/2026-09-26/1745/ledger.md#L34
+- 2026-09-27 status: failed → failed · raw/2026-09-26/2300/ledger.md#L35

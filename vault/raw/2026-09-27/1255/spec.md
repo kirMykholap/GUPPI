@@ -200,7 +200,7 @@ update:
 - [x] update `estimate-hi-writes-frontier` — the Criterion replaced whole
 - [x] `uv run guppi render`: `.claude/skills/hi/SKILL.md`
 - [x] `uv run guppi render`: `vault/wiki/case-schema.md`
-- [ ] read `estimate-hi-writes-frontier` — by hand at the first `/hi` of a later session
+- [x] read `estimate-hi-writes-frontier` — by hand at the first `/hi` of a later session
 ```
 
 ### Case 451.2 — The check ties the box, the closer and the source
@@ -246,7 +246,7 @@ update:
 - [x] `guppi/prespec.py` — `check_frontier`: the closers `case N`, `work`, `defer`, `kept`, `defer case N`; the box checked against the closer; `defer` only after `sprint`, `kept` only after `backlog`, `defer case N` a finding after either; the closer `sprint` and the source `deferred` gone; the docstring
 - [x] `tests/test_prespec.py` — a test per pairing of box and closer, per source of `defer`, `kept` and `defer case N`, and a `Backlog: N items` line and a `- near` line left unread; the tests of `sprint` and `kept` moved to the new closers
 - [x] `uv run guppi render`: `.claude/skills/pre-spec/SKILL.md`
-- [ ] read `estimate-prespec-checks-the-frontier` — `uv run pytest tests/test_prespec.py` in a later session
+- [x] read `estimate-prespec-checks-the-frontier` — `uv run pytest tests/test_prespec.py` in a later session
 ```
 
 ### Case 451.3 — A sprint line put off closes `sprint · defer`
@@ -279,7 +279,7 @@ update:
 ```tasks
 - [x] update `estimate-prespec-binds-a-sprint-line` — the Criterion replaced whole
 - [x] `tests/test_prespec.py` — `test_a_left_sprint_item_closes_with_sprint` on a line `[-] … · sprint · defer`
-- [ ] read `estimate-prespec-binds-a-sprint-line` — `uv run pytest tests/test_prespec.py -k sprint` in a later session
+- [x] read `estimate-prespec-binds-a-sprint-line` — `uv run pytest tests/test_prespec.py -k sprint` in a later session
 ```
 
 ### Case 451.4 — `rule-backlog`: one file that holds every deferred item
@@ -370,7 +370,7 @@ update:
 - [x] `tests/test_backlog.py` — each source, a slug of two sources once, a slug under a conserved Spec not repeated, the count over `raw/` and the archive, a folder without `carry.md`, no page written
 - [x] `uv run guppi render`: `vault/wiki/insights/schema.yaml`
 - [x] `uv run guppi glossary`
-- [ ] read `estimate-backlog-renders` — after the librarian's run of a later session
+- [x] read `estimate-backlog-renders` — after the librarian's run of a later session
 ```
 
 ### Case 451.5 — `guppi backlog --check` in `make lint`
@@ -416,7 +416,7 @@ update:
 - [x] update `rule-lint` — one `replace` pair in the Purpose
 - [x] `Makefile` — `uv run guppi backlog --check < /dev/null` in `lint`, after `sprint --check`; the help line of the target
 - [x] `tests/test_backlog.py` — `--check` on a file equal to the render and on one that differs; nothing written
-- [ ] read `estimate-backlog-checks-the-file` — after the librarian's run of a later session
+- [x] read `estimate-backlog-checks-the-file` — after the librarian's run of a later session
 ```
 
 ### Case 451.6 — `sprint.md` no longer shows the Backlog
@@ -461,7 +461,7 @@ update:
 - [x] `guppi/sprint.py` — the render without `## Backlog`; the docstring
 - [x] `tests/test_sprint.py` — the render without `## Backlog`; a slug of the Backlog without a page no longer an error of `guppi sprint`
 - [x] `uv run guppi sprint`
-- [ ] read `estimate-sprint-renders-the-backlog` — `uv run pytest tests/test_sprint.py` and the rendered `sprint.md` after the librarian's run of a later session
+- [x] read `estimate-sprint-renders-the-backlog` — `uv run pytest tests/test_sprint.py` and the rendered `sprint.md` after the librarian's run of a later session
 ```
 
 ### Case 451.7 — The sprint move counts the lines put off under the new closers
@@ -632,7 +632,7 @@ update:
 - [x] update `rule-case-protocol` — one `replace` pair in the Render
 - [x] update `estimate-case-protocol-acknowledging-reply` — the Criterion replaced whole
 - [x] `uv run guppi render`: `vault/wiki/case-schema.md`
-- [ ] read `estimate-case-protocol-acknowledging-reply` — by hand, the first acknowledging reply of a later session
+- [x] read `estimate-case-protocol-acknowledging-reply` — by hand, the first acknowledging reply of a later session
 ```
 
 ### Case 451.11 — The layout of the vault names the backlog file
@@ -703,7 +703,7 @@ update:
 - [x] update `rule-internal-context` — the Render whole
 - [x] update `estimate-internal-context-loaded` — the Criterion replaced whole
 - [x] `uv run guppi render`: `.claude/skills/hi/SKILL.md`
-- [ ] read `estimate-internal-context-loaded` — by hand at the `/hi` of a later session
+- [x] read `estimate-internal-context-loaded` — by hand at the `/hi` of a later session
 ```
 
 ### Case 451.13 — The librarian runs `guppi backlog`
@@ -832,7 +832,7 @@ update:
 
 ```tasks
 - [x] update `estimate-insights-schema-checked` — the Criterion replaced whole
-- [ ] read `estimate-insights-schema-checked` — `uv run pytest tests/test_schemas.py -k insights` and `make lint` in a later session
+- [x] read `estimate-insights-schema-checked` — `uv run pytest tests/test_schemas.py -k insights` and `make lint` in a later session
 ```
 
 ## Case 452 — A built Case sent to the person as a file, not retyped in the chat
@@ -992,7 +992,7 @@ update:
 - [x] update `estimate-spec-write-copies-the-ratified-case` — the Criterion replaced whole
 - [x] `guppi/ratified.py` — the refusal with no sending of the file after the time of the store, the showing condition dropped, the reading of a sending imported from `guppi/casecheck.py`
 - [x] `tests/test_ratified.py` — a Case written after a sending with no showing, refused with no sending, refused with a sending older than the store, a sub-case judged by the file of its parent
-- [ ] read `estimate-spec-write-copies-the-ratified-case` — by hand in a later session
+- [x] read `estimate-spec-write-copies-the-ratified-case` — by hand in a later session
 ```
 
 ### Case 452.4 — The main agent sends the file and writes a short text
@@ -1185,7 +1185,7 @@ update:
 - [x] `guppi/casecheck.py` — one predicate: a path under the `cases/` folder of a session folder under `vault/raw/`; the path function of the writer of Case 452.1 stays inside it
 - [x] `guppi/ratified.py` — `guard_refusal` refuses every `Edit`, `Write` and `MultiEdit` of a path the predicate of `guppi/casecheck.py` names, with its reason; the docstrings of the module, `guard_refusal` and `guard`
 - [x] `tests/test_ratified.py` — an `Edit`, a `MultiEdit`, a `Write` of a new file and of an existing file under `cases/` refused and logged; a file of another name under `cases/` refused; a `cases/` folder outside a session folder let through
-- [ ] read `estimate-spec-reconcile-refuses-an-edit-of-the-plan` — `uv run pytest tests/test_ratified.py -k guard` and one probe by hand in a later session
+- [x] read `estimate-spec-reconcile-refuses-an-edit-of-the-plan` — `uv run pytest tests/test_ratified.py -k guard` and one probe by hand in a later session
 ```
 
 ## Deferred

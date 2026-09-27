@@ -2,7 +2,7 @@
 type: rule
 kind: Leaf
 purpose: "Prevents a deferred item from dropping out of sight: a defer, an open Insight, a sprint item without a turn or a conserved Spec that no list shows to the next session"
-status: draft
+status: built
 enforcement: check
 implementation_ref: [guppi/backlog.py, tests/test_backlog.py]
 governs: vault/wiki/backlog.md
@@ -23,3 +23,4 @@ Prevents a deferred item from dropping out of sight. Before case 451 the brief c
 - 2026-09-27 created · [[decision-case-451.4]]
 - 2026-09-27 estimate estimate-backlog-renders added · [[decision-case-451.4]]
 - 2026-09-27 estimate estimate-backlog-checks-the-file added · [[decision-case-451.5]]
+- 2026-09-27 status: draft → built · cascade

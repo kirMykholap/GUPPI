@@ -43,7 +43,7 @@ create:
 ```
 
 ```tasks
-- [ ] create `estimate-harness-make-runs-in-both-shells`
+- [x] create `estimate-harness-make-runs-in-both-shells`
 - [x] `Makefile` — reproduce the failure of `make style` from PowerShell first. Then, on Windows only, set `SHELL` to a POSIX `sh` that make finds without Git's `usr/bin` on `PATH`, and stop with one message when none is found. Keep `/usr/bin/sh` elsewhere and every stdin redirect from `/dev/null`. Add the redirect to the `help` recipe. Add one sentence to the header comment on the shell.
 - [x] by hand — `make help`, `make style`, `make test` and `make lint` from PowerShell and from Git Bash: the same exit code in both, no `cmd.exe` error
 - [ ] read `estimate-harness-make-runs-in-both-shells` — by hand, at the first session after the change
@@ -98,9 +98,9 @@ update:
 ```
 
 ```tasks
-- [ ] update `rule-case-protocol`
-- [ ] update `estimate-case-protocol-shows-the-built-case`
-- [ ] `uv run guppi render`: `vault/wiki/case-schema.md`
+- [x] update `rule-case-protocol`
+- [x] update `estimate-case-protocol-shows-the-built-case`
+- [x] `uv run guppi render`: `vault/wiki/case-schema.md`
 - [ ] read `estimate-case-protocol-shows-the-built-case` — by hand, the rounds shown in a session after the render, against the answers of `case-guppi` in the transcript
 ```
 
@@ -154,11 +154,11 @@ update:
 ```
 
 ```tasks
-- [ ] update `estimate-lint-checks-the-method`: the Criterion replaced whole
-- [ ] update `rule-estimates-schema`: the description of `method` in the Render
+- [x] update `estimate-lint-checks-the-method`: the Criterion replaced whole
+- [x] update `rule-estimates-schema`: the description of `method` in the Render
 - [x] `guppi/lint.py`: in the MOC branch of `check_method`, skip the Estimates of a child with `enforcement: render` when the MOC has `render_mode: full`; the module docstring, in the `method` class, and the docstrings of `check_method` and `children_estimates` name the exception and case 459
 - [x] `tests/test_lint.py`: a full MOC with a reading over a render child whose Estimate names a test file passes; the same MOC over a child without `enforcement: render` gives the finding; a MOC without `render_mode: full` over a render child gives the finding
-- [ ] `uv run guppi render`: `vault/wiki/estimates/schema.yaml`
+- [x] `uv run guppi render`: `vault/wiki/estimates/schema.yaml`
 - [ ] read `estimate-lint-checks-the-method`: `uv run pytest tests/test_lint.py`, then `make lint` prints no `method` finding on `estimate-claude-md-rendered`
 ```
 
@@ -205,7 +205,7 @@ update:
 ```
 
 ```tasks
-- [ ] update `harness-senduserfile-renders-a-markdown-file-on-the-phone`: the slug takes the `lesson-` prefix
+- [x] update `harness-senduserfile-renders-a-markdown-file-on-the-phone`: the slug takes the `lesson-` prefix
 - [x] `guppi/generate.py`: the module docstring says what `apply` does — an applied entry ticks its line whatever its category, an entry with no category (`unknown`) included; only a `lesson` entry and a failed entry tick nothing — and names case 460.1
 ```
 
@@ -249,7 +249,7 @@ update:
 ```
 
 ```tasks
-- [ ] update `estimate-lint-finds-a-broken-link`: the Criterion replaced whole, every line kept but the `decision` one
+- [x] update `estimate-lint-finds-a-broken-link`: the Criterion replaced whole, every line kept but the `decision` one
 - [x] `guppi/lint.py`: `check_decision` imports `category_of` from `guppi/materialize.py`, and the module's own `PREFIXES` table is removed; the docstring of the `decision` class names case 460.3
 - [x] `tests/test_lint.py`: a Decision list that names a missing slug with the prefix of a Decision page gives the `decision` finding; one that names a live or archived Decision page gives none; a slug without a known prefix is not looked up
 - [x] by hand — `make lint` on the live vault: no new `decision` finding
@@ -289,7 +289,7 @@ update:
 ```
 
 ```tasks
-- [ ] update `estimate-ledger-write-lifts`: the Criterion replaced whole
+- [x] update `estimate-ledger-write-lifts`: the Criterion replaced whole
 - [ ] read `estimate-ledger-write-lifts`: `uv run pytest tests/test_ledger.py tests/test_gate.py` in a later session
 ```
 
@@ -338,8 +338,8 @@ update:
 ```
 
 ```tasks
-- [ ] create `estimate-ledger-write-refuses-a-lesson-without-its-prefix`
-- [ ] update `rule-ledger-write`: the refusal of a lesson slug without its prefix in `## How it works`
+- [x] create `estimate-ledger-write-refuses-a-lesson-without-its-prefix`
+- [x] update `rule-ledger-write`: the refusal of a lesson slug without its prefix in `## How it works`
 - [x] `guppi/ledger.py`: a function that returns the fresh `lesson[...]` lines whose slug `category_of` does not put under `lessons`, read by `parse_line` and `category_of` imported inside the function as `changed_by_session` does; `run` drops them with the refused readings, prints the stderr line for each one in the reply just finished, and exits 2 when either refusal speaks; the module docstring names case 460.5
 - [x] `tests/test_ledger.py`: a lesson line without `lesson-` in the finished reply is not written, and the hook exits 2 with the stderr line; the same line in an earlier text is skipped silently; a `lesson-` line and the other lines of the `Stop` are written; a lesson line already in a ledger is not judged; an estimate or decision line without a prefix is not refused by this check
 - [ ] read `estimate-ledger-write-refuses-a-lesson-without-its-prefix`: `uv run pytest tests/test_ledger.py` in a later session
@@ -390,9 +390,9 @@ update:
 ```
 
 ```tasks
-- [ ] update `rule-case-protocol`
-- [ ] update `estimate-case-protocol-defers-in-one-reply`
-- [ ] `uv run guppi render`: `vault/wiki/case-schema.md`
+- [x] update `rule-case-protocol`
+- [x] update `estimate-case-protocol-defers-in-one-reply`
+- [x] `uv run guppi render`: `vault/wiki/case-schema.md`
 - [ ] read `estimate-case-protocol-defers-in-one-reply` — by hand, the first defer the person asks for after the render
 ```
 
@@ -439,7 +439,7 @@ update:
 ```
 
 ```tasks
-- [ ] update `estimate-materialize-judges-a-fence`: the Criterion replaced whole
+- [x] update `estimate-materialize-judges-a-fence`: the Criterion replaced whole
 - [x] `guppi/materialize.py`: move `quoted_sections(lines, names)` here from `guppi/ratified.py`; remove `case_text`; `case_texts` calls `quoted_sections(lines, CASE_SECTIONS)`; the fence paragraph of the docstring names `quoted_sections` among the readers of this module and no longer under `guppi/ratified.py`
 - [x] `guppi/ratified.py`: remove `quoted_sections` and import it from `guppi/materialize.py`, with no re-export
 - [x] `guppi/casecheck.py`: import `quoted_sections` from `guppi/materialize.py`
@@ -503,8 +503,8 @@ update:
 ```
 
 ```tasks
-- [ ] update `rule-page-generation`: two `replace` pairs in the Purpose
-- [ ] update `estimate-generate-ticks-the-spec`: the Criterion replaced whole
+- [x] update `rule-page-generation`: two `replace` pairs in the Purpose
+- [x] update `estimate-generate-ticks-the-spec`: the Criterion replaced whole
 - [x] `guppi/generate.py`: in `tick`, a `delete` entry also calls `tick_read` over `raw_specs` with the skip of `later_cases` by its `line` and the skip of `superseded_cases`; the docstrings of `tick` and `tick_read` and the paragraph on the Spec in the docstring of the module name case 463
 - [x] `tests/test_generate.py`: tests that a `delete` of an Estimate ticks its `read` lines in the Spec beside the yaml and in an older Spec of `vault/raw/`; that a `read` line of a Case ratified after the delete stays open; that a `read` line of a superseded Case stays open; that a failed `delete` ticks nothing; and that a Spec under `vault/archive/` stays unchanged
 - [ ] read `estimate-generate-ticks-the-spec`: `uv run pytest tests/test_generate.py` in a later session

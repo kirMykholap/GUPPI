@@ -1,11 +1,11 @@
 ---
 type: estimate
 kind: QA
-status: pending
+status: passed
 target: "[[rule-case-protocol]]"
 purpose: The reply that acknowledges a ratification has four parts in order
 method: one reading by hand of the first acknowledging reply of a session
-checked: 2026-09-25
+checked: 2026-09-27
 origin: raw/2026-09-16/1034/ledger.md#case-188
 sprint: migration
 created: 2026-09-16
@@ -28,7 +28,7 @@ The reply has four parts, in this order. First, the `LEDGER` block. Second, the 
 
 ## Result
 
-2026-09-25, by hand, session 1228: the acknowledging replies of Case 419 and of Case 419.3 were refused by the Stop hook of rule-spec-write (exit 2); the ledger holds their decision lines, written at that same Stop (13:12:24), and the answer to each refusal was a reply of its own that called tools
+2026-09-27, by hand, session 1819: the acknowledging replies of Cases 457–463 each open with the LEDGER block, then the heading ## Case N — ратифицирован (460 naming 460.1–460.3 in one heading and one block), Changes and Notes paragraphs, ## Frontier with closed lines folded, open lines one each, and the question last; no tool call after the LEDGER block
 
 ## History
 
@@ -42,3 +42,4 @@ The reply has four parts, in this order. First, the `LEDGER` block. Second, the 
 - 2026-09-25 updated: the Criterion replaced whole — the answer to a Stop hook's refusal is a reply of its own (case 414.2) · [[decision-case-414.2]]
 - 2026-09-25 status: pending → passed · raw/2026-09-25/1228/ledger.md#L38
 - 2026-09-27 updated: the Criterion replaced whole — the lines put off shown by the closers of case 451 (case 451.10) · [[decision-case-451.10]]
+- 2026-09-27 status: pending → passed · raw/2026-09-27/1819/ledger.md#L19

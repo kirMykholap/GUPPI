@@ -21,3 +21,5 @@ SendUserFile with display render puts a local markdown file into the conversatio
 ## History
 
 - 2026-09-27 created · raw/2026-09-27/1255/ledger.md#L54
+- 2026-09-27 renamed from `harness-senduserfile-renders-a-markdown-file-on-the-phone` · [[decision-case-460.1]]
+- 2026-09-27 updated: the lesson- prefix added to the slug (case 460.1) · [[decision-case-460.1]]

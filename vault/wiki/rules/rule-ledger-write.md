@@ -2,11 +2,11 @@
 type: rule
 kind: Leaf
 purpose: Prevents a ratified line from existing only in a chat reply, or landing in a session no /hi opened
-status: built
+status: draft
 enforcement: hook
 implementation_ref: [guppi/ledger.py, guppi/materialize.py, guppi/gate.py, tests/test_ledger.py, tests/test_gate.py, .claude/settings.json]
 parent: "[[rule-session-start]]"
-estimates: ["[[estimate-ledger-write-lifts]]", "[[estimate-ledger-write-refuses-a-reading-of-a-change-of-the-session]]"]
+estimates: ["[[estimate-ledger-write-lifts]]", "[[estimate-ledger-write-refuses-a-reading-of-a-change-of-the-session]]", "[[estimate-ledger-write-refuses-a-lesson-without-its-prefix]]"]
 deferred_by: ["[[decision-case-442]]"]
 origin: raw/2026-09-09/ledger.md#case-10
 sprint: migration
@@ -45,7 +45,7 @@ run /hi, then repeat the lines.` — so the person is told rather than left beli
 decisions were recorded. With `stop_hook_active` set (the re-fire after a block) it exits 0
 and writes nothing, so it cannot loop.
 
-**What a session changes, it does not measure** (case 428.1). An `estimate[<slug>]` line is not written when a decision line `create` or `update` of `<slug>` stands in the session's ledger or among the lines of the same `Stop`, each line read by `parse_line` of `guppi/materialize.py`; a reading of the old slug of a page an `update` renames falls under the same rule, since the decision line names the old slug. The reading waits for a later session. The judgment reads the ledger alone and holds the whole session, so a refused line of the transcript is refused again at every `Stop`: the hook exits 2 with one stderr line per refused line only when the line stands in the reply just finished, and skips an older one without a word. A reading of the new slug of a rename is not caught here: no decision line names it.
+**What a session changes, it does not measure** (case 428.1). An `estimate[<slug>]` line is not written when a decision line `create` or `update` of `<slug>` stands in the session's ledger or among the lines of the same `Stop`, each line read by `parse_line` of `guppi/materialize.py`; a reading of the old slug of a page an `update` renames falls under the same rule, since the decision line names the old slug. The reading waits for a later session. The judgment reads the ledger alone and holds the whole session, so a refused line of the transcript is refused again at every `Stop`: the hook exits 2 with one stderr line per refused line only when the line stands in the reply just finished, and skips an older one without a word. A reading of the new slug of a rename is not caught here: no decision line names it. A lesson names its category (case 460.5): a `lesson[<slug>]` line whose slug `category_of` of `guppi/materialize.py` does not put under `lessons` — a slug that does not open with `lesson-` — is not written, since `materialize` sends a lesson line to `lessons/` by its record, not by its slug, and a slug with no prefix reached the vault that way (session 1255, ledger line 54); as for a refused reading, the hook exits 2 with one stderr line per refused line only when the line stands in the reply just finished, skips an older one without a word, and writes the other lines as before.
 
 A reply that ends in a tool call (`Skill`, `ExitPlanMode`) has no `Stop` of its own. The text before the call is kept in the transcript — measured on Claude Code 2.1.269–2.1.272: the blocks of cases 101, 117 and 222 stood in a text followed by a tool call and reached the ledger at the next `Stop` of the session, 22 minutes, 13 seconds and 14 seconds later; one block, case 109 on 2.1.269, was absent from the transcript and is not explained (case 224.1). A block followed by a tool call waits for the next `Stop`; the reply that ends in the text lands it now, with its own time. The harness holds the reply back instead of the agent's memory: `guppi gate` — on `PreToolUse Skill` for the agent's call, on `UserPromptSubmit` for a typed `/pre-spec`, `/retro` or `/handoff` (case 169.1) — reads the `then` items of every Case in the session's `spec.md` and in the plan file the session's event log names last under `.claude/plans/`, and the decision lines of the session's window as `guppi prespec --check` reads them; an item with no decision line of its Case refuses the call with exit 2 — `gate: /<skill> refused — N item(s) of the Spec have no ledger line (case A, case B).` followed by the advice of the path: to the agent `The text before a tool call waits for the next Stop: end this reply in text with the LEDGER block, then call /<skill> in the next reply.`, to the person `Ask the agent to end its reply with the LEDGER block, then type /<skill> again.` (case 174) — and every item with its line, or no source found, passes silently (case 122) — except a `/retro` with no source and no `decision`, `estimate` or `lesson` line in the session's ledger window, which `rule-retro-commit` refuses as nothing to review (case 180; case 184). `estimate[...]` and `lesson[...]` lines have no source but the text; a loss of one is a Retro finding. A block the agent repeats in a later text reaches the ledger at that `Stop`, with that time; only the last reply of a session can still be lost, and Retro sees it. A line whose text is already
 in today's ledger — whatever its time, or with none, as the
@@ -89,3 +89,6 @@ the implementation arrives in the session after the probe (Slice 1, session B).
 - 2026-09-25 status: built → draft · cascade
 - 2026-09-26 deferred · [[decision-case-442]]
 - 2026-09-26 status: draft → built · cascade
+- 2026-09-27 estimate estimate-ledger-write-refuses-a-lesson-without-its-prefix added · [[decision-case-460.5]]
+- 2026-09-27 updated: the ledger hook refuses a lesson line whose slug lacks lesson- (case 460.5) · [[decision-case-460.5]]
+- 2026-09-27 status: built → draft · cascade

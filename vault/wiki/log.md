@@ -3960,3 +3960,84 @@ instruction. The global feed; a page's own `## History` is the per-page view.
 - 2026-09-27 lessons/lesson-case-build-a-list-in-context archived · cleanup
 - 2026-09-27 lessons/lesson-case-show-ref-of-a-ratification-line-retyped archived · cleanup
 - 2026-09-27 lessons/lesson-case-show-sub-case-ratification-retyped archived · cleanup
+- 2026-09-27 lessons/lesson-case-show-grill-round-reformatted-in-translation created · raw/2026-09-27/1819/ledger.md#L1 · generate
+- 2026-09-27 decisions/decision-case-457 created · raw/2026-09-27/1819/ledger.md#case-457 · generate
+- 2026-09-27 estimates/estimate-harness-make-runs-in-both-shells created · [[decision-case-457]] · generate
+- 2026-09-27 rules/rule-harness estimate estimate-harness-make-runs-in-both-shells added · [[decision-case-457]] · generate
+- 2026-09-27 decisions/decision-case-458 created · raw/2026-09-27/1819/ledger.md#case-458 · generate
+- 2026-09-27 rules/rule-case-protocol updated: a round of questions of case-guppi is shown in Russian line by line, each question keeping its ❓ **Qn** and ➡️ lines (case 458) · [[decision-case-458]] · generate
+- 2026-09-27 estimates/estimate-case-protocol-shows-the-built-case updated: the Criterion replaced whole — a round is shown in Russian line by line, in the form of grill-me (case 458) · [[decision-case-458]] · generate
+- 2026-09-27 decisions/decision-case-459 created · raw/2026-09-27/1819/ledger.md#case-459 · generate
+- 2026-09-27 decisions/decision-case-454 superseded by decision-case-459 · [[decision-case-459]] · generate
+- 2026-09-27 rules/rule-claude-md defer by decision-case-454 superseded · [[decision-case-459]] · generate
+- 2026-09-27 estimates/estimate-lint-checks-the-method updated: the Criterion replaced whole — on a MOC with render_mode: full the Estimates of a child with enforcement: render are not counted (case 459) · [[decision-case-459]] · generate
+- 2026-09-27 rules/rule-estimates-schema updated: the method of a MOC's Estimate: the Estimates of a render child of a full MOC are not counted (case 459) · [[decision-case-459]] · generate
+- 2026-09-27 decisions/decision-case-460.1 created · raw/2026-09-27/1819/ledger.md#case-460.1 · generate
+- 2026-09-27 lessons/lesson-harness-senduserfile-renders-a-markdown-file-on-the-phone renamed from `harness-senduserfile-renders-a-markdown-file-on-the-phone` · [[decision-case-460.1]] · generate
+- 2026-09-27 lessons/lesson-harness-senduserfile-renders-a-markdown-file-on-the-phone updated: the lesson- prefix added to the slug (case 460.1) · [[decision-case-460.1]] · generate
+- 2026-09-27 decisions/decision-case-460.2 created · raw/2026-09-27/1819/ledger.md#case-460.2 · generate
+- 2026-09-27 decisions/decision-case-460.3 created · raw/2026-09-27/1819/ledger.md#case-460.3 · generate
+- 2026-09-27 estimates/estimate-lint-finds-a-broken-link updated: the Criterion replaced whole — the prefixes of a Decision list are judged by category_of of guppi/materialize.py, decision- included (case 460.3) · [[decision-case-460.3]] · generate
+- 2026-09-27 decisions/decision-case-461 created · raw/2026-09-27/1819/ledger.md#case-461 · generate
+- 2026-09-27 rules/rule-case-protocol updated: the defer reply in Plan Mode ends with the Frontier and a question of what comes next, the open item or /pre-spec (case 461) · [[decision-case-461]] · generate
+- 2026-09-27 estimates/estimate-case-protocol-defers-in-one-reply updated: the Criterion replaced whole — in Plan Mode a question of what comes next follows the Frontier and ends the defer reply (case 461) · [[decision-case-461]] · generate
+- 2026-09-27 decisions/decision-case-462 created · raw/2026-09-27/1819/ledger.md#case-462 · generate
+- 2026-09-27 decisions/decision-case-455 superseded by decision-case-462 · [[decision-case-462]] · generate
+- 2026-09-27 rules/rule-one-judgment-one-implementation defer by decision-case-455 superseded · [[decision-case-462]] · generate
+- 2026-09-27 estimates/estimate-materialize-judges-a-fence updated: the Criterion replaced whole — quoted_sections of guppi/materialize.py is the one reader of the sections of a Case; case_text and the copy in guppi/ratified.py removed (case 462) · [[decision-case-462]] · generate
+- 2026-09-27 decisions/decision-case-463 created · raw/2026-09-27/1819/ledger.md#case-463 · generate
+- 2026-09-27 decisions/decision-case-456 superseded by decision-case-463 · [[decision-case-463]] · generate
+- 2026-09-27 rules/rule-page-generation defer by decision-case-456 superseded · [[decision-case-463]] · generate
+- 2026-09-27 rules/rule-page-generation updated: a delete ticks the read lines of its slug across the live Specs of raw/, with the skips of a reading (case 463) · [[decision-case-463]] · generate
+- 2026-09-27 estimates/estimate-generate-ticks-the-spec updated: the Criterion replaced whole — a delete entry ticks the read lines of its slug, with the skips of a reading (case 463) · [[decision-case-463]] · generate
+- 2026-09-27 estimates/estimate-internal-context-loaded status: pending → passed · raw/2026-09-27/1819/ledger.md#L17 · generate
+- 2026-09-27 estimates/estimate-hi-writes-frontier status: pending → passed · raw/2026-09-27/1819/ledger.md#L18 · generate
+- 2026-09-27 estimates/estimate-case-protocol-acknowledging-reply status: pending → passed · raw/2026-09-27/1819/ledger.md#L19 · generate
+- 2026-09-27 decisions/decision-case-460.4 created · raw/2026-09-27/1819/ledger.md#case-460.4 · generate
+- 2026-09-27 estimates/estimate-ledger-write-lifts updated: the Criterion replaced whole — a lesson line refused for its slug does not land (case 460.4) · [[decision-case-460.4]] · generate
+- 2026-09-27 decisions/decision-case-460.5 created · raw/2026-09-27/1819/ledger.md#case-460.5 · generate
+- 2026-09-27 decisions/decision-case-460.2 superseded by decision-case-460.5 · [[decision-case-460.5]] · generate
+- 2026-09-27 estimates/estimate-ledger-write-refuses-a-lesson-without-its-prefix created · [[decision-case-460.5]] · generate
+- 2026-09-27 rules/rule-ledger-write estimate estimate-ledger-write-refuses-a-lesson-without-its-prefix added · [[decision-case-460.5]] · generate
+- 2026-09-27 rules/rule-ledger-write updated: the ledger hook refuses a lesson line whose slug lacks lesson- (case 460.5) · [[decision-case-460.5]] · generate
+- 2026-09-27 estimates/estimate-backlog-checks-the-file status: pending → passed · raw/2026-09-27/1819/ledger.md#L23 · generate
+- 2026-09-27 estimates/estimate-backlog-renders status: pending → passed · raw/2026-09-27/1819/ledger.md#L24 · generate
+- 2026-09-27 estimates/estimate-insights-schema-checked status: pending → passed · raw/2026-09-27/1819/ledger.md#L25 · generate
+- 2026-09-27 estimates/estimate-prespec-binds-a-sprint-line status: pending → passed · raw/2026-09-27/1819/ledger.md#L26 · generate
+- 2026-09-27 estimates/estimate-prespec-checks-the-frontier status: pending → passed · raw/2026-09-27/1819/ledger.md#L27 · generate
+- 2026-09-27 estimates/estimate-spec-reconcile-refuses-an-edit-of-the-plan status: pending → passed · raw/2026-09-27/1819/ledger.md#L28 · generate
+- 2026-09-27 estimates/estimate-spec-write-copies-the-ratified-case status: pending → passed · raw/2026-09-27/1819/ledger.md#L29 · generate
+- 2026-09-27 estimates/estimate-sprint-renders-the-backlog status: pending → passed · raw/2026-09-27/1819/ledger.md#L30 · generate
+- 2026-09-27 estimates/estimate-spec-write-checks-the-written-case status: pending → passed · raw/2026-09-27/1819/ledger.md#L31 · generate
+- 2026-09-27 estimates/estimate-spec-write-removes-a-superseded-case status: pending → passed · raw/2026-09-27/1819/ledger.md#L32 · generate
+- 2026-09-27 estimates/estimate-language-spec-prose-in-english status: pending → passed · raw/2026-09-27/1819/ledger.md#L33 · generate
+- 2026-09-27 estimates/estimate-materialize-lifts-a-create-by-the-schema status: pending → passed · raw/2026-09-27/1819/ledger.md#L34 · generate
+- 2026-09-27 estimates/estimate-spec-capture-appends status: pending → passed · raw/2026-09-27/1819/ledger.md#L35 · generate
+- 2026-09-27 lessons/lesson-ledger-block-written-with-a-placeholder-line created · raw/2026-09-27/1819/ledger.md#L36 · generate
+- 2026-09-27 lessons/lesson-case-build-two-promises-in-one-sub-case-with-a-written-criterion created · raw/2026-09-27/1819/ledger.md#L37 · generate
+- 2026-09-27 lessons/lesson-case-build-a-rewritten-criterion-loses-a-finding-text created · raw/2026-09-27/1819/ledger.md#L38 · generate
+- 2026-09-27 estimates/estimate-retro-report-holds-each-fact-once status: pending → failed · raw/2026-09-27/1819/ledger.md#L39 · generate
+- 2026-09-27 insights/insight-case-show-built-case-retyped-by-hand updated: child lesson-case-show-grill-round-reformatted-in-translation added, its cause closed by case 458, later than 452.4 (synthesis) · raw/2026-09-27/1819/ledger.md#L1 · generate
+- 2026-09-27 lessons/lesson-case-show-grill-round-reformatted-in-translation updated: clustered under insight-case-show-built-case-retyped-by-hand (synthesis) · raw/2026-09-27/1819/ledger.md#L1 · generate
+- 2026-09-27 insights/insight-case-build-promise-lines-compared-by-no-check updated: children lesson-case-build-two-promises-in-one-sub-case-with-a-written-criterion and lesson-case-build-a-rewritten-criterion-loses-a-finding-text added (synthesis) · raw/2026-09-27/1819/ledger.md#L37 · generate
+- 2026-09-27 lessons/lesson-case-build-two-promises-in-one-sub-case-with-a-written-criterion updated: clustered under insight-case-build-promise-lines-compared-by-no-check (synthesis) · raw/2026-09-27/1819/ledger.md#L37 · generate
+- 2026-09-27 lessons/lesson-case-build-a-rewritten-criterion-loses-a-finding-text updated: clustered under insight-case-build-promise-lines-compared-by-no-check (synthesis) · raw/2026-09-27/1819/ledger.md#L38 · generate
+- 2026-09-27 rules/rule-backlog status: draft → built · cascade · generate
+- 2026-09-27 rules/rule-insights-schema status: draft → built · cascade · generate
+- 2026-09-27 rules/rule-internal-context status: draft → built · cascade · generate
+- 2026-09-27 rules/rule-ledger-write status: built → draft · cascade · generate
+- 2026-09-27 rules/rule-lint status: built → draft · cascade · generate
+- 2026-09-27 rules/rule-page-generation status: built → draft · cascade · generate
+- 2026-09-27 rules/rule-skill-hi status: draft → built · cascade · generate
+- 2026-09-27 rules/rule-spec-capture status: draft → built · cascade · generate
+- 2026-09-27 rules/rule-spec-reconcile status: draft → built · cascade · generate
+- 2026-09-27 decisions/decision-case-454 archived · superseded · generate
+- 2026-09-27 decisions/decision-case-455 archived · superseded · generate
+- 2026-09-27 decisions/decision-case-456 archived · superseded · generate
+- 2026-09-27 decisions/decision-case-460.2 archived · superseded · generate
+- 2026-09-27 lessons/lesson-case-show-grill-round-reformatted-in-translation archived · insight actioned · generate
+- 2026-09-27 lessons/lesson-case-show-grill-round-reformatted-in-translation archived · cleanup
+- 2026-09-27 decisions/decision-case-454 archived · cleanup
+- 2026-09-27 decisions/decision-case-455 archived · cleanup
+- 2026-09-27 decisions/decision-case-456 archived · cleanup
+- 2026-09-27 decisions/decision-case-460.2 archived · cleanup

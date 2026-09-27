@@ -1,10 +1,11 @@
 ---
 type: estimate
 kind: QA
-status: pending
+status: passed
 target: "[[rule-backlog]]"
 purpose: guppi backlog writes backlog.md from the conserved Specs, the pages with deferred_by, the open Insights and the Backlog of the sprint page, each item with its purpose and its count
 method: uv run pytest tests/test_backlog.py, plus one reading of vault/wiki/backlog.md after the librarian's run
+checked: 2026-09-27
 origin: raw/2026-09-27/1255/ledger.md#case-451.4
 sprint: migration
 created: 2026-09-27
@@ -25,6 +26,11 @@ The script writes `vault/wiki/backlog.md`: the heading `# Backlog`, the line `N 
 **＋** A folder whose `carry.md` is gone shows nothing. Its defers enter `## Deferred` through `deferred_by` once `materialize` and `generate` have applied them.
 **－** The script writes no page of `vault/wiki/` and no file but `vault/wiki/backlog.md`. The governed-files hook refuses a hand edit of that file.
 
+## Result
+
+2026-09-27, uv run pytest tests/test_backlog.py: 16 passed; by hand, vault/wiki/backlog.md as the librarian run of e229e99 wrote it: # Backlog, the line 19 items, ## Conserved Specs (none), ## Deferred with one line per deferred page, open Insight (pattern and severity) and sprint backlog note, each with its purpose and the count of sessions that put it off
+
 ## History
 
 - 2026-09-27 created · [[decision-case-451.4]]
+- 2026-09-27 status: pending → passed · raw/2026-09-27/1819/ledger.md#L24

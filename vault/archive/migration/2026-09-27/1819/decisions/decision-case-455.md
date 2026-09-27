@@ -1,8 +1,9 @@
 ---
 type: decision
 case: "455"
-status: current
+status: archived
 defer: ["[[rule-one-judgment-one-implementation]]"]
+superseded_by: ["[[decision-case-462]]"]
 origin: raw/2026-09-27/1255/ledger.md#case-455
 sprint: migration
 created: 2026-09-27
@@ -26,3 +27,6 @@ materialize.case_text and ratified.quoted_sections are two copies of one section
 ## History
 
 - 2026-09-27 created · raw/2026-09-27/1255/ledger.md#case-455
+- 2026-09-27 superseded by decision-case-462 · [[decision-case-462]]
+- 2026-09-27 archived · superseded
+- 2026-09-27 archived · cleanup

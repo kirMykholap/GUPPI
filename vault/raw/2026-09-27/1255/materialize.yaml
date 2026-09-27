@@ -1654,6 +1654,7 @@ entries:
       names a test file; lint reports the pair as a contradiction
   exists: true
   applied: '18:09:38'
+  superseded_by: '459'
 - line: 48
   text: decision[case 455][defer][rule-one-judgment-one-implementation]{ref:rule-one-judgment-one-implementation}
   case: '455'
@@ -1669,6 +1670,7 @@ entries:
       a Case
   exists: true
   applied: '18:09:38'
+  superseded_by: '462'
 - line: 49
   text: decision[case 456][defer][rule-page-generation]{ref:rule-page-generation}
   case: '456'
@@ -1684,6 +1686,7 @@ entries:
       of it will stand in the ledger
   exists: true
   applied: '18:09:38'
+  superseded_by: '463'
 - line: 50
   text: decision[case 451.14][update][rule-harness]{ref:rule-harness}
   case: '451.14'
@@ -4152,6 +4155,8 @@ decisions:
       The person defers it to a later session.
   spec: vault/raw/2026-09-27/1255/spec.md
   applied: '18:09:38'
+  superseded_by:
+  - decision-case-459
 - case: '455'
   decision: decision-case-455
   origin: raw/2026-09-27/1255/ledger.md#case-455
@@ -4169,6 +4174,8 @@ decisions:
       and which imports it. The person defers it to a later session.'
   spec: vault/raw/2026-09-27/1255/spec.md
   applied: '18:09:38'
+  superseded_by:
+  - decision-case-462
 - case: '456'
   decision: decision-case-456
   origin: raw/2026-09-27/1255/ledger.md#case-456
@@ -4186,6 +4193,8 @@ decisions:
       box is left as it stands. The person defers it to a later session.
   spec: vault/raw/2026-09-27/1255/spec.md
   applied: '18:09:38'
+  superseded_by:
+  - decision-case-463
 - case: '451.14'
   decision: decision-case-451.14
   origin: raw/2026-09-27/1255/ledger.md#case-451.14

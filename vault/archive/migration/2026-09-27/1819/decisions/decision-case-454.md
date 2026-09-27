@@ -1,8 +1,9 @@
 ---
 type: decision
 case: "454"
-status: current
+status: archived
 defer: ["[[rule-claude-md]]"]
+superseded_by: ["[[decision-case-459]]"]
 origin: raw/2026-09-27/1255/ledger.md#case-454
 sprint: migration
 created: 2026-09-27
@@ -26,3 +27,6 @@ The method of estimate-claude-md-rendered says by hand while estimate-language-s
 ## History
 
 - 2026-09-27 created · raw/2026-09-27/1255/ledger.md#case-454
+- 2026-09-27 superseded by decision-case-459 · [[decision-case-459]]
+- 2026-09-27 archived · superseded
+- 2026-09-27 archived · cleanup

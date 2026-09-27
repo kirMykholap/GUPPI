@@ -1,7 +1,7 @@
 ---
 type: estimate
 kind: QA
-status: failed
+status: pending
 target: "[[rule-case-protocol]]"
 purpose: A defer the person asks for is shown and written in the same reply, with no round of ratification
 method: by hand, the first defer the person asks for after the render
@@ -21,8 +21,11 @@ Then:
 In the same reply the agent shows the Case in the short form — `context`, `problem` and a fence tagged `then` with one `defer` item per target, no other section — and carries its `LEDGER` block, one `defer` line per target, with no tool call after it.
 **＋** The agent writes nothing of the Case into the plan file or `spec.md`: the `Stop` hook of `rule-spec-write` writes it.
 **＋** The person's words asking for the defer are its ratification: no question asks for it.
-**＋** In Plan Mode the reply ends with the Frontier, the line of the item closed `[-] … · defer case N`; at Retro no Frontier is shown.
+**＋** In Plan Mode the reply shows the Frontier of `raw/<date>/<hi HHMM>/frontier.md` after the Case, with the line of the item closed `[-] … · defer case N`.
+**＋** In Plan Mode a question follows the Frontier and ends the reply: which open item is next, or, when no line under `## Cases` of `raw/<date>/<hi HHMM>/frontier.md` is open, whether to run `/pre-spec` of `rule-prespec`.
 **＋** A wording the person corrects is a new short Case with `{supersedes:case N}` on its line, shown the same way.
+**－** No text follows that question.
+**－** At Retro no Frontier is shown.
 
 ## Result
 
@@ -34,3 +37,4 @@ In the same reply the agent shows the Case in the short form — `context`, `pro
 - 2026-09-25 updated: the Criterion replaced whole — the agent shows the defer, the hook writes it (case 421.2) · [[decision-case-421.2]]
 - 2026-09-26 status: pending → failed · raw/2026-09-26/1745/ledger.md#L35
 - 2026-09-27 status: failed → failed · raw/2026-09-27/1255/ledger.md#L53
+- 2026-09-27 updated: the Criterion replaced whole — in Plan Mode a question of what comes next follows the Frontier and ends the defer reply (case 461) · [[decision-case-461]]

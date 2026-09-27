@@ -1,8 +1,9 @@
 ---
 type: decision
 case: "456"
-status: current
+status: archived
 defer: ["[[rule-page-generation]]"]
+superseded_by: ["[[decision-case-463]]"]
 origin: raw/2026-09-27/1255/ledger.md#case-456
 sprint: migration
 created: 2026-09-27
@@ -26,3 +27,6 @@ A read box of an Estimate that a delete removed stays unticked in its Spec, sinc
 ## History
 
 - 2026-09-27 created · raw/2026-09-27/1255/ledger.md#case-456
+- 2026-09-27 superseded by decision-case-463 · [[decision-case-463]]
+- 2026-09-27 archived · superseded
+- 2026-09-27 archived · cleanup

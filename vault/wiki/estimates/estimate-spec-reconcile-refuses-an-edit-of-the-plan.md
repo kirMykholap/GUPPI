@@ -1,11 +1,11 @@
 ---
 type: estimate
 kind: QA
-status: pending
+status: passed
 target: "[[rule-spec-reconcile]]"
 purpose: An edit by the agent of the plan file, its store or a file of a built Case under cases/ is refused, the one Write that creates the plan with its title line excepted
 method: uv run pytest tests/test_ratified.py -k guard; by hand, one probe Write of a file under cases/ in a later session, refused and in the event log
-checked: 2026-09-24
+checked: 2026-09-27
 origin: raw/2026-09-23/1859/ledger.md#case-387.3
 sprint: migration
 created: 2026-09-23
@@ -30,7 +30,7 @@ The hook refuses every `Edit` and `MultiEdit` of a plan file, and every `Write` 
 
 ## Result
 
-2026-09-24, uv run pytest tests/test_ratified.py -k reconcile: 5 passed; live in session 1303: ten edits of the plan file touching only a name or a context (four contexts, six headings) drew no message and no mark; eight edits touching compared parts drew additionalContext naming each Case and part — 391.2 then block and tasks, 392.1 given, then and tasks, 392.2 then block and tasks, 393 then; the next reply showed each marked Case whole, the Stop passed with no refusal and the marks file was gone after it; the exit 2 branch (a marked Case not shown) did not occur and was not read live
+2026-09-27, uv run pytest tests/test_ratified.py -k guard: 33 passed; by hand, session 1819: a probe Write of vault/raw/2026-09-27/1819/cases/probe.md was refused by uv run guppi ratified --guard with the reason naming the file and rule-case-check, the file not written, and the event log holds "20:26:14 938809b2 ratified refused Write ...probe.md" and no tool line for it
 
 ## History
 
@@ -39,3 +39,4 @@ The hook refuses every `Edit` and `MultiEdit` of a plan file, and every `Write` 
 - 2026-09-27 renamed from `estimate-spec-reconcile-shows-a-changed-case` · [[decision-case-445.1]]
 - 2026-09-27 updated: the Criterion replaced whole — the guard refuses the edit instead of comparing it with the ratified copy (case 445.1) · [[decision-case-445.1]]
 - 2026-09-27 updated: the Criterion replaced whole — a file under the cases/ folder of a session folder refused like the store (case 453) · [[decision-case-453]]
+- 2026-09-27 status: pending → passed · raw/2026-09-27/1819/ledger.md#L28

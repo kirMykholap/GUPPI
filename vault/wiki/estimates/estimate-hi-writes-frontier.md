@@ -1,10 +1,10 @@
 ---
 type: estimate
 kind: QA
-status: pending
+status: passed
 target: "[[rule-skill-hi]]"
 method: "one reading by hand at the first /hi of the next session, written into the estimate line; unit: the frontier findings of guppi prespec --check in tests/test_prespec.py"
-checked: 2026-09-25
+checked: 2026-09-27
 origin: raw/2026-09-12/ledger.md#case-59.2
 sprint: migration
 created: 2026-09-12
@@ -29,7 +29,7 @@ The Frontier is written to `raw/<date>/<hi HHMM>/frontier.md` in the lists `## C
 
 ## Result
 
-2026-09-25, by hand, the /hi of session 1654: frontier.md written under plan mode with no refusal, two lists `## Cases` (C1–C11 from the sprint milestone, the brief's Next session and its Deferred list, source deferred) and `## Work` (W1–W28 from the brief's Next session); the failed pull and the unlogged gh were no items, since sprint.md names decisions 11.1 and 11.2; the Cases shown as a list with detail, the Work as one block; lines closed `· case N`, `[-] · sprint`, `[-] · deferred · kept`, `· work`; C12 and C13, added by the person, as new Cases lines
+2026-09-27, by hand, the /hi of session 1819: frontier.md written under plan mode with no refusal; ## Cases C1–C6 from the sprint milestone (two note lines, no page slug) and the brief's Next session, near lines under C3 and C4, the line Backlog: 19 items; ## Work W1–W47 from the brief's Next session; the failed pull and the unlogged gh no items (decisions 11.1, 11.2); the Cases shown as a list with detail, the Work as one block; later lines C7 (added by the person) and C8, C9 (brought from the backlog, source backlog, title opening with the slug); closed · case N, [-] · sprint · defer, · work; the unit tests in tests/test_prespec.py not run
 
 ## History
 
@@ -54,3 +54,4 @@ The Frontier is written to `raw/<date>/<hi HHMM>/frontier.md` in the lists `## C
 - 2026-09-25 updated: the Criterion replaced whole — the closer kept; the old Given dropped (case 421.4) · [[decision-case-421.4]]
 - 2026-09-25 status: pending → passed · raw/2026-09-25/1654/ledger.md#L32
 - 2026-09-27 updated: the Criterion replaced whole — the closers of the standard, conserved Specs first, the backlog counted and its near items named, no Deferred list of the brief (case 451.1) · [[decision-case-451.1]]
+- 2026-09-27 status: pending → passed · raw/2026-09-27/1819/ledger.md#L18

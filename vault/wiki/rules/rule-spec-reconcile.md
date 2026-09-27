@@ -2,7 +2,7 @@
 type: rule
 kind: Leaf
 purpose: Prevents a ratified Case from changing in what the scripts apply without the person seeing it whole and ratifying it again
-status: draft
+status: built
 enforcement: hook
 implementation_ref: [guppi/ratified.py, guppi/ledger.py, guppi/casecheck.py, tests/test_ratified.py, .claude/settings.json]
 parent: "[[rule-plan-mode]]"
@@ -38,3 +38,4 @@ Prevents a ratified Case from changing in what the scripts apply without the per
 - 2026-09-27 ref `estimate-spec-reconcile-shows-a-changed-case` → `estimate-spec-reconcile-refuses-an-edit-of-the-plan` · [[decision-case-445.1]]
 - 2026-09-27 status: built → draft · cascade
 - 2026-09-27 updated: the guard also refuses the agent's edit of a file under the cases/ folder of a session folder, judged by one function of guppi/casecheck.py (case 453) · [[decision-case-453]]
+- 2026-09-27 status: draft → built · cascade

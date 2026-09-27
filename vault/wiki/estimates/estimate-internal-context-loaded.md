@@ -1,11 +1,11 @@
 ---
 type: estimate
 kind: QA
-status: pending
+status: passed
 target: "[[rule-internal-context]]"
 purpose: The text of sprint.md, backlog.md, brief.md, case-schema.md and glossary.md is present in the first turn's context after /hi, without a read call
 method: one reading at the /hi of a session, by hand
-checked: 2026-09-21
+checked: 2026-09-27
 origin: raw/2026-09-09/ledger.md#case-11
 sprint: migration
 created: 2026-09-09
@@ -24,7 +24,7 @@ The text of `vault/wiki/sprint.md`, `vault/wiki/backlog.md`, `vault/wiki/brief.m
 
 ## Result
 
-2026-09-21, the /hi of session 1315 read by hand against the Criterion of 288.1 restored by 291.2: sprint.md, brief.md, case-schema.md and glossary.md present in the first turn in that order, expanded by the four @ lines of the SKILL, no read call; no compaction in the session so far, guppi recall not exercised
+2026-09-27, by hand, the /hi of session 1819: sprint.md, backlog.md, brief.md, case-schema.md and glossary.md present in the first turn in that order, expanded by the @ lines of the skill, no read call of the agent; no compaction so far, guppi recall not exercised
 
 ## History
 
@@ -37,3 +37,4 @@ The text of `vault/wiki/sprint.md`, `vault/wiki/backlog.md`, `vault/wiki/brief.m
 - 2026-09-21 updated: the Criterion of 288.1 restored whole, replaced by the purpose update of 290.3 (case 291.2) · [[decision-case-291.2]]
 - 2026-09-21 status: pending → passed · raw/2026-09-21/1315/ledger.md#L20
 - 2026-09-27 updated: the Criterion replaced whole — backlog.md loaded by /hi (case 451.12) · [[decision-case-451.12]]
+- 2026-09-27 status: pending → passed · raw/2026-09-27/1819/ledger.md#L17

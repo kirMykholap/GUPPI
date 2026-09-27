@@ -1,10 +1,11 @@
 ---
 type: estimate
 kind: QA
-status: pending
+status: failed
 target: "[[rule-retro]]"
 purpose: Whether the report of /retro holds each fact once — the ratifications in the closing list only, the unticked boxes of the Spec inside the list of what is not done
 method: one reading by hand at the first /retro after the render, recorded in the estimate line
+checked: 2026-09-27
 origin: raw/2026-09-23/1355/ledger.md#case-376
 sprint: migration
 created: 2026-09-23
@@ -25,7 +26,12 @@ The opening message holds one numbered list of what is not done: the unticked bo
 **＋** The close holds what is not done: the numbers of the opening list, each with the end it took.
 **－** No ratification and no box is named twice in the report.
 
+## Result
+
+2026-09-27, by hand, the /retro of session 1819: the opening list named the unticked boxes per Case (update and create lines of each page), the close named every ratification per Case with the same pages again, and "what got done" and "what is not done" repeated parts of the opening list; the person's complaint: the retro repeats the not-done part several times and needs one standard, to be discussed in the next session
+
 ## History
 
 - 2026-09-23 created · [[decision-case-376]]
 - 2026-09-25 updated: the Criterion replaced whole — a third mark in the opening list: a read line whose reading waits for a later session (case 428.4) · [[decision-case-428.4]]
+- 2026-09-27 status: pending → failed · raw/2026-09-27/1819/ledger.md#L39

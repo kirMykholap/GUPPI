@@ -14,7 +14,7 @@ tags: [harness, workflow, tests]
 ## Criterion
 
 When:
-A hook or a script reads a text that holds a fence: `then_blocks`, `tagged_blocks`, `case_text` and `criterion_text` of `guppi/materialize.py`, `quoted_sections` and `fenced_value` of `guppi/ratified.py`, `plan_prose` of `guppi/prespec.py`, the check of `ratification` in `guppi/casecheck.py`, or `ledger_lines` of `guppi/ledger.py`.
+A hook or a script reads a text that holds a fence: `then_blocks`, `tagged_blocks`, `quoted_sections` and `criterion_text` of `guppi/materialize.py`, `fenced_value` of `guppi/ratified.py`, `plan_prose` of `guppi/prespec.py`, the check of `ratification` in `guppi/casecheck.py`, or `ledger_lines` of `guppi/ledger.py`.
 
 Then:
 A line opens a fence when, after at most three spaces of indent inside the block it stands in (a quote, a sub-point of `tasks`), it starts with a run of three or more backticks or three or more tildes.
@@ -27,3 +27,4 @@ A line opens a fence when, after at most three spaces of indent inside the block
 ## History
 
 - 2026-09-27 created · [[decision-case-444.1]]
+- 2026-09-27 updated: the Criterion replaced whole — quoted_sections of guppi/materialize.py is the one reader of the sections of a Case; case_text and the copy in guppi/ratified.py removed (case 462) · [[decision-case-462]]

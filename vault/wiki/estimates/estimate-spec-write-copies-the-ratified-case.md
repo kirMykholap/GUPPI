@@ -1,11 +1,11 @@
 ---
 type: estimate
 kind: QA
-status: pending
+status: passed
 target: "[[rule-spec-write]]"
 purpose: The ratified Case enters the plan file in the words of the stored answer of case-guppi, the then block built from the sub-points, each block fenced by its content
 method: uv run pytest tests/test_ratified.py -k write; the live reading by hand, the plan file after the first ratification of a session
-checked: 2026-09-25
+checked: 2026-09-27
 origin: raw/2026-09-23/1859/ledger.md#case-387.2
 sprint: migration
 created: 2026-09-23
@@ -30,7 +30,7 @@ The hook writes the stored answer of Case N into the plan file `plan_path` finds
 
 ## Result
 
-2026-09-25, uv run pytest tests/test_ratified.py -k write: 16 passed; by hand, the plan file of session 1654 after the ratification of Case 425: the Case written with its then block built from the sub-points (rename, change) and its tasks block without sub-points, no recommend and no ratification; the ratified copy sparkling-floating-comet.ratified.md beside it holds the twelve Case headings 425–432 with 428.1–428.4
+2026-09-27, uv run pytest tests/test_ratified.py -k write: 42 passed; by hand, session 1819: after the first ratification the plan file held Case 457 as case-guppi answered it, the ratification section and recommend left out
 
 ## History
 
@@ -45,3 +45,4 @@ The hook writes the stored answer of Case N into the plan file `plan_path` finds
 - 2026-09-26 updated: the Criterion replaced whole — the DIFF skip goes (case 441.8) · [[decision-case-441.8]]
 - 2026-09-27 updated: the Criterion replaced whole — the fence of each written block is one longer than the longest fence inside it; the ratified copy no longer named (cases 444.2, 445.2) · [[decision-case-444.2]]
 - 2026-09-27 updated: the Criterion replaced whole — a sending of the file after the newest store in place of a showing whole (case 452.3) · [[decision-case-452.3]]
+- 2026-09-27 status: pending → passed · raw/2026-09-27/1819/ledger.md#L29

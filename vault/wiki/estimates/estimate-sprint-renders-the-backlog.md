@@ -1,11 +1,11 @@
 ---
 type: estimate
 kind: QA
-status: pending
+status: passed
 target: "[[rule-sprint]]"
 purpose: guppi sprint writes sprint.md from the sprint page, one tick per item by the status of the page it names
 method: pytest tests/test_sprint.py, plus one reading of the rendered sprint.md after the librarian's run
-checked: 2026-09-22
+checked: 2026-09-27
 origin: raw/2026-09-16/2238/ledger.md#case-209.1
 sprint: migration
 created: 2026-09-16
@@ -28,7 +28,7 @@ The file `vault/wiki/sprint.md` holds, in order: `# Sprint`; `## <id>`; Purpose;
 
 ## Result
 
-2026-09-22, uv run pytest tests/test_sprint.py: 18 passed — an item of two pages ticks on both, a wikilink after the dash holds no tick back, a note renders - [ ] and keeps its milestone open; guppi sprint --check exit 0
+2026-09-27, uv run pytest tests/test_sprint.py: 20 passed; by hand, vault/wiki/sprint.md as the librarian run of e229e99 wrote it: # Sprint, ## migration, Purpose, Done when, ## Milestones with the current Slice 3g whole and Slices 4 and 5 one line each, ## Closed; no ## Backlog; every heading between blank lines
 
 ## History
 
@@ -40,3 +40,4 @@ The file `vault/wiki/sprint.md` holds, in order: `# Sprint`; `## <id>`; Purpose;
 - 2026-09-22 status: pending → passed · raw/2026-09-22/1121/ledger.md#L86
 - 2026-09-24 updated: the Criterion replaced whole — a blank line after every milestone heading (case 386) · [[decision-case-386]]
 - 2026-09-27 updated: the Criterion replaced whole — the Backlog of the page is not rendered into sprint.md (case 451.6) · [[decision-case-451.6]]
+- 2026-09-27 status: pending → passed · raw/2026-09-27/1819/ledger.md#L30

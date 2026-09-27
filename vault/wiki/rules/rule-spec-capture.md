@@ -2,7 +2,7 @@
 type: rule
 kind: Leaf
 purpose: Prevents an approved Spec from existing only in Claude Code's plan file, outside the repository
-status: draft
+status: built
 enforcement: hook
 implementation_ref: [guppi/spec.py, .claude/settings.json]
 parent: "[[rule-plan-mode]]"
@@ -47,3 +47,4 @@ folder and the Spec file; it blocks nothing, the agent asks and the person choos
 - 2026-09-20 status: draft → built · cascade
 - 2026-09-26 updated: the writers of spec.md: the Stop hook of rule-spec-write writes a Case ratified after the approval, removes a superseded one and writes a defer at Retro (case 441.6) · [[decision-case-441.6]]
 - 2026-09-26 status: built → draft · cascade
+- 2026-09-27 status: draft → built · cascade

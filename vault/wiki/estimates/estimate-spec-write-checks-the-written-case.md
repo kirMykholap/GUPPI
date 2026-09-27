@@ -1,11 +1,11 @@
 ---
 type: estimate
 kind: QA
-status: pending
+status: passed
 target: "[[rule-spec-write]]"
 purpose: Each Case the Stop hook writes into the plan is checked at once, and a finding comes back to the agent
 method: uv run pytest tests/test_ratified.py -k checks_the_written; by hand, the first ratification of a session after the change
-checked: 2026-09-25
+checked: 2026-09-27
 origin: raw/2026-09-25/0051/ledger.md#case-414.1
 sprint: migration
 created: 2026-09-25
@@ -30,7 +30,7 @@ The hook runs the checks of `prespec --check` on each Case it wrote in this run 
 
 ## Result
 
-2026-09-25, uv run pytest tests/test_ratified.py -k checks_the_written: 5 passed; by hand, the ratifications of session 1654 (425–432, and 428 and 429 again after pre-spec): no refusal of ratified on any of them, and prespec --check found nothing after them
+2026-09-27, uv run pytest tests/test_ratified.py -k checks_the_written: 5 passed; by hand, session 1819: the re-ratification of Case 460 was refused by the Stop hook with "ratified: case 460.2: line [update][estimate-ledger-write-lifts] has no item in the plan", the finding naming its Case, the written Cases kept in the plan
 
 ## History
 
@@ -39,3 +39,4 @@ The hook runs the checks of `prespec --check` on each Case it wrote in this run 
 - 2026-09-25 status: pending → passed · raw/2026-09-25/1654/ledger.md#L30
 - 2026-09-26 updated: the Criterion replaced whole — a DIFF showing is no longer named (case 441.9) · [[decision-case-441.9]]
 - 2026-09-27 updated: the Criterion replaced whole — the Case is written into the plan file alone, no ratified copy (case 445.2) · [[decision-case-445.2]]
+- 2026-09-27 status: pending → passed · raw/2026-09-27/1819/ledger.md#L31

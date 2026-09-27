@@ -2,7 +2,7 @@
 type: rule
 kind: Leaf
 purpose: Prevents an Insight page from carrying a field or section outside the shape lint checks, or lacking one it needs
-status: draft
+status: built
 enforcement: render
 governs: vault/wiki/insights/schema.yaml
 render_mode: full
@@ -120,3 +120,4 @@ examples:
 - 2026-09-24 updated: the move of addressed_by only to a later case (case 385) · [[decision-case-385]]
 - 2026-09-27 updated: an open Insight stands in backlog.md, a Case when the person brings it onto a Frontier (case 451.4) · [[decision-case-451.4]]
 - 2026-09-27 status: built → draft · cascade
+- 2026-09-27 status: draft → built · cascade

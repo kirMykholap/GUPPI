@@ -1,11 +1,11 @@
 ---
 type: estimate
 kind: QA
-status: pending
+status: passed
 target: "[[rule-prespec]]"
 purpose: The Frontier of the session exists and every closed line has a box and a closer that agree with its source
 method: uv run pytest tests/test_prespec.py
-checked: 2026-09-25
+checked: 2026-09-27
 origin: raw/2026-09-24/1916/ledger.md#case-399.3
 sprint: migration
 created: 2026-09-24
@@ -29,7 +29,7 @@ A missing file is the finding `frontier: <path> is missing`.
 
 ## Result
 
-2026-09-25, uv run pytest tests/test_prespec.py: 119 passed; by hand, prespec --check over raw/2026-09-25/1654/frontier.md with C1 and C2 closed `[-] · sprint`, C10 and C11 `[-] · deferred · kept`, the rest `[x] · case N`: exit 0, no finding
+2026-09-27, uv run pytest tests/test_prespec.py: 144 passed
 
 ## History
 
@@ -38,3 +38,4 @@ A missing file is the finding `frontier: <path> is missing`.
 - 2026-09-25 updated: the Criterion replaced whole — the closer kept (case 421.3) · [[decision-case-421.3]]
 - 2026-09-25 status: pending → passed · raw/2026-09-25/1654/ledger.md#L31
 - 2026-09-27 updated: the Criterion replaced whole — the box, the closer and the source checked both ways (case 451.2) · [[decision-case-451.2]]
+- 2026-09-27 status: pending → passed · raw/2026-09-27/1819/ledger.md#L27

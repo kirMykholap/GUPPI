@@ -8,7 +8,6 @@ governs: CLAUDE.md
 render_mode: partial
 parent: "[[rule-claude-md]]"
 estimates: ["[[estimate-one-judgment-one-implementation-followed]]"]
-deferred_by: ["[[decision-case-455]]"]
 origin: raw/2026-09-23/0034/ledger.md#case-360
 sprint: migration
 created: 2026-09-23
@@ -33,3 +32,4 @@ Where code judges the same text in two places — a check and a writer, a ticker
 - 2026-09-23 estimate estimate-one-judgment-one-implementation-followed added · [[decision-case-360]]
 - 2026-09-25 status: draft → built · cascade
 - 2026-09-27 deferred · [[decision-case-455]]
+- 2026-09-27 defer by decision-case-455 superseded · [[decision-case-462]]

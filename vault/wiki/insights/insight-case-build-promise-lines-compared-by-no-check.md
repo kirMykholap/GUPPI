@@ -2,8 +2,8 @@
 type: insight
 pattern: case-guppi writes the promise lines of a Case against the lines beside them — the Criterion it replaces, the then of a sibling sub-case — and no check of its answer compares them, so a dropped or doubled promise is found only by ask-guppi at pre-spec.
 status: open
-children: ["[[lesson-case-build-a-criterion-replaced-whole-drops-a-line]]", "[[lesson-case-build-one-promise-signed-in-two-sub-cases]]"]
-severity: 2
+children: ["[[lesson-case-build-a-criterion-replaced-whole-drops-a-line]]", "[[lesson-case-build-one-promise-signed-in-two-sub-cases]]", "[[lesson-case-build-two-promises-in-one-sub-case-with-a-written-criterion]]", "[[lesson-case-build-a-rewritten-criterion-loses-a-finding-text]]"]
+severity: 4
 origin: raw/2026-09-26/2300/ledger.md#L33
 sprint: migration
 created: 2026-09-26
@@ -21,3 +21,4 @@ A suggestion, not a decision: let a check of the answer of case-guppi compare th
 ## History
 
 - 2026-09-27 created · raw/2026-09-26/2300/ledger.md#L33
+- 2026-09-27 updated: children lesson-case-build-two-promises-in-one-sub-case-with-a-written-criterion and lesson-case-build-a-rewritten-criterion-loses-a-finding-text added (synthesis) · raw/2026-09-27/1819/ledger.md#L37

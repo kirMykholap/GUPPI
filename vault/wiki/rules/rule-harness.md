@@ -4,7 +4,7 @@ kind: MOC
 purpose: Prevents the tools of the harness from drifting apart from the pages that describe them
 status: draft
 children: ["[[rule-render-harness]]", "[[rule-settings]]", "[[rule-lint]]", "[[rule-page-schemas]]", "[[rule-vault-layout]]", "[[rule-governed-files-hook]]", "[[rule-claude-md]]", "[[rule-bash-guard]]", "[[rule-tests-clock-pinned]]", "[[rule-context-size]]", "[[rule-page-read]]"]
-estimates: ["[[estimate-harness-pipeline]]"]
+estimates: ["[[estimate-harness-pipeline]]", "[[estimate-harness-make-runs-in-both-shells]]"]
 applies_to: ["[[entity-guppi]]"]
 origin: raw/2026-09-10/ledger.md#case-37
 sprint: migration
@@ -56,3 +56,4 @@ them. Three rules belong to no phase of the session: the renderer, the page
 - 2026-09-25 status: draft → built · cascade
 - 2026-09-27 updated: the order of make lint holds backlog --check after the sprint file (case 451.14) · [[decision-case-451.14]]
 - 2026-09-27 status: built → draft · cascade
+- 2026-09-27 estimate estimate-harness-make-runs-in-both-shells added · [[decision-case-457]]

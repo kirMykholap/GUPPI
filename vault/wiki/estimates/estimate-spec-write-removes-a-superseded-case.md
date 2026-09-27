@@ -1,10 +1,11 @@
 ---
 type: estimate
 kind: QA
-status: pending
+status: passed
 target: "[[rule-spec-write]]"
 purpose: A Case superseded by a decision line of the reply leaves the plan file and spec.md, with its sub-cases
 method: uv run pytest tests/test_ratified.py -k superseded; by hand, the first supersedes of a Case of the same session after the change
+checked: 2026-09-27
 origin: raw/2026-09-26/1745/ledger.md#case-441.7
 sprint: migration
 created: 2026-09-26
@@ -25,7 +26,12 @@ The hook removes the section of Case N — its heading, its sections, its `then`
 **－** A line whose own Case the hook refused or did not write removes nothing.
 **－** On the re-fire (`stop_hook_active`) nothing is removed: exit 0.
 
+## Result
+
+2026-09-27, uv run pytest tests/test_ratified.py -k superseded: 5 passed; by hand, session 1819: after the ratification of Case 460.5 with {supersedes:case 460.2}, the heading and sections of Case 460.2 were gone from the plan file and 460.5 stood whole
+
 ## History
 
 - 2026-09-26 created · [[decision-case-441.7]]
 - 2026-09-27 updated: the Criterion replaced whole — no ratified copy to remove it from (case 445.3) · [[decision-case-445.3]]
+- 2026-09-27 status: pending → passed · raw/2026-09-27/1819/ledger.md#L32

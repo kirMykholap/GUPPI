@@ -1,67 +1,55 @@
-# Brief — 2026-09-27, the librarian's run over session 1255 of 2026-09-27
+# Brief — 2026-09-27, the librarian's run over session 1819 of 2026-09-27
 
 ## Where things stand
 
-- Session 1255 ratified Cases 449, 450, 451.1–451.15, 452.1–452.5 and 453, and deferred Cases 454 (`rule-claude-md`), 455 (`rule-one-judgment-one-implementation`) and 456 (`rule-page-generation`). Frontier C5 closed `· work`; C1 and C2 `· sprint`; C10, C12, C13 and C14 `· deferred · kept` (handoff).
-- Code, commit e1ea55c: `guppi/prespec.py` (451.2, 451.3), `guppi/backlog.py`, `guppi/cli.py`, `Makefile`, `guppi/sprint.py` (451.4–451.6), `guppi/casecheck.py`, `guppi/ratified.py` (449, 452.1–452.3, 453); tests `test_prespec.py`, `test_backlog.py`, `test_sprint.py`, `test_casecheck.py`, `test_ratified.py`. The session's `make test` gave 811 passed, 2 skipped; `make style` was clean (handoff).
-- Readings of the session: 1, `estimate-case-protocol-defers-in-one-reply` `failed` again. One `knowledge` lesson: `harness-senduserfile-renders-a-markdown-file-on-the-phone` (handoff, ledger lines 53–54).
-- Not done in the session: the `read` lines of the Estimates the session creates or updates; Frontier Work lines W1–W34 (handoff).
-- The walk named `raw/2026-09-26/2300/` (0 new entries, 0 pages written) and `raw/2026-09-27/1255/`.
-- Yaml of 1255: 54 entries from the 54 lines of the ledger: 46 `update`, 3 `create`, 3 `defer` (all `exists`), 1 `estimate`, 1 `lesson`. All 54 are `applied`. The librarian added no entry; it marked line 12 `near`.
-- Pages (`generate`: 77 pages written or changed; `cleanup`: 3 pages moved):
-  - decisions: 26 created (449, 450, 451.1–451.15, 452.1–452.5, 453, 454, 455, 456).
-  - rules: 1 created: `rule-backlog` (451.4, child of `rule-documentation`). 17 updated: `rule-case-protocol` (449, 451.1, 451.10, 452.4, 452.5), `rule-case-check` (449, 452.1, 452.2), `rule-skill-hi` (451.1), `rule-prespec` (451.2), `rule-insights-schema` (451.4), `rule-lint` (451.5), `rule-sprint` (451.6), `rule-brief` (451.8), `rule-carry-over` (451.9), `rule-vault-layout` (451.11), `rule-internal-context` (451.12), `rule-documentation` (451.13), `rule-harness` (451.14), `rule-spec-write` (452.3), `rule-case-build` (452.4), `rule-language` (452.5), `rule-spec-reconcile` (453). 3 deferred: `rule-claude-md` (454), `rule-one-judgment-one-implementation` (455), `rule-page-generation` (456). Cascade built → draft: `rule-brief`, `rule-harness`, `rule-insights-schema`, `rule-internal-context`, `rule-skill-hi`.
-  - estimates: 2 created, `pending`: `estimate-backlog-renders` (451.4), `estimate-backlog-checks-the-file` (451.5). 20 updated by Cases, all `pending`. 1 updated by a reading: `estimate-case-protocol-defers-in-one-reply`, `failed` → `failed`.
-  - lessons: 1 created: `harness-senduserfile-renders-a-markdown-file-on-the-phone` (`new`). 3 archived by the cascade of the actioned Insights and moved by `cleanup`: `lesson-case-build-a-list-in-context`, `lesson-case-show-ref-of-a-ratification-line-retyped`, `lesson-case-show-sub-case-ratification-retyped`.
-  - insights: 2 updated, both `actioned`: `insight-case-form-chat-form-read-by-no-script` (449, its proposal for the story sections rejected), `insight-case-show-built-case-retyped-by-hand` (452.4).
-  - entities: 1 updated: `entity-glossary` (451.4, the term `backlog.md`).
-- Governed files `render` rewrote: `CLAUDE.md`, `.claude/agents/case-guppi.md`, `.claude/agents/librarian-guppi.md`, `.claude/skills/carry/SKILL.md`, `.claude/skills/hi/SKILL.md`, `.claude/skills/pre-spec/SKILL.md`, `vault/wiki/case-schema.md`, `vault/wiki/insights/schema.yaml`. `guppi sprint` rewrote `vault/wiki/sprint.md` (its `## Backlog` no longer rendered, case 451.6). `guppi backlog` wrote `vault/wiki/backlog.md` for the first time: 19 items, no conserved Spec. `guppi glossary` rewrote `vault/wiki/glossary.md`.
-- This brief has no Deferred list: case 451.8; the deferred items stand in `vault/wiki/backlog.md`.
+- Session 1819 ratified Cases 457, 458, 459, 460.1, 460.3, 460.4, 460.5, 461, 462 and 463; 460.2 was superseded by 460.5 in the same session. Frontier C3–C9 closed `· case N`; C1 and C2 (Slice 3g) `[-] · sprint · defer` (handoff).
+- Code, commit 49acdff: `Makefile` (457), `guppi/lint.py` (459, 460.3), `guppi/generate.py` (460.1 docstring, 463), `guppi/ledger.py` (460.5), `guppi/materialize.py`, `guppi/ratified.py`, `guppi/casecheck.py` (462); tests in `test_lint`, `test_generate`, `test_ledger`, `test_materialize`, `test_ratified`. The session's `make test` gave 827 passed, 2 skipped; `make style` clean; `make help`, `style`, `test` exit 0 from PowerShell and from Git Bash (handoff).
+- Readings of the session: 16 `passed`, 1 `failed` (`estimate-retro-report-holds-each-fact-once`). Four lessons (ledger lines 1, 36–38) (handoff).
+- Not done in the session: the `read` lines of the Spec; the Frontier Work readings W1, W4–W7, W9–W12, W16, W21, W23–W25, W29–W32, W34–W37, W39–W44; every Estimate the session creates or updates waits for a later session (handoff).
+- The walk named `raw/2026-09-27/1255/` (extended with 0 entries; `generate` 0 pages) and `raw/2026-09-27/1819/` (written with 39 entries from the 39 lines of its ledger). `materialize` added `superseded_by` marks to the 1255 entries of Cases 454 and 455 (by 459 and 462); the entry of 456 was already applied.
+- Yaml of 1819: 39 entries: 15 `update` (lines 3–7, 9–16, 20, 22), 3 `create` (lines 2, 8, 21), 17 `estimate`, 4 `lesson`. Lines 8–10 carry `superseded_by: 460.5` and were not applied; the other 36 entries are `applied`. The librarian added 5 `update` entries (`librarian: synthesis`), all `applied`. No `near`, no `merged`.
+- Pages (`generate`: 61 pages written or changed; `cleanup`: 5 pages moved):
+  - decisions: 11 created (457, 458, 459, 460.1, 460.2, 460.3, 460.4, 460.5, 461, 462, 463). 4 archived and moved: `decision-case-454`, `-455`, `-456` (superseded by 459, 462, 463), `decision-case-460.2` (superseded by 460.5).
+  - estimates: 2 created, `pending`: `estimate-harness-make-runs-in-both-shells` (457), `estimate-ledger-write-refuses-a-lesson-without-its-prefix` (460.5). 7 updated by Cases, all `pending`: `estimate-case-protocol-shows-the-built-case` (458), `estimate-lint-checks-the-method` (459), `estimate-lint-finds-a-broken-link` (460.3), `estimate-case-protocol-defers-in-one-reply` (461), `estimate-materialize-judges-a-fence` (462), `estimate-generate-ticks-the-spec` (463), `estimate-ledger-write-lifts` (460.4). 17 updated by readings: 16 `passed`, 1 `failed`.
+  - rules: 4 updated by Cases: `rule-case-protocol` (458, 461), `rule-estimates-schema` (459), `rule-page-generation` (463), `rule-ledger-write` (460.5). `deferred_by` cleared on `rule-claude-md` (459), `rule-one-judgment-one-implementation` (462), `rule-page-generation` (463). Cascade draft → built: `rule-backlog`, `rule-insights-schema`, `rule-internal-context`, `rule-skill-hi`, `rule-spec-capture`, `rule-spec-reconcile`; built → draft: `rule-ledger-write`, `rule-lint`, `rule-page-generation`.
+  - lessons: 4 created: `lesson-case-show-grill-round-reformatted-in-translation`, `lesson-ledger-block-written-with-a-placeholder-line`, `lesson-case-build-two-promises-in-one-sub-case-with-a-written-criterion`, `lesson-case-build-a-rewritten-criterion-loses-a-finding-text`. 1 renamed (460.1): `harness-senduserfile-renders-a-markdown-file-on-the-phone` → `lesson-harness-senduserfile-renders-a-markdown-file-on-the-phone`. 3 clustered by synthesis; 1 archived by the cascade and moved by `cleanup`: `lesson-case-show-grill-round-reformatted-in-translation`.
+  - insights: 2 updated by synthesis: `insight-case-show-built-case-retyped-by-hand` (`actioned`, severity 0), `insight-case-build-promise-lines-compared-by-no-check` (`open`, severity 2 → 4).
+- Governed files `render` rewrote: `vault/wiki/case-schema.md` (458, 461), `vault/wiki/estimates/schema.yaml` (459). `guppi sprint` left `vault/wiki/sprint.md` unchanged. `guppi backlog` rewrote `vault/wiki/backlog.md`: 19 → 16 items (`rule-claude-md`, `rule-one-judgment-one-implementation`, `rule-page-generation` dropped). `guppi glossary` left `vault/wiki/glossary.md` unchanged.
 
 ## Readings due
 
-45 Estimates stand `pending` or `failed` after `generate`: 1 `failed`, 44 `pending`. Every rule or entity they read stands `draft`.
+35 Estimates stand `pending` or `failed` after `generate`: 1 `failed`, 34 `pending`. Every rule or entity they read stands `draft`.
 
-- `estimate-case-protocol-defers-in-one-reply` — `failed` — `rule-case-protocol` draft — by hand, the first defer the person asks for after the render (method). Result: the defer reply of session 1255 for Cases 454–456 was right in the short Cases, the LEDGER block and the Stop hook's writing, but a paragraph proposing `/pre-spec` with a question followed the Frontier.
-- `estimate-agent-writing-followed` — `rule-agent-writing` draft — `raw/2026-09-27/1255/spec.md` line 110.
-- `estimate-backlog-checks-the-file` — `rule-backlog` draft — `raw/2026-09-27/1255/spec.md` line 419.
-- `estimate-backlog-renders` — `rule-backlog` draft — `raw/2026-09-27/1255/spec.md` line 373.
-- `estimate-brief-written` — `rule-brief` draft — `raw/2026-09-27/1255/spec.md` line 542.
-- `estimate-carry-over-writes` — `rule-carry-over` draft — `raw/2026-09-27/1255/spec.md` line 595.
-- `estimate-case-check-sends-back-a-faulty-case` — `rule-case-check` draft — `raw/2026-09-27/1255/spec.md` line 895.
-- `estimate-case-check-shows-only-the-checked-case` — `rule-case-check` draft — `raw/2026-09-27/1255/spec.md` line 944.
-- `estimate-case-protocol-acknowledging-reply` — `rule-case-protocol` draft — `raw/2026-09-27/1255/spec.md` line 635.
-- `estimate-case-protocol-case-form` — `rule-case-protocol` draft — `raw/2026-09-27/1255/spec.md` line 72.
-- `estimate-case-protocol-shows-the-built-case` — `rule-case-protocol` draft — `raw/2026-09-27/1255/spec.md` line 1065; `archive/migration/2026-09-26/2300/raw/spec.md` line 209.
-- `estimate-documentation-completes` — `rule-documentation` draft — `raw/2026-09-27/1255/spec.md` line 755.
-- `estimate-harness-pipeline` — `rule-harness` draft — `raw/2026-09-27/1255/spec.md` line 791.
-- `estimate-hi-writes-frontier` — `rule-skill-hi` draft — `raw/2026-09-27/1255/spec.md` line 203.
-- `estimate-insights-schema-checked` — `rule-insights-schema` draft — `raw/2026-09-27/1255/spec.md` line 835.
-- `estimate-internal-context-loaded` — `rule-internal-context` draft — `raw/2026-09-27/1255/spec.md` line 706.
-- `estimate-language-followed` — `rule-language` draft — `raw/2026-09-27/1255/spec.md` line 1117; `archive/migration/2026-09-26/2300/raw/spec.md` line 732.
-- `estimate-prespec-binds-a-sprint-line` — `rule-prespec` draft — `raw/2026-09-27/1255/spec.md` line 282.
-- `estimate-prespec-checks-the-frontier` — `rule-prespec` draft — `raw/2026-09-27/1255/spec.md` line 249.
-- `estimate-spec-reconcile-refuses-an-edit-of-the-plan` — `rule-spec-reconcile` draft — `raw/2026-09-27/1255/spec.md` line 1188; `archive/migration/2026-09-26/2300/raw/spec.md` line 436.
-- `estimate-spec-write-copies-the-ratified-case` — `rule-spec-write` draft — `raw/2026-09-27/1255/spec.md` line 995; `archive/migration/2026-09-26/2300/raw/spec.md` line 328.
-- `estimate-sprint-moves-a-passed-over-item` — `rule-sprint` draft — `raw/2026-09-27/1255/spec.md` line 496.
-- `estimate-sprint-renders-the-backlog` — `rule-sprint` draft — `raw/2026-09-27/1255/spec.md` line 464.
-- `estimate-skill-grill-me-asks-in-rounds` — `rule-skill-grill-me` draft — `archive/migration/2026-09-26/2300/raw/spec.md` line 99.
-- `estimate-case-build-writes-the-case` — `rule-case-build` draft — `archive/migration/2026-09-26/2300/raw/spec.md` line 161.
-- `estimate-materialize-judges-a-fence` — `rule-materialize` draft — `archive/migration/2026-09-26/2300/raw/spec.md` line 269.
-- `estimate-spec-write-checks-the-written-case` — `rule-spec-write` draft — `archive/migration/2026-09-26/2300/raw/spec.md` line 507.
-- `estimate-spec-write-removes-a-superseded-case` — `rule-spec-write` draft — `archive/migration/2026-09-26/2300/raw/spec.md` line 541.
-- `estimate-language-spec-prose-in-english` — `rule-language` draft — `archive/migration/2026-09-26/2300/raw/spec.md` line 596.
-- `estimate-event-log-records` — `rule-event-log` draft — `archive/migration/2026-09-26/2300/raw/spec.md` line 651.
-- `estimate-case-protocol-ledger-line-form` — `rule-case-protocol` draft — by hand, the ledger and preview of the first session where a lesson and the Case that closes its cause stand together, and of the first Case that takes up a decision with more than one Case in its `deferred_by` (method).
+- `estimate-retro-report-holds-each-fact-once` — `failed` — `rule-retro` draft — by hand at the first `/retro` after the render (method). Result: the `/retro` of session 1819 named the unticked boxes per Case, named every ratification per Case with the same pages again, and repeated parts of the opening list under what got done and what is not done.
+- `estimate-harness-make-runs-in-both-shells` — `rule-harness` draft — `raw/2026-09-27/1819/spec.md` line 49.
+- `estimate-case-protocol-shows-the-built-case` — `rule-case-protocol` draft — `raw/2026-09-27/1819/spec.md` line 104.
+- `estimate-lint-checks-the-method` — `rule-lint` draft — `raw/2026-09-27/1819/spec.md` line 162.
+- `estimate-lint-finds-a-broken-link` — `rule-lint` draft — `raw/2026-09-27/1819/spec.md` line 256.
+- `estimate-ledger-write-lifts` — `rule-ledger-write` draft — `raw/2026-09-27/1819/spec.md` line 293.
+- `estimate-ledger-write-refuses-a-lesson-without-its-prefix` — `rule-ledger-write` draft — `raw/2026-09-27/1819/spec.md` line 345.
+- `estimate-case-protocol-defers-in-one-reply` — `rule-case-protocol` draft — `raw/2026-09-27/1819/spec.md` line 396.
+- `estimate-materialize-judges-a-fence` — `rule-materialize` draft — `raw/2026-09-27/1819/spec.md` line 449.
+- `estimate-generate-ticks-the-spec` — `rule-page-generation` draft — `raw/2026-09-27/1819/spec.md` line 510.
+- `estimate-agent-writing-followed` — `rule-agent-writing` draft — by hand, the person's messages of one session read for a complaint about the agent's text (method).
+- `estimate-brief-written` — `rule-brief` draft — by hand after the first librarian run (method).
+- `estimate-carry-over-writes` — `rule-carry-over` draft — pytest over the skill's render, plus one live reading of a carried-over session (method).
+- `estimate-case-build-writes-the-case` — `rule-case-build` draft — by hand, live dispatches in a session after the render (method).
+- `estimate-case-check-sends-back-a-faulty-case` — `rule-case-check` draft — `uv run pytest tests/test_casecheck.py -k subagent`, then by hand (method).
+- `estimate-case-check-shows-only-the-checked-case` — `rule-case-check` draft — `uv run pytest tests/test_casecheck.py -k stop`, then by hand (method).
+- `estimate-case-protocol-case-form` — `rule-case-protocol` draft — by hand, the Cases of a session at its close (method).
+- `estimate-case-protocol-ledger-line-form` — `rule-case-protocol` draft — by hand, the ledger and preview of the first session where a lesson and the Case that closes its cause stand together (method).
 - `estimate-context-size-warns-past-the-limit` — `rule-context-size` draft — `uv run pytest tests/test_context.py -k limit`; by hand at the first prompt past 400 000 tokens (method).
+- `estimate-documentation-completes` — `rule-documentation` draft — `make test-documentation`; the live reading by hand (method).
+- `estimate-event-log-records` — `rule-event-log` draft — pytest in `tests/test_event.py` and `tests/test_gate.py`; readings by hand (method).
+- `estimate-harness-pipeline` — `rule-harness` draft — `make test-harness`; the live reading of `make lint` by hand (method).
+- `estimate-language-followed` — `rule-language` draft — by hand in the next session (method).
 - `estimate-materialize-assembles` — `rule-materialize` draft — pytest in `tests/test_materialize.py`; the live reading once by hand (method).
-- `estimate-materialize-lifts-a-create-by-the-schema` — `rule-materialize` draft — `uv run pytest tests/test_materialize.py` (method).
 - `estimate-prespec-reconciles` — `rule-prespec` draft — by hand, the first `/pre-spec` after the render (method).
 - `estimate-retro-loads` — `rule-retro` draft — by hand at the first `/retro` (method).
-- `estimate-retro-report-holds-each-fact-once` — `rule-retro` draft — by hand at the first `/retro` after the render (method).
 - `estimate-session-phases-in-order` — `rule-session` draft — by hand at the close of a session, the day's records in order (method).
-- `estimate-spec-capture-appends` — `rule-spec-capture` draft — pytest in `tests/test_spec.py`; by hand, the next approval of a session after the change (method).
+- `estimate-skill-grill-me-asks-in-rounds` — `rule-skill-grill-me` draft — `uv run guppi render --check`; by hand, one `/grill-me` after the render (method).
 - `estimate-spec-write-reaches-the-approved-spec` — `rule-spec-write` draft — `uv run pytest tests/test_ratified.py -k approved_spec`; by hand, the first Case ratified in Work Mode after the change (method).
+- `estimate-sprint-moves-a-passed-over-item` — `rule-sprint` draft — `pytest tests/test_generate.py` and the History of the sprint page after the librarian's run (method).
 - `estimate-synthesis-keeps-actioned-by-the-mark` — `rule-synthesis` draft — by hand, the yaml and the brief after the librarian's run on the first marked lesson clustered under an actioned Insight (method).
 - `estimate-sprint-migration-leftovers-gone` — `entity-sprint-migration` draft — by hand, the tree at the close of the sprint (method).
 - `estimate-sprint-migration-lint-clean` — `entity-sprint-migration` draft — `make lint` exit 0, or only unread lines on the Estimates of the sprint (method).
@@ -70,94 +58,79 @@
 
 ## Flags
 
-- `near`, this run: line 12 of `raw/2026-09-27/1255/materialize.yaml`, the create of `rule-backlog`, near `rule-github-issues` (both keep deferred items in view at session start; `rule-github-issues` covers bugs tracked outside the vault). The page was created.
-- `incomplete`, `failed`, `unparsed`, `merged`: none in the yamls of 2300 and 1255.
-- Synthesis: `harness-senduserfile-renders-a-markdown-file-on-the-phone` has no pair among the lessons and the Insights and stays `new`.
+- `incomplete`: line 7 (`harness-senduserfile-renders-a-markdown-file-on-the-phone`, 460.1), `[category]` — `category: unknown`; applied and renamed, as the handoff expected. Lines 8 and 9 (460.2), `[criterion]` — superseded by 460.5, not applied.
+- `failed`, `near`, `merged`, `unparsed`: none in the yamls of 1255 and 1819.
+- Superseded in the session: lines 8–10 (Case 460.2) carry `superseded_by: 460.5` and were not applied; 460.4 (line 20) and 460.5 (lines 21–22) applied. `decision-case-460.2` was written with the two-line body and archived.
+- Synthesis: `lesson-case-show-grill-round-reformatted-in-translation` clustered under `insight-case-show-built-case-retyped-by-hand` (the main agent rewrites the answer of `case-guppi` when showing it). The lesson carries `addressed_by: decision-case-458`; the Insight stood `actioned` by `decision-case-452.4`; 458 is later, so its `addressed_by` became `decision-case-458` and `status` stayed `actioned`. The cascade archived the lesson.
+- Synthesis: `lesson-case-build-two-promises-in-one-sub-case-with-a-written-criterion` and `lesson-case-build-a-rewritten-criterion-loses-a-finding-text` clustered under the `open` `insight-case-build-promise-lines-compared-by-no-check`; severity 2 → 4.
+- Synthesis: `lesson-ledger-block-written-with-a-placeholder-line` has no pair among the lessons and the Insights and stays `new`.
 - Failed Estimates: 1, listed first under Readings due.
-- Contradiction, from lint: `estimates/estimate-claude-md-rendered: method: says by hand while estimate-language-spec-prose-in-english names a test file`; Case 454 deferred it (`rule-claude-md`, in `backlog.md`).
-- Deferred by this session and now in `backlog.md`: `rule-one-judgment-one-implementation` (455: `materialize.case_text` and `ratified.quoted_sections` are two copies of one section reader); `rule-page-generation` (456: a `read` box of an Estimate that a delete removed stays unticked in its Spec).
-- Defect, this run: the new lesson's slug `harness-senduserfile-renders-a-markdown-file-on-the-phone` is the only one of the 58 live lessons that does not open with `lesson-`; it came so from ledger line 54, and lint names no finding on it.
-- Handoff: the store `<plan>.checked.json` of session 1255 holds no `stored` time; ratifying one of its Cases again needs `case-guppi` again first (the Spec hook refuses "no time held").
-- Handoff: unmeasured risk — `SubagentStop` may fire twice, and a second store newer than the sending of the file makes the Spec hook refuse.
-- Handoff: `make style` fails under PowerShell on `< /dev/null` of the Makefile; it runs under Bash.
-- Handoff: the Frontier of session 1255 closes with the old closers (`· sprint`, `· deferred · kept`); the check of 451.2 applies from the next session.
-- Handoff: the re-ratified Cases (449, 450, 451.1, 451.2, 451.4, 452.2–452.4) repeat decision lines the ledger holds; the ledger hook did not append them twice; the new lines are L50–L52 (451.14, 451.15).
-- Handoff note: from Case 452 on, a built Case is sent as a file by `SendUserFile` with `display: render`; the Cases of this session still had long contexts, built under the old rule; context passed 400 000 tokens before Work Mode and the code went to three subagents.
-- Order the handoff asked: `guppi backlog` run after `guppi sprint`; the `replace` pairs of `rule-case-protocol` (449, 451.1, 451.10, 452.4, 452.5) and `rule-case-check` (449, 452.1, 452.2) applied in one run of `generate`, which printed no stderr line.
+- Contradiction, from the handoff: `estimate-sprint-migration-file-route-gone` says "generate reports an error" for an entry of unknown category; an `update` or `delete` of `category: unknown` applies and ticks (460.1). The person chose to leave the Estimate as it stands (Q7).
+- Handoff: `prespec --check` finds two Estimate items in one Case only when neither writes its Criterion under `sections`; 460.2 did, so the check did not fire (lesson line 37).
+- Handoff: `estimate-carry-over-writes` — its method names pytest over the skill's render, and no test targets the carry skill (`pytest tests/test_render.py -k skill`: 26 deselected).
+- Handoff: `estimate-harness-pipeline` (W12) was not read in the session; readable after commit 49acdff.
+- Handoff: a Work Mode subagent's `sed` rewrote one extra line of `apply` in `generate.py` and restored it; `git diff` showed only the intended change.
+- Handoff: `make lint` exit 2 from PowerShell and Git Bash (the known findings); `guppi lint` 115 lines in the session.
 - MOC candidates: none named by lint.
 - Stale defers, from lint: `rule-work-mode` deferred 32 times since case 29; `rule-subagent-guppi` 31 times since case 29; `rule-morph` once since case 239; `rule-orchestration` once since case 424.
 - Backlog moves by `generate`: none printed. Milestones dropped: none printed.
-- `generate`, `cleanup`, `render`, `sprint`, `backlog`, `glossary`: no stderr lines. `cleanup` moved 3 lessons to `archive/migration/2026-09-27/1255/lessons/`.
-- `archive` (run after the brief): no stderr line. It moved `raw/2026-09-26/2300` to `archive/migration/2026-09-26/2300/raw`; the line numbers of its Spec above point there. It kept `raw/2026-09-27/1255/`, the session of the run.
-- `make lint`, after the render: exit 2, 116 findings.
+- `materialize`, `generate`, `cleanup`, `render`, `sprint`, `backlog`, `glossary`: no stderr lines.
+- `archive` (run after the brief): exit 0, no stdout and no stderr line; it moved no unit. `raw/2026-09-27/1255/` and `raw/2026-09-27/1819/` are dated the day of the run, which `archive` does not look at; 1819 is the session of the run.
+- `make lint`, after the render: exit 2, 105 findings.
   - `decisions/decision-case-N: schema: missing section ## Context` and `## Problem` on 31 pages (cases 1–28). That is 62 findings.
   - `rules/rule-spec-box: schema: missing field kind`, `missing field estimates`, and `orphan: no other live page names it in its frontmatter`.
   - `rules/rule-morph: deferred: 1 time since case 239`; `rules/rule-orchestration: deferred: 1 time since case 424`; `rules/rule-subagent-guppi: deferred: 31 times since case 29`; `rules/rule-work-mode: deferred: 32 times since case 29`.
-  - `estimates/estimate-claude-md-rendered: method: says by hand while estimate-language-spec-prose-in-english names a test file`.
-  - `unread: pending` on 44 Estimates and `unread: failed` on 1. These are the 45 Estimates of Readings due.
+  - `unread: pending` on 34 Estimates and `unread: failed` on 1. These are the 35 Estimates of Readings due.
   - `estimates: unmigrated: 19 pages in the shape before case 193`.
-  - No line from `render --check`, `sprint --check`, `backlog --check` or `glossary --check`.
+  - The `method` contradiction on `estimate-claude-md-rendered` of the previous brief is gone.
 
 ## Next session
 
 Cases:
-- `estimate-case-protocol-defers-in-one-reply` failed: text followed the Frontier in the defer reply (reading of session 1255).
-- Contradiction from lint: the method of `estimate-claude-md-rendered` says by hand while `estimate-language-spec-prose-in-english` names a test file (deferred by Case 454).
-- Defect from the handoff: `make style` fails under PowerShell on `< /dev/null` of the Makefile.
-- Defect found in this run: the lesson slug `harness-senduserfile-renders-a-markdown-file-on-the-phone` lacks the `lesson-` prefix the other lessons carry.
+- The retro report standard: `estimate-retro-report-holds-each-fact-once` failed; the person asked to agree one standard for writing the retro (handoff).
+- The method of `estimate-carry-over-writes`: no test targets the carry skill; a test to write or a method to change (handoff).
+- Contradiction: `estimate-sprint-migration-file-route-gone` against the apply of an unknown-category update (460.1); left by the person (Q7) (handoff).
 
 Work:
+- `estimate-harness-make-runs-in-both-shells`
+- `estimate-case-protocol-shows-the-built-case`
+- `estimate-lint-checks-the-method`
+- `estimate-lint-finds-a-broken-link`
+- `estimate-ledger-write-lifts`
+- `estimate-ledger-write-refuses-a-lesson-without-its-prefix`
+- `estimate-case-protocol-defers-in-one-reply`
+- `estimate-materialize-judges-a-fence`
+- `estimate-generate-ticks-the-spec`
 - `estimate-agent-writing-followed`
-- `estimate-backlog-checks-the-file`
-- `estimate-backlog-renders`
 - `estimate-brief-written`
-- `estimate-carry-over-writes`
+- `estimate-case-build-writes-the-case`
 - `estimate-case-check-sends-back-a-faulty-case`
 - `estimate-case-check-shows-only-the-checked-case`
-- `estimate-case-protocol-acknowledging-reply`
 - `estimate-case-protocol-case-form`
-- `estimate-case-protocol-shows-the-built-case`
-- `estimate-documentation-completes`
-- `estimate-harness-pipeline`
-- `estimate-hi-writes-frontier`
-- `estimate-insights-schema-checked`
-- `estimate-internal-context-loaded`
-- `estimate-language-followed`
-- `estimate-prespec-binds-a-sprint-line`
-- `estimate-prespec-checks-the-frontier`
-- `estimate-spec-reconcile-refuses-an-edit-of-the-plan`
-- `estimate-spec-write-copies-the-ratified-case`
-- `estimate-sprint-moves-a-passed-over-item`
-- `estimate-sprint-renders-the-backlog`
-- `estimate-skill-grill-me-asks-in-rounds`
-- `estimate-case-build-writes-the-case`
-- `estimate-materialize-judges-a-fence`
-- `estimate-spec-write-checks-the-written-case`
-- `estimate-spec-write-removes-a-superseded-case`
-- `estimate-language-spec-prose-in-english`
-- `estimate-event-log-records`
 - `estimate-case-protocol-ledger-line-form`
 - `estimate-context-size-warns-past-the-limit`
+- `estimate-documentation-completes`
+- `estimate-event-log-records`
+- `estimate-harness-pipeline`
+- `estimate-language-followed`
 - `estimate-materialize-assembles`
-- `estimate-materialize-lifts-a-create-by-the-schema`
 - `estimate-prespec-reconciles`
 - `estimate-retro-loads`
-- `estimate-retro-report-holds-each-fact-once`
 - `estimate-session-phases-in-order`
-- `estimate-spec-capture-appends`
+- `estimate-skill-grill-me-asks-in-rounds`
 - `estimate-spec-write-reaches-the-approved-spec`
-- `estimate-synthesis-keeps-actioned-by-the-mark`
+- `estimate-sprint-moves-a-passed-over-item`
+- `estimate-synthesis-keeps-actioned-by-the-mark` — this run clustered a lesson with `addressed_by` under an actioned Insight
 - `estimate-sprint-migration-leftovers-gone`
 - `estimate-sprint-migration-lint-clean`
 - `estimate-sprint-migration-merges`
 - `estimate-sprint-migration-rule-class-files-dissolved`
-- The unticked boxes of the Specs are the `read` lines of the readings above: `raw/2026-09-27/1255/spec.md` lines 72, 110, 203, 249, 282, 373, 419, 464, 496, 542, 595, 635, 706, 755, 791, 835, 895, 944, 995, 1065, 1117, 1188; `archive/migration/2026-09-26/2300/raw/spec.md` lines 99, 161, 209, 269, 328, 436, 507, 541, 596, 651, 732.
-- Frontier Work lines W1–W34 of session 1255 (handoff: the readings and boxes of the previous brief).
-- Check at the first live Case whether `SubagentStop` fires twice and a second store makes the Spec hook refuse (handoff).
-- Ledger lines not applied: none; all 54 lines of `raw/2026-09-27/1255/ledger.md` have an entry, all applied.
+- The unticked boxes of the Specs, all `read` lines: `raw/2026-09-27/1819/spec.md` lines 49, 104, 162, 256, 293, 345, 396, 449, 510; `raw/2026-09-27/1255/spec.md` lines 72, 110, 496, 542, 595, 755, 791, 895, 944, 1065, 1117.
+- Ledger lines not applied: lines 8–10 of `raw/2026-09-27/1819/ledger.md` (Case 460.2, superseded by 460.5); every other of its 39 lines has an applied entry.
+- Dirty tree: none after the librarian's commit.
 
 ## Readings at the close
 
-- `make test`: 811 passed, 2 skipped.
-- `make lint`: exit 2, 116 findings (listed under Flags).
-- Pages in `vault/wiki/`: decisions 659, estimates 140, rules 68, lessons 58, insights 25, entities 4.
+- `make test`: 827 passed, 2 skipped.
+- `make lint`: exit 2, 105 findings (listed under Flags).
+- Pages in `vault/wiki/`: decisions 666, estimates 142, rules 68, lessons 61, insights 25, entities 4.

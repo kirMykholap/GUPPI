@@ -1,10 +1,10 @@
 ---
 type: estimate
 kind: QA
-status: pending
+status: passed
 target: "[[rule-retro]]"
 method: one reading by hand at the first /retro, recorded in the estimate line
-checked: 2026-09-21
+checked: 2026-09-27
 origin: raw/2026-09-10/ledger.md#case-38.1
 sprint: migration
 created: 2026-09-10
@@ -24,7 +24,7 @@ A reading measures the Criterion the page carries at the moment of the reading �
 
 ## Result
 
-2026-09-21, the /retro of session 0019 read by hand, the Criterion of 283, the SKILL rendered by the librarian of 2106: four Estimates whose Criterion a Case of this session replaced — estimate-generate-ticks-the-spec (286), estimate-internal-context-loaded (288.1), estimate-case-protocol-loaded (288.2), estimate-claude-md-rendered (288.3) — and whose build waits for the librarian's pages and renders got no reading, their read lines of this Spec (56, 214, 251, 299) carried to the handoff as the moment their method names, no old-Criterion line in an earlier Spec read; the readings taken were of Criteria built before the session (estimate-case-protocol-ledger-line-form, L1) or by the render of 2106 (this one); the page, create, defer and render lines listed as waiting for the librarian; no superseded Case in the Tail; nothing else of Retro changed
+2026-09-27, the /retro of session 2050 read by hand: its readings name none of the nine Estimates its decision lines create or update, their read lines stand as waiting for a later session, and the read lines of their old Criteria in earlier Specs are not read; the handoff that names them is not yet written
 
 ## History
 
@@ -54,3 +54,4 @@ A reading measures the Criterion the page carries at the moment of the reading �
 - 2026-09-21 updated: the Criterion replaced whole — a replaced Criterion is not read at the Retro of its session; the reading of 270.3 written after 282 undone by this pending (case 283) · [[decision-case-283]]
 - 2026-09-21 status: pending → passed · raw/2026-09-21/0019/ledger.md#L21
 - 2026-09-25 updated: the Criterion replaced whole — an Estimate the session creates or updates gets no reading at its Retro, built or not (case 428.3) · [[decision-case-428.3]]
+- 2026-09-27 status: pending → passed · raw/2026-09-27/2050/ledger.md#L36

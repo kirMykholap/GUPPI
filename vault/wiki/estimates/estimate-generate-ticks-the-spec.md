@@ -1,11 +1,11 @@
 ---
 type: estimate
 kind: QA
-status: pending
+status: passed
 target: "[[rule-page-generation]]"
 purpose: generate ticks the page line of a Case in the Spec beside its yaml, and the read line of a reading or of a deleted Estimate across the Specs of raw/ — never a line of a later or a superseded Case
 method: pytest tests/test_generate.py with a Spec beside the yaml, plus one reading of this session's spec.md after the librarian's run
-checked: 2026-09-24
+checked: 2026-09-27
 origin: raw/2026-09-17/1119/ledger.md#case-226.1
 sprint: migration
 created: 2026-09-17
@@ -30,7 +30,7 @@ For a `create`, `update`, `delete` or `defer` entry, in the `spec.md` of the sam
 
 ## Result
 
-2026-09-24, `uv run pytest tests/test_generate.py`: 87 passed
+2026-09-27, uv run pytest tests/test_generate.py; 97 passed, among them the five delete tests of case 463, and in raw/2026-09-27/1819/spec.md after its librarian run only the read lines of pending Estimates stay unticked (9 of 45); no delete entry was there to observe
 
 ## History
 
@@ -52,3 +52,4 @@ For a `create`, `update`, `delete` or `defer` entry, in the `spec.md` of the sam
 - 2026-09-25 updated: the Criterion replaced whole — Given out by the model of case 378, the When and Then as they stood, the case numbers out of the lines (case 401.6) · [[decision-case-401.6]]
 - 2026-09-25 status: pending → passed · raw/2026-09-24/2214/ledger.md#L36
 - 2026-09-27 updated: the Criterion replaced whole — a delete entry ticks the read lines of its slug, with the skips of a reading (case 463) · [[decision-case-463]]
+- 2026-09-27 status: pending → passed · raw/2026-09-27/2050/ledger.md#L24

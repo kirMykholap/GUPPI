@@ -2,7 +2,7 @@
 type: rule
 kind: Leaf
 purpose: Prevents a ratified line from existing only in a chat reply, or landing in a session no /hi opened
-status: draft
+status: built
 enforcement: hook
 implementation_ref: [guppi/ledger.py, guppi/materialize.py, guppi/gate.py, tests/test_ledger.py, tests/test_gate.py, .claude/settings.json]
 parent: "[[rule-session-start]]"
@@ -92,3 +92,4 @@ the implementation arrives in the session after the probe (Slice 1, session B).
 - 2026-09-27 estimate estimate-ledger-write-refuses-a-lesson-without-its-prefix added · [[decision-case-460.5]]
 - 2026-09-27 updated: the ledger hook refuses a lesson line whose slug lacks lesson- (case 460.5) · [[decision-case-460.5]]
 - 2026-09-27 status: built → draft · cascade
+- 2026-09-27 status: draft → built · cascade

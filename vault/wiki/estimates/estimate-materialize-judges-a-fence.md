@@ -1,10 +1,11 @@
 ---
 type: estimate
 kind: QA
-status: pending
+status: passed
 target: "[[rule-materialize]]"
 purpose: "Every reader of a fence judges it by the functions of guppi/materialize.py, as CommonMark does: a fence closes only on a run of its own character at least as long"
 method: uv run pytest tests/test_materialize.py -k fence
+checked: 2026-09-27
 origin: raw/2026-09-26/2300/ledger.md#case-444.1
 sprint: migration
 created: 2026-09-26
@@ -24,7 +25,12 @@ A line opens a fence when, after at most three spaces of indent inside the block
 **＋** Every one of these readers takes the judgment from the functions of `guppi/materialize.py`, and they all give the same answer for the same text.
 **－** No reader keeps a fence pattern of its own: the `FENCE` of `guppi/ledger.py`, the `OPEN_FENCE` of `guppi/ratified.py`, and the tests on three backticks in `guppi/ratified.py` and `guppi/casecheck.py` are removed.
 
+## Result
+
+2026-09-27, uv run pytest tests/test_materialize.py -k fence; 6 passed, and grep finds no FENCE, OPEN_FENCE or three-backtick test outside guppi/materialize.py
+
 ## History
 
 - 2026-09-27 created · [[decision-case-444.1]]
 - 2026-09-27 updated: the Criterion replaced whole — quoted_sections of guppi/materialize.py is the one reader of the sections of a Case; case_text and the copy in guppi/ratified.py removed (case 462) · [[decision-case-462]]
+- 2026-09-27 status: pending → passed · raw/2026-09-27/2050/ledger.md#L23

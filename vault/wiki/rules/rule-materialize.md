@@ -2,7 +2,7 @@
 type: rule
 kind: Leaf
 purpose: Prevents the librarian from reading the ledger and the Spec beyond its unticked lines, or from routing a decision by guesswork
-status: draft
+status: built
 enforcement: check
 implementation_ref: [guppi/materialize.py, tests/test_materialize.py]
 parent: "[[rule-documentation]]"
@@ -115,3 +115,4 @@ entry's fields, each with its writer, live in the docstring of `guppi/materializ
 - 2026-09-25 updated: a reading that must not apply is retired by a one-off migration of a ratified Case, superseded_by set to its number (case 427) · [[decision-case-427]]
 - 2026-09-25 status: built → draft · cascade
 - 2026-09-27 estimate estimate-materialize-judges-a-fence added · [[decision-case-444.1]]
+- 2026-09-27 status: draft → built · cascade

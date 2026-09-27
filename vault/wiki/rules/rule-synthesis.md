@@ -2,7 +2,7 @@
 type: rule
 kind: Leaf
 purpose: Prevents a pattern of failures from staying a list of unrelated incidents
-status: draft
+status: built
 enforcement: render
 governs: .claude/agents/librarian-guppi.md
 render_mode: partial
@@ -57,3 +57,4 @@ outcome, clustered or not. Do not read the archive and do not write pages yourse
 - 2026-09-21 status: built → draft · cascade
 - 2026-09-22 updated: an Insight born from a lesson whose entry carries addressed_by is set actioned by an update right after its create (case 302.2) · [[decision-case-302.2]]
 - 2026-09-24 updated: addressed_by moves to the lesson's decision only when it is the later case (case 385) · [[decision-case-385]]
+- 2026-09-27 status: draft → built · cascade

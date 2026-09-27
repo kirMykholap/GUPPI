@@ -1,10 +1,10 @@
 ---
 type: estimate
 kind: QA
-status: pending
+status: passed
 target: "[[rule-brief]]"
 method: one reading by hand after the first librarian run, recorded in the estimate line
-checked: 2026-09-23
+checked: 2026-09-27
 origin: raw/2026-09-10/ledger.md#case-35.3
 sprint: migration
 created: 2026-09-10
@@ -27,7 +27,7 @@ The brief holds, in order: Where things stand, Readings due, Flags, Next session
 
 ## Result
 
-2026-09-23, vault/wiki/brief.md of the librarian's run on 0034 read by hand at /hi of 1126: six sections in order — Where things stand, Readings due, Deferred, Flags, Next session, Readings at the close; Flags name the two items generate moved to the Backlog and the milestone it dropped; Next session holds two lists, Cases (7) and Work (3), no item in both
+2026-09-27, vault/wiki/brief.md of the librarian's run over 1819 (049458e) read by hand against raw/2026-09-27/1819/handoff.md; five sections in order, no Deferred list, Flags name no Backlog move and no dropped milestone; Next session: Cases 3, Work 33 Estimate slugs plus the 20 unticked read boxes, ledger lines 8–10 and the dirty tree, no item in both lists
 
 ## History
 
@@ -49,3 +49,4 @@ The brief holds, in order: Where things stand, Readings due, Flags, Next session
 - 2026-09-23 updated: the Criterion names the Flags line of a move to the Backlog (case 354.4) · [[decision-case-354.4]]
 - 2026-09-23 status: pending → passed · raw/2026-09-23/1126/ledger.md#L38
 - 2026-09-27 updated: the Criterion replaced whole — no Deferred list, the deferred items in backlog.md (case 451.8) · [[decision-case-451.8]]
+- 2026-09-27 status: pending → passed · raw/2026-09-27/2050/ledger.md#L25

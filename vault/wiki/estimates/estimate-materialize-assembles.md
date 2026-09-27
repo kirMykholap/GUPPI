@@ -1,11 +1,11 @@
 ---
 type: estimate
 kind: QA
-status: pending
+status: passed
 target: "[[rule-materialize]]"
 purpose: One entry per record line of a ledger, its content lifted from the then block of its Case, nothing invented
 method: pytest in tests/test_materialize.py against a temp vault; the live reading once by hand
-checked: 2026-09-24
+checked: 2026-09-27
 origin: raw/2026-09-10/ledger.md#case-31
 sprint: migration
 created: 2026-09-10
@@ -29,7 +29,7 @@ Then:
 
 ## Result
 
-2026-09-24, `uv run pytest tests/test_materialize.py`: 75 passed
+2026-09-27, uv run pytest tests/test_materialize.py and raw/2026-09-27/1819/materialize.yaml; 86 passed; 39 ledger lines give entries with line 1–39 in order plus 5 synthesis entries, 11 decision records, 0 unparsed, incomplete only on the prefix-less slug (category) and the superseded 460.2 (criterion)
 
 ## History
 
@@ -79,3 +79,4 @@ Then:
 - 2026-09-25 updated: the Criterion replaced whole — the assembly of an entry by the model of case 378; the filter of keys and the update of an Estimate moved to their own Estimates (case 397.1) · [[decision-case-397.1]]
 - 2026-09-25 status: pending → passed · raw/2026-09-24/2214/ledger.md#L27
 - 2026-09-26 updated: the Criterion replaced whole — the line on the keys of the shape before case 189 gives way to the line that no Estimate is derived from a key (case 440.2) · [[decision-case-440.2]]
+- 2026-09-27 status: pending → passed · raw/2026-09-27/2050/ledger.md#L28

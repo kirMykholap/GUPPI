@@ -1,10 +1,10 @@
 ---
 type: estimate
 kind: QA
-status: pending
+status: passed
 target: "[[rule-harness]]"
 method: make test-harness over tests/test_render.py and tests/test_lint.py; the live reading of make lint by hand
-checked: 2026-09-25
+checked: 2026-09-27
 origin: raw/2026-09-10/ledger.md#case-37
 sprint: migration
 created: 2026-09-10
@@ -23,7 +23,7 @@ The Purpose says that three rules belong to no phase of the session: the rendere
 
 ## Result
 
-2026-09-25, make test-harness: 95 passed; uv run guppi render --check, sprint --check and glossary --check: exit 0, no output, on the working tree of session 1654 (the rendered files as committed in cc330c3, .claude/agents/frame-guppi.md removed by git rm, code changes in guppi/ only); the Purpose of rule-harness read: the three rules, the order of make lint, and the eight rules in no pipeline, as the Criterion names them
+2026-09-27, make test-harness and uv run guppi render/sprint/backlog/glossary --check; 101 passed, each check exit 0 with no output; the Purpose of rule-harness names the three rules, the order with backlog --check third, and the eight rules in no pipeline
 
 ## History
 
@@ -41,3 +41,4 @@ The Purpose says that three rules belong to no phase of the session: the rendere
 - 2026-09-25 updated: the Criterion replaced whole — eight rules outside the pipeline, the hooks of rule-page-read among them (case 420.2) · [[decision-case-420.2]]
 - 2026-09-25 status: pending → passed · raw/2026-09-25/1654/ledger.md#L28
 - 2026-09-27 updated: the Criterion replaced whole — backlog --check in the order of make lint (case 451.14) · [[decision-case-451.14]]
+- 2026-09-27 status: pending → passed · raw/2026-09-27/2050/ledger.md#L27

@@ -2,7 +2,7 @@
 type: rule
 kind: Leaf
 purpose: Prevents a page that breaks the schema, points nowhere, or claims a status its Estimates do not support from sitting in the vault unnoticed
-status: draft
+status: built
 enforcement: check
 implementation_ref: [guppi/lint.py, tests/test_lint.py, Makefile]
 parent: "[[rule-harness]]"
@@ -74,3 +74,4 @@ classes and their order live in the docstring of `guppi/lint.py`.
 - 2026-09-25 status: draft → built · cascade
 - 2026-09-27 updated: make lint runs backlog --check (case 451.5) · [[decision-case-451.5]]
 - 2026-09-27 status: built → draft · cascade
+- 2026-09-27 status: draft → built · cascade

@@ -1,10 +1,10 @@
 ---
 type: estimate
 kind: QA
-status: pending
+status: passed
 target: "[[rule-prespec]]"
 method: One reading by hand of the first /pre-spec after the render, written into the estimate line — the exception the Method rule allows
-checked: 2026-09-25
+checked: 2026-09-27
 origin: raw/2026-09-09/ledger.md#case-24.2
 sprint: migration
 created: 2026-09-09
@@ -29,7 +29,7 @@ The agent runs `guppi prespec --check` on the plan file with `--session <id>`, t
 
 ## Result
 
-2026-09-25, by hand, the /pre-spec of session 1228: the name, context and problem translated before the run; prespec --check printed one finding (C4 open), fixed, then none; ask-guppi dispatched once with the plan path; its 14 findings answered in one report before the changed Cases were shown again
+2026-09-27, the /pre-spec of session 2050 read by hand: guppi prespec --check with --session f09409c4 exit 0 and no line; ask-guppi dispatched once with the plan path and the three questions; one numbered report of 13 findings with fixes and two decisions for the person; the findings of Cases 466–468 sent to their case-guppi by SendMessage, the three Cases shown again in one reply and ratified again; the check run again clean; the prespec line at 23:14:26 in the event log; Plan Mode exited at 23:28:40
 
 ## History
 
@@ -68,3 +68,4 @@ The agent runs `guppi prespec --check` on the plan file with `--session <id>`, t
 - 2026-09-24 updated: the Criterion replaced whole — the translation, ask-guppi reading the plan and the context, the report before the re-showing (case 388) · [[decision-case-388]]
 - 2026-09-25 status: pending → passed · raw/2026-09-25/1228/ledger.md#L42
 - 2026-09-26 updated: the Criterion replaced whole — no translation before the run, a finding in a Case to its case-guppi (case 441.4) · [[decision-case-441.4]]
+- 2026-09-27 status: pending → passed · raw/2026-09-27/2050/ledger.md#L35

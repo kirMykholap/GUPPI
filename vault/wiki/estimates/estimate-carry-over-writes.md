@@ -4,7 +4,7 @@ kind: QA
 status: pending
 target: "[[rule-carry-over]]"
 purpose: /carry writes the brief and the mark and runs guppi backlog and nothing else
-method: pytest over the skill's render, plus one live reading of a carried-over session
+method: uv run guppi render --check; by hand, the first /carry after the fork of ExitPlanMode — the tree, vault/wiki/brief.md, carry.md, vault/wiki/backlog.md and the commit read
 checked: 2026-09-18
 origin: raw/2026-09-16/1034/ledger.md#case-190.1
 sprint: migration
@@ -40,3 +40,4 @@ The skill reads the tree. When the tree holds changes outside the session folder
 - 2026-09-18 status: pending → passed · raw/2026-09-18/2054/ledger.md#L12
 - 2026-09-23 updated: the Render changed under it — step 1 names the place of the frame; the Criterion stands (case 347) · [[decision-case-347]]
 - 2026-09-27 updated: the Criterion replaced whole — no Deferred list, guppi backlog run and backlog.md committed (case 451.9) · [[decision-case-451.9]]
+- 2026-09-27 updated: the method names render --check and a reading by hand; no test targets the carry skill (case 465) · [[decision-case-465]]

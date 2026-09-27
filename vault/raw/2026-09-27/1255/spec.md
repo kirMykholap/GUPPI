@@ -69,7 +69,7 @@ update:
 - [x] update `insight-case-form-chat-form-read-by-no-script` — actioned
 - [x] `guppi/casecheck.py` — the docstring: the text of the story sections is not checked, the person judges it
 - [x] `uv run guppi render`: `vault/wiki/case-schema.md`
-- [ ] read `estimate-case-protocol-case-form` — by hand in a later session
+- [x] read `estimate-case-protocol-case-form` — by hand in a later session
 ```
 
 ## Case 450 — The agent's text judged by the person's complaint
@@ -493,7 +493,7 @@ update:
 
 ```tasks
 - [x] update `estimate-sprint-moves-a-passed-over-item` — the Criterion replaced whole
-- [ ] read `estimate-sprint-moves-a-passed-over-item` — `uv run pytest tests/test_generate.py` and the History of the sprint page after the librarian's run of a later session
+- [x] read `estimate-sprint-moves-a-passed-over-item` — `uv run pytest tests/test_generate.py` and the History of the sprint page after the librarian's run of a later session
 ```
 
 ### Case 451.8 — The brief without a Deferred list
@@ -539,7 +539,7 @@ update:
 - [x] update `rule-brief` — three `replace` pairs, in the Purpose and the Render
 - [x] update `estimate-brief-written` — the Criterion replaced whole
 - [x] `uv run guppi render`: `.claude/agents/librarian-guppi.md`
-- [ ] read `estimate-brief-written` — by hand after the librarian's run of a later session
+- [x] read `estimate-brief-written` — by hand after the librarian's run of a later session
 ```
 
 ### Case 451.9 — `carry` writes the backlog, and a brief without a Deferred list
@@ -752,7 +752,7 @@ update:
 - [x] update `rule-documentation` — one `replace` pair in the Render
 - [x] update `estimate-documentation-completes` — the Criterion replaced whole
 - [x] `uv run guppi render`: `.claude/agents/librarian-guppi.md`
-- [ ] read `estimate-documentation-completes` — `make test-documentation` and the live reading of the librarian's run of a later session
+- [x] read `estimate-documentation-completes` — `make test-documentation` and the live reading of the librarian's run of a later session
 ```
 
 ### Case 451.14 — The order of `make lint` holds the backlog check
@@ -788,7 +788,7 @@ update:
 ```tasks
 - [x] update `rule-harness` — one `replace` pair in the Purpose
 - [x] update `estimate-harness-pipeline` — the Criterion replaced whole
-- [ ] read `estimate-harness-pipeline` — `make test-harness` and the live reading of `make lint` in a later session
+- [x] read `estimate-harness-pipeline` — `make test-harness` and the live reading of `make lint` in a later session
 ```
 
 ### Case 451.15 — The promise of the schema of Insights holds the changed sentence

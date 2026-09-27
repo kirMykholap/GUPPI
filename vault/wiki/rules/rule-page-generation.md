@@ -7,6 +7,7 @@ enforcement: check
 implementation_ref: [guppi/generate.py, tests/test_generate.py]
 parent: "[[rule-documentation]]"
 estimates: ["[[estimate-generate-writes]]", "[[estimate-generate-walks-dates]]", "[[estimate-generate-writes-the-decision-page]]", "[[estimate-generate-fails-alone]]", "[[estimate-generate-cascades]]", "[[estimate-generate-ticks-the-spec]]", "[[estimate-generate-renames]]", "[[estimate-generate-rewords]]", "[[estimate-generate-writes-rules-from-applies-to]]", "[[estimate-generate-writes-the-given]]"]
+deferred_by: ["[[decision-case-469]]"]
 origin: raw/2026-09-10/ledger.md#case-32
 sprint: migration
 created: 2026-09-10
@@ -127,3 +128,4 @@ every defer (cases 52.4, 186.1); the page of a Case superseded in its own sessio
 - 2026-09-27 defer by decision-case-456 superseded · [[decision-case-463]]
 - 2026-09-27 updated: a delete ticks the read lines of its slug across the live Specs of raw/, with the skips of a reading (case 463) · [[decision-case-463]]
 - 2026-09-27 status: built → draft · cascade
+- 2026-09-27 deferred · [[decision-case-469]]

@@ -1,9 +1,9 @@
 ---
 type: estimate
 kind: QA
-status: failed
+status: pending
 target: "[[rule-retro]]"
-purpose: Whether the report of /retro holds each fact once — the ratifications in the closing list only, the unticked boxes of the Spec inside the list of what is not done
+purpose: Whether the report of /retro holds each fact once — the frontier numbers only what needs an end, the boxes that wait for the librarian one count line and the read lines that wait for a later session one line of slugs; the close holds the Case ids, what got done and the numbers of the frontier with their ends
 method: one reading by hand at the first /retro after the render, recorded in the estimate line
 checked: 2026-09-27
 origin: raw/2026-09-23/1355/ledger.md#case-376
@@ -15,16 +15,17 @@ tags: [session, workflow, harness]
 ## Criterion
 
 When:
-The person invokes `/retro` in a session where `uv run guppi tail` prints its decision lines and `raw/<date>/<hi HHMM>/spec.md` holds unticked boxes; the agent writes the opening message and the close.
+The person invokes `/retro` in a session where `uv run guppi tail` prints its decision lines and `raw/<date>/<hi HHMM>/spec.md` holds unticked boxes, and the agent writes the frontier and the close.
 
 Then:
-The opening message holds one numbered list of what is not done: the unticked boxes of `raw/<date>/<hi HHMM>/spec.md` per Case, each marked as waiting for the librarian, as waiting for a later session, or as debt, and what the agent noticed during Work Mode.
-**＋** A `read` line is marked as waiting for a later session when this session creates or updates its slug — by a decision line of that slug, or by an `update` that renames a page to it; another `read` line without its line in the Tail is debt.
-**－** The opening message holds no list of the ratifications.
-**＋** The close holds every ratification of the session, one line per Case, from `uv run guppi tail` grouped by Case, this session's folder first, a Case a `{supersedes:case N}` line names not counted.
-**＋** The close holds what got done.
-**＋** The close holds what is not done: the numbers of the opening list, each with the end it took.
-**－** No ratification and no box is named twice in the report.
+The frontier is one numbered list of what needs an end in this Retro: each unticked box that is debt, and what the agent noticed during Work Mode.
+**＋** A `read` line without its line in the Tail, whose slug this session neither creates nor updates, is debt, and so is a box of code, a test, a command or a migration left unticked.
+**＋** Under the list stand two lines, not numbered: the count of the boxes that wait for the librarian, and the slugs of the `read` lines whose slug this session creates or updates, by a decision line of that slug or by an `update` that renames a page to it.
+**－** The frontier names no box that waits for the librarian one by one, and holds no list of the ratifications.
+**＋** The close has three parts. Ratified is one line with the ids of the Cases ratified, from `uv run guppi tail`, this session's folder first, a Case that a `{supersedes:case N}` line names not counted, and no page.
+**＋** What got done holds the commit, the code files and tests changed, the result of `make test` and `make style`, and the readings and lessons written by their ledger line numbers, except a reading or a lesson that is the end of an item of the frontier.
+**＋** What is not done holds each number of the frontier with the end it took, and its ledger line number where it has one, with no text of the item and no repeat of the two lines under the frontier.
+**－** No Case, box, reading or lesson is named in two parts of the report.
 
 ## Result
 
@@ -35,3 +36,4 @@ The opening message holds one numbered list of what is not done: the unticked bo
 - 2026-09-23 created · [[decision-case-376]]
 - 2026-09-25 updated: the Criterion replaced whole — a third mark in the opening list: a read line whose reading waits for a later session (case 428.4) · [[decision-case-428.4]]
 - 2026-09-27 status: pending → failed · raw/2026-09-27/1819/ledger.md#L39
+- 2026-09-27 updated: the Criterion replaced whole and the purpose rewritten — the frontier numbers only what needs an end; the close holds the Case ids, what got done and the numbers with their ends (case 468.1) · [[decision-case-468.1]]

@@ -1,10 +1,10 @@
 ---
 type: estimate
 kind: QA
-status: pending
+status: failed
 target: "[[rule-documentation]]"
 method: make test-documentation, the pipeline over tests/test_materialize.py, tests/test_generate.py and tests/test_cleanup.py; the live reading by hand
-checked: 2026-09-22
+checked: 2026-09-27
 origin: raw/2026-09-10/ledger.md#case-36
 sprint: migration
 created: 2026-09-10
@@ -34,7 +34,7 @@ It read no other part of a Spec, and no plan, Decision page or archive file. The
 
 ## Result
 
-2026-09-22, the librarian's run of session 0014 read from its brief and the event log: step 6 ran (glossary.md written, 49 rows in nine groups, glossary --check exit 0 now), the librarian's commit 1603a9b is separate from the session's 2031718, make test-documentation green (159 passed) — but the frame was breached: the run read lines 52-64 of raw/2026-09-22/0014/ledger.md while counting the entries, and the Criterion says no ledger
+2026-09-27, make test-documentation and the event log of the librarian run of session 1819; 191 passed and the order render, sprint, backlog, glossary, brief, archive, commit held, but at 20:40:39 the run grepped vault/archive/ (grep -rln "status: clustered" raw archive) and at 20:39:28 read a file under ~/.claude/projects/…/938809b2-…, both outside the frame
 
 ## History
 
@@ -65,3 +65,4 @@ It read no other part of a Spec, and no plan, Decision page or archive file. The
 - 2026-09-23 updated: the Criterion names the one allowed read of the ledger (case 349) · [[decision-case-349]]
 - 2026-09-23 updated: the Criterion refuses a read of the ledger beyond the one allowed (case 357) · [[decision-case-357]]
 - 2026-09-27 updated: the Criterion replaced whole — guppi backlog after guppi sprint, Given lifted into When and Then (case 451.13) · [[decision-case-451.13]]
+- 2026-09-27 status: pending → failed · raw/2026-09-27/2050/ledger.md#L31

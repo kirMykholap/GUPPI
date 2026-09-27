@@ -47,9 +47,9 @@ update:
 ```
 
 ```tasks
-- [ ] update `estimate-sprint-migration-file-route-gone`
+- [x] update `estimate-sprint-migration-file-route-gone`
 - [x] `tests/test_generate.py`: an `update` of `category: unknown` applies to its page in a category folder and ticks its Spec line; a `create` and a page-less `defer` of `category: unknown` fail with `not a vault folder`; each test name holds `unknown`
-- [ ] `uv run guppi sprint`
+- [x] `uv run guppi sprint`
 - [ ] read `estimate-sprint-migration-file-route-gone`
 ```
 
@@ -93,7 +93,7 @@ update:
 ```
 
 ```tasks
-- [ ] update `estimate-carry-over-writes`
+- [x] update `estimate-carry-over-writes`
 ```
 
 ## Case 466 — The first round of `case-guppi` on an item opens with a short context of the item
@@ -148,9 +148,9 @@ update:
 ```
 
 ```tasks
-- [ ] update `rule-case-build`
-- [ ] update `estimate-case-build-writes-the-case`
-- [ ] `uv run guppi render`: `.claude/agents/case-guppi.md`
+- [x] update `rule-case-build`
+- [x] update `estimate-case-build-writes-the-case`
+- [x] `uv run guppi render`: `.claude/agents/case-guppi.md`
 - [ ] read `estimate-case-build-writes-the-case` — by hand, the first and a later round of a dispatch on an item with a fork, in a session after the render
 ```
 
@@ -195,9 +195,9 @@ update:
 ```
 
 ```tasks
-- [ ] update `rule-case-protocol`
-- [ ] update `estimate-case-protocol-shows-the-built-case`
-- [ ] `uv run guppi render`: `vault/wiki/case-schema.md`
+- [x] update `rule-case-protocol`
+- [x] update `estimate-case-protocol-shows-the-built-case`
+- [x] `uv run guppi render`: `vault/wiki/case-schema.md`
 - [ ] read `estimate-case-protocol-shows-the-built-case` — by hand, the first rounds shown in a session after the render, against the answers of `case-guppi` in the transcript
 ```
 
@@ -273,11 +273,11 @@ update:
 ```tasks
 - [x] `guppi/prespec.py` — one function that judges the page of a `backlog` Frontier line against the decision lines of a Case and its sub-cases and the page's `deferred_by`: some Case among them names the page on a line other than a `defer` and carries each `{supersedes:case M}`; `check_frontier` calls it on each line closed `[x] … · backlog · case N`
 - [x] `tests/test_prespec.py` — a line closed `· backlog · case N` whose page is named by no line of Case N; one whose page is named but whose Decision M is not superseded; one where a sub-case names the page and carries every `{supersedes}` while another sub-case is an `update` of the page with only `change`; a page without `deferred_by`; a line of another source
-- [ ] update `rule-prespec`
-- [ ] update `rule-case-protocol`
-- [ ] create `estimate-prespec-requires-a-backlog-item-decided-on-its-page`
-- [ ] `uv run guppi render`: `.claude/skills/pre-spec/SKILL.md`
-- [ ] `uv run guppi render`: `vault/wiki/case-schema.md`
+- [x] update `rule-prespec`
+- [x] update `rule-case-protocol`
+- [x] create `estimate-prespec-requires-a-backlog-item-decided-on-its-page`
+- [x] `uv run guppi render`: `.claude/skills/pre-spec/SKILL.md`
+- [x] `uv run guppi render`: `vault/wiki/case-schema.md`
 - [ ] read `estimate-prespec-requires-a-backlog-item-decided-on-its-page`
 ```
 
@@ -324,8 +324,8 @@ update:
 ```tasks
 - [x] `guppi/casecheck.py` — `subagent` passes the session's `frontier.md` and the records of the `ratification` fences to the function of `guppi/prespec.py` for each open `backlog` line and each top-level Case of the answer that names its page; the docstring sentence "The Frontier and the grammar of the window stay with `/pre-spec` (case 445.2)" names this one exception
 - [x] `tests/test_casecheck.py` — an answer whose Case names the page of an open `backlog` line without its `{supersedes}`, sent back; the same with every `{supersedes}`, passed; a sub-case that names the page and carries every `{supersedes}` beside a sub-case that is an `update` of the page with only `change`, passed; a Case naming the page only in a `defer` line; no open `backlog` line
-- [ ] update `rule-case-check`
-- [ ] create `estimate-case-check-requires-a-backlog-item-decided-on-its-page`
+- [x] update `rule-case-check`
+- [x] create `estimate-case-check-requires-a-backlog-item-decided-on-its-page`
 - [ ] read `estimate-case-check-requires-a-backlog-item-decided-on-its-page`
 ```
 
@@ -377,8 +377,8 @@ update:
 ```tasks
 - [x] `guppi/generate.py` — `clear_deferred_by` takes the slugs that the superseding record's `targets` name and clears only those pages; the docstring sentence "removes its slug from the `deferred_by` of every target of its `defer` list" says the same
 - [x] `tests/test_generate.py` — a Decision that defers two pages, superseded by a Case naming one of them: one page cleared, one kept; a second Case superseding the same Decision, then archived, and naming the other page: that page cleared too
-- [ ] update `estimate-generate-writes-the-decision-page`
-- [ ] update `rule-backlog`
+- [x] update `estimate-generate-writes-the-decision-page`
+- [x] update `rule-backlog`
 - [ ] read `estimate-generate-writes-the-decision-page`
 ```
 
@@ -434,9 +434,9 @@ update:
 ```
 
 ```tasks
-- [ ] update `rule-retro`
-- [ ] update `estimate-retro-report-holds-each-fact-once`
-- [ ] `uv run guppi render`: `.claude/skills/retro/SKILL.md`
+- [x] update `rule-retro`
+- [x] update `estimate-retro-report-holds-each-fact-once`
+- [x] `uv run guppi render`: `.claude/skills/retro/SKILL.md`
 - [ ] read `estimate-retro-report-holds-each-fact-once` — by hand, at the first `/retro` after the render
 ```
 
@@ -484,9 +484,9 @@ update:
 ```
 
 ```tasks
-- [ ] update `rule-handoff`
-- [ ] create `estimate-handoff-holds-each-fact-once`
-- [ ] `uv run guppi render`: `.claude/skills/handoff/SKILL.md`
+- [x] update `rule-handoff`
+- [x] create `estimate-handoff-holds-each-fact-once`
+- [x] `uv run guppi render`: `.claude/skills/handoff/SKILL.md`
 - [ ] read `estimate-handoff-holds-each-fact-once` — by hand, at the first `/handoff` after the render
 ```
 

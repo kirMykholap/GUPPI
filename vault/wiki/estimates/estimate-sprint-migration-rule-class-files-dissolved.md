@@ -1,10 +1,11 @@
 ---
 type: estimate
 kind: QA
-status: pending
+status: passed
 target: "[[entity-sprint-migration]]"
 purpose: No Rule-class file at the close of Slice 3f — the schemas rendered from rule pages, the glossary from entity-glossary, index.md gone, the file route out of the scripts
 method: "one reading by hand: ls vault/wiki/*/schema.md empty and vault/wiki/index.md absent; grep -rniE --include='*.py' 'rule.class|applied by hand|prose_names' guppi/ tests/ empty; uv run guppi render --check and uv run guppi glossary --check exit 0"
+checked: 2026-09-27
 origin: raw/2026-09-21/1853/ledger.md#case-301
 sprint: migration
 created: 2026-09-21
@@ -31,9 +32,14 @@ No Rule-class file: every `<category>/schema.yaml` is the Render of the Leaf `ru
 **－** `case-schema.md` and `CLAUDE.md` are not brought into the graph by the Slice: they are Renders already and change by an `update` of `rule-case-protocol` or `rule-claude-md`, as theme 6 does.
 **－** No template engine for the renders is built: Backlog.
 
+## Result
+
+2026-09-27, ls vault/wiki/*/schema.md and vault/wiki/index.md: no such file; grep -rniE 'rule.class|applied by hand|prose_names' guppi/ tests/ exit 1, empty; uv run guppi render --check and glossary --check exit 0; the six schemas governed by rule-<category>-schema under rule-page-schemas, rule-sprint applies_to entity-sprint
+
 ## History
 
 - 2026-09-22 created · [[decision-case-301]]
 - 2026-09-22 updated: the glossary is rendered from entity-glossary, not from a terms field (case 306.7) · [[decision-case-306.7]]
 - 2026-09-22 updated: the pointer at §1 of index.md is gone with the file (case 321) · [[decision-case-321]]
 - 2026-09-23 updated: the reading of the Slice without make lint, the grep widened to the retired term over guppi/ and tests/ (case 367) · [[decision-case-367]]
+- 2026-09-27 status: pending → passed · raw/2026-09-27/2050/ledger.md#L30

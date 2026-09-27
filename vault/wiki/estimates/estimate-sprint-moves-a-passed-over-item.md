@@ -1,11 +1,11 @@
 ---
 type: estimate
 kind: QA
-status: pending
+status: passed
 target: "[[rule-sprint]]"
 purpose: A milestone item passed over in three sessions in a row goes to the Backlog by generate, never by hand
 method: pytest tests/test_generate.py, the tests of the move, plus one reading of the History of the sprint page after the librarian's run
-checked: 2026-09-23
+checked: 2026-09-27
 origin: raw/2026-09-23/0034/ledger.md#case-354.1
 sprint: migration
 created: 2026-09-23
@@ -27,10 +27,11 @@ For every item under `## Milestones` of `entity-sprint-<id>`, the script reads t
 
 ## Result
 
-2026-09-23, uv run pytest tests/test_generate.py -k "move or passed_over or milestone": 7 passed; the History of entity-sprint-migration after the librarian's run of 0034: "moved to the Backlog: rule-work-mode passed over in 29 sessions in a row — 0034, …, 0652 · generate" and the same for rule-subagent-guppi; both lines stand unchanged at the end of ## Backlog
+2026-09-27, uv run pytest tests/test_generate.py and the History of entity-sprint-migration after the librarian run of 1819; 97 passed (7 of the move); no milestone item reaches 3 passes (highest 2), and the History holds no move line after 2026-09-23
 
 ## History
 
 - 2026-09-23 created · [[decision-case-354.1]]
 - 2026-09-23 status: pending → passed · raw/2026-09-23/1126/ledger.md#L35
 - 2026-09-27 updated: the Criterion replaced whole — a line put off under the closers of case 451, Given lifted into When and Then (case 451.7) · [[decision-case-451.7]]
+- 2026-09-27 status: pending → passed · raw/2026-09-27/2050/ledger.md#L29

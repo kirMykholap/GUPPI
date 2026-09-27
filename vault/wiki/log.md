@@ -4041,3 +4041,60 @@ instruction. The global feed; a page's own `## History` is the per-page view.
 - 2026-09-27 decisions/decision-case-455 archived · cleanup
 - 2026-09-27 decisions/decision-case-456 archived · cleanup
 - 2026-09-27 decisions/decision-case-460.2 archived · cleanup
+- 2026-09-27 decisions/decision-case-464 created · raw/2026-09-27/2050/ledger.md#case-464 · generate
+- 2026-09-27 estimates/estimate-sprint-migration-file-route-gone updated: the Criterion replaced whole — an update of category unknown applies, a delete applies outside the vault, a create and a page-less defer fail; Given out; the method without theme 5 (case 464) · [[decision-case-464]] · generate
+- 2026-09-27 decisions/decision-case-465 created · raw/2026-09-27/2050/ledger.md#case-465 · generate
+- 2026-09-27 estimates/estimate-carry-over-writes updated: the method names render --check and a reading by hand; no test targets the carry skill (case 465) · [[decision-case-465]] · generate
+- 2026-09-27 decisions/decision-case-466.1 created · raw/2026-09-27/2050/ledger.md#case-466.1 · generate
+- 2026-09-27 rules/rule-case-build updated: the first round of case-guppi on an item opens with a short context of the item (case 466.1) · [[decision-case-466.1]] · generate
+- 2026-09-27 estimates/estimate-case-build-writes-the-case updated: the Criterion replaced whole — the first round on an item opens with a Context paragraph (case 466.1) · [[decision-case-466.1]] · generate
+- 2026-09-27 decisions/decision-case-466.2 created · raw/2026-09-27/2050/ledger.md#case-466.2 · generate
+- 2026-09-27 rules/rule-case-protocol updated: the main agent shows the context of a first round translated in place before its first question (case 466.2) · [[decision-case-466.2]] · generate
+- 2026-09-27 estimates/estimate-case-protocol-shows-the-built-case updated: the Criterion replaced whole — the context of a first round shown translated before its first question (case 466.2) · [[decision-case-466.2]] · generate
+- 2026-09-27 decisions/decision-case-467.1 created · raw/2026-09-27/2050/ledger.md#case-467.1 · generate
+- 2026-09-27 rules/rule-prespec updated: the finding on a backlog item decided without its page named and its defers superseded (case 467.1) · [[decision-case-467.1]] · generate
+- 2026-09-27 rules/rule-case-protocol updated: a Case that takes up a deferred decision names its page on a decision line; what pre-spec and the check of case-guppi's answer each report (case 467) · [[decision-case-467.1]] · generate
+- 2026-09-27 estimates/estimate-prespec-requires-a-backlog-item-decided-on-its-page created · [[decision-case-467.1]] · generate
+- 2026-09-27 rules/rule-prespec estimate estimate-prespec-requires-a-backlog-item-decided-on-its-page added · [[decision-case-467.1]] · generate
+- 2026-09-27 decisions/decision-case-467.2 created · raw/2026-09-27/2050/ledger.md#case-467.2 · generate
+- 2026-09-27 rules/rule-case-check updated: the answer of case-guppi is checked against the open backlog lines of the Frontier (case 467.2) · [[decision-case-467.2]] · generate
+- 2026-09-27 estimates/estimate-case-check-requires-a-backlog-item-decided-on-its-page created · [[decision-case-467.2]] · generate
+- 2026-09-27 rules/rule-case-check estimate estimate-case-check-requires-a-backlog-item-decided-on-its-page added · [[decision-case-467.2]] · generate
+- 2026-09-27 decisions/decision-case-467.3 created · raw/2026-09-27/2050/ledger.md#case-467.3 · generate
+- 2026-09-27 estimates/estimate-generate-writes-the-decision-page updated: the Criterion replaced whole — a supersedes clears deferred_by only on the pages the superseding Case names (case 467.3) · [[decision-case-467.3]] · generate
+- 2026-09-27 decisions/decision-case-468.1 created · raw/2026-09-27/2050/ledger.md#case-468.1 · generate
+- 2026-09-27 rules/rule-retro updated: the report of /retro holds each fact once — the frontier numbers only what needs an end, the librarian's boxes one count line, the close three parts: the Case ids, what got done, the numbers with their ends (case 468.1) · [[decision-case-468.1]] · generate
+- 2026-09-27 estimates/estimate-retro-report-holds-each-fact-once updated: the Criterion replaced whole and the purpose rewritten — the frontier numbers only what needs an end; the close holds the Case ids, what got done and the numbers with their ends (case 468.1) · [[decision-case-468.1]] · generate
+- 2026-09-27 decisions/decision-case-468.2 created · raw/2026-09-27/2050/ledger.md#case-468.2 · generate
+- 2026-09-27 rules/rule-handoff updated: the handoff holds each fact once — What actually got done carries the Retro close, a note for the handoff stands as the end of its item, the notes and the instructions hold only their own facts (case 468.2) · [[decision-case-468.2]] · generate
+- 2026-09-27 estimates/estimate-handoff-holds-each-fact-once created · [[decision-case-468.2]] · generate
+- 2026-09-27 rules/rule-handoff estimate estimate-handoff-holds-each-fact-once added · [[decision-case-468.2]] · generate
+- 2026-09-27 rules/rule-backlog updated: an item leaves when the Case that decides it names its page and supersedes its defer (case 467.3) · [[decision-case-467.3]] · generate
+- 2026-09-27 estimates/estimate-harness-make-runs-in-both-shells status: pending → passed · raw/2026-09-27/2050/ledger.md#L18 · generate
+- 2026-09-27 estimates/estimate-lint-checks-the-method status: pending → passed · raw/2026-09-27/2050/ledger.md#L19 · generate
+- 2026-09-27 estimates/estimate-lint-finds-a-broken-link status: pending → passed · raw/2026-09-27/2050/ledger.md#L20 · generate
+- 2026-09-27 estimates/estimate-ledger-write-lifts status: pending → passed · raw/2026-09-27/2050/ledger.md#L21 · generate
+- 2026-09-27 estimates/estimate-ledger-write-refuses-a-lesson-without-its-prefix status: pending → passed · raw/2026-09-27/2050/ledger.md#L22 · generate
+- 2026-09-27 estimates/estimate-materialize-judges-a-fence status: pending → passed · raw/2026-09-27/2050/ledger.md#L23 · generate
+- 2026-09-27 estimates/estimate-generate-ticks-the-spec status: pending → passed · raw/2026-09-27/2050/ledger.md#L24 · generate
+- 2026-09-27 estimates/estimate-brief-written status: pending → passed · raw/2026-09-27/2050/ledger.md#L25 · generate
+- 2026-09-27 estimates/estimate-synthesis-keeps-actioned-by-the-mark status: pending → passed · raw/2026-09-27/2050/ledger.md#L26 · generate
+- 2026-09-27 estimates/estimate-harness-pipeline status: pending → passed · raw/2026-09-27/2050/ledger.md#L27 · generate
+- 2026-09-27 estimates/estimate-materialize-assembles status: pending → passed · raw/2026-09-27/2050/ledger.md#L28 · generate
+- 2026-09-27 estimates/estimate-sprint-moves-a-passed-over-item status: pending → passed · raw/2026-09-27/2050/ledger.md#L29 · generate
+- 2026-09-27 estimates/estimate-sprint-migration-rule-class-files-dissolved status: pending → passed · raw/2026-09-27/2050/ledger.md#L30 · generate
+- 2026-09-27 estimates/estimate-documentation-completes status: pending → failed · raw/2026-09-27/2050/ledger.md#L31 · generate
+- 2026-09-27 decisions/decision-case-469 created · raw/2026-09-27/2050/ledger.md#case-469 · generate
+- 2026-09-27 rules/rule-page-generation deferred · [[decision-case-469]] · generate
+- 2026-09-27 lessons/lesson-test-an-absence-assert-writes-the-banned-phrase-into-the-tree created · raw/2026-09-27/2050/ledger.md#L33 · generate
+- 2026-09-27 estimates/estimate-case-protocol-case-form status: pending → passed · raw/2026-09-27/2050/ledger.md#L34 · generate
+- 2026-09-27 estimates/estimate-prespec-reconciles status: pending → passed · raw/2026-09-27/2050/ledger.md#L35 · generate
+- 2026-09-27 estimates/estimate-retro-loads status: pending → passed · raw/2026-09-27/2050/ledger.md#L36 · generate
+- 2026-09-27 rules/rule-brief status: draft → built · cascade · generate
+- 2026-09-27 rules/rule-handoff status: built → draft · cascade · generate
+- 2026-09-27 rules/rule-harness status: draft → built · cascade · generate
+- 2026-09-27 rules/rule-ledger-write status: draft → built · cascade · generate
+- 2026-09-27 rules/rule-lint status: draft → built · cascade · generate
+- 2026-09-27 rules/rule-materialize status: draft → built · cascade · generate
+- 2026-09-27 rules/rule-sprint status: draft → built · cascade · generate
+- 2026-09-27 rules/rule-synthesis status: draft → built · cascade · generate

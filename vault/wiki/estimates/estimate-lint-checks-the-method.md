@@ -1,11 +1,11 @@
 ---
 type: estimate
 kind: QA
-status: pending
+status: passed
 target: "[[rule-lint]]"
 purpose: An Estimate whose method names no form of reading, or a test file or make target that does not exist, is a finding of lint
 method: uv run pytest tests/test_lint.py
-checked: 2026-09-24
+checked: 2026-09-27
 origin: raw/2026-09-24/1916/ledger.md#case-401.4
 sprint: migration
 created: 2026-09-24
@@ -28,10 +28,11 @@ For an Estimate of a Leaf, a `tests/` file that exists, the word `pytest`, a `ma
 
 ## Result
 
-2026-09-24, `uv run pytest tests/test_lint.py`: 69 passed
+2026-09-27, uv run pytest tests/test_lint.py; 75 passed, and live make lint prints no method finding, none on estimate-claude-md-rendered
 
 ## History
 
 - 2026-09-25 created · [[decision-case-401.4]]
 - 2026-09-25 status: pending → passed · raw/2026-09-24/2214/ledger.md#L45
 - 2026-09-27 updated: the Criterion replaced whole — on a MOC with render_mode: full the Estimates of a child with enforcement: render are not counted (case 459) · [[decision-case-459]]
+- 2026-09-27 status: pending → passed · raw/2026-09-27/2050/ledger.md#L19

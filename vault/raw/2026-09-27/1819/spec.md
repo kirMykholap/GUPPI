@@ -46,7 +46,7 @@ create:
 - [x] create `estimate-harness-make-runs-in-both-shells`
 - [x] `Makefile` — reproduce the failure of `make style` from PowerShell first. Then, on Windows only, set `SHELL` to a POSIX `sh` that make finds without Git's `usr/bin` on `PATH`, and stop with one message when none is found. Keep `/usr/bin/sh` elsewhere and every stdin redirect from `/dev/null`. Add the redirect to the `help` recipe. Add one sentence to the header comment on the shell.
 - [x] by hand — `make help`, `make style`, `make test` and `make lint` from PowerShell and from Git Bash: the same exit code in both, no `cmd.exe` error
-- [ ] read `estimate-harness-make-runs-in-both-shells` — by hand, at the first session after the change
+- [x] read `estimate-harness-make-runs-in-both-shells` — by hand, at the first session after the change
 ```
 
 ## Case 458 — A round of questions keeps its grill-me form when it is shown in Russian
@@ -159,7 +159,7 @@ update:
 - [x] `guppi/lint.py`: in the MOC branch of `check_method`, skip the Estimates of a child with `enforcement: render` when the MOC has `render_mode: full`; the module docstring, in the `method` class, and the docstrings of `check_method` and `children_estimates` name the exception and case 459
 - [x] `tests/test_lint.py`: a full MOC with a reading over a render child whose Estimate names a test file passes; the same MOC over a child without `enforcement: render` gives the finding; a MOC without `render_mode: full` over a render child gives the finding
 - [x] `uv run guppi render`: `vault/wiki/estimates/schema.yaml`
-- [ ] read `estimate-lint-checks-the-method`: `uv run pytest tests/test_lint.py`, then `make lint` prints no `method` finding on `estimate-claude-md-rendered`
+- [x] read `estimate-lint-checks-the-method`: `uv run pytest tests/test_lint.py`, then `make lint` prints no `method` finding on `estimate-claude-md-rendered`
 ```
 
 ## Case 460 — A lesson slug carries its prefix: the page renamed, the ledger hook refusing a slug without it, one table of prefixes
@@ -253,7 +253,7 @@ update:
 - [x] `guppi/lint.py`: `check_decision` imports `category_of` from `guppi/materialize.py`, and the module's own `PREFIXES` table is removed; the docstring of the `decision` class names case 460.3
 - [x] `tests/test_lint.py`: a Decision list that names a missing slug with the prefix of a Decision page gives the `decision` finding; one that names a live or archived Decision page gives none; a slug without a known prefix is not looked up
 - [x] by hand — `make lint` on the live vault: no new `decision` finding
-- [ ] read `estimate-lint-finds-a-broken-link`: `uv run pytest tests/test_lint.py` in a later session
+- [x] read `estimate-lint-finds-a-broken-link`: `uv run pytest tests/test_lint.py` in a later session
 ```
 
 ### Case 460.4 — A lesson line refused for its slug does not land
@@ -290,7 +290,7 @@ update:
 
 ```tasks
 - [x] update `estimate-ledger-write-lifts`: the Criterion replaced whole
-- [ ] read `estimate-ledger-write-lifts`: `uv run pytest tests/test_ledger.py tests/test_gate.py` in a later session
+- [x] read `estimate-ledger-write-lifts`: `uv run pytest tests/test_ledger.py tests/test_gate.py` in a later session
 ```
 
 ### Case 460.5 — The ledger hook refuses a lesson line whose slug lacks `lesson-`
@@ -342,7 +342,7 @@ update:
 - [x] update `rule-ledger-write`: the refusal of a lesson slug without its prefix in `## How it works`
 - [x] `guppi/ledger.py`: a function that returns the fresh `lesson[...]` lines whose slug `category_of` does not put under `lessons`, read by `parse_line` and `category_of` imported inside the function as `changed_by_session` does; `run` drops them with the refused readings, prints the stderr line for each one in the reply just finished, and exits 2 when either refusal speaks; the module docstring names case 460.5
 - [x] `tests/test_ledger.py`: a lesson line without `lesson-` in the finished reply is not written, and the hook exits 2 with the stderr line; the same line in an earlier text is skipped silently; a `lesson-` line and the other lines of the `Stop` are written; a lesson line already in a ledger is not judged; an estimate or decision line without a prefix is not refused by this check
-- [ ] read `estimate-ledger-write-refuses-a-lesson-without-its-prefix`: `uv run pytest tests/test_ledger.py` in a later session
+- [x] read `estimate-ledger-write-refuses-a-lesson-without-its-prefix`: `uv run pytest tests/test_ledger.py` in a later session
 ```
 
 ## Case 461 — A defer reply in Plan Mode ends with the Frontier and the question of what comes next
@@ -446,7 +446,7 @@ update:
 - [x] `tests/test_materialize.py`: the fence test asserts `materialize.quoted_sections` once; the calls of `case_text` and `ratified.quoted_sections` are removed
 - [x] `tests/test_ratified.py`: the calls of `ratified.quoted_sections` become calls of `materialize.quoted_sections`
 - [x] `uv run pytest`: the whole suite passes
-- [ ] read `estimate-materialize-judges-a-fence`: `uv run pytest tests/test_materialize.py -k fence` in a later session
+- [x] read `estimate-materialize-judges-a-fence`: `uv run pytest tests/test_materialize.py -k fence` in a later session
 ```
 
 ## Case 463 — A delete ticks the read lines of the Estimate it removes
@@ -507,5 +507,5 @@ update:
 - [x] update `estimate-generate-ticks-the-spec`: the Criterion replaced whole
 - [x] `guppi/generate.py`: in `tick`, a `delete` entry also calls `tick_read` over `raw_specs` with the skip of `later_cases` by its `line` and the skip of `superseded_cases`; the docstrings of `tick` and `tick_read` and the paragraph on the Spec in the docstring of the module name case 463
 - [x] `tests/test_generate.py`: tests that a `delete` of an Estimate ticks its `read` lines in the Spec beside the yaml and in an older Spec of `vault/raw/`; that a `read` line of a Case ratified after the delete stays open; that a `read` line of a superseded Case stays open; that a failed `delete` ticks nothing; and that a Spec under `vault/archive/` stays unchanged
-- [ ] read `estimate-generate-ticks-the-spec`: `uv run pytest tests/test_generate.py` in a later session
+- [x] read `estimate-generate-ticks-the-spec`: `uv run pytest tests/test_generate.py` in a later session
 ```

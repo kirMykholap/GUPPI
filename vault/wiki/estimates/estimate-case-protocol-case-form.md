@@ -1,7 +1,7 @@
 ---
 type: estimate
 kind: QA
-status: pending
+status: passed
 target: "[[rule-case-protocol]]"
 purpose: A built Case carries the whole contract in given, when and then, in the file the person is sent
 method: one reading by hand of the Cases of a session, at its close
@@ -30,7 +30,7 @@ The file opens with the heading `## Case N — name`, a sub-case with `### Case 
 
 ## Result
 
-2026-09-27, by hand, the Cases of session 2300 shown in the chat; the headings, section order, ratification fences, one-reply showing of 443, 444 and 445 and the closing questions hold, and no context shown holds a list, but the context of Case 446 carries a count of items ("in three places only") and case numbers it is not about (378.5, 428.1), and the context of Case 444 names nine Estimates by count-free list yet the problem of Case 445 cites case 410, which the Case is not about
+2026-09-27, raw/2026-09-27/2050/cases/case-464.md to case-468.md read by hand at the close of session 2050; headings and section order as the schema, given one thing per line with its role, then behaviour only, each ＋/－ line on given or when, tasks naming each Estimate with the content as sub-points, ratification one untagged fence, each Case with its sub-cases in one file sent in one reply; "two lines" and "three parts" in the then of 468.1 and 468.2 read as a condition of the form; the person raised no complaint about context, problem or recommend
 
 ## History
 
@@ -57,3 +57,4 @@ The file opens with the heading `## Case N — name`, a sub-case with `### Case 
 - 2026-09-26 status: pending → failed · raw/2026-09-26/1745/ledger.md#L34
 - 2026-09-27 status: failed → failed · raw/2026-09-26/2300/ledger.md#L35
 - 2026-09-27 updated: the Criterion replaced whole — the form stands in the file of a built Case; context, problem and recommend brief plain prose judged by the person's complaint, a case number, a count, a line number or a quotation there no fault; no count of items in given, when and then (case 449) · [[decision-case-449]]
+- 2026-09-27 status: pending → passed · raw/2026-09-27/2050/ledger.md#L34

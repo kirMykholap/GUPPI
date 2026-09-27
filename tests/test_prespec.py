@@ -334,14 +334,6 @@ def test_a_line_with_two_supersedes_blocks_covers_both_cases(tmp_path):  # case 
     ]
 
 
-def test_ratified_both_cases_of_a_two_block_line_in_the_copy_are_no_finding(tmp_path):
-    copy = PLAN_3 + "\n" + SUB + "\n" + SUB.replace("## Case 1 — one", "## Case 2 — two")
-    with_copy(tmp_path, copy)
-    frontier = CLEAN_FRONTIER.replace("case 1", "case 3")
-    _, out, _ = check(tmp_path, ledger=TWO_LINES + TWO_BLOCKS, plan=PLAN_3, frontier=frontier)
-    assert "case 1" not in out and "case 2" not in out
-
-
 def test_a_defer_line_matches_a_defer_item(tmp_path):
     ledger = LINE + "- 16:00:01 decision[case 1][defer][rule-later]\n"
     plan = PLAN.replace(
@@ -1477,72 +1469,72 @@ def test_seven_and_lines_are_no_note(tmp_path):
     assert check(tmp_path, plan=plan) == (0, "", "")
 
 
-# --- the ratified copy (case 387.4) ---------------------------------------------------
+# --- the Cyrillic finding (cases 387.4, 445.4): `estimate-language-spec-prose-in-english` ---
+
+DEFERRED_CASE = """
+## Deferred
+
+## Case 2 — later
+
+> **context:**
+> Later.
+
+> **problem:**
+> Not now.
+
+```then
+defer:
+  - slug: rule-later
+    type: rule
+    purpose: Later
+```
+"""
+DEFER_LINE = "- 16:00:02 decision[case 2][defer][rule-later]{ref:rule-later}\n"
+FRONTIER_WITH_DEFER = CLEAN_FRONTIER + "- [-] F2 — later · owner · defer case 2\n"
 
 
-def with_copy(project_dir, text):
-    (project_dir / "plan.ratified.md").write_text(text, encoding="utf-8", newline="\n")
+def cyrillic_lines(out):
+    return [line for line in out.splitlines() if "Cyrillic" in line]
 
 
-def test_ratified_a_plan_equal_to_its_copy_but_the_name_passes(tmp_path):
-    with_copy(tmp_path, PLAN.replace("## Case 1 — one", "## Case 1 — один"))
-    assert check(tmp_path) == (0, "", "")
-
-
-def test_ratified_a_plan_that_differs_from_its_copy_is_a_finding(tmp_path):
-    with_copy(tmp_path, PLAN.replace("change: one line", "change: another line"))
-    code, out, _ = check(tmp_path)
-    assert code == 1
-    assert "case 1: differs from its ratified copy in then block" in out
-
-
-def test_ratified_a_missing_section_either_way_is_a_finding(tmp_path):
-    with_copy(tmp_path, PLAN.replace("## Case 1 — one", "## Case 2 — two"))
-    code, out, _ = check(tmp_path)
-    assert code == 1
-    assert "case 1: no section in the ratified copy" in out
-    assert "case 2: in the ratified copy, not in the plan" in out
-
-
-def test_ratified_a_superseded_case_in_the_copy_is_no_finding(tmp_path):
-    with_copy(tmp_path, PLAN + PLAN.replace("## Case 1 — one", "## Case 2 — two"))
-    superseding = "- 16:10:00 decision[case 1][update][rule-x]{ref:rule-x}{supersedes:case 2}"
-    _, out, _ = check(tmp_path, ledger=LINE + superseding + "\n")
-    assert "case 2" not in out
-
-
-PARENT = "## Case 2 — two\n\n> **context:**\n> The parent.\n\n"
-SUB = PLAN.split("\n", 2)[2]  # Case 1's section, the title line of the plan dropped
-
-
-def sub_case(number):
-    return SUB.replace("## Case 1 — one", f"### Case 2.{number} — sub")
-
-
-def superseding(*cases):
-    return "".join(
-        f"- 16:10:00 decision[case 1][update][rule-x]{{ref:rule-x}}{{supersedes:case {c}}}\n"
-        for c in cases
+def test_cyrillic_a_name_a_context_and_a_problem_are_found(tmp_path):
+    plan = PLAN.replace("## Case 1 — one", "## Case 1 — один").replace(
+        "> Something.", "> Что-то.\n\n> **problem:**\n> Вопрос."
     )
-
-
-def test_ratified_a_parent_whose_sub_cases_are_all_superseded_is_no_finding(tmp_path):
-    with_copy(tmp_path, PLAN + "\n" + PARENT + sub_case(1) + "\n" + sub_case(2))
-    _, out, _ = check(tmp_path, ledger=superseding("2.1", "2.2"))
-    assert "case 2" not in out
-
-
-def test_ratified_a_parent_with_a_sub_case_not_superseded_is_still_a_finding(tmp_path):
-    with_copy(tmp_path, PLAN + "\n" + PARENT + sub_case(1) + "\n" + sub_case(2))
-    _, out, _ = check(tmp_path, ledger=superseding("2.1"))
-    assert "case 2: in the ratified copy, not in the plan" in out
-    assert "case 2.2: in the ratified copy, not in the plan" in out
-    assert "case 2.1:" not in out
-
-
-def test_ratified_prose_still_in_russian_is_a_finding_with_or_without_a_copy(tmp_path):
-    plan = PLAN.replace("## Case 1 — one", "## Case 1 — один").replace("Something.", "Что-то.")
     code, out, _ = check(tmp_path, plan=plan)
     assert code == 1
-    assert "case 1: its name still holds Cyrillic — translate it" in out
-    assert "case 1: its context still holds Cyrillic — translate it" in out
+    assert cyrillic_lines(out) == [
+        "case 1: its name still holds Cyrillic — translate it",
+        "case 1: its context still holds Cyrillic — translate it",
+        "case 1: its problem still holds Cyrillic — translate it",
+    ]
+
+
+def test_cyrillic_a_short_form_under_deferred_is_found(tmp_path):
+    plan = PLAN + DEFERRED_CASE.replace("## Case 2 — later", "## Case 2 — позже").replace(
+        "> Later.", "> Позже."
+    )
+    code, out, _ = check(
+        tmp_path, plan=plan, ledger=LINE + DEFER_LINE, frontier=FRONTIER_WITH_DEFER
+    )
+    assert code == 1
+    assert cyrillic_lines(out) == [
+        "case 2: its name still holds Cyrillic — translate it",
+        "case 2: its context still holds Cyrillic — translate it",
+    ]
+
+
+def test_cyrillic_in_given_when_then_or_a_block_is_not_found(tmp_path):
+    plan = frame_plan("`rule-x` — правило.", "Агент пишет.", "`rule-x` держится.").replace(
+        "change: one line", "change: одна строка"
+    )
+    plan = plan.replace("- [ ] guppi/x.py: the change", "- [ ] guppi/x.py: изменение")
+    assert check(tmp_path, plan=plan) == (0, "", "")
+
+
+def test_cyrillic_an_english_plan_is_clean(tmp_path):
+    plan = PLAN + DEFERRED_CASE
+    code, out, err = check(
+        tmp_path, plan=plan, ledger=LINE + DEFER_LINE, frontier=FRONTIER_WITH_DEFER
+    )
+    assert (code, out, err) == (0, "", "")

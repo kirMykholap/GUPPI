@@ -1,6 +1,6 @@
-"""`guppi ratified`: the `Stop` hook that writes a ratified Case from the chat into the plan
-and its ratified copy (case 387.2), and `--edit`, the `PostToolUse` hook that compares an
-edited plan with that copy (case 387.3).
+"""`guppi ratified`: the `Stop` hook that writes a ratified Case from the chat into the plan,
+and no ratified copy (cases 387.2, 445.2), and `--guard`, the `PreToolUse` hook that refuses
+the agent's edit of the plan and of its store (case 445.1).
 
 Every test feeds the payload through a stream, the shape a hook is really handed.
 """
@@ -10,8 +10,10 @@ import json
 from datetime import UTC, date, datetime
 
 import pytest
+import yaml
 
 from guppi import casecheck, ratified
+from guppi.ledger import plan_path, session_event_logs
 from guppi.materialize import split_cases, then_blocks
 
 TODAY = date(2026, 9, 9)
@@ -180,44 +182,79 @@ def stop(project, reply, *messages, built=True, **fields):
     return code, err.getvalue()
 
 
-def edit(project, path=None):
-    stdin = io.StringIO(
-        json.dumps(
-            {"tool_name": "Edit", "tool_input": {"file_path": str(path or plan_of(project))}}
-        )
-    )
-    out = io.StringIO()
-    code = ratified.run(["--edit"], stdin=stdin, stdout=out, project_dir=project, now=NOW)
-    return code, out.getvalue()
+def guard(project, tool, path, content=None, **fields):
+    tool_input = {"file_path": str(path)}
+    if content is not None:
+        tool_input["content"] = content
+    fields.setdefault("session_id", SESSION)
+    stdin = io.StringIO(json.dumps({"tool_name": tool, "tool_input": tool_input, **fields}))
+    err = io.StringIO()
+    code = ratified.run(["--guard"], stdin=stdin, stderr=err, project_dir=project, now=NOW)
+    return code, err.getvalue()
+
+
+def copies(project):
+    """Every file beside the plan named like the ratified copy of before case 445.2."""
+    return list((project / ".claude" / "plans").glob("*.ratified.md"))
 
 
 # --- the write (case 387.2) ------------------------------------------------------------
 
 
-def test_write_the_ratified_case_goes_into_the_plan_and_the_copy(working):
+def test_write_the_ratified_case_goes_into_the_plan_and_no_copy(working):
     assert stop(working, ACK, SHOWING, ACK) == (0, "")
     plan = plan_of(working).read_text(encoding="utf-8")
-    copy = ratified.copy_of(plan_of(working)).read_text(encoding="utf-8")
-    for text in (plan, copy):
-        lines = split_cases(text)["7"]
-        assert "## Case 7 — пример" in text
-        sections = ratified.quoted_sections(lines, ratified.SPEC_SECTIONS)
-        assert (
-            sections["given"] == "`rule-x` — the rule.\n**＋** `estimate-x-works` — its Estimate."
-        )
-        assert sections["context"] == "Контекст." and sections["problem"] == "Проблема."
-        assert "recommend" not in text and "**ratification:**" not in text
-        block, errors = then_blocks(lines)
-        assert errors == [] and block == EXPECTED_BLOCK
-        tasks = "\n".join(ratified.tagged_blocks(lines, "tasks"))
-        assert tasks.splitlines() == [
-            "- [ ] update `rule-x` — one `replace` pair",
-            "- [ ] create `estimate-x-works`",
-            "- [ ] `guppi/x.py` — the code",
-            "- [ ] read `estimate-x-works`",
-        ]
+    lines = split_cases(plan)["7"]
+    assert "## Case 7 — пример" in plan
+    sections = ratified.quoted_sections(lines, ratified.SPEC_SECTIONS)
+    assert sections["given"] == "`rule-x` — the rule.\n**＋** `estimate-x-works` — its Estimate."
+    assert sections["context"] == "Контекст." and sections["problem"] == "Проблема."
+    assert "recommend" not in plan and "**ratification:**" not in plan
+    block, errors = then_blocks(lines)
+    assert errors == [] and block == EXPECTED_BLOCK
+    tasks = "\n".join(ratified.tagged_blocks(lines, "tasks"))
+    assert tasks.splitlines() == [
+        "- [ ] update `rule-x` — one `replace` pair",
+        "- [ ] create `estimate-x-works`",
+        "- [ ] `guppi/x.py` — the code",
+        "- [ ] read `estimate-x-works`",
+    ]
     assert plan.startswith("# Spec — 2026-09-09, session 1501\n")
-    assert copy.startswith("# Ratified copy of plan.md\n")
+    assert copies(working) == []  # case 445.2: no `.ratified.md` beside the plan
+
+
+FENCED_CRITERION = (
+    ">   - sections.Criterion:\n"
+    ">     `````text\n"
+    ">     When: a\n"
+    ">     ````\n"
+    ">     ```\n"
+    ">     x\n"
+    ">     ```\n"
+    ">     ````\n"
+    ">     Then: b\n"
+    ">     `````\n"
+)
+
+
+def test_write_a_block_is_fenced_by_its_content(working):
+    # 444.2: a value holding fences of three and four backticks goes into a block fenced by
+    # five, read back whole; the tasks block, with no fence inside, keeps three
+    showing = SHOWING.replace(
+        ">   - sections.Criterion:\n>     ```text\n>     When: a\n>     Then: b\n>     ```\n",
+        FENCED_CRITERION,
+    )
+    assert showing != SHOWING
+    assert stop(working, ACK, showing, ACK) == (0, "")
+    plan = plan_of(working).read_text(encoding="utf-8")
+    assert "\n`````then\n" in plan and "\n```tasks\n" in plan
+    lines = split_cases(plan)["7"]
+    criterion = "When: a\n````\n```\nx\n```\n````\nThen: b"
+    (text,) = ratified.tagged_blocks(lines, "then")
+    assert yaml.safe_load(text)["create"][0]["sections"] == {"Criterion": criterion}
+    block, errors = then_blocks(lines)
+    assert errors == [] and block["create"][0]["sections"] == {"Criterion": criterion}
+    assert len("\n".join(ratified.tagged_blocks(lines, "tasks")).splitlines()) == 4
 
 
 def test_write_a_second_showing_replaces_the_section_and_keeps_the_prose(working):
@@ -349,18 +386,18 @@ ACK_SUPERSEDES = ACK.replace("{ref:rule-x}\n", "{ref:rule-x}{supersedes:case 5}\
 
 
 def seed_old(project, text=OLD_CASES):
-    for path in (plan_of(project), ratified.copy_of(plan_of(project))):
-        path.write_text(f"# Spec\n\n{text}", encoding="utf-8")
+    plan_of(project).write_text(f"# Spec\n\n{text}", encoding="utf-8")
     return approved_spec(project, f"{STAMP}\n\n# Spec\n\n{text}")
 
 
-def test_superseded_a_case_and_its_sub_cases_leave_the_plan_the_copy_and_the_spec(working):
+def test_superseded_a_case_and_its_sub_cases_leave_the_plan_and_the_spec(working):
     spec = seed_old(working)
     assert stop(working, ACK_SUPERSEDES, SHOWING, ACK_SUPERSEDES) == (0, "")
-    for path in (plan_of(working), ratified.copy_of(plan_of(working)), spec):
+    for path in (plan_of(working), spec):
         text = path.read_text(encoding="utf-8")
         assert "Case 5" not in text and "## Case 7 —" in text, path
         assert "\n\n\n" not in text
+    assert copies(working) == []  # case 445.3: no copy to remove it from
 
 
 def test_superseded_a_sub_case_leaves_alone(working):
@@ -414,7 +451,7 @@ def test_write_a_defer_goes_under_deferred_of_the_plan(working):
     assert ratified.tagged_blocks(lines, "then") == [
         "defer:\n  - slug: rule-y\n    type: rule\n    purpose: Later"
     ]
-    assert not ratified.copy_of(plan_of(working)).exists()
+    assert "\n```then\n" in plan  # 444.2: no fence inside, three backticks
 
 
 def test_write_several_defers_and_one_beside_a_ratified_case(working):
@@ -492,7 +529,6 @@ def test_write_a_foreign_key_of_an_update_or_a_delete_is_refused(working):
     code, err = stop(working, ACK, wrong, ACK)
     assert code == 2 and "`replace old`: not a key of update rule-x" in err
     assert "Case 7" not in plan_of(working).read_text(encoding="utf-8")
-    assert not ratified.copy_of(plan_of(working)).exists()
 
 
 def test_read_an_old_under_a_delete_is_refused(working):
@@ -619,8 +655,7 @@ def test_checks_the_written_case_a_finding_exits_2_and_the_case_stays(working):
     code, err = stop(working, ACK, OUT_OF_FRAME, ACK)
     assert code == 2
     assert err.startswith("ratified: ") and "case 7: guppi/y.py is not named in its given" in err
-    for path in (plan_of(working), ratified.copy_of(plan_of(working))):
-        assert "## Case 7 — пример" in path.read_text(encoding="utf-8")
+    assert "## Case 7 — пример" in plan_of(working).read_text(encoding="utf-8")
 
 
 def test_checks_the_written_case_a_clean_one_exits_0_on_the_lines_of_the_reply(working):
@@ -650,76 +685,83 @@ def test_checks_the_written_case_the_re_fire_checks_nothing(working):
     assert stop(working, ACK, OUT_OF_FRAME, ACK, stop_hook_active=True) == (0, "")
 
 
-# --- the reconciliation (case 387.3) -------------------------------------------------
+# --- the guard on the plan (case 445.1): `estimate-spec-reconcile-refuses-an-edit-of-the-plan`
 
 
-def test_reconcile_an_edit_of_what_the_scripts_apply_is_named_and_marked(working):
-    stop(working, ACK, SHOWING, ACK)
-    plan = plan_of(working)
-    plan.write_text(
-        plan.read_text(encoding="utf-8").replace("The file is written.", "Two files."),
-        encoding="utf-8",
+@pytest.mark.parametrize("tool", ["Edit", "MultiEdit"])
+def test_guard_an_edit_of_the_plan_is_refused(working, tool):
+    code, err = guard(working, tool, plan_of(working))
+    assert code == 2
+    assert err.startswith("ratified: ") and "rule-spec-reconcile" in err
+    assert err.count("\n") == 1
+
+
+def test_guard_a_write_of_an_existing_plan_is_refused(working):
+    code, err = guard(working, "Write", plan_of(working), "# Spec — again\n")
+    assert code == 2 and "is the plan of the session" in err
+
+
+def test_guard_a_write_that_creates_a_plan_with_one_title_line_passes(working):
+    new = working / ".claude" / "plans" / "new-plan.md"
+    assert guard(working, "Write", new, "# Spec — 2026-09-09, session 1501\n") == (0, "")
+    assert guard(working, "Write", new, "  \n# Spec\n\n") == (0, "")  # trimmed, one line
+
+
+@pytest.mark.parametrize(
+    "content",
+    ["# Spec\n\n## Case 1 — one\n", "Spec\n", "", "#Spec\n"],
+    ids=["a title and a case", "no hash", "empty", "no space"],
+)
+def test_guard_a_write_that_creates_a_plan_with_anything_else_is_refused(working, content):
+    new = working / ".claude" / "plans" / "new-plan.md"
+    code, err = guard(working, "Write", new, content)
+    assert code == 2 and "title line alone" in err
+
+
+@pytest.mark.parametrize("tool", ["Edit", "Write", "MultiEdit"])
+def test_guard_every_edit_of_a_store_is_refused(working, tool):
+    store = casecheck.store_of(plan_of(working))
+    code, err = guard(working, tool, store, "{}")
+    assert code == 2 and "store of the answers of case-guppi" in err
+
+
+@pytest.mark.parametrize(
+    "path",
+    ["notes.md", ".claude/settings.json", ".claude/skills/hi/SKILL.md", "plans/plan.md"],
+)
+def test_guard_a_file_outside_the_plans_is_let_through(working, path):
+    for tool in ("Edit", "Write", "MultiEdit"):
+        assert guard(working, tool, working / path, "x\ny\n") == (0, "")
+
+
+def test_guard_another_tool_is_not_judged(working):
+    assert guard(working, "Read", plan_of(working)) == (0, "")
+
+
+def test_guard_a_refusal_writes_its_line_and_no_tool_line(working):
+    log = working / "vault" / "raw" / TODAY.isoformat() / "event_log.md"
+    before = log.read_text(encoding="utf-8").splitlines()
+    assert guard(working, "Edit", plan_of(working))[0] == 2
+    after = log.read_text(encoding="utf-8").splitlines()
+    (line,) = after[len(before) :]
+    assert line.startswith("- 15:30:00 44c1aae1 ratified refused Edit ")
+    assert not [ln for ln in after[len(before) :] if " tool " in ln]
+    assert plan_path(session_event_logs(working, NOW, "44c1aae1"), "44c1aae1") == plan_of(working)
+
+
+def test_guard_an_unreadable_payload_exits_0_with_one_line(working):
+    err = io.StringIO()
+    code = ratified.run(
+        ["--guard"], stdin=io.StringIO("not json"), stderr=err, project_dir=working, now=NOW
     )
-    code, out = edit(working)
-    assert code == 0
-    context = json.loads(out)["hookSpecificOutput"]["additionalContext"]
-    assert "case 7: then changed since the ratification" in context
-    assert ratified.read_marks(plan) == ["7"]
+    assert code == 0 and err.getvalue().count("\n") == 1
 
 
-def test_reconcile_an_edit_of_prose_alone_is_silent(working):
-    stop(working, ACK, SHOWING, ACK)
-    plan = plan_of(working)
-    plan.write_text(
-        plan.read_text(encoding="utf-8")
-        .replace("Контекст.", "Context.")
-        .replace("пример", "example"),
-        encoding="utf-8",
-    )
-    assert edit(working) == (0, "")
-    assert ratified.read_marks(plan) == []
+def test_guard_cli_dispatches_the_flag(working, monkeypatch, capsys):
+    from guppi import cli
 
-
-def test_reconcile_a_marked_case_not_shown_whole_is_refused_once(working):
-    stop(working, ACK, SHOWING, ACK)
-    plan = plan_of(working)
-    plan.write_text(
-        plan.read_text(encoding="utf-8")
-        .replace("`the new text`", "`other`")
-        .replace("new: the new text", "new: other"),
-        encoding="utf-8",
-    )
-    edit(working)
-    code, err = stop(working, "Changed it.", "Changed it.")
-    assert code == 2 and "case 7 changed in then block since its ratification" in err
-    assert ratified.read_marks(plan) == []
-    assert stop(working, "An answer to a question.", "An answer to a question.") == (0, "")
-
-
-def test_reconcile_a_marked_case_shown_whole_passes(working):
-    stop(working, ACK, SHOWING, ACK)
-    plan = plan_of(working)
-    plan.write_text(
-        plan.read_text(encoding="utf-8").replace("The file is written.", "Two files."),
-        encoding="utf-8",
-    )
-    edit(working)
-    reshown = SHOWING.replace("The file is written.", "Two files.")
-    assert stop(working, reshown, reshown) == (0, "")
-
-
-def test_reconcile_another_file_or_no_copy_is_not_compared(working):
-    other = working / "notes.md"
-    other.write_text("## Case 7 — x\n", encoding="utf-8")
-    assert edit(working, other) == (0, "")
-    assert edit(working) == (0, "")  # no copy yet
-
-
-def test_differences_skip_the_deferred_and_untranslated_finds_cyrillic():
-    copy = (
-        "## Case 1 — a\n\n> **then:**\n> A.\n\n## Deferred\n\n## Case 2 — b\n\n> **then:**\n> B.\n"
-    )
-    plan = copy.replace("> A.", "> C.").replace("> B.", "> D.")
-    assert ratified.differences(plan, copy) == {"1": ["then"]}
-    text = "## Case 1 — имя\n\n> **context:**\n> Text.\n\n> **problem:**\n> Вопрос.\n"
-    assert ratified.untranslated(text) == [("1", "name"), ("1", "problem")]
+    payload = {"tool_name": "Edit", "tool_input": {"file_path": str(plan_of(working))}}
+    monkeypatch.setenv("CLAUDE_PROJECT_DIR", str(working))
+    monkeypatch.setattr("sys.stdin", io.StringIO(json.dumps(payload)))
+    assert cli.main(["ratified", "--guard"]) == 2
+    assert "rule-spec-reconcile" in capsys.readouterr().err

@@ -11,12 +11,13 @@ form, builds the section of each in the Spec in memory by `ratified.case_section
 reading of the Spec hook, which refuses a sub-point outside `materialize.item_keys` (case
 436.1) — and runs `prespec.judge` over them, the decision lines of each `ratification` fence
 standing for the ledger; the categories whose schema rule those lines or the session's ledger
-change are not judged by their keys (case 436.4). The Frontier, the ratified copy and the
-grammar of the window stay with `/pre-spec`. It checks besides the
+change are not judged by their keys (case 436.4). The Frontier and the grammar of the window
+stay with `/pre-spec` (case 445.2). It checks besides the
 chat form: the sections in the order of the schema; the ones a Case needs — a parent's
 `context` and `problem`, and `when`, `then`, `tasks` and `ratification` of a Case with no
 sub-cases (`given` too, unless it is a sub-case); and a `ratification` of one untagged fence of
-ledger lines and nothing else. A count in a story section is not checked: no script tells a
+ledger lines and nothing else, the fence judged by `materialize.fence_opening` and
+`closes_fence` (case 444.1). A count in a story section is not checked: no script tells a
 count from other words. Each Case of the answer is stored with its findings in
 `<plan>.checked.json` beside the plan file of the session, a later answer for the same id
 replacing it. A finding exits 2 with the findings on stderr, and Claude Code sends the agent
@@ -53,7 +54,14 @@ from pathlib import Path
 
 from guppi.event import project_root, read_payload, session_stamp
 from guppi.ledger import plan_path, read_records, reply_text, session_dir, session_event_logs
-from guppi.materialize import parse_line, schema_changed, split_cases, tagged_blocks
+from guppi.materialize import (
+    closes_fence,
+    fence_opening,
+    parse_line,
+    schema_changed,
+    split_cases,
+    tagged_blocks,
+)
 from guppi.prespec import FINDING_CASE, judge
 from guppi.ratified import CHAT_SECTIONS, case_section, headings, key_judge, quoted_sections
 
@@ -124,10 +132,12 @@ def form_findings(case: str, lines: list[str], cases: dict) -> list[str]:
         findings.append(f"case {case}: missing section {', '.join(missing)}")
     if "ratification" in sections:
         body = [line.strip() for line in sections["ratification"].splitlines() if line.strip()]
+        opening = fence_opening(body[0]) if body else None  # the one judgment (case 444.1)
         if not (
             len(body) >= 3
-            and body[0] == "```"
-            and body[-1] == "```"
+            and opening is not None
+            and opening[2] == ""
+            and closes_fence(body[-1], opening)
             and all(line.startswith(LEDGER_LINE) for line in body[1:-1])
         ):
             findings.append(

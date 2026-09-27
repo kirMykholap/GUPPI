@@ -16,7 +16,15 @@ raw/<date>/<HHMM>/` for the line it wrote, `hi: already recorded at HH:MM:SS →
 <HHMM>/` for the one that exists; the `/hi` skill takes the session's folder from it (case
 125).
 
-The hook never fails the session. Every error goes to stderr and the exit code is 0.
+`/hi` opens a working session only in plan mode (case 445.6). A `/hi` whose `permission_mode`
+is not `plan` — `default`, `acceptEdits`, `auto`, `dontAsk`, `bypassPermissions`, or the
+field missing or empty, a second `/hi` included — writes no line, prints nothing on stdout and
+exits 2 with a reason on stderr that tells the person to turn plan mode on and type `/hi`
+again; Claude Code blocks the prompt, and the skill does not run. `hi_refusal` is the one
+judgment; any other prompt is not judged, and its `permission_mode` is not read.
+
+The hook never fails the session on an error: every error goes to stderr and the exit code is
+0. Its one exit 2 is the refusal of a `/hi` outside plan mode.
 """
 
 import argparse
@@ -104,9 +112,29 @@ def format_line(name: str, payload: dict, words: list[str], session: str | None,
 HI_PROMPT = "/hi"
 
 
+PLAN_MODE = "plan"
+HI_REFUSED = (
+    "hi: /hi opens a working session only in plan mode, and this prompt came in permission "
+    "mode {mode}. Turn plan mode on and type /hi again."
+)
+
+
 def is_hi_prompt(prompt) -> bool:
     text = str(prompt or "").strip()
     return text == HI_PROMPT or text.startswith(HI_PROMPT + " ")
+
+
+def hi_refusal(payload: dict) -> str | None:
+    """The reason a `/hi` payload is refused, or None when it passes: the one judgment of a
+    `/hi` by its `permission_mode` (case 445.6). Only `plan` passes; any other value, and a
+    field missing or empty, is refused — a second `/hi` too. Any other prompt is not judged,
+    and its `permission_mode` is not read."""
+    if not is_hi_prompt(payload.get("prompt")):
+        return None
+    mode = payload.get("permission_mode")
+    if mode == PLAN_MODE:
+        return None
+    return HI_REFUSED.format(mode=f"'{mode}'" if mode else "not given")
 
 
 def hi_written(project_dir: Path, now, stamp: str) -> bool:
@@ -205,6 +233,10 @@ def run(
         args = parser().parse_args(argv)
         payload = read_payload(stdin)
         if args.name == "prompt":
+            refusal = hi_refusal(payload)
+            if refusal is not None:  # no line, nothing on stdout; Claude Code blocks the prompt
+                print(refusal, file=stderr)
+                return 2
             context = hi_context(payload, args.session, project_dir, now)
             line = prompt_line(payload, args.session, project_dir, now)
             if line is not None:

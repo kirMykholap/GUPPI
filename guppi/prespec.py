@@ -82,18 +82,14 @@ the ledgers of its dates, on the `hi` date from the `hi` time on, and its folder
   slug of its `then` block the `given` does not name; a slug is a span with a category
   prefix by `materialize.category_of`, a path a span holding a `/` and one more character;
   a Case without `given` is not checked;
-- the ratified copy (case 387.4): beside a plan file with a copy `<plan>.ratified.md`, a Case
-  whose `given`, `when`, `then`, `then` block or `tasks` differ from its section there, by
-  `ratified.differences` — the one comparison the hooks of `rule-spec-reconcile` use — a Case
-  of the plan with no section in the copy, and a section of the copy with no Case in the
-  plan, a Case a `{supersedes:case N}` of the window names excepted, and a parent with
-  sub-cases in the copy, every one of them named by such a line (case 417), the Cases under
-  `## Deferred` not compared; and every name, `context` or `problem` that still holds a
-  Cyrillic letter — the agent translates them before the check.
+- the language (cases 387.4, 445.4): every name, `context` or `problem` of a Case of the plan
+  that still holds a Cyrillic letter, a short form under `## Deferred` included, by
+  `ratified.untranslated`; the `given`, `when`, `then` and the blocks are not read, and the
+  plan is compared with no other file — the ratified copy is gone (case 445.2).
 
 The check after a write (case 414.1): `written_findings` runs the same checks, `judge`, for
 the `Stop` hook of `rule-spec-write` on the Cases it wrote, with the decision lines of the
-reply added, and without the Frontier, the ratified copy and the grammar of the window.
+reply added, and without the Frontier, the Cyrillic finding and the grammar of the window.
 
 Notes (case 378.8): a Case whose `given` or `then` holds more than seven `**＋**` lines —
 a sign it is not atomic — is one line opening with `note:`, answered in the chat.
@@ -126,9 +122,9 @@ from guppi.ledger import (
 from guppi.lint import CODE_SPAN, WIKILINK, archived_slugs, hub_files, names_a_form
 from guppi.materialize import (
     DECISION_KINDS,
-    FENCE,
     case_texts,
     category_of,
+    fenced_lines,
     find_item,
     item_keys,
     parse_line,
@@ -137,7 +133,6 @@ from guppi.materialize import (
     tagged_blocks,
     then_blocks,
     touches_criterion,
-    unquote,
 )
 from guppi.pages import CATEGORIES, Page, read_category, read_page, wiki_root
 
@@ -791,21 +786,13 @@ def chain_notes(cases: dict) -> list[str]:
 
 def plan_prose(lines: list[str]) -> list[str]:
     """The lines of a Case a `[[slug]]` is read from: the ones outside any fence and the
-    ones inside a fence tagged `then`; a fence with another tag or none is skipped."""
-    out: list[str] = []
-    fence_open = reading = False
-    for raw in lines:
-        line = unquote(raw)
-        match = FENCE.match(line)
-        if match:
-            if not fence_open:
-                fence_open, reading = True, match.group(1).lower() == "then"
-            else:
-                fence_open = False
-            continue
-        if not fence_open or reading:
-            out.append(line)
-    return out
+    ones inside a fence tagged `then`; a fence with another tag or none is skipped. The fence
+    is judged by `materialize.fenced_lines`, the walk of `tagged_blocks` (case 444.1)."""
+    return [
+        line
+        for line, opening in fenced_lines(lines)
+        if line is not None and (opening is None or opening[2] == "then")
+    ]
 
 
 def known_slugs(project_dir: Path) -> set[str]:
@@ -841,40 +828,14 @@ def check_bare_links(cases: dict, blocks: dict, project_dir: Path) -> list[str]:
     return findings
 
 
-def check_ratified(plan: str, plan_file: Path | None, records: list[dict]) -> list[str]:
-    """387.4: the plan against its ratified copy `<plan>.ratified.md` by `ratified.differences`,
-    the one comparison — a Case that differs in what the scripts apply, a Case with no section
-    in the copy, a section of the copy with no Case in the plan, a Case a `{supersedes:case N}`
-    of the window names excepted, and a parent with sub-cases in the copy, every one of them
-    named by such a line, which left the plan with them (case 417); then every name, `context`
-    or `problem` of the plan that still holds a Cyrillic letter. No copy — a plan written
-    before case 387 — no comparison."""
-    findings: list[str] = []
-    copy = ratified.copy_of(plan_file) if plan_file is not None else None
-    if copy is not None and copy.is_file():
-        text = copy.read_text(encoding="utf-8")
-        superseded = superseded_in_window(records)
-        for case, parts in ratified.differences(plan, text).items():
-            findings.append(f"case {case}: differs from its ratified copy in {', '.join(parts)}")
-        ours, theirs = ratified.outside_deferred(plan), ratified.outside_deferred(text)
-        findings += [
-            f"case {case}: no section in the ratified copy" for case in ours if case not in theirs
-        ]
-
-        def left(case: str) -> bool:
-            subs = [other for other in theirs if other.startswith(case + ".")]
-            return case in superseded or (bool(subs) and all(s in superseded for s in subs))
-
-        findings += [
-            f"case {case}: in the ratified copy, not in the plan"
-            for case in theirs
-            if case not in ours and not left(case)
-        ]
-    findings += [
+def check_untranslated(plan: str) -> list[str]:
+    """387.4, 445.4: every name, `context` or `problem` of a Case of the plan that still holds
+    a Cyrillic letter, a short form under `## Deferred` included, by `ratified.untranslated`;
+    the plan is compared with no other file."""
+    return [
         f"case {case}: its {part} still holds Cyrillic — translate it"
         for case, part in ratified.untranslated(plan)
     ]
-    return findings
 
 
 def judge(
@@ -888,7 +849,7 @@ def judge(
     """The checks of `--check` on the plan's Cases, in the order they print. `lines`, the
     window's record lines, adds their grammar (75.2); `frontier`, its path and the name a
     finding gives it, adds the Frontier (59.2). The check after a write passes neither, and
-    the comparison with the ratified copy stays with `check` (case 414.1). `schema_free`: the
+    the Cyrillic finding stays with `check` (cases 414.1, 445.4). `schema_free`: the
     categories whose keys are not judged, by default those `records` change (case 436.2)."""
     if schema_free is None:
         schema_free = schema_changed(records)
@@ -915,9 +876,7 @@ def judge(
     return findings
 
 
-def check(
-    plan: str, project_dir: Path, stamp: str, now, stdout, stderr, plan_file: Path | None = None
-) -> int:
+def check(plan: str, project_dir: Path, stamp: str, now, stdout, stderr) -> int:
     logs = session_event_logs(project_dir, now, stamp)
     hi = hi_moment(logs, stamp)
     folder = session_dir(project_dir, now, stamp)
@@ -928,7 +887,7 @@ def check(
     records = session_decisions(lines)
     relative = folder.relative_to(project_dir).as_posix() + "/frontier.md"
     findings = judge(plan, project_dir, records, lines, (folder / "frontier.md", relative))
-    findings += check_ratified(plan, plan_file, records)
+    findings += check_untranslated(plan)
     for line in findings + chain_notes(split_cases(plan)):
         print(line, file=stdout)
     return 1 if findings else 0
@@ -944,7 +903,7 @@ def written_findings(
     wrote in one run and on their sub-cases, a finding of another Case left out. The records
     are the window's decision lines and `extra`, the lines of the reply itself, each once: the
     ledger hook runs in parallel on the same `Stop`, so `ledger.md` may not hold them yet. No
-    Frontier, no ratified copy, no grammar of the window: they stay with `/pre-spec`."""
+    Frontier, no Cyrillic finding, no grammar of the window: they stay with `/pre-spec`."""
     hi = hi_moment(session_event_logs(project_dir, now, stamp), stamp)
     lines = window_lines(project_dir, hi, now.date().isoformat()) if hi else []
     records: list[dict] = []
@@ -992,7 +951,7 @@ def run(
         if stamp is None:
             print(NO_SESSION, file=stderr)
             return 2
-        return check(plan, project_dir, stamp, now, stdout, stderr, plan_file)
+        return check(plan, project_dir, stamp, now, stdout, stderr)
     try:
         payload = read_payload(stdin)
         if payload.get("tool_name") != TOOL:

@@ -154,8 +154,11 @@ def test_cli_dispatches_to_event(tmp_path, monkeypatch, capsys, pinned_clock):
 # --- case 111.1: the hi line on UserPromptSubmit, stamped, once per session --------------
 
 
-def prompt_payload(prompt, session="abc12345-6789"):
-    return payload(session_id=session, hook_event_name="UserPromptSubmit", prompt=prompt)
+def prompt_payload(prompt, session="abc12345-6789", mode="plan"):
+    fields = {"session_id": session, "hook_event_name": "UserPromptSubmit", "prompt": prompt}
+    if mode is not None:
+        fields["permission_mode"] = mode
+    return payload(**fields)
 
 
 def test_the_hi_prompt_writes_a_stamped_hi_line(tmp_path):
@@ -204,7 +207,8 @@ def test_any_other_prompt_writes_nothing(tmp_path, prompt):
 
 
 def test_a_prompt_without_a_session_id_writes_nothing(tmp_path):
-    code, err = run(["prompt"], payload(hook_event_name="UserPromptSubmit", prompt="/hi"), tmp_path)
+    stdin = payload(hook_event_name="UserPromptSubmit", prompt="/hi", permission_mode="plan")
+    code, err = run(["prompt"], stdin, tmp_path)
     assert code == 0 and err == ""
     assert not (tmp_path / "vault" / "raw").exists()
 
@@ -251,6 +255,43 @@ def test_any_other_prompt_prints_nothing(tmp_path, prompt):
 
 
 def test_a_hi_prompt_without_a_session_id_prints_nothing(tmp_path):
-    assert run_out(
-        ["prompt"], payload(hook_event_name="UserPromptSubmit", prompt="/hi"), tmp_path
-    ) == (0, "", "")
+    stdin = payload(hook_event_name="UserPromptSubmit", prompt="/hi", permission_mode="plan")
+    assert run_out(["prompt"], stdin, tmp_path) == (0, "", "")
+
+
+# --- case 445.6: /hi opens a working session only in plan mode ----------------------------
+
+NOT_PLAN = ["default", "acceptEdits", "auto", "dontAsk", "bypassPermissions", None, ""]
+
+
+def test_plan_mode_hi_writes_the_line(tmp_path):
+    run(["session-start"], payload(session_id="abc12345-6789", source="startup"), tmp_path)
+    code, out, err = run_out(["prompt"], prompt_payload("/hi", mode="plan"), tmp_path)
+    assert (code, err) == (0, "")
+    assert out == "hi: 15:02:11 abc12345 → raw/2026-09-09/1502/\n"
+    assert log_lines(tmp_path)[-1] == "- 15:02:11 abc12345 hi"
+
+
+@pytest.mark.parametrize("mode", NOT_PLAN, ids=[m if m else repr(m) for m in NOT_PLAN])
+def test_plan_mode_hi_outside_it_is_refused(tmp_path, mode):
+    # a mode other than plan, the field missing (None) or empty: no line, nothing on stdout
+    run(["session-start"], payload(session_id="abc12345-6789", source="startup"), tmp_path)
+    code, out, err = run_out(["prompt"], prompt_payload("/hi", mode=mode), tmp_path)
+    assert (code, out) == (2, "")
+    assert "plan mode" in err and "/hi again" in err and err.count("\n") == 1
+    assert log_lines(tmp_path) == ["- 15:02:11 abc12345 session-start startup"]
+
+
+def test_plan_mode_a_second_hi_outside_it_is_refused(tmp_path):
+    run(["session-start"], payload(session_id="abc12345-6789", source="startup"), tmp_path)
+    run(["prompt"], prompt_payload("/hi"), tmp_path)
+    code, out, err = run_out(["prompt"], prompt_payload("/hi", mode="default"), tmp_path)
+    assert (code, out) == (2, "") and "plan mode" in err
+    assert [ln for ln in log_lines(tmp_path) if ln.endswith(" hi")] == ["- 15:02:11 abc12345 hi"]
+
+
+@pytest.mark.parametrize("mode", ["default", None])
+def test_plan_mode_another_prompt_outside_it_passes(tmp_path, mode):
+    run(["session-start"], payload(session_id="abc12345-6789", source="startup"), tmp_path)
+    assert run_out(["prompt"], prompt_payload("hello", mode=mode), tmp_path) == (0, "", "")
+    assert len(log_lines(tmp_path)) == 1

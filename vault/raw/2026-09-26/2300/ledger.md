@@ -1,0 +1,36 @@
+- 01:36:00 decision[case 443.1][create][rule-skill-grill-me]{ref:rule-plan-mode}{tags:harness,workflow}
+- 01:36:00 decision[case 443.1][create][estimate-skill-grill-me-asks-in-rounds]{ref:rule-skill-grill-me}{tags:harness,workflow}
+- 01:36:00 decision[case 443.1][update][entity-sprint-migration]{ref:entity-sprint-migration}
+- 01:36:00 decision[case 443.2][update][rule-case-build]{ref:rule-case-build}
+- 01:36:00 decision[case 443.2][update][estimate-case-build-writes-the-case]{ref:estimate-case-build-writes-the-case}
+- 01:36:00 decision[case 443.3][update][rule-case-protocol]{ref:rule-case-protocol}
+- 01:36:00 decision[case 443.3][update][estimate-case-protocol-shows-the-built-case]{ref:estimate-case-protocol-shows-the-built-case}
+- 01:55:48 decision[case 444.1][create][estimate-materialize-judges-a-fence]{ref:rule-materialize}{tags:harness,workflow,tests}
+- 01:55:48 decision[case 444.2][update][rule-spec-write]{ref:rule-spec-write}
+- 01:55:48 decision[case 444.2][update][estimate-spec-write-copies-the-ratified-case]{ref:estimate-spec-write-copies-the-ratified-case}
+- 01:55:48 decision[case 444.3][update][rule-case-protocol]{ref:rule-case-protocol}
+- 03:11:22 decision[case 445.1][update][rule-spec-reconcile]{ref:rule-spec-reconcile}{supersedes:case 423}
+- 03:11:22 decision[case 445.1][update][estimate-spec-reconcile-shows-a-changed-case]{ref:estimate-spec-reconcile-shows-a-changed-case}
+- 03:11:22 decision[case 445.1][update][rule-hook-registry]{ref:rule-hook-registry}
+- 03:11:22 decision[case 445.2][update][rule-spec-write]{ref:rule-spec-write}
+- 03:11:22 decision[case 445.2][update][rule-case-protocol]{ref:rule-case-protocol}
+- 03:11:22 decision[case 445.2][update][rule-case-check]{ref:rule-case-check}
+- 03:11:22 decision[case 445.2][update][estimate-spec-write-checks-the-written-case]{ref:estimate-spec-write-checks-the-written-case}
+- 03:11:22 decision[case 445.3][update][estimate-spec-write-removes-a-superseded-case]{ref:estimate-spec-write-removes-a-superseded-case}
+- 03:11:22 decision[case 445.4][delete][estimate-prespec-checks-the-ratified-copy]{ref:estimate-prespec-checks-the-ratified-copy}
+- 03:11:22 decision[case 445.4][create][estimate-language-spec-prose-in-english]{ref:rule-language}{tags:harness,workflow}
+- 03:11:22 decision[case 445.4][update][rule-prespec]{ref:rule-prespec}
+- 03:11:22 decision[case 445.5][create][estimate-skill-hi-opens-only-in-plan-mode]{ref:rule-skill-hi}{tags:session,harness}
+- 03:11:22 decision[case 445.5][update][rule-skill-hi]{ref:rule-skill-hi}
+- 03:11:22 decision[case 445.6][update][rule-event-log]{ref:rule-event-log}
+- 03:11:22 decision[case 445.6][update][estimate-event-log-records]{ref:estimate-event-log-records}
+- 03:20:13 decision[case 446][update][rule-language]{ref:rule-language}
+- 03:20:13 decision[case 446][update][estimate-language-followed]{ref:estimate-language-followed}
+- 03:30:01 decision[case 447][defer][rule-work-mode]{ref:rule-work-mode}
+- 03:32:44 decision[case 448][defer][insight-hi-skill-substitution-checked-by-a-model-call]{ref:insight-hi-skill-substitution-checked-by-a-model-call}
+- 03:52:45 decision[case 445.7][update][rule-skill-hi]{ref:rule-skill-hi}{supersedes:case 445.5}
+- 04:17:14 lesson[error][lesson-case-build-a-list-in-context]{tags:workflow,session} trigger: the first answer of case-guppi on Case 446 held a bullet list in context; the main agent sent it back before the showing root_cause: no check reads the form of context in an answer of case-guppi, and the SubagentStop check and the Stop comparison skip the prose, so prose-only rests on the agent reading the schema
+- 04:17:14 lesson[error][lesson-case-build-one-promise-signed-in-two-sub-cases]{tags:workflow,session} trigger: Case 445 signed the refusal of /hi outside plan mode in 445.5 and in 445.6, two Estimates in two wordings; ask-guppi found it at pre-spec after ratification root_cause: case-guppi split the Case by the page it changes, rule-skill-hi and rule-event-log, not by the promise, and no check of the answer compares the then lines of sibling sub-cases
+- 04:17:14 lesson[knowledge][lesson-ledger-a-dropped-item-needs-a-superseding-sub-case]{tags:workflow,session}{source:vault/wiki/case-schema.md} trigger: the rebuilt 445.5 dropped the create of estimate-skill-hi-opens-only-in-plan-mode, whose decision line already stood in the ledger root_cause: the ledger only grows and the hook appends no line it holds; only a supersedes block retires an entry, so a ratified sub-case that drops an item takes a new id whose line carries supersedes of the old one, as 445.7 did
+- 04:17:14 estimate[estimate-case-protocol-case-form][failed] 2026-09-27, by hand, the Cases of session 2300 shown in the chat; the headings, section order, ratification fences, one-reply showing of 443, 444 and 445 and the closing questions hold, and no context shown holds a list, but the context of Case 446 carries a count of items ("in three places only") and case numbers it is not about (378.5, 428.1), and the context of Case 444 names nine Estimates by count-free list yet the problem of Case 445 cites case 410, which the Case is not about
+- 04:17:14 estimate[estimate-agent-writing-followed][failed] 2026-09-27, by hand, the section How the agent writes of CLAUDE.md and the replies of session 2300; counts checked against their runs held (20 task lines, 15 findings, 734 passed), but the reply that acknowledged the re-ratification of 443 to 446 said the ledger gained amended lines of 445.6 while the tail shows L25 and L26 unchanged and L31 alone new, and one reply said W32 closes with sprint, a closer the Frontier gives only to sprint items, corrected in the next reply

@@ -118,6 +118,17 @@ value `merged` or `synthesis` (`rule-documentation`). The decision record of a C
 `superseded_by`, `incomplete`. A key the code writes and this list does not name is a
 finding of the reading of `estimate-materialize-assembles`.
 
+The fence (case 444.1). A line opens a fence when, after at most three spaces of indent inside
+the block it stands in — a quote, a sub-point of `tasks` — it starts with a run of three or
+more backticks or three or more tildes; the fence closes only on a line of the same character
+whose run is at least as long, with nothing after the run but spaces, as CommonMark reads it.
+`fence_opening` and `closes_fence` are the one judgment: `then_blocks`, `tagged_blocks`,
+`case_text` and `criterion_text` here, `quoted_sections` and `fenced_value` of
+`guppi/ratified.py`, `plan_prose` of `guppi/prespec.py`, the check of `ratification` in
+`guppi/casecheck.py` and `ledger_lines` of `guppi/ledger.py` judge by them. `fence_for` gives
+the fence a written block takes: backticks one longer than the longest run of backticks that
+opens a line inside it, three at the least (case 444.2).
+
 An existing yaml is extended with the lines it does not hold and never rewritten. Without
 `--date` the script walks every unit under `vault/raw/` — dates ascending, the date-level
 ledger of a date first, then its sessions in folder order — so a line written after the
@@ -148,7 +159,8 @@ BRACKETS = re.compile(r"\[([^\]]*)\]")
 BRACES = re.compile(r"\{(\w+):([^}]*)\}")
 HEADING = re.compile(r"^#{1,4} (.*)$")
 CASE_HEADING = re.compile(r"^#{2,4} Case (\S+)")
-FENCE = re.compile(r"^ {0,3}```(\S*)\s*$")
+FENCE_OPEN = re.compile(r"^ {0,3}(`{3,}|~{3,})(.*)$")
+FENCE_CLOSE = re.compile(r"^ {0,3}(`{3,}|~{3,})[ \t]*$")
 QUOTE = re.compile(r"^> ?(.*)$")
 SECTION_START = re.compile(r"^\*\*(\w+):\*\*\s*(.*)$")
 DECISION_KINDS = ("create", "update", "delete", "defer")
@@ -346,51 +358,87 @@ def unquote(line: str) -> str:
     return match.group(1) if match else line
 
 
+# --- the one judgment of a fence (case 444.1) ---------------------------------------
+
+
+def fence_opening(line: str) -> tuple[str, int, str] | None:
+    """`(character, length, tag)` of the fence `line` opens — a run of three or more
+    backticks or tildes after at most three spaces of indent, the tag the first word after
+    it, lowercased — or None. `line` is taken inside the block it stands in: a quote marker
+    or the indent of a sub-point is removed by the caller (case 444.1)."""
+    match = FENCE_OPEN.match(line)
+    if not match:
+        return None
+    run, info = match.groups()
+    words = info.split()
+    return run[0], len(run), words[0].lower() if words else ""
+
+
+def closes_fence(line: str, opening: tuple[str, int, str]) -> bool:
+    """True when `line` closes the fence `opening` opened: a run of the same character at
+    least as long, after at most three spaces of indent, with nothing after it but spaces
+    (CommonMark). A shorter run, a run of the other character, or a word after the run is
+    content of the fence (case 444.1)."""
+    match = FENCE_CLOSE.match(line)
+    if not match:
+        return False
+    run = match.group(1)
+    return run[0] == opening[0] and len(run) >= opening[1]
+
+
+def fence_for(text: str) -> str:
+    """The fence a block holding `text` is written with: backticks one longer than the
+    longest run of backticks that opens a line of the text, three at the least, so that no
+    line inside closes it (case 444.2)."""
+    longest = 0
+    for line in text.splitlines():
+        body = line.lstrip()
+        longest = max(longest, len(body) - len(body.lstrip("`")))
+    return "`" * max(3, longest + 1)
+
+
+def fenced_lines(lines: list[str]):
+    """Each line of `lines`, quotes removed, as `(line, opening)`: `opening` the fence the
+    line stands in, None outside any fence. The opening line of a fence is not given; its
+    closing line is given as `(None, opening)`; a block not closed runs to the end. The walk
+    of `tagged_blocks` and of `plan_prose` in `guppi/prespec.py` (case 444.1)."""
+    opening: tuple[str, int, str] | None = None
+    for raw in lines:
+        line = unquote(raw)
+        if opening is None:
+            opening = fence_opening(line)
+            if opening is None:
+                yield line, None
+            continue
+        if closes_fence(line, opening):
+            yield None, opening
+            opening = None
+            continue
+        yield line, opening
+
+
 def then_blocks(lines: list[str]) -> tuple[dict, list[str]]:
     """The merged content of every fence tagged `then` under a Case, and the parse errors."""
     merged: dict = {}
     errors: list[str] = []
-    fence_open = False
-    recording = False
-    buffer: list[str] = []
-    for raw in lines:
-        line = unquote(raw)
-        match = FENCE.match(line)
-        if match:
-            if not fence_open:
-                fence_open = True
-                recording = match.group(1).lower() == "then"
-                buffer = []
-            else:
-                fence_open = False
-                if recording:
-                    _merge_block(merged, "\n".join(buffer), errors)
-                recording = False
-            continue
-        if recording:
-            buffer.append(line)
+    for block in tagged_blocks(lines, "then"):
+        _merge_block(merged, block, errors)
     return merged, errors
 
 
 def tagged_blocks(lines: list[str], tag: str) -> list[str]:
     """The text of every fenced block tagged `tag` under a Case, quotes removed; the one
-    reading of a tagged fence for `prespec` and `ratified` (case 387.3)."""
+    reading of a tagged fence for `prespec` and `ratified` (case 387.3). A block not closed
+    is not given."""
     blocks: list[str] = []
-    fence_open = recording = False
     buffer: list[str] = []
-    for raw in lines:
-        line = unquote(raw)
-        match = FENCE.match(line)
-        if match:
-            if not fence_open:
-                fence_open, recording, buffer = True, match.group(1).lower() == tag, []
-            else:
-                fence_open = False
-                if recording:
-                    blocks.append("\n".join(buffer))
-                recording = False
+    for line, opening in fenced_lines(lines):
+        if opening is None or opening[2] != tag:
             continue
-        if recording:
+        if line is None:
+            blocks.append("\n".join(buffer))
+            buffer = []
+        else:
             buffer.append(line)
     return blocks
 
@@ -412,11 +460,13 @@ def _merge_block(merged: dict, text: str, errors: list[str]) -> None:
 
 
 def case_text(lines: list[str]) -> dict[str, str]:
-    """The seven quoted sections of a Case, name → text, from `> **name:**` blocks."""
+    """The seven quoted sections of a Case, name → text, from `> **name:**` blocks; a blank
+    line outside a fence closes a section, the fence judged by `fence_opening` and
+    `closes_fence` (case 444.1)."""
     sections: dict[str, str] = {}
     current: str | None = None
     buffer: list[str] = []
-    in_fence = False
+    opening: tuple[str, int, str] | None = None
 
     def close():
         if current is not None:
@@ -425,9 +475,11 @@ def case_text(lines: list[str]) -> dict[str, str]:
     for raw in lines:
         match = QUOTE.match(raw)
         if not match:
-            if FENCE.match(raw):
-                in_fence = not in_fence
-            if not in_fence and current is not None and raw.strip() == "":
+            if opening is None:
+                opening = fence_opening(raw)
+            elif closes_fence(raw, opening):
+                opening = None
+            if opening is None and current is not None and raw.strip() == "":
                 close()
                 current = None
             continue
@@ -721,7 +773,7 @@ def criterion_text(texts: dict[str, str]) -> str:
     parts = []
     for name in CRITERION_SECTIONS:
         text = texts.get(name)
-        if text and not FENCE.match(text.splitlines()[0]):  # not the whole-Case fallback
+        if text and fence_opening(text.splitlines()[0]) is None:  # not the whole-Case fallback
             parts.append(f"{name.capitalize()}:\n{text}")
     return "\n\n".join(parts)
 

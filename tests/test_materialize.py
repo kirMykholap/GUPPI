@@ -3,6 +3,7 @@
 import io
 from pathlib import Path
 
+import pytest
 import yaml
 
 from guppi import materialize
@@ -2253,3 +2254,82 @@ def test_item_keys_answers_for_each_kind_as_the_lift_does(tmp_path):
     defer = materialize.item_keys("defer", "rules", tmp_path)
     assert {"type", "purpose", "slug"} <= defer and "old" not in defer
     assert materialize.item_keys("create", "rules", tmp_path, {"rules"}) is None  # 308.2
+
+
+# --- the one judgment of a fence (case 444.1): `estimate-materialize-judges-a-fence` ------
+
+RECORD_LINE = "- decision[case 1][update][rule-x]{ref:rule-x}"
+LATER_LINE = "- decision[case 2][update][rule-y]{ref:rule-y}"
+FENCE_SAMPLES = {
+    "a fence inside a longer fence": ("````", ["```", "inner", "```"], "````"),
+    "a tilde fence": ("~~~", ["```", "inner", "```"], "~~~"),
+    "a closing line with a shorter run": ("````", ["inner", "```"], "````"),
+    "a word after the run": ("```", ["``` word", "inner"], "```"),
+    "a run of the other character": ("```", ["~~~", "inner"], "```"),
+    "a longer closing run, indented": ("```", ["inner"], "   `````"),
+}
+CASE_BEFORE_RATIFICATION = [
+    "> **when:**",
+    "> x",
+    "",
+    "> **then:**",
+    "> y",
+    "",
+    "> **tasks:**",
+    "> - [ ] t",
+    "",
+    "> **ratification:**",
+]
+LEFT_OPEN = "case 1.1: ratification holds one untagged fence of ledger lines and nothing else"
+
+
+def padded(lines, pad):
+    return [f"{pad}{line}" if line else "" for line in lines]
+
+
+@pytest.mark.parametrize(
+    ("opener", "inner", "closer"), list(FENCE_SAMPLES.values()), ids=list(FENCE_SAMPLES)
+)
+def test_every_reader_judges_a_fence_alike(opener, inner, closer):
+    """Every reader of the `when` of case 444.1 over the same texts: each reads the fence to
+    the same closing line, past the lines inside it that do not close it; and each reads a
+    fence whose closing line carries a word as left open."""
+    from guppi import casecheck, ledger, prespec, ratified
+
+    body = [*inner, "", "tail"]
+    content = "\n".join(body)
+    for last, closed in ((closer, True), (closer.strip() + " word", False)):
+        # `tagged_blocks` and `then_blocks`, the lines bare and quoted
+        block = [f"{opener}then", *body, last]
+        for lines in (block, [f"> {line}" if line else ">" for line in block]):
+            assert materialize.tagged_blocks(lines, "then") == ([content] if closed else [])
+        as_yaml = [f"{opener}then", "note: |", *padded(body, "  "), last]
+        merged = {"note": content} if closed else {}
+        assert materialize.then_blocks(as_yaml) == (merged, [])
+        # `plan_prose`: the lines of a fence tagged `then` are read, of another tag skipped
+        for tag in ("text", "then"):
+            prose = ["> before", f"{opener}{tag}", *body, last, "> after"]
+            if closed:
+                expected = ["before", *(body if tag == "then" else []), "after"]
+            else:
+                expected = ["before", *body, last, "after"] if tag == "then" else ["before"]
+            assert prespec.plan_prose(prose) == expected
+        # `fenced_value`: the value of a sub-point that holds a fence
+        sub = [f"    {opener}text", *padded(body, "    "), f"    {last}", "  - next: `x`"]
+        value = (content, len(sub) - 1) if closed else (None, len(sub))
+        assert ratified.fenced_value(sub, 0) == value
+        # `ledger_lines`: a record line after the inner lines is read, one after the close not
+        reply = "\n".join([f"{opener}LEDGER", *body, RECORD_LINE, last, LATER_LINE])
+        records = [RECORD_LINE] if closed else [RECORD_LINE, LATER_LINE]
+        assert ledger.ledger_lines(reply) == records
+        # the `ratification` of `casecheck`: one untagged fence of ledger lines
+        case = [*CASE_BEFORE_RATIFICATION, f"> {opener}", f"> {RECORD_LINE}", f"> {last}"]
+        findings = casecheck.form_findings("1.1", case, {})
+        assert findings == ([] if closed else [LEFT_OPEN])
+    # `case_text` and `quoted_sections`: a blank line inside the fence closes no section
+    sections = ["> **then:**", "> A.", opener, *body, closer, "> B.", "", "> C."]
+    assert materialize.case_text(sections) == {"then": "A.\nB."}
+    assert ratified.quoted_sections(sections, ("then",)) == {"then": "A.\nB."}
+    # `criterion_text`: a section that opens with a fence is the whole-Case fallback
+    fenced = "\n".join([opener, *body, closer])
+    assert materialize.criterion_text({"when": fenced, "then": "B."}) == "Then:\nB."

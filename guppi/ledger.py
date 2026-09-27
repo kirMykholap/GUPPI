@@ -44,7 +44,6 @@ from pathlib import Path
 from guppi.event import project_root, read_payload, session_stamp
 
 PREFIXES = ("- decision[", "- estimate[", "- lesson[")
-FENCE = re.compile(r"^ {0,3}(```|~~~)\s*(\S*)")
 TIMED = re.compile(r"^- (?:\d\d:\d\d:\d\d )?(.*)$")
 BRACKET = re.compile(r"\[([^\]]*)\]")
 LEDGER_TAG = "ledger"
@@ -123,22 +122,21 @@ def session_lines(payload: dict) -> list[str]:
 
 
 def ledger_lines(text: str) -> list[str]:
-    """The record lines of a reply, in order: prefixed, inside a fence tagged LEDGER."""
+    """The record lines of a reply, in order: prefixed, inside a fence tagged LEDGER. The
+    fence is judged by `fence_opening` and `closes_fence` of `guppi/materialize.py`, the one
+    judgment (case 444.1); imported here, since `materialize` imports this module."""
+    from guppi.materialize import closes_fence, fence_opening
+
     lines: list[str] = []
-    fence: str | None = None
-    recording = False
+    opening: tuple[str, int, str] | None = None
     for line in text.splitlines():
-        match = FENCE.match(line)
-        if match:
-            marker, tag = match.groups()
-            if fence is None:
-                fence = marker
-                recording = tag.lower() == LEDGER_TAG
-            elif marker == fence:
-                fence = None
-                recording = False
+        if opening is None:
+            opening = fence_opening(line)
             continue
-        if recording and line.startswith(PREFIXES):
+        if closes_fence(line, opening):
+            opening = None
+            continue
+        if opening[2] == LEDGER_TAG and line.startswith(PREFIXES):
             lines.append(line.rstrip())
     return lines
 
@@ -227,12 +225,22 @@ def session_dir(project_dir: Path, now, stamp: str) -> Path | None:
     return project_dir / "vault" / "raw" / day / (time[:2] + time[3:5])
 
 
+def is_plan_file(path: Path) -> bool:
+    """A plan file: a `.md` file under `.claude/plans/` — the one judgment of `plan_path` and
+    of the guard `guppi ratified --guard` (case 445.1)."""
+    return (
+        path.suffix == ".md"
+        and path.parent.name == "plans"
+        and path.parent.parent.name == ".claude"
+    )
+
+
 def plan_path(logs: list[tuple[str, str]], stamp: str) -> Path | None:
     """The plan file of the session: the path of the last `tool Write:` / `tool Edit:` /
-    `tool MultiEdit:` line of this session's stamp that lies under `.claude/plans/` (case
-    122). None when no such line exists; a path the log truncated does not exist and is
-    skipped by the caller. Lives here beside the window it reads, so that `gate`, `recall`
-    and `ratified` import one reading (case 387.2)."""
+    `tool MultiEdit:` line of this session's stamp that names a plan file by `is_plan_file`
+    (cases 122, 445.1). None when no such line exists; a path the log truncated does not
+    exist and is skipped by the caller. Lives here beside the window it reads, so that
+    `gate`, `recall` and `ratified` import one reading (case 387.2)."""
     last = None
     for _, text in logs:
         for line in text.splitlines():
@@ -243,7 +251,7 @@ def plan_path(logs: list[tuple[str, str]], stamp: str) -> Path | None:
             if not sep or tool not in PLAN_TOOLS:
                 continue
             candidate = Path(path.strip())
-            if candidate.parent.name == "plans" and candidate.parent.parent.name == ".claude":
+            if is_plan_file(candidate):
                 last = candidate
     return last
 

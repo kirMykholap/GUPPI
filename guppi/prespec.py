@@ -33,14 +33,16 @@ the ledgers of its dates, on the `hi` date from the `hi` time on, and its folder
   covers one item, and `materialize` lifts only the first (case 426);
 - the frontier `raw/<hi date>/<hi HHMM>/frontier.md` (case 73.4): missing, an open `[ ]`
   line under `## Cases` — an open line under `## Work` waits for Work Mode and is no finding
-  (case 356.1) — a `[x] … · case N` whose heading the plan lacks, a `[-] … · defer case N`
-  with no `defer` item under Case N, and one whose source segment is `sprint` — a sprint
-  item is never deferred (case 356.2); `sprint` is a closer of its own — an item of the sprint page
-  left for a later session — legal on `[-]`, a finding on `[x]` (case 310.6); a line closed
-  `· case N` whose source segment — the one standing immediately before the closer — is
-  `sprint` needs an `update` of the sprint page `entity-sprint-<id>` under Case N, the
-  parent or a sub-case (case 314.2); the word inside the slug of a title is not the source
-  (case 335);
+  (case 356.1); a closer — the last segment after ` · ` — none of `case N`, `work`,
+  `defer`, `kept` and `defer case N`; a box that disagrees with its closer — `[x]` takes
+  only `case N` or `work`, `[-]` only `defer`, `kept` or `defer case N` (case 451.2);
+  `defer` after a source segment — the one standing immediately before the closer — other
+  than `sprint`, `kept` after one other than `backlog`; `defer case N` after the source
+  `sprint` or `backlog` (cases 356.2, 451.2), and after another source with no `defer` item
+  under Case N; `case N` whose heading the plan lacks, and after the source `sprint` with
+  no `update` of the sprint page `entity-sprint-<id>` under Case N, the parent or a
+  sub-case (cases 314.2, 451.3); the word inside the slug of a title is not the source
+  (case 335), and a line that is not a box line is not read;
 - a Case with a line of a kind other than `defer` and no fenced block tagged `tasks` (a
   defer-only Case has no work, case 74); an Estimate a `then` block creates or sets
   `pending` with no task line of its own — a line `- [ ] read `<slug>`` whose first
@@ -144,10 +146,15 @@ LINE_PREVIEW = 80
 # A bare id is read as the same line rather than skipped (the lines of 2026-09-12).
 BARE_CASE = re.compile(r"^(- (?:\d\d:\d\d:\d\d )?decision\[)(?!case )")
 WORK_LIST = "## Work"  # the list whose open lines wait for Work Mode (case 356.1)
-CLOSERS = re.compile(r"^(work|sprint|kept|case (\S+)|defer case (\S+))$")
+# The closers of a Frontier line (case 451.2): `[x]` ends an item — `case N`, `work`; `[-]`
+# puts it off — `defer` after the source `sprint`, `kept` after `backlog`, `defer case N`.
+CLOSERS = re.compile(r"^(work|defer|kept|case (\S+)|defer case (\S+))$")
+WORK, DEFER, KEPT = "work", "defer", "kept"
 SPRINT_SOURCE = "sprint"
-KEPT = "kept"  # an item of the brief's Deferred list left as it stands (case 421.3)
-DEFERRED_SOURCE = "deferred"
+BACKLOG_SOURCE = "backlog"
+# the source each closer with no Case is clean after
+PUT_OFF_SOURCE = {DEFER: SPRINT_SOURCE, KEPT: BACKLOG_SOURCE}
+PUT_OFF_CLOSER = {source: closer for closer, source in PUT_OFF_SOURCE.items()}
 SPRINT_PAGE = "entity-sprint-"
 # Case 279.2: a task line the tickers of `render` and `sprint` would not match — the bare
 # word, or the command outside a code span, right after the box.
@@ -352,17 +359,23 @@ def updates_the_sprint(blocks: dict, case: str) -> bool:
 
 
 def check_frontier(path: Path, relative: str, cases: dict, blocks: dict) -> list[str]:
-    """59.2: the frontier of the session's folder (73.4), every line closed by a Case the
-    plan holds. Case 310.6: `sprint` is a closer of its own — a line of the sprint page left
-    for a later session — legal on a `[-]` box and a finding on an `[x]`. Case 314.2: a line
-    closed `case N` whose source segment — the one standing immediately before the closer —
-    is `sprint` needs an `update` of the sprint page under Case N; the word inside the slug
-    of a title is not the source, and six live Estimates carry it there (case 335). Case
-    356.1: an open line under `## Work` is no finding — its work waits for Work Mode; a closed
-    one is checked as any. Case 356.2: a line whose source segment is `sprint` closed `defer
-    case N` is a finding — a sprint item left for later closes `[-]` with `sprint`. Case 421.3:
-    `kept` is clean on a `[-]` box after the source `deferred` — an item of the brief's
-    Deferred list left as it stands, no Case — and a finding on `[x]` or after another source."""
+    """59.2: the frontier of the session's folder (73.4). Case 356.1: an open line under
+    `## Cases` is a finding, one under `## Work` is not — its work waits for Work Mode; a
+    closed one is checked as any. Only a box line, `- [ ]`, `- [x]` or `- [-]` at the start,
+    is read: `Backlog: N items` and an indented `- near` line are not (case 451.2).
+
+    Case 451.2: the closer, the last segment after ` · `, is one of `case N`, `work`,
+    `defer`, `kept` and `defer case N`, and the box agrees with it both ways — `[x]`, an item
+    ended, takes only `case N` or `work`; `[-]`, an item put off, only `defer`, `kept` or
+    `defer case N`. The source is the segment standing immediately before the closer; the
+    word inside the slug of a title is not the source (case 335). `defer` alone is clean
+    only after the source `sprint`, a sprint item left for a later session, and `kept` only
+    after the source `backlog`, an item of `backlog.md` left as it stands. `defer case N`
+    after the source `sprint` or `backlog` is a finding — neither is deferred by a Case
+    (case 356.2) — and after another source it needs a `defer` item under Case N. A line
+    closed `case N` needs the heading of Case N in the plan, and after the source `sprint`
+    an `update` of the sprint page `entity-sprint-<id>` under Case N, the parent or a
+    sub-case (cases 314.2, 451.3). A finding of the box and one of the source are separate."""
     if not path.exists():
         return [f"frontier: {relative} is missing"]
     findings: list[str] = []
@@ -383,18 +396,21 @@ def check_frontier(path: Path, relative: str, cases: dict, blocks: dict) -> list
         closer = CLOSERS.match(segments[-1])
         if closer is None:
             findings.append(
-                f"frontier: {item} is closed without case N, work, sprint, kept or defer case N"
+                f"frontier: {item} is closed without case N, work, defer, kept or defer case N"
             )
-        elif closer.group(1) == KEPT:
-            if box == "x" or segments[-2:-1] != [DEFERRED_SOURCE]:
+            continue
+        word = closer.group(1)
+        source = segments[-2] if len(segments) > 1 else ""
+        ended = closer.group(2) is not None or word == WORK
+        if box == "x" and not ended:
+            findings.append(f"frontier: {item} closes [x] with {word}; an item put off is [-]")
+        elif box == "-" and ended:
+            findings.append(f"frontier: {item} closes [-] with {word}; an item ended is [x]")
+        if word in PUT_OFF_SOURCE:
+            if source != PUT_OFF_SOURCE[word]:
                 findings.append(
-                    f"frontier: {item} closes with kept; only an item of the brief's Deferred "
-                    "list, source deferred, closes [-] with kept"
-                )
-        elif closer.group(1) == SPRINT_SOURCE:
-            if box == "x":
-                findings.append(
-                    f"frontier: {item} closes [x] with sprint; an item left for later is [-]"
+                    f"frontier: {item} closes with {word}; only an item of the source "
+                    f"{PUT_OFF_SOURCE[word]} closes with {word}"
                 )
         elif closer.group(2) is not None:
             case = closer.group(2)
@@ -402,14 +418,15 @@ def check_frontier(path: Path, relative: str, cases: dict, blocks: dict) -> list
                 findings.append(
                     f"frontier: {item} closes with case {case}, no Case {case} heading in the plan"
                 )
-            elif segments[-2:-1] == [SPRINT_SOURCE] and not updates_the_sprint(blocks, case):
+            elif source == SPRINT_SOURCE and not updates_the_sprint(blocks, case):
                 findings.append(
                     f"frontier: {item} closes a sprint item with case {case}, "
                     f"no update of the sprint page under Case {case}"
                 )
-        elif closer.group(3) is not None and segments[-2:-1] == [SPRINT_SOURCE]:
+        elif closer.group(3) is not None and source in PUT_OFF_CLOSER:
             findings.append(
-                f"frontier: {item} defers a sprint item; an item left for later closes [-] with sprint"
+                f"frontier: {item} defers a {source} item by a Case; a {source} item put off "
+                f"closes [-] with {PUT_OFF_CLOSER[source]}"
             )
         elif closer.group(3) is not None:
             case = closer.group(3)

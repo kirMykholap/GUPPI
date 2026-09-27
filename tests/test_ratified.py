@@ -1,6 +1,7 @@
-"""`guppi ratified`: the `Stop` hook that writes a ratified Case from the chat into the plan,
-and no ratified copy (cases 387.2, 445.2), and `--guard`, the `PreToolUse` hook that refuses
-the agent's edit of the plan and of its store (case 445.1).
+"""`guppi ratified`: the `Stop` hook that writes a ratified Case into the plan once its file
+was sent after its store, and no ratified copy (cases 387.2, 445.2, 452.3), and `--guard`, the
+`PreToolUse` hook that refuses the agent's edit of the plan, of its store (case 445.1) and of
+the file of a built Case under `cases/` (case 453).
 
 Every test feeds the payload through a stream, the shape a hook is really handed.
 """
@@ -8,6 +9,7 @@ Every test feeds the payload through a stream, the shape a hook is really handed
 import io
 import json
 from datetime import UTC, date, datetime
+from pathlib import Path
 
 import pytest
 import yaml
@@ -152,24 +154,64 @@ def plan_of(project):
     return project / ".claude" / "plans" / "plan.md"
 
 
+STORED = "2026-09-09T15:20:00+00:00"  # the time `build` stores an answer at (case 452.1)
+SENT = "2026-09-09T15:25:00.000Z"  # a sending after it
+
+
 def build(project, *messages):
-    """Store every Case the messages show whole as `case-guppi` answered it — the store the
-    Spec hook writes from (case 437); a later showing of the same id replaces an earlier."""
+    """Store every Case the messages show with a section as `case-guppi` answered it — the
+    store the Spec hook writes from (case 437), with the time of the store (case 452.1); a
+    later showing of the same id replaces an earlier."""
     path = casecheck.store_of(plan_of(project))
     data = json.loads(path.read_text(encoding="utf-8")) if path.exists() else {}
     for message in messages:
         heads = ratified.headings(message)
         for case, lines in split_cases(message).items():
-            if ratified.shown_whole(lines) or ratified.quoted_sections(lines, ratified.PROSE):
-                data[case] = {"text": casecheck.shown_text(heads[case], lines), "findings": []}
+            if casecheck.shows_sections(lines):
+                text = casecheck.shown_text(heads[case], lines)
+                data[case] = {"text": text, "findings": [], "stored": STORED}
     path.write_text(json.dumps(data, ensure_ascii=False), encoding="utf-8")
 
 
-def stop(project, reply, *messages, built=True, **fields):
+def case_path(project, case):
+    folder = project / "vault" / "raw" / TODAY.isoformat() / "1501"
+    return casecheck.case_file(folder, case)
+
+
+def sending_line(files, timestamp=SENT):
+    """An assistant record holding a `SendUserFile` call, in the shape Claude Code writes it
+    (measured 2026-09-27, session 1255)."""
+    call = {
+        "type": "tool_use",
+        "id": "toolu_01",
+        "name": "SendUserFile",
+        "input": {"files": [str(f) for f in files], "display": "render"},
+    }
+    return json.dumps(
+        {
+            "type": "assistant",
+            "isSidechain": False,
+            "sessionId": SESSION,
+            "timestamp": timestamp,
+            "message": {"role": "assistant", "content": [call]},
+        }
+    )
+
+
+def stop(project, reply, *messages, built=True, sent=None, sent_at=SENT, **fields):
+    """The `Stop` hook on `reply` after `messages`; the transcript sends the file of each
+    top-level Case the messages and the reply hold at `sent_at`, or the files of the Cases
+    `sent` names — a path in `sent` sent as it is."""
     if built:
         build(project, *messages)
+    if sent is None:
+        sent = {case for m in (*messages, reply) for case in split_cases(m)}
+    files = sorted({c if isinstance(c, Path) else case_path(project, c) for c in sent})
+    lines = [transcript_line(m) for m in messages]
+    if files:
+        lines.insert(1 if lines else 0, sending_line(files, sent_at))
     transcript = project / "transcript.jsonl"
-    transcript.write_text("\n".join(transcript_line(m) for m in messages) + "\n", encoding="utf-8")
+    transcript.write_text("\n".join(lines) + "\n", encoding="utf-8")
     fields.setdefault("session_id", SESSION)
     stdin = io.StringIO(
         json.dumps(
@@ -509,9 +551,64 @@ def test_write_no_plan_file_in_the_event_log_is_refused(working):
     assert code == 2 and "no plan file of this session" in err
 
 
-def test_write_no_showing_is_refused(working):
-    code, err = stop(working, ACK, "Nothing shown.", ACK)
-    assert code == 2 and "case 7: no earlier reply shows it whole" in err
+# --- the sending of the file of a Case (case 452.3) --------------------------------------
+
+
+def test_write_a_case_sent_after_its_store_with_no_showing_is_written(working):
+    build(working, SHOWING)
+    assert stop(working, ACK, "Nothing shown.", ACK, built=False, sent=["7"]) == (0, "")
+    assert "## Case 7 — пример" in plan_of(working).read_text(encoding="utf-8")
+
+
+def test_write_a_showing_of_the_ratification_alone_is_compared(working):
+    build(working, SHOWING)
+    short = "## Case 7 — пример\n\nКоротко.\n\n" + SHOWING[SHOWING.index("> **ratification:**") :]
+    assert stop(working, ACK, short, ACK, built=False) == (0, "")
+    differs = short.replace("{ref:rule-x}", "{ref:rule-y}", 1)
+    plan_of(working).write_text("# Spec\n", encoding="utf-8")
+    code, err = stop(working, ACK, differs, ACK, built=False)
+    assert code == 2 and "case 7: its ratification differ" in err
+
+
+def test_write_no_sending_is_refused_and_nothing_is_written(working):
+    code, err = stop(working, ACK, SHOWING, ACK, sent=[])
+    assert code == 2 and "case 7: no SendUserFile call on" in err
+    assert str(case_path(working, "7")) in err
+    assert "Case 7" not in plan_of(working).read_text(encoding="utf-8")
+
+
+def test_write_a_sending_older_than_the_store_is_refused(working):
+    code, err = stop(working, ACK, SHOWING, ACK, sent_at="2026-09-09T15:19:59.000Z")
+    assert code == 2 and "case 7: no SendUserFile call on" in err and STORED in err
+    assert "Case 7" not in plan_of(working).read_text(encoding="utf-8")
+
+
+def test_write_a_store_that_holds_no_time_is_refused(working):
+    # a store written before case 452.1 holds no time; no sending can follow it
+    build(working, SHOWING)
+    path = casecheck.store_of(plan_of(working))
+    data = json.loads(path.read_text(encoding="utf-8"))
+    del data["7"]["stored"]
+    path.write_text(json.dumps(data, ensure_ascii=False), encoding="utf-8")
+    code, err = stop(working, ACK, SHOWING, ACK, built=False)
+    assert code == 2 and "no time held" in err
+
+
+def test_write_a_sub_case_is_judged_by_the_file_of_its_parent(working):
+    showing = (
+        "## Case 9 — родитель\n\n> **context:**\n> Общий контекст.\n\n> **problem:**\n> Вопрос.\n\n"
+        + SHOWING.replace("## Case 7 — пример", "### Case 9.1 — ребёнок")
+        .replace("case 7", "case 9.1")
+        .replace("> **context:**\n> Контекст.\n\n> **problem:**\n> Проблема.\n\n", "")
+    )
+    ack = ACK.replace("case 7", "case 9.1")
+    assert case_path(working, "9.1").name == "case-9.md"
+    assert stop(working, ack, showing, ack, sent=["9"]) == (0, "")
+    plan_of(working).write_text("# Spec\n", encoding="utf-8")
+    other = case_path(working, "9").with_name("case-9.1.md")  # a file of the sub-case's own
+    code, err = stop(working, ack, showing, ack, sent=[other])
+    assert code == 2 and "case 9.1: no SendUserFile call on" in err
+    assert "Case 9.1" not in plan_of(working).read_text(encoding="utf-8")
 
 
 def test_write_a_sub_point_off_the_form_is_refused_and_nothing_is_written(working):
@@ -732,6 +829,52 @@ def test_guard_every_edit_of_a_store_is_refused(working, tool):
 def test_guard_a_file_outside_the_plans_is_let_through(working, path):
     for tool in ("Edit", "Write", "MultiEdit"):
         assert guard(working, tool, working / path, "x\ny\n") == (0, "")
+
+
+# --- the guard on the file of a built Case (case 453) ------------------------------------
+
+
+def logged(project):
+    return (project / "vault" / "raw" / TODAY.isoformat() / "event_log.md").read_text(
+        encoding="utf-8"
+    )
+
+
+@pytest.mark.parametrize("tool", ["Edit", "MultiEdit", "Write"])
+@pytest.mark.parametrize("exists", [False, True], ids=["new", "existing"])
+def test_guard_every_edit_of_a_case_file_is_refused_and_logged(working, tool, exists):
+    path = case_path(working, "7")
+    if exists:
+        path.parent.mkdir(parents=True)
+        path.write_text("## Case 7 — x\n", encoding="utf-8")
+    code, err = guard(working, tool, path, "## Case 7 — mine\n")
+    assert code == 2 and err.count("\n") == 1
+    assert str(path) in err and "the hook of rule-case-check alone writes it" in err
+    assert f"ratified refused {tool} " in logged(working)
+    assert path.exists() == exists
+
+
+def test_guard_a_file_of_another_name_under_cases_is_refused(working):
+    other = case_path(working, "7").with_name("notes.txt")
+    code, err = guard(working, "Write", other, "x\n")
+    assert code == 2 and "rule-case-check" in err
+
+
+@pytest.mark.parametrize(
+    "path",
+    [
+        "cases/case-7.md",
+        "vault/cases/case-7.md",
+        "vault/raw/2026-09-09/cases/case-7.md",
+        "vault/raw/2026-09-09/150/cases/case-7.md",
+        "other/raw/2026-09-09/1501/cases/case-7.md",
+        "vault/raw/2026-09-09/1501/case-7.md",
+        "vault/raw/2026-09-09/1501/cases",
+    ],
+)
+def test_guard_a_cases_folder_outside_a_session_folder_is_let_through(working, path):
+    for tool in ("Edit", "Write", "MultiEdit"):
+        assert guard(working, tool, working / path, "x\n") == (0, "")
 
 
 def test_guard_another_tool_is_not_judged(working):

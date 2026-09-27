@@ -135,11 +135,6 @@ Open since 2026-09-09. The repository works by the model.
 
 ### [ ] Slice 6 — nothing yet — 0 items
 
-## Backlog
-
-- [ ] the categories as data of the project
-- [ ] [[rule-subagent-guppi]] — also here, by mistake · draft
-
 ## Closed
 
 Slices 0–3d closed by 2026-09-16.
@@ -376,11 +371,42 @@ def test_a_wikilink_after_the_dash_is_text(tmp_path):
 
 
 def test_a_note_keeps_its_box_and_is_never_ticked(tmp_path):
+    seed(
+        tmp_path,
+        SPRINT_PAGE.replace(
+            "- [[rule-subagent-guppi]] — the subagent and the fork",
+            "- [[rule-subagent-guppi]] — the subagent and the fork\n- a note not yet cut",
+        ),
+    )
+    assert run(tmp_path) == (0, "", "")
+    text = rendered(tmp_path)
+    assert "- [ ] a note not yet cut\n" in text
+    assert "a note not yet cut ·" not in text
+
+
+# --- the Backlog is not rendered (case 451.6, `estimate-sprint-renders-the-backlog`) ------
+
+
+def test_the_backlog_of_the_page_is_not_written_into_the_file(tmp_path):
     seed(tmp_path)
     assert run(tmp_path) == (0, "", "")
     text = rendered(tmp_path)
-    assert "- [ ] the categories as data of the project\n" in text
-    assert "the categories as data of the project ·" not in text
+    assert "## Backlog" not in text
+    assert "the categories as data of the project" not in text
+    assert "also here, by mistake" not in text
+
+
+def test_a_backlog_slug_without_a_page_is_no_error(tmp_path):
+    seed(
+        tmp_path,
+        SPRINT_PAGE.replace(
+            "- [[rule-subagent-guppi]] — also here, by mistake",
+            "- [[rule-nowhere]] — a slug of the Backlog with no page",
+        ),
+    )
+    assert run(tmp_path) == (0, "", "")
+    assert rendered(tmp_path) == EXPECTED
+    assert check(tmp_path) == (0, "", "")
 
 
 def test_an_unapplied_and_a_carried_over_unit_are_not_touched(tmp_path):

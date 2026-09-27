@@ -1,6 +1,8 @@
 """`guppi casecheck`: `--subagent`, the `SubagentStop` hook that checks the Case of
-`case-guppi` before the main agent sees it (case 419.3), and the `Stop` hook that compares a
-shown Case with the checked one (case 419.4). Rule page: `vault/wiki/rules/rule-case-check.md`.
+`case-guppi` before the main agent sees it (case 419.3) and writes the file of a Case that
+passed (case 452.1), and the `Stop` hook that compares a shown Case with the checked one (case
+419.4) and requires the sending of its file (case 452.2). Rule page:
+`vault/wiki/rules/rule-case-check.md`.
 
 Every test feeds the payload through a stream, the shape a hook is really handed.
 """
@@ -126,7 +128,55 @@ def answer(project, text, agent="case-guppi", **fields):
     return code, err.getvalue()
 
 
-def show(project, reply, **fields):
+FOLDER = ("vault", "raw", TODAY.isoformat(), "1501")  # the session folder of `working`
+
+
+def case_path(project, case):
+    return casecheck.case_file(project.joinpath(*FOLDER), case)
+
+
+def prompt(value="Go on."):
+    """A prompt of the person: the record that opens a turn."""
+    return {"type": "user", "isSidechain": False, "message": {"role": "user", "content": value}}
+
+
+def sending(*files, timestamp="2026-09-09T15:29:00.000Z"):
+    """An assistant record holding a `SendUserFile` call, in the shape Claude Code writes it
+    (measured 2026-09-27, session 1255)."""
+    call = {
+        "type": "tool_use",
+        "id": "toolu_01",
+        "name": "SendUserFile",
+        "input": {"files": [str(f) for f in files], "display": "render"},
+    }
+    return {
+        "type": "assistant",
+        "isSidechain": False,
+        "timestamp": timestamp,
+        "message": {"role": "assistant", "content": [call]},
+    }
+
+
+def result():
+    """The tool result that follows a call: a `user` record that opens no turn."""
+    block = {"type": "tool_result", "tool_use_id": "toolu_01", "content": "1 file delivered."}
+    return {"type": "user", "isSidechain": False, "message": {"role": "user", "content": [block]}}
+
+
+def main_transcript(project, records):
+    path = project / "transcript.jsonl"
+    path.write_text("\n".join(json.dumps(r) for r in records) + "\n", encoding="utf-8")
+    return str(path)
+
+
+def show(project, reply, sent=None, records=None, **fields):
+    """The `Stop` hook on `reply`; its turn sends the file of each top-level Case the reply
+    holds, or the files of `sent`, or is `records` whole."""
+    if records is None:
+        cases = casecheck.split_cases(reply)
+        files = sent if sent is not None else sorted({case_path(project, c) for c in cases})
+        records = [prompt(), sending(*files), result()] if files else [prompt()]
+    fields.setdefault("transcript_path", main_transcript(project, records))
     payload = {"session_id": SESSION, "last_assistant_message": reply, **fields}
     err = io.StringIO()
     stdin = io.StringIO(json.dumps(payload, ensure_ascii=False))
@@ -273,6 +323,80 @@ def test_subagent_a_question_and_another_agent_pass_unstored(working):
     assert answer(working, "Which of the two pages should the Case change?") == (0, "")
     assert answer(working, ANSWER, agent="ask-guppi") == (0, "")
     assert store(working) is None
+    assert not (working.joinpath(*FOLDER) / "cases").exists()
+
+
+# --- the file of a built Case (case 452.1) ----------------------------------------------
+
+PARENT = "## Case 9 — родитель\n\n> **context:**\n> К.\n\n> **problem:**\n> П.\n\n> **recommend:**\n> С.\n\n"
+
+
+def sub_case(case, then="The file is written."):
+    """A sub-case of Case 9 built from ANSWER, its own ids, slugs and anchor."""
+    n = case.split(".")[1]
+    anchor = "`` the `old` text ``" if n == "1" else "`Prevents x:`"
+    return (
+        ANSWER.replace("## Case 7 — пример", f"### Case {case} — часть")
+        .replace("case 7", f"case {case}")
+        .replace(
+            "> **context:**\n> Контекст.\n\n> **problem:**\n> Проблема.\n\n> **recommend:**\n> Совет.\n\n",
+            "",
+        )
+        .replace("estimate-x-works", f"estimate-x-works-{n}")
+        .replace("The file is written.", then)
+        .replace("`` the `old` text ``", anchor)
+    )
+
+
+def test_subagent_the_time_of_the_store(working):
+    assert answer(working, ANSWER) == (0, "")
+    assert store(working)["7"]["stored"] == NOW.isoformat()
+
+
+def test_subagent_the_file_is_written_from_the_stored_text(working):
+    assert answer(working, ANSWER + "\n---\n\nThe agent's own words.\n") == (0, "")
+    path = case_path(working, "7")
+    assert path == working.joinpath(*FOLDER, "cases", "case-7.md")
+    assert path.read_text(encoding="utf-8") == store(working)["7"]["text"] + "\n"
+    assert "own words" not in path.read_text(encoding="utf-8")
+
+
+def test_subagent_the_file_is_replaced_whole_when_the_answer_holds_the_top_case(working):
+    assert answer(working, PARENT + sub_case("9.1") + "\n" + sub_case("9.2")) == (0, "")
+    path = case_path(working, "9.2")
+    assert path.name == "case-9.md" and "### Case 9.2" in path.read_text(encoding="utf-8")
+    assert answer(working, PARENT.replace("> К.", "> К2.") + sub_case("9.1")) == (0, "")
+    text = path.read_text(encoding="utf-8")
+    held = store(working)
+    assert text == held["9"]["text"] + "\n\n" + held["9.1"]["text"] + "\n"
+    assert "### Case 9.2" not in text and "> К2." in text
+
+
+def test_subagent_a_sub_case_alone_replaces_its_section_alone(working):
+    assert answer(working, PARENT + sub_case("9.1") + "\n" + sub_case("9.2")) == (0, "")
+    assert answer(working, sub_case("9.1", "The file is written again.")) == (0, "")
+    text = case_path(working, "9").read_text(encoding="utf-8")
+    held = store(working)
+    assert text == "\n\n".join(held[c]["text"] for c in ("9", "9.1", "9.2")) + "\n"
+    assert "The file is written again." in text and text.count("### Case 9.1") == 1
+
+
+def test_subagent_no_file_on_a_finding(working):
+    no_read = ANSWER.replace("> - [ ] read `estimate-x-works`\n", "")
+    assert answer(working, no_read)[0] == 2
+    assert not case_path(working, "7").exists()
+    assert answer(working, no_read) == (0, "")  # repeated: stored again, still no file
+    assert not case_path(working, "7").exists()
+    assert answer(working, ANSWER) == (0, "")
+    clean = case_path(working, "7").read_text(encoding="utf-8")
+    assert answer(working, no_read)[0] == 2
+    assert case_path(working, "7").read_text(encoding="utf-8") == clean  # left as it stood
+
+
+def test_subagent_the_path_of_the_file_is_one_the_guard_judges(working):
+    # 453: the writer's path stays inside the one predicate of the guard
+    for case in ("7", "9.1", "452.12"):
+        assert casecheck.is_case_file(case_path(working, case))
 
 
 # --- the comparison on Stop (case 419.4) ------------------------------------------------
@@ -307,19 +431,70 @@ def test_stop_the_translated_prose_and_heading_pass(working):
 
 
 def test_stop_a_changed_mechanical_part_is_refused(working):
-    # 441.3: `given`, `then`, a task sub-point, a `ratification` line, and a section present
-    # in one and missing in the other
+    # 441.3: `given`, `then`, a task sub-point, a `ratification` line
     answer(working, ANSWER)
     changes = {
         "given": ANSWER.replace("— its Estimate.", "— its promise."),
         "tasks": ANSWER.replace("`the new text`", "`the newer text`"),
         "ratification": ANSWER.replace("{ref:rule-x}", "{ref:rule-y}", 1),
-        "when": ANSWER.replace("> **when:**\n> The agent runs `guppi x`.\n\n", ""),
     }
     for part, shown in changes.items():
         assert shown != ANSWER, part
         code, err = show(working, shown)
         assert code == 2 and f"its {part} differ" in err, (part, err)
+
+
+RATIFICATION = ANSWER[ANSWER.index("> **ratification:**") :]
+SHORT_SHOWING = (
+    "## Case 7 — пример\n\nМеняет правило x: одна пара `replace` и новое Estimate.\n\n"
+    + RATIFICATION
+    + "\n---\n\nРатифицируешь?\n"
+)
+
+
+def test_stop_a_showing_of_the_ratification_alone_passes(working):
+    # 452.2: a section the reply does not show is not compared; the short text is not either
+    answer(working, ANSWER)
+    assert show(working, SHORT_SHOWING) == (0, "")
+    no_when = ANSWER.replace("> **when:**\n> The agent runs `guppi x`.\n\n", "")
+    assert show(working, no_when) == (0, "")
+
+
+def test_stop_a_showing_of_the_ratification_alone_that_differs_is_refused(working):
+    answer(working, ANSWER)
+    code, err = show(working, SHORT_SHOWING.replace("{ref:rule-x}", "{ref:rule-y}", 1))
+    assert code == 2 and "case 7: its ratification differ" in err
+
+
+def test_stop_a_shown_case_with_no_sending_is_refused(working):
+    # 452.2: no `SendUserFile` call in the turn, or one only in an earlier turn
+    answer(working, ANSWER)
+    code, err = show(working, SHORT_SHOWING, sent=[])
+    assert code == 2 and "case 7: no SendUserFile call on" in err
+    assert str(case_path(working, "7")) in err
+    earlier = [prompt(), sending(case_path(working, "7")), result(), prompt("Why?")]
+    code, err = show(working, SHORT_SHOWING, records=earlier)
+    assert code == 2 and "case 7: no SendUserFile call on" in err
+    later = [prompt(), prompt("Show it."), sending(case_path(working, "7")), result()]
+    assert show(working, SHORT_SHOWING, records=later) == (0, "")
+
+
+def test_stop_a_sending_of_another_file_is_refused(working):
+    answer(working, ANSWER)
+    code, err = show(working, SHORT_SHOWING, sent=[case_path(working, "8")])
+    assert code == 2 and "case 7: no SendUserFile call on" in err
+
+
+def test_stop_a_sending_names_the_file_by_a_relative_or_an_absolute_path(working):
+    answer(working, ANSWER)
+    relative = "/".join((*FOLDER, "cases", "case-7.md"))
+    assert show(working, SHORT_SHOWING, sent=[relative]) == (0, "")
+
+
+def test_stop_the_acknowledging_reply_is_not_judged_and_needs_no_sending(working):
+    answer(working, ANSWER)
+    ack = "```LEDGER\n- decision[case 7][update][rule-x]{ref:rule-x}\n```\n\n## Case 7 — ratified\n\n**Changes:** x.\n"
+    assert show(working, ack, sent=[]) == (0, "")
 
 
 def test_stop_a_case_stored_with_findings_is_refused(working):
@@ -332,9 +507,9 @@ def test_stop_a_case_stored_with_findings_is_refused(working):
 def test_stop_a_heading_a_diff_and_a_short_form_are_not_compared(working):
     ack = "```LEDGER\n- decision[case 7][update][rule-x]{ref:rule-x}\n```\n\n## Case 7 — ratified\n\n**Changes:** x.\n"
     diff = "```DIFF\nCase 7 — context\n- old\n+ new\n```\n"
-    assert show(working, ack) == (0, "")
-    assert show(working, diff) == (0, "")
-    assert show(working, SHORT_FORM) == (0, "")
+    assert show(working, ack, sent=[]) == (0, "")
+    assert show(working, diff, sent=[]) == (0, "")
+    assert show(working, SHORT_FORM, sent=[]) == (0, "")
 
 
 def test_stop_a_case_shown_again_without_recommend_is_compared(working):

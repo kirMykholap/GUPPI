@@ -7,6 +7,7 @@ import sys
 
 from guppi import (
     archive,
+    backlog,
     bashguard,
     casecheck,
     cleanup,
@@ -31,6 +32,7 @@ from guppi import (
 
 COMMANDS = {
     "archive": archive.run,
+    "backlog": backlog.run,
     "bashguard": bashguard.run,
     "casecheck": casecheck.run,
     "cleanup": cleanup.run,

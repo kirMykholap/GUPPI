@@ -3,7 +3,8 @@
 The sprint is a page: the one live Entity under `vault/wiki/entities/` whose slug starts
 with `entity-sprint-`; its `estimates` are the Definition of done, its `## Milestones` the
 Slices in order, its `## Backlog` the items without a turn, each item a wikilink to a page
-or a plain line. This script writes `vault/wiki/sprint.md` from it (cases 209.1, 229.2):
+or a plain line — shown by `guppi backlog` in `vault/wiki/backlog.md`, never rendered here
+(case 451.6). This script writes `vault/wiki/sprint.md` from it (cases 209.1, 229.2):
 `# Sprint`; `## <id>`, the slug without `entity-sprint-`, so `sprint_id` and the archive
 path read what they read before; the `## Purpose` text as it is; `**Done when**`, one line
 per Estimate of the page — `- [x]` when `passed`, `- [ ]` otherwise, the Estimate's
@@ -20,10 +21,10 @@ line, collapsed or whole, so each heading stands between blank lines (case 386);
 naming no page before the
 ` — ` is a note — a task not yet cut into pages: `- [ ] <text>`, never ticked, so a
 milestone holding one stays open, and it leaves only by the `update` of the Case that cuts
-it (case 313); then `## Backlog`, each item a
-line the same way; the `## Closed` section copied as it is. An item whose slug has no
-live or archived page, or no sprint page, or two: one line on stderr, exit 1, the file
-not written. `--check` renders in memory and compares: one line on stdout — `sprint:
+it (case 313); then the `## Closed` section copied as it is. An item of `## Milestones` or
+an Estimate whose slug has no live or archived page, or no sprint page, or two: one line on
+stderr, exit 1, the file not written; the `## Backlog` is not read, so a slug there without
+a page is no error (case 451.6). `--check` renders in memory and compares: one line on stdout — `sprint:
 vault/wiki/sprint.md differs from entity-sprint-<id>` — and exit 1 when the file differs,
 silence and exit 0 when it is the same, nothing written either way; `make lint` runs it
 after `render --check` (case 227). Once the plain `guppi sprint` wrote the file and exits
@@ -166,21 +167,6 @@ def render_milestones(
     return out, None
 
 
-def render_backlog(
-    backlog: str, by_slug: dict[str, Page], archived: set[str]
-) -> tuple[list[str], str | None]:
-    """The lines of `## Backlog`: each item a line, never a tick on a plain one; the first
-    slug without a page, else None."""
-    out: list[str] = []
-    for raw in backlog.splitlines():
-        line = raw.rstrip()
-        rendered, missing = plain_or_item(line, by_slug, archived)
-        if missing:
-            return out, missing
-        out.append(str(rendered))
-    return out, None
-
-
 def render(page: Page, by_slug: dict[str, Page], archived: set[str]) -> tuple[str | None, str]:
     """`(text, error)`: the whole file, or the error line."""
     parts = ["# Sprint", "", f"## {page.slug[len(PREFIX) :]}", ""]
@@ -200,11 +186,6 @@ def render(page: Page, by_slug: dict[str, Page], archived: set[str]) -> tuple[st
     if missing:
         return None, f"sprint: {missing}: no live or archived page"
     parts += ["## Milestones", ""] + lines + [""]
-    backlog = (page.section("## Backlog") or "").strip()
-    lines, missing = render_backlog(backlog, by_slug, archived)
-    if missing:
-        return None, f"sprint: {missing}: no live or archived page"
-    parts += ["## Backlog", ""] + lines + [""]
     closed = (page.section("## Closed") or "").strip()
     if closed:
         parts += ["## Closed", "", closed, ""]

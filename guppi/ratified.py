@@ -1,13 +1,19 @@
 """`guppi ratified` — the `Stop` hook that writes a ratified Case into the Spec
 (`rule-spec-write`, case 387.2); `guppi ratified --guard` — the `PreToolUse` hook that refuses
-the agent's edit of the plan file and of its store (`rule-spec-reconcile`, case 445.1).
+the agent's edit of the plan file, of its store (`rule-spec-reconcile`, case 445.1) and of the
+file of a built Case under `cases/` (case 453).
 
 The write. After a reply whose `LEDGER` block holds `- decision[case N]` lines of a kind other
-than `defer`, the hook reads the session's transcript, finds the last earlier reply that shows
-`## Case N —` (or `### Case N.M —`) whole — `when`, `then` and `tasks` present — compares it
-with the answer of `case-guppi` stored under Case N in `<plan>.checked.json` by the one
-comparison of `casecheck.against_store`, refuses a showing that differs, a store with no Case
-N or one stored with findings, and writes the stored answer (case 437) into the plan file
+than `defer`, the hook reads `<plan>.checked.json` for the answer of `case-guppi` stored under
+Case N, and the session's transcript for the `SendUserFile` calls on
+`raw/<date>/<hi HHMM>/cases/case-<N>.md`, N the id of the top-level Case — by
+`casecheck.sent`, the one reading of a sending, and `casecheck.case_file` — and for the last
+earlier reply that shows `## Case N —` (or `### Case N.M —`) with at least one of its
+sections, by `casecheck.shows_sections`. It refuses a store with no Case N or one stored with
+findings, a showing that differs from the answer in a section it shows — by the one comparison
+of `casecheck.against_store` — and a Case whose file no `SendUserFile` call sent after the
+time the store holds for Case N, a store that holds no time included (case 452.3); a reply
+with no showing is no refusal. Otherwise it writes the stored answer (case 437) into the plan file
 `ledger.plan_path` names, outside the repository, and into no copy (case 445.2): the heading,
 `context`, `problem`, `given`, `when` and `then` as the stored answer holds them — a `context`
 or `problem` it leaves out keeps the text the file held — a block tagged `then` built from the
@@ -61,10 +67,15 @@ store `<plan>.checked.json`, the hook refuses every `Edit` and `MultiEdit`, ever
 store, and every `Write` of a plan file that exists: exit 2 with the reason on stderr, which
 Claude Code shows the agent, and the call does not run. A `Write` of a plan file that does not
 exist passes when its content, trimmed, is one line that opens with `# ` — the title line the
-agent writes before the first dispatch of `case-guppi` — and is refused otherwise. A refusal
+agent writes before the first dispatch of `case-guppi` — and is refused otherwise. Every
+`Edit`, `Write` and `MultiEdit` of a file under the `cases/` folder of a session folder
+`vault/raw/<date>/<HHMM>/` — by `casecheck.is_case_file`, the judgment the writer of the file
+uses too — is refused the same way, whatever its name and whether it stands, the reason naming
+the file and the hook of `rule-case-check` that alone writes it (case 453). A refusal
 writes one line to the day's event log; a refused call has no `PostToolUse`, so it leaves no
-`tool` line and `plan_path` still names the plan. A file outside `.claude/plans/` is not
-judged; a payload the hook cannot read exits 0 with one line on stderr. The comparison of an
+`tool` line and `plan_path` still names the plan. A file outside `.claude/plans/` and outside
+such a `cases/` folder is not judged, nor is a write through a shell; a payload the hook cannot
+read exits 0 with one line on stderr. The comparison of an
 edited plan with a ratified copy `<plan>.ratified.md` and its marks `<plan>.waiting.json`
 (case 387.3) are gone.
 
@@ -91,6 +102,7 @@ from guppi.ledger import (
     reply_text,
     session_dir,
     session_event_logs,
+    transcript_records,
     transcript_texts,
 )
 from guppi.materialize import (
@@ -122,7 +134,6 @@ CHAT_SECTIONS = (
 )
 SPEC_SECTIONS = ("context", "problem", "given", "when", "then")
 PROSE = ("context", "problem")
-WHOLE = ("when", "then", "tasks")
 EDIT_TOOLS = ("Edit", "Write", "MultiEdit")
 DEFERRED = "## Deferred"
 APPROVED = "<!-- approved"  # the stamp `guppi spec` opens each approved document of spec.md with
@@ -180,12 +191,6 @@ def headings(text: str) -> dict[str, str]:
         if match:
             found.setdefault(match.group(1).rstrip(":"), line.rstrip())
     return found
-
-
-def shown_whole(lines: list[str]) -> bool:
-    """A Case shown whole in the chat: its `when`, `then` and `tasks` stand."""
-    sections = quoted_sections(lines, CHAT_SECTIONS)
-    return all(name in sections for name in WHOLE)
 
 
 # --- the chat form of `tasks` -------------------------------------------------------
@@ -492,11 +497,14 @@ def ratified_cases(records: list[dict]) -> tuple[list[str], dict]:
 
 
 def find_showing(messages: list[str], case: str):
-    """`(heading, lines, text)` of the last message that shows the Case whole; None when none
-    shows it. A fence tagged `DIFF` is not read (case 441.8)."""
+    """`(heading, lines, text)` of the last message that shows the Case with at least one of
+    its sections, by `casecheck.shows_sections` (case 452.3); None when none shows it. A
+    fence tagged `DIFF` is not read (case 441.8)."""
+    from guppi.casecheck import shows_sections  # it imports this module
+
     for text in reversed(messages):
         cases = split_cases(text)
-        if case in cases and shown_whole(cases[case]):
+        if case in cases and shows_sections(cases[case]):
             return headings(text)[case], cases[case], text
     return None
 
@@ -761,7 +769,12 @@ def guard_refusal(payload: dict) -> tuple[str, str] | None:
     """`(path, reason)` when the guard refuses the call, None when it lets it through (case
     445.1): every `Edit` and `MultiEdit` of a plan file or a store, every `Write` of a store,
     every `Write` of a plan file that exists, and a `Write` that creates a plan file with any
-    content but one title line. A file outside `.claude/plans/` is not judged."""
+    content but one title line; every `Edit`, `Write` and `MultiEdit` of a file under the
+    `cases/` folder of a session folder, by `casecheck.is_case_file`, whatever its name and
+    whether it stands (case 453). A file outside `.claude/plans/` and outside such a folder
+    is not judged."""
+    from guppi.casecheck import is_case_file  # it imports this module
+
     tool = payload.get("tool_name")
     if tool not in EDIT_TOOLS:
         return None
@@ -773,6 +786,12 @@ def guard_refusal(payload: dict) -> tuple[str, str] | None:
     if is_store(path):
         return str(path), (
             f"{path} is the store of the answers of case-guppi; the hooks alone write it, and "
+            f"{CHANGE_THROUGH} (rule-spec-reconcile)"
+        )
+    if is_case_file(path):
+        return str(path), (
+            f"{path} is the file of a built Case under cases/ of the session folder; the hook "
+            f"of rule-case-check alone writes it, from the answer of case-guppi, and "
             f"{CHANGE_THROUGH} (rule-spec-reconcile)"
         )
     if not is_plan_file(path):
@@ -791,7 +810,8 @@ def guard_refusal(payload: dict) -> tuple[str, str] | None:
 
 
 def guard(payload: dict, project_dir: Path, now, stderr) -> int:
-    """`PreToolUse`: refuse the agent's edit of the plan file and of its store (case 445.1).
+    """`PreToolUse`: refuse the agent's edit of the plan file, of its store (case 445.1) and
+    of a file of a built Case under `cases/` (case 453), by `guard_refusal`.
     A refusal writes one line to the day's event log first: a refused call has no
     `PostToolUse`, so it leaves no `tool` line, and a refusal not written is nowhere."""
     refused = guard_refusal(payload)
@@ -834,21 +854,29 @@ def stop(payload: dict, project_dir: Path, now, stderr) -> int:
                 "line, then repeat the ledger lines"
             )
         else:
-            from guppi.casecheck import against_store, read_store  # it imports this module
+            # it imports this module
+            from guppi.casecheck import SEND, against_store, case_file, read_store, sent
 
             store = read_store(plan)
+            records_of_session = transcript_records(payload)
             messages = transcript_texts(payload)
             if messages and messages[-1].strip() == reply.strip():
                 messages = messages[:-1]
             for case in cases:
-                found = find_showing(messages, case)
-                if found is None:
-                    problems.append(f"case {case}: no earlier reply shows it whole")
-                    continue
-                heading, lines, _ = found
-                problem = against_store(case, heading, lines, store)  # case 437
+                found = find_showing(messages, case)  # none is no refusal (case 452.3)
+                heading, lines = (found[0], found[1]) if found else ("", [])
+                problem = against_store(case, heading, lines, store)  # cases 437, 452.2
                 if problem:
                     problems.append(problem)
+                    continue
+                path = case_file(folder, case)
+                stored = store[case].get("stored")
+                if not sent(records_of_session, path, project_dir, since=stored or ""):
+                    problems.append(
+                        f"case {case}: no {SEND} call on {path} after its answer was stored "
+                        f"({stored or 'no time held'}) — send the file, then repeat the ledger "
+                        "lines"
+                    )
                     continue
                 answer = store[case]["text"]  # the Case as case-guppi answered it
                 errors = write_case(

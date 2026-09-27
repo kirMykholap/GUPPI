@@ -13,6 +13,8 @@ import io
 import json
 from datetime import UTC, date, datetime
 
+import pytest
+
 from guppi import prespec
 
 TODAY = date(2026, 9, 9)
@@ -446,23 +448,131 @@ def test_a_frontier_defer_without_its_item_is_a_finding(tmp_path):
     assert check(tmp_path, plan=plan, ledger=ledger, frontier=frontier) == (0, "", "")
 
 
-def test_a_frontier_kept_is_clean_on_a_deferred_item(tmp_path):
-    # case 421.3: an item of the brief's Deferred list left as it stands closes [-] kept
-    frontier = CLEAN_FRONTIER + "- [-] F2 — `rule-later`, as it stands · deferred · kept\n"
+# --- the box, the closer and the source (case 451.2) --------------------------------------
+
+# Case 2 defers `rule-later`, so a line `· defer case 2` of another source is clean
+DEFER_PLAN = (
+    PLAN
+    + "\n## Case 2 — later\n\n```then\ndefer:\n  - slug: rule-later\n    type: rule\n    purpose: p\n```\n"
+)
+DEFER_LEDGER = LINE + "- 16:00:01 decision[case 2][defer][rule-later]\n"
+
+
+def check_deferring(project_dir, frontier):
+    return check(project_dir, plan=DEFER_PLAN, ledger=DEFER_LEDGER, frontier=frontier)
+
+
+def test_every_closer_on_its_own_box_and_source_is_clean(tmp_path):
+    frontier = CLEAN_FRONTIER + (
+        "- [x] F2 — no decision · brief · work\n"
+        "- [-] F3 — `rule-a`, a theme left for later · sprint · defer\n"
+        "- [-] F4 — `rule-b`, as it stands · backlog · kept\n"
+        "- [-] F5 — a decision put off · brief · defer case 2\n"
+    )
+    assert check_deferring(tmp_path, frontier) == (0, "", "")
+
+
+@pytest.mark.parametrize(
+    ("line", "finding"),
+    [
+        ("- [x] F2 — a theme · sprint · defer", "closes [x] with defer; an item put off is [-]"),
+        ("- [x] F2 — `rule-b` · backlog · kept", "closes [x] with kept; an item put off is [-]"),
+        (
+            "- [x] F2 — a decision · brief · defer case 2",
+            "closes [x] with defer case 2; an item put off is [-]",
+        ),
+        ("- [-] F2 — a decision · owner · case 1", "closes [-] with case 1; an item ended is [x]"),
+        ("- [-] F2 — no decision · brief · work", "closes [-] with work; an item ended is [x]"),
+    ],
+)
+def test_a_box_that_disagrees_with_its_closer_is_a_finding(tmp_path, line, finding):
+    code, out, _ = check_deferring(tmp_path, CLEAN_FRONTIER + line + "\n")
+    assert code == 1
+    assert out.splitlines() == [f"frontier: F2 {finding}"]
+
+
+@pytest.mark.parametrize("source", ["backlog", "brief", "owner", "deferred"])
+def test_defer_after_a_source_other_than_sprint_is_a_finding(tmp_path, source):
+    frontier = CLEAN_FRONTIER + f"- [-] F2 — a theme · {source} · defer\n"
+    code, out, _ = check(tmp_path, frontier=frontier)
+    assert code == 1
+    assert out.splitlines() == [
+        "frontier: F2 closes with defer; only an item of the source sprint closes with defer"
+    ]
+
+
+def test_a_sprint_item_put_off_closes_with_defer(tmp_path):
+    frontier = CLEAN_FRONTIER + "- [-] F2 — a theme · sprint · defer\n"
     assert check(tmp_path, frontier=frontier) == (0, "", "")
 
 
-def test_a_frontier_kept_on_x_or_after_another_source_is_a_finding(tmp_path):
-    finding = (
-        "frontier: {} closes with kept; only an item of the brief's Deferred list, source "
-        "deferred, closes [-] with kept"
-    )
-    frontier = CLEAN_FRONTIER + (
-        "- [x] F2 — `rule-later` · deferred · kept\n- [-] F3 — a new item · person · kept\n"
-    )
+@pytest.mark.parametrize("source", ["sprint", "brief", "owner", "deferred"])
+def test_kept_after_a_source_other_than_backlog_is_a_finding(tmp_path, source):
+    frontier = CLEAN_FRONTIER + f"- [-] F2 — `rule-later` · {source} · kept\n"
     code, out, _ = check(tmp_path, frontier=frontier)
     assert code == 1
-    assert out.splitlines() == [finding.format("F2"), finding.format("F3")]
+    assert out.splitlines() == [
+        "frontier: F2 closes with kept; only an item of the source backlog closes with kept"
+    ]
+
+
+def test_a_backlog_item_left_as_it_stands_closes_with_kept(tmp_path):
+    frontier = CLEAN_FRONTIER + "- [-] F2 — `rule-later`, as it stands · backlog · kept\n"
+    assert check(tmp_path, frontier=frontier) == (0, "", "")
+
+
+def test_a_box_finding_and_a_source_finding_are_both_given(tmp_path):
+    frontier = CLEAN_FRONTIER + "- [x] F2 — `rule-later` · brief · kept\n"
+    code, out, _ = check(tmp_path, frontier=frontier)
+    assert code == 1
+    assert out.splitlines() == [
+        "frontier: F2 closes [x] with kept; an item put off is [-]",
+        "frontier: F2 closes with kept; only an item of the source backlog closes with kept",
+    ]
+
+
+@pytest.mark.parametrize(("source", "closer"), [("sprint", "defer"), ("backlog", "kept")])
+def test_defer_case_n_after_sprint_or_backlog_is_a_finding(tmp_path, source, closer):
+    # the defer item under Case 2 stands: a sprint or backlog item is not deferred by a Case
+    frontier = CLEAN_FRONTIER + f"- [-] F2 — `rule-later` · {source} · defer case 2\n"
+    code, out, _ = check_deferring(tmp_path, frontier)
+    assert code == 1
+    finding = (
+        f"frontier: F2 defers a {source} item by a Case; a {source} item put off "
+        f"closes [-] with {closer}"
+    )
+    assert out.splitlines() == [finding]
+
+
+@pytest.mark.parametrize("source", ["brief", "owner", "deferred", "ledger tail"])
+def test_defer_case_n_after_another_source_needs_its_defer_item(tmp_path, source):
+    frontier = CLEAN_FRONTIER + f"- [-] F2 — a decision put off · {source} · defer case 2\n"
+    assert check_deferring(tmp_path, frontier) == (0, "", "")
+    code, out, _ = check(tmp_path, plan=PLAN + "\n## Case 2 — later\n", frontier=frontier)
+    assert code == 1
+    assert out.splitlines() == ["frontier: F2 defers to case 2, no defer item under Case 2"]
+
+
+@pytest.mark.parametrize("closer", ["sprint", "deferred", "put off", "case", "defer case"])
+def test_a_closer_outside_the_five_is_a_finding(tmp_path, closer):
+    # the old closer `sprint` is gone (case 451.2)
+    frontier = CLEAN_FRONTIER + f"- [-] F2 — a theme · brief · {closer}\n"
+    code, out, _ = check(tmp_path, frontier=frontier)
+    assert code == 1
+    assert out.splitlines() == [
+        "frontier: F2 is closed without case N, work, defer, kept or defer case N"
+    ]
+
+
+def test_the_backlog_count_and_a_near_line_are_not_read(tmp_path):
+    frontier = (
+        "# Frontier\n\n## Cases\n\n- [x] C1 — the one item · brief · case 1\n"
+        "  - near `rule-later` · sprint · kept\n"
+        "  - [ ] near `rule-other`\n"
+        "Backlog: 12 items · defer case 9\n\n"
+        "## Work\n\n- [x] W1 — a reading · brief · work\n"
+    )
+    assert check(tmp_path, frontier=frontier) == (0, "", "")
 
 
 def test_a_clean_frontier_passes(tmp_path):
@@ -1056,7 +1166,7 @@ def test_the_frontier_reads_cases_and_work_lines_under_their_headings(tmp_path):
     assert out.splitlines() == ["frontier: W2 closes with case 7, no Case 7 heading in the plan"]
 
 
-# --- the closer `sprint` and the sprint page (cases 310.6, 314.2) ---------------------
+# --- a sprint line and the sprint page (cases 314.2, 451.3) ---------------------------
 
 
 SPRINT_UPDATE = (
@@ -1070,17 +1180,18 @@ SPRINT_LEDGER = (
 
 
 def test_a_left_sprint_item_closes_with_sprint(tmp_path):
-    frontier = "# Frontier\n\n- [-] C1 — a theme left for later · sprint\n"
+    # case 451.3: a sprint line left for a later session closes `[-] … · sprint · defer`
+    frontier = "# Frontier\n\n- [-] C1 — a theme left for later · sprint · defer\n"
     assert check(tmp_path, frontier=frontier) == (0, "", "")
 
 
-def test_a_sprint_item_closed_with_a_defer_is_a_finding(tmp_path):
-    # case 356.2: a sprint item left for later closes `[-]` with `sprint`, never a defer
+def test_a_sprint_item_closed_with_a_defer_case_is_a_finding(tmp_path):
+    # case 356.2: a sprint item left for later closes `[-]` with `defer`, never a defer case
     frontier = "# Frontier\n\n- [-] C1 — `rule-x`, Slice 3b · sprint · defer case 1\n"
     code, out, _ = check(tmp_path, frontier=frontier)
     assert code == 1
     assert out.splitlines() == [
-        "frontier: C1 defers a sprint item; an item left for later closes [-] with sprint"
+        "frontier: C1 defers a sprint item by a Case; a sprint item put off closes [-] with defer"
     ]
     # a line of another source defers as before: the defer item is what it needs
     brief = "# Frontier\n\n- [-] C1 — `rule-x` · brief · defer case 1\n"
@@ -1088,13 +1199,22 @@ def test_a_sprint_item_closed_with_a_defer_is_a_finding(tmp_path):
     assert out.splitlines() == ["frontier: C1 defers to case 1, no defer item under Case 1"]
 
 
-def test_a_sprint_closer_on_a_ticked_line_is_a_finding(tmp_path):
-    frontier = "# Frontier\n\n- [x] C1 — a theme · sprint\n"
+def test_the_old_sprint_closer_is_a_finding(tmp_path):
+    # case 451.2: `sprint` is a source, no longer a closer, on either box
+    frontier = "# Frontier\n\n- [-] C1 — a theme · sprint\n- [x] C2 — a theme · sprint\n"
     code, out, _ = check(tmp_path, frontier=frontier)
     assert code == 1
     assert out.splitlines() == [
-        "frontier: C1 closes [x] with sprint; an item left for later is [-]"
+        f"frontier: {item} is closed without case N, work, defer, kept or defer case N"
+        for item in ("C1", "C2")
     ]
+
+
+def test_a_sprint_defer_on_a_ticked_line_is_a_finding(tmp_path):
+    frontier = "# Frontier\n\n- [x] C1 — a theme · sprint · defer\n"
+    code, out, _ = check(tmp_path, frontier=frontier)
+    assert code == 1
+    assert out.splitlines() == ["frontier: C1 closes [x] with defer; an item put off is [-]"]
 
 
 def test_a_decided_sprint_item_needs_an_update_of_the_sprint_page(tmp_path):

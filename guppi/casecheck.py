@@ -17,10 +17,18 @@ chat form: the sections in the order of the schema; the ones a Case needs — a 
 `context` and `problem`, and `when`, `then`, `tasks` and `ratification` of a Case with no
 sub-cases (`given` too, unless it is a sub-case); and a `ratification` of one untagged fence of
 ledger lines and nothing else, the fence judged by `materialize.fence_opening` and
-`closes_fence` (case 444.1). A count in a story section is not checked: no script tells a
-count from other words. Each Case of the answer is stored with its findings in
-`<plan>.checked.json` beside the plan file of the session, a later answer for the same id
-replacing it. A finding exits 2 with the findings on stderr, and Claude Code sends the agent
+`closes_fence` (case 444.1). The text of the story sections — `context`, `problem` and
+`recommend` — is not checked: the person judges it; the check still requires the sections and
+their order (case 449). Each Case of the answer is stored with its findings and the time of
+the store in `<plan>.checked.json` beside the plan file of the session, a later answer for the
+same id replacing it. When no Case of the answer has findings, the Cases of the answer are
+written, as the store holds their text, into `raw/<date>/<hi HHMM>/cases/case-<N>.md`, N the
+id of the top-level Case, named by `case_file`: the file replaced whole when the answer holds
+the top-level Case, and only the section of each sub-case replaced — or placed after its
+family — when the answer holds sub-cases alone (case 452.1); an answer with a finding writes
+no file. `case-guppi` itself writes no file, and the agent's edit of one is refused by
+`guppi ratified --guard`, which judges the path by `is_case_file`, the predicate `case_file`
+stays inside (case 453). A finding exits 2 with the findings on stderr, and Claude Code sends the agent
 back (measured 2026-09-25, session 0051), whatever `stop_hook_active` says: Claude Code sets it
 on the second fire after a handback with no exit 2 of this hook (measured 2026-09-26, session
 1337). The store guards the loop: when every Case with findings stands in the store with the
@@ -28,32 +36,54 @@ same text and findings, they are stored again and the hook exits 0. An answer wi
 heading, where no earlier output holds one either, is not checked or stored. With no plan
 file of the session nothing is stored or sent back.
 
-The same comparison — `against_store` — serves this module's `stop` and the Spec hook, which
-writes the stored answer into the plan and refuses a showing that differs from it (case 437).
+The same comparison — `against_store` — and the same reading of a sending — `sendings`,
+under `sent` — serve this module's `stop` and the Spec hook, which writes the stored answer
+into the plan and refuses a showing that differs from it (case 437) or a Case whose file was
+not sent after its store (case 452.3).
 
 The comparison. On `Stop`, each Case the reply shows under its heading with at least one of
-its sections is compared with the Case of the same id in the store in its `given`, `when`,
-`then`, `tasks` and `ratification` — the lines up to the horizontal rule that opens the
-agent's own text, line ends and trailing spaces made the same. The name of its heading, its
-`context`, `problem` and `recommend`, which the main agent translates for the chat, are not
-compared (case 441.3). A parent shown with its sub-cases is compared part by part. A Case the
-store does not hold, one that differs, or one stored with findings exits 2 with the reason on
-stderr. A heading with no section — the acknowledging reply — a fence tagged `DIFF`, and a
-deferred decision in the short form — `context`, `problem` and a fence tagged `then` with
-`defer` items, no `given` and no `when` — are not compared. On the re-fire exit 0; outside a
-working session — no `hi` — nothing is done.
+its sections (`shows_sections`) is compared with the Case of the same id in the store in each
+of its `given`, `when`, `then`, `tasks` and `ratification` that the reply shows — the lines up
+to the horizontal rule that opens the agent's own text, line ends and trailing spaces made the
+same; a section the reply does not show is not compared (case 452.2). The name of its heading,
+its `context`, `problem` and `recommend`, and text under the heading outside its sections are
+not compared (cases 441.3, 452.2). A parent shown with its sub-cases is compared part by part.
+A Case the store does not hold, one that differs, one stored with findings, or one with no
+`SendUserFile` call on `raw/<date>/<hi HHMM>/cases/case-<N>.md` in the turn of the reply, N the
+id of its top-level Case, exits 2 with the reason on stderr (case 452.2). A heading with no
+section — the acknowledging reply — a fence tagged `DIFF`, and a deferred decision in the
+short form — `context`, `problem` and a fence tagged `then` with `defer` items, no `given` and
+no `when` — are not compared and need no sending. On the re-fire exit 0; outside a working
+session — no `hi` — nothing is done.
+
+A sending. The transcript is JSONL (`ledger.read_records`); a `SendUserFile` call stands in an
+assistant record's `message.content` as `{"type": "tool_use", "name": "SendUserFile",
+"input": {"files": [<path>, …]}}`, the record carrying its `timestamp` (measured 2026-09-27,
+session 1255). The turn of the reply is the records after the last prompt: a `user` record,
+not `isMeta`, that holds more than tool results — a tool result and the text of a skill stand
+in `user` records too, and a `Stop` hook's refusal adds no `user` record (measured the same
+day).
 
 The payload is read as UTF-8; the hook never raises. Rule page:
 `vault/wiki/rules/rule-case-check.md`.
 """
 
 import json
+import os
 import sys
 from datetime import datetime
 from pathlib import Path
 
 from guppi.event import project_root, read_payload, session_stamp
-from guppi.ledger import plan_path, read_records, reply_text, session_dir, session_event_logs
+from guppi.generate import DAY, SESSION
+from guppi.ledger import (
+    plan_path,
+    read_records,
+    reply_text,
+    session_dir,
+    session_event_logs,
+    transcript_records,
+)
 from guppi.materialize import (
     closes_fence,
     fence_opening,
@@ -63,20 +93,161 @@ from guppi.materialize import (
     tagged_blocks,
 )
 from guppi.prespec import FINDING_CASE, judge
-from guppi.ratified import CHAT_SECTIONS, case_section, headings, key_judge, quoted_sections
+from guppi.ratified import (
+    CHAT_SECTIONS,
+    case_section,
+    headings,
+    key_judge,
+    place,
+    quoted_sections,
+)
 
 AGENT = "case-guppi"
 HANDBACK = "SubagentHandback"  # the tool a subagent gives its report through (case 434)
+SEND = "SendUserFile"  # the tool that sends the person a file (case 452.2)
 STORE_SUFFIX = ".checked.json"
+CASES = "cases"  # the folder of the files of built Cases in a session folder (case 452.1)
 RULE = "---"  # the horizontal rule after which the agent's own text stands
 LEDGER_LINE = ("- decision[", "- estimate[", "- lesson[")
-# The parts of a shown Case compared with its stored answer; the heading name and the prose
-# — `context`, `problem`, `recommend` — the main agent translates, and they are free (441.3).
+# The parts of a shown Case compared with its stored answer, each only when the reply shows
+# it (452.2); the heading name and the prose — `context`, `problem`, `recommend` — are free.
 MECHANICAL = ("given", "when", "then", "tasks", "ratification")
 
 
 def store_of(plan: Path) -> Path:
     return plan.with_name(plan.stem + STORE_SUFFIX)
+
+
+# --- the file of a built Case (cases 452.1, 453) ------------------------------------------
+
+
+def top_case(case: str) -> str:
+    """The id of the top-level Case of `case`: `452` of `452.1`."""
+    return case.split(".", 1)[0]
+
+
+def is_case_file(path) -> bool:
+    """A path under the `cases/` folder of a session folder `vault/raw/<date>/<HHMM>/`,
+    whatever its name and whether it stands — the one judgment of the guard `guppi ratified
+    --guard` and of the writer, whose `case_file` stays inside it (case 453). The date and
+    the `HHMM` are judged by `generate.DAY` and `generate.SESSION`."""
+    parts = Path(str(path)).parts
+    return any(
+        parts[i] == CASES
+        and SESSION.match(parts[i - 1])
+        and DAY.match(parts[i - 2])
+        and parts[i - 3] == "raw"
+        and parts[i - 4] == "vault"
+        for i in range(4, len(parts) - 1)
+    )
+
+
+def case_file(folder: Path, case: str) -> Path:
+    """`raw/<date>/<hi HHMM>/cases/case-<N>.md` of the session folder `folder`, N the id of the
+    top-level Case of `case` — the one naming of the file, of the writer, of `stop` and of the
+    Spec hook (cases 452.1–452.3)."""
+    return folder / CASES / f"case-{top_case(case)}.md"
+
+
+def write_case_files(folder: Path, cases: list[str], store: dict) -> None:
+    """Each top-level Case of an answer into its `case_file`, from the text `store` holds
+    (case 452.1): replaced whole when the answer holds the top-level Case — its sections in
+    the order of the answer, a blank line between — and otherwise only the section of each
+    sub-case of the answer replaced, or placed after its family, by `ratified.place`."""
+    groups: dict[str, list[str]] = {}
+    for case in cases:
+        groups.setdefault(top_case(case), []).append(case)
+    for top, members in groups.items():
+        path = case_file(folder, top)
+        texts = {case: str(store[case]["text"]) for case in members}
+        if top in members:
+            text = "\n\n".join(texts[case] for case in members) + "\n"
+        else:
+            text = path.read_text(encoding="utf-8") if path.is_file() else ""
+            for case in members:
+                text = place(text, case, [*texts[case].splitlines(), ""])
+        path.parent.mkdir(parents=True, exist_ok=True)
+        path.write_text(text, encoding="utf-8", newline="")
+
+
+# --- a sending (cases 452.2, 452.3) -------------------------------------------------------
+
+
+def sendings(records: list[dict]) -> list[tuple[str, str]]:
+    """`(timestamp, file)` for each file of each `SendUserFile` call among the assistant
+    records of a transcript, in order — the one reading of a sending, of `stop` and of the
+    Spec hook (case 452.2). The timestamp is the record's, empty when it has none."""
+    found: list[tuple[str, str]] = []
+    for record in records:
+        if not isinstance(record, dict) or record.get("type") != "assistant":
+            continue
+        message = record.get("message")
+        content = message.get("content") if isinstance(message, dict) else None
+        for block in content if isinstance(content, list) else []:
+            if not (
+                isinstance(block, dict)
+                and block.get("type") == "tool_use"
+                and block.get("name") == SEND
+            ):
+                continue
+            data = block.get("input")
+            files = data.get("files") if isinstance(data, dict) else None
+            for file in files if isinstance(files, list) else []:
+                if isinstance(file, str) and file:
+                    found.append((str(record.get("timestamp") or ""), file))
+    return found
+
+
+def turn_of_reply(records: list[dict]) -> list[dict]:
+    """The records of the turn the reply ends: those after the last prompt — a `user` record,
+    not `isMeta`, whose content is a text or holds a block other than a tool result."""
+    start = 0
+    for index, record in enumerate(records):
+        if record.get("type") != "user" or record.get("isMeta"):
+            continue
+        message = record.get("message")
+        content = message.get("content") if isinstance(message, dict) else None
+        blocks = content if isinstance(content, list) else []
+        if isinstance(content, str) or any(
+            isinstance(block, dict) and block.get("type") != "tool_result" for block in blocks
+        ):
+            start = index + 1
+    return records[start:]
+
+
+def file_key(path, project_dir: Path) -> str:
+    """A path made comparable: absolute against the project, normalised, its case folded
+    where the file system folds it."""
+    path = Path(str(path))
+    if not path.is_absolute():
+        path = project_dir / path
+    return os.path.normcase(os.path.normpath(str(path)))
+
+
+def moment(text) -> datetime | None:
+    """An ISO time, made aware in the local zone when it has none; None when not one."""
+    try:
+        value = datetime.fromisoformat(str(text))
+    except (TypeError, ValueError):
+        return None
+    return value.astimezone() if value.tzinfo is None else value
+
+
+def sent(records: list[dict], path: Path, project_dir: Path, since=None) -> bool:
+    """A `SendUserFile` call on `path` among `records`, by `sendings`; with `since`, a time of
+    the store, only a call whose record's timestamp is later than it counts — a time that
+    cannot be read on either side counts as none (case 452.3)."""
+    want = file_key(path, project_dir)
+    after = None if since is None else moment(since)
+    for timestamp, file in sendings(records):
+        if file_key(file, project_dir) != want:
+            continue
+        if since is None:
+            return True
+        when = moment(timestamp)
+        if after is not None and when is not None and when > after:
+            return True
+    return False
 
 
 def read_store(plan: Path | None) -> dict:
@@ -107,6 +278,12 @@ def is_short_form(lines: list[str]) -> bool:
     if "given" in sections or "when" in sections:
         return False
     return any(block.lstrip().startswith("defer:") for block in tagged_blocks(lines, "then"))
+
+
+def shows_sections(lines: list[str]) -> bool:
+    """A showing of a Case the checks judge: at least one of its sections, not the short
+    form — the one judgment of `stop` and of the showing the Spec hook reads (case 452.2)."""
+    return bool(quoted_sections(lines, CHAT_SECTIONS)) and not is_short_form(lines)
 
 
 def has_sub_cases(case: str, cases: dict) -> bool:
@@ -239,7 +416,11 @@ def subagent(payload: dict, project_dir: Path, now, stderr) -> int:
     heads = headings(text)
     repeated = True  # every Case with findings stands in the store as it is, findings and all
     for case, lines in cases.items():
-        entry = {"text": shown_text(heads[case], lines), "findings": found[case]}
+        entry = {
+            "text": shown_text(heads[case], lines),
+            "findings": found[case],
+            "stored": now.isoformat(),  # the time a sending must follow (case 452.1)
+        }
         held = store.get(case)
         if found[case] and not (
             isinstance(held, dict) and held.get("text") == entry["text"] and held.get("findings")
@@ -250,6 +431,8 @@ def subagent(payload: dict, project_dir: Path, now, stderr) -> int:
         json.dumps(store, ensure_ascii=False, indent=1), encoding="utf-8", newline=""
     )
     findings = [f for case in cases for f in found[case]]
+    if not findings and folder is not None:  # the file of a Case that passed (case 452.1)
+        write_case_files(folder, list(cases), store)
     if findings and not repeated:  # the store guards the loop, not `stop_hook_active` (434)
         print("casecheck: " + "; ".join(findings), file=stderr)
         return 2
@@ -280,7 +463,8 @@ def mechanical_parts(lines: list[str]) -> dict[str, str]:
 def against_store(case: str, heading: str, lines: list[str], store: dict) -> str | None:
     """The one comparison of a shown Case with its stored answer (cases 419.4, 437, 441.3):
     the reason it fails, or None — shared by this module's `stop` and the Spec hook. Only
-    the `MECHANICAL` parts are compared; `heading` is not."""
+    the `MECHANICAL` parts `lines` shows are compared, a part it does not show left alone
+    (case 452.2), so empty `lines` judge the store alone; `heading` is not compared."""
     entry = store.get(case)
     if not isinstance(entry, dict):
         return f"case {case}: not built and checked by case-guppi — dispatch it"
@@ -290,7 +474,7 @@ def against_store(case: str, heading: str, lines: list[str], store: dict) -> str
         )
     stored = mechanical_parts(str(entry.get("text") or "").splitlines()[1:])
     shown = mechanical_parts(lines)
-    differ = [name for name in MECHANICAL if stored.get(name) != shown.get(name)]
+    differ = [name for name in MECHANICAL if name in shown and stored.get(name) != shown[name]]
     if differ:
         return (
             f"case {case}: its {', '.join(differ)} differ from the answer of case-guppi — show "
@@ -303,16 +487,13 @@ def stop(payload: dict, project_dir: Path, now, stderr) -> int:
     if payload.get("stop_hook_active"):
         return 0
     stamp = session_stamp(None, payload)
-    if session_dir(project_dir, now, stamp) is None:
+    folder = session_dir(project_dir, now, stamp)
+    if folder is None:
         return 0
     reply = reply_text(payload)
     cases = split_cases(reply)
     heads = headings(reply)
-    shown = {
-        case: lines
-        for case, lines in cases.items()
-        if quoted_sections(lines, CHAT_SECTIONS) and not is_short_form(lines)
-    }
+    shown = {case: lines for case, lines in cases.items() if shows_sections(lines)}
     if not shown:
         return 0
     store = read_store(plan_path(session_event_logs(project_dir, now, stamp), stamp))
@@ -321,6 +502,17 @@ def stop(payload: dict, project_dir: Path, now, stderr) -> int:
         for case, lines in shown.items()
         if (problem := against_store(case, heads[case], lines, store))
     ]
+    turn = turn_of_reply(transcript_records(payload))
+    unsent: dict[Path, list[str]] = {}
+    for case in shown:  # the file of its top-level Case, sent in this turn (case 452.2)
+        path = case_file(folder, case)
+        if not sent(turn, path, project_dir):
+            unsent.setdefault(path, []).append(case)
+    for path, ids in unsent.items():
+        problems.append(
+            f"case {', '.join(ids)}: no {SEND} call on {path} in the turn of this reply — "
+            "send the file"
+        )
     if problems:
         print("casecheck: " + "; ".join(problems), file=stderr)
         return 2

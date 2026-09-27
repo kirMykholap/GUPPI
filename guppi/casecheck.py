@@ -12,7 +12,12 @@ reading of the Spec hook, which refuses a sub-point outside `materialize.item_ke
 436.1) — and runs `prespec.judge` over them, the decision lines of each `ratification` fence
 standing for the ledger; the categories whose schema rule those lines or the session's ledger
 change are not judged by their keys (case 436.4). The Frontier and the grammar of the window
-stay with `/pre-spec` (case 445.2). It checks besides the
+stay with `/pre-spec` (case 445.2), but for one check: for each open line of the session's
+`frontier.md` whose source is `backlog` and each page of its title with `deferred_by`, a Case
+of the answer that, itself or through a sub-case, names the page on a decision line other
+than a `defer` gets a finding for each Case of that list when no Case among it and its
+sub-cases both names the page and carries its `{supersedes}` — `prespec.decided_on_its_page`,
+the judgment `/pre-spec` runs on a closed line (case 467.2). It checks besides the
 chat form: the sections in the order of the schema; the ones a Case needs — a parent's
 `context` and `problem`, and `when`, `then`, `tasks` and `ratification` of a Case with no
 sub-cases (`given` too, unless it is a sub-case); and a `ratification` of one untagged fence of
@@ -75,7 +80,7 @@ from datetime import datetime
 from pathlib import Path
 
 from guppi.event import project_root, read_payload, session_stamp
-from guppi.generate import DAY, SESSION
+from guppi.generate import DAY, FRONTIER_LINE, FRONTIER_SEPARATOR, SESSION
 from guppi.ledger import (
     plan_path,
     read_records,
@@ -93,7 +98,13 @@ from guppi.materialize import (
     split_cases,
     tagged_blocks,
 )
-from guppi.prespec import FINDING_CASE, judge
+from guppi.prespec import (
+    BACKLOG_SOURCE,
+    FINDING_CASE,
+    decided_on_its_page,
+    deferred_pages,
+    judge,
+)
 from guppi.ratified import (
     CHAT_SECTIONS,
     case_section,
@@ -336,10 +347,52 @@ def ratification_records(cases: dict) -> list[dict]:
     return records
 
 
-def check_answer(text: str, project_dir: Path, window: list[str] = ()) -> dict[str, list[str]]:
+def open_backlog_lines(frontier: Path | None) -> list[tuple[str, str]]:
+    """`(item, title)` of each open line of the Frontier whose source — its last segment —
+    is `backlog` (case 467.2)."""
+    if frontier is None or not frontier.is_file():
+        return []
+    found: list[tuple[str, str]] = []
+    for line in frontier.read_text(encoding="utf-8").splitlines():
+        match = FRONTIER_LINE.match(line)
+        if not match or match.group(1) != " ":
+            continue
+        _, item, rest = match.groups()
+        if rest.split(FRONTIER_SEPARATOR)[-1].strip() == BACKLOG_SOURCE:
+            found.append((item, rest))
+    return found
+
+
+def check_backlog(
+    records: list[dict], frontier: Path | None, project_dir: Path
+) -> list[tuple[str, str]]:
+    """Case 467.2: `(top-level case, finding)` for each open `backlog` line of the Frontier
+    and each page of its title with `deferred_by`, against each top-level Case of the answer
+    that, itself or through a sub-case, names the page on a decision line other than a
+    `defer` — by `prespec.decided_on_its_page`, the judgment `/pre-spec` runs."""
+    findings: list[tuple[str, str]] = []
+    tops = list(dict.fromkeys(top_case(str(r["case"])) for r in records))
+    for item, title in open_backlog_lines(frontier):
+        for slug, deferred in deferred_pages(title, project_dir).items():
+            for top in tops:
+                named, missing = decided_on_its_page(slug, deferred, records, top)
+                for m in missing if named else []:
+                    finding = (
+                        f"case {top}: names {slug}, the page of the open backlog line "
+                        f"{item}, and no Case among case {top} and its sub-cases names it "
+                        f"and carries {{supersedes:case {m}}}"
+                    )
+                    findings.append((top, finding))
+    return findings
+
+
+def check_answer(
+    text: str, project_dir: Path, window: list[str] = (), frontier: Path | None = None
+) -> dict[str, list[str]]:
     """Case id → its findings, for every Case of an answer of `case-guppi`. The categories
     whose schema rule the lines of the `ratification` fences or of the session's `window`
-    change are not judged by their keys (case 436.4)."""
+    change are not judged by their keys (case 436.4). `frontier`, the session's
+    `frontier.md`, adds the check of its open `backlog` lines (case 467.2)."""
     cases = split_cases(text)
     heads = headings(text)
     records = ratification_records(cases)
@@ -361,6 +414,9 @@ def check_answer(text: str, project_dir: Path, window: list[str] = ()) -> dict[s
         match = FINDING_CASE.match(finding)
         case = match.group(1) if match else ""
         found[case if case in found else next(iter(cases))].append(finding)
+    for top, finding in check_backlog(records, frontier, project_dir):
+        family = [c for c in found if c == top or c.startswith(f"{top}.")]
+        found[family[0] if family else next(iter(cases))].append(finding)
     return found
 
 
@@ -408,7 +464,8 @@ def subagent(payload: dict, project_dir: Path, now, stderr) -> int:
     stamp = session_stamp(None, payload)
     folder = session_dir(project_dir, now, stamp)
     window = ledger_of(folder)
-    found = check_answer(text, project_dir, window)
+    frontier = folder / "frontier.md" if folder is not None else None
+    found = check_answer(text, project_dir, window, frontier)
     plan = plan_path(session_event_logs(project_dir, now, stamp), stamp)
     if plan is None or not plan.is_file():
         return 0  # no plan file: nothing stored, nothing sent back (case 434)

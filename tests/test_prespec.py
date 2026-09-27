@@ -575,6 +575,115 @@ def test_the_backlog_count_and_a_near_line_are_not_read(tmp_path):
     assert check(tmp_path, frontier=frontier) == (0, "", "")
 
 
+# --- Case 467.1: a backlog item decided on its page ---------------------------------------
+
+
+def with_deferred(project_dir, slug, deferred_by=("decision-case-7",)):
+    folder = project_dir / "vault" / "wiki" / "rules"
+    folder.mkdir(parents=True, exist_ok=True)
+    text = "---\ntype: rule\nstatus: draft\n"
+    if deferred_by:
+        text += "deferred_by: [" + ", ".join(deferred_by) + "]\n"
+    (folder / f"{slug}.md").write_text(text + "---\n\n## Purpose\n\nx\n", encoding="utf-8")
+
+
+BACKLOG_LINE = CLEAN_FRONTIER + "- [x] F2 — `{slug}`, taken up · {source} · case 1\n"
+SUPERSEDING_LINE = "- 16:00:00 decision[case 1][update][rule-x]{ref:rule-x}{supersedes:case 7}\n"
+
+
+def test_backlog_a_page_its_case_supersedes_on_its_own_line_passes(tmp_path):
+    with_deferred(tmp_path, "rule-x")
+    frontier = BACKLOG_LINE.format(slug="rule-x", source="backlog")
+    assert check(tmp_path, ledger=SUPERSEDING_LINE, frontier=frontier) == (0, "", "")
+
+
+def test_backlog_a_page_named_by_no_line_of_its_case_is_a_finding(tmp_path):
+    with_deferred(tmp_path, "rule-y")
+    frontier = BACKLOG_LINE.format(slug="rule-y", source="backlog")
+    code, out, _ = check(tmp_path, ledger=SUPERSEDING_LINE, frontier=frontier)
+    assert code == 1
+    assert out.splitlines() == [
+        (
+            "frontier: F2 closes a backlog item with case 1, and no decision line of Case 1 "
+            "other than a defer names rule-y; generate clears a defer only from a page the "
+            "Case names"
+        ),
+        (
+            "frontier: F2: no Case among case 1 and its sub-cases names rule-y and carries "
+            "{supersedes:case 7}"
+        ),
+    ]
+
+
+def test_backlog_a_page_named_without_its_supersedes_is_a_finding(tmp_path):
+    with_deferred(tmp_path, "rule-x", ("decision-case-7", "decision-case-8"))
+    frontier = BACKLOG_LINE.format(slug="rule-x", source="backlog")
+    code, out, _ = check(tmp_path, ledger=SUPERSEDING_LINE, frontier=frontier)
+    assert code == 1
+    assert out.splitlines() == [
+        (
+            "frontier: F2: no Case among case 1 and its sub-cases names rule-x and carries "
+            "{supersedes:case 8}"
+        )
+    ]
+
+
+SUB_CASE_PLAN = """# Plan
+
+## Case 1 — one
+
+> **context:**
+> Something.
+
+### Case 1.1 — takes it up
+
+```then
+update:
+  - slug: rule-x
+    change: taken up
+```
+
+```tasks
+- [ ] guppi/x.py: the change
+```
+
+### Case 1.2 — another change of the page
+
+```then
+update:
+  - slug: rule-x
+    change: another
+```
+
+```tasks
+- [ ] guppi/y.py: the change
+```
+"""
+SUB_CASE_LINES = (
+    "- 16:00:00 decision[case 1.1][update][rule-x]{ref:rule-x}{supersedes:case 7}\n"
+    "- 16:00:01 decision[case 1.2][update][rule-x]{ref:rule-x}\n"
+)
+
+
+def test_backlog_a_sub_case_that_names_and_supersedes_covers_its_sibling(tmp_path):
+    with_deferred(tmp_path, "rule-x")
+    frontier = "# Frontier\n\n- [x] F2 — `rule-x`, taken up · backlog · case 1\n"
+    code, out, _ = check(tmp_path, plan=SUB_CASE_PLAN, ledger=SUB_CASE_LINES, frontier=frontier)
+    assert (code, out) == (0, "")
+
+
+@pytest.mark.parametrize(
+    ("slug", "deferred_by", "source"),
+    [("rule-x", (), "backlog"), ("rule-x", ("decision-case-7",), "brief")],
+)
+def test_backlog_a_page_without_defers_or_a_line_of_another_source_is_no_finding(
+    tmp_path, slug, deferred_by, source
+):
+    with_deferred(tmp_path, slug, deferred_by)
+    frontier = BACKLOG_LINE.format(slug=slug, source=source)
+    assert check(tmp_path, frontier=frontier) == (0, "", "")
+
+
 def test_a_clean_frontier_passes(tmp_path):
     frontier = CLEAN_FRONTIER + "- [x] F2 — no decision · brief next 1 · work\n"
     assert check(tmp_path, frontier=frontier) == (0, "", "")

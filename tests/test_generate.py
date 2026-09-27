@@ -2877,3 +2877,109 @@ def test_a_milestone_with_a_note_left_or_empty_before_the_run_stays(tmp_path):
     milestones, _ = sections_of(after)
     assert "### Slice 3b — Work Mode" + NL + NL + "- a note not yet cut" in milestones
     assert "### Slice 9 — empty" in milestones and "left the Milestones" not in after
+
+
+# --- Case 464: the roads of an entry of `category: unknown` ------------------------------
+
+
+def unknown_entry(kind, slug, **extra):
+    """An entry lifted from a ledger line whose slug has no category prefix (case 320)."""
+    return {
+        "line": 2,
+        "text": "",
+        "case": "2",
+        "kind": kind,
+        "category": "unknown",
+        "slug": slug,
+        "origin": f"raw/{DATE}/ledger.md#case-2",
+        "decision": "decision-case-2",
+        **extra,
+    }
+
+
+def test_an_update_of_an_unknown_category_applies_to_its_page_in_any_folder(tmp_path):
+    entry = unknown_entry("update", "odd-thing", change="renamed by hand")
+    odd = ("rules", "odd-thing", page_text("rules", "odd-thing"))
+    seed(tmp_path, entries=[ROOT, entry], pages=[odd])
+    tasks = "```tasks\n- [ ] update `odd-thing`\n```\n"
+    spec = with_spec(tmp_path, "# Spec\n\n## Case 2 — odd\n\n" + tasks)
+    code, _, err = run(tmp_path)
+    assert code == 0 and err == "", err
+    assert load_yaml(tmp_path)["entries"][1]["applied"]
+    assert "[[decision-case-2]]" in page(tmp_path, "rules", "odd-thing").split("## History")[1]
+    assert "- [x] update `odd-thing`" in spec.read_text(encoding="utf-8")
+
+
+def test_a_create_of_an_unknown_category_fails_not_a_vault_folder(tmp_path):
+    entry = unknown_entry("create", "odd-thing", fields={"type": "rule", "purpose": "x"})
+    seed(tmp_path, entries=[ROOT, entry])
+    code, _, err = run(tmp_path)
+    assert code == 1
+    assert "generate: odd-thing: category 'unknown' is not a vault folder" in err
+    assert "failed" in load_yaml(tmp_path)["entries"][1]
+    assert not list((tmp_path / "vault" / "wiki").glob("*/odd-thing.md"))
+
+
+def test_a_defer_of_an_unknown_category_with_no_page_fails_not_a_vault_folder(tmp_path):
+    entry = unknown_entry("defer", "odd-thing", purpose="later")
+    seed(tmp_path, entries=[ROOT, entry])
+    code, _, err = run(tmp_path)
+    assert code == 1
+    assert "generate: odd-thing: category 'unknown' is not a vault folder" in err
+    assert "failed" in load_yaml(tmp_path)["entries"][1]
+
+
+# --- Case 467.3: a supersede clears a defer only from the pages its Case names -------------
+
+SHARED_DEFER = (
+    '---\ntype: decision\ncase: "2"\nstatus: {status}\ndefer: [rule-a, rule-b]\n{extra}'
+    f"origin: raw/{DATE}/ledger.md#case-2\nsprint: migration\ncreated: {DATE}\ntags: []\n---\n\n"
+    "## Context\n\nc\n\n## Problem\n\np\n\n## History\n\n- created\n"
+)
+
+
+def taking_up(slug, case):
+    """An `update` of one page of the shared defer, superseding `decision-case-2`."""
+    entry = update_of(slug, 3, change="taken up", supersedes="2")
+    entry.update(case=case, decision=f"decision-case-{case}")
+    return entry
+
+
+def seed_shared(tmp_path, entry, deferred):
+    """`decision-case-2` defers `rule-a` and `rule-b`; the pages in `deferred` carry it."""
+    pages = []
+    for slug in ("rule-a", "rule-b"):
+        extra = {"deferred_by": "[decision-case-2]"} if slug in deferred else {}
+        pages.append(("rules", slug, page_text("rules", slug, **extra)))
+    decisions = records_for([entry])
+    decisions[0]["supersedes"] = ["decision-case-2"]
+    seed(tmp_path, entries=[entry], decisions=decisions, pages=pages)
+
+
+def test_a_supersede_of_a_shared_defer_clears_only_the_page_its_case_names(tmp_path):
+    seed_shared(tmp_path, taking_up("rule-a", "3"), ("rule-a", "rule-b"))
+    (tmp_path / "vault" / "wiki" / "decisions" / "decision-case-2.md").write_text(
+        SHARED_DEFER.format(status="current", extra=""), encoding="utf-8", newline="\n"
+    )
+    code, _, err = run(tmp_path)
+    assert code == 0 and err == "", err
+    assert "deferred_by" not in props(page(tmp_path, "rules", "rule-a"))
+    b = page(tmp_path, "rules", "rule-b")
+    assert props(b)["deferred_by"] == ["decision-case-2"]
+    assert "superseded" not in b.split("## History")[1]
+
+
+def test_a_later_case_superseding_the_archived_decision_clears_the_page_it_names(tmp_path):
+    seed_shared(tmp_path, taking_up("rule-b", "4"), ("rule-b",))  # rule-a cleared before
+    archived = tmp_path / "vault" / "archive" / "migration" / DATE / "1200" / "decisions"
+    archived.mkdir(parents=True)
+    (archived / "decision-case-2.md").write_text(
+        SHARED_DEFER.format(status="archived", extra="superseded_by: [decision-case-3]\n"),
+        encoding="utf-8",
+        newline="\n",
+    )
+    code, _, err = run(tmp_path)
+    assert code == 0 and err == "", err
+    b = page(tmp_path, "rules", "rule-b")
+    assert "deferred_by" not in props(b)
+    assert f"- {DATE} defer by decision-case-2 superseded · [[decision-case-4]]" in b

@@ -537,3 +537,61 @@ def test_stop_a_parent_is_compared_part_by_part(working):
 
 def test_stop_the_re_fire_passes(working):
     assert show(working, ANSWER, stop_hook_active=True) == (0, "")
+
+
+# --- Case 467.2: an open backlog line of the Frontier ------------------------------------
+
+UPDATE_LINE = "decision[case 7][update][rule-x]{ref:rule-x}"
+
+
+def taken_from_the_backlog(project, line="- [ ] C1 — `rule-x`, taken up · backlog\n"):
+    """`rule-x` deferred by case 5, and the Frontier line that takes it up."""
+    rule = project / "vault" / "wiki" / "rules" / "rule-x.md"
+    rule.write_text(
+        RULE_X.replace("status: draft\n", "status: draft\ndeferred_by: [decision-case-5]\n"),
+        encoding="utf-8",
+    )
+    frontier = project.joinpath(*FOLDER) / "frontier.md"
+    frontier.parent.mkdir(parents=True, exist_ok=True)
+    frontier.write_text(f"# Frontier\n\n## Cases\n\n{line}", encoding="utf-8")
+
+
+def test_subagent_backlog_a_case_naming_the_page_without_its_supersedes_is_sent_back(working):
+    taken_from_the_backlog(working)
+    code, err = answer(working, ANSWER)
+    assert code == 2
+    assert (
+        "case 7: names rule-x, the page of the open backlog line C1, and no Case among case 7 "
+        "and its sub-cases names it and carries {supersedes:case 5}"
+    ) in err
+
+
+def test_subagent_backlog_a_case_with_every_supersedes_passes(working):
+    taken_from_the_backlog(working)
+    marked = ANSWER.replace(UPDATE_LINE, UPDATE_LINE + "{supersedes:case 5}")
+    assert answer(working, marked) == (0, "")
+
+
+def test_subagent_backlog_a_sub_case_that_supersedes_covers_its_sibling(working):
+    taken_from_the_backlog(working)
+    first = sub_case("9.1").replace(
+        "decision[case 9.1][update][rule-x]{ref:rule-x}",
+        "decision[case 9.1][update][rule-x]{ref:rule-x}{supersedes:case 5}",
+    )
+    assert answer(working, PARENT + first + "\n" + sub_case("9.2")) == (0, "")
+
+
+@pytest.mark.parametrize(
+    "line",
+    ["- [x] C1 — `rule-x`, taken up · backlog · case 7\n", "- [ ] C1 — `rule-x` · brief\n"],
+)
+def test_subagent_backlog_no_open_backlog_line_is_no_finding(working, line):
+    taken_from_the_backlog(working, line)
+    assert answer(working, ANSWER) == (0, "")
+
+
+def test_backlog_a_case_naming_the_page_only_in_a_defer_line_is_not_judged(working):
+    taken_from_the_backlog(working)
+    records = [casecheck.parse_line("- decision[case 8][defer][rule-x]")]
+    frontier = working.joinpath(*FOLDER) / "frontier.md"
+    assert casecheck.check_backlog(records, frontier, working) == []

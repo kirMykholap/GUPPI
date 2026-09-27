@@ -70,7 +70,9 @@ on the Estimate; pages written before keep theirs. A record with
 Spec (case 299.1) — gets a two-line body naming the superseding Decision; its status
 follows the mechanism as for any superseded page (case 299.4). A `supersedes` sets
 the earlier page `superseded`, appends to its `superseded_by` and removes its slug from
-the `deferred_by` of every target of its `defer` list. An existing page is skipped; a
+the `deferred_by` of each target of its `defer` list that a decision line of the
+superseding Case names; a target the Case does not name keeps it, and a later Case that
+supersedes the same page clears the targets it names (case 467.3). An existing page is skipped; a
 `create` marked `exists` writes no page, its Decision page is still written.
 
 One bad entry never stops the run (case 201.3): an entry that fails — a collision, a `ref`
@@ -1048,11 +1050,14 @@ class Vault:
         self.history(page, "deferred, placeholder", self.pointer(entry))
         self.save(page)
 
-    def clear_deferred_by(self, earlier: Page, by: str, origin: str) -> None:
-        """A `supersedes` of a decision that deferred pages: every target in the earlier
-        page's `defer` list drops it from `deferred_by`, an empty list is dropped (cases
-        52.3, 59.4)."""
+    def clear_deferred_by(self, earlier: Page, by: str, named: set[str]) -> None:
+        """A `supersedes` of a decision that deferred pages: each target in the earlier
+        page's `defer` list that a decision line of the superseding Case names drops it
+        from `deferred_by`, an empty list is dropped (cases 52.3, 59.4); a target the Case
+        does not name keeps it and stays in the backlog (case 467.3)."""
         for slug in as_list(earlier.props.get("defer")):
+            if slug not in named:
+                continue
             page = self.find(slug)
             if page is None or earlier.slug not in as_list(page.props.get("deferred_by")):
                 continue
@@ -1129,7 +1134,7 @@ class Vault:
                 other.props["superseded_by"] = done + [slug]
             self.history(other, f"superseded by {slug}", f"[[{slug}]]")
             self.save(other)
-            self.clear_deferred_by(other, slug, record["origin"])
+            self.clear_deferred_by(other, slug, {str(t.get("slug")) for t in targets})
 
     # after all entries
 

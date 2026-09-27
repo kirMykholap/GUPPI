@@ -42,7 +42,13 @@ the ledgers of its dates, on the `hi` date from the `hi` time on, and its folder
   under Case N; `case N` whose heading the plan lacks, and after the source `sprint` with
   no `update` of the sprint page `entity-sprint-<id>` under Case N, the parent or a
   sub-case (cases 314.2, 451.3); the word inside the slug of a title is not the source
-  (case 335), and a line that is not a box line is not read;
+  (case 335), and a line that is not a box line is not read; a line closed `[x] … · backlog
+  · case N` whose title names in a code span a page with `deferred_by`, when no decision
+  line of Case N or of a sub-case, other than a `defer`, names that page, and for each Case
+  M of its `deferred_by` when no Case among them both names the page and carries
+  `{supersedes:case M}` — `generate` clears a defer only from the pages the superseding Case
+  names; the judgment is `decided_on_its_page`, which the check of the answer of
+  `case-guppi` imports (case 467);
 - a Case with a line of a kind other than `defer` and no fenced block tagged `tasks` (a
   defer-only Case has no work, case 74); an Estimate a `then` block creates or sets
   `pending` with no task line of its own — a line `- [ ] read `<slug>`` whose first
@@ -112,6 +118,7 @@ from guppi.generate import (  # the ticker, the pairs, the Frontier line (case 3
     FRONTIER_SEPARATOR,
     READ_LINE,
     Vault,
+    as_list,
     replace_once,
 )
 from guppi.ledger import (
@@ -358,7 +365,76 @@ def updates_the_sprint(blocks: dict, case: str) -> bool:
     return False
 
 
-def check_frontier(path: Path, relative: str, cases: dict, blocks: dict) -> list[str]:
+DECISION_PAGE = "decision-case-"
+
+
+def deferred_pages(title: str, project_dir: Path) -> dict[str, list[str]]:
+    """Case 467: each live page the title of a Frontier line names in a code span that
+    carries `deferred_by`, with the ids of the Cases there — `decision-case-M` read as `M`.
+    A page without `deferred_by` — an open Insight, a note of the sprint page — is left out."""
+    pages: dict[str, list[str]] = {}
+    for span in CODE_SPAN.findall(title):
+        slug = span.strip("`").strip()
+        category = category_of(slug)
+        path = wiki_root(project_dir) / category / f"{slug}.md" if category else None
+        if path is None or not path.exists():
+            continue
+        deferred = read_page(path, category).props.get("deferred_by") or []
+        ids = [str(d).removeprefix(DECISION_PAGE) for d in as_list(deferred)]
+        if ids:
+            pages[slug] = ids
+    return pages
+
+
+def decided_on_its_page(
+    slug: str, deferred: list[str], records: list[dict], case: str
+) -> tuple[bool, list[str]]:
+    """Case 467: the one judgment of a backlog item taken up by Case N, run by `/pre-spec`
+    on a closed line (467.1) and by the check of the answer of `case-guppi` on an open one
+    (467.2). Of `records`, only the decision lines of Case N and its sub-cases are read.
+    Returns whether a line of them other than a `defer` names the page, and each Case M of
+    the page's `deferred_by` for which no Case among them both names the page on such a line
+    and carries `{supersedes:case M}` — `generate` clears a defer only from the pages the
+    superseding Case names (case 467.3)."""
+    ours = [r for r in records if str(r["case"]) == case or str(r["case"]).startswith(f"{case}.")]
+    naming = {str(r["case"]) for r in ours if r["slug"] == slug and r["kind"] != "defer"}
+    carried: dict[str, set[str]] = {}
+    for record in ours:
+        marks = {str(s) for s in record.get("supersedes") or []}
+        carried.setdefault(str(record["case"]), set()).update(marks)
+    missing = [m for m in deferred if not any(m in carried.get(c, set()) for c in naming)]
+    return bool(naming), missing
+
+
+def check_backlog_line(
+    item: str, title: str, case: str, records: list[dict], project_dir: Path
+) -> list[str]:
+    """467.1: a Frontier line of the source `backlog` closed `[x] · case N`."""
+    findings: list[str] = []
+    for slug, deferred in deferred_pages(title, project_dir).items():
+        named, missing = decided_on_its_page(slug, deferred, records, case)
+        if not named:
+            findings.append(
+                f"frontier: {item} closes a backlog item with case {case}, and no decision "
+                f"line of Case {case} other than a defer names {slug}; generate clears a "
+                "defer only from a page the Case names"
+            )
+        for m in missing:
+            findings.append(
+                f"frontier: {item}: no Case among case {case} and its sub-cases names {slug} "
+                f"and carries {{supersedes:case {m}}}"
+            )
+    return findings
+
+
+def check_frontier(
+    path: Path,
+    relative: str,
+    cases: dict,
+    blocks: dict,
+    records: list[dict] | None = None,
+    project_dir: Path | None = None,
+) -> list[str]:
     """59.2: the frontier of the session's folder (73.4). Case 356.1: an open line under
     `## Cases` is a finding, one under `## Work` is not — its work waits for Work Mode; a
     closed one is checked as any. Only a box line, `- [ ]`, `- [x]` or `- [-]` at the start,
@@ -375,7 +451,9 @@ def check_frontier(path: Path, relative: str, cases: dict, blocks: dict) -> list
     (case 356.2) — and after another source it needs a `defer` item under Case N. A line
     closed `case N` needs the heading of Case N in the plan, and after the source `sprint`
     an `update` of the sprint page `entity-sprint-<id>` under Case N, the parent or a
-    sub-case (cases 314.2, 451.3). A finding of the box and one of the source are separate."""
+    sub-case (cases 314.2, 451.3). A finding of the box and one of the source are separate.
+    Case 467.1: a line of the source `backlog` closed `case N` is judged by
+    `check_backlog_line` against `records` and the pages of `project_dir`."""
     if not path.exists():
         return [f"frontier: {relative} is missing"]
     findings: list[str] = []
@@ -423,6 +501,8 @@ def check_frontier(path: Path, relative: str, cases: dict, blocks: dict) -> list
                     f"frontier: {item} closes a sprint item with case {case}, "
                     f"no update of the sprint page under Case {case}"
                 )
+            elif source == BACKLOG_SOURCE and box == "x" and project_dir is not None:
+                findings += check_backlog_line(item, rest, case, records or [], project_dir)
         elif closer.group(3) is not None and source in PUT_OFF_CLOSER:
             findings.append(
                 f"frontier: {item} defers a {source} item by a Case; a {source} item put off "
@@ -880,7 +960,7 @@ def judge(
         findings += check_grammar(lines)
     findings += check_lines(cases, blocks, records)
     if frontier is not None:
-        findings += check_frontier(frontier[0], frontier[1], cases, blocks)
+        findings += check_frontier(frontier[0], frontier[1], cases, blocks, records, project_dir)
     findings += check_tasks(cases, blocks, records)
     findings += check_governed(blocks, governed_paths(project_dir))
     findings += check_keys(blocks, project_dir, schema_free)

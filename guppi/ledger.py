@@ -33,6 +33,14 @@ alone and holds the whole session, so a refused line of the transcript is refuse
 every `Stop`: the hook exits 2 with one stderr line per refused line only when the line
 stands in the reply just finished, and skips an older one without a word. The other lines
 are written as before.
+
+A lesson names its category (case 460.5). A fresh `lesson[<slug>]` line whose slug
+`category_of` of `guppi/materialize.py` does not put under `lessons` — a slug that does not
+open with `lesson-` — is not written, since `materialize` sends a lesson line to `lessons/`
+by its record, not by its slug. As for a refused reading, the hook exits 2 with one stderr
+line per refused line only when the line stands in the reply just finished, and skips an
+older one without a word. A line already in a ledger is not fresh and is not judged again;
+`estimate` and `decision` lines are not judged by their prefix.
 """
 
 import json
@@ -298,6 +306,22 @@ def refused_readings(lines: list[str], changed: dict[str, str]) -> list[tuple[st
     return refused
 
 
+def refused_lessons(lines: list[str]) -> list[tuple[str, str]]:
+    """`(line, slug)` of each `lesson[...]` line whose slug `category_of` of
+    `guppi/materialize.py` does not put under `lessons`: a lesson slug starts with `lesson-`
+    (case 460.5). The lines are read by `parse_line`, the one parse of a ledger line, and
+    judged by `category_of`, the one table of prefixes; imported here, since `materialize`
+    imports this module."""
+    from guppi.materialize import category_of, parse_line
+
+    refused: list[tuple[str, str]] = []
+    for line in lines:
+        record = parse_line(f"- {body(line)}")
+        if record and record["record"] == "lesson" and category_of(record["slug"]) != "lessons":
+            refused.append((line, record["slug"]))
+    return refused
+
+
 def append(path: Path, lines: list[str]) -> None:
     path.parent.mkdir(parents=True, exist_ok=True)
     with path.open("a", encoding="utf-8", newline="\n") as handle:
@@ -331,7 +355,8 @@ def run(argv, *, stdin=None, stderr=None, project_dir: Path | None = None, now=N
             raise RuntimeError("no session folder for the hi")
         written = path.read_text(encoding="utf-8").splitlines() if path.exists() else []
         refused = refused_readings(fresh, changed_by_session(written + fresh))
-        out = {line for line, _ in refused}
+        lessons = refused_lessons(fresh)
+        out = {line for line, _ in refused} | {line for line, _ in lessons}
         fresh = [line for line in fresh if line not in out]
         if fresh:
             append(path, fresh)
@@ -345,7 +370,14 @@ def run(argv, *, stdin=None, stderr=None, project_dir: Path | None = None, now=N
                 "reading in a later session and name it in the handoff.",
                 file=stderr,
             )
-        if loud:
+        loud_lessons = [slug for line, slug in lessons if body(line) in finished]
+        for slug in loud_lessons:
+            print(
+                f"ledger: lesson[{slug}] not written — a lesson slug starts with lesson-, then "
+                "the area, then the cause: write the line again with the prefix.",
+                file=stderr,
+            )
+        if loud or loud_lessons:
             return 2
     except Exception as exc:  # noqa: BLE001 — a hook that raises would fail the session
         print(f"ledger: ledger.md not written: {exc}", file=stderr)

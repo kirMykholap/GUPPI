@@ -531,3 +531,51 @@ def test_a_reading_with_a_defer_line_only_or_another_sessions_line_is_written(wo
     other.write_text(f"- 20:50:18 {UPDATE_X[2:]}\n", encoding="utf-8")
     assert run(payload(last_assistant_message=ledger_block(READ_X)), working) == (0, "")
     assert ledger_text(working).splitlines()[-1] == timed(READ_X)
+
+
+# --- a lesson slug carries its prefix (case 460.5) ----------------------------------------
+# `estimate-ledger-write-refuses-a-lesson-without-its-prefix`
+
+BARE_LESSON = "- lesson[knowledge][harness-x-renders-y] trigger: a root_cause: b"
+LESSON_REFUSAL = (
+    "ledger: lesson[harness-x-renders-y] not written — a lesson slug starts with lesson-, "
+    "then the area, then the cause: write the line again with the prefix.\n"
+)
+
+
+def test_a_lesson_without_its_prefix_in_the_finished_reply_is_refused_aloud(working):
+    reply = ledger_block(DECISION, BARE_LESSON, LESSON, ESTIMATE)
+    code, err = run(payload(last_assistant_message=reply), working)
+    assert (code, err) == (2, LESSON_REFUSAL)
+    assert ledger_text(working).splitlines() == [timed(DECISION), timed(LESSON), timed(ESTIMATE)]
+
+
+def test_a_lesson_without_its_prefix_in_an_earlier_text_is_skipped_without_a_word(working):
+    transcript = write_transcript(working, transcript_line(ledger_block(BARE_LESSON, DECISION)))
+    stdin = payload(last_assistant_message="Nothing.", transcript_path=transcript)
+    assert run(stdin, working) == (0, "")
+    assert ledger_text(working) == f"{timed(DECISION)}\n"
+
+
+def test_both_refusals_speak_in_one_stop(working):
+    seed_ledger(working, UPDATE_X)
+    code, err = run(payload(last_assistant_message=ledger_block(READ_X, BARE_LESSON)), working)
+    assert (code, err) == (2, REFUSAL.format("4") + LESSON_REFUSAL)
+    assert ledger_text(working) == f"- 15:01:50 {UPDATE_X[2:]}\n"
+
+
+def test_a_lesson_line_already_in_a_ledger_is_not_judged(working):
+    other = ledger_file(working, YESTERDAY)
+    other.parent.mkdir(parents=True, exist_ok=True)
+    other.write_text(f"- 20:50:18 {BARE_LESSON[2:]}\n", encoding="utf-8")
+    code, err = run(payload(last_assistant_message=ledger_block(BARE_LESSON, DECISION)), working)
+    assert (code, err) == (0, "")
+    assert ledger_text(working) == f"{timed(DECISION)}\n"
+
+
+def test_an_estimate_or_decision_line_without_a_prefix_is_not_refused_by_this_check(working):
+    estimate = "- estimate[y-holds][passed] 2026-09-09, pytest; green"
+    decision = "- decision[case 7][create][z-holds]{ref:rule-x}"
+    code, err = run(payload(last_assistant_message=ledger_block(estimate, decision)), working)
+    assert (code, err) == (0, "")
+    assert ledger_text(working).splitlines() == [timed(estimate), timed(decision)]

@@ -92,15 +92,20 @@ no section, no line: nothing is written and nothing is said. A reading (case 270
 other units of `raw/`, oldest first, in any Case, since the entry carries no Case; every
 line of the slug in the first Spec that holds one ticks — a reading is of the page, whose
 Criterion is one, however many Cases of the session touched it (case 312); the
-archive is not read. In the Spec beside the yaml an `estimate` entry skips the section of
-a Case whose first decision entry carries a `line` greater than its own — a Case ratified
-after the reading, whose line waits for a reading of its own (case 280); a folded reading
-skips nothing of that, its Case is the reading's. In every Spec both skip the section of a
-Case whose entries the yaml beside that Spec mark `superseded_by` — the run's entries for
-the Spec beside the yaml, the `materialize.yaml` of the other unit's folder otherwise, read
-for the marks alone; no yaml, nothing skipped there — its work stands under the superseding
-Case (case 286). A `lesson` entry, an entry with no category (`unknown`, case 320) and a
-failed entry tick nothing; the lines on code, tests, migrations and `by hand` checks stay the
+archive is not read. A `delete` entry, besides its page line, ticks the `read` lines of its
+slug by the same walk and the same skips as an `estimate` entry: no reading of a deleted
+Estimate will ever stand in the ledger, so nothing else would close its box (case 463). In
+the Spec beside the yaml an `estimate` or a `delete` entry skips the section of a Case whose
+first decision entry carries a `line` greater than its own — a Case ratified after the
+reading or the delete, whose line waits for a reading of its own (cases 280, 463); a folded
+reading skips nothing of that, its Case is the reading's. In every Spec all three skip the
+section of a Case whose entries the yaml beside that Spec mark `superseded_by` — the run's
+entries for the Spec beside the yaml, the `materialize.yaml` of the other unit's folder
+otherwise, read for the marks alone; no yaml, nothing skipped there — its work stands under
+the superseding Case (case 286). An applied entry ticks its line whatever its category, an
+entry with no category (`unknown`, case 320) included; only a `lesson` entry and a failed
+entry tick nothing — a failed `delete` leaves the `read` lines of its slug as they stand
+(cases 460.1, 463); the lines on code, tests, migrations and `by hand` checks stay the
 agent's.
 
 The cascade after all entries (case 201.4): an entity or rule whose live Estimates are all
@@ -364,7 +369,10 @@ def tick_read(
     changed in two sessions leaves a read line in each, and one reading is of the page, so
     the older line has no Case of its own and no later reading would ever reach it. The
     archive is not read: an archived Spec keeps its open line as the record of a task nobody
-    performed."""
+    performed.
+    Case 463: a `delete` of the slug ticks by this same walk, with the same two skips — `skip`
+    then holds the Cases ratified after the delete — since no reading of a deleted Estimate
+    will ever stand in the ledger."""
     any_ticked = False
     for position, spec in enumerate(specs):
         if not spec.is_file():
@@ -567,15 +575,18 @@ class Vault:
         """The first unticked `- [ ] <kind> `<slug>`` line in the section of the entry's
         Case becomes `- [x]`; a reading — an `estimate` entry, or a `create` with `folded` —
         ticks the first unticked `- [ ] read `<slug>`` line across the Specs of `raw/`
-        (270.1); an `estimate` entry skips, in the Spec beside the yaml, the Cases whose
-        first decision entry stands after it in the ledger (280); both skip, in every
+        (270.1); a `delete` entry ticks its page line and, as a reading does, the `read`
+        lines of its slug — no reading of a deleted Estimate will stand in the ledger (463);
+        an `estimate` or a `delete` entry skips, in the Spec beside the yaml, the Cases whose
+        first decision entry stands after it in the ledger (280, 463); all skip, in every
         Spec, the Cases the yaml beside it marks `superseded_by` (286); nothing found — no
-        Spec, no section, no line — is no error."""
+        Spec, no section, no line — is no error. Called for an applied entry alone, so a
+        failed `delete` ticks nothing."""
         kind = entry.get("kind")
         if self.spec is not None and kind in TICKED_KINDS and "case" in entry:
             tick_spec(self.spec, str(entry["case"]), str(kind), str(entry.get("slug")))
         superseded = superseded_cases(self.entries) if self.spec else set()
-        if kind == "estimate":
+        if kind in ("estimate", "delete"):
             skip = later_cases(self.entries, entry.get("line")) if self.spec else set()
             tick_read(
                 raw_specs(self.project_dir, self.spec), str(entry.get("slug")), skip, superseded

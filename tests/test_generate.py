@@ -2520,6 +2520,128 @@ def test_a_folded_reading_skips_a_superseded_case_too(tmp_path):
     assert "- [x] read `estimate-child-works`: by hand, on the recut" in text
 
 
+# --- the read lines of a deleted Estimate (case 463) -----------------------------------
+
+
+def delete_entry(case, slug="estimate-child-works", line=6):
+    return {
+        "line": line,
+        "text": "",
+        "case": case,
+        "kind": "delete",
+        "category": "estimates",
+        "slug": slug,
+        "origin": f"raw/{DATE}/ledger.md#case-{case}",
+        "decision": f"decision-case-{case}",
+    }
+
+
+DELETE_SPEC = """# Spec
+
+## Case 1 — the root
+
+```tasks
+- [ ] create `rule-root` (no `ref`)
+- [ ] read `estimate-child-works`: pytest, then live
+```
+
+## Case 2 — the delete
+
+```tasks
+- [ ] delete `estimate-child-works`
+```
+"""
+
+
+def test_a_delete_ticks_the_read_lines_of_its_slug_beside_the_yaml_and_in_an_older_spec(
+    tmp_path,
+):
+    seed(tmp_path, entries=[CHILD, CHILD_ESTIMATE, ROOT, delete_entry("2")])
+    spec = with_spec(tmp_path, DELETE_SPEC)
+    older = with_older_spec(tmp_path)
+    code, _, err = run(tmp_path)
+    assert code == 0 and err == ""
+    text = spec.read_text(encoding="utf-8")
+    assert "- [x] delete `estimate-child-works`" in text  # its page line, as before
+    assert "- [x] read `estimate-child-works`: pytest, then live" in text
+    assert "- [x] read `estimate-child-works`: by hand" in older.read_text(encoding="utf-8")
+
+
+def test_a_delete_leaves_the_read_line_of_a_case_ratified_after_it(tmp_path):
+    # an update can bring the archived page back (case 105.3); the later Case's line waits
+    # for a reading of its own
+    later = spec_update("3", line=8)
+    seed(tmp_path, entries=[CHILD, CHILD_ESTIMATE, ROOT, delete_entry("2", line=6), later])
+    spec = with_spec(
+        tmp_path,
+        DELETE_SPEC + "\n## Case 3 — ratified after the delete\n\n"
+        "```tasks\n- [ ] update `rule-root`\n"
+        "- [ ] read `estimate-child-works`: on the page brought back\n```\n",
+    )
+    older = with_older_spec(tmp_path)
+    code, _, err = run(tmp_path)
+    assert code == 0 and err == ""
+    text = spec.read_text(encoding="utf-8")
+    assert "- [x] read `estimate-child-works`: pytest, then live" in text  # Case 1, before
+    assert "- [ ] read `estimate-child-works`: on the page brought back" in text  # Case 3
+    assert "- [x] read `estimate-child-works`: by hand" in older.read_text(encoding="utf-8")
+
+
+def test_a_delete_leaves_the_read_line_of_a_superseded_case(tmp_path):
+    superseded = dict(spec_update("2", line=4), superseded_by="3")
+    recut = spec_update("3", line=6, supersedes="2")
+    entries = [CHILD, CHILD_ESTIMATE, ROOT, superseded, recut, delete_entry("4", line=8)]
+    seed(tmp_path, entries=entries)
+    spec = with_spec(
+        tmp_path,
+        SUPERSEDED_SPEC + "\n## Case 4 — the delete\n\n"
+        "```tasks\n- [ ] delete `estimate-child-works`\n```\n",
+    )
+    other = other_session(tmp_path)
+    code, _, err = run(tmp_path)
+    assert code == 0 and err == ""
+    text = spec.read_text(encoding="utf-8")
+    assert "- [x] delete `estimate-child-works`" in text
+    assert "- [ ] read `estimate-child-works`: the next session, by hand\n" in text  # Case 2
+    assert "- [x] read `estimate-child-works`: the next session, by hand, on the recut" in text
+    text = other.read_text(encoding="utf-8")
+    assert "- [ ] read `estimate-child-works`: by hand\n" in text  # Case 7, superseded by 8
+    assert "- [x] read `estimate-child-works`: by hand, on the recut" in text
+
+
+def test_a_failed_delete_ticks_nothing(tmp_path):
+    seed(tmp_path, entries=[ROOT, delete_entry("2", slug="estimate-gone")])
+    text = (
+        "## Case 1 — x\n\n- [ ] read `estimate-gone`: pytest\n\n"
+        "## Case 2 — the delete\n\n- [ ] delete `estimate-gone`\n"
+    )
+    spec = with_spec(tmp_path, text)
+    older = tmp_path / "vault" / "raw" / "2026-09-09" / "0900" / "spec.md"
+    older.parent.mkdir(parents=True)
+    older_text = "## Case 7 — y\n\n- [ ] read `estimate-gone`: by hand\n"
+    older.write_text(older_text, encoding="utf-8", newline="\n")
+    code, _, err = run(tmp_path)
+    assert code == 1 and "generate: estimate-gone: no page to delete" in err
+    assert spec.read_text(encoding="utf-8") == text
+    assert older.read_text(encoding="utf-8") == older_text
+    assert load_yaml(tmp_path)["entries"][1]["failed"]
+
+
+def test_a_delete_leaves_a_spec_under_the_archive_unchanged(tmp_path):
+    seed(tmp_path, entries=[CHILD, CHILD_ESTIMATE, ROOT, delete_entry("2")])
+    spec = with_spec(tmp_path, DELETE_SPEC)
+    archived = tmp_path / "vault" / "archive" / "migration" / "2026-09-08" / "0700" / "raw"
+    archived.mkdir(parents=True)
+    archived_text = "## Case 5 — z\n\n- [ ] read `estimate-child-works`: archived\n"
+    (archived / "spec.md").write_text(archived_text, encoding="utf-8", newline="\n")
+    code, _, err = run(tmp_path)
+    assert code == 0 and err == ""
+    text = spec.read_text(encoding="utf-8")
+    assert "- [x] read `estimate-child-works`: pytest, then live" in text
+    # case 326: the archive keeps its open line, the record of a task nobody performed
+    assert (archived / "spec.md").read_text(encoding="utf-8") == archived_text
+
+
 # --- case 305.3: the cascade writes rules on an Entity from the applies_to of the rules ----
 
 

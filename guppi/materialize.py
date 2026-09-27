@@ -123,9 +123,10 @@ the block it stands in — a quote, a sub-point of `tasks` — it starts with a 
 more backticks or three or more tildes; the fence closes only on a line of the same character
 whose run is at least as long, with nothing after the run but spaces, as CommonMark reads it.
 `fence_opening` and `closes_fence` are the one judgment: `then_blocks`, `tagged_blocks`,
-`case_text` and `criterion_text` here, `quoted_sections` and `fenced_value` of
-`guppi/ratified.py`, `plan_prose` of `guppi/prespec.py`, the check of `ratification` in
-`guppi/casecheck.py` and `ledger_lines` of `guppi/ledger.py` judge by them. `fence_for` gives
+`quoted_sections` and `criterion_text` here, `fenced_value` of `guppi/ratified.py`,
+`plan_prose` of `guppi/prespec.py`, the check of `ratification` in `guppi/casecheck.py` and
+`ledger_lines` of `guppi/ledger.py` judge by them. `quoted_sections` is the one reader of the
+sections of a Case; `guppi/ratified.py` and `guppi/casecheck.py` import it (case 462). `fence_for` gives
 the fence a written block takes: backticks one longer than the longest run of backticks that
 opens a line inside it, three at the least (case 444.2).
 
@@ -459,9 +460,10 @@ def _merge_block(merged: dict, text: str, errors: list[str]) -> None:
             merged[key] = value
 
 
-def case_text(lines: list[str]) -> dict[str, str]:
-    """The seven quoted sections of a Case, name → text, from `> **name:**` blocks; a blank
-    line outside a fence closes a section, the fence judged by `fence_opening` and
+def quoted_sections(lines: list[str], names: tuple[str, ...]) -> dict[str, str]:
+    """Name → text of the `> **name:**` blockquotes among `lines`, for the names given; the
+    chat form and the Spec form alike, the one reader of the sections of a Case (case 462). A
+    blank line outside a fence closes a section, the fence judged by `fence_opening` and
     `closes_fence` (case 444.1)."""
     sections: dict[str, str] = {}
     current: str | None = None
@@ -485,7 +487,7 @@ def case_text(lines: list[str]) -> dict[str, str]:
             continue
         text = match.group(1)
         start = SECTION_START.match(text)
-        if start and start.group(1) in CASE_SECTIONS:
+        if start and start.group(1) in names:
             close()
             current = start.group(1)
             buffer = [start.group(2)] if start.group(2) else []
@@ -500,11 +502,12 @@ def case_texts(cases: dict[str, list[str]], case: str) -> dict[str, str]:
     read from its parent (case 60), never `when`; a Spec older than the seven-block form
     gives its text whole as `then`."""
     lines = cases.get(case, [])
-    texts = case_text(lines)
+    texts = quoted_sections(lines, CASE_SECTIONS)
     if not texts and lines:
         texts = {"then": "\n".join(lines).strip("\n")}
     if "." in case:
-        for name, text in case_text(cases.get(case.rsplit(".", 1)[0], [])).items():
+        parent = cases.get(case.rsplit(".", 1)[0], [])
+        for name, text in quoted_sections(parent, CASE_SECTIONS).items():
             if name in INHERITED:
                 texts.setdefault(name, text)
     return texts

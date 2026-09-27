@@ -2326,10 +2326,9 @@ def test_every_reader_judges_a_fence_alike(opener, inner, closer):
         case = [*CASE_BEFORE_RATIFICATION, f"> {opener}", f"> {RECORD_LINE}", f"> {last}"]
         findings = casecheck.form_findings("1.1", case, {})
         assert findings == ([] if closed else [LEFT_OPEN])
-    # `case_text` and `quoted_sections`: a blank line inside the fence closes no section
+    # `quoted_sections`: a blank line inside the fence closes no section
     sections = ["> **then:**", "> A.", opener, *body, closer, "> B.", "", "> C."]
-    assert materialize.case_text(sections) == {"then": "A.\nB."}
-    assert ratified.quoted_sections(sections, ("then",)) == {"then": "A.\nB."}
+    assert materialize.quoted_sections(sections, ("then",)) == {"then": "A.\nB."}
     # `criterion_text`: a section that opens with a fence is the whole-Case fallback
     fenced = "\n".join([opener, *body, closer])
     assert materialize.criterion_text({"when": fenced, "then": "B."}) == "Then:\nB."

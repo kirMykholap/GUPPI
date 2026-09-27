@@ -32,13 +32,16 @@ its reading, by design; cases 182, 202), `method` (the `method` field, or on a p
 shape before case 193 the `## Method` section: for a MOC's Estimate a `make <target>` of the
 Makefile passes whatever else it says, and one that names none may be a reading when its
 children's Estimates are all readings, case 112.1, or when a sibling Estimate of the MOC
-names a `make <target>` of the Makefile, case 212; for a Leaf's Estimate a `tests/` file
-that exists, the word `pytest`, a `make <target>` of the Makefile, or a reading — "by hand",
+names a `make <target>` of the Makefile, case 212; on a MOC with `render_mode: full` the
+Estimates of a child with `enforcement: render` are not counted, since that child's Render
+is part of the parent's file and its Estimate promises the child's own behaviour, case 459;
+for a Leaf's Estimate a `tests/` file that exists, the word `pytest`, a `make <target>` of the Makefile, or a reading — "by hand",
 the one spelling since case 330.1; the four forms are one predicate, `names_a_form`, which
 `pre-spec` calls over the plan, case 331), `decision` (a decision page with none of the four
 kind lists `create`, `update`, `delete`, `defer`, or with `kind` or `target_slug` still
 present, or a slug in a list with a category prefix that names neither a live nor an
-archived page, case 59.4), `deferred` (a placeholder — a rule or entity page that carries
+archived page, case 59.4; the prefix is judged by `category_of` of `guppi/materialize.py`,
+the one table, `decision-` included, case 460.3), `deferred` (a placeholder — a rule or entity page that carries
 `deferred_by` and lacks the fields a `create` fills, `kind`, `estimates` and `tags` — earns
 one finding, `deferred: <N> times since case <M>`, N the `deferred` lines of its History
 and M the case of the first, in place of those three `schema` findings and of `orphan`; a
@@ -61,6 +64,7 @@ from pathlib import Path
 import yaml
 
 from guppi.event import project_root
+from guppi.materialize import category_of  # the one table of prefixes (case 460.3)
 from guppi.pages import CATEGORIES, HISTORY, Page, read_vault, slug_of, wiki_root
 
 LINK_FIELDS = (
@@ -74,13 +78,6 @@ LINK_FIELDS = (
     "applies_to",  # the edge Rule → Entity, written in the Case (case 305)
     "rules",  # its backlink on the Entity, computed by generate (case 305.3)
 )
-PREFIXES = {
-    "entity-": "entities",
-    "rule-": "rules",
-    "estimate-": "estimates",
-    "lesson-": "lessons",
-    "insight-": "insights",
-}
 KINDS = ("create", "update", "delete", "defer")  # a decision page's lists (case 59.4)
 PATH_FIELDS = ("implementation_ref", "governs")
 WIKILINK = re.compile(r"\[\[([^\]|#]+)(?:[|#][^\]]*)?\]\]")
@@ -470,7 +467,8 @@ def check_orphans(pages: list[Page]) -> list[Finding]:
 def check_decision(page: Page, known: set[str]) -> list[Finding]:
     """At least one of the four kind lists, neither `kind` nor `target_slug`; every slug
     with a category prefix a live or archived page, a slug without one a thing outside the
-    vault and not looked up (case 59.4)."""
+    vault and not looked up (case 59.4). The prefix is judged by `category_of` of
+    `guppi/materialize.py`, `decision-` included — one table, not a copy (case 460.3)."""
     if page.category != "decisions":
         return []
     out = []
@@ -481,7 +479,7 @@ def check_decision(page: Page, known: set[str]) -> list[Finding]:
             out.append(Finding(page, "decision", f"{field} is no longer a field (case 59.4)"))
     for kind in KINDS:
         for slug in as_list(page.props.get(kind)):
-            if any(slug.startswith(p) for p in PREFIXES) and slug not in known:
+            if category_of(slug) is not None and slug not in known:
                 out.append(
                     Finding(
                         page,
@@ -528,12 +526,18 @@ def check_status(page: Page, by_slug: dict[str, Page]) -> list[Finding]:
 
 
 def children_estimates(moc: Page, by_slug: dict[str, Page]) -> list[Page]:
-    """The Estimate pages of a MOC's direct children, in the children's order."""
+    """The Estimate pages of a MOC's direct children that count against its reading, in the
+    children's order. On a MOC with `render_mode: full` the Estimates of a child with
+    `enforcement: render` are skipped: that child's Render is part of the parent's file, and
+    its Estimate promises the child's own behaviour, read on its own (cases 378.5, 459)."""
+    full = str(moc.props.get("render_mode") or "") == "full"
     out = []
     for child_slug in as_list(moc.props.get("children")):
         child = by_slug.get(child_slug)
         if child is None:
             continue
+        if full and str(child.props.get("enforcement") or "") == "render":
+            continue  # its Render is spliced into the parent's file (case 459)
         for slug in as_list(child.props.get("estimates")):
             estimate = by_slug.get(slug)
             if estimate is not None:
@@ -654,8 +658,10 @@ def sibling_names_a_target(page: Page, target: Page, by_slug: dict[str, Page], t
 def check_method(page: Page, by_slug: dict[str, Page], project_dir: Path) -> list[Finding]:
     """The `method` of an Estimate — the field, or the section of a page of the old shape:
     for a MOC's Estimate a `make <target>` of the Makefile passes whatever else it says,
-    without one "by hand" passes when every child's Estimate is a reading (case 112.1) or
-    when a sibling Estimate of the MOC names a `make <target>` of the Makefile (case 212);
+    without one "by hand" passes when every counted Estimate of the children is a reading
+    (case 112.1) or when a sibling Estimate of the MOC names a `make <target>` of the Makefile
+    (case 212); on a MOC with `render_mode: full` the Estimates of a child with `enforcement:
+    render` are not counted (`children_estimates`, case 459);
     for a Leaf's Estimate a `tests/` file that exists, the word `pytest`, a `make
     <target>` of the Makefile, or a reading — "by hand", the one spelling since case 330.1."""
     if page.category != "estimates":

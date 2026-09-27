@@ -88,6 +88,7 @@ from guppi.materialize import (
     closes_fence,
     fence_opening,
     parse_line,
+    quoted_sections,
     schema_changed,
     split_cases,
     tagged_blocks,
@@ -99,7 +100,6 @@ from guppi.ratified import (
     headings,
     key_judge,
     place,
-    quoted_sections,
 )
 
 AGENT = "case-guppi"

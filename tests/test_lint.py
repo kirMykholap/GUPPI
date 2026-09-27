@@ -636,6 +636,62 @@ def test_a_moc_method_by_hand_over_a_tested_child_is_a_method_finding(tmp_path):
     ]
 
 
+# --- case 459: a render child of a full MOC is not counted against the MOC's reading ------
+
+MOC_FINDING = (
+    "estimates/estimate-root-holds: method: says by hand while estimate-x-works names a test file"
+)
+
+
+def render_root(render_mode="full"):
+    """`rule-root` forced by render, its one Estimate a reading; `render_mode` None leaves
+    the field out."""
+    mode = f"render_mode: {render_mode}\n" if render_mode else ""
+    return (
+        "---\ntype: rule\nkind: MOC\npurpose: Prevents root\nstatus: built\n"
+        f"enforcement: render\n{mode}children: [rule-x]\nestimates: [estimate-root-holds]\n"
+        "origin: raw/2026-09-09/ledger.md#case-1\n---\n\n## Purpose\n\nr\n\n"
+        "## Render\n\n<!-- rule-root -->\nr\n<!-- rule-x -->\n<!-- /rule-root -->\n\n"
+        "## History\n\n- created\n"
+    )
+
+
+def render_child():
+    """`rule-x` forced by render and spliced into its parent's file; its Estimate names
+    `tests/test_x.py` by default."""
+    return rule_page(enforcement="render", implementation_ref=None).replace(
+        "## History", "## Render\n\n<!-- rule-x -->\nx\n<!-- /rule-x -->\n\n## History"
+    )
+
+
+def seed_render_moc(tmp_path, root, child):
+    wiki = seed(tmp_path, rule=child)
+    write(wiki / "rules" / "rule-root.md", root)
+    write(
+        wiki / "estimates" / "estimate-root-holds.md",
+        estimate_page(target="rule-root", method="One reading at a session start, by hand."),
+    )
+
+
+def test_a_full_moc_reading_over_a_render_child_with_a_tested_estimate_passes(tmp_path):
+    seed_render_moc(tmp_path, render_root(), render_child())
+    assert run(tmp_path) == (0, [], "")
+
+
+def test_a_full_moc_reading_over_a_child_not_forced_by_render_is_a_method_finding(tmp_path):
+    seed_render_moc(tmp_path, render_root(), rule_page(status="built"))
+    _, lines, _ = run(tmp_path)
+    assert lines == [MOC_FINDING]
+
+
+def test_a_moc_reading_without_render_mode_full_over_a_render_child_is_a_method_finding(
+    tmp_path,
+):
+    seed_render_moc(tmp_path, render_root(render_mode=None), render_child())
+    _, lines, _ = run(tmp_path)
+    assert lines == [MOC_FINDING]
+
+
 def test_cli_dispatches_to_lint(tmp_path, monkeypatch, capsys):
     from guppi import cli
 
@@ -719,6 +775,37 @@ def test_a_list_slug_naming_an_archived_page_is_not_a_finding(tmp_path):
 
 def test_a_slug_without_a_prefix_in_a_list_is_not_looked_up(tmp_path):
     seed_decisions(tmp_path, decision_page("update: [case-schema]"))
+    assert run(tmp_path) == (0, [], "")
+
+
+# --- case 460.3: the prefixes of a Decision list are the one table of materialize ----------
+
+
+def test_a_list_slug_with_the_decision_prefix_naming_no_page_is_a_decision_finding(tmp_path):
+    seed_decisions(tmp_path, decision_page("update: [rule-x]\ndefer: [decision-case-51]"))
+    _, lines, _ = run(tmp_path)
+    assert lines == [
+        (
+            "decisions/decision-case-50: decision: defer names decision-case-51, "
+            "which no live or archived page carries"
+        )
+    ]
+
+
+def test_a_list_slug_naming_a_live_or_archived_decision_page_is_clean(tmp_path):
+    wiki = seed_decisions(
+        tmp_path, decision_page("update: [rule-x]\ndefer: [decision-case-49, decision-case-48]")
+    )
+    write(wiki / "decisions" / "decision-case-49.md", decision_page())
+    archived = tmp_path / "vault" / "archive" / "migration" / "2026-09-10" / "decisions"
+    write(archived / "decision-case-48.md", "---\ntype: decision\n---\n")
+    assert run(tmp_path) == (0, [], "")
+
+
+def test_a_list_slug_without_a_prefix_of_category_of_is_not_looked_up(tmp_path):
+    # `decisions` and `case-460` open with no prefix `category_of` knows: things outside the
+    # vault, not looked up
+    seed_decisions(tmp_path, decision_page("update: [rule-x]\ndefer: [decisions, case-460]"))
     assert run(tmp_path) == (0, [], "")
 
 

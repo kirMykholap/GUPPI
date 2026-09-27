@@ -109,14 +109,13 @@ from guppi.materialize import (
     CASE_HEADING,
     DECISION_KINDS,
     HEADING,
-    QUOTE,
-    SECTION_START,
     category_of,
     closes_fence,
     fence_for,
     fence_opening,
     item_keys,
     parse_line,
+    quoted_sections,
     schema_changed,
     split_cases,
     tagged_blocks,
@@ -145,42 +144,6 @@ CYRILLIC = re.compile(r"[А-Яа-яЁё]")
 
 
 # --- reading a Case -----------------------------------------------------------------
-
-
-def quoted_sections(lines: list[str], names: tuple[str, ...]) -> dict[str, str]:
-    """Name → text of the `> **name:**` blockquotes among `lines`, for the names given; the
-    chat form and the Spec form alike. A blank line outside a fence closes a section, the
-    fence judged by `materialize.fence_opening` and `closes_fence` (case 444.1)."""
-    sections: dict[str, str] = {}
-    current: str | None = None
-    buffer: list[str] = []
-    opening: tuple[str, int, str] | None = None
-
-    def close():
-        if current is not None:
-            sections[current] = "\n".join(buffer).strip("\n")
-
-    for raw in lines:
-        match = QUOTE.match(raw)
-        if not match:
-            if opening is None:
-                opening = fence_opening(raw)
-            elif closes_fence(raw, opening):
-                opening = None
-            if opening is None and current is not None and raw.strip() == "":
-                close()
-                current = None
-            continue
-        text = match.group(1)
-        start = SECTION_START.match(text)
-        if start and start.group(1) in names:
-            close()
-            current = start.group(1)
-            buffer = [start.group(2)] if start.group(2) else []
-        elif current is not None:
-            buffer.append(text)
-    close()
-    return sections
 
 
 def headings(text: str) -> dict[str, str]:

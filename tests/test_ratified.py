@@ -14,7 +14,7 @@ from pathlib import Path
 import pytest
 import yaml
 
-from guppi import casecheck, ratified
+from guppi import casecheck, materialize, ratified
 from guppi.ledger import plan_path, session_event_logs
 from guppi.materialize import split_cases, then_blocks
 
@@ -248,7 +248,7 @@ def test_write_the_ratified_case_goes_into_the_plan_and_no_copy(working):
     plan = plan_of(working).read_text(encoding="utf-8")
     lines = split_cases(plan)["7"]
     assert "## Case 7 — пример" in plan
-    sections = ratified.quoted_sections(lines, ratified.SPEC_SECTIONS)
+    sections = materialize.quoted_sections(lines, ratified.SPEC_SECTIONS)
     assert sections["given"] == "`rule-x` — the rule.\n**＋** `estimate-x-works` — its Estimate."
     assert sections["context"] == "Контекст." and sections["problem"] == "Проблема."
     assert "recommend" not in plan and "**ratification:**" not in plan
@@ -306,7 +306,7 @@ def test_write_a_second_showing_replaces_the_section_and_keeps_the_prose(working
     assert stop(working, ACK, SHOWING, ACK, again, ACK) == (0, "")
     plan = plan_of(working).read_text(encoding="utf-8")
     assert plan.count("## Case 7 —") == 1
-    sections = ratified.quoted_sections(split_cases(plan)["7"], ratified.SPEC_SECTIONS)
+    sections = materialize.quoted_sections(split_cases(plan)["7"], ratified.SPEC_SECTIONS)
     assert sections["then"].startswith("The file is written once.")
     assert sections["context"] == "Контекст."  # a re-showing leaves it out; the plan keeps it
 
@@ -353,7 +353,7 @@ def test_write_approved_spec_a_section_replaced_from_the_stored_answer(working):
     assert stop(working, ACK, showing, ACK) == (0, "")
     text = spec.read_text(encoding="utf-8")
     assert text.count("## Case 7 —") == 1 and "## Case 8 — other" in text
-    sections = ratified.quoted_sections(split_cases(text)["7"], ratified.SPEC_SECTIONS)
+    sections = materialize.quoted_sections(split_cases(text)["7"], ratified.SPEC_SECTIONS)
     assert sections["then"].startswith("The file is written.")
     assert sections["context"] == "Контекст."  # the stored answer, not the held prose
     tasks = "\n".join(ratified.tagged_blocks(split_cases(text)["7"], "tasks")).splitlines()
@@ -417,7 +417,7 @@ def test_write_approved_spec_a_parents_prose_from_the_store_when_shown_translate
     assert stop(working, ack, translated, ack, built=False) == (0, "")
     for path in (plan_of(working), spec):
         text = path.read_text(encoding="utf-8")
-        held = ratified.quoted_sections(split_cases(text)["9"], ratified.SPEC_SECTIONS)
+        held = materialize.quoted_sections(split_cases(text)["9"], ratified.SPEC_SECTIONS)
         assert held["context"] == "Общий контекст.", path
 
 
@@ -486,7 +486,7 @@ def test_write_a_defer_goes_under_deferred_of_the_plan(working):
     deferred = plan.split("## Deferred", 1)[1]
     assert "## Case 8 — отложено" in deferred
     lines = split_cases(plan)["8"]
-    assert ratified.quoted_sections(lines, ratified.PROSE) == {
+    assert materialize.quoted_sections(lines, ratified.PROSE) == {
         "context": "Контекст 8.",
         "problem": "Проблема 8.",
     }
@@ -739,7 +739,7 @@ def test_write_a_sub_case_brings_its_parents_prose(working):
     assert stop(working, ack, showing, ack) == (0, "")
     plan = plan_of(working).read_text(encoding="utf-8")
     assert plan.index("## Case 9 — родитель") < plan.index("### Case 9.1 — ребёнок")
-    parent = ratified.quoted_sections(split_cases(plan)["9"], ratified.SPEC_SECTIONS)
+    parent = materialize.quoted_sections(split_cases(plan)["9"], ratified.SPEC_SECTIONS)
     assert parent == {"context": "Общий контекст.", "problem": "Вопрос."}
 
 

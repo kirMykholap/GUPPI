@@ -1,0 +1,41 @@
+- 17:33:59 decision[case 476.1][create][rule-guppi-config]{ref:rule-harness}{tags:harness,render}
+- 17:33:59 decision[case 476.1][create][estimate-guppi-config-fills-the-languages]{ref:rule-guppi-config}{tags:harness,render}
+- 17:33:59 decision[case 476.1][update][rule-render-harness]{ref:rule-render-harness}
+- 17:33:59 decision[case 476.1][update][rule-harness]{ref:rule-harness}
+- 17:33:59 decision[case 476.2][update][rule-case-protocol]{ref:rule-case-protocol}
+- 17:33:59 decision[case 476.2][update][rule-case-build]{ref:rule-case-build}
+- 17:33:59 decision[case 476.2][update][rule-ask]{ref:rule-ask}
+- 17:33:59 decision[case 476.3][update][rule-prespec]{ref:rule-prespec}
+- 17:33:59 decision[case 476.3][update][estimate-language-spec-prose-in-english]{ref:estimate-language-spec-prose-in-english}
+- 17:33:59 decision[case 476.4][update][rule-language]{ref:rule-language}
+- 17:33:59 decision[case 476.4][update][estimate-language-followed]{ref:estimate-language-followed}
+- 17:33:59 decision[case 476.4][update][insight-session-reply-language-follows-the-english-text-read]{ref:insight-session-reply-language-follows-the-english-text-read}
+- 18:01:49 decision[case 477.1][update][rule-case-build]{ref:rule-case-build}
+- 18:01:49 decision[case 477.1][create][estimate-case-build-writes-a-plain-round]{ref:rule-case-build}{tags:session,workflow,harness}
+- 18:01:49 decision[case 477.2][create][rule-skill-wait-what]{ref:rule-plan-mode}{tags:harness,workflow}
+- 18:01:49 decision[case 477.2][create][estimate-skill-wait-what-re-pitches]{ref:rule-skill-wait-what}{tags:harness,workflow}
+- 18:01:49 decision[case 477.3][update][rule-case-protocol]{ref:rule-case-protocol}
+- 18:01:49 decision[case 477.3][update][rule-case-build]{ref:rule-case-build}
+- 18:01:49 decision[case 477.3][update][estimate-case-protocol-shows-the-built-case]{ref:estimate-case-protocol-shows-the-built-case}
+- 18:01:49 decision[case 477.4][update][estimate-agent-writing-followed]{ref:estimate-agent-writing-followed}
+- 18:18:07 decision[case 478.1][update][estimate-sprint-migration-file-route-gone]{ref:estimate-sprint-migration-file-route-gone}
+- 18:18:07 decision[case 478.2][update][entity-sprint-migration]{ref:entity-sprint-migration}
+- 19:03:04 decision[case 479.1][update][rule-spec-capture]{ref:rule-spec-capture}
+- 19:03:04 decision[case 479.1][update][estimate-spec-capture-offers-the-fork]{ref:estimate-spec-capture-offers-the-fork}
+- 19:03:04 decision[case 479.2][update][rule-work-mode]{ref:rule-work-mode}{supersedes:case 183}{supersedes:case 206}{supersedes:case 218}{supersedes:case 231}{supersedes:case 242}{supersedes:case 248}{supersedes:case 252}{supersedes:case 254}{supersedes:case 260}{supersedes:case 263}{supersedes:case 269}{supersedes:case 276}{supersedes:case 281}{supersedes:case 285}{supersedes:case 289}{supersedes:case 293}{supersedes:case 303}{supersedes:case 307}{supersedes:case 322}{supersedes:case 447}
+- 19:03:04 decision[case 479.2][create][estimate-work-mode-runs-the-spec-on-a-branch-from-a-baseline]{ref:rule-work-mode}{tags:session,workflow,harness}
+- 19:03:04 decision[case 479.2][update][entity-sprint-migration]{ref:entity-sprint-migration}
+- 19:03:04 decision[case 479.3][update][rule-retro]{ref:rule-retro}
+- 19:03:04 decision[case 479.3][update][estimate-retro-red-check-of-an-updated-page-is-a-handoff-note]{ref:estimate-retro-red-check-of-an-updated-page-is-a-handoff-note}
+- 19:03:04 decision[case 479.4][update][rule-retro]{ref:rule-retro}
+- 19:03:04 decision[case 479.4][create][estimate-retro-red-in-the-baseline-is-not-charged]{ref:rule-retro}{tags:session,workflow,harness}
+- 19:03:04 decision[case 479.5][update][rule-permissions]{ref:rule-permissions}
+- 19:03:04 decision[case 479.5][update][estimate-permissions]{ref:estimate-permissions}
+- 19:28:39 decision[case 480][defer][rule-case-build-checks-its-sub-cases]
+- 19:41:02 estimate[estimate-prespec-checks-the-form-of-an-item][passed] 2026-09-28, uv run pytest tests/test_prespec.py before the code of case 476.3: 158 passed; each finding of the Criterion — two promises in one Case, no such Estimate page, a ref naming no live page, the file route, a key of no item — has its test, the defer item is outside the form checks, and the no-schema exception is judged by item_keys (tests/test_materialize.py, case 308.2)
+- 19:41:02 estimate[estimate-prespec-requires-a-backlog-item-decided-on-its-page][passed] 2026-09-28, uv run pytest tests/test_prespec.py -k backlog before the code of case 476.3: 16 passed, 142 deselected; the page named by no line of its Case, the page named without its supersedes, the sub-case that names and supersedes for its sibling, and the page without defers or a line of another source each have their test
+- 19:41:02 estimate[estimate-skill-grill-me-asks-in-rounds][passed] 2026-09-28, uv run guppi render --check exit 0, then the rounds of case-guppi in session 1318 read in the chat: on Cases 476, 477, 478 and 479 each round held the open questions whose prerequisites were settled and waited for the answers, the facts were looked up by case-guppi itself, and the Case came only after the person confirmed the rounds; .claude/skills/grill-me/SKILL.md lets the agent dispatch a sub-agent but requires none
+- 19:41:02 estimate[estimate-case-build-keeps-the-old-form-until-the-writer-is-live][passed] 2026-09-28, by hand, Case 476.3 of session 1318, the first Case after the render that changes a reader (the pre-spec finding) and what it reads (guppi.toml, landing at the librarian's render): the reader only goes red, and the context of 476 says it keeps no old form; the refusing branch of the Criterion was not met in this session; insight-workflow-code-live-before-the-page-it-reads stands actioned with addressed_by decision-case-473.2 and is not in backlog.md
+- 19:47:34 estimate[estimate-retro-report-holds-each-fact-once][failed] 2026-09-28, by hand, the Retro report of session 1318: the frontier is one numbered list, the two unnumbered lines stand under it, no box waiting for the librarian is named one by one and no ratification is listed; but Case 481 is named in two parts, in item 3 of the frontier and in What is not done, and each frontier item carries its end as well, so the end of an item is written twice
+- 19:47:34 decision[case 481][defer][rule-prespec-script-skips-code-spans]
+- 19:49:00 lesson[knowledge][lesson-plan-mode-agent-and-sendmessage-pass-the-auto-mode-classifier]{tags:harness,session}{source:the Agent and SendMessage tool results of session 1318 on 2026-09-28, Claude Code in plan mode with defaultMode plan} trigger: in plan mode six calls in a row, four SendMessage to a live case-guppi and two Agent, failed with "The server-side auto mode classifier gave no verdict (error)", and two rounds of a Case waited while the person thought the subagent was dead root_cause: in plan mode Claude Code checks a call that is not read-only, Agent and SendMessage among them, by the server-side auto mode classifier; when that server gives no verdict the call is refused as a transient failure, after ten such responses in a row the turn stops, and the same call passes unchanged once the server answers again

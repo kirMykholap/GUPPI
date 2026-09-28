@@ -81,8 +81,9 @@ edited plan with a ratified copy `<plan>.ratified.md` and its marks `<plan>.wait
 
 A refusal exits 2 with the reason on stderr, which Claude Code hands back to the agent; on the
 re-fire (`stop_hook_active`) the hook exits 0 and does nothing, so it cannot loop. Outside a
-working session — no `hi` — it does nothing. It never raises. `untranslated` is the Cyrillic
-finding `guppi prespec --check` imports (cases 387.4, 445.4). Rule pages:
+working session — no `hi` — it does nothing. It never raises. `untranslated` is the language
+finding `guppi prespec --check` imports, a letter outside the script of the documentation
+language judged by `config.outside` (cases 387.4, 445.4, 476.3). Rule pages:
 `vault/wiki/rules/rule-spec-write.md`, `vault/wiki/rules/rule-spec-reconcile.md`.
 """
 
@@ -94,6 +95,7 @@ from pathlib import Path
 
 import yaml
 
+from guppi import config
 from guppi.event import append, format_line, log_path, project_root, read_payload, session_stamp
 from guppi.ledger import (
     is_plan_file,
@@ -140,9 +142,6 @@ SPEC_FILE = "spec.md"
 TASK_LINE = re.compile(r"^- \[[ xX-]\] (.*)$")
 SUB_POINT = re.compile(r"^(\s+)- ([A-Za-z_][\w .]*?):(?:\s+(.*))?$")
 ITEM_LINE = re.compile(r"^(create|update|delete|defer) `([^`]+)`")
-CYRILLIC = re.compile(r"[А-Яа-яЁё]")
-
-
 # --- reading a Case -----------------------------------------------------------------
 
 
@@ -690,17 +689,19 @@ def write_parent(plan: Path, case: str, text: str, approved: Path | None = None)
 # --- the Cyrillic finding (cases 387.4, 445.4) ----------------------------------------
 
 
-def untranslated(plan_text: str) -> list[tuple[str, str]]:
+def untranslated(plan_text: str, language: str) -> list[tuple[str, str]]:
     """`(case, part)` for every name, `context` or `problem` of a Case of the plan that still
-    holds a Cyrillic letter, a short form under `## Deferred` included (case 445.4); the
-    `given`, `when`, `then` and the blocks are not read."""
+    holds a letter outside the script of `language`, the code of the documentation language,
+    a short form under `## Deferred` included (cases 445.4, 476.3); the `given`, `when`,
+    `then` and the blocks are not read."""
     names = headings(plan_text)
     found: list[tuple[str, str]] = []
     for case, lines in split_cases(plan_text).items():
-        if CYRILLIC.search(names.get(case, "")):
+        name = names.get(case, "").split(" — ", 1)[-1]  # the heading's words are not the name
+        if config.outside(name, language):
             found.append((case, "name"))
         for name, text in quoted_sections(lines, PROSE).items():
-            if CYRILLIC.search(text):
+            if config.outside(text, language):
                 found.append((case, name))
     return found
 

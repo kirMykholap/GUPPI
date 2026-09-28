@@ -20,10 +20,11 @@ Written or already there, the hook then prints one JSON object on stdout —
 `{"hookSpecificOutput": {"hookEventName": "PostToolUse", "additionalContext": <line>}}` —
 the one shape in which the stdout of a `PostToolUse` hook reaches the agent: plain stdout
 with exit 0 goes to the client's debug log and never to the context (case 255). The line is
-the fork the person chooses at — Work Mode on the Spec, or `/carry` to conserve it for a
-later session — naming the session folder and the Spec file (case 190.5). A `PostToolUse`
-hook cannot block: the tool has run; the agent asks, the person chooses, and nothing starts
-until the answer (case 190.2). Rule page: `vault/wiki/rules/rule-spec-capture.md`.
+the fork the person chooses at — `/work`, Work Mode on the Spec, or `/carry` to conserve it
+for a later session — naming the session folder and the Spec file (case 190.5). A
+`PostToolUse` hook cannot block: the tool has run; the agent asks by `AskUserQuestion` with
+the two options, the person picks, nothing starts until the answer, and the agent then calls
+the skill picked (cases 190.2, 479.1). Rule page: `vault/wiki/rules/rule-spec-capture.md`.
 """
 
 import json
@@ -73,18 +74,20 @@ def append_plan(path: Path, plan: str, now, session: str) -> bool:
 
 
 def fork_line(path: Path, project_dir: Path) -> str:
-    """The one line the agent reads after the Spec is in place (case 190.5): the fork
-    between Work Mode and `/carry`, with the session folder and the Spec file."""
+    """The one line the agent reads after the Spec is in place (cases 190.5, 479.1): the
+    fork between `/work` and `/carry`, asked by `AskUserQuestion`, with the session folder
+    and the Spec file; the agent then calls the skill picked."""
     try:
         spec = path.relative_to(project_dir).as_posix()
     except ValueError:
         spec = path.as_posix()
     folder = spec.rsplit("/", 1)[0]
     return (
-        f"spec: the Spec is in {spec}. Ask the person which end this session takes, and "
-        f"start nothing until it is answered: Work Mode on the Spec — or /carry, which "
-        f"conserves it for a later session (the brief rewritten, {folder}/carry.md as the "
-        "mark, a commit, nothing else run)."
+        f"spec: the Spec is in {spec}. Ask the person which end this session takes by "
+        "AskUserQuestion with two options, and start nothing until it is answered: /work, "
+        "Work Mode on the Spec now — or /carry, which conserves it for a later session (the "
+        f"brief rewritten, {folder}/carry.md as the mark, a commit, nothing else run). Then "
+        "call the skill picked."
     )
 
 

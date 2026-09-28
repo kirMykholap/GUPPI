@@ -174,11 +174,27 @@ def with_estimate(project_dir, slug="estimate-x"):
     (folder / f"{slug}.md").write_text(text, encoding="utf-8", newline="\n")
 
 
-def check(project_dir, plan=PLAN, ledger=LINE, frontier=CLEAN_FRONTIER, event_log=START + HI):
+SETTINGS = 'documentation_lang = "en"\nchat_lang = "ru"\n'
+
+
+def with_settings(project_dir, settings=SETTINGS):
+    (project_dir / "guppi.toml").write_text(settings, encoding="utf-8", newline="\n")
+
+
+def check(
+    project_dir,
+    plan=PLAN,
+    ledger=LINE,
+    frontier=CLEAN_FRONTIER,
+    event_log=START + HI,
+    settings=SETTINGS,
+):
     with_event_log(project_dir, event_log)
     with_ledger(project_dir, ledger)
     if frontier is not None:
         with_frontier(project_dir, frontier)
+    if settings is not None:
+        with_settings(project_dir, settings)
     plan_file = project_dir / "plan.md"
     plan_file.write_text(plan, encoding="utf-8", newline="\n")
     out, err = io.StringIO(), io.StringIO()
@@ -1101,6 +1117,7 @@ def test_a_parsed_line_of_a_later_date_of_the_window_is_read(tmp_path):
     with_event_log(tmp_path, log, day=date(2026, 9, 8))
     with_ledger(tmp_path, LINE.replace("16:00:00", "23:00:00"), day=date(2026, 9, 8))
     with_frontier(tmp_path, CLEAN_FRONTIER, day=date(2026, 9, 8))
+    with_settings(tmp_path)
     plan_file = tmp_path / "plan.md"
     plan_file.write_text(PLAN, encoding="utf-8", newline="\n")
     out = io.StringIO()
@@ -1151,6 +1168,7 @@ def test_check_finds_yesterdays_hi_after_midnight(tmp_path):
     with_event_log(tmp_path, "- 00:05:00 99999999 session-start startup\n")
     with_session_ledger(tmp_path, LINE.replace("16:00:00", "23:50:00"), day=YESTERDAY)
     with_frontier(tmp_path, CLEAN_FRONTIER, day=YESTERDAY)
+    with_settings(tmp_path)
     plan_file = tmp_path / "plan.md"
     plan_file.write_text(PLAN, encoding="utf-8", newline="\n")
     out, err = io.StringIO(), io.StringIO()
@@ -1737,24 +1755,27 @@ DEFER_LINE = "- 16:00:02 decision[case 2][defer][rule-later]{ref:rule-later}\n"
 FRONTIER_WITH_DEFER = CLEAN_FRONTIER + "- [-] F2 — later · owner · defer case 2\n"
 
 
-def cyrillic_lines(out):
-    return [line for line in out.splitlines() if "Cyrillic" in line]
+def script_lines(out):
+    return [line for line in out.splitlines() if "script" in line or "guppi.toml" in line]
 
 
-def test_cyrillic_a_name_a_context_and_a_problem_are_found(tmp_path):
+OUTSIDE_LATIN = "holds a letter outside the Latin script of English — translate it"
+
+
+def test_script_a_name_a_context_and_a_problem_are_found(tmp_path):
     plan = PLAN.replace("## Case 1 — one", "## Case 1 — один").replace(
         "> Something.", "> Что-то.\n\n> **problem:**\n> Вопрос."
     )
     code, out, _ = check(tmp_path, plan=plan)
     assert code == 1
-    assert cyrillic_lines(out) == [
-        "case 1: its name still holds Cyrillic — translate it",
-        "case 1: its context still holds Cyrillic — translate it",
-        "case 1: its problem still holds Cyrillic — translate it",
+    assert script_lines(out) == [
+        f"case 1: its name {OUTSIDE_LATIN}",
+        f"case 1: its context {OUTSIDE_LATIN}",
+        f"case 1: its problem {OUTSIDE_LATIN}",
     ]
 
 
-def test_cyrillic_a_short_form_under_deferred_is_found(tmp_path):
+def test_script_a_short_form_under_deferred_is_found(tmp_path):
     plan = PLAN + DEFERRED_CASE.replace("## Case 2 — later", "## Case 2 — позже").replace(
         "> Later.", "> Позже."
     )
@@ -1762,13 +1783,13 @@ def test_cyrillic_a_short_form_under_deferred_is_found(tmp_path):
         tmp_path, plan=plan, ledger=LINE + DEFER_LINE, frontier=FRONTIER_WITH_DEFER
     )
     assert code == 1
-    assert cyrillic_lines(out) == [
-        "case 2: its name still holds Cyrillic — translate it",
-        "case 2: its context still holds Cyrillic — translate it",
+    assert script_lines(out) == [
+        f"case 2: its name {OUTSIDE_LATIN}",
+        f"case 2: its context {OUTSIDE_LATIN}",
     ]
 
 
-def test_cyrillic_in_given_when_then_or_a_block_is_not_found(tmp_path):
+def test_script_in_given_when_then_or_a_block_is_not_found(tmp_path):
     plan = frame_plan("`rule-x` — правило.", "Агент пишет.", "`rule-x` держится.").replace(
         "change: one line", "change: одна строка"
     )
@@ -1776,12 +1797,42 @@ def test_cyrillic_in_given_when_then_or_a_block_is_not_found(tmp_path):
     assert check(tmp_path, plan=plan) == (0, "", "")
 
 
-def test_cyrillic_an_english_plan_is_clean(tmp_path):
+def test_script_an_english_plan_is_clean(tmp_path):
     plan = PLAN + DEFERRED_CASE
     code, out, err = check(
         tmp_path, plan=plan, ledger=LINE + DEFER_LINE, frontier=FRONTIER_WITH_DEFER
     )
     assert (code, out, err) == (0, "", "")
+
+
+def test_script_follows_the_documentation_language_of_guppi_toml(tmp_path):
+    plan = PLAN.replace("## Case 1 — one", "## Case 1 — один")
+    russian = 'documentation_lang = "ru"\nchat_lang = "en"\n'
+    code, out, _ = check(tmp_path, plan=plan, settings=russian)
+    assert code == 1
+    assert script_lines(out) == [
+        "case 1: its context holds a letter outside the Cyrillic script of Russian — translate it"
+    ]
+
+
+@pytest.mark.parametrize(
+    ("settings", "named"),
+    [
+        (None, "guppi.toml: missing"),
+        ('documentation_lang = "xx"\nchat_lang = "ru"\n', "guppi.toml: documentation_lang = 'xx'"),
+    ],
+    ids=["missing guppi.toml", "unknown code"],
+)
+def test_script_a_missing_or_unknown_setting_is_one_finding_and_no_case_is_read(
+    tmp_path, settings, named
+):
+    plan = PLAN.replace("## Case 1 — one", "## Case 1 — один")
+    code, out, _ = check(tmp_path, plan=plan, settings=settings)
+    assert code == 1
+    lines = script_lines(out)
+    assert len(lines) == 1
+    assert lines[0].startswith(named)
+    assert "no Case is read" in lines[0]
 
 
 # --- the notes of the promise lines (cases 472.1, 472.2) -------------------------------

@@ -367,6 +367,99 @@ def test_sync_on_a_render_error_reports_on_stderr_writes_nothing_and_exits_0(tmp
     assert not (tmp_path / "out" / "X.md").exists()
 
 
+# --- the language placeholders (case 476.1): `estimate-guppi-config-fills-the-languages` ---
+
+CONFIG = """<!-- rule-guppi-config -->
+# guppi settings
+documentation_lang = "en"
+chat_lang = "ru"
+<!-- /rule-guppi-config -->"""
+
+LANGUAGE = """<!-- rule-language -->
+{{documentation_lang}} in the repository, {{chat_lang}} in the chat.
+<!-- /rule-language -->"""
+
+
+def placeholder_vault(tmp_path, config_text=CONFIG, language_text=LANGUAGE):
+    rule(tmp_path, "rule-guppi-config", "full", "guppi.toml", config_text, parent="rule-x")
+    rule(tmp_path, "rule-language", "full", "out/LANG.md", language_text, parent="rule-x")
+    return tmp_path
+
+
+def test_placeholder_filled_with_the_names_the_config_render_sets(tmp_path):
+    placeholder_vault(tmp_path)
+    code, _out, err = run([], tmp_path)
+    assert (code, err) == (0, "")
+    target = tmp_path / "out" / "LANG.md"
+    assert target.read_text(encoding="utf-8") == "English in the repository, Russian in the chat.\n"
+    settings = (tmp_path / "guppi.toml").read_text(encoding="utf-8")
+    assert settings == '# guppi settings\ndocumentation_lang = "en"\nchat_lang = "ru"\n'
+    page_text = (tmp_path / "vault" / "wiki" / "rules" / "rule-language.md").read_text(
+        encoding="utf-8"
+    )
+    assert "{{documentation_lang}} in the repository, {{chat_lang}} in the chat." in page_text
+    assert run(["--check"], tmp_path)[0] == 0
+
+
+def test_placeholder_a_changed_code_reaches_the_file_at_the_next_render(tmp_path):
+    placeholder_vault(tmp_path)
+    run([], tmp_path)
+    placeholder_vault(tmp_path, config_text=CONFIG.replace('"ru"', '"de"'))
+    assert run(["--check"], tmp_path)[0] == 1
+    assert run([], tmp_path)[0] == 0
+    target = tmp_path / "out" / "LANG.md"
+    assert target.read_text(encoding="utf-8") == "English in the repository, German in the chat.\n"
+
+
+def test_placeholder_the_codes_come_from_the_page_not_from_guppi_toml(tmp_path):
+    placeholder_vault(tmp_path)
+    (tmp_path / "guppi.toml").write_text(
+        'documentation_lang = "de"\nchat_lang = "de"\n', encoding="utf-8", newline="\n"
+    )
+    assert run([], tmp_path)[0] == 0
+    target = tmp_path / "out" / "LANG.md"
+    assert target.read_text(encoding="utf-8") == "English in the repository, Russian in the chat.\n"
+
+
+@pytest.mark.parametrize(
+    ("config_text", "language_text", "named"),
+    [
+        (CONFIG, LANGUAGE.replace("{{chat_lang}}", "{{owner_lang}}"), "{{owner_lang}}"),
+        (CONFIG.replace('chat_lang = "ru"\n', ""), LANGUAGE, "no key chat_lang"),
+        (CONFIG.replace('"ru"', '"xx"'), LANGUAGE, "chat_lang = 'xx'"),
+    ],
+    ids=["unknown placeholder", "missing key", "unknown code"],
+)
+def test_placeholder_that_cannot_be_resolved_writes_nothing(
+    tmp_path, config_text, language_text, named
+):
+    placeholder_vault(tmp_path, config_text, language_text)
+    code, out, err = run([], tmp_path)
+    assert (code, out) == (1, "")
+    assert named in err
+    assert ("rule-language" in err) or ("rule-guppi-config" in err)
+    assert not (tmp_path / "out" / "LANG.md").exists()
+    assert not (tmp_path / "guppi.toml").exists()
+    code, out, err = run(["--sync"], tmp_path)
+    assert (code, out) == (0, "")
+    assert named in err
+
+
+def test_placeholder_none_in_any_render_needs_no_config_page(tmp_path):
+    frame_vault(tmp_path)
+    code, _out, err = run([], tmp_path)
+    assert (code, err) == (0, "")
+    assert not (tmp_path / "guppi.toml").exists()
+
+
+def test_placeholder_without_the_config_page_writes_nothing(tmp_path):
+    rule(tmp_path, "rule-language", "full", "out/LANG.md", LANGUAGE, parent="rule-x")
+    code, _out, err = run([], tmp_path)
+    assert code == 1
+    assert "rule-language" in err and "rule-guppi-config" in err
+    assert not (tmp_path / "out" / "LANG.md").exists()
+
+
 def test_sync_and_check_together_are_a_bad_invocation(tmp_path):
     frame_vault(tmp_path)
     code, _out, _err = run(["--sync", "--check"], tmp_path)

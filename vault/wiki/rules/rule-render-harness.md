@@ -21,21 +21,6 @@ edited by hand, the page follows or does not, and the vault stops being the sour
 
 `parent: rule-harness` names the MOC of the harness tools: the renderer runs with lint and as the librarian's step after `cleanup` (case 89.1); the tick of case 226.2 belongs to that step.
 
-## How it works
-
-`uv run guppi render` writes every governed file from its Rule page; `--check`
-renders in memory and names the files that differ, for `make lint`; `--sync`, the `SessionStart` hook and, since case 115, the `Render:` line of `/hi` after the pull, prints a unified diff for each differing file — the file as it
-is, then the rendered text — and writes it, so the agent's first turn shows what
-the render changed: the pages the librarian updated, or a hand edit that is now
-gone and may deserve a Case. It exits 0 always; `SessionStart` cannot block, and a
-render error goes to stderr. A governed file whose name ends in `.json` is parsed before anything is written: when one of them does not parse, the run writes nothing and names the file and its page on stderr (case 89.4). When Claude Code reads an agent file under `.claude/agents/` — at session start or on the call — is the reading of case 139.1 on `estimate-render-harness-reproduces`; the librarian's render is its last step before the commit, and an agent it renders is planned for from the next session (case 139.1). The rendered files are committed by the librarian, in its own commit (case 89.2). Once the plain `guppi render` wrote the files and exits 0, it ticks every unticked task line that opens with a code span holding `guppi render` — the render lines of the Spec, never a `read` line that names the command later — in the `spec.md` of every unit under `raw/` whose yaml is applied whole; `--check`, `--sync` and an exit 1 tick nothing (cases 226.2, 235).
-
-A child of a `full` page lands between its own markers, which stay in the file and
-say who owns the text. A file that cannot hold a comment takes the child's text
-bare: the markers would make it unparsable. The owner is then named by the
-`<!-- child -->` line of the parent's body, and `render --check` compares the whole
-file, so nothing is lost but the label in the file itself (case 85.1).
-
 ## History
 
 - 2026-09-09 created · raw/2026-09-09/ledger.md#case-18.1

@@ -165,15 +165,18 @@ def test_after_the_spec_the_hook_prints_the_fork_as_additional_context(tmp_path)
     line = fork_of(out)
     assert "vault/raw/2026-09-09/1501/spec.md" in line
     assert "vault/raw/2026-09-09/1501/carry.md" in line
-    assert "Work Mode" in line and "/carry" in line
+    assert "AskUserQuestion" in line
+    assert "/work" in line and "/carry" in line
     assert "start nothing until it is answered" in line
+    assert "call the skill picked" in line
 
 
 def test_the_fork_is_printed_again_when_the_plan_was_already_there(tmp_path):
     with_event_log(tmp_path)
     run(payload(), tmp_path)
     code, out, _ = run_with_stdout(payload(), tmp_path)
-    assert code == 0 and "/carry" in fork_of(out)
+    line = fork_of(out)
+    assert code == 0 and "/work" in line and "/carry" in line and "AskUserQuestion" in line
 
 
 def test_no_fork_without_a_spec(tmp_path):

@@ -91,14 +91,16 @@ the ledgers of its dates, on the `hi` date from the `hi` time on, and its folder
   slug of its `then` block the `given` does not name; a slug is a span with a category
   prefix by `materialize.category_of`, a path a span holding a `/` and one more character;
   a Case without `given` is not checked;
-- the language (cases 387.4, 445.4): every name, `context` or `problem` of a Case of the plan
-  that still holds a Cyrillic letter, a short form under `## Deferred` included, by
-  `ratified.untranslated`; the `given`, `when`, `then` and the blocks are not read, and the
+- the language (cases 387.4, 445.4, 476.3): every name, `context` or `problem` of a Case of
+  the plan that still holds a letter outside the script of `documentation_lang`, read from
+  `guppi.toml` by `config.read_settings`, a short form under `## Deferred` included, by
+  `ratified.untranslated`; a `guppi.toml` that is missing or names an unknown code is one
+  finding that names it; the `given`, `when`, `then` and the blocks are not read, and the
   plan is compared with no other file — the ratified copy is gone (case 445.2).
 
 The check after a write (case 414.1): `written_findings` runs the same checks, `judge`, for
 the `Stop` hook of `rule-spec-write` on the Cases it wrote, with the decision lines of the
-reply added, and without the Frontier, the Cyrillic finding and the grammar of the window.
+reply added, and without the Frontier, the language finding and the grammar of the window.
 
 Notes (case 378.8): a Case whose `given` or `then` holds more than seven `**＋**` lines —
 a sign it is not atomic — is one line opening with `note:`, answered in the chat. The notes
@@ -121,7 +123,7 @@ import sys
 from datetime import datetime
 from pathlib import Path
 
-from guppi import ratified
+from guppi import config, ratified
 from guppi.event import project_root, read_payload, session_stamp
 from guppi.generate import (  # the ticker, the pairs, the Frontier line (case 360)
     FRONTIER_LINE,
@@ -1029,13 +1031,21 @@ def check_bare_links(cases: dict, blocks: dict, project_dir: Path) -> list[str]:
     return findings
 
 
-def check_untranslated(plan: str) -> list[str]:
-    """387.4, 445.4: every name, `context` or `problem` of a Case of the plan that still holds
-    a Cyrillic letter, a short form under `## Deferred` included, by `ratified.untranslated`;
-    the plan is compared with no other file."""
+def check_untranslated(plan: str, project_dir: Path) -> list[str]:
+    """387.4, 445.4, 476.3: every name, `context` or `problem` of a Case of the plan that still
+    holds a letter outside the script of the documentation language `guppi.toml` sets, a
+    short form under `## Deferred` included, by `ratified.untranslated`; a `guppi.toml` that
+    is missing or names a code the table does not hold is one finding, and no Case is read.
+    The plan is compared with no other file."""
+    try:
+        language = config.read_settings(project_dir)["documentation_lang"]
+    except config.ConfigError as exc:
+        return [f"{exc} — the language of the repository is not known; no Case is read"]
+    name, script = config.name_of(language), config.script_of(language)
     return [
-        f"case {case}: its {part} still holds Cyrillic — translate it"
-        for case, part in ratified.untranslated(plan)
+        f"case {case}: its {part} holds a letter outside the {script} script of {name} — "
+        "translate it"
+        for case, part in ratified.untranslated(plan, language)
     ]
 
 
@@ -1050,7 +1060,7 @@ def judge(
     """The checks of `--check` on the plan's Cases, in the order they print. `lines`, the
     window's record lines, adds their grammar (75.2); `frontier`, its path and the name a
     finding gives it, adds the Frontier (59.2). The check after a write passes neither, and
-    the Cyrillic finding stays with `check` (cases 414.1, 445.4). `schema_free`: the
+    the language finding stays with `check` (cases 414.1, 445.4). `schema_free`: the
     categories whose keys are not judged, by default those `records` change (case 436.2)."""
     if schema_free is None:
         schema_free = schema_changed(records)
@@ -1088,7 +1098,7 @@ def check(plan: str, project_dir: Path, stamp: str, now, stdout, stderr) -> int:
     records = session_decisions(lines)
     relative = folder.relative_to(project_dir).as_posix() + "/frontier.md"
     findings = judge(plan, project_dir, records, lines, (folder / "frontier.md", relative))
-    findings += check_untranslated(plan)
+    findings += check_untranslated(plan, project_dir)
     for line in findings + chain_notes(split_cases(plan)) + promise_notes(plan, project_dir):
         print(line, file=stdout)
     return 1 if findings else 0
@@ -1104,7 +1114,7 @@ def written_findings(
     wrote in one run and on their sub-cases, a finding of another Case left out. The records
     are the window's decision lines and `extra`, the lines of the reply itself, each once: the
     ledger hook runs in parallel on the same `Stop`, so `ledger.md` may not hold them yet. No
-    Frontier, no Cyrillic finding, no grammar of the window: they stay with `/pre-spec`."""
+    Frontier, no language finding, no grammar of the window: they stay with `/pre-spec`."""
     hi = hi_moment(session_event_logs(project_dir, now, stamp), stamp)
     lines = window_lines(project_dir, hi, now.date().isoformat()) if hi else []
     records: list[dict] = []

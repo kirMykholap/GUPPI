@@ -6,15 +6,32 @@ A `full` page's text becomes the whole file named by `governs`, without those ou
 markers; a lone `<!-- child -->` line in it is replaced by the child's text, markers kept,
 in the order of `children`, one blank line between blocks. A file that cannot hold a
 comment — today a `.json` target — takes the child's text bare, since the markers would
-make it unparsable (case 85.1). A child that is not a render
+make it unparsable; the owner is then named by the `<!-- child -->` line of the parent's
+body, and `--check` compares the whole file, so nothing is lost but the label (case 85.1). A child that is not a render
 page — a script the frame calls by name — contributes nothing and needs no marker; a
 marker line for it is an error. A `partial` page whose file no
 `full` page owns is spliced into the existing file between its markers, which stay.
+A Render may write `{{documentation_lang}}` and `{{chat_lang}}`: the render puts in the name
+of the language whose code the `## Render` of `rule-guppi-config` sets for the key, by the
+table of `guppi/config.py`, and the page keeps the placeholder, so the next render after a
+changed code writes the new name. The codes come from that Render, never from `guppi.toml`,
+which is its own output. A placeholder whose name is not a key, a key missing from
+`rule-guppi-config` or a code the table does not hold stops the run with nothing written,
+the page and the placeholder or key on stderr; a run in which no Render holds a placeholder
+reads no `rule-guppi-config` (case 476.1).
 `--check` renders in memory, names every file that differs, exits 1 and writes nothing.
-`--sync`, the `SessionStart` hook, prints a unified diff for each file that differs — the
-file as it is, then the rendered text — and writes it; an identical file gets neither; a
-render error goes to stderr and nothing is written. `--sync` always exits 0, since a
-`SessionStart` hook cannot block and its stdout is added to the agent's context.
+`--sync`, the `SessionStart` hook and, since case 115, the `Render:` line of `/hi` after the
+pull, prints a unified diff for each file that differs — the file as it is, then the
+rendered text — and writes it, so the agent's first turn shows what the render changed: the
+pages the librarian updated, or a hand edit that is now gone and may deserve a Case. An
+identical file gets neither; a render error goes to stderr and nothing is written. `--sync`
+always exits 0, since a `SessionStart` hook cannot block and its stdout is added to the
+agent's context.
+When Claude Code reads an agent file under `.claude/agents/` — at session start or on the
+call — is the reading of case 139.1 on `estimate-render-harness-reproduces`: the librarian's
+render is its last step before the commit, and an agent it renders is planned for from the
+next session. The rendered files are committed by the librarian, in its own commit
+(case 89.2).
 Every `.json` target is parsed before anything is written; one that does not parse stops
 the whole write and names the file and its page on stderr (case 89.4).
 Once the plain `guppi render` wrote the files and exits 0, it ticks — in the `spec.md` of
@@ -36,11 +53,13 @@ import sys
 from dataclasses import dataclass
 from pathlib import Path
 
+from guppi import config
 from guppi.event import project_root
 from guppi.materialize import is_carried_over, load_yaml, units_with, yaml_path
 from guppi.pages import Page, read_category, wiki_root
 
 RENDER = "## Render"
+PLACEHOLDER = re.compile(r"\{\{(\w+)\}\}")
 
 
 class RenderError(Exception):
@@ -87,6 +106,35 @@ def render_units(pages: list[Page]) -> dict[str, Unit]:
             raise RenderError(f"{page.slug}: a render page needs governs and render_mode")
         units[page.slug] = Unit(page, str(governs), str(mode), own_text(page))
     return units
+
+
+def fill_placeholders(units: dict[str, Unit]) -> None:
+    """Case 476.1: each `{{key}}` of a unit's text becomes the name of the language whose
+    code the Render of `rule-guppi-config` sets for the key. No placeholder, no read of that
+    page; an unknown placeholder, a missing key or an unknown code is a `RenderError`."""
+    holders = [unit for unit in units.values() if PLACEHOLDER.search(unit.text)]
+    if not holders:
+        return
+    settings_unit = units.get(config.SETTINGS_PAGE)
+    if settings_unit is None:
+        raise RenderError(
+            f"{holders[0].page.slug}: a placeholder needs the Render of "
+            f"{config.SETTINGS_PAGE}, and there is none"
+        )
+    try:
+        settings = config.parse(settings_unit.text, config.SETTINGS_PAGE)
+    except config.ConfigError as exc:
+        raise RenderError(str(exc)) from exc
+    for unit in holders:
+        for key in PLACEHOLDER.findall(unit.text):
+            if key not in config.KEYS:
+                raise RenderError(
+                    f"{unit.page.slug}: placeholder {{{{{key}}}}} is not a key of "
+                    f"{config.SETTINGS_PAGE}"
+                )
+        unit.text = PLACEHOLDER.sub(
+            lambda match: config.name_of(settings[match.group(1)]), unit.text
+        )
 
 
 def bare_splice(governs: str) -> bool:
@@ -293,6 +341,7 @@ def run(argv, *, stdout=None, stderr=None, project_dir: Path | None = None) -> i
     try:
         pages = read_category(wiki_root(project_dir), "rules")
         units = render_units(pages)
+        fill_placeholders(units)
         outputs = plan(project_dir, units)
         check_json(outputs, units)
         if args.sync:

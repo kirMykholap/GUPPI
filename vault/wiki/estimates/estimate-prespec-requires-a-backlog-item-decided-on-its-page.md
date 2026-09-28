@@ -1,10 +1,11 @@
 ---
 type: estimate
 kind: QA
-status: pending
+status: passed
 target: "[[rule-prespec]]"
 purpose: A Case that decides an item taken from the backlog names its page and supersedes every Decision of its deferred_by, or pre-spec reports it
 method: uv run pytest tests/test_prespec.py -k backlog
+checked: 2026-09-28
 origin: raw/2026-09-27/2050/ledger.md#case-467.1
 sprint: migration
 created: 2026-09-27
@@ -22,6 +23,11 @@ For each line of the Frontier closed `[x] … · backlog · case N`, each page t
 **＋** A finding for each Decision M of the page's `deferred_by` when no Case among Case N and its sub-cases both names the page on such a line and carries `{supersedes:case M}`. The finding names the Frontier line, the page and `{supersedes:case M}`.
 **－** A line of another source, an open line, a line closed `work` or put off, and a page without `deferred_by`, such as an open Insight or a note of the sprint page's `## Backlog`, give no finding of this check.
 
+## Result
+
+2026-09-28, uv run pytest tests/test_prespec.py -k backlog before the code of case 476.3: 16 passed, 142 deselected; the page named by no line of its Case, the page named without its supersedes, the sub-case that names and supersedes for its sibling, and the page without defers or a line of another source each have their test
+
 ## History
 
 - 2026-09-27 created · [[decision-case-467.1]]
+- 2026-09-28 status: pending → passed · raw/2026-09-28/1318/ledger.md#L36

@@ -1,11 +1,11 @@
 ---
 type: estimate
 kind: QA
-status: pending
+status: failed
 target: "[[rule-retro]]"
 purpose: Whether the report of /retro holds each fact once — the frontier numbers only what needs an end, the boxes that wait for the librarian one count line and the read lines that wait for a later session one line of slugs; the close holds the Case ids, what got done and the numbers of the frontier with their ends
 method: one reading by hand at the first /retro after the render, recorded in the estimate line
-checked: 2026-09-27
+checked: 2026-09-28
 origin: raw/2026-09-23/1355/ledger.md#case-376
 sprint: migration
 created: 2026-09-23
@@ -29,7 +29,7 @@ The frontier is one numbered list of what needs an end in this Retro: each untic
 
 ## Result
 
-2026-09-27, by hand, the /retro of session 1819: the opening list named the unticked boxes per Case (update and create lines of each page), the close named every ratification per Case with the same pages again, and "what got done" and "what is not done" repeated parts of the opening list; the person's complaint: the retro repeats the not-done part several times and needs one standard, to be discussed in the next session
+2026-09-28, by hand, the Retro report of session 1318: the frontier is one numbered list, the two unnumbered lines stand under it, no box waiting for the librarian is named one by one and no ratification is listed; but Case 481 is named in two parts, in item 3 of the frontier and in What is not done, and each frontier item carries its end as well, so the end of an item is written twice
 
 ## History
 
@@ -37,3 +37,4 @@ The frontier is one numbered list of what needs an end in this Retro: each untic
 - 2026-09-25 updated: the Criterion replaced whole — a third mark in the opening list: a read line whose reading waits for a later session (case 428.4) · [[decision-case-428.4]]
 - 2026-09-27 status: pending → failed · raw/2026-09-27/1819/ledger.md#L39
 - 2026-09-27 updated: the Criterion replaced whole and the purpose rewritten — the frontier numbers only what needs an end; the close holds the Case ids, what got done and the numbers with their ends (case 468.1) · [[decision-case-468.1]]
+- 2026-09-28 status: pending → failed · raw/2026-09-28/1318/ledger.md#L39

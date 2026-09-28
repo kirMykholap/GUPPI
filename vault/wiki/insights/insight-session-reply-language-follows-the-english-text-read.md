@@ -1,9 +1,10 @@
 ---
 type: insight
 pattern: The agent writes its chat reply in the language of the English text it has just read — the Render of a skill, the file of a Case, ledger lines — instead of the language of the chat; rule-language stands in CLAUDE.md with no guard, since no hook or check reads the language of a reply, so the rule holds by the agent alone and a long English text outweighs it.
-status: open
+status: actioned
 children: ["[[lesson-retro-answered-in-the-skills-language]]", "[[lesson-chat-language-follows-the-last-english-file-read]]"]
-severity: 2
+severity: 0
+addressed_by: "[[decision-case-476.4]]"
 origin: raw/2026-09-28/0000/ledger.md#L33
 sprint: migration
 created: 2026-09-28
@@ -21,3 +22,4 @@ A suggestion for a Case, not a decision. Either a cue on the language of the rep
 ## History
 
 - 2026-09-28 created · raw/2026-09-28/0000/ledger.md#L33
+- 2026-09-28 updated: actioned: the language of the chat leaves the promise of estimate-language-followed; a slip in the chat is fixed on the person's request and gets no guard (case 476.4) · [[decision-case-476.4]]

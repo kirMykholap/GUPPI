@@ -2,7 +2,7 @@
 type: rule
 kind: Leaf
 purpose: Prevents an approved Spec from existing only in Claude Code's plan file, outside the repository
-status: built
+status: draft
 enforcement: hook
 implementation_ref: [guppi/spec.py, .claude/settings.json]
 parent: "[[rule-plan-mode]]"
@@ -21,9 +21,7 @@ page `origin` fields point at both. A Spec copied by hand is copied late, partia
 not at all.
 
 The file has three writers: the hook `guppi spec` on `PostToolUse` of `ExitPlanMode`, which appends the approved plan to `raw/<hi date>/<hi HHMM>/spec.md` once, stamped; the `Stop` hook of `rule-spec-write`, which, once the file stands, writes each Case ratified after the approval — its sections replaced, or placed — removes a superseded Case, and writes a defer-only Case at Retro under `## Deferred` (cases 421.1, 441); and Work Mode, which ticks the boxes of the `tasks` blocks. Having written the Spec, the hook prints the fork as `hookSpecificOutput.additionalContext`, the one shape in which the stdout of a `PostToolUse` hook reaches the agent (case 255),
-into the context — Work Mode, or `/carry` to conserve the Spec — naming the session
-folder and the Spec file; it blocks nothing, the agent asks and the person chooses
-(case 190.5). The mechanism lives in the docstring of `guppi/spec.py` (case 200.4).
+into the context — `/work`, Work Mode on the Spec, or `/carry` to conserve it — naming the session folder and the Spec file; it blocks nothing: the agent asks the person by `AskUserQuestion` with the two options, the person picks, and the agent calls the skill picked (cases 190.5, 479.1). The mechanism lives in the docstring of `guppi/spec.py` (case 200.4).
 
 ## History
 
@@ -48,3 +46,5 @@ folder and the Spec file; it blocks nothing, the agent asks and the person choos
 - 2026-09-26 updated: the writers of spec.md: the Stop hook of rule-spec-write writes a Case ratified after the approval, removes a superseded one and writes a defer at Retro (case 441.6) · [[decision-case-441.6]]
 - 2026-09-26 status: built → draft · cascade
 - 2026-09-27 status: draft → built · cascade
+- 2026-09-28 updated: the fork is asked by AskUserQuestion with the two options /work and /carry, and the agent calls the skill picked (case 479.1) · [[decision-case-479.1]]
+- 2026-09-28 status: built → draft · cascade

@@ -3,8 +3,8 @@ type: estimate
 kind: QA
 status: pending
 target: "[[entity-sprint-migration]]"
-purpose: The file route is out of the scripts — no RULE_CLASS, rule_class, applied by hand or prose_names in guppi/; an update item with file is a pre-spec finding; a slug without a prefix lands category unknown; tests green and lint clean on the schemas
-method: rg 'RULE_CLASS|rule_class|applied by hand|prose_names' guppi/ empty; uv run pytest tests/test_generate.py -k unknown — the update applied in any folder, the create and the page-less defer failed, the delete outside the vault; make test; make lint
+purpose: The file route is out of the scripts — no RULE_CLASS, rule_class, applied by hand or prose_names in guppi/; an update item with file is a pre-spec finding; a slug without a prefix lands category unknown; tests green and no lint finding on the schema.yaml of a category folder
+method: rg 'RULE_CLASS|rule_class|applied by hand|prose_names' guppi/ empty; uv run pytest tests/test_generate.py -k unknown — the update applied in any folder, the create and the page-less defer failed, the delete outside the vault; make test; make lint — no line on a <category>/schema
 origin: raw/2026-09-22/1121/ledger.md#case-320
 sprint: migration
 created: 2026-09-22
@@ -24,8 +24,9 @@ No file under `guppi/` holds `RULE_CLASS`, `rule_class`, `applied by hand` or `p
 **＋** `generate` fails a `create` of that entry, and a `defer` of it with no page, with `category 'unknown' is not a vault folder`.
 **＋** `generate` applies an `update` of that entry to the page of that slug in any folder, and ticks its line.
 **＋** `generate` applies a `delete` of that entry with the stdout line `outside the vault, nothing to archive`, and ticks its line.
-**＋** `make test` is green, and `make lint` has no finding on a schema.
+**＋** `make test` is green, and `make lint` prints no finding on a `<category>/schema`, the `schema.yaml` of a category folder.
 **－** `generate` prints "applied by hand" for no entry.
+**－** A `make lint` finding on a page, a missing field or section of a Decision page or a rule page included, is outside this promise: `estimate-sprint-migration-lint-clean` holds it.
 
 ## Result
 
@@ -36,3 +37,4 @@ No file under `guppi/` holds `RULE_CLASS`, `rule_class`, `applied by hand` or `p
 - 2026-09-22 created · [[decision-case-320]]
 - 2026-09-22 status: pending → passed · raw/2026-09-22/1121/ledger.md#L95
 - 2026-09-27 updated: the Criterion replaced whole — an update of category unknown applies, a delete applies outside the vault, a create and a page-less defer fail; Given out; the method without theme 5 (case 464) · [[decision-case-464]]
+- 2026-09-28 updated: the Criterion replaced whole — the lint line names the findings on a <category>/schema, and a finding on a page is left to estimate-sprint-migration-lint-clean; purpose and method reworded to match (case 478.1) · [[decision-case-478.1]]

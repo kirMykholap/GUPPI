@@ -1,10 +1,11 @@
 ---
 type: estimate
 kind: QA
-status: pending
+status: passed
 target: "[[rule-skill-grill-me]]"
 purpose: grill-me asks in rounds, finds facts itself and acts only after the shared understanding is confirmed, as the one text its rule page renders
 method: uv run guppi render --check; by hand, one round read in the chat in a session after the render, of the person's /grill-me or of case-guppi
+checked: 2026-09-28
 origin: raw/2026-09-26/2300/ledger.md#case-443.1
 sprint: migration
 created: 2026-09-26
@@ -25,7 +26,12 @@ Then:
 **－** The form of a round of `case-guppi` is not read here: it is the promise of `estimate-case-build-writes-the-case`.
 **－** No sentence of `.claude/skills/grill-me/SKILL.md` requires the agent to dispatch a sub-agent.
 
+## Result
+
+2026-09-28, uv run guppi render --check exit 0, then the rounds of case-guppi in session 1318 read in the chat: on Cases 476, 477, 478 and 479 each round held the open questions whose prerequisites were settled and waited for the answers, the facts were looked up by case-guppi itself, and the Case came only after the person confirmed the rounds; .claude/skills/grill-me/SKILL.md lets the agent dispatch a sub-agent but requires none
+
 ## History
 
 - 2026-09-27 created · [[decision-case-443.1]]
 - 2026-09-28 updated: the Criterion replaced whole — a round of case-guppi reads the frontier rule, finding facts and the confirmation; the form of its questions stays with estimate-case-build-writes-the-case (case 470) · [[decision-case-470]]
+- 2026-09-28 status: pending → passed · raw/2026-09-28/1318/ledger.md#L37

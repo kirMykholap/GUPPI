@@ -43,7 +43,7 @@ update:
 
 ```tasks
 - [x] update `estimate-skill-grill-me-asks-in-rounds`
-- [ ] read `estimate-skill-grill-me-asks-in-rounds` — `uv run guppi render --check`; by hand, one round of the person's `/grill-me` or of `case-guppi` in a session after this one
+- [x] read `estimate-skill-grill-me-asks-in-rounds` — `uv run guppi render --check`; by hand, one round of the person's `/grill-me` or of `case-guppi` in a session after this one
 ```
 
 ## Case 472 — A check of the answer of `case-guppi` compares the promise lines it writes
@@ -243,7 +243,7 @@ update:
 - [x] update `estimate-prespec-checks-the-form-of-an-item`
 - [x] update `insight-case-build-promise-lines-compared-by-no-check`
 - [x] `uv run guppi render`: `.claude/skills/pre-spec/SKILL.md`
-- [ ] read `estimate-prespec-checks-the-form-of-an-item`
+- [x] read `estimate-prespec-checks-the-form-of-an-item`
 ```
 
 ## Case 473 — A reader that runs before the page it reads: the red in Work Mode is a handoff note, a refusing reader keeps the old form
@@ -352,7 +352,7 @@ update:
 - [x] update `insight-workflow-code-live-before-the-page-it-reads`
 - [x] create `estimate-case-build-keeps-the-old-form-until-the-writer-is-live`
 - [x] `uv run guppi render`: `.claude/agents/case-guppi.md`
-- [ ] read `estimate-case-build-keeps-the-old-form-until-the-writer-is-live` — by hand, at the first such Case after the render
+- [x] read `estimate-case-build-keeps-the-old-form-until-the-writer-is-live` — by hand, at the first such Case after the render
 ```
 
 ## Case 474 — The librarian opens an archived page by its slug, reads the saved output of its own command, and finds the form of a synthesis entry in its frame

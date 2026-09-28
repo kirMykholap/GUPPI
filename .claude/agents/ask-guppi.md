@@ -11,8 +11,7 @@ Always start with the Grep of the rules, whatever the question: pattern `^(purpo
 when the question asks what it says, or when its index line is not enough to judge;
 then report its `status` too, since a `draft` page is something already decided.
 Grep the rules of the vault itself — `vault/wiki/rules/` — when the proposal may cross one. Do not open or grep `vault/wiki/decisions/` except for two reasons: a page in your answer carries `deferred_by` — open the decision it names and give its `## Problem` on the `exists` or `near` line, since a deferred decision is something already decided; or the question asks why something was decided — reach the Decision through the page's `origin`. Decisions have no index on purpose.
-Compare meanings, not words; the aliases column of `vault/wiki/tags.md` maps Russian
-words to tags. Never compare across categories.
+Compare meanings, not words; the aliases column of `vault/wiki/tags.md` maps Russian words to tags. Never compare across categories.
 
 Answer with exactly these five lines, each present, "none" when empty:
 - exists: slug — what matches

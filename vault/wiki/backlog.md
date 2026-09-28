@@ -1,25 +1,26 @@
 # Backlog
 
-17 items
+18 items
 
 ## Conserved Specs
 
 ## Deferred
 
+- `rule-case-build-checks-its-sub-cases` — Before it answers, case-guppi reads the finished new texts of all its sub-cases that change one page side by side, and fixes a contradiction between them before the Case is shown · put off in 1 session
 - `rule-git-context` — Prevents a session from starting on a branch it does not know, or pulling mid-session · put off in 1 session
 - `rule-github-issues` — Prevents deferred bugs, tracked outside the vault, from being forgotten at session start · put off in 1 session
 - `rule-ledger-write` — Prevents a ratified line from existing only in a chat reply, or landing in a session no /hi opened · put off in 2 sessions
 - `rule-morph` — The initiation at install: the person sets the category set of the project — the development set entity, rule, estimate by default — and the harness holds it as data, so a changed set rewrites no rule; the categories discussion of session 1119, raw/2026-09-17/1119/categories-discussion.md; Slice 5 · put off in 0 sessions
 - `rule-orchestration` — The orchestration of the main agent — the triage of a Frontier item, the dispatch of case-guppi, the acknowledging reply, LEDGER, defers and the one rule — as a rule of its own loaded by /hi, and case-schema.md read by case-guppi alone · put off in 6 sessions
 - `rule-page-generation` — Prevents a ratified decision from ending the session without a page, or a page from carrying a field nobody ratified · put off in 0 sessions
+- `rule-prespec-script-skips-code-spans` — The pre-spec language finding judges the prose of a name, context or problem without its code spans, so a Latin slug in a code span is no letter outside the script of the documentation language · put off in 0 sessions
 - `rule-spec-box` — A Spec box: a session that opens a conserved Spec — a `raw/<date>/<HHMM>/` folder with `carry.md` — in a git worktree on its own branch, and runs its Work Mode. Not `/hi`, not Plan Mode: a skill lists the boxes, the person picks one, the agent executes it. It writes only into that folder — ticks `spec.md`, readings into its `ledger.md`, `handoff.md` — and into the code; it never touches `wiki/` and never runs the librarian. It ends with `/retro` and `/handoff`; done is `handoff.md` present and `carry.md` removed. At a fork it stops and returns the question, as a subagent does. The branch is merged into the main branch; the librarian runs once there, over every unapplied unit and every handoff, and writes one brief. Open: the skill and its conditions; the ledger hook and `guppi gate` inside a worktree with its own `event_log.md`; the cut of a Spec into boxes that share no file and no page; a third end of a session in `rule-end-of-work`; whether the box is a subagent of the main session with `isolation: worktree` or a session the person starts. After Slice 3b (case 206). · put off in 2 sessions
 - `rule-spec-write` — Prevents a ratified Case from entering the Spec in other words than the answer of case-guppi whose given, when, then, tasks and ratification the person signed · put off in 0 sessions
 - `rule-subagent-guppi` — Prevents implementation drifting from the ratified plan while it is being executed · put off in 29 sessions
-- `rule-work-mode` — Prevents implementation starting before the plan, branch and baseline exist · put off in 30 sessions
-- `insight-hi-skill-substitution-checked-by-a-model-call` — A `!` command of a skill is checked by a model call before it runs; when that call fails — a lapsed login, reported as the model unavailable — the substitution is refused and the Render: line comes back empty, while the SessionStart hook is not affected. · severity 0 · put off in 3 sessions
-- `insight-session-reply-language-follows-the-english-text-read` — The agent writes its chat reply in the language of the English text it has just read — the Render of a skill, the file of a Case, ledger lines — instead of the language of the chat; rule-language stands in CLAUDE.md with no guard, since no hook or check reads the language of a reply, so the rule holds by the agent alone and a long English text outweighs it. · severity 2 · put off in 0 sessions
+- `insight-hi-skill-substitution-checked-by-a-model-call` — A `!` command of a skill is checked by a model call before it runs; when that call fails — a lapsed login, reported as the model unavailable — the substitution is refused and the Render: line comes back empty, while the SessionStart hook is not affected. · severity 1 · put off in 3 sessions
 - the product model: `kind: test | measurement | reading`, `ask-guppi` through Entities, the vault-query questions before a product's records (session 1119); `applies_to` and `rules` taken into Slice 3f (case 301) · put off in 0 sessions
 - reuse, the edge: `uses` / `used_by` between Entities — `uses` written in the Case on the side that uses, `used_by` computed by the cascade of `generate`, the pair checked by lint, the pattern of `applies_to` / `rules`; no edge Rule → Rule (cases 305, 319) · put off in 0 sessions
 - reuse, the question: the vault query before a `create` asks a second question — what of the existing this thing could use, by the index lines of the Entities — and the answer stands in `context`; the Case names what it found in `uses` or says why it is not used (case 319) · put off in 0 sessions
 - reuse, the hook: a lint finding on two live Entities naming one path in `code_ref` with no edge between them; a new module written beside an existing one in another file is caught by the question alone, not by a script (case 319) · put off in 0 sessions
 - a template engine for the rendered files — one script with the shape of each file declared, once a third render beside `sprint.md` and `glossary.md` appears (case 301) · put off in 0 sessions
+- `rule-work-mode` — Prevents implementation starting before the plan, branch and baseline exist · put off in 30 sessions

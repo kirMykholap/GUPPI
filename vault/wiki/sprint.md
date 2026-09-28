@@ -15,7 +15,7 @@ Rule-class files dissolved, `index.md` gone, the `file` route out of the scripts
 - [ ] make test green on the last commit of migration and the branch merged into main · pending
 - [x] No Rule-class file at the close of Slice 3f — the schemas rendered from rule pages, the glossary from entity-glossary, index.md gone, the file route out of the scripts · passed
 - [x] index.md is gone and no live page, harness file or script docstring points at a §N of it or at the file as a source · passed
-- [ ] The file route is out of the scripts — no RULE_CLASS, rule_class, applied by hand or prose_names in guppi/; an update item with file is a pre-spec finding; a slug without a prefix lands category unknown; tests green and lint clean on the schemas · pending
+- [ ] The file route is out of the scripts — no RULE_CLASS, rule_class, applied by hand or prose_names in guppi/; an update item with file is a pre-spec finding; a slug without a prefix lands category unknown; tests green and no lint finding on the schema.yaml of a category folder · pending
 
 ## Milestones
 
@@ -26,7 +26,7 @@ Rule-class files dissolved, `index.md` gone, the `file` route out of the scripts
 
 ### [ ] Slice 4 — conversion of the parked pages by group — 1 item: [[estimate-sprint-migration-leftovers-gone]]
 
-### [ ] Slice 5 — closing — 4 items: [[estimate-sprint-migration-lint-clean]], [[estimate-sprint-migration-merges]], [[rule-spec-box]], [[rule-morph]]
+### [ ] Slice 5 — closing — 5 items: [[estimate-sprint-migration-lint-clean]], [[estimate-sprint-migration-merges]], [[rule-spec-box]], [[rule-morph]], the close of a sprint — `entity-sprint-<id>` and the Estimates it lists go to the archive together once each has passed: a done-condition of a sprint has nothing left to guard after the close; not yet decided (case 478.2)
 
 ## Closed
 

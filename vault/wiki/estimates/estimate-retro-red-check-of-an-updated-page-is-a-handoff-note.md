@@ -3,8 +3,8 @@ type: estimate
 kind: QA
 status: pending
 target: "[[rule-retro]]"
-purpose: Whether a check red in Work Mode because it reads a page or a governed file the same Spec updates ends at Retro as a note for the handoff, not as debt, while a red test is still fixed or reverted
-method: one reading by hand at the first /retro after the render in a session whose Spec updates a page or a governed file that make lint reads, recorded in the estimate line
+purpose: Whether Retro reads work.md and ends a red or a refusal on a page or file that a line of its Expected red names as a note for the handoff, not as debt, while a red on a page or file no line names is debt unless the Baseline holds it, a session with no work.md keeps the judgment of case 473.1, and a red test is never an expected red
+method: one reading by hand at the first /retro after the render in a session whose work.md names a check under Expected red, recorded in the estimate line
 origin: raw/2026-09-28/0000/ledger.md#case-473.1
 sprint: migration
 created: 2026-09-28
@@ -17,11 +17,15 @@ When:
 The person invokes `/retro` in a session whose Spec updates a page or a governed file, and in Work Mode `make lint`, one of its steps, or a hook of the working tree that reads that page or file went red or refused.
 
 Then:
-The red or the refusal is an item of the frontier, and it ends as a note for the handoff that names the check and the page or file it waits for.
-**＋** The reading of the check that counts is the `make lint` of the librarian's run, after the page is written and the file rendered.
+When it opens the frontier, the agent reads `raw/<date>/<hi HHMM>/work.md` if it stands, and makes no other read call.
+**＋** A red or a refusal of a check on a page or file that a line of `## Expected red` of `work.md` names with that check is an item of the frontier, and it ends as a note for the handoff that names the check and the page or file it waits for.
 **－** The red is not debt: the agent does not fix it or revert it into a patch.
-**－** A red test is not such a check: it is fixed or reverted into a patch, and the handoff still needs green.
+**＋** The reading of the check that counts is the `make lint` of the librarian's run, after the page is written and the file rendered.
+**＋** A red or a refusal on a page or file that no line of `## Expected red` names is debt, even when another line names the same check, unless `## Baseline` of `work.md` holds its line.
+**－** In a session with no `work.md`, a red or a refusal of such a check ends as a note for the handoff by the agent's judgment, as it did before `/work`.
+**－** A red test is never an expected red, even when `## Expected red` names it: it is fixed or reverted into a patch by the rule for red tests.
 
 ## History
 
 - 2026-09-28 created · [[decision-case-473.1]]
+- 2026-09-28 updated: the Criterion replaced whole — the red is expected when a line of Expected red of work.md names its check and its page or file, not by the agent's judgment; with no work.md the judgment stands (case 479.3) · [[decision-case-479.3]]

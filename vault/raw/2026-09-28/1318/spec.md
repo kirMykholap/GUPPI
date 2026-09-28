@@ -92,16 +92,16 @@ update:
 ```
 
 ```tasks
-- [ ] create `rule-guppi-config`
-- [ ] create `estimate-guppi-config-fills-the-languages`
-- [ ] update `rule-render-harness`
-- [ ] update `rule-harness`
+- [x] create `rule-guppi-config`
+- [x] create `estimate-guppi-config-fills-the-languages`
+- [x] update `rule-render-harness`
+- [x] update `rule-harness`
 - [x] one-off migration: `vault/wiki/rules/rule-render-harness.md` — the `## How it works` section removed; what the docstring of `guppi/render.py` does not hold yet moves into it: the `Render:` line of `/hi` (case 115), the librarian's commit of the rendered files (case 89.2), and the sentence of case 139.1 on when Claude Code reads an agent file
 - [x] `guppi/config.py` — read `guppi.toml` and the text of a Render with `tomllib`; the table of codes with each language's name and script; an unknown code or a missing key is an error
 - [x] `guppi/render.py` — fill `{{documentation_lang}}` and `{{chat_lang}}` in every Render from the `## Render` of `rule-guppi-config`; an unresolved placeholder, key or code is a `RenderError`; no placeholder, no read of the page; the docstring names the placeholders
 - [x] `tests/test_config.py` — the table, a missing key, an unknown code
 - [x] `tests/test_render.py` — `-k placeholder`: a filled Render, the page unchanged, an unknown placeholder, key and code with nothing written, a run with no placeholder and no `rule-guppi-config`
-- [ ] `uv run guppi render`: `guppi.toml`
+- [x] `uv run guppi render`: `guppi.toml`
 - [ ] read `estimate-guppi-config-fills-the-languages`
 ```
 
@@ -159,12 +159,12 @@ update:
 ```
 
 ```tasks
-- [ ] update `rule-case-protocol`
-- [ ] update `rule-case-build`
-- [ ] update `rule-ask`
-- [ ] `uv run guppi render`: `vault/wiki/case-schema.md`
-- [ ] `uv run guppi render`: `.claude/agents/case-guppi.md`
-- [ ] `uv run guppi render`: `.claude/agents/ask-guppi.md`
+- [x] update `rule-case-protocol`
+- [x] update `rule-case-build`
+- [x] update `rule-ask`
+- [x] `uv run guppi render`: `vault/wiki/case-schema.md`
+- [x] `uv run guppi render`: `.claude/agents/case-guppi.md`
+- [x] `uv run guppi render`: `.claude/agents/ask-guppi.md`
 ```
 
 ### Case 476.3 — The pre-spec finding reads the script of documentation_lang from guppi.toml
@@ -206,13 +206,13 @@ update:
 ```
 
 ```tasks
-- [ ] update `rule-prespec`
-- [ ] update `estimate-language-spec-prose-in-english`
+- [x] update `rule-prespec`
+- [x] update `estimate-language-spec-prose-in-english`
 - [x] `guppi/config.py` — the script of a language's code, and whether a text holds a letter outside it
 - [x] `guppi/ratified.py` — `untranslated` takes the language and imports the judgment from `guppi/config.py`; `CYRILLIC` removed
 - [x] `guppi/prespec.py` — `check_untranslated` reads `guppi.toml` through `guppi/config.py`; the finding names the language; a missing file or an unknown code is one finding that names `guppi.toml`
 - [x] `tests/test_prespec.py` — the tests `-k cyrillic` renamed `-k script`: `en` with a Cyrillic letter, a plan with none, a short form under `## Deferred`, a missing `guppi.toml`, an unknown code
-- [ ] `uv run guppi render`: `.claude/skills/pre-spec/SKILL.md`
+- [x] `uv run guppi render`: `.claude/skills/pre-spec/SKILL.md`
 - [ ] read `estimate-language-spec-prose-in-english`
 ```
 
@@ -270,10 +270,10 @@ update:
 ```
 
 ```tasks
-- [ ] update `rule-language`
-- [ ] update `estimate-language-followed`
-- [ ] update `insight-session-reply-language-follows-the-english-text-read`
-- [ ] `uv run guppi render`: `CLAUDE.md`
+- [x] update `rule-language`
+- [x] update `estimate-language-followed`
+- [x] update `insight-session-reply-language-follows-the-english-text-read`
+- [x] `uv run guppi render`: `CLAUDE.md`
 - [ ] read `estimate-language-followed` — by hand, in the session after the render
 ```
 
@@ -331,9 +331,9 @@ update:
 ```
 
 ```tasks
-- [ ] update `rule-case-build`
-- [ ] create `estimate-case-build-writes-a-plain-round`
-- [ ] `uv run guppi render`: `.claude/agents/case-guppi.md`
+- [x] update `rule-case-build`
+- [x] create `estimate-case-build-writes-a-plain-round`
+- [x] `uv run guppi render`: `.claude/agents/case-guppi.md`
 - [ ] read `estimate-case-build-writes-a-plain-round`
 ```
 
@@ -405,9 +405,9 @@ create:
 ```
 
 ```tasks
-- [ ] create `rule-skill-wait-what`
-- [ ] create `estimate-skill-wait-what-re-pitches`
-- [ ] `uv run guppi render`: `.claude/skills/wait-what/SKILL.md`
+- [x] create `rule-skill-wait-what`
+- [x] create `estimate-skill-wait-what-re-pitches`
+- [x] `uv run guppi render`: `.claude/skills/wait-what/SKILL.md`
 - [ ] read `estimate-skill-wait-what-re-pitches`
 ```
 
@@ -459,11 +459,11 @@ update:
 ```
 
 ```tasks
-- [ ] update `rule-case-protocol`
-- [ ] update `rule-case-build`
-- [ ] update `estimate-case-protocol-shows-the-built-case`
-- [ ] `uv run guppi render`: `vault/wiki/case-schema.md`
-- [ ] `uv run guppi render`: `.claude/agents/case-guppi.md`
+- [x] update `rule-case-protocol`
+- [x] update `rule-case-build`
+- [x] update `estimate-case-protocol-shows-the-built-case`
+- [x] `uv run guppi render`: `vault/wiki/case-schema.md`
+- [x] `uv run guppi render`: `.claude/agents/case-guppi.md`
 - [ ] read `estimate-case-protocol-shows-the-built-case`
 ```
 
@@ -493,7 +493,7 @@ update:
 ```
 
 ```tasks
-- [ ] update `estimate-agent-writing-followed`
+- [x] update `estimate-agent-writing-followed`
 - [ ] read `estimate-agent-writing-followed` — by hand, in the session after the render
 ```
 
@@ -546,8 +546,8 @@ update:
 ```
 
 ```tasks
-- [ ] update `estimate-sprint-migration-file-route-gone`
-- [ ] `uv run guppi sprint`
+- [x] update `estimate-sprint-migration-file-route-gone`
+- [x] `uv run guppi sprint`
 - [ ] read `estimate-sprint-migration-file-route-gone`
 ```
 
@@ -579,8 +579,8 @@ update:
 ```
 
 ```tasks
-- [ ] update `entity-sprint-migration`
-- [ ] `uv run guppi sprint`
+- [x] update `entity-sprint-migration`
+- [x] `uv run guppi sprint`
 ```
 
 ## Case 479 — Work Mode gets the skill /work: the fork asks for it, it writes a baseline and the marks of an expected red, and Retro reads both
@@ -643,8 +643,8 @@ update:
 ```
 
 ```tasks
-- [ ] update `rule-spec-capture`
-- [ ] update `estimate-spec-capture-offers-the-fork`
+- [x] update `rule-spec-capture`
+- [x] update `estimate-spec-capture-offers-the-fork`
 - [x] `guppi/spec.py` — `fork_line`: ask the person by `AskUserQuestion` with two options, `/work` (Work Mode on the Spec now) and `/carry` (conserve it for a later session, the brief rewritten, `carry.md` as the mark, a commit), start nothing until answered, then call the skill picked; the module docstring names `/work`
 - [x] `tests/test_spec.py` — `-k fork`: the line holds `AskUserQuestion`, `/work` and `/carry`, the session folder and the Spec file; the fork printed again when the plan was already there; no fork without a Spec
 - [ ] read `estimate-spec-capture-offers-the-fork` — by hand, at the first `ExitPlanMode` of a session after the render
@@ -736,10 +736,10 @@ update:
 ```
 
 ```tasks
-- [ ] update `rule-work-mode`
-- [ ] create `estimate-work-mode-runs-the-spec-on-a-branch-from-a-baseline`
-- [ ] update `entity-sprint-migration`
-- [ ] `uv run guppi render`: `.claude/skills/work/SKILL.md`
+- [x] update `rule-work-mode`
+- [x] create `estimate-work-mode-runs-the-spec-on-a-branch-from-a-baseline`
+- [x] update `entity-sprint-migration`
+- [x] `uv run guppi render`: `.claude/skills/work/SKILL.md`
 - [ ] read `estimate-work-mode-runs-the-spec-on-a-branch-from-a-baseline` — by hand, in a session after the render
 ```
 
@@ -782,9 +782,9 @@ update:
 ```
 
 ```tasks
-- [ ] update `rule-retro`
-- [ ] update `estimate-retro-red-check-of-an-updated-page-is-a-handoff-note`
-- [ ] `uv run guppi render`: `.claude/skills/retro/SKILL.md`
+- [x] update `rule-retro`
+- [x] update `estimate-retro-red-check-of-an-updated-page-is-a-handoff-note`
+- [x] `uv run guppi render`: `.claude/skills/retro/SKILL.md`
 - [ ] read `estimate-retro-red-check-of-an-updated-page-is-a-handoff-note` — by hand, at the first such `/retro` after the render
 ```
 
@@ -832,9 +832,9 @@ update:
 ```
 
 ```tasks
-- [ ] update `rule-retro`
-- [ ] create `estimate-retro-red-in-the-baseline-is-not-charged`
-- [ ] `uv run guppi render`: `.claude/skills/retro/SKILL.md`
+- [x] update `rule-retro`
+- [x] create `estimate-retro-red-in-the-baseline-is-not-charged`
+- [x] `uv run guppi render`: `.claude/skills/retro/SKILL.md`
 - [ ] read `estimate-retro-red-in-the-baseline-is-not-charged` — by hand, at the first such `/retro` after the render
 ```
 
@@ -880,9 +880,9 @@ update:
 ```
 
 ```tasks
-- [ ] update `rule-permissions`
-- [ ] update `estimate-permissions`
-- [ ] `uv run guppi render`: `.claude/settings.json`
+- [x] update `rule-permissions`
+- [x] update `estimate-permissions`
+- [x] `uv run guppi render`: `.claude/settings.json`
 - [ ] read `estimate-permissions` — by hand, in a session after the render
 ```
 

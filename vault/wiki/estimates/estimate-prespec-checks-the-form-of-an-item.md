@@ -1,11 +1,11 @@
 ---
 type: estimate
 kind: QA
-status: pending
+status: passed
 target: "[[rule-prespec]]"
 purpose: An item of the plan carries one promise per Case, names a page that exists or is created, and no file
 method: uv run pytest tests/test_prespec.py
-checked: 2026-09-26
+checked: 2026-09-28
 origin: raw/2026-09-24/1916/ledger.md#case-399.5
 sprint: migration
 created: 2026-09-24
@@ -28,7 +28,7 @@ A Case whose `then` block holds two or more Estimate items that set a new Criter
 
 ## Result
 
-2026-09-26, `uv run pytest -q tests/test_prespec.py`; 120 passed, each finding of the Criterion asserted by its test, and the 308.2 exemption held in a probe through the file's check helper and in the item_keys test of test_materialize
+2026-09-28, uv run pytest tests/test_prespec.py before the code of case 476.3: 158 passed; each finding of the Criterion — two promises in one Case, no such Estimate page, a ref naming no live page, the file route, a key of no item — has its test, the defer item is outside the form checks, and the no-schema exception is judged by item_keys (tests/test_materialize.py, case 308.2)
 
 ## History
 
@@ -37,3 +37,4 @@ A Case whose `then` block holds two or more Estimate items that set a new Criter
 - 2026-09-26 updated: the Criterion replaced whole — a key of an item outside the keys item_keys gives it is a finding (case 436.2) · [[decision-case-436.2]]
 - 2026-09-26 status: pending → passed · raw/2026-09-26/1745/ledger.md#L27
 - 2026-09-28 updated: the Criterion replaced whole — every Estimate item that replaces a Criterion by names_a_part, written or lifted, counts as a promise (case 472.3) · [[decision-case-472.3]]
+- 2026-09-28 status: pending → passed · raw/2026-09-28/1318/ledger.md#L35

@@ -4171,3 +4171,158 @@ instruction. The global feed; a page's own `## History` is the per-page view.
 - 2026-09-28 decisions/decision-case-471.1 archived · cleanup
 - 2026-09-28 decisions/decision-case-471.2 archived · cleanup
 - 2026-09-28 decisions/decision-case-471 archived · cleanup
+- 2026-09-28 decisions/decision-case-476.1 created · raw/2026-09-28/1318/ledger.md#case-476.1 · generate
+- 2026-09-28 rules/rule-guppi-config created · [[decision-case-476.1]] · generate
+- 2026-09-28 rules/rule-harness child rule-guppi-config added · [[decision-case-476.1]] · generate
+- 2026-09-28 estimates/estimate-guppi-config-fills-the-languages created · [[decision-case-476.1]] · generate
+- 2026-09-28 rules/rule-guppi-config estimate estimate-guppi-config-fills-the-languages added · [[decision-case-476.1]] · generate
+- 2026-09-28 rules/rule-render-harness updated: the render fills the language placeholders of a Render from rule-guppi-config; How it works left for the docstring of guppi/render.py (cases 193, 476.1) · [[decision-case-476.1]] · generate
+- 2026-09-28 rules/rule-harness updated: rule-guppi-config, the settings file of guppi, belongs to the harness (case 476.1) · [[decision-case-476.1]] · generate
+- 2026-09-28 decisions/decision-case-476.2 created · raw/2026-09-28/1318/ledger.md#case-476.2 · generate
+- 2026-09-28 rules/rule-case-protocol updated: the languages of the Case, the chat and the vault named by the placeholders set in rule-guppi-config; ASD-STE100 only for English (case 476.2) · [[decision-case-476.2]] · generate
+- 2026-09-28 rules/rule-case-build updated: the language of the Case and of a round named by the placeholder set in rule-guppi-config (case 476.2) · [[decision-case-476.2]] · generate
+- 2026-09-28 rules/rule-ask updated: the language of the aliases named by the placeholder set in rule-guppi-config (case 476.2) · [[decision-case-476.2]] · generate
+- 2026-09-28 decisions/decision-case-476.3 created · raw/2026-09-28/1318/ledger.md#case-476.3 · generate
+- 2026-09-28 rules/rule-prespec updated: the finding reads guppi.toml and looks for a letter outside the script of documentation_lang, not for Cyrillic (case 476.3) · [[decision-case-476.3]] · generate
+- 2026-09-28 estimates/estimate-language-spec-prose-in-english updated: the Criterion replaced whole — a letter outside the script of documentation_lang, read from guppi.toml, not a Cyrillic letter (case 476.3) · [[decision-case-476.3]] · generate
+- 2026-09-28 decisions/decision-case-476.4 created · raw/2026-09-28/1318/ledger.md#case-476.4 · generate
+- 2026-09-28 rules/rule-language updated: the two languages named by the placeholders set in rule-guppi-config (case 476.4) · [[decision-case-476.4]] · generate
+- 2026-09-28 estimates/estimate-language-followed updated: the Criterion replaced whole — the languages come from rule-guppi-config, and the language of the agent's text in the chat leaves the promise (case 476.4) · [[decision-case-476.4]] · generate
+- 2026-09-28 insights/insight-session-reply-language-follows-the-english-text-read updated: actioned: the language of the chat leaves the promise of estimate-language-followed; a slip in the chat is fixed on the person's request and gets no guard (case 476.4) · [[decision-case-476.4]] · generate
+- 2026-09-28 decisions/decision-case-477.1 created · raw/2026-09-28/1318/ledger.md#case-477.1 · generate
+- 2026-09-28 rules/rule-case-build updated: a round of case-guppi gives the mechanism with a concrete example, a before and after for each option, case numbers only in the recommended answer, and an unknown term explained (case 477.1) · [[decision-case-477.1]] · generate
+- 2026-09-28 estimates/estimate-case-build-writes-a-plain-round created · [[decision-case-477.1]] · generate
+- 2026-09-28 rules/rule-case-build estimate estimate-case-build-writes-a-plain-round added · [[decision-case-477.1]] · generate
+- 2026-09-28 decisions/decision-case-477.2 created · raw/2026-09-28/1318/ledger.md#case-477.2 · generate
+- 2026-09-28 rules/rule-skill-wait-what created · [[decision-case-477.2]] · generate
+- 2026-09-28 rules/rule-plan-mode child rule-skill-wait-what added · [[decision-case-477.2]] · generate
+- 2026-09-28 estimates/estimate-skill-wait-what-re-pitches created · [[decision-case-477.2]] · generate
+- 2026-09-28 rules/rule-skill-wait-what estimate estimate-skill-wait-what-re-pitches added · [[decision-case-477.2]] · generate
+- 2026-09-28 decisions/decision-case-477.3 created · raw/2026-09-28/1318/ledger.md#case-477.3 · generate
+- 2026-09-28 rules/rule-case-protocol updated: a request for a plain explanation is answered by the main agent with the skill wait-what; case-guppi is asked only for a fact of its Case and answers under a Fact line, which is not a round (case 477.3) · [[decision-case-477.3]] · generate
+- 2026-09-28 rules/rule-case-build updated: case-guppi answers a request of the main agent for a fact of its Case with the fact alone, under a Fact line (case 477.3) · [[decision-case-477.3]] · generate
+- 2026-09-28 estimates/estimate-case-protocol-shows-the-built-case updated: the Criterion replaced whole — a request for a plain explanation is answered by the main agent with the skill wait-what, and case-guppi gives only a fact, under a Fact line that is not a round (case 477.3) · [[decision-case-477.3]] · generate
+- 2026-09-28 decisions/decision-case-477.4 created · raw/2026-09-28/1318/ledger.md#case-477.4 · generate
+- 2026-09-28 estimates/estimate-agent-writing-followed updated: the Criterion replaced whole — a request for a plain explanation, answered by the skill wait-what, is no complaint (case 477.4) · [[decision-case-477.4]] · generate
+- 2026-09-28 decisions/decision-case-478.1 created · raw/2026-09-28/1318/ledger.md#case-478.1 · generate
+- 2026-09-28 estimates/estimate-sprint-migration-file-route-gone updated: the Criterion replaced whole — the lint line names the findings on a <category>/schema, and a finding on a page is left to estimate-sprint-migration-lint-clean; purpose and method reworded to match (case 478.1) · [[decision-case-478.1]] · generate
+- 2026-09-28 decisions/decision-case-478.2 created · raw/2026-09-28/1318/ledger.md#case-478.2 · generate
+- 2026-09-28 entities/entity-sprint-migration updated: a note in Slice 5: the sprint page and its Estimates go to the archive together at the close of a sprint, once each has passed (case 478.2) · [[decision-case-478.2]] · generate
+- 2026-09-28 decisions/decision-case-479.1 created · raw/2026-09-28/1318/ledger.md#case-479.1 · generate
+- 2026-09-28 rules/rule-spec-capture updated: the fork is asked by AskUserQuestion with the two options /work and /carry, and the agent calls the skill picked (case 479.1) · [[decision-case-479.1]] · generate
+- 2026-09-28 estimates/estimate-spec-capture-offers-the-fork updated: the Criterion replaced whole — the fork is asked by AskUserQuestion with /work and /carry, and the skill picked is called (case 479.1) · [[decision-case-479.1]] · generate
+- 2026-09-28 decisions/decision-case-479.2 created · raw/2026-09-28/1318/ledger.md#case-479.2 · generate
+- 2026-09-28 decisions/decision-case-183 superseded by decision-case-479.2 · [[decision-case-479.2]] · generate
+- 2026-09-28 rules/rule-work-mode defer by decision-case-183 superseded · [[decision-case-479.2]] · generate
+- 2026-09-28 decisions/decision-case-206 superseded by decision-case-479.2 · [[decision-case-479.2]] · generate
+- 2026-09-28 rules/rule-work-mode defer by decision-case-206 superseded · [[decision-case-479.2]] · generate
+- 2026-09-28 decisions/decision-case-218 superseded by decision-case-479.2 · [[decision-case-479.2]] · generate
+- 2026-09-28 rules/rule-work-mode defer by decision-case-218 superseded · [[decision-case-479.2]] · generate
+- 2026-09-28 decisions/decision-case-231 superseded by decision-case-479.2 · [[decision-case-479.2]] · generate
+- 2026-09-28 rules/rule-work-mode defer by decision-case-231 superseded · [[decision-case-479.2]] · generate
+- 2026-09-28 decisions/decision-case-242 superseded by decision-case-479.2 · [[decision-case-479.2]] · generate
+- 2026-09-28 rules/rule-work-mode defer by decision-case-242 superseded · [[decision-case-479.2]] · generate
+- 2026-09-28 decisions/decision-case-248 superseded by decision-case-479.2 · [[decision-case-479.2]] · generate
+- 2026-09-28 rules/rule-work-mode defer by decision-case-248 superseded · [[decision-case-479.2]] · generate
+- 2026-09-28 decisions/decision-case-252 superseded by decision-case-479.2 · [[decision-case-479.2]] · generate
+- 2026-09-28 rules/rule-work-mode defer by decision-case-252 superseded · [[decision-case-479.2]] · generate
+- 2026-09-28 decisions/decision-case-254 superseded by decision-case-479.2 · [[decision-case-479.2]] · generate
+- 2026-09-28 rules/rule-work-mode defer by decision-case-254 superseded · [[decision-case-479.2]] · generate
+- 2026-09-28 decisions/decision-case-260 superseded by decision-case-479.2 · [[decision-case-479.2]] · generate
+- 2026-09-28 rules/rule-work-mode defer by decision-case-260 superseded · [[decision-case-479.2]] · generate
+- 2026-09-28 decisions/decision-case-263 superseded by decision-case-479.2 · [[decision-case-479.2]] · generate
+- 2026-09-28 rules/rule-work-mode defer by decision-case-263 superseded · [[decision-case-479.2]] · generate
+- 2026-09-28 decisions/decision-case-269 superseded by decision-case-479.2 · [[decision-case-479.2]] · generate
+- 2026-09-28 rules/rule-work-mode defer by decision-case-269 superseded · [[decision-case-479.2]] · generate
+- 2026-09-28 decisions/decision-case-276 superseded by decision-case-479.2 · [[decision-case-479.2]] · generate
+- 2026-09-28 rules/rule-work-mode defer by decision-case-276 superseded · [[decision-case-479.2]] · generate
+- 2026-09-28 decisions/decision-case-281 superseded by decision-case-479.2 · [[decision-case-479.2]] · generate
+- 2026-09-28 rules/rule-work-mode defer by decision-case-281 superseded · [[decision-case-479.2]] · generate
+- 2026-09-28 decisions/decision-case-285 superseded by decision-case-479.2 · [[decision-case-479.2]] · generate
+- 2026-09-28 rules/rule-work-mode defer by decision-case-285 superseded · [[decision-case-479.2]] · generate
+- 2026-09-28 decisions/decision-case-289 superseded by decision-case-479.2 · [[decision-case-479.2]] · generate
+- 2026-09-28 rules/rule-work-mode defer by decision-case-289 superseded · [[decision-case-479.2]] · generate
+- 2026-09-28 decisions/decision-case-293 superseded by decision-case-479.2 · [[decision-case-479.2]] · generate
+- 2026-09-28 rules/rule-work-mode defer by decision-case-293 superseded · [[decision-case-479.2]] · generate
+- 2026-09-28 decisions/decision-case-303 superseded by decision-case-479.2 · [[decision-case-479.2]] · generate
+- 2026-09-28 rules/rule-work-mode defer by decision-case-303 superseded · [[decision-case-479.2]] · generate
+- 2026-09-28 decisions/decision-case-307 superseded by decision-case-479.2 · [[decision-case-479.2]] · generate
+- 2026-09-28 rules/rule-work-mode defer by decision-case-307 superseded · [[decision-case-479.2]] · generate
+- 2026-09-28 decisions/decision-case-322 superseded by decision-case-479.2 · [[decision-case-479.2]] · generate
+- 2026-09-28 rules/rule-work-mode defer by decision-case-322 superseded · [[decision-case-479.2]] · generate
+- 2026-09-28 decisions/decision-case-447 superseded by decision-case-479.2 · [[decision-case-479.2]] · generate
+- 2026-09-28 rules/rule-work-mode defer by decision-case-447 superseded · [[decision-case-479.2]] · generate
+- 2026-09-28 rules/rule-work-mode updated: taken up: the skill /work — the branch, the baseline in work.md with the agent's own run when a substitution is empty, the tasks in order with their ticks, the mark of an expected red; every defer retired (case 479.2) · [[decision-case-479.2]] · generate
+- 2026-09-28 estimates/estimate-work-mode-runs-the-spec-on-a-branch-from-a-baseline created · [[decision-case-479.2]] · generate
+- 2026-09-28 rules/rule-work-mode estimate estimate-work-mode-runs-the-spec-on-a-branch-from-a-baseline added · [[decision-case-479.2]] · generate
+- 2026-09-28 entities/entity-sprint-migration updated: the Backlog entry of rule-work-mode names what is left past the skill /work; the sentence on a red check stands in rule-retro (case 479.2) · [[decision-case-479.2]] · generate
+- 2026-09-28 decisions/decision-case-479.3 created · raw/2026-09-28/1318/ledger.md#case-479.3 · generate
+- 2026-09-28 rules/rule-retro updated: Retro reads work.md, and a red on a page or file that its Expected red names ends as a note for the handoff; any other such red is debt unless the Baseline holds it; with no work.md the judgment of case 473.1 stands (case 479.3) · [[decision-case-479.3]] · generate
+- 2026-09-28 estimates/estimate-retro-red-check-of-an-updated-page-is-a-handoff-note updated: the Criterion replaced whole — the red is expected when a line of Expected red of work.md names its check and its page or file, not by the agent's judgment; with no work.md the judgment stands (case 479.3) · [[decision-case-479.3]] · generate
+- 2026-09-28 decisions/decision-case-479.4 created · raw/2026-09-28/1318/ledger.md#case-479.4 · generate
+- 2026-09-28 rules/rule-retro updated: a red that the Baseline of work.md holds is a note for the handoff under any Expected red, not debt, and the commit does not wait for it (case 479.4) · [[decision-case-479.4]] · generate
+- 2026-09-28 estimates/estimate-retro-red-in-the-baseline-is-not-charged created · [[decision-case-479.4]] · generate
+- 2026-09-28 rules/rule-retro estimate estimate-retro-red-in-the-baseline-is-not-charged added · [[decision-case-479.4]] · generate
+- 2026-09-28 decisions/decision-case-479.5 created · raw/2026-09-28/1318/ledger.md#case-479.5 · generate
+- 2026-09-28 rules/rule-permissions updated: work.md, the baseline and the marks of an expected red, joins the allow list (case 479.5) · [[decision-case-479.5]] · generate
+- 2026-09-28 estimates/estimate-permissions updated: the Criterion replaced whole — Edit and Write for work.md join the allow list (case 479.5) · [[decision-case-479.5]] · generate
+- 2026-09-28 decisions/decision-case-480 created · raw/2026-09-28/1318/ledger.md#case-480 · generate
+- 2026-09-28 rules/rule-case-build-checks-its-sub-cases deferred, placeholder · [[decision-case-480]] · generate
+- 2026-09-28 estimates/estimate-prespec-checks-the-form-of-an-item status: pending → passed · raw/2026-09-28/1318/ledger.md#L35 · generate
+- 2026-09-28 estimates/estimate-prespec-requires-a-backlog-item-decided-on-its-page status: pending → passed · raw/2026-09-28/1318/ledger.md#L36 · generate
+- 2026-09-28 estimates/estimate-skill-grill-me-asks-in-rounds status: pending → passed · raw/2026-09-28/1318/ledger.md#L37 · generate
+- 2026-09-28 estimates/estimate-case-build-keeps-the-old-form-until-the-writer-is-live status: pending → passed · raw/2026-09-28/1318/ledger.md#L38 · generate
+- 2026-09-28 estimates/estimate-retro-report-holds-each-fact-once status: pending → failed · raw/2026-09-28/1318/ledger.md#L39 · generate
+- 2026-09-28 decisions/decision-case-481 created · raw/2026-09-28/1318/ledger.md#case-481 · generate
+- 2026-09-28 rules/rule-prespec-script-skips-code-spans deferred, placeholder · [[decision-case-481]] · generate
+- 2026-09-28 lessons/lesson-plan-mode-agent-and-sendmessage-pass-the-auto-mode-classifier created · raw/2026-09-28/1318/ledger.md#L41 · generate
+- 2026-09-28 insights/insight-hi-skill-substitution-checked-by-a-model-call updated: child lesson-plan-mode-agent-and-sendmessage-pass-the-auto-mode-classifier added, reopened from actioned (synthesis) · raw/2026-09-28/1318/ledger.md#L41 · generate
+- 2026-09-28 lessons/lesson-plan-mode-agent-and-sendmessage-pass-the-auto-mode-classifier updated: clustered under insight-hi-skill-substitution-checked-by-a-model-call (synthesis) · raw/2026-09-28/1318/ledger.md#L41 · generate
+- 2026-09-28 rules/rule-permissions status: built → draft · cascade · generate
+- 2026-09-28 rules/rule-prespec status: draft → built · cascade · generate
+- 2026-09-28 rules/rule-skill-grill-me status: draft → built · cascade · generate
+- 2026-09-28 rules/rule-spec-capture status: built → draft · cascade · generate
+- 2026-09-28 decisions/decision-case-183 archived · superseded · generate
+- 2026-09-28 decisions/decision-case-206 archived · superseded · generate
+- 2026-09-28 decisions/decision-case-218 archived · superseded · generate
+- 2026-09-28 decisions/decision-case-231 archived · superseded · generate
+- 2026-09-28 decisions/decision-case-242 archived · superseded · generate
+- 2026-09-28 decisions/decision-case-248 archived · superseded · generate
+- 2026-09-28 decisions/decision-case-252 archived · superseded · generate
+- 2026-09-28 decisions/decision-case-254 archived · superseded · generate
+- 2026-09-28 decisions/decision-case-260 archived · superseded · generate
+- 2026-09-28 decisions/decision-case-263 archived · superseded · generate
+- 2026-09-28 decisions/decision-case-269 archived · superseded · generate
+- 2026-09-28 decisions/decision-case-276 archived · superseded · generate
+- 2026-09-28 decisions/decision-case-281 archived · superseded · generate
+- 2026-09-28 decisions/decision-case-285 archived · superseded · generate
+- 2026-09-28 decisions/decision-case-289 archived · superseded · generate
+- 2026-09-28 decisions/decision-case-293 archived · superseded · generate
+- 2026-09-28 decisions/decision-case-303 archived · superseded · generate
+- 2026-09-28 decisions/decision-case-307 archived · superseded · generate
+- 2026-09-28 decisions/decision-case-322 archived · superseded · generate
+- 2026-09-28 decisions/decision-case-447 archived · superseded · generate
+- 2026-09-28 lessons/lesson-retro-answered-in-the-skills-language archived · insight actioned · generate
+- 2026-09-28 lessons/lesson-chat-language-follows-the-last-english-file-read archived · insight actioned · generate
+- 2026-09-28 lessons/lesson-chat-language-follows-the-last-english-file-read archived · cleanup
+- 2026-09-28 lessons/lesson-retro-answered-in-the-skills-language archived · cleanup
+- 2026-09-28 decisions/decision-case-183 archived · cleanup
+- 2026-09-28 decisions/decision-case-206 archived · cleanup
+- 2026-09-28 decisions/decision-case-218 archived · cleanup
+- 2026-09-28 decisions/decision-case-231 archived · cleanup
+- 2026-09-28 decisions/decision-case-242 archived · cleanup
+- 2026-09-28 decisions/decision-case-248 archived · cleanup
+- 2026-09-28 decisions/decision-case-252 archived · cleanup
+- 2026-09-28 decisions/decision-case-254 archived · cleanup
+- 2026-09-28 decisions/decision-case-260 archived · cleanup
+- 2026-09-28 decisions/decision-case-263 archived · cleanup
+- 2026-09-28 decisions/decision-case-269 archived · cleanup
+- 2026-09-28 decisions/decision-case-276 archived · cleanup
+- 2026-09-28 decisions/decision-case-281 archived · cleanup
+- 2026-09-28 decisions/decision-case-285 archived · cleanup
+- 2026-09-28 decisions/decision-case-289 archived · cleanup
+- 2026-09-28 decisions/decision-case-293 archived · cleanup
+- 2026-09-28 decisions/decision-case-303 archived · cleanup
+- 2026-09-28 decisions/decision-case-307 archived · cleanup
+- 2026-09-28 decisions/decision-case-322 archived · cleanup
+- 2026-09-28 decisions/decision-case-447 archived · cleanup

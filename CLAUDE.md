@@ -5,7 +5,7 @@ A Claude Code harness governed by ratified decisions, and the Obsidian vault it 
 <!-- rule-language -->
 ## Language
 
-English for everything written into the repository: code, identifiers, comments, pages, commit messages, documents — the Spec included. Russian for chat with the owner; a Case is English whole — its name, `context`, `problem` and `recommend` too — in the file the agent sends the person and in the Spec, and the chat holds a short Russian text on each Case and sub-case, its ledger lines in English as the file holds them; a short-form Case is English in the chat, as the Spec holds it. Slugs, field names, ledger lines, paths and quotations from pages stay as they are in either language. English technical terms are not transliterated into Cyrillic.
+English for everything written into the repository: code, identifiers, comments, pages, commit messages, documents — the Spec included. Russian for chat with the owner; a Case is English whole — its name, `context`, `problem` and `recommend` too — in the file the agent sends the person and in the Spec, and the chat holds a short Russian text on each Case and sub-case, its ledger lines in English as the file holds them; a short-form Case is English in the chat, as the Spec holds it. Slugs, field names, ledger lines, paths and quotations from pages stay as they are in either language. Technical terms in English are not transliterated in Russian text. The two languages are set in `rule-guppi-config`, rendered into `guppi.toml`.
 <!-- /rule-language -->
 
 <!-- rule-agent-writing -->

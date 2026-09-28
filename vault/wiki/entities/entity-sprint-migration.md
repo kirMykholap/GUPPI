@@ -36,6 +36,7 @@ Rule-class files dissolved, `index.md` gone, the `file` route out of the scripts
 - [[estimate-sprint-migration-merges]] — `make test` green, `migration` merged into `main`; at the close [[rule-git-context]] and [[rule-github-issues]] — the upstream of the branch and the GitHub remote, decisions 11.1, 11.2, defers 220, 243 — read by [[estimate-sprint-migration-leftovers-gone]]
 - [[rule-spec-box]] — the Spec box, case 207, after Slice 3b
 - [[rule-morph]] — the morph mechanism: the initiation at install sets the category set of the project, the development set by default, held as data so that a changed set rewrites no rule; case 239
+- the close of a sprint — `entity-sprint-<id>` and the Estimates it lists go to the archive together once each has passed: a done-condition of a sprint has nothing left to guard after the close; not yet decided (case 478.2)
 
 ## Backlog
 
@@ -44,7 +45,7 @@ Rule-class files dissolved, `index.md` gone, the `file` route out of the scripts
 - reuse, the question: the vault query before a `create` asks a second question — what of the existing this thing could use, by the index lines of the Entities — and the answer stands in `context`; the Case names what it found in `uses` or says why it is not used (case 319)
 - reuse, the hook: a lint finding on two live Entities naming one path in `code_ref` with no edge between them; a new module written beside an existing one in another file is caught by the question alone, not by a script (case 319)
 - a template engine for the rendered files — one script with the shape of each file declared, once a third render beside `sprint.md` and `glossary.md` appears (case 301)
-- [[rule-work-mode]] — Work Mode: the Spec as tasks with code, the ticked boxes in `spec.md`, the test of each Estimate written first and turned green; the sentence of [[insight-workflow-code-live-before-the-page-it-reads]] on a check that reads a page the same Spec changes; cases 183, 206, 238
+- [[rule-work-mode]] — the rest of Work Mode past the skill `/work` of case 479.2: the test of each Estimate written first and turned green, and the full model the person plans; cases 183, 206
 - [[rule-subagent-guppi]] — what a subagent may do in Work Mode, and the fork that comes back to the main agent as a Case; cases 183, 206
 
 ## Closed
@@ -102,3 +103,5 @@ No file of `vault/wiki/` is written by hand.
 - 2026-09-25 updated: Slice 3g: the note of the eleven Estimates done — cases 396 to 400, 388 for estimate-prespec-reconciles (case 400.2) · [[decision-case-400.2]]
 - 2026-09-25 updated: Slice 3g: the note of the journals done (case 401) · [[decision-case-401.8]]
 - 2026-09-27 updated: /grill-me has its rule page (case 443.1) · [[decision-case-443.1]]
+- 2026-09-28 updated: a note in Slice 5: the sprint page and its Estimates go to the archive together at the close of a sprint, once each has passed (case 478.2) · [[decision-case-478.2]]
+- 2026-09-28 updated: the Backlog entry of rule-work-mode names what is left past the skill /work; the sentence on a red check stands in rule-retro (case 479.2) · [[decision-case-479.2]]

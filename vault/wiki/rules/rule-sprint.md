@@ -2,7 +2,7 @@
 type: rule
 kind: Leaf
 purpose: Prevents the sprint's backlog from drifting from the pages it names
-status: built
+status: draft
 enforcement: check
 implementation_ref: [guppi/sprint.py, tests/test_sprint.py, guppi/generate.py, tests/test_generate.py]
 governs: vault/wiki/sprint.md
@@ -50,3 +50,4 @@ The first `## <id>` heading of the file is the sprint id `sprint_id`, `cleanup` 
 - 2026-09-24 status: built → draft · cascade
 - 2026-09-27 updated: sprint.md no longer shows the Backlog; backlog.md does (case 451.6) · [[decision-case-451.6]]
 - 2026-09-27 status: draft → built · cascade
+- 2026-09-29 status: built → draft · cascade

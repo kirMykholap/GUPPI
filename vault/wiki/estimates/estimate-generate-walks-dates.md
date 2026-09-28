@@ -1,8 +1,9 @@
 ---
 type: estimate
 kind: QA
-status: passed
+status: pending
 target: "[[rule-page-generation]]"
+purpose: generate applies every unit under raw/ that has a yaml, dates ascending, and a failing unit does not stop the walk
 method: tests/test_generate.py with two dated folders; live, the librarian's first run
 checked: 2026-09-17
 origin: raw/2026-09-10/ledger.md#case-43
@@ -13,19 +14,15 @@ tags: [harness, workflow, ledger]
 
 ## Criterion
 
-Given:
-`guppi generate` applies `set` to the frontmatter and `sections` as whole replacements; the failure of one entry touches no other (`estimate-generate-fails-alone`).
-**＋** The field `method` is one line; `## Method` of the old shape is the same text as a section.
-**＋** The tests in `tests/test_generate.py` fix the behaviour; the live reading is the librarian's run of this session.
-**－** `lint`, `materialize` and `prespec` do not change.
-
 When:
-The librarian applies the yaml of this session after the build of 211.1.
+`uv run guppi generate` runs, with `--date` or without.
 
 Then:
-`estimate-generate-writes`, `-generate-walks-dates`, `-lint-catches`, `-prespec-reconciles`, `-materialize-assembles` carry a `method` field with the text of their `## Method` sections in one line; `## Context` and `## Method` are dropped.
-**＋** `unmigrated` reads 34 after the run: these five, `estimate-prespec-hook-gates` (213.2), `estimate-permissions` (215) and `estimate-brief-written` (209.6) leave the old shape; `estimate-documentation-completes` keeps its `### case` blocks.
-**－** The Criterion of these pages does not change; no `pending` is set — except on `estimate-generate-writes`, whose Criterion 211.1 changes.
+Without `--date` every unit under `vault/raw/` with a `materialize.yaml` is applied: the date-level yaml `vault/raw/<date>/materialize.yaml` first, then `vault/raw/<date>/<HHMM>/materialize.yaml` in folder order, dates ascending; `--date` walks the units of that date alone.
+**＋** A unit with no unapplied entry changes no page; stdout carries one line per unit, `generate: <unit>: N page(s) written or changed`.
+**＋** A failure on one unit is printed, the walk goes on, the exit code is 1 at the end.
+**＋** A `--date` without a yaml is named on stderr, exit 1; no yaml anywhere — one line on stderr, exit 1.
+**－** A unit `materialize` passed by (`carry.md`) has no yaml and is not walked.
 
 ## Result
 
@@ -45,3 +42,4 @@ Then:
 - 2026-09-18 status: pending → passed · raw/2026-09-17/1119/ledger.md#L24
 - 2026-09-20 ref `estimate-pretask-hook-gates` → `estimate-prespec-hook-gates` · [[decision-case-261]]
 - 2026-09-20 updated: the word moved: the module pretask → prespec and the slug -pretask-reconciles → -prespec-reconciles in the Criterion; the promise and the reading unchanged, passed kept (case 265) · [[decision-case-265]]
+- 2026-09-29 updated: the Criterion restored whole — the text of case 201.5, which case 211.3 overwrote; purpose set (case 489.2) · [[decision-case-489.2]]

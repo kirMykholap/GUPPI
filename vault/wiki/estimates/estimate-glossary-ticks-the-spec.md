@@ -1,7 +1,7 @@
 ---
 type: estimate
 kind: QA
-status: passed
+status: pending
 target: "[[rule-glossary]]"
 purpose: glossary, once it wrote glossary.md and exits 0, ticks the guppi glossary lines of every Spec under raw/ whose yaml is applied whole
 method: pytest tests/test_glossary.py, plus one reading of this session's spec.md after the librarian's run
@@ -13,19 +13,15 @@ tags: [harness, workflow, librarian, session]
 
 ## Criterion
 
-Given:
-`rule-sprint`: a `check` rule with `governs`; the script writes the file from a page, `--check` compares in memory, writes nothing, exit 1 on a difference; once it wrote the file it ticks its Spec lines (250.2).
-**＋** `rule-governed-files-hook` refuses a hand edit of `governs`.
-**＋** Case 240.1: a MOC is a thing whose parts the person named as built; a Leaf is not, and a Leaf carries `parent`. Case 240.2: the guard of an Entity is a separate Rule — the edge `applies_to` (305).
-**＋** Case 299.1: a Case superseded in its own session leaves the Spec, the superseding Case is written whole.
-**＋** `tests/test_glossary.py` fixes the behaviour on a temp vault.
-
 When:
-`uv run guppi glossary` wrote the file and exits 0.
+`uv run guppi glossary` without a flag wrote `vault/wiki/glossary.md` and exits 0, and reads the units under `vault/raw/` that have a `materialize.yaml`.
 
 Then:
-In the `spec.md` of every unit under `raw/` whose yaml is applied whole, every unticked task line that opens with a code span holding `guppi glossary` becomes `- [x]`; `--check` and an exit 1 tick nothing.
-**＋** The Case schema names the fourth ticker and the form of the line `- [ ] `uv run guppi glossary``.
+In the `spec.md` of every unit whose yaml is applied whole, every unticked task line that opens with a code span holding `guppi glossary` becomes `- [x]`. A yaml is applied whole when each entry carries `applied` or `superseded_by` and none carries `failed`. Nothing else in the file changes.
+**＋** The form of the line in `vault/wiki/case-schema.md` is `` - [ ] `uv run guppi glossary` ``, the command in the first code span.
+**－** A line that names `guppi glossary` only in a later code span, such as a `read` line, is not ticked.
+**－** `--check` ticks nothing, and a run that exits 1 ticks nothing.
+**－** A unit whose yaml is not applied whole is not touched.
 
 ## Result
 
@@ -35,3 +31,4 @@ In the `spec.md` of every unit under `raw/` whose yaml is applied whole, every u
 
 - 2026-09-22 created · [[decision-case-306.6]]
 - 2026-09-22 status: pending → passed · raw/2026-09-22/0014/ledger.md#L63
+- 2026-09-29 updated: the Criterion replaced whole — When and Then only, Given out (case 488.3) · [[decision-case-488.3]]

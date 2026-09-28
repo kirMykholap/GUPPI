@@ -1,8 +1,9 @@
 ---
 type: estimate
 kind: QA
-status: passed
+status: pending
 target: "[[rule-prespec-hook]]"
+purpose: The ExitPlanMode hook holds a working session in Plan Mode until /pre-spec has run in it, across midnight too
 method: pytest in tests/test_prespec.py with piped payloads against a temp event log; the live reading once by hand, written into the estimate line
 checked: 2026-09-20
 origin: raw/2026-09-09/ledger.md#case-24.1
@@ -13,20 +14,14 @@ tags: [session, workflow, hooks, harness]
 
 ## Criterion
 
-Given:
-A `PreToolUse` payload naming `ExitPlanMode`, with the session's stamp.
-**＋** The ledger hook reads the event logs from today back to the date of this session's `session-start` (`ledger.session_event_logs`, case 55.1).
-**＋** The tests in `tests/test_prespec.py` fix the hook with piped payloads against a temp event log; the live reading is the approval of the next plan after the render of case 261.
-**－** The `--check` pass of `rule-prespec` does not change here.
-
 When:
-The hook `guppi prespec` on `ExitPlanMode` asks whether `/pre-spec` ran in this session.
+The hook `guppi prespec` receives a `PreToolUse` payload naming `ExitPlanMode` with the session's stamp, and asks whether `/pre-spec` ran in this session.
 
 Then:
-With no `prespec` line of this session's stamp after its `hi`, exit 2 with a reason naming `/pre-spec` and the session; with the line, exit 0; any other tool, exit 0.
-**＋** The window is open when the logs hold a `hi` of the session's stamp and a `prespec` of the same stamp after it; a mark of another stamp or `--------` does not count; a foreign `session-start` resets nothing (case 136.2).
-**＋** The logs it reads are the ledger hook's — from today back to the date of this session's `session-start` — so the `hi` and the `prespec` of yesterday's session are found after midnight (case 213.2).
-**－** Without a `hi` of this session the call passes, as before.
+With no `prespec` line of this session's stamp after its `hi`, the hook exits 2 with a reason that names `/pre-spec` and the session; with the line, it exits 0; any other tool exits 0.
+**＋** The window is open when the logs hold a `hi` of the session's stamp and a `prespec` of the same stamp after it; a mark of another stamp or `--------` does not count; a foreign `session-start` resets nothing.
+**＋** The logs it reads are the ledger hook's, from today back to the date of this session's `session-start`, so the `hi` and the `prespec` of yesterday's session are found after midnight.
+**－** Without a `hi` of this session the call passes.
 
 ## Result
 
@@ -45,3 +40,4 @@ With no `prespec` line of this session's stamp after its `hi`, exit 2 with a rea
 - 2026-09-20 renamed from `estimate-pretask-hook-gates` · [[decision-case-261]]
 - 2026-09-20 updated: renamed with rule-prespec-hook — the Criterion names guppi prespec, the mark prespec and /pre-spec (case 261) · [[decision-case-261]]
 - 2026-09-20 status: pending → passed · raw/2026-09-20/0740/ledger.md#L14
+- 2026-09-29 updated: the Criterion replaced whole — When and Then only, Given and the bounds line out; purpose set (case 493.5) · [[decision-case-493.5]]

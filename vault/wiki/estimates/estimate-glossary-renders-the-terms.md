@@ -1,7 +1,7 @@
 ---
 type: estimate
 kind: QA
-status: passed
+status: pending
 target: "[[rule-glossary]]"
 purpose: guppi glossary writes glossary.md from the Terms of entity-glossary, one group per parent MOC of where, and refuses a term with no page
 method: pytest tests/test_glossary.py, plus one reading of the rendered glossary.md after the librarian's run
@@ -13,21 +13,15 @@ tags: [harness, workflow, librarian, session]
 
 ## Criterion
 
-Given:
-`rule-sprint`: a `check` rule with `governs`; the script writes the file from a page, `--check` compares in memory, writes nothing, exit 1 on a difference; once it wrote the file it ticks its Spec lines (250.2).
-**＋** `rule-governed-files-hook` refuses a hand edit of `governs`.
-**＋** Case 240.1: a MOC is a thing whose parts the person named as built; a Leaf is not, and a Leaf carries `parent`. Case 240.2: the guard of an Entity is a separate Rule — the edge `applies_to` (305).
-**＋** Case 299.1: a Case superseded in its own session leaves the Spec, the superseding Case is written whole.
-**＋** `tests/test_glossary.py` fixes the behaviour on a temp vault.
-
 When:
-The librarian, step 6 of the frame: `uv run guppi glossary`.
+`uv run guppi glossary` runs without a flag, from step 6 of the librarian's frame in `.claude/agents/librarian-guppi.md` or by hand, and reads the `## Terms` table of `entity-glossary`.
 
 Then:
-`vault/wiki/glossary.md` is written: `# Glossary`, the line "Written by `guppi glossary` from the `## Terms` of `entity-glossary`; a term changes by an `update` of that page", then for each parent MOC of the pages in `where` a group `## [[<moc>]]` in the order of first appearance in the table (a page without a parent — a root MOC, or a placeholder not yet placed — under itself), in it `| term | meaning | where |` in the order of the table.
-**＋** A `where` with no live page, a row not of three columns, a term twice: one line on stderr, exit 1, the file is not written.
-**＋** The frame of the librarian has step 6: "Run `uv run guppi glossary`. It writes `vault/wiki/glossary.md` from the `## Terms` of `entity-glossary`. Every line on its stderr is a flag."
-**－** `index.md` is not read; no row that is not derived from the table.
+`vault/wiki/glossary.md` is written and the run exits 0. The file holds `# Glossary`, then the line "Written by `guppi glossary` from the `## Terms` of `entity-glossary`; a term changes by an `update` of that page", then one group `## [[<moc>]]` for each parent MOC of the pages in `where`, in the order of first appearance in the table. Each group holds the table `| term | meaning | where |` with its rows in the order of the table.
+**＋** A page in `where` that has no `parent`, such as a root MOC or a placeholder not yet placed, is its own group.
+**＋** A `where` with no live page, a `where` that is no `[[slug]]`, a row that is not three cells, a term twice, no `## Terms` section, or no single live `entity-glossary` gives one line on stderr and exit 1, and the file is not written.
+**＋** The librarian's frame takes each line on stderr of the run as a flag.
+**－** The file holds no line that the table does not give, apart from the heading and the source line.
 
 ## Result
 
@@ -37,3 +31,4 @@ Then:
 
 - 2026-09-22 created · [[decision-case-306.4]]
 - 2026-09-22 status: pending → passed · raw/2026-09-22/0014/ledger.md#L61
+- 2026-09-29 updated: the Criterion replaced whole — When and Then only, Given and the index.md line out (case 488.1) · [[decision-case-488.1]]

@@ -1,7 +1,7 @@
 ---
 type: estimate
 kind: QA
-status: passed
+status: pending
 target: "[[rule-sprint]]"
 purpose: sprint --check names sprint.md when it differs from the render of the sprint page, exit 1, and writes nothing
 method: pytest tests/test_sprint.py, plus make lint after the librarian's run — no sprint line
@@ -14,19 +14,13 @@ tags: [harness, sprint]
 
 ## Criterion
 
-Given:
-`guppi sprint` renders the file from the sprint page; `render --check` is the model: compare in memory, name the file, exit 1, write nothing.
-**＋** `tests/test_sprint.py` fixes the behaviour on a temp vault.
-**－** `make lint` writes nothing to the tree (case 147.7).
-
 When:
-Someone runs `uv run guppi sprint --check`, by hand or through `make lint`.
+Someone runs `uv run guppi sprint --check`, by hand or through the target `lint` of the `Makefile`, and it renders the file from the sprint page in memory.
 
 Then:
-When `vault/wiki/sprint.md` differs from the render of the page, one line on stdout — `sprint: vault/wiki/sprint.md differs from entity-sprint-<id>` — and exit 1; when it is the same, silence and exit 0; the file is written in neither case.
-**＋** `make lint` calls it after `render --check`, before `guppi lint`.
-**－** A render error — no page, two, a slug without a page — as with `guppi sprint`: stderr and exit 1.
-**－** Nothing is added at `SessionStart` or in `/hi`.
+When `vault/wiki/sprint.md` differs from the render of the page, stdout holds one line `sprint: <file> differs from entity-sprint-<id>`, the file named by its path from the project root, and the check exits 1. When the file equals the render, the check exits 0 with no output. The file is written in neither case.
+**＋** The target `lint` of the `Makefile` runs it after `render --check` and before `guppi lint`.
+**－** A render error, such as no sprint page, two sprint pages or a slug with no page, is one line on stderr and exit 1, as with `guppi sprint`.
 
 ## Result
 
@@ -36,3 +30,4 @@ When `vault/wiki/sprint.md` differs from the render of the page, one line on std
 
 - 2026-09-18 created · [[decision-case-227]]
 - 2026-09-18 status: pending → passed · raw/2026-09-18/1252/ledger.md#L14
+- 2026-09-29 updated: the Criterion replaced whole — When and Then only, Given and the bounds lines out (case 491.2) · [[decision-case-491.2]]

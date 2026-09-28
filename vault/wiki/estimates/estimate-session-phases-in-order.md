@@ -13,19 +13,15 @@ tags: [session, workflow]
 
 ## Criterion
 
-Given:
-A Rule MOC is a workflow: its children are ordered, the order is the content, and the MOC's Estimate promises the order itself (`rule-rules-schema`).
-**＋** A session leaves its marks in `raw/<date>/<hi HHMM>/`: the `hi` line in the day's log, `frontier.md`, `spec.md` with its approved stamp, `handoff.md`; the Retro commit and the librarian's commit in `git log`.
-**＋** A session conserved by `/carry` leaves `carry.md` in place of the last three marks (case 190.3).
-
 When:
-A session has ended, and someone reads its folder and `git log`.
+A session has ended, and someone reads its folder, the day's event log and `git log`.
 
 Then:
-All five phases left a mark, and the marks ascend in time: `hi` → `frontier.md` → `spec.md` approved → the Retro commit → `handoff.md` → the librarian's commit.
+All five phases left a mark, and the marks ascend in time: the `hi` line of the day's event log → `frontier.md` → `spec.md` with its approved stamp → the Retro commit → `handoff.md` → the librarian's commit.
 **＋** `rule-session` is the parent of the five phases, its children in that order.
 **－** A session conserved by `/carry` ends at `carry.md`: the marks of Work Mode, End of Work and Documentation are absent, and that is not a failure.
 
 ## History
 
 - 2026-09-22 created · [[decision-case-316]]
+- 2026-09-29 updated: the Criterion replaced whole — When and Then only, Given out (case 493.4) · [[decision-case-493.4]]

@@ -1,7 +1,7 @@
 ---
 type: estimate
 kind: QA
-status: passed
+status: pending
 target: "[[rule-sprint]]"
 purpose: sprint, once it wrote sprint.md and exits 0, ticks the guppi sprint lines of every Spec under raw/ whose yaml is applied whole
 method: pytest tests/test_sprint.py, plus one reading of this session's spec.md and the 1957 Spec after the librarian's run
@@ -14,19 +14,14 @@ tags: [harness, sprint]
 
 ## Criterion
 
-Given:
-`guppi sprint` without a flag writes `vault/wiki/sprint.md` and exits 0, or writes nothing and exits 1.
-**＋** The units under `raw/` with a yaml are `units_with`; a yaml is applied whole when every entry carries `applied` or `superseded_by` and none `failed` (case 250.1); `carry.md` marks a carried-over unit.
-**＋** `tests/test_sprint.py` fixes the behaviour on a temp vault.
-
 When:
-`guppi sprint` without a flag wrote the file and exits 0.
+`guppi sprint` without a flag wrote `vault/wiki/sprint.md` and exits 0, and reads the units under `vault/raw/` that have a `materialize.yaml`.
 
 Then:
-In the `spec.md` of every unit under `raw/` whose yaml is applied whole, every unticked task line that opens with a code span holding `guppi sprint` becomes `- [x]`; nothing else changes.
-**－** A line where `guppi sprint` sits in a later code span — a `read` line, a description — is not ticked.
-**－** `--check` ticks nothing; exit 1 ticks nothing.
-**－** A unit without a yaml, with an unapplied or `failed` entry, or marked by `carry.md`, is not touched.
+In the `spec.md` of every unit whose yaml is applied whole, every unticked task line that opens with a code span holding `guppi sprint` becomes `- [x]`. A yaml is applied whole when each entry carries `applied` or `superseded_by` and none carries `failed`. Nothing else in the file changes.
+**－** A line where `guppi sprint` sits in a later code span, such as a `read` line or a description, is not ticked.
+**－** `--check` ticks nothing, and a run that exits 1 ticks nothing.
+**－** A unit without a yaml, with an entry not applied, with a `failed` entry, or marked by `carry.md`, is not touched.
 
 ## Result
 
@@ -36,3 +31,4 @@ In the `spec.md` of every unit under `raw/` whose yaml is applied whole, every u
 
 - 2026-09-18 created · [[decision-case-250.2]]
 - 2026-09-20 status: pending → passed · raw/2026-09-18/2253/ledger.md#L4
+- 2026-09-29 updated: the Criterion replaced whole — When and Then only, Given out, the yaml applied whole stated (case 491.1) · [[decision-case-491.1]]

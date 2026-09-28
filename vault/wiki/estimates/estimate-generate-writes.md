@@ -1,8 +1,9 @@
 ---
 type: estimate
 kind: QA
-status: passed
+status: pending
 target: "[[rule-page-generation]]"
+purpose: What generate writes to a page for each kind of entry of a materialize.yaml, and nothing an entry does not carry
 method: pytest in tests/test_generate.py against a temp vault; the live reading once by hand
 checked: 2026-09-17
 origin: raw/2026-09-10/ledger.md#case-32
@@ -13,19 +14,25 @@ tags: [harness, workflow, ledger]
 
 ## Criterion
 
-Given:
-`guppi generate` applies `set` to the frontmatter and `sections` as whole replacements; the failure of one entry touches no other (`estimate-generate-fails-alone`).
-**＋** The field `method` is one line; `## Method` of the old shape is the same text as a section.
-**＋** The tests in `tests/test_generate.py` fix the behaviour; the live reading is the librarian's run of this session.
-**－** `lint`, `materialize` and `prespec` do not change.
-
 When:
-The librarian applies the yaml of this session after the build of 211.1.
+`guppi generate` applies one entry of a yaml to a page.
 
 Then:
-`estimate-generate-writes`, `-generate-walks-dates`, `-lint-catches`, `-prespec-reconciles`, `-materialize-assembles` carry a `method` field with the text of their `## Method` sections in one line; `## Context` and `## Method` are dropped.
-**＋** `unmigrated` reads 34 after the run: these five, `estimate-prespec-hook-gates` (213.2), `estimate-permissions` (215) and `estimate-brief-written` (209.6) leave the old shape; `estimate-documentation-completes` keeps its `### case` blocks.
-**－** The Criterion of these pages does not change; no `pending` is set — except on `estimate-generate-writes`, whose Criterion 211.1 changes.
+A `create` becomes a page: `type`, the fields of the entry, `status` by category (entity and rule `draft`, estimate `pending`, lesson `new`, insight `open`), `origin`, `sprint` — the first `## <id>` of `sprint.md`, `created` — the yaml's date, `tags`; the body sections from `sections`, `## Purpose` from `purpose` on a rule or an entity; a `ref` lands in the parent's `children` or the target's `estimates` with History `child <slug> added` / `estimate <slug> added`, at the end of the run when the parent comes later in the yaml.
+**＋** An Estimate page carries `purpose`, `method` and `checked` as fields, in that order after `target`; `## Criterion` from `sections`; neither `## Context` nor `## Method` is written.
+**＋** A `create` whose slug is a placeholder (`draft`, no `kind`) fills it: `created` and `deferred_by` kept, History `created over placeholder`; any other existing page is a collision, not a rename.
+**＋** An `update` applies `set` to the frontmatter, `sections` as whole replacements, `replace` inside the body (whitespace collapsed, exactly one occurrence), History `updated: <change>`; an `update` of an Estimate with `sections.Criterion` replaces the section whole.
+**＋** An `update` of an Estimate whose `set` carries `method` writes the field after `purpose` and drops `## Context` and `## Method` where the page carries them — the field replaces the section, the Case is reached by `origin`; an `update` without `set.method` touches no section (case 211.1).
+**＋** An `update`, `estimate`, `delete` or `defer` whose slug is not under `vault/wiki/` finds the page under `vault/archive/` (`raw/` folders excluded) and edits it there.
+**＋** An `estimate` sets `status`, overwrites `## Result`, writes `checked` — the date the `result` opens with, else the yaml's date — and appends History `status: a → b · <ledger pointer>`.
+**＋** A `delete` sets `archived` with History `deleted`; a `delete` outside the vault is a line on stdout, the entry applied, no page written.
+**＋** A `defer` with a page appends the decision slug to `deferred_by` (rule, entity, insight) with History `deferred`; without a page it writes a placeholder `draft` with the Case's fields and `deferred_by`.
+**＋** A `lesson` writes the lesson only, `source` when the line carries it; no Estimate is created.
+**＋** Every ref field is written as `"[[slug]]"`, a list as `["[[a]]", "[[b]]"]`; a slug without a category prefix stays bare; read through the brackets.
+**＋** A `create` in `insights` applies only with the mark `librarian`; a `delete` of an Insight is refused always.
+**＋** History lines and `log.md` lines carry the date of the run and end with `[[decision-case-N]]` or the ledger pointer; `log.md` is appended after each entry; a tag of `new_tags` lands in `tags.md`, a used and undeclared one goes to stderr.
+**－** No body section is derived from a ref field; a section a page still carries is not touched, except the two `set.method` drops.
+**－** `criterion_block` on an `update` and an entry of kind `remove_criterion` are not applied: a shape the script does not know — the entry fails alone (`estimate-generate-fails-alone`).
 
 ## Result
 
@@ -71,3 +78,4 @@ Then:
 - 2026-09-17 status: pending → passed · raw/2026-09-16/2238/ledger.md#L49
 - 2026-09-20 ref `estimate-pretask-hook-gates` → `estimate-prespec-hook-gates` · [[decision-case-261]]
 - 2026-09-20 updated: the word moved: the module pretask → prespec and the slug -pretask-reconciles → -prespec-reconciles in the Criterion; the promise and the reading unchanged, passed kept (case 265) · [[decision-case-265]]
+- 2026-09-29 updated: the Criterion restored whole — the text of case 211.1, which case 211.3 overwrote, less its pointer line; purpose set (case 489.1) · [[decision-case-489.1]]

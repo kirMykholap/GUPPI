@@ -2,7 +2,7 @@
 type: entity
 kind: MOC
 purpose: GUPPI as the thing this repository builds — the harness and the vault it keeps; its parts the sprint and the glossary
-status: built
+status: draft
 children: ["[[entity-sprint]]", "[[entity-glossary]]"]
 estimates: ["[[estimate-guppi-tests-green]]"]
 rules: ["[[rule-harness]]"]
@@ -22,3 +22,4 @@ GUPPI as the thing this repository builds: a Claude Code harness governed by rat
 - 2026-09-22 created · [[decision-case-306.2]]
 - 2026-09-22 status: draft → built · cascade
 - 2026-09-22 rules: [rule-harness] · cascade
+- 2026-09-29 status: built → draft · cascade

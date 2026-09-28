@@ -2,7 +2,7 @@
 type: rule
 kind: MOC
 purpose: Prevents the system prompt from holding a line nobody ratified
-status: built
+status: draft
 enforcement: render
 governs: CLAUDE.md
 render_mode: full
@@ -70,3 +70,4 @@ Rendered in full into `CLAUDE.md`; each child — `rule-language`, `rule-agent-w
 - 2026-09-23 status: draft → built · cascade
 - 2026-09-27 deferred · [[decision-case-454]]
 - 2026-09-27 defer by decision-case-454 superseded · [[decision-case-459]]
+- 2026-09-29 status: built → draft · cascade

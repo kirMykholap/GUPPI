@@ -67,7 +67,9 @@ Mark each entry you add with `librarian: synthesis`. Read no `materialize.yaml` 
   set: {status: clustered, insight: <the Insight>}
   change: clustered under <the Insight> (synthesis)
   librarian: synthesis
-``` One lesson without a pair
+```
+
+One lesson without a pair
 stays `new`; that needs no flag. `Proposal` is a suggestion, never a decision. When an index line does not settle whether a lesson shares a root cause, read the
 Trigger and Root cause of the candidate and name the page in the report with the
 outcome, clustered or not. Do not read the archive and do not write pages yourself.
@@ -97,3 +99,4 @@ outcome, clustered or not. Do not read the archive and do not write pages yourse
 - 2026-09-27 status: draft → built · cascade
 - 2026-09-28 updated: the synthesis shows the form of each of its entries and reads no yaml that materialize did not name (case 474.1) · [[decision-case-474.1]]
 - 2026-09-28 status: built → draft · cascade
+- 2026-09-29 updated: the closing fence of the sample entries stands alone on its line, and the sentence after it follows as its own paragraph (case 487.3) · [[decision-case-487.3]]

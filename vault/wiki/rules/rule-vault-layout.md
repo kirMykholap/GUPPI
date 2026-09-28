@@ -2,7 +2,7 @@
 type: rule
 kind: Leaf
 purpose: Prevents a file from sitting in the vault in a place nobody ratified — under a category it does not belong to, under a name that is not its slug, or at the root of wiki/ with no rule that writes it
-status: built
+status: draft
 enforcement: check
 implementation_ref: [guppi/lint.py, tests/test_lint.py]
 parent: "[[rule-harness]]"
@@ -24,3 +24,4 @@ No file of `wiki/` is written by hand. A file is a page, the Render of a page �
 - 2026-09-22 created · [[decision-case-315]]
 - 2026-09-22 status: draft → built · cascade
 - 2026-09-27 updated: backlog.md named among the files at the root of wiki/ (case 451.11) · [[decision-case-451.11]]
+- 2026-09-29 status: built → draft · cascade

@@ -13,15 +13,14 @@ Rule-class files dissolved, `index.md` gone, the `file` route out of the scripts
 - [ ] make lint exits 0 at the close of the sprint, unmigrated included, but for the unread of the sprint page's own Estimates · pending
 - [ ] vault/parked/, the 2026-08 documents, the old archive root and the empty raw date folders are gone by decision at the close of the sprint · pending
 - [ ] make test green on the last commit of migration and the branch merged into main · pending
-- [x] No Rule-class file at the close of Slice 3f — the schemas rendered from rule pages, the glossary from entity-glossary, index.md gone, the file route out of the scripts · passed
-- [x] index.md is gone and no live page, harness file or script docstring points at a §N of it or at the file as a source · passed
+- [ ] No Rule-class file at the close of Slice 3f — the schemas rendered from rule pages, the glossary from entity-glossary, index.md gone, the file route out of the scripts · pending
+- [ ] index.md is gone and no live page, harness file or script docstring points at a §N of it or at the file as a source · pending
 - [x] The file route is out of the scripts — no RULE_CLASS, rule_class, applied by hand or prose_names in guppi/; an update item with file is a pre-spec finding; a slug without a prefix lands category unknown; tests green and no lint finding on the schema.yaml of a category folder · passed
 
 ## Milestones
 
 ### [ ] Slice 3g — the model of the Criterion, one pass over the Estimates
 
-- [ ] every other Estimate: `Given:` out, the input of the scenario into `When:`, the `－` lines on the bounds of an edit out, each Criterion replaced whole
 - [ ] the old shape recut: every Estimate whose Criterion still holds `### case N` blocks brought to one Criterion, until lint counts no `unmigrated` page
 
 ### [ ] Slice 4 — conversion of the parked pages by group — 1 item: [[estimate-sprint-migration-leftovers-gone]]

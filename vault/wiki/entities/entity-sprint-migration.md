@@ -23,7 +23,6 @@ Rule-class files dissolved, `index.md` gone, the `file` route out of the scripts
 
 ### Slice 3g — the model of the Criterion, one pass over the Estimates
 
-- every other Estimate: `Given:` out, the input of the scenario into `When:`, the `－` lines on the bounds of an edit out, each Criterion replaced whole
 - the old shape recut: every Estimate whose Criterion still holds `### case N` blocks brought to one Criterion, until lint counts no `unmigrated` page
 
 ### Slice 4 — conversion of the parked pages by group
@@ -107,3 +106,10 @@ No file of `vault/wiki/` is written by hand.
 - 2026-09-28 updated: the Backlog entry of rule-work-mode names what is left past the skill /work; the sentence on a red check stands in rule-retro (case 479.2) · [[decision-case-479.2]]
 - 2026-09-28 updated: Slice 3g: the Estimates of rule-prespec recut to When and Then; the note on every other Estimate stands (case 484) · [[decision-case-484.7]]
 - 2026-09-28 updated: Slice 3g: the old-layout Estimates of session start and /hi recut to one Criterion; the note on the old layout stands (case 485) · [[decision-case-485.6]]
+- 2026-09-29 updated: Slice 3g: the Estimates of rule-glossary, entity-glossary and entity-guppi recut to When and Then; the note on every other Estimate stands (case 488) · [[decision-case-488.6]]
+- 2026-09-29 updated: Slice 3g: the Estimates of rule-page-generation and rule-materialize recut to When and Then, the two texts overwritten by case 211.3 restored; the note on every other Estimate stands (case 489) · [[decision-case-489.8]]
+- 2026-09-29 updated: Slice 3g: the Estimates of rule-page-schemas, its five category schemas and rule-vault-layout recut to When and Then; the note on every other Estimate stands (case 490) · [[decision-case-490.8]]
+- 2026-09-29 updated: Slice 3g: the Estimates of rule-sprint and the Spec tick of rule-render-harness recut to When and Then; the note on every other Estimate stands (case 491) · [[decision-case-491.5]]
+- 2026-09-29 updated: Slice 3g: the Estimates of rule-claude-md, rule-atomicity and rule-one-judgment-one-implementation recut to When and Then; the note on every other Estimate stands (case 492) · [[decision-case-492.4]]
+- 2026-09-29 updated: Slice 3g: the Estimates of rule-compact-recall, rule-plan-mode, rule-retro-commit, rule-session and rule-prespec-hook recut to When and Then; the note on every other Estimate stands (case 493) · [[decision-case-493.6]]
+- 2026-09-29 updated: Slice 3g: the note on every other Estimate removed, its last group recut (cases 484, 488-494); the note on the old shape stands · [[decision-case-494.6]]

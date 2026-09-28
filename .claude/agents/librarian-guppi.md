@@ -91,7 +91,9 @@ Mark each entry you add with `librarian: synthesis`. Read no `materialize.yaml` 
   set: {status: clustered, insight: <the Insight>}
   change: clustered under <the Insight> (synthesis)
   librarian: synthesis
-``` One lesson without a pair
+```
+
+One lesson without a pair
 stays `new`; that needs no flag. `Proposal` is a suggestion, never a decision. When an index line does not settle whether a lesson shares a root cause, read the
 Trigger and Root cause of the candidate and name the page in the report with the
 outcome, clustered or not. Do not read the archive and do not write pages yourself.

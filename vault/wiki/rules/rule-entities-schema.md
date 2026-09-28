@@ -2,7 +2,7 @@
 type: rule
 kind: Leaf
 purpose: Prevents an Entity page from carrying a field or section outside the shape lint checks, or lacking one it needs
-status: built
+status: draft
 enforcement: render
 governs: vault/wiki/entities/schema.yaml
 render_mode: full
@@ -164,3 +164,4 @@ examples:
 - 2026-09-22 status: draft → built · cascade
 - 2026-09-23 status: built → draft · cascade
 - 2026-09-23 status: draft → built · cascade
+- 2026-09-29 status: built → draft · cascade

@@ -2,7 +2,7 @@
 type: rule
 kind: Leaf
 purpose: Prevents a Spec from being approved before its decisions were checked against each other and the vault
-status: built
+status: draft
 enforcement: hook
 implementation_ref: [guppi/prespec.py, .claude/settings.json]
 parent: "[[rule-plan-mode]]"
@@ -35,3 +35,4 @@ it, the hook does not. Named `pretask` until case 261.
 - 2026-09-20 renamed from `rule-pretask-hook` · [[decision-case-261]]
 - 2026-09-20 updated: renamed to rule-prespec-hook — the hook guppi prespec, the mark prespec, the refusal names /pre-spec (case 261) · [[decision-case-261]]
 - 2026-09-20 ref `estimate-pretask-hook-gates` → `estimate-prespec-hook-gates` · [[decision-case-261]]
+- 2026-09-29 status: built → draft · cascade

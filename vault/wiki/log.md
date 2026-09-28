@@ -4378,3 +4378,131 @@ instruction. The global feed; a page's own `## History` is the per-page view.
 - 2026-09-28 rules/rule-session-start status: built → draft · cascade · generate
 - 2026-09-28 rules/rule-skill-hi status: built → draft · cascade · generate
 - 2026-09-28 rules/rule-spec-capture status: draft → built · cascade · generate
+- 2026-09-29 decisions/decision-case-486 created · raw/2026-09-28/2229/ledger.md#case-486 · generate
+- 2026-09-29 rules/rule-retro updated: the closing fence of the report skeleton stands alone on its line, and the commit sentence follows as its own paragraph (case 486) · [[decision-case-486]] · generate
+- 2026-09-29 decisions/decision-case-487.1 created · raw/2026-09-28/2229/ledger.md#case-487.1 · generate
+- 2026-09-29 rules/rule-prespec updated: pre-spec reports a code fence that a pair or a written section breaks, by fence_breaks of guppi/materialize.py (case 487.1) · [[decision-case-487.1]] · generate
+- 2026-09-29 estimates/estimate-prespec-catches-a-broken-fence created · [[decision-case-487.1]] · generate
+- 2026-09-29 rules/rule-prespec estimate estimate-prespec-catches-a-broken-fence added · [[decision-case-487.1]] · generate
+- 2026-09-29 decisions/decision-case-487.2 created · raw/2026-09-28/2229/ledger.md#case-487.2 · generate
+- 2026-09-29 estimates/estimate-lint-catches-a-broken-fence created · [[decision-case-487.2]] · generate
+- 2026-09-29 rules/rule-lint estimate estimate-lint-catches-a-broken-fence added · [[decision-case-487.2]] · generate
+- 2026-09-29 decisions/decision-case-487.3 created · raw/2026-09-28/2229/ledger.md#case-487.3 · generate
+- 2026-09-29 rules/rule-synthesis updated: the closing fence of the sample entries stands alone on its line, and the sentence after it follows as its own paragraph (case 487.3) · [[decision-case-487.3]] · generate
+- 2026-09-29 decisions/decision-case-488.1 created · raw/2026-09-28/2229/ledger.md#case-488.1 · generate
+- 2026-09-29 estimates/estimate-glossary-renders-the-terms updated: the Criterion replaced whole — When and Then only, Given and the index.md line out (case 488.1) · [[decision-case-488.1]] · generate
+- 2026-09-29 decisions/decision-case-488.2 created · raw/2026-09-28/2229/ledger.md#case-488.2 · generate
+- 2026-09-29 estimates/estimate-glossary-checks-the-file updated: the Criterion replaced whole — When and Then only, Given and the order in make lint out (case 488.2) · [[decision-case-488.2]] · generate
+- 2026-09-29 decisions/decision-case-488.3 created · raw/2026-09-28/2229/ledger.md#case-488.3 · generate
+- 2026-09-29 estimates/estimate-glossary-ticks-the-spec updated: the Criterion replaced whole — When and Then only, Given out (case 488.3) · [[decision-case-488.3]] · generate
+- 2026-09-29 decisions/decision-case-488.4 created · raw/2026-09-28/2229/ledger.md#case-488.4 · generate
+- 2026-09-29 estimates/estimate-glossary-terms-defined updated: the Criterion replaced whole — the one-time build of the table out, the purpose kept as When and Then (case 488.4) · [[decision-case-488.4]] · generate
+- 2026-09-29 decisions/decision-case-488.5 created · raw/2026-09-28/2229/ledger.md#case-488.5 · generate
+- 2026-09-29 estimates/estimate-guppi-tests-green updated: the Criterion replaced whole — the one-time build of entity-guppi out, the purpose kept as When and Then (case 488.5) · [[decision-case-488.5]] · generate
+- 2026-09-29 decisions/decision-case-488.6 created · raw/2026-09-28/2229/ledger.md#case-488.6 · generate
+- 2026-09-29 entities/entity-sprint-migration updated: Slice 3g: the Estimates of rule-glossary, entity-glossary and entity-guppi recut to When and Then; the note on every other Estimate stands (case 488) · [[decision-case-488.6]] · generate
+- 2026-09-29 decisions/decision-case-489.1 created · raw/2026-09-28/2229/ledger.md#case-489.1 · generate
+- 2026-09-29 estimates/estimate-generate-writes updated: the Criterion restored whole — the text of case 211.1, which case 211.3 overwrote, less its pointer line; purpose set (case 489.1) · [[decision-case-489.1]] · generate
+- 2026-09-29 decisions/decision-case-489.2 created · raw/2026-09-28/2229/ledger.md#case-489.2 · generate
+- 2026-09-29 estimates/estimate-generate-walks-dates updated: the Criterion restored whole — the text of case 201.5, which case 211.3 overwrote; purpose set (case 489.2) · [[decision-case-489.2]] · generate
+- 2026-09-29 decisions/decision-case-489.3 created · raw/2026-09-28/2229/ledger.md#case-489.3 · generate
+- 2026-09-29 estimates/estimate-generate-renames updated: the Criterion replaced whole — When and Then only, Given and the line on guppi sprint out (case 489.3) · [[decision-case-489.3]] · generate
+- 2026-09-29 decisions/decision-case-489.4 created · raw/2026-09-28/2229/ledger.md#case-489.4 · generate
+- 2026-09-29 estimates/estimate-generate-rewords updated: the Criterion replaced whole — When and Then only, Given and the Rule-class files out (case 489.4) · [[decision-case-489.4]] · generate
+- 2026-09-29 decisions/decision-case-489.5 created · raw/2026-09-28/2229/ledger.md#case-489.5 · generate
+- 2026-09-29 estimates/estimate-generate-writes-rules-from-applies-to updated: the Criterion replaced whole — When and Then only, Given out (case 489.5) · [[decision-case-489.5]] · generate
+- 2026-09-29 decisions/decision-case-489.6 created · raw/2026-09-28/2229/ledger.md#case-489.6 · generate
+- 2026-09-29 estimates/estimate-materialize-lifts-unfiltered-on-a-schema-change updated: the Criterion replaced whole — When and Then only, Given out, the lift by the schema on disk stated (case 489.6) · [[decision-case-489.6]] · generate
+- 2026-09-29 decisions/decision-case-489.7 created · raw/2026-09-28/2229/ledger.md#case-489.7 · generate
+- 2026-09-29 estimates/estimate-materialize-refolds-a-reading-on-a-supersede updated: the Criterion replaced whole — When and Then only, Given out, the fold of a reading moved into When (case 489.7) · [[decision-case-489.7]] · generate
+- 2026-09-29 decisions/decision-case-489.8 created · raw/2026-09-28/2229/ledger.md#case-489.8 · generate
+- 2026-09-29 entities/entity-sprint-migration updated: Slice 3g: the Estimates of rule-page-generation and rule-materialize recut to When and Then, the two texts overwritten by case 211.3 restored; the note on every other Estimate stands (case 489) · [[decision-case-489.8]] · generate
+- 2026-09-29 decisions/decision-case-490.1 created · raw/2026-09-28/2229/ledger.md#case-490.1 · generate
+- 2026-09-29 estimates/estimate-page-schemas-one-file-per-rule updated: the Criterion replaced whole — When and Then only, Given out, the count of files out, the missing file stated (case 490.1) · [[decision-case-490.1]] · generate
+- 2026-09-29 decisions/decision-case-490.2 created · raw/2026-09-28/2229/ledger.md#case-490.2 · generate
+- 2026-09-29 estimates/estimate-rules-schema-checked updated: the Criterion replaced whole — When and Then only, Given, the history of schema.md and the ordered_children read by lint out (case 490.2) · [[decision-case-490.2]] · generate
+- 2026-09-29 decisions/decision-case-490.3 created · raw/2026-09-28/2229/ledger.md#case-490.3 · generate
+- 2026-09-29 estimates/estimate-entities-schema-checked updated: the Criterion replaced whole — When and Then only, Given, the history of schema.md and the computed key read by lint out (case 490.3) · [[decision-case-490.3]] · generate
+- 2026-09-29 decisions/decision-case-490.4 created · raw/2026-09-28/2229/ledger.md#case-490.4 · generate
+- 2026-09-29 estimates/estimate-estimates-schema-checked updated: the Criterion replaced whole — When and Then only, Given and the history of schema.md out (case 490.4) · [[decision-case-490.4]] · generate
+- 2026-09-29 decisions/decision-case-490.5 created · raw/2026-09-28/2229/ledger.md#case-490.5 · generate
+- 2026-09-29 estimates/estimate-decisions-schema-checked updated: the Criterion replaced whole — When and Then only, Given and the history of schema.md out (case 490.5) · [[decision-case-490.5]] · generate
+- 2026-09-29 decisions/decision-case-490.6 created · raw/2026-09-28/2229/ledger.md#case-490.6 · generate
+- 2026-09-29 estimates/estimate-lessons-schema-checked updated: the Criterion replaced whole — When and Then only, Given and the history of schema.md out (case 490.6) · [[decision-case-490.6]] · generate
+- 2026-09-29 decisions/decision-case-490.7 created · raw/2026-09-28/2229/ledger.md#case-490.7 · generate
+- 2026-09-29 estimates/estimate-vault-layout-holds updated: the Criterion replaced whole — When and Then only, Given out, the schema file not read as a page stated (case 490.7) · [[decision-case-490.7]] · generate
+- 2026-09-29 decisions/decision-case-490.8 created · raw/2026-09-28/2229/ledger.md#case-490.8 · generate
+- 2026-09-29 entities/entity-sprint-migration updated: Slice 3g: the Estimates of rule-page-schemas, its five category schemas and rule-vault-layout recut to When and Then; the note on every other Estimate stands (case 490) · [[decision-case-490.8]] · generate
+- 2026-09-29 decisions/decision-case-491.1 created · raw/2026-09-28/2229/ledger.md#case-491.1 · generate
+- 2026-09-29 estimates/estimate-sprint-ticks-the-spec updated: the Criterion replaced whole — When and Then only, Given out, the yaml applied whole stated (case 491.1) · [[decision-case-491.1]] · generate
+- 2026-09-29 decisions/decision-case-491.2 created · raw/2026-09-28/2229/ledger.md#case-491.2 · generate
+- 2026-09-29 estimates/estimate-sprint-checks-the-file updated: the Criterion replaced whole — When and Then only, Given and the bounds lines out (case 491.2) · [[decision-case-491.2]] · generate
+- 2026-09-29 decisions/decision-case-491.3 created · raw/2026-09-28/2229/ledger.md#case-491.3 · generate
+- 2026-09-29 estimates/estimate-sprint-drops-an-emptied-milestone updated: the Criterion replaced whole — When and Then only, Given out, the current milestone and the note stated (case 491.3) · [[decision-case-491.3]] · generate
+- 2026-09-29 decisions/decision-case-491.4 created · raw/2026-09-28/2229/ledger.md#case-491.4 · generate
+- 2026-09-29 estimates/estimate-render-harness-ticks-the-spec updated: the Criterion replaced whole — When and Then only, Given out, the yaml applied whole stated (case 491.4) · [[decision-case-491.4]] · generate
+- 2026-09-29 decisions/decision-case-491.5 created · raw/2026-09-28/2229/ledger.md#case-491.5 · generate
+- 2026-09-29 entities/entity-sprint-migration updated: Slice 3g: the Estimates of rule-sprint and the Spec tick of rule-render-harness recut to When and Then; the note on every other Estimate stands (case 491) · [[decision-case-491.5]] · generate
+- 2026-09-29 decisions/decision-case-492.1 created · raw/2026-09-28/2229/ledger.md#case-492.1 · generate
+- 2026-09-29 estimates/estimate-atomicity-rendered updated: the Criterion replaced whole — When and Then only, Given out, the old form of the pre-spec refusal out (case 492.1) · [[decision-case-492.1]] · generate
+- 2026-09-29 decisions/decision-case-492.2 created · raw/2026-09-28/2229/ledger.md#case-492.2 · generate
+- 2026-09-29 estimates/estimate-claude-md-rendered updated: the Criterion replaced whole — When and Then only, Given and the history of Migration mode out (case 492.2) · [[decision-case-492.2]] · generate
+- 2026-09-29 decisions/decision-case-492.3 created · raw/2026-09-28/2229/ledger.md#case-492.3 · generate
+- 2026-09-29 estimates/estimate-one-judgment-one-implementation-followed updated: the Criterion replaced whole — When and Then only, Given and the functions lifted by case 351 out (case 492.3) · [[decision-case-492.3]] · generate
+- 2026-09-29 decisions/decision-case-492.4 created · raw/2026-09-28/2229/ledger.md#case-492.4 · generate
+- 2026-09-29 entities/entity-sprint-migration updated: Slice 3g: the Estimates of rule-claude-md, rule-atomicity and rule-one-judgment-one-implementation recut to When and Then; the note on every other Estimate stands (case 492) · [[decision-case-492.4]] · generate
+- 2026-09-29 decisions/decision-case-493.1 created · raw/2026-09-28/2229/ledger.md#case-493.1 · generate
+- 2026-09-29 estimates/estimate-compact-recall-reloads updated: the Criterion replaced whole — When and Then only, Given, the docs and the lesson out (case 493.1) · [[decision-case-493.1]] · generate
+- 2026-09-29 decisions/decision-case-493.2 created · raw/2026-09-28/2229/ledger.md#case-493.2 · generate
+- 2026-09-29 estimates/estimate-plan-mode-verified updated: the Criterion replaced whole — When and Then only, Given out, the writer of the plan named; purpose set (case 493.2) · [[decision-case-493.2]] · generate
+- 2026-09-29 decisions/decision-case-493.3 created · raw/2026-09-28/2229/ledger.md#case-493.3 · generate
+- 2026-09-29 estimates/estimate-retro-commit-gates updated: the Criterion replaced whole — When and Then only, Given and the bounds line out, the pass without hi narrowed to what the gate does; purpose set (case 493.3) · [[decision-case-493.3]] · generate
+- 2026-09-29 decisions/decision-case-493.4 created · raw/2026-09-28/2229/ledger.md#case-493.4 · generate
+- 2026-09-29 estimates/estimate-session-phases-in-order updated: the Criterion replaced whole — When and Then only, Given out (case 493.4) · [[decision-case-493.4]] · generate
+- 2026-09-29 decisions/decision-case-493.5 created · raw/2026-09-28/2229/ledger.md#case-493.5 · generate
+- 2026-09-29 estimates/estimate-prespec-hook-gates updated: the Criterion replaced whole — When and Then only, Given and the bounds line out; purpose set (case 493.5) · [[decision-case-493.5]] · generate
+- 2026-09-29 decisions/decision-case-493.6 created · raw/2026-09-28/2229/ledger.md#case-493.6 · generate
+- 2026-09-29 entities/entity-sprint-migration updated: Slice 3g: the Estimates of rule-compact-recall, rule-plan-mode, rule-retro-commit, rule-session and rule-prespec-hook recut to When and Then; the note on every other Estimate stands (case 493) · [[decision-case-493.6]] · generate
+- 2026-09-29 decisions/decision-case-494.1 created · raw/2026-09-28/2229/ledger.md#case-494.1 · generate
+- 2026-09-29 estimates/estimate-sprint-migration-lint-clean updated: the Criterion replaced whole — When and Then only, Given and the one-time build of the sprint page out (case 494.1) · [[decision-case-494.1]] · generate
+- 2026-09-29 decisions/decision-case-494.2 created · raw/2026-09-28/2229/ledger.md#case-494.2 · generate
+- 2026-09-29 estimates/estimate-sprint-migration-leftovers-gone updated: the Criterion replaced whole — When and Then only, Given out (case 494.2) · [[decision-case-494.2]] · generate
+- 2026-09-29 decisions/decision-case-494.3 created · raw/2026-09-28/2229/ledger.md#case-494.3 · generate
+- 2026-09-29 estimates/estimate-sprint-migration-merges updated: the Criterion replaced whole — When and Then only, Given of another Case out, the count of Done-when lines out (case 494.3) · [[decision-case-494.3]] · generate
+- 2026-09-29 decisions/decision-case-494.4 created · raw/2026-09-28/2229/ledger.md#case-494.4 · generate
+- 2026-09-29 estimates/estimate-sprint-migration-rule-class-files-dissolved updated: the Criterion replaced whole — When and Then only, Given, the pointer to lint-clean and the bounds of the Slice out (case 494.4) · [[decision-case-494.4]] · generate
+- 2026-09-29 decisions/decision-case-494.5 created · raw/2026-09-28/2229/ledger.md#case-494.5 · generate
+- 2026-09-29 estimates/estimate-sprint-migration-index-dissolved updated: the Criterion replaced whole — When and Then only, Given out, the one-time trigger of theme 4 replaced by the reading of the method (case 494.5) · [[decision-case-494.5]] · generate
+- 2026-09-29 decisions/decision-case-494.6 created · raw/2026-09-28/2229/ledger.md#case-494.6 · generate
+- 2026-09-29 entities/entity-sprint-migration updated: Slice 3g: the note on every other Estimate removed, its last group recut (cases 484, 488-494); the note on the old shape stands · [[decision-case-494.6]] · generate
+- 2026-09-29 decisions/decision-case-495 created · raw/2026-09-28/2229/ledger.md#case-495 · generate
+- 2026-09-29 rules/rule-case-build deferred · [[decision-case-495]] · generate
+- 2026-09-29 decisions/decision-case-496 created · raw/2026-09-28/2229/ledger.md#case-496 · generate
+- 2026-09-29 rules/rule-skill-wait-what deferred · [[decision-case-496]] · generate
+- 2026-09-29 decisions/decision-case-487.4 created · raw/2026-09-28/2229/ledger.md#case-487.4 · generate
+- 2026-09-29 estimates/estimate-materialize-judges-a-fence updated: the Criterion replaced whole — check_pairs of guppi/prespec.py and the class fence of guppi/lint.py join the readers, and fence_breaks, built on the same functions, reports a word after a full run inside a fence, and a fence open at the end of a section, as a break (case 487.4) · [[decision-case-487.4]] · generate
+- 2026-09-29 lessons/lesson-prespec-judged-a-pair-by-its-anchor-alone created · raw/2026-09-28/2229/ledger.md#L52 · generate
+- 2026-09-29 lessons/lesson-generate-replaced-a-ratified-criterion-on-a-field-update created · raw/2026-09-28/2229/ledger.md#L53 · generate
+- 2026-09-29 insights/insight-materialize-estimate-update-lifts-the-criterion-whole updated: child lesson-generate-replaced-a-ratified-criterion-on-a-field-update added, status open (synthesis) · raw/2026-09-28/2229/ledger.md#L53 · generate
+- 2026-09-29 lessons/lesson-generate-replaced-a-ratified-criterion-on-a-field-update updated: clustered under insight-materialize-estimate-update-lifts-the-criterion-whole (synthesis) · raw/2026-09-28/2229/ledger.md#L53 · generate
+- 2026-09-29 entities/entity-glossary status: built → draft · cascade · generate
+- 2026-09-29 entities/entity-guppi status: built → draft · cascade · generate
+- 2026-09-29 rules/rule-atomicity status: built → draft · cascade · generate
+- 2026-09-29 rules/rule-claude-md status: built → draft · cascade · generate
+- 2026-09-29 rules/rule-compact-recall status: built → draft · cascade · generate
+- 2026-09-29 rules/rule-decisions-schema status: built → draft · cascade · generate
+- 2026-09-29 rules/rule-entities-schema status: built → draft · cascade · generate
+- 2026-09-29 rules/rule-estimates-schema status: built → draft · cascade · generate
+- 2026-09-29 rules/rule-glossary status: built → draft · cascade · generate
+- 2026-09-29 rules/rule-lessons-schema status: built → draft · cascade · generate
+- 2026-09-29 rules/rule-lint status: built → draft · cascade · generate
+- 2026-09-29 rules/rule-materialize status: built → draft · cascade · generate
+- 2026-09-29 rules/rule-one-judgment-one-implementation status: built → draft · cascade · generate
+- 2026-09-29 rules/rule-page-schemas status: built → draft · cascade · generate
+- 2026-09-29 rules/rule-plan-mode status: built → draft · cascade · generate
+- 2026-09-29 rules/rule-prespec-hook status: built → draft · cascade · generate
+- 2026-09-29 rules/rule-render-harness status: built → draft · cascade · generate
+- 2026-09-29 rules/rule-retro-commit status: built → draft · cascade · generate
+- 2026-09-29 rules/rule-rules-schema status: built → draft · cascade · generate
+- 2026-09-29 rules/rule-sprint status: built → draft · cascade · generate
+- 2026-09-29 rules/rule-vault-layout status: built → draft · cascade · generate

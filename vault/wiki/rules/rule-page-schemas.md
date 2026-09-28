@@ -2,7 +2,7 @@
 type: rule
 kind: MOC
 purpose: Prevents the shape of a page category from living in a file nobody ratified — each schema is a rule page and its yaml the Render
-status: built
+status: draft
 parent: "[[rule-harness]]"
 children: ["[[rule-entities-schema]]", "[[rule-rules-schema]]", "[[rule-estimates-schema]]", "[[rule-lessons-schema]]", "[[rule-insights-schema]]", "[[rule-decisions-schema]]"]
 estimates: ["[[estimate-page-schemas-one-file-per-rule]]"]
@@ -22,3 +22,4 @@ Prevents the shape of a page category from living in a file nobody ratified. Unt
 - 2026-09-22 status: draft → built · cascade
 - 2026-09-23 status: built → draft · cascade
 - 2026-09-23 status: draft → built · cascade
+- 2026-09-29 status: built → draft · cascade

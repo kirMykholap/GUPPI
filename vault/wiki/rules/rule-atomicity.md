@@ -2,7 +2,7 @@
 type: rule
 kind: Leaf
 purpose: Prevents a unit from being split or kept whole by taste — one closing judgment, one unit; two conditions that fail apart are two children
-status: built
+status: draft
 enforcement: render
 governs: vault/wiki/case-schema.md
 render_mode: partial
@@ -36,3 +36,4 @@ It holds for a Case, an Entity, a Rule and an Estimate alike. Not for a Lesson: 
 - 2026-09-23 updated: the Render carries its own markers, so the page renders into case-schema.md — the hand fix of commit 94277ea signed after the fact (case 324) · [[decision-case-324]]
 - 2026-09-23 status: draft → built · cascade
 - 2026-09-28 updated: the refusal of pre-spec counts a written Criterion too (case 472.3) · [[decision-case-472.3]]
+- 2026-09-29 status: built → draft · cascade

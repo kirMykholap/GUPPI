@@ -38,8 +38,8 @@ update:
 ````
 
 ```tasks
-- [ ] update `rule-retro`
-- [ ] `uv run guppi render`: `.claude/skills/retro/SKILL.md`
+- [x] update `rule-retro`
+- [x] `uv run guppi render`: `.claude/skills/retro/SKILL.md`
 ```
 
 ## Case 487 — A broken code fence is a finding of pre-spec and of lint
@@ -105,13 +105,13 @@ update:
 ```
 
 ```tasks
-- [ ] update `rule-prespec`
-- [ ] create `estimate-prespec-catches-a-broken-fence`
+- [x] update `rule-prespec`
+- [x] create `estimate-prespec-catches-a-broken-fence`
 - [x] `guppi/materialize.py` — `fence_breaks(text)` beside `fence_opening` and `closes_fence`, built on them; the docstring paragraph on the fence names it and its callers
 - [x] `guppi/prespec.py` — `check_pairs` judges each section a pair changes before and after the pair, and each `sections` value on its own, by `fence_breaks`; the module docstring names the finding
 - [x] `tests/test_materialize.py` — `-k fence_breaks`: a closing run with text after it is flagged, a fence open at the end is flagged; a normal fence, an opening with a tag, and a shorter run inside a longer fence are not flagged
 - [x] `tests/test_prespec.py` — `-k fence`: a pair that joins text to a closing fence gives the finding; a pair on a section that already held the break gives none; a `sections` value with an open fence gives the finding; a clean pair gives none; the page on disk is unchanged
-- [ ] `uv run guppi render`: `.claude/skills/pre-spec/SKILL.md`
+- [x] `uv run guppi render`: `.claude/skills/pre-spec/SKILL.md`
 - [ ] read `estimate-prespec-catches-a-broken-fence`
 ```
 
@@ -149,7 +149,7 @@ create:
 ```
 
 ```tasks
-- [ ] create `estimate-lint-catches-a-broken-fence`
+- [x] create `estimate-lint-catches-a-broken-fence`
 - [x] `guppi/lint.py` — the class `fence` after `markers`, over each section of each live page by `fence_breaks` imported from `guppi/materialize.py`; the docstring names the class in its order
 - [x] `tests/test_lint.py` — `-k fence`: a page with a closing run and text after it, and a page with a fence left open, each give one `fence` finding; a page with normal fences gives none
 - [ ] read `estimate-lint-catches-a-broken-fence`
@@ -182,8 +182,8 @@ update:
 ````
 
 ```tasks
-- [ ] update `rule-synthesis`
-- [ ] `uv run guppi render`: `.claude/agents/librarian-guppi.md`
+- [x] update `rule-synthesis`
+- [x] `uv run guppi render`: `.claude/agents/librarian-guppi.md`
 ```
 
 ### Case 487.4 — The one fence judgment names its new readers and the break
@@ -218,7 +218,7 @@ update:
 ```
 
 ```tasks
-- [ ] update `estimate-materialize-judges-a-fence`
+- [x] update `estimate-materialize-judges-a-fence`
 - [ ] read `estimate-materialize-judges-a-fence`
 ```
 
@@ -264,7 +264,7 @@ update:
 ```
 
 ```tasks
-- [ ] update `estimate-glossary-renders-the-terms`
+- [x] update `estimate-glossary-renders-the-terms`
 - [ ] read `estimate-glossary-renders-the-terms` — `pytest tests/test_glossary.py`, then by hand on the `vault/wiki/glossary.md` of a later librarian's run
 ```
 
@@ -296,7 +296,7 @@ update:
 ```
 
 ```tasks
-- [ ] update `estimate-glossary-checks-the-file`
+- [x] update `estimate-glossary-checks-the-file`
 - [ ] read `estimate-glossary-checks-the-file` — `pytest tests/test_glossary.py`, then `make lint` after a later librarian's run
 ```
 
@@ -331,7 +331,7 @@ update:
 ```
 
 ```tasks
-- [ ] update `estimate-glossary-ticks-the-spec`
+- [x] update `estimate-glossary-ticks-the-spec`
 - [ ] read `estimate-glossary-ticks-the-spec` — `pytest tests/test_glossary.py`, then by hand on the `spec.md` of a later session after its librarian's run
 ```
 
@@ -360,7 +360,7 @@ update:
 ```
 
 ```tasks
-- [ ] update `estimate-glossary-terms-defined`
+- [x] update `estimate-glossary-terms-defined`
 - [ ] read `estimate-glossary-terms-defined` — by hand on the table after a later librarian's run, and `make lint` with no `ref` finding on `entity-glossary`
 ```
 
@@ -388,7 +388,7 @@ update:
 ```
 
 ```tasks
-- [ ] update `estimate-guppi-tests-green`
+- [x] update `estimate-guppi-tests-green`
 - [ ] read `estimate-guppi-tests-green` — `make test` after the Work Mode of a later session
 ```
 
@@ -415,7 +415,7 @@ update:
 ```
 
 ```tasks
-- [ ] update `entity-sprint-migration`
+- [x] update `entity-sprint-migration`
 ```
 
 ## Case 489 — Slice 3g: the Estimates of `generate` and `materialize` recut to `When:` and `Then:`
@@ -472,7 +472,7 @@ update:
 ```
 
 ```tasks
-- [ ] update `estimate-generate-writes`
+- [x] update `estimate-generate-writes`
 - [ ] read `estimate-generate-writes` — `pytest tests/test_generate.py`, then by hand at a later librarian's run
 ```
 
@@ -507,7 +507,7 @@ update:
 ```
 
 ```tasks
-- [ ] update `estimate-generate-walks-dates`
+- [x] update `estimate-generate-walks-dates`
 - [ ] read `estimate-generate-walks-dates` — `pytest tests/test_generate.py`, then by hand at a later librarian's run
 ```
 
@@ -542,7 +542,7 @@ update:
 ```
 
 ```tasks
-- [ ] update `estimate-generate-renames`
+- [x] update `estimate-generate-renames`
 - [ ] read `estimate-generate-renames` — `pytest tests/test_generate.py`, then by hand at the librarian's run that applies a later rename
 ```
 
@@ -575,7 +575,7 @@ update:
 ```
 
 ```tasks
-- [ ] update `estimate-generate-rewords`
+- [x] update `estimate-generate-rewords`
 - [ ] read `estimate-generate-rewords` — `pytest tests/test_generate.py`, then by hand at the librarian's run that applies a later reword
 ```
 
@@ -606,7 +606,7 @@ update:
 ```
 
 ```tasks
-- [ ] update `estimate-generate-writes-rules-from-applies-to`
+- [x] update `estimate-generate-writes-rules-from-applies-to`
 - [ ] read `estimate-generate-writes-rules-from-applies-to` — `pytest tests/test_generate.py`, then by hand at a later librarian's run
 ```
 
@@ -637,7 +637,7 @@ update:
 ```
 
 ```tasks
-- [ ] update `estimate-materialize-lifts-unfiltered-on-a-schema-change`
+- [x] update `estimate-materialize-lifts-unfiltered-on-a-schema-change`
 - [ ] read `estimate-materialize-lifts-unfiltered-on-a-schema-change` — `uv run pytest tests/test_materialize.py -k schema_change`
 ```
 
@@ -667,7 +667,7 @@ update:
 ```
 
 ```tasks
-- [ ] update `estimate-materialize-refolds-a-reading-on-a-supersede`
+- [x] update `estimate-materialize-refolds-a-reading-on-a-supersede`
 - [ ] read `estimate-materialize-refolds-a-reading-on-a-supersede` — `uv run pytest tests/test_materialize.py -k refold`
 ```
 
@@ -693,7 +693,7 @@ update:
 ```
 
 ```tasks
-- [ ] update `entity-sprint-migration`
+- [x] update `entity-sprint-migration`
 ```
 
 ## Case 490 — Slice 3g: the Estimates of the page schemas and the layout of the vault recut to `When:` and `Then:`
@@ -739,7 +739,7 @@ update:
 ```
 
 ```tasks
-- [ ] update `estimate-page-schemas-one-file-per-rule`
+- [x] update `estimate-page-schemas-one-file-per-rule`
 - [ ] read `estimate-page-schemas-one-file-per-rule` — `make lint` and `pytest tests/test_render.py`, then by hand after a later librarian's render
 ```
 
@@ -772,7 +772,7 @@ update:
 ```
 
 ```tasks
-- [ ] update `estimate-rules-schema-checked`
+- [x] update `estimate-rules-schema-checked`
 - [ ] read `estimate-rules-schema-checked` — `pytest tests/test_schemas.py -k rules`, then `make lint`
 ```
 
@@ -805,7 +805,7 @@ update:
 ```
 
 ```tasks
-- [ ] update `estimate-entities-schema-checked`
+- [x] update `estimate-entities-schema-checked`
 - [ ] read `estimate-entities-schema-checked` — `pytest tests/test_schemas.py -k entities`, then `make lint`
 ```
 
@@ -837,7 +837,7 @@ update:
 ```
 
 ```tasks
-- [ ] update `estimate-estimates-schema-checked`
+- [x] update `estimate-estimates-schema-checked`
 - [ ] read `estimate-estimates-schema-checked` — `pytest tests/test_schemas.py -k estimates`, then `make lint`
 ```
 
@@ -870,7 +870,7 @@ update:
 ```
 
 ```tasks
-- [ ] update `estimate-decisions-schema-checked`
+- [x] update `estimate-decisions-schema-checked`
 - [ ] read `estimate-decisions-schema-checked` — `pytest tests/test_schemas.py -k decisions`, then `make lint`
 ```
 
@@ -902,7 +902,7 @@ update:
 ```
 
 ```tasks
-- [ ] update `estimate-lessons-schema-checked`
+- [x] update `estimate-lessons-schema-checked`
 - [ ] read `estimate-lessons-schema-checked` — `pytest tests/test_schemas.py -k lessons`, then `make lint`
 ```
 
@@ -935,7 +935,7 @@ update:
 ```
 
 ```tasks
-- [ ] update `estimate-vault-layout-holds`
+- [x] update `estimate-vault-layout-holds`
 - [ ] read `estimate-vault-layout-holds` — `uv run pytest tests/test_lint.py -k layout`, then `make lint`
 ```
 
@@ -961,7 +961,7 @@ update:
 ```
 
 ```tasks
-- [ ] update `entity-sprint-migration`
+- [x] update `entity-sprint-migration`
 ```
 
 ## Case 491 — Slice 3g: the Estimates of the Spec tickers and the sprint recut to `When:` and `Then:`
@@ -1006,7 +1006,7 @@ update:
 ```
 
 ```tasks
-- [ ] update `estimate-sprint-ticks-the-spec`
+- [x] update `estimate-sprint-ticks-the-spec`
 - [ ] read `estimate-sprint-ticks-the-spec` — `pytest tests/test_sprint.py`, then by hand on the `spec.md` of a later session after its librarian's run
 ```
 
@@ -1038,7 +1038,7 @@ update:
 ```
 
 ```tasks
-- [ ] update `estimate-sprint-checks-the-file`
+- [x] update `estimate-sprint-checks-the-file`
 - [ ] read `estimate-sprint-checks-the-file` — `pytest tests/test_sprint.py`, then `make lint` after a later librarian's run
 ```
 
@@ -1071,7 +1071,7 @@ update:
 ```
 
 ```tasks
-- [ ] update `estimate-sprint-drops-an-emptied-milestone`
+- [x] update `estimate-sprint-drops-an-emptied-milestone`
 - [ ] read `estimate-sprint-drops-an-emptied-milestone` — `pytest tests/test_generate.py`, the tests of the move
 ```
 
@@ -1103,7 +1103,7 @@ update:
 ```
 
 ```tasks
-- [ ] update `estimate-render-harness-ticks-the-spec`
+- [x] update `estimate-render-harness-ticks-the-spec`
 - [ ] read `estimate-render-harness-ticks-the-spec` — `pytest tests/test_render.py`, then by hand on the `spec.md` of a later session after its librarian's run
 ```
 
@@ -1129,7 +1129,7 @@ update:
 ```
 
 ```tasks
-- [ ] update `entity-sprint-migration`
+- [x] update `entity-sprint-migration`
 ```
 
 ## Case 492 — Slice 3g: the Estimates of the text every context loads recut to `When:` and `Then:`
@@ -1174,7 +1174,7 @@ update:
 ```
 
 ```tasks
-- [ ] update `estimate-atomicity-rendered`
+- [x] update `estimate-atomicity-rendered`
 - [ ] read `estimate-atomicity-rendered` — `uv run guppi render --check`, then by hand on the text between the markers after a later librarian's render
 ```
 
@@ -1208,7 +1208,7 @@ update:
 ```
 
 ```tasks
-- [ ] update `estimate-claude-md-rendered`
+- [x] update `estimate-claude-md-rendered`
 - [ ] read `estimate-claude-md-rendered` — `uv run guppi render --check`, then by hand on `CLAUDE.md` at the start of a later session
 ```
 
@@ -1241,7 +1241,7 @@ update:
 ```
 
 ```tasks
-- [ ] update `estimate-one-judgment-one-implementation-followed`
+- [x] update `estimate-one-judgment-one-implementation-followed`
 - [ ] read `estimate-one-judgment-one-implementation-followed` — `uv run guppi render --check`, then by hand on the diff of the Work Mode of a later session
 ```
 
@@ -1268,7 +1268,7 @@ update:
 ```
 
 ```tasks
-- [ ] update `entity-sprint-migration`
+- [x] update `entity-sprint-migration`
 ```
 
 ## Case 493 — Slice 3g: the Estimates of the session hooks and gates recut to `When:` and `Then:`
@@ -1315,7 +1315,7 @@ update:
 ```
 
 ```tasks
-- [ ] update `estimate-compact-recall-reloads`
+- [x] update `estimate-compact-recall-reloads`
 - [ ] read `estimate-compact-recall-reloads` — `pytest tests/test_recall.py`, then by hand at the first compaction of a later working session
 ```
 
@@ -1347,7 +1347,7 @@ update:
 ```
 
 ```tasks
-- [ ] update `estimate-plan-mode-verified`
+- [x] update `estimate-plan-mode-verified`
 - [ ] read `estimate-plan-mode-verified` — `make test-plan-mode`, then by hand at a later approval of a plan
 ```
 
@@ -1383,7 +1383,7 @@ update:
 ```
 
 ```tasks
-- [ ] update `estimate-retro-commit-gates`
+- [x] update `estimate-retro-commit-gates`
 - [ ] read `estimate-retro-commit-gates` — `pytest tests/test_gate.py`, then by hand at a later `/retro` and `/handoff`
 ```
 
@@ -1413,7 +1413,7 @@ update:
 ```
 
 ```tasks
-- [ ] update `estimate-session-phases-in-order`
+- [x] update `estimate-session-phases-in-order`
 - [ ] read `estimate-session-phases-in-order` — by hand at the close of a later session
 ```
 
@@ -1447,7 +1447,7 @@ update:
 ```
 
 ```tasks
-- [ ] update `estimate-prespec-hook-gates`
+- [x] update `estimate-prespec-hook-gates`
 - [ ] read `estimate-prespec-hook-gates` — `pytest tests/test_prespec.py`, then by hand at a later approval of a plan
 ```
 
@@ -1476,7 +1476,7 @@ update:
 ```
 
 ```tasks
-- [ ] update `entity-sprint-migration`
+- [x] update `entity-sprint-migration`
 ```
 
 ## Case 494 — Slice 3g: the done-conditions of the sprint recut to `When:` and `Then:`, and the note on every other Estimate leaves the Slice
@@ -1515,7 +1515,7 @@ update:
 ```
 
 ```tasks
-- [ ] update `estimate-sprint-migration-lint-clean`
+- [x] update `estimate-sprint-migration-lint-clean`
 - [ ] read `estimate-sprint-migration-lint-clean` — `make lint` at the close of the sprint
 ```
 
@@ -1549,7 +1549,7 @@ update:
 ```
 
 ```tasks
-- [ ] update `estimate-sprint-migration-leftovers-gone`
+- [x] update `estimate-sprint-migration-leftovers-gone`
 - [ ] read `estimate-sprint-migration-leftovers-gone` — by hand on the tree at the close of the sprint
 ```
 
@@ -1579,7 +1579,7 @@ update:
 ```
 
 ```tasks
-- [ ] update `estimate-sprint-migration-merges`
+- [x] update `estimate-sprint-migration-merges`
 - [ ] read `estimate-sprint-migration-merges` — `make test` on the last commit of `migration`, then `git log` of `main` after the merge
 ```
 
@@ -1612,7 +1612,7 @@ update:
 ```
 
 ```tasks
-- [ ] update `estimate-sprint-migration-rule-class-files-dissolved`
+- [x] update `estimate-sprint-migration-rule-class-files-dissolved`
 - [ ] read `estimate-sprint-migration-rule-class-files-dissolved` — by hand, the reading its `method` names, in a later session
 ```
 
@@ -1644,7 +1644,7 @@ update:
 ```
 
 ```tasks
-- [ ] update `estimate-sprint-migration-index-dissolved`
+- [x] update `estimate-sprint-migration-index-dissolved`
 - [ ] read `estimate-sprint-migration-index-dissolved` — by hand, the reading its `method` names, in a later session
 ```
 
@@ -1676,8 +1676,8 @@ update:
 ```
 
 ```tasks
-- [ ] update `entity-sprint-migration`
-- [ ] `uv run guppi sprint`
+- [x] update `entity-sprint-migration`
+- [x] `uv run guppi sprint`
 ```
 
 ## Deferred

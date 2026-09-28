@@ -2,7 +2,7 @@
 type: entity
 kind: Leaf
 purpose: The terms of GUPPI, one row each with its meaning and the page that defines it; the source of glossary.md
-status: built
+status: draft
 parent: "[[entity-guppi]]"
 estimates: ["[[estimate-glossary-terms-defined]]"]
 rules: ["[[rule-glossary]]"]
@@ -83,3 +83,4 @@ The terms of GUPPI: one row per term — the term, its meaning in one line, and 
 - 2026-09-23 updated: the body of a decision page (case 378.3) · [[decision-case-378.3]]
 - 2026-09-25 updated: the term supersedes: one block per Case, several on one line (case 429) · [[decision-case-429]]
 - 2026-09-27 updated: the term backlog.md added; the brief without a Deferred list, an open Insight in the backlog, the backlog among the sources of the Frontier (case 451.4) · [[decision-case-451.4]]
+- 2026-09-29 status: built → draft · cascade

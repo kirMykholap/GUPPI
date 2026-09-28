@@ -8,6 +8,7 @@ governs: .claude/skills/wait-what/SKILL.md
 render_mode: full
 parent: "[[rule-plan-mode]]"
 estimates: ["[[estimate-skill-wait-what-re-pitches]]"]
+deferred_by: ["[[decision-case-496]]"]
 origin: raw/2026-09-28/1318/ledger.md#case-477.2
 sprint: migration
 created: 2026-09-28
@@ -41,3 +42,4 @@ Change no option and no recommendation. End with the open question, asked again.
 
 - 2026-09-28 created · [[decision-case-477.2]]
 - 2026-09-28 estimate estimate-skill-wait-what-re-pitches added · [[decision-case-477.2]]
+- 2026-09-29 deferred · [[decision-case-496]]

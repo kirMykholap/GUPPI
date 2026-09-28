@@ -2,7 +2,7 @@
 type: rule
 kind: Leaf
 purpose: Prevents an Estimate page from carrying a field or section outside the shape lint checks, or lacking one it needs
-status: built
+status: draft
 enforcement: render
 governs: vault/wiki/estimates/schema.yaml
 render_mode: full
@@ -163,3 +163,4 @@ examples:
 - 2026-09-23 updated: the Criterion holds When and Then (case 378.2) · [[decision-case-378.2]]
 - 2026-09-23 updated: a Criterion changes only whole (case 378.4) · [[decision-case-378.4]]
 - 2026-09-27 updated: the method of a MOC's Estimate: the Estimates of a render child of a full MOC are not counted (case 459) · [[decision-case-459]]
+- 2026-09-29 status: built → draft · cascade

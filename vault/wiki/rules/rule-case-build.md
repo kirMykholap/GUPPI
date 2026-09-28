@@ -8,6 +8,7 @@ governs: .claude/agents/case-guppi.md
 render_mode: full
 parent: "[[rule-plan-mode]]"
 estimates: ["[[estimate-case-build-writes-the-case]]", "[[estimate-case-build-keeps-the-old-form-until-the-writer-is-live]]", "[[estimate-case-build-writes-a-plain-round]]"]
+deferred_by: ["[[decision-case-495]]"]
 origin: raw/2026-09-24/1303/ledger.md#case-391.1
 sprint: migration
 created: 2026-09-24
@@ -66,3 +67,4 @@ When no fork is open, answer with the Case in the chat form of the schema, from 
 - 2026-09-28 updated: a round of case-guppi gives the mechanism with a concrete example, a before and after for each option, case numbers only in the recommended answer, and an unknown term explained (case 477.1) · [[decision-case-477.1]]
 - 2026-09-28 estimate estimate-case-build-writes-a-plain-round added · [[decision-case-477.1]]
 - 2026-09-28 updated: case-guppi answers a request of the main agent for a fact of its Case with the fact alone, under a Fact line (case 477.3) · [[decision-case-477.3]]
+- 2026-09-29 deferred · [[decision-case-495]]

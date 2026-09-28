@@ -44,4 +44,6 @@ What got done: <commit>; <code files and tests>; make test <result>; make style 
 What is not done:
 - 1 — <end>
 - 2 — <end>
-``` When the person approves, commit (`make style` clean, `make test` green but for the tests that `## Baseline` of `work.md` holds), then call `/handoff`.
+```
+
+When the person approves, commit (`make style` clean, `make test` green but for the tests that `## Baseline` of `work.md` holds), then call `/handoff`.

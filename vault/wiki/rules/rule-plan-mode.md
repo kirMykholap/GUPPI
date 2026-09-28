@@ -2,7 +2,7 @@
 type: rule
 kind: MOC
 purpose: Prevents work being planned against stale or contradictory vault state
-status: built
+status: draft
 parent: "[[rule-session]]"
 children: ["[[rule-ask]]", "[[rule-prespec-hook]]", "[[rule-prespec]]", "[[rule-spec-capture]]", "[[rule-case-protocol]]", "[[rule-spec-write]]", "[[rule-spec-reconcile]]", "[[rule-case-build]]", "[[rule-case-check]]", "[[rule-skill-grill-me]]", "[[rule-skill-wait-what]]"]
 estimates: ["[[estimate-plan-mode-verified]]", "[[estimate-plan-mode-names-its-estimates]]"]
@@ -51,3 +51,4 @@ touches no Estimate; an `update` of a `Render` touches no Estimate of the live r
 - 2026-09-25 ref `rule-frame-check` → `rule-case-build` · [[decision-case-425]]
 - 2026-09-27 child rule-skill-grill-me added · [[decision-case-443.1]]
 - 2026-09-28 child rule-skill-wait-what added · [[decision-case-477.2]]
+- 2026-09-29 status: built → draft · cascade

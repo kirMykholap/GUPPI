@@ -2,7 +2,7 @@
 type: rule
 kind: Leaf
 purpose: Prevents the librarian from reading the ledger and the Spec beyond its unticked lines, or from routing a decision by guesswork
-status: built
+status: draft
 enforcement: check
 implementation_ref: [guppi/materialize.py, tests/test_materialize.py]
 parent: "[[rule-documentation]]"
@@ -117,3 +117,4 @@ entry's fields, each with its writer, live in the docstring of `guppi/materializ
 - 2026-09-27 estimate estimate-materialize-judges-a-fence added · [[decision-case-444.1]]
 - 2026-09-27 status: draft → built · cascade
 - 2026-09-28 updated: a written Criterion is the one promise of its Case, not a way to touch two (case 472.3) · [[decision-case-472.3]]
+- 2026-09-29 status: built → draft · cascade

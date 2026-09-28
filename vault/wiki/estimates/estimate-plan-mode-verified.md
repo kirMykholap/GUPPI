@@ -1,8 +1,9 @@
 ---
 type: estimate
 kind: QA
-status: passed
+status: pending
 target: "[[rule-plan-mode]]"
+purpose: Across Plan Mode a create whose purpose the vault already carries is named in the Case before ratification, and the pre-spec hook runs before the plan is written, which is still written
 method: make test-plan-mode, the pipeline over tests/test_spec.py and tests/test_prespec.py; the flagging one live reading by hand, written into the estimate line
 checked: 2026-09-20
 origin: raw/2026-09-09/ledger.md#case-19
@@ -13,16 +14,12 @@ tags: [session, workflow]
 
 ## Criterion
 
-Given:
-The children of `rule-plan-mode` check one mechanism each; this one checks that the two verification points hold across Plan Mode.
-**＋** The vault's answer before a `create` without a `ref` enters the `context` of the Case (case 188).
-
 When:
-A Case proposes a `create`, and later the person approves the plan.
+`case-guppi` builds a Case that proposes a `create` without a `ref` and runs the vault query first, and later the person approves the plan at `ExitPlanMode`.
 
 Then:
 A `create` for a page whose `purpose` an index line already carries is named in the `context` of the Case before ratification.
-**＋** The pre-spec hook fires before the plan is written — and the plan is still written.
+**＋** At `ExitPlanMode` the hook of `rule-prespec-hook` runs before the plan is written, and once it lets the call through, the hook of `rule-spec-capture` still writes the plan into the session's `spec.md`.
 
 ## Result
 
@@ -35,3 +32,4 @@ A `create` for a page whose `purpose` an index line already carries is named in 
 - 2026-09-14 status: pending → passed · raw/2026-09-14/1029/ledger.md#L38
 - 2026-09-20 updated: the recut to the shape of case 193: the paragraph as Given/When/Then, the flag in context by 188, the pre-spec hook, tests/test_prespec.py in method as a field; pending for the reading (case 265.3) · [[decision-case-265.3]]
 - 2026-09-20 status: pending → passed · raw/2026-09-20/0958/ledger.md#L28
+- 2026-09-29 updated: the Criterion replaced whole — When and Then only, Given out, the writer of the plan named; purpose set (case 493.2) · [[decision-case-493.2]]

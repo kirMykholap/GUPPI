@@ -2,11 +2,11 @@
 type: rule
 kind: Leaf
 purpose: Prevents a page that breaks the schema, points nowhere, or claims a status its Estimates do not support from sitting in the vault unnoticed
-status: built
+status: draft
 enforcement: check
 implementation_ref: [guppi/lint.py, tests/test_lint.py, Makefile]
 parent: "[[rule-harness]]"
-estimates: ["[[estimate-lint-catches]]", "[[estimate-lint-finds-a-broken-link]]", "[[estimate-lint-checks-the-statuses]]", "[[estimate-lint-checks-the-method]]", "[[estimate-lint-counts-the-unmigrated]]"]
+estimates: ["[[estimate-lint-catches]]", "[[estimate-lint-finds-a-broken-link]]", "[[estimate-lint-checks-the-statuses]]", "[[estimate-lint-checks-the-method]]", "[[estimate-lint-counts-the-unmigrated]]", "[[estimate-lint-catches-a-broken-fence]]"]
 origin: raw/2026-09-09/ledger.md#case-21
 sprint: migration
 created: 2026-09-09
@@ -75,3 +75,5 @@ classes and their order live in the docstring of `guppi/lint.py`.
 - 2026-09-27 updated: make lint runs backlog --check (case 451.5) · [[decision-case-451.5]]
 - 2026-09-27 status: built → draft · cascade
 - 2026-09-27 status: draft → built · cascade
+- 2026-09-29 estimate estimate-lint-catches-a-broken-fence added · [[decision-case-487.2]]
+- 2026-09-29 status: built → draft · cascade

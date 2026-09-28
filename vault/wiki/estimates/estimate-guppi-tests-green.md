@@ -1,7 +1,7 @@
 ---
 type: estimate
 kind: QA
-status: passed
+status: pending
 target: "[[entity-guppi]]"
 purpose: make test is green on the branch — the whole suite of the harness
 method: make test, 0 failed; read after each Work Mode
@@ -13,20 +13,12 @@ tags: [harness, tests]
 
 ## Criterion
 
-Given:
-`rule-sprint`: a `check` rule with `governs`; the script writes the file from a page, `--check` compares in memory, writes nothing, exit 1 on a difference; once it wrote the file it ticks its Spec lines (250.2).
-**＋** `rule-governed-files-hook` refuses a hand edit of `governs`.
-**＋** Case 240.1: a MOC is a thing whose parts the person named as built; a Leaf is not, and a Leaf carries `parent`. Case 240.2: the guard of an Entity is a separate Rule — the edge `applies_to` (305).
-**＋** Case 299.1: a Case superseded in its own session leaves the Spec, the superseding Case is written whole.
-**＋** `tests/test_glossary.py` fixes the behaviour on a temp vault.
-
 When:
-The librarian applies the entries; a reader opens the graph.
+`make test` runs `uv run pytest -q` over `tests/` on the working branch, after a Work Mode.
 
 Then:
-`entity-guppi` is a MOC without a parent, `children: [entity-sprint, entity-glossary]`, `code_ref: [guppi/, .claude/]`; `entity-sprint` carries `parent: entity-guppi`; `rule-harness` carries `applies_to: [entity-guppi]`, and the cascade writes `rules: [rule-harness]` on `entity-guppi`.
-**＋** `estimate-guppi-tests-green`: `make test` — 0 failed on the branch.
-**－** The four phase MOCs carry no `applies_to` — rules of the process.
+pytest reports no failed test and no error, and `make test` exits 0.
+**－** A skipped test is not a failure.
 
 ## Result
 
@@ -36,3 +28,4 @@ Then:
 
 - 2026-09-22 created · [[decision-case-306.2]]
 - 2026-09-22 status: pending → passed · raw/2026-09-22/0014/ledger.md#L64
+- 2026-09-29 updated: the Criterion replaced whole — the one-time build of entity-guppi out, the purpose kept as When and Then (case 488.5) · [[decision-case-488.5]]

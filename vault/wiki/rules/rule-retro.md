@@ -70,7 +70,9 @@ What got done: <commit>; <code files and tests>; make test <result>; make style 
 What is not done:
 - 1 — <end>
 - 2 — <end>
-``` When the person approves, commit (`make style` clean, `make test` green but for the tests that `## Baseline` of `work.md` holds), then call `/handoff`.
+```
+
+When the person approves, commit (`make style` clean, `make test` green but for the tests that `## Baseline` of `work.md` holds), then call `/handoff`.
 <!-- /rule-retro -->
 
 ## History
@@ -128,3 +130,4 @@ What is not done:
 - 2026-09-28 updated: a red that the Baseline of work.md holds is a note for the handoff under any Expected red, not debt, and the commit does not wait for it (case 479.4) · [[decision-case-479.4]]
 - 2026-09-28 estimate estimate-retro-red-in-the-baseline-is-not-charged added · [[decision-case-479.4]]
 - 2026-09-28 updated: a frontier item is its text alone; its end, with the Case id of a defer, stands only in What is not done, with no ledger line number; the frontier and the close stand in one reply, in the form of a skeleton (case 483) · [[decision-case-483]]
+- 2026-09-29 updated: the closing fence of the report skeleton stands alone on its line, and the commit sentence follows as its own paragraph (case 486) · [[decision-case-486]]

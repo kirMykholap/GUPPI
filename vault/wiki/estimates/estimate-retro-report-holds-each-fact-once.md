@@ -1,7 +1,7 @@
 ---
 type: estimate
 kind: QA
-status: failed
+status: pending
 target: "[[rule-retro]]"
 purpose: Whether the report of /retro holds each fact once — the frontier numbers only what needs an end, the boxes that wait for the librarian one count line and the read lines that wait for a later session one line of slugs; the close holds the Case ids, what got done and the numbers of the frontier with their ends
 method: one reading by hand at the first /retro after the render, recorded in the estimate line
@@ -22,9 +22,11 @@ The frontier is one numbered list of what needs an end in this Retro: each untic
 **＋** A `read` line without its line in the Tail, whose slug this session neither creates nor updates, is debt, and so is a box of code, a test, a command or a migration left unticked.
 **＋** Under the list stand two lines, not numbered: the count of the boxes that wait for the librarian, and the slugs of the `read` lines whose slug this session creates or updates, by a decision line of that slug or by an `update` that renames a page to it.
 **－** The frontier names no box that waits for the librarian one by one, and holds no list of the ratifications.
+**－** An item of the frontier is its text alone: it names no end, and no Case, reading or lesson that ends it.
 **＋** The close has three parts. Ratified is one line with the ids of the Cases ratified, from `uv run guppi tail`, this session's folder first, a Case that a `{supersedes:case N}` line names not counted, and no page.
+**＋** The close stands in the same reply as the frontier.
 **＋** What got done holds the commit, the code files and tests changed, the result of `make test` and `make style`, and the readings and lessons written by their ledger line numbers, except a reading or a lesson that is the end of an item of the frontier.
-**＋** What is not done holds each number of the frontier with the end it took, and its ledger line number where it has one, with no text of the item and no repeat of the two lines under the frontier.
+**＋** What is not done holds each number of the frontier with the end the agent proposes, a short defer with its Case id, and the person approves or changes the ends there; it holds no text of an item, no ledger line number and no repeat of the two lines under the frontier.
 **－** No Case, box, reading or lesson is named in two parts of the report.
 
 ## Result
@@ -38,3 +40,4 @@ The frontier is one numbered list of what needs an end in this Retro: each untic
 - 2026-09-27 status: pending → failed · raw/2026-09-27/1819/ledger.md#L39
 - 2026-09-27 updated: the Criterion replaced whole and the purpose rewritten — the frontier numbers only what needs an end; the close holds the Case ids, what got done and the numbers with their ends (case 468.1) · [[decision-case-468.1]]
 - 2026-09-28 status: pending → failed · raw/2026-09-28/1318/ledger.md#L39
+- 2026-09-28 updated: the Criterion replaced whole — a frontier item names no end; What is not done holds the proposed end of each number with no ledger line number; the frontier and the close stand in one reply (case 483) · [[decision-case-483]]

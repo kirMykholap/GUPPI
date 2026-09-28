@@ -1,10 +1,11 @@
 ---
 type: estimate
 kind: QA
-status: pending
+status: failed
 target: "[[rule-skill-wait-what]]"
 purpose: Whether the skill wait-what writes the agent's last text again in plain words in the chat language, with the open question asked again and no option changed
 method: uv run guppi render --check; by hand, in a session after the render, one run of the skill read in the chat, on the person's /wait-what or on a request in words
+checked: 2026-09-28
 origin: raw/2026-09-28/1318/ledger.md#case-477.2
 sprint: migration
 created: 2026-09-28
@@ -26,6 +27,11 @@ Then:
 **－** No option and no recommendation of the last text changes.
 **－** The skill starts no Case and writes no ledger line.
 
+## Result
+
+2026-09-28, uv run guppi render --check exit 0; by hand, the wait-what run on round 2 Q1 of Case 485: Russian, short sentences, background first, no case number, option and recommendation unchanged, the open question asked again; but it showed the mechanism on a made-up example ("guppi cleanup prints one line per moved file", marked as a made-up example) instead of a real case, and it did not ask the case-guppi of the Case for a real line
+
 ## History
 
 - 2026-09-28 created · [[decision-case-477.2]]
+- 2026-09-28 status: pending → failed · raw/2026-09-28/2000/ledger.md#L26

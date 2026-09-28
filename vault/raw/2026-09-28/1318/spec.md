@@ -102,7 +102,7 @@ update:
 - [x] `tests/test_config.py` — the table, a missing key, an unknown code
 - [x] `tests/test_render.py` — `-k placeholder`: a filled Render, the page unchanged, an unknown placeholder, key and code with nothing written, a run with no placeholder and no `rule-guppi-config`
 - [x] `uv run guppi render`: `guppi.toml`
-- [ ] read `estimate-guppi-config-fills-the-languages`
+- [x] read `estimate-guppi-config-fills-the-languages`
 ```
 
 ### Case 476.2 — The Case schema and the agent files name the languages set in rule-guppi-config
@@ -213,7 +213,7 @@ update:
 - [x] `guppi/prespec.py` — `check_untranslated` reads `guppi.toml` through `guppi/config.py`; the finding names the language; a missing file or an unknown code is one finding that names `guppi.toml`
 - [x] `tests/test_prespec.py` — the tests `-k cyrillic` renamed `-k script`: `en` with a Cyrillic letter, a plan with none, a short form under `## Deferred`, a missing `guppi.toml`, an unknown code
 - [x] `uv run guppi render`: `.claude/skills/pre-spec/SKILL.md`
-- [ ] read `estimate-language-spec-prose-in-english`
+- [x] read `estimate-language-spec-prose-in-english`
 ```
 
 ### Case 476.4 — rule-language names the languages set in rule-guppi-config, and its promise leaves the chat
@@ -274,7 +274,7 @@ update:
 - [x] update `estimate-language-followed`
 - [x] update `insight-session-reply-language-follows-the-english-text-read`
 - [x] `uv run guppi render`: `CLAUDE.md`
-- [ ] read `estimate-language-followed` — by hand, in the session after the render
+- [x] read `estimate-language-followed` — by hand, in the session after the render
 ```
 
 ## Case 477 — A plain round, the skill wait-what, and a request for a plain explanation that is no failure
@@ -334,7 +334,7 @@ update:
 - [x] update `rule-case-build`
 - [x] create `estimate-case-build-writes-a-plain-round`
 - [x] `uv run guppi render`: `.claude/agents/case-guppi.md`
-- [ ] read `estimate-case-build-writes-a-plain-round`
+- [x] read `estimate-case-build-writes-a-plain-round`
 ```
 
 ### Case 477.2 — The skill wait-what writes the last text again in plain words
@@ -408,7 +408,7 @@ create:
 - [x] create `rule-skill-wait-what`
 - [x] create `estimate-skill-wait-what-re-pitches`
 - [x] `uv run guppi render`: `.claude/skills/wait-what/SKILL.md`
-- [ ] read `estimate-skill-wait-what-re-pitches`
+- [x] read `estimate-skill-wait-what-re-pitches`
 ```
 
 ### Case 477.3 — The main agent answers a request for a plain explanation, case-guppi gives the facts
@@ -464,7 +464,7 @@ update:
 - [x] update `estimate-case-protocol-shows-the-built-case`
 - [x] `uv run guppi render`: `vault/wiki/case-schema.md`
 - [x] `uv run guppi render`: `.claude/agents/case-guppi.md`
-- [ ] read `estimate-case-protocol-shows-the-built-case`
+- [x] read `estimate-case-protocol-shows-the-built-case`
 ```
 
 ### Case 477.4 — A request for a plain explanation is no complaint about the agent's text
@@ -548,7 +548,7 @@ update:
 ```tasks
 - [x] update `estimate-sprint-migration-file-route-gone`
 - [x] `uv run guppi sprint`
-- [ ] read `estimate-sprint-migration-file-route-gone`
+- [x] read `estimate-sprint-migration-file-route-gone`
 ```
 
 ### Case 478.2 — A note in Slice 5: the sprint page and its Estimates go to the archive together at the close
@@ -647,7 +647,7 @@ update:
 - [x] update `estimate-spec-capture-offers-the-fork`
 - [x] `guppi/spec.py` — `fork_line`: ask the person by `AskUserQuestion` with two options, `/work` (Work Mode on the Spec now) and `/carry` (conserve it for a later session, the brief rewritten, `carry.md` as the mark, a commit), start nothing until answered, then call the skill picked; the module docstring names `/work`
 - [x] `tests/test_spec.py` — `-k fork`: the line holds `AskUserQuestion`, `/work` and `/carry`, the session folder and the Spec file; the fork printed again when the plan was already there; no fork without a Spec
-- [ ] read `estimate-spec-capture-offers-the-fork` — by hand, at the first `ExitPlanMode` of a session after the render
+- [x] read `estimate-spec-capture-offers-the-fork` — by hand, at the first `ExitPlanMode` of a session after the render
 ```
 
 ### Case 479.2 — rule-work-mode holds the skill /work: branch, baseline, tasks in order, the mark of an expected red

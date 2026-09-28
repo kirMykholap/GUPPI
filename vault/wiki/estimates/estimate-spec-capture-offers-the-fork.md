@@ -1,11 +1,11 @@
 ---
 type: estimate
 kind: QA
-status: pending
+status: passed
 target: "[[rule-spec-capture]]"
 purpose: "The hook prints the fork after the Spec is written: the agent asks by AskUserQuestion with the options /work and /carry, and calls the skill picked"
 method: "uv run pytest tests/test_spec.py -k fork; by hand, the first ExitPlanMode of a session after the render: the fork asked by AskUserQuestion with /work and /carry, and the skill picked called"
-checked: 2026-09-20
+checked: 2026-09-28
 origin: raw/2026-09-16/1034/ledger.md#case-190.5
 sprint: migration
 created: 2026-09-16
@@ -31,7 +31,7 @@ The stdout of the hook is one JSON object, `hookSpecificOutput` with `hookEventN
 
 ## Result
 
-2026-09-20, the first ExitPlanMode of session 0740 (08:55:25): the result carried the fork as PostToolUse additionalContext — the Spec in vault/raw/2026-09-20/0740/spec.md, Work Mode or /carry with carry.md as the mark, nothing started until the person answers; the Spec copied whole, 245 lines; pytest tests/test_spec.py green at e69fd95
+2026-09-28, uv run pytest tests/test_spec.py -k fork: 3 passed; by hand, session 2000: the ExitPlanMode result carried the fork line with the session folder and spec.md, the agent asked by AskUserQuestion with /work and /carry and started nothing before the answer, the person picked /work and the agent called the skill work
 
 ## History
 
@@ -41,3 +41,4 @@ The stdout of the hook is one JSON object, `hookSpecificOutput` with `hookEventN
 - 2026-09-20 updated: the Criterion replaced whole — the fork as additionalContext, read live (case 255) · [[decision-case-255]]
 - 2026-09-20 status: pending → passed · raw/2026-09-20/0740/ledger.md#L12
 - 2026-09-28 updated: the Criterion replaced whole — the fork is asked by AskUserQuestion with /work and /carry, and the skill picked is called (case 479.1) · [[decision-case-479.1]]
+- 2026-09-28 status: pending → passed · raw/2026-09-28/2000/ledger.md#L21

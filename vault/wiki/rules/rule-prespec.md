@@ -2,7 +2,7 @@
 type: rule
 kind: Leaf
 purpose: Prevents a set of ratified decisions from reaching the Spec with a contradiction between them or with the vault
-status: built
+status: draft
 enforcement: render
 governs: .claude/skills/pre-spec/SKILL.md
 render_mode: full
@@ -148,3 +148,4 @@ finding as a Case, or say in one line why it is already known. Then exit Plan Mo
 - 2026-09-28 updated: pre-spec counts every Estimate item that replaces a Criterion, written or lifted, by names_a_part (case 472.3) · [[decision-case-472.3]]
 - 2026-09-28 updated: the finding reads guppi.toml and looks for a letter outside the script of documentation_lang, not for Cyrillic (case 476.3) · [[decision-case-476.3]]
 - 2026-09-28 status: draft → built · cascade
+- 2026-09-28 status: built → draft · cascade

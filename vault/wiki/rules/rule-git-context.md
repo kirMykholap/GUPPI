@@ -2,7 +2,7 @@
 type: rule
 kind: Leaf
 purpose: Prevents a session from starting on a branch it does not know, or pulling mid-session
-status: built
+status: draft
 enforcement: render
 governs: .claude/skills/hi/SKILL.md
 render_mode: partial
@@ -54,3 +54,4 @@ the owner left both as they are until Slice 5.
 - 2026-09-17 deferred · [[decision-case-220]]
 - 2026-09-18 deferred · [[decision-case-243]]
 - 2026-09-20 updated: a failing pull is a Frontier item unless sprint.md names its decision (case 268.2) · [[decision-case-268.2]]
+- 2026-09-28 status: built → draft · cascade

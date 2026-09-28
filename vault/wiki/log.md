@@ -4326,3 +4326,55 @@ instruction. The global feed; a page's own `## History` is the per-page view.
 - 2026-09-28 decisions/decision-case-307 archived · cleanup
 - 2026-09-28 decisions/decision-case-322 archived · cleanup
 - 2026-09-28 decisions/decision-case-447 archived · cleanup
+- 2026-09-28 decisions/decision-case-482 created · raw/2026-09-28/2000/ledger.md#case-482 · generate
+- 2026-09-28 rules/rule-close updated: the commit takes guppi.toml, the settings file rendered at the root (case 482) · [[decision-case-482]] · generate
+- 2026-09-28 estimates/estimate-close-commits updated: the Criterion replaced whole — the commit takes guppi.toml, and no rendered file stays untracked (case 482) · [[decision-case-482]] · generate
+- 2026-09-28 decisions/decision-case-483 created · raw/2026-09-28/2000/ledger.md#case-483 · generate
+- 2026-09-28 rules/rule-retro updated: a frontier item is its text alone; its end, with the Case id of a defer, stands only in What is not done, with no ledger line number; the frontier and the close stand in one reply, in the form of a skeleton (case 483) · [[decision-case-483]] · generate
+- 2026-09-28 estimates/estimate-retro-report-holds-each-fact-once updated: the Criterion replaced whole — a frontier item names no end; What is not done holds the proposed end of each number with no ledger line number; the frontier and the close stand in one reply (case 483) · [[decision-case-483]] · generate
+- 2026-09-28 decisions/decision-case-484.1 created · raw/2026-09-28/2000/ledger.md#case-484.1 · generate
+- 2026-09-28 estimates/estimate-prespec-catches-a-command-line-off-form updated: the Criterion replaced whole — When and Then only, Given and the bounds line out (case 484.1) · [[decision-case-484.1]] · generate
+- 2026-09-28 decisions/decision-case-484.2 created · raw/2026-09-28/2000/ledger.md#case-484.2 · generate
+- 2026-09-28 estimates/estimate-prespec-catches-a-superseded-case updated: the Criterion replaced whole — When and Then only, Given and the bounds lines out (case 484.2) · [[decision-case-484.2]] · generate
+- 2026-09-28 decisions/decision-case-484.3 created · raw/2026-09-28/2000/ledger.md#case-484.3 · generate
+- 2026-09-28 estimates/estimate-prespec-catches-a-method-without-a-form updated: the Criterion replaced whole — When and Then only, Given and the bounds line out (case 484.3) · [[decision-case-484.3]] · generate
+- 2026-09-28 decisions/decision-case-484.4 created · raw/2026-09-28/2000/ledger.md#case-484.4 · generate
+- 2026-09-28 estimates/estimate-prespec-catches-an-unwrapped-render updated: the Criterion replaced whole — When and Then only, Given out (case 484.4) · [[decision-case-484.4]] · generate
+- 2026-09-28 decisions/decision-case-484.5 created · raw/2026-09-28/2000/ledger.md#case-484.5 · generate
+- 2026-09-28 estimates/estimate-prespec-catches-bare-wikilinks updated: the Criterion replaced whole — When and Then only, Given and the bounds line out (case 484.5) · [[decision-case-484.5]] · generate
+- 2026-09-28 decisions/decision-case-484.6 created · raw/2026-09-28/2000/ledger.md#case-484.6 · generate
+- 2026-09-28 estimates/estimate-prespec-simulates-the-pairs updated: the Criterion replaced whole — When and Then only, Given out (case 484.6) · [[decision-case-484.6]] · generate
+- 2026-09-28 decisions/decision-case-484.7 created · raw/2026-09-28/2000/ledger.md#case-484.7 · generate
+- 2026-09-28 entities/entity-sprint-migration updated: Slice 3g: the Estimates of rule-prespec recut to When and Then; the note on every other Estimate stands (case 484) · [[decision-case-484.7]] · generate
+- 2026-09-28 decisions/decision-case-485.1 created · raw/2026-09-28/2000/ledger.md#case-485.1 · generate
+- 2026-09-28 estimates/estimate-session-start-context updated: the Criterion replaced whole — one When and Then, the session folder of the ledger; purpose and method set, Context and Method out (case 485.1) · [[decision-case-485.1]] · generate
+- 2026-09-28 decisions/decision-case-485.2 created · raw/2026-09-28/2000/ledger.md#case-485.2 · generate
+- 2026-09-28 estimates/estimate-hi-no-read-calls updated: the Criterion replaced whole — one When and Then; the hi line left to estimate-event-log-records, the block bookkeeping out; purpose and method set, Context and Method out (case 485.2) · [[decision-case-485.2]] · generate
+- 2026-09-28 decisions/decision-case-485.3 created · raw/2026-09-28/2000/ledger.md#case-485.3 · generate
+- 2026-09-28 estimates/estimate-git-context-current updated: the Criterion replaced whole — one When and Then; the Frontier item left to estimate-hi-writes-frontier, the block bookkeeping out; purpose and method set, Context and Method out (case 485.3) · [[decision-case-485.3]] · generate
+- 2026-09-28 decisions/decision-case-485.4 created · raw/2026-09-28/2000/ledger.md#case-485.4 · generate
+- 2026-09-28 estimates/estimate-github-issues-listed updated: the Criterion replaced whole — one When and Then; purpose and method set, Context and Method out (case 485.4) · [[decision-case-485.4]] · generate
+- 2026-09-28 decisions/decision-case-485.5 created · raw/2026-09-28/2000/ledger.md#case-485.5 · generate
+- 2026-09-28 estimates/estimate-ledger-tail updated: the Criterion replaced whole — one When and Then; purpose and method set, Context and Method out (case 485.5) · [[decision-case-485.5]] · generate
+- 2026-09-28 decisions/decision-case-485.6 created · raw/2026-09-28/2000/ledger.md#case-485.6 · generate
+- 2026-09-28 entities/entity-sprint-migration updated: Slice 3g: the old-layout Estimates of session start and /hi recut to one Criterion; the note on the old layout stands (case 485) · [[decision-case-485.6]] · generate
+- 2026-09-28 estimates/estimate-guppi-config-fills-the-languages status: pending → passed · raw/2026-09-28/2000/ledger.md#L18 · generate
+- 2026-09-28 estimates/estimate-language-spec-prose-in-english status: pending → passed · raw/2026-09-28/2000/ledger.md#L19 · generate
+- 2026-09-28 estimates/estimate-language-followed status: pending → passed · raw/2026-09-28/2000/ledger.md#L20 · generate
+- 2026-09-28 estimates/estimate-spec-capture-offers-the-fork status: pending → passed · raw/2026-09-28/2000/ledger.md#L21 · generate
+- 2026-09-28 estimates/estimate-case-check-notes-a-criterion-line-not-carried status: pending → passed · raw/2026-09-28/2000/ledger.md#L22 · generate
+- 2026-09-28 estimates/estimate-sprint-migration-file-route-gone status: pending → passed · raw/2026-09-28/2000/ledger.md#L23 · generate
+- 2026-09-28 estimates/estimate-case-protocol-shows-the-built-case status: pending → passed · raw/2026-09-28/2000/ledger.md#L24 · generate
+- 2026-09-28 estimates/estimate-case-build-writes-a-plain-round status: pending → failed · raw/2026-09-28/2000/ledger.md#L25 · generate
+- 2026-09-28 estimates/estimate-skill-wait-what-re-pitches status: pending → failed · raw/2026-09-28/2000/ledger.md#L26 · generate
+- 2026-09-28 lessons/lesson-wait-what-invents-an-example created · raw/2026-09-28/2000/ledger.md#L27 · generate
+- 2026-09-28 rules/rule-close status: built → draft · cascade · generate
+- 2026-09-28 rules/rule-git-context status: built → draft · cascade · generate
+- 2026-09-28 rules/rule-github-issues status: built → draft · cascade · generate
+- 2026-09-28 rules/rule-guppi-config status: draft → built · cascade · generate
+- 2026-09-28 rules/rule-language status: draft → built · cascade · generate
+- 2026-09-28 rules/rule-ledger-tail status: built → draft · cascade · generate
+- 2026-09-28 rules/rule-prespec status: built → draft · cascade · generate
+- 2026-09-28 rules/rule-session-start status: built → draft · cascade · generate
+- 2026-09-28 rules/rule-skill-hi status: built → draft · cascade · generate
+- 2026-09-28 rules/rule-spec-capture status: draft → built · cascade · generate

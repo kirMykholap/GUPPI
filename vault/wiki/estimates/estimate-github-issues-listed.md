@@ -1,28 +1,24 @@
 ---
 type: estimate
 kind: QA
-status: passed
+status: pending
 target: "[[rule-github-issues]]"
+purpose: At /hi the context holds the open issues or the reason gh gives for none, and the skill completes
+method: by hand at the /hi of the next session, in the current gh state, written into the estimate line
 origin: raw/2026-09-09/ledger.md#case-11
 sprint: migration
 created: 2026-09-09
 tags: [session, harness, github]
 ---
 
-## Context
-
-`gh` fails on authentication, unlike anything else in the skill, and on 2026-09-09 it is
-not logged in. The rule is satisfied by the list or by the named reason there is none;
-what must not happen is a silent blank.
-
 ## Criterion
 
-The open-issue list, or `gh`'s own message naming why there is none, is in context and
-the skill completes either way.
+When:
+The person invokes `/hi`, and `.claude/skills/hi/SKILL.md` runs `gh issue list --limit 5`.
 
-## Method
-
-One reading at a session start, by hand, in the current `gh` state.
+Then:
+The line `Open issues:` holds the list of open issues, or the message of `gh` itself that names why there is none.
+**＋** Neither answer stops `/hi`: the blocks after the line still run.
 
 ## Result
 
@@ -33,3 +29,4 @@ login`) was in context and the skill completed (2026-09-09, session B).
 
 - 2026-09-09 created · raw/2026-09-09/ledger.md#case-11
 - 2026-09-09 status: pending → passed · written by hand, no generator yet
+- 2026-09-28 updated: the Criterion replaced whole — one When and Then; purpose and method set, Context and Method out (case 485.4) · [[decision-case-485.4]]

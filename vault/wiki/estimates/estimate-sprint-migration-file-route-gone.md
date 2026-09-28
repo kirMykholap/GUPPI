@@ -1,10 +1,11 @@
 ---
 type: estimate
 kind: QA
-status: pending
+status: passed
 target: "[[entity-sprint-migration]]"
 purpose: The file route is out of the scripts — no RULE_CLASS, rule_class, applied by hand or prose_names in guppi/; an update item with file is a pre-spec finding; a slug without a prefix lands category unknown; tests green and no lint finding on the schema.yaml of a category folder
 method: rg 'RULE_CLASS|rule_class|applied by hand|prose_names' guppi/ empty; uv run pytest tests/test_generate.py -k unknown — the update applied in any folder, the create and the page-less defer failed, the delete outside the vault; make test; make lint — no line on a <category>/schema
+checked: 2026-09-28
 origin: raw/2026-09-22/1121/ledger.md#case-320
 sprint: migration
 created: 2026-09-22
@@ -30,7 +31,7 @@ No file under `guppi/` holds `RULE_CLASS`, `rule_class`, `applied by hand` or `p
 
 ## Result
 
-2026-09-22, grep -rn "RULE_CLASS|rule_class|applied by hand|prose_names" guppi/: empty; make test 548 passed, 2 skipped; make lint — no finding on a <category>/schema
+2026-09-28, rg over guppi/ for RULE_CLASS, rule_class, applied by hand, prose_names: none in tracked files (grep finds them only in two stale .pyc files under guppi/__pycache__/, which rg skips by .gitignore); uv run pytest tests/test_generate.py -k unknown: 4 passed; make test 876 passed, 2 skipped; make lint prints no line on a <category>/schema
 
 ## History
 
@@ -38,3 +39,4 @@ No file under `guppi/` holds `RULE_CLASS`, `rule_class`, `applied by hand` or `p
 - 2026-09-22 status: pending → passed · raw/2026-09-22/1121/ledger.md#L95
 - 2026-09-27 updated: the Criterion replaced whole — an update of category unknown applies, a delete applies outside the vault, a create and a page-less defer fail; Given out; the method without theme 5 (case 464) · [[decision-case-464]]
 - 2026-09-28 updated: the Criterion replaced whole — the lint line names the findings on a <category>/schema, and a finding on a page is left to estimate-sprint-migration-lint-clean; purpose and method reworded to match (case 478.1) · [[decision-case-478.1]]
+- 2026-09-28 status: pending → passed · raw/2026-09-28/2000/ledger.md#L23

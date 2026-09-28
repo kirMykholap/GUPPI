@@ -1,10 +1,11 @@
 ---
 type: estimate
 kind: QA
-status: pending
+status: passed
 target: "[[rule-guppi-config]]"
 purpose: Whether the render puts the names of the languages set in the Render of rule-guppi-config in place of the placeholders of every Render, and stops with nothing written on a placeholder, key or code it cannot resolve
 method: "uv run pytest tests/test_config.py and uv run pytest tests/test_render.py -k placeholder; by hand, the first render after the librarian's run: CLAUDE.md names English and Russian where rule-language holds the placeholders, and guppi.toml holds documentation_lang and chat_lang"
+checked: 2026-09-28
 origin: raw/2026-09-28/1318/ledger.md#case-476.1
 sprint: migration
 created: 2026-09-28
@@ -25,6 +26,11 @@ Each `{{documentation_lang}}` and `{{chat_lang}}` in the `## Render` of a render
 **－** A run in which no `## Render` holds a placeholder reads no `rule-guppi-config` and needs none.
 **－** The render reads the codes from the `## Render` of `rule-guppi-config`, never from `guppi.toml`, which is its own output.
 
+## Result
+
+2026-09-28, uv run pytest tests/test_config.py (9 passed) and uv run pytest tests/test_render.py -k placeholder (8 passed); by hand, session 2000: CLAUDE.md `## Language` names English and Russian, guppi.toml holds documentation_lang = "en" and chat_lang = "ru", uv run guppi render --check exit 0
+
 ## History
 
 - 2026-09-28 created · [[decision-case-476.1]]
+- 2026-09-28 status: pending → passed · raw/2026-09-28/2000/ledger.md#L18

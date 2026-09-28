@@ -1,45 +1,28 @@
 ---
 type: estimate
 kind: QA
-status: passed
+status: pending
 target: "[[rule-ledger-tail]]"
+purpose: guppi tail prints every ledger record line that no materialize.yaml covers, and /hi shows it as Tail
+method: "pytest tests/test_tail.py; by hand at the /hi of the next session: the Tail line against a run of uv run guppi tail by hand, written into the estimate line"
 origin: raw/2026-09-13/ledger.md#case-101.2
 sprint: migration
 created: 2026-09-13
 tags: [session, harness, ledger]
 ---
 
-## Context
-
-`/hi` sees nothing of what was written after the librarian's commit; a failed reading and a lesson wait one session more. `rule-ledger-tail` cannot be taken up as a `create`: the placeholder page exists and `generate` (`guppi/generate.py:289`) answers with a collision; none of the three placeholders has a way to be filled.
-
 ## Criterion
 
-### case 101.2
-
 When:
-`uv run guppi tail` runs — from the render of `/hi`, or by hand.
+`uv run guppi tail` runs, from the line `Tail:` of `.claude/skills/hi/SKILL.md` or by hand, over every `ledger.md` under `vault/raw/` and the `materialize.yaml` beside each.
 
 Then:
-For every `ledger.md` under `vault/raw/` — the date-level one of a date first, then its session ledgers in folder order, dates ascending — the script prints every line that `parse_line` reads as a record and whose number is neither in the `line` or `folded` of an entry nor under `unparsed` in the `materialize.yaml` beside that ledger, as `<date> L<n>: <the line>` or `<date>/<HHMM> L<n>: <the line>`.
+The script walks the date-level ledger of a date first, then its session ledgers in folder order, dates ascending. It prints every line that `parse_line` reads as a record and whose number is neither in the `line` or `folded` of an entry nor under `unparsed` of the yaml beside it. Each printed line opens with the date, and for a session ledger with the date, a slash and the session folder, then `L<n>:` and the line as the ledger holds it.
 **＋** A ledger without a yaml beside it prints every record line it has.
 **＋** A ledger fully covered prints nothing; with an empty tail the output is empty.
-**＋** Exit 0 always; a read error on one ledger is a stderr line and the walk goes on.
-**＋** Render (`partial`, `.claude/skills/hi/SKILL.md`): between the markers `<!-- rule-ledger-tail -->` one line, `Tail: !`uv run guppi tail``.
-**－** The coverage of a line is the function `guppi archive` uses: the two scripts cannot disagree on what "named in the yaml" means.
-
-## Method
-
-Unit, `tests/test_tail.py`: a fixture with a date-level ledger whose yaml covers
-every record line, a session ledger with a yaml and two record lines outside it (an
-estimate and a lesson after the last entry), a session ledger with no yaml, and a
-ledger holding a line outside the grammar; one run prints exactly the two uncovered
-lines of the second in the `<date>/<HHMM> L<n>: ` form and every record line of the
-third, in order, nothing of the first, nothing for the ungrammatical line, exit 0; an
-unreadable yaml is one stderr line and the other ledgers still print. Live,
-2026-09-13, by hand: `uv run guppi tail` after the librarian's commit of this session
-prints the readings and lessons written after it and nothing else; the next `/hi`
-carries them under `Tail:`.
+**＋** Exit 0 always; a ledger that cannot be read is a line on stderr, and the walk goes on.
+**＋** The Render of `rule-ledger-tail`, `partial`, puts one line into `.claude/skills/hi/SKILL.md` between its markers: `` Tail: !`uv run guppi tail` ``.
+**－** `guppi/tail.py` holds no judgment of coverage of its own: the coverage of a line is `uncovered_lines` of `guppi/archive.py`, the one `guppi archive` uses.
 
 ## Result
 
@@ -49,3 +32,4 @@ block 101.2: at /hi of 07:47 Tail: printed nothing — both units of 2026-09-13 
 
 - 2026-09-13 created · [[decision-case-101.2]]
 - 2026-09-14 status: pending → passed · raw/2026-09-14/0747/ledger.md#L45
+- 2026-09-28 updated: the Criterion replaced whole — one When and Then; purpose and method set, Context and Method out (case 485.5) · [[decision-case-485.5]]

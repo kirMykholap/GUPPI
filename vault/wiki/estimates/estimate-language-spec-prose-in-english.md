@@ -1,11 +1,11 @@
 ---
 type: estimate
 kind: QA
-status: pending
+status: passed
 target: "[[rule-language]]"
 purpose: Pre-spec finds a name, context or problem of a Case of the plan that holds a letter outside the script of the documentation language of guppi.toml, a short form under Deferred included
 method: uv run pytest tests/test_prespec.py -k script
-checked: 2026-09-27
+checked: 2026-09-28
 origin: raw/2026-09-26/2300/ledger.md#case-445.4
 sprint: migration
 created: 2026-09-26
@@ -28,10 +28,11 @@ A name, `context` or `problem` of a Case of the plan that holds a letter outside
 
 ## Result
 
-2026-09-27, uv run pytest tests/test_prespec.py -k cyrillic: 4 passed; live, session 1819: prespec --check reported "case 458: its context still holds Cyrillic"
+2026-09-28, uv run pytest tests/test_prespec.py -k script: 7 passed
 
 ## History
 
 - 2026-09-27 created · [[decision-case-445.4]]
 - 2026-09-27 status: pending → passed · raw/2026-09-27/1819/ledger.md#L33
 - 2026-09-28 updated: the Criterion replaced whole — a letter outside the script of documentation_lang, read from guppi.toml, not a Cyrillic letter (case 476.3) · [[decision-case-476.3]]
+- 2026-09-28 status: pending → passed · raw/2026-09-28/2000/ledger.md#L19

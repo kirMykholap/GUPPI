@@ -105,3 +105,5 @@ No file of `vault/wiki/` is written by hand.
 - 2026-09-27 updated: /grill-me has its rule page (case 443.1) · [[decision-case-443.1]]
 - 2026-09-28 updated: a note in Slice 5: the sprint page and its Estimates go to the archive together at the close of a sprint, once each has passed (case 478.2) · [[decision-case-478.2]]
 - 2026-09-28 updated: the Backlog entry of rule-work-mode names what is left past the skill /work; the sentence on a red check stands in rule-retro (case 479.2) · [[decision-case-479.2]]
+- 2026-09-28 updated: Slice 3g: the Estimates of rule-prespec recut to When and Then; the note on every other Estimate stands (case 484) · [[decision-case-484.7]]
+- 2026-09-28 updated: Slice 3g: the old-layout Estimates of session start and /hi recut to one Criterion; the note on the old layout stands (case 485) · [[decision-case-485.6]]

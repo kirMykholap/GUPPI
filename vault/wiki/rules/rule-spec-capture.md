@@ -2,7 +2,7 @@
 type: rule
 kind: Leaf
 purpose: Prevents an approved Spec from existing only in Claude Code's plan file, outside the repository
-status: draft
+status: built
 enforcement: hook
 implementation_ref: [guppi/spec.py, .claude/settings.json]
 parent: "[[rule-plan-mode]]"
@@ -48,3 +48,4 @@ into the context — `/work`, Work Mode on the Spec, or `/carry` to conserve it 
 - 2026-09-27 status: draft → built · cascade
 - 2026-09-28 updated: the fork is asked by AskUserQuestion with the two options /work and /carry, and the agent calls the skill picked (case 479.1) · [[decision-case-479.1]]
 - 2026-09-28 status: built → draft · cascade
+- 2026-09-28 status: draft → built · cascade

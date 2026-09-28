@@ -1,7 +1,7 @@
 ---
 type: estimate
 kind: QA
-status: passed
+status: pending
 target: "[[rule-prespec]]"
 purpose: Whether pre-spec catches an anchor that misses or is not unique once the pairs of the Spec are applied in entry order
 method: pytest tests/test_prespec.py on a temp plan over temp pages — an anchor that misses, one that hits twice, and a pair whose old is produced by an earlier Case
@@ -13,14 +13,8 @@ tags: [harness, workflow]
 
 ## Criterion
 
-Given:
-`prespec --check` reads the plan and the live pages of the vault; it has no check of an anchor at all.
-**＋** `generate` applies the pairs in entry order and matches with whitespace collapsed, exactly one occurrence.
-**＋** The pairs of one Spec can touch one span: 314.2 against 310.6.
-**＋** `tests/test_prespec.py` fixes `--check` on a temp plan over temp pages.
-
 When:
-`uv run guppi prespec --check <plan> --session <id>` reads the plan before the Spec is approved.
+`uv run guppi prespec --check <plan> --session <id>` reads a plan whose Cases carry `replace` or `reword` pairs, and the live pages of the vault, before the Spec is approved.
 
 Then:
 The `replace` and `reword` pairs of every Case of the plan are applied in entry order to copies of the pages in memory, whitespace collapsed as `generate` collapses it; nothing is written to disk.
@@ -36,3 +30,4 @@ The `replace` and `reword` pairs of every Case of the plan are applied in entry 
 
 - 2026-09-23 created · [[decision-case-351]]
 - 2026-09-23 status: pending → passed · raw/2026-09-22/2046/ledger.md#L36
+- 2026-09-28 updated: the Criterion replaced whole — When and Then only, Given out (case 484.6) · [[decision-case-484.6]]

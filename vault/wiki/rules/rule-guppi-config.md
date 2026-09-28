@@ -2,7 +2,7 @@
 type: rule
 kind: Leaf
 purpose: Prevents a setting of guppi from being written by hand into the texts that use it, or changed outside a ratified decision
-status: draft
+status: built
 enforcement: render
 implementation_ref: [guppi/config.py, tests/test_config.py]
 governs: guppi.toml
@@ -31,3 +31,4 @@ chat_lang = "ru"
 
 - 2026-09-28 created · [[decision-case-476.1]]
 - 2026-09-28 estimate estimate-guppi-config-fills-the-languages added · [[decision-case-476.1]]
+- 2026-09-28 status: draft → built · cascade

@@ -1,7 +1,7 @@
 ---
 type: estimate
 kind: QA
-status: pending
+status: passed
 target: "[[rule-case-protocol]]"
 purpose: A Case is built by case-guppi and shown by the main agent unchanged
 method: by hand, the Cases of a session at its close, their context against the Agent calls and their showings against the SendUserFile calls of the transcript, and each request for a plain explanation against the Skill and SendMessage calls
@@ -32,7 +32,7 @@ The main agent dispatches `case-guppi` with the Case id, the Frontier item and i
 
 ## Result
 
-2026-09-28, by hand, session 0000 at Retro: Cases 470, 471, 472, 473 and 474 each dispatched to case-guppi with the id, the Frontier item, its source and the person's words in the prompt, after the plan file stood with its title line; every round shown in Russian line by line with its ❓ and ➡️ lines and the agent's text after one rule; every showing by SendUserFile with display render on raw/2026-09-28/0000/cases/case-<N>.md, a Russian short text and the ratification as the answer held it; the changed Cases after pre-spec sent to their case-guppi and shown again; the person's answers were sent in full, but with the agent's reading of them added in parentheses; the person's requests to explain a round were answered by the agent itself, as questions on a round, not on a shown Case
+2026-09-28, by hand, session 2000 before its Retro: Cases 482-485 each dispatched to case-guppi after the plan file stood with its title line; every answer to a round and each question sent by SendMessage verbatim; the plain explanation of round 2 Q1 on Case 485 given by the skill wait-what, and the fact on Q2 asked of case-guppi and answered under **Fact:**; each round shown translated question by question, each Case shown by SendUserFile display render with a Russian short text and the ratification as the answer holds it; the pre-spec findings went to each case-guppi and the three Cases were shown and ratified again; no given, when, then or tasks in the chat
 
 ## History
 
@@ -48,3 +48,4 @@ The main agent dispatches `case-guppi` with the Case id, the Frontier item and i
 - 2026-09-27 updated: the Criterion replaced whole — the context of a first round shown translated before its first question (case 466.2) · [[decision-case-466.2]]
 - 2026-09-28 status: pending → passed · raw/2026-09-28/0000/ledger.md#L34
 - 2026-09-28 updated: the Criterion replaced whole — a request for a plain explanation is answered by the main agent with the skill wait-what, and case-guppi gives only a fact, under a Fact line that is not a round (case 477.3) · [[decision-case-477.3]]
+- 2026-09-28 status: pending → passed · raw/2026-09-28/2000/ledger.md#L24

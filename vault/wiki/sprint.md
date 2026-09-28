@@ -15,7 +15,7 @@ Rule-class files dissolved, `index.md` gone, the `file` route out of the scripts
 - [ ] make test green on the last commit of migration and the branch merged into main · pending
 - [x] No Rule-class file at the close of Slice 3f — the schemas rendered from rule pages, the glossary from entity-glossary, index.md gone, the file route out of the scripts · passed
 - [x] index.md is gone and no live page, harness file or script docstring points at a §N of it or at the file as a source · passed
-- [ ] The file route is out of the scripts — no RULE_CLASS, rule_class, applied by hand or prose_names in guppi/; an update item with file is a pre-spec finding; a slug without a prefix lands category unknown; tests green and no lint finding on the schema.yaml of a category folder · pending
+- [x] The file route is out of the scripts — no RULE_CLASS, rule_class, applied by hand or prose_names in guppi/; an update item with file is a pre-spec finding; a slug without a prefix lands category unknown; tests green and no lint finding on the schema.yaml of a category folder · passed
 
 ## Milestones
 

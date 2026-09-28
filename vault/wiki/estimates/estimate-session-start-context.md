@@ -1,31 +1,24 @@
 ---
 type: estimate
 kind: QA
-status: passed
+status: pending
 target: "[[rule-session-start]]"
+purpose: A ledger line reaches the session's ledger only in a session opened with /hi, and a refusal tells the person why
+method: "make test-session-start; by hand: one session opened without /hi whose reply carries a LEDGER block, and the ledger of the next working session after its first ratification, written into the estimate line"
 origin: raw/2026-09-09/ledger.md#case-12
 sprint: migration
 created: 2026-09-09
 tags: [session, workflow, hooks]
 ---
 
-## Context
-
-The children check that each mechanism works on its own. This check is the cross-cutting
-one: that the distinction between an ordinary session and a working session holds end to
-end, from the mark `/hi` leaves to what the person sees when a line is refused.
-
 ## Criterion
 
-In a session opened without `/hi`, a `- decision[...]` line inside a LEDGER block does not
-reach `raw/<date>/ledger.md` and the reply the person sees names the cause. In a session
-opened with `/hi`, the same line does reach it, with its time. Both readings taken end to
-end.
+When:
+The main agent ends a reply that carries a `- decision[...]` line inside a `LEDGER` block, and the `Stop` hook `guppi/ledger.py` looks in `vault/raw/<date>/event_log.md` for a `hi` line of the session.
 
-## Method
-
-`make test-session-start`, the pipeline over `tests/test_event.py` and
-`tests/test_ledger.py`; the two end-to-end readings by hand, recorded in the estimate line.
+Then:
+In a session opened without `/hi`, the line reaches no ledger of the session, and the reply the person sees names the cause.
+**＋** In a session opened with `/hi`, the line reaches `vault/raw/<hi date>/<hi HHMM>/ledger.md` once, with the time of writing before it.
 
 ## Result
 
@@ -43,3 +36,4 @@ path is unchanged since, and `tests/test_ledger.py` holds it in the LEDGER-block
 - 2026-09-09 status: pending → passed · written by hand, no generator yet
 - 2026-09-09 updated: criterion follows the LEDGER block · raw/2026-09-09/ledger.md#case-16.1
 - 2026-09-09 updated: Method names the make pipeline over the children · raw/2026-09-09/ledger.md#case-26.2
+- 2026-09-28 updated: the Criterion replaced whole — one When and Then, the session folder of the ledger; purpose and method set, Context and Method out (case 485.1) · [[decision-case-485.1]]

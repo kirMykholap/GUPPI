@@ -2,7 +2,7 @@
 type: rule
 kind: MOC
 purpose: Prevents a session from being loaded piecemeal by read-tool calls
-status: built
+status: draft
 enforcement: render
 governs: .claude/skills/hi/SKILL.md
 render_mode: full
@@ -100,3 +100,4 @@ copies of one text, kept identical by hand.
 - 2026-09-27 updated: the Frontier closes a line [x] for an item ended and [-] for one put off — sprint · defer, backlog · kept, defer case N; conserved Specs first, the backlog counted and its near items named (case 451.1) · [[decision-case-451.1]]
 - 2026-09-27 status: built → draft · cascade
 - 2026-09-27 status: draft → built · cascade
+- 2026-09-28 status: built → draft · cascade

@@ -1,7 +1,7 @@
 ---
 type: estimate
 kind: QA
-status: pending
+status: passed
 target: "[[rule-language]]"
 purpose: The section stands in CLAUDE.md with the languages set in rule-guppi-config, and what a session writes into the repository is in the documentation language, slugs and paths unchanged
 method: one reading by hand in the next session — CLAUDE.md against the Render of rule-guppi-config, and the session's commit, Spec and Case files against the section
@@ -28,7 +28,7 @@ Then:
 
 ## Result
 
-2026-09-28, by hand, session 0000: the reply that acknowledged Case 471 was written in English in the chat — the heading `## Case 471 — ratified`, the labels **Changes:** and **Notes:**, the text and the Frontier; the person asked "а почему ты перешел на английский в чате?"; the repository, the Cases and the Spec stayed English
+2026-09-28, by hand, session 2000: CLAUDE.md names English and Russian in `## Language`; commit cb12283, raw/2026-09-28/2000/spec.md and cases/case-482..485.md are English, and prespec --check printed no language finding; every given, when and then line of the four Case files stands unchanged in spec.md (17, 20, 91, 77 lines, 0 missing)
 
 ## History
 
@@ -40,3 +40,4 @@ Then:
 - 2026-09-27 updated: the Criterion replaced whole — a built Case English whole in its file, a short Russian text in the chat (case 452.5) · [[decision-case-452.5]]
 - 2026-09-28 status: pending → failed · raw/2026-09-28/0000/ledger.md#L31
 - 2026-09-28 updated: the Criterion replaced whole — the languages come from rule-guppi-config, and the language of the agent's text in the chat leaves the promise (case 476.4) · [[decision-case-476.4]]
+- 2026-09-28 status: pending → passed · raw/2026-09-28/2000/ledger.md#L20

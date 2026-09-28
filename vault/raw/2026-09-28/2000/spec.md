@@ -51,9 +51,9 @@ update:
 ```
 
 ```tasks
-- [ ] update `rule-close`
-- [ ] update `estimate-close-commits`
-- [ ] `uv run guppi render`: `.claude/agents/librarian-guppi.md`
+- [x] update `rule-close`
+- [x] update `estimate-close-commits`
+- [x] `uv run guppi render`: `.claude/agents/librarian-guppi.md`
 - [x] one-off: this session's Work Mode commit takes `guppi.toml`
 - [ ] read `estimate-close-commits` — by hand, after the next librarian run
 ```
@@ -123,9 +123,9 @@ update:
 ````
 
 ```tasks
-- [ ] update `rule-retro`
-- [ ] update `estimate-retro-report-holds-each-fact-once`
-- [ ] `uv run guppi render`: `.claude/skills/retro/SKILL.md`
+- [x] update `rule-retro`
+- [x] update `estimate-retro-report-holds-each-fact-once`
+- [x] `uv run guppi render`: `.claude/skills/retro/SKILL.md`
 - [ ] read `estimate-retro-report-holds-each-fact-once` — by hand, at the first `/retro` after the render
 ```
 
@@ -180,7 +180,7 @@ update:
 ```
 
 ```tasks
-- [ ] update `estimate-prespec-catches-a-command-line-off-form`
+- [x] update `estimate-prespec-catches-a-command-line-off-form`
 - [ ] read `estimate-prespec-catches-a-command-line-off-form`
 ```
 
@@ -211,7 +211,7 @@ update:
 ```
 
 ```tasks
-- [ ] update `estimate-prespec-catches-a-superseded-case`
+- [x] update `estimate-prespec-catches-a-superseded-case`
 - [ ] read `estimate-prespec-catches-a-superseded-case`
 ```
 
@@ -243,7 +243,7 @@ update:
 ```
 
 ```tasks
-- [ ] update `estimate-prespec-catches-a-method-without-a-form`
+- [x] update `estimate-prespec-catches-a-method-without-a-form`
 - [ ] read `estimate-prespec-catches-a-method-without-a-form`
 ```
 
@@ -276,7 +276,7 @@ update:
 ```
 
 ```tasks
-- [ ] update `estimate-prespec-catches-an-unwrapped-render`
+- [x] update `estimate-prespec-catches-an-unwrapped-render`
 - [ ] read `estimate-prespec-catches-an-unwrapped-render`
 ```
 
@@ -308,7 +308,7 @@ update:
 ```
 
 ```tasks
-- [ ] update `estimate-prespec-catches-bare-wikilinks`
+- [x] update `estimate-prespec-catches-bare-wikilinks`
 - [ ] read `estimate-prespec-catches-bare-wikilinks`
 ```
 
@@ -338,7 +338,7 @@ update:
 ```
 
 ```tasks
-- [ ] update `estimate-prespec-simulates-the-pairs`
+- [x] update `estimate-prespec-simulates-the-pairs`
 - [ ] read `estimate-prespec-simulates-the-pairs`
 ```
 
@@ -365,7 +365,7 @@ update:
 ```
 
 ```tasks
-- [ ] update `entity-sprint-migration`
+- [x] update `entity-sprint-migration`
 ```
 
 ## Case 485 — Slice 3g: the old-layout Estimates of session start and `/hi` recut to one Criterion
@@ -409,7 +409,7 @@ update:
 ```
 
 ```tasks
-- [ ] update `estimate-session-start-context`
+- [x] update `estimate-session-start-context`
 - [ ] read `estimate-session-start-context` — `make test-session-start`, then by hand in a later session
 ```
 
@@ -442,7 +442,7 @@ update:
 ```
 
 ```tasks
-- [ ] update `estimate-hi-no-read-calls`
+- [x] update `estimate-hi-no-read-calls`
 - [ ] read `estimate-hi-no-read-calls` — by hand, at the `/hi` of a later session
 ```
 
@@ -474,7 +474,7 @@ update:
 ```
 
 ```tasks
-- [ ] update `estimate-git-context-current`
+- [x] update `estimate-git-context-current`
 - [ ] read `estimate-git-context-current` — by hand, at the `/hi` of a later session and at its close
 ```
 
@@ -503,7 +503,7 @@ update:
 ```
 
 ```tasks
-- [ ] update `estimate-github-issues-listed`
+- [x] update `estimate-github-issues-listed`
 - [ ] read `estimate-github-issues-listed` — by hand, at the `/hi` of a later session
 ```
 
@@ -541,7 +541,7 @@ update:
 ```
 
 ```tasks
-- [ ] update `estimate-ledger-tail`
+- [x] update `estimate-ledger-tail`
 - [ ] read `estimate-ledger-tail` — `pytest tests/test_tail.py`, then by hand at the `/hi` of a later session
 ```
 
@@ -568,5 +568,5 @@ update:
 ```
 
 ```tasks
-- [ ] update `entity-sprint-migration`
+- [x] update `entity-sprint-migration`
 ```

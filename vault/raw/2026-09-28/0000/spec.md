@@ -120,7 +120,7 @@ update:
 - [x] update `rule-prespec`
 - [x] create `estimate-case-check-notes-a-criterion-line-not-carried`
 - [x] `uv run guppi render`: `.claude/skills/pre-spec/SKILL.md`
-- [ ] read `estimate-case-check-notes-a-criterion-line-not-carried`
+- [x] read `estimate-case-check-notes-a-criterion-line-not-carried`
 ```
 
 ### Case 472.2 — Two `then` lines of sibling sub-cases that share most of their words are a note

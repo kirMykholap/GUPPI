@@ -1,10 +1,11 @@
 ---
 type: estimate
 kind: QA
-status: pending
+status: passed
 target: "[[rule-case-check]]"
 purpose: A line of a Criterion replaced whole that the new Criterion does not carry goes back to case-guppi once as a note, and pre-spec prints it, with no Case held back
 method: uv run pytest tests/test_casecheck.py tests/test_prespec.py -k note, then by hand the first note the hook sends back to case-guppi
+checked: 2026-09-28
 origin: raw/2026-09-28/0000/ledger.md#case-472.1
 sprint: migration
 created: 2026-09-28
@@ -27,6 +28,11 @@ The old Criterion is the `## Criterion` of the Estimate page as it stands. The n
 **－** A note is not a finding. The file of the Case is written as for an answer with no finding, and the `Stop` check of `guppi casecheck` does not refuse a showing for a note.
 **－** An Estimate that a Case creates has no old Criterion and gets no note.
 
+## Result
+
+2026-09-28, uv run pytest tests/test_casecheck.py tests/test_prespec.py -k note: 14 passed; by hand, session 2000: the answer of case-guppi on Case 482 kept its change and said why in context after the notes, the plan's checked.json holds notes, and prespec --check printed 74 note: lines with exit 0
+
 ## History
 
 - 2026-09-28 created · [[decision-case-472.1]]
+- 2026-09-28 status: pending → passed · raw/2026-09-28/2000/ledger.md#L22

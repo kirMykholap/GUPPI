@@ -101,7 +101,7 @@ update:
 - [x] update `rule-case-protocol`
 - [x] update `estimate-case-protocol-shows-the-built-case`
 - [x] `uv run guppi render`: `vault/wiki/case-schema.md`
-- [ ] read `estimate-case-protocol-shows-the-built-case` — by hand, the rounds shown in a session after the render, against the answers of `case-guppi` in the transcript
+- [x] read `estimate-case-protocol-shows-the-built-case` — by hand, the rounds shown in a session after the render, against the answers of `case-guppi` in the transcript
 ```
 
 ## Case 459 — Lint does not count the Estimates of a render child against a MOC's reading

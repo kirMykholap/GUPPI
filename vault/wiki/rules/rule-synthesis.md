@@ -2,7 +2,7 @@
 type: rule
 kind: Leaf
 purpose: Prevents a pattern of failures from staying a list of unrelated incidents
-status: built
+status: draft
 enforcement: render
 governs: .claude/agents/librarian-guppi.md
 render_mode: partial
@@ -30,7 +30,44 @@ Synthesis. For each `lesson` entry, compare its `root_cause` with every index li
 - An Insight has the same pattern: append an `update` of it with `children` plus
   the new lesson, and — when it was `actioned` — `set: {status: open}`, or `set: {addressed_by: decision-case-N}` with `status` kept when the lesson entry carries `addressed_by: decision-case-N`, the Case of this unit that closed its cause, and case N is later than the case the Insight's `addressed_by` names — compared number by number, `378.5` after `378.4`; when it is not later, the `update` carries no `addressed_by` and the field stands (case 385); the pair reported in the brief beside the synthesis (case 284.4); and an `update`
   for the lesson.
-Mark each entry you add with `librarian: synthesis`. One lesson without a pair
+Mark each entry you add with `librarian: synthesis`. Read no `materialize.yaml` other than the ones `guppi materialize` names, and look for no earlier entry: the entries of the synthesis have these forms (case 474.1).
+
+```yaml
+# a new Insight from two lessons of one cause
+- kind: create
+  category: insights
+  slug: insight-<area>-<pattern>
+  origin: <the origin of the new lesson entry>
+  fields: {type: insight, pattern: <the shared cause>, children: [<lesson-a>, <lesson-b>]}
+  tags: [<the union of the tags of both lessons>]
+  sections: {Pattern: <text>, Proposal: <text>}
+  librarian: synthesis
+# right after the create, only when the lesson entry carries addressed_by
+- kind: update
+  category: insights
+  slug: insight-<area>-<pattern>
+  origin: <the origin of the new lesson entry>
+  set: {status: actioned, addressed_by: decision-case-N}
+  change: born actioned, its cause closed by case N (synthesis)
+  librarian: synthesis
+# an existing Insight of the same pattern
+- kind: update
+  category: insights
+  slug: <the live Insight>
+  origin: <the origin of the new lesson entry>
+  set: {children: [<its children>, <the new lesson>]}
+  change: child <the new lesson> added (synthesis)
+  librarian: synthesis
+# set also takes status: open, or addressed_by: decision-case-N, as the rule above says
+# each lesson that joins an Insight
+- kind: update
+  category: lessons
+  slug: <lesson-a>
+  origin: <the origin of the new lesson entry>
+  set: {status: clustered, insight: <the Insight>}
+  change: clustered under <the Insight> (synthesis)
+  librarian: synthesis
+``` One lesson without a pair
 stays `new`; that needs no flag. `Proposal` is a suggestion, never a decision. When an index line does not settle whether a lesson shares a root cause, read the
 Trigger and Root cause of the candidate and name the page in the report with the
 outcome, clustered or not. Do not read the archive and do not write pages yourself.
@@ -58,3 +95,5 @@ outcome, clustered or not. Do not read the archive and do not write pages yourse
 - 2026-09-22 updated: an Insight born from a lesson whose entry carries addressed_by is set actioned by an update right after its create (case 302.2) · [[decision-case-302.2]]
 - 2026-09-24 updated: addressed_by moves to the lesson's decision only when it is the later case (case 385) · [[decision-case-385]]
 - 2026-09-27 status: draft → built · cascade
+- 2026-09-28 updated: the synthesis shows the form of each of its entries and reads no yaml that materialize did not name (case 474.1) · [[decision-case-474.1]]
+- 2026-09-28 status: built → draft · cascade

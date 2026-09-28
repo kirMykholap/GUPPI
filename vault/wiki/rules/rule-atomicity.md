@@ -16,7 +16,7 @@ tags: [harness, workflow]
 
 ## Purpose
 
-Prevents a unit from being split or kept whole by taste. The rule cannot be checked in substance, so its guard is the one `rule-language` and `rule-agent-writing` have: the text stands in the file the agent reads — `case-schema.md`, loaded by `/hi` in every working session — and `render --check` keeps it identical to this page, while the governed-files hook refuses a hand edit. The one mechanical refusal of the rule is `pre-spec` on two Estimate items in a Case with no written Criterion, signed for `rule-prespec`.
+Prevents a unit from being split or kept whole by taste. The rule cannot be checked in substance, so its guard is the one `rule-language` and `rule-agent-writing` have: the text stands in the file the agent reads — `case-schema.md`, loaded by `/hi` in every working session — and `render --check` keeps it identical to this page, while the governed-files hook refuses a hand edit. The one mechanical refusal of the rule is `pre-spec` on two Estimate items in a Case that each set a new Criterion, written or lifted, signed for `rule-prespec` (case 472.3).
 
 ## Render
 
@@ -35,3 +35,4 @@ It holds for a Case, an Entity, a Rule and an Estimate alike. Not for a Lesson: 
 - 2026-09-22 created · [[decision-case-317]]
 - 2026-09-23 updated: the Render carries its own markers, so the page renders into case-schema.md — the hand fix of commit 94277ea signed after the fact (case 324) · [[decision-case-324]]
 - 2026-09-23 status: draft → built · cascade
+- 2026-09-28 updated: the refusal of pre-spec counts a written Criterion too (case 472.3) · [[decision-case-472.3]]

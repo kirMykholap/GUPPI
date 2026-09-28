@@ -198,7 +198,7 @@ update:
 - [x] update `rule-case-protocol`
 - [x] update `estimate-case-protocol-shows-the-built-case`
 - [x] `uv run guppi render`: `vault/wiki/case-schema.md`
-- [ ] read `estimate-case-protocol-shows-the-built-case` — by hand, the first rounds shown in a session after the render, against the answers of `case-guppi` in the transcript
+- [x] read `estimate-case-protocol-shows-the-built-case` — by hand, the first rounds shown in a session after the render, against the answers of `case-guppi` in the transcript
 ```
 
 ## Case 467 — A backlog item leaves when the Case that decides it names its page
@@ -326,7 +326,7 @@ update:
 - [x] `tests/test_casecheck.py` — an answer whose Case names the page of an open `backlog` line without its `{supersedes}`, sent back; the same with every `{supersedes}`, passed; a sub-case that names the page and carries every `{supersedes}` beside a sub-case that is an `update` of the page with only `change`, passed; a Case naming the page only in a `defer` line; no open `backlog` line
 - [x] update `rule-case-check`
 - [x] create `estimate-case-check-requires-a-backlog-item-decided-on-its-page`
-- [ ] read `estimate-case-check-requires-a-backlog-item-decided-on-its-page`
+- [x] read `estimate-case-check-requires-a-backlog-item-decided-on-its-page`
 ```
 
 ### Case 467.3 — generate clears a defer only from the pages the superseding Case names

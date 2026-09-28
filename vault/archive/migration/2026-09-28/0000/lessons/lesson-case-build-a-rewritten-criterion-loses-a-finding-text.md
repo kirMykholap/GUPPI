@@ -2,7 +2,7 @@
 type: lesson
 kind: error
 root_cause: case-guppi writes the new Criterion from the Case's when and then, and no check compares its lines with the lines of the Criterion it replaces
-status: clustered
+status: archived
 insight: "[[insight-case-build-promise-lines-compared-by-no-check]]"
 origin: raw/2026-09-27/1819/ledger.md#L38
 sprint: migration
@@ -22,3 +22,5 @@ case-guppi writes the new Criterion from the Case's when and then, and no check 
 
 - 2026-09-27 created · raw/2026-09-27/1819/ledger.md#L38
 - 2026-09-27 updated: clustered under insight-case-build-promise-lines-compared-by-no-check (synthesis) · raw/2026-09-27/1819/ledger.md#L38
+- 2026-09-28 archived · insight actioned
+- 2026-09-28 archived · cleanup

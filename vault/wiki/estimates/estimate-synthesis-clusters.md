@@ -1,40 +1,28 @@
 ---
 type: estimate
 kind: QA
-status: passed
+status: pending
 target: "[[rule-synthesis]]"
+method: one reading by hand of the yaml and the report after a live librarian run whose yaml holds at least two lesson entries
 origin: raw/2026-09-10/ledger.md#case-35.2
 sprint: migration
 created: 2026-09-10
 tags: [harness, workflow, librarian]
 ---
 
-## Context
-
-A missed pair is a pattern nobody sees; an invented pair is an Insight nobody ratified the basis of.
-
 ## Criterion
 
-After a live librarian run with at least two lesson entries: the report names the
-comparisons made against lessons-index and insights-index; two lessons with one
-root cause produced one insight create entry with pattern, both children, the union
-of tags, Pattern and Proposal, and one update per lesson setting clustered and
-insight; a lesson matching a live Insight's pattern produced an update of that
-Insight and of the lesson; every added entry carries librarian: synthesis; no
-archive file was read, and every lesson page read is named in the report with
-the outcome: the Insight it joined, or none and why; a lesson without a pair stayed new.
-
-### case 147.4
-
 When:
-The librarian does the synthesis.
+`librarian-guppi` does the synthesis in a live run whose `materialize.yaml` holds at least two lesson entries.
 
 Then:
-"compare its `root_cause` with every index line of `lessons/` and of `insights/` — the Greps of 147.2 — by meaning"; "that Insight stays live with its pattern in its index line".
-
-## Method
-
-one reading by hand after the first librarian run, recorded in the estimate line
+The report names the Greps of the synthesis, `^(root_cause|deferred_by):` over `vault/wiki/lessons/` and `^(pattern|deferred_by):` over `vault/wiki/insights/`, and the comparisons made against their lines, by meaning.
+**＋** Two lessons with one root cause and no Insight give one `create` of an Insight with `pattern`, both children, the union of their tags, `Pattern` and `Proposal`, and one `update` per lesson with `set: {status: clustered, insight: <slug>}`.
+**＋** A lesson whose root cause matches the pattern of a live Insight gives an `update` of that Insight with the lesson added to its `children`, and an `update` of the lesson.
+**＋** Every entry the synthesis adds carries `librarian: synthesis`.
+**＋** Every lesson page read at synthesis is named in the report with the outcome: the Insight it joined, or none and why.
+**＋** A lesson without a pair stays `new`.
+**－** The synthesis reads no file under `vault/archive/`: an actioned Insight stays live with its pattern in its index line.
 
 ## Result
 
@@ -51,3 +39,4 @@ live 2026-09-15, the librarian's run of session Q read against the brief: four r
 - 2026-09-12 status: passed → passed · raw/2026-09-12/ledger.md#L169
 - 2026-09-14 criterion: case 147.4 added · [[decision-case-147.4]]
 - 2026-09-15 status: pending → passed · raw/2026-09-15/1448/ledger.md#L2
+- 2026-09-28 updated: the Criterion replaced whole — the ban on the archive is the synthesis's, not the whole run's; the base text and the block of case 147.4 folded into one Criterion (case 474.2) · [[decision-case-474.2]]

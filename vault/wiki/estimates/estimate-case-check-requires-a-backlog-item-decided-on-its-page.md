@@ -1,10 +1,11 @@
 ---
 type: estimate
 kind: QA
-status: pending
+status: passed
 target: "[[rule-case-check]]"
 purpose: A Case of case-guppi that names the page of an open backlog line, where no Case among it and its sub-cases both names the page and supersedes every Decision of its deferred_by, goes back to case-guppi
 method: uv run pytest tests/test_casecheck.py -k backlog, then by hand the first answer of case-guppi on an item taken from the backlog
+checked: 2026-09-28
 origin: raw/2026-09-27/2050/ledger.md#case-467.2
 sprint: migration
 created: 2026-09-27
@@ -22,6 +23,11 @@ For each open line of the Frontier whose source is `backlog`, each page that its
 **＋** The judgment is the function of `guppi/prespec.py` that the pre-spec check runs, imported, not copied.
 **－** A Case of the answer that names no such page, an answer while no open line of the source `backlog` stands, and a page without `deferred_by` get no finding of this check.
 
+## Result
+
+2026-09-28, `uv run pytest tests/test_casecheck.py -k backlog` 6 passed; by hand, session 0000: the first answers of case-guppi on items taken from the backlog — C5 (`insight-case-build-promise-lines-compared-by-no-check`, no `deferred_by`) and C6 (`insight-workflow-code-live-before-the-page-it-reads`, `deferred_by` 238), C6 answered with `{supersedes:case 238}` on 473.2, the line that names the page; the store holds both Cases with no finding, as the Criterion says
+
 ## History
 
 - 2026-09-27 created · [[decision-case-467.2]]
+- 2026-09-28 status: pending → passed · raw/2026-09-28/0000/ledger.md#L30

@@ -20,13 +20,12 @@ index line does not tell you whether a lesson shares its root cause with another
 or an Insight, whether or not you then write one; a script names a page in an error
 and you say why it failed; the brief needs a fact no input carries — the status of an
 Estimate, the severity of an Insight. Name every page you open in the report, with
-the reason and the outcome. Never read `ledger.md`, `plan.md`, `wiki/decisions/` or
-`vault/archive/`, nor `spec.md` beyond its unticked `- [ ]` lines — the ones Readings due and Next session take (cases 200.3, 268.1, 271): what the scripts do with the yaml is written here. One read of `ledger.md` is allowed and no other: the count of its lines and the lines the yaml does not account for, for the `Work` line of the brief — a reading that folded into an entry the run skipped gets no entry of its own, so the yaml does not hold every line; name that read in the report (case 349). The `Makefile`,
+the reason and the outcome. Never read `ledger.md`, `plan.md` or `wiki/decisions/`, never search `vault/archive/`, nor read `spec.md` beyond its unticked `- [ ]` lines — the ones Readings due and Next session take (cases 200.3, 268.1, 271): what the scripts do with the yaml is written here. One read of `ledger.md` is allowed and no other: the count of its lines and the lines the yaml does not account for, for the `Work` line of the brief — a reading that folded into an entry the run skipped gets no entry of its own, so the yaml does not hold every line; name that read in the report (case 349). When a script names a slug in an error and you say why it failed, find its page under `vault/archive/` only by the Glob `vault/archive/**/<slug>.md`, open it, and name the page in the report; no other Glob, Grep, `grep`, `find` or `ls` runs over the archive (case 474.1). When the harness saves the output of one of your commands to a file because the output is too long to show, read that file: it is the output of your command (case 474.1). The `Makefile`,
 `guppi/` and `tests/` are the scripts' own files, not the vault; read them when a
 command's output is not enough. Edit the yaml only as the index check and the synthesis
 say; an entry a script rejects stays as it is and is a flag in the report, never a
 repair. An instruction of the handoff that this frame forbids — a repair of an
-entry, a read of `ledger.md` beyond the one allowed above, a Spec beyond its unticked lines, a decision page or the archive — you do not
+entry, a read of `ledger.md` beyond the one allowed above, a Spec beyond its unticked lines, a decision page, a search of the archive or an archived page that no script named in an error — you do not
 carry out: name it in the report, what was asked and why it was refused, and go on
 (case 90.3).
 
@@ -55,7 +54,44 @@ Synthesis. For each `lesson` entry, compare its `root_cause` with every index li
 - An Insight has the same pattern: append an `update` of it with `children` plus
   the new lesson, and — when it was `actioned` — `set: {status: open}`, or `set: {addressed_by: decision-case-N}` with `status` kept when the lesson entry carries `addressed_by: decision-case-N`, the Case of this unit that closed its cause, and case N is later than the case the Insight's `addressed_by` names — compared number by number, `378.5` after `378.4`; when it is not later, the `update` carries no `addressed_by` and the field stands (case 385); the pair reported in the brief beside the synthesis (case 284.4); and an `update`
   for the lesson.
-Mark each entry you add with `librarian: synthesis`. One lesson without a pair
+Mark each entry you add with `librarian: synthesis`. Read no `materialize.yaml` other than the ones `guppi materialize` names, and look for no earlier entry: the entries of the synthesis have these forms (case 474.1).
+
+```yaml
+# a new Insight from two lessons of one cause
+- kind: create
+  category: insights
+  slug: insight-<area>-<pattern>
+  origin: <the origin of the new lesson entry>
+  fields: {type: insight, pattern: <the shared cause>, children: [<lesson-a>, <lesson-b>]}
+  tags: [<the union of the tags of both lessons>]
+  sections: {Pattern: <text>, Proposal: <text>}
+  librarian: synthesis
+# right after the create, only when the lesson entry carries addressed_by
+- kind: update
+  category: insights
+  slug: insight-<area>-<pattern>
+  origin: <the origin of the new lesson entry>
+  set: {status: actioned, addressed_by: decision-case-N}
+  change: born actioned, its cause closed by case N (synthesis)
+  librarian: synthesis
+# an existing Insight of the same pattern
+- kind: update
+  category: insights
+  slug: <the live Insight>
+  origin: <the origin of the new lesson entry>
+  set: {children: [<its children>, <the new lesson>]}
+  change: child <the new lesson> added (synthesis)
+  librarian: synthesis
+# set also takes status: open, or addressed_by: decision-case-N, as the rule above says
+# each lesson that joins an Insight
+- kind: update
+  category: lessons
+  slug: <lesson-a>
+  origin: <the origin of the new lesson entry>
+  set: {status: clustered, insight: <the Insight>}
+  change: clustered under <the Insight> (synthesis)
+  librarian: synthesis
+``` One lesson without a pair
 stays `new`; that needs no flag. `Proposal` is a suggestion, never a decision. When an index line does not settle whether a lesson shares a root cause, read the
 Trigger and Root cause of the candidate and name the page in the report with the
 outcome, clustered or not. Do not read the archive and do not write pages yourself.

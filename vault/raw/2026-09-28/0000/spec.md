@@ -42,7 +42,7 @@ update:
 ```
 
 ```tasks
-- [ ] update `estimate-skill-grill-me-asks-in-rounds`
+- [x] update `estimate-skill-grill-me-asks-in-rounds`
 - [ ] read `estimate-skill-grill-me-asks-in-rounds` — `uv run guppi render --check`; by hand, one round of the person's `/grill-me` or of `case-guppi` in a session after this one
 ```
 
@@ -116,10 +116,10 @@ update:
 - [x] `guppi/casecheck.py` — `check_answer` returns the notes of each Case by the functions of `guppi/prespec.py`; `subagent` keeps the `notes` of the held entry when it replaces the entry of a Case, adds the notes it sends, exits 2 when a note is not already held for that id, and writes the file of the Case when there is no finding; the docstring names the notes
 - [x] `tests/test_prespec.py` — a Criterion replaced whole that drops a line prints one `note:` line and exits 0; the same Criterion carried line by line, with the operands changed, prints none; an `update` with `change` alone is compared; an `update` that names a part alone and a `create` print none
 - [x] `tests/test_casecheck.py` — an answer that drops a Criterion line is sent back once with the note; the same answer again exits 0 and writes the file; a third answer for the same id with the same note exits 0, since the note is kept; a `Stop` showing of that Case is not refused for the note
-- [ ] update `rule-case-check`
-- [ ] update `rule-prespec`
-- [ ] create `estimate-case-check-notes-a-criterion-line-not-carried`
-- [ ] `uv run guppi render`: `.claude/skills/pre-spec/SKILL.md`
+- [x] update `rule-case-check`
+- [x] update `rule-prespec`
+- [x] create `estimate-case-check-notes-a-criterion-line-not-carried`
+- [x] `uv run guppi render`: `.claude/skills/pre-spec/SKILL.md`
 - [ ] read `estimate-case-check-notes-a-criterion-line-not-carried`
 ```
 
@@ -174,10 +174,10 @@ update:
 - [x] `guppi/casecheck.py` — `check_answer` adds the sibling notes of the answer to the notes of the later sibling
 - [x] `tests/test_prespec.py` — two sibling sub-cases with one promise in two wordings print one `note:` line; two siblings with unlike lines print none; a line with no word of four characters is not compared
 - [x] `tests/test_casecheck.py` — an answer with two sibling sub-cases that share a promise is sent back with the note; a sub-case answered alone gets no sibling note
-- [ ] update `rule-case-check`
-- [ ] update `rule-prespec`
-- [ ] create `estimate-case-check-notes-a-then-line-shared-by-siblings`
-- [ ] `uv run guppi render`: `.claude/skills/pre-spec/SKILL.md`
+- [x] update `rule-case-check`
+- [x] update `rule-prespec`
+- [x] create `estimate-case-check-notes-a-then-line-shared-by-siblings`
+- [x] `uv run guppi render`: `.claude/skills/pre-spec/SKILL.md`
 - [ ] read `estimate-case-check-notes-a-then-line-shared-by-siblings`
 ```
 
@@ -237,12 +237,12 @@ update:
 ```tasks
 - [x] `guppi/prespec.py` — `check_form` counts every Estimate `create` and every Estimate `update` for which `names_a_part` of `guppi/materialize.py` is false, imported; its docstring and the module docstring say so, and drop "without a written `sections: Criterion`"
 - [x] `tests/test_prespec.py` — two Estimate items where one writes its Criterion, and two that both write it, are the finding; an `update` with `change` alone and one with `set: {status: passed}` count; an `update` that names a part alone does not; the test of case 327 splits its two Estimates into two sub-cases
-- [ ] update `rule-prespec`
-- [ ] update `rule-materialize`
-- [ ] update `rule-atomicity`
-- [ ] update `estimate-prespec-checks-the-form-of-an-item`
-- [ ] update `insight-case-build-promise-lines-compared-by-no-check`
-- [ ] `uv run guppi render`: `.claude/skills/pre-spec/SKILL.md`
+- [x] update `rule-prespec`
+- [x] update `rule-materialize`
+- [x] update `rule-atomicity`
+- [x] update `estimate-prespec-checks-the-form-of-an-item`
+- [x] update `insight-case-build-promise-lines-compared-by-no-check`
+- [x] `uv run guppi render`: `.claude/skills/pre-spec/SKILL.md`
 - [ ] read `estimate-prespec-checks-the-form-of-an-item`
 ```
 
@@ -297,9 +297,9 @@ update:
 ```
 
 ```tasks
-- [ ] update `rule-retro`
-- [ ] create `estimate-retro-red-check-of-an-updated-page-is-a-handoff-note`
-- [ ] `uv run guppi render`: `.claude/skills/retro/SKILL.md`
+- [x] update `rule-retro`
+- [x] create `estimate-retro-red-check-of-an-updated-page-is-a-handoff-note`
+- [x] `uv run guppi render`: `.claude/skills/retro/SKILL.md`
 - [ ] read `estimate-retro-red-check-of-an-updated-page-is-a-handoff-note` — by hand, at the first such `/retro` after the render
 ```
 
@@ -348,10 +348,10 @@ update:
 ```
 
 ```tasks
-- [ ] update `rule-case-build`
-- [ ] update `insight-workflow-code-live-before-the-page-it-reads`
-- [ ] create `estimate-case-build-keeps-the-old-form-until-the-writer-is-live`
-- [ ] `uv run guppi render`: `.claude/agents/case-guppi.md`
+- [x] update `rule-case-build`
+- [x] update `insight-workflow-code-live-before-the-page-it-reads`
+- [x] create `estimate-case-build-keeps-the-old-form-until-the-writer-is-live`
+- [x] `uv run guppi render`: `.claude/agents/case-guppi.md`
 - [ ] read `estimate-case-build-keeps-the-old-form-until-the-writer-is-live` — by hand, at the first such Case after the render
 ```
 
@@ -461,10 +461,10 @@ update:
 ````
 
 ```tasks
-- [ ] update `rule-documentation`
-- [ ] update `rule-synthesis`
-- [ ] update `estimate-documentation-completes`
-- [ ] `uv run guppi render`: `.claude/agents/librarian-guppi.md`
+- [x] update `rule-documentation`
+- [x] update `rule-synthesis`
+- [x] update `estimate-documentation-completes`
+- [x] `uv run guppi render`: `.claude/agents/librarian-guppi.md`
 - [ ] read `estimate-documentation-completes` — `make test-documentation` and the live reading of the transcript of the librarian's run in a later session
 ```
 
@@ -500,7 +500,7 @@ update:
 ```
 
 ```tasks
-- [ ] update `estimate-synthesis-clusters`
+- [x] update `estimate-synthesis-clusters`
 - [ ] read `estimate-synthesis-clusters` — by hand, the yaml and the report of a live librarian run with at least two lesson entries, in a later session
 ```
 

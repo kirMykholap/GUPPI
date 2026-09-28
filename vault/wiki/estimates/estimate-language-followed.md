@@ -1,11 +1,11 @@
 ---
 type: estimate
 kind: QA
-status: pending
+status: failed
 target: "[[rule-language]]"
 purpose: The section stands in CLAUDE.md and a session follows it — English in the repository, Russian in the chat, slugs and paths unchanged
 method: one reading by hand in the next session — the section in CLAUDE.md, the session's commit, Spec and chat against it
-checked: 2026-09-26
+checked: 2026-09-28
 origin: raw/2026-09-20/1308/ledger.md#case-272.2
 sprint: migration
 created: 2026-09-20
@@ -28,7 +28,7 @@ Everything written into the repository — code, identifiers, comments, pages, c
 
 ## Result
 
-2026-09-26, CLAUDE.md lines 5–9, commit 54509ed, the diff, raw/2026-09-26/1745/spec.md and the chat of session 1745 read by hand; the repository is English (spec.md 0 Cyrillic lines of 677), but Case 441 was shown in the chat with its name, context, problem and recommend in English, and the agent's own Russian text transliterates hook, commit, skill, insight and Case
+2026-09-28, by hand, session 0000: the reply that acknowledged Case 471 was written in English in the chat — the heading `## Case 471 — ratified`, the labels **Changes:** and **Notes:**, the text and the Frontier; the person asked "а почему ты перешел на английский в чате?"; the repository, the Cases and the Spec stayed English
 
 ## History
 
@@ -38,3 +38,4 @@ Everything written into the repository — code, identifiers, comments, pages, c
 - 2026-09-26 status: pending → failed · raw/2026-09-26/1745/ledger.md#L37
 - 2026-09-27 updated: the Criterion replaced whole — the name, context and problem are English in the Spec with no translation step since Case 441; a short-form Case is English in the chat (case 446) · [[decision-case-446]]
 - 2026-09-27 updated: the Criterion replaced whole — a built Case English whole in its file, a short Russian text in the chat (case 452.5) · [[decision-case-452.5]]
+- 2026-09-28 status: pending → failed · raw/2026-09-28/0000/ledger.md#L31

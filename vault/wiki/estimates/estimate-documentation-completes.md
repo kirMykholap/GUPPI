@@ -1,7 +1,7 @@
 ---
 type: estimate
 kind: QA
-status: failed
+status: pending
 target: "[[rule-documentation]]"
 method: make test-documentation, the pipeline over tests/test_materialize.py, tests/test_generate.py and tests/test_cleanup.py; the live reading by hand
 checked: 2026-09-27
@@ -20,17 +20,19 @@ Then:
 `make test-documentation` is green: materialize, generate and cleanup as one pipeline.
 **＋** Live, after the run: every decision line of the session's ledger has a Decision page and its target page, and no page exists that no ledger line produced.
 **＋** The librarian read only the following, and nothing else:
-- `handoff.md`, the yamls, the index lines and `tags.md`;
+- `handoff.md`, the yamls that `guppi materialize` named, the index lines and `tags.md`;
+- a file where the harness saved the output of one of the librarian's own commands because the output was too long to show;
 - the wiki pages it names in the report, each with the outcome and one of the reasons of its frame (same or near; a candidate cluster; a script's error; a fact for the brief);
+- a page under `vault/archive/` found by the Glob `vault/archive/**/<slug>.md` for a slug that a script named in an error, named in the report with the error;
 - the unticked `- [ ]` lines of the `spec.md` files, for Readings due and Next session;
 - of the ledger, only the count of its lines and the lines the yaml does not account for, named in the report.
 
-It read no other part of a Spec, and no plan, Decision page or archive file. The `Makefile`, `guppi/` and `tests/` are the scripts' own files and may be read.
+It read no other part of a Spec, no plan, no Decision page, and no `materialize.yaml` that `guppi materialize` did not name. The `Makefile`, `guppi/` and `tests/` are the scripts' own files and may be read.
 **＋** It edited no yaml entry beyond the marks and the entries of the index check and the synthesis. Its commands are in `event_log.md`, its commit is separate from the session's, and it did not stop to ask.
 **＋** After `cleanup` and before the brief, it runs `uv run guppi render`, then `uv run guppi sprint`, then `uv run guppi backlog`, then `uv run guppi glossary`. Every line on their stderr is a flag. A file the render could not write is left to the next session start. `make lint` then passes its `render --check` step.
 **＋** After the brief and before the close, it runs `uv run guppi archive`. Every line on its stderr is a flag. The units it moved and the units it kept, with the reason, go into the report. It skips the session of the run, which is the latest session folder of the run day or else the nearest date back, across midnight too. The commit picks the move up.
-**－** The librarian refuses an instruction of the handoff to repair a yaml entry, or to read the ledger beyond the one read above, a Spec beyond its `- [ ]` lines, a Decision page or the archive. It names what was asked and why in the report, and the refusal does not stop the run.
-**－** The ban on reading `vault/archive/` stays.
+**－** The librarian refuses an instruction of the handoff to repair a yaml entry, to read the ledger beyond the one read above, a Spec beyond its `- [ ]` lines or a Decision page, to search the archive, or to open an archived page that no script named in an error. It names what was asked and why in the report, and the refusal does not stop the run.
+**－** The librarian never searches `vault/archive/`: no Grep, `grep`, `find` or `ls` runs over it, and no Glob other than `vault/archive/**/<slug>.md` for a slug a script named in an error.
 
 ## Result
 
@@ -66,3 +68,4 @@ It read no other part of a Spec, and no plan, Decision page or archive file. The
 - 2026-09-23 updated: the Criterion refuses a read of the ledger beyond the one allowed (case 357) · [[decision-case-357]]
 - 2026-09-27 updated: the Criterion replaced whole — guppi backlog after guppi sprint, Given lifted into When and Then (case 451.13) · [[decision-case-451.13]]
 - 2026-09-27 status: pending → failed · raw/2026-09-27/2050/ledger.md#L31
+- 2026-09-28 updated: the Criterion replaced whole — an archived page found by the Glob of the slug a script named in an error, the archive never searched, the saved output of the librarian's own command allowed, no yaml that materialize did not name (case 474.1) · [[decision-case-474.1]]

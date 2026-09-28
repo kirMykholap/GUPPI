@@ -7,6 +7,7 @@ enforcement: hook
 implementation_ref: [guppi/ratified.py, tests/test_ratified.py, .claude/settings.json]
 parent: "[[rule-plan-mode]]"
 estimates: ["[[estimate-spec-write-copies-the-ratified-case]]", "[[estimate-spec-write-checks-the-written-case]]", "[[estimate-spec-write-writes-a-defer]]", "[[estimate-spec-write-reaches-the-approved-spec]]", "[[estimate-spec-write-removes-a-superseded-case]]"]
+deferred_by: ["[[decision-case-475]]"]
 origin: raw/2026-09-23/1859/ledger.md#case-387.2
 sprint: migration
 created: 2026-09-23
@@ -51,3 +52,4 @@ Prevents a ratified Case from entering the Spec in other words than the answer o
 - 2026-09-27 updated: the fence of the then and tasks blocks is chosen by their content (case 444.2) · [[decision-case-444.2]]
 - 2026-09-27 updated: the hook writes no ratified copy (case 445.2) · [[decision-case-445.2]]
 - 2026-09-27 updated: the Spec hook writes a Case whose file was sent after its newest store and no longer needs a showing whole; the function that names the plan file named right (case 452.3) · [[decision-case-452.3]]
+- 2026-09-28 deferred · [[decision-case-475]]

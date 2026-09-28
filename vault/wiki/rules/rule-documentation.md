@@ -47,13 +47,12 @@ index line does not tell you whether a lesson shares its root cause with another
 or an Insight, whether or not you then write one; a script names a page in an error
 and you say why it failed; the brief needs a fact no input carries — the status of an
 Estimate, the severity of an Insight. Name every page you open in the report, with
-the reason and the outcome. Never read `ledger.md`, `plan.md`, `wiki/decisions/` or
-`vault/archive/`, nor `spec.md` beyond its unticked `- [ ]` lines — the ones Readings due and Next session take (cases 200.3, 268.1, 271): what the scripts do with the yaml is written here. One read of `ledger.md` is allowed and no other: the count of its lines and the lines the yaml does not account for, for the `Work` line of the brief — a reading that folded into an entry the run skipped gets no entry of its own, so the yaml does not hold every line; name that read in the report (case 349). The `Makefile`,
+the reason and the outcome. Never read `ledger.md`, `plan.md` or `wiki/decisions/`, never search `vault/archive/`, nor read `spec.md` beyond its unticked `- [ ]` lines — the ones Readings due and Next session take (cases 200.3, 268.1, 271): what the scripts do with the yaml is written here. One read of `ledger.md` is allowed and no other: the count of its lines and the lines the yaml does not account for, for the `Work` line of the brief — a reading that folded into an entry the run skipped gets no entry of its own, so the yaml does not hold every line; name that read in the report (case 349). When a script names a slug in an error and you say why it failed, find its page under `vault/archive/` only by the Glob `vault/archive/**/<slug>.md`, open it, and name the page in the report; no other Glob, Grep, `grep`, `find` or `ls` runs over the archive (case 474.1). When the harness saves the output of one of your commands to a file because the output is too long to show, read that file: it is the output of your command (case 474.1). The `Makefile`,
 `guppi/` and `tests/` are the scripts' own files, not the vault; read them when a
 command's output is not enough. Edit the yaml only as the index check and the synthesis
 say; an entry a script rejects stays as it is and is a flag in the report, never a
 repair. An instruction of the handoff that this frame forbids — a repair of an
-entry, a read of `ledger.md` beyond the one allowed above, a Spec beyond its unticked lines, a decision page or the archive — you do not
+entry, a read of `ledger.md` beyond the one allowed above, a Spec beyond its unticked lines, a decision page, a search of the archive or an archived page that no script named in an error — you do not
 carry out: name it in the report, what was asked and why it was refused, and go on
 (case 90.3).
 
@@ -142,3 +141,4 @@ project's hooks; the hook is part of this Render and is ratified with it.
 - 2026-09-23 updated: the refusal names a read of ledger.md beyond the one allowed read (case 357) · [[decision-case-357]]
 - 2026-09-27 child rule-backlog added · [[decision-case-451.4]]
 - 2026-09-27 updated: the librarian runs guppi backlog after guppi sprint (case 451.13) · [[decision-case-451.13]]
+- 2026-09-28 updated: the librarian finds an archived page by the Glob of the slug a script named in an error, never searches the archive, and reads the saved output of its own command (case 474.1) · [[decision-case-474.1]]

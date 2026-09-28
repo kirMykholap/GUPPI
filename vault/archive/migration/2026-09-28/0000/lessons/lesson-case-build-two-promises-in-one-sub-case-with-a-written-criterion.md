@@ -2,7 +2,7 @@
 type: lesson
 kind: error
 root_cause: case-guppi followed case 428.1 by its context but not its split into 428.1 and 428.2, and the pre-spec check of two Estimate items in one Case fires only when neither writes its Criterion under sections
-status: clustered
+status: archived
 insight: "[[insight-case-build-promise-lines-compared-by-no-check]]"
 origin: raw/2026-09-27/1819/ledger.md#L37
 sprint: migration
@@ -22,3 +22,5 @@ case-guppi followed case 428.1 by its context but not its split into 428.1 and 4
 
 - 2026-09-27 created · raw/2026-09-27/1819/ledger.md#L37
 - 2026-09-27 updated: clustered under insight-case-build-promise-lines-compared-by-no-check (synthesis) · raw/2026-09-27/1819/ledger.md#L37
+- 2026-09-28 archived · insight actioned
+- 2026-09-28 archived · cleanup

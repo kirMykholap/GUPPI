@@ -107,7 +107,7 @@ update:
 
 ```tasks
 - [x] update `estimate-agent-writing-followed` — the Criterion replaced whole, the purpose and the method set
-- [ ] read `estimate-agent-writing-followed` — by hand in a later session
+- [x] read `estimate-agent-writing-followed` — by hand in a later session
 ```
 
 ## Case 451 — One standard for putting an item off, and a backlog that holds every deferred item
@@ -1062,7 +1062,7 @@ update:
 - [x] update `insight-case-show-built-case-retyped-by-hand` — actioned
 - [x] `uv run guppi render`: `vault/wiki/case-schema.md`
 - [x] `uv run guppi render`: `.claude/agents/case-guppi.md`
-- [ ] read `estimate-case-protocol-shows-the-built-case` — by hand in a later session
+- [x] read `estimate-case-protocol-shows-the-built-case` — by hand in a later session
 ```
 
 ### Case 452.5 — The language of a built Case: English in the file, a short Russian text in the chat
@@ -1114,7 +1114,7 @@ update:
 - [x] update `rule-case-protocol` — one `replace` pair in the `## Language` section of the Render
 - [x] `uv run guppi render`: `CLAUDE.md`
 - [x] `uv run guppi render`: `vault/wiki/case-schema.md`
-- [ ] read `estimate-language-followed` — by hand in a later session
+- [x] read `estimate-language-followed` — by hand in a later session
 ```
 
 ## Case 453 — The guard refuses the agent's edit of the file of a built Case

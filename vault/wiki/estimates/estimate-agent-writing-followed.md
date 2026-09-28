@@ -1,11 +1,11 @@
 ---
 type: estimate
 kind: QA
-status: pending
+status: failed
 target: "[[rule-agent-writing]]"
 purpose: The agent's text holds to the section How the agent writes of CLAUDE.md, and the person's complaint is the test
 method: by hand in a later session — the person's messages of one session read for a complaint about the agent's text, against the section in CLAUDE.md
-checked: 2026-09-27
+checked: 2026-09-28
 origin: raw/2026-09-20/1308/ledger.md#case-272.3
 sprint: migration
 created: 2026-09-20
@@ -24,7 +24,7 @@ The person raised no complaint in the session that the agent's text broke the se
 
 ## Result
 
-2026-09-27, by hand, the section How the agent writes of CLAUDE.md and the replies of session 2300; counts checked against their runs held (20 task lines, 15 findings, 734 passed), but the reply that acknowledged the re-ratification of 443 to 446 said the ledger gained amended lines of 445.6 while the tail shows L25 and L26 unchanged and L31 alone new, and one reply said W32 closes with sprint, a closer the Frontier gives only to sprint items, corrected in the next reply
+2026-09-28, by hand, session 0000: the person asked three times for a plain explanation of the agent's text — "не понял, объясни" on the round of Case 472 (the non-blocking hook), "Объясни плиз по простому в чем суть" on the first round of Case 473, "не понял про fallback. Объясни плиз." on its Q4
 
 ## History
 
@@ -34,3 +34,4 @@ The person raised no complaint in the session that the agent's text broke the se
 - 2026-09-26 status: pending → failed · raw/2026-09-26/1745/ledger.md#L36
 - 2026-09-27 status: failed → failed · raw/2026-09-26/2300/ledger.md#L36
 - 2026-09-27 updated: the Criterion replaced whole — the person's complaint is the test of the agent's text, a slip the agent corrected itself no fault (case 450) · [[decision-case-450]]
+- 2026-09-28 status: pending → failed · raw/2026-09-28/0000/ledger.md#L32

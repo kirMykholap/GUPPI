@@ -7,7 +7,7 @@ enforcement: render
 governs: .claude/skills/retro/SKILL.md
 render_mode: full
 parent: "[[rule-end-of-work]]"
-estimates: ["[[estimate-retro-loads]]", "[[estimate-retro-report-holds-each-fact-once]]"]
+estimates: ["[[estimate-retro-loads]]", "[[estimate-retro-report-holds-each-fact-once]]", "[[estimate-retro-red-check-of-an-updated-page-is-a-handoff-note]]"]
 origin: raw/2026-09-10/ledger.md#case-38.1
 sprint: migration
 created: 2026-09-10
@@ -52,7 +52,7 @@ with `git diff` into `raw/<hi date>/<hi HHMM>/patch-<slug>.diff`, the session's 
 defer naming the patch. Either way write a `- lesson[error][...]` line whose root
 cause says why Retro was reached with a regression; the handoff still needs green.
 `gh` is not available: name a deferred bug in the handoff, so the brief carries it.
-Do not run `make lint` here: the vault is written after handoff, by the librarian.
+Do not run `make lint` here: the vault is written after handoff, by the librarian. A check that reads a page or a governed file this session's Spec updates — `make lint` or one of its steps, or a hook of the working tree — is red or refuses in Work Mode until the librarian's run writes the page or renders the file, and the `make lint` of that run is its reading: such a red is an item of the frontier that ends as a note for the handoff, naming the check and the page or file it waits for, and it is not debt. A red test is not such a check: it is fixed or reverted as above (case 473.1).
 
 Take the readings of the Estimates whose work is finished and that this session neither creates nor updates — by a decision line of its slug, or by an `update` that renames a page to it — and write their lines; name in the handoff any Estimate whose reading cannot be taken yet, and every Estimate this session creates or updates. A reading measures the Criterion the page carries at the moment of the reading, the one ratified last, and its line is written only when the work that Criterion names is built. What a session changes, it does not measure: an Estimate this session creates or updates has no reading in this session, built or not, and the ledger hook refuses one (case 428.1); the `read` line of its old Criterion in an earlier Spec is not debt and is not read, and the reading of the new Criterion closes it in a later session, at the moment its `method` names (cases 283, 428.3).
 
@@ -109,3 +109,5 @@ Close with three parts, each fact in one part only. Ratified: one line with the 
 - 2026-09-25 updated: Retro takes no reading of an Estimate the session creates or updates, built or not (case 428.3) · [[decision-case-428.3]]
 - 2026-09-25 updated: the opening list of Retro marks a read line of a change of the session as waiting for a later session (case 428.4) · [[decision-case-428.4]]
 - 2026-09-27 updated: the report of /retro holds each fact once — the frontier numbers only what needs an end, the librarian's boxes one count line, the close three parts: the Case ids, what got done, the numbers with their ends (case 468.1) · [[decision-case-468.1]]
+- 2026-09-28 updated: a check red in Work Mode because it reads a page or a file the same Spec updates is a note for the handoff, not debt; a red test stays under the green rule (case 473.1) · [[decision-case-473.1]]
+- 2026-09-28 estimate estimate-retro-red-check-of-an-updated-page-is-a-handoff-note added · [[decision-case-473.1]]

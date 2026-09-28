@@ -1,8 +1,9 @@
 ---
 type: decision
 case: "238"
-status: current
+status: archived
 defer: ["[[insight-workflow-code-live-before-the-page-it-reads]]"]
+superseded_by: ["[[decision-case-473.2]]"]
 origin: raw/2026-09-18/1252/ledger.md#case-238
 sprint: migration
 created: 2026-09-18
@@ -20,3 +21,6 @@ The Proposal is right and has no page to land on: the sentence belongs to the ru
 ## History
 
 - 2026-09-18 created · raw/2026-09-18/1252/ledger.md#case-238
+- 2026-09-28 superseded by decision-case-473.2 · [[decision-case-473.2]]
+- 2026-09-28 archived · superseded
+- 2026-09-28 archived · cleanup

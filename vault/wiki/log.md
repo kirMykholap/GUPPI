@@ -4098,3 +4098,76 @@ instruction. The global feed; a page's own `## History` is the per-page view.
 - 2026-09-27 rules/rule-materialize status: draft → built · cascade · generate
 - 2026-09-27 rules/rule-sprint status: draft → built · cascade · generate
 - 2026-09-27 rules/rule-synthesis status: draft → built · cascade · generate
+- 2026-09-28 decisions/decision-case-470 created · raw/2026-09-28/0000/ledger.md#case-470 · generate
+- 2026-09-28 estimates/estimate-skill-grill-me-asks-in-rounds updated: the Criterion replaced whole — a round of case-guppi reads the frontier rule, finding facts and the confirmation; the form of its questions stays with estimate-case-build-writes-the-case (case 470) · [[decision-case-470]] · generate
+- 2026-09-28 decisions/decision-case-471 created · raw/2026-09-28/0000/ledger.md#case-471 · generate
+- 2026-09-28 decisions/decision-case-472.1 created · raw/2026-09-28/0000/ledger.md#case-472.1 · generate
+- 2026-09-28 rules/rule-case-check updated: a line of a Criterion replaced whole that the new Criterion does not carry is a note, sent back to case-guppi once and kept in the store (case 472.1) · [[decision-case-472.1]] · generate
+- 2026-09-28 rules/rule-prespec updated: pre-spec prints a note for a line of a Criterion replaced whole that the new Criterion does not carry (case 472.1) · [[decision-case-472.1]] · generate
+- 2026-09-28 estimates/estimate-case-check-notes-a-criterion-line-not-carried created · [[decision-case-472.1]] · generate
+- 2026-09-28 rules/rule-case-check estimate estimate-case-check-notes-a-criterion-line-not-carried added · [[decision-case-472.1]] · generate
+- 2026-09-28 decisions/decision-case-472.2 created · raw/2026-09-28/0000/ledger.md#case-472.2 · generate
+- 2026-09-28 rules/rule-case-check updated: two then lines of sibling sub-cases that share most of their words are a note (case 472.2) · [[decision-case-472.2]] · generate
+- 2026-09-28 rules/rule-prespec updated: pre-spec prints a note for two then lines of sibling sub-cases that share most of their words (case 472.2) · [[decision-case-472.2]] · generate
+- 2026-09-28 estimates/estimate-case-check-notes-a-then-line-shared-by-siblings created · [[decision-case-472.2]] · generate
+- 2026-09-28 rules/rule-case-check estimate estimate-case-check-notes-a-then-line-shared-by-siblings added · [[decision-case-472.2]] · generate
+- 2026-09-28 decisions/decision-case-472.3 created · raw/2026-09-28/0000/ledger.md#case-472.3 · generate
+- 2026-09-28 rules/rule-prespec updated: pre-spec counts every Estimate item that replaces a Criterion, written or lifted, by names_a_part (case 472.3) · [[decision-case-472.3]] · generate
+- 2026-09-28 rules/rule-materialize updated: a written Criterion is the one promise of its Case, not a way to touch two (case 472.3) · [[decision-case-472.3]] · generate
+- 2026-09-28 estimates/estimate-prespec-checks-the-form-of-an-item updated: the Criterion replaced whole — every Estimate item that replaces a Criterion by names_a_part, written or lifted, counts as a promise (case 472.3) · [[decision-case-472.3]] · generate
+- 2026-09-28 insights/insight-case-build-promise-lines-compared-by-no-check updated: actioned: a Criterion line not carried and a then line shared by siblings are notes sent back to case-guppi once, and pre-spec counts a written Criterion as a promise (cases 472.1, 472.2, 472.3) · [[decision-case-472.3]] · generate
+- 2026-09-28 decisions/decision-case-473.1 created · raw/2026-09-28/0000/ledger.md#case-473.1 · generate
+- 2026-09-28 rules/rule-retro updated: a check red in Work Mode because it reads a page or a file the same Spec updates is a note for the handoff, not debt; a red test stays under the green rule (case 473.1) · [[decision-case-473.1]] · generate
+- 2026-09-28 estimates/estimate-retro-red-check-of-an-updated-page-is-a-handoff-note created · [[decision-case-473.1]] · generate
+- 2026-09-28 rules/rule-retro estimate estimate-retro-red-check-of-an-updated-page-is-a-handoff-note added · [[decision-case-473.1]] · generate
+- 2026-09-28 decisions/decision-case-473.2 created · raw/2026-09-28/0000/ledger.md#case-473.2 · generate
+- 2026-09-28 decisions/decision-case-238 superseded by decision-case-473.2 · [[decision-case-473.2]] · generate
+- 2026-09-28 insights/insight-workflow-code-live-before-the-page-it-reads defer by decision-case-238 superseded · [[decision-case-473.2]] · generate
+- 2026-09-28 rules/rule-case-build updated: a reader that loses what it refuses before its writer lands keeps the old form until the writer is measured live (case 473.2) · [[decision-case-473.2]] · generate
+- 2026-09-28 insights/insight-workflow-code-live-before-the-page-it-reads updated: actioned: the red of a check before the librarian's run is a note for the handoff in rule-retro (case 473.1); a reader that loses what it refuses keeps the old form until its writer is measured live, in rule-case-build (case 473.2); the defer of case 238 retired · [[decision-case-473.2]] · generate
+- 2026-09-28 estimates/estimate-case-build-keeps-the-old-form-until-the-writer-is-live created · [[decision-case-473.2]] · generate
+- 2026-09-28 rules/rule-case-build estimate estimate-case-build-keeps-the-old-form-until-the-writer-is-live added · [[decision-case-473.2]] · generate
+- 2026-09-28 decisions/decision-case-471.1 created · raw/2026-09-28/0000/ledger.md#case-471.1 · generate
+- 2026-09-28 decisions/decision-case-471.2 created · raw/2026-09-28/0000/ledger.md#case-471.2 · generate
+- 2026-09-28 rules/rule-atomicity updated: the refusal of pre-spec counts a written Criterion too (case 472.3) · [[decision-case-472.3]] · generate
+- 2026-09-28 lessons/lesson-spec-write-keeps-the-body-of-a-case-rebuilt-as-a-parent created · raw/2026-09-28/0000/ledger.md#L25 · generate
+- 2026-09-28 decisions/decision-case-474.1 created · raw/2026-09-28/0000/ledger.md#case-474.1 · generate
+- 2026-09-28 decisions/decision-case-471 superseded by decision-case-474.1 · [[decision-case-474.1]] · generate
+- 2026-09-28 decisions/decision-case-471.1 superseded by decision-case-474.1 · [[decision-case-474.1]] · generate
+- 2026-09-28 rules/rule-documentation updated: the librarian finds an archived page by the Glob of the slug a script named in an error, never searches the archive, and reads the saved output of its own command (case 474.1) · [[decision-case-474.1]] · generate
+- 2026-09-28 rules/rule-synthesis updated: the synthesis shows the form of each of its entries and reads no yaml that materialize did not name (case 474.1) · [[decision-case-474.1]] · generate
+- 2026-09-28 estimates/estimate-documentation-completes updated: the Criterion replaced whole — an archived page found by the Glob of the slug a script named in an error, the archive never searched, the saved output of the librarian's own command allowed, no yaml that materialize did not name (case 474.1) · [[decision-case-474.1]] · generate
+- 2026-09-28 decisions/decision-case-474.2 created · raw/2026-09-28/0000/ledger.md#case-474.2 · generate
+- 2026-09-28 decisions/decision-case-471.2 superseded by decision-case-474.2 · [[decision-case-474.2]] · generate
+- 2026-09-28 estimates/estimate-synthesis-clusters updated: the Criterion replaced whole — the ban on the archive is the synthesis's, not the whole run's; the base text and the block of case 147.4 folded into one Criterion (case 474.2) · [[decision-case-474.2]] · generate
+- 2026-09-28 estimates/estimate-case-check-requires-a-backlog-item-decided-on-its-page status: pending → passed · raw/2026-09-28/0000/ledger.md#L30 · generate
+- 2026-09-28 estimates/estimate-language-followed status: pending → failed · raw/2026-09-28/0000/ledger.md#L31 · generate
+- 2026-09-28 estimates/estimate-agent-writing-followed status: pending → failed · raw/2026-09-28/0000/ledger.md#L32 · generate
+- 2026-09-28 lessons/lesson-chat-language-follows-the-last-english-file-read created · raw/2026-09-28/0000/ledger.md#L33 · generate
+- 2026-09-28 estimates/estimate-case-protocol-shows-the-built-case status: pending → passed · raw/2026-09-28/0000/ledger.md#L34 · generate
+- 2026-09-28 decisions/decision-case-475 created · raw/2026-09-28/0000/ledger.md#case-475 · generate
+- 2026-09-28 rules/rule-spec-write deferred · [[decision-case-475]] · generate
+- 2026-09-28 insights/insight-session-reply-language-follows-the-english-text-read created · raw/2026-09-28/0000/ledger.md#L33 · generate
+- 2026-09-28 lessons/lesson-retro-answered-in-the-skills-language updated: clustered under insight-session-reply-language-follows-the-english-text-read (synthesis) · raw/2026-09-28/0000/ledger.md#L33 · generate
+- 2026-09-28 lessons/lesson-chat-language-follows-the-last-english-file-read updated: clustered under insight-session-reply-language-follows-the-english-text-read (synthesis) · raw/2026-09-28/0000/ledger.md#L33 · generate
+- 2026-09-28 rules/rule-synthesis status: built → draft · cascade · generate
+- 2026-09-28 decisions/decision-case-238 archived · superseded · generate
+- 2026-09-28 decisions/decision-case-471.1 archived · superseded · generate
+- 2026-09-28 decisions/decision-case-471.2 archived · superseded · generate
+- 2026-09-28 decisions/decision-case-471 archived · superseded · generate
+- 2026-09-28 lessons/lesson-case-build-a-criterion-replaced-whole-drops-a-line archived · insight actioned · generate
+- 2026-09-28 lessons/lesson-case-build-one-promise-signed-in-two-sub-cases archived · insight actioned · generate
+- 2026-09-28 lessons/lesson-case-build-two-promises-in-one-sub-case-with-a-written-criterion archived · insight actioned · generate
+- 2026-09-28 lessons/lesson-case-build-a-rewritten-criterion-loses-a-finding-text archived · insight actioned · generate
+- 2026-09-28 lessons/lesson-reader-changed-before-its-writer-closed-the-live-session archived · insight actioned · generate
+- 2026-09-28 lessons/lesson-work-mode-check-reads-a-page-the-same-spec-changes archived · insight actioned · generate
+- 2026-09-28 lessons/lesson-case-build-a-criterion-replaced-whole-drops-a-line archived · cleanup
+- 2026-09-28 lessons/lesson-case-build-a-rewritten-criterion-loses-a-finding-text archived · cleanup
+- 2026-09-28 lessons/lesson-case-build-one-promise-signed-in-two-sub-cases archived · cleanup
+- 2026-09-28 lessons/lesson-case-build-two-promises-in-one-sub-case-with-a-written-criterion archived · cleanup
+- 2026-09-28 lessons/lesson-reader-changed-before-its-writer-closed-the-live-session archived · cleanup
+- 2026-09-28 lessons/lesson-work-mode-check-reads-a-page-the-same-spec-changes archived · cleanup
+- 2026-09-28 decisions/decision-case-238 archived · cleanup
+- 2026-09-28 decisions/decision-case-471.1 archived · cleanup
+- 2026-09-28 decisions/decision-case-471.2 archived · cleanup
+- 2026-09-28 decisions/decision-case-471 archived · cleanup

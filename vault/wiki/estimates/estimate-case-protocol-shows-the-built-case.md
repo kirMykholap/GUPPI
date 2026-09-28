@@ -1,11 +1,11 @@
 ---
 type: estimate
 kind: QA
-status: pending
+status: passed
 target: "[[rule-case-protocol]]"
 purpose: A Case is built by case-guppi and shown by the main agent unchanged
 method: by hand, the Cases of a session at its close, their context against the Agent calls and their showings against the SendUserFile calls of the transcript
-checked: 2026-09-25
+checked: 2026-09-28
 origin: raw/2026-09-24/1303/ledger.md#case-391.2
 sprint: migration
 created: 2026-09-24
@@ -31,7 +31,7 @@ The main agent dispatches `case-guppi` with the Case id, the Frontier item and i
 
 ## Result
 
-2026-09-25, by hand, the Cases of session 1654 against its Agent calls: each of Cases 425–432 was built by a case-guppi dispatch that carried the Case id, the Frontier item, its source and the person's words; the person's questions and changes went to the same agent by SendMessage (427, 428, 429, 430); the answers without a Case heading (427, the first answer of C5+C9) were put to the person as questions and no Case was shown; the plan file stood with its title line before the first dispatch; ask-guppi was dispatched once, at pre-spec. Failed on one showing: the first showing of sub-case 428.3 carried the ledger line of 428.2 under its ratification, retyped by the agent; the Stop comparison of casecheck refused it and 428.3 was shown again unchanged (lesson-case-show-sub-case-ratification-retyped)
+2026-09-28, by hand, session 0000 at Retro: Cases 470, 471, 472, 473 and 474 each dispatched to case-guppi with the id, the Frontier item, its source and the person's words in the prompt, after the plan file stood with its title line; every round shown in Russian line by line with its ❓ and ➡️ lines and the agent's text after one rule; every showing by SendUserFile with display render on raw/2026-09-28/0000/cases/case-<N>.md, a Russian short text and the ratification as the answer held it; the changed Cases after pre-spec sent to their case-guppi and shown again; the person's answers were sent in full, but with the agent's reading of them added in parentheses; the person's requests to explain a round were answered by the agent itself, as questions on a round, not on a shown Case
 
 ## History
 
@@ -45,3 +45,4 @@ The main agent dispatches `case-guppi` with the Case id, the Frontier item and i
 - 2026-09-27 updated: the Criterion replaced whole — the Case sent as the file the hook writes, a short Russian text and the ratification in the chat, nothing retyped (case 452.4) · [[decision-case-452.4]]
 - 2026-09-27 updated: the Criterion replaced whole — a round is shown in Russian line by line, in the form of grill-me (case 458) · [[decision-case-458]]
 - 2026-09-27 updated: the Criterion replaced whole — the context of a first round shown translated before its first question (case 466.2) · [[decision-case-466.2]]
+- 2026-09-28 status: pending → passed · raw/2026-09-28/0000/ledger.md#L34

@@ -1493,6 +1493,58 @@ def test_a_pair_whose_anchor_an_earlier_case_removes_is_a_finding(tmp_path):
     assert out.splitlines() == ["case 2: rule-x: a replace anchor is not in the page: FIRST"]
 
 
+# --- a code fence a pair or a written section breaks (case 487.1) --------------------------
+
+SENTENCE = "No Case is named twice."
+FENCED_NEW = SENTENCE + "\\n\\n```\\nsample\\n```"
+BROKEN_UPDATE = (
+    "update:\n  - slug: rule-x\n    sections:\n      Purpose: |\n        ```\n        open\n"
+    "    change: one line\n"
+)
+
+
+def test_a_pair_that_joins_text_to_a_closing_fence_is_a_finding(tmp_path):
+    # the defect of case 483: an anchor in the middle of a line, a `new` ending on a fence
+    with_body(tmp_path, SENTENCE + " When the person approves, commit.")
+    code, out, _ = check(tmp_path, plan=anchor_plan(SENTENCE, FENCED_NEW))
+    assert code == 1
+    assert out.splitlines() == [
+        (
+            "case 1: rule-x: ## Purpose: a pair leaves a code fence with text after it: "
+            "``` When the person approves, commit."
+        ),
+        (
+            "case 1: rule-x: ## Purpose: a pair leaves a code fence open at the end of the "
+            "section: ```"
+        ),
+    ]
+    page = tmp_path / "vault" / "wiki" / "rules" / "rule-x.md"
+    assert "sample" not in page.read_text(encoding="utf-8")
+
+
+def test_a_pair_that_closes_its_fence_on_its_own_line_is_clean(tmp_path):
+    with_body(tmp_path, SENTENCE + "\n\nWhen the person approves, commit.")
+    assert check(tmp_path, plan=anchor_plan(SENTENCE, FENCED_NEW)) == (0, "", "")
+
+
+def test_a_fence_break_the_section_held_before_the_pair_is_not_a_finding(tmp_path):
+    with_body(tmp_path, "FIRST\n\n```\nx\n``` word")
+    assert check(tmp_path, plan=anchor_plan("FIRST")) == (0, "", "")
+
+
+def test_a_sections_value_with_an_open_fence_is_a_finding(tmp_path):
+    with_body(tmp_path, "the body")
+    plan = PLAN.replace("update:\n  - slug: rule-x\n    change: one line\n", BROKEN_UPDATE)
+    code, out, _ = check(tmp_path, plan=plan)
+    assert code == 1
+    assert out.splitlines() == [
+        (
+            "case 1: rule-x: Purpose: a sections value leaves a code fence open at the end of "
+            "the section: ```"
+        )
+    ]
+
+
 # --- a Render written without the page's own markers (case 325.1) ------------------------
 
 UNWRAPPED_UPDATE = (

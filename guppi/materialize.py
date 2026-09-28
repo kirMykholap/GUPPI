@@ -126,7 +126,10 @@ whose run is at least as long, with nothing after the run but spaces, as CommonM
 `quoted_sections` and `criterion_text` here, `fenced_value` of `guppi/ratified.py`,
 `plan_prose` of `guppi/prespec.py`, the check of `ratification` in `guppi/casecheck.py` and
 `ledger_lines` of `guppi/ledger.py` judge by them. `quoted_sections` is the one reader of the
-sections of a Case; `guppi/ratified.py` and `guppi/casecheck.py` import it (case 462). `fence_for` gives
+sections of a Case; `guppi/ratified.py` and `guppi/casecheck.py` import it (case 462).
+`fence_breaks`, built on the two, gives each break of a fence in the text of one section — a
+line inside a fence with a full run and text after it, and a fence open at the end — for
+`check_pairs` of `guppi/prespec.py` and the class `fence` of `guppi/lint.py` (case 487.1). `fence_for` gives
 the fence a written block takes: backticks one longer than the longest run of backticks that
 opens a line inside it, three at the least (case 444.2).
 
@@ -385,6 +388,32 @@ def closes_fence(line: str, opening: tuple[str, int, str]) -> bool:
         return False
     run = match.group(1)
     return run[0] == opening[0] and len(run) >= opening[1]
+
+
+def fence_breaks(text: str) -> list[tuple[str, str]]:
+    """Each break of a code fence in `text`, the text of one section: `("text", line)` for a
+    line inside an open fence that starts with a run of the fence's character at least as
+    long as the fence and has text after the run — the fence does not close there, and the
+    text after it is read as code; `("open", line)` for a fence still open at the end of the
+    text, `line` its opening line. Built on `fence_opening` and `closes_fence`, the one
+    judgment; `check_pairs` of `guppi/prespec.py` and the class `fence` of `guppi/lint.py`
+    call it (case 487.1)."""
+    breaks: list[tuple[str, str]] = []
+    opening: tuple[str, int, str] | None = None
+    opening_line = ""
+    for line in text.splitlines():
+        if opening is None:
+            opening, opening_line = fence_opening(line), line
+            continue
+        if closes_fence(line, opening):
+            opening = None
+            continue
+        run = fence_opening(line)
+        if run and run[0] == opening[0] and run[1] >= opening[1]:
+            breaks.append(("text", line))
+    if opening is not None:
+        breaks.append(("open", opening_line))
+    return breaks
 
 
 def fence_for(text: str) -> str:

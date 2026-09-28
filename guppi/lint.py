@@ -19,7 +19,11 @@ not exist), `path` (a file named in
 `enforcement: render` whose `## Render` is absent, or whose text does not open with
 `<!-- slug -->` and close with `<!-- /slug -->`; and a `render_mode: full` page whose Render
 holds a closing line for one of its `children` — a parent carries one opening line per
-child, and the closing line is the renderer's own, case 325.2), `layout` (a page whose `type` does
+child, and the closing line is the renderer's own, case 325.2), `fence` (a section of a page
+with a code fence broken — a line inside the fence with a run at least as long and text
+after it, or a fence open at the end of the section — by `fence_breaks` of
+`guppi/materialize.py`, the judgment `pre-spec` runs over the pairs of a plan; a harness file
+is not read, `render --check` compares it with its Render, case 487.2), `layout` (a page whose `type` does
 not match the folder it sits in, a page whose `slug` field is not its filename, and a `.md`
 at the root of `wiki/` that no live rule page names — case 315), `orphan` (a live entity, rule or
 estimate no other live page's frontmatter names; a lesson is a record and an Insight names
@@ -64,7 +68,10 @@ from pathlib import Path
 import yaml
 
 from guppi.event import project_root
-from guppi.materialize import category_of  # the one table of prefixes (case 460.3)
+from guppi.materialize import (
+    category_of,  # the one table of prefixes (case 460.3)
+    fence_breaks,  # the one judgment of a fence (case 487.2)
+)
 from guppi.pages import CATEGORIES, HISTORY, Page, read_vault, slug_of, wiki_root
 
 LINK_FIELDS = (
@@ -630,6 +637,19 @@ def check_markers(page: Page) -> list[Finding]:
     return []
 
 
+def check_fences(page: Page) -> list[Finding]:
+    """One `fence` finding per break of a code fence in a section of the page, History
+    included: a line inside a fence with a full run and text after it, or a fence open at
+    the end of the section — by `fence_breaks` of `guppi/materialize.py`, the judgment
+    `pre-spec` runs over the pairs of a plan; no copy of the pattern here (case 487.2)."""
+    findings = []
+    for name, text in page.sections.items():
+        for kind, line in fence_breaks(text):
+            what = "open at the end of the section" if kind == "open" else "with text after its run"
+            findings.append(Finding(page, "fence", f"{name}: a code fence {what}: {line}"))
+    return findings
+
+
 def check_unmigrated(pages: list[Page]) -> list[Finding]:
     """One line for the remainder of the recut, `estimates: unmigrated: <N> pages in the
     shape before case 193`; no line at zero (case 202)."""
@@ -734,6 +754,7 @@ def lint(project_dir: Path) -> list[str]:
         findings.extend(check_origin(page, project_dir))
         findings.extend(check_paths(page, project_dir))
         findings.extend(check_markers(page))
+        findings.extend(check_fences(page))
     findings.extend(check_layout(wiki, pages, vault["rules"]))
     findings.extend(check_orphans([p for p in pages if not p.error]))
     for page in pages:

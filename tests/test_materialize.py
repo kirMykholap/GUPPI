@@ -2332,3 +2332,30 @@ def test_every_reader_judges_a_fence_alike(opener, inner, closer):
     # `criterion_text`: a section that opens with a fence is the whole-Case fallback
     fenced = "\n".join([opener, *body, closer])
     assert materialize.criterion_text({"when": fenced, "then": "B."}) == "Then:\nB."
+
+
+FENCE_BREAKS = {
+    "a closing run with text after it": (
+        ["```", "sample", "``` When the person approves, commit", "more", "```"],
+        [("text", "``` When the person approves, commit")],
+    ),
+    "a fence open at the end": (["intro", "```yaml", "a: 1"], [("open", "```yaml")]),
+    "a longer run with text after it": (["```", "x", "```` word", "```"], [("text", "```` word")]),
+}
+FENCE_WHOLE = {
+    "a normal fence": ["intro", "```", "code", "```", "after"],
+    "an opening with a tag": ["```then", "a: 1", "```"],
+    "a shorter run inside a longer fence": ["````", "``` inner word", "```", "````"],
+    "a run of the other character": ["```", "~~~ word", "```"],
+    "no fence": ["plain text", "`inline` code"],
+}
+
+
+@pytest.mark.parametrize(("lines", "breaks"), list(FENCE_BREAKS.values()), ids=list(FENCE_BREAKS))
+def test_fence_breaks_flags_a_broken_fence(lines, breaks):  # case 487.1
+    assert materialize.fence_breaks("\n".join(lines)) == breaks
+
+
+@pytest.mark.parametrize("lines", list(FENCE_WHOLE.values()), ids=list(FENCE_WHOLE))
+def test_fence_breaks_passes_a_whole_fence(lines):  # case 487.1
+    assert materialize.fence_breaks("\n".join(lines)) == []

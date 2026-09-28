@@ -74,6 +74,11 @@ the ledgers of its dates, on the `hi` date from the `hi` time on, and its folder
   pairs are applied in entry order to copies of the pages in memory by `generate`'s own
   matching rule, and a `reword` pair no live page holds: the anchor is judged against the
   page as the Spec leaves it, not as it stands today, and nothing is written (case 351);
+- a code fence a `replace` or `reword` pair breaks — a line inside a fence with a full run
+  and text after it, or a fence open at the end of the section — judged by `fence_breaks`
+  of `guppi/materialize.py` on each section the pair changes, before and after it, a break
+  the section held before not counted; and each such break in the text of a `sections`
+  value of a `create` or an `update`, judged on its own (case 487.1);
 - a record line of the window — `- decision[`, `- estimate[`, `- lesson[`, timed — that
   `materialize.parse_line` does not read, with its date and line number (case 75.2);
 - a `[[slug]]` outside a code span in the plan — in the blockquotes and in the strings of
@@ -146,6 +151,7 @@ from guppi.materialize import (
     case_texts,
     category_of,
     criterion_text,
+    fence_breaks,
     fenced_lines,
     find_item,
     item_keys,
@@ -661,10 +667,35 @@ def check_pairs(cases: dict, blocks: dict, project_dir: Path) -> list[str]:
     and the opening of its `old`; a `reword` pair no live page holds is one too. The anchor is
     judged against the page as the Spec leaves it, not as it stands today: a pair of a later
     Case sees what an earlier one wrote, which is how the pairs of one Spec collide (314.2
-    against 310.6). The meaning of the words in their place is not judged here (case 351)."""
+    against 310.6). The meaning of the words in their place is not judged here (case 351).
+    Each section a pair changes is judged by `fence_breaks` before and after the pair, and a
+    break it adds is one finding; so is a break in the text of a `sections` value of a
+    `create` or an `update`, judged on its own and not applied to the copies (case 487.1)."""
     findings: list[str] = []
     pages: dict[str, Page | None] = {}
     every_page = False
+
+    def fence_findings(case: str, slug: str, before: dict[str, dict[str, str]]) -> None:
+        for page_slug, sections in before.items():
+            page = pages.get(page_slug)
+            for name, text in (page.sections if page else {}).items():
+                if text == sections.get(name, text):
+                    continue
+                for kind, line in added_breaks(sections.get(name, ""), text):
+                    findings.append(
+                        f"case {case}: {page_slug}: {name}: " + fence_break("a pair", kind, line)
+                    )
+
+    for case in cases:
+        for kind in ("create", "update"):
+            for item in blocks.get(case, {}).get(kind) or []:
+                values = item.get("sections") if isinstance(item, dict) else None
+                for name, text in values.items() if isinstance(values, dict) else []:
+                    for broken, line in fence_breaks(str(text or "")):
+                        findings.append(
+                            f"case {case}: {item.get('slug')}: {name}: "
+                            + fence_break("a sections value", broken, line)
+                        )
 
     def load(slug: str) -> Page | None:
         if slug not in pages:
@@ -696,8 +727,10 @@ def check_pairs(cases: dict, blocks: dict, project_dir: Path) -> list[str]:
                 page = load(slug)
                 if page is None or page.error or not old:
                     continue
+                before = {slug: dict(page.sections)}
                 hits = replace_once(page, old, str(pair.get("new") or ""))
                 if hits == 1:
+                    fence_findings(case, slug, before)
                     continue
                 what = "is not in the page" if not hits else f"hits {hits} times"
                 findings.append(f"case {case}: {slug}: a replace anchor {what}: {preview(old)}")
@@ -708,12 +741,35 @@ def check_pairs(cases: dict, blocks: dict, project_dir: Path) -> list[str]:
                 if not old:
                     continue
                 load_every()
+                before = {s: dict(p.sections) for s, p in pages.items() if p}
                 touched = sum(Vault.reword_text(page, old, new) for page in pages.values() if page)
                 if not touched:
                     findings.append(
                         f"case {case}: {slug}: a reword pair hits no live page: {preview(old)}"
                     )
+                fence_findings(case, slug, before)
     return findings
+
+
+def added_breaks(before: str, after: str) -> list[tuple[str, str]]:
+    """The breaks of a fence `after` holds that `before` did not, by `fence_breaks` of
+    `guppi/materialize.py`, each counted as often as it stands (case 487.1)."""
+    held = list(fence_breaks(before))
+    added = []
+    for found in fence_breaks(after):
+        if found in held:
+            held.remove(found)
+        else:
+            added.append(found)
+    return added
+
+
+def fence_break(what: str, kind: str, line: str) -> str:
+    """The words of a fence finding: `what` leaves a fence with text after its run, with the
+    line, or open at the end of the section (case 487.1)."""
+    if kind == "open":
+        return f"{what} leaves a code fence open at the end of the section: {preview(line)}"
+    return f"{what} leaves a code fence with text after it: {preview(line)}"
 
 
 def preview(text: str) -> str:

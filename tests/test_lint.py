@@ -519,6 +519,41 @@ def test_a_closing_marker_for_a_child_in_a_full_render_is_a_markers_finding(tmp_
     ]
 
 
+# --- the class `fence` (case 487.2) ---------------------------------------------------------
+
+
+def fenced_rule(inside):
+    return render_rule(body=f"\n## Render\n\n<!-- rule-x -->\n{inside}\n<!-- /rule-x -->\n")
+
+
+def test_a_closing_run_with_text_after_it_is_a_fence_finding(tmp_path):
+    # the defect of case 483: the line reads as code; a later closing line ends the fence
+    seed(tmp_path, rule=fenced_rule("```\nsample\n``` When the person approves\nmore\n```"))
+    write(tmp_path / ".claude" / "x.md", "")
+    _, lines, _ = run(tmp_path)
+    assert lines == [
+        (
+            "rules/rule-x: fence: ## Render: a code fence with text after its run: "
+            "``` When the person approves"
+        )
+    ]
+
+
+def test_a_fence_left_open_is_a_fence_finding(tmp_path):
+    seed(tmp_path, rule=fenced_rule("```yaml\na: 1"))
+    write(tmp_path / ".claude" / "x.md", "")
+    _, lines, _ = run(tmp_path)
+    assert lines == [
+        "rules/rule-x: fence: ## Render: a code fence open at the end of the section: ```yaml"
+    ]
+
+
+def test_normal_fences_are_no_fence_finding(tmp_path):
+    seed(tmp_path, rule=fenced_rule("```yaml\na: 1\n```\n\n````\n``` inner\n````"))
+    write(tmp_path / ".claude" / "x.md", "")
+    assert run(tmp_path) == (0, [], "")
+
+
 def test_a_leaf_method_naming_a_reading_without_by_hand_is_a_method_finding(tmp_path):
     # case 330.1: `by hand` is the one spelling of a reading; the word `reading` alone is not one
     seed(

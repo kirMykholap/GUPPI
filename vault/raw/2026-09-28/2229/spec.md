@@ -1,0 +1,1713 @@
+<!-- approved 00:48:34 · session 5923b283 -->
+
+# Spec — session 2229, 2026-09-28
+
+## Case 486 — The Retro skeleton closes its code block on its own line
+
+> **context:**
+> The Retro skill ends with a sample of the report in a code block. In Markdown a code block closes only on a line that holds the closing backticks and nothing else. Here the next sentence, "When the person approves, commit … then call `/handoff`", stands on that same line after the backticks. So the block never closes, and the commit-and-handoff step reads as part of the sample. The break is in the Render of `rule-retro` (page line 73) and in `.claude/skills/retro/SKILL.md` (line 47), which is rendered from it. It came from the third `replace` pair of case 483. That pair's `new` ended on the closing fence as a YAML `|-` value, and the text after its anchor, in the same paragraph, joined that line. The librarian's run of 2026-09-28 found it, and the brief flags it.
+> The person chose to fix the text only, in its ratified order, with no new Estimate. The fix is one `replace` pair. Its anchor "``` When the person approves, commit (" occurs once in the Render section. Its `new` closes the fence on its own line, then leaves a blank line before the sentence, whose words stay as they are. No reader changes and no code changes. The page and the skill file change together at the librarian's run: `generate` writes the page, then `guppi render` writes the file. The hook refuses a hand edit of the file, so the Retro of this session still reads the old line. This Case creates no page, so no vault query was run.
+> The frame holds no contradiction. `estimate-retro-red-in-the-baseline-is-not-charged` quotes the commit condition, but its words and meaning stay the same. `estimate-retro-report-holds-each-fact-once` stays `pending` from case 483, and its reading by hand at the first `/retro` after the render looks at the report. `estimate-retro-loads` and `estimate-retro-red-check-of-an-updated-page-is-a-handoff-note` speak of readings and red checks. No Criterion speaks of the layout of the skill, so no Estimate is touched.
+> Not done here: a guard that catches such a break before the librarian's run. That is the Frontier item C6, which the person raised. There, a `/pre-spec` check of the simulated pairs and a run of `materialize` and `generate` in Work Mode can be weighed together.
+
+> **problem:**
+> The closing fence of the report skeleton in `rule-retro` and in its rendered skill carries the next sentence on its line. The code block does not close, so the last step of Retro, the commit and the handoff, reads as part of the sample report.
+
+> **given:**
+> `rule-retro` — its Render: the closing fence of the report skeleton and the sentence after it
+> **＋** `.claude/skills/retro/SKILL.md` — the skill rendered from `rule-retro`
+
+> **when:**
+> The agent loads `.claude/skills/retro/SKILL.md` at `/retro` and reads the form of the report.
+
+> **then:**
+> The skeleton of the report is a code block that closes on a line that holds the fence alone.
+> **＋** The sentence on the commit and the handoff stands after the block as its own paragraph, with its words unchanged.
+> **－** The text of the skeleton and of that sentence does not change.
+
+````then
+update:
+- slug: rule-retro
+  replace:
+  - old: '``` When the person approves, commit ('
+    new: |-
+      ```
+
+      When the person approves, commit (
+  change: the closing fence of the report skeleton stands alone on its line, and the commit sentence follows as its own paragraph (case 486)
+````
+
+```tasks
+- [ ] update `rule-retro`
+- [ ] `uv run guppi render`: `.claude/skills/retro/SKILL.md`
+```
+
+## Case 487 — A broken code fence is a finding of pre-spec and of lint
+
+> **context:**
+> A code block in a page opens on a line of three or more backticks and closes on a line of the same backticks with nothing after them. If text follows the backticks on that line, Markdown does not read it as a close. The block stays open and swallows the text after it. Today nothing checks this. `/pre-spec` applies each `replace` and `reword` pair of the plan to copies of the pages in memory, but it only counts how often each anchor is found. It never looks at what the pair leaves behind. `guppi lint` has no check of code blocks. `make style` runs ruff on Python only. So a pair whose `new` ends on a closing fence, anchored in the middle of a line, joins the rest of that line to the fence. Case 483 did this to `rule-retro`, and only the librarian found it, by eye. Case 486 of this session fixes that page.
+> The person agreed on one judgment in one module, called from both sides. `fence_breaks` in `guppi/materialize.py` sits beside `fence_opening` and `closes_fence`, the one judgment of a fence since case 444.1. `/pre-spec` calls it on each section that a pair changes and reports only a break the pair adds. It also calls it on each section text that a `sections` value writes whole. `lint` calls it on every section of every live page. The person chose two promises, each with a new Estimate, and chose to check the pages only. A harness file is a copy of its Render, and `render --check` already reports any difference. The person also chose to drop the full trial run of `materialize`, `generate` and `render` in Work Mode: it would not have caught this break, and nothing about it is recorded.
+> A grep of the live pages for a fence line with more than one word after its run found two lines. One is in `rule-retro` (line 73), which case 486 fixes. The other is in `rule-synthesis` (line 70), "``` One lesson without a pair": the sample entries of the librarian's synthesis run on into its instructions. The person chose to fix it here, as 487.3. At pre-spec, a third page came to light: `decision-case-13`. Its line 35 opens a `markdown` fence that no line closes, so the block swallows its `## History`. The person chose not to fix it here. It stays with the other old Decision pages of cases 1–28 and their 62 `schema` findings, which are debt of Slice 4 and 5.
+> The vault's answer: both `create` items are Estimates with a `ref`, so no vault query ran. No live page speaks of a broken code fence. The frame:
+> - `estimate-prespec-simulates-the-pairs` promises the anchor counts. It stands, and its `－` line on meaning stays true, because a fence is structure, not meaning.
+> - `estimate-lint-catches` lists the classes of lint and the form of a finding line. The new class keeps that form, so it stands.
+> - `estimate-case-check-sends-back-a-faulty-case` promises that the answer check runs `judge` of `guppi/prespec.py`, which calls `check_pairs`. So the new finding also sends a broken pair back to `case-guppi` before the person sees it, with no change to that Criterion.
+> - The estimates of `rule-synthesis` speak of clustering, not of the layout of the file, so no Estimate is touched there.
+> - At pre-spec, the vault query found that `estimate-materialize-judges-a-fence` speaks of the change. Its `When:` lists every reader of a fence but not the two new callers. Its line that "a word after its run stays inside the fence as content" is still true of the parsing, but that line is now what `fence_breaks` reports as a break. The person agreed to 487.4, which replaces that Criterion whole.
+> - `lint` only goes red, so it keeps no old form. From Work Mode until the librarian's run writes the fixes of 486 and 487.3, `make lint` reports `rule-retro`, `rule-synthesis` and `decision-case-13` under the class `fence`. After that run it still reports `decision-case-13`, so `lint` stays red on `fence`. That red is a note for the handoff, by `rule-retro`.
+> - The two new Estimates and the one set `pending` are read in a later session (case 428.1).
+>
+> The answer check noted that some `then` lines of 487.2 and 487.4 share words with 487.1. This is expected: 487.1 defines the judgment, 487.2 applies it, and 487.4 keeps the parsing lines of the old Criterion word for word. The check also noted that the old `When:` of `estimate-materialize-judges-a-fence` is not carried. That is on purpose: the new `When:` adds the two new readers.
+
+> **problem:**
+> A `replace` pair, or a section written whole, can leave a code fence broken in a page. Neither `/pre-spec` nor `lint` looks for this. So the break reaches the vault and the rendered harness files, and only someone reading by eye catches it.
+
+### Case 487.1 — Pre-spec reports a code fence that a pair or a written section breaks
+
+> **given:**
+> `rule-prespec` — its Render, the text of `/pre-spec` on the pairs of the plan
+> **＋** `.claude/skills/pre-spec/SKILL.md` — the skill rendered from `rule-prespec`
+> **＋** `guppi/materialize.py` — the one judgment of a fence; `fence_breaks` joins it
+> **＋** `guppi/prespec.py` — `check_pairs` and the docstring of the checks; owned by `rule-prespec-hook`
+> **＋** `tests/test_materialize.py` — the cases of `fence_breaks`
+> **＋** `tests/test_prespec.py` — the cases of the pre-spec finding
+> **＋** `estimate-prespec-catches-a-broken-fence` — the new promise
+
+> **when:**
+> `uv run guppi prespec --check <plan> --session <id>` applies the `replace` and `reword` pairs of the plan to copies of the pages in memory, and reads the `sections` values of the `create` and `update` items of its `then` blocks.
+
+> **then:**
+> `fence_breaks` of `guppi/materialize.py` takes the text of one section and gives each break in it: a line inside an open code fence that starts with a run of the fence's character at least as long as the fence and has text after the run, and a fence still open at the end of the section.
+> **＋** For each section a `replace` or `reword` pair changes, each break the section holds after the pair and did not hold before it gives one line: the Case, the page's slug, the section, and "a pair leaves a code fence with text after it" with the line, or "a pair leaves a code fence open at the end of the section".
+> **＋** Each break in the text of a `sections` value gives one line of the same form, with "a sections value leaves" in place of "a pair leaves".
+> **＋** Each such line is a finding: the check exits 1.
+> **－** A break that the section held before the pair gives no line.
+> **－** A run shorter than the fence it stands in, or a run of the other character, is content of the fence and no break.
+> **－** No page is written, and a `sections` value is judged on its own and not applied to the copies, so the anchors are judged as before.
+
+```then
+create:
+- slug: estimate-prespec-catches-a-broken-fence
+  type: estimate
+  ref: rule-prespec
+  kind: QA
+  purpose: Whether pre-spec reports a code fence that a replace or reword pair breaks, or that a sections value leaves broken, and stays silent on a break the page already held
+  method: uv run pytest tests/test_materialize.py tests/test_prespec.py -k fence
+  tags:
+  - harness
+  - workflow
+update:
+- slug: rule-prespec
+  replace:
+  - old: not as it stands today (case 351).
+    new: 'not as it stands today (case 351). It also judges, by `fence_breaks` of `guppi/materialize.py` — the one judgment of a broken code fence, which `guppi lint` runs too — each section a `replace` or `reword` pair changes, before and after the pair, and prints one line for each break the pair adds: a line inside an open fence that starts with a run of the fence''s character at least as long as the fence and has text after it, or a fence still open at the end of the section, with its Case, the page''s slug, the section and the line; a break the section held before the pair is not printed. It prints one such line too for each break in the text of a `sections` value of a `create` or an `update`, judged on its own and not applied to the copies (case 487.1).'
+  change: pre-spec reports a code fence that a pair or a written section breaks, by fence_breaks of guppi/materialize.py (case 487.1)
+```
+
+```tasks
+- [ ] update `rule-prespec`
+- [ ] create `estimate-prespec-catches-a-broken-fence`
+- [x] `guppi/materialize.py` — `fence_breaks(text)` beside `fence_opening` and `closes_fence`, built on them; the docstring paragraph on the fence names it and its callers
+- [x] `guppi/prespec.py` — `check_pairs` judges each section a pair changes before and after the pair, and each `sections` value on its own, by `fence_breaks`; the module docstring names the finding
+- [x] `tests/test_materialize.py` — `-k fence_breaks`: a closing run with text after it is flagged, a fence open at the end is flagged; a normal fence, an opening with a tag, and a shorter run inside a longer fence are not flagged
+- [x] `tests/test_prespec.py` — `-k fence`: a pair that joins text to a closing fence gives the finding; a pair on a section that already held the break gives none; a `sections` value with an open fence gives the finding; a clean pair gives none; the page on disk is unchanged
+- [ ] `uv run guppi render`: `.claude/skills/pre-spec/SKILL.md`
+- [ ] read `estimate-prespec-catches-a-broken-fence`
+```
+
+### Case 487.2 — Lint reports a broken code fence in a live page
+
+> **given:**
+> `rule-lint` — the checks of the live pages; the classes live in the docstring of `guppi/lint.py`
+> **＋** `guppi/lint.py` — the new class `fence` and its place in the docstring
+> **＋** `guppi/materialize.py` — `fence_breaks`, the one judgment lint imports
+> **＋** `vault/wiki/<category>/` — the live pages lint reads
+> **＋** `tests/test_lint.py` — the cases of the class `fence`
+> **＋** `estimate-lint-catches-a-broken-fence` — the new promise
+
+> **when:**
+> `uv run guppi lint` reads the sections of the live pages under `vault/wiki/<category>/`.
+
+> **then:**
+> Lint reports each live page that `fence_breaks` of `guppi/materialize.py` judges broken with one `fence` finding per break, naming the page, its heading and the faulty line or the open end.
+> **＋** A `fence` finding sets exit 1, like any other finding.
+> **＋** `guppi/lint.py` imports the judgment and holds no second copy of the pattern.
+> **－** A harness file on disk is not read for fences: `render --check` compares it with its Render.
+> **－** Nothing is written.
+
+```then
+create:
+- slug: estimate-lint-catches-a-broken-fence
+  type: estimate
+  ref: rule-lint
+  kind: QA
+  purpose: Whether lint reports a code fence with text after its closing run, or left open at the end of a section, in a live page, by the judgment pre-spec runs
+  method: uv run pytest tests/test_lint.py -k fence
+  tags:
+  - harness
+  - workflow
+```
+
+```tasks
+- [ ] create `estimate-lint-catches-a-broken-fence`
+- [x] `guppi/lint.py` — the class `fence` after `markers`, over each section of each live page by `fence_breaks` imported from `guppi/materialize.py`; the docstring names the class in its order
+- [x] `tests/test_lint.py` — `-k fence`: a page with a closing run and text after it, and a page with a fence left open, each give one `fence` finding; a page with normal fences gives none
+- [ ] read `estimate-lint-catches-a-broken-fence`
+```
+
+### Case 487.3 — The synthesis sample closes its code block on its own line
+
+> **given:**
+> `rule-synthesis` — its Render: the closing fence of the sample entries and the sentence after it
+> **＋** `.claude/agents/librarian-guppi.md` — the agent file rendered from `rule-synthesis`
+
+> **when:**
+> The librarian loads `.claude/agents/librarian-guppi.md` and reads the form of the synthesis entries.
+
+> **then:**
+> The sample of the synthesis entries is a code block that closes on a line that holds the fence alone.
+> **＋** The sentence "One lesson without a pair stays `new`" and the instructions after it stand after the block as their own paragraph, with their words unchanged.
+> **－** The text of the sample and of the instructions does not change.
+
+````then
+update:
+- slug: rule-synthesis
+  replace:
+  - old: '``` One lesson without a pair'
+    new: |-
+      ```
+
+      One lesson without a pair
+  change: the closing fence of the sample entries stands alone on its line, and the sentence after it follows as its own paragraph (case 487.3)
+````
+
+```tasks
+- [ ] update `rule-synthesis`
+- [ ] `uv run guppi render`: `.claude/agents/librarian-guppi.md`
+```
+
+### Case 487.4 — The one fence judgment names its new readers and the break
+
+> **given:**
+> `estimate-materialize-judges-a-fence` — the promise of the one fence judgment; its Criterion replaced whole
+> **＋** `guppi/materialize.py` — the functions of the judgment, `fence_breaks` among them
+> **＋** `guppi/ratified.py` — `fenced_value`, a reader
+> **＋** `guppi/prespec.py` — `plan_prose` and `check_pairs`, readers
+> **＋** `guppi/casecheck.py` — the check of `ratification`, a reader
+> **＋** `guppi/ledger.py` — `ledger_lines`, a reader
+> **＋** `guppi/lint.py` — the class `fence`, a reader
+
+> **when:**
+> A hook or a script reads a text that holds a fence: `then_blocks`, `tagged_blocks`, `quoted_sections` and `criterion_text` of `guppi/materialize.py`, `fenced_value` of `guppi/ratified.py`, `plan_prose` and `check_pairs` of `guppi/prespec.py`, the check of `ratification` in `guppi/casecheck.py`, `ledger_lines` of `guppi/ledger.py`, or the class `fence` of `guppi/lint.py`.
+
+> **then:**
+> A line opens a fence when, after at most three spaces of indent inside the block it stands in (a quote, a sub-point of `tasks`), it starts with a run of three or more backticks or three or more tildes.
+> **＋** The fence closes only on a line of the same character whose run is at least as long as the opening run, with nothing after the run but spaces.
+> **＋** A line with a shorter run, a run of the other character, or a word after its run stays inside the fence as content.
+> **＋** `fence_breaks` is built on `fence_opening` and `closes_fence`, so each break it reports is a line these readers keep as content, or an end of section they reach inside a fence.
+> **＋** A fenced value under a sub-point of `tasks` that holds a shorter fence of the same character is read whole, together with the inner fence.
+> **＋** Every one of these readers takes the judgment from the functions of `guppi/materialize.py`, and they all give the same answer for the same text.
+> **－** No reader keeps a fence pattern of its own: the `FENCE` of `guppi/ledger.py`, the `OPEN_FENCE` of `guppi/ratified.py`, and the tests on three backticks in `guppi/ratified.py` and `guppi/casecheck.py` are removed.
+
+```then
+update:
+- slug: estimate-materialize-judges-a-fence
+  set:
+    status: pending
+  change: the Criterion replaced whole — check_pairs of guppi/prespec.py and the class fence of guppi/lint.py join the readers, and fence_breaks, built on the same functions, reports a word after a full run inside a fence, and a fence open at the end of a section, as a break (case 487.4)
+```
+
+```tasks
+- [ ] update `estimate-materialize-judges-a-fence`
+- [ ] read `estimate-materialize-judges-a-fence`
+```
+
+## Case 488 — Slice 3g: the Estimates of the glossary and `entity-guppi` recut to `When:` and `Then:`
+
+> **context:**
+> Each Estimate page holds one promise, its Criterion. A Criterion should hold only `When:`, which is the trigger and the input it acts on, and `Then:`, which is what must hold after. The older Estimates also open with `Given:`, a set of lines that describe the code, the tests or the history as they stood on the day the promise was written. The five Estimates of this group were all written by one parent Case (306), and four of them carry the same `Given:` text, copied from that parent. It speaks of `rule-sprint`, of MOCs and Leaves, and of superseded Cases, and none of it bears on the promise. Two of the five also promise the wrong thing. `estimate-guppi-tests-green` has the `purpose` "make test is green on the branch", but its `Then:` describes the one-time build of `entity-guppi`. `estimate-glossary-terms-defined` describes the one-time build of the glossary table, "a table of 49 rows", and the row splits of that day.
+> The person decided in one round. Slice 3g's item on the `Given:` pages goes in seven Cases by area, one group per Case, and this session takes one group now. This Case takes the first group, the glossary and `entity-guppi`, with one sub-case per Estimate. A Criterion that records a one-time act gets a new Criterion that states the repeating behaviour its name, its `purpose` and the code give today (case 485). The done-conditions of the sprint are recut like the rest in their own group. `estimate-end-of-work-order` goes to the old-layout item. A page with no `purpose` gets one in the same change. All five pages of this group already have `purpose` and `method`, so no field is set but `status`. Each Criterion is replaced whole and goes back to `pending`. Its reading waits for a later session (case 428.1). The note of Slice 3g stays as it is until the last group (cases 484.7, 485.6).
+> What each new Criterion keeps and drops. The check of the answer notes every old line as not carried, because each new line is a whole statement and not the old wording. The content of the old lines is carried, except for the lines named here. Each `Given:` goes out whole. The input moves into `When:`. In 488.1 that is the `## Terms` table and step 6 of the librarian's frame. In 488.3 it is the units under `vault/raw/` with a `materialize.yaml`. 488.1 drops "`index.md` is not read", because the file no longer exists. It keeps the refusals of the old text and adds three that `guppi/glossary.py` and `tests/test_glossary.py` already hold: a `where` that is no `[[slug]]`, no `## Terms` section, and no single live `entity-glossary`. 488.2 drops "after `sprint --check`". The `Makefile` runs `backlog --check` between the two now, and the order is not the promise. It adds that a missing file differs, because `run` compares it as `None`. The finding line of 488.2 names the file outside its code span, because a span with a `/` reads as a path that `given` must name. 488.3 keeps the form of the line in `vault/wiki/case-schema.md` ("a glossary line `- [ ] `uv run guppi glossary``") and the two `－` lines of the old text, and it names the unit that is not applied whole, as `tick_command_lines` of `guppi/render.py` reads it. 488.4 drops the build of the table, its 49 rows and the two rows that split. It also drops the line on how a term enters or leaves, which the Purpose of `entity-glossary` keeps. It keeps the purpose, a live page in each `where` that defines its term and no term twice, and the terms the Purpose names as not rows. 488.5 drops the whole build of `entity-guppi`: its kind, its `children`, `code_ref`, the `parent` of `entity-sprint`, the `applies_to` of `rule-harness`, and the phase MOCs without `applies_to`. The line that the cascade writes `rules` is promised by `estimate-generate-writes-rules-from-applies-to`. 488.5 keeps the one line of its purpose, `make test` with no failed test.
+> The check of the answer also notes that the `then` lines of 488.4 share words with 488.1. This is expected. 488.1 promises that the script refuses a table with a dead `where` or a term twice and writes nothing. 488.4 promises the state of the table itself, read at each librarian's run, including the judgment by hand that the page defines the term. No script makes that judgment.
+> The frame. No behaviour changes, so no code, test, Render or hook changes, and no reader keeps an old form. Each kept line was read against `guppi/glossary.py`, `tick_command_lines` and `applied_whole` of `guppi/render.py`, the `Makefile`, step 6 of `.claude/agents/librarian-guppi.md` and the table of `entity-glossary`. None of them is contradicted. The sentence of `rule-estimates-schema` that an older page carries its `Given:` "until the one pass of its migration" stays true while other groups remain. The Purpose of `rule-glossary` says `make lint` runs the check "after `sprint --check`". That is still true, since it runs later in the same target. `rule-glossary`, `entity-glossary` and `entity-guppi` have no other Estimates, so none is left alone. `estimate-sprint-ticks-the-spec` and `estimate-render-harness-ticks-the-spec` use the same tick helper and belong to the group of the tickers. 488.6 gives `entity-sprint-migration` an `update` with only `change`, because pre-spec asks for one under a Case that closes a `sprint` line. The Case creates no page, so no vault query was run. Not done: the other six groups (31 pages), and `estimate-end-of-work-order` with the old-layout item C2.
+
+> **problem:**
+> The five Estimates of the glossary and `entity-guppi` still open with a `Given:` copied from another Case. Two of them promise a build that happened once and not the behaviour their name and `purpose` state. So a reading of them checks a state of the code that goes stale, or checks nothing that can happen again.
+
+### Case 488.1 — The glossary written from the table of terms
+
+> **given:**
+> `estimate-glossary-renders-the-terms` — the promise, its Criterion replaced whole
+> **＋** `rule-glossary` — the rule it promises for
+> **＋** `entity-glossary` — the page whose `## Terms` table is the source
+> **＋** `guppi/glossary.py` — `render`, `rows` and `group_of`, which write the file or refuse
+> **＋** `vault/wiki/glossary.md` — the file written
+> **＋** `.claude/agents/librarian-guppi.md` — step 6 of the librarian's frame, which runs the script
+> **＋** `tests/test_glossary.py` — the tests the reading runs
+
+> **when:**
+> `uv run guppi glossary` runs without a flag, from step 6 of the librarian's frame in `.claude/agents/librarian-guppi.md` or by hand, and reads the `## Terms` table of `entity-glossary`.
+
+> **then:**
+> `vault/wiki/glossary.md` is written and the run exits 0. The file holds `# Glossary`, then the line "Written by `guppi glossary` from the `## Terms` of `entity-glossary`; a term changes by an `update` of that page", then one group `## [[<moc>]]` for each parent MOC of the pages in `where`, in the order of first appearance in the table. Each group holds the table `| term | meaning | where |` with its rows in the order of the table.
+> **＋** A page in `where` that has no `parent`, such as a root MOC or a placeholder not yet placed, is its own group.
+> **＋** A `where` with no live page, a `where` that is no `[[slug]]`, a row that is not three cells, a term twice, no `## Terms` section, or no single live `entity-glossary` gives one line on stderr and exit 1, and the file is not written.
+> **＋** The librarian's frame takes each line on stderr of the run as a flag.
+> **－** The file holds no line that the table does not give, apart from the heading and the source line.
+
+```then
+update:
+- slug: estimate-glossary-renders-the-terms
+  set:
+    status: pending
+  change: the Criterion replaced whole — When and Then only, Given and the index.md line out (case 488.1)
+```
+
+```tasks
+- [ ] update `estimate-glossary-renders-the-terms`
+- [ ] read `estimate-glossary-renders-the-terms` — `pytest tests/test_glossary.py`, then by hand on the `vault/wiki/glossary.md` of a later librarian's run
+```
+
+### Case 488.2 — The check of the glossary file
+
+> **given:**
+> `estimate-glossary-checks-the-file` — the promise, its Criterion replaced whole
+> **＋** `rule-glossary` — the rule it promises for
+> **＋** `entity-glossary` — the page the file is rendered from
+> **＋** `guppi/glossary.py` — `run` with `--check`, which renders in memory and compares
+> **＋** `vault/wiki/glossary.md` — the file compared
+> **＋** `Makefile` — the target `lint`, which runs the check
+> **＋** `tests/test_glossary.py` — the tests the reading runs
+
+> **when:**
+> `uv run guppi glossary --check` runs, as the target `lint` of the `Makefile` runs it, and renders the file from `entity-glossary` in memory.
+
+> **then:**
+> When `vault/wiki/glossary.md` differs from the render or is missing, stdout holds one line `glossary: <file> differs from entity-glossary`, the file named by its path from the project root, and the check exits 1.
+> **＋** When the file equals the render, the check exits 0 with no output.
+> **－** The check writes no file and ticks no line of a Spec.
+
+```then
+update:
+- slug: estimate-glossary-checks-the-file
+  set:
+    status: pending
+  change: the Criterion replaced whole — When and Then only, Given and the order in make lint out (case 488.2)
+```
+
+```tasks
+- [ ] update `estimate-glossary-checks-the-file`
+- [ ] read `estimate-glossary-checks-the-file` — `pytest tests/test_glossary.py`, then `make lint` after a later librarian's run
+```
+
+### Case 488.3 — The glossary lines of an applied Spec ticked
+
+> **given:**
+> `estimate-glossary-ticks-the-spec` — the promise, its Criterion replaced whole
+> **＋** `rule-glossary` — the rule it promises for
+> **＋** `guppi/glossary.py` — `run`, which calls the tick after it writes the file
+> **＋** `guppi/render.py` — `tick_command_lines` and `applied_whole`, the one tick of the command lines
+> **＋** `vault/wiki/glossary.md` — the file whose write comes before the tick
+> **＋** `vault/raw/` — the units, each with its `spec.md` and `materialize.yaml`
+> **＋** `vault/wiki/case-schema.md` — the form of a glossary line of `tasks`
+> **＋** `tests/test_glossary.py` — the tests the reading runs
+
+> **when:**
+> `uv run guppi glossary` without a flag wrote `vault/wiki/glossary.md` and exits 0, and reads the units under `vault/raw/` that have a `materialize.yaml`.
+
+> **then:**
+> In the `spec.md` of every unit whose yaml is applied whole, every unticked task line that opens with a code span holding `guppi glossary` becomes `- [x]`. A yaml is applied whole when each entry carries `applied` or `superseded_by` and none carries `failed`. Nothing else in the file changes.
+> **＋** The form of the line in `vault/wiki/case-schema.md` is `` - [ ] `uv run guppi glossary` ``, the command in the first code span.
+> **－** A line that names `guppi glossary` only in a later code span, such as a `read` line, is not ticked.
+> **－** `--check` ticks nothing, and a run that exits 1 ticks nothing.
+> **－** A unit whose yaml is not applied whole is not touched.
+
+```then
+update:
+- slug: estimate-glossary-ticks-the-spec
+  set:
+    status: pending
+  change: the Criterion replaced whole — When and Then only, Given out (case 488.3)
+```
+
+```tasks
+- [ ] update `estimate-glossary-ticks-the-spec`
+- [ ] read `estimate-glossary-ticks-the-spec` — `pytest tests/test_glossary.py`, then by hand on the `spec.md` of a later session after its librarian's run
+```
+
+### Case 488.4 — Each term names a live page that defines it
+
+> **given:**
+> `estimate-glossary-terms-defined` — the promise, its Criterion replaced whole
+> **＋** `entity-glossary` — the page it promises for; its `## Terms` table and its Purpose
+> **＋** `guppi/glossary.py` — `rows`, which reads the table at the librarian's run
+> **＋** `guppi/lint.py` — the `ref` finding on a link that names no page
+
+> **when:**
+> `uv run guppi glossary` reads the `## Terms` table of `entity-glossary` at the librarian's run, and `guppi lint` and a reader read the same table.
+
+> **then:**
+> Each row names in `where` a `[[slug]]` of a live page, and that page defines the term of the row.
+> **＋** No term stands in two rows.
+> **－** The terms that the Purpose of `entity-glossary` names as not rows, C4 model, Delegate and the retired terms, stand in no row.
+
+```then
+update:
+- slug: estimate-glossary-terms-defined
+  set:
+    status: pending
+  change: the Criterion replaced whole — the one-time build of the table out, the purpose kept as When and Then (case 488.4)
+```
+
+```tasks
+- [ ] update `estimate-glossary-terms-defined`
+- [ ] read `estimate-glossary-terms-defined` — by hand on the table after a later librarian's run, and `make lint` with no `ref` finding on `entity-glossary`
+```
+
+### Case 488.5 — The suite of the harness green on the branch
+
+> **given:**
+> `estimate-guppi-tests-green` — the promise, its Criterion replaced whole
+> **＋** `entity-guppi` — the MOC it promises for
+> **＋** `Makefile` — the target `test`, which runs the suite
+> **＋** `tests/` — the suite of the harness
+
+> **when:**
+> `make test` runs `uv run pytest -q` over `tests/` on the working branch, after a Work Mode.
+
+> **then:**
+> pytest reports no failed test and no error, and `make test` exits 0.
+> **－** A skipped test is not a failure.
+
+```then
+update:
+- slug: estimate-guppi-tests-green
+  set:
+    status: pending
+  change: the Criterion replaced whole — the one-time build of entity-guppi out, the purpose kept as When and Then (case 488.5)
+```
+
+```tasks
+- [ ] update `estimate-guppi-tests-green`
+- [ ] read `estimate-guppi-tests-green` — `make test` after the Work Mode of a later session
+```
+
+### Case 488.6 — The sprint page records the group of the glossary and `entity-guppi`
+
+> **given:**
+> `entity-sprint-migration` — the sprint page; its Slice 3g holds the note on every other Estimate
+> **＋** `vault/wiki/sprint.md` — the render of the sprint page
+> **＋** `/hi` — builds the Frontier from `vault/wiki/sprint.md`
+> **＋** `rule-glossary` — a rule whose Estimates this Case recuts
+> **＋** `entity-glossary` — an entity whose Estimate this Case recuts
+> **＋** `entity-guppi` — an entity whose Estimate this Case recuts
+
+> **when:**
+> The librarian's run applies the `update` of `entity-sprint-migration`.
+
+> **then:**
+> The History of `entity-sprint-migration` says that the Estimates of `rule-glossary`, `entity-glossary` and `entity-guppi` are recut.
+
+```then
+update:
+- slug: entity-sprint-migration
+  change: 'Slice 3g: the Estimates of rule-glossary, entity-glossary and entity-guppi recut to When and Then; the note on every other Estimate stands (case 488)'
+```
+
+```tasks
+- [ ] update `entity-sprint-migration`
+```
+
+## Case 489 — Slice 3g: the Estimates of `generate` and `materialize` recut to `When:` and `Then:`
+
+> **context:**
+> Each Estimate page holds one promise, its Criterion. A Criterion should hold only `When:`, the trigger and the input it acts on, and `Then:`, what must hold after. Older Estimates also open with `Given:`, a set of lines that describe the code and the cases as they stood on the day the promise was written. This group holds the five Estimates of `rule-page-generation` and the two of `rule-materialize` that still have `Given:`. Two of them lost their promise by a fault of the tools. Case 211.1 wrote a new Criterion for `estimate-generate-writes`: the text of case 201.1 plus one line on `set.method`. Case 211.3 then set a `method` field on both `estimate-generate-writes` and `estimate-generate-walks-dates`. The scripts of that day replaced the whole Criterion of each page with the `when` and `then` of 211.3, which was a one-time job on five named pages. So the 211.1 text never stood on the page, and the 201.5 text of `estimate-generate-walks-dates` was lost. No decision chose this. Since case 378.4, an `update` that names only a field leaves the Criterion alone.
+> The person decided in three rounds. The item goes in seven Cases by area, one group per Case. The pages that record a one-time act get a real promise, and a page with no `purpose` gets one in the same change. This group is the second, after case 488. For the two lost promises the person chose to restore the ratified text, checked against the code of today. The main agent read the text of 211.1 in the archived Spec of session 2238 and the text of 201.5 at the librarian's commit of session 1955. The person also chose to keep `estimate-generate-writes` as one page, although its `Then:` holds 11 `＋` lines, with no split and no backlog item. Each Criterion is replaced whole and goes back to `pending`. Its reading waits for a later session (case 428.1). The note of Slice 3g stays as it is until the last group.
+> What each new Criterion keeps and drops. The check of the answer notes every old line as not carried, because each new line is a whole statement and not the old wording. On 489.1 and 489.2 it compares with the 211.3 text on the page, which this Case replaces on purpose. The content of the old lines is carried, except for the lines named here. Each `Given:` goes out. A `Given:` line that states behaviour of the step moves into `When:` or `Then:`. 489.1 restores the 211.1 text word for word. It drops only "The Decision page, the failure of an entry and the cascade are three other Estimates", because that is a pointer to other pages. Every other line was read against the docstring and the code of `guppi/generate.py`, and none is contradicted. The drop of `## Context` and `## Method` on `set.method` still runs in `update`. 489.2 restores the 201.5 text word for word. `run` and `generate_date` hold each line. 489.3 moves the `rename` key and the category prefix into `When:` and `Then:`. It drops "`guppi sprint` redraws `sprint.md`", because that is another script, and it drops the collision of a `create`, which 489.1 promises ("any other existing page is a collision"). 489.4 moves the owner and the whole-word boundary into `Then:`. The owner's text now also counts the field `purpose`, as `reword_pairs` compares it. It drops "the Rule-class files", which no longer exist, and the line that a slug goes through `rename`, which is advice and no behaviour of the step. 489.5 keeps its lines and names the `guppi lint` finding in place of "(305.5)". 489.6 turns "as before" into the lift by the `schema.yaml` on disk that the old `Given:` stated. 489.7 keeps its `Then:` word for word and moves the fold of a reading into `When:`.
+> The check of the answer also notes that a `then` line of 489.4 shares words with 489.3. This is expected. Both steps walk the live pages and replace a whole word outside History and Result. 489.3 moves a page and follows its slug into links and ref fields, and 489.4 replaces a word that is not a slug, and the owner page must carry the new word. They are two promises, each with its own test.
+> The frame. No behaviour changes, so no code, test, Render or hook changes, and no reader keeps an old form. `rule-page-generation` carries `deferred_by` for case 469. No open Frontier line of this session names it, and this Case changes only its Estimates, so the backlog item stands. The other Estimates of `rule-page-generation` (`-cascades`, `-fails-alone`, `-ticks-the-spec`, `-writes-the-decision-page`, `-writes-the-given`) and of `rule-materialize` are already in the new layout and speak of other steps, so they are not touched. 489.1 names `estimate-generate-fails-alone` as the promise of an entry that fails, and does not change it. The sentence of `rule-estimates-schema` on `Given:` "until the one pass of its migration" stays true. The Case creates no page, so no vault query was run. Not done: the other five groups (24 pages), and the split of `estimate-generate-writes`, which the person declined.
+
+> **problem:**
+> The seven Estimates of `generate` and `materialize` still open with `Given:`. Two of them promise a one-time job in place of the promise the person ratified, which the tools overwrote. So their readings check stale text, or nothing that can happen again.
+
+### Case 489.1 — What `generate` writes for one entry
+
+> **given:**
+> `estimate-generate-writes` — the promise, its Criterion restored and replaced whole
+> **＋** `rule-page-generation` — the rule it promises for
+> **＋** `guppi/generate.py` — `Vault` and its steps per kind of entry
+> **＋** `vault/wiki/` — the live pages written
+> **＋** `vault/archive/` — where an entry finds a page not under `vault/wiki/`
+> **＋** `raw/` — the session folders inside the archive, which the search passes by
+> **＋** `estimate-generate-fails-alone` — the promise of an entry that fails, named and not changed
+> **＋** `tests/test_generate.py` — the tests the reading runs
+
+> **when:**
+> `guppi generate` applies one entry of a yaml to a page.
+
+> **then:**
+> A `create` becomes a page: `type`, the fields of the entry, `status` by category (entity and rule `draft`, estimate `pending`, lesson `new`, insight `open`), `origin`, `sprint` — the first `## <id>` of `sprint.md`, `created` — the yaml's date, `tags`; the body sections from `sections`, `## Purpose` from `purpose` on a rule or an entity; a `ref` lands in the parent's `children` or the target's `estimates` with History `child <slug> added` / `estimate <slug> added`, at the end of the run when the parent comes later in the yaml.
+> **＋** An Estimate page carries `purpose`, `method` and `checked` as fields, in that order after `target`; `## Criterion` from `sections`; neither `## Context` nor `## Method` is written.
+> **＋** A `create` whose slug is a placeholder (`draft`, no `kind`) fills it: `created` and `deferred_by` kept, History `created over placeholder`; any other existing page is a collision, not a rename.
+> **＋** An `update` applies `set` to the frontmatter, `sections` as whole replacements, `replace` inside the body (whitespace collapsed, exactly one occurrence), History `updated: <change>`; an `update` of an Estimate with `sections.Criterion` replaces the section whole.
+> **＋** An `update` of an Estimate whose `set` carries `method` writes the field after `purpose` and drops `## Context` and `## Method` where the page carries them — the field replaces the section, the Case is reached by `origin`; an `update` without `set.method` touches no section (case 211.1).
+> **＋** An `update`, `estimate`, `delete` or `defer` whose slug is not under `vault/wiki/` finds the page under `vault/archive/` (`raw/` folders excluded) and edits it there.
+> **＋** An `estimate` sets `status`, overwrites `## Result`, writes `checked` — the date the `result` opens with, else the yaml's date — and appends History `status: a → b · <ledger pointer>`.
+> **＋** A `delete` sets `archived` with History `deleted`; a `delete` outside the vault is a line on stdout, the entry applied, no page written.
+> **＋** A `defer` with a page appends the decision slug to `deferred_by` (rule, entity, insight) with History `deferred`; without a page it writes a placeholder `draft` with the Case's fields and `deferred_by`.
+> **＋** A `lesson` writes the lesson only, `source` when the line carries it; no Estimate is created.
+> **＋** Every ref field is written as `"[[slug]]"`, a list as `["[[a]]", "[[b]]"]`; a slug without a category prefix stays bare; read through the brackets.
+> **＋** A `create` in `insights` applies only with the mark `librarian`; a `delete` of an Insight is refused always.
+> **＋** History lines and `log.md` lines carry the date of the run and end with `[[decision-case-N]]` or the ledger pointer; `log.md` is appended after each entry; a tag of `new_tags` lands in `tags.md`, a used and undeclared one goes to stderr.
+> **－** No body section is derived from a ref field; a section a page still carries is not touched, except the two `set.method` drops.
+> **－** `criterion_block` on an `update` and an entry of kind `remove_criterion` are not applied: a shape the script does not know — the entry fails alone (`estimate-generate-fails-alone`).
+
+```then
+update:
+- slug: estimate-generate-writes
+  set:
+    status: pending
+    purpose: What generate writes to a page for each kind of entry of a materialize.yaml, and nothing an entry does not carry
+  change: the Criterion restored whole — the text of case 211.1, which case 211.3 overwrote, less its pointer line; purpose set (case 489.1)
+```
+
+```tasks
+- [ ] update `estimate-generate-writes`
+- [ ] read `estimate-generate-writes` — `pytest tests/test_generate.py`, then by hand at a later librarian's run
+```
+
+### Case 489.2 — The walk of `generate` over the units, dates ascending
+
+> **given:**
+> `estimate-generate-walks-dates` — the promise, its Criterion restored and replaced whole
+> **＋** `rule-page-generation` — the rule it promises for
+> **＋** `guppi/generate.py` — `run` and `generate_date`, the walk and one unit
+> **＋** `guppi/materialize.py` — `units_with`, the units that have a yaml
+> **＋** `vault/raw/<date>/materialize.yaml` — the date-level yaml
+> **＋** `vault/raw/<date>/<HHMM>/materialize.yaml` — the yaml of a session
+> **＋** `tests/test_generate.py` — the tests the reading runs
+
+> **when:**
+> `uv run guppi generate` runs, with `--date` or without.
+
+> **then:**
+> Without `--date` every unit under `vault/raw/` with a `materialize.yaml` is applied: the date-level yaml `vault/raw/<date>/materialize.yaml` first, then `vault/raw/<date>/<HHMM>/materialize.yaml` in folder order, dates ascending; `--date` walks the units of that date alone.
+> **＋** A unit with no unapplied entry changes no page; stdout carries one line per unit, `generate: <unit>: N page(s) written or changed`.
+> **＋** A failure on one unit is printed, the walk goes on, the exit code is 1 at the end.
+> **＋** A `--date` without a yaml is named on stderr, exit 1; no yaml anywhere — one line on stderr, exit 1.
+> **－** A unit `materialize` passed by (`carry.md`) has no yaml and is not walked.
+
+```then
+update:
+- slug: estimate-generate-walks-dates
+  set:
+    status: pending
+    purpose: generate applies every unit under raw/ that has a yaml, dates ascending, and a failing unit does not stop the walk
+  change: the Criterion restored whole — the text of case 201.5, which case 211.3 overwrote; purpose set (case 489.2)
+```
+
+```tasks
+- [ ] update `estimate-generate-walks-dates`
+- [ ] read `estimate-generate-walks-dates` — `pytest tests/test_generate.py`, then by hand at a later librarian's run
+```
+
+### Case 489.3 — A `rename` moves the page and every link to it
+
+> **given:**
+> `estimate-generate-renames` — the promise, its Criterion replaced whole
+> **＋** `rule-page-generation` — the rule it promises for
+> **＋** `guppi/generate.py` — `rename`, the move and the walk of the links
+> **＋** `vault/wiki/` — the live pages whose links follow
+> **＋** `vault/archive/` — the archive, left as it is
+> **＋** `vault/raw/` — the session folders, left as they are
+> **＋** `tests/test_generate.py` — the tests the reading runs
+
+> **when:**
+> `guppi generate` applies an `update` entry whose item carries `rename: <new slug>`, beside `set`, `sections`, `replace` or `change`, and the ledger line names the old slug.
+
+> **then:**
+> The file of the page moves from `<old>.md` to `<new>.md` in its category folder, and the new slug carries the same category prefix. The page's History gets "renamed from `<old>` · `[[decision-case-N]]`", and the item's `set`, `sections` and `replace` apply to the new file.
+> **＋** In every live page of `vault/wiki/`, Decision pages included, every `[[old]]` becomes `[[new]]`, every `REF_FIELDS` value holding the old slug becomes the new one, and the old slug as a whole word in the body outside `## History` and `## Result` becomes the new one. Every page touched, Decision pages excepted, gets the History line "ref `<old>` → `<new>` · `[[decision-case-N]]`".
+> **＋** The Decision page of the Case is written by the slug of the ledger line, before the entries, and the walk retargets its link like any other.
+> **＋** The order of application is the order of the yaml: an `update` of the same page from an earlier Case lands on the old file, and the `rename` moves it with the page.
+> **－** A taken slug, live or archived, or a foreign prefix: the entry is `failed`, and nothing is moved.
+> **－** `origin`, `## History` and `## Result` of any page, `vault/archive/`, `vault/raw/`, `log.md` and `brief.md` are untouched.
+
+```then
+update:
+- slug: estimate-generate-renames
+  set:
+    status: pending
+  change: the Criterion replaced whole — When and Then only, Given and the line on guppi sprint out (case 489.3)
+```
+
+```tasks
+- [ ] update `estimate-generate-renames`
+- [ ] read `estimate-generate-renames` — `pytest tests/test_generate.py`, then by hand at the librarian's run that applies a later rename
+```
+
+### Case 489.4 — A `reword` replaces a word on every live page
+
+> **given:**
+> `estimate-generate-rewords` — the promise, its Criterion replaced whole
+> **＋** `rule-page-generation` — the rule it promises for
+> **＋** `guppi/generate.py` — `reword_pairs`, the owner check and the walk
+> **＋** `vault/wiki/` — the live pages the pairs reach
+> **＋** `vault/archive/` — the archive, left as it is
+> **＋** `vault/raw/` — the session folders, left as they are
+> **＋** `tests/test_generate.py` — the tests the reading runs
+
+> **when:**
+> `guppi generate` applies an `update` entry whose item carries `reword`, a list of `{old, new}` pairs.
+
+> **then:**
+> Every pair is replaced as a whole word, with no letter, digit, `_` or `-` right before or after it. The replace runs on every live page of the folders `rules`, `entities` and `estimates` of `vault/wiki/`, in every section but History and Result and in the fields `purpose` and `method`. Each page touched gets one History line `reworded: old → new · [[decision-case-N]]`, and stdout has one line per page with the count.
+> **＋** The other keys of the item — `set`, `replace`, `sections`, `change` — apply to the page itself as before; an item that carries `reword` alone is content and applies.
+> **－** A pair with no hit on any live page fails the entry with the reason, and so does a pair whose `new` is absent from the text of the page of the item: its `purpose`, `governs`, `implementation_ref`, Purpose and Render, compared without regard to case. Nothing is applied.
+> **－** The Decision pages, the lessons and the Insights, `vault/archive/`, `vault/raw/`, `log.md`, `brief.md` and `sprint.md` are not touched; the status of no Estimate changes.
+
+```then
+update:
+- slug: estimate-generate-rewords
+  set:
+    status: pending
+  change: the Criterion replaced whole — When and Then only, Given and the Rule-class files out (case 489.4)
+```
+
+```tasks
+- [ ] update `estimate-generate-rewords`
+- [ ] read `estimate-generate-rewords` — `pytest tests/test_generate.py`, then by hand at the librarian's run that applies a later reword
+```
+
+### Case 489.5 — The `rules` of an Entity from the `applies_to` of the live rules
+
+> **given:**
+> `estimate-generate-writes-rules-from-applies-to` — the promise, its Criterion replaced whole
+> **＋** `rule-page-generation` — the rule it promises for
+> **＋** `guppi/generate.py` — the cascade after the entries
+> **＋** `guppi/lint.py` — the finding on an `applies_to` that names no live Entity
+> **＋** `vault/wiki/` — the live pages the cascade reads and writes
+> **＋** `tests/test_generate.py` — the tests the reading runs
+
+> **when:**
+> `guppi generate` has applied the entries of a yaml and runs the cascade over the live pages of `vault/wiki/`.
+
+> **then:**
+> The `rules` of every live Entity is the slugs of the live rules whose `applies_to` names it, in slug order; the field is written when the list is not empty or the field already stands; a change is a History line `rules: [...] · cascade`; an empty list on a page without the field writes no field.
+> **＋** A rule with `applies_to` on a slug with no live page: the entry applies and the field stands; the cascade skips it; `guppi lint` names it.
+> **－** An archived rule gives no edge; `applies_to` is never computed — it comes from the Case alone.
+
+```then
+update:
+- slug: estimate-generate-writes-rules-from-applies-to
+  set:
+    status: pending
+  change: the Criterion replaced whole — When and Then only, Given out (case 489.5)
+```
+
+```tasks
+- [ ] update `estimate-generate-writes-rules-from-applies-to`
+- [ ] read `estimate-generate-writes-rules-from-applies-to` — `pytest tests/test_generate.py`, then by hand at a later librarian's run
+```
+
+### Case 489.6 — A `create` lifted whole when its schema rule changes in the same unit
+
+> **given:**
+> `estimate-materialize-lifts-unfiltered-on-a-schema-change` — the promise, its Criterion replaced whole
+> **＋** `rule-materialize` — the rule it promises for
+> **＋** `rule-<category>-schema` — the schema rule of a category, whose Render is its `schema.yaml`
+> **＋** `guppi/materialize.py` — `schema_changed` and the lift of a `create`
+> **＋** `vault/wiki/<category>/schema.yaml` — the schema on disk of a category
+> **＋** `tests/test_materialize.py` — the tests the reading runs
+
+> **when:**
+> `materialize` walks a unit whose ledger holds a decision line, a `create` or an `update`, with the slug `rule-<category>-schema`.
+
+> **then:**
+> A `create` of that category in the same unit is lifted whole: every key goes into `fields`, and no key is `unknown`, wherever the schema entry stands in the Spec, before or after.
+> **＋** The pages the librarian writes carry the field before `render` lands the schema on disk.
+> **－** In a unit without such an entry, and for the other categories of the same unit, a `create` is lifted by `vault/wiki/<category>/schema.yaml` on disk: a key outside the schema is `unknown` and does not reach `fields`.
+
+```then
+update:
+- slug: estimate-materialize-lifts-unfiltered-on-a-schema-change
+  set:
+    status: pending
+  change: the Criterion replaced whole — When and Then only, Given out, the lift by the schema on disk stated (case 489.6)
+```
+
+```tasks
+- [ ] update `estimate-materialize-lifts-unfiltered-on-a-schema-change`
+- [ ] read `estimate-materialize-lifts-unfiltered-on-a-schema-change` — `uv run pytest tests/test_materialize.py -k schema_change`
+```
+
+### Case 489.7 — A reading moves off a superseded `create`
+
+> **given:**
+> `estimate-materialize-refolds-a-reading-on-a-supersede` — the promise, its Criterion replaced whole
+> **＋** `rule-materialize` — the rule it promises for
+> **＋** `guppi/materialize.py` — `fold_estimate` and `refold`, the fold of a reading and its move
+> **＋** `tests/test_materialize.py` — the tests the reading runs
+
+> **when:**
+> `materialize` lifts a line with `{supersedes:case N}`, and a `create` entry of Case N in the unit's yaml holds `folded`: the readings of its slug folded into it, with their `status`, `result` and line numbers.
+
+> **then:**
+> The readings of `folded` move to the live `create` of the same slug in this unit — `status`, `result`, the line numbers; the marked `create` loses `status`, `result` and `folded`.
+> **＋** With no live `create`, each reading becomes an `estimate` entry of its own from the ledger line of that number, after the mark.
+> **＋** A reading lifted after the mark is not folded into the marked `create`.
+> **－** A mark on a Case of another unit (`elsewhere`) moves nothing — no live `create` is there; the readings of that yaml stand as they are.
+
+```then
+update:
+- slug: estimate-materialize-refolds-a-reading-on-a-supersede
+  set:
+    status: pending
+  change: the Criterion replaced whole — When and Then only, Given out, the fold of a reading moved into When (case 489.7)
+```
+
+```tasks
+- [ ] update `estimate-materialize-refolds-a-reading-on-a-supersede`
+- [ ] read `estimate-materialize-refolds-a-reading-on-a-supersede` — `uv run pytest tests/test_materialize.py -k refold`
+```
+
+### Case 489.8 — The sprint page records the group of `generate` and `materialize`
+
+> **given:**
+> `entity-sprint-migration` — the sprint page; its Slice 3g holds the note on every other Estimate
+> **＋** `vault/wiki/sprint.md` — the render of the sprint page
+> **＋** `/hi` — builds the Frontier from `vault/wiki/sprint.md`
+> **＋** `rule-page-generation` — a rule whose Estimates this Case recuts
+> **＋** `rule-materialize` — a rule whose Estimates this Case recuts
+
+> **when:**
+> The librarian's run applies the `update` of `entity-sprint-migration`.
+
+> **then:**
+> The History of `entity-sprint-migration` says that the Estimates of `rule-page-generation` and `rule-materialize` are recut.
+
+```then
+update:
+- slug: entity-sprint-migration
+  change: 'Slice 3g: the Estimates of rule-page-generation and rule-materialize recut to When and Then, the two texts overwritten by case 211.3 restored; the note on every other Estimate stands (case 489)'
+```
+
+```tasks
+- [ ] update `entity-sprint-migration`
+```
+
+## Case 490 — Slice 3g: the Estimates of the page schemas and the layout of the vault recut to `When:` and `Then:`
+
+> **context:**
+> Each Estimate page holds one promise, its Criterion. A Criterion should hold only `When:`, the trigger and the input it acts on, and `Then:`, what must hold after. Older Estimates also open with `Given:`, a set of lines that describe the code and the cases as they stood on the day the promise was written. This group holds seven such pages: the Estimate of `rule-page-schemas`, the five Estimates of the category schemas under it (rules, entities, estimates, decisions, lessons), and the Estimate of `rule-vault-layout`. The five category pages share one `Given:`, which describes how `render` writes a file, the hook on a hand edit, and the keys lint reads. Each of them also keeps two lines from the day in September when the old `schema.md` files became `schema.yaml` files. One says the prose of "the former `schema.md`" stands in the file "verbatim". The other says `schema.md` "does not exist".
+> The person decided in the first round on this item. The item goes in seven Cases by area, one group per Case. A one-time act leaves the Criterion and the lasting behaviour stays. A lost ratified text is restored, and a page with no `purpose` gets one. This group is the third, after cases 488 and 489. None of these pages lost its Criterion to a tool fault like case 211.3. Their History shows only Cases that changed the text on purpose (350, 358, 362.1, 372), so nothing is restored and no commit needs to be read. All seven pages already have `purpose` and `method`, so no field is set but `status`. Each Criterion is replaced whole and goes back to `pending`. Its reading waits for a later session (case 428.1). The note of Slice 3g stays as it is until the last group.
+> What each new Criterion keeps and drops. The check of the answer notes every old line as not carried, because each new line is a whole statement and not the old wording. The content of the old lines is carried, except for the lines named here. Each `Given:` goes out. The line on the keys lint reads names `properties.single`, and none of the five category schemas of this group carries that key. That line promises behaviour of `guppi/lint.py`, which belongs to the Estimates of `rule-lint`. From the prose line of each category page, "the former `schema.md`" and "verbatim" go out, because they tell where the text came from. The paragraphs the `description` holds stay, and so does the rule that `fields` and `sections` describe each name of the lists, which lint checks as the class `schema-description`. The Decision schema keeps its line on the History of a Decision (case 358), since the file still says so. The line "`schema.md` does not exist" leaves the five category pages. `estimate-page-schemas-one-file-per-rule` keeps it for every category, and a second copy would sign one promise twice. Two old lines say lint reads `computed: [rules]` and `ordered_children: true`. `guppi/lint.py` reads neither key, so the new line says the file holds them and lint does not read them. This is a line the code does not honour, corrected here and not dropped. 490.1 states a missing `schema.yaml` as the `schema` finding `schema.yaml is missing`, which `guppi/lint.py` gives. The old `Given:` said only "a missing file is a finding". "The six" files and "no seventh" become a statement with no count, so they cannot go stale. 490.7 moves into `Then:` the fact that `read_vault` does not read `schema.yaml` as a page. It drops the list of the files that may stand at the root of `wiki/`, because the check reads the rule pages for their names and keeps no list. Its old `－` line, "the finding it is today, not this one", becomes "no `layout` finding": 490.1 promises which finding a missing file gives, and 490.7 promises only that it is not a `layout` one.
+> The check of the answer also notes that the `then` lines of 490.2 to 490.6 share most of their words. This is expected. The five category schemas are read in the same way, and the old pages were written in one form. Each sub-case names its own file, its own lists and its own `pytest -k` run, so a fault in one schema fails one promise alone. It also notes that 490.7 shares words with 490.1. 490.1 is about the schema files themselves, and 490.7 is about how lint reads the pages next to them.
+> The frame. Each kept line was read against the live `schema.yaml` of its category, `check_descriptions`, `check_layout` and the missing-file finding of `guppi/lint.py`. None is contradicted. No behaviour changes, so no code, test, Render or hook changes, and no reader keeps an old form. The sentence of `rule-estimates-schema` on `Given:` "until the one pass of its migration" stays true, and so does the rest of its Render, which this Case does not touch. `estimate-insights-schema-checked` has no `Given:` and is not touched. The Case creates no page, so no vault query was run. Not done: the other four groups (17 pages).
+
+> **problem:**
+> The seven Estimates of the page schemas and the layout of the vault still open with a `Given:` that describes the code of their day. Some of their lines record where a text came from, or state what lint reads when it does not read it. So their readings check history and stale claims next to the lasting promise.
+
+### Case 490.1 — One `schema.yaml` per category, from one rule
+
+> **given:**
+> `estimate-page-schemas-one-file-per-rule` — the promise, its Criterion replaced whole
+> **＋** `rule-page-schemas` — the MOC it promises for; its children render the files
+> **＋** `vault/wiki/<category>/schema.yaml` — the schema file of a category
+> **＋** `guppi/render.py` — writes each file and `render --check`
+> **＋** `guppi/lint.py` — reads each file; the classes `schema`, `path` and `schema-description`
+> **＋** `rule-governed-files-hook` — the hook that refuses a hand edit
+> **＋** `tests/test_render.py` — the test of two `full` pages on one file
+
+> **when:**
+> `guppi render` writes the governed files, and then `guppi lint` reads the vault.
+
+> **then:**
+> Each category folder of `vault/wiki/` holds one `schema.yaml`, written from the one child of `rule-page-schemas` that governs it, and `render --check` after the render exits 0.
+> **＋** No other `schema.yaml` and no `schema.md` stands in a category folder.
+> **＋** Lint reads each file and gives no finding of the class `path` or `schema-description` on the schema of a category.
+> **＋** A category folder without its `schema.yaml` is the `schema` finding `schema.yaml is missing`.
+> **＋** The hook of `rule-governed-files-hook` refuses a hand edit of any of the files.
+> **－** A second `full` page on one of the files fails the render with the two slugs.
+
+```then
+update:
+- slug: estimate-page-schemas-one-file-per-rule
+  set:
+    status: pending
+  change: the Criterion replaced whole — When and Then only, Given out, the count of files out, the missing file stated (case 490.1)
+```
+
+```tasks
+- [ ] update `estimate-page-schemas-one-file-per-rule`
+- [ ] read `estimate-page-schemas-one-file-per-rule` — `make lint` and `pytest tests/test_render.py`, then by hand after a later librarian's render
+```
+
+### Case 490.2 — The schema of a Rule page
+
+> **given:**
+> `estimate-rules-schema-checked` — the promise, its Criterion replaced whole
+> **＋** `rule-rules-schema` — the Leaf whose Render is the file
+> **＋** `vault/wiki/rules/schema.yaml` — the file written and read
+> **＋** `vault/wiki/rules/` — the pages lint judges by it
+> **＋** `guppi/render.py` — writes the file
+> **＋** `guppi/lint.py` — the classes `schema` and `schema-description`
+> **＋** `tests/test_schemas.py` — the tests the reading runs
+
+> **when:**
+> `guppi render` writes `vault/wiki/rules/schema.yaml` from `rule-rules-schema`, and `guppi lint` reads a page of `vault/wiki/rules/`.
+
+> **then:**
+> The file equals the Render. Lint reads from it: required `type, kind, purpose, status, estimates, origin, sprint, created, tags`; optional `enforcement, implementation_ref, governs, render_mode, parent, children, deferred_by, applies_to`; values `kind: MOC | Leaf`, `status: draft | built | archived`, `enforcement: hook | check | render`, `render_mode: full | partial`; conditional — `hook` and `check` require `implementation_ref`, `render` requires `governs`, `render_mode` and the section `## Render`, `MOC` requires `children` and forbids `enforcement: hook | check`; the sections `## Purpose` and `## History` required, `## Render` and `## How it works` optional.
+> **＋** The file also holds `ordered_children: true`, which lint does not read.
+> **＋** A Rule page with these fields, values and sections has no `schema` finding; one lacking a required field, with a value outside the list, with a conditional not met or lacking a required section has one finding per defect; a rule with `applies_to` on a live Entity has none.
+> **＋** `fields` and `sections` describe each name of these lists; `description` holds the introduction, Ordering, MOCs and enforcement, Enforcement, the sentence on the edge Rule → Entity and the one on the guard of the agent's own conduct; `examples` holds the example pages.
+
+```then
+update:
+- slug: estimate-rules-schema-checked
+  set:
+    status: pending
+  change: the Criterion replaced whole — When and Then only, Given, the history of schema.md and the ordered_children read by lint out (case 490.2)
+```
+
+```tasks
+- [ ] update `estimate-rules-schema-checked`
+- [ ] read `estimate-rules-schema-checked` — `pytest tests/test_schemas.py -k rules`, then `make lint`
+```
+
+### Case 490.3 — The schema of an Entity page
+
+> **given:**
+> `estimate-entities-schema-checked` — the promise, its Criterion replaced whole
+> **＋** `rule-entities-schema` — the Leaf whose Render is the file
+> **＋** `vault/wiki/entities/schema.yaml` — the file written and read
+> **＋** `vault/wiki/entities/` — the pages lint judges by it
+> **＋** `guppi/render.py` — writes the file
+> **＋** `guppi/lint.py` — the classes `schema` and `schema-description`
+> **＋** `tests/test_schemas.py` — the tests the reading runs
+
+> **when:**
+> `guppi render` writes `vault/wiki/entities/schema.yaml` from `rule-entities-schema`, and `guppi lint` reads a page of `vault/wiki/entities/`.
+
+> **then:**
+> The file equals the Render. Lint reads from it: required `type, kind, purpose, status, estimates, origin, sprint, created, tags`; optional `parent, children, code_ref, deferred_by, rules`; values `kind: MOC | Leaf`, `status: draft | built | archived`; conditional — `Leaf` requires `parent`, `MOC` requires `children`; the sections `## Purpose` and `## History` required, `## How it works`, `## Milestones`, `## Backlog`, `## Closed`, `## Terms` optional.
+> **＋** The file also holds `computed: [rules]`, which lint does not read.
+> **＋** An Entity page with these fields, values and sections has no `schema` finding; one lacking a required field, with a value outside the list, with a conditional not met or lacking a required section has one finding per defect; an Entity with `rules` on live Rules has none; the glossary page with `## Terms` has none.
+> **＋** `fields` and `sections` describe each name of these lists, `rules` and `## Terms` among them; `description` holds the introduction, the Slug, `built`, `How it works` and Constraints notes, the sentence on the edge Rule → Entity and the one on the glossary page; `examples` holds the example pages.
+
+```then
+update:
+- slug: estimate-entities-schema-checked
+  set:
+    status: pending
+  change: the Criterion replaced whole — When and Then only, Given, the history of schema.md and the computed key read by lint out (case 490.3)
+```
+
+```tasks
+- [ ] update `estimate-entities-schema-checked`
+- [ ] read `estimate-entities-schema-checked` — `pytest tests/test_schemas.py -k entities`, then `make lint`
+```
+
+### Case 490.4 — The schema of an Estimate page
+
+> **given:**
+> `estimate-estimates-schema-checked` — the promise, its Criterion replaced whole
+> **＋** `rule-estimates-schema` — the Leaf whose Render is the file
+> **＋** `vault/wiki/estimates/schema.yaml` — the file written and read
+> **＋** `vault/wiki/estimates/` — the pages lint judges by it
+> **＋** `guppi/render.py` — writes the file
+> **＋** `guppi/lint.py` — the classes `schema` and `schema-description`
+> **＋** `tests/test_schemas.py` — the tests the reading runs
+
+> **when:**
+> `guppi render` writes `vault/wiki/estimates/schema.yaml` from `rule-estimates-schema`, and `guppi lint` reads a page of `vault/wiki/estimates/`.
+
+> **then:**
+> The file equals the Render. Lint reads from it: required `type, kind, status, target, origin, sprint, created, tags`; optional `purpose, method, checked`; values `kind: QA | Research`, `status: pending | passed | failed`; the sections `## Criterion` and `## History` required, `## Context`, `## Method`, `## Result` optional, `## Result` required on `passed` and on `failed`.
+> **＋** An Estimate page with these fields, values and sections has no `schema` finding; one lacking a required field, with a value outside the list, with a conditional not met or lacking a required section has one finding per defect.
+> **＋** `fields` and `sections` describe each name of these lists; `description` holds, among its paragraphs, the introduction, the `failed` paragraph, the fields deliberately absent, the two kinds, and the Result and Criterion paragraph; `examples` holds the example pages.
+
+```then
+update:
+- slug: estimate-estimates-schema-checked
+  set:
+    status: pending
+  change: the Criterion replaced whole — When and Then only, Given and the history of schema.md out (case 490.4)
+```
+
+```tasks
+- [ ] update `estimate-estimates-schema-checked`
+- [ ] read `estimate-estimates-schema-checked` — `pytest tests/test_schemas.py -k estimates`, then `make lint`
+```
+
+### Case 490.5 — The schema of a Decision page
+
+> **given:**
+> `estimate-decisions-schema-checked` — the promise, its Criterion replaced whole
+> **＋** `rule-decisions-schema` — the Leaf whose Render is the file
+> **＋** `vault/wiki/decisions/schema.yaml` — the file written and read
+> **＋** `vault/wiki/decisions/` — the pages lint judges by it
+> **＋** `guppi/render.py` — writes the file
+> **＋** `guppi/lint.py` — the classes `schema` and `schema-description`
+> **＋** `tests/test_schemas.py` — the tests the reading runs
+
+> **when:**
+> `guppi render` writes `vault/wiki/decisions/schema.yaml` from `rule-decisions-schema`, and `guppi lint` reads a page of `vault/wiki/decisions/`.
+
+> **then:**
+> The file equals the Render. Lint reads from it: required `type, case, status, origin, sprint, created, tags`; optional `create, update, delete, defer, source, supersedes, superseded_by`; values `status: current | superseded | archived`; the sections `## Context`, `## Problem` and `## History` required, `## Given`, `## When`, `## Criterion`, `## Deferred`, `## Note` optional.
+> **＋** A Decision page with these fields, values and sections has no `schema` finding; one lacking a required field, with a value outside the list or lacking a required section has one finding per defect.
+> **＋** `fields` and `sections` describe each name of these lists; `description` holds the introduction, the Slug, the fields deliberately absent and the body paragraph; `examples` holds the example page.
+> **＋** The file says that the History of a Decision takes `created`, `superseded by` and one `updated:` line of a Case that signs its text after the fact.
+
+```then
+update:
+- slug: estimate-decisions-schema-checked
+  set:
+    status: pending
+  change: the Criterion replaced whole — When and Then only, Given and the history of schema.md out (case 490.5)
+```
+
+```tasks
+- [ ] update `estimate-decisions-schema-checked`
+- [ ] read `estimate-decisions-schema-checked` — `pytest tests/test_schemas.py -k decisions`, then `make lint`
+```
+
+### Case 490.6 — The schema of a Lesson page
+
+> **given:**
+> `estimate-lessons-schema-checked` — the promise, its Criterion replaced whole
+> **＋** `rule-lessons-schema` — the Leaf whose Render is the file
+> **＋** `vault/wiki/lessons/schema.yaml` — the file written and read
+> **＋** `vault/wiki/lessons/` — the pages lint judges by it
+> **＋** `guppi/render.py` — writes the file
+> **＋** `guppi/lint.py` — the classes `schema` and `schema-description`
+> **＋** `tests/test_schemas.py` — the tests the reading runs
+
+> **when:**
+> `guppi render` writes `vault/wiki/lessons/schema.yaml` from `rule-lessons-schema`, and `guppi lint` reads a page of `vault/wiki/lessons/`.
+
+> **then:**
+> The file equals the Render. Lint reads from it: required `type, kind, root_cause, status, origin, sprint, created, tags`; optional `source, insight`; values `kind: error | knowledge`, `status: new | clustered | archived`; conditional — `knowledge` requires `source`, `clustered` requires `insight`; the sections `## Trigger`, `## Root cause` and `## History` required.
+> **＋** A Lesson page with these fields, values and sections has no `schema` finding; one lacking a required field, with a value outside the list, with a conditional not met or lacking a required section has one finding per defect.
+> **＋** `fields` and `sections` describe each name of these lists; `description` holds the introduction, the Slug, no Estimate and no `reviewed` status; `examples` holds the example pages.
+
+```then
+update:
+- slug: estimate-lessons-schema-checked
+  set:
+    status: pending
+  change: the Criterion replaced whole — When and Then only, Given and the history of schema.md out (case 490.6)
+```
+
+```tasks
+- [ ] update `estimate-lessons-schema-checked`
+- [ ] read `estimate-lessons-schema-checked` — `pytest tests/test_schemas.py -k lessons`, then `make lint`
+```
+
+### Case 490.7 — A page in the wrong folder, a slug off its filename, a stray file at the root
+
+> **given:**
+> `estimate-vault-layout-holds` — the promise, its Criterion replaced whole
+> **＋** `rule-vault-layout` — the rule it promises for
+> **＋** `guppi/lint.py` — `check_layout`, the class `layout`
+> **＋** `guppi/pages.py` — `read_vault`, which reads the pages of a category folder
+> **＋** `vault/wiki/` — the category folders and the files at its root
+> **＋** `tests/test_lint.py` — the tests the reading runs
+
+> **when:**
+> `guppi lint` reads the pages of the category folders of `vault/wiki/` and the `.md` files at its root.
+
+> **then:**
+> A page whose `type` does not match its folder is a `layout` finding.
+> **＋** A page whose `slug` is not its filename without the extension is a `layout` finding.
+> **＋** A `.md` at the root of `vault/wiki/` whose name no live rule page carries — in `governs` or in its text — is a `layout` finding.
+> **＋** `read_vault` passes by the schema file of a category folder, so it is never judged as a page.
+> **－** A category folder that lacks its schema file gives no `layout` finding.
+
+```then
+update:
+- slug: estimate-vault-layout-holds
+  set:
+    status: pending
+  change: the Criterion replaced whole — When and Then only, Given out, the schema file not read as a page stated (case 490.7)
+```
+
+```tasks
+- [ ] update `estimate-vault-layout-holds`
+- [ ] read `estimate-vault-layout-holds` — `uv run pytest tests/test_lint.py -k layout`, then `make lint`
+```
+
+### Case 490.8 — The sprint page records the group of the page schemas and the layout
+
+> **given:**
+> `entity-sprint-migration` — the sprint page; its Slice 3g holds the note on every other Estimate
+> **＋** `vault/wiki/sprint.md` — the render of the sprint page
+> **＋** `/hi` — builds the Frontier from `vault/wiki/sprint.md`
+> **＋** `rule-page-schemas` — the MOC whose Estimates and those of its children this Case recuts
+> **＋** `rule-vault-layout` — a rule whose Estimate this Case recuts
+
+> **when:**
+> The librarian's run applies the `update` of `entity-sprint-migration`.
+
+> **then:**
+> The History of `entity-sprint-migration` says that the Estimates of the page schemas and of `rule-vault-layout` are recut.
+
+```then
+update:
+- slug: entity-sprint-migration
+  change: 'Slice 3g: the Estimates of rule-page-schemas, its five category schemas and rule-vault-layout recut to When and Then; the note on every other Estimate stands (case 490)'
+```
+
+```tasks
+- [ ] update `entity-sprint-migration`
+```
+
+## Case 491 — Slice 3g: the Estimates of the Spec tickers and the sprint recut to `When:` and `Then:`
+
+> **context:**
+> Each Estimate page holds one promise, its Criterion. A Criterion should hold only `When:`, the trigger and the input it acts on, and `Then:`, what must hold after. Older Estimates also open with `Given:`, a set of lines that describe the code and the cases as they stood on the day the promise was written. This group holds four such pages. Three belong to `rule-sprint`: the tick of the `guppi sprint` lines of a Spec, the check of `sprint.md`, and the drop of a milestone left empty. The fourth is the tick of the `guppi render` lines of a Spec, on `rule-render-harness`. Their `Given:` repeats what `guppi sprint` and `guppi render` do on exit, which yaml counts as applied whole, and which tests fix the behaviour. Two of the pages also carry `－` lines on the bounds of an old edit: "`make lint` writes nothing to the tree" and "Nothing is added at `SessionStart` or in `/hi`".
+> The person decided in the first round on this item. The item goes in seven Cases by area, one group per Case. The lines on the bounds of an edit go out. A lost ratified text is restored, and a page with no `purpose` gets one. This group is the fourth, after cases 488, 489 and 490. None of these pages lost its Criterion to a tool fault like case 211.3. Their History shows only `created`, readings, and the Criteria that cases 235 and 250.1 replaced on purpose, so nothing is restored and no commit needs to be read. All four pages already have `purpose` and `method`, so no field is set but `status`. Each Criterion is replaced whole and goes back to `pending`. Its reading waits for a later session (case 428.1). The note of Slice 3g stays as it is until the last group.
+> What each new Criterion keeps and drops. The check of the answer notes every old line as not carried, because each new line is a whole statement and not the old wording, and the paths now read `vault/raw/` in place of `raw/`. The content of the old lines is carried, except for the lines named here. Each `Given:` goes out. The definition of a yaml applied whole moves from `Given:` into `Then:` in 491.1 and 491.4. "The script writes the file and exits 0, or writes nothing and exits 1" goes out, because the tick promises only what follows a run that wrote and exited 0, and "a run that exits 1 ticks nothing" stays. In 491.2 the lines "`make lint` writes nothing to the tree" and "Nothing is added at `SessionStart` or in `/hi`" go out as bounds of an edit, and "the file is written in neither case" stays. The finding line of 491.2 names the file outside its code span, because a span with a `/` reads as a path that `given` must name. `make lint` still runs `sprint --check` after `render --check` and before `guppi lint`, with `backlog --check` and `glossary --check` between, so that line stays. In 491.3 the definition of the current milestone and the rule for a note move from `Given:` into `Then:`, and "rule 229.3 does not change for it", a bound of an edit, becomes "stays".
+> The check also notes that the `then` lines of 491.1 and 491.4 share most of their words. This is expected. Both `guppi sprint` and `guppi render` call the one helper `tick_command_lines` of `guppi/render.py`, each with its own command. Each script has its own promise and its own test file, and case 488.3 recut the third caller, `guppi glossary`, in the same form. The lines differ where the scripts differ: `guppi render` also has `--sync`, which ticks nothing.
+> The frame. Each kept line was read against `guppi/sprint.py`, `tick_command_lines` and `applied_whole` of `guppi/render.py`, `is_carried_over` of `guppi/materialize.py`, the move after the cascade in `guppi/generate.py`, and the target `lint` of the `Makefile`. None is contradicted. No behaviour changes, so no code, test, Render or hook changes, and no reader keeps an old form. The other Estimates of `rule-sprint` and `rule-render-harness` either have no `Given:` or speak of other steps, so they are not touched. `estimate-render-harness-reproduces` and `estimate-render-sync-reports` are old-layout pages and belong to item C2. The Case creates no page, so no vault query was run. Not done: the other three groups (13 pages).
+
+> **problem:**
+> The four Estimates of the Spec tickers and the sprint still open with a `Given:` that repeats the code of their day, and two of them carry lines on the bounds of an old edit. So their promises mix the trigger and the result with a frame that goes stale.
+
+### Case 491.1 — The `guppi sprint` lines of an applied Spec ticked
+
+> **given:**
+> `estimate-sprint-ticks-the-spec` — the promise, its Criterion replaced whole
+> **＋** `rule-sprint` — the rule it promises for
+> **＋** `guppi/sprint.py` — `run`, which calls the tick after it writes the file
+> **＋** `guppi/render.py` — `tick_command_lines` and `applied_whole`, the one tick of the command lines
+> **＋** `guppi/materialize.py` — `units_with` and `is_carried_over`, the units walked and the ones passed by
+> **＋** `vault/wiki/sprint.md` — the file whose write comes before the tick
+> **＋** `vault/raw/` — the units, each with its `spec.md` and `materialize.yaml`
+> **＋** `tests/test_sprint.py` — the tests the reading runs
+
+> **when:**
+> `guppi sprint` without a flag wrote `vault/wiki/sprint.md` and exits 0, and reads the units under `vault/raw/` that have a `materialize.yaml`.
+
+> **then:**
+> In the `spec.md` of every unit whose yaml is applied whole, every unticked task line that opens with a code span holding `guppi sprint` becomes `- [x]`. A yaml is applied whole when each entry carries `applied` or `superseded_by` and none carries `failed`. Nothing else in the file changes.
+> **－** A line where `guppi sprint` sits in a later code span, such as a `read` line or a description, is not ticked.
+> **－** `--check` ticks nothing, and a run that exits 1 ticks nothing.
+> **－** A unit without a yaml, with an entry not applied, with a `failed` entry, or marked by `carry.md`, is not touched.
+
+```then
+update:
+- slug: estimate-sprint-ticks-the-spec
+  set:
+    status: pending
+  change: the Criterion replaced whole — When and Then only, Given out, the yaml applied whole stated (case 491.1)
+```
+
+```tasks
+- [ ] update `estimate-sprint-ticks-the-spec`
+- [ ] read `estimate-sprint-ticks-the-spec` — `pytest tests/test_sprint.py`, then by hand on the `spec.md` of a later session after its librarian's run
+```
+
+### Case 491.2 — The check of the sprint file
+
+> **given:**
+> `estimate-sprint-checks-the-file` — the promise, its Criterion replaced whole
+> **＋** `rule-sprint` — the rule it promises for
+> **＋** `guppi/sprint.py` — `run` with `--check`, which renders in memory and compares
+> **＋** `vault/wiki/sprint.md` — the file compared
+> **＋** `entity-sprint-<id>` — the sprint page the file is rendered from
+> **＋** `Makefile` — the target `lint`, which runs the check
+> **＋** `tests/test_sprint.py` — the tests the reading runs
+
+> **when:**
+> Someone runs `uv run guppi sprint --check`, by hand or through the target `lint` of the `Makefile`, and it renders the file from the sprint page in memory.
+
+> **then:**
+> When `vault/wiki/sprint.md` differs from the render of the page, stdout holds one line `sprint: <file> differs from entity-sprint-<id>`, the file named by its path from the project root, and the check exits 1. When the file equals the render, the check exits 0 with no output. The file is written in neither case.
+> **＋** The target `lint` of the `Makefile` runs it after `render --check` and before `guppi lint`.
+> **－** A render error, such as no sprint page, two sprint pages or a slug with no page, is one line on stderr and exit 1, as with `guppi sprint`.
+
+```then
+update:
+- slug: estimate-sprint-checks-the-file
+  set:
+    status: pending
+  change: the Criterion replaced whole — When and Then only, Given and the bounds lines out (case 491.2)
+```
+
+```tasks
+- [ ] update `estimate-sprint-checks-the-file`
+- [ ] read `estimate-sprint-checks-the-file` — `pytest tests/test_sprint.py`, then `make lint` after a later librarian's run
+```
+
+### Case 491.3 — A milestone left empty by the move leaves the Milestones
+
+> **given:**
+> `estimate-sprint-drops-an-emptied-milestone` — the promise, its Criterion replaced whole
+> **＋** `rule-sprint` — the rule it promises for
+> **＋** `guppi/generate.py` — the move of an item after the cascade, and the drop of its milestone
+> **＋** `guppi/sprint.py` — `milestone_blocks` and `item_slugs`, the milestones, items and notes; the current milestone
+> **＋** `entity-sprint-<id>` — the sprint page: its `## Milestones`, `## Backlog`, `## Closed` and History
+> **＋** `tests/test_generate.py` — the tests the reading runs
+
+> **when:**
+> `guppi generate` moves, after the cascade, the last item line out of a milestone of the sprint page into its `## Backlog`.
+
+> **then:**
+> The heading `### <name>` of that milestone leaves `## Milestones`. The next milestone with an item not done, or with no item, becomes the current one.
+> **＋** The History of the sprint page gets the line `milestone <name> left the Milestones: its items moved to the Backlog · generate`, and stdout gets one line.
+> **－** A milestone with no item before the run stays.
+> **－** A milestone where a note is left stays. A note is a line that names no `[[slug]]` before its first ` — `, and it is never moved.
+> **－** Nothing is written to `## Closed`: nothing of that milestone was built.
+
+```then
+update:
+- slug: estimate-sprint-drops-an-emptied-milestone
+  set:
+    status: pending
+  change: the Criterion replaced whole — When and Then only, Given out, the current milestone and the note stated (case 491.3)
+```
+
+```tasks
+- [ ] update `estimate-sprint-drops-an-emptied-milestone`
+- [ ] read `estimate-sprint-drops-an-emptied-milestone` — `pytest tests/test_generate.py`, the tests of the move
+```
+
+### Case 491.4 — The `guppi render` lines of an applied Spec ticked
+
+> **given:**
+> `estimate-render-harness-ticks-the-spec` — the promise, its Criterion replaced whole
+> **＋** `rule-render-harness` — the rule it promises for
+> **＋** `guppi/render.py` — `run`, `tick_command_lines` and `applied_whole`
+> **＋** `guppi/materialize.py` — `units_with` and `is_carried_over`, the units walked and the ones passed by
+> **＋** `vault/raw/` — the units, each with its `spec.md` and `materialize.yaml`
+> **＋** `tests/test_render.py` — the tests the reading runs
+
+> **when:**
+> `guppi render` without a flag wrote the governed files and exits 0, and reads the units under `vault/raw/` that have a `materialize.yaml`.
+
+> **then:**
+> In the `spec.md` of every unit whose yaml is applied whole, every unticked task line whose text opens with a code span holding `guppi render` becomes `- [x]`. A yaml is applied whole when each entry carries `applied` or `superseded_by` and none carries `failed`, as `guppi archive` counts it. Nothing else in the file changes.
+> **－** A line where `guppi render` sits in a later code span, such as a `read` line or a line that names the command in its description, is not ticked.
+> **－** `--check` and `--sync` tick nothing, and a run that exits 1 ticks nothing.
+> **－** A unit without a yaml, with an entry that carries neither `applied` nor `superseded_by`, with a `failed` entry, or marked by `carry.md`, is not touched.
+
+```then
+update:
+- slug: estimate-render-harness-ticks-the-spec
+  set:
+    status: pending
+  change: the Criterion replaced whole — When and Then only, Given out, the yaml applied whole stated (case 491.4)
+```
+
+```tasks
+- [ ] update `estimate-render-harness-ticks-the-spec`
+- [ ] read `estimate-render-harness-ticks-the-spec` — `pytest tests/test_render.py`, then by hand on the `spec.md` of a later session after its librarian's run
+```
+
+### Case 491.5 — The sprint page records the group of the Spec tickers and the sprint
+
+> **given:**
+> `entity-sprint-migration` — the sprint page; its Slice 3g holds the note on every other Estimate
+> **＋** `vault/wiki/sprint.md` — the render of the sprint page
+> **＋** `/hi` — builds the Frontier from `vault/wiki/sprint.md`
+> **＋** `rule-sprint` — a rule whose Estimates this Case recuts
+> **＋** `rule-render-harness` — a rule whose Estimate this Case recuts
+
+> **when:**
+> The librarian's run applies the `update` of `entity-sprint-migration`.
+
+> **then:**
+> The History of `entity-sprint-migration` says that the Estimates of `rule-sprint` and the Spec tick of `rule-render-harness` are recut.
+
+```then
+update:
+- slug: entity-sprint-migration
+  change: 'Slice 3g: the Estimates of rule-sprint and the Spec tick of rule-render-harness recut to When and Then; the note on every other Estimate stands (case 491)'
+```
+
+```tasks
+- [ ] update `entity-sprint-migration`
+```
+
+## Case 492 — Slice 3g: the Estimates of the text every context loads recut to `When:` and `Then:`
+
+> **context:**
+> Each Estimate page holds one promise, its Criterion. A Criterion should hold only `When:`, the trigger and the input it acts on, and `Then:`, what must hold after. Older Estimates also open with `Given:`, a set of lines that describe the code and the cases as they stood on the day the promise was written. This group holds three such pages. Each promises a text that the agent reads when it acts: `CLAUDE.md` from `rule-claude-md`, the atomicity rule in `vault/wiki/case-schema.md`, and the one-judgment rule inside `CLAUDE.md`. Their `Given:` repeats how a Render is written and how the hook refuses a hand edit, and it also keeps history. For example, `estimate-claude-md-rendered` still lists each item of the old "Migration mode" section and the Rule it became, and `estimate-one-judgment-one-implementation-followed` names the three functions that case 351 lifted into one module.
+> The person decided in the first round on this item. The item goes in seven Cases by area, one group per Case. History and the lines on the bounds of an edit leave the Criterion. A lost ratified text is restored, and a page with no `purpose` gets one. This group is the fifth, after cases 488 to 491. None of these pages lost its Criterion to a tool fault like case 211.3. Their History shows only Criteria that cases 73.10, 88.2, 272.1, 273.3, 288.3, 317, 360 and 374 changed on purpose, so nothing is restored and no commit needs to be read. All three pages already have `purpose` and `method`, so no field is set but `status`. Each Criterion is replaced whole and goes back to `pending`. Its reading waits for a later session (case 428.1). The note of Slice 3g stays as it is until the last group.
+> What each new Criterion keeps and drops. The check of the answer notes every old line as not carried, because each new line is a whole statement and not the old wording. The content of the old lines is carried, except for the lines named here. Each `Given:` goes out. A `Given:` line that states lasting behaviour moves into `When:` or `Then:`: where a `partial` Render lands, that the governed-files hook refuses a hand edit, and that every session and subagent loads `CLAUDE.md`. In 492.2 the list of the "Migration mode" items and the Rules they became goes out as history, and so does the line that the glossary and the schema arrive with `/hi`, which `estimate-internal-context-loaded` promises. The first `then` line of 492.2 quotes the paragraph of `CLAUDE.md` in plain quotation marks, in place of the old summary in code spans. The quote keeps every word of the paragraph but drops the code spans around the vault folder, the glossary path and the skill that opens a session. A span with a `/` reads as a path that `given` must name, and the paragraph is text of the file, not a frame of the Case. So the check notes that line as not carried, while its content is the same. In 492.3 the functions that case 351 lifted go out as history. In 492.1 the `Given:` line on the refusal of `pre-spec` described the form before case 472.3, "two Estimate items and no written `sections: Criterion`". The `－` line keeps only that the refusal stays with `rule-prespec`, as the Purpose of `rule-atomicity` says today, so the stale form is not signed again.
+> The check also notes that 492.1, 492.2 and 492.3 share a line on `render --check` and the governed-files hook. This is expected. Each promise guards a rendered text by the same two means, but each names its own file or its own markers, and a drift in one fails one reading alone.
+> The frame. Each kept line was read against `CLAUDE.md`, the Render of `rule-claude-md` and its `children`, the Render of `rule-atomicity` and its marker line in `rule-case-protocol` (a MOC with the one child `rule-atomicity`), and the Render of `rule-one-judgment-one-implementation`. None is contradicted. The Render of `rule-atomicity` has since gained a last sentence on two behaviours and two angles. The new Criterion names the parts it named before and does not sign that sentence. The file equals the Render in any case, and `render --check` holds the rest. No behaviour changes, so no code, test, Render or hook changes, and no reader keeps an old form. `rule-claude-md`, `rule-atomicity` and `rule-one-judgment-one-implementation` have no other Estimates. The Case creates no page, so no vault query was run. Not done: the other two groups (10 pages).
+
+> **problem:**
+> The three Estimates of the text every context loads still open with a `Given:` that repeats the render and keeps history, and one of them states an old form of the refusal of `pre-spec`. So their promises carry lines that go stale beside the text they guard.
+
+### Case 492.1 — The atomicity rule in the Case schema
+
+> **given:**
+> `estimate-atomicity-rendered` — the promise, its Criterion replaced whole
+> **＋** `rule-atomicity` — the rule it promises for; its Render is the text
+> **＋** `rule-case-protocol` — the MOC that renders the file, with the marker line of its child
+> **＋** `vault/wiki/case-schema.md` — the file the text lands in
+> **＋** `guppi/render.py` — writes the file and `render --check`
+> **＋** `rule-governed-files-hook` — the hook that refuses a hand edit
+> **＋** `.claude/skills/hi/SKILL.md` — the skill `/hi`, which loads the file
+> **＋** `rule-prespec` — the rule that holds the one mechanical refusal
+
+> **when:**
+> `guppi render` writes the governed files, and `/hi` loads `vault/wiki/case-schema.md` at the start of a working session.
+
+> **then:**
+> `vault/wiki/case-schema.md` holds the text of `rule-atomicity` between its markers: the statement, the pair test — list the conditions of "done", and for each pair ask whether one could fail while the other passes and needs a different fix — and the scope: Case, Entity, Rule, Estimate; not a Lesson, a recorded fact does not split; not an Insight, which is born by clustering, the same rule in reverse; depth is not fixed in advance.
+> **＋** `render --check` after the render exits 0, and the hook of `rule-governed-files-hook` refuses a hand edit of the file.
+> **＋** `rule-case-protocol` is a MOC with the child `rule-atomicity` and a marker line for it in its Render.
+> **－** The rule has no refusal of its own in substance: the refusal of two promises in one Case stays with `rule-prespec`.
+
+```then
+update:
+- slug: estimate-atomicity-rendered
+  set:
+    status: pending
+  change: the Criterion replaced whole — When and Then only, Given out, the old form of the pre-spec refusal out (case 492.1)
+```
+
+```tasks
+- [ ] update `estimate-atomicity-rendered`
+- [ ] read `estimate-atomicity-rendered` — `uv run guppi render --check`, then by hand on the text between the markers after a later librarian's render
+```
+
+### Case 492.2 — `CLAUDE.md` is the Render of its page
+
+> **given:**
+> `estimate-claude-md-rendered` — the promise, its Criterion replaced whole
+> **＋** `rule-claude-md` — the MOC it promises for; its Render is the whole file
+> **＋** `rule-language` — a child spliced into its markers
+> **＋** `rule-agent-writing` — a child spliced into its markers
+> **＋** `rule-one-judgment-one-implementation` — a child spliced into its markers
+> **＋** `CLAUDE.md` — the file written and loaded
+> **＋** `guppi/render.py` — writes the file and `render --check`
+> **＋** `rule-governed-files-hook` — the hook that refuses a hand edit
+
+> **when:**
+> `guppi render` writes `CLAUDE.md` from `rule-claude-md` and its children, and a session or a subagent starts and loads the file.
+
+> **then:**
+> `CLAUDE.md` is: `# GUPPI`; one paragraph, "A Claude Code harness governed by ratified decisions, and the Obsidian vault it compiles into. The vault is vault/; its terms are vault/wiki/glossary.md. A working session opens with /hi.", whose words the file holds with the folder, the path and the skill in code spans; then the text of `rule-language`, `rule-agent-writing` and `rule-one-judgment-one-implementation` in their markers.
+> **＋** `render --check` after the render exits 0, and the hook of `rule-governed-files-hook` refuses a hand edit of the file.
+> **＋** Every session and every subagent loads this text.
+> **－** No `@` import, no "What is loaded here", no paragraph on `index.md`, no "Migration mode", no "Commands", no one rule and no sentence on memory — the one rule is in the schema; the `children` of `rule-claude-md` are `rule-language`, `rule-agent-writing` and `rule-one-judgment-one-implementation`.
+
+```then
+update:
+- slug: estimate-claude-md-rendered
+  set:
+    status: pending
+  change: the Criterion replaced whole — When and Then only, Given and the history of Migration mode out (case 492.2)
+```
+
+```tasks
+- [ ] update `estimate-claude-md-rendered`
+- [ ] read `estimate-claude-md-rendered` — `uv run guppi render --check`, then by hand on `CLAUDE.md` at the start of a later session
+```
+
+### Case 492.3 — One judgment, one implementation
+
+> **given:**
+> `estimate-one-judgment-one-implementation-followed` — the promise, its Criterion replaced whole
+> **＋** `rule-one-judgment-one-implementation` — the rule it promises for; its Render is the text
+> **＋** `rule-claude-md` — the MOC that renders the file, with the marker line of its child
+> **＋** `CLAUDE.md` — the file the text lands in, loaded in every context
+> **＋** `guppi/render.py` — writes the file and `render --check`
+> **＋** `rule-governed-files-hook` — the hook that refuses a hand edit
+> **＋** `guppi/` — the code of the pipeline whose diff the reading reads
+
+> **when:**
+> The agent writes code in `guppi/` that judges a text another part of the pipeline already judges, such as a check beside a writer, a ticker or another check.
+
+> **then:**
+> The pattern or the predicate lives in one module, and both sides import it.
+> **＋** Where the two sides cannot share the code, one test runs both over the same input and asserts they answer alike.
+> **＋** `CLAUDE.md`, which every session and every subagent loads, holds this text between the markers of `rule-one-judgment-one-implementation`; `render --check` keeps it equal to the page, and the hook of `rule-governed-files-hook` refuses a hand edit.
+> **－** No script refuses a second copy: the guard is the text in the file every context reads, and the reading of the session's diff.
+
+```then
+update:
+- slug: estimate-one-judgment-one-implementation-followed
+  set:
+    status: pending
+  change: the Criterion replaced whole — When and Then only, Given and the functions lifted by case 351 out (case 492.3)
+```
+
+```tasks
+- [ ] update `estimate-one-judgment-one-implementation-followed`
+- [ ] read `estimate-one-judgment-one-implementation-followed` — `uv run guppi render --check`, then by hand on the diff of the Work Mode of a later session
+```
+
+### Case 492.4 — The sprint page records the group of the text every context loads
+
+> **given:**
+> `entity-sprint-migration` — the sprint page; its Slice 3g holds the note on every other Estimate
+> **＋** `vault/wiki/sprint.md` — the render of the sprint page
+> **＋** `/hi` — builds the Frontier from `vault/wiki/sprint.md`
+> **＋** `rule-claude-md` — a rule whose Estimate this Case recuts
+> **＋** `rule-atomicity` — a rule whose Estimate this Case recuts
+> **＋** `rule-one-judgment-one-implementation` — a rule whose Estimate this Case recuts
+
+> **when:**
+> The librarian's run applies the `update` of `entity-sprint-migration`.
+
+> **then:**
+> The History of `entity-sprint-migration` says that the Estimates of `rule-claude-md`, `rule-atomicity` and `rule-one-judgment-one-implementation` are recut.
+
+```then
+update:
+- slug: entity-sprint-migration
+  change: 'Slice 3g: the Estimates of rule-claude-md, rule-atomicity and rule-one-judgment-one-implementation recut to When and Then; the note on every other Estimate stands (case 492)'
+```
+
+```tasks
+- [ ] update `entity-sprint-migration`
+```
+
+## Case 493 — Slice 3g: the Estimates of the session hooks and gates recut to `When:` and `Then:`
+
+> **context:**
+> Each Estimate page holds one promise, its Criterion. A Criterion should hold only `When:`, the trigger and the input it acts on, and `Then:`, what must hold after. Older Estimates also open with `Given:`, a set of lines that describe the code and the cases as they stood on the day the promise was written. This group holds the Estimates of the hooks and gates of a session: the recall after a compaction, the two checkpoints of Plan Mode, the gate of `/retro` and `/handoff`, the order of the five phases, and the hook that holds Plan Mode open until `/pre-spec` has run. The group has five pages and not six, because the first round left `estimate-end-of-work-order` to the old-layout item C2. Their `Given:` holds facts from the Claude Code docs, a lesson, the case numbers of old fixes, and one line on the bounds of an edit: "The `--check` pass of `rule-prespec` does not change here". Three of the pages have no `purpose`.
+> The person decided in the first round on this item. The item goes in seven Cases by area, one group per Case. History and the lines on the bounds of an edit leave the Criterion. A lost ratified text is restored, and a page with no `purpose` gets one in the same change. This group is the sixth, after cases 488 to 492. None of these pages lost its Criterion to a tool fault like case 211.3. Their History shows only Criteria that cases 40, 136.2, 169.1, 180, 213.2, 261, 265.2, 265.3, 287 and 316 wrote on purpose, so nothing is restored and no commit needs to be read. `estimate-plan-mode-verified`, `estimate-retro-commit-gates` and `estimate-prespec-hook-gates` get a `purpose` from their own Criterion. Each Criterion is replaced whole and goes back to `pending`. Its reading waits for a later session (case 428.1). The note of Slice 3g stays as it is until the last group.
+> What each new Criterion keeps and drops. The check of the answer notes every old line as not carried, because each new line is a whole statement and not the old wording. The content of the old lines is carried, except for the lines named here. Each `Given:` goes out, and a `Given:` line that states lasting behaviour moves into `When:` or `Then:`. In 493.1 the facts of the Claude Code docs, the lesson that a `SessionStart` hook cannot block and the example "the glossary by C4.1" go out as history. The line on the 10,000 characters stays: no code caps the output, but a reading can check it. In 493.2 the line on the children of `rule-plan-mode` goes out, and the vault query before a `create` without a `ref` moves into `When:`. "The plan is still written" now names the hook of `rule-spec-capture`, the writer of `spec.md` at approval. In 493.3 the line "live, the first `/handoff` from Retro on a dirty tree is refused and passes after the commit" is a way of reading, and the `method` already names the live reading. "`guppi event prompt` does not change and does not fail" goes out as a bound of an edit. The old line "without `hi` — nothing to check, exit 0" is a line the code does not honour: `guppi/gate.py` checks the tree of a `/handoff` with or without a `hi`. It is dropped, and the true part stays, that without a `hi` the checks of `/retro` do not run. The check of the Spec against the ledger still names `/retro` only, as before. The code runs it on all three commands, and this Case does not widen the promise. In 493.4 the line that a Rule MOC promises its order goes out, because that is the schema's rule and not this promise. In 493.5 the `－` line on the `--check` pass goes out as a bound of an edit, and "as before" becomes a plain statement.
+> Each kept line was read against `guppi/recall.py`, `guppi/gate.py`, the hook part of `guppi/prespec.py` and the `children` of `rule-session`, and none is contradicted. Some finding lines and headers hold a `/` inside a path. They stand in plain quotation marks, as the old text had them, or name the folder in words, because a code span with a `/` reads as a path that `given` must name. No behaviour changes, so no code, test, Render or hook changes, and no reader keeps an old form. `estimate-plan-mode-names-its-estimates` and the other Estimates of these rules speak of other steps and are not touched. The Case creates no page, so no vault query was run. Not done: the last group, the five done-conditions of the sprint, and `estimate-end-of-work-order` with item C2.
+
+> **problem:**
+> The five Estimates of the session hooks and gates still open with a `Given:` of docs, lessons and old case numbers. Three of them have no `purpose`, and one line promises a pass on a `/handoff` without a `hi` that the gate does not give. So their readings check a frame that goes stale, and one line is false.
+
+### Case 493.1 — The recall after a compaction
+
+> **given:**
+> `estimate-compact-recall-reloads` — the promise, its Criterion replaced whole
+> **＋** `rule-compact-recall` — the rule it promises for
+> **＋** `guppi/recall.py` — the hook that prints the recall
+> **＋** `guppi/ledger.py` — `session_dir` and `plan_path`, the session's folder and plan file
+> **＋** `.claude/skills/hi/SKILL.md` — the skill whose `@` lines are the list of paths
+> **＋** `.claude/settings.json` — the matcher `compact` on `SessionStart`
+> **＋** `vault/raw/<date>/<hi HHMM>/` — the session's folder, with `frontier.md` and `spec.md`
+> **＋** `tests/test_recall.py` — the tests the reading runs
+
+> **when:**
+> The client compacts the context of a session, on the person's command or on its own, and `SessionStart` fires with `source: compact` and runs `guppi/recall.py`.
+
+> **then:**
+> With a `hi` in the session's window, stdout holds a header line, "recall: the context was compacted at HH:MM:SS; the session is" followed by the session folder under the vault, such as raw/2026-09-28/2229/, and "Read before the next reply:". Then comes one path per line: the `@` files of `.claude/skills/hi/SKILL.md` in their order, the session's `frontier.md` when it exists, and the Spec when one exists. Last come the line `Frontier:` and the text of `frontier.md` as it stands.
+> **＋** The Spec is the `spec.md` of the folder, or before the approval the plan file the event log names last.
+> **＋** The list of paths is the `@` lines of the skill file at the moment the hook fires, with no copy in the code: a file added to those lines is in the list without a change to the hook.
+> **＋** The texts of the files, the Frontier apart, are not printed, only the paths; the output stays under 10,000 characters.
+> **－** Without a `hi` in the window, nothing is printed on stdout, and the exit is 0.
+> **－** Another `source` gives nothing: the matcher keeps the hook from firing, and the code checks `source` itself.
+> **－** Exit 0 always; an error prints nothing and blocks nothing; the hook writes no file and no event line — `session-start compact` is written by `guppi event`.
+
+```then
+update:
+- slug: estimate-compact-recall-reloads
+  set:
+    status: pending
+  change: the Criterion replaced whole — When and Then only, Given, the docs and the lesson out (case 493.1)
+```
+
+```tasks
+- [ ] update `estimate-compact-recall-reloads`
+- [ ] read `estimate-compact-recall-reloads` — `pytest tests/test_recall.py`, then by hand at the first compaction of a later working session
+```
+
+### Case 493.2 — The two checkpoints of Plan Mode
+
+> **given:**
+> `estimate-plan-mode-verified` — the promise, its Criterion replaced whole
+> **＋** `rule-plan-mode` — the MOC it promises for
+> **＋** `rule-ask` — the vault query and its index lines
+> **＋** `rule-case-build` — `case-guppi`, which runs the query and writes the `context`
+> **＋** `rule-prespec-hook` — the hook on `ExitPlanMode`
+> **＋** `rule-spec-capture` — the hook that writes the plan into the session's `spec.md`
+> **＋** `Makefile` — the target `test-plan-mode`
+
+> **when:**
+> `case-guppi` builds a Case that proposes a `create` without a `ref` and runs the vault query first, and later the person approves the plan at `ExitPlanMode`.
+
+> **then:**
+> A `create` for a page whose `purpose` an index line already carries is named in the `context` of the Case before ratification.
+> **＋** At `ExitPlanMode` the hook of `rule-prespec-hook` runs before the plan is written, and once it lets the call through, the hook of `rule-spec-capture` still writes the plan into the session's `spec.md`.
+
+```then
+update:
+- slug: estimate-plan-mode-verified
+  set:
+    status: pending
+    purpose: Across Plan Mode a create whose purpose the vault already carries is named in the Case before ratification, and the pre-spec hook runs before the plan is written, which is still written
+  change: the Criterion replaced whole — When and Then only, Given out, the writer of the plan named; purpose set (case 493.2)
+```
+
+```tasks
+- [ ] update `estimate-plan-mode-verified`
+- [ ] read `estimate-plan-mode-verified` — `make test-plan-mode`, then by hand at a later approval of a plan
+```
+
+### Case 493.3 — The gate of `/retro` and `/handoff`
+
+> **given:**
+> `estimate-retro-commit-gates` — the promise, its Criterion replaced whole
+> **＋** `rule-retro-commit` — the rule it promises for
+> **＋** `guppi/gate.py` — the hook `guppi gate`
+> **＋** `/retro` — the skill gated on an empty session and on a Spec ahead of the ledger
+> **＋** `/handoff` — the skill gated on a dirty tree
+> **＋** `/hi` — the skill whose `hi` line opens the session's window, and which the gate lets pass
+> **＋** `tests/test_gate.py` — the tests the reading runs
+
+> **when:**
+> `guppi gate` receives a `PreToolUse` payload of a `Skill` call, or a `UserPromptSubmit` payload whose prompt, trimmed, opens with one of the three commands the gate marks, with or without arguments.
+
+> **then:**
+> A `/handoff` on a dirty tree, where `git status --porcelain` is not empty, exits 2 with the reason "commit first" on stderr, and the client blocks the call; on a clean tree it exits 0.
+> **＋** A `/retro` in a session with a `hi` but no `spec.md` in its folder, no plan file named by the event log and no `- decision[`, `- estimate[` or `- lesson[` line in its window exits 2 with "gate: /retro refused — nothing to review: no Spec and no ledger line in raw/<date>/<HHMM>/. Ratify a Case or write a reading or a lesson first, then type /retro again."; on the `Skill` path the end reads "…then call /retro in the next reply."
+> **＋** Otherwise a `/retro` whose Spec holds an item with no decision line of its Case exits 2 with "gate: /retro refused — N item(s) of the Spec have no ledger line (case A). Ask the agent to end its reply with the LEDGER block, then type /retro again".
+> **＋** A call it lets through, on either path, writes the same mark `prespec`, `retro` or `handoff` into the day's event log; a refusal writes no mark.
+> **＋** Any other prompt or skill, `/hi` included, exits 0 with no output and no mark.
+> **－** Without a `hi` in the session, the checks of `/retro` do not run.
+
+```then
+update:
+- slug: estimate-retro-commit-gates
+  set:
+    status: pending
+    purpose: guppi gate refuses /handoff on a dirty tree and /retro with nothing to review or a Spec ahead of the ledger, and marks each call it lets through
+  change: the Criterion replaced whole — When and Then only, Given and the bounds line out, the pass without hi narrowed to what the gate does; purpose set (case 493.3)
+```
+
+```tasks
+- [ ] update `estimate-retro-commit-gates`
+- [ ] read `estimate-retro-commit-gates` — `pytest tests/test_gate.py`, then by hand at a later `/retro` and `/handoff`
+```
+
+### Case 493.4 — The five phases of a session, in order
+
+> **given:**
+> `estimate-session-phases-in-order` — the promise, its Criterion replaced whole
+> **＋** `rule-session` — the MOC it promises for, its children in order
+> **＋** `vault/raw/<date>/event_log.md` — the day's event log with the `hi` line
+> **＋** `vault/raw/<date>/<hi HHMM>/` — the session's folder: `frontier.md`, `spec.md`, `handoff.md` or `carry.md`
+> **＋** `/carry` — the skill that conserves a session after Plan Mode
+
+> **when:**
+> A session has ended, and someone reads its folder, the day's event log and `git log`.
+
+> **then:**
+> All five phases left a mark, and the marks ascend in time: the `hi` line of the day's event log → `frontier.md` → `spec.md` with its approved stamp → the Retro commit → `handoff.md` → the librarian's commit.
+> **＋** `rule-session` is the parent of the five phases, its children in that order.
+> **－** A session conserved by `/carry` ends at `carry.md`: the marks of Work Mode, End of Work and Documentation are absent, and that is not a failure.
+
+```then
+update:
+- slug: estimate-session-phases-in-order
+  set:
+    status: pending
+  change: the Criterion replaced whole — When and Then only, Given out (case 493.4)
+```
+
+```tasks
+- [ ] update `estimate-session-phases-in-order`
+- [ ] read `estimate-session-phases-in-order` — by hand at the close of a later session
+```
+
+### Case 493.5 — Plan Mode stays open until `/pre-spec` has run
+
+> **given:**
+> `estimate-prespec-hook-gates` — the promise, its Criterion replaced whole
+> **＋** `rule-prespec-hook` — the rule it promises for
+> **＋** `guppi/prespec.py` — the hook part, `run` without arguments
+> **＋** `guppi/ledger.py` — `session_event_logs`, the logs the ledger hook reads
+> **＋** `vault/raw/<date>/event_log.md` — the event logs with the `hi` and `prespec` lines
+> **＋** `/pre-spec` — the skill whose call writes the `prespec` line
+> **＋** `tests/test_prespec.py` — the tests the reading runs
+
+> **when:**
+> The hook `guppi prespec` receives a `PreToolUse` payload naming `ExitPlanMode` with the session's stamp, and asks whether `/pre-spec` ran in this session.
+
+> **then:**
+> With no `prespec` line of this session's stamp after its `hi`, the hook exits 2 with a reason that names `/pre-spec` and the session; with the line, it exits 0; any other tool exits 0.
+> **＋** The window is open when the logs hold a `hi` of the session's stamp and a `prespec` of the same stamp after it; a mark of another stamp or `--------` does not count; a foreign `session-start` resets nothing.
+> **＋** The logs it reads are the ledger hook's, from today back to the date of this session's `session-start`, so the `hi` and the `prespec` of yesterday's session are found after midnight.
+> **－** Without a `hi` of this session the call passes.
+
+```then
+update:
+- slug: estimate-prespec-hook-gates
+  set:
+    status: pending
+    purpose: The ExitPlanMode hook holds a working session in Plan Mode until /pre-spec has run in it, across midnight too
+  change: the Criterion replaced whole — When and Then only, Given and the bounds line out; purpose set (case 493.5)
+```
+
+```tasks
+- [ ] update `estimate-prespec-hook-gates`
+- [ ] read `estimate-prespec-hook-gates` — `pytest tests/test_prespec.py`, then by hand at a later approval of a plan
+```
+
+### Case 493.6 — The sprint page records the group of the session hooks and gates
+
+> **given:**
+> `entity-sprint-migration` — the sprint page; its Slice 3g holds the note on every other Estimate
+> **＋** `vault/wiki/sprint.md` — the render of the sprint page
+> **＋** `/hi` — builds the Frontier from `vault/wiki/sprint.md`
+> **＋** `rule-compact-recall` — a rule whose Estimate this Case recuts
+> **＋** `rule-plan-mode` — a rule whose Estimate this Case recuts
+> **＋** `rule-retro-commit` — a rule whose Estimate this Case recuts
+> **＋** `rule-session` — a rule whose Estimate this Case recuts
+> **＋** `rule-prespec-hook` — a rule whose Estimate this Case recuts
+
+> **when:**
+> The librarian's run applies the `update` of `entity-sprint-migration`.
+
+> **then:**
+> The History of `entity-sprint-migration` says that the Estimates of the session hooks and gates are recut.
+
+```then
+update:
+- slug: entity-sprint-migration
+  change: 'Slice 3g: the Estimates of rule-compact-recall, rule-plan-mode, rule-retro-commit, rule-session and rule-prespec-hook recut to When and Then; the note on every other Estimate stands (case 493)'
+```
+
+```tasks
+- [ ] update `entity-sprint-migration`
+```
+
+## Case 494 — Slice 3g: the done-conditions of the sprint recut to `When:` and `Then:`, and the note on every other Estimate leaves the Slice
+
+> **context:**
+> Each Estimate page holds one promise, its Criterion. A Criterion should hold only `When:`, the trigger and the input it acts on, and `Then:`, what must hold after. Older Estimates also open with `Given:`, a set of lines that describe the code and the cases as they stood on the day the promise was written. This last group holds the five done-conditions of `entity-sprint-migration` that still carry `Given:`: lint clean, the leftovers gone, the branch merged, the Rule-class files dissolved, and `index.md` gone. `estimate-sprint-migration-file-route-gone` has no `Given:` and is not touched. Their `Given:` describes the vault of September: the 62 findings of Cases 1–28, the list of the leftover folders, the scripts of the old `file` route, the map `index.md`. The one on `estimate-sprint-migration-merges` is not its own: it describes the cascade, the guard and `sprint_id` from the parent Case 209.
+> The person decided in the first round on this item. The five are recut like the rest: `Given:` out, `When:` and `Then:` kept as the condition at the close. What becomes of them after the close stays with the open item of Slice 5 (case 478.2). A lost ratified text is restored, and a page with no `purpose` gets one. None of the five lost its Criterion to a tool fault like case 211.3. Their History shows only Criteria that cases 209, 229.1, 233.5, 244, 301, 306.7, 310.3, 318, 321, 329 and 367 wrote on purpose, so nothing is restored and no commit needs to be read. All five have `purpose` and `method`, so no field is set but `status`. Each Criterion is replaced whole and goes back to `pending`. Its reading waits for the close of the sprint, or for a later session (case 428.1).
+> What each new Criterion keeps and drops. The check of the answer notes every old line as not carried, because each new line is a whole statement and not the old wording. The content of the old lines is carried, except for the lines named here. Each `Given:` goes out. In 494.1 the line that the page `entity-sprint-migration` exists with its sections, and the `－` line on item F7 and "today's `sprint.md`", record the one-time build of the page in case 209.2, so they go out (case 485). In 494.3 "the render shows the three Done-when lines `[x]`" is a count that went stale, because the page now lists six Estimates. It becomes "every Done-when line". In 494.4 the pointer "`make lint` is the reading of `estimate-sprint-migration-lint-clean`" goes out. The two `－` lines on what Slice 3f did not do, the Renders `case-schema.md` and `CLAUDE.md` and the template engine, go out as bounds of an edit, and the template engine stays in the Backlog. The edge of `rule-sprint` to `entity-sprint` is named in words, "the sprint's rule to the sprint MOC", so that `given` stays within its frame. In 494.5 the old `When:`, "The last Case of theme 4 is applied by the librarian", is a one-time trigger. It becomes the reading its `method` names, the tree read for `§N` and `index.md`. Paths inside the promises are named in `given` or written in words, because a code span with a `/` reads as a path that `given` must name.
+> The check also notes that 494.5 shares words with 494.4, since both say that `index.md` does not exist. This is expected. They were ratified as two done-conditions of the sprint by cases 301 and 310.3. 494.4 promises that no Rule-class file stands at the close of Slice 3f, and 494.5 promises that no pointer to the map remains in the tree. The recut keeps both as the person signed them.
+> The note. Every item of the current milestone decides the Frontier: `guppi sprint` shows a line with no `[[slug]]` before its first ` — ` as a note, `- [ ] <text>`, and never ticks it. It leaves only by the `update` of the Case that ends it (case 313). This is the last group of the item, so 494.6 removes the line from `## Milestones` of `entity-sprint-migration` with one `replace` pair, and `uv run guppi sprint` writes the new `vault/wiki/sprint.md` at the librarian's run. The anchor of the pair runs from the note to the start of the next line, since a line break matches any whitespace, and its `new` keeps that start. So the pair removes one line and hits the page once. The other note of Slice 3g, on the old shape, stays word for word. Its "until lint counts no `unmigrated` page" keeps `estimate-end-of-work-order` on the Frontier, since its `## Context` and `## Method` sections count as `unmigrated`, and the first round left its `Given:` to that item. Slice 3g stays current with that one note, and no line goes to `## Closed` until the Slice closes.
+> The frame. Each kept line was read against the sprint page, the `Makefile` and the tree. The sprint page lists six Estimates in `estimates`. No behaviour changes, so no code, test, Render or hook changes, and no reader keeps an old form. `rule-sprint` and `guppi/sprint.py` read a note as it is described here. The Case creates no page, so no vault query was run. Not done: the fate of a sprint's done-conditions after the close (case 478.2), and the old-layout item C2.
+
+> **problem:**
+> The five done-conditions of the sprint still open with a `Given:` of the vault as it stood in September, and some lines record the build of the page or a count that went stale. The item that asks for this recut also stands as an unticked note in Slice 3g, and nothing but a Case removes it.
+
+### Case 494.1 — `make lint` clean at the close of the sprint
+
+> **given:**
+> `estimate-sprint-migration-lint-clean` — the promise, its Criterion replaced whole
+> **＋** `entity-sprint-migration` — the sprint page it is a done-condition of
+> **＋** `Makefile` — the target `lint`
+> **＋** `guppi/lint.py` — the findings, `unmigrated` and `unread` among them
+
+> **when:**
+> Someone reads `make lint` at the close of the sprint.
+
+> **then:**
+> `make lint` exits 0: no finding in any category, `unmigrated` included — the old Estimate shape is gone, the counter at zero; the one exception is `unread` on the Estimates of the sprint page itself not yet read at that moment.
+
+```then
+update:
+- slug: estimate-sprint-migration-lint-clean
+  set:
+    status: pending
+  change: the Criterion replaced whole — When and Then only, Given and the one-time build of the sprint page out (case 494.1)
+```
+
+```tasks
+- [ ] update `estimate-sprint-migration-lint-clean`
+- [ ] read `estimate-sprint-migration-lint-clean` — `make lint` at the close of the sprint
+```
+
+### Case 494.2 — The leftovers gone at the close of the sprint
+
+> **given:**
+> `estimate-sprint-migration-leftovers-gone` — the promise, its Criterion replaced whole
+> **＋** `entity-sprint-migration` — the sprint page it is a done-condition of
+> **＋** `vault/parked/` — the parked pages
+> **＋** `docs/` — the documents of 2026-08
+> **＋** `docs/migration/` — the rule documents of the migration
+> **＋** `vault/archive/` — the archive and its roots
+> **＋** `vault/raw/` — the date folders
+
+> **when:**
+> Someone reads the tree of the repository at the close of the sprint.
+
+> **then:**
+> `vault/parked/` is empty or absent: each of its pages became a live vault page or lies in the archive.
+> **＋** Under `docs/` no 2026-08 document remains, and no rule document of `docs/migration/`; each became a page, was archived, or was deleted by a decision named in the reading.
+> **＋** `vault/archive/` has no root outside the folders of its sprints; `vault/raw/` has no date folder without a session.
+> **＋** A decision stands on `git pull` without an upstream and on `gh` without a login — keep as is, or repair — and is named in the reading.
+> **－** What to do with each thing this promise does not decide: those are the Cases of Slices 4 and 5.
+
+```then
+update:
+- slug: estimate-sprint-migration-leftovers-gone
+  set:
+    status: pending
+  change: the Criterion replaced whole — When and Then only, Given out (case 494.2)
+```
+
+```tasks
+- [ ] update `estimate-sprint-migration-leftovers-gone`
+- [ ] read `estimate-sprint-migration-leftovers-gone` — by hand on the tree at the close of the sprint
+```
+
+### Case 494.3 — Tests green and the branch merged at the close
+
+> **given:**
+> `estimate-sprint-migration-merges` — the promise, its Criterion replaced whole
+> **＋** `entity-sprint-migration` — the sprint page it is a done-condition of
+> **＋** `Makefile` — the target `test`
+> **＋** `guppi/generate.py` — the cascade that sets the page `built`
+> **＋** `vault/wiki/sprint.md` — the render that shows the Done-when lines
+
+> **when:**
+> Someone reads `git log` of `main` at the close of the sprint.
+
+> **then:**
+> `make test` is green on the last commit of `migration`.
+> **＋** `migration` is merged into `main`; the last brief is written by the librarian on `main`.
+> **＋** The cascade sets `entity-sprint-migration` `built` — that is the close of the sprint; `vault/wiki/sprint.md` shows every Done-when line `[x]`.
+
+```then
+update:
+- slug: estimate-sprint-migration-merges
+  set:
+    status: pending
+  change: the Criterion replaced whole — When and Then only, Given of another Case out, the count of Done-when lines out (case 494.3)
+```
+
+```tasks
+- [ ] update `estimate-sprint-migration-merges`
+- [ ] read `estimate-sprint-migration-merges` — `make test` on the last commit of `migration`, then `git log` of `main` after the merge
+```
+
+### Case 494.4 — No Rule-class file at the close of Slice 3f
+
+> **given:**
+> `estimate-sprint-migration-rule-class-files-dissolved` — the promise, its Criterion replaced whole
+> **＋** `vault/wiki/<category>/schema.yaml` — the schema file of a category
+> **＋** `rule-<category>-schema` — the Leaf that renders it
+> **＋** `rule-page-schemas` — the MOC of the schema rules
+> **＋** `entity-glossary` — the page `glossary.md` is written from
+> **＋** `guppi/` — the scripts, read for the `file` route and the retired term
+> **＋** `tests/` — the tests, read for the retired term
+
+> **when:**
+> The reading at the close of Slice 3f: `ls` of the schemas and `index.md`, a grep of the `file` route and of the retired term over `guppi/` and `tests/`, `uv run guppi render --check` and `uv run guppi glossary --check`.
+
+> **then:**
+> No Rule-class file: every `vault/wiki/<category>/schema.yaml` is the Render of the Leaf `rule-<category>-schema` (`enforcement: render`, `governs` that yaml), with the description of its fields as yaml data; no `schema.md`; `glossary.md` is written by `guppi glossary` from the `## Terms` of `entity-glossary`, a table "term — meaning — page" grouped by the parent MOC, under a rule with `governs`, `implementation_ref` and `--check`; no `index.md`, and every §N pointer in the vault replaced by a slug.
+> **＋** The scripts hold no `file` route: no `RULE_CLASS`, no `category: file`, no "applied by hand", no `rule_class_path`, no `prose_names`; the vault changes only by the scripts, from decisions.
+> **＋** Every rule has its parent by the criterion of the audit: under a category's MOC a rule that holds for that category alone, the MOC made at two or more such rules, else the schemas under `rule-page-schemas`; `applies_to` on a Rule and `rules` on an Entity carry the edge Rule → Entity, the sprint's rule to the sprint MOC the first.
+> **＋** "Rule-class" is a retired term in the Case schema and in the glossary, and no docstring of `guppi/` and no test name of `tests/` carries it.
+
+```then
+update:
+- slug: estimate-sprint-migration-rule-class-files-dissolved
+  set:
+    status: pending
+  change: the Criterion replaced whole — When and Then only, Given, the pointer to lint-clean and the bounds of the Slice out (case 494.4)
+```
+
+```tasks
+- [ ] update `estimate-sprint-migration-rule-class-files-dissolved`
+- [ ] read `estimate-sprint-migration-rule-class-files-dissolved` — by hand, the reading its `method` names, in a later session
+```
+
+### Case 494.5 — `index.md` gone, and no pointer to it
+
+> **given:**
+> `estimate-sprint-migration-index-dissolved` — the promise, its Criterion replaced whole
+> **＋** `vault/wiki/index.md` — the map that is gone
+> **＋** `vault/wiki/` — the live pages
+> **＋** `.claude/` — the harness files
+> **＋** `guppi/` — the docstrings of the scripts
+> **＋** `CLAUDE.md` — the system prompt
+> **＋** `vault/raw/` — the ledgers, which keep their pointers
+
+> **when:**
+> Someone reads the tree for `vault/wiki/index.md`, and reads `vault/wiki/`, `.claude/`, `guppi/` and `CLAUDE.md` for a `§N` and for `index.md`, each hit by hand.
+
+> **then:**
+> `vault/wiki/index.md` does not exist.
+> **＋** No live page of `vault/wiki/`, no harness file and no docstring of `guppi/` points at a `§N` or at `index.md` as a source.
+> **－** The archive and the ledgers under `vault/raw/` keep their pointers.
+
+```then
+update:
+- slug: estimate-sprint-migration-index-dissolved
+  set:
+    status: pending
+  change: the Criterion replaced whole — When and Then only, Given out, the one-time trigger of theme 4 replaced by the reading of the method (case 494.5)
+```
+
+```tasks
+- [ ] update `estimate-sprint-migration-index-dissolved`
+- [ ] read `estimate-sprint-migration-index-dissolved` — by hand, the reading its `method` names, in a later session
+```
+
+### Case 494.6 — The note on every other Estimate leaves Slice 3g
+
+> **given:**
+> `entity-sprint-migration` — the sprint page; its `## Milestones` holds the two notes of Slice 3g
+> **＋** `guppi/sprint.py` — renders a note as `- [ ] <text>`, never ticked
+> **＋** `vault/wiki/sprint.md` — the render of the sprint page
+> **＋** `/hi` — builds the Frontier from `vault/wiki/sprint.md`
+> **＋** `estimate-end-of-work-order` — the page with `Given:` left to the note on the old shape
+
+> **when:**
+> `uv run guppi sprint` renders `vault/wiki/sprint.md` from `entity-sprint-migration` at the librarian's run, and the next `/hi` builds the Frontier from it.
+
+> **then:**
+> Slice 3g holds one note, on the old shape recut, and the Frontier holds it as a `C` line; the note on every other Estimate is gone from the page and from the render.
+> **＋** The History of `entity-sprint-migration` says that the note on every other Estimate is done and removed.
+> **－** The note on the old shape stays word for word: its "until lint counts no `unmigrated` page" keeps `estimate-end-of-work-order` on the Frontier.
+> **－** No line is added to `## Closed`: Slice 3g stays open.
+
+```then
+update:
+- slug: entity-sprint-migration
+  replace:
+  - old: '- every other Estimate: `Given:` out, the input of the scenario into `When:`, the `－` lines on the bounds of an edit out, each Criterion replaced whole - the old shape recut'
+    new: '- the old shape recut'
+  change: 'Slice 3g: the note on every other Estimate removed, its last group recut (cases 484, 488-494); the note on the old shape stands'
+```
+
+```tasks
+- [ ] update `entity-sprint-migration`
+- [ ] `uv run guppi sprint`
+```
+
+## Deferred
+
+## Case 495 — Rounds of case-guppi give a before and an after for each option
+
+> **context:**
+> `estimate-case-build-writes-a-plain-round` was read `failed` in session 2000 (L25 of `raw/2026-09-28/2000/ledger.md`): Case 482 Q2 and Q4 gave no before, and Case 483 Q3 and Q4 gave only "After:". The rounds of this session showed the same gap in part: some options stated a before and an after, others did not.
+
+> **problem:**
+> How `case-guppi` is made to state the before and the after of each option of a round, so that the Estimate passes.
+
+```then
+defer:
+  - slug: rule-case-build
+    type: rule
+    purpose: Each option of a round of case-guppi states what is before and what is after, as estimate-case-build-writes-a-plain-round promises; read failed in session 2000 (L25), put off in session 2229
+```
+
+## Case 496 — The re-pitch of /wait-what asks for a real line and invents no example
+
+> **context:**
+> `estimate-skill-wait-what-re-pitches` was read `failed` in session 2000 (L26 of `raw/2026-09-28/2000/ledger.md`): the re-pitch of round 2 Q1 on Case 485 showed a made-up example and did not ask the `case-guppi` of the Case for a real line. Lesson L27, `lesson-wait-what-invents-an-example`, records the cause.
+
+> **problem:**
+> How the skill `wait-what` is made to take its example from the Case, through its `case-guppi`, and never invent one.
+
+```then
+defer:
+  - slug: rule-skill-wait-what
+    type: rule
+    purpose: The re-pitch of /wait-what takes its example from a real line of the Case, asked of its case-guppi, and invents none; read failed in session 2000 (L26), lesson-wait-what-invents-an-example, put off in session 2229
+```

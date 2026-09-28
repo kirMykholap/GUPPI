@@ -1,0 +1,35 @@
+- 00:27:13 decision[case 470][update][estimate-skill-grill-me-asks-in-rounds]{ref:estimate-skill-grill-me-asks-in-rounds}
+- 00:42:27 decision[case 471][update][rule-documentation]{ref:rule-documentation}
+- 00:42:27 decision[case 471][update][rule-synthesis]{ref:rule-synthesis}
+- 00:42:27 decision[case 471][update][estimate-documentation-completes]{ref:estimate-documentation-completes}
+- 01:43:04 decision[case 472.1][update][rule-case-check]{ref:rule-case-check}
+- 01:43:04 decision[case 472.1][update][rule-prespec]{ref:rule-prespec}
+- 01:43:04 decision[case 472.1][create][estimate-case-check-notes-a-criterion-line-not-carried]{ref:rule-case-check}{tags:hooks,harness,workflow}
+- 01:43:04 decision[case 472.2][update][rule-case-check]{ref:rule-case-check}
+- 01:43:04 decision[case 472.2][update][rule-prespec]{ref:rule-prespec}
+- 01:43:04 decision[case 472.2][create][estimate-case-check-notes-a-then-line-shared-by-siblings]{ref:rule-case-check}{tags:hooks,harness,workflow}
+- 01:43:04 decision[case 472.3][update][rule-prespec]{ref:rule-prespec}
+- 01:43:04 decision[case 472.3][update][rule-materialize]{ref:rule-materialize}
+- 01:43:04 decision[case 472.3][update][estimate-prespec-checks-the-form-of-an-item]{ref:estimate-prespec-checks-the-form-of-an-item}
+- 01:43:04 decision[case 472.3][update][insight-case-build-promise-lines-compared-by-no-check]{ref:insight-case-build-promise-lines-compared-by-no-check}
+- 03:09:01 decision[case 473.1][update][rule-retro]{ref:rule-retro}
+- 03:09:01 decision[case 473.1][create][estimate-retro-red-check-of-an-updated-page-is-a-handoff-note]{ref:rule-retro}{tags:session,workflow,harness}
+- 03:09:01 decision[case 473.2][update][rule-case-build]{ref:rule-case-build}
+- 03:09:01 decision[case 473.2][update][insight-workflow-code-live-before-the-page-it-reads]{ref:insight-workflow-code-live-before-the-page-it-reads}{supersedes:case 238}
+- 03:09:01 decision[case 473.2][create][estimate-case-build-keeps-the-old-form-until-the-writer-is-live]{ref:rule-case-build}{tags:session,workflow,harness}
+- 03:31:13 decision[case 471.1][update][rule-documentation]{ref:rule-documentation}
+- 03:31:13 decision[case 471.1][update][rule-synthesis]{ref:rule-synthesis}
+- 03:31:13 decision[case 471.1][update][estimate-documentation-completes]{ref:estimate-documentation-completes}
+- 03:31:13 decision[case 471.2][update][estimate-synthesis-clusters]{ref:estimate-synthesis-clusters}
+- 03:31:13 decision[case 472.3][update][rule-atomicity]{ref:rule-atomicity}
+- 03:32:16 lesson[error][lesson-spec-write-keeps-the-body-of-a-case-rebuilt-as-a-parent]{tags:hooks,workflow,session} trigger: Case 471, ratified whole, was built again after pre-spec as a parent with sub-cases 471.1 and 471.2 and ratified again; the Stop check `guppi ratified` refused: the replace anchors of 471.1 on rule-documentation are not in the page. root_cause: the plan file still holds the old body of Case 471 (given, when, then, its then block and tasks) under the parent heading, before 471.1; its replace pairs on rule-documentation consume the anchors first, so the same pairs of 471.1 miss. The hook of rule-spec-write replaced the parent's prose from the new answer and kept the body sections the new answer leaves to the sub-cases.
+- 03:36:40 decision[case 474.1][update][rule-documentation]{ref:rule-documentation}{supersedes:case 471}{supersedes:case 471.1}
+- 03:36:40 decision[case 474.1][update][rule-synthesis]{ref:rule-synthesis}
+- 03:36:40 decision[case 474.1][update][estimate-documentation-completes]{ref:estimate-documentation-completes}
+- 03:36:40 decision[case 474.2][update][estimate-synthesis-clusters]{ref:estimate-synthesis-clusters}{supersedes:case 471.2}
+- 03:47:27 estimate[estimate-case-check-requires-a-backlog-item-decided-on-its-page][passed] 2026-09-28, `uv run pytest tests/test_casecheck.py -k backlog` 6 passed; by hand, session 0000: the first answers of case-guppi on items taken from the backlog — C5 (`insight-case-build-promise-lines-compared-by-no-check`, no `deferred_by`) and C6 (`insight-workflow-code-live-before-the-page-it-reads`, `deferred_by` 238), C6 answered with `{supersedes:case 238}` on 473.2, the line that names the page; the store holds both Cases with no finding, as the Criterion says
+- 03:47:27 estimate[estimate-language-followed][failed] 2026-09-28, by hand, session 0000: the reply that acknowledged Case 471 was written in English in the chat — the heading `## Case 471 — ratified`, the labels **Changes:** and **Notes:**, the text and the Frontier; the person asked "а почему ты перешел на английский в чате?"; the repository, the Cases and the Spec stayed English
+- 03:47:27 estimate[estimate-agent-writing-followed][failed] 2026-09-28, by hand, session 0000: the person asked three times for a plain explanation of the agent's text — "не понял, объясни" on the round of Case 472 (the non-blocking hook), "Объясни плиз по простому в чем суть" on the first round of Case 473, "не понял про fallback. Объясни плиз." on its Q4
+- 03:57:06 lesson[error][lesson-chat-language-follows-the-last-english-file-read]{tags:session,workflow} trigger: the reply that acknowledged Case 471 was written in English in the chat — heading, labels, text and Frontier — and the person asked why. root_cause: before that reply the agent had read the English file of Case 471 and the English ledger lines, and wrote the reply in the language of what it had just read; nothing checks the language of the agent's own text in the chat, and the rule stands only in CLAUDE.md.
+- 03:57:06 estimate[estimate-case-protocol-shows-the-built-case][passed] 2026-09-28, by hand, session 0000 at Retro: Cases 470, 471, 472, 473 and 474 each dispatched to case-guppi with the id, the Frontier item, its source and the person's words in the prompt, after the plan file stood with its title line; every round shown in Russian line by line with its ❓ and ➡️ lines and the agent's text after one rule; every showing by SendUserFile with display render on raw/2026-09-28/0000/cases/case-<N>.md, a Russian short text and the ratification as the answer held it; the changed Cases after pre-spec sent to their case-guppi and shown again; the person's answers were sent in full, but with the agent's reading of them added in parentheses; the person's requests to explain a round were answered by the agent itself, as questions on a round, not on a shown Case
+- 03:57:06 decision[case 475][defer][rule-spec-write]{ref:rule-spec-write}

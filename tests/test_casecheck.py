@@ -362,7 +362,9 @@ def test_subagent_the_file_is_written_from_the_stored_text(working):
 
 
 def test_subagent_the_file_is_replaced_whole_when_the_answer_holds_the_top_case(working):
-    assert answer(working, PARENT + sub_case("9.1") + "\n" + sub_case("9.2")) == (0, "")
+    assert answer(
+        working, PARENT + sub_case("9.1") + "\n" + sub_case("9.2", "The page is read.")
+    ) == (0, "")
     path = case_path(working, "9.2")
     assert path.name == "case-9.md" and "### Case 9.2" in path.read_text(encoding="utf-8")
     assert answer(working, PARENT.replace("> К.", "> К2.") + sub_case("9.1")) == (0, "")
@@ -373,7 +375,9 @@ def test_subagent_the_file_is_replaced_whole_when_the_answer_holds_the_top_case(
 
 
 def test_subagent_a_sub_case_alone_replaces_its_section_alone(working):
-    assert answer(working, PARENT + sub_case("9.1") + "\n" + sub_case("9.2")) == (0, "")
+    assert answer(
+        working, PARENT + sub_case("9.1") + "\n" + sub_case("9.2", "The page is read.")
+    ) == (0, "")
     assert answer(working, sub_case("9.1", "The file is written again.")) == (0, "")
     text = case_path(working, "9").read_text(encoding="utf-8")
     held = store(working)
@@ -578,7 +582,7 @@ def test_subagent_backlog_a_sub_case_that_supersedes_covers_its_sibling(working)
         "decision[case 9.1][update][rule-x]{ref:rule-x}",
         "decision[case 9.1][update][rule-x]{ref:rule-x}{supersedes:case 5}",
     )
-    assert answer(working, PARENT + first + "\n" + sub_case("9.2")) == (0, "")
+    assert answer(working, PARENT + first + "\n" + sub_case("9.2", "The page is read.")) == (0, "")
 
 
 @pytest.mark.parametrize(
@@ -595,3 +599,95 @@ def test_backlog_a_case_naming_the_page_only_in_a_defer_line_is_not_judged(worki
     records = [casecheck.parse_line("- decision[case 8][defer][rule-x]")]
     frontier = working.joinpath(*FOLDER) / "frontier.md"
     assert casecheck.check_backlog(records, frontier, working) == []
+
+
+# --- the notes of the promise lines (cases 472.1, 472.2) -------------------------------
+
+RECUT = """## Case 7 — пересборка
+
+> **context:**
+> Контекст.
+
+> **problem:**
+> Проблема.
+
+> **given:**
+> `estimate-x-works` — its Estimate.
+
+> **when:**
+> The agent runs `guppi x`.
+
+> **then:**
+> The file is written.
+
+> **tasks:**
+> - [ ] update `estimate-x-works`
+>   - set: `{status: pending}`
+>   - change: `the Criterion replaced whole (case 7)`
+> - [ ] read `estimate-x-works`
+
+> **ratification:**
+> ```
+> - decision[case 7][update][estimate-x-works]{ref:estimate-x-works}
+> ```
+"""
+
+ESTIMATE_X = """---
+type: estimate
+kind: QA
+status: passed
+target: rule-x
+method: by hand
+---
+
+## Criterion
+
+When:
+The agent runs `guppi x`.
+
+Then:
+The file is written.
+**＋** The log is kept.
+"""
+
+DROPPED = "note: case 7: estimate-x-works: a line of its Criterion is not carried: The log is kept."
+
+
+@pytest.fixture
+def recut(working):
+    page = working / "vault" / "wiki" / "estimates" / "estimate-x-works.md"
+    page.parent.mkdir(parents=True)
+    page.write_text(ESTIMATE_X, encoding="utf-8")
+    return working
+
+
+def test_subagent_note_a_dropped_criterion_line_is_sent_back_once_and_kept(recut):
+    code, err = answer(recut, RECUT)
+    assert code == 2 and DROPPED in err
+    assert store(recut)["7"]["findings"] == [] and store(recut)["7"]["notes"] == [DROPPED]
+    assert case_path(recut, "7").exists()  # a note is no finding: the file is written
+    assert answer(recut, RECUT) == (0, "")
+    assert answer(recut, RECUT.replace("> Контекст.", "> Контекст 2.")) == (0, "")
+    assert store(recut)["7"]["notes"] == [DROPPED]  # a later answer keeps the notes sent
+
+
+def test_stop_a_case_with_a_note_is_not_refused(recut):
+    answer(recut, RECUT)
+    assert show(recut, RECUT + "\n---\n\nRatify?\n") == (0, "")
+
+
+SAME_PROMISE = (
+    "The check sends each note back to the agent once.",
+    "Each note goes back to the agent once, sent by the check.",
+)
+
+
+def test_subagent_note_siblings_that_share_a_promise_are_sent_back_once(working):
+    text = PARENT + sub_case("9.1", SAME_PROMISE[0]) + "\n" + sub_case("9.2", SAME_PROMISE[1])
+    code, err = answer(working, text)
+    assert code == 2 and "note: case 9.2: a then line shares most of its words with case 9.1" in err
+    assert answer(working, text) == (0, "")
+
+
+def test_subagent_note_a_sub_case_answered_alone_has_no_sibling(working):
+    assert answer(working, sub_case("9.2", SAME_PROMISE[1])) == (0, "")

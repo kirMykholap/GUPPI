@@ -58,8 +58,9 @@ the ledgers of its dates, on the `hi` date from the `hi` time on, and its folder
 - an `update` item carrying `file:` — the file route is gone (case 320); the rule that
   governs the path is named when there is one;
 - the form of an Estimate item (case 203.1): a Case whose `then` block holds two or more
-  Estimate items — a `create`, or an `update` with `set: {status: pending}` — without a
-  written `sections: Criterion` (one promise per Case: split it); an `update` of an
+  Estimate items that set a new Criterion — a `create`, or an `update` that names no part of
+  the page by `materialize.names_a_part`, written or lifted (one promise per Case: split it,
+  case 472.3); an `update` of an
   Estimate whose page does not exist; a `create` of an Estimate whose `ref` names neither
   a live rule or entity nor one a `create` of the same plan carries (case 221); a `create` of
   an Estimate, or an `update` carrying `set: {method: …}`, whose `method` names none of the
@@ -100,7 +101,16 @@ the `Stop` hook of `rule-spec-write` on the Cases it wrote, with the decision li
 reply added, and without the Frontier, the Cyrillic finding and the grammar of the window.
 
 Notes (case 378.8): a Case whose `given` or `then` holds more than seven `**＋**` lines —
-a sign it is not atomic — is one line opening with `note:`, answered in the chat.
+a sign it is not atomic — is one line opening with `note:`, answered in the chat. The notes
+of the promise lines (cases 472.1, 472.2), `promise_notes`, which the check of the answer of
+`case-guppi` imports: each line of the `## Criterion` of an Estimate that a Case replaces
+whole — an `update` that names no part, by `materialize.names_a_part` — which no line of the
+new Criterion equals, the operand, the labels `When:`, `Then:`, `Given:` and whitespace set
+aside; the new Criterion is the one the item writes under `sections`, else the `when` and
+`then` of its Case, and a Case that gives none is not compared. And each pair of `then`
+lines of two sibling sub-cases whose shared words — runs of four or more letters and digits,
+case set aside — make 60 percent or more of the words of the shorter line, named on the
+later sibling.
 """
 
 import argparse
@@ -133,10 +143,13 @@ from guppi.materialize import (
     DECISION_KINDS,
     case_texts,
     category_of,
+    criterion_text,
     fenced_lines,
     find_item,
     item_keys,
+    names_a_part,
     parse_line,
+    quoted_sections,
     schema_changed,
     split_cases,
     tagged_blocks,
@@ -168,6 +181,11 @@ SPRINT_PAGE = "entity-sprint-"
 OFF_FORM_LINE = re.compile(r"^- \[[ x]\] (?:uv run )?(?:guppi )?(?:render|sprint)\b")
 AND = "**＋**"  # the operand "and" at the head of a line (case 378.6)
 LONG_CHAIN = 7  # more `＋` lines than this in `given` or `then` is a note (case 378.8)
+OPERAND_HEAD = re.compile(r"^\*\*[＋－]\*\*\s*")  # the operand a Criterion line opens with
+LABEL_HEAD = re.compile(r"^(?:When|Then|Given):\s*")  # the labels of a Criterion (case 472.1)
+WORD = re.compile(r"[^\W_]{4,}")  # a word of the sibling comparison (case 472.2)
+SIBLING_SHARE = 0.6  # the share of the shorter line's words two sibling lines hold in common
+NOTE_CASE = re.compile(r"^note: case (\S+?):")
 
 
 def window(event_log: str, stamp: str) -> tuple[bool, bool]:
@@ -749,8 +767,10 @@ def check_markers(blocks: dict, project_dir: Path) -> list[str]:
 
 def check_form(blocks: dict, project_dir: Path) -> list[str]:
     """The form of an Estimate item (case 203.1): a Case whose `then` block holds two or
-    more Estimate items — a `create`, or an `update` with `set: {status: pending}` — without
-    a written `sections: Criterion` is one promise too many (split it); an `update` of an
+    more Estimate items that set a new Criterion — a `create`, or an `update` that names no
+    part of the page by `materialize.names_a_part`, the judgment `materialize` lifts by,
+    whether the item writes its Criterion or lifts it — is one promise too many (split it,
+    case 472.3); an `update` of an
     Estimate whose page does not exist, and a `create` of an Estimate whose `ref` names
     neither a live rule or entity nor a rule or entity a `create` item of the same plan
     carries (case 221), are each a finding. A `create` of an Estimate, or an `update`
@@ -772,8 +792,7 @@ def check_form(blocks: dict, project_dir: Path) -> list[str]:
             slug = item.get("slug") if isinstance(item, dict) else None
             if not slug or category_of(slug) != "estimates":
                 continue
-            if not written_criterion(item):
-                promises += 1
+            promises += 1
             ref = str(item.get("ref") or "")
             if category_of(ref) not in LEAF_CATEGORIES or not (
                 live_page(project_dir, ref) or ref in created
@@ -786,8 +805,7 @@ def check_form(blocks: dict, project_dir: Path) -> list[str]:
             if not slug or category_of(slug) != "estimates":
                 continue
             set_fields = item.get("set")
-            pending = isinstance(set_fields, dict) and set_fields.get("status") == "pending"
-            if pending and not written_criterion(item):
+            if not names_a_part(item):
                 promises += 1
             if not live_page(project_dir, slug):
                 findings.append(f"case {case}: update {slug}: no such Estimate page")
@@ -876,6 +894,92 @@ def chain_notes(cases: dict) -> list[str]:
                     f"note: case {case}: {section} holds {count} ＋ lines — is the Case atomic?"
                 )
     return notes
+
+
+# --- the promise lines of a Case (cases 472.1, 472.2) -----------------------------------
+
+
+def criterion_line(line: str) -> str:
+    """A line of a Criterion as compared: its operand, its label and extra whitespace set
+    aside (case 472.1)."""
+    line = OPERAND_HEAD.sub("", line.strip())
+    return " ".join(LABEL_HEAD.sub("", line).split())
+
+
+def criterion_notes(cases: dict, blocks: dict, project_dir: Path) -> list[str]:
+    """472.1: each line of the `## Criterion` of an Estimate that a Case replaces whole — an
+    `update` that names no part, by `materialize.names_a_part` — which no line of the new
+    Criterion equals; the new one is the Criterion the item writes, else the `when` and `then`
+    of its Case, and a Case that gives none is not compared. A `create` has no old Criterion."""
+    notes: list[str] = []
+    for case, block in blocks.items():
+        for item in block.get("update") or []:
+            slug = str(item.get("slug") or "") if isinstance(item, dict) else ""
+            if category_of(slug) != "estimates" or names_a_part(item):
+                continue
+            path = wiki_root(project_dir) / "estimates" / f"{slug}.md"
+            if not path.is_file():
+                continue
+            if written_criterion(item):
+                new = str(item["sections"]["Criterion"])
+            else:
+                new = criterion_text(case_texts(cases, case))
+            if not new.strip():
+                continue
+            carried = {criterion_line(line) for line in new.splitlines()}
+            old = read_page(path, "estimates").section("## Criterion") or ""
+            for line in old.splitlines():
+                key = criterion_line(line)
+                if key and key not in carried:
+                    notes.append(
+                        f"note: case {case}: {slug}: a line of its Criterion is not carried: "
+                        f"{preview(key)}"
+                    )
+    return notes
+
+
+def words(line: str) -> set[str]:
+    return {word.lower() for word in WORD.findall(line)}
+
+
+def sibling_notes(cases: dict) -> list[str]:
+    """472.2: each pair of `then` lines of two sibling sub-cases — of one parent — whose
+    shared words make `SIBLING_SHARE` or more of the words of the shorter line, named on the
+    later sibling; a line with no word is compared with none, and a Case with no quoted
+    `then` — an older Spec — gives no line."""
+    families: dict[str, list[str]] = {}
+    for case in cases:
+        if "." in case:
+            families.setdefault(case.rsplit(".", 1)[0], []).append(case)
+    notes: list[str] = []
+    for members in families.values():
+        lines = {
+            case: [
+                (line, words(line))
+                for line in quoted_sections(cases[case], ("then",)).get("then", "").splitlines()
+                if words(line)
+            ]
+            for case in members
+        }
+        for index, later in enumerate(members):
+            for earlier in members[:index]:
+                for line, mine in lines[later]:
+                    for other, theirs in lines[earlier]:
+                        if len(mine & theirs) >= SIBLING_SHARE * min(len(mine), len(theirs)):
+                            notes.append(
+                                f"note: case {later}: a then line shares most of its words "
+                                f"with case {earlier}: {preview(line)} | {preview(other)}"
+                            )
+    return notes
+
+
+def promise_notes(plan: str, project_dir: Path) -> list[str]:
+    """The notes of the promise lines of the plan's Cases (cases 472.1, 472.2) — printed by
+    `--check`, and sent back once by the check of the answer of `case-guppi`, which imports
+    this function."""
+    cases = split_cases(plan)
+    blocks = {case: then_blocks(lines)[0] for case, lines in cases.items()}
+    return criterion_notes(cases, blocks, project_dir) + sibling_notes(cases)
 
 
 # --- a bare wikilink in the plan (case 264.2) -------------------------------------------
@@ -985,7 +1089,7 @@ def check(plan: str, project_dir: Path, stamp: str, now, stdout, stderr) -> int:
     relative = folder.relative_to(project_dir).as_posix() + "/frontier.md"
     findings = judge(plan, project_dir, records, lines, (folder / "frontier.md", relative))
     findings += check_untranslated(plan)
-    for line in findings + chain_notes(split_cases(plan)):
+    for line in findings + chain_notes(split_cases(plan)) + promise_notes(plan, project_dir):
         print(line, file=stdout)
     return 1 if findings else 0
 

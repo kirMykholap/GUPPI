@@ -26,7 +26,13 @@ ledger lines and nothing else, the fence judged by `materialize.fence_opening` a
 `recommend` — is not checked: the person judges it; the check still requires the sections and
 their order (case 449). Each Case of the answer is stored with its findings and the time of
 the store in `<plan>.checked.json` beside the plan file of the session, a later answer for the
-same id replacing it. When no Case of the answer has findings, the Cases of the answer are
+same id replacing it but for the notes sent for that id, which it keeps (case 472.1). The notes
+are those of `prespec.promise_notes` on the answer — a line of a Criterion replaced whole that
+the new one does not carry, a `then` line shared by two siblings, named on the later (cases
+472.1, 472.2): a note not yet held for its Case id is stored under `notes`, apart from the
+findings, and sent back once by exit 2 beside any findings; a note is no finding — the file
+of the Case is written as for an answer with none, and `stop` refuses no showing for it. When
+no Case of the answer has findings, the Cases of the answer are
 written, as the store holds their text, into `raw/<date>/<hi HHMM>/cases/case-<N>.md`, N the
 id of the top-level Case, named by `case_file`: the file replaced whole when the answer holds
 the top-level Case, and only the section of each sub-case replaced — or placed after its
@@ -101,9 +107,11 @@ from guppi.materialize import (
 from guppi.prespec import (
     BACKLOG_SOURCE,
     FINDING_CASE,
+    NOTE_CASE,
     decided_on_its_page,
     deferred_pages,
     judge,
+    promise_notes,
 )
 from guppi.ratified import (
     CHAT_SECTIONS,
@@ -388,11 +396,13 @@ def check_backlog(
 
 def check_answer(
     text: str, project_dir: Path, window: list[str] = (), frontier: Path | None = None
-) -> dict[str, list[str]]:
-    """Case id → its findings, for every Case of an answer of `case-guppi`. The categories
-    whose schema rule the lines of the `ratification` fences or of the session's `window`
-    change are not judged by their keys (case 436.4). `frontier`, the session's
-    `frontier.md`, adds the check of its open `backlog` lines (case 467.2)."""
+) -> tuple[dict[str, list[str]], dict[str, list[str]]]:
+    """Case id → its findings, and case id → its notes, for every Case of an answer of
+    `case-guppi`. The categories whose schema rule the lines of the `ratification` fences or
+    of the session's `window` change are not judged by their keys (case 436.4). `frontier`,
+    the session's `frontier.md`, adds the check of its open `backlog` lines (case 467.2). The
+    notes are those of `prespec.promise_notes` on the answer — a Criterion line not carried,
+    a `then` line shared by siblings (cases 472.1, 472.2)."""
     cases = split_cases(text)
     heads = headings(text)
     records = ratification_records(cases)
@@ -417,7 +427,12 @@ def check_answer(
     for top, finding in check_backlog(records, frontier, project_dir):
         family = [c for c in found if c == top or c.startswith(f"{top}.")]
         found[family[0] if family else next(iter(cases))].append(finding)
-    return found
+    notes: dict[str, list[str]] = {case: [] for case in cases}
+    for note in promise_notes("\n".join(spec) + "\n", project_dir):
+        match = NOTE_CASE.match(note)
+        case = match.group(1) if match else ""
+        notes[case if case in notes else next(iter(cases))].append(note)
+    return found, notes
 
 
 def outputs(record: dict) -> list[str]:
@@ -465,13 +480,14 @@ def subagent(payload: dict, project_dir: Path, now, stderr) -> int:
     folder = session_dir(project_dir, now, stamp)
     window = ledger_of(folder)
     frontier = folder / "frontier.md" if folder is not None else None
-    found = check_answer(text, project_dir, window, frontier)
+    found, notes = check_answer(text, project_dir, window, frontier)
     plan = plan_path(session_event_logs(project_dir, now, stamp), stamp)
     if plan is None or not plan.is_file():
         return 0  # no plan file: nothing stored, nothing sent back (case 434)
     store = read_store(plan)
     heads = headings(text)
     repeated = True  # every Case with findings stands in the store as it is, findings and all
+    fresh: list[str] = []  # the notes not yet sent for their Case id (case 472.1)
     for case, lines in cases.items():
         entry = {
             "text": shown_text(heads[case], lines),
@@ -483,6 +499,11 @@ def subagent(payload: dict, project_dir: Path, now, stderr) -> int:
             isinstance(held, dict) and held.get("text") == entry["text"] and held.get("findings")
         ):
             repeated = False
+        kept = list(held.get("notes") or []) if isinstance(held, dict) else []
+        new = [note for note in notes[case] if note not in kept]
+        fresh += new
+        if kept or new:  # the notes sent for the id outlive a later answer (case 472.1)
+            entry["notes"] = kept + new
         store[case] = entry
     store_of(plan).write_text(
         json.dumps(store, ensure_ascii=False, indent=1), encoding="utf-8", newline=""
@@ -490,8 +511,8 @@ def subagent(payload: dict, project_dir: Path, now, stderr) -> int:
     findings = [f for case in cases for f in found[case]]
     if not findings and folder is not None:  # the file of a Case that passed (case 452.1)
         write_case_files(folder, list(cases), store)
-    if findings and not repeated:  # the store guards the loop, not `stop_hook_active` (434)
-        print("casecheck: " + "; ".join(findings), file=stderr)
+    if (findings and not repeated) or fresh:  # the store guards the loop (434, 472.1)
+        print("casecheck: " + "; ".join(findings + fresh), file=stderr)
         return 2
     return 0
 

@@ -712,34 +712,36 @@ def test_an_estimate_without_its_task_line_is_a_finding(tmp_path):
 
 def test_an_estimate_named_on_another_read_line_has_no_line_of_its_own(tmp_path):
     # case 327: `generate` ticks by the first backticked slug of a read line, so a line
-    # naming three Estimates closes the box of the first and says nothing of the rest
+    # naming three Estimates closes the box of the first and says nothing of the rest; one
+    # promise per sub-case (case 472.3), the read line of 1.2 naming both
     ledger = (
         LINE
-        + "- 16:00:01 decision[case 1][update][estimate-x-holds]{ref:estimate-x-holds}\n"
-        + "- 16:00:02 decision[case 1][update][estimate-x-stands]{ref:estimate-x-stands}\n"
+        + "- 16:00:01 decision[case 1.1][update][estimate-x-holds]{ref:estimate-x-holds}\n"
+        + "- 16:00:02 decision[case 1.2][update][estimate-x-stands]{ref:estimate-x-stands}\n"
     )
-    own_criterion = "    sections:\n      Criterion: |\n        Then:\n        t.\n"
-    plan = PLAN.replace(
-        "    change: one line\n",
-        "    change: one line\n  - slug: estimate-x-holds\n    set: {status: pending}\n"
-        + own_criterion
-        + "  - slug: estimate-x-stands\n    set: {status: pending}\n"
-        + own_criterion,
-    ).replace(
-        "- [ ] guppi/x.py: the change",
-        "- [ ] read `estimate-x-holds` and `estimate-x-stands`",
+
+    def sub(case, slug, read):
+        return (
+            f"\n### Case {case} — {slug}\n\n```then\nupdate:\n  - slug: {slug}\n"
+            "    set: {status: pending}\n    sections:\n      Criterion: |\n        Then:\n"
+            f"        c\n```\n\n```tasks\n- [ ] {read}\n```\n"
+        )
+
+    plan = (
+        PLAN
+        + sub("1.1", "estimate-x-holds", "read `estimate-x-holds`")
+        + sub("1.2", "estimate-x-stands", "read `estimate-x-holds` and `estimate-x-stands`")
     )
     with_estimate(tmp_path, "estimate-x-holds")
     with_estimate(tmp_path, "estimate-x-stands")
     code, out, _ = check(tmp_path, plan=plan, ledger=ledger)
     assert code == 1
     assert out.splitlines() == [
-        "case 1: estimate-x-stands is named on another read line, not its own"
+        "case 1.2: estimate-x-stands is named on another read line, not its own"
     ]
     # one line per reading, and both are clean
     apart = plan.replace(
-        "- [ ] read `estimate-x-holds` and `estimate-x-stands`",
-        "- [ ] read `estimate-x-holds`\n- [ ] read `estimate-x-stands`",
+        "- [ ] read `estimate-x-holds` and `estimate-x-stands`", "- [ ] read `estimate-x-stands`"
     )
     assert check(tmp_path, plan=apart, ledger=ledger) == (0, "", "")
 
@@ -881,14 +883,27 @@ def test_two_estimate_items_with_the_cases_criterion_is_a_finding(tmp_path):
     code, out, _ = check(tmp_path, plan=plan, ledger=CREATE_LINE + UPDATE_LINE)
     assert code == 1
     assert out.splitlines() == ["case 1: two promises in one Case — split it"]
-    # one of them writes its own Criterion: it is signed in the block, no split (case 204)
-    written = create_plan(ESTIMATE_CREATE + WRITTEN + "update:\n" + ESTIMATE_UPDATE)
-    assert check(tmp_path, plan=written, ledger=CREATE_LINE + UPDATE_LINE) == (0, "", "")
-    # an update that sets a status other than pending is a reading, not a promise
+    # a written Criterion is a promise too, on one item or on both (case 472.3)
+    one_written = create_plan(ESTIMATE_CREATE + WRITTEN + "update:\n" + ESTIMATE_UPDATE)
+    both_written = create_plan(ESTIMATE_CREATE + WRITTEN + "update:\n" + ESTIMATE_UPDATE + WRITTEN)
+    # an update that names no part replaces the Criterion whole, by `names_a_part`: `change`
+    # alone, or a status other than pending
+    change_alone = create_plan(
+        ESTIMATE_CREATE + "update:\n  - slug: estimate-x\n    change: recut\n"
+    )
     passed = create_plan(
         ESTIMATE_CREATE + "update:\n" + ESTIMATE_UPDATE.replace("pending", "passed")
     )
-    assert check(tmp_path, plan=passed, ledger=CREATE_LINE + UPDATE_LINE) == (0, "", "")
+    for counted in (one_written, both_written, change_alone, passed):
+        code, out, _ = check(tmp_path, plan=counted, ledger=CREATE_LINE + UPDATE_LINE)
+        findings = [line for line in out.splitlines() if not line.startswith("note:")]
+        assert (code, findings) == (1, ["case 1: two promises in one Case — split it"])
+    # an update that names a part alone changes that part, and is no promise
+    a_part = create_plan(
+        ESTIMATE_CREATE + "update:\n  - slug: estimate-x\n    set: {purpose: p2}\n"
+        "    change: purpose\n"
+    )
+    assert check(tmp_path, plan=a_part, ledger=CREATE_LINE + UPDATE_LINE) == (0, "", "")
     # a sub-case is its own Case: one promise each is fine
     split = plan.replace(
         "update:\n" + ESTIMATE_UPDATE,
@@ -1767,3 +1782,141 @@ def test_cyrillic_an_english_plan_is_clean(tmp_path):
         tmp_path, plan=plan, ledger=LINE + DEFER_LINE, frontier=FRONTIER_WITH_DEFER
     )
     assert (code, out, err) == (0, "", "")
+
+
+# --- the notes of the promise lines (cases 472.1, 472.2) -------------------------------
+
+OLD_CRITERION = "When:\nw.\n\nThen:\nt one.\n**＋** t two."
+ESTIMATE_LINE_1 = "- 16:00:00 decision[case 1][update][estimate-x]{ref:estimate-x}\n"
+
+
+def with_old_criterion(project_dir, criterion=OLD_CRITERION, slug="estimate-x"):
+    folder = project_dir / "vault" / "wiki" / "estimates"
+    folder.mkdir(parents=True, exist_ok=True)
+    text = (
+        "---\ntype: estimate\nkind: QA\nstatus: passed\ntarget: rule-x\n---\n\n"
+        f"## Criterion\n\n{criterion}\n\n## History\n\n- h\n"
+    )
+    (folder / f"{slug}.md").write_text(text, encoding="utf-8", newline="\n")
+
+
+def recut_plan(then, item="    set: {status: pending}\n    change: recut\n"):
+    return f"""# Plan
+
+## Case 1 — one
+
+> **context:**
+> Something.
+
+> **given:**
+> `estimate-x` — the promise.
+
+> **when:**
+> w.
+
+> **then:**
+> {then}
+
+```then
+update:
+  - slug: estimate-x
+{item}```
+
+```tasks
+- [ ] read `estimate-x`
+```
+"""
+
+
+def test_note_a_criterion_line_not_carried_is_a_note_and_exit_zero(tmp_path):
+    with_old_criterion(tmp_path)
+    code, out, _ = check(tmp_path, plan=recut_plan("t one."), ledger=ESTIMATE_LINE_1)
+    assert code == 0
+    assert out == "note: case 1: estimate-x: a line of its Criterion is not carried: t two.\n"
+
+
+def test_note_a_criterion_carried_line_by_line_with_its_operands_changed_is_none(tmp_path):
+    with_old_criterion(tmp_path)
+    plan = recut_plan("t one.\n> **－** t two.")
+    assert check(tmp_path, plan=plan, ledger=ESTIMATE_LINE_1) == (0, "", "")
+
+
+def test_note_an_update_with_change_alone_is_compared(tmp_path):
+    with_old_criterion(tmp_path)
+    plan = recut_plan("t one.", item="    change: recut\n")
+    _, out, _ = check(tmp_path, plan=plan, ledger=ESTIMATE_LINE_1)
+    assert out == "note: case 1: estimate-x: a line of its Criterion is not carried: t two.\n"
+
+
+def test_note_a_written_criterion_is_the_new_one(tmp_path):
+    with_old_criterion(tmp_path)
+    written = (
+        "    set: {status: pending}\n    sections:\n      Criterion: |\n"
+        "        When:\n        w.\n\n        Then:\n        t one.\n        **＋** t two.\n"
+    )
+    plan = recut_plan("something else.", item=written)
+    assert check(tmp_path, plan=plan, ledger=ESTIMATE_LINE_1) == (0, "", "")
+
+
+def test_note_an_update_that_names_a_part_and_a_create_are_none(tmp_path):
+    with_old_criterion(tmp_path)
+    a_part = recut_plan("t one.", item="    set: {purpose: p2}\n    change: purpose\n")
+    assert check(tmp_path, plan=a_part, ledger=ESTIMATE_LINE_1) == (0, "", "")
+    with_page(tmp_path, "rules", "rule-x")
+    created = recut_plan("t one.").replace(
+        "update:\n  - slug: estimate-x\n    set: {status: pending}\n    change: recut\n",
+        "create:\n  - slug: estimate-x-again\n    type: estimate\n    ref: rule-x\n"
+        "    kind: QA\n    purpose: p\n    method: pytest tests/test_x.py\n    tags: [a]\n",
+    )
+    created = created.replace(
+        "> `estimate-x` — the promise.",
+        "> `estimate-x-again` — the promise.\n> **＋** `rule-x` — the rule.",
+    ).replace("read `estimate-x`", "read `estimate-x-again`")
+    ledger = "- 16:00:00 decision[case 1][create][estimate-x-again]{ref:rule-x}{tags:a}\n"
+    assert check(tmp_path, plan=created, ledger=ledger) == (0, "", "")
+
+
+def siblings_plan(first, second):
+    def sub(case, then):
+        return (
+            f"\n### Case {case} — part\n\n> **when:**\n> The agent writes.\n\n"
+            f"> **then:**\n> {then}\n\n```then\nupdate:\n  - slug: rule-x\n"
+            f"    change: one line\n```\n\n```tasks\n- [ ] guppi/x.py: the change\n```\n"
+        )
+
+    return (
+        "# Plan\n\n## Case 1 — one\n\n> **context:**\n> Something.\n\n"
+        "> **given:**\n> `rule-x` — the rule.\n" + sub("1.1", first) + sub("1.2", second)
+    )
+
+
+SIBLING_LINES = (
+    "- 16:00:00 decision[case 1.1][update][rule-x]{ref:rule-x}\n"
+    "- 16:00:01 decision[case 1.2][update][rule-x]{ref:rule-x}\n"
+)
+
+
+def test_note_two_siblings_with_one_promise_in_two_wordings(tmp_path):
+    plan = siblings_plan(
+        "The check sends each note back to the agent once.",
+        "Each note goes back to the agent once, sent by the check.",
+    )
+    code, out, _ = check(tmp_path, plan=plan, ledger=SIBLING_LINES)
+    assert code == 0
+    assert out.splitlines() == [
+        (
+            "note: case 1.2: a then line shares most of its words with case 1.1: "
+            "Each note goes back to the agent once, sent by the check. | "
+            "The check sends each note back to the agent once."
+        )
+    ]
+
+
+def test_note_two_siblings_with_unlike_lines_are_none(tmp_path):
+    plan = siblings_plan("The check sends each note back.", "The page is read by hand.")
+    assert check(tmp_path, plan=plan, ledger=SIBLING_LINES) == (0, "", "")
+
+
+def test_note_a_line_with_no_word_of_four_characters_is_not_compared(tmp_path):
+    plan = siblings_plan("It is so.", "It is so.")
+    assert check(tmp_path, plan=plan, ledger=SIBLING_LINES) == (0, "", "")

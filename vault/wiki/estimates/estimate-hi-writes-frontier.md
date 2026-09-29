@@ -1,10 +1,10 @@
 ---
 type: estimate
 kind: QA
-status: pending
+status: passed
 target: "[[rule-skill-hi]]"
 method: "one reading by hand at the first /hi of the next session, written into the estimate line; unit: the frontier findings of guppi prespec --check in tests/test_prespec.py"
-checked: 2026-09-27
+checked: 2026-09-29
 origin: raw/2026-09-12/ledger.md#case-59.2
 sprint: migration
 created: 2026-09-12
@@ -30,7 +30,7 @@ The Frontier is written to `raw/<date>/<hi HHMM>/frontier.md` in the lists `## C
 
 ## Result
 
-2026-09-27, by hand, the /hi of session 1819: frontier.md written under plan mode with no refusal; ## Cases C1–C6 from the sprint milestone (two note lines, no page slug) and the brief's Next session, near lines under C3 and C4, the line Backlog: 19 items; ## Work W1–W47 from the brief's Next session; the failed pull and the unlogged gh no items (decisions 11.1, 11.2); the Cases shown as a list with detail, the Work as one block; later lines C7 (added by the person) and C8, C9 (brought from the backlog, source backlog, title opening with the slug); closed · case N, [-] · sprint · defer, · work; the unit tests in tests/test_prespec.py not run
+2026-09-29, uv run pytest tests/test_prespec.py -k frontier: 7 passed; by hand, the /hi of session 1432: frontier.md with ## Cases and ## Work, C and W lines of the form, C1 of the current milestone opening with its slug in a code span, - near lines, Backlog: 23 items; Pull: and Open issues: no items (decisions 11.1, 11.2 on the sprint page); the chat showed the Cases as a checklist with the detail and the near line indented under each and the Work as one block; the lines closed · case N, [-] · defer case N and [x] · work; /pre-spec found no open line under ## Cases
 
 ## History
 
@@ -58,3 +58,4 @@ The Frontier is written to `raw/<date>/<hi HHMM>/frontier.md` in the lists `## C
 - 2026-09-27 status: pending → passed · raw/2026-09-27/1819/ledger.md#L18
 - 2026-09-29 updated: the Criterion replaced whole — the Cases shown in the chat at /hi as a checklist, no bold line; a W line closes where its work is done (case 508.2, supersedes 507) · [[decision-case-508.2]]
 - 2026-09-29 updated: the Criterion replaced whole — the Cases shown in the chat at /hi as a checklist, no bold line; a W line closes where its work is done (case 508.2, supersedes 507) · [[decision-case-508.2]]
+- 2026-09-29 status: pending → passed · raw/2026-09-29/1432/ledger.md#L31

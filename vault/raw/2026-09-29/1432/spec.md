@@ -80,11 +80,11 @@ update:
 ```
 
 ```tasks
-- [ ] update `estimate-sprint-migration-leftovers-gone`
-- [ ] update `entity-sprint-migration`
+- [x] update `estimate-sprint-migration-leftovers-gone`
+- [x] update `entity-sprint-migration`
 - [x] `git rm -r vault/parked` — one-off: the parked pages, the register files, the `_schema.yaml` and `.gitkeep` files, and both date folders
 - [x] `git rm -r docs/superpowers docs/migration/README.md docs/migration/rule-*.md` and every file at the root of `docs/` — one-off: `docs/` holds only `docs/migration/migration-plan.md` after it
-- [ ] `uv run guppi sprint`
+- [x] `uv run guppi sprint`
 - [ ] read `estimate-sprint-migration-leftovers-gone` — by hand on the tree at the close of the sprint
 ```
 
@@ -158,9 +158,9 @@ update:
 ```
 
 ```tasks
-- [ ] update `rule-skill-grill-me`
-- [ ] update `estimate-skill-grill-me-asks-in-rounds`
-- [ ] `uv run guppi render`: `.claude/skills/grill-me/SKILL.md`
+- [x] update `rule-skill-grill-me`
+- [x] update `estimate-skill-grill-me-asks-in-rounds`
+- [x] `uv run guppi render`: `.claude/skills/grill-me/SKILL.md`
 - [ ] read `estimate-skill-grill-me-asks-in-rounds` — in a later session after the render: one round of `case-guppi` or of the person's `/grill-me`, read in the chat
 ```
 
@@ -234,9 +234,9 @@ update:
 ```
 
 ```tasks
-- [ ] update `rule-case-build`
-- [ ] update `estimate-case-build-writes-a-plain-round`
-- [ ] `uv run guppi render`: `.claude/agents/case-guppi.md`
+- [x] update `rule-case-build`
+- [x] update `estimate-case-build-writes-a-plain-round`
+- [x] `uv run guppi render`: `.claude/agents/case-guppi.md`
 - [ ] read `estimate-case-build-writes-a-plain-round` — in a later session after the render: one first round and one later round of `case-guppi` read in the chat against the Criterion
 ```
 
@@ -310,9 +310,9 @@ update:
 ```
 
 ```tasks
-- [ ] update `rule-decisions-schema`
-- [ ] update `estimate-decisions-schema-checked`
-- [ ] `uv run guppi render`: `vault/wiki/decisions/schema.yaml`
+- [x] update `rule-decisions-schema`
+- [x] update `estimate-decisions-schema-checked`
+- [x] `uv run guppi render`: `vault/wiki/decisions/schema.yaml`
 - [x] `tests/test_schemas.py`: a test that a Decision page without `## Context` has no finding against the live `schema.yaml`, skipped until the librarian renders the file of 513.1
 - [ ] read `estimate-decisions-schema-checked` — `pytest tests/test_schemas.py -k decisions`, then `make lint` with no `schema` finding on `vault/wiki/decisions/` but the pages of Cases 1–28, at a later session
 ```
@@ -354,8 +354,8 @@ delete:
 ```
 
 ```tasks
-- [ ] update `estimate-generate-writes-the-decision-page`
-- [ ] delete `estimate-generate-writes-the-given`
+- [x] update `estimate-generate-writes-the-decision-page`
+- [x] delete `estimate-generate-writes-the-given`
 - [x] `guppi/generate.py`: `decision` writes `## Problem` from `case_text`, `## Context` only when `case_text` has no `given`, and no `## Given`; the docstring paragraph on the Decision page says so
 - [x] `tests/test_generate.py`: the Decision-page tests assert `## Problem` then `## History` with no `## Context` or `## Given` for a Case with `given`; `## Context` then `## Problem` for a Case without `given`; the fixture schema takes `## Context` as optional
 - [ ] read `estimate-generate-writes-the-decision-page` — `pytest tests/test_generate.py`, the tests of the Decision page, and the pages of the librarian's run, at a later session
@@ -387,8 +387,8 @@ update:
 ```
 
 ```tasks
-- [ ] update `rule-case-protocol`
-- [ ] `uv run guppi render`: `vault/wiki/case-schema.md`
+- [x] update `rule-case-protocol`
+- [x] `uv run guppi render`: `vault/wiki/case-schema.md`
 ```
 
 ## Case 514 — Generate applies a Case to a page once
@@ -435,8 +435,8 @@ update:
 ```
 
 ```tasks
-- [ ] update `rule-page-generation`
-- [ ] update `estimate-generate-fails-alone`
+- [x] update `rule-page-generation`
+- [x] update `estimate-generate-fails-alone`
 - [x] `guppi/generate.py`: in `apply`, before an entry of kind `create`, `update`, `delete` or `defer` is applied, look for an entry of the same yaml with the same `case`, `kind` and `slug` marked `applied`; when found, mark the entry `applied`, drop its `failed`, print the stdout line and apply nothing; the docstring says so beside the no-content update
 - [x] `tests/test_generate.py`: a repeated `update` whose `replace` anchor the first entry consumed is marked applied, fails nothing, changes no page, adds no History or `log.md` line and prints the stdout line; the same with the first entry failed and the second applied, on the rerun; a repeat of a `create` writes no collision; an `estimate` entry of the same slug is applied as before
 - [ ] read `estimate-generate-fails-alone`
@@ -518,8 +518,8 @@ update:
 ```
 
 ```tasks
-- [ ] update `entity-glossary`
-- [ ] `uv run guppi glossary`
+- [x] update `entity-glossary`
+- [x] `uv run guppi glossary`
 - [ ] read `estimate-glossary-terms-defined` — by hand in a later session after the librarian's run: the table of `vault/wiki/glossary.md` and `make lint`
 ```
 
@@ -569,7 +569,7 @@ update:
 ```
 
 ```tasks
-- [ ] update `estimate-materialize-lifts-unfiltered-on-a-schema-change`
+- [x] update `estimate-materialize-lifts-unfiltered-on-a-schema-change`
 - [x] `tests/test_materialize.py`: `test_a_schema_line_after_the_create_still_lifts_it_whole` — the schema decision line appended after the `create` lines of the ledger, the schema Case placed before the creates in the Spec; the `create` of `rule-x` lifted whole, the other category filtered as before
 - [x] `uv run pytest tests/test_materialize.py::test_a_create_of_a_category_whose_schema_rule_the_unit_changes_is_lifted_whole tests/test_materialize.py::test_a_schema_line_after_the_create_still_lifts_it_whole tests/test_materialize.py::test_without_a_schema_line_the_lift_filters_as_before` — 3 passed
 - [x] `make test`

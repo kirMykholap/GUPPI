@@ -1,7 +1,7 @@
 ---
 type: estimate
 kind: QA
-status: passed
+status: archived
 target: "[[rule-page-generation]]"
 purpose: A decision page carries the given of its Case, so the frame survives the Criterion that no longer holds it
 method: pytest tests/test_generate.py on a temp vault
@@ -29,3 +29,5 @@ The body of the page is `## Context`, `## Problem`, `## Given`, `## Deferred` on
 
 - 2026-09-23 created · [[decision-case-378.3]]
 - 2026-09-23 status: pending → passed · raw/2026-09-23/1355/ledger.md#L40
+- 2026-09-29 deleted · [[decision-case-513.2]]
+- 2026-09-29 archived · cleanup

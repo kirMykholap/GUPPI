@@ -2,149 +2,103 @@
 
 ## Where things stand
 
-Session 1134 of 2026-09-29, sprint `migration`. Ratified: 506, 508, 509 (507 superseded by 508.2 in the same session). Commits 35bb520 (code of 506) and ab14bec (the session folder); `guppi/lint.py`, `guppi/generate.py`, `tests/test_lint.py`, `tests/test_generate.py`, `tests/test_schemas.py` changed; readings L23–L66 and L71–L74 taken. Slice 3g is closed: `vault/wiki/sprint.md` now opens its milestones at Slice 4 (case 506.7).
+Session 1432 of 2026-09-29, sprint `migration`. Slice 4 closed; the round and the Decision page made readable. Ratified: 510, 511.1, 512, 513.1, 513.2, 513.3, 514, 515, 516, 517, 518, 519 (511.2 superseded by 512 in the same session). Commits d2ad75d (code of 513.2, 514, 516, and the deletions of 510: `vault/parked/` and every file under `docs/` but `docs/migration/migration-plan.md`; the commit message names the code only) and 9c8075f (the session folder); `guppi/generate.py`, `tests/test_generate.py`, `tests/test_schemas.py`, `tests/test_materialize.py` changed; readings L1–L5 and L25–L31; lessons L32–L35. `vault/wiki/sprint.md` now opens its milestones at Slice 5 (case 510).
 
-Not done, from the handoff: the failed readings of `estimate-case-build-writes-a-plain-round` and `estimate-documentation-completes`; the `method` of `estimate-materialize-lifts-unfiltered-on-a-schema-change` selects no test with `-k schema_change`; three readings not taken (`estimate-glossary-terms-defined`, `estimate-glossary-ticks-the-spec`, `estimate-sprint-migration-index-dissolved`); the readings whose moment comes after Retro; lessons L69 and L70.
+Not done, from the handoff:
+- the reading of `estimate-glossary-terms-defined` under Case 515 waits for a session after this run;
+- the Render of `rule-estimates-schema` says the frame of a Case stays on its Decision page — short defer, Case 519;
+- a repeat of Case 514 ticks its line of the Spec, as an applied entry does, while the task line said "apply nothing";
+- lessons L32–L35.
 
-The run over `vault/raw/2026-09-29/1134/materialize.yaml`: 74 entries from 74 ledger lines, plus 2 of the synthesis; 72 applied, 1 failed, 2 superseded, 1 `exists` (the defer of `rule-retro`, applied). The 0137 yaml was extended with 0 entries.
+The run over `vault/raw/2026-09-29/1432/materialize.yaml`: 36 entries from 36 ledger lines, plus 7 of the synthesis; 41 applied, 2 superseded (L9, L10, case 511.2), 0 failed, 3 `exists` (the defers of 517, 518, 519, applied). The 0137 and 1134 yaml were extended with 0 entries; L67 of the 1134 yaml, failed in the last run, is now marked applied: `generate: rule-skill-hi: line 67 repeats line 15 of case 508.2; nothing applied` (case 514). `generate` printed 56 pages written or changed for 1432.
 
-- Created: estimates 3 (`estimate-hi-takes-its-readings`, `estimate-work-mode-takes-the-work-readings`, `estimate-brief-carries-the-run-facts`), lessons 2 (`lesson-case-build-signs-one-criterion-twice-in-a-session`, `lesson-retro-report-copies-the-fence-of-its-template`), decisions 12 (506.1–506.7, 508.1–508.4, 509).
-- Updated by entry: rules 8 and 1 defer (`rule-retro`), estimates 7 updates and 48 readings, entities 1 (`entity-sprint-migration`), insights 1, lessons 1. Files changed on disk: rules 29, estimates 55, entities 2, insights 1.
-- Deleted: estimates 1 (`estimate-lint-counts-the-unmigrated`, case 506.2); `guppi cleanup` moved 2 pages.
-- Synthesis: `lesson-case-build-signs-one-criterion-twice-in-a-session` joined `insight-case-build-promise-lines-compared-by-no-check`, which went from `actioned` to `open`; its `addressed_by` `decision-case-472.3` stands. `lesson-retro-report-copies-the-fence-of-its-template` stays `new`.
+- Created: lessons 4 (`lesson-case-build-closes-a-sprint-item-without-the-sprint-page`, `lesson-case-build-quotes-the-person-in-the-chat-language`, `lesson-case-build-writes-a-count-no-command-printed`, `lesson-case-build-splits-a-case-whose-line-stands`), decisions 13 (510, 511.1, 511.2, 512, 513.1–513.3, 514–519).
+- Updated by entry: rules 5 (`rule-skill-grill-me`, `rule-case-build`, `rule-decisions-schema`, `rule-case-protocol`, `rule-page-generation`) and 3 defers (`rule-documentation`, `rule-case-protocol`, `rule-estimates-schema`); estimates 7 updates and 12 readings; entities 2 (`entity-glossary`, `entity-sprint-migration`); insights 3 and lessons 4 by the synthesis. The cascade moved 10 rule statuses.
+- Deleted: estimates 1 (`estimate-generate-writes-the-given`, case 513.2). `guppi cleanup` moved 2 pages: `estimate-generate-writes-the-given` and `decision-case-511.2`.
+- Synthesis: `lesson-case-build-closes-a-sprint-item-without-the-sprint-page` and `lesson-case-build-splits-a-case-whose-line-stands` joined `insight-workflow-case-schema-silent-on-what-the-scripts-accept` (`actioned` → `open`, severity 2); `lesson-case-build-quotes-the-person-in-the-chat-language` joined `insight-case-form-chat-form-read-by-no-script` (`actioned` → `open`, severity 1); `lesson-case-build-writes-a-count-no-command-printed` joined `insight-workflow-fact-signed-from-a-check-that-does-not-cover-it` (`actioned` → `open`, severity 1). Each Insight keeps its `addressed_by`.
 
 ## Readings due
 
 Failed first:
 
-- `estimate-case-build-writes-a-plain-round` — `rule-case-build` — failed: the first round on C1 names "case 193" in its Context, and the round on C4 names "Cases 506 and 507" in the Now line of Q3, outside the ➡️ lines. Read by hand, in a session after the render: one round of case-guppi read in the chat against the four parts of the Criterion.
-- `estimate-case-protocol-defers-in-one-reply` — `rule-case-protocol` — failed: after the Frontier, with no Cases line open, the question asked whether to take the W readings, not whether to run /pre-spec. Read by hand, the first defer the person asks for after the render.
+- `estimate-glossary-terms-defined` — `entity-glossary` — failed: six rows named a `where` page that does not define the term (Plan Mode, Page fields, Category fields, Scripts, Decision, Lesson, Insight (status), Working files). Read by hand in a later session after the librarian's run: the table of `vault/wiki/glossary.md` and `make lint` (spec 1432). This run: `entity-glossary` updated by case 515; `uv run guppi glossary` exit 0, no stderr; the table holds 56 rows; `make lint` prints no finding on `entity-glossary`.
+- `estimate-case-protocol-defers-in-one-reply` — `rule-case-protocol` — failed: after the defer of Case 509, with no Cases line open, the question asked whether to take the W readings, not whether to run /pre-spec. Read by hand, the first defer the person asks for after the render.
 - `estimate-documentation-completes` — `rule-documentation` — failed: the run of ff62585 read beyond its list (tail of log.md, head of the old brief.md, git diff of sprint.md and backlog.md, a grep of sprint.md, a count of [x] in the 0137 Spec). Read by `make test-documentation`; the live reading by hand.
 
 Pending:
 
 - `estimate-agent-writing-followed` — `rule-agent-writing` — by hand in a later session, the person's messages of one session against the section in CLAUDE.md.
-- `estimate-ask-finds` — `rule-ask` — by hand in a later session: three dispatches of ask-guppi read against the event log.
-- `estimate-brief-carries-the-run-facts` — `rule-brief` — by hand at the /hi of the session after the first librarian run whose frame holds this Render.
+- `estimate-ask-finds` — `rule-ask` — by hand on three dispatches in a later session (spec 0137).
+- `estimate-brief-carries-the-run-facts` — `rule-brief` — by hand, at the `/hi` after the first librarian run on the new frame (spec 1134). This run's frame holds the Render; the brief is written before `uv run guppi archive`; no `pending` Estimate's `method` names the archive step.
 - `estimate-carry-over-writes` — `rule-carry-over` — `uv run guppi render --check`; by hand, the first /carry after the fork of ExitPlanMode.
+- `estimate-case-build-writes-a-plain-round` — `rule-case-build` — in a later session after the render: one first round and one later round of `case-guppi` read in the chat against the Criterion (spec 1432).
 - `estimate-case-build-writes-the-case` — `rule-case-build` — by hand: live dispatches in a session after the render.
 - `estimate-case-check-sends-back-a-faulty-case` — `rule-case-check` — `uv run pytest tests/test_casecheck.py -k subagent`, then by hand the first answer the hook sends back.
 - `estimate-case-check-shows-only-the-checked-case` — `rule-case-check` — `uv run pytest tests/test_casecheck.py -k stop`, then by hand the first reply the hook refuses.
-- `estimate-case-protocol-ledger-line-form` — `rule-case-protocol` — by hand: the first session where a lesson and the Case that closes its cause stand together.
-- `estimate-close-commits` — `rule-close` — by hand after the next librarian run: git log, git status, the report in the transcript.
+- `estimate-case-protocol-ledger-line-form` — `rule-case-protocol` — by hand, the reading its `method` names, in a later session (spec 0137).
 - `estimate-compact-recall-reloads` — `rule-compact-recall` — `pytest tests/test_recall.py`; live, the first compaction of a working session.
 - `estimate-context-size-warns-past-the-limit` — `rule-context-size` — `uv run pytest tests/test_context.py -k limit`; live at the first prompt past 400 000 tokens.
-- `estimate-end-of-work-order` — `rule-end-of-work` — `make test-end-of-work`, plus by hand at the close of a later session.
-- `estimate-estimates-schema-checked` — `rule-estimates-schema` — `pytest tests/test_schemas.py -k estimates`; live, `make lint` with no schema finding on wiki/estimates/.
+- `estimate-decisions-schema-checked` — `rule-decisions-schema` — `pytest tests/test_schemas.py -k decisions`, then `make lint` with no `schema` finding on `vault/wiki/decisions/` but the pages of Cases 1–28, at a later session (spec 1432).
+- `estimate-end-of-work-order` — `rule-end-of-work` — `make test-end-of-work`, then by hand at the close of a later session (spec 0137).
 - `estimate-event-log-records` — `rule-event-log` — pytest in tests/test_event.py and tests/test_gate.py; by hand, one /hi outside plan mode and one in it.
-- `estimate-generate-fails-alone` — `rule-page-generation` — `pytest tests/test_generate.py`, the tests of the failed, skipped and marked entries.
-- `estimate-generate-renames` — `rule-page-generation` — pytest in tests/test_generate.py; live, the librarian's run on a real rename.
-- `estimate-generate-rewords` — `rule-page-generation` — pytest in tests/test_generate.py; live, the librarian's run that applies the first reword.
-- `estimate-generate-writes` — `rule-page-generation` — pytest in tests/test_generate.py; the live reading once by hand.
+- `estimate-generate-fails-alone` — `rule-page-generation` — `pytest tests/test_generate.py`, at a later session (spec 1134).
+- `estimate-generate-renames` — `rule-page-generation` — pytest in tests/test_generate.py; live, the librarian's run on a real rename. This run: no entry carries `rename`.
+- `estimate-generate-rewords` — `rule-page-generation` — pytest in tests/test_generate.py; live, the librarian's run that applies the first reword. This run: no entry carries `reword`.
+- `estimate-generate-writes` — `rule-page-generation` — `pytest tests/test_generate.py`, then by hand at a later librarian's run (spec 1134).
+- `estimate-generate-writes-the-decision-page` — `rule-page-generation` — `pytest tests/test_generate.py`, the tests of the Decision page, and the pages of the librarian's run, at a later session (spec 1432). This run: 13 Decision pages written; `decision-case-510`, `511.1`, `512`, `513.1`, `513.2`, `513.3`, `514`, `515`, `516` carry `## Problem` and `## History`; `517`, `518`, `519`, short-form defers, carry `## Context`, `## Problem`, `## Deferred` and `## History`; `decision-case-511.2` went `superseded` by 512 and was archived by `generate` and moved by `cleanup`; the `## Deferred` of `decision-case-519` holds "Correct the description of".
 - `estimate-git-context-current` — `rule-git-context` — by hand at the /hi of the next session on the current remote, and its event_log.md at its close.
-- `estimate-glossary-terms-defined` — `entity-glossary` — one reading of the table by hand after the librarian's run, plus `make lint`.
-- `estimate-glossary-ticks-the-spec` — `rule-glossary` — `pytest tests/test_glossary.py`, plus one reading of the session's spec.md after the librarian's run.
-- `estimate-governed-files-hook-refuses` — `rule-governed-files-hook` — `pytest tests/test_guard.py`, plus by hand one Edit of a governed file refused.
-- `estimate-handoff-dispatches` — `rule-handoff` — by hand at the /handoff of a later session.
+- `estimate-glossary-ticks-the-spec` — `rule-glossary` — `pytest tests/test_glossary.py`, plus one reading of this session's spec.md after the librarian's run. This run: `uv run guppi glossary` exit 0, no stderr; the line `` - [x] `uv run guppi glossary` `` of the 1432 spec.md stands ticked after the run.
+- `estimate-governed-files-hook-refuses` — `rule-governed-files-hook` — `pytest tests/test_guard.py`, then by hand on one refused `Edit` in a later session (spec 0137).
+- `estimate-handoff-dispatches` — `rule-handoff` — by hand at the `/handoff` of a later session (spec 0137).
 - `estimate-handoff-holds-each-fact-once` — `rule-handoff` — by hand at the first /handoff after the render.
-- `estimate-hi-takes-its-readings` — `rule-skill-hi` — by hand at the first /hi after the render.
-- `estimate-hi-writes-frontier` — `rule-skill-hi` — by hand at the first /hi of the next session; unit: the frontier findings of `guppi prespec --check`.
-- `estimate-index-check-merges` — `rule-index-check` — by hand on the report of a later librarian's run, against its materialize.yaml.
-- `estimate-lint-checks-the-method` — `rule-lint` — `uv run pytest tests/test_lint.py`.
-- `estimate-lint-finds-a-broken-link` — `rule-lint` — `uv run pytest tests/test_lint.py`.
 - `estimate-permissions` — `rule-permissions` — the allow list of .claude/settings.json and tests/test_render.py; live, the person's word on the prompt at a Write of work.md.
 - `estimate-plan-mode-verified` — `rule-plan-mode` — `make test-plan-mode`; one live reading by hand.
-- `estimate-prespec-catches-a-superseded-case` — `rule-prespec` — `pytest tests/test_prespec.py`; live, the first /pre-spec whose window holds a supersedes of a Case of that session.
-- `estimate-raw-archive` — `rule-raw-archive` — `pytest tests/test_archive.py`, plus by hand on the archive step of a later librarian's run.
 - `estimate-retro-commit-gates` — `rule-retro-commit` — pytest in tests/test_gate.py; the live reading once by hand.
 - `estimate-retro-red-check-of-an-updated-page-is-a-handoff-note` — `rule-retro` — by hand at the first /retro after the render whose work.md names a check under Expected red.
 - `estimate-retro-red-in-the-baseline-is-not-charged` — `rule-retro` — by hand at the first /retro after the render whose Baseline holds a failing test or a lint finding.
 - `estimate-retro-report-holds-each-fact-once` — `rule-retro` — by hand at the first /retro after the render.
 - `estimate-session-phases-in-order` — `rule-session` — by hand at the close of a session.
 - `estimate-session-start-context` — `rule-session-start` — `make test-session-start`; by hand, one session opened without /hi.
-- `estimate-skill-wait-what-re-pitches` — `rule-skill-wait-what` — `uv run guppi render --check`; by hand, one run of the skill in a session after the render.
+- `estimate-skill-grill-me-asks-in-rounds` — `rule-skill-grill-me` — in a later session after the render: one round of `case-guppi` or of the person's `/grill-me`, read in the chat (spec 1432).
+- `estimate-skill-wait-what-re-pitches` — `rule-skill-wait-what` — `uv run guppi render --check`; by hand, one run of the skill read in the chat in a later session (spec 0137).
 - `estimate-spec-write-reaches-the-approved-spec` — `rule-spec-write` — `uv run pytest tests/test_ratified.py -k approved_spec`; by hand, the first Case ratified in Work Mode.
-- `estimate-sprint-migration-index-dissolved` — `entity-sprint-migration` — `test -e vault/wiki/index.md` false; rg for §N and index.md, every hit read by hand.
-- `estimate-sprint-migration-leftovers-gone` — `entity-sprint-migration` — one reading of the tree by hand at the close of the sprint.
+- `estimate-sprint-migration-leftovers-gone` — `entity-sprint-migration` — by hand on the tree at the close of the sprint (spec 1432).
 - `estimate-sprint-migration-lint-clean` — `entity-sprint-migration` — `make lint` exit 0, or only unread lines on the sprint's Estimates.
 - `estimate-sprint-migration-merges` — `entity-sprint-migration` — `make test` on the last commit of migration, then git log of main after the merge.
-- `estimate-synthesis-clusters` — `rule-synthesis` — by hand, the yaml and the report after a live librarian run whose yaml holds at least two lesson entries.
 - `estimate-work-mode-runs-the-spec-on-a-branch-from-a-baseline` — `rule-work-mode` — `uv run guppi render --check`; by hand, the first /work at the fork and the first /work the person types.
-- `estimate-work-mode-takes-the-work-readings` — `rule-work-mode` — by hand at the first /work after the render.
+- `estimate-work-mode-takes-the-work-readings` — `rule-work-mode` — by hand, at the first `/work` of a session after the render (spec 1134).
 
 ## Flags
 
-- failed: L67 `decision[case 508.2][update][rule-skill-hi]{supersedes:case 507}` — `generate: rule-skill-hi: replace: 'In the chat the Cases are the agenda of Plan Mode, one line ' is absent or not unique`. The ledger holds the lines of 508.2 twice: L15–L16 without `{supersedes:case 507}`, L67–L68 with it. L15 applied the two pairs, so L67 found its anchor gone. L16 and L68 (the update of `estimate-hi-writes-frontier`) both applied, the same `set` and Criterion twice. The entries of 507 (L11, L12) carry `superseded_by: 508.2` and were not applied. The entry stays as it is.
-- incomplete: L12 (case 507, `estimate-hi-writes-frontier`) lacks `criterion`; superseded, not applied.
-- near: none. unparsed: none.
-- Failed Estimates: `estimate-case-build-writes-a-plain-round`, `estimate-case-protocol-defers-in-one-reply`, `estimate-documentation-completes`.
-- Synthesis: `insight-case-build-promise-lines-compared-by-no-check` reopened (`actioned` to `open`) by its new child `lesson-case-build-signs-one-criterion-twice-in-a-session`; `addressed_by` `decision-case-472.3` stands.
-- MOC candidates: none printed. Contradictions: none found.
-- Stale defers, from lint: `rule-subagent-guppi` deferred 31 times since case 29; `rule-case-build-checks-its-sub-cases`, `rule-complaint-becomes-a-lesson`, `rule-morph`, `rule-orchestration`, `rule-prespec-script-skips-code-spans` deferred 1 time each.
-- Backlog moves by `generate`: none printed; milestones dropped: none printed.
-- `make lint`: exit 2, 123 finding lines. `render --check`, `sprint --check`, `backlog --check` and `glossary --check` passed. Findings: 64 `schema: missing` (`rule-spec-box` fields `kind` and `estimates`; `## Context` and `## Problem` on 31 Decision pages of cases 1–28); 1 `fence` (`decision-case-13`, `## When`); 1 `orphan` (`rule-spec-box`); 6 `deferred`; 51 `unread` (3 failed, 48 pending).
+- failed: none. unparsed: none.
+- incomplete: L10 (case 511.2, `estimate-case-build-writes-a-plain-round`) lacks `criterion`; superseded by 512, not applied.
+- near: L32 `lesson-case-build-closes-a-sprint-item-without-the-sprint-page` near `lesson-defer-to-a-milestone-leaves-the-sprint-page-silent`; L34 `lesson-case-build-writes-a-count-no-command-printed` near `lesson-case-check-command-signed-without-a-run`; L35 `lesson-case-build-splits-a-case-whose-line-stands` near `lesson-ledger-a-dropped-item-needs-a-superseding-sub-case`.
+- Defect: L36, the defer of case 519 on `rule-estimates-schema`, carries `purpose: Correct the description of`, cut mid-sentence; the `## Deferred` of `decision-case-519` holds that text. The entry stays as it is.
+- Failed Estimates: `estimate-glossary-terms-defined`, `estimate-case-protocol-defers-in-one-reply`, `estimate-documentation-completes`.
+- Contradiction, from the handoff: a repeat of Case 514 ticks its line of the Spec, as an applied entry does, while the task line said "apply nothing".
+- The `schema: missing section ## Context` the handoff expected before the render did not appear; `make lint` prints no `## Context` finding.
+- MOC candidates: none reported by any step.
+- Stale defers, from lint: `rule-subagent-guppi` deferred 31 times since case 29; `rule-case-build-checks-its-sub-cases` (case 480), `rule-complaint-becomes-a-lesson` (case 504), `rule-morph` (case 239), `rule-orchestration` (case 424), `rule-prespec-script-skips-code-spans` (case 481) once each.
+- `generate` moved no item to the Backlog and dropped no milestone in this run.
+- Lint (`make lint`, exit 2), 84 finding lines: `rules/rule-spec-box` schema: missing field `kind`, missing field `estimates`, and orphan; 31 Decision pages of Cases 1–28 missing `## Problem`; `decisions/decision-case-13` fence: a code fence open at the end of `## When`; 6 deferred lines (above); 3 unread: failed and 40 unread: pending.
 
 ## Next session
 
 Cases:
-- `estimate-case-build-writes-a-plain-round` failed — the rounds of case-guppi name Case numbers outside the ➡️ lines (reading L39, handoff).
-- `estimate-documentation-completes` failed — the librarian of ff62585 read beyond its list (reading L52, handoff).
-- `estimate-case-protocol-defers-in-one-reply` failed — the question after the Frontier asked about the W readings, not /pre-spec (reading L71).
-- The `method` of `estimate-materialize-lifts-unfiltered-on-a-schema-change` selects no test with `-k schema_change` (handoff, reading L28).
-- Case 508.2 stands twice in the 1134 ledger, the first time without `{supersedes:case 507}`: L67 failed and L68 applied a second time (generate, this run).
+- `estimate-glossary-terms-defined` failed; the table was rewritten by case 515 in this run and its reading waits for a later session — from the Estimate page and the handoff.
+- `estimate-case-protocol-defers-in-one-reply` failed; put off by case 518 — from the Estimate page.
+- `estimate-documentation-completes` failed; put off by case 517 — from the Estimate page.
+- The defer entry of case 519 wrote the purpose "Correct the description of", cut mid-sentence, into `decision-case-519` — from `vault/raw/2026-09-29/1432/materialize.yaml` L36.
+- A repeat of Case 514 ticks its Spec line while the task line said "apply nothing" — from the handoff.
 
 Work:
-- `estimate-agent-writing-followed`
-- `estimate-ask-finds`
-- `estimate-brief-carries-the-run-facts`
-- `estimate-carry-over-writes`
-- `estimate-case-build-writes-the-case`
-- `estimate-case-check-sends-back-a-faulty-case`
-- `estimate-case-check-shows-only-the-checked-case`
-- `estimate-case-protocol-ledger-line-form`
-- `estimate-close-commits`
-- `estimate-compact-recall-reloads`
-- `estimate-context-size-warns-past-the-limit`
-- `estimate-end-of-work-order`
-- `estimate-estimates-schema-checked`
-- `estimate-event-log-records`
-- `estimate-generate-fails-alone`
-- `estimate-generate-renames`
-- `estimate-generate-rewords`
-- `estimate-generate-writes`
-- `estimate-git-context-current`
-- `estimate-glossary-terms-defined`
-- `estimate-glossary-ticks-the-spec`
-- `estimate-governed-files-hook-refuses`
-- `estimate-handoff-dispatches`
-- `estimate-handoff-holds-each-fact-once`
-- `estimate-hi-takes-its-readings`
-- `estimate-hi-writes-frontier`
-- `estimate-index-check-merges`
-- `estimate-lint-checks-the-method`
-- `estimate-lint-finds-a-broken-link`
-- `estimate-permissions`
-- `estimate-plan-mode-verified`
-- `estimate-prespec-catches-a-superseded-case`
-- `estimate-raw-archive`
-- `estimate-retro-commit-gates`
-- `estimate-retro-red-check-of-an-updated-page-is-a-handoff-note`
-- `estimate-retro-red-in-the-baseline-is-not-charged`
-- `estimate-retro-report-holds-each-fact-once`
-- `estimate-session-phases-in-order`
-- `estimate-session-start-context`
-- `estimate-skill-wait-what-re-pitches`
-- `estimate-spec-write-reaches-the-approved-spec`
-- `estimate-sprint-migration-index-dissolved`
-- `estimate-sprint-migration-leftovers-gone`
-- `estimate-sprint-migration-lint-clean`
-- `estimate-sprint-migration-merges`
-- `estimate-synthesis-clusters`
-- `estimate-work-mode-runs-the-spec-on-a-branch-from-a-baseline`
-- `estimate-work-mode-takes-the-work-readings`
+- the pending readings of Readings due: `estimate-agent-writing-followed`, `estimate-ask-finds`, `estimate-brief-carries-the-run-facts`, `estimate-carry-over-writes`, `estimate-case-build-writes-a-plain-round`, `estimate-case-build-writes-the-case`, `estimate-case-check-sends-back-a-faulty-case`, `estimate-case-check-shows-only-the-checked-case`, `estimate-case-protocol-ledger-line-form`, `estimate-compact-recall-reloads`, `estimate-context-size-warns-past-the-limit`, `estimate-decisions-schema-checked`, `estimate-end-of-work-order`, `estimate-event-log-records`, `estimate-generate-fails-alone`, `estimate-generate-renames`, `estimate-generate-rewords`, `estimate-generate-writes`, `estimate-generate-writes-the-decision-page`, `estimate-git-context-current`, `estimate-glossary-ticks-the-spec`, `estimate-governed-files-hook-refuses`, `estimate-handoff-dispatches`, `estimate-handoff-holds-each-fact-once`, `estimate-permissions`, `estimate-plan-mode-verified`, `estimate-retro-commit-gates`, `estimate-retro-red-check-of-an-updated-page-is-a-handoff-note`, `estimate-retro-red-in-the-baseline-is-not-charged`, `estimate-retro-report-holds-each-fact-once`, `estimate-session-phases-in-order`, `estimate-session-start-context`, `estimate-skill-grill-me-asks-in-rounds`, `estimate-skill-wait-what-re-pitches`, `estimate-spec-write-reaches-the-approved-spec`, `estimate-sprint-migration-leftovers-gone`, `estimate-sprint-migration-lint-clean`, `estimate-sprint-migration-merges`, `estimate-work-mode-runs-the-spec-on-a-branch-from-a-baseline`, `estimate-work-mode-takes-the-work-readings`.
+- the unticked boxes of the Specs: 17 `- [ ] read` lines — 0137: 6, 1134: 4, 1432: 7; each names an Estimate of the list above.
+- ledger lines this run did not apply: none; the 1432 ledger holds 36 lines, each with an entry, and L9, L10 are superseded by case 512.
+- dirty tree: none after the close commit.
 
 ## Readings at the close
 
-- `make test`: 900 passed, 2 skipped.
-- `make lint`: exit 2, 123 finding lines (see Flags).
-- Pages in vault/wiki: rules 73, estimates 159, entities 4, decisions 781, lessons 62, insights 26.
+- `make test`: 906 passed, 2 skipped.
+- `make lint`: exit 2, 84 finding lines (above).
+- Pages in `vault/wiki/`: rules 73, entities 4, estimates 158, decisions 793, lessons 66, insights 26 (6 open, 20 actioned).

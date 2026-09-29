@@ -2,7 +2,7 @@
 type: rule
 kind: Leaf
 purpose: Prevents a pattern of failures from staying a list of unrelated incidents
-status: draft
+status: built
 enforcement: render
 governs: .claude/agents/librarian-guppi.md
 render_mode: partial
@@ -100,3 +100,4 @@ outcome, clustered or not. Do not read the archive and do not write pages yourse
 - 2026-09-28 updated: the synthesis shows the form of each of its entries and reads no yaml that materialize did not name (case 474.1) · [[decision-case-474.1]]
 - 2026-09-28 status: built → draft · cascade
 - 2026-09-29 updated: the closing fence of the sample entries stands alone on its line, and the sentence after it follows as its own paragraph (case 487.3) · [[decision-case-487.3]]
+- 2026-09-29 status: draft → built · cascade

@@ -2,12 +2,13 @@
 type: rule
 kind: Leaf
 purpose: Prevents an Estimate page from carrying a field or section outside the shape lint checks, or lacking one it needs
-status: draft
+status: built
 enforcement: render
 governs: vault/wiki/estimates/schema.yaml
 render_mode: full
 parent: "[[rule-page-schemas]]"
 estimates: ["[[estimate-estimates-schema-checked]]"]
+deferred_by: ["[[decision-case-519]]"]
 origin: raw/2026-09-22/0014/ledger.md#case-304.4
 sprint: migration
 created: 2026-09-22
@@ -161,3 +162,5 @@ examples:
 - 2026-09-27 updated: the method of a MOC's Estimate: the Estimates of a render child of a full MOC are not counted (case 459) · [[decision-case-459]]
 - 2026-09-29 status: built → draft · cascade
 - 2026-09-29 updated: method required, purpose optional; the old shape, the unmigrated count, the recut and the Given: of older pages gone from the schema (case 506.1) · [[decision-case-506.1]]
+- 2026-09-29 deferred · [[decision-case-519]]
+- 2026-09-29 status: draft → built · cascade

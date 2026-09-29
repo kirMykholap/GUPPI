@@ -1,9 +1,9 @@
 ---
 type: insight
 pattern: A rule of the form of a Case as shown in the chat — the order of its sections, what `ratification` holds, a count in a story section — is read by no script, so it holds only as far as the agent's own reading at the showing, and the fault is found later, by the person or by ask-guppi at pre-spec.
-status: actioned
-children: ["[[lesson-case-form-the-spec-free-sections-written-last]]", "[[lesson-case-form-ratification-used-for-the-agents-caveats]]", "[[lesson-case-form-a-count-in-the-sentence-that-opens-a-list]]", "[[lesson-case-form-given-written-before-tasks]]", "[[lesson-case-build-a-list-in-context]]"]
-severity: 0
+status: open
+children: ["[[lesson-case-form-the-spec-free-sections-written-last]]", "[[lesson-case-form-ratification-used-for-the-agents-caveats]]", "[[lesson-case-form-a-count-in-the-sentence-that-opens-a-list]]", "[[lesson-case-form-given-written-before-tasks]]", "[[lesson-case-build-a-list-in-context]]", "[[lesson-case-build-quotes-the-person-in-the-chat-language]]"]
+severity: 1
 addressed_by: "[[decision-case-449]]"
 origin: raw/2026-09-25/0051/ledger.md#L20
 sprint: migration
@@ -26,3 +26,4 @@ Let a check read the chat form of a Case before the person does — for example 
 - 2026-09-25 updated: child lesson-case-form-given-written-before-tasks added; addressed_by stands, the lesson is closed by the same case 419.3 · raw/2026-09-25/1228/ledger.md#L15
 - 2026-09-27 updated: child lesson-case-build-a-list-in-context added; status actioned reopened · raw/2026-09-26/2300/ledger.md#L32
 - 2026-09-27 updated: actioned: the proposal for the story sections rejected — the person judges the text of context, problem and recommend, and no script reads it; the order of the sections and ratification are checked since case 419.3 (case 449) · [[decision-case-449]]
+- 2026-09-29 updated: child lesson-case-build-quotes-the-person-in-the-chat-language added, reopened (synthesis) · raw/2026-09-29/1432/ledger.md#L33

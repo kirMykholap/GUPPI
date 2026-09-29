@@ -1,10 +1,11 @@
 ---
 type: estimate
 kind: QA
-status: pending
+status: passed
 target: "[[rule-raw-archive]]"
 purpose: guppi archive moves a done unit of raw whole into the archive of its date, keeps an undone one with its reason, and never touches the session of the run
 method: "pytest tests/test_archive.py, plus by hand on the archive step of a later librarian's run: its stdout, the raw folder and the origin findings of make lint before and after"
+checked: 2026-09-29
 origin: raw/2026-09-13/ledger.md#case-100.1
 sprint: migration
 created: 2026-09-13
@@ -29,7 +30,7 @@ A unit is a session folder `vault/raw/<date>/<HHMM>/` that holds a `ledger.md`, 
 
 ## Result
 
-unit: tests/test_archive.py 7 green — a date-level unit and a done session move whole with the ledger-less session folder beside, event_log.md stays, a failed entry, a line outside the yaml, today's unit and the session of the run stay with the reason on stdout, a taken name is stderr and exit 1 while the rest moves, a rerun moves nothing; live 2026-09-13 session L: uv run guppi archive moved raw/2026-09-09, 09-10, 09-11 and 09-12 to vault/archive/migration/<date>/raw/ with the three session folders of 09-12 beside as <HHMM>/raw/, raw/ holds today and the four event_log.md, guppi lint 133 findings before and after the move with no origin finding, a rerun printed nothing and exited 0, guppi tail then printed the 49 lines of today's date-level ledger and nothing of the archived dates
+2026-09-29, uv run pytest tests/test_archive.py: 7 passed; by hand, the archive step of the run f9a27b8: exit 0, empty stdout, nothing moved; find vault/raw -name ledger.md shows only 2026-09-29/0137 and 2026-09-29/1134, both of the run day, so no unit was looked at; event_log.md stays in vault/raw/2026-09-29/; make lint names no origin finding in the report's 123 lines or now; the move and kept lines were not exercised
 
 ## History
 
@@ -37,3 +38,4 @@ unit: tests/test_archive.py 7 green — a date-level unit and a done session mov
 - 2026-09-13 status: pending → passed · raw/2026-09-13/0652/ledger.md#L1
 - 2026-09-22 updated: the layout named by its rules (case 318) · [[decision-case-318]]
 - 2026-09-29 updated: the Criterion replaced whole — the block 100.1 as When and Then, the pointer to rule-materialize out; purpose and method set, Context and Method out (case 500.4) · [[decision-case-500.4]]
+- 2026-09-29 status: pending → passed · raw/2026-09-29/1432/ledger.md#L4

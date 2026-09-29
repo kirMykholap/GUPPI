@@ -2,7 +2,7 @@
 type: rule
 kind: Leaf
 purpose: Keeps raw/ to the sessions not yet turned into pages, by moving an applied session whole into the archive
-status: draft
+status: built
 enforcement: check
 implementation_ref: [guppi/archive.py, tests/test_archive.py]
 parent: "[[rule-documentation]]"
@@ -58,3 +58,4 @@ coverage of a line is the one function `guppi tail` uses ([[rule-ledger-tail]]).
 - 2026-09-13 estimate estimate-raw-archive added · [[decision-case-100.1]]
 - 2026-09-13 status: draft → built · cascade
 - 2026-09-29 status: built → draft · cascade
+- 2026-09-29 status: draft → built · cascade

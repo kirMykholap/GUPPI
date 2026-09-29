@@ -1,9 +1,10 @@
 ---
 type: estimate
 kind: QA
-status: pending
+status: passed
 target: "[[rule-synthesis]]"
 method: one reading by hand of the yaml and the report after a live librarian run whose yaml holds at least two lesson entries
+checked: 2026-09-29
 origin: raw/2026-09-10/ledger.md#case-35.2
 sprint: migration
 created: 2026-09-10
@@ -26,7 +27,7 @@ The report names the Greps of the synthesis, `^(root_cause|deferred_by):` over `
 
 ## Result
 
-live 2026-09-15, the librarian's run of session Q read against the brief: four root causes compared against the Greps `^(root_cause|deferred_by):` over `lessons/` (27 lines) and `^(pattern|deferred_by):` over `insights/` (11 lines), both named with their counts; one insight create entry over the two retro lessons with pattern, both children, the union of tags, Pattern and Proposal, and one update per lesson setting clustered and insight; one live Insight (`insight-librarian-frame-omits-required-reads`) reopened by a matching lesson with the lesson's update; the page `insight-materialize-lift-loses-a-schema-field` opened and named with the outcome (not the same cause); `lesson-wiki-page-edited-by-hand-in-obsidian` without a pair stayed new; all 5 added entries carry librarian: synthesis; the day's event log holds no archive read; the refusal of the create by generate (124.2) is outside this criterion — frontier F3
+2026-09-29, by hand at the /hi of session 1432, raw/2026-09-29/1134/materialize.yaml and the report of the run f9a27b8: the yaml holds two lesson entries, L69 and L70; the report names `^(root_cause|deferred_by):` over lessons/ (60 lines) and `^(pattern|deferred_by):` over insights/ (27 lines); L69 joined `insight-case-build-promise-lines-compared-by-no-check` by one update of the Insight (child added, reopened) and one update of the lesson (status clustered, insight set), both carrying `librarian: synthesis`; L70 stays `new`, its reason in the report; the pages agree; no pair of lessons without an Insight arose
 
 ## History
 
@@ -40,3 +41,4 @@ live 2026-09-15, the librarian's run of session Q read against the brief: four r
 - 2026-09-14 criterion: case 147.4 added · [[decision-case-147.4]]
 - 2026-09-15 status: pending → passed · raw/2026-09-15/1448/ledger.md#L2
 - 2026-09-28 updated: the Criterion replaced whole — the ban on the archive is the synthesis's, not the whole run's; the base text and the block of case 147.4 folded into one Criterion (case 474.2) · [[decision-case-474.2]]
+- 2026-09-29 status: pending → passed · raw/2026-09-29/1432/ledger.md#L3

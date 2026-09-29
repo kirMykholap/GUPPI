@@ -1279,8 +1279,7 @@ entries:
   replace: *id001
   change: the Cases shown in the chat at /hi as a checklist, the detail on an indented line; a W line
     closes where its work is done, at /hi, in Work Mode or at Retro (case 508.2, supersedes 507)
-  failed: 'generate: rule-skill-hi: replace: ''In the chat the Cases are the agenda of Plan Mode, one
-    line '' is absent or not unique'
+  applied: '17:44:27'
 - line: 68
   text: decision[case 508.2][update][estimate-hi-writes-frontier]{ref:rule-skill-hi}{supersedes:case 507}
   case: '508.2'

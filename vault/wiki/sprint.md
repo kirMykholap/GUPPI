@@ -14,16 +14,19 @@ Rule-class files dissolved, `index.md` gone, the `file` route out of the scripts
 - [ ] vault/parked/, the 2026-08 documents, the old archive root and the empty raw date folders are gone by decision at the close of the sprint · pending
 - [ ] make test green on the last commit of migration and the branch merged into main · pending
 - [x] No Rule-class file at the close of Slice 3f — the schemas rendered from rule pages, the glossary from entity-glossary, index.md gone, the file route out of the scripts · passed
-- [ ] index.md is gone and no live page, harness file or script docstring points at a §N of it or at the file as a source · pending
+- [x] index.md is gone and no live page, harness file or script docstring points at a §N of it or at the file as a source · passed
 - [x] The file route is out of the scripts — no RULE_CLASS, rule_class, applied by hand or prose_names in guppi/; an update item with file is a pre-spec finding; a slug without a prefix lands category unknown; tests green and no lint finding on the schema.yaml of a category folder · passed
 
 ## Milestones
 
-### [ ] Slice 4 — conversion of the parked pages by group
+### [ ] Slice 5 — closing
 
-- [ ] [[estimate-sprint-migration-leftovers-gone]] — every page of `vault/parked/` and every document of 2026-08 under `docs/` converted, archived or deleted by a decision · pending
-
-### [ ] Slice 5 — closing — 5 items: [[estimate-sprint-migration-lint-clean]], [[estimate-sprint-migration-merges]], [[rule-spec-box]], [[rule-morph]], the close of a sprint — `entity-sprint-<id>` and the Estimates it lists go to the archive together once each has passed: a done-condition of a sprint has nothing left to guard after the close; not yet decided (case 478.2)
+- [ ] [[estimate-sprint-migration-leftovers-gone]] — `vault/parked/` and the documents of 2026-08 under `docs/` deleted (case 510); the old archive root, the empty raw date folders, `git pull` and `gh`, and the reading, at the close · pending
+- [ ] [[estimate-sprint-migration-lint-clean]] — `make lint` exit 0: the 31 Decision pages of Cases 1–28 decided, `unmigrated` at zero · pending
+- [ ] [[estimate-sprint-migration-merges]] — `make test` green, `migration` merged into `main`; at the close [[rule-git-context]] and [[rule-github-issues]] — the upstream of the branch and the GitHub remote, decisions 11.1, 11.2, defers 220, 243 — read by [[estimate-sprint-migration-leftovers-gone]] · pending
+- [ ] [[rule-spec-box]] — the Spec box, case 207, after Slice 3b · draft · decision-case-207, decision-case-219, decision-case-232
+- [ ] [[rule-morph]] — the morph mechanism: the initiation at install sets the category set of the project, the development set by default, held as data so that a changed set rewrites no rule; case 239 · draft · decision-case-239
+- [ ] the close of a sprint — `entity-sprint-<id>` and the Estimates it lists go to the archive together once each has passed: a done-condition of a sprint has nothing left to guard after the close; not yet decided (case 478.2)
 
 ## Closed
 

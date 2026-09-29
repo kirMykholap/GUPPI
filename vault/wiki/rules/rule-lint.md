@@ -2,7 +2,7 @@
 type: rule
 kind: Leaf
 purpose: Prevents a page that breaks the schema, points nowhere, or claims a status its Estimates do not support from sitting in the vault unnoticed
-status: draft
+status: built
 enforcement: check
 implementation_ref: [guppi/lint.py, tests/test_lint.py, Makefile]
 parent: "[[rule-harness]]"
@@ -77,3 +77,4 @@ classes and their order live in the docstring of `guppi/lint.py`.
 - 2026-09-29 status: built → draft · cascade
 - 2026-09-29 updated: the unmigrated count gone from the Purpose (case 506.2) · [[decision-case-506.2]]
 - 2026-09-29 estimate estimate-lint-counts-the-unmigrated archived · cleanup
+- 2026-09-29 status: draft → built · cascade

@@ -1,11 +1,11 @@
 ---
 type: estimate
 kind: QA
-status: pending
+status: passed
 target: "[[rule-estimates-schema]]"
 purpose: An Estimate page in the shape of the rendered schema has no schema finding and a page outside it has one per defect
 method: pytest tests/test_schemas.py -k estimates on the live vault/wiki/estimates/schema.yaml — a page in the shape, then one defect at a time; the live reading make lint, no schema finding on wiki/estimates/
-checked: 2026-09-23
+checked: 2026-09-29
 origin: raw/2026-09-22/0014/ledger.md#case-304.4
 sprint: migration
 created: 2026-09-22
@@ -26,7 +26,7 @@ The file equals the Render. Lint reads from it: required `type, kind, status, ta
 
 ## Result
 
-2026-09-23, uv run pytest tests/test_schemas.py -k estimates: 4 passed, 1 skipped (no conditional on a field); the live yaml carries required type, kind, status, target, origin, sprint, created, tags, optional purpose, method, checked, Result required on passed and failed; uv run guppi lint: no schema finding on wiki/estimates/, the unmigrated counter apart; no schema.md
+2026-09-29, uv run pytest tests/test_schemas.py -k estimates: 4 passed, 1 skipped (no conditional on a field); uv run guppi render --check exit 0; make lint prints no schema finding on wiki/estimates/; grep of vault/wiki/estimates/schema.yaml for unmigrated, ## Context, ## Method and Given: finds only the Criterion description saying no Given: stands in a Criterion
 
 ## History
 
@@ -37,3 +37,4 @@ The file equals the Render. Lint reads from it: required `type, kind, status, ta
 - 2026-09-23 status: pending → passed · raw/2026-09-23/1126/ledger.md#L29
 - 2026-09-29 updated: the Criterion replaced whole — When and Then only, Given and the history of schema.md out (case 490.4) · [[decision-case-490.4]]
 - 2026-09-29 updated: the Criterion replaced whole — method required, the two old sections gone (case 506.1) · [[decision-case-506.1]]
+- 2026-09-29 status: pending → passed · raw/2026-09-29/1432/ledger.md#L27

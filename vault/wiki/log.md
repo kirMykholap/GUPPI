@@ -4699,3 +4699,72 @@ instruction. The global feed; a page's own `## History` is the per-page view.
 - 2026-09-29 estimates/estimate-lint-counts-the-unmigrated archived · cleanup
 - 2026-09-29 decisions/decision-case-507 archived · cleanup
 - 2026-09-29 rules/rule-lint estimate estimate-lint-counts-the-unmigrated archived · cleanup
+- 2026-09-29 estimates/estimate-close-commits status: pending → passed · raw/2026-09-29/1432/ledger.md#L1 · generate
+- 2026-09-29 estimates/estimate-index-check-merges status: pending → passed · raw/2026-09-29/1432/ledger.md#L2 · generate
+- 2026-09-29 estimates/estimate-synthesis-clusters status: pending → passed · raw/2026-09-29/1432/ledger.md#L3 · generate
+- 2026-09-29 estimates/estimate-raw-archive status: pending → passed · raw/2026-09-29/1432/ledger.md#L4 · generate
+- 2026-09-29 estimates/estimate-glossary-terms-defined status: pending → failed · raw/2026-09-29/1432/ledger.md#L5 · generate
+- 2026-09-29 decisions/decision-case-510 created · raw/2026-09-29/1432/ledger.md#case-510 · generate
+- 2026-09-29 estimates/estimate-sprint-migration-leftovers-gone updated: the Criterion replaced whole — the parked pages deleted, not archived; the migration plan left to the closing Case (case 510) · [[decision-case-510]] · generate
+- 2026-09-29 decisions/decision-case-511.1 created · raw/2026-09-29/1432/ledger.md#case-511.1 · generate
+- 2026-09-29 rules/rule-skill-grill-me updated: the options of a question stand under an Options label, each marked with 🔹; every list stands one item per line (case 511.1) · [[decision-case-511.1]] · generate
+- 2026-09-29 estimates/estimate-skill-grill-me-asks-in-rounds updated: the Criterion replaced whole — the Options label, the 🔹 mark and a list one item per line (case 511.1) · [[decision-case-511.1]] · generate
+- 2026-09-29 decisions/decision-case-511.2 created · raw/2026-09-29/1432/ledger.md#case-511.2 · generate
+- 2026-09-29 decisions/decision-case-512 created · raw/2026-09-29/1432/ledger.md#case-512 · generate
+- 2026-09-29 decisions/decision-case-511.2 superseded by decision-case-512 · [[decision-case-512]] · generate
+- 2026-09-29 rules/rule-case-build updated: a list in the Context of a first round stands as the grill-me template sets a list; a number in a round stands only beside a quotation of what it points to (case 512, supersedes 511.2) · [[decision-case-512]] · generate
+- 2026-09-29 estimates/estimate-case-build-writes-a-plain-round updated: the Criterion replaced whole — a list in the Context one item per line; a number in any line of a round only beside a quotation of what it points to (case 512, supersedes 511.2) · [[decision-case-512]] · generate
+- 2026-09-29 decisions/decision-case-513.1 created · raw/2026-09-29/1432/ledger.md#case-513.1 · generate
+- 2026-09-29 rules/rule-decisions-schema updated: a new page carries Problem and no Context or Given, a short-form defer and a Case superseded in its session keep Context; the Case file named as the whole record, recommend included (case 513.1) · [[decision-case-513.1]] · generate
+- 2026-09-29 estimates/estimate-decisions-schema-checked updated: the Criterion replaced whole and the method set anew — Context optional, the Case file named, the example without Context and Given (case 513.1) · [[decision-case-513.1]] · generate
+- 2026-09-29 decisions/decision-case-513.2 created · raw/2026-09-29/1432/ledger.md#case-513.2 · generate
+- 2026-09-29 estimates/estimate-generate-writes-the-decision-page updated: the Criterion replaced whole — the body is Problem, Context only for a Case without given, no Given (case 513.2) · [[decision-case-513.2]] · generate
+- 2026-09-29 estimates/estimate-generate-writes-the-given deleted · [[decision-case-513.2]] · generate
+- 2026-09-29 decisions/decision-case-513.3 created · raw/2026-09-29/1432/ledger.md#case-513.3 · generate
+- 2026-09-29 rules/rule-case-protocol updated: given stays in the Case file and the Spec, not on a Decision page (case 513.3) · [[decision-case-513.3]] · generate
+- 2026-09-29 decisions/decision-case-514 created · raw/2026-09-29/1432/ledger.md#case-514 · generate
+- 2026-09-29 rules/rule-page-generation updated: an entry whose Case, kind and slug match an applied entry of the same yaml is marked applied and changes no page (case 514) · [[decision-case-514]] · generate
+- 2026-09-29 estimates/estimate-generate-fails-alone updated: the Criterion replaced whole — an entry that repeats an applied entry of its Case, kind and slug is marked applied, changes no page and prints one line · [[decision-case-514]] · generate
+- 2026-09-29 decisions/decision-case-515 created · raw/2026-09-29/1432/ledger.md#case-515 · generate
+- 2026-09-29 entities/entity-glossary updated: each row points at the page that defines its term: Plan Mode, the fields and statuses by category, the Decision page by its schema after case 513, lint and the renderer for Scripts, the working files and raw/, Work Mode without subagents; Executable plan leaves until it is decided (case 515) · [[decision-case-515]] · generate
+- 2026-09-29 decisions/decision-case-516 created · raw/2026-09-29/1432/ledger.md#case-516 · generate
+- 2026-09-29 estimates/estimate-materialize-lifts-unfiltered-on-a-schema-change updated: the method names its tests by node id, -k schema_change selected none, and a test of the other order joins (case 516) · [[decision-case-516]] · generate
+- 2026-09-29 decisions/decision-case-517 created · raw/2026-09-29/1432/ledger.md#case-517 · generate
+- 2026-09-29 rules/rule-documentation deferred · [[decision-case-517]] · generate
+- 2026-09-29 decisions/decision-case-518 created · raw/2026-09-29/1432/ledger.md#case-518 · generate
+- 2026-09-29 rules/rule-case-protocol deferred · [[decision-case-518]] · generate
+- 2026-09-29 entities/entity-sprint-migration updated: Slice 4 done: the parked pages and the documents of 2026-08 deleted, the item moved to Slice 5 for its reading at the close; Slice 4 removed (case 510) · [[decision-case-510]] · generate
+- 2026-09-29 estimates/estimate-lint-checks-the-method status: pending → passed · raw/2026-09-29/1432/ledger.md#L25 · generate
+- 2026-09-29 estimates/estimate-lint-finds-a-broken-link status: pending → passed · raw/2026-09-29/1432/ledger.md#L26 · generate
+- 2026-09-29 estimates/estimate-estimates-schema-checked status: pending → passed · raw/2026-09-29/1432/ledger.md#L27 · generate
+- 2026-09-29 estimates/estimate-sprint-migration-index-dissolved status: pending → passed · raw/2026-09-29/1432/ledger.md#L28 · generate
+- 2026-09-29 estimates/estimate-prespec-catches-a-superseded-case status: pending → passed · raw/2026-09-29/1432/ledger.md#L29 · generate
+- 2026-09-29 estimates/estimate-hi-takes-its-readings status: pending → passed · raw/2026-09-29/1432/ledger.md#L30 · generate
+- 2026-09-29 estimates/estimate-hi-writes-frontier status: pending → passed · raw/2026-09-29/1432/ledger.md#L31 · generate
+- 2026-09-29 lessons/lesson-case-build-closes-a-sprint-item-without-the-sprint-page created · raw/2026-09-29/1432/ledger.md#L32 · generate
+- 2026-09-29 lessons/lesson-case-build-quotes-the-person-in-the-chat-language created · raw/2026-09-29/1432/ledger.md#L33 · generate
+- 2026-09-29 lessons/lesson-case-build-writes-a-count-no-command-printed created · raw/2026-09-29/1432/ledger.md#L34 · generate
+- 2026-09-29 lessons/lesson-case-build-splits-a-case-whose-line-stands created · raw/2026-09-29/1432/ledger.md#L35 · generate
+- 2026-09-29 decisions/decision-case-519 created · raw/2026-09-29/1432/ledger.md#case-519 · generate
+- 2026-09-29 rules/rule-estimates-schema deferred · [[decision-case-519]] · generate
+- 2026-09-29 insights/insight-workflow-case-schema-silent-on-what-the-scripts-accept updated: children lesson-case-build-closes-a-sprint-item-without-the-sprint-page and lesson-case-build-splits-a-case-whose-line-stands added, reopened (synthesis) · raw/2026-09-29/1432/ledger.md#L32 · generate
+- 2026-09-29 lessons/lesson-case-build-closes-a-sprint-item-without-the-sprint-page updated: clustered under insight-workflow-case-schema-silent-on-what-the-scripts-accept (synthesis) · raw/2026-09-29/1432/ledger.md#L32 · generate
+- 2026-09-29 lessons/lesson-case-build-splits-a-case-whose-line-stands updated: clustered under insight-workflow-case-schema-silent-on-what-the-scripts-accept (synthesis) · raw/2026-09-29/1432/ledger.md#L35 · generate
+- 2026-09-29 insights/insight-case-form-chat-form-read-by-no-script updated: child lesson-case-build-quotes-the-person-in-the-chat-language added, reopened (synthesis) · raw/2026-09-29/1432/ledger.md#L33 · generate
+- 2026-09-29 lessons/lesson-case-build-quotes-the-person-in-the-chat-language updated: clustered under insight-case-form-chat-form-read-by-no-script (synthesis) · raw/2026-09-29/1432/ledger.md#L33 · generate
+- 2026-09-29 insights/insight-workflow-fact-signed-from-a-check-that-does-not-cover-it updated: child lesson-case-build-writes-a-count-no-command-printed added, reopened (synthesis) · raw/2026-09-29/1432/ledger.md#L34 · generate
+- 2026-09-29 lessons/lesson-case-build-writes-a-count-no-command-printed updated: clustered under insight-workflow-fact-signed-from-a-check-that-does-not-cover-it (synthesis) · raw/2026-09-29/1432/ledger.md#L34 · generate
+- 2026-09-29 rules/rule-close status: draft → built · cascade · generate
+- 2026-09-29 rules/rule-decisions-schema status: built → draft · cascade · generate
+- 2026-09-29 rules/rule-estimates-schema status: draft → built · cascade · generate
+- 2026-09-29 rules/rule-index-check status: draft → built · cascade · generate
+- 2026-09-29 rules/rule-lint status: draft → built · cascade · generate
+- 2026-09-29 rules/rule-prespec status: draft → built · cascade · generate
+- 2026-09-29 rules/rule-raw-archive status: draft → built · cascade · generate
+- 2026-09-29 rules/rule-skill-grill-me status: built → draft · cascade · generate
+- 2026-09-29 rules/rule-skill-hi status: draft → built · cascade · generate
+- 2026-09-29 rules/rule-synthesis status: draft → built · cascade · generate
+- 2026-09-29 decisions/decision-case-511.2 archived · superseded · generate
+- 2026-09-29 estimates/estimate-generate-writes-the-given archived · cleanup
+- 2026-09-29 decisions/decision-case-511.2 archived · cleanup
+- 2026-09-29 rules/rule-page-generation estimate estimate-generate-writes-the-given archived · cleanup

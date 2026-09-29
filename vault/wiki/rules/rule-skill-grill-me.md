@@ -2,7 +2,7 @@
 type: rule
 kind: Leaf
 purpose: Prevents an interview from acting on a plan before each of its decisions is put to the person and settled, and the skill that runs it from being a file no rule page governs
-status: built
+status: draft
 enforcement: render
 governs: .claude/skills/grill-me/SKILL.md
 render_mode: full
@@ -36,14 +36,19 @@ Each question should be formatted like so:
 
     **Now:** <what holds today, said once for the question; "nothing exists yet" when nothing does>
 
-    - **(a) <option name>**
+        **Options:**
+
+    🔹 **(a) <option name>**
       - **After:** <what holds with this option>
-    - **(b) <option name>**
+
+    🔹 **(b) <option name>**
       - **After:** <what holds with this option>
 
     ➡️ <your recommended answer, and why>
 
-The body of a question starts on the line after its title. The `**Now:**` line says once what holds today. Each option starts on its own line as a list item with its name in bold, and under it stands one nested `**After:**` item: what holds with this option. An option has nothing else under it: no list of costs, no second item, no other label. A cost, when it matters, is a plain sentence inside the `**After:**` text or in the reasoning after `➡️`. Every question takes this shape, one on a new idea with nothing behind it too. In the language of the chat the labels may stand translated; the shape stays.
+The body of a question starts on the line after its title. The `**Now:**` line says once what holds today. The label `**Options:**` stands alone on the line before the first option. Each option starts on its own line, after a blank line, with the mark 🔹 and its name in bold, and under it stands one nested `**After:**` item: what holds with this option. No other line of a question starts with 🔹. An option has nothing else under it: no list of costs, no second item, no other label. A cost, when it matters, is a plain sentence inside the `**After:**` text or in the reasoning after `➡️`. Every question takes this shape, one on a new idea with nothing behind it too. In the language of the chat the labels may stand translated; the shape stays.
+
+A list starts on a new line and never runs inside a sentence. Items marked by a number, a letter or a bullet, and a series of two or more clauses that name parallel things, stand one per line; a short series of words inside a sentence stays in it. In the `**Now:**` text a list stands under the sentence that introduces it. Under an `**After:**` item it stands nested one level deeper, inside that item. In the recommended answer it stands on the lines under `➡️`, which close the question.
 
 Each round the user answers reshapes the tree: settled decisions push the frontier outward and unblock questions that depended on them. Recompute the frontier and ask the next round. A question whose answer depends on another question still open in this round belongs to a _later_ round, not this one.
 
@@ -60,3 +65,5 @@ The session is done when the frontier is empty: every branch of the design tree 
 - 2026-09-29 updated: every question of a round takes one shape: a Now line once, each option on its own line with one After item under it and nothing else (case 501.1) · [[decision-case-501.1]]
 - 2026-09-29 status: built → draft · cascade
 - 2026-09-29 status: draft → built · cascade
+- 2026-09-29 updated: the options of a question stand under an Options label, each marked with 🔹; every list stands one item per line (case 511.1) · [[decision-case-511.1]]
+- 2026-09-29 status: built → draft · cascade

@@ -2,7 +2,7 @@
 type: rule
 kind: Leaf
 purpose: Prevents a set of ratified decisions from reaching the Spec with a contradiction between them or with the vault
-status: draft
+status: built
 enforcement: render
 governs: .claude/skills/pre-spec/SKILL.md
 render_mode: full
@@ -153,3 +153,4 @@ finding as a Case, or say in one line why it is already known. Then exit Plan Mo
 - 2026-09-29 updated: pre-spec reports a code fence that a pair or a written section breaks, by fence_breaks of guppi/materialize.py (case 487.1) · [[decision-case-487.1]]
 - 2026-09-29 estimate estimate-prespec-catches-a-broken-fence added · [[decision-case-487.1]]
 - 2026-09-29 deferred · [[decision-case-503]]
+- 2026-09-29 status: draft → built · cascade

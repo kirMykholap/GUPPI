@@ -21,11 +21,9 @@ Rule-class files dissolved, `index.md` gone, the `file` route out of the scripts
 
 ## Milestones
 
-### Slice 4 — conversion of the parked pages by group
-
-- [[estimate-sprint-migration-leftovers-gone]] — every page of `vault/parked/` and every document of 2026-08 under `docs/` converted, archived or deleted by a decision
-
 ### Slice 5 — closing
+
+- [[estimate-sprint-migration-leftovers-gone]] — `vault/parked/` and the documents of 2026-08 under `docs/` deleted (case 510); the old archive root, the empty raw date folders, `git pull` and `gh`, and the reading, at the close
 
 - [[estimate-sprint-migration-lint-clean]] — `make lint` exit 0: the 31 Decision pages of Cases 1–28 decided, `unmigrated` at zero
 - [[estimate-sprint-migration-merges]] — `make test` green, `migration` merged into `main`; at the close [[rule-git-context]] and [[rule-github-issues]] — the upstream of the branch and the GitHub remote, decisions 11.1, 11.2, defers 220, 243 — read by [[estimate-sprint-migration-leftovers-gone]]
@@ -111,3 +109,4 @@ No file of `vault/wiki/` is written by hand.
 - 2026-09-29 updated: Slice 3g: the Estimates of rule-end-of-work and rule-handoff recut to one Criterion, the dispatch of the handoff by its path (case 499) · [[decision-case-499.3]]
 - 2026-09-29 updated: Slice 3g: the Estimates of rule-ask, rule-index-check, rule-cleanup, rule-raw-archive and rule-tests-clock-pinned recut to one Criterion; the recut of the old shape done (cases 498-500), its note replaced by the note on removing the checks of the old shape · [[decision-case-500.6]]
 - 2026-09-29 updated: Slice 3g closed: the checks of the old shape left the scripts, the schema and lint (case 506) · [[decision-case-506.7]]
+- 2026-09-29 updated: Slice 4 done: the parked pages and the documents of 2026-08 deleted, the item moved to Slice 5 for its reading at the close; Slice 4 removed (case 510) · [[decision-case-510]]

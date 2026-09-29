@@ -2,7 +2,7 @@
 type: rule
 kind: Leaf
 purpose: Prevents a page from being born twice under two names
-status: draft
+status: built
 enforcement: render
 governs: .claude/agents/librarian-guppi.md
 render_mode: partial
@@ -44,3 +44,4 @@ When the index line does not settle same or near, open the page and name it in t
 - 2026-09-15 status: draft → built · cascade
 - 2026-09-20 updated: Pre-task → the vault query before the Case (case 277.4) · [[decision-case-277.4]]
 - 2026-09-29 status: built → draft · cascade
+- 2026-09-29 status: draft → built · cascade

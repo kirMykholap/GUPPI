@@ -1,10 +1,11 @@
 ---
 type: estimate
 kind: QA
-status: pending
+status: passed
 target: "[[rule-close]]"
 purpose: The librarian's run ends in one separate commit of vault, CLAUDE.md, .claude and guppi.toml, with no rendered file left untracked, and a report of twenty lines or fewer
 method: "by hand after the next librarian run: git log shows its commit and the paths it touched, git status shows no untracked file the render wrote, and the report is read in the transcript"
+checked: 2026-09-29
 origin: raw/2026-09-10/ledger.md#case-36.1
 sprint: migration
 created: 2026-09-10
@@ -25,7 +26,7 @@ Then:
 
 ## Result
 
-the librarian of session L: commit 18907ec "docs(vault): librarian, 2026-09-13" after the Retro commits 57d68e2 and 5c4ea2a, touching vault/, .claude/agents, .claude/skills and CLAUDE.md only; its report in the transcript of 19b07bbc is 15 non-empty lines with the counts, the flags and the lint total (block 89.2)
+2026-09-29, by hand at the /hi of session 1432: git log shows f9a27b8 `docs(vault): librarian, 2026-09-29` as the one commit after the Retro commit ab14bec, which is its parent, so no amend; it touches 115 paths under vault/ and 3 under .claude/, none outside vault/, CLAUDE.md, .claude and guppi.toml; git status --short --untracked-files=all prints nothing; the report in the transcript of session 1134 gives the counts, the flags and the lint total in 15 lines
 
 ## History
 
@@ -35,3 +36,4 @@ the librarian of session L: commit 18907ec "docs(vault): librarian, 2026-09-13" 
 - 2026-09-12 updated: the vault-only clause of the criterion names the rendered files too (case 89.2) · [[decision-case-89.2]]
 - 2026-09-14 status: pending → passed · raw/2026-09-14/0747/ledger.md#L40
 - 2026-09-28 updated: the Criterion replaced whole — the commit takes guppi.toml, and no rendered file stays untracked (case 482) · [[decision-case-482]]
+- 2026-09-29 status: pending → passed · raw/2026-09-29/1432/ledger.md#L1

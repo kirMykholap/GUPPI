@@ -4,17 +4,17 @@ description: |
 
   Slug. `decision-case-<N>`: `decision-case-18.1`. Mechanical, because the script writes the page and may not name anything; unique, because a Case id is. Nothing searches Decision pages, so the slug needs no meaning beyond the Case it points back at. A Decision is reached by reference only: from a target page's `deferred_by` (a deferred decision, case 52.3), from the `[[decision-case-N]]` wikilink of a History line (case 52.4), or by the case id a `supersedes` carries.
 
-  Fields deliberately absent. `ratification` — a Decision page cannot exist without it. The Case does not close, no ledger line is written, no page is generated. A field with one possible value carries no information; the fact is recorded by the page existing and by `origin`. `recommend` — if the human accepted the proposal it became `Then`; if they changed it, `Then` holds the change. Either way the original is conversation history, recoverable from the archived ledger. `last_updated` — a decision is not edited. Only `status` and `superseded_by` ever change, and both are dated in History; one more History line is allowed, `updated:` of a Case that signs the page's text after the fact (case 358). `authority` — dropped. It overlapped with tags on one reading and with `ref` on the other. If a real need appears later, it comes back as a ratified decision.
+  Fields deliberately absent. `ratification` — a Decision page cannot exist without it. The Case does not close, no ledger line is written, no page is generated. A field with one possible value carries no information; the fact is recorded by the page existing and by `origin`. `recommend` — if the human accepted the proposal it became `Then`; if they changed it, `Then` holds the change. Either way the original stays in the Case file, `cases/case-<N>.md` in the folder of `origin` (case 513). `last_updated` — a decision is not edited. Only `status` and `superseded_by` ever change, and both are dated in History; one more History line is allowed, `updated:` of a Case that signs the page's text after the fact (case 358). `authority` — dropped. It overlapped with tags on one reading and with `ref` on the other. If a real need appears later, it comes back as a ratified decision.
 
-  The body is the Case that produced it, minus what belongs to the conversation rather than the decision. `create`, `update`, `delete`, `defer`: one list per kind present among the Case's ledger lines, in that order, each the slugs of those lines in ledger order; a kind with no line is absent, at least one is present. The category is derived from the slug prefix, never written. Lint checks every page slug names a live or archived page, and that neither `kind` nor `target_slug` is present (case 59.4).
+  The body is the `problem` of the Case that produced it: the one paragraph a reader needs at the end of a link. The rest of the Case — `context`, `recommend`, `given`, `when`, `then`, `tasks`, `ratification` — stays in its Case file. A Case without `given`, the short form of a deferred decision, has no Case file, so its page keeps `## Context` as well; the page of a Case superseded in its own session has the two-line body of `## Context` and `## Problem` that names the superseding Decision (case 299.4). A page written before case 513 keeps the sections it carries and is not rewritten (case 513). `create`, `update`, `delete`, `defer`: one list per kind present among the Case's ledger lines, in that order, each the slugs of those lines in ledger order; a kind with no line is absent, at least one is present. The category is derived from the slug prefix, never written. Lint checks every page slug names a live or archived page, and that neither `kind` nor `target_slug` is present (case 59.4).
 properties:
   required: [type, case, status, origin, sprint, created, tags]
   optional: [create, update, delete, defer, source, supersedes, superseded_by]
   values:
     status: [current, superseded, archived]
 body:
-  required: ["## Context", "## Problem", "## History"]
-  optional: ["## Given", "## When", "## Criterion", "## Deferred", "## Note"]
+  required: ["## Problem", "## History"]
+  optional: ["## Context", "## Given", "## When", "## Criterion", "## Deferred", "## Note"]
 fields:
   type: |
     required; `decision`. Page category. Fixed for this schema.
@@ -37,7 +37,7 @@ fields:
   superseded_by: |
     optional; list of decision quoted wikilinks `"[[slug]]"`. Back-references, written by the script.
   origin: |
-    required; `raw/YYYY-MM-DD/HHMM/ledger.md#case-N` — the date form, `raw/YYYY-MM-DD/ledger.md#case-N`, on pages born before 2026-09-13 (case 103.6). Where this was ratified. The folder also holds the Spec with the Case. The `raw/` of a session is archived with it once every line of it became a page, and the pointer is not rewritten (cases 100.1, 103.6).
+    required; `raw/YYYY-MM-DD/HHMM/ledger.md#case-N` — the date form, `raw/YYYY-MM-DD/ledger.md#case-N`, on pages born before 2026-09-13 (case 103.6). Where this was ratified. The folder also holds the Spec with the Case and, for a Case built by `case-guppi` from session 2026-09-27/1819 on, its Case file `cases/case-<N>.md` with every section, N the id of the top-level Case; once the session is archived, the folder lies under `vault/archive/<sprint>/` (case 513). The `raw/` of a session is archived with it once every line of it became a page, and the pointer is not rewritten (cases 100.1, 103.6).
   sprint: |
     required; the sprint id. Cheap slice of "what did we decide this sprint" without parsing dates.
   created: |
@@ -46,11 +46,11 @@ fields:
     required; list. The union of the targets' tags, as ratified in the Case.
 sections:
   "## Context": |
-    required. What this is about.
+    optional. What this is about. Written for a Case without `given`, the short form of a deferred decision, which has no Case file, and in the two-line body of a Case superseded in its own session (case 299.4); kept on the pages written before case 513; any other Case keeps it in its Case file (case 513).
   "## Problem": |
     required. What required a decision. On a defer, what is unresolved.
   "## Given": |
-    optional. The Case's `given`, verbatim: the frame of the Case — the pages, modules, files and tests it touches and the rule that constrains — written by `generate` on the page of a Case that has one (case 378.3); a page written between case 201.2 and case 378.3 carries none.
+    optional. The Case's `given`, verbatim: the frame of the Case — the pages, modules, files and tests it touches and the rule that constrains — written by `generate`, before case 513, on the page of a Case that had one: the pages of Cases before 201 carry it by the model of case 52.1, and the pages from case 376 on by case 378.3; the pages of Cases 201 to 375 carry none. A page written after case 513 carries none, and the Case file holds it (case 513).
   "## When": |
     optional. Only on pages written before case 72, which keep it: the Case's `when`. A page written after case 72 has no `## When` (case 72.2).
   "## Criterion": |
@@ -74,15 +74,8 @@ examples:
     tags: [cart, checkout]
     ---
 
-    ## Context
-    The site has checkout but no cart — items go straight from the catalogue to payment.
-
     ## Problem
     Buyers cannot review an order before paying.
-
-    ## Given
-    `entity-cart` — the page this Case creates.
-    **＋** `entity-checkout` — the page the cart precedes.
 
     ## History
     - 2026-09-08 created · raw/2026-09-08/ledger.md#case-1

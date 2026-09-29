@@ -599,7 +599,7 @@ update:
 
 ```tasks
 - [x] update `estimate-index-check-merges`
-- [ ] read `estimate-index-check-merges` — by hand on the report of a later librarian's run
+- [x] read `estimate-index-check-merges` — by hand on the report of a later librarian's run
 ```
 
 ### Case 500.3 — `cleanup` moves an archived page out and a restored one back
@@ -679,7 +679,7 @@ update:
 
 ```tasks
 - [x] update `estimate-raw-archive`
-- [ ] read `estimate-raw-archive` — `pytest tests/test_archive.py`, then by hand on the archive step of a later librarian's run
+- [x] read `estimate-raw-archive` — `pytest tests/test_archive.py`, then by hand on the archive step of a later librarian's run
 ```
 
 ### Case 500.5 — The clock of the tests is pinned

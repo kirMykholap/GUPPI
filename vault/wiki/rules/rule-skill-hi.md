@@ -2,7 +2,7 @@
 type: rule
 kind: MOC
 purpose: Prevents a session from being loaded piecemeal by read-tool calls
-status: draft
+status: built
 enforcement: render
 governs: .claude/skills/hi/SKILL.md
 render_mode: full
@@ -103,3 +103,4 @@ copies of one text, kept identical by hand.
 - 2026-09-29 updated: /hi takes the readings of /hi and of the librarian's run in its first reply (case 508.1) · [[decision-case-508.1]]
 - 2026-09-29 estimate estimate-hi-takes-its-readings added · [[decision-case-508.1]]
 - 2026-09-29 updated: the Cases shown in the chat at /hi as a checklist, the detail on an indented line; a W line closes where its work is done, at /hi, in Work Mode or at Retro (case 508.2, supersedes 507) · [[decision-case-508.2]]
+- 2026-09-29 status: draft → built · cascade

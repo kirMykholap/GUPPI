@@ -1,0 +1,62 @@
+- 20:26:21 estimate[estimate-generate-ticks-the-spec][passed] 2026-09-29, uv run pytest tests/test_generate.py and git show 1c196e8 on raw/2026-09-29/*/spec.md; 101 passed; the librarian's run changed 23 lines of 1753/spec.md, each - [ ] to - [x], and no other line of any Spec; 8 read lines of 1753 stay unticked, all of Estimates with no reading after their Case, the line of estimate-glossary-terms-defined among them since reading L4 stands before Case 520; read lines ticked in 1432 (4) and 1134 (3); the yaml held no delete, folded or repeat entry to observe
+- 21:13:21 decision[case 526][update][rule-case-protocol]{ref:rule-case-protocol}
+- 21:13:21 decision[case 526][update][rule-spec-write]{ref:rule-spec-write}
+- 21:13:21 decision[case 526][update][rule-materialize]{ref:rule-materialize}
+- 21:20:52 estimate[estimate-glossary-terms-defined][failed] 2026-09-29, by hand at the /hi of session 2024 after the librarian's run 1c196e8, the table of vault/wiki/glossary.md against each where page and make lint: 57 rows, 57 distinct terms, no C4 model, Delegate or retired term, every where a live page, no lint line on entity-glossary but the unread one; the rows rewritten by case 520 (Vault, deferred_by, origin, Entity (status), Rule (status)) now match their pages; but Hook: rule-hook-registry does not say what a hook is; Retro: the row puts the short defer under ## Retro in the Spec, rule-retro line 46 puts it under ## Deferred; Harness: rule-harness does not say the harness is hooks, agents and skills rendered from rules/
+- 22:01:00 decision[case 527.1][update][entity-glossary]{ref:entity-glossary}
+- 22:01:00 decision[case 527.1][update][rule-hook-registry]{ref:rule-hook-registry}
+- 22:01:00 decision[case 527.1][update][rule-harness]{ref:rule-harness}
+- 22:01:00 decision[case 527.2][update][estimate-glossary-terms-defined]{ref:entity-glossary}
+- 22:16:13 decision[case 528.1][update][rule-git-context]{ref:rule-git-context}{supersedes:case 220}{supersedes:case 243}
+- 22:16:13 decision[case 528.1][update][estimate-git-context-current]{ref:estimate-git-context-current}
+- 22:16:13 decision[case 528.2][delete][rule-github-issues]{ref:rule-github-issues}{supersedes:case 220}{supersedes:case 243}
+- 22:16:13 decision[case 528.2][delete][estimate-github-issues-listed]{ref:estimate-github-issues-listed}
+- 22:16:13 decision[case 528.2][update][entity-glossary]{ref:entity-glossary}
+- 22:16:13 decision[case 528.2][update][rule-ledger-tail]{ref:rule-ledger-tail}
+- 22:16:13 decision[case 528.3][update][rule-skill-hi]{ref:rule-skill-hi}
+- 22:16:13 decision[case 528.3][update][estimate-hi-no-read-calls]{ref:estimate-hi-no-read-calls}
+- 22:16:13 decision[case 528.3][update][rule-session-start]{ref:rule-session-start}
+- 22:16:13 decision[case 528.4][update][rule-skill-hi]{ref:rule-skill-hi}
+- 22:16:13 decision[case 528.4][update][estimate-hi-writes-frontier]{ref:estimate-hi-writes-frontier}
+- 22:16:13 decision[case 528.5][update][estimate-sprint-migration-leftovers-gone]{ref:estimate-sprint-migration-leftovers-gone}
+- 22:16:13 decision[case 528.5][update][entity-sprint-migration]{ref:entity-sprint-migration}
+- 22:23:27 decision[case 529][update][insight-materialize-estimate-update-lifts-the-criterion-whole]{ref:insight-materialize-estimate-update-lifts-the-criterion-whole}
+- 22:45:02 estimate[estimate-documentation-completes][failed] 2026-09-29, make test-documentation (215 passed) and by hand on the librarian's run 1c196e8, vault/raw/2026-09-29/event_log.md lines 2076-2119: the run read beyond its list — git diff on Spec, yaml and rule files, a grep of the status of three Decision pages, git status over vault/archive; after the bashguard refusal of a heredoc writing vault/wiki/brief.md (line 2115) it wrote the brief into the scratchpad and copied it into place with cp; and it ran no uv run guppi archive between the brief and the commit
+- 22:46:12 decision[case 530.1][update][rule-documentation]{ref:rule-documentation}{supersedes:case 525}
+- 22:46:12 decision[case 530.1][update][estimate-documentation-completes]{ref:rule-documentation}
+- 22:46:12 decision[case 530.2][update][rule-bash-guard]{ref:rule-bash-guard}
+- 22:46:12 decision[case 530.2][update][estimate-bash-guard]{ref:rule-bash-guard}
+- 01:01:51 decision[case 531.1][update][rule-retro]{ref:rule-retro}{supersedes:case 505}{supersedes:case 509}
+- 01:01:51 decision[case 531.1][update][estimate-retro-report-holds-each-fact-once]{ref:rule-retro}
+- 01:01:51 decision[case 531.1][update][rule-end-of-work]{ref:rule-end-of-work}
+- 01:01:51 decision[case 531.1][update][entity-glossary]{ref:entity-glossary}
+- 01:01:51 decision[case 531.2][update][estimate-retro-loads]{ref:rule-retro}
+- 01:01:51 decision[case 531.3][update][estimate-retro-red-check-of-an-updated-page-is-a-handoff-note]{ref:rule-retro}
+- 01:01:51 decision[case 531.4][update][estimate-retro-red-in-the-baseline-is-not-charged]{ref:rule-retro}
+- 01:01:51 decision[case 531.5][update][rule-handoff]{ref:rule-handoff}
+- 01:01:51 decision[case 531.5][update][estimate-handoff-holds-each-fact-once]{ref:rule-handoff}
+- 01:01:51 decision[case 531.6][update][estimate-handoff-dispatches]{ref:rule-handoff}
+- 01:01:51 decision[case 531.7][create][rule-where-to-stop]{tags:session,workflow,harness,render}
+- 01:01:51 decision[case 531.7][update][rule-work-mode]{ref:rule-work-mode}
+- 01:01:51 decision[case 531.7][update][rule-case-protocol]{ref:rule-case-protocol}
+- 01:01:51 decision[case 531.7][create][estimate-where-to-stop-stops-only-on-its-conditions]{ref:rule-where-to-stop}{tags:session,workflow,harness}
+- 01:01:51 decision[case 531.8][update][rule-work-mode]{ref:rule-work-mode}
+- 01:01:51 decision[case 531.8][update][rule-case-protocol]{ref:rule-case-protocol}
+- 01:01:51 decision[case 531.8][update][estimate-work-mode-takes-the-work-readings]{ref:rule-work-mode}
+- 01:01:51 decision[case 531.9][create][rule-retro-onward]{ref:rule-end-of-work}{tags:session,workflow,hooks,harness}
+- 01:01:51 decision[case 531.9][update][rule-hook-registry]{ref:rule-hook-registry}
+- 01:01:51 decision[case 531.9][create][estimate-retro-onward-sends-the-agent-to-the-handoff]{ref:rule-retro-onward}{tags:session,workflow,hooks,harness}
+- 01:01:51 decision[case 531.10][update][rule-brief]{ref:rule-brief}
+- 01:01:51 decision[case 531.10][update][estimate-brief-written]{ref:rule-brief}
+- 01:01:51 decision[case 531.11][update][rule-skill-hi]{ref:rule-skill-hi}{supersedes:case 528.4}
+- 01:01:51 decision[case 531.11][update][estimate-hi-writes-frontier]{ref:rule-skill-hi}{supersedes:case 528.4}
+- 01:01:51 decision[case 531.12][update][rule-prespec]{ref:rule-prespec}
+- 01:01:51 decision[case 531.12][update][estimate-prespec-checks-the-frontier]{ref:rule-prespec}
+- 01:01:51 decision[case 531.13][update][rule-skill-hi]{ref:rule-skill-hi}
+- 01:01:51 decision[case 531.13][update][estimate-hi-takes-its-readings]{ref:rule-skill-hi}
+- 01:01:51 decision[case 531.14][update][rule-case-protocol]{ref:rule-case-protocol}
+- 01:01:51 decision[case 531.14][update][estimate-case-protocol-defers-in-one-reply]{ref:rule-case-protocol}
+- 01:02:32 decision[case 532][defer][rule-spec-box]{ref:rule-spec-box}
+- 01:31:43 decision[case 531.11][update][entity-glossary]{ref:entity-glossary}
+- 01:31:43 decision[case 531.15][update][rule-retro-commit]{ref:rule-retro-commit}
+- 01:31:43 decision[case 531.15][update][estimate-retro-commit-gates]{ref:rule-retro-commit}

@@ -1540,6 +1540,7 @@ entries:
       promises; read failed in session 2000 (L25), put off in session 2229
   exists: true
   applied: 01:06:47
+  superseded_by: '501.2'
 - line: 50
   text: decision[case 496][defer][rule-skill-wait-what]{ref:rule-skill-wait-what}
   case: '496'
@@ -1556,6 +1557,7 @@ entries:
       in session 2229
   exists: true
   applied: 01:06:47
+  superseded_by: '502'
 - line: 51
   text: decision[case 487.4][update][estimate-materialize-judges-a-fence]{ref:estimate-materialize-judges-a-fence}
   case: '487.4'
@@ -6151,6 +6153,8 @@ decisions:
       that the Estimate passes.
   spec: vault/raw/2026-09-28/2229/spec.md
   applied: 01:06:47
+  superseded_by:
+  - decision-case-501.2
 - case: '496'
   decision: decision-case-496
   origin: raw/2026-09-28/2229/ledger.md#case-496
@@ -6168,6 +6172,8 @@ decisions:
       and never invent one.
   spec: vault/raw/2026-09-28/2229/spec.md
   applied: 01:06:47
+  superseded_by:
+  - decision-case-502
 - case: '487.4'
   decision: decision-case-487.4
   origin: raw/2026-09-28/2229/ledger.md#case-487.4

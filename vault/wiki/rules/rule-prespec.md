@@ -8,6 +8,7 @@ governs: .claude/skills/pre-spec/SKILL.md
 render_mode: full
 parent: "[[rule-plan-mode]]"
 estimates: ["[[estimate-prespec-reconciles]]", "[[estimate-prespec-checks-the-plan]]", "[[estimate-prespec-catches-bare-wikilinks]]", "[[estimate-prespec-catches-a-command-line-off-form]]", "[[estimate-prespec-catches-a-superseded-case]]", "[[estimate-prespec-binds-a-sprint-line]]", "[[estimate-prespec-catches-an-unwrapped-render]]", "[[estimate-prespec-catches-a-method-without-a-form]]", "[[estimate-prespec-simulates-the-pairs]]", "[[estimate-prespec-refuses-a-pair-inside-a-criterion]]", "[[estimate-prespec-checks-the-frame]]", "[[estimate-prespec-notes-a-long-chain]]", "[[estimate-prespec-matches-lines-and-items]]", "[[estimate-prespec-checks-the-frontier]]", "[[estimate-prespec-requires-a-task-line]]", "[[estimate-prespec-checks-the-form-of-an-item]]", "[[estimate-prespec-requires-a-backlog-item-decided-on-its-page]]", "[[estimate-prespec-catches-a-broken-fence]]"]
+deferred_by: ["[[decision-case-503]]"]
 origin: raw/2026-09-09/ledger.md#case-24.2
 sprint: migration
 created: 2026-09-09
@@ -151,3 +152,4 @@ finding as a Case, or say in one line why it is already known. Then exit Plan Mo
 - 2026-09-28 status: built → draft · cascade
 - 2026-09-29 updated: pre-spec reports a code fence that a pair or a written section breaks, by fence_breaks of guppi/materialize.py (case 487.1) · [[decision-case-487.1]]
 - 2026-09-29 estimate estimate-prespec-catches-a-broken-fence added · [[decision-case-487.1]]
+- 2026-09-29 deferred · [[decision-case-503]]

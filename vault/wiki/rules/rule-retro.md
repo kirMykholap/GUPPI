@@ -8,6 +8,7 @@ governs: .claude/skills/retro/SKILL.md
 render_mode: full
 parent: "[[rule-end-of-work]]"
 estimates: ["[[estimate-retro-loads]]", "[[estimate-retro-report-holds-each-fact-once]]", "[[estimate-retro-red-check-of-an-updated-page-is-a-handoff-note]]", "[[estimate-retro-red-in-the-baseline-is-not-charged]]"]
+deferred_by: ["[[decision-case-505]]"]
 origin: raw/2026-09-10/ledger.md#case-38.1
 sprint: migration
 created: 2026-09-10
@@ -131,3 +132,4 @@ When the person approves, commit (`make style` clean, `make test` green but for 
 - 2026-09-28 estimate estimate-retro-red-in-the-baseline-is-not-charged added · [[decision-case-479.4]]
 - 2026-09-28 updated: a frontier item is its text alone; its end, with the Case id of a defer, stands only in What is not done, with no ledger line number; the frontier and the close stand in one reply, in the form of a skeleton (case 483) · [[decision-case-483]]
 - 2026-09-29 updated: the closing fence of the report skeleton stands alone on its line, and the commit sentence follows as its own paragraph (case 486) · [[decision-case-486]]
+- 2026-09-29 deferred · [[decision-case-505]]

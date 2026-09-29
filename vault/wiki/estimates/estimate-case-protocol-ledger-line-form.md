@@ -22,6 +22,7 @@ A decision line is `- decision[case N][kind][slug]` with `{ref:...}` when the ta
 **＋** A line that supersedes more than one Case carries one `{supersedes:case N}` block per Case, side by side, never a list inside one block.
 **＋** A Case that takes up a deferred decision carries, on one of its decision lines, one `{supersedes:case N}` block for each Case in the page's `deferred_by`.
 **＋** When a Case of this session closes the root cause of a lesson of this session, the line written second carries the mark: `{addresses:<lesson slug>}` on the decision line when the lesson line stands first, `{addressed_by:case N}` on the lesson line when the decision lines stand first; one mark per lesson.
+**＋** For a Case with sub-cases, the `N` of `{addressed_by:case N}` is the sub-case whose decision line closes the cause, never the parent, which has no decision line.
 **＋** The mark stands in the preview of the ledger lines the person ratifies, or in the `LEDGER` block of the lesson line.
 **－** A lesson whose fix is ratified in another session gets no mark.
 
@@ -43,3 +44,4 @@ A decision line is `- decision[case N][kind][slug]` with `{ref:...}` when the ta
 - 2026-09-23 updated: the Criterion replaced whole — the shape of a decision line and the two marks, by the order of the lines (case 379) · [[decision-case-379]]
 - 2026-09-25 status: pending → passed · raw/2026-09-25/1228/ledger.md#L39
 - 2026-09-25 updated: the Criterion replaced whole — one {supersedes:case N} block per Case, never a list; a deferred decision taken up names every Case of its deferred_by (case 429) · [[decision-case-429]]
+- 2026-09-29 updated: the Criterion replaced whole — for a Case with sub-cases the mark names the sub-case (case 497.4) · [[decision-case-497.4]]

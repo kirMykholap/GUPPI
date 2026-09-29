@@ -1,8 +1,9 @@
 ---
 type: decision
 case: "495"
-status: current
+status: archived
 defer: ["[[rule-case-build]]"]
+superseded_by: ["[[decision-case-501.2]]"]
 origin: raw/2026-09-28/2229/ledger.md#case-495
 sprint: migration
 created: 2026-09-28
@@ -26,3 +27,6 @@ Each option of a round of case-guppi states what is before and what is after, as
 ## History
 
 - 2026-09-29 created · raw/2026-09-28/2229/ledger.md#case-495
+- 2026-09-29 superseded by decision-case-501.2 · [[decision-case-501.2]]
+- 2026-09-29 archived · superseded
+- 2026-09-29 archived · cleanup

@@ -1,61 +1,30 @@
 ---
 type: estimate
 kind: QA
-status: passed
+status: pending
 target: "[[rule-cleanup]]"
+purpose: guppi cleanup moves an archived page into the archive of the session of the run and a restored one back, and unlinks its slug from the live lists without rebuilding a section
+method: pytest tests/test_cleanup.py, plus by hand on the cleanup of a later librarian's run
 origin: raw/2026-09-10/ledger.md#case-33
 sprint: migration
 created: 2026-09-10
 tags: [harness, workflow]
 ---
 
-## Context
-
-A page left live after archival keeps its index line and its findings. A page moved without its History line loses the trace of when it left.
-
 ## Criterion
 
-Against a temp vault: every live page with status archived moves to
-vault/archive/<sprint>/<date>/<HHMM>/<category>/ under the same file name with a History
-line and a log.md line; its slug leaves the children lists of live pages and the estimates lists of entities and rules, the field only and no section rebuilt, with a History line there (case 174); an Insight's children keep
-it; body wikilinks stay; pages with any other status stay; a page in the archive
-whose status is not archived moves back with History restored; no index file is written (case 174); a live page whose parent or target
-is archived is reported; a rerun moves nothing and exits 0; an unmovable file or a
-taken name is reported with exit 1 and the rest still move. Live: one run over the
-vault with nothing to move exits 0 and leaves git diff empty.
-
-### case 102.2
-
 When:
-`uv run guppi cleanup` moves or restores a page.
+`uv run guppi cleanup` runs over the live pages of `vault/wiki/` and the pages under the archive.
 
 Then:
-A page with `status: archived` goes to `vault/archive/<sprint>/<date>/<HHMM>/<category>/<slug>.md`: `<date>` the day of the run, `<HHMM>` the latest session folder under `raw/<date>/`, and without one the latest of the nearest date back.
-**＋** A page under `vault/archive/` whose status is no longer `archived` comes back to `wiki/<category>/` from any depth.
-**＋** Migration in Work Mode, one commit: `archived/migration/2026-09-11/estimates/` → `archive/migration/2026-09-11/estimates/` (a date without a session); the lesson of 2026-09-12 → `2026-09-12/<HHMM>/lessons/` of the session whose cleanup moved it, by the time of its line in `log.md`. The History of the pages does not change.
-**＋** `estimate-cleanup-moves` gets a `### case 102.2` block, `pending`.
-**－** A date without `<HHMM>/` folders is one session; the page goes to `<date>/<category>/`.
-
-### case 147.6
-
-When:
-`guppi cleanup` runs.
-
-Then:
-The sentence "Then the four indexes are rewritten …" removed; purpose — "Prevents an archived page from staying among the live ones"; `cleanup.py` without the call of the index writer; the tests without the index checks.
-
-### case 166.4
-
-When:
-`guppi cleanup` moves a page to the archive and removes its slug from the lists of the live pages.
-
-Then:
-`unlink` removes the slug from `children` and `estimates` and writes History `child <slug> archived` / `estimate <slug> archived`; it rebuilds no section and touches none.
-**－** What goes to the archive, what comes back and where — as today.
-
-## Method
-
-pytest in tests/test_cleanup.py against a temp vault; the live reading once by hand
+A live page with `status: archived` moves under the same file name to `vault/archive/<sprint>/<date>/<HHMM>/<category>/`. The date is the day of the run, and the session is the latest session folder of `vault/raw/<date>/`, else the latest of the nearest date back. With no session folder at all, the page goes into the category folder under the date, with no session level.
+**＋** The moved page gets the History line "- <date> archived · cleanup", and a page moved back gets "- <date> restored · cleanup". Each History line that cleanup writes also goes to `log.md` with the page's category and slug in front, such as "- <date> <category>/<slug> archived · cleanup".
+**＋** Its slug leaves the `children` of live pages and the `estimates` of entities and rules, the field only, and that page gets the History line "- <date> child <slug> archived · cleanup" or "- <date> estimate <slug> archived · cleanup". No section is rebuilt, and an Insight's `children` keep the slug.
+**＋** Wikilinks in page bodies stay, and a page with any other status stays.
+**＋** A page under the archive, at any depth, whose status is no longer `archived` moves back to its category folder under `vault/wiki/`.
+**＋** A live page whose `parent` or `target` is archived is reported on stderr and left.
+**＋** A rerun moves nothing and exits 0. A file that cannot move, or a name already taken in the archive, is a line on stderr and exit 1, and the other pages still move.
+**＋** Live, a run with nothing to move exits 0 and leaves `git diff` empty.
 
 ## Result
 
@@ -75,3 +44,4 @@ block 166.4: tests green (377 passed, 2026-09-15 session S); live — the librar
 - 2026-09-15 criterion: case 166.4 added · [[decision-case-166.4]]
 - 2026-09-15 updated: head Criterion: the field only, no section rebuilt (166.4); no index file (147.6) (case 174) · [[decision-case-174]]
 - 2026-09-15 status: pending → passed · raw/2026-09-15/1809/ledger.md#L8
+- 2026-09-29 updated: the Criterion replaced whole — the head and the blocks 102.2, 147.6 and 166.4 into one When and Then, the one-time migration and the index files out, the History and log lines as the script writes them; purpose and method set, Context and Method out (case 500.3) · [[decision-case-500.3]]

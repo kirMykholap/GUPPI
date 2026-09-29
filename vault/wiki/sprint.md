@@ -21,7 +21,7 @@ Rule-class files dissolved, `index.md` gone, the `file` route out of the scripts
 
 ### [ ] Slice 3g — the model of the Criterion, one pass over the Estimates
 
-- [ ] the old shape recut: every Estimate whose Criterion still holds `### case N` blocks brought to one Criterion, until lint counts no `unmigrated` page
+- [ ] the old shape removed: once `make lint` counts no `unmigrated` page, the checks of the shape before case 193 leave the scripts, `rule-estimates-schema` and `estimate-lint-counts-the-unmigrated` (case 202)
 
 ### [ ] Slice 4 — conversion of the parked pages by group — 1 item: [[estimate-sprint-migration-leftovers-gone]]
 

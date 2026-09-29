@@ -1,7 +1,7 @@
 ---
 type: estimate
 kind: QA
-status: failed
+status: pending
 target: "[[rule-case-build]]"
 purpose: Whether a round of case-guppi gives the mechanism with a concrete example, a before and after for each option, case numbers only in the recommended answer, and an unknown term explained
 method: "by hand, in a session after the render: one round of case-guppi read in the chat against the four parts of the Criterion"
@@ -19,9 +19,10 @@ When:
 
 Then:
 The `**Context:**` of a first round gives the mechanism in plain words, with one concrete example of where it goes wrong.
-**＋** Each question body says what each option changes, as a before and after.
+**＋** The instructions of `case-guppi` point each question to the question shape of `.claude/skills/grill-me/SKILL.md` and word no shape of their own.
 **＋** Case numbers, the history of a slug and facts of the frame stand in the round only in the `➡️` line of a question, as the source of its recommendation.
 **＋** A term the person has not met in the chat is explained in a few words where it first stands, or a common word replaces it.
+**－** The shape of a question is read by `estimate-skill-grill-me-asks-in-rounds`, not here.
 **－** The `context` of a Case keeps its case numbers and frame facts: the sentence is about a round only.
 
 ## Result
@@ -32,3 +33,4 @@ The `**Context:**` of a first round gives the mechanism in plain words, with one
 
 - 2026-09-28 created · [[decision-case-477.1]]
 - 2026-09-28 status: pending → failed · raw/2026-09-28/2000/ledger.md#L25
+- 2026-09-29 updated: the Criterion replaced whole — the instructions point to the question shape of the grill-me template, read by estimate-skill-grill-me-asks-in-rounds; this promise keeps the Context, the case numbers and the terms (case 501.2) · [[decision-case-501.2]]

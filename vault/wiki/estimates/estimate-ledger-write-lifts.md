@@ -1,7 +1,7 @@
 ---
 type: estimate
 kind: QA
-status: passed
+status: pending
 target: "[[rule-ledger-write]]"
 method: pytest in tests/test_ledger.py and tests/test_gate.py with piped payloads against a temp vault; the live reading once by hand — the lines of the Case in the session's ledger.md, written by the hook
 checked: 2026-09-27
@@ -22,6 +22,7 @@ In a session with a `hi` recorded, every line `- decision[`, `- estimate[`, `- l
 **＋** The gate's advice to the agent reads "The text before a tool call waits for the next Stop: end this reply in text with the LEDGER block, then call /<skill> in the next reply."
 **－** An `estimate[...]` line the hook refuses by `estimate-ledger-write-refuses-a-reading-of-a-change-of-the-session` does not land.
 **－** A `lesson[...]` line the hook refuses by `estimate-ledger-write-refuses-a-lesson-without-its-prefix` does not land.
+**－** A `lesson[...]` line the hook refuses by `estimate-ledger-write-refuses-a-mark-with-no-decision-line` does not land while that refusal holds.
 **－** Without a `hi`: exit 2 with the reason, the ledger untouched; with `stop_hook_active`: exit 0, nothing written.
 **－** The last turn of a session that ends in a tool call has no `Stop` after it; its lines are a finding of Retro, not of the hook.
 
@@ -55,3 +56,4 @@ In a session with a `hi` recorded, every line `- decision[`, `- estimate[`, `- l
 - 2026-09-26 status: pending → passed · raw/2026-09-26/1745/ledger.md#L30
 - 2026-09-27 updated: the Criterion replaced whole — a lesson line refused for its slug does not land (case 460.4) · [[decision-case-460.4]]
 - 2026-09-27 status: pending → passed · raw/2026-09-27/2050/ledger.md#L21
+- 2026-09-29 updated: the Criterion replaced whole — a lesson line refused for its mark does not land while the refusal holds (case 497.2) · [[decision-case-497.2]]

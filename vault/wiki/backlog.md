@@ -1,13 +1,13 @@
 # Backlog
 
-21 items
+22 items
 
 ## Conserved Specs
 
 ## Deferred
 
 - `rule-case-build-checks-its-sub-cases` — Before it answers, case-guppi reads the finished new texts of all its sub-cases that change one page side by side, and fixes a contradiction between them before the Case is shown · put off in 1 session
-- `rule-case-build` — Prevents a Case from being shown before one agent has built it against the vault, its frame and its form, outside the main agent's context · put off in 0 sessions
+- `rule-complaint-becomes-a-lesson` — After each reply of the person a hook raises the question whether it holds a complaint about the agent's text or work, and a complaint becomes a lesson line; an idea of session 0137, not yet decided · put off in 1 session
 - `rule-git-context` — Prevents a session from starting on a branch it does not know, or pulling mid-session · put off in 1 session
 - `rule-github-issues` — Prevents deferred bugs, tracked outside the vault, from being forgotten at session start · put off in 1 session
 - `rule-ledger-write` — Prevents a ratified line from existing only in a chat reply, or landing in a session no /hi opened · put off in 2 sessions
@@ -15,7 +15,8 @@
 - `rule-orchestration` — The orchestration of the main agent — the triage of a Frontier item, the dispatch of case-guppi, the acknowledging reply, LEDGER, defers and the one rule — as a rule of its own loaded by /hi, and case-schema.md read by case-guppi alone · put off in 6 sessions
 - `rule-page-generation` — Prevents a ratified decision from ending the session without a page, or a page from carrying a field nobody ratified · put off in 0 sessions
 - `rule-prespec-script-skips-code-spans` — The pre-spec language finding judges the prose of a name, context or problem without its code spans, so a Latin slug in a code span is no letter outside the script of the documentation language · put off in 0 sessions
-- `rule-skill-wait-what` — Prevents a text the person did not understand from being explained again in the same dense words, or changed while it is explained · put off in 0 sessions
+- `rule-prespec` — Prevents a set of ratified decisions from reaching the Spec with a contradiction between them or with the vault · put off in 1 session
+- `rule-retro` — Prevents a session from closing on work nobody reviewed, or on a change that traces to no decision · put off in 1 session
 - `rule-spec-box` — A Spec box: a session that opens a conserved Spec — a `raw/<date>/<HHMM>/` folder with `carry.md` — in a git worktree on its own branch, and runs its Work Mode. Not `/hi`, not Plan Mode: a skill lists the boxes, the person picks one, the agent executes it. It writes only into that folder — ticks `spec.md`, readings into its `ledger.md`, `handoff.md` — and into the code; it never touches `wiki/` and never runs the librarian. It ends with `/retro` and `/handoff`; done is `handoff.md` present and `carry.md` removed. At a fork it stops and returns the question, as a subagent does. The branch is merged into the main branch; the librarian runs once there, over every unapplied unit and every handoff, and writes one brief. Open: the skill and its conditions; the ledger hook and `guppi gate` inside a worktree with its own `event_log.md`; the cut of a Spec into boxes that share no file and no page; a third end of a session in `rule-end-of-work`; whether the box is a subagent of the main session with `isolation: worktree` or a session the person starts. After Slice 3b (case 206). · put off in 2 sessions
 - `rule-spec-write` — Prevents a ratified Case from entering the Spec in other words than the answer of case-guppi whose given, when, then, tasks and ratification the person signed · put off in 0 sessions
 - `rule-subagent-guppi` — Prevents implementation drifting from the ratified plan while it is being executed · put off in 29 sessions

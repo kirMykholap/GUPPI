@@ -1,35 +1,27 @@
 ---
 type: estimate
 kind: QA
-status: passed
+status: pending
 target: "[[rule-render-harness]]"
+purpose: At session start guppi render --sync shows the diff of each governed file that parted from its page and writes the page's text back, and is silent when every file matches
+method: pytest tests/test_render.py, plus by hand at the first turn of a later session
 origin: raw/2026-09-12/ledger.md#case-59.7
 sprint: migration
 created: 2026-09-12
 tags: [harness, render, hooks]
-
 ---
-
-## Context
-
-A rendered file lagged its page for a session at a time, and a hand edit to one was
-invisible until `render --check` named the file (case 56). The sync at session start
-closes both gaps if its output reaches the agent.
 
 ## Criterion
 
-Unit: `guppi render --sync` against a temp vault prints a unified diff for a governed
-file that differs and writes the rendered text; prints and writes nothing for an
-identical one; on a render error prints to stderr, writes nothing, exits 0. Live: at
-a session start after a librarian run that rendered, the hook prints nothing and
-writes nothing and `render --check` exits 0; at a session start after a governed file
-and its page have parted, the diff of that file is in the agent's first turn and the
-page's text is written back (case 89.3).
+When:
+A session starts, and the `SessionStart` hook of `.claude/settings.json` runs `uv run guppi render --sync` over the governed files.
 
-## Method
-
-pytest in `tests/test_render.py`; the live reading by hand at the next session's
-first turn, written into the estimate line.
+Then:
+For each governed file that differs from its render, stdout holds a unified diff, the file as it is and then the rendered text, and the rendered text is written. The diff reaches the agent's first turn.
+**＋** An identical file is neither printed nor written.
+**＋** On a render error, one line goes to stderr, nothing is written, and the exit is 0.
+**＋** At a session start after a librarian's run that rendered, the hook prints nothing and writes nothing, and `uv run guppi render --check` then exits 0.
+**＋** At a session start after a governed file and its page have parted, the diff of that file is in the first turn, and the page's text is written back.
 
 ## Result
 
@@ -42,3 +34,4 @@ live 2026-09-13 session L start, after the librarian of K rendered nothing: the 
 - 2026-09-12 updated: the live clause is read against a tree the librarian already rendered (case 89.3) · [[decision-case-89.3]]
 - 2026-09-13 status: pending → passed · raw/2026-09-13/ledger.md#L44
 - 2026-09-17 ref removed · one-off migration · raw/2026-09-16/2238/spec.md#case-210
+- 2026-09-29 updated: the Criterion replaced whole — the unit and live paragraph as When and Then; purpose and method set, Context and Method out (case 498.2) · [[decision-case-498.2]]

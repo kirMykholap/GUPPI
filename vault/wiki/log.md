@@ -4506,3 +4506,79 @@ instruction. The global feed; a page's own `## History` is the per-page view.
 - 2026-09-29 rules/rule-rules-schema status: built → draft · cascade · generate
 - 2026-09-29 rules/rule-sprint status: built → draft · cascade · generate
 - 2026-09-29 rules/rule-vault-layout status: built → draft · cascade · generate
+- 2026-09-29 decisions/decision-case-497.1 created · raw/2026-09-29/0137/ledger.md#case-497.1 · generate
+- 2026-09-29 rules/rule-ledger-write updated: the ledger hook refuses a lesson line whose {addressed_by:case N} has no decision line of Case N before it (case 497.1) · [[decision-case-497.1]] · generate
+- 2026-09-29 estimates/estimate-ledger-write-refuses-a-mark-with-no-decision-line created · [[decision-case-497.1]] · generate
+- 2026-09-29 rules/rule-ledger-write estimate estimate-ledger-write-refuses-a-mark-with-no-decision-line added · [[decision-case-497.1]] · generate
+- 2026-09-29 decisions/decision-case-497.2 created · raw/2026-09-29/0137/ledger.md#case-497.2 · generate
+- 2026-09-29 estimates/estimate-ledger-write-lifts updated: the Criterion replaced whole — a lesson line refused for its mark does not land while the refusal holds (case 497.2) · [[decision-case-497.2]] · generate
+- 2026-09-29 decisions/decision-case-497.3 created · raw/2026-09-29/0137/ledger.md#case-497.3 · generate
+- 2026-09-29 estimates/estimate-ledger-write-refuses-a-lesson-without-its-prefix updated: the Criterion replaced whole — a prefixed lesson line is not refused for its prefix, its mark judged apart (case 497.3) · [[decision-case-497.3]] · generate
+- 2026-09-29 decisions/decision-case-497.4 created · raw/2026-09-29/0137/ledger.md#case-497.4 · generate
+- 2026-09-29 rules/rule-case-protocol updated: a lesson's addressed_by mark names the sub-case whose decision line closes the cause (case 497.4) · [[decision-case-497.4]] · generate
+- 2026-09-29 estimates/estimate-case-protocol-ledger-line-form updated: the Criterion replaced whole — for a Case with sub-cases the mark names the sub-case (case 497.4) · [[decision-case-497.4]] · generate
+- 2026-09-29 decisions/decision-case-498.1 created · raw/2026-09-29/0137/ledger.md#case-498.1 · generate
+- 2026-09-29 estimates/estimate-render-harness-reproduces updated: the Criterion replaced whole — the unit paragraph and the blocks 85.1, 88.1 and 89.4 into one When and Then, the one-time probe of 139.1 out; purpose and method set, Context and Method out (case 498.1) · [[decision-case-498.1]] · generate
+- 2026-09-29 decisions/decision-case-498.2 created · raw/2026-09-29/0137/ledger.md#case-498.2 · generate
+- 2026-09-29 estimates/estimate-render-sync-reports updated: the Criterion replaced whole — the unit and live paragraph as When and Then; purpose and method set, Context and Method out (case 498.2) · [[decision-case-498.2]] · generate
+- 2026-09-29 decisions/decision-case-498.3 created · raw/2026-09-29/0137/ledger.md#case-498.3 · generate
+- 2026-09-29 estimates/estimate-settings updated: the Criterion replaced whole — the block 85.2 as When and Then, the line on its own reading into the lines it names; purpose and method set, Context and Method out (case 498.3) · [[decision-case-498.3]] · generate
+- 2026-09-29 decisions/decision-case-498.4 created · raw/2026-09-29/0137/ledger.md#case-498.4 · generate
+- 2026-09-29 estimates/estimate-default-mode updated: the Criterion replaced whole — the block 85.4 as When and Then, the page named; purpose and method set, Context and Method out (case 498.4) · [[decision-case-498.4]] · generate
+- 2026-09-29 decisions/decision-case-498.5 created · raw/2026-09-29/0137/ledger.md#case-498.5 · generate
+- 2026-09-29 estimates/estimate-governed-files-hook-refuses updated: the Criterion replaced whole — the unit paragraph and the block 91 into one When and Then, the live probe into method; purpose and method set, Context and Method out (case 498.5) · [[decision-case-498.5]] · generate
+- 2026-09-29 decisions/decision-case-498.6 created · raw/2026-09-29/0137/ledger.md#case-498.6 · generate
+- 2026-09-29 entities/entity-sprint-migration updated: Slice 3g: the Estimates of rule-render-harness, rule-settings, rule-default-mode and rule-governed-files-hook recut to one Criterion (case 498) · [[decision-case-498.6]] · generate
+- 2026-09-29 decisions/decision-case-499.1 created · raw/2026-09-29/0137/ledger.md#case-499.1 · generate
+- 2026-09-29 estimates/estimate-end-of-work-order updated: the Criterion replaced whole — When and Then only, Given and the bounds line out, the green run of make test-end-of-work into method; purpose and method set, Context and Method out (case 499.1) · [[decision-case-499.1]] · generate
+- 2026-09-29 decisions/decision-case-499.2 created · raw/2026-09-29/0137/ledger.md#case-499.2 · generate
+- 2026-09-29 rules/rule-handoff updated: the dispatch names handoff.md by its path, as case 73.7 meant and the librarian's frame reads (case 499.2) · [[decision-case-499.2]] · generate
+- 2026-09-29 estimates/estimate-handoff-dispatches updated: the Criterion replaced whole — the head and the block 73.7 into one When and Then, the dispatch by the path; purpose and method set, Context and Method out (case 499.2) · [[decision-case-499.2]] · generate
+- 2026-09-29 decisions/decision-case-499.3 created · raw/2026-09-29/0137/ledger.md#case-499.3 · generate
+- 2026-09-29 entities/entity-sprint-migration updated: Slice 3g: the Estimates of rule-end-of-work and rule-handoff recut to one Criterion, the dispatch of the handoff by its path (case 499) · [[decision-case-499.3]] · generate
+- 2026-09-29 decisions/decision-case-500.1 created · raw/2026-09-29/0137/ledger.md#case-500.1 · generate
+- 2026-09-29 estimates/estimate-ask-finds updated: the Criterion replaced whole — the head and the blocks 105.1 and 147.2 into one When and Then, the one-time questions and the index files out; purpose and method set, Context and Method out (case 500.1) · [[decision-case-500.1]] · generate
+- 2026-09-29 decisions/decision-case-500.2 created · raw/2026-09-29/0137/ledger.md#case-500.2 · generate
+- 2026-09-29 estimates/estimate-index-check-merges updated: the Criterion replaced whole — the head and the block 147.3 into one When and Then, the bound on the rule's name out; purpose and method set, Context and Method out (case 500.2) · [[decision-case-500.2]] · generate
+- 2026-09-29 decisions/decision-case-500.3 created · raw/2026-09-29/0137/ledger.md#case-500.3 · generate
+- 2026-09-29 estimates/estimate-cleanup-moves updated: the Criterion replaced whole — the head and the blocks 102.2, 147.6 and 166.4 into one When and Then, the one-time migration and the index files out, the History and log lines as the script writes them; purpose and method set, Context and Method out (case 500.3) · [[decision-case-500.3]] · generate
+- 2026-09-29 decisions/decision-case-500.4 created · raw/2026-09-29/0137/ledger.md#case-500.4 · generate
+- 2026-09-29 estimates/estimate-raw-archive updated: the Criterion replaced whole — the block 100.1 as When and Then, the pointer to rule-materialize out; purpose and method set, Context and Method out (case 500.4) · [[decision-case-500.4]] · generate
+- 2026-09-29 decisions/decision-case-500.5 created · raw/2026-09-29/0137/ledger.md#case-500.5 · generate
+- 2026-09-29 estimates/estimate-tests-clock-pinned updated: the Criterion replaced whole — the block 145.1 as When and Then, the run the test calls named as it reads, the green run of make test into method; purpose and method set, Context and Method out (case 500.5) · [[decision-case-500.5]] · generate
+- 2026-09-29 decisions/decision-case-500.6 created · raw/2026-09-29/0137/ledger.md#case-500.6 · generate
+- 2026-09-29 entities/entity-sprint-migration updated: Slice 3g: the Estimates of rule-ask, rule-index-check, rule-cleanup, rule-raw-archive and rule-tests-clock-pinned recut to one Criterion; the recut of the old shape done (cases 498-500), its note replaced by the note on removing the checks of the old shape · [[decision-case-500.6]] · generate
+- 2026-09-29 decisions/decision-case-501.1 created · raw/2026-09-29/0137/ledger.md#case-501.1 · generate
+- 2026-09-29 rules/rule-skill-grill-me updated: every question of a round takes one shape: a Now line once, each option on its own line with one After item under it and nothing else (case 501.1) · [[decision-case-501.1]] · generate
+- 2026-09-29 estimates/estimate-skill-grill-me-asks-in-rounds updated: the Criterion replaced whole — every question of /grill-me and of case-guppi takes the Now and After shape, an option with nothing else under it, a translated label the same label (case 501.1) · [[decision-case-501.1]] · generate
+- 2026-09-29 decisions/decision-case-501.2 created · raw/2026-09-29/0137/ledger.md#case-501.2 · generate
+- 2026-09-29 decisions/decision-case-495 superseded by decision-case-501.2 · [[decision-case-501.2]] · generate
+- 2026-09-29 rules/rule-case-build defer by decision-case-495 superseded · [[decision-case-501.2]] · generate
+- 2026-09-29 rules/rule-case-build updated: each question of a round of case-guppi takes the question shape of the grill-me template, not restated (case 501.2) · [[decision-case-501.2]] · generate
+- 2026-09-29 estimates/estimate-case-build-writes-a-plain-round updated: the Criterion replaced whole — the instructions point to the question shape of the grill-me template, read by estimate-skill-grill-me-asks-in-rounds; this promise keeps the Context, the case numbers and the terms (case 501.2) · [[decision-case-501.2]] · generate
+- 2026-09-29 decisions/decision-case-502 created · raw/2026-09-29/0137/ledger.md#case-502 · generate
+- 2026-09-29 decisions/decision-case-496 superseded by decision-case-502 · [[decision-case-502]] · generate
+- 2026-09-29 rules/rule-skill-wait-what defer by decision-case-496 superseded · [[decision-case-502]] · generate
+- 2026-09-29 rules/rule-skill-wait-what updated: the re-pitch quotes a real line with its path, found by the main agent or located through case-guppi, never a made-up one; options follow the question shape of the grill-me template (case 502) · [[decision-case-502]] · generate
+- 2026-09-29 estimates/estimate-skill-wait-what-re-pitches updated: the Criterion replaced whole — a real quoted example or a plain word that none was found, and options in the question shape of the grill-me template (case 502) · [[decision-case-502]] · generate
+- 2026-09-29 decisions/decision-case-503 created · raw/2026-09-29/0137/ledger.md#case-503 · generate
+- 2026-09-29 rules/rule-prespec deferred · [[decision-case-503]] · generate
+- 2026-09-29 decisions/decision-case-504 created · raw/2026-09-29/0137/ledger.md#case-504 · generate
+- 2026-09-29 rules/rule-complaint-becomes-a-lesson deferred, placeholder · [[decision-case-504]] · generate
+- 2026-09-29 decisions/decision-case-505 created · raw/2026-09-29/0137/ledger.md#case-505 · generate
+- 2026-09-29 rules/rule-retro deferred · [[decision-case-505]] · generate
+- 2026-09-29 rules/rule-ask status: built → draft · cascade · generate
+- 2026-09-29 rules/rule-cleanup status: built → draft · cascade · generate
+- 2026-09-29 rules/rule-default-mode status: built → draft · cascade · generate
+- 2026-09-29 rules/rule-end-of-work status: built → draft · cascade · generate
+- 2026-09-29 rules/rule-governed-files-hook status: built → draft · cascade · generate
+- 2026-09-29 rules/rule-index-check status: built → draft · cascade · generate
+- 2026-09-29 rules/rule-ledger-write status: built → draft · cascade · generate
+- 2026-09-29 rules/rule-raw-archive status: built → draft · cascade · generate
+- 2026-09-29 rules/rule-settings status: built → draft · cascade · generate
+- 2026-09-29 rules/rule-skill-grill-me status: built → draft · cascade · generate
+- 2026-09-29 rules/rule-tests-clock-pinned status: built → draft · cascade · generate
+- 2026-09-29 decisions/decision-case-495 archived · superseded · generate
+- 2026-09-29 decisions/decision-case-496 archived · superseded · generate
+- 2026-09-29 decisions/decision-case-495 archived · cleanup
+- 2026-09-29 decisions/decision-case-496 archived · cleanup

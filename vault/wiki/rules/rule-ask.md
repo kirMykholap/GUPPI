@@ -2,7 +2,7 @@
 type: rule
 kind: Leaf
 purpose: Prevents a create from being proposed without the vault having been asked whether it already holds the thing, or forbids it
-status: built
+status: draft
 enforcement: render
 governs: .claude/agents/ask-guppi.md
 render_mode: full
@@ -75,3 +75,4 @@ Answer with exactly these five lines, each present, "none" when empty:
 - 2026-09-25 updated: the vault query before a create is run by case-guppi; the main agent asks at pre-spec only (case 419.1) · [[decision-case-419.1]]
 - 2026-09-25 defer by decision-case-416 superseded · [[decision-case-419.2]]
 - 2026-09-28 updated: the language of the aliases named by the placeholder set in rule-guppi-config (case 476.2) · [[decision-case-476.2]]
+- 2026-09-29 status: built → draft · cascade

@@ -8,7 +8,6 @@ governs: .claude/skills/wait-what/SKILL.md
 render_mode: full
 parent: "[[rule-plan-mode]]"
 estimates: ["[[estimate-skill-wait-what-re-pitches]]"]
-deferred_by: ["[[decision-case-496]]"]
 origin: raw/2026-09-28/1318/ledger.md#case-477.2
 sprint: migration
 created: 2026-09-28
@@ -29,11 +28,13 @@ description: "Stop. That last message did not land: re-pitch it. Run it when the
 
 Wait, I don't understand where you've got to here. Re-pitch your last text — a round of questions, the short text on a Case, or a reply — in {{chat_lang}}.
 
-Give a little context first. Then say the mechanism in plain words, with one concrete example of where it goes wrong. For each option, say what changes, as a before and after. Write short sentences, one idea per sentence, in the active voice.
+Give a little context first. Then say the mechanism in plain words, with one real example of where it goes wrong: a line of a page, a file, a ledger or the Case, quoted as it stands, with its path. Find the line yourself where you can read or search for it. When you cannot find it, ask the `case-guppi` of the Case by `SendMessage` which file and which line hold it, then read the file and quote the line yourself. Never make up an example, not even one marked as made up. When you find no real example, say so in one sentence, and give the mechanism without one.
 
-Leave out case numbers and the history of a slug. Use the terms of `vault/wiki/glossary.md`, and explain a term in a few words where it first stands.
+Lay out each question of a round, and the options in the short text on a Case or in a reply, in the question shape of `.claude/skills/grill-me/SKILL.md`. Its labels may stand in {{chat_lang}}. Write short sentences, one idea per sentence, in the active voice.
 
-When you need a fact of a Case that you do not hold, ask the `case-guppi` of that Case by `SendMessage`. Do not guess it.
+Leave the case numbers and the history of a slug out of your own sentences. A quoted line keeps its case numbers as written. Use the terms of `vault/wiki/glossary.md`, and explain a term in a few words where it first stands.
+
+When you need any other fact of a Case that you do not hold, ask the `case-guppi` of that Case by `SendMessage`. Do not guess it.
 
 Change no option and no recommendation. End with the open question, asked again.
 <!-- /rule-skill-wait-what -->
@@ -43,3 +44,5 @@ Change no option and no recommendation. End with the open question, asked again.
 - 2026-09-28 created · [[decision-case-477.2]]
 - 2026-09-28 estimate estimate-skill-wait-what-re-pitches added · [[decision-case-477.2]]
 - 2026-09-29 deferred · [[decision-case-496]]
+- 2026-09-29 defer by decision-case-496 superseded · [[decision-case-502]]
+- 2026-09-29 updated: the re-pitch quotes a real line with its path, found by the main agent or located through case-guppi, never a made-up one; options follow the question shape of the grill-me template (case 502) · [[decision-case-502]]

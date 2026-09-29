@@ -1,46 +1,28 @@
 ---
 type: estimate
 kind: QA
-status: passed
+status: pending
 target: "[[rule-governed-files-hook]]"
+purpose: guppi guard refuses a hand edit of a governed harness file, names its rule and logs the refusal
+method: "pytest tests/test_guard.py, plus by hand in a later session: one Edit of a governed file refused, the rule named, the line in the day's event log"
 origin: raw/2026-09-12/ledger.md#case-71.1
 sprint: migration
 created: 2026-09-12
 tags: [hooks, harness, render]
 ---
 
-## Context
-
-Signed as the nested Estimate of `rule-governed-files-hook` in Case 59.6 (session I,
-2026-09-12); no paired `create` line was written, so the page is born of Case 71.1
-with the criterion of 59.6 unchanged.
-
 ## Criterion
 
-Unit, against a temp vault with one governing page per file: an `Edit`, `Write` or
-`MultiEdit` on a governed path exits 2 naming the rule and the file; another tool,
-an ungoverned path and an unreadable payload exit 0. Live: one probe in the session
-that registers the hook —
-an `Edit` on `.claude/skills/hi/SKILL.md` refused, the rule named, the call in the
-event log.
-
-### case 91
-
 When:
-`guppi guard` refuses an `Edit`, `Write` or `MultiEdit` of a governed file.
+Claude Code runs `uv run guppi guard` on `PreToolUse` of a tool call, and the hook reads the `governs` field of the live Rule pages under `vault/wiki/rules/`.
 
 Then:
-Before it exits 2 it appends one line to `vault/raw/<date>/event_log.md`.
-**＋** The line carries the time, the session, the tool, the path and the slug of the rule
-that governs the file.
-**－** A call the hook lets through writes nothing: `PostToolUse` logs it as before.
-**－** A log the hook cannot write does not change the refusal: the exit stays 2 and the
-reason still goes to stderr.
-
-## Method
-
-pytest in `tests/test_guard.py` with piped payloads; the live probe once by hand,
-written into the estimate line.
+An `Edit`, `Write` or `MultiEdit` on a governed path exits 2. Stderr names the file and the slug of the rule that governs it, and the client blocks the call.
+**＋** Before it exits 2, the hook appends one line to `vault/raw/<date>/event_log.md` with the time, the session, the tool, the path and the slug of the rule.
+**＋** Another tool or an ungoverned path exits 0.
+**＋** A payload the hook cannot read exits 0 with one line on stderr.
+**－** A call the hook lets through writes no event line: `PostToolUse` logs it.
+**－** A log the hook cannot write does not change the refusal: the exit stays 2, and the reason still goes to stderr.
 
 ## Result
 
@@ -52,3 +34,4 @@ unit: tests/test_guard.py 20 green in the 267 of make test, with the three cases
 - 2026-09-12 status: pending → failed · raw/2026-09-12/ledger.md#L152
 - 2026-09-12 criterion: case 91 added · [[decision-case-91]]
 - 2026-09-12 status: pending → passed · raw/2026-09-12/ledger.md#L206
+- 2026-09-29 updated: the Criterion replaced whole — the unit paragraph and the block 91 into one When and Then, the live probe into method; purpose and method set, Context and Method out (case 498.5) · [[decision-case-498.5]]

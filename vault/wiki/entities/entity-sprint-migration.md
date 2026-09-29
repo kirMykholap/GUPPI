@@ -23,7 +23,7 @@ Rule-class files dissolved, `index.md` gone, the `file` route out of the scripts
 
 ### Slice 3g — the model of the Criterion, one pass over the Estimates
 
-- the old shape recut: every Estimate whose Criterion still holds `### case N` blocks brought to one Criterion, until lint counts no `unmigrated` page
+- the old shape removed: once `make lint` counts no `unmigrated` page, the checks of the shape before case 193 leave the scripts, `rule-estimates-schema` and `estimate-lint-counts-the-unmigrated` (case 202)
 
 ### Slice 4 — conversion of the parked pages by group
 
@@ -113,3 +113,6 @@ No file of `vault/wiki/` is written by hand.
 - 2026-09-29 updated: Slice 3g: the Estimates of rule-claude-md, rule-atomicity and rule-one-judgment-one-implementation recut to When and Then; the note on every other Estimate stands (case 492) · [[decision-case-492.4]]
 - 2026-09-29 updated: Slice 3g: the Estimates of rule-compact-recall, rule-plan-mode, rule-retro-commit, rule-session and rule-prespec-hook recut to When and Then; the note on every other Estimate stands (case 493) · [[decision-case-493.6]]
 - 2026-09-29 updated: Slice 3g: the note on every other Estimate removed, its last group recut (cases 484, 488-494); the note on the old shape stands · [[decision-case-494.6]]
+- 2026-09-29 updated: Slice 3g: the Estimates of rule-render-harness, rule-settings, rule-default-mode and rule-governed-files-hook recut to one Criterion (case 498) · [[decision-case-498.6]]
+- 2026-09-29 updated: Slice 3g: the Estimates of rule-end-of-work and rule-handoff recut to one Criterion, the dispatch of the handoff by its path (case 499) · [[decision-case-499.3]]
+- 2026-09-29 updated: Slice 3g: the Estimates of rule-ask, rule-index-check, rule-cleanup, rule-raw-archive and rule-tests-clock-pinned recut to one Criterion; the recut of the old shape done (cases 498-500), its note replaced by the note on removing the checks of the old shape · [[decision-case-500.6]]

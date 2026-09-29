@@ -1,8 +1,9 @@
 ---
 type: decision
 case: "496"
-status: current
+status: archived
 defer: ["[[rule-skill-wait-what]]"]
+superseded_by: ["[[decision-case-502]]"]
 origin: raw/2026-09-28/2229/ledger.md#case-496
 sprint: migration
 created: 2026-09-28
@@ -26,3 +27,6 @@ The re-pitch of /wait-what takes its example from a real line of the Case, asked
 ## History
 
 - 2026-09-29 created · raw/2026-09-28/2229/ledger.md#case-496
+- 2026-09-29 superseded by decision-case-502 · [[decision-case-502]]
+- 2026-09-29 archived · superseded
+- 2026-09-29 archived · cleanup

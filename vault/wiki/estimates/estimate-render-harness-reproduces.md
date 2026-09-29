@@ -1,85 +1,30 @@
 ---
 type: estimate
 kind: QA
-status: passed
+status: pending
 target: "[[rule-render-harness]]"
+purpose: guppi render writes each governed harness file from its Rule pages, parses every json target before it writes, and --check names a file that differs
+method: "pytest tests/test_render.py, plus by hand on the live vault after a later librarian's render: git diff --stat, then guppi render --check"
 origin: raw/2026-09-09/ledger.md#case-18.1
 sprint: migration
 created: 2026-09-09
 tags: [harness, render]
 ---
 
-## Context
-
-The renderer is what makes a Rule page the source of a harness file. The unit cases pin
-the contract on a temp vault; the live reading proves that the hand-kept copies of
-Slice 1 were identical to their pages, since the first render changes nothing but the
-outer markers it drops.
-
 ## Criterion
 
-Against a temp vault: a full MOC with two partial children renders to the MOC's Render
-text with each child marker replaced by the child's block, in child order, outer markers
-dropped; a partial page splices between its markers in an existing file and leaves the
-markers; a partial target without markers exits 1 with nothing written; a full page whose children include a page without `enforcement: render` renders as if that child were absent, and exits 1 with nothing written when its text carries a marker line for it; `--check` on a
-differing file exits 1, names it, writes nothing, and exits 0 on an identical one.
-Against the live vault: after `uv run guppi render`, `git diff --stat` names only the
-governed files whose Rule page changed since the last render, each diff equal to the
-text of that page's Render, and `uv run guppi render --check` then exits 0 (case 88.1).
-
-### case 85.1
-
 When:
-`guppi render` writes a file that cannot hold a comment — today `.claude/settings.json`.
+`uv run guppi render` runs without a flag or with `--check`, and reads the Rule pages under `vault/wiki/rules/` that carry `enforcement: render`.
 
 Then:
-The text of each child replaces its `<!-- child -->` line without the two marker lines.
-**＋** In every other file the splice keeps the markers.
-**－** A `partial` page whose file has no `full` owner still needs its markers in the
-file; a file that holds no comment can have no such page.
-
-### case 88.1
-
-When:
-`uv run guppi render` runs against the live vault.
-
-Then:
-`git diff --stat` names only the governed files whose Rule page changed since the last
-render.
-**＋** The diff of each file equals the text of that page's Render; a full render also
-drops the page's outer markers, by design.
-**＋** `uv run guppi render --check` then exits 0.
-**－** The clause names no fixed file and no count of lines: it is read against the pages
-that changed, never against a tree that has passed.
-
-### case 89.4
-
-When:
-`guppi render` has built its texts and is about to write, and a target's name ends in
-`.json`.
-
-Then:
-Each such text goes through `json.loads` before anything is written.
-**＋** If one of them does not parse, nothing at all is written: the file and the page
-that owns it go to stderr, `render` exits 1 and `--sync` exits 0 with the same line.
-**＋** If all of them parse, the run writes as before.
-**－** No other file type is checked: markdown has no grammar to break.
-
-### case 139.1
-
-When:
-In Work Mode of this session the agent writes `.claude/agents/probe-guppi.md` and at once calls the Agent tool with `probe-guppi`; then replaces the file's body and calls again; then removes the file.
-
-Then:
-The estimate line records three facts: the new file — found or "Agent type not found"; the replaced one — the old text, the new text, or not found; the client version and whether a compaction happened between the steps.
-**＋** `rule-render-harness` `contract: changed`; `estimate-render-harness-reproduces` gets a `### case 139.1` block, `pending`; the reading is the probe itself; `passed` once the three facts are recorded, whatever the outcome.
-**＋** The body of `rule-render-harness` (How it works) gains the sentence: "When Claude Code reads an agent file under `.claude/agents/` — at session start or on the call — is the reading of case 139.1 on `estimate-render-harness-reproduces`; the librarian's render is its last step before the commit, and an agent it renders is planned for from the next session (case 139.1)."
-**－** `probe-guppi.md` stays neither in the tree nor in a commit; no Rule page for it.
-
-## Method
-
-pytest in `tests/test_render.py` against a temp vault; the live reading once by hand,
-written into the estimate line.
+The Render of a `full` page becomes the whole file its `governs` names, without the page's outer markers. Each `<!-- child -->` line is replaced by that child's text in the order of `children`, and the child's markers are kept.
+**＋** A file that cannot hold a comment, a `.json` target, takes each child's text without the child's markers.
+**＋** A `partial` page whose file no `full` page owns is spliced between its markers in the existing file, and the markers stay. A target without those markers gives exit 1, and nothing is written.
+**＋** A child without `enforcement: render` contributes nothing and needs no marker. A marker line for it in the parent's text gives exit 1, and nothing is written.
+**＋** Every `.json` target is parsed before anything is written. One that does not parse stops the whole write, stderr names the file and the page that owns it, and the run exits 1.
+**＋** `--check` names each file that differs, exits 1 and writes nothing. When every file is identical, it exits 0.
+**＋** Against the live vault, after `uv run guppi render`, `git diff --stat` names only the governed files whose Rule page changed since the last render. The diff of each is the text of that page's Render, and `uv run guppi render --check` then exits 0.
+**－** No file type other than `.json` is parsed.
 
 ## Result
 
@@ -99,3 +44,4 @@ block 139.1, the probe 2026-09-14 session O: a new `.claude/agents/probe-guppi.m
 - 2026-09-13 status: pending → passed · raw/2026-09-13/ledger.md#L48
 - 2026-09-14 criterion: case 139.1 added · [[decision-case-139.1]]
 - 2026-09-14 status: pending → passed · raw/2026-09-14/1229/ledger.md#L28
+- 2026-09-29 updated: the Criterion replaced whole — the unit paragraph and the blocks 85.1, 88.1 and 89.4 into one When and Then, the one-time probe of 139.1 out; purpose and method set, Context and Method out (case 498.1) · [[decision-case-498.1]]

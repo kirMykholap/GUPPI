@@ -2,7 +2,7 @@
 type: rule
 kind: MOC
 purpose: Keeps the three rules that share .claude/settings.json from becoming two copies of one file
-status: built
+status: draft
 enforcement: render
 governs: .claude/settings.json
 render_mode: full
@@ -45,3 +45,4 @@ owns that text.
 - 2026-09-12 created · [[decision-case-85.2]]
 - 2026-09-12 estimate estimate-settings added · [[decision-case-85.2]]
 - 2026-09-14 status: draft → built · cascade
+- 2026-09-29 status: built → draft · cascade

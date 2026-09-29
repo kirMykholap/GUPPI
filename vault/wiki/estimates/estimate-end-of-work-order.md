@@ -1,8 +1,10 @@
 ---
 type: estimate
 kind: QA
-status: passed
+status: pending
 target: "[[rule-end-of-work]]"
+purpose: "A session ends one of two ways, and the ordinary way keeps its order: the commit before /handoff, handoff.md before the librarian, no commit between the handoff and the librarian's"
+method: "make test-end-of-work, plus by hand at the close of a later session: its folder, the day's event log and git log"
 checked: 2026-09-16
 origin: raw/2026-09-10/ledger.md#case-38
 sprint: migration
@@ -10,31 +12,16 @@ created: 2026-09-10
 tags: [session, workflow]
 ---
 
-## Context
-
-The three steps only work in order: a handoff before the commit folds two layers into one diff; a librarian before the handoff has nothing to read.
-
 ## Criterion
 
-Given:
-The Spec is written by the hook `guppi spec` into the session folder `raw/<date>/<hi HHMM>/spec.md`; the `hi` and the folder are known from the context.
-**＋** `generate` appends `rule-carry-over` to the `children` of `rule-end-of-work` from the `ref` of its `create`; the `update` of 190.2 writes no field.
-**＋** The methods of the Estimates do not change: `estimate-carry-over-writes` — pytest over the skill's Render and one live reading; `-end-of-work-order` — `make test-end-of-work` and the live reading of the order; `-brief-written` — a reading of the brief by hand.
-**－** The entries of 190.x apply before the entries of this Case, in ledger order.
-
 When:
-A session ends.
+A session ends, and someone reads its folder `vault/raw/<date>/<hi HHMM>/`, the day's event log `vault/raw/<date>/event_log.md` and `git log`.
 
 Then:
-It ends one of two ways: Work Mode, Retro, the commit, handoff and the librarian — or `/carry` straight after Plan Mode.
-**＋** In the ordinary way the order holds: `/handoff` is refused while the tree is dirty; `handoff.md` exists before the librarian is dispatched; no other commit stands between the handoff and the librarian's; `make test-end-of-work` is green.
-**＋** On leaving Plan Mode the agent asks which of the two, and starts nothing until it is answered.
-**＋** `rule-carry-over` is a child of this MOC, after `rule-handoff`.
-**－** The order of the three steps of the ordinary way does not change.
-
-## Method
-
-`make test-end-of-work`, the pipeline over tests/test_gate.py; the live reading of the order by hand
+The session ended one of two ways: Work Mode, Retro, the commit, the handoff and the librarian; or `/carry` straight after Plan Mode.
+**＋** In the ordinary way the order holds: `/handoff` is refused while the tree is dirty; `handoff.md` exists before the librarian is dispatched; no other commit stands between the handoff and the librarian's commit.
+**＋** On leaving Plan Mode the agent asks the person which of the two ends, and starts nothing until it is answered.
+**＋** `rule-carry-over` is a child of `rule-end-of-work`, after `rule-handoff`.
 
 ## Result
 
@@ -47,3 +34,4 @@ It ends one of two ways: Work Mode, Retro, the commit, handoff and the librarian
 - 2026-09-16 updated: the Criterion replaced whole by this Case; its earlier blocks recut by point 1 at this touch (case 190.2) · [[decision-case-190.2]]
 - 2026-09-16 updated: the Criterion replaced whole by case 196.2 — the head recut with the second end (case 196.2) · [[decision-case-196.2]]
 - 2026-09-17 status: pending → passed · raw/2026-09-16/2238/ledger.md#L2
+- 2026-09-29 updated: the Criterion replaced whole — When and Then only, Given and the bounds line out, the green run of make test-end-of-work into method; purpose and method set, Context and Method out (case 499.1) · [[decision-case-499.1]]

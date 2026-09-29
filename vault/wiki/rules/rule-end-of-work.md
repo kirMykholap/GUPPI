@@ -2,7 +2,7 @@
 type: rule
 kind: MOC
 purpose: Prevents a session being handed over without a settled account of what happened
-status: built
+status: draft
 parent: "[[rule-session]]"
 children: ["[[rule-retro]]", "[[rule-retro-commit]]", "[[rule-handoff]]", "[[rule-carry-over]]"]
 estimates: ["[[estimate-end-of-work-order]]"]
@@ -37,3 +37,4 @@ agent asks the person which of the two ends and starts nothing until it is answe
 - 2026-09-16 updated: the second end — /carry straight after Plan Mode — and the question on leaving Plan Mode (case 196.2, the text of 190.2) · [[decision-case-196.2]]
 - 2026-09-17 status: draft → built · cascade
 - 2026-09-22 updated: the parent is rule-session, the MOC of the five phases (case 316) · [[decision-case-316]]
+- 2026-09-29 status: built → draft · cascade

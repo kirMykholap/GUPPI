@@ -1,0 +1,107 @@
+# Frontier — 2026-09-29 1134
+
+## Cases
+
+- [x] C1 — `rule-estimates-schema`, `estimate-lint-counts-the-unmigrated`, Slice 3g — the old shape removed: once `make lint` counts no `unmigrated` page, the checks of the shape before case 193 leave the scripts (case 202) · sprint · case 506
+  - near: `insight-materialize-estimate-update-lifts-the-criterion-whole`
+- [-] C2 — The form of the Retro report: a heading, the parts, what the agent noticed set apart (Case 505, defer on `rule-retro`) · brief · defer case 509
+  - near: `rule-retro`
+- [x] C3 — The look of the Frontier at `/hi`: bold `C1` lines as in earlier sessions or the checkbox form · brief · case 508
+  - near: `rule-orchestration`
+- [x] C4 — the Work readings have no trigger before Retro: a reading whose `method` names the `/hi` of the next session is not taken at `/hi`, and `/work` names no Frontier `W` line · person · case 508
+  - near: `rule-work-mode`, `rule-retro`
+
+Backlog: 22 items
+
+## Work
+
+- [ ] W1 — reading `estimate-agent-writing-followed` · brief
+- [ ] W2 — reading `estimate-ask-finds` · brief
+- [x] W3 — reading `estimate-atomicity-rendered` · brief · work
+- [ ] W4 — reading `estimate-carry-over-writes` · brief
+- [x] W5 — reading `estimate-case-build-writes-a-plain-round` · brief · work
+- [ ] W6 — reading `estimate-case-build-writes-the-case` · brief
+- [x] W7 — reading `estimate-case-check-notes-a-then-line-shared-by-siblings` · brief · work
+- [ ] W8 — reading `estimate-case-check-sends-back-a-faulty-case` · brief
+- [ ] W9 — reading `estimate-case-check-shows-only-the-checked-case` · brief
+- [ ] W10 — reading `estimate-case-protocol-defers-in-one-reply` · brief
+- [ ] W11 — reading `estimate-case-protocol-ledger-line-form` · brief
+- [x] W12 — reading `estimate-claude-md-rendered` · brief · work
+- [x] W13 — reading `estimate-cleanup-moves` · brief · work
+- [ ] W14 — reading `estimate-close-commits` · brief
+- [ ] W15 — reading `estimate-compact-recall-reloads` · brief
+- [ ] W16 — reading `estimate-context-size-warns-past-the-limit` · brief
+- [x] W17 — reading `estimate-decisions-schema-checked` · brief · work
+- [x] W18 — reading `estimate-default-mode` · brief · work
+- [x] W19 — reading `estimate-documentation-completes` · brief · work
+- [ ] W20 — reading `estimate-end-of-work-order` · brief
+- [x] W21 — reading `estimate-entities-schema-checked` · brief · work
+- [ ] W22 — reading `estimate-estimates-schema-checked` · brief
+- [ ] W23 — reading `estimate-event-log-records` · brief
+- [ ] W24 — reading `estimate-generate-renames` · brief
+- [ ] W25 — reading `estimate-generate-rewords` · brief
+- [x] W26 — reading `estimate-generate-walks-dates` · brief · work
+- [x] W27 — reading `estimate-generate-writes-rules-from-applies-to` · brief · work
+- [x] W28 — reading `estimate-generate-writes-the-decision-page` · brief · work
+- [ ] W29 — reading `estimate-generate-writes` · brief
+- [ ] W30 — reading `estimate-git-context-current` · brief
+- [x] W31 — reading `estimate-github-issues-listed` · brief · work
+- [x] W32 — reading `estimate-glossary-checks-the-file` · brief · work
+- [x] W33 — reading `estimate-glossary-renders-the-terms` · brief · work
+- [ ] W34 — reading `estimate-glossary-terms-defined` · brief
+- [ ] W35 — reading `estimate-glossary-ticks-the-spec` · brief
+- [ ] W36 — reading `estimate-governed-files-hook-refuses` · brief
+- [x] W37 — reading `estimate-guppi-tests-green` · brief · work
+- [ ] W38 — reading `estimate-handoff-dispatches` · brief
+- [ ] W39 — reading `estimate-handoff-holds-each-fact-once` · brief
+- [x] W40 — reading `estimate-hi-no-read-calls` · brief · work
+- [ ] W41 — reading `estimate-index-check-merges` · brief
+- [x] W42 — reading `estimate-ledger-tail` · brief · work
+- [x] W43 — reading `estimate-ledger-write-lifts` · brief · work
+- [x] W44 — reading `estimate-ledger-write-refuses-a-lesson-without-its-prefix` · brief · work
+- [x] W45 — reading `estimate-ledger-write-refuses-a-mark-with-no-decision-line` · brief · work
+- [x] W46 — reading `estimate-lessons-schema-checked` · brief · work
+- [x] W47 — reading `estimate-lint-catches-a-broken-fence` · brief · work
+- [x] W48 — reading `estimate-materialize-judges-a-fence` · brief · work
+- [x] W49 — reading `estimate-materialize-lifts-unfiltered-on-a-schema-change` · brief · work
+- [x] W50 — reading `estimate-materialize-refolds-a-reading-on-a-supersede` · brief · work
+- [ ] W51 — reading `estimate-one-judgment-one-implementation-followed` · brief
+- [x] W52 — reading `estimate-page-schemas-one-file-per-rule` · brief · work
+- [ ] W53 — reading `estimate-permissions` · brief
+- [ ] W54 — reading `estimate-plan-mode-verified` · brief
+- [x] W55 — reading `estimate-prespec-catches-a-broken-fence` · brief · work
+- [ ] W56 — reading `estimate-prespec-catches-a-command-line-off-form` · brief
+- [x] W57 — reading `estimate-prespec-catches-a-method-without-a-form` · brief · work
+- [ ] W58 — reading `estimate-prespec-catches-a-superseded-case` · brief
+- [x] W59 — reading `estimate-prespec-catches-an-unwrapped-render` · brief · work
+- [x] W60 — reading `estimate-prespec-catches-bare-wikilinks` · brief · work
+- [ ] W61 — reading `estimate-prespec-hook-gates` · brief
+- [x] W62 — reading `estimate-prespec-simulates-the-pairs` · brief · work
+- [ ] W63 — reading `estimate-raw-archive` · brief
+- [x] W64 — reading `estimate-render-harness-reproduces` · brief · work
+- [x] W65 — reading `estimate-render-harness-ticks-the-spec` · brief · work
+- [x] W66 — reading `estimate-render-sync-reports` · brief · work
+- [ ] W67 — reading `estimate-retro-commit-gates` · brief
+- [ ] W68 — reading `estimate-retro-red-check-of-an-updated-page-is-a-handoff-note` · brief
+- [ ] W69 — reading `estimate-retro-red-in-the-baseline-is-not-charged` · brief
+- [ ] W70 — reading `estimate-retro-report-holds-each-fact-once` · brief
+- [x] W71 — reading `estimate-rules-schema-checked` · brief · work
+- [ ] W72 — reading `estimate-session-phases-in-order` · brief
+- [ ] W73 — reading `estimate-session-start-context` · brief
+- [x] W74 — reading `estimate-settings` · brief · work
+- [x] W75 — reading `estimate-skill-grill-me-asks-in-rounds` · brief · work
+- [ ] W76 — reading `estimate-skill-wait-what-re-pitches` · brief
+- [ ] W77 — reading `estimate-spec-write-reaches-the-approved-spec` · brief
+- [x] W78 — reading `estimate-sprint-checks-the-file` · brief · work
+- [x] W79 — reading `estimate-sprint-drops-an-emptied-milestone` · brief · work
+- [ ] W80 — reading `estimate-sprint-migration-index-dissolved` · brief
+- [ ] W81 — reading `estimate-sprint-migration-leftovers-gone` · brief
+- [ ] W82 — reading `estimate-sprint-migration-lint-clean` · brief
+- [ ] W83 — reading `estimate-sprint-migration-merges` · brief
+- [x] W84 — reading `estimate-sprint-migration-rule-class-files-dissolved` · brief · work
+- [x] W85 — reading `estimate-sprint-ticks-the-spec` · brief · work
+- [ ] W86 — reading `estimate-synthesis-clusters` · brief
+- [x] W87 — reading `estimate-tests-clock-pinned` · brief · work
+- [x] W88 — reading `estimate-vault-layout-holds` · brief · work
+- [ ] W89 — reading `estimate-work-mode-runs-the-spec-on-a-branch-from-a-baseline` · brief
+- [ ] W90 — the unticked `read` boxes of `raw/2026-09-29/0137/spec.md` (19) and `archive/migration/2026-09-28/2229/raw/spec.md` (39), and those of the Specs of 2000, 1318 and 0000 · brief

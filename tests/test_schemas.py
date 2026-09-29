@@ -67,6 +67,17 @@ def test_a_required_field_missing_is_one_finding(category):
     assert findings(page, data) == [f"{category}/{page.slug}: schema: missing field {field}"]
 
 
+def test_an_estimate_without_method_is_one_finding():
+    """Case 506.1: `method` is a required field of an Estimate, so a page without it earns
+    one `schema` finding. Skipped until the librarian renders the live file of 506.1."""
+    data = schema("estimates")
+    if "method" not in data["properties"]["required"]:
+        pytest.skip("estimates/schema.yaml waits for the librarian's render of case 506.1")
+    page = page_in_shape("estimates", data)
+    del page.props["method"]
+    assert findings(page, data) == ["estimates/estimate-x: schema: missing field method"]
+
+
 @pytest.mark.parametrize("category", CATEGORIES)
 def test_a_value_outside_the_list_is_one_finding(category):
     data = schema(category)

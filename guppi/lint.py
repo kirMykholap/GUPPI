@@ -32,8 +32,8 @@ one, case 156), `status` (a `built` page with an Estimate not `passed`, a `draft
 every Estimate `passed`; an Estimate `passed` or `failed` without `## Result`; an Estimate
 whose `target` is not an entity or a rule, or does not list it, case 53.1), `unread` (every
 Estimate `pending` or `failed`, one finding each — red between a change of a promise and
-its reading, by design; cases 182, 202), `method` (the `method` field, or on a page of the
-shape before case 193 the `## Method` section: for a MOC's Estimate a `make <target>` of the
+its reading, by design; cases 182, 202), `method` (the `method` field alone, case 506.3:
+for a MOC's Estimate a `make <target>` of the
 Makefile passes whatever else it says, and one that names none may be a reading when its
 children's Estimates are all readings, case 112.1, or when a sibling Estimate of the MOC
 names a `make <target>` of the Makefile, case 212; on a MOC with `render_mode: full` the
@@ -49,11 +49,9 @@ the one table, `decision-` included, case 460.3), `deferred` (a placeholder — 
 `deferred_by` and lacks the fields a `create` fills, `kind`, `estimates` and `tags` — earns
 one finding, `deferred: <N> times since case <M>`, N the `deferred` lines of its History
 and M the case of the first, in place of those three `schema` findings and of `orphan`; a
-page with `deferred_by` whose fields are in place earns none, case 186.3), and last
-`unmigrated` (one line, `estimates: unmigrated: <N> pages in the shape before case 193` —
-the live Estimates without a `method` field, or with `## Context`, `## Method` or a `###
-case N` block; no line at zero; the checks of the old shape leave by an update of the rule
-once it reads zero, case 202). A
+page with `deferred_by` whose fields are in place earns none, case 186.3). An Estimate
+without a `method` field is a `schema` finding of `estimates/schema.yaml`, which requires the
+field (case 506.1); the count of the shape before case 193 left with it (case 506.2). A
 `deferred_by` slug and a `[[decision-case-N]]` wikilink in History are refs like any other
 (cases 52.3, 52.4). `## When` is never a required section of a decision page, whatever
 `decisions/schema.yaml` says: a page written before case 72 has one, a later page has none
@@ -99,7 +97,6 @@ PYTEST = "pytest"
 CRITERION = "## Criterion"
 RENDER = "## Render"
 WHEN = "## When"
-CASE_BLOCK = re.compile(r"^### case ([\w.]+)\s*$", re.MULTILINE)  # an Estimate's Criterion block
 PLACEHOLDER_FIELDS = ("kind", "estimates", "tags")  # what a `create` fills (case 186.3)
 DEFERRED_LINE = re.compile(r"^- \S+ deferred\b.*(?:\[\[decision-case-|#case-)([\w.]+?)\]?\]?$")
 
@@ -341,9 +338,8 @@ def check_edges(page: Page, pages: list[Page], by_slug: dict[str, Page]) -> list
 
 def check_criterion(page: Page, known: set[str]) -> list[Finding]:
     """Case 72.6. On a decision page every `[[slug]]` under `## Criterion` is a live or
-    archived Estimate page. On an Estimate page `## Criterion` may be plain text or
-    `### case N` blocks; each block names a live or archived `decision-case-N`. One
-    finding per slug or case, class `ref`."""
+    archived Estimate page. One finding per slug, class `ref`. An Estimate's Criterion is
+    one text, and a `### case N` line in it is no link (case 506.4)."""
     out = []
     seen: set[str] = set()
     if page.category == "decisions":
@@ -357,20 +353,6 @@ def check_criterion(page: Page, known: set[str]) -> list[Finding]:
                         page,
                         "ref",
                         f"{CRITERION} names {slug}, which no live or archived Estimate page carries",
-                    )
-                )
-    elif page.category == "estimates":
-        for case in CASE_BLOCK.findall(page.sections.get(CRITERION) or ""):
-            if case in seen:
-                continue
-            seen.add(case)
-            if f"decision-case-{case}" not in known:
-                out.append(
-                    Finding(
-                        page,
-                        "ref",
-                        f"{CRITERION} names case {case}, and no live or archived page "
-                        f"decision-case-{case} exists",
                     )
                 )
     return out
@@ -553,12 +535,12 @@ def children_estimates(moc: Page, by_slug: dict[str, Page]) -> list[Page]:
 
 
 def method_of(page: Page) -> str | None:
-    """The `method` field, or on a page of the shape before case 193 the `## Method`
-    section; None when the page carries neither (case 202)."""
+    """The `method` field; None when the page carries none. A `## Method` section is not
+    read (case 506.3)."""
     field = page.props.get("method")
     if field is not None and str(field).strip():
         return str(field)
-    return page.sections.get("## Method")
+    return None
 
 
 def is_reading(method: str) -> bool:
@@ -588,21 +570,6 @@ def check_unread(page: Page) -> list[Finding]:
     if status in ("pending", "failed"):
         return [Finding(page, "unread", status)]
     return []
-
-
-def is_old_shape(page: Page) -> bool:
-    """An Estimate of the shape before case 193: no `method` field, or `## Context`,
-    `## Method` or a `### case N` block still on the page (case 202)."""
-    return (
-        page.category == "estimates"
-        and not page.error
-        and (
-            page.props.get("method") is None
-            or "## Context" in page.sections
-            or "## Method" in page.sections
-            or bool(CASE_BLOCK.search(page.sections.get(CRITERION) or ""))
-        )
-    )
 
 
 def check_markers(page: Page) -> list[Finding]:
@@ -650,18 +617,6 @@ def check_fences(page: Page) -> list[Finding]:
     return findings
 
 
-def check_unmigrated(pages: list[Page]) -> list[Finding]:
-    """One line for the remainder of the recut, `estimates: unmigrated: <N> pages in the
-    shape before case 193`; no line at zero (case 202)."""
-    count = sum(1 for p in pages if is_old_shape(p))
-    if not count:
-        return []
-    pages_word = "page" if count == 1 else "pages"
-    return [
-        Finding("estimates", "unmigrated", f"{count} {pages_word} in the shape before case 193")
-    ]
-
-
 def sibling_names_a_target(page: Page, target: Page, by_slug: dict[str, Page], text: str) -> bool:
     """True when another Estimate of the same MOC names a `make <target>` the Makefile
     holds: the pipeline over the children is that sibling's (case 212)."""
@@ -676,7 +631,7 @@ def sibling_names_a_target(page: Page, target: Page, by_slug: dict[str, Page], t
 
 
 def check_method(page: Page, by_slug: dict[str, Page], project_dir: Path) -> list[Finding]:
-    """The `method` of an Estimate — the field, or the section of a page of the old shape:
+    """The `method` field of an Estimate (case 506.3):
     for a MOC's Estimate a `make <target>` of the Makefile passes whatever else it says,
     without one "by hand" passes when every counted Estimate of the children is a reading
     (case 112.1) or when a sibling Estimate of the MOC names a `make <target>` of the Makefile
@@ -765,7 +720,6 @@ def lint(project_dir: Path) -> list[str]:
         findings.extend(check_unread(page))
         findings.extend(check_method(page, by_slug, project_dir))
         findings.extend(check_decision(page, known))
-    findings.extend(check_unmigrated(pages))
     return [f.text for f in findings]
 
 

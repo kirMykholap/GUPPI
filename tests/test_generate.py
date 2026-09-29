@@ -1251,11 +1251,11 @@ MODEL_ESTIMATE = create(
 
 
 def estimate_page(criterion, slug="estimate-child", target="rule-child", status="pending"):
-    """A page of the shape before case 193: `## Context` and `## Method` as sections."""
+    """A page of the model: `method` a field, `## Criterion` and `## History` its sections."""
     return (
-        f"---\ntype: estimate\nkind: QA\nstatus: {status}\ntarget: {target}\norigin: x\n"
-        "sprint: s\ncreated: 2026-09-09\ntags: [harness]\n---\n\n## Context\n\nWhy.\n\n"
-        f"## Criterion\n\n{criterion}\n\n## Method\n\nold method\n\n## History\n\n- old\n"
+        f"---\ntype: estimate\nkind: QA\nstatus: {status}\ntarget: {target}\n"
+        "method: by hand\norigin: x\nsprint: s\ncreated: 2026-09-09\ntags: [harness]\n---\n\n"
+        f"## Criterion\n\n{criterion}\n\n## History\n\n- old\n"
     )
 
 
@@ -1312,17 +1312,17 @@ def recut_entry(set_fields, sections=None, change="the Criterion replaced whole"
 NEW_CRITERION = "Given:\nnothing.\n\nWhen:\nasked.\n\nThen:\nanswered."
 
 
-def test_an_estimate_update_with_method_replaces_the_criterion_and_drops_the_old_sections(
-    tmp_path,
-):
-    """Case 211.1: `set.method` writes the field after `purpose` and drops `## Context` and
-    `## Method`; the Criterion is replaced whole as before."""
+def test_an_estimate_update_whose_set_carries_method_leaves_every_section(tmp_path):
+    """Case 506.6: `set.method` writes the field and drops no section; the Criterion is
+    replaced whole as before."""
     entry = recut_entry(
         {"status": "pending", "method": "pytest tests/test_x.py"},
         sections={"Criterion": NEW_CRITERION},
     )
-    old = estimate_page("### case 1\n\nold", status="passed").replace(
-        "target: rule-child\n", "target: rule-child\npurpose: the promise\n"
+    old = (
+        estimate_page("old", status="passed")
+        .replace("## Criterion", "## Context\n\nWhy.\n\n## Criterion")
+        .replace("## History", "## Method\n\nold method\n\n## History")
     )
     seed(tmp_path, entries=[entry], pages=[("estimates", "estimate-child", old)])
     code, _, err = run(tmp_path)
@@ -1330,44 +1330,24 @@ def test_an_estimate_update_with_method_replaces_the_criterion_and_drops_the_old
     text = page(tmp_path, "estimates", "estimate-child")
     fields = props(text)
     assert fields["status"] == "pending" and fields["method"] == "pytest tests/test_x.py"
-    keys = list(yaml.safe_load(text.split("---")[1]))
-    assert keys.index("purpose") < keys.index("method") < keys.index("origin")
     assert f"## Criterion\n\n{NEW_CRITERION}\n" in text
-    assert "### case 1" not in text
-    assert "## Context" not in text and "## Method" not in text
+    assert "## Context\n\nWhy.\n" in text and "## Method\n\nold method\n" in text  # kept
     assert "## History\n\n- old\n" in text
     assert f"- {DATE} updated: the Criterion replaced whole · [[decision-case-5]]" in text
 
 
-def test_an_estimate_update_without_method_touches_no_section_of_a_page_with_the_field(
-    tmp_path,
-):
-    """Case 211.1: without `set.method` no section is dropped; a page that carries the
-    field takes a new Criterion as before."""
+def test_a_criterion_update_on_an_estimate_without_method_applies(tmp_path):
+    """Case 506.5: `sections.Criterion` on a page without a `method` field, and no
+    `set.method`, applies; `generate` refuses no recut for want of the field."""
     entry = recut_entry({"status": "pending"}, sections={"Criterion": NEW_CRITERION})
-    old = estimate_page("c", status="passed").replace(
-        "target: rule-child\n", "target: rule-child\nmethod: by hand\n"
-    )
-    seed(tmp_path, entries=[entry], pages=[("estimates", "estimate-child", old)])
+    old = estimate_page("the old criterion", status="passed").replace("method: by hand\n", "")
+    seed(tmp_path, entries=[ROOT, entry], pages=[("estimates", "estimate-child", old)])
     code, _, err = run(tmp_path)
     assert code == 0 and err == "", err
     text = page(tmp_path, "estimates", "estimate-child")
+    assert props(text)["status"] == "pending" and "method" not in props(text)
     assert f"## Criterion\n\n{NEW_CRITERION}\n" in text
-    assert "## Context\n\nWhy.\n" in text and "## Method\n\nold method\n" in text  # kept
-
-
-def test_a_recut_without_method_on_a_page_of_the_old_shape_fails_alone(tmp_path):
-    """Case 211.2: `sections.Criterion` on a page without a `method` field, and no
-    `set.method`, fails the entry alone; the page is untouched, the rest apply."""
-    entry = recut_entry({"status": "pending"}, sections={"Criterion": NEW_CRITERION})
-    old = estimate_page("the old criterion", status="passed")
-    seed(tmp_path, entries=[ROOT, entry], pages=[("estimates", "estimate-child", old)])
-    code, _, err = run(tmp_path)
-    assert code == 1
-    assert "generate: estimate-child: a recut without method (case 211)" in err
-    assert page(tmp_path, "estimates", "estimate-child") == old
-    assert "failed" in load_yaml(tmp_path)["entries"][1]
-    assert (tmp_path / "vault" / "wiki" / "rules" / "rule-root.md").exists()  # the rest apply
+    assert "applied" in load_yaml(tmp_path)["entries"][1]
 
 
 def test_a_reading_writes_checked_from_the_result_date_or_the_yamls_date(tmp_path):

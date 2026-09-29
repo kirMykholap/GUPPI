@@ -105,7 +105,7 @@ def estimate_page(status="passed", method="pytest tests/test_x.py", result=True,
 
 def old_estimate_page(status="passed", method="pytest in `tests/test_x.py`.", **over):
     """A page of the shape before case 193: `## Context` and `## Method` as sections, no
-    `method` field — counted by `unmigrated`."""
+    `method` field — no longer counted or read by lint (cases 506.2, 506.3)."""
     props = {
         "type": "estimate",
         "kind": "QA",
@@ -121,9 +121,6 @@ def old_estimate_page(status="passed", method="pytest in `tests/test_x.py`.", **
     if status != "pending":
         body += "## Result\n\nr\n\n"
     return body + "## History\n\n- created\n"
-
-
-UNMIGRATED_ONE = "estimates: unmigrated: 1 page in the shape before case 193"
 
 
 def root_page():
@@ -425,20 +422,15 @@ def test_a_pending_or_failed_estimate_is_an_unread_finding(tmp_path):
     assert lines == ["estimates/estimate-x-works: unread: failed"]
 
 
-def test_a_page_of_the_old_shape_is_counted_once_in_unmigrated(tmp_path):
-    # case 202: one line for the remainder of the recut, none at zero
-    wiki = seed(tmp_path, rule=rule_page(status="built"), estimate=old_estimate_page())
-    _, lines, _ = run(tmp_path)
-    assert lines == [UNMIGRATED_ONE]
-    write(wiki / "estimates" / "estimate-x-works.md", estimate_page())
-    assert run(tmp_path) == (0, [], "")
-    write(
-        wiki / "estimates" / "estimate-x-works.md",
-        estimate_page().replace("## Criterion\n\ncr", "## Criterion\n\n### case 1\n\ncr"),
+def test_a_page_with_context_and_method_sections_prints_no_unmigrated_line(tmp_path):
+    # case 506.2: the count of the shape before case 193 is gone, whatever the page holds
+    old = estimate_page().replace(
+        "## Criterion\n\ncr\n\n", "## Context\n\nc\n\n## Criterion\n\ncr\n\n## Method\n\nm\n\n"
     )
-    _, lines, _ = run(tmp_path)
-    assert lines[-1] == UNMIGRATED_ONE  # a block on a page with a method field still counts
-    assert len(lines) == 2  # the block's ref finding beside it
+    seed(tmp_path, rule=rule_page(status="built"), estimate=old)
+    code, lines, _ = run(tmp_path)
+    assert not [line for line in lines if "unmigrated" in line]
+    assert (code, lines) == (0, [])
 
 
 def test_passed_without_a_result_is_a_status_finding(tmp_path):
@@ -585,17 +577,15 @@ def test_a_leaf_method_field_names_a_test_a_make_target_or_a_reading(tmp_path):
     assert lines == ["estimates/estimate-x-works: method: the Makefile has no target test-nope"]
 
 
-def test_the_method_section_is_read_on_a_page_of_the_old_shape(tmp_path):
+def test_a_method_section_without_the_field_earns_no_method_finding(tmp_path):
+    # case 506.3: lint reads the `method` field alone, never a `## Method` section
     seed(
         tmp_path,
         rule=rule_page(status="built"),
         estimate=old_estimate_page(method="pytest in `tests/test_gone.py`."),
     )
     _, lines, _ = run(tmp_path)
-    assert lines == [
-        "estimates/estimate-x-works: method: names tests/test_gone.py, which does not exist",
-        UNMIGRATED_ONE,
-    ]
+    assert not [line for line in lines if ": method:" in line]
 
 
 def test_a_leaf_method_naming_a_missing_test_file_is_a_method_finding(tmp_path):
@@ -952,21 +942,14 @@ def test_a_case_block_naming_a_live_or_archived_decision_page_is_clean(tmp_path)
     write(wiki / "estimates" / "estimate-x-works.md", block_estimate("50", "49"))
     archived = tmp_path / "vault" / "archive" / "migration" / "2026-09-10" / "decisions"
     write(archived / "decision-case-49.md", "---\ntype: decision\n---\n")
-    _, lines, _ = run(tmp_path)
-    assert lines == [UNMIGRATED_ONE]  # the blocks are the old shape, nothing else
+    assert run(tmp_path) == (0, [], "")  # a block is no link and no longer counted
 
 
-def test_a_case_block_naming_no_decision_page_is_a_ref_finding(tmp_path):
+def test_a_case_block_naming_no_decision_page_earns_no_ref_finding(tmp_path):
+    # case 506.4: a `### case N` line of an Estimate's Criterion is not read as a link
     wiki = seed_decisions(tmp_path)
     write(wiki / "estimates" / "estimate-x-works.md", block_estimate("50", "51"))
-    _, lines, _ = run(tmp_path)
-    assert lines == [
-        (
-            "estimates/estimate-x-works: ref: ## Criterion names case 51, "
-            "and no live or archived page decision-case-51 exists"
-        ),
-        UNMIGRATED_ONE,
-    ]
+    assert run(tmp_path) == (0, [], "")
 
 
 def test_a_case_block_heading_is_not_a_section_boundary():

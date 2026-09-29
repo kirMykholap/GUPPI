@@ -2,7 +2,7 @@
 type: rule
 kind: Leaf
 purpose: Prevents a test from passing on the day it is written and failing later because the code read the real clock
-status: draft
+status: built
 enforcement: check
 implementation_ref: [tests/conftest.py, tests/test_conftest.py]
 parent: "[[rule-harness]]"
@@ -39,3 +39,4 @@ without `now` writes a time dated 2001 (case 145.1).
 - 2026-09-14 estimate estimate-tests-clock-pinned added · [[decision-case-145.1]]
 - 2026-09-14 status: draft → built · cascade
 - 2026-09-29 status: built → draft · cascade
+- 2026-09-29 status: draft → built · cascade

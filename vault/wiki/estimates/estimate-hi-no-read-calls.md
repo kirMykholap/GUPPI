@@ -1,10 +1,11 @@
 ---
 type: estimate
 kind: QA
-status: pending
+status: passed
 target: "[[rule-skill-hi]]"
 purpose: After /hi the output of every block of the skill is in the first turn's context with no read call
 method: "by hand at the /hi of the next session: the first turn's context and the tool calls before it read in the transcript, written into the estimate line"
+checked: 2026-09-29
 origin: raw/2026-09-09/ledger.md#case-11
 sprint: migration
 created: 2026-09-09
@@ -22,7 +23,7 @@ The context of the first turn holds the output of each block of the skill, in th
 
 ## Result
 
-/hi of 07:47: sprint.md, brief.md, branch, status, gh's message and the Tail: line (block 101.3, the marker after rule-github-issues, rule-ledger-tail the fourth child) all in context with no read-tool call; event_log.md carries a hi line
+2026-09-29, by hand at the /hi of session 1134: the first turn held the loaded files of rule-internal-context, then Pull, Render, Branch, Status, Open issues and Tail, in the order of the children of rule-skill-hi; the agent's only tool call before the reply was the Write of frontier.md
 
 ## History
 
@@ -31,3 +32,4 @@ The context of the first turn holds the output of each block of the skill, in th
 - 2026-09-13 criterion: case 101.3 added · [[decision-case-101.3]]
 - 2026-09-14 status: pending → passed · raw/2026-09-14/0747/ledger.md#L36
 - 2026-09-28 updated: the Criterion replaced whole — one When and Then; the hi line left to estimate-event-log-records, the block bookkeeping out; purpose and method set, Context and Method out (case 485.2) · [[decision-case-485.2]]
+- 2026-09-29 status: pending → passed · raw/2026-09-29/1134/ledger.md#L44

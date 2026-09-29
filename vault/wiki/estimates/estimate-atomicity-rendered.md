@@ -1,11 +1,11 @@
 ---
 type: estimate
 kind: QA
-status: pending
+status: passed
 target: "[[rule-atomicity]]"
 purpose: The text of rule-atomicity stands between its markers in case-schema.md, identical to the page, and a hand edit of the file is refused
 method: uv run guppi render --check exit 0; the text between the markers of case-schema.md read by hand after the librarian's render
-checked: 2026-09-23
+checked: 2026-09-29
 origin: raw/2026-09-22/1121/ledger.md#case-317
 sprint: migration
 created: 2026-09-22
@@ -25,7 +25,7 @@ Then:
 
 ## Result
 
-2026-09-23, uv run guppi render --check exit 0; the text between the markers rule-atomicity of vault/wiki/case-schema.md read by hand: the statement, the pair test, the scope — Case, Entity, Rule, Estimate, not a Lesson, not an Insight — depth not fixed; rule-case-protocol a MOC with the child rule-atomicity and its marker; the hook leg by tests/test_guard.py, 20 passed
+2026-09-29, session 1134: uv run guppi render --check exit 0; case-schema.md loaded at /hi holds the rule-atomicity text between its markers: statement, pair test, scope, not Lesson, not Insight, depth not fixed; rule-case-protocol has children [rule-atomicity] and its marker line
 
 ## History
 
@@ -33,3 +33,4 @@ Then:
 - 2026-09-23 updated: the method names render --check, not make lint (case 374) · [[decision-case-374]]
 - 2026-09-23 status: pending → passed · raw/2026-09-23/1126/ledger.md#L39
 - 2026-09-29 updated: the Criterion replaced whole — When and Then only, Given out, the old form of the pre-spec refusal out (case 492.1) · [[decision-case-492.1]]
+- 2026-09-29 status: pending → passed · raw/2026-09-29/1134/ledger.md#L38

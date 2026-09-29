@@ -1,10 +1,11 @@
 ---
 type: estimate
 kind: QA
-status: pending
+status: passed
 target: "[[rule-settings]]"
 purpose: The settings file is rendered whole from rule-settings and its three children, parses as JSON and loads at session start
 method: "make test-harness, then by hand at a later session start: json.load on the rendered file, guppi render --check, and the session-start line in the day's event log"
+checked: 2026-09-29
 origin: raw/2026-09-12/ledger.md#case-85.2
 sprint: migration
 created: 2026-09-12
@@ -24,7 +25,7 @@ The file is the Render of `rule-settings`, and the text of each child replaces i
 
 ## Result
 
-session M start 07:30:30: .claude/settings.json rendered by the librarian of session L parses as JSON, guppi render --check exits 0, and the session-start line of fde37e7c was written from the rendered file
+2026-09-29, make test-harness: 112 passed; json.load of .claude/settings.json gives keys permissions, hooks; uv run guppi render --check exit 0; vault/raw/2026-09-29/event_log.md line 694: 11:34:24 d3c46a47 session-start startup
 
 ## History
 
@@ -32,3 +33,4 @@ session M start 07:30:30: .claude/settings.json rendered by the librarian of ses
 - 2026-09-14 updated: Method names make test-harness (case 112.3) · [[decision-case-112.3]]
 - 2026-09-14 status: pending → passed · raw/2026-09-14/0747/ledger.md#L35
 - 2026-09-29 updated: the Criterion replaced whole — the block 85.2 as When and Then, the line on its own reading into the lines it names; purpose and method set, Context and Method out (case 498.3) · [[decision-case-498.3]]
+- 2026-09-29 status: pending → passed · raw/2026-09-29/1134/ledger.md#L48

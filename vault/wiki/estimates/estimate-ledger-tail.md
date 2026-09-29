@@ -1,10 +1,11 @@
 ---
 type: estimate
 kind: QA
-status: pending
+status: passed
 target: "[[rule-ledger-tail]]"
 purpose: guppi tail prints every ledger record line that no materialize.yaml covers, and /hi shows it as Tail
 method: "pytest tests/test_tail.py; by hand at the /hi of the next session: the Tail line against a run of uv run guppi tail by hand, written into the estimate line"
+checked: 2026-09-29
 origin: raw/2026-09-13/ledger.md#case-101.2
 sprint: migration
 created: 2026-09-13
@@ -26,10 +27,11 @@ The script walks the date-level ledger of a date first, then its session ledgers
 
 ## Result
 
-block 101.2: at /hi of 07:47 Tail: printed nothing — both units of 2026-09-13 covered by their yamls; by hand at 09:5x uv run guppi tail prints the 34 record lines of raw/2026-09-14/0747/ledger.md, the one ledger without a yaml, as 2026-09-14/0747 L<n>: <line>, exit 0; the render carries the Tail: line between the rule-ledger-tail markers
+2026-09-29, uv run pytest tests/test_tail.py: 4 passed; at the /hi of session 1134 Tail was empty with every unit covered; uv run guppi tail by hand after the Cases printed L1-L22 of 2026-09-29/1134, a ledger with no yaml, each line opening with date/folder and L<n>; guppi/tail.py imports uncovered_lines of guppi/archive.py
 
 ## History
 
 - 2026-09-13 created · [[decision-case-101.2]]
 - 2026-09-14 status: pending → passed · raw/2026-09-14/0747/ledger.md#L45
 - 2026-09-28 updated: the Criterion replaced whole — one When and Then; purpose and method set, Context and Method out (case 485.5) · [[decision-case-485.5]]
+- 2026-09-29 status: pending → passed · raw/2026-09-29/1134/ledger.md#L45

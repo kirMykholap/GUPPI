@@ -1,11 +1,11 @@
 ---
 type: estimate
 kind: QA
-status: pending
+status: passed
 target: "[[rule-lessons-schema]]"
 purpose: A Lesson page in the shape of the rendered schema has no schema finding and a page outside it has one per defect
 method: pytest tests/test_schemas.py -k lessons on the live vault/wiki/lessons/schema.yaml — a page in the shape, then one defect at a time; the live reading make lint, no schema finding on wiki/lessons/
-checked: 2026-09-23
+checked: 2026-09-29
 origin: raw/2026-09-22/0014/ledger.md#case-304.5
 sprint: migration
 created: 2026-09-22
@@ -24,7 +24,7 @@ The file equals the Render. Lint reads from it: required `type, kind, root_cause
 
 ## Result
 
-2026-09-23, uv run pytest tests/test_schemas.py -k lessons: 5 passed; the live yaml carries the required and optional fields, kind error | knowledge, status new | clustered | archived, knowledge requires source, clustered requires insight, Trigger, Root cause, History required; uv run guppi lint: no schema finding on wiki/lessons/
+2026-09-29, uv run pytest tests/test_schemas.py -k lessons: 5 passed; guppi lint: no finding on lessons/
 
 ## History
 
@@ -33,3 +33,4 @@ The file equals the Render. Lint reads from it: required `type, kind, root_cause
 - 2026-09-23 updated: the Given names properties.single among the keys lint reads (case 362.1) · [[decision-case-362.1]]
 - 2026-09-23 status: pending → passed · raw/2026-09-23/1126/ledger.md#L31
 - 2026-09-29 updated: the Criterion replaced whole — When and Then only, Given and the history of schema.md out (case 490.6) · [[decision-case-490.6]]
+- 2026-09-29 status: pending → passed · raw/2026-09-29/1134/ledger.md#L59

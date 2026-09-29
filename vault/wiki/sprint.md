@@ -13,17 +13,15 @@ Rule-class files dissolved, `index.md` gone, the `file` route out of the scripts
 - [ ] make lint exits 0 at the close of the sprint, unmigrated included, but for the unread of the sprint page's own Estimates · pending
 - [ ] vault/parked/, the 2026-08 documents, the old archive root and the empty raw date folders are gone by decision at the close of the sprint · pending
 - [ ] make test green on the last commit of migration and the branch merged into main · pending
-- [ ] No Rule-class file at the close of Slice 3f — the schemas rendered from rule pages, the glossary from entity-glossary, index.md gone, the file route out of the scripts · pending
+- [x] No Rule-class file at the close of Slice 3f — the schemas rendered from rule pages, the glossary from entity-glossary, index.md gone, the file route out of the scripts · passed
 - [ ] index.md is gone and no live page, harness file or script docstring points at a §N of it or at the file as a source · pending
 - [x] The file route is out of the scripts — no RULE_CLASS, rule_class, applied by hand or prose_names in guppi/; an update item with file is a pre-spec finding; a slug without a prefix lands category unknown; tests green and no lint finding on the schema.yaml of a category folder · passed
 
 ## Milestones
 
-### [ ] Slice 3g — the model of the Criterion, one pass over the Estimates
+### [ ] Slice 4 — conversion of the parked pages by group
 
-- [ ] the old shape removed: once `make lint` counts no `unmigrated` page, the checks of the shape before case 193 leave the scripts, `rule-estimates-schema` and `estimate-lint-counts-the-unmigrated` (case 202)
-
-### [ ] Slice 4 — conversion of the parked pages by group — 1 item: [[estimate-sprint-migration-leftovers-gone]]
+- [ ] [[estimate-sprint-migration-leftovers-gone]] — every page of `vault/parked/` and every document of 2026-08 under `docs/` converted, archived or deleted by a decision · pending
 
 ### [ ] Slice 5 — closing — 5 items: [[estimate-sprint-migration-lint-clean]], [[estimate-sprint-migration-merges]], [[rule-spec-box]], [[rule-morph]], the close of a sprint — `entity-sprint-<id>` and the Estimates it lists go to the archive together once each has passed: a done-condition of a sprint has nothing left to guard after the close; not yet decided (case 478.2)
 
@@ -37,9 +35,7 @@ cascades, the slug checked against the archive) built 2026-09-13. Slice 3d (the
 Estimate model, case 182) opened and closed 2026-09-16: Cases 187–190 ratified in
 session 1034 and conserved, repaired by 193–198 and built in session 1651, case 191
 taken up by 201–203 and built in session 1955 — `generate`, `lint`, `pre-spec` by the
-model. The recut of each old Estimate at its first touch runs on past the Slice: lint
-counts the remainder as `unmigrated` (42 at the close of 3d) and the old shape is
-removed when it reaches zero. `/grill-me` has its page since case 443.1, `rule-skill-grill-me`. Kept without a page: `git pull` in `/hi`
+model. The recut of each old Estimate ran on past the Slice, 42 pages at the close of 3d; Slice 3g recut the last of them (cases 484-500) and closed with case 506, which took the checks of the old shape out of the scripts. `/grill-me` has its page since case 443.1, `rule-skill-grill-me`. Kept without a page: `git pull` in `/hi`
 without an upstream (decision 11.1); `gh` not logged in, no GitHub remote (11.2) —
 both decided again at the close (`estimate-sprint-migration-leftovers-gone`).
 

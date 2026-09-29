@@ -1,11 +1,11 @@
 ---
 type: estimate
 kind: QA
-status: pending
+status: passed
 target: "[[entity-sprint-migration]]"
 purpose: No Rule-class file at the close of Slice 3f — the schemas rendered from rule pages, the glossary from entity-glossary, index.md gone, the file route out of the scripts
 method: "one reading by hand: ls vault/wiki/*/schema.md empty and vault/wiki/index.md absent; grep -rniE --include='*.py' 'rule.class|applied by hand|prose_names' guppi/ tests/ empty; uv run guppi render --check and uv run guppi glossary --check exit 0"
-checked: 2026-09-27
+checked: 2026-09-29
 origin: raw/2026-09-21/1853/ledger.md#case-301
 sprint: migration
 created: 2026-09-21
@@ -25,7 +25,7 @@ No Rule-class file: every `vault/wiki/<category>/schema.yaml` is the Render of t
 
 ## Result
 
-2026-09-27, ls vault/wiki/*/schema.md and vault/wiki/index.md: no such file; grep -rniE 'rule.class|applied by hand|prose_names' guppi/ tests/ exit 1, empty; uv run guppi render --check and glossary --check exit 0; the six schemas governed by rule-<category>-schema under rule-page-schemas, rule-sprint applies_to entity-sprint
+2026-09-29, no vault/wiki/*/schema.md, vault/wiki/index.md absent; grep for rule.class, applied by hand, prose_names over guppi/ and tests/ empty; render --check and glossary --check exit 0
 
 ## History
 
@@ -35,3 +35,4 @@ No Rule-class file: every `vault/wiki/<category>/schema.yaml` is the Render of t
 - 2026-09-23 updated: the reading of the Slice without make lint, the grep widened to the retired term over guppi/ and tests/ (case 367) · [[decision-case-367]]
 - 2026-09-27 status: pending → passed · raw/2026-09-27/2050/ledger.md#L30
 - 2026-09-29 updated: the Criterion replaced whole — When and Then only, Given, the pointer to lint-clean and the bounds of the Slice out (case 494.4) · [[decision-case-494.4]]
+- 2026-09-29 status: pending → passed · raw/2026-09-29/1134/ledger.md#L65

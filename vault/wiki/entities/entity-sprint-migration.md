@@ -21,10 +21,6 @@ Rule-class files dissolved, `index.md` gone, the `file` route out of the scripts
 
 ## Milestones
 
-### Slice 3g — the model of the Criterion, one pass over the Estimates
-
-- the old shape removed: once `make lint` counts no `unmigrated` page, the checks of the shape before case 193 leave the scripts, `rule-estimates-schema` and `estimate-lint-counts-the-unmigrated` (case 202)
-
 ### Slice 4 — conversion of the parked pages by group
 
 - [[estimate-sprint-migration-leftovers-gone]] — every page of `vault/parked/` and every document of 2026-08 under `docs/` converted, archived or deleted by a decision
@@ -57,9 +53,7 @@ cascades, the slug checked against the archive) built 2026-09-13. Slice 3d (the
 Estimate model, case 182) opened and closed 2026-09-16: Cases 187–190 ratified in
 session 1034 and conserved, repaired by 193–198 and built in session 1651, case 191
 taken up by 201–203 and built in session 1955 — `generate`, `lint`, `pre-spec` by the
-model. The recut of each old Estimate at its first touch runs on past the Slice: lint
-counts the remainder as `unmigrated` (42 at the close of 3d) and the old shape is
-removed when it reaches zero. `/grill-me` has its page since case 443.1, `rule-skill-grill-me`. Kept without a page: `git pull` in `/hi`
+model. The recut of each old Estimate ran on past the Slice, 42 pages at the close of 3d; Slice 3g recut the last of them (cases 484-500) and closed with case 506, which took the checks of the old shape out of the scripts. `/grill-me` has its page since case 443.1, `rule-skill-grill-me`. Kept without a page: `git pull` in `/hi`
 without an upstream (decision 11.1); `gh` not logged in, no GitHub remote (11.2) —
 both decided again at the close (`estimate-sprint-migration-leftovers-gone`).
 
@@ -116,3 +110,4 @@ No file of `vault/wiki/` is written by hand.
 - 2026-09-29 updated: Slice 3g: the Estimates of rule-render-harness, rule-settings, rule-default-mode and rule-governed-files-hook recut to one Criterion (case 498) · [[decision-case-498.6]]
 - 2026-09-29 updated: Slice 3g: the Estimates of rule-end-of-work and rule-handoff recut to one Criterion, the dispatch of the handoff by its path (case 499) · [[decision-case-499.3]]
 - 2026-09-29 updated: Slice 3g: the Estimates of rule-ask, rule-index-check, rule-cleanup, rule-raw-archive and rule-tests-clock-pinned recut to one Criterion; the recut of the old shape done (cases 498-500), its note replaced by the note on removing the checks of the old shape · [[decision-case-500.6]]
+- 2026-09-29 updated: Slice 3g closed: the checks of the old shape left the scripts, the schema and lint (case 506) · [[decision-case-506.7]]

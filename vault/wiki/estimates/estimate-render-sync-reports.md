@@ -1,10 +1,11 @@
 ---
 type: estimate
 kind: QA
-status: pending
+status: passed
 target: "[[rule-render-harness]]"
 purpose: At session start guppi render --sync shows the diff of each governed file that parted from its page and writes the page's text back, and is silent when every file matches
 method: pytest tests/test_render.py, plus by hand at the first turn of a later session
+checked: 2026-09-29
 origin: raw/2026-09-12/ledger.md#case-59.7
 sprint: migration
 created: 2026-09-12
@@ -25,7 +26,7 @@ For each governed file that differs from its render, stdout holds a unified diff
 
 ## Result
 
-live 2026-09-13 session L start, after the librarian of K rendered nothing: the SessionStart hook printed the unified diff of the three governed files whose pages had parted — .claude/settings.json, .claude/agents/librarian-guppi.md, .claude/skills/pre-task/SKILL.md — into the first turn and wrote the pages' text back (git status M on the three, git diff --stat 23 insertions 8 deletions); uv run guppi render --check then exited 0 with no output; the three were committed as 44e4e37
+2026-09-29, uv run pytest tests/test_render.py: 34 passed; by hand, the first turn of session 1134 after the librarian's run of 0137: no diff, git status clean, render --check exit 0
 
 ## History
 
@@ -35,3 +36,4 @@ live 2026-09-13 session L start, after the librarian of K rendered nothing: the 
 - 2026-09-13 status: pending → passed · raw/2026-09-13/ledger.md#L44
 - 2026-09-17 ref removed · one-off migration · raw/2026-09-16/2238/spec.md#case-210
 - 2026-09-29 updated: the Criterion replaced whole — the unit and live paragraph as When and Then; purpose and method set, Context and Method out (case 498.2) · [[decision-case-498.2]]
+- 2026-09-29 status: pending → passed · raw/2026-09-29/1134/ledger.md#L47

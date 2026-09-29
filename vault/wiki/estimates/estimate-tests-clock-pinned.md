@@ -1,10 +1,11 @@
 ---
 type: estimate
 kind: QA
-status: pending
+status: passed
 target: "[[rule-tests-clock-pinned]]"
 purpose: "A test that leaves the code on the real clock fails on the day it is written: every guppi module's clock is pinned to 2001 by one autouse fixture"
 method: pytest tests/test_conftest.py, plus make test green under the fixture
+checked: 2026-09-29
 origin: raw/2026-09-14/1633/ledger.md#case-145.1
 sprint: migration
 created: 2026-09-14
@@ -25,10 +26,11 @@ Before every test, an autouse fixture in `tests/conftest.py` sets into every mod
 
 ## Result
 
-block 145.1, 2026-09-14: tests/test_conftest.py — event.run without now writes under raw/2001-01-01 at 00:00:00; every module with a datetime attribute pinned; strptime, fromisoformat and the constructor unchanged; make test 368 green under the fixture, after it caught the three CLI tests that read the real clock (test_ledger, test_pretask, test_event), moved to the fixture
+2026-09-29, uv run pytest tests/test_conftest.py: 3 passed; tests/conftest.py builds the list by pkgutil.iter_modules over guppi; make test 900 passed under the fixture
 
 ## History
 
 - 2026-09-14 created · [[decision-case-145.1]]
 - 2026-09-14 status: pending → passed · raw/2026-09-14/1633/ledger.md#L57
 - 2026-09-29 updated: the Criterion replaced whole — the block 145.1 as When and Then, the run the test calls named as it reads, the green run of make test into method; purpose and method set, Context and Method out (case 500.5) · [[decision-case-500.5]]
+- 2026-09-29 status: pending → passed · raw/2026-09-29/1134/ledger.md#L36

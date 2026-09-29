@@ -2,7 +2,7 @@
 type: rule
 kind: Leaf
 purpose: Prevents a ratified line from existing only in a chat reply, or landing in a session no /hi opened
-status: draft
+status: built
 enforcement: hook
 implementation_ref: [guppi/ledger.py, guppi/materialize.py, guppi/gate.py, tests/test_ledger.py, tests/test_gate.py, .claude/settings.json]
 parent: "[[rule-session-start]]"
@@ -96,3 +96,4 @@ the implementation arrives in the session after the probe (Slice 1, session B).
 - 2026-09-29 updated: the ledger hook refuses a lesson line whose {addressed_by:case N} has no decision line of Case N before it (case 497.1) · [[decision-case-497.1]]
 - 2026-09-29 estimate estimate-ledger-write-refuses-a-mark-with-no-decision-line added · [[decision-case-497.1]]
 - 2026-09-29 status: built → draft · cascade
+- 2026-09-29 status: draft → built · cascade

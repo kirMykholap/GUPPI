@@ -1,10 +1,11 @@
 ---
 type: estimate
 kind: QA
-status: pending
+status: passed
 target: "[[rule-github-issues]]"
 purpose: At /hi the context holds the open issues or the reason gh gives for none, and the skill completes
 method: by hand at the /hi of the next session, in the current gh state, written into the estimate line
+checked: 2026-09-29
 origin: raw/2026-09-09/ledger.md#case-11
 sprint: migration
 created: 2026-09-09
@@ -22,11 +23,11 @@ The line `Open issues:` holds the list of open issues, or the message of `gh` it
 
 ## Result
 
-Passing. `gh`'s own message (`To get started with GitHub CLI, please run: gh auth
-login`) was in context and the skill completed (2026-09-09, session B).
+2026-09-29, by hand at the /hi of session 1134: the Open issues line held the message of gh itself (not logged in, run gh auth login), and the Tail block after it still ran
 
 ## History
 
 - 2026-09-09 created · raw/2026-09-09/ledger.md#case-11
 - 2026-09-09 status: pending → passed · written by hand, no generator yet
 - 2026-09-28 updated: the Criterion replaced whole — one When and Then; purpose and method set, Context and Method out (case 485.4) · [[decision-case-485.4]]
+- 2026-09-29 status: pending → passed · raw/2026-09-29/1134/ledger.md#L43

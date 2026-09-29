@@ -22,7 +22,6 @@ A `create` becomes a page: `type`, the fields of the entry, `status` by category
 **＋** An Estimate page carries `purpose`, `method` and `checked` as fields, in that order after `target`; `## Criterion` from `sections`; neither `## Context` nor `## Method` is written.
 **＋** A `create` whose slug is a placeholder (`draft`, no `kind`) fills it: `created` and `deferred_by` kept, History `created over placeholder`; any other existing page is a collision, not a rename.
 **＋** An `update` applies `set` to the frontmatter, `sections` as whole replacements, `replace` inside the body (whitespace collapsed, exactly one occurrence), History `updated: <change>`; an `update` of an Estimate with `sections.Criterion` replaces the section whole.
-**＋** An `update` of an Estimate whose `set` carries `method` writes the field after `purpose` and drops `## Context` and `## Method` where the page carries them — the field replaces the section, the Case is reached by `origin`; an `update` without `set.method` touches no section (case 211.1).
 **＋** An `update`, `estimate`, `delete` or `defer` whose slug is not under `vault/wiki/` finds the page under `vault/archive/` (`raw/` folders excluded) and edits it there.
 **＋** An `estimate` sets `status`, overwrites `## Result`, writes `checked` — the date the `result` opens with, else the yaml's date — and appends History `status: a → b · <ledger pointer>`.
 **＋** A `delete` sets `archived` with History `deleted`; a `delete` outside the vault is a line on stdout, the entry applied, no page written.
@@ -31,7 +30,8 @@ A `create` becomes a page: `type`, the fields of the entry, `status` by category
 **＋** Every ref field is written as `"[[slug]]"`, a list as `["[[a]]", "[[b]]"]`; a slug without a category prefix stays bare; read through the brackets.
 **＋** A `create` in `insights` applies only with the mark `librarian`; a `delete` of an Insight is refused always.
 **＋** History lines and `log.md` lines carry the date of the run and end with `[[decision-case-N]]` or the ledger pointer; `log.md` is appended after each entry; a tag of `new_tags` lands in `tags.md`, a used and undeclared one goes to stderr.
-**－** No body section is derived from a ref field; a section a page still carries is not touched, except the two `set.method` drops.
+**－** No body section is derived from a ref field; a section the entry does not name under `sections` or reach by `replace` is not touched.
+**－** An `update` of an Estimate whose `set` carries `method` drops no section.
 **－** `criterion_block` on an `update` and an entry of kind `remove_criterion` are not applied: a shape the script does not know — the entry fails alone (`estimate-generate-fails-alone`).
 
 ## Result
@@ -79,3 +79,4 @@ A `create` becomes a page: `type`, the fields of the entry, `status` by category
 - 2026-09-20 ref `estimate-pretask-hook-gates` → `estimate-prespec-hook-gates` · [[decision-case-261]]
 - 2026-09-20 updated: the word moved: the module pretask → prespec and the slug -pretask-reconciles → -prespec-reconciles in the Criterion; the promise and the reading unchanged, passed kept (case 265) · [[decision-case-265]]
 - 2026-09-29 updated: the Criterion restored whole — the text of case 211.1, which case 211.3 overwrote, less its pointer line; purpose set (case 489.1) · [[decision-case-489.1]]
+- 2026-09-29 updated: the Criterion replaced whole — set.method drops no section (case 506.6) · [[decision-case-506.6]]

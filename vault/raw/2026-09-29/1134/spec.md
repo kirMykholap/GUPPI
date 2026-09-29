@@ -65,8 +65,8 @@ update:
 ```
 
 ```tasks
-- [ ] update `rule-estimates-schema`
-- [ ] update `estimate-estimates-schema-checked`
+- [x] update `rule-estimates-schema`
+- [x] update `estimate-estimates-schema-checked`
 - [ ] `uv run guppi render`: `vault/wiki/estimates/schema.yaml`
 - [x] `tests/test_schemas.py`: a test that an Estimate page without `method` has one finding `missing field method` against the live `schema.yaml`
 - [ ] read `estimate-estimates-schema-checked` — `pytest tests/test_schemas.py -k estimates`, then `make lint` with no `schema` finding on `vault/wiki/estimates/`, at a later session
@@ -104,8 +104,8 @@ delete:
 ```tasks
 - [x] `guppi/lint.py`: remove `is_old_shape`, `check_unmigrated` and its call in `lint`, and the class `unmigrated` from the docstring
 - [x] `tests/test_lint.py`: remove the test of the `unmigrated` count and its fixture of the old shape; a test that a page with `## Context` and `## Method` sections prints no `unmigrated` line
-- [ ] update `rule-lint`
-- [ ] delete `estimate-lint-counts-the-unmigrated`
+- [x] update `rule-lint`
+- [x] delete `estimate-lint-counts-the-unmigrated`
 ```
 
 ### Case 506.3 — Lint reads the `method` field only
@@ -141,7 +141,7 @@ update:
 ```tasks
 - [x] `guppi/lint.py`: `method_of` returns the field alone; the docstring of the class `method` and of `check_method` drops the `## Method` section
 - [x] `tests/test_lint.py`: remove the test that the `## Method` section is read on a page of the old shape; a test that a page with no `method` field and a `## Method` section gets no `method` finding
-- [ ] update `estimate-lint-checks-the-method`
+- [x] update `estimate-lint-checks-the-method`
 - [ ] read `estimate-lint-checks-the-method` — `uv run pytest tests/test_lint.py`, at a later session
 ```
 
@@ -180,7 +180,7 @@ update:
 ```tasks
 - [x] `guppi/lint.py`: `check_criterion` reads Decision pages only; `CASE_BLOCK` removed; the docstring drops the `### case N` block
 - [x] `tests/test_lint.py`: the test of a `### case N` block with no Decision page becomes a test that it earns no `ref` finding
-- [ ] update `estimate-lint-finds-a-broken-link`
+- [x] update `estimate-lint-finds-a-broken-link`
 - [ ] read `estimate-lint-finds-a-broken-link` — `uv run pytest tests/test_lint.py`, at a later session
 ```
 
@@ -223,8 +223,8 @@ update:
 ```tasks
 - [x] `guppi/generate.py`: remove the refusal `a recut without method` from `update` and from the docstring
 - [x] `tests/test_generate.py`: remove the test that a recut without method fails alone; a test that an `update` with `sections.Criterion` on an Estimate page without `method` applies
-- [ ] update `estimate-generate-fails-alone`
-- [ ] update `rule-case-protocol`
+- [x] update `estimate-generate-fails-alone`
+- [x] update `rule-case-protocol`
 - [ ] `uv run guppi render`: `vault/wiki/case-schema.md`
 - [ ] read `estimate-generate-fails-alone` — `pytest tests/test_generate.py`, at a later session
 ```
@@ -271,7 +271,7 @@ update:
 ```tasks
 - [x] `guppi/generate.py`: remove the drop of `## Context` and `## Method` on `set.method` from `update` and from the docstring
 - [x] `tests/test_generate.py`: remove the two tests of the drop and the fixture of the old shape; a test that an `update` whose `set` carries `method` leaves every section of the page as it stands
-- [ ] update `estimate-generate-writes`
+- [x] update `estimate-generate-writes`
 - [ ] read `estimate-generate-writes` — `pytest tests/test_generate.py`, then by hand at a later librarian's run
 ```
 
@@ -304,7 +304,7 @@ update:
 ```
 
 ```tasks
-- [ ] update `entity-sprint-migration`
+- [x] update `entity-sprint-migration`
 - [ ] `uv run guppi sprint`
 ```
 
@@ -404,8 +404,8 @@ update:
 ```
 
 ```tasks
-- [ ] update `rule-skill-hi` — the reading step before the question on the order
-- [ ] create `estimate-hi-takes-its-readings` — the promise of the reading step at `/hi`
+- [x] update `rule-skill-hi` — the reading step before the question on the order
+- [x] create `estimate-hi-takes-its-readings` — the promise of the reading step at `/hi`
 - [ ] `uv run guppi render`: `.claude/skills/hi/SKILL.md`
 - [ ] read `estimate-hi-takes-its-readings` — by hand, at the first `/hi` of the next session
 ```
@@ -450,8 +450,8 @@ update:
 ```
 
 ```tasks
-- [ ] update `rule-skill-hi` — the Cases shown in the chat as a checklist; a `W` line closed where its work is done
-- [ ] update `estimate-hi-writes-frontier` — the Criterion replaced whole: the Cases as a checklist, a `W` line closed where its work is done
+- [x] update `rule-skill-hi` — the Cases shown in the chat as a checklist; a `W` line closed where its work is done
+- [x] update `estimate-hi-writes-frontier` — the Criterion replaced whole: the Cases as a checklist, a `W` line closed where its work is done
 - [ ] `uv run guppi render`: `.claude/skills/hi/SKILL.md`
 - [ ] read `estimate-hi-writes-frontier` — by hand, at the first `/hi` of the next session
 ```
@@ -501,8 +501,8 @@ update:
 ```
 
 ```tasks
-- [ ] update `rule-work-mode` — the reading step after the last task
-- [ ] create `estimate-work-mode-takes-the-work-readings` — the promise of the reading step of `/work`
+- [x] update `rule-work-mode` — the reading step after the last task
+- [x] create `estimate-work-mode-takes-the-work-readings` — the promise of the reading step of `/work`
 - [ ] `uv run guppi render`: `.claude/skills/work/SKILL.md`
 - [ ] read `estimate-work-mode-takes-the-work-readings` — by hand, at the first `/work` of a session after the render
 ```
@@ -556,9 +556,9 @@ update:
 ```
 
 ```tasks
-- [ ] update `rule-brief` — the facts of the run at the end of a Readings due line
-- [ ] update `rule-documentation` — the archive output added to the brief
-- [ ] create `estimate-brief-carries-the-run-facts` — the promise of the facts in the brief
+- [x] update `rule-brief` — the facts of the run at the end of a Readings due line
+- [x] update `rule-documentation` — the archive output added to the brief
+- [x] create `estimate-brief-carries-the-run-facts` — the promise of the facts in the brief
 - [ ] `uv run guppi render`: `.claude/agents/librarian-guppi.md`
 - [ ] read `estimate-brief-carries-the-run-facts` — by hand, at the `/hi` after the first librarian run on the new frame
 ```

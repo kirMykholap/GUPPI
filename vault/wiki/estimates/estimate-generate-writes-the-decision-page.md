@@ -1,11 +1,11 @@
 ---
 type: estimate
 kind: QA
-status: pending
+status: passed
 target: "[[rule-page-generation]]"
 purpose: One Decision page per Case, written before its entries, with its lists, its body and its defers
 method: pytest tests/test_generate.py, the tests of the decision page; the live reading in the librarian's run
-checked: 2026-09-24
+checked: 2026-09-29
 origin: raw/2026-09-16/1955/ledger.md#case-201.2
 sprint: migration
 created: 2026-09-16
@@ -28,7 +28,7 @@ One page `vault/wiki/decisions/decision-case-<N>.md` is written: `case`, `status
 
 ## Result
 
-2026-09-24, `uv run pytest tests/test_generate.py`: 87 passed
+2026-09-29, tests/test_generate.py 97 passed; ff62585 holds 25 new Decision pages 497.1-505 with no When or Criterion; 501.2 supersedes 495, which stands superseded; deferred_by 495 and 496 cleared from rule-case-build and rule-skill-wait-what; 503 has its Deferred section
 
 ## History
 
@@ -41,3 +41,4 @@ One page `vault/wiki/decisions/decision-case-<N>.md` is written: `case`, `status
 - 2026-09-25 updated: the Criterion replaced whole — the Decision page by the model of case 378; the false line on no Given out, the Given left to estimate-generate-writes-the-given (case 398.1) · [[decision-case-398.1]]
 - 2026-09-25 status: pending → passed · raw/2026-09-24/2214/ledger.md#L33
 - 2026-09-27 updated: the Criterion replaced whole — a supersedes clears deferred_by only on the pages the superseding Case names (case 467.3) · [[decision-case-467.3]]
+- 2026-09-29 status: pending → passed · raw/2026-09-29/1134/ledger.md#L56

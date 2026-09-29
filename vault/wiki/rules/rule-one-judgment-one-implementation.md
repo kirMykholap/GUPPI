@@ -2,7 +2,7 @@
 type: rule
 kind: Leaf
 purpose: Prevents one judgment of the pipeline from living in two implementations that drift apart under a green suite
-status: draft
+status: built
 enforcement: render
 governs: CLAUDE.md
 render_mode: partial
@@ -34,3 +34,4 @@ Where code judges the same text in two places — a check and a writer, a ticker
 - 2026-09-27 deferred · [[decision-case-455]]
 - 2026-09-27 defer by decision-case-455 superseded · [[decision-case-462]]
 - 2026-09-29 status: built → draft · cascade
+- 2026-09-29 status: draft → built · cascade

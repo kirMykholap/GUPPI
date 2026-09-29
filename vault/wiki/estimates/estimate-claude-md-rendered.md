@@ -1,11 +1,11 @@
 ---
 type: estimate
 kind: QA
-status: pending
+status: passed
 target: "[[rule-claude-md]]"
 purpose: CLAUDE.md equals the Render of rule-claude-md with each child between its markers, and every session loads that text
 method: uv run guppi render and guppi render --check after the build, plus one reading of CLAUDE.md at the next session start, by hand
-checked: 2026-09-23
+checked: 2026-09-29
 origin: raw/2026-09-12/ledger.md#case-71.1
 sprint: migration
 created: 2026-09-12
@@ -25,7 +25,7 @@ Then:
 
 ## Result
 
-2026-09-23, uv run guppi render --check exit 0; CLAUDE.md read at the /hi of session 1126: # GUPPI, the one paragraph on the harness and the vault, then rule-language, rule-agent-writing and rule-one-judgment-one-implementation in their markers; no @ import, no index.md, no Migration mode, no Commands, no one rule, no sentence on memory; the children of rule-claude-md are the three
+2026-09-29, session 1134: uv run guppi render --check exit 0; CLAUDE.md read at session start: # GUPPI, the one paragraph with vault/, the glossary path and /hi in code spans, then rule-language, rule-agent-writing and rule-one-judgment-one-implementation in their markers; no @ import, no one rule
 
 ## History
 
@@ -44,3 +44,4 @@ Then:
 - 2026-09-23 updated: the Criterion names the third child and drops index.md, gone since case 318 (case 360) · [[decision-case-360]]
 - 2026-09-23 status: pending → passed · raw/2026-09-23/1126/ledger.md#L34
 - 2026-09-29 updated: the Criterion replaced whole — When and Then only, Given and the history of Migration mode out (case 492.2) · [[decision-case-492.2]]
+- 2026-09-29 status: pending → passed · raw/2026-09-29/1134/ledger.md#L41

@@ -6,7 +6,7 @@ status: draft
 enforcement: check
 implementation_ref: [guppi/lint.py, tests/test_lint.py, Makefile]
 parent: "[[rule-harness]]"
-estimates: ["[[estimate-lint-catches]]", "[[estimate-lint-finds-a-broken-link]]", "[[estimate-lint-checks-the-statuses]]", "[[estimate-lint-checks-the-method]]", "[[estimate-lint-counts-the-unmigrated]]", "[[estimate-lint-catches-a-broken-fence]]"]
+estimates: ["[[estimate-lint-catches]]", "[[estimate-lint-finds-a-broken-link]]", "[[estimate-lint-checks-the-statuses]]", "[[estimate-lint-checks-the-method]]", "[[estimate-lint-catches-a-broken-fence]]"]
 origin: raw/2026-09-09/ledger.md#case-21
 sprint: migration
 created: 2026-09-09
@@ -19,9 +19,7 @@ Prevents a page that breaks its schema, points at nothing, claims a status its
 Estimates do not support, or waits for a reading nobody took from sitting in the vault
 unnoticed. Pages are written by the generator;
 both drift, and nothing else reads the whole graph at once. Red is a signal, not a
-gate: a `pending` Estimate is red until its reading (case 182, point 13), a
-placeholder is red with the count of its defers (case 186.3), the pages of the shape
-before case 193 are red as one counted line until the last is recut (case 202).
+gate: a `pending` Estimate is red until its reading (case 182, point 13), and a placeholder is red with the count of its defers (case 186.3).
 `make lint` runs it after `render --check`, `sprint --check`, `backlog --check` and `glossary --check`; all five only report, so the Makefile's rule — no target writes to the tree — holds (cases 147.7, 227). `parent: rule-harness` names the
 MOC of the harness tools: lint runs with the renderer, in no phase of the session. The
 classes and their order live in the docstring of `guppi/lint.py`.
@@ -77,3 +75,5 @@ classes and their order live in the docstring of `guppi/lint.py`.
 - 2026-09-27 status: draft → built · cascade
 - 2026-09-29 estimate estimate-lint-catches-a-broken-fence added · [[decision-case-487.2]]
 - 2026-09-29 status: built → draft · cascade
+- 2026-09-29 updated: the unmigrated count gone from the Purpose (case 506.2) · [[decision-case-506.2]]
+- 2026-09-29 estimate estimate-lint-counts-the-unmigrated archived · cleanup

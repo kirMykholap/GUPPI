@@ -1,11 +1,11 @@
 ---
 type: estimate
 kind: QA
-status: pending
+status: passed
 target: "[[rule-sprint]]"
 purpose: sprint, once it wrote sprint.md and exits 0, ticks the guppi sprint lines of every Spec under raw/ whose yaml is applied whole
 method: pytest tests/test_sprint.py, plus one reading of this session's spec.md and the 1957 Spec after the librarian's run
-checked: 2026-09-18
+checked: 2026-09-29
 origin: raw/2026-09-18/2054/ledger.md#case-250.2
 sprint: migration
 created: 2026-09-18
@@ -25,10 +25,11 @@ In the `spec.md` of every unit whose yaml is applied whole, every unticked task 
 
 ## Result
 
-2026-09-18, pytest tests/test_sprint.py (3 tests of the tick, 429 green) and the librarian's `uv run guppi sprint` of commit 3e1251f: the `uv run guppi sprint` lines 37, 103, 137 of the 1957 Spec — a yaml with two `superseded_by` entries — and line 94 of the 2054 Spec ticked; the `read` line that names the command later, the page lines and the render lines untouched; `--check` and exit 1 tick nothing in the tests
+2026-09-29, tests/test_sprint.py 20 passed; ff62585 ticked line 754, the uv run guppi sprint line of the 0137 Spec; the 1957 Spec is archived and took no part
 
 ## History
 
 - 2026-09-18 created · [[decision-case-250.2]]
 - 2026-09-20 status: pending → passed · raw/2026-09-18/2253/ledger.md#L4
 - 2026-09-29 updated: the Criterion replaced whole — When and Then only, Given out, the yaml applied whole stated (case 491.1) · [[decision-case-491.1]]
+- 2026-09-29 status: pending → passed · raw/2026-09-29/1134/ledger.md#L66

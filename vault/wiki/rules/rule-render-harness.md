@@ -2,7 +2,7 @@
 type: rule
 kind: Leaf
 purpose: Prevents a Rule page and the harness file it governs from becoming two copies of one text
-status: draft
+status: built
 enforcement: check
 implementation_ref: [guppi/render.py, guppi/config.py, tests/test_render.py, .claude/settings.json]
 parent: "[[rule-harness]]"
@@ -47,3 +47,4 @@ edited by hand, the page follows or does not, and the vault stops being the sour
 - 2026-09-20 status: draft → built · cascade
 - 2026-09-28 updated: the render fills the language placeholders of a Render from rule-guppi-config; How it works left for the docstring of guppi/render.py (cases 193, 476.1) · [[decision-case-476.1]]
 - 2026-09-29 status: built → draft · cascade
+- 2026-09-29 status: draft → built · cascade

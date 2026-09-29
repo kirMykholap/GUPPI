@@ -1,10 +1,11 @@
 ---
 type: estimate
 kind: QA
-status: pending
+status: passed
 target: "[[rule-prespec]]"
 purpose: Whether pre-spec reports a code fence that a replace or reword pair breaks, or that a sections value leaves broken, and stays silent on a break the page already held
 method: uv run pytest tests/test_materialize.py tests/test_prespec.py -k fence
+checked: 2026-09-29
 origin: raw/2026-09-28/2229/ledger.md#case-487.1
 sprint: migration
 created: 2026-09-28
@@ -25,6 +26,11 @@ Then:
 **－** A run shorter than the fence it stands in, or a run of the other character, is content of the fence and no break.
 **－** No page is written, and a `sections` value is judged on its own and not applied to the copies, so the anchors are judged as before.
 
+## Result
+
+2026-09-29, uv run pytest tests/test_materialize.py tests/test_prespec.py -k fence: 21 passed; guppi/prespec.py judges by fence_breaks of guppi/materialize.py
+
 ## History
 
 - 2026-09-29 created · [[decision-case-487.1]]
+- 2026-09-29 status: pending → passed · raw/2026-09-29/1134/ledger.md#L30

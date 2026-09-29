@@ -1,7 +1,7 @@
 ---
 type: estimate
 kind: QA
-status: passed
+status: pending
 target: "[[rule-lint]]"
 purpose: A link, an origin or a Decision list that names nothing, and a page nothing names, are findings of lint
 method: uv run pytest tests/test_lint.py
@@ -20,10 +20,11 @@ When:
 Then:
 `ref`: a slug in `parent`, `children`, `estimates`, `target`, `insight`, `addressed_by`, `deferred_by`, `applies_to`, `rules` or in a body `[[…]]` that no live or archived page carries; a body `[[…]]` may name a file under `vault/wiki/` by stem or path; a `[[…]]` inside a code span is no link.
 **＋** `ref`: an `applies_to` naming a page that is not an Entity; an Entity whose `rules` differs from the live rules whose `applies_to` names it, the difference as `+slug` and `-slug`.
-**＋** `ref`: a `[[slug]]` under a Decision page's `## Criterion` that is no live or archived Estimate; a `### case N` block under an Estimate's `## Criterion` with no live or archived `decision-case-N`.
+**＋** `ref`: a `[[slug]]` under a Decision page's `## Criterion` that is no live or archived Estimate.
 **＋** `origin`: an `origin` `raw/<date>[/<HHMM>]/ledger.md#case-N` or `#L<n>` whose ledger stands in neither `vault/raw/` nor `vault/archive/`, or in both, or holds no such case or line; an `origin` of another form on a page that is not an Insight.
 **＋** `decision`: a Decision page with none of `create`, `update`, `delete`, `defer`, or with `kind` or `target_slug`; a slug of its lists that `category_of` of `guppi/materialize.py` gives a category — the prefix `decision-` included — and that no live or archived page carries.
 **＋** `orphan`: a live entity, rule or estimate that no other live page names in its frontmatter; a Decision, a Lesson, an Insight and a placeholder never.
+**－** A `### case N` line under an Estimate's `## Criterion` is not read as a link.
 
 ## Result
 
@@ -35,3 +36,4 @@ Then:
 - 2026-09-25 status: pending → passed · raw/2026-09-24/2214/ledger.md#L43
 - 2026-09-27 updated: the Criterion replaced whole — the prefixes of a Decision list are judged by category_of of guppi/materialize.py, decision- included (case 460.3) · [[decision-case-460.3]]
 - 2026-09-27 status: pending → passed · raw/2026-09-27/2050/ledger.md#L20
+- 2026-09-29 updated: the Criterion replaced whole — no ### case N block of an Estimate followed (case 506.4) · [[decision-case-506.4]]

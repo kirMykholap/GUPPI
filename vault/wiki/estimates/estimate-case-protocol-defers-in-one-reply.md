@@ -1,11 +1,11 @@
 ---
 type: estimate
 kind: QA
-status: pending
+status: failed
 target: "[[rule-case-protocol]]"
 purpose: A defer the person asks for is shown and written in the same reply, with no round of ratification
 method: by hand, the first defer the person asks for after the render
-checked: 2026-09-27
+checked: 2026-09-29
 origin: raw/2026-09-24/1916/ledger.md#case-405
 sprint: migration
 created: 2026-09-24
@@ -29,7 +29,7 @@ In the same reply the agent shows the Case in the short form — `context`, `pro
 
 ## Result
 
-2026-09-27, by hand, the reply of session 1255 that deferred Cases 454, 455 and 456; the three short Cases were shown with context, problem and a then fence of one defer item each, the LEDGER block carried one defer line per target with no tool call after it, the agent wrote nothing into the plan or spec.md and the Stop hook wrote the three Cases under ## Deferred of both, no question asked for the defers; but the reply did not end with the Frontier: a paragraph proposing /pre-spec with a question followed it
+2026-09-29, by hand, the defer of C2 in session 1134 (Case 509): the short form with context, problem and a then fence with one defer item, its LEDGER line, no tool call after it, nothing written into the plan by the agent, the Frontier with the line closed [-] … · defer case 509; but the question after the Frontier, with no Cases line open, asked whether to take the W readings, not whether to run /pre-spec
 
 ## History
 
@@ -38,3 +38,4 @@ In the same reply the agent shows the Case in the short form — `context`, `pro
 - 2026-09-26 status: pending → failed · raw/2026-09-26/1745/ledger.md#L35
 - 2026-09-27 status: failed → failed · raw/2026-09-27/1255/ledger.md#L53
 - 2026-09-27 updated: the Criterion replaced whole — in Plan Mode a question of what comes next follows the Frontier and ends the defer reply (case 461) · [[decision-case-461]]
+- 2026-09-29 status: pending → failed · raw/2026-09-29/1134/ledger.md#L71

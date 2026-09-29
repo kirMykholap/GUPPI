@@ -1,11 +1,11 @@
 ---
 type: estimate
 kind: QA
-status: pending
+status: passed
 target: "[[rule-prespec]]"
 purpose: Whether pre-spec refuses an Estimate whose method names none of the forms lint classifies
 method: pytest tests/test_prespec.py on a temp plan — a create with a prose method, a create with no method, and each of the four forms clean
-checked: 2026-09-22
+checked: 2026-09-29
 origin: raw/2026-09-22/1724/ledger.md#case-331
 sprint: migration
 created: 2026-09-22
@@ -26,10 +26,11 @@ A `create` of an Estimate, or an `update` carrying `set: {method: …}`, whose `
 
 ## Result
 
-2026-09-22, uv run pytest tests/test_prespec.py -k form: 5 passed — a create whose method is prose gives `case 1: create estimate-x-again: method names no form — a make target, pytest, a tests/ file or "by hand"`, a create with no method at all gives the same line, an update carrying `set: {method: …}` gives it for its slug, and each of the four forms is clean; the predicate is `lint.names_a_form`, called by both scripts
+2026-09-29, uv run pytest tests/test_prespec.py -k method: 3 passed; guppi/prespec.py imports names_a_form from guppi/lint.py
 
 ## History
 
 - 2026-09-23 created · [[decision-case-331]]
 - 2026-09-23 status: pending → passed · raw/2026-09-22/2046/ledger.md#L35
 - 2026-09-28 updated: the Criterion replaced whole — When and Then only, Given and the bounds line out (case 484.3) · [[decision-case-484.3]]
+- 2026-09-29 status: pending → passed · raw/2026-09-29/1134/ledger.md#L31

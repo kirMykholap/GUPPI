@@ -117,7 +117,7 @@ Brief. Run `make lint` and keep its output. Rewrite `vault/wiki/brief.md` in ful
 with these sections in this order:
 - Where things stand: from the "What actually got done" section of `handoff.md` and
   the counts of the yaml, pages created and updated per category.
-- Readings due: after `generate`, every Estimate whose `status` is `pending` or `failed` — one line per Estimate: the Estimate, the rule that stands `draft`, and where it is read, from the unticked `- [ ] read …` line of the session's `spec.md` or, when there is none, from the page's `method` (case 200.3); a `failed` one first, with the result of its reading in one line; nothing from the previous brief (case 168).
+- Readings due: after `generate`, every Estimate whose `status` is `pending` or `failed` — one line per Estimate: the Estimate, the rule that stands `draft`, and where it is read, from the unticked `- [ ] read …` line of the session's `spec.md` or, when there is none, from the page's `method` (case 200.3); for an Estimate whose `method` names the librarian's run, at the end of its line the facts its `method` and `## Criterion` name, as the steps of this run before the brief printed or left them, with no comparison and no passed or failed (case 508.4); a `failed` one first, with the result of its reading in one line; nothing from the previous brief (case 168).
 - Flags, no limit: entries marked `incomplete`, `failed`, `near` or `unparsed`;
   failed Estimates; MOC candidates; stale defers; contradictions; every item `generate` moved to the Backlog in this run — its slug, its milestone, the count and the sessions — and every milestone it dropped, from the lines it printed (case 354.4); the lint output.
 - Next session: two lists, one line per item, an item in one list only, a list with no item the line "none" (case 268.1). `Cases`, what needs a decision: a handoff flag with a question or a request to change the sprint, a `failed` Estimate, a contradiction, a defect you found — what and from where. `Work`, what is done without a decision: every `pending` reading of Readings due by its slug, the unticked boxes of the Specs, a ledger line this run did not apply, a dirty tree.
@@ -129,8 +129,7 @@ and flags only. Add no decision and no judgment of the work. A handoff flag that
 The brief has a second writer, the skill `carry` (`rule-carry-over`): it writes the same frame in the short shape — Where things stand names the conserved Spec by path, its Cases and what is not done on it; Readings due, Next session and Readings at the close are omitted; so is the Deferred list — the conserved Spec and its targets stand in `backlog.md`; Flags say what the vault does not know about this session (cases 190.4, 451.8).
 <!-- /rule-brief -->
 
-Archive. Run `uv run guppi archive`. Every line on its stderr is a flag; the units it
-moved and the units it kept, with the reason, go into the report. The session of the
+Archive. Run `uv run guppi archive`. Every line on its stderr is a flag; the units it moved and the units it kept, with the reason, go into the report. Then add its stdout lines at the end of the Readings due line of each `pending` Estimate whose `method` names the archive step of the librarian's run, before the close commits the brief (case 508.4). The session of the
 run is never moved.
 
 <!-- rule-close -->

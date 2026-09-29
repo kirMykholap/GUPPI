@@ -1,11 +1,11 @@
 ---
 type: estimate
 kind: QA
-status: pending
+status: passed
 target: "[[rule-sprint]]"
 purpose: sprint --check names sprint.md when it differs from the render of the sprint page, exit 1, and writes nothing
 method: pytest tests/test_sprint.py, plus make lint after the librarian's run — no sprint line
-checked: 2026-09-18
+checked: 2026-09-29
 origin: raw/2026-09-17/1119/ledger.md#case-227
 sprint: migration
 created: 2026-09-17
@@ -24,10 +24,11 @@ When `vault/wiki/sprint.md` differs from the render of the page, stdout holds on
 
 ## Result
 
-2026-09-18, uv run pytest tests/test_sprint.py and make lint in session 1252: the sprint tests green; make lint printed no sprint: line and no render: line before the guppi lint findings — sprint.md is the render of entity-sprint-migration after the run of 1119, the file not written
+2026-09-29, uv run pytest tests/test_sprint.py: 20 passed; uv run guppi sprint --check exit 0, no output
 
 ## History
 
 - 2026-09-18 created · [[decision-case-227]]
 - 2026-09-18 status: pending → passed · raw/2026-09-18/1252/ledger.md#L14
 - 2026-09-29 updated: the Criterion replaced whole — When and Then only, Given and the bounds lines out (case 491.2) · [[decision-case-491.2]]
+- 2026-09-29 status: pending → passed · raw/2026-09-29/1134/ledger.md#L64

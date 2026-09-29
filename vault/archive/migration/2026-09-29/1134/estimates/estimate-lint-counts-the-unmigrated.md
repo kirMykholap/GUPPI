@@ -1,7 +1,7 @@
 ---
 type: estimate
 kind: QA
-status: passed
+status: archived
 target: "[[rule-lint]]"
 purpose: lint counts the Estimates still in the shape before case 193 in one line, and prints none at zero
 method: uv run pytest tests/test_lint.py
@@ -29,3 +29,5 @@ One line `estimates: unmigrated: <N> pages in the shape before case 193` — `pa
 
 - 2026-09-25 created · [[decision-case-401.5]]
 - 2026-09-25 status: pending → passed · raw/2026-09-24/2214/ledger.md#L46
+- 2026-09-29 deleted · [[decision-case-506.2]]
+- 2026-09-29 archived · cleanup

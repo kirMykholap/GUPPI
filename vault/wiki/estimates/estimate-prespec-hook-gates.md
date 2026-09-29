@@ -1,11 +1,11 @@
 ---
 type: estimate
 kind: QA
-status: pending
+status: passed
 target: "[[rule-prespec-hook]]"
 purpose: The ExitPlanMode hook holds a working session in Plan Mode until /pre-spec has run in it, across midnight too
 method: pytest in tests/test_prespec.py with piped payloads against a temp event log; the live reading once by hand, written into the estimate line
-checked: 2026-09-20
+checked: 2026-09-29
 origin: raw/2026-09-09/ledger.md#case-24.1
 sprint: migration
 created: 2026-09-09
@@ -25,7 +25,7 @@ With no `prespec` line of this session's stamp after its `hi`, the hook exits 2 
 
 ## Result
 
-2026-09-20, `pytest tests/test_prespec.py` after the move: the ExitPlanMode hook looks for the mark `prespec` of the session's stamp after its `hi`, yesterday's mark releases after midnight, the refusal names /pre-spec; `guppi gate` writes `prespec` on a call of `pre-spec` (tests/test_gate.py, 119 green with test_ledger); the live part is the approval of the next plan after the render
+2026-09-29, uv run pytest tests/test_prespec.py -k "hook or gate": 2 passed; live, session 1134: event_log.md holds 13:24:34 d3c46a47 prespec after the hi, and ExitPlanMode at 13:49:20 passed
 
 ## History
 
@@ -41,3 +41,4 @@ With no `prespec` line of this session's stamp after its `hi`, the hook exits 2 
 - 2026-09-20 updated: renamed with rule-prespec-hook — the Criterion names guppi prespec, the mark prespec and /pre-spec (case 261) · [[decision-case-261]]
 - 2026-09-20 status: pending → passed · raw/2026-09-20/0740/ledger.md#L14
 - 2026-09-29 updated: the Criterion replaced whole — When and Then only, Given and the bounds line out; purpose set (case 493.5) · [[decision-case-493.5]]
+- 2026-09-29 status: pending → passed · raw/2026-09-29/1134/ledger.md#L74

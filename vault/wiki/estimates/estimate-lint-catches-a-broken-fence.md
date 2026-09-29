@@ -1,10 +1,11 @@
 ---
 type: estimate
 kind: QA
-status: pending
+status: passed
 target: "[[rule-lint]]"
 purpose: Whether lint reports a code fence with text after its closing run, or left open at the end of a section, in a live page, by the judgment pre-spec runs
 method: uv run pytest tests/test_lint.py -k fence
+checked: 2026-09-29
 origin: raw/2026-09-28/2229/ledger.md#case-487.2
 sprint: migration
 created: 2026-09-28
@@ -23,6 +24,11 @@ Lint reports each live page that `fence_breaks` of `guppi/materialize.py` judges
 **－** A harness file on disk is not read for fences: `render --check` compares it with its Render.
 **－** Nothing is written.
 
+## Result
+
+2026-09-29, uv run pytest tests/test_lint.py -k fence: 3 passed; guppi/lint.py imports fence_breaks, no fence pattern of its own
+
 ## History
 
 - 2026-09-29 created · [[decision-case-487.2]]
+- 2026-09-29 status: pending → passed · raw/2026-09-29/1134/ledger.md#L26

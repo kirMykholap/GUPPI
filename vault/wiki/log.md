@@ -4582,3 +4582,120 @@ instruction. The global feed; a page's own `## History` is the per-page view.
 - 2026-09-29 decisions/decision-case-496 archived · superseded · generate
 - 2026-09-29 decisions/decision-case-495 archived · cleanup
 - 2026-09-29 decisions/decision-case-496 archived · cleanup
+- 2026-09-29 decisions/decision-case-506.1 created · raw/2026-09-29/1134/ledger.md#case-506.1 · generate
+- 2026-09-29 rules/rule-estimates-schema updated: method required, purpose optional; the old shape, the unmigrated count, the recut and the Given: of older pages gone from the schema (case 506.1) · [[decision-case-506.1]] · generate
+- 2026-09-29 estimates/estimate-estimates-schema-checked updated: the Criterion replaced whole — method required, the two old sections gone (case 506.1) · [[decision-case-506.1]] · generate
+- 2026-09-29 decisions/decision-case-506.2 created · raw/2026-09-29/1134/ledger.md#case-506.2 · generate
+- 2026-09-29 rules/rule-lint updated: the unmigrated count gone from the Purpose (case 506.2) · [[decision-case-506.2]] · generate
+- 2026-09-29 estimates/estimate-lint-counts-the-unmigrated deleted · [[decision-case-506.2]] · generate
+- 2026-09-29 decisions/decision-case-506.3 created · raw/2026-09-29/1134/ledger.md#case-506.3 · generate
+- 2026-09-29 estimates/estimate-lint-checks-the-method updated: the Criterion replaced whole — the method field only, no ## Method section read (case 506.3) · [[decision-case-506.3]] · generate
+- 2026-09-29 decisions/decision-case-506.4 created · raw/2026-09-29/1134/ledger.md#case-506.4 · generate
+- 2026-09-29 estimates/estimate-lint-finds-a-broken-link updated: the Criterion replaced whole — no ### case N block of an Estimate followed (case 506.4) · [[decision-case-506.4]] · generate
+- 2026-09-29 decisions/decision-case-506.5 created · raw/2026-09-29/1134/ledger.md#case-506.5 · generate
+- 2026-09-29 estimates/estimate-generate-fails-alone updated: the Criterion replaced whole — a recut without method no longer fails (case 506.5) · [[decision-case-506.5]] · generate
+- 2026-09-29 rules/rule-case-protocol updated: an update of an Estimate needs no set.method; generate refuses no recut without it (case 506.5) · [[decision-case-506.5]] · generate
+- 2026-09-29 decisions/decision-case-506.6 created · raw/2026-09-29/1134/ledger.md#case-506.6 · generate
+- 2026-09-29 estimates/estimate-generate-writes updated: the Criterion replaced whole — set.method drops no section (case 506.6) · [[decision-case-506.6]] · generate
+- 2026-09-29 decisions/decision-case-506.7 created · raw/2026-09-29/1134/ledger.md#case-506.7 · generate
+- 2026-09-29 entities/entity-sprint-migration updated: Slice 3g closed: the checks of the old shape left the scripts, the schema and lint (case 506) · [[decision-case-506.7]] · generate
+- 2026-09-29 decisions/decision-case-507 created · raw/2026-09-29/1134/ledger.md#case-507 · generate
+- 2026-09-29 decisions/decision-case-508.1 created · raw/2026-09-29/1134/ledger.md#case-508.1 · generate
+- 2026-09-29 rules/rule-skill-hi updated: /hi takes the readings of /hi and of the librarian's run in its first reply (case 508.1) · [[decision-case-508.1]] · generate
+- 2026-09-29 estimates/estimate-hi-takes-its-readings created · [[decision-case-508.1]] · generate
+- 2026-09-29 rules/rule-skill-hi estimate estimate-hi-takes-its-readings added · [[decision-case-508.1]] · generate
+- 2026-09-29 decisions/decision-case-508.2 created · raw/2026-09-29/1134/ledger.md#case-508.2 · generate
+- 2026-09-29 decisions/decision-case-507 superseded by decision-case-508.2 · [[decision-case-508.2]] · generate
+- 2026-09-29 rules/rule-skill-hi updated: the Cases shown in the chat at /hi as a checklist, the detail on an indented line; a W line closes where its work is done, at /hi, in Work Mode or at Retro (case 508.2, supersedes 507) · [[decision-case-508.2]] · generate
+- 2026-09-29 estimates/estimate-hi-writes-frontier updated: the Criterion replaced whole — the Cases shown in the chat at /hi as a checklist, no bold line; a W line closes where its work is done (case 508.2, supersedes 507) · [[decision-case-508.2]] · generate
+- 2026-09-29 decisions/decision-case-508.3 created · raw/2026-09-29/1134/ledger.md#case-508.3 · generate
+- 2026-09-29 rules/rule-work-mode updated: /work takes the open W readings after the last task, before /retro (case 508.3) · [[decision-case-508.3]] · generate
+- 2026-09-29 estimates/estimate-work-mode-takes-the-work-readings created · [[decision-case-508.3]] · generate
+- 2026-09-29 rules/rule-work-mode estimate estimate-work-mode-takes-the-work-readings added · [[decision-case-508.3]] · generate
+- 2026-09-29 decisions/decision-case-508.4 created · raw/2026-09-29/1134/ledger.md#case-508.4 · generate
+- 2026-09-29 rules/rule-brief updated: a Readings due line of an Estimate read at the librarian's run ends with the facts of the run, no verdict (case 508.4) · [[decision-case-508.4]] · generate
+- 2026-09-29 rules/rule-documentation updated: the stdout of guppi archive added to the brief for an Estimate that reads it (case 508.4) · [[decision-case-508.4]] · generate
+- 2026-09-29 estimates/estimate-brief-carries-the-run-facts created · [[decision-case-508.4]] · generate
+- 2026-09-29 rules/rule-brief estimate estimate-brief-carries-the-run-facts added · [[decision-case-508.4]] · generate
+- 2026-09-29 decisions/decision-case-509 created · raw/2026-09-29/1134/ledger.md#case-509 · generate
+- 2026-09-29 rules/rule-retro deferred · [[decision-case-509]] · generate
+- 2026-09-29 estimates/estimate-guppi-tests-green status: pending → passed · raw/2026-09-29/1134/ledger.md#L23 · generate
+- 2026-09-29 estimates/estimate-ledger-write-refuses-a-lesson-without-its-prefix status: pending → passed · raw/2026-09-29/1134/ledger.md#L24 · generate
+- 2026-09-29 estimates/estimate-ledger-write-refuses-a-mark-with-no-decision-line status: pending → passed · raw/2026-09-29/1134/ledger.md#L25 · generate
+- 2026-09-29 estimates/estimate-lint-catches-a-broken-fence status: pending → passed · raw/2026-09-29/1134/ledger.md#L26 · generate
+- 2026-09-29 estimates/estimate-materialize-judges-a-fence status: pending → passed · raw/2026-09-29/1134/ledger.md#L27 · generate
+- 2026-09-29 estimates/estimate-materialize-lifts-unfiltered-on-a-schema-change status: pending → passed · raw/2026-09-29/1134/ledger.md#L28 · generate
+- 2026-09-29 estimates/estimate-materialize-refolds-a-reading-on-a-supersede status: pending → passed · raw/2026-09-29/1134/ledger.md#L29 · generate
+- 2026-09-29 estimates/estimate-prespec-catches-a-broken-fence status: pending → passed · raw/2026-09-29/1134/ledger.md#L30 · generate
+- 2026-09-29 estimates/estimate-prespec-catches-a-method-without-a-form status: pending → passed · raw/2026-09-29/1134/ledger.md#L31 · generate
+- 2026-09-29 estimates/estimate-prespec-catches-an-unwrapped-render status: pending → passed · raw/2026-09-29/1134/ledger.md#L32 · generate
+- 2026-09-29 estimates/estimate-prespec-catches-bare-wikilinks status: pending → passed · raw/2026-09-29/1134/ledger.md#L33 · generate
+- 2026-09-29 estimates/estimate-prespec-simulates-the-pairs status: pending → passed · raw/2026-09-29/1134/ledger.md#L34 · generate
+- 2026-09-29 estimates/estimate-sprint-drops-an-emptied-milestone status: pending → passed · raw/2026-09-29/1134/ledger.md#L35 · generate
+- 2026-09-29 estimates/estimate-tests-clock-pinned status: pending → passed · raw/2026-09-29/1134/ledger.md#L36 · generate
+- 2026-09-29 estimates/estimate-vault-layout-holds status: pending → passed · raw/2026-09-29/1134/ledger.md#L37 · generate
+- 2026-09-29 estimates/estimate-atomicity-rendered status: pending → passed · raw/2026-09-29/1134/ledger.md#L38 · generate
+- 2026-09-29 estimates/estimate-case-build-writes-a-plain-round status: pending → failed · raw/2026-09-29/1134/ledger.md#L39 · generate
+- 2026-09-29 estimates/estimate-case-check-notes-a-then-line-shared-by-siblings status: pending → passed · raw/2026-09-29/1134/ledger.md#L40 · generate
+- 2026-09-29 estimates/estimate-claude-md-rendered status: pending → passed · raw/2026-09-29/1134/ledger.md#L41 · generate
+- 2026-09-29 estimates/estimate-default-mode status: pending → passed · raw/2026-09-29/1134/ledger.md#L42 · generate
+- 2026-09-29 estimates/estimate-github-issues-listed status: pending → passed · raw/2026-09-29/1134/ledger.md#L43 · generate
+- 2026-09-29 estimates/estimate-hi-no-read-calls status: pending → passed · raw/2026-09-29/1134/ledger.md#L44 · generate
+- 2026-09-29 estimates/estimate-ledger-tail status: pending → passed · raw/2026-09-29/1134/ledger.md#L45 · generate
+- 2026-09-29 estimates/estimate-ledger-write-lifts status: pending → passed · raw/2026-09-29/1134/ledger.md#L46 · generate
+- 2026-09-29 estimates/estimate-render-sync-reports status: pending → passed · raw/2026-09-29/1134/ledger.md#L47 · generate
+- 2026-09-29 estimates/estimate-settings status: pending → passed · raw/2026-09-29/1134/ledger.md#L48 · generate
+- 2026-09-29 estimates/estimate-skill-grill-me-asks-in-rounds status: pending → passed · raw/2026-09-29/1134/ledger.md#L49 · generate
+- 2026-09-29 estimates/estimate-cleanup-moves status: pending → passed · raw/2026-09-29/1134/ledger.md#L50 · generate
+- 2026-09-29 estimates/estimate-decisions-schema-checked status: pending → passed · raw/2026-09-29/1134/ledger.md#L51 · generate
+- 2026-09-29 estimates/estimate-documentation-completes status: pending → failed · raw/2026-09-29/1134/ledger.md#L52 · generate
+- 2026-09-29 estimates/estimate-entities-schema-checked status: pending → passed · raw/2026-09-29/1134/ledger.md#L53 · generate
+- 2026-09-29 estimates/estimate-generate-walks-dates status: pending → passed · raw/2026-09-29/1134/ledger.md#L54 · generate
+- 2026-09-29 estimates/estimate-generate-writes-rules-from-applies-to status: pending → passed · raw/2026-09-29/1134/ledger.md#L55 · generate
+- 2026-09-29 estimates/estimate-generate-writes-the-decision-page status: pending → passed · raw/2026-09-29/1134/ledger.md#L56 · generate
+- 2026-09-29 estimates/estimate-glossary-checks-the-file status: pending → passed · raw/2026-09-29/1134/ledger.md#L57 · generate
+- 2026-09-29 estimates/estimate-glossary-renders-the-terms status: pending → passed · raw/2026-09-29/1134/ledger.md#L58 · generate
+- 2026-09-29 estimates/estimate-lessons-schema-checked status: pending → passed · raw/2026-09-29/1134/ledger.md#L59 · generate
+- 2026-09-29 estimates/estimate-page-schemas-one-file-per-rule status: pending → passed · raw/2026-09-29/1134/ledger.md#L60 · generate
+- 2026-09-29 estimates/estimate-render-harness-reproduces status: pending → passed · raw/2026-09-29/1134/ledger.md#L61 · generate
+- 2026-09-29 estimates/estimate-render-harness-ticks-the-spec status: pending → passed · raw/2026-09-29/1134/ledger.md#L62 · generate
+- 2026-09-29 estimates/estimate-rules-schema-checked status: pending → passed · raw/2026-09-29/1134/ledger.md#L63 · generate
+- 2026-09-29 estimates/estimate-sprint-checks-the-file status: pending → passed · raw/2026-09-29/1134/ledger.md#L64 · generate
+- 2026-09-29 estimates/estimate-sprint-migration-rule-class-files-dissolved status: pending → passed · raw/2026-09-29/1134/ledger.md#L65 · generate
+- 2026-09-29 estimates/estimate-sprint-ticks-the-spec status: pending → passed · raw/2026-09-29/1134/ledger.md#L66 · generate
+- 2026-09-29 estimates/estimate-hi-writes-frontier updated: the Criterion replaced whole — the Cases shown in the chat at /hi as a checklist, no bold line; a W line closes where its work is done (case 508.2, supersedes 507) · [[decision-case-508.2]] · generate
+- 2026-09-29 lessons/lesson-case-build-signs-one-criterion-twice-in-a-session created · raw/2026-09-29/1134/ledger.md#L69 · generate
+- 2026-09-29 lessons/lesson-retro-report-copies-the-fence-of-its-template created · raw/2026-09-29/1134/ledger.md#L70 · generate
+- 2026-09-29 estimates/estimate-case-protocol-defers-in-one-reply status: pending → failed · raw/2026-09-29/1134/ledger.md#L71 · generate
+- 2026-09-29 estimates/estimate-one-judgment-one-implementation-followed status: pending → passed · raw/2026-09-29/1134/ledger.md#L72 · generate
+- 2026-09-29 estimates/estimate-prespec-catches-a-command-line-off-form status: pending → passed · raw/2026-09-29/1134/ledger.md#L73 · generate
+- 2026-09-29 estimates/estimate-prespec-hook-gates status: pending → passed · raw/2026-09-29/1134/ledger.md#L74 · generate
+- 2026-09-29 insights/insight-case-build-promise-lines-compared-by-no-check updated: child lesson-case-build-signs-one-criterion-twice-in-a-session added, reopened from actioned (synthesis) · raw/2026-09-29/1134/ledger.md#L69 · generate
+- 2026-09-29 lessons/lesson-case-build-signs-one-criterion-twice-in-a-session updated: clustered under insight-case-build-promise-lines-compared-by-no-check (synthesis) · raw/2026-09-29/1134/ledger.md#L69 · generate
+- 2026-09-29 entities/entity-guppi status: draft → built · cascade · generate
+- 2026-09-29 rules/rule-atomicity status: draft → built · cascade · generate
+- 2026-09-29 rules/rule-brief status: built → draft · cascade · generate
+- 2026-09-29 rules/rule-claude-md status: draft → built · cascade · generate
+- 2026-09-29 rules/rule-cleanup status: draft → built · cascade · generate
+- 2026-09-29 rules/rule-decisions-schema status: draft → built · cascade · generate
+- 2026-09-29 rules/rule-default-mode status: draft → built · cascade · generate
+- 2026-09-29 rules/rule-entities-schema status: draft → built · cascade · generate
+- 2026-09-29 rules/rule-github-issues status: draft → built · cascade · generate
+- 2026-09-29 rules/rule-ledger-tail status: draft → built · cascade · generate
+- 2026-09-29 rules/rule-ledger-write status: draft → built · cascade · generate
+- 2026-09-29 rules/rule-lessons-schema status: draft → built · cascade · generate
+- 2026-09-29 rules/rule-materialize status: draft → built · cascade · generate
+- 2026-09-29 rules/rule-one-judgment-one-implementation status: draft → built · cascade · generate
+- 2026-09-29 rules/rule-page-schemas status: draft → built · cascade · generate
+- 2026-09-29 rules/rule-prespec-hook status: draft → built · cascade · generate
+- 2026-09-29 rules/rule-render-harness status: draft → built · cascade · generate
+- 2026-09-29 rules/rule-rules-schema status: draft → built · cascade · generate
+- 2026-09-29 rules/rule-settings status: draft → built · cascade · generate
+- 2026-09-29 rules/rule-skill-grill-me status: draft → built · cascade · generate
+- 2026-09-29 rules/rule-sprint status: draft → built · cascade · generate
+- 2026-09-29 rules/rule-tests-clock-pinned status: draft → built · cascade · generate
+- 2026-09-29 rules/rule-vault-layout status: draft → built · cascade · generate
+- 2026-09-29 decisions/decision-case-507 archived · superseded · generate
+- 2026-09-29 estimates/estimate-lint-counts-the-unmigrated archived · cleanup
+- 2026-09-29 decisions/decision-case-507 archived · cleanup
+- 2026-09-29 rules/rule-lint estimate estimate-lint-counts-the-unmigrated archived · cleanup

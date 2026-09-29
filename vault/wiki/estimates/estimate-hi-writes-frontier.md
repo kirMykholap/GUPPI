@@ -1,7 +1,7 @@
 ---
 type: estimate
 kind: QA
-status: passed
+status: pending
 target: "[[rule-skill-hi]]"
 method: "one reading by hand at the first /hi of the next session, written into the estimate line; unit: the frontier findings of guppi prespec --check in tests/test_prespec.py"
 checked: 2026-09-27
@@ -23,9 +23,10 @@ The Frontier is written to `raw/<date>/<hi HHMM>/frontier.md` in the lists `## C
 **＋** A line closes by appending the closer and keeping the source. An item ended closes `[x] … · case N` when decided, or `[x] … · work` when done with no decision. A line of the sprint page left for a later session closes `[-] … · sprint · defer`. An item of the backlog left as it stands closes `[-] … · backlog · kept`. A decision of any other source put off closes `[-] … · defer case N`.
 **＋** An item closed `defer` or `kept` has no short Case and no ledger line. A sprint item never closes `· defer case N`.
 **＋** Only the current milestone gives items. A later milestone and Closed give none, and the sprint page's Backlog reaches the Frontier only through the backlog. A decision line of the Tail is not an item.
-**＋** In the chat the Cases are shown as a list with their detail, the backlog count and the near items; the Work is shown as one block; sub-cases are cut in Cases only. A `W` that turns out to need a decision closes `· case N`; a `C` that needs none closes `· work`.
+**＋** In the chat the Cases are shown as a checklist. Each line stands as `raw/<date>/<hi HHMM>/frontier.md` holds it, `- [ ] C<n> — <title> · <source>`, with its detail on an indented line under it and the `- near` line under that, and the line `Backlog: N items` comes last. The Work is shown as one block. Only Cases are cut into sub-cases. A `W` that turns out to need a decision closes `· case N`. A `C` that needs none closes `· work`.
+**－** At `/hi` no Case stands in the chat as a bold line, and no Case has its detail as a paragraph.
 **－** `Pull:` and `Open issues:` are a Cases item only when `vault/wiki/sprint.md` names no decision on them.
-**－** Pre-spec finds an open line under `## Cases`. A `W` line stands open until its work is done and closes `· work` in Work Mode. Claude Code's plan mode does not stop the agent from writing `frontier.md`.
+**－** Pre-spec finds an open line under `## Cases`. A `W` line stands open until its work is done and closes `· work` where that work is done: at `/hi`, in Work Mode or at Retro. Claude Code's plan mode does not stop the agent from writing `frontier.md`.
 
 ## Result
 
@@ -55,3 +56,5 @@ The Frontier is written to `raw/<date>/<hi HHMM>/frontier.md` in the lists `## C
 - 2026-09-25 status: pending → passed · raw/2026-09-25/1654/ledger.md#L32
 - 2026-09-27 updated: the Criterion replaced whole — the closers of the standard, conserved Specs first, the backlog counted and its near items named, no Deferred list of the brief (case 451.1) · [[decision-case-451.1]]
 - 2026-09-27 status: pending → passed · raw/2026-09-27/1819/ledger.md#L18
+- 2026-09-29 updated: the Criterion replaced whole — the Cases shown in the chat at /hi as a checklist, no bold line; a W line closes where its work is done (case 508.2, supersedes 507) · [[decision-case-508.2]]
+- 2026-09-29 updated: the Criterion replaced whole — the Cases shown in the chat at /hi as a checklist, no bold line; a W line closes where its work is done (case 508.2, supersedes 507) · [[decision-case-508.2]]

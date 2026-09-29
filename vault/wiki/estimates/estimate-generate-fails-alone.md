@@ -1,7 +1,7 @@
 ---
 type: estimate
 kind: QA
-status: passed
+status: pending
 target: "[[rule-page-generation]]"
 purpose: One bad entry never stops the run; every entry carries its mark
 method: pytest tests/test_generate.py, the tests of the failed, skipped and marked entries
@@ -19,12 +19,12 @@ When:
 
 Then:
 An entry that fails — a collision, a `ref` naming no page, a `replace` absent or not unique, a field of an unexpected shape, an unknown `kind`, any exception — is printed on stderr as `generate: <slug>: <what>`, marked `failed` in the yaml and skipped; the rest apply; the exit code is 1; no entry ends the run.
-**＋** An `update` with `sections.Criterion` on an Estimate page without a `method` field, whose `set` carries no `method`, fails the same way: `generate: <slug>: a recut without method (case 211)`.
 **＋** Every applied entry is marked `applied: <time>`; a stale `failed` mark is dropped on apply; a rerun writes nothing.
 **＋** An entry with `failed` and no `kind` is skipped with its mark kept and the line `generate: line N: not lifted by materialize; <message>`, exit 1.
 **＋** An entry with `superseded_by` is not applied and leaves no line; the Decision page of its Case is still written.
 **＋** An `update` with no content prints `generate: <slug>: an update with no content in the Spec; nothing applied` on stdout, changes no page and is marked applied.
 **－** The failure of one entry changes no other page: `vault/wiki/log.md` after it is level with the pages.
+**－** An `update` with `sections.Criterion` on an Estimate page does not fail for want of a `method` field.
 
 ## Result
 
@@ -44,3 +44,4 @@ An entry that fails — a collision, a `ref` naming no page, a `replace` absent 
 - 2026-09-24 status: pending → passed · raw/2026-09-24/1303/ledger.md#L22
 - 2026-09-25 updated: the Criterion replaced whole — Given out by the model of case 378, the When and Then as they stood (case 398.2) · [[decision-case-398.2]]
 - 2026-09-25 status: pending → passed · raw/2026-09-24/2214/ledger.md#L34
+- 2026-09-29 updated: the Criterion replaced whole — a recut without method no longer fails (case 506.5) · [[decision-case-506.5]]

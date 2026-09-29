@@ -78,7 +78,7 @@ update:
 - [x] `guppi/materialize.py` — one function over ledger lines in order that gives each lesson line whose `{addressed_by:case N}` has no decision line of Case N before it. `lift_line` judges the lesson mark by it. The docstring names the hook as its second caller
 - [x] `guppi/ledger.py` — `refused_marks` beside `refused_lessons`, which calls that function on the session's ledger followed by the fresh lines and skips a line `refused_lessons` already refused. `run` leaves the lines out and prints the stderr line for the finished reply. The module docstring names the refusal and the order of the two checks
 - [x] `tests/test_ledger.py` — `-k mark`: a mark to a parent with sub-case lines is refused aloud, with the sub-case ids. A mark to a Case with no line is refused aloud, with no sub-case part. A lesson above its decision line in the same block is refused. A refused line in an earlier text is not written while its Case has no line, and is written without a word at the `Stop` after the decision line lands. A mark with its decision line before it, in the ledger or in the same block, is written. A lesson with no mark is written. A line with no prefix and a bad mark gets the prefix line alone. A line already in a ledger is not judged. One test runs the hook and `materialize` on the same ledger lines and asserts that the lines they refuse and leave `incomplete: [addressed_by]` are the same
-- [ ] read `estimate-ledger-write-refuses-a-mark-with-no-decision-line`
+- [x] read `estimate-ledger-write-refuses-a-mark-with-no-decision-line`
 ```
 
 ### Case 497.2 — The promise of the ledger hook names the new refusal
@@ -115,7 +115,7 @@ update:
 
 ```tasks
 - [x] update `estimate-ledger-write-lifts`
-- [ ] read `estimate-ledger-write-lifts` — `uv run pytest tests/test_ledger.py tests/test_gate.py`, then by hand on the ledger of a later session
+- [x] read `estimate-ledger-write-lifts` — `uv run pytest tests/test_ledger.py tests/test_gate.py`, then by hand on the ledger of a later session
 ```
 
 ### Case 497.3 — The prefix check no longer promises that every prefixed lesson is written
@@ -148,7 +148,7 @@ update:
 
 ```tasks
 - [x] update `estimate-ledger-write-refuses-a-lesson-without-its-prefix`
-- [ ] read `estimate-ledger-write-refuses-a-lesson-without-its-prefix` — `uv run pytest tests/test_ledger.py`
+- [x] read `estimate-ledger-write-refuses-a-lesson-without-its-prefix` — `uv run pytest tests/test_ledger.py`
 ```
 
 ### Case 497.4 — The schema says which Case a lesson's mark names
@@ -237,7 +237,7 @@ update:
 ```tasks
 - [x] update `estimate-render-harness-reproduces`
 - [x] `guppi/render.py` — the docstring sentence that points at "the reading of case 139.1 on `estimate-render-harness-reproduces`" states the finding instead: Claude Code reads the agent files at session start, so an agent the librarian renders can be called from the next session (case 139.1)
-- [ ] read `estimate-render-harness-reproduces` — `pytest tests/test_render.py`, then by hand on the live vault after a later librarian's render
+- [x] read `estimate-render-harness-reproduces` — `pytest tests/test_render.py`, then by hand on the live vault after a later librarian's render
 ```
 
 ### Case 498.2 — The sync at session start shows and writes back a parted file
@@ -271,7 +271,7 @@ update:
 
 ```tasks
 - [x] update `estimate-render-sync-reports`
-- [ ] read `estimate-render-sync-reports` — `pytest tests/test_render.py`, then by hand at the first turn of a later session
+- [x] read `estimate-render-sync-reports` — `pytest tests/test_render.py`, then by hand at the first turn of a later session
 ```
 
 ### Case 498.3 — The settings file rendered whole from its MOC
@@ -307,7 +307,7 @@ update:
 
 ```tasks
 - [x] update `estimate-settings`
-- [ ] read `estimate-settings` — `make test-harness`, then by hand at a later session start
+- [x] read `estimate-settings` — `make test-harness`, then by hand at a later session start
 ```
 
 ### Case 498.4 — A session opens in Plan Mode
@@ -339,7 +339,7 @@ update:
 
 ```tasks
 - [x] update `estimate-default-mode`
-- [ ] read `estimate-default-mode` — `pytest tests/test_render.py`, then by hand at a later session start
+- [x] read `estimate-default-mode` — `pytest tests/test_render.py`, then by hand at a later session start
 ```
 
 ### Case 498.5 — The guard refuses a hand edit of a governed file
@@ -638,7 +638,7 @@ update:
 
 ```tasks
 - [x] update `estimate-cleanup-moves`
-- [ ] read `estimate-cleanup-moves` — `pytest tests/test_cleanup.py`, then by hand on the cleanup of a later librarian's run
+- [x] read `estimate-cleanup-moves` — `pytest tests/test_cleanup.py`, then by hand on the cleanup of a later librarian's run
 ```
 
 ### Case 500.4 — `archive` moves a done unit of raw whole into the archive
@@ -715,7 +715,7 @@ update:
 
 ```tasks
 - [x] update `estimate-tests-clock-pinned`
-- [ ] read `estimate-tests-clock-pinned` — `pytest tests/test_conftest.py`, then `make test` after the Work Mode of a later session
+- [x] read `estimate-tests-clock-pinned` — `pytest tests/test_conftest.py`, then `make test` after the Work Mode of a later session
 ```
 
 ### Case 500.6 — The note of Slice 3g gives way to the removal of the old-layout checks
@@ -839,7 +839,7 @@ update:
 - [x] update `rule-skill-grill-me`
 - [x] update `estimate-skill-grill-me-asks-in-rounds`
 - [x] `uv run guppi render`: `.claude/skills/grill-me/SKILL.md`
-- [ ] read `estimate-skill-grill-me-asks-in-rounds` — `uv run guppi render --check`; by hand, one round read in the chat in a later session
+- [x] read `estimate-skill-grill-me-asks-in-rounds` — `uv run guppi render --check`; by hand, one round read in the chat in a later session
 ```
 
 ### Case 501.2 — case-guppi points to the question shape of the template
@@ -879,7 +879,7 @@ update:
 - [x] update `rule-case-build`
 - [x] update `estimate-case-build-writes-a-plain-round`
 - [x] `uv run guppi render`: `.claude/agents/case-guppi.md`
-- [ ] read `estimate-case-build-writes-a-plain-round` — by hand, one round of case-guppi read in the chat against the Criterion, in a later session
+- [x] read `estimate-case-build-writes-a-plain-round` — by hand, one round of case-guppi read in the chat against the Criterion, in a later session
 ```
 
 ## Case 502 — /wait-what explains with a real example and points its options to the grill-me shape

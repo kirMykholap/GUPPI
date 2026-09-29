@@ -2,7 +2,7 @@
 type: rule
 kind: Leaf
 purpose: Prevents an interview from acting on a plan before each of its decisions is put to the person and settled, and the skill that runs it from being a file no rule page governs
-status: draft
+status: built
 enforcement: render
 governs: .claude/skills/grill-me/SKILL.md
 render_mode: full
@@ -59,3 +59,4 @@ The session is done when the frontier is empty: every branch of the design tree 
 - 2026-09-28 status: draft → built · cascade
 - 2026-09-29 updated: every question of a round takes one shape: a Now line once, each option on its own line with one After item under it and nothing else (case 501.1) · [[decision-case-501.1]]
 - 2026-09-29 status: built → draft · cascade
+- 2026-09-29 status: draft → built · cascade

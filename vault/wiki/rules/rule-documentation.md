@@ -85,8 +85,7 @@ Do the steps in this order.
 
 <!-- rule-brief -->
 
-Archive. Run `uv run guppi archive`. Every line on its stderr is a flag; the units it
-moved and the units it kept, with the reason, go into the report. The session of the
+Archive. Run `uv run guppi archive`. Every line on its stderr is a flag; the units it moved and the units it kept, with the reason, go into the report. Then add its stdout lines at the end of the Readings due line of each `pending` Estimate whose `method` names the archive step of the librarian's run, before the close commits the brief (case 508.4). The session of the
 run is never moved.
 
 <!-- rule-close -->
@@ -142,3 +141,4 @@ project's hooks; the hook is part of this Render and is ratified with it.
 - 2026-09-27 child rule-backlog added · [[decision-case-451.4]]
 - 2026-09-27 updated: the librarian runs guppi backlog after guppi sprint (case 451.13) · [[decision-case-451.13]]
 - 2026-09-28 updated: the librarian finds an archived page by the Glob of the slug a script named in an error, never searches the archive, and reads the saved output of its own command (case 474.1) · [[decision-case-474.1]]
+- 2026-09-29 updated: the stdout of guppi archive added to the brief for an Estimate that reads it (case 508.4) · [[decision-case-508.4]]

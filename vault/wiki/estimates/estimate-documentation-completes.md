@@ -1,10 +1,10 @@
 ---
 type: estimate
 kind: QA
-status: pending
+status: failed
 target: "[[rule-documentation]]"
 method: make test-documentation, the pipeline over tests/test_materialize.py, tests/test_generate.py and tests/test_cleanup.py; the live reading by hand
-checked: 2026-09-27
+checked: 2026-09-29
 origin: raw/2026-09-10/ledger.md#case-36
 sprint: migration
 created: 2026-09-10
@@ -36,7 +36,7 @@ It read no other part of a Spec, no plan, no Decision page, and no `materialize.
 
 ## Result
 
-2026-09-27, make test-documentation and the event log of the librarian run of session 1819; 191 passed and the order render, sprint, backlog, glossary, brief, archive, commit held, but at 20:40:39 the run grepped vault/archive/ (grep -rln "status: clustered" raw archive) and at 20:39:28 read a file under ~/.claude/projects/…/938809b2-…, both outside the frame
+2026-09-29, by hand, the run of ff62585 from its transcript and event_log.md: the three test files 199 passed; order cleanup, render, sprint, backlog, glossary, brief, archive, commit held, no archive search, no Decision page, ledger read only as a count; but it read beyond its list: tail of log.md, head of the old brief.md, git diff of sprint.md and backlog.md, a grep of sprint.md, a count of [x] in the 0137 Spec
 
 ## History
 
@@ -69,3 +69,4 @@ It read no other part of a Spec, no plan, no Decision page, and no `materialize.
 - 2026-09-27 updated: the Criterion replaced whole — guppi backlog after guppi sprint, Given lifted into When and Then (case 451.13) · [[decision-case-451.13]]
 - 2026-09-27 status: pending → failed · raw/2026-09-27/2050/ledger.md#L31
 - 2026-09-28 updated: the Criterion replaced whole — an archived page found by the Glob of the slug a script named in an error, the archive never searched, the saved output of the librarian's own command allowed, no yaml that materialize did not name (case 474.1) · [[decision-case-474.1]]
+- 2026-09-29 status: pending → failed · raw/2026-09-29/1134/ledger.md#L52

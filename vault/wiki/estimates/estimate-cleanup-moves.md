@@ -1,10 +1,11 @@
 ---
 type: estimate
 kind: QA
-status: pending
+status: passed
 target: "[[rule-cleanup]]"
 purpose: guppi cleanup moves an archived page into the archive of the session of the run and a restored one back, and unlinks its slug from the live lists without rebuilding a section
 method: pytest tests/test_cleanup.py, plus by hand on the cleanup of a later librarian's run
+checked: 2026-09-29
 origin: raw/2026-09-10/ledger.md#case-33
 sprint: migration
 created: 2026-09-10
@@ -28,7 +29,7 @@ A live page with `status: archived` moves under the same file name to `vault/arc
 
 ## Result
 
-block 166.4: tests green (377 passed, 2026-09-15 session S); live — the librarian's run of session R moved decision-case-164, decision-case-114 and decision-case-165.2 to vault/archive/migration/2026-09-15/1448/decisions/ with five more decisions and one lesson; the pages that lost a slug carry no rebuilt section — a Grep of the seven derived headings over rules/, entities/, lessons/ and insights/ gives 0 hits
+2026-09-29, uv run pytest tests/test_cleanup.py: 8 passed; live, the run of ff62585: cleanup moved 2 pages, exit 0, decision-case-495 and 496 to vault/archive/migration/2026-09-29/0137/decisions/ with "archived · cleanup" in History and log.md
 
 ## History
 
@@ -45,3 +46,4 @@ block 166.4: tests green (377 passed, 2026-09-15 session S); live — the librar
 - 2026-09-15 updated: head Criterion: the field only, no section rebuilt (166.4); no index file (147.6) (case 174) · [[decision-case-174]]
 - 2026-09-15 status: pending → passed · raw/2026-09-15/1809/ledger.md#L8
 - 2026-09-29 updated: the Criterion replaced whole — the head and the blocks 102.2, 147.6 and 166.4 into one When and Then, the one-time migration and the index files out, the History and log lines as the script writes them; purpose and method set, Context and Method out (case 500.3) · [[decision-case-500.3]]
+- 2026-09-29 status: pending → passed · raw/2026-09-29/1134/ledger.md#L50

@@ -1,10 +1,11 @@
 ---
 type: estimate
 kind: QA
-status: pending
+status: passed
 target: "[[rule-render-harness]]"
 purpose: guppi render writes each governed harness file from its Rule pages, parses every json target before it writes, and --check names a file that differs
 method: "pytest tests/test_render.py, plus by hand on the live vault after a later librarian's render: git diff --stat, then guppi render --check"
+checked: 2026-09-29
 origin: raw/2026-09-09/ledger.md#case-18.1
 sprint: migration
 created: 2026-09-09
@@ -28,7 +29,7 @@ The Render of a `full` page becomes the whole file its `governs` names, without 
 
 ## Result
 
-block 139.1, the probe 2026-09-14 session O: a new `.claude/agents/probe-guppi.md` written mid-session → Agent tool "Agent type 'probe-guppi' not found", the list unchanged (ask-guppi, librarian-guppi, built-ins); the body replaced and called again → not found again; Claude Code 2.1.228, no compaction between the steps; the file removed, `.claude/` clean — in this client the agent list is read at session start, an agent rendered mid-session is usable from the next session
+2026-09-29, tests/test_render.py 34 passed; live, the run of ff62585: render exit 0, exactly the 5 files whose Render changed were written, each diff the page's Render diff; render --check exit 0 now
 
 ## History
 
@@ -45,3 +46,4 @@ block 139.1, the probe 2026-09-14 session O: a new `.claude/agents/probe-guppi.m
 - 2026-09-14 criterion: case 139.1 added · [[decision-case-139.1]]
 - 2026-09-14 status: pending → passed · raw/2026-09-14/1229/ledger.md#L28
 - 2026-09-29 updated: the Criterion replaced whole — the unit paragraph and the blocks 85.1, 88.1 and 89.4 into one When and Then, the one-time probe of 139.1 out; purpose and method set, Context and Method out (case 498.1) · [[decision-case-498.1]]
+- 2026-09-29 status: pending → passed · raw/2026-09-29/1134/ledger.md#L61

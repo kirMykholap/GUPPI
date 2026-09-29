@@ -29,7 +29,7 @@ description: |
 
   An Estimate is one promise, one way to check it and the last result with its date (case 182). It is always a Leaf — never inline on another page, never a MOC. Grouping is what the parent Entity's recursion already does. One action (`when`) — one Estimate; the ＋/－ lines stay in its `then` while one run checks them; a line with a test or a reading of its own is split off, and the axis of the split is the promise, not the method.
 
-  `purpose`, `method` and `checked` are the fields of the model of case 182: one line each, written on a page born since case 193; the older pages carry none until their recut at their first touch — the update that sets `method` (case 211) — counted by lint as `unmigrated` (case 202), so none is required yet (case 193). `target` names an Entity or a Rule; lint reports any other category (case 53.1).
+  `purpose`, `method` and `checked` are the fields of the model of case 182: one line each. `method` is required on every page (case 506.1); `purpose` is written from the Case and stays optional, since some older pages carry none; `checked` is written by `generate` on every reading (case 201.1). `target` names an Entity or a Rule; lint reports any other category (case 53.1).
 
   A `failed` Estimate is debt, not an endpoint: its target stays `draft` and the librarian surfaces it in `brief.md` until a human decides. Absent a decision to fix, the default is archival — something that cannot pass its own criterion should not sit in the vault pretending to be work in progress.
 
@@ -39,14 +39,14 @@ description: |
 
   `Result` is overwritten, not appended. It is about one run of one check: a test that passed, broke and was fixed leaves one current result; the sequence of changes is what History is for. Same for Research: the page states what we currently believe, and History records that the belief changed. `Criterion` is replaced, not appended: a rule changes → the Estimate the Case names goes `pending` → the test or the reading → `passed`.
 properties:
-  required: [type, kind, status, target, origin, sprint, created, tags]
-  optional: [purpose, method, checked]
+  required: [type, kind, status, target, method, origin, sprint, created, tags]
+  optional: [purpose, checked]
   values:
     kind: [QA, Research]
     status: [pending, passed, failed]
 body:
   required: ["## Criterion", "## History"]
-  optional: ["## Context", "## Method", "## Result"]
+  optional: ["## Result"]
   conditional:
     - when: {status: passed}
       required: ["## Result"]
@@ -62,9 +62,9 @@ fields:
   target: |
     required; quoted wikilink `"[[slug]]"` of an Entity or Rule. The page with a contract this verifies; the scripts read the slug through the brackets (case 148.2); a Lesson or an Insight has no Estimate (case 53.1). Written by the script from the ledger. Without it the cascade — an Entity is `built` only once all its Estimates pass — cannot be computed.
   purpose: |
-    optional; one line. The promise, for the list on the target page: the reader of a rule sees its Estimates by `purpose` and opens only the touched ones. Written from the Case on every page born since case 193; absent on the older pages until their recut, counted by lint as `unmigrated` (case 202).
+    optional; one line. The promise, for the list on the target page: the reader of a rule sees its Estimates by `purpose` and opens only the touched ones. Written from the Case; some older pages carry none, and lint does not ask for it (case 506.1).
   method: |
-    optional; one line. How the promise is checked, in one of the four forms lint classifies: a `make <target>` of the Makefile; the word `pytest`; a path under `tests/`; or the words `by hand` — the one spelling of a reading — with where and when it is taken, a session start, the brief of a librarian's run. Naming a form is not enough by itself: a path under `tests/` must exist and a `make <target>` must stand in the Makefile. On the Estimate of a MOC the form is a `make <target>` of the Makefile alone — there `pytest` or a path by itself earns a finding, and `by hand` passes only when every child's Estimate is a reading or a sibling Estimate of the MOC names such a target; on a MOC with `render_mode: full` the Estimate of a child with `enforcement: render` is not counted, since that child's Render is part of the parent's file and its Estimate promises the child's own behaviour (cases 378.5, 459). A `method` that names none of the forms earns a finding of the class `method`. A page counts as the shape before case 193 on any of four triggers — no `method` field, a `## Context` section, a `## Method` section, a `### case N` block in the Criterion — and goes into the line `unmigrated`; one with no field that keeps a `## Method` section has that section read as its `method`, so it can earn a `method` finding as well. For `Research` what is measured stands beside one of the forms, never instead of one. Written from the Case since case 193 (case 350).
+    required; one line. How the promise is checked, in one of the four forms lint classifies: a `make <target>` of the Makefile; the word `pytest`; a path under `tests/`; or the words `by hand` — the one spelling of a reading — with where and when it is taken, a session start, the brief of a librarian's run. Naming a form is not enough by itself: a path under `tests/` must exist and a `make <target>` must stand in the Makefile. On the Estimate of a MOC the form is a `make <target>` of the Makefile alone — there `pytest` or a path by itself earns a finding, and `by hand` passes only when every child's Estimate is a reading or a sibling Estimate of the MOC names such a target; on a MOC with `render_mode: full` the Estimate of a child with `enforcement: render` is not counted, since that child's Render is part of the parent's file and its Estimate promises the child's own behaviour (cases 378.5, 459). A `method` that names none of the forms earns a finding of the class `method`. A page without the field earns the `schema` finding `missing field method` (case 506.1). For `Research` what is measured stands beside one of the forms, never instead of one. Written from the Case since case 193 (case 350).
   checked: |
     optional; date. The date of the last reading: the date the Result opens with, else the date of the reading's unit; written by `generate` on every reading (case 201.1).
   origin: |
@@ -77,13 +77,9 @@ fields:
     required; list. Chosen at the vault query before the Case, ratified in the Case.
 sections:
   "## Criterion": |
-    required. The promise, written once: the `when` and `then` of one Case, verbatim with their operands, as `When:`, `Then:` — no `Given:`: the frame of the Case stays on its Decision page (case 378.2); a page written before carries its `Given:` until the one pass of its migration. The Case that creates the Estimate writes it; an `update` that changes the promise replaces it whole and sets the page `pending`; an `update` that names a part alone — a field, a `replace` pair outside it — keeps it; a pair inside it is refused, a changed promise is a Criterion replaced whole (case 378.4); nothing is appended and no `### case N` block exists (case 193; the blocks of the shape before it stand on the older pages until their recut, counted by lint as `unmigrated`, case 202). The Criterion that was replaced stays in the Spec of the session that wrote it, reached by `origin`, and in History. For Research the `then` may legitimately be broad ("determine whether we stay inside the latency budget"); for QA it should be exact.
+    required. The promise, written once: the `when` and `then` of one Case, verbatim with their operands, as `When:`, `Then:` — no `Given:`: the frame of the Case stays on its Decision page (case 378.2). The Case that creates the Estimate writes it; an `update` that changes the promise replaces it whole and sets the page `pending`; an `update` that names a part alone — a field, a `replace` pair outside it — keeps it; a pair inside it is refused, a changed promise is a Criterion replaced whole (case 378.4); nothing is appended and no `### case N` block exists (case 193). The Criterion that was replaced stays in the Spec of the session that wrote it, reached by `origin`, and in History. For Research the `then` may legitimately be broad ("determine whether we stay inside the latency budget"); for QA it should be exact.
   "## Result": |
     optional; required on `passed` and `failed`. Omitted while `pending`. Its first line is the date of the reading and the command — `make test-x`, `pytest tests/test_x.py` — or the place of a live reading; the result follows (case 199). For QA usually one line more. For Research this is the substance of the page — findings, numbers, the conclusion drawn.
-  "## Context": |
-    optional. The shape before case 193: the `problem` of the Case that made the Estimate, written once. Not written to a new page — the Case is reached by `origin`; dropped by the `update` that sets `method` (case 211).
-  "## Method": |
-    optional. The shape before case 193: the `method` of the Case as a section. On a new page `method` is a field; the `update` that sets `method` drops the section, and a recut — `sections: Criterion` on a page without the field — is refused by `generate` unless `set` carries `method` (case 211).
   "## History": |
     required. Appended by hook, never by an agent. Always the last section: `- <date> created · <origin>`, `- <date> status: pending → passed`.
 examples:
@@ -164,3 +160,4 @@ examples:
 - 2026-09-23 updated: a Criterion changes only whole (case 378.4) · [[decision-case-378.4]]
 - 2026-09-27 updated: the method of a MOC's Estimate: the Estimates of a render child of a full MOC are not counted (case 459) · [[decision-case-459]]
 - 2026-09-29 status: built → draft · cascade
+- 2026-09-29 updated: method required, purpose optional; the old shape, the unmigrated count, the recut and the Given: of older pages gone from the schema (case 506.1) · [[decision-case-506.1]]

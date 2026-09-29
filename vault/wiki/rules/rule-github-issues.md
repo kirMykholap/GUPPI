@@ -2,7 +2,7 @@
 type: rule
 kind: Leaf
 purpose: Prevents deferred bugs, tracked outside the vault, from being forgotten at session start
-status: draft
+status: built
 enforcement: render
 governs: .claude/skills/hi/SKILL.md
 render_mode: partial
@@ -42,3 +42,4 @@ remote exists.
 - 2026-09-17 deferred · [[decision-case-220]]
 - 2026-09-18 deferred · [[decision-case-243]]
 - 2026-09-28 status: built → draft · cascade
+- 2026-09-29 status: draft → built · cascade

@@ -1,11 +1,11 @@
 ---
 type: estimate
 kind: QA
-status: pending
+status: passed
 target: "[[rule-ledger-write]]"
 purpose: Whether the ledger hook refuses a lesson line whose slug does not open with lesson-, and says why only for the reply just finished
 method: uv run pytest tests/test_ledger.py — piped payloads and a session ledger in a temp vault
-checked: 2026-09-27
+checked: 2026-09-29
 origin: raw/2026-09-27/1819/ledger.md#case-460.5
 sprint: migration
 created: 2026-09-27
@@ -28,10 +28,11 @@ The line is not written.
 
 ## Result
 
-2026-09-27, uv run pytest tests/test_ledger.py; 77 passed with test_gate.py, among them the five tests of case 460.5: exit 2 with the one stderr line for the finished reply, a silent skip for an earlier text, estimate and decision lines not judged
+2026-09-29, uv run pytest tests/test_ledger.py: 56 passed
 
 ## History
 
 - 2026-09-27 created · [[decision-case-460.5]]
 - 2026-09-27 status: pending → passed · raw/2026-09-27/2050/ledger.md#L22
 - 2026-09-29 updated: the Criterion replaced whole — a prefixed lesson line is not refused for its prefix, its mark judged apart (case 497.3) · [[decision-case-497.3]]
+- 2026-09-29 status: pending → passed · raw/2026-09-29/1134/ledger.md#L24

@@ -1,10 +1,11 @@
 ---
 type: estimate
 kind: QA
-status: pending
+status: passed
 target: "[[rule-ledger-write]]"
 purpose: Whether the ledger hook refuses a lesson line whose addressed_by mark has no decision line of its Case before it in the session, judges it again until that line stands, and says why only for the reply just finished
 method: uv run pytest tests/test_ledger.py — piped payloads and a session ledger in a temp vault
+checked: 2026-09-29
 origin: raw/2026-09-29/0137/ledger.md#case-497.1
 sprint: migration
 created: 2026-09-29
@@ -26,6 +27,11 @@ When no decision line of Case N stands before the lesson line — in the session
 **－** A lesson line whose mark has a decision line of Case N before it is written as before, and so is a lesson line with no mark. A line already in the ledger of any session is not judged again.
 **－** Without a `hi`, and with `stop_hook_active`, the hook acts as before and judges no line.
 
+## Result
+
+2026-09-29, uv run pytest tests/test_ledger.py: 56 passed; guppi/ledger.py imports marks_without_decision of guppi/materialize.py, no second judgment
+
 ## History
 
 - 2026-09-29 created · [[decision-case-497.1]]
+- 2026-09-29 status: pending → passed · raw/2026-09-29/1134/ledger.md#L25

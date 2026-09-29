@@ -2,7 +2,7 @@
 type: rule
 kind: Leaf
 purpose: Shows at /hi every ledger line that no vault page holds yet, so a reading or a lesson written after the librarian's commit reaches the next session's Frontier
-status: draft
+status: built
 enforcement: render
 implementation_ref: [guppi/tail.py, tests/test_tail.py]
 governs: .claude/skills/hi/SKILL.md
@@ -66,3 +66,4 @@ an item, and a decision line not.
 - 2026-09-14 status: draft → built · cascade
 - 2026-09-14 updated: the second caller of guppi tail, the retro skill, named (case 132) · [[decision-case-132]]
 - 2026-09-28 status: built → draft · cascade
+- 2026-09-29 status: draft → built · cascade

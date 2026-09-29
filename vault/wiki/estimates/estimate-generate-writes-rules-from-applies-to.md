@@ -1,10 +1,11 @@
 ---
 type: estimate
 kind: QA
-status: pending
+status: passed
 target: "[[rule-page-generation]]"
 purpose: The rules of every live Entity are the live rules whose applies_to names it, recomputed by the cascade of generate on every run
 method: pytest tests/test_generate.py on a temp vault; the live reading the librarian's run of this session — entity-sprint carries rules [rule-sprint]
+checked: 2026-09-29
 origin: raw/2026-09-22/0014/ledger.md#case-305.3
 sprint: migration
 created: 2026-09-22
@@ -23,10 +24,11 @@ The `rules` of every live Entity is the slugs of the live rules whose `applies_t
 
 ## Result
 
-2026-09-22, uv run pytest tests/test_generate.py, 77 passed: the cascade writes rules on an Entity from the applies_to of the live rules in slug order as wikilinks with a History line, recounts a stale list to [], writes no field where no rule points and the field is absent, never computes applies_to, and counts no archived rule; the live leg, the librarian's run with entity-sprint carrying rules [rule-sprint], not taken
+2026-09-29, tests/test_generate.py 97 passed; entity-sprint carries rules [rule-sprint]; the three rules with applies_to match the rules of their three Entities
 
 ## History
 
 - 2026-09-22 created · [[decision-case-305.3]]
 - 2026-09-22 status: pending → passed · raw/2026-09-22/0014/ledger.md#L59
 - 2026-09-29 updated: the Criterion replaced whole — When and Then only, Given out (case 489.5) · [[decision-case-489.5]]
+- 2026-09-29 status: pending → passed · raw/2026-09-29/1134/ledger.md#L55

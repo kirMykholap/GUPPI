@@ -1,11 +1,11 @@
 ---
 type: estimate
 kind: QA
-status: pending
+status: passed
 target: "[[rule-render-harness]]"
 purpose: render, once it wrote the harness and exits 0, ticks the guppi render lines of every Spec under raw/ whose yaml is applied whole
 method: pytest tests/test_render.py, plus one reading of this session's spec.md after the librarian's run
-checked: 2026-09-18
+checked: 2026-09-29
 origin: raw/2026-09-17/1119/ledger.md#case-226.2
 sprint: migration
 created: 2026-09-17
@@ -25,7 +25,7 @@ In the `spec.md` of every unit whose yaml is applied whole, every unticked task 
 
 ## Result
 
-2026-09-18, pytest tests/test_render.py (a yaml with a superseded entry ticked, an unmarked and a failed one not) and the librarian's `uv run guppi render` of commit 3e1251f: the `uv run guppi render` lines 162, 193 of the 2054 Spec ticked, nothing else changed; the 1957 Spec holds no render line, so the superseded entry is read live through `sprint` on the same `applied_whole`, and in the test for `render` itself
+2026-09-29, tests/test_render.py 34 passed; ff62585 ticked the render lines 189, 494, 841, 881 and 970 of the 0137 Spec, and the diff of the Spec is tick flips only
 
 ## History
 
@@ -35,3 +35,4 @@ In the `spec.md` of every unit whose yaml is applied whole, every unticked task 
 - 2026-09-18 updated: the Criterion replaced whole — a yaml is applied whole when every entry carries applied or superseded_by and none failed, as guppi archive counts it (case 250.1) · [[decision-case-250.1]]
 - 2026-09-20 status: pending → passed · raw/2026-09-18/2253/ledger.md#L5
 - 2026-09-29 updated: the Criterion replaced whole — When and Then only, Given out, the yaml applied whole stated (case 491.4) · [[decision-case-491.4]]
+- 2026-09-29 status: pending → passed · raw/2026-09-29/1134/ledger.md#L62

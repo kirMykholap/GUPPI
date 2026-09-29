@@ -1,11 +1,11 @@
 ---
 type: estimate
 kind: QA
-status: pending
+status: passed
 target: "[[rule-skill-grill-me]]"
 purpose: grill-me asks in rounds, finds facts itself and acts only after the shared understanding is confirmed, as the one text its rule page renders
 method: uv run guppi render --check; by hand, one round read in the chat in a session after the render, of the person's /grill-me or of case-guppi
-checked: 2026-09-28
+checked: 2026-09-29
 origin: raw/2026-09-26/2300/ledger.md#case-443.1
 sprint: migration
 created: 2026-09-26
@@ -31,7 +31,7 @@ Then:
 
 ## Result
 
-2026-09-28, uv run guppi render --check exit 0, then the rounds of case-guppi in session 1318 read in the chat: on Cases 476, 477, 478 and 479 each round held the open questions whose prerequisites were settled and waited for the answers, the facts were looked up by case-guppi itself, and the Case came only after the person confirmed the rounds; .claude/skills/grill-me/SKILL.md lets the agent dispatch a sub-agent but requires none
+2026-09-29, uv run guppi render --check exit 0; by hand, the rounds of case-guppi in session 1134: each question opens with its ❓ Qn line, one Now line, options as bold items with one nested After item each, closes with the ➡️ line; facts looked up by the agent; nothing acted on before the person's word
 
 ## History
 
@@ -39,3 +39,4 @@ Then:
 - 2026-09-28 updated: the Criterion replaced whole — a round of case-guppi reads the frontier rule, finding facts and the confirmation; the form of its questions stays with estimate-case-build-writes-the-case (case 470) · [[decision-case-470]]
 - 2026-09-28 status: pending → passed · raw/2026-09-28/1318/ledger.md#L37
 - 2026-09-29 updated: the Criterion replaced whole — every question of /grill-me and of case-guppi takes the Now and After shape, an option with nothing else under it, a translated label the same label (case 501.1) · [[decision-case-501.1]]
+- 2026-09-29 status: pending → passed · raw/2026-09-29/1134/ledger.md#L49

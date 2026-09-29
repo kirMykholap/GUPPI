@@ -1,11 +1,11 @@
 ---
 type: estimate
 kind: QA
-status: pending
+status: passed
 target: "[[rule-page-generation]]"
 purpose: generate applies every unit under raw/ that has a yaml, dates ascending, and a failing unit does not stop the walk
 method: tests/test_generate.py with two dated folders; live, the librarian's first run
-checked: 2026-09-17
+checked: 2026-09-29
 origin: raw/2026-09-10/ledger.md#case-43
 sprint: migration
 created: 2026-09-10
@@ -26,7 +26,7 @@ Without `--date` every unit under `vault/raw/` with a `materialize.yaml` is appl
 
 ## Result
 
-2026-09-17, `uv run pytest -q tests/test_generate.py` 48 passed, and the pages after the librarian's run of 2238 (commit be891c1): `estimate-generate-writes`, `-generate-walks-dates`, `-lint-catches`, `-pretask-reconciles`, `-materialize-assembles` each carry a `method` field and no `## Context` or `## Method` section; `uv run guppi lint` reads `unmigrated: 34 pages in the shape before case 193`; the walk of that run took four units — 1034, 1651, 1955, 2238 — dates ascending, per the brief
+2026-09-29, uv run pytest tests/test_generate.py: 97 passed; live, the run of ff62585: 2026-09-28/2229 0 pages, then 2026-09-29/0137 65 pages, exit 0
 
 ## History
 
@@ -43,3 +43,4 @@ Without `--date` every unit under `vault/raw/` with a `materialize.yaml` is appl
 - 2026-09-20 ref `estimate-pretask-hook-gates` → `estimate-prespec-hook-gates` · [[decision-case-261]]
 - 2026-09-20 updated: the word moved: the module pretask → prespec and the slug -pretask-reconciles → -prespec-reconciles in the Criterion; the promise and the reading unchanged, passed kept (case 265) · [[decision-case-265]]
 - 2026-09-29 updated: the Criterion restored whole — the text of case 201.5, which case 211.3 overwrote; purpose set (case 489.2) · [[decision-case-489.2]]
+- 2026-09-29 status: pending → passed · raw/2026-09-29/1134/ledger.md#L54

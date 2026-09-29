@@ -1,7 +1,7 @@
 ---
 type: estimate
 kind: QA
-status: failed
+status: pending
 target: "[[entity-glossary]]"
 purpose: Every term names in where a live page that defines it, and no term stands twice
 method: one reading of the table by hand after the librarian's run, plus make lint — no ref finding on entity-glossary
@@ -18,13 +18,15 @@ When:
 `uv run guppi glossary` reads the `## Terms` table of `entity-glossary` at the librarian's run, and `guppi lint` and a reader read the same table.
 
 Then:
-Each row names in `where` a `[[slug]]` of a live page, and that page defines the term of the row.
+Each row names in `where` a `[[slug]]` of a live page, and that page says what the term of the row is.
+**＋** No claim of the meaning of a row contradicts its `where` page.
 **＋** No term stands in two rows.
+**－** A row does not fail because its `where` page leaves out a claim of its meaning.
 **－** The terms that the Purpose of `entity-glossary` names as not rows, C4 model, Delegate and the retired terms, stand in no row.
 
 ## Result
 
-2026-09-29, by hand at the /hi of session 1753, after the librarian's run d8c1f17 that applied case 515, the table of vault/wiki/glossary.md and make lint: 56 rows, 56 distinct terms, no C4 model, Delegate or retired term, every `where` a live page, no lint line on entity-glossary; but five rows name a `where` page that does not define the term: Vault (`rule-page-schemas` does not say what the vault is), `deferred_by` and `origin` (the body of `rule-page-generation` names neither), Entity / Rule (status) (`rule-page-generation` gives no `archived` status of an Entity or a Rule and no built once every Estimate passes), Hook (`rule-hook-registry` names neither the transcript nor the `hi` window across midnight)
+2026-09-29, by hand at the /hi of session 2024 after the librarian's run 1c196e8, the table of vault/wiki/glossary.md against each where page and make lint: 57 rows, 57 distinct terms, no C4 model, Delegate or retired term, every where a live page, no lint line on entity-glossary but the unread one; the rows rewritten by case 520 (Vault, deferred_by, origin, Entity (status), Rule (status)) now match their pages; but Hook: rule-hook-registry does not say what a hook is; Retro: the row puts the short defer under ## Retro in the Spec, rule-retro line 46 puts it under ## Deferred; Harness: rule-harness does not say the harness is hooks, agents and skills rendered from rules/
 
 ## History
 
@@ -35,3 +37,5 @@ Each row names in `where` a `[[slug]]` of a live page, and that page defines the
 - 2026-09-29 updated: the Criterion replaced whole — the one-time build of the table out, the purpose kept as When and Then (case 488.4) · [[decision-case-488.4]]
 - 2026-09-29 status: pending → failed · raw/2026-09-29/1432/ledger.md#L5
 - 2026-09-29 status: failed → failed · raw/2026-09-29/1753/ledger.md#L4
+- 2026-09-30 status: failed → failed · raw/2026-09-29/2024/ledger.md#L5
+- 2026-09-30 updated: the Criterion replaced whole — the where page says what the term is and contradicts no claim of the row; a claim it leaves out does not fail the row (case 527.2) · [[decision-case-527.2]]

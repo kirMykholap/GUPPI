@@ -14,14 +14,14 @@ tags: [session, workflow, harness]
 ## Criterion
 
 When:
-The person invokes `/handoff` after the Retro, the gate of `guppi/gate.py` reads the tree, and the agent runs the skill `.claude/skills/handoff/SKILL.md` as rendered from `rule-handoff`.
+The agent calls `/handoff` on `PreToolUse Skill` after the reply that ends Retro, or the person types `/handoff` on `UserPromptSubmit`, the gate of `guppi/gate.py` reads the tree, and the agent runs the skill `.claude/skills/handoff/SKILL.md` as rendered from `rule-handoff`.
 
 Then:
 The skill's context holds `git status --porcelain`. On a dirty tree the skill stops and says "commit first", and nothing is written.
 **＋** On a clean tree the day's event log `vault/raw/<date>/event_log.md` holds the `handoff` mark of the call.
-**＋** The agent writes `handoff.md` into the session's folder `vault/raw/<date>/<hi HHMM>/`: one document with no `---` and the three sections `## Notes from memory`, `## Direct instructions to the librarian` and `## What actually got done`, with no Read call on the artifacts.
+**＋** The agent writes `handoff.md` into the session's folder `vault/raw/<date>/<hi HHMM>/`: one document with no `---` and the sections that `rule-handoff` names, with no Read call on the artifacts.
 **＋** Then the agent dispatches `librarian-guppi` with one line, `Materialize <date> from <path of handoff.md>.`, the path being that of the file just written, and shows the librarian's report to the person unchanged.
-**－** No commit follows the handoff except the librarian's own.
+**－** No commit follows the handoff except the librarian's own, and no reply between the call and the librarian's report carries a `LEDGER` block.
 
 ## Result
 
@@ -34,3 +34,4 @@ live 2026-09-14 session N, block 73.7: handoff.md written to raw/2026-09-14/1029
 - 2026-09-12 criterion: case 73.7 added · [[decision-case-73.7]]
 - 2026-09-14 status: pending → passed · raw/2026-09-14/1229/ledger.md#L4
 - 2026-09-29 updated: the Criterion replaced whole — the head and the block 73.7 into one When and Then, the dispatch by the path; purpose and method set, Context and Method out (case 499.2) · [[decision-case-499.2]]
+- 2026-09-30 updated: the Criterion replaced whole — the trigger covers the agent's call after the reply that ends Retro; the sections are those of rule-handoff; no LEDGER block before the librarian's report (case 531.6) · [[decision-case-531.6]]

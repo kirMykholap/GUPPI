@@ -4,6 +4,8 @@ description: Work Mode on the approved Spec — check the branch, write the base
 ---
 
 
+@vault/wiki/where-to-stop.md
+
 Branch: !`git branch --show-current`
 
 Tests: !`make test`
@@ -20,4 +22,4 @@ Run the tasks of the Spec in the order the Spec holds them. Tick each box of cod
 
 When a task changes a check — `make lint` or one of its steps, or a hook of the working tree — that reads a page or a governed file this Spec updates, add one line under `## Expected red` in the same reply: the check, and the page or file it waits for. That check is red or refuses on that page or file until the librarian's run, and `/retro` ends that red as a note for the handoff.
 
-When the last task is done, take the Work readings before `/retro`: in the order of `frontier.md`, each reading of an open `W` line whose work is built and whose moment, as its `method` names it, has come; a moment of an earlier session, such as the librarian's run, has come. Leave a reading of an Estimate this session creates or updates, and one whose moment has not come: its line stays open. Close the line of each reading taken `[x] … · work` in `frontier.md` first, then write its `estimate[...]` line in a `LEDGER` block of a reply that ends in text; tick no `read` box. The person can stop the step in the chat, and the lines not reached stay open (case 508.3). Work Mode ends with `/retro`.
+When the last task is done, take the Work readings before `/retro`: in the order of `frontier.md`, each reading of an open `W` line whose work is built and whose moment, as its `method` names it, has come; a moment of an earlier session, such as the librarian's run, has come. Leave a reading of an Estimate this session creates or updates, and one whose moment has not come: its line stays open. Close the line of each reading taken `[x] … · work` in `frontier.md` first; tick no `read` box. Write no `LEDGER` block here: the line of each reading stands in the one reply that ends Retro (case 531.8). Run the tasks, the readings and `/retro` in one turn, with tool calls and no reply that ends, except at a stop that `vault/wiki/where-to-stop.md` names. Work Mode ends by calling `/retro`.

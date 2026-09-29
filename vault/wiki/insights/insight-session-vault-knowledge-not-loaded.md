@@ -1,9 +1,9 @@
 ---
 type: insight
 pattern: A fact the vault holds does not reach the session that needs it; only brief.md, CLAUDE.md, the skills and the agent frames are loaded, and everything else waits for a read the agent must first think to make.
-status: actioned
-children: ["[[lesson-readings-after-librarian-invisible-to-next-hi]]", "[[lesson-vault-lesson-absent-at-the-moment-it-applies]]", "[[lesson-heredoc-trap-hit-twice-with-its-lesson-live]]", "[[lesson-heredoc-trap-hit-a-third-time-in-work-mode]]", "[[lesson-heredoc-trap-hit-a-fourth-time-in-the-session-that-ratified-its-hook]]", "[[lesson-spec-render-line-form-unmatched-by-the-ticker]]", "[[lesson-plan-mode-frontier-refused-at-hi-again]]"]
-severity: 0
+status: open
+children: ["[[lesson-readings-after-librarian-invisible-to-next-hi]]", "[[lesson-vault-lesson-absent-at-the-moment-it-applies]]", "[[lesson-heredoc-trap-hit-twice-with-its-lesson-live]]", "[[lesson-heredoc-trap-hit-a-third-time-in-work-mode]]", "[[lesson-heredoc-trap-hit-a-fourth-time-in-the-session-that-ratified-its-hook]]", "[[lesson-spec-render-line-form-unmatched-by-the-ticker]]", "[[lesson-plan-mode-frontier-refused-at-hi-again]]", "[[lesson-carry-short-brief-drops-the-work-list]]"]
+severity: 1
 addressed_by: "[[decision-case-377.1]]"
 origin: raw/2026-09-12/ledger.md#L210
 sprint: migration
@@ -36,3 +36,4 @@ A suggestion, not a decision. Give the session a second channel beside the brief
 - 2026-09-21 updated: actioned: the sixth child, the form of a render line, closed in its own session by 279.1 (the form in the schema /hi loads) and 279.2 (pre-spec refuses a line of another form); the Proposal's first half done by 101.2, its second rejected by 134 (case 284.1) · [[decision-case-284.1]]
 - 2026-09-23 updated: synthesis: lesson-plan-mode-frontier-refused-at-hi-again added, the leave of plan mode stands in rule-permissions, settings.json and a lesson, none of them in the context at /hi; reopened from actioned · raw/2026-09-23/1126/ledger.md#L44
 - 2026-09-23 updated: actioned: the seventh child closed in its own session by case 363, the leave of plan mode in the text of /hi; the /hi of session 1355 wrote frontier.md in plan mode with no refusal (case 377.1) · [[decision-case-377.1]]
+- 2026-09-30 updated: child lesson-carry-short-brief-drops-the-work-list added, reopened (synthesis) · raw/2026-09-30/0138/ledger.md#L1

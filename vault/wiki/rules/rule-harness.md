@@ -14,8 +14,7 @@ tags: [harness, workflow]
 
 ## Purpose
 
-Prevents the tools of the harness from drifting apart from the pages that describe
-them. Three rules belong to no phase of the session: the renderer, the page
+Prevents the tools of the harness from drifting apart from the pages that describe them. The harness is the files that `guppi render` writes from the pages of `rules/`, such as `.claude/settings.json` with its hooks, the skills and agents under `.claude/`, `CLAUDE.md`, `case-schema.md` and `guppi.toml`. Three rules belong to no phase of the session: the renderer, the page
 `.claude/settings.json` is assembled from, and lint. They run together in `make lint`, with the checks of `rule-sprint` and `rule-backlog` (children of `rule-documentation`) between them, in this order: the harness files are checked against their pages, the sprint file against its page, the backlog file against its sources, the glossary file against its page, then the pages (cases 227, 306.5, 451.14). Nine more belong here and run in no pipeline: the settings file of guppi, `guppi.toml`, the schemas of the pages, the layout of the vault, the hook that refuses a hand edit of a rendered file, the hook that refuses a heredoc with a backslash or a file write, the page `CLAUDE.md` is rendered from, the pinned clock of the tests, the hook that shows the size of the context, and the hooks that read a page of the vault without its History (cases 59.6, 59.8, 127, 145.1, 304, 315, 392.3, 420.1, 476.1).
 
 ## History
@@ -60,3 +59,4 @@ them. Three rules belong to no phase of the session: the renderer, the page
 - 2026-09-27 status: draft → built · cascade
 - 2026-09-28 child rule-guppi-config added · [[decision-case-476.1]]
 - 2026-09-28 updated: rule-guppi-config, the settings file of guppi, belongs to the harness (case 476.1) · [[decision-case-476.1]]
+- 2026-09-30 updated: the Purpose says what the harness is: the files guppi render writes from the pages of rules/ (case 527.1) · [[decision-case-527.1]]

@@ -11,7 +11,7 @@ Rule-class files dissolved, `index.md` gone, the `file` route out of the scripts
 **Done when**
 
 - [ ] make lint exits 0 at the close of the sprint, unmigrated included, but for the unread of the sprint page's own Estimates · pending
-- [ ] vault/parked/, the 2026-08 documents, the old archive root and the empty raw date folders are gone by decision at the close of the sprint · pending
+- [ ] vault/parked/, the 2026-08 documents and the old archive root are gone, git tracks no raw date folder without a session, and the repository has no remote, each by a decision named at the close of the sprint · pending
 - [ ] make test green on the last commit of migration and the branch merged into main · pending
 - [x] No Rule-class file at the close of Slice 3f — the schemas rendered from rule pages, the glossary from entity-glossary, index.md gone, the file route out of the scripts · passed
 - [x] index.md is gone and no live page, harness file or script docstring points at a §N of it or at the file as a source · passed
@@ -21,11 +21,7 @@ Rule-class files dissolved, `index.md` gone, the `file` route out of the scripts
 
 ### [ ] Slice 5 — closing
 
-- [ ] [[estimate-sprint-migration-leftovers-gone]] — `vault/parked/` and the documents of 2026-08 under `docs/` deleted (case 510); the old archive root, the empty raw date folders, `git pull` and `gh`, and the reading, at the close · pending
-- [ ] [[estimate-sprint-migration-lint-clean]] — `make lint` exit 0: the 31 Decision pages of Cases 1–28 decided, `unmigrated` at zero · pending
-- [ ] [[estimate-sprint-migration-merges]] — `make test` green, `migration` merged into `main`; at the close [[rule-git-context]] and [[rule-github-issues]] — the upstream of the branch and the GitHub remote, decisions 11.1, 11.2, defers 220, 243 — read by [[estimate-sprint-migration-leftovers-gone]] · pending
-- [ ] [[rule-spec-box]] — the Spec box, case 207, after Slice 3b · draft · decision-case-207, decision-case-219, decision-case-232
-- [ ] [[rule-morph]] — the morph mechanism: the initiation at install sets the category set of the project, the development set by default, held as data so that a changed set rewrites no rule; case 239 · draft · decision-case-239
+- [ ] [[estimate-sprint-migration-leftovers-gone]] — `vault/parked/` and the documents of 2026-08 under `docs/` deleted (case 510), the old archive root (case 102.1); the raw date folders read by what git tracks, the remote and `git pull` and `gh` out of `/hi` (case 528); the reading at the close · pending
 - [ ] the close of a sprint — `entity-sprint-<id>` and the Estimates it lists go to the archive together once each has passed: a done-condition of a sprint has nothing left to guard after the close; not yet decided (case 478.2)
 
 ## Closed
@@ -38,9 +34,7 @@ cascades, the slug checked against the archive) built 2026-09-13. Slice 3d (the
 Estimate model, case 182) opened and closed 2026-09-16: Cases 187–190 ratified in
 session 1034 and conserved, repaired by 193–198 and built in session 1651, case 191
 taken up by 201–203 and built in session 1955 — `generate`, `lint`, `pre-spec` by the
-model. The recut of each old Estimate ran on past the Slice, 42 pages at the close of 3d; Slice 3g recut the last of them (cases 484-500) and closed with case 506, which took the checks of the old shape out of the scripts. `/grill-me` has its page since case 443.1, `rule-skill-grill-me`. Kept without a page: `git pull` in `/hi`
-without an upstream (decision 11.1); `gh` not logged in, no GitHub remote (11.2) —
-both decided again at the close (`estimate-sprint-migration-leftovers-gone`).
+model. The recut of each old Estimate ran on past the Slice, 42 pages at the close of 3d; Slice 3g recut the last of them (cases 484-500) and closed with case 506, which took the checks of the old shape out of the scripts. `/grill-me` has its page since case 443.1, `rule-skill-grill-me`. `git pull` and `gh` left `/hi` with the remote of the product repository, kept since decisions 11.1 and 11.2 (case 528).
 
 Slice 3f (the Rule-class files into the graph, case 301) opened 2026-09-22 and closed
 the same day: the six schemas as rule pages under `rule-page-schemas` (304), the edge

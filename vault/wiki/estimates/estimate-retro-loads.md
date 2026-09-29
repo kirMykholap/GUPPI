@@ -1,7 +1,7 @@
 ---
 type: estimate
 kind: QA
-status: passed
+status: pending
 target: "[[rule-retro]]"
 method: one reading by hand at the first /retro, recorded in the estimate line
 checked: 2026-09-27
@@ -14,7 +14,7 @@ tags: [session, workflow, harness]
 ## Criterion
 
 When:
-The person invokes `/retro`, and the agent takes the readings of the session's Estimates.
+The agent calls `/retro` on `PreToolUse Skill` at the end of `/work`, or the person types `/retro` on `UserPromptSubmit`, and the agent takes the readings of the session's Estimates.
 
 Then:
 A reading measures the Criterion the page carries at the moment of the reading — the one ratified last; its line is written only when the work that Criterion names is built — rendered, written, run.
@@ -55,3 +55,4 @@ A reading measures the Criterion the page carries at the moment of the reading �
 - 2026-09-21 status: pending → passed · raw/2026-09-21/0019/ledger.md#L21
 - 2026-09-25 updated: the Criterion replaced whole — an Estimate the session creates or updates gets no reading at its Retro, built or not (case 428.3) · [[decision-case-428.3]]
 - 2026-09-27 status: pending → passed · raw/2026-09-27/2050/ledger.md#L36
+- 2026-09-30 updated: the Criterion replaced whole — the trigger is the agent's call at the end of /work or the typed /retro; the readings rule is unchanged (case 531.2) · [[decision-case-531.2]]

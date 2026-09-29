@@ -4,7 +4,7 @@ kind: MOC
 purpose: Prevents a session being handed over without a settled account of what happened
 status: draft
 parent: "[[rule-session]]"
-children: ["[[rule-retro]]", "[[rule-retro-commit]]", "[[rule-handoff]]", "[[rule-carry-over]]"]
+children: ["[[rule-retro]]", "[[rule-retro-commit]]", "[[rule-handoff]]", "[[rule-carry-over]]", "[[rule-retro-onward]]"]
 estimates: ["[[estimate-end-of-work-order]]"]
 origin: raw/2026-09-10/ledger.md#case-38
 sprint: migration
@@ -16,8 +16,7 @@ tags: [session, workflow]
 
 Prevents a session being handed over without a settled account of what happened. It
 also prevents the librarian's writes from being indistinguishable from the
-session's own, by forcing a commit between the two. Three steps: the Retro
-conversation, the commit gate on the way to handoff, then handoff itself.
+session's own, by forcing a commit between the two. Three steps, which the agent runs in the turn of Work Mode with no stop for the person: Retro, the commit gate on the way to handoff, then handoff itself (case 531.1).
 
 A session has a second end: `/carry` straight after Plan Mode, when the Spec is
 ratified and its work is not done — no Work Mode, no Retro, no handoff, no
@@ -38,3 +37,5 @@ agent asks the person which of the two ends and starts nothing until it is answe
 - 2026-09-17 status: draft → built · cascade
 - 2026-09-22 updated: the parent is rule-session, the MOC of the five phases (case 316) · [[decision-case-316]]
 - 2026-09-29 status: built → draft · cascade
+- 2026-09-30 updated: the steps of the end of a session run in the turn of Work Mode with no stop for the person (case 531.1) · [[decision-case-531.1]]
+- 2026-09-30 child rule-retro-onward added · [[decision-case-531.9]]

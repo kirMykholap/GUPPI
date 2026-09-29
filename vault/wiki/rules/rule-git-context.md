@@ -1,14 +1,13 @@
 ---
 type: rule
 kind: Leaf
-purpose: Prevents a session from starting on a branch it does not know, or pulling mid-session
+purpose: Prevents a session from starting on a branch it does not know
 status: draft
 enforcement: render
 governs: .claude/skills/hi/SKILL.md
 render_mode: partial
 parent: "[[rule-skill-hi]]"
 estimates: ["[[estimate-git-context-current]]"]
-deferred_by: ["[[decision-case-220]]", "[[decision-case-243]]"]
 origin: raw/2026-09-09/ledger.md#case-11
 sprint: migration
 created: 2026-09-09
@@ -17,20 +16,16 @@ tags: [session, harness, git]
 
 ## Purpose
 
-Prevents a session from starting on a branch it does not know, or pulling mid-session.
+Prevents a session from starting on a branch it does not know.
 
 **Branch tells us what kind of start this is.** On `main` or a working branch, no plan is
 open. On a plan branch, unfinished work exists and becomes the first Frontier item. This is
 never restated in `brief.md` — git already knows, and a second source of truth eventually
 disagrees with the first.
 
-**`git pull` happens here and only here.** Pulling mid-session, after the plan is written
-and half the tasks are ticked, breaks the session.
-
 ## Render
 
 <!-- rule-git-context -->
-Pull: !`git pull --ff-only 2>&1 || true`
 Render: !`uv run guppi render --sync`
 Branch: !`git branch --show-current`
 Status: !`git status --short`
@@ -38,11 +33,7 @@ Status: !`git status --short`
 
 ## How it works
 
-`--ff-only` so a pull can never open a merge inside a session start. The `Render:` line after it runs `uv run guppi render --sync` once more, so what the pull brought reaches its governed files in the same session; a diff on that line is a Frontier item like the one of the session start (case 115). A failing pull — no
-upstream, a remote that is not this project, a conflict — prints its message into the
-context and becomes a Frontier item unless `sprint.md` names its decision (case 268.2); `|| true` keeps the skill going. As of 2026-09-09 the
-remote is the product repository this vault was split from and `migration` has no upstream;
-the owner left both as they are until Slice 5.
+The `Render:` line runs `uv run guppi render --sync` once more inside `/hi`, after the `SessionStart` hook has run it; a diff on that line is a Frontier item like the one of the session start (case 115). The repository has no remote since case 528: `origin` was the product repository this vault was split from and `migration` had no upstream, so the pull that stood first in this block failed at every session start. `/hi` runs no `git pull`; a Case that adds a remote writes its pull line and its rule again.
 
 ## History
 
@@ -55,3 +46,6 @@ the owner left both as they are until Slice 5.
 - 2026-09-18 deferred · [[decision-case-243]]
 - 2026-09-20 updated: a failing pull is a Frontier item unless sprint.md names its decision (case 268.2) · [[decision-case-268.2]]
 - 2026-09-28 status: built → draft · cascade
+- 2026-09-30 defer by decision-case-220 superseded · [[decision-case-528.1]]
+- 2026-09-30 defer by decision-case-243 superseded · [[decision-case-528.1]]
+- 2026-09-30 updated: taken up: the pull leaves /hi with the remote; the rule keeps the render, the branch and the status; the defers of cases 220 and 243 retired (case 528.1) · [[decision-case-528.1]]

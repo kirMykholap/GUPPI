@@ -1,11 +1,11 @@
 ---
 type: estimate
 kind: QA
-status: pending
+status: passed
 target: "[[rule-carry-over]]"
 purpose: /carry writes the brief and the mark and runs guppi backlog and nothing else
 method: uv run guppi render --check; by hand, the first /carry after the fork of ExitPlanMode — the tree, vault/wiki/brief.md, carry.md, vault/wiki/backlog.md and the commit read
-checked: 2026-09-18
+checked: 2026-09-30
 origin: raw/2026-09-16/1034/ledger.md#case-190.1
 sprint: migration
 created: 2026-09-16
@@ -29,7 +29,7 @@ The skill reads the tree. When the tree holds changes outside the session folder
 
 ## Result
 
-2026-09-18, the live /carry of session 2054 after ExitPlanMode and the person's "conserve": Tree held only raw/2026-09-18/2054/; brief.md rewritten in the short shape, carry.md one line, make style clean, commit ba0240b of vault/raw/ and vault/wiki/brief.md; nothing else run, no page of wiki/ but the brief; the fork line of guppi spec was not visible in the ExitPlanMode result — the agent asked the fork itself
+2026-09-30, uv run guppi render --check (exit 0), git show --stat 8e4c918 and the event log of session 876c4080 from 01:32:52 to 01:33:35: /carry was called after the fork of ExitPlanMode; brief.md was rewritten in the short shape with no Deferred list; carry.md holds one line; guppi backlog ran and backlog.md shows the conserved Spec with its targets; make style ran; the commit holds only vault/raw/, brief.md and backlog.md; no Work Mode, retro, handoff, librarian, materialize, generate, cleanup or render ran. The short shape dropped the Work list by the rule's own text; that is lesson-carry-short-brief-drops-the-work-list and the defer of case 533, not a fault of this run
 
 ## History
 
@@ -41,3 +41,4 @@ The skill reads the tree. When the tree holds changes outside the session folder
 - 2026-09-23 updated: the Render changed under it — step 1 names the place of the frame; the Criterion stands (case 347) · [[decision-case-347]]
 - 2026-09-27 updated: the Criterion replaced whole — no Deferred list, guppi backlog run and backlog.md committed (case 451.9) · [[decision-case-451.9]]
 - 2026-09-27 updated: the method names render --check and a reading by hand; no test targets the carry skill (case 465) · [[decision-case-465]]
+- 2026-09-30 status: pending → passed · raw/2026-09-30/0138/ledger.md#L3

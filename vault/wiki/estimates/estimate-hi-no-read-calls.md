@@ -1,7 +1,7 @@
 ---
 type: estimate
 kind: QA
-status: passed
+status: pending
 target: "[[rule-skill-hi]]"
 purpose: After /hi the output of every block of the skill is in the first turn's context with no read call
 method: "by hand at the /hi of the next session: the first turn's context and the tool calls before it read in the transcript, written into the estimate line"
@@ -18,7 +18,8 @@ When:
 The person invokes `/hi`, and Claude Code expands `.claude/skills/hi/SKILL.md` before the agent's first turn.
 
 Then:
-The context of the first turn holds the output of each block of the skill, in the order of the children of `rule-skill-hi`: the text of the files `rule-internal-context` loads, the lines `Pull:`, `Render:`, `Branch:` and `Status:` of `rule-git-context`, the line `Open issues:` of `rule-github-issues`, and the line `Tail:` of `rule-ledger-tail`.
+The context of the first turn holds the output of each block of the skill, in the order of the children of `rule-skill-hi`: the text of the files `rule-internal-context` loads, the lines `Render:`, `Branch:` and `Status:` of `rule-git-context`, and the line `Tail:` of `rule-ledger-tail`.
+**＋** The `allowed-tools` of the skill names `uv run guppi render --sync`, `git branch --show-current`, `git status --short` and `uv run guppi tail`, and neither `git pull` nor `gh`.
 **－** The agent makes no read-tool call to get any of them.
 
 ## Result
@@ -33,3 +34,4 @@ The context of the first turn holds the output of each block of the skill, in th
 - 2026-09-14 status: pending → passed · raw/2026-09-14/0747/ledger.md#L36
 - 2026-09-28 updated: the Criterion replaced whole — one When and Then; the hi line left to estimate-event-log-records, the block bookkeeping out; purpose and method set, Context and Method out (case 485.2) · [[decision-case-485.2]]
 - 2026-09-29 status: pending → passed · raw/2026-09-29/1134/ledger.md#L44
+- 2026-09-30 updated: the Criterion replaced whole — no Pull and no Open issues line; allowed-tools names neither git pull nor gh (case 528.3) · [[decision-case-528.3]]

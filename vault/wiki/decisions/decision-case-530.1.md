@@ -1,0 +1,19 @@
+---
+type: decision
+case: "530.1"
+status: current
+update: ["[[rule-documentation]]", "[[estimate-documentation-completes]]"]
+supersedes: ["[[decision-case-525]]"]
+origin: raw/2026-09-29/2024/ledger.md#case-530.1
+sprint: migration
+created: 2026-09-29
+tags: [session, workflow, harness, librarian, render]
+---
+
+## Problem
+
+The librarian's list of allowed reads contradicts the brief section of its own frame, so every run breaks the list and `estimate-documentation-completes` cannot pass. When a hook refuses a write, the refusal text points to the scratchpad and not to `Write`, so the librarian worked around the refusal with `cp` instead of writing the file with the tool the hooks check.
+
+## History
+
+- 2026-09-30 created · raw/2026-09-29/2024/ledger.md#case-530.1

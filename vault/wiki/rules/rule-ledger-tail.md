@@ -46,7 +46,7 @@ not printed — it is either `unparsed` in the yaml or not a record. The coverag
 a line is the one function `guppi archive` uses to call a unit done
 ([[rule-raw-archive]]), so the two scripts cannot disagree; after the archive the
 walk holds only the sessions not yet done. The Render splices one line into the
-`/hi` skill, between the markers of this page, after `rule-github-issues`; the
+`/hi` skill, between the markers of this page, after `rule-git-context`; the
 Frontier text of [[rule-skill-hi]] makes a `failed` reading or a lesson of the tail
 an item, and a decision line not.
 
@@ -67,3 +67,4 @@ an item, and a decision line not.
 - 2026-09-14 updated: the second caller of guppi tail, the retro skill, named (case 132) · [[decision-case-132]]
 - 2026-09-28 status: built → draft · cascade
 - 2026-09-29 status: draft → built · cascade
+- 2026-09-30 updated: the Tail line follows the git lines: rule-github-issues left the harness (case 528.2) · [[decision-case-528.2]]

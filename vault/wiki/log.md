@@ -4827,3 +4827,148 @@ instruction. The global feed; a page's own `## History` is the per-page view.
 - 2026-09-29 decisions/decision-case-517 archived · cleanup
 - 2026-09-29 decisions/decision-case-518 archived · cleanup
 - 2026-09-29 decisions/decision-case-519 archived · cleanup
+- 2026-09-30 entities/entity-sprint-migration moved to the Backlog: estimate-sprint-migration-lint-clean passed over in 3 sessions in a row — 0138, 2024, 1753 · generate · generate
+- 2026-09-30 entities/entity-sprint-migration moved to the Backlog: estimate-sprint-migration-merges passed over in 3 sessions in a row — 0138, 2024, 1753 · generate · generate
+- 2026-09-30 entities/entity-sprint-migration moved to the Backlog: rule-spec-box passed over in 3 sessions in a row — 0138, 2024, 1753 · generate · generate
+- 2026-09-30 entities/entity-sprint-migration moved to the Backlog: rule-morph passed over in 3 sessions in a row — 0138, 2024, 1753 · generate · generate
+- 2026-09-30 estimates/estimate-generate-ticks-the-spec status: pending → passed · raw/2026-09-29/2024/ledger.md#L1 · generate
+- 2026-09-30 decisions/decision-case-526 created · raw/2026-09-29/2024/ledger.md#case-526 · generate
+- 2026-09-30 rules/rule-case-protocol updated: the short form says YAML cuts a value at a # after a space and PyYAML refuses the block at a # after a tab (case 526) · [[decision-case-526]] · generate
+- 2026-09-30 rules/rule-spec-write updated: the refusal of a comment says YAML cuts a value at a # after a space and PyYAML refuses the block at a # after a tab (case 526) · [[decision-case-526]] · generate
+- 2026-09-30 rules/rule-materialize updated: the mark of a comment says YAML cuts a value at a # after a space and PyYAML refuses the block at a # after a tab (case 526) · [[decision-case-526]] · generate
+- 2026-09-30 estimates/estimate-glossary-terms-defined status: failed → failed · raw/2026-09-29/2024/ledger.md#L5 · generate
+- 2026-09-30 decisions/decision-case-527.1 created · raw/2026-09-29/2024/ledger.md#case-527.1 · generate
+- 2026-09-30 entities/entity-glossary updated: the row Harness defines the harness as the files guppi render writes from rules/; the row Retro puts the short defer under ## Deferred, as case-schema.md does (case 527.1) · [[decision-case-527.1]] · generate
+- 2026-09-30 rules/rule-hook-registry updated: the Purpose says what a hook is (case 527.1) · [[decision-case-527.1]] · generate
+- 2026-09-30 rules/rule-harness updated: the Purpose says what the harness is: the files guppi render writes from the pages of rules/ (case 527.1) · [[decision-case-527.1]] · generate
+- 2026-09-30 decisions/decision-case-527.2 created · raw/2026-09-29/2024/ledger.md#case-527.2 · generate
+- 2026-09-30 estimates/estimate-glossary-terms-defined updated: the Criterion replaced whole — the where page says what the term is and contradicts no claim of the row; a claim it leaves out does not fail the row (case 527.2) · [[decision-case-527.2]] · generate
+- 2026-09-30 decisions/decision-case-528.1 created · raw/2026-09-29/2024/ledger.md#case-528.1 · generate
+- 2026-09-30 decisions/decision-case-220 superseded by decision-case-528.1 · [[decision-case-528.1]] · generate
+- 2026-09-30 rules/rule-git-context defer by decision-case-220 superseded · [[decision-case-528.1]] · generate
+- 2026-09-30 decisions/decision-case-243 superseded by decision-case-528.1 · [[decision-case-528.1]] · generate
+- 2026-09-30 rules/rule-git-context defer by decision-case-243 superseded · [[decision-case-528.1]] · generate
+- 2026-09-30 rules/rule-git-context updated: taken up: the pull leaves /hi with the remote; the rule keeps the render, the branch and the status; the defers of cases 220 and 243 retired (case 528.1) · [[decision-case-528.1]] · generate
+- 2026-09-30 estimates/estimate-git-context-current updated: the Criterion replaced whole — no Pull line, no git pull, no remote; the promise on a pull mid-session gone with the pull (case 528.1) · [[decision-case-528.1]] · generate
+- 2026-09-30 decisions/decision-case-528.2 created · raw/2026-09-29/2024/ledger.md#case-528.2 · generate
+- 2026-09-30 decisions/decision-case-220 superseded by decision-case-528.2 · [[decision-case-528.2]] · generate
+- 2026-09-30 rules/rule-github-issues defer by decision-case-220 superseded · [[decision-case-528.2]] · generate
+- 2026-09-30 decisions/decision-case-243 superseded by decision-case-528.2 · [[decision-case-528.2]] · generate
+- 2026-09-30 rules/rule-github-issues defer by decision-case-243 superseded · [[decision-case-528.2]] · generate
+- 2026-09-30 rules/rule-github-issues deleted · [[decision-case-528.2]] · generate
+- 2026-09-30 estimates/estimate-github-issues-listed deleted · [[decision-case-528.2]] · generate
+- 2026-09-30 entities/entity-glossary updated: the row Issue removed: rule-github-issues left the harness with the remote (case 528.2) · [[decision-case-528.2]] · generate
+- 2026-09-30 rules/rule-ledger-tail updated: the Tail line follows the git lines: rule-github-issues left the harness (case 528.2) · [[decision-case-528.2]] · generate
+- 2026-09-30 decisions/decision-case-528.3 created · raw/2026-09-29/2024/ledger.md#case-528.3 · generate
+- 2026-09-30 rules/rule-skill-hi updated: the frame without the pull and the issues: description, allowed-tools and the marker of rule-github-issues (case 528.3) · [[decision-case-528.3]] · generate
+- 2026-09-30 estimates/estimate-hi-no-read-calls updated: the Criterion replaced whole — no Pull and no Open issues line; allowed-tools names neither git pull nor gh (case 528.3) · [[decision-case-528.3]] · generate
+- 2026-09-30 rules/rule-session-start updated: no pull and no issues at /hi: the git Leaf and the sources of the Frontier (case 528.3) · [[decision-case-528.3]] · generate
+- 2026-09-30 decisions/decision-case-528.4 created · raw/2026-09-29/2024/ledger.md#case-528.4 · generate
+- 2026-09-30 decisions/decision-case-528.5 created · raw/2026-09-29/2024/ledger.md#case-528.5 · generate
+- 2026-09-30 estimates/estimate-sprint-migration-leftovers-gone updated: the Criterion replaced whole — the raw date folders read by what git tracks, the remote removed and git pull and gh out of /hi, the old archive root deleted by case 102.1 (case 528.5) · [[decision-case-528.5]] · generate
+- 2026-09-30 entities/entity-sprint-migration updated: Slice 5: the raw date folders, git pull and gh decided; the remote removed; the merge item no longer names the two rules (case 528.5) · [[decision-case-528.5]] · generate
+- 2026-09-30 decisions/decision-case-529 created · raw/2026-09-29/2024/ledger.md#case-529 · generate
+- 2026-09-30 insights/insight-materialize-estimate-update-lifts-the-criterion-whole updated: rejected as fixed: an update that names a part changes that part alone since case 378.4; the pattern names the cause in the past tense; the check of a Criterion against its page's purpose not taken (case 529) · [[decision-case-529]] · generate
+- 2026-09-30 estimates/estimate-documentation-completes status: failed → failed · raw/2026-09-29/2024/ledger.md#L24 · generate
+- 2026-09-30 decisions/decision-case-530.1 created · raw/2026-09-29/2024/ledger.md#case-530.1 · generate
+- 2026-09-30 decisions/decision-case-525 superseded by decision-case-530.1 · [[decision-case-530.1]] · generate
+- 2026-09-30 rules/rule-documentation defer by decision-case-525 superseded · [[decision-case-530.1]] · generate
+- 2026-09-30 rules/rule-documentation updated: the librarian reads git status and git diff of what this run wrote, log.md only through its diff, and the old brief; it writes the brief with Write and never works around a refusal (case 530.1) · [[decision-case-530.1]] · generate
+- 2026-09-30 estimates/estimate-documentation-completes updated: the Criterion replaced whole — the reads of what this run changed, log.md through its diff, the old brief read, the brief written with Write, no refusal worked around (case 530.1) · [[decision-case-530.1]] · generate
+- 2026-09-30 decisions/decision-case-530.2 created · raw/2026-09-29/2024/ledger.md#case-530.2 · generate
+- 2026-09-30 rules/rule-bash-guard updated: the refusal text sends a whole file to Write and only a script to the scratchpad (case 530.2) · [[decision-case-530.2]] · generate
+- 2026-09-30 estimates/estimate-bash-guard updated: the Criterion replaced whole — the refusal text sends a whole file to Write and only a script to the scratchpad (case 530.2) · [[decision-case-530.2]] · generate
+- 2026-09-30 decisions/decision-case-531.1 created · raw/2026-09-29/2024/ledger.md#case-531.1 · generate
+- 2026-09-30 decisions/decision-case-505 superseded by decision-case-531.1 · [[decision-case-531.1]] · generate
+- 2026-09-30 rules/rule-retro defer by decision-case-505 superseded · [[decision-case-531.1]] · generate
+- 2026-09-30 decisions/decision-case-509 superseded by decision-case-531.1 · [[decision-case-531.1]] · generate
+- 2026-09-30 rules/rule-retro defer by decision-case-509 superseded · [[decision-case-531.1]] · generate
+- 2026-09-30 rules/rule-retro updated: taken up: Retro shows no report and waits for no approval; it writes its readings and lessons in one reply, commits on green and calls /handoff; no short defer; a red test it cannot fix is a patch, a lesson and a Debt line; a reading that needs the person goes to Ask the person of handoff.md; the defers of cases 505 and 509 retired (case 531.1) · [[decision-case-531.1]] · generate
+- 2026-09-30 estimates/estimate-retro-runs-on-to-the-handoff renamed from `estimate-retro-report-holds-each-fact-once` · [[decision-case-531.1]] · generate
+- 2026-09-30 rules/rule-retro ref `estimate-retro-report-holds-each-fact-once` → `estimate-retro-runs-on-to-the-handoff` · [[decision-case-531.1]] · generate
+- 2026-09-30 estimates/estimate-retro-runs-on-to-the-handoff updated: renamed from estimate-retro-report-holds-each-fact-once and the Criterion replaced whole — no report and no approval: one reply of lines, a commit on green, then /handoff; the promise of each fact once moves to estimate-handoff-holds-each-fact-once (case 531.1) · [[decision-case-531.1]] · generate
+- 2026-09-30 rules/rule-end-of-work updated: the steps of the end of a session run in the turn of Work Mode with no stop for the person (case 531.1) · [[decision-case-531.1]] · generate
+- 2026-09-30 entities/entity-glossary updated: the row Retro: no frontier and no short defer; one reply of lines, a commit on green, then /handoff (case 531.1) · [[decision-case-531.1]] · generate
+- 2026-09-30 decisions/decision-case-531.2 created · raw/2026-09-29/2024/ledger.md#case-531.2 · generate
+- 2026-09-30 estimates/estimate-retro-loads updated: the Criterion replaced whole — the trigger is the agent's call at the end of /work or the typed /retro; the readings rule is unchanged (case 531.2) · [[decision-case-531.2]] · generate
+- 2026-09-30 decisions/decision-case-531.3 created · raw/2026-09-29/2024/ledger.md#case-531.3 · generate
+- 2026-09-30 estimates/estimate-retro-red-check-of-an-updated-page-is-a-handoff-note updated: the Criterion replaced whole — the trigger covers the agent's call; an expected red is a line of Observations of handoff.md, not an item of the frontier; the one-read rule of the frontier goes with the frontier (case 531.3) · [[decision-case-531.3]] · generate
+- 2026-09-30 decisions/decision-case-531.4 created · raw/2026-09-29/2024/ledger.md#case-531.4 · generate
+- 2026-09-30 estimates/estimate-retro-red-in-the-baseline-is-not-charged updated: the Criterion replaced whole — the trigger covers the agent's call; a red of the Baseline is a line of Observations of handoff.md, and a patch of any other red test is named in Debt (case 531.4) · [[decision-case-531.4]] · generate
+- 2026-09-30 decisions/decision-case-531.5 created · raw/2026-09-29/2024/ledger.md#case-531.5 · generate
+- 2026-09-30 rules/rule-handoff updated: handoff.md is the report of Retro: Debt, Observations, For the next session and Ask the person added; no number, no end and no commit; the three old section names kept; the Purpose no longer counts three things (case 531.5) · [[decision-case-531.5]] · generate
+- 2026-09-30 estimates/estimate-handoff-holds-each-fact-once updated: the Criterion replaced whole — handoff.md is the report of Retro, one section for each kind of fact, no numbers and no ends (case 531.5) · [[decision-case-531.5]] · generate
+- 2026-09-30 decisions/decision-case-531.6 created · raw/2026-09-29/2024/ledger.md#case-531.6 · generate
+- 2026-09-30 estimates/estimate-handoff-dispatches updated: the Criterion replaced whole — the trigger covers the agent's call after the reply that ends Retro; the sections are those of rule-handoff; no LEDGER block before the librarian's report (case 531.6) · [[decision-case-531.6]] · generate
+- 2026-09-30 decisions/decision-case-531.7 created · raw/2026-09-29/2024/ledger.md#case-531.7 · generate
+- 2026-09-30 rules/rule-where-to-stop created · [[decision-case-531.7]] · generate
+- 2026-09-30 rules/rule-work-mode updated: /work loads the stops of rule-where-to-stop by an import of vault/wiki/where-to-stop.md (case 531.7) · [[decision-case-531.7]] · generate
+- 2026-09-30 rules/rule-case-protocol updated: a task line that opens with stop: waits for the person's word (case 531.7) · [[decision-case-531.7]] · generate
+- 2026-09-30 estimates/estimate-where-to-stop-stops-only-on-its-conditions created · [[decision-case-531.7]] · generate
+- 2026-09-30 rules/rule-where-to-stop estimate estimate-where-to-stop-stops-only-on-its-conditions added · [[decision-case-531.7]] · generate
+- 2026-09-30 decisions/decision-case-531.8 created · raw/2026-09-29/2024/ledger.md#case-531.8 · generate
+- 2026-09-30 rules/rule-work-mode updated: the tasks, the Work readings and /retro run in one turn; the reading lines go to the reply that ends Retro (case 531.8) · [[decision-case-531.8]] · generate
+- 2026-09-30 rules/rule-case-protocol updated: the reading and lesson lines of the run from /work to the end of Retro stand in the reply that ends Retro (case 531.8) · [[decision-case-531.8]] · generate
+- 2026-09-30 estimates/estimate-work-mode-takes-the-work-readings updated: the Criterion replaced whole — the run is one turn; the reading lines stand in the reply that ends Retro; the stop of the step by the person is gone (case 531.8) · [[decision-case-531.8]] · generate
+- 2026-09-30 decisions/decision-case-531.9 created · raw/2026-09-29/2024/ledger.md#case-531.9 · generate
+- 2026-09-30 rules/rule-retro-onward created · [[decision-case-531.9]] · generate
+- 2026-09-30 rules/rule-end-of-work child rule-retro-onward added · [[decision-case-531.9]] · generate
+- 2026-09-30 rules/rule-hook-registry updated: the Stop hook guppi onward of rule-retro-onward registered after guppi context (case 531.9) · [[decision-case-531.9]] · generate
+- 2026-09-30 estimates/estimate-retro-onward-sends-the-agent-to-the-handoff created · [[decision-case-531.9]] · generate
+- 2026-09-30 rules/rule-retro-onward estimate estimate-retro-onward-sends-the-agent-to-the-handoff added · [[decision-case-531.9]] · generate
+- 2026-09-30 decisions/decision-case-531.10 created · raw/2026-09-29/2024/ledger.md#case-531.10 · generate
+- 2026-09-30 rules/rule-brief updated: Next session gets a third list, Ask the person, from handoff.md; Cases take its For the next session (case 531.10) · [[decision-case-531.10]] · generate
+- 2026-09-30 estimates/estimate-brief-written updated: the Criterion replaced whole — Next session holds Cases, Work and Ask the person; Cases take For the next session of handoff.md (case 531.10) · [[decision-case-531.10]] · generate
+- 2026-09-30 decisions/decision-case-531.11 created · raw/2026-09-29/2024/ledger.md#case-531.11 · generate
+- 2026-09-30 decisions/decision-case-528.4 superseded by decision-case-531.11 · [[decision-case-531.11]] · generate
+- 2026-09-30 rules/rule-skill-hi updated: the Frontier gets the list ## Ask from the brief's Ask the person, three lists in all; the rule for a failed pull or gh gone, carried from case 528.4 (case 531.11, supersedes 528.4) · [[decision-case-531.11]] · generate
+- 2026-09-30 estimates/estimate-hi-writes-frontier updated: the Criterion replaced whole — the list ## Ask with lines A<n>; the line on Pull and Open issues gone with the two commands, carried from case 528.4 (case 531.11, supersedes 528.4) · [[decision-case-531.11]] · generate
+- 2026-09-30 decisions/decision-case-531.12 created · raw/2026-09-29/2024/ledger.md#case-531.12 · generate
+- 2026-09-30 rules/rule-prespec updated: an open line under ## Ask is no finding of pre-spec, as one under ## Work (case 531.12) · [[decision-case-531.12]] · generate
+- 2026-09-30 estimates/estimate-prespec-checks-the-frontier updated: the Criterion replaced whole — an open line under ## Ask is no finding, as one under ## Work (case 531.12) · [[decision-case-531.12]] · generate
+- 2026-09-30 decisions/decision-case-531.13 created · raw/2026-09-29/2024/ledger.md#case-531.13 · generate
+- 2026-09-30 rules/rule-skill-hi updated: /hi puts each open Ask line to the person; the answer becomes the reading line (case 531.13) · [[decision-case-531.13]] · generate
+- 2026-09-30 estimates/estimate-hi-takes-its-readings updated: the Criterion replaced whole — the Ask lines put to the person in the first reply, the answer written as the reading line (case 531.13) · [[decision-case-531.13]] · generate
+- 2026-09-30 decisions/decision-case-531.14 created · raw/2026-09-29/2024/ledger.md#case-531.14 · generate
+- 2026-09-30 rules/rule-case-protocol updated: a short defer has one moment, the close of Plan Mode; Retro puts nothing off (case 531.14) · [[decision-case-531.14]] · generate
+- 2026-09-30 estimates/estimate-case-protocol-defers-in-one-reply updated: the Criterion replaced whole — a defer the person asks for in Plan Mode; Retro writes no short defer (case 531.14) · [[decision-case-531.14]] · generate
+- 2026-09-30 decisions/decision-case-532 created · raw/2026-09-29/2024/ledger.md#case-532 · generate
+- 2026-09-30 rules/rule-spec-box deferred · [[decision-case-532]] · generate
+- 2026-09-30 entities/entity-glossary updated: the row /hi, Frontier: no issues, three lists with Ask (case 531.11) · [[decision-case-531.11]] · generate
+- 2026-09-30 decisions/decision-case-531.15 created · raw/2026-09-29/2024/ledger.md#case-531.15 · generate
+- 2026-09-30 rules/rule-retro-commit updated: the refusal nothing to review on the agent's call names a stop, not a call in the next reply (case 531.15) · [[decision-case-531.15]] · generate
+- 2026-09-30 estimates/estimate-retro-commit-gates updated: the Criterion replaced whole — on the Skill path the refusal nothing to review names a stop of vault/wiki/where-to-stop.md, not a call in the next reply (case 531.15) · [[decision-case-531.15]] · generate
+- 2026-09-30 rules/rule-bash-guard status: built → draft · cascade · generate
+- 2026-09-30 rules/rule-brief status: built → draft · cascade · generate
+- 2026-09-30 rules/rule-prespec status: built → draft · cascade · generate
+- 2026-09-30 rules/rule-skill-hi status: built → draft · cascade · generate
+- 2026-09-30 decisions/decision-case-220 archived · superseded · generate
+- 2026-09-30 decisions/decision-case-243 archived · superseded · generate
+- 2026-09-30 decisions/decision-case-505 archived · superseded · generate
+- 2026-09-30 decisions/decision-case-509 archived · superseded · generate
+- 2026-09-30 decisions/decision-case-525 archived · superseded · generate
+- 2026-09-30 decisions/decision-case-528.4 archived · superseded · generate
+- 2026-09-30 lessons/lesson-generate-replaced-a-ratified-criterion-on-a-field-update archived · insight actioned · generate
+- 2026-09-30 lessons/lesson-carry-short-brief-drops-the-work-list created · raw/2026-09-30/0138/ledger.md#L1 · generate
+- 2026-09-30 decisions/decision-case-533 created · raw/2026-09-30/0138/ledger.md#case-533 · generate
+- 2026-09-30 rules/rule-carry-over deferred · [[decision-case-533]] · generate
+- 2026-09-30 estimates/estimate-carry-over-writes status: pending → passed · raw/2026-09-30/0138/ledger.md#L3 · generate
+- 2026-09-30 estimates/estimate-context-size-warns-past-the-limit status: pending → passed · raw/2026-09-30/0138/ledger.md#L4 · generate
+- 2026-09-30 estimates/estimate-materialize-marks-a-comment status: pending → passed · raw/2026-09-30/0138/ledger.md#L5 · generate
+- 2026-09-30 estimates/estimate-spec-write-writes-a-defer status: pending → passed · raw/2026-09-30/0138/ledger.md#L6 · generate
+- 2026-09-30 lessons/lesson-permissions-auto-mode-refuses-a-remote-change-despite-the-chat created · raw/2026-09-30/0138/ledger.md#L7 · generate
+- 2026-09-30 insights/insight-session-vault-knowledge-not-loaded updated: child lesson-carry-short-brief-drops-the-work-list added, reopened (synthesis) · raw/2026-09-30/0138/ledger.md#L1 · generate
+- 2026-09-30 lessons/lesson-carry-short-brief-drops-the-work-list updated: clustered under insight-session-vault-knowledge-not-loaded (synthesis) · raw/2026-09-30/0138/ledger.md#L1 · generate
+- 2026-09-30 rules/rule-carry-over status: draft → built · cascade · generate
+- 2026-09-30 rules/rule-context-size status: draft → built · cascade · generate
+- 2026-09-30 rules/rule-materialize status: draft → built · cascade · generate
+- 2026-09-30 rules/rule-github-issues archived · cleanup
+- 2026-09-30 estimates/estimate-github-issues-listed archived · cleanup
+- 2026-09-30 lessons/lesson-generate-replaced-a-ratified-criterion-on-a-field-update archived · cleanup
+- 2026-09-30 decisions/decision-case-220 archived · cleanup
+- 2026-09-30 decisions/decision-case-243 archived · cleanup
+- 2026-09-30 decisions/decision-case-505 archived · cleanup
+- 2026-09-30 decisions/decision-case-509 archived · cleanup
+- 2026-09-30 decisions/decision-case-525 archived · cleanup
+- 2026-09-30 decisions/decision-case-528.4 archived · cleanup
+- 2026-09-30 rules/rule-skill-hi child rule-github-issues archived · cleanup

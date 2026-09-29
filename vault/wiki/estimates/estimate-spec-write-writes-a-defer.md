@@ -1,11 +1,11 @@
 ---
 type: estimate
 kind: QA
-status: pending
+status: passed
 target: "[[rule-spec-write]]"
 purpose: The Stop hook writes a deferred Case into the Spec as the reply showed it
 method: uv run pytest tests/test_ratified.py -k defer, then by hand the first defer the person asks for after the change
-checked: 2026-09-26
+checked: 2026-09-30
 origin: raw/2026-09-25/1228/ledger.md#case-421.1
 sprint: migration
 created: 2026-09-25
@@ -29,7 +29,7 @@ The hook writes that Case under `## Deferred` of the plan file while Plan Mode l
 
 ## Result
 
-2026-09-26, `uv run pytest tests/test_ratified.py -k defer`: 9 passed; live, Case 442 of session 1745: the Stop hook wrote its heading, context, problem and then block under ## Deferred of the plan file as the reply at 22:00:17 showed them, and the ratified copy holds no Case 442
+2026-09-30, uv run pytest tests/test_ratified.py -k defer (13 passed); by hand, the first defer after case 521.1 was built (dd08a1b): Case 532 of session 2024 stands under ## Deferred of its spec.md with context, problem and a then block whose purpose is quoted; in this session Case 533 was written into the plan file, which held only its title line, with the heading ## Deferred added and the Case as the reply showed it
 
 ## History
 
@@ -37,3 +37,4 @@ The hook writes that Case under `## Deferred` of the plan file while Plan Mode l
 - 2026-09-26 updated: the Criterion replaced whole — a key of a defer item outside the keys item_keys gives it is refused (case 436.3) · [[decision-case-436.3]]
 - 2026-09-26 status: pending → passed · raw/2026-09-26/1745/ledger.md#L33
 - 2026-09-29 updated: the Criterion replaced whole — a then block that holds a YAML comment is refused (case 521.1) · [[decision-case-521.1]]
+- 2026-09-30 status: pending → passed · raw/2026-09-30/0138/ledger.md#L6

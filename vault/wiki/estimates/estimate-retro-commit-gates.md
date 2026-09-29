@@ -19,11 +19,12 @@ When:
 
 Then:
 A `/handoff` on a dirty tree, where `git status --porcelain` is not empty, exits 2 with the reason "commit first" on stderr, and the client blocks the call; on a clean tree it exits 0.
-**＋** A `/retro` in a session with a `hi` but no `spec.md` in its folder, no plan file named by the event log and no `- decision[`, `- estimate[` or `- lesson[` line in its window exits 2 with "gate: /retro refused — nothing to review: no Spec and no ledger line in raw/<date>/<HHMM>/. Ratify a Case or write a reading or a lesson first, then type /retro again."; on the `Skill` path the end reads "…then call /retro in the next reply."
+**＋** A `/retro` in a session with a `hi` but no `spec.md` in its folder, no plan file named by the event log and no `- decision[`, `- estimate[` or `- lesson[` line in its window exits 2 with "gate: /retro refused — nothing to review: no Spec and no ledger line in raw/<date>/<HHMM>/. Ratify a Case or write a reading or a lesson first, then type /retro again."; on the `Skill` path the end reads "…first. This refusal is a stop of vault/wiki/where-to-stop.md: end your reply with the question to the person."
 **＋** Otherwise a `/retro` whose Spec holds an item with no decision line of its Case exits 2 with "gate: /retro refused — N item(s) of the Spec have no ledger line (case A). Ask the agent to end its reply with the LEDGER block, then type /retro again".
-**＋** A call it lets through, on either path, writes the same mark `prespec`, `retro` or `handoff` into the day's event log; a refusal writes no mark.
+**＋** A call it lets through, on either path, writes the same mark `prespec`, `retro` or `handoff` into the day's event log `vault/raw/<date>/event_log.md`; a refusal writes no mark.
 **＋** Any other prompt or skill, `/hi` included, exits 0 with no output and no mark.
 **－** Without a `hi` in the session, the checks of `/retro` do not run.
+**－** On the `Skill` path the refusal "nothing to review" asks for no call in a next reply.
 
 ## Result
 
@@ -40,3 +41,4 @@ A `/handoff` on a dirty tree, where `git status --porcelain` is not empty, exits
 - 2026-09-20 updated: the recut to the shape of case 193: the base text and the blocks 169.1, 180 folded into one Criterion, /pre-task and pretask now /pre-spec and prespec, method as a field; pending for the reading (case 265.2) · [[decision-case-265.2]]
 - 2026-09-20 status: pending → passed · raw/2026-09-20/0958/ledger.md#L30
 - 2026-09-29 updated: the Criterion replaced whole — When and Then only, Given and the bounds line out, the pass without hi narrowed to what the gate does; purpose set (case 493.3) · [[decision-case-493.3]]
+- 2026-09-30 updated: the Criterion replaced whole — on the Skill path the refusal nothing to review names a stop of vault/wiki/where-to-stop.md, not a call in the next reply (case 531.15) · [[decision-case-531.15]]

@@ -1,7 +1,7 @@
 ---
 type: estimate
 kind: QA
-status: passed
+status: pending
 target: "[[rule-brief]]"
 method: one reading by hand after the first librarian run, recorded in the estimate line
 checked: 2026-09-27
@@ -20,8 +20,9 @@ Then:
 The brief holds, in order: Where things stand, Readings due, Flags, Next session, Readings at the close.
 **＋** It holds no Deferred list and no cap on deferred items. They stand in `vault/wiki/backlog.md`.
 **＋** Where things stand, Readings due, Flags and Readings at the close are as before. Flags also name every item `generate` moved to the sprint page's Backlog in the run, and every milestone it dropped.
-**＋** Next session holds `Cases` and `Work`. `Cases` is what needs a decision: a handoff flag with a question or a request to change the sprint, a `failed` Estimate, a contradiction, a defect the librarian found; one line per item, with what and from where. `Work` is what is done without a decision: every `pending` reading of Readings due by its slug, the unticked boxes of the Specs, a ledger line this run did not apply, a dirty tree; one line per item.
-**＋** An item stands in either `Cases` or `Work`, never in both. A list with no item is the line "none".
+**＋** Next session holds `Cases`, `Work` and `Ask the person`. `Cases` is what needs a decision: a line of `## For the next session` of `handoff.md`, a handoff flag with a question or a request to change the sprint, a `failed` Estimate, a contradiction, a defect the librarian found; one line per item, with what and from where. `Work` is what is done without a decision: every `pending` reading of Readings due by its slug but one that `Ask the person` holds, the unticked boxes of the Specs, a ledger line this run did not apply, a dirty tree; one line per item.
+**＋** `Ask the person` holds each line of `## Ask the person` of `handoff.md`: the Estimate by slug, the mark `needs the person` and its question, as the handoff wrote them.
+**＋** An item stands in one list only. A list with no item is the line "none".
 **－** The brief states no decision: the sort by kind is not a judgment of the work.
 **－** The brief of the skill `carry` keeps its short shape, without Next session and without a Deferred list. `rule-brief` and `rule-carry-over` both say so.
 
@@ -50,3 +51,4 @@ The brief holds, in order: Where things stand, Readings due, Flags, Next session
 - 2026-09-23 status: pending → passed · raw/2026-09-23/1126/ledger.md#L38
 - 2026-09-27 updated: the Criterion replaced whole — no Deferred list, the deferred items in backlog.md (case 451.8) · [[decision-case-451.8]]
 - 2026-09-27 status: pending → passed · raw/2026-09-27/2050/ledger.md#L25
+- 2026-09-30 updated: the Criterion replaced whole — Next session holds Cases, Work and Ask the person; Cases take For the next session of handoff.md (case 531.10) · [[decision-case-531.10]]

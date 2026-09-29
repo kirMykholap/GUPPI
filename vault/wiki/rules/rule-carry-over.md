@@ -2,12 +2,13 @@
 type: rule
 kind: Leaf
 purpose: Prevents a Spec whose work was not done from being applied to the vault
-status: draft
+status: built
 enforcement: render
 governs: .claude/skills/carry/SKILL.md
 render_mode: full
 parent: "[[rule-end-of-work]]"
 estimates: ["[[estimate-carry-over-writes]]"]
+deferred_by: ["[[decision-case-533]]"]
 origin: raw/2026-09-16/1034/ledger.md#case-190.1
 sprint: migration
 created: 2026-09-16
@@ -64,3 +65,5 @@ materialize`, `generate`, `cleanup` or `render`; write no page under `vault/wiki
 - 2026-09-23 updated: step 1 names the place of the brief frame, not only the file that holds it (case 347) · [[decision-case-347]]
 - 2026-09-23 status: built → draft · cascade
 - 2026-09-27 updated: carry writes the brief without a Deferred list, runs guppi backlog and commits backlog.md (case 451.9) · [[decision-case-451.9]]
+- 2026-09-30 deferred · [[decision-case-533]]
+- 2026-09-30 status: draft → built · cascade

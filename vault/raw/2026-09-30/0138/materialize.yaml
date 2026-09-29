@@ -1,0 +1,212 @@
+date: '2026-09-30'
+sprint: migration
+ledger: vault/raw/2026-09-30/0138/ledger.md
+spec:
+- vault/raw/2026-09-30/0138/spec.md
+entries:
+- line: 1
+  text: 'lesson[error][lesson-carry-short-brief-drops-the-work-list]{tags:session,workflow} trigger: the
+    /carry of session 2024 (commit 8e4c918) wrote brief.md in the short shape; the /hi of session 2026-09-30/0138
+    assembled no Work list — the 38 open W lines of the 2024 Frontier and the Readings due of the brief
+    of 1c196e8 (5 failed, 36 pending) stood on no list the Frontier reads, and the person found it. root_cause:
+    step 1 of rule-carry-over (case 451.9) leaves Readings due and Next session out of the short brief
+    on the claim that make lint lists the pending Estimates again, while /hi takes its Work list only
+    from the Next session of the brief and reads neither make lint nor the Frontier of the previous session.'
+  kind: lesson
+  category: lessons
+  slug: lesson-carry-short-brief-drops-the-work-list
+  origin: raw/2026-09-30/0138/ledger.md#L1
+  fields:
+    type: lesson
+    kind: error
+    root_cause: step 1 of rule-carry-over (case 451.9) leaves Readings due and Next session out of the
+      short brief on the claim that make lint lists the pending Estimates again, while /hi takes its Work
+      list only from the Next session of the brief and reads neither make lint nor the Frontier of the
+      previous session.
+  sections:
+    Trigger: the /carry of session 2024 (commit 8e4c918) wrote brief.md in the short shape; the /hi of
+      session 2026-09-30/0138 assembled no Work list — the 38 open W lines of the 2024 Frontier and the
+      Readings due of the brief of 1c196e8 (5 failed, 36 pending) stood on no list the Frontier reads,
+      and the person found it.
+    Root cause: step 1 of rule-carry-over (case 451.9) leaves Readings due and Next session out of the
+      short brief on the claim that make lint lists the pending Estimates again, while /hi takes its Work
+      list only from the Next session of the brief and reads neither make lint nor the Frontier of the
+      previous session.
+  tags:
+  - session
+  - workflow
+  near: lesson-defer-to-a-milestone-leaves-the-sprint-page-silent
+  applied: 02:36:00
+- line: 2
+  text: decision[case 533][defer][rule-carry-over]{ref:rule-carry-over}
+  case: '533'
+  kind: defer
+  slug: rule-carry-over
+  origin: raw/2026-09-30/0138/ledger.md#case-533
+  decision: decision-case-533
+  ref: rule-carry-over
+  category: rules
+  fields:
+    type: rule
+    purpose: The short brief of /carry keeps the Work list, so the /hi after a conserved Spec finds the
+      open readings and W lines; put off in session 0138
+  exists: true
+  applied: 02:36:00
+- line: 3
+  text: 'estimate[estimate-carry-over-writes][passed] 2026-09-30, uv run guppi render --check (exit 0),
+    git show --stat 8e4c918 and the event log of session 876c4080 from 01:32:52 to 01:33:35: /carry was
+    called after the fork of ExitPlanMode; brief.md was rewritten in the short shape with no Deferred
+    list; carry.md holds one line; guppi backlog ran and backlog.md shows the conserved Spec with its
+    targets; make style ran; the commit holds only vault/raw/, brief.md and backlog.md; no Work Mode,
+    retro, handoff, librarian, materialize, generate, cleanup or render ran. The short shape dropped the
+    Work list by the rule''s own text; that is lesson-carry-short-brief-drops-the-work-list and the defer
+    of case 533, not a fault of this run'
+  kind: estimate
+  category: estimates
+  slug: estimate-carry-over-writes
+  status: passed
+  result: '2026-09-30, uv run guppi render --check (exit 0), git show --stat 8e4c918 and the event log
+    of session 876c4080 from 01:32:52 to 01:33:35: /carry was called after the fork of ExitPlanMode; brief.md
+    was rewritten in the short shape with no Deferred list; carry.md holds one line; guppi backlog ran
+    and backlog.md shows the conserved Spec with its targets; make style ran; the commit holds only vault/raw/,
+    brief.md and backlog.md; no Work Mode, retro, handoff, librarian, materialize, generate, cleanup or
+    render ran. The short shape dropped the Work list by the rule''s own text; that is lesson-carry-short-brief-drops-the-work-list
+    and the defer of case 533, not a fault of this run'
+  origin: raw/2026-09-30/0138/ledger.md#L3
+  applied: 02:36:00
+- line: 4
+  text: 'estimate[estimate-context-size-warns-past-the-limit][passed] 2026-09-30, uv run pytest tests/test_context.py
+    -k limit (3 passed) and by hand on the transcript of session 876c4080: at the first prompt past the
+    limit (22:15:59 UTC) the UserPromptSubmit hook printed "context: 400 814 tokens, past 400 000 … the
+    session is already costly" and the note, not an order; the agent passed the note to the person in
+    its reply and went on with Case 527 and the question the person had asked; the Stop line read "context:
+    400 814 tokens (+4 419 since the last reply) — past 400 000: costly, better take no more work"; no
+    text named /retro or /handoff. Seen: in the UserPromptSubmit output the dash after "400 000" reached
+    the context as U+FFFD, while the Stop line kept it'
+  kind: estimate
+  category: estimates
+  slug: estimate-context-size-warns-past-the-limit
+  status: passed
+  result: '2026-09-30, uv run pytest tests/test_context.py -k limit (3 passed) and by hand on the transcript
+    of session 876c4080: at the first prompt past the limit (22:15:59 UTC) the UserPromptSubmit hook printed
+    "context: 400 814 tokens, past 400 000 … the session is already costly" and the note, not an order;
+    the agent passed the note to the person in its reply and went on with Case 527 and the question the
+    person had asked; the Stop line read "context: 400 814 tokens (+4 419 since the last reply) — past
+    400 000: costly, better take no more work"; no text named /retro or /handoff. Seen: in the UserPromptSubmit
+    output the dash after "400 000" reached the context as U+FFFD, while the Stop line kept it'
+  origin: raw/2026-09-30/0138/ledger.md#L4
+  applied: 02:36:00
+- line: 5
+  text: 'estimate[estimate-materialize-marks-a-comment][passed] 2026-09-30, uv run pytest tests/test_materialize.py
+    -k comment: 11 passed, after the comment texts of case 526 changed in guppi/materialize.py'
+  kind: estimate
+  category: estimates
+  slug: estimate-materialize-marks-a-comment
+  status: passed
+  result: '2026-09-30, uv run pytest tests/test_materialize.py -k comment: 11 passed, after the comment
+    texts of case 526 changed in guppi/materialize.py'
+  origin: raw/2026-09-30/0138/ledger.md#L5
+  applied: 02:36:00
+- line: 6
+  text: 'estimate[estimate-spec-write-writes-a-defer][passed] 2026-09-30, uv run pytest tests/test_ratified.py
+    -k defer (13 passed); by hand, the first defer after case 521.1 was built (dd08a1b): Case 532 of session
+    2024 stands under ## Deferred of its spec.md with context, problem and a then block whose purpose
+    is quoted; in this session Case 533 was written into the plan file, which held only its title line,
+    with the heading ## Deferred added and the Case as the reply showed it'
+  kind: estimate
+  category: estimates
+  slug: estimate-spec-write-writes-a-defer
+  status: passed
+  result: '2026-09-30, uv run pytest tests/test_ratified.py -k defer (13 passed); by hand, the first defer
+    after case 521.1 was built (dd08a1b): Case 532 of session 2024 stands under ## Deferred of its spec.md
+    with context, problem and a then block whose purpose is quoted; in this session Case 533 was written
+    into the plan file, which held only its title line, with the heading ## Deferred added and the Case
+    as the reply showed it'
+  origin: raw/2026-09-30/0138/ledger.md#L6
+  applied: 02:36:00
+- line: 7
+  text: 'lesson[knowledge][lesson-permissions-auto-mode-refuses-a-remote-change-despite-the-chat]{tags:harness,workflow}{source:Claude
+    Code auto mode classifier, session 2026-09-30/0138, reason Remote Repoint} trigger: in Work Mode the
+    by-hand task of case 528.1, git remote remove origin, was refused by the auto mode classifier twice
+    — the second time after the person wrote in the chat that they allowed it — and a plain sed -n read
+    of the Spec run right after the first refusal was refused with the same reason; the person ran the
+    command by hand with ! in the prompt. root_cause: the classifier judges the action against the settings''
+    permission rules, not against the person''s word in the chat, and a denial covers the outcome, not
+    only the command; a task that changes a git remote can be done in Work Mode only by the person or
+    under a permission rule in settings.'
+  kind: lesson
+  category: lessons
+  slug: lesson-permissions-auto-mode-refuses-a-remote-change-despite-the-chat
+  origin: raw/2026-09-30/0138/ledger.md#L7
+  fields:
+    type: lesson
+    kind: knowledge
+    root_cause: the classifier judges the action against the settings' permission rules, not against the
+      person's word in the chat, and a denial covers the outcome, not only the command; a task that changes
+      a git remote can be done in Work Mode only by the person or under a permission rule in settings.
+    source: Claude Code auto mode classifier, session 2026-09-30/0138, reason Remote Repoint
+  sections:
+    Trigger: in Work Mode the by-hand task of case 528.1, git remote remove origin, was refused by the
+      auto mode classifier twice — the second time after the person wrote in the chat that they allowed
+      it — and a plain sed -n read of the Spec run right after the first refusal was refused with the
+      same reason; the person ran the command by hand with ! in the prompt.
+    Root cause: the classifier judges the action against the settings' permission rules, not against the
+      person's word in the chat, and a denial covers the outcome, not only the command; a task that changes
+      a git remote can be done in Work Mode only by the person or under a permission rule in settings.
+  tags:
+  - harness
+  - workflow
+  near: lesson-plan-mode-agent-and-sendmessage-pass-the-auto-mode-classifier
+  applied: 02:36:00
+- kind: update
+  category: insights
+  slug: insight-session-vault-knowledge-not-loaded
+  origin: raw/2026-09-30/0138/ledger.md#L1
+  set:
+    children:
+    - lesson-readings-after-librarian-invisible-to-next-hi
+    - lesson-vault-lesson-absent-at-the-moment-it-applies
+    - lesson-heredoc-trap-hit-twice-with-its-lesson-live
+    - lesson-heredoc-trap-hit-a-third-time-in-work-mode
+    - lesson-heredoc-trap-hit-a-fourth-time-in-the-session-that-ratified-its-hook
+    - lesson-spec-render-line-form-unmatched-by-the-ticker
+    - lesson-plan-mode-frontier-refused-at-hi-again
+    - lesson-carry-short-brief-drops-the-work-list
+    status: open
+  change: child lesson-carry-short-brief-drops-the-work-list added, reopened (synthesis)
+  librarian: synthesis
+  applied: 02:36:00
+- kind: update
+  category: lessons
+  slug: lesson-carry-short-brief-drops-the-work-list
+  origin: raw/2026-09-30/0138/ledger.md#L1
+  set:
+    status: clustered
+    insight: insight-session-vault-knowledge-not-loaded
+  change: clustered under insight-session-vault-knowledge-not-loaded (synthesis)
+  librarian: synthesis
+  applied: 02:36:00
+decisions:
+- case: '533'
+  decision: decision-case-533
+  origin: raw/2026-09-30/0138/ledger.md#case-533
+  targets:
+  - kind: defer
+    category: rules
+    slug: rule-carry-over
+    ref: rule-carry-over
+  tags: []
+  case_text:
+    context: '`/carry` rewrites `vault/wiki/brief.md` in the short shape. Step 1 of `rule-carry-over`
+      (case 451.9) leaves out Readings due and Next session, on the claim that `make lint` of the finishing
+      session lists the pending Estimates again. `/hi` takes its Work list only from the Next session
+      of the brief. After the `/carry` of session 2024, the `/hi` of session 0138 had no Work list: the
+      38 open W lines of the 2024 Frontier and the Readings due of the brief of 1c196e8 stood on no list,
+      and they were restored by hand into the Frontier of 0138. Case 531.10 of the conserved Spec of 2024
+      keeps the short shape without Next session. The person put the item off at the close of Plan Mode
+      in session 0138.'
+    problem: A session after `/carry` starts with no Work list, and the open readings drop out of sight.
+  spec: vault/raw/2026-09-30/0138/spec.md
+  applied: 02:36:00
+unparsed: []
+session: 0138

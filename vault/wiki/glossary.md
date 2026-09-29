@@ -26,7 +26,7 @@ Written by `guppi glossary` from the `## Terms` of `entity-glossary`; a term cha
 | Vault | `vault/wiki/`: one folder per page category, each page a file named by its slug | [[rule-vault-layout]] |
 | Lint | `guppi lint`, run by `make lint` after the render, sprint, backlog and glossary checks: reports a page that breaks its schema, points at nothing, claims a status its Estimates do not support, or waits for a reading; red is a signal, not a gate | [[rule-lint]] |
 | Renderer | `guppi render` writes the text of a Rule page into the harness file it governs, so the page stays the source; it runs with lint and as the librarian's step after `cleanup` | [[rule-render-harness]] |
-| Harness | Hooks, agents, skills rendered from `rules/` pages | [[rule-harness]] |
+| Harness | The files that `guppi render` writes from the pages of `rules/`, such as `.claude/settings.json` with its hooks, the skills and agents, `CLAUDE.md`, `case-schema.md` and `guppi.toml` | [[rule-harness]] |
 | `CLAUDE.md`, `case-schema.md` | The system prompt, the Render of `rule-claude-md`, whole — the description of the project, `rule-language` and `rule-agent-writing` in their markers (cases 59.8, 272, 288.3); the Case schema is the Render of `rule-case-protocol`, opened by the one rule, and it arrives with `/hi` together with the glossary (cases 273, 288) | [[rule-claude-md]] |
 | Working files | `log.md`, the feed of page changes written by `generate` and `cleanup`; `tags.md`, the registry of tags ratified in a Case; `raw/` and `archive/`, the working folders of a session | [[rule-vault-layout]] |
 
@@ -92,19 +92,13 @@ Written by `guppi glossary` from the `## Terms` of `entity-glossary`; a term cha
 
 | term | meaning | where |
 |---|---|---|
-| `/hi`, Frontier | Opens a working session and records `hi`; the open items it assembles (brief, sprint, backlog, issues, an unfinished plan, the ledger tail) in two lists, the kind of each by its source — Cases, the Plan Mode agenda, and Work, what needs no decision (case 268.2) | [[rule-skill-hi]] |
+| `/hi`, Frontier | Opens a working session and records `hi`; the open items it assembles (brief, sprint, backlog, an unfinished plan, the ledger tail) in three lists, the kind of each by its source — Cases, the Plan Mode agenda; Work, what needs no decision; and Ask, the readings only the person can answer (cases 268.2, 531.11) | [[rule-skill-hi]] |
 | Ledger | The record of decisions (routing only), estimates and lessons (with text), written by the `Stop` hook into `raw/<date>/<HHMM>/ledger.md`, the session's folder (case 103.1) | [[rule-ledger-write]] |
 | Event log | The gitignored log of tool calls and commits of the day, written by hooks | [[rule-event-log]] |
-
-## [[rule-skill-hi]]
-
-| term | meaning | where |
-|---|---|---|
-| Issue | Tracked on GitHub; never a page, a `ref` only | [[rule-github-issues]] |
 
 ## [[rule-end-of-work]]
 
 | term | meaning | where |
 |---|---|---|
-| Retro | `/retro`: an analysis of this session only — the frontier first, then every item ends as a lesson, a reading, a short defer (a Case of `context`, `problem`, `purpose` under `## Retro` in the Spec) or a handoff note; edits only finish ratified work; red tests are fixed or reverted into a patch in `raw/`; ends with a commit | [[rule-retro]] |
+| Retro | `/retro`: an analysis of this session only, called by `/work` in the same turn with no stop for the person — the readings and the lessons in one reply, a commit on green, then `/handoff`, whose `handoff.md` is its report; it writes no short defer, which stands only at the close of Plan Mode, under `## Deferred` in the Spec; edits only finish ratified work; red tests are fixed or reverted into a patch in `raw/` | [[rule-retro]] |
 | Handoff | `/handoff`, gated by `guppi gate` on a dirty tree: `handoff.md` from memory, then the librarian | [[rule-handoff]] |

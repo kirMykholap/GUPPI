@@ -1,10 +1,11 @@
 ---
 type: estimate
 kind: QA
-status: pending
+status: passed
 target: "[[rule-materialize]]"
 purpose: "A then block that holds a YAML comment gives each decision entry of its Case incomplete: [comment], judged by the one function the Stop hook of rule-spec-write imports"
 method: uv run pytest tests/test_materialize.py -k comment
+checked: 2026-09-30
 origin: raw/2026-09-29/1753/ledger.md#case-521.2
 sprint: migration
 created: 2026-09-29
@@ -23,6 +24,11 @@ A fence of Case N that holds a YAML comment — a `#` at the start of a line or 
 **－** A `#` inside a quoted value or inside a `|` or `>` block is text and gives no mark.
 **－** `generate` still applies an entry so marked, since a page is always created, even incomplete.
 
+## Result
+
+2026-09-30, uv run pytest tests/test_materialize.py -k comment: 11 passed, after the comment texts of case 526 changed in guppi/materialize.py
+
 ## History
 
 - 2026-09-29 created · [[decision-case-521.2]]
+- 2026-09-30 status: pending → passed · raw/2026-09-30/0138/ledger.md#L5

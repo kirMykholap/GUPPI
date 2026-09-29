@@ -2,7 +2,7 @@
 type: rule
 kind: Leaf
 purpose: Prevents a heredoc from carrying a backslash escape or writing a file through the Bash tool
-status: built
+status: draft
 enforcement: hook
 implementation_ref: [guppi/bashguard.py, tests/test_bashguard.py, .claude/settings.json]
 parent: "[[rule-harness]]"
@@ -28,8 +28,7 @@ rule; a `PreToolUse` hook cannot be skipped.
 every heredoc (`<<` or `<<-`, the marker quoted or not) and its body up to the closing
 line. A body with a backslash, or a marker line that redirects into a file (`>` or `>>`
 not to `/dev/null`, `tee`), exits 2 with the reason on stderr — `bashguard: heredoc
-refused — <a backslash in its body | it writes <path>>. Write the script with the Write
-tool into the scratchpad and run it by path; change a file with Edit. The refusal is this guard working as designed, not an event of the session: do not report it at Retro.` — which blocks
+refused — <a backslash in its body | it writes <path>>. Write a whole file with the Write tool and change a file with Edit, never through Bash; only a script goes into the scratchpad, written with the Write tool and run by path. The refusal is this guard working as designed, not an event of the session: do not report it at Retro.` — which blocks
 the call; one line `bashguard refused: <reason>` goes to `vault/raw/<date>/event_log.md` before
 that (case 91). A `<<<` here-string, a heredoc without a backslash whose output goes to a
 pipe or the screen, a command without a heredoc, any other tool, or a payload the hook
@@ -45,3 +44,5 @@ cannot read: exit 0, the last with one line on stderr. The hook never raises (ca
 - 2026-09-23 deferred · [[decision-case-382]]
 - 2026-09-24 defer by decision-case-382 superseded · [[decision-case-384]]
 - 2026-09-24 updated: the refusal message says the refusal is by design and no finding for Retro; the log line named as the code writes it (case 384) · [[decision-case-384]]
+- 2026-09-30 updated: the refusal text sends a whole file to Write and only a script to the scratchpad (case 530.2) · [[decision-case-530.2]]
+- 2026-09-30 status: built → draft · cascade

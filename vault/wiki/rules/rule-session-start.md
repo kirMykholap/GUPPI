@@ -49,12 +49,11 @@ splitting it into "a MOC plus a Leaf holding an empty template" would be two pag
 describing one thing.
 
 Inside it, the `@`-imports from the vault fail the same way — missing file, wrong path —
-so they are one Leaf. `git pull` and `gh issue list` fail differently, on merge conflicts
-versus authentication, so they are separate.
+so they are one Leaf. The git commands fail apart from the imports, so they are a Leaf of their own.
 
 ### The Frontier
 
-Assembled from what was loaded: `brief.md` + `sprint.md` + open issues, plus the unfinished
+Assembled from what was loaded: `brief.md` + `sprint.md` + the git state and the tail, plus the unfinished
 plan if we are on a plan branch. The agent's first turn presents it as a list — tasks,
 problems, debt carried over, where the sprint stands. The human picks the order or defers
 items outright.
@@ -70,3 +69,4 @@ items outright.
 - 2026-09-21 updated: How it works counts four children — the fourth fires after a compaction only (case 290.2) · [[decision-case-290.2]]
 - 2026-09-22 updated: the parent is rule-session, the MOC of the five phases (case 316) · [[decision-case-316]]
 - 2026-09-28 status: built → draft · cascade
+- 2026-09-30 updated: no pull and no issues at /hi: the git Leaf and the sources of the Frontier (case 528.3) · [[decision-case-528.3]]

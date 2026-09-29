@@ -2,7 +2,7 @@
 type: rule
 kind: Leaf
 purpose: Prevents a session from running on while the person cannot see how full the context window is
-status: draft
+status: built
 enforcement: hook
 implementation_ref: [guppi/context.py, tests/test_context.py, .claude/settings.json]
 parent: "[[rule-harness]]"
@@ -36,3 +36,4 @@ Prevents a session from running on while the person cannot see how full the cont
 - 2026-09-25 defer by decision-case-418 superseded · [[decision-case-430]]
 - 2026-09-25 defer by decision-case-422 superseded · [[decision-case-430]]
 - 2026-09-25 updated: past 400 000 tokens both hooks give a note, not an order to close the session; the limit stays (case 430) · [[decision-case-430]]
+- 2026-09-30 status: draft → built · cascade

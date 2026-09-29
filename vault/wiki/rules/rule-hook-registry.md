@@ -16,7 +16,7 @@ tags: [hooks, harness, render]
 
 ## Purpose
 
-Prevents a hook from being registered by hand, outside a ratified decision. A hook
+Prevents a hook from being registered by hand, outside a ratified decision. A hook is a script that Claude Code runs when an event of the session fires, such as `Stop` or `PreToolUse`; the Rule page behind it names the script in `implementation_ref`. A hook
 Rule names `.claude/settings.json` in `implementation_ref`, but nothing ties the
 file to the pages: a registration added or dropped by hand changes what fires with
 no ledger line behind it. This page is the `"hooks"` key of that file; adding a
@@ -59,7 +59,7 @@ agent's Render and is ratified with it; this page holds the registrations only.
         "hooks": [ { "type": "command", "command": "uv run guppi spec", "timeout": 30 } ] }, { "matcher": "Read", "hooks": [ { "type": "command", "command": "uv run guppi pageread --after", "timeout": 30 } ] }
     ],
     "Stop": [
-      { "hooks": [ { "type": "command", "command": "uv run guppi ledger", "timeout": 30 }, { "type": "command", "command": "uv run guppi ratified", "timeout": 30 }, { "type": "command", "command": "uv run guppi casecheck", "timeout": 30 }, { "type": "command", "command": "uv run guppi context", "timeout": 30 } ] }
+      { "hooks": [ { "type": "command", "command": "uv run guppi ledger", "timeout": 30 }, { "type": "command", "command": "uv run guppi ratified", "timeout": 30 }, { "type": "command", "command": "uv run guppi casecheck", "timeout": 30 }, { "type": "command", "command": "uv run guppi context", "timeout": 30 }, { "type": "command", "command": "uv run guppi onward", "timeout": 30 } ] }
     ],
     "SubagentStop": [
       { "hooks": [ { "type": "command", "command": "uv run guppi casecheck --subagent", "timeout": 30 } ] }
@@ -95,3 +95,5 @@ agent's Render and is ratified with it; this page holds the registrations only.
 - 2026-09-25 updated: guppi pageread registered on PreToolUse and PostToolUse of Read (case 420.1) · [[decision-case-420.1]]
 - 2026-09-25 status: draft → built · cascade
 - 2026-09-27 updated: guppi ratified --guard registered on PreToolUse of Edit, Write and MultiEdit; guppi ratified --edit removed from PostToolUse (case 445.1) · [[decision-case-445.1]]
+- 2026-09-30 updated: the Purpose says what a hook is (case 527.1) · [[decision-case-527.1]]
+- 2026-09-30 updated: the Stop hook guppi onward of rule-retro-onward registered after guppi context (case 531.9) · [[decision-case-531.9]]

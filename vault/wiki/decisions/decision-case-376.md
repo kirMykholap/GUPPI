@@ -2,7 +2,7 @@
 type: decision
 case: "376"
 status: current
-create: ["[[estimate-retro-report-holds-each-fact-once]]"]
+create: ["[[estimate-retro-runs-on-to-the-handoff]]"]
 update: ["[[rule-retro]]"]
 supersedes: ["[[decision-case-375]]"]
 origin: raw/2026-09-23/1355/ledger.md#case-376
@@ -25,7 +25,7 @@ The report of `/retro` names the same ratifications twice and splits what is not
 **＋** `/retro` — the skill, the render of `rule-retro`.
 **＋** `raw/<date>/<hi HHMM>/spec.md` — the Spec of the session, with its unticked boxes.
 **＋** `uv run guppi tail` — the Tail with the decision lines of the session.
-**＋** `estimate-retro-report-holds-each-fact-once` — the new promise.
+**＋** `estimate-retro-runs-on-to-the-handoff` — the new promise.
 
 ## History
 

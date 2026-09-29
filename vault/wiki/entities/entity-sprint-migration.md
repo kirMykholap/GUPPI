@@ -23,12 +23,8 @@ Rule-class files dissolved, `index.md` gone, the `file` route out of the scripts
 
 ### Slice 5 — closing
 
-- [[estimate-sprint-migration-leftovers-gone]] — `vault/parked/` and the documents of 2026-08 under `docs/` deleted (case 510); the old archive root, the empty raw date folders, `git pull` and `gh`, and the reading, at the close
+- [[estimate-sprint-migration-leftovers-gone]] — `vault/parked/` and the documents of 2026-08 under `docs/` deleted (case 510), the old archive root (case 102.1); the raw date folders read by what git tracks, the remote and `git pull` and `gh` out of `/hi` (case 528); the reading at the close
 
-- [[estimate-sprint-migration-lint-clean]] — `make lint` exit 0: the 31 Decision pages of Cases 1–28 decided, `unmigrated` at zero
-- [[estimate-sprint-migration-merges]] — `make test` green, `migration` merged into `main`; at the close [[rule-git-context]] and [[rule-github-issues]] — the upstream of the branch and the GitHub remote, decisions 11.1, 11.2, defers 220, 243 — read by [[estimate-sprint-migration-leftovers-gone]]
-- [[rule-spec-box]] — the Spec box, case 207, after Slice 3b
-- [[rule-morph]] — the morph mechanism: the initiation at install sets the category set of the project, the development set by default, held as data so that a changed set rewrites no rule; case 239
 - the close of a sprint — `entity-sprint-<id>` and the Estimates it lists go to the archive together once each has passed: a done-condition of a sprint has nothing left to guard after the close; not yet decided (case 478.2)
 
 ## Backlog
@@ -40,6 +36,10 @@ Rule-class files dissolved, `index.md` gone, the `file` route out of the scripts
 - a template engine for the rendered files — one script with the shape of each file declared, once a third render beside `sprint.md` and `glossary.md` appears (case 301)
 - [[rule-work-mode]] — the rest of Work Mode past the skill `/work` of case 479.2: the test of each Estimate written first and turned green, and the full model the person plans; cases 183, 206
 - [[rule-subagent-guppi]] — what a subagent may do in Work Mode, and the fork that comes back to the main agent as a Case; cases 183, 206
+- [[estimate-sprint-migration-lint-clean]] — `make lint` exit 0: the 31 Decision pages of Cases 1–28 decided, `unmigrated` at zero
+- [[estimate-sprint-migration-merges]] — `make test` green, `migration` merged into `main`
+- [[rule-spec-box]] — the Spec box, case 207, after Slice 3b
+- [[rule-morph]] — the morph mechanism: the initiation at install sets the category set of the project, the development set by default, held as data so that a changed set rewrites no rule; case 239
 
 ## Closed
 
@@ -51,9 +51,7 @@ cascades, the slug checked against the archive) built 2026-09-13. Slice 3d (the
 Estimate model, case 182) opened and closed 2026-09-16: Cases 187–190 ratified in
 session 1034 and conserved, repaired by 193–198 and built in session 1651, case 191
 taken up by 201–203 and built in session 1955 — `generate`, `lint`, `pre-spec` by the
-model. The recut of each old Estimate ran on past the Slice, 42 pages at the close of 3d; Slice 3g recut the last of them (cases 484-500) and closed with case 506, which took the checks of the old shape out of the scripts. `/grill-me` has its page since case 443.1, `rule-skill-grill-me`. Kept without a page: `git pull` in `/hi`
-without an upstream (decision 11.1); `gh` not logged in, no GitHub remote (11.2) —
-both decided again at the close (`estimate-sprint-migration-leftovers-gone`).
+model. The recut of each old Estimate ran on past the Slice, 42 pages at the close of 3d; Slice 3g recut the last of them (cases 484-500) and closed with case 506, which took the checks of the old shape out of the scripts. `/grill-me` has its page since case 443.1, `rule-skill-grill-me`. `git pull` and `gh` left `/hi` with the remote of the product repository, kept since decisions 11.1 and 11.2 (case 528).
 
 Slice 3f (the Rule-class files into the graph, case 301) opened 2026-09-22 and closed
 the same day: the six schemas as rule pages under `rule-page-schemas` (304), the edge
@@ -110,3 +108,8 @@ No file of `vault/wiki/` is written by hand.
 - 2026-09-29 updated: Slice 3g: the Estimates of rule-ask, rule-index-check, rule-cleanup, rule-raw-archive and rule-tests-clock-pinned recut to one Criterion; the recut of the old shape done (cases 498-500), its note replaced by the note on removing the checks of the old shape · [[decision-case-500.6]]
 - 2026-09-29 updated: Slice 3g closed: the checks of the old shape left the scripts, the schema and lint (case 506) · [[decision-case-506.7]]
 - 2026-09-29 updated: Slice 4 done: the parked pages and the documents of 2026-08 deleted, the item moved to Slice 5 for its reading at the close; Slice 4 removed (case 510) · [[decision-case-510]]
+- 2026-09-30 moved to the Backlog: estimate-sprint-migration-lint-clean passed over in 3 sessions in a row — 0138, 2024, 1753 · generate
+- 2026-09-30 moved to the Backlog: estimate-sprint-migration-merges passed over in 3 sessions in a row — 0138, 2024, 1753 · generate
+- 2026-09-30 moved to the Backlog: rule-spec-box passed over in 3 sessions in a row — 0138, 2024, 1753 · generate
+- 2026-09-30 moved to the Backlog: rule-morph passed over in 3 sessions in a row — 0138, 2024, 1753 · generate
+- 2026-09-30 updated: Slice 5: the raw date folders, git pull and gh decided; the remote removed; the merge item no longer names the two rules (case 528.5) · [[decision-case-528.5]]

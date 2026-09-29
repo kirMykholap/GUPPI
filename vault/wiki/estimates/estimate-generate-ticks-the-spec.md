@@ -1,11 +1,11 @@
 ---
 type: estimate
 kind: QA
-status: pending
+status: passed
 target: "[[rule-page-generation]]"
 purpose: generate ticks the page line of a Case in the Spec beside its yaml, and the read line of a reading or of a deleted Estimate across the Specs of raw/ — never a line of a later or a superseded Case
 method: pytest tests/test_generate.py with a Spec beside the yaml, plus one reading of this session's spec.md after the librarian's run
-checked: 2026-09-27
+checked: 2026-09-29
 origin: raw/2026-09-17/1119/ledger.md#case-226.1
 sprint: migration
 created: 2026-09-17
@@ -31,7 +31,7 @@ For a `create`, `update`, `delete` or `defer` entry that was applied, in the `sp
 
 ## Result
 
-2026-09-27, uv run pytest tests/test_generate.py; 97 passed, among them the five delete tests of case 463, and in raw/2026-09-27/1819/spec.md after its librarian run only the read lines of pending Estimates stay unticked (9 of 45); no delete entry was there to observe
+2026-09-29, uv run pytest tests/test_generate.py and git show 1c196e8 on raw/2026-09-29/*/spec.md; 101 passed; the librarian's run changed 23 lines of 1753/spec.md, each - [ ] to - [x], and no other line of any Spec; 8 read lines of 1753 stay unticked, all of Estimates with no reading after their Case, the line of estimate-glossary-terms-defined among them since reading L4 stands before Case 520; read lines ticked in 1432 (4) and 1134 (3); the yaml held no delete, folded or repeat entry to observe
 
 ## History
 
@@ -55,3 +55,4 @@ For a `create`, `update`, `delete` or `defer` entry that was applied, in the `sp
 - 2026-09-27 updated: the Criterion replaced whole — a delete entry ticks the read lines of its slug, with the skips of a reading (case 463) · [[decision-case-463]]
 - 2026-09-27 status: pending → passed · raw/2026-09-27/2050/ledger.md#L24
 - 2026-09-29 updated: the Criterion replaced whole — a repeat ticks no line of any Spec; a second entry of one kind and slug in one Case no longer ticks the next line · [[decision-case-522]]
+- 2026-09-30 status: pending → passed · raw/2026-09-29/2024/ledger.md#L1

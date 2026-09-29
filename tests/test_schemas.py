@@ -78,6 +78,19 @@ def test_an_estimate_without_method_is_one_finding():
     assert findings(page, data) == ["estimates/estimate-x: schema: missing field method"]
 
 
+def test_a_decision_page_without_context_has_no_finding():
+    """Case 513.1: `## Context` is an optional section of a Decision page — the Case file
+    keeps the context — so a page with `## Problem` and `## History` alone earns no
+    `schema` finding. Skipped until the librarian renders the live file of 513.1."""
+    data = schema("decisions")
+    if "## Context" in data["body"]["required"]:
+        pytest.skip("decisions/schema.yaml waits for the librarian's render of case 513.1")
+    page = page_in_shape("decisions", data)
+    page.sections.pop("## Context", None)
+    assert "## Problem" in page.sections and "## History" in page.sections
+    assert findings(page, data) == []
+
+
 @pytest.mark.parametrize("category", CATEGORIES)
 def test_a_value_outside_the_list_is_one_finding(category):
     data = schema(category)

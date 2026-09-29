@@ -60,11 +60,14 @@ The Decision page (case 201.2): one per Case, `decisions/decision-case-<N>.md`, 
 before the first entry of its lines so their History lines can name it; `case`, `status:
 current`, one list per kind present — `create`, `update`, `delete`, `defer`, the slugs in
 ledger order (case 59.4) — `source`, `supersedes`, `origin`, `sprint`, `created`, `tags`
-(the union of the targets' tags); the body `## Context`, `## Problem` and `## Given` — the
-frame of the Case, which no Estimate holds (case 378.3) — from `case_text`, and
-`## Deferred`, one `### [[slug]]` heading per target of the Case's `defer` lines with its
-`purpose` verbatim (case 186.1); no `## When`, no `## Criterion` list — the contract lives
-on the Estimate; pages written before keep theirs. A record with
+(the union of the targets' tags); the body `## Problem` from `case_text` — the rest of the
+Case, `context`, `recommend` and `given` among it, stays in its Case file
+`cases/case-<N>.md` in the folder of `origin` (case 513) — with `## Context` before it only
+when `case_text` carries no `given`, the short form of a deferred decision, which has no
+Case file; and `## Deferred`, one `### [[slug]]` heading per target of the Case's `defer`
+lines with its `purpose` verbatim (case 186.1); no `## Given`, no `## When`, no
+`## Criterion` list — the contract lives on the Estimate; pages written before keep the
+sections they carry and are not rewritten. A record with
 `superseded_by` and no `case_text` — a Case superseded in its own session and gone from the
 Spec (case 299.1) — gets a two-line body naming the superseding Decision; its status
 follows the mechanism as for any superseded page (case 299.4). A `supersedes` sets
@@ -81,7 +84,14 @@ skipped; the rest apply; exit 1. Every applied entry is marked `applied: <time>`
 `failed` mark is dropped on apply (case 53.3), so a rerun writes nothing. An entry with
 `failed` and no `kind` — a line `materialize` could not lift — is skipped with its mark
 kept and one stderr line (case 142.2); an entry with `superseded_by` is not applied and
-leaves no line, only its Case's Decision page is written (case 151).
+leaves no line, only its Case's Decision page is written (case 151). A `create`, `update`,
+`delete` or `defer` entry whose `case`, `kind` and `slug` match an applied entry of the same
+yaml — a Case ratified again in its session, its lines written again with a mark added — is
+a repeat: like an `update` with no content it changes no page, appends nothing to `log.md`
+and prints one stdout line, `generate: <slug>: line N repeats line M of case C; nothing
+applied`; it is marked applied and loses a stale `failed` mark, so a repeat that failed on
+an earlier run closes on the next, and it ticks its line of the Spec as an applied entry
+does (case 514).
 
 The Spec (case 226.1): once a `create`, `update`, `delete` or `defer` entry is applied, the
 first unticked line `- [ ] <kind> `<slug>`` in the section of the entry's Case — from its
@@ -1094,9 +1104,10 @@ class Vault:
         props["created"] = self.date
         props["tags"] = tags  # the union of the targets' tags; empty is a fact, not a gap
         sections = {}  # no When, no Criterion list: the contract lives on the Estimate (201.2)
-        for name, key in (("Context", "context"), ("Problem", "problem"), ("Given", "given")):
-            if text.get(key):
-                sections[f"## {name}"] = text[key]
+        if text.get("context") and not text.get("given"):  # the short form: no Case file (513)
+            sections["## Context"] = text["context"]
+        if text.get("problem"):  # the rest of the Case stays in its Case file (case 513)
+            sections["## Problem"] = text["problem"]
         if not text and record.get("superseded_by"):  # gone from the Spec (299.4)
             by = ", ".join(f"[[{s}]]" for s in as_list(record["superseded_by"]))
             sections["## Context"] = (
@@ -1370,6 +1381,24 @@ def apply_decision(
     vault.write_log()
 
 
+def repeated(entries: list, entry: dict) -> dict | None:
+    """The applied entry of the same yaml that `entry` repeats: the same `case`, `kind` and
+    `slug`, for a `create`, `update`, `delete` or `defer` (case 514). An `estimate` or a
+    `lesson` entry carries no `case` and is never a repeat."""
+    if entry.get("kind") not in KINDS or "case" not in entry:
+        return None
+    key = (str(entry["case"]), entry["kind"], str(entry.get("slug")))
+    for other in entries:
+        if other is entry or not isinstance(other, dict) or not other.get("applied"):
+            continue
+        if (
+            "case" in other
+            and (str(other["case"]), other.get("kind"), str(other.get("slug"))) == key
+        ):
+            return other
+    return None
+
+
 def apply(vault: Vault, data: dict) -> None:
     stamp = vault.now.strftime("%H:%M:%S")
     records = {str(r.get("case")): r for r in data.get("decisions") or []}
@@ -1392,6 +1421,17 @@ def apply(vault: Vault, data: dict) -> None:
             case = str(entry["case"])
             apply_decision(vault, records[case], stamp, deferred.get(case))
         kind = entry.get("kind")
+        first = repeated(vault.entries, entry)
+        if first is not None:  # a Case ratified again, its line written again (case 514)
+            print(
+                f"generate: {entry.get('slug')}: line {entry.get('line', '?')} repeats line "
+                f"{first.get('line', '?')} of case {entry['case']}; nothing applied",
+                file=vault.stdout,
+            )
+            entry["applied"] = stamp
+            entry.pop("failed", None)
+            vault.tick(entry)  # a second line of the kind and slug, if the Spec holds one (226.1)
+            continue
         before = len(vault.errors)
         try:
             if kind == "create" or kind == "lesson":

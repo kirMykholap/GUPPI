@@ -23,8 +23,8 @@ properties:
   values:
     status: [current, superseded, archived]
 body:
-  required: ["## Context", "## Problem", "## History"]
-  optional: ["## Given", "## When", "## Criterion", "## Note"]
+  required: ["## Problem", "## History"]
+  optional: ["## Context", "## Given", "## When", "## Criterion", "## Note"]
 """
 
 
@@ -297,6 +297,87 @@ def test_a_replace_absent_or_not_unique_fails_that_entry_alone(tmp_path):
     data = load_yaml(tmp_path)
     assert "applied" not in data["entries"][1] and "failed" in data["entries"][1]
     assert data["entries"][0]["applied"] and data["entries"][2]["applied"]
+
+
+# --- case 514: a Case ratified again changes each page once --------------------------------
+
+
+def root_update(line, **extra):
+    entry = {
+        "line": line,
+        "text": "",
+        "case": "2",
+        "kind": "update",
+        "category": "rules",
+        "slug": "rule-root",
+        "origin": f"raw/{DATE}/ledger.md#case-2",
+        "decision": "decision-case-2",
+        "replace": [{"old": "Prevents root", "new": "Prevents the root"}],
+        "change": "the root reworded",
+    }
+    entry.update(extra)
+    return entry
+
+
+def test_a_repeated_update_whose_anchor_the_first_consumed_applies_nothing(tmp_path):
+    seed(tmp_path, entries=[ROOT, root_update(2), root_update(5, supersedes="1")])
+    code, out, err = run(tmp_path)
+    assert code == 0 and err == "", err
+    assert (
+        "generate: rule-root: line 5 repeats line 2 of case 2; nothing applied" in out.splitlines()
+    )
+    text = page(tmp_path, "rules", "rule-root")
+    assert "## Purpose\n\nPrevents the root\n" in text
+    assert text.count("updated: the root reworded") == 1  # one History line
+    assert page(tmp_path, "", "log").count("updated: the root reworded") == 1  # one log line
+    repeat = load_yaml(tmp_path)["entries"][2]
+    assert repeat["applied"] and "failed" not in repeat
+
+
+def test_a_repeat_that_failed_on_an_earlier_run_closes_on_the_rerun(tmp_path):
+    root = page_text("rules", "rule-root")  # as the first entry left it
+    first = root_update(2, applied="11:00:00")
+    repeat = root_update(5, failed="generate: rule-root: replace: 'Prevents root' is absent")
+    seed(tmp_path, entries=[first, repeat], pages=[("rules", "rule-root", root)])
+    before = page(tmp_path, "rules", "rule-root")
+    code, out, err = run(tmp_path)
+    assert code == 0 and err == "", err
+    assert "line 5 repeats line 2 of case 2; nothing applied" in out
+    assert page(tmp_path, "rules", "rule-root") == before  # no page changed
+    repeat = load_yaml(tmp_path)["entries"][1]
+    assert repeat["applied"] and "failed" not in repeat  # the stale mark dropped
+
+
+def test_a_repeated_create_writes_no_collision(tmp_path):
+    seed(tmp_path, entries=[ROOT, dict(ROOT, line=4)])
+    code, out, err = run(tmp_path)
+    assert code == 0 and err == "", err
+    assert "generate: rule-root: line 4 repeats line 1 of case 1; nothing applied" in out
+    assert page(tmp_path, "rules", "rule-root").count("created ·") == 1
+
+
+def test_an_estimate_entry_of_a_repeated_slug_is_applied_as_before(tmp_path):
+    """An `estimate` entry carries no `case`: two readings of one page both apply."""
+    reading = {
+        "text": "",
+        "kind": "estimate",
+        "category": "estimates",
+        "slug": "estimate-child-works",
+        "status": "passed",
+    }
+    entries = [
+        CHILD,
+        CHILD_ESTIMATE,
+        ROOT,
+        dict(reading, line=4, result="first", origin=f"raw/{DATE}/ledger.md#L4"),
+        dict(reading, line=5, result="second", origin=f"raw/{DATE}/ledger.md#L5"),
+    ]
+    seed(tmp_path, entries=entries)
+    code, out, err = run(tmp_path)
+    assert code == 0 and err == "", err
+    assert "repeats" not in out
+    text = page(tmp_path, "estimates", "estimate-child-works")
+    assert "## Result\n\nsecond\n" in text and "ledger.md#L4" in text
 
 
 def test_delete_archives_and_defer_writes_a_placeholder_or_a_history_line(tmp_path):
@@ -878,9 +959,9 @@ def test_one_decision_page_per_case_and_supersedes_marks_the_earlier(tmp_path):
     assert props(one)["create"] == ["rule-root"]
     assert not {"kind", "target_slug", "targets", "update", "delete", "defer"} & set(props(one))
     assert (
-        "## Context\n\nA root." in one
+        "## Context" not in one  # the Case file keeps it (case 513)
         and "## Problem\n\nNo root." in one
-        and "## Given\n\nNothing." in one  # the frame of the Case (case 378.3)
+        and "## Given" not in one  # the Case file keeps the frame (case 513)
         and "## When" not in one  # the contract lives on the Estimate (cases 72.4, 201.2)
         and "Someone asks." not in one
         and "## Then" not in one
@@ -893,10 +974,7 @@ def test_one_decision_page_per_case_and_supersedes_marks_the_earlier(tmp_path):
         "harness"
     ]  # from the target page
     findings = [f for f in lint.lint(tmp_path) if "decision-case-2" in f]
-    assert findings == [
-        "decisions/decision-case-2: schema: missing section ## Context",
-        "decisions/decision-case-2: schema: missing section ## Problem",
-    ]
+    assert findings == ["decisions/decision-case-2: schema: missing section ## Problem"]
 
 
 def test_a_decision_page_lists_its_targets_by_kind_in_ledger_order(tmp_path):
@@ -1416,7 +1494,7 @@ def test_the_old_shape_criterion_block_and_remove_criterion_fail_alone(tmp_path)
     assert props(page(tmp_path, "rules", "rule-root"))["status"] == "draft"
 
 
-def test_a_decision_page_carries_the_given_and_no_criterion_list(tmp_path):
+def test_a_decision_page_carries_the_problem_and_no_given_or_criterion_list(tmp_path):
     entries = [ROOT, CHILD, MODEL_ESTIMATE, CHILD_ESTIMATE]
     decisions = records_for(entries)
     decisions[0]["criterion"] = [{"estimate": "estimate-child", "case": "1"}]  # an old record
@@ -1424,14 +1502,15 @@ def test_a_decision_page_carries_the_given_and_no_criterion_list(tmp_path):
     code, _, err = run(tmp_path)
     assert code == 0 and err == "", err
     text = page(tmp_path, "decisions", "decision-case-1")
-    # the frame of the Case, which no Estimate holds (case 378.3)
-    assert "## Context\n\nc\n\n## Problem\n\np\n\n## Given\n\ng\n\n## History" in text
+    # a Case with `given` keeps its context and frame in its Case file (case 513)
+    assert "---\n\n## Problem\n\np\n\n## History" in text
+    assert "## Context" not in text and "## Given" not in text
     assert "## When" not in text and "## Criterion" not in text
     assert "§ case" not in text
     assert not [f for f in lint.lint(tmp_path) if "decision-case-1" in f]
 
 
-def test_a_decision_page_of_a_case_without_given_has_no_given(tmp_path):
+def test_a_decision_page_of_a_case_without_given_keeps_its_context(tmp_path):
     entries = [ROOT]
     decisions = records_for(entries)
     del decisions[0]["case_text"]["given"]  # a defer-only Case writes none
@@ -1439,7 +1518,9 @@ def test_a_decision_page_of_a_case_without_given_has_no_given(tmp_path):
     code, _, err = run(tmp_path)
     assert code == 0 and err == "", err
     text = page(tmp_path, "decisions", "decision-case-1")
-    assert "## Problem\n\np\n\n## History" in text and "## Given" not in text
+    # the short form has no Case file: its page keeps the context (case 513)
+    assert "---\n\n## Context\n\nc\n\n## Problem\n\np\n\n## History" in text
+    assert "## Given" not in text
 
 
 def test_a_defer_marks_an_insight_deferred_by_and_a_supersedes_clears_it(tmp_path):
@@ -1676,7 +1757,8 @@ def test_the_decision_page_of_a_case_gone_from_the_spec_has_a_two_line_body(tmp_
     assert early["update"] == ["rule-root"]
     with_text = props(page(tmp_path, "decisions", "decision-case-3"))
     assert with_text["status"] == "current"
-    assert "## Context\n\nc\n" in page(tmp_path, "decisions", "decision-case-3")
+    three = page(tmp_path, "decisions", "decision-case-3")
+    assert "## Context" not in three and "## Problem\n\np\n" in three  # case 513
 
 
 # --- the tick of the Spec beside the yaml (case 226.1) -----------------------------------

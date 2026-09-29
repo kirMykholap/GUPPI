@@ -2128,6 +2128,30 @@ def test_a_create_of_a_category_whose_schema_rule_the_unit_changes_is_lifted_who
     assert estimate["unknown"] == ["stray"]
 
 
+def test_a_schema_line_after_the_create_still_lifts_it_whole(tmp_path):
+    """The other order (case 516): the schema decision line after the `create` lines of the
+    ledger, its Case before the creates in the Spec — the lift is the same."""
+    seed_schemas(tmp_path)
+    raw = tmp_path / "vault" / "raw" / DATE
+    ledger = raw / "ledger.md"
+    line = "- decision[case 20][update][rule-rules-schema]{ref:rule-rules-schema}\n"
+    ledger.write_text(ledger.read_text(encoding="utf-8") + line, encoding="utf-8", newline="\n")
+    spec = raw / "spec.md"
+    title, rest = spec.read_text(encoding="utf-8").split("\n", 1)
+    spec.write_text(f"{title}\n{SCHEMA_CASE}\n{rest}", encoding="utf-8", newline="\n")
+    assert spec.read_text(encoding="utf-8").index("## Case 20") < spec.read_text(
+        encoding="utf-8"
+    ).index("## Case 21")
+    code, _, err = run(tmp_path)
+    assert code == 0 and err == "", err
+    data = load(tmp_path)
+    (rule,) = of_case(data, "21")
+    assert "unknown" not in rule
+    assert rule["fields"]["contract_note"] == "nobody ratified this key"
+    (estimate,) = of_case(data, "22")  # another category: filtered as before
+    assert estimate["unknown"] == ["stray"]
+
+
 def test_without_a_schema_line_the_lift_filters_as_before(tmp_path):
     seed_schemas(tmp_path)
     assert run(tmp_path)[0] == 0

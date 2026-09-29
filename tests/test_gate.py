@@ -257,14 +257,20 @@ def test_a_typed_retro_in_an_empty_session_is_refused(tmp_path):
     assert code == 2
     assert "gate: /retro refused — nothing to review: no Spec and no ledger line in" in err
     assert "raw/2026-09-14/1029/" in err
-    assert "then type /retro again" in err
+    assert "a lesson first, then type /retro again." in err
     assert "retro" not in event_log(tmp_path)
 
 
 def test_a_skill_retro_in_an_empty_session_is_refused_for_the_agent(tmp_path):
     with_event_log(tmp_path, START + HI)
     code, err = run(skill("retro"), tmp_path, status="")
-    assert code == 2 and "nothing to review" in err and "then call /retro in the next reply" in err
+    assert code == 2 and "nothing to review" in err
+    # case 531.15: the refusal is a stop, and it asks for no call in a next reply
+    assert err.rstrip().endswith(
+        "Ratify a Case or write a reading or a lesson first. This refusal is a stop of "
+        "vault/wiki/where-to-stop.md: end your reply with the question to the person."
+    )
+    assert "in the next reply" not in err
     assert "retro" not in event_log(tmp_path)
 
 

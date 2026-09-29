@@ -52,8 +52,9 @@ heading, `context`, `problem` and its fence tagged `then`, each `defer` line wit
 the session's folder once that file stands (Retro), its section replaced when it stands and
 appended otherwise; the check after the write does not run on it. No showing, a missing item,
 a key of a `defer` item that `materialize.item_keys` does not give it (case 436.3), or a
-fence tagged `then` that holds a YAML comment by `materialize.then_comments` — YAML drops the
-rest of the line, so a value without quotes is cut there (case 521.1) — is a refusal.
+fence tagged `then` that holds a YAML comment by `materialize.then_comments` — after a space
+YAML drops the rest of the line, so a value without quotes is cut there, and after a tab
+PyYAML, the library the scripts use, refuses the whole block (cases 521.1, 526) — is a refusal.
 
 The check after the write (case 414.1). Each Case written in the run, and its sub-cases, goes
 through the checks of `guppi prespec --check` — `prespec.written_findings`, imported inside
@@ -575,7 +576,8 @@ def deferred_section(reply: str, case: str, records: list[dict], keys_for=None):
     if comments:
         return [], [
             f"case {case}: the fence tagged then holds a YAML comment: `{line.strip()}` — "
-            "put the value in quotes, since YAML drops the rest of the line"
+            "put the value in quotes, since after a space YAML drops the rest of the line "
+            "and after a tab PyYAML refuses the whole block"
             for line in comments
         ]
     try:

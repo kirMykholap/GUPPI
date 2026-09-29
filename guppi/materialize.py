@@ -531,8 +531,9 @@ def _comment_start(line: str, quote: str | None) -> tuple[int | None, str | None
 def yaml_comments(text: str) -> list[str]:
     """The lines of `text`, the YAML of one fenced block, that hold a comment — a `#` at the
     start of a line or after a space or a tab, outside a quoted value and outside a `|` or
-    `>` block. YAML drops the rest of such a line, so a value without quotes may be cut
-    there. The one judgment of a comment: `ratified` refuses a short Case by it, `materialize`
+    `>` block. After a space YAML drops the rest of such a line, so a value without quotes
+    may be cut there; after a tab PyYAML, the library the scripts use, refuses the whole
+    block (case 526). The one judgment of a comment: `ratified` refuses a short Case by it, `materialize`
     marks the entries of its Case `incomplete: [comment]` (cases 521.1, 521.2)."""
     found: list[str] = []
     quote: str | None = None
@@ -1243,7 +1244,8 @@ def lift_line(
     entry = decision_entry(record, number, text, date, block, project_dir, schema_free)
     if errors and "then" in (entry.get("incomplete") or []):
         entry["incomplete"] = [e for e in entry["incomplete"] if e != "then"] + errors
-    if then_comments(cases.get(case, [])):  # YAML may have cut a value there (case 521.2)
+    # a value cut at a space, a block refused at a tab (cases 521.2, 526)
+    if then_comments(cases.get(case, [])):
         entry.setdefault("incomplete", []).append("comment")
     if case not in texts_of:
         texts_of[case] = case_texts(cases, case)

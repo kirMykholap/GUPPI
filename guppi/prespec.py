@@ -32,8 +32,8 @@ the ledgers of its dates, on the `hi` date from the `hi` time on, and its folder
   Case heading, in one fence tagged `then` or in another, is a finding: one decision line
   covers one item, and `materialize` lifts only the first (case 426);
 - the frontier `raw/<hi date>/<hi HHMM>/frontier.md` (case 73.4): missing, an open `[ ]`
-  line under `## Cases` — an open line under `## Work` waits for Work Mode and is no finding
-  (case 356.1); a closer — the last segment after ` · ` — none of `case N`, `work`,
+  line under `## Cases` — an open line under `## Work` waits for Work Mode and one under
+  `## Ask` for the person, and neither is a finding (cases 356.1, 531.12); a closer — the last segment after ` · ` — none of `case N`, `work`,
   `defer`, `kept` and `defer case N`; a box that disagrees with its closer — `[x]` takes
   only `case N` or `work`, `[-]` only `defer`, `kept` or `defer case N` (case 451.2);
   `defer` after a source segment — the one standing immediately before the closer — other
@@ -173,7 +173,9 @@ LINE_PREVIEW = 80
 # `case-schema.md` writes the line as `decision[case_id]…`; `parse_line` reads `[case N]`.
 # A bare id is read as the same line rather than skipped (the lines of 2026-09-12).
 BARE_CASE = re.compile(r"^(- (?:\d\d:\d\d:\d\d )?decision\[)(?!case )")
-WORK_LIST = "## Work"  # the list whose open lines wait for Work Mode (case 356.1)
+# the lists whose open lines are no finding: Work waits for Work Mode (case 356.1), Ask for
+# the person at `/hi` (case 531.12)
+OPEN_LISTS = ("## Work", "## Ask")
 # The closers of a Frontier line (case 451.2): `[x]` ends an item — `case N`, `work`; `[-]`
 # puts it off — `defer` after the source `sprint`, `kept` after `backlog`, `defer case N`.
 CLOSERS = re.compile(r"^(work|defer|kept|case (\S+)|defer case (\S+))$")
@@ -462,8 +464,9 @@ def check_frontier(
     project_dir: Path | None = None,
 ) -> list[str]:
     """59.2: the frontier of the session's folder (73.4). Case 356.1: an open line under
-    `## Cases` is a finding, one under `## Work` is not — its work waits for Work Mode; a
-    closed one is checked as any. Only a box line, `- [ ]`, `- [x]` or `- [-]` at the start,
+    `## Cases` is a finding, one under `## Work` is not — its work waits for Work Mode — nor
+    one under `## Ask`, which waits for the person at `/hi` (case 531.12); a closed one is
+    checked as any. Only a box line, `- [ ]`, `- [x]` or `- [-]` at the start,
     is read: `Backlog: N items` and an indented `- near` line are not (case 451.2).
 
     Case 451.2: the closer, the last segment after ` · `, is one of `case N`, `work`,
@@ -483,17 +486,17 @@ def check_frontier(
     if not path.exists():
         return [f"frontier: {relative} is missing"]
     findings: list[str] = []
-    work = False
+    may_stay_open = False
     for line in path.read_text(encoding="utf-8").splitlines():
         if line.startswith("## "):
-            work = line.strip() == WORK_LIST
+            may_stay_open = line.strip() in OPEN_LISTS
             continue
         match = FRONTIER_LINE.match(line)
         if not match:
             continue
         box, item, rest = match.groups()
         if box == " ":
-            if not work:
+            if not may_stay_open:
                 findings.append(f"frontier: {item} is open")
             continue
         segments = [s.strip() for s in rest.split(FRONTIER_SEPARATOR)]

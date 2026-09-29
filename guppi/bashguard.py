@@ -10,9 +10,10 @@ rule; a `PreToolUse` hook cannot be skipped (case 127).
 The hook reads `tool_input.command`, finds every heredoc (`<<` or `<<-`, the marker quoted
 or not) and its body up to the closing line. A body with a backslash, or a marker line that
 redirects into a file (`>` or `>>` to a path other than `/dev/null`, or `tee`), exits 2 with
-the reason on stderr — `bashguard: heredoc refused — <reason>. Write the script with the
-Write tool into the scratchpad and run it by path; change a file with Edit. The refusal is
-this guard working as designed, not an event of the session: do not report it at Retro.` —
+the reason on stderr — `bashguard: heredoc refused — <reason>. Write a whole file with the
+Write tool and change a file with Edit, never through Bash; only a script goes into the
+scratchpad, written with the Write tool and run by path. The refusal is this guard working
+as designed, not an event of the session: do not report it at Retro.` (case 530.2) —
 which blocks the call (case 384); one line `bashguard refused: <reason>` goes to
 `vault/raw/<date>/event_log.md` before that (case 91). A `<<<` here-string, a heredoc without a backslash whose output goes to a
 pipe or the screen, a command without a heredoc, any other tool, or a payload the hook
@@ -116,8 +117,9 @@ def run(argv, *, stdin=None, stderr=None, project_dir: Path | None = None, now=N
             return 0
         log_refusal(project_dir, payload, reason, now, stderr)
         print(
-            f"bashguard: heredoc refused — {reason}. Write the script with the Write tool into "
-            "the scratchpad and run it by path; change a file with Edit. The refusal is this "
+            f"bashguard: heredoc refused — {reason}. Write a whole file with the Write tool and "
+            "change a file with Edit, never through Bash; only a script goes into the "
+            "scratchpad, written with the Write tool and run by path. The refusal is this "
             "guard working as designed, not an event of the session: do not report it at Retro.",
             file=stderr,
         )

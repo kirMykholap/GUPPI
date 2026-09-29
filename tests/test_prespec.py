@@ -1308,6 +1308,19 @@ def test_the_frontier_reads_cases_and_work_lines_under_their_headings(tmp_path):
     assert out.splitlines() == ["frontier: W2 closes with case 7, no Case 7 heading in the plan"]
 
 
+def test_an_open_ask_line_is_no_finding_and_a_closed_one_is_judged(tmp_path):  # case 531.12
+    frontier = (
+        "# Frontier\n\n## Cases\n\n- [x] C1 — the one item · brief · case 1\n\n"
+        "## Work\n\n- [x] W1 — a reading · brief · work\n\n"
+        "## Ask\n\n- [ ] A1 — reading `estimate-x`: did the stop hold? · brief\n"
+    )
+    assert check(tmp_path, frontier=frontier) == (0, "", "")
+    closed = frontier + "- [x] A2 — reading `estimate-y` · brief · case 7\n"
+    code, out, _ = check(tmp_path, frontier=closed)
+    assert code == 1
+    assert out.splitlines() == ["frontier: A2 closes with case 7, no Case 7 heading in the plan"]
+
+
 # --- a sprint line and the sprint page (cases 314.2, 451.3) ---------------------------
 
 

@@ -58,10 +58,10 @@ update:
 - [ ] update `rule-spec-write`
 - [ ] update `rule-materialize`
 - [ ] `uv run guppi render`: `vault/wiki/case-schema.md`
-- [ ] `guppi/materialize.py`: the docstring of `yaml_comments` says that after a space YAML drops the rest of the line, so an unquoted value may be cut, and that after a tab PyYAML refuses the whole block; the comment at the call of `then_comments` for a decision entry names both outcomes
-- [ ] `guppi/ratified.py`: the module docstring on the defer says the same; the refusal message of `deferred_section` keeps "put the value in quotes" and names both outcomes
-- [ ] `tests/test_ratified.py`: the comment over the parameters of the refused defer says that YAML cuts `a ## b` and that PyYAML refuses the block of `a\t# b`; no assertion changes
-- [ ] `uv run pytest tests/test_ratified.py tests/test_materialize.py -k comment`: passes
+- [x] `guppi/materialize.py`: the docstring of `yaml_comments` says that after a space YAML drops the rest of the line, so an unquoted value may be cut, and that after a tab PyYAML refuses the whole block; the comment at the call of `then_comments` for a decision entry names both outcomes
+- [x] `guppi/ratified.py`: the module docstring on the defer says the same; the refusal message of `deferred_section` keeps "put the value in quotes" and names both outcomes
+- [x] `tests/test_ratified.py`: the comment over the parameters of the refused defer says that YAML cuts `a ## b` and that PyYAML refuses the block of `a\t# b`; no assertion changes
+- [x] `uv run pytest tests/test_ratified.py tests/test_materialize.py -k comment`: passes
 ```
 
 ## Case 527 — A glossary row passes when its page says what the term is
@@ -262,7 +262,7 @@ update:
 ```tasks
 - [ ] update `rule-git-context`
 - [ ] update `estimate-git-context-current`
-- [ ] by hand: `git remote remove origin`, then `git remote` prints nothing
+- [x] by hand: `git remote remove origin`, then `git remote` prints nothing
 - [ ] `uv run guppi render`: `.claude/skills/hi/SKILL.md`
 - [ ] read `estimate-git-context-current` — by hand at the /hi of a session after the render
 ```
@@ -563,8 +563,8 @@ update:
 ```tasks
 - [ ] update `rule-bash-guard` — the refusal text sends a whole file to Write
 - [ ] update `estimate-bash-guard` — the Criterion replaced whole
-- [ ] `guppi/bashguard.py` — the refusal text and the module docstring carry the new sentence
-- [ ] `tests/test_bashguard.py` — the refusal tests assert the new sentence whole
+- [x] `guppi/bashguard.py` — the refusal text and the module docstring carry the new sentence
+- [x] `tests/test_bashguard.py` — the refusal tests assert the new sentence whole
 - [ ] read `estimate-bash-guard` — `uv run pytest tests/test_bashguard.py`, then the first refusal of a later session, its message read on stderr
 ```
 
@@ -1143,9 +1143,9 @@ update:
 ```tasks
 - [ ] create `rule-retro-onward` — the page of the hook
 - [ ] update `rule-hook-registry` — `guppi onward` registered on `Stop`
-- [ ] `guppi/onward.py` — the hook: the session window, the stamp and the folder imported from `guppi/ledger.py`; exit 2 with the reason on stderr on the four conditions, exit 0 otherwise
-- [ ] `guppi/cli.py` — the command `onward` in the table and the docstring's list of hook commands
-- [ ] `tests/test_onward.py` — a refusal after the mark `retro` with no `handoff.md`; silence before the mark, with `handoff.md`, on `stop_hook_active`, on a reply opening with `STOP:`, and without a `hi`
+- [x] `guppi/onward.py` — the hook: the session window, the stamp and the folder imported from `guppi/ledger.py`; exit 2 with the reason on stderr on the four conditions, exit 0 otherwise
+- [x] `guppi/cli.py` — the command `onward` in the table and the docstring's list of hook commands
+- [x] `tests/test_onward.py` — a refusal after the mark `retro` with no `handoff.md`; silence before the mark, with `handoff.md`, on `stop_hook_active`, on a reply opening with `STOP:`, and without a `hi`
 - [ ] create `estimate-retro-onward-sends-the-agent-to-the-handoff` — the promise of the hook
 - [ ] `uv run guppi render`: `.claude/settings.json`
 - [ ] read `estimate-retro-onward-sends-the-agent-to-the-handoff` — `uv run pytest tests/test_onward.py`, and by hand at the first run from `/work` to the librarian after the render
@@ -1298,8 +1298,8 @@ update:
 ```
 
 ```tasks
-- [ ] `guppi/prespec.py` — `check_frontier`: an open line under `## Ask` is no finding, beside `## Work`; the docstring says so
-- [ ] `tests/test_prespec.py` — an open `A` line under `## Ask` gives no finding; a closed one is judged as any
+- [x] `guppi/prespec.py` — `check_frontier`: an open line under `## Ask` is no finding, beside `## Work`; the docstring says so
+- [x] `tests/test_prespec.py` — an open `A` line under `## Ask` gives no finding; a closed one is judged as any
 - [ ] update `rule-prespec` — an open `## Ask` line is no finding
 - [ ] update `estimate-prespec-checks-the-frontier` — the Criterion replaced whole: an open `## Ask` line is no finding
 - [ ] `uv run guppi render`: `.claude/skills/pre-spec/SKILL.md`
@@ -1437,8 +1437,8 @@ update:
 ```
 
 ```tasks
-- [ ] `guppi/gate.py` — the advice of the `Skill` path for "nothing to review" reads "This refusal is a stop of vault/wiki/where-to-stop.md: end your reply with the question to the person."; the docstring says so
-- [ ] `tests/test_gate.py` — the `Skill` path of "nothing to review" asserts the new advice and no "in the next reply"
+- [x] `guppi/gate.py` — the advice of the `Skill` path for "nothing to review" reads "This refusal is a stop of vault/wiki/where-to-stop.md: end your reply with the question to the person."; the docstring says so
+- [x] `tests/test_gate.py` — the `Skill` path of "nothing to review" asserts the new advice and no "in the next reply"
 - [ ] update `rule-retro-commit` — the refusal "nothing to review" on the agent's call is a stop
 - [ ] update `estimate-retro-commit-gates` — the Criterion replaced whole: the advice of the `Skill` path names a stop
 - [ ] read `estimate-retro-commit-gates` — `uv run pytest tests/test_gate.py`, in a session after this one

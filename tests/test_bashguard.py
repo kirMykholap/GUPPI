@@ -23,6 +23,14 @@ NULL_ONLY = "python - <<'EOF' 2>/dev/null\nprint(1)\nEOF"
 HERE_STRING = "grep x <<< 'a\\tb'"
 NO_HEREDOC = "printf '%s\\n' a b > out.txt"
 
+# case 530.2: a whole file goes to Write, only a script to the scratchpad
+ADVICE = (
+    "Write a whole file with the Write tool and change a file with Edit, never through Bash; "
+    "only a script goes into the scratchpad, written with the Write tool and run by path. "
+    "The refusal is this guard working as designed, not an event of the session: "
+    "do not report it at Retro.\n"
+)
+
 
 def payload(**fields):
     return io.StringIO(json.dumps(fields))
@@ -49,18 +57,13 @@ def log(project_dir):
 def test_a_backslash_in_the_body_is_refused_and_names_write(tmp_path):
     code, err = run(bash(BACKSLASH_BODY), tmp_path)
     assert code == 2
-    assert "bashguard: heredoc refused — a backslash in its body." in err
-    assert "Write tool" in err and "Edit" in err
     # case 384: the refusal says it is by design, so it is no finding for Retro
-    assert (
-        "The refusal is this guard working as designed, not an event of the session: "
-        "do not report it at Retro." in err
-    )
+    assert err == f"bashguard: heredoc refused — a backslash in its body. {ADVICE}"
 
 
 def test_a_heredoc_that_writes_a_file_is_refused_with_the_path(tmp_path):
     code, err = run(bash(FILE_WRITE), tmp_path)
-    assert code == 2 and "it writes out.txt" in err
+    assert code == 2 and err == f"bashguard: heredoc refused — it writes out.txt. {ADVICE}"
     code, err = run(bash(APPEND_WRITE), tmp_path)
     assert code == 2 and "it writes C:/x/plan.md" in err
     code, err = run(bash(TEE_WRITE), tmp_path)

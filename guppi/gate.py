@@ -33,9 +33,10 @@ Before the Spec, for `/retro` only (case 180): a session with a `hi` but no `spe
 its folder, no plan file named by the event log and no record line — decision, estimate
 or lesson — in its ledger window has nothing to review, and the call is refused: `gate:
 /retro refused — nothing to review: no Spec and no ledger line in raw/<date>/<HHMM>/.
-Ratify a Case or write a reading or a lesson first,` then the advice of the path — `then
-type /retro again.` for the person, `then call /retro in the next reply.` for the agent.
-No mark. `/pre-spec` and `/handoff` in the same session go as before; without a `hi`
+Ratify a Case or write a reading or a lesson first`, then the advice of the path — `, then
+type /retro again.` for the person; `. This refusal is a stop of
+vault/wiki/where-to-stop.md: end your reply with the question to the person.` for the
+agent, which asks for no call in a next reply (case 531.15). No mark. `/pre-spec` and `/handoff` in the same session go as before; without a `hi`
 nothing is checked.
 
 Then the tree: when the skill is `handoff` and `git status --porcelain` is not empty, the
@@ -190,12 +191,15 @@ def run(
             empty = nothing_to_review(project_dir, stamp, now)
             if empty:
                 if typed(payload):
-                    advice = "then type /retro again."
-                else:
-                    advice = "then call /retro in the next reply."
+                    advice = ", then type /retro again."
+                else:  # case 531.15: a stop, not a call in the next reply
+                    advice = (
+                        ". This refusal is a stop of vault/wiki/where-to-stop.md: end your "
+                        "reply with the question to the person."
+                    )
                 print(
                     f"gate: /retro refused — nothing to review: no Spec and no ledger line in "
-                    f"{empty}. Ratify a Case or write a reading or a lesson first, {advice}",
+                    f"{empty}. Ratify a Case or write a reading or a lesson first{advice}",
                     file=stderr,
                 )
                 return 2

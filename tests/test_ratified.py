@@ -671,7 +671,7 @@ def test_write_a_foreign_key_of_a_defer_is_refused(working):
 
 @pytest.mark.parametrize("purpose", ["a ## b", "a\t# b"])
 def test_write_a_defer_whose_then_block_holds_a_comment_is_refused(working, purpose):
-    # 521.1: YAML reads the rest of the line as a comment, so the value would be cut
+    # 521.1, 526: YAML cuts the value of `a ## b` at the comment; PyYAML refuses the block of `a\t# b`
     reply = short_case(8, "rule-y", purpose) + "```LEDGER\n" + defer_line(8, "rule-y") + "```\n"
     code, err = stop(working, reply, reply)
     assert code == 2 and "case 8: the fence tagged then holds a YAML comment" in err

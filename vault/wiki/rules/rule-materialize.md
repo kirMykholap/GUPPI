@@ -2,11 +2,11 @@
 type: rule
 kind: Leaf
 purpose: Prevents the librarian from reading the ledger and the Spec beyond its unticked lines, or from routing a decision by guesswork
-status: built
+status: draft
 enforcement: check
 implementation_ref: [guppi/materialize.py, tests/test_materialize.py]
 parent: "[[rule-documentation]]"
-estimates: ["[[estimate-materialize-assembles]]", "[[estimate-materialize-walks-dates]]", "[[estimate-materialize-shows]]", "[[estimate-materialize-lifts-a-lesson]]", "[[estimate-materialize-marks-exists]]", "[[estimate-materialize-fails-alone]]", "[[estimate-materialize-marks-superseded]]", "[[estimate-materialize-skips-a-carried-over-unit]]", "[[estimate-materialize-carries-addresses]]", "[[estimate-materialize-lifts-unfiltered-on-a-schema-change]]", "[[estimate-materialize-refolds-a-reading-on-a-supersede]]", "[[estimate-materialize-lifts-when-and-then]]", "[[estimate-materialize-lifts-a-create-by-the-schema]]", "[[estimate-materialize-changes-a-named-part-alone]]", "[[estimate-materialize-judges-a-fence]]"]
+estimates: ["[[estimate-materialize-assembles]]", "[[estimate-materialize-walks-dates]]", "[[estimate-materialize-shows]]", "[[estimate-materialize-lifts-a-lesson]]", "[[estimate-materialize-marks-exists]]", "[[estimate-materialize-fails-alone]]", "[[estimate-materialize-marks-superseded]]", "[[estimate-materialize-skips-a-carried-over-unit]]", "[[estimate-materialize-carries-addresses]]", "[[estimate-materialize-lifts-unfiltered-on-a-schema-change]]", "[[estimate-materialize-refolds-a-reading-on-a-supersede]]", "[[estimate-materialize-lifts-when-and-then]]", "[[estimate-materialize-lifts-a-create-by-the-schema]]", "[[estimate-materialize-changes-a-named-part-alone]]", "[[estimate-materialize-judges-a-fence]]", "[[estimate-materialize-marks-a-comment]]"]
 origin: raw/2026-09-10/ledger.md#case-31
 sprint: migration
 created: 2026-09-10
@@ -18,7 +18,7 @@ tags: [harness, workflow, ledger]
 Prevents the librarian from reading the ledger and the Spec beyond its unticked lines (case 271), or from routing
 a decision by guesswork. The yaml is the one input a clean context needs. Every line
 of the ledger is an entry. Its route is the Routing Table in the docstring of `guppi/materialize.py` (case 364.1). Its content is
-lifted from the `then` block of its Case in the Spec — `set`, `sections`, `replace`, `change`, and `rename` or `reword` when the item carries it (cases 258.2, 274.3). What is missing is named, not
+lifted from the `then` block of its Case in the Spec — `set`, `sections`, `replace`, `change`, and `rename` or `reword` when the item carries it (cases 258.2, 274.3). A `then` block that holds a YAML comment — a `#` at the start of a line or after a space or a tab, outside a quoted value and outside a `|` or `>` block — gives each decision entry of its Case `incomplete: [comment]`: YAML drops the rest of the line, so the value may be cut; the judgment is one function, which the `Stop` hook of `rule-spec-write` imports (case 521.2). What is missing is named, not
 invented — but for a Case superseded in its own session and gone from the Spec: its entries, marked `superseded_by`, carry no `incomplete: [then]`, and its `decisions` record no `case_text` and no missing section; the mark alone is its completeness (case 299.3). If a route cannot be derived from the ledger and the Spec alone, that is a
 defect of the ledger, and it shows here. The keys of a `create` are lifted by the category's `schema.yaml` on disk (case 214.1) — but for a category whose `rule-<category>-schema` the same unit creates or updates: its `create` items are lifted whole, no `unknown`, since the schema on disk catches up only at the render after `generate` (case 308.2).
 
@@ -119,3 +119,6 @@ entry's fields, each with its writer, live in the docstring of `guppi/materializ
 - 2026-09-28 updated: a written Criterion is the one promise of its Case, not a way to touch two (case 472.3) · [[decision-case-472.3]]
 - 2026-09-29 status: built → draft · cascade
 - 2026-09-29 status: draft → built · cascade
+- 2026-09-29 updated: a then block that holds a YAML comment marks the decision entries of its Case incomplete: [comment] (case 521.2) · [[decision-case-521.2]]
+- 2026-09-29 estimate estimate-materialize-marks-a-comment added · [[decision-case-521.2]]
+- 2026-09-29 status: built → draft · cascade

@@ -2,7 +2,7 @@
 type: rule
 kind: Leaf
 purpose: Prevents the next session from starting without the facts and the flags of this one
-status: draft
+status: built
 enforcement: render
 governs: .claude/agents/librarian-guppi.md
 render_mode: partial
@@ -75,3 +75,4 @@ The brief has a second writer, the skill `carry` (`rule-carry-over`): it writes 
 - 2026-09-29 updated: a Readings due line of an Estimate read at the librarian's run ends with the facts of the run, no verdict (case 508.4) · [[decision-case-508.4]]
 - 2026-09-29 estimate estimate-brief-carries-the-run-facts added · [[decision-case-508.4]]
 - 2026-09-29 status: built → draft · cascade
+- 2026-09-29 status: draft → built · cascade

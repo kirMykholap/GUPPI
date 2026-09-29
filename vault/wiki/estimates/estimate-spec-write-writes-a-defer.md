@@ -1,7 +1,7 @@
 ---
 type: estimate
 kind: QA
-status: passed
+status: pending
 target: "[[rule-spec-write]]"
 purpose: The Stop hook writes a deferred Case into the Spec as the reply showed it
 method: uv run pytest tests/test_ratified.py -k defer, then by hand the first defer the person asks for after the change
@@ -22,6 +22,8 @@ The hook writes that Case under `## Deferred` of the plan file while Plan Mode l
 **＋** The section of Case N is replaced when it stands there, appended at the end of `## Deferred` otherwise; the heading `## Deferred` is added when the file has none.
 **＋** A reply with no showing of Case N, or a `then` block without a `defer` item carrying `slug`, `type` and `purpose` for each `defer` line of the reply: exit 2 with the reason on stderr; on the re-fire (`stop_hook_active`) exit 0.
 **＋** A key of a `defer` item that `item_keys` of `guppi/materialize.py` does not give a `defer` of its category: exit 2 with `` `<key>`: not a key of defer <slug> `` on stderr, and nothing of the Case is written.
+**＋** A `then` block that holds a YAML comment — a `#` at the start of a line or after a space or a tab, outside a quoted value and outside a `|` or `>` block — as the function of `guppi/materialize.py` judges it: exit 2 with the line of the comment and the advice to quote the value on stderr, and nothing of the Case is written.
+**－** A `#` inside a quoted value or inside a `|` or `>` block is text, not a comment, and is no refusal.
 **－** A `defer` of a category with no schema file, or of one whose schema rule a decision line of the session or of the reply creates or updates, is not judged by its keys (case 308.2).
 **－** The ratified copy `<plan>.ratified.md` gets no defer, and the check after the write does not run on it.
 
@@ -34,3 +36,4 @@ The hook writes that Case under `## Deferred` of the plan file while Plan Mode l
 - 2026-09-25 created · [[decision-case-421.1]]
 - 2026-09-26 updated: the Criterion replaced whole — a key of a defer item outside the keys item_keys gives it is refused (case 436.3) · [[decision-case-436.3]]
 - 2026-09-26 status: pending → passed · raw/2026-09-26/1745/ledger.md#L33
+- 2026-09-29 updated: the Criterion replaced whole — a then block that holds a YAML comment is refused (case 521.1) · [[decision-case-521.1]]

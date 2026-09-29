@@ -1,11 +1,11 @@
 ---
 type: estimate
 kind: QA
-status: pending
+status: passed
 target: "[[rule-page-generation]]"
 purpose: One bad entry never stops the run; every entry carries its mark
 method: pytest tests/test_generate.py, the tests of the failed, skipped and marked entries
-checked: 2026-09-24
+checked: 2026-09-29
 origin: raw/2026-09-16/1955/ledger.md#case-201.3
 sprint: migration
 created: 2026-09-16
@@ -30,7 +30,7 @@ An entry that fails — a collision, a `ref` naming no page, a `replace` absent 
 
 ## Result
 
-2026-09-24, `uv run pytest tests/test_generate.py`: 87 passed
+2026-09-29, uv run pytest tests/test_generate.py -k "fail or skip or repeat or no_content or superseded or rerun": 30 passed, the whole file 101 passed, in Work Mode of session 1753 after the change of case 522 to the repeat branch; the tests cover the failed entry on stderr with the rest applied and exit 1, the stale failed mark dropped, the unlifted line kept with its mark, the superseded entry, the update with no content and the repeat marked applied with its stdout line and no page change
 
 ## History
 
@@ -48,3 +48,4 @@ An entry that fails — a collision, a `ref` naming no page, a `replace` absent 
 - 2026-09-25 status: pending → passed · raw/2026-09-24/2214/ledger.md#L34
 - 2026-09-29 updated: the Criterion replaced whole — a recut without method no longer fails (case 506.5) · [[decision-case-506.5]]
 - 2026-09-29 updated: the Criterion replaced whole — an entry that repeats an applied entry of its Case, kind and slug is marked applied, changes no page and prints one line · [[decision-case-514]]
+- 2026-09-29 status: pending → passed · raw/2026-09-29/1753/ledger.md#L23

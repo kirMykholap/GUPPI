@@ -1,7 +1,7 @@
 ---
 type: estimate
 kind: QA
-status: passed
+status: pending
 target: "[[rule-page-generation]]"
 purpose: generate ticks the page line of a Case in the Spec beside its yaml, and the read line of a reading or of a deleted Estimate across the Specs of raw/ — never a line of a later or a superseded Case
 method: pytest tests/test_generate.py with a Spec beside the yaml, plus one reading of this session's spec.md after the librarian's run
@@ -15,15 +15,16 @@ tags: [harness, workflow, ledger]
 ## Criterion
 
 When:
-`uv run guppi generate` applied an entry of `materialize.yaml` and marked it `applied`.
+`uv run guppi generate` marks an entry of `materialize.yaml` `applied`. Either it applied the entry, or it found the entry to be a repeat: a `create`, `update`, `delete` or `defer` entry whose `case`, `kind` and `slug` match those of an entry of the same `materialize.yaml` already marked `applied`.
 
 Then:
-For a `create`, `update`, `delete` or `defer` entry, in the `spec.md` of the same unit, the first unticked line `` - [ ] <kind> `<slug>` `` in the section of the entry's Case becomes `- [x]`. Nothing else in the file changes. Each further entry of one kind and slug in one Case ticks the next such line, in order.
+For a `create`, `update`, `delete` or `defer` entry that was applied, in the `spec.md` of the same unit, the first unticked line `` - [ ] <kind> `<slug>` `` in the section of the entry's Case becomes `- [x]`. Nothing else in the file changes.
 **＋** For an `estimate` entry, a `create` entry with `folded` and a `delete` entry, every unticked line `` - [ ] read `<slug>` `` of every `spec.md` under `vault/raw/` becomes `- [x]`. The Spec beside the yaml comes first, then the Specs of the other session folders, oldest first.
 **＋** In the Spec beside the yaml, for an `estimate` or a `delete` entry, a `read` line in the section of a Case whose first decision entry carries a `line` greater than the entry's `line` is not the entry's line, and the search goes on.
 **＋** In any Spec, a `read` line in the section of a Case whose entries are marked `superseded_by` is not the entry's line. For the Spec beside the yaml, the marks come from the run's entries. For another Spec, they come from the `materialize.yaml` beside it. With no yaml beside a Spec, nothing is skipped there.
 **＋** A `create` entry with `folded` ticks both its page line and its `read` line. The filter by `line` does not apply to it, and the filter by `superseded_by` does.
 **＋** A `delete` entry ticks both its page line in its own Case and the `read` lines of its slug.
+**－** A repeat ticks no line in any `spec.md`. A second line `` - [ ] <kind> `<slug>` `` in the section of its Case stays unticked, and a repeated `delete` leaves the `read` lines of its slug as they stand.
 **－** A line, a section or a Spec not found raises no error and prints nothing on stderr. The entry is `applied` all the same.
 **－** A `lesson` entry and an entry marked `failed` tick no line. A `delete` that fails leaves the `read` lines of its slug as they stand.
 **－** A `spec.md` under `vault/archive/` is not read.
@@ -53,3 +54,4 @@ For a `create`, `update`, `delete` or `defer` entry, in the `spec.md` of the sam
 - 2026-09-25 status: pending → passed · raw/2026-09-24/2214/ledger.md#L36
 - 2026-09-27 updated: the Criterion replaced whole — a delete entry ticks the read lines of its slug, with the skips of a reading (case 463) · [[decision-case-463]]
 - 2026-09-27 status: pending → passed · raw/2026-09-27/2050/ledger.md#L24
+- 2026-09-29 updated: the Criterion replaced whole — a repeat ticks no line of any Spec; a second entry of one kind and slug in one Case no longer ticks the next line · [[decision-case-522]]

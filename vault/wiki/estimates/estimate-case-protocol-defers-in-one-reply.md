@@ -4,7 +4,7 @@ kind: QA
 status: failed
 target: "[[rule-case-protocol]]"
 purpose: A defer the person asks for is shown and written in the same reply, with no round of ratification
-method: by hand, the first defer the person asks for after the render
+method: "by hand, the first defer the person asks for after the render that leaves no line under ## Cases of frontier.md open"
 checked: 2026-09-29
 origin: raw/2026-09-24/1916/ledger.md#case-405
 sprint: migration
@@ -39,3 +39,4 @@ In the same reply the agent shows the Case in the short form — `context`, `pro
 - 2026-09-27 status: failed → failed · raw/2026-09-27/1255/ledger.md#L53
 - 2026-09-27 updated: the Criterion replaced whole — in Plan Mode a question of what comes next follows the Frontier and ends the defer reply (case 461) · [[decision-case-461]]
 - 2026-09-29 status: pending → failed · raw/2026-09-29/1134/ledger.md#L71
+- 2026-09-29 updated: the method reads a defer that closes the last Cases line, the branch that failed; the Criterion and the failed status stand (case 523) · [[decision-case-523]]

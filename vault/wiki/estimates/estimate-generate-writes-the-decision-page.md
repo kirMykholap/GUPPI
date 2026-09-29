@@ -1,7 +1,7 @@
 ---
 type: estimate
 kind: QA
-status: pending
+status: passed
 target: "[[rule-page-generation]]"
 purpose: One Decision page per Case, written before its entries, with its lists, its body and its defers
 method: pytest tests/test_generate.py, the tests of the decision page; the live reading in the librarian's run
@@ -30,7 +30,7 @@ One page `vault/wiki/decisions/decision-case-<N>.md` is written: `case`, `status
 
 ## Result
 
-2026-09-29, tests/test_generate.py 97 passed; ff62585 holds 25 new Decision pages 497.1-505 with no When or Criterion; 501.2 supersedes 495, which stands superseded; deferred_by 495 and 496 cleared from rule-case-build and rule-skill-wait-what; 503 has its Deferred section
+2026-09-29, uv run pytest tests/test_generate.py -k decision: 10 passed (the whole file 100 passed); by hand, git show --name-status d8c1f17: 12 Decision pages added under wiki/decisions and decision-case-511.2 under the archive, no existing Decision page modified; 510, 511.1, 512, 513.1-513.3, 514-516 carry ## Problem and ## History only; 517, 518, 519 carry ## Context, ## Problem, ## Deferred and ## History; 512 carries supersedes 511.2, 511.2 carries superseded_by 512 and the two-line body of case 299, archived; the History of rule-case-build names [[decision-case-512]]; the ## Deferred of 519 holds its purpose verbatim; the tags union and source were not checked
 
 ## History
 
@@ -45,3 +45,4 @@ One page `vault/wiki/decisions/decision-case-<N>.md` is written: `case`, `status
 - 2026-09-27 updated: the Criterion replaced whole — a supersedes clears deferred_by only on the pages the superseding Case names (case 467.3) · [[decision-case-467.3]]
 - 2026-09-29 status: pending → passed · raw/2026-09-29/1134/ledger.md#L56
 - 2026-09-29 updated: the Criterion replaced whole — the body is Problem, Context only for a Case without given, no Given (case 513.2) · [[decision-case-513.2]]
+- 2026-09-29 status: pending → passed · raw/2026-09-29/1753/ledger.md#L2

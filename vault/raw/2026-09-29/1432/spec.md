@@ -314,7 +314,7 @@ update:
 - [x] update `estimate-decisions-schema-checked`
 - [x] `uv run guppi render`: `vault/wiki/decisions/schema.yaml`
 - [x] `tests/test_schemas.py`: a test that a Decision page without `## Context` has no finding against the live `schema.yaml`, skipped until the librarian renders the file of 513.1
-- [ ] read `estimate-decisions-schema-checked` — `pytest tests/test_schemas.py -k decisions`, then `make lint` with no `schema` finding on `vault/wiki/decisions/` but the pages of Cases 1–28, at a later session
+- [x] read `estimate-decisions-schema-checked` — `pytest tests/test_schemas.py -k decisions`, then `make lint` with no `schema` finding on `vault/wiki/decisions/` but the pages of Cases 1–28, at a later session
 ```
 
 ### Case 513.2 — `generate` writes the Problem, and Context only for a short-form defer
@@ -358,7 +358,7 @@ delete:
 - [x] delete `estimate-generate-writes-the-given`
 - [x] `guppi/generate.py`: `decision` writes `## Problem` from `case_text`, `## Context` only when `case_text` has no `given`, and no `## Given`; the docstring paragraph on the Decision page says so
 - [x] `tests/test_generate.py`: the Decision-page tests assert `## Problem` then `## History` with no `## Context` or `## Given` for a Case with `given`; `## Context` then `## Problem` for a Case without `given`; the fixture schema takes `## Context` as optional
-- [ ] read `estimate-generate-writes-the-decision-page` — `pytest tests/test_generate.py`, the tests of the Decision page, and the pages of the librarian's run, at a later session
+- [x] read `estimate-generate-writes-the-decision-page` — `pytest tests/test_generate.py`, the tests of the Decision page, and the pages of the librarian's run, at a later session
 ```
 
 ### Case 513.3 — The case schema keeps `given` in the Case, not on the Decision page
@@ -439,7 +439,7 @@ update:
 - [x] update `estimate-generate-fails-alone`
 - [x] `guppi/generate.py`: in `apply`, before an entry of kind `create`, `update`, `delete` or `defer` is applied, look for an entry of the same yaml with the same `case`, `kind` and `slug` marked `applied`; when found, mark the entry `applied`, drop its `failed`, print the stdout line and apply nothing; the docstring says so beside the no-content update
 - [x] `tests/test_generate.py`: a repeated `update` whose `replace` anchor the first entry consumed is marked applied, fails nothing, changes no page, adds no History or `log.md` line and prints the stdout line; the same with the first entry failed and the second applied, on the rerun; a repeat of a `create` writes no collision; an `estimate` entry of the same slug is applied as before
-- [ ] read `estimate-generate-fails-alone`
+- [x] read `estimate-generate-fails-alone`
 ```
 
 ## Case 515 — Each glossary row points at the page that defines its term
@@ -520,7 +520,7 @@ update:
 ```tasks
 - [x] update `entity-glossary`
 - [x] `uv run guppi glossary`
-- [ ] read `estimate-glossary-terms-defined` — by hand in a later session after the librarian's run: the table of `vault/wiki/glossary.md` and `make lint`
+- [x] read `estimate-glossary-terms-defined` — by hand in a later session after the librarian's run: the table of `vault/wiki/glossary.md` and `make lint`
 ```
 
 ## Case 516 — The check of the lift on a schema change names its tests

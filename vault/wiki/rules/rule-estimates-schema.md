@@ -8,7 +8,6 @@ governs: vault/wiki/estimates/schema.yaml
 render_mode: full
 parent: "[[rule-page-schemas]]"
 estimates: ["[[estimate-estimates-schema-checked]]"]
-deferred_by: ["[[decision-case-519]]"]
 origin: raw/2026-09-22/0014/ledger.md#case-304.4
 sprint: migration
 created: 2026-09-22
@@ -78,7 +77,7 @@ fields:
     required; list. Chosen at the vault query before the Case, ratified in the Case.
 sections:
   "## Criterion": |
-    required. The promise, written once: the `when` and `then` of one Case, verbatim with their operands, as `When:`, `Then:` — no `Given:`: the frame of the Case stays on its Decision page (case 378.2). The Case that creates the Estimate writes it; an `update` that changes the promise replaces it whole and sets the page `pending`; an `update` that names a part alone — a field, a `replace` pair outside it — keeps it; a pair inside it is refused, a changed promise is a Criterion replaced whole (case 378.4); nothing is appended and no `### case N` block exists (case 193). The Criterion that was replaced stays in the Spec of the session that wrote it, reached by `origin`, and in History. For Research the `then` may legitimately be broad ("determine whether we stay inside the latency budget"); for QA it should be exact.
+    required. The promise, written once: the `when` and `then` of one Case, verbatim with their operands, as `When:`, `Then:` — no `Given:`: the frame of the Case stays in its Case file and in the Spec (cases 378.2, 513). The Case that creates the Estimate writes it; an `update` that changes the promise replaces it whole and sets the page `pending`; an `update` that names a part alone — a field, a `replace` pair outside it — keeps it; a pair inside it is refused, a changed promise is a Criterion replaced whole (case 378.4); nothing is appended and no `### case N` block exists (case 193). The Criterion that was replaced stays in the Spec of the session that wrote it, reached by `origin`, and in History. For Research the `then` may legitimately be broad ("determine whether we stay inside the latency budget"); for QA it should be exact.
   "## Result": |
     optional; required on `passed` and `failed`. Omitted while `pending`. Its first line is the date of the reading and the command — `make test-x`, `pytest tests/test_x.py` — or the place of a live reading; the result follows (case 199). For QA usually one line more. For Research this is the substance of the page — findings, numbers, the conclusion drawn.
   "## History": |
@@ -164,3 +163,5 @@ examples:
 - 2026-09-29 updated: method required, purpose optional; the old shape, the unmigrated count, the recut and the Given: of older pages gone from the schema (case 506.1) · [[decision-case-506.1]]
 - 2026-09-29 deferred · [[decision-case-519]]
 - 2026-09-29 status: draft → built · cascade
+- 2026-09-29 defer by decision-case-519 superseded · [[decision-case-521.3]]
+- 2026-09-29 updated: the description of ## Criterion says the frame of a Case stays in its Case file and the Spec; the defer of case 519 retired (case 521.3) · [[decision-case-521.3]]

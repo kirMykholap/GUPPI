@@ -1,8 +1,9 @@
 ---
 type: decision
 case: "517"
-status: current
+status: archived
 defer: ["[[rule-documentation]]"]
+superseded_by: ["[[decision-case-525]]"]
 origin: raw/2026-09-29/1432/ledger.md#case-517
 sprint: migration
 created: 2026-09-29
@@ -26,3 +27,6 @@ Decide why the librarian's run reads beyond its list — the tail of log.md, the
 ## History
 
 - 2026-09-29 created · raw/2026-09-29/1432/ledger.md#case-517
+- 2026-09-29 superseded by decision-case-525 · [[decision-case-525]]
+- 2026-09-29 archived · superseded
+- 2026-09-29 archived · cleanup

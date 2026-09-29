@@ -1,0 +1,2129 @@
+date: '2026-09-29'
+sprint: migration
+ledger: vault/raw/2026-09-29/1753/ledger.md
+spec:
+- vault/raw/2026-09-29/1753/spec.md
+entries:
+- line: 1
+  text: 'estimate[estimate-brief-carries-the-run-facts][passed] 2026-09-29, by hand at the /hi of session
+    1753, vault/wiki/brief.md against the report of the run d8c1f17 in the transcript of session 1432:
+    the five pending Estimates whose method names the librarian''s run (brief-carries-the-run-facts, generate-renames,
+    generate-rewords, generate-writes-the-decision-page, glossary-ticks-the-spec) each keep one Readings
+    due line with the rule and where it is read, ending with the facts of the run and no passed or failed;
+    the report gives guppi archive exit 0 with empty stdout and no pending Estimate whose method names
+    the archive step, and the brief says so and that it was written before the archive; grep of brief.md
+    for d8c1f17 counts 0; the append of archive stdout was not exercised'
+  kind: estimate
+  category: estimates
+  slug: estimate-brief-carries-the-run-facts
+  status: passed
+  result: '2026-09-29, by hand at the /hi of session 1753, vault/wiki/brief.md against the report of the
+    run d8c1f17 in the transcript of session 1432: the five pending Estimates whose method names the librarian''s
+    run (brief-carries-the-run-facts, generate-renames, generate-rewords, generate-writes-the-decision-page,
+    glossary-ticks-the-spec) each keep one Readings due line with the rule and where it is read, ending
+    with the facts of the run and no passed or failed; the report gives guppi archive exit 0 with empty
+    stdout and no pending Estimate whose method names the archive step, and the brief says so and that
+    it was written before the archive; grep of brief.md for d8c1f17 counts 0; the append of archive stdout
+    was not exercised'
+  origin: raw/2026-09-29/1753/ledger.md#L1
+  applied: '20:08:37'
+- line: 2
+  text: 'estimate[estimate-generate-writes-the-decision-page][passed] 2026-09-29, uv run pytest tests/test_generate.py
+    -k decision: 10 passed (the whole file 100 passed); by hand, git show --name-status d8c1f17: 12 Decision
+    pages added under wiki/decisions and decision-case-511.2 under the archive, no existing Decision page
+    modified; 510, 511.1, 512, 513.1-513.3, 514-516 carry ## Problem and ## History only; 517, 518, 519
+    carry ## Context, ## Problem, ## Deferred and ## History; 512 carries supersedes 511.2, 511.2 carries
+    superseded_by 512 and the two-line body of case 299, archived; the History of rule-case-build names
+    [[decision-case-512]]; the ## Deferred of 519 holds its purpose verbatim; the tags union and source
+    were not checked'
+  kind: estimate
+  category: estimates
+  slug: estimate-generate-writes-the-decision-page
+  status: passed
+  result: '2026-09-29, uv run pytest tests/test_generate.py -k decision: 10 passed (the whole file 100
+    passed); by hand, git show --name-status d8c1f17: 12 Decision pages added under wiki/decisions and
+    decision-case-511.2 under the archive, no existing Decision page modified; 510, 511.1, 512, 513.1-513.3,
+    514-516 carry ## Problem and ## History only; 517, 518, 519 carry ## Context, ## Problem, ## Deferred
+    and ## History; 512 carries supersedes 511.2, 511.2 carries superseded_by 512 and the two-line body
+    of case 299, archived; the History of rule-case-build names [[decision-case-512]]; the ## Deferred
+    of 519 holds its purpose verbatim; the tags union and source were not checked'
+  origin: raw/2026-09-29/1753/ledger.md#L2
+  applied: '20:08:37'
+- line: 3
+  text: 'estimate[estimate-glossary-ticks-the-spec][passed] 2026-09-29, uv run pytest tests/test_glossary.py:
+    8 passed; by hand, git diff d8c1f17^ d8c1f17 on raw/2026-09-29/1432/spec.md: the line `uv run guppi
+    glossary` (line 522) went [ ] to [x], and every other changed line is a tick of a task line; the other
+    mentions of guppi glossary in that file are prose of Case 515 and stand unchanged; the 0137 and 1134
+    Specs hold no guppi glossary line'
+  kind: estimate
+  category: estimates
+  slug: estimate-glossary-ticks-the-spec
+  status: passed
+  result: '2026-09-29, uv run pytest tests/test_glossary.py: 8 passed; by hand, git diff d8c1f17^ d8c1f17
+    on raw/2026-09-29/1432/spec.md: the line `uv run guppi glossary` (line 522) went [ ] to [x], and every
+    other changed line is a tick of a task line; the other mentions of guppi glossary in that file are
+    prose of Case 515 and stand unchanged; the 0137 and 1134 Specs hold no guppi glossary line'
+  origin: raw/2026-09-29/1753/ledger.md#L3
+  applied: '20:08:37'
+- line: 4
+  text: 'estimate[estimate-glossary-terms-defined][failed] 2026-09-29, by hand at the /hi of session 1753,
+    after the librarian''s run d8c1f17 that applied case 515, the table of vault/wiki/glossary.md and
+    make lint: 56 rows, 56 distinct terms, no C4 model, Delegate or retired term, every `where` a live
+    page, no lint line on entity-glossary; but five rows name a `where` page that does not define the
+    term: Vault (`rule-page-schemas` does not say what the vault is), `deferred_by` and `origin` (the
+    body of `rule-page-generation` names neither), Entity / Rule (status) (`rule-page-generation` gives
+    no `archived` status of an Entity or a Rule and no built once every Estimate passes), Hook (`rule-hook-registry`
+    names neither the transcript nor the `hi` window across midnight)'
+  kind: estimate
+  category: estimates
+  slug: estimate-glossary-terms-defined
+  status: failed
+  result: '2026-09-29, by hand at the /hi of session 1753, after the librarian''s run d8c1f17 that applied
+    case 515, the table of vault/wiki/glossary.md and make lint: 56 rows, 56 distinct terms, no C4 model,
+    Delegate or retired term, every `where` a live page, no lint line on entity-glossary; but five rows
+    name a `where` page that does not define the term: Vault (`rule-page-schemas` does not say what the
+    vault is), `deferred_by` and `origin` (the body of `rule-page-generation` names neither), Entity /
+    Rule (status) (`rule-page-generation` gives no `archived` status of an Entity or a Rule and no built
+    once every Estimate passes), Hook (`rule-hook-registry` names neither the transcript nor the `hi`
+    window across midnight)'
+  origin: raw/2026-09-29/1753/ledger.md#L4
+  applied: '20:08:37'
+- line: 5
+  text: decision[case 520][update][entity-glossary]{ref:entity-glossary}
+  case: '520'
+  kind: update
+  slug: entity-glossary
+  origin: raw/2026-09-29/1753/ledger.md#case-520
+  decision: decision-case-520
+  ref: entity-glossary
+  category: entities
+  replace:
+  - old: '| Vault | The folder of Markdown pages, one per category | [[rule-page-schemas]] |'
+    new: '| Vault | `vault/wiki/`: one folder per page category, each page a file named by its slug |
+      [[rule-vault-layout]] |'
+  - old: '| Hook | An event-triggered script behind a Rule page, the ledger writer on `Stop`, which reads
+      the session''s transcript back, keeps its `hi` window across midnight, and can block | [[rule-hook-registry]]
+      |'
+    new: '| Hook | A script that fires on an event of the session, behind a Rule page; registered in the
+      `hooks` key of `.claude/settings.json`, which `rule-hook-registry` renders, or in an agent''s own
+      frontmatter as part of that agent''s Render; a new hook in the file is an `update` of `rule-hook-registry`
+      in the Case that creates its Rule | [[rule-hook-registry]] |'
+  - old: '| `deferred_by` | On an Entity, Rule or Insight, the Decision pages whose `defer` targets it;
+      set by `generate`, cleared by a `supersedes`, shown in the index line, followed by `ask-guppi` |
+      [[rule-page-generation]] |'
+    new: '| `deferred_by` | The Decision pages whose `defer` targets the page; written by `guppi generate`
+      on a defer, cleared when a later Case `supersedes` that one; the index line carries it, so `ask-guppi`
+      reaches the deferred decision (case 52.3) | [[rule-rules-schema]] |'
+  - old: '| `origin` | The Decision that created or deleted the page, as `raw/<date>/<HHMM>/ledger.md#case-N`
+      — the date form on older pages; kept when archived, never rewritten; `#case-N` is a grep target
+      lint checks in `raw/` or in the archive (case 103.6) | [[rule-page-generation]] |'
+    new: '| `origin` | On a page a Case created: where that Case was ratified, `raw/<date>/<HHMM>/ledger.md#case-N`
+      — the date form `raw/<date>/ledger.md#case-N` on pages born before 2026-09-13 (case 103.6); the
+      folder holds the Spec with the Case and, for a Case built by `case-guppi` from session 2026-09-27/1819
+      on, its Case file (case 513); the pointer is not rewritten when the session is archived (cases 100.1,
+      103.6) | [[rule-decisions-schema]] |'
+  - old: '| Entity / Rule (status) | `draft` / `built` / `archived`; `built` is computed once every Estimate
+      passes, never by hand | [[rule-page-generation]] |'
+    new: '| Entity (status) | `draft` / `built` / `archived`; `built` is set by the cascade of `generate`
+      once every Estimate passes, never by hand | [[rule-entities-schema]] |
+
+      | Rule (status) | `draft` / `built` / `archived`; `built` is set by the cascade of `generate` once
+      every Estimate passes, never by hand | [[rule-rules-schema]] |'
+  change: the rows Vault, Hook, deferred_by and origin point at the page that defines each, their meanings
+    cut to it; Entity / Rule (status) splits into Entity (status) and Rule (status) (case 520)
+  applied: '20:08:37'
+- line: 6
+  text: decision[case 521.1][update][rule-spec-write]{ref:rule-spec-write}
+  case: '521.1'
+  kind: update
+  slug: rule-spec-write
+  origin: raw/2026-09-29/1753/ledger.md#case-521.1
+  decision: decision-case-521.1
+  ref: rule-spec-write
+  category: rules
+  replace:
+  - old: a key of a `defer` item that `item_keys` of `guppi/materialize.py` does not give a `defer` of
+      its category is refused, exit 2, and nothing of the Case is written (case 436.3).
+    new: a key of a `defer` item that `item_keys` of `guppi/materialize.py` does not give a `defer` of
+      its category is refused, exit 2, and nothing of the Case is written (case 436.3); so is a `then`
+      block that holds a YAML comment — a `#` at the start of a line or after a space or a tab, outside
+      a quoted value and outside a `|` or `>` block — by the one function of `guppi/materialize.py`, since
+      YAML drops the rest of the line and no page receives it (case 521.1).
+  change: a short Case whose then block holds a YAML comment is refused, judged by the function of guppi/materialize.py
+    (case 521.1)
+  applied: '20:08:37'
+- line: 7
+  text: decision[case 521.1][update][estimate-spec-write-writes-a-defer]{ref:estimate-spec-write-writes-a-defer}
+  case: '521.1'
+  kind: update
+  slug: estimate-spec-write-writes-a-defer
+  origin: raw/2026-09-29/1753/ledger.md#case-521.1
+  decision: decision-case-521.1
+  ref: estimate-spec-write-writes-a-defer
+  category: estimates
+  set:
+    status: pending
+  change: the Criterion replaced whole — a then block that holds a YAML comment is refused (case 521.1)
+  sections:
+    Criterion: 'When:
+
+      The `Stop` hook `uv run guppi ratified` runs after a reply whose `LEDGER` block holds lines of a
+      Case N that are all `defer` — beside the lines of other Cases or alone — and the same reply shows
+      `## Case N —` in the short form: `context`, `problem` and a fence tagged `then` with its `defer`
+      items.
+
+
+      Then:
+
+      The hook writes that Case under `## Deferred` of the plan file while Plan Mode lasts, and of `raw/<date>/<hi
+      HHMM>/spec.md` once that file stands, at Retro: the heading, `context`, `problem` and the `then`
+      block as the reply shows them.
+
+      **＋** The section of Case N is replaced when it stands there, appended at the end of `## Deferred`
+      otherwise; the heading `## Deferred` is added when the file has none.
+
+      **＋** A reply with no showing of Case N, or a `then` block without a `defer` item carrying `slug`,
+      `type` and `purpose` for each `defer` line of the reply: exit 2 with the reason on stderr; on the
+      re-fire (`stop_hook_active`) exit 0.
+
+      **＋** A key of a `defer` item that `item_keys` of `guppi/materialize.py` does not give a `defer`
+      of its category: exit 2 with `` `<key>`: not a key of defer <slug> `` on stderr, and nothing of
+      the Case is written.
+
+      **＋** A `then` block that holds a YAML comment — a `#` at the start of a line or after a space or
+      a tab, outside a quoted value and outside a `|` or `>` block — as the function of `guppi/materialize.py`
+      judges it: exit 2 with the line of the comment and the advice to quote the value on stderr, and
+      nothing of the Case is written.
+
+      **－** A `#` inside a quoted value or inside a `|` or `>` block is text, not a comment, and is no
+      refusal.
+
+      **－** A `defer` of a category with no schema file, or of one whose schema rule a decision line of
+      the session or of the reply creates or updates, is not judged by its keys (case 308.2).
+
+      **－** The ratified copy `<plan>.ratified.md` gets no defer, and the check after the write does not
+      run on it.'
+  applied: '20:08:37'
+- line: 8
+  text: decision[case 521.2][update][rule-materialize]{ref:rule-materialize}
+  case: '521.2'
+  kind: update
+  slug: rule-materialize
+  origin: raw/2026-09-29/1753/ledger.md#case-521.2
+  decision: decision-case-521.2
+  ref: rule-materialize
+  category: rules
+  replace:
+  - old: lifted from the `then` block of its Case in the Spec — `set`, `sections`, `replace`, `change`,
+      and `rename` or `reword` when the item carries it (cases 258.2, 274.3).
+    new: 'lifted from the `then` block of its Case in the Spec — `set`, `sections`, `replace`, `change`,
+      and `rename` or `reword` when the item carries it (cases 258.2, 274.3). A `then` block that holds
+      a YAML comment — a `#` at the start of a line or after a space or a tab, outside a quoted value
+      and outside a `|` or `>` block — gives each decision entry of its Case `incomplete: [comment]`:
+      YAML drops the rest of the line, so the value may be cut; the judgment is one function, which the
+      `Stop` hook of `rule-spec-write` imports (case 521.2).'
+  change: 'a then block that holds a YAML comment marks the decision entries of its Case incomplete: [comment]
+    (case 521.2)'
+  applied: '20:08:37'
+- line: 9
+  text: decision[case 521.2][create][estimate-materialize-marks-a-comment]{ref:rule-materialize}{tags:harness,workflow,ledger}
+  case: '521.2'
+  kind: create
+  slug: estimate-materialize-marks-a-comment
+  origin: raw/2026-09-29/1753/ledger.md#case-521.2
+  decision: decision-case-521.2
+  ref: rule-materialize
+  tags:
+  - harness
+  - workflow
+  - ledger
+  category: estimates
+  fields:
+    type: estimate
+    kind: QA
+    purpose: 'A then block that holds a YAML comment gives each decision entry of its Case incomplete:
+      [comment], judged by the one function the Stop hook of rule-spec-write imports'
+    method: uv run pytest tests/test_materialize.py -k comment
+    tags:
+    - harness
+    - workflow
+    - ledger
+  sections:
+    Criterion: 'When:
+
+      `uv run guppi materialize` lifts the entries of a Case N from its fences tagged `then` in `raw/<date>/<HHMM>/spec.md`.
+
+
+      Then:
+
+      A fence of Case N that holds a YAML comment — a `#` at the start of a line or after a space or a
+      tab, outside a quoted value and outside a `|` or `>` block — gives each decision entry of Case N
+      `incomplete: [comment]`, and the run does not fail.
+
+      **＋** The entry keeps the values that YAML read, and nothing is invented for the text after the
+      `#`.
+
+      **＋** The comment is found by the same function of `guppi/materialize.py` that the `Stop` hook of
+      `rule-spec-write` imports, so both give the same answer for the same fence.
+
+      **－** A `#` inside a quoted value or inside a `|` or `>` block is text and gives no mark.
+
+      **－** `generate` still applies an entry so marked, since a page is always created, even incomplete.'
+  applied: '20:08:37'
+- line: 10
+  text: decision[case 521.3][update][rule-estimates-schema]{ref:rule-estimates-schema}{supersedes:case
+    519}
+  case: '521.3'
+  kind: update
+  slug: rule-estimates-schema
+  origin: raw/2026-09-29/1753/ledger.md#case-521.3
+  decision: decision-case-521.3
+  ref: rule-estimates-schema
+  supersedes:
+  - '519'
+  category: rules
+  replace:
+  - old: 'no `Given:`: the frame of the Case stays on its Decision page (case 378.2)'
+    new: 'no `Given:`: the frame of the Case stays in its Case file and in the Spec (cases 378.2, 513)'
+  change: 'the description of ## Criterion says the frame of a Case stays in its Case file and the Spec;
+    the defer of case 519 retired (case 521.3)'
+  applied: '20:08:37'
+- line: 11
+  text: decision[case 521.4][update][rule-case-protocol]{ref:rule-case-protocol}
+  case: '521.4'
+  kind: update
+  slug: rule-case-protocol
+  origin: raw/2026-09-29/1753/ledger.md#case-521.4
+  decision: decision-case-521.4
+  ref: rule-case-protocol
+  category: rules
+  replace:
+  - old: a `then` block with `defer:` carrying `slug`, `type` and `purpose`; no `recommend`
+    new: a `then` block with `defer:` carrying `slug`, `type` and `purpose` — a value that holds a `#`
+      after a space or a tab stands in quotes, since YAML reads the rest of the line as a comment and
+      the `Stop` hook of `rule-spec-write` refuses a block that holds one (case 521.4); no `recommend`
+  change: 'the short form quotes a value that holds a # after a space or a tab (case 521.4)'
+  applied: '20:08:37'
+- line: 12
+  text: decision[case 522][update][rule-page-generation]{ref:rule-page-generation}
+  case: '522'
+  kind: update
+  slug: rule-page-generation
+  origin: raw/2026-09-29/1753/ledger.md#case-522
+  decision: decision-case-522
+  ref: rule-page-generation
+  category: rules
+  replace:
+  - old: is marked applied and changes no page, so a Case approved again
+    new: is marked applied, changes no page and ticks no line of the Spec, so a Case approved again
+  - old: changes each page once (case 514).
+    new: changes each page once (cases 514, 522).
+  change: a repeat ticks no line of the Spec (case 522)
+  applied: '20:08:37'
+- line: 13
+  text: decision[case 522][update][estimate-generate-ticks-the-spec]{ref:estimate-generate-ticks-the-spec}
+  case: '522'
+  kind: update
+  slug: estimate-generate-ticks-the-spec
+  origin: raw/2026-09-29/1753/ledger.md#case-522
+  decision: decision-case-522
+  ref: estimate-generate-ticks-the-spec
+  category: estimates
+  set:
+    status: pending
+  change: the Criterion replaced whole — a repeat ticks no line of any Spec; a second entry of one kind
+    and slug in one Case no longer ticks the next line
+  sections:
+    Criterion: 'When:
+
+      `uv run guppi generate` marks an entry of `materialize.yaml` `applied`. Either it applied the entry,
+      or it found the entry to be a repeat: a `create`, `update`, `delete` or `defer` entry whose `case`,
+      `kind` and `slug` match those of an entry of the same `materialize.yaml` already marked `applied`.
+
+
+      Then:
+
+      For a `create`, `update`, `delete` or `defer` entry that was applied, in the `spec.md` of the same
+      unit, the first unticked line `` - [ ] <kind> `<slug>` `` in the section of the entry''s Case becomes
+      `- [x]`. Nothing else in the file changes.
+
+      **＋** For an `estimate` entry, a `create` entry with `folded` and a `delete` entry, every unticked
+      line `` - [ ] read `<slug>` `` of every `spec.md` under `vault/raw/` becomes `- [x]`. The Spec beside
+      the yaml comes first, then the Specs of the other session folders, oldest first.
+
+      **＋** In the Spec beside the yaml, for an `estimate` or a `delete` entry, a `read` line in the section
+      of a Case whose first decision entry carries a `line` greater than the entry''s `line` is not the
+      entry''s line, and the search goes on.
+
+      **＋** In any Spec, a `read` line in the section of a Case whose entries are marked `superseded_by`
+      is not the entry''s line. For the Spec beside the yaml, the marks come from the run''s entries.
+      For another Spec, they come from the `materialize.yaml` beside it. With no yaml beside a Spec, nothing
+      is skipped there.
+
+      **＋** A `create` entry with `folded` ticks both its page line and its `read` line. The filter by
+      `line` does not apply to it, and the filter by `superseded_by` does.
+
+      **＋** A `delete` entry ticks both its page line in its own Case and the `read` lines of its slug.
+
+      **－** A repeat ticks no line in any `spec.md`. A second line `` - [ ] <kind> `<slug>` `` in the
+      section of its Case stays unticked, and a repeated `delete` leaves the `read` lines of its slug
+      as they stand.
+
+      **－** A line, a section or a Spec not found raises no error and prints nothing on stderr. The entry
+      is `applied` all the same.
+
+      **－** A `lesson` entry and an entry marked `failed` tick no line. A `delete` that fails leaves the
+      `read` lines of its slug as they stand.
+
+      **－** A `spec.md` under `vault/archive/` is not read.'
+  applied: '20:08:37'
+- line: 14
+  text: decision[case 523][update][rule-case-protocol]{ref:rule-case-protocol}{supersedes:case 518}
+  case: '523'
+  kind: update
+  slug: rule-case-protocol
+  origin: raw/2026-09-29/1753/ledger.md#case-523
+  decision: decision-case-523
+  ref: rule-case-protocol
+  supersedes:
+  - '518'
+  category: rules
+  change: 'the defer taken up: the question after a defer stands as written, the failure of session 1134
+    a slip whose cause case 508 removed (case 523, supersedes 518)'
+  applied: '20:08:37'
+- line: 15
+  text: decision[case 523][update][estimate-case-protocol-defers-in-one-reply]{ref:rule-case-protocol}
+  case: '523'
+  kind: update
+  slug: estimate-case-protocol-defers-in-one-reply
+  origin: raw/2026-09-29/1753/ledger.md#case-523
+  decision: decision-case-523
+  ref: rule-case-protocol
+  category: estimates
+  set:
+    method: 'by hand, the first defer the person asks for after the render that leaves no line under ##
+      Cases of frontier.md open'
+  change: the method reads a defer that closes the last Cases line, the branch that failed; the Criterion
+    and the failed status stand (case 523)
+  applied: '20:08:37'
+- line: 16
+  text: decision[case 524.1][update][rule-skill-grill-me]{ref:rule-skill-grill-me}
+  case: '524.1'
+  kind: update
+  slug: rule-skill-grill-me
+  origin: raw/2026-09-29/1753/ledger.md#case-524.1
+  decision: decision-case-524.1
+  ref: rule-skill-grill-me
+  category: rules
+  replace:
+  - old: '"nothing exists yet" when nothing does>'
+    new: "\"nothing exists yet\" when nothing does>\n    <a sentence that introduces a quotation and names\
+      \ its source, when the question quotes one>:\n    > <the quoted words, as the source holds them>"
+  - old: "**After:** <what holds with this option>\n\n    \U0001F539 **(b) <option name>**"
+    new: "**After:** <what holds with this option>\n        > <a quotation inside the item, indented four\
+      \ spaces as far as the text of the item>\n\n    \U0001F539 **(b) <option name>**"
+  - old: In the recommended answer it stands on the lines under `➡️`, which close the question.
+    new: 'In the recommended answer it stands on the lines under `➡️`, which close the question.
+
+
+      A quotation — words taken from a page, a file or a reply to show what they say — stands as a blockquote
+      on its own line, a fragment of a few words too; it never stands inside a sentence in quote marks.
+      The sentence that introduces it stands on the line before it and names its source, and the quoted
+      words stand as the source holds them. In the `**Now:**` text the blockquote stands under the sentence
+      that introduces it. Under an `**After:**` item it stands inside that item, indented four spaces
+      as far as the text of the item, so that it renders there and is no second item. In the recommended
+      answer it stands on the lines under `➡️`.'
+  change: a quotation in a round stands as a blockquote on its own line, inside an After item indented
+    to its text (case 524.1)
+  applied: '20:08:37'
+- line: 17
+  text: decision[case 524.1][update][estimate-skill-grill-me-asks-in-rounds]{ref:rule-skill-grill-me}
+  case: '524.1'
+  kind: update
+  slug: estimate-skill-grill-me-asks-in-rounds
+  origin: raw/2026-09-29/1753/ledger.md#case-524.1
+  decision: decision-case-524.1
+  ref: rule-skill-grill-me
+  category: estimates
+  set:
+    status: pending
+  change: the Criterion replaced whole — a quotation stands as a blockquote on its own line (case 524.1)
+  sections:
+    Criterion: 'When:
+
+      The person types `/grill-me` on `UserPromptSubmit`, or `case-guppi` answers with a round of questions,
+      with `.claude/skills/grill-me/SKILL.md` loaded by `skills: [grill-me]` in `.claude/agents/case-guppi.md`,
+      after `uv run guppi render` wrote `.claude/skills/grill-me/SKILL.md` from `rule-skill-grill-me`.
+
+
+      Then:
+
+      `uv run guppi render --check` exits 0: `.claude/skills/grill-me/SKILL.md` equals the Render of `rule-skill-grill-me`.
+
+      **＋** The agent asks in rounds: each round holds every question whose prerequisites are settled,
+      and the agent waits for the answers before the next round.
+
+      **＋** Each question opens with its numbered `❓ **Qn** - **<title>**:` line and closes with its `➡️`
+      line, the recommended answer, together with the lines of a list under it. Its body starts on the
+      next line with one `**Now:**` line that says once what holds today, or that nothing exists yet.
+
+      **＋** The label `**Options:**` stands alone on the line before the first option. Each option starts
+      on its own line, after a blank line, with the mark `🔹` and its name in bold. Under it stands one
+      nested `**After:**` item that says what holds with that option.
+
+      **＋** A list stands one item per line, never inside a sentence. This covers items marked by a number,
+      a letter or a bullet, and a series of two or more clauses that name parallel things. Under an `**After:**`
+      item a list stands nested inside that item.
+
+      **＋** A quotation, words taken from a page, a file or a reply, stands as a blockquote on its own
+      line under the sentence that introduces it and names its source, a fragment of a few words too;
+      it never stands inside a sentence in quote marks. Under an `**After:**` item it stands indented
+      to the text of the item, inside that item, and is no second item.
+
+      **＋** A fact the agent can look up it finds itself, or by a sub-agent when it can dispatch one;
+      the person is asked only for decisions.
+
+      **＋** The agent acts on the grill only after the shared understanding is confirmed, by the person''s
+      word unless the instructions that started the grill name another confirmation.
+
+      **－** An option carries nothing under it but its `**After:**` item: no list of costs, no second
+      item and no other label. A cost is a plain sentence inside the `**After:**` text or in the `➡️`
+      line.
+
+      **－** A short series of words inside a sentence stays in the sentence.
+
+      **－** No line of a question except an option starts with `🔹`.
+
+      **－** In the chat the labels may stand translated, as the main agent shows a round of `case-guppi`
+      by `rule-case-protocol`. A translated label counts as the same label: the shape is what is read,
+      not the language of the labels.
+
+      **－** The `**Context:**` paragraph of a round of `case-guppi`, its lists and quotations included,
+      and the place of its case numbers are not read here. They are the promises of the Estimates of the
+      rule of `.claude/agents/case-guppi.md`.
+
+      **－** No sentence of `.claude/skills/grill-me/SKILL.md` requires the agent to dispatch a sub-agent.'
+  applied: '20:08:37'
+- line: 18
+  text: decision[case 524.2][update][rule-case-build]{ref:rule-case-build}
+  case: '524.2'
+  kind: update
+  slug: rule-case-build
+  origin: raw/2026-09-29/1753/ledger.md#case-524.2
+  decision: decision-case-524.2
+  ref: rule-case-build
+  category: rules
+  replace:
+  - old: A list in the context stands as the grill-me template sets a list.
+    new: A list or a quotation in the context stands as the grill-me template sets it, and the prose goes
+      on after it.
+  change: a quotation in the Context of a first round stands as the grill-me template sets it (case 524.2)
+  applied: '20:08:37'
+- line: 19
+  text: decision[case 524.2][update][estimate-case-build-writes-a-plain-round]{ref:rule-case-build}
+  case: '524.2'
+  kind: update
+  slug: estimate-case-build-writes-a-plain-round
+  origin: raw/2026-09-29/1753/ledger.md#case-524.2
+  decision: decision-case-524.2
+  ref: rule-case-build
+  category: estimates
+  set:
+    status: pending
+    purpose: Whether a round of case-guppi gives the mechanism with a concrete example, a list one item
+      per line, a quotation in the Context as a blockquote, a number only beside a quotation of what it
+      points to, and an unknown term explained
+  change: the Criterion replaced whole — a quotation in the Context stands as the grill-me template sets
+    it (case 524.2)
+  sections:
+    Criterion: 'When:
+
+      `case-guppi` answers with a round of questions, with `.claude/agents/case-guppi.md` rendered from
+      `rule-case-build`.
+
+
+      Then:
+
+      The `**Context:**` of a first round gives the mechanism in plain words, with one concrete example
+      of where it goes wrong.
+
+      **＋** A list in the `**Context:**` stands one item per line under the sentence that introduces it,
+      as `.claude/skills/grill-me/SKILL.md` sets a list.
+
+      **＋** A quotation in the `**Context:**` stands as a blockquote on its own line under the sentence
+      that introduces it, as `.claude/skills/grill-me/SKILL.md` sets a quotation.
+
+      **＋** The instructions of `case-guppi` point each question, and each list and each quotation of
+      the Context, to `.claude/skills/grill-me/SKILL.md` and word no shape of their own.
+
+      **＋** The round says what it rests on in plain words and uses no number where plain words are enough.
+
+      **＋** A case or decision number, a session id, a ledger line number, a commit hash or a date in
+      the history of a page stands in any line of the round, the `➡️` line included, only beside a short
+      quotation of the words it points to, as the source of that quotation.
+
+      **＋** A term the person has not met in the chat is explained in a few words where it first stands,
+      or a common word replaces it.
+
+      **－** A page name in a code span is no such reference: it stays where the question is about that
+      page.
+
+      **－** The shape of a question, what counts as a list, and the form of a quotation in a question
+      are read by `estimate-skill-grill-me-asks-in-rounds`, not here.
+
+      **－** The `context`, `problem` and `recommend` of a Case keep their numbers as `rule-case-protocol`
+      allows: this promise is about a round only.'
+  applied: '20:08:37'
+- line: 20
+  text: decision[case 525][defer][rule-documentation]{ref:rule-documentation}{supersedes:case 517}
+  case: '525'
+  kind: defer
+  slug: rule-documentation
+  origin: raw/2026-09-29/1753/ledger.md#case-525
+  decision: decision-case-525
+  ref: rule-documentation
+  supersedes:
+  - '517'
+  category: rules
+  fields:
+    type: rule
+    purpose: 'The librarian reads beyond its input list: the run ff62585 read the tail of log.md, the
+      old brief.md, git diffs and a grep of sprint.md; the run d8c1f17 listed an archive folder and read
+      the old brief.md; estimate-documentation-completes stays failed'
+  exists: true
+  applied: '20:08:37'
+- line: 21
+  text: decision[case 524.3][update][rule-case-protocol]{ref:rule-case-protocol}
+  case: '524.3'
+  kind: update
+  slug: rule-case-protocol
+  origin: raw/2026-09-29/1753/ledger.md#case-524.3
+  decision: decision-case-524.3
+  ref: rule-case-protocol
+  category: rules
+  replace:
+  - old: line by line, slugs, paths and quotations unchanged — the
+    new: line by line, slugs, paths and quotations unchanged, each quotation in its blockquote — the
+  change: the main agent shows a round with each quotation in its blockquote (case 524.3)
+  applied: '20:08:37'
+- line: 22
+  text: decision[case 524.3][update][estimate-case-protocol-shows-the-built-case]{ref:rule-case-protocol}
+  case: '524.3'
+  kind: update
+  slug: estimate-case-protocol-shows-the-built-case
+  origin: raw/2026-09-29/1753/ledger.md#case-524.3
+  decision: decision-case-524.3
+  ref: rule-case-protocol
+  category: estimates
+  set:
+    status: pending
+  change: the Criterion replaced whole — a round shown with each quotation in its blockquote (case 524.3)
+  sections:
+    Criterion: 'When:
+
+      The main agent takes up a Frontier item, the person answers a round of questions, answers a shown
+      Case with a question or a change, or asks for a plain explanation of the agent''s text — by `/wait-what`
+      on `UserPromptSubmit` or in words — or a ratified Case changes and is shown again, in Plan Mode
+      or in Work Mode.
+
+
+      Then:
+
+      The main agent dispatches `case-guppi` with the Case id, the Frontier item and its source, and the
+      person''s words on it, in the prompt of the call, after the plan file stands with its title line;
+      nothing of the Case stands in the chat before the answer.
+
+      **＋** The person''s answers to a round go to the same `case-guppi` by `SendMessage`, verbatim and
+      untranslated, and so does a question or a change of the person on a shown Case that is not a request
+      for a plain explanation.
+
+      **＋** A request for a plain explanation of a round, of the short text on a Case or of a reply the
+      main agent answers itself by `.claude/skills/wait-what/SKILL.md`; it sends the `case-guppi` of the
+      Case a `SendMessage` only to ask for a fact of the Case, and `case-guppi` answers with the fact
+      alone, under a first line `**Fact:**` and with no Case heading.
+
+      **＋** An answer with no Case heading and no first line `**Fact:**` is a round of questions: the
+      main agent shows it in the chat translated into Russian line by line, slugs, paths and quotations
+      unchanged, each quotation in its blockquote — the `**Context:**` paragraph that opens the first
+      round on an item translated in place before the first question, each question in the order and with
+      the number of the answer, opening with its `❓ **Qn** - **<title>**:` line of `.claude/skills/grill-me/SKILL.md`
+      and closing with its `➡️` line, its title, body and recommended answer translated in place, nothing
+      merged, dropped or added between the questions, the agent''s own text after the last question and
+      one horizontal rule; no Case is shown, no file is sent, and no step of confirmation follows the
+      last round.
+
+      **＋** The main agent shows the Case of an answer at every showing by `SendUserFile` with `display:
+      render` on `raw/<date>/<hi HHMM>/cases/case-<N>.md`, the file the hook of `rule-case-check` wrote
+      from the answer; in the same reply, under the heading of each Case and sub-case, it writes a short
+      text in Russian on what the Case changes and the `ratification` section as the answer holds it,
+      then its own text after one horizontal rule.
+
+      **＋** A reply that the `Stop` check of `rule-case-check` refuses is followed, before the person
+      answers, by a reply that sends the file and shows the `ratification` as the answer holds it.
+
+      **＋** A ratified Case that changes — in its prose or in its body — changes through its `case-guppi`,
+      and its new answer is sent and ratified again; the main agent edits no Case in the plan file.
+
+      **＋** An item that needs no decision the main agent closes alone, with no dispatch; it dispatches
+      `ask-guppi` once, at pre-spec, and not before a showing.
+
+      **－** The main agent writes no context of its own before the first question of a round.
+
+      **－** The main agent writes no `given`, `when`, `then` or `tasks` of a built Case into the chat.
+
+      **－** A deferred decision in the short form is written by the main agent in English in the chat,
+      with no dispatch and no file.'
+  applied: '20:08:37'
+- line: 23
+  text: 'estimate[estimate-generate-fails-alone][passed] 2026-09-29, uv run pytest tests/test_generate.py
+    -k "fail or skip or repeat or no_content or superseded or rerun": 30 passed, the whole file 101 passed,
+    in Work Mode of session 1753 after the change of case 522 to the repeat branch; the tests cover the
+    failed entry on stderr with the rest applied and exit 1, the stale failed mark dropped, the unlifted
+    line kept with its mark, the superseded entry, the update with no content and the repeat marked applied
+    with its stdout line and no page change'
+  kind: estimate
+  category: estimates
+  slug: estimate-generate-fails-alone
+  status: passed
+  result: '2026-09-29, uv run pytest tests/test_generate.py -k "fail or skip or repeat or no_content or
+    superseded or rerun": 30 passed, the whole file 101 passed, in Work Mode of session 1753 after the
+    change of case 522 to the repeat branch; the tests cover the failed entry on stderr with the rest
+    applied and exit 1, the stale failed mark dropped, the unlifted line kept with its mark, the superseded
+    entry, the update with no content and the repeat marked applied with its stdout line and no page change'
+  origin: raw/2026-09-29/1753/ledger.md#L23
+  applied: '20:08:37'
+- line: 24
+  text: 'estimate[estimate-decisions-schema-checked][passed] 2026-09-29, uv run pytest tests/test_schemas.py
+    -k decisions: 4 passed, 1 skipped; uv run guppi render --check exit 0; uv run guppi lint: the only
+    schema findings on wiki/decisions/ are the 31 pages of Cases 1–28 missing ## Problem, plus one fence
+    finding on decision-case-13; by hand, vault/wiki/decisions/schema.yaml says the History takes created,
+    superseded by and updated lines, the Case file cases/case-<N>.md holds every section with recommend
+    and lies under the archive once the session is archived, ## Context only for a Case without given
+    or the two-line body, no ## Given after case 513 and older pages keep theirs, and its example page
+    holds ## Problem and ## History only'
+  kind: estimate
+  category: estimates
+  slug: estimate-decisions-schema-checked
+  status: passed
+  result: '2026-09-29, uv run pytest tests/test_schemas.py -k decisions: 4 passed, 1 skipped; uv run guppi
+    render --check exit 0; uv run guppi lint: the only schema findings on wiki/decisions/ are the 31 pages
+    of Cases 1–28 missing ## Problem, plus one fence finding on decision-case-13; by hand, vault/wiki/decisions/schema.yaml
+    says the History takes created, superseded by and updated lines, the Case file cases/case-<N>.md holds
+    every section with recommend and lies under the archive once the session is archived, ## Context only
+    for a Case without given or the two-line body, no ## Given after case 513 and older pages keep theirs,
+    and its example page holds ## Problem and ## History only'
+  origin: raw/2026-09-29/1753/ledger.md#L24
+  applied: '20:08:37'
+- line: 25
+  text: 'lesson[error][lesson-case-build-rebuild-quotes-the-relayed-words]{tags:workflow,harness} trigger:
+    at the rebuild of Case 524 after a pre-spec finding, its context held the person''s Russian reply,
+    and guppi prespec --check refused it as a letter outside the script of English root_cause: the main
+    agent relays the person''s words to case-guppi verbatim and untranslated, and case-guppi quotes them
+    into the context of the Case it rebuilds without translating them'
+  kind: lesson
+  category: lessons
+  slug: lesson-case-build-rebuild-quotes-the-relayed-words
+  origin: raw/2026-09-29/1753/ledger.md#L25
+  fields:
+    type: lesson
+    kind: error
+    root_cause: the main agent relays the person's words to case-guppi verbatim and untranslated, and
+      case-guppi quotes them into the context of the Case it rebuilds without translating them
+  sections:
+    Trigger: at the rebuild of Case 524 after a pre-spec finding, its context held the person's Russian
+      reply, and guppi prespec --check refused it as a letter outside the script of English
+    Root cause: the main agent relays the person's words to case-guppi verbatim and untranslated, and
+      case-guppi quotes them into the context of the Case it rebuilds without translating them
+  tags:
+  - workflow
+  - harness
+  applied: '20:08:37'
+- line: 26
+  text: 'lesson[error][lesson-glossary-one-where-for-a-term-many-schemas-define]{tags:workflow,session}
+    trigger: the deferred_by and origin rows of Case 520 took two pre-spec passes: the first cut the meaning
+    to what rule-rules-schema says and made it false for an Entity and an Insight, the second widened
+    it again root_cause: a glossary row holds one where link, and a field that several schema pages define
+    for their own categories has no one page that states it for all, so a meaning cut to its where page
+    either narrows below the truth or claims beyond the page'
+  kind: lesson
+  category: lessons
+  slug: lesson-glossary-one-where-for-a-term-many-schemas-define
+  origin: raw/2026-09-29/1753/ledger.md#L26
+  fields:
+    type: lesson
+    kind: error
+    root_cause: a glossary row holds one where link, and a field that several schema pages define for
+      their own categories has no one page that states it for all, so a meaning cut to its where page
+      either narrows below the truth or claims beyond the page
+  sections:
+    Trigger: 'the deferred_by and origin rows of Case 520 took two pre-spec passes: the first cut the
+      meaning to what rule-rules-schema says and made it false for an Entity and an Insight, the second
+      widened it again'
+    Root cause: a glossary row holds one where link, and a field that several schema pages define for
+      their own categories has no one page that states it for all, so a meaning cut to its where page
+      either narrows below the truth or claims beyond the page
+  tags:
+  - workflow
+  - session
+  applied: '20:08:37'
+- line: 27
+  text: 'estimate[estimate-work-mode-takes-the-work-readings][failed] 2026-09-29, by hand at the /retro
+    of session 1753, the replies after the last task of /work, their LEDGER block and frontier.md: the
+    step took W12 and W15, closed each [x] · work in frontier.md first and wrote their lines in a LEDGER
+    block of a reply that ended in text, left the readings of Estimates this session updates, and ticked
+    no read box; but it skipped W1 (estimate-agent-writing-followed) and W6 (estimate-case-build-writes-the-case),
+    whose by-hand moment, a later session, had come, and the person did not stop the step'
+  kind: estimate
+  category: estimates
+  slug: estimate-work-mode-takes-the-work-readings
+  status: failed
+  result: '2026-09-29, by hand at the /retro of session 1753, the replies after the last task of /work,
+    their LEDGER block and frontier.md: the step took W12 and W15, closed each [x] · work in frontier.md
+    first and wrote their lines in a LEDGER block of a reply that ended in text, left the readings of
+    Estimates this session updates, and ticked no read box; but it skipped W1 (estimate-agent-writing-followed)
+    and W6 (estimate-case-build-writes-the-case), whose by-hand moment, a later session, had come, and
+    the person did not stop the step'
+  origin: raw/2026-09-29/1753/ledger.md#L27
+  applied: '20:08:37'
+- line: 28
+  text: 'estimate[estimate-retro-red-in-the-baseline-is-not-charged][passed] 2026-09-29, by hand at the
+    /retro of session 1753, whose work.md Baseline holds the make lint line "backlog: vault/wiki/backlog.md
+    differs from its sources": the Retro counted it as red before the work and ended it as a note for
+    the handoff, fixed and reverted nothing and wrote no lesson for it; make style clean and make test
+    923 passed, 2 skipped before the commit; no failing test, so the clause of a failing test outside
+    the Baseline was not exercised'
+  kind: estimate
+  category: estimates
+  slug: estimate-retro-red-in-the-baseline-is-not-charged
+  status: passed
+  result: '2026-09-29, by hand at the /retro of session 1753, whose work.md Baseline holds the make lint
+    line "backlog: vault/wiki/backlog.md differs from its sources": the Retro counted it as red before
+    the work and ended it as a note for the handoff, fixed and reverted nothing and wrote no lesson for
+    it; make style clean and make test 923 passed, 2 skipped before the commit; no failing test, so the
+    clause of a failing test outside the Baseline was not exercised'
+  origin: raw/2026-09-29/1753/ledger.md#L28
+  applied: '20:08:37'
+- line: 29
+  text: 'estimate[estimate-retro-report-holds-each-fact-once][failed] 2026-09-29, by hand at the /retro
+    of session 1753: the frontier was one numbered list with the two lines under it (23 boxes, seven read
+    slugs), Ratified one line of ids from the tail, What is not done each number with its end; but item
+    1 named the reading L4 and item 8 the readings W12 and W15, which What got done named again as L4,
+    L23 and L24, and What got done named the commit as coming after the approval instead of the commit'
+  kind: estimate
+  category: estimates
+  slug: estimate-retro-report-holds-each-fact-once
+  status: failed
+  result: '2026-09-29, by hand at the /retro of session 1753: the frontier was one numbered list with
+    the two lines under it (23 boxes, seven read slugs), Ratified one line of ids from the tail, What
+    is not done each number with its end; but item 1 named the reading L4 and item 8 the readings W12
+    and W15, which What got done named again as L4, L23 and L24, and What got done named the commit as
+    coming after the approval instead of the commit'
+  origin: raw/2026-09-29/1753/ledger.md#L29
+  applied: '20:08:37'
+- kind: update
+  category: insights
+  slug: insight-case-form-chat-form-read-by-no-script
+  origin: raw/2026-09-29/1753/ledger.md#L25
+  set:
+    children:
+    - '[[lesson-case-form-the-spec-free-sections-written-last]]'
+    - '[[lesson-case-form-ratification-used-for-the-agents-caveats]]'
+    - '[[lesson-case-form-a-count-in-the-sentence-that-opens-a-list]]'
+    - '[[lesson-case-form-given-written-before-tasks]]'
+    - '[[lesson-case-build-a-list-in-context]]'
+    - '[[lesson-case-build-quotes-the-person-in-the-chat-language]]'
+    - '[[lesson-case-build-rebuild-quotes-the-relayed-words]]'
+  change: child lesson-case-build-rebuild-quotes-the-relayed-words added (synthesis)
+  librarian: synthesis
+  applied: '20:08:37'
+- kind: update
+  category: lessons
+  slug: lesson-case-build-rebuild-quotes-the-relayed-words
+  origin: raw/2026-09-29/1753/ledger.md#L25
+  set:
+    status: clustered
+    insight: '[[insight-case-form-chat-form-read-by-no-script]]'
+  change: clustered under insight-case-form-chat-form-read-by-no-script (synthesis)
+  librarian: synthesis
+  applied: '20:08:37'
+decisions:
+- case: '520'
+  decision: decision-case-520
+  origin: raw/2026-09-29/1753/ledger.md#case-520
+  targets:
+  - kind: update
+    category: entities
+    slug: entity-glossary
+    ref: entity-glossary
+  tags: []
+  case_text:
+    context: 'The glossary is the `## Terms` table of `entity-glossary`. Each row holds a term, a one-line
+      meaning and a `where` link to the live page that defines the term. `guppi glossary` renders the
+      table into `vault/wiki/glossary.md`, grouped by the parent MOC of each `where` page, and `/hi` loads
+      it. `estimate-glossary-terms-defined` promises that each `where` page defines its row. The reading
+      at this `/hi` failed on five rows after the librarian''s run d8c1f17, which applied case 515.
+
+      - Vault links to `rule-page-schemas`, which never says what the vault is. Its meaning also reads
+      as "one page per category".
+
+      - Hook links to `rule-hook-registry`, but its meaning describes the ledger writer: it reads the
+      transcript, keeps its window across midnight, and can block. Only `rule-ledger-write` says that.
+
+      - `deferred_by` and `origin` link to `rule-page-generation`, whose body names neither field.
+
+      - Entity / Rule (status) links to the same page, which lists neither `archived` nor "built once
+      every Estimate passes".
+
+
+      The `origin` meaning also says "created or deleted" and that lint greps the field. No page body
+      says either.
+
+
+      The person agreed with every recommendation of the round. Each changed row links to a page that
+      states it. A clause that no such page states is cut, and it still stands on its own page, such as
+      midnight on `rule-ledger-write`. The rows the reading accepted only loosely stay as they are: `CLAUDE.md`,
+      `case-schema.md`, Types and Decision.
+
+
+      Two passes of pre-spec changed the new meanings. The person agreed to cut the `deferred_by` meaning
+      to what its page says.
+
+      - Hook names `rule-hook-registry` in place of "this page", which in the glossary would read as `entity-glossary`.
+      As that page says, a hook can also stand in an agent''s own frontmatter, as part of that agent''s
+      Render.
+
+      - `deferred_by` first kept "On an Entity, Rule or Insight", which `rule-rules-schema` does not state.
+      Then it said "On a Rule", which was too narrow: `rule-entities-schema` and `rule-insights-schema`
+      define the same field, and a live Insight carries it. The meaning now has no qualifier and opens
+      with the Decision pages whose `defer` targets the page. That is true for all three types and is
+      what `rule-rules-schema` states.
+
+      - `origin` follows `rule-decisions-schema`: its case numbers, the Case file only for a Case built
+      by `case-guppi` from session 2026-09-27/1819 on, and the pointer that is not rewritten. It opens
+      "On a page a Case created". That is my choice over naming the Decision page alone: the Entity, Rule
+      and Estimate schemas give the same form for a page a Case created. A Lesson points at its ledger
+      line, and an Insight points at no ledger line. Neither is a page a Case created, so the meaning
+      does not claim them.
+
+
+      The Case creates no page, so no vault query was needed. The frame reads as follows. `rule-glossary`
+      stops the write on a `where` that names no live page, so every new link must name a live page, and
+      each one does. The Purpose of `entity-glossary` lets a term enter, change or leave by an `update`
+      of the page with `replace` pairs, and the split of the status row does exactly that. The Criterion
+      of `estimate-glossary-terms-defined` stands whole, because the promise does not change, only the
+      rows. So its status is not set to `pending` here, and its reading waits for the librarian''s run
+      that renders the table. The Estimates of `rule-glossary` speak of the render, the check and the
+      ticks, not of these rows, and are not touched.'
+    problem: Five rows of the glossary link to a page that does not define their term, or give a meaning
+      that their `where` page does not state. So the promise of `estimate-glossary-terms-defined` fails,
+      and a reader who follows the link does not find the term.
+    given: '`entity-glossary` — the page whose `## Terms` table this Case changes
+
+      **＋** `vault/wiki/glossary.md` — the render of the table, grouped by the parent MOC of `where`
+
+      **＋** `rule-glossary` — the guard: one link per `where` cell, a live page, no term twice
+
+      **＋** `rule-vault-layout` — the new `where` page of Vault
+
+      **＋** `rule-hook-registry` — the `where` page of Hook
+
+      **＋** `rule-entities-schema` — the new `where` page of Entity (status)
+
+      **＋** `rule-rules-schema` — the new `where` page of Rule (status) and `deferred_by`
+
+      **＋** `rule-decisions-schema` — the new `where` page of `origin`'
+    when: '`uv run guppi glossary` renders `vault/wiki/glossary.md` from the `## Terms` table of `entity-glossary`
+      at the librarian''s run, and a reader follows the `where` link of a row.'
+    then: 'The row Vault names `rule-vault-layout`, and its meaning says that the vault is `vault/wiki/`,
+      one folder per page category.
+
+      **＋** The row Hook names `rule-hook-registry`, and its meaning says only what that page says.
+
+      **＋** The rows Entity (status) and Rule (status) replace the row Entity / Rule (status), and they
+      name `rule-entities-schema` and `rule-rules-schema`.
+
+      **＋** The row `deferred_by` names `rule-rules-schema`, and its meaning says only what that page
+      says.
+
+      **＋** The row `origin` names `rule-decisions-schema`, and its meaning says only what that page says,
+      for a page a Case created.
+
+      **＋** `vault/wiki/glossary.md` lists each of these rows under the parent MOC of its new `where`
+      page.
+
+      **－** The other rows of the table of `entity-glossary` do not change.'
+  spec: vault/raw/2026-09-29/1753/spec.md
+  applied: '20:08:37'
+- case: '521.1'
+  decision: decision-case-521.1
+  origin: raw/2026-09-29/1753/ledger.md#case-521.1
+  targets:
+  - kind: update
+    category: rules
+    slug: rule-spec-write
+    ref: rule-spec-write
+  - kind: update
+    category: estimates
+    slug: estimate-spec-write-writes-a-defer
+    ref: estimate-spec-write-writes-a-defer
+  tags: []
+  case_text:
+    given: '`rule-spec-write` — the rule of the `Stop` hook that writes a deferred Case into the Spec
+
+      **＋** `guppi/ratified.py` — `deferred_section`, which reads the fence tagged `then` of a short Case
+
+      **＋** `guppi/materialize.py` — holds the one function that finds a comment in a fence tagged `then`,
+      and `item_keys`
+
+      **＋** `raw/<date>/<hi HHMM>/spec.md` — the Spec of the session, where a defer at Retro is written
+
+      **＋** `tests/test_ratified.py` — the tests of a defer
+
+      **＋** `estimate-spec-write-writes-a-defer` — the promise; its Criterion is replaced whole'
+    when: 'The `Stop` hook `uv run guppi ratified` runs after a reply whose `LEDGER` block holds lines
+      of a Case N that are all `defer` — beside the lines of other Cases or alone — and the same reply
+      shows `## Case N —` in the short form: `context`, `problem` and a fence tagged `then` with its `defer`
+      items.'
+    then: 'The hook writes that Case under `## Deferred` of the plan file while Plan Mode lasts, and of
+      `raw/<date>/<hi HHMM>/spec.md` once that file stands, at Retro: the heading, `context`, `problem`
+      and the `then` block as the reply shows them.
+
+      **＋** The section of Case N is replaced when it stands there, appended at the end of `## Deferred`
+      otherwise; the heading `## Deferred` is added when the file has none.
+
+      **＋** A reply with no showing of Case N, or a `then` block without a `defer` item carrying `slug`,
+      `type` and `purpose` for each `defer` line of the reply: exit 2 with the reason on stderr; on the
+      re-fire (`stop_hook_active`) exit 0.
+
+      **＋** A key of a `defer` item that `item_keys` of `guppi/materialize.py` does not give a `defer`
+      of its category: exit 2 with `` `<key>`: not a key of defer <slug> `` on stderr, and nothing of
+      the Case is written.
+
+      **＋** A `then` block that holds a YAML comment — a `#` at the start of a line or after a space or
+      a tab, outside a quoted value and outside a `|` or `>` block — as the function of `guppi/materialize.py`
+      judges it: exit 2 with the line of the comment and the advice to quote the value on stderr, and
+      nothing of the Case is written.
+
+      **－** A `#` inside a quoted value or inside a `|` or `>` block is text, not a comment, and is no
+      refusal.
+
+      **－** A `defer` of a category with no schema file, or of one whose schema rule a decision line of
+      the session or of the reply creates or updates, is not judged by its keys (case 308.2).
+
+      **－** The ratified copy `<plan>.ratified.md` gets no defer, and the check after the write does not
+      run on it.'
+    context: 'When the person puts a decision off, the main agent writes a short-form Case itself. The
+      Case holds a fence tagged `then` in plain YAML with `slug`, `type` and `purpose`. The `Stop` hook
+      of `rule-spec-write` (`guppi/ratified.py`) parses the fence. It checks that each `defer` line has
+      an item with these three keys and no foreign key, then copies the fence into the Spec as the reply
+      shows it. Later `materialize` parses the fence again, and `generate` writes `purpose` under `##
+      Deferred` of the Decision page. In YAML a `#` after a space or a tab starts a comment, so a value
+      without quotes ends before it. At the Retro of session 1432 the short Case 519 held `purpose: Correct
+      the description of ## Criterion in the Render of rule-estimates-schema, …`, and YAML kept only "Correct
+      the description of". That text stands in `materialize.yaml` L36 of 1432, under `## Deferred` on
+      `decision-case-519`, and in the backlog through the `deferred_by` of `rule-estimates-schema`. No
+      check saw it. A full Case built by `case-guppi` does not have this problem. Its values are code
+      spans, and the hook writes their YAML itself with `yaml.dump` of `guppi/ratified.py`, which quotes
+      a value that needs it. A search of every `spec.md` under `vault/raw/` for an unquoted value that
+      holds ` #` found the line of case 519 and no other.
+
+      In one round the person accepted every recommendation. The hook and `materialize` both catch a comment,
+      by one function in `guppi/materialize.py`. Any comment in the fence is a finding, not only a comment
+      after a value. The hook refuses, as it refuses a missing `purpose`. The deferred decision of case
+      519 is taken up now: the sentence is corrected and case 519 is superseded. The short-form paragraph
+      of `rule-case-protocol` tells the agent to quote such a value.
+
+      What `case-guppi` found in the frame. The round said that `generate` does not apply an entry that
+      `materialize` marks `incomplete`. That is false. `rule-page-generation` says "A page is always created,
+      even incomplete". So the mark of 521.2 names the comment in the yaml that the librarian reads, but
+      it does not stop the page. The refusal of the hook in 521.1 is what keeps the cut text off a page.
+      521.2 states this as a `－` line and does not change `generate`. `estimate-spec-write-writes-a-defer`
+      promises the checks of a defer, so 521.1 replaces its Criterion whole and keeps each earlier line
+      word for word. The other Estimates of `rule-spec-write` speak of full Cases, the ratified copy,
+      the approved Spec and a superseded Case, and stand. `estimate-materialize-assembles` says that what
+      the block lacks is `incomplete`, never invented. A new reason does not make it false, so it stands.
+      `estimate-materialize-judges-a-fence` speaks of where a fence opens and closes, not of the YAML
+      inside it, and stands. The new promise of `materialize` is the Estimate that 521.2 creates. Its
+      slug `estimate-materialize-marks-a-comment` is free: no page under `vault/wiki/` matches it. It
+      has a `ref`, so no vault query was run. `estimate-estimates-schema-checked` promises the lists of
+      the schema file and that its description and sections name no `Given:` kept on an older page. The
+      corrected sentence keeps both, and an `update` of a Render touches no Estimate of the live reading
+      (case 378.5), so it stands. `estimate-case-protocol-defers-in-one-reply` promises that a defer is
+      shown and written in one reply. It says nothing about the value inside the fence and stands; its
+      failed reading is Frontier item C8. The other hooks on `Stop` in `.claude/settings.json` are `guppi
+      ledger`, `guppi casecheck` and `guppi context`. The ledger hook writes the `defer` line in parallel,
+      whatever `ratified` answers.
+
+      Pre-spec found that the Case defined a comment in two ways. The `then` lines said "after a space
+      or a tab", but the `new` texts of `rule-spec-write` and `rule-materialize` and the sentence of 521.4
+      said only "after a space". The person accepted the fix. Every text now says "a `#` at the start
+      of a line or after a space or a tab", the one definition that the shared function implements. 521.4
+      says "after a space or a tab" for a value.
+
+      What the check of the answer notes, and why the notes stand. Two `then` lines of 521.2 share most
+      of their words with 521.1: the definition of a comment, and the `－` line on a `#` inside quotes
+      or inside a `|` or `>` block. This is on purpose. Both sides use one function and the same definition.
+      521.1 promises what the hook refuses, and 521.2 promises what `materialize` marks. They are separate
+      promises with separate tests, and the test of 521.2 runs both sides over the same fence.
+
+      Code and timing. The hook runs from the working tree as soon as 521.1 is coded, and the sentence
+      of 521.4 reaches `case-schema.md` at the render. In that time the hook may refuse a short Case with
+      an unquoted ` #`. Nothing is lost. The ledger line is written, and the agent shows the Case again
+      with the value in quotes. This is the same path as a refused missing `purpose`. The form it refuses
+      was never correct, so no old form is kept. `materialize` extends an existing yaml and never rewrites
+      it, so L36 of 1432 is not read again.
+
+      Not done: `generate` still applies an entry marked `incomplete`. `materialize.yaml` L36 of 1432
+      stays as it is. A full Case of `case-guppi` gets no new check, because its values do not pass through
+      hand-written YAML.'
+    problem: 'YAML cuts a value without quotes at ` #`, and no check sees the cut. So a short-form Case
+      can reach the Spec, the Decision page and the backlog with a value the person never wrote, as the
+      purpose of case 519 did. The backlog item of `rule-estimates-schema` also carries that cut text,
+      and the sentence it was meant to correct is still wrong.'
+  spec: vault/raw/2026-09-29/1753/spec.md
+  applied: '20:08:37'
+- case: '521.2'
+  decision: decision-case-521.2
+  origin: raw/2026-09-29/1753/ledger.md#case-521.2
+  targets:
+  - kind: update
+    category: rules
+    slug: rule-materialize
+    ref: rule-materialize
+  - kind: create
+    category: estimates
+    slug: estimate-materialize-marks-a-comment
+    ref: rule-materialize
+  tags:
+  - harness
+  - workflow
+  - ledger
+  case_text:
+    given: '`rule-materialize` — the rule of the librarian''s reading of the ledger and the Spec
+
+      **＋** `guppi/materialize.py` — `then_blocks`, the entry of a decision line, the function that finds
+      a comment, and the docstring list of `incomplete`
+
+      **＋** `raw/<date>/<HHMM>/spec.md` — the Spec whose fences tagged `then` `materialize` reads
+
+      **＋** `rule-spec-write` — the rule of the `Stop` hook that imports the same function
+
+      **＋** `tests/test_materialize.py` — the tests of the lift
+
+      **＋** `rule-page-generation` — the rule of `generate`, which writes a page even from an `incomplete`
+      entry
+
+      **＋** `estimate-materialize-marks-a-comment` — the new promise'
+    when: '`uv run guppi materialize` lifts the entries of a Case N from its fences tagged `then` in `raw/<date>/<HHMM>/spec.md`.'
+    then: 'A fence of Case N that holds a YAML comment — a `#` at the start of a line or after a space
+      or a tab, outside a quoted value and outside a `|` or `>` block — gives each decision entry of Case
+      N `incomplete: [comment]`, and the run does not fail.
+
+      **＋** The entry keeps the values that YAML read, and nothing is invented for the text after the
+      `#`.
+
+      **＋** The comment is found by the same function of `guppi/materialize.py` that the `Stop` hook of
+      `rule-spec-write` imports, so both give the same answer for the same fence.
+
+      **－** A `#` inside a quoted value or inside a `|` or `>` block is text and gives no mark.
+
+      **－** `generate` still applies an entry so marked, since a page is always created, even incomplete.'
+    context: 'When the person puts a decision off, the main agent writes a short-form Case itself. The
+      Case holds a fence tagged `then` in plain YAML with `slug`, `type` and `purpose`. The `Stop` hook
+      of `rule-spec-write` (`guppi/ratified.py`) parses the fence. It checks that each `defer` line has
+      an item with these three keys and no foreign key, then copies the fence into the Spec as the reply
+      shows it. Later `materialize` parses the fence again, and `generate` writes `purpose` under `##
+      Deferred` of the Decision page. In YAML a `#` after a space or a tab starts a comment, so a value
+      without quotes ends before it. At the Retro of session 1432 the short Case 519 held `purpose: Correct
+      the description of ## Criterion in the Render of rule-estimates-schema, …`, and YAML kept only "Correct
+      the description of". That text stands in `materialize.yaml` L36 of 1432, under `## Deferred` on
+      `decision-case-519`, and in the backlog through the `deferred_by` of `rule-estimates-schema`. No
+      check saw it. A full Case built by `case-guppi` does not have this problem. Its values are code
+      spans, and the hook writes their YAML itself with `yaml.dump` of `guppi/ratified.py`, which quotes
+      a value that needs it. A search of every `spec.md` under `vault/raw/` for an unquoted value that
+      holds ` #` found the line of case 519 and no other.
+
+      In one round the person accepted every recommendation. The hook and `materialize` both catch a comment,
+      by one function in `guppi/materialize.py`. Any comment in the fence is a finding, not only a comment
+      after a value. The hook refuses, as it refuses a missing `purpose`. The deferred decision of case
+      519 is taken up now: the sentence is corrected and case 519 is superseded. The short-form paragraph
+      of `rule-case-protocol` tells the agent to quote such a value.
+
+      What `case-guppi` found in the frame. The round said that `generate` does not apply an entry that
+      `materialize` marks `incomplete`. That is false. `rule-page-generation` says "A page is always created,
+      even incomplete". So the mark of 521.2 names the comment in the yaml that the librarian reads, but
+      it does not stop the page. The refusal of the hook in 521.1 is what keeps the cut text off a page.
+      521.2 states this as a `－` line and does not change `generate`. `estimate-spec-write-writes-a-defer`
+      promises the checks of a defer, so 521.1 replaces its Criterion whole and keeps each earlier line
+      word for word. The other Estimates of `rule-spec-write` speak of full Cases, the ratified copy,
+      the approved Spec and a superseded Case, and stand. `estimate-materialize-assembles` says that what
+      the block lacks is `incomplete`, never invented. A new reason does not make it false, so it stands.
+      `estimate-materialize-judges-a-fence` speaks of where a fence opens and closes, not of the YAML
+      inside it, and stands. The new promise of `materialize` is the Estimate that 521.2 creates. Its
+      slug `estimate-materialize-marks-a-comment` is free: no page under `vault/wiki/` matches it. It
+      has a `ref`, so no vault query was run. `estimate-estimates-schema-checked` promises the lists of
+      the schema file and that its description and sections name no `Given:` kept on an older page. The
+      corrected sentence keeps both, and an `update` of a Render touches no Estimate of the live reading
+      (case 378.5), so it stands. `estimate-case-protocol-defers-in-one-reply` promises that a defer is
+      shown and written in one reply. It says nothing about the value inside the fence and stands; its
+      failed reading is Frontier item C8. The other hooks on `Stop` in `.claude/settings.json` are `guppi
+      ledger`, `guppi casecheck` and `guppi context`. The ledger hook writes the `defer` line in parallel,
+      whatever `ratified` answers.
+
+      Pre-spec found that the Case defined a comment in two ways. The `then` lines said "after a space
+      or a tab", but the `new` texts of `rule-spec-write` and `rule-materialize` and the sentence of 521.4
+      said only "after a space". The person accepted the fix. Every text now says "a `#` at the start
+      of a line or after a space or a tab", the one definition that the shared function implements. 521.4
+      says "after a space or a tab" for a value.
+
+      What the check of the answer notes, and why the notes stand. Two `then` lines of 521.2 share most
+      of their words with 521.1: the definition of a comment, and the `－` line on a `#` inside quotes
+      or inside a `|` or `>` block. This is on purpose. Both sides use one function and the same definition.
+      521.1 promises what the hook refuses, and 521.2 promises what `materialize` marks. They are separate
+      promises with separate tests, and the test of 521.2 runs both sides over the same fence.
+
+      Code and timing. The hook runs from the working tree as soon as 521.1 is coded, and the sentence
+      of 521.4 reaches `case-schema.md` at the render. In that time the hook may refuse a short Case with
+      an unquoted ` #`. Nothing is lost. The ledger line is written, and the agent shows the Case again
+      with the value in quotes. This is the same path as a refused missing `purpose`. The form it refuses
+      was never correct, so no old form is kept. `materialize` extends an existing yaml and never rewrites
+      it, so L36 of 1432 is not read again.
+
+      Not done: `generate` still applies an entry marked `incomplete`. `materialize.yaml` L36 of 1432
+      stays as it is. A full Case of `case-guppi` gets no new check, because its values do not pass through
+      hand-written YAML.'
+    problem: 'YAML cuts a value without quotes at ` #`, and no check sees the cut. So a short-form Case
+      can reach the Spec, the Decision page and the backlog with a value the person never wrote, as the
+      purpose of case 519 did. The backlog item of `rule-estimates-schema` also carries that cut text,
+      and the sentence it was meant to correct is still wrong.'
+  spec: vault/raw/2026-09-29/1753/spec.md
+  applied: '20:08:37'
+- case: '521.3'
+  decision: decision-case-521.3
+  origin: raw/2026-09-29/1753/ledger.md#case-521.3
+  targets:
+  - kind: update
+    category: rules
+    slug: rule-estimates-schema
+    ref: rule-estimates-schema
+  tags: []
+  case_text:
+    given: '`rule-estimates-schema` — the rule; its Render is the schema of an Estimate page
+
+      **＋** `vault/wiki/estimates/schema.yaml` — the file rendered from it
+
+      **＋** `guppi/render.py` — writes the file from the Render
+
+      **＋** `decision-case-519` — the deferred decision on this sentence, with the cut text under `##
+      Deferred`
+
+      **＋** `rule-page-generation` — the rule of `generate`, which retires a superseded defer
+
+      **＋** `estimate-estimates-schema-checked` — the promise of the file; its Criterion stands'
+    when: '`guppi render` writes `vault/wiki/estimates/schema.yaml` from `rule-estimates-schema`, and
+      an agent or the person reads the description of `## Criterion` in it.'
+    then: 'The description says that the Criterion holds no `Given:`, since the frame of the Case stays
+      in its Case file and in the Spec.
+
+      **＋** `generate` sets `decision-case-519` `superseded` and removes it from the `deferred_by` of
+      `rule-estimates-schema`, so the backlog no longer holds the cut text; the cascade archives the page.
+
+      **－** The lists that lint reads from `vault/wiki/estimates/schema.yaml` do not change.'
+    context: 'When the person puts a decision off, the main agent writes a short-form Case itself. The
+      Case holds a fence tagged `then` in plain YAML with `slug`, `type` and `purpose`. The `Stop` hook
+      of `rule-spec-write` (`guppi/ratified.py`) parses the fence. It checks that each `defer` line has
+      an item with these three keys and no foreign key, then copies the fence into the Spec as the reply
+      shows it. Later `materialize` parses the fence again, and `generate` writes `purpose` under `##
+      Deferred` of the Decision page. In YAML a `#` after a space or a tab starts a comment, so a value
+      without quotes ends before it. At the Retro of session 1432 the short Case 519 held `purpose: Correct
+      the description of ## Criterion in the Render of rule-estimates-schema, …`, and YAML kept only "Correct
+      the description of". That text stands in `materialize.yaml` L36 of 1432, under `## Deferred` on
+      `decision-case-519`, and in the backlog through the `deferred_by` of `rule-estimates-schema`. No
+      check saw it. A full Case built by `case-guppi` does not have this problem. Its values are code
+      spans, and the hook writes their YAML itself with `yaml.dump` of `guppi/ratified.py`, which quotes
+      a value that needs it. A search of every `spec.md` under `vault/raw/` for an unquoted value that
+      holds ` #` found the line of case 519 and no other.
+
+      In one round the person accepted every recommendation. The hook and `materialize` both catch a comment,
+      by one function in `guppi/materialize.py`. Any comment in the fence is a finding, not only a comment
+      after a value. The hook refuses, as it refuses a missing `purpose`. The deferred decision of case
+      519 is taken up now: the sentence is corrected and case 519 is superseded. The short-form paragraph
+      of `rule-case-protocol` tells the agent to quote such a value.
+
+      What `case-guppi` found in the frame. The round said that `generate` does not apply an entry that
+      `materialize` marks `incomplete`. That is false. `rule-page-generation` says "A page is always created,
+      even incomplete". So the mark of 521.2 names the comment in the yaml that the librarian reads, but
+      it does not stop the page. The refusal of the hook in 521.1 is what keeps the cut text off a page.
+      521.2 states this as a `－` line and does not change `generate`. `estimate-spec-write-writes-a-defer`
+      promises the checks of a defer, so 521.1 replaces its Criterion whole and keeps each earlier line
+      word for word. The other Estimates of `rule-spec-write` speak of full Cases, the ratified copy,
+      the approved Spec and a superseded Case, and stand. `estimate-materialize-assembles` says that what
+      the block lacks is `incomplete`, never invented. A new reason does not make it false, so it stands.
+      `estimate-materialize-judges-a-fence` speaks of where a fence opens and closes, not of the YAML
+      inside it, and stands. The new promise of `materialize` is the Estimate that 521.2 creates. Its
+      slug `estimate-materialize-marks-a-comment` is free: no page under `vault/wiki/` matches it. It
+      has a `ref`, so no vault query was run. `estimate-estimates-schema-checked` promises the lists of
+      the schema file and that its description and sections name no `Given:` kept on an older page. The
+      corrected sentence keeps both, and an `update` of a Render touches no Estimate of the live reading
+      (case 378.5), so it stands. `estimate-case-protocol-defers-in-one-reply` promises that a defer is
+      shown and written in one reply. It says nothing about the value inside the fence and stands; its
+      failed reading is Frontier item C8. The other hooks on `Stop` in `.claude/settings.json` are `guppi
+      ledger`, `guppi casecheck` and `guppi context`. The ledger hook writes the `defer` line in parallel,
+      whatever `ratified` answers.
+
+      Pre-spec found that the Case defined a comment in two ways. The `then` lines said "after a space
+      or a tab", but the `new` texts of `rule-spec-write` and `rule-materialize` and the sentence of 521.4
+      said only "after a space". The person accepted the fix. Every text now says "a `#` at the start
+      of a line or after a space or a tab", the one definition that the shared function implements. 521.4
+      says "after a space or a tab" for a value.
+
+      What the check of the answer notes, and why the notes stand. Two `then` lines of 521.2 share most
+      of their words with 521.1: the definition of a comment, and the `－` line on a `#` inside quotes
+      or inside a `|` or `>` block. This is on purpose. Both sides use one function and the same definition.
+      521.1 promises what the hook refuses, and 521.2 promises what `materialize` marks. They are separate
+      promises with separate tests, and the test of 521.2 runs both sides over the same fence.
+
+      Code and timing. The hook runs from the working tree as soon as 521.1 is coded, and the sentence
+      of 521.4 reaches `case-schema.md` at the render. In that time the hook may refuse a short Case with
+      an unquoted ` #`. Nothing is lost. The ledger line is written, and the agent shows the Case again
+      with the value in quotes. This is the same path as a refused missing `purpose`. The form it refuses
+      was never correct, so no old form is kept. `materialize` extends an existing yaml and never rewrites
+      it, so L36 of 1432 is not read again.
+
+      Not done: `generate` still applies an entry marked `incomplete`. `materialize.yaml` L36 of 1432
+      stays as it is. A full Case of `case-guppi` gets no new check, because its values do not pass through
+      hand-written YAML.'
+    problem: 'YAML cuts a value without quotes at ` #`, and no check sees the cut. So a short-form Case
+      can reach the Spec, the Decision page and the backlog with a value the person never wrote, as the
+      purpose of case 519 did. The backlog item of `rule-estimates-schema` also carries that cut text,
+      and the sentence it was meant to correct is still wrong.'
+  spec: vault/raw/2026-09-29/1753/spec.md
+  supersedes:
+  - decision-case-519
+  applied: '20:08:37'
+- case: '521.4'
+  decision: decision-case-521.4
+  origin: raw/2026-09-29/1753/ledger.md#case-521.4
+  targets:
+  - kind: update
+    category: rules
+    slug: rule-case-protocol
+    ref: rule-case-protocol
+  tags: []
+  case_text:
+    given: '`rule-case-protocol` — the rule; its Render is the case schema
+
+      **＋** `vault/wiki/case-schema.md` — the file rendered from it
+
+      **＋** `guppi/render.py` — writes the file from the Render
+
+      **＋** `rule-spec-write` — the rule of the `Stop` hook that refuses a block with a comment'
+    when: The main agent reads `vault/wiki/case-schema.md` and then writes a short-form Case.
+    then: The paragraph of the short form says that a value of the `then` block that holds a `#` after
+      a space or a tab stands in quotes, since YAML reads the rest of the line as a comment, and that
+      the `Stop` hook of `rule-spec-write` refuses a block that holds a comment.
+    context: 'When the person puts a decision off, the main agent writes a short-form Case itself. The
+      Case holds a fence tagged `then` in plain YAML with `slug`, `type` and `purpose`. The `Stop` hook
+      of `rule-spec-write` (`guppi/ratified.py`) parses the fence. It checks that each `defer` line has
+      an item with these three keys and no foreign key, then copies the fence into the Spec as the reply
+      shows it. Later `materialize` parses the fence again, and `generate` writes `purpose` under `##
+      Deferred` of the Decision page. In YAML a `#` after a space or a tab starts a comment, so a value
+      without quotes ends before it. At the Retro of session 1432 the short Case 519 held `purpose: Correct
+      the description of ## Criterion in the Render of rule-estimates-schema, …`, and YAML kept only "Correct
+      the description of". That text stands in `materialize.yaml` L36 of 1432, under `## Deferred` on
+      `decision-case-519`, and in the backlog through the `deferred_by` of `rule-estimates-schema`. No
+      check saw it. A full Case built by `case-guppi` does not have this problem. Its values are code
+      spans, and the hook writes their YAML itself with `yaml.dump` of `guppi/ratified.py`, which quotes
+      a value that needs it. A search of every `spec.md` under `vault/raw/` for an unquoted value that
+      holds ` #` found the line of case 519 and no other.
+
+      In one round the person accepted every recommendation. The hook and `materialize` both catch a comment,
+      by one function in `guppi/materialize.py`. Any comment in the fence is a finding, not only a comment
+      after a value. The hook refuses, as it refuses a missing `purpose`. The deferred decision of case
+      519 is taken up now: the sentence is corrected and case 519 is superseded. The short-form paragraph
+      of `rule-case-protocol` tells the agent to quote such a value.
+
+      What `case-guppi` found in the frame. The round said that `generate` does not apply an entry that
+      `materialize` marks `incomplete`. That is false. `rule-page-generation` says "A page is always created,
+      even incomplete". So the mark of 521.2 names the comment in the yaml that the librarian reads, but
+      it does not stop the page. The refusal of the hook in 521.1 is what keeps the cut text off a page.
+      521.2 states this as a `－` line and does not change `generate`. `estimate-spec-write-writes-a-defer`
+      promises the checks of a defer, so 521.1 replaces its Criterion whole and keeps each earlier line
+      word for word. The other Estimates of `rule-spec-write` speak of full Cases, the ratified copy,
+      the approved Spec and a superseded Case, and stand. `estimate-materialize-assembles` says that what
+      the block lacks is `incomplete`, never invented. A new reason does not make it false, so it stands.
+      `estimate-materialize-judges-a-fence` speaks of where a fence opens and closes, not of the YAML
+      inside it, and stands. The new promise of `materialize` is the Estimate that 521.2 creates. Its
+      slug `estimate-materialize-marks-a-comment` is free: no page under `vault/wiki/` matches it. It
+      has a `ref`, so no vault query was run. `estimate-estimates-schema-checked` promises the lists of
+      the schema file and that its description and sections name no `Given:` kept on an older page. The
+      corrected sentence keeps both, and an `update` of a Render touches no Estimate of the live reading
+      (case 378.5), so it stands. `estimate-case-protocol-defers-in-one-reply` promises that a defer is
+      shown and written in one reply. It says nothing about the value inside the fence and stands; its
+      failed reading is Frontier item C8. The other hooks on `Stop` in `.claude/settings.json` are `guppi
+      ledger`, `guppi casecheck` and `guppi context`. The ledger hook writes the `defer` line in parallel,
+      whatever `ratified` answers.
+
+      Pre-spec found that the Case defined a comment in two ways. The `then` lines said "after a space
+      or a tab", but the `new` texts of `rule-spec-write` and `rule-materialize` and the sentence of 521.4
+      said only "after a space". The person accepted the fix. Every text now says "a `#` at the start
+      of a line or after a space or a tab", the one definition that the shared function implements. 521.4
+      says "after a space or a tab" for a value.
+
+      What the check of the answer notes, and why the notes stand. Two `then` lines of 521.2 share most
+      of their words with 521.1: the definition of a comment, and the `－` line on a `#` inside quotes
+      or inside a `|` or `>` block. This is on purpose. Both sides use one function and the same definition.
+      521.1 promises what the hook refuses, and 521.2 promises what `materialize` marks. They are separate
+      promises with separate tests, and the test of 521.2 runs both sides over the same fence.
+
+      Code and timing. The hook runs from the working tree as soon as 521.1 is coded, and the sentence
+      of 521.4 reaches `case-schema.md` at the render. In that time the hook may refuse a short Case with
+      an unquoted ` #`. Nothing is lost. The ledger line is written, and the agent shows the Case again
+      with the value in quotes. This is the same path as a refused missing `purpose`. The form it refuses
+      was never correct, so no old form is kept. `materialize` extends an existing yaml and never rewrites
+      it, so L36 of 1432 is not read again.
+
+      Not done: `generate` still applies an entry marked `incomplete`. `materialize.yaml` L36 of 1432
+      stays as it is. A full Case of `case-guppi` gets no new check, because its values do not pass through
+      hand-written YAML.'
+    problem: 'YAML cuts a value without quotes at ` #`, and no check sees the cut. So a short-form Case
+      can reach the Spec, the Decision page and the backlog with a value the person never wrote, as the
+      purpose of case 519 did. The backlog item of `rule-estimates-schema` also carries that cut text,
+      and the sentence it was meant to correct is still wrong.'
+  spec: vault/raw/2026-09-29/1753/spec.md
+  applied: '20:08:37'
+- case: '522'
+  decision: decision-case-522
+  origin: raw/2026-09-29/1753/ledger.md#case-522
+  targets:
+  - kind: update
+    category: rules
+    slug: rule-page-generation
+    ref: rule-page-generation
+  - kind: update
+    category: estimates
+    slug: estimate-generate-ticks-the-spec
+    ref: estimate-generate-ticks-the-spec
+  tags: []
+  case_text:
+    context: '`guppi generate` writes the entries of `materialize.yaml` into the pages. After it applies
+      an entry, it ticks the entry''s line in the Spec beside the yaml. Case 514 made an entry a repeat
+      when its `case`, `kind` and `slug` match those of an entry of the same yaml that is already applied.
+      A repeat changes no page and prints `generate: <slug>: line N repeats line M of case C; nothing
+      applied`. The built code still sends a repeat through the tick, and the handoff of session 1432
+      says so: "A repeat of Case 514 ticks its line of the Spec, as an applied entry does; the task line
+      said "apply nothing"". In a real session this ticks nothing. When a Case is ratified again, the
+      Spec holds it once with one line per page, so the first entry ticks that line and the repeat finds
+      no open line. The tick only takes effect when a Case''s section holds a second line of the same
+      kind and slug. The test fixture of `tests/test_generate.py` holds such a line, `update `rule-root`:
+      a second time`, and the test of two entries ticking two lines went red without the repeat''s tick.
+      A repeated `delete` also runs the tick of the `read` lines. It measures "ratified after it" from
+      its own later ledger line, so it can tick a `read` line in a Case that was ratified between the
+      two lines. No promise signed either tick. The person chose in the round that a repeat ticks nothing.
+      `rule-page-generation` says the Spec''s lines "are closed by the one who did the work", and a repeat
+      does no work. The Criterion of `estimate-generate-ticks-the-spec` still says "Each further entry
+      of one kind and slug in one Case ticks the next such line, in order". That sentence dates from case
+      226.1, before a second entry of one kind and slug in one Case became a repeat, so this Case replaces
+      the Criterion whole. The rest of the Criterion stays word for word, with two changes. The trigger
+      "applied an entry of `materialize.yaml` and marked it `applied`" now covers a repeat as well. The
+      first line of the result is limited to an entry that was applied, and it loses its sentence on further
+      entries. The docstring of `guppi/generate.py` says a repeat "ticks its line of the Spec as an applied
+      entry does (case 514)" and "Two entries of one kind and slug tick two lines, in order", so both
+      sentences change. The sentence of `rule-page-generation` "Once an entry is applied, the script ticks
+      its line" does not exclude a repeat on its own. The same page says a repeat "is marked applied",
+      and `estimate-generate-fails-alone` says it "is marked `applied`". Read alone, the sentence would
+      therefore imply a tick. The page''s sentence on Case 514 names the repeat, and this Case adds "ticks
+      no line of the Spec" to it. That sentence settles the point for a repeat, so the general sentence
+      stands as it is. `estimate-generate-fails-alone` stands. Its Criterion describes the repeat and
+      says nothing of the Spec, so no sentence of it becomes false. `generate` is no hook, and it refuses
+      nothing between the change of the code and the change of the text, so no old form is kept. The Case
+      creates no page, so no vault query was needed. The reading of `estimate-generate-ticks-the-spec`
+      waits for a later session, because the ledger hook refuses a reading of a page this session changes
+      (case 428.1).'
+    problem: A repeat applies nothing, but it ticks a line of the Spec, and no promise names that tick.
+      When a Case's section holds a second line of the same kind and slug, the repeat marks it as done
+      although nobody did its work. A repeated `delete` can also tick a `read` line of a Case ratified
+      after the first `delete`.
+    given: '`guppi/generate.py` — applies the entries and ticks the Spec
+
+      **＋** `materialize.yaml` — the entries `generate` reads and marks
+
+      **＋** `spec.md` — the Spec of a session folder under `vault/raw/`, whose lines `generate` ticks
+
+      **＋** `vault/archive/` — the archived sessions, whose Specs `generate` does not read
+
+      **＋** `tests/test_generate.py` — the tests of `generate`
+
+      **＋** `rule-page-generation` — the rule of `generate`
+
+      **＋** `estimate-generate-ticks-the-spec` — the promise on the ticks of the Spec'
+    when: '`uv run guppi generate` marks an entry of `materialize.yaml` `applied`. Either it applied the
+      entry, or it found the entry to be a repeat: a `create`, `update`, `delete` or `defer` entry whose
+      `case`, `kind` and `slug` match those of an entry of the same `materialize.yaml` already marked
+      `applied`.'
+    then: 'For a `create`, `update`, `delete` or `defer` entry that was applied, in the `spec.md` of the
+      same unit, the first unticked line `` - [ ] <kind> `<slug>` `` in the section of the entry''s Case
+      becomes `- [x]`. Nothing else in the file changes.
+
+      **＋** For an `estimate` entry, a `create` entry with `folded` and a `delete` entry, every unticked
+      line `` - [ ] read `<slug>` `` of every `spec.md` under `vault/raw/` becomes `- [x]`. The Spec beside
+      the yaml comes first, then the Specs of the other session folders, oldest first.
+
+      **＋** In the Spec beside the yaml, for an `estimate` or a `delete` entry, a `read` line in the section
+      of a Case whose first decision entry carries a `line` greater than the entry''s `line` is not the
+      entry''s line, and the search goes on.
+
+      **＋** In any Spec, a `read` line in the section of a Case whose entries are marked `superseded_by`
+      is not the entry''s line. For the Spec beside the yaml, the marks come from the run''s entries.
+      For another Spec, they come from the `materialize.yaml` beside it. With no yaml beside a Spec, nothing
+      is skipped there.
+
+      **＋** A `create` entry with `folded` ticks both its page line and its `read` line. The filter by
+      `line` does not apply to it, and the filter by `superseded_by` does.
+
+      **＋** A `delete` entry ticks both its page line in its own Case and the `read` lines of its slug.
+
+      **－** A repeat ticks no line in any `spec.md`. A second line `` - [ ] <kind> `<slug>` `` in the
+      section of its Case stays unticked, and a repeated `delete` leaves the `read` lines of its slug
+      as they stand.
+
+      **－** A line, a section or a Spec not found raises no error and prints nothing on stderr. The entry
+      is `applied` all the same.
+
+      **－** A `lesson` entry and an entry marked `failed` tick no line. A `delete` that fails leaves the
+      `read` lines of its slug as they stand.
+
+      **－** A `spec.md` under `vault/archive/` is not read.'
+  spec: vault/raw/2026-09-29/1753/spec.md
+  applied: '20:08:37'
+- case: '523'
+  decision: decision-case-523
+  origin: raw/2026-09-29/1753/ledger.md#case-523
+  targets:
+  - kind: update
+    category: rules
+    slug: rule-case-protocol
+    ref: rule-case-protocol
+  - kind: update
+    category: estimates
+    slug: estimate-case-protocol-defers-in-one-reply
+    ref: rule-case-protocol
+  tags: []
+  case_text:
+    context: 'When the person puts off an item in Plan Mode, the agent answers in one reply. The reply
+      holds a short Case, the Frontier with that line closed, and one question at the end. The question
+      asks which open item is next. When no line under `## Cases` is open, it asks whether to run `/pre-spec`
+      instead. The reading of `estimate-case-protocol-defers-in-one-reply` failed in session 1134. There
+      the defer of Case 509 closed the last Cases line, and the question asked whether to take the open
+      W readings, not whether to run `/pre-spec`. The text of `rule-case-protocol` was already right at
+      that time. The gap was that the W readings had no set moment before Retro. That session filled the
+      gap with case 508: a W line now closes at `/hi`, in Work Mode or at Retro. The item came to session
+      1432, and the person put it off as Case 518. In the same session, Cases 517 and 518 closed the last
+      Cases line. That reply ended with the question whether to run `/pre-spec`, with no text after it.
+      Nobody wrote a reading for it.
+
+
+      In one round the person made two choices. The failure in session 1134 was a slip whose cause is
+      gone, so the text of `rule-case-protocol` stays as it is. The `method` of the Estimate now names
+      a defer that leaves no Cases line open, because only such a defer tests the question that failed.
+
+
+      The frame and the vault''s answer:
+
+      - `rule-case-protocol` carries `deferred_by` Case 518. This Case retires that defer: its decision
+      line names the page with `{supersedes:case 518}`, and the `update` has only a `change`.
+
+      - Case 521.4 of this session changes the short-form paragraph of the same page. This Case changes
+      no text there.
+
+      - `rule-skill-hi` gives the W lines their moments, and the question in case 461 needs no change.
+
+      - The `when` and `then` of this Case are the current Criterion of `estimate-case-protocol-defers-in-one-reply`,
+      word for word. The promise is not signed in a second wording.
+
+      - The Estimate update names the `method` alone. Under `rule-case-protocol` its Criterion and its
+      `failed` status do not change. Because a decision line of this session updates the Estimate, its
+      reading waits for a later session.
+
+      - The new `method` keeps the `by hand` form of `vault/wiki/estimates/schema.yaml`, as the old one
+      did. So a finding of lint on the form of a method of a MOC, if there is one, does not change.
+
+      - No other Estimate of `rule-case-protocol` has a Criterion that speaks of the question after a
+      defer. No hook changes, and the Case creates no page, so no vault query was run.
+
+
+      Not done: no sentence on the W list is added to the Render. No hook checks the question.'
+    problem: The rule on the question after a defer is under a defer, and its Estimate reads as failed.
+      The rule text was right, and the one wrong question came from a gap that is now closed. The `method`
+      of the Estimate also lets a defer that leaves Cases lines open count as a reading, and such a defer
+      never tests the question that failed.
+    given: '`rule-case-protocol` — the rule of the short-form Case and of the reply that shows a defer.
+
+      **＋** `estimate-case-protocol-defers-in-one-reply` — the promise of the defer reply, and the page
+      whose `method` this Case sets.
+
+      **＋** `raw/<date>/<hi HHMM>/frontier.md` — the Frontier the reply shows and the Cases lines the
+      question looks at.
+
+      **＋** `rule-spec-write` — the `Stop` hook that writes the short-form Case into the plan file and
+      `spec.md`.
+
+      **＋** `spec.md` — the Spec of the session, at `raw/<date>/<hi HHMM>/spec.md`.
+
+      **＋** `/pre-spec` — the check the question offers.
+
+      **＋** `rule-prespec` — the rule of that check.'
+    when: The person asks in the chat to defer an item, in Plan Mode or at Retro.
+    then: 'In the same reply the agent shows the Case in the short form — `context`, `problem` and a fence
+      tagged `then` with one `defer` item per target, no other section — and carries its `LEDGER` block,
+      one `defer` line per target, with no tool call after it.
+
+      **＋** The agent writes nothing of the Case into the plan file or `spec.md`: the `Stop` hook of `rule-spec-write`
+      writes it.
+
+      **＋** The person''s words asking for the defer are its ratification: no question asks for it.
+
+      **＋** In Plan Mode the reply shows the Frontier of `raw/<date>/<hi HHMM>/frontier.md` after the
+      Case, with the line of the item closed `[-] … · defer case N`.
+
+      **＋** In Plan Mode a question follows the Frontier and ends the reply: which open item is next,
+      or, when no line under `## Cases` of `raw/<date>/<hi HHMM>/frontier.md` is open, whether to run
+      `/pre-spec` of `rule-prespec`.
+
+      **＋** A wording the person corrects is a new short Case with `{supersedes:case N}` on its line,
+      shown the same way.
+
+      **－** No text follows that question.
+
+      **－** At Retro no Frontier is shown.'
+  spec: vault/raw/2026-09-29/1753/spec.md
+  supersedes:
+  - decision-case-518
+  applied: '20:08:37'
+- case: '524.1'
+  decision: decision-case-524.1
+  origin: raw/2026-09-29/1753/ledger.md#case-524.1
+  targets:
+  - kind: update
+    category: rules
+    slug: rule-skill-grill-me
+    ref: rule-skill-grill-me
+  - kind: update
+    category: estimates
+    slug: estimate-skill-grill-me-asks-in-rounds
+    ref: rule-skill-grill-me
+  tags: []
+  case_text:
+    given: '`rule-skill-grill-me` — the rule; its Render is the grill-me skill and its question template
+
+      **＋** `.claude/skills/grill-me/SKILL.md` — the skill rendered from it
+
+      **＋** `.claude/agents/case-guppi.md` — the agent that loads the skill by its `skills` field
+
+      **＋** `guppi/render.py` — writes the file from the Render
+
+      **＋** `estimate-skill-grill-me-asks-in-rounds` — the promise on the shape of a round; its Criterion
+      is replaced whole
+
+      **＋** `rule-case-protocol` — the case schema, which sets how the main agent shows a round of `case-guppi`'
+    when: 'The person types `/grill-me` on `UserPromptSubmit`, or `case-guppi` answers with a round of
+      questions, with `.claude/skills/grill-me/SKILL.md` loaded by `skills: [grill-me]` in `.claude/agents/case-guppi.md`,
+      after `uv run guppi render` wrote `.claude/skills/grill-me/SKILL.md` from `rule-skill-grill-me`.'
+    then: '`uv run guppi render --check` exits 0: `.claude/skills/grill-me/SKILL.md` equals the Render
+      of `rule-skill-grill-me`.
+
+      **＋** The agent asks in rounds: each round holds every question whose prerequisites are settled,
+      and the agent waits for the answers before the next round.
+
+      **＋** Each question opens with its numbered `❓ **Qn** - **<title>**:` line and closes with its `➡️`
+      line, the recommended answer, together with the lines of a list under it. Its body starts on the
+      next line with one `**Now:**` line that says once what holds today, or that nothing exists yet.
+
+      **＋** The label `**Options:**` stands alone on the line before the first option. Each option starts
+      on its own line, after a blank line, with the mark `🔹` and its name in bold. Under it stands one
+      nested `**After:**` item that says what holds with that option.
+
+      **＋** A list stands one item per line, never inside a sentence. This covers items marked by a number,
+      a letter or a bullet, and a series of two or more clauses that name parallel things. Under an `**After:**`
+      item a list stands nested inside that item.
+
+      **＋** A quotation, words taken from a page, a file or a reply, stands as a blockquote on its own
+      line under the sentence that introduces it and names its source, a fragment of a few words too;
+      it never stands inside a sentence in quote marks. Under an `**After:**` item it stands indented
+      to the text of the item, inside that item, and is no second item.
+
+      **＋** A fact the agent can look up it finds itself, or by a sub-agent when it can dispatch one;
+      the person is asked only for decisions.
+
+      **＋** The agent acts on the grill only after the shared understanding is confirmed, by the person''s
+      word unless the instructions that started the grill name another confirmation.
+
+      **－** An option carries nothing under it but its `**After:**` item: no list of costs, no second
+      item and no other label. A cost is a plain sentence inside the `**After:**` text or in the `➡️`
+      line.
+
+      **－** A short series of words inside a sentence stays in the sentence.
+
+      **－** No line of a question except an option starts with `🔹`.
+
+      **－** In the chat the labels may stand translated, as the main agent shows a round of `case-guppi`
+      by `rule-case-protocol`. A translated label counts as the same label: the shape is what is read,
+      not the language of the labels.
+
+      **－** The `**Context:**` paragraph of a round of `case-guppi`, its lists and quotations included,
+      and the place of its case numbers are not read here. They are the promises of the Estimates of the
+      rule of `.claude/agents/case-guppi.md`.
+
+      **－** No sentence of `.claude/skills/grill-me/SKILL.md` requires the agent to dispatch a sub-agent.'
+    context: 'When a round of questions quotes the words of a page, a file or a reply, the quoted words
+      stand inline in plain double quotes. When the main agent shows the round in Russian, they stand
+      in Russian angle quotes. So the quoted words do not stand apart from the agent''s own words. Here
+      is an example from the first round on Case 521: *The parser kept only "Correct the description of".*
+      The four quoted words are a fragment of a page, but they read like part of the agent''s sentence.
+      The person saw this in the rounds of this session and said, translated from the chat, that the quotations
+      "are not formatted as quotations" and that this should be fixed. Rounds quote pages often since
+      case 512, which lets a number stand in a round only beside a quotation of the words it points to.
+
+      In one round the person decided the following:
+
+      - Every quotation stands as a blockquote on its own line, a fragment of a few words too.
+
+      - The rule is for rounds only. It covers the rounds of `case-guppi` and the person''s own `/grill-me`,
+      so it is set in the grill-me template.
+
+      - When the main agent shows a round in Russian, it keeps the blockquote and the quoted words as
+      the source holds them.
+
+
+      The person asked to see an example before ratifying. The example is the new text of the template
+      in 524.1: the `new` of its first and second pairs. The first pair puts a quotation under the `**Now:**`
+      line. The second puts one inside an `**After:**` item. In a round the `**After:**` item is written
+      `  - **After:** …`, so its text begins four spaces in. A blockquote line indented four spaces, `    >
+      …`, renders inside that item. With no indentation it would end the list. In the template both lines
+      carry the four extra spaces of the code block that holds the template.
+
+
+      Pre-spec found a fault in the first ratified text, and the person accepted the fix. In the person''s
+      words, translated from the chat: "Okay, I agree with the recommendations". 524.1 had put the third
+      decision into the grill-me skill. But the main agent shows a round of `case-guppi` by `vault/wiki/case-schema.md`,
+      the Render of `rule-case-protocol`: "translated into {{chat_lang}} line by line, slugs, paths and
+      quotations unchanged". So the decision stood in a file the main agent does not read at the showing,
+      and `estimate-case-protocol-shows-the-built-case`, which promises that showing, was named by no
+      Case. The new sub-case 524.3 adds "each quotation in its blockquote" to that sentence and replaces
+      the Criterion of that Estimate whole. 524.1 no longer holds the sentence on the showing, in the
+      skill or in its Criterion. The showing is signed once, in 524.3, and the person''s own `/grill-me`
+      is not translated. Cases 521.4 and 523 of this plan also update `rule-case-protocol`. 521.4 changes
+      a pair in the short-form paragraph, and 523 has only a `change`. The `old` of 524.3 is in the paragraph
+      on who builds a Case, so it overlaps neither.
+
+
+      What `case-guppi` found in the frame. `rule-case-build` says that the first round opens with "one
+      prose paragraph under the label `**Context:**`" and that "A list in the context stands as the grill-me
+      template sets a list". The example of this item stands in a Context, so 524.2 lets a quotation there
+      stand as the template sets it too. The prose goes on after the blockquote, as it does after a list.
+      Its Estimate, `estimate-case-build-writes-a-plain-round`, reads the Context and the instructions
+      that point to the template, so its Criterion is replaced whole. `estimate-skill-grill-me-asks-in-rounds`
+      reads the shape of a question, so 524.1 replaces its Criterion whole and adds a line on the quotation.
+
+      The check of the answer notes four lines that are not carried word for word. Each one changes on
+      purpose:
+
+      - In 524.1, "The `**Context:**` paragraph of a round of `case-guppi`, its lists included…" now says
+      "its lists and quotations included". The quotations of the Context are read by the Estimate of 524.2.
+
+      - In 524.2, "The instructions of `case-guppi` point each question, and each list of the Context…"
+      now names each quotation of the Context too.
+
+      - In 524.2, "The shape of a question, and what counts as a list, are read by `estimate-skill-grill-me-asks-in-rounds`…"
+      now names the form of a quotation in a question too.
+
+      - In 524.3, "An answer with no Case heading and no first line `**Fact:**` is a round of questions…"
+      now adds "each quotation in its blockquote" after "quotations unchanged". The rest of the line is
+      the same.
+
+
+      Every other line is carried word for word. The check also notes `then` lines of sibling sub-cases
+      that share words: two lines of 524.2 with a line of 524.1, and the showing line of 524.3 with a
+      line of 524.1 and a line of 524.2. The shared words are the path `.claude/skills/grill-me/SKILL.md`,
+      "quotation", "blockquote" and common words. The 524.1 line promises that the skill asks for no sub-agent.
+      The 524.2 lines promise the form of a list and of a quotation in the Context that `case-guppi` writes.
+      The 524.3 line promises what the main agent keeps when it shows a round. These are separate promises
+      with separate readings. The line "only beside a short quotation of the words it points to" stays
+      true: the number stands in the sentence that introduces the blockquote.
+
+      Several sentences stay true and stand:
+
+      - `rule-language` keeps "quotations from pages" as they are. This agrees.
+
+      - The template''s "An option has nothing else under it" stays true: the blockquote stands inside
+      the `**After:**` item, not as a second item.
+
+      - The `"nothing exists yet"` of the template is a phrase to write, not a quotation of a source.
+
+
+      No code reads a round. A search of `guppi/` for "round" finds only unrelated lines in `lint.py`
+      and `render.py`, so no reader keeps an old form. The Case creates no page, so no vault query was
+      run.
+
+      Not done: the `context`, `problem` and `recommend` of a Case, the main agent''s own chat text, and
+      a mechanical check of a round. The person chose rounds only.'
+    problem: The quoted words of a page or a reply stand inside the agent's sentence in quote marks. The
+      person cannot tell at a glance what the page says and what the agent says about it. No text of the
+      harness sets a form for a quotation in a round.
+  spec: vault/raw/2026-09-29/1753/spec.md
+  applied: '20:08:37'
+- case: '524.2'
+  decision: decision-case-524.2
+  origin: raw/2026-09-29/1753/ledger.md#case-524.2
+  targets:
+  - kind: update
+    category: rules
+    slug: rule-case-build
+    ref: rule-case-build
+  - kind: update
+    category: estimates
+    slug: estimate-case-build-writes-a-plain-round
+    ref: rule-case-build
+  tags: []
+  case_text:
+    given: '`rule-case-build` — the rule page whose Render holds the round instructions of `case-guppi`
+
+      **＋** `.claude/agents/case-guppi.md` — the agent rendered from it
+
+      **＋** `.claude/skills/grill-me/SKILL.md` — the skill whose template sets a list and a quotation
+
+      **＋** `estimate-case-build-writes-a-plain-round` — the promise on a readable round; its Criterion
+      is replaced whole
+
+      **＋** `estimate-skill-grill-me-asks-in-rounds` — the promise that reads the shape of a question,
+      a list and a quotation
+
+      **＋** `rule-case-protocol` — the rule that lets the story sections of a Case keep their numbers'
+    when: '`case-guppi` answers with a round of questions, with `.claude/agents/case-guppi.md` rendered
+      from `rule-case-build`.'
+    then: 'The `**Context:**` of a first round gives the mechanism in plain words, with one concrete example
+      of where it goes wrong.
+
+      **＋** A list in the `**Context:**` stands one item per line under the sentence that introduces it,
+      as `.claude/skills/grill-me/SKILL.md` sets a list.
+
+      **＋** A quotation in the `**Context:**` stands as a blockquote on its own line under the sentence
+      that introduces it, as `.claude/skills/grill-me/SKILL.md` sets a quotation.
+
+      **＋** The instructions of `case-guppi` point each question, and each list and each quotation of
+      the Context, to `.claude/skills/grill-me/SKILL.md` and word no shape of their own.
+
+      **＋** The round says what it rests on in plain words and uses no number where plain words are enough.
+
+      **＋** A case or decision number, a session id, a ledger line number, a commit hash or a date in
+      the history of a page stands in any line of the round, the `➡️` line included, only beside a short
+      quotation of the words it points to, as the source of that quotation.
+
+      **＋** A term the person has not met in the chat is explained in a few words where it first stands,
+      or a common word replaces it.
+
+      **－** A page name in a code span is no such reference: it stays where the question is about that
+      page.
+
+      **－** The shape of a question, what counts as a list, and the form of a quotation in a question
+      are read by `estimate-skill-grill-me-asks-in-rounds`, not here.
+
+      **－** The `context`, `problem` and `recommend` of a Case keep their numbers as `rule-case-protocol`
+      allows: this promise is about a round only.'
+    context: 'When a round of questions quotes the words of a page, a file or a reply, the quoted words
+      stand inline in plain double quotes. When the main agent shows the round in Russian, they stand
+      in Russian angle quotes. So the quoted words do not stand apart from the agent''s own words. Here
+      is an example from the first round on Case 521: *The parser kept only "Correct the description of".*
+      The four quoted words are a fragment of a page, but they read like part of the agent''s sentence.
+      The person saw this in the rounds of this session and said, translated from the chat, that the quotations
+      "are not formatted as quotations" and that this should be fixed. Rounds quote pages often since
+      case 512, which lets a number stand in a round only beside a quotation of the words it points to.
+
+      In one round the person decided the following:
+
+      - Every quotation stands as a blockquote on its own line, a fragment of a few words too.
+
+      - The rule is for rounds only. It covers the rounds of `case-guppi` and the person''s own `/grill-me`,
+      so it is set in the grill-me template.
+
+      - When the main agent shows a round in Russian, it keeps the blockquote and the quoted words as
+      the source holds them.
+
+
+      The person asked to see an example before ratifying. The example is the new text of the template
+      in 524.1: the `new` of its first and second pairs. The first pair puts a quotation under the `**Now:**`
+      line. The second puts one inside an `**After:**` item. In a round the `**After:**` item is written
+      `  - **After:** …`, so its text begins four spaces in. A blockquote line indented four spaces, `    >
+      …`, renders inside that item. With no indentation it would end the list. In the template both lines
+      carry the four extra spaces of the code block that holds the template.
+
+
+      Pre-spec found a fault in the first ratified text, and the person accepted the fix. In the person''s
+      words, translated from the chat: "Okay, I agree with the recommendations". 524.1 had put the third
+      decision into the grill-me skill. But the main agent shows a round of `case-guppi` by `vault/wiki/case-schema.md`,
+      the Render of `rule-case-protocol`: "translated into {{chat_lang}} line by line, slugs, paths and
+      quotations unchanged". So the decision stood in a file the main agent does not read at the showing,
+      and `estimate-case-protocol-shows-the-built-case`, which promises that showing, was named by no
+      Case. The new sub-case 524.3 adds "each quotation in its blockquote" to that sentence and replaces
+      the Criterion of that Estimate whole. 524.1 no longer holds the sentence on the showing, in the
+      skill or in its Criterion. The showing is signed once, in 524.3, and the person''s own `/grill-me`
+      is not translated. Cases 521.4 and 523 of this plan also update `rule-case-protocol`. 521.4 changes
+      a pair in the short-form paragraph, and 523 has only a `change`. The `old` of 524.3 is in the paragraph
+      on who builds a Case, so it overlaps neither.
+
+
+      What `case-guppi` found in the frame. `rule-case-build` says that the first round opens with "one
+      prose paragraph under the label `**Context:**`" and that "A list in the context stands as the grill-me
+      template sets a list". The example of this item stands in a Context, so 524.2 lets a quotation there
+      stand as the template sets it too. The prose goes on after the blockquote, as it does after a list.
+      Its Estimate, `estimate-case-build-writes-a-plain-round`, reads the Context and the instructions
+      that point to the template, so its Criterion is replaced whole. `estimate-skill-grill-me-asks-in-rounds`
+      reads the shape of a question, so 524.1 replaces its Criterion whole and adds a line on the quotation.
+
+      The check of the answer notes four lines that are not carried word for word. Each one changes on
+      purpose:
+
+      - In 524.1, "The `**Context:**` paragraph of a round of `case-guppi`, its lists included…" now says
+      "its lists and quotations included". The quotations of the Context are read by the Estimate of 524.2.
+
+      - In 524.2, "The instructions of `case-guppi` point each question, and each list of the Context…"
+      now names each quotation of the Context too.
+
+      - In 524.2, "The shape of a question, and what counts as a list, are read by `estimate-skill-grill-me-asks-in-rounds`…"
+      now names the form of a quotation in a question too.
+
+      - In 524.3, "An answer with no Case heading and no first line `**Fact:**` is a round of questions…"
+      now adds "each quotation in its blockquote" after "quotations unchanged". The rest of the line is
+      the same.
+
+
+      Every other line is carried word for word. The check also notes `then` lines of sibling sub-cases
+      that share words: two lines of 524.2 with a line of 524.1, and the showing line of 524.3 with a
+      line of 524.1 and a line of 524.2. The shared words are the path `.claude/skills/grill-me/SKILL.md`,
+      "quotation", "blockquote" and common words. The 524.1 line promises that the skill asks for no sub-agent.
+      The 524.2 lines promise the form of a list and of a quotation in the Context that `case-guppi` writes.
+      The 524.3 line promises what the main agent keeps when it shows a round. These are separate promises
+      with separate readings. The line "only beside a short quotation of the words it points to" stays
+      true: the number stands in the sentence that introduces the blockquote.
+
+      Several sentences stay true and stand:
+
+      - `rule-language` keeps "quotations from pages" as they are. This agrees.
+
+      - The template''s "An option has nothing else under it" stays true: the blockquote stands inside
+      the `**After:**` item, not as a second item.
+
+      - The `"nothing exists yet"` of the template is a phrase to write, not a quotation of a source.
+
+
+      No code reads a round. A search of `guppi/` for "round" finds only unrelated lines in `lint.py`
+      and `render.py`, so no reader keeps an old form. The Case creates no page, so no vault query was
+      run.
+
+      Not done: the `context`, `problem` and `recommend` of a Case, the main agent''s own chat text, and
+      a mechanical check of a round. The person chose rounds only.'
+    problem: The quoted words of a page or a reply stand inside the agent's sentence in quote marks. The
+      person cannot tell at a glance what the page says and what the agent says about it. No text of the
+      harness sets a form for a quotation in a round.
+  spec: vault/raw/2026-09-29/1753/spec.md
+  applied: '20:08:37'
+- case: '525'
+  decision: decision-case-525
+  origin: raw/2026-09-29/1753/ledger.md#case-525
+  targets:
+  - kind: defer
+    category: rules
+    slug: rule-documentation
+    ref: rule-documentation
+  tags: []
+  case_text:
+    context: '`estimate-documentation-completes` failed: the librarian''s run of ff62585 read beyond its
+      input list. It read the tail of `log.md`, the head of the old `brief.md`, a git diff of `sprint.md`
+      and `backlog.md`, and a grep of `sprint.md`. Case 517 of session 1432 put the item off. The run
+      d8c1f17 of that session reported two more breaks of its own. It listed a folder under `vault/archive/`,
+      and it read the head of the old `brief.md`. The person put the item off again at the close of Plan
+      Mode in session 1753.'
+    problem: The librarian reads files outside its input list, and `estimate-documentation-completes`
+      stays failed.
+  spec: vault/raw/2026-09-29/1753/spec.md
+  supersedes:
+  - decision-case-517
+  applied: '20:08:37'
+- case: '524.3'
+  decision: decision-case-524.3
+  origin: raw/2026-09-29/1753/ledger.md#case-524.3
+  targets:
+  - kind: update
+    category: rules
+    slug: rule-case-protocol
+    ref: rule-case-protocol
+  - kind: update
+    category: estimates
+    slug: estimate-case-protocol-shows-the-built-case
+    ref: rule-case-protocol
+  tags: []
+  case_text:
+    given: '`rule-case-protocol` — the rule; its Render is the case schema, which sets how the main agent
+      shows a round
+
+      **＋** `vault/wiki/case-schema.md` — the file rendered from it, read by the main agent
+
+      **＋** `estimate-case-protocol-shows-the-built-case` — the promise on the showing; its Criterion
+      is replaced whole
+
+      **＋** `.claude/skills/grill-me/SKILL.md` — the skill whose template sets the shape of a question
+      and a quotation
+
+      **＋** `.claude/skills/wait-what/SKILL.md` — the skill by which the main agent answers a request
+      for a plain explanation
+
+      **＋** `rule-case-check` — the rule whose hook writes the Case file the main agent sends
+
+      **＋** `raw/<date>/<hi HHMM>/cases/case-<N>.md` — the Case file the main agent sends at a showing'
+    when: The main agent takes up a Frontier item, the person answers a round of questions, answers a
+      shown Case with a question or a change, or asks for a plain explanation of the agent's text — by
+      `/wait-what` on `UserPromptSubmit` or in words — or a ratified Case changes and is shown again,
+      in Plan Mode or in Work Mode.
+    then: 'The main agent dispatches `case-guppi` with the Case id, the Frontier item and its source,
+      and the person''s words on it, in the prompt of the call, after the plan file stands with its title
+      line; nothing of the Case stands in the chat before the answer.
+
+      **＋** The person''s answers to a round go to the same `case-guppi` by `SendMessage`, verbatim and
+      untranslated, and so does a question or a change of the person on a shown Case that is not a request
+      for a plain explanation.
+
+      **＋** A request for a plain explanation of a round, of the short text on a Case or of a reply the
+      main agent answers itself by `.claude/skills/wait-what/SKILL.md`; it sends the `case-guppi` of the
+      Case a `SendMessage` only to ask for a fact of the Case, and `case-guppi` answers with the fact
+      alone, under a first line `**Fact:**` and with no Case heading.
+
+      **＋** An answer with no Case heading and no first line `**Fact:**` is a round of questions: the
+      main agent shows it in the chat translated into Russian line by line, slugs, paths and quotations
+      unchanged, each quotation in its blockquote — the `**Context:**` paragraph that opens the first
+      round on an item translated in place before the first question, each question in the order and with
+      the number of the answer, opening with its `❓ **Qn** - **<title>**:` line of `.claude/skills/grill-me/SKILL.md`
+      and closing with its `➡️` line, its title, body and recommended answer translated in place, nothing
+      merged, dropped or added between the questions, the agent''s own text after the last question and
+      one horizontal rule; no Case is shown, no file is sent, and no step of confirmation follows the
+      last round.
+
+      **＋** The main agent shows the Case of an answer at every showing by `SendUserFile` with `display:
+      render` on `raw/<date>/<hi HHMM>/cases/case-<N>.md`, the file the hook of `rule-case-check` wrote
+      from the answer; in the same reply, under the heading of each Case and sub-case, it writes a short
+      text in Russian on what the Case changes and the `ratification` section as the answer holds it,
+      then its own text after one horizontal rule.
+
+      **＋** A reply that the `Stop` check of `rule-case-check` refuses is followed, before the person
+      answers, by a reply that sends the file and shows the `ratification` as the answer holds it.
+
+      **＋** A ratified Case that changes — in its prose or in its body — changes through its `case-guppi`,
+      and its new answer is sent and ratified again; the main agent edits no Case in the plan file.
+
+      **＋** An item that needs no decision the main agent closes alone, with no dispatch; it dispatches
+      `ask-guppi` once, at pre-spec, and not before a showing.
+
+      **－** The main agent writes no context of its own before the first question of a round.
+
+      **－** The main agent writes no `given`, `when`, `then` or `tasks` of a built Case into the chat.
+
+      **－** A deferred decision in the short form is written by the main agent in English in the chat,
+      with no dispatch and no file.'
+    context: 'When a round of questions quotes the words of a page, a file or a reply, the quoted words
+      stand inline in plain double quotes. When the main agent shows the round in Russian, they stand
+      in Russian angle quotes. So the quoted words do not stand apart from the agent''s own words. Here
+      is an example from the first round on Case 521: *The parser kept only "Correct the description of".*
+      The four quoted words are a fragment of a page, but they read like part of the agent''s sentence.
+      The person saw this in the rounds of this session and said, translated from the chat, that the quotations
+      "are not formatted as quotations" and that this should be fixed. Rounds quote pages often since
+      case 512, which lets a number stand in a round only beside a quotation of the words it points to.
+
+      In one round the person decided the following:
+
+      - Every quotation stands as a blockquote on its own line, a fragment of a few words too.
+
+      - The rule is for rounds only. It covers the rounds of `case-guppi` and the person''s own `/grill-me`,
+      so it is set in the grill-me template.
+
+      - When the main agent shows a round in Russian, it keeps the blockquote and the quoted words as
+      the source holds them.
+
+
+      The person asked to see an example before ratifying. The example is the new text of the template
+      in 524.1: the `new` of its first and second pairs. The first pair puts a quotation under the `**Now:**`
+      line. The second puts one inside an `**After:**` item. In a round the `**After:**` item is written
+      `  - **After:** …`, so its text begins four spaces in. A blockquote line indented four spaces, `    >
+      …`, renders inside that item. With no indentation it would end the list. In the template both lines
+      carry the four extra spaces of the code block that holds the template.
+
+
+      Pre-spec found a fault in the first ratified text, and the person accepted the fix. In the person''s
+      words, translated from the chat: "Okay, I agree with the recommendations". 524.1 had put the third
+      decision into the grill-me skill. But the main agent shows a round of `case-guppi` by `vault/wiki/case-schema.md`,
+      the Render of `rule-case-protocol`: "translated into {{chat_lang}} line by line, slugs, paths and
+      quotations unchanged". So the decision stood in a file the main agent does not read at the showing,
+      and `estimate-case-protocol-shows-the-built-case`, which promises that showing, was named by no
+      Case. The new sub-case 524.3 adds "each quotation in its blockquote" to that sentence and replaces
+      the Criterion of that Estimate whole. 524.1 no longer holds the sentence on the showing, in the
+      skill or in its Criterion. The showing is signed once, in 524.3, and the person''s own `/grill-me`
+      is not translated. Cases 521.4 and 523 of this plan also update `rule-case-protocol`. 521.4 changes
+      a pair in the short-form paragraph, and 523 has only a `change`. The `old` of 524.3 is in the paragraph
+      on who builds a Case, so it overlaps neither.
+
+
+      What `case-guppi` found in the frame. `rule-case-build` says that the first round opens with "one
+      prose paragraph under the label `**Context:**`" and that "A list in the context stands as the grill-me
+      template sets a list". The example of this item stands in a Context, so 524.2 lets a quotation there
+      stand as the template sets it too. The prose goes on after the blockquote, as it does after a list.
+      Its Estimate, `estimate-case-build-writes-a-plain-round`, reads the Context and the instructions
+      that point to the template, so its Criterion is replaced whole. `estimate-skill-grill-me-asks-in-rounds`
+      reads the shape of a question, so 524.1 replaces its Criterion whole and adds a line on the quotation.
+
+      The check of the answer notes four lines that are not carried word for word. Each one changes on
+      purpose:
+
+      - In 524.1, "The `**Context:**` paragraph of a round of `case-guppi`, its lists included…" now says
+      "its lists and quotations included". The quotations of the Context are read by the Estimate of 524.2.
+
+      - In 524.2, "The instructions of `case-guppi` point each question, and each list of the Context…"
+      now names each quotation of the Context too.
+
+      - In 524.2, "The shape of a question, and what counts as a list, are read by `estimate-skill-grill-me-asks-in-rounds`…"
+      now names the form of a quotation in a question too.
+
+      - In 524.3, "An answer with no Case heading and no first line `**Fact:**` is a round of questions…"
+      now adds "each quotation in its blockquote" after "quotations unchanged". The rest of the line is
+      the same.
+
+
+      Every other line is carried word for word. The check also notes `then` lines of sibling sub-cases
+      that share words: two lines of 524.2 with a line of 524.1, and the showing line of 524.3 with a
+      line of 524.1 and a line of 524.2. The shared words are the path `.claude/skills/grill-me/SKILL.md`,
+      "quotation", "blockquote" and common words. The 524.1 line promises that the skill asks for no sub-agent.
+      The 524.2 lines promise the form of a list and of a quotation in the Context that `case-guppi` writes.
+      The 524.3 line promises what the main agent keeps when it shows a round. These are separate promises
+      with separate readings. The line "only beside a short quotation of the words it points to" stays
+      true: the number stands in the sentence that introduces the blockquote.
+
+      Several sentences stay true and stand:
+
+      - `rule-language` keeps "quotations from pages" as they are. This agrees.
+
+      - The template''s "An option has nothing else under it" stays true: the blockquote stands inside
+      the `**After:**` item, not as a second item.
+
+      - The `"nothing exists yet"` of the template is a phrase to write, not a quotation of a source.
+
+
+      No code reads a round. A search of `guppi/` for "round" finds only unrelated lines in `lint.py`
+      and `render.py`, so no reader keeps an old form. The Case creates no page, so no vault query was
+      run.
+
+      Not done: the `context`, `problem` and `recommend` of a Case, the main agent''s own chat text, and
+      a mechanical check of a round. The person chose rounds only.'
+    problem: The quoted words of a page or a reply stand inside the agent's sentence in quote marks. The
+      person cannot tell at a glance what the page says and what the agent says about it. No text of the
+      harness sets a form for a quotation in a round.
+  spec: vault/raw/2026-09-29/1753/spec.md
+  applied: '20:08:37'
+unparsed: []
+session: '1753'

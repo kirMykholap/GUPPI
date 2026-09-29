@@ -2,7 +2,7 @@
 type: rule
 kind: Leaf
 purpose: Prevents glossary.md from drifting from the terms of entity-glossary, and a term from pointing at no page
-status: draft
+status: built
 enforcement: check
 implementation_ref: [guppi/glossary.py, tests/test_glossary.py]
 governs: vault/wiki/glossary.md
@@ -25,3 +25,4 @@ Prevents `vault/wiki/glossary.md` from drifting from the terms of `entity-glossa
 - 2026-09-22 status: draft → built · cascade
 - 2026-09-22 updated: the edge to entity-glossary, dropped by materialize as unknown against the old schema in session 0014 (case 308.1) · [[decision-case-308.1]]
 - 2026-09-29 status: built → draft · cascade
+- 2026-09-29 status: draft → built · cascade

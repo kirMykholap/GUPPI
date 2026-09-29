@@ -1,10 +1,11 @@
 ---
 type: estimate
 kind: QA
-status: pending
+status: passed
 target: "[[rule-glossary]]"
 purpose: glossary, once it wrote glossary.md and exits 0, ticks the guppi glossary lines of every Spec under raw/ whose yaml is applied whole
 method: pytest tests/test_glossary.py, plus one reading of this session's spec.md after the librarian's run
+checked: 2026-09-29
 origin: raw/2026-09-22/0014/ledger.md#case-306.6
 sprint: migration
 created: 2026-09-22
@@ -25,10 +26,11 @@ In the `spec.md` of every unit whose yaml is applied whole, every unticked task 
 
 ## Result
 
-2026-09-22, uv run pytest tests/test_glossary.py, 8 passed: the plain run ticks the unticked task lines opening with a code span holding guppi glossary in the spec.md of an applied unit, leaves a read line naming the command later, a sprint line and an unapplied unit alone; --check ticks nothing; the live reading of this session's spec.md after the librarian's run not taken
+2026-09-29, uv run pytest tests/test_glossary.py: 8 passed; by hand, git diff d8c1f17^ d8c1f17 on raw/2026-09-29/1432/spec.md: the line `uv run guppi glossary` (line 522) went [ ] to [x], and every other changed line is a tick of a task line; the other mentions of guppi glossary in that file are prose of Case 515 and stand unchanged; the 0137 and 1134 Specs hold no guppi glossary line
 
 ## History
 
 - 2026-09-22 created · [[decision-case-306.6]]
 - 2026-09-22 status: pending → passed · raw/2026-09-22/0014/ledger.md#L63
 - 2026-09-29 updated: the Criterion replaced whole — When and Then only, Given out (case 488.3) · [[decision-case-488.3]]
+- 2026-09-29 status: pending → passed · raw/2026-09-29/1753/ledger.md#L3

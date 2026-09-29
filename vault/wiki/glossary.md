@@ -23,7 +23,7 @@ Written by `guppi glossary` from the `## Terms` of `entity-glossary`; a term cha
 
 | term | meaning | where |
 |---|---|---|
-| Vault | The folder of Markdown pages, one per category | [[rule-page-schemas]] |
+| Vault | `vault/wiki/`: one folder per page category, each page a file named by its slug | [[rule-vault-layout]] |
 | Lint | `guppi lint`, run by `make lint` after the render, sprint, backlog and glossary checks: reports a page that breaks its schema, points at nothing, claims a status its Estimates do not support, or waits for a reading; red is a signal, not a gate | [[rule-lint]] |
 | Renderer | `guppi render` writes the text of a Rule page into the harness file it governs, so the page stays the source; it runs with lint and as the librarian's step after `cleanup` | [[rule-render-harness]] |
 | Harness | Hooks, agents, skills rendered from `rules/` pages | [[rule-harness]] |
@@ -48,6 +48,10 @@ Written by `guppi glossary` from the `## Terms` of `entity-glossary`; a term cha
 | Lesson | Something learned; a fact the hook writes, no Case, no Estimate; slug = area + cause; a `knowledge` claim is checked by the Rule that leans on it | [[rule-lessons-schema]] |
 | Insight | Over Lessons sharing a root cause, made by the librarian on the second; stands in `backlog.md` while `open` and is the target of the `update` that actions or rejects it, or of a `defer`; never created or deleted by a Decision; `actioned` reopens (case 124) | [[rule-insights-schema]] |
 | Decision page | One page per Case in `wiki/decisions/`, slug `decision-case-<N>`, one list per kind present: `create`, `update`, `delete`, `defer`; body `## Problem`, `## Deferred` for a Case that put something off, and `## History`; `## Context` only for a Case without `given`, such as the short form of a deferred decision, and never `## Given`; the whole Case, `recommend` included, stays in its Case file `cases/case-<N>.md` in the folder of `origin`; a page written before case 513 keeps its Context and Given (case 513); never indexed, reached through `deferred_by`, a History wikilink or `origin` | [[rule-decisions-schema]] |
+| `deferred_by` | The Decision pages whose `defer` targets the page; written by `guppi generate` on a defer, cleared when a later Case `supersedes` that one; the index line carries it, so `ask-guppi` reaches the deferred decision (case 52.3) | [[rule-rules-schema]] |
+| `origin` | On a page a Case created: where that Case was ratified, `raw/<date>/<HHMM>/ledger.md#case-N` — the date form `raw/<date>/ledger.md#case-N` on pages born before 2026-09-13 (case 103.6); the folder holds the Spec with the Case and, for a Case built by `case-guppi` from session 2026-09-27/1819 on, its Case file (case 513); the pointer is not rewritten when the session is archived (cases 100.1, 103.6) | [[rule-decisions-schema]] |
+| Entity (status) | `draft` / `built` / `archived`; `built` is set by the cascade of `generate` once every Estimate passes, never by hand | [[rule-entities-schema]] |
+| Rule (status) | `draft` / `built` / `archived`; `built` is set by the cascade of `generate` once every Estimate passes, never by hand | [[rule-rules-schema]] |
 | Decision (status) | `current` / `superseded` / `archived`; `superseded` once a later Case names it in `supersedes`, `archived` when the cascade of `generate` then meets it | [[rule-decisions-schema]] |
 | Lesson (status) | `new` / `clustered` / `archived`; `clustered` once it belongs to an Insight, `archived` when its Insight is `actioned` | [[rule-lessons-schema]] |
 | Insight (status) | `open` / `actioned` / `archived`; `actioned` when a ratified decision addressed it; a new Lesson of the same root cause reopens it unless a decision of its own session closed its cause (case 284.4); `archived` when the cascade finds an `open` Insight with no live child | [[rule-insights-schema]] |
@@ -62,15 +66,12 @@ Written by `guppi glossary` from the `## Terms` of `entity-glossary`; a term cha
 
 | term | meaning | where |
 |---|---|---|
-| Hook | An event-triggered script behind a Rule page, the ledger writer on `Stop`, which reads the session's transcript back, keeps its `hi` window across midnight, and can block | [[rule-hook-registry]] |
+| Hook | A script that fires on an event of the session, behind a Rule page; registered in the `hooks` key of `.claude/settings.json`, which `rule-hook-registry` renders, or in an agent's own frontmatter as part of that agent's Render; a new hook in the file is an `update` of `rule-hook-registry` in the Case that creates its Rule | [[rule-hook-registry]] |
 
 ## [[rule-documentation]]
 
 | term | meaning | where |
 |---|---|---|
-| `deferred_by` | On an Entity, Rule or Insight, the Decision pages whose `defer` targets it; set by `generate`, cleared by a `supersedes`, shown in the index line, followed by `ask-guppi` | [[rule-page-generation]] |
-| `origin` | The Decision that created or deleted the page, as `raw/<date>/<HHMM>/ledger.md#case-N` — the date form on older pages; kept when archived, never rewritten; `#case-N` is a grep target lint checks in `raw/` or in the archive (case 103.6) | [[rule-page-generation]] |
-| Entity / Rule (status) | `draft` / `built` / `archived`; `built` is computed once every Estimate passes, never by hand | [[rule-page-generation]] |
 | `archived` | Set by `delete`, or by the cascade of `guppi generate` — a superseded Decision, the lessons of an actioned Insight, an open Insight with no live child (case 104); `guppi cleanup` moves the file to `vault/archive/<sprint>/<date>/<HHMM>/<category>/` and brings it back on an `update` of `status`; `guppi archive` moves an applied session of `raw/` whole (case 100.1); never physical deletion | [[rule-cleanup]] |
 | Routing Table | (type × `ref` × category) to vault action, mechanical | [[rule-materialize]] |
 | Sprint | An Entity Leaf `entity-sprint-<id>` under the MOC `entity-sprint`, the sprint as a kind (case 241), whose Estimates are the Definition of done, whose `## Milestones` holds the Slices in order — the first with an open item is current — and whose `## Backlog` the items without a turn, each a wikilink or a plain line; `sprint.md` is its render, written by `guppi sprint` with one tick per item by the statuses of every page its `[[slug]]` before the first ` — ` names, a line without one a note that never ticks, the current milestone whole and the others one line (cases 209, 229); `/hi` takes the Frontier from the current milestone only | [[rule-sprint]] |

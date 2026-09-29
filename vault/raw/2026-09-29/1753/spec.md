@@ -67,8 +67,8 @@ update:
 ```
 
 ```tasks
-- [ ] update `entity-glossary`
-- [ ] `uv run guppi glossary`
+- [x] update `entity-glossary`
+- [x] `uv run guppi glossary`
 - [ ] read `estimate-glossary-terms-defined`
 ```
 
@@ -123,8 +123,8 @@ update:
 ```
 
 ```tasks
-- [ ] update `rule-spec-write`
-- [ ] update `estimate-spec-write-writes-a-defer`
+- [x] update `rule-spec-write`
+- [x] update `estimate-spec-write-writes-a-defer`
 - [x] `guppi/materialize.py`: one function that returns the lines of a fence tagged `then` that hold a YAML comment — a `#` at the start of a line or after a space or a tab — a `#` inside a quoted value or a `|` or `>` block not counted
 - [x] `guppi/ratified.py`: `deferred_section` imports that function and refuses a block with a comment, with the line and the advice to quote the value; the module docstring says so
 - [x] `tests/test_ratified.py`: a short Case with `purpose: a ## b` unquoted, and one with a tab before the `#`, are refused and not written; the same value in quotes, and a `#` inside a `|` block, are written
@@ -173,8 +173,8 @@ update:
 ```
 
 ```tasks
-- [ ] update `rule-materialize`
-- [ ] create `estimate-materialize-marks-a-comment`
+- [x] update `rule-materialize`
+- [x] create `estimate-materialize-marks-a-comment`
 - [x] `guppi/materialize.py`: the entry of a decision line takes `incomplete: [comment]` when a fence tagged `then` of its Case holds a comment, by the function of 521.1; the docstring list of `incomplete` names `comment`
 - [x] `tests/test_materialize.py`: a Spec whose short Case holds `purpose: a ## b` unquoted gives its entry `incomplete: [comment]` and `purpose: a`; a tab before the `#` gives the same mark; the value in quotes, and a `#` inside a `|` block, give no mark; one test runs the hook's check and `materialize` over the same fence and asserts they answer alike
 - [ ] read `estimate-materialize-marks-a-comment` — `uv run pytest tests/test_materialize.py -k comment`, at a later session
@@ -208,8 +208,8 @@ update:
 ```
 
 ```tasks
-- [ ] update `rule-estimates-schema`
-- [ ] `uv run guppi render`: `vault/wiki/estimates/schema.yaml`
+- [x] update `rule-estimates-schema`
+- [x] `uv run guppi render`: `vault/wiki/estimates/schema.yaml`
 ```
 
 ### Case 521.4 — The short-form rule tells the agent to quote a value that holds a `#`
@@ -236,8 +236,8 @@ update:
 ```
 
 ```tasks
-- [ ] update `rule-case-protocol`
-- [ ] `uv run guppi render`: `vault/wiki/case-schema.md`
+- [x] update `rule-case-protocol`
+- [x] `uv run guppi render`: `vault/wiki/case-schema.md`
 ```
 
 ## Case 522 — A repeat ticks no line of the Spec
@@ -288,8 +288,8 @@ update:
 ```
 
 ```tasks
-- [ ] update `rule-page-generation`
-- [ ] update `estimate-generate-ticks-the-spec`
+- [x] update `rule-page-generation`
+- [x] update `estimate-generate-ticks-the-spec`
 - [x] `guppi/generate.py`: in `apply`, the repeat branch no longer calls `vault.tick`. In the docstring, the repeat sentence says that a repeat ticks no line of the Spec, and the sentence "Two entries of one kind and slug tick two lines, in order" is removed.
 - [x] `tests/test_generate.py`: the test of two entries of one kind and slug is rewritten. The first entry ticks its line, the second prints the repeat line, and the line `update `rule-root`: a second time` stays `- [ ]`. A new test: a `delete` in one Case, a later Case with a `read` line of its slug, and a repeat of the `delete` after that later Case. The `read` line of the later Case stays `- [ ]`.
 - [ ] read `estimate-generate-ticks-the-spec`
@@ -349,8 +349,8 @@ update:
 ```
 
 ```tasks
-- [ ] update `rule-case-protocol`
-- [ ] update `estimate-case-protocol-defers-in-one-reply`
+- [x] update `rule-case-protocol`
+- [x] update `estimate-case-protocol-defers-in-one-reply`
 - [ ] read `estimate-case-protocol-defers-in-one-reply` — by hand in a later session after the render: the first defer that closes the last Cases line, read in the chat against the Criterion
 ```
 
@@ -446,9 +446,9 @@ update:
 ```
 
 ```tasks
-- [ ] update `rule-skill-grill-me`
-- [ ] update `estimate-skill-grill-me-asks-in-rounds`
-- [ ] `uv run guppi render`: `.claude/skills/grill-me/SKILL.md`
+- [x] update `rule-skill-grill-me`
+- [x] update `estimate-skill-grill-me-asks-in-rounds`
+- [x] `uv run guppi render`: `.claude/skills/grill-me/SKILL.md`
 - [ ] read `estimate-skill-grill-me-asks-in-rounds` — in a later session after the render: `uv run guppi render --check`, then one round that quotes a page read in the chat against the Criterion
 ```
 
@@ -492,9 +492,9 @@ update:
 ```
 
 ```tasks
-- [ ] update `rule-case-build`
-- [ ] update `estimate-case-build-writes-a-plain-round`
-- [ ] `uv run guppi render`: `.claude/agents/case-guppi.md`
+- [x] update `rule-case-build`
+- [x] update `estimate-case-build-writes-a-plain-round`
+- [x] `uv run guppi render`: `.claude/agents/case-guppi.md`
 - [ ] read `estimate-case-build-writes-a-plain-round` — in a later session after the render: one first round that quotes a page and one later round of `case-guppi` read in the chat against the Criterion
 ```
 
@@ -539,9 +539,9 @@ update:
 ```
 
 ```tasks
-- [ ] update `rule-case-protocol`
-- [ ] update `estimate-case-protocol-shows-the-built-case`
-- [ ] `uv run guppi render`: `vault/wiki/case-schema.md`
+- [x] update `rule-case-protocol`
+- [x] update `estimate-case-protocol-shows-the-built-case`
+- [x] `uv run guppi render`: `vault/wiki/case-schema.md`
 - [ ] read `estimate-case-protocol-shows-the-built-case` — in a later session after the render: one round of `case-guppi` that quotes a page, read in the chat against the answer and the Criterion
 ```
 

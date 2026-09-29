@@ -1,8 +1,9 @@
 ---
 type: decision
 case: "518"
-status: current
+status: archived
 defer: ["[[rule-case-protocol]]"]
+superseded_by: ["[[decision-case-523]]"]
 origin: raw/2026-09-29/1432/ledger.md#case-518
 sprint: migration
 created: 2026-09-29
@@ -26,3 +27,6 @@ Decide whether the question after a defer, when no Cases line is open, needs a g
 ## History
 
 - 2026-09-29 created · raw/2026-09-29/1432/ledger.md#case-518
+- 2026-09-29 superseded by decision-case-523 · [[decision-case-523]]
+- 2026-09-29 archived · superseded
+- 2026-09-29 archived · cleanup

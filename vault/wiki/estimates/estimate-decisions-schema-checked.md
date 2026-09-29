@@ -1,7 +1,7 @@
 ---
 type: estimate
 kind: QA
-status: pending
+status: passed
 target: "[[rule-decisions-schema]]"
 purpose: A Decision page in the shape of the rendered schema has no schema finding and a page outside it has one per defect
 method: "pytest tests/test_schemas.py -k decisions on the live vault/wiki/decisions/schema.yaml — a page in the shape, a page without ## Context, then one defect at a time; the live reading make lint, no schema finding on wiki/decisions/ but the pages of Cases 1–28 without Problem (Slice 5)"
@@ -29,7 +29,7 @@ The file equals the Render. Lint reads from it: required `type, case, status, or
 
 ## Result
 
-2026-09-29, uv run pytest tests/test_schemas.py -k decisions: 4 passed, 1 skipped; guppi lint: 62 schema lines on decisions/, all on the pages of Cases 1-28 (missing Context and Problem), none other
+2026-09-29, uv run pytest tests/test_schemas.py -k decisions: 4 passed, 1 skipped; uv run guppi render --check exit 0; uv run guppi lint: the only schema findings on wiki/decisions/ are the 31 pages of Cases 1–28 missing ## Problem, plus one fence finding on decision-case-13; by hand, vault/wiki/decisions/schema.yaml says the History takes created, superseded by and updated lines, the Case file cases/case-<N>.md holds every section with recommend and lies under the archive once the session is archived, ## Context only for a Case without given or the two-line body, no ## Given after case 513 and older pages keep theirs, and its example page holds ## Problem and ## History only
 
 ## History
 
@@ -41,3 +41,4 @@ The file equals the Render. Lint reads from it: required `type, case, status, or
 - 2026-09-29 updated: the Criterion replaced whole — When and Then only, Given and the history of schema.md out (case 490.5) · [[decision-case-490.5]]
 - 2026-09-29 status: pending → passed · raw/2026-09-29/1134/ledger.md#L51
 - 2026-09-29 updated: the Criterion replaced whole and the method set anew — Context optional, the Case file named, the example without Context and Given (case 513.1) · [[decision-case-513.1]]
+- 2026-09-29 status: pending → passed · raw/2026-09-29/1753/ledger.md#L24

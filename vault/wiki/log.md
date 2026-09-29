@@ -4768,3 +4768,62 @@ instruction. The global feed; a page's own `## History` is the per-page view.
 - 2026-09-29 estimates/estimate-generate-writes-the-given archived · cleanup
 - 2026-09-29 decisions/decision-case-511.2 archived · cleanup
 - 2026-09-29 rules/rule-page-generation estimate estimate-generate-writes-the-given archived · cleanup
+- 2026-09-29 estimates/estimate-brief-carries-the-run-facts status: pending → passed · raw/2026-09-29/1753/ledger.md#L1 · generate
+- 2026-09-29 estimates/estimate-generate-writes-the-decision-page status: pending → passed · raw/2026-09-29/1753/ledger.md#L2 · generate
+- 2026-09-29 estimates/estimate-glossary-ticks-the-spec status: pending → passed · raw/2026-09-29/1753/ledger.md#L3 · generate
+- 2026-09-29 estimates/estimate-glossary-terms-defined status: failed → failed · raw/2026-09-29/1753/ledger.md#L4 · generate
+- 2026-09-29 decisions/decision-case-520 created · raw/2026-09-29/1753/ledger.md#case-520 · generate
+- 2026-09-29 entities/entity-glossary updated: the rows Vault, Hook, deferred_by and origin point at the page that defines each, their meanings cut to it; Entity / Rule (status) splits into Entity (status) and Rule (status) (case 520) · [[decision-case-520]] · generate
+- 2026-09-29 decisions/decision-case-521.1 created · raw/2026-09-29/1753/ledger.md#case-521.1 · generate
+- 2026-09-29 rules/rule-spec-write updated: a short Case whose then block holds a YAML comment is refused, judged by the function of guppi/materialize.py (case 521.1) · [[decision-case-521.1]] · generate
+- 2026-09-29 estimates/estimate-spec-write-writes-a-defer updated: the Criterion replaced whole — a then block that holds a YAML comment is refused (case 521.1) · [[decision-case-521.1]] · generate
+- 2026-09-29 decisions/decision-case-521.2 created · raw/2026-09-29/1753/ledger.md#case-521.2 · generate
+- 2026-09-29 rules/rule-materialize updated: a then block that holds a YAML comment marks the decision entries of its Case incomplete: [comment] (case 521.2) · [[decision-case-521.2]] · generate
+- 2026-09-29 estimates/estimate-materialize-marks-a-comment created · [[decision-case-521.2]] · generate
+- 2026-09-29 rules/rule-materialize estimate estimate-materialize-marks-a-comment added · [[decision-case-521.2]] · generate
+- 2026-09-29 decisions/decision-case-521.3 created · raw/2026-09-29/1753/ledger.md#case-521.3 · generate
+- 2026-09-29 decisions/decision-case-519 superseded by decision-case-521.3 · [[decision-case-521.3]] · generate
+- 2026-09-29 rules/rule-estimates-schema defer by decision-case-519 superseded · [[decision-case-521.3]] · generate
+- 2026-09-29 rules/rule-estimates-schema updated: the description of ## Criterion says the frame of a Case stays in its Case file and the Spec; the defer of case 519 retired (case 521.3) · [[decision-case-521.3]] · generate
+- 2026-09-29 decisions/decision-case-521.4 created · raw/2026-09-29/1753/ledger.md#case-521.4 · generate
+- 2026-09-29 rules/rule-case-protocol updated: the short form quotes a value that holds a # after a space or a tab (case 521.4) · [[decision-case-521.4]] · generate
+- 2026-09-29 decisions/decision-case-522 created · raw/2026-09-29/1753/ledger.md#case-522 · generate
+- 2026-09-29 rules/rule-page-generation updated: a repeat ticks no line of the Spec (case 522) · [[decision-case-522]] · generate
+- 2026-09-29 estimates/estimate-generate-ticks-the-spec updated: the Criterion replaced whole — a repeat ticks no line of any Spec; a second entry of one kind and slug in one Case no longer ticks the next line · [[decision-case-522]] · generate
+- 2026-09-29 decisions/decision-case-523 created · raw/2026-09-29/1753/ledger.md#case-523 · generate
+- 2026-09-29 decisions/decision-case-518 superseded by decision-case-523 · [[decision-case-523]] · generate
+- 2026-09-29 rules/rule-case-protocol defer by decision-case-518 superseded · [[decision-case-523]] · generate
+- 2026-09-29 rules/rule-case-protocol updated: the defer taken up: the question after a defer stands as written, the failure of session 1134 a slip whose cause case 508 removed (case 523, supersedes 518) · [[decision-case-523]] · generate
+- 2026-09-29 estimates/estimate-case-protocol-defers-in-one-reply updated: the method reads a defer that closes the last Cases line, the branch that failed; the Criterion and the failed status stand (case 523) · [[decision-case-523]] · generate
+- 2026-09-29 decisions/decision-case-524.1 created · raw/2026-09-29/1753/ledger.md#case-524.1 · generate
+- 2026-09-29 rules/rule-skill-grill-me updated: a quotation in a round stands as a blockquote on its own line, inside an After item indented to its text (case 524.1) · [[decision-case-524.1]] · generate
+- 2026-09-29 estimates/estimate-skill-grill-me-asks-in-rounds updated: the Criterion replaced whole — a quotation stands as a blockquote on its own line (case 524.1) · [[decision-case-524.1]] · generate
+- 2026-09-29 decisions/decision-case-524.2 created · raw/2026-09-29/1753/ledger.md#case-524.2 · generate
+- 2026-09-29 rules/rule-case-build updated: a quotation in the Context of a first round stands as the grill-me template sets it (case 524.2) · [[decision-case-524.2]] · generate
+- 2026-09-29 estimates/estimate-case-build-writes-a-plain-round updated: the Criterion replaced whole — a quotation in the Context stands as the grill-me template sets it (case 524.2) · [[decision-case-524.2]] · generate
+- 2026-09-29 decisions/decision-case-525 created · raw/2026-09-29/1753/ledger.md#case-525 · generate
+- 2026-09-29 decisions/decision-case-517 superseded by decision-case-525 · [[decision-case-525]] · generate
+- 2026-09-29 rules/rule-documentation defer by decision-case-517 superseded · [[decision-case-525]] · generate
+- 2026-09-29 rules/rule-documentation deferred · [[decision-case-525]] · generate
+- 2026-09-29 decisions/decision-case-524.3 created · raw/2026-09-29/1753/ledger.md#case-524.3 · generate
+- 2026-09-29 rules/rule-case-protocol updated: the main agent shows a round with each quotation in its blockquote (case 524.3) · [[decision-case-524.3]] · generate
+- 2026-09-29 estimates/estimate-case-protocol-shows-the-built-case updated: the Criterion replaced whole — a round shown with each quotation in its blockquote (case 524.3) · [[decision-case-524.3]] · generate
+- 2026-09-29 estimates/estimate-generate-fails-alone status: pending → passed · raw/2026-09-29/1753/ledger.md#L23 · generate
+- 2026-09-29 estimates/estimate-decisions-schema-checked status: pending → passed · raw/2026-09-29/1753/ledger.md#L24 · generate
+- 2026-09-29 lessons/lesson-case-build-rebuild-quotes-the-relayed-words created · raw/2026-09-29/1753/ledger.md#L25 · generate
+- 2026-09-29 lessons/lesson-glossary-one-where-for-a-term-many-schemas-define created · raw/2026-09-29/1753/ledger.md#L26 · generate
+- 2026-09-29 estimates/estimate-work-mode-takes-the-work-readings status: pending → failed · raw/2026-09-29/1753/ledger.md#L27 · generate
+- 2026-09-29 estimates/estimate-retro-red-in-the-baseline-is-not-charged status: pending → passed · raw/2026-09-29/1753/ledger.md#L28 · generate
+- 2026-09-29 estimates/estimate-retro-report-holds-each-fact-once status: pending → failed · raw/2026-09-29/1753/ledger.md#L29 · generate
+- 2026-09-29 insights/insight-case-form-chat-form-read-by-no-script updated: child lesson-case-build-rebuild-quotes-the-relayed-words added (synthesis) · raw/2026-09-29/1753/ledger.md#L25 · generate
+- 2026-09-29 lessons/lesson-case-build-rebuild-quotes-the-relayed-words updated: clustered under insight-case-form-chat-form-read-by-no-script (synthesis) · raw/2026-09-29/1753/ledger.md#L25 · generate
+- 2026-09-29 rules/rule-brief status: draft → built · cascade · generate
+- 2026-09-29 rules/rule-decisions-schema status: draft → built · cascade · generate
+- 2026-09-29 rules/rule-glossary status: draft → built · cascade · generate
+- 2026-09-29 rules/rule-materialize status: built → draft · cascade · generate
+- 2026-09-29 decisions/decision-case-517 archived · superseded · generate
+- 2026-09-29 decisions/decision-case-518 archived · superseded · generate
+- 2026-09-29 decisions/decision-case-519 archived · superseded · generate
+- 2026-09-29 decisions/decision-case-517 archived · cleanup
+- 2026-09-29 decisions/decision-case-518 archived · cleanup
+- 2026-09-29 decisions/decision-case-519 archived · cleanup

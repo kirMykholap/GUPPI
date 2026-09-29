@@ -2,7 +2,7 @@
 type: rule
 kind: Leaf
 purpose: Prevents a Decision page from carrying a field or section outside the shape lint checks, or lacking one it needs
-status: draft
+status: built
 enforcement: render
 governs: vault/wiki/decisions/schema.yaml
 render_mode: full
@@ -117,3 +117,4 @@ examples:
 - 2026-09-29 status: draft → built · cascade
 - 2026-09-29 updated: a new page carries Problem and no Context or Given, a short-form defer and a Case superseded in its session keep Context; the Case file named as the whole record, recommend included (case 513.1) · [[decision-case-513.1]]
 - 2026-09-29 status: built → draft · cascade
+- 2026-09-29 status: draft → built · cascade

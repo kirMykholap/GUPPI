@@ -723,6 +723,7 @@ entries:
       in session 1432
   exists: true
   applied: '17:44:27'
+  superseded_by: '525'
 - line: 23
   text: decision[case 518][defer][rule-case-protocol]{ref:rule-case-protocol}
   case: '518'
@@ -739,6 +740,7 @@ entries:
       in session 1134, where it asked about the W readings; put off in session 1432
   exists: true
   applied: '17:44:27'
+  superseded_by: '523'
 - line: 24
   text: decision[case 510][update][entity-sprint-migration]{ref:entity-sprint-migration}
   case: '510'
@@ -1001,6 +1003,7 @@ entries:
     purpose: Correct the description of
   exists: true
   applied: '17:44:27'
+  superseded_by: '521.3'
 - kind: update
   category: insights
   slug: insight-workflow-case-schema-silent-on-what-the-scripts-accept
@@ -2155,6 +2158,8 @@ decisions:
       strays from it, and what changes: the list in `rule-documentation` or the run.'
   spec: vault/raw/2026-09-29/1432/spec.md
   applied: '17:44:27'
+  superseded_by:
+  - decision-case-525
 - case: '518'
   decision: decision-case-518
   origin: raw/2026-09-29/1432/ledger.md#case-518
@@ -2173,6 +2178,8 @@ decisions:
       was a slip of the agent that the rule already covers.
   spec: vault/raw/2026-09-29/1432/spec.md
   applied: '17:44:27'
+  superseded_by:
+  - decision-case-523
 - case: '519'
   decision: decision-case-519
   origin: raw/2026-09-29/1432/ledger.md#case-519
@@ -2192,5 +2199,7 @@ decisions:
       Case after case 513.
   spec: vault/raw/2026-09-29/1432/spec.md
   applied: '17:44:27'
+  superseded_by:
+  - decision-case-521.3
 unparsed: []
 session: '1432'

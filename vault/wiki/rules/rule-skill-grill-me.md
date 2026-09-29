@@ -35,11 +35,14 @@ Each question should be formatted like so:
     ❓ **Q1** - **<question title>**:
 
     **Now:** <what holds today, said once for the question; "nothing exists yet" when nothing does>
+    <a sentence that introduces a quotation and names its source, when the question quotes one>:
+    > <the quoted words, as the source holds them>
 
         **Options:**
 
     🔹 **(a) <option name>**
       - **After:** <what holds with this option>
+        > <a quotation inside the item, indented four spaces as far as the text of the item>
 
     🔹 **(b) <option name>**
       - **After:** <what holds with this option>
@@ -49,6 +52,8 @@ Each question should be formatted like so:
 The body of a question starts on the line after its title. The `**Now:**` line says once what holds today. The label `**Options:**` stands alone on the line before the first option. Each option starts on its own line, after a blank line, with the mark 🔹 and its name in bold, and under it stands one nested `**After:**` item: what holds with this option. No other line of a question starts with 🔹. An option has nothing else under it: no list of costs, no second item, no other label. A cost, when it matters, is a plain sentence inside the `**After:**` text or in the reasoning after `➡️`. Every question takes this shape, one on a new idea with nothing behind it too. In the language of the chat the labels may stand translated; the shape stays.
 
 A list starts on a new line and never runs inside a sentence. Items marked by a number, a letter or a bullet, and a series of two or more clauses that name parallel things, stand one per line; a short series of words inside a sentence stays in it. In the `**Now:**` text a list stands under the sentence that introduces it. Under an `**After:**` item it stands nested one level deeper, inside that item. In the recommended answer it stands on the lines under `➡️`, which close the question.
+
+A quotation — words taken from a page, a file or a reply to show what they say — stands as a blockquote on its own line, a fragment of a few words too; it never stands inside a sentence in quote marks. The sentence that introduces it stands on the line before it and names its source, and the quoted words stand as the source holds them. In the `**Now:**` text the blockquote stands under the sentence that introduces it. Under an `**After:**` item it stands inside that item, indented four spaces as far as the text of the item, so that it renders there and is no second item. In the recommended answer it stands on the lines under `➡️`.
 
 Each round the user answers reshapes the tree: settled decisions push the frontier outward and unblock questions that depended on them. Recompute the frontier and ask the next round. A question whose answer depends on another question still open in this round belongs to a _later_ round, not this one.
 
@@ -67,3 +72,4 @@ The session is done when the frontier is empty: every branch of the design tree 
 - 2026-09-29 status: draft → built · cascade
 - 2026-09-29 updated: the options of a question stand under an Options label, each marked with 🔹; every list stands one item per line (case 511.1) · [[decision-case-511.1]]
 - 2026-09-29 status: built → draft · cascade
+- 2026-09-29 updated: a quotation in a round stands as a blockquote on its own line, inside an After item indented to its text (case 524.1) · [[decision-case-524.1]]

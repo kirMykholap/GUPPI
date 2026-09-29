@@ -1,8 +1,9 @@
 ---
 type: decision
 case: "519"
-status: current
+status: archived
 defer: ["[[rule-estimates-schema]]"]
+superseded_by: ["[[decision-case-521.3]]"]
 origin: raw/2026-09-29/1432/ledger.md#case-519
 sprint: migration
 created: 2026-09-29
@@ -26,3 +27,6 @@ Correct the description of
 ## History
 
 - 2026-09-29 created · raw/2026-09-29/1432/ledger.md#case-519
+- 2026-09-29 superseded by decision-case-521.3 · [[decision-case-521.3]]
+- 2026-09-29 archived · superseded
+- 2026-09-29 archived · cleanup

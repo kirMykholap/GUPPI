@@ -226,7 +226,7 @@ update:
 - [x] update `estimate-generate-fails-alone`
 - [x] update `rule-case-protocol`
 - [x] `uv run guppi render`: `vault/wiki/case-schema.md`
-- [ ] read `estimate-generate-fails-alone` — `pytest tests/test_generate.py`, at a later session
+- [x] read `estimate-generate-fails-alone` — `pytest tests/test_generate.py`, at a later session
 ```
 
 ### Case 506.6 — `generate` drops no section when an update sets `method`
@@ -504,7 +504,7 @@ update:
 - [x] update `rule-work-mode` — the reading step after the last task
 - [x] create `estimate-work-mode-takes-the-work-readings` — the promise of the reading step of `/work`
 - [x] `uv run guppi render`: `.claude/skills/work/SKILL.md`
-- [ ] read `estimate-work-mode-takes-the-work-readings` — by hand, at the first `/work` of a session after the render
+- [x] read `estimate-work-mode-takes-the-work-readings` — by hand, at the first `/work` of a session after the render
 ```
 
 ### Case 508.4 — The librarian writes the facts of its run into the brief
@@ -560,7 +560,7 @@ update:
 - [x] update `rule-documentation` — the archive output added to the brief
 - [x] create `estimate-brief-carries-the-run-facts` — the promise of the facts in the brief
 - [x] `uv run guppi render`: `.claude/agents/librarian-guppi.md`
-- [ ] read `estimate-brief-carries-the-run-facts` — by hand, at the `/hi` after the first librarian run on the new frame
+- [x] read `estimate-brief-carries-the-run-facts` — by hand, at the `/hi` after the first librarian run on the new frame
 ```
 
 ## Deferred

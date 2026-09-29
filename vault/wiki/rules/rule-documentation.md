@@ -9,7 +9,7 @@ render_mode: full
 parent: "[[rule-session]]"
 children: ["[[rule-materialize]]", "[[rule-index-check]]", "[[rule-synthesis]]", "[[rule-page-generation]]", "[[rule-cleanup]]", "[[rule-raw-archive]]", "[[rule-brief]]", "[[rule-close]]", "[[rule-sprint]]", "[[rule-glossary]]", "[[rule-backlog]]"]
 estimates: ["[[estimate-documentation-completes]]"]
-deferred_by: ["[[decision-case-517]]"]
+deferred_by: ["[[decision-case-525]]"]
 origin: raw/2026-09-10/ledger.md#case-36
 sprint: migration
 created: 2026-09-10
@@ -144,3 +144,5 @@ project's hooks; the hook is part of this Render and is ratified with it.
 - 2026-09-28 updated: the librarian finds an archived page by the Glob of the slug a script named in an error, never searches the archive, and reads the saved output of its own command (case 474.1) · [[decision-case-474.1]]
 - 2026-09-29 updated: the stdout of guppi archive added to the brief for an Estimate that reads it (case 508.4) · [[decision-case-508.4]]
 - 2026-09-29 deferred · [[decision-case-517]]
+- 2026-09-29 defer by decision-case-517 superseded · [[decision-case-525]]
+- 2026-09-29 deferred · [[decision-case-525]]

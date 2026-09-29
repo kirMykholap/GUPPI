@@ -579,3 +579,122 @@ def test_an_estimate_or_decision_line_without_a_prefix_is_not_refused_by_this_ch
     code, err = run(payload(last_assistant_message=ledger_block(estimate, decision)), working)
     assert (code, err) == (0, "")
     assert ledger_text(working).splitlines() == [timed(estimate), timed(decision)]
+
+
+# --- a lesson's mark names a decision line before it (case 497.1) -------------------------
+# `estimate-ledger-write-refuses-a-mark-with-no-decision-line`
+
+SUB_1 = "- decision[case 8.1][update][rule-x]{ref:rule-x}"
+SUB_2 = "- decision[case 8.2][update][rule-y]{ref:rule-y}"
+CASE_9 = "- decision[case 9][update][rule-z]{ref:rule-z}"
+MARK_PARENT = (
+    "- lesson[error][lesson-a-b]{tags:hooks}{addressed_by:case 8} trigger: t root_cause: r"
+)
+MARK_SUB = "- lesson[error][lesson-a-c]{tags:hooks}{addressed_by:case 8.1} trigger: t root_cause: r"
+MARK_9 = "- lesson[error][lesson-a-d]{tags:hooks}{addressed_by:case 9} trigger: t root_cause: r"
+BARE_MARKED = "- lesson[error][a-e]{addressed_by:case 8} trigger: t root_cause: r"
+
+
+def mark_refusal(slug, case, subs=()):
+    named = "; its sub-cases have " + ", ".join(f"case {s}" for s in subs) if subs else ""
+    return (
+        f"ledger: lesson[{slug}] not written — {{addressed_by:case {case}}} names no decision "
+        f"line before it in this session{named}: write the line again after the decision line "
+        "of the Case that closed the cause, naming that Case.\n"
+    )
+
+
+def test_a_mark_to_a_parent_with_sub_case_lines_is_refused_aloud(working):
+    reply = ledger_block(SUB_1, SUB_2, MARK_PARENT)
+    code, err = run(payload(last_assistant_message=reply), working)
+    assert (code, err) == (2, mark_refusal("lesson-a-b", "8", ("8.1", "8.2")))
+    assert ledger_text(working).splitlines() == [timed(SUB_1), timed(SUB_2)]
+
+
+def test_a_mark_to_a_case_with_no_line_is_refused_aloud_with_no_sub_case_part(working):
+    code, err = run(payload(last_assistant_message=ledger_block(DECISION, MARK_9)), working)
+    assert (code, err) == (2, mark_refusal("lesson-a-d", "9"))
+    assert ledger_text(working) == f"{timed(DECISION)}\n"
+
+
+def test_a_mark_above_its_decision_line_in_the_same_block_is_refused(working):
+    code, err = run(payload(last_assistant_message=ledger_block(MARK_9, CASE_9)), working)
+    assert (code, err) == (2, mark_refusal("lesson-a-d", "9"))
+    assert ledger_text(working) == f"{timed(CASE_9)}\n"
+
+
+def test_a_marked_line_of_an_earlier_text_waits_then_lands_without_a_word(working):
+    transcript = write_transcript(working, transcript_line(ledger_block(MARK_9)))
+    stdin = payload(last_assistant_message="Nothing.", transcript_path=transcript)
+    assert run(stdin, working) == (0, "")
+    assert not ledger_file(working).exists()  # its Case has no line yet
+    stdin = payload(last_assistant_message=ledger_block(CASE_9), transcript_path=transcript)
+    assert run(stdin, working) == (0, "")  # the decision line lands; the lesson stood above it
+    assert ledger_text(working) == f"{timed(CASE_9)}\n"
+    stdin = payload(last_assistant_message="Nothing.", transcript_path=transcript)
+    assert run(stdin, working) == (0, "")  # the next Stop: its decision line stands before it
+    assert ledger_text(working).splitlines() == [timed(CASE_9), timed(MARK_9)]
+
+
+def test_a_mark_with_its_decision_line_before_it_is_written(working):
+    seed_ledger(working, CASE_9)
+    code, err = run(payload(last_assistant_message=ledger_block(SUB_1, MARK_SUB, MARK_9)), working)
+    assert (code, err) == (0, "")
+    assert ledger_text(working).splitlines()[1:] == [timed(SUB_1), timed(MARK_SUB), timed(MARK_9)]
+
+
+def test_a_lesson_with_no_mark_is_written_whatever_the_marks(working):
+    code, err = run(payload(last_assistant_message=ledger_block(LESSON)), working)
+    assert (code, err) == (0, "")
+    assert ledger_text(working) == f"{timed(LESSON)}\n"
+
+
+def test_a_line_with_no_prefix_and_a_bad_mark_gets_the_prefix_line_alone(working):
+    code, err = run(payload(last_assistant_message=ledger_block(BARE_MARKED, DECISION)), working)
+    assert code == 2
+    assert err == (
+        "ledger: lesson[a-e] not written — a lesson slug starts with lesson-, then the area, "
+        "then the cause: write the line again with the prefix.\n"
+    )
+    assert ledger_text(working) == f"{timed(DECISION)}\n"
+
+
+def test_a_marked_line_already_in_a_ledger_is_not_judged(working):
+    other = ledger_file(working, YESTERDAY)
+    other.parent.mkdir(parents=True, exist_ok=True)
+    other.write_text(f"- 20:50:18 {MARK_PARENT[2:]}\n", encoding="utf-8")
+    code, err = run(payload(last_assistant_message=ledger_block(MARK_PARENT, DECISION)), working)
+    assert (code, err) == (0, "")
+    assert ledger_text(working) == f"{timed(DECISION)}\n"
+
+
+def test_the_hook_and_materialize_judge_a_mark_alike(working):
+    """One ledger, two callers of `marks_without_decision`: the lessons the hook refuses are
+    the lessons `materialize` leaves `incomplete: [addressed_by]` (case 497.1)."""
+    import yaml
+
+    from guppi import materialize
+
+    lines = [SUB_1, MARK_PARENT, MARK_SUB, MARK_9, CASE_9, LESSON]
+    code, _ = run(payload(last_assistant_message=ledger_block(*lines)), working)
+    assert code == 2
+    written = {ledger.BRACKET.findall(line)[1] for line in ledger_text(working).splitlines()}
+    hook_refused = {"lesson-a-b", "lesson-a-c", "lesson-a-d", "lesson-x"} - written
+
+    unit = working / "vault" / "raw" / "2026-09-10"
+    unit.mkdir(parents=True)
+    (unit / "ledger.md").write_text(
+        "".join(f"{timed(line)}\n" for line in lines), encoding="utf-8", newline="\n"
+    )
+    (working / "vault" / "wiki").mkdir(parents=True)
+    (working / "vault" / "wiki" / "sprint.md").write_text("# Sprint\n\n## migration\n")
+    materialize.run(
+        ["--date", "2026-09-10"], stdout=io.StringIO(), stderr=io.StringIO(), project_dir=working
+    )
+    data = yaml.safe_load((unit / "materialize.yaml").read_text(encoding="utf-8"))
+    incomplete = {
+        e["slug"]
+        for e in data["entries"]
+        if e.get("kind") == "lesson" and "addressed_by" in (e.get("incomplete") or [])
+    }
+    assert hook_refused == incomplete == {"lesson-a-b", "lesson-a-d"}

@@ -90,7 +90,8 @@ list of `{old, new}` pairs, carried as written; a mapping or a scalar under it i
 `incomplete` (what the block lacks: a required field, `then`, `change`, `criterion`,
 `purpose`, `source`, `reword`; `addresses` when the mark names no lesson of this unit,
 case 284.3; `addressed_by` on a lesson whose mark names a Case with no decision line earlier
-in the unit, case 377.3), `unknown` (a key of a `create` or `defer` item that the category's
+in the unit, case 377.3, judged by `marks_without_decision`, which the ledger hook calls too,
+case 497.1), `unknown` (a key of a `create` or `defer` item that the category's
 `schema.yaml` names as no field and that is not structural — never lifted into `fields`,
 case 214.1; the `type` and `purpose` of a `defer` are its own keys and reach `fields`
 whatever the target's category, an Insight's too, case 266; and nothing is filtered at all
@@ -258,6 +259,29 @@ def _case_of(value: str | None) -> str | None:
         return None
     value = value.strip()
     return value[5:].strip() if value.startswith("case ") else value
+
+
+def marks_without_decision(lines: list[str]) -> list[int]:
+    """The index of each lesson line among `lines` whose `{addressed_by:case N}` has no
+    decision line of Case N before it (case 497.1). The one judgment of the mark, read over
+    the lines in their order by `parse_line`, a line it does not read skipped: `lift_line`
+    names such a lesson `incomplete: [addressed_by]` over the unit's ledger, and the ledger
+    hook `guppi ledger` refuses such a fresh line over the session's ledger followed by the
+    lines of its `Stop`. A Case with sub-cases has no decision line of its own, so a mark
+    that names the parent never has one."""
+    seen: set[str] = set()
+    orphans: list[int] = []
+    for index, line in enumerate(lines):
+        record = parse_line(line)
+        if record is None:
+            continue
+        if record["record"] == "decision":
+            seen.add(record["case"])
+        elif record["record"] == "lesson":
+            mark = record.get("addressed_by")
+            if mark and mark not in seen:
+                orphans.append(index)
+    return orphans
 
 
 def cases_of(value) -> list[str]:
@@ -1120,10 +1144,10 @@ def lift_line(
     if record["record"] == "lesson":
         lesson = lesson_entry(record, number, text, date, project_dir)
         mark = record.get("addressed_by")
-        if mark and any(e.get("case") == mark and e.get("decision") for e in entries):
-            address(lesson, mark)
+        if mark and number - 1 in marks_without_decision(ledger or []):  # case 497.1
+            lesson.setdefault("incomplete", []).append("addressed_by")  # no decision line before it
         elif mark:
-            lesson.setdefault("incomplete", []).append("addressed_by")  # no decision line yet
+            address(lesson, mark)
         entries.append(lesson)
         return 1
     case = record["case"]

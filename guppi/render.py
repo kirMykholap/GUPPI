@@ -27,10 +27,9 @@ pages the librarian updated, or a hand edit that is now gone and may deserve a C
 identical file gets neither; a render error goes to stderr and nothing is written. `--sync`
 always exits 0, since a `SessionStart` hook cannot block and its stdout is added to the
 agent's context.
-When Claude Code reads an agent file under `.claude/agents/` — at session start or on the
-call — is the reading of case 139.1 on `estimate-render-harness-reproduces`: the librarian's
-render is its last step before the commit, and an agent it renders is planned for from the
-next session. The rendered files are committed by the librarian, in its own commit
+Claude Code reads the agent files under `.claude/agents/` at session start, so an agent the
+librarian renders can be called from the next session (case 139.1): the librarian's render
+is its last step before the commit. The rendered files are committed by the librarian, in its own commit
 (case 89.2).
 Every `.json` target is parsed before anything is written; one that does not parse stops
 the whole write and names the file and its page on stderr (case 89.4).

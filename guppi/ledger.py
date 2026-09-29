@@ -41,6 +41,19 @@ by its record, not by its slug. As for a refused reading, the hook exits 2 with 
 line per refused line only when the line stands in the reply just finished, and skips an
 older one without a word. A line already in a ledger is not fresh and is not judged again;
 `estimate` and `decision` lines are not judged by their prefix.
+
+A mark names a decision line before it (case 497.1). A fresh `lesson[...]` line whose
+`{addressed_by:case N}` has no decision line of Case N before it — in the session's ledger,
+or earlier among the lines of the same `Stop` — is not written, since `materialize` links a
+lesson only to a decision line of that Case earlier in the unit, and a Case with sub-cases
+has no line of its own. The judgment is `marks_without_decision` of `guppi/materialize.py`,
+the one `materialize` makes, over the session's ledger followed by the fresh lines. The
+prefix is judged first: a line refused for its prefix is not judged for its mark. The hook
+exits 2 with one stderr line per refused line only when the line stands in the reply just
+finished, naming the decision lines of the sub-cases of N that stand in the session, when
+there are any. A refused line from an earlier text is judged again at every `Stop`, without
+a word, and is written at the first `Stop` where a decision line of its Case stands in the
+ledger before it.
 """
 
 import json
@@ -322,6 +335,32 @@ def refused_lessons(lines: list[str]) -> list[tuple[str, str]]:
     return refused
 
 
+def refused_marks(
+    fresh: list[str], written: list[str], skip: set[str]
+) -> list[tuple[str, str, str, list[str]]]:
+    """`(line, slug, case, sub-cases)` of each fresh `lesson[...]` line whose
+    `{addressed_by:case N}` has no decision line of Case N before it, over the session's
+    ledger `written` followed by `fresh` (case 497.1); a line in `skip`, refused for its
+    prefix, is not judged. The sub-cases are the Cases `N.<m>` whose decision lines stand in
+    the session, in the order first seen. Judged by `marks_without_decision` of
+    `guppi/materialize.py`, the one judgment of the mark; imported here, since `materialize`
+    imports this module."""
+    from guppi.materialize import marks_without_decision, parse_line
+
+    ordered = written + fresh
+    records = [parse_line(f"- {body(line)}") for line in ordered]
+    cases = [r["case"] for r in records if r and r["record"] == "decision"]
+    refused: list[tuple[str, str, str, list[str]]] = []
+    for index in marks_without_decision([f"- {body(line)}" for line in ordered]):
+        if index < len(written) or ordered[index] in skip:
+            continue
+        record = records[index]
+        mark = record["addressed_by"]
+        subs = list(dict.fromkeys(c for c in cases if c.startswith(f"{mark}.")))
+        refused.append((ordered[index], record["slug"], mark, subs))
+    return refused
+
+
 def append(path: Path, lines: list[str]) -> None:
     path.parent.mkdir(parents=True, exist_ok=True)
     with path.open("a", encoding="utf-8", newline="\n") as handle:
@@ -356,7 +395,12 @@ def run(argv, *, stdin=None, stderr=None, project_dir: Path | None = None, now=N
         written = path.read_text(encoding="utf-8").splitlines() if path.exists() else []
         refused = refused_readings(fresh, changed_by_session(written + fresh))
         lessons = refused_lessons(fresh)
-        out = {line for line, _ in refused} | {line for line, _ in lessons}
+        marks = refused_marks(fresh, written, {line for line, _ in lessons})  # case 497.1
+        out = (
+            {line for line, _ in refused}
+            | {line for line, _ in lessons}
+            | {line for line, _, _, _ in marks}
+        )
         fresh = [line for line in fresh if line not in out]
         if fresh:
             append(path, fresh)
@@ -377,7 +421,16 @@ def run(argv, *, stdin=None, stderr=None, project_dir: Path | None = None, now=N
                 "the area, then the cause: write the line again with the prefix.",
                 file=stderr,
             )
-        if loud or loud_lessons:
+        loud_marks = [m for m in marks if body(m[0]) in finished]
+        for _, slug, case, subs in loud_marks:
+            named = "; its sub-cases have " + ", ".join(f"case {s}" for s in subs) if subs else ""
+            print(
+                f"ledger: lesson[{slug}] not written — {{addressed_by:case {case}}} names no "
+                f"decision line before it in this session{named}: write the line again after "
+                "the decision line of the Case that closed the cause, naming that Case.",
+                file=stderr,
+            )
+        if loud or loud_lessons or loud_marks:
             return 2
     except Exception as exc:  # noqa: BLE001 — a hook that raises would fail the session
         print(f"ledger: ledger.md not written: {exc}", file=stderr)

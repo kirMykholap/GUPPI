@@ -2383,3 +2383,55 @@ def test_fence_breaks_flags_a_broken_fence(lines, breaks):  # case 487.1
 @pytest.mark.parametrize("lines", list(FENCE_WHOLE.values()), ids=list(FENCE_WHOLE))
 def test_fence_breaks_passes_a_whole_fence(lines):  # case 487.1
     assert materialize.fence_breaks("\n".join(lines)) == []
+
+
+# --- a comment in a fence tagged then (case 521.2) ---------------------------------------
+
+
+def comment_spec(purpose):
+    return (
+        "# Spec\n\n## Deferred\n\n## Case 5 — later\n\n> **context:**\n> Put off.\n\n"
+        "> **problem:**\n> Not now.\n\n"
+        f"```then\ndefer:\n  - slug: rule-later\n    type: rule\n    purpose: {purpose}\n```\n"
+    )
+
+
+COMMENT_LEDGER = "- 10:00:03 decision[case 5][defer][rule-later]\n"
+COMMENTED = ["a ## b", "a\t# b"]
+NOT_COMMENTED = ["'a ## b'", '"a ## b"', "|\n      a\n      ## b"]
+
+
+@pytest.mark.parametrize("purpose", COMMENTED)
+def test_a_comment_in_a_then_block_marks_the_entry(tmp_path, purpose):
+    seed(tmp_path, ledger=COMMENT_LEDGER, spec=comment_spec(purpose))
+    code, _, err = run(tmp_path)
+    assert code == 0 and err == ""
+    (entry,) = by_slug(load(tmp_path), "rule-later")
+    assert "comment" in entry["incomplete"]
+    if " #" in purpose:  # PyYAML cuts the value there; a tab before `#` it refuses to parse
+        assert entry["fields"]["purpose"] == "a"  # what YAML read; nothing invented after it
+
+
+@pytest.mark.parametrize("purpose", NOT_COMMENTED)
+def test_a_hash_in_quotes_or_a_block_gives_no_comment_mark(tmp_path, purpose):
+    seed(tmp_path, ledger=COMMENT_LEDGER, spec=comment_spec(purpose))
+    run(tmp_path)
+    (entry,) = by_slug(load(tmp_path), "rule-later")
+    assert "incomplete" not in entry and "## b" in entry["fields"]["purpose"]
+
+
+@pytest.mark.parametrize("purpose", [*COMMENTED, *NOT_COMMENTED, "a#b"])
+def test_the_hook_and_materialize_judge_a_comment_alike(tmp_path, purpose):
+    """One judgment, two sides (CLAUDE.md): the check of `guppi ratified` refuses a fence
+    exactly when `materialize` marks the entries of its Case."""
+    from guppi import ratified
+
+    spec = comment_spec(purpose)
+    seed(tmp_path, ledger=COMMENT_LEDGER, spec=spec)
+    run(tmp_path)
+    (entry,) = by_slug(load(tmp_path), "rule-later")
+    marked = "comment" in (entry.get("incomplete") or [])
+    records = [{"case": "5", "kind": "defer", "slug": "rule-later"}]
+    _, errors = ratified.deferred_section(spec, "5", records)
+    refused = any("holds a YAML comment" in e for e in errors)
+    assert marked == refused == (purpose in COMMENTED)

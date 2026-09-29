@@ -88,7 +88,9 @@ marks, one per mark, case 284.2), `origin` (`raw/<unit>/ledger.md#case-N`; a les
 list of `{old, new}` pairs, carried as written; a mapping or a scalar under it is
 `incomplete: [reword]`, case 274.3), `impact`,
 `incomplete` (what the block lacks: a required field, `then`, `change`, `criterion`,
-`purpose`, `source`, `reword`; `addresses` when the mark names no lesson of this unit,
+`purpose`, `source`, `reword`; `comment` on each decision entry of a Case whose fence tagged
+`then` holds a YAML comment by `then_comments`, which `guppi ratified` imports — the entry
+keeps what YAML read, and `generate` still applies it, case 521.2; `addresses` when the mark names no lesson of this unit,
 case 284.3; `addressed_by` on a lesson whose mark names a Case with no decision line earlier
 in the unit, case 377.3, judged by `marks_without_decision`, which the ledger hook calls too,
 case 497.1), `unknown` (a key of a `create` or `defer` item that the category's
@@ -478,6 +480,90 @@ def then_blocks(lines: list[str]) -> tuple[dict, list[str]]:
     for block in tagged_blocks(lines, "then"):
         _merge_block(merged, block, errors)
     return merged, errors
+
+
+BLOCK_SCALAR = re.compile(r"(?:^|\s)[|>][1-9+-]{0,2}$")
+
+
+def _comment_start(line: str, quote: str | None) -> tuple[int | None, str | None]:
+    """Where a YAML comment starts in `line`, and the quote still open at its end: a `#` at
+    the start of the line or after a space or a tab, outside a quoted scalar. A quote opens a
+    scalar only where a scalar starts — the start of the line, after `- `, `: `, `[`, `{` or
+    `,` — so the apostrophe of a plain word opens none."""
+    start = quote is None
+    i = 0
+    while i < len(line):
+        char = line[i]
+        if quote == "'":
+            if char == "'" and line[i + 1 : i + 2] == "'":
+                i += 2
+                continue
+            if char == "'":
+                quote, start = None, False
+            i += 1
+            continue
+        if quote == '"':
+            if char == "\\":
+                i += 2
+                continue
+            if char == '"':
+                quote, start = None, False
+            i += 1
+            continue
+        if char in " \t":
+            i += 1
+            continue
+        if char == "#" and (i == 0 or line[i - 1] in " \t"):
+            return i, None
+        after = line[i + 1 : i + 2]
+        if start and char in "'\"":
+            quote, start = char, False
+        elif char in "-:" and after in ("", " ", "\t"):
+            start = start or char == ":"
+        elif char in "[{,":
+            start = True
+        else:
+            start = False
+        i += 1
+    return None, quote
+
+
+def yaml_comments(text: str) -> list[str]:
+    """The lines of `text`, the YAML of one fenced block, that hold a comment — a `#` at the
+    start of a line or after a space or a tab, outside a quoted value and outside a `|` or
+    `>` block. YAML drops the rest of such a line, so a value without quotes may be cut
+    there. The one judgment of a comment: `ratified` refuses a short Case by it, `materialize`
+    marks the entries of its Case `incomplete: [comment]` (cases 521.1, 521.2)."""
+    found: list[str] = []
+    quote: str | None = None
+    block_above: int | None = None  # the column a `|` or `>` block's lines stand right of
+    for line in text.splitlines():
+        indent = len(line) - len(line.lstrip(" "))
+        if block_above is not None:
+            if not line.strip() or indent > block_above:
+                continue
+            block_above = None
+        at, quote = _comment_start(line, quote)
+        if at is not None:
+            found.append(line)
+        value = (line if at is None else line[:at]).rstrip()
+        match = BLOCK_SCALAR.search(value) if quote is None else None
+        if match is None:
+            continue
+        head = value[: match.start()].strip()
+        if head and not head.endswith(":") and head.strip("- \t"):
+            continue
+        if head.strip("- \t"):  # `key: |` — its lines stand right of the key
+            block_above = len(line) - len(line.lstrip(" -\t"))
+        else:  # `|` or `- |` — its lines stand right of the last dash
+            block_above = line.rfind("-", 0, match.start() + 1) if "-" in head else indent - 1
+    return found
+
+
+def then_comments(lines: list[str]) -> list[str]:
+    """The lines of the fences tagged `then` under a Case that hold a YAML comment, by
+    `yaml_comments`; the one call of `ratified` and `materialize` (cases 521.1, 521.2)."""
+    return [line for block in tagged_blocks(lines, "then") for line in yaml_comments(block)]
 
 
 def tagged_blocks(lines: list[str], tag: str) -> list[str]:
@@ -1157,6 +1243,8 @@ def lift_line(
     entry = decision_entry(record, number, text, date, block, project_dir, schema_free)
     if errors and "then" in (entry.get("incomplete") or []):
         entry["incomplete"] = [e for e in entry["incomplete"] if e != "then"] + errors
+    if then_comments(cases.get(case, [])):  # YAML may have cut a value there (case 521.2)
+        entry.setdefault("incomplete", []).append("comment")
     if case not in texts_of:
         texts_of[case] = case_texts(cases, case)
     lift_criterion(entry, texts_of[case], project_dir)  # an Estimate's own entry (189, 194.1, 296)

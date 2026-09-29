@@ -669,6 +669,24 @@ def test_write_a_foreign_key_of_a_defer_is_refused(working):
     assert "Case 9" not in plan_of(working).read_text(encoding="utf-8")
 
 
+@pytest.mark.parametrize("purpose", ["a ## b", "a\t# b"])
+def test_write_a_defer_whose_then_block_holds_a_comment_is_refused(working, purpose):
+    # 521.1: YAML reads the rest of the line as a comment, so the value would be cut
+    reply = short_case(8, "rule-y", purpose) + "```LEDGER\n" + defer_line(8, "rule-y") + "```\n"
+    code, err = stop(working, reply, reply)
+    assert code == 2 and "case 8: the fence tagged then holds a YAML comment" in err
+    assert "put the value in quotes" in err
+    assert "Case 8" not in plan_of(working).read_text(encoding="utf-8")
+
+
+@pytest.mark.parametrize("purpose", ["'a ## b'", '"a ## b"', "|\n      a\n      ## b"])
+def test_write_a_defer_with_a_hash_in_quotes_or_a_block_is_written(working, purpose):
+    # 521.1: a `#` inside a quoted value or a `|` block is text, not a comment
+    reply = short_case(8, "rule-y", purpose) + "```LEDGER\n" + defer_line(8, "rule-y") + "```\n"
+    assert stop(working, reply, reply) == (0, "")
+    assert "## b" in plan_of(working).read_text(encoding="utf-8").split("## Deferred", 1)[1]
+
+
 def test_write_the_answer_of_case_guppi_not_the_showing(working):
     # 437: a showing that differs from the stored answer, no stored answer, or one stored
     # with findings is refused and nothing is written

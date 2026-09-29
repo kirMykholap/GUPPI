@@ -90,13 +90,14 @@ yaml — a Case ratified again in its session, its lines written again with a ma
 a repeat: like an `update` with no content it changes no page, appends nothing to `log.md`
 and prints one stdout line, `generate: <slug>: line N repeats line M of case C; nothing
 applied`; it is marked applied and loses a stale `failed` mark, so a repeat that failed on
-an earlier run closes on the next, and it ticks its line of the Spec as an applied entry
-does (case 514).
+an earlier run closes on the next (case 514). It ticks no line of any Spec — no page line,
+no `read` line: a repeat does no work, and the lines of the Spec are closed by the entry
+that did it; a second line of its kind and slug in its Case stays open (case 522).
 
 The Spec (case 226.1): once a `create`, `update`, `delete` or `defer` entry is applied, the
 first unticked line `- [ ] <kind> `<slug>`` in the section of the entry's Case — from its
 `## Case N` or `### Case N.M` heading to the next heading — of the `spec.md` beside the
-yaml becomes `- [x]`. Two entries of one kind and slug tick two lines, in order. No Spec,
+yaml becomes `- [x]`. No Spec,
 no section, no line: nothing is written and nothing is said. A reading (case 270.1): an
 `estimate` entry, and a `create` with a folded reading, tick every unticked line
 `- [ ] read `<slug>`` — in the Spec beside the yaml first, then in the `spec.md` of the
@@ -1430,8 +1431,7 @@ def apply(vault: Vault, data: dict) -> None:
             )
             entry["applied"] = stamp
             entry.pop("failed", None)
-            vault.tick(entry)  # a second line of the kind and slug, if the Spec holds one (226.1)
-            continue
+            continue  # no tick: the Spec's lines are closed by the entry that did the work (522)
         before = len(vault.errors)
         try:
             if kind == "create" or kind == "lesson":

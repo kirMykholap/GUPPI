@@ -1835,13 +1835,17 @@ def test_an_applied_entry_ticks_its_line_under_its_own_case(tmp_path):
     assert "- [ ] read `estimate-root-works`" in text
 
 
-def test_two_entries_of_one_kind_and_slug_tick_two_lines_in_order(tmp_path):
+def test_a_repeat_ticks_no_second_line_of_its_kind_and_slug(tmp_path):
+    # case 522: the second entry of one kind and slug in one Case is a repeat; it does no
+    # work, so the second line stays open for Retro to count
     seed(tmp_path, entries=[ROOT, spec_update("2"), spec_update("2", line=3)])
     spec = with_spec(tmp_path)
-    assert run(tmp_path)[0] == 0
+    code, out, err = run(tmp_path)
+    assert code == 0 and err == ""
+    assert "generate: rule-root: line 3 repeats line 2 of case 2; nothing applied" in out
     text = spec.read_text(encoding="utf-8")
     assert "- [x] update `rule-root`: `set`, `change`" in text
-    assert "- [x] update `rule-root`: a second time" in text
+    assert "- [ ] update `rule-root`: a second time" in text
 
 
 def test_a_missing_spec_section_or_line_is_no_error(tmp_path):
@@ -2647,6 +2651,25 @@ def test_a_delete_leaves_the_read_line_of_a_case_ratified_after_it(tmp_path):
     assert "- [x] read `estimate-child-works`: pytest, then live" in text  # Case 1, before
     assert "- [ ] read `estimate-child-works`: on the page brought back" in text  # Case 3
     assert "- [x] read `estimate-child-works`: by hand" in older.read_text(encoding="utf-8")
+
+
+def test_a_repeated_delete_leaves_the_read_line_of_a_case_ratified_between(tmp_path):
+    # case 522: a repeat of the delete after a later Case ticks no read line of that Case
+    later = spec_update("3", line=8)
+    repeat = delete_entry("2", line=10)
+    seed(tmp_path, entries=[CHILD, CHILD_ESTIMATE, ROOT, delete_entry("2", line=6), later, repeat])
+    spec = with_spec(
+        tmp_path,
+        DELETE_SPEC + "\n## Case 3 — ratified between the two lines\n\n"
+        "```tasks\n- [ ] update `rule-root`\n"
+        "- [ ] read `estimate-child-works`: on the page brought back\n```\n",
+    )
+    code, out, err = run(tmp_path)
+    assert code == 0 and err == ""
+    assert "line 10 repeats line 6 of case 2; nothing applied" in out
+    text = spec.read_text(encoding="utf-8")
+    assert "- [x] read `estimate-child-works`: pytest, then live" in text  # the first delete
+    assert "- [ ] read `estimate-child-works`: on the page brought back" in text
 
 
 def test_a_delete_leaves_the_read_line_of_a_superseded_case(tmp_path):

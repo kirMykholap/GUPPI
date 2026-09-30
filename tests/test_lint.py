@@ -769,6 +769,37 @@ def test_a_decision_with_none_of_the_four_lists_is_a_decision_finding(tmp_path):
     ]
 
 
+def test_a_parent_decision_with_children_and_no_kind_list_is_clean(tmp_path):  # case 544.9
+    wiki = seed_decisions(tmp_path, decision_page("children: ['[[decision-case-50.1]]']"))
+    write(wiki / "decisions" / "decision-case-50.1.md", decision_page("defer: [rule-x]"))
+    assert not [line for line in run(tmp_path)[1] if "decision:" in line]
+
+
+def test_a_parent_decision_with_neither_is_a_decision_finding(tmp_path):  # case 544.9
+    seed_decisions(tmp_path, decision_page("children: []"))
+    _, lines, _ = run(tmp_path)
+    assert lines == [
+        "decisions/decision-case-50: decision: none of create, update, delete, defer is present"
+    ]
+
+
+def test_a_parent_origin_is_found_by_a_line_of_a_sub_case(tmp_path):  # case 544.9
+    seed(tmp_path, rule=rule_page(origin="raw/2026-09-10/1610/ledger.md#case-9"))
+    ledger = "- decision[case 9.1][update][rule-x]{ref:rule-x}\n"
+    write(tmp_path / "vault" / "raw" / "2026-09-10" / "1610" / "ledger.md", ledger)
+    assert run(tmp_path) == (0, [], "")
+
+
+def test_a_parent_origin_with_no_line_of_either_is_an_origin_finding(tmp_path):  # case 544.9
+    seed(tmp_path, rule=rule_page(origin="raw/2026-09-10/1610/ledger.md#case-9"))
+    ledger = "- decision[case 91][update][rule-x]{ref:rule-x}\n"
+    write(tmp_path / "vault" / "raw" / "2026-09-10" / "1610" / "ledger.md", ledger)
+    _, lines, _ = run(tmp_path)
+    assert lines == [
+        "rules/rule-x: origin: raw/2026-09-10/1610/ledger.md#case-9: no line carrying [case 9]"
+    ]
+
+
 def test_kind_or_target_slug_on_a_decision_is_a_decision_finding(tmp_path):
     seed_decisions(tmp_path, decision_page("defer: [rule-x]\nkind: [defer]\ntarget_slug: [rule-x]"))
     _, lines, _ = run(tmp_path)

@@ -402,6 +402,99 @@ def test_subagent_no_file_on_a_finding(working):
     assert case_path(working, "7").read_text(encoding="utf-8") == clean  # left as it stood
 
 
+# --- each question of the rounds in recommend (case 544.3) --------------------------------
+
+
+def round_of(*titles):
+    """A round of questions in the template of the skill `grill-me`, one question per title."""
+    parts = ["**Context:**\nThe item.\n"]
+    for n, title in enumerate(titles, 1):
+        parts.append(f"❓ **Q{n}** - **{title}**:\n\n**Now:** it stands.\n\n➡️ (a).\n")
+    return "\n".join(parts)
+
+
+def with_items(*titles):
+    """ANSWER whose `recommend` holds one item per title."""
+    items = "".join(
+        f"> - **{t}**\n>   - Recommended: (a).\n>   - Answer: agreed.\n" for t in titles
+    )
+    return ANSWER.replace("> **recommend:**\n> Advice.\n", "> **recommend:**\n" + items)
+
+
+def test_subagent_rounds_every_title_in_recommend_passes(working):
+    path = transcript(
+        working,
+        [text(round_of("Which page changes?", "Which test?"))],
+        [text(with_items("Which page changes?", "Which test?"))],
+    )
+    assert answer(working, "", agent_transcript_path=path) == (0, "")
+
+
+def test_subagent_rounds_a_title_missing_from_recommend_is_sent_back(working):
+    path = transcript(
+        working,
+        [text(round_of("Which page changes?", "Which test?"))],
+        [text(with_items("Which page changes?"))],
+    )
+    code, err = answer(working, "", agent_transcript_path=path)
+    assert code == 2
+    assert "case 7: recommend holds no item for the question of the rounds: Which test?" in err
+    assert "Which page changes?" not in err
+
+
+def test_subagent_rounds_a_title_asked_in_two_rounds_is_looked_for_once(working):
+    path = transcript(
+        working,
+        [text(round_of("Which test?"))],
+        [text(round_of("Which test?"))],
+        [text(ANSWER)],
+    )
+    code, err = answer(working, "", agent_transcript_path=path)
+    assert code == 2 and err.count("Which test?") == 1
+    again = transcript(
+        working,
+        [text(round_of("Which test?"))],
+        [text(round_of("Which test?"))],
+        [text(with_items("Which test?"))],
+    )
+    assert answer(working, "", agent_transcript_path=again) == (0, "")
+
+
+def test_subagent_rounds_an_answer_with_no_round_passes(working):
+    path = transcript(working, [text(ANSWER)])
+    assert answer(working, "", agent_transcript_path=path) == (0, "")
+
+
+def test_subagent_rounds_the_words_after_the_title_are_not_judged(working):
+    items = "> - **Which test?**\n>   - Anything at all.\n"
+    odd = ANSWER.replace("> **recommend:**\n> Advice.\n", "> **recommend:**\n" + items)
+    path = transcript(working, [text(round_of("Which test?"))], [text(odd)])
+    assert answer(working, "", agent_transcript_path=path) == (0, "")
+
+
+# --- no problem in a sub-case (case 544.4) --------------------------------------------------
+
+
+def test_subagent_a_sub_case_with_problem_is_sent_back(working):
+    own = sub_case("9.1").replace(
+        "### Case 9.1 — part\n\n", "### Case 9.1 — part\n\n> **problem:**\n> Sub P.\n\n"
+    )
+    code, err = answer(working, PARENT + own)
+    assert code == 2
+    assert "case 9.1: a sub-case carries problem, which stands on its parent only" in err
+
+
+def test_subagent_a_parent_without_problem_still_misses_it(working):
+    bare = PARENT.replace("> **problem:**\n> P.\n\n", "")
+    code, err = answer(working, bare + sub_case("9.1"))
+    assert code == 2 and "case 9: missing section problem" in err
+    assert "carries problem" not in err
+
+
+def test_subagent_a_case_with_no_sub_cases_keeps_its_problem(working):
+    assert answer(working, ANSWER) == (0, "")
+
+
 # --- the language finding of /pre-spec on the answer (case 537) --------------------------
 
 

@@ -468,6 +468,54 @@ def test_a_sub_case_inherits_a_missing_given_never_when(tmp_path):  # case 60
     assert third["incomplete"] == ["when"]
 
 
+def test_a_sub_case_reads_no_problem_or_recommend_from_its_parent(tmp_path):  # case 544.6
+    own = SUB_SPEC.replace(
+        "### Case 9.2 — its own given\n\n",
+        "### Case 9.2 — its own given\n\n> **recommend:**\n> - **Which?**\n>   - Answer: this.\n\n",
+    )
+    seed(tmp_path, ledger=SUB_LEDGER, spec=own)
+    run(tmp_path)
+    decisions = {d["case"]: d for d in load(tmp_path)["decisions"]}
+    first = decisions["9.1"]
+    assert "problem" not in first["case_text"] and "recommend" not in first["case_text"]
+    assert first["parent"] == "decision-case-9" and "incomplete" not in first
+    assert decisions["9.2"]["case_text"]["recommend"] == "- **Which?**\n  - Answer: this."
+
+
+def test_a_parent_case_gets_its_own_record_with_children(tmp_path):  # case 544.6
+    seed(tmp_path, ledger=SUB_LEDGER, spec=SUB_SPEC)
+    run(tmp_path)
+    decisions = {d["case"]: d for d in load(tmp_path)["decisions"]}
+    parent = decisions["9"]
+    assert parent["decision"] == "decision-case-9"
+    assert parent["origin"] == f"raw/{DATE}/ledger.md#case-9"
+    assert parent["children"] == ["decision-case-9.1", "decision-case-9.2", "decision-case-9.3"]
+    assert "targets" not in parent and "incomplete" not in parent
+    assert parent["case_text"] == {
+        "context": "Shared context.",
+        "problem": "Shared problem.",
+        "recommend": "Three sub-cases.",
+        "given": "The parent's given.\n**＋** A second line.",
+    }
+    assert "parent" not in parent
+
+
+def test_a_parent_record_without_a_given_of_its_own(tmp_path):  # case 544.6
+    bare = SUB_SPEC.replace("> **given:**\n> The parent's given.\n> **＋** A second line.\n\n", "")
+    seed(tmp_path, ledger=SUB_LEDGER, spec=bare)
+    run(tmp_path)
+    parent = {d["case"]: d for d in load(tmp_path)["decisions"]}["9"]
+    assert set(parent["case_text"]) == {"context", "problem", "recommend"}
+    assert "incomplete" not in parent
+
+
+def test_a_case_with_no_sub_cases_gets_no_parent_or_children(tmp_path):  # case 544.6
+    seed(tmp_path)
+    run(tmp_path)
+    for record in load(tmp_path)["decisions"]:
+        assert "parent" not in record and "children" not in record
+
+
 def test_new_tags_come_from_every_case_lines_or_none(tmp_path):  # case 61
     seed(tmp_path, ledger=SUB_LEDGER, spec=SUB_SPEC)
     run(tmp_path)

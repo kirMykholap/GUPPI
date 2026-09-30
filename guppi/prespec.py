@@ -136,6 +136,7 @@ from guppi.generate import (  # the ticker, the pairs, the Frontier line (case 3
     READ_LINE,
     Vault,
     as_list,
+    indent_added_twice,
     replace_once,
 )
 from guppi.ledger import (
@@ -673,7 +674,10 @@ def check_pairs(cases: dict, blocks: dict, project_dir: Path) -> list[str]:
     against 310.6). The meaning of the words in their place is not judged here (case 351).
     Each section a pair changes is judged by `fence_breaks` before and after the pair, and a
     break it adds is one finding; so is a break in the text of a `sections` value of a
-    `create` or an `update`, judged on its own and not applied to the copies (case 487.1)."""
+    `create` or an `update`, judged on its own and not applied to the copies (case 487.1). A
+    `replace` pair whose `new` opens with a space or a tab while its `old` opens with neither
+    is one finding too, by `indent_added_twice` of `guppi/generate.py`: the page keeps its own
+    indent before the match, and the indent of `new` would stand after it (case 543.4)."""
     findings: list[str] = []
     pages: dict[str, Page | None] = {}
     every_page = False
@@ -726,12 +730,17 @@ def check_pairs(cases: dict, blocks: dict, project_dir: Path) -> list[str]:
             for pair in item.get("replace") or []:
                 if not isinstance(pair, dict):
                     continue
-                old = str(pair.get("old") or "")
+                old, new = str(pair.get("old") or ""), str(pair.get("new") or "")
+                if old and indent_added_twice(old, new):
+                    findings.append(
+                        f"case {case}: {slug}: a replace pair adds an indent twice — its new "
+                        f"opens with a space or a tab and its old with neither: {preview(old)}"
+                    )
                 page = load(slug)
                 if page is None or page.error or not old:
                     continue
                 before = {slug: dict(page.sections)}
-                hits = replace_once(page, old, str(pair.get("new") or ""))
+                hits = replace_once(page, old, new)
                 if hits == 1:
                     fence_findings(case, slug, before)
                     continue

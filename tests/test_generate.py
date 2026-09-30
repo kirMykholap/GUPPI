@@ -4,6 +4,7 @@ import io
 from datetime import UTC, datetime
 from pathlib import Path
 
+import pytest
 import yaml
 
 from guppi import generate, lint
@@ -297,6 +298,39 @@ def test_a_replace_absent_or_not_unique_fails_that_entry_alone(tmp_path):
     data = load_yaml(tmp_path)
     assert "applied" not in data["entries"][1] and "failed" in data["entries"][1]
     assert data["entries"][0]["applied"] and data["entries"][2]["applied"]
+
+
+# --- case 543.3: an old that opens with spaces takes the spaces before its first word ------
+
+
+def indented(text):
+    return generate.Page("rules", "rule-x", Path("rule-x.md"), sections={"## Render": text})
+
+
+TEMPLATE = "    > the quote\n\n        **Options:**\n\n    🔹 **(a) one**\n"
+
+
+def test_an_old_and_a_new_that_open_with_spaces_leave_the_indent_of_new():
+    page = indented(TEMPLATE)
+    old = "    > the quote\n\n        **Options:**"
+    new = "    > the quote\n\n    **Options:**"
+    assert generate.replace_once(page, old, new) == 1
+    assert (
+        page.sections["## Render"] == "    > the quote\n\n    **Options:**\n\n    🔹 **(a) one**\n"
+    )
+
+
+def test_an_old_with_no_leading_space_leaves_the_spaces_of_the_page():
+    page = indented(TEMPLATE)
+    assert generate.replace_once(page, "> the quote", "> a quote") == 1
+    assert page.sections["## Render"].startswith("    > a quote\n")
+
+
+def test_the_hit_count_is_the_same_with_and_without_the_leading_spaces():
+    text = "    FIRST here\nFIRST there\n  FIRST again\n"
+    for old in ("FIRST", "    FIRST", "\tFIRST"):
+        assert len(generate.replace_hits(indented(text), old)) == 3
+    assert len(generate.replace_hits(indented("  only once\n"), "   only once")) == 1
 
 
 # --- case 514: a Case ratified again changes each page once --------------------------------
@@ -1521,6 +1555,82 @@ def test_a_decision_page_of_a_case_without_given_keeps_its_context(tmp_path):
     # the short form has no Case file: its page keeps the context (case 513)
     assert "---\n\n## Context\n\nc\n\n## Problem\n\np\n\n## History" in text
     assert "## Given" not in text
+
+
+def test_a_decision_page_carries_its_recommend(tmp_path):  # case 544.7
+    entries = [ROOT]
+    decisions = records_for(entries)
+    decisions[0]["case_text"]["recommend"] = "- **Which?**\n  - Recommended: (a).\n  - Answer: yes."
+    seed(tmp_path, entries=entries, decisions=decisions)
+    code, _, err = run(tmp_path)
+    assert code == 0 and err == "", err
+    text = page(tmp_path, "decisions", "decision-case-1")
+    assert "## Problem\n\np\n\n## Recommend\n\n- **Which?**\n  - Recommended: (a).\n" in text
+
+
+def sub_cases(parent_text):
+    """Case 9 with two sub-cases 9.1 and 9.2 on the pages of ROOT and CHILD, the records as
+    materialize writes them (case 544.6): the parent's record last, with `children`."""
+    entries = [
+        dict(
+            ROOT, case="9.1", decision="decision-case-9.1", origin=f"raw/{DATE}/ledger.md#case-9.1"
+        ),
+        dict(
+            CHILD, case="9.2", decision="decision-case-9.2", origin=f"raw/{DATE}/ledger.md#case-9.2"
+        ),
+    ]
+    decisions = records_for(entries)
+    for record in decisions:
+        record["parent"] = "decision-case-9"
+        record["tags"] = ["harness"]  # the tags of its lines
+        del record["case_text"]["problem"]
+    decisions[1]["case_text"]["recommend"] = "- **Own?**\n  - Answer: yes."
+    decisions.append(
+        {
+            "case": "9",
+            "decision": "decision-case-9",
+            "origin": f"raw/{DATE}/ledger.md#case-9",
+            "children": ["decision-case-9.1", "decision-case-9.2"],
+            "tags": [],
+            "case_text": parent_text,
+        }
+    )
+    return entries, decisions
+
+
+@pytest.mark.parametrize(
+    "parent_text",
+    [
+        {"context": "c", "problem": "p", "recommend": "r", "given": "g"},
+        {"context": "c", "problem": "p", "recommend": "r"},
+    ],
+)
+def test_a_parent_case_gets_its_page_first_with_children_and_no_context(tmp_path, parent_text):
+    entries, decisions = sub_cases(parent_text)
+    seed(tmp_path, entries=entries, decisions=decisions)
+    code, _, err = run(tmp_path)
+    assert code == 0 and err == "", err
+    parent = page(tmp_path, "decisions", "decision-case-9")
+    fields = props(parent)
+    assert fields["children"] == ["decision-case-9.1", "decision-case-9.2"]
+    assert not any(kind in fields for kind in ("create", "update", "delete", "defer"))
+    assert fields["tags"] == ["harness"]  # the tags of its sub-cases
+    assert "---\n\n## Problem\n\np\n\n## Recommend\n\nr\n\n## History" in parent
+    assert "## Context" not in parent
+    log = (tmp_path / "vault" / "wiki" / "log.md").read_text(encoding="utf-8")
+    assert log.index("decision-case-9 ") < log.index("decision-case-9.1")
+
+
+def test_a_sub_case_page_carries_parent_and_no_problem(tmp_path):  # case 544.7
+    entries, decisions = sub_cases({"context": "c", "problem": "p", "recommend": "r"})
+    seed(tmp_path, entries=entries, decisions=decisions)
+    code, _, err = run(tmp_path)
+    assert code == 0 and err == "", err
+    first = page(tmp_path, "decisions", "decision-case-9.1")
+    assert props(first)["parent"] == "decision-case-9" and props(first)["create"] == ["rule-root"]
+    assert "## Problem" not in first and "## Recommend" not in first
+    second = page(tmp_path, "decisions", "decision-case-9.2")
+    assert "## Problem" not in second and "## Recommend\n\n- **Own?**\n  - Answer: yes." in second
 
 
 def test_a_defer_marks_an_insight_deferred_by_and_a_supersedes_clears_it(tmp_path):

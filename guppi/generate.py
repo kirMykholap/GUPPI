@@ -60,11 +60,15 @@ The Decision page (case 201.2): one per Case, `decisions/decision-case-<N>.md`, 
 before the first entry of its lines so their History lines can name it; `case`, `status:
 current`, one list per kind present — `create`, `update`, `delete`, `defer`, the slugs in
 ledger order (case 59.4) — `source`, `supersedes`, `origin`, `sprint`, `created`, `tags`
-(the union of the targets' tags); the body `## Problem` from `case_text` — the rest of the
-Case, `context`, `recommend` and `given` among it, stays in its Case file
-`cases/case-<N>.md` in the folder of `origin` (case 513) — with `## Context` before it only
-when `case_text` carries no `given`, the short form of a deferred decision, which has no
-Case file; and `## Deferred`, one `### [[slug]]` heading per target of the Case's `defer`
+(the union of the targets' tags); the body `## Problem` and `## Recommend` from `case_text`
+when it carries them — the rest of the Case, `context` and `given` among it, stays in its
+Case file `cases/case-<N>.md` in the folder of `origin` (cases 513, 544.7) — with
+`## Context` before them only when `case_text` carries no `given` and the record no
+`children`, the short form of a deferred decision, which has no Case file. A record with
+`children`, a Case with sub-cases, gets its page before the pages of its sub-cases, with
+`children` their pages, no kind list, the tags of its sub-cases' targets and never
+`## Context`; the page of a sub-case carries `parent`, its parent's page, and no `## Problem`
+(case 544.7). And `## Deferred`, one `### [[slug]]` heading per target of the Case's `defer`
 lines with its `purpose` verbatim (case 186.1); no `## Given`, no `## When`, no
 `## Criterion` list — the contract lives on the Estimate; pages written before keep the
 sections they carry and are not rewritten. A record with
@@ -188,8 +192,8 @@ KEY_ORDER = {
         "origin", "sprint", "created", "tags",
     ],
     "decisions": [
-        "type", "case", "status", "create", "update", "delete", "defer", "source", "supersedes",
-        "superseded_by", "origin", "sprint", "created", "tags",
+        "type", "case", "status", "parent", "children", "create", "update", "delete", "defer",
+        "source", "supersedes", "superseded_by", "origin", "sprint", "created", "tags",
     ],
 }  # fmt: skip
 KINDS = ("create", "update", "delete", "defer")  # a decision page's lists, in this order
@@ -200,8 +204,10 @@ SECTION_ORDER = {  # no section derived from a ref field (case 166.2)
     "lessons": ["Trigger", "Root cause"],
     "insights": ["Pattern", "Proposal"],
     # Given, When and Criterion: the shapes before 72.4 and 201.2, kept where a page carries them
-    "decisions": ["Context", "Problem", "Given", "When", "Criterion", "Deferred", "Note"],
-}
+    "decisions": [
+        "Context", "Problem", "Recommend", "Given", "When", "Criterion", "Deferred", "Note",
+    ],
+}  # fmt: skip
 DEFERRABLE = ("rules", "entities", "insights")  # the categories a `defer` marks (124.2)
 LIBRARIAN_ONLY = "an Insight is made and retired by the librarian, never created or deleted by a decision (case 171)"
 INITIAL_STATUS = {
@@ -319,15 +325,28 @@ DAY = re.compile(r"^\d{4}-\d\d-\d\d$")
 SESSION = re.compile(r"^\d{4}$")
 
 
+LEADING_BLANK = " \t"
+
+
+def opens_blank(text: str) -> bool:
+    """Whether `text` opens with a space or a tab — the one reading of a leading indent of a
+    `replace` pair, which `replace_hits` and `indent_added_twice` share (case 543)."""
+    return text[:1] in tuple(LEADING_BLANK)
+
+
 def replace_hits(page: Page, old: str) -> list[tuple[str, re.Match]]:
     """Every hit of `old` in the page's sections but History, whitespace collapsed: the
     tokens of `old` joined by one `\\s+`, so a line break inside the anchor still matches.
-    The one matching rule of a `replace` pair — `pre-spec` simulates the pairs of a Spec by
-    it before the Spec is approved (case 351)."""
+    An `old` that opens with a space or a tab also takes every space and tab on the page just
+    before its first word, so the indent of `new` replaces them and is not added after them;
+    those spaces never make an anchor miss or hit twice (case 543.3). The one matching rule of
+    a `replace` pair — `pre-spec` simulates the pairs of a Spec by it before the Spec is
+    approved (case 351)."""
     tokens = [re.escape(t) for t in old.split()]
     if not tokens:
         return []
-    pattern = re.compile(r"\s+".join(tokens))
+    lead = f"[{LEADING_BLANK}]*" if opens_blank(old) else ""
+    pattern = re.compile(lead + r"\s+".join(tokens))
     return [
         (key, m)
         for key, text in page.sections.items()
@@ -338,14 +357,23 @@ def replace_hits(page: Page, old: str) -> list[tuple[str, re.Match]]:
 
 def replace_once(page: Page, old: str, new: str) -> int:
     """The number of hits of `old` in the page; when it is exactly one, `new` takes its
-    place. Anything else changes nothing: an anchor that misses or is not unique fails the
-    entry (case 274.1)."""
+    place — with the spaces and tabs before it when `old` opens with one (case 543.3).
+    Anything else changes nothing: an anchor that misses or is not unique fails the entry
+    (case 274.1)."""
     hits = replace_hits(page, old)
     if len(hits) == 1:
         key, match = hits[0]
         text = page.sections[key]
         page.sections[key] = text[: match.start()] + new + text[match.end() :]
     return len(hits)
+
+
+def indent_added_twice(old: str, new: str) -> bool:
+    """Whether a `replace` pair adds an indent twice: its `new` opens with a space or a tab
+    while its `old` opens with neither, so the page keeps its own indent before the match and
+    the indent of `new` stands after it. `pre-spec` reports such a pair, and the Case check
+    with it through `judge`; `generate` applies it as before (case 543.4)."""
+    return opens_blank(new) and not opens_blank(old)
 
 
 def tick_read(
@@ -1039,9 +1067,16 @@ class Vault:
 
     # decisions
 
-    def decision(self, record: dict, deferred: list[tuple[str, str]] | None = None) -> None:
+    def decision(
+        self,
+        record: dict,
+        deferred: list[tuple[str, str]] | None = None,
+        children: list[dict] | None = None,
+    ) -> None:
         """The Decision page of a Case; `deferred` is the `(slug, purpose)` of every `defer`
-        line of the Case, in ledger order, written under `## Deferred` (case 186.1)."""
+        line of the Case, in ledger order, written under `## Deferred` (case 186.1).
+        `children`, on the page of a Case with sub-cases, the records of its sub-cases, whose
+        tags — theirs and their targets' — its page takes (case 544.7)."""
         slug = record["decision"]
         path = self.path("decisions", slug)
         if path.exists():
@@ -1049,13 +1084,21 @@ class Vault:
         text = record.get("case_text") or {}
         tags = list(record.get("tags") or [])
         targets = record.get("targets") or []
-        for target in targets:
+        tag_targets = []
+        for child in children or []:
+            tags += [t for t in child.get("tags") or [] if t not in tags]
+            tag_targets += child.get("targets") or []
+        for target in [*targets, *tag_targets]:
             if target.get("category") in CATEGORIES:
                 page = self.find(str(target.get("slug")))
                 for tag in as_list(page.props.get("tags")) if page else []:
                     if tag not in tags:
                         tags.append(tag)
         props: dict = {"type": "decision", "case": str(record["case"]), "status": "current"}
+        if record.get("parent"):  # the page of a sub-case names its parent's (case 544.7)
+            props["parent"] = str(record["parent"])
+        if record.get("children"):  # in place of the kind lists (case 544.7)
+            props["children"] = [str(c) for c in record["children"]]
         for kind in KINDS:  # one list per kind present, the slugs in ledger order (case 59.4)
             slugs = [str(t.get("slug")) for t in targets if str(t.get("kind")) == kind]
             if slugs:
@@ -1070,10 +1113,13 @@ class Vault:
         props["created"] = self.date
         props["tags"] = tags  # the union of the targets' tags; empty is a fact, not a gap
         sections = {}  # no When, no Criterion list: the contract lives on the Estimate (201.2)
-        if text.get("context") and not text.get("given"):  # the short form: no Case file (513)
+        short = not text.get("given") and not record.get("children")
+        if text.get("context") and short:  # the short form: no Case file (513, 544.7)
             sections["## Context"] = text["context"]
-        if text.get("problem"):  # the rest of the Case stays in its Case file (case 513)
+        if text.get("problem") and not record.get("parent"):  # the parent's only (544.7)
             sections["## Problem"] = text["problem"]
+        if text.get("recommend"):  # the choices of the rounds (case 544.7)
+            sections["## Recommend"] = text["recommend"]
         if not text and record.get("superseded_by"):  # gone from the Spec (299.4)
             by = ", ".join(f"[[{s}]]" for s in as_list(record["superseded_by"]))
             sections["## Context"] = (
@@ -1264,13 +1310,29 @@ def deferred_of(data: dict) -> dict[str, list[tuple[str, str]]]:
 
 
 def apply_decision(
-    vault: Vault, record: dict, stamp: str, deferred: list[tuple[str, str]] | None = None
+    vault: Vault,
+    record: dict,
+    stamp: str,
+    deferred: list[tuple[str, str]] | None = None,
+    records: dict | None = None,
 ) -> None:
+    """The Decision page of one record; with `records`, the Case id → record of the unit, the
+    page of its parent first — a Case with sub-cases gets its page before theirs — and the
+    page of a record with `children` takes the tags of their targets (case 544.7)."""
     if record.get("applied"):
         return
+    records = records or {}
+    parent = str(record.get("parent") or "").removeprefix("decision-case-")
+    if parent in records:
+        apply_decision(vault, records[parent], stamp, None, records)
+    children = [
+        records[str(child).removeprefix("decision-case-")]
+        for child in record.get("children") or []
+        if str(child).removeprefix("decision-case-") in records
+    ]
     before = len(vault.errors)
     try:
-        vault.decision(record, deferred)
+        vault.decision(record, deferred, children)
     except Exception as exc:  # noqa: BLE001
         vault.error(record.get("decision", "?"), f"{type(exc).__name__}: {exc}")
     if len(vault.errors) == before:
@@ -1310,8 +1372,8 @@ def apply(vault: Vault, data: dict) -> None:
         if entry.get("superseded_by"):  # a later Case did its work; only the Decision page
             if "case" in entry and str(entry["case"]) in records:  # of its Case is written,
                 case = str(entry["case"])
-                apply_decision(vault, records[case], stamp, deferred.get(case))  # before the
-            continue  # superseding one marks it (case 151)
+                apply_decision(vault, records[case], stamp, deferred.get(case), records)  # before
+            continue  # the superseding one marks it (case 151)
         if "kind" not in entry and entry.get("failed"):  # a line materialize could not lift
             vault.error(
                 f"line {entry.get('line', '?')}", f"not lifted by materialize; {entry['failed']}"
@@ -1319,7 +1381,7 @@ def apply(vault: Vault, data: dict) -> None:
             continue  # the mark stays as materialize wrote it (case 142.2)
         if "case" in entry and str(entry["case"]) in records:  # the Decision page first (52.4)
             case = str(entry["case"])
-            apply_decision(vault, records[case], stamp, deferred.get(case))
+            apply_decision(vault, records[case], stamp, deferred.get(case), records)
         kind = entry.get("kind")
         first = repeated(vault.entries, entry)
         if first is not None:  # a Case ratified again, its line written again (case 514)
@@ -1357,7 +1419,7 @@ def apply(vault: Vault, data: dict) -> None:
     vault.settle_backlinks()
     vault.write_log()
     for record in data.get("decisions") or []:
-        apply_decision(vault, record, stamp, deferred.get(str(record.get("case"))))
+        apply_decision(vault, record, stamp, deferred.get(str(record.get("case"))), records)
     vault.cascade()
     vault.register_tags(data.get("new_tags") or [])
     vault.write_log()

@@ -22,9 +22,16 @@ chat form: the sections in the order of the schema; the ones a Case needs — a 
 `context` and `problem`, and `when`, `then`, `tasks` and `ratification` of a Case with no
 sub-cases (`given` too, unless it is a sub-case); and a `ratification` of one untagged fence of
 ledger lines and nothing else, the fence judged by `materialize.fence_opening` and
-`closes_fence` (case 444.1). The text of the story sections — `context`, `problem` and
-`recommend` — is not checked: the person judges it; the check still requires the sections and
-their order (case 449), and runs over the same Spec text the language finding of `/pre-spec`,
+`closes_fence` (case 444.1); a sub-case that carries `problem` is a finding of that sub-case,
+since `problem` stands on its parent only (case 544.4). The text of the story sections —
+`context`, `problem` and `recommend` — is not checked: the person judges it; the check still
+requires the sections and their order (case 449), but for the titles of the items of
+`recommend`: it reads the earlier outputs of the subagent in `agent_transcript_path` that hold
+no Case heading — its rounds — and takes the title of each question from its line
+`❓ **Q<n>** - **<title>**:`; a title that no item of a `recommend` of the answer opens with,
+in bold, is a finding of the top-level Case, a title asked in more than one round looked for
+once and the words of an item after its title not judged (case 544.3). It runs over the same
+Spec text the language finding of `/pre-spec`,
 `prespec.check_untranslated`, imported: a name, `context` or `problem` that holds a letter
 outside the script of the documentation language is a finding of its Case, and a `guppi.toml`
 that is missing or names a code the table does not hold is one finding, given to the first
@@ -85,6 +92,7 @@ The payload is read as UTF-8; the hook never raises. Rule page:
 
 import json
 import os
+import re
 import sys
 from datetime import datetime
 from pathlib import Path
@@ -136,6 +144,10 @@ LEDGER_LINE = ("- decision[", "- estimate[", "- lesson[")
 # The parts of a shown Case compared with its stored answer, each only when the reply shows
 # it (452.2); the heading name and the prose — `context`, `problem`, `recommend` — are free.
 MECHANICAL = ("given", "when", "then", "tasks", "ratification")
+# The title line of a question of a round, as the template of the skill `grill-me` writes it,
+# and the title of an item of `recommend` (case 544.3).
+QUESTION_LINE = re.compile(r"^❓ \*\*Q\d+\*\* - \*\*(.+?)\*\*:")
+RECOMMEND_ITEM = re.compile(r"^- \*\*(.+?)\*\*")
 
 
 def store_of(plan: Path) -> Path:
@@ -315,13 +327,16 @@ def has_sub_cases(case: str, cases: dict) -> bool:
 
 
 def form_findings(case: str, lines: list[str], cases: dict) -> list[str]:
-    """The chat form of one Case: the order of its sections, the ones it needs, and what
-    `ratification` holds."""
+    """The chat form of one Case: the order of its sections, the ones it needs, what
+    `ratification` holds, and no `problem` in a sub-case — it stands on the parent only
+    (case 544.4)."""
     sections = quoted_sections(lines, CHAT_SECTIONS)
     names = list(sections)
     findings: list[str] = []
     if names != sorted(names, key=CHAT_SECTIONS.index):
         findings.append(f"case {case}: sections out of the order of the schema: {', '.join(names)}")
+    if "." in case and "problem" in sections:
+        findings.append(f"case {case}: a sub-case carries problem, which stands on its parent only")
     if has_sub_cases(case, cases):
         needed = ("context", "problem")
     elif "." in case:
@@ -399,13 +414,48 @@ def check_backlog(
     return findings
 
 
+def recommend_titles(cases: dict) -> set[str]:
+    """The title of each item of every `recommend` of the answer: a line `- **<title>**` at
+    the top level of the list (case 544.3)."""
+    titles: set[str] = set()
+    for lines in cases.values():
+        text = quoted_sections(lines, ("recommend",)).get("recommend", "")
+        for line in text.splitlines():
+            match = RECOMMEND_ITEM.match(line)
+            if match:
+                titles.add(match.group(1).strip())
+    return titles
+
+
+def check_rounds(cases: dict, rounds: list[str]) -> list[tuple[str, str]]:
+    """Case 544.3: `(top-level case, finding)` for each title of a question of the rounds
+    that no item of a `recommend` of the answer opens with, in bold; a title asked in more
+    than one round is looked for once, and the words of an item after its title are not
+    judged."""
+    if not rounds or not cases:
+        return []
+    held = recommend_titles(cases)
+    top = top_case(next(iter(cases)))
+    return [
+        (top, f"case {top}: recommend holds no item for the question of the rounds: {title}")
+        for title in dict.fromkeys(rounds)
+        if title not in held
+    ]
+
+
 def check_answer(
-    text: str, project_dir: Path, window: list[str] = (), frontier: Path | None = None
+    text: str,
+    project_dir: Path,
+    window: list[str] = (),
+    frontier: Path | None = None,
+    rounds: list[str] = (),
 ) -> tuple[dict[str, list[str]], dict[str, list[str]]]:
     """Case id → its findings, and case id → its notes, for every Case of an answer of
     `case-guppi`. The categories whose schema rule the lines of the `ratification` fences or
     of the session's `window` change are not judged by their keys (case 436.4). `frontier`,
-    the session's `frontier.md`, adds the check of its open `backlog` lines (case 467.2). The
+    the session's `frontier.md`, adds the check of its open `backlog` lines (case 467.2).
+    `rounds`, the titles of the questions of the rounds of `case-guppi` on the Case, adds
+    the check that `recommend` holds an item for each (case 544.3). The
     language finding of `/pre-spec`, `check_untranslated`, runs over the same Spec text as
     `judge`, each hit a finding of its Case (case 537). The notes are those of
     `prespec.promise_notes` on the answer — a Criterion line not carried, a `then` line shared
@@ -434,7 +484,9 @@ def check_answer(
         match = FINDING_CASE.match(finding)
         case = match.group(1) if match else ""
         found[case if case in found else next(iter(cases))].append(finding)
-    for top, finding in check_backlog(records, frontier, project_dir):
+    for top, finding in check_backlog(records, frontier, project_dir) + check_rounds(
+        cases, list(rounds)
+    ):
         family = [c for c in found if c == top or c.startswith(f"{top}.")]
         found[family[0] if family else next(iter(cases))].append(finding)
     notes: dict[str, list[str]] = {case: [] for case in cases}
@@ -479,6 +531,25 @@ def answer_of(payload: dict) -> str:
     return str(payload.get("last_assistant_message") or "")
 
 
+def round_titles(payload: dict) -> list[str]:
+    """The title of each question of the rounds of the subagent, in order: the outputs in
+    `agent_transcript_path` that hold no Case heading, each line `❓ **Q<n>** - **<title>**:`
+    of the question template of the skill `grill-me` (case 544.3). An unreadable transcript
+    gives none."""
+    titles: list[str] = []
+    for record in read_records(payload.get("agent_transcript_path")) or []:
+        if record.get("type") != "assistant":
+            continue
+        for text in outputs(record):
+            if split_cases(text):
+                continue
+            for line in text.splitlines():
+                match = QUESTION_LINE.match(line.strip())
+                if match:
+                    titles.append(match.group(1).strip())
+    return titles
+
+
 def subagent(payload: dict, project_dir: Path, now, stderr) -> int:
     if payload.get("agent_type") != AGENT:
         return 0
@@ -490,7 +561,7 @@ def subagent(payload: dict, project_dir: Path, now, stderr) -> int:
     folder = session_dir(project_dir, now, stamp)
     window = ledger_of(folder)
     frontier = folder / "frontier.md" if folder is not None else None
-    found, notes = check_answer(text, project_dir, window, frontier)
+    found, notes = check_answer(text, project_dir, window, frontier, round_titles(payload))
     plan = plan_path(session_event_logs(project_dir, now, stamp), stamp)
     if plan is None or not plan.is_file():
         return 0  # no plan file: nothing stored, nothing sent back (case 434)

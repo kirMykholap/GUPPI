@@ -91,6 +91,21 @@ def test_a_decision_page_without_context_has_no_finding():
     assert findings(page, data) == []
 
 
+def test_a_decision_page_without_problem_with_recommend_parent_and_children_has_no_finding():
+    """Case 544.8: `## Problem` is optional and `## Recommend`, `parent` and `children` are
+    known to the schema of a Decision page, so the page of a sub-case or of its parent earns
+    no `schema` finding. Skipped until the librarian renders the live file of 544.8."""
+    data = schema("decisions")
+    if "## Problem" in data["body"]["required"]:
+        pytest.skip("decisions/schema.yaml waits for the librarian's render of case 544.8")
+    page = page_in_shape("decisions", data)
+    page.sections.pop("## Problem", None)
+    page.sections["## Recommend"] = "- **Which?**\n  - Answer: yes."
+    page.props["parent"] = "decision-case-9"
+    page.props["children"] = ["decision-case-9.1", "decision-case-9.2"]
+    assert findings(page, data) == []
+
+
 @pytest.mark.parametrize("category", CATEGORIES)
 def test_a_value_outside_the_list_is_one_finding(category):
     data = schema(category)

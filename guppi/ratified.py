@@ -15,8 +15,9 @@ of `casecheck.against_store` — and a Case whose file no `SendUserFile` call se
 time the store holds for Case N, a store that holds no time included (case 452.3); a reply
 with no showing is no refusal. Otherwise it writes the stored answer (case 437) into the plan file
 `ledger.plan_path` names, outside the repository, and into no copy (case 445.2): the heading,
-`context`, `problem`, `given`, `when` and `then` as the stored answer holds them — a `context`
-or `problem` it leaves out keeps the text the file held — a block tagged `then` built from the
+`context`, `problem`, `recommend`, `given`, `when` and `then` as the stored answer holds them —
+a sub-case's own `recommend` under its heading (case 544.5); a `context`, `problem` or
+`recommend` it leaves out keeps the text the file held — a block tagged `then` built from the
 sub-points of `tasks`, and a block tagged `tasks` of the task lines without their sub-points,
 each fenced by `materialize.fence_for`: backticks one longer than the longest run of backticks
 that opens a line inside it, three at the least (case 444.2); every section
@@ -25,8 +26,8 @@ of the Case is replaced when one stands, the section inserted after its family o
 into it too (case 441.6): every section of the Case there replaced — an approval repeated in
 one session leaves it twice — or the section placed in the last approved document; a task
 line whose text stood in a replaced section keeps its box. A sub-case also writes its
-parent's heading, `context` and `problem` from the parent's stored answer, never from the
-reply. The chat form the hook reads: a task line opening with `create`, `update`,
+parent's heading, `context`, `problem` and `recommend` from the parent's stored answer, never
+from the reply (cases 441.6, 544.5, 544.10). The chat form the hook reads: a task line opening with `create`, `update`,
 `delete` or `defer` and the slug in its first code span is an item; its sub-points are its
 keys — `old` and `new` in pairs under `replace`, `reword old` and `reword new` under
 `reword`, `set` (a YAML flow mapping), `change`, `rename`, `sections.<Name>`, the fields of a
@@ -49,7 +50,7 @@ The defer (case 421.1). A Case whose lines in the reply are all `defer` — besi
 other Cases or alone — is written from the same reply, which shows it in the short form: the
 heading, `context`, `problem` and its fence tagged `then`, each `defer` line with an item of
 `slug`, `type` and `purpose`. It goes under `## Deferred` of the plan file, or of `spec.md` in
-the session's folder once that file stands (Retro), its section replaced when it stands and
+the session's folder once that file stands (case 542), its section replaced when it stands and
 appended otherwise; the check after the write does not run on it. No showing, a missing item,
 a key of a `defer` item that `materialize.item_keys` does not give it (case 436.3), or a
 fence tagged `then` that holds a YAML comment by `materialize.then_comments` — after a space
@@ -136,8 +137,11 @@ CHAT_SECTIONS = (
     "tasks",
     "ratification",
 )
-SPEC_SECTIONS = ("context", "problem", "given", "when", "then")
-PROSE = ("context", "problem")
+SPEC_SECTIONS = ("context", "problem", "recommend", "given", "when", "then")  # 544.5
+PROSE = ("context", "problem")  # the parts the language finding reads (cases 387.4, 445.4)
+# The story of a Case the Spec holds, which a showing may leave out and a sub-case takes from
+# its parent's stored answer (cases 441.6, 544.5).
+STORY = ("context", "problem", "recommend")
 EDIT_TOOLS = ("Edit", "Write", "MultiEdit")
 DEFERRED = "## Deferred"
 APPROVED = "<!-- approved"  # the stamp `guppi spec` opens each approved document of spec.md with
@@ -504,8 +508,9 @@ def case_section(
     keys_for=None,
 ) -> tuple[list[str], list[str]]:
     """The Spec section of a Case shown in the chat form, built in memory, and the errors of
-    its form — the one reading of the write and of `casecheck` (case 419.3). A `context` or
-    `problem` the showing leaves out is taken from `held`, the sections the Spec holds.
+    its form — the one reading of the write and of `casecheck` (case 419.3). A `context`,
+    `problem` or `recommend` the showing leaves out is taken from `held`, the sections the Spec
+    holds (case 544.5).
     `keys_for` judges the keys of each item (case 436.1)."""
     chat = quoted_sections(lines, CHAT_SECTIONS)
     tasks, block, errors = read_tasks(chat.get("tasks", ""), keys_for)
@@ -516,7 +521,7 @@ def case_section(
         if ref and item["slug"].startswith("estimate-") and "ref" not in item:
             item["ref"] = ref
     sections = {n: chat[n] for n in SPEC_SECTIONS if n in chat}
-    for name in PROSE:
+    for name in STORY:
         if name not in sections and held and name in held:
             sections[name] = held[name]
     return spec_section(heading, sections, block, tasks), []
@@ -667,15 +672,15 @@ def remove_superseded(records: list[dict], written: set[str], targets: list[Path
 
 
 def write_parent(plan: Path, case: str, text: str, approved: Path | None = None) -> None:
-    """A sub-case's parent: its heading, `context` and `problem` as `text` — its stored
-    answer (case 441.6) — holds them; its own `given`, `when`, `then` and blocks, if any,
+    """A sub-case's parent: its heading, `context`, `problem` and `recommend` as `text` — its
+    stored answer (cases 441.6, 544.5) — holds them; its own `given`, `when`, `then` and blocks, if any,
     kept as they stand, each block fenced by its content (case 444.2); in the plan and
     `approved` when that stands, no copy (case 445.2)."""
     parent = case.rsplit(".", 1)[0]
     lines = split_cases(text).get(parent)
     if lines is None:
         return
-    shown = quoted_sections(lines, PROSE)
+    shown = quoted_sections(lines, STORY)
     if not shown:
         return
     heading = headings(text)[parent]
@@ -872,7 +877,9 @@ def stop(payload: dict, project_dir: Path, now, stderr) -> int:
                     write_parent(plan, case, str(parent.get("text") or ""), approved)
     checked = set(written)  # the check after the write reads the Cases of `write_case` only
     if defer_only(records):
-        target = approved if approved.is_file() else plan  # a defer at Retro goes to spec.md
+        target = (
+            approved if approved.is_file() else plan
+        )  # once spec.md stands, a defer goes there (542)
         if target is None or not target.is_file():
             problems.append(
                 "no plan file of this session in the event log — create it with its title "

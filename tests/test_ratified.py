@@ -251,7 +251,9 @@ def test_write_the_ratified_case_goes_into_the_plan_and_no_copy(working):
     sections = materialize.quoted_sections(lines, ratified.SPEC_SECTIONS)
     assert sections["given"] == "`rule-x` — the rule.\n**＋** `estimate-x-works` — its Estimate."
     assert sections["context"] == "Контекст." and sections["problem"] == "Проблема."
-    assert "recommend" not in plan and "**ratification:**" not in plan
+    assert sections["recommend"] == "Совет."  # the Spec holds recommend (case 544.5)
+    assert list(sections) == ["context", "problem", "recommend", "given", "when", "then"]
+    assert "**ratification:**" not in plan
     block, errors = then_blocks(lines)
     assert errors == [] and block == EXPECTED_BLOCK
     tasks = "\n".join(ratified.tagged_blocks(lines, "tasks"))
@@ -522,7 +524,7 @@ def test_write_a_defer_shown_again_replaces_its_section(working):
     assert plan.count("## Case 8 —") == 1 and "Later, reworded" in plan
 
 
-def test_write_a_defer_at_retro_goes_into_the_spec_of_the_folder(working):
+def test_write_a_defer_once_the_spec_stands_goes_into_it(working):
     spec = working / "vault" / "raw" / TODAY.isoformat() / "1501" / "spec.md"
     spec.parent.mkdir(parents=True)
     spec.write_text("# Spec\n\n## Case 7 — done\n", encoding="utf-8")
@@ -759,6 +761,56 @@ def test_write_a_sub_case_brings_its_parents_prose(working):
     assert plan.index("## Case 9 — родитель") < plan.index("### Case 9.1 — ребёнок")
     parent = materialize.quoted_sections(split_cases(plan)["9"], ratified.SPEC_SECTIONS)
     assert parent == {"context": "Общий контекст.", "problem": "Вопрос."}
+
+
+# --- recommend in the Spec (cases 544.5, 544.10) ------------------------------------------
+
+PARENT_9 = (
+    "## Case 9 — родитель\n\n> **context:**\n> Общий контекст.\n\n> **problem:**\n> Вопрос.\n\n"
+    "> **recommend:**\n> - **Which page?**\n>   - Recommended: (a).\n>   - Answer: да.\n\n"
+)
+SUB_9_1 = (
+    SHOWING.replace("## Case 7 — пример", "### Case 9.1 — ребёнок")
+    .replace("case 7", "case 9.1")
+    .replace("> **context:**\n> Контекст.\n\n> **problem:**\n> Проблема.\n\n", "")
+)
+ACK_9_1 = ACK.replace("case 7", "case 9.1")
+PARENT_RECOMMEND = "- **Which page?**\n  - Recommended: (a).\n  - Answer: да."
+
+
+def recommends(path):
+    text = path.read_text(encoding="utf-8")
+    return {
+        case: materialize.quoted_sections(split_cases(text)[case], ("recommend",)).get("recommend")
+        for case in ("9", "9.1")
+    }
+
+
+def test_write_a_sub_case_keeps_its_own_recommend_and_the_parents_from_the_store(working):
+    build(working, PARENT_9 + SUB_9_1)
+    translated = PARENT_9.replace("Answer: да.", "Answer: yes.") + SUB_9_1
+    assert stop(working, ACK_9_1, translated, ACK_9_1, built=False) == (0, "")
+    assert recommends(plan_of(working)) == {"9": PARENT_RECOMMEND, "9.1": "Совет."}
+
+
+def test_write_approved_spec_holds_recommend(working):
+    spec = approved_spec(working, f"{STAMP}\n\n# Spec\n\n{SPEC_CASE_7}")
+    assert stop(working, ACK, SHOWING, ACK) == (0, "")
+    held = materialize.quoted_sections(
+        split_cases(spec.read_text(encoding="utf-8"))["7"], ratified.SPEC_SECTIONS
+    )
+    assert held["recommend"] == "Совет."
+
+
+def test_write_approved_spec_a_parents_recommend_from_its_stored_answer(working):
+    spec = approved_spec(
+        working, f"{STAMP}\n\n# Spec\n\n## Case 9 — parent\n\n### Case 9.1 — child\n"
+    )
+    build(working, PARENT_9 + SUB_9_1)
+    translated = PARENT_9.replace("Answer: да.", "Answer: yes.") + SUB_9_1
+    assert stop(working, ACK_9_1, translated, ACK_9_1, built=False) == (0, "")
+    for path in (plan_of(working), spec):
+        assert recommends(path) == {"9": PARENT_RECOMMEND, "9.1": "Совет."}, path
 
 
 # --- the check after the write (case 414.1) --------------------------------------------

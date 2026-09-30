@@ -14,7 +14,8 @@ live rules whose `applies_to` names it, case 305.5;
 and, case 72.6, a `[[slug]]` under a decision page's `## Criterion` that is not a live or
 archived Estimate page, or a `### case N` block under an Estimate's `## Criterion` with no
 live or archived `decision-case-N`), `origin` (a ledger file or `[case N]` line that does
-not exist), `path` (a file named in
+not exist; the `#case-N` of a Case with no line of its own is found by a line `[case N.M]` of
+a sub-case, case 544.9), `path` (a file named in
 `implementation_ref` or `governs` that does not exist), `markers` (a page with
 `enforcement: render` whose `## Render` is absent, or whose text does not open with
 `<!-- slug -->` and close with `<!-- /slug -->`; and a `render_mode: full` page whose Render
@@ -42,7 +43,8 @@ is part of the parent's file and its Estimate promises the child's own behaviour
 for a Leaf's Estimate a `tests/` file that exists, the word `pytest`, a `make <target>` of the Makefile, or a reading — "by hand",
 the one spelling since case 330.1; the four forms are one predicate, `names_a_form`, which
 `pre-spec` calls over the plan, case 331), `decision` (a decision page with none of the four
-kind lists `create`, `update`, `delete`, `defer`, or with `kind` or `target_slug` still
+kind lists `create`, `update`, `delete`, `defer` and no `children` — the page of a Case with
+sub-cases carries `children` in their place, case 544.9 — or with `kind` or `target_slug` still
 present, or a slug in a list with a category prefix that names neither a live nor an
 archived page, case 59.4; the prefix is judged by `category_of` of `guppi/materialize.py`,
 the one table, `decision-` included, case 460.3), `deferred` (a placeholder — a rule or entity page that carries
@@ -385,7 +387,8 @@ def check_origin(page: Page, project_dir: Path) -> list[Finding]:
             return [Finding(page, "origin", f"{origin}: two ledgers for raw/{unit}")]
         text = ledgers[0].read_text(encoding="utf-8")
         if ORIGIN_CASE.match(origin):
-            if f"[case {what}]" not in text:
+            # a Case with no line of its own is found by a line of a sub-case (case 544.9)
+            if f"[case {what}]" not in text and f"[case {what}." not in text:
                 return [Finding(page, "origin", f"{origin}: no line carrying [case {what}]")]
         elif len(text.splitlines()) < int(what):
             return [Finding(page, "origin", f"{origin}: the ledger has no line {what}")]
@@ -454,14 +457,15 @@ def check_orphans(pages: list[Page]) -> list[Finding]:
 
 
 def check_decision(page: Page, known: set[str]) -> list[Finding]:
-    """At least one of the four kind lists, neither `kind` nor `target_slug`; every slug
-    with a category prefix a live or archived page, a slug without one a thing outside the
-    vault and not looked up (case 59.4). The prefix is judged by `category_of` of
-    `guppi/materialize.py`, `decision-` included — one table, not a copy (case 460.3)."""
+    """At least one of the four kind lists, or `children` on the page of a Case with
+    sub-cases (case 544.9), neither `kind` nor `target_slug`; every slug with a category
+    prefix a live or archived page, a slug without one a thing outside the vault and not
+    looked up (case 59.4). The prefix is judged by `category_of` of `guppi/materialize.py`,
+    `decision-` included — one table, not a copy (case 460.3)."""
     if page.category != "decisions":
         return []
     out = []
-    if not any(kind in page.props for kind in KINDS):
+    if not any(kind in page.props for kind in KINDS) and not page.props.get("children"):
         out.append(Finding(page, "decision", f"none of {', '.join(KINDS)} is present"))
     for field in ("kind", "target_slug"):
         if field in page.props:

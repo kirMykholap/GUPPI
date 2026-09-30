@@ -13,7 +13,7 @@ with the reason, so the person is told rather than left believing the Spec was c
 The file has three writers: this hook, once per approval; the `Stop` hook of
 `rule-spec-write`, which, once the file stands, writes each Case ratified after the approval
 — its sections replaced, or placed — removes a superseded Case, and writes a defer-only Case
-at Retro under `## Deferred` (cases 421.1, 441); and Work Mode, which ticks the boxes of the
+under `## Deferred` (cases 421.1, 441, 542); and Work Mode, which ticks the boxes of the
 `tasks` blocks.
 
 Written or already there, the hook then prints one JSON object on stdout —

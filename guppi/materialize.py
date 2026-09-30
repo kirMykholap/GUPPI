@@ -12,8 +12,13 @@ holds one entry per record line of the ledger, in ledger order, with its route c
 the Routing Table below and its content lifted from the `then` block of its Case in the Spec. The yaml's `spec` field lists the
 files read and each decision entry names the file its Case was found in; a Case heading
 found in two files stops the walk with exit 1 (case 73.5). One decision entry per Case; a
-sub-case's `context`, `problem`, `recommend` and `given` are its own when present and its
-parent's otherwise, `when` never. What is missing is named (`incomplete`), never invented.
+sub-case's `context` and `given` are its own when present and its parent's otherwise, its
+`problem`, `recommend` and `when` never, and its record carries `parent`, the `decision` of its
+parent, and needs no `problem`. A Case whose sub-cases have decision lines in the unit gets one
+decision record of its own: its `decision` and `origin` by its id, `case_text` with its
+`context`, `problem`, `recommend` and its `given` when it has one, `children` the `decision` of
+each sub-case in ledger order, `tags` the union of theirs, and no `targets` (case 544.6). What
+is missing is named (`incomplete`), never invented.
 A line the grammar does not parse goes under `unparsed`. A line whose lift raises — a `then`
 item of an unexpected shape, any error while the entry is built — becomes an entry `{line,
 text, failed}` without `kind`, reported on stderr as `materialize: line N: <message>`; the
@@ -118,7 +123,8 @@ applied) and `failed` (the error). Set by the librarian: `near`, and `librarian`
 value `merged` or `synthesis` (`rule-documentation`). The decision record of a Case:
 `case`, `decision`, `origin`, `targets` (one per line: `kind`, `category`, `slug`, and
 `path`, `ref`, `source` when present), `tags`, `case_text`, `spec`, `supersedes`,
-`superseded_by`, `incomplete`. A key the code writes and this list does not name is a
+`superseded_by`, `incomplete`, `parent` on a sub-case and `children` on its parent (case
+544.6). A key the code writes and this list does not name is a
 finding of the reading of `estimate-materialize-assembles`.
 
 The fence (case 444.1). A line opens a fence when, after at most three spaces of indent inside
@@ -188,7 +194,10 @@ REQUIRED = {
     "insights": ("pattern", "children", "tags"),
 }
 CASE_SECTIONS = ("context", "problem", "recommend", "given", "when", "then", "ratification")
-INHERITED = ("context", "problem", "recommend", "given")  # a sub-case reads these from its parent
+# A sub-case reads these from its parent, never `problem`, `recommend` or `when` (case 544.6).
+INHERITED = ("context", "given")
+# The story of a parent Case its own record carries (case 544.6).
+PARENT_TEXT = ("context", "problem", "recommend", "given")
 CRITERION_SECTIONS = ("when", "then")  # the Criterion of an Estimate, never `given` (378.2)
 SESSION_FOLDER = re.compile(r"^\d{4}$")  # raw/<date>/<HHMM>/, one session's Spec (case 73)
 
@@ -638,9 +647,9 @@ def quoted_sections(lines: list[str], names: tuple[str, ...]) -> dict[str, str]:
 
 
 def case_texts(cases: dict[str, list[str]], case: str) -> dict[str, str]:
-    """The sections of a Case, with a missing `context`, `problem`, `recommend` or `given`
-    read from its parent (case 60), never `when`; a Spec older than the seven-block form
-    gives its text whole as `then`."""
+    """The sections of a Case, with a missing `context` or `given` read from its parent
+    (case 60), never `problem`, `recommend` or `when` (case 544.6); a Spec older than the
+    seven-block form gives its text whole as `then`."""
     lines = cases.get(case, [])
     texts = quoted_sections(lines, CASE_SECTIONS)
     if not texts and lines:
@@ -1178,6 +1187,8 @@ def decision_record(
         "tags": tags,
         "case_text": texts,
     }
+    if "." in case:  # a sub-case names the record of its parent (case 544.6)
+        record["parent"] = f"decision-case-{case.rsplit('.', 1)[0]}"
     if spec is not None:
         record["spec"] = spec
     if supersedes:
@@ -1185,12 +1196,66 @@ def decision_record(
     if gone_from_spec:  # superseded in its own session: complete by the mark (299.3)
         del record["case_text"]
         return record
-    needed = ("context", "problem")
-    if any(e.get("kind") != "defer" for e in entries_of_case):  # the short form of Retro (56)
+    # `problem` stands on the parent only: a sub-case needs none (case 544.6)
+    needed = ("context",) if "." in case else ("context", "problem")
+    if any(
+        e.get("kind") != "defer" for e in entries_of_case
+    ):  # the short form of a defer (56, 542)
         needed += ("given", "when")
     missing = [name for name in needed if name not in texts]
     if missing or block_errors:
         record["incomplete"] = missing + list(block_errors)
+    return record
+
+
+def parents_of(cases: list[str]) -> dict[str, list[str]]:
+    """Parent id → the ids of its sub-cases among `cases` and among the parents found, in
+    the order they come; a parent of a parent is found too (case 544.6)."""
+    parents: dict[str, list[str]] = {}
+    queue = list(cases)
+    while queue:
+        case = queue.pop(0)
+        if "." not in case:
+            continue
+        parent = case.rsplit(".", 1)[0]
+        if parent not in parents:
+            parents[parent] = []
+            queue.append(parent)
+        if case not in parents[parent]:
+            parents[parent].append(case)
+    return parents
+
+
+def parent_record(
+    case: str,
+    children: list[str],
+    date: str,
+    cases: dict[str, list[str]],
+    tags: list[str],
+    spec: str | None = None,
+) -> dict:
+    """The `decisions` record of a Case whose sub-cases have decision lines in the unit and
+    which has none of its own: its `decision` and `origin` by its id, `case_text` with its
+    `context`, `problem`, `recommend` and its `given` when it has one, `children` the records
+    of its sub-cases in ledger order, `tags` the union of theirs, and no `targets`; a missing
+    `context` or `problem` is `incomplete` (case 544.6)."""
+    texts = quoted_sections(cases.get(case, []), PARENT_TEXT)
+    record = {
+        "case": case,
+        "decision": f"decision-case-{case}",
+        "origin": f"raw/{date}/ledger.md#case-{case}",
+        "children": [f"decision-case-{c}" for c in children],
+        "tags": tags,
+        "case_text": texts,
+    }
+    if "." in case:
+        record["parent"] = f"decision-case-{case.rsplit('.', 1)[0]}"
+    if spec is not None:
+        record["spec"] = spec
+    needed = ("context",) if "." in case else ("context", "problem")  # problem: the top only
+    missing = [name for name in needed if name not in texts]
+    if missing:
+        record["incomplete"] = missing
     return record
 
 
@@ -1407,6 +1472,21 @@ def assemble(
         else:
             decisions.append(record)
             present[case] = record
+    # a Case whose sub-cases have decision lines gets a record of its own (case 544.6)
+    for parent, children in parents_of(list(by_case)).items():
+        tags = []
+        for child in children:
+            for tag in (present.get(child) or {}).get("tags") or []:
+                if tag not in tags:
+                    tags.append(tag)
+        if parent in present:
+            present[parent]["children"] = [f"decision-case-{c}" for c in children]
+            if parent not in by_case:
+                present[parent]["tags"] = tags
+            continue
+        record = parent_record(parent, children, date, cases, tags, spec_of.get(parent))
+        decisions.append(record)
+        present[parent] = record
     for decision in decisions:
         for earlier in decision.get("supersedes") or []:
             target = present.get(earlier[len("decision-case-") :])

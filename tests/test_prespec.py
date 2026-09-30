@@ -1506,6 +1506,32 @@ def test_a_pair_whose_anchor_an_earlier_case_removes_is_a_finding(tmp_path):
     assert out.splitlines() == ["case 2: rule-x: a replace anchor is not in the page: FIRST"]
 
 
+# --- a pair that adds an indent twice (case 543.4) -----------------------------------------
+
+
+def test_a_pair_whose_new_opens_with_spaces_and_old_with_none_is_a_finding(tmp_path):
+    # the page keeps its own indent before the match, and the indent of new stands after it
+    with_body(tmp_path, "    FIRST")
+    code, out, _ = check(tmp_path, plan=anchor_plan("FIRST", "    SECOND"))
+    assert code == 1
+    assert out.splitlines() == [
+        (
+            "case 1: rule-x: a replace pair adds an indent twice — its new opens with a space "
+            "or a tab and its old with neither: FIRST"
+        )
+    ]
+
+
+def test_a_pair_whose_old_and_new_both_open_with_spaces_is_clean(tmp_path):
+    with_body(tmp_path, "    FIRST")
+    assert check(tmp_path, plan=anchor_plan("    FIRST", "    SECOND")) == (0, "", "")
+
+
+def test_a_pair_where_neither_opens_with_spaces_is_clean(tmp_path):
+    with_body(tmp_path, "    FIRST")
+    assert check(tmp_path, plan=anchor_plan("FIRST", "SECOND")) == (0, "", "")
+
+
 # --- a code fence a pair or a written section breaks (case 487.1) --------------------------
 
 SENTENCE = "No Case is named twice."

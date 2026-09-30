@@ -86,3 +86,30 @@ def test_it_writes_nothing(tmp_path):
 
 def test_an_unreadable_payload_passes(tmp_path):
     assert run(io.StringIO("not json"), tmp_path) == (0, "")
+
+
+# --- the hook's own error (case 555.3) ----------------------------------------------------
+
+
+def boom(*args, **kwargs):
+    raise RuntimeError("boom")
+
+
+def test_error_an_error_of_its_own_exits_2_with_the_advice(tmp_path, monkeypatch):
+    with_event_log(tmp_path, START + HI)
+    monkeypatch.setattr(onward, "retro_marked", boom)
+    code, err = run(payload(), tmp_path)
+    assert code == 2
+    assert err.startswith("onward: not checked: boom")
+    assert "/handoff" in err and "handoff.md does not stand" in err
+
+
+def test_error_the_re_fire_exits_0_and_prints_nothing(tmp_path, monkeypatch):
+    with_event_log(tmp_path, START + HI)
+    monkeypatch.setattr(onward, "retro_marked", boom)
+    assert run(payload(stop_hook_active=True), tmp_path) == (0, "")
+
+
+def test_error_an_empty_payload_exits_0(tmp_path, monkeypatch):
+    monkeypatch.setattr(onward, "retro_marked", boom)
+    assert run(io.StringIO(""), tmp_path) == (0, "")

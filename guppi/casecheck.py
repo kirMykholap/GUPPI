@@ -86,7 +86,11 @@ not `isMeta`, that holds more than tool results — a tool result and the text o
 in `user` records too, and a `Stop` hook's refusal adds no `user` record (measured the same
 day).
 
-The payload is read as UTF-8; the hook never raises. Rule page:
+The payload is read as UTF-8; the hook never raises. An error of its own after it has read the
+payload exits 2 on `Stop`, with the error and the advice to show the Case again on stderr, so
+the agent sees it; an error while it reads the payload, and any error of the `--subagent` run,
+exits 0 with the error on stderr, since a send-back to `case-guppi` is not ended by
+`stop_hook_active` and would loop (case 555.1). Rule page:
 `vault/wiki/rules/rule-case-check.md`.
 """
 
@@ -687,12 +691,23 @@ def run(
     now = datetime.now().astimezone() if now is None else now
     try:
         payload = read_payload(stdin)
-        if not payload:
-            print("casecheck: payload not readable, nothing checked", file=stderr)
-            return 0
-        if "--subagent" in argv:
-            return subagent(payload, project_dir, now, stderr)
-        return stop(payload, project_dir, now, stderr)
-    except Exception as exc:  # noqa: BLE001 — a hook that raises would fail the session
+    except Exception as exc:  # noqa: BLE001 — no payload, no way to tell a re-fire (case 555.1)
         print(f"casecheck: not checked: {exc}", file=stderr)
         return 0
+    if not payload:
+        print("casecheck: payload not readable, nothing checked", file=stderr)
+        return 0
+    if "--subagent" in argv:
+        try:
+            return subagent(payload, project_dir, now, stderr)
+        except Exception as exc:  # noqa: BLE001 — a send-back would loop (case 555.1)
+            print(f"casecheck: not checked: {exc}", file=stderr)
+            return 0
+    try:
+        return stop(payload, project_dir, now, stderr)  # a re-fire returns 0 before any read
+    except Exception as exc:  # noqa: BLE001 — shown to the agent, not swallowed (case 555.1)
+        print(
+            f"casecheck: not checked: {exc}. Fix the cause, then show the Case again.",
+            file=stderr,
+        )
+        return 2

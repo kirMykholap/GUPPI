@@ -836,3 +836,36 @@ def test_subagent_note_siblings_that_share_a_promise_are_sent_back_once(working)
 
 def test_subagent_note_a_sub_case_answered_alone_has_no_sibling(working):
     assert answer(working, sub_case("9.2", SAME_PROMISE[1])) == (0, "")
+
+
+# --- the hook's own error (case 555.1) -------------------------------------------------
+
+
+def boom(*args, **kwargs):
+    raise RuntimeError("boom")
+
+
+def test_error_an_error_of_the_stop_run_exits_2_with_the_advice(working, monkeypatch):
+    answer(working, ANSWER)
+    monkeypatch.setattr(casecheck, "against_store", boom)
+    code, err = show(working, ANSWER)
+    assert code == 2
+    assert err.startswith("casecheck: not checked: boom")
+    assert "show the Case again" in err
+
+
+def test_error_the_re_fire_exits_0(working, monkeypatch):
+    answer(working, ANSWER)
+    monkeypatch.setattr(casecheck, "against_store", boom)
+    assert show(working, ANSWER, stop_hook_active=True) == (0, "")
+
+
+def test_error_an_empty_payload_exits_0_with_its_line(working):
+    err = io.StringIO()
+    code = casecheck.run([], stdin=io.StringIO(""), stderr=err, project_dir=working, now=NOW)
+    assert code == 0 and err.getvalue() == "casecheck: payload not readable, nothing checked\n"
+
+
+def test_error_an_error_of_the_subagent_run_exits_0_with_its_line(working, monkeypatch):
+    monkeypatch.setattr(casecheck, "check_answer", boom)
+    assert answer(working, ANSWER) == (0, "casecheck: not checked: boom\n")

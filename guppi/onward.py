@@ -10,12 +10,15 @@ reply that ended does not open with `STOP:`. Its reason on stderr tells the agen
 the session folder and call `/handoff`, or, when a condition of
 `vault/wiki/where-to-stop.md` holds, to open its reply with `STOP:` and ask the person.
 
-In every other case it exits 0 and prints nothing: without a `hi` of the session, before the
+In every other case with no error of its own it exits 0 and prints nothing: without a `hi` of the session, before the
 mark, once `handoff.md` stands, on the reply that follows a refusal of a `Stop` hook, and on
 a reply that opens with `STOP:`. It counts nothing, reads no test result, calls no model and
 writes nothing: its judgment is the mark, the file, the flag and the first word of the reply,
 so it fires at most once a turn and cannot loop. The session window, the stamp and the folder
-are those of `guppi/ledger.py`. Rule page: `vault/wiki/rules/rule-retro-onward.md`.
+are those of `guppi/ledger.py`. An error of its own after it has read the payload exits 2 with
+the error on stderr and the advice to commit the session folder and call `/handoff` if Retro
+has ended and `handoff.md` does not stand, before Retro too; an error while it reads the payload
+exits 0 (case 555.3). Rule page: `vault/wiki/rules/rule-retro-onward.md`.
 """
 
 import sys
@@ -61,8 +64,12 @@ def run(argv, *, stdin=None, stderr=None, project_dir: Path | None = None, now=N
     now = datetime.now().astimezone() if now is None else now
     try:
         payload = read_payload(stdin)
-        if not payload or payload.get("stop_hook_active"):
-            return 0
+    except Exception as exc:  # noqa: BLE001 — no payload, no way to tell a re-fire (case 555.3)
+        print(f"onward: not checked: {exc}", file=stderr)
+        return 0
+    if not payload or payload.get("stop_hook_active"):
+        return 0
+    try:
         if reply_text(payload).lstrip().startswith(STOP):
             return 0
         stamp = session_stamp(None, payload)
@@ -73,6 +80,10 @@ def run(argv, *, stdin=None, stderr=None, project_dir: Path | None = None, now=N
             return 0
         print(REASON, file=stderr)
         return 2
-    except Exception as exc:  # noqa: BLE001 — a hook that raises would fail the session
-        print(f"onward: not checked: {exc}", file=stderr)
-        return 0
+    except Exception as exc:  # noqa: BLE001 — shown to the agent, not swallowed (case 555.3)
+        print(
+            f"onward: not checked: {exc}. If Retro has ended and handoff.md does not stand, "
+            "commit the session folder and call /handoff.",
+            file=stderr,
+        )
+        return 2

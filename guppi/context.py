@@ -13,7 +13,10 @@ With `--prompt`, on `UserPromptSubmit`: at N of 400 000 or more it prints to the
 context the size and a note for the agent to pass to the person, not an order: the session
 is already costly, taking on more work is not recommended, and while the Frontier holds open
 items, deferring them is the better course; nothing orders the session closed and nothing
-names /retro or /handoff (case 430). Below the limit it prints nothing (case 392.2). It exits 0 always. Rule page:
+names /retro or /handoff (case 430). Below the limit it prints nothing (case 392.2). An error of
+its own on `Stop` prints a `systemMessage` `context: not counted: <error>` in place of the size
+line, so the person sees it; with `--prompt` the error goes to stderr, since a block there would
+block the person's message (case 555.2). It exits 0 always. Rule page:
 `vault/wiki/rules/rule-context-size.md`.
 """
 
@@ -107,6 +110,7 @@ def run(argv, *, stdin=None, stdout=None, stderr=None) -> int:
     stdin = sys.stdin if stdin is None else stdin
     stdout = sys.stdout if stdout is None else stdout
     stderr = sys.stderr if stderr is None else stderr
+    args = None
     try:
         args = parser().parse_args(argv)
         payload = read_payload(stdin)
@@ -127,5 +131,9 @@ def run(argv, *, stdin=None, stdout=None, stderr=None) -> int:
     except SystemExit:  # argparse: a bad invocation must not fail the session
         return 0
     except Exception as exc:  # noqa: BLE001 — a hook that raises would fail the session
-        print(f"context: not counted: {exc}", file=stderr)
+        line = f"context: not counted: {exc}"
+        if args is None or args.prompt:  # a block of the prompt would block the person's message
+            print(line, file=stderr)
+        else:  # shown to the person in place of the size line (case 555.2)
+            print(json.dumps({"systemMessage": line}, ensure_ascii=False), file=stdout)
     return 0

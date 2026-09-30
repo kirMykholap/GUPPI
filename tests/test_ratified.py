@@ -978,3 +978,38 @@ def test_guard_cli_dispatches_the_flag(working, monkeypatch, capsys):
     monkeypatch.setattr("sys.stdin", io.StringIO(json.dumps(payload)))
     assert cli.main(["ratified", "--guard"]) == 2
     assert "rule-spec-reconcile" in capsys.readouterr().err
+
+
+# --- the hook's own error (case 554) ---------------------------------------------------
+
+
+def boom(*args, **kwargs):
+    raise RuntimeError("boom")
+
+
+def test_error_an_error_of_the_stop_run_exits_2_with_the_advice(working, monkeypatch):
+    monkeypatch.setattr(ratified, "write_case", boom)
+    code, err = stop(working, ACK, SHOWING, ACK)
+    assert code == 2
+    assert err.startswith("ratified: not done: boom")
+    assert "repeat the ledger lines" in err
+
+
+def test_error_the_re_fire_exits_0_and_writes_nothing(working, monkeypatch):
+    monkeypatch.setattr(ratified, "write_case", boom)
+    before = plan_of(working).read_text(encoding="utf-8")
+    assert stop(working, ACK, SHOWING, ACK, stop_hook_active=True) == (0, "")
+    assert plan_of(working).read_text(encoding="utf-8") == before
+
+
+def test_error_a_payload_it_cannot_read_exits_0_with_one_line(working, monkeypatch):
+    monkeypatch.setattr(ratified, "read_payload", boom)
+    err = io.StringIO()
+    code = ratified.run([], stdin=io.StringIO("{}"), stderr=err, project_dir=working, now=NOW)
+    assert code == 0 and err.getvalue() == "ratified: not done: boom\n"
+
+
+def test_error_an_error_of_the_guard_exits_0_with_its_line(working, monkeypatch):
+    monkeypatch.setattr(ratified, "guard_refusal", boom)
+    code, err = guard(working, "Edit", plan_of(working))
+    assert code == 0 and err == "ratified: not done: boom\n"

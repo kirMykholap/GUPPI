@@ -130,3 +130,23 @@ def test_limit_the_prompt_hook_speaks_on_a_re_fire_flag_too(tmp_path):
     # `stop_hook_active` belongs to `Stop`; the prompt hook does not read it
     code, out, _ = hook(tmp_path, [prompt(), call(450_000)], "--prompt", stop_hook_active=True)
     assert code == 0 and out.startswith("context: 450 000 tokens")
+
+
+# --- the hook's own error (case 555.2) ----------------------------------------------------
+
+
+def boom(*args, **kwargs):
+    raise RuntimeError("boom")
+
+
+def test_error_on_stop_the_error_stands_in_place_of_the_size_line(tmp_path, monkeypatch):
+    monkeypatch.setattr(context, "sizes", boom)
+    code, out, err = hook(tmp_path, [prompt(), call(1000)])
+    assert code == 0 and err == ""
+    assert out.count("\n") == 1 and message(out).startswith("context: not counted:")
+
+
+def test_error_with_prompt_the_error_goes_to_stderr(tmp_path, monkeypatch):
+    monkeypatch.setattr(context, "sizes", boom)
+    code, out, err = hook(tmp_path, [prompt(), call(1000)], "--prompt")
+    assert code == 0 and out == "" and err == "context: not counted: boom\n"

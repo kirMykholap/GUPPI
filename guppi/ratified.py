@@ -84,7 +84,10 @@ edited plan with a ratified copy `<plan>.ratified.md` and its marks `<plan>.wait
 
 A refusal exits 2 with the reason on stderr, which Claude Code hands back to the agent; on the
 re-fire (`stop_hook_active`) the hook exits 0 and does nothing, so it cannot loop. Outside a
-working session — no `hi` — it does nothing. It never raises. `untranslated` is the language
+working session — no `hi` — it does nothing. It never raises. An error of its own after it has
+read the payload exits 2 on `Stop`, with the error and the advice to repeat the ledger lines on
+stderr, so the agent sees it; an error while it reads the payload, and any error of the guard,
+exits 0 with the error on stderr (case 554). `untranslated` is the language
 finding `guppi prespec --check` imports, a letter outside the script of the documentation
 language judged by `config.outside` (cases 387.4, 445.4, 476.3). Rule pages:
 `vault/wiki/rules/rule-spec-write.md`, `vault/wiki/rules/rule-spec-reconcile.md`.
@@ -916,12 +919,24 @@ def run(argv, *, stdin=None, stderr=None, project_dir: Path | None = None, now=N
     try:
         args = parser().parse_args(argv)
         payload = read_payload(stdin)
-        if not payload:
-            print("ratified: payload not readable, nothing done", file=stderr)
-            return 0
-        if args.guard:
-            return guard(payload, project_dir, now, stderr)
-        return stop(payload, project_dir, now, stderr)
-    except Exception as exc:  # noqa: BLE001 — a hook that raises would fail the session
+    except Exception as exc:  # noqa: BLE001 — no payload, no way to tell a re-fire (case 554)
         print(f"ratified: not done: {exc}", file=stderr)
         return 0
+    if not payload:
+        print("ratified: payload not readable, nothing done", file=stderr)
+        return 0
+    if args.guard:
+        try:
+            return guard(payload, project_dir, now, stderr)
+        except Exception as exc:  # noqa: BLE001 — a guard that raises would block every edit
+            print(f"ratified: not done: {exc}", file=stderr)
+            return 0
+    try:
+        return stop(payload, project_dir, now, stderr)  # a re-fire returns 0 before any read
+    except Exception as exc:  # noqa: BLE001 — shown to the agent, not swallowed (case 554)
+        print(
+            f"ratified: not done: {exc}. Fix the cause, then repeat the ledger lines of the "
+            "Case so that the Spec takes it.",
+            file=stderr,
+        )
+        return 2

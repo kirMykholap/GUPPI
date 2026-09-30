@@ -1,13 +1,13 @@
 ---
 type: rule
 kind: MOC
-purpose: Keeps the three rules that share .claude/settings.json from becoming two copies of one file
-status: built
+purpose: Keeps the rules that share .claude/settings.json from becoming two copies of one file
+status: draft
 enforcement: render
 governs: .claude/settings.json
 render_mode: full
 parent: "[[rule-harness]]"
-children: ["[[rule-default-mode]]", "[[rule-permissions]]", "[[rule-hook-registry]]"]
+children: ["[[rule-default-mode]]", "[[rule-permissions]]", "[[rule-hook-registry]]", "[[rule-python-utf8]]"]
 estimates: ["[[estimate-settings]]"]
 origin: raw/2026-09-12/ledger.md#case-85.2
 sprint: migration
@@ -17,12 +17,12 @@ tags: [harness, render]
 
 ## Purpose
 
-Keeps the three rules that share `.claude/settings.json` from becoming two copies
+Keeps the rules that share `.claude/settings.json` from becoming two copies
 of one file. The permission mode a session opens in, what may be written without a
-question, and which hook fires on which event are three different rules with three
-different criteria, and one file carries all three. This page is the file: its body
-is the whole of `settings.json`, and each `<!-- child -->` line names the page that
-owns that text.
+question, which hook fires on which event, and the environment every process of the
+session runs with are different rules with different criteria, and one file carries
+them all. This page is the file: its body is the whole of `settings.json`, and each
+`<!-- child -->` line names the page that owns that text.
 
 `parent: rule-harness`: the file belongs to no phase of the session.
 
@@ -36,7 +36,8 @@ owns that text.
   },
   "hooks": {
 <!-- rule-hook-registry -->
-  }
+  },
+<!-- rule-python-utf8 -->
 }
 <!-- /rule-settings -->
 
@@ -47,3 +48,6 @@ owns that text.
 - 2026-09-14 status: draft → built · cascade
 - 2026-09-29 status: built → draft · cascade
 - 2026-09-29 status: draft → built · cascade
+- 2026-09-30 child rule-python-utf8 added · [[decision-case-534.1]]
+- 2026-09-30 updated: a fourth child, rule-python-utf8, owns the env block after hooks · [[decision-case-534.1]]
+- 2026-09-30 status: built → draft · cascade

@@ -21,7 +21,6 @@ Rule-class files dissolved, `index.md` gone, the `file` route out of the scripts
 
 ### [ ] Slice 5 — closing
 
-- [ ] [[estimate-sprint-migration-leftovers-gone]] — `vault/parked/` and the documents of 2026-08 under `docs/` deleted (case 510), the old archive root (case 102.1); the raw date folders read by what git tracks, the remote and `git pull` and `gh` out of `/hi` (case 528); the reading at the close · pending
 - [ ] the close of a sprint — `entity-sprint-<id>` and the Estimates it lists go to the archive together once each has passed: a done-condition of a sprint has nothing left to guard after the close; not yet decided (case 478.2)
 
 ## Closed

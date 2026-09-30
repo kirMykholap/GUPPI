@@ -2,7 +2,7 @@
 type: rule
 kind: Leaf
 purpose: Prevents a set of ratified decisions from reaching the Spec with a contradiction between them or with the vault
-status: draft
+status: built
 enforcement: render
 governs: .claude/skills/pre-spec/SKILL.md
 render_mode: full
@@ -156,3 +156,4 @@ finding as a Case, or say in one line why it is already known. Then exit Plan Mo
 - 2026-09-29 status: draft → built · cascade
 - 2026-09-30 updated: an open line under ## Ask is no finding of pre-spec, as one under ## Work (case 531.12) · [[decision-case-531.12]]
 - 2026-09-30 status: built → draft · cascade
+- 2026-09-30 status: draft → built · cascade

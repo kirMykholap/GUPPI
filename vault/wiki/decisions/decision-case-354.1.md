@@ -2,7 +2,7 @@
 type: decision
 case: "354.1"
 status: current
-create: ["[[estimate-sprint-moves-a-passed-over-item]]"]
+create: ["[[estimate-sprint-items-move-only-by-a-case]]"]
 update: ["[[rule-sprint]]", "[[rule-page-generation]]"]
 origin: raw/2026-09-23/0034/ledger.md#case-354.1
 sprint: migration

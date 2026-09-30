@@ -1,8 +1,9 @@
 ---
 type: decision
 case: "533"
-status: current
+status: archived
 defer: ["[[rule-carry-over]]"]
+superseded_by: ["[[decision-case-538.1]]"]
 origin: raw/2026-09-30/0138/ledger.md#case-533
 sprint: migration
 created: 2026-09-30
@@ -26,3 +27,6 @@ The short brief of /carry keeps the Work list, so the /hi after a conserved Spec
 ## History
 
 - 2026-09-30 created · raw/2026-09-30/0138/ledger.md#case-533
+- 2026-09-30 superseded by decision-case-538.1 · [[decision-case-538.1]]
+- 2026-09-30 archived · superseded
+- 2026-09-30 archived · cleanup

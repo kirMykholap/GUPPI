@@ -1,10 +1,11 @@
 ---
 type: estimate
 kind: QA
-status: pending
+status: passed
 target: "[[rule-git-context]]"
 purpose: At /hi the context holds the render sync, the branch and the status, and the skill runs no git pull
 method: by hand at the /hi of a session after the render, the first turn's context and the output of git remote, written into the estimate line
+checked: 2026-09-30
 origin: raw/2026-09-09/ledger.md#case-11
 sprint: migration
 created: 2026-09-09
@@ -23,7 +24,7 @@ The context holds `Render:` with the output of `uv run guppi render --sync` (a d
 
 ## Result
 
-block 115 at the /hi of 10:29: the `Render:` line is present after `Pull:` and empty on a clean tree; branch and status in context; the failing pull shows its message and the skill completed
+2026-09-30, /hi of session 0248, the first turn's context, `git remote`, `.git/config`, `git rev-parse --abbrev-ref main@{upstream}`: the context holds Render: (empty), Branch: migration, Status: (empty); `git remote` printed nothing; `.git/config` has no [remote] section, its only `origin` text is `vscode-merge-base = origin/main` under [branch "main"] and [branch "migration"]; `main` has no upstream configured; `.claude/skills/hi/SKILL.md` holds no `git pull`, `gh` or `Pull:`
 
 ## History
 
@@ -33,3 +34,4 @@ block 115 at the /hi of 10:29: the `Render:` line is present after `Pull:` and e
 - 2026-09-14 status: pending → passed · raw/2026-09-14/1029/ledger.md#L1
 - 2026-09-28 updated: the Criterion replaced whole — one When and Then; the Frontier item left to estimate-hi-writes-frontier, the block bookkeeping out; purpose and method set, Context and Method out (case 485.3) · [[decision-case-485.3]]
 - 2026-09-30 updated: the Criterion replaced whole — no Pull line, no git pull, no remote; the promise on a pull mid-session gone with the pull (case 528.1) · [[decision-case-528.1]]
+- 2026-09-30 status: pending → passed · raw/2026-09-30/0248/ledger.md#L1

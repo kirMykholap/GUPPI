@@ -2,7 +2,7 @@
 type: rule
 kind: Leaf
 purpose: Prevents a heredoc from carrying a backslash escape or writing a file through the Bash tool
-status: draft
+status: built
 enforcement: hook
 implementation_ref: [guppi/bashguard.py, tests/test_bashguard.py, .claude/settings.json]
 parent: "[[rule-harness]]"
@@ -46,3 +46,4 @@ cannot read: exit 0, the last with one line on stderr. The hook never raises (ca
 - 2026-09-24 updated: the refusal message says the refusal is by design and no finding for Retro; the log line named as the code writes it (case 384) · [[decision-case-384]]
 - 2026-09-30 updated: the refusal text sends a whole file to Write and only a script to the scratchpad (case 530.2) · [[decision-case-530.2]]
 - 2026-09-30 status: built → draft · cascade
+- 2026-09-30 status: draft → built · cascade

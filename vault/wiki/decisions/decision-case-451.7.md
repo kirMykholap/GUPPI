@@ -2,7 +2,7 @@
 type: decision
 case: "451.7"
 status: current
-update: ["[[estimate-sprint-moves-a-passed-over-item]]"]
+update: ["[[estimate-sprint-items-move-only-by-a-case]]"]
 origin: raw/2026-09-27/1255/ledger.md#case-451.7
 sprint: migration
 created: 2026-09-27
@@ -43,7 +43,7 @@ An item is put off in three ways with three different traces, and the check miss
 
 ## Given
 
-`estimate-sprint-moves-a-passed-over-item` — the promise of the move, whose Criterion this sub-case replaces whole
+`estimate-sprint-items-move-only-by-a-case` — the promise of the move, whose Criterion this sub-case replaces whole
 **＋** `rule-sprint` — the rule it is a promise of
 **＋** `entity-sprint-<id>` — the sprint page whose items move
 **＋** `vault/raw/`, `vault/archive/` — where the Frontier files stand

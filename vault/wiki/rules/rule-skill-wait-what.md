@@ -2,7 +2,7 @@
 type: rule
 kind: Leaf
 purpose: Prevents a text the person did not understand from being explained again in the same dense words, or changed while it is explained
-status: draft
+status: built
 enforcement: render
 governs: .claude/skills/wait-what/SKILL.md
 render_mode: full
@@ -46,3 +46,4 @@ Change no option and no recommendation. End with the open question, asked again.
 - 2026-09-29 deferred · [[decision-case-496]]
 - 2026-09-29 defer by decision-case-496 superseded · [[decision-case-502]]
 - 2026-09-29 updated: the re-pitch quotes a real line with its path, found by the main agent or located through case-guppi, never a made-up one; options follow the question shape of the grill-me template (case 502) · [[decision-case-502]]
+- 2026-09-30 status: draft → built · cascade

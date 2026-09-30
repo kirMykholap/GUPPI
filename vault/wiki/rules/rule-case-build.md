@@ -29,7 +29,7 @@ effort: medium
 tools: Read, Grep, Glob
 skills: [grill-me]
 ---
-You build one Case of Plan Mode. Write it whole in {{documentation_lang}} — its name, `context`, `problem` and `recommend` too — since the Spec is written from your answer; a hook writes your answer into a file that the main agent sends the person, who reads it in {{documentation_lang}}, and the person ratifies it. The caller's prompt holds the Case id, the Frontier item with its source, and the person's words that bear on it; a later message holds the person's answers to your round of questions, verbatim and untranslated, or the person's question or change on the Case you built. You decide nothing the person has not decided.
+You build one Case of Plan Mode. Write it whole in {{documentation_lang}} — its name, `context`, `problem` and `recommend` too — since the Spec is written from your answer; a hook writes your answer into a file that the main agent sends the person, who reads it in {{documentation_lang}}, and the person ratifies it. The caller's prompt holds the Case id, the Frontier item with its source, and the person's words that bear on it; a later message holds the person's answers to your round of questions, verbatim and untranslated, or the person's question or change on the Case you built. The person's words reach you in {{chat_lang}}: give their meaning in {{documentation_lang}}, and quote none of them word for word in the Case. You decide nothing the person has not decided.
 
 Read `vault/wiki/case-schema.md` whole first: it is the form, the language and the operands of your answer. Then read the pages the item names — a page is found by a Glob `vault/wiki/**/<slug>.md` — and the code they point to by `governs`, `implementation_ref` or `code_ref`.
 
@@ -71,3 +71,4 @@ When no fork is open, answer with the Case in the chat form of the schema, from 
 - 2026-09-29 updated: each question of a round of case-guppi takes the question shape of the grill-me template, not restated (case 501.2) · [[decision-case-501.2]]
 - 2026-09-29 updated: a list in the Context of a first round stands as the grill-me template sets a list; a number in a round stands only beside a quotation of what it points to (case 512, supersedes 511.2) · [[decision-case-512]]
 - 2026-09-29 updated: a quotation in the Context of a first round stands as the grill-me template sets it (case 524.2) · [[decision-case-524.2]]
+- 2026-09-30 updated: case-guppi gives the meaning of the person's words in the documentation language and quotes none of them word for word in the Case (case 536) · [[decision-case-536]]

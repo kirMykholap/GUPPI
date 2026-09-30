@@ -1,11 +1,11 @@
 ---
 type: estimate
 kind: QA
-status: pending
+status: passed
 target: "[[rule-bash-guard]]"
 purpose: A heredoc with a backslash or a file write is refused before it runs, with a message that sends the agent to Write and says the refusal is no finding
 method: uv run pytest tests/test_bashguard.py; the live reading is the first refusal of a session, its message read on stderr
-checked: 2026-09-24
+checked: 2026-09-30
 origin: raw/2026-09-14/1029/ledger.md#case-127
 sprint: migration
 created: 2026-09-14
@@ -26,7 +26,7 @@ A body with a backslash, or a marker line that writes a file (`>` or `>>` not to
 
 ## Result
 
-2026-09-24, uv run pytest tests/test_bashguard.py: 15 passed, the refusal test checks the new sentence; live in session 1859: two heredoc refusals after the change carried on stderr "The refusal is this guard working as designed, not an event of the session: do not report it at Retro."
+2026-09-30, `uv run pytest tests/test_bashguard.py` 15 passed; live, the first refusal of session 0248: a Bash call with a heredoc whose body held a backslash exited 2 with "bashguard: heredoc refused — a backslash in its body. Write a whole file with the Write tool and change a file with Edit, never through Bash; only a script goes into the scratchpad, written with the Write tool and run by path. The refusal is this guard working as designed, not an event of the session: do not report it at Retro." on stderr, and raw/2026-09-30/event_log.md line 898 holds "- 04:46:47 4e339a31 bashguard refused: a backslash in its body"
 
 ## History
 
@@ -36,3 +36,4 @@ A body with a backslash, or a marker line that writes a file (`>` or `>>` not to
 - 2026-09-24 updated: the Criterion replaced whole — the message says the refusal is by design; recut to the shape of case 193 (case 384) · [[decision-case-384]]
 - 2026-09-24 status: pending → passed · raw/2026-09-23/1859/ledger.md#L28
 - 2026-09-30 updated: the Criterion replaced whole — the refusal text sends a whole file to Write and only a script to the scratchpad (case 530.2) · [[decision-case-530.2]]
+- 2026-09-30 status: pending → passed · raw/2026-09-30/0248/ledger.md#L35

@@ -4972,3 +4972,85 @@ instruction. The global feed; a page's own `## History` is the per-page view.
 - 2026-09-30 decisions/decision-case-525 archived · cleanup
 - 2026-09-30 decisions/decision-case-528.4 archived · cleanup
 - 2026-09-30 rules/rule-skill-hi child rule-github-issues archived · cleanup
+- 2026-09-30 estimates/estimate-git-context-current status: pending → passed · raw/2026-09-30/0248/ledger.md#L1 · generate
+- 2026-09-30 estimates/estimate-hi-no-read-calls status: pending → passed · raw/2026-09-30/0248/ledger.md#L2 · generate
+- 2026-09-30 estimates/estimate-generate-renames status: pending → passed · raw/2026-09-30/0248/ledger.md#L3 · generate
+- 2026-09-30 estimates/estimate-glossary-terms-defined status: pending → failed · raw/2026-09-30/0248/ledger.md#L4 · generate
+- 2026-09-30 estimates/estimate-hi-writes-frontier status: pending → passed · raw/2026-09-30/0248/ledger.md#L5 · generate
+- 2026-09-30 decisions/decision-case-534.1 created · raw/2026-09-30/0248/ledger.md#case-534.1 · generate
+- 2026-09-30 rules/rule-python-utf8 created · [[decision-case-534.1]] · generate
+- 2026-09-30 rules/rule-settings child rule-python-utf8 added · [[decision-case-534.1]] · generate
+- 2026-09-30 estimates/estimate-python-utf8-output-intact created · [[decision-case-534.1]] · generate
+- 2026-09-30 rules/rule-python-utf8 estimate estimate-python-utf8-output-intact added · [[decision-case-534.1]] · generate
+- 2026-09-30 rules/rule-settings updated: a fourth child, rule-python-utf8, owns the env block after hooks · [[decision-case-534.1]] · generate
+- 2026-09-30 decisions/decision-case-534.2 created · raw/2026-09-30/0248/ledger.md#case-534.2 · generate
+- 2026-09-30 estimates/estimate-settings updated: the Criterion replaced whole — a fourth child, rule-python-utf8, and the env key after hooks · [[decision-case-534.2]] · generate
+- 2026-09-30 estimates/estimate-context-size-warns-past-the-limit status: passed → passed · raw/2026-09-30/0248/ledger.md#L10 · generate
+- 2026-09-30 lessons/lesson-bash-tool-python-cp1252-dash-shown-as-u-fffd created · raw/2026-09-30/0248/ledger.md#L11 · generate
+- 2026-09-30 decisions/decision-case-535 created · raw/2026-09-30/0248/ledger.md#case-535 · generate
+- 2026-09-30 entities/entity-glossary updated: the rows Decision page, Main agent, Plan Mode, Types and CLAUDE.md agree with the pages that define them (case 535) · [[decision-case-535]] · generate
+- 2026-09-30 decisions/decision-case-536 created · raw/2026-09-30/0248/ledger.md#case-536 · generate
+- 2026-09-30 rules/rule-case-build updated: case-guppi gives the meaning of the person's words in the documentation language and quotes none of them word for word in the Case (case 536) · [[decision-case-536]] · generate
+- 2026-09-30 decisions/decision-case-537 created · raw/2026-09-30/0248/ledger.md#case-537 · generate
+- 2026-09-30 rules/rule-case-check updated: the check of each answer of case-guppi runs the language finding of pre-spec as a finding (case 537) · [[decision-case-537]] · generate
+- 2026-09-30 estimates/estimate-case-check-refuses-a-letter-outside-the-script created · [[decision-case-537]] · generate
+- 2026-09-30 rules/rule-case-check estimate estimate-case-check-refuses-a-letter-outside-the-script added · [[decision-case-537]] · generate
+- 2026-09-30 insights/insight-case-form-chat-form-read-by-no-script updated: actioned: case-guppi quotes none of the person's words (case 536), and the check of each answer runs the language finding (case 537) · [[decision-case-537]] · generate
+- 2026-09-30 decisions/decision-case-538.1 created · raw/2026-09-30/0248/ledger.md#case-538.1 · generate
+- 2026-09-30 decisions/decision-case-533 superseded by decision-case-538.1 · [[decision-case-538.1]] · generate
+- 2026-09-30 rules/rule-carry-over defer by decision-case-533 superseded · [[decision-case-538.1]] · generate
+- 2026-09-30 rules/rule-carry-over updated: the short brief of /carry keeps Next session: Work and Ask the person from the open lines of the session's frontier.md, Cases the line none (case 538.1) · [[decision-case-538.1]] · generate
+- 2026-09-30 estimates/estimate-carry-over-writes updated: the Criterion replaced whole — the short brief keeps Next session: Work and Ask the person from the open lines of frontier.md, Cases the line none · [[decision-case-538.1]] · generate
+- 2026-09-30 decisions/decision-case-538.2 created · raw/2026-09-30/0248/ledger.md#case-538.2 · generate
+- 2026-09-30 rules/rule-brief updated: the brief of carry keeps Next session: Work and Ask the person from the open lines of the session's frontier.md, Cases the line none (case 538.2) · [[decision-case-538.2]] · generate
+- 2026-09-30 estimates/estimate-brief-written updated: the Criterion replaced whole — the brief of carry keeps Next session, Work and Ask the person from the open lines of frontier.md and Cases the line none; Flags no longer name the moves of generate that case 539 removes · [[decision-case-538.2]] · generate
+- 2026-09-30 decisions/decision-case-539.1 created · raw/2026-09-30/0248/ledger.md#case-539.1 · generate
+- 2026-09-30 rules/rule-sprint updated: the move of a passed-over item and the drop of an emptied milestone removed; the sprint page changes only by a Case (case 539.1) · [[decision-case-539.1]] · generate
+- 2026-09-30 rules/rule-page-generation updated: the move of a passed-over sprint item and the drop of an emptied milestone removed, and with them the reading of the Frontiers (case 539.1) · [[decision-case-539.1]] · generate
+- 2026-09-30 estimates/estimate-sprint-items-move-only-by-a-case renamed from `estimate-sprint-moves-a-passed-over-item` · [[decision-case-539.1]] · generate
+- 2026-09-30 rules/rule-sprint ref `estimate-sprint-moves-a-passed-over-item` → `estimate-sprint-items-move-only-by-a-case` · [[decision-case-539.1]] · generate
+- 2026-09-30 estimates/estimate-sprint-items-move-only-by-a-case updated: renamed from estimate-sprint-moves-a-passed-over-item and the Criterion replaced whole — generate moves no line of the sprint page (case 539.1) · [[decision-case-539.1]] · generate
+- 2026-09-30 estimates/estimate-sprint-drops-an-emptied-milestone deleted · [[decision-case-539.1]] · generate
+- 2026-09-30 decisions/decision-case-539.2 created · raw/2026-09-30/0248/ledger.md#case-539.2 · generate
+- 2026-09-30 rules/rule-brief updated: Flags no longer name items moved to the Backlog or milestones dropped; the sprint page changes only by a Case (case 539.2) · [[decision-case-539.2]] · generate
+- 2026-09-30 decisions/decision-case-539.3 created · raw/2026-09-30/0248/ledger.md#case-539.3 · generate
+- 2026-09-30 rules/rule-sprint updated: the Estimates of a sprint page stand only under Done when, never as an item line (case 539.3) · [[decision-case-539.3]] · generate
+- 2026-09-30 entities/entity-sprint-migration updated: the finish conditions lint-clean, merges and leftovers-gone stand only under Done when: off Slice 5 and the Backlog (case 539.3) · [[decision-case-539.3]] · generate
+- 2026-09-30 rules/rule-backlog updated: the reader of the count named without the sprint move, removed by case 539.1 (case 539.3) · [[decision-case-539.3]] · generate
+- 2026-09-30 decisions/decision-case-540 created · raw/2026-09-30/0248/ledger.md#case-540 · generate
+- 2026-09-30 rules/rule-work-mode deferred · [[decision-case-540]] · generate
+- 2026-09-30 lessons/lesson-prespec-report-decisions-off-the-question-shape created · raw/2026-09-30/0248/ledger.md#L30 · generate
+- 2026-09-30 rules/rule-hook-registry updated: the Purpose no longer counts the rules that share .claude/settings.json; rule-python-utf8 joined them · [[decision-case-534.1]] · generate
+- 2026-09-30 rules/rule-skill-hi updated: a sprint line keeps its slugs in code spans; the count by generate, removed by case 539.1, is no longer its reason (case 539.3) · [[decision-case-539.3]] · generate
+- 2026-09-30 decisions/decision-case-539.4 created · raw/2026-09-30/0248/ledger.md#case-539.4 · generate
+- 2026-09-30 estimates/estimate-backlog-renders updated: the Criterion replaced whole — the reader of the count named without the sprint move, removed by case 539.1 (case 539.4) · [[decision-case-539.4]] · generate
+- 2026-09-30 estimates/estimate-agent-writing-followed status: pending → passed · raw/2026-09-30/0248/ledger.md#L34 · generate
+- 2026-09-30 estimates/estimate-bash-guard status: pending → passed · raw/2026-09-30/0248/ledger.md#L35 · generate
+- 2026-09-30 estimates/estimate-case-build-writes-a-plain-round status: pending → failed · raw/2026-09-30/0248/ledger.md#L36 · generate
+- 2026-09-30 estimates/estimate-case-protocol-defers-in-one-reply status: pending → passed · raw/2026-09-30/0248/ledger.md#L37 · generate
+- 2026-09-30 estimates/estimate-prespec-checks-the-frontier status: pending → passed · raw/2026-09-30/0248/ledger.md#L38 · generate
+- 2026-09-30 estimates/estimate-skill-grill-me-asks-in-rounds status: pending → failed · raw/2026-09-30/0248/ledger.md#L39 · generate
+- 2026-09-30 estimates/estimate-skill-wait-what-re-pitches status: pending → passed · raw/2026-09-30/0248/ledger.md#L40 · generate
+- 2026-09-30 lessons/lesson-case-build-built-case-departs-from-the-chosen-option created · raw/2026-09-30/0248/ledger.md#L41 · generate
+- 2026-09-30 lessons/lesson-case-build-frame-count-claimed-over-a-partial-search created · raw/2026-09-30/0248/ledger.md#L42 · generate
+- 2026-09-30 insights/insight-case-build-promise-lines-compared-by-no-check updated: child lesson-case-build-built-case-departs-from-the-chosen-option added (synthesis) · raw/2026-09-30/0248/ledger.md#L41 · generate
+- 2026-09-30 lessons/lesson-case-build-built-case-departs-from-the-chosen-option updated: clustered under insight-case-build-promise-lines-compared-by-no-check (synthesis) · raw/2026-09-30/0248/ledger.md#L41 · generate
+- 2026-09-30 insights/insight-workflow-fact-signed-from-a-check-that-does-not-cover-it updated: child lesson-case-build-frame-count-claimed-over-a-partial-search added (synthesis) · raw/2026-09-30/0248/ledger.md#L42 · generate
+- 2026-09-30 lessons/lesson-case-build-frame-count-claimed-over-a-partial-search updated: clustered under insight-workflow-fact-signed-from-a-check-that-does-not-cover-it (synthesis) · raw/2026-09-30/0248/ledger.md#L42 · generate
+- 2026-09-30 rules/rule-agent-writing status: draft → built · cascade · generate
+- 2026-09-30 rules/rule-backlog status: built → draft · cascade · generate
+- 2026-09-30 rules/rule-bash-guard status: draft → built · cascade · generate
+- 2026-09-30 rules/rule-carry-over status: built → draft · cascade · generate
+- 2026-09-30 rules/rule-git-context status: draft → built · cascade · generate
+- 2026-09-30 rules/rule-prespec status: draft → built · cascade · generate
+- 2026-09-30 rules/rule-settings status: built → draft · cascade · generate
+- 2026-09-30 rules/rule-skill-wait-what status: draft → built · cascade · generate
+- 2026-09-30 rules/rule-sprint status: built → draft · cascade · generate
+- 2026-09-30 decisions/decision-case-533 archived · superseded · generate
+- 2026-09-30 lessons/lesson-case-build-quotes-the-person-in-the-chat-language archived · insight actioned · generate
+- 2026-09-30 lessons/lesson-case-build-rebuild-quotes-the-relayed-words archived · insight actioned · generate
+- 2026-09-30 estimates/estimate-sprint-drops-an-emptied-milestone archived · cleanup
+- 2026-09-30 lessons/lesson-case-build-quotes-the-person-in-the-chat-language archived · cleanup
+- 2026-09-30 lessons/lesson-case-build-rebuild-quotes-the-relayed-words archived · cleanup
+- 2026-09-30 decisions/decision-case-533 archived · cleanup
+- 2026-09-30 rules/rule-sprint estimate estimate-sprint-drops-an-emptied-milestone archived · cleanup

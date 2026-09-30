@@ -51,5 +51,8 @@
     "SubagentStop": [
       { "hooks": [ { "type": "command", "command": "uv run guppi casecheck --subagent", "timeout": 30 } ] }
     ]
+  },
+  "env": {
+    "PYTHONUTF8": "1"
   }
 }

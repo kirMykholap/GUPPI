@@ -22,7 +22,7 @@ file to the pages: a registration added or dropped by hand changes what fires wi
 no ledger line behind it. This page is the `"hooks"` key of that file; adding a
 hook is an `update` of this page in the same Case that creates the hook's Rule.
 
-`parent: rule-settings`: the file is one text of three rules, and the registry is
+`parent: rule-settings`: the file is one text of several rules, and the registry is
 one of them (case 85.3). A hook in an agent's own frontmatter is part of that
 agent's Render and is ratified with it; this page holds the registrations only.
 
@@ -97,3 +97,4 @@ agent's Render and is ratified with it; this page holds the registrations only.
 - 2026-09-27 updated: guppi ratified --guard registered on PreToolUse of Edit, Write and MultiEdit; guppi ratified --edit removed from PostToolUse (case 445.1) · [[decision-case-445.1]]
 - 2026-09-30 updated: the Purpose says what a hook is (case 527.1) · [[decision-case-527.1]]
 - 2026-09-30 updated: the Stop hook guppi onward of rule-retro-onward registered after guppi context (case 531.9) · [[decision-case-531.9]]
+- 2026-09-30 updated: the Purpose no longer counts the rules that share .claude/settings.json; rule-python-utf8 joined them · [[decision-case-534.1]]

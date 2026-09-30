@@ -52,6 +52,7 @@ entries:
       open readings and W lines; put off in session 0138
   exists: true
   applied: 02:36:00
+  superseded_by: '538.1'
 - line: 3
   text: 'estimate[estimate-carry-over-writes][passed] 2026-09-30, uv run guppi render --check (exit 0),
     git show --stat 8e4c918 and the event log of session 876c4080 from 01:32:52 to 01:33:35: /carry was
@@ -208,5 +209,7 @@ decisions:
     problem: A session after `/carry` starts with no Work list, and the open readings drop out of sight.
   spec: vault/raw/2026-09-30/0138/spec.md
   applied: 02:36:00
+  superseded_by:
+  - decision-case-538.1
 unparsed: []
 session: 0138

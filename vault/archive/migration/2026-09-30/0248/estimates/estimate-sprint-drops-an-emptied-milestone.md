@@ -1,7 +1,7 @@
 ---
 type: estimate
 kind: QA
-status: passed
+status: archived
 target: "[[rule-sprint]]"
 purpose: A milestone the move left with no line leaves the Milestones, so the next one becomes current
 method: pytest tests/test_generate.py, the tests of the move
@@ -34,3 +34,5 @@ The heading `### <name>` of that milestone leaves `## Milestones`. The next mile
 - 2026-09-23 status: pending → passed · raw/2026-09-23/1126/ledger.md#L36
 - 2026-09-29 updated: the Criterion replaced whole — When and Then only, Given out, the current milestone and the note stated (case 491.3) · [[decision-case-491.3]]
 - 2026-09-29 status: pending → passed · raw/2026-09-29/1134/ledger.md#L35
+- 2026-09-30 deleted · [[decision-case-539.1]]
+- 2026-09-30 archived · cleanup

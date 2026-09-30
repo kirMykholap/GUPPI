@@ -2,7 +2,7 @@
 type: rule
 kind: Leaf
 purpose: Prevents a session from starting on a branch it does not know
-status: draft
+status: built
 enforcement: render
 governs: .claude/skills/hi/SKILL.md
 render_mode: partial
@@ -49,3 +49,4 @@ The `Render:` line runs `uv run guppi render --sync` once more inside `/hi`, aft
 - 2026-09-30 defer by decision-case-220 superseded · [[decision-case-528.1]]
 - 2026-09-30 defer by decision-case-243 superseded · [[decision-case-528.1]]
 - 2026-09-30 updated: taken up: the pull leaves /hi with the remote; the rule keeps the render, the branch and the status; the defers of cases 220 and 243 retired (case 528.1) · [[decision-case-528.1]]
+- 2026-09-30 status: draft → built · cascade

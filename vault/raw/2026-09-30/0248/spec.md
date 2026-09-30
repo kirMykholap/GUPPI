@@ -98,11 +98,11 @@ update:
 ```
 
 ```tasks
-- [ ] create `rule-python-utf8`
-- [ ] create `estimate-python-utf8-output-intact`
-- [ ] update `rule-settings`
-- [ ] update `rule-hook-registry`
-- [ ] `uv run guppi render`: `.claude/settings.json`
+- [x] create `rule-python-utf8`
+- [x] create `estimate-python-utf8-output-intact`
+- [x] update `rule-settings`
+- [x] update `rule-hook-registry`
+- [x] `uv run guppi render`: `.claude/settings.json`
 - [ ] read `estimate-python-utf8-output-intact` at a later session start
 ```
 
@@ -137,7 +137,7 @@ update:
 ```
 
 ```tasks
-- [ ] update `estimate-settings`
+- [x] update `estimate-settings`
 - [ ] read `estimate-settings` at a later session start
 ```
 
@@ -188,8 +188,8 @@ update:
 ```
 
 ```tasks
-- [ ] update `entity-glossary` — five rows agree with the pages that define them
-- [ ] `uv run guppi glossary`
+- [x] update `entity-glossary` — five rows agree with the pages that define them
+- [x] `uv run guppi glossary`
 ```
 
 ## Case 536 — case-guppi gives the meaning of the person's words and never quotes them
@@ -226,8 +226,8 @@ update:
 ```
 
 ```tasks
-- [ ] update `rule-case-build` — one sentence added to its Render: `case-guppi` gives the meaning of the person's words and never quotes them
-- [ ] `uv run guppi render`: `.claude/agents/case-guppi.md`
+- [x] update `rule-case-build` — one sentence added to its Render: `case-guppi` gives the meaning of the person's words and never quotes them
+- [x] `uv run guppi render`: `.claude/agents/case-guppi.md`
 ```
 
 ## Case 537 — The check of each answer of case-guppi runs the language finding, and the insight closes
@@ -291,9 +291,9 @@ update:
 ```
 
 ```tasks
-- [ ] update `rule-case-check`
-- [ ] create `estimate-case-check-refuses-a-letter-outside-the-script`
-- [ ] update `insight-case-form-chat-form-read-by-no-script`
+- [x] update `rule-case-check`
+- [x] create `estimate-case-check-refuses-a-letter-outside-the-script`
+- [x] update `insight-case-form-chat-form-read-by-no-script`
 - [x] `guppi/casecheck.py` — `check_answer` imports `check_untranslated` from `guppi/prespec.py` and runs it on the Spec text it builds, each finding to its Case; the docstring says so
 - [x] `tests/test_casecheck.py` — tests whose names hold `script`: a Russian letter in a name, a `context` and a `problem` is a finding with exit 2 and no file written; the same answer again is stored and exits 0 with no file written; an English answer passes; a Russian quotation in `then` passes; a missing `guppi.toml` is one finding
 - [ ] read `estimate-case-check-refuses-a-letter-outside-the-script` at a later session
@@ -349,9 +349,9 @@ update:
 ```
 
 ```tasks
-- [ ] update `rule-carry-over` — step 1 of the Render keeps Next session: `Work` and `Ask the person` from the open lines of `frontier.md`, `Cases` the line "none"
-- [ ] update `estimate-carry-over-writes`
-- [ ] `uv run guppi render`: `.claude/skills/carry/SKILL.md`
+- [x] update `rule-carry-over` — step 1 of the Render keeps Next session: `Work` and `Ask the person` from the open lines of `frontier.md`, `Cases` the line "none"
+- [x] update `estimate-carry-over-writes`
+- [x] `uv run guppi render`: `.claude/skills/carry/SKILL.md`
 - [ ] read `estimate-carry-over-writes` at the first `/carry` after the render, and at the `/hi` after it
 ```
 
@@ -394,9 +394,9 @@ update:
 ```
 
 ```tasks
-- [ ] update `rule-brief` — the paragraph on the second writer says that the brief of `carry` keeps Next session: `Work` and `Ask the person` from the open lines of `frontier.md`, `Cases` the line "none"
-- [ ] update `estimate-brief-written`
-- [ ] `uv run guppi render`: `.claude/agents/librarian-guppi.md`
+- [x] update `rule-brief` — the paragraph on the second writer says that the brief of `carry` keeps Next session: `Work` and `Ask the person` from the open lines of `frontier.md`, `Cases` the line "none"
+- [x] update `estimate-brief-written`
+- [x] `uv run guppi render`: `.claude/agents/librarian-guppi.md`
 - [ ] read `estimate-brief-written` at the librarian's run after the render
 ```
 
@@ -459,10 +459,10 @@ delete:
 ```
 
 ```tasks
-- [ ] update `rule-sprint` — the sprint page changes only by a Case
-- [ ] update `rule-page-generation` — the move leaves the steps of the script, and no step reads the Frontiers
-- [ ] update `estimate-sprint-moves-a-passed-over-item` — renamed; the Criterion replaced whole: nothing moves
-- [ ] delete `estimate-sprint-drops-an-emptied-milestone`
+- [x] update `rule-sprint` — the sprint page changes only by a Case
+- [x] update `rule-page-generation` — the move leaves the steps of the script, and no step reads the Frontiers
+- [x] update `estimate-sprint-moves-a-passed-over-item` — renamed; the Criterion replaced whole: nothing moves
+- [x] delete `estimate-sprint-drops-an-emptied-milestone`
 - [x] `guppi/generate.py` — `move_passed_over`, `passes_in_a_row`, `PASSES_TO_MOVE` and their call after the cascade removed, and the paragraph of the docstring on the move; `frontiers` and `frontier_marks` stay, since `guppi/backlog.py` imports them
 - [x] `tests/test_generate.py` — the six tests of the move removed; one test `test_generate_moves_no_line_of_the_sprint_page`: a sprint page whose items are put off in three and more sessions in a row stands unchanged after the run, and stdout names no move
 - [ ] read `estimate-sprint-items-move-only-by-a-case` in a later session, after the librarian's run
@@ -498,8 +498,8 @@ update:
 ```
 
 ```tasks
-- [ ] update `rule-brief` — Flags name no move of the sprint, and the sprint page changes only by a Case
-- [ ] `uv run guppi render`: `.claude/agents/librarian-guppi.md`
+- [x] update `rule-brief` — Flags name no move of the sprint, and the sprint page changes only by a Case
+- [x] `uv run guppi render`: `.claude/agents/librarian-guppi.md`
 ```
 
 ### Case 539.3 — the finish conditions of a sprint stand only under Done when
@@ -563,13 +563,13 @@ update:
 ```
 
 ```tasks
-- [ ] update `rule-sprint` — the Estimates of a sprint page stand only under Done when
-- [ ] update `entity-sprint-migration` — the finish conditions off the item lists
-- [ ] update `rule-backlog` — the reader of the count named without the move
-- [ ] update `rule-skill-hi` — the form of a sprint line kept, the count by `generate` gone as its reason
+- [x] update `rule-sprint` — the Estimates of a sprint page stand only under Done when
+- [x] update `entity-sprint-migration` — the finish conditions off the item lists
+- [x] update `rule-backlog` — the reader of the count named without the move
+- [x] update `rule-skill-hi` — the form of a sprint line kept, the count by `generate` gone as its reason
 - [x] `guppi/backlog.py` — the docstring of the module and of `sessions_of` name `generate.frontiers` and `generate.frontier_marks` without "the reader of the sprint move"
-- [ ] `uv run guppi render`: `.claude/skills/hi/SKILL.md`
-- [ ] `uv run guppi sprint`
+- [x] `uv run guppi render`: `.claude/skills/hi/SKILL.md`
+- [x] `uv run guppi sprint`
 ```
 
 ### Case 539.4 — the promise of `backlog.md` names its count reader without the move
@@ -605,7 +605,7 @@ update:
 ```
 
 ```tasks
-- [ ] update `estimate-backlog-renders`
+- [x] update `estimate-backlog-renders`
 - [ ] read `estimate-backlog-renders` in a later session: `uv run pytest tests/test_backlog.py`, and `vault/wiki/backlog.md` after the librarian's run
 ```
 

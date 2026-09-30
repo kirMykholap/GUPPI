@@ -2,7 +2,7 @@
 type: lesson
 kind: error
 root_cause: the main agent relays the person's words to case-guppi verbatim and untranslated, and case-guppi quotes them into the context of the Case it rebuilds without translating them
-status: clustered
+status: archived
 insight: "[[insight-case-form-chat-form-read-by-no-script]]"
 origin: raw/2026-09-29/1753/ledger.md#L25
 sprint: migration
@@ -22,3 +22,5 @@ the main agent relays the person's words to case-guppi verbatim and untranslated
 
 - 2026-09-29 created · raw/2026-09-29/1753/ledger.md#L25
 - 2026-09-29 updated: clustered under insight-case-form-chat-form-read-by-no-script (synthesis) · raw/2026-09-29/1753/ledger.md#L25
+- 2026-09-30 archived · insight actioned
+- 2026-09-30 archived · cleanup

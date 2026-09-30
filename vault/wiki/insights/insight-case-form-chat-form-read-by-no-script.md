@@ -1,10 +1,10 @@
 ---
 type: insight
 pattern: A rule of the form of a Case as shown in the chat — the order of its sections, what `ratification` holds, a count in a story section — is read by no script, so it holds only as far as the agent's own reading at the showing, and the fault is found later, by the person or by ask-guppi at pre-spec.
-status: open
+status: actioned
 children: ["[[lesson-case-form-the-spec-free-sections-written-last]]", "[[lesson-case-form-ratification-used-for-the-agents-caveats]]", "[[lesson-case-form-a-count-in-the-sentence-that-opens-a-list]]", "[[lesson-case-form-given-written-before-tasks]]", "[[lesson-case-build-a-list-in-context]]", "[[lesson-case-build-quotes-the-person-in-the-chat-language]]", "[[lesson-case-build-rebuild-quotes-the-relayed-words]]"]
-severity: 2
-addressed_by: "[[decision-case-449]]"
+severity: 0
+addressed_by: "[[decision-case-537]]"
 origin: raw/2026-09-25/0051/ledger.md#L20
 sprint: migration
 created: 2026-09-25
@@ -28,3 +28,4 @@ Let a check read the chat form of a Case before the person does — for example 
 - 2026-09-27 updated: actioned: the proposal for the story sections rejected — the person judges the text of context, problem and recommend, and no script reads it; the order of the sections and ratification are checked since case 419.3 (case 449) · [[decision-case-449]]
 - 2026-09-29 updated: child lesson-case-build-quotes-the-person-in-the-chat-language added, reopened (synthesis) · raw/2026-09-29/1432/ledger.md#L33
 - 2026-09-29 updated: child lesson-case-build-rebuild-quotes-the-relayed-words added (synthesis) · raw/2026-09-29/1753/ledger.md#L25
+- 2026-09-30 updated: actioned: case-guppi quotes none of the person's words (case 536), and the check of each answer runs the language finding (case 537) · [[decision-case-537]]

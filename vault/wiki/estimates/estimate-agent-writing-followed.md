@@ -1,11 +1,11 @@
 ---
 type: estimate
 kind: QA
-status: pending
+status: passed
 target: "[[rule-agent-writing]]"
 purpose: The agent's text holds to the section How the agent writes of CLAUDE.md, and the person's complaint is the test
 method: by hand in a later session — the person's messages of one session read for a complaint about the agent's text, against the section in CLAUDE.md
-checked: 2026-09-28
+checked: 2026-09-30
 origin: raw/2026-09-20/1308/ledger.md#case-272.3
 sprint: migration
 created: 2026-09-20
@@ -25,7 +25,7 @@ The person raised no complaint in the session that the agent's text broke the se
 
 ## Result
 
-2026-09-28, by hand, session 0000: the person asked three times for a plain explanation of the agent's text — "не понял, объясни" on the round of Case 472 (the non-blocking hook), "Объясни плиз по простому в чем суть" on the first round of Case 473, "не понял про fallback. Объясни плиз." on its Q4
+2026-09-30, by hand, the person's messages of session 0248 read for a complaint about the agent's text: one complaint stands, that the two decisions of the pre-spec report lacked the question icons and shape; it is about the question shape of grill-me, not about a claim without a source or wider than its output, a sales pitch, a long or passive sentence, an answer not given first or a not-done left implied; the one request for a plainer text was a /wait-what on Q3 of the round on Case 534, the normal use of the skill
 
 ## History
 
@@ -37,3 +37,4 @@ The person raised no complaint in the session that the agent's text broke the se
 - 2026-09-27 updated: the Criterion replaced whole — the person's complaint is the test of the agent's text, a slip the agent corrected itself no fault (case 450) · [[decision-case-450]]
 - 2026-09-28 status: pending → failed · raw/2026-09-28/0000/ledger.md#L32
 - 2026-09-28 updated: the Criterion replaced whole — a request for a plain explanation, answered by the skill wait-what, is no complaint (case 477.4) · [[decision-case-477.4]]
+- 2026-09-30 status: pending → passed · raw/2026-09-30/0248/ledger.md#L34

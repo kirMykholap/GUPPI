@@ -23,8 +23,6 @@ Rule-class files dissolved, `index.md` gone, the `file` route out of the scripts
 
 ### Slice 5 — closing
 
-- [[estimate-sprint-migration-leftovers-gone]] — `vault/parked/` and the documents of 2026-08 under `docs/` deleted (case 510), the old archive root (case 102.1); the raw date folders read by what git tracks, the remote and `git pull` and `gh` out of `/hi` (case 528); the reading at the close
-
 - the close of a sprint — `entity-sprint-<id>` and the Estimates it lists go to the archive together once each has passed: a done-condition of a sprint has nothing left to guard after the close; not yet decided (case 478.2)
 
 ## Backlog
@@ -36,8 +34,6 @@ Rule-class files dissolved, `index.md` gone, the `file` route out of the scripts
 - a template engine for the rendered files — one script with the shape of each file declared, once a third render beside `sprint.md` and `glossary.md` appears (case 301)
 - [[rule-work-mode]] — the rest of Work Mode past the skill `/work` of case 479.2: the test of each Estimate written first and turned green, and the full model the person plans; cases 183, 206
 - [[rule-subagent-guppi]] — what a subagent may do in Work Mode, and the fork that comes back to the main agent as a Case; cases 183, 206
-- [[estimate-sprint-migration-lint-clean]] — `make lint` exit 0: the 31 Decision pages of Cases 1–28 decided, `unmigrated` at zero
-- [[estimate-sprint-migration-merges]] — `make test` green, `migration` merged into `main`
 - [[rule-spec-box]] — the Spec box, case 207, after Slice 3b
 - [[rule-morph]] — the morph mechanism: the initiation at install sets the category set of the project, the development set by default, held as data so that a changed set rewrites no rule; case 239
 
@@ -113,3 +109,4 @@ No file of `vault/wiki/` is written by hand.
 - 2026-09-30 moved to the Backlog: rule-spec-box passed over in 3 sessions in a row — 0138, 2024, 1753 · generate
 - 2026-09-30 moved to the Backlog: rule-morph passed over in 3 sessions in a row — 0138, 2024, 1753 · generate
 - 2026-09-30 updated: Slice 5: the raw date folders, git pull and gh decided; the remote removed; the merge item no longer names the two rules (case 528.5) · [[decision-case-528.5]]
+- 2026-09-30 updated: the finish conditions lint-clean, merges and leftovers-gone stand only under Done when: off Slice 5 and the Backlog (case 539.3) · [[decision-case-539.3]]

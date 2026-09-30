@@ -1,11 +1,11 @@
 ---
 type: estimate
 kind: QA
-status: pending
+status: passed
 target: "[[rule-skill-wait-what]]"
 purpose: Whether the skill wait-what writes the agent's last text again in plain words in the chat language, with the open question asked again and no option changed
 method: uv run guppi render --check; by hand, in a session after the render, one run of the skill read in the chat, on the person's /wait-what or on a request in words
-checked: 2026-09-28
+checked: 2026-09-30
 origin: raw/2026-09-28/1318/ledger.md#case-477.2
 sprint: migration
 created: 2026-09-28
@@ -35,10 +35,11 @@ Then:
 
 ## Result
 
-2026-09-28, uv run guppi render --check exit 0; by hand, the wait-what run on round 2 Q1 of Case 485: Russian, short sentences, background first, no case number, option and recommendation unchanged, the open question asked again; but it showed the mechanism on a made-up example ("guppi cleanup prints one line per moved file", marked as a made-up example) instead of a real case, and it did not ask the case-guppi of the Case for a real line
+2026-09-30, `uv run guppi render --check` exit 0; by hand, the run of the skill on the person's question on Q3 of the round on Case 534: the re-pitch in Russian opens with background, shows the mechanism on real lines quoted as they stand — guppi/cli.py lines 62-67 with their path, and the command and output of the transcript of session 7ef5ed94 — gives Q3 in the question shape with its options and recommendation unchanged, holds no case number in its own sentences, and ends with Q3 asked again
 
 ## History
 
 - 2026-09-28 created · [[decision-case-477.2]]
 - 2026-09-28 status: pending → failed · raw/2026-09-28/2000/ledger.md#L26
 - 2026-09-29 updated: the Criterion replaced whole — a real quoted example or a plain word that none was found, and options in the question shape of the grill-me template (case 502) · [[decision-case-502]]
+- 2026-09-30 status: pending → passed · raw/2026-09-30/0248/ledger.md#L40

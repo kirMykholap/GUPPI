@@ -1,11 +1,11 @@
 ---
 type: estimate
 kind: QA
-status: pending
+status: failed
 target: "[[rule-case-build]]"
 purpose: Whether a round of case-guppi gives the mechanism with a concrete example, a list one item per line, a quotation in the Context as a blockquote, a number only beside a quotation of what it points to, and an unknown term explained
 method: "by hand, in a session after the render: one first round and one later round of case-guppi read in the chat against the Criterion"
-checked: 2026-09-29
+checked: 2026-09-30
 origin: raw/2026-09-28/1318/ledger.md#case-477.1
 sprint: migration
 created: 2026-09-28
@@ -31,7 +31,7 @@ The `**Context:**` of a first round gives the mechanism in plain words, with one
 
 ## Result
 
-2026-09-29, by hand, the rounds of case-guppi in session 1134: Context of each first round gave the mechanism with one example, questions in the grill-me shape, terms explained; but the first round on C1 names "case 193" in its Context, and the round on C4 names "Cases 506 and 507" in the Now line of Q3, outside the ➡️ lines
+2026-09-30, by hand, the first rounds of case-guppi in session 0248 (Cases 534 to 539) read in the chat: each Context gives the mechanism in plain words with one concrete example, its quotations stand as blockquotes on their own lines, terms are explained where they first stand, and the frame of .claude/agents/case-guppi.md points each question, list and quotation to the grill-me template; but the first round on Case 534 ended, after its last question and a horizontal rule, with a list "Files checked:" whose lines name the transcripts 876c4080-27df-4056-bef6-4cf58825efac.jsonl and 7ef5ed94-bfc3-4092-9650-5183d02edbba.jsonl, session ids standing alone and beside no quotation
 
 ## History
 
@@ -41,3 +41,4 @@ The `**Context:**` of a first round gives the mechanism in plain words, with one
 - 2026-09-29 status: pending → failed · raw/2026-09-29/1134/ledger.md#L39
 - 2026-09-29 updated: the Criterion replaced whole — a list in the Context one item per line; a number in any line of a round only beside a quotation of what it points to (case 512, supersedes 511.2) · [[decision-case-512]]
 - 2026-09-29 updated: the Criterion replaced whole — a quotation in the Context stands as the grill-me template sets it (case 524.2) · [[decision-case-524.2]]
+- 2026-09-30 status: pending → failed · raw/2026-09-30/0248/ledger.md#L36

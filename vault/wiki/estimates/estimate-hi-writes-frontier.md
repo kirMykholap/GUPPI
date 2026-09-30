@@ -1,10 +1,10 @@
 ---
 type: estimate
 kind: QA
-status: pending
+status: passed
 target: "[[rule-skill-hi]]"
 method: "one reading by hand at the first /hi of the next session, written into the estimate line; unit: the frontier findings of guppi prespec --check in tests/test_prespec.py"
-checked: 2026-09-29
+checked: 2026-09-30
 origin: raw/2026-09-12/ledger.md#case-59.2
 sprint: migration
 created: 2026-09-12
@@ -29,7 +29,7 @@ The Frontier is written to `raw/<date>/<hi HHMM>/frontier.md` in the lists `## C
 
 ## Result
 
-2026-09-29, uv run pytest tests/test_prespec.py -k frontier: 7 passed; by hand, the /hi of session 1432: frontier.md with ## Cases and ## Work, C and W lines of the form, C1 of the current milestone opening with its slug in a code span, - near lines, Backlog: 23 items; Pull: and Open issues: no items (decisions 11.1, 11.2 on the sprint page); the chat showed the Cases as a checklist with the detail and the near line indented under each and the Work as one block; the lines closed · case N, [-] · defer case N and [x] · work; /pre-spec found no open line under ## Cases
+2026-09-30, `uv run pytest tests/test_prespec.py -k frontier` 7 passed; by hand, the /hi of session 0248: raw/2026-09-30/0248/frontier.md written in plan mode with ## Cases (C1–C2 from the milestone Slice 5, C3–C7 from the brief's Cases, C8 a failed reading), ## Work (W1–W46, one per pending reading, and W47) and ## Ask (empty, the brief has no Ask the person list); the milestone line C1 opens with its slug in a code span; `Backlog: 26 items` ends ## Cases; near lines name backlog items by slug; the chat shows the Cases as a checklist with no bold Case line
 
 ## History
 
@@ -59,3 +59,4 @@ The Frontier is written to `raw/<date>/<hi HHMM>/frontier.md` in the lists `## C
 - 2026-09-29 updated: the Criterion replaced whole — the Cases shown in the chat at /hi as a checklist, no bold line; a W line closes where its work is done (case 508.2, supersedes 507) · [[decision-case-508.2]]
 - 2026-09-29 status: pending → passed · raw/2026-09-29/1432/ledger.md#L31
 - 2026-09-30 updated: the Criterion replaced whole — the list ## Ask with lines A<n>; the line on Pull and Open issues gone with the two commands, carried from case 528.4 (case 531.11, supersedes 528.4) · [[decision-case-531.11]]
+- 2026-09-30 status: pending → passed · raw/2026-09-30/0248/ledger.md#L5

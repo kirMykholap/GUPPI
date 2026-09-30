@@ -8,6 +8,7 @@ governs: .claude/skills/work/SKILL.md
 render_mode: full
 parent: "[[rule-session]]"
 estimates: ["[[estimate-work-mode-runs-the-spec-on-a-branch-from-a-baseline]]", "[[estimate-work-mode-takes-the-work-readings]]"]
+deferred_by: ["[[decision-case-540]]"]
 origin: raw/2026-09-10/ledger.md#case-29
 sprint: migration
 created: 2026-09-10
@@ -122,3 +123,4 @@ When the last task is done, take the Work readings before `/retro`: in the order
 - 2026-09-29 estimate estimate-work-mode-takes-the-work-readings added · [[decision-case-508.3]]
 - 2026-09-30 updated: /work loads the stops of rule-where-to-stop by an import of vault/wiki/where-to-stop.md (case 531.7) · [[decision-case-531.7]]
 - 2026-09-30 updated: the tasks, the Work readings and /retro run in one turn; the reading lines go to the reply that ends Retro (case 531.8) · [[decision-case-531.8]]
+- 2026-09-30 deferred · [[decision-case-540]]

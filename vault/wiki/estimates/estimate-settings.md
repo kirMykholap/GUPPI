@@ -1,9 +1,9 @@
 ---
 type: estimate
 kind: QA
-status: passed
+status: pending
 target: "[[rule-settings]]"
-purpose: The settings file is rendered whole from rule-settings and its three children, parses as JSON and loads at session start
+purpose: The settings file is rendered whole from rule-settings and its children, parses as JSON and loads at session start
 method: "make test-harness, then by hand at a later session start: json.load on the rendered file, guppi render --check, and the session-start line in the day's event log"
 checked: 2026-09-29
 origin: raw/2026-09-12/ledger.md#case-85.2
@@ -18,10 +18,10 @@ When:
 `uv run guppi render` writes `.claude/settings.json` from `rule-settings` and its children, and the next session starts from that file.
 
 Then:
-The file is the Render of `rule-settings`, and the text of each child replaces its `<!-- child -->` line in the order of `children`: `rule-default-mode`, `rule-permissions`, `rule-hook-registry`. That order is the order of the keys in the file.
+The file is the Render of `rule-settings`, and the text of each child replaces its `<!-- child -->` line in the order of `children`: `rule-default-mode`, `rule-permissions`, `rule-hook-registry`, `rule-python-utf8`. That order gives the order of the top-level keys of the file: `permissions`, `hooks`, `env`.
 **＋** The file parses as JSON, and `uv run guppi render --check` exits 0.
 **＋** The next session start writes its `session-start` line into `vault/raw/<date>/event_log.md`, from the hooks of the rendered file.
-**－** `rule-settings` holds no rule of its own about what a hook or a permission may be.
+**－** `rule-settings` holds no rule of its own about what a hook, a permission or a variable of the environment may be.
 
 ## Result
 
@@ -34,3 +34,4 @@ The file is the Render of `rule-settings`, and the text of each child replaces i
 - 2026-09-14 status: pending → passed · raw/2026-09-14/0747/ledger.md#L35
 - 2026-09-29 updated: the Criterion replaced whole — the block 85.2 as When and Then, the line on its own reading into the lines it names; purpose and method set, Context and Method out (case 498.3) · [[decision-case-498.3]]
 - 2026-09-29 status: pending → passed · raw/2026-09-29/1134/ledger.md#L48
+- 2026-09-30 updated: the Criterion replaced whole — a fourth child, rule-python-utf8, and the env key after hooks · [[decision-case-534.2]]

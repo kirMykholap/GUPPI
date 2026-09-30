@@ -2,12 +2,12 @@
 type: rule
 kind: Leaf
 purpose: Prevents the sprint's backlog from drifting from the pages it names
-status: built
+status: draft
 enforcement: check
 implementation_ref: [guppi/sprint.py, tests/test_sprint.py, guppi/generate.py, tests/test_generate.py]
 governs: vault/wiki/sprint.md
 parent: "[[rule-documentation]]"
-estimates: ["[[estimate-sprint-renders-the-backlog]]", "[[estimate-sprint-checks-the-file]]", "[[estimate-sprint-ticks-the-spec]]", "[[estimate-sprint-moves-a-passed-over-item]]", "[[estimate-sprint-drops-an-emptied-milestone]]"]
+estimates: ["[[estimate-sprint-renders-the-backlog]]", "[[estimate-sprint-checks-the-file]]", "[[estimate-sprint-ticks-the-spec]]", "[[estimate-sprint-items-move-only-by-a-case]]"]
 applies_to: ["[[entity-sprint]]"]
 origin: raw/2026-09-16/2238/ledger.md#case-209
 sprint: migration
@@ -18,11 +18,11 @@ tags: [session, workflow, harness, librarian, sprint]
 ## Purpose
 
 Prevents the sprint's backlog from drifting from the pages it names. The sprint is
-a page — an Entity Leaf `entity-sprint-<id>` under the MOC `entity-sprint` (case 241), whose `estimates` are its Definition of done and whose `## Milestones` lists the Slices in order and whose `## Backlog` the items without a turn, each a wikilink to a page or a plain line (case 229). `vault/wiki/sprint.md`
+a page — an Entity Leaf `entity-sprint-<id>` under the MOC `entity-sprint` (case 241), whose `estimates` are its Definition of done — rendered under Done when and never written as an item line of a milestone or of the Backlog, so that each milestone holds exactly the items whose closing closes it (case 539.3) — and whose `## Milestones` lists the Slices in order and whose `## Backlog` the items without a turn, each a wikilink to a page or a plain line (case 229). `vault/wiki/sprint.md`
 is not a document: `guppi sprint` writes it from that page, one tick per item by the status of the page it names; the `## Milestones` of the page render in order — a closed one as one line, the current one whole, a later one as one line with its count and its items by slug (case 236); the `## Backlog` of the page, the items without a turn, is not rendered here — `guppi backlog` shows it in `backlog.md` (case 451.6); an item names its pages by every `[[slug]]` before the first ` — `, and is ticked when each of them is `built`, `passed` or `archived`, the statuses after ` · ` in the order of the slugs; a wikilink after the ` — ` is text. A line with no wikilink before the ` — ` is a note — a task not yet cut into pages: `- [ ] <text>`, no status, never ticked, keeping its milestone open until the `update` of the Case that cuts it into items or removes it (cases 229.2, 313). The librarian runs the script after `cleanup` and
 `render`, before the brief, so the file shows the pages of that same run; `/hi`
 reads the file as before. `governs` names the file, so the governed-files hook
-refuses a hand edit; the backlog changes by an `update` of the sprint page, a Case, and by one move of `generate`: a milestone item passed over in three sessions in a row goes to the Backlog, and a milestone the move left with no line leaves the Milestones (cases 354.1, 354.2).
+refuses a hand edit; the milestones and the backlog change only by an `update` of the sprint page, a Case: `generate` moves no line of the page, however many sessions put an item off (case 539.1).
 The first `## <id>` heading of the file is the sprint id `sprint_id`, `cleanup` and `archive` read, unchanged. `guppi sprint --check` renders in memory and names the file when it differs, exit 1, writing nothing; `make lint` runs it after `render --check` (case 227). Once the plain `guppi sprint` wrote the file and exits 0, it ticks every unticked task line that opens with a code span holding `guppi sprint` — never a `read` line that names the command later — in the `spec.md` of every unit under `raw/` whose yaml is applied whole; `--check` and an exit 1 tick nothing (case 250.2).
 
 ## History
@@ -52,3 +52,8 @@ The first `## <id>` heading of the file is the sprint id `sprint_id`, `cleanup` 
 - 2026-09-27 status: draft → built · cascade
 - 2026-09-29 status: built → draft · cascade
 - 2026-09-29 status: draft → built · cascade
+- 2026-09-30 updated: the move of a passed-over item and the drop of an emptied milestone removed; the sprint page changes only by a Case (case 539.1) · [[decision-case-539.1]]
+- 2026-09-30 ref `estimate-sprint-moves-a-passed-over-item` → `estimate-sprint-items-move-only-by-a-case` · [[decision-case-539.1]]
+- 2026-09-30 updated: the Estimates of a sprint page stand only under Done when, never as an item line (case 539.3) · [[decision-case-539.3]]
+- 2026-09-30 status: built → draft · cascade
+- 2026-09-30 estimate estimate-sprint-drops-an-emptied-milestone archived · cleanup

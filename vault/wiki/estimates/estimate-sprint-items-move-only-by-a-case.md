@@ -1,0 +1,38 @@
+---
+type: estimate
+kind: QA
+status: pending
+target: "[[rule-sprint]]"
+purpose: Whether generate leaves every line of the sprint page in place, a milestone item put off in many sessions in a row included, so that a line moves only by a Case
+method: "uv run pytest tests/test_generate.py -k moves_no_line; then by hand, the History of entity-sprint-<id> after the librarian's run of a later session: no line of generate on a move"
+checked: 2026-09-27
+origin: raw/2026-09-23/0034/ledger.md#case-354.1
+sprint: migration
+created: 2026-09-23
+tags: [sprint, harness]
+---
+
+## Criterion
+
+When:
+`uv run guppi generate` runs over the vault with one live page `entity-sprint-<id>`, and the `frontier.md` of three or more sessions in a row, under `vault/raw/` or `vault/archive/`, holds a `[-]` line that names an item of its `## Milestones` in a code span.
+
+Then:
+After the run, `## Milestones` and `## Backlog` of `entity-sprint-<id>` stand as before it, each line in its place, unless an entry of the run changes the page.
+**＋** A milestone whose items were all put off keeps its heading under `## Milestones`.
+**＋** `guppi/generate.py` writes no line about a move into the History of `entity-sprint-<id>`, and it prints no such line on stdout.
+**＋** A line of `entity-sprint-<id>` moves only through an entry of a Case the person ratified, an `update` that `generate` applies like any other.
+**－** `rule-sprint` and `rule-page-generation` name no move of a sprint line by `generate`.
+
+## Result
+
+2026-09-27, uv run pytest tests/test_generate.py and the History of entity-sprint-migration after the librarian run of 1819; 97 passed (7 of the move); no milestone item reaches 3 passes (highest 2), and the History holds no move line after 2026-09-23
+
+## History
+
+- 2026-09-23 created · [[decision-case-354.1]]
+- 2026-09-23 status: pending → passed · raw/2026-09-23/1126/ledger.md#L35
+- 2026-09-27 updated: the Criterion replaced whole — a line put off under the closers of case 451, Given lifted into When and Then (case 451.7) · [[decision-case-451.7]]
+- 2026-09-27 status: pending → passed · raw/2026-09-27/2050/ledger.md#L29
+- 2026-09-30 renamed from `estimate-sprint-moves-a-passed-over-item` · [[decision-case-539.1]]
+- 2026-09-30 updated: renamed from estimate-sprint-moves-a-passed-over-item and the Criterion replaced whole — generate moves no line of the sprint page (case 539.1) · [[decision-case-539.1]]

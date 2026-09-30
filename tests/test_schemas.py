@@ -69,10 +69,10 @@ def test_a_required_field_missing_is_one_finding(category):
 
 def test_an_estimate_without_method_is_one_finding():
     """Case 506.1: `method` is a required field of an Estimate, so a page without it earns
-    one `schema` finding. Skipped until the librarian renders the live file of 506.1."""
+    one `schema` finding. A live file without it in the required list fails, not skips
+    (case 548)."""
     data = schema("estimates")
-    if "method" not in data["properties"]["required"]:
-        pytest.skip("estimates/schema.yaml waits for the librarian's render of case 506.1")
+    assert "method" in data["properties"]["required"]
     page = page_in_shape("estimates", data)
     del page.props["method"]
     assert findings(page, data) == ["estimates/estimate-x: schema: missing field method"]
@@ -81,11 +81,12 @@ def test_an_estimate_without_method_is_one_finding():
 def test_a_decision_page_without_context_has_no_finding():
     """Case 513.1: `## Context` is an optional section of a Decision page — the Case file
     keeps the context — so a page with `## Problem` and `## History` alone earns no
-    `schema` finding. Skipped until the librarian renders the live file of 513.1."""
+    `schema` finding. The page in the shape takes `## Problem` from the test itself, since
+    case 544.8 made it optional (case 548)."""
     data = schema("decisions")
-    if "## Context" in data["body"]["required"]:
-        pytest.skip("decisions/schema.yaml waits for the librarian's render of case 513.1")
+    assert "## Context" not in data["body"]["required"]
     page = page_in_shape("decisions", data)
+    page.sections["## Problem"] = "t"
     page.sections.pop("## Context", None)
     assert "## Problem" in page.sections and "## History" in page.sections
     assert findings(page, data) == []
@@ -94,10 +95,10 @@ def test_a_decision_page_without_context_has_no_finding():
 def test_a_decision_page_without_problem_with_recommend_parent_and_children_has_no_finding():
     """Case 544.8: `## Problem` is optional and `## Recommend`, `parent` and `children` are
     known to the schema of a Decision page, so the page of a sub-case or of its parent earns
-    no `schema` finding. Skipped until the librarian renders the live file of 544.8."""
+    no `schema` finding. A live file that requires `## Problem` again fails, not skips
+    (case 548)."""
     data = schema("decisions")
-    if "## Problem" in data["body"]["required"]:
-        pytest.skip("decisions/schema.yaml waits for the librarian's render of case 544.8")
+    assert "## Problem" not in data["body"]["required"]
     page = page_in_shape("decisions", data)
     page.sections.pop("## Problem", None)
     page.sections["## Recommend"] = "- **Which?**\n  - Answer: yes."

@@ -698,3 +698,71 @@ def test_the_hook_and_materialize_judge_a_mark_alike(working):
         if e.get("kind") == "lesson" and "addressed_by" in (e.get("incomplete") or [])
     }
     assert hook_refused == incomplete == {"lesson-a-b", "lesson-a-d"}
+
+
+# --- a line the grammar does not read (case 552.2) ----------------------------------------
+# `estimate-ledger-write-refuses-a-line-it-cannot-read`
+
+BROKEN = "- estimate[estimate-x-holds] note [passed] 2026-09-09, pytest; green"
+BROKEN_LESSON = "- lesson[wrong][harness-x] trigger: a root_cause: b {addressed_by:case 99}"
+BROKEN_REFUSAL = (
+    "ledger: line not written — the grammar of a ledger line does not read it: {}. "
+    "Write it again in the form of the table in case-schema.md.\n"
+)
+
+
+def test_a_broken_line_in_the_finished_reply_is_refused_aloud(working):
+    reply = ledger_block(DECISION, BROKEN, LESSON)
+    code, err = run(payload(last_assistant_message=reply), working)
+    assert (code, err) == (2, BROKEN_REFUSAL.format(BROKEN[2:]))
+    assert ledger_text(working).splitlines() == [timed(DECISION), timed(LESSON)]
+
+
+def test_a_broken_line_of_an_earlier_text_is_skipped_without_a_word(working):
+    transcript = write_transcript(working, transcript_line(ledger_block(BROKEN, DECISION)))
+    stdin = payload(last_assistant_message="Nothing.", transcript_path=transcript)
+    assert run(stdin, working) == (0, "")
+    assert ledger_text(working) == f"{timed(DECISION)}\n"
+
+
+def test_a_broken_lesson_line_gets_no_refusal_for_its_prefix_or_mark(working):
+    code, err = run(payload(last_assistant_message=ledger_block(BROKEN_LESSON)), working)
+    assert (code, err) == (2, BROKEN_REFUSAL.format(BROKEN_LESSON[2:]))
+    assert not ledger_file(working).exists()
+
+
+def test_a_space_between_brackets_is_written_as_a_record(working):
+    spaced = READ_X.replace("][", "] [")
+    assert run(payload(last_assistant_message=ledger_block(spaced)), working) == (0, "")
+    assert ledger_text(working) == f"{timed(spaced)}\n"
+
+
+# --- the hook's own error (case 552.4) ------------------------------------------------------
+# `estimate-ledger-write-exits-2-on-an-error`
+
+
+def fail_to_append(path, lines):
+    raise OSError("disk full")
+
+
+def test_an_error_after_the_payload_is_read_exits_2(working, monkeypatch):
+    monkeypatch.setattr(ledger, "append", fail_to_append)
+    code, err = run(payload(last_assistant_message=ledger_block(DECISION)), working)
+    assert (code, err) == (2, "ledger: ledger.md not written: disk full\n")
+
+
+def test_the_re_fire_exits_0_and_writes_nothing_when_the_hook_would_fail(working, monkeypatch):
+    monkeypatch.setattr(ledger, "append", fail_to_append)
+    stdin = payload(last_assistant_message=ledger_block(DECISION), stop_hook_active=True)
+    assert run(stdin, working) == (0, "")
+    assert not ledger_file(working).exists()
+
+
+def test_a_payload_that_cannot_be_read_exits_0_with_the_error(working, monkeypatch):
+    def fail(stdin):
+        raise ValueError("not JSON")
+
+    monkeypatch.setattr(ledger, "read_payload", fail)
+    code, err = run(io.StringIO("{"), working)
+    assert (code, err) == (0, "ledger: ledger.md not written: not JSON\n")
+    assert not ledger_file(working).exists()

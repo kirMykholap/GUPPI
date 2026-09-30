@@ -15,7 +15,18 @@ first that holds a `session-start` of this session, joined in date order, so a s
 crosses midnight keeps its window (case 55.1). Without a `hi`, and with lines to write, the
 hook exits 2 and says why on stderr, so the person is told rather than left believing the
 lines were recorded. On the re-fire after a block (`stop_hook_active`) it exits 0 and writes
-nothing, so it cannot loop.
+nothing, so it cannot loop. An error of the hook itself after it has read the payload — an
+exception while it reads the transcript, the event log or the ledger, or judges or appends
+the lines — exits 2 with `ledger: ledger.md not written: <error>` on stderr, so the agent
+sees it at the end of that reply; a line not yet appended waits for the next `Stop`. An error
+while it reads the payload exits 0 with the error on stderr, since the hook cannot tell a
+re-fire then (case 552.4).
+
+A line the grammar does not read is not written (case 552.2): `parse_line` of
+`guppi/materialize.py` gives None for it, and `materialize` would put it under `unparsed`,
+the record it holds lost. It is judged before the other refusals and gets no other; the hook
+exits 2 with one stderr line per such line only when it stands in the reply just finished,
+skips an older one without a word, and writes the other lines as before.
 
 The lines come from every assistant message of the session in `transcript_path`, in order,
 plus the reply that just finished (`last_assistant_message`), so a reply that ended in a
@@ -306,6 +317,14 @@ def changed_by_session(lines: list[str]) -> dict[str, str]:
     return changed
 
 
+def unreadable(lines: list[str]) -> list[str]:
+    """Each line that `parse_line` of `guppi/materialize.py` cannot read: `materialize` would
+    put it under `unparsed`, and the record it holds would be lost (case 552.2)."""
+    from guppi.materialize import parse_line
+
+    return [line for line in lines if parse_line(f"- {body(line)}") is None]
+
+
 def refused_readings(lines: list[str], changed: dict[str, str]) -> list[tuple[str, str]]:
     """`(line, case)` of each `estimate[<slug>]` line whose slug a decision line of the
     session creates or updates: what a session changes, it does not measure (case 428.1)."""
@@ -375,8 +394,12 @@ def run(argv, *, stdin=None, stderr=None, project_dir: Path | None = None, now=N
     now = datetime.now().astimezone() if now is None else now
     try:
         payload = read_payload(stdin)
-        if payload.get("stop_hook_active"):
-            return 0
+    except Exception as exc:  # noqa: BLE001 — no payload, no way to tell a re-fire (case 552.4)
+        print(f"ledger: ledger.md not written: {exc}", file=stderr)
+        return 0
+    if payload.get("stop_hook_active"):
+        return 0
+    try:
         seen = existing_bodies(project_dir)
         fresh = [timed(line, now) for line in session_lines(payload) if body(line) not in seen]
         if not fresh:
@@ -393,6 +416,8 @@ def run(argv, *, stdin=None, stderr=None, project_dir: Path | None = None, now=N
         if path is None:
             raise RuntimeError("no session folder for the hi")
         written = path.read_text(encoding="utf-8").splitlines() if path.exists() else []
+        broken = unreadable(fresh)  # case 552.2: judged first, no other refusal
+        fresh = [line for line in fresh if line not in broken]
         refused = refused_readings(fresh, changed_by_session(written + fresh))
         lessons = refused_lessons(fresh)
         marks = refused_marks(fresh, written, {line for line, _ in lessons})  # case 497.1
@@ -405,6 +430,13 @@ def run(argv, *, stdin=None, stderr=None, project_dir: Path | None = None, now=N
         if fresh:
             append(path, fresh)
         finished = {body(line) for line in ledger_lines(reply_text(payload))}
+        loud_broken = [line for line in broken if body(line) in finished]
+        for line in loud_broken:
+            print(
+                f"ledger: line not written — the grammar of a ledger line does not read it: "
+                f"{body(line)}. Write it again in the form of the table in case-schema.md.",
+                file=stderr,
+            )
         loud = [(line, case) for line, case in refused if body(line) in finished]
         for line, case in loud:
             slug = BRACKET.search(line).group(1)
@@ -430,8 +462,9 @@ def run(argv, *, stdin=None, stderr=None, project_dir: Path | None = None, now=N
                 "the decision line of the Case that closed the cause, naming that Case.",
                 file=stderr,
             )
-        if loud or loud_lessons or loud_marks:
+        if loud_broken or loud or loud_lessons or loud_marks:
             return 2
-    except Exception as exc:  # noqa: BLE001 — a hook that raises would fail the session
+    except Exception as exc:  # noqa: BLE001 — shown to the agent, not swallowed (case 552.4)
         print(f"ledger: ledger.md not written: {exc}", file=stderr)
+        return 2
     return 0

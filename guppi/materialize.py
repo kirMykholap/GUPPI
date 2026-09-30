@@ -51,8 +51,9 @@ can name it (case 52.4), and an effect on each target:
     defer     none                  a minimal placeholder page, born with `deferred_by`
 
 The category of a slug comes from its prefix, which pre-spec guards; a slug with no prefix is
-`unknown` (case 320). A `{supersedes:case N}` makes the earlier decision `superseded` and
-takes its slug out of the target's `deferred_by` (case 52.3).
+`unknown` (case 320). A `{supersedes:case N}` makes the earlier decision `superseded`, and
+`generate` takes its slug out of a target's `deferred_by` under the condition that
+`rule-case-protocol` sets (cases 52.3, 549).
 
 No Estimate is derived (cases 189, 194.1). An Estimate has its own ledger line and its own
 entry; the `ref` of the line is the Estimate itself. Its Criterion is the `when` and
@@ -209,13 +210,29 @@ class MaterializeError(Exception):
 # --- the ledger ---------------------------------------------------------------------
 
 
+def _past_brackets(text: str, count: int) -> str | None:
+    """`text` past its first `count` brackets, spaces between them allowed, or None when a
+    bracket is not where it should be (case 552.1)."""
+    for _ in range(count):
+        text = text.lstrip()
+        match = BRACKETS.match(text)
+        if not match:
+            return None
+        text = text[match.end() :]
+    return text
+
+
 def parse_line(text: str) -> dict | None:
-    """The record of one ledger line, or None when the grammar does not match."""
+    """The record of one ledger line, or None when the grammar does not match. A space
+    between two brackets is read as none, for every kind of line, and a line it cannot read
+    gives None, never an error (case 552.1)."""
     match = RECORD.match(text.rstrip())
     if not match:
         return None
     kind, rest = match.groups()
     heads = BRACKETS.findall(rest)
+    if not heads:
+        return None
     tail = rest[BRACKETS.search(rest).start() :]
     if kind == "decision":
         if len(heads) < 3 or not heads[0].startswith("case "):
@@ -240,13 +257,20 @@ def parse_line(text: str) -> dict | None:
     if kind == "estimate":
         if len(heads) < 2 or heads[1] not in ("passed", "failed"):
             return None
-        after = tail[BRACKETS.match(tail).end() :]
-        after = after[BRACKETS.match(after).end() :].strip()
-        return {"record": "estimate", "slug": heads[0].strip(), "status": heads[1], "result": after}
+        after = _past_brackets(tail, 2)
+        if after is None:
+            return None
+        return {
+            "record": "estimate",
+            "slug": heads[0].strip(),
+            "status": heads[1],
+            "result": after.strip(),
+        }
     if len(heads) < 2 or heads[0] not in ("error", "knowledge"):
         return None
-    after = tail[BRACKETS.match(tail).end() :]
-    after = after[BRACKETS.match(after).end() :]
+    after = _past_brackets(tail, 2)
+    if after is None:
+        return None
     options = {k: v.strip() for k, v in BRACES.findall(after.split(" trigger:", 1)[0])}
     after = after[after.find("trigger:") :] if "trigger:" in after else after.strip()
     trigger, _, root_cause = after.partition("root_cause:")

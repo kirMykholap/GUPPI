@@ -1736,6 +1736,58 @@ def test_parse_line_gives_one_case_per_supersedes_block():
     assert materialize.parse_line("- decision[case 9][update][rule-x]")["supersedes"] == []
 
 
+# --- a space between brackets, and a line it cannot read (case 552.1) --------------------
+# `estimate-materialize-assembles`
+
+ESTIMATE = "- estimate[estimate-x][passed] 2026-09-30, pytest: 3 passed"
+LESSON = "- lesson[error][lesson-a-b]{tags:session} trigger: a thing happened root_cause: a cause"
+
+
+@pytest.mark.parametrize(
+    "spaced, plain",
+    [
+        (ESTIMATE.replace("][", "] ["), ESTIMATE),
+        (ESTIMATE.replace("][", "]  ["), ESTIMATE),
+        (LESSON.replace("][", "] ["), LESSON),
+        (
+            "- decision[case 9] [update] [rule-x]{ref:rule-x}",
+            "- decision[case 9][update][rule-x]{ref:rule-x}",
+        ),
+    ],
+)
+def test_a_space_between_brackets_gives_the_record_of_the_line_without_it(spaced, plain):
+    assert materialize.parse_line(plain) is not None
+    assert materialize.parse_line(spaced) == materialize.parse_line(plain)
+
+
+def test_a_line_without_spaces_gives_the_record_it_gave_before():
+    assert materialize.parse_line(ESTIMATE) == {
+        "record": "estimate",
+        "slug": "estimate-x",
+        "status": "passed",
+        "result": "2026-09-30, pytest: 3 passed",
+    }
+    lesson = materialize.parse_line(LESSON)
+    assert (lesson["kind"], lesson["slug"], lesson["tags"]) == ("error", "lesson-a-b", ["session"])
+    assert (lesson["trigger"], lesson["root_cause"]) == ("a thing happened", "a cause")
+
+
+@pytest.mark.parametrize(
+    "broken",
+    [
+        "- estimate[estimate-x] text [passed] 2026-09-30",
+        "- estimate[estimate-x][maybe] 2026-09-30",
+        "- lesson[error] text [lesson-a-b] trigger: t root_cause: r",
+        "- lesson[wrong][lesson-a-b] trigger: t root_cause: r",
+        "- decision[case 9][update]",
+        "- estimate[",
+        "- lesson[",
+    ],
+)
+def test_a_line_it_cannot_read_gives_none_and_no_error(broken):
+    assert materialize.parse_line(broken) is None
+
+
 def test_a_line_with_two_supersedes_blocks_marks_both_cases(tmp_path):
     a, b = seed_two_units(tmp_path)
     (b / "ledger.md").write_text(

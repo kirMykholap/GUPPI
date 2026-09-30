@@ -13,7 +13,7 @@ the Backlog that names no page stands by its text, and a slug there without a li
 by the text after its ` — `. The count of an item is the number of sessions whose
 `frontier.md`, under `vault/raw/` or `vault/archive/`, holds a `[-]` line naming its slug
 in a code span of its title — read by `generate.frontiers` and `generate.frontier_marks`,
-the reader of the sprint move (`rule-one-judgment-one-implementation`). `N` counts the
+held in no second copy here (`rule-one-judgment-one-implementation`). `N` counts the
 conserved Specs and the lines of `## Deferred`; a slug under a conserved Spec does not
 stand again under `## Deferred`, and a slug of two sources stands once, by its first
 source in the order above. A folder whose `carry.md` is gone shows nothing. A Spec of a
@@ -63,7 +63,7 @@ def plural(count: int, word: str) -> str:
 
 def sessions_of(project_dir: Path) -> Sessions:
     """Every Frontier of `raw/` and the archive, keyed by its session, as the marks of its
-    lines — the reader of the sprint move (case 354.1), read once."""
+    lines by `generate.frontiers` and `generate.frontier_marks`, read once."""
     return [(key, frontier_marks(path)) for key, path in frontiers(project_dir)]
 
 

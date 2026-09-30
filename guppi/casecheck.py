@@ -24,7 +24,11 @@ sub-cases (`given` too, unless it is a sub-case); and a `ratification` of one un
 ledger lines and nothing else, the fence judged by `materialize.fence_opening` and
 `closes_fence` (case 444.1). The text of the story sections — `context`, `problem` and
 `recommend` — is not checked: the person judges it; the check still requires the sections and
-their order (case 449). Each Case of the answer is stored with its findings and the time of
+their order (case 449), and runs over the same Spec text the language finding of `/pre-spec`,
+`prespec.check_untranslated`, imported: a name, `context` or `problem` that holds a letter
+outside the script of the documentation language is a finding of its Case, and a `guppi.toml`
+that is missing or names a code the table does not hold is one finding, given to the first
+Case of the answer (case 537). Each Case of the answer is stored with its findings and the time of
 the store in `<plan>.checked.json` beside the plan file of the session, a later answer for the
 same id replacing it but for the notes sent for that id, which it keeps (case 472.1). The notes
 are those of `prespec.promise_notes` on the answer — a line of a Criterion replaced whole that
@@ -108,6 +112,7 @@ from guppi.prespec import (
     BACKLOG_SOURCE,
     FINDING_CASE,
     NOTE_CASE,
+    check_untranslated,
     decided_on_its_page,
     deferred_pages,
     judge,
@@ -401,8 +406,10 @@ def check_answer(
     `case-guppi`. The categories whose schema rule the lines of the `ratification` fences or
     of the session's `window` change are not judged by their keys (case 436.4). `frontier`,
     the session's `frontier.md`, adds the check of its open `backlog` lines (case 467.2). The
-    notes are those of `prespec.promise_notes` on the answer — a Criterion line not carried,
-    a `then` line shared by siblings (cases 472.1, 472.2)."""
+    language finding of `/pre-spec`, `check_untranslated`, runs over the same Spec text as
+    `judge`, each hit a finding of its Case (case 537). The notes are those of
+    `prespec.promise_notes` on the answer — a Criterion line not carried, a `then` line shared
+    by siblings (cases 472.1, 472.2)."""
     cases = split_cases(text)
     heads = headings(text)
     records = ratification_records(cases)
@@ -420,7 +427,10 @@ def check_answer(
         section, errors = case_section(case, heads[case], lines, refs, keys_for=keys_for)
         found[case] += [f"case {case}: {error}" for error in errors]
         spec += section or [heads[case], ""]
-    for finding in judge("\n".join(spec) + "\n", project_dir, records, schema_free=schema_free):
+    spec_text = "\n".join(spec) + "\n"
+    for finding in judge(spec_text, project_dir, records, schema_free=schema_free) + (
+        check_untranslated(spec_text, project_dir)  # the language finding (case 537)
+    ):
         match = FINDING_CASE.match(finding)
         case = match.group(1) if match else ""
         found[case if case in found else next(iter(cases))].append(finding)
@@ -428,7 +438,7 @@ def check_answer(
         family = [c for c in found if c == top or c.startswith(f"{top}.")]
         found[family[0] if family else next(iter(cases))].append(finding)
     notes: dict[str, list[str]] = {case: [] for case in cases}
-    for note in promise_notes("\n".join(spec) + "\n", project_dir):
+    for note in promise_notes(spec_text, project_dir):
         match = NOTE_CASE.match(note)
         case = match.group(1) if match else ""
         notes[case if case in notes else next(iter(cases))].append(note)

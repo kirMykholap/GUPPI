@@ -19,16 +19,16 @@ TODAY = date(2026, 9, 9)
 NOW = datetime(2026, 9, 9, 15, 30, 0, tzinfo=UTC)
 SESSION = "44c1aae1-4076-4a58-a7c0-d20bc274047c"
 
-ANSWER = """## Case 7 — пример
+ANSWER = """## Case 7 — example
 
 > **context:**
-> Контекст.
+> Context.
 
 > **problem:**
-> Проблема.
+> Problem.
 
 > **recommend:**
-> Совет.
+> Advice.
 
 > **given:**
 > `rule-x` — the rule.
@@ -72,13 +72,13 @@ status: draft
 Prevents x: the `old` text stands here.
 """
 
-SHORT_FORM = """## Case 8 — отложено
+SHORT_FORM = """## Case 8 — deferred
 
 > **context:**
-> Контекст.
+> Context.
 
 > **problem:**
-> Проблема.
+> Problem.
 
 ```then
 defer:
@@ -95,6 +95,9 @@ def working(tmp_path):
     plan = tmp_path / ".claude" / "plans" / "plan.md"
     plan.parent.mkdir(parents=True)
     plan.write_text("# Spec — 2026-09-09, session 1501\n", encoding="utf-8")
+    (tmp_path / "guppi.toml").write_text(
+        'documentation_lang = "en"\nchat_lang = "ru"\n', encoding="utf-8"
+    )
     log = tmp_path / "vault" / "raw" / TODAY.isoformat() / "event_log.md"
     log.parent.mkdir(parents=True)
     log.write_text(
@@ -191,7 +194,7 @@ def test_subagent_a_clean_case_is_stored(working):
     assert answer(working, ANSWER) == (0, "")
     entry = store(working)["7"]
     assert entry["findings"] == []
-    assert entry["text"].startswith("## Case 7 — пример\n\n> **context:**")
+    assert entry["text"].startswith("## Case 7 — example\n\n> **context:**")
     assert entry["text"].endswith("> ```")
 
 
@@ -205,7 +208,9 @@ def test_subagent_a_missing_section_sends_it_back(working):
 
 
 def test_subagent_sections_out_of_order_and_a_ratification_with_text(working):
-    moved = ANSWER.replace("> **recommend:**\n> Совет.\n\n", "") + "\n> **recommend:**\n> Совет.\n"
+    moved = (
+        ANSWER.replace("> **recommend:**\n> Advice.\n\n", "") + "\n> **recommend:**\n> Advice.\n"
+    )
     code, err = answer(working, moved)
     assert code == 2 and "out of the order of the schema" in err
     chatty = ANSWER.replace("> ```\n> - decision", "> Ratify?\n> ```\n> - decision", 1)
@@ -328,7 +333,7 @@ def test_subagent_a_question_and_another_agent_pass_unstored(working):
 
 # --- the file of a built Case (case 452.1) ----------------------------------------------
 
-PARENT = "## Case 9 — родитель\n\n> **context:**\n> К.\n\n> **problem:**\n> П.\n\n> **recommend:**\n> С.\n\n"
+PARENT = "## Case 9 — parent\n\n> **context:**\n> C.\n\n> **problem:**\n> P.\n\n> **recommend:**\n> A.\n\n"
 
 
 def sub_case(case, then="The file is written."):
@@ -336,10 +341,10 @@ def sub_case(case, then="The file is written."):
     n = case.split(".")[1]
     anchor = "`` the `old` text ``" if n == "1" else "`Prevents x:`"
     return (
-        ANSWER.replace("## Case 7 — пример", f"### Case {case} — часть")
+        ANSWER.replace("## Case 7 — example", f"### Case {case} — part")
         .replace("case 7", f"case {case}")
         .replace(
-            "> **context:**\n> Контекст.\n\n> **problem:**\n> Проблема.\n\n> **recommend:**\n> Совет.\n\n",
+            "> **context:**\n> Context.\n\n> **problem:**\n> Problem.\n\n> **recommend:**\n> Advice.\n\n",
             "",
         )
         .replace("estimate-x-works", f"estimate-x-works-{n}")
@@ -367,11 +372,11 @@ def test_subagent_the_file_is_replaced_whole_when_the_answer_holds_the_top_case(
     ) == (0, "")
     path = case_path(working, "9.2")
     assert path.name == "case-9.md" and "### Case 9.2" in path.read_text(encoding="utf-8")
-    assert answer(working, PARENT.replace("> К.", "> К2.") + sub_case("9.1")) == (0, "")
+    assert answer(working, PARENT.replace("> C.", "> C2.") + sub_case("9.1")) == (0, "")
     text = path.read_text(encoding="utf-8")
     held = store(working)
     assert text == held["9"]["text"] + "\n\n" + held["9.1"]["text"] + "\n"
-    assert "### Case 9.2" not in text and "> К2." in text
+    assert "### Case 9.2" not in text and "> C2." in text
 
 
 def test_subagent_a_sub_case_alone_replaces_its_section_alone(working):
@@ -395,6 +400,53 @@ def test_subagent_no_file_on_a_finding(working):
     clean = case_path(working, "7").read_text(encoding="utf-8")
     assert answer(working, no_read)[0] == 2
     assert case_path(working, "7").read_text(encoding="utf-8") == clean  # left as it stood
+
+
+# --- the language finding of /pre-spec on the answer (case 537) --------------------------
+
+
+@pytest.mark.parametrize(
+    "old, new, part",
+    [
+        ("## Case 7 — example", "## Case 7 — пример", "name"),
+        ("> Context.", "> Контекст.", "context"),
+        ("> Problem.", "> Проблема.", "problem"),
+    ],
+)
+def test_subagent_script_a_letter_outside_the_script_is_a_finding_with_no_file(
+    working, old, new, part
+):
+    russian = ANSWER.replace(old, new)
+    code, err = answer(working, russian)
+    assert code == 2
+    assert f"case 7: its {part} holds a letter outside the Latin script of English" in err
+    assert store(working)["7"]["findings"]
+    assert not case_path(working, "7").exists()
+    assert answer(working, russian) == (0, "")  # the same answer again: stored, not sent back
+    assert store(working)["7"]["findings"]
+    assert not case_path(working, "7").exists()
+
+
+def test_subagent_script_an_english_answer_passes(working):
+    assert answer(working, ANSWER) == (0, "")
+    assert store(working)["7"]["findings"] == []
+    assert case_path(working, "7").exists()
+
+
+def test_subagent_script_a_russian_quotation_in_then_passes(working):
+    quoted = ANSWER.replace("> The file is written.", "> The file is written: «файл записан».")
+    assert answer(working, quoted) == (0, "")
+    assert store(working)["7"]["findings"] == []
+
+
+def test_subagent_script_a_missing_guppi_toml_is_one_finding(working):
+    (working / "guppi.toml").unlink()
+    code, err = answer(working, ANSWER)
+    assert code == 2
+    assert "guppi.toml: missing" in err
+    assert store(working)["7"]["findings"] == [
+        "guppi.toml: missing — the language of the repository is not known; no Case is read"
+    ]
 
 
 def test_subagent_the_path_of_the_file_is_one_the_guard_judges(working):
@@ -426,10 +478,10 @@ def test_stop_the_translated_prose_and_heading_pass(working):
     # 441.3: the name of the heading, `context`, `problem` and `recommend` are not compared
     answer(working, ANSWER)
     translated = (
-        ANSWER.replace("## Case 7 — пример", "## Case 7 — an example")
-        .replace("> Контекст.", "> The context.\n> Two lines of it.")
-        .replace("> Проблема.", "> The problem.")
-        .replace("> Совет.", "> The advice.")
+        ANSWER.replace("## Case 7 — example", "## Case 7 — an example")
+        .replace("> Context.", "> The context.\n> Two lines of it.")
+        .replace("> Problem.", "> The problem.")
+        .replace("> Advice.", "> The advice.")
     )
     assert show(working, translated) == (0, "")
 
@@ -450,7 +502,7 @@ def test_stop_a_changed_mechanical_part_is_refused(working):
 
 RATIFICATION = ANSWER[ANSWER.index("> **ratification:**") :]
 SHORT_SHOWING = (
-    "## Case 7 — пример\n\nМеняет правило x: одна пара `replace` и новое Estimate.\n\n"
+    "## Case 7 — example\n\nМеняет правило x: одна пара `replace` и новое Estimate.\n\n"
     + RATIFICATION
     + "\n---\n\nРатифицируешь?\n"
 )
@@ -517,7 +569,7 @@ def test_stop_a_heading_a_diff_and_a_short_form_are_not_compared(working):
 
 
 def test_stop_a_case_shown_again_without_recommend_is_compared(working):
-    again = ANSWER.replace("> **recommend:**\n> Совет.\n\n", "")
+    again = ANSWER.replace("> **recommend:**\n> Advice.\n\n", "")
     code, err = show(working, again)
     assert code == 2 and "not built and checked" in err
     answer(working, again)
@@ -525,16 +577,16 @@ def test_stop_a_case_shown_again_without_recommend_is_compared(working):
 
 
 def test_stop_a_parent_is_compared_part_by_part(working):
-    parent = "## Case 9 — родитель\n\n> **context:**\n> К.\n\n> **problem:**\n> П.\n\n> **recommend:**\n> С.\n\n"
-    sub = ANSWER.replace("## Case 7 — пример", "### Case 9.1 — часть").replace("case 7", "case 9.1")
+    parent = "## Case 9 — parent\n\n> **context:**\n> C.\n\n> **problem:**\n> P.\n\n> **recommend:**\n> A.\n\n"
+    sub = ANSWER.replace("## Case 7 — example", "### Case 9.1 — part").replace("case 7", "case 9.1")
     sub = sub.replace(
-        "> **context:**\n> Контекст.\n\n> **problem:**\n> Проблема.\n\n> **recommend:**\n> Совет.\n\n",
+        "> **context:**\n> Context.\n\n> **problem:**\n> Problem.\n\n> **recommend:**\n> Advice.\n\n",
         "",
     )
     assert answer(working, parent + sub) == (0, "")
     assert set(store(working)) == {"9", "9.1"}
     assert show(working, parent + sub) == (0, "")
-    assert show(working, parent.replace("К.", "К!") + sub) == (0, "")  # prose, not compared
+    assert show(working, parent.replace("C.", "C!") + sub) == (0, "")  # prose, not compared
     code, err = show(working, parent + sub.replace("The file is written.", "Written twice."))
     assert code == 2 and "case 9.1: its then differ" in err
 
@@ -603,13 +655,13 @@ def test_backlog_a_case_naming_the_page_only_in_a_defer_line_is_not_judged(worki
 
 # --- the notes of the promise lines (cases 472.1, 472.2) -------------------------------
 
-RECUT = """## Case 7 — пересборка
+RECUT = """## Case 7 — recut
 
 > **context:**
-> Контекст.
+> Context.
 
 > **problem:**
-> Проблема.
+> Problem.
 
 > **given:**
 > `estimate-x-works` — its Estimate.
@@ -667,7 +719,7 @@ def test_subagent_note_a_dropped_criterion_line_is_sent_back_once_and_kept(recut
     assert store(recut)["7"]["findings"] == [] and store(recut)["7"]["notes"] == [DROPPED]
     assert case_path(recut, "7").exists()  # a note is no finding: the file is written
     assert answer(recut, RECUT) == (0, "")
-    assert answer(recut, RECUT.replace("> Контекст.", "> Контекст 2.")) == (0, "")
+    assert answer(recut, RECUT.replace("> Context.", "> Context 2.")) == (0, "")
     assert store(recut)["7"]["notes"] == [DROPPED]  # a later answer keeps the notes sent
 
 

@@ -133,19 +133,8 @@ recounted — the live rules whose `applies_to` names it, in slug order — writ
 list is not empty or the field already stands, History `rules: [...] · cascade` on a change
 (case 305.3). No section is derived by the cascade.
 
-The move after the cascade (case 354): for every item under `## Milestones` of the one live
-sprint page `entity-sprint-<id>` — a line naming pages before its first ` — `, by
-`sprint.item_slugs` — the script reads every `frontier.md` of `raw/` and of the archive,
-newest session first by date and HHMM, and counts the sessions in a row whose Frontier holds
-a line `[-]` with one of the item's slugs in a code span in its title, the text before the
-first ` · `; an `[x]` line stops the count, a session with no such line, or an open `[ ]`
-one, is passed by. At 3 or more the line leaves its milestone, unchanged, for the end of
-`## Backlog`, History `moved to the Backlog: <slugs> passed over in <N> sessions in a row —
-<HHMM>, … · generate` and one stdout line (354.1); a milestone the move left with no item
-line leaves `## Milestones`, History `milestone <name> left the Milestones: its items moved
-to the Backlog · generate` and one stdout line; one empty before the run, or one where a
-note is left, stays (354.2). A note is never counted; `## Backlog` and `## Closed` are not
-read.
+No line of the sprint page moves by the script: a milestone item leaves its milestone
+only by an `update` of a Case (case 539.1).
 
 The walk (case 201.5): without `--date` every unit under `vault/raw/` with a yaml is
 applied — the date-level yaml of a date first, then `raw/<date>/<HHMM>/materialize.yaml`
@@ -175,8 +164,6 @@ from guppi.materialize import (
     yaml_path,
 )
 from guppi.pages import HISTORY, REF_FIELDS, Page, read_page, slug_of, wiki_root
-from guppi.sprint import PREFIX as SPRINT_PREFIX
-from guppi.sprint import SLICE, item_slugs, milestone_blocks
 
 KEY_ORDER = {
     "rules": [
@@ -323,13 +310,13 @@ CASE_HEADING = re.compile(r"^#{2,3} Case (\S+)")
 ANY_HEADING = re.compile(r"^#{1,6} ")
 TASK_LINE = re.compile(r"^- \[ \] (create|update|delete|defer) `([^`]+)`")
 READ_LINE = re.compile(r"^- \[ \] read `([^`]+)`")
-# A line of a Frontier — the box, the id, the rest — and the separator of its segments; the
-# move below and `prespec.check_frontier` read the lines by this one pattern (case 360).
+# A line of a Frontier — the box, the id, the rest — and the separator of its segments;
+# `frontier_marks` below and `prespec.check_frontier` read the lines by this one pattern
+# (case 360).
 FRONTIER_LINE = re.compile(r"^- \[([ x-])\] (\S+)(.*)$")
 FRONTIER_SEPARATOR = " · "
 DAY = re.compile(r"^\d{4}-\d\d-\d\d$")
 SESSION = re.compile(r"^\d{4}$")
-PASSES_TO_MOVE = 3  # a milestone item put off in three sessions in a row (case 354.1)
 
 
 def replace_hits(page: Page, old: str) -> list[tuple[str, re.Match]]:
@@ -506,7 +493,7 @@ def archived_paths(project_dir: Path, slug: str) -> list[Path]:
     )
 
 
-# --- the passes over a sprint item (case 354) ---------------------------------------
+# --- the Frontiers, read by the count of `guppi backlog` ---------------------------------------
 
 
 def frontiers(project_dir: Path) -> list[tuple[tuple[str, str], Path]]:
@@ -537,28 +524,6 @@ def frontier_marks(path: Path) -> list[tuple[str, set[str]]]:
             title = match.group(3).split(FRONTIER_SEPARATOR)[0]
             marks.append((match.group(1), {s.strip("`") for s in CODE_SPAN.findall(title)}))
     return marks
-
-
-def passes_in_a_row(slugs: set[str], sessions: list) -> list[str]:
-    """The sessions, newest first, that put an item off in a row: a `[-]` line naming one of
-    its slugs counts the session, an `[x]` line stops the count, a session with neither — no
-    line, or an open `[ ]` one — is passed by (case 354.1)."""
-    counted: list[str] = []
-    for (day, hhmm), marks in sessions:
-        boxes = {box for box, named in marks if named & slugs}
-        if "x" in boxes:
-            break
-        if "-" in boxes:
-            counted.append(hhmm or day)
-    return counted
-
-
-def trimmed(lines: list[str]) -> list[str]:
-    while lines and not lines[0].strip():
-        lines = lines[1:]
-    while lines and not lines[-1].strip():
-        lines = lines[:-1]
-    return lines
 
 
 class Vault:
@@ -1248,72 +1213,6 @@ class Vault:
             if changed:
                 self.save(page)
 
-    def move_passed_over(self) -> None:
-        """After the cascade, a milestone item of the sprint page put off in three sessions
-        in a row — by the Frontiers of `raw/` and the archive — leaves its milestone,
-        unchanged, for the end of `## Backlog` (case 354.1); a milestone the move left with no
-        line leaves `## Milestones` (354.2). A note — no `[[slug]]` before the ` — ` — is
-        never counted; with no one live sprint page nothing happens."""
-        pages = [
-            read_page(path, "entities")
-            for path in sorted((self.wiki / "entities").glob(f"{SPRINT_PREFIX}*.md"))
-        ]
-        pages = [p for p in pages if not p.error and str(p.props.get("status")) != "archived"]
-        if len(pages) != 1:
-            return
-        page = pages[0]
-        text = page.sections.get("## Milestones") or ""
-        sessions = [(key, frontier_marks(path)) for key, path in frontiers(self.project_dir)]
-        kept: list[tuple[str | None, list[str]]] = []
-        moved: list[str] = []
-        for heading, lines in milestone_blocks(text):
-            left = []
-            for line in lines:
-                slugs = item_slugs(line[2:]) if line.startswith("- ") else []
-                passes = passes_in_a_row(set(slugs), sessions) if slugs else []
-                if heading is not None and len(passes) >= PASSES_TO_MOVE:
-                    moved.append(line)
-                    self.history(
-                        page,
-                        f"moved to the Backlog: {', '.join(slugs)} passed over in "
-                        f"{len(passes)} sessions in a row — {', '.join(passes)}",
-                        "generate",
-                    )
-                    print(
-                        f"generate: {', '.join(slugs)} moved to the Backlog of {page.slug}: "
-                        f"passed over in {len(passes)} sessions in a row",
-                        file=self.stdout,
-                    )
-                else:
-                    left.append(line)
-            emptied = len(left) < len(lines) and not any(ln.startswith("- ") for ln in left)
-            if heading is not None and emptied:
-                name = SLICE.match(heading).group(1)
-                self.history(
-                    page,
-                    f"milestone {name} left the Milestones: its items moved to the Backlog",
-                    "generate",
-                )
-                print(
-                    f"generate: milestone {name} left the Milestones of {page.slug}",
-                    file=self.stdout,
-                )
-                continue
-            kept.append((heading, left))
-        if not moved:
-            return
-        blocks = []
-        for heading, lines in kept:
-            body_lines = trimmed(lines)
-            if heading is None:
-                blocks += ["\n".join(body_lines)] if body_lines else []
-            else:
-                blocks.append(heading + ("\n\n" + "\n".join(body_lines) if body_lines else ""))
-        page.sections["## Milestones"] = "\n\n".join(blocks)
-        backlog = (page.sections.get("## Backlog") or "").strip("\n")
-        page.sections["## Backlog"] = "\n".join(([backlog] if backlog else []) + moved)
-        self.save(page)
-
     def register_tags(self, new_tags: list[dict]) -> None:
         path = self.wiki / "tags.md"
         text = path.read_text(encoding="utf-8") if path.exists() else ""
@@ -1460,7 +1359,6 @@ def apply(vault: Vault, data: dict) -> None:
     for record in data.get("decisions") or []:
         apply_decision(vault, record, stamp, deferred.get(str(record.get("case"))))
     vault.cascade()
-    vault.move_passed_over()  # after the cascade, by the Frontiers (case 354)
     vault.register_tags(data.get("new_tags") or [])
     vault.write_log()
 

@@ -1,0 +1,36 @@
+- 21:00:49 decision[case 554][update][rule-spec-write]{ref:rule-spec-write}
+- 21:00:49 decision[case 554][create][estimate-spec-write-exits-2-on-an-error]{ref:rule-spec-write}{tags:hooks,harness,workflow}
+- 21:22:15 decision[case 555.1][update][rule-case-check]{ref:rule-case-check}
+- 21:22:15 decision[case 555.1][create][estimate-case-check-exits-2-on-an-error]{ref:rule-case-check}{tags:hooks,harness,workflow}
+- 21:22:15 decision[case 555.2][update][rule-context-size]{ref:rule-context-size}
+- 21:22:15 decision[case 555.2][create][estimate-context-size-shows-its-error]{ref:rule-context-size}{tags:hooks,harness,session}
+- 21:22:15 decision[case 555.3][update][rule-retro-onward]{ref:rule-retro-onward}
+- 21:22:15 decision[case 555.3][create][estimate-retro-onward-exits-2-on-an-error]{ref:rule-retro-onward}{tags:session,workflow,hooks,harness}
+- 21:34:08 decision[case 556][update][estimate-estimates-schema-checked]{ref:estimate-estimates-schema-checked}
+- 22:06:25 decision[case 557.1][update][rule-case-build]{ref:rule-case-build}
+- 22:06:25 decision[case 557.1][update][estimate-case-build-checks-the-finished-case]{ref:estimate-case-build-checks-the-finished-case}
+- 22:06:25 decision[case 557.2][update][rule-case-build]{ref:rule-case-build}
+- 22:06:25 decision[case 557.2][update][rule-case-protocol]{ref:rule-case-protocol}
+- 22:06:25 decision[case 557.2][update][rule-decisions-schema]{ref:rule-decisions-schema}
+- 22:06:25 decision[case 557.2][update][estimate-case-build-records-the-rounds-in-recommend]{ref:estimate-case-build-records-the-rounds-in-recommend}
+- 22:06:25 decision[case 557.3][update][rule-case-build]{ref:rule-case-build}{supersedes:case 551}
+- 23:01:58 decision[case 558.1][update][rule-documentation]{ref:rule-documentation}
+- 23:01:58 decision[case 558.1][update][rule-materialize]{ref:rule-materialize}
+- 23:01:58 decision[case 558.1][update][estimate-documentation-completes]{ref:estimate-documentation-completes}
+- 23:01:58 decision[case 558.2][update][rule-synthesis]{ref:rule-synthesis}
+- 23:01:58 decision[case 558.2][update][estimate-synthesis-clusters]{ref:estimate-synthesis-clusters}
+- 23:01:58 decision[case 558.3][update][rule-brief]{ref:rule-brief}
+- 23:01:58 decision[case 558.3][update][estimate-brief-written]{ref:estimate-brief-written}
+- 23:03:44 decision[case 559][defer][rule-case-protocol]{ref:rule-case-protocol}
+- 23:18:26 lesson[error][lesson-prespec-findings-relayed-piecemeal-lose-the-person]{tags:workflow,session} trigger: after /pre-spec of session 2042 the main agent sent the findings to four case-guppi agents at once and relayed each answer as it came, two rounds, two Cases built again and a question of its own spread over four replies, and the person said they could not tell which questions to answer root_cause: no rule orders the showing again of Cases after pre-spec findings; the main agent fans the findings out in parallel and shows each answer as it arrives, so rounds, Cases shown again and its own questions interleave with no single list of what the person must answer
+- 23:19:54 decision[case 560][defer][estimate-case-protocol-shows-the-built-case]{ref:estimate-case-protocol-shows-the-built-case}{supersedes:case 559}
+- 23:22:22 decision[case 555.4][update][estimate-retro-onward-sends-the-agent-to-the-handoff]{ref:rule-retro-onward}
+- 23:39:34 decision[case 555.5][update][estimate-context-size-shown-after-each-reply]{ref:rule-context-size}
+- 23:46:16 estimate[estimate-case-check-sends-back-a-faulty-case][passed] 2026-09-30, uv run pytest tests/test_casecheck.py -k subagent: 43 passed, 21 deselected; live in session 2042: the store validated-munching-muffin.checked.json holds 16 Case entries, none with findings, notes on 9 sub-cases, which case-guppi reported as sent back once; the files cases/case-554.md to case-558.md were written from the stored text and replaced at each answer that held the top-level Case; no finding was sent back live, so that branch rests on the tests
+- 23:46:16 estimate[estimate-decisions-schema-checked][passed] 2026-09-30, uv run pytest tests/test_schemas.py -k decision: 6 passed, 1 skipped; uv run guppi render --check exit 0; the make lint of the Baseline of session 2042 prints no schema finding on wiki/decisions/, its one line there being a fence finding on decision-case-13
+- 23:46:16 estimate[estimate-ledger-write-exits-2-on-an-error][passed] 2026-09-30, uv run pytest tests/test_ledger.py: 63 passed
+- 23:46:16 estimate[estimate-ledger-write-lifts][passed] 2026-09-30, uv run pytest tests/test_ledger.py tests/test_gate.py: 93 passed; live: vault/raw/2026-09-30/2042/ledger.md holds 28 lines with their times, each decision line once though Cases 554, 555, 557 and 558 were ratified again with their lines repeated
+- 23:46:16 estimate[estimate-ledger-write-refuses-a-line-it-cannot-read][passed] 2026-09-30, uv run pytest tests/test_ledger.py: 63 passed
+- 23:46:16 estimate[estimate-retro-commit-gates][passed] 2026-09-30, uv run pytest tests/test_gate.py: 30 passed; live in session 2042: the Skill call of /pre-spec wrote the mark prespec at 23:04:05 and the Skill call of /retro was let through and wrote the mark retro at 23:45:07; no refusal of the gate met live
+- 23:46:16 estimate[estimate-retro-loads][passed] 2026-09-30, the /retro of session 2042 by hand: it read no Estimate that a decision line of this session creates or updates, the new four and estimate-retro-onward-sends-the-agent-to-the-handoff left to a later session, and took readings only of Estimates whose work is built
+- 23:46:16 lesson[error][lesson-prespec-second-run-dispatches-ask-guppi-again]{tags:workflow,session} trigger: in session 2042 /pre-spec was run a second time after the Cases were built again on its findings, the main agent dispatched ask-guppi over the whole plan again for eight minutes, and the person asked why it was called again root_cause: the skill pre-spec dispatches ask-guppi at every run and says nothing of a run after fixes, so a second run checks the whole plan again instead of only the Cases built again, and the person is not told the cost before it starts

@@ -8,6 +8,7 @@ governs: .claude/agents/ask-guppi.md
 render_mode: full
 parent: "[[rule-plan-mode]]"
 estimates: ["[[estimate-ask-finds]]"]
+deferred_by: ["[[decision-case-553]]"]
 origin: raw/2026-09-09/ledger.md#case-23.1
 sprint: migration
 created: 2026-09-09
@@ -76,3 +77,4 @@ Answer with exactly these five lines, each present, "none" when empty:
 - 2026-09-25 defer by decision-case-416 superseded · [[decision-case-419.2]]
 - 2026-09-28 updated: the language of the aliases named by the placeholder set in rule-guppi-config (case 476.2) · [[decision-case-476.2]]
 - 2026-09-29 status: built → draft · cascade
+- 2026-09-30 deferred · [[decision-case-553]]

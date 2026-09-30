@@ -397,7 +397,7 @@ update:
 - [x] update `rule-brief` — the paragraph on the second writer says that the brief of `carry` keeps Next session: `Work` and `Ask the person` from the open lines of `frontier.md`, `Cases` the line "none"
 - [x] update `estimate-brief-written`
 - [x] `uv run guppi render`: `.claude/agents/librarian-guppi.md`
-- [ ] read `estimate-brief-written` at the librarian's run after the render
+- [x] read `estimate-brief-written` at the librarian's run after the render
 ```
 
 ## Case 539 — `generate` moves no line of the sprint page, and the finish conditions stand only under Done when

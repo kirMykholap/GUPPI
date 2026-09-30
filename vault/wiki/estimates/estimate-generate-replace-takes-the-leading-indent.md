@@ -1,10 +1,11 @@
 ---
 type: estimate
 kind: QA
-status: pending
+status: passed
 target: "[[rule-page-generation]]"
 purpose: Whether a replace pair whose old opens with spaces or tabs leaves the indent of its new on the page, and no indent added twice
 method: "pytest in tests/test_generate.py against a temp vault: an old that opens with spaces over an indented line, one that opens with none, and one whose hit count is the same with and without its leading spaces"
+checked: 2026-09-30
 origin: raw/2026-09-30/1306/ledger.md#case-543.3
 sprint: migration
 created: 2026-09-30
@@ -22,6 +23,11 @@ An `old` that opens with a space or a tab matches, besides its words, every spac
 **＋** Between the words of `old` whitespace stays collapsed: a line break matches any whitespace.
 **－** The spaces and tabs before the first word never make an anchor miss or hit twice: a pair that hits the page once without them still hits it once.
 
+## Result
+
+2026-09-30, uv run pytest tests/test_generate.py: 103 passed, the three tests of the leading indent among them (an old and a new that open with spaces, an old with no leading space, the hit count the same with and without the spaces)
+
 ## History
 
 - 2026-09-30 created · [[decision-case-543.3]]
+- 2026-09-30 status: pending → passed · raw/2026-09-30/1736/ledger.md#L24

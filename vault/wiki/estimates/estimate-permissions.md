@@ -1,10 +1,10 @@
 ---
 type: estimate
 kind: QA
-status: pending
+status: passed
 target: "[[rule-permissions]]"
 method: the allow list of the rendered .claude/settings.json against the Criterion, and the JSON case of tests/test_render.py; the live probe is the person's word on the client's prompt at a Write of work.md in Work Mode, recorded in the estimate line — never the agent's, which cannot see the prompt
-checked: 2026-09-18
+checked: 2026-09-30
 origin: raw/2026-09-12/ledger.md#case-85.5
 sprint: migration
 created: 2026-09-12
@@ -27,7 +27,7 @@ The allow list of `.claude/settings.json` holds Edit and Write for `frontier.md`
 
 ## Result
 
-2026-09-18, the person's word at session 1252 and the rendered .claude/settings.json: the allow list holds the nine entries the Criterion names — Edit and Write for frontier.md, spec.md, handoff.md and Write for carry.md under vault/raw/**, Edit and Write for vault/wiki/brief.md — deny and ask empty; the client's prompt appears in Plan Mode before the Write of raw/2026-09-18/1252/frontier.md and its Edits, allow list or not, and the person approves it each time — not a finding
+2026-09-30, the person's word at /hi of session 1736: Claude Code did not ask for permission when the agent changed vault/raw/2026-09-30/1306/work.md with the Edit tool in Work Mode; the rendered .claude/settings.json: the allow list holds Edit and Write for frontier.md, spec.md, handoff.md and work.md under vault/raw/**, Write for carry.md under vault/raw/**, Edit and Write for vault/wiki/brief.md, no deny and no ask; uv run pytest tests/test_render.py -k "json or permission": 4 passed
 
 ## History
 
@@ -40,3 +40,4 @@ The allow list of `.claude/settings.json` holds Edit and Write for `frontier.md`
 - 2026-09-18 updated: the Criterion replaced whole — the prompt is read by the person, a prompt in Plan Mode is not a finding (case 237) · [[decision-case-237]]
 - 2026-09-18 status: pending → passed · raw/2026-09-18/1252/ledger.md#L12
 - 2026-09-28 updated: the Criterion replaced whole — Edit and Write for work.md join the allow list (case 479.5) · [[decision-case-479.5]]
+- 2026-09-30 status: pending → passed · raw/2026-09-30/1736/ledger.md#L3

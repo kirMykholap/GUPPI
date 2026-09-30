@@ -1,7 +1,7 @@
 ---
 type: estimate
 kind: QA
-status: pending
+status: failed
 target: "[[rule-spec-write]]"
 purpose: The Stop hook writes a deferred Case into the Spec as the reply showed it
 method: uv run pytest tests/test_ratified.py -k defer, then by hand the first defer the person asks for after the change
@@ -29,7 +29,7 @@ The hook writes that Case under `## Deferred` of the plan file while `spec.md` i
 
 ## Result
 
-2026-09-30, uv run pytest tests/test_ratified.py -k defer (13 passed); by hand, the first defer after case 521.1 was built (dd08a1b): Case 532 of session 2024 stands under ## Deferred of its spec.md with context, problem and a then block whose purpose is quoted; in this session Case 533 was written into the plan file, which held only its title line, with the heading ## Deferred added and the Case as the reply showed it
+2026-09-30, uv run pytest tests/test_ratified.py -k defer: 13 passed; by hand, the first defers the person asked for in session 1736: Case 553 stands under ## Deferred of the plan and of spec.md with its heading, context, problem and then block as the reply showed it; Case 551 does too, but only from its second showing — at its first showing the hook raised on a malformed estimate line of the same reply (parse_line, fixed by case 552.1), caught the error and exited 0, so nothing of Case 551 was written and no reason stood on stderr
 
 ## History
 
@@ -39,3 +39,4 @@ The hook writes that Case under `## Deferred` of the plan file while `spec.md` i
 - 2026-09-29 updated: the Criterion replaced whole — a then block that holds a YAML comment is refused (case 521.1) · [[decision-case-521.1]]
 - 2026-09-30 status: pending → passed · raw/2026-09-30/0138/ledger.md#L6
 - 2026-09-30 updated: the Criterion replaced whole — a defer goes into spec.md once it stands, with no Retro moment; the clause on the ratified copy dropped (case 542) · [[decision-case-542]]
+- 2026-09-30 status: pending → failed · raw/2026-09-30/1736/ledger.md#L41

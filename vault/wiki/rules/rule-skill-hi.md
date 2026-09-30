@@ -2,7 +2,7 @@
 type: rule
 kind: MOC
 purpose: Prevents a session from being loaded piecemeal by read-tool calls
-status: draft
+status: built
 enforcement: render
 governs: .claude/skills/hi/SKILL.md
 render_mode: full
@@ -109,3 +109,4 @@ copies of one text, kept identical by hand.
 - 2026-09-30 status: built → draft · cascade
 - 2026-09-30 child rule-github-issues archived · cleanup
 - 2026-09-30 updated: a sprint line keeps its slugs in code spans; the count by generate, removed by case 539.1, is no longer its reason (case 539.3) · [[decision-case-539.3]]
+- 2026-09-30 status: draft → built · cascade

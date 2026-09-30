@@ -1,11 +1,11 @@
 ---
 type: estimate
 kind: QA
-status: pending
+status: passed
 target: "[[rule-spec-write]]"
 purpose: The ratified Case enters the plan file in the words of the stored answer of case-guppi, the then block built from the sub-points, each block fenced by its content
 method: uv run pytest tests/test_ratified.py -k write; the live reading by hand, the plan file after the first ratification of a session
-checked: 2026-09-27
+checked: 2026-09-30
 origin: raw/2026-09-23/1859/ledger.md#case-387.2
 sprint: migration
 created: 2026-09-23
@@ -31,7 +31,7 @@ The hook writes the stored answer of Case N into the plan file `plan_path` finds
 
 ## Result
 
-2026-09-27, uv run pytest tests/test_ratified.py -k write: 42 passed; by hand, session 1819: after the first ratification the plan file held Case 457 as case-guppi answered it, the ratification section and recommend left out
+2026-09-30, uv run pytest tests/test_ratified.py -k write: 50 passed; by hand, the plan file after the ratification of Case 547 in session 1736: the heading, context, problem, recommend, given, when and then as the answer held them, a then block built from the sub-points of tasks (the replace pair, change, the fields of the create), a tasks block without sub-points, no ratification
 
 ## History
 
@@ -48,3 +48,5 @@ The hook writes the stored answer of Case N into the plan file `plan_path` finds
 - 2026-09-27 updated: the Criterion replaced whole — a sending of the file after the newest store in place of a showing whole (case 452.3) · [[decision-case-452.3]]
 - 2026-09-27 status: pending → passed · raw/2026-09-27/1819/ledger.md#L29
 - 2026-09-30 updated: the Criterion replaced whole — the Spec holds recommend, a sub-case's own under its heading (case 544.5) · [[decision-case-544.5]]
+- 2026-09-30 status: pending → passed · raw/2026-09-30/1736/ledger.md#L29
+- 2026-09-30 status: passed → passed · raw/2026-09-30/1736/ledger.md#L30

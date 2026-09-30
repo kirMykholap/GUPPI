@@ -4,7 +4,7 @@ kind: QA
 status: pending
 target: "[[rule-decisions-schema]]"
 purpose: A Decision page in the shape of the rendered schema has no schema finding and a page outside it has one per defect
-method: "pytest tests/test_schemas.py -k decisions on the live vault/wiki/decisions/schema.yaml — a page in the shape, a page without ## Context, then one defect at a time; the live reading make lint, no schema finding on wiki/decisions/ but the pages of Cases 1–28 without Problem (Slice 5)"
+method: "pytest tests/test_schemas.py -k decision on the live vault/wiki/decisions/schema.yaml — a page in the shape, a page without ## Context, a page without ## Problem, then one defect at a time; the live reading make lint, no schema finding on wiki/decisions/"
 checked: 2026-09-29
 origin: raw/2026-09-22/0014/ledger.md#case-304.7
 sprint: migration
@@ -43,3 +43,4 @@ The file equals the Render. Lint reads from it: required `type, case, status, or
 - 2026-09-29 updated: the Criterion replaced whole and the method set anew — Context optional, the Case file named, the example without Context and Given (case 513.1) · [[decision-case-513.1]]
 - 2026-09-29 status: pending → passed · raw/2026-09-29/1753/ledger.md#L24
 - 2026-09-30 updated: the Criterion replaced whole — Recommend, parent and children in the schema, Problem optional, Context never on the page of a Case with sub-cases (case 544.8) · [[decision-case-544.8]]
+- 2026-09-30 updated: the method runs -k decision, names a page without ## Problem, and expects no schema finding on wiki/decisions/ (case 548) · [[decision-case-548]]

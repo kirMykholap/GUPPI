@@ -1,11 +1,11 @@
 ---
 type: estimate
 kind: QA
-status: pending
+status: passed
 target: "[[rule-materialize]]"
 purpose: One entry per record line of a ledger, its content lifted from the then block of its Case, nothing invented
 method: pytest in tests/test_materialize.py against a temp vault; the live reading once by hand
-checked: 2026-09-27
+checked: 2026-09-30
 origin: raw/2026-09-10/ledger.md#case-31
 sprint: migration
 created: 2026-09-10
@@ -31,7 +31,7 @@ Then:
 
 ## Result
 
-2026-09-27, uv run pytest tests/test_materialize.py and raw/2026-09-27/1819/materialize.yaml; 86 passed; 39 ledger lines give entries with line 1–39 in order plus 5 synthesis entries, 11 decision records, 0 unparsed, incomplete only on the prefix-less slug (category) and the superseded 460.2 (criterion)
+2026-09-30, uv run pytest tests/test_materialize.py: 110 passed; by hand, vault/raw/2026-09-30/1306/materialize.yaml: 53 entries, 52 applied, unparsed empty, 21 decision records; the parents 543 and 544 carry children (4 and 11), no targets, case_text context and problem; the sub-case 544.1 carries parent decision-case-544 and case_text context, given, when, then, no problem; the create of estimate-case-build-checks-the-finished-case keeps kind, method, purpose and tags as fields, ref rule-case-build
 
 ## History
 
@@ -83,3 +83,4 @@ Then:
 - 2026-09-26 updated: the Criterion replaced whole — the line on the keys of the shape before case 189 gives way to the line that no Estimate is derived from a key (case 440.2) · [[decision-case-440.2]]
 - 2026-09-27 status: pending → passed · raw/2026-09-27/2050/ledger.md#L28
 - 2026-09-30 updated: the Criterion replaced whole — a sub-case reads no problem or recommend from its parent, and a parent Case gets its own record (case 544.6) · [[decision-case-544.6]]
+- 2026-09-30 status: pending → passed · raw/2026-09-30/1736/ledger.md#L27

@@ -2,7 +2,7 @@
 type: rule
 kind: Leaf
 purpose: Prevents the librarian from reading the ledger and the Spec beyond its unticked lines, or from routing a decision by guesswork
-status: draft
+status: built
 enforcement: check
 implementation_ref: [guppi/materialize.py, tests/test_materialize.py]
 parent: "[[rule-documentation]]"
@@ -17,7 +17,7 @@ tags: [harness, workflow, ledger]
 
 Prevents the librarian from reading the ledger and the Spec beyond its unticked lines (case 271), or from routing
 a decision by guesswork. The yaml is the one input a clean context needs. Every line
-of the ledger is an entry. Its route is the Routing Table in the docstring of `guppi/materialize.py` (case 364.1). Its content is
+of the ledger is an entry. `parse_line` reads a record line with or without spaces between its brackets, and returns None, never an error, for a line it cannot read (case 552.1). Its route is the Routing Table in the docstring of `guppi/materialize.py` (case 364.1). Its content is
 lifted from the `then` block of its Case in the Spec — `set`, `sections`, `replace`, `change`, and `rename` or `reword` when the item carries it (cases 258.2, 274.3). A `then` block that holds a YAML comment — a `#` at the start of a line or after a space or a tab, outside a quoted value and outside a `|` or `>` block — gives each decision entry of its Case `incomplete: [comment]`: after a space YAML drops the rest of the line, so the value may be cut, and after a tab PyYAML, the library the scripts use, refuses the whole block; the judgment is one function, which the `Stop` hook of `rule-spec-write` imports (case 521.2). What is missing is named, not
 invented — but for a Case superseded in its own session and gone from the Spec: its entries, marked `superseded_by`, carry no `incomplete: [then]`, and its `decisions` record no `case_text` and no missing section; the mark alone is its completeness (case 299.3). If a route cannot be derived from the ledger and the Spec alone, that is a
 defect of the ledger, and it shows here. The keys of a `create` are lifted by the category's `schema.yaml` on disk (case 214.1) — but for a category whose `rule-<category>-schema` the same unit creates or updates: its `create` items are lifted whole, no `unknown`, since the schema on disk catches up only at the render after `generate` (case 308.2).
@@ -126,3 +126,5 @@ entry's fields, each with its writer, live in the docstring of `guppi/materializ
 - 2026-09-30 status: draft → built · cascade
 - 2026-09-30 updated: a sub-case reads no problem or recommend from its parent; a parent Case gets a decision record of its own with children and its given when it has one (case 544.6) · [[decision-case-544.6]]
 - 2026-09-30 status: built → draft · cascade
+- 2026-09-30 updated: parse_line reads a space between brackets and returns None, never an error, for a line it cannot read (case 552.1) · [[decision-case-552.1]]
+- 2026-09-30 status: draft → built · cascade

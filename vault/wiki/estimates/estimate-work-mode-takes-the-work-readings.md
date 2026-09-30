@@ -1,11 +1,11 @@
 ---
 type: estimate
 kind: QA
-status: pending
+status: passed
 target: "[[rule-work-mode]]"
 purpose: Whether /work, after the last task and in the same turn, takes in Frontier order each open W reading whose work is built and whose moment has come, closes its W line, leaves its line to the reply that ends Retro, and leaves open the readings this session changes or whose moment has not come
 method: "by hand at the first /work after the render: the replies after the last task, their LEDGER blocks and frontier.md read against the Criterion, recorded in the estimate line"
-checked: 2026-09-29
+checked: 2026-09-30
 origin: raw/2026-09-29/1134/ledger.md#case-508.3
 sprint: migration
 created: 2026-09-29
@@ -28,10 +28,11 @@ Before `/retro`, the agent takes, in the order of `raw/<date>/<hi HHMM>/frontier
 
 ## Result
 
-2026-09-29, by hand at the /retro of session 1753, the replies after the last task of /work, their LEDGER block and frontier.md: the step took W12 and W15, closed each [x] · work in frontier.md first and wrote their lines in a LEDGER block of a reply that ended in text, left the readings of Estimates this session updates, and ticked no read box; but it skipped W1 (estimate-agent-writing-followed) and W6 (estimate-case-build-writes-the-case), whose by-hand moment, a later session, had come, and the person did not stop the step
+2026-09-30, by hand, the /work run of session 1736 that the agent called at the fork: after the last task, in the same turn and in the order of frontier.md, it took the readings whose moment had come — W4, W11, W13, W41 — closing each line [x] · work in frontier.md first; it wrote no LEDGER block in /work, and the lines stand in the reply that ends Retro; it left W15 (estimate-decisions-schema-checked, updated by case 548) and the readings whose moment had not come open; it ticked no read box of spec.md; no reply ended between /work and this reply
 
 ## History
 
 - 2026-09-29 created · [[decision-case-508.3]]
 - 2026-09-29 status: pending → failed · raw/2026-09-29/1753/ledger.md#L27
 - 2026-09-30 updated: the Criterion replaced whole — the run is one turn; the reading lines stand in the reply that ends Retro; the stop of the step by the person is gone (case 531.8) · [[decision-case-531.8]]
+- 2026-09-30 status: pending → passed · raw/2026-09-30/1736/ledger.md#L42

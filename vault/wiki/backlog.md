@@ -1,11 +1,13 @@
 # Backlog
 
-20 items
+23 items
 
 ## Conserved Specs
 
 ## Deferred
 
+- `rule-ask` — Prevents a create from being proposed without the vault having been asked whether it already holds the thing, or forbids it · put off in 0 sessions
+- `rule-case-build` — Prevents a Case from being shown before one agent has built it against the vault, its frame and its form, outside the main agent's context · put off in 0 sessions
 - `rule-complaint-becomes-a-lesson` — After each reply of the person a hook raises the question whether it holds a complaint about the agent's text or work, and a complaint becomes a lesson line; an idea of session 0137, not yet decided · put off in 1 session
 - `rule-ledger-write` — Prevents a ratified line from existing only in a chat reply, or landing in a session no /hi opened · put off in 2 sessions
 - `rule-morph` — The initiation at install: the person sets the category set of the project — the development set entity, rule, estimate by default — and the harness holds it as data, so a changed set rewrites no rule; the categories discussion of session 1119, raw/2026-09-17/1119/categories-discussion.md; Slice 5 · put off in 3 sessions
@@ -17,6 +19,7 @@
 - `rule-spec-write` — Prevents a ratified Case from entering the Spec in other words than the answer of case-guppi whose given, when, then, tasks and ratification the person signed · put off in 0 sessions
 - `rule-subagent-guppi` — Prevents implementation drifting from the ratified plan while it is being executed · put off in 29 sessions
 - `rule-work-mode` — Prevents implementation starting before the plan, branch and baseline exist · put off in 30 sessions
+- `insight-case-form-chat-form-read-by-no-script` — A rule of the form of a Case as shown in the chat — the order of its sections, what `ratification` holds, a count in a story section — is read by no script, so it holds only as far as the agent's own reading at the showing, and the fault is found later, by the person or by ask-guppi at pre-spec. · severity 1 · put off in 0 sessions
 - `insight-hi-skill-substitution-checked-by-a-model-call` — A `!` command of a skill is checked by a model call before it runs; when that call fails — a lapsed login, reported as the model unavailable — the substitution is refused and the Render: line comes back empty, while the SessionStart hook is not affected. · severity 1 · put off in 3 sessions
 - `insight-prespec-main-agent-question-off-the-grill-me-shape` — no rule gives the question shape of the skill grill-me to a question the main agent asks the person itself, so at /pre-spec the main agent writes such a question in its own shape · severity 2 · put off in 0 sessions
 - `insight-session-vault-knowledge-not-loaded` — A fact the vault holds does not reach the session that needs it; only brief.md, CLAUDE.md, the skills and the agent frames are loaded, and everything else waits for a read the agent must first think to make. · severity 1 · put off in 0 sessions

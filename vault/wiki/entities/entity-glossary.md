@@ -2,7 +2,7 @@
 type: entity
 kind: Leaf
 purpose: The terms of GUPPI, one row each with its meaning and the page that defines it; the source of glossary.md
-status: draft
+status: built
 parent: "[[entity-guppi]]"
 estimates: ["[[estimate-glossary-terms-defined]]"]
 rules: ["[[rule-glossary]]"]
@@ -22,7 +22,7 @@ The terms of GUPPI: one row per term — the term, its meaning in one line, and 
 |---|---|---|
 | Ratification | Human sign-off on a Decision; nothing in vault or code changes without one | [[rule-case-protocol]] |
 | Contract vs implementation | A Decision fixes what "done" means, never how; a contract change is a new Case | [[rule-case-protocol]] |
-| `ref`, `slug`, `supersedes` | A pointer to an existing page (absent: query the vault before a `create`; present: `update`); the page id = filename; the earlier case a ledger line corrects, written `{supersedes:case N}`, one block per Case and several on one line, each of which marks every entry of its Case superseded; `generate` clears a defer only from the pages that a decision line of the superseding Case names (cases 200.2, 429, 467.3) | [[rule-case-protocol]] |
+| `ref`, `slug`, `supersedes` | A pointer to an existing page (absent: query the vault before a `create`; present: `update`); the page id = filename; the earlier case a ledger line corrects, written `{supersedes:case N}`, one block per Case and several on one line, each of which marks every entry of its Case superseded; `generate` clears a defer under the condition that `rule-case-protocol` sets (cases 200.2, 429, 467.3) | [[rule-case-protocol]] |
 | Decision | The atomic unit of work: `create`, `update`, `delete`, `defer`; Read is never one | [[rule-case-protocol]] |
 | Types | `create` a page (an Estimate is its own `create`, with `ref` on its target, case 193); `update` fields, `result`/`status` included, or `rename` — the page moves to the new slug and every link follows (case 258.1); `delete` sets `status: archived` with a History line `deleted`, after an impact analysis, and `guppi cleanup` moves the file to the archive; `defer` postpones, a placeholder page when no `ref` | [[rule-case-protocol]] |
 | Case | The unit of dialogue, not a page: `context`, `problem`, `recommend`, `given`, `when`, `then`, `tasks`, `ratification` (case 163); `given` is the frame of the Case; `when` + `then` is the Estimate criterion, the Estimate named by slug (cases 193, 378.2); the page content is a `then` block in the Spec; splits into dotted sub-cases the parent's sign-off never covers | [[rule-case-protocol]] |
@@ -53,7 +53,7 @@ The terms of GUPPI: one row per term — the term, its meaning in one line, and 
 | Harness | The files that `guppi render` writes from the pages of `rules/`, such as `.claude/settings.json` with its hooks, the skills and agents, `CLAUDE.md`, `case-schema.md` and `guppi.toml` | [[rule-harness]] |
 | Hook | A script that fires on an event of the session, behind a Rule page; registered in the `hooks` key of `.claude/settings.json`, which `rule-hook-registry` renders, or in an agent's own frontmatter as part of that agent's Render; a new hook in the file is an `update` of `rule-hook-registry` in the Case that creates its Rule | [[rule-hook-registry]] |
 | `CLAUDE.md`, `case-schema.md` | The system prompt, the Render of `rule-claude-md`, whole — the description of the project, `rule-language`, `rule-agent-writing` and `rule-one-judgment-one-implementation` in their markers (cases 59.8, 272, 288.3, 360); the Case schema is the Render of `rule-case-protocol`, opened by the one rule, and it arrives with `/hi` together with the glossary (cases 273, 288) | [[rule-claude-md]] |
-| `deferred_by` | The Decision pages whose `defer` targets the page; written by `guppi generate` on a defer, cleared when a later Case `supersedes` that one; the index line carries it, so `ask-guppi` reaches the deferred decision (case 52.3) | [[rule-rules-schema]] |
+| `deferred_by` | The Decision pages whose `defer` targets the page; written by `guppi generate` on a defer and cleared by it on a later `supersedes` of that one, under the condition that `rule-case-protocol` sets; the index line carries it, so `ask-guppi` reaches the deferred decision (case 52.3) | [[rule-rules-schema]] |
 | `origin` | On a page a Case created: where that Case was ratified, `raw/<date>/<HHMM>/ledger.md#case-N` — the date form `raw/<date>/ledger.md#case-N` on pages born before 2026-09-13 (case 103.6); the folder holds the Spec with the Case and, for a Case built by `case-guppi` from session 2026-09-27/1819 on, its Case file (case 513); the pointer is not rewritten when the session is archived (cases 100.1, 103.6) | [[rule-decisions-schema]] |
 | Entity (status) | `draft` / `built` / `archived`; `built` is set by the cascade of `generate` once every Estimate passes, never by hand | [[rule-entities-schema]] |
 | Rule (status) | `draft` / `built` / `archived`; `built` is set by the cascade of `generate` once every Estimate passes, never by hand | [[rule-rules-schema]] |
@@ -100,3 +100,5 @@ The terms of GUPPI: one row per term — the term, its meaning in one line, and 
 - 2026-09-30 updated: the rows Decision page, Main agent, Plan Mode, Types and CLAUDE.md agree with the pages that define them (case 535) · [[decision-case-535]]
 - 2026-09-30 updated: the row ref, slug, supersedes: a supersede clears a defer only from the pages the superseding Case names (case 541) · [[decision-case-541]]
 - 2026-09-30 updated: the row Decision page names Recommend and the pages of a parent and a sub-case (case 544.8) · [[decision-case-544.8]]
+- 2026-09-30 updated: the rows deferred_by and ref, slug, supersedes: a supersede clears a defer under the condition that rule-case-protocol sets (case 549) · [[decision-case-549]]
+- 2026-09-30 status: draft → built · cascade

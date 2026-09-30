@@ -1,7 +1,7 @@
 ---
 type: estimate
 kind: QA
-status: failed
+status: passed
 target: "[[entity-glossary]]"
 purpose: Every term names in where a live page that defines it, and no term stands twice
 method: one reading of the table by hand after the librarian's run, plus make lint — no ref finding on entity-glossary
@@ -26,7 +26,7 @@ Each row names in `where` a `[[slug]]` of a live page, and that page says what t
 
 ## Result
 
-2026-09-30, the 56 rows of vault/wiki/glossary.md read against their where pages by a read-only subagent, its findings checked against the page text by hand, and `make lint` (exit 2, 85 lines, no ref finding on entity-glossary, only `unread: failed` on this Estimate): every where slug is a live rule page, no term stands in two rows, no excluded term stands in a row; the rows Decision page, Main agent and Plan Mode no longer contradict their page; the row `ref`, `slug`, `supersedes` does — it says each `{supersedes:case N}` block clears the `deferred_by` of its Case, while rule-case-protocol says generate clears a defer only from the pages the superseding Case names (case 467.3, guppi/generate.py docstring)
+2026-09-30, the rows of vault/wiki/glossary.md after the librarian's run over 1306 (070d8e6) read against their where pages by a read-only subagent, its findings checked against the page text by hand, and make lint (exit 2, 62 lines, no ref finding on entity-glossary, only unread: failed on this Estimate): 56 rows by the subagent's count, every where slug a live rule page, no term in two rows, no excluded term in a row, the table equal to the Terms of entity-glossary; the row ref, slug, supersedes now agrees with rule-case-protocol (generate clears a defer only from the pages the superseding Case names); the row deferred_by says, as rule-rules-schema does, that a supersedes clears it, with no condition — no contradiction with its where page, the looser wording across rule-rules-schema, rule-entities-schema and rule-insights-schema stands as C5
 
 ## History
 
@@ -41,3 +41,4 @@ Each row names in `where` a `[[slug]]` of a live page, and that page says what t
 - 2026-09-30 updated: the Criterion replaced whole — the where page says what the term is and contradicts no claim of the row; a claim it leaves out does not fail the row (case 527.2) · [[decision-case-527.2]]
 - 2026-09-30 status: pending → failed · raw/2026-09-30/0248/ledger.md#L4
 - 2026-09-30 status: failed → failed · raw/2026-09-30/1306/ledger.md#L3
+- 2026-09-30 status: failed → passed · raw/2026-09-30/1736/ledger.md#L4

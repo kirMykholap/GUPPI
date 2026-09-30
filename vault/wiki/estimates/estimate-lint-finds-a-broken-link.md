@@ -1,11 +1,11 @@
 ---
 type: estimate
 kind: QA
-status: pending
+status: passed
 target: "[[rule-lint]]"
 purpose: A link, an origin or a Decision list that names nothing, and a page nothing names, are findings of lint
 method: uv run pytest tests/test_lint.py
-checked: 2026-09-29
+checked: 2026-09-30
 origin: raw/2026-09-24/1916/ledger.md#case-401.2
 sprint: migration
 created: 2026-09-24
@@ -29,7 +29,7 @@ Then:
 
 ## Result
 
-2026-09-29, uv run pytest tests/test_lint.py: 78 passed; make lint of Work Mode in session 1432 prints one link-class finding, the orphan rule-spec-box, a live rule no other page names, and no ref, origin or decision finding
+2026-09-30, uv run pytest tests/test_lint.py: 82 passed
 
 ## History
 
@@ -40,3 +40,4 @@ Then:
 - 2026-09-29 updated: the Criterion replaced whole — no ### case N block of an Estimate followed (case 506.4) · [[decision-case-506.4]]
 - 2026-09-29 status: pending → passed · raw/2026-09-29/1432/ledger.md#L26
 - 2026-09-30 updated: the Criterion replaced whole — the page of a parent Case: children in place of the kind lists, its origin found by a line of a sub-case (case 544.9) · [[decision-case-544.9]]
+- 2026-09-30 status: pending → passed · raw/2026-09-30/1736/ledger.md#L26

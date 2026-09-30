@@ -1,10 +1,10 @@
 ---
 type: estimate
 kind: QA
-status: pending
+status: passed
 target: "[[rule-brief]]"
 method: one reading by hand after the first librarian run, recorded in the estimate line
-checked: 2026-09-27
+checked: 2026-09-30
 origin: raw/2026-09-10/ledger.md#case-35.3
 sprint: migration
 created: 2026-09-10
@@ -28,7 +28,7 @@ The brief holds, in order: Where things stand, Readings due, Flags, Next session
 
 ## Result
 
-2026-09-27, vault/wiki/brief.md of the librarian's run over 1819 (049458e) read by hand against raw/2026-09-27/1819/handoff.md; five sections in order, no Deferred list, Flags name no Backlog move and no dropped milestone; Next session: Cases 3, Work 33 Estimate slugs plus the 20 unticked read boxes, ledger lines 8–10 and the dirty tree, no item in both lists
+2026-09-30, vault/wiki/brief.md of the librarian's run over 1306 (070d8e6), the first run after the render of .claude/agents/librarian-guppi.md in cfcfb09, read by hand against raw/2026-09-30/1306/handoff.md; five sections in order, no Deferred list and no cap; Next session: Cases 7 — the 4 lines of For the next session, which hold 2 failed Estimates and the contradiction, the 2 other failed Estimates, the failing test of test_schemas.py; Work 47 pending slugs with the unticked read boxes by spec and ledger line 39, estimate-permissions in Ask the person alone, its line as the handoff wrote it; the tree clean, no dirty-tree line; no item in two lists; no decision stated
 
 ## History
 
@@ -53,3 +53,4 @@ The brief holds, in order: Where things stand, Readings due, Flags, Next session
 - 2026-09-27 status: pending → passed · raw/2026-09-27/2050/ledger.md#L25
 - 2026-09-30 updated: the Criterion replaced whole — Next session holds Cases, Work and Ask the person; Cases take For the next session of handoff.md (case 531.10) · [[decision-case-531.10]]
 - 2026-09-30 updated: the Criterion replaced whole — the brief of carry keeps Next session, Work and Ask the person from the open lines of frontier.md and Cases the line none; Flags no longer name the moves of generate that case 539 removes · [[decision-case-538.2]]
+- 2026-09-30 status: pending → passed · raw/2026-09-30/1736/ledger.md#L1

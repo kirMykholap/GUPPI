@@ -31,7 +31,7 @@ The `**Context:**` of a first round gives the mechanism in plain words, with one
 
 ## Result
 
-2026-09-30, by hand, the first rounds of case-guppi in session 0248 (Cases 534 to 539) read in the chat: each Context gives the mechanism in plain words with one concrete example, its quotations stand as blockquotes on their own lines, terms are explained where they first stand, and the frame of .claude/agents/case-guppi.md points each question, list and quotation to the grill-me template; but the first round on Case 534 ended, after its last question and a horizontal rule, with a list "Files checked:" whose lines name the transcripts 876c4080-27df-4056-bef6-4cf58825efac.jsonl and 7ef5ed94-bfc3-4092-9650-5183d02edbba.jsonl, session ids standing alone and beside no quotation
+2026-09-30, by hand, the first rounds of case-guppi on Cases 547 to 550 and the later rounds on 548 (Q4), 549 (Q3) and 550, read in the chat of session 1736: each Context gives the mechanism in plain words with an example, quotations stand as blockquotes on their own lines, terms are explained where they first stand, no number stands alone but beside a quotation; but the sentence on what the round decides runs a series of parallel clauses inside one sentence on Case 548 (how to fix the test, whether to drop the skips, whether to fix the method line) and Case 550 (what happens to the pages, whether the code gets a limit, whether the schema text states the old shape), and the Context of Case 547 names five examples of closed lines in one sentence, against the list rule of .claude/skills/grill-me/SKILL.md
 
 ## History
 
@@ -42,3 +42,4 @@ The `**Context:**` of a first round gives the mechanism in plain words, with one
 - 2026-09-29 updated: the Criterion replaced whole — a list in the Context one item per line; a number in any line of a round only beside a quotation of what it points to (case 512, supersedes 511.2) · [[decision-case-512]]
 - 2026-09-29 updated: the Criterion replaced whole — a quotation in the Context stands as the grill-me template sets it (case 524.2) · [[decision-case-524.2]]
 - 2026-09-30 status: pending → failed · raw/2026-09-30/0248/ledger.md#L36
+- 2026-09-30 status: failed → failed · raw/2026-09-30/1736/ledger.md#L19

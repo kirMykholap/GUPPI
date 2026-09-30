@@ -16,3 +16,4 @@ tags: [session, workflow, harness, librarian, sprint, ledger]
 ## History
 
 - 2026-09-30 created · raw/2026-09-30/0248/ledger.md#case-539
+- 2026-09-30 updated: the parent page written for a Case of session 0248 by the librarian run of session 1306, kept as written and signed after the fact (case 550) · [[decision-case-550]]

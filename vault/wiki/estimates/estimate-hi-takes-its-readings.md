@@ -1,7 +1,7 @@
 ---
 type: estimate
 kind: QA
-status: failed
+status: passed
 target: "[[rule-skill-hi]]"
 purpose: Whether /hi takes, in its first reply, each open W reading whose method names /hi or the librarian's run and can be done whole then, puts each open Ask line to the person as a question and writes the answer as its reading line, closes each line it ends, opens no page but the Estimates it reads, and leaves the readings that name a later moment or a /hi run of their own
 method: "by hand at the first /hi after the render: the first reply, its tool calls, its LEDGER block and frontier.md read against the Criterion, recorded in the estimate line"
@@ -31,7 +31,7 @@ In its first reply, before the question on the order, the agent takes each readi
 
 ## Result
 
-2026-09-30, by hand, the first reply of session 1306: before the question on the order it took the two readings whose method names the librarian's run and could be done whole (backlog-renders, sprint-items-move-only-by-a-case) from the brief, git log, git blame and the commands; it closed W2 and W34 [x] · work in frontier.md, then wrote the LEDGER block of a reply that ends in text; Ask held no line; it left brief-written, carry-over-writes, generate-rewords, python-utf8-output-intact, settings and its own reading; no page or repository file changed but frontier.md; but it opened the pages of five Estimates it did not read — hi-takes-its-readings, python-utf8-output-intact, settings, brief-written, glossary-terms-defined — against "Only the reading step opens the pages of the Estimates it reads"
+2026-09-30, by hand, the first reply of session 1736 after the librarian's render of 070d8e6: the Frontier assembled from the loaded files with no page opened; before the question on the order it took the two readings whose method names the librarian's run and could be done whole (brief-written, generate-writes-the-decision-page), opening only those two Estimate pages; it closed W2 and W21 [x] · work in frontier.md, then wrote the LEDGER block of a reply that ends in text; it put A1 (estimate-permissions) as a question before the question on the order, and on the answer closed A1 first, opened only that Estimate, then wrote its line; it left carry-over-writes, generate-rewords, event-log-records (a /hi outside plan mode) and python-utf8-output-intact; no page or repository file changed but frontier.md
 
 ## History
 
@@ -39,3 +39,4 @@ In its first reply, before the question on the order, the agent takes each readi
 - 2026-09-29 status: pending → passed · raw/2026-09-29/1432/ledger.md#L30
 - 2026-09-30 updated: the Criterion replaced whole — the Ask lines put to the person in the first reply, the answer written as the reading line (case 531.13) · [[decision-case-531.13]]
 - 2026-09-30 status: pending → failed · raw/2026-09-30/1306/ledger.md#L45
+- 2026-09-30 status: failed → passed · raw/2026-09-30/1736/ledger.md#L18

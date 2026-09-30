@@ -1,7 +1,7 @@
 ---
 type: estimate
 kind: QA
-status: failed
+status: passed
 target: "[[rule-skill-grill-me]]"
 purpose: grill-me asks in rounds, finds facts itself and acts only after the shared understanding is confirmed, as the one text its rule page renders
 method: uv run guppi render --check; by hand, one round read in the chat in a session after the render, of the person's /grill-me or of case-guppi
@@ -35,7 +35,7 @@ Then:
 
 ## Result
 
-2026-09-30, `uv run guppi render --check` exit 0; by hand, the rounds of case-guppi in session 0248 read as the answers held them: each question opens with its ❓ line, a Now line, options marked 🔹 with one After item each, and a ➡️ line; but the label "**Options:**" stands indented by four spaces under the Now block in the rounds on Case 535 (Q1 to Q3), Case 536 (Q1), Case 538 (Q1, Q2) and Case 539 (first round Q1, second round Q1 to Q3), so it does not stand alone on the line before the first option but runs on as part of the paragraph above it
+2026-09-30, uv run guppi render --check exit 0; by hand, the rounds of case-guppi on Cases 547 to 550 in session 1736: each question opens with its ❓ line and a Now line, the label Options stands alone on its own line before the first option, each option opens with 🔹 and its bold name and carries one After item, each closes with a ➡️ line; quotations stand as blockquotes under the sentence that introduces them; the agent looked up the facts itself and asked the person only for decisions; it built each Case only after the person's answer; the series inside the question bodies are short series of words
 
 ## History
 
@@ -47,3 +47,4 @@ Then:
 - 2026-09-29 updated: the Criterion replaced whole — the Options label, the 🔹 mark and a list one item per line (case 511.1) · [[decision-case-511.1]]
 - 2026-09-29 updated: the Criterion replaced whole — a quotation stands as a blockquote on its own line (case 524.1) · [[decision-case-524.1]]
 - 2026-09-30 status: pending → failed · raw/2026-09-30/0248/ledger.md#L39
+- 2026-09-30 status: failed → passed · raw/2026-09-30/1736/ledger.md#L20

@@ -1,11 +1,11 @@
 ---
 type: estimate
 kind: QA
-status: pending
+status: passed
 target: "[[rule-page-generation]]"
 purpose: What generate writes to a page for each kind of entry of a materialize.yaml, and nothing an entry does not carry
 method: pytest in tests/test_generate.py against a temp vault; the live reading once by hand
-checked: 2026-09-17
+checked: 2026-09-30
 origin: raw/2026-09-10/ledger.md#case-32
 sprint: migration
 created: 2026-09-10
@@ -36,7 +36,7 @@ A `create` becomes a page: `type`, the fields of the entry, `status` by category
 
 ## Result
 
-2026-09-17, `pytest tests/test_generate.py`: 48 green — an Estimate update whose set carries method writes the field after purpose and drops ## Context and ## Method, an update without set.method touches no section; the live reading is the librarian's run of this session, on the five recuts of 211.3
+2026-09-30, uv run pytest tests/test_generate.py: 103 passed; by hand on the run of 070d8e6: estimate-case-build-checks-the-finished-case created with type, kind, status pending, target, purpose, method in order and no Context or Method section; rule-case-build History carries updated and estimate added lines ending in decision-case-544.1; rule-orchestration deferred_by 424 and 546 with the History line deferred
 
 ## History
 
@@ -80,3 +80,4 @@ A `create` becomes a page: `type`, the fields of the entry, `status` by category
 - 2026-09-20 updated: the word moved: the module pretask → prespec and the slug -pretask-reconciles → -prespec-reconciles in the Criterion; the promise and the reading unchanged, passed kept (case 265) · [[decision-case-265]]
 - 2026-09-29 updated: the Criterion restored whole — the text of case 211.1, which case 211.3 overwrote, less its pointer line; purpose set (case 489.1) · [[decision-case-489.1]]
 - 2026-09-29 updated: the Criterion replaced whole — set.method drops no section (case 506.6) · [[decision-case-506.6]]
+- 2026-09-30 status: pending → passed · raw/2026-09-30/1736/ledger.md#L25

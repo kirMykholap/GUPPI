@@ -16,3 +16,4 @@ The Bash tool starts each Python process of a session in the locale's code page.
 ## History
 
 - 2026-09-30 created · raw/2026-09-30/0248/ledger.md#case-534
+- 2026-09-30 updated: the parent page written for a Case of session 0248 by the librarian run of session 1306, kept as written and signed after the fact (case 550) · [[decision-case-550]]

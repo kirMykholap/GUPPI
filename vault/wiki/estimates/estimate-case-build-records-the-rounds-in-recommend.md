@@ -1,10 +1,11 @@
 ---
 type: estimate
 kind: QA
-status: pending
+status: failed
 target: "[[rule-case-build]]"
 purpose: Whether the recommend of each Case case-guppi builds holds one item per question of its rounds — the title, the latest recommendation, the latest answer in English — a sub-case with its own items and no problem
 method: "by hand: the Case files of a later session after the render, each recommend read against the rounds of its Case in the chat"
+checked: 2026-09-30
 origin: raw/2026-09-30/1306/ledger.md#case-544.2
 sprint: migration
 created: 2026-09-30
@@ -25,6 +26,11 @@ The `recommend` of the Case is a list with one item per question of the rounds o
 **＋** A Case with sub-cases carries `problem` on the parent only.
 **－** No item quotes the person's words word for word.
 
+## Result
+
+2026-09-30, by hand, the Case files of Cases 547 to 550 of session 1736 against their rounds in the chat: each recommend holds one item per question, the title in bold as the round wrote it, a Recommended line and an Answer line in English, no quotation of the person's words; but the item of Q2 of Case 549 gives the first recommendation (each text states the condition in its own words) while Q3 replaced it (the texts point to rule-case-protocol), against the latest recommendation and answer the Criterion asks for
+
 ## History
 
 - 2026-09-30 created · [[decision-case-544.2]]
+- 2026-09-30 status: pending → failed · raw/2026-09-30/1736/ledger.md#L21

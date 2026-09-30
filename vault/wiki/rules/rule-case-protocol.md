@@ -8,7 +8,7 @@ governs: vault/wiki/case-schema.md
 render_mode: full
 parent: "[[rule-plan-mode]]"
 children: ["[[rule-atomicity]]"]
-estimates: ["[[estimate-case-protocol-loaded]]", "[[estimate-case-protocol-case-form]]", "[[estimate-case-protocol-acknowledging-reply]]", "[[estimate-case-protocol-ledger-line-form]]", "[[estimate-case-protocol-shows-the-built-case]]", "[[estimate-case-protocol-defers-in-one-reply]]"]
+estimates: ["[[estimate-case-protocol-loaded]]", "[[estimate-case-protocol-case-form]]", "[[estimate-case-protocol-acknowledging-reply]]", "[[estimate-case-protocol-ledger-line-form]]", "[[estimate-case-protocol-shows-the-built-case]]", "[[estimate-case-protocol-defers-in-one-reply]]", "[[estimate-case-protocol-shows-the-frontier-after-a-closed-line]]"]
 origin: raw/2026-09-09/ledger.md#case-13
 sprint: migration
 created: 2026-09-09
@@ -44,7 +44,7 @@ A Case is the unit of dialogue, not a vault page. It lives only inside a session
 
 ## Plan Mode and the Frontier
 
-One reply is one Case, in the eight sections below. That is the form of Plan Mode. The Frontier is `raw/<date>/<hi HHMM>/frontier.md`, written at `/hi`; close its line in the reply that ends the item — `[x]` for an item ended: `· case N` when ratified, `· work` when it needed no decision; `[-]` for an item put off: `[-] … · sprint · defer` for an item of the sprint left for later — no Case, never `· defer case N` (case 356.2) — `[-] … · backlog · kept` for an item of `backlog.md` left as it stands, and `[-] … · defer case N` for a decision of any other source put off (case 451.1). Plan Mode does not end while a line under `## Cases` is open — a `W` line closes when its work is done (case 356.1); `/pre-spec` checks it. Never move to the next Case until this one is ratified or deferred.
+One reply is one Case, in the eight sections below. That is the form of Plan Mode. The Frontier is `raw/<date>/<hi HHMM>/frontier.md`, written at `/hi`; close its line in the reply that ends the item — `[x]` for an item ended: `· case N` when ratified, `· work` when it needed no decision; `[-]` for an item put off: `[-] … · sprint · defer` for an item of the sprint left for later — no Case, never `· defer case N` (case 356.2) — `[-] … · backlog · kept` for an item of `backlog.md` left as it stands, and `[-] … · defer case N` for a decision of any other source put off (case 451.1). A reply after the first reply of `/hi` and before the end of Plan Mode that closes a line of `frontier.md` with no ratification and no defer — an `A` line by the person's answer, a `W` line by a reading, a `C` line that needs no decision, an item closed `[-] … · sprint · defer` or `[-] … · backlog · kept` — ends as the acknowledging reply ends: a heading `## Frontier`, the lines of `frontier.md` as a checklist in its form, and, last, the question which open item is next or, when no line under `## Cases` is open, whether to run `/pre-spec`; a reply that closes several lines shows one Frontier; the first reply of `/hi` keeps the form `rule-skill-hi` sets, and a line closed in Work Mode or at Retro shows none (case 547). Plan Mode does not end while a line under `## Cases` is open — a `W` line closes when its work is done (case 356.1); `/pre-spec` checks it. Never move to the next Case until this one is ratified or deferred.
 
 ## Sections
 
@@ -315,3 +315,5 @@ The harness — hooks, skills, agents, `settings.json`, `CLAUDE.md`, this file �
 - 2026-09-30 updated: how the leading spaces and tabs of a replace pair match (case 543.3) · [[decision-case-543.3]]
 - 2026-09-30 updated: recommend is the record of the rounds and stands in the Spec, its item titles in bold; a sub-case carries its own items and no problem (cases 544.2, 544.5) · [[decision-case-544.2]]
 - 2026-09-30 updated: a script reads the titles of the items of recommend (case 544.3) · [[decision-case-544.3]]
+- 2026-09-30 updated: a reply after the first reply of /hi that closes a Frontier line in Plan Mode with no ratification and no defer shows the Frontier and the question which item is next · [[decision-case-547]]
+- 2026-09-30 estimate estimate-case-protocol-shows-the-frontier-after-a-closed-line added · [[decision-case-547]]

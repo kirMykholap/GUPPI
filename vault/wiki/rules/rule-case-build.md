@@ -8,6 +8,7 @@ governs: .claude/agents/case-guppi.md
 render_mode: full
 parent: "[[rule-plan-mode]]"
 estimates: ["[[estimate-case-build-writes-the-case]]", "[[estimate-case-build-keeps-the-old-form-until-the-writer-is-live]]", "[[estimate-case-build-writes-a-plain-round]]", "[[estimate-case-build-checks-the-finished-case]]", "[[estimate-case-build-records-the-rounds-in-recommend]]"]
+deferred_by: ["[[decision-case-551]]"]
 origin: raw/2026-09-24/1303/ledger.md#case-391.1
 sprint: migration
 created: 2026-09-24
@@ -79,3 +80,4 @@ When no fork is open, answer with the Case in the chat form of the schema, from 
 - 2026-09-30 estimate estimate-case-build-checks-the-finished-case added · [[decision-case-544.1]]
 - 2026-09-30 updated: case-guppi writes recommend as the record of its rounds, the latest recommendation and answer of each question, a sub-case with its own items and no problem (case 544.2) · [[decision-case-544.2]]
 - 2026-09-30 estimate estimate-case-build-records-the-rounds-in-recommend added · [[decision-case-544.2]]
+- 2026-09-30 deferred · [[decision-case-551]]

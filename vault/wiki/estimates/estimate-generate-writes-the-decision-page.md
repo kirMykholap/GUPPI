@@ -1,11 +1,11 @@
 ---
 type: estimate
 kind: QA
-status: pending
+status: passed
 target: "[[rule-page-generation]]"
 purpose: One Decision page per Case, written before its entries, with its lists, its body and its defers
 method: pytest tests/test_generate.py, the tests of the decision page; the live reading in the librarian's run
-checked: 2026-09-29
+checked: 2026-09-30
 origin: raw/2026-09-16/1955/ledger.md#case-201.2
 sprint: migration
 created: 2026-09-16
@@ -32,7 +32,7 @@ One page `vault/wiki/decisions/decision-case-<N>.md` is written: `case`, `status
 
 ## Result
 
-2026-09-29, uv run pytest tests/test_generate.py -k decision: 10 passed (the whole file 100 passed); by hand, git show --name-status d8c1f17: 12 Decision pages added under wiki/decisions and decision-case-511.2 under the archive, no existing Decision page modified; 510, 511.1, 512, 513.1-513.3, 514-516 carry ## Problem and ## History only; 517, 518, 519 carry ## Context, ## Problem, ## Deferred and ## History; 512 carries supersedes 511.2, 511.2 carries superseded_by 512 and the two-line body of case 299, archived; the History of rule-case-build names [[decision-case-512]]; the ## Deferred of 519 holds its purpose verbatim; the tags union and source were not checked
+2026-09-30, uv run pytest tests/test_generate.py -k decision: 11 passed (the whole file 103 passed); by hand, git show --name-status 070d8e6: 24 Decision pages added (23 under wiki/decisions, decision-case-545 under the archive), decision-case-480 moved to the archive with status archived and superseded_by 544.1, no other existing Decision page modified; 544 and 534 carry children, no kind list and ## Problem alone; 544.1 carries parent, its lists, supersedes 480 and no ## Problem; 546 carries ## Context, ## Problem and ## Deferred with the purpose of rule-orchestration verbatim; 545 carries the two-line body of case 299; rule-orchestration deferred_by 424 and 546; the archived rule-case-build-checks-its-sub-cases carries no deferred_by; the History of rule-case-build names decision-case-544.1; no page carries ## Recommend; the sub-case pages of 534 written in session 0248 carry no parent, not rewritten; the tags union and source were not checked
 
 ## History
 
@@ -49,3 +49,4 @@ One page `vault/wiki/decisions/decision-case-<N>.md` is written: `case`, `status
 - 2026-09-29 updated: the Criterion replaced whole — the body is Problem, Context only for a Case without given, no Given (case 513.2) · [[decision-case-513.2]]
 - 2026-09-29 status: pending → passed · raw/2026-09-29/1753/ledger.md#L2
 - 2026-09-30 updated: the Criterion replaced whole — Recommend on the page, a page for a parent Case with children and no Context, parent on a sub-case page and no Problem there (case 544.7) · [[decision-case-544.7]]
+- 2026-09-30 status: pending → passed · raw/2026-09-30/1736/ledger.md#L2

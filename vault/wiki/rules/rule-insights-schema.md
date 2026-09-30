@@ -63,7 +63,7 @@ fields:
   addressed_by: |
     required on `actioned`; decision quoted wikilink `"[[slug]]"`. The ratified decision that fixed the pattern, or rejected it (case 124) — one, the latest; a list is not a shape of this field, and of two Cases of one plan only one actions the Insight (case 361). The field is the link; no body section repeats it (case 166.1).
   deferred_by: |
-    optional; list of decision quoted wikilinks `"[[slug]]"`. The `defer` decisions that postponed it; set by `generate`, cleared by a `supersedes` (case 124.2).
+    optional; list of decision quoted wikilinks `"[[slug]]"`. The `defer` decisions that postponed it; set by `generate` and cleared by it on a later `supersedes`, under the condition that `rule-case-protocol` sets (case 124.2).
   origin: |
     required; date + session. When the librarian first clustered it. Unlike every other category this does not point at a ledger line — no decision created it.
   sprint: |
@@ -121,3 +121,4 @@ examples:
 - 2026-09-27 updated: an open Insight stands in backlog.md, a Case when the person brings it onto a Frontier (case 451.4) · [[decision-case-451.4]]
 - 2026-09-27 status: built → draft · cascade
 - 2026-09-27 status: draft → built · cascade
+- 2026-09-30 updated: deferred_by is cleared on a supersedes under the condition that rule-case-protocol sets (case 549) · [[decision-case-549]]

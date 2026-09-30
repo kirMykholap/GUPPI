@@ -1,11 +1,11 @@
 ---
 type: estimate
 kind: QA
-status: pending
+status: passed
 target: "[[rule-case-protocol]]"
 purpose: A built Case carries the whole contract in given, when and then, in the file the person is sent
 method: one reading by hand of the Cases of a session, at its close
-checked: 2026-09-27
+checked: 2026-09-30
 origin: raw/2026-09-16/1034/ledger.md#case-188
 sprint: migration
 created: 2026-09-16
@@ -30,7 +30,7 @@ The file opens with the heading `## Case N — name`, a sub-case with `### Case 
 
 ## Result
 
-2026-09-27, raw/2026-09-27/2050/cases/case-464.md to case-468.md read by hand at the close of session 2050; headings and section order as the schema, given one thing per line with its role, then behaviour only, each ＋/－ line on given or when, tasks naming each Estimate with the content as sub-points, ratification one untagged fence, each Case with its sub-cases in one file sent in one reply; "two lines" and "three parts" in the then of 468.1 and 468.2 read as a condition of the form; the person raised no complaint about context, problem or recommend
+2026-09-30, by hand, the Case files cases/case-547.md to case-552.md of session 1736 at their last showing: each opens with its heading, sub-cases under their parent in one file, the sections in the order of the table as blockquotes with their bold name; context and problem plain prose with the mechanism first, recommend one item per question with Recommended and Answer lines and Change items with Asked and Taken; given one thing per line with its role; given, when and then with operands after the first line, no count of items; tasks name each Estimate created or replaced by slug with the content as sub-points; ratification the preview in an untagged fence; the person raised no complaint of length or clarity
 
 ## History
 
@@ -59,3 +59,4 @@ The file opens with the heading `## Case N — name`, a sub-case with `### Case 
 - 2026-09-27 updated: the Criterion replaced whole — the form stands in the file of a built Case; context, problem and recommend brief plain prose judged by the person's complaint, a case number, a count, a line number or a quotation there no fault; no count of items in given, when and then (case 449) · [[decision-case-449]]
 - 2026-09-27 status: pending → passed · raw/2026-09-27/2050/ledger.md#L34
 - 2026-09-30 updated: the Criterion replaced whole — recommend is the list of the schema, a sub-case with its own (case 544.11) · [[decision-case-544.11]]
+- 2026-09-30 status: pending → passed · raw/2026-09-30/1736/ledger.md#L39

@@ -96,7 +96,7 @@ update:
 - [x] `guppi/materialize.py` — the comment on the check for an incomplete Case names the short form of a defer, not of Retro
 - [x] `tests/test_ratified.py` — `test_write_a_defer_at_retro_goes_into_the_spec_of_the_folder` renamed to `test_write_a_defer_once_the_spec_stands_goes_into_it`, its body unchanged
 - [x] `uv run pytest tests/test_ratified.py -k defer` green
-- [ ] read `estimate-spec-write-writes-a-defer` — `uv run pytest tests/test_ratified.py -k defer`, then by hand the first defer the person asks for after the change, in a later session
+- [x] read `estimate-spec-write-writes-a-defer` — `uv run pytest tests/test_ratified.py -k defer`, then by hand the first defer the person asks for after the change, in a later session
 ```
 
 ## Case 543 — Two faults in the form of a round of case-guppi
@@ -136,7 +136,7 @@ update:
 ```tasks
 - [x] update `rule-case-build`
 - [x] `uv run guppi render`: `.claude/agents/case-guppi.md`
-- [ ] read `estimate-case-build-writes-a-plain-round` — in a later session after the render: one first round and one later round of `case-guppi` read in the chat against the Criterion
+- [x] read `estimate-case-build-writes-a-plain-round` — in a later session after the render: one first round and one later round of `case-guppi` read in the chat against the Criterion
 ```
 
 ### Case 543.2 — The Options label of the grill-me template stands at the indent of the other lines
@@ -172,7 +172,7 @@ update:
 ```tasks
 - [x] update `rule-skill-grill-me`
 - [x] `uv run guppi render`: `.claude/skills/grill-me/SKILL.md`
-- [ ] read `estimate-skill-grill-me-asks-in-rounds` — in a later session after the render: `uv run guppi render --check`, then one round of `case-guppi` read in the chat against the Criterion
+- [x] read `estimate-skill-grill-me-asks-in-rounds` — in a later session after the render: `uv run guppi render --check`, then one round of `case-guppi` read in the chat against the Criterion
 ```
 
 ### Case 543.3 — A replace old that opens with spaces takes the spaces before its first word
@@ -222,7 +222,7 @@ update:
 - [x] `guppi/generate.py`: in `replace_hits`, an `old` that opens with a space or a tab gets a pattern that takes the spaces and tabs before its first word; the docstrings of `replace_hits` and `replace_once` say so
 - [x] `tests/test_generate.py`: an `old` and a `new` that both open with four spaces over a line indented four spaces leave four; an `old` with no leading space leaves the page's spaces; the hit count of an anchor is the same with and without its leading spaces
 - [x] `uv run guppi render`: `vault/wiki/case-schema.md`
-- [ ] read `estimate-generate-replace-takes-the-leading-indent`
+- [x] read `estimate-generate-replace-takes-the-leading-indent`
 ```
 
 ### Case 543.4 — Pre-spec and the Case check report a pair that adds an indent twice
@@ -271,7 +271,7 @@ update:
 - [x] `guppi/prespec.py`: `check_pairs` imports the predicate and gives the finding for each pair it judges true
 - [x] `tests/test_prespec.py`: the three pairs of the method
 - [x] `uv run guppi render`: `.claude/skills/pre-spec/SKILL.md`
-- [ ] read `estimate-prespec-catches-an-indent-added-twice`
+- [x] read `estimate-prespec-catches-an-indent-added-twice`
 ```
 
 ## Case 544 — case-guppi checks its finished Case, and its recommend records the rounds onto the Decision page
@@ -353,7 +353,7 @@ delete:
 - [x] update `insight-case-build-promise-lines-compared-by-no-check`
 - [x] update `insight-workflow-fact-signed-from-a-check-that-does-not-cover-it`
 - [x] `uv run guppi render`: `.claude/agents/case-guppi.md`
-- [ ] read `estimate-case-build-checks-the-finished-case`
+- [x] read `estimate-case-build-checks-the-finished-case`
 ```
 
 ### Case 544.2 — The recommend of a Case records the rounds
@@ -417,7 +417,7 @@ update:
 - [x] create `estimate-case-build-records-the-rounds-in-recommend`
 - [x] `uv run guppi render`: `.claude/agents/case-guppi.md`
 - [x] `uv run guppi render`: `vault/wiki/case-schema.md`
-- [ ] read `estimate-case-build-records-the-rounds-in-recommend`
+- [x] read `estimate-case-build-records-the-rounds-in-recommend`
 ```
 
 ### Case 544.3 — The Case check requires each question of the rounds in recommend
@@ -517,7 +517,7 @@ update:
 - [x] create `estimate-case-check-refuses-a-problem-in-a-sub-case`
 - [x] `guppi/casecheck.py`: `form_findings` gives the finding for a sub-case that carries `problem`; the docstring says so
 - [x] `tests/test_casecheck.py`: the cases of the method
-- [ ] read `estimate-case-check-refuses-a-problem-in-a-sub-case`
+- [x] read `estimate-case-check-refuses-a-problem-in-a-sub-case`
 ```
 
 ### Case 544.5 — The Spec holds recommend
@@ -567,7 +567,7 @@ update:
 - [x] update `estimate-spec-write-copies-the-ratified-case`
 - [x] `guppi/ratified.py`: `SPEC_SECTIONS` holds `recommend`, and the writer writes a sub-case's own `recommend` and the parent's from the parent's stored answer; the docstring says so
 - [x] `tests/test_ratified.py`: a Case whose `recommend` reaches the plan file, a sub-case with its own `recommend`, a parent's `recommend` from its stored answer
-- [ ] read `estimate-spec-write-copies-the-ratified-case`
+- [x] read `estimate-spec-write-copies-the-ratified-case`
 ```
 
 ### Case 544.6 — materialize gives a parent Case its own record
@@ -608,7 +608,7 @@ update:
 - [x] update `estimate-materialize-assembles`
 - [x] `guppi/materialize.py`: `INHERITED` holds `context` and `given`; a sub-case record carries `parent` and needs no `problem`; a parent Case with sub-case lines in the unit gets its own record with `children` and its `given` when it has one; the docstring says so
 - [x] `tests/test_materialize.py`: a sub-case with no `problem` or `recommend` of its own, a parent record with `children` and no `targets`, with and without a `given` of its own, a Case with no sub-cases as before
-- [ ] read `estimate-materialize-assembles`
+- [x] read `estimate-materialize-assembles`
 ```
 
 ### Case 544.7 — generate writes the Recommend and the parent page
@@ -655,7 +655,7 @@ update:
 - [x] update `estimate-generate-writes-the-decision-page`
 - [x] `guppi/generate.py`: the Decision page writes `## Recommend`; a record with `children` gets its page first, with no kind list and no `## Context`; a record with `parent` gets the field and no `## Problem`; the docstring says so
 - [x] `tests/test_generate.py`: a page with `## Recommend`, a parent page with `children` and no `## Context`, with and without a `given` of its own, a sub-case page with `parent` and no `## Problem`, a short-form defer as before
-- [ ] read `estimate-generate-writes-the-decision-page`
+- [x] read `estimate-generate-writes-the-decision-page`
 ```
 
 ### Case 544.8 — The Decision schema takes Recommend, parent and children
@@ -791,7 +791,7 @@ update:
 - [x] update `estimate-lint-finds-a-broken-link`
 - [x] `guppi/lint.py`: the `decision` class takes a page with `children` and no kind list; `check_origin` finds `#case-N` by a line `[case N.` of a sub-case when no line carries `[case N]`; the docstring says so
 - [x] `tests/test_lint.py`: a parent page with `children` and no kind list, a page with neither, a parent `origin` found by a sub-case line, one with no line of either
-- [ ] read `estimate-lint-finds-a-broken-link`
+- [x] read `estimate-lint-finds-a-broken-link`
 ```
 
 ### Case 544.10 — The approved Spec holds recommend
@@ -863,7 +863,7 @@ update:
 
 ```tasks
 - [x] update `estimate-case-protocol-case-form`
-- [ ] read `estimate-case-protocol-case-form`
+- [x] read `estimate-case-protocol-case-form`
 ```
 
 ## Deferred

@@ -5161,3 +5161,72 @@ instruction. The global feed; a page's own `## History` is the per-page view.
 - 2026-09-30 lessons/lesson-case-build-writes-a-count-no-command-printed archived · cleanup
 - 2026-09-30 decisions/decision-case-480 archived · cleanup
 - 2026-09-30 decisions/decision-case-545 archived · cleanup
+- 2026-09-30 estimates/estimate-brief-written status: pending → passed · raw/2026-09-30/1736/ledger.md#L1 · generate
+- 2026-09-30 estimates/estimate-generate-writes-the-decision-page status: pending → passed · raw/2026-09-30/1736/ledger.md#L2 · generate
+- 2026-09-30 estimates/estimate-permissions status: pending → passed · raw/2026-09-30/1736/ledger.md#L3 · generate
+- 2026-09-30 estimates/estimate-glossary-terms-defined status: failed → passed · raw/2026-09-30/1736/ledger.md#L4 · generate
+- 2026-09-30 decisions/decision-case-547 created · raw/2026-09-30/1736/ledger.md#case-547 · generate
+- 2026-09-30 rules/rule-case-protocol updated: a reply after the first reply of /hi that closes a Frontier line in Plan Mode with no ratification and no defer shows the Frontier and the question which item is next · [[decision-case-547]] · generate
+- 2026-09-30 estimates/estimate-case-protocol-shows-the-frontier-after-a-closed-line created · [[decision-case-547]] · generate
+- 2026-09-30 rules/rule-case-protocol estimate estimate-case-protocol-shows-the-frontier-after-a-closed-line added · [[decision-case-547]] · generate
+- 2026-09-30 decisions/decision-case-548 created · raw/2026-09-30/1736/ledger.md#case-548 · generate
+- 2026-09-30 estimates/estimate-decisions-schema-checked updated: the method runs -k decision, names a page without ## Problem, and expects no schema finding on wiki/decisions/ (case 548) · [[decision-case-548]] · generate
+- 2026-09-30 decisions/decision-case-549 created · raw/2026-09-30/1736/ledger.md#case-549 · generate
+- 2026-09-30 entities/entity-glossary updated: the rows deferred_by and ref, slug, supersedes: a supersede clears a defer under the condition that rule-case-protocol sets (case 549) · [[decision-case-549]] · generate
+- 2026-09-30 rules/rule-rules-schema updated: deferred_by is cleared on a supersedes under the condition that rule-case-protocol sets (case 549) · [[decision-case-549]] · generate
+- 2026-09-30 rules/rule-entities-schema updated: deferred_by is cleared on a supersedes under the condition that rule-case-protocol sets (case 549) · [[decision-case-549]] · generate
+- 2026-09-30 rules/rule-insights-schema updated: deferred_by is cleared on a supersedes under the condition that rule-case-protocol sets (case 549) · [[decision-case-549]] · generate
+- 2026-09-30 rules/rule-prespec updated: the reason of the backlog check points to rule-case-protocol for when generate clears a defer (case 549) · [[decision-case-549]] · generate
+- 2026-09-30 rules/rule-backlog updated: an item leaves when a Case supersedes its defer under the condition that rule-case-protocol sets (case 549) · [[decision-case-549]] · generate
+- 2026-09-30 decisions/decision-case-550 created · raw/2026-09-30/1736/ledger.md#case-550 · generate
+- 2026-09-30 decisions/decision-case-534 updated: the parent page written for a Case of session 0248 by the librarian run of session 1306, kept as written and signed after the fact (case 550) · [[decision-case-550]] · generate
+- 2026-09-30 decisions/decision-case-538 updated: the parent page written for a Case of session 0248 by the librarian run of session 1306, kept as written and signed after the fact (case 550) · [[decision-case-550]] · generate
+- 2026-09-30 decisions/decision-case-539 updated: the parent page written for a Case of session 0248 by the librarian run of session 1306, kept as written and signed after the fact (case 550) · [[decision-case-550]] · generate
+- 2026-09-30 decisions/decision-case-551 created · raw/2026-09-30/1736/ledger.md#case-551 · generate
+- 2026-09-30 rules/rule-case-build deferred · [[decision-case-551]] · generate
+- 2026-09-30 estimates/estimate-hi-takes-its-readings status: failed → passed · raw/2026-09-30/1736/ledger.md#L18 · generate
+- 2026-09-30 estimates/estimate-case-build-writes-a-plain-round status: failed → failed · raw/2026-09-30/1736/ledger.md#L19 · generate
+- 2026-09-30 estimates/estimate-skill-grill-me-asks-in-rounds status: failed → passed · raw/2026-09-30/1736/ledger.md#L20 · generate
+- 2026-09-30 estimates/estimate-case-build-records-the-rounds-in-recommend status: pending → failed · raw/2026-09-30/1736/ledger.md#L21 · generate
+- 2026-09-30 estimates/estimate-case-check-refuses-a-problem-in-a-sub-case status: pending → passed · raw/2026-09-30/1736/ledger.md#L22 · generate
+- 2026-09-30 estimates/estimate-documentation-completes status: pending → failed · raw/2026-09-30/1736/ledger.md#L23 · generate
+- 2026-09-30 estimates/estimate-generate-replace-takes-the-leading-indent status: pending → passed · raw/2026-09-30/1736/ledger.md#L24 · generate
+- 2026-09-30 estimates/estimate-generate-writes status: pending → passed · raw/2026-09-30/1736/ledger.md#L25 · generate
+- 2026-09-30 estimates/estimate-lint-finds-a-broken-link status: pending → passed · raw/2026-09-30/1736/ledger.md#L26 · generate
+- 2026-09-30 estimates/estimate-materialize-assembles status: pending → passed · raw/2026-09-30/1736/ledger.md#L27 · generate
+- 2026-09-30 estimates/estimate-prespec-catches-an-indent-added-twice status: pending → passed · raw/2026-09-30/1736/ledger.md#L28 · generate
+- 2026-09-30 estimates/estimate-spec-write-copies-the-ratified-case status: pending → passed · raw/2026-09-30/1736/ledger.md#L29 · generate
+- 2026-09-30 estimates/estimate-spec-write-copies-the-ratified-case status: passed → passed · raw/2026-09-30/1736/ledger.md#L30 · generate
+- 2026-09-30 decisions/decision-case-552 created · raw/2026-09-30/1736/ledger.md#case-552 · generate
+- 2026-09-30 decisions/decision-case-552.1 created · raw/2026-09-30/1736/ledger.md#case-552.1 · generate
+- 2026-09-30 rules/rule-materialize updated: parse_line reads a space between brackets and returns None, never an error, for a line it cannot read (case 552.1) · [[decision-case-552.1]] · generate
+- 2026-09-30 decisions/decision-case-552.2 created · raw/2026-09-30/1736/ledger.md#case-552.2 · generate
+- 2026-09-30 rules/rule-ledger-write updated: the hook refuses a line that parse_line cannot read (case 552.2) · [[decision-case-552.2]] · generate
+- 2026-09-30 estimates/estimate-ledger-write-refuses-a-line-it-cannot-read created · [[decision-case-552.2]] · generate
+- 2026-09-30 rules/rule-ledger-write estimate estimate-ledger-write-refuses-a-line-it-cannot-read added · [[decision-case-552.2]] · generate
+- 2026-09-30 decisions/decision-case-552.3 created · raw/2026-09-30/1736/ledger.md#case-552.3 · generate
+- 2026-09-30 estimates/estimate-ledger-write-lifts updated: the Criterion replaced whole — a line the hook cannot read does not land (case 552.3) · [[decision-case-552.3]] · generate
+- 2026-09-30 decisions/decision-case-552.4 created · raw/2026-09-30/1736/ledger.md#case-552.4 · generate
+- 2026-09-30 rules/rule-ledger-write updated: the hook exits 2 on its own error after the payload is read, and 0 on an error while it reads the payload (case 552.4) · [[decision-case-552.4]] · generate
+- 2026-09-30 estimates/estimate-ledger-write-exits-2-on-an-error created · [[decision-case-552.4]] · generate
+- 2026-09-30 rules/rule-ledger-write estimate estimate-ledger-write-exits-2-on-an-error added · [[decision-case-552.4]] · generate
+- 2026-09-30 decisions/decision-case-553 created · raw/2026-09-30/1736/ledger.md#case-553 · generate
+- 2026-09-30 rules/rule-ask deferred · [[decision-case-553]] · generate
+- 2026-09-30 estimates/estimate-case-build-checks-the-finished-case status: pending → failed · raw/2026-09-30/1736/ledger.md#L38 · generate
+- 2026-09-30 estimates/estimate-case-protocol-case-form status: pending → passed · raw/2026-09-30/1736/ledger.md#L39 · generate
+- 2026-09-30 estimates/estimate-case-protocol-shows-the-built-case status: pending → failed · raw/2026-09-30/1736/ledger.md#L40 · generate
+- 2026-09-30 estimates/estimate-spec-write-writes-a-defer status: pending → failed · raw/2026-09-30/1736/ledger.md#L41 · generate
+- 2026-09-30 estimates/estimate-work-mode-takes-the-work-readings status: pending → passed · raw/2026-09-30/1736/ledger.md#L42 · generate
+- 2026-09-30 lessons/lesson-ledger-hook-swallows-a-parse-error created · raw/2026-09-30/1736/ledger.md#L43 · generate
+- 2026-09-30 lessons/lesson-case-protocol-own-text-before-a-round created · raw/2026-09-30/1736/ledger.md#L44 · generate
+- 2026-09-30 insights/insight-case-form-chat-form-read-by-no-script updated: child lesson-case-protocol-own-text-before-a-round added, reopened (synthesis) · raw/2026-09-30/1736/ledger.md#L44 · generate
+- 2026-09-30 lessons/lesson-case-protocol-own-text-before-a-round updated: clustered under insight-case-form-chat-form-read-by-no-script (synthesis) · raw/2026-09-30/1736/ledger.md#L44 · generate
+- 2026-09-30 entities/entity-glossary status: draft → built · cascade · generate
+- 2026-09-30 rules/rule-brief status: draft → built · cascade · generate
+- 2026-09-30 rules/rule-ledger-write status: built → draft · cascade · generate
+- 2026-09-30 rules/rule-lint status: draft → built · cascade · generate
+- 2026-09-30 rules/rule-materialize status: draft → built · cascade · generate
+- 2026-09-30 rules/rule-permissions status: draft → built · cascade · generate
+- 2026-09-30 rules/rule-prespec status: draft → built · cascade · generate
+- 2026-09-30 rules/rule-skill-grill-me status: draft → built · cascade · generate
+- 2026-09-30 rules/rule-skill-hi status: draft → built · cascade · generate

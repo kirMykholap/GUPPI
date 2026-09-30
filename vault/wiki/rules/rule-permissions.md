@@ -2,7 +2,7 @@
 type: rule
 kind: Leaf
 purpose: Lets the session write its own working files without asking, and nothing else
-status: draft
+status: built
 enforcement: render
 governs: .claude/settings.json
 render_mode: partial
@@ -55,3 +55,4 @@ a refusal that matters has a hook behind it (case 85.5).
 - 2026-09-18 updated: the allow list as intent; in Plan Mode the client asks all the same, and the prompt is read by the person (case 237) · [[decision-case-237]]
 - 2026-09-28 updated: work.md, the baseline and the marks of an expected red, joins the allow list (case 479.5) · [[decision-case-479.5]]
 - 2026-09-28 status: built → draft · cascade
+- 2026-09-30 status: draft → built · cascade

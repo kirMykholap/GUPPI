@@ -2,7 +2,7 @@
 type: rule
 kind: Leaf
 purpose: Prevents the next session from starting without the facts and the flags of this one
-status: draft
+status: built
 enforcement: render
 governs: .claude/agents/librarian-guppi.md
 render_mode: partial
@@ -80,3 +80,4 @@ The brief has a second writer, the skill `carry` (`rule-carry-over`): it writes 
 - 2026-09-30 status: built → draft · cascade
 - 2026-09-30 updated: the brief of carry keeps Next session: Work and Ask the person from the open lines of the session's frontier.md, Cases the line none (case 538.2) · [[decision-case-538.2]]
 - 2026-09-30 updated: Flags no longer name items moved to the Backlog or milestones dropped; the sprint page changes only by a Case (case 539.2) · [[decision-case-539.2]]
+- 2026-09-30 status: draft → built · cascade

@@ -1,11 +1,11 @@
 ---
 type: estimate
 kind: QA
-status: pending
+status: failed
 target: "[[rule-case-protocol]]"
 purpose: A Case is built by case-guppi and shown by the main agent unchanged
 method: by hand, the Cases of a session at its close, their context against the Agent calls and their showings against the SendUserFile calls of the transcript, and each request for a plain explanation against the Skill and SendMessage calls
-checked: 2026-09-28
+checked: 2026-09-30
 origin: raw/2026-09-24/1303/ledger.md#case-391.2
 sprint: migration
 created: 2026-09-24
@@ -32,7 +32,7 @@ The main agent dispatches `case-guppi` with the Case id, the Frontier item and i
 
 ## Result
 
-2026-09-28, by hand, session 2000 before its Retro: Cases 482-485 each dispatched to case-guppi after the plan file stood with its title line; every answer to a round and each question sent by SendMessage verbatim; the plain explanation of round 2 Q1 on Case 485 given by the skill wait-what, and the fact on Q2 asked of case-guppi and answered under **Fact:**; each round shown translated question by question, each Case shown by SendUserFile display render with a Russian short text and the ratification as the answer holds it; the pre-spec findings went to each case-guppi and the three Cases were shown and ratified again; no given, when, then or tasks in the chat
+2026-09-30, by hand, the transcript of session 1736: every Case dispatched to case-guppi with its id, item, source and the person's words; the person's answers sent by SendMessage verbatim; every Case shown by SendUserFile with display render, a short Russian text and the ratification under each heading; no Case edited in the plan file; ask-guppi dispatched once, at pre-spec; the short forms 551 and 553 written by the main agent in English; but before the first question of each round the main agent wrote a line of its own — on the first rounds of Cases 547, 548, 549, 550 and 552 (case-guppi builds Case N and starts with a round) and on the later rounds of 548, 549 and 552 (case-guppi came back with one more question) — against the line that the main agent writes no context of its own before the first question of a round
 
 ## History
 
@@ -50,3 +50,4 @@ The main agent dispatches `case-guppi` with the Case id, the Frontier item and i
 - 2026-09-28 updated: the Criterion replaced whole — a request for a plain explanation is answered by the main agent with the skill wait-what, and case-guppi gives only a fact, under a Fact line that is not a round (case 477.3) · [[decision-case-477.3]]
 - 2026-09-28 status: pending → passed · raw/2026-09-28/2000/ledger.md#L24
 - 2026-09-29 updated: the Criterion replaced whole — a round shown with each quotation in its blockquote (case 524.3) · [[decision-case-524.3]]
+- 2026-09-30 status: pending → failed · raw/2026-09-30/1736/ledger.md#L40

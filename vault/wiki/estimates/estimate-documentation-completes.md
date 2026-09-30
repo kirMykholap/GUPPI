@@ -1,10 +1,10 @@
 ---
 type: estimate
 kind: QA
-status: pending
+status: failed
 target: "[[rule-documentation]]"
 method: make test-documentation, the pipeline over tests/test_materialize.py, tests/test_generate.py and tests/test_cleanup.py; the live reading by hand
-checked: 2026-09-29
+checked: 2026-09-30
 origin: raw/2026-09-10/ledger.md#case-36
 sprint: migration
 created: 2026-09-10
@@ -31,7 +31,7 @@ Then:
 
 ## Result
 
-2026-09-29, make test-documentation (215 passed) and by hand on the librarian's run 1c196e8, vault/raw/2026-09-29/event_log.md lines 2076-2119: the run read beyond its list — git diff on Spec, yaml and rule files, a grep of the status of three Decision pages, git status over vault/archive; after the bashguard refusal of a heredoc writing vault/wiki/brief.md (line 2115) it wrote the brief into the scratchpad and copied it into place with cp; and it ran no uv run guppi archive between the brief and the commit
+2026-09-30, make test-documentation: 221 passed; by hand on the librarian's run of 070d8e6, vault/raw/2026-09-30/event_log.md lines 1566-1620, with the librarian's transcript: every decision line of the 1306 ledger has its Decision page, the yaml edits are marks and synthesis entries, the commit is separate, the brief written by Write, render, sprint, backlog and glossary after cleanup and before the brief, guppi archive after the brief and before the commit, no refusal worked around; but it read beyond its list — git status over vault/wiki/decisions/ (line 1595) and a grep of git status for vault/archive (1593), the target, status and method of 52 Estimate pages (1601, 1602), and a grep over every Decision page for a count (1612)
 
 ## History
 
@@ -67,3 +67,4 @@ Then:
 - 2026-09-29 status: pending → failed · raw/2026-09-29/1134/ledger.md#L52
 - 2026-09-30 status: failed → failed · raw/2026-09-29/2024/ledger.md#L24
 - 2026-09-30 updated: the Criterion replaced whole — the reads of what this run changed, log.md through its diff, the old brief read, the brief written with Write, no refusal worked around (case 530.1) · [[decision-case-530.1]]
+- 2026-09-30 status: pending → failed · raw/2026-09-30/1736/ledger.md#L23

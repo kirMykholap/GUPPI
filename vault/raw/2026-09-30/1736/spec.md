@@ -75,9 +75,9 @@ update:
 ```
 
 ```tasks
-- [ ] update `rule-case-protocol`
-- [ ] create `estimate-case-protocol-shows-the-frontier-after-a-closed-line`
-- [ ] `uv run guppi render`: `vault/wiki/case-schema.md`
+- [x] update `rule-case-protocol`
+- [x] create `estimate-case-protocol-shows-the-frontier-after-a-closed-line`
+- [x] `uv run guppi render`: `vault/wiki/case-schema.md`
 - [ ] read `estimate-case-protocol-shows-the-frontier-after-a-closed-line`
 ```
 
@@ -139,7 +139,7 @@ update:
 ```
 
 ```tasks
-- [ ] update `estimate-decisions-schema-checked`
+- [x] update `estimate-decisions-schema-checked`
 - [x] `tests/test_schemas.py`: the test of a Decision page without `## Context` adds `## Problem` to the page in the shape itself; the skip on the text of the schema file and the words "Skipped until" of the docstring are removed from the tests of cases 506.1, 513.1 and 544.8
 - [x] `uv run pytest tests/test_schemas.py`: every test passes, with no skip but the tests of a conditional on a category that has none
 ```
@@ -234,18 +234,18 @@ update:
 ```
 
 ```tasks
-- [ ] update `entity-glossary` — the rows `deferred_by` and `ref`, `slug`, `supersedes` point to `rule-case-protocol` for the condition
-- [ ] update `rule-rules-schema` — the sentence on ref fields and the field `deferred_by` point to `rule-case-protocol`
-- [ ] update `rule-entities-schema` — the sentence on ref fields and the field `deferred_by` point to `rule-case-protocol`
-- [ ] update `rule-insights-schema` — the field `deferred_by` points to `rule-case-protocol`
-- [ ] update `rule-prespec` — the reason of the check of a backlog item points to `rule-case-protocol`
-- [ ] update `rule-backlog` — when an item leaves points to `rule-case-protocol`
+- [x] update `entity-glossary` — the rows `deferred_by` and `ref`, `slug`, `supersedes` point to `rule-case-protocol` for the condition
+- [x] update `rule-rules-schema` — the sentence on ref fields and the field `deferred_by` point to `rule-case-protocol`
+- [x] update `rule-entities-schema` — the sentence on ref fields and the field `deferred_by` point to `rule-case-protocol`
+- [x] update `rule-insights-schema` — the field `deferred_by` points to `rule-case-protocol`
+- [x] update `rule-prespec` — the reason of the check of a backlog item points to `rule-case-protocol`
+- [x] update `rule-backlog` — when an item leaves points to `rule-case-protocol`
 - [x] `guppi/materialize.py`: the module docstring says that a `{supersedes:case N}` makes the earlier decision `superseded`, and that `generate` takes its slug out of a target's `deferred_by` under the condition that `rule-case-protocol` sets (case 52.3)
-- [ ] `uv run guppi render`: `vault/wiki/rules/schema.yaml`
-- [ ] `uv run guppi render`: `vault/wiki/entities/schema.yaml`
-- [ ] `uv run guppi render`: `vault/wiki/insights/schema.yaml`
-- [ ] `uv run guppi render`: `.claude/skills/pre-spec/SKILL.md`
-- [ ] `uv run guppi glossary`
+- [x] `uv run guppi render`: `vault/wiki/rules/schema.yaml`
+- [x] `uv run guppi render`: `vault/wiki/entities/schema.yaml`
+- [x] `uv run guppi render`: `vault/wiki/insights/schema.yaml`
+- [x] `uv run guppi render`: `.claude/skills/pre-spec/SKILL.md`
+- [x] `uv run guppi glossary`
 ```
 
 ## Case 550 — The parent Decision pages of session 0248 are kept as written
@@ -293,9 +293,9 @@ update:
 ```
 
 ```tasks
-- [ ] update `decision-case-534`
-- [ ] update `decision-case-538`
-- [ ] update `decision-case-539`
+- [x] update `decision-case-534`
+- [x] update `decision-case-538`
+- [x] update `decision-case-539`
 ```
 
 ## Case 552 — A ledger line that the parser cannot read no longer stops the ledger hook
@@ -345,7 +345,7 @@ update:
 ```
 
 ```tasks
-- [ ] update `rule-materialize`
+- [x] update `rule-materialize`
 - [x] `guppi/materialize.py`: `parse_line` reads an `estimate` or a `lesson` line with spaces between its brackets, and returns None for a line it cannot read; the docstring says so
 - [x] `tests/test_materialize.py`: an `estimate` line and a `lesson` line with a space between the brackets give the record of the same line without it; a broken line of each kind returns None; a line without spaces gives the record it gave before
 ```
@@ -397,8 +397,8 @@ update:
 ```
 
 ```tasks
-- [ ] update `rule-ledger-write`
-- [ ] create `estimate-ledger-write-refuses-a-line-it-cannot-read`
+- [x] update `rule-ledger-write`
+- [x] create `estimate-ledger-write-refuses-a-line-it-cannot-read`
 - [x] `guppi/ledger.py`: `run` sets apart each fresh line that `parse_line` cannot read before the other refusals, does not write it, and prints its stderr line when it stands in the reply just finished; the docstring says so
 - [x] `tests/test_ledger.py`: a broken line in the reply just finished (exit 2, one stderr line, the other lines written); the same line from an earlier text (exit 0, no word, not written); a broken lesson line gets no refusal for its prefix or mark
 - [ ] read `estimate-ledger-write-refuses-a-line-it-cannot-read` — in a later session
@@ -443,7 +443,7 @@ update:
 ```
 
 ```tasks
-- [ ] update `estimate-ledger-write-lifts`
+- [x] update `estimate-ledger-write-lifts`
 - [ ] read `estimate-ledger-write-lifts` — in a later session
 ```
 
@@ -495,8 +495,8 @@ update:
 ```
 
 ```tasks
-- [ ] update `rule-ledger-write`
-- [ ] create `estimate-ledger-write-exits-2-on-an-error`
+- [x] update `rule-ledger-write`
+- [x] create `estimate-ledger-write-exits-2-on-an-error`
 - [x] `guppi/ledger.py`: `run` reads the payload in its own guard that prints the error and returns 0, and the handler of the rest prints the error and returns 2; the docstring says so
 - [x] `tests/test_ledger.py`: a patched `append` that raises gives exit 2 and the stderr line; the same payload with `stop_hook_active` gives exit 0 and writes nothing; a payload that cannot be read gives exit 0 and the stderr line
 - [ ] read `estimate-ledger-write-exits-2-on-an-error` — in a later session

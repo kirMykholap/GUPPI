@@ -1,10 +1,10 @@
 ---
 type: estimate
 kind: QA
-status: pending
+status: passed
 target: "[[rule-retro]]"
 method: one reading by hand at the first /retro, recorded in the estimate line
-checked: 2026-09-27
+checked: 2026-09-30
 origin: raw/2026-09-10/ledger.md#case-38.1
 sprint: migration
 created: 2026-09-10
@@ -24,7 +24,7 @@ A reading measures the Criterion the page carries at the moment of the reading �
 
 ## Result
 
-2026-09-27, the /retro of session 2050 read by hand: its readings name none of the nine Estimates its decision lines create or update, their read lines stand as waiting for a later session, and the read lines of their old Criteria in earlier Specs are not read; the handoff that names them is not yet written
+2026-09-30, the /retro of session 2042 by hand: it read no Estimate that a decision line of this session creates or updates, the new four and estimate-retro-onward-sends-the-agent-to-the-handoff left to a later session, and took readings only of Estimates whose work is built
 
 ## History
 
@@ -56,3 +56,4 @@ A reading measures the Criterion the page carries at the moment of the reading �
 - 2026-09-25 updated: the Criterion replaced whole — an Estimate the session creates or updates gets no reading at its Retro, built or not (case 428.3) · [[decision-case-428.3]]
 - 2026-09-27 status: pending → passed · raw/2026-09-27/2050/ledger.md#L36
 - 2026-09-30 updated: the Criterion replaced whole — the trigger is the agent's call at the end of /work or the typed /retro; the readings rule is unchanged (case 531.2) · [[decision-case-531.2]]
+- 2026-09-30 status: pending → passed · raw/2026-09-30/2042/ledger.md#L35

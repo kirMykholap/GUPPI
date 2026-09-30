@@ -2,7 +2,7 @@
 type: rule
 kind: Leaf
 purpose: Prevents the handoff from starting on an uncommitted tree
-status: draft
+status: built
 enforcement: hook
 implementation_ref: [guppi/gate.py, tests/test_gate.py, .claude/settings.json]
 parent: "[[rule-end-of-work]]"
@@ -40,3 +40,4 @@ commits nothing. It sees the agent's calls through the `Skill` tool, and — reg
 - 2026-09-16 status: draft → built · cascade
 - 2026-09-29 status: built → draft · cascade
 - 2026-09-30 updated: the refusal nothing to review on the agent's call names a stop, not a call in the next reply (case 531.15) · [[decision-case-531.15]]
+- 2026-09-30 status: draft → built · cascade

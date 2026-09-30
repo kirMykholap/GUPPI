@@ -1,7 +1,7 @@
 ---
 type: estimate
 kind: QA
-status: passed
+status: pending
 target: "[[rule-context-size]]"
 purpose: After each reply the person sees the size of the context and its change since the last reply
 method: uv run pytest tests/test_context.py; the live reading by hand, the line after the replies of a session in the VS Code chat
@@ -18,7 +18,7 @@ When:
 The `Stop` hook `uv run guppi context` runs after a reply of the main agent and reads the transcript at `transcript_path`.
 
 Then:
-The hook prints JSON with a `systemMessage` of one line that opens with `context: <N> tokens (<+D> since the last reply)`.
+With no error of its own, the hook prints JSON with a `systemMessage` of one line that opens with `context: <N> tokens (<+D> since the last reply)`.
 **＋** N is the sum of the input, cache read, cache creation and output tokens of the last main-agent API call the transcript holds; D is N less the same sum at the last main-agent call before the person's last prompt.
 **＋** The records of a subagent (`isSidechain`) are not counted.
 **＋** On the re-fire (`stop_hook_active`), with a transcript it cannot read, or with no call that carries `usage`, the hook prints nothing.
@@ -32,3 +32,4 @@ The hook prints JSON with a `systemMessage` of one line that opens with `context
 
 - 2026-09-24 created · [[decision-case-392.1]]
 - 2026-09-25 status: pending → passed · raw/2026-09-24/1916/ledger.md#L1
+- 2026-09-30 updated: the Criterion replaced whole — the size line holds with no error of the hook's own (case 555.5) · [[decision-case-555.5]]

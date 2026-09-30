@@ -1,10 +1,10 @@
 ---
 type: estimate
 kind: QA
-status: pending
+status: passed
 target: "[[rule-ledger-write]]"
 method: pytest in tests/test_ledger.py and tests/test_gate.py with piped payloads against a temp vault; the live reading once by hand — the lines of the Case in the session's ledger.md, written by the hook
-checked: 2026-09-29
+checked: 2026-09-30
 origin: raw/2026-09-09/ledger.md#case-10
 sprint: migration
 created: 2026-09-09
@@ -29,7 +29,7 @@ In a session with a `hi` recorded, every line `- decision[`, `- estimate[`, `- l
 
 ## Result
 
-2026-09-29, uv run pytest tests/test_ledger.py tests/test_gate.py: 86 passed; live, raw/2026-09-29/1134/ledger.md holds each decision line of Cases 506-509 once, with the time of its Stop
+2026-09-30, uv run pytest tests/test_ledger.py tests/test_gate.py: 93 passed; live: vault/raw/2026-09-30/2042/ledger.md holds 28 lines with their times, each decision line once though Cases 554, 555, 557 and 558 were ratified again with their lines repeated
 
 ## History
 
@@ -60,3 +60,4 @@ In a session with a `hi` recorded, every line `- decision[`, `- estimate[`, `- l
 - 2026-09-29 updated: the Criterion replaced whole — a lesson line refused for its mark does not land while the refusal holds (case 497.2) · [[decision-case-497.2]]
 - 2026-09-29 status: pending → passed · raw/2026-09-29/1134/ledger.md#L46
 - 2026-09-30 updated: the Criterion replaced whole — a line the hook cannot read does not land (case 552.3) · [[decision-case-552.3]]
+- 2026-09-30 status: pending → passed · raw/2026-09-30/2042/ledger.md#L32

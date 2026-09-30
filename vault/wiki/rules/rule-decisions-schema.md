@@ -2,7 +2,7 @@
 type: rule
 kind: Leaf
 purpose: Prevents a Decision page from carrying a field or section outside the shape lint checks, or lacking one it needs
-status: draft
+status: built
 enforcement: render
 governs: vault/wiki/decisions/schema.yaml
 render_mode: full
@@ -77,7 +77,7 @@ sections:
   "## Problem": |
     optional. What required a decision. On a defer, what is unresolved. On the page of a Case without sub-cases and on the page of a Case with sub-cases; the page of a sub-case carries none (case 544.8).
   "## Recommend": |
-    optional. The `recommend` of the Case as it stands: one item per question of the rounds of `case-guppi` — the question, the latest recommendation, the person's latest answer — one per change asked for on the shown Case, or the one recommendation of a Case with no round. On the page of a sub-case its own items, on the page of a Case with sub-cases the rest; absent on a short-form defer and on the pages written before case 544 (case 544.8).
+    optional. The `recommend` of the Case as it stands: one item per question of the rounds of `case-guppi` — the question, its recommendation and the person's answer as they stood when the person answered it, or a note that it was not answered (case 557.2) — one per change asked for on the shown Case, or the one recommendation of a Case with no round. On the page of a sub-case its own items, on the page of a Case with sub-cases the rest; absent on a short-form defer and on the pages written before case 544 (case 544.8).
   "## Given": |
     optional. The Case's `given`, verbatim: the frame of the Case — the pages, modules, files and tests it touches and the rule that constrains — written by `generate`, before case 513, on the page of a Case that had one: the pages of Cases before 201 carry it by the model of case 52.1, and the pages from case 376 on by case 378.3; the pages of Cases 201 to 375 carry none. A page written after case 513 carries none, and the Case file holds it (case 513).
   "## When": |
@@ -126,3 +126,5 @@ examples:
 - 2026-09-29 status: draft → built · cascade
 - 2026-09-30 updated: the Decision page carries Recommend; a Case with sub-cases has a page with children in place of the kind lists and no Context, a sub-case page carries parent and no Problem (case 544.8) · [[decision-case-544.8]]
 - 2026-09-30 status: built → draft · cascade
+- 2026-09-30 updated: ## Recommend holds each question with its recommendation and answer as they stood when the person answered it (case 557.2) · [[decision-case-557.2]]
+- 2026-09-30 status: draft → built · cascade

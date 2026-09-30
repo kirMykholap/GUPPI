@@ -1,11 +1,11 @@
 ---
 type: estimate
 kind: QA
-status: pending
+status: passed
 target: "[[rule-retro-commit]]"
 purpose: guppi gate refuses /handoff on a dirty tree and /retro with nothing to review or a Spec ahead of the ledger, and marks each call it lets through
 method: pytest in tests/test_gate.py with piped payloads against a temp repository; the live reading once by hand
-checked: 2026-09-20
+checked: 2026-09-30
 origin: raw/2026-09-10/ledger.md#case-38.2
 sprint: migration
 created: 2026-09-10
@@ -28,7 +28,7 @@ A `/handoff` on a dirty tree, where `git status --porcelain` is not empty, exits
 
 ## Result
 
-2026-09-20, `uv run pytest -q tests/test_gate.py` 30 green after the recut; live, the typed /retro of session 0958 passed the gate with the mark `12:54:19 c27cd9be retro` in raw/2026-09-20/event_log.md — 29 lines of the session's ledger, every item of the Spec with its line; the refusal of /handoff on a dirty tree is not played in this session, the commit precedes the call, and stands in the Result from session 1034
+2026-09-30, uv run pytest tests/test_gate.py: 30 passed; live in session 2042: the Skill call of /pre-spec wrote the mark prespec at 23:04:05 and the Skill call of /retro was let through and wrote the mark retro at 23:45:07; no refusal of the gate met live
 
 ## History
 
@@ -42,3 +42,4 @@ A `/handoff` on a dirty tree, where `git status --porcelain` is not empty, exits
 - 2026-09-20 status: pending → passed · raw/2026-09-20/0958/ledger.md#L30
 - 2026-09-29 updated: the Criterion replaced whole — When and Then only, Given and the bounds line out, the pass without hi narrowed to what the gate does; purpose set (case 493.3) · [[decision-case-493.3]]
 - 2026-09-30 updated: the Criterion replaced whole — on the Skill path the refusal nothing to review names a stop of vault/wiki/where-to-stop.md, not a call in the next reply (case 531.15) · [[decision-case-531.15]]
+- 2026-09-30 status: pending → passed · raw/2026-09-30/2042/ledger.md#L34

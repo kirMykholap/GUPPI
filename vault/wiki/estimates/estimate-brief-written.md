@@ -1,7 +1,7 @@
 ---
 type: estimate
 kind: QA
-status: passed
+status: pending
 target: "[[rule-brief]]"
 method: one reading by hand after the first librarian run, recorded in the estimate line
 checked: 2026-09-30
@@ -19,7 +19,8 @@ The librarian rewrites `vault/wiki/brief.md` at the end of its run.
 Then:
 The brief holds, in order: Where things stand, Readings due, Flags, Next session, Readings at the close.
 **＋** It holds no Deferred list and no cap on deferred items. They stand in `vault/wiki/backlog.md`.
-**＋** Where things stand, Readings due, Flags and Readings at the close are as before.
+**＋** Where things stand, Readings due and Readings at the close are as before.
+**＋** Flags keep their kinds of lines — marked entries, failed Estimates, MOC candidates, stale defers, contradictions, the lint output — and add one kind: a read of the librarian that its frame does not name, with what was read, the part of the job it served, and the handoff when the handoff asked for it.
 **＋** Next session holds `Cases`, `Work` and `Ask the person`. `Cases` is what needs a decision: a line of `## For the next session` of `handoff.md`, a handoff flag with a question or a request to change the sprint, a `failed` Estimate, a contradiction, a defect the librarian found; one line per item, with what and from where. `Work` is what is done without a decision: every `pending` reading of Readings due by its slug but one that `Ask the person` holds, the unticked boxes of the Specs, a ledger line this run did not apply, a dirty tree; one line per item.
 **＋** `Ask the person` holds each line of `## Ask the person` of `handoff.md`: the Estimate by slug, the mark `needs the person` and its question, as the handoff wrote them.
 **＋** An item stands in one list only. A list with no item is the line "none".
@@ -54,3 +55,4 @@ The brief holds, in order: Where things stand, Readings due, Flags, Next session
 - 2026-09-30 updated: the Criterion replaced whole — Next session holds Cases, Work and Ask the person; Cases take For the next session of handoff.md (case 531.10) · [[decision-case-531.10]]
 - 2026-09-30 updated: the Criterion replaced whole — the brief of carry keeps Next session, Work and Ask the person from the open lines of frontier.md and Cases the line none; Flags no longer name the moves of generate that case 539 removes · [[decision-case-538.2]]
 - 2026-09-30 status: pending → passed · raw/2026-09-30/1736/ledger.md#L1
+- 2026-09-30 updated: the Criterion replaced whole — Flags hold a line for each read of the librarian beyond the reads its frame names (case 558.3) · [[decision-case-558.3]]

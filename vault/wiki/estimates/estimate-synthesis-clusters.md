@@ -1,7 +1,7 @@
 ---
 type: estimate
 kind: QA
-status: passed
+status: pending
 target: "[[rule-synthesis]]"
 method: one reading by hand of the yaml and the report after a live librarian run whose yaml holds at least two lesson entries
 checked: 2026-09-29
@@ -23,7 +23,7 @@ The report names the Greps of the synthesis, `^(root_cause|deferred_by):` over `
 **＋** Every entry the synthesis adds carries `librarian: synthesis`.
 **＋** Every lesson page read at synthesis is named in the report with the outcome: the Insight it joined, or none and why.
 **＋** A lesson without a pair stays `new`.
-**－** The synthesis reads no file under `vault/archive/`: an actioned Insight stays live with its pattern in its index line.
+**－** A read of another session's `materialize.yaml` or of a page under `vault/archive/` fails nothing here: an actioned Insight stays live with its pattern in its index line, and the flag of such a read is the promise of `estimate-documentation-completes`.
 
 ## Result
 
@@ -42,3 +42,4 @@ The report names the Greps of the synthesis, `^(root_cause|deferred_by):` over `
 - 2026-09-15 status: pending → passed · raw/2026-09-15/1448/ledger.md#L2
 - 2026-09-28 updated: the Criterion replaced whole — the ban on the archive is the synthesis's, not the whole run's; the base text and the block of case 147.4 folded into one Criterion (case 474.2) · [[decision-case-474.2]]
 - 2026-09-29 status: pending → passed · raw/2026-09-29/1432/ledger.md#L3
+- 2026-09-30 updated: the Criterion replaced whole — a read of another session's yaml or of the archive fails nothing here; its flag is the promise of estimate-documentation-completes (case 558.2) · [[decision-case-558.2]]

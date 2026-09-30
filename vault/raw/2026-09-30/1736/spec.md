@@ -401,7 +401,7 @@ update:
 - [x] create `estimate-ledger-write-refuses-a-line-it-cannot-read`
 - [x] `guppi/ledger.py`: `run` sets apart each fresh line that `parse_line` cannot read before the other refusals, does not write it, and prints its stderr line when it stands in the reply just finished; the docstring says so
 - [x] `tests/test_ledger.py`: a broken line in the reply just finished (exit 2, one stderr line, the other lines written); the same line from an earlier text (exit 0, no word, not written); a broken lesson line gets no refusal for its prefix or mark
-- [ ] read `estimate-ledger-write-refuses-a-line-it-cannot-read` — in a later session
+- [x] read `estimate-ledger-write-refuses-a-line-it-cannot-read` — in a later session
 ```
 
 ### Case 552.3 — The main promise of the ledger hook names the new refusal
@@ -444,7 +444,7 @@ update:
 
 ```tasks
 - [x] update `estimate-ledger-write-lifts`
-- [ ] read `estimate-ledger-write-lifts` — in a later session
+- [x] read `estimate-ledger-write-lifts` — in a later session
 ```
 
 ### Case 552.4 — The ledger hook exits 2 on its own error
@@ -499,7 +499,7 @@ update:
 - [x] create `estimate-ledger-write-exits-2-on-an-error`
 - [x] `guppi/ledger.py`: `run` reads the payload in its own guard that prints the error and returns 0, and the handler of the rest prints the error and returns 2; the docstring says so
 - [x] `tests/test_ledger.py`: a patched `append` that raises gives exit 2 and the stderr line; the same payload with `stop_hook_active` gives exit 0 and writes nothing; a payload that cannot be read gives exit 0 and the stderr line
-- [ ] read `estimate-ledger-write-exits-2-on-an-error` — in a later session
+- [x] read `estimate-ledger-write-exits-2-on-an-error` — in a later session
 ```
 
 ## Deferred

@@ -2,7 +2,7 @@
 type: rule
 kind: Leaf
 purpose: Prevents an Estimate page from carrying a field or section outside the shape lint checks, or lacking one it needs
-status: built
+status: draft
 enforcement: render
 governs: vault/wiki/estimates/schema.yaml
 render_mode: full
@@ -165,3 +165,4 @@ examples:
 - 2026-09-29 status: draft → built · cascade
 - 2026-09-29 defer by decision-case-519 superseded · [[decision-case-521.3]]
 - 2026-09-29 updated: the description of ## Criterion says the frame of a Case stays in its Case file and the Spec; the defer of case 519 retired (case 521.3) · [[decision-case-521.3]]
+- 2026-09-30 status: built → draft · cascade

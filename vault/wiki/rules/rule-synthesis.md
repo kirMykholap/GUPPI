@@ -2,7 +2,7 @@
 type: rule
 kind: Leaf
 purpose: Prevents a pattern of failures from staying a list of unrelated incidents
-status: built
+status: draft
 enforcement: render
 governs: .claude/agents/librarian-guppi.md
 render_mode: partial
@@ -18,7 +18,7 @@ tags: [harness, workflow, librarian]
 
 Prevents a pattern of failures from staying a list of unrelated incidents. One
 lesson is an incident; two with one root cause are a pattern, and a pattern is what
-a later Case can fix. The archive is not read: a lesson is archived only when its
+a later Case can fix. The archive is not needed: a lesson is archived only when its
 Insight was actioned, and that Insight stays live with its pattern in its index line, so
 a recurrence is caught there at the cost of one Grep line.
 
@@ -30,7 +30,7 @@ Synthesis. For each `lesson` entry, compare its `root_cause` with every index li
 - An Insight has the same pattern: append an `update` of it with `children` plus
   the new lesson, and — when it was `actioned` — `set: {status: open}`, or `set: {addressed_by: decision-case-N}` with `status` kept when the lesson entry carries `addressed_by: decision-case-N`, the Case of this unit that closed its cause, and case N is later than the case the Insight's `addressed_by` names — compared number by number, `378.5` after `378.4`; when it is not later, the `update` carries no `addressed_by` and the field stands (case 385); the pair reported in the brief beside the synthesis (case 284.4); and an `update`
   for the lesson.
-Mark each entry you add with `librarian: synthesis`. Read no `materialize.yaml` other than the ones `guppi materialize` names, and look for no earlier entry: the entries of the synthesis have these forms (case 474.1).
+Mark each entry you add with `librarian: synthesis`. The entries of the synthesis have these forms, so no earlier entry and no `materialize.yaml` other than the ones `guppi materialize` names is needed (case 474.1); when you still need one, read it and flag the read as the frame says (case 558.2).
 
 ```yaml
 # a new Insight from two lessons of one cause
@@ -72,7 +72,7 @@ Mark each entry you add with `librarian: synthesis`. Read no `materialize.yaml` 
 One lesson without a pair
 stays `new`; that needs no flag. `Proposal` is a suggestion, never a decision. When an index line does not settle whether a lesson shares a root cause, read the
 Trigger and Root cause of the candidate and name the page in the report with the
-outcome, clustered or not. Do not read the archive and do not write pages yourself.
+outcome, clustered or not. The archive is not needed: an actioned Insight stays live with its pattern in its index line; when you still need an archived page, read it and flag the read as the frame says (case 558.2). Do not write pages yourself.
 <!-- /rule-synthesis -->
 
 ## History
@@ -101,3 +101,5 @@ outcome, clustered or not. Do not read the archive and do not write pages yourse
 - 2026-09-28 status: built → draft · cascade
 - 2026-09-29 updated: the closing fence of the sample entries stands alone on its line, and the sentence after it follows as its own paragraph (case 487.3) · [[decision-case-487.3]]
 - 2026-09-29 status: draft → built · cascade
+- 2026-09-30 updated: the synthesis forbids no read; another session's yaml or an archived page it still needs is read and flagged (case 558.2) · [[decision-case-558.2]]
+- 2026-09-30 status: built → draft · cascade

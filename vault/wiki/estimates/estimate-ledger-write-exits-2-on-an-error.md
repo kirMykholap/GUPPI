@@ -1,10 +1,11 @@
 ---
 type: estimate
 kind: QA
-status: pending
+status: passed
 target: "[[rule-ledger-write]]"
 purpose: Whether the ledger hook exits 2 with the error on stderr when it raises after reading the payload, and exits 0 on an error while reading the payload and on the re-fire
 method: uv run pytest tests/test_ledger.py — piped payloads, a function of the hook patched to raise
+checked: 2026-09-30
 origin: raw/2026-09-30/1736/ledger.md#case-552.4
 sprint: migration
 created: 2026-09-30
@@ -24,6 +25,11 @@ The hook exits 2 with `ledger: ledger.md not written: <error>` on stderr, so the
 **－** With `stop_hook_active` (the re-fire after a block) the hook exits 0 and writes nothing, so it cannot loop.
 **－** A refusal of the hook with no error — no `hi`, or a refused line — keeps its own stderr line and exit.
 
+## Result
+
+2026-09-30, uv run pytest tests/test_ledger.py: 63 passed
+
 ## History
 
 - 2026-09-30 created · [[decision-case-552.4]]
+- 2026-09-30 status: pending → passed · raw/2026-09-30/2042/ledger.md#L31

@@ -2,7 +2,7 @@
 type: rule
 kind: Leaf
 purpose: Prevents a ratified line from existing only in a chat reply, or landing in a session no /hi opened
-status: draft
+status: built
 enforcement: hook
 implementation_ref: [guppi/ledger.py, guppi/materialize.py, guppi/gate.py, tests/test_ledger.py, tests/test_gate.py, .claude/settings.json]
 parent: "[[rule-session-start]]"
@@ -102,3 +102,4 @@ the implementation arrives in the session after the probe (Slice 1, session B).
 - 2026-09-30 updated: the hook exits 2 on its own error after the payload is read, and 0 on an error while it reads the payload (case 552.4) · [[decision-case-552.4]]
 - 2026-09-30 estimate estimate-ledger-write-exits-2-on-an-error added · [[decision-case-552.4]]
 - 2026-09-30 status: built → draft · cascade
+- 2026-09-30 status: draft → built · cascade

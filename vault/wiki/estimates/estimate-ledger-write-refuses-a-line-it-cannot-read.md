@@ -1,10 +1,11 @@
 ---
 type: estimate
 kind: QA
-status: pending
+status: passed
 target: "[[rule-ledger-write]]"
 purpose: Whether the ledger hook refuses a record line that parse_line cannot read, and says why only for the reply just finished
 method: uv run pytest tests/test_ledger.py — piped payloads and a session ledger in a temp vault
+checked: 2026-09-30
 origin: raw/2026-09-30/1736/ledger.md#case-552.2
 sprint: migration
 created: 2026-09-30
@@ -25,6 +26,11 @@ The line is not written.
 **－** A line already in the ledger of any session is not judged again.
 **－** Without a `hi`, and with `stop_hook_active`, the hook acts as before and judges no line.
 
+## Result
+
+2026-09-30, uv run pytest tests/test_ledger.py: 63 passed
+
 ## History
 
 - 2026-09-30 created · [[decision-case-552.2]]
+- 2026-09-30 status: pending → passed · raw/2026-09-30/2042/ledger.md#L33

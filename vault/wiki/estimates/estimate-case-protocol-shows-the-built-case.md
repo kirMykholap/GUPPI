@@ -51,3 +51,4 @@ The main agent dispatches `case-guppi` with the Case id, the Frontier item and i
 - 2026-09-28 status: pending → passed · raw/2026-09-28/2000/ledger.md#L24
 - 2026-09-29 updated: the Criterion replaced whole — a round shown with each quotation in its blockquote (case 524.3) · [[decision-case-524.3]]
 - 2026-09-30 status: pending → failed · raw/2026-09-30/1736/ledger.md#L40
+- 2026-09-30 deferred · [[decision-case-560]]

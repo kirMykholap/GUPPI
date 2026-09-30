@@ -342,6 +342,7 @@ entries:
       failed on this in session 1736
   exists: true
   applied: '20:13:47'
+  superseded_by: '557.3'
 - line: 18
   text: 'estimate[estimate-hi-takes-its-readings][passed] 2026-09-30, by hand, the first reply of session
     1736 after the librarian''s render of 070d8e6: the Frontier assembled from the loaded files with no
@@ -1447,6 +1448,8 @@ decisions:
       list rule of `grill-me`, so `estimate-case-build-writes-a-plain-round` stays failed.
   spec: vault/raw/2026-09-30/1736/spec.md
   applied: '20:13:47'
+  superseded_by:
+  - decision-case-557.3
 - case: '552.1'
   decision: decision-case-552.1
   origin: raw/2026-09-30/1736/ledger.md#case-552.1

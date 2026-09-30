@@ -1,10 +1,10 @@
 ---
 type: estimate
 kind: QA
-status: failed
+status: pending
 target: "[[rule-case-build]]"
-purpose: Whether case-guppi checks its finished Case before it answers — the chosen options, the pages that name a slug the change makes false, the sub-cases that change one page — counted by what ask-guppi still finds at pre-spec
-method: "by hand: at /pre-spec of a later session after the render, the report of ask-guppi read for each Case case-guppi built — a Case that departs from a chosen option, a page naming a changed slug that the Case misses, two sub-cases whose texts on one page contradict; the count of each in the reading line"
+purpose: Whether case-guppi checks its finished Case before it answers — the chosen options, the pages that name a slug the change makes false, the rules that act at the moment the change sets, what each search printed, the sub-cases that change one page — counted by what ask-guppi still finds at pre-spec
+method: "by hand: at /pre-spec of a later session after the render, the report of ask-guppi read for each Case case-guppi built — a Case that departs from a chosen option, a page naming a changed slug that the Case misses, a rule acting at the same moment that the Case misses, a claim of context that its search did not print, two sub-cases whose texts on one page contradict; the count of each in the reading line"
 checked: 2026-09-30
 origin: raw/2026-09-30/1306/ledger.md#case-544.1
 sprint: migration
@@ -22,7 +22,9 @@ It puts each option the person chose in its rounds, or the person's own words wh
 **＋** Where the frame shows after a round that a chosen option cannot hold as written, its answer is a round on that point, not a Case with another behaviour.
 **＋** For each page whose text the change makes false, it searches the live pages of the vault, leaving out the Decision pages, and the code, for the page's slug, and reads each hit that `given` does not name around the line of the hit.
 **＋** For a fact that no slug marks, it reads the index lines of the recipe of `.claude/agents/ask-guppi.md` and judges them by meaning.
+**＋** When the change sets what happens at a moment — a reply, a hook event, a command — it searches `vault/wiki/rules/` and `.claude/` for the words that name that moment, reads each passage of each hit that sets a form or a behaviour at that moment, and the Case either does not cover that moment or names the other rule in `given`.
 **＋** Each hit that the change makes false enters the Case, or its `context` says why it stands, and a claim of `context` about every text names the search it rests on.
+**＋** A claim of `context` about a search names its pattern and the paths it ran over, lists each file the search printed, a file it does not read included, or gives the count it printed, and claims nothing the search did not print.
 **＋** It reads side by side the finished new texts of all its sub-cases that change one page, and the Case holds no contradiction between them.
 **－** A hit in a History line, in `log.md` or in `brief.md` is not read.
 
@@ -34,3 +36,4 @@ It puts each option the person chose in its rounds, or the person's own words wh
 
 - 2026-09-30 created · [[decision-case-544.1]]
 - 2026-09-30 status: pending → failed · raw/2026-09-30/1736/ledger.md#L38
+- 2026-09-30 updated: the Criterion replaced whole — the search for rules at the same moment, and a claim about a search that lists what it printed (case 557.1) · [[decision-case-557.1]]

@@ -2,7 +2,7 @@
 type: rule
 kind: Leaf
 purpose: Prevents the next session from starting without the facts and the flags of this one
-status: built
+status: draft
 enforcement: render
 governs: .claude/agents/librarian-guppi.md
 render_mode: partial
@@ -28,7 +28,7 @@ with these sections in this order:
   the counts of the yaml, pages created and updated per category.
 - Readings due: after `generate`, every Estimate whose `status` is `pending` or `failed` — one line per Estimate: the Estimate, the rule that stands `draft`, and where it is read, from the unticked `- [ ] read …` line of the session's `spec.md` or, when there is none, from the page's `method` (case 200.3); for an Estimate whose `method` names the librarian's run, at the end of its line the facts its `method` and `## Criterion` name, as the steps of this run before the brief printed or left them, with no comparison and no passed or failed (case 508.4); a `failed` one first, with the result of its reading in one line; nothing from the previous brief (case 168).
 - Flags, no limit: entries marked `incomplete`, `failed`, `near` or `unparsed`;
-  failed Estimates; MOC candidates; stale defers; contradictions; the lint output.
+  failed Estimates; MOC candidates; stale defers; contradictions; the lint output; each read you made beyond the reads your frame names, one line each: what you read and which part of your job needed it, and the handoff when it asked for the read (case 558.3).
 - Next session: three lists, one line per item, an item in one list only, a list with no item the line "none" (cases 268.1, 531.10). `Cases`, what needs a decision: a line of `## For the next session` of `handoff.md`, a handoff flag with a question or a request to change the sprint, a `failed` Estimate, a contradiction, a defect you found — what and from where. `Work`, what is done without a decision: every `pending` reading of Readings due by its slug but one that `Ask the person` holds, the unticked boxes of the Specs, a ledger line this run did not apply, a dirty tree. `Ask the person`, a reading only the person can take: each line of `## Ask the person` of `handoff.md` — the Estimate by slug, the mark `needs the person` and its question, as the handoff wrote them.
 - Readings at the close: `make test`, `make lint`, page counts.
 When a fact the brief needs is in no input — the status of an Estimate, the severity
@@ -81,3 +81,5 @@ The brief has a second writer, the skill `carry` (`rule-carry-over`): it writes 
 - 2026-09-30 updated: the brief of carry keeps Next session: Work and Ask the person from the open lines of the session's frontier.md, Cases the line none (case 538.2) · [[decision-case-538.2]]
 - 2026-09-30 updated: Flags no longer name items moved to the Backlog or milestones dropped; the sprint page changes only by a Case (case 539.2) · [[decision-case-539.2]]
 - 2026-09-30 status: draft → built · cascade
+- 2026-09-30 updated: Flags carry each read of the librarian beyond the reads its frame names (case 558.3) · [[decision-case-558.3]]
+- 2026-09-30 status: built → draft · cascade

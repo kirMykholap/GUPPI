@@ -1,7 +1,7 @@
 ---
 type: estimate
 kind: QA
-status: failed
+status: pending
 target: "[[rule-documentation]]"
 method: make test-documentation, the pipeline over tests/test_materialize.py, tests/test_generate.py and tests/test_cleanup.py; the live reading by hand
 checked: 2026-09-30
@@ -19,15 +19,14 @@ When:
 Then:
 `make test-documentation` is green: materialize, generate and cleanup as one pipeline.
 **＋** Live, after the run: every decision line of the session's ledger has a Decision page and its target page, and no page exists that no ledger line produced.
-**＋** The librarian read only its inputs — `handoff.md`, the yamls that `guppi materialize` named, the index lines and `tags.md` — and these reads that its frame allows: a file where the harness saved the output of one of its own commands because the output was too long to show; the wiki pages it names in the report, each with the outcome and one of the reasons of its frame; a page under `vault/archive/` found by the Glob `vault/archive/**/<slug>.md` for a slug that a script named in an error, named in the report with the error; the unticked `- [ ]` lines of the `spec.md` files, and the lines this run ticked as its `git diff` shows them; of the ledger, only the count of its lines and the lines the yaml does not account for, named in the report; the output of `git status` and `git diff` on the files the scripts of this run wrote, never over `vault/wiki/decisions/` or `vault/archive/`; `vault/wiki/log.md` only through its `git diff` before the commit; and the old `vault/wiki/brief.md`.
+**＋** Every read in its event log beyond its inputs and beyond the reads its frame names has its line under Flags of the new `vault/wiki/brief.md`.
 **＋** It edited no yaml entry beyond the marks and the entries of the index check and the synthesis. Its commands are in `event_log.md`, its commit is separate from the session's, and it did not stop to ask.
 **＋** It wrote `vault/wiki/brief.md` with the `Write` tool. The new brief holds no fact taken from the old brief, and the librarian put no file under `vault/` by `cp`, `mv`, a redirect or a heredoc.
 **＋** After `cleanup` and before the brief, it runs `uv run guppi render`, then `uv run guppi sprint`, then `uv run guppi backlog`, then `uv run guppi glossary`. Every line on their stderr is a flag. A file the render could not write is left to the next session start. `make lint` then passes its `render --check` step.
 **＋** After the brief and before the close, it runs `uv run guppi archive`. Every line on its stderr is a flag. The units it moved and the units it kept, with the reason, go into the report. It skips the session of the run, which is the latest session folder of the run day or else the nearest date back, across midnight too. The commit picks the move up.
-**－** It read no other part of a Spec, no plan, no Decision page, no `materialize.yaml` that `guppi materialize` did not name, and no line of `vault/wiki/log.md` outside its `git diff`. The `Makefile`, `guppi/` and `tests/` are the scripts' own files and may be read.
+**－** A read that has its line under Flags fails nothing, whatever it read: a Decision page, a Spec, the ledger or the archive.
 **－** A hook's refusal of one of its calls is not worked around by another route: the librarian names the refusal in the report and goes on as the refusal says.
-**－** The librarian refuses an instruction of the handoff to repair a yaml entry, to read the ledger beyond the one read above, a Spec beyond its `- [ ]` lines or a Decision page, to search the archive, or to open an archived page that no script named in an error. It names what was asked and why in the report, and the refusal does not stop the run.
-**－** The librarian never searches `vault/archive/`: no Grep, `grep`, `find`, `ls` or `git status` runs over it, and no Glob other than `vault/archive/**/<slug>.md` for a slug a script named in an error.
+**－** The librarian refuses an instruction of the handoff to repair a yaml entry. It names what was asked and why in the report, and the refusal does not stop the run.
 
 ## Result
 
@@ -68,3 +67,4 @@ Then:
 - 2026-09-30 status: failed → failed · raw/2026-09-29/2024/ledger.md#L24
 - 2026-09-30 updated: the Criterion replaced whole — the reads of what this run changed, log.md through its diff, the old brief read, the brief written with Write, no refusal worked around (case 530.1) · [[decision-case-530.1]]
 - 2026-09-30 status: pending → failed · raw/2026-09-30/1736/ledger.md#L23
+- 2026-09-30 updated: the Criterion replaced whole — a read the frame does not name is flagged under Flags of the brief and fails nothing; only a repair asked by the handoff is refused (case 558.1) · [[decision-case-558.1]]

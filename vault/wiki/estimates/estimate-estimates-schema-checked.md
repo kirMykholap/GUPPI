@@ -1,10 +1,10 @@
 ---
 type: estimate
 kind: QA
-status: passed
+status: pending
 target: "[[rule-estimates-schema]]"
 purpose: An Estimate page in the shape of the rendered schema has no schema finding and a page outside it has one per defect
-method: pytest tests/test_schemas.py -k estimates on the live vault/wiki/estimates/schema.yaml — a page in the shape, then one defect at a time; the live reading make lint, no schema finding on wiki/estimates/
+method: pytest tests/test_schemas.py -k estimate on the live vault/wiki/estimates/schema.yaml — a page in the shape, a page without method, then one defect at a time; the live reading make lint, no schema finding on wiki/estimates/
 checked: 2026-09-29
 origin: raw/2026-09-22/0014/ledger.md#case-304.4
 sprint: migration
@@ -38,3 +38,4 @@ The file equals the Render. Lint reads from it: required `type, kind, status, ta
 - 2026-09-29 updated: the Criterion replaced whole — When and Then only, Given and the history of schema.md out (case 490.4) · [[decision-case-490.4]]
 - 2026-09-29 updated: the Criterion replaced whole — method required, the two old sections gone (case 506.1) · [[decision-case-506.1]]
 - 2026-09-29 status: pending → passed · raw/2026-09-29/1432/ledger.md#L27
+- 2026-09-30 updated: the method runs -k estimate and names a page without method, so the test of method runs; the reading is due again, the Criterion stands (case 556) · [[decision-case-556]]

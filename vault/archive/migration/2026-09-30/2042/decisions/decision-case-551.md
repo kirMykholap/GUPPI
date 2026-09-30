@@ -1,8 +1,9 @@
 ---
 type: decision
 case: "551"
-status: current
+status: archived
 defer: ["[[rule-case-build]]"]
+superseded_by: ["[[decision-case-557.3]]"]
 origin: raw/2026-09-30/1736/ledger.md#case-551
 sprint: migration
 created: 2026-09-30
@@ -26,3 +27,6 @@ The Context of a first round of case-guppi writes what the round decides, and a 
 ## History
 
 - 2026-09-30 created · raw/2026-09-30/1736/ledger.md#case-551
+- 2026-09-30 superseded by decision-case-557.3 · [[decision-case-557.3]]
+- 2026-09-30 archived · superseded
+- 2026-09-30 archived · cleanup

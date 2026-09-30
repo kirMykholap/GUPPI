@@ -1,11 +1,11 @@
 ---
 type: estimate
 kind: QA
-status: pending
+status: passed
 target: "[[rule-decisions-schema]]"
 purpose: A Decision page in the shape of the rendered schema has no schema finding and a page outside it has one per defect
 method: "pytest tests/test_schemas.py -k decision on the live vault/wiki/decisions/schema.yaml — a page in the shape, a page without ## Context, a page without ## Problem, then one defect at a time; the live reading make lint, no schema finding on wiki/decisions/"
-checked: 2026-09-29
+checked: 2026-09-30
 origin: raw/2026-09-22/0014/ledger.md#case-304.7
 sprint: migration
 created: 2026-09-22
@@ -29,7 +29,7 @@ The file equals the Render. Lint reads from it: required `type, case, status, or
 
 ## Result
 
-2026-09-29, uv run pytest tests/test_schemas.py -k decisions: 4 passed, 1 skipped; uv run guppi render --check exit 0; uv run guppi lint: the only schema findings on wiki/decisions/ are the 31 pages of Cases 1–28 missing ## Problem, plus one fence finding on decision-case-13; by hand, vault/wiki/decisions/schema.yaml says the History takes created, superseded by and updated lines, the Case file cases/case-<N>.md holds every section with recommend and lies under the archive once the session is archived, ## Context only for a Case without given or the two-line body, no ## Given after case 513 and older pages keep theirs, and its example page holds ## Problem and ## History only
+2026-09-30, uv run pytest tests/test_schemas.py -k decision: 6 passed, 1 skipped; uv run guppi render --check exit 0; the make lint of the Baseline of session 2042 prints no schema finding on wiki/decisions/, its one line there being a fence finding on decision-case-13
 
 ## History
 
@@ -44,3 +44,4 @@ The file equals the Render. Lint reads from it: required `type, case, status, or
 - 2026-09-29 status: pending → passed · raw/2026-09-29/1753/ledger.md#L24
 - 2026-09-30 updated: the Criterion replaced whole — Recommend, parent and children in the schema, Problem optional, Context never on the page of a Case with sub-cases (case 544.8) · [[decision-case-544.8]]
 - 2026-09-30 updated: the method runs -k decision, names a page without ## Problem, and expects no schema finding on wiki/decisions/ (case 548) · [[decision-case-548]]
+- 2026-09-30 status: pending → passed · raw/2026-09-30/2042/ledger.md#L30

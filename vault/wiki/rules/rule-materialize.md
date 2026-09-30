@@ -1,7 +1,7 @@
 ---
 type: rule
 kind: Leaf
-purpose: Prevents the librarian from reading the ledger and the Spec beyond its unticked lines, or from routing a decision by guesswork
+purpose: Prevents the librarian from needing the ledger beyond its one read or the Spec beyond its unticked lines, or from routing a decision by guesswork
 status: built
 enforcement: check
 implementation_ref: [guppi/materialize.py, tests/test_materialize.py]
@@ -15,7 +15,7 @@ tags: [harness, workflow, ledger]
 
 ## Purpose
 
-Prevents the librarian from reading the ledger and the Spec beyond its unticked lines (case 271), or from routing
+Prevents the librarian from needing the ledger beyond its one read or the Spec beyond its unticked lines (case 271), or from routing
 a decision by guesswork. The yaml is the one input a clean context needs. Every line
 of the ledger is an entry. `parse_line` reads a record line with or without spaces between its brackets, and returns None, never an error, for a line it cannot read (case 552.1). Its route is the Routing Table in the docstring of `guppi/materialize.py` (case 364.1). Its content is
 lifted from the `then` block of its Case in the Spec — `set`, `sections`, `replace`, `change`, and `rename` or `reword` when the item carries it (cases 258.2, 274.3). A `then` block that holds a YAML comment — a `#` at the start of a line or after a space or a tab, outside a quoted value and outside a `|` or `>` block — gives each decision entry of its Case `incomplete: [comment]`: after a space YAML drops the rest of the line, so the value may be cut, and after a tab PyYAML, the library the scripts use, refuses the whole block; the judgment is one function, which the `Stop` hook of `rule-spec-write` imports (case 521.2). What is missing is named, not
@@ -128,3 +128,4 @@ entry's fields, each with its writer, live in the docstring of `guppi/materializ
 - 2026-09-30 status: built → draft · cascade
 - 2026-09-30 updated: parse_line reads a space between brackets and returns None, never an error, for a line it cannot read (case 552.1) · [[decision-case-552.1]]
 - 2026-09-30 status: draft → built · cascade
+- 2026-09-30 updated: the purpose prevents the need for the reads, not the reads, since the librarian's frame forbids no read (case 558.1) · [[decision-case-558.1]]

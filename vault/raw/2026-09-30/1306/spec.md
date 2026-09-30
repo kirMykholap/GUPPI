@@ -746,7 +746,7 @@ update:
 - [x] `tests/test_schemas.py`: a Decision page without `## Problem` and with `## Recommend`, `parent` and `children` has no schema finding
 - [x] `uv run guppi render`: `vault/wiki/decisions/schema.yaml`
 - [x] `uv run guppi glossary`
-- [ ] read `estimate-decisions-schema-checked`
+- [x] read `estimate-decisions-schema-checked`
 ```
 
 ### Case 544.9 — lint takes the page of a parent Case

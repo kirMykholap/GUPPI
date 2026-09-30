@@ -1,10 +1,11 @@
 ---
 type: estimate
 kind: QA
-status: pending
+status: passed
 target: "[[rule-case-check]]"
 purpose: A Case of case-guppi that the checks refuse goes back to it before the main agent sees it
 method: uv run pytest tests/test_casecheck.py -k subagent, then by hand the first answer of case-guppi the hook sends back and the first file of cases/ it writes
+checked: 2026-09-30
 origin: raw/2026-09-25/1228/ledger.md#case-419.3
 sprint: migration
 created: 2026-09-25
@@ -27,9 +28,14 @@ Then:
 **－** An answer with a finding writes no file, and a finding for a Case whose text the store already holds with findings is stored again and exits 0, so an unchanged answer is not sent back twice.
 **－** An answer with no Case heading, an answer of another agent, or a session with no plan file is not sent back and exits 0; the first two are not checked, stored or written.
 
+## Result
+
+2026-09-30, uv run pytest tests/test_casecheck.py -k subagent: 43 passed, 21 deselected; live in session 2042: the store validated-munching-muffin.checked.json holds 16 Case entries, none with findings, notes on 9 sub-cases, which case-guppi reported as sent back once; the files cases/case-554.md to case-558.md were written from the stored text and replaced at each answer that held the top-level Case; no finding was sent back live, so that branch rests on the tests
+
 ## History
 
 - 2026-09-25 created · [[decision-case-419.3]]
 - 2026-09-26 updated: the Criterion replaced whole — the answer is the newest output of the subagent that holds a Case, else last_assistant_message; an unchanged answer is not sent back twice · [[decision-case-434]]
 - 2026-09-26 updated: the Criterion replaced whole — the categories whose schema rule the session changes come from the ratification fences and the session's window (case 436.4) · [[decision-case-436.4]]
 - 2026-09-27 updated: the Criterion replaced whole — the time of the store, and the file of a Case with no findings written from the stored text (case 452.1) · [[decision-case-452.1]]
+- 2026-09-30 status: pending → passed · raw/2026-09-30/2042/ledger.md#L29

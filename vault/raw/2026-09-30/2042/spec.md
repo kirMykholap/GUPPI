@@ -74,8 +74,8 @@ update:
 ```
 
 ```tasks
-- [ ] update `rule-spec-write`
-- [ ] create `estimate-spec-write-exits-2-on-an-error`
+- [x] update `rule-spec-write`
+- [x] create `estimate-spec-write-exits-2-on-an-error`
 - [x] `guppi/ratified.py`: `run` reads the payload in its own handler that prints the error and returns 0; the handler of the guard prints the error and returns 0; the handler of the `Stop` run prints `ratified: not done: <error>` with the advice to repeat the ledger lines and returns 2; the docstring says so
 - [x] `tests/test_ratified.py`: a patched `write_case` that raises gives exit 2 and the stderr line; the same payload with `stop_hook_active` gives exit 0 and writes nothing; a payload that cannot be read gives exit 0 and the stderr line; a patched `guard_refusal` that raises gives exit 0 in `--guard`
 - [ ] read `estimate-spec-write-exits-2-on-an-error` — in a later session
@@ -142,8 +142,8 @@ update:
 ```
 
 ```tasks
-- [ ] update `rule-case-check`
-- [ ] create `estimate-case-check-exits-2-on-an-error`
+- [x] update `rule-case-check`
+- [x] create `estimate-case-check-exits-2-on-an-error`
 - [x] `guppi/casecheck.py`: `run` reads the payload and returns 0 on an empty one as now; the `--subagent` run keeps a handler that prints `casecheck: not checked: <error>` and returns 0; the `Stop` run has its own handler that prints `casecheck: not checked: <error>` with the advice to show the Case again once the cause is fixed and returns 2; the module docstring says so
 - [x] `tests/test_casecheck.py`: a patched `against_store` that raises gives exit 2 and the stderr line on `Stop`; the same payload with `stop_hook_active` gives exit 0; an empty payload gives exit 0 and its line; a patched `check_answer` that raises gives exit 0 and the stderr line in `--subagent`
 - [ ] read `estimate-case-check-exits-2-on-an-error` — in a later session
@@ -191,8 +191,8 @@ update:
 ```
 
 ```tasks
-- [ ] update `rule-context-size`
-- [ ] create `estimate-context-size-shows-its-error`
+- [x] update `rule-context-size`
+- [x] create `estimate-context-size-shows-its-error`
 - [x] `guppi/context.py`: on an exception in the `Stop` run, `run` prints `{"systemMessage": "context: not counted: <error>"}` to stdout and returns 0; in the `--prompt` run it prints `context: not counted: <error>` to stderr and returns 0 as now; the module docstring says so
 - [x] `tests/test_context.py`: a patched `sizes` that raises gives, on `Stop`, exit 0 and one JSON line whose `systemMessage` opens with `context: not counted:`; the same with `--prompt` gives exit 0, nothing on stdout and the line on stderr
 - [ ] read `estimate-context-size-shows-its-error` — in a later session
@@ -243,8 +243,8 @@ update:
 ```
 
 ```tasks
-- [ ] update `rule-retro-onward`
-- [ ] create `estimate-retro-onward-exits-2-on-an-error`
+- [x] update `rule-retro-onward`
+- [x] create `estimate-retro-onward-exits-2-on-an-error`
 - [x] `guppi/onward.py`: `run` reads the payload and returns 0 on an empty one or on `stop_hook_active` before its handler; the handler prints `onward: not checked: <error>` with the advice to commit the session folder and call `/handoff` if Retro has ended and `handoff.md` does not stand, and returns 2; the module docstring says so
 - [x] `tests/test_onward.py`: a patched `retro_marked` that raises gives exit 2 and the stderr line with the advice; the same payload with `stop_hook_active` gives exit 0 and nothing on stderr; an empty payload gives exit 0
 - [ ] read `estimate-retro-onward-exits-2-on-an-error` — in a later session
@@ -286,7 +286,7 @@ update:
 ```
 
 ```tasks
-- [ ] update `estimate-retro-onward-sends-the-agent-to-the-handoff`
+- [x] update `estimate-retro-onward-sends-the-agent-to-the-handoff`
 - [ ] read `estimate-retro-onward-sends-the-agent-to-the-handoff` — in a later session
 ```
 
@@ -320,7 +320,7 @@ update:
 ```
 
 ```tasks
-- [ ] update `estimate-context-size-shown-after-each-reply`
+- [x] update `estimate-context-size-shown-after-each-reply`
 - [ ] read `estimate-context-size-shown-after-each-reply` — in a later session
 ```
 
@@ -381,7 +381,7 @@ update:
 ```
 
 ```tasks
-- [ ] update `estimate-estimates-schema-checked`
+- [x] update `estimate-estimates-schema-checked`
 - [x] `uv run pytest tests/test_schemas.py -k estimate --collect-only -q`: the tests for each category on `estimates` and `test_an_estimate_without_method_is_one_finding` are listed, and no other test
 - [ ] read `estimate-estimates-schema-checked` — in a later session: `uv run pytest tests/test_schemas.py -k estimate`, then `make lint`
 ```
@@ -450,9 +450,9 @@ update:
 ```
 
 ```tasks
-- [ ] update `rule-case-build`
-- [ ] update `estimate-case-build-checks-the-finished-case`
-- [ ] `uv run guppi render`: `.claude/agents/case-guppi.md`
+- [x] update `rule-case-build`
+- [x] update `estimate-case-build-checks-the-finished-case`
+- [x] `uv run guppi render`: `.claude/agents/case-guppi.md`
 - [ ] read `estimate-case-build-checks-the-finished-case` — in a later session, at `/pre-spec` after the render
 ```
 
@@ -518,13 +518,13 @@ update:
 ```
 
 ```tasks
-- [ ] update `rule-case-build`
-- [ ] update `rule-case-protocol`
-- [ ] update `rule-decisions-schema`
-- [ ] update `estimate-case-build-records-the-rounds-in-recommend`
-- [ ] `uv run guppi render`: `.claude/agents/case-guppi.md`
-- [ ] `uv run guppi render`: `vault/wiki/case-schema.md`
-- [ ] `uv run guppi render`: `vault/wiki/decisions/schema.yaml`
+- [x] update `rule-case-build`
+- [x] update `rule-case-protocol`
+- [x] update `rule-decisions-schema`
+- [x] update `estimate-case-build-records-the-rounds-in-recommend`
+- [x] `uv run guppi render`: `.claude/agents/case-guppi.md`
+- [x] `uv run guppi render`: `vault/wiki/case-schema.md`
+- [x] `uv run guppi render`: `vault/wiki/decisions/schema.yaml`
 - [ ] read `estimate-case-build-records-the-rounds-in-recommend` — in a later session after the render, the Case files against the rounds in the chat
 ```
 
@@ -567,8 +567,8 @@ update:
 ```
 
 ```tasks
-- [ ] update `rule-case-build`
-- [ ] `uv run guppi render`: `.claude/agents/case-guppi.md`
+- [x] update `rule-case-build`
+- [x] `uv run guppi render`: `.claude/agents/case-guppi.md`
 - [ ] read `estimate-case-build-writes-a-plain-round` — in a later session after the render, one first round and one later round of `case-guppi`
 ```
 
@@ -677,10 +677,10 @@ update:
 ```
 
 ```tasks
-- [ ] update `rule-documentation`
-- [ ] update `rule-materialize`
-- [ ] update `estimate-documentation-completes`
-- [ ] `uv run guppi render`: `.claude/agents/librarian-guppi.md`
+- [x] update `rule-documentation`
+- [x] update `rule-materialize`
+- [x] update `estimate-documentation-completes`
+- [x] `uv run guppi render`: `.claude/agents/librarian-guppi.md`
 - [ ] read `estimate-documentation-completes` — by hand, the first librarian run whose agent file holds this Render: its event log against the Flags of its brief
 ```
 
@@ -729,9 +729,9 @@ update:
 ```
 
 ```tasks
-- [ ] update `rule-synthesis`
-- [ ] update `estimate-synthesis-clusters`
-- [ ] `uv run guppi render`: `.claude/agents/librarian-guppi.md`
+- [x] update `rule-synthesis`
+- [x] update `estimate-synthesis-clusters`
+- [x] `uv run guppi render`: `.claude/agents/librarian-guppi.md`
 - [ ] read `estimate-synthesis-clusters` — by hand, the yaml and the report of the first librarian run after the render whose yaml holds at least two lesson entries
 ```
 
@@ -774,9 +774,9 @@ update:
 ```
 
 ```tasks
-- [ ] update `rule-brief`
-- [ ] update `estimate-brief-written`
-- [ ] `uv run guppi render`: `.claude/agents/librarian-guppi.md`
+- [x] update `rule-brief`
+- [x] update `estimate-brief-written`
+- [x] `uv run guppi render`: `.claude/agents/librarian-guppi.md`
 - [ ] read `estimate-brief-written` — by hand, the brief of the first librarian run whose agent file holds this Render
 ```
 

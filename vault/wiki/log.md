@@ -5230,3 +5230,77 @@ instruction. The global feed; a page's own `## History` is the per-page view.
 - 2026-09-30 rules/rule-prespec status: draft → built · cascade · generate
 - 2026-09-30 rules/rule-skill-grill-me status: draft → built · cascade · generate
 - 2026-09-30 rules/rule-skill-hi status: draft → built · cascade · generate
+- 2026-09-30 decisions/decision-case-554 created · raw/2026-09-30/2042/ledger.md#case-554 · generate
+- 2026-09-30 rules/rule-spec-write updated: the Stop hook exits 2 on its own error after the payload is read, and 0 on an error while it reads the payload (case 554) · [[decision-case-554]] · generate
+- 2026-09-30 estimates/estimate-spec-write-exits-2-on-an-error created · [[decision-case-554]] · generate
+- 2026-09-30 rules/rule-spec-write estimate estimate-spec-write-exits-2-on-an-error added · [[decision-case-554]] · generate
+- 2026-09-30 decisions/decision-case-555 created · raw/2026-09-30/2042/ledger.md#case-555 · generate
+- 2026-09-30 decisions/decision-case-555.1 created · raw/2026-09-30/2042/ledger.md#case-555.1 · generate
+- 2026-09-30 rules/rule-case-check updated: the Stop run exits 2 on its own error after the payload is read; the --subagent run keeps exit 0 (case 555.1) · [[decision-case-555.1]] · generate
+- 2026-09-30 estimates/estimate-case-check-exits-2-on-an-error created · [[decision-case-555.1]] · generate
+- 2026-09-30 rules/rule-case-check estimate estimate-case-check-exits-2-on-an-error added · [[decision-case-555.1]] · generate
+- 2026-09-30 decisions/decision-case-555.2 created · raw/2026-09-30/2042/ledger.md#case-555.2 · generate
+- 2026-09-30 rules/rule-context-size updated: the Stop run shows its own error to the person as the systemMessage and still exits 0 (case 555.2) · [[decision-case-555.2]] · generate
+- 2026-09-30 estimates/estimate-context-size-shows-its-error created · [[decision-case-555.2]] · generate
+- 2026-09-30 rules/rule-context-size estimate estimate-context-size-shows-its-error added · [[decision-case-555.2]] · generate
+- 2026-09-30 decisions/decision-case-555.3 created · raw/2026-09-30/2042/ledger.md#case-555.3 · generate
+- 2026-09-30 rules/rule-retro-onward updated: the hook exits 2 on its own error after the payload is read, with the advice to call /handoff (case 555.3) · [[decision-case-555.3]] · generate
+- 2026-09-30 estimates/estimate-retro-onward-exits-2-on-an-error created · [[decision-case-555.3]] · generate
+- 2026-09-30 rules/rule-retro-onward estimate estimate-retro-onward-exits-2-on-an-error added · [[decision-case-555.3]] · generate
+- 2026-09-30 decisions/decision-case-556 created · raw/2026-09-30/2042/ledger.md#case-556 · generate
+- 2026-09-30 estimates/estimate-estimates-schema-checked updated: the method runs -k estimate and names a page without method, so the test of method runs; the reading is due again, the Criterion stands (case 556) · [[decision-case-556]] · generate
+- 2026-09-30 decisions/decision-case-557 created · raw/2026-09-30/2042/ledger.md#case-557 · generate
+- 2026-09-30 decisions/decision-case-557.1 created · raw/2026-09-30/2042/ledger.md#case-557.1 · generate
+- 2026-09-30 rules/rule-case-build updated: case-guppi searches the rules and .claude/ for the moment a change sets, and a claim of context about a search lists what the search printed (case 557.1) · [[decision-case-557.1]] · generate
+- 2026-09-30 estimates/estimate-case-build-checks-the-finished-case updated: the Criterion replaced whole — the search for rules at the same moment, and a claim about a search that lists what it printed (case 557.1) · [[decision-case-557.1]] · generate
+- 2026-09-30 decisions/decision-case-557.2 created · raw/2026-09-30/2042/ledger.md#case-557.2 · generate
+- 2026-09-30 rules/rule-case-build updated: recommend holds one item per question, its recommendation and answer as they stood when the person answered it, as sub-items; a question never answered says so (case 557.2) · [[decision-case-557.2]] · generate
+- 2026-09-30 rules/rule-case-protocol updated: recommend holds one item per question, its recommendation and answer as they stood when the person answered it, as sub-items; a question never answered says so (case 557.2) · [[decision-case-557.2]] · generate
+- 2026-09-30 rules/rule-decisions-schema updated: ## Recommend holds each question with its recommendation and answer as they stood when the person answered it (case 557.2) · [[decision-case-557.2]] · generate
+- 2026-09-30 estimates/estimate-case-build-records-the-rounds-in-recommend updated: the Criterion replaced whole — one item per question, its recommendation and answer as they stood when the person answered it, a question never answered noted (case 557.2) · [[decision-case-557.2]] · generate
+- 2026-09-30 decisions/decision-case-557.3 created · raw/2026-09-30/2042/ledger.md#case-557.3 · generate
+- 2026-09-30 decisions/decision-case-551 superseded by decision-case-557.3 · [[decision-case-557.3]] · generate
+- 2026-09-30 rules/rule-case-build defer by decision-case-551 superseded · [[decision-case-557.3]] · generate
+- 2026-09-30 rules/rule-case-build updated: what a first round decides and a series of examples in its Context fall under the list rule of grill-me; the defer of case 551 retired (case 557.3) · [[decision-case-557.3]] · generate
+- 2026-09-30 decisions/decision-case-558 created · raw/2026-09-30/2042/ledger.md#case-558 · generate
+- 2026-09-30 decisions/decision-case-558.1 created · raw/2026-09-30/2042/ledger.md#case-558.1 · generate
+- 2026-09-30 rules/rule-documentation updated: the frame names the reads the job needs and forbids none; a read it does not name is made and flagged in the brief; only a repair asked by the handoff is refused (case 558.1) · [[decision-case-558.1]] · generate
+- 2026-09-30 rules/rule-materialize updated: the purpose prevents the need for the reads, not the reads, since the librarian's frame forbids no read (case 558.1) · [[decision-case-558.1]] · generate
+- 2026-09-30 estimates/estimate-documentation-completes updated: the Criterion replaced whole — a read the frame does not name is flagged under Flags of the brief and fails nothing; only a repair asked by the handoff is refused (case 558.1) · [[decision-case-558.1]] · generate
+- 2026-09-30 decisions/decision-case-558.2 created · raw/2026-09-30/2042/ledger.md#case-558.2 · generate
+- 2026-09-30 rules/rule-synthesis updated: the synthesis forbids no read; another session's yaml or an archived page it still needs is read and flagged (case 558.2) · [[decision-case-558.2]] · generate
+- 2026-09-30 estimates/estimate-synthesis-clusters updated: the Criterion replaced whole — a read of another session's yaml or of the archive fails nothing here; its flag is the promise of estimate-documentation-completes (case 558.2) · [[decision-case-558.2]] · generate
+- 2026-09-30 decisions/decision-case-558.3 created · raw/2026-09-30/2042/ledger.md#case-558.3 · generate
+- 2026-09-30 rules/rule-brief updated: Flags carry each read of the librarian beyond the reads its frame names (case 558.3) · [[decision-case-558.3]] · generate
+- 2026-09-30 estimates/estimate-brief-written updated: the Criterion replaced whole — Flags hold a line for each read of the librarian beyond the reads its frame names (case 558.3) · [[decision-case-558.3]] · generate
+- 2026-09-30 decisions/decision-case-559 created · raw/2026-09-30/2042/ledger.md#case-559 · generate
+- 2026-09-30 lessons/lesson-prespec-findings-relayed-piecemeal-lose-the-person created · raw/2026-09-30/2042/ledger.md#L25 · generate
+- 2026-09-30 decisions/decision-case-560 created · raw/2026-09-30/2042/ledger.md#case-560 · generate
+- 2026-09-30 decisions/decision-case-559 superseded by decision-case-560 · [[decision-case-560]] · generate
+- 2026-09-30 estimates/estimate-case-protocol-shows-the-built-case deferred · [[decision-case-560]] · generate
+- 2026-09-30 decisions/decision-case-555.4 created · raw/2026-09-30/2042/ledger.md#case-555.4 · generate
+- 2026-09-30 estimates/estimate-retro-onward-sends-the-agent-to-the-handoff updated: the Criterion replaced whole — the exits 0 of the judgment hold with no error of the hook's own (case 555.4) · [[decision-case-555.4]] · generate
+- 2026-09-30 decisions/decision-case-555.5 created · raw/2026-09-30/2042/ledger.md#case-555.5 · generate
+- 2026-09-30 estimates/estimate-context-size-shown-after-each-reply updated: the Criterion replaced whole — the size line holds with no error of the hook's own (case 555.5) · [[decision-case-555.5]] · generate
+- 2026-09-30 estimates/estimate-case-check-sends-back-a-faulty-case status: pending → passed · raw/2026-09-30/2042/ledger.md#L29 · generate
+- 2026-09-30 estimates/estimate-decisions-schema-checked status: pending → passed · raw/2026-09-30/2042/ledger.md#L30 · generate
+- 2026-09-30 estimates/estimate-ledger-write-exits-2-on-an-error status: pending → passed · raw/2026-09-30/2042/ledger.md#L31 · generate
+- 2026-09-30 estimates/estimate-ledger-write-lifts status: pending → passed · raw/2026-09-30/2042/ledger.md#L32 · generate
+- 2026-09-30 estimates/estimate-ledger-write-refuses-a-line-it-cannot-read status: pending → passed · raw/2026-09-30/2042/ledger.md#L33 · generate
+- 2026-09-30 estimates/estimate-retro-commit-gates status: pending → passed · raw/2026-09-30/2042/ledger.md#L34 · generate
+- 2026-09-30 estimates/estimate-retro-loads status: pending → passed · raw/2026-09-30/2042/ledger.md#L35 · generate
+- 2026-09-30 lessons/lesson-prespec-second-run-dispatches-ask-guppi-again created · raw/2026-09-30/2042/ledger.md#L36 · generate
+- 2026-09-30 insights/insight-prespec-after-findings-loop-unruled created · raw/2026-09-30/2042/ledger.md#L36 · generate
+- 2026-09-30 lessons/lesson-prespec-findings-relayed-piecemeal-lose-the-person updated: clustered under insight-prespec-after-findings-loop-unruled (synthesis) · raw/2026-09-30/2042/ledger.md#L36 · generate
+- 2026-09-30 lessons/lesson-prespec-second-run-dispatches-ask-guppi-again updated: clustered under insight-prespec-after-findings-loop-unruled (synthesis) · raw/2026-09-30/2042/ledger.md#L36 · generate
+- 2026-09-30 rules/rule-brief status: built → draft · cascade · generate
+- 2026-09-30 rules/rule-context-size status: built → draft · cascade · generate
+- 2026-09-30 rules/rule-decisions-schema status: draft → built · cascade · generate
+- 2026-09-30 rules/rule-estimates-schema status: built → draft · cascade · generate
+- 2026-09-30 rules/rule-ledger-write status: draft → built · cascade · generate
+- 2026-09-30 rules/rule-retro-commit status: draft → built · cascade · generate
+- 2026-09-30 rules/rule-synthesis status: built → draft · cascade · generate
+- 2026-09-30 decisions/decision-case-551 archived · superseded · generate
+- 2026-09-30 decisions/decision-case-559 archived · superseded · generate
+- 2026-09-30 decisions/decision-case-551 archived · cleanup
+- 2026-09-30 decisions/decision-case-559 archived · cleanup

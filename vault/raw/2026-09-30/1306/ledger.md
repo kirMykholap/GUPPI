@@ -1,0 +1,48 @@
+- 13:09:15 estimate[estimate-backlog-renders][passed] 2026-09-30, uv run pytest -q tests/test_backlog.py and vault/wiki/backlog.md as the librarian run cfcfb09 wrote it: 16 passed; # Backlog, the line 22 items, ## Conserved Specs empty, ## Deferred 22 lines — 13 pages with deferred_by, 4 more open Insights (insight-hi-skill-substitution-checked-by-a-model-call, open and deferred, stands once), 5 plain lines of the Backlog of entity-sprint-migration, its 4 wikilinked Backlog lines standing once under their pages; each line with its purpose, an Insight with its severity, and its count
+- 13:09:15 estimate[estimate-sprint-items-move-only-by-a-case][passed] 2026-09-30, uv run pytest -q tests/test_generate.py -k moves_no_line: 1 passed, 95 deselected; git blame of the History of entity-sprint-migration: the four move lines come from 519c5bc, the librarian run before 417ceaa built case 539.3; the librarian run cfcfb09 after it added one line, the update of case 539.3, and no move line; ## Milestones keeps Slice 5 and its item
+- 13:15:56 estimate[estimate-glossary-terms-defined][failed] 2026-09-30, the 56 rows of vault/wiki/glossary.md read against their where pages by a read-only subagent, its findings checked against the page text by hand, and `make lint` (exit 2, 85 lines, no ref finding on entity-glossary, only `unread: failed` on this Estimate): every where slug is a live rule page, no term stands in two rows, no excluded term stands in a row; the rows Decision page, Main agent and Plan Mode no longer contradict their page; the row `ref`, `slug`, `supersedes` does — it says each `{supersedes:case N}` block clears the `deferred_by` of its Case, while rule-case-protocol says generate clears a defer only from the pages the superseding Case names (case 467.3, guppi/generate.py docstring)
+- 13:23:32 decision[case 541][update][entity-glossary]{ref:entity-glossary}
+- 13:44:13 decision[case 542][update][rule-spec-capture]{ref:rule-spec-capture}
+- 13:44:13 decision[case 542][update][rule-spec-write]{ref:rule-spec-write}
+- 13:44:13 decision[case 542][update][estimate-spec-write-writes-a-defer]{ref:rule-spec-write}
+- 14:31:05 decision[case 543.1][update][rule-case-build]{ref:rule-case-build}
+- 14:31:05 decision[case 543.2][update][rule-skill-grill-me]{ref:rule-skill-grill-me}
+- 14:31:05 decision[case 543.3][update][rule-page-generation]{ref:rule-page-generation}
+- 14:31:05 decision[case 543.3][create][estimate-generate-replace-takes-the-leading-indent]{ref:rule-page-generation}{tags:harness,workflow}
+- 14:31:05 decision[case 543.3][update][rule-case-protocol]{ref:rule-case-protocol}
+- 14:31:05 decision[case 543.4][update][rule-prespec]{ref:rule-prespec}
+- 14:31:05 decision[case 543.4][create][estimate-prespec-catches-an-indent-added-twice]{ref:rule-prespec}{tags:harness,workflow}
+- 16:31:05 decision[case 544.1][update][rule-case-build]{ref:rule-case-build}
+- 16:31:05 decision[case 544.1][create][estimate-case-build-checks-the-finished-case]{ref:rule-case-build}{tags:session,workflow,harness}
+- 16:31:05 decision[case 544.1][delete][rule-case-build-checks-its-sub-cases]{ref:rule-case-build-checks-its-sub-cases}{supersedes:case 480}
+- 16:31:05 decision[case 544.1][update][insight-case-build-promise-lines-compared-by-no-check]{ref:insight-case-build-promise-lines-compared-by-no-check}
+- 16:31:05 decision[case 544.1][update][insight-workflow-fact-signed-from-a-check-that-does-not-cover-it]{ref:insight-workflow-fact-signed-from-a-check-that-does-not-cover-it}
+- 16:31:05 decision[case 544.2][update][rule-case-build]{ref:rule-case-build}
+- 16:31:05 decision[case 544.2][update][rule-case-protocol]{ref:rule-case-protocol}
+- 16:31:05 decision[case 544.2][create][estimate-case-build-records-the-rounds-in-recommend]{ref:rule-case-build}{tags:session,workflow,harness}
+- 16:31:05 decision[case 544.3][update][rule-case-check]{ref:rule-case-check}
+- 16:31:05 decision[case 544.3][update][rule-case-protocol]{ref:rule-case-protocol}
+- 16:31:05 decision[case 544.3][create][estimate-case-check-requires-each-question-of-the-rounds]{ref:rule-case-check}{tags:hooks,harness,workflow}
+- 16:31:05 decision[case 544.4][update][rule-case-check]{ref:rule-case-check}
+- 16:31:05 decision[case 544.4][create][estimate-case-check-refuses-a-problem-in-a-sub-case]{ref:rule-case-check}{tags:hooks,harness,workflow}
+- 16:31:05 decision[case 544.5][update][rule-spec-write]{ref:rule-spec-write}
+- 16:31:05 decision[case 544.5][update][estimate-spec-write-copies-the-ratified-case]{ref:estimate-spec-write-copies-the-ratified-case}
+- 16:31:05 decision[case 544.6][update][rule-materialize]{ref:rule-materialize}
+- 16:31:05 decision[case 544.6][update][estimate-materialize-assembles]{ref:estimate-materialize-assembles}
+- 16:31:05 decision[case 544.7][update][rule-page-generation]{ref:rule-page-generation}
+- 16:31:05 decision[case 544.7][update][estimate-generate-writes-the-decision-page]{ref:estimate-generate-writes-the-decision-page}
+- 16:31:05 decision[case 544.8][update][rule-decisions-schema]{ref:rule-decisions-schema}
+- 16:31:05 decision[case 544.8][update][estimate-decisions-schema-checked]{ref:estimate-decisions-schema-checked}
+- 16:31:05 decision[case 544.8][update][entity-glossary]{ref:entity-glossary}
+- 16:31:05 decision[case 544.9][update][rule-lint]{ref:rule-lint}
+- 16:31:05 decision[case 544.9][update][estimate-lint-finds-a-broken-link]{ref:estimate-lint-finds-a-broken-link}
+- 16:32:54 decision[case 545][defer][rule-skill-grill-me]{ref:rule-skill-grill-me}
+- 16:55:37 decision[case 546][defer][rule-orchestration]{ref:rule-orchestration}{supersedes:case 545}
+- 16:57:51 decision[case 544.10][update][estimate-spec-write-reaches-the-approved-spec]{ref:estimate-spec-write-reaches-the-approved-spec}
+- 16:57:51 decision[case 544.11][update][estimate-case-protocol-case-form]{ref:estimate-case-protocol-case-form}
+- 17:20:21 estimate[estimate-case-check-refuses-a-letter-outside-the-script][passed] 2026-09-30, uv run pytest -q tests/test_casecheck.py -k script: 7 passed, 53 deselected; guppi/casecheck.py imports check_untranslated of guppi/prespec.py and holds no copy of its judgment
+- 17:20:21 estimate[estimate-settings][passed] 2026-09-30, make test-harness: 116 passed; json.load of .claude/settings.json gives the keys permissions, hooks, env in that order and env {PYTHONUTF8: 1}; uv run guppi render --check exit 0; vault/raw/2026-09-30/event_log.md line 994: 05:13:30 96eeee58 session-start startup
+- 17:20:21 estimate[estimate-hi-takes-its-readings][failed] 2026-09-30, by hand, the first reply of session 1306: before the question on the order it took the two readings whose method names the librarian's run and could be done whole (backlog-renders, sprint-items-move-only-by-a-case) from the brief, git log, git blame and the commands; it closed W2 and W34 [x] · work in frontier.md, then wrote the LEDGER block of a reply that ends in text; Ask held no line; it left brief-written, carry-over-writes, generate-rewords, python-utf8-output-intact, settings and its own reading; no page or repository file changed but frontier.md; but it opened the pages of five Estimates it did not read — hi-takes-its-readings, python-utf8-output-intact, settings, brief-written, glossary-terms-defined — against "Only the reading step opens the pages of the Estimates it reads"
+- 17:20:21 lesson[error][lesson-hi-opens-estimate-pages-it-does-not-read]{tags:session,workflow} trigger: at /hi of session 1306 the agent opened the pages of five Estimates of the Work list to judge whether their method's moment had come, then read only two of them root_cause: the brief's Readings due carries each method, but the agent did not trust that line and read the page to decide, while the Criterion of estimate-hi-takes-its-readings lets the reading step open only the pages of the Estimates it reads
+- 17:20:21 lesson[error][lesson-case-build-context-claims-an-effect-no-check-covers]{tags:session,workflow}{addressed_by:case 544.1} trigger: in session 1306 the context of Case 544 said generate writes the Decision pages of Cases 541 to 543 in the new shape at this session's librarian run, and the context of Case 542 said four texts name Retro and then named five; ask-guppi found both at pre-spec, and three Cases were ratified again root_cause: case-guppi signs a fact about an effect or a count that no reading of its frame covers, and nothing checks its answer before the person sees it
+- 17:20:21 lesson[error][lesson-prespec-report-questions-still-off-the-shape]{tags:session,workflow} trigger: at /pre-spec of session 1306 the main agent put the three decisions it needed from the person as numbered bold questions with (a) and (b) lines, no question line, no Now block and no recommendation line, as in session 0248 root_cause: no rule gives the question shape of grill-me to a question the main agent asks the person itself — the item was deferred again this session (case 546) — and the lesson of session 0248 does not reach the session that needs it

@@ -1,11 +1,11 @@
 ---
 type: estimate
 kind: QA
-status: pending
+status: failed
 target: "[[rule-skill-hi]]"
 purpose: Whether /hi takes, in its first reply, each open W reading whose method names /hi or the librarian's run and can be done whole then, puts each open Ask line to the person as a question and writes the answer as its reading line, closes each line it ends, opens no page but the Estimates it reads, and leaves the readings that name a later moment or a /hi run of their own
 method: "by hand at the first /hi after the render: the first reply, its tool calls, its LEDGER block and frontier.md read against the Criterion, recorded in the estimate line"
-checked: 2026-09-29
+checked: 2026-09-30
 origin: raw/2026-09-29/1134/ledger.md#case-508.1
 sprint: migration
 created: 2026-09-29
@@ -31,10 +31,11 @@ In its first reply, before the question on the order, the agent takes each readi
 
 ## Result
 
-2026-09-29, by hand, the first reply of session 1432: before the question on the order it took the five readings whose method names the librarian's run and could be done whole (close-commits, index-check-merges, synthesis-clusters, raw-archive, glossary-terms-defined), from git log, git status, the commands and the report in the transcript of session 1134; it opened each Estimate page and judged it against its Criterion; it closed W9, W20, W27, W33 and W46 [x] · work in frontier.md and then wrote five estimate lines in a LEDGER block of a reply that ends in text; it left git-context-current (a later moment named), event-log-records (a /hi run of its own), brief-carries-the-run-facts (no run with the Render yet) and the two readings of its own reply; no page or repository file changed but frontier.md
+2026-09-30, by hand, the first reply of session 1306: before the question on the order it took the two readings whose method names the librarian's run and could be done whole (backlog-renders, sprint-items-move-only-by-a-case) from the brief, git log, git blame and the commands; it closed W2 and W34 [x] · work in frontier.md, then wrote the LEDGER block of a reply that ends in text; Ask held no line; it left brief-written, carry-over-writes, generate-rewords, python-utf8-output-intact, settings and its own reading; no page or repository file changed but frontier.md; but it opened the pages of five Estimates it did not read — hi-takes-its-readings, python-utf8-output-intact, settings, brief-written, glossary-terms-defined — against "Only the reading step opens the pages of the Estimates it reads"
 
 ## History
 
 - 2026-09-29 created · [[decision-case-508.1]]
 - 2026-09-29 status: pending → passed · raw/2026-09-29/1432/ledger.md#L30
 - 2026-09-30 updated: the Criterion replaced whole — the Ask lines put to the person in the first reply, the answer written as the reading line (case 531.13) · [[decision-case-531.13]]
+- 2026-09-30 status: pending → failed · raw/2026-09-30/1306/ledger.md#L45

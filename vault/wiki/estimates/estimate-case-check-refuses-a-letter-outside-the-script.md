@@ -1,10 +1,11 @@
 ---
 type: estimate
 kind: QA
-status: pending
+status: passed
 target: "[[rule-case-check]]"
 purpose: An answer of case-guppi whose name, context or problem holds a letter outside the script of the documentation language is a finding of the check, and no file of the Case is written while it stands
 method: uv run pytest tests/test_casecheck.py -k script
+checked: 2026-09-30
 origin: raw/2026-09-30/0248/ledger.md#case-537
 sprint: migration
 created: 2026-09-30
@@ -25,6 +26,11 @@ A name, `context` or `problem` of a Case of the answer that holds a letter outsi
 **－** An answer whose text `<plan>.checked.json` already holds with findings is stored again with this finding and exits 0, so an unchanged answer is not sent back twice, and no file is written for it.
 **－** The `given`, `when`, `then` and the blocks of a Case are not read by this check: a quotation there keeps its language.
 
+## Result
+
+2026-09-30, uv run pytest -q tests/test_casecheck.py -k script: 7 passed, 53 deselected; guppi/casecheck.py imports check_untranslated of guppi/prespec.py and holds no copy of its judgment
+
 ## History
 
 - 2026-09-30 created · [[decision-case-537]]
+- 2026-09-30 status: pending → passed · raw/2026-09-30/1306/ledger.md#L43

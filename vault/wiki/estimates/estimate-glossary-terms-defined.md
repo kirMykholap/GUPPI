@@ -26,7 +26,7 @@ Each row names in `where` a `[[slug]]` of a live page, and that page says what t
 
 ## Result
 
-2026-09-30, the 56 rows of vault/wiki/glossary.md read against their where pages by a read-only subagent, the three findings checked against the page text by hand, and `make lint` (exit 2, 88 lines, no ref finding on entity-glossary, only `unread: pending` on this Estimate): every where slug is a live rule page, no term stands in two rows, no excluded term stands in a row; three rows contradict their page — Decision page says "`## Context` only for a Case without `given`", while rule-decisions-schema gives `## Context` also to the page of a Case superseded in its own session (case 299.4); Main agent says it "writes ledger lines, until the Retro commit", while rule-retro ends the reply with one LEDGER block after the commit; Plan Mode says "Frontier items discussed as Cases until each is ratified or deferred", while rule-case-protocol closes a Work item with no Case
+2026-09-30, the 56 rows of vault/wiki/glossary.md read against their where pages by a read-only subagent, its findings checked against the page text by hand, and `make lint` (exit 2, 85 lines, no ref finding on entity-glossary, only `unread: failed` on this Estimate): every where slug is a live rule page, no term stands in two rows, no excluded term stands in a row; the rows Decision page, Main agent and Plan Mode no longer contradict their page; the row `ref`, `slug`, `supersedes` does — it says each `{supersedes:case N}` block clears the `deferred_by` of its Case, while rule-case-protocol says generate clears a defer only from the pages the superseding Case names (case 467.3, guppi/generate.py docstring)
 
 ## History
 
@@ -40,3 +40,4 @@ Each row names in `where` a `[[slug]]` of a live page, and that page says what t
 - 2026-09-30 status: failed → failed · raw/2026-09-29/2024/ledger.md#L5
 - 2026-09-30 updated: the Criterion replaced whole — the where page says what the term is and contradicts no claim of the row; a claim it leaves out does not fail the row (case 527.2) · [[decision-case-527.2]]
 - 2026-09-30 status: pending → failed · raw/2026-09-30/0248/ledger.md#L4
+- 2026-09-30 status: failed → failed · raw/2026-09-30/1306/ledger.md#L3

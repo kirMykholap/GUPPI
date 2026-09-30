@@ -2,7 +2,7 @@
 type: lesson
 kind: error
 root_cause: case-guppi read the pages it had named in the frame and signed a claim about every text that counts the children of rule-settings, with no search of the vault for that count
-status: clustered
+status: archived
 insight: "[[insight-workflow-fact-signed-from-a-check-that-does-not-cover-it]]"
 origin: raw/2026-09-30/0248/ledger.md#L42
 sprint: migration
@@ -22,3 +22,5 @@ case-guppi read the pages it had named in the frame and signed a claim about eve
 
 - 2026-09-30 created · raw/2026-09-30/0248/ledger.md#L42
 - 2026-09-30 updated: clustered under insight-workflow-fact-signed-from-a-check-that-does-not-cover-it (synthesis) · raw/2026-09-30/0248/ledger.md#L42
+- 2026-09-30 archived · insight actioned
+- 2026-09-30 archived · cleanup

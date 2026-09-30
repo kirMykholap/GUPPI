@@ -15,7 +15,7 @@ Each question should be formatted like so:
     <a sentence that introduces a quotation and names its source, when the question quotes one>:
     > <the quoted words, as the source holds them>
 
-        **Options:**
+    **Options:**
 
     🔹 **(a) <option name>**
       - **After:** <what holds with this option>

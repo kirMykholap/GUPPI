@@ -1,8 +1,9 @@
 ---
 type: decision
 case: "480"
-status: current
+status: archived
 defer: ["[[rule-case-build-checks-its-sub-cases]]"]
+superseded_by: ["[[decision-case-544.1]]"]
 origin: raw/2026-09-28/1318/ledger.md#case-480
 sprint: migration
 created: 2026-09-28
@@ -26,3 +27,6 @@ Before it answers, case-guppi reads the finished new texts of all its sub-cases 
 ## History
 
 - 2026-09-28 created · raw/2026-09-28/1318/ledger.md#case-480
+- 2026-09-30 superseded by decision-case-544.1 · [[decision-case-544.1]]
+- 2026-09-30 archived · superseded
+- 2026-09-30 archived · cleanup

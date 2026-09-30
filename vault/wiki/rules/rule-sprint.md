@@ -2,7 +2,7 @@
 type: rule
 kind: Leaf
 purpose: Prevents the sprint's backlog from drifting from the pages it names
-status: draft
+status: built
 enforcement: check
 implementation_ref: [guppi/sprint.py, tests/test_sprint.py, guppi/generate.py, tests/test_generate.py]
 governs: vault/wiki/sprint.md
@@ -57,3 +57,4 @@ The first `## <id>` heading of the file is the sprint id `sprint_id`, `cleanup` 
 - 2026-09-30 updated: the Estimates of a sprint page stand only under Done when, never as an item line (case 539.3) · [[decision-case-539.3]]
 - 2026-09-30 status: built → draft · cascade
 - 2026-09-30 estimate estimate-sprint-drops-an-emptied-milestone archived · cleanup
+- 2026-09-30 status: draft → built · cascade

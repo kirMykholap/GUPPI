@@ -2231,5 +2231,169 @@ decisions:
       exactly the items whose closing closes it.'
   spec: vault/raw/2026-09-30/0248/spec.md
   applied: 04:55:08
+- case: '534'
+  decision: decision-case-534
+  origin: raw/2026-09-30/0248/ledger.md#case-534
+  children:
+  - decision-case-534.1
+  - decision-case-534.2
+  tags:
+  - harness
+  - session
+  case_text:
+    context: 'The agent often runs its own Python scripts through the Bash tool. On Windows, Python writes
+      console output in the locale''s code page. `guppi/cli.py` measured that code page as cp1252 on 2026-09-09.
+      The Bash tool reads those bytes as UTF-8. So a character outside cp1252 stops the script at the
+      print, which is the case `lesson-bash-tool-heredoc-escapes-interpreted` records. A character inside
+      cp1252, such as the dash, goes through without an error and reaches the agent as U+FFFD. Here that
+      happened at the reading of `estimate-context-size-warns-past-the-limit` (reading L4 of `raw/2026-09-30/0138/ledger.md`).
+      The script ran with no encoding set, printed the dash of `guppi context --prompt` as U+FFFD, and
+      the handoff called it a defect of the hook. The transcript of session 876c4080 holds the correct
+      dash in the hook''s stdout and in the text the agent received, and no U+FFFD at all. A second run
+      of the same script with `PYTHONIOENCODING=utf-8` printed the dash. The hook needs no fix. The main
+      agent reads that Estimate again and writes a lesson line; neither is part of this Case. Today `.claude/settings.json`
+      has no `env` block. `rule-settings` is its frame, with three children: `rule-default-mode`, `rule-permissions`
+      and `rule-hook-registry`. None of the three owns an environment. The renderer takes a child''s text
+      bare into a `.json` target and finds each child by its marker line in the frame. The vault''s answer:
+      no page covers the environment of a session. The near pages are `rule-settings`, the frame that
+      gets the new marker line; `lesson-bash-tool-heredoc-escapes-interpreted`, the manual workaround
+      of setting `PYTHONIOENCODING` in each command; and `lesson-hooks-windows-stdin-encoding`, the hook
+      side, already fixed in code. The tags `harness` and `session` fit. The slugs `rule-python-utf8`
+      and `estimate-python-utf8-output-intact` are free. In the frame, four texts contradict the change.
+      The Purpose and the `purpose` of `rule-settings` both say three rules share the file. The Purpose
+      of `rule-hook-registry` says the file is one text of three rules. The Criterion of `estimate-settings`
+      lists the three children and their key order. This Case changes all four. The sentence of `rule-hook-registry`
+      says "several rules" in place of a number, so a later child leaves it true. That page''s `estimate-hook-registry-rendered`
+      speaks of the hooks, so a pair in its Purpose leaves it alone. Sub-case 534.2 replaces the Criterion
+      of `estimate-settings` whole. Two of its lines change on purpose: the line on the order of the children
+      now names the fourth child and the key order, and the line on what `rule-settings` holds now names
+      a variable of the environment too. The lesson stands as it is: it records what was true when it
+      was written. `estimate-default-mode` and `estimate-permissions` speak of the `permissions` keys,
+      which do not change. `rule-harness` stays as it is, since the new rule''s parent is `rule-settings`.'
+    problem: The Bash tool starts each Python process of a session in the locale's code page. Unless each
+      command sets the encoding, a dash reaches the agent as U+FFFD and other characters stop the script.
+      That already produced one false reading and one false Frontier item. The harness should set UTF-8
+      once, for every Python process of the session, through a ratified rule.
+  spec: vault/raw/2026-09-30/0248/spec.md
+  applied: '17:24:03'
+- case: '538'
+  decision: decision-case-538
+  origin: raw/2026-09-30/0248/ledger.md#case-538
+  children:
+  - decision-case-538.1
+  - decision-case-538.2
+  tags: []
+  case_text:
+    context: '`/carry` ends a planning session whose ratified Spec is left for a later session. It rewrites
+      `vault/wiki/brief.md` in a short shape. Step 1 of `rule-carry-over` (case 451.9) leaves out Readings
+      due and Next session. The root cause of `lesson-carry-short-brief-drops-the-work-list` names the
+      claim behind that step: `make lint` lists the pending Estimates again. But `/hi` builds its Work
+      list and its Ask list from the Next session of the brief alone (`rule-skill-hi`), and it reads neither
+      `make lint` nor the Frontier of the previous session. After the `/carry` of session 2024, the `/hi`
+      of session 0138 had no Work list. The open W lines of the 2024 Frontier and the Readings due of
+      the brief of 1c196e8 stood on no list, and they were restored by hand. Case 531.10 kept the short
+      shape without Next session. The person put the fix off as Case 533, so `rule-carry-over` carries
+      `deferred_by: [[decision-case-533]]` and stands in `backlog.md`. In the round, the person chose
+      two things. First, Next session in the short brief is taken from the open lines of the session''s
+      `frontier.md`, and Readings due and Readings at the close stay out. Second, both Criteria that speak
+      of the short brief are replaced whole, one sub-case each. At pre-spec, the person also chose that
+      `Cases` in the brief of `/carry` is always the line "none". `/pre-spec` fails on an open line under
+      `## Cases`, and `/carry` runs only after `ExitPlanMode`, so no such line is open at `/carry`. A
+      deferred decision reaches `/hi` through `backlog.md`, and a sprint item reaches it through `vault/wiki/sprint.md`.
+      No page is created, so no vault query ran. In the frame, the paragraph of the Render of `rule-brief`
+      on the second writer says that Next session is omitted. The last `－` line of `estimate-brief-written`
+      says that the brief of `carry` has no Next session. The change makes both false, so sub-case 538.2
+      rewrites both. The second line of `estimate-carry-over-writes` still holds, and sub-case 538.1 replaces
+      that Criterion whole with a new line on what the short shape holds. Case 539 of this session removes
+      the move of `generate` that sends a milestone item of the sprint page to the Backlog, and the drop
+      of an emptied milestone. It also changes the words of `rule-brief` on those moves. So, by the person''s
+      choice in the round of Case 539, the new Criterion of `estimate-brief-written` no longer says that
+      Flags name those moves. Pre-spec will note on purpose that two old lines of that Criterion are not
+      carried: the line on the moves and the line on the brief of `carry`. Sub-case 538.2 does not touch
+      the text of `rule-brief` on the moves, since Case 539 changes it. The two sub-cases share words
+      about the sections of the brief and the lists of Next session. That is on purpose: each Criterion
+      must read whole without the other, one for the librarian''s run and one for `/carry`. The Purpose
+      of `rule-end-of-work` and the Purpose of `rule-backlog` stay true, and `rule-skill-hi` does not
+      change. No code reads the sections of the brief: a Grep of `guppi/` and `tests/` found none. So
+      no reader has to accept an old form. The lesson was written in session 0138, and its fix is ratified
+      in this session, so it gets no mark (case 284.2). `insight-session-vault-knowledge-not-loaded` has
+      `severity: 1`, and of its children only `lesson-carry-short-brief-drops-the-work-list` is live.
+      It stays open, since this Case does not change it. Two things are not done: how `/work` takes up
+      a conserved Spec (Frontier item C4), and the two or three lists of Next session in the brief of
+      the librarian (Frontier item C7).'
+    problem: The short brief of `/carry` has no Next session, and `/hi` takes its Work list and its Ask
+      list only from Next session. So the session after a conserved Spec starts with no open work, and
+      the open readings drop out of sight. The frame of the brief and its Estimate still promise that
+      shape.
+  spec: vault/raw/2026-09-30/0248/spec.md
+  applied: '17:24:03'
+- case: '539'
+  decision: decision-case-539
+  origin: raw/2026-09-30/0248/ledger.md#case-539
+  children:
+  - decision-case-539.1
+  - decision-case-539.2
+  - decision-case-539.3
+  - decision-case-539.4
+  tags: []
+  case_text:
+    context: 'After the cascade, `guppi generate` reads the `frontier.md` of every session. It moves to
+      the `## Backlog` of the sprint page any milestone item that three sessions in a row put off, and
+      it drops a milestone that the move leaves with no item (cases 354.1, 354.2). The librarian''s run
+      over session 0138 moved four items out of Slice 5 — closing of `entity-sprint-migration`: `estimate-sprint-migration-lint-clean`,
+      `estimate-sprint-migration-merges`, `rule-spec-box` and `rule-morph`. The first two are Estimates
+      of the sprint page, its finish conditions, and they can be read only at the close. So every session
+      puts them off, and the move always takes them. `vault/wiki/backlog.md` now lists them as work put
+      off in 3 sessions, while `vault/wiki/sprint.md` still shows them under Done when, which it reads
+      from the page''s `estimates`. The move worked as ratified. The person chose three things. First,
+      the move goes, because in practice it gets in the way: a line of the sprint page moves only when
+      the person asks for it. Second, the finish conditions of a sprint stand under Done when and are
+      never item lines, so each milestone holds exactly the items whose closing closes it. Third, `rule-spec-box`
+      and `rule-morph` stay in the Backlog. In the second round the person also chose three things. `estimate-sprint-moves-a-passed-over-item`
+      is renamed to `estimate-sprint-items-move-only-by-a-case` and gets the opposite promise, with a
+      test. `estimate-sprint-drops-an-emptied-milestone` is deleted. The principle is one sentence in
+      `rule-sprint`, and no check enforces it. The Criterion of `estimate-brief-written`, replaced by
+      Case 538.2 in this session, named the Flags line on moves. That Case is rebuilt by its own `case-guppi`
+      without the line, so this Case does not touch that Estimate. By the same rule, `estimate-sprint-migration-leftovers-gone`
+      also leaves Slice 5, which then holds only its note on the close of a sprint. The note keeps the
+      milestone open. No page is created without a `ref`, so no vault query ran.
+
+      In the frame, the change makes six texts false, and this Case rewrites each one. The first is the
+      sentence of `rule-sprint` on the move. The second is two sentences of the Purpose of `rule-page-generation`:
+      the list of the steps and of what they read, where no step reads the Frontiers any more, and the
+      sentence on the move. The third is the Flags item and the sentence on how the sprint page changes
+      in the Render of `rule-brief`; those pairs stay off the paragraph on `carry` that Case 538.2 rewrites.
+      The fourth is the reason that the Render of `rule-skill-hi` gives for opening a sprint line with
+      its slugs in code spans, namely that `generate` counts it; the form of the line stays, and `guppi
+      backlog` still reads its slugs for its count. The fifth is the words "the reader of the sprint move"
+      in `rule-backlog` and in the docstring of `guppi/backlog.py`. The sixth is the same words in the
+      Criterion of `estimate-backlog-renders`: at pre-spec the person chose to replace that Criterion
+      whole, in sub-case 539.4. `estimate-hi-writes-frontier` asks for the slug in a code span and gives
+      no reason, so it stands. `estimate-sprint-renders-the-backlog` promises one Done when line per Estimate,
+      and that does not change. The functions `frontiers` and `frontier_marks` stay in `guppi/generate.py`,
+      because `guppi/backlog.py` imports them. The History lines of the moves already made stay on the
+      sprint page. The code change runs from the working tree in Work Mode. No reader refuses an old form
+      in the meantime, so no old form is kept.
+
+      Three things will look like gaps at the check and are on purpose. First, sub-case 539.1 carries
+      no line of the old Criterion of `estimate-sprint-moves-a-passed-over-item`: the count, the move,
+      its History line and its exceptions are the promise the person chose to reverse. Second, sub-case
+      539.4 carries every line of the old Criterion of `estimate-backlog-renders` but one. The line on
+      the count now names `generate.frontier_marks` without the words on the move, and it adds that `guppi/backlog.py`
+      holds no copy of that reader. Third, some sub-cases share words. Sub-cases 539.1 and 539.2 both
+      say that the sprint page changes only by a Case: one for `generate`, one for the frame of the librarian.
+      Sub-cases 539.1 and 539.3 both say that the rule pages no longer name the move, each for its own
+      pages. Sub-cases 539.3 and 539.4 both speak of the lines of `## Deferred` in `backlog.md`: one for
+      the sprint page, one for the promise of the script. Each sub-case keeps its words so that it reads
+      alone. Not done: a check that refuses a finish condition written as an item, which the person did
+      not take; the close of a sprint, still a note of Slice 5 (Frontier item C2); and `rule-spec-box`
+      and `rule-morph`, which stay in the Backlog.'
+    problem: '`generate` moves sprint items by a count of put-offs. That count always reaches the finish
+      conditions of the sprint, which can only be read at the close, so the move turns them into put-off
+      work in `backlog.md`. The person wants no line of the sprint page to move without their request.
+      They also want the finish conditions to stand only under Done when, so that each milestone holds
+      exactly the items whose closing closes it.'
+  spec: vault/raw/2026-09-30/0248/spec.md
+  applied: '17:24:03'
 unparsed: []
 session: 0248

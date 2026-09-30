@@ -1,11 +1,11 @@
 ---
 type: estimate
 kind: QA
-status: pending
+status: passed
 target: "[[rule-sprint]]"
 purpose: Whether generate leaves every line of the sprint page in place, a milestone item put off in many sessions in a row included, so that a line moves only by a Case
 method: "uv run pytest tests/test_generate.py -k moves_no_line; then by hand, the History of entity-sprint-<id> after the librarian's run of a later session: no line of generate on a move"
-checked: 2026-09-27
+checked: 2026-09-30
 origin: raw/2026-09-23/0034/ledger.md#case-354.1
 sprint: migration
 created: 2026-09-23
@@ -26,7 +26,7 @@ After the run, `## Milestones` and `## Backlog` of `entity-sprint-<id>` stand as
 
 ## Result
 
-2026-09-27, uv run pytest tests/test_generate.py and the History of entity-sprint-migration after the librarian run of 1819; 97 passed (7 of the move); no milestone item reaches 3 passes (highest 2), and the History holds no move line after 2026-09-23
+2026-09-30, uv run pytest -q tests/test_generate.py -k moves_no_line: 1 passed, 95 deselected; git blame of the History of entity-sprint-migration: the four move lines come from 519c5bc, the librarian run before 417ceaa built case 539.3; the librarian run cfcfb09 after it added one line, the update of case 539.3, and no move line; ## Milestones keeps Slice 5 and its item
 
 ## History
 
@@ -36,3 +36,4 @@ After the run, `## Milestones` and `## Backlog` of `entity-sprint-<id>` stand as
 - 2026-09-27 status: pending → passed · raw/2026-09-27/2050/ledger.md#L29
 - 2026-09-30 renamed from `estimate-sprint-moves-a-passed-over-item` · [[decision-case-539.1]]
 - 2026-09-30 updated: renamed from estimate-sprint-moves-a-passed-over-item and the Criterion replaced whole — generate moves no line of the sprint page (case 539.1) · [[decision-case-539.1]]
+- 2026-09-30 status: pending → passed · raw/2026-09-30/1306/ledger.md#L2

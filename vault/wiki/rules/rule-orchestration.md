@@ -2,7 +2,7 @@
 type: rule
 purpose: The orchestration of the main agent — the triage of a Frontier item, the dispatch of case-guppi, the acknowledging reply, LEDGER, defers and the one rule — as a rule of its own loaded by /hi, and case-schema.md read by case-guppi alone
 status: draft
-deferred_by: ["[[decision-case-424]]"]
+deferred_by: ["[[decision-case-424]]", "[[decision-case-546]]"]
 origin: raw/2026-09-25/1228/ledger.md#case-424
 sprint: migration
 created: 2026-09-25
@@ -15,3 +15,4 @@ The orchestration of the main agent — the triage of a Frontier item, the dispa
 ## History
 
 - 2026-09-25 deferred, placeholder · [[decision-case-424]]
+- 2026-09-30 deferred · [[decision-case-546]]

@@ -5054,3 +5054,110 @@ instruction. The global feed; a page's own `## History` is the per-page view.
 - 2026-09-30 lessons/lesson-case-build-rebuild-quotes-the-relayed-words archived · cleanup
 - 2026-09-30 decisions/decision-case-533 archived · cleanup
 - 2026-09-30 rules/rule-sprint estimate estimate-sprint-drops-an-emptied-milestone archived · cleanup
+- 2026-09-30 decisions/decision-case-534 created · raw/2026-09-30/0248/ledger.md#case-534 · generate
+- 2026-09-30 decisions/decision-case-538 created · raw/2026-09-30/0248/ledger.md#case-538 · generate
+- 2026-09-30 decisions/decision-case-539 created · raw/2026-09-30/0248/ledger.md#case-539 · generate
+- 2026-09-30 estimates/estimate-backlog-renders status: pending → passed · raw/2026-09-30/1306/ledger.md#L1 · generate
+- 2026-09-30 estimates/estimate-sprint-items-move-only-by-a-case status: pending → passed · raw/2026-09-30/1306/ledger.md#L2 · generate
+- 2026-09-30 estimates/estimate-glossary-terms-defined status: failed → failed · raw/2026-09-30/1306/ledger.md#L3 · generate
+- 2026-09-30 decisions/decision-case-541 created · raw/2026-09-30/1306/ledger.md#case-541 · generate
+- 2026-09-30 entities/entity-glossary updated: the row ref, slug, supersedes: a supersede clears a defer only from the pages the superseding Case names (case 541) · [[decision-case-541]] · generate
+- 2026-09-30 decisions/decision-case-542 created · raw/2026-09-30/1306/ledger.md#case-542 · generate
+- 2026-09-30 rules/rule-spec-capture updated: the Stop hook of rule-spec-write writes a defer-only Case under ## Deferred with no Retro moment; Retro puts nothing off (case 542) · [[decision-case-542]] · generate
+- 2026-09-30 rules/rule-spec-write updated: a short defer goes under ## Deferred of spec.md once it stands, with no Retro moment (case 542) · [[decision-case-542]] · generate
+- 2026-09-30 estimates/estimate-spec-write-writes-a-defer updated: the Criterion replaced whole — a defer goes into spec.md once it stands, with no Retro moment; the clause on the ratified copy dropped (case 542) · [[decision-case-542]] · generate
+- 2026-09-30 decisions/decision-case-543 created · raw/2026-09-30/1306/ledger.md#case-543 · generate
+- 2026-09-30 decisions/decision-case-543.1 created · raw/2026-09-30/1306/ledger.md#case-543.1 · generate
+- 2026-09-30 rules/rule-case-build updated: a round of case-guppi ends with its last question: no list of files and no note after it (case 543.1) · [[decision-case-543.1]] · generate
+- 2026-09-30 decisions/decision-case-543.2 created · raw/2026-09-30/1306/ledger.md#case-543.2 · generate
+- 2026-09-30 rules/rule-skill-grill-me updated: the Options label of the question template stands at the indent of the other lines (case 543.2) · [[decision-case-543.2]] · generate
+- 2026-09-30 decisions/decision-case-543.3 created · raw/2026-09-30/1306/ledger.md#case-543.3 · generate
+- 2026-09-30 rules/rule-page-generation updated: a replace old that opens with spaces or tabs takes the spaces and tabs before its first word on the page (case 543.3) · [[decision-case-543.3]] · generate
+- 2026-09-30 estimates/estimate-generate-replace-takes-the-leading-indent created · [[decision-case-543.3]] · generate
+- 2026-09-30 rules/rule-page-generation estimate estimate-generate-replace-takes-the-leading-indent added · [[decision-case-543.3]] · generate
+- 2026-09-30 rules/rule-case-protocol updated: how the leading spaces and tabs of a replace pair match (case 543.3) · [[decision-case-543.3]] · generate
+- 2026-09-30 decisions/decision-case-543.4 created · raw/2026-09-30/1306/ledger.md#case-543.4 · generate
+- 2026-09-30 rules/rule-prespec updated: pre-spec reports a replace pair whose new opens with spaces or tabs while its old does not (case 543.4) · [[decision-case-543.4]] · generate
+- 2026-09-30 estimates/estimate-prespec-catches-an-indent-added-twice created · [[decision-case-543.4]] · generate
+- 2026-09-30 rules/rule-prespec estimate estimate-prespec-catches-an-indent-added-twice added · [[decision-case-543.4]] · generate
+- 2026-09-30 decisions/decision-case-544 created · raw/2026-09-30/1306/ledger.md#case-544 · generate
+- 2026-09-30 decisions/decision-case-544.1 created · raw/2026-09-30/1306/ledger.md#case-544.1 · generate
+- 2026-09-30 decisions/decision-case-480 superseded by decision-case-544.1 · [[decision-case-544.1]] · generate
+- 2026-09-30 rules/rule-case-build-checks-its-sub-cases defer by decision-case-480 superseded · [[decision-case-544.1]] · generate
+- 2026-09-30 rules/rule-case-build updated: case-guppi checks its finished Case before it answers: the chosen options, the pages that name a changed slug, the sub-cases on one page side by side (case 544.1) · [[decision-case-544.1]] · generate
+- 2026-09-30 estimates/estimate-case-build-checks-the-finished-case created · [[decision-case-544.1]] · generate
+- 2026-09-30 rules/rule-case-build estimate estimate-case-build-checks-the-finished-case added · [[decision-case-544.1]] · generate
+- 2026-09-30 rules/rule-case-build-checks-its-sub-cases deleted · [[decision-case-544.1]] · generate
+- 2026-09-30 insights/insight-case-build-promise-lines-compared-by-no-check updated: actioned: the half on a replaced Criterion is closed by the note of pre-spec (case 472); case-guppi checks its finished Case against the options the person chose before it answers (case 544.1) · [[decision-case-544.1]] · generate
+- 2026-09-30 insights/insight-workflow-fact-signed-from-a-check-that-does-not-cover-it updated: actioned: case-guppi searches the live pages for each slug the change makes false, and a claim about every text names its search (case 544.1) · [[decision-case-544.1]] · generate
+- 2026-09-30 decisions/decision-case-544.2 created · raw/2026-09-30/1306/ledger.md#case-544.2 · generate
+- 2026-09-30 rules/rule-case-build updated: case-guppi writes recommend as the record of its rounds, the latest recommendation and answer of each question, a sub-case with its own items and no problem (case 544.2) · [[decision-case-544.2]] · generate
+- 2026-09-30 rules/rule-case-protocol updated: recommend is the record of the rounds and stands in the Spec, its item titles in bold; a sub-case carries its own items and no problem (cases 544.2, 544.5) · [[decision-case-544.2]] · generate
+- 2026-09-30 estimates/estimate-case-build-records-the-rounds-in-recommend created · [[decision-case-544.2]] · generate
+- 2026-09-30 rules/rule-case-build estimate estimate-case-build-records-the-rounds-in-recommend added · [[decision-case-544.2]] · generate
+- 2026-09-30 decisions/decision-case-544.3 created · raw/2026-09-30/1306/ledger.md#case-544.3 · generate
+- 2026-09-30 rules/rule-case-check updated: the check of each answer of case-guppi requires the title of each question of its rounds in a recommend of the Case (case 544.3) · [[decision-case-544.3]] · generate
+- 2026-09-30 rules/rule-case-protocol updated: a script reads the titles of the items of recommend (case 544.3) · [[decision-case-544.3]] · generate
+- 2026-09-30 estimates/estimate-case-check-requires-each-question-of-the-rounds created · [[decision-case-544.3]] · generate
+- 2026-09-30 rules/rule-case-check estimate estimate-case-check-requires-each-question-of-the-rounds added · [[decision-case-544.3]] · generate
+- 2026-09-30 decisions/decision-case-544.4 created · raw/2026-09-30/1306/ledger.md#case-544.4 · generate
+- 2026-09-30 rules/rule-case-check updated: a sub-case that carries problem is a finding of the check of the answer (case 544.4) · [[decision-case-544.4]] · generate
+- 2026-09-30 estimates/estimate-case-check-refuses-a-problem-in-a-sub-case created · [[decision-case-544.4]] · generate
+- 2026-09-30 rules/rule-case-check estimate estimate-case-check-refuses-a-problem-in-a-sub-case added · [[decision-case-544.4]] · generate
+- 2026-09-30 decisions/decision-case-544.5 created · raw/2026-09-30/1306/ledger.md#case-544.5 · generate
+- 2026-09-30 rules/rule-spec-write updated: the Spec holds recommend (case 544.5) · [[decision-case-544.5]] · generate
+- 2026-09-30 estimates/estimate-spec-write-copies-the-ratified-case updated: the Criterion replaced whole — the Spec holds recommend, a sub-case's own under its heading (case 544.5) · [[decision-case-544.5]] · generate
+- 2026-09-30 decisions/decision-case-544.6 created · raw/2026-09-30/1306/ledger.md#case-544.6 · generate
+- 2026-09-30 rules/rule-materialize updated: a sub-case reads no problem or recommend from its parent; a parent Case gets a decision record of its own with children and its given when it has one (case 544.6) · [[decision-case-544.6]] · generate
+- 2026-09-30 estimates/estimate-materialize-assembles updated: the Criterion replaced whole — a sub-case reads no problem or recommend from its parent, and a parent Case gets its own record (case 544.6) · [[decision-case-544.6]] · generate
+- 2026-09-30 decisions/decision-case-544.7 created · raw/2026-09-30/1306/ledger.md#case-544.7 · generate
+- 2026-09-30 rules/rule-page-generation updated: the Decision page carries Recommend; a Case with sub-cases gets its own page, linked to theirs by children and parent (case 544.7) · [[decision-case-544.7]] · generate
+- 2026-09-30 estimates/estimate-generate-writes-the-decision-page updated: the Criterion replaced whole — Recommend on the page, a page for a parent Case with children and no Context, parent on a sub-case page and no Problem there (case 544.7) · [[decision-case-544.7]] · generate
+- 2026-09-30 decisions/decision-case-544.8 created · raw/2026-09-30/1306/ledger.md#case-544.8 · generate
+- 2026-09-30 rules/rule-decisions-schema updated: the Decision page carries Recommend; a Case with sub-cases has a page with children in place of the kind lists and no Context, a sub-case page carries parent and no Problem (case 544.8) · [[decision-case-544.8]] · generate
+- 2026-09-30 estimates/estimate-decisions-schema-checked updated: the Criterion replaced whole — Recommend, parent and children in the schema, Problem optional, Context never on the page of a Case with sub-cases (case 544.8) · [[decision-case-544.8]] · generate
+- 2026-09-30 entities/entity-glossary updated: the row Decision page names Recommend and the pages of a parent and a sub-case (case 544.8) · [[decision-case-544.8]] · generate
+- 2026-09-30 decisions/decision-case-544.9 created · raw/2026-09-30/1306/ledger.md#case-544.9 · generate
+- 2026-09-30 rules/rule-lint updated: a Decision page with children and no kind list, and the origin of a parent Case found by a line of its sub-case, are no findings (case 544.9) · [[decision-case-544.9]] · generate
+- 2026-09-30 estimates/estimate-lint-finds-a-broken-link updated: the Criterion replaced whole — the page of a parent Case: children in place of the kind lists, its origin found by a line of a sub-case (case 544.9) · [[decision-case-544.9]] · generate
+- 2026-09-30 decisions/decision-case-545 created · raw/2026-09-30/1306/ledger.md#case-545 · generate
+- 2026-09-30 decisions/decision-case-546 created · raw/2026-09-30/1306/ledger.md#case-546 · generate
+- 2026-09-30 decisions/decision-case-545 superseded by decision-case-546 · [[decision-case-546]] · generate
+- 2026-09-30 rules/rule-orchestration deferred · [[decision-case-546]] · generate
+- 2026-09-30 decisions/decision-case-544.10 created · raw/2026-09-30/1306/ledger.md#case-544.10 · generate
+- 2026-09-30 estimates/estimate-spec-write-reaches-the-approved-spec updated: the Criterion replaced whole — spec.md holds recommend, the parent's from its stored answer (case 544.10) · [[decision-case-544.10]] · generate
+- 2026-09-30 decisions/decision-case-544.11 created · raw/2026-09-30/1306/ledger.md#case-544.11 · generate
+- 2026-09-30 estimates/estimate-case-protocol-case-form updated: the Criterion replaced whole — recommend is the list of the schema, a sub-case with its own (case 544.11) · [[decision-case-544.11]] · generate
+- 2026-09-30 estimates/estimate-case-check-refuses-a-letter-outside-the-script status: pending → passed · raw/2026-09-30/1306/ledger.md#L43 · generate
+- 2026-09-30 estimates/estimate-settings status: pending → passed · raw/2026-09-30/1306/ledger.md#L44 · generate
+- 2026-09-30 estimates/estimate-hi-takes-its-readings status: pending → failed · raw/2026-09-30/1306/ledger.md#L45 · generate
+- 2026-09-30 lessons/lesson-hi-opens-estimate-pages-it-does-not-read created · raw/2026-09-30/1306/ledger.md#L46 · generate
+- 2026-09-30 lessons/lesson-case-build-context-claims-an-effect-no-check-covers created · raw/2026-09-30/1306/ledger.md#L47 · generate
+- 2026-09-30 lessons/lesson-prespec-report-questions-still-off-the-shape created · raw/2026-09-30/1306/ledger.md#L48 · generate
+- 2026-09-30 insights/insight-workflow-fact-signed-from-a-check-that-does-not-cover-it updated: child lesson-case-build-context-claims-an-effect-no-check-covers added (synthesis) · raw/2026-09-30/1306/ledger.md#L47 · generate
+- 2026-09-30 lessons/lesson-case-build-context-claims-an-effect-no-check-covers updated: clustered under insight-workflow-fact-signed-from-a-check-that-does-not-cover-it (synthesis) · raw/2026-09-30/1306/ledger.md#L47 · generate
+- 2026-09-30 insights/insight-prespec-main-agent-question-off-the-grill-me-shape created · raw/2026-09-30/1306/ledger.md#L48 · generate
+- 2026-09-30 lessons/lesson-prespec-report-decisions-off-the-question-shape updated: clustered under insight-prespec-main-agent-question-off-the-grill-me-shape (synthesis) · raw/2026-09-30/1306/ledger.md#L48 · generate
+- 2026-09-30 lessons/lesson-prespec-report-questions-still-off-the-shape updated: clustered under insight-prespec-main-agent-question-off-the-grill-me-shape (synthesis) · raw/2026-09-30/1306/ledger.md#L48 · generate
+- 2026-09-30 rules/rule-backlog status: draft → built · cascade · generate
+- 2026-09-30 rules/rule-decisions-schema status: built → draft · cascade · generate
+- 2026-09-30 rules/rule-lint status: built → draft · cascade · generate
+- 2026-09-30 rules/rule-materialize status: built → draft · cascade · generate
+- 2026-09-30 rules/rule-prespec status: built → draft · cascade · generate
+- 2026-09-30 rules/rule-settings status: draft → built · cascade · generate
+- 2026-09-30 rules/rule-sprint status: draft → built · cascade · generate
+- 2026-09-30 decisions/decision-case-480 archived · superseded · generate
+- 2026-09-30 decisions/decision-case-545 archived · superseded · generate
+- 2026-09-30 lessons/lesson-case-build-signs-one-criterion-twice-in-a-session archived · insight actioned · generate
+- 2026-09-30 lessons/lesson-case-build-built-case-departs-from-the-chosen-option archived · insight actioned · generate
+- 2026-09-30 lessons/lesson-case-build-writes-a-count-no-command-printed archived · insight actioned · generate
+- 2026-09-30 lessons/lesson-case-build-frame-count-claimed-over-a-partial-search archived · insight actioned · generate
+- 2026-09-30 lessons/lesson-case-build-context-claims-an-effect-no-check-covers archived · insight actioned · generate
+- 2026-09-30 rules/rule-case-build-checks-its-sub-cases archived · cleanup
+- 2026-09-30 lessons/lesson-case-build-built-case-departs-from-the-chosen-option archived · cleanup
+- 2026-09-30 lessons/lesson-case-build-context-claims-an-effect-no-check-covers archived · cleanup
+- 2026-09-30 lessons/lesson-case-build-frame-count-claimed-over-a-partial-search archived · cleanup
+- 2026-09-30 lessons/lesson-case-build-signs-one-criterion-twice-in-a-session archived · cleanup
+- 2026-09-30 lessons/lesson-case-build-writes-a-count-no-command-printed archived · cleanup
+- 2026-09-30 decisions/decision-case-480 archived · cleanup
+- 2026-09-30 decisions/decision-case-545 archived · cleanup

@@ -138,7 +138,7 @@ update:
 
 ```tasks
 - [x] update `estimate-settings`
-- [ ] read `estimate-settings` at a later session start
+- [x] read `estimate-settings` at a later session start
 ```
 
 ## Case 535 — Five glossary rows agree with the pages that define them
@@ -296,7 +296,7 @@ update:
 - [x] update `insight-case-form-chat-form-read-by-no-script`
 - [x] `guppi/casecheck.py` — `check_answer` imports `check_untranslated` from `guppi/prespec.py` and runs it on the Spec text it builds, each finding to its Case; the docstring says so
 - [x] `tests/test_casecheck.py` — tests whose names hold `script`: a Russian letter in a name, a `context` and a `problem` is a finding with exit 2 and no file written; the same answer again is stored and exits 0 with no file written; an English answer passes; a Russian quotation in `then` passes; a missing `guppi.toml` is one finding
-- [ ] read `estimate-case-check-refuses-a-letter-outside-the-script` at a later session
+- [x] read `estimate-case-check-refuses-a-letter-outside-the-script` at a later session
 ```
 
 ## Case 538 — The brief of `/carry` keeps Next session from the open lines of the Frontier
@@ -465,7 +465,7 @@ delete:
 - [x] delete `estimate-sprint-drops-an-emptied-milestone`
 - [x] `guppi/generate.py` — `move_passed_over`, `passes_in_a_row`, `PASSES_TO_MOVE` and their call after the cascade removed, and the paragraph of the docstring on the move; `frontiers` and `frontier_marks` stay, since `guppi/backlog.py` imports them
 - [x] `tests/test_generate.py` — the six tests of the move removed; one test `test_generate_moves_no_line_of_the_sprint_page`: a sprint page whose items are put off in three and more sessions in a row stands unchanged after the run, and stdout names no move
-- [ ] read `estimate-sprint-items-move-only-by-a-case` in a later session, after the librarian's run
+- [x] read `estimate-sprint-items-move-only-by-a-case` in a later session, after the librarian's run
 ```
 
 ### Case 539.2 — the brief names no move of the sprint
@@ -606,7 +606,7 @@ update:
 
 ```tasks
 - [x] update `estimate-backlog-renders`
-- [ ] read `estimate-backlog-renders` in a later session: `uv run pytest tests/test_backlog.py`, and `vault/wiki/backlog.md` after the librarian's run
+- [x] read `estimate-backlog-renders` in a later session: `uv run pytest tests/test_backlog.py`, and `vault/wiki/backlog.md` after the librarian's run
 ```
 
 ## Deferred

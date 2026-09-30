@@ -1,7 +1,7 @@
 ---
 type: estimate
 kind: QA
-status: passed
+status: pending
 target: "[[rule-spec-write]]"
 purpose: The ratified Case enters the plan file in the words of the stored answer of case-guppi, the then block built from the sub-points, each block fenced by its content
 method: uv run pytest tests/test_ratified.py -k write; the live reading by hand, the plan file after the first ratification of a session
@@ -18,7 +18,8 @@ When:
 The `Stop` hook `uv run guppi ratified` runs after a reply whose `LEDGER` block holds `- decision[case N]` lines of a kind other than `defer`; it reads `<plan>.checked.json` beside the plan file for the answer of `case-guppi` stored under Case N, and the session's transcript for the `SendUserFile` calls on `raw/<date>/<hi HHMM>/cases/case-<N>.md`, N the id of the top-level Case, and for the last earlier reply that shows Case N with at least one of its sections.
 
 Then:
-The hook writes the stored answer of Case N into the plan file `plan_path` finds, the section of Case N replaced when it stands, appended otherwise: the heading, `context`, `problem`, `given`, `when` and `then` as the answer holds them; a block tagged `then` built from the sub-points of `tasks`; a block tagged `tasks` of the task lines without their sub-points; `recommend` and `ratification` are not written.
+The hook writes the stored answer of Case N into the plan file `plan_path` finds, the section of Case N replaced when it stands, appended otherwise: the heading, `context`, `problem`, `recommend`, `given`, `when` and `then` as the answer holds them; a block tagged `then` built from the sub-points of `tasks`; a block tagged `tasks` of the task lines without their sub-points; `ratification` is not written.
+**＋** A sub-case's own `recommend` is written under its heading, and the `context`, `problem` and `recommend` of its parent come from the parent's stored answer.
 **＋** Each of the two blocks opens and closes with a fence of backticks one longer than the longest run of backticks that opens a line inside it, three at the least, which `tagged_blocks` of `guppi/materialize.py` reads back whole; the same fence rule holds for the blocks it writes into `raw/<date>/<hi HHMM>/spec.md` once it stands, and for the `then` block of a short-form defer under `## Deferred`.
 **＋** No `SendUserFile` call on the file of Case N made after the time the store holds for Case N: exit 2 with the reason on stderr, and nothing of Case N is written.
 **＋** A last showing of Case N that differs from the stored answer in a section it shows — by the one comparison `uv run guppi casecheck` makes on `Stop`, imported from `guppi/casecheck.py` — a store with no Case N, or a Case N stored with findings: exit 2 with the reason on stderr, and nothing of Case N is written.
@@ -46,3 +47,4 @@ The hook writes the stored answer of Case N into the plan file `plan_path` finds
 - 2026-09-27 updated: the Criterion replaced whole — the fence of each written block is one longer than the longest fence inside it; the ratified copy no longer named (cases 444.2, 445.2) · [[decision-case-444.2]]
 - 2026-09-27 updated: the Criterion replaced whole — a sending of the file after the newest store in place of a showing whole (case 452.3) · [[decision-case-452.3]]
 - 2026-09-27 status: pending → passed · raw/2026-09-27/1819/ledger.md#L29
+- 2026-09-30 updated: the Criterion replaced whole — the Spec holds recommend, a sub-case's own under its heading (case 544.5) · [[decision-case-544.5]]

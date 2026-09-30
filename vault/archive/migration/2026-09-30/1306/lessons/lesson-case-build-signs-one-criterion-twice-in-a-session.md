@@ -2,7 +2,7 @@
 type: lesson
 kind: error
 root_cause: neither case-guppi's frame nor the check of its answer nor the pre-spec script looks for an earlier Case of the same session that replaces the same Criterion whole.
-status: clustered
+status: archived
 insight: "[[insight-case-build-promise-lines-compared-by-no-check]]"
 origin: raw/2026-09-29/1134/ledger.md#L69
 sprint: migration
@@ -22,3 +22,5 @@ neither case-guppi's frame nor the check of its answer nor the pre-spec script l
 
 - 2026-09-29 created · raw/2026-09-29/1134/ledger.md#L69
 - 2026-09-29 updated: clustered under insight-case-build-promise-lines-compared-by-no-check (synthesis) · raw/2026-09-29/1134/ledger.md#L69
+- 2026-09-30 archived · insight actioned
+- 2026-09-30 archived · cleanup

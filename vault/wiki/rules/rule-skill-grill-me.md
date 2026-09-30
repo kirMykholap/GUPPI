@@ -38,7 +38,7 @@ Each question should be formatted like so:
     <a sentence that introduces a quotation and names its source, when the question quotes one>:
     > <the quoted words, as the source holds them>
 
-        **Options:**
+    **Options:**
 
     🔹 **(a) <option name>**
       - **After:** <what holds with this option>
@@ -73,3 +73,4 @@ The session is done when the frontier is empty: every branch of the design tree 
 - 2026-09-29 updated: the options of a question stand under an Options label, each marked with 🔹; every list stands one item per line (case 511.1) · [[decision-case-511.1]]
 - 2026-09-29 status: built → draft · cascade
 - 2026-09-29 updated: a quotation in a round stands as a blockquote on its own line, inside an After item indented to its text (case 524.1) · [[decision-case-524.1]]
+- 2026-09-30 updated: the Options label of the question template stands at the indent of the other lines (case 543.2) · [[decision-case-543.2]]

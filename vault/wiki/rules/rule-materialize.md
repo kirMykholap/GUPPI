@@ -2,7 +2,7 @@
 type: rule
 kind: Leaf
 purpose: Prevents the librarian from reading the ledger and the Spec beyond its unticked lines, or from routing a decision by guesswork
-status: built
+status: draft
 enforcement: check
 implementation_ref: [guppi/materialize.py, tests/test_materialize.py]
 parent: "[[rule-documentation]]"
@@ -124,3 +124,5 @@ entry's fields, each with its writer, live in the docstring of `guppi/materializ
 - 2026-09-29 status: built → draft · cascade
 - 2026-09-30 updated: the mark of a comment says YAML cuts a value at a # after a space and PyYAML refuses the block at a # after a tab (case 526) · [[decision-case-526]]
 - 2026-09-30 status: draft → built · cascade
+- 2026-09-30 updated: a sub-case reads no problem or recommend from its parent; a parent Case gets a decision record of its own with children and its given when it has one (case 544.6) · [[decision-case-544.6]]
+- 2026-09-30 status: built → draft · cascade

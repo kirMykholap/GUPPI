@@ -1,7 +1,7 @@
 ---
 type: estimate
 kind: QA
-status: passed
+status: pending
 target: "[[rule-case-protocol]]"
 purpose: A built Case carries the whole contract in given, when and then, in the file the person is sent
 method: one reading by hand of the Cases of a session, at its close
@@ -19,13 +19,13 @@ The hook of `rule-case-check` writes a Case that `case-guppi` built into `raw/<d
 
 Then:
 The file opens with the heading `## Case N — name`, a sub-case with `### Case N.M — name` under its parent, and holds the sections of each Case in the order of the Sections table of `vault/wiki/case-schema.md`, each one blockquote whose first line is `**name:**`.
-**＋** `context`, `problem` and `recommend` are plain prose that explains briefly — `context` opens with the mechanism in plain words, then gives the state of the pages the Case changes, the vault's answer, what `case-guppi` found in the frame and why an Estimate of the rule is not touched, and leaves out a part with nothing to say — and the person raised no complaint in the session about their length or clarity.
+**＋** `context` and `problem` are plain prose that explains briefly — `context` opens with the mechanism in plain words, then gives the state of the pages the Case changes, the vault's answer, what `case-guppi` found in the frame and why an Estimate of the rule is not touched, and leaves out a part with nothing to say — `recommend` is the list the Sections table of `vault/wiki/case-schema.md` sets, each item plain prose, and the person raised no complaint in the session about their length or clarity.
 **＋** `given` holds the frame, one thing per line — each page, module, file and test the Case touches and the rule that constrains, its slug or path in a code span and its role — and no state.
 **＋** In `given`, `when` and `then` each line after the first opens with `**＋**` or `**－**`, a `**－**` line names something of `given` or `when`, `then` holds behaviour only, and none of them holds a count of items — pages, lines, Estimates, Cases, tests; a number that states a condition or a limit stands.
 **＋** `tasks` names by slug each Estimate the Case creates or replaces, and under a line whose item writes content that content stands as sub-points; no `contract` line and no "block N" line.
 **＋** A pair under `replace` or `reword` stands only when the Case says what the sentence around each match names; a Case that changes the behaviour of a page gives an `update` to each Estimate of that page whose Criterion speaks of the change.
 **＋** `ratification` holds only the preview of the ledger lines in an untagged fence; in the chat the Case stands as the short text and that `ratification` of `estimate-case-protocol-shows-the-built-case`, and the reply ends with a plain question.
-**＋** A Case with sub-cases stands in one file and is sent in one reply: the parent's `context`, `problem` and `recommend`, then each sub-case whole.
+**＋** A Case with sub-cases stands in one file and is sent in one reply: the parent's `context`, `problem` and `recommend`, then each sub-case whole, with its own `recommend` when it has one.
 **－** A case number, a count, a line number or a quotation in `context`, `problem` or `recommend` is no fault of the form.
 
 ## Result
@@ -58,3 +58,4 @@ The file opens with the heading `## Case N — name`, a sub-case with `### Case 
 - 2026-09-27 status: failed → failed · raw/2026-09-26/2300/ledger.md#L35
 - 2026-09-27 updated: the Criterion replaced whole — the form stands in the file of a built Case; context, problem and recommend brief plain prose judged by the person's complaint, a case number, a count, a line number or a quotation there no fault; no count of items in given, when and then (case 449) · [[decision-case-449]]
 - 2026-09-27 status: pending → passed · raw/2026-09-27/2050/ledger.md#L34
+- 2026-09-30 updated: the Criterion replaced whole — recommend is the list of the schema, a sub-case with its own (case 544.11) · [[decision-case-544.11]]

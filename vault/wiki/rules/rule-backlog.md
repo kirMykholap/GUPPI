@@ -2,7 +2,7 @@
 type: rule
 kind: Leaf
 purpose: "Prevents a deferred item from dropping out of sight: a defer, an open Insight, a sprint item without a turn or a conserved Spec that no list shows to the next session"
-status: draft
+status: built
 enforcement: check
 implementation_ref: [guppi/backlog.py, tests/test_backlog.py]
 governs: vault/wiki/backlog.md
@@ -27,3 +27,4 @@ Prevents a deferred item from dropping out of sight. Before case 451 the brief c
 - 2026-09-27 updated: an item leaves when the Case that decides it names its page and supersedes its defer (case 467.3) · [[decision-case-467.3]]
 - 2026-09-30 updated: the reader of the count named without the sprint move, removed by case 539.1 (case 539.3) · [[decision-case-539.3]]
 - 2026-09-30 status: built → draft · cascade
+- 2026-09-30 status: draft → built · cascade

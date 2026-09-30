@@ -2,7 +2,7 @@
 type: rule
 kind: MOC
 purpose: Keeps the rules that share .claude/settings.json from becoming two copies of one file
-status: draft
+status: built
 enforcement: render
 governs: .claude/settings.json
 render_mode: full
@@ -51,3 +51,4 @@ them all. This page is the file: its body is the whole of `settings.json`, and e
 - 2026-09-30 child rule-python-utf8 added · [[decision-case-534.1]]
 - 2026-09-30 updated: a fourth child, rule-python-utf8, owns the env block after hooks · [[decision-case-534.1]]
 - 2026-09-30 status: built → draft · cascade
+- 2026-09-30 status: draft → built · cascade

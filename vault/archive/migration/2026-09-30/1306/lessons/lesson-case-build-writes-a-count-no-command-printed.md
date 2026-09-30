@@ -2,7 +2,7 @@
 type: lesson
 kind: error
 root_cause: case-guppi writes a count or a claim about a set in its context from its reading, not from a command it ran, and nothing before /pre-spec checks it.
-status: clustered
+status: archived
 insight: "[[insight-workflow-fact-signed-from-a-check-that-does-not-cover-it]]"
 origin: raw/2026-09-29/1432/ledger.md#L34
 sprint: migration
@@ -22,3 +22,5 @@ case-guppi writes a count or a claim about a set in its context from its reading
 
 - 2026-09-29 created · raw/2026-09-29/1432/ledger.md#L34
 - 2026-09-29 updated: clustered under insight-workflow-fact-signed-from-a-check-that-does-not-cover-it (synthesis) · raw/2026-09-29/1432/ledger.md#L34
+- 2026-09-30 archived · insight actioned
+- 2026-09-30 archived · cleanup

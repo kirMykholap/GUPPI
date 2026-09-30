@@ -2,7 +2,7 @@
 type: rule
 kind: Leaf
 purpose: Prevents a Decision page from carrying a field or section outside the shape lint checks, or lacking one it needs
-status: built
+status: draft
 enforcement: render
 governs: vault/wiki/decisions/schema.yaml
 render_mode: full
@@ -27,17 +27,17 @@ description: |
 
   Slug. `decision-case-<N>`: `decision-case-18.1`. Mechanical, because the script writes the page and may not name anything; unique, because a Case id is. Nothing searches Decision pages, so the slug needs no meaning beyond the Case it points back at. A Decision is reached by reference only: from a target page's `deferred_by` (a deferred decision, case 52.3), from the `[[decision-case-N]]` wikilink of a History line (case 52.4), or by the case id a `supersedes` carries.
 
-  Fields deliberately absent. `ratification` — a Decision page cannot exist without it. The Case does not close, no ledger line is written, no page is generated. A field with one possible value carries no information; the fact is recorded by the page existing and by `origin`. `recommend` — if the human accepted the proposal it became `Then`; if they changed it, `Then` holds the change. Either way the original stays in the Case file, `cases/case-<N>.md` in the folder of `origin` (case 513). `last_updated` — a decision is not edited. Only `status` and `superseded_by` ever change, and both are dated in History; one more History line is allowed, `updated:` of a Case that signs the page's text after the fact (case 358). `authority` — dropped. It overlapped with tags on one reading and with `ref` on the other. If a real need appears later, it comes back as a ratified decision.
+  Fields deliberately absent. `ratification` — a Decision page cannot exist without it. The Case does not close, no ledger line is written, no page is generated. A field with one possible value carries no information; the fact is recorded by the page existing and by `origin`. `recommend` — no field: the body carries it as `## Recommend` (case 544.8). `last_updated` — a decision is not edited. Only `status` and `superseded_by` ever change, and both are dated in History; one more History line is allowed, `updated:` of a Case that signs the page's text after the fact (case 358). `authority` — dropped. It overlapped with tags on one reading and with `ref` on the other. If a real need appears later, it comes back as a ratified decision.
 
-  The body is the `problem` of the Case that produced it: the one paragraph a reader needs at the end of a link. The rest of the Case — `context`, `recommend`, `given`, `when`, `then`, `tasks`, `ratification` — stays in its Case file. A Case without `given`, the short form of a deferred decision, has no Case file, so its page keeps `## Context` as well; the page of a Case superseded in its own session has the two-line body of `## Context` and `## Problem` that names the superseding Decision (case 299.4). A page written before case 513 keeps the sections it carries and is not rewritten (case 513). `create`, `update`, `delete`, `defer`: one list per kind present among the Case's ledger lines, in that order, each the slugs of those lines in ledger order; a kind with no line is absent, at least one is present. The category is derived from the slug prefix, never written. Lint checks every page slug names a live or archived page, and that neither `kind` nor `target_slug` is present (case 59.4).
+  The body is the `problem` of the Case that produced it — the one paragraph a reader needs at the end of a link — and its `recommend`, the choices made in the rounds, under `## Recommend`. A Case with sub-cases has a page of its own with `## Problem`, the parent's `## Recommend` and `children`, and never `## Context`; the page of a sub-case carries `parent`, its own `## Recommend` when it has one, and no `## Problem` (case 544.8). The rest of the Case — `context`, `given`, `when`, `then`, `tasks`, `ratification` — stays in its Case file. A Case without `given` and without sub-cases, the short form of a deferred decision, has no Case file, so its page keeps `## Context` as well; the page of a Case superseded in its own session has the two-line body of `## Context` and `## Problem` that names the superseding Decision (case 299.4). A page written before case 513 keeps the sections it carries and is not rewritten (case 513). `create`, `update`, `delete`, `defer`: one list per kind present among the Case's ledger lines, in that order, each the slugs of those lines in ledger order; a kind with no line is absent, at least one is present but on the page of a Case with sub-cases, which carries `children` instead (case 544.8). The category is derived from the slug prefix, never written. Lint checks every page slug names a live or archived page, and that neither `kind` nor `target_slug` is present (case 59.4).
 properties:
   required: [type, case, status, origin, sprint, created, tags]
-  optional: [create, update, delete, defer, source, supersedes, superseded_by]
+  optional: [create, update, delete, defer, source, supersedes, superseded_by, parent, children]
   values:
     status: [current, superseded, archived]
 body:
-  required: ["## Problem", "## History"]
-  optional: ["## Context", "## Given", "## When", "## Criterion", "## Deferred", "## Note"]
+  required: ["## History"]
+  optional: ["## Context", "## Problem", "## Recommend", "## Given", "## When", "## Criterion", "## Deferred", "## Note"]
 fields:
   type: |
     required; `decision`. Page category. Fixed for this schema.
@@ -46,19 +46,23 @@ fields:
   status: |
     required; `current` | `superseded` | `archived`. Lifecycle of this page, not of the work. `superseded` once a later Case names it in `supersedes`, and `archived` the moment the cascade of `generate` meets it so: a superseded Decision no longer describes the present (case 104.1).
   create: |
-    one of the four; list of quoted wikilinks `"[[slug]]"`. The slugs of the Case's `create` lines, in ledger order: a page. One list per kind present, in the order create, update, delete, defer; a kind with no line is absent. Lists of quoted wikilinks for page slugs, so Obsidian shows them as links (case 148.2); the kind of every target is its key (case 59.4, replacing the aligned `kind` and `target_slug` of case 52.1). The category is derived from the slug prefix and never written; the parent of a `create` is on the child page as `parent` or `target`.
+    one of the four, or `children` on the page of a Case with sub-cases; list of quoted wikilinks `"[[slug]]"`. The slugs of the Case's `create` lines, in ledger order: a page. One list per kind present, in the order create, update, delete, defer; a kind with no line is absent. Lists of quoted wikilinks for page slugs, so Obsidian shows them as links (case 148.2); the kind of every target is its key (case 59.4, replacing the aligned `kind` and `target_slug` of case 52.1). The category is derived from the slug prefix and never written; the parent of a `create` is on the child page as `parent` or `target`.
   update: |
-    one of the four; list of quoted wikilinks `"[[slug]]"`. The slugs of the Case's `update` lines, in ledger order; a later `rename` retargets the link like any link (case 258.1).
+    one of the four, or `children` on the page of a Case with sub-cases; list of quoted wikilinks `"[[slug]]"`. The slugs of the Case's `update` lines, in ledger order; a later `rename` retargets the link like any link (case 258.1).
   delete: |
-    one of the four; list of quoted wikilinks `"[[slug]]"`. The slugs of the Case's `delete` lines, in ledger order.
+    one of the four, or `children` on the page of a Case with sub-cases; list of quoted wikilinks `"[[slug]]"`. The slugs of the Case's `delete` lines, in ledger order.
   defer: |
-    one of the four; list of quoted wikilinks `"[[slug]]"`. The slugs of the Case's `defer` lines, in ledger order; each target carries this page in `deferred_by`.
+    one of the four, or `children` on the page of a Case with sub-cases; list of quoted wikilinks `"[[slug]]"`. The slugs of the Case's `defer` lines, in ledger order; each target carries this page in `deferred_by`.
   source: |
     optional; list. External ids the Case's lines carried (`{source:...}`), traceability only.
   supersedes: |
     optional; list of decision quoted wikilinks `"[[slug]]"`. Earlier Cases this one overrides, from the ledger's `{supersedes:case N}`.
   superseded_by: |
     optional; list of decision quoted wikilinks `"[[slug]]"`. Back-references, written by the script.
+  parent: |
+    optional; a decision quoted wikilink `"[[slug]]"`. On the page of a sub-case, the page of its parent Case, written by the script (case 544.8).
+  children: |
+    optional; list of decision quoted wikilinks `"[[slug]]"`. On the page of a Case with sub-cases, the pages of its sub-cases in ledger order, written by the script; such a page carries `children` in place of the kind lists (case 544.8).
   origin: |
     required; `raw/YYYY-MM-DD/HHMM/ledger.md#case-N` — the date form, `raw/YYYY-MM-DD/ledger.md#case-N`, on pages born before 2026-09-13 (case 103.6). Where this was ratified. The folder also holds the Spec with the Case and, for a Case built by `case-guppi` from session 2026-09-27/1819 on, its Case file `cases/case-<N>.md` with every section, N the id of the top-level Case; once the session is archived, the folder lies under `vault/archive/<sprint>/` (case 513). The `raw/` of a session is archived with it once every line of it became a page, and the pointer is not rewritten (cases 100.1, 103.6).
   sprint: |
@@ -69,9 +73,11 @@ fields:
     required; list. The union of the targets' tags, as ratified in the Case.
 sections:
   "## Context": |
-    optional. What this is about. Written for a Case without `given`, the short form of a deferred decision, which has no Case file, and in the two-line body of a Case superseded in its own session (case 299.4); kept on the pages written before case 513; any other Case keeps it in its Case file (case 513).
+    optional. What this is about. Written for a Case without `given` and without sub-cases, the short form of a deferred decision, which has no Case file, and in the two-line body of a Case superseded in its own session (case 299.4); kept on the pages written before case 513; any other Case keeps it in its Case file (case 513).
   "## Problem": |
-    required. What required a decision. On a defer, what is unresolved.
+    optional. What required a decision. On a defer, what is unresolved. On the page of a Case without sub-cases and on the page of a Case with sub-cases; the page of a sub-case carries none (case 544.8).
+  "## Recommend": |
+    optional. The `recommend` of the Case as it stands: one item per question of the rounds of `case-guppi` — the question, the latest recommendation, the person's latest answer — one per change asked for on the shown Case, or the one recommendation of a Case with no round. On the page of a sub-case its own items, on the page of a Case with sub-cases the rest; absent on a short-form defer and on the pages written before case 544 (case 544.8).
   "## Given": |
     optional. The Case's `given`, verbatim: the frame of the Case — the pages, modules, files and tests it touches and the rule that constrains — written by `generate`, before case 513, on the page of a Case that had one: the pages of Cases before 201 carry it by the model of case 52.1, and the pages from case 376 on by case 378.3; the pages of Cases 201 to 375 carry none. A page written after case 513 carries none, and the Case file holds it (case 513).
   "## When": |
@@ -118,3 +124,5 @@ examples:
 - 2026-09-29 updated: a new page carries Problem and no Context or Given, a short-form defer and a Case superseded in its session keep Context; the Case file named as the whole record, recommend included (case 513.1) · [[decision-case-513.1]]
 - 2026-09-29 status: built → draft · cascade
 - 2026-09-29 status: draft → built · cascade
+- 2026-09-30 updated: the Decision page carries Recommend; a Case with sub-cases has a page with children in place of the kind lists and no Context, a sub-case page carries parent and no Problem (case 544.8) · [[decision-case-544.8]]
+- 2026-09-30 status: built → draft · cascade

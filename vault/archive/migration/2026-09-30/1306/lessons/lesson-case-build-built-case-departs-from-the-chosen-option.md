@@ -2,7 +2,7 @@
 type: lesson
 kind: error
 root_cause: case-guppi writes the Case from its own reading of the frame after the round, and no check compares the then of the built Case with the After text of the option the person chose
-status: clustered
+status: archived
 insight: "[[insight-case-build-promise-lines-compared-by-no-check]]"
 origin: raw/2026-09-30/0248/ledger.md#L41
 sprint: migration
@@ -22,3 +22,5 @@ case-guppi writes the Case from its own reading of the frame after the round, an
 
 - 2026-09-30 created · raw/2026-09-30/0248/ledger.md#L41
 - 2026-09-30 updated: clustered under insight-case-build-promise-lines-compared-by-no-check (synthesis) · raw/2026-09-30/0248/ledger.md#L41
+- 2026-09-30 archived · insight actioned
+- 2026-09-30 archived · cleanup

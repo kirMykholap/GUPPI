@@ -34,8 +34,8 @@ update:
 ```
 
 ```tasks
-- [ ] update `entity-glossary` — the row `ref`, `slug`, `supersedes` says which defers a supersede clears
-- [ ] `uv run guppi glossary`
+- [x] update `entity-glossary` — the row `ref`, `slug`, `supersedes` says which defers a supersede clears
+- [x] `uv run guppi glossary`
 ```
 
 ## Case 542 — A short defer is written with no Retro moment
@@ -88,9 +88,9 @@ update:
 ```
 
 ```tasks
-- [ ] update `rule-spec-capture` — the writers of `spec.md`: a defer-only Case with no Retro moment
-- [ ] update `rule-spec-write` — a short defer goes into spec.md once it stands, with no Retro moment
-- [ ] update `estimate-spec-write-writes-a-defer` — the Criterion replaced whole: no Retro moment, no ratified copy
+- [x] update `rule-spec-capture` — the writers of `spec.md`: a defer-only Case with no Retro moment
+- [x] update `rule-spec-write` — a short defer goes into spec.md once it stands, with no Retro moment
+- [x] update `estimate-spec-write-writes-a-defer` — the Criterion replaced whole: no Retro moment, no ratified copy
 - [x] `guppi/spec.py` — the docstring: the `Stop` hook of `rule-spec-write` writes a defer-only Case under `## Deferred`, "at Retro" dropped
 - [x] `guppi/ratified.py` — the docstring of the defer: "(Retro)" dropped; the comment on the target of a defer: it goes to `spec.md` once that file stands, with no Retro
 - [x] `guppi/materialize.py` — the comment on the check for an incomplete Case names the short form of a defer, not of Retro
@@ -134,8 +134,8 @@ update:
 ```
 
 ```tasks
-- [ ] update `rule-case-build`
-- [ ] `uv run guppi render`: `.claude/agents/case-guppi.md`
+- [x] update `rule-case-build`
+- [x] `uv run guppi render`: `.claude/agents/case-guppi.md`
 - [ ] read `estimate-case-build-writes-a-plain-round` — in a later session after the render: one first round and one later round of `case-guppi` read in the chat against the Criterion
 ```
 
@@ -170,8 +170,8 @@ update:
 ```
 
 ```tasks
-- [ ] update `rule-skill-grill-me`
-- [ ] `uv run guppi render`: `.claude/skills/grill-me/SKILL.md`
+- [x] update `rule-skill-grill-me`
+- [x] `uv run guppi render`: `.claude/skills/grill-me/SKILL.md`
 - [ ] read `estimate-skill-grill-me-asks-in-rounds` — in a later session after the render: `uv run guppi render --check`, then one round of `case-guppi` read in the chat against the Criterion
 ```
 
@@ -216,12 +216,12 @@ update:
 ```
 
 ```tasks
-- [ ] update `rule-page-generation`
-- [ ] create `estimate-generate-replace-takes-the-leading-indent`
-- [ ] update `rule-case-protocol`
+- [x] update `rule-page-generation`
+- [x] create `estimate-generate-replace-takes-the-leading-indent`
+- [x] update `rule-case-protocol`
 - [x] `guppi/generate.py`: in `replace_hits`, an `old` that opens with a space or a tab gets a pattern that takes the spaces and tabs before its first word; the docstrings of `replace_hits` and `replace_once` say so
 - [x] `tests/test_generate.py`: an `old` and a `new` that both open with four spaces over a line indented four spaces leave four; an `old` with no leading space leaves the page's spaces; the hit count of an anchor is the same with and without its leading spaces
-- [ ] `uv run guppi render`: `vault/wiki/case-schema.md`
+- [x] `uv run guppi render`: `vault/wiki/case-schema.md`
 - [ ] read `estimate-generate-replace-takes-the-leading-indent`
 ```
 
@@ -265,12 +265,12 @@ update:
 ```
 
 ```tasks
-- [ ] update `rule-prespec`
-- [ ] create `estimate-prespec-catches-an-indent-added-twice`
+- [x] update `rule-prespec`
+- [x] create `estimate-prespec-catches-an-indent-added-twice`
 - [x] `guppi/generate.py`: a predicate beside `replace_hits` that says whether a pair adds an indent twice
 - [x] `guppi/prespec.py`: `check_pairs` imports the predicate and gives the finding for each pair it judges true
 - [x] `tests/test_prespec.py`: the three pairs of the method
-- [ ] `uv run guppi render`: `.claude/skills/pre-spec/SKILL.md`
+- [x] `uv run guppi render`: `.claude/skills/pre-spec/SKILL.md`
 - [ ] read `estimate-prespec-catches-an-indent-added-twice`
 ```
 
@@ -347,12 +347,12 @@ delete:
 ```
 
 ```tasks
-- [ ] update `rule-case-build`
-- [ ] create `estimate-case-build-checks-the-finished-case`
-- [ ] delete `rule-case-build-checks-its-sub-cases`
-- [ ] update `insight-case-build-promise-lines-compared-by-no-check`
-- [ ] update `insight-workflow-fact-signed-from-a-check-that-does-not-cover-it`
-- [ ] `uv run guppi render`: `.claude/agents/case-guppi.md`
+- [x] update `rule-case-build`
+- [x] create `estimate-case-build-checks-the-finished-case`
+- [x] delete `rule-case-build-checks-its-sub-cases`
+- [x] update `insight-case-build-promise-lines-compared-by-no-check`
+- [x] update `insight-workflow-fact-signed-from-a-check-that-does-not-cover-it`
+- [x] `uv run guppi render`: `.claude/agents/case-guppi.md`
 - [ ] read `estimate-case-build-checks-the-finished-case`
 ```
 
@@ -412,11 +412,11 @@ update:
 ```
 
 ```tasks
-- [ ] update `rule-case-build`
-- [ ] update `rule-case-protocol`
-- [ ] create `estimate-case-build-records-the-rounds-in-recommend`
-- [ ] `uv run guppi render`: `.claude/agents/case-guppi.md`
-- [ ] `uv run guppi render`: `vault/wiki/case-schema.md`
+- [x] update `rule-case-build`
+- [x] update `rule-case-protocol`
+- [x] create `estimate-case-build-records-the-rounds-in-recommend`
+- [x] `uv run guppi render`: `.claude/agents/case-guppi.md`
+- [x] `uv run guppi render`: `vault/wiki/case-schema.md`
 - [ ] read `estimate-case-build-records-the-rounds-in-recommend`
 ```
 
@@ -468,12 +468,12 @@ update:
 ```
 
 ```tasks
-- [ ] update `rule-case-check`
-- [ ] update `rule-case-protocol`
-- [ ] create `estimate-case-check-requires-each-question-of-the-rounds`
+- [x] update `rule-case-check`
+- [x] update `rule-case-protocol`
+- [x] create `estimate-case-check-requires-each-question-of-the-rounds`
 - [x] `guppi/casecheck.py`: the pattern of a question line, the rounds read from the earlier outputs in `agent_transcript_path`, the finding for a title missing from every `recommend` of the answer; the docstring says so
 - [x] `tests/test_casecheck.py`: the cases of the method
-- [ ] `uv run guppi render`: `vault/wiki/case-schema.md`
+- [x] `uv run guppi render`: `vault/wiki/case-schema.md`
 - [ ] read `estimate-case-check-requires-each-question-of-the-rounds`
 ```
 
@@ -513,8 +513,8 @@ update:
 ```
 
 ```tasks
-- [ ] update `rule-case-check`
-- [ ] create `estimate-case-check-refuses-a-problem-in-a-sub-case`
+- [x] update `rule-case-check`
+- [x] create `estimate-case-check-refuses-a-problem-in-a-sub-case`
 - [x] `guppi/casecheck.py`: `form_findings` gives the finding for a sub-case that carries `problem`; the docstring says so
 - [x] `tests/test_casecheck.py`: the cases of the method
 - [ ] read `estimate-case-check-refuses-a-problem-in-a-sub-case`
@@ -563,8 +563,8 @@ update:
 ```
 
 ```tasks
-- [ ] update `rule-spec-write`
-- [ ] update `estimate-spec-write-copies-the-ratified-case`
+- [x] update `rule-spec-write`
+- [x] update `estimate-spec-write-copies-the-ratified-case`
 - [x] `guppi/ratified.py`: `SPEC_SECTIONS` holds `recommend`, and the writer writes a sub-case's own `recommend` and the parent's from the parent's stored answer; the docstring says so
 - [x] `tests/test_ratified.py`: a Case whose `recommend` reaches the plan file, a sub-case with its own `recommend`, a parent's `recommend` from its stored answer
 - [ ] read `estimate-spec-write-copies-the-ratified-case`
@@ -604,8 +604,8 @@ update:
 ```
 
 ```tasks
-- [ ] update `rule-materialize`
-- [ ] update `estimate-materialize-assembles`
+- [x] update `rule-materialize`
+- [x] update `estimate-materialize-assembles`
 - [x] `guppi/materialize.py`: `INHERITED` holds `context` and `given`; a sub-case record carries `parent` and needs no `problem`; a parent Case with sub-case lines in the unit gets its own record with `children` and its `given` when it has one; the docstring says so
 - [x] `tests/test_materialize.py`: a sub-case with no `problem` or `recommend` of its own, a parent record with `children` and no `targets`, with and without a `given` of its own, a Case with no sub-cases as before
 - [ ] read `estimate-materialize-assembles`
@@ -651,8 +651,8 @@ update:
 ```
 
 ```tasks
-- [ ] update `rule-page-generation`
-- [ ] update `estimate-generate-writes-the-decision-page`
+- [x] update `rule-page-generation`
+- [x] update `estimate-generate-writes-the-decision-page`
 - [x] `guppi/generate.py`: the Decision page writes `## Recommend`; a record with `children` gets its page first, with no kind list and no `## Context`; a record with `parent` gets the field and no `## Problem`; the docstring says so
 - [x] `tests/test_generate.py`: a page with `## Recommend`, a parent page with `children` and no `## Context`, with and without a `given` of its own, a sub-case page with `parent` and no `## Problem`, a short-form defer as before
 - [ ] read `estimate-generate-writes-the-decision-page`
@@ -740,12 +740,12 @@ update:
 ```
 
 ```tasks
-- [ ] update `rule-decisions-schema`
-- [ ] update `estimate-decisions-schema-checked`
-- [ ] update `entity-glossary`
+- [x] update `rule-decisions-schema`
+- [x] update `estimate-decisions-schema-checked`
+- [x] update `entity-glossary`
 - [x] `tests/test_schemas.py`: a Decision page without `## Problem` and with `## Recommend`, `parent` and `children` has no schema finding
-- [ ] `uv run guppi render`: `vault/wiki/decisions/schema.yaml`
-- [ ] `uv run guppi glossary`
+- [x] `uv run guppi render`: `vault/wiki/decisions/schema.yaml`
+- [x] `uv run guppi glossary`
 - [ ] read `estimate-decisions-schema-checked`
 ```
 
@@ -787,8 +787,8 @@ update:
 ```
 
 ```tasks
-- [ ] update `rule-lint`
-- [ ] update `estimate-lint-finds-a-broken-link`
+- [x] update `rule-lint`
+- [x] update `estimate-lint-finds-a-broken-link`
 - [x] `guppi/lint.py`: the `decision` class takes a page with `children` and no kind list; `check_origin` finds `#case-N` by a line `[case N.` of a sub-case when no line carries `[case N]`; the docstring says so
 - [x] `tests/test_lint.py`: a parent page with `children` and no kind list, a page with neither, a parent `origin` found by a sub-case line, one with no line of either
 - [ ] read `estimate-lint-finds-a-broken-link`
@@ -824,7 +824,7 @@ update:
 ```
 
 ```tasks
-- [ ] update `estimate-spec-write-reaches-the-approved-spec`
+- [x] update `estimate-spec-write-reaches-the-approved-spec`
 - [x] `tests/test_ratified.py`: tests whose names hold `approved_spec` — a Case whose `recommend` reaches `spec.md`, and a parent's `recommend` from its stored answer
 - [ ] read `estimate-spec-write-reaches-the-approved-spec`
 ```
@@ -862,7 +862,7 @@ update:
 ```
 
 ```tasks
-- [ ] update `estimate-case-protocol-case-form`
+- [x] update `estimate-case-protocol-case-form`
 - [ ] read `estimate-case-protocol-case-form`
 ```
 

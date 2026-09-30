@@ -1,11 +1,11 @@
 ---
 type: estimate
 kind: QA
-status: pending
+status: passed
 target: "[[rule-backlog]]"
 purpose: guppi backlog writes backlog.md from the conserved Specs, the pages with deferred_by, the open Insights and the Backlog of the sprint page, each item with its purpose and its count
 method: uv run pytest tests/test_backlog.py, plus one reading of vault/wiki/backlog.md after the librarian's run
-checked: 2026-09-27
+checked: 2026-09-30
 origin: raw/2026-09-27/1255/ledger.md#case-451.4
 sprint: migration
 created: 2026-09-27
@@ -28,10 +28,11 @@ The script writes `vault/wiki/backlog.md`: the heading `# Backlog`, the line `N 
 
 ## Result
 
-2026-09-27, uv run pytest tests/test_backlog.py: 16 passed; by hand, vault/wiki/backlog.md as the librarian run of e229e99 wrote it: # Backlog, the line 19 items, ## Conserved Specs (none), ## Deferred with one line per deferred page, open Insight (pattern and severity) and sprint backlog note, each with its purpose and the count of sessions that put it off
+2026-09-30, uv run pytest -q tests/test_backlog.py and vault/wiki/backlog.md as the librarian run cfcfb09 wrote it: 16 passed; # Backlog, the line 22 items, ## Conserved Specs empty, ## Deferred 22 lines — 13 pages with deferred_by, 4 more open Insights (insight-hi-skill-substitution-checked-by-a-model-call, open and deferred, stands once), 5 plain lines of the Backlog of entity-sprint-migration, its 4 wikilinked Backlog lines standing once under their pages; each line with its purpose, an Insight with its severity, and its count
 
 ## History
 
 - 2026-09-27 created · [[decision-case-451.4]]
 - 2026-09-27 status: pending → passed · raw/2026-09-27/1819/ledger.md#L24
 - 2026-09-30 updated: the Criterion replaced whole — the reader of the count named without the sprint move, removed by case 539.1 (case 539.4) · [[decision-case-539.4]]
+- 2026-09-30 status: pending → passed · raw/2026-09-30/1306/ledger.md#L1

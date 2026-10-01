@@ -219,10 +219,11 @@ def test_a_compact_or_resume_of_the_same_session_keeps_the_window_open(tmp_path)
     assert ledger_text(tmp_path) == f"{timed(DECISION)}\n{timed(ESTIMATE)}\n"
 
 
-def test_stop_hook_active_exits_zero_and_writes_nothing(tmp_path):
-    code, err = run(payload(last_assistant_message=REPLY, stop_hook_active=True), tmp_path)
+def test_stop_hook_active_still_writes_the_lines(working):
+    """Claude Code keeps the flag set until the person's next message (case 577.3)."""
+    code, err = run(payload(last_assistant_message=REPLY, stop_hook_active=True), working)
     assert (code, err) == (0, "")
-    assert not ledger_file(tmp_path).exists()
+    assert ledger_text(working) == f"{timed(DECISION)}\n{timed(ESTIMATE)}\n"
 
 
 def test_a_reply_without_a_ledger_block_creates_no_ledger(tmp_path):
@@ -342,6 +343,23 @@ def transcript_line(text, *, sidechain=False, session=SESSION, kind="assistant")
         },
         ensure_ascii=False,
     )
+
+
+def person(text="go on"):
+    """A message of the person: a `user` record whose `origin.kind` is `human`."""
+    record = {"type": "user", "origin": {"kind": "human"}, "message": {"content": text}}
+    return json.dumps(record, ensure_ascii=False)
+
+
+def meta_refusal(command, text):
+    """A refusal of the `Stop` hook `command`, as Claude Code records it (session 1441)."""
+    content = f"Stop hook feedback:\n[{command}]: {text}"
+    record = {"type": "user", "isMeta": True, "message": {"content": content}}
+    return json.dumps(record, ensure_ascii=False)
+
+
+def own_refusal(text):
+    return meta_refusal(ledger.COMMAND, text)
 
 
 def write_transcript(tmp_path, *lines):
@@ -751,11 +769,114 @@ def test_an_error_after_the_payload_is_read_exits_2(working, monkeypatch):
     assert (code, err) == (2, "ledger: ledger.md not written: disk full\n")
 
 
-def test_the_re_fire_exits_0_and_writes_nothing_when_the_hook_would_fail(working, monkeypatch):
+def test_an_error_with_the_flag_and_no_readable_transcript_exits_0(working, monkeypatch):
     monkeypatch.setattr(ledger, "append", fail_to_append)
     stdin = payload(last_assistant_message=ledger_block(DECISION), stop_hook_active=True)
     assert run(stdin, working) == (0, "")
     assert not ledger_file(working).exists()
+
+
+def test_an_error_with_its_own_refusal_in_the_stretch_exits_0(working, monkeypatch):
+    monkeypatch.setattr(ledger, "append", fail_to_append)
+    path = write_transcript(
+        working, person(), own_refusal("ledger: ledger.md not written: disk full")
+    )
+    stdin = payload(last_assistant_message=ledger_block(DECISION), transcript_path=path)
+    assert run(stdin, working) == (0, "")
+
+
+def test_an_error_after_another_hooks_refusal_with_the_flag_exits_2(working, monkeypatch):
+    monkeypatch.setattr(ledger, "append", fail_to_append)
+    path = write_transcript(working, person(), meta_refusal("uv run guppi onward --plan", "go"))
+    stdin = payload(
+        last_assistant_message=ledger_block(DECISION), transcript_path=path, stop_hook_active=True
+    )
+    assert run(stdin, working) == (2, "ledger: ledger.md not written: disk full\n")
+
+
+# --- the stretch: each refusal once from one message of the person to the next (case 577) --
+# `estimate-ledger-write-lifts` and the four refusals
+
+
+def stretch(project_dir, *records):
+    """A transcript of the person's message, then the given records — refusals of hooks."""
+    return write_transcript(project_dir, person(), *records)
+
+
+def test_a_refused_line_already_told_is_silent_and_a_new_one_is_told(working):
+    told = BROKEN_REFUSAL.format(BROKEN[2:]).rstrip("\n")
+    path = stretch(working, own_refusal(told))
+    stdin = payload(last_assistant_message=ledger_block(BROKEN), transcript_path=path)
+    assert run(stdin, working) == (0, "")  # a repeat of the same faulty line
+    stdin = payload(last_assistant_message=ledger_block(BARE_LESSON), transcript_path=path)
+    assert run(stdin, working) == (2, LESSON_REFUSAL)  # a new faulty line in the stretch
+
+
+def test_a_refusal_told_before_the_persons_last_message_is_told_again(working):
+    told = BROKEN_REFUSAL.format(BROKEN[2:]).rstrip("\n")
+    path = write_transcript(working, own_refusal(told), person())
+    stdin = payload(last_assistant_message=ledger_block(BROKEN), transcript_path=path)
+    assert run(stdin, working) == (2, BROKEN_REFUSAL.format(BROKEN[2:]))
+
+
+def test_no_hi_is_told_once_a_stretch(tmp_path):
+    stdin = payload(last_assistant_message=REPLY, transcript_path=stretch(tmp_path))
+    code, err = run(stdin, tmp_path)
+    assert code == 2 and "no /hi recorded" in err
+    path = stretch(tmp_path, own_refusal(err.rstrip("\n")))
+    assert run(payload(last_assistant_message=REPLY, transcript_path=path), tmp_path) == (0, "")
+    assert not ledger_file(tmp_path).exists()
+
+
+def test_with_the_flag_and_no_readable_transcript_it_writes_and_says_nothing(working):
+    stdin = payload(last_assistant_message=ledger_block(DECISION, BROKEN), stop_hook_active=True)
+    assert run(stdin, working) == (0, "")
+    assert ledger_text(working) == f"{timed(DECISION)}\n"
+
+
+def flagged(project_dir, reply):
+    """A Stop with the flag set after another hook's refusal in the stretch."""
+    path = stretch(project_dir, meta_refusal("uv run guppi onward --plan", "go on"))
+    return payload(last_assistant_message=reply, transcript_path=path, stop_hook_active=True)
+
+
+def test_flag_a_line_the_grammar_cannot_read_is_refused_aloud(working):
+    code, err = run(flagged(working, ledger_block(DECISION, BROKEN)), working)
+    assert (code, err) == (2, BROKEN_REFUSAL.format(BROKEN[2:]))
+    assert ledger_text(working) == f"{timed(DECISION)}\n"
+
+
+def test_flag_a_reading_of_a_change_of_the_session_is_refused_aloud(working):
+    seed_ledger(working, UPDATE_X)
+    assert run(flagged(working, ledger_block(READ_X)), working) == (2, REFUSAL.format("4"))
+    assert ledger_text(working) == f"- 15:01:50 {UPDATE_X[2:]}\n"
+
+
+def test_flag_a_lesson_without_its_prefix_is_refused_aloud(working):
+    code, err = run(flagged(working, ledger_block(DECISION, BARE_LESSON)), working)
+    assert (code, err) == (2, LESSON_REFUSAL)
+    assert ledger_text(working) == f"{timed(DECISION)}\n"
+
+
+def test_flag_a_mark_with_no_decision_line_waits_then_lands(working):
+    code, err = run(flagged(working, ledger_block(MARK_9)), working)
+    assert (code, err) == (2, mark_refusal("lesson-a-d", "9"))
+    assert not ledger_file(working).exists()
+    path = write_transcript(
+        working,
+        person(),
+        transcript_line(ledger_block(MARK_9)),
+        own_refusal(mark_refusal("lesson-a-d", "9").rstrip("\n")),
+    )
+    reply = ledger_block(CASE_9)
+    stdin = payload(last_assistant_message=reply, transcript_path=path, stop_hook_active=True)
+    assert run(stdin, working) == (0, "")
+    assert ledger_text(working) == f"{timed(CASE_9)}\n"
+    assert run(payload(last_assistant_message="Nothing.", transcript_path=path), working) == (
+        0,
+        "",
+    )
+    assert ledger_text(working).splitlines() == [timed(CASE_9), timed(MARK_9)]
 
 
 def test_a_payload_that_cannot_be_read_exits_0_with_the_error(working, monkeypatch):

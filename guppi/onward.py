@@ -5,20 +5,25 @@ the lines of a reply only when it ends; so Retro ends one reply with its `LEDGER
 this hook sends the agent on in the same turn (case 531.9). It exits 2 when four things hold:
 the event log of the session's window holds the mark `retro` of this session after its
 `hi` — the mark `guppi gate` leaves at a call of `/retro` it lets through —,
-`raw/<hi date>/<hi HHMM>/handoff.md` does not stand, `stop_hook_active` is false, and the
-reply that ended does not open with `STOP:`. Its reason on stderr tells the agent to commit
+`raw/<hi date>/<hi HHMM>/handoff.md` does not stand, no refusal of its own stands in the
+stretch — the transcript after the person's last message, read by `ledger.own_refusals` —,
+and the reply that ended does not open with `STOP:`. Its reason on stderr tells the agent to commit
 the session folder and call `/handoff`, or, when a condition of
 `vault/wiki/where-to-stop.md` holds, to open its reply with `STOP:` and ask the person.
 
 In every other case with no error of its own it exits 0 and prints nothing: without a `hi` of the session, before the
-mark, once `handoff.md` stands, on the reply that follows a refusal of a `Stop` hook, and on
-a reply that opens with `STOP:`. It counts nothing, reads no test result, calls no model and
-writes nothing: its judgment is the mark, the file, the flag and the first word of the reply,
-so it fires at most once a turn and cannot loop. The session window, the stamp and the folder
-are those of `guppi/ledger.py`. An error of its own after it has read the payload exits 2 with
+mark, once `handoff.md` stands, once its own refusal stands in the stretch, on a reply that
+opens with `STOP:`, and with `stop_hook_active` set when it cannot read the transcript. A
+refusal of another `Stop` hook earlier in the stretch does not silence it, and neither does
+the flag, which Claude Code keeps set from that refusal until the person's next message
+(case 577.1). It counts nothing, reads no test result, calls no model and writes nothing: its
+judgment is the mark, the file, its own refusal in the transcript and the first word of the
+reply, so it fires at most once a stretch and cannot loop. The session window, the stamp and
+the folder are those of `guppi/ledger.py`. An error of its own after it has read the payload —
+while it reads the reply, the session folder, the event log or the transcript — exits 2 with
 the error on stderr and the advice to commit the session folder and call `/handoff` if Retro
-has ended and `handoff.md` does not stand, before Retro too; an error while it reads the payload
-exits 0 (case 555.3). Rule page: `vault/wiki/rules/rule-retro-onward.md`.
+has ended and `handoff.md` does not stand, before Retro too, once a stretch as above; an error
+while it reads the payload exits 0 (cases 555.3, 577.2). Rule page: `vault/wiki/rules/rule-retro-onward.md`.
 
 `guppi onward --plan` — the `Stop` hook that sends the agent on in Plan Mode, where no
 person is needed: from the reply that acknowledges the last ratification of the Frontier to
@@ -48,13 +53,21 @@ from datetime import date, datetime, time, timedelta
 from pathlib import Path
 
 from guppi.event import project_root, read_payload, session_stamp
-from guppi.ledger import ledger_lines, reply_text, session_dir, session_event_logs
+from guppi.ledger import (
+    ledger_lines,
+    own_refusals,
+    reply_text,
+    session_dir,
+    session_event_logs,
+    silenced,
+)
 
 TIME_HEAD = re.compile(r"^- \d\d:\d\d:\d\d ")
 
 MARK = "retro"
 STOP = "STOP:"
 PLAN_FLAG = "--plan"
+COMMAND = "uv run guppi onward"
 REASON = (
     "onward: Retro has ended and handoff.md does not stand. Commit the session folder and "
     "call /handoff now. If a condition of vault/wiki/where-to-stop.md holds, open your reply "
@@ -166,6 +179,18 @@ def plan_onward(payload: dict, project_dir: Path, now) -> str | None:
     return TO_EXIT if done else TO_PRESPEC
 
 
+def told(payload: dict) -> bool:
+    """Whether the run without `--plan` stays silent for its loop: its own refusal stands in
+    the stretch, or `stop_hook_active` is set and the transcript cannot be read — the judgment
+    `silenced` of `guppi/ledger.py`, the one the ledger hook makes (case 577.1). An error
+    while reading counts as a transcript it cannot read."""
+    try:
+        refusals = own_refusals(payload, COMMAND)
+    except Exception:  # noqa: BLE001 — judged as a transcript it cannot read
+        refusals = None
+    return silenced(refusals, payload)
+
+
 def run(argv, *, stdin=None, stderr=None, project_dir: Path | None = None, now=None) -> int:
     stdin = sys.stdin if stdin is None else stdin
     stderr = sys.stderr if stderr is None else stderr
@@ -173,12 +198,14 @@ def run(argv, *, stdin=None, stderr=None, project_dir: Path | None = None, now=N
     now = datetime.now().astimezone() if now is None else now
     try:
         payload = read_payload(stdin)
-    except Exception as exc:  # noqa: BLE001 — no payload, no way to tell a re-fire (case 555.3)
+    except Exception as exc:  # noqa: BLE001 — no payload, no way to tell its own refusal (555.3, 577.2)
         print(f"onward: not checked: {exc}", file=stderr)
         return 0
-    if not payload or payload.get("stop_hook_active"):
+    if not payload:
         return 0
     if PLAN_FLAG in (argv or []):
+        if payload.get("stop_hook_active"):
+            return 0
         try:
             reason = plan_onward(payload, project_dir, now)
         except Exception as exc:  # noqa: BLE001 — shown to the agent, not swallowed
@@ -201,9 +228,13 @@ def run(argv, *, stdin=None, stderr=None, project_dir: Path | None = None, now=N
             return 0
         if not retro_marked(session_event_logs(project_dir, now, stamp), stamp):
             return 0
+        if told(payload):
+            return 0
         print(REASON, file=stderr)
         return 2
     except Exception as exc:  # noqa: BLE001 — shown to the agent, not swallowed (case 555.3)
+        if told(payload):
+            return 0
         print(
             f"onward: not checked: {exc}. If Retro has ended and handoff.md does not stand, "
             "commit the session folder and call /handoff.",

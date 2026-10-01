@@ -14,13 +14,22 @@ session changes nothing, an unstamped `hi` does not count. The log it reads is `
 first that holds a `session-start` of this session, joined in date order, so a session that
 crosses midnight keeps its window (case 55.1). Without a `hi`, and with lines to write, the
 hook exits 2 and says why on stderr, so the person is told rather than left believing the
-lines were recorded. On the re-fire after a block (`stop_hook_active`) it exits 0 and writes
-nothing, so it cannot loop. An error of the hook itself after it has read the payload — an
+lines were recorded. An error of the hook itself after it has read the payload — an
 exception while it reads the transcript, the event log or the ledger, or judges or appends
 the lines — exits 2 with `ledger: ledger.md not written: <error>` on stderr, so the agent
 sees it at the end of that reply; a line not yet appended waits for the next `Stop`. An error
-while it reads the payload exits 0 with the error on stderr, since the hook cannot tell a
-re-fire then (case 552.4).
+while it reads the payload exits 0 with the error on stderr, since the hook cannot tell its
+own refusal then (cases 552.4, 577.4).
+
+The hook writes and judges the lines whether `stop_hook_active` is set or not (case 577.3):
+Claude Code keeps the flag set from the first refusal of any `Stop` hook until the person's
+next message, so a run that a hook sends on — Plan Mode into Work Mode and Retro — would
+otherwise write nothing until the person writes. It guards its own loop by its refusals in
+the stretch, read by `own_refusals`: the stderr line of a refused line is printed, with exit
+2, only when it does not already stand in a refusal of the hook since the person's last
+message, so each faulty line is told once and a repeat of it stays silent; no `hi` and an
+error of its own exit 2 only when no refusal of the hook stands in the stretch. With the flag
+set and a transcript it cannot read, it writes the lines of the reply and exits 0.
 
 A line the grammar does not read is not written (case 552.2): `parse_line` of
 `guppi/materialize.py` gives None for it, and `materialize` would put it under `unparsed`,
@@ -80,6 +89,8 @@ TIMED = re.compile(r"^- (?:\d\d:\d\d:\d\d )?(.*)$")
 BRACKET = re.compile(r"\[([^\]]*)\]")
 LEDGER_TAG = "ledger"
 PLAN_TOOLS = ("Write", "Edit", "MultiEdit")
+REFUSAL_HEAD = "Stop hook feedback:"
+COMMAND = "uv run guppi ledger"
 
 
 def reply_text(payload: dict) -> str:
@@ -114,6 +125,51 @@ def read_records(path) -> list[dict] | None:
         if isinstance(record, dict):
             records.append(record)
     return records
+
+
+def record_text(record: dict) -> str:
+    """The text of a record's message: a string, or its text blocks joined by newlines."""
+    content = (record.get("message") or {}).get("content")
+    if isinstance(content, str):
+        return content
+    if isinstance(content, list):
+        return "\n".join(
+            str(b.get("text") or "")
+            for b in content
+            if isinstance(b, dict) and b.get("type") == "text"
+        )
+    return ""
+
+
+def own_refusals(payload: dict, command: str) -> list[str] | None:
+    """The text of each refusal of the `Stop` hook `command` in the stretch: the main-agent
+    records of `transcript_path` after the last `user` record whose `origin.kind` is `human`.
+    A refusal is a `user` record marked `isMeta` whose text opens with `Stop hook feedback:`
+    and holds a line that opens with `[<command>]: `; its text is what follows that prefix
+    (measured on session 1237 and 1441, Claude Code 2.1.282). None when the transcript cannot
+    be read. The one judgment of the stretch, which `guppi onward` calls too (cases 577.1,
+    577.3): Claude Code keeps `stop_hook_active` set from a refusal until the person's next
+    message, so a hook guards its own loop by this text, not by the flag."""
+    records = read_records(payload.get("transcript_path"))
+    if records is None:
+        return None
+    main = [r for r in records if is_main(r)]
+    start = 0
+    for index, record in enumerate(main):
+        if record.get("type") == "user" and (record.get("origin") or {}).get("kind") == "human":
+            start = index + 1
+    prefix = f"[{command}]: "
+    texts: list[str] = []
+    for record in main[start:]:
+        if record.get("type") != "user" or not record.get("isMeta"):
+            continue
+        text = record_text(record)
+        if not text.startswith(REFUSAL_HEAD):
+            continue
+        at = text.find("\n" + prefix)
+        if at >= 0:
+            texts.append(text[at + 1 + len(prefix) :])
+    return texts
 
 
 def transcript_records(payload: dict) -> list[dict]:
@@ -394,18 +450,20 @@ def run(argv, *, stdin=None, stderr=None, project_dir: Path | None = None, now=N
     now = datetime.now().astimezone() if now is None else now
     try:
         payload = read_payload(stdin)
-    except Exception as exc:  # noqa: BLE001 — no payload, no way to tell a re-fire (case 552.4)
+    except Exception as exc:  # noqa: BLE001 — no payload, no way to tell its own refusal (552.4, 577.4)
         print(f"ledger: ledger.md not written: {exc}", file=stderr)
         return 0
-    if payload.get("stop_hook_active"):
-        return 0
+    told: list[str] | None = None
     try:
+        told = own_refusals(payload, COMMAND)
         seen = existing_bodies(project_dir)
         fresh = [timed(line, now) for line in session_lines(payload) if body(line) not in seen]
         if not fresh:
             return 0
         stamp = session_stamp(None, payload)
         if not hi_recorded(session_event_log(project_dir, now, stamp), stamp):
+            if silenced(told, payload):
+                return 0
             print(
                 f"ledger: {len(fresh)} line(s) not written — no /hi recorded for session "
                 f"{stamp}. Tell the person; run /hi, then repeat the lines.",
@@ -430,41 +488,63 @@ def run(argv, *, stdin=None, stderr=None, project_dir: Path | None = None, now=N
         if fresh:
             append(path, fresh)
         finished = {body(line) for line in ledger_lines(reply_text(payload))}
-        loud_broken = [line for line in broken if body(line) in finished]
-        for line in loud_broken:
-            print(
-                f"ledger: line not written — the grammar of a ledger line does not read it: "
-                f"{body(line)}. Write it again in the form of the table in case-schema.md.",
-                file=stderr,
-            )
-        loud = [(line, case) for line, case in refused if body(line) in finished]
-        for line, case in loud:
-            slug = BRACKET.search(line).group(1)
-            print(
-                f"ledger: estimate[{slug}] not written — case {case} creates or updates {slug} "
-                "in this session; what a session changes it does not measure: take the "
-                "reading in a later session and name it in the handoff.",
-                file=stderr,
-            )
-        loud_lessons = [slug for line, slug in lessons if body(line) in finished]
-        for slug in loud_lessons:
-            print(
-                f"ledger: lesson[{slug}] not written — a lesson slug starts with lesson-, then "
-                "the area, then the cause: write the line again with the prefix.",
-                file=stderr,
-            )
-        loud_marks = [m for m in marks if body(m[0]) in finished]
-        for _, slug, case, subs in loud_marks:
-            named = "; its sub-cases have " + ", ".join(f"case {s}" for s in subs) if subs else ""
-            print(
-                f"ledger: lesson[{slug}] not written — {{addressed_by:case {case}}} names no "
-                f"decision line before it in this session{named}: write the line again after "
-                "the decision line of the Case that closed the cause, naming that Case.",
-                file=stderr,
-            )
-        if loud_broken or loud or loud_lessons or loud_marks:
+        messages = [
+            "ledger: line not written — the grammar of a ledger line does not read it: "
+            f"{body(line)}. Write it again in the form of the table in case-schema.md."
+            for line in broken
+            if body(line) in finished
+        ]
+        for line, case in refused:
+            if body(line) in finished:
+                slug = BRACKET.search(line).group(1)
+                messages.append(
+                    f"ledger: estimate[{slug}] not written — case {case} creates or updates "
+                    f"{slug} in this session; what a session changes it does not measure: take "
+                    "the reading in a later session and name it in the handoff."
+                )
+        for line, slug in lessons:
+            if body(line) in finished:
+                messages.append(
+                    f"ledger: lesson[{slug}] not written — a lesson slug starts with lesson-, "
+                    "then the area, then the cause: write the line again with the prefix."
+                )
+        for line, slug, case, subs in marks:
+            if body(line) in finished:
+                named = (
+                    "; its sub-cases have " + ", ".join(f"case {s}" for s in subs) if subs else ""
+                )
+                messages.append(
+                    f"ledger: lesson[{slug}] not written — {{addressed_by:case {case}}} names "
+                    f"no decision line before it in this session{named}: write the line again "
+                    "after the decision line of the Case that closed the cause, naming that Case."
+                )
+        loud = untold(messages, told, payload)  # case 577.3: each refused line once a stretch
+        for message in loud:
+            print(message, file=stderr)
+        if loud:
             return 2
     except Exception as exc:  # noqa: BLE001 — shown to the agent, not swallowed (case 552.4)
+        if silenced(told, payload):
+            return 0
         print(f"ledger: ledger.md not written: {exc}", file=stderr)
         return 2
     return 0
+
+
+def silenced(told: list[str] | None, payload: dict) -> bool:
+    """Whether a refusal that stands once a stretch — no `hi`, an error of the hook — is
+    silent: a refusal of the hook already stands in the stretch, or `stop_hook_active` is set
+    and the transcript cannot be read, so the hook cannot tell (cases 577.3, 577.4)."""
+    if told is None:
+        return bool(payload.get("stop_hook_active"))
+    return bool(told)
+
+
+def untold(messages: list[str], told: list[str] | None, payload: dict) -> list[str]:
+    """The stderr lines of the refused lines not yet told in the stretch: a line that already
+    stands in a refusal of the hook stays silent, so a repeat of a faulty line cannot loop;
+    with `stop_hook_active` set and a transcript that cannot be read, none (case 577.3)."""
+    if told is None:
+        return [] if payload.get("stop_hook_active") else messages
+    said = "\n".join(told)
+    return [message for message in messages if message not in said]

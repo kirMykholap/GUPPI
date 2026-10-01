@@ -92,7 +92,9 @@ label that ends in a colon — the label of the Context paragraph, translated �
 session's event log holds no `prespec` line of this session after its `hi`, judged by
 `prespec.window`, the function the `ExitPlanMode` hook judges by, imported, when the main
 agent wrote text in the turn before its last tool call; after `/pre-spec` that text is not
-judged, since the loop after its findings runs in one turn. The reason quotes the text
+judged, since in the loop after its findings each answer of a `case-guppi` comes back in a
+turn of its own and the text the main agent writes there is set by `rule-prespec` (case
+581.2). The reason quotes the text
 before the round and tells the agent to show the round again with nothing before it; it is
 joined with the reasons of the comparison. Text after the last question is not judged, a
 turn with no round — the main agent's own questions, a `**Fact:**` answer, a re-pitch by
@@ -848,8 +850,10 @@ def round_opening(records: list[dict], reply: str, after_prespec: bool) -> str |
     `is_round`. Before `/pre-spec` — no `prespec` line of the session after its `hi` — a
     text of the main agent before the last tool call of the turn is refused; always, a reply
     whose first line that is not blank opens neither with `❓ ` nor with a bold label that
-    ends in a colon. After `/pre-spec` the loop over its findings runs in one turn, so only
-    the first line is judged. Text after the last question is not judged."""
+    ends in a colon. After `/pre-spec` only the first line is judged: in the loop over its
+    findings each answer of a `case-guppi` comes back in a turn of its own, and the text the
+    main agent writes there is set by `rule-prespec` (case 581.2). Text after the last
+    question is not judged."""
     if not any(is_round(text) for text in given_back(records)):
         return None
     before = [] if after_prespec else texts_before_last_call(records)

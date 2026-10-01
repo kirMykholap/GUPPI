@@ -56,9 +56,55 @@ def test_once_handoff_md_stands_it_is_silent(tmp_path):
     assert run(payload(), tmp_path) == (0, "")
 
 
-def test_on_the_re_fire_after_a_refusal_it_is_silent(tmp_path):
+def human(text="go on"):
+    return {"type": "user", "origin": {"kind": "human"}, "message": {"content": text}}
+
+
+def refusal(command, text="refused"):
+    return {
+        "type": "user",
+        "isMeta": True,
+        "message": {"content": f"Stop hook feedback:\n[{command}]: {text}"},
+    }
+
+
+def transcript(project_dir, *records):
+    path = project_dir / "transcript.jsonl"
+    path.write_text("".join(json.dumps(r) + "\n" for r in records), encoding="utf-8")
+    return str(path)
+
+
+def test_with_the_flag_set_and_no_readable_transcript_it_is_silent(tmp_path):
     with_event_log(tmp_path, START + HI + RETRO)
     assert run(payload(stop_hook_active=True), tmp_path) == (0, "")
+
+
+def test_a_refusal_of_another_hook_in_the_stretch_does_not_silence_it(tmp_path):
+    with_event_log(tmp_path, START + HI + RETRO)
+    path = transcript(tmp_path, human(), refusal("uv run guppi onward --plan"))
+    code, err = run(payload(stop_hook_active=True, transcript_path=path), tmp_path)
+    assert (code, err) == (2, onward.REASON + "\n")
+
+
+def test_its_own_refusal_in_the_stretch_silences_it(tmp_path):
+    with_event_log(tmp_path, START + HI + RETRO)
+    path = transcript(tmp_path, human(), refusal("uv run guppi onward", onward.REASON))
+    assert run(payload(stop_hook_active=True, transcript_path=path), tmp_path) == (0, "")
+    assert run(payload(transcript_path=path), tmp_path) == (0, "")
+
+
+def test_after_a_later_message_of_the_person_it_refuses_again(tmp_path):
+    with_event_log(tmp_path, START + HI + RETRO)
+    path = transcript(tmp_path, refusal("uv run guppi onward", onward.REASON), human())
+    code, err = run(payload(transcript_path=path), tmp_path)
+    assert (code, err) == (2, onward.REASON + "\n")
+
+
+def test_a_task_notification_does_not_open_a_new_stretch(tmp_path):
+    with_event_log(tmp_path, START + HI + RETRO)
+    notice = {"type": "user", "origin": {"kind": "task-notification"}, "message": {"content": "x"}}
+    path = transcript(tmp_path, human(), refusal("uv run guppi onward"), notice)
+    assert run(payload(transcript_path=path), tmp_path) == (0, "")
 
 
 @pytest.mark.parametrize("reply", ["STOP: the test cannot be fixed; revert it?", "\nSTOP: ask"])
@@ -105,10 +151,25 @@ def test_error_an_error_of_its_own_exits_2_with_the_advice(tmp_path, monkeypatch
     assert "/handoff" in err and "handoff.md does not stand" in err
 
 
-def test_error_the_re_fire_exits_0_and_prints_nothing(tmp_path, monkeypatch):
+def test_error_with_the_flag_and_no_readable_transcript_exits_0(tmp_path, monkeypatch):
     with_event_log(tmp_path, START + HI)
     monkeypatch.setattr(onward, "retro_marked", boom)
     assert run(payload(stop_hook_active=True), tmp_path) == (0, "")
+
+
+def test_error_with_its_own_refusal_in_the_stretch_exits_0(tmp_path, monkeypatch):
+    with_event_log(tmp_path, START + HI)
+    monkeypatch.setattr(onward, "retro_marked", boom)
+    path = transcript(tmp_path, human(), refusal("uv run guppi onward", "onward: not checked"))
+    assert run(payload(transcript_path=path), tmp_path) == (0, "")
+
+
+def test_error_after_another_hooks_refusal_with_the_flag_exits_2(tmp_path, monkeypatch):
+    with_event_log(tmp_path, START + HI)
+    monkeypatch.setattr(onward, "retro_marked", boom)
+    path = transcript(tmp_path, human(), refusal("uv run guppi ledger"))
+    code, err = run(payload(stop_hook_active=True, transcript_path=path), tmp_path)
+    assert code == 2 and err.startswith("onward: not checked: boom")
 
 
 def test_error_an_empty_payload_exits_0(tmp_path, monkeypatch):

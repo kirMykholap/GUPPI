@@ -259,7 +259,7 @@ update:
 - [x] update `estimate-case-build-records-the-rounds-in-recommend` — the Criterion replaced whole
 - [x] `uv run guppi render`: `.claude/agents/case-guppi.md`
 - [x] `uv run guppi render`: `vault/wiki/case-schema.md`
-- [ ] read `estimate-case-build-records-the-rounds-in-recommend` — by hand, the Case files of a later session after the render, each `recommend` read against the rounds of its Case in the chat
+- [x] read `estimate-case-build-records-the-rounds-in-recommend` — by hand, the Case files of a later session after the render, each `recommend` read against the rounds of its Case in the chat
 ```
 
 ## Case 569 — The reply that ends Retro: one line and the ledger block, and when work.md counts as read

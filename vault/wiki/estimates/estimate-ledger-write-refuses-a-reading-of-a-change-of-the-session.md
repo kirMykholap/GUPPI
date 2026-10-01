@@ -1,7 +1,7 @@
 ---
 type: estimate
 kind: QA
-status: passed
+status: pending
 target: "[[rule-ledger-write]]"
 purpose: Whether the ledger hook refuses a reading of an Estimate that a decision line of the same session creates or updates, and says why only for the reply just finished
 method: uv run pytest tests/test_ledger.py — piped payloads and a session ledger in a temp vault
@@ -24,7 +24,7 @@ The line is not written: what a session changes, it does not measure, and the re
 **＋** When the refused line stands in the reply just finished, the hook exits 2 with one stderr line per refused line: "ledger: estimate[<slug>] not written — case N creates or updates <slug> in this session; what a session changes it does not measure: take the reading in a later session and name it in the handoff."
 **＋** A refused line of an earlier text of the transcript is skipped at every later `Stop` without a word.
 **－** A reading of a slug that no decision line `create` or `update` of this session names is written as before; a `defer` line of the slug does not refuse it.
-**－** Without a `hi`, and with `stop_hook_active`, the hook acts as before and judges no line.
+**－** Without a `hi` the hook judges no line. With `stop_hook_active` set it judges the line the same, and its stderr line is told once a stretch, as `estimate-ledger-write-lifts` sets it.
 
 ## Result
 
@@ -34,3 +34,4 @@ The line is not written: what a session changes, it does not measure, and the re
 
 - 2026-09-25 created · [[decision-case-428.1]]
 - 2026-09-26 status: pending → passed · raw/2026-09-26/1745/ledger.md#L29
+- 2026-10-01 updated: the Criterion replaced whole — with stop_hook_active the line is judged the same, and its stderr line is told once a stretch (case 577.6) · [[decision-case-577.6]]

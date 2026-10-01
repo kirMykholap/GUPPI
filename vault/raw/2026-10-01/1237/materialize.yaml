@@ -640,6 +640,7 @@ entries:
       acting at the same moment; failed in session 2356 with two pages and one rule missed
   exists: true
   applied: '14:31:46'
+  superseded_by: '579.2'
 - line: 23
   text: decision[case 572][defer][estimate-case-build-writes-a-plain-round]{ref:estimate-case-build-writes-a-plain-round}
   case: '572'
@@ -1630,6 +1631,8 @@ decisions:
       at the same moment is put off.
   spec: vault/raw/2026-10-01/1237/spec.md
   applied: '14:31:46'
+  superseded_by:
+  - decision-case-579.2
 - case: '572'
   decision: decision-case-572
   origin: raw/2026-10-01/1237/ledger.md#case-572

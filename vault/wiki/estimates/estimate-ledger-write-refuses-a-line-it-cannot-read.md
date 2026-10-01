@@ -1,7 +1,7 @@
 ---
 type: estimate
 kind: QA
-status: passed
+status: pending
 target: "[[rule-ledger-write]]"
 purpose: Whether the ledger hook refuses a record line that parse_line cannot read, and says why only for the reply just finished
 method: uv run pytest tests/test_ledger.py — piped payloads and a session ledger in a temp vault
@@ -24,7 +24,7 @@ The line is not written.
 **＋** At every later `Stop`, a refused line from an earlier text of the transcript is skipped without a word.
 **－** A refused line gets no other refusal of the hook and no other stderr line.
 **－** A line already in the ledger of any session is not judged again.
-**－** Without a `hi`, and with `stop_hook_active`, the hook acts as before and judges no line.
+**－** Without a `hi` the hook judges no line. With `stop_hook_active` set it judges the line the same, and its stderr line is told once a stretch, as `estimate-ledger-write-lifts` sets it.
 
 ## Result
 
@@ -34,3 +34,4 @@ The line is not written.
 
 - 2026-09-30 created · [[decision-case-552.2]]
 - 2026-09-30 status: pending → passed · raw/2026-09-30/2042/ledger.md#L33
+- 2026-10-01 updated: the Criterion replaced whole — with stop_hook_active the line is judged the same, and its stderr line is told once a stretch (case 577.5) · [[decision-case-577.5]]

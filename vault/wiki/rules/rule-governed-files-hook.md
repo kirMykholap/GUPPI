@@ -2,7 +2,7 @@
 type: rule
 kind: Leaf
 purpose: Prevents a harness file rendered from a Rule page from being edited by hand
-status: draft
+status: built
 enforcement: hook
 implementation_ref: [guppi/guard.py, tests/test_guard.py, .claude/settings.json]
 parent: "[[rule-harness]]"
@@ -41,3 +41,4 @@ and passes; subagents inherit no project hook.
 - 2026-09-12 updated: the hook writes its own event line on a refusal (case 91) · [[decision-case-91]]
 - 2026-09-12 status: draft → built · cascade
 - 2026-09-29 status: built → draft · cascade
+- 2026-10-01 status: draft → built · cascade

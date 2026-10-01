@@ -5452,3 +5452,73 @@ instruction. The global feed; a page's own `## History` is the per-page view.
 - 2026-10-01 rules/rule-retro-onward status: draft → built · cascade · generate
 - 2026-10-01 rules/rule-session status: draft → built · cascade · generate
 - 2026-10-01 rules/rule-where-to-stop status: draft → built · cascade · generate
+- 2026-10-01 decisions/decision-case-577 created · raw/2026-10-01/1441/ledger.md#case-577 · generate
+- 2026-10-01 decisions/decision-case-577.1 created · raw/2026-10-01/1441/ledger.md#case-577.1 · generate
+- 2026-10-01 rules/rule-retro-onward updated: the hook fires once a stretch, judged by its own refusal after the person's last message in the transcript; stop_hook_active no longer silences it (case 577.1) · [[decision-case-577.1]] · generate
+- 2026-10-01 estimates/estimate-retro-onward-sends-the-agent-to-the-handoff updated: the Criterion replaced whole — the hook fires once a stretch, judged by its own refusal in the transcript, and stop_hook_active no longer silences it (case 577.1) · [[decision-case-577.1]] · generate
+- 2026-10-01 decisions/decision-case-577.2 created · raw/2026-10-01/1441/ledger.md#case-577.2 · generate
+- 2026-10-01 rules/rule-retro-onward updated: an error of the hook exits 2 once a stretch, judged by its own refusal in the transcript, which is among its reads (case 577.2) · [[decision-case-577.2]] · generate
+- 2026-10-01 estimates/estimate-retro-onward-exits-2-on-an-error updated: the Criterion replaced whole — the error comes back once a stretch, judged by the hook's own refusal in the transcript, not by stop_hook_active (case 577.2) · [[decision-case-577.2]] · generate
+- 2026-10-01 decisions/decision-case-577.3 created · raw/2026-10-01/1441/ledger.md#case-577.3 · generate
+- 2026-10-01 rules/rule-ledger-write updated: the hook writes whatever stop_hook_active says; each refused line is told once a stretch, and no hi and its own error once a stretch, judged by its own refusals in the transcript (case 577.3) · [[decision-case-577.3]] · generate
+- 2026-10-01 estimates/estimate-ledger-write-lifts updated: the Criterion replaced whole — the hook writes whatever stop_hook_active says, tells each refused line once a stretch, and tells no hi and its own error once a stretch (case 577.3) · [[decision-case-577.3]] · generate
+- 2026-10-01 decisions/decision-case-577.4 created · raw/2026-10-01/1441/ledger.md#case-577.4 · generate
+- 2026-10-01 rules/rule-ledger-write updated: an error of the hook comes back at the first Stop of each stretch; an error while it reads the payload exits 0, since the hook cannot tell its own refusal then (case 577.4) · [[decision-case-577.4]] · generate
+- 2026-10-01 estimates/estimate-ledger-write-exits-2-on-an-error updated: the Criterion replaced whole — the error comes back once a stretch, judged by the hook's own refusal in the transcript, not by stop_hook_active (case 577.4) · [[decision-case-577.4]] · generate
+- 2026-10-01 decisions/decision-case-577.5 created · raw/2026-10-01/1441/ledger.md#case-577.5 · generate
+- 2026-10-01 estimates/estimate-ledger-write-refuses-a-line-it-cannot-read updated: the Criterion replaced whole — with stop_hook_active the line is judged the same, and its stderr line is told once a stretch (case 577.5) · [[decision-case-577.5]] · generate
+- 2026-10-01 decisions/decision-case-577.6 created · raw/2026-10-01/1441/ledger.md#case-577.6 · generate
+- 2026-10-01 estimates/estimate-ledger-write-refuses-a-reading-of-a-change-of-the-session updated: the Criterion replaced whole — with stop_hook_active the line is judged the same, and its stderr line is told once a stretch (case 577.6) · [[decision-case-577.6]] · generate
+- 2026-10-01 decisions/decision-case-577.7 created · raw/2026-10-01/1441/ledger.md#case-577.7 · generate
+- 2026-10-01 estimates/estimate-ledger-write-refuses-a-lesson-without-its-prefix updated: the Criterion replaced whole — with stop_hook_active the line is judged the same, and its stderr line is told once a stretch (case 577.7) · [[decision-case-577.7]] · generate
+- 2026-10-01 decisions/decision-case-577.8 created · raw/2026-10-01/1441/ledger.md#case-577.8 · generate
+- 2026-10-01 estimates/estimate-ledger-write-refuses-a-mark-with-no-decision-line updated: the Criterion replaced whole — with stop_hook_active the line is judged the same, and its stderr line is told once a stretch (case 577.8) · [[decision-case-577.8]] · generate
+- 2026-10-01 estimates/estimate-case-build-writes-a-plain-round status: failed → passed · raw/2026-10-01/1441/ledger.md#L13 · generate
+- 2026-10-01 decisions/decision-case-578 created · raw/2026-10-01/1441/ledger.md#case-578 · generate
+- 2026-10-01 decisions/decision-case-578.1 created · raw/2026-10-01/1441/ledger.md#case-578.1 · generate
+- 2026-10-01 estimates/estimate-case-protocol-shows-the-frontier-after-a-closed-line updated: the Criterion replaced whole — the open W lines are folded into one line that lists their ids; each other open line stands on its own line (case 578.1) · [[decision-case-578.1]] · generate
+- 2026-10-01 decisions/decision-case-578.2 created · raw/2026-10-01/1441/ledger.md#case-578.2 · generate
+- 2026-10-01 rules/rule-case-protocol updated: a later Frontier folds the open W lines into one line that lists their ids; the other open lines stand one per line (case 578.2) · [[decision-case-578.2]] · generate
+- 2026-10-01 estimates/estimate-case-protocol-acknowledging-reply updated: the Criterion replaced whole — the open W lines are folded into one line that lists their ids; each other open line stands on its own line (case 578.2) · [[decision-case-578.2]] · generate
+- 2026-10-01 decisions/decision-case-579 created · raw/2026-10-01/1441/ledger.md#case-579 · generate
+- 2026-10-01 decisions/decision-case-579.1 created · raw/2026-10-01/1441/ledger.md#case-579.1 · generate
+- 2026-10-01 rules/rule-case-protocol updated: the main agent names in its prompt to case-guppi each Case of the session that changes a page the item names or acts at the same moment, with its id, a sentence and its case file (case 579.1) · [[decision-case-579.1]] · generate
+- 2026-10-01 estimates/estimate-case-protocol-names-related-cases-in-the-dispatch created · [[decision-case-579.1]] · generate
+- 2026-10-01 rules/rule-case-protocol estimate estimate-case-protocol-names-related-cases-in-the-dispatch added · [[decision-case-579.1]] · generate
+- 2026-10-01 decisions/decision-case-579.2 created · raw/2026-10-01/1441/ledger.md#case-579.2 · generate
+- 2026-10-01 decisions/decision-case-571 superseded by decision-case-579.2 · [[decision-case-579.2]] · generate
+- 2026-10-01 rules/rule-case-build updated: case-guppi reads the case file of each related Case of the session that its prompt names, and sets anew the purpose and method of an Estimate whose Criterion it replaces where they state the old promise (case 579.2) · [[decision-case-579.2]] · generate
+- 2026-10-01 estimates/estimate-case-build-checks-the-finished-case updated: the Criterion replaced whole — the case files of the related Cases the prompt names, and the purpose and method of an Estimate whose Criterion is replaced; the defer of case 571 retired (case 579.2) · [[decision-case-579.2]] · generate
+- 2026-10-01 estimates/estimate-spec-write-writes-a-defer status: failed → passed · raw/2026-10-01/1441/ledger.md#L21 · generate
+- 2026-10-01 decisions/decision-case-580 created · raw/2026-10-01/1441/ledger.md#case-580 · generate
+- 2026-10-01 decisions/decision-case-580.1 created · raw/2026-10-01/1441/ledger.md#case-580.1 · generate
+- 2026-10-01 decisions/decision-case-580.2 created · raw/2026-10-01/1441/ledger.md#case-580.2 · generate
+- 2026-10-01 decisions/decision-case-581 created · raw/2026-10-01/1441/ledger.md#case-581 · generate
+- 2026-10-01 decisions/decision-case-581.1 created · raw/2026-10-01/1441/ledger.md#case-581.1 · generate
+- 2026-10-01 decisions/decision-case-580 superseded by decision-case-581.1 · [[decision-case-581.1]] · generate
+- 2026-10-01 decisions/decision-case-580.1 superseded by decision-case-581.1 · [[decision-case-581.1]] · generate
+- 2026-10-01 rules/rule-prespec updated: step 2 of the loop after the findings: each waiting turn ends with one line under a bold label naming the Cases answered and still out, and nothing else is written (case 581.1) · [[decision-case-581.1]] · generate
+- 2026-10-01 estimates/estimate-prespec-gathers-the-answers-after-findings updated: the Criterion replaced whole — one labelled line per waiting turn instead of no text while answers are out (case 581.1) · [[decision-case-581.1]] · generate
+- 2026-10-01 decisions/decision-case-581.2 created · raw/2026-10-01/1441/ledger.md#case-581.2 · generate
+- 2026-10-01 decisions/decision-case-580.2 superseded by decision-case-581.2 · [[decision-case-581.2]] · generate
+- 2026-10-01 rules/rule-case-check updated: the reason for the exemption after /pre-spec: each answer of the loop comes back in a turn of its own, and rule-prespec sets the text written there (case 581.2) · [[decision-case-581.2]] · generate
+- 2026-10-01 estimates/estimate-case-check-refuses-text-before-a-round updated: the Criterion replaced whole — the same behaviour, with the true reason for the exemption after /pre-spec (case 581.2) · [[decision-case-581.2]] · generate
+- 2026-10-01 lessons/lesson-spec-write-keeps-the-body-of-a-case-that-gains-sub-cases created · raw/2026-10-01/1441/ledger.md#L32 · generate
+- 2026-10-01 estimates/estimate-ask-finds status: pending → failed · raw/2026-10-01/1441/ledger.md#L33 · generate
+- 2026-10-01 estimates/estimate-case-build-records-the-rounds-in-recommend status: pending → passed · raw/2026-10-01/1441/ledger.md#L34 · generate
+- 2026-10-01 estimates/estimate-case-protocol-asks-in-the-grill-me-shape status: pending → passed · raw/2026-10-01/1441/ledger.md#L35 · generate
+- 2026-10-01 estimates/estimate-governed-files-hook-refuses status: pending → passed · raw/2026-10-01/1441/ledger.md#L36 · generate
+- 2026-10-01 insights/insight-spec-write-parent-body-kept-on-re-ratification created · raw/2026-10-01/1441/ledger.md#L32 · generate
+- 2026-10-01 lessons/lesson-spec-write-keeps-the-body-of-a-case-rebuilt-as-a-parent updated: clustered under insight-spec-write-parent-body-kept-on-re-ratification (synthesis) · raw/2026-10-01/1441/ledger.md#L32 · generate
+- 2026-10-01 lessons/lesson-spec-write-keeps-the-body-of-a-case-that-gains-sub-cases updated: clustered under insight-spec-write-parent-body-kept-on-re-ratification (synthesis) · raw/2026-10-01/1441/ledger.md#L32 · generate
+- 2026-10-01 rules/rule-governed-files-hook status: draft → built · cascade · generate
+- 2026-10-01 rules/rule-ledger-write status: built → draft · cascade · generate
+- 2026-10-01 rules/rule-retro-onward status: built → draft · cascade · generate
+- 2026-10-01 decisions/decision-case-571 archived · superseded · generate
+- 2026-10-01 decisions/decision-case-580.1 archived · superseded · generate
+- 2026-10-01 decisions/decision-case-580.2 archived · superseded · generate
+- 2026-10-01 decisions/decision-case-580 archived · superseded · generate
+- 2026-10-01 decisions/decision-case-571 archived · cleanup
+- 2026-10-01 decisions/decision-case-580.1 archived · cleanup
+- 2026-10-01 decisions/decision-case-580.2 archived · cleanup
+- 2026-10-01 decisions/decision-case-580 archived · cleanup

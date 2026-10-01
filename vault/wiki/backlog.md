@@ -1,6 +1,6 @@
 # Backlog
 
-24 items
+25 items
 
 ## Conserved Specs
 
@@ -24,6 +24,7 @@
 - `insight-prespec-after-findings-loop-unruled` — The rules of pre-spec stop at its report; no rule sets what follows its findings — how the Cases built again, the rounds and the main agent's own questions reach the person, and what a second run checks — so the main agent improvises the loop after the findings, and the person loses track of what to answer and of what a run costs. · severity 2 · put off in 0 sessions
 - `insight-prespec-main-agent-question-off-the-grill-me-shape` — no rule gives the question shape of the skill grill-me to a question the main agent asks the person itself, so at /pre-spec the main agent writes such a question in its own shape · severity 2 · put off in 0 sessions
 - `insight-session-vault-knowledge-not-loaded` — A fact the vault holds does not reach the session that needs it; only brief.md, CLAUDE.md, the skills and the agent frames are loaded, and everything else waits for a read the agent must first think to make. · severity 1 · put off in 0 sessions
+- `insight-spec-write-parent-body-kept-on-re-ratification` — A Case ratified whole and then ratified again as a parent with sub-cases keeps its old body in the Spec, since the Spec hook of rule-spec-write writes the new answer by its sub-case headings and does not remove the given, when, then, then block and tasks the parent held when it stood alone; the content is signed twice and the pairs of the old body consume the anchors of the sub-cases. · severity 2 · put off in 0 sessions
 - `insight-workflow-case-schema-silent-on-what-the-scripts-accept` — The Case schema does not say how the scripts read the text a Case writes — which forms they resolve, how far an edit pair reaches — so the agent writes a form the scripts do not handle, and only the pre-spec check finds it. · severity 2 · put off in 0 sessions
 - the product model: `kind: test | measurement | reading`, `ask-guppi` through Entities, the vault-query questions before a product's records (session 1119); `applies_to` and `rules` taken into Slice 3f (case 301) · put off in 0 sessions
 - reuse, the edge: `uses` / `used_by` between Entities — `uses` written in the Case on the side that uses, `used_by` computed by the cascade of `generate`, the pair checked by lint, the pattern of `applies_to` / `rules`; no edge Rule → Rule (cases 305, 319) · put off in 0 sessions

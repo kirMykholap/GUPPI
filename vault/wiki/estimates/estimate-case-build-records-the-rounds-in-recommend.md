@@ -1,7 +1,7 @@
 ---
 type: estimate
 kind: QA
-status: pending
+status: passed
 target: "[[rule-case-build]]"
 purpose: Whether the recommend of each Case case-guppi builds holds one item per question of its rounds — the title, the recommendation and the answer in English as they stood when the person answered it, or a note that it was not answered — each item on the parent or under the one sub-case its answer changed, and a sub-case with no problem
 method: "by hand: the Case files of a later session after the render, each recommend read against the rounds of its Case in the chat"
@@ -31,7 +31,7 @@ The `recommend` of the Case is a list with one item per question of the rounds o
 
 ## Result
 
-2026-10-01, by hand, raw/2026-09-30/2356/cases/case-561.md and case-562.md against the six rounds of 561 and the two of 562 in the chat: 19 distinct questions of 561, one item each, the question asked again in round 4 one item with the last recommendation, each Change item with Asked and Taken, 562 three items and a Change; but the question of round 1 on what done means, whose answer changed only 561.11, stands in the parent's recommend, not under 561.11
+2026-10-01, by hand, the Case files cases/case-577.md to case-581.md of session 1441, after the render of session 1237, each recommend read against the rounds in the chat: 577 holds one item per question Q1-Q5 with its title as the round wrote it, Recommended and an Answer in English, and one Change item with Asked and Taken for the finding of /pre-spec the person answered; 578 Q1-Q2, 579 Q1-Q5 with the answer to Q1 outside the options paraphrased in English, 581 Q1-Q4 of the rounds of 580; every item on the parent, problem on the parent only; no item quotes the person word for word; not exercised: a question replaced, a question left unanswered, a Case with no round
 
 ## History
 
@@ -40,3 +40,4 @@ The `recommend` of the Case is a list with one item per question of the rounds o
 - 2026-09-30 updated: the Criterion replaced whole — one item per question, its recommendation and answer as they stood when the person answered it, a question never answered noted (case 557.2) · [[decision-case-557.2]]
 - 2026-10-01 status: pending → failed · raw/2026-09-30/2356/ledger.md#L45
 - 2026-10-01 updated: the Criterion replaced whole — an item whose answer changed only one sub-case may stand on the parent or under that sub-case (case 568) · [[decision-case-568]]
+- 2026-10-01 status: pending → passed · raw/2026-10-01/1441/ledger.md#L34

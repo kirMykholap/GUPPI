@@ -1,7 +1,7 @@
 ---
 type: estimate
 kind: QA
-status: failed
+status: pending
 target: "[[rule-case-protocol]]"
 purpose: The reply that acknowledges a ratification has four parts in order
 method: one reading by hand of the first acknowledging reply of a session
@@ -15,10 +15,12 @@ tags: [session, workflow, ledger]
 ## Criterion
 
 When:
-The person ratifies a Case, or ratifies again a Case shown again after its ratification, and the agent writes the reply that acknowledges it.
+The person ratifies a Case, or ratifies again a Case shown again after its ratification, and the agent writes the reply that acknowledges it, with `vault/wiki/case-schema.md` rendered from `rule-case-protocol`.
 
 Then:
-The reply has four parts, in this order. First, the `LEDGER` block. Second, the heading `## Case N — ratified` and a paragraph `Changes:` that says what changes, in one or two sentences. Third, a paragraph `Notes:` with facts that did not enter the Case, left out when there are none. Last, the heading `## Frontier` and the lines of `raw/<date>/<hi HHMM>/frontier.md` as a checklist. In the checklist the closed lines are folded into one, the open ones stand one per line with a short title, and the lines put off stand as `[-] … · sprint · defer`, `[-] … · backlog · kept` or `[-] … · defer case N`.
+The reply has four parts, in this order. First, the `LEDGER` block. Second, the heading `## Case N — ratified` and a paragraph `Changes:` that says what changes, in one or two sentences. Third, a paragraph `Notes:` with facts that did not enter the Case, left out when there are none. Last, the heading `## Frontier` and the lines of `raw/<date>/<hi HHMM>/frontier.md` as a checklist.
+**＋** In the checklist the closed lines are folded into one line, and the lines put off stand as `[-] … · sprint · defer`, `[-] … · backlog · kept` or `[-] … · defer case N`.
+**＋** The open `W` lines are folded into one line that lists their ids, and each other open line stands on its own line with a short title.
 **＋** While a line under `## Cases` is open, the question which item is next ends the reply; when none is open, the reply ends with the Frontier and asks nothing, and the hook of `rule-prespec-onward` sends the agent on.
 **＋** For a Case with sub-cases, one reply acknowledges every sub-case ratified: one `LEDGER` block with all their lines, one heading `## Case N — ratified` that names the ids, one Frontier.
 **＋** The reply that acknowledges a re-ratification carries the `LEDGER` block with the decision lines of each Case ratified again, as at its first ratification.
@@ -46,3 +48,4 @@ The reply has four parts, in this order. First, the `LEDGER` block. Second, the 
 - 2026-09-27 status: pending → passed · raw/2026-09-27/1819/ledger.md#L19
 - 2026-10-01 updated: the Criterion replaced whole - the question which item is next only while a line under Cases is open (case 561.8) · [[decision-case-561.8]]
 - 2026-10-01 status: pending → failed · raw/2026-10-01/1237/ledger.md#L30
+- 2026-10-01 updated: the Criterion replaced whole — the open W lines are folded into one line that lists their ids; each other open line stands on its own line (case 578.2) · [[decision-case-578.2]]

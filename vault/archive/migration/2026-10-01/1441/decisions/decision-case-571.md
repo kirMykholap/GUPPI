@@ -1,8 +1,9 @@
 ---
 type: decision
 case: "571"
-status: current
+status: archived
 defer: ["[[estimate-case-build-checks-the-finished-case]]"]
+superseded_by: ["[[decision-case-579.2]]"]
 origin: raw/2026-10-01/1237/ledger.md#case-571
 sprint: migration
 created: 2026-10-01
@@ -26,3 +27,6 @@ Whether case-guppi, before it answers, names each page its Case makes false and 
 ## History
 
 - 2026-10-01 created · raw/2026-10-01/1237/ledger.md#case-571
+- 2026-10-01 superseded by decision-case-579.2 · [[decision-case-579.2]]
+- 2026-10-01 archived · superseded
+- 2026-10-01 archived · cleanup

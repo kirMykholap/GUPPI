@@ -1,7 +1,7 @@
 ---
 type: estimate
 kind: QA
-status: passed
+status: pending
 target: "[[rule-case-check]]"
 purpose: Whether the Stop run of the Case check refuses a reply that shows a round of case-guppi after a text of the main agent's own, judges only the first line of the reply after pre-spec, and leaves a turn with no round alone
 method: uv run pytest tests/test_casecheck.py -k round; by hand in a later session, the first rounds of case-guppi shown before and after pre-spec, the replies and the hook's refusals read in the transcript
@@ -24,7 +24,7 @@ When the turn of the reply, the records after the person's last prompt, holds a 
 **＋** Its reason on stderr quotes the text that stands before the round and tells the agent to show the round again, opening with its Context paragraph or its first question, with nothing before it.
 **＋** Text after the last question and one horizontal rule is not judged.
 **＋** The check runs in the same `Stop` run as the comparison of shown Cases, and a reply that both refuse gives both reasons.
-**－** Once the session's event log holds a `prespec` line of this session after its `hi`, text before the last tool call of the turn is not judged, so the loop after the findings of `/pre-spec`, which runs in one turn, is judged only by the first line of its reply.
+**－** Once the session's event log holds a `prespec` line of this session after its `hi`, text before the last tool call of the turn is not judged, and a reply of the loop after the findings of `/pre-spec` is judged only by its first line; in that loop each answer of a `case-guppi` comes back in a turn of its own, and the text the main agent writes there is set by `rule-prespec`.
 **－** A turn with no round of `case-guppi` is not judged: the main agent's own questions in the report of `/pre-spec`, at `/hi` or at a stop of Work Mode, a `**Fact:**` answer shown with the question that stood open, and a re-pitch by `.claude/skills/wait-what/SKILL.md`.
 **－** On the re-fire (`stop_hook_active`) it exits 0, so the round shown again after a refusal is not judged again.
 **－** It stores nothing and writes no file.
@@ -37,3 +37,4 @@ When the turn of the reply, the records after the person's last prompt, holds a 
 
 - 2026-10-01 created · [[decision-case-562]]
 - 2026-10-01 status: pending → passed · raw/2026-10-01/1237/ledger.md#L29
+- 2026-10-01 updated: the Criterion replaced whole — the same behaviour, with the true reason for the exemption after /pre-spec (case 581.2) · [[decision-case-581.2]]

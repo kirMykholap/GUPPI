@@ -1,7 +1,7 @@
 ---
 type: estimate
 kind: QA
-status: passed
+status: pending
 target: "[[rule-ledger-write]]"
 purpose: Whether the ledger hook refuses a lesson line whose addressed_by mark has no decision line of its Case before it in the session, judges it again until that line stands, and says why only for the reply just finished
 method: uv run pytest tests/test_ledger.py — piped payloads and a session ledger in a temp vault
@@ -25,7 +25,7 @@ When no decision line of Case N stands before the lesson line — in the session
 **＋** The hook and `guppi materialize` judge the mark by one function of `guppi/materialize.py`, over the ledger lines in their order, and give the same answer for the same lines.
 **－** A line that `estimate-ledger-write-refuses-a-lesson-without-its-prefix` refuses is not judged for its mark, and gets that refusal's stderr line alone.
 **－** A lesson line whose mark has a decision line of Case N before it is written as before, and so is a lesson line with no mark. A line already in the ledger of any session is not judged again.
-**－** Without a `hi`, and with `stop_hook_active`, the hook acts as before and judges no line.
+**－** Without a `hi` the hook judges no line. With `stop_hook_active` set it judges the line the same, and its stderr line is told once a stretch, as `estimate-ledger-write-lifts` sets it.
 
 ## Result
 
@@ -35,3 +35,4 @@ When no decision line of Case N stands before the lesson line — in the session
 
 - 2026-09-29 created · [[decision-case-497.1]]
 - 2026-09-29 status: pending → passed · raw/2026-09-29/1134/ledger.md#L25
+- 2026-10-01 updated: the Criterion replaced whole — with stop_hook_active the line is judged the same, and its stderr line is told once a stretch (case 577.8) · [[decision-case-577.8]]

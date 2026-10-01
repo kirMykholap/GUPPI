@@ -1,11 +1,11 @@
 ---
 type: estimate
 kind: QA
-status: failed
+status: passed
 target: "[[rule-spec-write]]"
 purpose: The Stop hook writes a deferred Case into the Spec as the reply showed it
 method: uv run pytest tests/test_ratified.py -k defer, then by hand the first defer the person asks for after the change
-checked: 2026-09-30
+checked: 2026-10-01
 origin: raw/2026-09-25/1228/ledger.md#case-421.1
 sprint: migration
 created: 2026-09-25
@@ -29,7 +29,7 @@ The hook writes that Case under `## Deferred` of the plan file while `spec.md` i
 
 ## Result
 
-2026-09-30, uv run pytest tests/test_ratified.py -k defer: 13 passed; by hand, the first defers the person asked for in session 1736: Case 553 stands under ## Deferred of the plan and of spec.md with its heading, context, problem and then block as the reply showed it; Case 551 does too, but only from its second showing — at its first showing the hook raised on a malformed estimate line of the same reply (parse_line, fixed by case 552.1), caught the error and exited 0, so nothing of Case 551 was written and no reason stood on stderr
+2026-10-01, uv run pytest tests/test_ratified.py -k defer: 13 passed, 76 deselected; by hand, the seven short-form defers 570 to 576 of session 1237, shown in the reply of 14:08:36 with one LEDGER block (ledger lines 21-27): each stands under the Deferred heading of the plan file linear-soaring-fairy.md (line 374, 7 Case headings) and of raw/2026-10-01/1237/spec.md (line 376), each with its heading, context, problem and a then fence holding one defer item with its slug; the agent wrote none of them, and the reading of estimate-case-protocol-defers-in-one-reply in the same session (ledger line 31) records that the Spec hook wrote the seven; not exercised: an error of the hook on a malformed line
 
 ## History
 
@@ -42,3 +42,4 @@ The hook writes that Case under `## Deferred` of the plan file while `spec.md` i
 - 2026-09-30 status: pending → failed · raw/2026-09-30/1736/ledger.md#L41
 - 2026-10-01 deferred · [[decision-case-564]]
 - 2026-10-01 deferred · [[decision-case-573]]
+- 2026-10-01 status: failed → passed · raw/2026-10-01/1441/ledger.md#L21

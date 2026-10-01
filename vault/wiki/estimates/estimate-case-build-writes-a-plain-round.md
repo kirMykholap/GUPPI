@@ -1,11 +1,11 @@
 ---
 type: estimate
 kind: QA
-status: failed
+status: passed
 target: "[[rule-case-build]]"
 purpose: Whether a round of case-guppi gives the mechanism with a concrete example, a list one item per line, a quotation in the Context as a blockquote, a number only beside a quotation of what it points to, and an unknown term explained
 method: "by hand, in a session after the render: one first round and one later round of case-guppi read in the chat against the Criterion"
-checked: 2026-09-30
+checked: 2026-10-01
 origin: raw/2026-09-28/1318/ledger.md#case-477.1
 sprint: migration
 created: 2026-09-28
@@ -31,7 +31,7 @@ The `**Context:**` of a first round gives the mechanism in plain words, with one
 
 ## Result
 
-2026-09-30, by hand, the first rounds of case-guppi on Cases 547 to 550 and the later rounds on 548 (Q4), 549 (Q3) and 550, read in the chat of session 1736: each Context gives the mechanism in plain words with an example, quotations stand as blockquotes on their own lines, terms are explained where they first stand, no number stands alone but beside a quotation; but the sentence on what the round decides runs a series of parallel clauses inside one sentence on Case 548 (how to fix the test, whether to drop the skips, whether to fix the method line) and Case 550 (what happens to the pages, whether the code gets a limit, whether the schema text states the old shape), and the Context of Case 547 names five examples of closed lines in one sentence, against the list rule of .claude/skills/grill-me/SKILL.md
+2026-10-01, by hand, the first rounds of case-guppi on Cases 577 and 578 and the later rounds on 577 (Q3-Q4, Q5), read in the chat of session 1441 against the Criterion, and .claude/agents/case-guppi.md read for its pointers to the grill-me template: each Context gives the mechanism in plain words with one example, the decisions of a round and the losses stand one per line, quotations stand as blockquotes on their own lines, no number stands alone, terms such as the mark and the stretch are explained where they first stand; the frame points lists, quotations and questions to the grill-me template; the person agreed the reading passes
 
 ## History
 
@@ -45,3 +45,4 @@ The `**Context:**` of a first round gives the mechanism in plain words, with one
 - 2026-09-30 status: failed → failed · raw/2026-09-30/1736/ledger.md#L19
 - 2026-10-01 deferred · [[decision-case-563]]
 - 2026-10-01 deferred · [[decision-case-572]]
+- 2026-10-01 status: failed → passed · raw/2026-10-01/1441/ledger.md#L13

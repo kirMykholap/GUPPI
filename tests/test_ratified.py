@@ -613,6 +613,32 @@ def test_write_a_sub_case_is_judged_by_the_file_of_its_parent(working):
     assert "Case 9.1" not in plan_of(working).read_text(encoding="utf-8")
 
 
+def test_write_a_sub_case_shown_only_in_the_list_of_its_parent_is_written(working):
+    # case 561.10: one ratification under the heading of the top-level Case
+    parent = (
+        "## Case 9 — родитель\n\n> **context:**\n> Общий контекст.\n\n> **problem:**\n> Вопрос.\n\n"
+    )
+    sub = (
+        SHOWING.replace("## Case 7 — пример", "### Case 9.1 — ребёнок")
+        .replace("case 7", "case 9.1")
+        .replace("> **context:**\n> Контекст.\n\n> **problem:**\n> Проблема.\n\n", "")
+    )
+    build(working, parent + sub)
+    fence = "".join(f"> {line}\n" for line in LINES.replace("case 7", "case 9.1").splitlines())
+    listed = (
+        "## Case 9 — родитель\n\n- 9.1 — ребёнок: готово, когда X работает.\n\n"
+        f"> **ratification:**\n> ```\n{fence}> ```\n"
+    )
+    ack = ACK.replace("case 7", "case 9.1")
+    assert stop(working, ack, listed, ack, built=False, sent=["9"]) == (0, "")
+    assert "### Case 9.1" in plan_of(working).read_text(encoding="utf-8")
+    plan_of(working).write_text("# Spec\n", encoding="utf-8")
+    differs = listed.replace("{ref:rule-x}", "{ref:rule-y}", 1)
+    code, err = stop(working, ack, differs, ack, built=False, sent=["9"])
+    assert code == 2 and "case 9.1: its ratification differ" in err
+    assert "Case 9.1" not in plan_of(working).read_text(encoding="utf-8")
+
+
 def test_write_a_sub_point_off_the_form_is_refused_and_nothing_is_written(working):
     broken = SHOWING.replace("  - kind: `QA`", "  - kind: QA")
     code, err = stop(working, ACK, broken, ACK)

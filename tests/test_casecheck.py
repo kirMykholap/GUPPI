@@ -688,6 +688,172 @@ def test_stop_the_re_fire_passes(working):
     assert show(working, ANSWER, stop_hook_active=True) == (0, "")
 
 
+# --- a list showing under the heading of a top-level Case (case 561.10) -----------------
+
+LINES_9_1 = (
+    "- decision[case 9.1][update][rule-x]{ref:rule-x}",
+    "- decision[case 9.1][create][estimate-x-works-1]{ref:rule-x}{tags:harness}",
+)
+LINES_9_2 = (
+    "- decision[case 9.2][update][rule-x]{ref:rule-x}",
+    "- decision[case 9.2][create][estimate-x-works-2]{ref:rule-x}{tags:harness}",
+)
+
+
+def list_showing(*lines):
+    fence = "".join(f"> {line}\n" for line in lines)
+    return (
+        "## Case 9 — родитель\n\n- 9.1 — часть: готово, когда файл записан.\n"
+        "- 9.2 — часть: готово, когда страница прочитана.\n\n"
+        f"> **ratification:**\n> ```\n{fence}> ```\n\n---\n\nРатифицируешь?\n"
+    )
+
+
+def built_family(working):
+    family = PARENT + sub_case("9.1") + "\n" + sub_case("9.2", "The page is read.")
+    assert answer(working, family) == (0, "")
+
+
+def test_stop_list_a_fence_with_the_stored_lines_of_two_sub_cases_passes(working):
+    built_family(working)
+    assert show(working, list_showing(*LINES_9_1, *LINES_9_2)) == (0, "")
+
+
+def test_stop_list_a_missing_line_is_refused(working):
+    built_family(working)
+    code, err = show(working, list_showing(*LINES_9_1, LINES_9_2[0]))
+    assert code == 2 and "case 9.2: its ratification differ" in err
+
+
+def test_stop_list_an_extra_line_is_refused(working):
+    built_family(working)
+    extra = "- decision[case 9.1][update][rule-y]{ref:rule-y}"
+    code, err = show(working, list_showing(*LINES_9_1, extra, *LINES_9_2))
+    assert code == 2 and "case 9.1: its ratification differ" in err
+
+
+def test_stop_list_a_showing_under_each_heading_passes_as_before(working):
+    built_family(working)
+    each = PARENT + sub_case("9.1") + "\n" + sub_case("9.2", "The page is read.")
+    assert show(working, each) == (0, "")
+
+
+# --- how a round of case-guppi opens (case 562) -----------------------------------------
+
+ROUND = (
+    "**Context:** The item is about X.\n\n❓ **Q1** - **Which way?**:\n\n**Now:** A.\n\n➡️ (a).\n"
+)
+SHOWN_ROUND = "**Контекст:** Пункт об X.\n\n❓ **Q1** - **Какой путь?**:\n\n➡️ (a).\n"
+FACT_ANSWER = "**Fact:** The page says so.\n\n❓ **Q1** - **Which way?**:\n"
+PRESPEC_MARK = "- 15:20:00 44c1aae1 prespec\n"
+
+
+def assistant(*blocks):
+    return {
+        "type": "assistant",
+        "isSidechain": False,
+        "message": {"role": "assistant", "content": list(blocks)},
+    }
+
+
+def said(value):
+    return {"type": "text", "text": value}
+
+
+def agent_call(call_id="toolu_a"):
+    return {
+        "type": "tool_use",
+        "id": call_id,
+        "name": "Agent",
+        "input": {"subagent_type": "case-guppi"},
+    }
+
+
+def agent_result(value, call_id="toolu_a"):
+    block = {
+        "type": "tool_result",
+        "tool_use_id": call_id,
+        "content": [said("  " + value.replace("\n", "\n  "))],
+    }
+    return {"type": "user", "isSidechain": False, "message": {"role": "user", "content": [block]}}
+
+
+def notification(value):
+    content = f"<task-notification>\n<task-id>a1</task-id>\n<result>{value}</result>\n</task-notification>"
+    return {
+        "type": "user",
+        "isSidechain": False,
+        "origin": {"kind": "task-notification"},
+        "message": {"role": "user", "content": content},
+    }
+
+
+def with_prespec(working):
+    log = working / "vault" / "raw" / TODAY.isoformat() / "event_log.md"
+    log.write_text(log.read_text(encoding="utf-8") + PRESPEC_MARK, encoding="utf-8")
+
+
+def test_round_a_reply_that_opens_with_a_line_of_its_own_is_refused(working):
+    records = [prompt(), assistant(agent_call()), agent_result(ROUND)]
+    code, err = show(working, "Case-guppi asks a round.\n\n" + SHOWN_ROUND, records=records)
+    assert code == 2 and "Case-guppi asks a round." in err and "nothing before it" in err
+
+
+def test_round_before_prespec_a_text_before_the_agent_call_is_refused(working):
+    records = [
+        prompt(),
+        assistant(said("Dispatching case-guppi."), agent_call()),
+        agent_result(ROUND),
+    ]
+    code, err = show(working, SHOWN_ROUND, records=records)
+    assert code == 2 and "Dispatching case-guppi." in err
+
+
+def test_round_after_prespec_a_text_before_the_call_with_a_question_line_passes(working):
+    with_prespec(working)
+    send = {"type": "tool_use", "id": "toolu_s", "name": "SendMessage", "input": {}}
+    records = [notification(ROUND), assistant(said("The report."), send), result()]
+    assert show(working, "❓ **561.Q1** - **Какой путь?**:\n", records=records) == (0, "")
+
+
+def test_round_after_prespec_a_reply_that_opens_with_a_line_of_its_own_is_refused(working):
+    with_prespec(working)
+    code, err = show(working, "Both answered.\n\n" + SHOWN_ROUND, records=[notification(ROUND)])
+    assert code == 2 and "Both answered." in err
+
+
+def test_round_a_reply_that_opens_with_the_context_label_or_the_question_passes(working):
+    records = [prompt(), assistant(agent_call()), agent_result(ROUND)]
+    assert show(working, SHOWN_ROUND, records=records) == (0, "")
+    question = SHOWN_ROUND[SHOWN_ROUND.index("❓") :]
+    assert show(working, question, records=records) == (0, "")
+
+
+@pytest.mark.parametrize(
+    "records",
+    [
+        [prompt(), assistant(agent_call()), agent_result(FACT_ANSWER)],
+        [prompt()],
+        [prompt(), assistant(said("A note."), agent_call()), agent_result(ANSWER)],
+    ],
+)
+def test_round_a_turn_with_no_round_is_not_judged(working, records):
+    own_question = "Мой вопрос.\n\n❓ **Q1** - **Мой?**:\n"
+    assert show(working, own_question, records=records, sent=[]) == (0, "")
+
+
+def test_round_the_re_fire_passes(working):
+    records = [prompt(), assistant(agent_call()), agent_result(ROUND)]
+    reply = "A line.\n\n" + SHOWN_ROUND
+    assert show(working, reply, records=records, stop_hook_active=True) == (0, "")
+
+
+def test_stop_list_the_file_of_the_top_level_case_must_be_sent(working):
+    built_family(working)
+    code, err = show(working, list_showing(*LINES_9_1, *LINES_9_2), sent=[])
+    assert code == 2 and "no SendUserFile call on" in err
+
+
 # --- Case 467.2: an open backlog line of the Frontier ------------------------------------
 
 UPDATE_LINE = "decision[case 7][update][rule-x]{ref:rule-x}"

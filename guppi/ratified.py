@@ -469,15 +469,19 @@ def ratified_cases(records: list[dict]) -> tuple[list[str], dict]:
 
 
 def find_showing(messages: list[str], case: str):
-    """`(heading, lines, text)` of the last message that shows the Case with at least one of
-    its sections, by `casecheck.shows_sections` (case 452.3); None when none shows it. A
-    fence tagged `DIFF` is not read (case 441.8)."""
-    from guppi.casecheck import shows_sections  # it imports this module
+    """`(heading, lines, text)` of the last message that shows the Case, by
+    `casecheck.showings` — under its own heading with at least one of its sections (case
+    452.3), or as a sub-case named in the one `ratification` of a list showing under its
+    top-level heading (case 561.10), its lines then that `ratification` alone and its heading
+    the top-level one; None when none shows it. A fence tagged `DIFF` is not read (case
+    441.8)."""
+    from guppi.casecheck import showings, top_case  # it imports this module
 
     for text in reversed(messages):
-        cases = split_cases(text)
-        if case in cases and shows_sections(cases[case]):
-            return headings(text)[case], cases[case], text
+        shown = showings(split_cases(text))
+        if case in shown:
+            heads = headings(text)
+            return heads.get(case) or heads.get(top_case(case), ""), shown[case], text
     return None
 
 

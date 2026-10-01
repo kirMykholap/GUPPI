@@ -1,6 +1,7 @@
 """`guppi prespec` — the `PreToolUse ExitPlanMode` hook that holds Plan Mode open until
-`/pre-spec` has run in this session; `guppi prespec --check <plan> [--session ID]` — the
-check of that Plan Mode's artifacts against each other.
+`/pre-spec` has run in this session and the check of its plan finds nothing; `guppi
+prespec --check <plan> [--session ID]` — the check of that Plan Mode's artifacts against
+each other.
 
 The hook reads the event logs by the session's stamp (case 136.2) — the logs from today
 back to the date of this session's `session-start`, as the ledger hook reads them, so a
@@ -8,10 +9,19 @@ session across midnight keeps its `hi` and its `prespec` (case 213.2): the sessi
 working one when the logs hold a `hi` of its stamp. In a working session with no `prespec` line of
 the same stamp after that `hi`, the hook exits 2 with the reason on stderr, which Claude
 Code shows the agent and which blocks the tool; the agent runs `/pre-spec` — `guppi gate`
-writes the stamped line on the Skill call (case 136.1) — and exits Plan Mode again. A mark
+writes the stamped line on the Skill call (case 136.1) — and exits Plan Mode again. With
+the line, the hook finds the plan file of the session by `ledger.plan_path` and judges it
+by `plan_findings`, the same function `--check` prints, not a copy; while it finds one,
+the hook exits 2 with the findings on stderr. A `note:` line does not block, and with no
+plan file of the session the exit passes on the line alone (case 561.3). A mark
 of another stamp or `--------` does not count, and a `session-start` of another session
 resets nothing. An ordinary session — no `hi` — is not gated: no governance applies there.
-Any other tool: exit 0. Rule page: `vault/wiki/rules/rule-prespec-hook.md`.
+Any other tool: exit 0; an error of the hook itself prints `prespec: check skipped:
+<error>` and exits 0. Rule page: `vault/wiki/rules/rule-prespec-hook.md`.
+
+What follows is what `--check` compares — the description the skill `/pre-spec` points to,
+kept here beside the code (case 561.1). The documentation language it names is the one
+`guppi.toml` sets for the repository.
 
 The check prints one finding per line on stdout and exits 1 on any, 0 when there is none;
 a line opening with `note:` is no finding and sets no exit code (case 378.8); without a
@@ -79,6 +89,16 @@ the ledgers of its dates, on the `hi` date from the `hi` time on, and its folder
   of `guppi/materialize.py` on each section the pair changes, before and after it, a break
   the section held before not counted; and each such break in the text of a `sections`
   value of a `create` or an `update`, judged on its own (case 487.1);
+- a `replace` pair whose `new` opens with a space or a tab while its `old` opens with
+  neither, by `generate.indent_added_twice`: the page keeps its own indent before the
+  match, and the indent of `new` would stand after it (case 543.4);
+- two Cases of the plan whose `update` items name one page and set one field under `set`
+  to two different values, each write one section under `sections`, or each replace the
+  Criterion of one Estimate whole — an `update` that names no part, by
+  `materialize.names_a_part` — with both Cases, the page's slug and the field or the
+  section, the line opening with the later Case; two items of one Case, and different
+  fields, sections or anchors of one page, are no such finding (`check_same_target`, case
+  561.4);
 - a record line of the window — `- decision[`, `- estimate[`, `- lesson[`, timed — that
   `materialize.parse_line` does not read, with its date and line number (case 75.2);
 - a `[[slug]]` outside a code span in the plan — in the blockquotes and in the strings of
@@ -97,7 +117,8 @@ the ledgers of its dates, on the `hi` date from the `hi` time on, and its folder
   prefix by `materialize.category_of`, a path a span holding a `/` and one more character;
   a Case without `given` is not checked;
 - the language (cases 387.4, 445.4, 476.3): every name, `context` or `problem` of a Case of
-  the plan that still holds a letter outside the script of `documentation_lang`, read from
+  the plan that still holds a letter outside the script of the documentation language,
+  `documentation_lang`, read from
   `guppi.toml` by `config.read_settings`, a short form under `## Deferred` included, by
   `ratified.untranslated`; a `guppi.toml` that is missing or names an unknown code is one
   finding that names it; the `given`, `when`, `then` and the blocks are not read, and the
@@ -142,8 +163,8 @@ from guppi.generate import (  # the ticker, the pairs, the Frontier line (case 3
 from guppi.ledger import (
     hi_moment,
     hi_recorded,
+    plan_path,
     session_dir,
-    session_event_log,
     session_event_logs,
 )
 from guppi.lint import CODE_SPAN, WIKILINK, archived_slugs, hub_files, names_a_form
@@ -456,6 +477,23 @@ def check_backlog_line(
     return findings
 
 
+def open_case_items(frontier: str) -> list[str]:
+    """The items of the open box lines of a Frontier that may not stay open: a `- [ ]` line
+    outside `## Work` and `## Ask` (cases 356.1, 531.12). The one judgment of an open Case
+    line, which `check_frontier` reports and the hook of `rule-prespec-onward` waits on
+    (case 561.5)."""
+    items: list[str] = []
+    may_stay_open = False
+    for line in frontier.splitlines():
+        if line.startswith("## "):
+            may_stay_open = line.strip() in OPEN_LISTS
+            continue
+        match = FRONTIER_LINE.match(line)
+        if match and match.group(1) == " " and not may_stay_open:
+            items.append(match.group(2))
+    return items
+
+
 def check_frontier(
     path: Path,
     relative: str,
@@ -486,19 +524,14 @@ def check_frontier(
     `check_backlog_line` against `records` and the pages of `project_dir`."""
     if not path.exists():
         return [f"frontier: {relative} is missing"]
-    findings: list[str] = []
-    may_stay_open = False
-    for line in path.read_text(encoding="utf-8").splitlines():
-        if line.startswith("## "):
-            may_stay_open = line.strip() in OPEN_LISTS
-            continue
+    text = path.read_text(encoding="utf-8")
+    findings = [f"frontier: {item} is open" for item in open_case_items(text)]
+    for line in text.splitlines():
         match = FRONTIER_LINE.match(line)
         if not match:
             continue
         box, item, rest = match.groups()
         if box == " ":
-            if not may_stay_open:
-                findings.append(f"frontier: {item} is open")
             continue
         segments = [s.strip() for s in rest.split(FRONTIER_SEPARATOR)]
         closer = CLOSERS.match(segments[-1])
@@ -906,6 +939,58 @@ def check_criterion_pairs(blocks: dict, project_dir: Path) -> list[str]:
     return findings
 
 
+def check_same_target(blocks: dict) -> list[str]:
+    """561.4: two Cases of the plan whose `update` items name one page and set one field
+    under `set` to two different values, each write one section under `sections`, or each
+    replace the Criterion of one Estimate whole — an `update` that names no part, by
+    `materialize.names_a_part`. One finding per pair, opening with the later Case in the
+    plan's order, so the check after a write gives it to the Case just written. Two items of
+    one Case are not compared here — a second item of one kind and slug keeps the finding of
+    `check_lines` (case 426) — and different fields, sections or anchors of one page are no
+    finding: their `replace` pairs are judged by `check_pairs`."""
+    seen: dict[str, list[tuple[str, dict]]] = {}  # slug → (case, item) in plan order
+    findings: list[str] = []
+    for case, block in blocks.items():
+        for item in block.get("update") or []:
+            slug = str(item.get("slug") or "") if isinstance(item, dict) else ""
+            if not slug:
+                continue
+            for earlier, other in seen.get(slug, []):
+                if earlier == case:
+                    continue
+                findings += same_target_findings(case, earlier, slug, item, other)
+            seen.setdefault(slug, []).append((case, item))
+    return findings
+
+
+def same_target_findings(later: str, earlier: str, slug: str, item: dict, other: dict) -> list[str]:
+    """The clashes of two `update` items of one page under two Cases (case 561.4)."""
+    findings: list[str] = []
+    mine, theirs = item.get("set"), other.get("set")
+    if isinstance(mine, dict) and isinstance(theirs, dict):
+        for field in mine:
+            if field in theirs and json.dumps(mine[field], sort_keys=True, default=str) != (
+                json.dumps(theirs[field], sort_keys=True, default=str)
+            ):
+                findings.append(
+                    f"case {later}: {slug}: sets {field} to another value than case {earlier}"
+                )
+    mine, theirs = item.get("sections"), other.get("sections")
+    if isinstance(mine, dict) and isinstance(theirs, dict):
+        for name in mine:
+            if name in theirs:
+                findings.append(
+                    f"case {later}: {slug}: writes the section {name} that case {earlier} "
+                    "writes too"
+                )
+    if category_of(slug) == "estimates" and not names_a_part(item) and not names_a_part(other):
+        findings.append(
+            f"case {later}: {slug}: replaces the Criterion that case {earlier} replaces too — "
+            "one promise is signed in one wording"
+        )
+    return findings
+
+
 # --- the frame of a Case (cases 378.7, 378.8) ------------------------------------------
 
 
@@ -1151,25 +1236,73 @@ def judge(
     findings += check_pairs(cases, blocks, project_dir)
     findings += check_bare_links(cases, blocks, project_dir)
     findings += check_criterion_pairs(blocks, project_dir)
+    findings += check_same_target(blocks)
     findings += check_frame(cases, blocks)
     return findings
 
 
-def check(plan: str, project_dir: Path, stamp: str, now, stdout, stderr) -> int:
+def plan_findings(
+    plan: str, project_dir: Path, stamp: str, now
+) -> tuple[list[str], list[str]] | None:
+    """The findings and the notes of `--check` on a plan, for a session and a moment — the
+    one judgment `check` prints and the `ExitPlanMode` hook refuses by (case 561.3). None
+    when the session's window holds no `hi`: nothing is checked."""
     logs = session_event_logs(project_dir, now, stamp)
     hi = hi_moment(logs, stamp)
     folder = session_dir(project_dir, now, stamp)
     if hi is None or folder is None or not hi_recorded("".join(t for _, t in logs), stamp):
-        print(f"prespec: no hi recorded for session {stamp}; nothing checked", file=stderr)
-        return 0
+        return None
     lines = window_lines(project_dir, hi, now.date().isoformat())
     records = session_decisions(lines)
     relative = folder.relative_to(project_dir).as_posix() + "/frontier.md"
     findings = judge(plan, project_dir, records, lines, (folder / "frontier.md", relative))
     findings += check_untranslated(plan, project_dir)
-    for line in findings + chain_notes(split_cases(plan)) + promise_notes(plan, project_dir):
+    notes = chain_notes(split_cases(plan)) + promise_notes(plan, project_dir)
+    return findings, notes
+
+
+def check(plan: str, project_dir: Path, stamp: str, now, stdout, stderr) -> int:
+    judged = plan_findings(plan, project_dir, stamp, now)
+    if judged is None:
+        print(f"prespec: no hi recorded for session {stamp}; nothing checked", file=stderr)
+        return 0
+    findings, notes = judged
+    for line in findings + notes:
         print(line, file=stdout)
     return 1 if findings else 0
+
+
+def gate(project_dir: Path, now, stamp: str, stderr) -> int:
+    """The `ExitPlanMode` hook (cases 136, 213.2, 561.3): in a working session — a `hi` of
+    the stamp in its logs — with no `prespec` line after it, exit 2 with the reason; with the
+    line, the plan file of the session by `ledger.plan_path` is judged by `plan_findings`, and
+    while it finds one, exit 2 with the findings on stderr. Notes alone, or no plan file of
+    the session, pass."""
+    logs = session_event_logs(project_dir, now, stamp)
+    hi, done = window("".join(text for _, text in logs), stamp)
+    if not hi:
+        return 0
+    if not done:
+        print(
+            f"prespec: Plan Mode is closing without /pre-spec in session {stamp}. "
+            "Run /pre-spec, then exit Plan Mode again.",
+            file=stderr,
+        )
+        return 2
+    plan_file = plan_path(logs, stamp)
+    if plan_file is None or not plan_file.is_file():
+        return 0
+    judged = plan_findings(plan_file.read_text(encoding="utf-8"), project_dir, stamp, now)
+    if judged is None or not judged[0]:
+        return 0
+    print(
+        f"prespec: the check of the plan {plan_file} finds {len(judged[0])} finding(s); fix "
+        "them, run the check again, then exit Plan Mode:",
+        file=stderr,
+    )
+    for line in judged[0]:
+        print(line, file=stderr)
+    return 2
 
 
 FINDING_CASE = re.compile(r"^case (\S+?):")
@@ -1238,14 +1371,7 @@ def run(
         stamp = session_stamp(None, payload)
         # the logs from today back to this session's start, as the ledger hook reads them,
         # so yesterday's `hi` and `prespec` are found after midnight (case 213.2)
-        hi, done = window(session_event_log(project_dir, now, stamp), stamp)
-        if hi and not done:
-            print(
-                f"prespec: Plan Mode is closing without /pre-spec in session {stamp}. "
-                "Run /pre-spec, then exit Plan Mode again.",
-                file=stderr,
-            )
-            return 2
+        return gate(project_dir, now, stamp, stderr)
     except Exception as exc:  # noqa: BLE001 — a hook that raises would fail the session
         print(f"prespec: check skipped: {exc}", file=stderr)
     return 0

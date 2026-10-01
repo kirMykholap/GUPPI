@@ -2062,3 +2062,130 @@ def test_note_two_siblings_with_unlike_lines_are_none(tmp_path):
 def test_note_a_line_with_no_word_of_four_characters_is_not_compared(tmp_path):
     plan = siblings_plan("It is so.", "It is so.")
     assert check(tmp_path, plan=plan, ledger=SIBLING_LINES) == (0, "", "")
+
+
+# --- the exit waits for a clean check (case 561.3) -------------------------------------
+
+
+def with_session_plan(project_dir, plan, event_log=START + HI + PRETASK, ledger=LINE):
+    """A plan file under `.claude/plans/`, named by a `tool Write:` line of the session's
+    stamp, so that `ledger.plan_path` finds it."""
+    plans = project_dir / ".claude" / "plans"
+    plans.mkdir(parents=True, exist_ok=True)
+    plan_file = plans / "the-plan.md"
+    plan_file.write_text(plan, encoding="utf-8", newline="\n")
+    written = f"- 16:10:00 44c1aae1 tool Write: {plan_file}\n"
+    with_event_log(project_dir, event_log + written)
+    with_ledger(project_dir, ledger)
+    with_frontier(project_dir, CLEAN_FRONTIER)
+    with_settings(project_dir)
+    return plan_file
+
+
+def test_the_exit_with_prespec_and_a_clean_plan_passes(tmp_path):
+    with_session_plan(tmp_path, PLAN)
+    assert run(payload(), tmp_path) == (0, "")
+
+
+def test_the_exit_with_prespec_and_a_finding_is_refused(tmp_path):
+    with_session_plan(tmp_path, PLAN, ledger="")  # the item has no decision line
+    code, err = run(payload(), tmp_path)
+    assert code == 2
+    assert "has no decision line" in err and "exit Plan Mode" in err
+
+
+def test_the_exit_with_only_a_note_passes(tmp_path):
+    long_given = "> **given:**\n> `rule-x` — the rule\n" + "".join(
+        f"> **＋** `rule-x` — line {n}\n" for n in range(8)
+    )
+    plan = PLAN.replace("> Something.\n", "> Something.\n\n" + long_given)
+    plan_file = with_session_plan(tmp_path, plan)
+    out = io.StringIO()
+    argv = ["--check", str(plan_file), "--session", SESSION]
+    prespec.run(argv, stdout=out, stderr=io.StringIO(), project_dir=tmp_path, now=NOW)
+    assert out.getvalue().startswith("note:")
+    assert run(payload(), tmp_path) == (0, "")
+
+
+def test_the_exit_with_prespec_and_no_plan_file_passes(tmp_path):
+    with_event_log(tmp_path, START + HI + PRETASK)
+    assert run(payload(), tmp_path) == (0, "")
+
+
+def test_the_exit_without_prespec_names_it_as_before(tmp_path):
+    with_session_plan(tmp_path, PLAN, event_log=START + HI)
+    code, err = run(payload(), tmp_path)
+    assert code == 2
+    assert "Run /pre-spec" in err
+
+
+# --- two Cases that change one thing (case 561.4) --------------------------------------
+
+
+def two_cases(first: str, second: str) -> str:
+    def case(n, body):
+        return (
+            f"## Case {n} — c{n}\n\n> **context:**\n> x\n\n```then\nupdate:\n{body}```\n\n"
+            "```tasks\n- [ ] guppi/x.py: the change\n```\n\n"
+        )
+
+    return "# Plan\n\n" + case(1, first) + case(2, second)
+
+
+TWO_LINES = LINE + "- 16:00:01 decision[case 2][update][rule-x]{ref:rule-x}\n"
+TWO_CLOSED = "# Frontier\n\n- [x] F1 — one · owner · case 1\n"
+
+
+def same_target(tmp_path, first, second, ledger=TWO_LINES):
+    with_rule(tmp_path, "rule-x", "x.md")
+    plan = two_cases(first, second)
+    return check(tmp_path, plan=plan, ledger=ledger, frontier=TWO_CLOSED)
+
+
+def test_two_cases_setting_one_field_to_two_values_is_a_finding(tmp_path):
+    code, out, _ = same_target(
+        tmp_path,
+        "  - slug: rule-x\n    set: {purpose: one}\n    change: a\n",
+        "  - slug: rule-x\n    set: {purpose: two}\n    change: b\n",
+    )
+    assert code == 1
+    assert "case 2: rule-x: sets purpose to another value than case 1" in out
+
+
+def test_two_cases_writing_one_section_is_a_finding(tmp_path):
+    code, out, _ = same_target(
+        tmp_path,
+        "  - slug: rule-x\n    sections: {Purpose: one}\n    change: a\n",
+        "  - slug: rule-x\n    sections: {Purpose: two}\n    change: b\n",
+    )
+    assert code == 1
+    assert "case 2: rule-x: writes the section Purpose that case 1 writes too" in out
+
+
+def test_two_cases_replacing_one_criterion_is_a_finding(tmp_path):
+    with_estimate(tmp_path)
+    ledger = (
+        "- 16:00:00 decision[case 1][update][estimate-x]{ref:rule-x}\n"
+        "- 16:00:01 decision[case 2][update][estimate-x]{ref:rule-x}\n"
+    )
+    body = "  - slug: estimate-x\n    set: {status: pending}\n    change: c\n"
+    _, out, _ = same_target(tmp_path, body, body, ledger=ledger)
+    assert "case 2: estimate-x: replaces the Criterion that case 1 replaces too" in out
+
+
+def test_different_fields_sections_or_anchors_are_no_finding(tmp_path):
+    _, out, _ = same_target(
+        tmp_path,
+        "  - slug: rule-x\n    set: {purpose: one}\n    sections: {Purpose: a}\n    change: a\n",
+        "  - slug: rule-x\n    set: {tags: [t]}\n    sections: {Render: b}\n    change: b\n",
+    )
+    assert "case 2: rule-x: sets" not in out and "writes the section" not in out
+
+
+def test_one_field_set_to_one_value_twice_is_no_finding(tmp_path):
+    _, out, _ = same_target(
+        tmp_path,
+        "  - slug: rule-x\n    set: {purpose: one}\n    change: a\n",
+        "  - slug: rule-x\n    set: {purpose: one}\n    change: b\n",
+    )
+    assert "sets purpose" not in out

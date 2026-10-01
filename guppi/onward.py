@@ -19,22 +19,61 @@ are those of `guppi/ledger.py`. An error of its own after it has read the payloa
 the error on stderr and the advice to commit the session folder and call `/handoff` if Retro
 has ended and `handoff.md` does not stand, before Retro too; an error while it reads the payload
 exits 0 (case 555.3). Rule page: `vault/wiki/rules/rule-retro-onward.md`.
+
+`guppi onward --plan` — the `Stop` hook that sends the agent on in Plan Mode, where no
+person is needed: from the reply that acknowledges the last ratification of the Frontier to
+`/pre-spec`, and from the ratification of the Cases built again on its findings to the exit
+(case 561.5). A reply that carries a `LEDGER` block ends in that text, so the agent cannot
+go on in it. It exits 2 when all of these hold: the event log of the session's window holds
+a `hi` of this session; `raw/<hi date>/<hi HHMM>/spec.md` does not stand; `frontier.md`
+holds no open line under `## Cases`, by `prespec.open_case_items`, the one judgment the
+check of `/pre-spec` reports; the reply carries a `LEDGER` block, by `ledger.ledger_lines`;
+no file under `cases/` was written after the last decision line of its Case, or of a
+sub-case, in `ledger.md` or in that block — a Case built again and not yet ratified is
+still out; `stop_hook_active` is false; and the reply does not open with `STOP:`. With no
+`prespec` line of this session after its `hi`, by `prespec.window`, its reason sends the
+agent to `/pre-spec`; with the line, to run `uv run guppi prespec --check` on the plan file
+and call `ExitPlanMode` when it prints no finding. Each reason adds that, when only the
+person can go on, the agent opens its reply with `STOP:` and asks the person. The time of a
+line of `ledger.md` is read on the `hi` date and rolls to the next date when it runs
+backwards, so a session across midnight keeps its order; a decision line of the reply
+counts as written now. It counts nothing, calls no model and writes nothing; an error of
+its own after it has read the payload exits 2 with `onward: not checked: <error>` and the
+advice to go on. Rule page: `vault/wiki/rules/rule-prespec-onward.md`.
 """
 
+import re
 import sys
-from datetime import datetime
+from datetime import date, datetime, time, timedelta
 from pathlib import Path
 
 from guppi.event import project_root, read_payload, session_stamp
-from guppi.ledger import reply_text, session_dir, session_event_logs
+from guppi.ledger import ledger_lines, reply_text, session_dir, session_event_logs
+
+TIME_HEAD = re.compile(r"^- \d\d:\d\d:\d\d ")
 
 MARK = "retro"
 STOP = "STOP:"
+PLAN_FLAG = "--plan"
 REASON = (
     "onward: Retro has ended and handoff.md does not stand. Commit the session folder and "
     "call /handoff now. If a condition of vault/wiki/where-to-stop.md holds, open your reply "
     "with STOP: and ask the person instead."
 )
+ONLY_THE_PERSON = (
+    " If only the person can go on — a Case still out with its case-guppi, or a question the "
+    "person must answer — open your reply with STOP: and ask the person instead."
+)
+TO_PRESPEC = (
+    "onward: no line under ## Cases of the Frontier is open and no Case is out. Call "
+    "/pre-spec now." + ONLY_THE_PERSON
+)
+TO_EXIT = (
+    "onward: the Cases built again on the findings of /pre-spec are ratified. Run uv run "
+    "guppi prespec --check on the plan file with --session <id>, fix what it prints, and "
+    "call ExitPlanMode when it prints no finding." + ONLY_THE_PERSON
+)
+CASE_FILE = "case-"
 
 
 def retro_marked(logs: list[tuple[str, str]], stamp: str) -> bool:
@@ -57,6 +96,76 @@ def retro_marked(logs: list[tuple[str, str]], stamp: str) -> bool:
     return False
 
 
+def case_root(case: str) -> str:
+    """The top-level Case of an id: `561` of `561.9`."""
+    return case.split(".", 1)[0]
+
+
+def last_decisions(ledger: str, hi_date: str, reply: list[str], now) -> dict[str, float]:
+    """Top-level Case → the moment, as a timestamp, of its last decision line, its sub-cases
+    included: the timed lines of `ledger.md` read on the `hi` date, rolled to the next date
+    when the time runs backwards, and the decision lines of the reply as written now."""
+    from guppi.materialize import parse_line
+
+    moments: dict[str, float] = {}
+    day, previous = date.fromisoformat(hi_date), None
+    for line in ledger.splitlines():
+        if not TIME_HEAD.match(line):
+            continue
+        clock = time.fromisoformat(line[2:10])
+        if previous is not None and clock < previous:
+            day += timedelta(days=1)
+        previous = clock
+        record = parse_line(line)
+        if record and record["record"] == "decision":
+            moment = datetime.combine(day, clock, tzinfo=now.tzinfo).timestamp()
+            root = case_root(str(record["case"]))
+            moments[root] = max(moments.get(root, moment), moment)
+    for line in reply:
+        record = parse_line(line)
+        if record and record["record"] == "decision":
+            moments[case_root(str(record["case"]))] = now.timestamp()
+    return moments
+
+
+def case_out(folder: Path, reply: list[str], now) -> bool:
+    """Whether a file under `cases/` was written after the last decision line of its Case or
+    of a sub-case — a Case built and not yet ratified (case 561.5)."""
+    cases = folder / "cases"
+    if not cases.is_dir():
+        return False
+    ledger = folder / "ledger.md"
+    text = ledger.read_text(encoding="utf-8") if ledger.exists() else ""
+    moments = last_decisions(text, folder.parent.name, reply, now)
+    for path in cases.glob(f"{CASE_FILE}*.md"):
+        case = path.stem.removeprefix(CASE_FILE)
+        if case not in moments or path.stat().st_mtime > moments[case]:
+            return True
+    return False
+
+
+def plan_onward(payload: dict, project_dir: Path, now) -> str | None:
+    """The reason `--plan` refuses the end of a reply with, or None (case 561.5)."""
+    from guppi.prespec import open_case_items, window
+
+    reply = reply_text(payload)
+    if reply.lstrip().startswith(STOP):
+        return None
+    stamp = session_stamp(None, payload)
+    folder = session_dir(project_dir, now, stamp)
+    if folder is None or (folder / "spec.md").exists():
+        return None
+    frontier = folder / "frontier.md"
+    if not frontier.exists() or open_case_items(frontier.read_text(encoding="utf-8")):
+        return None
+    lines = ledger_lines(reply)
+    if not lines or case_out(folder, lines, now):
+        return None
+    logs = session_event_logs(project_dir, now, stamp)
+    _, done = window("".join(text for _, text in logs), stamp)
+    return TO_EXIT if done else TO_PRESPEC
+
+
 def run(argv, *, stdin=None, stderr=None, project_dir: Path | None = None, now=None) -> int:
     stdin = sys.stdin if stdin is None else stdin
     stderr = sys.stderr if stderr is None else stderr
@@ -69,6 +178,20 @@ def run(argv, *, stdin=None, stderr=None, project_dir: Path | None = None, now=N
         return 0
     if not payload or payload.get("stop_hook_active"):
         return 0
+    if PLAN_FLAG in (argv or []):
+        try:
+            reason = plan_onward(payload, project_dir, now)
+        except Exception as exc:  # noqa: BLE001 — shown to the agent, not swallowed
+            print(
+                f"onward: not checked: {exc}. If no line under ## Cases is open and no Case "
+                "is out, call /pre-spec, or, after it, run the check and exit Plan Mode.",
+                file=stderr,
+            )
+            return 2
+        if reason is None:
+            return 0
+        print(reason, file=stderr)
+        return 2
     try:
         if reply_text(payload).lstrip().startswith(STOP):
             return 0

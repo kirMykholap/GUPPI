@@ -3,6 +3,7 @@
 
 import io
 import json
+import os
 from datetime import UTC, datetime
 
 import pytest
@@ -113,3 +114,111 @@ def test_error_the_re_fire_exits_0_and_prints_nothing(tmp_path, monkeypatch):
 def test_error_an_empty_payload_exits_0(tmp_path, monkeypatch):
     monkeypatch.setattr(onward, "retro_marked", boom)
     assert run(io.StringIO(""), tmp_path) == (0, "")
+
+
+# --- `--plan`: from the last ratification to /pre-spec and to the exit (case 561.5) ----
+
+PRESPEC = "- 11:00:00 19037d1c prespec\n"
+CLOSED = (
+    "# Frontier\n\n## Cases\n\n- [x] C1 — one · brief · case 7\n\n## Work\n\n- [ ] W1 — r · brief\n"
+)
+OPEN = "# Frontier\n\n## Cases\n\n- [ ] C1 — one · brief\n"
+RATIFIED = "```LEDGER\n- decision[case 7][update][rule-x]{ref:rule-x}\n```\n\n## Frontier"
+
+
+def plan_session(project_dir, frontier=CLOSED, log=START + HI, ledger=""):
+    day = with_event_log(project_dir, log)
+    folder = day / FOLDER[1]
+    folder.mkdir(exist_ok=True)
+    (folder / "frontier.md").write_text(frontier, encoding="utf-8")
+    (folder / "ledger.md").write_text(ledger, encoding="utf-8")
+    return folder
+
+
+def run_plan(stdin, project_dir):
+    err = io.StringIO()
+    code = onward.run(["--plan"], stdin=stdin, stderr=err, project_dir=project_dir, now=NOW)
+    return code, err.getvalue()
+
+
+def with_case_file(folder, case, mtime):
+    (folder / "cases").mkdir(exist_ok=True)
+    path = folder / "cases" / f"case-{case}.md"
+    path.write_text("## Case\n", encoding="utf-8")
+    os.utime(path, (mtime.timestamp(), mtime.timestamp()))
+
+
+def test_plan_the_last_ratification_sends_the_agent_to_prespec(tmp_path):
+    plan_session(tmp_path)
+    code, err = run_plan(payload(RATIFIED), tmp_path)
+    assert code == 2
+    assert err == onward.TO_PRESPEC + "\n"
+    assert "/pre-spec" in err and "STOP:" in err
+
+
+def test_plan_after_prespec_sends_the_agent_to_the_check_and_the_exit(tmp_path):
+    plan_session(tmp_path, log=START + HI + PRESPEC)
+    code, err = run_plan(payload(RATIFIED), tmp_path)
+    assert code == 2
+    assert err == onward.TO_EXIT + "\n"
+    assert "prespec --check" in err and "ExitPlanMode" in err
+
+
+def test_plan_an_open_cases_line_is_silent(tmp_path):
+    plan_session(tmp_path, frontier=OPEN)
+    assert run_plan(payload(RATIFIED), tmp_path) == (0, "")
+
+
+def test_plan_once_spec_md_stands_it_is_silent(tmp_path):
+    folder = plan_session(tmp_path)
+    (folder / "spec.md").write_text("# Spec\n", encoding="utf-8")
+    assert run_plan(payload(RATIFIED), tmp_path) == (0, "")
+
+
+def test_plan_a_reply_with_no_ledger_block_is_silent(tmp_path):
+    plan_session(tmp_path)
+    assert run_plan(payload("## Frontier"), tmp_path) == (0, "")
+
+
+def test_plan_a_case_file_newer_than_its_last_decision_line_is_silent(tmp_path):
+    ledger = "- 11:10:00 decision[case 5.1][update][rule-y]{ref:rule-y}\n"
+    folder = plan_session(tmp_path, ledger=ledger)
+    with_case_file(folder, "5", datetime(2026, 9, 30, 11, 20, 0, tzinfo=UTC))
+    assert run_plan(payload(RATIFIED), tmp_path) == (0, "")
+
+
+def test_plan_a_case_file_older_than_its_last_decision_line_is_no_case_out(tmp_path):
+    ledger = "- 11:10:00 decision[case 5.1][update][rule-y]{ref:rule-y}\n"
+    folder = plan_session(tmp_path, ledger=ledger)
+    with_case_file(folder, "5", datetime(2026, 9, 30, 11, 0, 0, tzinfo=UTC))
+    with_case_file(folder, "7", datetime(2026, 9, 30, 11, 30, 0, tzinfo=UTC))  # ratified now
+    assert run_plan(payload(RATIFIED), tmp_path)[0] == 2
+
+
+def test_plan_the_re_fire_is_silent(tmp_path):
+    plan_session(tmp_path)
+    assert run_plan(payload(RATIFIED, stop_hook_active=True), tmp_path) == (0, "")
+
+
+def test_plan_a_reply_that_opens_with_stop_is_let_through(tmp_path):
+    plan_session(tmp_path)
+    assert run_plan(payload("STOP: a question\n" + RATIFIED), tmp_path) == (0, "")
+
+
+def test_plan_without_a_hi_it_is_silent(tmp_path):
+    plan_session(tmp_path, log=START)
+    assert run_plan(payload(RATIFIED), tmp_path) == (0, "")
+
+
+def test_plan_an_error_of_its_own_exits_2_with_the_advice(tmp_path, monkeypatch):
+    plan_session(tmp_path)
+    monkeypatch.setattr(onward, "plan_onward", boom)
+    code, err = run_plan(payload(RATIFIED), tmp_path)
+    assert code == 2
+    assert err.startswith("onward: not checked: boom") and "/pre-spec" in err
+
+
+def test_plan_the_run_without_the_flag_is_unchanged(tmp_path):
+    plan_session(tmp_path, log=START + HI + RETRO)
+    code, err = run(payload(RATIFIED), tmp_path)
+    assert (code, err) == (2, onward.REASON + "\n")

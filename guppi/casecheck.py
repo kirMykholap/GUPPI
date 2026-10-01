@@ -70,6 +70,12 @@ to the horizontal rule that opens the agent's own text, line ends and trailing s
 same; a section the reply does not show is not compared (case 452.2). The name of its heading,
 its `context`, `problem` and `recommend`, and text under the heading outside its sections are
 not compared (cases 441.3, 452.2). A parent shown with its sub-cases is compared part by part.
+Under the heading of a top-level Case, one `ratification` whose fence holds the ledger lines
+of its sub-cases — the list of a showing — is read as the showing of each sub-case whose id a
+line names: the lines that name that id are compared with the `ratification` of that sub-case
+in the store, so a stored line that is missing or a line the store lacks is a difference, and
+the parent is compared on its other parts alone (`list_showing`, `showings`, case 561.10). The
+Spec hook reads a showing by the same `showings`.
 A Case the store does not hold, one that differs, one stored with findings, or one with no
 `SendUserFile` call on `raw/<date>/<hi HHMM>/cases/case-<N>.md` in the turn of the reply, N the
 id of its top-level Case, exits 2 with the reason on stderr (case 452.2). A heading with no
@@ -77,6 +83,26 @@ section — the acknowledging reply — a fence tagged `DIFF`, and a deferred de
 short form — `context`, `problem` and a fence tagged `then` with `defer` items, no `given` and
 no `when` — are not compared and need no sending. On the re-fire exit 0; outside a working
 session — no `hi` — nothing is done.
+
+How a round opens (case 562). The same `Stop` run judges a reply whose turn holds a round
+of `case-guppi`: a text a subagent gave back in the turn, by `given_back`, that holds a
+question line by `QUESTION_LINE`, no Case heading and no first line `**Fact:**`. It exits 2
+when the first line of the reply that is not blank opens neither with `❓ ` nor with a bold
+label that ends in a colon — the label of the Context paragraph, translated — and, while the
+session's event log holds no `prespec` line of this session after its `hi`, judged by
+`prespec.window`, the function the `ExitPlanMode` hook judges by, imported, when the main
+agent wrote text in the turn before its last tool call; after `/pre-spec` that text is not
+judged, since the loop after its findings runs in one turn. The reason quotes the text
+before the round and tells the agent to show the round again with nothing before it; it is
+joined with the reasons of the comparison. Text after the last question is not judged, a
+turn with no round — the main agent's own questions, a `**Fact:**` answer, a re-pitch by
+`wait-what` — is not judged, and the check stores nothing. Where an answer stands was
+measured on the transcript of session 2356 (2026-10-01): the answer to an `Agent` call in
+the `tool_result` of the call, inside the turn; the answer to a `SendMessage` in a later
+`user` record with `origin.kind` `task-notification`, its content a string holding the
+answer between `<result>` and `</result>` — a record `turn_of_reply` takes for the prompt
+that opens the turn, so `given_back` reads it as the turn's opener. A notification carries
+no agent type; the question line is what marks a round.
 
 A sending. The transcript is JSONL (`ledger.read_records`); a `SendUserFile` call stands in an
 assistant record's `message.content` as `{"type": "tool_use", "name": "SendUserFile",
@@ -130,6 +156,7 @@ from guppi.prespec import (
     judge,
     promise_notes,
 )
+from guppi.prespec import window as prespec_window
 from guppi.ratified import (
     CHAT_SECTIONS,
     case_section,
@@ -623,6 +650,82 @@ def mechanical_parts(lines: list[str]) -> dict[str, str]:
     }
 
 
+RATIFICATION_HEAD = "> **ratification:**"
+
+
+def fence_ledger_lines(lines: list[str]) -> list[str]:
+    """The ledger lines of the `ratification` of a Case's lines, up to the horizontal rule."""
+    kept: list[str] = []
+    for line in lines:
+        if line.strip() == RULE:
+            break
+        kept.append(line)
+    text = quoted_sections(kept, ("ratification",)).get("ratification", "")
+    return [line.strip() for line in text.splitlines() if line.strip().startswith(LEDGER_LINE)]
+
+
+def list_showing(case: str, lines: list[str]) -> dict[str, list[str]]:
+    """Case 561.10: under the heading of a top-level Case, one `ratification` whose fence
+    holds the ledger lines of its sub-cases — the list of a showing. Each id a line names →
+    the lines of a `ratification` that holds that id's lines alone, in their order, in the
+    chat form `quoted_sections` reads. Empty when `case` is a sub-case or no line names an id
+    other than its own: then the Case is shown under its own heading, as before. The one
+    reading of `stop` and of the Spec hook's `find_showing`."""
+    if "." in case:
+        return {}
+    named: dict[str, list[str]] = {}
+    for line in fence_ledger_lines(lines):
+        record = parse_line(line)
+        if record and record.get("record") == "decision":
+            named.setdefault(str(record["case"]), []).append(line)
+    if not named or set(named) == {case}:
+        return {}
+    return {
+        sub: [RATIFICATION_HEAD, "> ```", *(f"> {line}" for line in own), "> ```"]
+        for sub, own in named.items()
+    }
+
+
+def without_ratification(lines: list[str]) -> list[str]:
+    """The lines of a Case with its `ratification` blockquote left out — the parent's own
+    parts of a list showing, compared as before (case 561.10)."""
+    kept: list[str] = []
+    skipping = False
+    for line in lines:
+        if line.strip() == RATIFICATION_HEAD:
+            skipping = True
+            continue
+        if skipping and line.startswith(">"):
+            continue
+        skipping = False
+        kept.append(line)
+    return kept
+
+
+def showings(cases: dict[str, list[str]]) -> dict[str, list[str]]:
+    """Case id → the lines that show it in a reply: each Case under its own heading with at
+    least one of its sections, by `shows_sections`, and each sub-case named in the one
+    `ratification` of a list showing under its top-level heading, by `list_showing` (case
+    561.10). A Case shown under its own heading keeps that showing; a parent of a list is
+    compared on its other parts alone."""
+    shown: dict[str, list[str]] = {}
+    listed: dict[str, list[str]] = {}
+    for case, lines in cases.items():
+        if not shows_sections(lines):
+            continue
+        subs = list_showing(case, lines)
+        if subs:
+            listed.update(subs)
+            rest = without_ratification(lines)
+            if shows_sections(rest):
+                shown[case] = rest
+        else:
+            shown[case] = lines
+    for case, lines in listed.items():
+        shown.setdefault(case, lines)
+    return shown
+
+
 def against_store(case: str, heading: str, lines: list[str], store: dict) -> str | None:
     """The one comparison of a shown Case with its stored answer (cases 419.4, 437, 441.3):
     the reason it fails, or None — shared by this module's `stop` and the Spec hook. Only
@@ -646,6 +749,121 @@ def against_store(case: str, heading: str, lines: list[str], store: dict) -> str
     return None
 
 
+# --- how a round opens (case 562) ----------------------------------------------------------
+
+NOTIFICATION = "task-notification"  # the `origin.kind` of a record that brings an answer back
+RESULT = re.compile(r"<result>(.*?)</result>", re.DOTALL)
+FACT = "**Fact:**"
+# the bold label of the Context paragraph, translated: `**Контекст:**` or `**Context**:`
+LABEL_LINE = re.compile(r"^\*\*[^*\n]+(?::\*\*|\*\*:)")
+
+
+def opening_record(records: list[dict]) -> dict | None:
+    """The record that opens the turn of the reply — the last prompt, as `turn_of_reply`
+    judges it; None when the transcript holds none."""
+    turn = turn_of_reply(records)
+    index = len(records) - len(turn) - 1
+    return records[index] if index >= 0 else None
+
+
+def block_text(content) -> str:
+    """The text of a `tool_result`'s content: a string, or the text blocks of a list."""
+    if isinstance(content, str):
+        return content
+    blocks = content if isinstance(content, list) else []
+    return "\n".join(
+        str(block.get("text") or "")
+        for block in blocks
+        if isinstance(block, dict) and block.get("type") == "text"
+    )
+
+
+def given_back(records: list[dict]) -> list[str]:
+    """The texts subagents gave back in the turn of the reply (measured 2026-10-01, session
+    2356): the answer to an `Agent` call stands in the `tool_result` of that call, inside
+    the turn; the answer to a `SendMessage` comes back after the turn has ended, as a `user`
+    record with `origin.kind` `task-notification` whose content is a string holding the
+    answer between `<result>` and `</result>` — `turn_of_reply` takes that record for the
+    prompt that opens the turn, so it is read here as the turn's opener."""
+    texts: list[str] = []
+    opener = opening_record(records)
+    origin = opener.get("origin") if isinstance(opener, dict) else None
+    if isinstance(origin, dict) and origin.get("kind") == NOTIFICATION:
+        message = opener.get("message")
+        content = message.get("content") if isinstance(message, dict) else None
+        texts += RESULT.findall(content) if isinstance(content, str) else []
+    agent_calls = set()
+    for record in turn_of_reply(records):
+        message = record.get("message")
+        content = message.get("content") if isinstance(message, dict) else None
+        for block in content if isinstance(content, list) else []:
+            if not isinstance(block, dict):
+                continue
+            if block.get("type") == "tool_use" and block.get("name") == "Agent":
+                agent_calls.add(block.get("id"))
+            elif block.get("type") == "tool_result" and block.get("tool_use_id") in agent_calls:
+                texts.append(block_text(block.get("content")))
+    return texts
+
+
+def is_round(text: str) -> bool:
+    """A round of `case-guppi`: a question line `❓ **Q<n>** - **<title>**:` of the skill
+    `grill-me`, no Case heading, and no first line `**Fact:**`. The lines are read with their
+    indent set aside: the harness indents a hand-back."""
+    lines = [line.strip() for line in text.splitlines()]
+    if split_cases("\n".join(lines)):
+        return False
+    for line in lines:
+        if line.startswith(FACT):
+            return False
+        if QUESTION_LINE.match(line):
+            return True
+    return False
+
+
+def texts_before_last_call(records: list[dict]) -> list[str]:
+    """The texts the main agent wrote in the turn before its last tool call."""
+    texts: list[tuple[int, str]] = []
+    last_call = -1
+    position = 0
+    for record in turn_of_reply(records):
+        if record.get("type") != "assistant":
+            continue
+        message = record.get("message")
+        content = message.get("content") if isinstance(message, dict) else None
+        for block in content if isinstance(content, list) else []:
+            position += 1
+            if not isinstance(block, dict):
+                continue
+            if block.get("type") == "text" and str(block.get("text") or "").strip():
+                texts.append((position, str(block["text"]).strip()))
+            elif block.get("type") == "tool_use":
+                last_call = position
+    return [text for at, text in texts if at < last_call]
+
+
+def round_opening(records: list[dict], reply: str, after_prespec: bool) -> str | None:
+    """Case 562: the reason a reply that shows a round of `case-guppi` is refused, or None.
+    The turn holds a round when a text given back in it, by `given_back`, is one by
+    `is_round`. Before `/pre-spec` — no `prespec` line of the session after its `hi` — a
+    text of the main agent before the last tool call of the turn is refused; always, a reply
+    whose first line that is not blank opens neither with `❓ ` nor with a bold label that
+    ends in a colon. After `/pre-spec` the loop over its findings runs in one turn, so only
+    the first line is judged. Text after the last question is not judged."""
+    if not any(is_round(text) for text in given_back(records)):
+        return None
+    before = [] if after_prespec else texts_before_last_call(records)
+    first = next((line.strip() for line in reply.splitlines() if line.strip()), "")
+    if not before and (first.startswith("❓ ") or LABEL_LINE.match(first)):
+        return None
+    quoted = before[0] if before else first
+    return (
+        f"a round of case-guppi is shown after a text of your own: {quoted[:120]!r} — show the "
+        "round again, opening with its Context paragraph or its first question, with nothing "
+        "before it"
+    )
+
+
 def stop(payload: dict, project_dir: Path, now, stderr) -> int:
     if payload.get("stop_hook_active"):
         return 0
@@ -656,16 +874,25 @@ def stop(payload: dict, project_dir: Path, now, stderr) -> int:
     reply = reply_text(payload)
     cases = split_cases(reply)
     heads = headings(reply)
-    shown = {case: lines for case, lines in cases.items() if shows_sections(lines)}
+    shown = showings(cases)
+    logs = session_event_logs(project_dir, now, stamp)
+    turn_records = transcript_records(payload)
+    _, after_prespec = prespec_window("".join(text for _, text in logs), stamp)
+    opening = round_opening(turn_records, reply, after_prespec)
     if not shown:
+        if opening:
+            print(f"casecheck: {opening}", file=stderr)
+            return 2
         return 0
-    store = read_store(plan_path(session_event_logs(project_dir, now, stamp), stamp))
+    store = read_store(plan_path(logs, stamp))
     problems = [
         problem
         for case, lines in shown.items()
-        if (problem := against_store(case, heads[case], lines, store))
+        if (problem := against_store(case, heads.get(case, ""), lines, store))
     ]
-    turn = turn_of_reply(transcript_records(payload))
+    if opening:
+        problems.append(opening)
+    turn = turn_of_reply(turn_records)
     unsent: dict[Path, list[str]] = {}
     for case in shown:  # the file of its top-level Case, sent in this turn (case 452.2)
         path = case_file(folder, case)

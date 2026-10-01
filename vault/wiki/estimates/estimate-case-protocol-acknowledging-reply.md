@@ -1,7 +1,7 @@
 ---
 type: estimate
 kind: QA
-status: pending
+status: passed
 target: "[[rule-case-protocol]]"
 purpose: The reply that acknowledges a ratification has four parts in order
 method: one reading by hand of the first acknowledging reply of a session
@@ -31,7 +31,7 @@ The reply has four parts, in this order. First, the `LEDGER` block. Second, the 
 
 ## Result
 
-2026-10-01, by hand, the first acknowledging reply of session 1237, Case 567 at 13:08:51, and those of 568, 569 and the re-ratification of 567 and 569: the LEDGER block first, a heading naming the ids, a Notes paragraph, the Frontier with the closed lines folded into one and the question which item is next, no tool call after the block, the re-ratification carrying every decision line again, headings in Russian; but the Changes paragraph of 567 holds four sentences and those of 568 and 569 three, against one or two, and the Frontier folds 38 open W lines into one line, against one line per open item
+2026-10-01, by hand, session 1725, the first acknowledging reply (case 582): LEDGER block first; heading "Case 582 — ратифицирован" in the language of the chat; Changes in two sentences; Notes; Frontier with the closed lines in one line, the open W lines in one line of ids, each other open line with a short title; the question which item is next last; no tool call after the LEDGER block; the reply of the re-ratification of 583 carried its decision line again, the ledger holds it once, and with no Cases line open it ended with the Frontier and no question
 
 ## History
 
@@ -49,3 +49,4 @@ The reply has four parts, in this order. First, the `LEDGER` block. Second, the 
 - 2026-10-01 updated: the Criterion replaced whole - the question which item is next only while a line under Cases is open (case 561.8) · [[decision-case-561.8]]
 - 2026-10-01 status: pending → failed · raw/2026-10-01/1237/ledger.md#L30
 - 2026-10-01 updated: the Criterion replaced whole — the open W lines are folded into one line that lists their ids; each other open line stands on its own line (case 578.2) · [[decision-case-578.2]]
+- 2026-10-01 status: pending → passed · raw/2026-10-01/1725/ledger.md#L14

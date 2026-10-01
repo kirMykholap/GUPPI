@@ -108,7 +108,7 @@ update:
 - [x] update `rule-brief` — a page read for a fact of the brief is not named in the report
 - [x] update `estimate-documentation-completes` — the Criterion replaced whole
 - [x] `uv run guppi render`: `.claude/agents/librarian-guppi.md`
-- [ ] read `estimate-documentation-completes` — at the first librarian run whose agent file holds this Render: its event log against the Flags of its brief and its report
+- [x] read `estimate-documentation-completes` — at the first librarian run whose agent file holds this Render: its event log against the Flags of its brief and its report
 ```
 
 ### Case 567.2 — The brief flags the not-needed reads and names the fields it reads
@@ -167,7 +167,7 @@ update:
 - [x] update `rule-brief` — Flags carry the not-needed reads; Readings due names its fields
 - [x] update `estimate-brief-written` — the Criterion replaced whole
 - [x] `uv run guppi render`: `.claude/agents/librarian-guppi.md`
-- [ ] read `estimate-brief-written` — by hand, the brief of the first librarian run whose agent file holds this Render
+- [x] read `estimate-brief-written` — by hand, the brief of the first librarian run whose agent file holds this Render
 ```
 
 ## Case 568 — A recommend item may stay on the parent

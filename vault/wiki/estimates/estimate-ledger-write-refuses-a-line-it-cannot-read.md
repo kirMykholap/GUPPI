@@ -1,11 +1,11 @@
 ---
 type: estimate
 kind: QA
-status: pending
+status: passed
 target: "[[rule-ledger-write]]"
 purpose: Whether the ledger hook refuses a record line that parse_line cannot read, and says why only for the reply just finished
 method: uv run pytest tests/test_ledger.py — piped payloads and a session ledger in a temp vault
-checked: 2026-09-30
+checked: 2026-10-01
 origin: raw/2026-09-30/1736/ledger.md#case-552.2
 sprint: migration
 created: 2026-09-30
@@ -28,10 +28,11 @@ The line is not written.
 
 ## Result
 
-2026-09-30, uv run pytest tests/test_ledger.py: 63 passed
+2026-10-01, uv run pytest tests/test_onward.py tests/test_ledger.py: 104 passed; tests/test_ledger.py test_a_broken_line_in_the_finished_reply_is_refused_aloud, test_a_broken_line_of_an_earlier_text_is_skipped_without_a_word, test_a_broken_lesson_line_gets_no_refusal_for_its_prefix_or_mark, test_flag_a_line_the_grammar_cannot_read_is_refused_aloud and test_a_refused_line_already_told_is_silent_and_a_new_one_is_told
 
 ## History
 
 - 2026-09-30 created · [[decision-case-552.2]]
 - 2026-09-30 status: pending → passed · raw/2026-09-30/2042/ledger.md#L33
 - 2026-10-01 updated: the Criterion replaced whole — with stop_hook_active the line is judged the same, and its stderr line is told once a stretch (case 577.5) · [[decision-case-577.5]]
+- 2026-10-01 status: pending → passed · raw/2026-10-01/1725/ledger.md#L10

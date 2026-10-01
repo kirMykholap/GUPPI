@@ -1,7 +1,7 @@
 ---
 type: estimate
 kind: QA
-status: pending
+status: passed
 target: "[[rule-brief]]"
 method: one reading by hand after the first librarian run, recorded in the estimate line
 checked: 2026-10-01
@@ -30,7 +30,7 @@ The brief holds, in order: Where things stand, Readings due, Flags, Next session
 
 ## Result
 
-2026-10-01, by hand at the /hi of session 1237, vault/wiki/brief.md of the librarian's run 1f43cf1c over 2356, the first run whose .claude/agents/librarian-guppi.md held the Render of case 558.3, read against raw/2026-09-30/2356/handoff.md: five sections in order, no Deferred list and no cap; Flags hold the near mark, the generate lines, the failed Estimates, MOC candidates none, the stale defers, contradictions none, the lint output and one line of a read beyond the frame with what it read, the part it served and that the handoff did not ask for it; Next session: Cases the 4 lines of For the next session (the failed pair split in two), the 2 other failed Estimates and an Observation of the handoff with a question; Work 45 pending slugs, the 46 pending of Readings due less the one Ask holds; Ask the person the handoff's line word for word; no dirty tree; no decision stated; estimate-estimates-schema-checked stands in Work by its reading and in Cases by the question on its skipped test
+2026-10-01, by hand at the /hi of session 1725, vault/wiki/brief.md of the librarian's run a264476c over 1441, the first run whose .claude/agents/librarian-guppi.md held the Render of session 1237, read against raw/2026-10-01/1441/handoff.md: five sections in order, no Deferred list and no cap; Readings due 39 lines, each with slug, target and method, the failed one marked, 10 of the target rules checked by grep, all draft; Flags hold the incomplete and near marks, the failed Estimate, MOC candidates none, the 6 stale defers, the handoff's contradiction, the lint output and the line on reads outside the frame; Next session: Cases the 4 lines of For the next session and the handoff's Observation on guppi/casecheck.py; Work the 38 pending slugs of Readings due, the unticked read boxes of specs 1441 (14) and 1237 (4) and the unapplied ledger lines 22 to 27; Ask the person "none" as the handoff; no dirty tree; no decision stated; the lines it shares with the old brief are Readings due lines taken from the Estimate pages; estimate-estimates-schema-checked stands in Work by its reading and in Cases by the question on its test
 
 ## History
 
@@ -59,3 +59,4 @@ The brief holds, in order: Where things stand, Readings due, Flags, Next session
 - 2026-09-30 updated: the Criterion replaced whole — Flags hold a line for each read of the librarian beyond the reads its frame names (case 558.3) · [[decision-case-558.3]]
 - 2026-10-01 status: pending → passed · raw/2026-10-01/1237/ledger.md#L1
 - 2026-10-01 updated: the Criterion replaced whole — Flags hold a line for each read the frame says the job does not need; Readings due takes the status, target and method fields (case 567.2) · [[decision-case-567.2]]
+- 2026-10-01 status: pending → passed · raw/2026-10-01/1725/ledger.md#L2

@@ -1,11 +1,11 @@
 ---
 type: estimate
 kind: QA
-status: pending
+status: passed
 target: "[[rule-ledger-write]]"
 purpose: Whether the ledger hook refuses a lesson line whose slug does not open with lesson-, and says why only for the reply just finished
 method: uv run pytest tests/test_ledger.py — piped payloads and a session ledger in a temp vault
-checked: 2026-09-29
+checked: 2026-10-01
 origin: raw/2026-09-27/1819/ledger.md#case-460.5
 sprint: migration
 created: 2026-09-27
@@ -28,7 +28,7 @@ The line is not written.
 
 ## Result
 
-2026-09-29, uv run pytest tests/test_ledger.py: 56 passed
+2026-10-01, uv run pytest tests/test_onward.py tests/test_ledger.py: 104 passed; tests/test_ledger.py test_a_lesson_without_its_prefix_in_the_finished_reply_is_refused_aloud, test_a_lesson_without_its_prefix_in_an_earlier_text_is_skipped_without_a_word, test_an_estimate_or_decision_line_without_a_prefix_is_not_refused_by_this_check and test_flag_a_lesson_without_its_prefix_is_refused_aloud
 
 ## History
 
@@ -37,3 +37,4 @@ The line is not written.
 - 2026-09-29 updated: the Criterion replaced whole — a prefixed lesson line is not refused for its prefix, its mark judged apart (case 497.3) · [[decision-case-497.3]]
 - 2026-09-29 status: pending → passed · raw/2026-09-29/1134/ledger.md#L24
 - 2026-10-01 updated: the Criterion replaced whole — with stop_hook_active the line is judged the same, and its stderr line is told once a stretch (case 577.7) · [[decision-case-577.7]]
+- 2026-10-01 status: pending → passed · raw/2026-10-01/1725/ledger.md#L12

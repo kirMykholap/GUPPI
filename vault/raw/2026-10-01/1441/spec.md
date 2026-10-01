@@ -127,7 +127,7 @@ update:
 - [x] update `rule-retro-onward` — an error of the hook comes back once a stretch, and the transcript is among its reads
 - [x] update `estimate-retro-onward-exits-2-on-an-error`
 - [x] `tests/test_onward.py`: an error with its own refusal in the stretch exits 0; with another hook's refusal and the flag set it exits 2; with the flag set and no readable transcript it exits 0
-- [ ] read `estimate-retro-onward-exits-2-on-an-error` — in a later session
+- [x] read `estimate-retro-onward-exits-2-on-an-error` — in a later session
 ```
 
 ### Case 577.3 — The ledger hook writes whatever the flag says and tells each refused line once a stretch
@@ -220,7 +220,7 @@ update:
 - [x] update `estimate-ledger-write-exits-2-on-an-error`
 - [x] `guppi/ledger.py`: the docstring and the comment of the payload error say that the hook cannot tell its own refusal then
 - [x] `tests/test_ledger.py`: an error with its own refusal in the stretch exits 0; with another hook's refusal and the flag set it exits 2
-- [ ] read `estimate-ledger-write-exits-2-on-an-error` — in a later session
+- [x] read `estimate-ledger-write-exits-2-on-an-error` — in a later session
 ```
 
 ### Case 577.5 — A line the grammar cannot read is judged whatever the flag says
@@ -255,7 +255,7 @@ update:
 ```tasks
 - [x] update `estimate-ledger-write-refuses-a-line-it-cannot-read`
 - [x] `tests/test_ledger.py`: with the flag set, a line the grammar cannot read is not written, and the hook exits 2 when its stderr line does not stand in its own refusals of the stretch
-- [ ] read `estimate-ledger-write-refuses-a-line-it-cannot-read` — in a later session
+- [x] read `estimate-ledger-write-refuses-a-line-it-cannot-read` — in a later session
 ```
 
 ### Case 577.6 — A reading of a page the session changes is judged whatever the flag says
@@ -289,7 +289,7 @@ update:
 ```tasks
 - [x] update `estimate-ledger-write-refuses-a-reading-of-a-change-of-the-session`
 - [x] `tests/test_ledger.py`: with the flag set, a reading of a page the session updates is not written, and the hook exits 2 when its stderr line does not stand in its own refusals of the stretch
-- [ ] read `estimate-ledger-write-refuses-a-reading-of-a-change-of-the-session` — in a later session
+- [x] read `estimate-ledger-write-refuses-a-reading-of-a-change-of-the-session` — in a later session
 ```
 
 ### Case 577.7 — A lesson without its prefix is judged whatever the flag says
@@ -325,7 +325,7 @@ update:
 ```tasks
 - [x] update `estimate-ledger-write-refuses-a-lesson-without-its-prefix`
 - [x] `tests/test_ledger.py`: with the flag set, a lesson line without the prefix is not written, and the hook exits 2 when its stderr line does not stand in its own refusals of the stretch
-- [ ] read `estimate-ledger-write-refuses-a-lesson-without-its-prefix` — in a later session
+- [x] read `estimate-ledger-write-refuses-a-lesson-without-its-prefix` — in a later session
 ```
 
 ### Case 577.8 — A lesson mark with no decision line is judged whatever the flag says
@@ -362,7 +362,7 @@ update:
 ```tasks
 - [x] update `estimate-ledger-write-refuses-a-mark-with-no-decision-line`
 - [x] `tests/test_ledger.py`: with the flag set, a lesson line whose mark has no decision line is not written, and is written at a later `Stop` once the decision line stands
-- [ ] read `estimate-ledger-write-refuses-a-mark-with-no-decision-line` — in a later session
+- [x] read `estimate-ledger-write-refuses-a-mark-with-no-decision-line` — in a later session
 ```
 
 ## Case 578 — A later Frontier folds the open Work lines into one line
@@ -477,7 +477,7 @@ update:
 - [x] update `rule-case-protocol` — the acknowledging reply folds the open `W` lines into one line of their ids
 - [x] update `estimate-case-protocol-acknowledging-reply`
 - [x] `uv run guppi render`: `vault/wiki/case-schema.md`
-- [ ] read `estimate-case-protocol-acknowledging-reply` — by hand, the first acknowledging reply of a later session after the render
+- [x] read `estimate-case-protocol-acknowledging-reply` — by hand, the first acknowledging reply of a later session after the render
 ```
 
 ## Case 579 — The main agent names the related Cases of the session, and case-guppi checks them and the replaced Estimate's purpose
@@ -562,7 +562,7 @@ update:
 - [x] update `rule-case-protocol` — the main agent names the related Cases of the session in its prompt to `case-guppi`
 - [x] create `estimate-case-protocol-names-related-cases-in-the-dispatch`
 - [x] `uv run guppi render`: `vault/wiki/case-schema.md`
-- [ ] read `estimate-case-protocol-names-related-cases-in-the-dispatch` — by hand at the close of a later session after the render
+- [x] read `estimate-case-protocol-names-related-cases-in-the-dispatch` — by hand at the close of a later session after the render
 ```
 
 ### Case 579.2 — case-guppi checks the named Cases of the session and the purpose of a replaced Estimate
@@ -611,7 +611,7 @@ update:
 - [x] update `rule-case-build` — `case-guppi` reads the case files of the related Cases its prompt names, and the `purpose` and `method` of an Estimate whose Criterion it replaces
 - [x] update `estimate-case-build-checks-the-finished-case`
 - [x] `uv run guppi render`: `.claude/agents/case-guppi.md`
-- [ ] read `estimate-case-build-checks-the-finished-case` — by hand at `/pre-spec` of a later session after the render, the report of ask-guppi read for each Case
+- [x] read `estimate-case-build-checks-the-finished-case` — by hand at `/pre-spec` of a later session after the render, the report of ask-guppi read for each Case
 ```
 
 ## Case 581 — While answers of case-guppi are out after pre-spec, the main agent ends each waiting turn with one labelled line

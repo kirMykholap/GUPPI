@@ -721,6 +721,7 @@ entries:
       the section the Criterion requires on passed and failed
   exists: true
   applied: '14:31:46'
+  superseded_by: '583'
 - line: 28
   text: 'estimate[estimate-case-build-answers-what-done-means][passed] 2026-10-01, by hand, session 1237:
     the Cases of the plan C:\Users\kir\.claude\plans\linear-soaring-fairy.md and the rounds before them
@@ -1716,6 +1717,8 @@ decisions:
     problem: The question whether the skipped test leaves the required section untested is put off.
   spec: vault/raw/2026-10-01/1237/spec.md
   applied: '14:31:46'
+  superseded_by:
+  - decision-case-583
 - case: '567'
   decision: decision-case-567
   origin: raw/2026-10-01/1237/ledger.md#case-567

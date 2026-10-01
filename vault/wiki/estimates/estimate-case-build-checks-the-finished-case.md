@@ -1,7 +1,7 @@
 ---
 type: estimate
 kind: QA
-status: pending
+status: passed
 target: "[[rule-case-build]]"
 purpose: Whether case-guppi checks its finished Case before it answers — the chosen options, the pages that name a slug the change makes false, the rules that act at the moment the change sets, the Cases of the session its prompt names, the purpose and method of an Estimate whose Criterion it replaces, what each search printed, the sub-cases that change one page — counted by what ask-guppi still finds at pre-spec
 method: "by hand: at /pre-spec of a later session after the render, the report of ask-guppi read for each Case case-guppi built — a Case that departs from a chosen option, a page naming a changed slug that the Case misses, a rule acting at the same moment that the Case misses, a Case of the session named in the prompt whose page or moment the Case clashes with, an Estimate whose purpose or method still states the promise its replaced Criterion dropped, a claim of context that its search did not print, two sub-cases whose texts on one page contradict; the count of each in the reading line"
@@ -30,7 +30,7 @@ It puts each option the person chose in its rounds, or the person's own words wh
 
 ## Result
 
-2026-10-01, by hand, the report of ask-guppi at the /pre-spec of session 2356 over Cases 561 and 562 built after the render of session 2042: a Case that departs from a chosen option 0; a page made false that the Case missed 2 (561.13 missed estimate-hi-takes-its-readings and rule-skill-hi on the question of an A line; 561.3 left the purpose of estimate-prespec-hook-gates stating the old promise); a rule acting at the same moment that the Case missed 1 (562 refused the gathered list of the loop of 561.1 and 561.2, one turn after /pre-spec); a claim of context its search did not print 0; two sub-cases contradicting on one page 0; besides, 561.1 missed the defer of case 503 on rule-prespec and put the mechanism of a Leaf into its Purpose against rule-rules-schema
+2026-10-01, by hand at the /pre-spec of session 1725, the report of ask-guppi over Cases 582, 583 and 584: 0 Cases departing from a chosen option, 0 pages naming a changed slug missed, 0 rules acting at the same moment missed, 0 clashes with a Case named in the prompt, 0 Estimates whose purpose or method kept a dropped promise (582 set the purpose anew), 0 claims of context its search did not print, 0 contradicting sub-cases; one wording of the context of 583, "carries the defer of case 576", read as a field the Estimate cannot hold, was made exact on the finding; the duplicate predicate of turn_of_reply and the stretch of guppi/ledger.py under rule-one-judgment-one-implementation was raised for 584 and deferred by case 586
 
 ## History
 
@@ -40,3 +40,4 @@ It puts each option the person chose in its rounds, or the person's own words wh
 - 2026-10-01 status: pending → failed · raw/2026-09-30/2356/ledger.md#L44
 - 2026-10-01 deferred · [[decision-case-571]]
 - 2026-10-01 updated: the Criterion replaced whole — the case files of the related Cases the prompt names, and the purpose and method of an Estimate whose Criterion is replaced; the defer of case 571 retired (case 579.2) · [[decision-case-579.2]]
+- 2026-10-01 status: pending → passed · raw/2026-10-01/1725/ledger.md#L16

@@ -54,3 +54,4 @@ Prevents a Case from being shown to the person in a form the checks of pre-spec 
 - 2026-10-01 updated: the Stop run refuses a reply that shows a round of case-guppi after a text of the main agent's own; after pre-spec only the first line of the reply is judged (case 562) · [[decision-case-562]]
 - 2026-10-01 estimate estimate-case-check-refuses-text-before-a-round added · [[decision-case-562]]
 - 2026-10-01 updated: the reason for the exemption after /pre-spec: each answer of the loop comes back in a turn of its own, and rule-prespec sets the text written there (case 581.2) · [[decision-case-581.2]]
+- 2026-10-01 updated: the module docstring of guppi/casecheck.py says a Stop refusal is a user record marked isMeta, which the turn of the reply skips; a test checks a sending before a refusal (case 584) · [[decision-case-584]]

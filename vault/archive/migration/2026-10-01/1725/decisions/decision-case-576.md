@@ -1,8 +1,9 @@
 ---
 type: decision
 case: "576"
-status: current
+status: archived
 defer: ["[[estimate-estimates-schema-checked]]"]
+superseded_by: ["[[decision-case-583]]"]
 origin: raw/2026-10-01/1237/ledger.md#case-576
 sprint: migration
 created: 2026-10-01
@@ -26,3 +27,6 @@ Whether the skip no conditional on a field of tests/test_schemas.py -k estimate 
 ## History
 
 - 2026-10-01 created · raw/2026-10-01/1237/ledger.md#case-576
+- 2026-10-01 superseded by decision-case-583 · [[decision-case-583]]
+- 2026-10-01 archived · superseded
+- 2026-10-01 archived · cleanup

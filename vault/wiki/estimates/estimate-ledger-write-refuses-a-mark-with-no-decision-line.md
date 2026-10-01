@@ -1,11 +1,11 @@
 ---
 type: estimate
 kind: QA
-status: pending
+status: passed
 target: "[[rule-ledger-write]]"
 purpose: Whether the ledger hook refuses a lesson line whose addressed_by mark has no decision line of its Case before it in the session, judges it again until that line stands, and says why only for the reply just finished
 method: uv run pytest tests/test_ledger.py — piped payloads and a session ledger in a temp vault
-checked: 2026-09-29
+checked: 2026-10-01
 origin: raw/2026-09-29/0137/ledger.md#case-497.1
 sprint: migration
 created: 2026-09-29
@@ -29,10 +29,11 @@ When no decision line of Case N stands before the lesson line — in the session
 
 ## Result
 
-2026-09-29, uv run pytest tests/test_ledger.py: 56 passed; guppi/ledger.py imports marks_without_decision of guppi/materialize.py, no second judgment
+2026-10-01, uv run pytest tests/test_onward.py tests/test_ledger.py: 104 passed; tests/test_ledger.py test_a_mark_to_a_parent_with_sub_case_lines_is_refused_aloud, test_a_mark_to_a_case_with_no_line_is_refused_aloud_with_no_sub_case_part, test_a_mark_above_its_decision_line_in_the_same_block_is_refused, test_a_marked_line_of_an_earlier_text_waits_then_lands_without_a_word, test_a_mark_with_its_decision_line_before_it_is_written, test_a_lesson_with_no_mark_is_written_whatever_the_marks, test_a_line_with_no_prefix_and_a_bad_mark_gets_the_prefix_line_alone, test_a_marked_line_already_in_a_ledger_is_not_judged, test_the_hook_and_materialize_judge_a_mark_alike and test_flag_a_mark_with_no_decision_line_waits_then_lands
 
 ## History
 
 - 2026-09-29 created · [[decision-case-497.1]]
 - 2026-09-29 status: pending → passed · raw/2026-09-29/1134/ledger.md#L25
 - 2026-10-01 updated: the Criterion replaced whole — with stop_hook_active the line is judged the same, and its stderr line is told once a stretch (case 577.8) · [[decision-case-577.8]]
+- 2026-10-01 status: pending → passed · raw/2026-10-01/1725/ledger.md#L13

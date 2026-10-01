@@ -2,7 +2,7 @@
 type: rule
 kind: Leaf
 purpose: Prevents the next session from starting without the facts and the flags of this one
-status: draft
+status: built
 enforcement: render
 governs: .claude/agents/librarian-guppi.md
 render_mode: partial
@@ -85,3 +85,4 @@ The brief has a second writer, the skill `carry` (`rule-carry-over`): it writes 
 - 2026-09-30 status: built → draft · cascade
 - 2026-10-01 updated: a page read for a fact of the brief is not named in the report (case 567.1) · [[decision-case-567.1]]
 - 2026-10-01 updated: Flags carry each read the frame says the job does not need; Readings due names the fields it reads (case 567.2) · [[decision-case-567.2]]
+- 2026-10-01 status: draft → built · cascade

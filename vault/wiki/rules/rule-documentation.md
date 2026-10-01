@@ -2,7 +2,7 @@
 type: rule
 kind: MOC
 purpose: Prevents a ratified decision from ending the session without becoming a vault page
-status: draft
+status: built
 enforcement: render
 governs: .claude/agents/librarian-guppi.md
 render_mode: full
@@ -145,3 +145,4 @@ project's hooks; the hook is part of this Render and is ratified with it.
 - 2026-09-30 updated: the librarian reads git status and git diff of what this run wrote, log.md only through its diff, and the old brief; it writes the brief with Write and never works around a refusal (case 530.1) · [[decision-case-530.1]]
 - 2026-09-30 updated: the frame names the reads the job needs and forbids none; a read it does not name is made and flagged in the brief; only a repair asked by the handoff is refused (case 558.1) · [[decision-case-558.1]]
 - 2026-10-01 updated: the librarian flags only a read the frame says its job does not need, and names in the report only a page opened for one of the first three reasons and the one read of the ledger (case 567.1) · [[decision-case-567.1]]
+- 2026-10-01 status: draft → built · cascade

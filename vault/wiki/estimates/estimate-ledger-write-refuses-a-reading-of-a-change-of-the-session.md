@@ -1,11 +1,11 @@
 ---
 type: estimate
 kind: QA
-status: pending
+status: passed
 target: "[[rule-ledger-write]]"
 purpose: Whether the ledger hook refuses a reading of an Estimate that a decision line of the same session creates or updates, and says why only for the reply just finished
 method: uv run pytest tests/test_ledger.py — piped payloads and a session ledger in a temp vault
-checked: 2026-09-26
+checked: 2026-10-01
 origin: raw/2026-09-25/1654/ledger.md#case-428.1
 sprint: migration
 created: 2026-09-25
@@ -28,10 +28,11 @@ The line is not written: what a session changes, it does not measure, and the re
 
 ## Result
 
-2026-09-26, `uv run pytest -q tests/test_ledger.py`; 42 passed, a reading of a slug a create or update of the session names is refused with exit 2 and the stderr line, an earlier text skipped silently, a defer or another session's line lets it through
+2026-10-01, uv run pytest tests/test_onward.py tests/test_ledger.py: 104 passed; tests/test_ledger.py test_a_reading_of_a_slug_the_session_changes_is_refused (create and update), test_a_decision_line_of_the_same_reply_refuses_it_too, test_a_refused_line_of_an_earlier_text_is_skipped_without_a_word, test_a_reading_with_a_defer_line_only_or_another_sessions_line_is_written and test_flag_a_reading_of_a_change_of_the_session_is_refused_aloud; no test names a rename, which the update line covers, since the decision line names the old slug
 
 ## History
 
 - 2026-09-25 created · [[decision-case-428.1]]
 - 2026-09-26 status: pending → passed · raw/2026-09-26/1745/ledger.md#L29
 - 2026-10-01 updated: the Criterion replaced whole — with stop_hook_active the line is judged the same, and its stderr line is told once a stretch (case 577.6) · [[decision-case-577.6]]
+- 2026-10-01 status: pending → passed · raw/2026-10-01/1725/ledger.md#L11

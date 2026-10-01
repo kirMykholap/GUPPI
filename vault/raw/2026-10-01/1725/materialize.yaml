@@ -1,0 +1,727 @@
+date: '2026-10-01'
+sprint: migration
+ledger: vault/raw/2026-10-01/1725/ledger.md
+spec:
+- vault/raw/2026-10-01/1725/spec.md
+entries:
+- line: 1
+  text: 'estimate[estimate-documentation-completes][passed] 2026-10-01, make test-documentation: 233 passed;
+    by hand at the /hi of session 1725, the librarian''s run of session 85988eb7 over 1441, the first
+    whose .claude/agents/librarian-guppi.md held the Render of session 1237 (d28db9ad): vault/raw/2026-10-01/event_log.md
+    lines 1119-1164, its transcript agent-ac470d03c2b724e79 and its report; commit a264476c added 21 decision
+    pages (18 live, 3 archived) for cases 577 to 581, 1 estimate of a create line, 1 lesson of ledger
+    line 32 and 1 insight of the synthesis, no other page; reads: the handoff, the two yamls materialize
+    named (two greps over vault/raw/*/materialize.yaml, where only those two exist, printed nothing),
+    the index Greps, one lesson page and the head of one insight, tags.md, the Criteria of three Estimates,
+    guppi/generate.py and guppi/archive.py, ledger.md once, the unticked lines of spec.md and the run''s
+    ticks; no plan.md, no Decision page text, no search of the archive, so its Flags line "Reads outside
+    the frame: none" stands; the report names the lesson page opened, with reason and outcome, and the
+    one ledger read; two Edits of the yaml, the near mark and the 3 synthesis entries; its commit separate
+    from 09c143d4; no stop to ask; the brief by Write at 17:18:45; render, sprint, backlog and glossary
+    at 17:15:27-17:15:31, after cleanup at 17:15:12; guppi archive at 17:18:54, after the brief and before
+    the commit, 0 moved and 0 kept, both units of the run day; no stderr line, no refusal, no redirect
+    into vault/'
+  kind: estimate
+  category: estimates
+  slug: estimate-documentation-completes
+  status: passed
+  result: '2026-10-01, make test-documentation: 233 passed; by hand at the /hi of session 1725, the librarian''s
+    run of session 85988eb7 over 1441, the first whose .claude/agents/librarian-guppi.md held the Render
+    of session 1237 (d28db9ad): vault/raw/2026-10-01/event_log.md lines 1119-1164, its transcript agent-ac470d03c2b724e79
+    and its report; commit a264476c added 21 decision pages (18 live, 3 archived) for cases 577 to 581,
+    1 estimate of a create line, 1 lesson of ledger line 32 and 1 insight of the synthesis, no other page;
+    reads: the handoff, the two yamls materialize named (two greps over vault/raw/*/materialize.yaml,
+    where only those two exist, printed nothing), the index Greps, one lesson page and the head of one
+    insight, tags.md, the Criteria of three Estimates, guppi/generate.py and guppi/archive.py, ledger.md
+    once, the unticked lines of spec.md and the run''s ticks; no plan.md, no Decision page text, no search
+    of the archive, so its Flags line "Reads outside the frame: none" stands; the report names the lesson
+    page opened, with reason and outcome, and the one ledger read; two Edits of the yaml, the near mark
+    and the 3 synthesis entries; its commit separate from 09c143d4; no stop to ask; the brief by Write
+    at 17:18:45; render, sprint, backlog and glossary at 17:15:27-17:15:31, after cleanup at 17:15:12;
+    guppi archive at 17:18:54, after the brief and before the commit, 0 moved and 0 kept, both units of
+    the run day; no stderr line, no refusal, no redirect into vault/'
+  origin: raw/2026-10-01/1725/ledger.md#L1
+  applied: '18:41:19'
+- line: 2
+  text: 'estimate[estimate-brief-written][passed] 2026-10-01, by hand at the /hi of session 1725, vault/wiki/brief.md
+    of the librarian''s run a264476c over 1441, the first run whose .claude/agents/librarian-guppi.md
+    held the Render of session 1237, read against raw/2026-10-01/1441/handoff.md: five sections in order,
+    no Deferred list and no cap; Readings due 39 lines, each with slug, target and method, the failed
+    one marked, 10 of the target rules checked by grep, all draft; Flags hold the incomplete and near
+    marks, the failed Estimate, MOC candidates none, the 6 stale defers, the handoff''s contradiction,
+    the lint output and the line on reads outside the frame; Next session: Cases the 4 lines of For the
+    next session and the handoff''s Observation on guppi/casecheck.py; Work the 38 pending slugs of Readings
+    due, the unticked read boxes of specs 1441 (14) and 1237 (4) and the unapplied ledger lines 22 to
+    27; Ask the person "none" as the handoff; no dirty tree; no decision stated; the lines it shares with
+    the old brief are Readings due lines taken from the Estimate pages; estimate-estimates-schema-checked
+    stands in Work by its reading and in Cases by the question on its test'
+  kind: estimate
+  category: estimates
+  slug: estimate-brief-written
+  status: passed
+  result: '2026-10-01, by hand at the /hi of session 1725, vault/wiki/brief.md of the librarian''s run
+    a264476c over 1441, the first run whose .claude/agents/librarian-guppi.md held the Render of session
+    1237, read against raw/2026-10-01/1441/handoff.md: five sections in order, no Deferred list and no
+    cap; Readings due 39 lines, each with slug, target and method, the failed one marked, 10 of the target
+    rules checked by grep, all draft; Flags hold the incomplete and near marks, the failed Estimate, MOC
+    candidates none, the 6 stale defers, the handoff''s contradiction, the lint output and the line on
+    reads outside the frame; Next session: Cases the 4 lines of For the next session and the handoff''s
+    Observation on guppi/casecheck.py; Work the 38 pending slugs of Readings due, the unticked read boxes
+    of specs 1441 (14) and 1237 (4) and the unapplied ledger lines 22 to 27; Ask the person "none" as
+    the handoff; no dirty tree; no decision stated; the lines it shares with the old brief are Readings
+    due lines taken from the Estimate pages; estimate-estimates-schema-checked stands in Work by its reading
+    and in Cases by the question on its test'
+  origin: raw/2026-10-01/1725/ledger.md#L2
+  applied: '18:41:19'
+- line: 3
+  text: decision[case 582][update][estimate-ask-finds]{ref:rule-ask}
+  case: '582'
+  kind: update
+  slug: estimate-ask-finds
+  origin: raw/2026-10-01/1725/ledger.md#case-582
+  decision: decision-case-582
+  ref: rule-ask
+  category: estimates
+  set:
+    status: pending
+    purpose: ask-guppi finds a page by meaning in either language, names the rule a proposal crosses and
+      the state of a named slug, and answers in five lines, a list of the paths of the files it read allowed
+      after them
+  change: the Criterion replaced whole — a list of file paths may follow the five lines, as the general
+    note of Claude Code asks of a sub-agent; nothing else follows them (case 582)
+  sections:
+    Criterion: 'When:
+
+      The main agent dispatches `ask-guppi` through the `Agent` tool with a question, and the agent follows
+      `.claude/agents/ask-guppi.md` as rendered from `rule-ask`.
+
+
+      Then:
+
+      The answer opens with exactly five lines: `exists`, `near`, `missing`, `rules` and the tags/slug
+      line, each present, "none" when empty.
+
+      **＋** After the five lines a list of the paths of files the agent read may stand, as the general
+      note of Claude Code asks of a sub-agent.
+
+      **＋** The agent starts with the Grep `^(purpose|deferred_by):` over `vault/wiki/rules/`, then runs
+      one Grep per other category the question touches.
+
+      **＋** A question about an existing page names its slug under `exists`, whether it is asked in English
+      or in Russian.
+
+      **＋** A proposal that crosses a rule or a lesson, such as a `SessionStart` hook meant to block,
+      names it on the `rules` line.
+
+      **＋** A named slug gets on the tags/slug line `free`, `live` with its category, or `archived at
+      <path> by [[decision-case-N]]`, found by a Glob over `vault/archive/`, N from the `origin` of the
+      archived page.
+
+      **＋** The agent opens an archived page only when the question names its slug and asks what it said
+      or why it was withdrawn.
+
+      **＋** Each dispatch stands in `vault/raw/<date>/event_log.md`.
+
+      **－** No index line, page text or other note reaches the caller beyond the five lines and that list
+      of paths.
+
+      **－** An answer with no list after the five lines holds the promise as well.
+
+      **－** The archive is not searched by meaning: the `exists` and `near` lines name live pages only.'
+  applied: '18:41:19'
+- line: 4
+  text: decision[case 583][update][estimate-estimates-schema-checked]{ref:rule-estimates-schema}{supersedes:case
+    576}
+  case: '583'
+  kind: update
+  slug: estimate-estimates-schema-checked
+  origin: raw/2026-10-01/1725/ledger.md#case-583
+  decision: decision-case-583
+  ref: rule-estimates-schema
+  supersedes:
+  - '576'
+  category: estimates
+  change: 'the test of a section required under a condition now covers ## Result on passed and failed;
+    the Criterion stands, and the question case 576 put off is answered (case 583)'
+  sections:
+    Criterion: 'When:
+
+      `pytest tests/test_schemas.py` runs the test of section conditions once per category, over the live
+      `vault/wiki/<category>/schema.yaml`.
+
+
+      Then:
+
+      For each rule under `body.conditional` of the schema, a page in the shape that has the values of
+      its `when` and lacks its required sections has one `schema` finding per missing section, `missing
+      section <section> (given <when>)`, and no other finding.
+
+      **＋** Under `-k estimate`, the test reads `vault/wiki/estimates/schema.yaml`: an Estimate page with
+      `status: passed` and no `## Result` has one such finding, and an Estimate page with `status: failed`
+      and no `## Result` has one.
+
+      **＋** Under `-k rules`, the test reads `vault/wiki/rules/schema.yaml`: a Rule page with `enforcement:
+      render` and no `## Render` has one such finding.
+
+      **－** A schema with no `body.conditional` skips the test, with a reason that names the missing section
+      condition.
+
+      **－** `check_schema` in `guppi/lint.py` and every `vault/wiki/<category>/schema.yaml` stay as they
+      are.'
+  set:
+    status: pending
+  applied: '18:41:19'
+- line: 5
+  text: decision[case 584][update][rule-case-check]{ref:rule-case-check}
+  case: '584'
+  kind: update
+  slug: rule-case-check
+  origin: raw/2026-10-01/1725/ledger.md#case-584
+  decision: decision-case-584
+  ref: rule-case-check
+  category: rules
+  change: the module docstring of guppi/casecheck.py says a Stop refusal is a user record marked isMeta,
+    which the turn of the reply skips; a test checks a sending before a refusal (case 584)
+  applied: '18:41:19'
+- line: 6
+  text: decision[case 585][defer][insight-spec-write-parent-body-kept-on-re-ratification]{ref:insight-spec-write-parent-body-kept-on-re-ratification}
+  case: '585'
+  kind: defer
+  slug: insight-spec-write-parent-body-kept-on-re-ratification
+  origin: raw/2026-10-01/1725/ledger.md#case-585
+  decision: decision-case-585
+  ref: insight-spec-write-parent-body-kept-on-re-ratification
+  category: insights
+  fields:
+    type: insight
+    purpose: A Case ratified whole and then ratified again as a parent with sub-cases keeps its old body
+      in the Spec, since the Spec hook of rule-spec-write writes the new answer by its sub-case headings
+      and does not remove the given, when, then, then block and tasks the parent held when it stood alone;
+      whether the hook replaces the whole Case on re-ratification
+  exists: true
+  applied: '18:41:19'
+- line: 7
+  text: decision[case 586][defer][rule-turn-start-one-judgment]
+  case: '586'
+  kind: defer
+  slug: rule-turn-start-one-judgment
+  origin: raw/2026-10-01/1725/ledger.md#case-586
+  decision: decision-case-586
+  category: rules
+  fields:
+    type: rule
+    purpose: Prevents the start of the person's turn in a transcript from being judged by two predicates
+      that can answer differently - turn_of_reply in guppi/casecheck.py, after the last user record not
+      isMeta that holds more than tool results, and the stretch of guppi/ledger.py, after the last user
+      record whose origin.kind is human; whether they are one judgment under rule-one-judgment-one-implementation
+  exists: false
+  applied: '18:41:19'
+- line: 8
+  text: 'estimate[estimate-retro-onward-exits-2-on-an-error][passed] 2026-10-01, uv run pytest tests/test_onward.py
+    tests/test_ledger.py: 104 passed; tests/test_onward.py test_error_an_error_of_its_own_exits_2_with_the_advice,
+    test_error_with_the_flag_and_no_readable_transcript_exits_0, test_error_with_its_own_refusal_in_the_stretch_exits_0,
+    test_error_after_another_hooks_refusal_with_the_flag_exits_2, test_error_an_empty_payload_exits_0
+    and test_plan_an_error_of_its_own_exits_2_with_the_advice cover each line of the Criterion'
+  kind: estimate
+  category: estimates
+  slug: estimate-retro-onward-exits-2-on-an-error
+  status: passed
+  result: '2026-10-01, uv run pytest tests/test_onward.py tests/test_ledger.py: 104 passed; tests/test_onward.py
+    test_error_an_error_of_its_own_exits_2_with_the_advice, test_error_with_the_flag_and_no_readable_transcript_exits_0,
+    test_error_with_its_own_refusal_in_the_stretch_exits_0, test_error_after_another_hooks_refusal_with_the_flag_exits_2,
+    test_error_an_empty_payload_exits_0 and test_plan_an_error_of_its_own_exits_2_with_the_advice cover
+    each line of the Criterion'
+  origin: raw/2026-10-01/1725/ledger.md#L8
+  applied: '18:41:19'
+- line: 9
+  text: 'estimate[estimate-ledger-write-exits-2-on-an-error][passed] 2026-10-01, uv run pytest tests/test_onward.py
+    tests/test_ledger.py: 104 passed; tests/test_ledger.py test_an_error_after_the_payload_is_read_exits_2,
+    test_an_error_with_the_flag_and_no_readable_transcript_exits_0, test_an_error_with_its_own_refusal_in_the_stretch_exits_0,
+    test_an_error_after_another_hooks_refusal_with_the_flag_exits_2 and test_a_payload_that_cannot_be_read_exits_0_with_the_error,
+    ledger.append patched to raise'
+  kind: estimate
+  category: estimates
+  slug: estimate-ledger-write-exits-2-on-an-error
+  status: passed
+  result: '2026-10-01, uv run pytest tests/test_onward.py tests/test_ledger.py: 104 passed; tests/test_ledger.py
+    test_an_error_after_the_payload_is_read_exits_2, test_an_error_with_the_flag_and_no_readable_transcript_exits_0,
+    test_an_error_with_its_own_refusal_in_the_stretch_exits_0, test_an_error_after_another_hooks_refusal_with_the_flag_exits_2
+    and test_a_payload_that_cannot_be_read_exits_0_with_the_error, ledger.append patched to raise'
+  origin: raw/2026-10-01/1725/ledger.md#L9
+  applied: '18:41:19'
+- line: 10
+  text: 'estimate[estimate-ledger-write-refuses-a-line-it-cannot-read][passed] 2026-10-01, uv run pytest
+    tests/test_onward.py tests/test_ledger.py: 104 passed; tests/test_ledger.py test_a_broken_line_in_the_finished_reply_is_refused_aloud,
+    test_a_broken_line_of_an_earlier_text_is_skipped_without_a_word, test_a_broken_lesson_line_gets_no_refusal_for_its_prefix_or_mark,
+    test_flag_a_line_the_grammar_cannot_read_is_refused_aloud and test_a_refused_line_already_told_is_silent_and_a_new_one_is_told'
+  kind: estimate
+  category: estimates
+  slug: estimate-ledger-write-refuses-a-line-it-cannot-read
+  status: passed
+  result: '2026-10-01, uv run pytest tests/test_onward.py tests/test_ledger.py: 104 passed; tests/test_ledger.py
+    test_a_broken_line_in_the_finished_reply_is_refused_aloud, test_a_broken_line_of_an_earlier_text_is_skipped_without_a_word,
+    test_a_broken_lesson_line_gets_no_refusal_for_its_prefix_or_mark, test_flag_a_line_the_grammar_cannot_read_is_refused_aloud
+    and test_a_refused_line_already_told_is_silent_and_a_new_one_is_told'
+  origin: raw/2026-10-01/1725/ledger.md#L10
+  applied: '18:41:19'
+- line: 11
+  text: 'estimate[estimate-ledger-write-refuses-a-reading-of-a-change-of-the-session][passed] 2026-10-01,
+    uv run pytest tests/test_onward.py tests/test_ledger.py: 104 passed; tests/test_ledger.py test_a_reading_of_a_slug_the_session_changes_is_refused
+    (create and update), test_a_decision_line_of_the_same_reply_refuses_it_too, test_a_refused_line_of_an_earlier_text_is_skipped_without_a_word,
+    test_a_reading_with_a_defer_line_only_or_another_sessions_line_is_written and test_flag_a_reading_of_a_change_of_the_session_is_refused_aloud;
+    no test names a rename, which the update line covers, since the decision line names the old slug'
+  kind: estimate
+  category: estimates
+  slug: estimate-ledger-write-refuses-a-reading-of-a-change-of-the-session
+  status: passed
+  result: '2026-10-01, uv run pytest tests/test_onward.py tests/test_ledger.py: 104 passed; tests/test_ledger.py
+    test_a_reading_of_a_slug_the_session_changes_is_refused (create and update), test_a_decision_line_of_the_same_reply_refuses_it_too,
+    test_a_refused_line_of_an_earlier_text_is_skipped_without_a_word, test_a_reading_with_a_defer_line_only_or_another_sessions_line_is_written
+    and test_flag_a_reading_of_a_change_of_the_session_is_refused_aloud; no test names a rename, which
+    the update line covers, since the decision line names the old slug'
+  origin: raw/2026-10-01/1725/ledger.md#L11
+  applied: '18:41:19'
+- line: 12
+  text: 'estimate[estimate-ledger-write-refuses-a-lesson-without-its-prefix][passed] 2026-10-01, uv run
+    pytest tests/test_onward.py tests/test_ledger.py: 104 passed; tests/test_ledger.py test_a_lesson_without_its_prefix_in_the_finished_reply_is_refused_aloud,
+    test_a_lesson_without_its_prefix_in_an_earlier_text_is_skipped_without_a_word, test_an_estimate_or_decision_line_without_a_prefix_is_not_refused_by_this_check
+    and test_flag_a_lesson_without_its_prefix_is_refused_aloud'
+  kind: estimate
+  category: estimates
+  slug: estimate-ledger-write-refuses-a-lesson-without-its-prefix
+  status: passed
+  result: '2026-10-01, uv run pytest tests/test_onward.py tests/test_ledger.py: 104 passed; tests/test_ledger.py
+    test_a_lesson_without_its_prefix_in_the_finished_reply_is_refused_aloud, test_a_lesson_without_its_prefix_in_an_earlier_text_is_skipped_without_a_word,
+    test_an_estimate_or_decision_line_without_a_prefix_is_not_refused_by_this_check and test_flag_a_lesson_without_its_prefix_is_refused_aloud'
+  origin: raw/2026-10-01/1725/ledger.md#L12
+  applied: '18:41:19'
+- line: 13
+  text: 'estimate[estimate-ledger-write-refuses-a-mark-with-no-decision-line][passed] 2026-10-01, uv run
+    pytest tests/test_onward.py tests/test_ledger.py: 104 passed; tests/test_ledger.py test_a_mark_to_a_parent_with_sub_case_lines_is_refused_aloud,
+    test_a_mark_to_a_case_with_no_line_is_refused_aloud_with_no_sub_case_part, test_a_mark_above_its_decision_line_in_the_same_block_is_refused,
+    test_a_marked_line_of_an_earlier_text_waits_then_lands_without_a_word, test_a_mark_with_its_decision_line_before_it_is_written,
+    test_a_lesson_with_no_mark_is_written_whatever_the_marks, test_a_line_with_no_prefix_and_a_bad_mark_gets_the_prefix_line_alone,
+    test_a_marked_line_already_in_a_ledger_is_not_judged, test_the_hook_and_materialize_judge_a_mark_alike
+    and test_flag_a_mark_with_no_decision_line_waits_then_lands'
+  kind: estimate
+  category: estimates
+  slug: estimate-ledger-write-refuses-a-mark-with-no-decision-line
+  status: passed
+  result: '2026-10-01, uv run pytest tests/test_onward.py tests/test_ledger.py: 104 passed; tests/test_ledger.py
+    test_a_mark_to_a_parent_with_sub_case_lines_is_refused_aloud, test_a_mark_to_a_case_with_no_line_is_refused_aloud_with_no_sub_case_part,
+    test_a_mark_above_its_decision_line_in_the_same_block_is_refused, test_a_marked_line_of_an_earlier_text_waits_then_lands_without_a_word,
+    test_a_mark_with_its_decision_line_before_it_is_written, test_a_lesson_with_no_mark_is_written_whatever_the_marks,
+    test_a_line_with_no_prefix_and_a_bad_mark_gets_the_prefix_line_alone, test_a_marked_line_already_in_a_ledger_is_not_judged,
+    test_the_hook_and_materialize_judge_a_mark_alike and test_flag_a_mark_with_no_decision_line_waits_then_lands'
+  origin: raw/2026-10-01/1725/ledger.md#L13
+  applied: '18:41:19'
+- line: 14
+  text: 'estimate[estimate-case-protocol-acknowledging-reply][passed] 2026-10-01, by hand, session 1725,
+    the first acknowledging reply (case 582): LEDGER block first; heading "Case 582 — ратифицирован" in
+    the language of the chat; Changes in two sentences; Notes; Frontier with the closed lines in one line,
+    the open W lines in one line of ids, each other open line with a short title; the question which item
+    is next last; no tool call after the LEDGER block; the reply of the re-ratification of 583 carried
+    its decision line again, the ledger holds it once, and with no Cases line open it ended with the Frontier
+    and no question'
+  kind: estimate
+  category: estimates
+  slug: estimate-case-protocol-acknowledging-reply
+  status: passed
+  result: '2026-10-01, by hand, session 1725, the first acknowledging reply (case 582): LEDGER block first;
+    heading "Case 582 — ратифицирован" in the language of the chat; Changes in two sentences; Notes; Frontier
+    with the closed lines in one line, the open W lines in one line of ids, each other open line with
+    a short title; the question which item is next last; no tool call after the LEDGER block; the reply
+    of the re-ratification of 583 carried its decision line again, the ledger holds it once, and with
+    no Cases line open it ended with the Frontier and no question'
+  origin: raw/2026-10-01/1725/ledger.md#L14
+  applied: '18:41:19'
+- line: 15
+  text: 'estimate[estimate-case-protocol-names-related-cases-in-the-dispatch][passed] 2026-10-01, by hand,
+    session 1725, the three Agent calls to case-guppi (cases 582, 583, 584) read against the Cases ratified
+    before each: no Case of the session changed a page of the item or acted at its moment, so 0 related
+    Cases not named; each prompt held the Case id, the Frontier item with its source and the person''s
+    words; the prompt of 583 named 582 as unrelated with a sentence and its case file, the prompt of 584
+    named 582 and 583 as unrelated with a sentence each and no case file, which the Criterion asks only
+    of a related Case'
+  kind: estimate
+  category: estimates
+  slug: estimate-case-protocol-names-related-cases-in-the-dispatch
+  status: passed
+  result: '2026-10-01, by hand, session 1725, the three Agent calls to case-guppi (cases 582, 583, 584)
+    read against the Cases ratified before each: no Case of the session changed a page of the item or
+    acted at its moment, so 0 related Cases not named; each prompt held the Case id, the Frontier item
+    with its source and the person''s words; the prompt of 583 named 582 as unrelated with a sentence
+    and its case file, the prompt of 584 named 582 and 583 as unrelated with a sentence each and no case
+    file, which the Criterion asks only of a related Case'
+  origin: raw/2026-10-01/1725/ledger.md#L15
+  applied: '18:41:19'
+- line: 16
+  text: 'estimate[estimate-case-build-checks-the-finished-case][passed] 2026-10-01, by hand at the /pre-spec
+    of session 1725, the report of ask-guppi over Cases 582, 583 and 584: 0 Cases departing from a chosen
+    option, 0 pages naming a changed slug missed, 0 rules acting at the same moment missed, 0 clashes
+    with a Case named in the prompt, 0 Estimates whose purpose or method kept a dropped promise (582 set
+    the purpose anew), 0 claims of context its search did not print, 0 contradicting sub-cases; one wording
+    of the context of 583, "carries the defer of case 576", read as a field the Estimate cannot hold,
+    was made exact on the finding; the duplicate predicate of turn_of_reply and the stretch of guppi/ledger.py
+    under rule-one-judgment-one-implementation was raised for 584 and deferred by case 586'
+  kind: estimate
+  category: estimates
+  slug: estimate-case-build-checks-the-finished-case
+  status: passed
+  result: '2026-10-01, by hand at the /pre-spec of session 1725, the report of ask-guppi over Cases 582,
+    583 and 584: 0 Cases departing from a chosen option, 0 pages naming a changed slug missed, 0 rules
+    acting at the same moment missed, 0 clashes with a Case named in the prompt, 0 Estimates whose purpose
+    or method kept a dropped promise (582 set the purpose anew), 0 claims of context its search did not
+    print, 0 contradicting sub-cases; one wording of the context of 583, "carries the defer of case 576",
+    read as a field the Estimate cannot hold, was made exact on the finding; the duplicate predicate of
+    turn_of_reply and the stretch of guppi/ledger.py under rule-one-judgment-one-implementation was raised
+    for 584 and deferred by case 586'
+  origin: raw/2026-10-01/1725/ledger.md#L16
+  applied: '18:41:19'
+decisions:
+- case: '582'
+  decision: decision-case-582
+  origin: raw/2026-10-01/1725/ledger.md#case-582
+  targets:
+  - kind: update
+    category: estimates
+    slug: estimate-ask-finds
+    ref: rule-ask
+  tags: []
+  case_text:
+    context: '`ask-guppi` is the read-only helper that searches the vault. Its frame, `.claude/agents/ask-guppi.md`,
+      rendered from `rule-ask`, tells it to answer in exactly five lines: `exists`, `near`, `missing`,
+      `rules` and the tags/slug line. Claude Code separately gives every sub-agent a general note: in
+      its final response, share the file paths that are relevant to the task. On 2026-10-01, in session
+      1441, the check of `estimate-ask-finds` sent three dispatches. Two of the answers added a `Files:`
+      list of six and five page paths after the five lines. The third, the Russian answer, held only the
+      five lines. The Criterion says "exactly five lines" and "No index line or page text reaches the
+      caller beyond them", so the Estimate failed (ledger line 33 of `raw/2026-10-01/1441/ledger.md`).
+      The librarian''s last report ended with the same kind of list even though its frame ends with "Nothing
+      else". So the list comes from the general note, not from the frame of `ask-guppi`. A frame can set
+      the note aside, as `.claude/agents/case-guppi.md` does (case 543.1), but the person chose not to
+      compete with the note. The main agent sees only the helper''s final answer, so the list is not otherwise
+      in its context. Still, the list mostly repeats the pages the five lines name, and a slug gives its
+      path. No rule reads the list, and no parser or hook reads the answer of `ask-guppi`, so nothing
+      breaks. This Case replaces the Criterion of `estimate-ask-finds` whole. Its first line, which asked
+      for an answer of exactly five lines, gives way to a line that asks for an answer that opens with
+      them. A line is added that allows the list, and another that forbids anything else. The other lines
+      are carried over unchanged. The `purpose` of the Estimate is set anew, since it promises an answer
+      in five lines. The method of three dispatches read against the event log stays, because it states
+      no form of the answer. In the frame, `rule-ask` and its render stay as they are. The render''s line
+      that asks for exactly five lines is an instruction to the agent, and it stays true: the five lines
+      are still required. The list comes from an instruction outside the frame. The `## Purpose` of `rule-ask`
+      says that the index lines and pages never enter the main agent''s context, and a path is neither,
+      so it stands. `rule-ask` carries `deferred_by: decision-case-553`, which is about reading Decision
+      pages. This Case does not change `rule-ask`, so that defer stays open. The pre-spec dispatch set
+      by `rule-prespec` asks `ask-guppi` three questions on the plan rather than for five lines. That
+      gap is outside this item and stays. The search for the slug, pattern `estimate-ask-finds` over the
+      repository outside `vault/raw/` and `vault/archive/`, printed these files:
+
+      - `vault/wiki/log.md`
+
+      - `vault/wiki/brief.md`
+
+      - `vault/wiki/rules/rule-ask.md` (its `estimates` field)
+
+      - `vault/wiki/lessons/lesson-agents-at-import-not-expanded.md` (its `source` line names an old reading)
+
+      - `vault/wiki/estimates/estimate-ask-finds.md`
+
+      - the Decision pages of cases 105.1–105.3, 147.1–147.8, 155, 391.1–391.2, 419.1–419.4, 476.1–476.4,
+      485.1–485.6 and 500.1–500.6
+
+
+      None of the live hits is made false. The search for pattern `five lines` over the same paths printed
+      these files:
+
+      - `vault/wiki/brief.md`
+
+      - `.claude/agents/ask-guppi.md`
+
+      - `vault/wiki/estimates/estimate-ask-finds.md`
+
+      - `vault/wiki/rules/rule-ask.md`
+
+      - the Decision pages of cases 172, 398.1–398.3 and 399.1–399.5
+
+
+      Of these, only the Estimate changes. The search for `ask-guppi` over `vault/wiki/rules/` printed
+      these files:
+
+      - `schema.yaml`
+
+      - `rule-prespec.md`
+
+      - `rule-case-build.md`
+
+      - `rule-case-protocol.md`
+
+      - `rule-skill-hi.md`
+
+      - `rule-ask.md`
+
+      - `rule-rules-schema.md`
+
+
+      The search for `ask-guppi` over `.claude/` printed these files:
+
+      - `.claude/skills/hi/SKILL.md`
+
+      - `.claude/skills/pre-spec/SKILL.md`
+
+      - `.claude/agents/case-guppi.md`
+
+      - `.claude/agents/ask-guppi.md`
+
+
+      Of these, only `rule-ask` and its render set the form of the answer. The person chose to leave the
+      librarian''s list out of this Case. No `create` is made, so no vault query ran.'
+    problem: The Criterion of `estimate-ask-finds` forbids anything after the five lines. A general note
+      of Claude Code, which the vault does not control, makes `ask-guppi` add a list of file paths there
+      in some answers. The check fails on text that breaks nothing. The question was whether the frame
+      forbids the list or the check allows it.
+    recommend: "- **Forbid the file list in the frame, or allow it in the check**\n  - Recommended: (a)\
+      \ the frame forbids the list, with one sentence that sets aside the general note as the frame of\
+      \ `case-guppi` does, and the check stays strict.\n  - Answer: (b) the check allows the list. Before\
+      \ answering, the person asked two things. First, whether anyone uses the list, or whether it only\
+      \ repeats what is already in the context. The answer: the list is not otherwise in the main agent's\
+      \ context, but it repeats the pages the five lines name, and no rule reads it. Second, whether the\
+      \ vault should compete with an instruction of Claude Code it cannot change, or whether the list\
+      \ breaks anything. The answer: nothing breaks, and the choice is only how strict the form of the\
+      \ answer is. The person then chose to accept the list.\n- **Does this Case also cover the librarian's\
+      \ file list**\n  - Recommended: (a) only `ask-guppi`; the librarian's list stays, and it can be\
+      \ an item of its own later.\n  - Answer: (a) only `ask-guppi`."
+    given: '`estimate-ask-finds` — the promise of `ask-guppi`, its Criterion replaced whole
+
+      **＋** `rule-ask` — the rule whose Render is the frame of `ask-guppi`, unchanged
+
+      **＋** `.claude/agents/ask-guppi.md` — the frame rendered from it, unchanged
+
+      **＋** `vault/wiki/rules/` — the rule pages whose index lines the agent searches first
+
+      **＋** `vault/archive/` — the archive, where a named slug is checked by a Glob
+
+      **＋** `vault/raw/<date>/event_log.md` — the log where each dispatch stands'
+    when: The main agent dispatches `ask-guppi` through the `Agent` tool with a question, and the agent
+      follows `.claude/agents/ask-guppi.md` as rendered from `rule-ask`.
+    then: 'The answer opens with exactly five lines: `exists`, `near`, `missing`, `rules` and the tags/slug
+      line, each present, "none" when empty.
+
+      **＋** After the five lines a list of the paths of files the agent read may stand, as the general
+      note of Claude Code asks of a sub-agent.
+
+      **＋** The agent starts with the Grep `^(purpose|deferred_by):` over `vault/wiki/rules/`, then runs
+      one Grep per other category the question touches.
+
+      **＋** A question about an existing page names its slug under `exists`, whether it is asked in English
+      or in Russian.
+
+      **＋** A proposal that crosses a rule or a lesson, such as a `SessionStart` hook meant to block,
+      names it on the `rules` line.
+
+      **＋** A named slug gets on the tags/slug line `free`, `live` with its category, or `archived at
+      <path> by [[decision-case-N]]`, found by a Glob over `vault/archive/`, N from the `origin` of the
+      archived page.
+
+      **＋** The agent opens an archived page only when the question names its slug and asks what it said
+      or why it was withdrawn.
+
+      **＋** Each dispatch stands in `vault/raw/<date>/event_log.md`.
+
+      **－** No index line, page text or other note reaches the caller beyond the five lines and that list
+      of paths.
+
+      **－** An answer with no list after the five lines holds the promise as well.
+
+      **－** The archive is not searched by meaning: the `exists` and `near` lines name live pages only.'
+  spec: vault/raw/2026-10-01/1725/spec.md
+  applied: '18:41:19'
+- case: '583'
+  decision: decision-case-583
+  origin: raw/2026-10-01/1725/ledger.md#case-583
+  targets:
+  - kind: update
+    category: estimates
+    slug: estimate-estimates-schema-checked
+    ref: rule-estimates-schema
+  tags: []
+  case_text:
+    context: 'Lint checks every page against the `schema.yaml` of its category. A schema can require a
+      section only under a condition: an Estimate page with `status: passed` or `status: failed` must
+      have `## Result`, and a Rule page with `enforcement: render` must have `## Render`. `check_schema`
+      in `guppi/lint.py` reports a page that breaks such a condition, for example `missing section ##
+      Result (given {''status'': ''passed''})`. No test covers that branch. `tests/test_schemas.py` tests
+      only the first condition on a field, and it skips Estimate pages with "no conditional on a field".
+      A Grep of `missing section|\(given` over `tests/` printed `test_schemas.py`, `test_prespec.py`,
+      `test_lint.py`, `test_generate.py` and `test_casecheck.py`. Every hit about a condition names a
+      missing field, and none names a missing section. A broken section branch in lint would leave every
+      test green.
+
+      The Criterion of `estimate-estimates-schema-checked` already promises one finding for a condition
+      that is not met. Its Criterion stands, and it is the Estimate that checks this change. The `update`
+      of this Case sets no `status` and writes no Criterion, so the scripts keep the whole Criterion of
+      the page. Its method, `pytest tests/test_schemas.py -k estimate`, selects the new test through the
+      `estimates` id of the parametrized test. The page is `pending`. Case 576 put off the question whether
+      the skipped test leaves the `## Result` condition untested. That defer stands as the page `decision-case-576`
+      and as a History line of the Estimate, `deferred · [[decision-case-576]]`. The Estimate has no `deferred_by`
+      field, since its schema allows only `purpose` and `checked` as optional fields. This Case answers
+      the deferred question, so its decision line carries `{supersedes:case 576}`, which supersedes the
+      Decision page of case 576 and clears no field on the Estimate. The line names the Estimate by an
+      `update` that changes only History. The ledger hook refuses a reading of an Estimate that a decision
+      line of this session names (case 428.1), so the reading of this Estimate, Work line W26, waits for
+      the next session. The Criterion of `estimate-rules-schema-checked` makes the same promise for Rule
+      pages, and the new test runs under `-k rules` too. That Criterion stands, since the test adds a
+      check of a promise it already makes and changes no promise. The page stays `passed` until its next
+      reading.
+
+      A Grep of `^(method|purpose):|test_schemas|skipped|conditional` over the pages `estimate-lint-catches`,
+      `estimate-decisions-schema-checked`, `estimate-entities-schema-checked`, `estimate-insights-schema-checked`
+      and `estimate-lessons-schema-checked` found no sentence that the new test makes false. Their methods
+      name `-k <category>` and `make lint` and give no count of tests, and their Results are overwritten
+      at the next reading. The module docstring of `tests/test_schemas.py` already names a condition that
+      is not met. `guppi/lint.py` does not change. No `create` is made, so no vault query ran.'
+    problem: Lint enforces sections that a schema requires only under a condition, but no test checks
+      it. The promise of `estimate-estimates-schema-checked` therefore rests on code that no test protects.
+      The question is whether to write the test or to narrow the promise, and how far the test reaches.
+    recommend: "- **Write a test, or narrow the promise?**\n  - Recommended: (b) one test for every schema\
+      \ that has a section condition, written like the existing test for field conditions. It covers `##\
+      \ Result` on Estimate pages and `## Render` on Rule pages, and both Criteria stand.\n  - Answer:\
+      \ (b), one test for every schema that has a section condition."
+    given: '`tests/test_schemas.py` — gets the test of section conditions
+
+      **＋** `pytest tests/test_schemas.py` — the command that runs it
+
+      **＋** `vault/wiki/<category>/schema.yaml` — the live schemas the test reads
+
+      **＋** `guppi/lint.py` — `check_schema`, the code under test, not changed
+
+      **＋** `vault/wiki/estimates/schema.yaml` — the live schema with the `## Result` condition
+
+      **＋** `vault/wiki/rules/schema.yaml` — the live schema with the `## Render` condition
+
+      **＋** `estimate-estimates-schema-checked` — the Estimate that checks the change, named to answer
+      the question case 576 put off'
+    when: '`pytest tests/test_schemas.py` runs the test of section conditions once per category, over
+      the live `vault/wiki/<category>/schema.yaml`.'
+    then: 'For each rule under `body.conditional` of the schema, a page in the shape that has the values
+      of its `when` and lacks its required sections has one `schema` finding per missing section, `missing
+      section <section> (given <when>)`, and no other finding.
+
+      **＋** Under `-k estimate`, the test reads `vault/wiki/estimates/schema.yaml`: an Estimate page with
+      `status: passed` and no `## Result` has one such finding, and an Estimate page with `status: failed`
+      and no `## Result` has one.
+
+      **＋** Under `-k rules`, the test reads `vault/wiki/rules/schema.yaml`: a Rule page with `enforcement:
+      render` and no `## Render` has one such finding.
+
+      **－** A schema with no `body.conditional` skips the test, with a reason that names the missing section
+      condition.
+
+      **－** `check_schema` in `guppi/lint.py` and every `vault/wiki/<category>/schema.yaml` stay as they
+      are.'
+  spec: vault/raw/2026-10-01/1725/spec.md
+  supersedes:
+  - decision-case-576
+  applied: '18:41:19'
+- case: '584'
+  decision: decision-case-584
+  origin: raw/2026-10-01/1725/ledger.md#case-584
+  targets:
+  - kind: update
+    category: rules
+    slug: rule-case-check
+    ref: rule-case-check
+  tags: []
+  case_text:
+    context: 'The `Stop` hook `uv run guppi casecheck` refuses a shown Case when the reply''s turn has
+      no `SendUserFile` call on the Case file. Its function `turn_of_reply` decides where the turn starts.
+      The turn starts after the last `user` record that is not marked `isMeta` and that holds more than
+      tool results. The module docstring of `guppi/casecheck.py` explains this, and then says that a refusal
+      of a `Stop` hook adds no `user` record. That claim is false. Line 676 of the session 1441 transcript
+      is a `user` record marked `isMeta`, and its content opens with `Stop hook feedback:`. A Grep for
+      `Stop hook feedback` in that transcript printed 23 occurrences. Session 1237 is the other source
+      the brief and the handoff of session 1441 name, and I did not open its transcript. The `own_refusals`
+      docstring in `guppi/ledger.py` already describes this record shape and names both sessions as its
+      source. The behaviour is still right: `turn_of_reply` skips every `isMeta` record, so a refusal
+      does not start a new turn. A file sent before the refusal therefore still counts for the reply that
+      follows. No test checks this. A Grep for `isMeta|turn_of_reply|refusal` in `tests/test_casecheck.py`
+      printed nothing. A Grep for the false claim, with the pattern ``(adds|add) no `?user`? record|no
+      user record`` over the repository outside `vault/raw/`, printed 2 files: `vault/wiki/brief.md` and
+      `guppi/casecheck.py`. The brief hit is the flag of this item and is not read. The page `rule-case-check`
+      does not make the claim: its How it works says the turn is the records after the person''s last
+      prompt, by `turn_of_reply`, which stays true. So the page gets only a History line. The Case creates
+      no page, so no vault query was run. A Grep for `turn of the reply|last prompt|isMeta` over `vault/wiki/estimates/estimate-case-check-*`
+      printed 2 files: `estimate-case-check-shows-only-the-checked-case.md` and `estimate-case-check-refuses-text-before-a-round.md`.
+      Neither Criterion speaks of a refusal record. `estimate-case-check-shows-only-the-checked-case`
+      is the Estimate that checks this change. Its Criterion requires a `SendUserFile` call on the case
+      file in the turn of the reply. The new test keeps that sending inside the turn when a refusal stands
+      after it, and the test''s name holds `stop`, so the Estimate''s method `uv run pytest tests/test_casecheck.py
+      -k stop` runs it. Its Criterion stands, because the behaviour it promises does not change. The Case
+      adds and changes no hook, and no other Case of this session touches `guppi/casecheck.py` or `rule-case-check`.'
+    problem: The module docstring of `guppi/casecheck.py` says a refusal of a `Stop` hook adds no `user`
+      record, and the transcripts show one, marked `isMeta`. A later fix of `turn_of_reply` that trusts
+      the docstring could treat the refusal as the start of a turn. The hook would then refuse a Case
+      whose file was already sent, and no test would catch it. The question was how far the fix goes.
+    recommend: "- **How far should the fix go?**\n  - Recommended: (b) fix the docstring and add a test,\
+      \ with a name that holds `stop`, in which a file is sent, a refusal record follows and the Case\
+      \ is shown again; the Criterion of `estimate-case-check-shows-only-the-checked-case` stands.\n \
+      \ - Answer: agreed, (b)."
+    given: '`guppi/casecheck.py` — the `Stop` hook and its module docstring
+
+      **＋** `tests/test_casecheck.py` — the tests of the hook
+
+      **＋** `rule-case-check` — the rule the hook implements, given a History line'
+    when: '`Stop` fires after a reply of the main agent that shows a Case, and the turn of the reply holds
+      a `SendUserFile` call on its case file followed by a refusal of a `Stop` hook.
+
+      **＋** A reader reads the module docstring of `guppi/casecheck.py`.'
+    then: '`uv run guppi casecheck` counts the `SendUserFile` call before the refusal as a sending in
+      the turn of the reply.
+
+      **＋** The module docstring of `guppi/casecheck.py` says that a refusal of a `Stop` hook is a `user`
+      record marked `isMeta`, its text opening with `Stop hook feedback:`, and that the turn of the reply
+      skips it as it skips any `isMeta` record, as measured on the transcripts of sessions 1237 and 1441.
+
+      **－** The refusal record does not start a new turn of the reply.'
+  spec: vault/raw/2026-10-01/1725/spec.md
+  applied: '18:41:19'
+- case: '585'
+  decision: decision-case-585
+  origin: raw/2026-10-01/1725/ledger.md#case-585
+  targets:
+  - kind: defer
+    category: insights
+    slug: insight-spec-write-parent-body-kept-on-re-ratification
+    ref: insight-spec-write-parent-body-kept-on-re-ratification
+  tags: []
+  case_text:
+    context: '`insight-spec-write-parent-body-kept-on-re-ratification` clusters two lessons. A Case ratified
+      whole and then ratified again as a parent with sub-cases keeps its old body in the Spec, because
+      the Spec hook of `rule-spec-write` writes the new answer by its sub-case headings and does not remove
+      the body the parent held alone. Session 1441 worked around it with a new id (581). The person put
+      the remaining items off to go to work.'
+    problem: The decision whether the Spec hook replaces the whole Case on re-ratification is put off.
+  spec: vault/raw/2026-10-01/1725/spec.md
+  applied: '18:41:19'
+- case: '586'
+  decision: decision-case-586
+  origin: raw/2026-10-01/1725/ledger.md#case-586
+  targets:
+  - kind: defer
+    category: rules
+    slug: rule-turn-start-one-judgment
+  tags: []
+  case_text:
+    context: 'At `/pre-spec` of session 1725, `ask-guppi` found two places that judge where the person''s
+      last prompt stands in a transcript: `turn_of_reply` in `guppi/casecheck.py` starts the turn after
+      the last `user` record that is not `isMeta` and holds more than tool results, and the stretch of
+      `guppi/ledger.py` starts after the last `user` record whose `origin.kind` is `human`. `rule-one-judgment-one-implementation`
+      asks for one module or one test over the same input. Whether the two are one judgment was not checked.
+      Case 584 stays to the docstring and its test; the person chose to put this question off.'
+    problem: The decision whether the two predicates are one judgment, and how they come to agree, is
+      put off.
+  spec: vault/raw/2026-10-01/1725/spec.md
+  applied: '18:41:19'
+unparsed: []
+session: '1725'

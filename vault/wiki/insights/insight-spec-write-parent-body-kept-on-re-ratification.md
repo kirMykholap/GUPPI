@@ -4,6 +4,7 @@ pattern: A Case ratified whole and then ratified again as a parent with sub-case
 status: open
 children: ["[[lesson-spec-write-keeps-the-body-of-a-case-rebuilt-as-a-parent]]", "[[lesson-spec-write-keeps-the-body-of-a-case-that-gains-sub-cases]]"]
 severity: 2
+deferred_by: ["[[decision-case-585]]"]
 origin: raw/2026-10-01/1441/ledger.md#L32
 sprint: migration
 created: 2026-10-01
@@ -21,3 +22,4 @@ The Spec hook of rule-spec-write could replace the whole section of a Case on it
 ## History
 
 - 2026-10-01 created · raw/2026-10-01/1441/ledger.md#L32
+- 2026-10-01 deferred · [[decision-case-585]]

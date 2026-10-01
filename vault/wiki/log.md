@@ -5522,3 +5522,29 @@ instruction. The global feed; a page's own `## History` is the per-page view.
 - 2026-10-01 decisions/decision-case-580.1 archived · cleanup
 - 2026-10-01 decisions/decision-case-580.2 archived · cleanup
 - 2026-10-01 decisions/decision-case-580 archived · cleanup
+- 2026-10-01 estimates/estimate-documentation-completes status: pending → passed · raw/2026-10-01/1725/ledger.md#L1 · generate
+- 2026-10-01 estimates/estimate-brief-written status: pending → passed · raw/2026-10-01/1725/ledger.md#L2 · generate
+- 2026-10-01 decisions/decision-case-582 created · raw/2026-10-01/1725/ledger.md#case-582 · generate
+- 2026-10-01 estimates/estimate-ask-finds updated: the Criterion replaced whole — a list of file paths may follow the five lines, as the general note of Claude Code asks of a sub-agent; nothing else follows them (case 582) · [[decision-case-582]] · generate
+- 2026-10-01 decisions/decision-case-583 created · raw/2026-10-01/1725/ledger.md#case-583 · generate
+- 2026-10-01 decisions/decision-case-576 superseded by decision-case-583 · [[decision-case-583]] · generate
+- 2026-10-01 estimates/estimate-estimates-schema-checked updated: the test of a section required under a condition now covers ## Result on passed and failed; the Criterion stands, and the question case 576 put off is answered (case 583) · [[decision-case-583]] · generate
+- 2026-10-01 decisions/decision-case-584 created · raw/2026-10-01/1725/ledger.md#case-584 · generate
+- 2026-10-01 rules/rule-case-check updated: the module docstring of guppi/casecheck.py says a Stop refusal is a user record marked isMeta, which the turn of the reply skips; a test checks a sending before a refusal (case 584) · [[decision-case-584]] · generate
+- 2026-10-01 decisions/decision-case-585 created · raw/2026-10-01/1725/ledger.md#case-585 · generate
+- 2026-10-01 insights/insight-spec-write-parent-body-kept-on-re-ratification deferred · [[decision-case-585]] · generate
+- 2026-10-01 decisions/decision-case-586 created · raw/2026-10-01/1725/ledger.md#case-586 · generate
+- 2026-10-01 rules/rule-turn-start-one-judgment deferred, placeholder · [[decision-case-586]] · generate
+- 2026-10-01 estimates/estimate-retro-onward-exits-2-on-an-error status: pending → passed · raw/2026-10-01/1725/ledger.md#L8 · generate
+- 2026-10-01 estimates/estimate-ledger-write-exits-2-on-an-error status: pending → passed · raw/2026-10-01/1725/ledger.md#L9 · generate
+- 2026-10-01 estimates/estimate-ledger-write-refuses-a-line-it-cannot-read status: pending → passed · raw/2026-10-01/1725/ledger.md#L10 · generate
+- 2026-10-01 estimates/estimate-ledger-write-refuses-a-reading-of-a-change-of-the-session status: pending → passed · raw/2026-10-01/1725/ledger.md#L11 · generate
+- 2026-10-01 estimates/estimate-ledger-write-refuses-a-lesson-without-its-prefix status: pending → passed · raw/2026-10-01/1725/ledger.md#L12 · generate
+- 2026-10-01 estimates/estimate-ledger-write-refuses-a-mark-with-no-decision-line status: pending → passed · raw/2026-10-01/1725/ledger.md#L13 · generate
+- 2026-10-01 estimates/estimate-case-protocol-acknowledging-reply status: pending → passed · raw/2026-10-01/1725/ledger.md#L14 · generate
+- 2026-10-01 estimates/estimate-case-protocol-names-related-cases-in-the-dispatch status: pending → passed · raw/2026-10-01/1725/ledger.md#L15 · generate
+- 2026-10-01 estimates/estimate-case-build-checks-the-finished-case status: pending → passed · raw/2026-10-01/1725/ledger.md#L16 · generate
+- 2026-10-01 rules/rule-brief status: draft → built · cascade · generate
+- 2026-10-01 rules/rule-documentation status: draft → built · cascade · generate
+- 2026-10-01 decisions/decision-case-576 archived · superseded · generate
+- 2026-10-01 decisions/decision-case-576 archived · cleanup

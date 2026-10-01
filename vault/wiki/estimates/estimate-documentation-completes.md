@@ -1,7 +1,7 @@
 ---
 type: estimate
 kind: QA
-status: pending
+status: passed
 target: "[[rule-documentation]]"
 method: make test-documentation, the pipeline over tests/test_materialize.py, tests/test_generate.py and tests/test_cleanup.py; the live reading by hand
 checked: 2026-10-01
@@ -32,7 +32,7 @@ Then:
 
 ## Result
 
-2026-10-01, make test-documentation: 233 passed; by hand, the librarian's run of 1f43cf1c, vault/raw/2026-10-01/event_log.md lines 335-386 with its report: every decision line of the 2356 ledger has its Decision page (20 found) and every page the commit added comes from a create, defer or lesson line of that ledger; one Edit of the yaml, the near mark of the index check; its commit separate from 0e65b085; no stop to ask; the brief written by Write at 03:17:40; render at 03:13:29, sprint, backlog and glossary at 03:13:37, after cleanup at 03:13:25 and before the brief; guppi archive at 03:17:48, after the brief and before the commit, 2356 kept; no refusal; no redirect into vault/; but the page estimate-prespec-onward-sends-the-agent-on, opened at 03:14:10 to learn the field names of an Estimate, a reason the frame does not name, has no line under Flags; the brief flags only the grep with a misplaced --include
+2026-10-01, make test-documentation: 233 passed; by hand at the /hi of session 1725, the librarian's run of session 85988eb7 over 1441, the first whose .claude/agents/librarian-guppi.md held the Render of session 1237 (d28db9ad): vault/raw/2026-10-01/event_log.md lines 1119-1164, its transcript agent-ac470d03c2b724e79 and its report; commit a264476c added 21 decision pages (18 live, 3 archived) for cases 577 to 581, 1 estimate of a create line, 1 lesson of ledger line 32 and 1 insight of the synthesis, no other page; reads: the handoff, the two yamls materialize named (two greps over vault/raw/*/materialize.yaml, where only those two exist, printed nothing), the index Greps, one lesson page and the head of one insight, tags.md, the Criteria of three Estimates, guppi/generate.py and guppi/archive.py, ledger.md once, the unticked lines of spec.md and the run's ticks; no plan.md, no Decision page text, no search of the archive, so its Flags line "Reads outside the frame: none" stands; the report names the lesson page opened, with reason and outcome, and the one ledger read; two Edits of the yaml, the near mark and the 3 synthesis entries; its commit separate from 09c143d4; no stop to ask; the brief by Write at 17:18:45; render, sprint, backlog and glossary at 17:15:27-17:15:31, after cleanup at 17:15:12; guppi archive at 17:18:54, after the brief and before the commit, 0 moved and 0 kept, both units of the run day; no stderr line, no refusal, no redirect into vault/
 
 ## History
 
@@ -72,3 +72,4 @@ Then:
 - 2026-09-30 updated: the Criterion replaced whole — a read the frame does not name is flagged under Flags of the brief and fails nothing; only a repair asked by the handoff is refused (case 558.1) · [[decision-case-558.1]]
 - 2026-10-01 status: pending → failed · raw/2026-10-01/1237/ledger.md#L2
 - 2026-10-01 updated: the Criterion replaced whole — only a read the frame says the job does not need is flagged; the report names only the pages behind a judgment and the one read of the ledger (case 567.1) · [[decision-case-567.1]]
+- 2026-10-01 status: pending → passed · raw/2026-10-01/1725/ledger.md#L1

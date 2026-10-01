@@ -82,7 +82,7 @@ update:
 ```
 
 ```tasks
-- [ ] update `estimate-ask-finds`
+- [x] update `estimate-ask-finds`
 - [ ] read `estimate-ask-finds` — by hand in a later session: three dispatches of `ask-guppi`, one existing page asked in English and in Russian, one proposal that crosses a known rule, each read against the event log and the Criterion
 ```
 
@@ -129,7 +129,7 @@ update:
 ```tasks
 - [x] `tests/test_schemas.py`: a test parametrized over the categories that takes each rule of `body.conditional` of the live schema, gives a page in the shape the values of its `when`, removes its required sections and expects one `missing section <section> (given <when>)` finding each; it skips a schema with no `body.conditional`
 - [x] `uv run pytest tests/test_schemas.py`: green, the new test passing under `-k estimate` and `-k rules`
-- [ ] update `estimate-estimates-schema-checked`
+- [x] update `estimate-estimates-schema-checked`
 - [ ] read `estimate-estimates-schema-checked` — in the next session: `uv run pytest tests/test_schemas.py -k estimate` on the live schema, and the live reading `make lint`, no schema finding on `wiki/estimates/`
 ```
 
@@ -167,7 +167,7 @@ update:
 ```
 
 ```tasks
-- [ ] update `rule-case-check`
+- [x] update `rule-case-check`
 - [x] `guppi/casecheck.py`: replace the claim in the module docstring that a `Stop` hook's refusal adds no `user` record with the measured record shape, the transcripts of sessions 1237 and 1441 as its source
 - [x] `tests/test_casecheck.py`: a test, with a name that holds `stop`, of a turn with a `SendUserFile` call on the case file, then a `user` record marked `isMeta` whose content opens with `Stop hook feedback:`, then a reply that shows the Case; the hook exits 0
 - [x] `uv run pytest tests/test_casecheck.py -k stop`

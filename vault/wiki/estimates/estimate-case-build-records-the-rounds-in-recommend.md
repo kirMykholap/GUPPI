@@ -1,11 +1,11 @@
 ---
 type: estimate
 kind: QA
-status: pending
+status: failed
 target: "[[rule-case-build]]"
 purpose: Whether the recommend of each Case case-guppi builds holds one item per question of its rounds — the title, the recommendation and the answer in English as they stood when the person answered it, or a note that it was not answered — a sub-case with its own items and no problem
 method: "by hand: the Case files of a later session after the render, each recommend read against the rounds of its Case in the chat"
-checked: 2026-09-30
+checked: 2026-10-01
 origin: raw/2026-09-30/1306/ledger.md#case-544.2
 sprint: migration
 created: 2026-09-30
@@ -31,10 +31,11 @@ The `recommend` of the Case is a list with one item per question of the rounds o
 
 ## Result
 
-2026-09-30, by hand, the Case files of Cases 547 to 550 of session 1736 against their rounds in the chat: each recommend holds one item per question, the title in bold as the round wrote it, a Recommended line and an Answer line in English, no quotation of the person's words; but the item of Q2 of Case 549 gives the first recommendation (each text states the condition in its own words) while Q3 replaced it (the texts point to rule-case-protocol), against the latest recommendation and answer the Criterion asks for
+2026-10-01, by hand, raw/2026-09-30/2356/cases/case-561.md and case-562.md against the six rounds of 561 and the two of 562 in the chat: 19 distinct questions of 561, one item each, the question asked again in round 4 one item with the last recommendation, each Change item with Asked and Taken, 562 three items and a Change; but the question of round 1 on what done means, whose answer changed only 561.11, stands in the parent's recommend, not under 561.11
 
 ## History
 
 - 2026-09-30 created · [[decision-case-544.2]]
 - 2026-09-30 status: pending → failed · raw/2026-09-30/1736/ledger.md#L21
 - 2026-09-30 updated: the Criterion replaced whole — one item per question, its recommendation and answer as they stood when the person answered it, a question never answered noted (case 557.2) · [[decision-case-557.2]]
+- 2026-10-01 status: pending → failed · raw/2026-09-30/2356/ledger.md#L45

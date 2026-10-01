@@ -1182,6 +1182,7 @@ entries:
       case-schema.md read by case-guppi alone
   exists: true
   applied: '17:24:03'
+  superseded_by: '561.13'
 - line: 41
   text: decision[case 544.10][update][estimate-spec-write-reaches-the-approved-spec]{ref:estimate-spec-write-reaches-the-approved-spec}
   case: '544.10'
@@ -3083,6 +3084,8 @@ decisions:
   supersedes:
   - decision-case-545
   applied: '17:24:03'
+  superseded_by:
+  - decision-case-561.13
 - case: '544.10'
   decision: decision-case-544.10
   origin: raw/2026-09-30/1306/ledger.md#case-544.10

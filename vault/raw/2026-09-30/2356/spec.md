@@ -131,11 +131,11 @@ update:
 ```
 
 ```tasks
-- [ ] update `rule-prespec` — the Render written whole
-- [ ] update `rule-prespec-hook` — the Purpose points to the docstring that says what the check compares
-- [ ] update `estimate-prespec-reconciles`
+- [x] update `rule-prespec` — the Render written whole
+- [x] update `rule-prespec-hook` — the Purpose points to the docstring that says what the check compares
+- [x] update `estimate-prespec-reconciles`
 - [x] `guppi/prespec.py`: the module docstring holds what `--check` compares, the paragraph the Render of `rule-prespec` held before this Case — from the decision line with no item to the `note:` lines — with the language of `guppi.toml` named as the documentation language
-- [ ] `uv run guppi render`: `.claude/skills/pre-spec/SKILL.md`
+- [x] `uv run guppi render`: `.claude/skills/pre-spec/SKILL.md`
 - [ ] read `estimate-prespec-reconciles` — in a later session
 ```
 
@@ -181,9 +181,9 @@ update:
 ```
 
 ```tasks
-- [ ] update `rule-case-protocol` — the rule of one Case at a time names the loop as its exception
-- [ ] create `estimate-prespec-gathers-the-answers-after-findings`
-- [ ] `uv run guppi render`: `vault/wiki/case-schema.md`
+- [x] update `rule-case-protocol` — the rule of one Case at a time names the loop as its exception
+- [x] create `estimate-prespec-gathers-the-answers-after-findings`
+- [x] `uv run guppi render`: `vault/wiki/case-schema.md`
 - [ ] read `estimate-prespec-gathers-the-answers-after-findings` — in a later session
 ```
 
@@ -234,8 +234,8 @@ update:
 ```
 
 ```tasks
-- [ ] update `rule-prespec-hook` — the hook runs the check at the exit
-- [ ] update `estimate-prespec-hook-gates`
+- [x] update `rule-prespec-hook` — the hook runs the check at the exit
+- [x] update `estimate-prespec-hook-gates`
 - [x] `guppi/prespec.py`: one function returns the findings and the notes of `--check` for a plan, a session and a moment; `check` prints them, and the hook's run calls the same function on the plan file that `plan_path` names, exits 2 with the findings on stderr while there is one, and exits 0 on notes alone or with no plan file; the module docstring says so
 - [x] `tests/test_prespec.py`: with the `prespec` line, a plan with a finding gives exit 2 and the finding on stderr; a plan with only a note gives exit 0; no plan file gives exit 0; without the line the reason names `/pre-spec` as before
 - [ ] read `estimate-prespec-hook-gates` — in a later session
@@ -286,7 +286,7 @@ create:
 ```
 
 ```tasks
-- [ ] create `estimate-prespec-catches-two-cases-on-one-target`
+- [x] create `estimate-prespec-catches-two-cases-on-one-target`
 - [x] `guppi/prespec.py`: a function over the Cases and their `then` blocks that gives the three findings, each opening with the later Case, called by `judge`; the module docstring, beside what `--check` compares, says so
 - [x] `tests/test_prespec.py`: two Cases that set one field to two values, two that write one section, two that replace one Criterion whole — one finding each, opening with the later Case; two Cases that change different fields, sections or anchors of one page, and two that set one field to one value — no finding
 - [ ] read `estimate-prespec-catches-two-cases-on-one-target` — in a later session
@@ -357,13 +357,13 @@ update:
 ```
 
 ```tasks
-- [ ] create `rule-prespec-onward` — the page of the hook
-- [ ] update `rule-hook-registry` — `guppi onward --plan` registered on `Stop`
-- [ ] create `estimate-prespec-onward-sends-the-agent-on`
+- [x] create `rule-prespec-onward` — the page of the hook
+- [x] update `rule-hook-registry` — `guppi onward --plan` registered on `Stop`
+- [x] create `estimate-prespec-onward-sends-the-agent-on`
 - [x] `guppi/onward.py`: `run` with `--plan` judges the seven conditions over the session window, the stamp and the folder of `guppi/ledger.py`, the times of the files under `cases/` against the times of the decision lines of `ledger.md` and of the reply, and gives the reason of the `prespec` mark; the payload, the flag and the `STOP:` word are read by the functions the run without the flag uses; the module docstring says so
 - [x] `guppi/cli.py`: `onward --plan` in the docstring's list of hook commands
 - [x] `tests/test_onward.py`: a refusal with the reason for `/pre-spec`, and one with the reason for the check and the exit; silence with an open Cases line, with `spec.md`, with no `LEDGER` block, with a Case file newer than its last decision line, on `stop_hook_active`, on a reply opening with `STOP:`, and without a `hi`; a patched function that raises gives exit 2 with `onward: not checked:`; the run without `--plan` unchanged
-- [ ] `uv run guppi render`: `.claude/settings.json`
+- [x] `uv run guppi render`: `.claude/settings.json`
 - [ ] read `estimate-prespec-onward-sends-the-agent-on` — in a later session
 ```
 
@@ -404,9 +404,9 @@ update:
 ```
 
 ```tasks
-- [ ] update `rule-case-protocol` — the Frontier after a closed line asks nothing when no Case is left
-- [ ] update `estimate-case-protocol-shows-the-frontier-after-a-closed-line`
-- [ ] `uv run guppi render`: `vault/wiki/case-schema.md`
+- [x] update `rule-case-protocol` — the Frontier after a closed line asks nothing when no Case is left
+- [x] update `estimate-case-protocol-shows-the-frontier-after-a-closed-line`
+- [x] `uv run guppi render`: `vault/wiki/case-schema.md`
 - [ ] read `estimate-case-protocol-shows-the-frontier-after-a-closed-line` — in a later session
 ```
 
@@ -448,9 +448,9 @@ update:
 ```
 
 ```tasks
-- [ ] update `rule-case-protocol` — the defer reply asks nothing when no Case is left
-- [ ] update `estimate-case-protocol-defers-in-one-reply`
-- [ ] `uv run guppi render`: `vault/wiki/case-schema.md`
+- [x] update `rule-case-protocol` — the defer reply asks nothing when no Case is left
+- [x] update `estimate-case-protocol-defers-in-one-reply`
+- [x] `uv run guppi render`: `vault/wiki/case-schema.md`
 - [ ] read `estimate-case-protocol-defers-in-one-reply` — in a later session
 ```
 
@@ -490,9 +490,9 @@ update:
 ```
 
 ```tasks
-- [ ] update `rule-case-protocol` — the acknowledging reply asks nothing when no Case is left
-- [ ] update `estimate-case-protocol-acknowledging-reply`
-- [ ] `uv run guppi render`: `vault/wiki/case-schema.md`
+- [x] update `rule-case-protocol` — the acknowledging reply asks nothing when no Case is left
+- [x] update `estimate-case-protocol-acknowledging-reply`
+- [x] `uv run guppi render`: `vault/wiki/case-schema.md`
 - [ ] read `estimate-case-protocol-acknowledging-reply` — in a later session
 ```
 
@@ -553,9 +553,9 @@ update:
 ```
 
 ```tasks
-- [ ] update `rule-case-protocol` — the showing is one list with what done means and one `ratification`; a refused round is shown again
-- [ ] update `estimate-case-protocol-shows-the-built-case`
-- [ ] `uv run guppi render`: `vault/wiki/case-schema.md`
+- [x] update `rule-case-protocol` — the showing is one list with what done means and one `ratification`; a refused round is shown again
+- [x] update `estimate-case-protocol-shows-the-built-case`
+- [x] `uv run guppi render`: `vault/wiki/case-schema.md`
 - [ ] read `estimate-case-protocol-shows-the-built-case` — in a later session
 ```
 
@@ -599,8 +599,8 @@ update:
 ```
 
 ```tasks
-- [ ] update `rule-case-check` — the check reads the list of a showing
-- [ ] update `estimate-case-check-shows-only-the-checked-case`
+- [x] update `rule-case-check` — the check reads the list of a showing
+- [x] update `estimate-case-check-shows-only-the-checked-case`
 - [x] `guppi/casecheck.py`: the reading of a showing takes one `ratification` under the heading of a top-level Case as the showing of each sub-case whose id its lines name, and the comparison compares those lines with the stored `ratification` of each; a showing under each Case's own heading reads as before; the module docstring says so
 - [x] `guppi/ratified.py`: `find_showing` finds a sub-case in such a showing through the reading of `guppi/casecheck.py`
 - [x] `tests/test_casecheck.py`: a list showing whose fence holds exactly the stored lines of two sub-cases passes; a missing line and an extra line each exit 2; a showing under each sub-case's own heading passes as before
@@ -643,9 +643,9 @@ update:
 ```
 
 ```tasks
-- [ ] update `rule-case-build` — each Case answers what done means
-- [ ] create `estimate-case-build-answers-what-done-means`
-- [ ] `uv run guppi render`: `.claude/agents/case-guppi.md`
+- [x] update `rule-case-build` — each Case answers what done means
+- [x] create `estimate-case-build-answers-what-done-means`
+- [x] `uv run guppi render`: `.claude/agents/case-guppi.md`
 - [ ] read `estimate-case-build-answers-what-done-means` — in a later session
 ```
 
@@ -697,11 +697,11 @@ update:
 ```
 
 ```tasks
-- [ ] update `rule-case-protocol` — a question to discuss an item goes to its `case-guppi`
-- [ ] update `rule-case-build` — `case-guppi` answers a question to discuss the item under `**Fact:**`
-- [ ] create `estimate-case-protocol-forwards-a-discussion-question`
-- [ ] `uv run guppi render`: `vault/wiki/case-schema.md`
-- [ ] `uv run guppi render`: `.claude/agents/case-guppi.md`
+- [x] update `rule-case-protocol` — a question to discuss an item goes to its `case-guppi`
+- [x] update `rule-case-build` — `case-guppi` answers a question to discuss the item under `**Fact:**`
+- [x] create `estimate-case-protocol-forwards-a-discussion-question`
+- [x] `uv run guppi render`: `vault/wiki/case-schema.md`
+- [x] `uv run guppi render`: `.claude/agents/case-guppi.md`
 - [ ] read `estimate-case-protocol-forwards-a-discussion-question` — in a later session
 ```
 
@@ -755,10 +755,10 @@ update:
 ```
 
 ```tasks
-- [ ] update `rule-case-protocol` — the main agent's own questions take the grill-me shape
-- [ ] update `rule-orchestration` — the purpose records the design ratified for a later session; the defer of case 546 retired
-- [ ] create `estimate-case-protocol-asks-in-the-grill-me-shape`
-- [ ] `uv run guppi render`: `vault/wiki/case-schema.md`
+- [x] update `rule-case-protocol` — the main agent's own questions take the grill-me shape
+- [x] update `rule-orchestration` — the purpose records the design ratified for a later session; the defer of case 546 retired
+- [x] create `estimate-case-protocol-asks-in-the-grill-me-shape`
+- [x] `uv run guppi render`: `vault/wiki/case-schema.md`
 - [ ] read `estimate-case-protocol-asks-in-the-grill-me-shape` — in a later session
 ```
 
@@ -805,9 +805,9 @@ update:
 ```
 
 ```tasks
-- [ ] update `rule-case-protocol` — the harness comes before the Plan Mode instructions of Claude Code
-- [ ] create `estimate-case-protocol-puts-the-harness-before-plan-mode`
-- [ ] `uv run guppi render`: `vault/wiki/case-schema.md`
+- [x] update `rule-case-protocol` — the harness comes before the Plan Mode instructions of Claude Code
+- [x] create `estimate-case-protocol-puts-the-harness-before-plan-mode`
+- [x] `uv run guppi render`: `vault/wiki/case-schema.md`
 - [ ] read `estimate-case-protocol-puts-the-harness-before-plan-mode` — in a later session
 ```
 
@@ -882,8 +882,8 @@ update:
 ```
 
 ```tasks
-- [ ] update `rule-case-check` — the `Stop` run judges how a round of `case-guppi` opens
-- [ ] create `estimate-case-check-refuses-text-before-a-round`
+- [x] update `rule-case-check` — the `Stop` run judges how a round of `case-guppi` opens
+- [x] create `estimate-case-check-refuses-text-before-a-round`
 - [x] by hand, before the reader is written: in a transcript of this session, where the text that `case-guppi` gives back stands after an `Agent` call and after a `SendMessage` call, and whether an answer that comes back after the turn ended opens a record that `turn_of_reply` takes for a prompt; the reader follows what is measured, and the module docstring names the measurement
 - [x] `guppi/casecheck.py`: a function over the records of the turn and the reply finds a round among the texts `case-guppi` gave back, by `QUESTION_LINE`, `split_cases` and the first line `**Fact:**`, and gives the reason when the reply's first line that is not blank opens neither with `❓ ` nor with a bold label ending in a colon, or, while the window of `guppi/prespec.py` that the `ExitPlanMode` hook judges holds no `prespec` line of this session after its `hi`, when a text of the main agent stands before the last tool call of the turn; the window function is imported, not copied; `stop` runs the check before it returns on a reply that shows no Case, and joins its reason with the comparison's; the module docstring says so
 - [x] `tests/test_casecheck.py`: a turn with a round and a reply that opens with a line of its own exits 2; before a `prespec` line, a turn with a round and a text before the `Agent` call exits 2; after a `prespec` line, a turn with a text before a `SendMessage` call and a reply that opens with a question line passes, and a reply that opens with a line of its own exits 2; a reply that opens with the Context label or with the first question passes; a turn with a `**Fact:**` answer, with no answer of `case-guppi`, or with the main agent's own question lines alone passes; the re-fire exits 0

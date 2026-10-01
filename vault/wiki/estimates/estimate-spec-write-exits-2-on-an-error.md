@@ -1,10 +1,11 @@
 ---
 type: estimate
 kind: QA
-status: pending
+status: passed
 target: "[[rule-spec-write]]"
 purpose: Whether the Spec hook exits 2 with the error on stderr when its Stop run raises after reading the payload, and exits 0 on an error while reading the payload, on the re-fire and in the guard
 method: uv run pytest tests/test_ratified.py — piped payloads, a function of the hook patched to raise
+checked: 2026-10-01
 origin: raw/2026-09-30/2042/ledger.md#case-554
 sprint: migration
 created: 2026-09-30
@@ -25,6 +26,11 @@ The hook exits 2. Its stderr holds `ratified: not done: <error>` and the advice 
 **－** The guard `uv run guppi ratified --guard` keeps exit 0 with its line on stderr on its own error.
 **－** A refusal of the hook with no error keeps its own reason on stderr and its own exit.
 
+## Result
+
+2026-10-01, uv run pytest tests/test_ratified.py: 89 passed (-k error: 4 passed)
+
 ## History
 
 - 2026-09-30 created · [[decision-case-554]]
+- 2026-10-01 status: pending → passed · raw/2026-09-30/2356/ledger.md#L43

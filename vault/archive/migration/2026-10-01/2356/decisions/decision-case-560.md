@@ -1,9 +1,10 @@
 ---
 type: decision
 case: "560"
-status: current
+status: archived
 defer: ["[[estimate-case-protocol-shows-the-built-case]]"]
 supersedes: ["[[decision-case-559]]"]
+superseded_by: ["[[decision-case-561.9]]"]
 origin: raw/2026-09-30/2042/ledger.md#case-560
 sprint: migration
 created: 2026-09-30
@@ -27,3 +28,6 @@ The main agent shows a round of case-guppi with no text of its own before the fi
 ## History
 
 - 2026-09-30 created · raw/2026-09-30/2042/ledger.md#case-560
+- 2026-10-01 superseded by decision-case-561.9 · [[decision-case-561.9]]
+- 2026-10-01 archived · superseded
+- 2026-10-01 archived · cleanup

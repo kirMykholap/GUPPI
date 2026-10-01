@@ -40,3 +40,4 @@ The hook writes that Case under `## Deferred` of the plan file while `spec.md` i
 - 2026-09-30 status: pending → passed · raw/2026-09-30/0138/ledger.md#L6
 - 2026-09-30 updated: the Criterion replaced whole — a defer goes into spec.md once it stands, with no Retro moment; the clause on the ratified copy dropped (case 542) · [[decision-case-542]]
 - 2026-09-30 status: pending → failed · raw/2026-09-30/1736/ledger.md#L41
+- 2026-10-01 deferred · [[decision-case-564]]

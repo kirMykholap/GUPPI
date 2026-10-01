@@ -78,7 +78,7 @@ update:
 - [x] create `estimate-spec-write-exits-2-on-an-error`
 - [x] `guppi/ratified.py`: `run` reads the payload in its own handler that prints the error and returns 0; the handler of the guard prints the error and returns 0; the handler of the `Stop` run prints `ratified: not done: <error>` with the advice to repeat the ledger lines and returns 2; the docstring says so
 - [x] `tests/test_ratified.py`: a patched `write_case` that raises gives exit 2 and the stderr line; the same payload with `stop_hook_active` gives exit 0 and writes nothing; a payload that cannot be read gives exit 0 and the stderr line; a patched `guard_refusal` that raises gives exit 0 in `--guard`
-- [ ] read `estimate-spec-write-exits-2-on-an-error` — in a later session
+- [x] read `estimate-spec-write-exits-2-on-an-error` — in a later session
 ```
 
 ## Case 555 — The other end-of-reply hooks on their own error
@@ -146,7 +146,7 @@ update:
 - [x] create `estimate-case-check-exits-2-on-an-error`
 - [x] `guppi/casecheck.py`: `run` reads the payload and returns 0 on an empty one as now; the `--subagent` run keeps a handler that prints `casecheck: not checked: <error>` and returns 0; the `Stop` run has its own handler that prints `casecheck: not checked: <error>` with the advice to show the Case again once the cause is fixed and returns 2; the module docstring says so
 - [x] `tests/test_casecheck.py`: a patched `against_store` that raises gives exit 2 and the stderr line on `Stop`; the same payload with `stop_hook_active` gives exit 0; an empty payload gives exit 0 and its line; a patched `check_answer` that raises gives exit 0 and the stderr line in `--subagent`
-- [ ] read `estimate-case-check-exits-2-on-an-error` — in a later session
+- [x] read `estimate-case-check-exits-2-on-an-error` — in a later session
 ```
 
 ### Case 555.2 — The context-size hook shows its own error
@@ -195,7 +195,7 @@ update:
 - [x] create `estimate-context-size-shows-its-error`
 - [x] `guppi/context.py`: on an exception in the `Stop` run, `run` prints `{"systemMessage": "context: not counted: <error>"}` to stdout and returns 0; in the `--prompt` run it prints `context: not counted: <error>` to stderr and returns 0 as now; the module docstring says so
 - [x] `tests/test_context.py`: a patched `sizes` that raises gives, on `Stop`, exit 0 and one JSON line whose `systemMessage` opens with `context: not counted:`; the same with `--prompt` gives exit 0, nothing on stdout and the line on stderr
-- [ ] read `estimate-context-size-shows-its-error` — in a later session
+- [x] read `estimate-context-size-shows-its-error` — in a later session
 ```
 
 ### Case 555.3 — The Retro hook blocks on its own error
@@ -247,7 +247,7 @@ update:
 - [x] create `estimate-retro-onward-exits-2-on-an-error`
 - [x] `guppi/onward.py`: `run` reads the payload and returns 0 on an empty one or on `stop_hook_active` before its handler; the handler prints `onward: not checked: <error>` with the advice to commit the session folder and call `/handoff` if Retro has ended and `handoff.md` does not stand, and returns 2; the module docstring says so
 - [x] `tests/test_onward.py`: a patched `retro_marked` that raises gives exit 2 and the stderr line with the advice; the same payload with `stop_hook_active` gives exit 0 and nothing on stderr; an empty payload gives exit 0
-- [ ] read `estimate-retro-onward-exits-2-on-an-error` — in a later session
+- [x] read `estimate-retro-onward-exits-2-on-an-error` — in a later session
 ```
 
 ### Case 555.4 — The Retro hook's promise excepts its own error
@@ -453,7 +453,7 @@ update:
 - [x] update `rule-case-build`
 - [x] update `estimate-case-build-checks-the-finished-case`
 - [x] `uv run guppi render`: `.claude/agents/case-guppi.md`
-- [ ] read `estimate-case-build-checks-the-finished-case` — in a later session, at `/pre-spec` after the render
+- [x] read `estimate-case-build-checks-the-finished-case` — in a later session, at `/pre-spec` after the render
 ```
 
 ### Case 557.2 — `recommend` records each question as it was answered
@@ -525,7 +525,7 @@ update:
 - [x] `uv run guppi render`: `.claude/agents/case-guppi.md`
 - [x] `uv run guppi render`: `vault/wiki/case-schema.md`
 - [x] `uv run guppi render`: `vault/wiki/decisions/schema.yaml`
-- [ ] read `estimate-case-build-records-the-rounds-in-recommend` — in a later session after the render, the Case files against the rounds in the chat
+- [x] read `estimate-case-build-records-the-rounds-in-recommend` — in a later session after the render, the Case files against the rounds in the chat
 ```
 
 ### Case 557.3 — The Context of a first round treats what the round decides and a series of examples as lists

@@ -1,8 +1,9 @@
 ---
 type: decision
 case: "503"
-status: current
+status: archived
 defer: ["[[rule-prespec]]"]
+superseded_by: ["[[decision-case-561.1]]"]
 origin: raw/2026-09-29/0137/ledger.md#case-503
 sprint: migration
 created: 2026-09-29
@@ -26,3 +27,6 @@ The report on the findings of pre-spec numbers them in one sequence and splits t
 ## History
 
 - 2026-09-29 created · raw/2026-09-29/0137/ledger.md#case-503
+- 2026-10-01 superseded by decision-case-561.1 · [[decision-case-561.1]]
+- 2026-10-01 archived · superseded
+- 2026-10-01 archived · cleanup

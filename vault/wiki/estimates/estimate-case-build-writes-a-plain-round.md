@@ -43,3 +43,4 @@ The `**Context:**` of a first round gives the mechanism in plain words, with one
 - 2026-09-29 updated: the Criterion replaced whole — a quotation in the Context stands as the grill-me template sets it (case 524.2) · [[decision-case-524.2]]
 - 2026-09-30 status: pending → failed · raw/2026-09-30/0248/ledger.md#L36
 - 2026-09-30 status: failed → failed · raw/2026-09-30/1736/ledger.md#L19
+- 2026-10-01 deferred · [[decision-case-563]]

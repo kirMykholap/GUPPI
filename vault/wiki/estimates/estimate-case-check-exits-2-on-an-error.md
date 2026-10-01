@@ -1,10 +1,11 @@
 ---
 type: estimate
 kind: QA
-status: pending
+status: passed
 target: "[[rule-case-check]]"
 purpose: Whether the Stop run of the Case check exits 2 with the error on stderr when it raises after reading the payload, and exits 0 on the re-fire, on an empty payload and in the --subagent run
 method: uv run pytest tests/test_casecheck.py — piped payloads, a function of the hook patched to raise
+checked: 2026-10-01
 origin: raw/2026-09-30/2042/ledger.md#case-555.1
 sprint: migration
 created: 2026-09-30
@@ -24,6 +25,11 @@ Then:
 **－** The run `uv run guppi casecheck --subagent` on `SubagentStop` keeps exit 0 with its error on stderr, since a send-back to `case-guppi` is not ended by `stop_hook_active` and would loop.
 **－** A refusal of `guppi casecheck` with no error keeps its own reason on stderr and its exit 2.
 
+## Result
+
+2026-10-01, uv run pytest tests/test_casecheck.py: 78 passed (-k "error or not_checked": 4 passed), after the changes of cases 561.10 and 562
+
 ## History
 
 - 2026-09-30 created · [[decision-case-555.1]]
+- 2026-10-01 status: pending → passed · raw/2026-09-30/2356/ledger.md#L40

@@ -1,10 +1,11 @@
 ---
 type: estimate
 kind: QA
-status: pending
+status: passed
 target: "[[rule-retro-onward]]"
 purpose: Whether guppi onward exits 2 with the error and the advice to call /handoff on stderr when it raises after reading the payload, and exits 0 on the re-fire and on an empty payload
 method: uv run pytest tests/test_onward.py — piped payloads, a function of the hook patched to raise
+checked: 2026-10-01
 origin: raw/2026-09-30/2042/ledger.md#case-555.3
 sprint: migration
 created: 2026-09-30
@@ -23,6 +24,11 @@ Then:
 **－** On the re-fire after a block (`stop_hook_active`), `guppi onward` exits 0 and prints nothing, so it fires at most once a turn.
 **－** With no error, `guppi onward` exits 2 or 0 by its own judgment, as before.
 
+## Result
+
+2026-10-01, uv run pytest tests/test_onward.py: 25 passed (-k error: 4 passed), the run without --plan unchanged beside the new --plan run of case 561.5
+
 ## History
 
 - 2026-09-30 created · [[decision-case-555.3]]
+- 2026-10-01 status: pending → passed · raw/2026-09-30/2356/ledger.md#L42

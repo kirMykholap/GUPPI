@@ -19,6 +19,7 @@ When:
 
 Then:
 `uv run guppi casecheck` compares each such Case with the Case of the same id in `<plan>.checked.json` in each of its `given`, `when`, `then`, `tasks` and `ratification` that the reply shows, line by line once line ends and trailing spaces are the same.
+**＋** Under the heading of a top-level Case, one `ratification` whose fence holds the ledger lines of its sub-cases, as the list of a showing holds them, is read as the showing of each sub-case whose id a line names: the lines that name that id are compared with the `ratification` of that sub-case in the store, and a stored line that is missing or a line the store lacks is a difference.
 **＋** A section the reply does not show is not compared: a showing of the heading, a short text and `ratification` alone passes when its `ratification` equals the answer.
 **＋** The name of its heading, its `context`, `problem` and `recommend`, and text under the heading outside its sections are not compared.
 **＋** A Case the store does not hold, a Case that differs in a compared section, a Case stored with findings, or a Case with no `SendUserFile` call on `raw/<date>/<hi HHMM>/cases/case-<N>.md` in the turn of the reply, N the id of its top-level Case, exits 2, the reason and the findings on stderr.
@@ -37,3 +38,4 @@ Then:
 - 2026-09-25 status: pending → passed · raw/2026-09-25/1654/ledger.md#L26
 - 2026-09-26 updated: the Criterion replaced whole — the prose is not compared (case 441.3) · [[decision-case-441.3]]
 - 2026-09-27 updated: the Criterion replaced whole — only the shown sections compared, and a sending of the file required in the turn (case 452.2) · [[decision-case-452.2]]
+- 2026-10-01 updated: the Criterion replaced whole - one ratification under the heading of a top-level Case is the showing of each sub-case its lines name (case 561.10) · [[decision-case-561.10]]

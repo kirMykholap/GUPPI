@@ -18,7 +18,8 @@ After the first reply of `/hi` and before the end of Plan Mode, the agent closes
 
 Then:
 The reply ends with the heading `## Frontier` and the lines of `raw/<date>/<hi HHMM>/frontier.md` as a checklist, in the form that `estimate-case-protocol-acknowledging-reply` sets. The closed lines are folded into one, the open ones stand one per line with a short title, and the lines put off stand as they are closed.
-**＋** A question follows the Frontier and ends the reply: which open item is next, or, when no line under `## Cases` of `raw/<date>/<hi HHMM>/frontier.md` is open, whether to run `/pre-spec`.
+**＋** While a line under `## Cases` of `raw/<date>/<hi HHMM>/frontier.md` is open, a question follows the Frontier and ends the reply: which open item is next.
+**＋** When no line under `## Cases` is open, no question follows the Frontier: a reply with no `LEDGER` block calls `/pre-spec` after it, and a reply with a `LEDGER` block ends with the Frontier, for the hook of `rule-prespec-onward` to send the agent on.
 **＋** A reply that closes several lines shows one Frontier, after its `LEDGER` block when it carries one.
 **－** The first reply of `/hi` keeps the form that `rule-skill-hi` sets, the lines it closes included.
 **－** A line closed in Work Mode or at Retro shows no Frontier.
@@ -27,3 +28,4 @@ The reply ends with the heading `## Frontier` and the lines of `raw/<date>/<hi H
 ## History
 
 - 2026-09-30 created · [[decision-case-547]]
+- 2026-10-01 updated: the Criterion replaced whole - no question when no line under Cases is open; the reply calls /pre-spec or ends for the hook (case 561.6) · [[decision-case-561.6]]

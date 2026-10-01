@@ -880,6 +880,7 @@ entries:
       in session 1736
   exists: true
   applied: '23:48:35'
+  superseded_by: '561.9'
 - line: 27
   text: decision[case 555.4][update][estimate-retro-onward-sends-the-agent-to-the-handoff]{ref:rule-retro-onward}
   case: '555.4'
@@ -2459,6 +2460,8 @@ decisions:
   supersedes:
   - decision-case-559
   applied: '23:48:35'
+  superseded_by:
+  - decision-case-561.9
 - case: '555.4'
   decision: decision-case-555.4
   origin: raw/2026-09-30/2042/ledger.md#case-555.4

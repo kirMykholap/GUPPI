@@ -1,9 +1,10 @@
 ---
 type: decision
 case: "546"
-status: current
+status: archived
 defer: ["[[rule-orchestration]]"]
 supersedes: ["[[decision-case-545]]"]
+superseded_by: ["[[decision-case-561.13]]"]
 origin: raw/2026-09-30/1306/ledger.md#case-546
 sprint: migration
 created: 2026-09-30
@@ -27,3 +28,6 @@ The orchestration of the main agent — the triage of a Frontier item, the dispa
 ## History
 
 - 2026-09-30 created · raw/2026-09-30/1306/ledger.md#case-546
+- 2026-10-01 superseded by decision-case-561.13 · [[decision-case-561.13]]
+- 2026-10-01 archived · superseded
+- 2026-10-01 archived · cleanup

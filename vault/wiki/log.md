@@ -5304,3 +5304,89 @@ instruction. The global feed; a page's own `## History` is the per-page view.
 - 2026-09-30 decisions/decision-case-559 archived · superseded · generate
 - 2026-09-30 decisions/decision-case-551 archived · cleanup
 - 2026-09-30 decisions/decision-case-559 archived · cleanup
+- 2026-10-01 decisions/decision-case-561 created · raw/2026-09-30/2356/ledger.md#case-561 · generate
+- 2026-10-01 decisions/decision-case-561.1 created · raw/2026-09-30/2356/ledger.md#case-561.1 · generate
+- 2026-10-01 decisions/decision-case-503 superseded by decision-case-561.1 · [[decision-case-561.1]] · generate
+- 2026-10-01 rules/rule-prespec defer by decision-case-503 superseded · [[decision-case-561.1]] · generate
+- 2026-10-01 rules/rule-prespec updated: the skill gives the order - the check, the fixes, ask-guppi at the first run of the session only, one numbered report that sets apart the findings that need the person, the loop after the findings, no second call; what the check compares moves to the docstring of guppi/prespec.py; the defer of case 503 retired (cases 561.1, 561.2) · [[decision-case-561.1]] · generate
+- 2026-10-01 rules/rule-prespec-hook updated: the Purpose points to the module docstring of guppi/prespec.py for what the check compares (case 561.1) · [[decision-case-561.1]] · generate
+- 2026-10-01 estimates/estimate-prespec-reconciles updated: the Criterion replaced whole - ask-guppi at the first run of the session only, one report that sorts the findings, no second call after the Cases built again are ratified (case 561.1) · [[decision-case-561.1]] · generate
+- 2026-10-01 decisions/decision-case-561.2 created · raw/2026-09-30/2356/ledger.md#case-561.2 · generate
+- 2026-10-01 rules/rule-case-protocol updated: one Case at a time holds outside the loop after the findings of pre-spec (case 561.2) · [[decision-case-561.2]] · generate
+- 2026-10-01 estimates/estimate-prespec-gathers-the-answers-after-findings created · [[decision-case-561.2]] · generate
+- 2026-10-01 rules/rule-prespec estimate estimate-prespec-gathers-the-answers-after-findings added · [[decision-case-561.2]] · generate
+- 2026-10-01 decisions/decision-case-561.3 created · raw/2026-09-30/2356/ledger.md#case-561.3 · generate
+- 2026-10-01 rules/rule-prespec-hook updated: the hook on ExitPlanMode refuses while the check of the plan prints a finding (case 561.3) · [[decision-case-561.3]] · generate
+- 2026-10-01 estimates/estimate-prespec-hook-gates updated: the Criterion replaced whole and the purpose set anew - with the prespec line the hook runs the check of the plan and refuses while it finds one (case 561.3) · [[decision-case-561.3]] · generate
+- 2026-10-01 decisions/decision-case-561.4 created · raw/2026-09-30/2356/ledger.md#case-561.4 · generate
+- 2026-10-01 estimates/estimate-prespec-catches-two-cases-on-one-target created · [[decision-case-561.4]] · generate
+- 2026-10-01 rules/rule-prespec estimate estimate-prespec-catches-two-cases-on-one-target added · [[decision-case-561.4]] · generate
+- 2026-10-01 decisions/decision-case-561.5 created · raw/2026-09-30/2356/ledger.md#case-561.5 · generate
+- 2026-10-01 rules/rule-prespec-onward created · [[decision-case-561.5]] · generate
+- 2026-10-01 rules/rule-plan-mode child rule-prespec-onward added · [[decision-case-561.5]] · generate
+- 2026-10-01 rules/rule-hook-registry updated: guppi onward --plan registered on Stop after guppi onward (case 561.5) · [[decision-case-561.5]] · generate
+- 2026-10-01 estimates/estimate-prespec-onward-sends-the-agent-on created · [[decision-case-561.5]] · generate
+- 2026-10-01 rules/rule-prespec-onward estimate estimate-prespec-onward-sends-the-agent-on added · [[decision-case-561.5]] · generate
+- 2026-10-01 decisions/decision-case-561.6 created · raw/2026-09-30/2356/ledger.md#case-561.6 · generate
+- 2026-10-01 rules/rule-case-protocol updated: the Frontier after a closed line asks nothing when no line under Cases is open (case 561.6) · [[decision-case-561.6]] · generate
+- 2026-10-01 estimates/estimate-case-protocol-shows-the-frontier-after-a-closed-line updated: the Criterion replaced whole - no question when no line under Cases is open; the reply calls /pre-spec or ends for the hook (case 561.6) · [[decision-case-561.6]] · generate
+- 2026-10-01 decisions/decision-case-561.7 created · raw/2026-09-30/2356/ledger.md#case-561.7 · generate
+- 2026-10-01 rules/rule-case-protocol updated: the defer reply asks nothing when no line under Cases is open (case 561.7) · [[decision-case-561.7]] · generate
+- 2026-10-01 estimates/estimate-case-protocol-defers-in-one-reply updated: the Criterion replaced whole - no question when no line under Cases is open; the reply ends with the Frontier (case 561.7) · [[decision-case-561.7]] · generate
+- 2026-10-01 decisions/decision-case-561.8 created · raw/2026-09-30/2356/ledger.md#case-561.8 · generate
+- 2026-10-01 rules/rule-case-protocol updated: the acknowledging reply asks nothing when no line under Cases is open (case 561.8) · [[decision-case-561.8]] · generate
+- 2026-10-01 estimates/estimate-case-protocol-acknowledging-reply updated: the Criterion replaced whole - the question which item is next only while a line under Cases is open (case 561.8) · [[decision-case-561.8]] · generate
+- 2026-10-01 decisions/decision-case-561.9 created · raw/2026-09-30/2356/ledger.md#case-561.9 · generate
+- 2026-10-01 decisions/decision-case-560 superseded by decision-case-561.9 · [[decision-case-561.9]] · generate
+- 2026-10-01 rules/rule-case-protocol updated: the showing is one list under the heading of the top-level Case, what done means on each item, and one ratification; a refused reply that shows a round is followed by the round shown again with nothing before it (case 561.9) · [[decision-case-561.9]] · generate
+- 2026-10-01 estimates/estimate-case-protocol-shows-the-built-case updated: the Criterion replaced whole - the showing is one list with what done means and one ratification; a Case with no such Estimate goes back to its case-guppi; a refused round is shown again with nothing before it; the defer of case 560 retired (case 561.9) · [[decision-case-561.9]] · generate
+- 2026-10-01 decisions/decision-case-561.10 created · raw/2026-09-30/2356/ledger.md#case-561.10 · generate
+- 2026-10-01 rules/rule-case-check updated: the Stop check reads one ratification under the heading of a top-level Case as the showing of each sub-case it names (case 561.10) · [[decision-case-561.10]] · generate
+- 2026-10-01 estimates/estimate-case-check-shows-only-the-checked-case updated: the Criterion replaced whole - one ratification under the heading of a top-level Case is the showing of each sub-case its lines name (case 561.10) · [[decision-case-561.10]] · generate
+- 2026-10-01 decisions/decision-case-561.11 created · raw/2026-09-30/2356/ledger.md#case-561.11 · generate
+- 2026-10-01 rules/rule-case-build updated: each Case creates or replaces an Estimate or names the one that already checks the change; with neither, the promise is a fork (case 561.11) · [[decision-case-561.11]] · generate
+- 2026-10-01 estimates/estimate-case-build-answers-what-done-means created · [[decision-case-561.11]] · generate
+- 2026-10-01 rules/rule-case-build estimate estimate-case-build-answers-what-done-means added · [[decision-case-561.11]] · generate
+- 2026-10-01 decisions/decision-case-561.12 created · raw/2026-09-30/2356/ledger.md#case-561.12 · generate
+- 2026-10-01 rules/rule-case-protocol updated: a question to discuss an item goes to its case-guppi and comes back under Fact (case 561.12) · [[decision-case-561.12]] · generate
+- 2026-10-01 rules/rule-case-build updated: case-guppi answers a question to discuss the item under Fact, or with a round when it opens a fork (case 561.12) · [[decision-case-561.12]] · generate
+- 2026-10-01 estimates/estimate-case-protocol-forwards-a-discussion-question created · [[decision-case-561.12]] · generate
+- 2026-10-01 rules/rule-case-protocol estimate estimate-case-protocol-forwards-a-discussion-question added · [[decision-case-561.12]] · generate
+- 2026-10-01 decisions/decision-case-561.13 created · raw/2026-09-30/2356/ledger.md#case-561.13 · generate
+- 2026-10-01 decisions/decision-case-546 superseded by decision-case-561.13 · [[decision-case-561.13]] · generate
+- 2026-10-01 rules/rule-orchestration defer by decision-case-546 superseded · [[decision-case-561.13]] · generate
+- 2026-10-01 rules/rule-case-protocol updated: the main agent's own questions take the grill-me shape, but for the question of the next item, of an open A line, of a sign-off and of work or carry (case 561.13, supersedes the defer of case 546) · [[decision-case-561.13]] · generate
+- 2026-10-01 rules/rule-orchestration updated: the purpose records the three-file design ratified in case 561; the defer of case 546 retired by case 561.13 · [[decision-case-561.13]] · generate
+- 2026-10-01 estimates/estimate-case-protocol-asks-in-the-grill-me-shape created · [[decision-case-561.13]] · generate
+- 2026-10-01 rules/rule-case-protocol estimate estimate-case-protocol-asks-in-the-grill-me-shape added · [[decision-case-561.13]] · generate
+- 2026-10-01 decisions/decision-case-561.14 created · raw/2026-09-30/2356/ledger.md#case-561.14 · generate
+- 2026-10-01 rules/rule-case-protocol updated: the harness comes before the Plan Mode instructions of Claude Code (case 561.14) · [[decision-case-561.14]] · generate
+- 2026-10-01 estimates/estimate-case-protocol-puts-the-harness-before-plan-mode created · [[decision-case-561.14]] · generate
+- 2026-10-01 rules/rule-case-protocol estimate estimate-case-protocol-puts-the-harness-before-plan-mode added · [[decision-case-561.14]] · generate
+- 2026-10-01 decisions/decision-case-562 created · raw/2026-09-30/2356/ledger.md#case-562 · generate
+- 2026-10-01 rules/rule-case-check updated: the Stop run refuses a reply that shows a round of case-guppi after a text of the main agent's own; after pre-spec only the first line of the reply is judged (case 562) · [[decision-case-562]] · generate
+- 2026-10-01 estimates/estimate-case-check-refuses-text-before-a-round created · [[decision-case-562]] · generate
+- 2026-10-01 rules/rule-case-check estimate estimate-case-check-refuses-text-before-a-round added · [[decision-case-562]] · generate
+- 2026-10-01 decisions/decision-case-563 created · raw/2026-09-30/2356/ledger.md#case-563 · generate
+- 2026-10-01 estimates/estimate-case-build-writes-a-plain-round deferred · [[decision-case-563]] · generate
+- 2026-10-01 decisions/decision-case-564 created · raw/2026-09-30/2356/ledger.md#case-564 · generate
+- 2026-10-01 estimates/estimate-spec-write-writes-a-defer deferred · [[decision-case-564]] · generate
+- 2026-10-01 decisions/decision-case-565 created · raw/2026-09-30/2356/ledger.md#case-565 · generate
+- 2026-10-01 rules/rule-spec-box deferred · [[decision-case-565]] · generate
+- 2026-10-01 decisions/decision-case-566 created · raw/2026-09-30/2356/ledger.md#case-566 · generate
+- 2026-10-01 rules/rule-case-rebuild-cost deferred, placeholder · [[decision-case-566]] · generate
+- 2026-10-01 estimates/estimate-case-check-exits-2-on-an-error status: pending → passed · raw/2026-09-30/2356/ledger.md#L40 · generate
+- 2026-10-01 estimates/estimate-context-size-shows-its-error status: pending → passed · raw/2026-09-30/2356/ledger.md#L41 · generate
+- 2026-10-01 estimates/estimate-retro-onward-exits-2-on-an-error status: pending → passed · raw/2026-09-30/2356/ledger.md#L42 · generate
+- 2026-10-01 estimates/estimate-spec-write-exits-2-on-an-error status: pending → passed · raw/2026-09-30/2356/ledger.md#L43 · generate
+- 2026-10-01 estimates/estimate-case-build-checks-the-finished-case status: pending → failed · raw/2026-09-30/2356/ledger.md#L44 · generate
+- 2026-10-01 estimates/estimate-case-build-records-the-rounds-in-recommend status: pending → failed · raw/2026-09-30/2356/ledger.md#L45 · generate
+- 2026-10-01 lessons/lesson-sendmessage-answers-open-a-turn-of-their-own created · raw/2026-09-30/2356/ledger.md#L46 · generate
+- 2026-10-01 rules/rule-prespec-hook status: built → draft · cascade · generate
+- 2026-10-01 rules/rule-prespec status: built → draft · cascade · generate
+- 2026-10-01 decisions/decision-case-503 archived · superseded · generate
+- 2026-10-01 decisions/decision-case-546 archived · superseded · generate
+- 2026-10-01 decisions/decision-case-560 archived · superseded · generate
+- 2026-10-01 decisions/decision-case-503 archived · cleanup
+- 2026-10-01 decisions/decision-case-546 archived · cleanup
+- 2026-10-01 decisions/decision-case-560 archived · cleanup

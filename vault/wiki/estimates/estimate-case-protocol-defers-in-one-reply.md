@@ -1,11 +1,11 @@
 ---
 type: estimate
 kind: QA
-status: pending
+status: passed
 target: "[[rule-case-protocol]]"
 purpose: A defer the person asks for is shown and written in the same reply, with no round of ratification
 method: "by hand, the first defer the person asks for after the render that leaves no line under ## Cases of frontier.md open"
-checked: 2026-09-30
+checked: 2026-10-01
 origin: raw/2026-09-24/1916/ledger.md#case-405
 sprint: migration
 created: 2026-09-24
@@ -30,7 +30,7 @@ In the same reply the agent shows the Case in the short form — `context`, `pro
 
 ## Result
 
-2026-09-30, by hand, the first defer after the render: to the person's words "Откладываем все остальное" the one reply of session 0248 showed Case 540 in the short form (context, problem and a then fence with one defer item, rule-work-mode) and its LEDGER block with one defer line, no tool call after it; the agent wrote nothing into the plan file and the Stop hook put Case 540 under ## Deferred; the reply asked no question on the defer, showed the Frontier with C4 closed "[-] … · brief · defer case 540" and C2 "[-] … · sprint · defer", and ended with the question whether to run /pre-spec, no line under ## Cases being open
+2026-10-01, by hand, session 1237, the reply of 14:08:36 deferring C2, C3, C5-C9: each short-form Case shows context, problem and a then fence with one defer item and no other section; one LEDGER block of seven defer lines and no tool call after it; the agent wrote nothing into the plan file and the Spec hook wrote the seven under Deferred; no question asked about the defers; the Frontier shows C1 closed · sprint · defer and the others · defer case 570 to 576; with no open line under Cases the reply ended with the Frontier, and guppi onward --plan sent the agent on to /pre-spec; not exercised: a corrected wording with supersedes
 
 ## History
 
@@ -44,3 +44,4 @@ In the same reply the agent shows the Case in the short form — `context`, `pro
 - 2026-09-30 updated: the Criterion replaced whole — a defer the person asks for in Plan Mode; Retro writes no short defer (case 531.14) · [[decision-case-531.14]]
 - 2026-09-30 status: pending → passed · raw/2026-09-30/0248/ledger.md#L37
 - 2026-10-01 updated: the Criterion replaced whole - no question when no line under Cases is open; the reply ends with the Frontier (case 561.7) · [[decision-case-561.7]]
+- 2026-10-01 status: pending → passed · raw/2026-10-01/1237/ledger.md#L31

@@ -1,11 +1,11 @@
 ---
 type: estimate
 kind: QA
-status: pending
+status: passed
 target: "[[rule-case-protocol]]"
 purpose: A Case is built by case-guppi and shown by the main agent unchanged
 method: by hand, the Cases of a session at its close, their context against the Agent calls and their showings against the SendUserFile calls of the transcript, and each request for a plain explanation against the Skill and SendMessage calls
-checked: 2026-09-30
+checked: 2026-10-01
 origin: raw/2026-09-24/1303/ledger.md#case-391.2
 sprint: migration
 created: 2026-09-24
@@ -32,7 +32,7 @@ The main agent dispatches `case-guppi` with the Case id, the Frontier item and i
 
 ## Result
 
-2026-09-30, by hand, the transcript of session 1736: every Case dispatched to case-guppi with its id, item, source and the person's words; the person's answers sent by SendMessage verbatim; every Case shown by SendUserFile with display render, a short Russian text and the ratification under each heading; no Case edited in the plan file; ask-guppi dispatched once, at pre-spec; the short forms 551 and 553 written by the main agent in English; but before the first question of each round the main agent wrote a line of its own — on the first rounds of Cases 547, 548, 549, 550 and 552 (case-guppi builds Case N and starts with a round) and on the later rounds of 548, 549 and 552 (case-guppi came back with one more question) — against the line that the main agent writes no context of its own before the first question of a round
+2026-10-01, by hand, session 1237: the plan file stood with its title line (Write 12:48:59) before the first dispatch; each dispatch carried the Case id, the Frontier item, its source and the person's words, and nothing of a Case stood in the chat before its answer; each answer to a round and the person's question on a shown round went by SendMessage verbatim; the request to explain Q2 was answered by the main agent through wait-what with no SendMessage for a fact; each round was shown translated question by question with the agent's text after one rule; each Case was sent by SendUserFile with display render on cases/case-<N>.md, with the heading in Russian, one list per Case and sub-case with what done means and how it is checked, one ratification as the answer holds it, and own text after one rule; the Cases built again after /pre-spec were rebuilt by their case-guppi and ratified again; A1 and the W readings closed with no dispatch; ask-guppi once, at /pre-spec; the short-form defers written in English with no dispatch; not exercised: a refused showing
 
 ## History
 
@@ -53,3 +53,4 @@ The main agent dispatches `case-guppi` with the Case id, the Frontier item and i
 - 2026-09-30 status: pending → failed · raw/2026-09-30/1736/ledger.md#L40
 - 2026-09-30 deferred · [[decision-case-560]]
 - 2026-10-01 updated: the Criterion replaced whole - the showing is one list with what done means and one ratification; a Case with no such Estimate goes back to its case-guppi; a refused round is shown again with nothing before it; the defer of case 560 retired (case 561.9) · [[decision-case-561.9]]
+- 2026-10-01 status: pending → passed · raw/2026-10-01/1237/ledger.md#L34

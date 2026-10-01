@@ -1,10 +1,11 @@
 ---
 type: estimate
 kind: QA
-status: pending
+status: passed
 target: "[[rule-where-to-stop]]"
 purpose: "Whether the run from /work to the librarian stops for the person on each condition of vault/wiki/where-to-stop.md and on no other, with the text loaded by /work and a stop after the call of /retro opening with STOP:"
 method: "by hand at the first run from /work to the librarian after the render: the context of /work, the replies of the turn and the Spec read against the Criterion, recorded in the estimate line; a condition that does not arise is named as not exercised"
+checked: 2026-10-01
 origin: raw/2026-09-29/2024/ledger.md#case-531.7
 sprint: migration
 created: 2026-09-29
@@ -26,6 +27,11 @@ The context of `/work` holds the text of `vault/wiki/where-to-stop.md`, rendered
 **＋** `vault/wiki/case-schema.md` names a task line that opens with `stop:` as a task that waits for the person's word.
 **－** No other point stops the run: a red test, a reading that only the person can take, an observation or a doubt ends as a lesson or a line of `raw/<date>/<hi HHMM>/handoff.md`.
 
+## Result
+
+2026-10-01, by hand, the transcript of session 4ba72976 from the call of /work at 02:58:31 to the librarian's report at 03:18:55, and raw/2026-09-30/2356/spec.md: the context of /work held vault/wiki/where-to-stop.md as an attachment; the run went on with no reply to the person until the report; no fork, no action git cannot undo and no task opening with stop: arose; the refusal of bashguard at 03:01:08 and the refusal of guppi onward each gave a step and the agent followed it; case-schema.md names a task opening with stop: as one that waits for the person's word; not exercised: a stop, a reply opening with STOP:, the branch main, a run going on after the person's answer
+
 ## History
 
 - 2026-09-30 created · [[decision-case-531.7]]
+- 2026-10-01 status: pending → passed · raw/2026-10-01/1237/ledger.md#L6

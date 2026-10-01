@@ -104,10 +104,10 @@ update:
 ```
 
 ```tasks
-- [ ] update `rule-documentation` — the flagged reads are the ones the frame says the job does not need; the report names only the pages behind a judgment and the one ledger read
-- [ ] update `rule-brief` — a page read for a fact of the brief is not named in the report
-- [ ] update `estimate-documentation-completes` — the Criterion replaced whole
-- [ ] `uv run guppi render`: `.claude/agents/librarian-guppi.md`
+- [x] update `rule-documentation` — the flagged reads are the ones the frame says the job does not need; the report names only the pages behind a judgment and the one ledger read
+- [x] update `rule-brief` — a page read for a fact of the brief is not named in the report
+- [x] update `estimate-documentation-completes` — the Criterion replaced whole
+- [x] `uv run guppi render`: `.claude/agents/librarian-guppi.md`
 - [ ] read `estimate-documentation-completes` — at the first librarian run whose agent file holds this Render: its event log against the Flags of its brief and its report
 ```
 
@@ -164,9 +164,9 @@ update:
 ```
 
 ```tasks
-- [ ] update `rule-brief` — Flags carry the not-needed reads; Readings due names its fields
-- [ ] update `estimate-brief-written` — the Criterion replaced whole
-- [ ] `uv run guppi render`: `.claude/agents/librarian-guppi.md`
+- [x] update `rule-brief` — Flags carry the not-needed reads; Readings due names its fields
+- [x] update `estimate-brief-written` — the Criterion replaced whole
+- [x] `uv run guppi render`: `.claude/agents/librarian-guppi.md`
 - [ ] read `estimate-brief-written` — by hand, the brief of the first librarian run whose agent file holds this Render
 ```
 
@@ -254,11 +254,11 @@ update:
 ```
 
 ```tasks
-- [ ] update `rule-case-build` — an item may stand on the parent; a sub-case holds only items that changed it alone
-- [ ] update `rule-case-protocol` — the same in the `recommend` row and in the splitting paragraph
-- [ ] update `estimate-case-build-records-the-rounds-in-recommend` — the Criterion replaced whole
-- [ ] `uv run guppi render`: `.claude/agents/case-guppi.md`
-- [ ] `uv run guppi render`: `vault/wiki/case-schema.md`
+- [x] update `rule-case-build` — an item may stand on the parent; a sub-case holds only items that changed it alone
+- [x] update `rule-case-protocol` — the same in the `recommend` row and in the splitting paragraph
+- [x] update `estimate-case-build-records-the-rounds-in-recommend` — the Criterion replaced whole
+- [x] `uv run guppi render`: `.claude/agents/case-guppi.md`
+- [x] `uv run guppi render`: `vault/wiki/case-schema.md`
 - [ ] read `estimate-case-build-records-the-rounds-in-recommend` — by hand, the Case files of a later session after the render, each `recommend` read against the rounds of its Case in the chat
 ```
 
@@ -325,9 +325,9 @@ update:
 ```
 
 ```tasks
-- [ ] update `rule-retro` — the reply that ends Retro holds one sentence that names the commit and the `LEDGER` block, nothing else
-- [ ] update `estimate-retro-runs-on-to-the-handoff`
-- [ ] `uv run guppi render`: `.claude/skills/retro/SKILL.md`
+- [x] update `rule-retro` — the reply that ends Retro holds one sentence that names the commit and the `LEDGER` block, nothing else
+- [x] update `estimate-retro-runs-on-to-the-handoff`
+- [x] `uv run guppi render`: `.claude/skills/retro/SKILL.md`
 - [ ] read `estimate-retro-runs-on-to-the-handoff` — in a later session
 ```
 
@@ -367,9 +367,9 @@ update:
 ```
 
 ```tasks
-- [ ] update `rule-retro` — `work.md` that the agent wrote or changed itself in the same turn counts as read
-- [ ] update `estimate-retro-red-check-of-an-updated-page-is-a-handoff-note`
-- [ ] `uv run guppi render`: `.claude/skills/retro/SKILL.md`
+- [x] update `rule-retro` — `work.md` that the agent wrote or changed itself in the same turn counts as read
+- [x] update `estimate-retro-red-check-of-an-updated-page-is-a-handoff-note`
+- [x] `uv run guppi render`: `.claude/skills/retro/SKILL.md`
 - [ ] read `estimate-retro-red-check-of-an-updated-page-is-a-handoff-note` — in a later session
 ```
 

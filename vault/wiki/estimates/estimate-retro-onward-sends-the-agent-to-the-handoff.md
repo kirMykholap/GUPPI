@@ -1,10 +1,11 @@
 ---
 type: estimate
 kind: QA
-status: pending
+status: passed
 target: "[[rule-retro-onward]]"
 purpose: Whether guppi onward refuses the end of a reply after the retro mark while handoff.md does not stand, once a turn and not on a reply that opens with STOP:, and is silent otherwise, counting nothing
 method: "uv run pytest tests/test_onward.py; by hand at the first run from /work to the librarian after the render: the event log, the replies of the turn and handoff.md, recorded in the estimate line"
+checked: 2026-10-01
 origin: raw/2026-09-29/2024/ledger.md#case-531.9
 sprint: migration
 created: 2026-09-29
@@ -25,7 +26,12 @@ It exits 2 when the event log of the session's window holds the mark `retro` of 
 **－** Without a `hi` of the session in the event log, and with no error of its own, it exits 0.
 **－** It writes no file and no mark.
 
+## Result
+
+2026-10-01, uv run pytest tests/test_onward.py: 25 passed; by hand, the transcript of session 4ba72976, vault/raw/2026-10-01/event_log.md and raw/2026-09-30/2356/handoff.md: after the retro mark of 03:09:42, guppi onward refused the reply that ended Retro at 03:10:52 once, its reason to commit the session folder and call /handoff with the STOP: clause; the agent committed at 03:11:01 and called /handoff at 03:11:02; the hook ran on Stop after ledger, ratified, casecheck and context; at the last reply, 03:18:55, with handoff.md standing since 03:11:35, it printed nothing; no reply opened with STOP: and no reply ended before the retro mark in that turn, so those clauses were read in the tests only
+
 ## History
 
 - 2026-09-30 created · [[decision-case-531.9]]
 - 2026-09-30 updated: the Criterion replaced whole — the exits 0 of the judgment hold with no error of the hook's own (case 555.4) · [[decision-case-555.4]]
+- 2026-10-01 status: pending → passed · raw/2026-10-01/1237/ledger.md#L3

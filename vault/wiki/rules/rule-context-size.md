@@ -2,7 +2,7 @@
 type: rule
 kind: Leaf
 purpose: Prevents a session from running on while the person cannot see how full the context window is
-status: draft
+status: built
 enforcement: hook
 implementation_ref: [guppi/context.py, tests/test_context.py, .claude/settings.json]
 parent: "[[rule-harness]]"
@@ -40,3 +40,4 @@ Prevents a session from running on while the person cannot see how full the cont
 - 2026-09-30 updated: the Stop run shows its own error to the person as the systemMessage and still exits 0 (case 555.2) · [[decision-case-555.2]]
 - 2026-09-30 estimate estimate-context-size-shows-its-error added · [[decision-case-555.2]]
 - 2026-09-30 status: built → draft · cascade
+- 2026-10-01 status: draft → built · cascade

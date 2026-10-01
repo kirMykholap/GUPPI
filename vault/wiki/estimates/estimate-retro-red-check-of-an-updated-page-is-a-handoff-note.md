@@ -17,7 +17,7 @@ When:
 The agent calls `/retro` on `PreToolUse Skill` at the end of `/work`, or the person types `/retro` on `UserPromptSubmit`, in a session whose Spec updates a page or a governed file, and in Work Mode `make lint`, one of its steps, or a hook of the working tree that reads that page or file went red or refused.
 
 Then:
-The agent reads `raw/<date>/<hi HHMM>/work.md` if it stands.
+The agent reads `raw/<date>/<hi HHMM>/work.md` if it stands — with the Read tool, unless the agent wrote or changed the file itself in the same turn, whose text then counts as read.
 **＋** A red or a refusal of a check on a page or file that a line of `## Expected red` of `work.md` names with that check is a line of `## Observations` of `raw/<date>/<hi HHMM>/handoff.md` that names the check and the page or file it waits for.
 **－** The red is not debt: the agent does not fix it or revert it into a patch.
 **＋** The reading of the check that counts is the `make lint` of the librarian's run, after the page is written and the file rendered.
@@ -30,3 +30,4 @@ The agent reads `raw/<date>/<hi HHMM>/work.md` if it stands.
 - 2026-09-28 created · [[decision-case-473.1]]
 - 2026-09-28 updated: the Criterion replaced whole — the red is expected when a line of Expected red of work.md names its check and its page or file, not by the agent's judgment; with no work.md the judgment stands (case 479.3) · [[decision-case-479.3]]
 - 2026-09-30 updated: the Criterion replaced whole — the trigger covers the agent's call; an expected red is a line of Observations of handoff.md, not an item of the frontier; the one-read rule of the frontier goes with the frontier (case 531.3) · [[decision-case-531.3]]
+- 2026-10-01 updated: the Criterion replaced whole — the agent reads work.md with the Read tool unless it wrote or changed the file itself in the same turn, whose text then counts as read (case 569.2) · [[decision-case-569.2]]

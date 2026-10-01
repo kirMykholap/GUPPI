@@ -2,7 +2,7 @@
 type: rule
 purpose: Prevents the main agent from loading the form of a Case it does not build, a design ratified in case 561 for a later session - a file of rule-orchestration that /hi loads in place of case-schema.md, holding what the main agent alone does; a third small file of its own rule, loaded by /hi and read by case-guppi, holding the one rule, the form of the ledger lines, atomicity and the harness; case-schema.md holding the form of a Case, read by case-guppi alone; the checks of the behaviours that move made new Estimates of the new rules, the old ones withdrawn
 status: draft
-deferred_by: ["[[decision-case-424]]"]
+deferred_by: ["[[decision-case-424]]", "[[decision-case-574]]"]
 origin: raw/2026-09-25/1228/ledger.md#case-424
 sprint: migration
 created: 2026-09-25
@@ -18,3 +18,4 @@ Prevents the main agent from loading the form of a Case it does not build. Case 
 - 2026-09-30 deferred · [[decision-case-546]]
 - 2026-10-01 defer by decision-case-546 superseded · [[decision-case-561.13]]
 - 2026-10-01 updated: the purpose records the three-file design ratified in case 561; the defer of case 546 retired by case 561.13 · [[decision-case-561.13]]
+- 2026-10-01 deferred · [[decision-case-574]]

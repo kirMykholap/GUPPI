@@ -1,11 +1,11 @@
 ---
 type: estimate
 kind: QA
-status: pending
+status: failed
 target: "[[rule-case-protocol]]"
 purpose: The reply that acknowledges a ratification has four parts in order
 method: one reading by hand of the first acknowledging reply of a session
-checked: 2026-09-27
+checked: 2026-10-01
 origin: raw/2026-09-16/1034/ledger.md#case-188
 sprint: migration
 created: 2026-09-16
@@ -29,7 +29,7 @@ The reply has four parts, in this order. First, the `LEDGER` block. Second, the 
 
 ## Result
 
-2026-09-27, by hand, session 1819: the acknowledging replies of Cases 457–463 each open with the LEDGER block, then the heading ## Case N — ратифицирован (460 naming 460.1–460.3 in one heading and one block), Changes and Notes paragraphs, ## Frontier with closed lines folded, open lines one each, and the question last; no tool call after the LEDGER block
+2026-10-01, by hand, the first acknowledging reply of session 1237, Case 567 at 13:08:51, and those of 568, 569 and the re-ratification of 567 and 569: the LEDGER block first, a heading naming the ids, a Notes paragraph, the Frontier with the closed lines folded into one and the question which item is next, no tool call after the block, the re-ratification carrying every decision line again, headings in Russian; but the Changes paragraph of 567 holds four sentences and those of 568 and 569 three, against one or two, and the Frontier folds 38 open W lines into one line, against one line per open item
 
 ## History
 
@@ -45,3 +45,4 @@ The reply has four parts, in this order. First, the `LEDGER` block. Second, the 
 - 2026-09-27 updated: the Criterion replaced whole — the lines put off shown by the closers of case 451 (case 451.10) · [[decision-case-451.10]]
 - 2026-09-27 status: pending → passed · raw/2026-09-27/1819/ledger.md#L19
 - 2026-10-01 updated: the Criterion replaced whole - the question which item is next only while a line under Cases is open (case 561.8) · [[decision-case-561.8]]
+- 2026-10-01 status: pending → failed · raw/2026-10-01/1237/ledger.md#L30

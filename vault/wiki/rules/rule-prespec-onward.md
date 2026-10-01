@@ -2,11 +2,12 @@
 type: rule
 kind: Leaf
 purpose: Prevents Plan Mode from stopping where no person is needed, between the reply that acknowledges the last ratification and /pre-spec, and between the ratification of the Cases built again on its findings and the exit
-status: draft
+status: built
 enforcement: hook
 implementation_ref: [guppi/onward.py, tests/test_onward.py, .claude/settings.json]
 parent: "[[rule-plan-mode]]"
 estimates: ["[[estimate-prespec-onward-sends-the-agent-on]]"]
+deferred_by: ["[[decision-case-575]]"]
 origin: raw/2026-09-30/2356/ledger.md#case-561.5
 sprint: migration
 created: 2026-09-30
@@ -21,3 +22,5 @@ Prevents Plan Mode from stopping where no person is needed: between the reply th
 
 - 2026-10-01 created · [[decision-case-561.5]]
 - 2026-10-01 estimate estimate-prespec-onward-sends-the-agent-on added · [[decision-case-561.5]]
+- 2026-10-01 deferred · [[decision-case-575]]
+- 2026-10-01 status: draft → built · cascade

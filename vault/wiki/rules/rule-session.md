@@ -2,7 +2,7 @@
 type: rule
 kind: MOC
 purpose: Prevents a phase of the session from running out of its turn, or a session from ending with a phase that left no mark
-status: draft
+status: built
 children: ["[[rule-session-start]]", "[[rule-plan-mode]]", "[[rule-work-mode]]", "[[rule-end-of-work]]", "[[rule-documentation]]"]
 estimates: ["[[estimate-session-phases-in-order]]"]
 origin: raw/2026-09-22/1121/ledger.md#case-316
@@ -18,3 +18,4 @@ Prevents a phase of the session from running out of its turn. A session is five 
 ## History
 
 - 2026-09-22 created · [[decision-case-316]]
+- 2026-10-01 status: draft → built · cascade

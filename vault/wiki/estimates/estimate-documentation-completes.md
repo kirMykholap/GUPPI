@@ -4,7 +4,7 @@ kind: QA
 status: pending
 target: "[[rule-documentation]]"
 method: make test-documentation, the pipeline over tests/test_materialize.py, tests/test_generate.py and tests/test_cleanup.py; the live reading by hand
-checked: 2026-09-30
+checked: 2026-10-01
 origin: raw/2026-09-10/ledger.md#case-36
 sprint: migration
 created: 2026-09-10
@@ -19,18 +19,20 @@ When:
 Then:
 `make test-documentation` is green: materialize, generate and cleanup as one pipeline.
 **＋** Live, after the run: every decision line of the session's ledger has a Decision page and its target page, and no page exists that no ledger line produced.
-**＋** Every read in its event log beyond its inputs and beyond the reads its frame names has its line under Flags of the new `vault/wiki/brief.md`.
+**＋** Every read in its event log that its frame says the job does not need has its line under Flags of the new `vault/wiki/brief.md`: `plan.md`, the text of a page under `vault/wiki/decisions/`, a search of the text of the pages under `vault/archive/`, `ledger.md` beyond its one allowed read, `spec.md` beyond its unticked lines and the lines the run ticked, a `materialize.yaml` that `guppi materialize` did not name, and an archived page opened at the synthesis.
+**＋** Its report names each page opened to judge whether a create is the same page or a near one, whether a lesson shares its root cause, or why a script failed, with the reason and the outcome, and the one allowed read of `ledger.md`.
 **＋** It edited no yaml entry beyond the marks and the entries of the index check and the synthesis. Its commands are in `event_log.md`, its commit is separate from the session's, and it did not stop to ask.
 **＋** It wrote `vault/wiki/brief.md` with the `Write` tool. The new brief holds no fact taken from the old brief, and the librarian put no file under `vault/` by `cp`, `mv`, a redirect or a heredoc.
 **＋** After `cleanup` and before the brief, it runs `uv run guppi render`, then `uv run guppi sprint`, then `uv run guppi backlog`, then `uv run guppi glossary`. Every line on their stderr is a flag. A file the render could not write is left to the next session start. `make lint` then passes its `render --check` step.
 **＋** After the brief and before the close, it runs `uv run guppi archive`. Every line on its stderr is a flag. The units it moved and the units it kept, with the reason, go into the report. It skips the session of the run, which is the latest session folder of the run day or else the nearest date back, across midnight too. The commit picks the move up.
+**－** Any other read needs no line under Flags and no name in the report: a page under `vault/wiki/` outside `vault/wiki/decisions/`, read for a fact of the brief, the field names of a page or any other need, and the scripts' own files.
 **－** A read that has its line under Flags fails nothing, whatever it read: a Decision page, a Spec, the ledger or the archive.
 **－** A hook's refusal of one of its calls is not worked around by another route: the librarian names the refusal in the report and goes on as the refusal says.
 **－** The librarian refuses an instruction of the handoff to repair a yaml entry. It names what was asked and why in the report, and the refusal does not stop the run.
 
 ## Result
 
-2026-09-30, make test-documentation: 221 passed; by hand on the librarian's run of 070d8e6, vault/raw/2026-09-30/event_log.md lines 1566-1620, with the librarian's transcript: every decision line of the 1306 ledger has its Decision page, the yaml edits are marks and synthesis entries, the commit is separate, the brief written by Write, render, sprint, backlog and glossary after cleanup and before the brief, guppi archive after the brief and before the commit, no refusal worked around; but it read beyond its list — git status over vault/wiki/decisions/ (line 1595) and a grep of git status for vault/archive (1593), the target, status and method of 52 Estimate pages (1601, 1602), and a grep over every Decision page for a count (1612)
+2026-10-01, make test-documentation: 233 passed; by hand, the librarian's run of 1f43cf1c, vault/raw/2026-10-01/event_log.md lines 335-386 with its report: every decision line of the 2356 ledger has its Decision page (20 found) and every page the commit added comes from a create, defer or lesson line of that ledger; one Edit of the yaml, the near mark of the index check; its commit separate from 0e65b085; no stop to ask; the brief written by Write at 03:17:40; render at 03:13:29, sprint, backlog and glossary at 03:13:37, after cleanup at 03:13:25 and before the brief; guppi archive at 03:17:48, after the brief and before the commit, 2356 kept; no refusal; no redirect into vault/; but the page estimate-prespec-onward-sends-the-agent-on, opened at 03:14:10 to learn the field names of an Estimate, a reason the frame does not name, has no line under Flags; the brief flags only the grep with a misplaced --include
 
 ## History
 
@@ -68,3 +70,5 @@ Then:
 - 2026-09-30 updated: the Criterion replaced whole — the reads of what this run changed, log.md through its diff, the old brief read, the brief written with Write, no refusal worked around (case 530.1) · [[decision-case-530.1]]
 - 2026-09-30 status: pending → failed · raw/2026-09-30/1736/ledger.md#L23
 - 2026-09-30 updated: the Criterion replaced whole — a read the frame does not name is flagged under Flags of the brief and fails nothing; only a repair asked by the handoff is refused (case 558.1) · [[decision-case-558.1]]
+- 2026-10-01 status: pending → failed · raw/2026-10-01/1237/ledger.md#L2
+- 2026-10-01 updated: the Criterion replaced whole — only a read the frame says the job does not need is flagged; the report names only the pages behind a judgment and the one read of the ledger (case 567.1) · [[decision-case-567.1]]

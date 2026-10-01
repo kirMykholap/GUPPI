@@ -1,10 +1,11 @@
 ---
 type: estimate
 kind: QA
-status: pending
+status: passed
 target: "[[rule-case-check]]"
 purpose: Whether the Stop run of the Case check refuses a reply that shows a round of case-guppi after a text of the main agent's own, judges only the first line of the reply after pre-spec, and leaves a turn with no round alone
 method: uv run pytest tests/test_casecheck.py -k round; by hand in a later session, the first rounds of case-guppi shown before and after pre-spec, the replies and the hook's refusals read in the transcript
+checked: 2026-10-01
 origin: raw/2026-09-30/2356/ledger.md#case-562
 sprint: migration
 created: 2026-09-30
@@ -28,6 +29,11 @@ When the turn of the reply, the records after the person's last prompt, holds a 
 **－** On the re-fire (`stop_hook_active`) it exits 0, so the round shown again after a refusal is not judged again.
 **－** It stores nothing and writes no file.
 
+## Result
+
+2026-10-01, uv run pytest tests/test_casecheck.py -k round: 14 passed; by hand, session 1237: every round of case-guppi (567 twice, 568 twice, 569 once) came before /pre-spec, each reply showing one opened with the translated Context label or with its first question line, and no text of the main agent stood before the last tool call of those turns; no Stop refusal of guppi casecheck stands in the transcript; not exercised: a refusal, and a round after /pre-spec, since every case-guppi answered the findings with its Case
+
 ## History
 
 - 2026-10-01 created · [[decision-case-562]]
+- 2026-10-01 status: pending → passed · raw/2026-10-01/1237/ledger.md#L29

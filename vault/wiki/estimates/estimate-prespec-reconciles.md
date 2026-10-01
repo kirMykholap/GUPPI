@@ -1,10 +1,10 @@
 ---
 type: estimate
 kind: QA
-status: pending
+status: passed
 target: "[[rule-prespec]]"
 method: One reading by hand of the first /pre-spec after the render, written into the estimate line — the exception the Method rule allows
-checked: 2026-09-27
+checked: 2026-10-01
 origin: raw/2026-09-09/ledger.md#case-24.2
 sprint: migration
 created: 2026-09-09
@@ -29,7 +29,7 @@ The agent runs `guppi prespec --check` on the plan file with `--session <id>`, t
 
 ## Result
 
-2026-09-27, the /pre-spec of session 2050 read by hand: guppi prespec --check with --session f09409c4 exit 0 and no line; ask-guppi dispatched once with the plan path and the three questions; one numbered report of 13 findings with fixes and two decisions for the person; the findings of Cases 466–468 sent to their case-guppi by SendMessage, the three Cases shown again in one reply and ratified again; the check run again clean; the prespec line at 23:14:26 in the event log; Plan Mode exited at 23:28:40
+2026-10-01, by hand, the first /pre-spec after the render, session 1237: guppi prespec --check ran on the plan with --session dd5dac5e and printed 9 note lines and no finding; ask-guppi was dispatched once with the absolute path of the plan and the reading instructions, the Deferred Cases by slug only; one numbered report answered its seven findings before any Case was sent back, each with its fix or why it is known, none needing the person; the findings in Cases 567 and 569 went to their case-guppi by SendMessage, the Cases were shown and ratified again, and the Spec hook wrote them into the plan; after that the check ran once more, printed no finding, and ExitPlanMode followed with no second /pre-spec; guppi gate wrote the prespec mark at 14:08:41
 
 ## History
 
@@ -70,3 +70,4 @@ The agent runs `guppi prespec --check` on the plan file with `--session <id>`, t
 - 2026-09-26 updated: the Criterion replaced whole — no translation before the run, a finding in a Case to its case-guppi (case 441.4) · [[decision-case-441.4]]
 - 2026-09-27 status: pending → passed · raw/2026-09-27/2050/ledger.md#L35
 - 2026-10-01 updated: the Criterion replaced whole - ask-guppi at the first run of the session only, one report that sorts the findings, no second call after the Cases built again are ratified (case 561.1) · [[decision-case-561.1]]
+- 2026-10-01 status: pending → passed · raw/2026-10-01/1237/ledger.md#L40

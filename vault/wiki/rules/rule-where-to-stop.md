@@ -2,7 +2,7 @@
 type: rule
 kind: Leaf
 purpose: Prevents the run from /work to the librarian from stopping where the person is not needed, or going on where only the person can decide
-status: draft
+status: built
 enforcement: render
 governs: vault/wiki/where-to-stop.md
 render_mode: full
@@ -37,3 +37,4 @@ To stop, end the reply with the question to the person. From the call of `/retro
 
 - 2026-09-30 created · [[decision-case-531.7]]
 - 2026-09-30 estimate estimate-where-to-stop-stops-only-on-its-conditions added · [[decision-case-531.7]]
+- 2026-10-01 status: draft → built · cascade

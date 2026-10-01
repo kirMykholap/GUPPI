@@ -2,7 +2,7 @@
 type: rule
 kind: Leaf
 purpose: Prevents a Python script that a session runs on Windows from printing through the code page of the locale, where a dash reaches the agent as U+FFFD and a character outside the code page stops the script
-status: draft
+status: built
 enforcement: render
 governs: .claude/settings.json
 render_mode: partial
@@ -30,3 +30,4 @@ Prevents a Python script that a session runs on Windows from printing through th
 
 - 2026-09-30 created · [[decision-case-534.1]]
 - 2026-09-30 estimate estimate-python-utf8-output-intact added · [[decision-case-534.1]]
+- 2026-10-01 status: draft → built · cascade

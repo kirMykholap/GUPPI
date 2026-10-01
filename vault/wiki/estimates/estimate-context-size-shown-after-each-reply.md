@@ -1,11 +1,11 @@
 ---
 type: estimate
 kind: QA
-status: pending
+status: passed
 target: "[[rule-context-size]]"
 purpose: After each reply the person sees the size of the context and its change since the last reply
 method: uv run pytest tests/test_context.py; the live reading by hand, the line after the replies of a session in the VS Code chat
-checked: 2026-09-24
+checked: 2026-10-01
 origin: raw/2026-09-24/1303/ledger.md#case-392.1
 sprint: migration
 created: 2026-09-24
@@ -26,10 +26,11 @@ With no error of its own, the hook prints JSON with a `systemMessage` of one lin
 
 ## Result
 
-2026-09-24, `uv run pytest tests/test_context.py`: 7 passed; by hand in the VS Code chat of session 1916: the person reports that the `systemMessage` of the `Stop` hook is shown after each reply
+2026-10-01, the person's answer at the /hi of session 1237: the context size line stood under each reply of session 2356 in the VS Code chat (answered "yes" there after the handoff, confirmed here), and it stands under the replies of this session too
 
 ## History
 
 - 2026-09-24 created · [[decision-case-392.1]]
 - 2026-09-25 status: pending → passed · raw/2026-09-24/1916/ledger.md#L1
 - 2026-09-30 updated: the Criterion replaced whole — the size line holds with no error of the hook's own (case 555.5) · [[decision-case-555.5]]
+- 2026-10-01 status: pending → passed · raw/2026-10-01/1237/ledger.md#L8

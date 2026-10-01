@@ -2,7 +2,7 @@
 type: rule
 kind: Leaf
 purpose: Prevents a Spec from being approved before its decisions were checked against each other and the vault
-status: draft
+status: built
 enforcement: hook
 implementation_ref: [guppi/prespec.py, .claude/settings.json]
 parent: "[[rule-plan-mode]]"
@@ -39,3 +39,4 @@ with the session's ledger lines and frontier (cases 59.1–59.3, 59.6); `/pre-sp
 - 2026-10-01 updated: the Purpose points to the module docstring of guppi/prespec.py for what the check compares (case 561.1) · [[decision-case-561.1]]
 - 2026-10-01 updated: the hook on ExitPlanMode refuses while the check of the plan prints a finding (case 561.3) · [[decision-case-561.3]]
 - 2026-10-01 status: built → draft · cascade
+- 2026-10-01 status: draft → built · cascade

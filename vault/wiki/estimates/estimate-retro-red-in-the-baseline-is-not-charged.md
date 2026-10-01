@@ -1,11 +1,11 @@
 ---
 type: estimate
 kind: QA
-status: pending
+status: passed
 target: "[[rule-retro]]"
 purpose: Whether Retro writes a failing test or a lint finding that the Baseline of work.md already holds as a line of Observations of handoff.md, not debt, whatever Expected red names, and commits with make test green but for those tests
 method: one reading by hand at the first /retro after the render in a session whose work.md Baseline holds a failing test or a lint finding line, recorded in the estimate line
-checked: 2026-09-29
+checked: 2026-10-01
 origin: raw/2026-09-28/1318/ledger.md#case-479.4
 sprint: migration
 created: 2026-09-28
@@ -27,10 +27,11 @@ Retro counts each failing test and each lint finding line that `## Baseline` hol
 
 ## Result
 
-2026-09-29, by hand at the /retro of session 1753, whose work.md Baseline holds the make lint line "backlog: vault/wiki/backlog.md differs from its sources": the Retro counted it as red before the work and ended it as a note for the handoff, fixed and reverted nothing and wrote no lesson for it; make style clean and make test 923 passed, 2 skipped before the commit; no failing test, so the clause of a failing test outside the Baseline was not exercised
+2026-10-01, by hand, the /retro of session 2356, the Baseline of its work.md (make lint exit 2 at guppi backlog --check; guppi lint: 3 findings on rule-spec-box, the fence of decision-case-13, 5 deferred, 42 unread) against its handoff.md: one line of Observations names that red as red before the work and says nothing was fixed for it; no Debt line, no patch and no lesson[error] for it; make style clean and make test 1034 passed, 2 skipped before the commit f7581b07; no failing test, so the clause of a failing test outside the Baseline was not exercised
 
 ## History
 
 - 2026-09-28 created · [[decision-case-479.4]]
 - 2026-09-29 status: pending → passed · raw/2026-09-29/1753/ledger.md#L28
 - 2026-09-30 updated: the Criterion replaced whole — the trigger covers the agent's call; a red of the Baseline is a line of Observations of handoff.md, and a patch of any other red test is named in Debt (case 531.4) · [[decision-case-531.4]]
+- 2026-10-01 status: pending → passed · raw/2026-10-01/1237/ledger.md#L4

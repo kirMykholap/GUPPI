@@ -1,10 +1,11 @@
 ---
 type: estimate
 kind: QA
-status: pending
+status: failed
 target: "[[rule-case-protocol]]"
 purpose: Whether a reply after the first reply of /hi that closes a Frontier line in Plan Mode with no ratification and no defer ends with the Frontier and the question which item is next
 method: "by hand, in a later session: the first reply in Plan Mode after the first reply of /hi that closes a line of frontier.md with no ratification and no defer, read against the Criterion"
+checked: 2026-10-01
 origin: raw/2026-09-30/1736/ledger.md#case-547
 sprint: migration
 created: 2026-09-30
@@ -25,7 +26,12 @@ The reply ends with the heading `## Frontier` and the lines of `raw/<date>/<hi H
 **－** A line closed in Work Mode or at Retro shows no Frontier.
 **－** The reply that acknowledges a ratification and the reply that carries a defer keep their own form, as `estimate-case-protocol-acknowledging-reply` sets it.
 
+## Result
+
+2026-10-01, by hand, session 1237, the reply closing A1 at 12:47:27: it carried its LEDGER block, then one Frontier with the closed lines folded into one and, a line under Cases open, the question which item is next; but it folded the open W lines W1, W3-W17, W19-W32, W34, W38-W45 into one line, against one line per open item with a short title
+
 ## History
 
 - 2026-09-30 created · [[decision-case-547]]
 - 2026-10-01 updated: the Criterion replaced whole - no question when no line under Cases is open; the reply calls /pre-spec or ends for the hook (case 561.6) · [[decision-case-561.6]]
+- 2026-10-01 status: pending → failed · raw/2026-10-01/1237/ledger.md#L35

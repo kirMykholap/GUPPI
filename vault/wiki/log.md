@@ -5390,3 +5390,65 @@ instruction. The global feed; a page's own `## History` is the per-page view.
 - 2026-10-01 decisions/decision-case-503 archived · cleanup
 - 2026-10-01 decisions/decision-case-546 archived · cleanup
 - 2026-10-01 decisions/decision-case-560 archived · cleanup
+- 2026-10-01 estimates/estimate-brief-written status: pending → passed · raw/2026-10-01/1237/ledger.md#L1 · generate
+- 2026-10-01 estimates/estimate-documentation-completes status: pending → failed · raw/2026-10-01/1237/ledger.md#L2 · generate
+- 2026-10-01 estimates/estimate-retro-onward-sends-the-agent-to-the-handoff status: pending → passed · raw/2026-10-01/1237/ledger.md#L3 · generate
+- 2026-10-01 estimates/estimate-retro-red-in-the-baseline-is-not-charged status: pending → passed · raw/2026-10-01/1237/ledger.md#L4 · generate
+- 2026-10-01 estimates/estimate-retro-runs-on-to-the-handoff status: pending → failed · raw/2026-10-01/1237/ledger.md#L5 · generate
+- 2026-10-01 estimates/estimate-where-to-stop-stops-only-on-its-conditions status: pending → passed · raw/2026-10-01/1237/ledger.md#L6 · generate
+- 2026-10-01 estimates/estimate-session-phases-in-order status: pending → passed · raw/2026-10-01/1237/ledger.md#L7 · generate
+- 2026-10-01 estimates/estimate-context-size-shown-after-each-reply status: pending → passed · raw/2026-10-01/1237/ledger.md#L8 · generate
+- 2026-10-01 decisions/decision-case-567 created · raw/2026-10-01/1237/ledger.md#case-567 · generate
+- 2026-10-01 decisions/decision-case-567.1 created · raw/2026-10-01/1237/ledger.md#case-567.1 · generate
+- 2026-10-01 rules/rule-documentation updated: the librarian flags only a read the frame says its job does not need, and names in the report only a page opened for one of the first three reasons and the one read of the ledger (case 567.1) · [[decision-case-567.1]] · generate
+- 2026-10-01 rules/rule-brief updated: a page read for a fact of the brief is not named in the report (case 567.1) · [[decision-case-567.1]] · generate
+- 2026-10-01 estimates/estimate-documentation-completes updated: the Criterion replaced whole — only a read the frame says the job does not need is flagged; the report names only the pages behind a judgment and the one read of the ledger (case 567.1) · [[decision-case-567.1]] · generate
+- 2026-10-01 decisions/decision-case-567.2 created · raw/2026-10-01/1237/ledger.md#case-567.2 · generate
+- 2026-10-01 rules/rule-brief updated: Flags carry each read the frame says the job does not need; Readings due names the fields it reads (case 567.2) · [[decision-case-567.2]] · generate
+- 2026-10-01 estimates/estimate-brief-written updated: the Criterion replaced whole — Flags hold a line for each read the frame says the job does not need; Readings due takes the status, target and method fields (case 567.2) · [[decision-case-567.2]] · generate
+- 2026-10-01 decisions/decision-case-568 created · raw/2026-10-01/1237/ledger.md#case-568 · generate
+- 2026-10-01 rules/rule-case-build updated: an item of recommend may stand on the parent; a sub-case holds only items whose answer changed it alone (case 568) · [[decision-case-568]] · generate
+- 2026-10-01 rules/rule-case-protocol updated: an item of recommend may stand on the parent; a sub-case holds only items whose answer changed it alone (case 568) · [[decision-case-568]] · generate
+- 2026-10-01 estimates/estimate-case-build-records-the-rounds-in-recommend updated: the Criterion replaced whole — an item whose answer changed only one sub-case may stand on the parent or under that sub-case (case 568) · [[decision-case-568]] · generate
+- 2026-10-01 decisions/decision-case-569 created · raw/2026-10-01/1237/ledger.md#case-569 · generate
+- 2026-10-01 decisions/decision-case-569.1 created · raw/2026-10-01/1237/ledger.md#case-569.1 · generate
+- 2026-10-01 rules/rule-retro updated: the reply that ends Retro holds one sentence in the language of the chat that names the commit, then the LEDGER block, and nothing else (case 569.1) · [[decision-case-569.1]] · generate
+- 2026-10-01 estimates/estimate-retro-runs-on-to-the-handoff updated: the Criterion replaced whole — the reply that ends Retro holds one sentence in the language of the chat that names the commit and the LEDGER block, no heading, list or other paragraph; work.md the agent wrote or changed in the same turn counts as read (case 569.1) · [[decision-case-569.1]] · generate
+- 2026-10-01 decisions/decision-case-569.2 created · raw/2026-10-01/1237/ledger.md#case-569.2 · generate
+- 2026-10-01 rules/rule-retro updated: work.md that the agent wrote or changed itself in the same turn counts as read; otherwise Retro opens it with the Read tool (case 569.2) · [[decision-case-569.2]] · generate
+- 2026-10-01 estimates/estimate-retro-red-check-of-an-updated-page-is-a-handoff-note updated: the Criterion replaced whole — the agent reads work.md with the Read tool unless it wrote or changed the file itself in the same turn, whose text then counts as read (case 569.2) · [[decision-case-569.2]] · generate
+- 2026-10-01 decisions/decision-case-570 created · raw/2026-10-01/1237/ledger.md#case-570 · generate
+- 2026-10-01 rules/rule-case-rebuild-cost deferred · [[decision-case-570]] · generate
+- 2026-10-01 decisions/decision-case-571 created · raw/2026-10-01/1237/ledger.md#case-571 · generate
+- 2026-10-01 estimates/estimate-case-build-checks-the-finished-case deferred · [[decision-case-571]] · generate
+- 2026-10-01 decisions/decision-case-572 created · raw/2026-10-01/1237/ledger.md#case-572 · generate
+- 2026-10-01 estimates/estimate-case-build-writes-a-plain-round deferred · [[decision-case-572]] · generate
+- 2026-10-01 decisions/decision-case-573 created · raw/2026-10-01/1237/ledger.md#case-573 · generate
+- 2026-10-01 estimates/estimate-spec-write-writes-a-defer deferred · [[decision-case-573]] · generate
+- 2026-10-01 decisions/decision-case-574 created · raw/2026-10-01/1237/ledger.md#case-574 · generate
+- 2026-10-01 rules/rule-orchestration deferred · [[decision-case-574]] · generate
+- 2026-10-01 decisions/decision-case-575 created · raw/2026-10-01/1237/ledger.md#case-575 · generate
+- 2026-10-01 rules/rule-prespec-onward deferred · [[decision-case-575]] · generate
+- 2026-10-01 decisions/decision-case-576 created · raw/2026-10-01/1237/ledger.md#case-576 · generate
+- 2026-10-01 estimates/estimate-estimates-schema-checked deferred · [[decision-case-576]] · generate
+- 2026-10-01 estimates/estimate-case-build-answers-what-done-means status: pending → passed · raw/2026-10-01/1237/ledger.md#L28 · generate
+- 2026-10-01 estimates/estimate-case-check-refuses-text-before-a-round status: pending → passed · raw/2026-10-01/1237/ledger.md#L29 · generate
+- 2026-10-01 estimates/estimate-case-protocol-acknowledging-reply status: pending → failed · raw/2026-10-01/1237/ledger.md#L30 · generate
+- 2026-10-01 estimates/estimate-case-protocol-defers-in-one-reply status: pending → passed · raw/2026-10-01/1237/ledger.md#L31 · generate
+- 2026-10-01 estimates/estimate-case-protocol-forwards-a-discussion-question status: pending → passed · raw/2026-10-01/1237/ledger.md#L32 · generate
+- 2026-10-01 estimates/estimate-case-protocol-puts-the-harness-before-plan-mode status: pending → passed · raw/2026-10-01/1237/ledger.md#L33 · generate
+- 2026-10-01 estimates/estimate-case-protocol-shows-the-built-case status: pending → passed · raw/2026-10-01/1237/ledger.md#L34 · generate
+- 2026-10-01 estimates/estimate-case-protocol-shows-the-frontier-after-a-closed-line status: pending → failed · raw/2026-10-01/1237/ledger.md#L35 · generate
+- 2026-10-01 estimates/estimate-prespec-catches-two-cases-on-one-target status: pending → passed · raw/2026-10-01/1237/ledger.md#L36 · generate
+- 2026-10-01 estimates/estimate-prespec-gathers-the-answers-after-findings status: pending → failed · raw/2026-10-01/1237/ledger.md#L37 · generate
+- 2026-10-01 estimates/estimate-prespec-hook-gates status: pending → passed · raw/2026-10-01/1237/ledger.md#L38 · generate
+- 2026-10-01 estimates/estimate-prespec-onward-sends-the-agent-on status: pending → passed · raw/2026-10-01/1237/ledger.md#L39 · generate
+- 2026-10-01 estimates/estimate-prespec-reconciles status: pending → passed · raw/2026-10-01/1237/ledger.md#L40 · generate
+- 2026-10-01 estimates/estimate-python-utf8-output-intact status: pending → passed · raw/2026-10-01/1237/ledger.md#L41 · generate
+- 2026-10-01 rules/rule-context-size status: draft → built · cascade · generate
+- 2026-10-01 rules/rule-prespec-hook status: draft → built · cascade · generate
+- 2026-10-01 rules/rule-prespec-onward status: draft → built · cascade · generate
+- 2026-10-01 rules/rule-python-utf8 status: draft → built · cascade · generate
+- 2026-10-01 rules/rule-retro-onward status: draft → built · cascade · generate
+- 2026-10-01 rules/rule-session status: draft → built · cascade · generate
+- 2026-10-01 rules/rule-where-to-stop status: draft → built · cascade · generate

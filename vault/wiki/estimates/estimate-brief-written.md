@@ -4,7 +4,7 @@ kind: QA
 status: pending
 target: "[[rule-brief]]"
 method: one reading by hand after the first librarian run, recorded in the estimate line
-checked: 2026-09-30
+checked: 2026-10-01
 origin: raw/2026-09-10/ledger.md#case-35.3
 sprint: migration
 created: 2026-09-10
@@ -20,7 +20,8 @@ Then:
 The brief holds, in order: Where things stand, Readings due, Flags, Next session, Readings at the close.
 **＋** It holds no Deferred list and no cap on deferred items. They stand in `vault/wiki/backlog.md`.
 **＋** Where things stand, Readings due and Readings at the close are as before.
-**＋** Flags keep their kinds of lines — marked entries, failed Estimates, MOC candidates, stale defers, contradictions, the lint output — and add one kind: a read of the librarian that its frame does not name, with what was read, the part of the job it served, and the handoff when the handoff asked for it.
+**＋** Readings due takes from each Estimate page its `status`, `target` and `method`, and from the target rule its `status`.
+**＋** Flags keep their kinds of lines — marked entries, failed Estimates, MOC candidates, stale defers, contradictions, the lint output — and add one kind: a read that the librarian's frame says its job does not need, with what was read, the part of the job it served, and the handoff when the handoff asked for it.
 **＋** Next session holds `Cases`, `Work` and `Ask the person`. `Cases` is what needs a decision: a line of `## For the next session` of `handoff.md`, a handoff flag with a question or a request to change the sprint, a `failed` Estimate, a contradiction, a defect the librarian found; one line per item, with what and from where. `Work` is what is done without a decision: every `pending` reading of Readings due by its slug but one that `Ask the person` holds, the unticked boxes of the Specs, a ledger line this run did not apply, a dirty tree; one line per item.
 **＋** `Ask the person` holds each line of `## Ask the person` of `handoff.md`: the Estimate by slug, the mark `needs the person` and its question, as the handoff wrote them.
 **＋** An item stands in one list only. A list with no item is the line "none".
@@ -29,7 +30,7 @@ The brief holds, in order: Where things stand, Readings due, Flags, Next session
 
 ## Result
 
-2026-09-30, vault/wiki/brief.md of the librarian's run over 1306 (070d8e6), the first run after the render of .claude/agents/librarian-guppi.md in cfcfb09, read by hand against raw/2026-09-30/1306/handoff.md; five sections in order, no Deferred list and no cap; Next session: Cases 7 — the 4 lines of For the next session, which hold 2 failed Estimates and the contradiction, the 2 other failed Estimates, the failing test of test_schemas.py; Work 47 pending slugs with the unticked read boxes by spec and ledger line 39, estimate-permissions in Ask the person alone, its line as the handoff wrote it; the tree clean, no dirty-tree line; no item in two lists; no decision stated
+2026-10-01, by hand at the /hi of session 1237, vault/wiki/brief.md of the librarian's run 1f43cf1c over 2356, the first run whose .claude/agents/librarian-guppi.md held the Render of case 558.3, read against raw/2026-09-30/2356/handoff.md: five sections in order, no Deferred list and no cap; Flags hold the near mark, the generate lines, the failed Estimates, MOC candidates none, the stale defers, contradictions none, the lint output and one line of a read beyond the frame with what it read, the part it served and that the handoff did not ask for it; Next session: Cases the 4 lines of For the next session (the failed pair split in two), the 2 other failed Estimates and an Observation of the handoff with a question; Work 45 pending slugs, the 46 pending of Readings due less the one Ask holds; Ask the person the handoff's line word for word; no dirty tree; no decision stated; estimate-estimates-schema-checked stands in Work by its reading and in Cases by the question on its skipped test
 
 ## History
 
@@ -56,3 +57,5 @@ The brief holds, in order: Where things stand, Readings due, Flags, Next session
 - 2026-09-30 updated: the Criterion replaced whole — the brief of carry keeps Next session, Work and Ask the person from the open lines of frontier.md and Cases the line none; Flags no longer name the moves of generate that case 539 removes · [[decision-case-538.2]]
 - 2026-09-30 status: pending → passed · raw/2026-09-30/1736/ledger.md#L1
 - 2026-09-30 updated: the Criterion replaced whole — Flags hold a line for each read of the librarian beyond the reads its frame names (case 558.3) · [[decision-case-558.3]]
+- 2026-10-01 status: pending → passed · raw/2026-10-01/1237/ledger.md#L1
+- 2026-10-01 updated: the Criterion replaced whole — Flags hold a line for each read the frame says the job does not need; Readings due takes the status, target and method fields (case 567.2) · [[decision-case-567.2]]

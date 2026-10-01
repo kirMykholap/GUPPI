@@ -39,3 +39,4 @@ The file equals the Render. Lint reads from it: required `type, kind, status, ta
 - 2026-09-29 updated: the Criterion replaced whole — method required, the two old sections gone (case 506.1) · [[decision-case-506.1]]
 - 2026-09-29 status: pending → passed · raw/2026-09-29/1432/ledger.md#L27
 - 2026-09-30 updated: the method runs -k estimate and names a page without method, so the test of method runs; the reading is due again, the Criterion stands (case 556) · [[decision-case-556]]
+- 2026-10-01 deferred · [[decision-case-576]]

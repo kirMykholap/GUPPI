@@ -38,3 +38,4 @@ It puts each option the person chose in its rounds, or the person's own words wh
 - 2026-09-30 status: pending → failed · raw/2026-09-30/1736/ledger.md#L38
 - 2026-09-30 updated: the Criterion replaced whole — the search for rules at the same moment, and a claim about a search that lists what it printed (case 557.1) · [[decision-case-557.1]]
 - 2026-10-01 status: pending → failed · raw/2026-09-30/2356/ledger.md#L44
+- 2026-10-01 deferred · [[decision-case-571]]

@@ -1,0 +1,46 @@
+- 01:53:38 decision[case 561.1][update][rule-prespec]{ref:rule-prespec}
+- 01:53:38 decision[case 561.1][update][rule-prespec-hook]{ref:rule-prespec-hook}
+- 01:53:38 decision[case 561.1][update][estimate-prespec-reconciles]{ref:rule-prespec}
+- 01:53:38 decision[case 561.2][update][rule-case-protocol]{ref:rule-case-protocol}
+- 01:53:38 decision[case 561.2][create][estimate-prespec-gathers-the-answers-after-findings]{ref:rule-prespec}{tags:session,workflow}
+- 01:53:38 decision[case 561.3][update][rule-prespec-hook]{ref:rule-prespec-hook}
+- 01:53:38 decision[case 561.3][update][estimate-prespec-hook-gates]{ref:rule-prespec-hook}
+- 01:53:38 decision[case 561.4][create][estimate-prespec-catches-two-cases-on-one-target]{ref:rule-prespec}{tags:session,workflow,harness}
+- 01:53:38 decision[case 561.5][create][rule-prespec-onward]{ref:rule-plan-mode}{tags:session,workflow,hooks,harness}
+- 01:53:38 decision[case 561.5][update][rule-hook-registry]{ref:rule-hook-registry}
+- 01:53:38 decision[case 561.5][create][estimate-prespec-onward-sends-the-agent-on]{ref:rule-prespec-onward}{tags:session,workflow,hooks,harness}
+- 01:53:38 decision[case 561.6][update][rule-case-protocol]{ref:rule-case-protocol}
+- 01:53:38 decision[case 561.6][update][estimate-case-protocol-shows-the-frontier-after-a-closed-line]{ref:rule-case-protocol}
+- 01:53:38 decision[case 561.7][update][rule-case-protocol]{ref:rule-case-protocol}
+- 01:53:38 decision[case 561.7][update][estimate-case-protocol-defers-in-one-reply]{ref:rule-case-protocol}
+- 01:53:38 decision[case 561.8][update][rule-case-protocol]{ref:rule-case-protocol}
+- 01:53:38 decision[case 561.8][update][estimate-case-protocol-acknowledging-reply]{ref:rule-case-protocol}
+- 01:53:38 decision[case 561.9][update][rule-case-protocol]{ref:rule-case-protocol}
+- 01:53:38 decision[case 561.9][update][estimate-case-protocol-shows-the-built-case]{ref:rule-case-protocol}
+- 01:53:38 decision[case 561.10][update][rule-case-check]{ref:rule-case-check}
+- 01:53:38 decision[case 561.10][update][estimate-case-check-shows-only-the-checked-case]{ref:rule-case-check}
+- 01:53:38 decision[case 561.11][update][rule-case-build]{ref:rule-case-build}
+- 01:53:38 decision[case 561.11][create][estimate-case-build-answers-what-done-means]{ref:rule-case-build}{tags:session,workflow}
+- 01:53:38 decision[case 561.12][update][rule-case-protocol]{ref:rule-case-protocol}
+- 01:53:38 decision[case 561.12][update][rule-case-build]{ref:rule-case-build}
+- 01:53:38 decision[case 561.12][create][estimate-case-protocol-forwards-a-discussion-question]{ref:rule-case-protocol}{tags:session,workflow}
+- 01:53:38 decision[case 561.13][update][rule-case-protocol]{ref:rule-case-protocol}
+- 01:53:38 decision[case 561.13][update][rule-orchestration]{ref:rule-orchestration}{supersedes:case 546}
+- 01:53:38 decision[case 561.13][create][estimate-case-protocol-asks-in-the-grill-me-shape]{ref:rule-case-protocol}{tags:session,workflow}
+- 01:53:38 decision[case 561.14][update][rule-case-protocol]{ref:rule-case-protocol}
+- 01:53:38 decision[case 561.14][create][estimate-case-protocol-puts-the-harness-before-plan-mode]{ref:rule-case-protocol}{tags:session,workflow}
+- 02:19:18 decision[case 561.9][update][estimate-case-protocol-shows-the-built-case]{ref:rule-case-protocol}{supersedes:case 560}
+- 02:19:18 decision[case 562][update][rule-case-check]{ref:rule-case-check}
+- 02:19:18 decision[case 562][create][estimate-case-check-refuses-text-before-a-round]{ref:rule-case-check}{tags:hooks,harness,workflow}
+- 02:39:14 decision[case 563][defer][estimate-case-build-writes-a-plain-round]{ref:estimate-case-build-writes-a-plain-round}
+- 02:39:14 decision[case 564][defer][estimate-spec-write-writes-a-defer]{ref:estimate-spec-write-writes-a-defer}
+- 02:39:14 decision[case 565][defer][rule-spec-box]{ref:rule-spec-box}
+- 02:39:14 decision[case 566][defer][rule-case-rebuild-cost]
+- 02:57:26 decision[case 561.1][update][rule-prespec]{ref:rule-prespec}{supersedes:case 503}
+- 03:10:56 estimate[estimate-case-check-exits-2-on-an-error][passed] 2026-10-01, uv run pytest tests/test_casecheck.py: 78 passed (-k "error or not_checked": 4 passed), after the changes of cases 561.10 and 562
+- 03:10:56 estimate[estimate-context-size-shows-its-error][passed] 2026-10-01, uv run pytest tests/test_context.py: 9 passed (-k error: 2 passed)
+- 03:10:56 estimate[estimate-retro-onward-exits-2-on-an-error][passed] 2026-10-01, uv run pytest tests/test_onward.py: 25 passed (-k error: 4 passed), the run without --plan unchanged beside the new --plan run of case 561.5
+- 03:10:56 estimate[estimate-spec-write-exits-2-on-an-error][passed] 2026-10-01, uv run pytest tests/test_ratified.py: 89 passed (-k error: 4 passed)
+- 03:10:56 estimate[estimate-case-build-checks-the-finished-case][failed] 2026-10-01, by hand, the report of ask-guppi at the /pre-spec of session 2356 over Cases 561 and 562 built after the render of session 2042: a Case that departs from a chosen option 0; a page made false that the Case missed 2 (561.13 missed estimate-hi-takes-its-readings and rule-skill-hi on the question of an A line; 561.3 left the purpose of estimate-prespec-hook-gates stating the old promise); a rule acting at the same moment that the Case missed 1 (562 refused the gathered list of the loop of 561.1 and 561.2, one turn after /pre-spec); a claim of context its search did not print 0; two sub-cases contradicting on one page 0; besides, 561.1 missed the defer of case 503 on rule-prespec and put the mechanism of a Leaf into its Purpose against rule-rules-schema
+- 03:10:56 estimate[estimate-case-build-records-the-rounds-in-recommend][failed] 2026-10-01, by hand, raw/2026-09-30/2356/cases/case-561.md and case-562.md against the six rounds of 561 and the two of 562 in the chat: 19 distinct questions of 561, one item each, the question asked again in round 4 one item with the last recommendation, each Change item with Asked and Taken, 562 three items and a Change; but the question of round 1 on what done means, whose answer changed only 561.11, stands in the parent's recommend, not under 561.11
+- 03:10:56 lesson[knowledge][lesson-sendmessage-answers-open-a-turn-of-their-own]{tags:session,workflow}{source:the transcript of session 2356, records 145 and 337, read by a script for case 562} trigger: measuring where an answer of case-guppi stands in the transcript before the round check of case 562 was written root_cause: a SendMessage to a case-guppi that has finished resumes it in the background and returns only "Resuming agent"; its answer comes back after the turn has ended as a user record with origin.kind task-notification, which opens a turn of its own, so each answer forces one reply of the main agent and the quiet wait of case 561.2 cannot be wholly silent, while an Agent call's answer stands in its tool_result inside the turn

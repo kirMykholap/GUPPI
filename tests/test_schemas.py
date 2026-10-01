@@ -137,6 +137,32 @@ def test_a_conditional_not_met_is_one_finding_where_the_schema_has_one(category)
 
 
 @pytest.mark.parametrize("category", CATEGORIES)
+def test_a_section_conditional_not_met_is_one_finding_where_the_schema_has_one(category):
+    """Case 583: each rule of `body.conditional` — `## Result` on an Estimate `passed` or
+    `failed`, `## Render` on a Rule enforced by `render` — earns one finding per section it
+    requires when a page with the values of its `when` lacks them."""
+    data = schema(category)
+    rules = (data.get("body") or {}).get("conditional") or []
+    if not rules:
+        pytest.skip(f"{category}: no conditional on a section")
+    props = data["properties"]
+    values = props.get("values") or {}
+    for rule in rules:
+        page = page_in_shape(category, data)
+        page.props.update(rule["when"])
+        for field_rule in props.get("conditional") or []:
+            if all(str(page.props.get(k)) == str(v) for k, v in field_rule["when"].items()):
+                for f in field_rule.get("required") or []:
+                    page.props.setdefault(f, sample(f, values))
+        for s in rule.get("required") or []:
+            page.sections.pop(s, None)
+        assert findings(page, data) == [
+            f"{category}/{page.slug}: schema: missing section {s} (given {rule['when']})"
+            for s in rule.get("required") or []
+        ]
+
+
+@pytest.mark.parametrize("category", CATEGORIES)
 def test_a_required_section_missing_is_one_finding(category):
     data = schema(category)
     page = page_in_shape(category, data)

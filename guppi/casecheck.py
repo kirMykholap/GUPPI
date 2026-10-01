@@ -111,8 +111,10 @@ assistant record's `message.content` as `{"type": "tool_use", "name": "SendUserF
 "input": {"files": [<path>, …]}}`, the record carrying its `timestamp` (measured 2026-09-27,
 session 1255). The turn of the reply is the records after the last prompt: a `user` record,
 not `isMeta`, that holds more than tool results — a tool result and the text of a skill stand
-in `user` records too, and a `Stop` hook's refusal adds no `user` record (measured the same
-day).
+in `user` records too (measured the same day). A `Stop` hook's refusal is a `user` record
+marked `isMeta`, its text opening with `Stop hook feedback:` (transcripts of sessions 1237 and
+1441, case 584): the turn skips it as it skips any `isMeta` record, so a file sent before the
+refusal still counts for the reply that follows.
 
 The payload is read as UTF-8; the hook never raises. An error of its own after it has read the
 payload exits 2 on `Stop`, with the error and the advice to show the Case again on stderr, so

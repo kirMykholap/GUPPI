@@ -628,6 +628,25 @@ def test_stop_a_shown_case_with_no_sending_is_refused(working):
     assert show(working, SHORT_SHOWING, records=later) == (0, "")
 
 
+def refusal():
+    """A `Stop` hook's refusal in the shape Claude Code writes it: a `user` record marked
+    `isMeta`, its text opening with `Stop hook feedback:` (transcripts of sessions 1237 and
+    1441, case 584)."""
+    return {
+        "type": "user",
+        "isSidechain": False,
+        "isMeta": True,
+        "message": {"role": "user", "content": "Stop hook feedback:\n[uv run guppi x]: refused"},
+    }
+
+
+def test_stop_a_sending_before_a_refusal_counts_in_the_turn_of_the_reply(working):
+    # 584: the refusal opens no turn, so the file sent before it counts for the next showing
+    answer(working, ANSWER)
+    records = [prompt(), sending(case_path(working, "7")), result(), refusal()]
+    assert show(working, SHORT_SHOWING, records=records) == (0, "")
+
+
 def test_stop_a_sending_of_another_file_is_refused(working):
     answer(working, ANSWER)
     code, err = show(working, SHORT_SHOWING, sent=[case_path(working, "8")])

@@ -1,0 +1,56 @@
+- 12:14:22 decision[case 587][update][rule-lint]{ref:rule-lint}
+- 12:14:22 decision[case 587][create][estimate-lint-runs-every-step]{ref:rule-lint}{tags:harness,workflow}
+- 12:37:22 decision[case 588.1][update][estimate-estimates-schema-checked]{ref:rule-estimates-schema}
+- 12:37:22 decision[case 588.2][update][rule-materialize]{ref:rule-materialize}
+- 12:37:22 decision[case 588.2][update][estimate-materialize-changes-a-named-part-alone]{ref:rule-materialize}
+- 12:37:22 decision[case 588.3][update][estimate-materialize-lifts-when-and-then]{ref:rule-materialize}
+- 12:56:24 decision[case 589.1][update][estimate-language-spec-prose-in-english]{ref:rule-language}
+- 12:56:24 decision[case 589.1][delete][rule-prespec-script-skips-code-spans]{ref:rule-prespec-script-skips-code-spans}{supersedes:case 481}
+- 12:56:24 decision[case 589.2][update][rule-case-check]{ref:rule-case-check}
+- 12:56:24 decision[case 589.2][update][estimate-case-check-refuses-a-letter-outside-the-script]{ref:rule-case-check}
+- 13:45:27 decision[case 590.1][create][estimate-ledger-write-names-the-kind-of-a-user-record]{ref:rule-ledger-write}{tags:session,hooks,harness,ledger}
+- 13:45:27 decision[case 590.1][update][rule-ledger-write]{ref:rule-ledger-write}
+- 13:45:27 decision[case 590.1][update][rule-case-check]{ref:rule-case-check}
+- 13:45:27 decision[case 590.1][delete][rule-turn-start-one-judgment]{ref:rule-turn-start-one-judgment}{supersedes:case 586}
+- 13:45:27 decision[case 590.2][update][estimate-context-size-shown-after-each-reply]{ref:rule-context-size}
+- 13:45:27 decision[case 590.2][update][rule-context-size]{ref:rule-context-size}
+- 17:19:34 decision[case 591.1][update][rule-carry-over]{ref:rule-carry-over}
+- 17:19:34 decision[case 591.1][update][estimate-carry-over-writes]{ref:rule-carry-over}
+- 17:19:34 decision[case 591.2][update][rule-skill-hi]{ref:rule-skill-hi}
+- 17:19:34 decision[case 591.2][create][estimate-hi-takes-a-saved-plan]{ref:rule-skill-hi}{tags:session,workflow,harness}
+- 17:19:34 decision[case 591.3][update][rule-spec-capture]{ref:rule-spec-capture}
+- 17:19:34 decision[case 591.3][update][estimate-spec-capture-offers-the-fork]{ref:rule-spec-capture}
+- 17:19:34 decision[case 591.4][update][rule-end-of-work]{ref:rule-end-of-work}
+- 17:19:34 decision[case 591.4][update][estimate-end-of-work-order]{ref:rule-end-of-work}
+- 17:19:34 decision[case 591.5][update][rule-spec-box]{ref:rule-spec-box}{supersedes:case 207}{supersedes:case 219}{supersedes:case 232}{supersedes:case 532}{supersedes:case 565}
+- 17:19:34 decision[case 591.5][update][entity-sprint-migration]{ref:entity-sprint-migration}
+- 17:19:34 decision[case 591.5][create][estimate-spec-box-runs-a-saved-plan]{ref:rule-spec-box}{tags:session,workflow,git,harness}
+- 17:19:34 decision[case 591.6][create][estimate-spec-box-refuses-a-stale-plan]{ref:rule-spec-box}{tags:session,workflow,git,harness}
+- 17:19:34 decision[case 591.7][update][rule-work-mode]{ref:rule-work-mode}
+- 17:19:34 decision[case 591.7][update][estimate-work-mode-runs-the-spec-on-a-branch-from-a-baseline]{ref:rule-work-mode}
+- 17:19:34 decision[case 591.8][update][rule-retro]{ref:rule-retro}
+- 17:19:34 decision[case 591.8][update][estimate-retro-loads]{ref:rule-retro}
+- 17:19:34 decision[case 591.9][update][rule-handoff]{ref:rule-handoff}
+- 17:19:34 decision[case 591.9][update][estimate-handoff-dispatches]{ref:rule-handoff}
+- 17:19:34 decision[case 591.10][update][rule-where-to-stop]{ref:rule-where-to-stop}
+- 17:19:34 decision[case 591.10][update][estimate-where-to-stop-stops-only-on-its-conditions]{ref:rule-where-to-stop}
+- 17:19:34 decision[case 591.11][update][decision-case-13]{ref:decision-case-13}
+- 17:54:32 decision[case 590.3][update][estimate-case-check-refuses-text-before-a-round]{ref:rule-case-check}
+- 17:54:32 decision[case 591.2][create][estimate-hi-takes-a-conserved-spec]{ref:rule-skill-hi}{tags:session,workflow,harness}
+- 17:54:32 decision[case 591.5][create][estimate-spec-box-runs-a-conserved-spec]{ref:rule-spec-box}{tags:session,workflow,git,harness}
+- 17:54:32 decision[case 591.6][create][estimate-spec-box-refuses-a-stale-spec]{ref:rule-spec-box}{tags:session,workflow,git,harness}
+- 17:54:32 decision[case 591.7][update][rule-work-mode]{ref:rule-work-mode}{supersedes:case 540}
+- 17:54:32 decision[case 591.12][update][rule-work-mode]{ref:rule-work-mode}
+- 17:54:32 decision[case 591.12][update][estimate-work-mode-takes-the-work-readings]{ref:rule-work-mode}
+- 18:05:37 decision[case 594][defer][rule-ledger-line-withdrawn-on-re-ratification]
+- 18:05:58 decision[case 592][create][estimate-ledger-write-names-the-kind-of-a-user-record]{ref:rule-ledger-write}{tags:session,hooks,harness,ledger}{supersedes:case 590.1}
+- 18:05:58 decision[case 592][update][rule-ledger-write]{ref:rule-ledger-write}{supersedes:case 590.1}
+- 18:05:58 decision[case 592][delete][rule-turn-start-one-judgment]{ref:rule-turn-start-one-judgment}{supersedes:case 586}{supersedes:case 590.1}
+- 18:05:58 decision[case 593.1][update][rule-skill-hi]{ref:rule-skill-hi}{supersedes:case 591.2}
+- 18:05:58 decision[case 593.1][create][estimate-hi-takes-a-conserved-spec]{ref:rule-skill-hi}{tags:session,workflow,harness}{supersedes:case 591.2}
+- 18:05:58 decision[case 593.2][update][rule-spec-box]{ref:rule-spec-box}{supersedes:case 207}{supersedes:case 219}{supersedes:case 232}{supersedes:case 532}{supersedes:case 565}{supersedes:case 591.5}
+- 18:05:58 decision[case 593.2][update][entity-sprint-migration]{ref:entity-sprint-migration}{supersedes:case 591.5}
+- 18:05:58 decision[case 593.2][create][estimate-spec-box-runs-a-conserved-spec]{ref:rule-spec-box}{tags:session,workflow,git,harness}{supersedes:case 591.5}
+- 18:05:58 decision[case 593.3][create][estimate-spec-box-refuses-a-stale-spec]{ref:rule-spec-box}{tags:session,workflow,git,harness}{supersedes:case 591.6}
+- 18:25:11 estimate[estimate-case-protocol-shows-the-frontier-after-a-closed-line][passed] 2026-10-02, by hand in the transcript of session 1a155152: the first Plan Mode reply after the first reply of /hi that closed lines with no ratification and no defer, C1 [-] · sprint · defer and C7 [-] · backlog · kept, ended with the heading Frontier, the closed lines folded into one (C2–C6 · cases 587–591), the put-off lines as closed, the open W lines folded into one line W1–W28, no question since no line under Cases stood open, then called /pre-spec, the reply carrying no LEDGER block
+- 18:25:11 estimate[estimate-prespec-gathers-the-answers-after-findings][passed] 2026-10-02, by hand at the /pre-spec of session 1202 in the transcript of session 1a155152: the report numbered 13 findings and asked one question in the grill-me shape; findings 1–12 went to the case-guppi of 588, 590 and 591 in one SendMessage each, the finding on How it works held back for 589 and 590 until the person's answer; each turn while an answer was out ended with one line under the bold label Ожидание naming the Cases answered and still out, with no question; the round 590.Q6 that came back while 588 and 591 were out was not shown in that turn; once all answered, one list showed 589.Q1 and 590.Q6 numbered by Case; the answers went back in one message each; the four Cases built again were shown in one reply for one ratification; guppi casecheck refused no reply of the loop

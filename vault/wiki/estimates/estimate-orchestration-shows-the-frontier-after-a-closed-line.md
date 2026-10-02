@@ -1,7 +1,7 @@
 ---
 type: estimate
 kind: QA
-status: pending
+status: passed
 target: "[[rule-orchestration]]"
 purpose: Whether a reply after the first reply of /hi that closes a Frontier line in Plan Mode with no ratification and no defer ends with the Frontier and the question which item is next
 method: "by hand, in a later session: the first reply in Plan Mode after the first reply of /hi that closes a line of frontier.md with no ratification and no defer, read against the Criterion"
@@ -31,7 +31,7 @@ The reply ends with the heading `## Frontier` and the lines of `raw/<date>/<hi H
 
 ## Result
 
-2026-10-02, by hand in the transcript of session 1a155152: the first Plan Mode reply after the first reply of /hi that closed lines with no ratification and no defer, C1 [-] · sprint · defer and C7 [-] · backlog · kept, ended with the heading Frontier, the closed lines folded into one (C2–C6 · cases 587–591), the put-off lines as closed, the open W lines folded into one line W1–W28, no question since no line under Cases stood open, then called /pre-spec, the reply carrying no LEDGER block
+2026-10-02, session 2049, by hand: the first reply in Plan Mode after the first reply of /hi that closed a line with no ratification and no defer closed A1 by the person's answer; it carried a LEDGER block and ended with the heading Frontier, the closed lines folded into one line, the open W lines folded into one line of ids, C1 and C2 each on its own line with a short title, and the question which item is next while lines under Cases stood open; one Frontier, after the LEDGER block
 
 ## History
 
@@ -43,3 +43,4 @@ The reply ends with the heading `## Frontier` and the lines of `raw/<date>/<hi H
 - 2026-10-02 ref `estimate-case-protocol-acknowledging-reply` → `estimate-orchestration-acknowledging-reply` · [[decision-case-595.8]]
 - 2026-10-02 renamed from `estimate-case-protocol-shows-the-frontier-after-a-closed-line` · [[decision-case-595.9]]
 - 2026-10-02 updated: moved to rule-orchestration; the Criterion replaced whole - the reply as orchestration.md sets it (case 595.9) · [[decision-case-595.9]]
+- 2026-10-02 status: pending → passed · raw/2026-10-02/2049/ledger.md#L22

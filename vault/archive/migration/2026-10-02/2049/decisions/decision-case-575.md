@@ -1,8 +1,9 @@
 ---
 type: decision
 case: "575"
-status: current
+status: archived
 defer: ["[[rule-prespec-onward]]"]
+superseded_by: ["[[decision-case-597.2]]"]
 origin: raw/2026-10-01/1237/ledger.md#case-575
 sprint: migration
 created: 2026-10-01
@@ -26,3 +27,6 @@ Whether guppi onward --plan judges a Case still out by something other than the 
 ## History
 
 - 2026-10-01 created · raw/2026-10-01/1237/ledger.md#case-575
+- 2026-10-02 superseded by decision-case-597.2 · [[decision-case-597.2]]
+- 2026-10-02 archived · superseded
+- 2026-10-02 archived · cleanup

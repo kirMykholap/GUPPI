@@ -234,7 +234,7 @@ create:
 - [x] create `rule-orchestration`
 - [x] create `estimate-orchestration-loaded`
 - [x] `uv run guppi render`: `vault/wiki/orchestration.md`
-- [ ] read `estimate-orchestration-loaded`
+- [x] read `estimate-orchestration-loaded`
 ```
 
 ### Case 595.3 — `rule-ratification` renders what both agents need
@@ -333,7 +333,7 @@ create:
 - [x] create `rule-ratification`
 - [x] create `estimate-ratification-loaded`
 - [x] `uv run guppi render`: `vault/wiki/ratification.md`
-- [ ] read `estimate-ratification-loaded`
+- [x] read `estimate-ratification-loaded`
 ```
 
 ### Case 595.4 — `/hi` loads the two files in place of `case-schema.md`
@@ -394,7 +394,7 @@ update:
 - [x] update `rule-claude-md`
 - [x] update `rule-compact-recall`
 - [x] `uv run guppi render`: `.claude/skills/hi/SKILL.md`
-- [ ] read `estimate-internal-context-loaded`
+- [x] read `estimate-internal-context-loaded`
 ```
 
 ### Case 595.5 — Atomicity renders into `ratification.md`
@@ -439,7 +439,7 @@ update:
 ```tasks
 - [x] update `rule-atomicity`
 - [x] update `estimate-atomicity-rendered`
-- [ ] read `estimate-atomicity-rendered`
+- [x] read `estimate-atomicity-rendered`
 ```
 
 ### Case 595.6 — `case-schema.md` keeps the form of a Case alone
@@ -588,7 +588,7 @@ update:
 - [x] update `rule-case-protocol`
 - [x] update `estimate-case-protocol-loaded`
 - [x] `uv run guppi render`: `vault/wiki/case-schema.md`
-- [ ] read `estimate-case-protocol-loaded`
+- [x] read `estimate-case-protocol-loaded`
 ```
 
 ### Case 595.7 — `case-guppi` reads `ratification.md` with `case-schema.md`
@@ -721,7 +721,7 @@ update:
 
 ```tasks
 - [x] update `estimate-case-protocol-shows-the-frontier-after-a-closed-line`
-- [ ] read `estimate-orchestration-shows-the-frontier-after-a-closed-line`
+- [x] read `estimate-orchestration-shows-the-frontier-after-a-closed-line`
 ```
 
 ### Case 595.10 — The check of the defer in one reply moves to `rule-orchestration`
@@ -802,7 +802,7 @@ update:
 
 ```tasks
 - [x] update `estimate-case-protocol-shows-the-built-case`
-- [ ] read `estimate-orchestration-shows-the-built-case`
+- [x] read `estimate-orchestration-shows-the-built-case`
 ```
 
 ### Case 595.12 — The check of a forwarded discussion question moves to `rule-orchestration`
@@ -904,7 +904,7 @@ update:
 
 ```tasks
 - [x] update `estimate-case-protocol-puts-the-harness-before-plan-mode`
-- [ ] read `estimate-orchestration-puts-the-harness-before-plan-mode`
+- [x] read `estimate-orchestration-puts-the-harness-before-plan-mode`
 ```
 
 ### Case 595.15 — The check of related Cases in the dispatch moves to `rule-orchestration`
@@ -937,7 +937,7 @@ update:
 
 ```tasks
 - [x] update `estimate-case-protocol-names-related-cases-in-the-dispatch`
-- [ ] read `estimate-orchestration-names-related-cases-in-the-dispatch`
+- [x] read `estimate-orchestration-names-related-cases-in-the-dispatch`
 ```
 
 ### Case 595.16 — The check of the ledger line form moves to `rule-ratification`
@@ -1017,7 +1017,7 @@ update:
 - [x] `tests/test_ledger.py`: the asserted message names `ratification.md`
 - [x] `guppi/prespec.py`: the comment on the line form names `ratification.md`
 - [x] `uv run pytest tests/test_ledger.py`
-- [ ] read `estimate-ledger-write-refuses-a-line-it-cannot-read`
+- [x] read `estimate-ledger-write-refuses-a-line-it-cannot-read`
 ```
 
 ### Case 595.18 — The check of the fork after the Spec names `ratification.md`
@@ -1102,7 +1102,7 @@ update:
 
 ```tasks
 - [x] update `estimate-skill-grill-me-asks-in-rounds`
-- [ ] read `estimate-skill-grill-me-asks-in-rounds`
+- [x] read `estimate-skill-grill-me-asks-in-rounds`
 ```
 
 ### Case 595.20 — The glossary points the moved terms to their new rules
@@ -1179,5 +1179,5 @@ update:
 
 ```tasks
 - [x] update `estimate-claude-md-rendered`
-- [ ] read `estimate-claude-md-rendered`
+- [x] read `estimate-claude-md-rendered`
 ```

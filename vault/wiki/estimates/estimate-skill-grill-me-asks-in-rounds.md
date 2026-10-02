@@ -1,11 +1,11 @@
 ---
 type: estimate
 kind: QA
-status: pending
+status: failed
 target: "[[rule-skill-grill-me]]"
 purpose: grill-me asks in rounds, finds facts itself and acts only after the shared understanding is confirmed, as the one text its rule page renders
 method: uv run guppi render --check; by hand, one round read in the chat in a session after the render, of the person's /grill-me or of case-guppi
-checked: 2026-09-30
+checked: 2026-10-02
 origin: raw/2026-09-26/2300/ledger.md#case-443.1
 sprint: migration
 created: 2026-09-26
@@ -35,7 +35,7 @@ Then:
 
 ## Result
 
-2026-09-30, uv run guppi render --check exit 0; by hand, the rounds of case-guppi on Cases 547 to 550 in session 1736: each question opens with its ❓ line and a Now line, the label Options stands alone on its own line before the first option, each option opens with 🔹 and its bold name and carries one After item, each closes with a ➡️ line; quotations stand as blockquotes under the sentence that introduces them; the agent looked up the facts itself and asked the person only for decisions; it built each Case only after the person's answer; the series inside the question bodies are short series of words
+2026-10-02, session 2049: `uv run guppi render --check` exit 0; by hand, the rounds of case-guppi on Cases 596, 597, 598, 599 and 600 read in the chat: each question has its Now line, the Options label alone, each option with one After item, quotations as blockquotes under a sentence naming their source, the recommended answer on the arrow line, the person asked only for decisions; but the round on Case 599 opened its one question with `❓ **Q1** - **Should the Insight be marked closed now, and which decision should it name as the fix?**` with no colon after the title, against the numbered title line the Criterion sets
 
 ## History
 
@@ -49,3 +49,4 @@ Then:
 - 2026-09-30 status: pending → failed · raw/2026-09-30/0248/ledger.md#L39
 - 2026-09-30 status: failed → passed · raw/2026-09-30/1736/ledger.md#L20
 - 2026-10-02 updated: the Criterion replaced whole - the main agent shows a round by rule-orchestration (case 595.19) · [[decision-case-595.19]]
+- 2026-10-02 status: pending → failed · raw/2026-10-02/2049/ledger.md#L24

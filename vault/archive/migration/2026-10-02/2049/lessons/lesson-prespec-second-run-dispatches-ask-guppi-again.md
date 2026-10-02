@@ -2,7 +2,7 @@
 type: lesson
 kind: error
 root_cause: the skill pre-spec dispatches ask-guppi at every run and says nothing of a run after fixes, so a second run checks the whole plan again instead of only the Cases built again, and the person is not told the cost before it starts
-status: clustered
+status: archived
 insight: "[[insight-prespec-after-findings-loop-unruled]]"
 origin: raw/2026-09-30/2042/ledger.md#L36
 sprint: migration
@@ -22,3 +22,5 @@ the skill pre-spec dispatches ask-guppi at every run and says nothing of a run a
 
 - 2026-09-30 created · raw/2026-09-30/2042/ledger.md#L36
 - 2026-09-30 updated: clustered under insight-prespec-after-findings-loop-unruled (synthesis) · raw/2026-09-30/2042/ledger.md#L36
+- 2026-10-02 archived · insight actioned
+- 2026-10-02 archived · cleanup

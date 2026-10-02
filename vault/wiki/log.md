@@ -5795,3 +5795,67 @@ instruction. The global feed; a page's own `## History` is the per-page view.
 - 2026-10-02 decisions/decision-case-574 archived · superseded · generate
 - 2026-10-02 decisions/decision-case-424 archived · cleanup
 - 2026-10-02 decisions/decision-case-574 archived · cleanup
+- 2026-10-02 estimates/estimate-orchestration-loaded status: pending → passed · raw/2026-10-02/2049/ledger.md#L1 · generate
+- 2026-10-02 estimates/estimate-ratification-loaded status: pending → passed · raw/2026-10-02/2049/ledger.md#L2 · generate
+- 2026-10-02 estimates/estimate-internal-context-loaded status: pending → passed · raw/2026-10-02/2049/ledger.md#L3 · generate
+- 2026-10-02 estimates/estimate-atomicity-rendered status: pending → passed · raw/2026-10-02/2049/ledger.md#L4 · generate
+- 2026-10-02 estimates/estimate-case-protocol-loaded status: pending → passed · raw/2026-10-02/2049/ledger.md#L5 · generate
+- 2026-10-02 estimates/estimate-claude-md-rendered status: pending → passed · raw/2026-10-02/2049/ledger.md#L6 · generate
+- 2026-10-02 estimates/estimate-context-size-shown-after-each-reply status: pending → passed · raw/2026-10-02/2049/ledger.md#L7 · generate
+- 2026-10-02 decisions/decision-case-596 created · raw/2026-10-02/2049/ledger.md#case-596 · generate
+- 2026-10-02 decisions/decision-case-596.1 created · raw/2026-10-02/2049/ledger.md#case-596.1 · generate
+- 2026-10-02 rules/rule-retro-onward updated: the hook sends the agent on again after each reply that the ledger hook refused; tests/test_ledger.py joins implementation_ref (case 596) · [[decision-case-596.1]] · generate
+- 2026-10-02 estimates/estimate-retro-onward-sends-the-agent-to-the-handoff updated: the Criterion replaced whole — the hook speaks again after each reply the ledger hook refused (case 596) · [[decision-case-596.1]] · generate
+- 2026-10-02 decisions/decision-case-596.2 created · raw/2026-10-02/2049/ledger.md#case-596.2 · generate
+- 2026-10-02 rules/rule-retro updated: the reply that answers a refusal of the ledger hook after the reply that ends Retro holds only the refused lines written again (case 596.2) · [[decision-case-596.2]] · generate
+- 2026-10-02 decisions/decision-case-597 created · raw/2026-10-02/2049/ledger.md#case-597 · generate
+- 2026-10-02 decisions/decision-case-597.1 created · raw/2026-10-02/2049/ledger.md#case-597.1 · generate
+- 2026-10-02 rules/rule-prespec-onward updated: the run speaks again after each reply the ledger hook refused, judged by the refusals in the transcript, not by stop_hook_active (case 597.1) · [[decision-case-597.1]] · generate
+- 2026-10-02 estimates/estimate-prespec-onward-sends-the-agent-on updated: the Criterion replaced whole — the run speaks again after each reply the ledger hook refused (case 597.1) · [[decision-case-597.1]] · generate
+- 2026-10-02 decisions/decision-case-597.2 created · raw/2026-10-02/2049/ledger.md#case-597.2 · generate
+- 2026-10-02 decisions/decision-case-575 superseded by decision-case-597.2 · [[decision-case-597.2]] · generate
+- 2026-10-02 rules/rule-prespec-onward defer by decision-case-575 superseded · [[decision-case-597.2]] · generate
+- 2026-10-02 rules/rule-prespec-onward updated: a Case is out by the decision lines of every reply of the stretch, so a re-ratification counts after a ledger refusal too; implementation_ref names the modules and tests the hook uses (case 597.2) · [[decision-case-597.2]] · generate
+- 2026-10-02 estimates/estimate-prespec-onward-reads-the-decisions-of-the-stretch created · [[decision-case-597.2]] · generate
+- 2026-10-02 rules/rule-prespec-onward estimate estimate-prespec-onward-reads-the-decisions-of-the-stretch added · [[decision-case-597.2]] · generate
+- 2026-10-02 decisions/decision-case-598 created · raw/2026-10-02/2049/ledger.md#case-598 · generate
+- 2026-10-02 decisions/decision-case-598.1 created · raw/2026-10-02/2049/ledger.md#case-598.1 · generate
+- 2026-10-02 rules/rule-orchestration updated: Cases handled side by side go out together: a ratified Case that must change is shown with the Case that changes it, for one ratification (case 598.1) · [[decision-case-598.1]] · generate
+- 2026-10-02 estimates/estimate-orchestration-signs-a-batch-together created · [[decision-case-598.1]] · generate
+- 2026-10-02 rules/rule-orchestration estimate estimate-orchestration-signs-a-batch-together added · [[decision-case-598.1]] · generate
+- 2026-10-02 decisions/decision-case-598.2 created · raw/2026-10-02/2049/ledger.md#case-598.2 · generate
+- 2026-10-02 rules/rule-orchestration updated: one reply acknowledges every Case ratified in one answer, under one heading that names their ids (case 598.2) · [[decision-case-598.2]] · generate
+- 2026-10-02 estimates/estimate-orchestration-acknowledging-reply updated: the Criterion replaced whole — one reply acknowledges every Case ratified in one answer (case 598.2) · [[decision-case-598.2]] · generate
+- 2026-10-02 decisions/decision-case-598.3 created · raw/2026-10-02/2049/ledger.md#case-598.3 · generate
+- 2026-10-02 estimates/estimate-prespec-gathers-the-answers-after-findings updated: the Criterion replaced whole — outside the loop, Cases go out together only in a batch that orchestration.md sets (case 598.3) · [[decision-case-598.3]] · generate
+- 2026-10-02 decisions/decision-case-599 created · raw/2026-10-02/2049/ledger.md#case-599 · generate
+- 2026-10-02 insights/insight-prespec-main-agent-question-off-the-grill-me-shape updated: actioned: orchestration.md and the pre-spec skill give the grill-me shape to each question the main agent puts to the person itself (case 561.13); no lesson of the cause since (case 599) · [[decision-case-599]] · generate
+- 2026-10-02 decisions/decision-case-600 created · raw/2026-10-02/2049/ledger.md#case-600 · generate
+- 2026-10-02 insights/insight-prespec-after-findings-loop-unruled updated: actioned: the pre-spec skill gathers the rounds and the rebuilt Cases after the findings into one list and one showing, and sends ask-guppi at the first run only, with no second call (cases 561.1, 561.2); the cost of a second run falls away with it; no lesson of the cause since (case 600) · [[decision-case-600]] · generate
+- 2026-10-02 estimates/estimate-orchestration-shows-the-frontier-after-a-closed-line status: pending → passed · raw/2026-10-02/2049/ledger.md#L22 · generate
+- 2026-10-02 estimates/estimate-ledger-write-refuses-a-line-it-cannot-read status: pending → passed · raw/2026-10-02/2049/ledger.md#L23 · generate
+- 2026-10-02 estimates/estimate-skill-grill-me-asks-in-rounds status: pending → failed · raw/2026-10-02/2049/ledger.md#L24 · generate
+- 2026-10-02 lessons/lesson-case-check-question-line-without-colon-unseen created · raw/2026-10-02/2049/ledger.md#L25 · generate
+- 2026-10-02 estimates/estimate-retro-runs-on-to-the-handoff updated: the Criterion replaced whole — a line the ledger hook refuses at the end of Retro is written again in a reply that holds only it, and the run goes on to /handoff (case 596.2) · [[decision-case-596.2]] · generate
+- 2026-10-02 decisions/decision-case-596.3 created · raw/2026-10-02/2049/ledger.md#case-596.3 · generate
+- 2026-10-02 estimates/estimate-retro-onward-exits-2-on-an-error updated: the Criterion replaced whole — the error path is judged by its own refusal in the stretch alone, whatever the ledger hook refused after it (case 596.3) · [[decision-case-596.3]] · generate
+- 2026-10-02 estimates/estimate-orchestration-puts-the-harness-before-plan-mode status: pending → passed · raw/2026-10-02/2049/ledger.md#L28 · generate
+- 2026-10-02 estimates/estimate-orchestration-names-related-cases-in-the-dispatch status: pending → passed · raw/2026-10-02/2049/ledger.md#L29 · generate
+- 2026-10-02 estimates/estimate-orchestration-shows-the-built-case status: pending → failed · raw/2026-10-02/2049/ledger.md#L30 · generate
+- 2026-10-02 lessons/lesson-prespec-onward-re-ratification-out-after-its-stretch created · raw/2026-10-02/2049/ledger.md#L31 · generate
+- 2026-10-02 rules/rule-atomicity status: draft → built · cascade · generate
+- 2026-10-02 rules/rule-case-protocol status: draft → built · cascade · generate
+- 2026-10-02 rules/rule-claude-md status: draft → built · cascade · generate
+- 2026-10-02 rules/rule-context-size status: draft → built · cascade · generate
+- 2026-10-02 rules/rule-internal-context status: draft → built · cascade · generate
+- 2026-10-02 rules/rule-prespec-onward status: built → draft · cascade · generate
+- 2026-10-02 decisions/decision-case-575 archived · superseded · generate
+- 2026-10-02 lessons/lesson-prespec-findings-relayed-piecemeal-lose-the-person archived · insight actioned · generate
+- 2026-10-02 lessons/lesson-prespec-second-run-dispatches-ask-guppi-again archived · insight actioned · generate
+- 2026-10-02 lessons/lesson-prespec-report-decisions-off-the-question-shape archived · insight actioned · generate
+- 2026-10-02 lessons/lesson-prespec-report-questions-still-off-the-shape archived · insight actioned · generate
+- 2026-10-02 lessons/lesson-prespec-findings-relayed-piecemeal-lose-the-person archived · cleanup
+- 2026-10-02 lessons/lesson-prespec-report-decisions-off-the-question-shape archived · cleanup
+- 2026-10-02 lessons/lesson-prespec-report-questions-still-off-the-shape archived · cleanup
+- 2026-10-02 lessons/lesson-prespec-second-run-dispatches-ask-guppi-again archived · cleanup
+- 2026-10-02 decisions/decision-case-575 archived · cleanup

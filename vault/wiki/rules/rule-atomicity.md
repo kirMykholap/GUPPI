@@ -2,7 +2,7 @@
 type: rule
 kind: Leaf
 purpose: Prevents a unit from being split or kept whole by taste — one closing judgment, one unit; two conditions that fail apart are two children
-status: draft
+status: built
 enforcement: render
 governs: vault/wiki/ratification.md
 render_mode: partial
@@ -40,3 +40,4 @@ It holds for a Case, an Entity, a Rule and an Estimate alike. Not for a Lesson: 
 - 2026-09-29 status: draft → built · cascade
 - 2026-10-02 updated: rendered into ratification.md under rule-ratification (case 595.5) · [[decision-case-595.5]]
 - 2026-10-02 status: built → draft · cascade
+- 2026-10-02 status: draft → built · cascade

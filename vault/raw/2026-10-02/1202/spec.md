@@ -391,7 +391,7 @@ update:
 - [x] one-off, by hand: the `## How it works` section of `vault/wiki/rules/rule-context-size.md` is removed, heading and text; what of it still holds and the module docstring of `guppi/context.py` does not yet say moves into that docstring first, D counted from the start of the turn
 - [x] update `rule-context-size`
 - [x] update `estimate-context-size-shown-after-each-reply`
-- [ ] read `estimate-context-size-shown-after-each-reply` — in a later session: `uv run pytest tests/test_context.py`
+- [x] read `estimate-context-size-shown-after-each-reply` — in a later session: `uv run pytest tests/test_context.py`
 ```
 
 ### Case 590.3 — The round check reads the turn by the shared function

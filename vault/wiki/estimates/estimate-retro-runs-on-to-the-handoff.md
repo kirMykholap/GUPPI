@@ -3,8 +3,8 @@ type: estimate
 kind: QA
 status: pending
 target: "[[rule-retro]]"
-purpose: Whether /retro reviews the session with no report and no approval, writes every reading and lesson of the turn in one reply, commits on green and calls /handoff in the same turn, writes no defer, and stops only on a condition of vault/wiki/where-to-stop.md
-method: "by hand at the first run from /work to the librarian after the render: the replies of the turn, the ledger, git log and handoff.md read against the Criterion, recorded in the estimate line"
+purpose: Whether /retro reviews the session with no report and no approval, writes every reading and lesson of the turn in one reply and a line the ledger hook refused again in one reply that holds only it, commits on green and calls /handoff in the same turn, writes no defer, and stops only on a condition of vault/wiki/where-to-stop.md
+method: "by hand at the first run from /work to the librarian after the render, and for the answer to a refusal of the ledger hook at the first Retro where that hook refuses a line: the replies of the turn, the ledger, git log and handoff.md read against the Criterion, recorded in the estimate line"
 checked: 2026-10-01
 origin: raw/2026-09-23/1355/ledger.md#case-376
 sprint: migration
@@ -23,9 +23,10 @@ Retro asks for no approval: it sorts the boxes of `raw/<date>/<hi HHMM>/spec.md`
 **＋** The agent commits the work when `make style` is clean and `make test` is green, except for the tests that `## Baseline` of `raw/<date>/<hi HHMM>/work.md` holds.
 **＋** One reply ends Retro: one sentence in the language of the chat that names the commit of the work, then one `LEDGER` block with every reading and lesson of `/work` and Retro; it asks the person nothing.
 **－** That reply shows the person no report: no heading, no list and no other paragraph stands before or after the block, since `raw/<date>/<hi HHMM>/handoff.md` is the report of Retro.
-**＋** After that reply, in the same turn, the agent commits the session folder and calls `/handoff`.
+**＋** When the ledger hook refuses a line of that reply, the agent answers with a reply that holds only a `LEDGER` block with the refused lines written again. No other `LEDGER` block follows the reply that ends Retro.
+**＋** After that reply, or after the reply that answers a refusal of the ledger hook, in the same turn, the agent commits the session folder and calls `/handoff`.
 **－** Retro writes no short defer and ratifies no decision: what needs a decision is a line of `## For the next session` of `raw/<date>/<hi HHMM>/handoff.md`.
-**－** Retro stops for the person only on a condition of `vault/wiki/where-to-stop.md`, with a reply that opens with `STOP:` and asks the person instead.
+**－** Retro stops for the person only on a condition of `vault/wiki/where-to-stop.md`, with a reply that opens with `STOP:` and asks the person instead. The answer to a refusal of the ledger hook is no stop.
 **－** A reading that only the person can take is not taken: it is a line of `## Ask the person` of `raw/<date>/<hi HHMM>/handoff.md`, with its question.
 
 ## Result
@@ -45,3 +46,4 @@ Retro asks for no approval: it sorts the boxes of `raw/<date>/<hi HHMM>/spec.md`
 - 2026-09-30 updated: renamed from estimate-retro-report-holds-each-fact-once and the Criterion replaced whole — no report and no approval: one reply of lines, a commit on green, then /handoff; the promise of each fact once moves to estimate-handoff-holds-each-fact-once (case 531.1) · [[decision-case-531.1]]
 - 2026-10-01 status: pending → failed · raw/2026-10-01/1237/ledger.md#L5
 - 2026-10-01 updated: the Criterion replaced whole — the reply that ends Retro holds one sentence in the language of the chat that names the commit and the LEDGER block, no heading, list or other paragraph; work.md the agent wrote or changed in the same turn counts as read (case 569.1) · [[decision-case-569.1]]
+- 2026-10-02 updated: the Criterion replaced whole — a line the ledger hook refuses at the end of Retro is written again in a reply that holds only it, and the run goes on to /handoff (case 596.2) · [[decision-case-596.2]]

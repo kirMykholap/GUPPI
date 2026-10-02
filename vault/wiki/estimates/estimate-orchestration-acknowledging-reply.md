@@ -4,7 +4,7 @@ kind: QA
 status: pending
 target: "[[rule-orchestration]]"
 purpose: The reply that acknowledges a ratification has four parts in order
-method: one reading by hand of the first acknowledging reply of a session
+method: one reading by hand of the first acknowledging reply of a session, and of the first reply that acknowledges Cases ratified together in one answer
 checked: 2026-10-01
 origin: raw/2026-09-16/1034/ledger.md#case-188
 sprint: migration
@@ -15,14 +15,14 @@ tags: [session, workflow, ledger]
 ## Criterion
 
 When:
-The person ratifies a Case, or ratifies again a Case shown again after its ratification, and the agent writes the reply that acknowledges it, with `vault/wiki/orchestration.md` rendered from `rule-orchestration`.
+The person ratifies a Case, ratifies again a Case shown again after its ratification, or ratifies in one answer Cases shown together, and the agent writes the reply that acknowledges it, with `vault/wiki/orchestration.md` rendered from `rule-orchestration`.
 
 Then:
 The reply has four parts, in this order. First, the `LEDGER` block. Second, the heading `## Case N — ratified` and a paragraph `Changes:` that says what changes, in one or two sentences. Third, a paragraph `Notes:` with facts that did not enter the Case, left out when there are none. Last, the heading `## Frontier` and the lines of `raw/<date>/<hi HHMM>/frontier.md` as a checklist.
 **＋** In the checklist the closed lines are folded into one line, and the lines put off stand as `[-] … · sprint · defer`, `[-] … · backlog · kept` or `[-] … · defer case N`.
 **＋** The open `W` lines are folded into one line that lists their ids, and each other open line stands on its own line with a short title.
 **＋** While a line under `## Cases` is open, the question which item is next ends the reply; when none is open, the reply ends with the Frontier and asks nothing, and the hook of `rule-prespec-onward` sends the agent on.
-**＋** For a Case with sub-cases, one reply acknowledges every sub-case ratified: one `LEDGER` block with all their lines, one heading `## Case N — ratified` that names the ids, one Frontier.
+**＋** One reply acknowledges every Case and sub-case ratified in one answer, a Case with its sub-cases or Cases shown together for one ratification: one `LEDGER` block with all their lines, one heading `## Case N — ratified` that names their ids, one paragraph `Changes:`, one Frontier.
 **＋** The reply that acknowledges a re-ratification carries the `LEDGER` block with the decision lines of each Case ratified again, as at its first ratification.
 **＋** The headings and labels are in the language of the chat.
 **＋** No tool call follows the `LEDGER` block in the same reply.
@@ -52,3 +52,4 @@ The reply has four parts, in this order. First, the `LEDGER` block. Second, the 
 - 2026-10-01 status: pending → passed · raw/2026-10-01/1725/ledger.md#L14
 - 2026-10-02 renamed from `estimate-case-protocol-acknowledging-reply` · [[decision-case-595.8]]
 - 2026-10-02 updated: moved to rule-orchestration; the Criterion replaced whole - the reply as orchestration.md sets it (case 595.8) · [[decision-case-595.8]]
+- 2026-10-02 updated: the Criterion replaced whole — one reply acknowledges every Case ratified in one answer (case 598.2) · [[decision-case-598.2]]

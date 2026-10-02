@@ -2,7 +2,7 @@
 type: rule
 kind: Leaf
 purpose: Prevents a Case from being built in a form the scripts cannot read, or shown for ratification without its content in view
-status: draft
+status: built
 enforcement: render
 governs: vault/wiki/case-schema.md
 render_mode: full
@@ -280,3 +280,4 @@ Silently producing `entity-cart-2` would put a name in the vault that nobody rat
 - 2026-10-01 updated: the main agent names in its prompt to case-guppi each Case of the session that changes a page the item names or acts at the same moment, with its id, a sentence and its case file (case 579.1) · [[decision-case-579.1]]
 - 2026-10-01 estimate estimate-case-protocol-names-related-cases-in-the-dispatch added · [[decision-case-579.1]]
 - 2026-10-02 updated: the Render keeps the form of a Case alone; the main agent's part moves to rule-orchestration, the one rule, the ledger lines, atomicity and the harness to rule-ratification; the file is read by case-guppi and no longer loaded by /hi; the purpose names what this rule alone prevents (case 595.6) · [[decision-case-595.6]]
+- 2026-10-02 status: draft → built · cascade

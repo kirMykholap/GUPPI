@@ -1,11 +1,11 @@
 ---
 type: estimate
 kind: QA
-status: pending
+status: passed
 target: "[[rule-orchestration]]"
 purpose: Whether in a working session the main agent launches no Explore or Plan agent, asks by plain questions and no picker in Plan Mode, and exits Plan Mode only after pre-spec
 method: by hand at the close of a later session, the Agent calls, the picker calls and the ExitPlanMode call of Plan Mode read in the transcript
-checked: 2026-10-01
+checked: 2026-10-02
 origin: raw/2026-09-30/2356/ledger.md#case-561.14
 sprint: migration
 created: 2026-09-30
@@ -25,7 +25,7 @@ The main agent launches no Explore or Plan agent: `case-guppi` builds each Case,
 
 ## Result
 
-2026-10-01, by hand, session 1237 from /hi at 12:37:19 to ExitPlanMode at 14:20:02: the Agent calls were case-guppi three times and ask-guppi once at /pre-spec, no Explore or Plan agent; no picker tool was called while Plan Mode lasted, every question was a plain question in the chat; ExitPlanMode came after the prespec mark of 14:08:41; the choice between /work and /carry was the one picker, after ExitPlanMode
+2026-10-02, the close of session 2049, by hand from the transcript: the Agent calls of Plan Mode were five dispatches of case-guppi and one of ask-guppi at /pre-spec, no Explore or Plan agent; no picker call while Plan Mode lasted, every question a plain question in the chat; ExitPlanMode called once, after /pre-spec and its second check; the only picker, the choice between /work and /carry, came after ExitPlanMode
 
 ## History
 
@@ -33,3 +33,4 @@ The main agent launches no Explore or Plan agent: `case-guppi` builds each Case,
 - 2026-10-01 status: pending → passed · raw/2026-10-01/1237/ledger.md#L33
 - 2026-10-02 renamed from `estimate-case-protocol-puts-the-harness-before-plan-mode` · [[decision-case-595.14]]
 - 2026-10-02 updated: moved to rule-orchestration; the Criterion replaced whole - the order as orchestration.md sets it (case 595.14) · [[decision-case-595.14]]
+- 2026-10-02 status: pending → passed · raw/2026-10-02/2049/ledger.md#L28

@@ -2,7 +2,7 @@
 type: rule
 kind: Leaf
 purpose: Prevents work starting without the current sprint and the previous session's handover
-status: draft
+status: built
 enforcement: render
 governs: .claude/skills/hi/SKILL.md
 render_mode: partial
@@ -53,3 +53,4 @@ prints the paths of these lines back (case 287).
 - 2026-09-27 status: draft → built · cascade
 - 2026-10-02 updated: /hi loads orchestration.md and ratification.md in place of case-schema.md (case 595.4) · [[decision-case-595.4]]
 - 2026-10-02 status: built → draft · cascade
+- 2026-10-02 status: draft → built · cascade

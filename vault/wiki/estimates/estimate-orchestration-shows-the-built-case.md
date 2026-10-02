@@ -1,11 +1,11 @@
 ---
 type: estimate
 kind: QA
-status: pending
+status: failed
 target: "[[rule-orchestration]]"
 purpose: A Case is built by case-guppi and shown by the main agent unchanged
 method: by hand, the Cases of a session at its close, their context against the Agent calls and their showings against the SendUserFile calls of the transcript, and each request for a plain explanation against the Skill and SendMessage calls
-checked: 2026-10-01
+checked: 2026-10-02
 origin: raw/2026-09-24/1303/ledger.md#case-391.2
 sprint: migration
 created: 2026-09-24
@@ -32,7 +32,7 @@ The main agent dispatches `case-guppi` with the Case id, the Frontier item and i
 
 ## Result
 
-2026-10-01, by hand, session 1237: the plan file stood with its title line (Write 12:48:59) before the first dispatch; each dispatch carried the Case id, the Frontier item, its source and the person's words, and nothing of a Case stood in the chat before its answer; each answer to a round and the person's question on a shown round went by SendMessage verbatim; the request to explain Q2 was answered by the main agent through wait-what with no SendMessage for a fact; each round was shown translated question by question with the agent's text after one rule; each Case was sent by SendUserFile with display render on cases/case-<N>.md, with the heading in Russian, one list per Case and sub-case with what done means and how it is checked, one ratification as the answer holds it, and own text after one rule; the Cases built again after /pre-spec were rebuilt by their case-guppi and ratified again; A1 and the W readings closed with no dispatch; ask-guppi once, at /pre-spec; the short-form defers written in English with no dispatch; not exercised: a refused showing
+2026-10-02, the close of session 2049, by hand: each Case dispatched with its id, item, source and the person's words after the plan file stood; every answer to a round sent to the same case-guppi by SendMessage, verbatim; six rounds shown translated, each Context paragraph in place and the own text after one rule; every showing by SendUserFile with display render, a Russian heading, one list from the Estimates and the ratification lines as the answers held them; ratified Cases changed only through their case-guppi; ask-guppi once at /pre-spec; but the showing of the round on Case 599 opened its question with a title line without the colon after the bold title, as the answer held it, against the line of .claude/skills/grill-me/SKILL.md the Criterion sets
 
 ## History
 
@@ -56,3 +56,4 @@ The main agent dispatches `case-guppi` with the Case id, the Frontier item and i
 - 2026-10-01 status: pending → passed · raw/2026-10-01/1237/ledger.md#L34
 - 2026-10-02 renamed from `estimate-case-protocol-shows-the-built-case` · [[decision-case-595.11]]
 - 2026-10-02 updated: moved to rule-orchestration; the Criterion replaced whole - the showing as orchestration.md sets it (case 595.11) · [[decision-case-595.11]]
+- 2026-10-02 status: pending → failed · raw/2026-10-02/2049/ledger.md#L30

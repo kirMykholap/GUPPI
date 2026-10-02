@@ -1,9 +1,10 @@
 ---
 type: insight
 pattern: no rule gives the question shape of the skill grill-me to a question the main agent asks the person itself, so at /pre-spec the main agent writes such a question in its own shape
-status: open
+status: actioned
 children: ["[[lesson-prespec-report-decisions-off-the-question-shape]]", "[[lesson-prespec-report-questions-still-off-the-shape]]"]
-severity: 2
+severity: 0
+addressed_by: "[[decision-case-561.13]]"
 origin: raw/2026-09-30/1306/ledger.md#L48
 sprint: migration
 created: 2026-09-30
@@ -21,3 +22,4 @@ A suggestion, not a decision. The rule that governs the main agent's own questio
 ## History
 
 - 2026-09-30 created · raw/2026-09-30/1306/ledger.md#L48
+- 2026-10-02 updated: actioned: orchestration.md and the pre-spec skill give the grill-me shape to each question the main agent puts to the person itself (case 561.13); no lesson of the cause since (case 599) · [[decision-case-599]]

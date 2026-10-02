@@ -2,7 +2,7 @@
 type: rule
 kind: Leaf
 purpose: Prevents a session from running on while the person cannot see how full the context window is
-status: draft
+status: built
 enforcement: hook
 implementation_ref: [guppi/context.py, tests/test_context.py, .claude/settings.json]
 parent: "[[rule-harness]]"
@@ -39,3 +39,4 @@ Prevents a session from running on while the person cannot see how full the cont
 - 2026-10-01 status: draft → built · cascade
 - 2026-10-02 updated: ## How it works left the Leaf, its mechanism in the docstring of guppi/context.py; D counts from the start of the turn, named by the function of guppi/ledger.py (case 590.2) · [[decision-case-590.2]]
 - 2026-10-02 status: built → draft · cascade
+- 2026-10-02 status: draft → built · cascade

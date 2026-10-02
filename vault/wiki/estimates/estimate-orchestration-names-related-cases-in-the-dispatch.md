@@ -1,11 +1,11 @@
 ---
 type: estimate
 kind: QA
-status: pending
+status: passed
 target: "[[rule-orchestration]]"
 purpose: Whether the main agent's prompt to case-guppi names each Case of the session that changes a page the item names or acts at the same moment, by its id, one sentence on what it sets and the path of its case file
 method: by hand at the close of a later session after the render, each Agent call to case-guppi in the transcript read against the Cases ratified or shown before it; a related Case not named, and a named Case without its sentence or its case file, counted in the reading line
-checked: 2026-10-01
+checked: 2026-10-02
 origin: raw/2026-10-01/1441/ledger.md#case-579.1
 sprint: migration
 created: 2026-10-01
@@ -26,7 +26,7 @@ The prompt of the call names each Case of the session, ratified or already shown
 
 ## Result
 
-2026-10-01, by hand, session 1725, the three Agent calls to case-guppi (cases 582, 583, 584) read against the Cases ratified before each: no Case of the session changed a page of the item or acted at its moment, so 0 related Cases not named; each prompt held the Case id, the Frontier item with its source and the person's words; the prompt of 583 named 582 as unrelated with a sentence and its case file, the prompt of 584 named 582 and 583 as unrelated with a sentence each and no case file, which the Criterion asks only of a related Case
+2026-10-02, the close of session 2049, by hand: five Agent calls to case-guppi; 596 named none, no Case before it; 597 named 596; 598 named 596 and 597; 599 named 598; 600 named 598, 599 and 597; each named Case by its id, one sentence on what it sets and which pages it changes, and its case file path; 596 was not named for 599 and 600, which change no page it names and act at another moment; no prompt sent case-guppi to search the Cases of the session; 0 related Cases left unnamed
 
 ## History
 
@@ -34,3 +34,4 @@ The prompt of the call names each Case of the session, ratified or already shown
 - 2026-10-01 status: pending → passed · raw/2026-10-01/1725/ledger.md#L15
 - 2026-10-02 renamed from `estimate-case-protocol-names-related-cases-in-the-dispatch` · [[decision-case-595.15]]
 - 2026-10-02 updated: moved to rule-orchestration; the Criterion replaced whole - the dispatch as orchestration.md sets it (case 595.15) · [[decision-case-595.15]]
+- 2026-10-02 status: pending → passed · raw/2026-10-02/2049/ledger.md#L29

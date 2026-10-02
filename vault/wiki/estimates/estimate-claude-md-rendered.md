@@ -1,11 +1,11 @@
 ---
 type: estimate
 kind: QA
-status: pending
+status: passed
 target: "[[rule-claude-md]]"
 purpose: CLAUDE.md equals the Render of rule-claude-md with each child between its markers, and every session loads that text
 method: uv run guppi render and guppi render --check after the build, plus one reading of CLAUDE.md at the next session start, by hand
-checked: 2026-09-29
+checked: 2026-10-02
 origin: raw/2026-09-12/ledger.md#case-71.1
 sprint: migration
 created: 2026-09-12
@@ -25,7 +25,7 @@ Then:
 
 ## Result
 
-2026-09-29, session 1134: uv run guppi render --check exit 0; CLAUDE.md read at session start: # GUPPI, the one paragraph with vault/, the glossary path and /hi in code spans, then rule-language, rule-agent-writing and rule-one-judgment-one-implementation in their markers; no @ import, no one rule
+2026-10-02, the session start of 2049: `uv run guppi render --check` exit 0; CLAUDE.md in the session's context: # GUPPI, the one paragraph with vault/, vault/wiki/glossary.md and /hi in code spans, then rule-language, rule-agent-writing and rule-one-judgment-one-implementation between their markers, lines 5 to 23; no @ import, no one rule; rule-claude-md children are those three
 
 ## History
 
@@ -46,3 +46,4 @@ Then:
 - 2026-09-29 updated: the Criterion replaced whole — When and Then only, Given and the history of Migration mode out (case 492.2) · [[decision-case-492.2]]
 - 2026-09-29 status: pending → passed · raw/2026-09-29/1134/ledger.md#L41
 - 2026-10-02 updated: the Criterion replaced whole - the one rule is in ratification.md (case 595.21) · [[decision-case-595.21]]
+- 2026-10-02 status: pending → passed · raw/2026-10-02/2049/ledger.md#L6

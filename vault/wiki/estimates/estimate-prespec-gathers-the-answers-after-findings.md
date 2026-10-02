@@ -26,7 +26,7 @@ The main agent sends each finding in a Case, with each answer of the report that
 **＋** It then shows the person one list of every round that came back, each question in the shape of `.claude/skills/grill-me/SKILL.md` and numbered `<Case id>.Q<n>` by the Case it belongs to, sends each answer to the `case-guppi` of its Case in one message, and repeats the wait and the list until every `case-guppi` it sent has answered with its Case.
 **＋** It then shows every Case built again in one reply, in the showing that `vault/wiki/orchestration.md` sets, for one ratification.
 **－** When an answer brings back a round while another answer is still out, the round is not shown in that turn, and `uv run guppi casecheck` does not refuse the reply that opens with the labelled line.
-**－** Outside this loop no Case is taken up before the current one is ratified or deferred.
+**－** Outside this loop, Cases go out together for one ratification only in a batch, as `vault/wiki/orchestration.md` sets it.
 **－** A question that no answer settles stays in the next list under its number.
 
 ## Result
@@ -40,3 +40,4 @@ The main agent sends each finding in a Case, with each answer of the report that
 - 2026-10-01 updated: the Criterion replaced whole — one labelled line per waiting turn instead of no text while answers are out (case 581.1) · [[decision-case-581.1]]
 - 2026-10-02 status: pending → passed · raw/2026-10-02/1202/ledger.md#L56
 - 2026-10-02 updated: the Criterion replaced whole - nothing goes to a case-guppi before every question of the report is answered (case 595.1) · [[decision-case-595.1]]
+- 2026-10-02 updated: the Criterion replaced whole — outside the loop, Cases go out together only in a batch that orchestration.md sets (case 598.3) · [[decision-case-598.3]]

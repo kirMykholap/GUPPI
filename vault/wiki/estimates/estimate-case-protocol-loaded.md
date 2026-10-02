@@ -1,11 +1,11 @@
 ---
 type: estimate
 kind: QA
-status: pending
+status: passed
 target: "[[rule-case-protocol]]"
 purpose: The form of a Case stands in one text, the Render of rule-case-protocol, which /hi does not load and the main agent does not read, with nothing of orchestration.md or ratification.md repeated in it and nothing of it repeated in CLAUDE.md
 method: uv run guppi render --check; by hand after the librarian's render, case-schema.md, orchestration.md and ratification.md compared paragraph by paragraph, and at the first /hi of a later session the first turn's context and the main agent's read calls in the transcript
-checked: 2026-09-24
+checked: 2026-10-02
 origin: raw/2026-09-09/ledger.md#case-13
 sprint: migration
 created: 2026-09-09
@@ -25,7 +25,7 @@ Then:
 
 ## Result
 
-2026-09-24, `uv run guppi render --check`: exit 0; by hand, the `/hi` of session 2214 carried `vault/wiki/case-schema.md` whole in its context
+2026-10-02, the /hi of session 2049: `uv run guppi render --check` exit 0; the @ lines of .claude/skills/hi/SKILL.md name six files, case-schema.md not among them; the first turn's context holds no case-schema.md and the agent made no Read call on it; a script opened it and printed counts only: 21 paragraphs, 0 shared with CLAUDE.md, orchestration.md or ratification.md, and the words given, when, then, tasks, ratification, operand, language, sub-case, slug and deferred present
 
 ## History
 
@@ -77,3 +77,4 @@ Then:
 - 2026-09-25 updated: the Criterion replaced whole — the Render present from the first turn after /hi and equal to the page, the journal of its paragraphs out (cases 378.5, 396.2) · [[decision-case-396.2]]
 - 2026-09-25 status: pending → passed · raw/2026-09-24/2214/ledger.md#L48
 - 2026-10-02 updated: the Criterion replaced whole - the file holds the form of a Case alone and is not loaded by /hi (case 595.6) · [[decision-case-595.6]]
+- 2026-10-02 status: pending → passed · raw/2026-10-02/2049/ledger.md#L5

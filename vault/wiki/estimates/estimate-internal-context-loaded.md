@@ -1,11 +1,11 @@
 ---
 type: estimate
 kind: QA
-status: pending
+status: passed
 target: "[[rule-internal-context]]"
 purpose: The text of sprint.md, backlog.md, brief.md, orchestration.md, ratification.md and glossary.md is present in the first turn's context after /hi, without a read call, and case-schema.md is not
 method: one reading at the /hi of a session, by hand
-checked: 2026-09-27
+checked: 2026-10-02
 origin: raw/2026-09-09/ledger.md#case-11
 sprint: migration
 created: 2026-09-09
@@ -25,7 +25,7 @@ The text of `vault/wiki/sprint.md`, `vault/wiki/backlog.md`, `vault/wiki/brief.m
 
 ## Result
 
-2026-09-27, by hand, the /hi of session 1819: sprint.md, backlog.md, brief.md, case-schema.md and glossary.md present in the first turn in that order, expanded by the @ lines of the skill, no read call of the agent; no compaction so far, guppi recall not exercised
+2026-10-02, the /hi of session 2049, by hand: sprint.md, backlog.md, brief.md, orchestration.md, ratification.md and glossary.md in the first turn's context in that order, no read call of the agent; case-schema.md not in it; guppi/recall.py lists the @ lines of .claude/skills/hi/SKILL.md, which name the six files; no compaction, guppi recall not exercised live; no subagent dispatched
 
 ## History
 
@@ -40,3 +40,4 @@ The text of `vault/wiki/sprint.md`, `vault/wiki/backlog.md`, `vault/wiki/brief.m
 - 2026-09-27 updated: the Criterion replaced whole — backlog.md loaded by /hi (case 451.12) · [[decision-case-451.12]]
 - 2026-09-27 status: pending → passed · raw/2026-09-27/1819/ledger.md#L17
 - 2026-10-02 updated: the Criterion replaced whole - orchestration.md and ratification.md in place of case-schema.md (case 595.4) · [[decision-case-595.4]]
+- 2026-10-02 status: pending → passed · raw/2026-10-02/2049/ledger.md#L3

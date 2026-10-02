@@ -128,8 +128,8 @@ update:
 ```
 
 ```tasks
-- [ ] update `rule-retro-onward`
-- [ ] update `estimate-retro-onward-sends-the-agent-to-the-handoff`
+- [x] update `rule-retro-onward`
+- [x] update `estimate-retro-onward-sends-the-agent-to-the-handoff`
 - [x] `guppi/ledger.py`: a function that gives, for the command of a `Stop` hook, its refusals in the stretch, each with the reply of the agent it follows. It is the one judgment `guppi/onward.py` uses for its own refusals and for those of the ledger hook; `own_refusals` keeps its answer.
 - [x] `guppi/onward.py`: the run without `--plan` exits 0 when its own refusal is spent, judged by that function. The module docstring says so.
 - [x] `tests/test_onward.py`: a ledger refusal after the same reply as its own last refusal, or after a later reply, sends it on again; a ledger refusal only before that reply, or a refusal of another hook after it, does not.
@@ -181,9 +181,9 @@ update:
 ```
 
 ```tasks
-- [ ] update `rule-retro`
-- [ ] update `estimate-retro-runs-on-to-the-handoff`
-- [ ] `uv run guppi render`: `.claude/skills/retro/SKILL.md`
+- [x] update `rule-retro`
+- [x] update `estimate-retro-runs-on-to-the-handoff`
+- [x] `uv run guppi render`: `.claude/skills/retro/SKILL.md`
 - [ ] read `estimate-retro-runs-on-to-the-handoff`
 ```
 
@@ -216,7 +216,7 @@ update:
 ```
 
 ```tasks
-- [ ] update `estimate-retro-onward-exits-2-on-an-error`
+- [x] update `estimate-retro-onward-exits-2-on-an-error`
 - [x] `guppi/onward.py`: the error path keeps its own refusal in the stretch as its guard, whatever the ledger hook refused after it.
 - [x] `tests/test_onward.py`: the error path with its own refusal and a later ledger refusal in the stretch exits 0.
 - [x] `uv run pytest tests/test_onward.py`
@@ -337,8 +337,8 @@ update:
 ```
 
 ```tasks
-- [ ] update `rule-prespec-onward`
-- [ ] update `estimate-prespec-onward-sends-the-agent-on`
+- [x] update `rule-prespec-onward`
+- [x] update `estimate-prespec-onward-sends-the-agent-on`
 - [x] `guppi/onward.py`: the run with `--plan` exits 0 when its own refusal is spent, judged by the function of `guppi/ledger.py` that Case 596.1 adds, with the command `uv run guppi onward --plan`. `stop_hook_active` stays a guard only when the transcript cannot be read. The error path keeps its own refusal in the stretch as its guard. The module docstring says so.
 - [x] `tests/test_onward.py`: with the flag set and a refusal of another hook in the stretch, it sends the agent on. A ledger refusal after the same reply as its own last refusal, or after a later reply, sends it on again. Its own refusal with no later ledger refusal is silent. The flag set with a transcript it cannot read is silent. The error path with its own refusal in the stretch exits 0.
 - [x] `uv run pytest tests/test_onward.py tests/test_ledger.py`
@@ -402,8 +402,8 @@ update:
 ```
 
 ```tasks
-- [ ] update `rule-prespec-onward`
-- [ ] create `estimate-prespec-onward-reads-the-decisions-of-the-stretch`
+- [x] update `rule-prespec-onward`
+- [x] create `estimate-prespec-onward-reads-the-decisions-of-the-stretch`
 - [x] `guppi/onward.py`: `last_decisions` also reads the decision lines of each main-agent reply of the stretch, by the function of the stretch in `guppi/ledger.py` and `ledger_lines`, each at the time of its record by `moment` of `guppi/casecheck.py`. The module docstring says so.
 - [x] `tests/test_onward.py`: a Case file newer than its ledger lines and older than a reply of the stretch that carried them is not out at a later reply with only a lesson line. The same Case with no such reply is out. A record with no readable time counts none of its lines.
 - [x] `uv run pytest tests/test_onward.py`
@@ -544,9 +544,9 @@ update:
 ```
 
 ```tasks
-- [ ] update `rule-orchestration`
-- [ ] create `estimate-orchestration-signs-a-batch-together`
-- [ ] `uv run guppi render`: `vault/wiki/orchestration.md`
+- [x] update `rule-orchestration`
+- [x] create `estimate-orchestration-signs-a-batch-together`
+- [x] `uv run guppi render`: `vault/wiki/orchestration.md`
 - [ ] read `estimate-orchestration-signs-a-batch-together`
 ```
 
@@ -591,9 +591,9 @@ update:
 ```
 
 ```tasks
-- [ ] update `rule-orchestration`
-- [ ] update `estimate-orchestration-acknowledging-reply`
-- [ ] `uv run guppi render`: `vault/wiki/orchestration.md`
+- [x] update `rule-orchestration`
+- [x] update `estimate-orchestration-acknowledging-reply`
+- [x] `uv run guppi render`: `vault/wiki/orchestration.md`
 - [ ] read `estimate-orchestration-acknowledging-reply`
 ```
 
@@ -631,7 +631,7 @@ update:
 ```
 
 ```tasks
-- [ ] update `estimate-prespec-gathers-the-answers-after-findings`
+- [x] update `estimate-prespec-gathers-the-answers-after-findings`
 - [ ] read `estimate-prespec-gathers-the-answers-after-findings`
 ```
 
@@ -696,7 +696,7 @@ update:
 ```
 
 ```tasks
-- [ ] update `insight-prespec-main-agent-question-off-the-grill-me-shape`
+- [x] update `insight-prespec-main-agent-question-off-the-grill-me-shape`
 ```
 
 ## Case 600 — The Insight on the loop after the pre-spec findings is closed by the rules that set the loop
@@ -768,5 +768,5 @@ update:
 ```
 
 ```tasks
-- [ ] update `insight-prespec-after-findings-loop-unruled`
+- [x] update `insight-prespec-after-findings-loop-unruled`
 ```

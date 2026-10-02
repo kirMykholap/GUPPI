@@ -194,7 +194,7 @@ TOOL = "ExitPlanMode"
 TIMED_RECORD = re.compile(r"^- (\d\d:\d\d:\d\d) (decision|estimate|lesson)\[")
 LEAF_CATEGORIES = ("rules", "entities")
 LINE_PREVIEW = 80
-# `case-schema.md` writes the line as `decision[case_id]…`; `parse_line` reads `[case N]`.
+# `ratification.md` writes the line as `decision[case_id]…`; `parse_line` reads `[case N]`.
 # A bare id is read as the same line rather than skipped (the lines of 2026-09-12).
 BARE_CASE = re.compile(r"^(- (?:\d\d:\d\d:\d\d )?decision\[)(?!case )")
 # the lists whose open lines are no finding: Work waits for Work Mode (case 356.1), Ask for

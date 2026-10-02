@@ -538,7 +538,7 @@ def run(argv, *, stdin=None, stderr=None, project_dir: Path | None = None, now=N
         finished = {body(line) for line in ledger_lines(reply_text(payload))}
         messages = [
             "ledger: line not written — the grammar of a ledger line does not read it: "
-            f"{body(line)}. Write it again in the form of the table in case-schema.md."
+            f"{body(line)}. Write it again in the form of the table in ratification.md."
             for line in broken
             if body(line) in finished
         ]

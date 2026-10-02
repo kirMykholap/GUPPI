@@ -725,7 +725,7 @@ BROKEN = "- estimate[estimate-x-holds] note [passed] 2026-09-09, pytest; green"
 BROKEN_LESSON = "- lesson[wrong][harness-x] trigger: a root_cause: b {addressed_by:case 99}"
 BROKEN_REFUSAL = (
     "ledger: line not written — the grammar of a ledger line does not read it: {}. "
-    "Write it again in the form of the table in case-schema.md.\n"
+    "Write it again in the form of the table in ratification.md.\n"
 )
 
 

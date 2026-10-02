@@ -414,8 +414,14 @@ def round_of(*titles):
     """A round of questions in the template of the skill `grill-me`, one question per title."""
     parts = ["**Context:**\nThe item.\n"]
     for n, title in enumerate(titles, 1):
-        parts.append(f"❓ **Q{n}** - **{title}**:\n\n**Now:** it stands.\n\n➡️ (a).\n")
+        parts.append(f"❓ **Q{n}** - **{title}**:\n\n{QUESTION_BODY}")
     return "\n".join(parts)
+
+
+QUESTION_BODY = (
+    "**Now:** it stands.\n\n**Options:**\n\n🔹 **(a) Keep it**\n  - **After:** it stays.\n\n"
+    "🔹 **(b) Change it**\n  - **After:** it moves.\n\n➡️ (a).\n"
+)
 
 
 def with_items(*titles):
@@ -474,6 +480,86 @@ def test_subagent_rounds_the_words_after_the_title_are_not_judged(working):
     items = "> - **Which test?**\n>   - Anything at all.\n"
     odd = ANSWER.replace("> **recommend:**\n> Advice.\n", "> **recommend:**\n" + items)
     path = transcript(working, [text(round_of("Which test?"))], [text(odd)])
+    assert answer(working, "", agent_transcript_path=path) == (0, "")
+
+
+def test_subagent_rounds_a_round_sent_back_for_its_form_gives_no_title(working):
+    # case 601.5: the round sent back stays in the transcript; its changed title is not required
+    faulty = round_of("Which page?").replace("**Now:** it stands.\n\n", "")
+    path = transcript(
+        working,
+        [text(faulty)],
+        [text(round_of("Which page changes?"))],
+        [text(with_items("Which page changes?"))],
+    )
+    assert answer(working, "", agent_transcript_path=path) == (0, "")
+
+
+# --- the form of a round (case 601.1) -------------------------------------------------------
+
+
+def round_answer(working, *outputs):
+    """The `--subagent` run on a transcript whose outputs are the given texts, in order."""
+    return answer(
+        working, "", agent_transcript_path=transcript(working, *[[text(o)] for o in outputs])
+    )
+
+
+def test_subagent_round_form_a_round_in_form_passes_unstored(working):
+    assert round_answer(working, round_of("Which page?", "Which test?")) == (0, "")
+    assert store(working) is None
+    assert not (working.joinpath(*FOLDER) / "cases").exists()
+
+
+@pytest.mark.parametrize(
+    ("old", "new", "missing"),
+    [
+        ("**Which page?**:", "**Which page?**", "the title line"),
+        ("**Now:** it stands.\n\n", "", "a `**Now:**` line"),
+        ("**Options:**\n", "**Options:** two\n", "the `**Options:**` label alone"),
+        ("  - **After:** it stays.\n", "", None),
+        ("➡️ (a).\n", "", "a `➡️` line"),
+    ],
+)
+def test_subagent_round_form_a_question_out_of_form_is_sent_back(working, old, new, missing):
+    faulty = round_of("Which page?").replace(old, new)
+    if missing is None:  # no option keeps an After item
+        faulty = faulty.replace("  - **After:** it moves.\n", "")
+        missing = "an option `🔹` with an `- **After:**` item"
+    code, err = round_answer(working, faulty)
+    assert code == 2
+    assert missing in err and "Which page?" in err and "answer with the round whole again" in err
+    assert store(working) is None
+
+
+def test_subagent_round_form_the_same_faulty_round_is_sent_back_once(working):
+    faulty = round_of("Which page?").replace("**Which page?**:", "**Which page?**")
+    assert round_answer(working, faulty)[0] == 2
+    assert round_answer(working, faulty, faulty + "  \n") == (0, "")
+
+
+def test_subagent_round_form_a_fact_and_a_case_are_not_judged_as_rounds(working):
+    fact = "**Fact:** The page says so.\n\n❓ **Q1** - **Which page?**\n"
+    assert round_answer(working, fact) == (0, "")
+    assert round_answer(working, ANSWER) == (0, "")
+
+
+def test_subagent_round_form_an_unreadable_transcript_is_not_judged(working):
+    faulty = round_of("Which page?").replace("**Which page?**:", "**Which page?**")
+    missing = str(working / "none.jsonl")
+    assert answer(working, faulty, agent_transcript_path=missing) == (0, "")
+
+
+def test_subagent_round_form_no_plan_file_still_sends_the_round_back(working):
+    (working / ".claude" / "plans" / "plan.md").unlink()
+    faulty = round_of("Which page?").replace("**Which page?**:", "**Which page?**")
+    code, err = round_answer(working, faulty)
+    assert code == 2 and "the title line" in err
+
+
+def test_subagent_round_form_the_indent_of_a_hand_back_is_set_aside(working):
+    indented = "  " + round_of("Which page?").replace("\n", "\n  ")
+    path = transcript(working, [handback(indented)])
     assert answer(working, "", agent_transcript_path=path) == (0, "")
 
 
@@ -899,6 +985,14 @@ def test_round_a_record_with_no_origin_opens_no_turn(working):
         "message": {"role": "user", "content": "<command-name>/clear</command-name>"},
     }
     records = [prompt(), assistant(agent_call()), agent_result(ROUND), clear]
+    code, err = show(working, "A line of my own.\n\n" + SHOWN_ROUND, records=records)
+    assert code == 2 and "A line of my own." in err
+
+
+def test_round_a_round_whose_title_line_lacks_its_colon_is_a_round(working):
+    # case 601.4: the Stop run knows a round by `is_round`, the mark alone, not QUESTION_LINE
+    no_colon = ROUND.replace("**Which way?**:", "**Which way?**")
+    records = [prompt(), assistant(agent_call()), agent_result(no_colon)]
     code, err = show(working, "A line of my own.\n\n" + SHOWN_ROUND, records=records)
     assert code == 2 and "A line of my own." in err
 

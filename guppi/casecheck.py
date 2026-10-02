@@ -28,7 +28,8 @@ since `problem` stands on its parent only (case 544.4). The text of the story se
 requires the sections and their order (case 449), but for the titles of the items of
 `recommend`: it reads the earlier outputs of the subagent in `agent_transcript_path` that hold
 no Case heading — its rounds — and takes the title of each question from its line
-`❓ **Q<n>** - **<title>**:`; a title that no item of a `recommend` of the answer opens with,
+`❓ **Q<n>** - **<title>**:`, a round that `round_form` finds out of form giving no title
+(case 601.5); a title that no item of a `recommend` of the answer opens with,
 in bold, is a finding of the top-level Case, a title asked in more than one round looked for
 once and the words of an item after its title not judged (case 544.3). It runs over the same
 Spec text the language finding of `/pre-spec`,
@@ -57,8 +58,23 @@ back (measured 2026-09-25, session 0051), whatever `stop_hook_active` says: Clau
 on the second fire after a handback with no exit 2 of this hook (measured 2026-09-26, session
 1337). The store guards the loop: when every Case with findings stands in the store with the
 same text and findings, they are stored again and the hook exits 0. An answer with no Case
-heading, where no earlier output holds one either, is not checked or stored. With no plan
-file of the session nothing is stored or sent back.
+heading, where no earlier output holds one either, is not checked or stored as a Case; such
+an output is still judged as a round by the check of the form, which stores nothing. With no
+plan file of the session no Case is stored or sent back.
+
+The form of a round (case 601.1). Before the check of a Case, the same `--subagent` run
+judges the newest output of `case-guppi` in `agent_transcript_path` by `round_form`: a text
+that `is_round` — the one test of a round, which the `Stop` run imports too — finds a round
+has each question, from a line that opens with `❓` to the next, judged against the
+template of the skill `grill-me`: the title line by `QUESTION_LINE`, the one pattern every
+check of a round reads; a `**Now:**` line; the `**Options:**` label alone on its line; an
+option `🔹` with a `- **After:**` item; a `➡️` line. A question out of form is a finding
+that names its first line and each part it misses and tells the agent to answer with the
+round whole again; the findings join those of the check of a Case in one exit 2. A round
+whose text an earlier output already holds, trailing spaces aside, is not sent back again
+(`faulty_round`). The check stores nothing and writes no file, with or without a plan file;
+an unreadable transcript is not judged; a round as the main agent shows it is not judged
+here.
 
 The same comparison — `against_store` — and the same reading of a sending — `sendings`,
 under `sent` — serve this module's `stop` and the Spec hook, which writes the stored answer
@@ -88,8 +104,10 @@ no `when` — are not compared and need no sending. On the re-fire exit 0; outsi
 session — no `hi` — nothing is done.
 
 How a round opens (case 562). The same `Stop` run judges a reply whose turn holds a round
-of `case-guppi`: a text a subagent gave back in the turn, by `given_back`, that holds a
-question line by `QUESTION_LINE`, no Case heading and no first line `**Fact:**`. It exits 2
+of `case-guppi`: a text a subagent gave back in the turn, by `given_back`, that `is_round`
+finds a round — the one test of a round, a line that opens with `❓`, no Case heading and no
+`**Fact:**` line before it, not a `QUESTION_LINE` match, so a round whose title line lacks
+its colon is judged too (case 601.4). It exits 2
 when the first line of the reply that is not blank opens neither with `❓ ` nor with a bold
 label that ends in a colon — the label of the Context paragraph, translated — and, while the
 session's event log holds no `prespec` line of this session after its `hi`, judged by
@@ -195,6 +213,14 @@ MECHANICAL = ("given", "when", "then", "tasks", "ratification")
 # and the title of an item of `recommend` (case 544.3).
 QUESTION_LINE = re.compile(r"^❓ \*\*Q\d+\*\* - \*\*(.+?)\*\*:")
 RECOMMEND_ITEM = re.compile(r"^- \*\*(.+?)\*\*")
+# The parts of a question of a round, as the template of the skill `grill-me` writes them: the
+# mark that opens a question, and the fixed labels each question holds (case 601.1).
+QUESTION_MARK = "❓"
+NOW_LABEL = "**Now:**"
+OPTIONS_LABEL = "**Options:**"
+OPTION_MARK = "🔹"
+AFTER_ITEM = "- **After:**"
+ARROW = "➡"
 
 
 def store_of(plan: Path) -> Path:
@@ -575,29 +601,113 @@ def answer_of(payload: dict) -> str:
 def round_titles(payload: dict) -> list[str]:
     """The title of each question of the rounds of the subagent, in order: the outputs in
     `agent_transcript_path` that hold no Case heading, each line `❓ **Q<n>** - **<title>**:`
-    of the question template of the skill `grill-me` (case 544.3). An unreadable transcript
-    gives none."""
+    of the question template of the skill `grill-me` (case 544.3). An output that
+    `round_form` finds out of form gives none, so a round the hook sent back adds no title
+    the person never saw (case 601.5). An unreadable transcript gives none."""
     titles: list[str] = []
-    for record in read_records(payload.get("agent_transcript_path")) or []:
-        if record.get("type") != "assistant":
+    for text in subagent_outputs(payload) or []:
+        if split_cases(text) or round_form(text):
             continue
-        for text in outputs(record):
-            if split_cases(text):
-                continue
-            for line in text.splitlines():
-                match = QUESTION_LINE.match(line.strip())
-                if match:
-                    titles.append(match.group(1).strip())
+        for line in text.splitlines():
+            match = QUESTION_LINE.match(line.strip())
+            if match:
+                titles.append(match.group(1).strip())
     return titles
+
+
+def subagent_outputs(payload: dict) -> list[str] | None:
+    """Every output of the subagent in `agent_transcript_path`, in order, by `outputs`; None
+    when the transcript is not readable."""
+    records = read_records(payload.get("agent_transcript_path"))
+    if records is None:
+        return None
+    return [
+        text
+        for record in records
+        if isinstance(record, dict) and record.get("type") == "assistant"
+        for text in outputs(record)
+    ]
+
+
+def round_form(text: str) -> list[str]:
+    """Case 601.1: the findings of each question out of the form of the template of the skill
+    `grill-me`, for a text that `is_round` finds a round; none for any other text. A question
+    opens at a line that opens with `❓` and runs to the next such line or to the end; the
+    text before the first one, the Context paragraph, is not judged. A question is out of
+    form when its first line does not match `QUESTION_LINE`; when it holds no line that opens
+    with `**Now:**`, no line that is `**Options:**` alone, or no line that opens with `➡️`;
+    or when no line that opens with `🔹` has a line that opens with `- **After:**` after it,
+    before the next `🔹` or `➡️` line. The lines are read with their indent set aside."""
+    if not is_round(text):
+        return []
+    questions: list[list[str]] = []
+    for line in (line.strip() for line in text.splitlines()):
+        if line.startswith(QUESTION_MARK):
+            questions.append([line])
+        elif questions:
+            questions[-1].append(line)
+    findings: list[str] = []
+    for first, *body in questions:
+        missing = []
+        if not QUESTION_LINE.match(first):
+            missing.append("the title line `❓ **Q<n>** - **<title>**:`")
+        if not any(line.startswith(NOW_LABEL) for line in body):
+            missing.append(f"a `{NOW_LABEL}` line")
+        if OPTIONS_LABEL not in body:
+            missing.append(f"the `{OPTIONS_LABEL}` label alone on its line")
+        if not option_with_after(body):
+            missing.append(f"an option `{OPTION_MARK}` with an `{AFTER_ITEM}` item")
+        if not any(line.startswith(ARROW) for line in body):
+            missing.append("a `➡️` line")
+        if missing:
+            findings.append(f"the question {first[:100]!r} misses {', '.join(missing)}")
+    return findings
+
+
+def option_with_after(lines: list[str]) -> bool:
+    """Whether a line that opens with `🔹` has a line that opens with `- **After:**` after it,
+    before the next `🔹` or `➡️` line (case 601.1)."""
+    in_option = False
+    for line in lines:
+        if line.startswith(OPTION_MARK):
+            in_option = True
+        elif line.startswith(ARROW):
+            in_option = False
+        elif in_option and line.startswith(AFTER_ITEM):
+            return True
+    return False
+
+
+def faulty_round(payload: dict) -> list[str]:
+    """Case 601.1: the findings of `round_form` on the newest output of the subagent, or none
+    when an earlier output holds the same text, trailing spaces aside — a round sent back once
+    and given again unchanged is not sent back again, and nothing is stored. An unreadable
+    transcript gives none."""
+    texts = subagent_outputs(payload)
+    if not texts:
+        return []
+    found = round_form(texts[-1])
+    if not found:
+        return []
+    if any(spaces_aside(text) == spaces_aside(texts[-1]) for text in texts[:-1]):
+        return []
+    return found + ["answer with the round whole again"]
+
+
+def spaces_aside(text: str) -> list[str]:
+    """The lines of a text with the spaces at their ends and the blank lines at its ends set
+    aside."""
+    return [line.rstrip() for line in text.strip().splitlines()]
 
 
 def subagent(payload: dict, project_dir: Path, now, stderr) -> int:
     if payload.get("agent_type") != AGENT:
         return 0
+    form = faulty_round(payload)  # a round out of form, sent back with no store (case 601.1)
     text = answer_of(payload)
     cases = split_cases(text)
     if not cases:
-        return 0
+        return send_back(form, stderr)
     stamp = session_stamp(None, payload)
     folder = session_dir(project_dir, now, stamp)
     window = ledger_of(folder)
@@ -605,7 +715,7 @@ def subagent(payload: dict, project_dir: Path, now, stderr) -> int:
     found, notes = check_answer(text, project_dir, window, frontier, round_titles(payload))
     plan = plan_path(session_event_logs(project_dir, now, stamp), stamp)
     if plan is None or not plan.is_file():
-        return 0  # no plan file: nothing stored, nothing sent back (case 434)
+        return send_back(form, stderr)  # no plan file: no Case stored or sent back (case 434)
     store = read_store(plan)
     heads = headings(text)
     repeated = True  # every Case with findings stands in the store as it is, findings and all
@@ -634,9 +744,17 @@ def subagent(payload: dict, project_dir: Path, now, stderr) -> int:
     if not findings and folder is not None:  # the file of a Case that passed (case 452.1)
         write_case_files(folder, list(cases), store)
     if (findings and not repeated) or fresh:  # the store guards the loop (434, 472.1)
-        print("casecheck: " + "; ".join(findings + fresh), file=stderr)
-        return 2
-    return 0
+        return send_back(findings + fresh + form, stderr)
+    return send_back(form, stderr)
+
+
+def send_back(findings: list[str], stderr) -> int:
+    """Exit 2 with the findings on stderr, so Claude Code sends `case-guppi` back; 0 when
+    there are none."""
+    if not findings:
+        return 0
+    print("casecheck: " + "; ".join(findings), file=stderr)
+    return 2
 
 
 def ledger_of(folder: Path | None) -> list[str]:
@@ -817,16 +935,18 @@ def given_back(records: list[dict]) -> list[str]:
 
 
 def is_round(text: str) -> bool:
-    """A round of `case-guppi`: a question line `❓ **Q<n>** - **<title>**:` of the skill
-    `grill-me`, no Case heading, and no first line `**Fact:**`. The lines are read with their
-    indent set aside: the harness indents a hand-back."""
+    """A round of `case-guppi`, the one test of a round that every check of a round imports
+    (case 601.1): no Case heading, no `**Fact:**` line before the first question, and a line
+    that opens with `❓` — the mark alone, so a question whose title line is out of form still
+    makes the text a round. The lines are read with their indent set aside: the harness
+    indents a hand-back."""
     lines = [line.strip() for line in text.splitlines()]
     if split_cases("\n".join(lines)):
         return False
     for line in lines:
         if line.startswith(FACT):
             return False
-        if QUESTION_LINE.match(line):
+        if line.startswith(QUESTION_MARK):
             return True
     return False
 

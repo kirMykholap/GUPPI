@@ -394,6 +394,23 @@ def test_plan_a_case_ratified_by_an_earlier_reply_of_the_stretch_is_not_out(tmp_
     assert run_plan(payload(LESSON, transcript_path=path), tmp_path)[0] == 2
 
 
+def test_plan_a_case_ratified_before_the_persons_last_message_is_not_out(tmp_path):
+    # case 604: the ratifying reply stands before the person's last message; its file was
+    # written before that reply and after its line in ledger.md
+    ledger = "- 11:10:00 decision[case 5.1][update][rule-y]{ref:rule-y}\n"
+    folder = plan_session(tmp_path, ledger=ledger)
+    with_case_file(folder, "5", datetime(2026, 9, 30, 11, 20, 0, tzinfo=UTC))
+    ratified = "```LEDGER\n- decision[case 5.1][update][rule-y]{ref:rule-y}\n```"
+    path = transcript(
+        tmp_path,
+        human(),
+        reply(ratified, "2026-09-30T11:30:00Z"),
+        human("C2"),
+        reply("the next Case", "2026-09-30T11:40:00Z"),
+    )
+    assert run_plan(payload(LESSON, transcript_path=path), tmp_path)[0] == 2
+
+
 def test_plan_a_case_with_no_reply_that_ratified_it_is_out(tmp_path):
     ledger = "- 11:10:00 decision[case 5.1][update][rule-y]{ref:rule-y}\n"
     folder = plan_session(tmp_path, ledger=ledger)

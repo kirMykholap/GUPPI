@@ -39,9 +39,11 @@ a `hi` of this session; `raw/<hi date>/<hi HHMM>/spec.md` does not stand; `front
 holds no open line under `## Cases`, by `prespec.open_case_items`, the one judgment the
 check of `/pre-spec` reports; the reply carries a `LEDGER` block, by `ledger.ledger_lines`;
 no file under `cases/` was written after the last decision line of its Case, or of a
-sub-case, in `ledger.md`, in a reply of the stretch at the moment of its record
-(`stretch_replies`, case 597.2) or in that block — a Case built again and not yet ratified
-is still out; its own refusal, `uv run guppi onward --plan`, is not spent, as above
+sub-case, in `ledger.md`, in any reply of the main agent in the transcript at the moment of
+its record (`transcript_replies`, cases 597.2, 604) or in that block — a Case built again
+and not yet ratified is still out, while one ratified again with lines the ledger already
+held counts as ratified for the rest of the session, after a later message of the person
+too; its own refusal, `uv run guppi onward --plan`, is not spent, as above
 (case 597.1), the flag counting only when the transcript cannot be read; and the reply does
 not open with `STOP:`. With no
 `prespec` line of this session after its `hi`, by `prespec.window`, its reason sends the
@@ -72,7 +74,7 @@ from guppi.ledger import (
     session_dir,
     session_event_logs,
     silenced,
-    stretch,
+    transcript_records,
 )
 
 TIME_HEAD = re.compile(r"^- \d\d:\d\d:\d\d ")
@@ -128,15 +130,18 @@ def case_root(case: str) -> str:
     return case.split(".", 1)[0]
 
 
-def stretch_replies(payload: dict) -> list[tuple[float, list[str]]]:
-    """The record lines of each main-agent reply of the stretch, by `ledger.stretch` and
+def transcript_replies(payload: dict) -> list[tuple[float, list[str]]]:
+    """The record lines of each main-agent reply of the transcript, by
+    `ledger.transcript_records` — the reading the ledger hook makes — and
     `ledger.ledger_lines`, each with the moment of its record, read by `moment` of
-    `guppi/casecheck.py`; a record whose time cannot be read counts none of its lines, and a
-    transcript that cannot be read gives none (case 597.2)."""
+    `guppi/casecheck.py`. A reply before the person's last message counts like one after it,
+    so a re-ratification with lines the ledger already held counts for the rest of the
+    session (cases 597.2, 604). A record whose time cannot be read counts none of its lines,
+    and a transcript that cannot be read gives none."""
     from guppi.casecheck import moment
 
     replies: list[tuple[float, list[str]]] = []
-    for record in stretch(payload) or []:
+    for record in transcript_records(payload):
         if record.get("type") != "assistant":
             continue
         lines = ledger_lines(record_text(record))
@@ -151,8 +156,9 @@ def last_decisions(
 ) -> dict[str, float]:
     """Top-level Case → the moment, as a timestamp, of its last decision line, its sub-cases
     included: the timed lines of `ledger.md` read on the `hi` date, rolled to the next date
-    when the time runs backwards, the decision lines of each reply of the stretch at the
-    moment of its record (case 597.2), and the decision lines of the reply as written now."""
+    when the time runs backwards, the decision lines of each reply of the transcript at the
+    moment of its record (cases 597.2, 604), and the decision lines of the reply as written
+    now."""
     from guppi.materialize import parse_line
 
     moments: dict[str, float] = {}
@@ -184,14 +190,14 @@ def last_decisions(
 
 def case_out(folder: Path, reply: list[str], now, payload: dict | None = None) -> bool:
     """Whether a file under `cases/` was written after the last decision line of its Case or
-    of a sub-case, in `ledger.md`, in a reply of the stretch or in the reply that ended — a
-    Case built and not yet ratified (cases 561.5, 597.2)."""
+    of a sub-case, in `ledger.md`, in a reply of the transcript or in the reply that ended — a
+    Case built and not yet ratified (cases 561.5, 597.2, 604)."""
     cases = folder / "cases"
     if not cases.is_dir():
         return False
     ledger = folder / "ledger.md"
     text = ledger.read_text(encoding="utf-8") if ledger.exists() else ""
-    replies = stretch_replies(payload) if payload else []
+    replies = transcript_replies(payload) if payload else []
     moments = last_decisions(text, folder.parent.name, reply, now, replies)
     for path in cases.glob(f"{CASE_FILE}*.md"):
         case = path.stem.removeprefix(CASE_FILE)

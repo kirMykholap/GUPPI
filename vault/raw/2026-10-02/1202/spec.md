@@ -927,7 +927,7 @@ update:
 
 ```tasks
 - [x] update `decision-case-13`
-- [ ] by hand: `make lint` after the librarian's run of this session prints no `fence` line on `decision-case-13`
+- [x] by hand: `make lint` after the librarian's run of this session prints no `fence` line on `decision-case-13`
 ```
 
 ### Case 591.12 — The Work readings of /box leave the Estimates the conserved Spec changes

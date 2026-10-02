@@ -29,7 +29,28 @@ the stretch, read by `own_refusals`: the stderr line of a refused line is printe
 2, only when it does not already stand in a refusal of the hook since the person's last
 message, so each faulty line is told once and a repeat of it stays silent; no `hi` and an
 error of its own exit 2 only when no refusal of the hook stands in the stretch. With the flag
-set and a transcript it cannot read, it writes the lines of the reply and exits 0.
+set and a transcript it cannot read, it writes the lines of the reply and exits 0. A refusal
+of a hook is a `user` record marked `isMeta` whose text opens with `Stop hook feedback:` and
+holds a line opening with `[<command>]: `.
+
+The person's message is judged once, by `user_kind` (case 592): a `user` record whose
+`origin.kind` is `human` is the person's message, one whose `origin.kind` is
+`task-notification` a returned answer of a subagent, any other record neither. The stretch
+starts after the last person's message, and a returned answer does not end it; the turn of
+the reply that `guppi/casecheck.py` reads starts after the last record of either kind, and
+`guppi/context.py` counts from the start of the turn. Both import `user_kind`; `guppi onward`
+reaches it through `own_refusals`; no other module judges `origin.kind`. A transcript with
+neither kind is read whole as the stretch and as the turn.
+
+The hook runs on `Stop`, not on `MessageDisplay`, which can neither block nor speak
+(measured 2026-08-29). The ledger is not created at session start; it comes into being with
+its first line. `compact` and `resume` of the same session do not close the window of the
+event log — `SessionStart` fires on both, and neither changes the person, the branch or the
+agenda (case 14) — and a `hi` with the id `--------` never counts (case 136.3). A block in a
+text followed by a tool call reaches the ledger at the next `Stop` of the session, measured
+on Claude Code 2.1.269–2.1.272 (case 224.1); `guppi gate` holds a skill call back while an
+item of the Spec has no ledger line, so the reply that ends in text lands the block first
+(cases 122, 169.1, 174). A hook-written line is told from a hand-written one by its time.
 
 A line the grammar does not read is not written (case 552.2): `parse_line` of
 `guppi/materialize.py` gives None for it, and `materialize` would put it under `unparsed`,
@@ -141,9 +162,36 @@ def record_text(record: dict) -> str:
     return ""
 
 
+HUMAN = "human"  # the `origin.kind` of the person's message
+NOTIFICATION = "task-notification"  # the `origin.kind` of a record that brings an answer back
+PERSON, ANSWER = "person", "answer"
+
+
+def user_kind(record: dict) -> str | None:
+    """The kind of a `user` record of the transcript, by its `origin.kind` (case 592): the
+    person's message (`PERSON`) when it is `human`, a returned answer of a subagent
+    (`ANSWER`) when it is `task-notification`, and None for any other record — a record with
+    no `origin`, such as the local command that clears the session, a `peer` message of
+    another Claude session, a refusal marked `isMeta`, a tool result. The one judgment of the
+    person's message: the turn of `guppi/casecheck.py` starts after either kind, the stretch
+    of `own_refusals` after the person's message alone, and `guppi/context.py` counts from the
+    start of the turn; no other module judges `origin.kind`."""
+    if record.get("type") != "user":
+        return None
+    origin = record.get("origin")
+    kind = origin.get("kind") if isinstance(origin, dict) else None
+    return {HUMAN: PERSON, NOTIFICATION: ANSWER}.get(kind)
+
+
+def opens_turn(record: dict) -> bool:
+    """Whether a record opens a turn: the person's message or a returned answer (case 592)."""
+    return user_kind(record) is not None
+
+
 def own_refusals(payload: dict, command: str) -> list[str] | None:
     """The text of each refusal of the `Stop` hook `command` in the stretch: the main-agent
-    records of `transcript_path` after the last `user` record whose `origin.kind` is `human`.
+    records of `transcript_path` after the last person's message, by `user_kind` — a `user`
+    record whose `origin.kind` is `human`; a returned answer does not end it (case 592).
     A refusal is a `user` record marked `isMeta` whose text opens with `Stop hook feedback:`
     and holds a line that opens with `[<command>]: `; its text is what follows that prefix
     (measured on session 1237 and 1441, Claude Code 2.1.282). None when the transcript cannot
@@ -156,7 +204,7 @@ def own_refusals(payload: dict, command: str) -> list[str] | None:
     main = [r for r in records if is_main(r)]
     start = 0
     for index, record in enumerate(main):
-        if record.get("type") == "user" and (record.get("origin") or {}).get("kind") == "human":
+        if user_kind(record) == PERSON:
             start = index + 1
     prefix = f"[{command}]: "
     texts: list[str] = []

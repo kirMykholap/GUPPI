@@ -902,24 +902,26 @@ def test_two_estimate_items_with_the_cases_criterion_is_a_finding(tmp_path):
     # a written Criterion is a promise too, on one item or on both (case 472.3)
     one_written = create_plan(ESTIMATE_CREATE + WRITTEN + "update:\n" + ESTIMATE_UPDATE)
     both_written = create_plan(ESTIMATE_CREATE + WRITTEN + "update:\n" + ESTIMATE_UPDATE + WRITTEN)
-    # an update that names no part replaces the Criterion whole, by `names_a_part`: `change`
-    # alone, or a status other than pending
-    change_alone = create_plan(
-        ESTIMATE_CREATE + "update:\n  - slug: estimate-x\n    change: recut\n"
-    )
+    # an update that names no part replaces the Criterion whole, by `names_a_part`: a
+    # status, pending or other
     passed = create_plan(
         ESTIMATE_CREATE + "update:\n" + ESTIMATE_UPDATE.replace("pending", "passed")
     )
-    for counted in (one_written, both_written, change_alone, passed):
+    for counted in (one_written, both_written, passed):
         code, out, _ = check(tmp_path, plan=counted, ledger=CREATE_LINE + UPDATE_LINE)
         findings = [line for line in out.splitlines() if not line.startswith("note:")]
         assert (code, findings) == (1, ["case 1: two promises in one Case — split it"])
-    # an update that names a part alone changes that part, and is no promise
+    # an update that names a part alone changes that part, and is no promise; `change`
+    # alone names the History (case 588.2)
     a_part = create_plan(
         ESTIMATE_CREATE + "update:\n  - slug: estimate-x\n    set: {purpose: p2}\n"
         "    change: purpose\n"
     )
     assert check(tmp_path, plan=a_part, ledger=CREATE_LINE + UPDATE_LINE) == (0, "", "")
+    change_alone = create_plan(
+        ESTIMATE_CREATE + "update:\n  - slug: estimate-x\n    change: recut\n"
+    )
+    assert check(tmp_path, plan=change_alone, ledger=CREATE_LINE + UPDATE_LINE) == (0, "", "")
     # a sub-case is its own Case: one promise each is fine
     split = plan.replace(
         "update:\n" + ESTIMATE_UPDATE,
@@ -1906,6 +1908,24 @@ def test_script_follows_the_documentation_language_of_guppi_toml(tmp_path):
     ]
 
 
+def test_script_a_latin_code_span_passes_under_russian(tmp_path):
+    # case 589.1: a slug in a code span is Latin in any language
+    plan = PLAN.replace("## Case 1 — one", "## Case 1 — один").replace(
+        "> Something.", "> Правило `rule-x` и файл `guppi/x.py` держатся."
+    )
+    russian = 'documentation_lang = "ru"\nchat_lang = "en"\n'
+    _, out, _ = check(tmp_path, plan=plan, settings=russian)
+    assert script_lines(out) == []
+
+
+def test_script_a_cyrillic_code_span_is_found_under_english(tmp_path):
+    # case 589.1: inside a code span a letter of another script is judged as in prose
+    plan = PLAN.replace("> Something.", "> Something about `слово`.")
+    code, out, _ = check(tmp_path, plan=plan)
+    assert code == 1
+    assert script_lines(out) == [f"case 1: its context {OUTSIDE_LATIN}"]
+
+
 @pytest.mark.parametrize(
     ("settings", "named"),
     [
@@ -1983,9 +2003,16 @@ def test_note_a_criterion_carried_line_by_line_with_its_operands_changed_is_none
     assert check(tmp_path, plan=plan, ledger=ESTIMATE_LINE_1) == (0, "", "")
 
 
-def test_note_an_update_with_change_alone_is_compared(tmp_path):
+def test_note_an_update_with_change_alone_is_none(tmp_path):
+    # case 588.2: `change` alone keeps the Criterion, so no line of it is compared
     with_old_criterion(tmp_path)
     plan = recut_plan("t one.", item="    change: recut\n")
+    assert check(tmp_path, plan=plan, ledger=ESTIMATE_LINE_1) == (0, "", "")
+
+
+def test_note_an_update_with_a_status_is_compared(tmp_path):
+    with_old_criterion(tmp_path)
+    plan = recut_plan("t one.", item="    set: {status: pending}\n    change: recut\n")
     _, out, _ = check(tmp_path, plan=plan, ledger=ESTIMATE_LINE_1)
     assert out == "note: case 1: estimate-x: a line of its Criterion is not carried: t two.\n"
 

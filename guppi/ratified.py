@@ -89,7 +89,8 @@ read the payload exits 2 on `Stop`, with the error and the advice to repeat the 
 stderr, so the agent sees it; an error while it reads the payload, and any error of the guard,
 exits 0 with the error on stderr (case 554). `untranslated` is the language
 finding `guppi prespec --check` imports, a letter outside the script of the documentation
-language judged by `config.outside` (cases 387.4, 445.4, 476.3). Rule pages:
+language judged by `config.outside` (cases 387.4, 445.4, 476.3); a Latin letter in a code
+span gives no finding (case 589.1). Rule pages:
 `vault/wiki/rules/rule-spec-write.md`, `vault/wiki/rules/rule-spec-reconcile.md`.
 """
 
@@ -715,8 +716,9 @@ def write_parent(plan: Path, case: str, text: str, approved: Path | None = None)
 def untranslated(plan_text: str, language: str) -> list[tuple[str, str]]:
     """`(case, part)` for every name, `context` or `problem` of a Case of the plan that still
     holds a letter outside the script of `language`, the code of the documentation language,
-    a short form under `## Deferred` included (cases 445.4, 476.3); the `given`, `when`,
-    `then` and the blocks are not read."""
+    a short form under `## Deferred` included (cases 445.4, 476.3); a Latin letter in a code
+    span gives no finding (case 589.1); the `given`, `when`, `then` and the blocks are not
+    read."""
     names = headings(plan_text)
     found: list[tuple[str, str]] = []
     for case, lines in split_cases(plan_text).items():

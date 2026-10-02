@@ -885,6 +885,7 @@ create:
 ```then
 update:
   - slug: estimate-old-holds
+    set: {status: pending}
     change: the Criterion replaced whole
 ```
 
@@ -899,6 +900,7 @@ update:
 ```then
 update:
   - slug: estimate-old-holds
+    set: {status: pending}
     change: twice
 ```
 
@@ -1149,6 +1151,7 @@ PART_LEDGER = """- decision[case 23][update][estimate-part-purpose]{ref:estimate
 - decision[case 26][update][estimate-part-absent]{ref:estimate-part-absent}
 - decision[case 27][update][estimate-part-both]{ref:estimate-part-both}
 - decision[case 28][update][estimate-part-written]{ref:estimate-part-written}
+- decision[case 29][update][estimate-part-change]{ref:estimate-part-change}
 """
 
 PART_CASE = """## Case {n} — {title}
@@ -1202,6 +1205,7 @@ PART_ITEMS = [
         "a written Criterion beside a field",
         "    set: {purpose: The new line}\n    sections:\n      Criterion: |\n        When:\n        The written one.\n",
     ),
+    ("29", "estimate-part-change", "a History note alone", ""),
 ]
 
 PART_PAGE = """---
@@ -1267,6 +1271,13 @@ def test_a_pair_absent_from_the_page_is_not_judged_here(tmp_path):
     (entry,) = of_case(seed_parts(tmp_path), "26")
     assert entry["replace"] == [{"old": "nowhere on the page", "new": "still nowhere"}]
     assert "set" not in entry and "sections" not in entry and "incomplete" not in entry
+
+
+def test_a_change_alone_lifts_nothing_and_sets_no_status(tmp_path):
+    # case 588.2: `change` alone names the History — the Criterion and the status stand
+    (entry,) = of_case(seed_parts(tmp_path), "29")
+    assert entry["change"] == "a History note alone"
+    assert "sections" not in entry and "set" not in entry and "incomplete" not in entry
 
 
 def test_a_status_named_is_the_whole_replacement_beside_the_field(tmp_path):

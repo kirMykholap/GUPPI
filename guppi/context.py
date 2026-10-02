@@ -1,9 +1,13 @@
 """`guppi context` — the size of the context window, counted from the transcript.
 
-On `Stop`: N is the sum of the input, cache read, cache creation and output tokens of the
-last main-agent call the transcript holds — at `Stop` the last call may not be there yet, so
-N may lag one call — and D is N less the same sum at the last call before the person's last
-prompt. It prints JSON with a `systemMessage`: `context: <N> tokens (<+D> since the last
+On `Stop`, `uv run guppi context` reads the transcript at `transcript_path` and skips the
+records of a subagent (`isSidechain`). N is the sum of the input, cache read, cache creation
+and output tokens of the last main-agent call the transcript holds — at `Stop` the last call
+may not be there yet, so N may lag one call — and D is N less the same sum at the last call
+before the start of the turn: the last `user` record that `opens_turn` of `guppi/ledger.py`
+names the person's message or a returned answer, the one judgment the turn of
+`guppi/casecheck.py` and the stretch of the ledger hook share (case 590.2). A record with no
+`origin.kind`, a record marked `isMeta` and a tool result do not move it. It prints JSON with a `systemMessage`: `context: <N> tokens (<+D> since the last
 reply)`; at N of 400 000 or more the line ends with `— past 400 000: costly, better take no
 more work`.
 On the re-fire (`stop_hook_active`), with a transcript it cannot read, or with no call
@@ -25,7 +29,7 @@ import json
 import sys
 
 from guppi.event import read_payload
-from guppi.ledger import transcript_records
+from guppi.ledger import opens_turn, transcript_records
 
 LIMIT = 400_000
 USAGE_KEYS = (
@@ -46,27 +50,15 @@ def call_size(record: dict) -> int | None:
     return sum(int(usage.get(key) or 0) for key in USAGE_KEYS)
 
 
-def is_prompt(record: dict) -> bool:
-    """A prompt of the person: a user record that is no tool result and no injected text
-    (`isMeta`)."""
-    if record.get("type") != "user" or record.get("isMeta"):
-        return False
-    content = (record.get("message") or {}).get("content")
-    if isinstance(content, str):
-        return True
-    if isinstance(content, list):
-        kinds = {b.get("type") for b in content if isinstance(b, dict)}
-        return "tool_result" not in kinds and "text" in kinds
-    return False
-
-
 def sizes(records: list[dict]) -> tuple[int, int] | None:
-    """`(N, D)`, or None when no call carries `usage`. D is N itself when no call stands
-    before the person's last prompt."""
+    """`(N, D)`, or None when no call carries `usage`. D counts from the last call before
+    the start of the turn — the last record that `opens_turn` of `guppi/ledger.py` names the
+    person's message or a returned answer (case 590.2); D is N itself when no call stands
+    before it."""
     last = None
     at_prompt = 0
     for record in records:
-        if is_prompt(record):
+        if opens_turn(record):
             at_prompt = last or 0
             continue
         size = call_size(record)

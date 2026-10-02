@@ -33,7 +33,9 @@ in bold, is a finding of the top-level Case, a title asked in more than one roun
 once and the words of an item after its title not judged (case 544.3). It runs over the same
 Spec text the language finding of `/pre-spec`,
 `prespec.check_untranslated`, imported: a name, `context` or `problem` that holds a letter
-outside the script of the documentation language is a finding of its Case, and a `guppi.toml`
+outside the script of the documentation language is a finding of its Case — a Latin letter in
+a code span excepted, which is no finding, while a letter of any other script there is judged
+as in prose (case 589.2) — and a `guppi.toml`
 that is missing or names a code the table does not hold is one finding, given to the first
 Case of the answer (case 537). Each Case of the answer is stored with its findings and the time of
 the store in `<plan>.checked.json` beside the plan file of the session, a later answer for the
@@ -63,7 +65,8 @@ under `sent` — serve this module's `stop` and the Spec hook, which writes the 
 into the plan and refuses a showing that differs from it (case 437) or a Case whose file was
 not sent after its store (case 452.3).
 
-The comparison. On `Stop`, each Case the reply shows under its heading with at least one of
+The comparison. On `Stop` — beside `guppi ledger`, `guppi ratified` and `guppi context`, which
+run in parallel — each Case the reply shows under its heading with at least one of
 its sections (`shows_sections`) is compared with the Case of the same id in the store in each
 of its `given`, `when`, `then`, `tasks` and `ratification` that the reply shows — the lines up
 to the horizontal rule that opens the agent's own text, line ends and trailing spaces made the
@@ -102,25 +105,31 @@ turn with no round — the main agent's own questions, a `**Fact:**` answer, a r
 measured on the transcript of session 2356 (2026-10-01): the answer to an `Agent` call in
 the `tool_result` of the call, inside the turn; the answer to a `SendMessage` in a later
 `user` record with `origin.kind` `task-notification`, its content a string holding the
-answer between `<result>` and `</result>` — a record `turn_of_reply` takes for the prompt
-that opens the turn, so `given_back` reads it as the turn's opener. A notification carries
-no agent type; the question line is what marks a round.
+answer between `<result>` and `</result>` — a returned answer by `user_kind` of
+`guppi/ledger.py`, a record that opens the turn, so `given_back` reads it as the turn's
+opener (case 592). A notification carries no agent type; the question line is what marks a
+round.
 
 A sending. The transcript is JSONL (`ledger.read_records`); a `SendUserFile` call stands in an
 assistant record's `message.content` as `{"type": "tool_use", "name": "SendUserFile",
 "input": {"files": [<path>, …]}}`, the record carrying its `timestamp` (measured 2026-09-27,
-session 1255). The turn of the reply is the records after the last prompt: a `user` record,
-not `isMeta`, that holds more than tool results — a tool result and the text of a skill stand
-in `user` records too (measured the same day). A `Stop` hook's refusal is a `user` record
-marked `isMeta`, its text opening with `Stop hook feedback:` (transcripts of sessions 1237 and
-1441, case 584): the turn skips it as it skips any `isMeta` record, so a file sent before the
-refusal still counts for the reply that follows.
+session 1255). The turn of the reply is the records after the last `user` record that
+`user_kind` of `guppi/ledger.py` names the person's message (`origin.kind` `human`) or a
+returned answer (`task-notification`) — the one judgment of the person's message, which the
+stretch of the ledger hook and the count of `guppi/context.py` share (case 592). A tool
+result, the text of a skill, the record of a local command with no `origin`, a `peer`
+message of another Claude session and a `Stop` hook's refusal — a `user` record marked
+`isMeta`, its text opening with `Stop hook feedback:` (transcripts of sessions 1237 and 1441,
+case 584) — open no turn, so a file sent before the refusal still counts for the reply that
+follows. A transcript with neither kind is read whole as the turn.
 
 The payload is read as UTF-8; the hook never raises. An error of its own after it has read the
 payload exits 2 on `Stop`, with the error and the advice to show the Case again on stderr, so
 the agent sees it; an error while it reads the payload, and any error of the `--subagent` run,
 exits 0 with the error on stderr, since a send-back to `case-guppi` is not ended by
-`stop_hook_active` and would loop (case 555.1). Rule page:
+`stop_hook_active` and would loop; a Case its error left with no file is refused later by the
+`Stop` check (case 555.1). The text of this docstring holds what the `## How it works` of
+`rule-case-check` held before the section left the Leaf page (case 589.2). Rule page:
 `vault/wiki/rules/rule-case-check.md`.
 """
 
@@ -134,12 +143,15 @@ from pathlib import Path
 from guppi.event import project_root, read_payload, session_stamp
 from guppi.generate import DAY, FRONTIER_LINE, FRONTIER_SEPARATOR, SESSION
 from guppi.ledger import (
+    ANSWER,
+    opens_turn,
     plan_path,
     read_records,
     reply_text,
     session_dir,
     session_event_logs,
     transcript_records,
+    user_kind,
 )
 from guppi.materialize import (
     closes_fence,
@@ -270,18 +282,12 @@ def sendings(records: list[dict]) -> list[tuple[str, str]]:
 
 
 def turn_of_reply(records: list[dict]) -> list[dict]:
-    """The records of the turn the reply ends: those after the last prompt — a `user` record,
-    not `isMeta`, whose content is a text or holds a block other than a tool result."""
+    """The records of the turn the reply ends: those after the last record that `user_kind`
+    of `guppi/ledger.py` names the person's message or a returned answer (case 592); the
+    whole transcript when it holds neither."""
     start = 0
     for index, record in enumerate(records):
-        if record.get("type") != "user" or record.get("isMeta"):
-            continue
-        message = record.get("message")
-        content = message.get("content") if isinstance(message, dict) else None
-        blocks = content if isinstance(content, list) else []
-        if isinstance(content, str) or any(
-            isinstance(block, dict) and block.get("type") != "tool_result" for block in blocks
-        ):
+        if opens_turn(record):
             start = index + 1
     return records[start:]
 
@@ -755,7 +761,6 @@ def against_store(case: str, heading: str, lines: list[str], store: dict) -> str
 
 # --- how a round opens (case 562) ----------------------------------------------------------
 
-NOTIFICATION = "task-notification"  # the `origin.kind` of a record that brings an answer back
 RESULT = re.compile(r"<result>(.*?)</result>", re.DOTALL)
 FACT = "**Fact:**"
 # the bold label of the Context paragraph, translated: `**Контекст:**` or `**Context**:`
@@ -763,8 +768,9 @@ LABEL_LINE = re.compile(r"^\*\*[^*\n]+(?::\*\*|\*\*:)")
 
 
 def opening_record(records: list[dict]) -> dict | None:
-    """The record that opens the turn of the reply — the last prompt, as `turn_of_reply`
-    judges it; None when the transcript holds none."""
+    """The record that opens the turn of the reply — the last person's message or returned
+    answer, by `user_kind` of `guppi/ledger.py`, as `turn_of_reply` judges it; None when the
+    transcript holds none."""
     turn = turn_of_reply(records)
     index = len(records) - len(turn) - 1
     return records[index] if index >= 0 else None
@@ -787,12 +793,12 @@ def given_back(records: list[dict]) -> list[str]:
     2356): the answer to an `Agent` call stands in the `tool_result` of that call, inside
     the turn; the answer to a `SendMessage` comes back after the turn has ended, as a `user`
     record with `origin.kind` `task-notification` whose content is a string holding the
-    answer between `<result>` and `</result>` — `turn_of_reply` takes that record for the
-    prompt that opens the turn, so it is read here as the turn's opener."""
+    answer between `<result>` and `</result>` — a returned answer by `user_kind` of
+    `guppi/ledger.py`, which opens the turn, so it is read here as the turn's opener
+    (case 592)."""
     texts: list[str] = []
     opener = opening_record(records)
-    origin = opener.get("origin") if isinstance(opener, dict) else None
-    if isinstance(origin, dict) and origin.get("kind") == NOTIFICATION:
+    if isinstance(opener, dict) and user_kind(opener) == ANSWER:
         message = opener.get("message")
         content = message.get("content") if isinstance(message, dict) else None
         texts += RESULT.findall(content) if isinstance(content, str) else []

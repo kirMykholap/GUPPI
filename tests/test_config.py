@@ -57,3 +57,7 @@ def test_outside_finds_a_letter_of_another_script():
     assert not config.outside("Déjà vu, naïve", "en")
     assert config.outside("Русский текст with a Latin word", "ru")
     assert not config.outside("Русский текст — 42.", "ru")
+    # inside a code span a Latin letter is accepted, any other judged as in prose (case 589.1)
+    assert not config.outside("Русский текст про `rule-prespec` и `guppi/config.py`.", "ru")
+    assert config.outside("An English line with `слово` in a code span.", "en")
+    assert config.outside("Русский текст с `α` в коде.", "ru")

@@ -30,6 +30,24 @@ def call(size, *, sidechain=False, output=0):
 
 
 def prompt(text="C1"):
+    return {
+        "type": "user",
+        "origin": {"kind": "human"},
+        "message": {"role": "user", "content": text},
+    }
+
+
+def answer_back(text="<result>done</result>"):
+    """A returned answer of a subagent, as Claude Code writes it (case 590.2)."""
+    return {
+        "type": "user",
+        "origin": {"kind": "task-notification"},
+        "message": {"role": "user", "content": text},
+    }
+
+
+def local_command(text="<command-name>/clear</command-name>"):
+    """The record of a local command: string content, no `origin`, no `isMeta`."""
     return {"type": "user", "message": {"role": "user", "content": text}}
 
 
@@ -89,6 +107,16 @@ def test_stop_a_subagent_call_and_an_injected_text_are_not_counted(tmp_path):
     ]
     _, out, _ = hook(tmp_path, records)
     assert message(out) == "context: 52 000 tokens (+2 000 since the last reply)"
+
+
+def test_d_counts_from_the_start_of_the_turn(tmp_path):
+    # case 590.2: a returned answer starts the count, a record with no `origin` does not
+    records = [prompt(), call(50_000), answer_back(), call(53_000)]
+    _, out, _ = hook(tmp_path, records)
+    assert message(out) == "context: 53 000 tokens (+3 000 since the last reply)"
+    records = [prompt(), call(50_000), local_command(), call(53_000)]
+    _, out, _ = hook(tmp_path, records)
+    assert message(out) == "context: 53 000 tokens (+53 000 since the last reply)"
 
 
 def test_stop_silent_on_the_re_fire_with_no_usage_or_no_transcript(tmp_path):

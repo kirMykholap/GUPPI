@@ -179,6 +179,33 @@ def test_the_fork_is_printed_again_when_the_plan_was_already_there(tmp_path):
     assert code == 0 and "/work" in line and "/carry" in line and "AskUserQuestion" in line
 
 
+def box_plan(folder="2026-09-01/0900"):
+    return f"# Session 1501 — runs the conserved Spec vault/raw/{folder}/spec.md\n"
+
+
+def test_box_a_plan_naming_a_conserved_spec_leads_to_box_and_asks_nothing(tmp_path):
+    # case 591.3: the person took the conserved Spec at the Frontier
+    with_event_log(tmp_path)
+    conserved = tmp_path / "vault" / "raw" / "2026-09-01" / "0900"
+    conserved.mkdir(parents=True)
+    (conserved / "carry.md").write_text("conserved\n", encoding="utf-8")
+    code, out, err = run_with_stdout(payload(plan=box_plan()), tmp_path)
+    assert (code, err) == (0, "")
+    line = fork_of(out)
+    assert "call /box with vault/raw/2026-09-01/0900/" in line
+    assert "ask the person nothing" in line
+    assert "AskUserQuestion" not in line and "/carry" not in line
+
+
+def test_box_a_folder_without_carry_or_no_such_path_gets_the_fork(tmp_path):
+    with_event_log(tmp_path)
+    (tmp_path / "vault" / "raw" / "2026-09-01" / "0900").mkdir(parents=True)
+    code, out, _ = run_with_stdout(payload(plan=box_plan()), tmp_path)
+    assert code == 0 and "AskUserQuestion" in fork_of(out) and "/box" not in fork_of(out)
+    code, out, _ = run_with_stdout(payload(plan=box_plan("2026-09-02/1000")), tmp_path)
+    assert code == 0 and "AskUserQuestion" in fork_of(out)
+
+
 def test_no_fork_without_a_spec(tmp_path):
     with_event_log(tmp_path, EVENT_LOG_WITHOUT_HI)
     code, out, _ = run_with_stdout(payload(), tmp_path)

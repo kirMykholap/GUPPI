@@ -139,8 +139,13 @@ def case_path(project, case):
 
 
 def prompt(value="Go on."):
-    """A prompt of the person: the record that opens a turn."""
-    return {"type": "user", "isSidechain": False, "message": {"role": "user", "content": value}}
+    """A prompt of the person: the record that opens a turn, `origin.kind` `human` (case 592)."""
+    return {
+        "type": "user",
+        "isSidechain": False,
+        "origin": {"kind": "human"},
+        "message": {"role": "user", "content": value},
+    }
 
 
 def sending(*files, timestamp="2026-09-09T15:29:00.000Z"):
@@ -532,6 +537,30 @@ def test_subagent_script_a_russian_quotation_in_then_passes(working):
     assert store(working)["7"]["findings"] == []
 
 
+def test_subagent_script_a_latin_code_span_passes_under_russian(working):
+    # case 589.2: a slug in a code span is Latin in any language
+    (working / "guppi.toml").write_text(
+        'documentation_lang = "ru"\nchat_lang = "ru"\n', encoding="utf-8"
+    )
+    russian = (
+        ANSWER.replace("## Case 7 — example", "## Case 7 — пример")
+        .replace("> Context.", "> Правило `rule-x` и файл `guppi/x.py`.")
+        .replace("> Problem.", "> Проблема `rule-x`.")
+    )
+    assert answer(working, russian) == (0, "")
+    assert store(working)["7"]["findings"] == []
+    assert case_path(working, "7").exists()
+
+
+def test_subagent_script_a_cyrillic_code_span_is_a_finding(working):
+    # case 589.2: inside a code span a letter of another script is judged as in prose
+    quoted = ANSWER.replace("> Context.", "> Context of `файл`.")
+    code, err = answer(working, quoted)
+    assert code == 2
+    assert "case 7: its context holds a letter outside the Latin script of English" in err
+    assert not case_path(working, "7").exists()
+
+
 def test_subagent_script_a_missing_guppi_toml_is_one_finding(working):
     (working / "guppi.toml").unlink()
     code, err = answer(working, ANSWER)
@@ -859,6 +888,19 @@ def test_round_a_reply_that_opens_with_the_context_label_or_the_question_passes(
 def test_round_a_turn_with_no_round_is_not_judged(working, records):
     own_question = "Мой вопрос.\n\n❓ **Q1** - **Мой?**:\n"
     assert show(working, own_question, records=records, sent=[]) == (0, "")
+
+
+def test_round_a_record_with_no_origin_opens_no_turn(working):
+    # case 590.3: the record of a local command — string content, no `origin`, no `isMeta` —
+    # does not cut the turn, so a round given back before it is still judged
+    clear = {
+        "type": "user",
+        "isSidechain": False,
+        "message": {"role": "user", "content": "<command-name>/clear</command-name>"},
+    }
+    records = [prompt(), assistant(agent_call()), agent_result(ROUND), clear]
+    code, err = show(working, "A line of my own.\n\n" + SHOWN_ROUND, records=records)
+    assert code == 2 and "A line of my own." in err
 
 
 def test_round_the_re_fire_passes(working):

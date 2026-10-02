@@ -43,12 +43,14 @@ style: ## ruff over the Python in this repository; must be clean before every co
 test: ## pytest over the harness's own suite
 	@uv run pytest -q < /dev/null
 
-lint: ## the vault: the rendered harness, the sprint file, the backlog and the glossary match their sources, pages pass the checks
-	@uv run guppi render --check < /dev/null
-	@uv run guppi sprint --check < /dev/null
-	@uv run guppi backlog --check < /dev/null
-	@uv run guppi glossary --check < /dev/null
-	@uv run guppi lint < /dev/null
+lint: ## the vault: the rendered harness, the sprint file, the backlog and the glossary match their sources, pages pass the checks; every step runs, red if any is (case 587)
+	@status=0; \
+	uv run guppi render --check < /dev/null || status=1; \
+	uv run guppi sprint --check < /dev/null || status=1; \
+	uv run guppi backlog --check < /dev/null || status=1; \
+	uv run guppi glossary --check < /dev/null || status=1; \
+	uv run guppi lint < /dev/null || status=1; \
+	exit $$status
 
 test-session-start: ## the pipeline over rule-session-start's children
 	@uv run pytest -q tests/test_event.py tests/test_ledger.py < /dev/null

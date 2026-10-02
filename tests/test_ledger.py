@@ -887,3 +887,55 @@ def test_a_payload_that_cannot_be_read_exits_0_with_the_error(working, monkeypat
     code, err = run(io.StringIO("{"), working)
     assert (code, err) == (0, "ledger: ledger.md not written: not JSON\n")
     assert not ledger_file(working).exists()
+
+
+# --- case 592: one judgment of the person's message, the turn and the stretch -----------
+
+
+def kind_records():
+    """One transcript with each kind of `user` record, in the shapes Claude Code writes."""
+
+    def call(size):
+        usage = {"input_tokens": size, "output_tokens": 0}
+        message = {"role": "assistant", "content": [{"type": "text", "text": "x"}]}
+        return {"type": "assistant", "message": {**message, "usage": usage}}
+
+    def user(content, **fields):
+        return {"type": "user", "message": {"role": "user", "content": content}, **fields}
+
+    refusal = "Stop hook feedback:\n[" + ledger.COMMAND + "]: "
+    tool = [{"type": "tool_result", "tool_use_id": "t", "content": "ok"}]
+    return [
+        user("go on", origin={"kind": "human"}),  # 0 the person's message
+        call(10_000),  # 1
+        user(refusal + "first", isMeta=True),  # 2 a refusal
+        user("<result>done</result>", origin={"kind": "task-notification"}),  # 3 an answer
+        call(12_000),  # 4
+        user("<command-name>/clear</command-name>"),  # 5 a local command, no origin
+        user("from a peer", origin={"kind": "peer"}),  # 6 another Claude session
+        user(tool),  # 7 a tool result
+        user(refusal + "second", isMeta=True),  # 8 a refusal
+        call(15_000),  # 9
+    ]
+
+
+def test_kind_of_a_user_record_sets_the_turn_and_the_stretch(tmp_path):
+    from guppi import casecheck, context
+
+    records = kind_records()
+    kinds = [ledger.user_kind(r) for r in records]
+    assert kinds[0] == ledger.PERSON and kinds[3] == ledger.ANSWER
+    assert [k for i, k in enumerate(kinds) if i not in (0, 3)] == [None] * 8
+    # the turn starts after the returned answer; the stretch after the person's message
+    assert casecheck.turn_of_reply(records) == records[4:]
+    path = tmp_path / "transcript.jsonl"
+    path.write_text("\n".join(json.dumps(r) for r in records) + "\n", encoding="utf-8")
+    payload = {"transcript_path": str(path)}
+    assert ledger.own_refusals(payload, ledger.COMMAND) == ["first", "second"]
+    assert context.sizes(records) == (15_000, 5_000)  # from the call before the answer
+    # a transcript with neither kind is read whole as the turn and as the stretch
+    neither = [r for i, r in enumerate(records) if i not in (0, 3)]
+    assert casecheck.turn_of_reply(neither) == neither
+    path.write_text("\n".join(json.dumps(r) for r in neither) + "\n", encoding="utf-8")
+    assert ledger.own_refusals(payload, ledger.COMMAND) == ["first", "second"]
+    assert context.sizes(neither) == (15_000, 15_000)

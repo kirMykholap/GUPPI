@@ -120,8 +120,10 @@ the ledgers of its dates, on the `hi` date from the `hi` time on, and its folder
   the plan that still holds a letter outside the script of the documentation language,
   `documentation_lang`, read from
   `guppi.toml` by `config.read_settings`, a short form under `## Deferred` included, by
-  `ratified.untranslated`; a `guppi.toml` that is missing or names an unknown code is one
-  finding that names it; the `given`, `when`, `then` and the blocks are not read, and the
+  `ratified.untranslated`; a Latin letter in a code span gives no finding, a letter of any
+  other script there is judged as in prose (case 589.1); a `guppi.toml` that is missing or
+  names an unknown code is one finding that names it; the `given`, `when`, `then` and the
+  blocks are not read, and the
   plan is compared with no other file — the ratified copy is gone (case 445.2).
 
 The check after a write (case 414.1): `written_findings` runs the same checks, `judge`, for
@@ -1187,9 +1189,10 @@ def check_bare_links(cases: dict, blocks: dict, project_dir: Path) -> list[str]:
 def check_untranslated(plan: str, project_dir: Path) -> list[str]:
     """387.4, 445.4, 476.3: every name, `context` or `problem` of a Case of the plan that still
     holds a letter outside the script of the documentation language `guppi.toml` sets, a
-    short form under `## Deferred` included, by `ratified.untranslated`; a `guppi.toml` that
-    is missing or names a code the table does not hold is one finding, and no Case is read.
-    The plan is compared with no other file."""
+    short form under `## Deferred` included, by `ratified.untranslated`; a Latin letter in a
+    code span gives no finding (case 589.1); a `guppi.toml` that is missing or names a code
+    the table does not hold is one finding, and no Case is read. The plan is compared with no
+    other file."""
     try:
         language = config.read_settings(project_dir)["documentation_lang"]
     except config.ConfigError as exc:

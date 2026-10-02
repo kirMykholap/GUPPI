@@ -65,7 +65,9 @@ item set a status itself. An `update` item that names a part of the page — `se
 `status`, a `replace` pair, a section other than `Criterion` — and writes no Criterion
 changes that part alone: nothing is lifted and no status is set; a pair whose `old` stands
 in the page's `## Criterion` is `incomplete: [criterion]` — a Criterion changes only whole
-(case 378.4). An Estimate `create` keeps `kind`, `purpose`, `method` and
+(case 378.4). An `update` item that carries `change` alone names its History: it lifts
+nothing and sets no status, and `generate` writes its History line; only `set.status` or a
+Criterion written under `sections` replaces the Criterion (case 588.2). An Estimate `create` keeps `kind`, `purpose`, `method` and
 `tags` as fields — a `ref` on the item is the entry's `ref`, never a page field (case 201.1);
 `## Context` and `## Method` are not written, and a `context` key of the
 old shape is dropped; a `criterion` key of the old shape goes to `sections.Criterion`. The
@@ -956,13 +958,12 @@ def criterion_text(texts: dict[str, str]) -> str:
 
 def names_a_part(entry: dict) -> bool:
     """An `update` item of an Estimate that names a part of the page and writes no
-    Criterion: `set` without `status`, a `replace` pair, a section other than `Criterion`.
-    One that carries `change` alone, or `set.status`, is the whole replacement (case 296)."""
+    Criterion: `set` without `status`, a `replace` pair, a section other than `Criterion`,
+    or `change` alone, which names its History (case 588.2). One that carries `set.status`
+    or a Criterion under `sections` is the whole replacement (case 296)."""
     sets = entry.get("set") or {}
     sections = entry.get("sections") or {}
-    if "status" in sets or sections.get("Criterion"):
-        return False
-    return bool(sets or entry.get("replace") or sections)
+    return not ("status" in sets or sections.get("Criterion"))
 
 
 def touches_criterion(project_dir: Path, slug: str, replaces) -> bool:
@@ -991,9 +992,12 @@ def lift_criterion(entry: dict, texts: dict[str, str], project_dir: Path | None 
     `sections` stands; otherwise the Case's own text is lifted. An `update` is set
     `pending` unless the item set a status itself (case 194.1). An `update` that names a
     part of the page — `set` without `status`, a `replace` pair, a section other than
-    `Criterion` — and writes no Criterion changes that part alone: nothing is lifted and no
-    status is set; a pair whose `old` stands in the page's `## Criterion` is
-    `incomplete: [criterion]` — a Criterion changes only whole (case 378.4)."""
+    `Criterion`, or `change` alone, its History (case 588.2) — and writes no Criterion
+    changes that part alone: nothing is lifted and no status is set; a pair whose `old`
+    stands in the page's `## Criterion` is `incomplete: [criterion]` — a Criterion changes
+    only whole (case 378.4). So the Criterion is lifted only for a `create`, an `update`
+    with `set.status` or one that writes it, and `pending` is set only on one that writes
+    its Criterion with no status of its own."""
     if entry.get("category") != "estimates" or entry.get("kind") not in ("create", "update"):
         return
     if entry["kind"] == "update" and names_a_part(entry):

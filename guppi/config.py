@@ -13,6 +13,9 @@ The render reads the codes from the Render of `rule-guppi-config` by `parse`, ne
 `context` or `problem` in another script imports it through `ratified.untranslated`
 (case 476.3). A letter is a character `str.isalpha` accepts; its script is the first word of
 its Unicode name, the way `LATIN SMALL LETTER A` and `CYRILLIC SMALL LETTER A` name theirs.
+Inside a code span — the pattern `CODE_SPAN` of `guppi/lint.py`, imported, no pattern of its
+own — a Latin letter is accepted as well, since a slug, a path or a field name is Latin in any
+language; a letter of another script there is judged as in prose (case 589.1).
 Rule page: `vault/wiki/rules/rule-guppi-config.md`.
 """
 
@@ -20,6 +23,8 @@ import tomllib
 import unicodedata
 from dataclasses import dataclass
 from pathlib import Path
+
+from guppi.lint import CODE_SPAN
 
 SETTINGS_FILE = "guppi.toml"
 SETTINGS_PAGE = "rule-guppi-config"
@@ -89,8 +94,16 @@ def script_of(code: str) -> str:
 
 
 def outside(text: str, code: str) -> bool:
-    """True when `text` holds a letter outside the script of the language `code`."""
+    """True when `text` holds a letter outside the script of the language `code`. Inside a
+    code span, read by `CODE_SPAN` of `guppi/lint.py`, a Latin letter is accepted too — a
+    slug, a path or a field name is Latin in any language — and a letter of any other
+    script is judged as in prose (case 589.1)."""
     script = LANGUAGES[code].script
-    return any(
-        char.isalpha() and unicodedata.name(char, "").split(" ", 1)[0] != script for char in text
-    )
+    spans = {i for match in CODE_SPAN.finditer(text) for i in range(match.start(), match.end())}
+    for i, char in enumerate(text):
+        if not char.isalpha():
+            continue
+        of = unicodedata.name(char, "").split(" ", 1)[0]
+        if of != script and not (i in spans and of == "LATIN"):
+            return True
+    return False

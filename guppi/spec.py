@@ -24,7 +24,11 @@ the fork the person chooses at — `/work`, Work Mode on the Spec, or `/carry` t
 for a later session — naming the session folder and the Spec file (case 190.5). A
 `PostToolUse` hook cannot block: the tool has run; the agent asks by `AskUserQuestion` with
 the two options, the person picks, nothing starts until the answer, and the agent then calls
-the skill picked (cases 190.2, 479.1). Rule page: `vault/wiki/rules/rule-spec-capture.md`.
+the skill picked (cases 190.2, 479.1). When the approved plan names the `spec.md` of a
+conserved Spec — a folder under `vault/raw/` that holds `carry.md`, by `conserved_spec_named`
+of `guppi/box.py` — the line in place of the fork names that folder and tells the agent to
+call `/box` with it and to ask the person nothing: the person took that Spec at the Frontier
+(case 591.3). Rule page: `vault/wiki/rules/rule-spec-capture.md`.
 """
 
 import json
@@ -32,6 +36,7 @@ import sys
 from datetime import datetime
 from pathlib import Path
 
+from guppi.box import conserved_spec_named
 from guppi.event import project_root, read_payload, session_stamp
 from guppi.ledger import session_dir
 
@@ -91,16 +96,31 @@ def fork_line(path: Path, project_dir: Path) -> str:
     )
 
 
-def fork_output(path: Path, project_dir: Path) -> str:
-    """`fork_line` wrapped as `hookSpecificOutput.additionalContext`, the JSON a
-    `PostToolUse` hook prints so that the client adds the line to the context (case 255)."""
+def box_line(path: Path, folder: Path, project_dir: Path) -> str:
+    """The line in place of the fork when the approved plan names a conserved Spec (case
+    591.3): the person took it at the Frontier, so the agent calls `/box` with its folder and
+    asks nothing."""
+    try:
+        spec = path.relative_to(project_dir).as_posix()
+        conserved = folder.relative_to(project_dir).as_posix()
+    except ValueError:
+        spec, conserved = path.as_posix(), folder.as_posix()
+    return (
+        f"spec: the Spec is in {spec}. The plan takes the conserved Spec of {conserved}/: "
+        f"call /box with {conserved}/ as its argument, and ask the person nothing — the "
+        "person took that Spec at the Frontier."
+    )
+
+
+def fork_output(path: Path, project_dir: Path, plan: str = "") -> str:
+    """`fork_line`, or `box_line` for a plan that names a conserved Spec by
+    `conserved_spec_named` of `guppi/box.py`, wrapped as `hookSpecificOutput.additionalContext`,
+    the JSON a `PostToolUse` hook prints so that the client adds the line to the context
+    (case 255)."""
+    folder = conserved_spec_named(plan, project_dir)
+    line = fork_line(path, project_dir) if folder is None else box_line(path, folder, project_dir)
     return json.dumps(
-        {
-            "hookSpecificOutput": {
-                "hookEventName": "PostToolUse",
-                "additionalContext": fork_line(path, project_dir),
-            }
-        },
+        {"hookSpecificOutput": {"hookEventName": "PostToolUse", "additionalContext": line}},
         ensure_ascii=False,
     )
 
@@ -129,7 +149,7 @@ def run(
             )
             return 2
         append_plan(path, plan, now, session)
-        print(fork_output(path, project_dir), file=stdout)
+        print(fork_output(path, project_dir, plan), file=stdout)
     except Exception as exc:  # noqa: BLE001 — a hook that raises would fail the session
         print(f"spec: spec.md not written: {exc}", file=stderr)
     return 0

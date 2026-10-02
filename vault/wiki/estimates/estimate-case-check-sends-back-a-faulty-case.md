@@ -1,7 +1,7 @@
 ---
 type: estimate
 kind: QA
-status: passed
+status: pending
 target: "[[rule-case-check]]"
 purpose: A Case of case-guppi that the checks refuse goes back to it before the main agent sees it
 method: uv run pytest tests/test_casecheck.py -k subagent, then by hand the first answer of case-guppi the hook sends back and the first file of cases/ it writes
@@ -26,7 +26,8 @@ Then:
 **＋** When no Case of the answer has findings, it writes the Cases of the answer, as the store holds their text, into `raw/<date>/<hi HHMM>/cases/case-<N>.md`, N the id of the top-level Case: the file is replaced whole when the answer holds the top-level Case, and only the section of a sub-case is replaced when the answer holds that sub-case alone.
 **＋** A finding exits 2 with the findings on stderr, each naming its Case, and `case-guppi` answers again, whatever `stop_hook_active` says.
 **－** An answer with a finding writes no file, and a finding for a Case whose text the store already holds with findings is stored again and exits 0, so an unchanged answer is not sent back twice.
-**－** An answer with no Case heading, an answer of another agent, or a session with no plan file is not sent back and exits 0; the first two are not checked, stored or written.
+**－** An answer of another agent, and one whose outputs hold no Case heading, get none of these checks of a Case and are not stored or written. A session with no plan file is not sent back for a fault of a Case.
+**－** The form of the questions of a round is the promise of `estimate-case-check-sends-back-a-faulty-round`, not of this one.
 
 ## Result
 
@@ -39,3 +40,4 @@ Then:
 - 2026-09-26 updated: the Criterion replaced whole — the categories whose schema rule the session changes come from the ratification fences and the session's window (case 436.4) · [[decision-case-436.4]]
 - 2026-09-27 updated: the Criterion replaced whole — the time of the store, and the file of a Case with no findings written from the stored text (case 452.1) · [[decision-case-452.1]]
 - 2026-09-30 status: pending → passed · raw/2026-09-30/2042/ledger.md#L29
+- 2026-10-03 updated: the Criterion replaced whole — an answer whose outputs hold no Case heading gets none of the checks of a Case, and the form of a round is the promise of estimate-case-check-sends-back-a-faulty-round (case 601.2) · [[decision-case-601.2]]

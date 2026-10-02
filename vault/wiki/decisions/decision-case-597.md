@@ -25,7 +25,7 @@ The Plan Mode run of the onward hook stays silent after any refusal in the stret
   - Recommended: (a) rebuild the Retro fix. Case 596 goes back to its `case-guppi`, and the line says that `--plan` keeps its own judgment, set by `rule-prespec-onward`. This Case does not touch that Estimate.
   - Answer: agreed with the recommendation, (a).
 - **How the change is checked: one promise or two**
-  - Recommended: (a) two sub-cases. 597.1 replaces the promise of `estimate-prespec-onward-sends-the-agent-on`. 597.2 creates `estimate-prespec-onward-reads-the-decisions-of-the-stretch`. Each has its own tests and its own check by hand.
+  - Recommended: (a) two sub-cases. 597.1 replaces the promise of `estimate-prespec-onward-sends-the-agent-on`. 597.2 creates `estimate-prespec-onward-reads-the-decisions-of-the-session`. Each has its own tests and its own check by hand.
   - Answer: agreed with the recommendation, (a).
 
 ## History

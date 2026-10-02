@@ -120,8 +120,8 @@ update:
 ```
 
 ```tasks
-- [ ] update `rule-case-check`
-- [ ] create `estimate-case-check-sends-back-a-faulty-round`
+- [x] update `rule-case-check`
+- [x] create `estimate-case-check-sends-back-a-faulty-round`
 - [x] `guppi/casecheck.py`: `is_round` becomes the one test of a round: no Case heading, a first line that is not blank and is not `**Fact:**`, and a line that opens with `❓`, the indent set aside. A new function, importing it, gives the findings of each question of a round out of form, its title line judged by `QUESTION_LINE`. `subagent` runs it on the newest output of `case-guppi`, read by `outputs`. When that output is a round with findings, and no earlier output of the transcript holds the same text, the findings join those of the check of a Case, and the run exits 2. The check of the form stores nothing. The module docstring describes the check. Its sentence that an answer with no Case heading, where no earlier output holds one either, is not checked or stored gains: such an output is still judged as a round by the check of the form, which stores nothing.
 - [x] `tests/test_casecheck.py`: the cases of the `method` of `estimate-case-check-sends-back-a-faulty-round`, each named `round_form`.
 - [x] `uv run pytest tests/test_casecheck.py`
@@ -162,7 +162,7 @@ update:
 ```
 
 ```tasks
-- [ ] update `estimate-case-check-sends-back-a-faulty-case`
+- [x] update `estimate-case-check-sends-back-a-faulty-case`
 - [ ] read `estimate-case-check-sends-back-a-faulty-case`
 ```
 
@@ -202,7 +202,7 @@ update:
 ```
 
 ```tasks
-- [ ] update `estimate-case-build-writes-the-case`
+- [x] update `estimate-case-build-writes-the-case`
 - [ ] read `estimate-case-build-writes-the-case`
 ```
 
@@ -241,7 +241,7 @@ update:
 ```
 
 ```tasks
-- [ ] update `estimate-case-check-refuses-text-before-a-round`
+- [x] update `estimate-case-check-refuses-text-before-a-round`
 - [x] `guppi/casecheck.py`: the docstring paragraph on how a round opens says that a round is known by `is_round`, the one test of a round, not by a `QUESTION_LINE` match.
 - [x] `tests/test_casecheck.py`: a round whose only question lacks the colon after its title is a round to the `Stop` run, and a reply that shows it after a text of the main agent's own is refused; the test is named `round`.
 - [x] `uv run pytest tests/test_casecheck.py -k round`
@@ -279,7 +279,7 @@ update:
 ```
 
 ```tasks
-- [ ] update `estimate-case-check-requires-each-question-of-the-rounds`
+- [x] update `estimate-case-check-requires-each-question-of-the-rounds`
 - [x] `guppi/casecheck.py`: `round_titles` skips an output that the function of the form of a round finds out of form; its docstring and the module docstring say so.
 - [x] `tests/test_casecheck.py`: a round sent back for its form, followed by a round in form with a changed title, requires only the titles of the round in form; the test is named `rounds`.
 - [x] `uv run pytest tests/test_casecheck.py -k rounds`
@@ -339,9 +339,9 @@ update:
 ```
 
 ```tasks
-- [ ] update `rule-synthesis`
-- [ ] update `estimate-synthesis-clusters`
-- [ ] `uv run guppi render`: `.claude/agents/librarian-guppi.md`
+- [x] update `rule-synthesis`
+- [x] update `estimate-synthesis-clusters`
+- [x] `uv run guppi render`: `.claude/agents/librarian-guppi.md`
 - [ ] read `estimate-synthesis-clusters` — by hand, the yaml and the brief after the first live librarian run after the render whose yaml holds at least two lesson entries
 ```
 
@@ -417,8 +417,8 @@ update:
 ```
 
 ```tasks
-- [ ] update `rule-prespec-onward`
-- [ ] update `estimate-prespec-onward-reads-the-decisions-of-the-stretch`
+- [x] update `rule-prespec-onward`
+- [x] update `estimate-prespec-onward-reads-the-decisions-of-the-stretch`
 - [x] `guppi/onward.py`: the replies whose decision lines count are every `assistant` record of `transcript_records` of `guppi/ledger.py`, each at its `moment`, not the records of `stretch`. `spent` and `told` are unchanged. The module docstring and the docstrings of the changed functions say so, with case 604.
 - [x] `tests/test_onward.py`: a Case whose ratifying reply stands before the person's last message in the transcript, its file written before that reply and after its line in `ledger.md`, is not out and the hook exits 2. The existing tests of the stretch replies stay green.
 - [x] `uv run pytest tests/test_onward.py tests/test_ledger.py`
@@ -509,8 +509,8 @@ update:
 ```
 
 ```tasks
-- [ ] update `insight-case-form-chat-form-read-by-no-script`
-- [ ] update `lesson-case-check-question-line-without-colon-unseen`
+- [x] update `insight-case-form-chat-form-read-by-no-script`
+- [x] update `lesson-case-check-question-line-without-colon-unseen`
 ```
 
 ## Case 606 — A Case writes no `by hand` box that waits for the librarian's run
@@ -589,9 +589,9 @@ update:
 ```
 
 ```tasks
-- [ ] update `rule-case-protocol`
-- [ ] update `estimate-case-protocol-case-form`
-- [ ] `uv run guppi render`: `vault/wiki/case-schema.md`
+- [x] update `rule-case-protocol`
+- [x] update `estimate-case-protocol-case-form`
+- [x] `uv run guppi render`: `vault/wiki/case-schema.md`
 - [ ] read `estimate-case-protocol-case-form` — by hand, the Cases of a later session at its close
 ```
 
@@ -622,6 +622,6 @@ update:
 ```
 
 ```tasks
-- [ ] update `decision-case-13`
+- [x] update `decision-case-13`
 - [x] one-off, by hand: `make lint` prints no `fence` line on `decision-case-13`; then tick the box of Case 591.11 in `vault/raw/2026-10-02/1202/spec.md` and close its line of `vault/raw/2026-10-02/2300/frontier.md` as `· work`
 ```

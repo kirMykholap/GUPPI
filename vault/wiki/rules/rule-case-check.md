@@ -1,12 +1,12 @@
 ---
 type: rule
 kind: Leaf
-purpose: Prevents a Case from being shown to the person in a form the checks of pre-spec refuse, or with other given, when, then, tasks or ratification than the ones that passed them, and a round of case-guppi from being shown after a text of the main agent's own
+purpose: Prevents a Case from being shown to the person in a form the checks of pre-spec refuse, or with other given, when, then, tasks or ratification than the ones that passed them, a round of case-guppi from reaching the main agent with a question out of the form of the grill-me template, and a round of case-guppi from being shown after a text of the main agent's own
 status: draft
 enforcement: hook
 implementation_ref: [guppi/casecheck.py, tests/test_casecheck.py, .claude/settings.json]
 parent: "[[rule-plan-mode]]"
-estimates: ["[[estimate-case-check-sends-back-a-faulty-case]]", "[[estimate-case-check-shows-only-the-checked-case]]", "[[estimate-case-check-requires-a-backlog-item-decided-on-its-page]]", "[[estimate-case-check-notes-a-criterion-line-not-carried]]", "[[estimate-case-check-notes-a-then-line-shared-by-siblings]]", "[[estimate-case-check-refuses-a-letter-outside-the-script]]", "[[estimate-case-check-requires-each-question-of-the-rounds]]", "[[estimate-case-check-refuses-a-problem-in-a-sub-case]]", "[[estimate-case-check-exits-2-on-an-error]]", "[[estimate-case-check-refuses-text-before-a-round]]"]
+estimates: ["[[estimate-case-check-sends-back-a-faulty-case]]", "[[estimate-case-check-shows-only-the-checked-case]]", "[[estimate-case-check-requires-a-backlog-item-decided-on-its-page]]", "[[estimate-case-check-notes-a-criterion-line-not-carried]]", "[[estimate-case-check-notes-a-then-line-shared-by-siblings]]", "[[estimate-case-check-refuses-a-letter-outside-the-script]]", "[[estimate-case-check-requires-each-question-of-the-rounds]]", "[[estimate-case-check-refuses-a-problem-in-a-sub-case]]", "[[estimate-case-check-exits-2-on-an-error]]", "[[estimate-case-check-refuses-text-before-a-round]]", "[[estimate-case-check-sends-back-a-faulty-round]]"]
 origin: raw/2026-09-25/1228/ledger.md#case-419.3
 sprint: migration
 created: 2026-09-25
@@ -15,7 +15,7 @@ tags: [hooks, harness, workflow, session]
 
 ## Purpose
 
-Prevents a Case from being shown to the person in a form the checks of pre-spec refuse, or with other `given`, `when`, `then`, `tasks` or `ratification` than the ones that passed them, and a round of `case-guppi` from being shown after a text of the main agent's own (case 562); the Case reaches the person in a file the hook writes from the answer that passed them (case 452.1). Until case 419 no script read a Case before its ratification: the hook of `rule-spec-write` checks it only after the person signed, and a fault of the form was found by the person or at pre-spec ([[insight-case-form-chat-form-read-by-no-script]]). The checks are the ones of pre-spec and of the Spec hook, imported, not copied ([[rule-one-judgment-one-implementation]]); the text of the story sections — `context`, `problem` and `recommend` — is not among them, only their presence, their order, the script of the name, `context` and `problem` of a Case, by the language finding of pre-spec, and the title of each item of `recommend` against the questions of the rounds (case 544.3): the person judges the text (cases 449, 537).
+Prevents a Case from being shown to the person in a form the checks of pre-spec refuse, or with other `given`, `when`, `then`, `tasks` or `ratification` than the ones that passed them, a round of `case-guppi` from reaching the main agent with a question out of the form of the template of `.claude/skills/grill-me/SKILL.md` (case 601.1), and a round of `case-guppi` from being shown after a text of the main agent's own (case 562); the Case reaches the person in a file the hook writes from the answer that passed them (case 452.1). Until case 419 no script read a Case before its ratification: the hook of `rule-spec-write` checks it only after the person signed, and a fault of the form was found by the person or at pre-spec ([[insight-case-form-chat-form-read-by-no-script]]). The checks of a Case are the ones of pre-spec and of the Spec hook, imported, not copied ([[rule-one-judgment-one-implementation]]), and every check of a round knows a round by one test and its title line by one pattern (case 601.1); the text of the story sections — `context`, `problem` and `recommend` — is not among them, only their presence, their order, the script of the name, `context` and `problem` of a Case, by the language finding of pre-spec, and the title of each item of `recommend` against the questions of the rounds (case 544.3): the person judges the text (cases 449, 537).
 
 ## History
 
@@ -50,3 +50,5 @@ Prevents a Case from being shown to the person in a form the checks of pre-spec 
 - 2026-10-01 updated: the reason for the exemption after /pre-spec: each answer of the loop comes back in a turn of its own, and rule-prespec sets the text written there (case 581.2) · [[decision-case-581.2]]
 - 2026-10-01 updated: the module docstring of guppi/casecheck.py says a Stop refusal is a user record marked isMeta, which the turn of the reply skips; a test checks a sending before a refusal (case 584) · [[decision-case-584]]
 - 2026-10-02 updated: How it works removed by hand, a one-off, its facts in the docstring of guppi/casecheck.py; the language finding on an answer accepts a Latin letter in a code span (case 589.2) · [[decision-case-589.2]]
+- 2026-10-03 updated: the SubagentStop check sends back a round of case-guppi with a question out of the grill-me form, once per text; one test of a round serves every check of a round (case 601.1) · [[decision-case-601.1]]
+- 2026-10-03 estimate estimate-case-check-sends-back-a-faulty-round added · [[decision-case-601.1]]

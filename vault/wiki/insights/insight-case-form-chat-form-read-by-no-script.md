@@ -1,10 +1,10 @@
 ---
 type: insight
 pattern: A rule of the form of a Case as shown in the chat — the order of its sections, what `ratification` holds, a count in a story section — is read by no script, so it holds only as far as the agent's own reading at the showing, and the fault is found later, by the person or by ask-guppi at pre-spec.
-status: open
-children: ["[[lesson-case-form-the-spec-free-sections-written-last]]", "[[lesson-case-form-ratification-used-for-the-agents-caveats]]", "[[lesson-case-form-a-count-in-the-sentence-that-opens-a-list]]", "[[lesson-case-form-given-written-before-tasks]]", "[[lesson-case-build-a-list-in-context]]", "[[lesson-case-build-quotes-the-person-in-the-chat-language]]", "[[lesson-case-build-rebuild-quotes-the-relayed-words]]", "[[lesson-case-protocol-own-text-before-a-round]]"]
-severity: 1
-addressed_by: "[[decision-case-537]]"
+status: actioned
+children: ["[[lesson-case-form-the-spec-free-sections-written-last]]", "[[lesson-case-form-ratification-used-for-the-agents-caveats]]", "[[lesson-case-form-a-count-in-the-sentence-that-opens-a-list]]", "[[lesson-case-form-given-written-before-tasks]]", "[[lesson-case-build-a-list-in-context]]", "[[lesson-case-build-quotes-the-person-in-the-chat-language]]", "[[lesson-case-build-rebuild-quotes-the-relayed-words]]", "[[lesson-case-protocol-own-text-before-a-round]]", "[[lesson-case-check-question-line-without-colon-unseen]]"]
+severity: 0
+addressed_by: "[[decision-case-601.1]]"
 origin: raw/2026-09-25/0051/ledger.md#L20
 sprint: migration
 created: 2026-09-25
@@ -30,3 +30,4 @@ Let a check read the chat form of a Case before the person does — for example 
 - 2026-09-29 updated: child lesson-case-build-rebuild-quotes-the-relayed-words added (synthesis) · raw/2026-09-29/1753/ledger.md#L25
 - 2026-09-30 updated: actioned: case-guppi quotes none of the person's words (case 536), and the check of each answer runs the language finding (case 537) · [[decision-case-537]]
 - 2026-09-30 updated: child lesson-case-protocol-own-text-before-a-round added, reopened (synthesis) · raw/2026-09-30/1736/ledger.md#L44
+- 2026-10-03 updated: child lesson-case-check-question-line-without-colon-unseen added; actioned: the Stop check of rule-case-check refuses a round shown after a text of the main agent's own (case 562), and the SubagentStop check sends back a round with a question out of the grill-me form (case 601.1); a count in a story section stays rejected (case 449) (case 605) · [[decision-case-605]]

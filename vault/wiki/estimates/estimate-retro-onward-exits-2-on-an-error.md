@@ -1,11 +1,11 @@
 ---
 type: estimate
 kind: QA
-status: pending
+status: passed
 target: "[[rule-retro-onward]]"
 purpose: Whether guppi onward exits 2 with the error and the advice to call /handoff on stderr when it raises after reading the payload, once a stretch by its own refusal in the transcript, and exits 0 on an empty payload
 method: uv run pytest tests/test_onward.py — piped payloads, a function of the hook patched to raise
-checked: 2026-10-01
+checked: 2026-10-03
 origin: raw/2026-09-30/2042/ledger.md#case-555.3
 sprint: migration
 created: 2026-09-30
@@ -26,7 +26,7 @@ Then:
 
 ## Result
 
-2026-10-01, uv run pytest tests/test_onward.py tests/test_ledger.py: 104 passed; tests/test_onward.py test_error_an_error_of_its_own_exits_2_with_the_advice, test_error_with_the_flag_and_no_readable_transcript_exits_0, test_error_with_its_own_refusal_in_the_stretch_exits_0, test_error_after_another_hooks_refusal_with_the_flag_exits_2, test_error_an_empty_payload_exits_0 and test_plan_an_error_of_its_own_exits_2_with_the_advice cover each line of the Criterion
+2026-10-03, uv run pytest tests/test_onward.py in Work Mode of session 2300: 45 passed, the 8 test_error_* tests among them; piped payloads, retro_marked patched to raise: exit 2 with `onward: not checked: boom` and the advice to call /handoff before Retro too; exit 0 with its own refusal in the stretch, a later ledger refusal included; exit 0 with the flag and no readable transcript; exit 0 on an empty payload
 
 ## History
 
@@ -35,3 +35,4 @@ Then:
 - 2026-10-01 updated: the Criterion replaced whole — the error comes back once a stretch, judged by the hook's own refusal in the transcript, not by stop_hook_active (case 577.2) · [[decision-case-577.2]]
 - 2026-10-01 status: pending → passed · raw/2026-10-01/1725/ledger.md#L8
 - 2026-10-02 updated: the Criterion replaced whole — the error path is judged by its own refusal in the stretch alone, whatever the ledger hook refused after it (case 596.3) · [[decision-case-596.3]]
+- 2026-10-03 status: pending → passed · raw/2026-10-02/2300/ledger.md#L22

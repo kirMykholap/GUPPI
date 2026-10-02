@@ -2,7 +2,8 @@
 type: lesson
 kind: error
 root_cause: QUESTION_LINE in guppi/casecheck.py requires the colon after the bold title, so a question line without it is no question to the round checks of rule-case-check, and the shape of that question goes unchecked
-status: new
+status: archived
+insight: "[[insight-case-form-chat-form-read-by-no-script]]"
 origin: raw/2026-10-02/2049/ledger.md#L25
 sprint: migration
 created: 2026-10-02
@@ -20,3 +21,6 @@ QUESTION_LINE in guppi/casecheck.py requires the colon after the bold title, so 
 ## History
 
 - 2026-10-02 created · raw/2026-10-02/2049/ledger.md#L25
+- 2026-10-03 updated: clustered under insight-case-form-chat-form-read-by-no-script (case 605) · [[decision-case-605]]
+- 2026-10-03 archived · insight actioned
+- 2026-10-03 archived · cleanup

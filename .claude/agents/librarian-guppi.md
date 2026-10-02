@@ -89,8 +89,7 @@ Mark each entry you add with `librarian: synthesis`. The entries of the synthesi
   librarian: synthesis
 ```
 
-One lesson without a pair
-stays `new`; that needs no flag. `Proposal` is a suggestion, never a decision. When an index line does not settle whether a lesson shares a root cause, read the
+Write the synthesis into the brief: the two Greps with the number of lines each printed, then one line for each `lesson` entry — its slug and the lesson or Insight it joined, or none and a few words on why no index line of either Grep shares its root cause (case 602). One lesson without a pair stays `new`; its line in the brief is no flag. `Proposal` is a suggestion, never a decision. When an index line does not settle whether a lesson shares a root cause, read the
 Trigger and Root cause of the candidate and name the page in the report with the
 outcome, clustered or not. The archive is not needed: an actioned Insight stays live with its pattern in its index line; when you still need an archived page, read it and flag the read as the frame says (case 558.2). Do not write pages yourself.
 <!-- /rule-synthesis -->

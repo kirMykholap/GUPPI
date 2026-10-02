@@ -220,7 +220,7 @@ update:
 - [x] `guppi/onward.py`: the error path keeps its own refusal in the stretch as its guard, whatever the ledger hook refused after it.
 - [x] `tests/test_onward.py`: the error path with its own refusal and a later ledger refusal in the stretch exits 0.
 - [x] `uv run pytest tests/test_onward.py`
-- [ ] read `estimate-retro-onward-exits-2-on-an-error`
+- [x] read `estimate-retro-onward-exits-2-on-an-error`
 ```
 
 ## Case 597 — The Plan Mode onward hook goes on after a ledger refusal and after a re-ratification
@@ -594,7 +594,7 @@ update:
 - [x] update `rule-orchestration`
 - [x] update `estimate-orchestration-acknowledging-reply`
 - [x] `uv run guppi render`: `vault/wiki/orchestration.md`
-- [ ] read `estimate-orchestration-acknowledging-reply`
+- [x] read `estimate-orchestration-acknowledging-reply`
 ```
 
 ### Case 598.3 — The pre-spec loop no longer owns signing together
@@ -632,7 +632,7 @@ update:
 
 ```tasks
 - [x] update `estimate-prespec-gathers-the-answers-after-findings`
-- [ ] read `estimate-prespec-gathers-the-answers-after-findings`
+- [x] read `estimate-prespec-gathers-the-answers-after-findings`
 ```
 
 ## Case 599 — The Insight on the main agent's own questions is closed by the rule that gave them the grill-me shape

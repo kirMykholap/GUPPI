@@ -5859,3 +5859,61 @@ instruction. The global feed; a page's own `## History` is the per-page view.
 - 2026-10-02 lessons/lesson-prespec-report-questions-still-off-the-shape archived · cleanup
 - 2026-10-02 lessons/lesson-prespec-second-run-dispatches-ask-guppi-again archived · cleanup
 - 2026-10-02 decisions/decision-case-575 archived · cleanup
+- 2026-10-03 estimates/estimate-synthesis-clusters status: pending → failed · raw/2026-10-02/2300/ledger.md#L1 · generate
+- 2026-10-03 decisions/decision-case-601 created · raw/2026-10-02/2300/ledger.md#case-601 · generate
+- 2026-10-03 decisions/decision-case-601.1 created · raw/2026-10-02/2300/ledger.md#case-601.1 · generate
+- 2026-10-03 rules/rule-case-check updated: the SubagentStop check sends back a round of case-guppi with a question out of the grill-me form, once per text; one test of a round serves every check of a round (case 601.1) · [[decision-case-601.1]] · generate
+- 2026-10-03 estimates/estimate-case-check-sends-back-a-faulty-round created · [[decision-case-601.1]] · generate
+- 2026-10-03 rules/rule-case-check estimate estimate-case-check-sends-back-a-faulty-round added · [[decision-case-601.1]] · generate
+- 2026-10-03 decisions/decision-case-601.2 created · raw/2026-10-02/2300/ledger.md#case-601.2 · generate
+- 2026-10-03 estimates/estimate-case-check-sends-back-a-faulty-case updated: the Criterion replaced whole — an answer whose outputs hold no Case heading gets none of the checks of a Case, and the form of a round is the promise of estimate-case-check-sends-back-a-faulty-round (case 601.2) · [[decision-case-601.2]] · generate
+- 2026-10-03 decisions/decision-case-601.3 created · raw/2026-10-02/2300/ledger.md#case-601.3 · generate
+- 2026-10-03 estimates/estimate-case-build-writes-the-case updated: the Criterion replaced whole — the hook of rule-case-check judges the form of the questions of a round, not its context, and stores nothing of it (case 601.3) · [[decision-case-601.3]] · generate
+- 2026-10-03 decisions/decision-case-602 created · raw/2026-10-02/2300/ledger.md#case-602 · generate
+- 2026-10-03 rules/rule-synthesis updated: the synthesis gives one line per lesson entry in the brief, a lesson that joins nothing with the reason (case 602) · [[decision-case-602]] · generate
+- 2026-10-03 estimates/estimate-synthesis-clusters updated: the Criterion replaced whole — the brief gives one line per lesson entry with its outcome against both Greps, or none and why (case 602) · [[decision-case-602]] · generate
+- 2026-10-03 decisions/decision-case-603 created · raw/2026-10-02/2300/ledger.md#case-603 · generate
+- 2026-10-03 decisions/decision-case-604 created · raw/2026-10-02/2300/ledger.md#case-604 · generate
+- 2026-10-03 rules/rule-prespec-onward updated: a Case is judged out by the decision lines of every reply of the transcript, not only of the stretch, so a re-ratification with unchanged lines counts for the rest of the session (case 604) · [[decision-case-604]] · generate
+- 2026-10-03 estimates/estimate-prespec-onward-reads-the-decisions-of-the-session renamed from `estimate-prespec-onward-reads-the-decisions-of-the-stretch` · [[decision-case-604]] · generate
+- 2026-10-03 rules/rule-prespec-onward ref `estimate-prespec-onward-reads-the-decisions-of-the-stretch` → `estimate-prespec-onward-reads-the-decisions-of-the-session` · [[decision-case-604]] · generate
+- 2026-10-03 estimates/estimate-prespec-onward-reads-the-decisions-of-the-session updated: renamed; the Criterion, purpose and method replaced — the decision lines of every reply of the transcript count, not only those of the stretch (case 604) · [[decision-case-604]] · generate
+- 2026-10-03 decisions/decision-case-605 created · raw/2026-10-02/2300/ledger.md#case-605 · generate
+- 2026-10-03 insights/insight-case-form-chat-form-read-by-no-script updated: child lesson-case-check-question-line-without-colon-unseen added; actioned: the Stop check of rule-case-check refuses a round shown after a text of the main agent's own (case 562), and the SubagentStop check sends back a round with a question out of the grill-me form (case 601.1); a count in a story section stays rejected (case 449) (case 605) · [[decision-case-605]] · generate
+- 2026-10-03 decisions/decision-case-601.4 created · raw/2026-10-02/2300/ledger.md#case-601.4 · generate
+- 2026-10-03 estimates/estimate-case-check-refuses-text-before-a-round updated: the Criterion replaced whole — a round is known by is_round, the one test of a round (case 601.4) · [[decision-case-601.4]] · generate
+- 2026-10-03 decisions/decision-case-601.5 created · raw/2026-10-02/2300/ledger.md#case-601.5 · generate
+- 2026-10-03 estimates/estimate-case-check-requires-each-question-of-the-rounds updated: the Criterion replaced whole — only a round in form gives the titles recommend must hold (case 601.5) · [[decision-case-601.5]] · generate
+- 2026-10-03 decisions/decision-case-603.1 created · raw/2026-10-02/2300/ledger.md#case-603.1 · generate
+- 2026-10-03 decisions/decision-case-603.2 created · raw/2026-10-02/2300/ledger.md#case-603.2 · generate
+- 2026-10-03 lessons/lesson-case-check-question-line-without-colon-unseen updated: clustered under insight-case-form-chat-form-read-by-no-script (case 605) · [[decision-case-605]] · generate
+- 2026-10-03 decisions/decision-case-606 created · raw/2026-10-02/2300/ledger.md#case-606 · generate
+- 2026-10-03 decisions/decision-case-606.1 created · raw/2026-10-02/2300/ledger.md#case-606.1 · generate
+- 2026-10-03 decisions/decision-case-603 superseded by decision-case-606.1 · [[decision-case-606.1]] · generate
+- 2026-10-03 decisions/decision-case-603.1 superseded by decision-case-606.1 · [[decision-case-606.1]] · generate
+- 2026-10-03 rules/rule-case-protocol updated: a Case writes no by hand box whose moment comes after Work Mode of its session; such a check is the reading of an Estimate or the make lint of the librarian's run (case 606.1) · [[decision-case-606.1]] · generate
+- 2026-10-03 estimates/estimate-case-protocol-case-form updated: the Criterion replaced whole — tasks hold no by hand box whose moment comes after Work Mode of the Case's session; the other lines as case 544.11 left them (case 606.1) · [[decision-case-606.1]] · generate
+- 2026-10-03 decisions/decision-case-606.2 created · raw/2026-10-02/2300/ledger.md#case-606.2 · generate
+- 2026-10-03 decisions/decision-case-603.2 superseded by decision-case-606.2 · [[decision-case-606.2]] · generate
+- 2026-10-03 decisions/decision-case-13 updated: the check of its closed fence taken after the librarian's run of session 1202; the box of Case 591.11 in raw/2026-10-02/1202/spec.md ticked by Work Mode of session 2300 (case 606.2) · [[decision-case-606.2]] · generate
+- 2026-10-03 estimates/estimate-retro-onward-exits-2-on-an-error status: pending → passed · raw/2026-10-02/2300/ledger.md#L22 · generate
+- 2026-10-03 estimates/estimate-orchestration-acknowledging-reply status: pending → passed · raw/2026-10-02/2300/ledger.md#L23 · generate
+- 2026-10-03 estimates/estimate-prespec-gathers-the-answers-after-findings status: pending → passed · raw/2026-10-02/2300/ledger.md#L24 · generate
+- 2026-10-03 estimates/estimate-orchestration-asks-in-the-grill-me-shape status: pending → passed · raw/2026-10-02/2300/ledger.md#L25 · generate
+- 2026-10-03 estimates/estimate-orchestration-forwards-a-discussion-question status: pending → passed · raw/2026-10-02/2300/ledger.md#L26 · generate
+- 2026-10-03 lessons/lesson-orchestration-own-fork-frames-the-symptom created · raw/2026-10-02/2300/ledger.md#L27 · generate
+- 2026-10-03 lessons/lesson-spec-write-keeps-the-body-of-case-603-split-at-prespec created · raw/2026-10-02/2300/ledger.md#L28 · generate
+- 2026-10-03 insights/insight-spec-write-parent-body-kept-on-re-ratification updated: child lesson-spec-write-keeps-the-body-of-case-603-split-at-prespec added (synthesis) · raw/2026-10-02/2300/ledger.md#L28 · generate
+- 2026-10-03 lessons/lesson-spec-write-keeps-the-body-of-case-603-split-at-prespec updated: clustered under insight-spec-write-parent-body-kept-on-re-ratification (synthesis) · raw/2026-10-02/2300/ledger.md#L28 · generate
+- 2026-10-03 rules/rule-case-protocol status: built → draft · cascade · generate
+- 2026-10-03 rules/rule-prespec status: draft → built · cascade · generate
+- 2026-10-03 decisions/decision-case-603.1 archived · superseded · generate
+- 2026-10-03 decisions/decision-case-603.2 archived · superseded · generate
+- 2026-10-03 decisions/decision-case-603 archived · superseded · generate
+- 2026-10-03 lessons/lesson-case-protocol-own-text-before-a-round archived · insight actioned · generate
+- 2026-10-03 lessons/lesson-case-check-question-line-without-colon-unseen archived · insight actioned · generate
+- 2026-10-03 lessons/lesson-case-check-question-line-without-colon-unseen archived · cleanup
+- 2026-10-03 lessons/lesson-case-protocol-own-text-before-a-round archived · cleanup
+- 2026-10-03 decisions/decision-case-603.1 archived · cleanup
+- 2026-10-03 decisions/decision-case-603.2 archived · cleanup
+- 2026-10-03 decisions/decision-case-603 archived · cleanup

@@ -26,7 +26,7 @@ Then:
 **＋** A round may come at the first answer on an item, after a message on a Case it built, and in Work Mode when a ratified Case is built again.
 **＋** It runs on `model: opus` with `effort: medium` and the tools Read, Grep and Glob.
 **－** A later round on the item, a round after a message on a Case it built and a round in Work Mode carry no context.
-**－** The context carries no Case heading, so the hook of `rule-case-check` neither checks nor stores the round.
+**－** The context carries no Case heading, so the hook of `rule-case-check` neither checks nor stores the round as a Case; it judges only the form of the questions of the round, not its context.
 **－** It writes no file and no ledger line.
 
 ## History
@@ -39,3 +39,4 @@ Then:
 - 2026-09-27 updated: the Criterion replaced whole — case-guppi answers with a round of questions while a fork is open (case 443.2) · [[decision-case-443.2]]
 - 2026-09-27 updated: the Criterion replaced whole — the first round on an item opens with a Context paragraph (case 466.1) · [[decision-case-466.1]]
 - 2026-10-02 updated: the Criterion replaced whole - case-guppi reads case-schema.md and ratification.md (case 595.7) · [[decision-case-595.7]]
+- 2026-10-03 updated: the Criterion replaced whole — the hook of rule-case-check judges the form of the questions of a round, not its context, and stores nothing of it (case 601.3) · [[decision-case-601.3]]

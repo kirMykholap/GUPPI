@@ -133,7 +133,7 @@ update:
 - [x] update `rule-prespec`
 - [x] update `estimate-prespec-gathers-the-answers-after-findings`
 - [x] `uv run guppi render`: `.claude/skills/pre-spec/SKILL.md`
-- [ ] read `estimate-prespec-gathers-the-answers-after-findings`
+- [x] read `estimate-prespec-gathers-the-answers-after-findings`
 ```
 
 ### Case 595.2 — `rule-orchestration` renders what the main agent alone does
@@ -680,7 +680,7 @@ update:
 
 ```tasks
 - [x] update `estimate-case-protocol-acknowledging-reply`
-- [ ] read `estimate-orchestration-acknowledging-reply`
+- [x] read `estimate-orchestration-acknowledging-reply`
 ```
 
 ### Case 595.9 — The check of the Frontier after a closed line moves to `rule-orchestration`
@@ -836,7 +836,7 @@ update:
 
 ```tasks
 - [x] update `estimate-case-protocol-forwards-a-discussion-question`
-- [ ] read `estimate-orchestration-forwards-a-discussion-question`
+- [x] read `estimate-orchestration-forwards-a-discussion-question`
 ```
 
 ### Case 595.13 — The check of the main agent's own questions moves to `rule-orchestration`
@@ -870,7 +870,7 @@ update:
 
 ```tasks
 - [x] update `estimate-case-protocol-asks-in-the-grill-me-shape`
-- [ ] read `estimate-orchestration-asks-in-the-grill-me-shape`
+- [x] read `estimate-orchestration-asks-in-the-grill-me-shape`
 ```
 
 ### Case 595.14 — The check of the harness before Plan Mode moves to `rule-orchestration`

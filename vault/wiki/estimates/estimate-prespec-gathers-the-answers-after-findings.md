@@ -1,11 +1,11 @@
 ---
 type: estimate
 kind: QA
-status: pending
+status: passed
 target: "[[rule-prespec]]"
 purpose: Whether after the findings of pre-spec the main agent sends nothing to a case-guppi until the person has answered every question of the report, then sends each case-guppi its findings with the answers in one message, ends each waiting turn with one labelled line and writes nothing else while answers are out, gathers every round into one numbered list, and shows the Cases built again in one reply
 method: by hand at the /pre-spec of a later session after the render whose report asks the person a question and sends findings to two or more case-guppi, the replies between the report and the showing again, the SendMessage calls and any refusal of guppi casecheck read in the transcript
-checked: 2026-10-02
+checked: 2026-10-03
 origin: raw/2026-09-30/2356/ledger.md#case-561.2
 sprint: migration
 created: 2026-09-30
@@ -31,7 +31,7 @@ The main agent sends each finding in a Case, with each answer of the report that
 
 ## Result
 
-2026-10-02, by hand at the /pre-spec of session 1202 in the transcript of session 1a155152: the report numbered 13 findings and asked one question in the grill-me shape; findings 1–12 went to the case-guppi of 588, 590 and 591 in one SendMessage each, the finding on How it works held back for 589 and 590 until the person's answer; each turn while an answer was out ended with one line under the bold label Ожидание naming the Cases answered and still out, with no question; the round 590.Q6 that came back while 588 and 591 were out was not shown in that turn; once all answered, one list showed 589.Q1 and 590.Q6 numbered by Case; the answers went back in one message each; the four Cases built again were shown in one reply for one ratification; guppi casecheck refused no reply of the loop
+2026-10-03, by hand in the transcript of session 2300: the /pre-spec report asked Q1 and Q2 and sent nothing until the person answered; one SendMessage to each of the four case-guppi in one turn; each turn while an answer was out ended with one `**Ожидание:**` line naming the Cases answered and out; the round of 601 came back while 603 and 605 were out and was shown only after all answered, numbered 601.Q1 and 601.Q2; the answers went in one message; 601, 602, 603 and 605 were shown again in one reply for one ratification; the Waiting line of the later fix after the ratification (Case 603 to 606) also named the finding
 
 ## History
 
@@ -41,3 +41,4 @@ The main agent sends each finding in a Case, with each answer of the report that
 - 2026-10-02 status: pending → passed · raw/2026-10-02/1202/ledger.md#L56
 - 2026-10-02 updated: the Criterion replaced whole - nothing goes to a case-guppi before every question of the report is answered (case 595.1) · [[decision-case-595.1]]
 - 2026-10-02 updated: the Criterion replaced whole — outside the loop, Cases go out together only in a batch that orchestration.md sets (case 598.3) · [[decision-case-598.3]]
+- 2026-10-03 status: pending → passed · raw/2026-10-02/2300/ledger.md#L24

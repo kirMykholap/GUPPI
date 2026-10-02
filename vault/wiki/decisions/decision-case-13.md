@@ -42,3 +42,4 @@ case-schema:
 - 2026-09-11 migrated: targets to kind and target_slug, Now to Given, Then to When · [[decision-case-52.1]]
 - 2026-09-12 fields kind and target_slug folded into create, update, delete, defer · [[decision-case-59.4]]
 - 2026-10-02 updated: the code fence of When closed: the text was cut off when the page was written; no content change (case 591.11) · [[decision-case-591.11]]
+- 2026-10-03 updated: the check of its closed fence taken after the librarian's run of session 1202; the box of Case 591.11 in raw/2026-10-02/1202/spec.md ticked by Work Mode of session 2300 (case 606.2) · [[decision-case-606.2]]

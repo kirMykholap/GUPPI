@@ -1,11 +1,11 @@
 ---
 type: estimate
 kind: QA
-status: pending
+status: passed
 target: "[[rule-orchestration]]"
 purpose: The reply that acknowledges a ratification has four parts in order
 method: one reading by hand of the first acknowledging reply of a session, and of the first reply that acknowledges Cases ratified together in one answer
-checked: 2026-10-01
+checked: 2026-10-03
 origin: raw/2026-09-16/1034/ledger.md#case-188
 sprint: migration
 created: 2026-09-16
@@ -31,7 +31,7 @@ The reply has four parts, in this order. First, the `LEDGER` block. Second, the 
 
 ## Result
 
-2026-10-01, by hand, session 1725, the first acknowledging reply (case 582): LEDGER block first; heading "Case 582 — ратифицирован" in the language of the chat; Changes in two sentences; Notes; Frontier with the closed lines in one line, the open W lines in one line of ids, each other open line with a short title; the question which item is next last; no tool call after the LEDGER block; the reply of the re-ratification of 583 carried its decision line again, the ledger holds it once, and with no Cases line open it ended with the Frontier and no question
+2026-10-03, by hand in the transcript of session 2300: the first acknowledging reply (Case 601) and the reply that acknowledged 601.1–601.5, 602, 603.1, 603.2 and 605 ratified in one answer each open with the LEDGER block, then one heading naming the ids, Changes:, Notes:, the Frontier with the closed lines folded into one and the open W lines into one; the first ends with the question which item is next, the batch reply ends with the Frontier while no Cases line was open; re-ratified Cases carry their lines again; headings in Russian; no tool call after the block
 
 ## History
 
@@ -53,3 +53,4 @@ The reply has four parts, in this order. First, the `LEDGER` block. Second, the 
 - 2026-10-02 renamed from `estimate-case-protocol-acknowledging-reply` · [[decision-case-595.8]]
 - 2026-10-02 updated: moved to rule-orchestration; the Criterion replaced whole - the reply as orchestration.md sets it (case 595.8) · [[decision-case-595.8]]
 - 2026-10-02 updated: the Criterion replaced whole — one reply acknowledges every Case ratified in one answer (case 598.2) · [[decision-case-598.2]]
+- 2026-10-03 status: pending → passed · raw/2026-10-02/2300/ledger.md#L23

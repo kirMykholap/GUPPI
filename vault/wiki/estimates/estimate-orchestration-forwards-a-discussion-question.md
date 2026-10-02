@@ -1,11 +1,11 @@
 ---
 type: estimate
 kind: QA
-status: pending
+status: passed
 target: "[[rule-orchestration]]"
 purpose: Whether a question of the person to discuss an item goes to its case-guppi and comes back under Fact, with no reading of the main agent's own
 method: by hand in a later session, the first such question, the SendMessage call, the tool calls of the main agent and the answer read in the transcript
-checked: 2026-10-01
+checked: 2026-10-03
 origin: raw/2026-09-30/2356/ledger.md#case-561.12
 sprint: migration
 created: 2026-09-30
@@ -26,7 +26,7 @@ The main agent sends the question to that `case-guppi` by `SendMessage`, verbati
 
 ## Result
 
-2026-10-01, by hand, session 1237: the person's question on making estimate-documentation-completes less strict ("что скажешь?") went verbatim and untranslated to the case-guppi of Case 567 by SendMessage; the main agent made no Read, Grep or Glob call to answer it (its one Bash grep of the event log served the wait-what re-pitch of Q2); case-guppi answered with a round, Q3 and Q4, since the question opened a fork; the main agent showed it translated and asked again the open questions Q1-Q4
+2026-10-03, by hand in the transcript of session 2300: the person's question on the round of Case 603 ("А почему вообще появляется такая ситуация…") went to its case-guppi by SendMessage verbatim and untranslated, with no Read, Grep or Glob call of the main agent; case-guppi answered with a round (Q5) as the question opened a fork; the main agent showed it translated and asked the open questions again; the question on the librarian came back as a `**Fact:**` answer, shown translated
 
 ## History
 
@@ -34,3 +34,4 @@ The main agent sends the question to that `case-guppi` by `SendMessage`, verbati
 - 2026-10-01 status: pending → passed · raw/2026-10-01/1237/ledger.md#L32
 - 2026-10-02 renamed from `estimate-case-protocol-forwards-a-discussion-question` · [[decision-case-595.12]]
 - 2026-10-02 updated: moved to rule-orchestration; the Criterion replaced whole - the forwarding as orchestration.md sets it (case 595.12) · [[decision-case-595.12]]
+- 2026-10-03 status: pending → passed · raw/2026-10-02/2300/ledger.md#L26

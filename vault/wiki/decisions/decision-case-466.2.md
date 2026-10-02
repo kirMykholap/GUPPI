@@ -2,7 +2,7 @@
 type: decision
 case: "466.2"
 status: current
-update: ["[[rule-case-protocol]]", "[[estimate-case-protocol-shows-the-built-case]]"]
+update: ["[[rule-case-protocol]]", "[[estimate-orchestration-shows-the-built-case]]"]
 origin: raw/2026-09-27/2050/ledger.md#case-466.2
 sprint: migration
 created: 2026-09-27
@@ -23,7 +23,7 @@ The first round on an item reaches the person with no framing. The person reads 
 
 `rule-case-protocol` — its Render, the paragraph "Who builds a Case", where a round is shown
 **＋** `vault/wiki/case-schema.md` — the file rendered from `rule-case-protocol`
-**＋** `estimate-case-protocol-shows-the-built-case` — the promise of the showing, its Criterion replaced whole
+**＋** `estimate-orchestration-shows-the-built-case` — the promise of the showing, its Criterion replaced whole
 **＋** `.claude/agents/case-guppi.md` — the agent that writes the round and its context
 **＋** `.claude/skills/grill-me/SKILL.md` — the form of a question in a round
 **＋** `rule-case-check` — the hooks that write the file of a Case and compare its showing

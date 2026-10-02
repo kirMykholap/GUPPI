@@ -2,7 +2,7 @@
 type: decision
 case: "531.14"
 status: current
-update: ["[[rule-case-protocol]]", "[[estimate-case-protocol-defers-in-one-reply]]"]
+update: ["[[rule-case-protocol]]", "[[estimate-orchestration-defers-in-one-reply]]"]
 origin: raw/2026-09-29/2024/ledger.md#case-531.14
 sprint: migration
 created: 2026-09-29

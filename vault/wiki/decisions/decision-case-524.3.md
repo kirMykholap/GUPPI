@@ -2,7 +2,7 @@
 type: decision
 case: "524.3"
 status: current
-update: ["[[rule-case-protocol]]", "[[estimate-case-protocol-shows-the-built-case]]"]
+update: ["[[rule-case-protocol]]", "[[estimate-orchestration-shows-the-built-case]]"]
 origin: raw/2026-09-29/1753/ledger.md#case-524.3
 sprint: migration
 created: 2026-09-29

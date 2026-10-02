@@ -27,7 +27,7 @@ The stdout of the hook is one JSON object, `hookSpecificOutput` with `hookEventN
 **－** A `PostToolUse` hook blocks nothing: the tool has run.
 **－** Without a Spec, nothing, as before.
 **－** The path "no `/hi` for this session" — stderr, exit 2 — does not change.
-**－** A Case is still ratified by the person's reply in the chat, never by a picker tool, as `vault/wiki/case-schema.md` says: the picker is for the end of the session only.
+**－** A Case is still ratified by the person's reply in the chat, never by a picker tool, as `vault/wiki/ratification.md` says: the picker is for the end of the session only.
 **－** The writing of the Spec does not change: that is the promise of `estimate-spec-capture-appends`.
 
 ## Result
@@ -44,3 +44,4 @@ The stdout of the hook is one JSON object, `hookSpecificOutput` with `hookEventN
 - 2026-09-28 updated: the Criterion replaced whole — the fork is asked by AskUserQuestion with /work and /carry, and the skill picked is called (case 479.1) · [[decision-case-479.1]]
 - 2026-09-28 status: pending → passed · raw/2026-09-28/2000/ledger.md#L21
 - 2026-10-02 updated: the Criterion replaced whole — a plan that names a conserved Spec leads to /box, any other gets the fork (case 591.3) · [[decision-case-591.3]]
+- 2026-10-02 updated: the Criterion replaced whole - ratification.md says a Case is ratified by the person's reply (case 595.18) · [[decision-case-595.18]]

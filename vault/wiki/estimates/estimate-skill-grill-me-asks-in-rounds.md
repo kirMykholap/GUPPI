@@ -1,7 +1,7 @@
 ---
 type: estimate
 kind: QA
-status: passed
+status: pending
 target: "[[rule-skill-grill-me]]"
 purpose: grill-me asks in rounds, finds facts itself and acts only after the shared understanding is confirmed, as the one text its rule page renders
 method: uv run guppi render --check; by hand, one round read in the chat in a session after the render, of the person's /grill-me or of case-guppi
@@ -29,7 +29,7 @@ Then:
 **－** An option carries nothing under it but its `**After:**` item: no list of costs, no second item and no other label. A cost is a plain sentence inside the `**After:**` text or in the `➡️` line.
 **－** A short series of words inside a sentence stays in the sentence.
 **－** No line of a question except an option starts with `🔹`.
-**－** In the chat the labels may stand translated, as the main agent shows a round of `case-guppi` by `rule-case-protocol`. A translated label counts as the same label: the shape is what is read, not the language of the labels.
+**－** In the chat the labels may stand translated, as the main agent shows a round of `case-guppi` by `rule-orchestration`. A translated label counts as the same label: the shape is what is read, not the language of the labels.
 **－** The `**Context:**` paragraph of a round of `case-guppi`, its lists and quotations included, and the place of its case numbers are not read here. They are the promises of the Estimates of the rule of `.claude/agents/case-guppi.md`.
 **－** No sentence of `.claude/skills/grill-me/SKILL.md` requires the agent to dispatch a sub-agent.
 
@@ -48,3 +48,4 @@ Then:
 - 2026-09-29 updated: the Criterion replaced whole — a quotation stands as a blockquote on its own line (case 524.1) · [[decision-case-524.1]]
 - 2026-09-30 status: pending → failed · raw/2026-09-30/0248/ledger.md#L39
 - 2026-09-30 status: failed → passed · raw/2026-09-30/1736/ledger.md#L20
+- 2026-10-02 updated: the Criterion replaced whole - the main agent shows a round by rule-orchestration (case 595.19) · [[decision-case-595.19]]

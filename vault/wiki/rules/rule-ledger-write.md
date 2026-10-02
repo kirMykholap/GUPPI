@@ -18,7 +18,7 @@ tags: [session, hooks, harness, ledger]
 
 Prevents a ratified line from existing only in a chat reply, or landing in a session no
 `/hi` opened. The instruction to write `- decision[...]`, `- estimate[...]` and
-`- lesson[...]` lines lives in `case-schema.md`, the Render of `rule-case-protocol` that `/hi` loads (case 273), so a session without `/hi` produces none — and would produce them in *any* session
+`- lesson[...]` lines lives in `ratification.md` and `orchestration.md`, the Renders of `rule-ratification` and `rule-orchestration` that `/hi` loads (cases 273, 595), so a session without `/hi` produces none — and would produce them in *any* session
 if the instruction stood in `CLAUDE.md` again, including one with no sprint, no branch context and no brief. Without this hook's check the
 ledger would silently gain a session that was never a working session, and the librarian
 would materialize pages from it the next day.
@@ -75,3 +75,4 @@ would materialize pages from it the next day.
 - 2026-10-01 status: built → draft · cascade
 - 2026-10-02 estimate estimate-ledger-write-names-the-kind-of-a-user-record added · [[decision-case-592]]
 - 2026-10-02 updated: ## How it works left the Leaf, its mechanism in the docstring of guppi/ledger.py; the person's message and a returned answer are named by one function of guppi/ledger.py, which the case check and the token counter import (case 592) · [[decision-case-592]]
+- 2026-10-02 updated: the instruction to write the ledger lines lives in ratification.md and orchestration.md (case 595.17) · [[decision-case-595.17]]

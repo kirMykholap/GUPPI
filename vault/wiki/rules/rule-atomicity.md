@@ -2,11 +2,11 @@
 type: rule
 kind: Leaf
 purpose: Prevents a unit from being split or kept whole by taste — one closing judgment, one unit; two conditions that fail apart are two children
-status: built
+status: draft
 enforcement: render
-governs: vault/wiki/case-schema.md
+governs: vault/wiki/ratification.md
 render_mode: partial
-parent: "[[rule-case-protocol]]"
+parent: "[[rule-ratification]]"
 estimates: ["[[estimate-atomicity-rendered]]"]
 origin: raw/2026-09-22/1121/ledger.md#case-317
 sprint: migration
@@ -16,7 +16,7 @@ tags: [harness, workflow]
 
 ## Purpose
 
-Prevents a unit from being split or kept whole by taste. The rule cannot be checked in substance, so its guard is the one `rule-language` and `rule-agent-writing` have: the text stands in the file the agent reads — `case-schema.md`, loaded by `/hi` in every working session — and `render --check` keeps it identical to this page, while the governed-files hook refuses a hand edit. The one mechanical refusal of the rule is `pre-spec` on two Estimate items in a Case that each set a new Criterion, written or lifted, signed for `rule-prespec` (case 472.3).
+Prevents a unit from being split or kept whole by taste. The rule cannot be checked in substance, so its guard is the one `rule-language` and `rule-agent-writing` have: the text stands in the file both agents read — `ratification.md`, loaded by `/hi` in every working session and read by `case-guppi` — and `render --check` keeps it identical to this page, while the governed-files hook refuses a hand edit. The one mechanical refusal of the rule is `pre-spec` on two Estimate items in a Case that each set a new Criterion, written or lifted, signed for `rule-prespec` (case 472.3).
 
 ## Render
 
@@ -38,3 +38,5 @@ It holds for a Case, an Entity, a Rule and an Estimate alike. Not for a Lesson: 
 - 2026-09-28 updated: the refusal of pre-spec counts a written Criterion too (case 472.3) · [[decision-case-472.3]]
 - 2026-09-29 status: built → draft · cascade
 - 2026-09-29 status: draft → built · cascade
+- 2026-10-02 updated: rendered into ratification.md under rule-ratification (case 595.5) · [[decision-case-595.5]]
+- 2026-10-02 status: built → draft · cascade

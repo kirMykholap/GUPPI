@@ -1,8 +1,8 @@
 ---
 type: estimate
 kind: QA
-status: passed
-target: "[[rule-case-protocol]]"
+status: pending
+target: "[[rule-orchestration]]"
 purpose: A defer the person asks for is shown and written in the same reply, with no round of ratification
 method: "by hand, the first defer the person asks for after the render that leaves no line under ## Cases of frontier.md open"
 checked: 2026-10-01
@@ -15,7 +15,7 @@ tags: [session, workflow, ledger]
 ## Criterion
 
 When:
-The person asks in the chat to defer an item in Plan Mode.
+The person asks in the chat to defer an item in Plan Mode, with `vault/wiki/orchestration.md` rendered from `rule-orchestration`.
 
 Then:
 In the same reply the agent shows the Case in the short form — `context`, `problem` and a fence tagged `then` with one `defer` item per target, no other section — and carries its `LEDGER` block, one `defer` line per target, with no tool call after it.
@@ -45,3 +45,5 @@ In the same reply the agent shows the Case in the short form — `context`, `pro
 - 2026-09-30 status: pending → passed · raw/2026-09-30/0248/ledger.md#L37
 - 2026-10-01 updated: the Criterion replaced whole - no question when no line under Cases is open; the reply ends with the Frontier (case 561.7) · [[decision-case-561.7]]
 - 2026-10-01 status: pending → passed · raw/2026-10-01/1237/ledger.md#L31
+- 2026-10-02 renamed from `estimate-case-protocol-defers-in-one-reply` · [[decision-case-595.10]]
+- 2026-10-02 updated: moved to rule-orchestration; the Criterion replaced whole - the short form as orchestration.md sets it (case 595.10) · [[decision-case-595.10]]

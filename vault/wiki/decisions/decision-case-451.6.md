@@ -32,7 +32,7 @@ The vault query found no page that holds every deferred item. The near pages are
 Beyond the agreed sub-cases, the frame and pre-spec added these: `rule-internal-context` (451.12), `rule-documentation` (451.13), `rule-harness` (451.14), and the Estimate of the rendered schema of Insights (451.15), each with the Estimate that speaks of it.
 These stand, for the reasons given:
 - `case-schema.md` and the Purpose of `rule-skill-hi` name what `/hi` loads without `backlog.md`, and so does the Criterion of `estimate-hi-no-read-calls`. None of them claims the list is complete. The `Given:` list of `estimate-vault-layout-holds` gives examples.
-- `estimate-case-protocol-defers-in-one-reply` speaks of `· defer case N`, which stays.
+- `estimate-orchestration-defers-in-one-reply` speaks of `· defer case N`, which stays.
 - `estimate-case-protocol-loaded` promises only that the file equals its Render.
 
 This session's Frontier closes with the old closers, because the new check is built in Work Mode. Frontier files of earlier sessions are not rewritten.

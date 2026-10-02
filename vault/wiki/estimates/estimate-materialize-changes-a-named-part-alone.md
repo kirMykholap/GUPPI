@@ -1,11 +1,11 @@
 ---
 type: estimate
 kind: QA
-status: pending
+status: passed
 target: "[[rule-materialize]]"
 purpose: An update of an Estimate changes the part it names alone, or replaces the Criterion whole
 method: uv run pytest tests/test_materialize.py
-checked: 2026-09-24
+checked: 2026-10-02
 origin: raw/2026-09-24/1916/ledger.md#case-397.3
 sprint: migration
 created: 2026-09-24
@@ -28,10 +28,11 @@ An item that carries `set.status` gets `sections.Criterion`, the text it writes 
 
 ## Result
 
-2026-09-24, `uv run pytest tests/test_materialize.py`: 75 passed
+2026-10-02, uv run pytest tests/test_materialize.py: 123 passed
 
 ## History
 
 - 2026-09-25 created · [[decision-case-397.3]]
 - 2026-09-25 status: pending → passed · raw/2026-09-24/2214/ledger.md#L29
 - 2026-10-02 updated: the Criterion replaced whole — change alone lifts nothing and sets no status; set.status or a written Criterion replaces it (case 588.2) · [[decision-case-588.2]]
+- 2026-10-02 status: pending → passed · raw/2026-10-02/1834/ledger.md#L33

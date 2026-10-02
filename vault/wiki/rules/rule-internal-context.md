@@ -2,7 +2,7 @@
 type: rule
 kind: Leaf
 purpose: Prevents work starting without the current sprint and the previous session's handover
-status: built
+status: draft
 enforcement: render
 governs: .claude/skills/hi/SKILL.md
 render_mode: partial
@@ -26,15 +26,14 @@ one rule rather than two.
 @vault/wiki/sprint.md
 @vault/wiki/backlog.md
 @vault/wiki/brief.md
-@vault/wiki/case-schema.md
+@vault/wiki/orchestration.md
+@vault/wiki/ratification.md
 @vault/wiki/glossary.md
 <!-- /rule-internal-context -->
 
 ## How it works
 
-`case-schema.md` is listed since case 273: the Render of `rule-case-protocol`, it reaches
-a working session here and not through `CLAUDE.md`, so a session without `/hi` carries no
-Case text. `glossary.md` is listed since case 288.1: it left the `@` import of `CLAUDE.md`,
+`orchestration.md` and `ratification.md` are listed since case 595, in place of `case-schema.md`, listed from case 273: they reach a working session here and not through `CLAUDE.md`, so a session without `/hi` carries none of their text, and the form of a Case, `case-schema.md`, reaches only `case-guppi`, which reads it itself. `glossary.md` is listed since case 288.1: it left the `@` import of `CLAUDE.md`,
 which every subagent loads and none of them needs. The category schemas are not listed:
 they are read when a page of their category is written. After a compaction `guppi recall`
 prints the paths of these lines back (case 287).
@@ -52,3 +51,5 @@ prints the paths of these lines back (case 287).
 - 2026-09-27 updated: /hi loads backlog.md after sprint.md (case 451.12) · [[decision-case-451.12]]
 - 2026-09-27 status: built → draft · cascade
 - 2026-09-27 status: draft → built · cascade
+- 2026-10-02 updated: /hi loads orchestration.md and ratification.md in place of case-schema.md (case 595.4) · [[decision-case-595.4]]
+- 2026-10-02 status: built → draft · cascade

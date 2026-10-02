@@ -1,8 +1,9 @@
 ---
 type: decision
 case: "574"
-status: current
+status: archived
 defer: ["[[rule-orchestration]]"]
+superseded_by: ["[[decision-case-595.2]]"]
 origin: raw/2026-10-01/1237/ledger.md#case-574
 sprint: migration
 created: 2026-10-01
@@ -26,3 +27,6 @@ Prevents the main agent from loading the form of a Case it does not build, a des
 ## History
 
 - 2026-10-01 created · raw/2026-10-01/1237/ledger.md#case-574
+- 2026-10-02 superseded by decision-case-595.2 · [[decision-case-595.2]]
+- 2026-10-02 archived · superseded
+- 2026-10-02 archived · cleanup

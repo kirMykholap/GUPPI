@@ -3,7 +3,7 @@ type: decision
 case: "561.13"
 status: current
 parent: "[[decision-case-561]]"
-create: ["[[estimate-case-protocol-asks-in-the-grill-me-shape]]"]
+create: ["[[estimate-orchestration-asks-in-the-grill-me-shape]]"]
 update: ["[[rule-case-protocol]]", "[[rule-orchestration]]"]
 supersedes: ["[[decision-case-546]]"]
 origin: raw/2026-09-30/2356/ledger.md#case-561.13

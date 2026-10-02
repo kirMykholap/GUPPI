@@ -1,9 +1,9 @@
 ---
 type: estimate
 kind: QA
-status: passed
+status: pending
 target: "[[rule-internal-context]]"
-purpose: The text of sprint.md, backlog.md, brief.md, case-schema.md and glossary.md is present in the first turn's context after /hi, without a read call
+purpose: The text of sprint.md, backlog.md, brief.md, orchestration.md, ratification.md and glossary.md is present in the first turn's context after /hi, without a read call, and case-schema.md is not
 method: one reading at the /hi of a session, by hand
 checked: 2026-09-27
 origin: raw/2026-09-09/ledger.md#case-11
@@ -15,12 +15,13 @@ tags: [session, harness]
 ## Criterion
 
 When:
-The person invokes `/hi`.
+The person invokes `/hi`, with `.claude/skills/hi/SKILL.md` rendered from `rule-internal-context`.
 
 Then:
-The text of `vault/wiki/sprint.md`, `vault/wiki/backlog.md`, `vault/wiki/brief.md`, `vault/wiki/case-schema.md` and `vault/wiki/glossary.md` is in the context of the first turn, in that order, without a read call.
-**＋** The glossary and the backlog reach a session through this block alone. After a compaction, their paths are in the list of `guppi recall`.
-**－** A subagent, such as `librarian-guppi`, `ask-guppi` or one of Work Mode, carries neither of them. Its prompt names what it needs.
+The text of `vault/wiki/sprint.md`, `vault/wiki/backlog.md`, `vault/wiki/brief.md`, `vault/wiki/orchestration.md`, `vault/wiki/ratification.md` and `vault/wiki/glossary.md` is in the context of the first turn, in that order, without a read call.
+**＋** `vault/wiki/case-schema.md` is not in it.
+**＋** The glossary and the backlog reach a session through this block alone. After a compaction, the paths of these files are in the list of `guppi recall`.
+**－** A subagent, such as `librarian-guppi`, `ask-guppi` or one of Work Mode, carries none of these texts. Its prompt names what it needs.
 
 ## Result
 
@@ -38,3 +39,4 @@ The text of `vault/wiki/sprint.md`, `vault/wiki/backlog.md`, `vault/wiki/brief.m
 - 2026-09-21 status: pending → passed · raw/2026-09-21/1315/ledger.md#L20
 - 2026-09-27 updated: the Criterion replaced whole — backlog.md loaded by /hi (case 451.12) · [[decision-case-451.12]]
 - 2026-09-27 status: pending → passed · raw/2026-09-27/1819/ledger.md#L17
+- 2026-10-02 updated: the Criterion replaced whole - orchestration.md and ratification.md in place of case-schema.md (case 595.4) · [[decision-case-595.4]]

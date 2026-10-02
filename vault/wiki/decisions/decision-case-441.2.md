@@ -2,7 +2,7 @@
 type: decision
 case: "441.2"
 status: current
-update: ["[[rule-case-protocol]]", "[[estimate-case-protocol-shows-the-built-case]]"]
+update: ["[[rule-case-protocol]]", "[[estimate-orchestration-shows-the-built-case]]"]
 origin: raw/2026-09-26/1745/ledger.md#case-441.2
 sprint: migration
 created: 2026-09-26
@@ -34,11 +34,11 @@ Findings in the frame, and why each stands:
 - Without the prose `DIFF`, the `DIFF` skip of the Spec hook has no use left. It would also silently skip a re-ratification whose last mention is a code diff naming the Case. Sub-cases 441.8 and 441.9 remove it and the lines of the two Estimates that name it.
 - The `DIFF` exception of the `Stop` comparison stays in 441.3. A fence tagged `DIFF` is never the showing of a Case, and a diff of code or of a page that quotes a Case must not be compared.
 - `estimate-prespec-catches-a-superseded-case` stays true. A superseded Case still in the plan remains a finding, now a net behind the removal by the hook.
-- `estimate-case-protocol-defers-in-one-reply` stays true. It says nothing of the language, and the agent still writes nothing of the defer into a file.
+- `estimate-orchestration-defers-in-one-reply` stays true. It says nothing of the language, and the agent still writes nothing of the defer into a file.
 - The `## Language` section of `CLAUDE.md` (`rule-language`) and `estimate-language-followed` say that the name, `context` and `problem` "are translated into English in the Spec before its approval". The result still holds; only the step is gone. The person keeps them as they are, and the smallest wording, if they are ever changed, is "are Russian in the chat and English in the Spec".
 - The Purpose of `rule-spec-reconcile` gives the Russian prose of the ratified copy as its reason. The `when` of `estimate-spec-reconcile-refuses-an-edit-of-the-plan`, "the agent edits the plan file", no longer happens. Both stand because the page is deferred by case 423, whose question of a guard on the agent's edits of the plan the person has not decided.
 - `insight-case-show-built-case-retyped-by-hand` is not actioned. The main agent still writes the showing out, and the retyped lines it records stay compared parts.
-- `estimate-case-check-sends-back-a-faulty-case`, `estimate-case-protocol-case-form`, `estimate-case-protocol-loaded`, `estimate-case-protocol-acknowledging-reply`, `estimate-spec-write-writes-a-defer` and `estimate-spec-capture-offers-the-fork` speak of nothing this Case changes.
+- `estimate-case-check-sends-back-a-faulty-case`, `estimate-case-protocol-case-form`, `estimate-case-protocol-loaded`, `estimate-orchestration-acknowledging-reply`, `estimate-spec-write-writes-a-defer` and `estimate-spec-capture-offers-the-fork` speak of nothing this Case changes.
 
 ## Problem
 
@@ -47,7 +47,7 @@ The prose of a Case is written in Russian and translated by hand in the plan, an
 ## Given
 
 `rule-case-protocol` — its Render says how a Case is shown, changed and written
-**＋** `estimate-case-protocol-shows-the-built-case` — the promise of the showing of a built Case
+**＋** `estimate-orchestration-shows-the-built-case` — the promise of the showing of a built Case
 **＋** `vault/wiki/case-schema.md` — the Render of `rule-case-protocol`
 **＋** `rule-spec-write` — the hook that writes a Case from its stored answer
 **＋** `rule-spec-reconcile` — the comparison of an edited plan with its ratified copy

@@ -1,8 +1,9 @@
 ---
 type: decision
 case: "424"
-status: current
+status: archived
 defer: ["[[rule-orchestration]]"]
+superseded_by: ["[[decision-case-595.2]]"]
 origin: raw/2026-09-25/1228/ledger.md#case-424
 sprint: migration
 created: 2026-09-25
@@ -26,3 +27,6 @@ The orchestration of the main agent — the triage of a Frontier item, the dispa
 ## History
 
 - 2026-09-25 created · raw/2026-09-25/1228/ledger.md#case-424
+- 2026-10-02 superseded by decision-case-595.2 · [[decision-case-595.2]]
+- 2026-10-02 archived · superseded
+- 2026-10-02 archived · cleanup

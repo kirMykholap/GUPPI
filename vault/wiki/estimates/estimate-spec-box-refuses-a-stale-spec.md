@@ -1,10 +1,11 @@
 ---
 type: estimate
 kind: QA
-status: pending
+status: passed
 target: "[[rule-spec-box]]"
 purpose: Whether guppi box --check refuses a conserved Spec whose folder lacks carry.md or its branch, a run from main, a session that ratified a Case of its own, a page of the Spec changed by a later Case, and a page the Spec creates that now stands — and passes any other
 method: uv run pytest tests/test_box.py
+checked: 2026-10-02
 origin: raw/2026-10-02/1202/ledger.md#case-593.3
 sprint: migration
 created: 2026-10-02
@@ -25,6 +26,11 @@ It prints one line for each reason the Spec cannot run now, and exits 1 when it 
 **＋** A slug that a `create` item of that Spec names and a live page carries is one reason, naming the slug.
 **－** The check writes nothing, switches no branch, and opens no page beyond those the Spec names.
 
+## Result
+
+2026-10-02, uv run pytest tests/test_box.py: 10 passed
+
 ## History
 
 - 2026-10-02 created · [[decision-case-593.3]]
+- 2026-10-02 status: pending → passed · raw/2026-10-02/1834/ledger.md#L38

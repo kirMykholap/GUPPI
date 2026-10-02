@@ -2,7 +2,7 @@
 type: estimate
 kind: QA
 status: pending
-target: "[[rule-case-protocol]]"
+target: "[[rule-ratification]]"
 purpose: The written shape of a ledger line and of its marks, as the agent writes them
 method: "by hand: the ledger and the preview of the first session where a lesson and the Case that closes its cause stand together, and of the first Case that takes up a decision with more than one Case in its deferred_by"
 checked: 2026-09-25
@@ -15,7 +15,7 @@ tags: [session, workflow, ledger]
 ## Criterion
 
 When:
-The agent writes the ledger lines of a session: the decision lines in the reply that acknowledges a ratification, a lesson line the moment the lesson exists.
+The agent writes the ledger lines of a session — the decision lines in the reply that acknowledges a ratification, a lesson line the moment the lesson exists — with `vault/wiki/ratification.md` rendered from `rule-ratification`.
 
 Then:
 A decision line is `- decision[case N][kind][slug]` with `{ref:...}` when the target has a ref, `{tags:...}` on a `create`, and `{supersedes:case N}` when it applies.
@@ -45,3 +45,5 @@ A decision line is `- decision[case N][kind][slug]` with `{ref:...}` when the ta
 - 2026-09-25 status: pending → passed · raw/2026-09-25/1228/ledger.md#L39
 - 2026-09-25 updated: the Criterion replaced whole — one {supersedes:case N} block per Case, never a list; a deferred decision taken up names every Case of its deferred_by (case 429) · [[decision-case-429]]
 - 2026-09-29 updated: the Criterion replaced whole — for a Case with sub-cases the mark names the sub-case (case 497.4) · [[decision-case-497.4]]
+- 2026-10-02 renamed from `estimate-case-protocol-ledger-line-form` · [[decision-case-595.16]]
+- 2026-10-02 updated: moved to rule-ratification; the Criterion replaced whole - the form as ratification.md holds it (case 595.16) · [[decision-case-595.16]]

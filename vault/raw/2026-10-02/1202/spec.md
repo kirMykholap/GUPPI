@@ -110,7 +110,7 @@ update:
 
 ```tasks
 - [x] update `estimate-estimates-schema-checked`
-- [ ] read `estimate-estimates-schema-checked` — in a later session: `uv run pytest tests/test_schemas.py -k estimate` on the live schema, and the live reading `make lint`, no schema finding on `wiki/estimates/`
+- [x] read `estimate-estimates-schema-checked` — in a later session: `uv run pytest tests/test_schemas.py -k estimate` on the live schema, and the live reading `make lint`, no schema finding on `wiki/estimates/`
 ```
 
 ### Case 588.2 — An Estimate `update` with `change` alone writes only its History line
@@ -157,7 +157,7 @@ update:
 - [x] `uv run pytest tests/test_materialize.py tests/test_prespec.py tests/test_casecheck.py`: green
 - [x] update `rule-materialize`
 - [x] update `estimate-materialize-changes-a-named-part-alone`
-- [ ] read `estimate-materialize-changes-a-named-part-alone` — in a later session: `uv run pytest tests/test_materialize.py`
+- [x] read `estimate-materialize-changes-a-named-part-alone` — in a later session: `uv run pytest tests/test_materialize.py`
 ```
 
 ### Case 588.3 — The promise of the lifted When and Then covers only an item that replaces the Criterion
@@ -185,7 +185,7 @@ update:
 
 ```tasks
 - [x] update `estimate-materialize-lifts-when-and-then`
-- [ ] read `estimate-materialize-lifts-when-and-then` — in a later session: `uv run pytest tests/test_materialize.py` on a temp Spec
+- [x] read `estimate-materialize-lifts-when-and-then` — in a later session: `uv run pytest tests/test_materialize.py` on a temp Spec
 ```
 
 ## Case 589 — The language finding accepts Latin letters in a code span
@@ -255,7 +255,7 @@ delete:
 - [x] `uv run pytest tests/test_config.py tests/test_prespec.py`: green
 - [x] update `estimate-language-spec-prose-in-english`
 - [x] delete `rule-prespec-script-skips-code-spans`
-- [ ] read `estimate-language-spec-prose-in-english` — in a later session: `uv run pytest tests/test_prespec.py -k script`
+- [x] read `estimate-language-spec-prose-in-english` — in a later session: `uv run pytest tests/test_prespec.py -k script`
 ```
 
 ### Case 589.2 — The check of each answer of `case-guppi` accepts a Latin letter in a code span
@@ -311,7 +311,7 @@ update:
 - [x] `uv run pytest tests/test_casecheck.py -k script`: green
 - [x] update `rule-case-check`
 - [x] update `estimate-case-check-refuses-a-letter-outside-the-script`
-- [ ] read `estimate-case-check-refuses-a-letter-outside-the-script` — in a later session: `uv run pytest tests/test_casecheck.py -k script`
+- [x] read `estimate-case-check-refuses-a-letter-outside-the-script` — in a later session: `uv run pytest tests/test_casecheck.py -k script`
 ```
 
 ## Case 590 — Make the turn and the stretch share one test of the person's message
@@ -1074,7 +1074,7 @@ delete:
 - [x] update `rule-ledger-write`
 - [x] create `estimate-ledger-write-names-the-kind-of-a-user-record`
 - [x] delete `rule-turn-start-one-judgment`
-- [ ] read `estimate-ledger-write-names-the-kind-of-a-user-record` — in a later session: `uv run pytest tests/test_ledger.py -k kind`
+- [x] read `estimate-ledger-write-names-the-kind-of-a-user-record` — in a later session: `uv run pytest tests/test_ledger.py -k kind`
 ```
 
 ## Case 593 — The Spec box: three sub-cases of case 591 re-issued under new ids
@@ -1328,7 +1328,7 @@ create:
 - [x] `guppi/cli.py` — the command `box`
 - [x] `tests/test_box.py` — each reason alone and its line; a clean folder, exit 0 and no output; a `defer` line of the session not counted; a History line of a Case of the Spec itself, and a `cascade` line, not counted
 - [x] create `estimate-spec-box-refuses-a-stale-spec`
-- [ ] read `estimate-spec-box-refuses-a-stale-spec` — `uv run pytest tests/test_box.py`, in a later session
+- [x] read `estimate-spec-box-refuses-a-stale-spec` — `uv run pytest tests/test_box.py`, in a later session
 ```
 
 ## Deferred

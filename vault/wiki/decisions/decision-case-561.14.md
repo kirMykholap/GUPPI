@@ -3,7 +3,7 @@ type: decision
 case: "561.14"
 status: current
 parent: "[[decision-case-561]]"
-create: ["[[estimate-case-protocol-puts-the-harness-before-plan-mode]]"]
+create: ["[[estimate-orchestration-puts-the-harness-before-plan-mode]]"]
 update: ["[[rule-case-protocol]]"]
 origin: raw/2026-09-30/2356/ledger.md#case-561.14
 sprint: migration

@@ -2,7 +2,7 @@
 type: decision
 case: "405"
 status: current
-create: ["[[estimate-case-protocol-defers-in-one-reply]]"]
+create: ["[[estimate-orchestration-defers-in-one-reply]]"]
 update: ["[[rule-case-protocol]]"]
 origin: raw/2026-09-24/1916/ledger.md#case-405
 sprint: migration
@@ -17,7 +17,7 @@ Today a deferred decision is shown in the short form and waits for the person's 
 2. The `ratification` row of the Sections table is required of every Case: the short form now names it among the sections it does not hold.
 3. Retro has no Frontier: the closing of a Frontier line stays with Plan Mode alone.
 
-`estimate-case-protocol-acknowledging-reply` speaks of the reply after a ratification; a defer no longer has one, so it is not touched. The slug of the new Estimate is free. `rule-case-protocol` stands `draft`.
+`estimate-orchestration-acknowledging-reply` speaks of the reply after a ratification; a defer no longer has one, so it is not touched. The slug of the new Estimate is free. `rule-case-protocol` stands `draft`.
 
 ## Problem
 
@@ -26,11 +26,11 @@ Does a defer need a round of ratification of its own when the person asked for i
 ## Given
 
 `rule-case-protocol` — its Render `vault/wiki/case-schema.md`: the section on the short form.
-**＋** `estimate-case-protocol-defers-in-one-reply` — the new promise.
+**＋** `estimate-orchestration-defers-in-one-reply` — the new promise.
 **＋** `rule-retro` — its Render `.claude/skills/retro/SKILL.md`: a short defer at Retro, which closes with three lists and no Frontier.
 **＋** `raw/<date>/<hi HHMM>/spec.md` and the plan file — where the short Case is appended.
 **＋** `rule-ledger-write` — writes the `LEDGER` lines of a reply.
-**＋** `estimate-case-protocol-acknowledging-reply` — the reply after a ratification; a defer has none.
+**＋** `estimate-orchestration-acknowledging-reply` — the reply after a ratification; a defer has none.
 
 ## History
 

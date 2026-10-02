@@ -1,11 +1,11 @@
 ---
 type: estimate
 kind: QA
-status: pending
+status: passed
 target: "[[rule-case-check]]"
 purpose: The main agent shows a Case only as case-guppi answered it and the checks passed it
 method: uv run pytest tests/test_casecheck.py -k stop, then by hand the first reply the hook refuses
-checked: 2026-09-25
+checked: 2026-10-02
 origin: raw/2026-09-25/1228/ledger.md#case-419.4
 sprint: migration
 created: 2026-09-25
@@ -30,7 +30,7 @@ Then:
 
 ## Result
 
-2026-09-25, uv run pytest tests/test_casecheck.py -k stop: 8 passed; by hand, the first reply the hook refused in session 1654: the showing of Case 428 whose 428.3 ratification differed from the answer of case-guppi, refused with `case 428.3: differs from the answer of case-guppi — show that answer unchanged`; the acknowledging replies and the DIFF of the pre-spec prose fixes were not compared
+2026-10-02, uv run pytest tests/test_casecheck.py -k stop: 25 passed; by hand, session 1834: the Stop check refused the first showing of case 595, whose ratification fence stood outside the quoted section, with "case 595: its ratification differ from the answer of case-guppi"; the showing again with the fence inside the blockquote passed
 
 ## History
 
@@ -39,3 +39,4 @@ Then:
 - 2026-09-26 updated: the Criterion replaced whole — the prose is not compared (case 441.3) · [[decision-case-441.3]]
 - 2026-09-27 updated: the Criterion replaced whole — only the shown sections compared, and a sending of the file required in the turn (case 452.2) · [[decision-case-452.2]]
 - 2026-10-01 updated: the Criterion replaced whole - one ratification under the heading of a top-level Case is the showing of each sub-case its lines name (case 561.10) · [[decision-case-561.10]]
+- 2026-10-02 status: pending → passed · raw/2026-10-02/1834/ledger.md#L39

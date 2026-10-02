@@ -1,8 +1,8 @@
 ---
 type: estimate
 kind: QA
-status: passed
-target: "[[rule-case-protocol]]"
+status: pending
+target: "[[rule-orchestration]]"
 purpose: The reply that acknowledges a ratification has four parts in order
 method: one reading by hand of the first acknowledging reply of a session
 checked: 2026-10-01
@@ -15,7 +15,7 @@ tags: [session, workflow, ledger]
 ## Criterion
 
 When:
-The person ratifies a Case, or ratifies again a Case shown again after its ratification, and the agent writes the reply that acknowledges it, with `vault/wiki/case-schema.md` rendered from `rule-case-protocol`.
+The person ratifies a Case, or ratifies again a Case shown again after its ratification, and the agent writes the reply that acknowledges it, with `vault/wiki/orchestration.md` rendered from `rule-orchestration`.
 
 Then:
 The reply has four parts, in this order. First, the `LEDGER` block. Second, the heading `## Case N — ratified` and a paragraph `Changes:` that says what changes, in one or two sentences. Third, a paragraph `Notes:` with facts that did not enter the Case, left out when there are none. Last, the heading `## Frontier` and the lines of `raw/<date>/<hi HHMM>/frontier.md` as a checklist.
@@ -50,3 +50,5 @@ The reply has four parts, in this order. First, the `LEDGER` block. Second, the 
 - 2026-10-01 status: pending → failed · raw/2026-10-01/1237/ledger.md#L30
 - 2026-10-01 updated: the Criterion replaced whole — the open W lines are folded into one line that lists their ids; each other open line stands on its own line (case 578.2) · [[decision-case-578.2]]
 - 2026-10-01 status: pending → passed · raw/2026-10-01/1725/ledger.md#L14
+- 2026-10-02 renamed from `estimate-case-protocol-acknowledging-reply` · [[decision-case-595.8]]
+- 2026-10-02 updated: moved to rule-orchestration; the Criterion replaced whole - the reply as orchestration.md sets it (case 595.8) · [[decision-case-595.8]]

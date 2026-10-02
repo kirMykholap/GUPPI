@@ -1,7 +1,7 @@
 ---
 type: estimate
 kind: QA
-status: passed
+status: pending
 target: "[[rule-claude-md]]"
 purpose: CLAUDE.md equals the Render of rule-claude-md with each child between its markers, and every session loads that text
 method: uv run guppi render and guppi render --check after the build, plus one reading of CLAUDE.md at the next session start, by hand
@@ -21,7 +21,7 @@ Then:
 `CLAUDE.md` is: `# GUPPI`; one paragraph, "A Claude Code harness governed by ratified decisions, and the Obsidian vault it compiles into. The vault is vault/; its terms are vault/wiki/glossary.md. A working session opens with /hi.", whose words the file holds with the folder, the path and the skill in code spans; then the text of `rule-language`, `rule-agent-writing` and `rule-one-judgment-one-implementation` in their markers.
 **＋** `render --check` after the render exits 0, and the hook of `rule-governed-files-hook` refuses a hand edit of the file.
 **＋** Every session and every subagent loads this text.
-**－** No `@` import, no "What is loaded here", no paragraph on `index.md`, no "Migration mode", no "Commands", no one rule and no sentence on memory — the one rule is in the schema; the `children` of `rule-claude-md` are `rule-language`, `rule-agent-writing` and `rule-one-judgment-one-implementation`.
+**－** No `@` import, no "What is loaded here", no paragraph on `index.md`, no "Migration mode", no "Commands", no one rule and no sentence on memory — the one rule is in `vault/wiki/ratification.md`; the `children` of `rule-claude-md` are `rule-language`, `rule-agent-writing` and `rule-one-judgment-one-implementation`.
 
 ## Result
 
@@ -45,3 +45,4 @@ Then:
 - 2026-09-23 status: pending → passed · raw/2026-09-23/1126/ledger.md#L34
 - 2026-09-29 updated: the Criterion replaced whole — When and Then only, Given and the history of Migration mode out (case 492.2) · [[decision-case-492.2]]
 - 2026-09-29 status: pending → passed · raw/2026-09-29/1134/ledger.md#L41
+- 2026-10-02 updated: the Criterion replaced whole - the one rule is in ratification.md (case 595.21) · [[decision-case-595.21]]

@@ -130,9 +130,9 @@ update:
 ```
 
 ```tasks
-- [ ] update `rule-prespec`
-- [ ] update `estimate-prespec-gathers-the-answers-after-findings`
-- [ ] `uv run guppi render`: `.claude/skills/pre-spec/SKILL.md`
+- [x] update `rule-prespec`
+- [x] update `estimate-prespec-gathers-the-answers-after-findings`
+- [x] `uv run guppi render`: `.claude/skills/pre-spec/SKILL.md`
 - [ ] read `estimate-prespec-gathers-the-answers-after-findings`
 ```
 
@@ -231,9 +231,9 @@ create:
 ```
 
 ```tasks
-- [ ] create `rule-orchestration`
-- [ ] create `estimate-orchestration-loaded`
-- [ ] `uv run guppi render`: `vault/wiki/orchestration.md`
+- [x] create `rule-orchestration`
+- [x] create `estimate-orchestration-loaded`
+- [x] `uv run guppi render`: `vault/wiki/orchestration.md`
 - [ ] read `estimate-orchestration-loaded`
 ```
 
@@ -330,9 +330,9 @@ create:
 ```
 
 ```tasks
-- [ ] create `rule-ratification`
-- [ ] create `estimate-ratification-loaded`
-- [ ] `uv run guppi render`: `vault/wiki/ratification.md`
+- [x] create `rule-ratification`
+- [x] create `estimate-ratification-loaded`
+- [x] `uv run guppi render`: `vault/wiki/ratification.md`
 - [ ] read `estimate-ratification-loaded`
 ```
 
@@ -389,11 +389,11 @@ update:
 ```
 
 ```tasks
-- [ ] update `rule-internal-context`
-- [ ] update `estimate-internal-context-loaded`
-- [ ] update `rule-claude-md`
-- [ ] update `rule-compact-recall`
-- [ ] `uv run guppi render`: `.claude/skills/hi/SKILL.md`
+- [x] update `rule-internal-context`
+- [x] update `estimate-internal-context-loaded`
+- [x] update `rule-claude-md`
+- [x] update `rule-compact-recall`
+- [x] `uv run guppi render`: `.claude/skills/hi/SKILL.md`
 - [ ] read `estimate-internal-context-loaded`
 ```
 
@@ -437,8 +437,8 @@ update:
 ```
 
 ```tasks
-- [ ] update `rule-atomicity`
-- [ ] update `estimate-atomicity-rendered`
+- [x] update `rule-atomicity`
+- [x] update `estimate-atomicity-rendered`
 - [ ] read `estimate-atomicity-rendered`
 ```
 
@@ -585,9 +585,9 @@ update:
 ````
 
 ```tasks
-- [ ] update `rule-case-protocol`
-- [ ] update `estimate-case-protocol-loaded`
-- [ ] `uv run guppi render`: `vault/wiki/case-schema.md`
+- [x] update `rule-case-protocol`
+- [x] update `estimate-case-protocol-loaded`
+- [x] `uv run guppi render`: `vault/wiki/case-schema.md`
 - [ ] read `estimate-case-protocol-loaded`
 ```
 
@@ -638,9 +638,9 @@ update:
 ```
 
 ```tasks
-- [ ] update `rule-case-build`
-- [ ] update `estimate-case-build-writes-the-case`
-- [ ] `uv run guppi render`: `.claude/agents/case-guppi.md`
+- [x] update `rule-case-build`
+- [x] update `estimate-case-build-writes-the-case`
+- [x] `uv run guppi render`: `.claude/agents/case-guppi.md`
 - [ ] read `estimate-case-build-writes-the-case`
 ```
 
@@ -679,7 +679,7 @@ update:
 ```
 
 ```tasks
-- [ ] update `estimate-case-protocol-acknowledging-reply`
+- [x] update `estimate-case-protocol-acknowledging-reply`
 - [ ] read `estimate-orchestration-acknowledging-reply`
 ```
 
@@ -720,7 +720,7 @@ update:
 ```
 
 ```tasks
-- [ ] update `estimate-case-protocol-shows-the-frontier-after-a-closed-line`
+- [x] update `estimate-case-protocol-shows-the-frontier-after-a-closed-line`
 - [ ] read `estimate-orchestration-shows-the-frontier-after-a-closed-line`
 ```
 
@@ -759,7 +759,7 @@ update:
 ```
 
 ```tasks
-- [ ] update `estimate-case-protocol-defers-in-one-reply`
+- [x] update `estimate-case-protocol-defers-in-one-reply`
 - [ ] read `estimate-orchestration-defers-in-one-reply`
 ```
 
@@ -801,7 +801,7 @@ update:
 ```
 
 ```tasks
-- [ ] update `estimate-case-protocol-shows-the-built-case`
+- [x] update `estimate-case-protocol-shows-the-built-case`
 - [ ] read `estimate-orchestration-shows-the-built-case`
 ```
 
@@ -835,7 +835,7 @@ update:
 ```
 
 ```tasks
-- [ ] update `estimate-case-protocol-forwards-a-discussion-question`
+- [x] update `estimate-case-protocol-forwards-a-discussion-question`
 - [ ] read `estimate-orchestration-forwards-a-discussion-question`
 ```
 
@@ -869,7 +869,7 @@ update:
 ```
 
 ```tasks
-- [ ] update `estimate-case-protocol-asks-in-the-grill-me-shape`
+- [x] update `estimate-case-protocol-asks-in-the-grill-me-shape`
 - [ ] read `estimate-orchestration-asks-in-the-grill-me-shape`
 ```
 
@@ -903,7 +903,7 @@ update:
 ```
 
 ```tasks
-- [ ] update `estimate-case-protocol-puts-the-harness-before-plan-mode`
+- [x] update `estimate-case-protocol-puts-the-harness-before-plan-mode`
 - [ ] read `estimate-orchestration-puts-the-harness-before-plan-mode`
 ```
 
@@ -936,7 +936,7 @@ update:
 ```
 
 ```tasks
-- [ ] update `estimate-case-protocol-names-related-cases-in-the-dispatch`
+- [x] update `estimate-case-protocol-names-related-cases-in-the-dispatch`
 - [ ] read `estimate-orchestration-names-related-cases-in-the-dispatch`
 ```
 
@@ -969,7 +969,7 @@ update:
 ```
 
 ```tasks
-- [ ] update `estimate-case-protocol-ledger-line-form`
+- [x] update `estimate-case-protocol-ledger-line-form`
 - [ ] read `estimate-ratification-ledger-line-form`
 ```
 
@@ -1011,8 +1011,8 @@ update:
 ```
 
 ```tasks
-- [ ] update `rule-ledger-write`
-- [ ] update `estimate-ledger-write-refuses-a-line-it-cannot-read`
+- [x] update `rule-ledger-write`
+- [x] update `estimate-ledger-write-refuses-a-line-it-cannot-read`
 - [x] `guppi/ledger.py`: the refusal message names `ratification.md` in place of `case-schema.md`
 - [x] `tests/test_ledger.py`: the asserted message names `ratification.md`
 - [x] `guppi/prespec.py`: the comment on the line form names `ratification.md`
@@ -1059,7 +1059,7 @@ update:
 ```
 
 ```tasks
-- [ ] update `estimate-spec-capture-offers-the-fork`
+- [x] update `estimate-spec-capture-offers-the-fork`
 - [ ] read `estimate-spec-capture-offers-the-fork`
 ```
 
@@ -1101,7 +1101,7 @@ update:
 ```
 
 ```tasks
-- [ ] update `estimate-skill-grill-me-asks-in-rounds`
+- [x] update `estimate-skill-grill-me-asks-in-rounds`
 - [ ] read `estimate-skill-grill-me-asks-in-rounds`
 ```
 
@@ -1144,8 +1144,8 @@ update:
 ```
 
 ```tasks
-- [ ] update `entity-glossary`
-- [ ] `uv run guppi glossary`
+- [x] update `entity-glossary`
+- [x] `uv run guppi glossary`
 ```
 
 ### Case 595.21 — The check of `CLAUDE.md` places the one rule in `ratification.md`
@@ -1178,6 +1178,6 @@ update:
 ```
 
 ```tasks
-- [ ] update `estimate-claude-md-rendered`
+- [x] update `estimate-claude-md-rendered`
 - [ ] read `estimate-claude-md-rendered`
 ```

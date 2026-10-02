@@ -2,7 +2,7 @@
 type: decision
 case: "414.2"
 status: current
-update: ["[[rule-case-protocol]]", "[[estimate-case-protocol-acknowledging-reply]]"]
+update: ["[[rule-case-protocol]]", "[[estimate-orchestration-acknowledging-reply]]"]
 origin: raw/2026-09-25/0051/ledger.md#case-414.2
 sprint: migration
 created: 2026-09-25
@@ -36,7 +36,7 @@ The agent learns of a fault in a written Case only at `/pre-spec`, when the Case
 ## Given
 
 `rule-case-protocol` — its Render `vault/wiki/case-schema.md`: the paragraph on ledger lines.
-**＋** `estimate-case-protocol-acknowledging-reply` — the Estimate whose Criterion is replaced.
+**＋** `estimate-orchestration-acknowledging-reply` — the Estimate whose Criterion is replaced.
 **＋** `rule-ledger-write` — the ledger hook on `Stop`, which writes the `LEDGER` block of the reply.
 
 ## History

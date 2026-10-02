@@ -1,6 +1,6 @@
 # Backlog
 
-25 items
+24 items
 
 ## Conserved Specs
 
@@ -12,7 +12,6 @@
 - `rule-ledger-line-withdrawn-on-re-ratification` — Prevents a decision line of the first ratification of a Case from standing in the ledger after the Case is ratified again without its item, so that a rename or a dropped item does not need a new Case that supersedes the whole one · put off in 1 session
 - `rule-ledger-write` — Prevents a ratified line from existing only in a chat reply, or landing in a session no /hi opened · put off in 2 sessions
 - `rule-morph` — The initiation at install: the person sets the category set of the project — the development set entity, rule, estimate by default — and the harness holds it as data, so a changed set rewrites no rule; the categories discussion of session 1119, raw/2026-09-17/1119/categories-discussion.md; Slice 5 · put off in 3 sessions
-- `rule-orchestration` — Prevents the main agent from loading the form of a Case it does not build, a design ratified in case 561 for a later session - a file of rule-orchestration that /hi loads in place of case-schema.md, holding what the main agent alone does; a third small file of its own rule, loaded by /hi and read by case-guppi, holding the one rule, the form of the ledger lines, atomicity and the harness; case-schema.md holding the form of a Case, read by case-guppi alone; the checks of the behaviours that move made new Estimates of the new rules, the old ones withdrawn · put off in 8 sessions
 - `rule-page-generation` — Prevents a ratified decision from ending the session without a page, or a page from carrying a field nobody ratified · put off in 0 sessions
 - `rule-prespec-onward` — Prevents Plan Mode from stopping where no person is needed, between the reply that acknowledges the last ratification and /pre-spec, and between the ratification of the Cases built again on its findings and the exit · put off in 0 sessions
 - `rule-spec-write` — Prevents a ratified Case from entering the Spec in other words than the answer of case-guppi whose given, when, then, tasks and ratification the person signed · put off in 1 session
@@ -23,7 +22,7 @@
 - `insight-prespec-main-agent-question-off-the-grill-me-shape` — no rule gives the question shape of the skill grill-me to a question the main agent asks the person itself, so at /pre-spec the main agent writes such a question in its own shape · severity 2 · put off in 0 sessions
 - `insight-session-vault-knowledge-not-loaded` — A fact the vault holds does not reach the session that needs it; only brief.md, CLAUDE.md, the skills and the agent frames are loaded, and everything else waits for a read the agent must first think to make. · severity 1 · put off in 0 sessions
 - `insight-spec-write-parent-body-kept-on-re-ratification` — A Case ratified whole and then ratified again as a parent with sub-cases keeps its old body in the Spec, since the Spec hook of rule-spec-write writes the new answer by its sub-case headings and does not remove the given, when, then, then block and tasks the parent held when it stood alone; the content is signed twice and the pairs of the old body consume the anchors of the sub-cases. · severity 2 · put off in 1 session
-- `insight-workflow-case-schema-silent-on-what-the-scripts-accept` — The Case schema does not say how the scripts read the text a Case writes — which forms they resolve, how far an edit pair reaches — so the agent writes a form the scripts do not handle, and only the pre-spec check finds it. · severity 2 · put off in 0 sessions
+- `insight-workflow-case-schema-silent-on-what-the-scripts-accept` — The Case schema does not say how the scripts read the text a Case writes — which forms they resolve, how far an edit pair reaches — so the agent writes a form the scripts do not handle, and only the pre-spec check finds it. · severity 3 · put off in 0 sessions
 - the product model: `kind: test | measurement | reading`, `ask-guppi` through Entities, the vault-query questions before a product's records (session 1119); `applies_to` and `rules` taken into Slice 3f (case 301) · put off in 0 sessions
 - reuse, the edge: `uses` / `used_by` between Entities — `uses` written in the Case on the side that uses, `used_by` computed by the cascade of `generate`, the pair checked by lint, the pattern of `applies_to` / `rules`; no edge Rule → Rule (cases 305, 319) · put off in 0 sessions
 - reuse, the question: the vault query before a `create` asks a second question — what of the existing this thing could use, by the index lines of the Entities — and the answer stands in `context`; the Case names what it found in `uses` or says why it is not used (case 319) · put off in 0 sessions

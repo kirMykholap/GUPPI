@@ -1,8 +1,8 @@
 ---
 type: estimate
 kind: QA
-status: passed
-target: "[[rule-case-protocol]]"
+status: pending
+target: "[[rule-orchestration]]"
 purpose: Whether in a working session the main agent launches no Explore or Plan agent, asks by plain questions and no picker in Plan Mode, and exits Plan Mode only after pre-spec
 method: by hand at the close of a later session, the Agent calls, the picker calls and the ExitPlanMode call of Plan Mode read in the transcript
 checked: 2026-10-01
@@ -15,7 +15,7 @@ tags: [session, workflow]
 ## Criterion
 
 When:
-A working session opened by `/hi` runs in Plan Mode, and the Plan Mode instructions of Claude Code stand in the main agent's context.
+A working session opened by `/hi` runs in Plan Mode, the Plan Mode instructions of Claude Code stand in the main agent's context, and `vault/wiki/orchestration.md` is rendered from `rule-orchestration`.
 
 Then:
 The main agent launches no Explore or Plan agent: `case-guppi` builds each Case, and `ask-guppi` asks the vault at `/pre-spec`.
@@ -31,3 +31,5 @@ The main agent launches no Explore or Plan agent: `case-guppi` builds each Case,
 
 - 2026-10-01 created · [[decision-case-561.14]]
 - 2026-10-01 status: pending → passed · raw/2026-10-01/1237/ledger.md#L33
+- 2026-10-02 renamed from `estimate-case-protocol-puts-the-harness-before-plan-mode` · [[decision-case-595.14]]
+- 2026-10-02 updated: moved to rule-orchestration; the Criterion replaced whole - the order as orchestration.md sets it (case 595.14) · [[decision-case-595.14]]

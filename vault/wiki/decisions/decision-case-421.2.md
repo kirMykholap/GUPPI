@@ -2,7 +2,7 @@
 type: decision
 case: "421.2"
 status: current
-update: ["[[rule-case-protocol]]", "[[estimate-case-protocol-defers-in-one-reply]]"]
+update: ["[[rule-case-protocol]]", "[[estimate-orchestration-defers-in-one-reply]]"]
 origin: raw/2026-09-25/1228/ledger.md#case-421.2
 sprint: migration
 created: 2026-09-25
@@ -21,7 +21,7 @@ Who writes a deferred Case into the Spec, and whether an item already deferred a
 
 `rule-case-protocol` — the rule of the Case: the short form of a deferred decision
 **＋** `vault/wiki/case-schema.md` — its render
-**＋** `estimate-case-protocol-defers-in-one-reply` — the Estimate of the reply that defers
+**＋** `estimate-orchestration-defers-in-one-reply` — the Estimate of the reply that defers
 **＋** `rule-spec-write` — the hook that writes the deferred Case
 
 ## History

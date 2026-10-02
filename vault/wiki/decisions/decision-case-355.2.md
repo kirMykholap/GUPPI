@@ -2,7 +2,7 @@
 type: decision
 case: "355.2"
 status: current
-update: ["[[rule-case-protocol]]", "[[estimate-case-protocol-loaded]]", "[[estimate-case-protocol-case-form]]", "[[estimate-case-protocol-acknowledging-reply]]"]
+update: ["[[rule-case-protocol]]", "[[estimate-case-protocol-loaded]]", "[[estimate-case-protocol-case-form]]", "[[estimate-orchestration-acknowledging-reply]]"]
 origin: raw/2026-09-23/0034/ledger.md#case-355.2
 sprint: migration
 created: 2026-09-23

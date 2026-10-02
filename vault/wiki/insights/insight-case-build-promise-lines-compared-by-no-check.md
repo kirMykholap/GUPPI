@@ -13,7 +13,7 @@ tags: [harness, workflow, session]
 
 ## Pattern
 
-case-guppi writes the promise lines of a Case against the lines beside them, and no check of its answer compares them. In session 1745 the first build of Case 441.2 replaced the Criterion of estimate-case-protocol-shows-the-built-case whole and dropped one of its lines (lesson-case-build-a-criterion-replaced-whole-drops-a-line). In session 2300 Case 445 signed the refusal of /hi outside plan mode in 445.5 and in 445.6, two Estimates in two wordings, because the Case was split by the page it changes (lesson-case-build-one-promise-signed-in-two-sub-cases). Both were found by ask-guppi at pre-spec.
+case-guppi writes the promise lines of a Case against the lines beside them, and no check of its answer compares them. In session 1745 the first build of Case 441.2 replaced the Criterion of estimate-orchestration-shows-the-built-case whole and dropped one of its lines (lesson-case-build-a-criterion-replaced-whole-drops-a-line). In session 2300 Case 445 signed the refusal of /hi outside plan mode in 445.5 and in 445.6, two Estimates in two wordings, because the Case was split by the page it changes (lesson-case-build-one-promise-signed-in-two-sub-cases). Both were found by ask-guppi at pre-spec.
 
 ## Proposal
 
@@ -27,3 +27,4 @@ A suggestion, not a decision: let a check of the answer of case-guppi compare th
 - 2026-09-29 updated: child lesson-case-build-signs-one-criterion-twice-in-a-session added, reopened from actioned (synthesis) · raw/2026-09-29/1134/ledger.md#L69
 - 2026-09-30 updated: child lesson-case-build-built-case-departs-from-the-chosen-option added (synthesis) · raw/2026-09-30/0248/ledger.md#L41
 - 2026-09-30 updated: actioned: the half on a replaced Criterion is closed by the note of pre-spec (case 472); case-guppi checks its finished Case against the options the person chose before it answers (case 544.1) · [[decision-case-544.1]]
+- 2026-10-02 ref `estimate-case-protocol-shows-the-built-case` → `estimate-orchestration-shows-the-built-case` · [[decision-case-595.11]]

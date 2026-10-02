@@ -2,7 +2,7 @@
 type: decision
 case: "523"
 status: current
-update: ["[[rule-case-protocol]]", "[[estimate-case-protocol-defers-in-one-reply]]"]
+update: ["[[rule-case-protocol]]", "[[estimate-orchestration-defers-in-one-reply]]"]
 supersedes: ["[[decision-case-518]]"]
 origin: raw/2026-09-29/1753/ledger.md#case-523
 sprint: migration

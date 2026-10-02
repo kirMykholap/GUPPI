@@ -6,14 +6,14 @@ Written by `guppi glossary` from the `## Terms` of `entity-glossary`; a term cha
 
 | term | meaning | where |
 |---|---|---|
-| Ratification | Human sign-off on a Decision; nothing in vault or code changes without one | [[rule-case-protocol]] |
-| Contract vs implementation | A Decision fixes what "done" means, never how; a contract change is a new Case | [[rule-case-protocol]] |
+| Ratification | Human sign-off on a Decision; nothing in vault or code changes without one | [[rule-ratification]] |
+| Contract vs implementation | A Decision fixes what "done" means, never how; a contract change is a new Case | [[rule-ratification]] |
 | `ref`, `slug`, `supersedes` | A pointer to an existing page (absent: query the vault before a `create`; present: `update`); the page id = filename; the earlier case a ledger line corrects, written `{supersedes:case N}`, one block per Case and several on one line, each of which marks every entry of its Case superseded; `generate` clears a defer under the condition that `rule-case-protocol` sets (cases 200.2, 429, 467.3) | [[rule-case-protocol]] |
 | Decision | The atomic unit of work: `create`, `update`, `delete`, `defer`; Read is never one | [[rule-case-protocol]] |
 | Types | `create` a page (an Estimate is its own `create`, with `ref` on its target, case 193); `update` fields, `result`/`status` included, or `rename` — the page moves to the new slug and every link follows (case 258.1); `delete` sets `status: archived` with a History line `deleted`, after an impact analysis, and `guppi cleanup` moves the file to the archive; `defer` postpones, a placeholder page when no `ref` | [[rule-case-protocol]] |
-| Case | The unit of dialogue, not a page: `context`, `problem`, `recommend`, `given`, `when`, `then`, `tasks`, `ratification` (case 163); `given` is the frame of the Case; `when` + `then` is the Estimate criterion, the Estimate named by slug (cases 193, 378.2); the page content is a `then` block in the Spec; splits into dotted sub-cases the parent's sign-off never covers | [[rule-case-protocol]] |
-| Main agent, Subagent | Runs Cases and writes ledger lines, the last of them in the one reply that ends Retro, after its commit (case 531.8); executes plan tasks, never decides, a fork returns | [[rule-case-protocol]] |
-| Plan Mode | The Frontier worked item by item: an item that needs a decision is a Case until it is ratified or deferred, an item that needs none closes with no Case, an item of the sprint may be left for later and a backlog item kept as it stands; it ends when no item of the Cases list is open (cases 356.1, 356.2, 421.4, 451.1) | [[rule-case-protocol]] |
+| Case | The unit of dialogue, not a page: `context`, `problem`, `recommend`, `given`, `when`, `then`, `tasks`, `ratification` (case 163); `given` is the frame of the Case; `when` + `then` is the Estimate criterion, the Estimate named by slug (cases 193, 378.2); the page content is a `then` block in the Spec; splits into dotted sub-cases, each ratified on its own as `rule-ratification` sets | [[rule-case-protocol]] |
+| Main agent, Subagent | Runs Cases and writes ledger lines, the last of them in the one reply that ends Retro, after its commit (case 531.8); executes plan tasks, never decides, a fork returns | [[rule-ratification]] |
+| Plan Mode | The Frontier worked item by item: an item that needs a decision is a Case until it is ratified or deferred, an item that needs none closes with no Case, an item of the sprint may be left for later and a backlog item kept as it stands; it ends when no item of the Cases list is open (cases 356.1, 356.2, 421.4, 451.1) | [[rule-orchestration]] |
 | the vault query | The vault query before a `create` without `ref`, `draft` pages included (case 277.3) | [[rule-ask]] |
 | Index line, `ask-guppi` | The Grep of a category's frontmatter — `purpose`, `root_cause` or `pattern`, and `deferred_by` — one line per live page, never compared across categories; no index file (case 147.8); the search agent over these lines, one entry point; Estimates through the target, Decisions through `deferred_by`; the archive answered by slug alone — `free`, `live` or `archived at <path>` — never by meaning (case 105.1) | [[rule-ask]] |
 | `/pre-spec` | The check of the ratified set against each other and the vault before the Spec is approved (case 261) | [[rule-prespec]] |
@@ -27,7 +27,7 @@ Written by `guppi glossary` from the `## Terms` of `entity-glossary`; a term cha
 | Lint | `guppi lint`, run by `make lint` after the render, sprint, backlog and glossary checks: reports a page that breaks its schema, points at nothing, claims a status its Estimates do not support, or waits for a reading; red is a signal, not a gate | [[rule-lint]] |
 | Renderer | `guppi render` writes the text of a Rule page into the harness file it governs, so the page stays the source; it runs with lint and as the librarian's step after `cleanup` | [[rule-render-harness]] |
 | Harness | The files that `guppi render` writes from the pages of `rules/`, such as `.claude/settings.json` with its hooks, the skills and agents, `CLAUDE.md`, `case-schema.md` and `guppi.toml` | [[rule-harness]] |
-| `CLAUDE.md`, `case-schema.md` | The system prompt, the Render of `rule-claude-md`, whole — the description of the project, `rule-language`, `rule-agent-writing` and `rule-one-judgment-one-implementation` in their markers (cases 59.8, 272, 288.3, 360); the Case schema is the Render of `rule-case-protocol`, opened by the one rule, and it arrives with `/hi` together with the glossary (cases 273, 288) | [[rule-claude-md]] |
+| `CLAUDE.md`, `case-schema.md` | The system prompt, the Render of `rule-claude-md`, whole — the description of the project, `rule-language`, `rule-agent-writing` and `rule-one-judgment-one-implementation` in their markers (cases 59.8, 272, 288.3, 360); the Case schema is the Render of `rule-case-protocol`, read by `case-guppi` alone; `/hi` loads, together with the glossary, `orchestration.md`, the Render of `rule-orchestration`, and `ratification.md`, the Render of `rule-ratification`, which the one rule opens (cases 273, 288, 595) | [[rule-claude-md]] |
 | Working files | `log.md`, the feed of page changes written by `generate` and `cleanup`; `tags.md`, the registry of tags ratified in a Case; `raw/` and `archive/`, the working folders of a session | [[rule-vault-layout]] |
 
 ## [[rule-page-schemas]]
@@ -56,7 +56,7 @@ Written by `guppi glossary` from the `## Terms` of `entity-glossary`; a term cha
 | Lesson (status) | `new` / `clustered` / `archived`; `clustered` once it belongs to an Insight, `archived` when its Insight is `actioned` | [[rule-lessons-schema]] |
 | Insight (status) | `open` / `actioned` / `archived`; `actioned` when a ratified decision addressed it; a new Lesson of the same root cause reopens it unless a decision of its own session closed its cause (case 284.4); `archived` when the cascade finds an `open` Insight with no live child | [[rule-insights-schema]] |
 
-## [[rule-case-protocol]]
+## [[rule-ratification]]
 
 | term | meaning | where |
 |---|---|---|

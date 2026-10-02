@@ -1,10 +1,11 @@
 ---
 type: estimate
 kind: QA
-status: pending
+status: passed
 target: "[[rule-ledger-write]]"
 purpose: One function of guppi/ledger.py says whether a user record of a transcript is the person's message or a returned answer, and the case check, the ledger hook, the onward hook and the token counter judge by it, so the turn and the stretch cannot drift apart
 method: uv run pytest tests/test_ledger.py -k kind; by hand, a Grep of task-notification|"human" over guppi/ that prints guppi/ledger.py alone
+checked: 2026-10-02
 origin: raw/2026-10-02/1202/ledger.md#case-592
 sprint: migration
 created: 2026-10-02
@@ -25,6 +26,11 @@ One function of `guppi/ledger.py` names the kind of a `user` record of the trans
 **－** A record with no `origin.kind`, such as that of the local command that clears the session, a record of another kind, a record marked `isMeta` and a tool result open no turn and end no stretch.
 **－** A transcript that holds neither kind of record gives the whole transcript as the turn and as the stretch.
 
+## Result
+
+2026-10-02, uv run pytest tests/test_ledger.py -k kind: 1 passed; Grep task-notification|"human" over guppi/ printed guppi/ledger.py (HUMAN, NOTIFICATION, user_kind) and guppi/casecheck.py, whose three hits are docstring lines naming user_kind of guppi/ledger.py; no other module judges origin.kind in code
+
 ## History
 
 - 2026-10-02 created · [[decision-case-592]]
+- 2026-10-02 status: pending → passed · raw/2026-10-02/1834/ledger.md#L37

@@ -2,7 +2,7 @@
 type: rule
 kind: Leaf
 purpose: Prevents the librarian from needing the ledger beyond its one read or the Spec beyond its unticked lines, or from routing a decision by guesswork
-status: draft
+status: built
 enforcement: check
 implementation_ref: [guppi/materialize.py, tests/test_materialize.py]
 parent: "[[rule-documentation]]"
@@ -131,3 +131,4 @@ entry's fields, each with its writer, live in the docstring of `guppi/materializ
 - 2026-09-30 updated: the purpose prevents the need for the reads, not the reads, since the librarian's frame forbids no read (case 558.1) · [[decision-case-558.1]]
 - 2026-10-02 updated: an update of an Estimate with change alone writes only its History line; set.status or a written Criterion replaces the Criterion (case 588.2) · [[decision-case-588.2]]
 - 2026-10-02 status: built → draft · cascade
+- 2026-10-02 status: draft → built · cascade

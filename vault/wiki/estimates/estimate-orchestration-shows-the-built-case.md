@@ -1,8 +1,8 @@
 ---
 type: estimate
 kind: QA
-status: passed
-target: "[[rule-case-protocol]]"
+status: pending
+target: "[[rule-orchestration]]"
 purpose: A Case is built by case-guppi and shown by the main agent unchanged
 method: by hand, the Cases of a session at its close, their context against the Agent calls and their showings against the SendUserFile calls of the transcript, and each request for a plain explanation against the Skill and SendMessage calls
 checked: 2026-10-01
@@ -15,7 +15,7 @@ tags: [session, workflow]
 ## Criterion
 
 When:
-The main agent takes up a Frontier item, the person answers a round of questions, answers a shown Case with a question or a change, or asks for a plain explanation of the agent's text — by `/wait-what` on `UserPromptSubmit` or in words — or a ratified Case changes and is shown again, in Plan Mode or in Work Mode.
+The main agent takes up a Frontier item, the person answers a round of questions, answers a shown Case with a question or a change, or asks for a plain explanation of the agent's text — by `/wait-what` on `UserPromptSubmit` or in words — or a ratified Case changes and is shown again, in Plan Mode or in Work Mode, with `vault/wiki/orchestration.md` rendered from `rule-orchestration`.
 
 Then:
 The main agent dispatches `case-guppi` with the Case id, the Frontier item and its source, and the person's words on it, in the prompt of the call, after the plan file stands with its title line; nothing of the Case stands in the chat before the answer.
@@ -54,3 +54,5 @@ The main agent dispatches `case-guppi` with the Case id, the Frontier item and i
 - 2026-09-30 deferred · [[decision-case-560]]
 - 2026-10-01 updated: the Criterion replaced whole - the showing is one list with what done means and one ratification; a Case with no such Estimate goes back to its case-guppi; a refused round is shown again with nothing before it; the defer of case 560 retired (case 561.9) · [[decision-case-561.9]]
 - 2026-10-01 status: pending → passed · raw/2026-10-01/1237/ledger.md#L34
+- 2026-10-02 renamed from `estimate-case-protocol-shows-the-built-case` · [[decision-case-595.11]]
+- 2026-10-02 updated: moved to rule-orchestration; the Criterion replaced whole - the showing as orchestration.md sets it (case 595.11) · [[decision-case-595.11]]

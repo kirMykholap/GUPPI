@@ -2,7 +2,7 @@
 type: decision
 case: "547"
 status: current
-create: ["[[estimate-case-protocol-shows-the-frontier-after-a-closed-line]]"]
+create: ["[[estimate-orchestration-shows-the-frontier-after-a-closed-line]]"]
 update: ["[[rule-case-protocol]]"]
 origin: raw/2026-09-30/1736/ledger.md#case-547
 sprint: migration
@@ -23,7 +23,7 @@ A reply that closes a Frontier line with no ratification and no defer does not s
   Recommended: the same form as after a ratification, with the last question as after a defer: which item is next, or whether to run `/pre-spec` when no Cases line is open.
   Answer: agreed, as recommended.
 - **How is the new behaviour checked?**
-  Recommended: a new Estimate on `rule-case-protocol`; `estimate-case-protocol-acknowledging-reply` stays as it is.
+  Recommended: a new Estimate on `rule-case-protocol`; `estimate-orchestration-acknowledging-reply` stays as it is.
   Answer: agreed, as recommended.
 - **Should the larger item `rule-orchestration` that was put off come into this Case?**
   Recommended: leave it in the backlog; this Case adds one sentence to `case-schema.md` through `rule-case-protocol`.

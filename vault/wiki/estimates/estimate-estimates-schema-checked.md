@@ -1,11 +1,11 @@
 ---
 type: estimate
 kind: QA
-status: pending
+status: passed
 target: "[[rule-estimates-schema]]"
 purpose: An Estimate page in the shape of the rendered schema has no schema finding and a page outside it has one per defect
 method: pytest tests/test_schemas.py -k estimate on the live vault/wiki/estimates/schema.yaml — a page in the shape, a page without method, then one defect at a time; the live reading make lint, no schema finding on wiki/estimates/
-checked: 2026-09-29
+checked: 2026-10-02
 origin: raw/2026-09-22/0014/ledger.md#case-304.4
 sprint: migration
 created: 2026-09-22
@@ -26,7 +26,7 @@ The file equals the Render. Lint reads from it: required `type, kind, status, ta
 
 ## Result
 
-2026-09-29, uv run pytest tests/test_schemas.py -k estimates: 4 passed, 1 skipped (no conditional on a field); uv run guppi render --check exit 0; make lint prints no schema finding on wiki/estimates/; grep of vault/wiki/estimates/schema.yaml for unmigrated, ## Context, ## Method and Given: finds only the Criterion description saying no Given: stands in a Criterion
+2026-10-02, uv run pytest tests/test_schemas.py -k estimate: 6 passed, 1 skipped (estimates: no conditional on a field); make lint of the Baseline printed no schema line on wiki/estimates/
 
 ## History
 
@@ -42,3 +42,4 @@ The file equals the Render. Lint reads from it: required `type, kind, status, ta
 - 2026-10-01 deferred · [[decision-case-576]]
 - 2026-10-01 updated: the test of a section required under a condition now covers ## Result on passed and failed; the Criterion stands, and the question case 576 put off is answered (case 583) · [[decision-case-583]]
 - 2026-10-02 updated: the Criterion restored whole — the text of case 506.1, which case 583 meant to keep and its update with change alone replaced (case 588.1) · [[decision-case-588.1]]
+- 2026-10-02 status: pending → passed · raw/2026-10-02/1834/ledger.md#L32

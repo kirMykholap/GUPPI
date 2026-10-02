@@ -1,7 +1,7 @@
 ---
 type: rule
 kind: Leaf
-purpose: Prevents a working session from going on after a compaction without the Case schema, the Frontier and the Spec in its context
+purpose: Prevents a working session from going on after a compaction without the texts /hi loads, the Frontier and the Spec in its context
 status: draft
 enforcement: hook
 implementation_ref: [guppi/recall.py, guppi/cli.py, tests/test_recall.py, .claude/settings.json]
@@ -15,7 +15,7 @@ tags: [session, hooks, harness]
 
 ## Purpose
 
-Prevents a working session from going on after a compaction without the Case schema, the Frontier and the Spec in its context. `/hi` loads the session's texts once, through the `@` lines of its skill; a compaction keeps `CLAUDE.md` and a capped part of the skill's body, and the rest survives only in the summary. This hook fires on `SessionStart` with `source: compact` and prints what to read back: the paths of the files `/hi` imports, the session's `frontier.md` and its Spec, and the Frontier's text itself. Paths, not texts: a hook's stdout over 10,000 characters is saved to a file and the agent gets a preview (case 287).
+Prevents a working session from going on after a compaction without the texts `/hi` loads, the Frontier and the Spec in its context. `/hi` loads the session's texts once, through the `@` lines of its skill; a compaction keeps `CLAUDE.md` and a capped part of the skill's body, and the rest survives only in the summary. This hook fires on `SessionStart` with `source: compact` and prints what to read back: the paths of the files `/hi` imports, the session's `frontier.md` and its Spec, and the Frontier's text itself. Paths, not texts: a hook's stdout over 10,000 characters is saved to a file and the agent gets a preview (case 287).
 
 ## How it works
 
@@ -27,3 +27,4 @@ Prevents a working session from going on after a compaction without the Case sch
 - 2026-09-21 estimate estimate-compact-recall-reloads added · [[decision-case-287]]
 - 2026-09-22 status: draft → built · cascade
 - 2026-09-29 status: built → draft · cascade
+- 2026-10-02 updated: the purpose names the texts /hi loads, no longer the Case schema (case 595.4) · [[decision-case-595.4]]

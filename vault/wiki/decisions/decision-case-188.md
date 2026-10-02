@@ -2,7 +2,7 @@
 type: decision
 case: "188"
 status: current
-create: ["[[estimate-case-protocol-case-form]]", "[[estimate-case-protocol-acknowledging-reply]]", "[[estimate-case-protocol-ledger-line-form]]"]
+create: ["[[estimate-case-protocol-case-form]]", "[[estimate-orchestration-acknowledging-reply]]", "[[estimate-ratification-ledger-line-form]]"]
 update: ["[[rule-case-protocol]]", "[[estimate-case-protocol-loaded]]", case-schema]
 supersedes: ["[[decision-case-185]]"]
 origin: raw/2026-09-16/1034/ledger.md#case-188

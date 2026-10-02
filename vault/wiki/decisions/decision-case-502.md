@@ -21,7 +21,7 @@ This is the Case built again after pre-spec, with three fixes the person agreed 
 
 The vault's answer: both items are an `update` with a `ref`, so no vault query ran. `rule-skill-wait-what` carries `deferred_by: [[decision-case-496]]`, so its decision line carries `{supersedes:case 496}`, and the page leaves the backlog (case 429).
 What `case-guppi` found in the frame:
-- `rule-case-protocol` says the main agent asks `case-guppi` "only for a fact of the Case it does not hold". That stays true: a line the main agent read is a fact it holds. `estimate-case-protocol-shows-the-built-case` promises a `SendMessage` "only to ask for a fact of the Case", answered under a `**Fact:**` line. That also stays true, since the file and the line are such a fact. Neither page is changed.
+- `rule-case-protocol` says the main agent asks `case-guppi` "only for a fact of the Case it does not hold". That stays true: a line the main agent read is a fact it holds. `estimate-orchestration-shows-the-built-case` promises a `SendMessage` "only to ask for a fact of the Case", answered under a `**Fact:**` line. That also stays true, since the file and the line are such a fact. Neither page is changed.
 - `estimate-agent-writing-followed` speaks only of a request for a plain explanation being no complaint. It is not touched.
 - The skill names `.claude/skills/grill-me/SKILL.md` because it does not load that template. The shape reaches that file at the render of 501.1, so Work Mode renders `grill-me` before this skill. No code reads the skill, so no old form is kept.
 - The lesson comes from session 2000, so its fix carries no `{addresses:...}` mark (case 284.2).

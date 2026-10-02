@@ -1,10 +1,11 @@
 ---
 type: estimate
 kind: QA
-status: pending
+status: passed
 target: "[[rule-materialize]]"
 purpose: The Criterion materialize lifts from a Case is its when and then, never its given
 method: pytest tests/test_materialize.py on a temp Spec
+checked: 2026-10-02
 origin: raw/2026-09-23/1355/ledger.md#case-378.2
 sprint: migration
 created: 2026-09-23
@@ -23,10 +24,11 @@ The entry's `sections.Criterion` is the `When:` and `Then:` of the Case, verbati
 
 ## Result
 
-2026-09-23, uv run pytest tests/test_materialize.py -k "criterion or sub_case_lifts": 9 passed — the lifted Criterion of a create, an update and a sub-case is When and Then with no Given; a written Criterion stands
+2026-10-02, uv run pytest tests/test_materialize.py: 123 passed
 
 ## History
 
 - 2026-09-23 created · [[decision-case-378.2]]
 - 2026-09-23 status: pending → passed · raw/2026-09-23/1355/ledger.md#L39
 - 2026-10-02 updated: the Criterion replaced whole — the lift covers a create and an update that carries set.status, not an update with change alone (case 588.3) · [[decision-case-588.3]]
+- 2026-10-02 status: pending → passed · raw/2026-10-02/1834/ledger.md#L34

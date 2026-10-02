@@ -8,7 +8,8 @@ allowed-tools: Bash(uv run guppi render --sync), Bash(git branch --show-current)
 @vault/wiki/sprint.md
 @vault/wiki/backlog.md
 @vault/wiki/brief.md
-@vault/wiki/case-schema.md
+@vault/wiki/orchestration.md
+@vault/wiki/ratification.md
 @vault/wiki/glossary.md
 <!-- /rule-internal-context -->
 

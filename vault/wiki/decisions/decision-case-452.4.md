@@ -2,7 +2,7 @@
 type: decision
 case: "452.4"
 status: current
-update: ["[[rule-case-protocol]]", "[[estimate-case-protocol-shows-the-built-case]]", "[[rule-case-build]]", "[[insight-case-show-built-case-retyped-by-hand]]"]
+update: ["[[rule-case-protocol]]", "[[estimate-orchestration-shows-the-built-case]]", "[[rule-case-build]]", "[[insight-case-show-built-case-retyped-by-hand]]"]
 origin: raw/2026-09-27/1255/ledger.md#case-452.4
 sprint: migration
 created: 2026-09-27
@@ -22,7 +22,7 @@ The main agent retypes each built Case into the chat, so a showing can differ fr
 ## Given
 
 `rule-case-protocol` — its Render `vault/wiki/case-schema.md`: the `## Sections` section with its table, `## Who builds a Case` and `## Splitting`
-**＋** `estimate-case-protocol-shows-the-built-case` — the promise of the showing of a built Case
+**＋** `estimate-orchestration-shows-the-built-case` — the promise of the showing of a built Case
 **＋** `rule-case-build` — its Purpose and its Render `.claude/agents/case-guppi.md`, which say how the Case is shown
 **＋** `rule-case-check` — the hooks that write the file and refuse a showing with no sending
 **＋** `insight-case-show-built-case-retyped-by-hand` — the Insight this sub-case actions

@@ -2,7 +2,7 @@
 type: rule
 kind: Leaf
 purpose: Keeps the repository in the documentation language and the chat with the owner in the chat language, both set in rule-guppi-config, a built Case whole in the documentation language in the file sent to the person, with slugs, paths and quotations unchanged in either
-status: draft
+status: built
 enforcement: render
 governs: CLAUDE.md
 render_mode: partial
@@ -43,3 +43,4 @@ is the `## Language` section of `case-schema.md`, which this rule does not repea
 - 2026-09-28 updated: the two languages named by the placeholders set in rule-guppi-config (case 476.4) · [[decision-case-476.4]]
 - 2026-09-28 status: draft → built · cascade
 - 2026-10-02 status: built → draft · cascade
+- 2026-10-02 status: draft → built · cascade

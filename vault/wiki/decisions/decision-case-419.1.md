@@ -2,7 +2,7 @@
 type: decision
 case: "419.1"
 status: current
-update: ["[[rule-case-protocol]]", "[[estimate-case-protocol-shows-the-built-case]]", "[[rule-ask]]", "[[rule-skill-hi]]", "[[rule-prespec]]"]
+update: ["[[rule-case-protocol]]", "[[estimate-orchestration-shows-the-built-case]]", "[[rule-ask]]", "[[rule-skill-hi]]", "[[rule-prespec]]"]
 origin: raw/2026-09-25/1228/ledger.md#case-419.1
 sprint: migration
 created: 2026-09-25
@@ -21,7 +21,7 @@ How a Case is built, checked and shown, so that the person sees only a Case that
 
 `rule-case-protocol` — the rule of the Case: who builds it, and the story sections
 **＋** `vault/wiki/case-schema.md` — its render
-**＋** `estimate-case-protocol-shows-the-built-case` — the Estimate of the frame read before a showing, renamed `estimate-case-protocol-shows-the-built-case`
+**＋** `estimate-orchestration-shows-the-built-case` — the Estimate of the frame read before a showing, renamed `estimate-orchestration-shows-the-built-case`
 **＋** `rule-ask` — the rule of `ask-guppi`: who asks the vault, and when
 **＋** `.claude/agents/ask-guppi.md` — its render
 **＋** `rule-skill-hi` — the rule of `/hi`: its sentence on the vault before a `create`

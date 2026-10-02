@@ -19,7 +19,7 @@ What the frame changes: the sentence of `rule-case-check` "the Frontier left to 
 Estimates not touched, and why:
 - `estimate-prespec-checks-the-frontier` speaks of boxes and closers.
 - `estimate-case-check-sends-back-a-faulty-case` promises that `judge` runs and that a finding goes back, not which checks it holds.
-- The Criterion of `estimate-case-protocol-ledger-line-form` promises the `{supersedes}` blocks of a deferred decision taken up, which stays true. The added requirement, the page named on a decision line, is held by the new `estimate-prespec-requires-a-backlog-item-decided-on-its-page`.
+- The Criterion of `estimate-ratification-ledger-line-form` promises the `{supersedes}` blocks of a deferred decision taken up, which stays true. The added requirement, the page named on a decision line, is held by the new `estimate-prespec-requires-a-backlog-item-decided-on-its-page`.
 - `estimate-backlog-renders` and `estimate-backlog-checks-the-file` promise the render from `deferred_by` and its check, which stay true. The update of the `rule-backlog` Purpose touches neither.
 - `estimate-generate-cascades` archives a superseded Decision and leaves `deferred_by` alone.
 - Line 32 of `estimate-git-context-current` records the past supersede of case 106 by case 115.

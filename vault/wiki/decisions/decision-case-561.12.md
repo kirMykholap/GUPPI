@@ -3,7 +3,7 @@ type: decision
 case: "561.12"
 status: current
 parent: "[[decision-case-561]]"
-create: ["[[estimate-case-protocol-forwards-a-discussion-question]]"]
+create: ["[[estimate-orchestration-forwards-a-discussion-question]]"]
 update: ["[[rule-case-protocol]]", "[[rule-case-build]]"]
 origin: raw/2026-09-30/2356/ledger.md#case-561.12
 sprint: migration

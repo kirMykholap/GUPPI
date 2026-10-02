@@ -2,7 +2,7 @@
 type: decision
 case: "443.3"
 status: current
-update: ["[[rule-case-protocol]]", "[[estimate-case-protocol-shows-the-built-case]]"]
+update: ["[[rule-case-protocol]]", "[[estimate-orchestration-shows-the-built-case]]"]
 origin: raw/2026-09-26/2300/ledger.md#case-443.3
 sprint: migration
 created: 2026-09-26
@@ -25,7 +25,7 @@ How `case-guppi` discusses the forks of a Frontier item with the person before i
 
 `rule-case-protocol` — the rule of the Case schema and of the showing of a Case
 **＋** `vault/wiki/case-schema.md` — its Render, the text the main agent follows
-**＋** `estimate-case-protocol-shows-the-built-case` — the promise of the showing
+**＋** `estimate-orchestration-shows-the-built-case` — the promise of the showing
 **＋** `rule-case-build` — the agent that answers with a round or with the Case
 **＋** `rule-case-check` — the `Stop` comparison of a showing with the answer
 **＋** `.claude/agents/ask-guppi.md` — the vault query the main agent dispatches at pre-spec

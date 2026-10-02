@@ -11,7 +11,7 @@ tags: [session, workflow, ledger]
 
 ## Context
 
-`case-schema.md` describes one form of an `update` of an Estimate: "carries `slug`, `set: {status: pending}` and `change`… the scripts replace its Criterion". After 296 there is a second form — the item names a part, the Criterion and the status stand unless the Criterion is touched — and an agent reading the schema at `/hi` does not learn it: the same two texts that led to 290.3. Case 291 proposed to leave the schema alone so that `estimate-case-protocol-loaded` would not go `pending`; pre-spec showed the cost of the silence. The pages: `rule-case-protocol` `draft`; of its Estimates the Case touches `estimate-case-protocol-loaded` (its reading `passed` in this session's ledger; the page `pending` until the librarian applies it), not `estimate-case-protocol-ledger-line-form`; an `update` with a `ref`.
+`case-schema.md` describes one form of an `update` of an Estimate: "carries `slug`, `set: {status: pending}` and `change`… the scripts replace its Criterion". After 296 there is a second form — the item names a part, the Criterion and the status stand unless the Criterion is touched — and an agent reading the schema at `/hi` does not learn it: the same two texts that led to 290.3. Case 291 proposed to leave the schema alone so that `estimate-case-protocol-loaded` would not go `pending`; pre-spec showed the cost of the silence. The pages: `rule-case-protocol` `draft`; of its Estimates the Case touches `estimate-case-protocol-loaded` (its reading `passed` in this session's ledger; the page `pending` until the librarian applies it), not `estimate-ratification-ledger-line-form`; an `update` with a `ref`.
 
 ## Problem
 

@@ -1,8 +1,8 @@
 ---
 type: estimate
 kind: QA
-status: passed
-target: "[[rule-case-protocol]]"
+status: pending
+target: "[[rule-orchestration]]"
 purpose: Whether a question of the person to discuss an item goes to its case-guppi and comes back under Fact, with no reading of the main agent's own
 method: by hand in a later session, the first such question, the SendMessage call, the tool calls of the main agent and the answer read in the transcript
 checked: 2026-10-01
@@ -15,7 +15,7 @@ tags: [session, workflow]
 ## Criterion
 
 When:
-In Plan Mode or in Work Mode, the person asks in the chat to discuss an item whose `case-guppi` is building its Case or has shown it, or to learn something of that item, and the question is no request for a plain explanation of the agent's text.
+In Plan Mode or in Work Mode, with `vault/wiki/orchestration.md` rendered from `rule-orchestration`, the person asks in the chat to discuss an item whose `case-guppi` is building its Case or has shown it, or to learn something of that item, and the question is no request for a plain explanation of the agent's text.
 
 Then:
 The main agent sends the question to that `case-guppi` by `SendMessage`, verbatim and untranslated, and makes no `Read`, `Grep` or `Glob` call of its own to answer it.
@@ -32,3 +32,5 @@ The main agent sends the question to that `case-guppi` by `SendMessage`, verbati
 
 - 2026-10-01 created · [[decision-case-561.12]]
 - 2026-10-01 status: pending → passed · raw/2026-10-01/1237/ledger.md#L32
+- 2026-10-02 renamed from `estimate-case-protocol-forwards-a-discussion-question` · [[decision-case-595.12]]
+- 2026-10-02 updated: moved to rule-orchestration; the Criterion replaced whole - the forwarding as orchestration.md sets it (case 595.12) · [[decision-case-595.12]]

@@ -5690,3 +5690,108 @@ instruction. The global feed; a page's own `## History` is the per-page view.
 - 2026-10-02 decisions/decision-case-591 child decision-case-591.2 archived · cleanup
 - 2026-10-02 decisions/decision-case-591 child decision-case-591.5 archived · cleanup
 - 2026-10-02 decisions/decision-case-591 child decision-case-591.6 archived · cleanup
+- 2026-10-02 decisions/decision-case-595 created · raw/2026-10-02/1834/ledger.md#case-595 · generate
+- 2026-10-02 decisions/decision-case-595.1 created · raw/2026-10-02/1834/ledger.md#case-595.1 · generate
+- 2026-10-02 rules/rule-prespec updated: the loop after the findings sends nothing to a case-guppi until the person has answered every question of the report; the findings and the answers then go out together; the showing named in orchestration.md (case 595.1) · [[decision-case-595.1]] · generate
+- 2026-10-02 estimates/estimate-prespec-gathers-the-answers-after-findings updated: the Criterion replaced whole - nothing goes to a case-guppi before every question of the report is answered (case 595.1) · [[decision-case-595.1]] · generate
+- 2026-10-02 decisions/decision-case-595.2 created · raw/2026-10-02/1834/ledger.md#case-595.2 · generate
+- 2026-10-02 decisions/decision-case-424 superseded by decision-case-595.2 · [[decision-case-595.2]] · generate
+- 2026-10-02 rules/rule-orchestration defer by decision-case-424 superseded · [[decision-case-595.2]] · generate
+- 2026-10-02 decisions/decision-case-574 superseded by decision-case-595.2 · [[decision-case-595.2]] · generate
+- 2026-10-02 rules/rule-orchestration defer by decision-case-574 superseded · [[decision-case-595.2]] · generate
+- 2026-10-02 rules/rule-orchestration created over placeholder · [[decision-case-595.2]] · generate
+- 2026-10-02 rules/rule-plan-mode child rule-orchestration added · [[decision-case-595.2]] · generate
+- 2026-10-02 estimates/estimate-orchestration-loaded created · [[decision-case-595.2]] · generate
+- 2026-10-02 rules/rule-orchestration estimate estimate-orchestration-loaded added · [[decision-case-595.2]] · generate
+- 2026-10-02 decisions/decision-case-595.3 created · raw/2026-10-02/1834/ledger.md#case-595.3 · generate
+- 2026-10-02 rules/rule-ratification created · [[decision-case-595.3]] · generate
+- 2026-10-02 rules/rule-plan-mode child rule-ratification added · [[decision-case-595.3]] · generate
+- 2026-10-02 estimates/estimate-ratification-loaded created · [[decision-case-595.3]] · generate
+- 2026-10-02 rules/rule-ratification estimate estimate-ratification-loaded added · [[decision-case-595.3]] · generate
+- 2026-10-02 decisions/decision-case-595.4 created · raw/2026-10-02/1834/ledger.md#case-595.4 · generate
+- 2026-10-02 rules/rule-internal-context updated: /hi loads orchestration.md and ratification.md in place of case-schema.md (case 595.4) · [[decision-case-595.4]] · generate
+- 2026-10-02 estimates/estimate-internal-context-loaded updated: the Criterion replaced whole - orchestration.md and ratification.md in place of case-schema.md (case 595.4) · [[decision-case-595.4]] · generate
+- 2026-10-02 rules/rule-claude-md updated: the texts that arrive with /hi are orchestration.md and ratification.md, the one rule opens ratification.md (case 595.4) · [[decision-case-595.4]] · generate
+- 2026-10-02 rules/rule-compact-recall updated: the purpose names the texts /hi loads, no longer the Case schema (case 595.4) · [[decision-case-595.4]] · generate
+- 2026-10-02 decisions/decision-case-595.5 created · raw/2026-10-02/1834/ledger.md#case-595.5 · generate
+- 2026-10-02 rules/rule-atomicity updated: rendered into ratification.md under rule-ratification (case 595.5) · [[decision-case-595.5]] · generate
+- 2026-10-02 estimates/estimate-atomicity-rendered updated: the Criterion replaced whole - the text renders into ratification.md under rule-ratification (case 595.5) · [[decision-case-595.5]] · generate
+- 2026-10-02 decisions/decision-case-595.6 created · raw/2026-10-02/1834/ledger.md#case-595.6 · generate
+- 2026-10-02 rules/rule-case-protocol updated: the Render keeps the form of a Case alone; the main agent's part moves to rule-orchestration, the one rule, the ledger lines, atomicity and the harness to rule-ratification; the file is read by case-guppi and no longer loaded by /hi; the purpose names what this rule alone prevents (case 595.6) · [[decision-case-595.6]] · generate
+- 2026-10-02 estimates/estimate-case-protocol-loaded updated: the Criterion replaced whole - the file holds the form of a Case alone and is not loaded by /hi (case 595.6) · [[decision-case-595.6]] · generate
+- 2026-10-02 decisions/decision-case-595.7 created · raw/2026-10-02/1834/ledger.md#case-595.7 · generate
+- 2026-10-02 rules/rule-case-build updated: case-guppi reads ratification.md with case-schema.md; the showing is rule-orchestration (case 595.7) · [[decision-case-595.7]] · generate
+- 2026-10-02 estimates/estimate-case-build-writes-the-case updated: the Criterion replaced whole - case-guppi reads case-schema.md and ratification.md (case 595.7) · [[decision-case-595.7]] · generate
+- 2026-10-02 decisions/decision-case-595.8 created · raw/2026-10-02/1834/ledger.md#case-595.8 · generate
+- 2026-10-02 estimates/estimate-orchestration-acknowledging-reply renamed from `estimate-case-protocol-acknowledging-reply` · [[decision-case-595.8]] · generate
+- 2026-10-02 rules/rule-orchestration ref `estimate-case-protocol-acknowledging-reply` → `estimate-orchestration-acknowledging-reply` · [[decision-case-595.8]] · generate
+- 2026-10-02 estimates/estimate-case-protocol-shows-the-frontier-after-a-closed-line ref `estimate-case-protocol-acknowledging-reply` → `estimate-orchestration-acknowledging-reply` · [[decision-case-595.8]] · generate
+- 2026-10-02 estimates/estimate-orchestration-acknowledging-reply updated: moved to rule-orchestration; the Criterion replaced whole - the reply as orchestration.md sets it (case 595.8) · [[decision-case-595.8]] · generate
+- 2026-10-02 decisions/decision-case-595.9 created · raw/2026-10-02/1834/ledger.md#case-595.9 · generate
+- 2026-10-02 estimates/estimate-orchestration-shows-the-frontier-after-a-closed-line renamed from `estimate-case-protocol-shows-the-frontier-after-a-closed-line` · [[decision-case-595.9]] · generate
+- 2026-10-02 rules/rule-orchestration ref `estimate-case-protocol-shows-the-frontier-after-a-closed-line` → `estimate-orchestration-shows-the-frontier-after-a-closed-line` · [[decision-case-595.9]] · generate
+- 2026-10-02 estimates/estimate-orchestration-shows-the-frontier-after-a-closed-line updated: moved to rule-orchestration; the Criterion replaced whole - the reply as orchestration.md sets it (case 595.9) · [[decision-case-595.9]] · generate
+- 2026-10-02 decisions/decision-case-595.10 created · raw/2026-10-02/1834/ledger.md#case-595.10 · generate
+- 2026-10-02 estimates/estimate-orchestration-defers-in-one-reply renamed from `estimate-case-protocol-defers-in-one-reply` · [[decision-case-595.10]] · generate
+- 2026-10-02 rules/rule-orchestration ref `estimate-case-protocol-defers-in-one-reply` → `estimate-orchestration-defers-in-one-reply` · [[decision-case-595.10]] · generate
+- 2026-10-02 estimates/estimate-orchestration-defers-in-one-reply updated: moved to rule-orchestration; the Criterion replaced whole - the short form as orchestration.md sets it (case 595.10) · [[decision-case-595.10]] · generate
+- 2026-10-02 decisions/decision-case-595.11 created · raw/2026-10-02/1834/ledger.md#case-595.11 · generate
+- 2026-10-02 estimates/estimate-orchestration-shows-the-built-case renamed from `estimate-case-protocol-shows-the-built-case` · [[decision-case-595.11]] · generate
+- 2026-10-02 rules/rule-orchestration ref `estimate-case-protocol-shows-the-built-case` → `estimate-orchestration-shows-the-built-case` · [[decision-case-595.11]] · generate
+- 2026-10-02 estimates/estimate-case-protocol-case-form ref `estimate-case-protocol-shows-the-built-case` → `estimate-orchestration-shows-the-built-case` · [[decision-case-595.11]] · generate
+- 2026-10-02 insights/insight-case-build-promise-lines-compared-by-no-check ref `estimate-case-protocol-shows-the-built-case` → `estimate-orchestration-shows-the-built-case` · [[decision-case-595.11]] · generate
+- 2026-10-02 estimates/estimate-orchestration-shows-the-built-case updated: moved to rule-orchestration; the Criterion replaced whole - the showing as orchestration.md sets it (case 595.11) · [[decision-case-595.11]] · generate
+- 2026-10-02 decisions/decision-case-595.12 created · raw/2026-10-02/1834/ledger.md#case-595.12 · generate
+- 2026-10-02 estimates/estimate-orchestration-forwards-a-discussion-question renamed from `estimate-case-protocol-forwards-a-discussion-question` · [[decision-case-595.12]] · generate
+- 2026-10-02 rules/rule-orchestration ref `estimate-case-protocol-forwards-a-discussion-question` → `estimate-orchestration-forwards-a-discussion-question` · [[decision-case-595.12]] · generate
+- 2026-10-02 estimates/estimate-orchestration-forwards-a-discussion-question updated: moved to rule-orchestration; the Criterion replaced whole - the forwarding as orchestration.md sets it (case 595.12) · [[decision-case-595.12]] · generate
+- 2026-10-02 decisions/decision-case-595.13 created · raw/2026-10-02/1834/ledger.md#case-595.13 · generate
+- 2026-10-02 estimates/estimate-orchestration-asks-in-the-grill-me-shape renamed from `estimate-case-protocol-asks-in-the-grill-me-shape` · [[decision-case-595.13]] · generate
+- 2026-10-02 rules/rule-orchestration ref `estimate-case-protocol-asks-in-the-grill-me-shape` → `estimate-orchestration-asks-in-the-grill-me-shape` · [[decision-case-595.13]] · generate
+- 2026-10-02 estimates/estimate-orchestration-asks-in-the-grill-me-shape updated: moved to rule-orchestration; the Criterion replaced whole - the question shape as orchestration.md sets it (case 595.13) · [[decision-case-595.13]] · generate
+- 2026-10-02 decisions/decision-case-595.14 created · raw/2026-10-02/1834/ledger.md#case-595.14 · generate
+- 2026-10-02 estimates/estimate-orchestration-puts-the-harness-before-plan-mode renamed from `estimate-case-protocol-puts-the-harness-before-plan-mode` · [[decision-case-595.14]] · generate
+- 2026-10-02 rules/rule-orchestration ref `estimate-case-protocol-puts-the-harness-before-plan-mode` → `estimate-orchestration-puts-the-harness-before-plan-mode` · [[decision-case-595.14]] · generate
+- 2026-10-02 estimates/estimate-orchestration-puts-the-harness-before-plan-mode updated: moved to rule-orchestration; the Criterion replaced whole - the order as orchestration.md sets it (case 595.14) · [[decision-case-595.14]] · generate
+- 2026-10-02 decisions/decision-case-595.15 created · raw/2026-10-02/1834/ledger.md#case-595.15 · generate
+- 2026-10-02 estimates/estimate-orchestration-names-related-cases-in-the-dispatch renamed from `estimate-case-protocol-names-related-cases-in-the-dispatch` · [[decision-case-595.15]] · generate
+- 2026-10-02 rules/rule-orchestration ref `estimate-case-protocol-names-related-cases-in-the-dispatch` → `estimate-orchestration-names-related-cases-in-the-dispatch` · [[decision-case-595.15]] · generate
+- 2026-10-02 estimates/estimate-orchestration-names-related-cases-in-the-dispatch updated: moved to rule-orchestration; the Criterion replaced whole - the dispatch as orchestration.md sets it (case 595.15) · [[decision-case-595.15]] · generate
+- 2026-10-02 decisions/decision-case-595.16 created · raw/2026-10-02/1834/ledger.md#case-595.16 · generate
+- 2026-10-02 estimates/estimate-ratification-ledger-line-form renamed from `estimate-case-protocol-ledger-line-form` · [[decision-case-595.16]] · generate
+- 2026-10-02 rules/rule-ratification ref `estimate-case-protocol-ledger-line-form` → `estimate-ratification-ledger-line-form` · [[decision-case-595.16]] · generate
+- 2026-10-02 estimates/estimate-ratification-ledger-line-form updated: moved to rule-ratification; the Criterion replaced whole - the form as ratification.md holds it (case 595.16) · [[decision-case-595.16]] · generate
+- 2026-10-02 decisions/decision-case-595.17 created · raw/2026-10-02/1834/ledger.md#case-595.17 · generate
+- 2026-10-02 rules/rule-ledger-write updated: the instruction to write the ledger lines lives in ratification.md and orchestration.md (case 595.17) · [[decision-case-595.17]] · generate
+- 2026-10-02 estimates/estimate-ledger-write-refuses-a-line-it-cannot-read updated: the Criterion replaced whole - the refusal names the table in ratification.md (case 595.17) · [[decision-case-595.17]] · generate
+- 2026-10-02 decisions/decision-case-595.18 created · raw/2026-10-02/1834/ledger.md#case-595.18 · generate
+- 2026-10-02 estimates/estimate-spec-capture-offers-the-fork updated: the Criterion replaced whole - ratification.md says a Case is ratified by the person's reply (case 595.18) · [[decision-case-595.18]] · generate
+- 2026-10-02 decisions/decision-case-595.19 created · raw/2026-10-02/1834/ledger.md#case-595.19 · generate
+- 2026-10-02 estimates/estimate-skill-grill-me-asks-in-rounds updated: the Criterion replaced whole - the main agent shows a round by rule-orchestration (case 595.19) · [[decision-case-595.19]] · generate
+- 2026-10-02 decisions/decision-case-595.20 created · raw/2026-10-02/1834/ledger.md#case-595.20 · generate
+- 2026-10-02 entities/entity-glossary updated: the rows Ratification, Contract vs implementation, Main agent and Plan Mode point to rule-ratification and rule-orchestration; the row Case says each sub-case is ratified on its own; the row of case-schema.md says what /hi loads (case 595.20) · [[decision-case-595.20]] · generate
+- 2026-10-02 decisions/decision-case-595.21 created · raw/2026-10-02/1834/ledger.md#case-595.21 · generate
+- 2026-10-02 estimates/estimate-claude-md-rendered updated: the Criterion replaced whole - the one rule is in ratification.md (case 595.21) · [[decision-case-595.21]] · generate
+- 2026-10-02 estimates/estimate-estimates-schema-checked status: pending → passed · raw/2026-10-02/1834/ledger.md#L32 · generate
+- 2026-10-02 estimates/estimate-materialize-changes-a-named-part-alone status: pending → passed · raw/2026-10-02/1834/ledger.md#L33 · generate
+- 2026-10-02 estimates/estimate-materialize-lifts-when-and-then status: pending → passed · raw/2026-10-02/1834/ledger.md#L34 · generate
+- 2026-10-02 estimates/estimate-language-spec-prose-in-english status: pending → passed · raw/2026-10-02/1834/ledger.md#L35 · generate
+- 2026-10-02 estimates/estimate-case-check-refuses-a-letter-outside-the-script status: pending → passed · raw/2026-10-02/1834/ledger.md#L36 · generate
+- 2026-10-02 estimates/estimate-ledger-write-names-the-kind-of-a-user-record status: pending → passed · raw/2026-10-02/1834/ledger.md#L37 · generate
+- 2026-10-02 estimates/estimate-spec-box-refuses-a-stale-spec status: pending → passed · raw/2026-10-02/1834/ledger.md#L38 · generate
+- 2026-10-02 estimates/estimate-case-check-shows-only-the-checked-case status: pending → passed · raw/2026-10-02/1834/ledger.md#L39 · generate
+- 2026-10-02 lessons/lesson-case-showing-ratification-fence-outside-the-blockquote created · raw/2026-10-02/1834/ledger.md#L40 · generate
+- 2026-10-02 insights/insight-workflow-case-schema-silent-on-what-the-scripts-accept updated: child lesson-case-showing-ratification-fence-outside-the-blockquote added (synthesis) · raw/2026-10-02/1834/ledger.md#L40 · generate
+- 2026-10-02 lessons/lesson-case-showing-ratification-fence-outside-the-blockquote updated: clustered under insight-workflow-case-schema-silent-on-what-the-scripts-accept (synthesis) · raw/2026-10-02/1834/ledger.md#L40 · generate
+- 2026-10-02 rules/rule-atomicity status: built → draft · cascade · generate
+- 2026-10-02 rules/rule-claude-md status: built → draft · cascade · generate
+- 2026-10-02 rules/rule-estimates-schema status: draft → built · cascade · generate
+- 2026-10-02 rules/rule-internal-context status: built → draft · cascade · generate
+- 2026-10-02 rules/rule-language status: draft → built · cascade · generate
+- 2026-10-02 rules/rule-materialize status: draft → built · cascade · generate
+- 2026-10-02 rules/rule-prespec status: built → draft · cascade · generate
+- 2026-10-02 rules/rule-skill-grill-me status: built → draft · cascade · generate
+- 2026-10-02 decisions/decision-case-424 archived · superseded · generate
+- 2026-10-02 decisions/decision-case-574 archived · superseded · generate
+- 2026-10-02 decisions/decision-case-424 archived · cleanup
+- 2026-10-02 decisions/decision-case-574 archived · cleanup

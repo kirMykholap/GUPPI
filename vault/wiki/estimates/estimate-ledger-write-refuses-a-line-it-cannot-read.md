@@ -1,7 +1,7 @@
 ---
 type: estimate
 kind: QA
-status: passed
+status: pending
 target: "[[rule-ledger-write]]"
 purpose: Whether the ledger hook refuses a record line that parse_line cannot read, and says why only for the reply just finished
 method: uv run pytest tests/test_ledger.py — piped payloads and a session ledger in a temp vault
@@ -20,7 +20,7 @@ The `Stop` hook `uv run guppi ledger` finds a fresh line `- decision[`, `- estim
 Then:
 The line is not written.
 **＋** The other lines of the `Stop` are written as before.
-**＋** When the refused line stands in the reply just finished, the hook exits 2 with one stderr line per refused line: "ledger: line not written — the grammar of a ledger line does not read it: <line>. Write it again in the form of the table in case-schema.md."
+**＋** When the refused line stands in the reply just finished, the hook exits 2 with one stderr line per refused line: "ledger: line not written — the grammar of a ledger line does not read it: <line>. Write it again in the form of the table in ratification.md."
 **＋** At every later `Stop`, a refused line from an earlier text of the transcript is skipped without a word.
 **－** A refused line gets no other refusal of the hook and no other stderr line.
 **－** A line already in the ledger of any session is not judged again.
@@ -36,3 +36,4 @@ The line is not written.
 - 2026-09-30 status: pending → passed · raw/2026-09-30/2042/ledger.md#L33
 - 2026-10-01 updated: the Criterion replaced whole — with stop_hook_active the line is judged the same, and its stderr line is told once a stretch (case 577.5) · [[decision-case-577.5]]
 - 2026-10-01 status: pending → passed · raw/2026-10-01/1725/ledger.md#L10
+- 2026-10-02 updated: the Criterion replaced whole - the refusal names the table in ratification.md (case 595.17) · [[decision-case-595.17]]

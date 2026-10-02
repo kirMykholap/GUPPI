@@ -1,11 +1,11 @@
 ---
 type: estimate
 kind: QA
-status: pending
+status: passed
 target: "[[rule-case-check]]"
 purpose: An answer of case-guppi whose name, context or problem holds a letter outside the script of the documentation language, a Latin letter in a code span excepted, is a finding of the check, and no file of the Case is written while it stands
 method: uv run pytest tests/test_casecheck.py -k script
-checked: 2026-09-30
+checked: 2026-10-02
 origin: raw/2026-09-30/0248/ledger.md#case-537
 sprint: migration
 created: 2026-09-30
@@ -29,10 +29,11 @@ A name, `context` or `problem` of a Case of the answer that holds, outside a cod
 
 ## Result
 
-2026-09-30, uv run pytest -q tests/test_casecheck.py -k script: 7 passed, 53 deselected; guppi/casecheck.py imports check_untranslated of guppi/prespec.py and holds no copy of its judgment
+2026-10-02, uv run pytest tests/test_casecheck.py -k script: 9 passed
 
 ## History
 
 - 2026-09-30 created · [[decision-case-537]]
 - 2026-09-30 status: pending → passed · raw/2026-09-30/1306/ledger.md#L43
 - 2026-10-02 updated: the Criterion replaced whole — a Latin letter in a code span is no finding, any other letter there is judged as in prose (case 589.2) · [[decision-case-589.2]]
+- 2026-10-02 status: pending → passed · raw/2026-10-02/1834/ledger.md#L36

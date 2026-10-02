@@ -20,7 +20,7 @@ The rule that the main agent writes nothing of its own before a round of `case-g
   Recommended: (a) a check at the end of the reply: `guppi casecheck` on `Stop`, when the turn holds a round of `case-guppi`, refuses a reply that does not open with the Context paragraph or the first question line, and the agent shows the round again; the main agent's own questions are not checked.
   Answer: (a).
 - **How is the earlier put-off closed?**
-  Recommended: (a) Case 561.9, sent back to its own `case-guppi`, carries `{supersedes:case 560}` on its line for `estimate-case-protocol-shows-the-built-case` and is ratified again; this Case holds only the check.
+  Recommended: (a) Case 561.9, sent back to its own `case-guppi`, carries `{supersedes:case 560}` on its line for `estimate-orchestration-shows-the-built-case` and is ratified again; this Case holds only the check.
   Answer: (a).
 - **Who fixes the schema's sentence on a refused reply?**
   Recommended: (a) Case 561.9, while it is sent back, narrows the sentence of the schema and its line in the check to a reply that shows a Case, and adds that a refused round is shown again with nothing before it; this Case stays the check alone.

@@ -2,7 +2,7 @@
 type: rule
 kind: Leaf
 purpose: Prevents a set of ratified decisions from reaching the Spec with a contradiction between them or with the vault
-status: built
+status: draft
 enforcement: render
 governs: .claude/skills/pre-spec/SKILL.md
 render_mode: full
@@ -34,13 +34,14 @@ At the first run of `/pre-spec` in the session only, dispatch the `ask-guppi` ag
 
 Answer the findings with one report before any Case is sent back: each finding numbered, with the fix you propose or, in one line, why it is already known; the findings that need no word of the person apart from those that need one; and each decision you need from the person as a question in the shape of `.claude/skills/grill-me/SKILL.md` (case 561.13). Then run the loop (case 561.2):
 
-1. Send each finding in a Case that needs no word of the person to the `case-guppi` of that Case by `SendMessage`, all of them in one message. Hold back a finding whose fix waits for the person's answer.
-2. Wait for every `case-guppi` you sent to answer, and pass on no answer of one `case-guppi` alone. An answer to `SendMessage` comes back as a notice that opens a turn of its own, and each turn ends with a reply: end each turn that sends to a `case-guppi`, and each turn that an answer opens while another answer is still out, with one line that opens with a bold label ending in a colon — `**Waiting:**`, translated — and names the Cases that have answered and the Cases still out. Write nothing else in the chat while an answer is out: nothing of what an answer says, and no question; a round that came back waits for the list of step 3, and the label lets the reply pass the check of `rule-case-check` (case 581.1).
-3. Show the person one list of what to answer: your own questions still open and every round that came back, each question in its grill-me shape, translated as a round of `case-guppi` is, and numbered `<Case id>.Q<n>` — the id of its Case and its number in the round, or in your report for your own — so that each answer goes back to its `case-guppi`.
-4. Send each answer, and each finding held back for it, to the `case-guppi` of its Case, all in one message, and go on from step 2 until every `case-guppi` you sent has answered with its Case.
-5. Show every Case built again in one reply, each in the showing that `vault/wiki/case-schema.md` sets, for one ratification.
+1. When the report asks the person no question, go on to step 2 at once. Otherwise send nothing to any `case-guppi` until the person has answered every question of the report, since an answer may change a fix. A question the person leaves unanswered you ask again, in its grill-me shape and under its number, and everything stays held (case 595.1).
+2. Send each finding in a Case, with each answer of the person that bears on that Case, to the `case-guppi` of that Case by `SendMessage`, all of them in one message.
+3. Wait for every `case-guppi` you sent to answer, and pass on no answer of one `case-guppi` alone. An answer to `SendMessage` comes back as a notice that opens a turn of its own, and each turn ends with a reply: end each turn that sends to a `case-guppi`, and each turn that an answer opens while another answer is still out, with one line that opens with a bold label ending in a colon — `**Waiting:**`, translated — and names the Cases that have answered and the Cases still out. Write nothing else in the chat while an answer is out: nothing of what an answer says, and no question; a round that came back waits for the list of step 4, and the label lets the reply pass the check of `rule-case-check` (case 581.1).
+4. Show the person one list of what to answer: every round that came back, each question in its grill-me shape, translated as a round of `case-guppi` is, and numbered `<Case id>.Q<n>` — the id of its Case and its number in the round — so that each answer goes back to its `case-guppi`.
+5. Send each answer to the `case-guppi` of its Case, all in one message, and go on from step 3 until every `case-guppi` you sent has answered with its Case.
+6. Show every Case built again in one reply, each in the showing that `vault/wiki/orchestration.md` sets, for one ratification.
 
-Inside this loop the rule of `vault/wiki/case-schema.md` that no Case is taken up before the current one is ratified does not hold: the Cases built again go out together and come back together. After their ratification do not call `/pre-spec` again: run the check above and fix what it prints; when it prints no finding, exit Plan Mode. The hook of `rule-prespec-onward` sends you on after the reply that acknowledges the ratification, and the hook of `rule-prespec-hook` refuses the exit while the check prints a finding (cases 561.3, 561.5).
+Inside this loop the rule of `vault/wiki/orchestration.md` that no Case is taken up before the current one is ratified does not hold: the Cases built again go out together and come back together. After their ratification do not call `/pre-spec` again: run the check above and fix what it prints; when it prints no finding, exit Plan Mode. The hook of `rule-prespec-onward` sends you on after the reply that acknowledges the ratification, and the hook of `rule-prespec-hook` refuses the exit while the check prints a finding (cases 561.3, 561.5).
 <!-- /rule-prespec -->
 
 ## History
@@ -174,3 +175,5 @@ Inside this loop the rule of `vault/wiki/case-schema.md` that no Case is taken u
 - 2026-10-01 status: built → draft · cascade
 - 2026-10-01 updated: step 2 of the loop after the findings: each waiting turn ends with one line under a bold label naming the Cases answered and still out, and nothing else is written (case 581.1) · [[decision-case-581.1]]
 - 2026-10-02 status: draft → built · cascade
+- 2026-10-02 updated: the loop after the findings sends nothing to a case-guppi until the person has answered every question of the report; the findings and the answers then go out together; the showing named in orchestration.md (case 595.1) · [[decision-case-595.1]]
+- 2026-10-02 status: built → draft · cascade

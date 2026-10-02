@@ -1,8 +1,9 @@
 ---
 type: decision
 case: "481"
-status: current
+status: archived
 defer: ["[[rule-prespec-script-skips-code-spans]]"]
+superseded_by: ["[[decision-case-589.1]]"]
 origin: raw/2026-09-28/1318/ledger.md#case-481
 sprint: migration
 created: 2026-09-28
@@ -26,3 +27,6 @@ The pre-spec language finding judges the prose of a name, context or problem wit
 ## History
 
 - 2026-09-28 created · raw/2026-09-28/1318/ledger.md#case-481
+- 2026-10-02 superseded by decision-case-589.1 · [[decision-case-589.1]]
+- 2026-10-02 archived · superseded
+- 2026-10-02 archived · cleanup

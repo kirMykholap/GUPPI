@@ -54,8 +54,8 @@ update:
 
 ```tasks
 - [x] `Makefile`: the recipe of `lint` runs each of the five steps with stdin from `/dev/null`, keeps going after a step that exits non-zero, and exits non-zero at the end when any step did
-- [ ] update `rule-lint`
-- [ ] create `estimate-lint-runs-every-step`
+- [x] update `rule-lint`
+- [x] create `estimate-lint-runs-every-step`
 - [x] by hand: `make lint` on the working tree after the change, from PowerShell and from Git Bash; the steps that printed and the exit code in both shells
 - [ ] read `estimate-lint-runs-every-step` — by hand at the Baseline of the first `/work` of a later session whose backlog step is red
 ```
@@ -109,7 +109,7 @@ update:
 ```
 
 ```tasks
-- [ ] update `estimate-estimates-schema-checked`
+- [x] update `estimate-estimates-schema-checked`
 - [ ] read `estimate-estimates-schema-checked` — in a later session: `uv run pytest tests/test_schemas.py -k estimate` on the live schema, and the live reading `make lint`, no schema finding on `wiki/estimates/`
 ```
 
@@ -155,8 +155,8 @@ update:
 - [x] `tests/test_materialize.py`: the Estimate `update` items of the fixtures that expect a lifted Criterion carry `set: {status: pending}`; a test that an Estimate `update` with `change` alone gets no `sections`, no `set` and no `incomplete`
 - [x] `tests/test_prespec.py`: `test_two_estimate_items_with_the_cases_criterion_is_a_finding` counts an item with `change` alone as no promise; a test that such an item gets no `note:` line on the old Criterion
 - [x] `uv run pytest tests/test_materialize.py tests/test_prespec.py tests/test_casecheck.py`: green
-- [ ] update `rule-materialize`
-- [ ] update `estimate-materialize-changes-a-named-part-alone`
+- [x] update `rule-materialize`
+- [x] update `estimate-materialize-changes-a-named-part-alone`
 - [ ] read `estimate-materialize-changes-a-named-part-alone` — in a later session: `uv run pytest tests/test_materialize.py`
 ```
 
@@ -184,7 +184,7 @@ update:
 ```
 
 ```tasks
-- [ ] update `estimate-materialize-lifts-when-and-then`
+- [x] update `estimate-materialize-lifts-when-and-then`
 - [ ] read `estimate-materialize-lifts-when-and-then` — in a later session: `uv run pytest tests/test_materialize.py` on a temp Spec
 ```
 
@@ -253,8 +253,8 @@ delete:
 - [x] `tests/test_config.py`: `test_outside_finds_a_letter_of_another_script` asserts that a Latin slug in a code span is not outside for `ru`, that a Cyrillic word in a code span is outside for `en`, and that a Greek letter in a code span is outside for `ru`
 - [x] `tests/test_prespec.py`: a test `test_script_a_latin_code_span_passes_under_russian`, a plan in Russian whose `context` names a slug in a code span gives no finding under `documentation_lang = "ru"`; a test `test_script_a_cyrillic_code_span_is_found_under_english`, a Russian word in a code span of a `context` gives the finding under `en`
 - [x] `uv run pytest tests/test_config.py tests/test_prespec.py`: green
-- [ ] update `estimate-language-spec-prose-in-english`
-- [ ] delete `rule-prespec-script-skips-code-spans`
+- [x] update `estimate-language-spec-prose-in-english`
+- [x] delete `rule-prespec-script-skips-code-spans`
 - [ ] read `estimate-language-spec-prose-in-english` — in a later session: `uv run pytest tests/test_prespec.py -k script`
 ```
 
@@ -309,8 +309,8 @@ update:
 - [x] one-off: remove the `## How it works` section from `vault/wiki/rules/rule-case-check.md` by hand, once the docstring of `guppi/casecheck.py` carries each fact of it that still holds, as `vault/wiki/rules/schema.yaml` asks of a Leaf at its next touch; nothing else of the page changes by hand
 - [x] `tests/test_casecheck.py`: a test `test_subagent_script_a_latin_code_span_passes_under_russian`, an answer whose name, `context` and `problem` are in Russian and name a slug in a code span gets no finding under `documentation_lang = "ru"`, and its file is written; a test `test_subagent_script_a_cyrillic_code_span_is_a_finding`, a Russian word in a code span of the `context` is a finding under `en`, and no file is written
 - [x] `uv run pytest tests/test_casecheck.py -k script`: green
-- [ ] update `rule-case-check`
-- [ ] update `estimate-case-check-refuses-a-letter-outside-the-script`
+- [x] update `rule-case-check`
+- [x] update `estimate-case-check-refuses-a-letter-outside-the-script`
 - [ ] read `estimate-case-check-refuses-a-letter-outside-the-script` — in a later session: `uv run pytest tests/test_casecheck.py -k script`
 ```
 
@@ -389,8 +389,8 @@ update:
 - [x] `tests/test_context.py`: the prompt records carry `origin.kind` `human`; a test `test_d_counts_from_the_start_of_the_turn`: a returned answer starts the count, and a record with no `origin` does not
 - [x] `uv run pytest tests/test_context.py`: green
 - [x] one-off, by hand: the `## How it works` section of `vault/wiki/rules/rule-context-size.md` is removed, heading and text; what of it still holds and the module docstring of `guppi/context.py` does not yet say moves into that docstring first, D counted from the start of the turn
-- [ ] update `rule-context-size`
-- [ ] update `estimate-context-size-shown-after-each-reply`
+- [x] update `rule-context-size`
+- [x] update `estimate-context-size-shown-after-each-reply`
 - [ ] read `estimate-context-size-shown-after-each-reply` — in a later session: `uv run pytest tests/test_context.py`
 ```
 
@@ -433,7 +433,7 @@ update:
 ```tasks
 - [x] `tests/test_casecheck.py`: a test `test_round_a_record_with_no_origin_opens_no_turn`: a round given back to an `Agent` call before the record of a local command with no `origin` is still judged in the turn of the reply (case 590.3)
 - [x] `uv run pytest tests/test_casecheck.py -k round`: green
-- [ ] update `estimate-case-check-refuses-text-before-a-round`
+- [x] update `estimate-case-check-refuses-text-before-a-round`
 - [ ] read `estimate-case-check-refuses-text-before-a-round` — in a later session: `uv run pytest tests/test_casecheck.py -k round`
 ```
 
@@ -575,9 +575,9 @@ update:
 ```
 
 ```tasks
-- [ ] update `rule-carry-over`
-- [ ] update `estimate-carry-over-writes`
-- [ ] `uv run guppi render`: `.claude/skills/carry/SKILL.md`
+- [x] update `rule-carry-over`
+- [x] update `estimate-carry-over-writes`
+- [x] `uv run guppi render`: `.claude/skills/carry/SKILL.md`
 - [ ] read `estimate-carry-over-writes` — by hand, at the first `/carry` of a later session
 ```
 
@@ -629,8 +629,8 @@ update:
 ```
 
 ```tasks
-- [ ] update `rule-spec-capture`
-- [ ] update `estimate-spec-capture-offers-the-fork`
+- [x] update `rule-spec-capture`
+- [x] update `estimate-spec-capture-offers-the-fork`
 - [x] `guppi/box.py` — `conserved_spec_named(plan, project_dir)`: the folder `vault/raw/<date>/<HHMM>/` whose `spec.md` the plan names and that `is_carried_over` of `guppi/materialize.py` judges marked, or `None`; the module docstring names `rule-spec-box`
 - [x] `guppi/spec.py` — when `conserved_spec_named` returns a folder, the line names it and tells the agent to call `/box` with it and to ask nothing; otherwise `fork_line` as before; the module docstring says so
 - [x] `tests/test_spec.py` — `-k box`: a plan whose title line names the `spec.md` of a folder with `carry.md` gets the line of `/box` with that folder and no `AskUserQuestion`; a folder without `carry.md`, or no such path, gets the fork
@@ -681,8 +681,8 @@ update:
 ```
 
 ```tasks
-- [ ] update `rule-end-of-work`
-- [ ] update `estimate-end-of-work-order`
+- [x] update `rule-end-of-work`
+- [x] update `estimate-end-of-work-order`
 - [ ] read `estimate-end-of-work-order` — `make test-end-of-work`, and by hand at the close of the first session that `/box` runs
 ```
 
@@ -739,9 +739,9 @@ update:
 ```
 
 ```tasks
-- [ ] update `rule-work-mode`
-- [ ] update `estimate-work-mode-runs-the-spec-on-a-branch-from-a-baseline`
-- [ ] `uv run guppi render`: `.claude/skills/work/SKILL.md`
+- [x] update `rule-work-mode`
+- [x] update `estimate-work-mode-runs-the-spec-on-a-branch-from-a-baseline`
+- [x] `uv run guppi render`: `.claude/skills/work/SKILL.md`
 - [ ] read `estimate-work-mode-runs-the-spec-on-a-branch-from-a-baseline` — by hand, in a later session, the first `/work` that `/box` calls among them
 ```
 
@@ -784,9 +784,9 @@ update:
 ```
 
 ```tasks
-- [ ] update `rule-retro`
-- [ ] update `estimate-retro-loads`
-- [ ] `uv run guppi render`: `.claude/skills/retro/SKILL.md`
+- [x] update `rule-retro`
+- [x] update `estimate-retro-loads`
+- [x] `uv run guppi render`: `.claude/skills/retro/SKILL.md`
 - [ ] read `estimate-retro-loads` — by hand, at the first `/retro` of a session that `/box` runs
 ```
 
@@ -829,9 +829,9 @@ update:
 ```
 
 ```tasks
-- [ ] update `rule-handoff`
-- [ ] update `estimate-handoff-dispatches`
-- [ ] `uv run guppi render`: `.claude/skills/handoff/SKILL.md`
+- [x] update `rule-handoff`
+- [x] update `estimate-handoff-dispatches`
+- [x] `uv run guppi render`: `.claude/skills/handoff/SKILL.md`
 - [ ] read `estimate-handoff-dispatches` — by hand, at the `/handoff` of the first session that `/box` runs
 ```
 
@@ -884,9 +884,9 @@ update:
 ```
 
 ```tasks
-- [ ] update `rule-where-to-stop`
-- [ ] update `estimate-where-to-stop-stops-only-on-its-conditions`
-- [ ] `uv run guppi render`: `vault/wiki/where-to-stop.md`
+- [x] update `rule-where-to-stop`
+- [x] update `estimate-where-to-stop-stops-only-on-its-conditions`
+- [x] `uv run guppi render`: `vault/wiki/where-to-stop.md`
 - [ ] read `estimate-where-to-stop-stops-only-on-its-conditions` — by hand, at the first run of `/box`
 ```
 
@@ -926,7 +926,7 @@ update:
 ````
 
 ```tasks
-- [ ] update `decision-case-13`
+- [x] update `decision-case-13`
 - [ ] by hand: `make lint` after the librarian's run of this session prints no `fence` line on `decision-case-13`
 ```
 
@@ -975,8 +975,8 @@ update:
 ```
 
 ```tasks
-- [ ] update `rule-work-mode`
-- [ ] update `estimate-work-mode-takes-the-work-readings`
+- [x] update `rule-work-mode`
+- [x] update `estimate-work-mode-takes-the-work-readings`
 - [ ] read `estimate-work-mode-takes-the-work-readings` — by hand, at the first `/work` that `/box` calls
 ```
 
@@ -1071,9 +1071,9 @@ delete:
 - [x] `tests/test_ledger.py`: a test `test_kind_of_a_user_record_sets_the_turn_and_the_stretch` runs `casecheck.turn_of_reply`, `ledger.own_refusals` and `context.sizes` over one transcript with a person's message, a returned answer, the record of a local command with no `origin`, a `peer` message, a refusal marked `isMeta` and a tool result, and asserts where each one starts; a transcript with neither kind gives the whole of it
 - [x] `uv run pytest tests/test_ledger.py tests/test_casecheck.py tests/test_onward.py`: green
 - [x] one-off, by hand: the `## How it works` section of `vault/wiki/rules/rule-ledger-write.md` is removed, heading and text; what of it still holds and the module docstring of `guppi/ledger.py` does not yet say moves into that docstring first, with the shared function of case 592
-- [ ] update `rule-ledger-write`
-- [ ] create `estimate-ledger-write-names-the-kind-of-a-user-record`
-- [ ] delete `rule-turn-start-one-judgment`
+- [x] update `rule-ledger-write`
+- [x] create `estimate-ledger-write-names-the-kind-of-a-user-record`
+- [x] delete `rule-turn-start-one-judgment`
 - [ ] read `estimate-ledger-write-names-the-kind-of-a-user-record` — in a later session: `uv run pytest tests/test_ledger.py -k kind`
 ```
 
@@ -1177,9 +1177,9 @@ update:
 ```
 
 ```tasks
-- [ ] update `rule-skill-hi`
-- [ ] create `estimate-hi-takes-a-conserved-spec`
-- [ ] `uv run guppi render`: `.claude/skills/hi/SKILL.md`
+- [x] update `rule-skill-hi`
+- [x] create `estimate-hi-takes-a-conserved-spec`
+- [x] `uv run guppi render`: `.claude/skills/hi/SKILL.md`
 - [ ] read `estimate-hi-takes-a-conserved-spec` — by hand, at the first session that takes a conserved Spec at the Frontier
 ```
 
@@ -1277,10 +1277,10 @@ update:
 ```
 
 ```tasks
-- [ ] update `rule-spec-box`
-- [ ] update `entity-sprint-migration`
-- [ ] create `estimate-spec-box-runs-a-conserved-spec`
-- [ ] `uv run guppi render`: `.claude/skills/box/SKILL.md`
+- [x] update `rule-spec-box`
+- [x] update `entity-sprint-migration`
+- [x] create `estimate-spec-box-runs-a-conserved-spec`
+- [x] `uv run guppi render`: `.claude/skills/box/SKILL.md`
 - [ ] read `estimate-spec-box-runs-a-conserved-spec` — by hand, at the first session that runs a conserved Spec by `/box`
 ```
 
@@ -1327,7 +1327,7 @@ create:
 - [x] `guppi/box.py` — `check(project_dir, folder, session)` and `run`, by the `then` above; the folder judged by `is_carried_over` of `guppi/materialize.py`, the branches by `git branch --show-current` and `git branch --list`, the ledger window of the session the way `guppi prespec --check` finds it, the items by the parser of the `then` blocks that `guppi materialize` uses; the module docstring names `rule-spec-box`
 - [x] `guppi/cli.py` — the command `box`
 - [x] `tests/test_box.py` — each reason alone and its line; a clean folder, exit 0 and no output; a `defer` line of the session not counted; a History line of a Case of the Spec itself, and a `cascade` line, not counted
-- [ ] create `estimate-spec-box-refuses-a-stale-spec`
+- [x] create `estimate-spec-box-refuses-a-stale-spec`
 - [ ] read `estimate-spec-box-refuses-a-stale-spec` — `uv run pytest tests/test_box.py`, in a later session
 ```
 

@@ -42,7 +42,7 @@ If Tree above is not empty, stop and say "commit first". Otherwise write `vault/
 - `## Ask the person`: one line per reading that only the person can take — the Estimate by slug, the mark `needs the person`, and the question the person answers.
 A fact stands in one section only: a Case, a box, a reading, a lesson or an observation named in one section is not named in another (cases 468.2, 531.5). The file names no commit, no number of an item and no end of an item. Write it from memory; do not re-read the artifacts. Short or empty sections are normal.
 
-Then dispatch the `librarian-guppi` agent with one line: `Materialize <date> from vault/raw/<date>/<hi HHMM>/handoff.md.`, the path of the file you just wrote. Wait for its report and show it to the person unchanged. Do not commit after this, and write no `LEDGER` block.
+Then, in a session whose `work.md` holds `## Conserved Spec` — one that `/box` runs, as you wrote it in this turn — dispatch nothing: go back to the step of `/box` that follows `/handoff`, which merges the branch and dispatches the librarian (case 591). In any other session, dispatch the `librarian-guppi` agent with one line: `Materialize <date> from vault/raw/<date>/<hi HHMM>/handoff.md.`, the path of the file you just wrote. Wait for its report and show it to the person unchanged. Do not commit after this, and write no `LEDGER` block.
 <!-- /rule-handoff -->
 
 ## History
@@ -59,3 +59,4 @@ Then dispatch the `librarian-guppi` agent with one line: `Materialize <date> fro
 - 2026-09-27 status: built → draft · cascade
 - 2026-09-29 updated: the dispatch names handoff.md by its path, as case 73.7 meant and the librarian's frame reads (case 499.2) · [[decision-case-499.2]]
 - 2026-09-30 updated: handoff.md is the report of Retro: Debt, Observations, For the next session and Ask the person added; no number, no end and no commit; the three old section names kept; the Purpose no longer counts three things (case 531.5) · [[decision-case-531.5]]
+- 2026-10-02 updated: in a session that /box runs, /handoff dispatches nothing and hands back to /box (case 591.9) · [[decision-case-591.9]]

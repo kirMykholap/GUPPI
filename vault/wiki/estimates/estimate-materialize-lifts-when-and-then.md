@@ -1,7 +1,7 @@
 ---
 type: estimate
 kind: QA
-status: passed
+status: pending
 target: "[[rule-materialize]]"
 purpose: The Criterion materialize lifts from a Case is its when and then, never its given
 method: pytest tests/test_materialize.py on a temp Spec
@@ -14,7 +14,7 @@ tags: [harness, workflow, ledger]
 ## Criterion
 
 When:
-`guppi materialize` assembles the `create` or `update` entry of an Estimate whose Case has `given`, `when` and `then` and whose item writes no `sections: Criterion`.
+`guppi materialize` assembles the `create` entry of an Estimate, or an `update` entry whose item carries `set.status`, whose Case has `given`, `when` and `then` and whose item writes no `sections: Criterion`.
 
 Then:
 The entry's `sections.Criterion` is the `When:` and `Then:` of the Case, verbatim with their operands.
@@ -29,3 +29,4 @@ The entry's `sections.Criterion` is the `When:` and `Then:` of the Case, verbati
 
 - 2026-09-23 created · [[decision-case-378.2]]
 - 2026-09-23 status: pending → passed · raw/2026-09-23/1355/ledger.md#L39
+- 2026-10-02 updated: the Criterion replaced whole — the lift covers a create and an update that carries set.status, not an update with change alone (case 588.3) · [[decision-case-588.3]]

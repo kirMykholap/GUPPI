@@ -15,14 +15,14 @@ tags: [harness, render, schema]
 ## Criterion
 
 When:
-`pytest tests/test_schemas.py` runs the test of section conditions once per category, over the live `vault/wiki/<category>/schema.yaml`.
+`guppi render` writes `vault/wiki/estimates/schema.yaml` from `rule-estimates-schema`, and `guppi lint` reads a page of `vault/wiki/estimates/`.
 
 Then:
-For each rule under `body.conditional` of the schema, a page in the shape that has the values of its `when` and lacks its required sections has one `schema` finding per missing section, `missing section <section> (given <when>)`, and no other finding.
-**＋** Under `-k estimate`, the test reads `vault/wiki/estimates/schema.yaml`: an Estimate page with `status: passed` and no `## Result` has one such finding, and an Estimate page with `status: failed` and no `## Result` has one.
-**＋** Under `-k rules`, the test reads `vault/wiki/rules/schema.yaml`: a Rule page with `enforcement: render` and no `## Render` has one such finding.
-**－** A schema with no `body.conditional` skips the test, with a reason that names the missing section condition.
-**－** `check_schema` in `guppi/lint.py` and every `vault/wiki/<category>/schema.yaml` stay as they are.
+The file equals the Render. Lint reads from it: required `type, kind, status, target, method, origin, sprint, created, tags`; optional `purpose, checked`; values `kind: QA | Research`, `status: pending | passed | failed`; the sections `## Criterion` and `## History` required, `## Result` optional, `## Result` required on `passed` and on `failed`.
+**＋** An Estimate page with these fields, values and sections has no `schema` finding; one lacking a required field, with a value outside the list, with a conditional not met or lacking a required section has one finding per defect.
+**＋** An Estimate page without a `method` field has the finding `schema: missing field method`.
+**＋** `fields` and `sections` describe each name of these lists; `description` holds, among its paragraphs, the introduction, the `failed` paragraph, the fields deliberately absent, the two kinds, and the Result and Criterion paragraph; `examples` holds the example pages.
+**－** `description`, `fields` and `sections` name no `unmigrated` count, no recut of an older page, no `## Context` or `## Method` section, and no `Given:` kept on an older page.
 
 ## Result
 
@@ -41,3 +41,4 @@ For each rule under `body.conditional` of the schema, a page in the shape that h
 - 2026-09-30 updated: the method runs -k estimate and names a page without method, so the test of method runs; the reading is due again, the Criterion stands (case 556) · [[decision-case-556]]
 - 2026-10-01 deferred · [[decision-case-576]]
 - 2026-10-01 updated: the test of a section required under a condition now covers ## Result on passed and failed; the Criterion stands, and the question case 576 put off is answered (case 583) · [[decision-case-583]]
+- 2026-10-02 updated: the Criterion restored whole — the text of case 506.1, which case 583 meant to keep and its update with change alone replaced (case 588.1) · [[decision-case-588.1]]

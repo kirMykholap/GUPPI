@@ -3,8 +3,8 @@ type: estimate
 kind: QA
 status: pending
 target: "[[rule-handoff]]"
-purpose: /handoff stops on a dirty tree, writes handoff.md from memory into the session's folder and dispatches the librarian with its path, with no commit after
-method: "by hand at the /handoff of a later session: the event log, handoff.md, the dispatch line and git log"
+purpose: /handoff stops on a dirty tree, writes handoff.md from memory into the session's folder and dispatches the librarian with its path, or, in a session that /box runs, hands back to /box, with no commit after
+method: "by hand at the /handoff of a later session and at the /handoff of the first session that /box runs: the event log, handoff.md, the dispatch line and git log"
 origin: raw/2026-09-10/ledger.md#case-38.3
 sprint: migration
 created: 2026-09-10
@@ -21,6 +21,7 @@ The skill's context holds `git status --porcelain`. On a dirty tree the skill st
 **＋** On a clean tree the day's event log `vault/raw/<date>/event_log.md` holds the `handoff` mark of the call.
 **＋** The agent writes `handoff.md` into the session's folder `vault/raw/<date>/<hi HHMM>/`: one document with no `---` and the sections that `rule-handoff` names, with no Read call on the artifacts.
 **＋** Then the agent dispatches `librarian-guppi` with one line, `Materialize <date> from <path of handoff.md>.`, the path being that of the file just written, and shows the librarian's report to the person unchanged.
+**－** In a session whose `raw/<date>/<hi HHMM>/work.md` holds `## Conserved Spec` — one that `/box` runs — the agent dispatches nothing after `handoff.md` and goes back to the step of `/box` that follows `/handoff`.
 **－** No commit follows the handoff except the librarian's own, and no reply between the call and the librarian's report carries a `LEDGER` block.
 
 ## Result
@@ -35,3 +36,4 @@ live 2026-09-14 session N, block 73.7: handoff.md written to raw/2026-09-14/1029
 - 2026-09-14 status: pending → passed · raw/2026-09-14/1229/ledger.md#L4
 - 2026-09-29 updated: the Criterion replaced whole — the head and the block 73.7 into one When and Then, the dispatch by the path; purpose and method set, Context and Method out (case 499.2) · [[decision-case-499.2]]
 - 2026-09-30 updated: the Criterion replaced whole — the trigger covers the agent's call after the reply that ends Retro; the sections are those of rule-handoff; no LEDGER block before the librarian's report (case 531.6) · [[decision-case-531.6]]
+- 2026-10-02 updated: the Criterion replaced whole — in a session that /box runs, /handoff hands back to /box (case 591.9) · [[decision-case-591.9]]

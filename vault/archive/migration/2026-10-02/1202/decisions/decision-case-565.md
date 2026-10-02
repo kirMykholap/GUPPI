@@ -1,8 +1,9 @@
 ---
 type: decision
 case: "565"
-status: current
+status: archived
 defer: ["[[rule-spec-box]]"]
+superseded_by: ["[[decision-case-591.5]]", "[[decision-case-593.2]]"]
 origin: raw/2026-09-30/2356/ledger.md#case-565
 sprint: migration
 created: 2026-09-30
@@ -26,3 +27,7 @@ The lint findings that stand, missing kind, missing estimates and orphan on rule
 ## History
 
 - 2026-10-01 created · raw/2026-09-30/2356/ledger.md#case-565
+- 2026-10-02 superseded by decision-case-591.5 · [[decision-case-591.5]]
+- 2026-10-02 superseded by decision-case-593.2 · [[decision-case-593.2]]
+- 2026-10-02 archived · superseded
+- 2026-10-02 archived · cleanup

@@ -2,11 +2,11 @@
 type: rule
 kind: Leaf
 purpose: Prevents a page that breaks the schema, points nowhere, or claims a status its Estimates do not support from sitting in the vault unnoticed
-status: built
+status: draft
 enforcement: check
 implementation_ref: [guppi/lint.py, tests/test_lint.py, Makefile]
 parent: "[[rule-harness]]"
-estimates: ["[[estimate-lint-catches]]", "[[estimate-lint-finds-a-broken-link]]", "[[estimate-lint-checks-the-statuses]]", "[[estimate-lint-checks-the-method]]", "[[estimate-lint-catches-a-broken-fence]]"]
+estimates: ["[[estimate-lint-catches]]", "[[estimate-lint-finds-a-broken-link]]", "[[estimate-lint-checks-the-statuses]]", "[[estimate-lint-checks-the-method]]", "[[estimate-lint-catches-a-broken-fence]]", "[[estimate-lint-runs-every-step]]"]
 origin: raw/2026-09-09/ledger.md#case-21
 sprint: migration
 created: 2026-09-09
@@ -20,7 +20,7 @@ Estimates do not support, or waits for a reading nobody took from sitting in the
 unnoticed. Pages are written by the generator;
 both drift, and nothing else reads the whole graph at once. Red is a signal, not a
 gate: a `pending` Estimate is red until its reading (case 182, point 13), and a placeholder is red with the count of its defers (case 186.3).
-`make lint` runs it after `render --check`, `sprint --check`, `backlog --check` and `glossary --check`; all five only report, so the Makefile's rule — no target writes to the tree — holds (cases 147.7, 227). `parent: rule-harness` names the
+`make lint` runs it after `render --check`, `sprint --check`, `backlog --check` and `glossary --check`; all five only report, so the Makefile's rule — no target writes to the tree — holds (cases 147.7, 227). It runs all five even when one of them is red, so a red step hides no finding of a later one, and it exits non-zero when any step is red (case 587). `parent: rule-harness` names the
 MOC of the harness tools: lint runs with the renderer, in no phase of the session. The
 classes and their order live in the docstring of `guppi/lint.py`.
 
@@ -81,3 +81,6 @@ classes and their order live in the docstring of `guppi/lint.py`.
 - 2026-09-30 updated: a Decision page with children and no kind list, and the origin of a parent Case found by a line of its sub-case, are no findings (case 544.9) · [[decision-case-544.9]]
 - 2026-09-30 status: built → draft · cascade
 - 2026-09-30 status: draft → built · cascade
+- 2026-10-02 updated: make lint runs every step and exits non-zero when any is red (case 587) · [[decision-case-587]]
+- 2026-10-02 estimate estimate-lint-runs-every-step added · [[decision-case-587]]
+- 2026-10-02 status: built → draft · cascade

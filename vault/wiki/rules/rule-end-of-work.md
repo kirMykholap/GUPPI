@@ -4,7 +4,7 @@ kind: MOC
 purpose: Prevents a session being handed over without a settled account of what happened
 status: draft
 parent: "[[rule-session]]"
-children: ["[[rule-retro]]", "[[rule-retro-commit]]", "[[rule-handoff]]", "[[rule-carry-over]]", "[[rule-retro-onward]]"]
+children: ["[[rule-retro]]", "[[rule-retro-commit]]", "[[rule-handoff]]", "[[rule-carry-over]]", "[[rule-retro-onward]]", "[[rule-spec-box]]"]
 estimates: ["[[estimate-end-of-work-order]]"]
 origin: raw/2026-09-10/ledger.md#case-38
 sprint: migration
@@ -21,9 +21,7 @@ session's own, by forcing a commit between the two. Three steps, which the agent
 A session has a second end: `/carry` straight after Plan Mode, when the Spec is
 ratified and its work is not done — no Work Mode, no Retro, no handoff, no
 librarian; the brief is rewritten and the session folder marked, so the next session
-picks the Spec up and the librarian does not apply it blind. On leaving Plan Mode the
-agent asks the person which of the two ends and starts nothing until it is answered
-(case 190.2).
+picks the Spec up and the librarian does not apply it blind. On leaving Plan Mode the agent asks the person which of the two ends and starts nothing until it is answered (case 190.2). A session that took a conserved Spec at the Frontier is asked nothing there: `/box` runs it the ordinary way on the branch of that Spec, and merges the branch back by a fast-forward after `handoff.md` stands and before the librarian (`rule-spec-box`, case 591).
 
 ## History
 
@@ -39,3 +37,4 @@ agent asks the person which of the two ends and starts nothing until it is answe
 - 2026-09-29 status: built → draft · cascade
 - 2026-09-30 updated: the steps of the end of a session run in the turn of Work Mode with no stop for the person (case 531.1) · [[decision-case-531.1]]
 - 2026-09-30 child rule-retro-onward added · [[decision-case-531.9]]
+- 2026-10-02 updated: a session that took a conserved Spec is asked nothing on leaving Plan Mode and ends the ordinary way through /box; rule-spec-box a child after rule-retro-onward (case 591.4) · [[decision-case-591.4]]

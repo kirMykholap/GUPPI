@@ -1,8 +1,9 @@
 ---
 type: decision
 case: "586"
-status: current
+status: archived
 defer: ["[[rule-turn-start-one-judgment]]"]
+superseded_by: ["[[decision-case-590.1]]", "[[decision-case-592]]"]
 origin: raw/2026-10-01/1725/ledger.md#case-586
 sprint: migration
 created: 2026-10-01
@@ -26,3 +27,7 @@ Prevents the start of the person's turn in a transcript from being judged by two
 ## History
 
 - 2026-10-01 created · raw/2026-10-01/1725/ledger.md#case-586
+- 2026-10-02 superseded by decision-case-590.1 · [[decision-case-590.1]]
+- 2026-10-02 superseded by decision-case-592 · [[decision-case-592]]
+- 2026-10-02 archived · superseded
+- 2026-10-02 archived · cleanup

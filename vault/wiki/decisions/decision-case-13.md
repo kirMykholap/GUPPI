@@ -34,9 +34,11 @@ case-schema:
 
 ```markdown
 <!-- rule-case-protocol -->
+```
 
 ## History
 
 - 2026-09-09 created · raw/2026-09-09/ledger.md#case-13
 - 2026-09-11 migrated: targets to kind and target_slug, Now to Given, Then to When · [[decision-case-52.1]]
 - 2026-09-12 fields kind and target_slug folded into create, update, delete, defer · [[decision-case-59.4]]
+- 2026-10-02 updated: the code fence of When closed: the text was cut off when the page was written; no content change (case 591.11) · [[decision-case-591.11]]

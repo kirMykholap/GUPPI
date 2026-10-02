@@ -21,7 +21,9 @@ Then:
 The session ended one of two ways: Work Mode, Retro, the commit, the handoff and the librarian; or `/carry` straight after Plan Mode.
 **＋** In the ordinary way the order holds: `/handoff` is refused while the tree is dirty; `handoff.md` exists before the librarian is dispatched; no other commit stands between the handoff and the librarian's commit.
 **＋** On leaving Plan Mode the agent asks the person which of the two ends, and starts nothing until it is answered.
+**＋** A session that took a conserved Spec at the Frontier is asked nothing on leaving Plan Mode: `/box` runs the ordinary way on the branch of that Spec, and the shared branch takes that branch by a fast-forward after `handoff.md` exists and before the librarian is dispatched.
 **＋** `rule-carry-over` is a child of `rule-end-of-work`, after `rule-handoff`.
+**＋** `rule-spec-box` is a child of `rule-end-of-work`, after `rule-retro-onward`.
 
 ## Result
 
@@ -35,3 +37,4 @@ The session ended one of two ways: Work Mode, Retro, the commit, the handoff and
 - 2026-09-16 updated: the Criterion replaced whole by case 196.2 — the head recut with the second end (case 196.2) · [[decision-case-196.2]]
 - 2026-09-17 status: pending → passed · raw/2026-09-16/2238/ledger.md#L2
 - 2026-09-29 updated: the Criterion replaced whole — When and Then only, Given and the bounds line out, the green run of make test-end-of-work into method; purpose and method set, Context and Method out (case 499.1) · [[decision-case-499.1]]
+- 2026-10-02 updated: the Criterion replaced whole — a box session is asked nothing on leaving Plan Mode, its branch merged back by a fast-forward before the librarian; rule-spec-box the last child (case 591.4) · [[decision-case-591.4]]

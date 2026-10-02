@@ -5548,3 +5548,145 @@ instruction. The global feed; a page's own `## History` is the per-page view.
 - 2026-10-01 rules/rule-documentation status: draft → built · cascade · generate
 - 2026-10-01 decisions/decision-case-576 archived · superseded · generate
 - 2026-10-01 decisions/decision-case-576 archived · cleanup
+- 2026-10-02 decisions/decision-case-587 created · raw/2026-10-02/1202/ledger.md#case-587 · generate
+- 2026-10-02 rules/rule-lint updated: make lint runs every step and exits non-zero when any is red (case 587) · [[decision-case-587]] · generate
+- 2026-10-02 estimates/estimate-lint-runs-every-step created · [[decision-case-587]] · generate
+- 2026-10-02 rules/rule-lint estimate estimate-lint-runs-every-step added · [[decision-case-587]] · generate
+- 2026-10-02 decisions/decision-case-588 created · raw/2026-10-02/1202/ledger.md#case-588 · generate
+- 2026-10-02 decisions/decision-case-588.1 created · raw/2026-10-02/1202/ledger.md#case-588.1 · generate
+- 2026-10-02 estimates/estimate-estimates-schema-checked updated: the Criterion restored whole — the text of case 506.1, which case 583 meant to keep and its update with change alone replaced (case 588.1) · [[decision-case-588.1]] · generate
+- 2026-10-02 decisions/decision-case-588.2 created · raw/2026-10-02/1202/ledger.md#case-588.2 · generate
+- 2026-10-02 rules/rule-materialize updated: an update of an Estimate with change alone writes only its History line; set.status or a written Criterion replaces the Criterion (case 588.2) · [[decision-case-588.2]] · generate
+- 2026-10-02 estimates/estimate-materialize-changes-a-named-part-alone updated: the Criterion replaced whole — change alone lifts nothing and sets no status; set.status or a written Criterion replaces it (case 588.2) · [[decision-case-588.2]] · generate
+- 2026-10-02 decisions/decision-case-588.3 created · raw/2026-10-02/1202/ledger.md#case-588.3 · generate
+- 2026-10-02 estimates/estimate-materialize-lifts-when-and-then updated: the Criterion replaced whole — the lift covers a create and an update that carries set.status, not an update with change alone (case 588.3) · [[decision-case-588.3]] · generate
+- 2026-10-02 decisions/decision-case-589 created · raw/2026-10-02/1202/ledger.md#case-589 · generate
+- 2026-10-02 decisions/decision-case-589.1 created · raw/2026-10-02/1202/ledger.md#case-589.1 · generate
+- 2026-10-02 decisions/decision-case-481 superseded by decision-case-589.1 · [[decision-case-589.1]] · generate
+- 2026-10-02 rules/rule-prespec-script-skips-code-spans defer by decision-case-481 superseded · [[decision-case-589.1]] · generate
+- 2026-10-02 estimates/estimate-language-spec-prose-in-english updated: the Criterion replaced whole — a Latin letter in a code span gives no finding, any other letter there is judged as in prose (case 589.1) · [[decision-case-589.1]] · generate
+- 2026-10-02 rules/rule-prespec-script-skips-code-spans deleted · [[decision-case-589.1]] · generate
+- 2026-10-02 decisions/decision-case-589.2 created · raw/2026-10-02/1202/ledger.md#case-589.2 · generate
+- 2026-10-02 rules/rule-case-check updated: How it works removed by hand, a one-off, its facts in the docstring of guppi/casecheck.py; the language finding on an answer accepts a Latin letter in a code span (case 589.2) · [[decision-case-589.2]] · generate
+- 2026-10-02 estimates/estimate-case-check-refuses-a-letter-outside-the-script updated: the Criterion replaced whole — a Latin letter in a code span is no finding, any other letter there is judged as in prose (case 589.2) · [[decision-case-589.2]] · generate
+- 2026-10-02 decisions/decision-case-590 created · raw/2026-10-02/1202/ledger.md#case-590 · generate
+- 2026-10-02 decisions/decision-case-590.1 created · raw/2026-10-02/1202/ledger.md#case-590.1 · generate
+- 2026-10-02 decisions/decision-case-586 superseded by decision-case-590.1 · [[decision-case-590.1]] · generate
+- 2026-10-02 rules/rule-turn-start-one-judgment defer by decision-case-586 superseded · [[decision-case-590.1]] · generate
+- 2026-10-02 decisions/decision-case-590.2 created · raw/2026-10-02/1202/ledger.md#case-590.2 · generate
+- 2026-10-02 estimates/estimate-context-size-shown-after-each-reply updated: the Criterion replaced whole — D counts from the last call before the start of the turn, the person's message or a returned answer (case 590.2) · [[decision-case-590.2]] · generate
+- 2026-10-02 rules/rule-context-size updated: ## How it works left the Leaf, its mechanism in the docstring of guppi/context.py; D counts from the start of the turn, named by the function of guppi/ledger.py (case 590.2) · [[decision-case-590.2]] · generate
+- 2026-10-02 decisions/decision-case-591 created · raw/2026-10-02/1202/ledger.md#case-591 · generate
+- 2026-10-02 decisions/decision-case-591.1 created · raw/2026-10-02/1202/ledger.md#case-591.1 · generate
+- 2026-10-02 rules/rule-carry-over updated: /carry makes the branch spec/<hi date>-<hi HHMM> at its commit and stays on the current branch (case 591.1) · [[decision-case-591.1]] · generate
+- 2026-10-02 estimates/estimate-carry-over-writes updated: the Criterion replaced whole — /carry makes the branch of the Spec after its commit (case 591.1) · [[decision-case-591.1]] · generate
+- 2026-10-02 decisions/decision-case-591.2 created · raw/2026-10-02/1202/ledger.md#case-591.2 · generate
+- 2026-10-02 decisions/decision-case-591.3 created · raw/2026-10-02/1202/ledger.md#case-591.3 · generate
+- 2026-10-02 rules/rule-spec-capture updated: a plan that names a conserved Spec gets a line that leads to /box in place of the fork (case 591.3) · [[decision-case-591.3]] · generate
+- 2026-10-02 estimates/estimate-spec-capture-offers-the-fork updated: the Criterion replaced whole — a plan that names a conserved Spec leads to /box, any other gets the fork (case 591.3) · [[decision-case-591.3]] · generate
+- 2026-10-02 decisions/decision-case-591.4 created · raw/2026-10-02/1202/ledger.md#case-591.4 · generate
+- 2026-10-02 rules/rule-end-of-work updated: a session that took a conserved Spec is asked nothing on leaving Plan Mode and ends the ordinary way through /box; rule-spec-box a child after rule-retro-onward (case 591.4) · [[decision-case-591.4]] · generate
+- 2026-10-02 estimates/estimate-end-of-work-order updated: the Criterion replaced whole — a box session is asked nothing on leaving Plan Mode, its branch merged back by a fast-forward before the librarian; rule-spec-box the last child (case 591.4) · [[decision-case-591.4]] · generate
+- 2026-10-02 decisions/decision-case-591.5 created · raw/2026-10-02/1202/ledger.md#case-591.5 · generate
+- 2026-10-02 decisions/decision-case-207 superseded by decision-case-591.5 · [[decision-case-591.5]] · generate
+- 2026-10-02 rules/rule-spec-box defer by decision-case-207 superseded · [[decision-case-591.5]] · generate
+- 2026-10-02 decisions/decision-case-219 superseded by decision-case-591.5 · [[decision-case-591.5]] · generate
+- 2026-10-02 rules/rule-spec-box defer by decision-case-219 superseded · [[decision-case-591.5]] · generate
+- 2026-10-02 decisions/decision-case-232 superseded by decision-case-591.5 · [[decision-case-591.5]] · generate
+- 2026-10-02 rules/rule-spec-box defer by decision-case-232 superseded · [[decision-case-591.5]] · generate
+- 2026-10-02 decisions/decision-case-532 superseded by decision-case-591.5 · [[decision-case-591.5]] · generate
+- 2026-10-02 rules/rule-spec-box defer by decision-case-532 superseded · [[decision-case-591.5]] · generate
+- 2026-10-02 decisions/decision-case-565 superseded by decision-case-591.5 · [[decision-case-591.5]] · generate
+- 2026-10-02 rules/rule-spec-box defer by decision-case-565 superseded · [[decision-case-591.5]] · generate
+- 2026-10-02 decisions/decision-case-591.6 created · raw/2026-10-02/1202/ledger.md#case-591.6 · generate
+- 2026-10-02 decisions/decision-case-591.7 created · raw/2026-10-02/1202/ledger.md#case-591.7 · generate
+- 2026-10-02 decisions/decision-case-540 superseded by decision-case-591.7 · [[decision-case-591.7]] · generate
+- 2026-10-02 rules/rule-work-mode defer by decision-case-540 superseded · [[decision-case-591.7]] · generate
+- 2026-10-02 rules/rule-work-mode updated: /work runs the Spec of the folder /box gives it, names that folder under Conserved Spec of work.md and deletes its carry.md after the last task (case 591.7) · [[decision-case-591.7]] · generate
+- 2026-10-02 estimates/estimate-work-mode-runs-the-spec-on-a-branch-from-a-baseline updated: the Criterion replaced whole — /work runs the Spec of the folder /box gives it (case 591.7) · [[decision-case-591.7]] · generate
+- 2026-10-02 decisions/decision-case-591.8 created · raw/2026-10-02/1202/ledger.md#case-591.8 · generate
+- 2026-10-02 rules/rule-retro updated: in a session that /box runs, the conserved Spec is the Spec Retro reviews, and its decision lines count as this session's (case 591.8) · [[decision-case-591.8]] · generate
+- 2026-10-02 estimates/estimate-retro-loads updated: the Criterion replaced whole — in a session that /box runs, the conserved Spec counts as this session's work (case 591.8) · [[decision-case-591.8]] · generate
+- 2026-10-02 decisions/decision-case-591.9 created · raw/2026-10-02/1202/ledger.md#case-591.9 · generate
+- 2026-10-02 rules/rule-handoff updated: in a session that /box runs, /handoff dispatches nothing and hands back to /box (case 591.9) · [[decision-case-591.9]] · generate
+- 2026-10-02 estimates/estimate-handoff-dispatches updated: the Criterion replaced whole — in a session that /box runs, /handoff hands back to /box (case 591.9) · [[decision-case-591.9]] · generate
+- 2026-10-02 decisions/decision-case-591.10 created · raw/2026-10-02/1202/ledger.md#case-591.10 · generate
+- 2026-10-02 rules/rule-where-to-stop updated: /box imports the file, and its stops — a reason of its check, a fast-forward merge that refuses — are condition 6 (case 591.10) · [[decision-case-591.10]] · generate
+- 2026-10-02 estimates/estimate-where-to-stop-stops-only-on-its-conditions updated: the Criterion replaced whole — /box imports the file, and its stops (case 591.10) · [[decision-case-591.10]] · generate
+- 2026-10-02 decisions/decision-case-591.11 created · raw/2026-10-02/1202/ledger.md#case-591.11 · generate
+- 2026-10-02 decisions/decision-case-13 updated: the code fence of When closed: the text was cut off when the page was written; no content change (case 591.11) · [[decision-case-591.11]] · generate
+- 2026-10-02 decisions/decision-case-590.3 created · raw/2026-10-02/1202/ledger.md#case-590.3 · generate
+- 2026-10-02 estimates/estimate-case-check-refuses-text-before-a-round updated: the Criterion replaced whole — the turn of the reply starts at the person's message or a returned answer, by the function of guppi/ledger.py (case 590.3) · [[decision-case-590.3]] · generate
+- 2026-10-02 decisions/decision-case-591.12 created · raw/2026-10-02/1202/ledger.md#case-591.12 · generate
+- 2026-10-02 rules/rule-work-mode updated: the Work readings of /box leave the Estimates that the conserved Spec creates or updates (case 591.12) · [[decision-case-591.12]] · generate
+- 2026-10-02 estimates/estimate-work-mode-takes-the-work-readings updated: the Criterion replaced whole — the Work readings of /box leave the Estimates the conserved Spec changes (case 591.12) · [[decision-case-591.12]] · generate
+- 2026-10-02 decisions/decision-case-594 created · raw/2026-10-02/1202/ledger.md#case-594 · generate
+- 2026-10-02 rules/rule-ledger-line-withdrawn-on-re-ratification deferred, placeholder · [[decision-case-594]] · generate
+- 2026-10-02 decisions/decision-case-592 created · raw/2026-10-02/1202/ledger.md#case-592 · generate
+- 2026-10-02 decisions/decision-case-590.1 superseded by decision-case-592 · [[decision-case-592]] · generate
+- 2026-10-02 decisions/decision-case-586 superseded by decision-case-592 · [[decision-case-592]] · generate
+- 2026-10-02 estimates/estimate-ledger-write-names-the-kind-of-a-user-record created · [[decision-case-592]] · generate
+- 2026-10-02 rules/rule-ledger-write estimate estimate-ledger-write-names-the-kind-of-a-user-record added · [[decision-case-592]] · generate
+- 2026-10-02 rules/rule-ledger-write updated: ## How it works left the Leaf, its mechanism in the docstring of guppi/ledger.py; the person's message and a returned answer are named by one function of guppi/ledger.py, which the case check and the token counter import (case 592) · [[decision-case-592]] · generate
+- 2026-10-02 rules/rule-turn-start-one-judgment deleted · [[decision-case-592]] · generate
+- 2026-10-02 decisions/decision-case-593 created · raw/2026-10-02/1202/ledger.md#case-593 · generate
+- 2026-10-02 decisions/decision-case-593.1 created · raw/2026-10-02/1202/ledger.md#case-593.1 · generate
+- 2026-10-02 decisions/decision-case-591.2 superseded by decision-case-593.1 · [[decision-case-593.1]] · generate
+- 2026-10-02 rules/rule-skill-hi updated: a conserved Spec is taken whole at the Frontier, named in the title line of the plan file, and run by /box (case 593.1) · [[decision-case-593.1]] · generate
+- 2026-10-02 estimates/estimate-hi-takes-a-conserved-spec created · [[decision-case-593.1]] · generate
+- 2026-10-02 rules/rule-skill-hi estimate estimate-hi-takes-a-conserved-spec added · [[decision-case-593.1]] · generate
+- 2026-10-02 decisions/decision-case-593.2 created · raw/2026-10-02/1202/ledger.md#case-593.2 · generate
+- 2026-10-02 decisions/decision-case-207 superseded by decision-case-593.2 · [[decision-case-593.2]] · generate
+- 2026-10-02 decisions/decision-case-219 superseded by decision-case-593.2 · [[decision-case-593.2]] · generate
+- 2026-10-02 decisions/decision-case-232 superseded by decision-case-593.2 · [[decision-case-593.2]] · generate
+- 2026-10-02 decisions/decision-case-532 superseded by decision-case-593.2 · [[decision-case-593.2]] · generate
+- 2026-10-02 decisions/decision-case-565 superseded by decision-case-593.2 · [[decision-case-593.2]] · generate
+- 2026-10-02 decisions/decision-case-591.5 superseded by decision-case-593.2 · [[decision-case-593.2]] · generate
+- 2026-10-02 rules/rule-spec-box updated: built from the placeholder: /box runs a conserved Spec on its branch and merges it back before the librarian, first part; a child of rule-end-of-work (case 593.2) · [[decision-case-593.2]] · generate
+- 2026-10-02 entities/entity-sprint-migration updated: the Backlog line of rule-spec-box names its second part (case 593.2) · [[decision-case-593.2]] · generate
+- 2026-10-02 estimates/estimate-spec-box-runs-a-conserved-spec created · [[decision-case-593.2]] · generate
+- 2026-10-02 rules/rule-spec-box estimate estimate-spec-box-runs-a-conserved-spec added · [[decision-case-593.2]] · generate
+- 2026-10-02 decisions/decision-case-593.3 created · raw/2026-10-02/1202/ledger.md#case-593.3 · generate
+- 2026-10-02 decisions/decision-case-591.6 superseded by decision-case-593.3 · [[decision-case-593.3]] · generate
+- 2026-10-02 estimates/estimate-spec-box-refuses-a-stale-spec created · [[decision-case-593.3]] · generate
+- 2026-10-02 rules/rule-spec-box estimate estimate-spec-box-refuses-a-stale-spec added · [[decision-case-593.3]] · generate
+- 2026-10-02 estimates/estimate-case-protocol-shows-the-frontier-after-a-closed-line status: pending → passed · raw/2026-10-02/1202/ledger.md#L55 · generate
+- 2026-10-02 estimates/estimate-prespec-gathers-the-answers-after-findings status: pending → passed · raw/2026-10-02/1202/ledger.md#L56 · generate
+- 2026-10-02 rules/rule-context-size status: built → draft · cascade · generate
+- 2026-10-02 rules/rule-language status: built → draft · cascade · generate
+- 2026-10-02 rules/rule-lint status: built → draft · cascade · generate
+- 2026-10-02 rules/rule-materialize status: built → draft · cascade · generate
+- 2026-10-02 rules/rule-prespec status: draft → built · cascade · generate
+- 2026-10-02 rules/rule-skill-hi status: built → draft · cascade · generate
+- 2026-10-02 rules/rule-spec-capture status: built → draft · cascade · generate
+- 2026-10-02 rules/rule-where-to-stop status: built → draft · cascade · generate
+- 2026-10-02 decisions/decision-case-207 archived · superseded · generate
+- 2026-10-02 decisions/decision-case-219 archived · superseded · generate
+- 2026-10-02 decisions/decision-case-232 archived · superseded · generate
+- 2026-10-02 decisions/decision-case-481 archived · superseded · generate
+- 2026-10-02 decisions/decision-case-532 archived · superseded · generate
+- 2026-10-02 decisions/decision-case-540 archived · superseded · generate
+- 2026-10-02 decisions/decision-case-565 archived · superseded · generate
+- 2026-10-02 decisions/decision-case-586 archived · superseded · generate
+- 2026-10-02 decisions/decision-case-590.1 archived · superseded · generate
+- 2026-10-02 decisions/decision-case-591.2 archived · superseded · generate
+- 2026-10-02 decisions/decision-case-591.5 archived · superseded · generate
+- 2026-10-02 decisions/decision-case-591.6 archived · superseded · generate
+- 2026-10-02 rules/rule-prespec-script-skips-code-spans archived · cleanup
+- 2026-10-02 rules/rule-turn-start-one-judgment archived · cleanup
+- 2026-10-02 decisions/decision-case-207 archived · cleanup
+- 2026-10-02 decisions/decision-case-219 archived · cleanup
+- 2026-10-02 decisions/decision-case-232 archived · cleanup
+- 2026-10-02 decisions/decision-case-481 archived · cleanup
+- 2026-10-02 decisions/decision-case-532 archived · cleanup
+- 2026-10-02 decisions/decision-case-540 archived · cleanup
+- 2026-10-02 decisions/decision-case-565 archived · cleanup
+- 2026-10-02 decisions/decision-case-586 archived · cleanup
+- 2026-10-02 decisions/decision-case-590.1 archived · cleanup
+- 2026-10-02 decisions/decision-case-591.2 archived · cleanup
+- 2026-10-02 decisions/decision-case-591.5 archived · cleanup
+- 2026-10-02 decisions/decision-case-591.6 archived · cleanup
+- 2026-10-02 decisions/decision-case-590 child decision-case-590.1 archived · cleanup
+- 2026-10-02 decisions/decision-case-591 child decision-case-591.2 archived · cleanup
+- 2026-10-02 decisions/decision-case-591 child decision-case-591.5 archived · cleanup
+- 2026-10-02 decisions/decision-case-591 child decision-case-591.6 archived · cleanup

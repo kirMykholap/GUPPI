@@ -1,10 +1,10 @@
 ---
 type: estimate
 kind: QA
-status: passed
+status: pending
 target: "[[rule-spec-capture]]"
-purpose: "The hook prints the fork after the Spec is written: the agent asks by AskUserQuestion with the options /work and /carry, and calls the skill picked"
-method: "uv run pytest tests/test_spec.py -k fork; by hand, the first ExitPlanMode of a session after the render: the fork asked by AskUserQuestion with /work and /carry, and the skill picked called"
+purpose: "The hook prints one line after the Spec is written: for a plan that names a conserved Spec, the call of /box with its folder and no question; otherwise the fork, asked by AskUserQuestion with /work and /carry, and the skill picked called"
+method: uv run pytest tests/test_spec.py -k 'fork or box'; by hand, the first ExitPlanMode of a session after the render, and the first ExitPlanMode of a session that took a conserved Spec
 checked: 2026-09-28
 origin: raw/2026-09-16/1034/ledger.md#case-190.5
 sprint: migration
@@ -18,10 +18,11 @@ When:
 `guppi spec` has run on `PostToolUse` of `ExitPlanMode` and written the Spec, or found it already there.
 
 Then:
-The stdout of the hook is one JSON object, `hookSpecificOutput` with `hookEventName: PostToolUse` and `additionalContext`, that holds the fork line with the session folder and the Spec file.
+The stdout of the hook is one JSON object, `hookSpecificOutput` with `hookEventName: PostToolUse` and `additionalContext`, that holds one line with the session folder and the Spec file `raw/<hi date>/<hi HHMM>/spec.md`.
 **＋** For `PostToolUse` Claude Code adds to the agent's context only `hookSpecificOutput.additionalContext` from a JSON object on stdout; plain stdout with exit 0 goes to the debug log.
 **＋** The agent sees this line in the `ExitPlanMode` result.
-**＋** The fork line tells the agent to ask the person by `AskUserQuestion` with two options, `/work` (Work Mode on the Spec now) and `/carry` (the Spec conserved for a later session), and to start nothing until the person answers.
+**＋** When the approved plan names the `spec.md` of a folder under `vault/raw/` that `is_carried_over` of `guppi/materialize.py` judges marked by `carry.md`, the line names that folder and tells the agent to call `.claude/skills/box/SKILL.md` with it, and to ask the person nothing.
+**＋** For any other plan the line is the fork. The fork line tells the agent to ask the person by `AskUserQuestion` with two options, `/work` (Work Mode on the Spec now) and `/carry` (the Spec conserved for a later session), and to start nothing until the person answers.
 **＋** On the answer, the agent calls `.claude/skills/work/SKILL.md` or `.claude/skills/carry/SKILL.md`, the skill of the option picked.
 **－** A `PostToolUse` hook blocks nothing: the tool has run.
 **－** Without a Spec, nothing, as before.
@@ -42,3 +43,4 @@ The stdout of the hook is one JSON object, `hookSpecificOutput` with `hookEventN
 - 2026-09-20 status: pending → passed · raw/2026-09-20/0740/ledger.md#L12
 - 2026-09-28 updated: the Criterion replaced whole — the fork is asked by AskUserQuestion with /work and /carry, and the skill picked is called (case 479.1) · [[decision-case-479.1]]
 - 2026-09-28 status: pending → passed · raw/2026-09-28/2000/ledger.md#L21
+- 2026-10-02 updated: the Criterion replaced whole — a plan that names a conserved Spec leads to /box, any other gets the fork (case 591.3) · [[decision-case-591.3]]

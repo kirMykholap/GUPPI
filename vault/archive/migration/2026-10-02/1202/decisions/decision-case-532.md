@@ -1,8 +1,9 @@
 ---
 type: decision
 case: "532"
-status: current
+status: archived
 defer: ["[[rule-spec-box]]"]
+superseded_by: ["[[decision-case-591.5]]", "[[decision-case-593.2]]"]
 origin: raw/2026-09-29/2024/ledger.md#case-532
 sprint: migration
 created: 2026-09-29
@@ -26,3 +27,7 @@ make lint reports schema (the fields kind and estimates missing) and orphan on r
 ## History
 
 - 2026-09-30 created · raw/2026-09-29/2024/ledger.md#case-532
+- 2026-10-02 superseded by decision-case-591.5 · [[decision-case-591.5]]
+- 2026-10-02 superseded by decision-case-593.2 · [[decision-case-593.2]]
+- 2026-10-02 archived · superseded
+- 2026-10-02 archived · cleanup

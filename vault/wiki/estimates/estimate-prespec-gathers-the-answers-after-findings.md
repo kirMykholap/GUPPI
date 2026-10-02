@@ -1,11 +1,11 @@
 ---
 type: estimate
 kind: QA
-status: pending
+status: passed
 target: "[[rule-prespec]]"
 purpose: Whether after the findings of pre-spec the main agent sends the fixes to their case-guppi at once, ends each waiting turn with one labelled line naming the Cases answered and still out and writes nothing else while answers are out, gathers every question into one numbered list, and shows the Cases built again in one reply
 method: by hand at the /pre-spec of a later session after the render whose report sends findings to two or more case-guppi, the replies between the report and the showing again, the SendMessage calls and any refusal of guppi casecheck read in the transcript
-checked: 2026-10-01
+checked: 2026-10-02
 origin: raw/2026-09-30/2356/ledger.md#case-561.2
 sprint: migration
 created: 2026-09-30
@@ -30,10 +30,11 @@ The main agent sends each finding in a Case that needs no word of the person to 
 
 ## Result
 
-2026-10-01, by hand, the /pre-spec of session 1237: the findings went in one SendMessage to each of the two case-guppi, 567 and 569, none held back, no round came back, and the two Cases built again were shown in one reply for one ratification; but the main agent wrote in the chat while answers were out, twice: the closing text of the report turn after the two SendMessage calls, and a reply at the notification of the answer of 567 while 569 was out (lesson-sendmessage-answers-open-a-turn-of-their-own)
+2026-10-02, by hand at the /pre-spec of session 1202 in the transcript of session 1a155152: the report numbered 13 findings and asked one question in the grill-me shape; findings 1–12 went to the case-guppi of 588, 590 and 591 in one SendMessage each, the finding on How it works held back for 589 and 590 until the person's answer; each turn while an answer was out ended with one line under the bold label Ожидание naming the Cases answered and still out, with no question; the round 590.Q6 that came back while 588 and 591 were out was not shown in that turn; once all answered, one list showed 589.Q1 and 590.Q6 numbered by Case; the answers went back in one message each; the four Cases built again were shown in one reply for one ratification; guppi casecheck refused no reply of the loop
 
 ## History
 
 - 2026-10-01 created · [[decision-case-561.2]]
 - 2026-10-01 status: pending → failed · raw/2026-10-01/1237/ledger.md#L37
 - 2026-10-01 updated: the Criterion replaced whole — one labelled line per waiting turn instead of no text while answers are out (case 581.1) · [[decision-case-581.1]]
+- 2026-10-02 status: pending → passed · raw/2026-10-02/1202/ledger.md#L56

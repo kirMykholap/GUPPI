@@ -6,7 +6,7 @@ status: draft
 enforcement: hook
 implementation_ref: [guppi/ledger.py, guppi/materialize.py, guppi/gate.py, tests/test_ledger.py, tests/test_gate.py, .claude/settings.json]
 parent: "[[rule-session-start]]"
-estimates: ["[[estimate-ledger-write-lifts]]", "[[estimate-ledger-write-refuses-a-reading-of-a-change-of-the-session]]", "[[estimate-ledger-write-refuses-a-lesson-without-its-prefix]]", "[[estimate-ledger-write-refuses-a-mark-with-no-decision-line]]", "[[estimate-ledger-write-refuses-a-line-it-cannot-read]]", "[[estimate-ledger-write-exits-2-on-an-error]]"]
+estimates: ["[[estimate-ledger-write-lifts]]", "[[estimate-ledger-write-refuses-a-reading-of-a-change-of-the-session]]", "[[estimate-ledger-write-refuses-a-lesson-without-its-prefix]]", "[[estimate-ledger-write-refuses-a-mark-with-no-decision-line]]", "[[estimate-ledger-write-refuses-a-line-it-cannot-read]]", "[[estimate-ledger-write-exits-2-on-an-error]]", "[[estimate-ledger-write-names-the-kind-of-a-user-record]]"]
 deferred_by: ["[[decision-case-442]]"]
 origin: raw/2026-09-09/ledger.md#case-10
 sprint: migration
@@ -73,3 +73,5 @@ would materialize pages from it the next day.
 - 2026-10-01 updated: the hook writes whatever stop_hook_active says; each refused line is told once a stretch, and no hi and its own error once a stretch, judged by its own refusals in the transcript (case 577.3) · [[decision-case-577.3]]
 - 2026-10-01 updated: an error of the hook comes back at the first Stop of each stretch; an error while it reads the payload exits 0, since the hook cannot tell its own refusal then (case 577.4) · [[decision-case-577.4]]
 - 2026-10-01 status: built → draft · cascade
+- 2026-10-02 estimate estimate-ledger-write-names-the-kind-of-a-user-record added · [[decision-case-592]]
+- 2026-10-02 updated: ## How it works left the Leaf, its mechanism in the docstring of guppi/ledger.py; the person's message and a returned answer are named by one function of guppi/ledger.py, which the case check and the token counter import (case 592) · [[decision-case-592]]

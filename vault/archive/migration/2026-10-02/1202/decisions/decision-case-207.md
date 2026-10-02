@@ -1,8 +1,9 @@
 ---
 type: decision
 case: "207"
-status: current
+status: archived
 defer: ["[[rule-spec-box]]"]
+superseded_by: ["[[decision-case-591.5]]", "[[decision-case-593.2]]"]
 origin: raw/2026-09-16/1955/ledger.md#case-207
 sprint: migration
 created: 2026-09-16
@@ -39,3 +40,7 @@ session with `isolation: worktree` or a session the person starts. After Slice 3
 ## History
 
 - 2026-09-16 created · raw/2026-09-16/1955/ledger.md#case-207
+- 2026-10-02 superseded by decision-case-591.5 · [[decision-case-591.5]]
+- 2026-10-02 superseded by decision-case-593.2 · [[decision-case-593.2]]
+- 2026-10-02 archived · superseded
+- 2026-10-02 archived · cleanup

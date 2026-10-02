@@ -8,7 +8,6 @@ governs: .claude/skills/work/SKILL.md
 render_mode: full
 parent: "[[rule-session]]"
 estimates: ["[[estimate-work-mode-runs-the-spec-on-a-branch-from-a-baseline]]", "[[estimate-work-mode-takes-the-work-readings]]"]
-deferred_by: ["[[decision-case-540]]"]
 origin: raw/2026-09-10/ledger.md#case-29
 sprint: migration
 created: 2026-09-10
@@ -17,14 +16,14 @@ tags: [session, workflow, harness, render]
 
 ## Purpose
 
-Prevents implementation starting before the plan, branch and baseline exist. Work Mode runs the approved Spec of the session. Its skill `/work` starts after `ExitPlanMode`: the agent calls it when the person picks `/work` at the fork, and the person types it to resume a session that stopped in the middle. It stops on `main`. Before the first change it writes the baseline, the result of `make test` and `make lint`, into `raw/<date>/<hi HHMM>/work.md`, so that Retro charges to the session only a red the baseline does not hold. A substitution of the skill can come back empty when the model call that checks it fails, so the agent then runs the command itself. It runs the tasks in the order of the Spec and ticks each box. A task that changes a check that reads a page or a governed file the same Spec updates writes a mark of an expected red into the same file, naming the check and the page or file, and Retro reads it. Subagents in Work Mode, the test of each Estimate written first and the rest of the model are not decided yet (case 479.2).
+Prevents implementation starting before the plan, branch and baseline exist. Work Mode runs the approved Spec of the session, or the conserved Spec whose folder `/box` gives it (case 591). Its skill `/work` starts after `ExitPlanMode`: the agent calls it when the person picks `/work` at the fork, and the person types it to resume a session that stopped in the middle. It stops on `main`. Before the first change it writes the baseline, the result of `make test` and `make lint`, into `raw/<date>/<hi HHMM>/work.md`, so that Retro charges to the session only a red the baseline does not hold. A substitution of the skill can come back empty when the model call that checks it fails, so the agent then runs the command itself. It runs the tasks in the order of the Spec and ticks each box. A task that changes a check that reads a page or a governed file the same Spec updates writes a mark of an expected red into the same file, naming the check and the page or file, and Retro reads it. Subagents in Work Mode, the test of each Estimate written first and the rest of the model are not decided yet (case 479.2).
 
 ## Render
 
 <!-- rule-work-mode -->
 ---
 name: work
-description: Work Mode on the approved Spec — check the branch, write the baseline, run the tasks in order and tick each box. The agent calls it when the person picks /work at the fork ExitPlanMode prints; the person types it to resume.
+description: Work Mode on the approved Spec — check the branch, write the baseline, run the tasks in order and tick each box. The agent calls it when the person picks /work at the fork ExitPlanMode prints; the person types it to resume; /box calls it with the folder of a conserved Spec.
 ---
 
 
@@ -38,15 +37,15 @@ Lint: !`make lint`
 
 A line above can come back empty when the check of its command fails. When Branch is empty, run `git branch --show-current` yourself before anything else. When Tests or Lint is empty, run `make test` and `make lint` yourself before the first change, and use their result for the Baseline.
 
-Work Mode runs the approved Spec, `vault/raw/<date>/<hi HHMM>/spec.md`, the session's folder. If the branch is `main`, stop and say so: Work Mode does not start on `main`. Write and change nothing until the person moves to another branch and `/work` runs again.
+Work Mode runs the approved Spec, `vault/raw/<date>/<hi HHMM>/spec.md`, the session's folder. When `/box` calls it with the folder of a conserved Spec, `vault/raw/<date>/<HHMM>/`, the Spec below is that folder's `spec.md`, and `work.md` still stands in the session's folder (case 591). If the branch is `main`, stop and say so: Work Mode does not start on `main`. Write and change nothing until the person moves to another branch and `/work` runs again.
 
-Otherwise, before the first change, write `vault/raw/<date>/<hi HHMM>/work.md` with two sections. `## Baseline`: the exit code of `make test` and of `make lint`, then each failing test and each lint finding line as printed. `## Expected red`: empty for now. When `work.md` already stands, because the person typed `/work` to resume, keep its Baseline as it is: the baseline is taken once, before the first change.
+Otherwise, before the first change, write `vault/raw/<date>/<hi HHMM>/work.md` with two sections, or three with a folder from `/box`. `## Baseline`: the exit code of `make test` and of `make lint`, then each failing test and each lint finding line as printed. `## Expected red`: empty for now. With a folder from `/box`, the third, `## Conserved Spec`: the folder, on one line. When `work.md` already stands, because the person typed `/work` to resume, keep its Baseline as it is: the baseline is taken once, before the first change.
 
 Run the tasks of the Spec in the order the Spec holds them. Tick each box of code, a test, a migration or a `by hand` check in `spec.md` in the reply that finishes the task. The lines of a page, a render, the sprint, the glossary and a reading are ticked by the librarian's scripts, not here.
 
 When a task changes a check — `make lint` or one of its steps, or a hook of the working tree — that reads a page or a governed file this Spec updates, add one line under `## Expected red` in the same reply: the check, and the page or file it waits for. That check is red or refuses on that page or file until the librarian's run, and `/retro` ends that red as a note for the handoff.
 
-When the last task is done, take the Work readings before `/retro`: in the order of `frontier.md`, each reading of an open `W` line whose work is built and whose moment, as its `method` names it, has come; a moment of an earlier session, such as the librarian's run, has come. Leave a reading of an Estimate this session creates or updates, and one whose moment has not come: its line stays open. Close the line of each reading taken `[x] … · work` in `frontier.md` first; tick no `read` box. Write no `LEDGER` block here: the line of each reading stands in the one reply that ends Retro (case 531.8). Run the tasks, the readings and `/retro` in one turn, with tool calls and no reply that ends, except at a stop that `vault/wiki/where-to-stop.md` names. Work Mode ends by calling `/retro`.
+When the last task is done, delete the `carry.md` of a folder from `/box`, then take the Work readings before `/retro`: in the order of `frontier.md`, each reading of an open `W` line whose work is built and whose moment, as its `method` names it, has come; a moment of an earlier session, such as the librarian's run, has come. Leave a reading of an Estimate this session creates or updates — with a folder from `/box`, one that a decision line of that folder's `ledger.md` creates or updates too — and one whose moment has not come: its line stays open. Close the line of each reading taken `[x] … · work` in `frontier.md` first; tick no `read` box. Write no `LEDGER` block here: the line of each reading stands in the one reply that ends Retro (case 531.8). Run the tasks, the readings and `/retro` in one turn, with tool calls and no reply that ends, except at a stop that `vault/wiki/where-to-stop.md` names. Work Mode ends by calling `/retro`.
 <!-- /rule-work-mode -->
 
 ## History
@@ -124,3 +123,6 @@ When the last task is done, take the Work readings before `/retro`: in the order
 - 2026-09-30 updated: /work loads the stops of rule-where-to-stop by an import of vault/wiki/where-to-stop.md (case 531.7) · [[decision-case-531.7]]
 - 2026-09-30 updated: the tasks, the Work readings and /retro run in one turn; the reading lines go to the reply that ends Retro (case 531.8) · [[decision-case-531.8]]
 - 2026-09-30 deferred · [[decision-case-540]]
+- 2026-10-02 defer by decision-case-540 superseded · [[decision-case-591.7]]
+- 2026-10-02 updated: /work runs the Spec of the folder /box gives it, names that folder under Conserved Spec of work.md and deletes its carry.md after the last task (case 591.7) · [[decision-case-591.7]]
+- 2026-10-02 updated: the Work readings of /box leave the Estimates that the conserved Spec creates or updates (case 591.12) · [[decision-case-591.12]]

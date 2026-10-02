@@ -2,7 +2,7 @@
 type: rule
 kind: Leaf
 purpose: Prevents a set of ratified decisions from reaching the Spec with a contradiction between them or with the vault
-status: draft
+status: built
 enforcement: render
 governs: .claude/skills/pre-spec/SKILL.md
 render_mode: full
@@ -173,3 +173,4 @@ Inside this loop the rule of `vault/wiki/case-schema.md` that no Case is taken u
 - 2026-10-01 estimate estimate-prespec-catches-two-cases-on-one-target added · [[decision-case-561.4]]
 - 2026-10-01 status: built → draft · cascade
 - 2026-10-01 updated: step 2 of the loop after the findings: each waiting turn ends with one line under a bold label naming the Cases answered and still out, and nothing else is written (case 581.1) · [[decision-case-581.1]]
+- 2026-10-02 status: draft → built · cascade

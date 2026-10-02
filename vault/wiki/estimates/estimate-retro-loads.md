@@ -1,9 +1,9 @@
 ---
 type: estimate
 kind: QA
-status: passed
+status: pending
 target: "[[rule-retro]]"
-method: one reading by hand at the first /retro, recorded in the estimate line
+method: one reading by hand at the first /retro, and one at the first /retro of a session that /box runs, recorded in the estimate line
 checked: 2026-09-30
 origin: raw/2026-09-10/ledger.md#case-38.1
 sprint: migration
@@ -20,6 +20,7 @@ Then:
 A reading measures the Criterion the page carries at the moment of the reading — the one ratified last; its line is written only when the work that Criterion names is built — rendered, written, run.
 **＋** An Estimate that this session creates or updates — by a decision line of its slug, or by an `update` that renames a page to it — gets no reading in this session, built or not; the handoff names it as a reading of a later session.
 **＋** The `read` line of its old Criterion in an earlier Spec is not read; the reading of the new Criterion closes it in a later session, at the moment its `method` names.
+**＋** When `raw/<date>/<hi HHMM>/work.md` holds `## Conserved Spec`, the Spec of this session is the `spec.md` of the folder that section names: Retro sorts its boxes, and the decision lines of that folder's `ledger.md` count as this session's for those boxes, for the scope of an edit and for the readings above.
 **－** A reading of an Estimate this session neither creates nor updates is taken as before, once its work is built.
 
 ## Result
@@ -57,3 +58,4 @@ A reading measures the Criterion the page carries at the moment of the reading �
 - 2026-09-27 status: pending → passed · raw/2026-09-27/2050/ledger.md#L36
 - 2026-09-30 updated: the Criterion replaced whole — the trigger is the agent's call at the end of /work or the typed /retro; the readings rule is unchanged (case 531.2) · [[decision-case-531.2]]
 - 2026-09-30 status: pending → passed · raw/2026-09-30/2042/ledger.md#L35
+- 2026-10-02 updated: the Criterion replaced whole — in a session that /box runs, the conserved Spec counts as this session's work (case 591.8) · [[decision-case-591.8]]

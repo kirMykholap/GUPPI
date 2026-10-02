@@ -1,8 +1,9 @@
 ---
 type: decision
 case: "540"
-status: current
+status: archived
 defer: ["[[rule-work-mode]]"]
+superseded_by: ["[[decision-case-591.7]]"]
 origin: raw/2026-09-30/0248/ledger.md#case-540
 sprint: migration
 created: 2026-09-30
@@ -26,3 +27,6 @@ Prevents implementation starting before the plan, branch and baseline exist
 ## History
 
 - 2026-09-30 created · raw/2026-09-30/0248/ledger.md#case-540
+- 2026-10-02 superseded by decision-case-591.7 · [[decision-case-591.7]]
+- 2026-10-02 archived · superseded
+- 2026-10-02 archived · cleanup

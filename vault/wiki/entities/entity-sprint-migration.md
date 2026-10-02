@@ -34,7 +34,7 @@ Rule-class files dissolved, `index.md` gone, the `file` route out of the scripts
 - a template engine for the rendered files — one script with the shape of each file declared, once a third render beside `sprint.md` and `glossary.md` appears (case 301)
 - [[rule-work-mode]] — the rest of Work Mode past the skill `/work` of case 479.2: the test of each Estimate written first and turned green, and the full model the person plans; cases 183, 206
 - [[rule-subagent-guppi]] — what a subagent may do in Work Mode, and the fork that comes back to the main agent as a Case; cases 183, 206
-- [[rule-spec-box]] — the Spec box, case 207, after Slice 3b
+- [[rule-spec-box]] — the Spec box, its second part: a conserved Spec checked against the pages changed after it was conserved, a Case on such a page built again, ratified again and written into the folder of the conserved Spec, and a conserved Spec taken after other Cases of its session (case 591)
 - [[rule-morph]] — the morph mechanism: the initiation at install sets the category set of the project, the development set by default, held as data so that a changed set rewrites no rule; case 239
 
 ## Closed
@@ -110,3 +110,4 @@ No file of `vault/wiki/` is written by hand.
 - 2026-09-30 moved to the Backlog: rule-morph passed over in 3 sessions in a row — 0138, 2024, 1753 · generate
 - 2026-09-30 updated: Slice 5: the raw date folders, git pull and gh decided; the remote removed; the merge item no longer names the two rules (case 528.5) · [[decision-case-528.5]]
 - 2026-09-30 updated: the finish conditions lint-clean, merges and leftovers-gone stand only under Done when: off Slice 5 and the Backlog (case 539.3) · [[decision-case-539.3]]
+- 2026-10-02 updated: the Backlog line of rule-spec-box names its second part (case 593.2) · [[decision-case-593.2]]

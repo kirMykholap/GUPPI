@@ -1,8 +1,9 @@
 ---
 type: decision
 case: "232"
-status: current
+status: archived
 defer: ["[[rule-spec-box]]"]
+superseded_by: ["[[decision-case-591.5]]", "[[decision-case-593.2]]"]
 origin: raw/2026-09-17/1119/ledger.md#case-232
 sprint: migration
 created: 2026-09-17
@@ -26,3 +27,7 @@ the Spec box of case 207 — a conserved Spec run in a worktree on its own branc
 ## History
 
 - 2026-09-18 created · raw/2026-09-17/1119/ledger.md#case-232
+- 2026-10-02 superseded by decision-case-591.5 · [[decision-case-591.5]]
+- 2026-10-02 superseded by decision-case-593.2 · [[decision-case-593.2]]
+- 2026-10-02 archived · superseded
+- 2026-10-02 archived · cleanup

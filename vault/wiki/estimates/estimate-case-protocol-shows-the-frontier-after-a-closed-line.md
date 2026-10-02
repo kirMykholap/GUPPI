@@ -1,11 +1,11 @@
 ---
 type: estimate
 kind: QA
-status: pending
+status: passed
 target: "[[rule-case-protocol]]"
 purpose: Whether a reply after the first reply of /hi that closes a Frontier line in Plan Mode with no ratification and no defer ends with the Frontier and the question which item is next
 method: "by hand, in a later session: the first reply in Plan Mode after the first reply of /hi that closes a line of frontier.md with no ratification and no defer, read against the Criterion"
-checked: 2026-10-01
+checked: 2026-10-02
 origin: raw/2026-09-30/1736/ledger.md#case-547
 sprint: migration
 created: 2026-09-30
@@ -31,7 +31,7 @@ The reply ends with the heading `## Frontier` and the lines of `raw/<date>/<hi H
 
 ## Result
 
-2026-10-01, by hand, session 1237, the reply closing A1 at 12:47:27: it carried its LEDGER block, then one Frontier with the closed lines folded into one and, a line under Cases open, the question which item is next; but it folded the open W lines W1, W3-W17, W19-W32, W34, W38-W45 into one line, against one line per open item with a short title
+2026-10-02, by hand in the transcript of session 1a155152: the first Plan Mode reply after the first reply of /hi that closed lines with no ratification and no defer, C1 [-] · sprint · defer and C7 [-] · backlog · kept, ended with the heading Frontier, the closed lines folded into one (C2–C6 · cases 587–591), the put-off lines as closed, the open W lines folded into one line W1–W28, no question since no line under Cases stood open, then called /pre-spec, the reply carrying no LEDGER block
 
 ## History
 
@@ -39,3 +39,4 @@ The reply ends with the heading `## Frontier` and the lines of `raw/<date>/<hi H
 - 2026-10-01 updated: the Criterion replaced whole - no question when no line under Cases is open; the reply calls /pre-spec or ends for the hook (case 561.6) · [[decision-case-561.6]]
 - 2026-10-01 status: pending → failed · raw/2026-10-01/1237/ledger.md#L35
 - 2026-10-01 updated: the Criterion replaced whole — the open W lines are folded into one line that lists their ids; each other open line stands on its own line (case 578.1) · [[decision-case-578.1]]
+- 2026-10-02 status: pending → passed · raw/2026-10-02/1202/ledger.md#L55

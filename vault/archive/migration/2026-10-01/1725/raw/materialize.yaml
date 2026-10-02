@@ -216,6 +216,7 @@ entries:
       record whose origin.kind is human; whether they are one judgment under rule-one-judgment-one-implementation
   exists: false
   applied: '18:41:19'
+  superseded_by: '592'
 - line: 8
   text: 'estimate[estimate-retro-onward-exits-2-on-an-error][passed] 2026-10-01, uv run pytest tests/test_onward.py
     tests/test_ledger.py: 104 passed; tests/test_onward.py test_error_an_error_of_its_own_exits_2_with_the_advice,
@@ -723,5 +724,8 @@ decisions:
       put off.
   spec: vault/raw/2026-10-01/1725/spec.md
   applied: '18:41:19'
+  superseded_by:
+  - decision-case-590.1
+  - decision-case-592
 unparsed: []
 session: '1725'

@@ -432,7 +432,7 @@ update:
 
 ```tasks
 - [x] update `estimate-case-protocol-shows-the-frontier-after-a-closed-line`
-- [ ] read `estimate-case-protocol-shows-the-frontier-after-a-closed-line` — by hand, in a later session after the render, the first Plan Mode reply after the first reply of `/hi` that closes a line of `frontier.md` with no ratification and no defer
+- [x] read `estimate-case-protocol-shows-the-frontier-after-a-closed-line` — by hand, in a later session after the render, the first Plan Mode reply after the first reply of `/hi` that closes a line of `frontier.md` with no ratification and no defer
 ```
 
 ### Case 578.2 — The acknowledging reply folds the open Work lines
@@ -722,7 +722,7 @@ update:
 - [x] update `rule-prespec` — step 2 of the loop allows one labelled line per waiting turn
 - [x] update `estimate-prespec-gathers-the-answers-after-findings`
 - [x] `uv run guppi render`: `.claude/skills/pre-spec/SKILL.md`
-- [ ] read `estimate-prespec-gathers-the-answers-after-findings` — by hand at the `/pre-spec` of a later session after the render whose report sends findings to two or more `case-guppi`
+- [x] read `estimate-prespec-gathers-the-answers-after-findings` — by hand at the `/pre-spec` of a later session after the render whose report sends findings to two or more `case-guppi`
 ```
 
 ### Case 581.2 — The Case check states the true reason for its exemption after pre-spec

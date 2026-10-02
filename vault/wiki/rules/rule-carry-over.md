@@ -27,7 +27,7 @@ such a session that would make the vault claim behaviour no code implements.
 <!-- rule-carry-over -->
 ---
 name: carry
-description: Conserve a ratified Spec whose work is not done — rewrite the brief, mark the session folder, run `guppi backlog`, commit; run nothing else. Called by the agent after the person chose to conserve at the fork ExitPlanMode prints.
+description: Conserve a ratified Spec whose work is not done — rewrite the brief, mark the session folder, run `guppi backlog`, commit, make the branch of the Spec; run nothing else. Called by the agent after the person chose to conserve at the fork ExitPlanMode prints.
 ---
 
 
@@ -45,6 +45,7 @@ Otherwise:
    this file when the work of spec.md is done`. Its presence tells `guppi materialize` to pass the unit by, and `guppi backlog` to show the Spec under its conserved Specs. Then run `uv run guppi backlog`; every line on its stderr goes into the reply.
 3. Run `make style`, then commit `vault/raw/`, `vault/wiki/brief.md` and `vault/wiki/backlog.md`:
    `docs(vault): Spec of session <HHMM> conserved, Cases <N>–<M>`.
+4. Make the branch of the Spec at that commit: `git branch spec/<hi date>-<hi HHMM>`. Stay on the current branch: the Spec waits on its branch until a later session takes it at the Frontier and `/box` runs it (`rule-spec-box`, case 591).
 
 Run nothing else: no Work Mode, no `/retro`, no `/handoff`, no librarian, no `guppi
 materialize`, `generate`, `cleanup` or `render`; write no page under `vault/wiki/` but the brief; `vault/wiki/backlog.md` is written by `guppi backlog` alone. The session that finishes the Spec deletes `carry.md`.
@@ -69,3 +70,4 @@ materialize`, `generate`, `cleanup` or `render`; write no page under `vault/wiki
 - 2026-09-30 defer by decision-case-533 superseded · [[decision-case-538.1]]
 - 2026-09-30 updated: the short brief of /carry keeps Next session: Work and Ask the person from the open lines of the session's frontier.md, Cases the line none (case 538.1) · [[decision-case-538.1]]
 - 2026-09-30 status: built → draft · cascade
+- 2026-10-02 updated: /carry makes the branch spec/<hi date>-<hi HHMM> at its commit and stays on the current branch (case 591.1) · [[decision-case-591.1]]

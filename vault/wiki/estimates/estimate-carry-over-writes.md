@@ -3,8 +3,8 @@ type: estimate
 kind: QA
 status: pending
 target: "[[rule-carry-over]]"
-purpose: /carry writes the brief and the mark and runs guppi backlog and nothing else
-method: uv run guppi render --check; by hand, the first /carry after the fork of ExitPlanMode — the tree, vault/wiki/brief.md, carry.md, vault/wiki/backlog.md and the commit read
+purpose: /carry writes the brief and the mark, runs guppi backlog, commits, makes the branch of the Spec at that commit, and runs nothing else
+method: uv run guppi render --check; by hand, the first /carry after the fork of ExitPlanMode — the tree, vault/wiki/brief.md, carry.md, vault/wiki/backlog.md, the commit and git branch read
 checked: 2026-09-30
 origin: raw/2026-09-16/1034/ledger.md#case-190.1
 sprint: migration
@@ -25,8 +25,10 @@ The skill reads the tree. When the tree holds changes outside the session folder
 **＋** It puts `carry.md` into the session folder: one line, a flag for `materialize` and `guppi backlog`, not a document. The session that finishes the work deletes it.
 **＋** It runs `uv run guppi backlog`, and `vault/wiki/backlog.md` then shows the conserved Spec with its targets.
 **＋** It runs `make style` and commits `vault/raw/`, `vault/wiki/brief.md` and `vault/wiki/backlog.md`.
+**＋** After that commit it runs `git branch spec/<hi date>-<hi HHMM>`, so the branch of the Spec points at the commit that holds the whole of `/carry`.
 **－** No open `W` or `A` line of `frontier.md` is left out of Next session, so the next `/hi` takes each one into its Frontier.
 **－** It runs no Work Mode, `/retro`, `/handoff`, librarian, `materialize`, `generate`, `cleanup` or `render`, and it writes no decision. It writes no page of `vault/wiki/`.
+**－** It switches to no branch: the session stays on the branch it ran on.
 **－** The work stays sequential, session after session: one conserved Spec, no parallel work.
 **－** `.claude/skills/carry/SKILL.md` equals the Render of the page and is not edited by hand.
 
@@ -46,3 +48,4 @@ The skill reads the tree. When the tree holds changes outside the session folder
 - 2026-09-27 updated: the method names render --check and a reading by hand; no test targets the carry skill (case 465) · [[decision-case-465]]
 - 2026-09-30 status: pending → passed · raw/2026-09-30/0138/ledger.md#L3
 - 2026-09-30 updated: the Criterion replaced whole — the short brief keeps Next session: Work and Ask the person from the open lines of frontier.md, Cases the line none · [[decision-case-538.1]]
+- 2026-10-02 updated: the Criterion replaced whole — /carry makes the branch of the Spec after its commit (case 591.1) · [[decision-case-591.1]]

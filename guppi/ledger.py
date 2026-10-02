@@ -188,16 +188,13 @@ def opens_turn(record: dict) -> bool:
     return user_kind(record) is not None
 
 
-def own_refusals(payload: dict, command: str) -> list[str] | None:
-    """The text of each refusal of the `Stop` hook `command` in the stretch: the main-agent
-    records of `transcript_path` after the last person's message, by `user_kind` — a `user`
-    record whose `origin.kind` is `human`; a returned answer does not end it (case 592).
-    A refusal is a `user` record marked `isMeta` whose text opens with `Stop hook feedback:`
-    and holds a line that opens with `[<command>]: `; its text is what follows that prefix
-    (measured on session 1237 and 1441, Claude Code 2.1.282). None when the transcript cannot
-    be read. The one judgment of the stretch, which `guppi onward` calls too (cases 577.1,
-    577.3): Claude Code keeps `stop_hook_active` set from a refusal until the person's next
-    message, so a hook guards its own loop by this text, not by the flag."""
+def stretch(payload: dict) -> list[dict] | None:
+    """The stretch: the main-agent records of `transcript_path` after the last person's
+    message, by `user_kind` — a `user` record whose `origin.kind` is `human`; a returned
+    answer does not end it (case 592). None when the transcript cannot be read. The one
+    judgment of the stretch, which the ledger hook and `guppi onward` call (cases 577.1,
+    577.3, 597.2): Claude Code keeps `stop_hook_active` set from a refusal until the
+    person's next message, so a hook guards its own loop by the transcript, not by the flag."""
     records = read_records(payload.get("transcript_path"))
     if records is None:
         return None
@@ -206,18 +203,45 @@ def own_refusals(payload: dict, command: str) -> list[str] | None:
     for index, record in enumerate(main):
         if user_kind(record) == PERSON:
             start = index + 1
-    prefix = f"[{command}]: "
-    texts: list[str] = []
-    for record in main[start:]:
+    return main[start:]
+
+
+def refusals(payload: dict, *commands: str) -> dict[str, list[tuple[int, str]]] | None:
+    """For each `Stop` hook `command`, its refusals in the stretch, in order, each with the
+    reply of the agent it follows: the index in the stretch of the last `assistant` record
+    before it, -1 when none — the refusals of one end of a reply share it, and a refusal of a
+    later reply has a greater one (case 596.1). A refusal is a `user` record marked `isMeta`
+    whose text opens with `Stop hook feedback:` and holds a line that opens with
+    `[<command>]: `; its text is what follows that prefix (measured on session 1237 and 1441,
+    Claude Code 2.1.282). None when the transcript cannot be read. The one judgment of the
+    refusals, which `guppi onward` uses for its own and for those of the ledger hook."""
+    records = stretch(payload)
+    if records is None:
+        return None
+    found: dict[str, list[tuple[int, str]]] = {command: [] for command in commands}
+    reply = -1
+    for index, record in enumerate(records):
+        if record.get("type") == "assistant":
+            reply = index
+            continue
         if record.get("type") != "user" or not record.get("isMeta"):
             continue
         text = record_text(record)
         if not text.startswith(REFUSAL_HEAD):
             continue
-        at = text.find("\n" + prefix)
-        if at >= 0:
-            texts.append(text[at + 1 + len(prefix) :])
-    return texts
+        for command in commands:
+            prefix = f"[{command}]: "
+            at = text.find("\n" + prefix)
+            if at >= 0:
+                found[command].append((reply, text[at + 1 + len(prefix) :]))
+    return found
+
+
+def own_refusals(payload: dict, command: str) -> list[str] | None:
+    """The text of each refusal of the `Stop` hook `command` in the stretch, by `refusals`;
+    None when the transcript cannot be read (cases 577.1, 577.3)."""
+    found = refusals(payload, command)
+    return None if found is None else [text for _, text in found[command]]
 
 
 def transcript_records(payload: dict) -> list[dict]:

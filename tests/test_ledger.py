@@ -939,3 +939,35 @@ def test_kind_of_a_user_record_sets_the_turn_and_the_stretch(tmp_path):
     path.write_text("\n".join(json.dumps(r) for r in neither) + "\n", encoding="utf-8")
     assert ledger.own_refusals(payload, ledger.COMMAND) == ["first", "second"]
     assert context.sizes(neither) == (15_000, 15_000)
+
+
+def test_refusals_of_two_hooks_after_two_replies_carry_the_reply_they_follow(tmp_path):
+    def reply(text):
+        return {"type": "assistant", "message": {"content": [{"type": "text", "text": text}]}}
+
+    def refused(command, text):
+        content = f"Stop hook feedback:\n[{command}]: {text}"
+        return {"type": "user", "isMeta": True, "message": {"content": content}}
+
+    onward = "uv run guppi onward"
+    records = [
+        reply("before the person"),
+        refused(ledger.COMMAND, "earlier stretch"),
+        {"type": "user", "origin": {"kind": "human"}, "message": {"content": "go on"}},
+        reply("first"),  # 0 of the stretch
+        refused(ledger.COMMAND, "a lesson"),
+        refused(onward, "to the handoff"),
+        reply("second"),  # 3 of the stretch
+        refused(ledger.COMMAND, "a reading"),
+        refused("uv run guppi onward --plan", "not this hook"),
+    ]
+    path = tmp_path / "transcript.jsonl"
+    path.write_text("\n".join(json.dumps(r) for r in records) + "\n", encoding="utf-8")
+    payload = {"transcript_path": str(path)}
+    found = ledger.refusals(payload, onward, ledger.COMMAND)
+    assert found == {
+        onward: [(0, "to the handoff")],
+        ledger.COMMAND: [(0, "a lesson"), (3, "a reading")],
+    }
+    assert ledger.own_refusals(payload, ledger.COMMAND) == ["a lesson", "a reading"]
+    assert ledger.refusals({"transcript_path": str(tmp_path / "none.jsonl")}, onward) is None

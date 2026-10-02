@@ -107,6 +107,72 @@ def test_a_task_notification_does_not_open_a_new_stretch(tmp_path):
     assert run(payload(transcript_path=path), tmp_path) == (0, "")
 
 
+def reply(text="Retro done.", timestamp=None):
+    record = {"type": "assistant", "message": {"content": [{"type": "text", "text": text}]}}
+    if timestamp is not None:
+        record["timestamp"] = timestamp
+    return record
+
+
+LEDGER = "uv run guppi ledger"
+
+
+def test_a_ledger_refusal_of_the_same_reply_sends_it_on_again(tmp_path):
+    with_event_log(tmp_path, START + HI + RETRO)
+    path = transcript(
+        tmp_path,
+        human(),
+        reply(),
+        refusal(LEDGER, "ledger: lesson[x] not written"),
+        refusal("uv run guppi onward", onward.REASON),
+        reply("```LEDGER\n- lesson[...]\n```"),
+    )
+    code, err = run(payload(stop_hook_active=True, transcript_path=path), tmp_path)
+    assert (code, err) == (2, onward.REASON + "\n")
+
+
+def test_a_ledger_refusal_of_a_later_reply_sends_it_on_again(tmp_path):
+    with_event_log(tmp_path, START + HI + RETRO)
+    path = transcript(
+        tmp_path,
+        human(),
+        reply(),
+        refusal("uv run guppi onward", onward.REASON),
+        reply("the rewrite"),
+        refusal(LEDGER, "ledger: line not written"),
+        reply("again"),
+    )
+    assert run(payload(transcript_path=path), tmp_path)[0] == 2
+
+
+def test_a_ledger_refusal_only_before_its_own_refusal_leaves_it_spent(tmp_path):
+    with_event_log(tmp_path, START + HI + RETRO)
+    path = transcript(
+        tmp_path,
+        human(),
+        reply(),
+        refusal(LEDGER, "ledger: line not written"),
+        reply("the rewrite"),
+        refusal("uv run guppi onward", onward.REASON),
+        reply("committed"),
+    )
+    assert run(payload(transcript_path=path), tmp_path) == (0, "")
+
+
+def test_a_refusal_of_another_hook_after_its_own_leaves_it_spent(tmp_path):
+    with_event_log(tmp_path, START + HI + RETRO)
+    path = transcript(
+        tmp_path,
+        human(),
+        reply(),
+        refusal("uv run guppi onward", onward.REASON),
+        reply("next"),
+        refusal("uv run guppi casecheck", "casecheck: refused"),
+        reply("again"),
+    )
+    assert run(payload(transcript_path=path), tmp_path) == (0, "")
+
+
 @pytest.mark.parametrize("reply", ["STOP: the test cannot be fixed; revert it?", "\nSTOP: ask"])
 def test_a_reply_that_opens_with_stop_is_let_through(tmp_path, reply):
     with_event_log(tmp_path, START + HI + RETRO)
@@ -161,6 +227,21 @@ def test_error_with_its_own_refusal_in_the_stretch_exits_0(tmp_path, monkeypatch
     with_event_log(tmp_path, START + HI)
     monkeypatch.setattr(onward, "retro_marked", boom)
     path = transcript(tmp_path, human(), refusal("uv run guppi onward", "onward: not checked"))
+    assert run(payload(transcript_path=path), tmp_path) == (0, "")
+
+
+def test_error_with_its_own_refusal_and_a_later_ledger_refusal_exits_0(tmp_path, monkeypatch):
+    with_event_log(tmp_path, START + HI)
+    monkeypatch.setattr(onward, "retro_marked", boom)
+    path = transcript(
+        tmp_path,
+        human(),
+        reply(),
+        refusal("uv run guppi onward", "onward: not checked"),
+        reply("next"),
+        refusal(LEDGER, "ledger: line not written"),
+        reply("again"),
+    )
     assert run(payload(transcript_path=path), tmp_path) == (0, "")
 
 
@@ -256,9 +337,78 @@ def test_plan_a_case_file_older_than_its_last_decision_line_is_no_case_out(tmp_p
     assert run_plan(payload(RATIFIED), tmp_path)[0] == 2
 
 
-def test_plan_the_re_fire_is_silent(tmp_path):
+def test_plan_the_flag_with_a_transcript_it_cannot_read_is_silent(tmp_path):
     plan_session(tmp_path)
     assert run_plan(payload(RATIFIED, stop_hook_active=True), tmp_path) == (0, "")
+
+
+PLAN = "uv run guppi onward --plan"
+
+
+def test_plan_the_flag_and_another_hooks_refusal_send_it_on(tmp_path):
+    plan_session(tmp_path)
+    path = transcript(tmp_path, human(), reply(), refusal("uv run guppi casecheck"), reply())
+    code, err = run_plan(payload(RATIFIED, stop_hook_active=True, transcript_path=path), tmp_path)
+    assert (code, err) == (2, onward.TO_PRESPEC + "\n")
+
+
+@pytest.mark.parametrize("later", [False, True])
+def test_plan_a_ledger_refusal_after_its_own_sends_it_on_again(tmp_path, later):
+    plan_session(tmp_path)
+    records = [human(), reply(), refusal(LEDGER, "ledger: lesson[x] not written")]
+    records.append(refusal(PLAN, onward.TO_PRESPEC))
+    if later:
+        records[2:4] = [records[3], reply("the rewrite"), records[2]]
+    path = transcript(tmp_path, *records, reply())
+    code, err = run_plan(payload(RATIFIED, stop_hook_active=True, transcript_path=path), tmp_path)
+    assert (code, err) == (2, onward.TO_PRESPEC + "\n")
+
+
+def test_plan_its_own_refusal_with_no_later_ledger_refusal_is_silent(tmp_path):
+    plan_session(tmp_path)
+    path = transcript(tmp_path, human(), reply(), refusal(PLAN, onward.TO_PRESPEC), reply())
+    assert run_plan(payload(RATIFIED, stop_hook_active=True, transcript_path=path), tmp_path) == (
+        0,
+        "",
+    )
+
+
+def test_plan_an_error_with_its_own_refusal_in_the_stretch_exits_0(tmp_path, monkeypatch):
+    plan_session(tmp_path)
+    monkeypatch.setattr(onward, "plan_onward", boom)
+    path = transcript(tmp_path, human(), reply(), refusal(PLAN, "onward: not checked"), reply())
+    assert run_plan(payload(RATIFIED, transcript_path=path), tmp_path) == (0, "")
+
+
+LESSON = (
+    "```LEDGER\n- lesson[error][lesson-x-y]{tags:hooks} trigger: t root_cause: r\n```\n## Frontier"
+)
+
+
+def test_plan_a_case_ratified_by_an_earlier_reply_of_the_stretch_is_not_out(tmp_path):
+    ledger = "- 11:10:00 decision[case 5.1][update][rule-y]{ref:rule-y}\n"
+    folder = plan_session(tmp_path, ledger=ledger)
+    with_case_file(folder, "5", datetime(2026, 9, 30, 11, 20, 0, tzinfo=UTC))
+    ratified = "```LEDGER\n- decision[case 5.1][update][rule-y]{ref:rule-y}\n```"
+    path = transcript(tmp_path, human(), reply(ratified, "2026-09-30T11:30:00Z"))
+    assert run_plan(payload(LESSON, transcript_path=path), tmp_path)[0] == 2
+
+
+def test_plan_a_case_with_no_reply_that_ratified_it_is_out(tmp_path):
+    ledger = "- 11:10:00 decision[case 5.1][update][rule-y]{ref:rule-y}\n"
+    folder = plan_session(tmp_path, ledger=ledger)
+    with_case_file(folder, "5", datetime(2026, 9, 30, 11, 20, 0, tzinfo=UTC))
+    path = transcript(tmp_path, human(), reply("no block", "2026-09-30T11:30:00Z"))
+    assert run_plan(payload(LESSON, transcript_path=path), tmp_path) == (0, "")
+
+
+def test_plan_a_record_with_no_readable_time_counts_none_of_its_lines(tmp_path):
+    ledger = "- 11:10:00 decision[case 5.1][update][rule-y]{ref:rule-y}\n"
+    folder = plan_session(tmp_path, ledger=ledger)
+    with_case_file(folder, "5", datetime(2026, 9, 30, 11, 20, 0, tzinfo=UTC))
+    ratified = "```LEDGER\n- decision[case 5.1][update][rule-y]{ref:rule-y}\n```"
+    path = transcript(tmp_path, human(), reply(ratified, "not a time"))
+    assert run_plan(payload(LESSON, transcript_path=path), tmp_path) == (0, "")
 
 
 def test_plan_a_reply_that_opens_with_stop_is_let_through(tmp_path):

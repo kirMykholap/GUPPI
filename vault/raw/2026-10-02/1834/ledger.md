@@ -1,0 +1,40 @@
+- 20:03:17 decision[case 595.1][update][rule-prespec]{ref:rule-prespec}
+- 20:03:17 decision[case 595.1][update][estimate-prespec-gathers-the-answers-after-findings]{ref:rule-prespec}
+- 20:03:17 decision[case 595.2][create][rule-orchestration]{ref:rule-plan-mode}{tags:session,workflow,harness}{supersedes:case 424}{supersedes:case 574}
+- 20:03:17 decision[case 595.2][create][estimate-orchestration-loaded]{ref:rule-orchestration}{tags:session,harness}
+- 20:03:17 decision[case 595.3][create][rule-ratification]{ref:rule-plan-mode}{tags:session,workflow,ledger,harness}
+- 20:03:17 decision[case 595.3][create][estimate-ratification-loaded]{ref:rule-ratification}{tags:session,harness}
+- 20:03:17 decision[case 595.4][update][rule-internal-context]{ref:rule-internal-context}
+- 20:03:17 decision[case 595.4][update][estimate-internal-context-loaded]{ref:rule-internal-context}
+- 20:03:17 decision[case 595.4][update][rule-claude-md]{ref:rule-claude-md}
+- 20:03:17 decision[case 595.4][update][rule-compact-recall]{ref:rule-compact-recall}
+- 20:03:17 decision[case 595.5][update][rule-atomicity]{ref:rule-atomicity}
+- 20:03:17 decision[case 595.5][update][estimate-atomicity-rendered]{ref:rule-atomicity}
+- 20:03:17 decision[case 595.6][update][rule-case-protocol]{ref:rule-case-protocol}
+- 20:03:17 decision[case 595.6][update][estimate-case-protocol-loaded]{ref:rule-case-protocol}
+- 20:03:17 decision[case 595.7][update][rule-case-build]{ref:rule-case-build}
+- 20:03:17 decision[case 595.7][update][estimate-case-build-writes-the-case]{ref:rule-case-build}
+- 20:03:17 decision[case 595.8][update][estimate-case-protocol-acknowledging-reply]{ref:rule-orchestration}
+- 20:03:17 decision[case 595.9][update][estimate-case-protocol-shows-the-frontier-after-a-closed-line]{ref:rule-orchestration}
+- 20:03:17 decision[case 595.10][update][estimate-case-protocol-defers-in-one-reply]{ref:rule-orchestration}
+- 20:03:17 decision[case 595.11][update][estimate-case-protocol-shows-the-built-case]{ref:rule-orchestration}
+- 20:03:17 decision[case 595.12][update][estimate-case-protocol-forwards-a-discussion-question]{ref:rule-orchestration}
+- 20:03:17 decision[case 595.13][update][estimate-case-protocol-asks-in-the-grill-me-shape]{ref:rule-orchestration}
+- 20:03:17 decision[case 595.14][update][estimate-case-protocol-puts-the-harness-before-plan-mode]{ref:rule-orchestration}
+- 20:03:17 decision[case 595.15][update][estimate-case-protocol-names-related-cases-in-the-dispatch]{ref:rule-orchestration}
+- 20:03:17 decision[case 595.16][update][estimate-case-protocol-ledger-line-form]{ref:rule-ratification}
+- 20:03:17 decision[case 595.17][update][rule-ledger-write]{ref:rule-ledger-write}
+- 20:03:17 decision[case 595.17][update][estimate-ledger-write-refuses-a-line-it-cannot-read]{ref:rule-ledger-write}
+- 20:03:17 decision[case 595.18][update][estimate-spec-capture-offers-the-fork]{ref:rule-spec-capture}
+- 20:03:17 decision[case 595.19][update][estimate-skill-grill-me-asks-in-rounds]{ref:rule-skill-grill-me}
+- 20:03:17 decision[case 595.20][update][entity-glossary]{ref:entity-glossary}
+- 20:26:16 decision[case 595.21][update][estimate-claude-md-rendered]{ref:rule-claude-md}
+- 20:29:52 estimate[estimate-estimates-schema-checked][passed] 2026-10-02, uv run pytest tests/test_schemas.py -k estimate: 6 passed, 1 skipped (estimates: no conditional on a field); make lint of the Baseline printed no schema line on wiki/estimates/
+- 20:29:52 estimate[estimate-materialize-changes-a-named-part-alone][passed] 2026-10-02, uv run pytest tests/test_materialize.py: 123 passed
+- 20:29:52 estimate[estimate-materialize-lifts-when-and-then][passed] 2026-10-02, uv run pytest tests/test_materialize.py: 123 passed
+- 20:29:52 estimate[estimate-language-spec-prose-in-english][passed] 2026-10-02, uv run pytest tests/test_prespec.py -k script: 9 passed
+- 20:29:52 estimate[estimate-case-check-refuses-a-letter-outside-the-script][passed] 2026-10-02, uv run pytest tests/test_casecheck.py -k script: 9 passed
+- 20:29:52 estimate[estimate-ledger-write-names-the-kind-of-a-user-record][passed] 2026-10-02, uv run pytest tests/test_ledger.py -k kind: 1 passed; Grep task-notification|"human" over guppi/ printed guppi/ledger.py (HUMAN, NOTIFICATION, user_kind) and guppi/casecheck.py, whose three hits are docstring lines naming user_kind of guppi/ledger.py; no other module judges origin.kind in code
+- 20:29:52 estimate[estimate-spec-box-refuses-a-stale-spec][passed] 2026-10-02, uv run pytest tests/test_box.py: 10 passed
+- 20:29:52 estimate[estimate-case-check-shows-only-the-checked-case][passed] 2026-10-02, uv run pytest tests/test_casecheck.py -k stop: 25 passed; by hand, session 1834: the Stop check refused the first showing of case 595, whose ratification fence stood outside the quoted section, with "case 595: its ratification differ from the answer of case-guppi"; the showing again with the fence inside the blockquote passed
+- 20:29:58 lesson[error][lesson-case-showing-ratification-fence-outside-the-blockquote]{tags:session,workflow} trigger: the first showing of case 595 put the ledger lines in a fence under "> **ratification:**" but outside the blockquote, and the Stop check of rule-case-check refused it as a ratification that differs from the answer root_cause: the main agent wrote the list showing from the words "one ratification section whose fence holds the ledger lines" without the chat form of a section, a blockquote whose fence lines are quoted too, so the check read no ledger line of the sub-cases and compared the parent's lines instead

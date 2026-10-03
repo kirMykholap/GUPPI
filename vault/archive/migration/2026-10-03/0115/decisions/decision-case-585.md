@@ -1,8 +1,9 @@
 ---
 type: decision
 case: "585"
-status: current
+status: archived
 defer: ["[[insight-spec-write-parent-body-kept-on-re-ratification]]"]
+superseded_by: ["[[decision-case-608]]", "[[decision-case-610.1]]"]
 origin: raw/2026-10-01/1725/ledger.md#case-585
 sprint: migration
 created: 2026-10-01
@@ -26,3 +27,7 @@ A Case ratified whole and then ratified again as a parent with sub-cases keeps i
 ## History
 
 - 2026-10-01 created · raw/2026-10-01/1725/ledger.md#case-585
+- 2026-10-03 superseded by decision-case-608 · [[decision-case-608]]
+- 2026-10-03 superseded by decision-case-610.1 · [[decision-case-610.1]]
+- 2026-10-03 archived · superseded
+- 2026-10-03 archived · cleanup

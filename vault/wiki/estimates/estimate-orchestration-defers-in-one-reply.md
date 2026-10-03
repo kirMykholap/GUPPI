@@ -3,8 +3,8 @@ type: estimate
 kind: QA
 status: pending
 target: "[[rule-orchestration]]"
-purpose: A defer the person asks for is shown and written in the same reply, with no round of ratification
-method: "by hand, the first defer the person asks for after the render that leaves no line under ## Cases of frontier.md open"
+purpose: A decision the person asks to put off in Plan Mode, from a source other than the sprint or the backlog, is shown as a short-form Case and written in the same reply, with no round of ratification
+method: by hand, the first decision the person asks to put off after the render, its line of frontier.md closed [-] … · defer case N, in a reply that leaves no line under the Cases heading of frontier.md open; a sprint item put off or a backlog item kept is not this reading
 checked: 2026-10-01
 origin: raw/2026-09-24/1916/ledger.md#case-405
 sprint: migration
@@ -15,7 +15,7 @@ tags: [session, workflow, ledger]
 ## Criterion
 
 When:
-The person asks in the chat to defer an item in Plan Mode, with `vault/wiki/orchestration.md` rendered from `rule-orchestration`.
+In Plan Mode, the person asks in the chat to put off a decision: an item of `raw/<date>/<hi HHMM>/frontier.md` whose source is neither the sprint nor the backlog, with `vault/wiki/orchestration.md` rendered from `rule-orchestration`.
 
 Then:
 In the same reply the agent shows the Case in the short form — `context`, `problem` and a fence tagged `then` with one `defer` item per target, no other section — and carries its `LEDGER` block, one `defer` line per target, with no tool call after it.
@@ -27,6 +27,7 @@ In the same reply the agent shows the Case in the short form — `context`, `pro
 **＋** A wording the person corrects is a new short Case with `{supersedes:case N}` on its line, shown the same way.
 **－** No text follows the question, or the Frontier when no question stands.
 **－** Retro writes no short defer: what it would put off is a line of `## For the next session` of `raw/<date>/<hi HHMM>/handoff.md`.
+**－** An item of the sprint put off, its line of `raw/<date>/<hi HHMM>/frontier.md` closed `[-] … · sprint · defer`, and an item of the backlog left as it stands, closed `[-] … · backlog · kept`, are not this moment: they take no short Case and no ledger line, and a reply that closes only such lines is the moment of `estimate-orchestration-shows-the-frontier-after-a-closed-line`.
 
 ## Result
 
@@ -47,3 +48,4 @@ In the same reply the agent shows the Case in the short form — `context`, `pro
 - 2026-10-01 status: pending → passed · raw/2026-10-01/1237/ledger.md#L31
 - 2026-10-02 renamed from `estimate-case-protocol-defers-in-one-reply` · [[decision-case-595.10]]
 - 2026-10-02 updated: moved to rule-orchestration; the Criterion replaced whole - the short form as orchestration.md sets it (case 595.10) · [[decision-case-595.10]]
+- 2026-10-03 updated: the Criterion replaced whole — the trigger is a decision put off, not an item of the sprint or the backlog; their closers are not this moment (case 609) · [[decision-case-609]]

@@ -5,7 +5,7 @@ status: failed
 target: "[[rule-orchestration]]"
 purpose: A Case is built by case-guppi and shown by the main agent unchanged
 method: by hand, the Cases of a session at its close, their context against the Agent calls and their showings against the SendUserFile calls of the transcript, and each request for a plain explanation against the Skill and SendMessage calls
-checked: 2026-10-02
+checked: 2026-10-03
 origin: raw/2026-09-24/1303/ledger.md#case-391.2
 sprint: migration
 created: 2026-09-24
@@ -32,7 +32,7 @@ The main agent dispatches `case-guppi` with the Case id, the Frontier item and i
 
 ## Result
 
-2026-10-02, the close of session 2049, by hand: each Case dispatched with its id, item, source and the person's words after the plan file stood; every answer to a round sent to the same case-guppi by SendMessage, verbatim; six rounds shown translated, each Context paragraph in place and the own text after one rule; every showing by SendUserFile with display render, a Russian heading, one list from the Estimates and the ratification lines as the answers held them; ratified Cases changed only through their case-guppi; ask-guppi once at /pre-spec; but the showing of the round on Case 599 opened its question with a title line without the colon after the bold title, as the answer held it, against the line of .claude/skills/grill-me/SKILL.md the Criterion sets
+2026-10-03, session 0115, by hand at its close against the transcript: each Case dispatched with its id, item, source and the person's words after the plan file stood; every answer to a round sent to the same case-guppi by SendMessage verbatim; the request for a plain explanation answered by the skill wait-what with no SendMessage; rounds shown translated with the Context paragraph in place, the round refused after /pre-spec shown again with nothing before it; every showing by SendUserFile with display render, a Russian heading, the ledger lines as the answers held them and the own text after one rule; ratified Cases changed only through their case-guppi; items with no decision closed with no dispatch; ask-guppi once at /pre-spec; but the showing of Case 610 in the batch after /pre-spec put a sentence of its own between the heading of the top-level Case and its list, against the heading and under it one list the Criterion sets
 
 ## History
 
@@ -57,3 +57,4 @@ The main agent dispatches `case-guppi` with the Case id, the Frontier item and i
 - 2026-10-02 renamed from `estimate-case-protocol-shows-the-built-case` · [[decision-case-595.11]]
 - 2026-10-02 updated: moved to rule-orchestration; the Criterion replaced whole - the showing as orchestration.md sets it (case 595.11) · [[decision-case-595.11]]
 - 2026-10-02 status: pending → failed · raw/2026-10-02/2049/ledger.md#L30
+- 2026-10-03 status: failed → failed · raw/2026-10-03/0115/ledger.md#L18

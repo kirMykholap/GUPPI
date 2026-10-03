@@ -92,7 +92,7 @@ update:
 ```
 
 ```tasks
-- [ ] update `estimate-case-check-sends-back-a-faulty-case`
+- [x] update `estimate-case-check-sends-back-a-faulty-case`
 - [x] `guppi/casecheck.py`: the Fact test of `is_round` becomes a predicate of its own, unchanged in what it answers: a text with no Case heading in which a line that opens with `**Fact:**` stands before any line that opens with `❓`, the indent set aside. `is_round` and `answer_of` both use it. `answer_of` walks back from the newest output and returns the first one that holds a Case heading, that `is_round` finds a round, or that the predicate finds a Fact answer, else `last_assistant_message`. `subagent` checks, stores and writes nothing for an answer with no Case. The module docstring on the answer says so, and its sentence that an answer with no Case heading, where no earlier output holds one either, is not checked becomes: an answer that is a round or a Fact answer is not checked or stored as a Case, and an earlier Case is not read again.
 - [x] `tests/test_casecheck.py`, each test named `subagent`: a Case followed by a round in form whose titles its `recommend` lacks exits 0 and leaves the stored entry, its time and the case file unchanged; a Case followed by a Fact answer does the same; the existing tests of a Case by hand-back followed by a summary text still pass.
 - [x] `uv run pytest tests/test_casecheck.py -k subagent`
@@ -134,7 +134,7 @@ update:
 ```
 
 ```tasks
-- [ ] update `estimate-case-check-sends-back-a-faulty-round`
+- [x] update `estimate-case-check-sends-back-a-faulty-round`
 - [x] `guppi/casecheck.py`: the docstring paragraph on the form of a round says that a round gets no check of a Case, and its exit 2 carries the findings of its form alone, in place of the sentence that the findings join those of the check of a Case in one exit 2.
 - [x] `tests/test_casecheck.py`: a Case followed by a round out of form exits 2 with the findings of the form alone, none naming the earlier Case; the test is named `round_form`.
 - [x] `uv run pytest tests/test_casecheck.py -k round_form`
@@ -221,7 +221,7 @@ update:
 ```
 
 ```tasks
-- [ ] update `estimate-orchestration-defers-in-one-reply`
+- [x] update `estimate-orchestration-defers-in-one-reply`
 - [ ] read `estimate-orchestration-defers-in-one-reply`
 ```
 
@@ -342,11 +342,11 @@ update:
 ```
 
 ```tasks
-- [ ] create `estimate-case-check-sends-back-a-ratified-case-in-another-shape`
-- [ ] update `rule-case-protocol`
-- [ ] `uv run guppi render`: `vault/wiki/case-schema.md`
-- [ ] update `rule-spec-write`
-- [ ] update `insight-spec-write-parent-body-kept-on-re-ratification`
+- [x] create `estimate-case-check-sends-back-a-ratified-case-in-another-shape`
+- [x] update `rule-case-protocol`
+- [x] `uv run guppi render`: `vault/wiki/case-schema.md`
+- [x] update `rule-spec-write`
+- [x] update `insight-spec-write-parent-body-kept-on-re-ratification`
 - [x] `guppi/casecheck.py`: one function gives the new number, one above the highest top-level number among the decision lines of the ledger and the keys of the store, a key joined with an agent id read by its number. A second function takes the Cases of an answer, the decision lines of the session's ledger and the store. For a top-level Case N of the answer it returns a finding for each number of the family of N that has a decision line other than `defer` and no section in the answer, and for each such number that has a sub-case in the answer. The finding carries the new number, and the marks for N and for each such number. `subagent` passes the store to `check_answer`, and `check_answer` adds the findings to Case N. The module docstring says so.
 - [x] `tests/test_casecheck.py`, each test named `shape`: a Case ratified whole that comes back with sub-cases is sent back with the new number and the marks; a Case ratified with sub-cases that comes back whole is sent back with a mark for its parent too; a whole answer without a ratified sub-case is sent back; a sub-case answered alone, a Case built again in the same shape, and a Case with only `defer` lines exit 0.
 - [x] `uv run pytest tests/test_casecheck.py -k shape`
@@ -391,7 +391,7 @@ create:
 ```
 
 ```tasks
-- [ ] create `estimate-case-check-sends-back-a-case-number-held-by-another-agent`
+- [x] create `estimate-case-check-sends-back-a-case-number-held-by-another-agent`
 - [x] `guppi/casecheck.py`: `subagent` stores `agent_id` in each entry. Before it stores, it compares the `agent_id` of the entry under the top-level number of each Case of the answer, and of its sub-cases, with the payload's. On another id it adds the finding with the new number from the function of 610.1 and stores the Cases of the answer under their number joined with the `agent_id`, with the loop guard read from that entry. An entry with no `agent_id` is not compared. The module docstring says so.
 - [x] `tests/test_casecheck.py`, each test named `clash`: an answer under a number that the store holds from another agent exits 2 with the new number and leaves the other entry as it was; the answer stands under its key apart; the same answer again exits 0; an entry with no agent id and an answer of the same agent give no finding; `ratified.find_showing` and the case file still read the entry under the number alone.
 - [x] `uv run pytest tests/test_casecheck.py -k clash`

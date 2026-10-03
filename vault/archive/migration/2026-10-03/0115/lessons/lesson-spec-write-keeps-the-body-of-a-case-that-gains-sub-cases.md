@@ -2,7 +2,7 @@
 type: lesson
 kind: error
 root_cause: the Spec hook of rule-spec-write writes a re-ratified Case by its sub-case headings and does not remove the body the parent held when it stood alone, so a Case that gains sub-cases on re-ratification signs its content twice and must be built again under a new id that supersedes it
-status: clustered
+status: archived
 insight: "[[insight-spec-write-parent-body-kept-on-re-ratification]]"
 origin: raw/2026-10-01/1441/ledger.md#L32
 sprint: migration
@@ -22,3 +22,5 @@ the Spec hook of rule-spec-write writes a re-ratified Case by its sub-case headi
 
 - 2026-10-01 created · raw/2026-10-01/1441/ledger.md#L32
 - 2026-10-01 updated: clustered under insight-spec-write-parent-body-kept-on-re-ratification (synthesis) · raw/2026-10-01/1441/ledger.md#L32
+- 2026-10-03 archived · insight actioned
+- 2026-10-03 archived · cleanup

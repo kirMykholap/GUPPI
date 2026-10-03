@@ -1,8 +1,9 @@
 ---
 type: decision
 case: "475"
-status: current
+status: archived
 defer: ["[[rule-spec-write]]"]
+superseded_by: ["[[decision-case-608]]", "[[decision-case-610.1]]"]
 origin: raw/2026-09-28/0000/ledger.md#case-475
 sprint: migration
 created: 2026-09-28
@@ -26,3 +27,7 @@ The Spec hook, writing a Case built again as a parent with sub-cases, drops the 
 ## History
 
 - 2026-09-28 created · raw/2026-09-28/0000/ledger.md#case-475
+- 2026-10-03 superseded by decision-case-608 · [[decision-case-608]]
+- 2026-10-03 superseded by decision-case-610.1 · [[decision-case-610.1]]
+- 2026-10-03 archived · superseded
+- 2026-10-03 archived · cleanup

@@ -6,7 +6,7 @@ status: draft
 enforcement: hook
 implementation_ref: [guppi/casecheck.py, tests/test_casecheck.py, .claude/settings.json]
 parent: "[[rule-plan-mode]]"
-estimates: ["[[estimate-case-check-sends-back-a-faulty-case]]", "[[estimate-case-check-shows-only-the-checked-case]]", "[[estimate-case-check-requires-a-backlog-item-decided-on-its-page]]", "[[estimate-case-check-notes-a-criterion-line-not-carried]]", "[[estimate-case-check-notes-a-then-line-shared-by-siblings]]", "[[estimate-case-check-refuses-a-letter-outside-the-script]]", "[[estimate-case-check-requires-each-question-of-the-rounds]]", "[[estimate-case-check-refuses-a-problem-in-a-sub-case]]", "[[estimate-case-check-exits-2-on-an-error]]", "[[estimate-case-check-refuses-text-before-a-round]]", "[[estimate-case-check-sends-back-a-faulty-round]]"]
+estimates: ["[[estimate-case-check-sends-back-a-faulty-case]]", "[[estimate-case-check-shows-only-the-checked-case]]", "[[estimate-case-check-requires-a-backlog-item-decided-on-its-page]]", "[[estimate-case-check-notes-a-criterion-line-not-carried]]", "[[estimate-case-check-notes-a-then-line-shared-by-siblings]]", "[[estimate-case-check-refuses-a-letter-outside-the-script]]", "[[estimate-case-check-requires-each-question-of-the-rounds]]", "[[estimate-case-check-refuses-a-problem-in-a-sub-case]]", "[[estimate-case-check-exits-2-on-an-error]]", "[[estimate-case-check-refuses-text-before-a-round]]", "[[estimate-case-check-sends-back-a-faulty-round]]", "[[estimate-case-check-sends-back-a-ratified-case-in-another-shape]]", "[[estimate-case-check-sends-back-a-case-number-held-by-another-agent]]"]
 origin: raw/2026-09-25/1228/ledger.md#case-419.3
 sprint: migration
 created: 2026-09-25
@@ -52,3 +52,5 @@ Prevents a Case from being shown to the person in a form the checks of pre-spec 
 - 2026-10-02 updated: How it works removed by hand, a one-off, its facts in the docstring of guppi/casecheck.py; the language finding on an answer accepts a Latin letter in a code span (case 589.2) · [[decision-case-589.2]]
 - 2026-10-03 updated: the SubagentStop check sends back a round of case-guppi with a question out of the grill-me form, once per text; one test of a round serves every check of a round (case 601.1) · [[decision-case-601.1]]
 - 2026-10-03 estimate estimate-case-check-sends-back-a-faulty-round added · [[decision-case-601.1]]
+- 2026-10-03 estimate estimate-case-check-sends-back-a-ratified-case-in-another-shape added · [[decision-case-610.1]]
+- 2026-10-03 estimate estimate-case-check-sends-back-a-case-number-held-by-another-agent added · [[decision-case-610.2]]

@@ -245,7 +245,7 @@ update:
 - [x] `guppi/casecheck.py`: the docstring paragraph on how a round opens says that a round is known by `is_round`, the one test of a round, not by a `QUESTION_LINE` match.
 - [x] `tests/test_casecheck.py`: a round whose only question lacks the colon after its title is a round to the `Stop` run, and a reply that shows it after a text of the main agent's own is refused; the test is named `round`.
 - [x] `uv run pytest tests/test_casecheck.py -k round`
-- [ ] read `estimate-case-check-refuses-text-before-a-round`
+- [x] read `estimate-case-check-refuses-text-before-a-round`
 ```
 
 ### Case 601.5 — Only a round in form gives the titles that recommend must hold
@@ -422,7 +422,7 @@ update:
 - [x] `guppi/onward.py`: the replies whose decision lines count are every `assistant` record of `transcript_records` of `guppi/ledger.py`, each at its `moment`, not the records of `stretch`. `spent` and `told` are unchanged. The module docstring and the docstrings of the changed functions say so, with case 604.
 - [x] `tests/test_onward.py`: a Case whose ratifying reply stands before the person's last message in the transcript, its file written before that reply and after its line in `ledger.md`, is not out and the hook exits 2. The existing tests of the stretch replies stay green.
 - [x] `uv run pytest tests/test_onward.py tests/test_ledger.py`
-- [ ] read `estimate-prespec-onward-reads-the-decisions-of-the-session`
+- [x] read `estimate-prespec-onward-reads-the-decisions-of-the-session`
 ```
 
 ## Case 605 — The Insight on the chat form of a Case takes the colon lesson and is closed by the check of the form of a round
@@ -592,7 +592,7 @@ update:
 - [x] update `rule-case-protocol`
 - [x] update `estimate-case-protocol-case-form`
 - [x] `uv run guppi render`: `vault/wiki/case-schema.md`
-- [ ] read `estimate-case-protocol-case-form` — by hand, the Cases of a later session at its close
+- [x] read `estimate-case-protocol-case-form` — by hand, the Cases of a later session at its close
 ```
 
 ### Case 606.2 — The box of Case 591.11 is ticked once

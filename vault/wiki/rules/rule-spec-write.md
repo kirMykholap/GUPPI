@@ -7,7 +7,6 @@ enforcement: hook
 implementation_ref: [guppi/ratified.py, tests/test_ratified.py, .claude/settings.json]
 parent: "[[rule-plan-mode]]"
 estimates: ["[[estimate-spec-write-copies-the-ratified-case]]", "[[estimate-spec-write-checks-the-written-case]]", "[[estimate-spec-write-writes-a-defer]]", "[[estimate-spec-write-reaches-the-approved-spec]]", "[[estimate-spec-write-removes-a-superseded-case]]", "[[estimate-spec-write-exits-2-on-an-error]]"]
-deferred_by: ["[[decision-case-475]]"]
 origin: raw/2026-09-23/1859/ledger.md#case-387.2
 sprint: migration
 created: 2026-09-23
@@ -59,3 +58,5 @@ Prevents a ratified Case from entering the Spec in other words than the answer o
 - 2026-09-30 updated: the Spec holds recommend (case 544.5) · [[decision-case-544.5]]
 - 2026-09-30 updated: the Stop hook exits 2 on its own error after the payload is read, and 0 on an error while it reads the payload (case 554) · [[decision-case-554]]
 - 2026-09-30 estimate estimate-spec-write-exits-2-on-an-error added · [[decision-case-554]]
+- 2026-10-03 defer by decision-case-475 superseded · [[decision-case-608]]
+- 2026-10-03 updated: the put-off change to drop the parent's old body on re-ratification is not taken: a Case ratified in the session that is built again in another shape takes a new number that supersedes it, and the check of rule-case-check sends back one that keeps its number (case 610.1) · [[decision-case-610.1]]

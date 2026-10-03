@@ -5917,3 +5917,53 @@ instruction. The global feed; a page's own `## History` is the per-page view.
 - 2026-10-03 decisions/decision-case-603.1 archived · cleanup
 - 2026-10-03 decisions/decision-case-603.2 archived · cleanup
 - 2026-10-03 decisions/decision-case-603 archived · cleanup
+- 2026-10-03 decisions/decision-case-607 created · raw/2026-10-03/0115/ledger.md#case-607 · generate
+- 2026-10-03 decisions/decision-case-607.1 created · raw/2026-10-03/0115/ledger.md#case-607.1 · generate
+- 2026-10-03 estimates/estimate-case-check-sends-back-a-faulty-case updated: the Criterion replaced whole — the answer is the newest output that is a Case, a round or a Fact answer; a round or a Fact answer gets no check of a Case, and an earlier Case is not checked, stored or written again (case 607.1) · [[decision-case-607.1]] · generate
+- 2026-10-03 decisions/decision-case-607.2 created · raw/2026-10-03/0115/ledger.md#case-607.2 · generate
+- 2026-10-03 estimates/estimate-case-check-sends-back-a-faulty-round updated: the Criterion replaced whole — a round is known by is_round as the code holds it, and gets no check of a Case in the same run, so its exit 2 carries the findings of its form alone (case 607.2) · [[decision-case-607.2]] · generate
+- 2026-10-03 decisions/decision-case-608 created · raw/2026-10-03/0115/ledger.md#case-608 · generate
+- 2026-10-03 decisions/decision-case-475 superseded by decision-case-608 · [[decision-case-608]] · generate
+- 2026-10-03 rules/rule-spec-write defer by decision-case-475 superseded · [[decision-case-608]] · generate
+- 2026-10-03 decisions/decision-case-585 superseded by decision-case-608 · [[decision-case-608]] · generate
+- 2026-10-03 insights/insight-spec-write-parent-body-kept-on-re-ratification defer by decision-case-585 superseded · [[decision-case-608]] · generate
+- 2026-10-03 estimates/estimate-skill-grill-me-asks-in-rounds status: failed → passed · raw/2026-10-03/0115/ledger.md#L7 · generate
+- 2026-10-03 decisions/decision-case-609 created · raw/2026-10-03/0115/ledger.md#case-609 · generate
+- 2026-10-03 estimates/estimate-orchestration-defers-in-one-reply updated: the Criterion replaced whole — the trigger is a decision put off, not an item of the sprint or the backlog; their closers are not this moment (case 609) · [[decision-case-609]] · generate
+- 2026-10-03 lessons/lesson-orchestration-own-text-before-a-prespec-round created · raw/2026-10-03/0115/ledger.md#L9 · generate
+- 2026-10-03 decisions/decision-case-610 created · raw/2026-10-03/0115/ledger.md#case-610 · generate
+- 2026-10-03 decisions/decision-case-610.1 created · raw/2026-10-03/0115/ledger.md#case-610.1 · generate
+- 2026-10-03 decisions/decision-case-608 superseded by decision-case-610.1 · [[decision-case-610.1]] · generate
+- 2026-10-03 decisions/decision-case-475 superseded by decision-case-610.1 · [[decision-case-610.1]] · generate
+- 2026-10-03 decisions/decision-case-585 superseded by decision-case-610.1 · [[decision-case-610.1]] · generate
+- 2026-10-03 estimates/estimate-case-check-sends-back-a-ratified-case-in-another-shape created · [[decision-case-610.1]] · generate
+- 2026-10-03 rules/rule-case-check estimate estimate-case-check-sends-back-a-ratified-case-in-another-shape added · [[decision-case-610.1]] · generate
+- 2026-10-03 rules/rule-case-protocol updated: Splitting: a Case ratified in the session that is built again in another shape takes a new number, its decision lines superseding its old top-level number and each old number with a line (case 610.1) · [[decision-case-610.1]] · generate
+- 2026-10-03 rules/rule-spec-write updated: the put-off change to drop the parent's old body on re-ratification is not taken: a Case ratified in the session that is built again in another shape takes a new number that supersedes it, and the check of rule-case-check sends back one that keeps its number (case 610.1) · [[decision-case-610.1]] · generate
+- 2026-10-03 insights/insight-spec-write-parent-body-kept-on-re-ratification updated: actioned: a Case ratified in the session that is built again in another shape takes a new number that supersedes it, written in the splitting part of case-schema.md and guarded by the SubagentStop check of rule-case-check; the Spec hook is not changed (case 610.1) · [[decision-case-610.1]] · generate
+- 2026-10-03 decisions/decision-case-610.2 created · raw/2026-10-03/0115/ledger.md#case-610.2 · generate
+- 2026-10-03 estimates/estimate-case-check-sends-back-a-case-number-held-by-another-agent created · [[decision-case-610.2]] · generate
+- 2026-10-03 rules/rule-case-check estimate estimate-case-check-sends-back-a-case-number-held-by-another-agent added · [[decision-case-610.2]] · generate
+- 2026-10-03 estimates/estimate-case-check-refuses-text-before-a-round status: pending → passed · raw/2026-10-03/0115/ledger.md#L15 · generate
+- 2026-10-03 estimates/estimate-prespec-onward-reads-the-decisions-of-the-session status: pending → passed · raw/2026-10-03/0115/ledger.md#L16 · generate
+- 2026-10-03 estimates/estimate-case-protocol-case-form status: pending → passed · raw/2026-10-03/0115/ledger.md#L17 · generate
+- 2026-10-03 estimates/estimate-orchestration-shows-the-built-case status: failed → failed · raw/2026-10-03/0115/ledger.md#L18 · generate
+- 2026-10-03 lessons/lesson-session-frontier-rewritten-through-powershell created · raw/2026-10-03/0115/ledger.md#L19 · generate
+- 2026-10-03 lessons/lesson-orchestration-own-sentence-between-heading-and-list created · raw/2026-10-03/0115/ledger.md#L20 · generate
+- 2026-10-03 insights/insight-case-form-chat-form-read-by-no-script updated: children lesson-orchestration-own-text-before-a-prespec-round and lesson-orchestration-own-sentence-between-heading-and-list added, reopened from actioned (synthesis) · raw/2026-10-03/0115/ledger.md#L9 · generate
+- 2026-10-03 lessons/lesson-orchestration-own-text-before-a-prespec-round updated: clustered under insight-case-form-chat-form-read-by-no-script (synthesis) · raw/2026-10-03/0115/ledger.md#L9 · generate
+- 2026-10-03 lessons/lesson-orchestration-own-sentence-between-heading-and-list updated: clustered under insight-case-form-chat-form-read-by-no-script (synthesis) · raw/2026-10-03/0115/ledger.md#L20 · generate
+- 2026-10-03 rules/rule-case-protocol status: draft → built · cascade · generate
+- 2026-10-03 rules/rule-skill-grill-me status: draft → built · cascade · generate
+- 2026-10-03 decisions/decision-case-475 archived · superseded · generate
+- 2026-10-03 decisions/decision-case-585 archived · superseded · generate
+- 2026-10-03 decisions/decision-case-608 archived · superseded · generate
+- 2026-10-03 lessons/lesson-spec-write-keeps-the-body-of-a-case-rebuilt-as-a-parent archived · insight actioned · generate
+- 2026-10-03 lessons/lesson-spec-write-keeps-the-body-of-a-case-that-gains-sub-cases archived · insight actioned · generate
+- 2026-10-03 lessons/lesson-spec-write-keeps-the-body-of-case-603-split-at-prespec archived · insight actioned · generate
+- 2026-10-03 lessons/lesson-spec-write-keeps-the-body-of-a-case-rebuilt-as-a-parent archived · cleanup
+- 2026-10-03 lessons/lesson-spec-write-keeps-the-body-of-a-case-that-gains-sub-cases archived · cleanup
+- 2026-10-03 lessons/lesson-spec-write-keeps-the-body-of-case-603-split-at-prespec archived · cleanup
+- 2026-10-03 decisions/decision-case-475 archived · cleanup
+- 2026-10-03 decisions/decision-case-585 archived · cleanup
+- 2026-10-03 decisions/decision-case-608 archived · cleanup

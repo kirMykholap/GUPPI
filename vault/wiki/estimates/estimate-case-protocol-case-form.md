@@ -1,11 +1,11 @@
 ---
 type: estimate
 kind: QA
-status: pending
+status: passed
 target: "[[rule-case-protocol]]"
 purpose: A built Case carries the whole contract in given, when and then, in the file the person is sent
 method: one reading by hand of the Cases of a session, at its close
-checked: 2026-09-30
+checked: 2026-10-03
 origin: raw/2026-09-16/1034/ledger.md#case-188
 sprint: migration
 created: 2026-09-16
@@ -31,7 +31,7 @@ The file opens with the heading `## Case N — name`, a sub-case with `### Case 
 
 ## Result
 
-2026-09-30, by hand, the Case files cases/case-547.md to case-552.md of session 1736 at their last showing: each opens with its heading, sub-cases under their parent in one file, the sections in the order of the table as blockquotes with their bold name; context and problem plain prose with the mechanism first, recommend one item per question with Recommended and Answer lines and Change items with Asked and Taken; given one thing per line with its role; given, when and then with operands after the first line, no count of items; tasks name each Estimate created or replaced by slug with the content as sub-points; ratification the preview in an untagged fence; the person raised no complaint of length or clarity
+2026-10-03, session 0115, by hand at its close, cases/case-607.md, case-609.md and case-610.md: each opens with `## Case N — name`, sub-cases with `### Case N.M — name` under the parent in one file, the sections in the order of the table each one blockquote opened by `**name:**`; given one thing per line, given, when and then lines after the first opened with ＋ or －, then behaviour only with no count of items; tasks name each Estimate by slug with its content as sub-points and hold no by hand box; ratification one untagged fence of ledger lines; the person raised no complaint on the length or clarity of a context or problem (the one request for a plainer text was on a round of Case 608)
 
 ## History
 
@@ -63,3 +63,4 @@ The file opens with the heading `## Case N — name`, a sub-case with `### Case 
 - 2026-09-30 status: pending → passed · raw/2026-09-30/1736/ledger.md#L39
 - 2026-10-02 ref `estimate-case-protocol-shows-the-built-case` → `estimate-orchestration-shows-the-built-case` · [[decision-case-595.11]]
 - 2026-10-03 updated: the Criterion replaced whole — tasks hold no by hand box whose moment comes after Work Mode of the Case's session; the other lines as case 544.11 left them (case 606.1) · [[decision-case-606.1]]
+- 2026-10-03 status: pending → passed · raw/2026-10-03/0115/ledger.md#L17

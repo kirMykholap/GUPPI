@@ -1,10 +1,11 @@
 ---
 type: estimate
 kind: QA
-status: pending
+status: passed
 target: "[[rule-prespec-onward]]"
 purpose: Whether guppi onward --plan judges a Case out by the decision lines of ledger.md and of every reply of the main agent in the transcript, each at the time of its record, so that a re-ratification with lines the ledger already held counts at every later reply of the session
 method: "uv run pytest tests/test_onward.py; by hand at the first Case ratified again with unchanged decision lines in Plan Mode after the change, at the reply that closes the last line under Cases after a later message of the person: the transcript, ledger.md and the times of the files under cases/, recorded in the estimate line"
+checked: 2026-10-03
 origin: raw/2026-10-02/2049/ledger.md#case-597.2
 sprint: migration
 created: 2026-10-02
@@ -27,8 +28,13 @@ A Case N is still out when a file `case-<N>.md` under `raw/<date>/<hi HHMM>/case
 **－** A record whose time cannot be read counts none of its lines. A transcript that cannot be read leaves `ledger.md` and the reply that ended as the only sources.
 **－** Its own refusals and those of the ledger hook are still judged in the stretch, by `refusals` of `guppi/ledger.py`.
 
+## Result
+
+2026-10-03, session 0115, `uv run pytest tests/test_onward.py` 45 passed; by hand: ledger.md holds the lines of 607.1 and 607.2 at 01:27:40 and of 609 at 02:30:30, cases/case-607.md was written at 02:39:07 and case-609.md at 02:38:01 when the Cases were built again at /pre-spec, the reply that ratified them again at about 02:59 carried their unchanged lines in its LEDGER block and the ledger hook appended none of them again, and the hook of onward --plan after that reply reported no Case out and sent the agent to `guppi prespec --check`; a later message of the person in Plan Mode after that reply did not occur
+
 ## History
 
 - 2026-10-02 created · [[decision-case-597.2]]
 - 2026-10-03 renamed from `estimate-prespec-onward-reads-the-decisions-of-the-stretch` · [[decision-case-604]]
 - 2026-10-03 updated: renamed; the Criterion, purpose and method replaced — the decision lines of every reply of the transcript count, not only those of the stretch (case 604) · [[decision-case-604]]
+- 2026-10-03 status: pending → passed · raw/2026-10-03/0115/ledger.md#L16

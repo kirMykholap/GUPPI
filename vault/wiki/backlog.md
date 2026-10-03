@@ -1,6 +1,6 @@
 # Backlog
 
-20 items
+19 items
 
 ## Conserved Specs
 
@@ -13,11 +13,10 @@
 - `rule-ledger-write` — Prevents a ratified line from existing only in a chat reply, or landing in a session no /hi opened · put off in 2 sessions
 - `rule-morph` — The initiation at install: the person sets the category set of the project — the development set entity, rule, estimate by default — and the harness holds it as data, so a changed set rewrites no rule; the categories discussion of session 1119, raw/2026-09-17/1119/categories-discussion.md; Slice 5 · put off in 3 sessions
 - `rule-page-generation` — Prevents a ratified decision from ending the session without a page, or a page from carrying a field nobody ratified · put off in 0 sessions
-- `rule-spec-write` — Prevents a ratified Case from entering the Spec in other words than the answer of case-guppi whose given, when, then, tasks and ratification the person signed · put off in 1 session
 - `rule-subagent-guppi` — Prevents implementation drifting from the ratified plan while it is being executed · put off in 29 sessions
+- `insight-case-form-chat-form-read-by-no-script` — A rule of the form of a Case as shown in the chat — the order of its sections, what `ratification` holds, a count in a story section — is read by no script, so it holds only as far as the agent's own reading at the showing, and the fault is found later, by the person or by ask-guppi at pre-spec. · severity 2 · put off in 0 sessions
 - `insight-hi-skill-substitution-checked-by-a-model-call` — A `!` command of a skill is checked by a model call before it runs; when that call fails — a lapsed login, reported as the model unavailable — the substitution is refused and the Render: line comes back empty, while the SessionStart hook is not affected. · severity 1 · put off in 3 sessions
 - `insight-session-vault-knowledge-not-loaded` — A fact the vault holds does not reach the session that needs it; only brief.md, CLAUDE.md, the skills and the agent frames are loaded, and everything else waits for a read the agent must first think to make. · severity 1 · put off in 0 sessions
-- `insight-spec-write-parent-body-kept-on-re-ratification` — A Case ratified whole and then ratified again as a parent with sub-cases keeps its old body in the Spec, since the Spec hook of rule-spec-write writes the new answer by its sub-case headings and does not remove the given, when, then, then block and tasks the parent held when it stood alone; the content is signed twice and the pairs of the old body consume the anchors of the sub-cases. · severity 3 · put off in 1 session
 - `insight-workflow-case-schema-silent-on-what-the-scripts-accept` — The Case schema does not say how the scripts read the text a Case writes — which forms they resolve, how far an edit pair reaches — so the agent writes a form the scripts do not handle, and only the pre-spec check finds it. · severity 3 · put off in 0 sessions
 - the product model: `kind: test | measurement | reading`, `ask-guppi` through Entities, the vault-query questions before a product's records (session 1119); `applies_to` and `rules` taken into Slice 3f (case 301) · put off in 0 sessions
 - reuse, the edge: `uses` / `used_by` between Entities — `uses` written in the Case on the side that uses, `used_by` computed by the cascade of `generate`, the pair checked by lint, the pattern of `applies_to` / `rules`; no edge Rule → Rule (cases 305, 319) · put off in 0 sessions

@@ -1,11 +1,11 @@
 ---
 type: estimate
 kind: QA
-status: pending
+status: passed
 target: "[[rule-case-check]]"
 purpose: Whether the Stop run of the Case check refuses a reply that shows a round of case-guppi after a text of the main agent's own, judges only the first line of the reply after pre-spec, and leaves a turn with no round alone
 method: uv run pytest tests/test_casecheck.py -k round; by hand in a later session, the first rounds of case-guppi shown before and after pre-spec, the replies and the hook's refusals read in the transcript
-checked: 2026-10-01
+checked: 2026-10-03
 origin: raw/2026-09-30/2356/ledger.md#case-562
 sprint: migration
 created: 2026-09-30
@@ -31,7 +31,7 @@ When the turn of the reply, the records after the last `user` record that the fu
 
 ## Result
 
-2026-10-01, uv run pytest tests/test_casecheck.py -k round: 14 passed; by hand, session 1237: every round of case-guppi (567 twice, 568 twice, 569 once) came before /pre-spec, each reply showing one opened with the translated Context label or with its first question line, and no text of the main agent stood before the last tool call of those turns; no Stop refusal of guppi casecheck stands in the transcript; not exercised: a refusal, and a round after /pre-spec, since every case-guppi answered the findings with its Case
+2026-10-03, session 0115, `uv run pytest tests/test_casecheck.py -k round` 31 passed; by hand in the transcript: the rounds of case-guppi shown before /pre-spec (Cases 607, 608 twice, 609) opened with the Context label or the first question and were not refused; after /pre-spec the reply that showed round 608.Q1 under a sentence of its own was refused with the reason quoting that sentence and telling the agent to show the round again with nothing before it, the round shown again passed on the re-fire, and the second round 608.Q1 opened with its question and passed; a turn with no round (the answer to the person's question with the Waiting line) was not judged; a reply refused by both checks did not occur
 
 ## History
 
@@ -40,3 +40,4 @@ When the turn of the reply, the records after the last `user` record that the fu
 - 2026-10-01 updated: the Criterion replaced whole — the same behaviour, with the true reason for the exemption after /pre-spec (case 581.2) · [[decision-case-581.2]]
 - 2026-10-02 updated: the Criterion replaced whole — the turn of the reply starts at the person's message or a returned answer, by the function of guppi/ledger.py (case 590.3) · [[decision-case-590.3]]
 - 2026-10-03 updated: the Criterion replaced whole — a round is known by is_round, the one test of a round (case 601.4) · [[decision-case-601.4]]
+- 2026-10-03 status: pending → passed · raw/2026-10-03/0115/ledger.md#L15

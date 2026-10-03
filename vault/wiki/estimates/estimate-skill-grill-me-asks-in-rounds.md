@@ -1,11 +1,11 @@
 ---
 type: estimate
 kind: QA
-status: failed
+status: passed
 target: "[[rule-skill-grill-me]]"
 purpose: grill-me asks in rounds, finds facts itself and acts only after the shared understanding is confirmed, as the one text its rule page renders
 method: uv run guppi render --check; by hand, one round read in the chat in a session after the render, of the person's /grill-me or of case-guppi
-checked: 2026-10-02
+checked: 2026-10-03
 origin: raw/2026-09-26/2300/ledger.md#case-443.1
 sprint: migration
 created: 2026-09-26
@@ -35,7 +35,7 @@ Then:
 
 ## Result
 
-2026-10-02, session 2049: `uv run guppi render --check` exit 0; by hand, the rounds of case-guppi on Cases 596, 597, 598, 599 and 600 read in the chat: each question has its Now line, the Options label alone, each option with one After item, quotations as blockquotes under a sentence naming their source, the recommended answer on the arrow line, the person asked only for decisions; but the round on Case 599 opened its one question with `❓ **Q1** - **Should the Insight be marked closed now, and which decision should it name as the fix?**` with no colon after the title, against the numbered title line the Criterion sets
+2026-10-03, session 0115: `uv run guppi render --check` exit 0; by hand, the rounds of case-guppi on Case 607 (Q1–Q3) and Case 608 (round 1 Q1, round 2 Q1–Q4) read in the chat: each question opens with `❓ **Qn** - **<title>**:` with the colon, one Now line, the Options label alone, each option with one After item and nothing else, the list in Case 608 round 2 Q2 one item per line under its sentence, each quotation a blockquote under a sentence naming its source, the recommended answer on the arrow line, the person asked only for decisions, each Case built only after the answers
 
 ## History
 
@@ -50,3 +50,4 @@ Then:
 - 2026-09-30 status: failed → passed · raw/2026-09-30/1736/ledger.md#L20
 - 2026-10-02 updated: the Criterion replaced whole - the main agent shows a round by rule-orchestration (case 595.19) · [[decision-case-595.19]]
 - 2026-10-02 status: pending → failed · raw/2026-10-02/2049/ledger.md#L24
+- 2026-10-03 status: failed → passed · raw/2026-10-03/0115/ledger.md#L7

@@ -1,0 +1,55 @@
+- 03:18:40 estimate[estimate-synthesis-clusters][passed] 2026-10-03, by hand at the /hi of session 0317, raw/2026-10-03/0115/materialize.yaml lines 621-662 and brief.md of the librarian run of 0115; the yaml holds three lesson entries (ledger lines 9, 19, 20); the brief names `^(root_cause|deferred_by):` over lessons/ (74 lines) and `^(pattern|deferred_by):` over insights/ (31 lines) and gives one line per lesson; `lesson-orchestration-own-text-before-a-prespec-round` and `lesson-orchestration-own-sentence-between-heading-and-list` joined the live `insight-case-form-chat-form-read-by-no-script` by one `update` of the Insight (children, status open) and one `update` per lesson (status clustered, insight set), all three `librarian: synthesis`; `lesson-session-frontier-rewritten-through-powershell` joined none with a reason, stays `new`, and its synthesis line is no flag; no lesson page read at synthesis
+- 03:31:02 decision[case 611][update][rule-case-check]{ref:rule-case-check}
+- 03:31:02 decision[case 611][create][estimate-case-check-refuses-text-outside-the-list]{ref:rule-case-check}{tags:hooks,harness,workflow}
+- 03:31:02 decision[case 611][update][insight-case-form-chat-form-read-by-no-script]{ref:insight-case-form-chat-form-read-by-no-script}
+- 04:12:20 decision[case 612.1][create][rule-sprint-close]{tags:sprint,workflow}
+- 04:12:20 decision[case 612.1][create][estimate-sprint-close-archives-the-decisions]{ref:rule-sprint-close}{tags:sprint,workflow}
+- 04:12:20 decision[case 612.1][update][entity-sprint-migration]{ref:entity-sprint-migration}
+- 04:12:20 decision[case 612.2][create][estimate-sprint-close-archives-done-insights-and-lone-lessons]{ref:rule-sprint-close}{tags:sprint,workflow}
+- 04:12:20 decision[case 612.3][create][estimate-sprint-close-archives-the-sprint-page-and-keeps-the-rest]{ref:rule-sprint-close}{tags:sprint,workflow}
+- 04:12:20 decision[case 612.4][create][estimate-sprint-close-settles-unread-estimates]{ref:rule-sprint-close}{tags:sprint,workflow}
+- 04:38:34 decision[case 613.1][update][rule-estimates-schema]{ref:rule-estimates-schema}
+- 04:38:34 decision[case 613.1][create][estimate-lint-reports-a-method-tied-to-a-one-off-moment]{ref:rule-lint}{tags:harness,workflow}
+- 04:38:34 decision[case 613.2][update][rule-skill-hi]{ref:rule-skill-hi}
+- 04:38:34 decision[case 613.2][update][estimate-hi-takes-its-readings]{ref:estimate-hi-takes-its-readings}
+- 04:38:34 decision[case 613.3][update][estimate-generate-rewords]{ref:estimate-generate-rewords}
+- 04:38:34 decision[case 613.3][update][estimate-case-check-sends-back-a-ratified-case-in-another-shape]{ref:estimate-case-check-sends-back-a-ratified-case-in-another-shape}
+- 04:38:34 decision[case 613.3][update][estimate-hi-takes-a-conserved-spec]{ref:estimate-hi-takes-a-conserved-spec}
+- 04:38:34 decision[case 613.3][update][estimate-handoff-dispatches]{ref:estimate-handoff-dispatches}
+- 04:38:34 decision[case 613.3][update][estimate-case-check-requires-each-question-of-the-rounds]{ref:estimate-case-check-requires-each-question-of-the-rounds}
+- 04:38:34 decision[case 613.3][update][estimate-lint-runs-every-step]{ref:estimate-lint-runs-every-step}
+- 04:38:34 decision[case 613.3][update][estimate-ledger-write-lifts]{ref:estimate-ledger-write-lifts}
+- 04:38:34 decision[case 613.3][update][estimate-compact-recall-reloads]{ref:estimate-compact-recall-reloads}
+- 04:38:34 decision[case 613.3][update][estimate-prespec-onward-sends-the-agent-on]{ref:estimate-prespec-onward-sends-the-agent-on}
+- 04:38:34 decision[case 613.3][update][estimate-case-check-sends-back-a-faulty-round]{ref:estimate-case-check-sends-back-a-faulty-round}
+- 04:38:34 decision[case 613.3][update][estimate-case-check-sends-back-a-faulty-case]{ref:estimate-case-check-sends-back-a-faulty-case}
+- 04:38:34 decision[case 613.3][update][estimate-carry-over-writes]{ref:estimate-carry-over-writes}
+- 04:38:34 decision[case 613.3][update][estimate-case-check-sends-back-a-case-number-held-by-another-agent]{ref:estimate-case-check-sends-back-a-case-number-held-by-another-agent}
+- 04:38:34 decision[case 613.3][update][estimate-ratification-ledger-line-form]{ref:estimate-ratification-ledger-line-form}
+- 04:38:34 decision[case 613.3][update][estimate-work-mode-runs-the-spec-on-a-branch-from-a-baseline]{ref:estimate-work-mode-runs-the-spec-on-a-branch-from-a-baseline}
+- 04:38:34 decision[case 613.3][update][estimate-spec-write-reaches-the-approved-spec]{ref:estimate-spec-write-reaches-the-approved-spec}
+- 04:38:34 decision[case 613.3][update][estimate-spec-box-runs-a-conserved-spec]{ref:estimate-spec-box-runs-a-conserved-spec}
+- 04:38:34 decision[case 613.3][update][estimate-retro-onward-sends-the-agent-to-the-handoff]{ref:estimate-retro-onward-sends-the-agent-to-the-handoff}
+- 04:38:34 decision[case 613.3][update][estimate-retro-loads]{ref:estimate-retro-loads}
+- 04:38:34 decision[case 613.3][update][estimate-orchestration-defers-in-one-reply]{ref:estimate-orchestration-defers-in-one-reply}
+- 04:38:34 decision[case 613.3][update][estimate-retro-runs-on-to-the-handoff]{ref:estimate-retro-runs-on-to-the-handoff}
+- 04:38:34 decision[case 613.3][update][estimate-orchestration-signs-a-batch-together]{ref:estimate-orchestration-signs-a-batch-together}
+- 04:38:34 decision[case 613.3][update][estimate-spec-capture-offers-the-fork]{ref:estimate-spec-capture-offers-the-fork}
+- 04:38:34 decision[case 613.3][update][estimate-work-mode-takes-the-work-readings]{ref:estimate-work-mode-takes-the-work-readings}
+- 04:38:34 decision[case 613.3][update][estimate-where-to-stop-stops-only-on-its-conditions]{ref:estimate-where-to-stop-stops-only-on-its-conditions}
+- 04:38:34 decision[case 613.3][update][estimate-retro-red-check-of-an-updated-page-is-a-handoff-note]{ref:estimate-retro-red-check-of-an-updated-page-is-a-handoff-note}
+- 04:38:34 decision[case 613.3][update][estimate-handoff-holds-each-fact-once]{ref:estimate-handoff-holds-each-fact-once}
+- 04:38:34 decision[case 613.3][update][estimate-prespec-onward-reads-the-decisions-of-the-session]{ref:estimate-prespec-onward-reads-the-decisions-of-the-session}
+- 04:38:34 decision[case 613.3][update][estimate-ratification-loaded]{ref:estimate-ratification-loaded}
+- 04:38:34 decision[case 613.3][update][estimate-orchestration-loaded]{ref:estimate-orchestration-loaded}
+- 04:38:34 decision[case 613.3][update][estimate-spec-write-writes-a-defer]{ref:estimate-spec-write-writes-a-defer}
+- 04:38:34 decision[case 613.3][update][estimate-prespec-reconciles]{ref:estimate-prespec-reconciles}
+- 04:38:34 decision[case 613.3][update][estimate-retro-red-in-the-baseline-is-not-charged]{ref:estimate-retro-red-in-the-baseline-is-not-charged}
+- 04:38:34 decision[case 613.3][update][estimate-case-build-keeps-the-old-form-until-the-writer-is-live]{ref:estimate-case-build-keeps-the-old-form-until-the-writer-is-live}
+- 04:38:34 decision[case 613.3][update][estimate-harness-make-runs-in-both-shells]{ref:estimate-harness-make-runs-in-both-shells}
+- 04:38:34 decision[case 613.3][update][estimate-spec-write-removes-a-superseded-case]{ref:estimate-spec-write-removes-a-superseded-case}
+- 04:38:34 decision[case 613.3][update][estimate-spec-write-checks-the-written-case]{ref:estimate-spec-write-checks-the-written-case}
+- 05:06:02 estimate[estimate-case-build-writes-the-case][passed] 2026-10-03, by hand at the Work readings of session 0317, the dispatches of case-guppi in Plan Mode read against their transcripts under subagents/ and the chat: `.claude/agents/case-guppi.md` carries model opus, effort medium, tools Read, Grep, Glob and skills [grill-me]; each of the three agents read vault/wiki/case-schema.md and vault/wiki/ratification.md whole as its first two calls; an item with a fork (611, 612, 613) was answered by a round in the grill-me form, the first round on each item opening with a `**Context:**` paragraph and the later rounds (612 Q6, Q7–Q9; 613 Q6–Q7, Q8–Q9) with none, then by the Case alone; Case 612 makes a create without a ref (`rule-sprint-close`) and its context gives the vault query of ask-guppi (exists none, near, rules, tags); Case 611 changes the Stop hook of guppi casecheck and its builder grepped `.claude/settings.json` for the Stop hooks, the context naming the six commands on Stop; no file and no ledger line written by case-guppi. Tokens and seconds per dispatch: 611 round 61,745 / 70.6 s, Case 99,751 / 200.4 s, rebuild after pre-spec 116,156 / 84.9 s; 612 round 74,257 / 158.4 s, Q6 76,735 / 19.8 s, Q7–Q9 91,142 / 67.5 s, Case 168,393 / 342.6 s, rebuild 179,771 / 70.5 s; 613 round 94,175 / 153.7 s, Q6–Q7 103,885 / 50.5 s, Q8–Q9 109,831 / 40.9 s, Case 184,880 / 468.4 s, rebuild 201,458 / 110.7 s
+- 05:06:02 estimate[estimate-end-of-work-order][passed] 2026-10-03, `make test-end-of-work` 30 passed; by hand, the close of session 0115 read in vault/raw/2026-10-03/0115/, the event log vault/raw/2026-10-03/event_log.md and git log: ExitPlanMode 02:59:42, AskUserQuestion 02:59:48, then /work, retro 03:05:39, the work commit f510fb46 03:06:37 and the session-folder commit 2f0591a3 03:07:01, handoff 03:07:02 on a clean tree, handoff.md written 03:07:39 before the librarian's run, the librarian's commits f1a46df1 03:13:32 and 9b821b2b 03:14:09 with no other commit between the handoff and them; `rule-end-of-work` children hold rule-carry-over after rule-handoff and rule-spec-box after rule-retro-onward; not exercised: a /handoff refused on a dirty tree, and a session that took a conserved Spec
+- 05:06:02 lesson[error][lesson-estimates-reading-tied-to-a-one-off-moment]{tags:workflow,session}{addressed_by:case 613.2} trigger: at the /hi of session 0317, 37 Estimates stood pending, 30 of them since 2026-09, with green tests; the person called the harness an endless loop of fixes in which readings hang session after session root_cause: the by-hand part of a method named one moment, "the first X after the render", and no step read that moment once it had passed: Retro writes its readings before /handoff and the librarian's run, and /hi took only readings that name /hi or the librarian, so a missed first moment never came again
+- 05:06:02 lesson[error][lesson-case-build-a-count-in-context-not-from-a-run]{tags:workflow,session} trigger: at the /pre-spec of session 0317 ask-guppi found three facts of the contexts of case-guppi that the vault does not bear out: Case 611 "seven calls" where a Grep printed six, Case 613 "13 waiting Estimates" where its list named 11, Case 612 `rule-morph` "of the same milestone" where it stands under Backlog root_cause: case-guppi writes a count or a place in its context from its own reading of a list or a page, not from the output of the command that printed it, and no check of its answer compares such a fact with a run

@@ -3,10 +3,12 @@ answers with before the main agent sees it (case 419.3); `guppi casecheck` — t
 that compares each Case the main agent shows with the one the check stored (case 419.4).
 
 The check. For an answer of `case-guppi` (`agent_type`), the hook takes as the answer the
-newest output of the subagent in `agent_transcript_path` that holds a Case heading — a text
-or the `message` of a `SubagentHandback` call, whichever stands later — or
-`last_assistant_message` when the transcript is not readable or holds none (case 434); the
-transcript is read by `ledger.read_records`. It reads the Cases of the answer in the chat
+newest output of the subagent in `agent_transcript_path` that holds a Case heading, that
+`is_round` finds a round, or that `is_fact` finds a Fact answer — a text or the `message` of
+a `SubagentHandback` call, whichever stands later; an output that is none of the three, such
+as a summary after a hand-back, is passed over — or `last_assistant_message` when the
+transcript is not readable or holds no such output (cases 434, 607.1); the transcript is
+read by `ledger.read_records`. It reads the Cases of the answer in the chat
 form, builds the section of each in the Spec in memory by `ratified.case_section` — the one
 reading of the Spec hook, which refuses a sub-point outside `materialize.item_keys` (case
 436.1) — and runs `prespec.judge` over them, the decision lines of each `ratification` fence
@@ -38,9 +40,22 @@ outside the script of the documentation language is a finding of its Case — a 
 a code span excepted, which is no finding, while a letter of any other script there is judged
 as in prose (case 589.2) — and a `guppi.toml`
 that is missing or names a code the table does not hold is one finding, given to the first
-Case of the answer (case 537). Each Case of the answer is stored with its findings and the time of
-the store in `<plan>.checked.json` beside the plan file of the session, a later answer for the
-same id replacing it but for the notes sent for that id, which it keeps (case 472.1). The notes
+Case of the answer (case 537). A top-level Case N of the answer whose family — N and its
+sub-cases at any depth — has a decision line other than a `defer` in the session's ledger on
+a number with no section in the answer, or on a number with a sub-case in the answer, is a
+Case ratified in the session and built again in another shape under its old number: a
+finding of N, by `shape_findings`, names those numbers, a new number — one above the highest
+top-level number among the decision lines of the ledger and the keys of the store, by
+`new_number`, the one count — and the marks its decision lines carry, one
+`{supersedes:case N}` and one for each number of the family with such a line (case 610.1).
+Each Case of the answer is stored with its findings, the time of the store and the `agent_id`
+of the payload in `<plan>.checked.json` beside the plan file of the session, a later answer
+for the same id replacing it but for the notes sent for that id, which it keeps (case 472.1).
+An answer whose family the store holds under the number alone from another `agent_id` is a
+finding of its first Case that names a new number by `new_number`, and each Case of that
+answer is stored apart, under its number joined with its `agent_id` by `@`, the other entry
+left as it was; the Spec hook, the `Stop` comparison and the file of a Case read the entry
+under the number alone, and an entry with no `agent_id` is not compared (case 610.2). The notes
 are those of `prespec.promise_notes` on the answer — a line of a Criterion replaced whole that
 the new one does not carry, a `then` line shared by two siblings, named on the later (cases
 472.1, 472.2): a note not yet held for its Case id is stored under `notes`, apart from the
@@ -57,10 +72,10 @@ stays inside (case 453). A finding exits 2 with the findings on stderr, and Clau
 back (measured 2026-09-25, session 0051), whatever `stop_hook_active` says: Claude Code sets it
 on the second fire after a handback with no exit 2 of this hook (measured 2026-09-26, session
 1337). The store guards the loop: when every Case with findings stands in the store with the
-same text and findings, they are stored again and the hook exits 0. An answer with no Case
-heading, where no earlier output holds one either, is not checked or stored as a Case; such
-an output is still judged as a round by the check of the form, which stores nothing. With no
-plan file of the session no Case is stored or sent back.
+same text and findings, they are stored again and the hook exits 0. An answer that is a
+round or a Fact answer is not checked or stored as a Case, and an earlier Case is not read
+again (case 607.1); a round is still judged by the check of the form, which stores nothing.
+With no plan file of the session no Case is stored or sent back.
 
 The form of a round (case 601.1). Before the check of a Case, the same `--subagent` run
 judges the newest output of `case-guppi` in `agent_transcript_path` by `round_form`: a text
@@ -70,7 +85,8 @@ template of the skill `grill-me`: the title line by `QUESTION_LINE`, the one pat
 check of a round reads; a `**Now:**` line; the `**Options:**` label alone on its line; an
 option `🔹` with a `- **After:**` item; a `➡️` line. A question out of form is a finding
 that names its first line and each part it misses and tells the agent to answer with the
-round whole again; the findings join those of the check of a Case in one exit 2. A round
+round whole again; a round gets no check of a Case, so its exit 2 carries the findings of its
+form alone (case 607.2). A round
 whose text an earlier output already holds, trailing spaces aside, is not sent back again
 (`faulty_round`). The check stores nothing and writes no file, with or without a plan file;
 an unreadable transcript is not judged; a round as the main agent shows it is not judged
@@ -510,19 +526,80 @@ def check_rounds(cases: dict, rounds: list[str]) -> list[tuple[str, str]]:
     ]
 
 
+# --- the number of a Case built again (cases 610.1, 610.2) ---------------------------------
+
+AGENT_KEY = "@"  # a key of the store joined with an agent id, `<case>@<agent_id>` (case 610.2)
+
+
+def key_case(key) -> str:
+    """The Case id of a key of the store: a key joined with an agent id is read by its
+    number (case 610.2)."""
+    return str(key).split(AGENT_KEY, 1)[0]
+
+
+def in_family(case: str, top: str) -> bool:
+    """Whether `case` is `top` or one of its sub-cases at any depth."""
+    return case == top or case.startswith(top + ".")
+
+
+def new_number(records: list[dict], store: dict) -> str:
+    """Case 610.1: a free number for a Case built again — one above the highest top-level
+    Case number that the decision lines of the session's ledger and the keys of the store
+    hold; the one count of `shape_findings` and of the clash of `subagent` (case 610.2)."""
+    numbers = [top_case(str(r["case"])) for r in records if r.get("record") == "decision"]
+    numbers += [top_case(key_case(key)) for key in store]
+    return str(max((int(n) for n in numbers if n.isdigit()), default=0) + 1)
+
+
+def shape_findings(cases: dict, records: list[dict], store: dict) -> list[tuple[str, str]]:
+    """Case 610.1: `(top-level case, finding)` for each top-level Case N of the answer whose
+    family — N and its sub-cases at any depth — has a decision line other than a `defer` in
+    the session's ledger `records` on a number with no section in the answer, or on a number
+    with a sub-case in the answer: a Case ratified in the session and built again in another
+    shape under its old number. The finding names those numbers, the new number by
+    `new_number`, and the marks its decision lines carry: one `{supersedes:case N}` and one
+    for each number of the family that has such a line. An answer of sub-cases alone, a
+    family with only `defer` lines, and a Case built again in the same shape give none."""
+    findings: list[tuple[str, str]] = []
+    for top in (case for case in cases if "." not in case):
+        lined = list(
+            dict.fromkeys(
+                str(r["case"])
+                for r in records
+                if r.get("record") == "decision"
+                and r.get("kind") != "defer"
+                and in_family(str(r["case"]), top)
+            )
+        )
+        changed = [n for n in lined if n not in cases or has_sub_cases(n, cases)]
+        if not changed:
+            continue
+        marks = "".join(f"{{supersedes:case {n}}}" for n in dict.fromkeys([top, *lined]))
+        finding = (
+            f"case {top}: case {', '.join(changed)} has decision lines in the session's "
+            "ledger and comes back in another shape under its old number — build it "
+            f"again as case {new_number(records, store)}, its decision lines carrying {marks}"
+        )
+        findings.append((top, finding))
+    return findings
+
+
 def check_answer(
     text: str,
     project_dir: Path,
     window: list[str] = (),
     frontier: Path | None = None,
     rounds: list[str] = (),
+    store: dict | None = None,
 ) -> tuple[dict[str, list[str]], dict[str, list[str]]]:
     """Case id → its findings, and case id → its notes, for every Case of an answer of
     `case-guppi`. The categories whose schema rule the lines of the `ratification` fences or
     of the session's `window` change are not judged by their keys (case 436.4). `frontier`,
     the session's `frontier.md`, adds the check of its open `backlog` lines (case 467.2).
     `rounds`, the titles of the questions of the rounds of `case-guppi` on the Case, adds
-    the check that `recommend` holds an item for each (case 544.3). The
+    the check that `recommend` holds an item for each (case 544.3). `store`, the store of
+    checked answers, adds the check of a Case built again in another shape against the
+    decision lines of `window`, `shape_findings` (case 610.1). The
     language finding of `/pre-spec`, `check_untranslated`, runs over the same Spec text as
     `judge`, each hit a finding of its Case (case 537). The notes are those of
     `prespec.promise_notes` on the answer — a Criterion line not carried, a `then` line shared
@@ -551,8 +628,11 @@ def check_answer(
         match = FINDING_CASE.match(finding)
         case = match.group(1) if match else ""
         found[case if case in found else next(iter(cases))].append(finding)
-    for top, finding in check_backlog(records, frontier, project_dir) + check_rounds(
-        cases, list(rounds)
+    shapes = []
+    if store is not None:
+        shapes = shape_findings(cases, ledger_records(window), store)
+    for top, finding in (
+        check_backlog(records, frontier, project_dir) + check_rounds(cases, list(rounds)) + shapes
     ):
         family = [c for c in found if c == top or c.startswith(f"{top}.")]
         found[family[0] if family else next(iter(cases))].append(finding)
@@ -584,16 +664,18 @@ def outputs(record: dict) -> list[str]:
 
 
 def answer_of(payload: dict) -> str:
-    """The answer of the subagent (case 434): the newest output in `agent_transcript_path`
-    that holds a Case heading — a text or the `message` of a `SubagentHandback` call,
-    whichever stands later; `last_assistant_message` when the transcript is not readable or
-    holds none."""
+    """The answer of the subagent (cases 434, 607.1): the newest output in
+    `agent_transcript_path` that holds a Case heading, that `is_round` finds a round, or that
+    `is_fact` finds a Fact answer — a text or the `message` of a `SubagentHandback` call,
+    whichever stands later; an output that is none of the three, such as a summary after a
+    hand-back, is passed over. `last_assistant_message` when the transcript is not readable
+    or holds no such output."""
     records = read_records(payload.get("agent_transcript_path"))
     for record in reversed(records or []):
         if record.get("type") != "assistant":
             continue
         for text in reversed(outputs(record)):
-            if split_cases(text):
+            if split_cases(text) or is_round(text) or is_fact(text):
                 return text
     return str(payload.get("last_assistant_message") or "")
 
@@ -710,13 +792,23 @@ def subagent(payload: dict, project_dir: Path, now, stderr) -> int:
         return send_back(form, stderr)
     stamp = session_stamp(None, payload)
     folder = session_dir(project_dir, now, stamp)
-    window = ledger_of(folder)
-    frontier = folder / "frontier.md" if folder is not None else None
-    found, notes = check_answer(text, project_dir, window, frontier, round_titles(payload))
     plan = plan_path(session_event_logs(project_dir, now, stamp), stamp)
     if plan is None or not plan.is_file():
         return send_back(form, stderr)  # no plan file: no Case stored or sent back (case 434)
     store = read_store(plan)
+    window = ledger_of(folder)
+    frontier = folder / "frontier.md" if folder is not None else None
+    found, notes = check_answer(text, project_dir, window, frontier, round_titles(payload), store)
+    agent_id = str(payload.get("agent_id") or "")
+    apart = clashes(cases, store, agent_id)  # a number another agent holds (case 610.2)
+    if apart:
+        number = new_number(ledger_records(window), store)
+        for top in apart:
+            first = next(case for case in cases if in_family(case, top))
+            found[first].append(
+                f"case {top}: the store holds case {top} from the answer of another agent — "
+                f"build this Case as case {number}"
+            )
     heads = headings(text)
     repeated = True  # every Case with findings stands in the store as it is, findings and all
     fresh: list[str] = []  # the notes not yet sent for their Case id (case 472.1)
@@ -726,7 +818,10 @@ def subagent(payload: dict, project_dir: Path, now, stderr) -> int:
             "findings": found[case],
             "stored": now.isoformat(),  # the time a sending must follow (case 452.1)
         }
-        held = store.get(case)
+        if agent_id:
+            entry["agent_id"] = agent_id  # whose answer it is (case 610.2)
+        key = f"{case}{AGENT_KEY}{agent_id}" if top_case(case) in apart else case
+        held = store.get(key)
         if found[case] and not (
             isinstance(held, dict) and held.get("text") == entry["text"] and held.get("findings")
         ):
@@ -736,7 +831,7 @@ def subagent(payload: dict, project_dir: Path, now, stderr) -> int:
         fresh += new
         if kept or new:  # the notes sent for the id outlive a later answer (case 472.1)
             entry["notes"] = kept + new
-        store[case] = entry
+        store[key] = entry
     store_of(plan).write_text(
         json.dumps(store, ensure_ascii=False, indent=1), encoding="utf-8", newline=""
     )
@@ -748,6 +843,28 @@ def subagent(payload: dict, project_dir: Path, now, stderr) -> int:
     return send_back(form, stderr)
 
 
+def clashes(cases: dict, store: dict, agent_id: str) -> list[str]:
+    """Case 610.2: the top-level Case of each family of the answer whose entry under the
+    number alone — of the top-level Case or of one of its sub-cases — holds the answer of an
+    agent other than `agent_id`. An entry with no `agent_id`, stored before the change, and
+    an answer with none are not compared."""
+    if not agent_id:
+        return []
+    found: list[str] = []
+    for top in dict.fromkeys(top_case(case) for case in cases):
+        held = {
+            str(entry.get("agent_id"))
+            for key, entry in store.items()
+            if AGENT_KEY not in str(key)
+            and in_family(str(key), top)
+            and isinstance(entry, dict)
+            and entry.get("agent_id")
+        }
+        if held - {agent_id}:
+            found.append(top)
+    return found
+
+
 def send_back(findings: list[str], stderr) -> int:
     """Exit 2 with the findings on stderr, so Claude Code sends `case-guppi` back; 0 when
     there are none."""
@@ -755,6 +872,11 @@ def send_back(findings: list[str], stderr) -> int:
         return 0
     print("casecheck: " + "; ".join(findings), file=stderr)
     return 2
+
+
+def ledger_records(lines: list[str]) -> list[dict]:
+    """The records of the lines of a ledger that `parse_line` reads."""
+    return [record for line in lines if (record := parse_line(str(line).strip()))]
 
 
 def ledger_of(folder: Path | None) -> list[str]:
@@ -941,13 +1063,23 @@ def is_round(text: str) -> bool:
     makes the text a round. The lines are read with their indent set aside: the harness
     indents a hand-back."""
     lines = [line.strip() for line in text.splitlines()]
+    if split_cases("\n".join(lines)) or is_fact(text):
+        return False
+    return any(line.startswith(QUESTION_MARK) for line in lines)
+
+
+def is_fact(text: str) -> bool:
+    """A Fact answer of `case-guppi`, the one test of it that `is_round` and `answer_of`
+    share (case 607.1): no Case heading, and a line that opens with `**Fact:**` before any
+    line that opens with `❓`. The lines are read with their indent set aside."""
+    lines = [line.strip() for line in text.splitlines()]
     if split_cases("\n".join(lines)):
         return False
     for line in lines:
         if line.startswith(FACT):
-            return False
-        if line.startswith(QUESTION_MARK):
             return True
+        if line.startswith(QUESTION_MARK):
+            return False
     return False
 
 

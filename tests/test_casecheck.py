@@ -117,7 +117,7 @@ def store(project):
     return json.loads(path.read_text(encoding="utf-8")) if path.exists() else None
 
 
-def answer(project, text, agent="case-guppi", **fields):
+def answer(project, text, agent="case-guppi", now=NOW, **fields):
     payload = {
         "session_id": SESSION,
         "agent_type": agent,
@@ -127,7 +127,7 @@ def answer(project, text, agent="case-guppi", **fields):
     }
     err = io.StringIO()
     stdin = io.StringIO(json.dumps(payload, ensure_ascii=False))
-    code = casecheck.run(["--subagent"], stdin=stdin, stderr=err, project_dir=project, now=NOW)
+    code = casecheck.run(["--subagent"], stdin=stdin, stderr=err, project_dir=project, now=now)
     return code, err.getvalue()
 
 
@@ -561,6 +561,154 @@ def test_subagent_round_form_the_indent_of_a_hand_back_is_set_aside(working):
     indented = "  " + round_of("Which page?").replace("\n", "\n  ")
     path = transcript(working, [handback(indented)])
     assert answer(working, "", agent_transcript_path=path) == (0, "")
+
+
+# --- the answer is the newest Case, round or Fact answer (cases 607.1, 607.2) ---------------
+
+LATER = datetime(2026, 9, 9, 15, 40, 0, tzinfo=UTC)
+
+
+def built_then(working, *later):
+    """Case 7 built and stored at NOW, then the `--subagent` run at LATER on a transcript of
+    that Case and the `later` outputs; the outcome, the store and the file as they stood."""
+    assert answer(working, ANSWER) == (0, "")
+    held, file = store(working), case_path(working, "7").read_text(encoding="utf-8")
+    path = transcript(working, [text(ANSWER)], *[[text(output)] for output in later])
+    return answer(working, "", now=LATER, agent_transcript_path=path), held, file
+
+
+def test_subagent_a_case_then_a_round_its_recommend_lacks_leaves_the_case_as_it_stood(working):
+    outcome, held, file = built_then(working, round_of("Which page?"))
+    assert outcome == (0, "")
+    assert store(working) == held
+    assert case_path(working, "7").read_text(encoding="utf-8") == file
+
+
+def test_subagent_a_case_then_a_fact_answer_leaves_the_case_as_it_stood(working):
+    outcome, held, file = built_then(working, "**Fact:** The page says so.")
+    assert outcome == (0, "")
+    assert store(working) == held
+    assert case_path(working, "7").read_text(encoding="utf-8") == file
+
+
+def test_subagent_round_form_a_case_then_a_faulty_round_sends_back_its_form_alone(working):
+    faulty = round_of("Which page?").replace("**Which page?**:", "**Which page?**")
+    (code, err), held, _ = built_then(working, faulty)
+    assert code == 2 and "the title line" in err and "answer with the round whole again" in err
+    assert "case 7" not in err
+    assert store(working) == held
+
+
+def test_subagent_is_fact_and_is_round_share_one_test_of_a_fact():
+    assert casecheck.is_fact("**Fact:** It says so.\n\n❓ **Q1** - **Which?**:\n")
+    assert casecheck.is_fact("  **Fact:** indented by a hand-back.")
+    assert not casecheck.is_fact("❓ **Q1** - **Which?**:\n\n**Fact:** after the question.")
+    assert not casecheck.is_fact(ANSWER.replace("> Context.", "> **Fact:** in a Case."))
+    assert not casecheck.is_round("**Fact:** It says so.\n\n❓ **Q1** - **Which?**:\n")
+    assert casecheck.is_round("❓ **Q1** - **Which?**:\n\n**Fact:** after the question.")
+
+
+# --- a ratified Case built again in another shape (case 610.1) -----------------------------
+
+
+def ledger(project, *lines):
+    """The session's ledger with these decision lines."""
+    folder = project.joinpath(*FOLDER)
+    folder.mkdir(parents=True, exist_ok=True)
+    body = "".join(f"- 15:10:00 {line}\n" for line in lines)
+    (folder / "ledger.md").write_text(body, encoding="utf-8")
+
+
+CASE_9 = ANSWER.replace("## Case 7 — example", "## Case 9 — example").replace("case 7", "case 9")
+FAMILY_9 = PARENT + sub_case("9.1") + "\n" + sub_case("9.2", "The page is read.")
+LINES_9 = (
+    "decision[case 9.1][update][rule-x]{ref:rule-x}",
+    "decision[case 9.2][update][rule-x]{ref:rule-x}",
+)
+
+
+def test_subagent_shape_a_case_ratified_whole_back_with_sub_cases_is_sent_back(working):
+    ledger(working, "decision[case 9][update][rule-x]{ref:rule-x}")
+    code, err = answer(working, FAMILY_9)
+    assert code == 2
+    assert (
+        "case 9: case 9 has decision lines in the session's ledger and comes back in another "
+        "shape under its old number — build it again as case 10, its decision lines carrying "
+        "{supersedes:case 9}"
+    ) in err
+    assert not case_path(working, "9").exists()
+
+
+def test_subagent_shape_a_case_ratified_with_sub_cases_back_whole_marks_its_parent(working):
+    ledger(working, *LINES_9)
+    code, err = answer(working, CASE_9)
+    assert code == 2
+    assert "case 9: case 9.1, 9.2 has decision lines" in err
+    assert "{supersedes:case 9}{supersedes:case 9.1}{supersedes:case 9.2}" in err
+
+
+def test_subagent_shape_a_whole_answer_without_a_ratified_sub_case_is_sent_back(working):
+    ledger(working, *LINES_9)
+    code, err = answer(working, PARENT + sub_case("9.1"))
+    assert code == 2 and "case 9: case 9.2 has decision lines" in err
+
+
+def test_subagent_shape_the_new_number_counts_the_keys_of_the_store(working):
+    case_12 = ANSWER.replace("## Case 7", "## Case 12").replace("case 7", "case 12")
+    assert answer(working, case_12) == (0, "")
+    ledger(working, "decision[case 9][update][rule-x]{ref:rule-x}")
+    code, err = answer(working, FAMILY_9)
+    assert code == 2 and "build it again as case 13" in err
+
+
+@pytest.mark.parametrize(
+    ("lines", "text"),
+    [
+        (LINES_9, sub_case("9.1")),  # a sub-case answered alone
+        (("decision[case 7][update][rule-x]{ref:rule-x}",), ANSWER),  # the same shape
+        (LINES_9, FAMILY_9),  # the same shape, with sub-cases
+        (("decision[case 9][defer][rule-y]",), FAMILY_9),  # only a defer line
+    ],
+)
+def test_subagent_shape_an_answer_in_its_shape_passes(working, lines, text):
+    ledger(working, *lines)
+    assert answer(working, text) == (0, "")
+
+
+# --- a number another agent holds (case 610.2) ---------------------------------------------
+
+
+def test_subagent_clash_a_number_another_agent_holds_is_sent_back_and_stored_apart(working):
+    assert answer(working, ANSWER, agent_id="a1") == (0, "")
+    file = case_path(working, "7").read_text(encoding="utf-8")
+    other = ANSWER.replace("The file is written.", "Another file is written.")
+    code, err = answer(working, other, now=LATER, agent_id="b2")
+    assert code == 2
+    assert (
+        "case 7: the store holds case 7 from the answer of another agent — build this Case "
+        "as case 8"
+    ) in err
+    held = store(working)
+    assert held["7"]["agent_id"] == "a1" and held["7"]["stored"] == NOW.isoformat()
+    assert held["7@b2"]["agent_id"] == "b2" and "Another file" in held["7@b2"]["text"]
+    assert case_path(working, "7").read_text(encoding="utf-8") == file
+    assert casecheck.against_store("7", "", [], held) is None  # the reading by the number
+    assert answer(working, other, now=LATER, agent_id="b2") == (0, "")
+
+
+def test_subagent_clash_a_sub_case_another_agent_holds_is_sent_back(working):
+    assert answer(working, FAMILY_9, agent_id="a1") == (0, "")
+    code, err = answer(working, sub_case("9.1", "Changed."), agent_id="b2")
+    assert code == 2 and "the store holds case 9 from the answer of another agent" in err
+    assert "Changed." in store(working)["9.1@b2"]["text"]
+
+
+def test_subagent_clash_no_agent_id_and_the_same_agent_give_no_finding(working):
+    assert answer(working, ANSWER) == (0, "")
+    assert answer(working, ANSWER, agent_id="b2") == (0, "")
+    assert store(working)["7"]["agent_id"] == "b2"
+    assert answer(working, ANSWER, agent_id="b2") == (0, "")
+    assert list(store(working)) == ["7"]
 
 
 # --- no problem in a sub-case (case 544.4) --------------------------------------------------

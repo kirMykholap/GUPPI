@@ -6081,3 +6081,52 @@ instruction. The global feed; a page's own `## History` is the per-page view.
 - 2026-10-03 rules/rule-event-log status: draft → built · cascade · generate
 - 2026-10-03 rules/rule-plan-mode status: draft → built · cascade · generate
 - 2026-10-03 rules/rule-spec-capture status: draft → built · cascade · generate
+- 2026-10-04 estimates/estimate-handoff-dispatches status: pending → passed · raw/2026-10-04/0004/ledger.md#L1 · generate
+- 2026-10-04 estimates/estimate-retro-loads status: pending → passed · raw/2026-10-04/0004/ledger.md#L2 · generate
+- 2026-10-04 estimates/estimate-spec-box-runs-a-conserved-spec status: pending → passed · raw/2026-10-04/0004/ledger.md#L3 · generate
+- 2026-10-04 estimates/estimate-where-to-stop-stops-only-on-its-conditions status: pending → passed · raw/2026-10-04/0004/ledger.md#L4 · generate
+- 2026-10-04 estimates/estimate-work-mode-takes-the-work-readings status: pending → passed · raw/2026-10-04/0004/ledger.md#L5 · generate
+- 2026-10-04 estimates/estimate-work-mode-runs-the-spec-on-a-branch-from-a-baseline status: pending → passed · raw/2026-10-04/0004/ledger.md#L6 · generate
+- 2026-10-04 decisions/decision-case-619 created · raw/2026-10-04/0004/ledger.md#case-619 · generate
+- 2026-10-04 decisions/decision-case-619.1 created · raw/2026-10-04/0004/ledger.md#case-619.1 · generate
+- 2026-10-04 entities/entity-reading-probe reworded: `quillwort` → `bramblewort` · [[decision-case-619.1]] · generate
+- 2026-10-04 entities/entity-reading-probe updated: quillwort replaced by bramblewort across the vault, the live leg of estimate-generate-rewords · [[decision-case-619.1]] · generate
+- 2026-10-04 decisions/decision-case-619.2 created · raw/2026-10-04/0004/ledger.md#case-619.2 · generate
+- 2026-10-04 entities/entity-reading-probe deleted · [[decision-case-619.2]] · generate
+- 2026-10-04 decisions/decision-case-620 created · raw/2026-10-04/0004/ledger.md#case-620 · generate
+- 2026-10-04 decisions/decision-case-620.1 created · raw/2026-10-04/0004/ledger.md#case-620.1 · generate
+- 2026-10-04 rules/rule-skill-hi updated: a line whose target a defer item of the conserved Spec puts off closes defer case N with that Spec's Case (case 620.1) · [[decision-case-620.1]] · generate
+- 2026-10-04 estimates/estimate-hi-takes-a-conserved-spec updated: the Criterion replaced whole — a line put off by a defer of the conserved Spec closes defer case N with that Spec's Case · [[decision-case-620.1]] · generate
+- 2026-10-04 insights/insight-session-frontier-no-closer-for-an-item-ended-outside-the-plan updated: actioned: a line put off by a defer of the conserved Spec closes defer case N, and a sprint item left closes sprint defer (cases 356.2, 620.1) · [[decision-case-620.1]] · generate
+- 2026-10-04 decisions/decision-case-620.2 created · raw/2026-10-04/0004/ledger.md#case-620.2 · generate
+- 2026-10-04 rules/rule-prespec updated: the Frontier check takes defer case N from a defer Case of the conserved Spec that the plan's title line names (case 620.2) · [[decision-case-620.2]] · generate
+- 2026-10-04 estimates/estimate-prespec-checks-the-frontier updated: the Criterion replaced whole — defer case N is found in the plan or in the conserved Spec its title line names · [[decision-case-620.2]] · generate
+- 2026-10-04 estimates/estimate-prespec-onward-sends-the-agent-on status: pending → passed · raw/2026-10-04/0004/ledger.md#L14 · generate
+- 2026-10-04 estimates/estimate-retro-onward-sends-the-agent-to-the-handoff status: pending → passed · raw/2026-10-04/0004/ledger.md#L15 · generate
+- 2026-10-04 estimates/estimate-retro-runs-on-to-the-handoff status: pending → passed · raw/2026-10-04/0004/ledger.md#L16 · generate
+- 2026-10-04 estimates/estimate-ask-finds status: pending → failed · raw/2026-10-04/0004/ledger.md#L17 · generate
+- 2026-10-04 decisions/decision-case-621 created · raw/2026-10-04/0004/ledger.md#case-621 · generate
+- 2026-10-04 estimates/estimate-handoff-holds-each-fact-once deferred · [[decision-case-621]] · generate
+- 2026-10-04 decisions/decision-case-622 created · raw/2026-10-04/0004/ledger.md#case-622 · generate
+- 2026-10-04 estimates/estimate-orchestration-shows-the-built-case deferred · [[decision-case-622]] · generate
+- 2026-10-04 decisions/decision-case-623 created · raw/2026-10-04/0004/ledger.md#case-623 · generate
+- 2026-10-04 estimates/estimate-ask-finds deferred · [[decision-case-623]] · generate
+- 2026-10-04 rules/rule-orchestration updated: a line closed defer case N by a Case of the conserved Spec is a close with no ratification and no defer (case 620.1) · [[decision-case-620.1]] · generate
+- 2026-10-04 lessons/lesson-case-build-a-page-judged-true-by-its-mark-not-its-moment created · raw/2026-10-04/0004/ledger.md#L22 · generate
+- 2026-10-04 lessons/lesson-case-build-hits-counted-as-lines created · raw/2026-10-04/0004/ledger.md#L23 · generate
+- 2026-10-04 insights/insight-workflow-fact-signed-from-a-check-that-does-not-cover-it updated: child lesson-case-build-a-page-judged-true-by-its-mark-not-its-moment added (synthesis) · raw/2026-10-04/0004/ledger.md#L22 · generate
+- 2026-10-04 lessons/lesson-case-build-a-page-judged-true-by-its-mark-not-its-moment updated: clustered under insight-workflow-fact-signed-from-a-check-that-does-not-cover-it (synthesis) · raw/2026-10-04/0004/ledger.md#L22 · generate
+- 2026-10-04 insights/insight-workflow-fact-signed-from-a-check-that-does-not-cover-it updated: child lesson-case-build-hits-counted-as-lines added (synthesis) · raw/2026-10-04/0004/ledger.md#L23 · generate
+- 2026-10-04 lessons/lesson-case-build-hits-counted-as-lines updated: clustered under insight-workflow-fact-signed-from-a-check-that-does-not-cover-it (synthesis) · raw/2026-10-04/0004/ledger.md#L23 · generate
+- 2026-10-04 rules/rule-prespec-onward status: draft → built · cascade · generate
+- 2026-10-04 rules/rule-prespec status: built → draft · cascade · generate
+- 2026-10-04 rules/rule-retro-onward status: draft → built · cascade · generate
+- 2026-10-04 rules/rule-retro status: draft → built · cascade · generate
+- 2026-10-04 rules/rule-spec-box status: draft → built · cascade · generate
+- 2026-10-04 rules/rule-where-to-stop status: draft → built · cascade · generate
+- 2026-10-04 rules/rule-work-mode status: draft → built · cascade · generate
+- 2026-10-04 lessons/lesson-frontier-has-no-closer-for-a-milestone-item-left-on-the-sprint-page archived · insight actioned · generate
+- 2026-10-04 lessons/lesson-session-ledger-item-deferred-by-the-conserved-spec-closed-as-work archived · insight actioned · generate
+- 2026-10-04 entities/entity-reading-probe archived · cleanup
+- 2026-10-04 lessons/lesson-frontier-has-no-closer-for-a-milestone-item-left-on-the-sprint-page archived · cleanup
+- 2026-10-04 lessons/lesson-session-ledger-item-deferred-by-the-conserved-spec-closed-as-work archived · cleanup

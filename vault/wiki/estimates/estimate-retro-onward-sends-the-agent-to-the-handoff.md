@@ -1,11 +1,11 @@
 ---
 type: estimate
 kind: QA
-status: pending
+status: passed
 target: "[[rule-retro-onward]]"
 purpose: Whether guppi onward refuses the end of a reply after the retro mark while handoff.md does not stand, once a stretch and once more after each reply the ledger hook refused, judged by the refusals in the transcript whatever stop_hook_active says, not on a reply that opens with STOP:, and is silent otherwise, counting nothing
 method: "uv run pytest tests/test_onward.py tests/test_ledger.py; by hand at an end of Retro at which the ledger hook refuses a line: the transcript, the event log and handoff.md, recorded in the estimate line"
-checked: 2026-10-01
+checked: 2026-10-04
 origin: raw/2026-09-29/2024/ledger.md#case-531.9
 sprint: migration
 created: 2026-09-29
@@ -33,7 +33,7 @@ It exits 2 when the event log of the session's window holds the mark `retro` of 
 
 ## Result
 
-2026-10-01, uv run pytest tests/test_onward.py: 25 passed; by hand, the transcript of session 4ba72976, vault/raw/2026-10-01/event_log.md and raw/2026-09-30/2356/handoff.md: after the retro mark of 03:09:42, guppi onward refused the reply that ended Retro at 03:10:52 once, its reason to commit the session folder and call /handoff with the STOP: clause; the agent committed at 03:11:01 and called /handoff at 03:11:02; the hook ran on Stop after ledger, ratified, casecheck and context; at the last reply, 03:18:55, with handoff.md standing since 03:11:35, it printed nothing; no reply opened with STOP: and no reply ended before the retro mark in that turn, so those clauses were read in the tests only
+2026-10-04, session 0004: `uv run pytest -q tests/test_onward.py tests/test_ledger.py` 120 passed; by hand, sessions 0317 (transcript 5b311f89) and 1416 (transcript 682b0e2f): after the retro marks of 05:04:23 and 14:39:41, `uv run guppi onward` refused the reply that ended Retro once each, at 05:06:02 and 14:40:45, its reason to commit the session folder and call /handoff, with the STOP: clause; the agent committed 37c47bd1 and a67b0339 and called /handoff at 05:06:09 and 14:40:53; at the last replies, 05:13:39 and 14:47:46, with handoff.md standing, it printed nothing; `.claude/settings.json` registers it on Stop after ledger, ratified, casecheck and context; not exercised: a refusal of the ledger hook — the person's word in this session: not met for long, a lesson if it comes —, a reply opening with STOP:
 
 ## History
 
@@ -43,3 +43,4 @@ It exits 2 when the event log of the session's window holds the mark `retro` of 
 - 2026-10-01 updated: the Criterion replaced whole — the hook fires once a stretch, judged by its own refusal in the transcript, and stop_hook_active no longer silences it (case 577.1) · [[decision-case-577.1]]
 - 2026-10-02 updated: the Criterion replaced whole — the hook speaks again after each reply the ledger hook refused (case 596) · [[decision-case-596.1]]
 - 2026-10-03 updated: method names the kind of its moment (case 613.3) · [[decision-case-613.3]]
+- 2026-10-04 status: pending → passed · raw/2026-10-04/0004/ledger.md#L15

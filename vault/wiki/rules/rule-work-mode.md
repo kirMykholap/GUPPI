@@ -2,7 +2,7 @@
 type: rule
 kind: Leaf
 purpose: Prevents implementation starting before the plan, branch and baseline exist
-status: draft
+status: built
 enforcement: render
 governs: .claude/skills/work/SKILL.md
 render_mode: full
@@ -126,3 +126,4 @@ When the last task is done, delete the `carry.md` of a folder from `/box`, then 
 - 2026-10-02 defer by decision-case-540 superseded · [[decision-case-591.7]]
 - 2026-10-02 updated: /work runs the Spec of the folder /box gives it, names that folder under Conserved Spec of work.md and deletes its carry.md after the last task (case 591.7) · [[decision-case-591.7]]
 - 2026-10-02 updated: the Work readings of /box leave the Estimates that the conserved Spec creates or updates (case 591.12) · [[decision-case-591.12]]
+- 2026-10-04 status: draft → built · cascade

@@ -2,7 +2,7 @@
 type: rule
 kind: Leaf
 purpose: Prevents a conserved Spec from being built on a branch that lacks the current vault, or its pages from being written anywhere but on the shared branch
-status: draft
+status: built
 enforcement: render
 implementation_ref: [guppi/box.py, tests/test_box.py]
 governs: .claude/skills/box/SKILL.md
@@ -59,3 +59,4 @@ The stops of steps 1, 3 and 5 are condition 6 of `vault/wiki/where-to-stop.md`.
 - 2026-10-02 updated: built from the placeholder: /box runs a conserved Spec on its branch and merges it back before the librarian, first part; a child of rule-end-of-work (case 593.2) · [[decision-case-593.2]]
 - 2026-10-02 estimate estimate-spec-box-runs-a-conserved-spec added · [[decision-case-593.2]]
 - 2026-10-02 estimate estimate-spec-box-refuses-a-stale-spec added · [[decision-case-593.3]]
+- 2026-10-04 status: draft → built · cascade

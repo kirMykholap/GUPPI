@@ -1,11 +1,11 @@
 ---
 type: estimate
 kind: QA
-status: pending
+status: passed
 target: "[[rule-retro]]"
 purpose: Whether /retro reviews the session with no report and no approval, writes every reading and lesson of the turn in one reply and a line the ledger hook refused again in one reply that holds only it, commits on green and calls /handoff in the same turn, writes no defer, and stops only on a condition of vault/wiki/where-to-stop.md
 method: "by hand at a run from /work to the librarian, and for the answer to a refusal of the ledger hook at a Retro where that hook refuses a line: the replies of the turn, the ledger, git log and handoff.md read against the Criterion, recorded in the estimate line"
-checked: 2026-10-01
+checked: 2026-10-04
 origin: raw/2026-09-23/1355/ledger.md#case-376
 sprint: migration
 created: 2026-09-23
@@ -31,7 +31,7 @@ Retro asks for no approval: it sorts the boxes of `raw/<date>/<hi HHMM>/spec.md`
 
 ## Result
 
-2026-10-01, by hand, the transcript of session 4ba72976 from the call of /retro at 03:09:42, its ledger, git log and raw/2026-09-30/2356/handoff.md: one reply ended Retro with one LEDGER block of the six readings and the lesson and asked nothing; the code was committed as f7581b07 on make style clean and make test 1034 passed; the session folder was committed as 0e65b085 and /handoff called in the same turn, after the refusal of guppi onward; no defer and no stop; the reading only the person can take is a line of Ask the person; but the reply showed the person a report, five headed parts in English (What I built, Left open, Readings taken, Not taken yet, One lesson) before the LEDGER block, and the event log from 03:09:42 to 03:11:02 holds no read of work.md, which the agent wrote at 02:59:28
+2026-10-04, session 0004, by hand: the runs from /work to the librarian of sessions 0317 (transcript 5b311f89) and 1416 (transcript 682b0e2f): Retro asked for no approval; work.md was written by the agent in the same turn, at 04:58:07 and 05:02:37, and at 14:38:15; the work was committed as 783d24e5 and bda8f3f4, each on make style clean and make test 1129 passed; one reply ended each Retro, at 05:05:59 and 14:40:43: one sentence in Russian naming the commit, then one LEDGER block with every reading and lesson of the run, nothing after it and no question; after the refusal of guppi onward the session folder was committed and /handoff called in the same turn; no defer, no decision and no stop; what needs a decision stands under For the next session of handoff.md, and its Ask the person is empty in 0317 and "None" in 1416; not exercised: a red test saved as a patch, a refusal of the ledger hook — the person's word in this session: not met for long, a lesson if it comes —, a stop opening with STOP:
 
 ## History
 
@@ -48,3 +48,4 @@ Retro asks for no approval: it sorts the boxes of `raw/<date>/<hi HHMM>/spec.md`
 - 2026-10-01 updated: the Criterion replaced whole — the reply that ends Retro holds one sentence in the language of the chat that names the commit and the LEDGER block, no heading, list or other paragraph; work.md the agent wrote or changed in the same turn counts as read (case 569.1) · [[decision-case-569.1]]
 - 2026-10-02 updated: the Criterion replaced whole — a line the ledger hook refuses at the end of Retro is written again in a reply that holds only it, and the run goes on to /handoff (case 596.2) · [[decision-case-596.2]]
 - 2026-10-03 updated: method names the kind of its moment (case 613.3) · [[decision-case-613.3]]
+- 2026-10-04 status: pending → passed · raw/2026-10-04/0004/ledger.md#L16

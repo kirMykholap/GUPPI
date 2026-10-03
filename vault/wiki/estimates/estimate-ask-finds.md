@@ -1,11 +1,11 @@
 ---
 type: estimate
 kind: QA
-status: pending
+status: failed
 target: "[[rule-ask]]"
 purpose: ask-guppi finds a page by meaning in either language, names the rule a proposal crosses and the state of a named slug, and answers in five lines, a list of the paths of the files it read allowed after them
 method: "by hand in a later session: three dispatches of ask-guppi, one existing page asked in English and in Russian, one proposal that crosses a known rule, each read against the event log"
-checked: 2026-10-01
+checked: 2026-10-04
 origin: raw/2026-09-09/ledger.md#case-23.1
 sprint: migration
 created: 2026-09-09
@@ -32,7 +32,7 @@ The answer opens with exactly five lines: `exists`, `near`, `missing`, `rules` a
 
 ## Result
 
-2026-10-01, by hand, three dispatches of ask-guppi in session 1441 at 17:11:15 (event_log lines 1075-1077): a page asked in English and in Russian whether a rule sends the agent from Retro to /handoff, both naming rule-retro-onward under exists; a proposal of a SessionStart hook that blocks until /hi, whose rules line names lesson-hooks-sessionstart-cannot-block, rule-session-start and rule-hook-registry and whose tags/slug line gives the slug free after a Glob over vault/archive/; each dispatch stands in the event log; but the English answer and the SessionStart answer each add a Files: list of six and five page paths after the five lines, against exactly five lines and nothing beyond them; the Russian answer holds five lines
+2026-10-04, session 0004, by hand: the four dispatches of ask-guppi since the Criterion of case 582, each at /pre-spec, read in their agent transcripts against the event log lines `02:35:24 cf8077b8`, `04:47:32 5b311f89`, `14:11:01 26e79919` and `14:36:33 682b0e2f` of vault/raw/2026-10-03/event_log.md: each started with the Grep `^(purpose|deferred_by):` over vault/wiki/rules/; the answer of 1341 is the five lines exists, near, missing, rules and tags/slug; the answer of 0115 opens with the five labels but holds nested list lines under each; the answer of 0317 opens "Six findings across 611, 612 and 613" and goes on in numbered sections with a Files list, and the answer of 1416 opens "The plan has no Case" with three numbered points, so two of four do not open with the five lines that `.claude/agents/ask-guppi.md` and the Criterion require, while the /pre-spec skill asks the agent for three kinds of findings; not exercised: a page asked in English and in Russian, a proposal that crosses a rule, a named slug checked in the archive
 
 ## History
 
@@ -45,3 +45,5 @@ The answer opens with exactly five lines: `exists`, `near`, `missing`, `rules` a
 - 2026-09-29 updated: the Criterion replaced whole — the head and the blocks 105.1 and 147.2 into one When and Then, the one-time questions and the index files out; purpose and method set, Context and Method out (case 500.1) · [[decision-case-500.1]]
 - 2026-10-01 status: pending → failed · raw/2026-10-01/1441/ledger.md#L33
 - 2026-10-01 updated: the Criterion replaced whole — a list of file paths may follow the five lines, as the general note of Claude Code asks of a sub-agent; nothing else follows them (case 582) · [[decision-case-582]]
+- 2026-10-04 status: pending → failed · raw/2026-10-04/0004/ledger.md#L17
+- 2026-10-04 deferred · [[decision-case-623]]

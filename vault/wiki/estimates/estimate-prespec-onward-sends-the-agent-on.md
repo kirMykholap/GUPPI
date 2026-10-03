@@ -1,11 +1,11 @@
 ---
 type: estimate
 kind: QA
-status: pending
+status: passed
 target: "[[rule-prespec-onward]]"
 purpose: Whether guppi onward --plan refuses the end of a reply that leaves no Case open and no Case waiting in Plan Mode, sends the agent to /pre-spec or to the check and the exit, once a stretch and once more after each reply the ledger hook refused, judged by the refusals in the transcript whatever stop_hook_active says, not on a reply that opens with STOP:, and is silent otherwise
 method: "uv run pytest tests/test_onward.py tests/test_ledger.py; by hand at a Plan Mode at which the ledger hook refuses a line of the reply that acknowledges the last ratification: the transcript, the event log and frontier.md, recorded in the estimate line"
-checked: 2026-10-01
+checked: 2026-10-04
 origin: raw/2026-09-30/2356/ledger.md#case-561.5
 sprint: migration
 created: 2026-09-30
@@ -32,7 +32,7 @@ It exits 2 when all of these hold: the event log of the session's window holds a
 
 ## Result
 
-2026-10-01, uv run pytest tests/test_onward.py: 25 passed; by hand, the first Plan Mode after the render, session 1237: after the defer reply of 14:08:36, the last line under Cases closed and its LEDGER block carried, guppi onward --plan exited 2 telling the agent to call /pre-spec now, with the STOP: clause; after the re-ratification of 567 and 569 at 14:19:47 it exited 2 telling the agent to run guppi prespec --check, fix what it prints and call ExitPlanMode; after the acknowledging replies of 567, 568 and 569 with Cases lines open it printed nothing; it fired once in each turn; unlike the observation of session 2356, it fired after a re-ratification whose decision lines the ledger already held
+2026-10-04, session 0004: `uv run pytest -q tests/test_onward.py tests/test_ledger.py` 120 passed; by hand, the Plan Mode of session 1341 (transcript 26e79919): after the reply of 14:08:30 that closed the last open line under Cases and carried a LEDGER block of defers, `uv run guppi onward --plan` refused once at 14:08:32, with no prespec line of the session yet, telling the agent to call /pre-spec now, with the STOP: clause, and the agent called /pre-spec at 14:08:34; after the re-ratification of 614 at 14:12:49, the prespec line standing since 14:08:34, it refused once at 14:12:51 telling the agent to run `uv run guppi prespec --check`, fix what it prints and call ExitPlanMode, which the agent did at 14:12:54 and 14:12:59; after the acknowledging reply of 614 at 14:06:39, lines under Cases open, it printed nothing, and in session 0004 it printed nothing after the acknowledging replies of 619 and 620, lines under Cases open; `.claude/settings.json` registers it on Stop after `uv run guppi onward`; not exercised: a refusal of the ledger hook — the person's word in this session: not met for long, a lesson if it comes —, an error of its own
 
 ## History
 
@@ -40,3 +40,4 @@ It exits 2 when all of these hold: the event log of the session's window holds a
 - 2026-10-01 status: pending → passed · raw/2026-10-01/1237/ledger.md#L39
 - 2026-10-02 updated: the Criterion replaced whole — the run speaks again after each reply the ledger hook refused (case 597.1) · [[decision-case-597.1]]
 - 2026-10-03 updated: method names the kind of its moment (case 613.3) · [[decision-case-613.3]]
+- 2026-10-04 status: pending → passed · raw/2026-10-04/0004/ledger.md#L14

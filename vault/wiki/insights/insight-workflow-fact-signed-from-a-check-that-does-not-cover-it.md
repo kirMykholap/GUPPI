@@ -2,8 +2,8 @@
 type: insight
 pattern: "A fact is signed — in a Case, in a reading, in a ledger line — on a check narrower than the claim: the command that ran answered one question and the sentence it supports makes a wider one, while the wider check was one more command away."
 status: open
-children: ["[[lesson-fact-asserted-from-a-partial-check]]", "[[lesson-ledger-estimate-line-carried-a-count-not-read]]", "[[lesson-case-context-claim-wider-than-its-search]]", "[[lesson-case-context-bookkeeping-written-from-memory]]", "[[lesson-case-build-writes-a-count-no-command-printed]]", "[[lesson-case-build-frame-count-claimed-over-a-partial-search]]", "[[lesson-case-build-context-claims-an-effect-no-check-covers]]", "[[lesson-case-build-a-count-in-context-not-from-a-run]]"]
-severity: 1
+children: ["[[lesson-fact-asserted-from-a-partial-check]]", "[[lesson-ledger-estimate-line-carried-a-count-not-read]]", "[[lesson-case-context-claim-wider-than-its-search]]", "[[lesson-case-context-bookkeeping-written-from-memory]]", "[[lesson-case-build-writes-a-count-no-command-printed]]", "[[lesson-case-build-frame-count-claimed-over-a-partial-search]]", "[[lesson-case-build-context-claims-an-effect-no-check-covers]]", "[[lesson-case-build-a-count-in-context-not-from-a-run]]", "[[lesson-case-build-a-page-judged-true-by-its-mark-not-its-moment]]", "[[lesson-case-build-hits-counted-as-lines]]"]
+severity: 3
 addressed_by: "[[decision-case-544.1]]"
 origin: raw/2026-09-22/2046/ledger.md#L21
 sprint: migration
@@ -57,3 +57,5 @@ Neither half is decided here.
 - 2026-09-30 updated: actioned: case-guppi searches the live pages for each slug the change makes false, and a claim about every text names its search (case 544.1) · [[decision-case-544.1]]
 - 2026-09-30 updated: child lesson-case-build-context-claims-an-effect-no-check-covers added (synthesis) · raw/2026-09-30/1306/ledger.md#L47
 - 2026-10-03 updated: child lesson-case-build-a-count-in-context-not-from-a-run added, status open (synthesis) · raw/2026-10-03/0317/ledger.md#L55
+- 2026-10-04 updated: child lesson-case-build-a-page-judged-true-by-its-mark-not-its-moment added (synthesis) · raw/2026-10-04/0004/ledger.md#L22
+- 2026-10-04 updated: child lesson-case-build-hits-counted-as-lines added (synthesis) · raw/2026-10-04/0004/ledger.md#L23

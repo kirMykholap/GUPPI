@@ -38,3 +38,4 @@ Then:
 - 2026-10-03 updated: method names the kind of its moment (case 613.3) · [[decision-case-613.3]]
 - 2026-10-03 status: pending → failed · raw/2026-10-03/1341/ledger.md#L2
 - 2026-10-03 deferred · [[decision-case-618]]
+- 2026-10-04 deferred · [[decision-case-621]]

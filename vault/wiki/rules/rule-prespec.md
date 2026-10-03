@@ -2,7 +2,7 @@
 type: rule
 kind: Leaf
 purpose: Prevents a set of ratified decisions from reaching the Spec with a contradiction between them or with the vault
-status: built
+status: draft
 enforcement: render
 governs: .claude/skills/pre-spec/SKILL.md
 render_mode: full
@@ -178,3 +178,5 @@ Inside this loop the rule of `vault/wiki/orchestration.md` that no Case is taken
 - 2026-10-02 updated: the loop after the findings sends nothing to a case-guppi until the person has answered every question of the report; the findings and the answers then go out together; the showing named in orchestration.md (case 595.1) · [[decision-case-595.1]]
 - 2026-10-02 status: built → draft · cascade
 - 2026-10-03 status: draft → built · cascade
+- 2026-10-04 updated: the Frontier check takes defer case N from a defer Case of the conserved Spec that the plan's title line names (case 620.2) · [[decision-case-620.2]]
+- 2026-10-04 status: built → draft · cascade

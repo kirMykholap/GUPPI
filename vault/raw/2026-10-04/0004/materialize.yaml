@@ -1,0 +1,1368 @@
+date: '2026-10-04'
+sprint: migration
+ledger: vault/raw/2026-10-04/0004/ledger.md
+spec:
+- vault/raw/2026-10-04/0004/spec.md
+entries:
+- line: 1
+  text: 'estimate[estimate-handoff-dispatches][passed] 2026-10-04, at the /hi of session 0004, by hand:
+    session 0317 (transcript 5b311f89): after the reply that ends Retro and the commit 37c47bd1, /handoff
+    called by Skill at 05:06:09 on an empty Tree line, the event log holding `05:06:09 5b311f89 handoff`;
+    one Bash call counted the ledger lines and no Read call came before handoff.md was written at 05:06:38
+    into raw/2026-10-03/0317/, one document with no `---` and the seven sections of the skill; librarian-guppi
+    dispatched at 05:06:39 with "Materialize 2026-10-03 from vault/raw/2026-10-03/0317/handoff.md.", its
+    report shown at 05:13:39 in a blockquote, 30 of 30 lines equal; session 1416 (transcript 682b0e2f),
+    work.md holding `## Conserved Spec`: /handoff at 14:40:53 on an empty Tree line, the mark `14:40:53
+    682b0e2f handoff`, handoff.md written at 14:41:19 with no Read call before it, no `---` and the seven
+    sections; /handoff dispatched nothing, the next call at 14:41:26 being the switch and merge of /box,
+    whose dispatch at 14:41:51 carries "Materialize 2026-10-03 from vault/raw/2026-10-03/1416/handoff.md.";
+    the only commits after either handoff are the librarian''s, fdd15ff3 and da671ebe, and no reply between
+    a call and its report carries a LEDGER block; not exercised: a dirty tree'
+  kind: estimate
+  category: estimates
+  slug: estimate-handoff-dispatches
+  status: passed
+  result: '2026-10-04, at the /hi of session 0004, by hand: session 0317 (transcript 5b311f89): after
+    the reply that ends Retro and the commit 37c47bd1, /handoff called by Skill at 05:06:09 on an empty
+    Tree line, the event log holding `05:06:09 5b311f89 handoff`; one Bash call counted the ledger lines
+    and no Read call came before handoff.md was written at 05:06:38 into raw/2026-10-03/0317/, one document
+    with no `---` and the seven sections of the skill; librarian-guppi dispatched at 05:06:39 with "Materialize
+    2026-10-03 from vault/raw/2026-10-03/0317/handoff.md.", its report shown at 05:13:39 in a blockquote,
+    30 of 30 lines equal; session 1416 (transcript 682b0e2f), work.md holding `## Conserved Spec`: /handoff
+    at 14:40:53 on an empty Tree line, the mark `14:40:53 682b0e2f handoff`, handoff.md written at 14:41:19
+    with no Read call before it, no `---` and the seven sections; /handoff dispatched nothing, the next
+    call at 14:41:26 being the switch and merge of /box, whose dispatch at 14:41:51 carries "Materialize
+    2026-10-03 from vault/raw/2026-10-03/1416/handoff.md."; the only commits after either handoff are
+    the librarian''s, fdd15ff3 and da671ebe, and no reply between a call and its report carries a LEDGER
+    block; not exercised: a dirty tree'
+  origin: raw/2026-10-04/0004/ledger.md#L1
+  applied: 01:05:39
+- line: 2
+  text: 'estimate[estimate-retro-loads][passed] 2026-10-04, at the /hi of session 0004, by hand: the /retro
+    of session 0317 (transcript 5b311f89, 05:04:23 to 05:05:59): its two readings, `estimate-case-build-writes-the-case`
+    and `estimate-end-of-work-order`, are Estimates no decision line of raw/2026-10-03/0317/ledger.md
+    names, while 27 of the 35 open W lines of its frontier.md name an Estimate a decision line of that
+    ledger updates and none of them got a reading; handoff.md names the `read` lines of the session''s
+    own slugs under Debt and the 37 method rewrites of 613.3 as readings of later sessions; the /retro
+    of session 1416 (transcript 682b0e2f, 14:39:41 to 14:40:43), work.md naming vault/raw/2026-10-03/1341/
+    under `## Conserved Spec`: handoff.md sorts the boxes of that folder''s spec.md — one box waiting
+    for the librarian, the `create` of `entity-reading-probe`, and no `read` line of a slug the session
+    creates or updates —, and its two readings, `estimate-hi-takes-a-conserved-spec` and `estimate-spec-capture-offers-the-fork`,
+    are Estimates no decision line of the 1341 or 1416 ledger names'
+  kind: estimate
+  category: estimates
+  slug: estimate-retro-loads
+  status: passed
+  result: '2026-10-04, at the /hi of session 0004, by hand: the /retro of session 0317 (transcript 5b311f89,
+    05:04:23 to 05:05:59): its two readings, `estimate-case-build-writes-the-case` and `estimate-end-of-work-order`,
+    are Estimates no decision line of raw/2026-10-03/0317/ledger.md names, while 27 of the 35 open W lines
+    of its frontier.md name an Estimate a decision line of that ledger updates and none of them got a
+    reading; handoff.md names the `read` lines of the session''s own slugs under Debt and the 37 method
+    rewrites of 613.3 as readings of later sessions; the /retro of session 1416 (transcript 682b0e2f,
+    14:39:41 to 14:40:43), work.md naming vault/raw/2026-10-03/1341/ under `## Conserved Spec`: handoff.md
+    sorts the boxes of that folder''s spec.md — one box waiting for the librarian, the `create` of `entity-reading-probe`,
+    and no `read` line of a slug the session creates or updates —, and its two readings, `estimate-hi-takes-a-conserved-spec`
+    and `estimate-spec-capture-offers-the-fork`, are Estimates no decision line of the 1341 or 1416 ledger
+    names'
+  origin: raw/2026-10-04/0004/ledger.md#L2
+  applied: 01:05:39
+- line: 3
+  text: 'estimate[estimate-spec-box-runs-a-conserved-spec][passed] 2026-10-04, at the /hi of session 0004:
+    `uv run guppi render --check` exit 0; by hand, session 1416 (transcript 682b0e2f), which took the
+    conserved Spec of raw/2026-10-03/1341/ at the Frontier: /box called at 14:37:13 with that folder on
+    the line printed after ExitPlanMode; `uv run guppi box --check` printed nothing, exit 0; the agent
+    committed the session folder as 3243a81d on `migration`, switched to `spec/2026-10-03-1341` and brought
+    it up by `git merge --ff-only migration`, 9e0296ca..3243a81d; /work called with the folder at 14:37:26,
+    and the Work readings, /retro and /handoff ran with no word of the person, the one Stop before the
+    report, at 14:40:45, sending the agent on; after handoff.md at 14:41:19 it switched back, merged by
+    `git merge --ff-only` 3243a81d..a67b0339, ran `git branch -d spec/2026-10-03-1341` and make test,
+    exit 0, 1129 passed, 6 skipped; librarian-guppi dispatched once, at 14:41:51, with the path of raw/2026-10-03/1416/handoff.md,
+    its report shown unchanged, 16 of 16 lines, with the exit code of make test; the commits of the Spec
+    branch, bda8f3f4 and a67b0339, touch only vault/raw/, and the only commit after the handoff is the
+    librarian''s da671ebe on `migration`; not exercised: a line printed by the check, a merge that refuses'
+  kind: estimate
+  category: estimates
+  slug: estimate-spec-box-runs-a-conserved-spec
+  status: passed
+  result: '2026-10-04, at the /hi of session 0004: `uv run guppi render --check` exit 0; by hand, session
+    1416 (transcript 682b0e2f), which took the conserved Spec of raw/2026-10-03/1341/ at the Frontier:
+    /box called at 14:37:13 with that folder on the line printed after ExitPlanMode; `uv run guppi box
+    --check` printed nothing, exit 0; the agent committed the session folder as 3243a81d on `migration`,
+    switched to `spec/2026-10-03-1341` and brought it up by `git merge --ff-only migration`, 9e0296ca..3243a81d;
+    /work called with the folder at 14:37:26, and the Work readings, /retro and /handoff ran with no word
+    of the person, the one Stop before the report, at 14:40:45, sending the agent on; after handoff.md
+    at 14:41:19 it switched back, merged by `git merge --ff-only` 3243a81d..a67b0339, ran `git branch
+    -d spec/2026-10-03-1341` and make test, exit 0, 1129 passed, 6 skipped; librarian-guppi dispatched
+    once, at 14:41:51, with the path of raw/2026-10-03/1416/handoff.md, its report shown unchanged, 16
+    of 16 lines, with the exit code of make test; the commits of the Spec branch, bda8f3f4 and a67b0339,
+    touch only vault/raw/, and the only commit after the handoff is the librarian''s da671ebe on `migration`;
+    not exercised: a line printed by the check, a merge that refuses'
+  origin: raw/2026-10-04/0004/ledger.md#L3
+  applied: 01:05:39
+- line: 4
+  text: 'estimate[estimate-where-to-stop-stops-only-on-its-conditions][passed] 2026-10-04, at the /hi
+    of session 0004, by hand: the run of session 0317 (transcript 5b311f89) from the /work the agent called
+    at the fork at 04:57:36 to the librarian''s report at 05:13:39, and the run of /box of session 1416
+    (transcript 682b0e2f) from 14:37:13 to the report at 14:47:46: the /work call of 0317 carried vault/wiki/where-to-stop.md
+    as a file attachment; in 1416 the /box call carried it as a file attachment and the /work call 13
+    seconds later as an already-read attachment of the same file; neither run stopped for the person and
+    no condition of the file arose: no fork of a contract, no task opening with `stop:` in raw/2026-10-03/0317/spec.md
+    or raw/2026-10-03/1341/spec.md, `guppi box --check` printing nothing and both merges of /box fast-forwards,
+    and the one `git checkout -- tests/test_casecheck.py` of 0317, at 05:05:33, came after the commit
+    783d24e5 held that file and discarded nothing; the refusals of bashguard at 05:00:15 and of `guppi
+    onward` at 05:06:02 and 14:40:45 each gave a step the agent followed; case-schema.md names a task
+    opening with `stop:` as one that waits for the person''s word; not exercised: a stop, a reply opening
+    with STOP:, the branch main, a refused check or merge of /box, a run going on after the person''s
+    answer'
+  kind: estimate
+  category: estimates
+  slug: estimate-where-to-stop-stops-only-on-its-conditions
+  status: passed
+  result: '2026-10-04, at the /hi of session 0004, by hand: the run of session 0317 (transcript 5b311f89)
+    from the /work the agent called at the fork at 04:57:36 to the librarian''s report at 05:13:39, and
+    the run of /box of session 1416 (transcript 682b0e2f) from 14:37:13 to the report at 14:47:46: the
+    /work call of 0317 carried vault/wiki/where-to-stop.md as a file attachment; in 1416 the /box call
+    carried it as a file attachment and the /work call 13 seconds later as an already-read attachment
+    of the same file; neither run stopped for the person and no condition of the file arose: no fork of
+    a contract, no task opening with `stop:` in raw/2026-10-03/0317/spec.md or raw/2026-10-03/1341/spec.md,
+    `guppi box --check` printing nothing and both merges of /box fast-forwards, and the one `git checkout
+    -- tests/test_casecheck.py` of 0317, at 05:05:33, came after the commit 783d24e5 held that file and
+    discarded nothing; the refusals of bashguard at 05:00:15 and of `guppi onward` at 05:06:02 and 14:40:45
+    each gave a step the agent followed; case-schema.md names a task opening with `stop:` as one that
+    waits for the person''s word; not exercised: a stop, a reply opening with STOP:, the branch main,
+    a refused check or merge of /box, a run going on after the person''s answer'
+  origin: raw/2026-10-04/0004/ledger.md#L4
+  applied: 01:05:39
+- line: 5
+  text: 'estimate[estimate-work-mode-takes-the-work-readings][passed] 2026-10-04, at the /hi of session
+    0004, by hand: the /work of session 0317 that the agent called at the fork (transcript 5b311f89):
+    after the last task, make test and make style at 05:03:08, it took in the order of frontier.md W6
+    `estimate-case-build-writes-the-case` and W19 `estimate-end-of-work-order`, closed both `[x] … · work`
+    at 05:04:20 and called /retro at 05:04:23; their lines stand only in the LEDGER block of the reply
+    that ends Retro at 05:05:59, ledger lines 52–53; of the open W lines it left, 27 name an Estimate
+    a decision line of 0317 updates, and the other 7 were read later from moments of sessions 1341 and
+    1416 or still wait; the /work that /box called in session 1416 (transcript 682b0e2f): after work.md
+    and the deletion of carry.md at 14:38:26, it took W17 `estimate-hi-takes-a-conserved-spec` and W29
+    `estimate-spec-capture-offers-the-fork` in that order, closed both at 14:39:36, called /retro at 14:39:41,
+    and their lines stand in the reply that ends Retro at 14:40:43; no decision line of raw/2026-10-03/1341/ledger.md
+    names a W Estimate; in neither run did a reply end before the reply that ends Retro, the first Stop
+    coming at 05:06:02 and 14:40:45; the step ticked no `read` box: the read boxes of 0317/spec.md stood
+    open at 05:04:50, and bda8f3f4 does not touch 1341/spec.md'
+  kind: estimate
+  category: estimates
+  slug: estimate-work-mode-takes-the-work-readings
+  status: passed
+  result: '2026-10-04, at the /hi of session 0004, by hand: the /work of session 0317 that the agent called
+    at the fork (transcript 5b311f89): after the last task, make test and make style at 05:03:08, it took
+    in the order of frontier.md W6 `estimate-case-build-writes-the-case` and W19 `estimate-end-of-work-order`,
+    closed both `[x] … · work` at 05:04:20 and called /retro at 05:04:23; their lines stand only in the
+    LEDGER block of the reply that ends Retro at 05:05:59, ledger lines 52–53; of the open W lines it
+    left, 27 name an Estimate a decision line of 0317 updates, and the other 7 were read later from moments
+    of sessions 1341 and 1416 or still wait; the /work that /box called in session 1416 (transcript 682b0e2f):
+    after work.md and the deletion of carry.md at 14:38:26, it took W17 `estimate-hi-takes-a-conserved-spec`
+    and W29 `estimate-spec-capture-offers-the-fork` in that order, closed both at 14:39:36, called /retro
+    at 14:39:41, and their lines stand in the reply that ends Retro at 14:40:43; no decision line of raw/2026-10-03/1341/ledger.md
+    names a W Estimate; in neither run did a reply end before the reply that ends Retro, the first Stop
+    coming at 05:06:02 and 14:40:45; the step ticked no `read` box: the read boxes of 0317/spec.md stood
+    open at 05:04:50, and bda8f3f4 does not touch 1341/spec.md'
+  origin: raw/2026-10-04/0004/ledger.md#L5
+  applied: 01:05:39
+- line: 6
+  text: 'estimate[estimate-work-mode-runs-the-spec-on-a-branch-from-a-baseline][passed] 2026-10-04, at
+    the /hi of session 0004: `uv run guppi render --check` exit 0; by hand, the /work the agent called
+    at the fork in session 0317 (transcript 5b311f89) and the /work that /box called in session 1416 (transcript
+    682b0e2f): in each the skill came with "Run these 2 commands first" in place of the output of `make
+    test` and `make lint`, and the agent ran both itself; 0317 on `migration`: work.md written at 04:58:07,
+    before the first Edit at 04:59:08, with make test exit 0, make lint exit 2 and its 43 finding lines
+    as printed, and an empty `## Expected red`; the code and test boxes ticked in the order of the Spec,
+    lines 116–117 at 05:01:00 after the tests of 611 and lines 490–492 at 05:02:26 after those of 613.1;
+    the task of 613.1, which adds the class `moment` to `make lint`, added one line under `## Expected
+    red` at 05:02:37 naming the check and the pages it waits for; 1416 on `spec/2026-10-03-1341`: work.md
+    written at 14:38:15 with make test exit 0, make lint exit 2 and its 47 finding lines, an empty `##
+    Expected red` and `## Conserved Spec` naming vault/raw/2026-10-03/1341/; that Spec holds no task of
+    code, and its carry.md was deleted at 14:38:26, before the Work readings; the commits of both runs,
+    783d24e5 and 37c47bd1, bda8f3f4 and a67b0339, touch no file of vault/wiki/, and no read, page, render,
+    sprint or glossary box was ticked; not exercised: a /work the person types — the person''s word at
+    this /hi: no one types it —, the branch main, a resume over a work.md that already stands'
+  kind: estimate
+  category: estimates
+  slug: estimate-work-mode-runs-the-spec-on-a-branch-from-a-baseline
+  status: passed
+  result: '2026-10-04, at the /hi of session 0004: `uv run guppi render --check` exit 0; by hand, the
+    /work the agent called at the fork in session 0317 (transcript 5b311f89) and the /work that /box called
+    in session 1416 (transcript 682b0e2f): in each the skill came with "Run these 2 commands first" in
+    place of the output of `make test` and `make lint`, and the agent ran both itself; 0317 on `migration`:
+    work.md written at 04:58:07, before the first Edit at 04:59:08, with make test exit 0, make lint exit
+    2 and its 43 finding lines as printed, and an empty `## Expected red`; the code and test boxes ticked
+    in the order of the Spec, lines 116–117 at 05:01:00 after the tests of 611 and lines 490–492 at 05:02:26
+    after those of 613.1; the task of 613.1, which adds the class `moment` to `make lint`, added one line
+    under `## Expected red` at 05:02:37 naming the check and the pages it waits for; 1416 on `spec/2026-10-03-1341`:
+    work.md written at 14:38:15 with make test exit 0, make lint exit 2 and its 47 finding lines, an empty
+    `## Expected red` and `## Conserved Spec` naming vault/raw/2026-10-03/1341/; that Spec holds no task
+    of code, and its carry.md was deleted at 14:38:26, before the Work readings; the commits of both runs,
+    783d24e5 and 37c47bd1, bda8f3f4 and a67b0339, touch no file of vault/wiki/, and no read, page, render,
+    sprint or glossary box was ticked; not exercised: a /work the person types — the person''s word at
+    this /hi: no one types it —, the branch main, a resume over a work.md that already stands'
+  origin: raw/2026-10-04/0004/ledger.md#L6
+  applied: 01:05:39
+- line: 7
+  text: decision[case 619.1][update][entity-reading-probe]{ref:entity-reading-probe}
+  case: '619.1'
+  kind: update
+  slug: entity-reading-probe
+  origin: raw/2026-10-04/0004/ledger.md#case-619.1
+  decision: decision-case-619.1
+  ref: entity-reading-probe
+  category: entities
+  change: quillwort replaced by bramblewort across the vault, the live leg of estimate-generate-rewords
+  reword:
+  - old: quillwort
+    new: bramblewort
+  applied: 01:05:39
+- line: 8
+  text: decision[case 619.2][delete][entity-reading-probe]{ref:entity-reading-probe}
+  case: '619.2'
+  kind: delete
+  slug: entity-reading-probe
+  origin: raw/2026-10-04/0004/ledger.md#case-619.2
+  decision: decision-case-619.2
+  ref: entity-reading-probe
+  category: entities
+  impact: A test page that no live page links to and that has no Estimate. Its slug stays in the create
+    list of decision-case-614 and in the Result of estimate-plan-mode-verified, both records that an archived
+    page keeps true. Its delete removes the schema and orphan findings of make lint.
+  applied: 01:05:39
+- line: 9
+  text: decision[case 620.1][update][rule-skill-hi]{ref:rule-skill-hi}
+  case: '620.1'
+  kind: update
+  slug: rule-skill-hi
+  origin: raw/2026-10-04/0004/ledger.md#case-620.1
+  decision: decision-case-620.1
+  ref: rule-skill-hi
+  category: rules
+  replace:
+  - old: a short-form Case and its ledger line, and its target enters `backlog.md` through `deferred_by`
+      (case 451.1);
+    new: a short-form Case and its ledger line, and its target enters `backlog.md` through `deferred_by`
+      (case 451.1), or a Case of the conserved Spec the session takes, as below (case 620.1);
+  - old: close the other open lines under `## Cases` as left, and go on to `/pre-spec`.
+    new: close the other open lines under `## Cases` as left — a line whose target a `defer` item of that
+      Spec puts off closes `[-] … · defer case N`, N being the Case of that Spec that holds the item,
+      with no short-form Case and no ledger line of this session (case 620.1) — and go on to `/pre-spec`.
+  change: a line whose target a defer item of the conserved Spec puts off closes defer case N with that
+    Spec's Case (case 620.1)
+  applied: 01:05:39
+- line: 10
+  text: decision[case 620.1][update][estimate-hi-takes-a-conserved-spec]{ref:estimate-hi-takes-a-conserved-spec}
+  case: '620.1'
+  kind: update
+  slug: estimate-hi-takes-a-conserved-spec
+  origin: raw/2026-10-04/0004/ledger.md#case-620.1
+  decision: decision-case-620.1
+  ref: estimate-hi-takes-a-conserved-spec
+  category: estimates
+  set:
+    status: pending
+  change: the Criterion replaced whole — a line put off by a defer of the conserved Spec closes defer
+    case N with that Spec's Case
+  sections:
+    Criterion: 'When:
+
+      In a session that `/hi` opened from `.claude/skills/hi/SKILL.md` as rendered from `rule-skill-hi`,
+      the person takes a conserved Spec of `## Cases` of `raw/<date>/<hi HHMM>/frontier.md`.
+
+
+      Then:
+
+      The agent takes the Spec whole, to be run by `/box`, only while the session''s ledger holds no decision
+      line other than a `defer`, and after it ratifies no Case but a short-form defer.
+
+      **＋** It closes the line of that Spec `[x] … · work`.
+
+      **＋** It creates the plan file with one title line, `# Session <hi HHMM> — runs the conserved Spec
+      vault/raw/<date>/<HHMM>/spec.md`, the path that `vault/wiki/backlog.md` names for that Spec.
+
+      **＋** It closes each other open line under `## Cases` as left — `[-] … · backlog · kept`, `[-] …
+      · sprint · defer` or `[-] … · defer case N` — and goes on to `/pre-spec`.
+
+      **＋** A line whose target a `defer` item of that Spec puts off closes `[-] … · defer case N`, N
+      being the Case of that Spec that holds the item, and the session writes no short-form Case and no
+      ledger line for it.
+
+      **－** No other line under `## Cases` of `raw/<date>/<hi HHMM>/frontier.md` closes `[x]`.
+
+      **－** No Case of the conserved Spec is built again or ratified again in this session.
+
+      **－** `.claude/skills/hi/SKILL.md` equals the Render of `rule-skill-hi` and is not edited by hand.'
+  applied: 01:05:39
+- line: 11
+  text: decision[case 620.1][update][insight-session-frontier-no-closer-for-an-item-ended-outside-the-plan]{ref:insight-session-frontier-no-closer-for-an-item-ended-outside-the-plan}
+  case: '620.1'
+  kind: update
+  slug: insight-session-frontier-no-closer-for-an-item-ended-outside-the-plan
+  origin: raw/2026-10-04/0004/ledger.md#case-620.1
+  decision: decision-case-620.1
+  ref: insight-session-frontier-no-closer-for-an-item-ended-outside-the-plan
+  category: insights
+  set:
+    status: actioned
+    addressed_by: decision-case-620.1
+  change: 'actioned: a line put off by a defer of the conserved Spec closes defer case N, and a sprint
+    item left closes sprint defer (cases 356.2, 620.1)'
+  applied: 01:05:39
+- line: 12
+  text: decision[case 620.2][update][rule-prespec]{ref:rule-prespec}
+  case: '620.2'
+  kind: update
+  slug: rule-prespec
+  origin: raw/2026-10-04/0004/ledger.md#case-620.2
+  decision: decision-case-620.2
+  ref: rule-prespec
+  category: rules
+  change: the Frontier check takes defer case N from a defer Case of the conserved Spec that the plan's
+    title line names (case 620.2)
+  applied: 01:05:39
+- line: 13
+  text: decision[case 620.2][update][estimate-prespec-checks-the-frontier]{ref:estimate-prespec-checks-the-frontier}
+  case: '620.2'
+  kind: update
+  slug: estimate-prespec-checks-the-frontier
+  origin: raw/2026-10-04/0004/ledger.md#case-620.2
+  decision: decision-case-620.2
+  ref: estimate-prespec-checks-the-frontier
+  category: estimates
+  set:
+    status: pending
+  change: the Criterion replaced whole — defer case N is found in the plan or in the conserved Spec its
+    title line names
+  sections:
+    Criterion: 'When:
+
+      `uv run guppi prespec --check <plan>` reads the session''s `vault/raw/<date>/<HHMM>/frontier.md`,
+      and the title line of `<plan>` may name the `vault/raw/<date>/<HHMM>/spec.md` of a folder that holds
+      `carry.md`.
+
+
+      Then:
+
+      A missing file is the finding `frontier: <path> is missing`.
+
+      **＋** An open line under `## Cases` is a finding. An open line under `## Work` or `## Ask` is not.
+
+      **＋** A closed line whose last segment after ` · ` is none of `case N`, `work`, `defer`, `kept`
+      and `defer case N` is a finding.
+
+      **＋** These pairings of box and closer are findings: `[x]` with `defer`, `kept` or `defer case N`,
+      and `[-]` with `case N` or `work`.
+
+      **＋** `defer` is clean only after the source segment `sprint`, the segment before the closer. `kept`
+      is clean only after the source `backlog`. After any other source, each one is a finding.
+
+      **＋** `defer case N` after the source `sprint` or `backlog` is a finding. After another source,
+      it is a finding when there is no `defer` item under Case N in the plan, and none under Case N of
+      the `vault/raw/<date>/<HHMM>/spec.md` that the title line of the plan names.
+
+      **＋** A line closed `case N` is a finding when the plan has no heading of Case N.
+
+      **－** A title line that names no folder holding `carry.md` adds no Case: `defer case N` is then
+      judged against the plan alone.
+
+      **－** A line that is not a box line, such as `Backlog: N items` or an indented `- near` line, is
+      not read. No line of another session''s Frontier file is read.'
+  applied: 01:05:39
+- line: 14
+  text: 'estimate[estimate-prespec-onward-sends-the-agent-on][passed] 2026-10-04, session 0004: `uv run
+    pytest -q tests/test_onward.py tests/test_ledger.py` 120 passed; by hand, the Plan Mode of session
+    1341 (transcript 26e79919): after the reply of 14:08:30 that closed the last open line under Cases
+    and carried a LEDGER block of defers, `uv run guppi onward --plan` refused once at 14:08:32, with
+    no prespec line of the session yet, telling the agent to call /pre-spec now, with the STOP: clause,
+    and the agent called /pre-spec at 14:08:34; after the re-ratification of 614 at 14:12:49, the prespec
+    line standing since 14:08:34, it refused once at 14:12:51 telling the agent to run `uv run guppi prespec
+    --check`, fix what it prints and call ExitPlanMode, which the agent did at 14:12:54 and 14:12:59;
+    after the acknowledging reply of 614 at 14:06:39, lines under Cases open, it printed nothing, and
+    in session 0004 it printed nothing after the acknowledging replies of 619 and 620, lines under Cases
+    open; `.claude/settings.json` registers it on Stop after `uv run guppi onward`; not exercised: a refusal
+    of the ledger hook — the person''s word in this session: not met for long, a lesson if it comes —,
+    an error of its own'
+  kind: estimate
+  category: estimates
+  slug: estimate-prespec-onward-sends-the-agent-on
+  status: passed
+  result: '2026-10-04, session 0004: `uv run pytest -q tests/test_onward.py tests/test_ledger.py` 120
+    passed; by hand, the Plan Mode of session 1341 (transcript 26e79919): after the reply of 14:08:30
+    that closed the last open line under Cases and carried a LEDGER block of defers, `uv run guppi onward
+    --plan` refused once at 14:08:32, with no prespec line of the session yet, telling the agent to call
+    /pre-spec now, with the STOP: clause, and the agent called /pre-spec at 14:08:34; after the re-ratification
+    of 614 at 14:12:49, the prespec line standing since 14:08:34, it refused once at 14:12:51 telling
+    the agent to run `uv run guppi prespec --check`, fix what it prints and call ExitPlanMode, which the
+    agent did at 14:12:54 and 14:12:59; after the acknowledging reply of 614 at 14:06:39, lines under
+    Cases open, it printed nothing, and in session 0004 it printed nothing after the acknowledging replies
+    of 619 and 620, lines under Cases open; `.claude/settings.json` registers it on Stop after `uv run
+    guppi onward`; not exercised: a refusal of the ledger hook — the person''s word in this session: not
+    met for long, a lesson if it comes —, an error of its own'
+  origin: raw/2026-10-04/0004/ledger.md#L14
+  applied: 01:05:39
+- line: 15
+  text: 'estimate[estimate-retro-onward-sends-the-agent-to-the-handoff][passed] 2026-10-04, session 0004:
+    `uv run pytest -q tests/test_onward.py tests/test_ledger.py` 120 passed; by hand, sessions 0317 (transcript
+    5b311f89) and 1416 (transcript 682b0e2f): after the retro marks of 05:04:23 and 14:39:41, `uv run
+    guppi onward` refused the reply that ended Retro once each, at 05:06:02 and 14:40:45, its reason to
+    commit the session folder and call /handoff, with the STOP: clause; the agent committed 37c47bd1 and
+    a67b0339 and called /handoff at 05:06:09 and 14:40:53; at the last replies, 05:13:39 and 14:47:46,
+    with handoff.md standing, it printed nothing; `.claude/settings.json` registers it on Stop after ledger,
+    ratified, casecheck and context; not exercised: a refusal of the ledger hook — the person''s word
+    in this session: not met for long, a lesson if it comes —, a reply opening with STOP:'
+  kind: estimate
+  category: estimates
+  slug: estimate-retro-onward-sends-the-agent-to-the-handoff
+  status: passed
+  result: '2026-10-04, session 0004: `uv run pytest -q tests/test_onward.py tests/test_ledger.py` 120
+    passed; by hand, sessions 0317 (transcript 5b311f89) and 1416 (transcript 682b0e2f): after the retro
+    marks of 05:04:23 and 14:39:41, `uv run guppi onward` refused the reply that ended Retro once each,
+    at 05:06:02 and 14:40:45, its reason to commit the session folder and call /handoff, with the STOP:
+    clause; the agent committed 37c47bd1 and a67b0339 and called /handoff at 05:06:09 and 14:40:53; at
+    the last replies, 05:13:39 and 14:47:46, with handoff.md standing, it printed nothing; `.claude/settings.json`
+    registers it on Stop after ledger, ratified, casecheck and context; not exercised: a refusal of the
+    ledger hook — the person''s word in this session: not met for long, a lesson if it comes —, a reply
+    opening with STOP:'
+  origin: raw/2026-10-04/0004/ledger.md#L15
+  applied: 01:05:39
+- line: 16
+  text: 'estimate[estimate-retro-runs-on-to-the-handoff][passed] 2026-10-04, session 0004, by hand: the
+    runs from /work to the librarian of sessions 0317 (transcript 5b311f89) and 1416 (transcript 682b0e2f):
+    Retro asked for no approval; work.md was written by the agent in the same turn, at 04:58:07 and 05:02:37,
+    and at 14:38:15; the work was committed as 783d24e5 and bda8f3f4, each on make style clean and make
+    test 1129 passed; one reply ended each Retro, at 05:05:59 and 14:40:43: one sentence in Russian naming
+    the commit, then one LEDGER block with every reading and lesson of the run, nothing after it and no
+    question; after the refusal of guppi onward the session folder was committed and /handoff called in
+    the same turn; no defer, no decision and no stop; what needs a decision stands under For the next
+    session of handoff.md, and its Ask the person is empty in 0317 and "None" in 1416; not exercised:
+    a red test saved as a patch, a refusal of the ledger hook — the person''s word in this session: not
+    met for long, a lesson if it comes —, a stop opening with STOP:'
+  kind: estimate
+  category: estimates
+  slug: estimate-retro-runs-on-to-the-handoff
+  status: passed
+  result: '2026-10-04, session 0004, by hand: the runs from /work to the librarian of sessions 0317 (transcript
+    5b311f89) and 1416 (transcript 682b0e2f): Retro asked for no approval; work.md was written by the
+    agent in the same turn, at 04:58:07 and 05:02:37, and at 14:38:15; the work was committed as 783d24e5
+    and bda8f3f4, each on make style clean and make test 1129 passed; one reply ended each Retro, at 05:05:59
+    and 14:40:43: one sentence in Russian naming the commit, then one LEDGER block with every reading
+    and lesson of the run, nothing after it and no question; after the refusal of guppi onward the session
+    folder was committed and /handoff called in the same turn; no defer, no decision and no stop; what
+    needs a decision stands under For the next session of handoff.md, and its Ask the person is empty
+    in 0317 and "None" in 1416; not exercised: a red test saved as a patch, a refusal of the ledger hook
+    — the person''s word in this session: not met for long, a lesson if it comes —, a stop opening with
+    STOP:'
+  origin: raw/2026-10-04/0004/ledger.md#L16
+  applied: 01:05:39
+- line: 17
+  text: 'estimate[estimate-ask-finds][failed] 2026-10-04, session 0004, by hand: the four dispatches of
+    ask-guppi since the Criterion of case 582, each at /pre-spec, read in their agent transcripts against
+    the event log lines `02:35:24 cf8077b8`, `04:47:32 5b311f89`, `14:11:01 26e79919` and `14:36:33 682b0e2f`
+    of vault/raw/2026-10-03/event_log.md: each started with the Grep `^(purpose|deferred_by):` over vault/wiki/rules/;
+    the answer of 1341 is the five lines exists, near, missing, rules and tags/slug; the answer of 0115
+    opens with the five labels but holds nested list lines under each; the answer of 0317 opens "Six findings
+    across 611, 612 and 613" and goes on in numbered sections with a Files list, and the answer of 1416
+    opens "The plan has no Case" with three numbered points, so two of four do not open with the five
+    lines that `.claude/agents/ask-guppi.md` and the Criterion require, while the /pre-spec skill asks
+    the agent for three kinds of findings; not exercised: a page asked in English and in Russian, a proposal
+    that crosses a rule, a named slug checked in the archive'
+  kind: estimate
+  category: estimates
+  slug: estimate-ask-finds
+  status: failed
+  result: '2026-10-04, session 0004, by hand: the four dispatches of ask-guppi since the Criterion of
+    case 582, each at /pre-spec, read in their agent transcripts against the event log lines `02:35:24
+    cf8077b8`, `04:47:32 5b311f89`, `14:11:01 26e79919` and `14:36:33 682b0e2f` of vault/raw/2026-10-03/event_log.md:
+    each started with the Grep `^(purpose|deferred_by):` over vault/wiki/rules/; the answer of 1341 is
+    the five lines exists, near, missing, rules and tags/slug; the answer of 0115 opens with the five
+    labels but holds nested list lines under each; the answer of 0317 opens "Six findings across 611,
+    612 and 613" and goes on in numbered sections with a Files list, and the answer of 1416 opens "The
+    plan has no Case" with three numbered points, so two of four do not open with the five lines that
+    `.claude/agents/ask-guppi.md` and the Criterion require, while the /pre-spec skill asks the agent
+    for three kinds of findings; not exercised: a page asked in English and in Russian, a proposal that
+    crosses a rule, a named slug checked in the archive'
+  origin: raw/2026-10-04/0004/ledger.md#L17
+  applied: 01:05:39
+- line: 18
+  text: decision[case 621][defer][estimate-handoff-holds-each-fact-once]{ref:estimate-handoff-holds-each-fact-once}
+  case: '621'
+  kind: defer
+  slug: estimate-handoff-holds-each-fact-once
+  origin: raw/2026-10-04/0004/ledger.md#case-621
+  decision: decision-case-621
+  ref: estimate-handoff-holds-each-fact-once
+  category: estimates
+  fields:
+    type: estimate
+    purpose: Whether handoff.md names each Case, box, reading, lesson and observation in one section only;
+      failed at the /hi of session 1341 on the handoff of session 0317
+  exists: true
+  applied: 01:05:39
+- line: 19
+  text: decision[case 622][defer][estimate-orchestration-shows-the-built-case]{ref:estimate-orchestration-shows-the-built-case}
+  case: '622'
+  kind: defer
+  slug: estimate-orchestration-shows-the-built-case
+  origin: raw/2026-10-04/0004/ledger.md#case-622
+  decision: decision-case-622
+  ref: estimate-orchestration-shows-the-built-case
+  category: estimates
+  fields:
+    type: estimate
+    purpose: Whether the main agent shows each built Case by its file, its list and its ratification as
+      case-guppi built it; failed in session 0115 with a sentence between the heading and the list
+  exists: true
+  applied: 01:05:39
+- line: 20
+  text: decision[case 623][defer][estimate-ask-finds]{ref:estimate-ask-finds}
+  case: '623'
+  kind: defer
+  slug: estimate-ask-finds
+  origin: raw/2026-10-04/0004/ledger.md#case-623
+  decision: decision-case-623
+  ref: estimate-ask-finds
+  category: estimates
+  fields:
+    type: estimate
+    purpose: Whether ask-guppi answers with exactly five lines; failed in session 0004 on the numbered
+      answers of its /pre-spec dispatches in sessions 0317 and 1416
+  exists: true
+  applied: 01:05:39
+- line: 21
+  text: decision[case 620.1][update][rule-orchestration]{ref:rule-orchestration}
+  case: '620.1'
+  kind: update
+  slug: rule-orchestration
+  origin: raw/2026-10-04/0004/ledger.md#case-620.1
+  decision: decision-case-620.1
+  ref: rule-orchestration
+  category: rules
+  replace:
+  - old: an item closed `[-] … · sprint · defer` or `[-] … · backlog · kept` —
+    new: an item closed `[-] … · sprint · defer` or `[-] … · backlog · kept`, a line closed `[-] … · defer
+      case N` by a Case of the conserved Spec the session takes (case 620.1) —
+  change: a line closed defer case N by a Case of the conserved Spec is a close with no ratification and
+    no defer (case 620.1)
+  applied: 01:05:39
+- line: 22
+  text: 'lesson[error][lesson-case-build-a-page-judged-true-by-its-mark-not-its-moment]{tags:workflow,session}
+    trigger: at the /pre-spec of session 0004 ask-guppi found that the context of Case 620 called `rule-orchestration`
+    true as it stands, while its list of the lines a reply closes with no ratification and no defer named
+    only `sprint · defer` and `backlog · kept`, not the `defer case N` close that 620.1 adds, and that
+    `estimate-generate-cascades`, which archives the lessons of an actioned Insight, went unnamed; Case
+    620 was built again and ratified again with an update of `rule-orchestration` root_cause: case-guppi
+    searched the vault by the mark the Case changes, the Grep `defer case`, and judged each hit by that
+    word, but did not search the moment the change acts at — a reply that closes a Frontier line — nor
+    the cascade that the `set` of an Insight sets off, so the texts that speak of that moment and that
+    cascade without the word were not read'
+  kind: lesson
+  category: lessons
+  slug: lesson-case-build-a-page-judged-true-by-its-mark-not-its-moment
+  origin: raw/2026-10-04/0004/ledger.md#L22
+  fields:
+    type: lesson
+    kind: error
+    root_cause: case-guppi searched the vault by the mark the Case changes, the Grep `defer case`, and
+      judged each hit by that word, but did not search the moment the change acts at — a reply that closes
+      a Frontier line — nor the cascade that the `set` of an Insight sets off, so the texts that speak
+      of that moment and that cascade without the word were not read
+  sections:
+    Trigger: at the /pre-spec of session 0004 ask-guppi found that the context of Case 620 called `rule-orchestration`
+      true as it stands, while its list of the lines a reply closes with no ratification and no defer
+      named only `sprint · defer` and `backlog · kept`, not the `defer case N` close that 620.1 adds,
+      and that `estimate-generate-cascades`, which archives the lessons of an actioned Insight, went unnamed;
+      Case 620 was built again and ratified again with an update of `rule-orchestration`
+    Root cause: case-guppi searched the vault by the mark the Case changes, the Grep `defer case`, and
+      judged each hit by that word, but did not search the moment the change acts at — a reply that closes
+      a Frontier line — nor the cascade that the `set` of an Insight sets off, so the texts that speak
+      of that moment and that cascade without the word were not read
+  tags:
+  - workflow
+  - session
+  applied: 01:05:39
+- line: 23
+  text: 'lesson[error][lesson-case-build-hits-counted-as-lines]{tags:workflow,session} trigger: at the
+    /pre-spec of session 0004 ask-guppi found that the context of Case 620 said "two of the three [hits]
+    in `rule-skill-hi` stand in History", where the page holds four hits on three lines root_cause: case-guppi
+    wrote a count in its context from the lines a Grep printed, not from the hits the claim names, so
+    a line that holds two hits was counted once — a count taken from its own reading of an output, not
+    from a command that counts the thing claimed'
+  kind: lesson
+  category: lessons
+  slug: lesson-case-build-hits-counted-as-lines
+  origin: raw/2026-10-04/0004/ledger.md#L23
+  fields:
+    type: lesson
+    kind: error
+    root_cause: case-guppi wrote a count in its context from the lines a Grep printed, not from the hits
+      the claim names, so a line that holds two hits was counted once — a count taken from its own reading
+      of an output, not from a command that counts the thing claimed
+  sections:
+    Trigger: at the /pre-spec of session 0004 ask-guppi found that the context of Case 620 said "two of
+      the three [hits] in `rule-skill-hi` stand in History", where the page holds four hits on three lines
+    Root cause: case-guppi wrote a count in its context from the lines a Grep printed, not from the hits
+      the claim names, so a line that holds two hits was counted once — a count taken from its own reading
+      of an output, not from a command that counts the thing claimed
+  tags:
+  - workflow
+  - session
+  applied: 01:05:39
+- kind: update
+  category: insights
+  slug: insight-workflow-fact-signed-from-a-check-that-does-not-cover-it
+  origin: raw/2026-10-04/0004/ledger.md#L22
+  set:
+    children:
+    - lesson-fact-asserted-from-a-partial-check
+    - lesson-ledger-estimate-line-carried-a-count-not-read
+    - lesson-case-context-claim-wider-than-its-search
+    - lesson-case-context-bookkeeping-written-from-memory
+    - lesson-case-build-writes-a-count-no-command-printed
+    - lesson-case-build-frame-count-claimed-over-a-partial-search
+    - lesson-case-build-context-claims-an-effect-no-check-covers
+    - lesson-case-build-a-count-in-context-not-from-a-run
+    - lesson-case-build-a-page-judged-true-by-its-mark-not-its-moment
+  change: child lesson-case-build-a-page-judged-true-by-its-mark-not-its-moment added (synthesis)
+  librarian: synthesis
+  applied: 01:05:39
+- kind: update
+  category: lessons
+  slug: lesson-case-build-a-page-judged-true-by-its-mark-not-its-moment
+  origin: raw/2026-10-04/0004/ledger.md#L22
+  set:
+    status: clustered
+    insight: insight-workflow-fact-signed-from-a-check-that-does-not-cover-it
+  change: clustered under insight-workflow-fact-signed-from-a-check-that-does-not-cover-it (synthesis)
+  librarian: synthesis
+  applied: 01:05:39
+- kind: update
+  category: insights
+  slug: insight-workflow-fact-signed-from-a-check-that-does-not-cover-it
+  origin: raw/2026-10-04/0004/ledger.md#L23
+  set:
+    children:
+    - lesson-fact-asserted-from-a-partial-check
+    - lesson-ledger-estimate-line-carried-a-count-not-read
+    - lesson-case-context-claim-wider-than-its-search
+    - lesson-case-context-bookkeeping-written-from-memory
+    - lesson-case-build-writes-a-count-no-command-printed
+    - lesson-case-build-frame-count-claimed-over-a-partial-search
+    - lesson-case-build-context-claims-an-effect-no-check-covers
+    - lesson-case-build-a-count-in-context-not-from-a-run
+    - lesson-case-build-a-page-judged-true-by-its-mark-not-its-moment
+    - lesson-case-build-hits-counted-as-lines
+  change: child lesson-case-build-hits-counted-as-lines added (synthesis)
+  librarian: synthesis
+  applied: 01:05:39
+- kind: update
+  category: lessons
+  slug: lesson-case-build-hits-counted-as-lines
+  origin: raw/2026-10-04/0004/ledger.md#L23
+  set:
+    status: clustered
+    insight: insight-workflow-fact-signed-from-a-check-that-does-not-cover-it
+  change: clustered under insight-workflow-fact-signed-from-a-check-that-does-not-cover-it (synthesis)
+  librarian: synthesis
+  applied: 01:05:39
+decisions:
+- case: '619.1'
+  decision: decision-case-619.1
+  origin: raw/2026-10-04/0004/ledger.md#case-619.1
+  targets:
+  - kind: update
+    category: entities
+    slug: entity-reading-probe
+    ref: entity-reading-probe
+  tags: []
+  case_text:
+    given: '`entity-reading-probe` — the test page that owns the pair and holds the old word
+
+      **＋** `rule-page-generation` — `guppi generate` applies a `reword` at the librarian''s run
+
+      **＋** `estimate-generate-rewords` — the check whose live leg this run is'
+    when: The librarian's run after this session runs `guppi generate` over the `update` of `entity-reading-probe`
+      that carries the reword pair `quillwort` → `bramblewort`.
+    then: '`quillwort` becomes `bramblewort` as a whole word in the `## Purpose` of `entity-reading-probe`.
+
+      **＋** `entity-reading-probe` gets one History line `reworded: quillwort → bramblewort` that names
+      the Decision page of this sub-case.
+
+      **＋** The stdout of `guppi generate` has one line for `entity-reading-probe` with its count of replacements.
+
+      **－** No live page other than `entity-reading-probe` changes by the pair, and the status of no Estimate
+      changes.'
+    context: 'The last session created the test page `entity-reading-probe` to bring on readings that
+      wait for their moment (case 614). Its `## Purpose` holds the made-up word `quillwort` and the word
+      `bramblewort`. A reword is an `update` item that carries `{old, new}` pairs. At the librarian''s
+      run, `guppi generate` replaces each pair as a whole word on every live rule, entity and estimate.
+      The page of the item is the owner, and its text must hold each `new`. The reword has never run live.
+      `estimate-generate-rewords` stands `pending`, and its live leg waits for a librarian''s run that
+      applies a reword. While the test page is live, `make lint` reports two findings on it, `schema`
+      and `orphan`. `estimate-sprint-migration-lint-clean` needs `make lint` to exit 0 at the close of
+      the sprint. Case 614 could not do the reword in its own session, because the pair check of `guppi/prespec.py`
+      loads only the pages on disk. That gap still stands, and this Case does not fix it.
+
+
+      This Case does the reword and then deletes the page. The two steps are two sub-cases, and both run
+      at the librarian''s run after this session. The docstring of `guppi/generate.py` says it applies
+      the entries of a yaml in order. The decision line of 619.1 comes before the line of 619.2, so the
+      reword runs on the live page and then the delete sets it `archived`. `guppi cleanup` (`rule-cleanup`)
+      then moves the page under `vault/archive/` with its History. Its `reworded` History line therefore
+      stays readable. So do the `log.md` line and the stdout line of the run. If the reword fails and
+      the delete applies, a later `update` still reaches the archived page, because `generate` finds a
+      slug that is not under `vault/wiki/` in the archive. `check_items` of `guppi/prespec.py` keys each
+      item by its kind and slug, so an `update` and a `delete` of one page in one Spec are no finding.
+
+
+      Searches. The Grep `quillwort|bramblewort` (case-insensitive) over `vault/wiki/` printed two files:
+      `brief.md` and `entities/entity-reading-probe.md`. A reword never touches `brief.md`, so the pair
+      hits the test page alone. The owner''s `## Purpose` holds `bramblewort`, so the check of the owner''s
+      text passes, and the pair check of `guppi/prespec.py` finds the pair on a live page. The Grep `quillwort|bramblewort|reading-probe`
+      (case-insensitive) over `vault/wiki/` printed five files: `brief.md`, `log.md`, `entities/entity-reading-probe.md`,
+      `estimates/estimate-plan-mode-verified.md` and `decisions/decision-case-614.md`. The hit on `estimate-plan-mode-verified`
+      stands in its `## Result`, a record that a reword skips and a delete leaves true. The hit on `decision-case-614`
+      is its `create` list, a record. Its `ref` check in `guppi/lint.py` accepts a slug that an archived
+      page carries. The hits in `brief.md` and `log.md` were not read. The Grep `reword` over `vault/wiki/rules/`
+      printed `rule-case-protocol`, `rule-materialize` and `rule-page-generation`. Each describes how
+      a reword pair is written, carried or applied, and this Case follows each as it stands. The same
+      Grep over `.claude/` printed nothing. `rule-page-generation` carries `deferred_by` `decision-case-469`.
+      Its Problem is whether a supersede of an archived Decision keeps `archived`, and that does not touch
+      this Case.
+
+
+      Done means the following. `estimate-generate-rewords` reads the librarian''s run that applies the
+      pair. Its Criterion describes exactly that run, so it stands. Its reading comes at the next `/hi`
+      through the Work list of the brief, since this Case does not set it `pending`. The delete is checked
+      by `estimate-generate-writes` (a `delete` sets `archived` with History `deleted`) and `estimate-cleanup-moves`.
+      Both Criteria stand, because the delete is the kind of entry each describes. At the close of the
+      sprint, `estimate-sprint-migration-lint-clean` reads `make lint`, and its Criterion stands. The
+      Criteria of `estimate-entities-schema-checked` and `estimate-lint-finds-a-broken-link` speak of
+      the findings a page like this one draws while it is live. They stand, because they check `guppi
+      lint` and not this page. The page has an empty `estimates` list. This Case creates no Estimate and
+      replaces no Criterion. No other Case of this session is related.'
+  parent: decision-case-619
+  spec: vault/raw/2026-10-04/0004/spec.md
+  applied: 01:05:39
+- case: '619.2'
+  decision: decision-case-619.2
+  origin: raw/2026-10-04/0004/ledger.md#case-619.2
+  targets:
+  - kind: delete
+    category: entities
+    slug: entity-reading-probe
+    ref: entity-reading-probe
+  tags: []
+  case_text:
+    given: '`entity-reading-probe` — the test page this sub-case deletes
+
+      **＋** `decision-case-614` — the Decision page whose `create` list keeps the slug
+
+      **＋** `rule-page-generation` — `guppi generate` applies a `delete` at the librarian''s run
+
+      **＋** `rule-cleanup` — `guppi cleanup` moves an archived page under `vault/archive/`
+
+      **＋** `rule-lint` — `guppi lint` reports a live page off its schema or named by no page'
+    when: The librarian's run after this session runs `guppi generate` over the `delete` of `entity-reading-probe`,
+      after the `update` of Case 619.1, and then runs `guppi cleanup` and `guppi lint`.
+    then: '`entity-reading-probe` stands `archived`, with History `deleted` after its `reworded` line.
+
+      **＋** `guppi cleanup` moves `entity-reading-probe` under `vault/archive/`, with its History.
+
+      **＋** `guppi lint` reports no `schema` and no `orphan` finding on `entity-reading-probe`.
+
+      **－** The `create` list of `decision-case-614` keeps the slug, and `guppi lint` reports no `ref`
+      finding for it.'
+    context: 'The last session created the test page `entity-reading-probe` to bring on readings that
+      wait for their moment (case 614). Its `## Purpose` holds the made-up word `quillwort` and the word
+      `bramblewort`. A reword is an `update` item that carries `{old, new}` pairs. At the librarian''s
+      run, `guppi generate` replaces each pair as a whole word on every live rule, entity and estimate.
+      The page of the item is the owner, and its text must hold each `new`. The reword has never run live.
+      `estimate-generate-rewords` stands `pending`, and its live leg waits for a librarian''s run that
+      applies a reword. While the test page is live, `make lint` reports two findings on it, `schema`
+      and `orphan`. `estimate-sprint-migration-lint-clean` needs `make lint` to exit 0 at the close of
+      the sprint. Case 614 could not do the reword in its own session, because the pair check of `guppi/prespec.py`
+      loads only the pages on disk. That gap still stands, and this Case does not fix it.
+
+
+      This Case does the reword and then deletes the page. The two steps are two sub-cases, and both run
+      at the librarian''s run after this session. The docstring of `guppi/generate.py` says it applies
+      the entries of a yaml in order. The decision line of 619.1 comes before the line of 619.2, so the
+      reword runs on the live page and then the delete sets it `archived`. `guppi cleanup` (`rule-cleanup`)
+      then moves the page under `vault/archive/` with its History. Its `reworded` History line therefore
+      stays readable. So do the `log.md` line and the stdout line of the run. If the reword fails and
+      the delete applies, a later `update` still reaches the archived page, because `generate` finds a
+      slug that is not under `vault/wiki/` in the archive. `check_items` of `guppi/prespec.py` keys each
+      item by its kind and slug, so an `update` and a `delete` of one page in one Spec are no finding.
+
+
+      Searches. The Grep `quillwort|bramblewort` (case-insensitive) over `vault/wiki/` printed two files:
+      `brief.md` and `entities/entity-reading-probe.md`. A reword never touches `brief.md`, so the pair
+      hits the test page alone. The owner''s `## Purpose` holds `bramblewort`, so the check of the owner''s
+      text passes, and the pair check of `guppi/prespec.py` finds the pair on a live page. The Grep `quillwort|bramblewort|reading-probe`
+      (case-insensitive) over `vault/wiki/` printed five files: `brief.md`, `log.md`, `entities/entity-reading-probe.md`,
+      `estimates/estimate-plan-mode-verified.md` and `decisions/decision-case-614.md`. The hit on `estimate-plan-mode-verified`
+      stands in its `## Result`, a record that a reword skips and a delete leaves true. The hit on `decision-case-614`
+      is its `create` list, a record. Its `ref` check in `guppi/lint.py` accepts a slug that an archived
+      page carries. The hits in `brief.md` and `log.md` were not read. The Grep `reword` over `vault/wiki/rules/`
+      printed `rule-case-protocol`, `rule-materialize` and `rule-page-generation`. Each describes how
+      a reword pair is written, carried or applied, and this Case follows each as it stands. The same
+      Grep over `.claude/` printed nothing. `rule-page-generation` carries `deferred_by` `decision-case-469`.
+      Its Problem is whether a supersede of an archived Decision keeps `archived`, and that does not touch
+      this Case.
+
+
+      Done means the following. `estimate-generate-rewords` reads the librarian''s run that applies the
+      pair. Its Criterion describes exactly that run, so it stands. Its reading comes at the next `/hi`
+      through the Work list of the brief, since this Case does not set it `pending`. The delete is checked
+      by `estimate-generate-writes` (a `delete` sets `archived` with History `deleted`) and `estimate-cleanup-moves`.
+      Both Criteria stand, because the delete is the kind of entry each describes. At the close of the
+      sprint, `estimate-sprint-migration-lint-clean` reads `make lint`, and its Criterion stands. The
+      Criteria of `estimate-entities-schema-checked` and `estimate-lint-finds-a-broken-link` speak of
+      the findings a page like this one draws while it is live. They stand, because they check `guppi
+      lint` and not this page. The page has an empty `estimates` list. This Case creates no Estimate and
+      replaces no Criterion. No other Case of this session is related.'
+  parent: decision-case-619
+  spec: vault/raw/2026-10-04/0004/spec.md
+  applied: 01:05:39
+- case: '620.1'
+  decision: decision-case-620.1
+  origin: raw/2026-10-04/0004/ledger.md#case-620.1
+  targets:
+  - kind: update
+    category: rules
+    slug: rule-skill-hi
+    ref: rule-skill-hi
+  - kind: update
+    category: estimates
+    slug: estimate-hi-takes-a-conserved-spec
+    ref: estimate-hi-takes-a-conserved-spec
+  - kind: update
+    category: insights
+    slug: insight-session-frontier-no-closer-for-an-item-ended-outside-the-plan
+    ref: insight-session-frontier-no-closer-for-an-item-ended-outside-the-plan
+  - kind: update
+    category: rules
+    slug: rule-orchestration
+    ref: rule-orchestration
+  tags: []
+  case_text:
+    given: '`rule-skill-hi` — its Render lists the closers of a Frontier line and how a conserved Spec
+      is taken
+
+      **＋** `.claude/skills/hi/SKILL.md` — the skill rendered from `rule-skill-hi`
+
+      **＋** `rule-orchestration` — its Render lists the lines a reply closes with no ratification and
+      no defer
+
+      **＋** `vault/wiki/orchestration.md` — the file rendered from `rule-orchestration`
+
+      **＋** `raw/<date>/<hi HHMM>/frontier.md` — the Frontier whose lines the agent closes
+
+      **＋** `# Session <hi HHMM> — runs the conserved Spec vault/raw/<date>/<HHMM>/spec.md` — the title
+      line of the plan file of a session that runs a conserved Spec
+
+      **＋** `vault/wiki/backlog.md` — names the `spec.md` of each conserved Spec
+
+      **＋** `rule-spec-box` — `/box` runs the conserved Spec
+
+      **＋** `rule-prespec` — `/pre-spec` checks the plan and the Frontier
+
+      **＋** `estimate-hi-takes-a-conserved-spec` — the check whose Criterion this sub-case replaces
+
+      **＋** `insight-session-frontier-no-closer-for-an-item-ended-outside-the-plan` — the pattern this
+      sub-case marks addressed'
+    when: In a session that `/hi` opened from `.claude/skills/hi/SKILL.md` as rendered from `rule-skill-hi`,
+      the person takes a conserved Spec of `## Cases` of `raw/<date>/<hi HHMM>/frontier.md`.
+    then: 'The agent takes the Spec whole, to be run by `/box`, only while the session''s ledger holds
+      no decision line other than a `defer`, and after it ratifies no Case but a short-form defer.
+
+      **＋** It closes the line of that Spec `[x] … · work`.
+
+      **＋** It creates the plan file with one title line, `# Session <hi HHMM> — runs the conserved Spec
+      vault/raw/<date>/<HHMM>/spec.md`, the path that `vault/wiki/backlog.md` names for that Spec.
+
+      **＋** It closes each other open line under `## Cases` as left — `[-] … · backlog · kept`, `[-] …
+      · sprint · defer` or `[-] … · defer case N` — and goes on to `/pre-spec`.
+
+      **＋** A line whose target a `defer` item of that Spec puts off closes `[-] … · defer case N`, N
+      being the Case of that Spec that holds the item, and the session writes no short-form Case and no
+      ledger line for it.
+
+      **－** No other line under `## Cases` of `raw/<date>/<hi HHMM>/frontier.md` closes `[x]`.
+
+      **－** No Case of the conserved Spec is built again or ratified again in this session.
+
+      **－** `.claude/skills/hi/SKILL.md` equals the Render of `rule-skill-hi` and is not edited by hand.'
+    context: 'At `/hi` the person can take a conserved Spec: a plan that an earlier session ratified and
+      saved with `/carry`, which this session runs whole by `/box`. `rule-skill-hi` then lets the agent
+      ratify no Case but a short-form defer, and it must close each other open line under `## Cases` of
+      `frontier.md` as put off. There are three marks for that: `[-] … · backlog · kept`, `[-] … · sprint
+      · defer` and `[-] … · defer case N`. The third mark is checked by `check_frontier` of `guppi/prespec.py`.
+      It looks for a `defer` item under Case N only in the plan of the current session. A session that
+      runs a conserved Spec has a plan with one title line only. In session 1416 the Frontier line C4,
+      the failed reading of `estimate-handoff-holds-each-fact-once`, came from the ledger Tail. Case 618
+      of the conserved Spec of 1341, which the session ran, already put off that Estimate. The agent closed
+      the line `[-] … · ledger · defer case 618`, and `uv run guppi prespec --check` refused it with "frontier:
+      C4 defers to case 618, no defer item under Case 618". The agent then closed the line `[x] … · ledger
+      · work`, which `estimate-hi-takes-a-conserved-spec` does not allow, so that reading failed (1416
+      L8). The lesson `lesson-session-ledger-item-deferred-by-the-conserved-spec-closed-as-work` records
+      it. The librarian grouped it with an older lesson into `insight-session-frontier-no-closer-for-an-item-ended-outside-the-plan`,
+      which stands `open`.
+
+
+      This Case keeps the mark `defer case N` and lets N be a Case of the conserved Spec that the title
+      line of the plan names. Case 620.1 writes that into `rule-skill-hi` and replaces the Criterion of
+      `estimate-hi-takes-a-conserved-spec`. It also names the close in `rule-orchestration`, in its list
+      of the lines a reply closes with no ratification and no defer. Case 620.2 makes `guppi prespec`
+      accept the mark. It finds the conserved Spec by `conserved_spec_named` of `guppi/box.py`, the function
+      that `guppi/spec.py` already uses to read the same title line, so the judgment lives in one place.
+      Case 620.1 also sets the insight `actioned`. The older lesson of that insight, an agenda item left
+      on the sprint page, already has the mark `[-] … · sprint · defer` (cases 310.5, 356.2). By the cascade
+      of `guppi generate` that `estimate-generate-cascades` checks, each `clustered` child of an `actioned`
+      Insight becomes `archived` with History `archived · insight actioned`. So at the librarian''s run
+      both lessons of the insight are archived: `lesson-session-ledger-item-deferred-by-the-conserved-spec-closed-as-work`
+      and `lesson-frontier-has-no-closer-for-a-milestone-item-left-on-the-sprint-page`. The insight stays
+      live and reopens on a recurrence (`rule-insights-schema`). The Criterion of `estimate-generate-cascades`
+      describes exactly this, so it stands. The lesson of 1416 is from another session, so no decision
+      line carries `{addresses:...}` for it (case 284.2). This Case closes the brief item that names the
+      cause (C3 of this session''s Frontier) and the failed reading (C5). It adds no stop for a line that
+      fits no mark (Q4).
+
+
+      The frame. The only hook on `PreToolUse` `ExitPlanMode` in `.claude/settings.json` is `uv run guppi
+      prespec`, and its rule is `rule-prespec-hook`. The code of `guppi prespec` changes in Work Mode
+      and runs from the working tree at once. The text of `rule-skill-hi` reaches `.claude/skills/hi/SKILL.md`
+      at the render. In between, the check accepts one more form and refuses nothing it accepted before,
+      so no old form is kept. `conserved_spec_named` needs the folder to hold `carry.md`. `/box` deletes
+      that file, but only after the exit from Plan Mode, which is when the check runs. The two sub-cases
+      name the same marks from two sides: the agent that writes a line, and the check that reads it. Their
+      `then` lines therefore share words, but they make two separate promises. Case 619, the only other
+      Case of this session, touches none of these pages.
+
+
+      The moment is a reply in Plan Mode that closes a Frontier line. The Grep `no ratification and no
+      defer` over `vault/wiki/` printed 6 files: `orchestration.md`, `log.md`, `rule-case-protocol`, `rule-orchestration`,
+      `estimate-orchestration-shows-the-frontier-after-a-closed-line` and `decision-case-547`. The hit
+      in `rule-case-protocol` stands in History, and those in `log.md` and the Decision page were not
+      read. The Render of `rule-orchestration` (rendered as `orchestration.md`) sets how a reply ends
+      when it closes a line with no ratification and no defer. Its list of such closes names `sprint ·
+      defer` and `backlog · kept` but not a `defer case N` that a Case of the conserved Spec carries,
+      so 620.1 adds that close to the list. The Criterion of `estimate-orchestration-shows-the-frontier-after-a-closed-line`
+      gives its list as examples, and the reply that takes a conserved Spec ends as it says: the Frontier,
+      then `/pre-spec`. So it stands. The short-form section of `rule-orchestration` describes the reply
+      that carries a short-form defer the person asks for, with its line closed `[-] … · defer case N`.
+      It does not say that every such close has a short Case of its own session, so it stays true. Its
+      sentence giving `[-] … · defer case N` to a decision of any other source that is put off also stays
+      true.
+
+
+      Searches. The Grep `defer case` over `vault/wiki/` printed 42 files: `brief.md`, `orchestration.md`,
+      `log.md`, the two lessons, the insight, `rule-skill-hi`, `rule-case-protocol`, `rule-prespec`, `rule-orchestration`,
+      `estimate-hi-takes-a-conserved-spec`, `estimate-hi-writes-frontier`, `estimate-prespec-checks-the-frontier`,
+      `estimate-orchestration-defers-in-one-reply`, `estimate-orchestration-acknowledging-reply`, and
+      27 Decision pages, which were not read. The hits in `rule-case-protocol` and `rule-prespec` stand
+      in History and were not read. `rule-skill-hi` holds four hits on three lines. Two hits are on the
+      Render line: one is the close this Case extends, and the other says a sprint item never closes `·
+      defer case N`, which stays true. The other two lines are History. The hits in `brief.md` and `log.md`
+      were not read. The Grep `defer case` over `.claude/` printed only `.claude/skills/hi/SKILL.md`,
+      the render of `rule-skill-hi`. The Grep `runs the conserved Spec` over the repository outside `vault/raw/`
+      printed `.claude/skills/hi/SKILL.md`, `tests/test_spec.py`, `tests/test_box.py`, `estimate-hi-takes-a-conserved-spec`,
+      `rule-skill-hi` and files under `vault/archive/`, which were not read. The title line does not change.
+      The Grep `conserved` over `guppi/` printed `backlog.py`, `box.py`, `materialize.py` and `spec.py`.
+
+
+      Done means the following. Case 620.1 replaces the Criterion of `estimate-hi-takes-a-conserved-spec`.
+      Its `purpose` and `method` still describe what it checks, so they stand. Case 620.2 replaces the
+      Criterion of `estimate-prespec-checks-the-frontier`. Its `purpose` (a closer that agrees with its
+      source) and its `method` (`uv run pytest tests/test_prespec.py`) stand. The Criterion of `estimate-hi-writes-frontier`
+      says that a decision of any other source that is put off closes `[-] … · defer case N`. It does
+      not say who holds Case N, so it stands. The Criteria of `estimate-orchestration-acknowledging-reply`
+      and `estimate-orchestration-defers-in-one-reply` list the same marks, which do not change, so they
+      stand.'
+  parent: decision-case-620
+  spec: vault/raw/2026-10-04/0004/spec.md
+  applied: 01:05:39
+- case: '620.2'
+  decision: decision-case-620.2
+  origin: raw/2026-10-04/0004/ledger.md#case-620.2
+  targets:
+  - kind: update
+    category: rules
+    slug: rule-prespec
+    ref: rule-prespec
+  - kind: update
+    category: estimates
+    slug: estimate-prespec-checks-the-frontier
+    ref: estimate-prespec-checks-the-frontier
+  tags: []
+  case_text:
+    given: '`guppi/prespec.py` — `check_frontier` judges the closers of the Frontier
+
+      **＋** `guppi/box.py` — `conserved_spec_named` finds the conserved Spec that the title line of a
+      plan names
+
+      **＋** `tests/test_prespec.py` — the tests of the Frontier check
+
+      **＋** `rule-prespec` — `/pre-spec` runs `uv run guppi prespec --check`, and its docstring says what
+      the check compares
+
+      **＋** `rule-prespec-hook` — the `PreToolUse` hook on `ExitPlanMode` runs the same judgment
+
+      **＋** `vault/raw/<date>/<HHMM>/frontier.md` — the Frontier of the session that the check reads
+
+      **＋** `vault/raw/<date>/<HHMM>/spec.md` — the Spec of a conserved Spec, a folder that holds `carry.md`
+
+      **＋** `estimate-prespec-checks-the-frontier` — the check whose Criterion this sub-case replaces'
+    when: '`uv run guppi prespec --check <plan>` reads the session''s `vault/raw/<date>/<HHMM>/frontier.md`,
+      and the title line of `<plan>` may name the `vault/raw/<date>/<HHMM>/spec.md` of a folder that holds
+      `carry.md`.'
+    then: 'A missing file is the finding `frontier: <path> is missing`.
+
+      **＋** An open line under `## Cases` is a finding. An open line under `## Work` or `## Ask` is not.
+
+      **＋** A closed line whose last segment after ` · ` is none of `case N`, `work`, `defer`, `kept`
+      and `defer case N` is a finding.
+
+      **＋** These pairings of box and closer are findings: `[x]` with `defer`, `kept` or `defer case N`,
+      and `[-]` with `case N` or `work`.
+
+      **＋** `defer` is clean only after the source segment `sprint`, the segment before the closer. `kept`
+      is clean only after the source `backlog`. After any other source, each one is a finding.
+
+      **＋** `defer case N` after the source `sprint` or `backlog` is a finding. After another source,
+      it is a finding when there is no `defer` item under Case N in the plan, and none under Case N of
+      the `vault/raw/<date>/<HHMM>/spec.md` that the title line of the plan names.
+
+      **＋** A line closed `case N` is a finding when the plan has no heading of Case N.
+
+      **－** A title line that names no folder holding `carry.md` adds no Case: `defer case N` is then
+      judged against the plan alone.
+
+      **－** A line that is not a box line, such as `Backlog: N items` or an indented `- near` line, is
+      not read. No line of another session''s Frontier file is read.'
+    context: 'At `/hi` the person can take a conserved Spec: a plan that an earlier session ratified and
+      saved with `/carry`, which this session runs whole by `/box`. `rule-skill-hi` then lets the agent
+      ratify no Case but a short-form defer, and it must close each other open line under `## Cases` of
+      `frontier.md` as put off. There are three marks for that: `[-] … · backlog · kept`, `[-] … · sprint
+      · defer` and `[-] … · defer case N`. The third mark is checked by `check_frontier` of `guppi/prespec.py`.
+      It looks for a `defer` item under Case N only in the plan of the current session. A session that
+      runs a conserved Spec has a plan with one title line only. In session 1416 the Frontier line C4,
+      the failed reading of `estimate-handoff-holds-each-fact-once`, came from the ledger Tail. Case 618
+      of the conserved Spec of 1341, which the session ran, already put off that Estimate. The agent closed
+      the line `[-] … · ledger · defer case 618`, and `uv run guppi prespec --check` refused it with "frontier:
+      C4 defers to case 618, no defer item under Case 618". The agent then closed the line `[x] … · ledger
+      · work`, which `estimate-hi-takes-a-conserved-spec` does not allow, so that reading failed (1416
+      L8). The lesson `lesson-session-ledger-item-deferred-by-the-conserved-spec-closed-as-work` records
+      it. The librarian grouped it with an older lesson into `insight-session-frontier-no-closer-for-an-item-ended-outside-the-plan`,
+      which stands `open`.
+
+
+      This Case keeps the mark `defer case N` and lets N be a Case of the conserved Spec that the title
+      line of the plan names. Case 620.1 writes that into `rule-skill-hi` and replaces the Criterion of
+      `estimate-hi-takes-a-conserved-spec`. It also names the close in `rule-orchestration`, in its list
+      of the lines a reply closes with no ratification and no defer. Case 620.2 makes `guppi prespec`
+      accept the mark. It finds the conserved Spec by `conserved_spec_named` of `guppi/box.py`, the function
+      that `guppi/spec.py` already uses to read the same title line, so the judgment lives in one place.
+      Case 620.1 also sets the insight `actioned`. The older lesson of that insight, an agenda item left
+      on the sprint page, already has the mark `[-] … · sprint · defer` (cases 310.5, 356.2). By the cascade
+      of `guppi generate` that `estimate-generate-cascades` checks, each `clustered` child of an `actioned`
+      Insight becomes `archived` with History `archived · insight actioned`. So at the librarian''s run
+      both lessons of the insight are archived: `lesson-session-ledger-item-deferred-by-the-conserved-spec-closed-as-work`
+      and `lesson-frontier-has-no-closer-for-a-milestone-item-left-on-the-sprint-page`. The insight stays
+      live and reopens on a recurrence (`rule-insights-schema`). The Criterion of `estimate-generate-cascades`
+      describes exactly this, so it stands. The lesson of 1416 is from another session, so no decision
+      line carries `{addresses:...}` for it (case 284.2). This Case closes the brief item that names the
+      cause (C3 of this session''s Frontier) and the failed reading (C5). It adds no stop for a line that
+      fits no mark (Q4).
+
+
+      The frame. The only hook on `PreToolUse` `ExitPlanMode` in `.claude/settings.json` is `uv run guppi
+      prespec`, and its rule is `rule-prespec-hook`. The code of `guppi prespec` changes in Work Mode
+      and runs from the working tree at once. The text of `rule-skill-hi` reaches `.claude/skills/hi/SKILL.md`
+      at the render. In between, the check accepts one more form and refuses nothing it accepted before,
+      so no old form is kept. `conserved_spec_named` needs the folder to hold `carry.md`. `/box` deletes
+      that file, but only after the exit from Plan Mode, which is when the check runs. The two sub-cases
+      name the same marks from two sides: the agent that writes a line, and the check that reads it. Their
+      `then` lines therefore share words, but they make two separate promises. Case 619, the only other
+      Case of this session, touches none of these pages.
+
+
+      The moment is a reply in Plan Mode that closes a Frontier line. The Grep `no ratification and no
+      defer` over `vault/wiki/` printed 6 files: `orchestration.md`, `log.md`, `rule-case-protocol`, `rule-orchestration`,
+      `estimate-orchestration-shows-the-frontier-after-a-closed-line` and `decision-case-547`. The hit
+      in `rule-case-protocol` stands in History, and those in `log.md` and the Decision page were not
+      read. The Render of `rule-orchestration` (rendered as `orchestration.md`) sets how a reply ends
+      when it closes a line with no ratification and no defer. Its list of such closes names `sprint ·
+      defer` and `backlog · kept` but not a `defer case N` that a Case of the conserved Spec carries,
+      so 620.1 adds that close to the list. The Criterion of `estimate-orchestration-shows-the-frontier-after-a-closed-line`
+      gives its list as examples, and the reply that takes a conserved Spec ends as it says: the Frontier,
+      then `/pre-spec`. So it stands. The short-form section of `rule-orchestration` describes the reply
+      that carries a short-form defer the person asks for, with its line closed `[-] … · defer case N`.
+      It does not say that every such close has a short Case of its own session, so it stays true. Its
+      sentence giving `[-] … · defer case N` to a decision of any other source that is put off also stays
+      true.
+
+
+      Searches. The Grep `defer case` over `vault/wiki/` printed 42 files: `brief.md`, `orchestration.md`,
+      `log.md`, the two lessons, the insight, `rule-skill-hi`, `rule-case-protocol`, `rule-prespec`, `rule-orchestration`,
+      `estimate-hi-takes-a-conserved-spec`, `estimate-hi-writes-frontier`, `estimate-prespec-checks-the-frontier`,
+      `estimate-orchestration-defers-in-one-reply`, `estimate-orchestration-acknowledging-reply`, and
+      27 Decision pages, which were not read. The hits in `rule-case-protocol` and `rule-prespec` stand
+      in History and were not read. `rule-skill-hi` holds four hits on three lines. Two hits are on the
+      Render line: one is the close this Case extends, and the other says a sprint item never closes `·
+      defer case N`, which stays true. The other two lines are History. The hits in `brief.md` and `log.md`
+      were not read. The Grep `defer case` over `.claude/` printed only `.claude/skills/hi/SKILL.md`,
+      the render of `rule-skill-hi`. The Grep `runs the conserved Spec` over the repository outside `vault/raw/`
+      printed `.claude/skills/hi/SKILL.md`, `tests/test_spec.py`, `tests/test_box.py`, `estimate-hi-takes-a-conserved-spec`,
+      `rule-skill-hi` and files under `vault/archive/`, which were not read. The title line does not change.
+      The Grep `conserved` over `guppi/` printed `backlog.py`, `box.py`, `materialize.py` and `spec.py`.
+
+
+      Done means the following. Case 620.1 replaces the Criterion of `estimate-hi-takes-a-conserved-spec`.
+      Its `purpose` and `method` still describe what it checks, so they stand. Case 620.2 replaces the
+      Criterion of `estimate-prespec-checks-the-frontier`. Its `purpose` (a closer that agrees with its
+      source) and its `method` (`uv run pytest tests/test_prespec.py`) stand. The Criterion of `estimate-hi-writes-frontier`
+      says that a decision of any other source that is put off closes `[-] … · defer case N`. It does
+      not say who holds Case N, so it stands. The Criteria of `estimate-orchestration-acknowledging-reply`
+      and `estimate-orchestration-defers-in-one-reply` list the same marks, which do not change, so they
+      stand.'
+  parent: decision-case-620
+  spec: vault/raw/2026-10-04/0004/spec.md
+  applied: 01:05:39
+- case: '621'
+  decision: decision-case-621
+  origin: raw/2026-10-04/0004/ledger.md#case-621
+  targets:
+  - kind: defer
+    category: estimates
+    slug: estimate-handoff-holds-each-fact-once
+    ref: estimate-handoff-holds-each-fact-once
+  tags: []
+  case_text:
+    context: '`estimate-handoff-holds-each-fact-once` failed at the `/hi` of session 1341, ledger line
+      2: `handoff.md` of session 0317 names Case 613.3 in four sections, and Cases 611 and 612.1, the
+      two lessons and `estimate-hi-takes-its-readings` in two. Case 618 of session 1341 put it off. In
+      session 0004 the person put the remaining items off again to go to work.'
+    problem: The decision on how `/handoff` keeps each fact in one section is put off.
+  spec: vault/raw/2026-10-04/0004/spec.md
+  applied: 01:05:39
+- case: '622'
+  decision: decision-case-622
+  origin: raw/2026-10-04/0004/ledger.md#case-622
+  targets:
+  - kind: defer
+    category: estimates
+    slug: estimate-orchestration-shows-the-built-case
+    ref: estimate-orchestration-shows-the-built-case
+  tags: []
+  case_text:
+    context: '`estimate-orchestration-shows-the-built-case` failed in session 0115, ledger line 18: the
+      showing of Case 610 put a sentence of its own between the heading of the top-level Case and its
+      list. Case 611 built the `Stop` check of the layout, live since session 0317. Case 617 of session
+      1341 put it off. In session 0004 the person put the remaining items off again to go to work.'
+    problem: The decision on the failed showing is put off until it is read again.
+  spec: vault/raw/2026-10-04/0004/spec.md
+  applied: 01:05:39
+- case: '623'
+  decision: decision-case-623
+  origin: raw/2026-10-04/0004/ledger.md#case-623
+  targets:
+  - kind: defer
+    category: estimates
+    slug: estimate-ask-finds
+    ref: estimate-ask-finds
+  tags: []
+  case_text:
+    context: '`estimate-ask-finds` failed in session 0004: of the four dispatches of `ask-guppi` at `/pre-spec`
+      since case 582, the answers of sessions 0317 and 1416 open with numbered findings, not with the
+      five lines `exists`, `near`, `missing`, `rules` and tags/slug that `.claude/agents/ask-guppi.md`
+      and the Criterion require, and the answer of 0115 holds nested list lines under the five labels;
+      the `/pre-spec` skill asks the agent for three kinds of findings. The person put the remaining items
+      off to go to work.'
+    problem: Which form the answer of `ask-guppi` takes at `/pre-spec` — the five lines, or a form of
+      its own that the rule names — is put off.
+  spec: vault/raw/2026-10-04/0004/spec.md
+  applied: 01:05:39
+- case: '619'
+  decision: decision-case-619
+  origin: raw/2026-10-04/0004/ledger.md#case-619
+  children:
+  - decision-case-619.1
+  - decision-case-619.2
+  tags: []
+  case_text:
+    context: 'The last session created the test page `entity-reading-probe` to bring on readings that
+      wait for their moment (case 614). Its `## Purpose` holds the made-up word `quillwort` and the word
+      `bramblewort`. A reword is an `update` item that carries `{old, new}` pairs. At the librarian''s
+      run, `guppi generate` replaces each pair as a whole word on every live rule, entity and estimate.
+      The page of the item is the owner, and its text must hold each `new`. The reword has never run live.
+      `estimate-generate-rewords` stands `pending`, and its live leg waits for a librarian''s run that
+      applies a reword. While the test page is live, `make lint` reports two findings on it, `schema`
+      and `orphan`. `estimate-sprint-migration-lint-clean` needs `make lint` to exit 0 at the close of
+      the sprint. Case 614 could not do the reword in its own session, because the pair check of `guppi/prespec.py`
+      loads only the pages on disk. That gap still stands, and this Case does not fix it.
+
+
+      This Case does the reword and then deletes the page. The two steps are two sub-cases, and both run
+      at the librarian''s run after this session. The docstring of `guppi/generate.py` says it applies
+      the entries of a yaml in order. The decision line of 619.1 comes before the line of 619.2, so the
+      reword runs on the live page and then the delete sets it `archived`. `guppi cleanup` (`rule-cleanup`)
+      then moves the page under `vault/archive/` with its History. Its `reworded` History line therefore
+      stays readable. So do the `log.md` line and the stdout line of the run. If the reword fails and
+      the delete applies, a later `update` still reaches the archived page, because `generate` finds a
+      slug that is not under `vault/wiki/` in the archive. `check_items` of `guppi/prespec.py` keys each
+      item by its kind and slug, so an `update` and a `delete` of one page in one Spec are no finding.
+
+
+      Searches. The Grep `quillwort|bramblewort` (case-insensitive) over `vault/wiki/` printed two files:
+      `brief.md` and `entities/entity-reading-probe.md`. A reword never touches `brief.md`, so the pair
+      hits the test page alone. The owner''s `## Purpose` holds `bramblewort`, so the check of the owner''s
+      text passes, and the pair check of `guppi/prespec.py` finds the pair on a live page. The Grep `quillwort|bramblewort|reading-probe`
+      (case-insensitive) over `vault/wiki/` printed five files: `brief.md`, `log.md`, `entities/entity-reading-probe.md`,
+      `estimates/estimate-plan-mode-verified.md` and `decisions/decision-case-614.md`. The hit on `estimate-plan-mode-verified`
+      stands in its `## Result`, a record that a reword skips and a delete leaves true. The hit on `decision-case-614`
+      is its `create` list, a record. Its `ref` check in `guppi/lint.py` accepts a slug that an archived
+      page carries. The hits in `brief.md` and `log.md` were not read. The Grep `reword` over `vault/wiki/rules/`
+      printed `rule-case-protocol`, `rule-materialize` and `rule-page-generation`. Each describes how
+      a reword pair is written, carried or applied, and this Case follows each as it stands. The same
+      Grep over `.claude/` printed nothing. `rule-page-generation` carries `deferred_by` `decision-case-469`.
+      Its Problem is whether a supersede of an archived Decision keeps `archived`, and that does not touch
+      this Case.
+
+
+      Done means the following. `estimate-generate-rewords` reads the librarian''s run that applies the
+      pair. Its Criterion describes exactly that run, so it stands. Its reading comes at the next `/hi`
+      through the Work list of the brief, since this Case does not set it `pending`. The delete is checked
+      by `estimate-generate-writes` (a `delete` sets `archived` with History `deleted`) and `estimate-cleanup-moves`.
+      Both Criteria stand, because the delete is the kind of entry each describes. At the close of the
+      sprint, `estimate-sprint-migration-lint-clean` reads `make lint`, and its Criterion stands. The
+      Criteria of `estimate-entities-schema-checked` and `estimate-lint-finds-a-broken-link` speak of
+      the findings a page like this one draws while it is live. They stand, because they check `guppi
+      lint` and not this page. The page has an empty `estimates` list. This Case creates no Estimate and
+      replaces no Criterion. No other Case of this session is related.'
+    problem: 'The test page has served its purpose except for one moment: a live reword. It keeps `make
+      lint` red and must be gone before any close of the sprint. The question is how to bring on the reword
+      and remove the page in one session, with each step checked on its own.'
+    recommend: "- **One decision or two?**\n  - Recommended: (b) two sub-cases under one Case, the reword\
+      \ first and the delete second, since the reword can fail on its own and its fix differs from the\
+      \ fix of a delete.\n  - Answer: Agreed with the recommendation.\n- **Does the delete wait for the\
+      \ word change to be read?**\n  - Recommended: (a) both in this session. The reading loses nothing\
+      \ with the delete, and the lint findings clear soonest.\n  - Answer: Agreed with the recommendation."
+  spec: vault/raw/2026-10-04/0004/spec.md
+  applied: 01:05:39
+- case: '620'
+  decision: decision-case-620
+  origin: raw/2026-10-04/0004/ledger.md#case-620
+  children:
+  - decision-case-620.1
+  - decision-case-620.2
+  tags: []
+  case_text:
+    context: 'At `/hi` the person can take a conserved Spec: a plan that an earlier session ratified and
+      saved with `/carry`, which this session runs whole by `/box`. `rule-skill-hi` then lets the agent
+      ratify no Case but a short-form defer, and it must close each other open line under `## Cases` of
+      `frontier.md` as put off. There are three marks for that: `[-] … · backlog · kept`, `[-] … · sprint
+      · defer` and `[-] … · defer case N`. The third mark is checked by `check_frontier` of `guppi/prespec.py`.
+      It looks for a `defer` item under Case N only in the plan of the current session. A session that
+      runs a conserved Spec has a plan with one title line only. In session 1416 the Frontier line C4,
+      the failed reading of `estimate-handoff-holds-each-fact-once`, came from the ledger Tail. Case 618
+      of the conserved Spec of 1341, which the session ran, already put off that Estimate. The agent closed
+      the line `[-] … · ledger · defer case 618`, and `uv run guppi prespec --check` refused it with "frontier:
+      C4 defers to case 618, no defer item under Case 618". The agent then closed the line `[x] … · ledger
+      · work`, which `estimate-hi-takes-a-conserved-spec` does not allow, so that reading failed (1416
+      L8). The lesson `lesson-session-ledger-item-deferred-by-the-conserved-spec-closed-as-work` records
+      it. The librarian grouped it with an older lesson into `insight-session-frontier-no-closer-for-an-item-ended-outside-the-plan`,
+      which stands `open`.
+
+
+      This Case keeps the mark `defer case N` and lets N be a Case of the conserved Spec that the title
+      line of the plan names. Case 620.1 writes that into `rule-skill-hi` and replaces the Criterion of
+      `estimate-hi-takes-a-conserved-spec`. It also names the close in `rule-orchestration`, in its list
+      of the lines a reply closes with no ratification and no defer. Case 620.2 makes `guppi prespec`
+      accept the mark. It finds the conserved Spec by `conserved_spec_named` of `guppi/box.py`, the function
+      that `guppi/spec.py` already uses to read the same title line, so the judgment lives in one place.
+      Case 620.1 also sets the insight `actioned`. The older lesson of that insight, an agenda item left
+      on the sprint page, already has the mark `[-] … · sprint · defer` (cases 310.5, 356.2). By the cascade
+      of `guppi generate` that `estimate-generate-cascades` checks, each `clustered` child of an `actioned`
+      Insight becomes `archived` with History `archived · insight actioned`. So at the librarian''s run
+      both lessons of the insight are archived: `lesson-session-ledger-item-deferred-by-the-conserved-spec-closed-as-work`
+      and `lesson-frontier-has-no-closer-for-a-milestone-item-left-on-the-sprint-page`. The insight stays
+      live and reopens on a recurrence (`rule-insights-schema`). The Criterion of `estimate-generate-cascades`
+      describes exactly this, so it stands. The lesson of 1416 is from another session, so no decision
+      line carries `{addresses:...}` for it (case 284.2). This Case closes the brief item that names the
+      cause (C3 of this session''s Frontier) and the failed reading (C5). It adds no stop for a line that
+      fits no mark (Q4).
+
+
+      The frame. The only hook on `PreToolUse` `ExitPlanMode` in `.claude/settings.json` is `uv run guppi
+      prespec`, and its rule is `rule-prespec-hook`. The code of `guppi prespec` changes in Work Mode
+      and runs from the working tree at once. The text of `rule-skill-hi` reaches `.claude/skills/hi/SKILL.md`
+      at the render. In between, the check accepts one more form and refuses nothing it accepted before,
+      so no old form is kept. `conserved_spec_named` needs the folder to hold `carry.md`. `/box` deletes
+      that file, but only after the exit from Plan Mode, which is when the check runs. The two sub-cases
+      name the same marks from two sides: the agent that writes a line, and the check that reads it. Their
+      `then` lines therefore share words, but they make two separate promises. Case 619, the only other
+      Case of this session, touches none of these pages.
+
+
+      The moment is a reply in Plan Mode that closes a Frontier line. The Grep `no ratification and no
+      defer` over `vault/wiki/` printed 6 files: `orchestration.md`, `log.md`, `rule-case-protocol`, `rule-orchestration`,
+      `estimate-orchestration-shows-the-frontier-after-a-closed-line` and `decision-case-547`. The hit
+      in `rule-case-protocol` stands in History, and those in `log.md` and the Decision page were not
+      read. The Render of `rule-orchestration` (rendered as `orchestration.md`) sets how a reply ends
+      when it closes a line with no ratification and no defer. Its list of such closes names `sprint ·
+      defer` and `backlog · kept` but not a `defer case N` that a Case of the conserved Spec carries,
+      so 620.1 adds that close to the list. The Criterion of `estimate-orchestration-shows-the-frontier-after-a-closed-line`
+      gives its list as examples, and the reply that takes a conserved Spec ends as it says: the Frontier,
+      then `/pre-spec`. So it stands. The short-form section of `rule-orchestration` describes the reply
+      that carries a short-form defer the person asks for, with its line closed `[-] … · defer case N`.
+      It does not say that every such close has a short Case of its own session, so it stays true. Its
+      sentence giving `[-] … · defer case N` to a decision of any other source that is put off also stays
+      true.
+
+
+      Searches. The Grep `defer case` over `vault/wiki/` printed 42 files: `brief.md`, `orchestration.md`,
+      `log.md`, the two lessons, the insight, `rule-skill-hi`, `rule-case-protocol`, `rule-prespec`, `rule-orchestration`,
+      `estimate-hi-takes-a-conserved-spec`, `estimate-hi-writes-frontier`, `estimate-prespec-checks-the-frontier`,
+      `estimate-orchestration-defers-in-one-reply`, `estimate-orchestration-acknowledging-reply`, and
+      27 Decision pages, which were not read. The hits in `rule-case-protocol` and `rule-prespec` stand
+      in History and were not read. `rule-skill-hi` holds four hits on three lines. Two hits are on the
+      Render line: one is the close this Case extends, and the other says a sprint item never closes `·
+      defer case N`, which stays true. The other two lines are History. The hits in `brief.md` and `log.md`
+      were not read. The Grep `defer case` over `.claude/` printed only `.claude/skills/hi/SKILL.md`,
+      the render of `rule-skill-hi`. The Grep `runs the conserved Spec` over the repository outside `vault/raw/`
+      printed `.claude/skills/hi/SKILL.md`, `tests/test_spec.py`, `tests/test_box.py`, `estimate-hi-takes-a-conserved-spec`,
+      `rule-skill-hi` and files under `vault/archive/`, which were not read. The title line does not change.
+      The Grep `conserved` over `guppi/` printed `backlog.py`, `box.py`, `materialize.py` and `spec.py`.
+
+
+      Done means the following. Case 620.1 replaces the Criterion of `estimate-hi-takes-a-conserved-spec`.
+      Its `purpose` and `method` still describe what it checks, so they stand. Case 620.2 replaces the
+      Criterion of `estimate-prespec-checks-the-frontier`. Its `purpose` (a closer that agrees with its
+      source) and its `method` (`uv run pytest tests/test_prespec.py`) stand. The Criterion of `estimate-hi-writes-frontier`
+      says that a decision of any other source that is put off closes `[-] … · defer case N`. It does
+      not say who holds Case N, so it stands. The Criteria of `estimate-orchestration-acknowledging-reply`
+      and `estimate-orchestration-defers-in-one-reply` list the same marks, which do not change, so they
+      stand.'
+    problem: A session that runs a conserved Spec has no valid mark for a Frontier line whose target that
+      Spec already puts off. `rule-skill-hi` gives `defer case N`, but `guppi prespec` looks for Case
+      N only in the session's own plan, which holds no Case. So the agent closed the line `work` by its
+      own judgment, and `estimate-hi-takes-a-conserved-spec` failed.
+    recommend: "- **Fix the failed check together with its cause, or on its own?**\n  - Recommended: (a)\
+      \ one Case for both items. The check failed only because the rule has no mark for this line, so\
+      \ it cannot pass until the rule changes.\n  - Answer: (a) one Case for both items.\n- **Which mark\
+      \ closes a line whose put-off is already in the saved plan?**\n  - Recommended: (a) keep `defer\
+      \ case N` and let N point into the conserved Spec that the plan's title line names. `guppi prespec`\
+      \ looks there through the function `/box` already uses.\n  - Answer: Agreed with the recommendation.\n\
+      - **Does this Case also close the pattern that groups the two lessons?**\n  - Recommended: (a) mark\
+      \ the insight `actioned` and addressed by this Case, since both of its cases then have a mark.\n\
+      \  - Answer: Agreed with the recommendation.\n- **Should the agent also stop when a line fits no\
+      \ mark?**\n  - Recommended: (b) leave the stop out of this Case. Every known case has a mark, and\
+      \ a recurrence reopens the insight.\n  - Answer: Agreed with the recommendation."
+  spec: vault/raw/2026-10-04/0004/spec.md
+  applied: 01:05:39
+unparsed: []
+session: '0004'

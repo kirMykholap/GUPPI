@@ -1,10 +1,10 @@
 ---
 type: estimate
 kind: QA
-status: pending
+status: passed
 target: "[[rule-retro]]"
 method: by hand at a /retro, and at a /retro of a session that /box runs, recorded in the estimate line
-checked: 2026-09-30
+checked: 2026-10-04
 origin: raw/2026-09-10/ledger.md#case-38.1
 sprint: migration
 created: 2026-09-10
@@ -25,7 +25,7 @@ A reading measures the Criterion the page carries at the moment of the reading �
 
 ## Result
 
-2026-09-30, the /retro of session 2042 by hand: it read no Estimate that a decision line of this session creates or updates, the new four and estimate-retro-onward-sends-the-agent-to-the-handoff left to a later session, and took readings only of Estimates whose work is built
+2026-10-04, at the /hi of session 0004, by hand: the /retro of session 0317 (transcript 5b311f89, 05:04:23 to 05:05:59): its two readings, `estimate-case-build-writes-the-case` and `estimate-end-of-work-order`, are Estimates no decision line of raw/2026-10-03/0317/ledger.md names, while 27 of the 35 open W lines of its frontier.md name an Estimate a decision line of that ledger updates and none of them got a reading; handoff.md names the `read` lines of the session's own slugs under Debt and the 37 method rewrites of 613.3 as readings of later sessions; the /retro of session 1416 (transcript 682b0e2f, 14:39:41 to 14:40:43), work.md naming vault/raw/2026-10-03/1341/ under `## Conserved Spec`: handoff.md sorts the boxes of that folder's spec.md — one box waiting for the librarian, the `create` of `entity-reading-probe`, and no `read` line of a slug the session creates or updates —, and its two readings, `estimate-hi-takes-a-conserved-spec` and `estimate-spec-capture-offers-the-fork`, are Estimates no decision line of the 1341 or 1416 ledger names
 
 ## History
 
@@ -60,3 +60,4 @@ A reading measures the Criterion the page carries at the moment of the reading �
 - 2026-09-30 status: pending → passed · raw/2026-09-30/2042/ledger.md#L35
 - 2026-10-02 updated: the Criterion replaced whole — in a session that /box runs, the conserved Spec counts as this session's work (case 591.8) · [[decision-case-591.8]]
 - 2026-10-03 updated: method names the kind of its moment (case 613.3) · [[decision-case-613.3]]
+- 2026-10-04 status: pending → passed · raw/2026-10-04/0004/ledger.md#L2

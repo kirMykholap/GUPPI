@@ -2,7 +2,7 @@
 type: rule
 kind: Leaf
 purpose: Prevents Plan Mode from stopping where no person is needed, between the reply that acknowledges the last ratification and /pre-spec, and between the ratification of the Cases built again on its findings and the exit
-status: draft
+status: built
 enforcement: hook
 implementation_ref: [guppi/onward.py, guppi/ledger.py, guppi/casecheck.py, tests/test_onward.py, tests/test_ledger.py, .claude/settings.json]
 parent: "[[rule-plan-mode]]"
@@ -30,3 +30,4 @@ Prevents Plan Mode from stopping where no person is needed: between the reply th
 - 2026-10-02 status: built → draft · cascade
 - 2026-10-03 updated: a Case is judged out by the decision lines of every reply of the transcript, not only of the stretch, so a re-ratification with unchanged lines counts for the rest of the session (case 604) · [[decision-case-604]]
 - 2026-10-03 ref `estimate-prespec-onward-reads-the-decisions-of-the-stretch` → `estimate-prespec-onward-reads-the-decisions-of-the-session` · [[decision-case-604]]
+- 2026-10-04 status: draft → built · cascade

@@ -1,6 +1,6 @@
 # Backlog
 
-22 items
+21 items
 
 ## Conserved Specs
 
@@ -17,10 +17,9 @@
 - `rule-page-generation` — Prevents a ratified decision from ending the session without a page, or a page from carrying a field nobody ratified · put off in 0 sessions
 - `rule-subagent-guppi` — Prevents implementation drifting from the ratified plan while it is being executed · put off in 29 sessions
 - `insight-hi-skill-substitution-checked-by-a-model-call` — A `!` command of a skill is checked by a model call before it runs; when that call fails — a lapsed login, reported as the model unavailable — the substitution is refused and the Render: line comes back empty, while the SessionStart hook is not affected. · severity 1 · put off in 3 sessions
-- `insight-session-frontier-no-closer-for-an-item-ended-outside-the-plan` — The closers of a Frontier line are listed for an item the session's own plan ends; an item left whose end stands elsewhere — on the sprint page for a later session, or in a defer of the conserved Spec the session takes — has no closer, and the agent closes it `work` by its own judgment, a form the check accepts and the reader misreads · severity 2 · put off in 0 sessions
 - `insight-session-vault-knowledge-not-loaded` — A fact the vault holds does not reach the session that needs it; only brief.md, CLAUDE.md, the skills and the agent frames are loaded, and everything else waits for a read the agent must first think to make. · severity 1 · put off in 0 sessions
 - `insight-workflow-case-schema-silent-on-what-the-scripts-accept` — The Case schema does not say how the scripts read the text a Case writes — which forms they resolve, how far an edit pair reaches — so the agent writes a form the scripts do not handle, and only the pre-spec check finds it. · severity 3 · put off in 0 sessions
-- `insight-workflow-fact-signed-from-a-check-that-does-not-cover-it` — A fact is signed — in a Case, in a reading, in a ledger line — on a check narrower than the claim: the command that ran answered one question and the sentence it supports makes a wider one, while the wider check was one more command away. · severity 1 · put off in 1 session
+- `insight-workflow-fact-signed-from-a-check-that-does-not-cover-it` — A fact is signed — in a Case, in a reading, in a ledger line — on a check narrower than the claim: the command that ran answered one question and the sentence it supports makes a wider one, while the wider check was one more command away. · severity 3 · put off in 1 session
 - the product model: `kind: test | measurement | reading`, `ask-guppi` through Entities, the vault-query questions before a product's records (session 1119); `applies_to` and `rules` taken into Slice 3f (case 301) · put off in 0 sessions
 - reuse, the edge: `uses` / `used_by` between Entities — `uses` written in the Case on the side that uses, `used_by` computed by the cascade of `generate`, the pair checked by lint, the pattern of `applies_to` / `rules`; no edge Rule → Rule (cases 305, 319) · put off in 0 sessions
 - reuse, the question: the vault query before a `create` asks a second question — what of the existing this thing could use, by the index lines of the Entities — and the answer stands in `context`; the Case names what it found in `uses` or says why it is not used (case 319) · put off in 0 sessions

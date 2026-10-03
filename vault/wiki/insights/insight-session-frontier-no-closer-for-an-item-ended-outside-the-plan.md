@@ -1,9 +1,10 @@
 ---
 type: insight
 pattern: The closers of a Frontier line are listed for an item the session's own plan ends; an item left whose end stands elsewhere — on the sprint page for a later session, or in a defer of the conserved Spec the session takes — has no closer, and the agent closes it `work` by its own judgment, a form the check accepts and the reader misreads
-status: open
+status: actioned
 children: ["[[lesson-frontier-has-no-closer-for-a-milestone-item-left-on-the-sprint-page]]", "[[lesson-session-ledger-item-deferred-by-the-conserved-spec-closed-as-work]]"]
-severity: 2
+severity: 0
+addressed_by: "[[decision-case-620.1]]"
 origin: raw/2026-10-03/1416/ledger.md#L10
 sprint: migration
 created: 2026-10-03
@@ -21,3 +22,4 @@ A suggestion, not a decision — a Case that names in rule-skill-hi, and in the 
 ## History
 
 - 2026-10-03 created · raw/2026-10-03/1416/ledger.md#L10
+- 2026-10-04 updated: actioned: a line put off by a defer of the conserved Spec closes defer case N, and a sprint item left closes sprint defer (cases 356.2, 620.1) · [[decision-case-620.1]]

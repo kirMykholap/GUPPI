@@ -2,7 +2,7 @@
 type: rule
 kind: Leaf
 purpose: Prevents the run from stopping between the reply that ends Retro and /handoff, where no person is needed
-status: draft
+status: built
 enforcement: hook
 implementation_ref: [guppi/onward.py, guppi/ledger.py, tests/test_onward.py, tests/test_ledger.py, .claude/settings.json]
 parent: "[[rule-end-of-work]]"
@@ -28,3 +28,4 @@ Prevents the run from stopping between the reply that ends Retro and /handoff, w
 - 2026-10-01 updated: an error of the hook exits 2 once a stretch, judged by its own refusal in the transcript, which is among its reads (case 577.2) · [[decision-case-577.2]]
 - 2026-10-01 status: built → draft · cascade
 - 2026-10-02 updated: the hook sends the agent on again after each reply that the ledger hook refused; tests/test_ledger.py joins implementation_ref (case 596) · [[decision-case-596.1]]
+- 2026-10-04 status: draft → built · cascade

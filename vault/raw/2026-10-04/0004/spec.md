@@ -50,7 +50,7 @@ update:
 ```
 
 ```tasks
-- [ ] update `entity-reading-probe`
+- [x] update `entity-reading-probe`
 ```
 
 ### Case 619.2 — The test page deleted
@@ -78,7 +78,7 @@ delete:
 ```
 
 ```tasks
-- [ ] delete `entity-reading-probe`
+- [x] delete `entity-reading-probe`
 ```
 
 ## Case 620 — A line put off by the conserved Spec it runs
@@ -167,12 +167,12 @@ update:
 ```
 
 ```tasks
-- [ ] update `rule-skill-hi`
-- [ ] update `rule-orchestration`
-- [ ] update `estimate-hi-takes-a-conserved-spec`
-- [ ] update `insight-session-frontier-no-closer-for-an-item-ended-outside-the-plan`
-- [ ] `uv run guppi render`: `.claude/skills/hi/SKILL.md`
-- [ ] `uv run guppi render`: `vault/wiki/orchestration.md`
+- [x] update `rule-skill-hi`
+- [x] update `rule-orchestration`
+- [x] update `estimate-hi-takes-a-conserved-spec`
+- [x] update `insight-session-frontier-no-closer-for-an-item-ended-outside-the-plan`
+- [x] `uv run guppi render`: `.claude/skills/hi/SKILL.md`
+- [x] `uv run guppi render`: `vault/wiki/orchestration.md`
 - [ ] read `estimate-hi-takes-a-conserved-spec`
 ```
 
@@ -213,8 +213,8 @@ update:
 ```
 
 ```tasks
-- [ ] update `rule-prespec`
-- [ ] update `estimate-prespec-checks-the-frontier`
+- [x] update `rule-prespec`
+- [x] update `estimate-prespec-checks-the-frontier`
 - [x] `guppi/prespec.py`: when Case N has no `defer` item in the plan, `check_frontier` reads the `defer` items of the conserved Spec that `conserved_spec_named` of `guppi/box.py` finds in the plan's title line, by `split_cases` and `then_blocks` of `guppi/materialize.py`; the module docstring and the docstring of `check_frontier` say so
 - [x] `tests/test_prespec.py`: a `defer case N` line is clean when N holds a `defer` item in the conserved Spec that the title line names; it is a finding when that Case holds no `defer` item; it is a finding when the named folder holds no `carry.md`
 - [x] `make test`

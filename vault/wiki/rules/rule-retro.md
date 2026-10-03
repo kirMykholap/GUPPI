@@ -2,7 +2,7 @@
 type: rule
 kind: Leaf
 purpose: Prevents a session from reaching the librarian on work nobody reviewed
-status: draft
+status: built
 enforcement: render
 governs: .claude/skills/retro/SKILL.md
 render_mode: full
@@ -113,3 +113,4 @@ When the review is done, commit the work: `make style` clean, `make test` green 
 - 2026-10-01 updated: work.md that the agent wrote or changed itself in the same turn counts as read; otherwise Retro opens it with the Read tool (case 569.2) · [[decision-case-569.2]]
 - 2026-10-02 updated: in a session that /box runs, the conserved Spec is the Spec Retro reviews, and its decision lines count as this session's (case 591.8) · [[decision-case-591.8]]
 - 2026-10-02 updated: the reply that answers a refusal of the ledger hook after the reply that ends Retro holds only the refused lines written again (case 596.2) · [[decision-case-596.2]]
+- 2026-10-04 status: draft → built · cascade

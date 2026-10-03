@@ -2,7 +2,7 @@
 type: lesson
 kind: error
 root_cause: rule-skill-hi gives the three closers of a line left — backlog kept, sprint defer, defer case N — but none for a Frontier item of the ledger whose defer stands in the conserved Spec being taken, and the check judges `defer case N` only against the Cases of the session's own plan, so the agent picked a closer by its own judgment and did not name the gap as a stop
-status: clustered
+status: archived
 insight: "[[insight-session-frontier-no-closer-for-an-item-ended-outside-the-plan]]"
 origin: raw/2026-10-03/1416/ledger.md#L10
 sprint: migration
@@ -22,3 +22,5 @@ rule-skill-hi gives the three closers of a line left — backlog kept, sprint de
 
 - 2026-10-03 created · raw/2026-10-03/1416/ledger.md#L10
 - 2026-10-03 updated: clustered under insight-session-frontier-no-closer-for-an-item-ended-outside-the-plan (synthesis) · raw/2026-10-03/1416/ledger.md#L10
+- 2026-10-04 archived · insight actioned
+- 2026-10-04 archived · cleanup

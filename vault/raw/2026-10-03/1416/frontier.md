@@ -28,7 +28,7 @@ Backlog: 20 items
 - [x] W14 — `estimate-compact-recall-reloads` · brief · work
 - [x] W15 — `estimate-event-log-records` · brief · work
 - [ ] W16 — `estimate-handoff-dispatches` · brief
-- [ ] W17 — `estimate-hi-takes-a-conserved-spec` · brief
+- [x] W17 — `estimate-hi-takes-a-conserved-spec` · brief · work
 - [ ] W18 — `estimate-lint-runs-every-step` · brief
 - [x] W19 — `estimate-orchestration-defers-in-one-reply` · brief · work
 - [ ] W20 — `estimate-orchestration-signs-a-batch-together` · brief
@@ -40,7 +40,7 @@ Backlog: 20 items
 - [ ] W26 — `estimate-retro-runs-on-to-the-handoff` · brief
 - [ ] W27 — `estimate-session-start-context` · brief
 - [ ] W28 — `estimate-spec-box-runs-a-conserved-spec` · brief
-- [ ] W29 — `estimate-spec-capture-offers-the-fork` · brief
+- [x] W29 — `estimate-spec-capture-offers-the-fork` · brief · work
 - [ ] W30 — `estimate-spec-write-reaches-the-approved-spec` · brief
 - [ ] W31 — `estimate-where-to-stop-stops-only-on-its-conditions` · brief
 - [ ] W32 — `estimate-work-mode-runs-the-spec-on-a-branch-from-a-baseline` · brief

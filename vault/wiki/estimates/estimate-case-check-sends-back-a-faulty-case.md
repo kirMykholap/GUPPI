@@ -1,11 +1,11 @@
 ---
 type: estimate
 kind: QA
-status: pending
+status: passed
 target: "[[rule-case-check]]"
 purpose: A Case of case-guppi that the checks refuse goes back to it before the main agent sees it
 method: uv run pytest tests/test_casecheck.py -k subagent, then by hand an answer of case-guppi the hook sends back, a file of cases/ it writes, and a live round after a built Case, which is not sent back for that Case and leaves its stored entry and its file as they stood
-checked: 2026-09-30
+checked: 2026-10-04
 origin: raw/2026-09-25/1228/ledger.md#case-419.3
 sprint: migration
 created: 2026-09-25
@@ -33,7 +33,7 @@ Then:
 
 ## Result
 
-2026-09-30, uv run pytest tests/test_casecheck.py -k subagent: 43 passed, 21 deselected; live in session 2042: the store validated-munching-muffin.checked.json holds 16 Case entries, none with findings, notes on 9 sub-cases, which case-guppi reported as sent back once; the files cases/case-554.md to case-558.md were written from the stored text and replaced at each answer that held the top-level Case; no finding was sent back live, so that branch rests on the tests
+2026-10-04, the Work readings of session 0112: `uv run pytest -q tests/test_casecheck.py -k subagent` 72 passed, 45 deselected; live in session 0112 (transcript b76bfabb): the SubagentStop hook sent back the answer of Case 625 (agent a309e5b8dc383eed8) with "casecheck: case 625: /box is not named in its given; case 625: /pre-spec is not named in its given", and case-guppi answered again; the store glimmering-waddling-wigderson.checked.json holds 624, 625, 626, 626.1 and 626.2, each with its agent_id, the time of the store and no findings; cases/case-625.md was written at 02:24:10.05 after its store at 02:24:09.93, and cases/case-626.md, holding 626, 626.1 and 626.2, at 02:30:50.09 after its store at 02:30:49.96; a live round after a built Case: agent ad744674f53077ad2 built Case 626 at 02:09:40 and, sent the findings of /pre-spec, answered with the round Q6 at 02:23:52, which no hook feedback followed; the store and the file now hold the answer of 02:30:49, so their state between the round and that answer was not recorded and rests on the tests; not exercised: a `**Fact:**` answer
 
 ## History
 
@@ -45,3 +45,4 @@ Then:
 - 2026-10-03 updated: the Criterion replaced whole — an answer whose outputs hold no Case heading gets none of the checks of a Case, and the form of a round is the promise of estimate-case-check-sends-back-a-faulty-round (case 601.2) · [[decision-case-601.2]]
 - 2026-10-03 updated: the Criterion replaced whole — the answer is the newest output that is a Case, a round or a Fact answer; a round or a Fact answer gets no check of a Case, and an earlier Case is not checked, stored or written again (case 607.1) · [[decision-case-607.1]]
 - 2026-10-03 updated: method names the kind of its moment (case 613.3) · [[decision-case-613.3]]
+- 2026-10-04 status: pending → passed · raw/2026-10-04/0112/ledger.md#L13

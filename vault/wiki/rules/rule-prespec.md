@@ -2,7 +2,7 @@
 type: rule
 kind: Leaf
 purpose: Prevents a set of ratified decisions from reaching the Spec with a contradiction between them or with the vault
-status: draft
+status: built
 enforcement: render
 governs: .claude/skills/pre-spec/SKILL.md
 render_mode: full
@@ -180,3 +180,4 @@ Inside this loop the rule of `vault/wiki/orchestration.md` that no Case is taken
 - 2026-10-03 status: draft → built · cascade
 - 2026-10-04 updated: the Frontier check takes defer case N from a defer Case of the conserved Spec that the plan's title line names (case 620.2) · [[decision-case-620.2]]
 - 2026-10-04 status: built → draft · cascade
+- 2026-10-04 status: draft → built · cascade

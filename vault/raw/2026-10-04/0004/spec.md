@@ -218,7 +218,7 @@ update:
 - [x] `guppi/prespec.py`: when Case N has no `defer` item in the plan, `check_frontier` reads the `defer` items of the conserved Spec that `conserved_spec_named` of `guppi/box.py` finds in the plan's title line, by `split_cases` and `then_blocks` of `guppi/materialize.py`; the module docstring and the docstring of `check_frontier` say so
 - [x] `tests/test_prespec.py`: a `defer case N` line is clean when N holds a `defer` item in the conserved Spec that the title line names; it is a finding when that Case holds no `defer` item; it is a finding when the named folder holds no `carry.md`
 - [x] `make test`
-- [ ] read `estimate-prespec-checks-the-frontier`
+- [x] read `estimate-prespec-checks-the-frontier`
 ```
 
 ## Deferred

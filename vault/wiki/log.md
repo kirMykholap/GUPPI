@@ -6130,3 +6130,31 @@ instruction. The global feed; a page's own `## History` is the per-page view.
 - 2026-10-04 entities/entity-reading-probe archived · cleanup
 - 2026-10-04 lessons/lesson-frontier-has-no-closer-for-a-milestone-item-left-on-the-sprint-page archived · cleanup
 - 2026-10-04 lessons/lesson-session-ledger-item-deferred-by-the-conserved-spec-closed-as-work archived · cleanup
+- 2026-10-04 estimates/estimate-generate-rewords status: pending → passed · raw/2026-10-04/0112/ledger.md#L1 · generate
+- 2026-10-04 estimates/estimate-prespec-checks-the-frontier status: pending → passed · raw/2026-10-04/0112/ledger.md#L2 · generate
+- 2026-10-04 decisions/decision-case-624 created · raw/2026-10-04/0112/ledger.md#case-624 · generate
+- 2026-10-04 rules/rule-handoff updated: a thing is said once: a second section names it only with what its kind adds; the readings that wait stand in Debt alone, each with its moment, and are not debt (case 624) · [[decision-case-624]] · generate
+- 2026-10-04 estimates/estimate-handoff-holds-each-fact-once updated: the Criterion replaced whole — one statement once, a second section naming a thing only with what its kind adds; the readings that wait in Debt alone, each with its moment, not debt; read on a handoff the rendered skill wrote (case 624) · [[decision-case-624]] · generate
+- 2026-10-04 decisions/decision-case-625 created · raw/2026-10-04/0112/ledger.md#case-625 · generate
+- 2026-10-04 estimates/estimate-work-mode-runs-the-spec-on-a-branch-from-a-baseline updated: method names no /work the person types, a moment no one brings on (case 625) · [[decision-case-625]] · generate
+- 2026-10-04 estimates/estimate-prespec-onward-sends-the-agent-on updated: method names no Plan Mode at which the ledger hook refuses a line, a moment no one brings on; the tests cover the refusal (case 625) · [[decision-case-625]] · generate
+- 2026-10-04 estimates/estimate-retro-onward-sends-the-agent-to-the-handoff updated: method names no end of Retro at which the ledger hook refuses a line, a moment no one brings on; the tests cover the refusal (case 625) · [[decision-case-625]] · generate
+- 2026-10-04 estimates/estimate-retro-runs-on-to-the-handoff updated: method names no Retro at which the ledger hook refuses a line, a moment no one brings on (case 625) · [[decision-case-625]] · generate
+- 2026-10-04 estimates/estimate-orchestration-shows-the-built-case status: failed → passed · raw/2026-10-04/0112/ledger.md#L9 · generate
+- 2026-10-04 decisions/decision-case-626 created · raw/2026-10-04/0112/ledger.md#case-626 · generate
+- 2026-10-04 decisions/decision-case-626.1 created · raw/2026-10-04/0112/ledger.md#case-626.1 · generate
+- 2026-10-04 decisions/decision-case-553 superseded by decision-case-626.1 · [[decision-case-626.1]] · generate
+- 2026-10-04 rules/rule-ask defer by decision-case-553 superseded · [[decision-case-626.1]] · generate
+- 2026-10-04 rules/rule-ask updated: ask-guppi answers /pre-spec with one numbered list of findings under each question, the Problem of a page's deferred_by in the finding that names the page; the five lines answer a question whether a thing exists; the defer of case 553 retired, both agents reading Decision pages by the rule of ask-guppi.md (case 626.1) · [[decision-case-626.1]] · generate
+- 2026-10-04 estimates/estimate-ask-finds updated: the Criterion replaced whole — the dispatch at /pre-spec answered by one numbered list of findings under each question, not by the five lines, the Problem of a deferred page in its finding; the lines on a page asked in either language, a crossed rule and an archived slug moved to estimate-ask-query-before-a-create (case 626.1) · [[decision-case-626.1]] · generate
+- 2026-10-04 decisions/decision-case-626.2 created · raw/2026-10-04/0112/ledger.md#case-626.2 · generate
+- 2026-10-04 estimates/estimate-ask-query-before-a-create created · [[decision-case-626.2]] · generate
+- 2026-10-04 rules/rule-ask estimate estimate-ask-query-before-a-create added · [[decision-case-626.2]] · generate
+- 2026-10-04 estimates/estimate-case-check-sends-back-a-faulty-case status: pending → passed · raw/2026-10-04/0112/ledger.md#L13 · generate
+- 2026-10-04 lessons/lesson-work-mode-a-staged-moment-promised-inside-a-run-with-no-stop created · raw/2026-10-04/0112/ledger.md#L14 · generate
+- 2026-10-04 insights/insight-session-vault-knowledge-not-loaded updated: child lesson-work-mode-a-staged-moment-promised-inside-a-run-with-no-stop added (synthesis) · raw/2026-10-04/0112/ledger.md#L14 · generate
+- 2026-10-04 lessons/lesson-work-mode-a-staged-moment-promised-inside-a-run-with-no-stop updated: clustered under insight-session-vault-knowledge-not-loaded (synthesis) · raw/2026-10-04/0112/ledger.md#L14 · generate
+- 2026-10-04 rules/rule-page-generation status: draft → built · cascade · generate
+- 2026-10-04 rules/rule-prespec status: draft → built · cascade · generate
+- 2026-10-04 decisions/decision-case-553 archived · superseded · generate
+- 2026-10-04 decisions/decision-case-553 archived · cleanup

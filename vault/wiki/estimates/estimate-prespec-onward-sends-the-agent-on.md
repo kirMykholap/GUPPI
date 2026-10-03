@@ -4,7 +4,7 @@ kind: QA
 status: passed
 target: "[[rule-prespec-onward]]"
 purpose: Whether guppi onward --plan refuses the end of a reply that leaves no Case open and no Case waiting in Plan Mode, sends the agent to /pre-spec or to the check and the exit, once a stretch and once more after each reply the ledger hook refused, judged by the refusals in the transcript whatever stop_hook_active says, not on a reply that opens with STOP:, and is silent otherwise
-method: "uv run pytest tests/test_onward.py tests/test_ledger.py; by hand at a Plan Mode at which the ledger hook refuses a line of the reply that acknowledges the last ratification: the transcript, the event log and frontier.md, recorded in the estimate line"
+method: "uv run pytest tests/test_onward.py tests/test_ledger.py, which cover a refusal of the ledger hook; by hand at a Plan Mode that closes its last Case: the transcript, the event log and frontier.md, recorded in the estimate line"
 checked: 2026-10-04
 origin: raw/2026-09-30/2356/ledger.md#case-561.5
 sprint: migration
@@ -41,3 +41,4 @@ It exits 2 when all of these hold: the event log of the session's window holds a
 - 2026-10-02 updated: the Criterion replaced whole — the run speaks again after each reply the ledger hook refused (case 597.1) · [[decision-case-597.1]]
 - 2026-10-03 updated: method names the kind of its moment (case 613.3) · [[decision-case-613.3]]
 - 2026-10-04 status: pending → passed · raw/2026-10-04/0004/ledger.md#L14
+- 2026-10-04 updated: method names no Plan Mode at which the ledger hook refuses a line, a moment no one brings on; the tests cover the refusal (case 625) · [[decision-case-625]]

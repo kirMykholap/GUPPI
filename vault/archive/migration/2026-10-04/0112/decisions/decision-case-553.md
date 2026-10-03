@@ -1,8 +1,9 @@
 ---
 type: decision
 case: "553"
-status: current
+status: archived
 defer: ["[[rule-ask]]"]
+superseded_by: ["[[decision-case-626.1]]"]
 origin: raw/2026-09-30/1736/ledger.md#case-553
 sprint: migration
 created: 2026-09-30
@@ -26,3 +27,6 @@ ask-guppi and case-guppi read Decision pages by one rule, so that a claim a Case
 ## History
 
 - 2026-09-30 created · raw/2026-09-30/1736/ledger.md#case-553
+- 2026-10-04 superseded by decision-case-626.1 · [[decision-case-626.1]]
+- 2026-10-04 archived · superseded
+- 2026-10-04 archived · cleanup

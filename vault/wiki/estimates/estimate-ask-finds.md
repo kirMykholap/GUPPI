@@ -1,10 +1,10 @@
 ---
 type: estimate
 kind: QA
-status: failed
+status: pending
 target: "[[rule-ask]]"
-purpose: ask-guppi finds a page by meaning in either language, names the rule a proposal crosses and the state of a named slug, and answers in five lines, a list of the paths of the files it read allowed after them
-method: "by hand in a later session: three dispatches of ask-guppi, one existing page asked in English and in Russian, one proposal that crosses a known rule, each read against the event log"
+purpose: Whether ask-guppi answers the questions of /pre-spec with one numbered list of findings under each question, each finding naming its Case and the page or Cases it bears on, a list of the paths of the files it read allowed after them
+method: "by hand at the /hi of a later session: the answer of ask-guppi at a /pre-spec after the render of .claude/agents/ask-guppi.md by case 626.1, read in its agent transcript against the event log, recorded in the estimate line"
 checked: 2026-10-04
 origin: raw/2026-09-09/ledger.md#case-23.1
 sprint: migration
@@ -15,20 +15,18 @@ tags: [session, workflow, harness]
 ## Criterion
 
 When:
-The main agent dispatches `ask-guppi` through the `Agent` tool with a question, and the agent follows `.claude/agents/ask-guppi.md` as rendered from `rule-ask`.
+At the first run of `/pre-spec` in a session, the main agent dispatches `ask-guppi` through the `Agent` tool with the plan file and the questions of `.claude/skills/pre-spec/SKILL.md`, and the agent follows `.claude/agents/ask-guppi.md` as rendered from `rule-ask`.
 
 Then:
-The answer opens with exactly five lines: `exists`, `near`, `missing`, `rules` and the tags/slug line, each present, "none" when empty.
-**＋** After the five lines a list of the paths of files the agent read may stand, as the general note of Claude Code asks of a sub-agent.
+The answer opens with one numbered list of findings under each question of `.claude/skills/pre-spec/SKILL.md`, in its order: what contradicts a page, a rule or another Case; an Estimate a Case does not name that speaks of the thing the Case changes; a fact of a `context` the vault does not bear out.
+**＋** Each finding names its Case and the page or the Cases it bears on; a question with no finding says "none".
+**＋** A finding that names a page carrying `deferred_by` gives the `## Problem` of the Decision that field names.
+**＋** After the findings a list of the paths of files the agent read may stand, as the general note of Claude Code asks of a sub-agent.
 **＋** The agent starts with the Grep `^(purpose|deferred_by):` over `vault/wiki/rules/`, then runs one Grep per other category the question touches.
-**＋** A question about an existing page names its slug under `exists`, whether it is asked in English or in Russian.
-**＋** A proposal that crosses a rule or a lesson, such as a `SessionStart` hook meant to block, names it on the `rules` line.
-**＋** A named slug gets on the tags/slug line `free`, `live` with its category, or `archived at <path> by [[decision-case-N]]`, found by a Glob over `vault/archive/`, N from the `origin` of the archived page.
-**＋** The agent opens an archived page only when the question names its slug and asks what it said or why it was withdrawn.
-**＋** Each dispatch stands in `vault/raw/<date>/event_log.md`.
-**－** No index line, page text or other note reaches the caller beyond the five lines and that list of paths.
-**－** An answer with no list after the five lines holds the promise as well.
-**－** The archive is not searched by meaning: the `exists` and `near` lines name live pages only.
+**＋** The dispatch stands in `vault/raw/<date>/event_log.md`.
+**－** The findings are not put under the lines `exists`, `near`, `missing`, `rules` and tags/slug: those lines answer a question whether a thing exists.
+**－** No index line, page text or other note reaches the caller beyond the findings and that list of paths.
+**－** An answer with no list after the findings holds the promise as well.
 
 ## Result
 
@@ -47,3 +45,4 @@ The answer opens with exactly five lines: `exists`, `near`, `missing`, `rules` a
 - 2026-10-01 updated: the Criterion replaced whole — a list of file paths may follow the five lines, as the general note of Claude Code asks of a sub-agent; nothing else follows them (case 582) · [[decision-case-582]]
 - 2026-10-04 status: pending → failed · raw/2026-10-04/0004/ledger.md#L17
 - 2026-10-04 deferred · [[decision-case-623]]
+- 2026-10-04 updated: the Criterion replaced whole — the dispatch at /pre-spec answered by one numbered list of findings under each question, not by the five lines, the Problem of a deferred page in its finding; the lines on a page asked in either language, a crossed rule and an archived slug moved to estimate-ask-query-before-a-create (case 626.1) · [[decision-case-626.1]]

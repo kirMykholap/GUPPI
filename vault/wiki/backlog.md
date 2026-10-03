@@ -1,6 +1,6 @@
 # Backlog
 
-21 items
+20 items
 
 ## Conserved Specs
 
@@ -8,7 +8,6 @@
 
 - `entity-guppi` — GUPPI as the thing this repository builds — the harness and the vault it keeps; its parts the sprint and the glossary · put off in 0 sessions
 - `entity-sprint-migration` — The repository works by the model of its rule pages — Phase 1 and Phase 2 of docs/migration/migration-plan.md closed · put off in 0 sessions
-- `rule-ask` — Prevents a create from being proposed without the vault having been asked whether it already holds the thing, or forbids it · put off in 0 sessions
 - `rule-case-rebuild-cost` — Prevents a Case from being rewritten whole and returned whole into the main agent's context when only a sub-case changed, and its context from listing searches that change nothing; options from session 2356 - the SubagentStop hook merges a changed sub-case into the stored answer, case-guppi writes the Case file itself and returns a short answer, the context keeps only what changes the decision, a large item split into several Cases · put off in 2 sessions
 - `rule-complaint-becomes-a-lesson` — After each reply of the person a hook raises the question whether it holds a complaint about the agent's text or work, and a complaint becomes a lesson line; an idea of session 0137, not yet decided · put off in 1 session
 - `rule-ledger-line-withdrawn-on-re-ratification` — Prevents a decision line of the first ratification of a Case from standing in the ledger after the Case is ratified again without its item, so that a rename or a dropped item does not need a new Case that supersedes the whole one · put off in 1 session
@@ -17,7 +16,7 @@
 - `rule-page-generation` — Prevents a ratified decision from ending the session without a page, or a page from carrying a field nobody ratified · put off in 0 sessions
 - `rule-subagent-guppi` — Prevents implementation drifting from the ratified plan while it is being executed · put off in 29 sessions
 - `insight-hi-skill-substitution-checked-by-a-model-call` — A `!` command of a skill is checked by a model call before it runs; when that call fails — a lapsed login, reported as the model unavailable — the substitution is refused and the Render: line comes back empty, while the SessionStart hook is not affected. · severity 1 · put off in 3 sessions
-- `insight-session-vault-knowledge-not-loaded` — A fact the vault holds does not reach the session that needs it; only brief.md, CLAUDE.md, the skills and the agent frames are loaded, and everything else waits for a read the agent must first think to make. · severity 1 · put off in 0 sessions
+- `insight-session-vault-knowledge-not-loaded` — A fact the vault holds does not reach the session that needs it; only brief.md, CLAUDE.md, the skills and the agent frames are loaded, and everything else waits for a read the agent must first think to make. · severity 2 · put off in 0 sessions
 - `insight-workflow-case-schema-silent-on-what-the-scripts-accept` — The Case schema does not say how the scripts read the text a Case writes — which forms they resolve, how far an edit pair reaches — so the agent writes a form the scripts do not handle, and only the pre-spec check finds it. · severity 3 · put off in 0 sessions
 - `insight-workflow-fact-signed-from-a-check-that-does-not-cover-it` — A fact is signed — in a Case, in a reading, in a ledger line — on a check narrower than the claim: the command that ran answered one question and the sentence it supports makes a wider one, while the wider check was one more command away. · severity 3 · put off in 1 session
 - the product model: `kind: test | measurement | reading`, `ask-guppi` through Entities, the vault-query questions before a product's records (session 1119); `applies_to` and `rules` taken into Slice 3f (case 301) · put off in 0 sessions

@@ -4,7 +4,7 @@ kind: QA
 status: passed
 target: "[[rule-work-mode]]"
 purpose: Whether /work stops on main, writes the baseline of make test and make lint into work.md before the first change — running a command itself when its substitution is empty — and keeps it on a resume, runs the tasks of the Spec of the session or of the folder /box gives it in order with their ticks, names that folder under Conserved Spec and deletes its carry.md, and marks an expected red under Expected red
-method: "uv run guppi render --check; by hand, a /work the agent calls at the fork, a /work the person types and a /work that /box calls: the branch, work.md, the ticks of the Spec, the carry.md of the folder and each Expected red line read against the Criterion, and, where a substitution came back empty, the agent's own run of its command, recorded in the estimate line"
+method: "uv run guppi render --check; by hand, a /work the agent calls at the fork and a /work that /box calls: the branch, work.md, the ticks of the Spec, the carry.md of the folder and each Expected red line read against the Criterion, and, where a substitution came back empty, the agent's own run of its command, recorded in the estimate line"
 checked: 2026-10-04
 origin: raw/2026-09-28/1318/ledger.md#case-479.2
 sprint: migration
@@ -39,3 +39,4 @@ Then:
 - 2026-10-02 updated: the Criterion replaced whole — /work runs the Spec of the folder /box gives it (case 591.7) · [[decision-case-591.7]]
 - 2026-10-03 updated: method names the kind of its moment (case 613.3) · [[decision-case-613.3]]
 - 2026-10-04 status: pending → passed · raw/2026-10-04/0004/ledger.md#L6
+- 2026-10-04 updated: method names no /work the person types, a moment no one brings on (case 625) · [[decision-case-625]]

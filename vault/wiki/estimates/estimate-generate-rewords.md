@@ -1,11 +1,11 @@
 ---
 type: estimate
 kind: QA
-status: pending
+status: passed
 target: "[[rule-page-generation]]"
 purpose: An update item with reword replaces its pairs as whole words on every live page but History and Result, one History line each, and fails on a pair with no hit or a new the owner does not carry
 method: pytest tests/test_generate.py on a temp vault with three pages and an archive; the live reading a librarian's run that applies a reword
-checked: 2026-09-22
+checked: 2026-10-04
 origin: raw/2026-09-20/1308/ledger.md#case-274.1
 sprint: migration
 created: 2026-09-20
@@ -25,7 +25,7 @@ Every pair is replaced as a whole word, with no letter, digit, `_` or `-` right 
 
 ## Result
 
-2026-09-22, uv run pytest tests/test_generate.py -k reword, 4 passed: a reword pair is replaced as a whole word on the live rules, entities and estimates with one History line per page and one stdout line per page; decisions, lessons, insights and the archive untouched; reword alone is content and applies; a pair with no hit, a new absent from the owner or a mapping fails the entry with the reason; the live leg, the librarian's run that applies the first reword, not taken
+2026-10-04, at the /hi of session 0112: `uv run pytest -q tests/test_generate.py -k reword` 4 passed; live, the librarian's run of session 0004 (transcript a17e0a5f, agent ad4261a2ebbd0c947): yaml line 7, an `update` of entity-reading-probe carrying `change` and `reword` [quillwort → bramblewort]; `guppi generate` printed `generate: reword `quillwort` → `bramblewort`: entities/entity-reading-probe (1)`; the page, archived at vault/archive/migration/2026-10-04/0004/entities/entity-reading-probe.md, holds bramblewort in its body and the History lines `reworded: `quillwort` → `bramblewort` · [[decision-case-619.1]]` and the `updated:` line of its `change`, before `deleted · [[decision-case-619.2]]`; a count of quillwort over vault/wiki/ finds it in brief.md (2) and log.md (2) only, neither touched by the reword; no Estimate status line of log.md cites Case 619; not exercised live: a pair with no hit, a `new` absent from the page of the item, a hit on a Decision page, a lesson, an Insight or the archive — the tests hold them
 
 ## History
 
@@ -33,3 +33,4 @@ Every pair is replaced as a whole word, with no letter, digit, `_` or `-` right 
 - 2026-09-22 status: pending → passed · raw/2026-09-22/0014/ledger.md#L3
 - 2026-09-29 updated: the Criterion replaced whole — When and Then only, Given and the Rule-class files out (case 489.4) · [[decision-case-489.4]]
 - 2026-10-03 updated: method names the kind of its moment (case 613.3) · [[decision-case-613.3]]
+- 2026-10-04 status: pending → passed · raw/2026-10-04/0112/ledger.md#L1

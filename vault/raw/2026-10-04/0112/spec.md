@@ -81,9 +81,9 @@ update:
 ```
 
 ```tasks
-- [ ] update `rule-handoff`
-- [ ] update `estimate-handoff-holds-each-fact-once`
-- [ ] `uv run guppi render`: `.claude/skills/handoff/SKILL.md`
+- [x] update `rule-handoff`
+- [x] update `estimate-handoff-holds-each-fact-once`
+- [x] `uv run guppi render`: `.claude/skills/handoff/SKILL.md`
 - [ ] read `estimate-handoff-holds-each-fact-once`
 ```
 
@@ -167,10 +167,10 @@ update:
 ```
 
 ```tasks
-- [ ] update `estimate-work-mode-runs-the-spec-on-a-branch-from-a-baseline`
-- [ ] update `estimate-prespec-onward-sends-the-agent-on`
-- [ ] update `estimate-retro-onward-sends-the-agent-to-the-handoff`
-- [ ] update `estimate-retro-runs-on-to-the-handoff`
+- [x] update `estimate-work-mode-runs-the-spec-on-a-branch-from-a-baseline`
+- [x] update `estimate-prespec-onward-sends-the-agent-on`
+- [x] update `estimate-retro-onward-sends-the-agent-to-the-handoff`
+- [x] update `estimate-retro-runs-on-to-the-handoff`
 ```
 
 ## Case 626 — ask-guppi answers /pre-spec in findings and the five lines answer whether a thing exists
@@ -268,9 +268,9 @@ update:
 ```
 
 ```tasks
-- [ ] update `rule-ask`
-- [ ] update `estimate-ask-finds`
-- [ ] `uv run guppi render`: `.claude/agents/ask-guppi.md`
+- [x] update `rule-ask`
+- [x] update `estimate-ask-finds`
+- [x] `uv run guppi render`: `.claude/agents/ask-guppi.md`
 - [ ] read `estimate-ask-finds`
 ```
 
@@ -311,6 +311,6 @@ create:
 ```
 
 ```tasks
-- [ ] create `estimate-ask-query-before-a-create`
+- [x] create `estimate-ask-query-before-a-create`
 - [ ] read `estimate-ask-query-before-a-create`
 ```

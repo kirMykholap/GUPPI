@@ -5967,3 +5967,84 @@ instruction. The global feed; a page's own `## History` is the per-page view.
 - 2026-10-03 decisions/decision-case-475 archived · cleanup
 - 2026-10-03 decisions/decision-case-585 archived · cleanup
 - 2026-10-03 decisions/decision-case-608 archived · cleanup
+- 2026-10-03 estimates/estimate-synthesis-clusters status: pending → passed · raw/2026-10-03/0317/ledger.md#L1 · generate
+- 2026-10-03 decisions/decision-case-611 created · raw/2026-10-03/0317/ledger.md#case-611 · generate
+- 2026-10-03 rules/rule-case-check updated: the Stop check refuses a showing of a Case with a text of the main agent's own outside the list under its heading and its ratification (case 611) · [[decision-case-611]] · generate
+- 2026-10-03 estimates/estimate-case-check-refuses-text-outside-the-list created · [[decision-case-611]] · generate
+- 2026-10-03 rules/rule-case-check estimate estimate-case-check-refuses-text-outside-the-list added · [[decision-case-611]] · generate
+- 2026-10-03 insights/insight-case-form-chat-form-read-by-no-script updated: actioned: the Stop check of rule-case-check refuses a showing of a Case with a text of the main agent's own outside the list under its heading and its ratification (case 611) · [[decision-case-611]] · generate
+- 2026-10-03 decisions/decision-case-612 created · raw/2026-10-03/0317/ledger.md#case-612 · generate
+- 2026-10-03 decisions/decision-case-612.1 created · raw/2026-10-03/0317/ledger.md#case-612.1 · generate
+- 2026-10-03 rules/rule-sprint-close created · [[decision-case-612.1]] · generate
+- 2026-10-03 estimates/estimate-sprint-close-archives-the-decisions created · [[decision-case-612.1]] · generate
+- 2026-10-03 rules/rule-sprint-close estimate estimate-sprint-close-archives-the-decisions added · [[decision-case-612.1]] · generate
+- 2026-10-03 entities/entity-sprint-migration updated: Slice 5: the close of a sprint is the item rule-sprint-close, and where the close runs is a note, not decided (case 612.1) · [[decision-case-612.1]] · generate
+- 2026-10-03 decisions/decision-case-612.2 created · raw/2026-10-03/0317/ledger.md#case-612.2 · generate
+- 2026-10-03 estimates/estimate-sprint-close-archives-done-insights-and-lone-lessons created · [[decision-case-612.2]] · generate
+- 2026-10-03 rules/rule-sprint-close estimate estimate-sprint-close-archives-done-insights-and-lone-lessons added · [[decision-case-612.2]] · generate
+- 2026-10-03 decisions/decision-case-612.3 created · raw/2026-10-03/0317/ledger.md#case-612.3 · generate
+- 2026-10-03 estimates/estimate-sprint-close-archives-the-sprint-page-and-keeps-the-rest created · [[decision-case-612.3]] · generate
+- 2026-10-03 rules/rule-sprint-close estimate estimate-sprint-close-archives-the-sprint-page-and-keeps-the-rest added · [[decision-case-612.3]] · generate
+- 2026-10-03 decisions/decision-case-612.4 created · raw/2026-10-03/0317/ledger.md#case-612.4 · generate
+- 2026-10-03 estimates/estimate-sprint-close-settles-unread-estimates created · [[decision-case-612.4]] · generate
+- 2026-10-03 rules/rule-sprint-close estimate estimate-sprint-close-settles-unread-estimates added · [[decision-case-612.4]] · generate
+- 2026-10-03 decisions/decision-case-613 created · raw/2026-10-03/0317/ledger.md#case-613 · generate
+- 2026-10-03 decisions/decision-case-613.1 created · raw/2026-10-03/0317/ledger.md#case-613.1 · generate
+- 2026-10-03 rules/rule-estimates-schema updated: a reading names its moment by its kind; a reading by hand tied to the first moment after the render or the change is a finding of lint and pre-spec (case 613.1) · [[decision-case-613.1]] · generate
+- 2026-10-03 estimates/estimate-lint-reports-a-method-tied-to-a-one-off-moment created · [[decision-case-613.1]] · generate
+- 2026-10-03 rules/rule-lint estimate estimate-lint-reports-a-method-tied-to-a-one-off-moment added · [[decision-case-613.1]] · generate
+- 2026-10-03 decisions/decision-case-613.2 created · raw/2026-10-03/0317/ledger.md#case-613.2 · generate
+- 2026-10-03 rules/rule-skill-hi updated: /hi reads each moment of an earlier session from the transcript of the latest session that held it, part by part (case 613.2) · [[decision-case-613.2]] · generate
+- 2026-10-03 estimates/estimate-hi-takes-its-readings updated: the Criterion replaced whole — /hi reads a moment of an earlier session from its transcript (case 613.2) · [[decision-case-613.2]] · generate
+- 2026-10-03 decisions/decision-case-613.3 created · raw/2026-10-03/0317/ledger.md#case-613.3 · generate
+- 2026-10-03 estimates/estimate-generate-rewords updated: method names the kind of its moment (case 613.3) · [[decision-case-613.3]] · generate
+- 2026-10-03 estimates/estimate-case-check-sends-back-a-ratified-case-in-another-shape updated: method names the kind of its moment (case 613.3) · [[decision-case-613.3]] · generate
+- 2026-10-03 estimates/estimate-hi-takes-a-conserved-spec updated: method names the kind of its moment (case 613.3) · [[decision-case-613.3]] · generate
+- 2026-10-03 estimates/estimate-handoff-dispatches updated: method names the kind of its moment (case 613.3) · [[decision-case-613.3]] · generate
+- 2026-10-03 estimates/estimate-case-check-requires-each-question-of-the-rounds updated: method names the kind of its moment (case 613.3) · [[decision-case-613.3]] · generate
+- 2026-10-03 estimates/estimate-lint-runs-every-step updated: method names the kind of its moment (case 613.3) · [[decision-case-613.3]] · generate
+- 2026-10-03 estimates/estimate-ledger-write-lifts updated: method names the kind of its moment (case 613.3) · [[decision-case-613.3]] · generate
+- 2026-10-03 estimates/estimate-compact-recall-reloads updated: method names the kind of its moment (case 613.3) · [[decision-case-613.3]] · generate
+- 2026-10-03 estimates/estimate-prespec-onward-sends-the-agent-on updated: method names the kind of its moment (case 613.3) · [[decision-case-613.3]] · generate
+- 2026-10-03 estimates/estimate-case-check-sends-back-a-faulty-round updated: method names the kind of its moment (case 613.3) · [[decision-case-613.3]] · generate
+- 2026-10-03 estimates/estimate-case-check-sends-back-a-faulty-case updated: method names the kind of its moment (case 613.3) · [[decision-case-613.3]] · generate
+- 2026-10-03 estimates/estimate-carry-over-writes updated: method names the kind of its moment (case 613.3) · [[decision-case-613.3]] · generate
+- 2026-10-03 estimates/estimate-case-check-sends-back-a-case-number-held-by-another-agent updated: method names the kind of its moment (case 613.3) · [[decision-case-613.3]] · generate
+- 2026-10-03 estimates/estimate-ratification-ledger-line-form updated: method names the kind of its moment (case 613.3) · [[decision-case-613.3]] · generate
+- 2026-10-03 estimates/estimate-work-mode-runs-the-spec-on-a-branch-from-a-baseline updated: method names the kind of its moment (case 613.3) · [[decision-case-613.3]] · generate
+- 2026-10-03 estimates/estimate-spec-write-reaches-the-approved-spec updated: method names the kind of its moment (case 613.3) · [[decision-case-613.3]] · generate
+- 2026-10-03 estimates/estimate-spec-box-runs-a-conserved-spec updated: method names the kind of its moment (case 613.3) · [[decision-case-613.3]] · generate
+- 2026-10-03 estimates/estimate-retro-onward-sends-the-agent-to-the-handoff updated: method names the kind of its moment (case 613.3) · [[decision-case-613.3]] · generate
+- 2026-10-03 estimates/estimate-retro-loads updated: method names the kind of its moment (case 613.3) · [[decision-case-613.3]] · generate
+- 2026-10-03 estimates/estimate-orchestration-defers-in-one-reply updated: method names the kind of its moment (case 613.3) · [[decision-case-613.3]] · generate
+- 2026-10-03 estimates/estimate-retro-runs-on-to-the-handoff updated: method names the kind of its moment (case 613.3) · [[decision-case-613.3]] · generate
+- 2026-10-03 estimates/estimate-orchestration-signs-a-batch-together updated: method names the kind of its moment (case 613.3) · [[decision-case-613.3]] · generate
+- 2026-10-03 estimates/estimate-spec-capture-offers-the-fork updated: method names the kind of its moment (case 613.3) · [[decision-case-613.3]] · generate
+- 2026-10-03 estimates/estimate-work-mode-takes-the-work-readings updated: method names the kind of its moment (case 613.3) · [[decision-case-613.3]] · generate
+- 2026-10-03 estimates/estimate-where-to-stop-stops-only-on-its-conditions updated: method names the kind of its moment (case 613.3) · [[decision-case-613.3]] · generate
+- 2026-10-03 estimates/estimate-retro-red-check-of-an-updated-page-is-a-handoff-note updated: method names the kind of its moment (case 613.3) · [[decision-case-613.3]] · generate
+- 2026-10-03 estimates/estimate-handoff-holds-each-fact-once updated: method names the kind of its moment (case 613.3) · [[decision-case-613.3]] · generate
+- 2026-10-03 estimates/estimate-prespec-onward-reads-the-decisions-of-the-session updated: method names the kind of its moment (case 613.3) · [[decision-case-613.3]] · generate
+- 2026-10-03 estimates/estimate-ratification-loaded updated: method names the kind of its moment (case 613.3) · [[decision-case-613.3]] · generate
+- 2026-10-03 estimates/estimate-orchestration-loaded updated: method names the kind of its moment (case 613.3) · [[decision-case-613.3]] · generate
+- 2026-10-03 estimates/estimate-spec-write-writes-a-defer updated: method names the kind of its moment (case 613.3) · [[decision-case-613.3]] · generate
+- 2026-10-03 estimates/estimate-prespec-reconciles updated: method names the kind of its moment (case 613.3) · [[decision-case-613.3]] · generate
+- 2026-10-03 estimates/estimate-retro-red-in-the-baseline-is-not-charged updated: method names the kind of its moment (case 613.3) · [[decision-case-613.3]] · generate
+- 2026-10-03 estimates/estimate-case-build-keeps-the-old-form-until-the-writer-is-live updated: method names the kind of its moment (case 613.3) · [[decision-case-613.3]] · generate
+- 2026-10-03 estimates/estimate-harness-make-runs-in-both-shells updated: method names the kind of its moment (case 613.3) · [[decision-case-613.3]] · generate
+- 2026-10-03 estimates/estimate-spec-write-removes-a-superseded-case updated: method names the kind of its moment (case 613.3) · [[decision-case-613.3]] · generate
+- 2026-10-03 estimates/estimate-spec-write-checks-the-written-case updated: method names the kind of its moment (case 613.3) · [[decision-case-613.3]] · generate
+- 2026-10-03 estimates/estimate-case-build-writes-the-case status: pending → passed · raw/2026-10-03/0317/ledger.md#L52 · generate
+- 2026-10-03 estimates/estimate-end-of-work-order status: pending → passed · raw/2026-10-03/0317/ledger.md#L53 · generate
+- 2026-10-03 lessons/lesson-estimates-reading-tied-to-a-one-off-moment created · raw/2026-10-03/0317/ledger.md#L54 · generate
+- 2026-10-03 lessons/lesson-case-build-a-count-in-context-not-from-a-run created · raw/2026-10-03/0317/ledger.md#L55 · generate
+- 2026-10-03 insights/insight-workflow-fact-signed-from-a-check-that-does-not-cover-it updated: child lesson-case-build-a-count-in-context-not-from-a-run added, status open (synthesis) · raw/2026-10-03/0317/ledger.md#L55 · generate
+- 2026-10-03 lessons/lesson-case-build-a-count-in-context-not-from-a-run updated: clustered under insight-workflow-fact-signed-from-a-check-that-does-not-cover-it (synthesis) · raw/2026-10-03/0317/ledger.md#L55 · generate
+- 2026-10-03 rules/rule-case-build status: draft → built · cascade · generate
+- 2026-10-03 rules/rule-end-of-work status: draft → built · cascade · generate
+- 2026-10-03 rules/rule-synthesis status: draft → built · cascade · generate
+- 2026-10-03 entities/entity-sprint rules: [rule-sprint, rule-sprint-close] · cascade · generate
+- 2026-10-03 lessons/lesson-orchestration-own-text-before-a-prespec-round archived · insight actioned · generate
+- 2026-10-03 lessons/lesson-orchestration-own-sentence-between-heading-and-list archived · insight actioned · generate
+- 2026-10-03 lessons/lesson-orchestration-own-sentence-between-heading-and-list archived · cleanup
+- 2026-10-03 lessons/lesson-orchestration-own-text-before-a-prespec-round archived · cleanup

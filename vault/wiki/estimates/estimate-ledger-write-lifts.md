@@ -3,7 +3,7 @@ type: estimate
 kind: QA
 status: pending
 target: "[[rule-ledger-write]]"
-method: "pytest in tests/test_ledger.py and tests/test_gate.py with piped payloads against a temp vault; by hand once, the ledger of the first session after the change whose reply that ends Retro follows a refusal of a Stop hook in the same stretch: its lines written at that Stop, with its time"
+method: "pytest in tests/test_ledger.py and tests/test_gate.py with piped payloads against a temp vault; by hand once, the ledger of a session whose reply that ends Retro follows a refusal of a Stop hook in the same stretch: its lines written at that Stop, with its time"
 checked: 2026-09-30
 origin: raw/2026-09-09/ledger.md#case-10
 sprint: migration
@@ -64,3 +64,4 @@ In a session with a `hi` recorded, every line `- decision[`, `- estimate[`, `- l
 - 2026-09-30 updated: the Criterion replaced whole — a line the hook cannot read does not land (case 552.3) · [[decision-case-552.3]]
 - 2026-09-30 status: pending → passed · raw/2026-09-30/2042/ledger.md#L32
 - 2026-10-01 updated: the Criterion replaced whole — the hook writes whatever stop_hook_active says, tells each refused line once a stretch, and tells no hi and its own error once a stretch (case 577.3) · [[decision-case-577.3]]
+- 2026-10-03 updated: method names the kind of its moment (case 613.3) · [[decision-case-613.3]]

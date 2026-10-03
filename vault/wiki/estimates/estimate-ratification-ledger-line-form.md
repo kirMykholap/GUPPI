@@ -4,7 +4,7 @@ kind: QA
 status: pending
 target: "[[rule-ratification]]"
 purpose: The written shape of a ledger line and of its marks, as the agent writes them
-method: "by hand: the ledger and the preview of the first session where a lesson and the Case that closes its cause stand together, and of the first Case that takes up a decision with more than one Case in its deferred_by"
+method: "by hand: the ledger and the preview of a session where a lesson and the Case that closes its cause stand together, and of a Case that takes up a decision with more than one Case in its deferred_by"
 checked: 2026-09-25
 origin: raw/2026-09-16/1034/ledger.md#case-188
 sprint: migration
@@ -47,3 +47,4 @@ A decision line is `- decision[case N][kind][slug]` with `{ref:...}` when the ta
 - 2026-09-29 updated: the Criterion replaced whole — for a Case with sub-cases the mark names the sub-case (case 497.4) · [[decision-case-497.4]]
 - 2026-10-02 renamed from `estimate-case-protocol-ledger-line-form` · [[decision-case-595.16]]
 - 2026-10-02 updated: moved to rule-ratification; the Criterion replaced whole - the form as ratification.md holds it (case 595.16) · [[decision-case-595.16]]
+- 2026-10-03 updated: method names the kind of its moment (case 613.3) · [[decision-case-613.3]]

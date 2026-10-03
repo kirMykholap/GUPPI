@@ -4,7 +4,7 @@ kind: QA
 status: pending
 target: "[[rule-retro]]"
 purpose: Whether Retro reads work.md and writes a red or a refusal on a page or file that a line of its Expected red names as a line of Observations of handoff.md, not as debt, while a red on a page or file no line names is debt unless the Baseline holds it, a session with no work.md leaves it to the agent's judgment, and a red test is never an expected red
-method: one reading by hand at the first /retro after the render in a session whose work.md names a check under Expected red, recorded in the estimate line
+method: one reading by hand at a /retro in a session whose work.md names a check under Expected red, recorded in the estimate line
 origin: raw/2026-09-28/0000/ledger.md#case-473.1
 sprint: migration
 created: 2026-09-28
@@ -31,3 +31,4 @@ The agent reads `raw/<date>/<hi HHMM>/work.md` if it stands — with the Read to
 - 2026-09-28 updated: the Criterion replaced whole — the red is expected when a line of Expected red of work.md names its check and its page or file, not by the agent's judgment; with no work.md the judgment stands (case 479.3) · [[decision-case-479.3]]
 - 2026-09-30 updated: the Criterion replaced whole — the trigger covers the agent's call; an expected red is a line of Observations of handoff.md, not an item of the frontier; the one-read rule of the frontier goes with the frontier (case 531.3) · [[decision-case-531.3]]
 - 2026-10-01 updated: the Criterion replaced whole — the agent reads work.md with the Read tool unless it wrote or changed the file itself in the same turn, whose text then counts as read (case 569.2) · [[decision-case-569.2]]
+- 2026-10-03 updated: method names the kind of its moment (case 613.3) · [[decision-case-613.3]]

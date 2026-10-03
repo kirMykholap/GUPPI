@@ -6,7 +6,7 @@ status: draft
 enforcement: check
 implementation_ref: [guppi/lint.py, tests/test_lint.py, Makefile]
 parent: "[[rule-harness]]"
-estimates: ["[[estimate-lint-catches]]", "[[estimate-lint-finds-a-broken-link]]", "[[estimate-lint-checks-the-statuses]]", "[[estimate-lint-checks-the-method]]", "[[estimate-lint-catches-a-broken-fence]]", "[[estimate-lint-runs-every-step]]"]
+estimates: ["[[estimate-lint-catches]]", "[[estimate-lint-finds-a-broken-link]]", "[[estimate-lint-checks-the-statuses]]", "[[estimate-lint-checks-the-method]]", "[[estimate-lint-catches-a-broken-fence]]", "[[estimate-lint-runs-every-step]]", "[[estimate-lint-reports-a-method-tied-to-a-one-off-moment]]"]
 origin: raw/2026-09-09/ledger.md#case-21
 sprint: migration
 created: 2026-09-09
@@ -84,3 +84,4 @@ classes and their order live in the docstring of `guppi/lint.py`.
 - 2026-10-02 updated: make lint runs every step and exits non-zero when any is red (case 587) · [[decision-case-587]]
 - 2026-10-02 estimate estimate-lint-runs-every-step added · [[decision-case-587]]
 - 2026-10-02 status: built → draft · cascade
+- 2026-10-03 estimate estimate-lint-reports-a-method-tied-to-a-one-off-moment added · [[decision-case-613.1]]

@@ -4,7 +4,7 @@ kind: QA
 status: pending
 target: "[[rule-spec-box]]"
 purpose: Whether /box checks a conserved Spec, runs it on its own branch brought up to the shared branch by a fast-forward, merges the branch back by a fast-forward after the handoff, and has the librarian write the pages on the shared branch, stopping when the check or a merge refuses
-method: "uv run guppi render --check; by hand, the first session that takes a conserved Spec at the Frontier and runs it by /box: git log, the branches, the folders of the session and of the conserved Spec, the dispatch line and the librarian's commit, recorded in the estimate line"
+method: "uv run guppi render --check; by hand, a session that takes a conserved Spec at the Frontier and runs it by /box: git log, the branches, the folders of the session and of the conserved Spec, the dispatch line and the librarian's commit, recorded in the estimate line"
 origin: raw/2026-10-02/1202/ledger.md#case-593.2
 sprint: migration
 created: 2026-10-02
@@ -29,3 +29,4 @@ Then:
 ## History
 
 - 2026-10-02 created · [[decision-case-593.2]]
+- 2026-10-03 updated: method names the kind of its moment (case 613.3) · [[decision-case-613.3]]

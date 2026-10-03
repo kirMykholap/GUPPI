@@ -21,7 +21,8 @@ Rule-class files dissolved, `index.md` gone, the `file` route out of the scripts
 
 ### [ ] Slice 5 — closing
 
-- [ ] the close of a sprint — `entity-sprint-<id>` and the Estimates it lists go to the archive together once each has passed: a done-condition of a sprint has nothing left to guard after the close; not yet decided (case 478.2)
+- [ ] [[rule-sprint-close]] — what the close of a sprint moves to the archive and what it keeps (case 612.1) · draft
+- [ ] where the close of a sprint runs — a session of its own, a command or another place: not decided (case 612.1)
 
 ## Closed
 

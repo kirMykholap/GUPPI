@@ -115,9 +115,9 @@ update:
 ```tasks
 - [x] `guppi/casecheck.py`: the `Stop` run refuses a showing with text before its first Case heading, text under a Case heading that is not a list item, its indented line or the `ratification` blockquote, and text of the main agent's own before the last tool call of the turn; the text before the last tool call is judged by the existing `texts_before_last_call`, and the `ratification` blockquote by the existing `RATIFICATION_HEAD` and `quoted_sections`, with no second copy of either; the module docstring says how
 - [x] `tests/test_casecheck.py`: tests of each refusal, of a list showing and a batch that pass, of text after the horizontal rule left alone and of the re-fire; the `show(` calls that expect exit 0 with sections under a heading or a short text that is not a list item show the list layout where they check a pass, and assert the comparison's reason alone where they check the comparison
-- [ ] update `rule-case-check`
-- [ ] create `estimate-case-check-refuses-text-outside-the-list`
-- [ ] update `insight-case-form-chat-form-read-by-no-script`
+- [x] update `rule-case-check`
+- [x] create `estimate-case-check-refuses-text-outside-the-list`
+- [x] update `insight-case-form-chat-form-read-by-no-script`
 - [ ] read `estimate-case-check-refuses-text-outside-the-list`
 - [ ] read `estimate-orchestration-shows-the-built-case`
 ```
@@ -256,10 +256,10 @@ update:
 ```
 
 ```tasks
-- [ ] create `rule-sprint-close`
-- [ ] create `estimate-sprint-close-archives-the-decisions`
-- [ ] update `entity-sprint-migration`
-- [ ] `uv run guppi sprint`
+- [x] create `rule-sprint-close`
+- [x] create `estimate-sprint-close-archives-the-decisions`
+- [x] update `entity-sprint-migration`
+- [x] `uv run guppi sprint`
 - [ ] read `estimate-sprint-close-archives-the-decisions`
 ```
 
@@ -296,7 +296,7 @@ create:
 ```
 
 ```tasks
-- [ ] create `estimate-sprint-close-archives-done-insights-and-lone-lessons`
+- [x] create `estimate-sprint-close-archives-done-insights-and-lone-lessons`
 - [ ] read `estimate-sprint-close-archives-done-insights-and-lone-lessons`
 ```
 
@@ -332,7 +332,7 @@ create:
 ```
 
 ```tasks
-- [ ] create `estimate-sprint-close-archives-the-sprint-page-and-keeps-the-rest`
+- [x] create `estimate-sprint-close-archives-the-sprint-page-and-keeps-the-rest`
 - [ ] read `estimate-sprint-close-archives-the-sprint-page-and-keeps-the-rest`
 ```
 
@@ -371,7 +371,7 @@ create:
 ```
 
 ```tasks
-- [ ] create `estimate-sprint-close-settles-unread-estimates`
+- [x] create `estimate-sprint-close-settles-unread-estimates`
 - [ ] read `estimate-sprint-close-settles-unread-estimates`
 ```
 
@@ -490,9 +490,9 @@ update:
 - [x] `guppi/lint.py`: one predicate of a reading by hand tied to the first moment after the render or the change; the class `moment` in the checks of an Estimate; the module docstring names the class
 - [x] `guppi/prespec.py`: imports the predicate and gives the finding line on a `create` or a `set` of `method`; the module docstring names the check
 - [x] `tests/test_lint.py` and `tests/test_prespec.py`: tests named `moment` for each wording, "after the render" and "after the change", a kind of moment, the first of an event with no "after", a method without `by hand`, and two clauses split by `;`
-- [ ] update `rule-estimates-schema`
-- [ ] `uv run guppi render`: `vault/wiki/estimates/schema.yaml`
-- [ ] create `estimate-lint-reports-a-method-tied-to-a-one-off-moment`
+- [x] update `rule-estimates-schema`
+- [x] `uv run guppi render`: `vault/wiki/estimates/schema.yaml`
+- [x] create `estimate-lint-reports-a-method-tied-to-a-one-off-moment`
 - [ ] read `estimate-lint-reports-a-method-tied-to-a-one-off-moment`
 ```
 
@@ -541,9 +541,9 @@ update:
 ```
 
 ```tasks
-- [ ] update `rule-skill-hi`
-- [ ] `uv run guppi render`: `.claude/skills/hi/SKILL.md`
-- [ ] update `estimate-hi-takes-its-readings`
+- [x] update `rule-skill-hi`
+- [x] `uv run guppi render`: `.claude/skills/hi/SKILL.md`
+- [x] update `estimate-hi-takes-its-readings`
 - [ ] read `estimate-hi-takes-its-readings`
 ```
 
@@ -750,41 +750,41 @@ update:
 ```
 
 ```tasks
-- [ ] update `estimate-generate-rewords`
-- [ ] update `estimate-case-check-sends-back-a-ratified-case-in-another-shape`
-- [ ] update `estimate-hi-takes-a-conserved-spec`
-- [ ] update `estimate-handoff-dispatches`
-- [ ] update `estimate-case-check-requires-each-question-of-the-rounds`
-- [ ] update `estimate-lint-runs-every-step`
-- [ ] update `estimate-ledger-write-lifts`
-- [ ] update `estimate-compact-recall-reloads`
-- [ ] update `estimate-prespec-onward-sends-the-agent-on`
-- [ ] update `estimate-case-check-sends-back-a-faulty-round`
-- [ ] update `estimate-case-check-sends-back-a-faulty-case`
-- [ ] update `estimate-carry-over-writes`
-- [ ] update `estimate-case-check-sends-back-a-case-number-held-by-another-agent`
-- [ ] update `estimate-ratification-ledger-line-form`
-- [ ] update `estimate-work-mode-runs-the-spec-on-a-branch-from-a-baseline`
-- [ ] update `estimate-spec-write-reaches-the-approved-spec`
-- [ ] update `estimate-spec-box-runs-a-conserved-spec`
-- [ ] update `estimate-retro-onward-sends-the-agent-to-the-handoff`
-- [ ] update `estimate-retro-loads`
-- [ ] update `estimate-orchestration-defers-in-one-reply`
-- [ ] update `estimate-retro-runs-on-to-the-handoff`
-- [ ] update `estimate-orchestration-signs-a-batch-together`
-- [ ] update `estimate-spec-capture-offers-the-fork`
-- [ ] update `estimate-work-mode-takes-the-work-readings`
-- [ ] update `estimate-where-to-stop-stops-only-on-its-conditions`
-- [ ] update `estimate-retro-red-check-of-an-updated-page-is-a-handoff-note`
-- [ ] update `estimate-handoff-holds-each-fact-once`
-- [ ] update `estimate-prespec-onward-reads-the-decisions-of-the-session`
-- [ ] update `estimate-ratification-loaded`
-- [ ] update `estimate-orchestration-loaded`
-- [ ] update `estimate-spec-write-writes-a-defer`
-- [ ] update `estimate-prespec-reconciles`
-- [ ] update `estimate-retro-red-in-the-baseline-is-not-charged`
-- [ ] update `estimate-case-build-keeps-the-old-form-until-the-writer-is-live`
-- [ ] update `estimate-harness-make-runs-in-both-shells`
-- [ ] update `estimate-spec-write-removes-a-superseded-case`
-- [ ] update `estimate-spec-write-checks-the-written-case`
+- [x] update `estimate-generate-rewords`
+- [x] update `estimate-case-check-sends-back-a-ratified-case-in-another-shape`
+- [x] update `estimate-hi-takes-a-conserved-spec`
+- [x] update `estimate-handoff-dispatches`
+- [x] update `estimate-case-check-requires-each-question-of-the-rounds`
+- [x] update `estimate-lint-runs-every-step`
+- [x] update `estimate-ledger-write-lifts`
+- [x] update `estimate-compact-recall-reloads`
+- [x] update `estimate-prespec-onward-sends-the-agent-on`
+- [x] update `estimate-case-check-sends-back-a-faulty-round`
+- [x] update `estimate-case-check-sends-back-a-faulty-case`
+- [x] update `estimate-carry-over-writes`
+- [x] update `estimate-case-check-sends-back-a-case-number-held-by-another-agent`
+- [x] update `estimate-ratification-ledger-line-form`
+- [x] update `estimate-work-mode-runs-the-spec-on-a-branch-from-a-baseline`
+- [x] update `estimate-spec-write-reaches-the-approved-spec`
+- [x] update `estimate-spec-box-runs-a-conserved-spec`
+- [x] update `estimate-retro-onward-sends-the-agent-to-the-handoff`
+- [x] update `estimate-retro-loads`
+- [x] update `estimate-orchestration-defers-in-one-reply`
+- [x] update `estimate-retro-runs-on-to-the-handoff`
+- [x] update `estimate-orchestration-signs-a-batch-together`
+- [x] update `estimate-spec-capture-offers-the-fork`
+- [x] update `estimate-work-mode-takes-the-work-readings`
+- [x] update `estimate-where-to-stop-stops-only-on-its-conditions`
+- [x] update `estimate-retro-red-check-of-an-updated-page-is-a-handoff-note`
+- [x] update `estimate-handoff-holds-each-fact-once`
+- [x] update `estimate-prespec-onward-reads-the-decisions-of-the-session`
+- [x] update `estimate-ratification-loaded`
+- [x] update `estimate-orchestration-loaded`
+- [x] update `estimate-spec-write-writes-a-defer`
+- [x] update `estimate-prespec-reconciles`
+- [x] update `estimate-retro-red-in-the-baseline-is-not-charged`
+- [x] update `estimate-case-build-keeps-the-old-form-until-the-writer-is-live`
+- [x] update `estimate-harness-make-runs-in-both-shells`
+- [x] update `estimate-spec-write-removes-a-superseded-case`
+- [x] update `estimate-spec-write-checks-the-written-case`
 ```

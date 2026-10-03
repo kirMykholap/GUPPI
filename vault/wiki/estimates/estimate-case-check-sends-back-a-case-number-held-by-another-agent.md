@@ -4,7 +4,7 @@ kind: QA
 status: pending
 target: "[[rule-case-check]]"
 purpose: A Case of case-guppi under a number that the store holds from the answer of another agent goes back to it with a new number, and the other agent's entry is kept
-method: uv run pytest tests/test_casecheck.py -k clash, then by hand the first answer of case-guppi the hook sends back for this reason
+method: uv run pytest tests/test_casecheck.py -k clash, then by hand an answer of case-guppi the hook sends back for this reason
 origin: raw/2026-10-03/0115/ledger.md#case-610.2
 sprint: migration
 created: 2026-10-03
@@ -28,3 +28,4 @@ The hook stores each Case of an answer in `<plan>.checked.json` with the `agent_
 ## History
 
 - 2026-10-03 created · [[decision-case-610.2]]
+- 2026-10-03 updated: method names the kind of its moment (case 613.3) · [[decision-case-613.3]]

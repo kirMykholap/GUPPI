@@ -4,7 +4,7 @@ kind: QA
 status: passed
 target: "[[rule-spec-write]]"
 purpose: The Stop hook writes a deferred Case into the Spec as the reply showed it
-method: uv run pytest tests/test_ratified.py -k defer, then by hand the first defer the person asks for after the change
+method: uv run pytest tests/test_ratified.py -k defer, then by hand a defer the person asks for
 checked: 2026-10-01
 origin: raw/2026-09-25/1228/ledger.md#case-421.1
 sprint: migration
@@ -43,3 +43,4 @@ The hook writes that Case under `## Deferred` of the plan file while `spec.md` i
 - 2026-10-01 deferred · [[decision-case-564]]
 - 2026-10-01 deferred · [[decision-case-573]]
 - 2026-10-01 status: failed → passed · raw/2026-10-01/1441/ledger.md#L21
+- 2026-10-03 updated: method names the kind of its moment (case 613.3) · [[decision-case-613.3]]

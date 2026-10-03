@@ -4,7 +4,7 @@ kind: QA
 status: pending
 target: "[[rule-handoff]]"
 purpose: Whether handoff.md, the report of Retro, holds each fact once in the section of its kind — What actually got done, Debt, Observations, For the next session, Ask the person — with no commit, no number and no end, and keeps the three old section names
-method: one reading by hand at the first /handoff after the render, against the close of its Retro, recorded in the estimate line
+method: one reading by hand at a /handoff, against the close of its Retro, recorded in the estimate line
 origin: raw/2026-09-27/2050/ledger.md#case-468.2
 sprint: migration
 created: 2026-09-27
@@ -30,3 +30,4 @@ Then:
 
 - 2026-09-27 created · [[decision-case-468.2]]
 - 2026-09-30 updated: the Criterion replaced whole — handoff.md is the report of Retro, one section for each kind of fact, no numbers and no ends (case 531.5) · [[decision-case-531.5]]
+- 2026-10-03 updated: method names the kind of its moment (case 613.3) · [[decision-case-613.3]]

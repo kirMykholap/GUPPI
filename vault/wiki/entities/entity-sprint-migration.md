@@ -23,7 +23,8 @@ Rule-class files dissolved, `index.md` gone, the `file` route out of the scripts
 
 ### Slice 5 — closing
 
-- the close of a sprint — `entity-sprint-<id>` and the Estimates it lists go to the archive together once each has passed: a done-condition of a sprint has nothing left to guard after the close; not yet decided (case 478.2)
+- [[rule-sprint-close]] — what the close of a sprint moves to the archive and what it keeps (case 612.1)
+- where the close of a sprint runs — a session of its own, a command or another place: not decided (case 612.1)
 
 ## Backlog
 
@@ -111,3 +112,4 @@ No file of `vault/wiki/` is written by hand.
 - 2026-09-30 updated: Slice 5: the raw date folders, git pull and gh decided; the remote removed; the merge item no longer names the two rules (case 528.5) · [[decision-case-528.5]]
 - 2026-09-30 updated: the finish conditions lint-clean, merges and leftovers-gone stand only under Done when: off Slice 5 and the Backlog (case 539.3) · [[decision-case-539.3]]
 - 2026-10-02 updated: the Backlog line of rule-spec-box names its second part (case 593.2) · [[decision-case-593.2]]
+- 2026-10-03 updated: Slice 5: the close of a sprint is the item rule-sprint-close, and where the close runs is a note, not decided (case 612.1) · [[decision-case-612.1]]

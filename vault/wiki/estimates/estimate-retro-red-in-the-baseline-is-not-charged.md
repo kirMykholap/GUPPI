@@ -4,7 +4,7 @@ kind: QA
 status: passed
 target: "[[rule-retro]]"
 purpose: Whether Retro writes a failing test or a lint finding that the Baseline of work.md already holds as a line of Observations of handoff.md, not debt, whatever Expected red names, and commits with make test green but for those tests
-method: one reading by hand at the first /retro after the render in a session whose work.md Baseline holds a failing test or a lint finding line, recorded in the estimate line
+method: one reading by hand at a /retro in a session whose work.md Baseline holds a failing test or a lint finding line, recorded in the estimate line
 checked: 2026-10-01
 origin: raw/2026-09-28/1318/ledger.md#case-479.4
 sprint: migration
@@ -35,3 +35,4 @@ Retro counts each failing test and each lint finding line that `## Baseline` hol
 - 2026-09-29 status: pending → passed · raw/2026-09-29/1753/ledger.md#L28
 - 2026-09-30 updated: the Criterion replaced whole — the trigger covers the agent's call; a red of the Baseline is a line of Observations of handoff.md, and a patch of any other red test is named in Debt (case 531.4) · [[decision-case-531.4]]
 - 2026-10-01 status: pending → passed · raw/2026-10-01/1237/ledger.md#L4
+- 2026-10-03 updated: method names the kind of its moment (case 613.3) · [[decision-case-613.3]]

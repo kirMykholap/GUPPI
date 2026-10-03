@@ -4,7 +4,7 @@ kind: QA
 status: passed
 target: "[[rule-orchestration]]"
 purpose: What the main agent alone does is present in a session from the first turn after /hi, as one text, the Render of rule-orchestration, repeated in no other file the session holds
-method: uv run guppi render --check; by hand at the first /hi of a later session after the render, vault/wiki/orchestration.md in the first turn's context and its paragraphs compared with CLAUDE.md, case-schema.md and ratification.md
+method: uv run guppi render --check; by hand at a /hi of a later session, vault/wiki/orchestration.md in the first turn's context and its paragraphs compared with CLAUDE.md, case-schema.md and ratification.md
 checked: 2026-10-02
 origin: raw/2026-10-02/1834/ledger.md#case-595.2
 sprint: migration
@@ -31,3 +31,4 @@ The context of the session holds `vault/wiki/orchestration.md` from the first tu
 
 - 2026-10-02 created · [[decision-case-595.2]]
 - 2026-10-02 status: pending → passed · raw/2026-10-02/2049/ledger.md#L1
+- 2026-10-03 updated: method names the kind of its moment (case 613.3) · [[decision-case-613.3]]

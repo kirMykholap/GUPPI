@@ -4,7 +4,7 @@ kind: QA
 status: pending
 target: "[[rule-retro]]"
 purpose: Whether /retro reviews the session with no report and no approval, writes every reading and lesson of the turn in one reply and a line the ledger hook refused again in one reply that holds only it, commits on green and calls /handoff in the same turn, writes no defer, and stops only on a condition of vault/wiki/where-to-stop.md
-method: "by hand at the first run from /work to the librarian after the render, and for the answer to a refusal of the ledger hook at the first Retro where that hook refuses a line: the replies of the turn, the ledger, git log and handoff.md read against the Criterion, recorded in the estimate line"
+method: "by hand at a run from /work to the librarian, and for the answer to a refusal of the ledger hook at a Retro where that hook refuses a line: the replies of the turn, the ledger, git log and handoff.md read against the Criterion, recorded in the estimate line"
 checked: 2026-10-01
 origin: raw/2026-09-23/1355/ledger.md#case-376
 sprint: migration
@@ -47,3 +47,4 @@ Retro asks for no approval: it sorts the boxes of `raw/<date>/<hi HHMM>/spec.md`
 - 2026-10-01 status: pending → failed · raw/2026-10-01/1237/ledger.md#L5
 - 2026-10-01 updated: the Criterion replaced whole — the reply that ends Retro holds one sentence in the language of the chat that names the commit and the LEDGER block, no heading, list or other paragraph; work.md the agent wrote or changed in the same turn counts as read (case 569.1) · [[decision-case-569.1]]
 - 2026-10-02 updated: the Criterion replaced whole — a line the ledger hook refuses at the end of Retro is written again in a reply that holds only it, and the run goes on to /handoff (case 596.2) · [[decision-case-596.2]]
+- 2026-10-03 updated: method names the kind of its moment (case 613.3) · [[decision-case-613.3]]

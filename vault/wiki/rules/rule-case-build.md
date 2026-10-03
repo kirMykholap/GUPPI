@@ -2,7 +2,7 @@
 type: rule
 kind: Leaf
 purpose: Prevents a Case from being shown before one agent has built it against the vault, its frame and its form, outside the main agent's context
-status: draft
+status: built
 enforcement: render
 governs: .claude/agents/case-guppi.md
 render_mode: full
@@ -90,3 +90,4 @@ When no fork is open, answer with the Case in the chat form of the schema, from 
 - 2026-10-01 updated: an item of recommend may stand on the parent; a sub-case holds only items whose answer changed it alone (case 568) · [[decision-case-568]]
 - 2026-10-01 updated: case-guppi reads the case file of each related Case of the session that its prompt names, and sets anew the purpose and method of an Estimate whose Criterion it replaces where they state the old promise (case 579.2) · [[decision-case-579.2]]
 - 2026-10-02 updated: case-guppi reads ratification.md with case-schema.md; the showing is rule-orchestration (case 595.7) · [[decision-case-595.7]]
+- 2026-10-03 status: draft → built · cascade

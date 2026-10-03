@@ -2,7 +2,7 @@
 type: rule
 kind: Leaf
 purpose: Prevents a pattern of failures from staying a list of unrelated incidents
-status: draft
+status: built
 enforcement: render
 governs: .claude/agents/librarian-guppi.md
 render_mode: partial
@@ -103,3 +103,4 @@ outcome, clustered or not. The archive is not needed: an actioned Insight stays 
 - 2026-09-30 updated: the synthesis forbids no read; another session's yaml or an archived page it still needs is read and flagged (case 558.2) · [[decision-case-558.2]]
 - 2026-09-30 status: built → draft · cascade
 - 2026-10-03 updated: the synthesis gives one line per lesson entry in the brief, a lesson that joins nothing with the reason (case 602) · [[decision-case-602]]
+- 2026-10-03 status: draft → built · cascade

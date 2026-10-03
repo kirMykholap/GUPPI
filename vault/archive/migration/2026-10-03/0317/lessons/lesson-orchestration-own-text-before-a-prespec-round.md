@@ -2,7 +2,7 @@
 type: lesson
 kind: error
 root_cause: the main agent took the list of step 4 of the pre-spec loop for a reply of its own and put a status line before it, against the rule that a round is shown with nothing before its Context paragraph or its first question
-status: clustered
+status: archived
 insight: "[[insight-case-form-chat-form-read-by-no-script]]"
 origin: raw/2026-10-03/0115/ledger.md#L9
 sprint: migration
@@ -22,3 +22,5 @@ the main agent took the list of step 4 of the pre-spec loop for a reply of its o
 
 - 2026-10-03 created · raw/2026-10-03/0115/ledger.md#L9
 - 2026-10-03 updated: clustered under insight-case-form-chat-form-read-by-no-script (synthesis) · raw/2026-10-03/0115/ledger.md#L9
+- 2026-10-03 archived · insight actioned
+- 2026-10-03 archived · cleanup

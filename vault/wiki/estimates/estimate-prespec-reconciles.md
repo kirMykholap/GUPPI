@@ -3,7 +3,7 @@ type: estimate
 kind: QA
 status: passed
 target: "[[rule-prespec]]"
-method: One reading by hand of the first /pre-spec after the render, written into the estimate line — the exception the Method rule allows
+method: One reading by hand of a /pre-spec, written into the estimate line — the exception the Method rule allows
 checked: 2026-10-01
 origin: raw/2026-09-09/ledger.md#case-24.2
 sprint: migration
@@ -71,3 +71,4 @@ The agent runs `guppi prespec --check` on the plan file with `--session <id>`, t
 - 2026-09-27 status: pending → passed · raw/2026-09-27/2050/ledger.md#L35
 - 2026-10-01 updated: the Criterion replaced whole - ask-guppi at the first run of the session only, one report that sorts the findings, no second call after the Cases built again are ratified (case 561.1) · [[decision-case-561.1]]
 - 2026-10-01 status: pending → passed · raw/2026-10-01/1237/ledger.md#L40
+- 2026-10-03 updated: method names the kind of its moment (case 613.3) · [[decision-case-613.3]]

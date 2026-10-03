@@ -1,10 +1,10 @@
 ---
 type: estimate
 kind: QA
-status: pending
+status: passed
 target: "[[rule-synthesis]]"
 method: one reading by hand of the yaml and the report after a live librarian run whose yaml holds at least two lesson entries
-checked: 2026-10-02
+checked: 2026-10-03
 origin: raw/2026-09-10/ledger.md#case-35.2
 sprint: migration
 created: 2026-09-10
@@ -28,7 +28,7 @@ The brief names the Greps of the synthesis, `^(root_cause|deferred_by):` over `v
 
 ## Result
 
-2026-10-02, by hand at the /hi of session 2300, raw/2026-10-02/2049/materialize.yaml and the report of the run 8a30dae6 (its answer and brief.md); the yaml holds two lesson entries, lines 25 and 31; the report names `^(root_cause|deferred_by):` over lessons/ (76 lines) and `^(pattern|deferred_by):` over insights/ (31 lines); no entry added, both lessons stay `new`, the pages agree; the report gives the reason against the insights only for `lesson-prespec-onward-re-ratification-out-after-its-stretch` and none for `lesson-case-check-question-line-without-colon-unseen`
+2026-10-03, by hand at the /hi of session 0317, raw/2026-10-03/0115/materialize.yaml lines 621-662 and brief.md of the librarian run of 0115; the yaml holds three lesson entries (ledger lines 9, 19, 20); the brief names `^(root_cause|deferred_by):` over lessons/ (74 lines) and `^(pattern|deferred_by):` over insights/ (31 lines) and gives one line per lesson; `lesson-orchestration-own-text-before-a-prespec-round` and `lesson-orchestration-own-sentence-between-heading-and-list` joined the live `insight-case-form-chat-form-read-by-no-script` by one `update` of the Insight (children, status open) and one `update` per lesson (status clustered, insight set), all three `librarian: synthesis`; `lesson-session-frontier-rewritten-through-powershell` joined none with a reason, stays `new`, and its synthesis line is no flag; no lesson page read at synthesis
 
 ## History
 
@@ -46,3 +46,4 @@ The brief names the Greps of the synthesis, `^(root_cause|deferred_by):` over `v
 - 2026-09-30 updated: the Criterion replaced whole — a read of another session's yaml or of the archive fails nothing here; its flag is the promise of estimate-documentation-completes (case 558.2) · [[decision-case-558.2]]
 - 2026-10-03 status: pending → failed · raw/2026-10-02/2300/ledger.md#L1
 - 2026-10-03 updated: the Criterion replaced whole — the brief gives one line per lesson entry with its outcome against both Greps, or none and why (case 602) · [[decision-case-602]]
+- 2026-10-03 status: pending → passed · raw/2026-10-03/0317/ledger.md#L1

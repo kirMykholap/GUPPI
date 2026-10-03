@@ -1,11 +1,11 @@
 ---
 type: estimate
 kind: QA
-status: pending
+status: passed
 target: "[[rule-end-of-work]]"
 purpose: "A session ends one of two ways, and the ordinary way keeps its order: the commit before /handoff, handoff.md before the librarian, no commit between the handoff and the librarian's"
 method: "make test-end-of-work, plus by hand at the close of a later session: its folder, the day's event log and git log"
-checked: 2026-09-16
+checked: 2026-10-03
 origin: raw/2026-09-10/ledger.md#case-38
 sprint: migration
 created: 2026-09-10
@@ -27,7 +27,7 @@ The session ended one of two ways: Work Mode, Retro, the commit, the handoff and
 
 ## Result
 
-2026-09-16, make test-end-of-work (30 passed) and the event log of session 1955: retro 22:14:35, commit 8fd804e 22:18:59, handoff 22:19:10 on a clean tree, handoff.md written 22:19:47 before the dispatch, the librarian's commit ebaef1e 22:25:58 with nothing between; rule-carry-over a child after rule-handoff
+2026-10-03, `make test-end-of-work` 30 passed; by hand, the close of session 0115 read in vault/raw/2026-10-03/0115/, the event log vault/raw/2026-10-03/event_log.md and git log: ExitPlanMode 02:59:42, AskUserQuestion 02:59:48, then /work, retro 03:05:39, the work commit f510fb46 03:06:37 and the session-folder commit 2f0591a3 03:07:01, handoff 03:07:02 on a clean tree, handoff.md written 03:07:39 before the librarian's run, the librarian's commits f1a46df1 03:13:32 and 9b821b2b 03:14:09 with no other commit between the handoff and them; `rule-end-of-work` children hold rule-carry-over after rule-handoff and rule-spec-box after rule-retro-onward; not exercised: a /handoff refused on a dirty tree, and a session that took a conserved Spec
 
 ## History
 
@@ -38,3 +38,4 @@ The session ended one of two ways: Work Mode, Retro, the commit, the handoff and
 - 2026-09-17 status: pending → passed · raw/2026-09-16/2238/ledger.md#L2
 - 2026-09-29 updated: the Criterion replaced whole — When and Then only, Given and the bounds line out, the green run of make test-end-of-work into method; purpose and method set, Context and Method out (case 499.1) · [[decision-case-499.1]]
 - 2026-10-02 updated: the Criterion replaced whole — a box session is asked nothing on leaving Plan Mode, its branch merged back by a fast-forward before the librarian; rule-spec-box the last child (case 591.4) · [[decision-case-591.4]]
+- 2026-10-03 status: pending → passed · raw/2026-10-03/0317/ledger.md#L53

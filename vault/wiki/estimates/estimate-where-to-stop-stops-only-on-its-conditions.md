@@ -4,7 +4,7 @@ kind: QA
 status: pending
 target: "[[rule-where-to-stop]]"
 purpose: "Whether the run from /work to the librarian stops for the person on each condition of vault/wiki/where-to-stop.md and on no other, with the text loaded by /work and a stop after the call of /retro opening with STOP:"
-method: "by hand at the first run from /work to the librarian after the render, and at the first run of /box: the context of /work and of /box, the replies of the turn and the Spec read against the Criterion, recorded in the estimate line; a condition that does not arise is named as not exercised"
+method: "by hand at a run from /work to the librarian, and at a run of /box: the context of /work and of /box, the replies of the turn and the Spec read against the Criterion, recorded in the estimate line; a condition that does not arise is named as not exercised"
 checked: 2026-10-01
 origin: raw/2026-09-29/2024/ledger.md#case-531.7
 sprint: migration
@@ -39,3 +39,4 @@ The context of `/work` holds the text of `vault/wiki/where-to-stop.md`, rendered
 - 2026-09-30 created · [[decision-case-531.7]]
 - 2026-10-01 status: pending → passed · raw/2026-10-01/1237/ledger.md#L6
 - 2026-10-02 updated: the Criterion replaced whole — /box imports the file, and its stops (case 591.10) · [[decision-case-591.10]]
+- 2026-10-03 updated: method names the kind of its moment (case 613.3) · [[decision-case-613.3]]

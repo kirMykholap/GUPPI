@@ -4,7 +4,7 @@ kind: QA
 status: pending
 target: "[[rule-case-check]]"
 purpose: Whether the check of each answer of case-guppi sends back a Case whose recommend misses the title of a question of its rounds in the grill-me form
-method: "pytest tests/test_casecheck.py -k rounds over a temp agent transcript: a round and a Case whose recommend holds every title, one that misses a title, a title asked in two rounds, a round out of form whose titles are not required, an answer with no round; then by hand the first Case the hook sends back for a missing title"
+method: "pytest tests/test_casecheck.py -k rounds over a temp agent transcript: a round and a Case whose recommend holds every title, one that misses a title, a title asked in two rounds, a round out of form whose titles are not required, an answer with no round; then by hand a Case the hook sends back for a missing title"
 origin: raw/2026-09-30/1306/ledger.md#case-544.3
 sprint: migration
 created: 2026-09-30
@@ -29,3 +29,4 @@ Then:
 
 - 2026-09-30 created · [[decision-case-544.3]]
 - 2026-10-03 updated: the Criterion replaced whole — only a round in form gives the titles recommend must hold (case 601.5) · [[decision-case-601.5]]
+- 2026-10-03 updated: method names the kind of its moment (case 613.3) · [[decision-case-613.3]]

@@ -4,7 +4,7 @@ kind: QA
 status: pending
 target: "[[rule-spec-capture]]"
 purpose: "The hook prints one line after the Spec is written: for a plan that names a conserved Spec, the call of /box with its folder and no question; otherwise the fork, asked by AskUserQuestion with /work and /carry, and the skill picked called"
-method: uv run pytest tests/test_spec.py -k 'fork or box'; by hand, the first ExitPlanMode of a session after the render, and the first ExitPlanMode of a session that took a conserved Spec
+method: uv run pytest tests/test_spec.py -k 'fork or box'; by hand, an ExitPlanMode of a session, and an ExitPlanMode of a session that took a conserved Spec
 checked: 2026-09-28
 origin: raw/2026-09-16/1034/ledger.md#case-190.5
 sprint: migration
@@ -45,3 +45,4 @@ The stdout of the hook is one JSON object, `hookSpecificOutput` with `hookEventN
 - 2026-09-28 status: pending → passed · raw/2026-09-28/2000/ledger.md#L21
 - 2026-10-02 updated: the Criterion replaced whole — a plan that names a conserved Spec leads to /box, any other gets the fork (case 591.3) · [[decision-case-591.3]]
 - 2026-10-02 updated: the Criterion replaced whole - ratification.md says a Case is ratified by the person's reply (case 595.18) · [[decision-case-595.18]]
+- 2026-10-03 updated: method names the kind of its moment (case 613.3) · [[decision-case-613.3]]

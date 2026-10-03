@@ -4,7 +4,7 @@ kind: QA
 status: pending
 target: "[[rule-spec-write]]"
 purpose: A Case ratified after the approval reaches spec.md from its stored answer, every section of it replaced or the Case placed, the ticks of its unchanged task lines kept
-method: uv run pytest tests/test_ratified.py -k approved_spec; by hand, the first Case ratified in Work Mode after the change
+method: uv run pytest tests/test_ratified.py -k approved_spec; by hand, a Case ratified in Work Mode
 origin: raw/2026-09-26/1745/ledger.md#case-441.6
 sprint: migration
 created: 2026-09-26
@@ -29,3 +29,4 @@ The hook writes the same stored answer of Case N into `spec.md`: the heading, `c
 
 - 2026-09-26 created · [[decision-case-441.6]]
 - 2026-09-30 updated: the Criterion replaced whole — spec.md holds recommend, the parent's from its stored answer (case 544.10) · [[decision-case-544.10]]
+- 2026-10-03 updated: method names the kind of its moment (case 613.3) · [[decision-case-613.3]]

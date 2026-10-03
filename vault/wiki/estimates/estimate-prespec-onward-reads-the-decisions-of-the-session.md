@@ -4,7 +4,7 @@ kind: QA
 status: passed
 target: "[[rule-prespec-onward]]"
 purpose: Whether guppi onward --plan judges a Case out by the decision lines of ledger.md and of every reply of the main agent in the transcript, each at the time of its record, so that a re-ratification with lines the ledger already held counts at every later reply of the session
-method: "uv run pytest tests/test_onward.py; by hand at the first Case ratified again with unchanged decision lines in Plan Mode after the change, at the reply that closes the last line under Cases after a later message of the person: the transcript, ledger.md and the times of the files under cases/, recorded in the estimate line"
+method: "uv run pytest tests/test_onward.py; by hand at a Case ratified again with unchanged decision lines in Plan Mode, at the reply that closes the last line under Cases after a later message of the person: the transcript, ledger.md and the times of the files under cases/, recorded in the estimate line"
 checked: 2026-10-03
 origin: raw/2026-10-02/2049/ledger.md#case-597.2
 sprint: migration
@@ -38,3 +38,4 @@ A Case N is still out when a file `case-<N>.md` under `raw/<date>/<hi HHMM>/case
 - 2026-10-03 renamed from `estimate-prespec-onward-reads-the-decisions-of-the-stretch` · [[decision-case-604]]
 - 2026-10-03 updated: renamed; the Criterion, purpose and method replaced — the decision lines of every reply of the transcript count, not only those of the stretch (case 604) · [[decision-case-604]]
 - 2026-10-03 status: pending → passed · raw/2026-10-03/0115/ledger.md#L16
+- 2026-10-03 updated: method names the kind of its moment (case 613.3) · [[decision-case-613.3]]

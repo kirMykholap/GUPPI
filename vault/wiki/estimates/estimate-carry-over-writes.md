@@ -4,7 +4,7 @@ kind: QA
 status: pending
 target: "[[rule-carry-over]]"
 purpose: /carry writes the brief and the mark, runs guppi backlog, commits, makes the branch of the Spec at that commit, and runs nothing else
-method: uv run guppi render --check; by hand, the first /carry after the fork of ExitPlanMode — the tree, vault/wiki/brief.md, carry.md, vault/wiki/backlog.md, the commit and git branch read
+method: uv run guppi render --check; by hand, a /carry after the fork of ExitPlanMode — the tree, vault/wiki/brief.md, carry.md, vault/wiki/backlog.md, the commit and git branch read
 checked: 2026-09-30
 origin: raw/2026-09-16/1034/ledger.md#case-190.1
 sprint: migration
@@ -49,3 +49,4 @@ The skill reads the tree. When the tree holds changes outside the session folder
 - 2026-09-30 status: pending → passed · raw/2026-09-30/0138/ledger.md#L3
 - 2026-09-30 updated: the Criterion replaced whole — the short brief keeps Next session: Work and Ask the person from the open lines of frontier.md, Cases the line none · [[decision-case-538.1]]
 - 2026-10-02 updated: the Criterion replaced whole — /carry makes the branch of the Spec after its commit (case 591.1) · [[decision-case-591.1]]
+- 2026-10-03 updated: method names the kind of its moment (case 613.3) · [[decision-case-613.3]]

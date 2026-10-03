@@ -4,7 +4,7 @@ kind: QA
 status: passed
 target: "[[rule-harness]]"
 purpose: make help, make style, make test and make lint run their recipes under a POSIX sh from PowerShell as from Git Bash, and stop with a message when no sh is found
-method: by hand, make help, make style, make test and make lint from PowerShell and from Git Bash on Windows, at the first session after the change
+method: by hand, make help, make style, make test and make lint from PowerShell and from Git Bash on Windows, in a session
 checked: 2026-09-27
 origin: raw/2026-09-27/1819/ledger.md#case-457
 sprint: migration
@@ -32,3 +32,4 @@ Make runs each recipe under a POSIX `sh`, with stdin read from `/dev/null`. Each
 
 - 2026-09-27 created · [[decision-case-457]]
 - 2026-09-27 status: pending → passed · raw/2026-09-27/2050/ledger.md#L18
+- 2026-10-03 updated: method names the kind of its moment (case 613.3) · [[decision-case-613.3]]

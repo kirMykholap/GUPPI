@@ -4,7 +4,7 @@ kind: QA
 status: pending
 target: "[[rule-orchestration]]"
 purpose: A decision the person asks to put off in Plan Mode, from a source other than the sprint or the backlog, is shown as a short-form Case and written in the same reply, with no round of ratification
-method: by hand, the first decision the person asks to put off after the render, its line of frontier.md closed [-] … · defer case N, in a reply that leaves no line under the Cases heading of frontier.md open; a sprint item put off or a backlog item kept is not this reading
+method: by hand, a decision the person asks to put off, its line of frontier.md closed [-] … · defer case N, in a reply that leaves no line under the Cases heading of frontier.md open; a sprint item put off or a backlog item kept is not this reading
 checked: 2026-10-01
 origin: raw/2026-09-24/1916/ledger.md#case-405
 sprint: migration
@@ -49,3 +49,4 @@ In the same reply the agent shows the Case in the short form — `context`, `pro
 - 2026-10-02 renamed from `estimate-case-protocol-defers-in-one-reply` · [[decision-case-595.10]]
 - 2026-10-02 updated: moved to rule-orchestration; the Criterion replaced whole - the short form as orchestration.md sets it (case 595.10) · [[decision-case-595.10]]
 - 2026-10-03 updated: the Criterion replaced whole — the trigger is a decision put off, not an item of the sprint or the backlog; their closers are not this moment (case 609) · [[decision-case-609]]
+- 2026-10-03 updated: method names the kind of its moment (case 613.3) · [[decision-case-613.3]]

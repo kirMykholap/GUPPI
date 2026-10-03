@@ -4,7 +4,7 @@ kind: QA
 status: pending
 target: "[[rule-lint]]"
 purpose: Whether make lint runs all five steps when an earlier one is red, prints the lines of each, and exits non-zero when any step is red
-method: "by hand, the make lint of the Baseline of the first /work of a later session whose backlog step is red: the steps that printed, the page findings of guppi lint and the exit code, recorded in the estimate line"
+method: "by hand, the make lint of the Baseline of a /work of a later session whose backlog step is red: the steps that printed, the page findings of guppi lint and the exit code, recorded in the estimate line"
 origin: raw/2026-10-02/1202/ledger.md#case-587
 sprint: migration
 created: 2026-10-02
@@ -25,3 +25,4 @@ Then:
 ## History
 
 - 2026-10-02 created · [[decision-case-587]]
+- 2026-10-03 updated: method names the kind of its moment (case 613.3) · [[decision-case-613.3]]

@@ -4,7 +4,7 @@ kind: QA
 status: pending
 target: "[[rule-case-check]]"
 purpose: A Case that has decision lines in the session and comes back from case-guppi in another shape under its old number goes back to case-guppi with a new number to build it under
-method: uv run pytest tests/test_casecheck.py -k shape, then by hand the first answer of case-guppi the hook sends back for this reason
+method: uv run pytest tests/test_casecheck.py -k shape, then by hand an answer of case-guppi the hook sends back for this reason
 origin: raw/2026-10-03/0115/ledger.md#case-610.1
 sprint: migration
 created: 2026-10-03
@@ -29,3 +29,4 @@ For an answer that holds a top-level Case N, the hook reads the decision lines o
 ## History
 
 - 2026-10-03 created · [[decision-case-610.1]]
+- 2026-10-03 updated: method names the kind of its moment (case 613.3) · [[decision-case-613.3]]

@@ -4,7 +4,7 @@ kind: QA
 status: pending
 target: "[[rule-orchestration]]"
 purpose: Whether, when the person's word asks that a ratified Case change while another Case is built, the main agent sends it back and shows the two Cases together for one ratification, with the rounds gathered and the waits marked as after the findings of pre-spec
-method: "by hand at the first Plan Mode of a later session after the render in which the person's word asks that a ratified Case change: the SendMessage calls and the replies from that word to the acknowledging reply, read in the transcript"
+method: "by hand at a Plan Mode of a later session in which the person's word asks that a ratified Case change: the SendMessage calls and the replies from that word to the acknowledging reply, read in the transcript"
 origin: raw/2026-10-02/2049/ledger.md#case-598.1
 sprint: migration
 created: 2026-10-02
@@ -29,3 +29,4 @@ The main agent sends the ratified Case back to its `case-guppi` by `SendMessage`
 ## History
 
 - 2026-10-02 created · [[decision-case-598.1]]
+- 2026-10-03 updated: method names the kind of its moment (case 613.3) · [[decision-case-613.3]]

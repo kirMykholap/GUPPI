@@ -3,7 +3,7 @@ type: estimate
 kind: QA
 status: pending
 target: "[[rule-retro]]"
-method: one reading by hand at the first /retro, and one at the first /retro of a session that /box runs, recorded in the estimate line
+method: by hand at a /retro, and at a /retro of a session that /box runs, recorded in the estimate line
 checked: 2026-09-30
 origin: raw/2026-09-10/ledger.md#case-38.1
 sprint: migration
@@ -59,3 +59,4 @@ A reading measures the Criterion the page carries at the moment of the reading �
 - 2026-09-30 updated: the Criterion replaced whole — the trigger is the agent's call at the end of /work or the typed /retro; the readings rule is unchanged (case 531.2) · [[decision-case-531.2]]
 - 2026-09-30 status: pending → passed · raw/2026-09-30/2042/ledger.md#L35
 - 2026-10-02 updated: the Criterion replaced whole — in a session that /box runs, the conserved Spec counts as this session's work (case 591.8) · [[decision-case-591.8]]
+- 2026-10-03 updated: method names the kind of its moment (case 613.3) · [[decision-case-613.3]]

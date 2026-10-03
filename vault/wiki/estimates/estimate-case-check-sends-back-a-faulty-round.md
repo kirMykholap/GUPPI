@@ -4,7 +4,7 @@ kind: QA
 status: pending
 target: "[[rule-case-check]]"
 purpose: Whether the SubagentStop check sends back to case-guppi a round whose question has a title line out of the grill-me form or misses a fixed label, once per text, and leaves a round in form, a Case and a Fact answer alone
-method: "uv run pytest tests/test_casecheck.py -k round_form over a temp agent transcript: a round in form, a title line without the colon, a question with no Now line, no lone Options label, no option with an After item and no arrow line, the same faulty round given twice, a Fact answer, an answer with a Case, an unreadable transcript; then by hand the first round the hook sends back live, its stderr and the round case-guppi gave again"
+method: "uv run pytest tests/test_casecheck.py -k round_form over a temp agent transcript: a round in form, a title line without the colon, a question with no Now line, no lone Options label, no option with an After item and no arrow line, the same faulty round given twice, a Fact answer, an answer with a Case, an unreadable transcript; then by hand a round the hook sends back live, its stderr and the round case-guppi gave again"
 origin: raw/2026-10-02/2300/ledger.md#case-601.1
 sprint: migration
 created: 2026-10-02
@@ -34,3 +34,4 @@ Then:
 
 - 2026-10-03 created · [[decision-case-601.1]]
 - 2026-10-03 updated: the Criterion replaced whole — a round is known by is_round as the code holds it, and gets no check of a Case in the same run, so its exit 2 carries the findings of its form alone (case 607.2) · [[decision-case-607.2]]
+- 2026-10-03 updated: method names the kind of its moment (case 613.3) · [[decision-case-613.3]]

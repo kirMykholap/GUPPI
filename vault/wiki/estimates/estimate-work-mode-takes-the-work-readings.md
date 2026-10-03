@@ -4,7 +4,7 @@ kind: QA
 status: pending
 target: "[[rule-work-mode]]"
 purpose: Whether /work, after the last task and in the same turn, takes in Frontier order each open W reading whose work is built and whose moment has come, closes its W line, leaves its line to the reply that ends Retro, and leaves open the readings this session changes, or the conserved Spec that /box gives it changes, or whose moment has not come
-method: "by hand at the first /work after the render and at the first /work that /box calls: the replies after the last task, their LEDGER blocks and frontier.md read against the Criterion, recorded in the estimate line"
+method: "by hand at a /work and at a /work that /box calls: the replies after the last task, their LEDGER blocks and frontier.md read against the Criterion, recorded in the estimate line"
 checked: 2026-09-30
 origin: raw/2026-09-29/1134/ledger.md#case-508.3
 sprint: migration
@@ -39,3 +39,4 @@ Before `/retro`, the agent takes, in the order of `raw/<date>/<hi HHMM>/frontier
 - 2026-09-30 updated: the Criterion replaced whole — the run is one turn; the reading lines stand in the reply that ends Retro; the stop of the step by the person is gone (case 531.8) · [[decision-case-531.8]]
 - 2026-09-30 status: pending → passed · raw/2026-09-30/1736/ledger.md#L42
 - 2026-10-02 updated: the Criterion replaced whole — the Work readings of /box leave the Estimates the conserved Spec changes (case 591.12) · [[decision-case-591.12]]
+- 2026-10-03 updated: method names the kind of its moment (case 613.3) · [[decision-case-613.3]]

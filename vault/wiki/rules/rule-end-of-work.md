@@ -2,7 +2,7 @@
 type: rule
 kind: MOC
 purpose: Prevents a session being handed over without a settled account of what happened
-status: draft
+status: built
 parent: "[[rule-session]]"
 children: ["[[rule-retro]]", "[[rule-retro-commit]]", "[[rule-handoff]]", "[[rule-carry-over]]", "[[rule-retro-onward]]", "[[rule-spec-box]]"]
 estimates: ["[[estimate-end-of-work-order]]"]
@@ -38,3 +38,4 @@ picks the Spec up and the librarian does not apply it blind. On leaving Plan Mod
 - 2026-09-30 updated: the steps of the end of a session run in the turn of Work Mode with no stop for the person (case 531.1) · [[decision-case-531.1]]
 - 2026-09-30 child rule-retro-onward added · [[decision-case-531.9]]
 - 2026-10-02 updated: a session that took a conserved Spec is asked nothing on leaving Plan Mode and ends the ordinary way through /box; rule-spec-box a child after rule-retro-onward (case 591.4) · [[decision-case-591.4]]
+- 2026-10-03 status: draft → built · cascade

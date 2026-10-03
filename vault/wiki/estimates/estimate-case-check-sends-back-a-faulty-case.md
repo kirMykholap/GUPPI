@@ -4,7 +4,7 @@ kind: QA
 status: pending
 target: "[[rule-case-check]]"
 purpose: A Case of case-guppi that the checks refuse goes back to it before the main agent sees it
-method: uv run pytest tests/test_casecheck.py -k subagent, then by hand the first answer of case-guppi the hook sends back, the first file of cases/ it writes, and the first live round after a built Case, which is not sent back for that Case and leaves its stored entry and its file as they stood
+method: uv run pytest tests/test_casecheck.py -k subagent, then by hand an answer of case-guppi the hook sends back, a file of cases/ it writes, and a live round after a built Case, which is not sent back for that Case and leaves its stored entry and its file as they stood
 checked: 2026-09-30
 origin: raw/2026-09-25/1228/ledger.md#case-419.3
 sprint: migration
@@ -44,3 +44,4 @@ Then:
 - 2026-09-30 status: pending → passed · raw/2026-09-30/2042/ledger.md#L29
 - 2026-10-03 updated: the Criterion replaced whole — an answer whose outputs hold no Case heading gets none of the checks of a Case, and the form of a round is the promise of estimate-case-check-sends-back-a-faulty-round (case 601.2) · [[decision-case-601.2]]
 - 2026-10-03 updated: the Criterion replaced whole — the answer is the newest output that is a Case, a round or a Fact answer; a round or a Fact answer gets no check of a Case, and an earlier Case is not checked, stored or written again (case 607.1) · [[decision-case-607.1]]
+- 2026-10-03 updated: method names the kind of its moment (case 613.3) · [[decision-case-613.3]]

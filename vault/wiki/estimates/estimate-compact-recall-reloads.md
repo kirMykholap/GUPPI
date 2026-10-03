@@ -4,7 +4,7 @@ kind: QA
 status: pending
 target: "[[rule-compact-recall]]"
 purpose: After a compaction of a working session the hook's header, the paths of the /hi files, the Spec and the Frontier's text stand in the context; an ordinary session and another source get nothing
-method: pytest tests/test_recall.py on a temp project; live — the first compaction of a working session, by hand, the hook's text in the context after it
+method: pytest tests/test_recall.py on a temp project; live — a compaction of a working session, by hand, the hook's text in the context after it
 checked: 2026-09-22
 origin: raw/2026-09-21/0019/ledger.md#case-287
 sprint: migration
@@ -35,3 +35,4 @@ With a `hi` in the session's window, stdout holds a header line, "recall: the co
 - 2026-09-21 created · [[decision-case-287]]
 - 2026-09-22 status: pending → passed · raw/2026-09-22/0014/ledger.md#L2
 - 2026-09-29 updated: the Criterion replaced whole — When and Then only, Given, the docs and the lesson out (case 493.1) · [[decision-case-493.1]]
+- 2026-10-03 updated: method names the kind of its moment (case 613.3) · [[decision-case-613.3]]

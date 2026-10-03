@@ -4,7 +4,7 @@ kind: QA
 status: passed
 target: "[[rule-spec-write]]"
 purpose: Each Case the Stop hook writes into the plan is checked at once, and a finding comes back to the agent
-method: uv run pytest tests/test_ratified.py -k checks_the_written; by hand, the first ratification of a session after the change
+method: uv run pytest tests/test_ratified.py -k checks_the_written; by hand, a ratification of a session
 checked: 2026-09-27
 origin: raw/2026-09-25/0051/ledger.md#case-414.1
 sprint: migration
@@ -40,3 +40,4 @@ The hook runs the checks of `prespec --check` on each Case it wrote in this run 
 - 2026-09-26 updated: the Criterion replaced whole — a DIFF showing is no longer named (case 441.9) · [[decision-case-441.9]]
 - 2026-09-27 updated: the Criterion replaced whole — the Case is written into the plan file alone, no ratified copy (case 445.2) · [[decision-case-445.2]]
 - 2026-09-27 status: pending → passed · raw/2026-09-27/1819/ledger.md#L31
+- 2026-10-03 updated: method names the kind of its moment (case 613.3) · [[decision-case-613.3]]

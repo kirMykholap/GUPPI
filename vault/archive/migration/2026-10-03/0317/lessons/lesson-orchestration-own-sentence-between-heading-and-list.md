@@ -2,7 +2,7 @@
 type: lesson
 kind: error
 root_cause: the main agent put a note it judged useful at the top of the showing instead of in its own text after the horizontal rule, where rule-orchestration places every text of the agent's own
-status: clustered
+status: archived
 insight: "[[insight-case-form-chat-form-read-by-no-script]]"
 origin: raw/2026-10-03/0115/ledger.md#L20
 sprint: migration
@@ -22,3 +22,5 @@ the main agent put a note it judged useful at the top of the showing instead of 
 
 - 2026-10-03 created · raw/2026-10-03/0115/ledger.md#L20
 - 2026-10-03 updated: clustered under insight-case-form-chat-form-read-by-no-script (synthesis) · raw/2026-10-03/0115/ledger.md#L20
+- 2026-10-03 archived · insight actioned
+- 2026-10-03 archived · cleanup

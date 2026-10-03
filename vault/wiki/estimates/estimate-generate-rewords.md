@@ -4,7 +4,7 @@ kind: QA
 status: pending
 target: "[[rule-page-generation]]"
 purpose: An update item with reword replaces its pairs as whole words on every live page but History and Result, one History line each, and fails on a pair with no hit or a new the owner does not carry
-method: pytest tests/test_generate.py on a temp vault with three pages and an archive; the live reading the librarian's run that applies the first reword
+method: pytest tests/test_generate.py on a temp vault with three pages and an archive; the live reading a librarian's run that applies a reword
 checked: 2026-09-22
 origin: raw/2026-09-20/1308/ledger.md#case-274.1
 sprint: migration
@@ -32,3 +32,4 @@ Every pair is replaced as a whole word, with no letter, digit, `_` or `-` right 
 - 2026-09-20 created · [[decision-case-274.1]]
 - 2026-09-22 status: pending → passed · raw/2026-09-22/0014/ledger.md#L3
 - 2026-09-29 updated: the Criterion replaced whole — When and Then only, Given and the Rule-class files out (case 489.4) · [[decision-case-489.4]]
+- 2026-10-03 updated: method names the kind of its moment (case 613.3) · [[decision-case-613.3]]

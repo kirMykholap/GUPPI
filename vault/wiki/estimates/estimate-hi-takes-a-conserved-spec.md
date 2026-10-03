@@ -4,7 +4,7 @@ kind: QA
 status: pending
 target: "[[rule-skill-hi]]"
 purpose: Whether a session takes a conserved Spec of the Frontier whole — only with no decision line of its own but a defer, its line closed, the plan file created with a title line that names the conserved spec.md, the other lines closed as left
-method: "uv run guppi render --check; by hand, at the first session whose person takes a conserved Spec at the Frontier: frontier.md, the title line of the plan file and the session's ledger read against the Criterion"
+method: "uv run guppi render --check; by hand, a session whose person takes a conserved Spec at the Frontier: frontier.md, the title line of the plan file and the session's ledger read against the Criterion"
 origin: raw/2026-10-02/1202/ledger.md#case-593.1
 sprint: migration
 created: 2026-10-02
@@ -27,3 +27,4 @@ The agent takes the Spec whole, to be run by `/box`, only while the session's le
 ## History
 
 - 2026-10-02 created · [[decision-case-593.1]]
+- 2026-10-03 updated: method names the kind of its moment (case 613.3) · [[decision-case-613.3]]

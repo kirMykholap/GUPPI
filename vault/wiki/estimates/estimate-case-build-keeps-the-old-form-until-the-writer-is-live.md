@@ -4,7 +4,7 @@ kind: QA
 status: passed
 target: "[[rule-case-build]]"
 purpose: Whether a Case that changes a reader and the text it reads, where the reader loses what it refuses before the text lands, keeps the old form in its then until the writer is measured live
-method: one reading by hand at the first Case case-guppi builds after the render that changes a reader and the text or writer it reads, recorded in the estimate line
+method: one reading by hand at a Case case-guppi builds that changes a reader and the text or writer it reads, recorded in the estimate line
 checked: 2026-09-28
 origin: raw/2026-09-28/0000/ledger.md#case-473.2
 sprint: migration
@@ -31,3 +31,4 @@ Where the reader refuses in between and what it refuses is lost, such as a hook 
 
 - 2026-09-28 created · [[decision-case-473.2]]
 - 2026-09-28 status: pending → passed · raw/2026-09-28/1318/ledger.md#L38
+- 2026-10-03 updated: method names the kind of its moment (case 613.3) · [[decision-case-613.3]]

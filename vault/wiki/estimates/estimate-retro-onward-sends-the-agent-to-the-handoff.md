@@ -4,7 +4,7 @@ kind: QA
 status: pending
 target: "[[rule-retro-onward]]"
 purpose: Whether guppi onward refuses the end of a reply after the retro mark while handoff.md does not stand, once a stretch and once more after each reply the ledger hook refused, judged by the refusals in the transcript whatever stop_hook_active says, not on a reply that opens with STOP:, and is silent otherwise, counting nothing
-method: "uv run pytest tests/test_onward.py tests/test_ledger.py; by hand at the first end of Retro at which the ledger hook refuses a line: the transcript, the event log and handoff.md, recorded in the estimate line"
+method: "uv run pytest tests/test_onward.py tests/test_ledger.py; by hand at an end of Retro at which the ledger hook refuses a line: the transcript, the event log and handoff.md, recorded in the estimate line"
 checked: 2026-10-01
 origin: raw/2026-09-29/2024/ledger.md#case-531.9
 sprint: migration
@@ -42,3 +42,4 @@ It exits 2 when the event log of the session's window holds the mark `retro` of 
 - 2026-10-01 status: pending → passed · raw/2026-10-01/1237/ledger.md#L3
 - 2026-10-01 updated: the Criterion replaced whole — the hook fires once a stretch, judged by its own refusal in the transcript, and stop_hook_active no longer silences it (case 577.1) · [[decision-case-577.1]]
 - 2026-10-02 updated: the Criterion replaced whole — the hook speaks again after each reply the ledger hook refused (case 596) · [[decision-case-596.1]]
+- 2026-10-03 updated: method names the kind of its moment (case 613.3) · [[decision-case-613.3]]

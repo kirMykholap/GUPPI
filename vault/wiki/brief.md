@@ -24,7 +24,7 @@
 
 ## Readings due
 
-1 Estimate `failed`, 36 `pending` (the 37 `unread` lines of `make lint`). Every target named below stands `draft`. Lines with a `read` line in `raw/2026-10-03/0115/spec.md` give it; the others give the page's `method`.
+1 Estimate `failed`, 37 `pending` (the 38 `unread` lines of `make lint`). Every target named below stands `draft`. Lines with a `read` line in `raw/2026-10-03/0115/spec.md` give it; the others give the page's `method`.
 
 - `estimate-orchestration-shows-the-built-case` (failed) — `rule-orchestration` (draft) — result: the showing of Case 610 in the batch after /pre-spec put a sentence of its own between the heading of the top-level Case and its list — method: by hand, the Cases of a session at its close, against the Agent, SendUserFile, Skill and SendMessage calls of the transcript
 - `estimate-case-check-sends-back-a-faulty-case` — `rule-case-check` (draft) — spec 0115: read `estimate-case-check-sends-back-a-faulty-case` — method: `uv run pytest tests/test_casecheck.py -k subagent`, then by hand the first answer the hook sends back, the first file of cases/ it writes, and the first live round after a built Case
@@ -75,7 +75,7 @@
 - The handoff says `generate` does not read `vault/archive/`, so the `read` boxes of the archived Specs of 1202, 1834 and 2049 are never ticked, whatever readings are taken.
 - The handoff says the check of a clash (610.2) reads `agent_id` from the `SubagentStop` payload and no live payload of this session was read for that field.
 - MOC candidates, contradictions: none printed by any step of this run.
-- `make lint`: exit 2, 42 lines of `guppi lint` — 5 `deferred`, 36 `unread: pending`, 1 `unread: failed`.
+- `make lint`: exit 2, 43 lines of `guppi lint` — 5 `deferred`, 37 `unread: pending`, 1 `unread: failed`.
 
 ## Next session
 
@@ -96,5 +96,5 @@ Ask the person:
 ## Readings at the close
 
 - `make test`: 1117 passed, 6 skipped.
-- `make lint`: exit 2, 42 lines of `guppi lint` (5 `deferred`, 36 `unread: pending`, 1 `unread: failed`).
+- `make lint`: exit 2, 43 lines of `guppi lint` (5 `deferred`, 37 `unread: pending`, 1 `unread: failed`).
 - Pages under `vault/wiki/`: decisions 1003, rules 77, estimates 195, lessons 74, insights 29, entities 4. Files `*.md` under `vault/archive/`: 755, after `guppi archive`.

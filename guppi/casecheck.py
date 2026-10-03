@@ -144,6 +144,24 @@ answer between `<result>` and `</result>` — a returned answer by `user_kind` o
 opener (case 592). A notification carries no agent type; the question line is what marks a
 round.
 
+The layout of a showing (case 611). The same `Stop` run judges a reply that shows a Case —
+one that `showings` reads, so not the acknowledging reply, a fence tagged `DIFF` or the short
+form — against the layout `orchestration.md` sets: the heading, one list under it, one
+`ratification`, and the agent's own text only after the horizontal rule. It exits 2 when a
+line that is not blank stands before the first Case heading (`CASE_HEADING` of
+`guppi/materialize.py`, `## Case N —` or `### Case N.M —`); when, between a Case heading and
+the next one or the horizontal rule, a line stands that is not blank, not a list item — one
+that opens with `- `, `* ` or a number and `. ` — not a line indented under a list item, and
+not a line of the `ratification` blockquote, its `RATIFICATION_HEAD` and the `>` lines after
+it, or when `quoted_sections` reads there a section other than `ratification`; and when the
+main agent wrote text in the turn before its last tool call, by `texts_before_last_call`, the
+judgment of the check of a round, with no second copy (`outside_the_list`, `showing_layout`).
+The reason quotes the first such text and tells the agent to show the Case again with that
+text moved after the horizontal rule; it is joined with the reasons of the comparison and of
+the opening of a round. Text after the horizontal rule is not judged, and the check stores
+nothing. The comparison above still compares the sections a reply shows; this check refuses
+the showing of any but `ratification`.
+
 A sending. The transcript is JSONL (`ledger.read_records`); a `SendUserFile` call stands in an
 assistant record's `message.content` as `{"type": "tool_use", "name": "SendUserFile",
 "input": {"files": [<path>, …]}}`, the record carrying its `timestamp` (measured 2026-09-27,
@@ -188,6 +206,7 @@ from guppi.ledger import (
     user_kind,
 )
 from guppi.materialize import (
+    CASE_HEADING,
     closes_fence,
     fence_opening,
     parse_line,
@@ -999,6 +1018,72 @@ def against_store(case: str, heading: str, lines: list[str], store: dict) -> str
     return None
 
 
+# --- the layout of a showing (case 611) ---------------------------------------------------
+
+LIST_ITEM = re.compile(r"^(?:[-*] |\d+\. )")
+
+
+def outside_the_list(reply: str) -> str | None:
+    """Case 611: the first text of a reply that shows a Case standing outside the layout
+    `orchestration.md` sets, or None. Up to the horizontal rule, a line that is not blank
+    before the first Case heading (`CASE_HEADING`), and under a Case heading any line but a
+    blank one, a list item (`LIST_ITEM`), a line indented under a list item and the
+    `ratification` blockquote — its `RATIFICATION_HEAD` and the `>` lines after it; a section
+    other than `ratification` that `quoted_sections` reads under a heading is refused too.
+    Text after the horizontal rule is not judged."""
+    seen_heading = in_list = in_ratification = False
+    block: list[str] = []
+
+    def other_section() -> str | None:
+        sections = quoted_sections(block, CHAT_SECTIONS)
+        other = next((name for name in sections if name != "ratification"), None)
+        return f"> **{other}:**" if other else None
+
+    for line in reply.splitlines():
+        stripped = line.strip()
+        if CASE_HEADING.match(line):
+            if seen_heading and (section := other_section()):
+                return section
+            seen_heading, in_list, in_ratification, block = True, False, False, []
+            continue
+        if not stripped:
+            block.append(line)
+            continue
+        if not seen_heading:
+            return stripped
+        if stripped == RULE:
+            break
+        block.append(line)
+        if stripped == RATIFICATION_HEAD:
+            in_ratification, in_list = True, False
+            continue
+        if in_ratification and stripped.startswith(">"):
+            continue
+        in_ratification = False
+        if LIST_ITEM.match(line):
+            in_list = True
+            continue
+        if in_list and line[:1] in (" ", "\t"):
+            continue
+        return stripped
+    return other_section() if seen_heading else None
+
+
+def showing_layout(records: list[dict], reply: str) -> str | None:
+    """Case 611: the reason a reply that shows a Case is refused for a text of the main
+    agent's own outside its list and `ratification`, or None — a text before the last tool
+    call of the turn, by `texts_before_last_call`, the judgment the check of a round uses
+    (case 562), or a line of the reply by `outside_the_list`."""
+    before = texts_before_last_call(records)
+    quoted = before[0] if before else outside_the_list(reply)
+    if quoted is None:
+        return None
+    return (
+        f"a Case is shown with a text of your own outside its list and ratification: "
+        f"{quoted[:120]!r} — show the Case again with that text moved after the horizontal rule"
+    )
+
+
 # --- how a round opens (case 562) ----------------------------------------------------------
 
 RESULT = re.compile(r"<result>(.*?)</result>", re.DOTALL)
@@ -1156,6 +1241,8 @@ def stop(payload: dict, project_dir: Path, now, stderr) -> int:
     ]
     if opening:
         problems.append(opening)
+    if layout := showing_layout(turn_records, reply):
+        problems.append(layout)
     turn = turn_of_reply(turn_records)
     unsent: dict[Path, list[str]] = {}
     for case in shown:  # the file of its top-level Case, sent in this turn (case 452.2)

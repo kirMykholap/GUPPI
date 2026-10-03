@@ -983,6 +983,38 @@ def test_an_estimate_update_setting_a_method_without_a_form_is_a_finding(tmp_pat
     assert out.splitlines() == [NO_FORM.replace("create estimate-x-again", "update estimate-x")]
 
 
+MOMENT = (
+    "method ties its reading by hand to the first moment after the render or the change — "
+    "the method names the kind of its moment"
+)
+
+
+def test_moment_a_create_and_an_update_tied_to_the_first_moment_are_findings(tmp_path):
+    # case 613.1: lint's own predicate over the plan
+    with_page(tmp_path, "rules", "rule-x")
+    with_estimate(tmp_path)
+    for wording in ("after the render", "after the change"):
+        method = f"by hand at the first /handoff {wording}"
+        item = NO_FORM_CREATE.replace("Run it and look", method)
+        code, out, _ = check(tmp_path, plan=create_plan(item), ledger=CREATE_LINE)
+        assert (code, out.splitlines()) == (1, [f"case 1: create estimate-x-again: {MOMENT}"])
+        item = f"update:\n  - slug: estimate-x\n    set: {{method: {method}}}\n    change: recut\n"
+        code, out, _ = check(tmp_path, plan=create_plan(item), ledger=UPDATE_LINE)
+        assert (code, out.splitlines()) == (1, [f"case 1: update estimate-x: {MOMENT}"])
+
+
+def test_moment_a_kind_of_moment_and_two_clauses_are_clean(tmp_path):
+    with_page(tmp_path, "rules", "rule-x")
+    for method in (
+        "by hand at a /handoff",
+        "by hand after the first close of a sprint",
+        "pytest tests/test_x.py, the first run after the render",
+        "by hand once; the first session after the change",
+    ):
+        item = NO_FORM_CREATE.replace("Run it and look", method)
+        assert check(tmp_path, plan=create_plan(item), ledger=CREATE_LINE) == (0, "", ""), method
+
+
 def test_the_keys_of_the_old_shape_are_a_finding_on_every_kind(tmp_path):
     # case 440: `contract` on an `update` and `estimate_slug` on a rule's `create` are keys of
     # no item, judged by `item_keys` like any other

@@ -814,9 +814,20 @@ def test_subagent_the_path_of_the_file_is_one_the_guard_judges(working):
 # --- the comparison on Stop (case 419.4) ------------------------------------------------
 
 
+LAYOUT = "outside its list and ratification"
+
+
+def compared_alike(result):
+    """A showing of the sections under the heading is refused for its layout (case 611); the
+    comparison passes when the layout is the only reason given."""
+    code, err = result
+    reasons = ("differ", "not built and checked", "no SendUserFile", "its check found")
+    return code == 2 and LAYOUT in err and not any(reason in err for reason in reasons)
+
+
 def test_stop_the_checked_case_shown_unchanged_passes(working):
     answer(working, ANSWER)
-    assert show(working, ANSWER + "\n---\n\nRatify?\n") == (0, "")
+    assert compared_alike(show(working, ANSWER + "\n---\n\nRatify?\n"))
 
 
 def test_stop_a_case_not_in_the_store_is_refused(working):
@@ -839,7 +850,7 @@ def test_stop_the_translated_prose_and_heading_pass(working):
         .replace("> Problem.", "> The problem.")
         .replace("> Advice.", "> The advice.")
     )
-    assert show(working, translated) == (0, "")
+    assert compared_alike(show(working, translated))
 
 
 def test_stop_a_changed_mechanical_part_is_refused(working):
@@ -858,7 +869,7 @@ def test_stop_a_changed_mechanical_part_is_refused(working):
 
 RATIFICATION = ANSWER[ANSWER.index("> **ratification:**") :]
 SHORT_SHOWING = (
-    "## Case 7 — example\n\nМеняет правило x: одна пара `replace` и новое Estimate.\n\n"
+    "## Case 7 — example\n\n- **7** — меняет правило x: одна пара `replace` и новое Estimate.\n\n"
     + RATIFICATION
     + "\n---\n\nРатифицируешь?\n"
 )
@@ -869,7 +880,7 @@ def test_stop_a_showing_of_the_ratification_alone_passes(working):
     answer(working, ANSWER)
     assert show(working, SHORT_SHOWING) == (0, "")
     no_when = ANSWER.replace("> **when:**\n> The agent runs `guppi x`.\n\n", "")
-    assert show(working, no_when) == (0, "")
+    assert compared_alike(show(working, no_when))
 
 
 def test_stop_a_showing_of_the_ratification_alone_that_differs_is_refused(working):
@@ -948,7 +959,7 @@ def test_stop_a_case_shown_again_without_recommend_is_compared(working):
     code, err = show(working, again)
     assert code == 2 and "not built and checked" in err
     answer(working, again)
-    assert show(working, again) == (0, "")
+    assert compared_alike(show(working, again))
 
 
 def test_stop_a_parent_is_compared_part_by_part(working):
@@ -960,8 +971,8 @@ def test_stop_a_parent_is_compared_part_by_part(working):
     )
     assert answer(working, parent + sub) == (0, "")
     assert set(store(working)) == {"9", "9.1"}
-    assert show(working, parent + sub) == (0, "")
-    assert show(working, parent.replace("C.", "C!") + sub) == (0, "")  # prose, not compared
+    assert compared_alike(show(working, parent + sub))
+    assert compared_alike(show(working, parent.replace("C.", "C!") + sub))  # prose, not compared
     code, err = show(working, parent + sub.replace("The file is written.", "Written twice."))
     assert code == 2 and "case 9.1: its then differ" in err
 
@@ -1017,7 +1028,67 @@ def test_stop_list_an_extra_line_is_refused(working):
 def test_stop_list_a_showing_under_each_heading_passes_as_before(working):
     built_family(working)
     each = PARENT + sub_case("9.1") + "\n" + sub_case("9.2", "The page is read.")
-    assert show(working, each) == (0, "")
+    assert compared_alike(show(working, each))
+
+
+# --- the layout of a showing (case 611) -------------------------------------------------
+
+
+def test_layout_a_list_showing_and_text_after_the_rule_pass(working):
+    answer(working, ANSWER)
+    assert show(working, SHORT_SHOWING) == (0, "")
+    indented = SHORT_SHOWING.replace(
+        "Estimate.\n\n", "Estimate.\n  Проверка: `estimate-x-works`.\n\n", 1
+    )
+    assert show(working, indented) == (0, "")
+
+
+def test_layout_a_batch_of_list_showings_passes(working):
+    built_family(working)
+    answer(working, ANSWER)
+    batch = SHORT_SHOWING.split("\n---\n")[0] + "\n" + list_showing(*LINES_9_1, *LINES_9_2)
+    assert show(working, batch) == (0, "")
+
+
+def test_layout_a_sentence_between_the_heading_and_the_list_is_refused(working):
+    # the showing of Case 610 in session 0115
+    answer(working, ANSWER)
+    noted = SHORT_SHOWING.replace(
+        "## Case 7 — example\n\n", "## Case 7 — example\n\nCase 608 is renumbered.\n\n"
+    )
+    code, err = show(working, noted)
+    assert code == 2 and LAYOUT in err and "Case 608 is renumbered." in err
+    assert "after the horizontal rule" in err
+
+
+def test_layout_a_text_before_the_first_heading_is_refused(working):
+    answer(working, ANSWER)
+    code, err = show(working, "Here is the Case.\n\n" + SHORT_SHOWING)
+    assert code == 2 and LAYOUT in err and "Here is the Case." in err
+
+
+def test_layout_a_section_other_than_ratification_is_refused(working):
+    answer(working, ANSWER)
+    given = "> **given:**\n> `estimate-x-works` — its Estimate.\n\n"
+    shown = SHORT_SHOWING.replace("> **ratification:**", given + "> **ratification:**", 1)
+    code, err = show(working, shown)
+    assert code == 2 and LAYOUT in err and "> **given:**" in err
+
+
+def test_layout_a_text_before_the_last_tool_call_is_refused(working):
+    answer(working, ANSWER)
+    call = sending(case_path(working, "7"))
+    call["message"]["content"].insert(0, said("Showing the Case."))
+    code, err = show(working, SHORT_SHOWING, records=[prompt(), call, result()])
+    assert code == 2 and LAYOUT in err and "Showing the Case." in err
+
+
+def test_layout_the_acknowledging_reply_and_the_re_fire_are_not_judged(working):
+    answer(working, ANSWER)
+    ack = "```LEDGER\n- decision[case 7][update][rule-x]{ref:rule-x}\n```\n\n## Case 7 — ratified\n\n**Changes:** x.\n"
+    assert show(working, "A line.\n\n" + ack, sent=[]) == (0, "")
+    noted = "Here is the Case.\n\n" + SHORT_SHOWING
+    assert show(working, noted, stop_hook_active=True) == (0, "")
 
 
 # --- how a round of case-guppi opens (case 562) -----------------------------------------
@@ -1287,7 +1358,9 @@ def test_subagent_note_a_dropped_criterion_line_is_sent_back_once_and_kept(recut
 
 def test_stop_a_case_with_a_note_is_not_refused(recut):
     answer(recut, RECUT)
-    assert show(recut, RECUT + "\n---\n\nRatify?\n") == (0, "")
+    listed = "## Case 7 — recut\n\n- **7** — переписывает Criterion.\n\n"
+    listed += RECUT[RECUT.index("> **ratification:**") :]
+    assert show(recut, listed + "\n---\n\nRatify?\n") == (0, "")
 
 
 SAME_PROMISE = (

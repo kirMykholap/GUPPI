@@ -42,7 +42,12 @@ Estimates of a child with `enforcement: render` are not counted, since that chil
 is part of the parent's file and its Estimate promises the child's own behaviour, case 459;
 for a Leaf's Estimate a `tests/` file that exists, the word `pytest`, a `make <target>` of the Makefile, or a reading — "by hand",
 the one spelling since case 330.1; the four forms are one predicate, `names_a_form`, which
-`pre-spec` calls over the plan, case 331), `decision` (a decision page with none of the four
+`pre-spec` calls over the plan, case 331), `moment` (an Estimate whose `method` ties a
+reading by hand to the first of something after the render or after the change — a part of
+the `method` between two `;` that holds `by hand` and the first of something after the
+render or the change; a reading names the kind of its moment, and any such moment counts,
+in this session or an earlier one; the one predicate, `tied_to_a_one_off_moment`, which
+`pre-spec` calls over the plan, case 613.1), `decision` (a decision page with none of the four
 kind lists `create`, `update`, `delete`, `defer` and no `children` — the page of a Case with
 sub-cases carries `children` in their place, case 544.9 — or with `kind` or `target_slug` still
 present, or a slug in a list with a category prefix that names neither a live nor an
@@ -565,6 +570,36 @@ def names_a_form(method: str) -> bool:
     )
 
 
+FIRST_AFTER = re.compile(r"\bfirst\b.*?\bafter the (?:render|change)\b")
+CLAUSE = ";"  # a `method` joins its parts by `;`, such as a test run and a reading
+
+
+def tied_to_a_one_off_moment(method: str) -> bool:
+    """Whether a `method` ties a reading by hand to the first of something after the render
+    or after the change — a moment that passes once and is gone when missed: a part of the
+    `method` between two `;` that holds `by hand` and `FIRST_AFTER`. The one predicate of the
+    class `moment`, which `pre-spec` calls over the plan (case 613.1)."""
+    return any(is_reading(clause) and FIRST_AFTER.search(clause) for clause in method.split(CLAUSE))
+
+
+def check_moment(page: Page) -> list[Finding]:
+    """An Estimate whose `method` ties its reading by hand to the first moment after the
+    render or the change, by `tied_to_a_one_off_moment`, is one finding of the class `moment`;
+    a reading names the kind of its moment (case 613.1)."""
+    if page.category != "estimates":
+        return []
+    if tied_to_a_one_off_moment(method_of(page) or ""):
+        return [
+            Finding(
+                page,
+                "moment",
+                "ties its reading by hand to the first moment after the render or the change — "
+                "name the kind of its moment",
+            )
+        ]
+    return []
+
+
 def check_unread(page: Page) -> list[Finding]:
     """Every `pending` or `failed` Estimate is one finding, `unread: <status>` — red between
     a change of a promise and its reading, by design (cases 182, 202)."""
@@ -723,6 +758,7 @@ def lint(project_dir: Path) -> list[str]:
         findings.extend(check_status(page, by_slug))
         findings.extend(check_unread(page))
         findings.extend(check_method(page, by_slug, project_dir))
+        findings.extend(check_moment(page))
         findings.extend(check_decision(page, known))
     return [f.text for f in findings]
 

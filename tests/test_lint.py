@@ -609,6 +609,39 @@ def test_a_leaf_method_by_hand_is_the_exception(tmp_path):
     assert run(tmp_path) == (0, [], "")
 
 
+MOMENT_LINE = (
+    "estimates/estimate-x-works: moment: ties its reading by hand to the first moment after the "
+    "render or the change — name the kind of its moment"
+)
+
+
+def test_moment_a_reading_tied_to_the_first_moment_after_the_render_or_the_change(tmp_path):
+    # case 613.1: a moment that passes once and is gone when missed
+    for method in (
+        "by hand at the first /handoff after the render",
+        "pytest tests/test_x.py; by hand once, the ledger of the first session after the change",
+    ):
+        seed(tmp_path, rule=rule_page(status="built"), estimate=estimate_page(method=method))
+        assert run(tmp_path) == (1, [MOMENT_LINE], ""), method
+
+
+def test_moment_a_kind_of_moment_a_first_event_and_a_method_not_by_hand_pass(tmp_path):
+    for method in (
+        "by hand at a /handoff, against the close of its Retro",
+        "by hand, the vault read after the first close of a sprint",
+        "pytest tests/test_x.py, the first run after the render",
+        "pytest tests/test_x.py, the first run after the render; by hand at a /retro",
+    ):
+        seed(tmp_path, rule=rule_page(status="built"), estimate=estimate_page(method=method))
+        assert run(tmp_path) == (0, [], ""), method
+
+
+def test_moment_the_one_predicate(tmp_path):
+    # the predicate pre-spec imports; a `;` splits the parts of a method
+    assert lint.tied_to_a_one_off_moment("by hand at the first /retro after the render")
+    assert not lint.tied_to_a_one_off_moment("by hand once; the first session after the change")
+
+
 def test_a_moc_method_needs_a_make_target_that_exists(tmp_path):
     wiki = seed(tmp_path, rule=rule_page(status="built"))
     write(

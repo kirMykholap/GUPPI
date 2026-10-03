@@ -76,7 +76,9 @@ the ledgers of its dates, on the `hi` date from the `hi` time on, and its folder
   an Estimate, or an `update` carrying `set: {method: …}`, whose `method` names none of the
   four forms lint classifies — by `lint.names_a_form`, the one predicate, the existence of
   the file and of the target left to lint — and a `create` with no `method` at all (case
-  331);
+  331); and one whose `method` ties its reading by hand to the first moment after the
+  render or the change — by `lint.tied_to_a_one_off_moment`, the one predicate of the class
+  `moment` of lint (case 613.1);
 - an item writing a `sections: Render` for a page that enforces by render whose text does
   not open with `<!-- slug -->` and close with `<!-- /slug -->`; only the text the item
   itself writes is judged, and a child's marker line in a parent is not (case 325.1);
@@ -169,7 +171,14 @@ from guppi.ledger import (
     session_dir,
     session_event_logs,
 )
-from guppi.lint import CODE_SPAN, WIKILINK, archived_slugs, hub_files, names_a_form
+from guppi.lint import (
+    CODE_SPAN,
+    WIKILINK,
+    archived_slugs,
+    hub_files,
+    names_a_form,
+    tied_to_a_one_off_moment,
+)
 from guppi.materialize import (
     DECISION_KINDS,
     case_texts,
@@ -696,6 +705,10 @@ def live_page(project_dir: Path, slug: str) -> bool:
 
 
 NO_FORM = 'method names no form — a make target, pytest, a tests/ file or "by hand"'
+MOMENT = (
+    "method ties its reading by hand to the first moment after the render or the change — "
+    "the method names the kind of its moment"
+)
 
 
 def check_pairs(cases: dict, blocks: dict, project_dir: Path) -> list[str]:
@@ -882,7 +895,9 @@ def check_form(blocks: dict, project_dir: Path) -> list[str]:
     carrying `set: {method: …}`, whose `method` names none of the four forms lint
     classifies — by `lint.names_a_form`, the one predicate — is a finding too; a `create`
     with no `method` at all is the same one, and the existence of the file and of the target
-    is left to lint, since the test file is written in Work Mode (case 331). The branch of a
+    is left to lint, since the test file is written in Work Mode (case 331). Such a `method`
+    that ties its reading by hand to the first moment after the render or the change, by
+    `lint.tied_to_a_one_off_moment`, is a finding as well (case 613.1). The branch of a
     MOC stays with lint."""
     findings: list[str] = []
     created = {  # the rules and entities the plan itself creates (case 221)
@@ -905,6 +920,8 @@ def check_form(blocks: dict, project_dir: Path) -> list[str]:
                 findings.append(f"case {case}: create {slug}: ref {ref or '?'} names no live page")
             if not names_a_form(str(item.get("method") or "")):  # case 331
                 findings.append(f"case {case}: create {slug}: {NO_FORM}")
+            if tied_to_a_one_off_moment(str(item.get("method") or "")):  # case 613.1
+                findings.append(f"case {case}: create {slug}: {MOMENT}")
         for item in block.get("update") or []:
             slug = item.get("slug") if isinstance(item, dict) else None
             if not slug or category_of(slug) != "estimates":
@@ -917,6 +934,8 @@ def check_form(blocks: dict, project_dir: Path) -> list[str]:
             method = set_fields.get("method") if isinstance(set_fields, dict) else None
             if method is not None and not names_a_form(str(method)):  # case 331
                 findings.append(f"case {case}: update {slug}: {NO_FORM}")
+            if method is not None and tied_to_a_one_off_moment(str(method)):  # case 613.1
+                findings.append(f"case {case}: update {slug}: {MOMENT}")
         if promises >= 2:
             findings.append(f"case {case}: two promises in one Case — split it")
     return findings

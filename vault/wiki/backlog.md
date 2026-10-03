@@ -1,8 +1,15 @@
 # Backlog
 
-19 items
+20 items
 
 ## Conserved Specs
+
+- `vault/raw/2026-10-03/1341/spec.md` — Cases 614, 615, 616, 617, 618
+  - create `entity-reading-probe` · case 614
+  - defer `entity-sprint-migration` · case 615
+  - defer `entity-guppi` · case 616
+  - defer `estimate-orchestration-shows-the-built-case` · case 617
+  - defer `estimate-handoff-holds-each-fact-once` · case 618
 
 ## Deferred
 

@@ -1,106 +1,61 @@
-# Brief — 2026-10-03, session 0317: the showing of a Case, the close of a sprint, the moment of a reading
+# Brief — 2026-10-03, session 1341: the Spec conserved to stage the moments of waiting readings
 
 ## Where things stand
 
-- Ratified (handoff): 611; 612 (612.1–612.4); 613 (613.1–613.3). All three were built again after the findings of `/pre-spec` and ratified again with unchanged decision lines.
-- Code (handoff): `guppi/casecheck.py` — `outside_the_list` and `showing_layout`; the `Stop` run refuses a showing with text before the first Case heading, under a heading outside the list and the `ratification` blockquote, a section other than `ratification`, or text before the last tool call (by `texts_before_last_call`). `guppi/lint.py` — `tied_to_a_one_off_moment` and the class `moment`; `guppi/prespec.py` imports it in `check_form`. Tests: `tests/test_casecheck.py` 7 new, `tests/test_lint.py` 3, `tests/test_prespec.py` 2. `make test` 1129 passed, 6 skipped; `make style` clean.
-- Readings (handoff): ledger line 1 (`estimate-synthesis-clusters`, at `/hi`), lines 52 and 53 (`estimate-case-build-writes-the-case`, `estimate-end-of-work-order`, Work readings), all `passed`. Lessons: ledger lines 54 and 55.
-- Yaml: `raw/2026-10-03/0317/materialize.yaml`, 55 entries from `materialize` (50 decision lines — 8 `create`, 42 `update`; 3 `estimate`; 2 `lesson`), 2 added by the librarian (synthesis), 10 decision records. 0 `failed`, 1 `incomplete` (line 5), 0 `exists`; `unparsed: []`. 67 `applied` marks. The ledger has 55 lines; each is held by an entry of the yaml (lines 1 to 55). The yaml of 0115 extended with 0 entries.
-- `generate`: 73 pages written or changed from the 0317 yaml, 0 from the 0115 yaml.
-- Index check: Grep `^(purpose|deferred_by):` over `vault/wiki/rules/`, 85 lines, for `rule-sprint-close` — no page of the same purpose, none near. Grep `^(root_cause|deferred_by):` over `vault/wiki/lessons/`, 74 lines, for the two lessons — `lesson-estimates-reading-tied-to-a-one-off-moment` none; `lesson-case-build-a-count-in-context-not-from-a-run` marked `near: lesson-case-check-command-signed-without-a-run` (a fact of a Case not taken from a run: there a command never run, here a count read by eye). No merge. The `create`s of `estimates` have no index check.
-- Synthesis: Greps `^(root_cause|deferred_by):` over `vault/wiki/lessons/`, 74 lines, and `^(pattern|deferred_by):` over `vault/wiki/insights/`, 30 lines.
-  - `lesson-estimates-reading-tied-to-a-one-off-moment` — none: no lesson or Insight line names a reading whose by-hand moment passed with no step to read it. Stays `new`; its `addressed_by: decision-case-613.2` makes no Insight.
-  - `lesson-case-build-a-count-in-context-not-from-a-run` — joined `insight-workflow-fact-signed-from-a-check-that-does-not-cover-it`, whose children hold `lesson-case-build-writes-a-count-no-command-printed`. The handoff named `insight-workflow-case-schema-silent-on-what-the-scripts-accept` as a possible pair; its pattern is the forms of a Case the scripts read, not a count of a context, and the lesson did not join it.
-  - Pair beside the synthesis: `insight-workflow-fact-signed-from-a-check-that-does-not-cover-it` was `actioned` (`addressed_by` `decision-case-544.1`, kept); the `update` adds the child and sets it `open`, severity 0 → 1. The lesson entry carries no `addressed_by`.
-- Pages, decisions: 10 created (611, 612, 612.1–612.4, 613, 613.1–613.3).
-- Pages, rules: 1 created (`rule-sprint-close`, `applies_to: [entity-sprint]`, 4 Estimates, without `parent`); 3 updated by Cases (`rule-case-check`, `rule-estimates-schema`, `rule-skill-hi`); `estimates` lists gained on `rule-case-check` and `rule-lint`. Cascade: `rule-case-build`, `rule-end-of-work` and `rule-synthesis` draft → built.
-- Pages, entities: 2 updated. `entity-sprint-migration` Slice 5: the item `[[rule-sprint-close]]` and the note that where the close runs is not decided (612.1). `entity-sprint` `rules` gains `rule-sprint-close` (cascade).
-- Pages, estimates: 6 created (`estimate-case-check-refuses-text-outside-the-list`, the four `estimate-sprint-close-*`, `estimate-lint-reports-a-method-tied-to-a-one-off-moment`); 38 updated by Cases (`estimate-hi-takes-its-readings`, Criterion replaced whole and set `pending`, by 613.2; 37 `method` rewrites by 613.3); 3 readings pending → passed (`estimate-synthesis-clusters`, `estimate-case-build-writes-the-case`, `estimate-end-of-work-order`).
-- Pages, insights: 2 updated. `insight-case-form-chat-form-read-by-no-script` open → `actioned`, `addressed_by` `decision-case-611`, severity 2 → 0; its two lessons moved to the archive by the cascade. `insight-workflow-fact-signed-from-a-check-that-does-not-cover-it` reopened by the synthesis.
-- Pages, lessons: 2 created; 1 updated to `clustered` by the synthesis. Moved to `archive/migration/2026-10-03/0317/lessons/`: `lesson-orchestration-own-text-before-a-prespec-round`, `lesson-orchestration-own-sentence-between-heading-and-list`.
-- `cleanup` moved 2 pages. The render wrote `.claude/skills/hi/SKILL.md` (613.2) and `vault/wiki/estimates/schema.yaml` (613.1); `CLAUDE.md` and `guppi.toml` unchanged. `sprint.md`: the Slice 5 item of the close replaced by `[[rule-sprint-close]]` (draft) and the note on where the close runs. `backlog.md`: `insight-case-form-chat-form-read-by-no-script` gone, `insight-workflow-fact-signed-from-a-check-that-does-not-cover-it` added. `glossary.md` unchanged.
-- Spec boxes ticked by this run: 53 of `raw/2026-10-03/0317/spec.md`. `log.md` 81 lines added.
-- Archive: `guppi archive` printed no line and moved no unit: it looks only at units dated before the day of the run, and `raw/2026-10-03/0115` and `raw/2026-10-03/0317` (the session of the run) are both dated 2026-10-03. No `pending` Estimate's `method` names the archive step.
-
-## Readings due
-
-1 Estimate `failed`, 41 `pending` (the 42 `unread` lines of `make lint`). Every target named below stands `draft`. Lines with a `read` line in `raw/2026-10-03/0317/spec.md` give it; the others give the page's `method`.
-
-- `estimate-orchestration-shows-the-built-case` (failed) — `rule-orchestration` (draft) — spec 0317: read `estimate-orchestration-shows-the-built-case` — result: the showing of Case 610 in the batch after /pre-spec put a sentence of its own between the heading of the top-level Case and its list — method: by hand, the Cases of a session at its close, their context against the Agent calls and their showings against the SendUserFile calls of the transcript, and each request for a plain explanation against the Skill and SendMessage calls
-- `estimate-case-check-refuses-text-outside-the-list` — `rule-case-check` (draft) — spec 0317: read `estimate-case-check-refuses-text-outside-the-list` — method: `uv run pytest tests/test_casecheck.py`; by hand in a later session, the showings of Cases and the hook's refusals of them read in the transcript
-- `estimate-sprint-close-archives-the-decisions` — `rule-sprint-close` (draft) — spec 0317: read `estimate-sprint-close-archives-the-decisions` — method: by hand, vault/wiki/decisions/ and vault/archive/ read after the first close of a sprint
-- `estimate-sprint-close-archives-done-insights-and-lone-lessons` — `rule-sprint-close` (draft) — spec 0317: read `estimate-sprint-close-archives-done-insights-and-lone-lessons` — method: by hand, vault/wiki/insights/, vault/wiki/lessons/ and vault/archive/ read after the first close of a sprint
-- `estimate-sprint-close-archives-the-sprint-page-and-keeps-the-rest` — `rule-sprint-close` (draft) — spec 0317: read `estimate-sprint-close-archives-the-sprint-page-and-keeps-the-rest` — method: by hand, vault/wiki/entities/, vault/wiki/estimates/ and vault/archive/ read after the first close of a sprint
-- `estimate-sprint-close-settles-unread-estimates` — `rule-sprint-close` (draft) — spec 0317: read `estimate-sprint-close-settles-unread-estimates` — method: by hand, the record of the first close of a sprint, vault/wiki/estimates/ and vault/archive/ read after it
-- `estimate-lint-reports-a-method-tied-to-a-one-off-moment` — `rule-lint` (draft) — spec 0317: read `estimate-lint-reports-a-method-tied-to-a-one-off-moment` — method: `uv run pytest tests/test_lint.py tests/test_prespec.py -k moment`; the make lint of a later session, no moment finding on wiki/estimates/
-- `estimate-hi-takes-its-readings` — `rule-skill-hi` (draft) — spec 0317: read `estimate-hi-takes-its-readings` — method: by hand at a /hi of a later session whose open W lines hold a reading whose moment came in an earlier session: the first reply, its tool calls, its LEDGER block and frontier.md read against the Criterion, recorded in the estimate line
-- `estimate-generate-rewords` — `rule-page-generation` (draft) — method: pytest tests/test_generate.py on a temp vault with three pages and an archive; the live reading a librarian's run that applies a reword — this run: no entry of the 0317 yaml carries a `reword` key; `generate` printed no line of a reword
-- `estimate-carry-over-writes` — `rule-carry-over` (draft) — method: `uv run guppi render --check`; by hand, a /carry after the fork of ExitPlanMode — the tree, vault/wiki/brief.md, carry.md, vault/wiki/backlog.md, the commit and git branch read
-- `estimate-case-check-requires-each-question-of-the-rounds` — `rule-case-check` (draft) — method: `pytest tests/test_casecheck.py -k rounds` over a temp agent transcript; then by hand a Case the hook sends back for a missing title
-- `estimate-case-check-sends-back-a-case-number-held-by-another-agent` — `rule-case-check` (draft) — method: `uv run pytest tests/test_casecheck.py -k clash`, then by hand an answer of case-guppi the hook sends back for this reason
-- `estimate-case-check-sends-back-a-faulty-case` — `rule-case-check` (draft) — method: `uv run pytest tests/test_casecheck.py -k subagent`, then by hand an answer of case-guppi the hook sends back, a file of cases/ it writes, and a live round after a built Case
-- `estimate-case-check-sends-back-a-faulty-round` — `rule-case-check` (draft) — method: `uv run pytest tests/test_casecheck.py -k round_form` over a temp agent transcript; then by hand a round the hook sends back live, its stderr and the round case-guppi gave again
-- `estimate-case-check-sends-back-a-ratified-case-in-another-shape` — `rule-case-check` (draft) — method: `uv run pytest tests/test_casecheck.py -k shape`, then by hand an answer of case-guppi the hook sends back for this reason
-- `estimate-compact-recall-reloads` — `rule-compact-recall` (draft) — method: `pytest tests/test_recall.py` on a temp project; live — a compaction of a working session, by hand, the hook's text in the context after it
-- `estimate-event-log-records` — `rule-event-log` (draft) — method: pytest in tests/test_event.py and tests/test_gate.py with piped JSON payloads against a temp vault; the git-ignore and timing readings once by hand, through a pipe; by hand, one /hi outside plan mode and one in it
-- `estimate-handoff-dispatches` — `rule-handoff` (draft) — method: by hand at the /handoff of a later session and at the /handoff of a session that /box runs: the event log, handoff.md, the dispatch line and git log
-- `estimate-handoff-holds-each-fact-once` — `rule-handoff` (draft) — method: one reading by hand at a /handoff, against the close of its Retro, recorded in the estimate line
-- `estimate-hi-takes-a-conserved-spec` — `rule-skill-hi` (draft) — method: `uv run guppi render --check`; by hand, a session whose person takes a conserved Spec at the Frontier: frontier.md, the title line of the plan file and the session's ledger read against the Criterion
-- `estimate-ledger-write-lifts` — `rule-ledger-write` (draft) — method: pytest in tests/test_ledger.py and tests/test_gate.py with piped payloads against a temp vault; by hand once, the ledger of a session whose reply that ends Retro follows a refusal of a Stop hook in the same stretch
-- `estimate-lint-runs-every-step` — `rule-lint` (draft) — method: by hand, the make lint of the Baseline of a /work of a later session whose backlog step is red: the steps that printed, the page findings of guppi lint and the exit code
-- `estimate-orchestration-defers-in-one-reply` — `rule-orchestration` (draft) — method: by hand, a decision the person asks to put off, its line of frontier.md closed [-] … · defer case N, in a reply that leaves no line under the Cases heading of frontier.md open
-- `estimate-orchestration-signs-a-batch-together` — `rule-orchestration` (draft) — method: by hand at a Plan Mode of a later session in which the person's word asks that a ratified Case change: the SendMessage calls and the replies from that word to the acknowledging reply, read in the transcript
-- `estimate-plan-mode-verified` — `rule-plan-mode` (draft) — method: make test-plan-mode, the pipeline over tests/test_spec.py and tests/test_prespec.py; the flagging one live reading by hand, written into the estimate line
-- `estimate-prespec-onward-sends-the-agent-on` — `rule-prespec-onward` (draft) — method: `uv run pytest tests/test_onward.py tests/test_ledger.py`; by hand at a Plan Mode at which the ledger hook refuses a line of the reply that acknowledges the last ratification
-- `estimate-ratification-ledger-line-form` — `rule-ratification` (draft) — method: by hand, the ledger and the preview of a session where a lesson and the Case that closes its cause stand together, and of a Case that takes up a decision with more than one Case in its deferred_by
-- `estimate-retro-loads` — `rule-retro` (draft) — method: by hand at a /retro, and at a /retro of a session that /box runs, recorded in the estimate line
-- `estimate-retro-onward-sends-the-agent-to-the-handoff` — `rule-retro-onward` (draft) — method: `uv run pytest tests/test_onward.py tests/test_ledger.py`; by hand at an end of Retro at which the ledger hook refuses a line
-- `estimate-retro-red-check-of-an-updated-page-is-a-handoff-note` — `rule-retro` (draft) — method: one reading by hand at a /retro in a session whose work.md names a check under Expected red
-- `estimate-retro-runs-on-to-the-handoff` — `rule-retro` (draft) — method: by hand at a run from /work to the librarian, and for the answer to a refusal of the ledger hook at a Retro where that hook refuses a line
-- `estimate-session-start-context` — `rule-session-start` (draft) — method: make test-session-start; by hand, one session opened without /hi whose reply carries a LEDGER block, and the ledger of the next working session after its first ratification
-- `estimate-spec-box-runs-a-conserved-spec` — `rule-spec-box` (draft) — method: `uv run guppi render --check`; by hand, a session that takes a conserved Spec at the Frontier and runs it by /box
-- `estimate-spec-capture-offers-the-fork` — `rule-spec-capture` (draft) — method: `uv run pytest tests/test_spec.py -k 'fork or box'`; by hand, an ExitPlanMode of a session, and an ExitPlanMode of a session that took a conserved Spec
-- `estimate-spec-write-reaches-the-approved-spec` — `rule-spec-write` (draft) — method: `uv run pytest tests/test_ratified.py -k approved_spec`; by hand, a Case ratified in Work Mode
-- `estimate-where-to-stop-stops-only-on-its-conditions` — `rule-where-to-stop` (draft) — method: by hand at a run from /work to the librarian, and at a run of /box; a condition that does not arise is named as not exercised
-- `estimate-work-mode-runs-the-spec-on-a-branch-from-a-baseline` — `rule-work-mode` (draft) — method: `uv run guppi render --check`; by hand, a /work the agent calls at the fork, a /work the person types and a /work that /box calls
-- `estimate-work-mode-takes-the-work-readings` — `rule-work-mode` (draft) — method: by hand at a /work and at a /work that /box calls: the replies after the last task, their LEDGER blocks and frontier.md
-- `estimate-ask-finds` — `rule-ask` (draft) — method: by hand in a later session: three dispatches of ask-guppi, one existing page asked in English and in Russian, one proposal that crosses a known rule, each read against the event log
-- `estimate-sprint-migration-leftovers-gone` — `entity-sprint-migration` (draft) — method: one reading of the tree by hand at the close of the sprint
-- `estimate-sprint-migration-lint-clean` — `entity-sprint-migration` (draft) — method: make lint, exit 0 — or only unread lines on the Estimates of entity-sprint-migration
-- `estimate-sprint-migration-merges` — `entity-sprint-migration` (draft) — method: make test on the last commit of migration, then git log of main after the merge
+- Conserved Spec: `vault/raw/2026-10-03/1341/spec.md`, branch `spec/2026-10-03-1341`. Case 614 creates the test page `entity-reading-probe` (a `draft` `Leaf` with no `parent`, its purpose repeating `entity-glossary`, its text holding `quillwort` and `bramblewort`); Cases 615–618 put off `entity-sprint-migration`, `entity-guppi`, `estimate-orchestration-shows-the-built-case` and `estimate-handoff-holds-each-fact-once`.
+- Not done on it: Work Mode, Work readings, `/retro`, `/handoff` and the librarian's run; the one task box, `create entity-reading-probe`, waits for the librarian. A later session takes the Spec at the Frontier and runs it by `/box`.
+- The person asked this session to close as many waiting readings as it can and chose `/carry` on purpose, so that the moments of `/carry` and of `/box` come.
 
 ## Flags
 
-- `incomplete`: line 5 of the 0317 yaml, `create` of `rule-sprint-close` (612.1), lacks `parent`; the page was written without it.
-- `near`: `lesson-case-build-a-count-in-context-not-from-a-run` near `lesson-case-check-command-signed-without-a-run`.
-- `failed`, `exists`, `unparsed`: none in the 0317 yaml.
-- Failed Estimates: `estimate-orchestration-shows-the-built-case` (failed since session 0115; no reading this run). The handoff says its `read` line in the Spec stays open: Case 611 has it read again in a later session, once the check of the layout is live.
-- The handoff says `estimate-plan-mode-verified` was not read: its flagging part needs a `create` whose purpose an index line already carries, and session 0317 met none. This run met none either: no `create` was merged.
-- The handoff names the 8 Estimates that keep a method with no one-off moment and the three Estimates of `entity-sprint-migration` as not rewritten by 613.3.
-- Stale defers (`make lint`): `rule-subagent-guppi` deferred 31 times since case 29; `rule-case-rebuild-cost` 2 times since case 566; `rule-complaint-becomes-a-lesson` 1 time since case 504; `rule-ledger-line-withdrawn-on-re-ratification` 1 time since case 594; `rule-morph` 1 time since case 239.
-- MOC candidates, contradictions: none printed by any step of this run. No line on the stderr of `cleanup`, `render`, `sprint`, `backlog` or `glossary`.
-- `make lint`: exit 2, 47 lines of `guppi lint` — 5 `deferred`, 41 `unread: pending`, 1 `unread: failed`; no `moment` finding (21 expected red by the handoff, cleared by the pages of 613.2 and 613.3).
-- Reads outside the frame: none.
+- `vault/raw/2026-10-03/1341/ledger.md` holds 9 lines no librarian has applied: 4 readings taken at the `/hi` of 1341 (lines 1–4: `estimate-lint-reports-a-method-tied-to-a-one-off-moment` passed, `estimate-handoff-holds-each-fact-once` failed, `estimate-ledger-write-lifts` passed, `estimate-retro-red-check-of-an-updated-page-is-a-handoff-note` passed), the decision line of Case 614 (line 5) and the four defers of 615–618 (lines 6–9). Until the run of the conserved Spec, the pages of those Estimates still stand `pending`.
+- Moments that came in session 1341 (transcript 26e79919), for readings of a later session: one reply put off Cases 615–618 in the short form and left no line under `## Cases` open; Case 614 was shown twice by its file, built again in the loop after the findings of `/pre-spec`, with the `**Waiting:**` line while its answer was out; its `context` names `entity-glossary` before ratification; the first reply of `/hi` took four readings from the transcripts of earlier sessions; this `/carry` followed the fork of `ExitPlanMode`.
+- At `/pre-spec`, `ask-guppi` found that `check_orphans` of `guppi/lint.py` reports the test page `orphan`, and that the check of `reword` pairs in `guppi/prespec.py` reads only the pages on disk while its docstring says "as the Spec leaves it"; Case 614 names both and fixes neither.
 
 ## Next session
 
 Cases:
-- Where the close of a sprint runs — a session offered by `/hi`, a command run by an agent of its own, or another place — not decided; it stands as a note on the sprint page. The Case that decides it gives `rule-sprint-close` its guard and changes `rule-insights-schema`, `rule-lessons-schema`, `rule-decisions-schema`, `rule-synthesis`, `estimate-synthesis-clusters` and `estimate-synthesis-keeps-actioned-by-the-mark` (handoff, For the next session).
-- How much stays for the close of migration: the four Estimates of 612 are read after the first close of a sprint, and the close of migration needs every Estimate read or archived, `estimate-sprint-migration-lint-clean` kept as it stands (handoff, For the next session).
-- The person's question whether GUPPI goes on as it is, shrinks to a core, or gives way to native Claude features; it shapes the plugin question too (handoff, For the next session).
-- `estimate-orchestration-shows-the-built-case` `failed` (ledger line 18 of `raw/2026-10-03/0115/ledger.md`).
+- none
 
 Work:
-- Pending readings: `estimate-case-check-refuses-text-outside-the-list`, `estimate-sprint-close-archives-the-decisions`, `estimate-sprint-close-archives-done-insights-and-lone-lessons`, `estimate-sprint-close-archives-the-sprint-page-and-keeps-the-rest`, `estimate-sprint-close-settles-unread-estimates`, `estimate-lint-reports-a-method-tied-to-a-one-off-moment`, `estimate-hi-takes-its-readings`, `estimate-generate-rewords`, `estimate-carry-over-writes`, `estimate-case-check-requires-each-question-of-the-rounds`, `estimate-case-check-sends-back-a-case-number-held-by-another-agent`, `estimate-case-check-sends-back-a-faulty-case`, `estimate-case-check-sends-back-a-faulty-round`, `estimate-case-check-sends-back-a-ratified-case-in-another-shape`, `estimate-compact-recall-reloads`, `estimate-event-log-records`, `estimate-handoff-dispatches`, `estimate-handoff-holds-each-fact-once`, `estimate-hi-takes-a-conserved-spec`, `estimate-ledger-write-lifts`, `estimate-lint-runs-every-step`, `estimate-orchestration-defers-in-one-reply`, `estimate-orchestration-signs-a-batch-together`, `estimate-plan-mode-verified`, `estimate-prespec-onward-sends-the-agent-on`, `estimate-ratification-ledger-line-form`, `estimate-retro-loads`, `estimate-retro-onward-sends-the-agent-to-the-handoff`, `estimate-retro-red-check-of-an-updated-page-is-a-handoff-note`, `estimate-retro-runs-on-to-the-handoff`, `estimate-session-start-context`, `estimate-spec-box-runs-a-conserved-spec`, `estimate-spec-capture-offers-the-fork`, `estimate-spec-write-reaches-the-approved-spec`, `estimate-where-to-stop-stops-only-on-its-conditions`, `estimate-work-mode-runs-the-spec-on-a-branch-from-a-baseline`, `estimate-work-mode-takes-the-work-readings`, `estimate-ask-finds`, `estimate-sprint-migration-leftovers-gone`, `estimate-sprint-migration-lint-clean`, `estimate-sprint-migration-merges`.
-- Unticked boxes of the Specs: 8 `read` boxes of `raw/2026-10-03/0317/spec.md`; 5 `read` boxes of `raw/2026-10-03/0115/spec.md` (counts by `grep -c`).
-- Ledger lines this run did not apply: none.
-- Dirty tree: no file outside `vault`, `CLAUDE.md`, `.claude` and `guppi.toml` was changed by this run.
+- `estimate-case-check-refuses-text-outside-the-list`
+- `estimate-sprint-close-archives-the-decisions`
+- `estimate-sprint-close-archives-done-insights-and-lone-lessons`
+- `estimate-sprint-close-archives-the-sprint-page-and-keeps-the-rest`
+- `estimate-sprint-close-settles-unread-estimates`
+- `estimate-hi-takes-its-readings`
+- `estimate-generate-rewords`
+- `estimate-carry-over-writes`
+- `estimate-case-check-requires-each-question-of-the-rounds`
+- `estimate-case-check-sends-back-a-case-number-held-by-another-agent`
+- `estimate-case-check-sends-back-a-faulty-case`
+- `estimate-case-check-sends-back-a-faulty-round`
+- `estimate-case-check-sends-back-a-ratified-case-in-another-shape`
+- `estimate-compact-recall-reloads`
+- `estimate-event-log-records`
+- `estimate-handoff-dispatches`
+- `estimate-hi-takes-a-conserved-spec`
+- `estimate-lint-runs-every-step`
+- `estimate-orchestration-defers-in-one-reply`
+- `estimate-orchestration-signs-a-batch-together`
+- `estimate-plan-mode-verified`
+- `estimate-prespec-onward-sends-the-agent-on`
+- `estimate-ratification-ledger-line-form`
+- `estimate-retro-loads`
+- `estimate-retro-onward-sends-the-agent-to-the-handoff`
+- `estimate-retro-runs-on-to-the-handoff`
+- `estimate-session-start-context`
+- `estimate-spec-box-runs-a-conserved-spec`
+- `estimate-spec-capture-offers-the-fork`
+- `estimate-spec-write-reaches-the-approved-spec`
+- `estimate-where-to-stop-stops-only-on-its-conditions`
+- `estimate-work-mode-runs-the-spec-on-a-branch-from-a-baseline`
+- `estimate-work-mode-takes-the-work-readings`
+- `estimate-ask-finds`
+- `estimate-sprint-migration-leftovers-gone`
+- `estimate-sprint-migration-lint-clean`
+- `estimate-sprint-migration-merges`
+- the unticked boxes of the Specs: 8 `read` of `raw/2026-10-03/0317/spec.md`, 5 `read` of `raw/2026-10-03/0115/spec.md`
 
 Ask the person:
 - none
-
-## Readings at the close
-
-- `make test`: 1129 passed, 6 skipped.
-- `make lint`: exit 2, 47 lines of `guppi lint` (5 `deferred`, 41 `unread: pending`, 1 `unread: failed`).
-- Pages under `vault/wiki/`: decisions 1013, rules 78, estimates 201, lessons 74, insights 29, entities 4. Files `*.md` under `vault/archive/`: 757, after `guppi archive`.

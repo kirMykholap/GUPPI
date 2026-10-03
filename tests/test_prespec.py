@@ -569,6 +569,44 @@ def test_defer_case_n_after_another_source_needs_its_defer_item(tmp_path, source
     assert out.splitlines() == ["frontier: F2 defers to case 2, no defer item under Case 2"]
 
 
+# --- a Case of the conserved Spec the session runs (case 620.2) ----------------------------
+
+CONSERVED_UNIT = ("2026-09-08", "1200")
+BOX_PLAN = "# Session 1501 — runs the conserved Spec vault/raw/2026-09-08/1200/spec.md\n"
+CONSERVED_SPEC = (
+    "# Spec — session 1200, 2026-09-08\n\n## Deferred\n\n## Case 7 — later\n\n"
+    "```then\ndefer:\n  - slug: rule-later\n    type: rule\n    purpose: p\n```\n"
+)
+BOX_FRONTIER = "# Frontier\n\n- [-] F1 — a reading failed · ledger · defer case 7\n"
+
+
+def with_conserved(project_dir, spec=CONSERVED_SPEC, carried=True):
+    folder = project_dir / "vault" / "raw" / CONSERVED_UNIT[0] / CONSERVED_UNIT[1]
+    folder.mkdir(parents=True, exist_ok=True)
+    (folder / "spec.md").write_text(spec, encoding="utf-8", newline="\n")
+    if carried:
+        (folder / "carry.md").write_text("conserved\n", encoding="utf-8", newline="\n")
+
+
+def test_defer_case_n_of_the_conserved_spec_the_title_line_names_is_clean(tmp_path):
+    with_conserved(tmp_path)
+    assert check(tmp_path, plan=BOX_PLAN, ledger="", frontier=BOX_FRONTIER) == (0, "", "")
+
+
+def test_defer_case_n_of_the_conserved_spec_needs_its_defer_item(tmp_path):
+    with_conserved(tmp_path, spec=CONSERVED_SPEC.replace("defer:", "update:"))
+    code, out, _ = check(tmp_path, plan=BOX_PLAN, ledger="", frontier=BOX_FRONTIER)
+    assert code == 1
+    assert out.splitlines() == ["frontier: F1 defers to case 7, no defer item under Case 7"]
+
+
+def test_a_title_line_naming_a_folder_without_carry_md_adds_no_case(tmp_path):
+    with_conserved(tmp_path, carried=False)
+    code, out, _ = check(tmp_path, plan=BOX_PLAN, ledger="", frontier=BOX_FRONTIER)
+    assert code == 1
+    assert out.splitlines() == ["frontier: F1 defers to case 7, no defer item under Case 7"]
+
+
 @pytest.mark.parametrize("closer", ["sprint", "deferred", "put off", "case", "defer case"])
 def test_a_closer_outside_the_five_is_a_finding(tmp_path, closer):
     # the old closer `sprint` is gone (case 451.2)

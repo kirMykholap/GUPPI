@@ -49,7 +49,9 @@ the ledgers of its dates, on the `hi` date from the `hi` time on, and its folder
   `defer` after a source segment — the one standing immediately before the closer — other
   than `sprint`, `kept` after one other than `backlog`; `defer case N` after the source
   `sprint` or `backlog` (cases 356.2, 451.2), and after another source with no `defer` item
-  under Case N; `case N` whose heading the plan lacks, and after the source `sprint` with
+  under Case N in the plan, nor under Case N of the conserved Spec that the title line of
+  the plan names — `conserved_spec_named` of `guppi/box.py`, the judgment the hook of
+  `rule-spec-capture` reads the same line by (case 620.2); `case N` whose heading the plan lacks, and after the source `sprint` with
   no `update` of the sprint page `entity-sprint-<id>` under Case N, the parent or a
   sub-case (cases 314.2, 451.3); the word inside the slug of a title is not the source
   (case 335), and a line that is not a box line is not read; a line closed `[x] … · backlog
@@ -154,6 +156,7 @@ from datetime import datetime
 from pathlib import Path
 
 from guppi import config, ratified
+from guppi.box import conserved_spec_named
 from guppi.event import project_root, read_payload, session_stamp
 from guppi.generate import (  # the ticker, the pairs, the Frontier line (case 360)
     FRONTIER_LINE,
@@ -505,6 +508,26 @@ def open_case_items(frontier: str) -> list[str]:
     return items
 
 
+def conserved_blocks(plan: str, project_dir: Path | None) -> dict[str, dict]:
+    """Case 620.2: Case id → the merged `then` block of each Case of the conserved Spec whose
+    `spec.md` the title line of the plan names, the folder found by `conserved_spec_named` of
+    `guppi/box.py`; empty for a plan whose title line names no folder holding `carry.md`."""
+    if project_dir is None:
+        return {}
+    folder = conserved_spec_named(plan, project_dir)
+    spec = folder / "spec.md" if folder is not None else None
+    if spec is None or not spec.is_file():
+        return {}
+    cases = split_cases(spec.read_text(encoding="utf-8"))
+    return {case: then_blocks(lines)[0] for case, lines in cases.items()}
+
+
+def has_defer_item(blocks: dict, case: str) -> bool:
+    """Whether the merged `then` block of Case `case` holds a `defer` item."""
+    defers = blocks.get(case, {}).get("defer") or []
+    return any(isinstance(d, dict) for d in defers)
+
+
 def check_frontier(
     path: Path,
     relative: str,
@@ -512,6 +535,7 @@ def check_frontier(
     blocks: dict,
     records: list[dict] | None = None,
     project_dir: Path | None = None,
+    plan: str = "",
 ) -> list[str]:
     """59.2: the frontier of the session's folder (73.4). Case 356.1: an open line under
     `## Cases` is a finding, one under `## Work` is not — its work waits for Work Mode — nor
@@ -527,7 +551,10 @@ def check_frontier(
     only after the source `sprint`, a sprint item left for a later session, and `kept` only
     after the source `backlog`, an item of `backlog.md` left as it stands. `defer case N`
     after the source `sprint` or `backlog` is a finding — neither is deferred by a Case
-    (case 356.2) — and after another source it needs a `defer` item under Case N. A line
+    (case 356.2) — and after another source it needs a `defer` item under Case N, in the
+    plan or, case 620.2, in the conserved Spec that the title line of `plan` names, a Case
+    of the Spec the session runs by `/box`; a title line that names no folder holding
+    `carry.md` adds no Case. A line
     closed `case N` needs the heading of Case N in the plan, and after the source `sprint`
     an `update` of the sprint page `entity-sprint-<id>` under Case N, the parent or a
     sub-case (cases 314.2, 451.3). A finding of the box and one of the source are separate.
@@ -537,6 +564,7 @@ def check_frontier(
         return [f"frontier: {relative} is missing"]
     text = path.read_text(encoding="utf-8")
     findings = [f"frontier: {item} is open" for item in open_case_items(text)]
+    conserved: dict[str, dict] | None = None  # read once, at the first `defer case N` it needs
     for line in text.splitlines():
         match = FRONTIER_LINE.match(line)
         if not match:
@@ -584,8 +612,11 @@ def check_frontier(
             )
         elif closer.group(3) is not None:
             case = closer.group(3)
-            defers = blocks.get(case, {}).get("defer") or []
-            if not any(isinstance(d, dict) for d in defers):
+            if has_defer_item(blocks, case):
+                continue
+            if conserved is None:
+                conserved = conserved_blocks(plan, project_dir)
+            if not has_defer_item(conserved, case):
                 findings.append(
                     f"frontier: {item} defers to case {case}, no defer item under Case {case}"
                 )
@@ -1249,7 +1280,9 @@ def judge(
         findings += check_grammar(lines)
     findings += check_lines(cases, blocks, records)
     if frontier is not None:
-        findings += check_frontier(frontier[0], frontier[1], cases, blocks, records, project_dir)
+        findings += check_frontier(
+            frontier[0], frontier[1], cases, blocks, records, project_dir, plan
+        )
     findings += check_tasks(cases, blocks, records)
     findings += check_governed(blocks, governed_paths(project_dir))
     findings += check_keys(blocks, project_dir, schema_free)

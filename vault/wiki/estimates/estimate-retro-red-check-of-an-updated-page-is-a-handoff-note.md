@@ -1,10 +1,11 @@
 ---
 type: estimate
 kind: QA
-status: pending
+status: passed
 target: "[[rule-retro]]"
 purpose: Whether Retro reads work.md and writes a red or a refusal on a page or file that a line of its Expected red names as a line of Observations of handoff.md, not as debt, while a red on a page or file no line names is debt unless the Baseline holds it, a session with no work.md leaves it to the agent's judgment, and a red test is never an expected red
 method: one reading by hand at a /retro in a session whose work.md names a check under Expected red, recorded in the estimate line
+checked: 2026-10-03
 origin: raw/2026-09-28/0000/ledger.md#case-473.1
 sprint: migration
 created: 2026-09-28
@@ -25,6 +26,10 @@ The agent reads `raw/<date>/<hi HHMM>/work.md` if it stands — with the Read to
 **－** In a session with no `work.md`, a red or a refusal of such a check is a line of `## Observations` by the agent's judgment.
 **－** A red test is never an expected red, even when `## Expected red` names it: it is fixed or reverted into a patch by the rule for red tests.
 
+## Result
+
+2026-10-03, at the /hi of session 1341, the /retro of session 0317 (transcript 5b311f89): work.md, written by the agent in the same turn, names under Expected red `make lint`, the class moment, on the Estimates of 613.2 and 613.3; the first line of Observations of handoff.md names that check and the pages it waits for; Debt holds none and nothing was fixed or reverted; the make lint of the librarian's run printed no moment finding; not exercised: no make lint ran in Work Mode after the code, so the red was never printed before Retro
+
 ## History
 
 - 2026-09-28 created · [[decision-case-473.1]]
@@ -32,3 +37,4 @@ The agent reads `raw/<date>/<hi HHMM>/work.md` if it stands — with the Read to
 - 2026-09-30 updated: the Criterion replaced whole — the trigger covers the agent's call; an expected red is a line of Observations of handoff.md, not an item of the frontier; the one-read rule of the frontier goes with the frontier (case 531.3) · [[decision-case-531.3]]
 - 2026-10-01 updated: the Criterion replaced whole — the agent reads work.md with the Read tool unless it wrote or changed the file itself in the same turn, whose text then counts as read (case 569.2) · [[decision-case-569.2]]
 - 2026-10-03 updated: method names the kind of its moment (case 613.3) · [[decision-case-613.3]]
+- 2026-10-03 status: pending → passed · raw/2026-10-03/1341/ledger.md#L4

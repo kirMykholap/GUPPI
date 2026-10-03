@@ -1,10 +1,10 @@
 ---
 type: estimate
 kind: QA
-status: pending
+status: passed
 target: "[[rule-event-log]]"
 method: pytest in tests/test_event.py and tests/test_gate.py with piped JSON payloads against a temp vault; the git-ignore and timing readings once by hand, through a pipe, written into the estimate line; by hand, one /hi outside plan mode and one in it, the permission_mode of each payload written into the reading
-checked: 2026-09-20
+checked: 2026-10-03
 origin: raw/2026-09-09/ledger.md#case-9
 sprint: migration
 created: 2026-09-09
@@ -26,7 +26,7 @@ After the start and one tool call, `raw/<date>/event_log.md` carries a `session-
 
 ## Result
 
-2026-09-20, `uv run pytest -q tests/test_event.py tests/test_gate.py` 63 green; live, `raw/2026-09-20/event_log.md` of session c27cd9be: `09:58:36 session-start startup`, `09:58:48 hi` with the tool line after it and the `hi:` line in the first turn's context, no second hi line after the second `/hi` of the day, `12:23:17 prespec` written by guppi gate on the typed `/pre-spec`; `git check-ignore -v` names `.gitignore:47`; `uv run guppi event prompt` through a pipe on a plain prompt exited 0 in 164 ms and wrote no line
+2026-10-03, at the /hi of session 1416: `uv run pytest -q tests/test_event.py tests/test_gate.py` 74 passed; `git check-ignore -v` names `.gitignore:47` for vault/raw/2026-10-03/event_log.md; `uv run guppi event prompt` through a pipe on a plain prompt exited 0 in 187 ms and wrote no line; by hand, session 682b0e2f: the /hi of 14:16:36 came in permission mode `auto`, the hook refused it telling the person to turn plan mode on and type /hi again, Claude Code blocked the prompt, the skill did not run and the event log holds no line for it; the /hi of 14:16:59 in plan mode wrote `14:16:59 682b0e2f hi` after `14:16:26 682b0e2f session-start startup` with a tool line after it, and its `hi:` line names raw/2026-10-03/1416/; the `prespec` mark of session 26e79919 stands at 14:08:34 beside its Skill call; not exercised: a second /hi printing `hi: already recorded`
 
 ## History
 
@@ -43,3 +43,4 @@ After the start and one tool call, `raw/<date>/event_log.md` carries a `session-
 - 2026-09-20 updated: the recut to the shape of case 193: the base text and the blocks 111.1, 125, 136.1 folded into one Criterion, the mark pretask now prespec, method as a field; pending for the reading (case 265.1) · [[decision-case-265.1]]
 - 2026-09-20 status: pending → passed · raw/2026-09-20/0958/ledger.md#L27
 - 2026-09-27 updated: the Criterion replaced whole — a /hi outside plan mode writes no hi and exits 2; the Given folded into When (case 445.6) · [[decision-case-445.6]]
+- 2026-10-03 status: pending → passed · raw/2026-10-03/1416/ledger.md#L4

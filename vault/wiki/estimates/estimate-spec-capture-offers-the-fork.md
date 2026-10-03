@@ -1,11 +1,11 @@
 ---
 type: estimate
 kind: QA
-status: pending
+status: passed
 target: "[[rule-spec-capture]]"
 purpose: "The hook prints one line after the Spec is written: for a plan that names a conserved Spec, the call of /box with its folder and no question; otherwise the fork, asked by AskUserQuestion with /work and /carry, and the skill picked called"
 method: uv run pytest tests/test_spec.py -k 'fork or box'; by hand, an ExitPlanMode of a session, and an ExitPlanMode of a session that took a conserved Spec
-checked: 2026-09-28
+checked: 2026-10-03
 origin: raw/2026-09-16/1034/ledger.md#case-190.5
 sprint: migration
 created: 2026-09-16
@@ -32,7 +32,7 @@ The stdout of the hook is one JSON object, `hookSpecificOutput` with `hookEventN
 
 ## Result
 
-2026-09-28, uv run pytest tests/test_spec.py -k fork: 3 passed; by hand, session 2000: the ExitPlanMode result carried the fork line with the session folder and spec.md, the agent asked by AskUserQuestion with /work and /carry and started nothing before the answer, the person picked /work and the agent called the skill work
+2026-10-03, the Work readings of session 1416: `uv run pytest tests/test_spec.py -k 'fork or box'` 5 passed, 11 deselected; by hand, session 1341 (transcript 26e79919): the ExitPlanMode result at 14:13:15 carried as additional context the line "spec: the Spec is in vault/raw/2026-10-03/1341/spec.md. Ask the person which end this session takes by AskUserQuestion with two options …", the agent asked by AskUserQuestion with /carry and /work and started nothing before the answer at 14:13:50, then called the skill carry; session 1416 (transcript 682b0e2f): the plan naming vault/raw/2026-10-03/1341/spec.md, a folder marked by carry.md, the ExitPlanMode result carried "spec: the Spec is in vault/raw/2026-10-03/1416/spec.md. The plan takes the conserved Spec of vault/raw/2026-10-03/1341/: call /box with vault/raw/2026-10-03/1341/ as its argument, and ask the person nothing", and the agent asked nothing and called /box with that folder
 
 ## History
 
@@ -46,3 +46,4 @@ The stdout of the hook is one JSON object, `hookSpecificOutput` with `hookEventN
 - 2026-10-02 updated: the Criterion replaced whole — a plan that names a conserved Spec leads to /box, any other gets the fork (case 591.3) · [[decision-case-591.3]]
 - 2026-10-02 updated: the Criterion replaced whole - ratification.md says a Case is ratified by the person's reply (case 595.18) · [[decision-case-595.18]]
 - 2026-10-03 updated: method names the kind of its moment (case 613.3) · [[decision-case-613.3]]
+- 2026-10-03 status: pending → passed · raw/2026-10-03/1416/ledger.md#L9

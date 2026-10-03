@@ -58,3 +58,4 @@ The main agent dispatches `case-guppi` with the Case id, the Frontier item and i
 - 2026-10-02 updated: moved to rule-orchestration; the Criterion replaced whole - the showing as orchestration.md sets it (case 595.11) · [[decision-case-595.11]]
 - 2026-10-02 status: pending → failed · raw/2026-10-02/2049/ledger.md#L30
 - 2026-10-03 status: failed → failed · raw/2026-10-03/0115/ledger.md#L18
+- 2026-10-03 deferred · [[decision-case-617]]

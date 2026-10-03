@@ -2,7 +2,7 @@
 type: rule
 kind: Leaf
 purpose: Prevents a ratified line from existing only in a chat reply, or landing in a session no /hi opened
-status: draft
+status: built
 enforcement: hook
 implementation_ref: [guppi/ledger.py, guppi/materialize.py, guppi/gate.py, tests/test_ledger.py, tests/test_gate.py, .claude/settings.json]
 parent: "[[rule-session-start]]"
@@ -76,3 +76,4 @@ would materialize pages from it the next day.
 - 2026-10-02 estimate estimate-ledger-write-names-the-kind-of-a-user-record added · [[decision-case-592]]
 - 2026-10-02 updated: ## How it works left the Leaf, its mechanism in the docstring of guppi/ledger.py; the person's message and a returned answer are named by one function of guppi/ledger.py, which the case check and the token counter import (case 592) · [[decision-case-592]]
 - 2026-10-02 updated: the instruction to write the ledger lines lives in ratification.md and orchestration.md (case 595.17) · [[decision-case-595.17]]
+- 2026-10-03 status: draft → built · cascade

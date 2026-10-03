@@ -5,6 +5,7 @@ purpose: The repository works by the model of its rule pages — Phase 1 and Pha
 status: draft
 parent: "[[entity-sprint]]"
 estimates: ["[[estimate-sprint-migration-lint-clean]]", "[[estimate-sprint-migration-leftovers-gone]]", "[[estimate-sprint-migration-merges]]", "[[estimate-sprint-migration-rule-class-files-dissolved]]", "[[estimate-sprint-migration-index-dissolved]]", "[[estimate-sprint-migration-file-route-gone]]"]
+deferred_by: ["[[decision-case-615]]"]
 origin: raw/2026-09-16/2238/ledger.md#case-209.2
 sprint: migration
 created: 2026-09-16
@@ -113,3 +114,4 @@ No file of `vault/wiki/` is written by hand.
 - 2026-09-30 updated: the finish conditions lint-clean, merges and leftovers-gone stand only under Done when: off Slice 5 and the Backlog (case 539.3) · [[decision-case-539.3]]
 - 2026-10-02 updated: the Backlog line of rule-spec-box names its second part (case 593.2) · [[decision-case-593.2]]
 - 2026-10-03 updated: Slice 5: the close of a sprint is the item rule-sprint-close, and where the close runs is a note, not decided (case 612.1) · [[decision-case-612.1]]
+- 2026-10-03 deferred · [[decision-case-615]]

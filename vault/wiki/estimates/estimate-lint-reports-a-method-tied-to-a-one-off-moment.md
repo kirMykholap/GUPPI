@@ -1,10 +1,11 @@
 ---
 type: estimate
 kind: QA
-status: pending
+status: passed
 target: "[[rule-lint]]"
 purpose: Whether lint and pre-spec report a method that ties its reading by hand to the first moment after the render or after the change, by one predicate, and leave a method that names the kind of its moment
 method: uv run pytest tests/test_lint.py tests/test_prespec.py -k moment; the make lint of a later session, no moment finding on wiki/estimates/
+checked: 2026-10-03
 origin: raw/2026-10-03/0317/ledger.md#case-613.1
 sprint: migration
 created: 2026-10-03
@@ -26,6 +27,11 @@ A `method` that holds `by hand` and names the first of something after the rende
 **－** A `method` without `by hand` gets no such finding.
 **－** The finding does not replace the `method` finding of a `method` that names no form.
 
+## Result
+
+2026-10-03, at the /hi of session 1341: `uv run pytest tests/test_lint.py tests/test_prespec.py -k moment` 5 passed, 264 deselected; `make lint` exit 2, 48 lines (5 deferred, 41 unread: pending, 1 unread: failed, the make error line), no finding of the class moment on wiki/estimates/ — the one line with the word is the unread line of this Estimate; guppi/prespec.py imports `tied_to_a_one_off_moment` from guppi/lint.py
+
 ## History
 
 - 2026-10-03 created · [[decision-case-613.1]]
+- 2026-10-03 status: pending → passed · raw/2026-10-03/1341/ledger.md#L1

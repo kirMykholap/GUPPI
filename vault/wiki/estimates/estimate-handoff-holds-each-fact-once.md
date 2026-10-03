@@ -1,10 +1,11 @@
 ---
 type: estimate
 kind: QA
-status: pending
+status: failed
 target: "[[rule-handoff]]"
 purpose: Whether handoff.md, the report of Retro, holds each fact once in the section of its kind — What actually got done, Debt, Observations, For the next session, Ask the person — with no commit, no number and no end, and keeps the three old section names
 method: one reading by hand at a /handoff, against the close of its Retro, recorded in the estimate line
+checked: 2026-10-03
 origin: raw/2026-09-27/2050/ledger.md#case-468.2
 sprint: migration
 created: 2026-09-27
@@ -26,8 +27,14 @@ Then:
 **－** No Case, box, reading, lesson or observation is named in two sections of `handoff.md`, and the file holds no commit, no number of an item and no end of an item.
 **－** The section names `## Notes from memory`, `## Direct instructions to the librarian` and `## What actually got done` stay, so `rule-brief` reads `## What actually got done` as before.
 
+## Result
+
+2026-10-03, at the /hi of session 1341, vault/raw/2026-10-03/0317/handoff.md read against the close of its Retro (transcript 5b311f89, the reply at 05:05:59, ledger lines 52-55): the heading and the seven sections stand in order and each holds its kind, but Case 613.3 is named in Notes from memory, Direct instructions to the librarian, What actually got done and Debt, its 37 method rewrites in three of them; Cases 611 and 612.1 in Direct instructions and What actually got done; the two lessons in Direct instructions by slug and in What actually got done by line; `estimate-hi-takes-its-readings` in Direct instructions and Debt
+
 ## History
 
 - 2026-09-27 created · [[decision-case-468.2]]
 - 2026-09-30 updated: the Criterion replaced whole — handoff.md is the report of Retro, one section for each kind of fact, no numbers and no ends (case 531.5) · [[decision-case-531.5]]
 - 2026-10-03 updated: method names the kind of its moment (case 613.3) · [[decision-case-613.3]]
+- 2026-10-03 status: pending → failed · raw/2026-10-03/1341/ledger.md#L2
+- 2026-10-03 deferred · [[decision-case-618]]

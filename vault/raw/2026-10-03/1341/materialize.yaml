@@ -1,0 +1,376 @@
+date: '2026-10-03'
+sprint: migration
+ledger: vault/raw/2026-10-03/1341/ledger.md
+spec:
+- vault/raw/2026-10-03/1341/spec.md
+entries:
+- line: 1
+  text: 'estimate[estimate-lint-reports-a-method-tied-to-a-one-off-moment][passed] 2026-10-03, at the
+    /hi of session 1341: `uv run pytest tests/test_lint.py tests/test_prespec.py -k moment` 5 passed,
+    264 deselected; `make lint` exit 2, 48 lines (5 deferred, 41 unread: pending, 1 unread: failed, the
+    make error line), no finding of the class moment on wiki/estimates/ — the one line with the word is
+    the unread line of this Estimate; guppi/prespec.py imports `tied_to_a_one_off_moment` from guppi/lint.py'
+  kind: estimate
+  category: estimates
+  slug: estimate-lint-reports-a-method-tied-to-a-one-off-moment
+  status: passed
+  result: '2026-10-03, at the /hi of session 1341: `uv run pytest tests/test_lint.py tests/test_prespec.py
+    -k moment` 5 passed, 264 deselected; `make lint` exit 2, 48 lines (5 deferred, 41 unread: pending,
+    1 unread: failed, the make error line), no finding of the class moment on wiki/estimates/ — the one
+    line with the word is the unread line of this Estimate; guppi/prespec.py imports `tied_to_a_one_off_moment`
+    from guppi/lint.py'
+  origin: raw/2026-10-03/1341/ledger.md#L1
+  applied: '14:43:15'
+- line: 2
+  text: 'estimate[estimate-handoff-holds-each-fact-once][failed] 2026-10-03, at the /hi of session 1341,
+    vault/raw/2026-10-03/0317/handoff.md read against the close of its Retro (transcript 5b311f89, the
+    reply at 05:05:59, ledger lines 52-55): the heading and the seven sections stand in order and each
+    holds its kind, but Case 613.3 is named in Notes from memory, Direct instructions to the librarian,
+    What actually got done and Debt, its 37 method rewrites in three of them; Cases 611 and 612.1 in Direct
+    instructions and What actually got done; the two lessons in Direct instructions by slug and in What
+    actually got done by line; `estimate-hi-takes-its-readings` in Direct instructions and Debt'
+  kind: estimate
+  category: estimates
+  slug: estimate-handoff-holds-each-fact-once
+  status: failed
+  result: '2026-10-03, at the /hi of session 1341, vault/raw/2026-10-03/0317/handoff.md read against the
+    close of its Retro (transcript 5b311f89, the reply at 05:05:59, ledger lines 52-55): the heading and
+    the seven sections stand in order and each holds its kind, but Case 613.3 is named in Notes from memory,
+    Direct instructions to the librarian, What actually got done and Debt, its 37 method rewrites in three
+    of them; Cases 611 and 612.1 in Direct instructions and What actually got done; the two lessons in
+    Direct instructions by slug and in What actually got done by line; `estimate-hi-takes-its-readings`
+    in Direct instructions and Debt'
+  origin: raw/2026-10-03/1341/ledger.md#L2
+  applied: '14:43:15'
+- line: 3
+  text: 'estimate[estimate-ledger-write-lifts][passed] 2026-10-03, at the /hi of session 1341: `uv run
+    pytest tests/test_ledger.py tests/test_gate.py` 105 passed; by hand, session 0317 (transcript 5b311f89):
+    in the stretch after the person''s message at 04:51:52 the hook `uv run guppi onward --plan` refused
+    the reply at 04:52:16; the reply that ends Retro at 05:05:59 carried 4 lines in its LEDGER block,
+    and ledger lines 52-55 hold each once with 05:06:02, the time of that Stop'
+  kind: estimate
+  category: estimates
+  slug: estimate-ledger-write-lifts
+  status: passed
+  result: '2026-10-03, at the /hi of session 1341: `uv run pytest tests/test_ledger.py tests/test_gate.py`
+    105 passed; by hand, session 0317 (transcript 5b311f89): in the stretch after the person''s message
+    at 04:51:52 the hook `uv run guppi onward --plan` refused the reply at 04:52:16; the reply that ends
+    Retro at 05:05:59 carried 4 lines in its LEDGER block, and ledger lines 52-55 hold each once with
+    05:06:02, the time of that Stop'
+  origin: raw/2026-10-03/1341/ledger.md#L3
+  applied: '14:43:15'
+- line: 4
+  text: 'estimate[estimate-retro-red-check-of-an-updated-page-is-a-handoff-note][passed] 2026-10-03, at
+    the /hi of session 1341, the /retro of session 0317 (transcript 5b311f89): work.md, written by the
+    agent in the same turn, names under Expected red `make lint`, the class moment, on the Estimates of
+    613.2 and 613.3; the first line of Observations of handoff.md names that check and the pages it waits
+    for; Debt holds none and nothing was fixed or reverted; the make lint of the librarian''s run printed
+    no moment finding; not exercised: no make lint ran in Work Mode after the code, so the red was never
+    printed before Retro'
+  kind: estimate
+  category: estimates
+  slug: estimate-retro-red-check-of-an-updated-page-is-a-handoff-note
+  status: passed
+  result: '2026-10-03, at the /hi of session 1341, the /retro of session 0317 (transcript 5b311f89): work.md,
+    written by the agent in the same turn, names under Expected red `make lint`, the class moment, on
+    the Estimates of 613.2 and 613.3; the first line of Observations of handoff.md names that check and
+    the pages it waits for; Debt holds none and nothing was fixed or reverted; the make lint of the librarian''s
+    run printed no moment finding; not exercised: no make lint ran in Work Mode after the code, so the
+    red was never printed before Retro'
+  origin: raw/2026-10-03/1341/ledger.md#L4
+  applied: '14:43:15'
+- line: 5
+  text: decision[case 614][create][entity-reading-probe]{tags:workflow,librarian}
+  case: '614'
+  kind: create
+  slug: entity-reading-probe
+  origin: raw/2026-10-03/1341/ledger.md#case-614
+  decision: decision-case-614
+  tags:
+  - workflow
+  - librarian
+  category: entities
+  fields:
+    type: entity
+    kind: Leaf
+    purpose: The terms of GUPPI with their meanings and the pages that define them; a test page that stages
+      waiting readings, deleted in the next session
+    tags:
+    - workflow
+    - librarian
+  sections:
+    Purpose: A test page, created to set off readings that wait for their moment, and deleted by a Case
+      of the next session before any close of the sprint. Its purpose repeats the meaning of the purpose
+      of entity-glossary, so that the Case that creates it names that page before ratification, the moment
+      estimate-plan-mode-verified reads, and the index check of the librarian marks it near that page,
+      the moment estimate-index-check-merges reads. It is not the source of glossary.md. Its text holds
+      the invented word quillwort and the word bramblewort, so that the Case of the next session can replace
+      the first by the second across the vault, the moment estimate-generate-rewords reads, and then delete
+      this page.
+  near: entity-glossary
+  applied: '14:43:15'
+- line: 6
+  text: decision[case 615][defer][entity-sprint-migration]{ref:entity-sprint-migration}
+  case: '615'
+  kind: defer
+  slug: entity-sprint-migration
+  origin: raw/2026-10-03/1341/ledger.md#case-615
+  decision: decision-case-615
+  ref: entity-sprint-migration
+  category: entities
+  fields:
+    type: entity
+    purpose: 'How much stays for the close of migration: which pending Estimates are read, carried or
+      archived before the close, the four Estimates of 612 read only after the first close of a sprint'
+  exists: true
+  applied: '14:43:15'
+- line: 7
+  text: decision[case 616][defer][entity-guppi]{ref:entity-guppi}
+  case: '616'
+  kind: defer
+  slug: entity-guppi
+  origin: raw/2026-10-03/1341/ledger.md#case-616
+  decision: decision-case-616
+  ref: entity-guppi
+  category: entities
+  fields:
+    type: entity
+    purpose: Whether GUPPI goes on as it is, shrinks to a core, or gives way to native Claude features;
+      it shapes the plugin question too
+  exists: true
+  applied: '14:43:15'
+- line: 8
+  text: decision[case 617][defer][estimate-orchestration-shows-the-built-case]{ref:estimate-orchestration-shows-the-built-case}
+  case: '617'
+  kind: defer
+  slug: estimate-orchestration-shows-the-built-case
+  origin: raw/2026-10-03/1341/ledger.md#case-617
+  decision: decision-case-617
+  ref: estimate-orchestration-shows-the-built-case
+  category: estimates
+  fields:
+    type: estimate
+    purpose: Whether the main agent shows each built Case by its file, its list and its ratification as
+      case-guppi built it; failed in session 0115 with a sentence between the heading and the list
+  exists: true
+  applied: '14:43:15'
+- line: 9
+  text: decision[case 618][defer][estimate-handoff-holds-each-fact-once]{ref:estimate-handoff-holds-each-fact-once}
+  case: '618'
+  kind: defer
+  slug: estimate-handoff-holds-each-fact-once
+  origin: raw/2026-10-03/1341/ledger.md#case-618
+  decision: decision-case-618
+  ref: estimate-handoff-holds-each-fact-once
+  category: estimates
+  fields:
+    type: estimate
+    purpose: Whether handoff.md names each Case, box, reading, lesson and observation in one section only;
+      failed at the /hi of session 1341 on the handoff of session 0317
+  exists: true
+  applied: '14:43:15'
+decisions:
+- case: '614'
+  decision: decision-case-614
+  origin: raw/2026-10-03/1341/ledger.md#case-614
+  targets:
+  - kind: create
+    category: entities
+    slug: entity-reading-probe
+  tags:
+  - workflow
+  - librarian
+  case_text:
+    context: 'The person asked this session to close as many waiting readings as it can. A reading checks
+      a promise at the moment the promise describes, and most open readings wait because that moment has
+      not come since their Criterion was set. The person chose a test Entity as one way to bring some
+      of those moments. The person chose to set off the other moments on purpose when the session decides
+      to, not from a plan; examples are a `/carry` that is not needed, or a ledger line the hook refuses.
+      Those other moments change no page, so they stay outside this Case. Nothing is broken on purpose
+      to get a send-back from `rule-case-check`.
+
+
+      This Case creates `entity-reading-probe` with no `ref`, and its purpose is close to the purpose
+      of `entity-glossary`. That is the moment `estimate-plan-mode-verified` waits for: a `create` without
+      a `ref` whose purpose an index line already carries, named in the `context` before ratification.
+      This paragraph is that naming. The index line of `entities/entity-glossary.md` reads "The terms
+      of GUPPI, one row each with its meaning and the page that defines it; the source of glossary.md".
+      The test page repeats that meaning on purpose, and its purpose says it is a test page.
+
+
+      At the librarian''s run, the index check of `rule-index-check` compares the `create` with the entities
+      index lines once more. It may merge a `create` into an `update` of the page that already holds the
+      thing, or keep the entry and mark it `near`. This Case expects the entry to be kept with `near:
+      entity-glossary` and not merged, because the page says it is a test page and not the source of `glossary.md`.
+      That is the moment of the `near` clause of `estimate-index-check-merges`, which has never been exercised.
+      Its Criterion stands, and a reading at the next `/hi` takes it from the report of the run.
+
+
+      The page also holds an invented word, `quillwort`, and its replacement, `bramblewort`. A Case of
+      the next session will replace the first word with the second by `reword`, which is the moment `estimate-generate-rewords`
+      waits for. The same Case will then delete the page. The word change and the delete cannot run in
+      this session (case 614, Q5). The check of pairs in `guppi/prespec.py` loads only the pages on disk,
+      so a `reword` on a page that the same Spec creates gets the finding "a reword pair hits no live
+      page". The docstring of the same file says the anchor is judged "against the page as the Spec leaves
+      it". That gap stays as it is, and this Case does not fix it. Nothing in this Case schedules the
+      Case of the next session.
+
+
+      The person chose that the next session deletes the page. The delete must also come before any close
+      of the sprint, because `estimate-sprint-migration-lint-clean` needs `make lint` to exit 0 at that
+      close, and the live test page keeps lint red.
+
+
+      The vault query of `.claude/agents/ask-guppi.md` ran here: the Grep `^(purpose|deferred_by):` over
+      `vault/wiki/rules/` and over `vault/wiki/entities/`. The entities index printed four pages: `entity-sprint`,
+      `entity-sprint-migration`, `entity-guppi` and `entity-glossary`. None is a test page, and `entity-glossary`
+      is near, as above. The rules that bear on this Case are `rule-ask`, `rule-entities-schema` and `rule-index-check`.
+      `rule-ask` asks for the query before a `create` without a `ref`. It stands `draft` with `deferred_by`
+      `decision-case-553`, whose Problem is that the two agents that read the vault for a Case follow
+      different rules on Decision pages. That does not touch this Case, which reads no Decision page.
+      The Grep `reading-probe|quillwort|bramblewort` (case-insensitive) over `vault/` printed three files,
+      all raw files of this session: `vault/raw/2026-10-03/event_log.md`, `vault/raw/2026-10-03/1341/ledger.md`
+      and `vault/raw/2026-10-03/1341/cases/case-614.md`. No page under `vault/wiki/` or `vault/archive/`
+      holds the slug or either word. The tags `workflow` and `librarian` exist in `vault/wiki/tags.md`.
+
+
+      Two sentences of the frame do not fit the test page, and both stand, because the page lives for
+      one session and the next session archives it. First, `rule-entities-schema` defines an Entity as
+      a thing the developer builds, and the test page is not one. Second, while the page is live, `guppi
+      lint` reports two findings on it:
+
+      - `schema`, because a `Leaf` requires `parent` and a `create` with no `ref` gets none;
+
+      - `orphan`, because no other live page names it in its frontmatter, and `check_orphans` of `guppi/lint.py`
+      does not read the `create` list of a Decision page.
+
+
+      Those are the findings that the Criteria of `estimate-entities-schema-checked` and `estimate-lint-finds-a-broken-link`
+      promise for such a page, so both Criteria stand. A live reading of either Estimate taken while the
+      page is live should count these findings as the test page, not as a defect.
+
+
+      Done means `estimate-plan-mode-verified` reads this Case and its showing, and `estimate-index-check-merges`
+      reads the report of the librarian''s run. Both Criteria stand, because this Case is the moment each
+      describes. `estimate-generate-writes` already checks how `guppi generate` writes a `create`, and
+      its Criterion stands too. This Case creates no Estimate and replaces no Criterion. No Case of this
+      session is related.'
+    problem: The person wants a test Entity that sets off waiting readings. The check refuses a word change
+      on a page that the same session creates. So this session can only create the page, with the shape
+      that sets off `estimate-plan-mode-verified` now and the `near` clause of `estimate-index-check-merges`
+      at the librarian's run, and that lets the next session test `estimate-generate-rewords` and then
+      delete it.
+    recommend: "- **What does this Case cover?**\n  - Recommended: (a) the test Entity only. The main\
+      \ agent stages the other moments itself, as work that needs no decision.\n  - Answer: The test Entity\
+      \ only. The person will set off the other moments on purpose when the session decides to, not by\
+      \ a plan, for example a `/carry` the person does not need.\n- **When is the test page deleted?**\n\
+      \  - Recommended: (a) create, change and delete in this session.\n  - Answer: Agreed with the recommendation.\n\
+      - **Which moments does the shape of the test page produce?**\n  - Recommended: (a) both: no parent\
+      \ link and a purpose that repeats an existing Entity, and an invented word for a later word change.\n\
+      \  - Answer: Agreed with the recommendation.\n- **Do I break my own answers on purpose to trigger\
+      \ the send-backs?**\n  - Recommended: (b) all but the rebuild in another shape.\n  - Answer: Nothing\
+      \ is broken on purpose. The person will set off the moments on purpose, not by a plan.\n- **Where\
+      \ does the word change go, now that the check refuses it in this session?**\n  - Recommended: (b)\
+      \ create now, and do the word change and the delete in the next session.\n  - Answer: Agreed."
+    given: '`entity-reading-probe` — the test page this Case creates
+
+      **＋** `entity-glossary` — the page whose purpose the test page repeats
+
+      **＋** `rule-entities-schema` — the shape of an Entity page and what an Entity is
+
+      **＋** `rule-ask` — the vault query before a `create` without a `ref`
+
+      **＋** `rule-index-check` — the librarian compares a `create` with the index lines once more
+
+      **＋** `rule-page-generation` — `guppi generate` writes the page at the librarian''s run
+
+      **＋** `rule-lint` — `guppi lint` reports a page off its schema or named by no page'
+    when: The librarian's run after this session does the index check of `rule-index-check` over the `create`
+      of this Case, runs `guppi generate` over it, and then runs `guppi lint`.
+    then: 'The index check keeps the `create` of `entity-reading-probe` and marks it `near: entity-glossary`.
+      It does not merge the `create` into an `update` of `entity-glossary`.
+
+      **＋** `guppi generate` writes `entity-reading-probe` as a `draft` `Leaf` with no `parent`, with
+      a `purpose` that repeats the meaning of the `purpose` of `entity-glossary` and says the page is
+      a test page.
+
+      **＋** Its `## Purpose` holds the words `quillwort` and `bramblewort`, which no other live page holds.
+
+      **＋** While the page is live, `guppi lint` reports two findings on `entity-reading-probe`: `schema`
+      for its missing `parent`, and `orphan`.
+
+      **－** `entity-glossary` keeps its text, and no page gets a link to `entity-reading-probe`.'
+  spec: vault/raw/2026-10-03/1341/spec.md
+  applied: '14:43:15'
+- case: '615'
+  decision: decision-case-615
+  origin: raw/2026-10-03/1341/ledger.md#case-615
+  targets:
+  - kind: defer
+    category: entities
+    slug: entity-sprint-migration
+    ref: entity-sprint-migration
+  tags: []
+  case_text:
+    context: At the `/hi` of session 1341, 4 of the 41 pending readings were taken; 37 wait for their
+      moment, the four Estimates of 612 among them, read after the first close of a sprint. The close
+      of migration needs every Estimate read or archived, `estimate-sprint-migration-lint-clean` kept
+      as it stands. The person put the remaining items off to go to work and take as many readings as
+      the session can.
+    problem: The decision on how much stays for the close of migration is put off until the readings of
+      this session are in.
+  spec: vault/raw/2026-10-03/1341/spec.md
+  applied: '14:43:15'
+- case: '616'
+  decision: decision-case-616
+  origin: raw/2026-10-03/1341/ledger.md#case-616
+  targets:
+  - kind: defer
+    category: entities
+    slug: entity-guppi
+    ref: entity-guppi
+  tags: []
+  case_text:
+    context: In session 0317 the person asked whether GUPPI goes on as it is, shrinks to a core, or gives
+      way to native Claude features; the question shapes the plugin question too. The person put the remaining
+      items off to go to work.
+    problem: The decision on the future shape of GUPPI is put off.
+  spec: vault/raw/2026-10-03/1341/spec.md
+  applied: '14:43:15'
+- case: '617'
+  decision: decision-case-617
+  origin: raw/2026-10-03/1341/ledger.md#case-617
+  targets:
+  - kind: defer
+    category: estimates
+    slug: estimate-orchestration-shows-the-built-case
+    ref: estimate-orchestration-shows-the-built-case
+  tags: []
+  case_text:
+    context: '`estimate-orchestration-shows-the-built-case` failed in session 0115, ledger line 18: the
+      showing of Case 610 put a sentence of its own between the heading of the top-level Case and its
+      list. Case 611 built the `Stop` check of the layout, live since session 0317; the reading is taken
+      again over the showings of a session at its close. The person put the remaining items off to go
+      to work.'
+    problem: The decision on the failed showing is put off until it is read again.
+  spec: vault/raw/2026-10-03/1341/spec.md
+  applied: '14:43:15'
+- case: '618'
+  decision: decision-case-618
+  origin: raw/2026-10-03/1341/ledger.md#case-618
+  targets:
+  - kind: defer
+    category: estimates
+    slug: estimate-handoff-holds-each-fact-once
+    ref: estimate-handoff-holds-each-fact-once
+  tags: []
+  case_text:
+    context: '`estimate-handoff-holds-each-fact-once` failed at the `/hi` of session 1341, ledger line
+      2: `handoff.md` of session 0317 names Case 613.3 in four sections, and Cases 611 and 612.1, the
+      two lessons and `estimate-hi-takes-its-readings` in two. The person put the remaining items off
+      to go to work.'
+    problem: The decision on how `/handoff` keeps each fact in one section is put off.
+  spec: vault/raw/2026-10-03/1341/spec.md
+  applied: '14:43:15'
+unparsed: []
+session: '1341'

@@ -222,7 +222,7 @@ update:
 
 ```tasks
 - [x] update `estimate-orchestration-defers-in-one-reply`
-- [ ] read `estimate-orchestration-defers-in-one-reply`
+- [x] read `estimate-orchestration-defers-in-one-reply`
 ```
 
 ## Case 610 — A ratified Case built again in another shape takes a new number

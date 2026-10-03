@@ -2,7 +2,7 @@
 type: rule
 kind: Leaf
 purpose: Prevents a Spec whose work was not done from being applied to the vault
-status: draft
+status: built
 enforcement: render
 governs: .claude/skills/carry/SKILL.md
 render_mode: full
@@ -71,3 +71,4 @@ materialize`, `generate`, `cleanup` or `render`; write no page under `vault/wiki
 - 2026-09-30 updated: the short brief of /carry keeps Next session: Work and Ask the person from the open lines of the session's frontier.md, Cases the line none (case 538.1) · [[decision-case-538.1]]
 - 2026-09-30 status: built → draft · cascade
 - 2026-10-02 updated: /carry makes the branch spec/<hi date>-<hi HHMM> at its commit and stays on the current branch (case 591.1) · [[decision-case-591.1]]
+- 2026-10-03 status: draft → built · cascade

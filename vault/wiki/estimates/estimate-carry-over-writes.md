@@ -1,11 +1,11 @@
 ---
 type: estimate
 kind: QA
-status: pending
+status: passed
 target: "[[rule-carry-over]]"
 purpose: /carry writes the brief and the mark, runs guppi backlog, commits, makes the branch of the Spec at that commit, and runs nothing else
 method: uv run guppi render --check; by hand, a /carry after the fork of ExitPlanMode — the tree, vault/wiki/brief.md, carry.md, vault/wiki/backlog.md, the commit and git branch read
-checked: 2026-09-30
+checked: 2026-10-03
 origin: raw/2026-09-16/1034/ledger.md#case-190.1
 sprint: migration
 created: 2026-09-16
@@ -34,7 +34,7 @@ The skill reads the tree. When the tree holds changes outside the session folder
 
 ## Result
 
-2026-09-30, uv run guppi render --check (exit 0), git show --stat 8e4c918 and the event log of session 876c4080 from 01:32:52 to 01:33:35: /carry was called after the fork of ExitPlanMode; brief.md was rewritten in the short shape with no Deferred list; carry.md holds one line; guppi backlog ran and backlog.md shows the conserved Spec with its targets; make style ran; the commit holds only vault/raw/, brief.md and backlog.md; no Work Mode, retro, handoff, librarian, materialize, generate, cleanup or render ran. The short shape dropped the Work list by the rule's own text; that is lesson-carry-short-brief-drops-the-work-list and the defer of case 533, not a fault of this run
+2026-10-03, at the /hi of session 1416: `uv run guppi render --check` exit 0; by hand, session 1341 (transcript 26e79919): after ExitPlanMode at 14:13:15 the person answered the fork with /carry at 14:13:50; the Tree line of the skill held only `vault/raw/2026-10-03/1341/`; brief.md rewritten with Where things stand, Flags and Next session, no Readings due, no Readings at the close, no Deferred list; Next session holds Cases "none", Work 38 lines for the 38 open W lines of frontier.md, and Ask the person "none", frontier.md holding no A line; carry.md one line; `uv run guppi backlog` exit 0 and backlog.md shows the conserved Spec with its five targets; `make style` passed; commit 9e0296ca holds 7 files, 5 under vault/raw/2026-10-03/1341/ and brief.md and backlog.md; `spec/2026-10-03-1341` points at 9e0296ca and the session stayed on `migration`; the event log of 26e79919 after the Skill call shows only a Bash read, the Write of brief.md, the backlog run and the style and commit run; not exercised: the stop on a tree with changes outside the session folder
 
 ## History
 
@@ -50,3 +50,4 @@ The skill reads the tree. When the tree holds changes outside the session folder
 - 2026-09-30 updated: the Criterion replaced whole — the short brief keeps Next session: Work and Ask the person from the open lines of frontier.md, Cases the line none · [[decision-case-538.1]]
 - 2026-10-02 updated: the Criterion replaced whole — /carry makes the branch of the Spec after its commit (case 591.1) · [[decision-case-591.1]]
 - 2026-10-03 updated: method names the kind of its moment (case 613.3) · [[decision-case-613.3]]
+- 2026-10-03 status: pending → passed · raw/2026-10-03/1416/ledger.md#L3

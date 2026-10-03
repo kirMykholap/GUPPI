@@ -2,7 +2,7 @@
 type: rule
 kind: Leaf
 purpose: Prevents an approved Spec from existing only in Claude Code's plan file, outside the repository
-status: draft
+status: built
 enforcement: hook
 implementation_ref: [guppi/spec.py, .claude/settings.json]
 parent: "[[rule-plan-mode]]"
@@ -52,3 +52,4 @@ into the context — `/work`, Work Mode on the Spec, or `/carry` to conserve it 
 - 2026-09-30 updated: the Stop hook of rule-spec-write writes a defer-only Case under ## Deferred with no Retro moment; Retro puts nothing off (case 542) · [[decision-case-542]]
 - 2026-10-02 updated: a plan that names a conserved Spec gets a line that leads to /box in place of the fork (case 591.3) · [[decision-case-591.3]]
 - 2026-10-02 status: built → draft · cascade
+- 2026-10-03 status: draft → built · cascade

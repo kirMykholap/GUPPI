@@ -2,7 +2,7 @@
 type: rule
 kind: Leaf
 purpose: Prevents the ledger from being written into a session nothing recorded
-status: draft
+status: built
 enforcement: hook
 implementation_ref: [guppi/event.py, guppi/gate.py, guppi/cli.py, tests/test_gate.py, tests/test_event.py, .claude/settings.json]
 parent: "[[rule-session-start]]"
@@ -56,3 +56,4 @@ The hook never fails the session on an error: any error goes to stderr and the e
 - 2026-09-15 updated: the marks name the second entry of the gate, the typed command on UserPromptSubmit (case 169.1) · [[decision-case-169.1]]
 - 2026-09-27 updated: no hi line outside plan mode; the refusal exits 2 (case 445.6) · [[decision-case-445.6]]
 - 2026-09-27 status: built → draft · cascade
+- 2026-10-03 status: draft → built · cascade

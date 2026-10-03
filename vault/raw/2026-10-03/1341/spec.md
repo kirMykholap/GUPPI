@@ -78,7 +78,7 @@ create:
 ```
 
 ```tasks
-- [ ] create `entity-reading-probe`
+- [x] create `entity-reading-probe`
 ```
 
 ## Deferred

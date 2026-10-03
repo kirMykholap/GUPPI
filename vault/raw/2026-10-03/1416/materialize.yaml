@@ -1,0 +1,325 @@
+date: '2026-10-03'
+sprint: migration
+ledger: vault/raw/2026-10-03/1416/ledger.md
+spec:
+- vault/raw/2026-10-03/1416/spec.md
+entries:
+- line: 1
+  text: 'estimate[estimate-case-check-refuses-text-outside-the-list][passed] 2026-10-03, at the /hi of
+    session 1416: `uv run pytest tests/test_casecheck.py` 117 passed; by hand, session 1341 (transcript
+    26e79919): Case 614 shown twice, at 14:05:27 and 14:12:13, each reply opening with its `## Case 614
+    —` heading, then list items, a line indented under a list item and the `ratification` blockquote,
+    the agent''s own text after `---`, and no text of the main agent before the last tool call of either
+    turn; no refusal of `uv run guppi casecheck` in the session, the only two Stop refusals being `uv
+    run guppi onward --plan` at 14:08:32 and 14:12:51; not exercised: a live refusal, since no showing
+    held text outside the list'
+  kind: estimate
+  category: estimates
+  slug: estimate-case-check-refuses-text-outside-the-list
+  status: passed
+  result: '2026-10-03, at the /hi of session 1416: `uv run pytest tests/test_casecheck.py` 117 passed;
+    by hand, session 1341 (transcript 26e79919): Case 614 shown twice, at 14:05:27 and 14:12:13, each
+    reply opening with its `## Case 614 —` heading, then list items, a line indented under a list item
+    and the `ratification` blockquote, the agent''s own text after `---`, and no text of the main agent
+    before the last tool call of either turn; no refusal of `uv run guppi casecheck` in the session, the
+    only two Stop refusals being `uv run guppi onward --plan` at 14:08:32 and 14:12:51; not exercised:
+    a live refusal, since no showing held text outside the list'
+  origin: raw/2026-10-03/1416/ledger.md#L1
+  applied: '14:43:15'
+- line: 2
+  text: 'estimate[estimate-hi-takes-its-readings][passed] 2026-10-03, at the /hi of session 1416, the
+    first reply of the /hi of session 1341 (transcript 26e79919, 13:41:40 to 13:49:40): before the question
+    on the order it took the four readings whose moments came in session 0317, read from transcript 5b311f89,
+    from raw/2026-10-03/0317/handoff.md and work.md and from the commands of each method, `git status`
+    included; to choose them it read the method and Criterion of every pending Estimate and the History
+    of 15; it wrote frontier.md at 13:48:54 with W6, W18, W20 and W29 closed `[x] … · work`, then a LEDGER
+    block of four lines in a reply that ends in text, the ledger holding the four at 13:49:40; no repository
+    file changed but frontier.md, the tree clean at 13:47:53; not exercised: an open A line, the Ask list
+    held none'
+  kind: estimate
+  category: estimates
+  slug: estimate-hi-takes-its-readings
+  status: passed
+  result: '2026-10-03, at the /hi of session 1416, the first reply of the /hi of session 1341 (transcript
+    26e79919, 13:41:40 to 13:49:40): before the question on the order it took the four readings whose
+    moments came in session 0317, read from transcript 5b311f89, from raw/2026-10-03/0317/handoff.md and
+    work.md and from the commands of each method, `git status` included; to choose them it read the method
+    and Criterion of every pending Estimate and the History of 15; it wrote frontier.md at 13:48:54 with
+    W6, W18, W20 and W29 closed `[x] … · work`, then a LEDGER block of four lines in a reply that ends
+    in text, the ledger holding the four at 13:49:40; no repository file changed but frontier.md, the
+    tree clean at 13:47:53; not exercised: an open A line, the Ask list held none'
+  origin: raw/2026-10-03/1416/ledger.md#L2
+  applied: '14:43:15'
+- line: 3
+  text: 'estimate[estimate-carry-over-writes][passed] 2026-10-03, at the /hi of session 1416: `uv run
+    guppi render --check` exit 0; by hand, session 1341 (transcript 26e79919): after ExitPlanMode at 14:13:15
+    the person answered the fork with /carry at 14:13:50; the Tree line of the skill held only `vault/raw/2026-10-03/1341/`;
+    brief.md rewritten with Where things stand, Flags and Next session, no Readings due, no Readings at
+    the close, no Deferred list; Next session holds Cases "none", Work 38 lines for the 38 open W lines
+    of frontier.md, and Ask the person "none", frontier.md holding no A line; carry.md one line; `uv run
+    guppi backlog` exit 0 and backlog.md shows the conserved Spec with its five targets; `make style`
+    passed; commit 9e0296ca holds 7 files, 5 under vault/raw/2026-10-03/1341/ and brief.md and backlog.md;
+    `spec/2026-10-03-1341` points at 9e0296ca and the session stayed on `migration`; the event log of
+    26e79919 after the Skill call shows only a Bash read, the Write of brief.md, the backlog run and the
+    style and commit run; not exercised: the stop on a tree with changes outside the session folder'
+  kind: estimate
+  category: estimates
+  slug: estimate-carry-over-writes
+  status: passed
+  result: '2026-10-03, at the /hi of session 1416: `uv run guppi render --check` exit 0; by hand, session
+    1341 (transcript 26e79919): after ExitPlanMode at 14:13:15 the person answered the fork with /carry
+    at 14:13:50; the Tree line of the skill held only `vault/raw/2026-10-03/1341/`; brief.md rewritten
+    with Where things stand, Flags and Next session, no Readings due, no Readings at the close, no Deferred
+    list; Next session holds Cases "none", Work 38 lines for the 38 open W lines of frontier.md, and Ask
+    the person "none", frontier.md holding no A line; carry.md one line; `uv run guppi backlog` exit 0
+    and backlog.md shows the conserved Spec with its five targets; `make style` passed; commit 9e0296ca
+    holds 7 files, 5 under vault/raw/2026-10-03/1341/ and brief.md and backlog.md; `spec/2026-10-03-1341`
+    points at 9e0296ca and the session stayed on `migration`; the event log of 26e79919 after the Skill
+    call shows only a Bash read, the Write of brief.md, the backlog run and the style and commit run;
+    not exercised: the stop on a tree with changes outside the session folder'
+  origin: raw/2026-10-03/1416/ledger.md#L3
+  applied: '14:43:15'
+- line: 4
+  text: 'estimate[estimate-event-log-records][passed] 2026-10-03, at the /hi of session 1416: `uv run
+    pytest -q tests/test_event.py tests/test_gate.py` 74 passed; `git check-ignore -v` names `.gitignore:47`
+    for vault/raw/2026-10-03/event_log.md; `uv run guppi event prompt` through a pipe on a plain prompt
+    exited 0 in 187 ms and wrote no line; by hand, session 682b0e2f: the /hi of 14:16:36 came in permission
+    mode `auto`, the hook refused it telling the person to turn plan mode on and type /hi again, Claude
+    Code blocked the prompt, the skill did not run and the event log holds no line for it; the /hi of
+    14:16:59 in plan mode wrote `14:16:59 682b0e2f hi` after `14:16:26 682b0e2f session-start startup`
+    with a tool line after it, and its `hi:` line names raw/2026-10-03/1416/; the `prespec` mark of session
+    26e79919 stands at 14:08:34 beside its Skill call; not exercised: a second /hi printing `hi: already
+    recorded`'
+  kind: estimate
+  category: estimates
+  slug: estimate-event-log-records
+  status: passed
+  result: '2026-10-03, at the /hi of session 1416: `uv run pytest -q tests/test_event.py tests/test_gate.py`
+    74 passed; `git check-ignore -v` names `.gitignore:47` for vault/raw/2026-10-03/event_log.md; `uv
+    run guppi event prompt` through a pipe on a plain prompt exited 0 in 187 ms and wrote no line; by
+    hand, session 682b0e2f: the /hi of 14:16:36 came in permission mode `auto`, the hook refused it telling
+    the person to turn plan mode on and type /hi again, Claude Code blocked the prompt, the skill did
+    not run and the event log holds no line for it; the /hi of 14:16:59 in plan mode wrote `14:16:59 682b0e2f
+    hi` after `14:16:26 682b0e2f session-start startup` with a tool line after it, and its `hi:` line
+    names raw/2026-10-03/1416/; the `prespec` mark of session 26e79919 stands at 14:08:34 beside its Skill
+    call; not exercised: a second /hi printing `hi: already recorded`'
+  origin: raw/2026-10-03/1416/ledger.md#L4
+  applied: '14:43:15'
+- line: 5
+  text: 'estimate[estimate-orchestration-defers-in-one-reply][passed] 2026-10-03, at the /hi of session
+    1416, by hand, session 1341 (transcript 26e79919), the reply of 14:08:30 to the person''s word putting
+    the rest off: Cases 615–618 each in the short form, context, problem and a then fence with one defer
+    item, no other section; one LEDGER block of four defer lines, no tool call after it, the ledger holding
+    them at 14:08:32; the two tool calls before it read an earlier Spec and closed lines of frontier.md,
+    neither wrote the plan file, and spec.md holds the four under `## Deferred`; no question asked for
+    the defers; the Frontier shows C3–C6 closed `· defer case 615` to `618` and C1, C2 `· sprint · defer`;
+    with no line under Cases open the reply ended with the Frontier and `uv run guppi onward --plan` sent
+    the agent on to /pre-spec at 14:08:32; not exercised: a corrected wording with supersedes'
+  kind: estimate
+  category: estimates
+  slug: estimate-orchestration-defers-in-one-reply
+  status: passed
+  result: '2026-10-03, at the /hi of session 1416, by hand, session 1341 (transcript 26e79919), the reply
+    of 14:08:30 to the person''s word putting the rest off: Cases 615–618 each in the short form, context,
+    problem and a then fence with one defer item, no other section; one LEDGER block of four defer lines,
+    no tool call after it, the ledger holding them at 14:08:32; the two tool calls before it read an earlier
+    Spec and closed lines of frontier.md, neither wrote the plan file, and spec.md holds the four under
+    `## Deferred`; no question asked for the defers; the Frontier shows C3–C6 closed `· defer case 615`
+    to `618` and C1, C2 `· sprint · defer`; with no line under Cases open the reply ended with the Frontier
+    and `uv run guppi onward --plan` sent the agent on to /pre-spec at 14:08:32; not exercised: a corrected
+    wording with supersedes'
+  origin: raw/2026-10-03/1416/ledger.md#L5
+  applied: '14:43:15'
+- line: 6
+  text: 'estimate[estimate-plan-mode-verified][passed] 2026-10-03, at the /hi of session 1416: `make test-plan-mode`
+    200 passed; by hand, session 1341 (transcript 26e79919 and its case-guppi agent adf74989): Case 614
+    proposes `create entity-reading-probe` with no ref, the overlap staged on purpose; its case-guppi
+    ran the Grep `^(purpose|deferred_by):` over vault/wiki/entities/ at 13:54:04, before its first answer;
+    the Case shown at 14:05:27 names `entity-glossary` in its context and quotes its index line, whose
+    purpose the test page repeats, and the person ratified it at 14:06:09; ExitPlanMode at 14:13:15 was
+    let through after the prespec mark of 14:08:34, and raw/2026-10-03/1341/spec.md holds Case 614 and
+    the four defers under `## Deferred`'
+  kind: estimate
+  category: estimates
+  slug: estimate-plan-mode-verified
+  status: passed
+  result: '2026-10-03, at the /hi of session 1416: `make test-plan-mode` 200 passed; by hand, session
+    1341 (transcript 26e79919 and its case-guppi agent adf74989): Case 614 proposes `create entity-reading-probe`
+    with no ref, the overlap staged on purpose; its case-guppi ran the Grep `^(purpose|deferred_by):`
+    over vault/wiki/entities/ at 13:54:04, before its first answer; the Case shown at 14:05:27 names `entity-glossary`
+    in its context and quotes its index line, whose purpose the test page repeats, and the person ratified
+    it at 14:06:09; ExitPlanMode at 14:13:15 was let through after the prespec mark of 14:08:34, and raw/2026-10-03/1341/spec.md
+    holds Case 614 and the four defers under `## Deferred`'
+  origin: raw/2026-10-03/1416/ledger.md#L6
+  applied: '14:43:15'
+- line: 7
+  text: 'estimate[estimate-compact-recall-reloads][passed] 2026-10-03, session 1416: `uv run pytest -q
+    tests/test_recall.py` 7 passed; live, the compaction the person ran by /compact in the working session
+    682b0e2f: the event log holds `14:25:05 682b0e2f session-start compact` after `14:16:59 682b0e2f hi`;
+    the hook''s text in the context opens "recall: the context was compacted at 14:25:05; the session
+    is raw/2026-10-03/1416/. Read before the next reply:", then the six `@` paths of .claude/skills/hi/SKILL.md
+    in their order — sprint, backlog, brief, orchestration, ratification, glossary —, then vault/raw/2026-10-03/1416/frontier.md
+    and no Spec path, no plan file and no spec.md existing, then `Frontier:` and the text of frontier.md
+    as it stood, W1, W6, W8, W15, W19 and W21 closed; no file text printed but the Frontier, frontier.md
+    3550 bytes and the rest eight short lines; the session folder holds only frontier.md and ledger.md,
+    both written before 14:25:05; not exercised live: a session without hi and another source, covered
+    by the tests only'
+  kind: estimate
+  category: estimates
+  slug: estimate-compact-recall-reloads
+  status: passed
+  result: '2026-10-03, session 1416: `uv run pytest -q tests/test_recall.py` 7 passed; live, the compaction
+    the person ran by /compact in the working session 682b0e2f: the event log holds `14:25:05 682b0e2f
+    session-start compact` after `14:16:59 682b0e2f hi`; the hook''s text in the context opens "recall:
+    the context was compacted at 14:25:05; the session is raw/2026-10-03/1416/. Read before the next reply:",
+    then the six `@` paths of .claude/skills/hi/SKILL.md in their order — sprint, backlog, brief, orchestration,
+    ratification, glossary —, then vault/raw/2026-10-03/1416/frontier.md and no Spec path, no plan file
+    and no spec.md existing, then `Frontier:` and the text of frontier.md as it stood, W1, W6, W8, W15,
+    W19 and W21 closed; no file text printed but the Frontier, frontier.md 3550 bytes and the rest eight
+    short lines; the session folder holds only frontier.md and ledger.md, both written before 14:25:05;
+    not exercised live: a session without hi and another source, covered by the tests only'
+  origin: raw/2026-10-03/1416/ledger.md#L7
+  applied: '14:43:15'
+- line: 8
+  text: 'estimate[estimate-hi-takes-a-conserved-spec][failed] 2026-10-03, the Work readings of session
+    1416: `uv run guppi render --check` exit 0; by hand, the person took C1, the conserved Spec of raw/2026-10-03/1341/,
+    at the Frontier: the session''s ledger then held 7 estimate lines and no decision line, and no Case
+    was built or ratified after it; frontier.md closes C1 `[x] … · backlog · work`, and the plan file
+    holds the one line `# Session 1416 — runs the conserved Spec vault/raw/2026-10-03/1341/spec.md`, the
+    path backlog.md names; C2 and C3 closed `[-] … · sprint · defer`; but C4, the failed reading of `estimate-handoff-holds-each-fact-once`
+    from the ledger Tail, first closed `[-] … · ledger · defer case 618` and refused by `uv run guppi
+    prespec --check` with "frontier: C4 defers to case 618, no defer item under Case 618", was closed
+    `[x] … · ledger · work`, none of the forms of the Criterion for a line left; then /pre-spec ran and
+    the check printed nothing; no Case of the conserved Spec built or ratified again'
+  kind: estimate
+  category: estimates
+  slug: estimate-hi-takes-a-conserved-spec
+  status: failed
+  result: '2026-10-03, the Work readings of session 1416: `uv run guppi render --check` exit 0; by hand,
+    the person took C1, the conserved Spec of raw/2026-10-03/1341/, at the Frontier: the session''s ledger
+    then held 7 estimate lines and no decision line, and no Case was built or ratified after it; frontier.md
+    closes C1 `[x] … · backlog · work`, and the plan file holds the one line `# Session 1416 — runs the
+    conserved Spec vault/raw/2026-10-03/1341/spec.md`, the path backlog.md names; C2 and C3 closed `[-]
+    … · sprint · defer`; but C4, the failed reading of `estimate-handoff-holds-each-fact-once` from the
+    ledger Tail, first closed `[-] … · ledger · defer case 618` and refused by `uv run guppi prespec --check`
+    with "frontier: C4 defers to case 618, no defer item under Case 618", was closed `[x] … · ledger ·
+    work`, none of the forms of the Criterion for a line left; then /pre-spec ran and the check printed
+    nothing; no Case of the conserved Spec built or ratified again'
+  origin: raw/2026-10-03/1416/ledger.md#L8
+  applied: '14:43:15'
+- line: 9
+  text: 'estimate[estimate-spec-capture-offers-the-fork][passed] 2026-10-03, the Work readings of session
+    1416: `uv run pytest tests/test_spec.py -k ''fork or box''` 5 passed, 11 deselected; by hand, session
+    1341 (transcript 26e79919): the ExitPlanMode result at 14:13:15 carried as additional context the
+    line "spec: the Spec is in vault/raw/2026-10-03/1341/spec.md. Ask the person which end this session
+    takes by AskUserQuestion with two options …", the agent asked by AskUserQuestion with /carry and /work
+    and started nothing before the answer at 14:13:50, then called the skill carry; session 1416 (transcript
+    682b0e2f): the plan naming vault/raw/2026-10-03/1341/spec.md, a folder marked by carry.md, the ExitPlanMode
+    result carried "spec: the Spec is in vault/raw/2026-10-03/1416/spec.md. The plan takes the conserved
+    Spec of vault/raw/2026-10-03/1341/: call /box with vault/raw/2026-10-03/1341/ as its argument, and
+    ask the person nothing", and the agent asked nothing and called /box with that folder'
+  kind: estimate
+  category: estimates
+  slug: estimate-spec-capture-offers-the-fork
+  status: passed
+  result: '2026-10-03, the Work readings of session 1416: `uv run pytest tests/test_spec.py -k ''fork
+    or box''` 5 passed, 11 deselected; by hand, session 1341 (transcript 26e79919): the ExitPlanMode result
+    at 14:13:15 carried as additional context the line "spec: the Spec is in vault/raw/2026-10-03/1341/spec.md.
+    Ask the person which end this session takes by AskUserQuestion with two options …", the agent asked
+    by AskUserQuestion with /carry and /work and started nothing before the answer at 14:13:50, then called
+    the skill carry; session 1416 (transcript 682b0e2f): the plan naming vault/raw/2026-10-03/1341/spec.md,
+    a folder marked by carry.md, the ExitPlanMode result carried "spec: the Spec is in vault/raw/2026-10-03/1416/spec.md.
+    The plan takes the conserved Spec of vault/raw/2026-10-03/1341/: call /box with vault/raw/2026-10-03/1341/
+    as its argument, and ask the person nothing", and the agent asked nothing and called /box with that
+    folder'
+  origin: raw/2026-10-03/1416/ledger.md#L9
+  applied: '14:43:15'
+- line: 10
+  text: 'lesson[error][lesson-session-ledger-item-deferred-by-the-conserved-spec-closed-as-work]{tags:session,workflow}
+    trigger: at the Frontier of session 1416 the person took the conserved Spec of 1341, and the line
+    C4, the failed reading of estimate-handoff-holds-each-fact-once from the ledger Tail, which Case 618
+    of that Spec defers, had to close as left; the agent wrote `[-] … · ledger · defer case 618`, the
+    pre-spec check refused it since the plan of this session holds no Case 618, and the agent closed the
+    line `[x] … · ledger · work`, a closer the Criterion of estimate-hi-takes-a-conserved-spec does not
+    list, instead of a short-form defer of its own root_cause: rule-skill-hi gives the three closers of
+    a line left — backlog kept, sprint defer, defer case N — but none for a Frontier item of the ledger
+    whose defer stands in the conserved Spec being taken, and the check judges `defer case N` only against
+    the Cases of the session''s own plan, so the agent picked a closer by its own judgment and did not
+    name the gap as a stop'
+  kind: lesson
+  category: lessons
+  slug: lesson-session-ledger-item-deferred-by-the-conserved-spec-closed-as-work
+  origin: raw/2026-10-03/1416/ledger.md#L10
+  fields:
+    type: lesson
+    kind: error
+    root_cause: rule-skill-hi gives the three closers of a line left — backlog kept, sprint defer, defer
+      case N — but none for a Frontier item of the ledger whose defer stands in the conserved Spec being
+      taken, and the check judges `defer case N` only against the Cases of the session's own plan, so
+      the agent picked a closer by its own judgment and did not name the gap as a stop
+  sections:
+    Trigger: at the Frontier of session 1416 the person took the conserved Spec of 1341, and the line
+      C4, the failed reading of estimate-handoff-holds-each-fact-once from the ledger Tail, which Case
+      618 of that Spec defers, had to close as left; the agent wrote `[-] … · ledger · defer case 618`,
+      the pre-spec check refused it since the plan of this session holds no Case 618, and the agent closed
+      the line `[x] … · ledger · work`, a closer the Criterion of estimate-hi-takes-a-conserved-spec does
+      not list, instead of a short-form defer of its own
+    Root cause: rule-skill-hi gives the three closers of a line left — backlog kept, sprint defer, defer
+      case N — but none for a Frontier item of the ledger whose defer stands in the conserved Spec being
+      taken, and the check judges `defer case N` only against the Cases of the session's own plan, so
+      the agent picked a closer by its own judgment and did not name the gap as a stop
+  tags:
+  - session
+  - workflow
+  applied: '14:43:15'
+- kind: create
+  category: insights
+  slug: insight-session-frontier-no-closer-for-an-item-ended-outside-the-plan
+  origin: raw/2026-10-03/1416/ledger.md#L10
+  fields:
+    type: insight
+    pattern: The closers of a Frontier line are listed for an item the session's own plan ends; an item
+      left whose end stands elsewhere — on the sprint page for a later session, or in a defer of the conserved
+      Spec the session takes — has no closer, and the agent closes it `work` by its own judgment, a form
+      the check accepts and the reader misreads
+    children:
+    - lesson-frontier-has-no-closer-for-a-milestone-item-left-on-the-sprint-page
+    - lesson-session-ledger-item-deferred-by-the-conserved-spec-closed-as-work
+  tags:
+  - session
+  - workflow
+  - sprint
+  sections:
+    Pattern: 'Twice a Frontier line was left and fit none of the closers: in session 0014 the themes of
+      Slice 3f that stayed on the sprint page, closed with `work` and a note; in session 1416 the failed
+      reading of estimate-handoff-holds-each-fact-once, whose defer stands as Case 618 of the conserved
+      Spec of 1341, refused as `defer case 618` because the check reads only the Cases of the session''s
+      own plan, then closed `work`. Each time the closer set covered only an item the session ends itself.'
+    Proposal: A suggestion, not a decision — a Case that names in rule-skill-hi, and in the check of guppi
+      prespec, a closer for a Frontier item whose end stands outside the session's own plan, so the agent
+      stops on such a line instead of picking a closer by its own judgment.
+  librarian: synthesis
+  applied: '14:43:15'
+- kind: update
+  category: lessons
+  slug: lesson-frontier-has-no-closer-for-a-milestone-item-left-on-the-sprint-page
+  origin: raw/2026-10-03/1416/ledger.md#L10
+  set:
+    status: clustered
+    insight: insight-session-frontier-no-closer-for-an-item-ended-outside-the-plan
+  change: clustered under insight-session-frontier-no-closer-for-an-item-ended-outside-the-plan (synthesis)
+  librarian: synthesis
+  applied: '14:43:15'
+- kind: update
+  category: lessons
+  slug: lesson-session-ledger-item-deferred-by-the-conserved-spec-closed-as-work
+  origin: raw/2026-10-03/1416/ledger.md#L10
+  set:
+    status: clustered
+    insight: insight-session-frontier-no-closer-for-an-item-ended-outside-the-plan
+  change: clustered under insight-session-frontier-no-closer-for-an-item-ended-outside-the-plan (synthesis)
+  librarian: synthesis
+  applied: '14:43:15'
+decisions: []
+unparsed: []
+session: '1416'

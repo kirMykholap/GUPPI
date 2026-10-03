@@ -6048,3 +6048,36 @@ instruction. The global feed; a page's own `## History` is the per-page view.
 - 2026-10-03 lessons/lesson-orchestration-own-sentence-between-heading-and-list archived · insight actioned · generate
 - 2026-10-03 lessons/lesson-orchestration-own-sentence-between-heading-and-list archived · cleanup
 - 2026-10-03 lessons/lesson-orchestration-own-text-before-a-prespec-round archived · cleanup
+- 2026-10-03 estimates/estimate-lint-reports-a-method-tied-to-a-one-off-moment status: pending → passed · raw/2026-10-03/1341/ledger.md#L1 · generate
+- 2026-10-03 estimates/estimate-handoff-holds-each-fact-once status: pending → failed · raw/2026-10-03/1341/ledger.md#L2 · generate
+- 2026-10-03 estimates/estimate-ledger-write-lifts status: pending → passed · raw/2026-10-03/1341/ledger.md#L3 · generate
+- 2026-10-03 estimates/estimate-retro-red-check-of-an-updated-page-is-a-handoff-note status: pending → passed · raw/2026-10-03/1341/ledger.md#L4 · generate
+- 2026-10-03 decisions/decision-case-614 created · raw/2026-10-03/1341/ledger.md#case-614 · generate
+- 2026-10-03 entities/entity-reading-probe created · [[decision-case-614]] · generate
+- 2026-10-03 decisions/decision-case-615 created · raw/2026-10-03/1341/ledger.md#case-615 · generate
+- 2026-10-03 entities/entity-sprint-migration deferred · [[decision-case-615]] · generate
+- 2026-10-03 decisions/decision-case-616 created · raw/2026-10-03/1341/ledger.md#case-616 · generate
+- 2026-10-03 entities/entity-guppi deferred · [[decision-case-616]] · generate
+- 2026-10-03 decisions/decision-case-617 created · raw/2026-10-03/1341/ledger.md#case-617 · generate
+- 2026-10-03 estimates/estimate-orchestration-shows-the-built-case deferred · [[decision-case-617]] · generate
+- 2026-10-03 decisions/decision-case-618 created · raw/2026-10-03/1341/ledger.md#case-618 · generate
+- 2026-10-03 estimates/estimate-handoff-holds-each-fact-once deferred · [[decision-case-618]] · generate
+- 2026-10-03 rules/rule-ledger-write status: draft → built · cascade · generate
+- 2026-10-03 estimates/estimate-case-check-refuses-text-outside-the-list status: pending → passed · raw/2026-10-03/1416/ledger.md#L1 · generate
+- 2026-10-03 estimates/estimate-hi-takes-its-readings status: pending → passed · raw/2026-10-03/1416/ledger.md#L2 · generate
+- 2026-10-03 estimates/estimate-carry-over-writes status: pending → passed · raw/2026-10-03/1416/ledger.md#L3 · generate
+- 2026-10-03 estimates/estimate-event-log-records status: pending → passed · raw/2026-10-03/1416/ledger.md#L4 · generate
+- 2026-10-03 estimates/estimate-orchestration-defers-in-one-reply status: pending → passed · raw/2026-10-03/1416/ledger.md#L5 · generate
+- 2026-10-03 estimates/estimate-plan-mode-verified status: pending → passed · raw/2026-10-03/1416/ledger.md#L6 · generate
+- 2026-10-03 estimates/estimate-compact-recall-reloads status: pending → passed · raw/2026-10-03/1416/ledger.md#L7 · generate
+- 2026-10-03 estimates/estimate-hi-takes-a-conserved-spec status: pending → failed · raw/2026-10-03/1416/ledger.md#L8 · generate
+- 2026-10-03 estimates/estimate-spec-capture-offers-the-fork status: pending → passed · raw/2026-10-03/1416/ledger.md#L9 · generate
+- 2026-10-03 lessons/lesson-session-ledger-item-deferred-by-the-conserved-spec-closed-as-work created · raw/2026-10-03/1416/ledger.md#L10 · generate
+- 2026-10-03 insights/insight-session-frontier-no-closer-for-an-item-ended-outside-the-plan created · raw/2026-10-03/1416/ledger.md#L10 · generate
+- 2026-10-03 lessons/lesson-frontier-has-no-closer-for-a-milestone-item-left-on-the-sprint-page updated: clustered under insight-session-frontier-no-closer-for-an-item-ended-outside-the-plan (synthesis) · raw/2026-10-03/1416/ledger.md#L10 · generate
+- 2026-10-03 lessons/lesson-session-ledger-item-deferred-by-the-conserved-spec-closed-as-work updated: clustered under insight-session-frontier-no-closer-for-an-item-ended-outside-the-plan (synthesis) · raw/2026-10-03/1416/ledger.md#L10 · generate
+- 2026-10-03 rules/rule-carry-over status: draft → built · cascade · generate
+- 2026-10-03 rules/rule-compact-recall status: draft → built · cascade · generate
+- 2026-10-03 rules/rule-event-log status: draft → built · cascade · generate
+- 2026-10-03 rules/rule-plan-mode status: draft → built · cascade · generate
+- 2026-10-03 rules/rule-spec-capture status: draft → built · cascade · generate

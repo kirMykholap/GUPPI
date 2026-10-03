@@ -6,6 +6,7 @@ status: built
 children: ["[[entity-sprint]]", "[[entity-glossary]]"]
 estimates: ["[[estimate-guppi-tests-green]]"]
 rules: ["[[rule-harness]]"]
+deferred_by: ["[[decision-case-616]]"]
 code_ref: [guppi/, .claude/]
 origin: raw/2026-09-22/0014/ledger.md#case-306.2
 sprint: migration
@@ -24,3 +25,4 @@ GUPPI as the thing this repository builds: a Claude Code harness governed by rat
 - 2026-09-22 rules: [rule-harness] · cascade
 - 2026-09-29 status: built → draft · cascade
 - 2026-09-29 status: draft → built · cascade
+- 2026-10-03 deferred · [[decision-case-616]]

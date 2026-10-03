@@ -2,7 +2,8 @@
 type: lesson
 kind: error
 root_cause: case 229.3 put the items of the current milestone into the Frontier and case 268.2 gave the line three closers, all for an item that ended in the session; an item that stays on the sprint page for a later session ends nowhere, and the Frontier form has no word for it
-status: new
+status: clustered
+insight: "[[insight-session-frontier-no-closer-for-an-item-ended-outside-the-plan]]"
 origin: raw/2026-09-22/0014/ledger.md#L49
 sprint: migration
 created: 2026-09-22
@@ -20,3 +21,4 @@ case 229.3 put the items of the current milestone into the Frontier and case 268
 ## History
 
 - 2026-09-22 created · raw/2026-09-22/0014/ledger.md#L49
+- 2026-10-03 updated: clustered under insight-session-frontier-no-closer-for-an-item-ended-outside-the-plan (synthesis) · raw/2026-10-03/1416/ledger.md#L10

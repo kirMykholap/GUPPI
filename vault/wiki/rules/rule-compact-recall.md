@@ -2,7 +2,7 @@
 type: rule
 kind: Leaf
 purpose: Prevents a working session from going on after a compaction without the texts /hi loads, the Frontier and the Spec in its context
-status: draft
+status: built
 enforcement: hook
 implementation_ref: [guppi/recall.py, guppi/cli.py, tests/test_recall.py, .claude/settings.json]
 parent: "[[rule-session-start]]"
@@ -28,3 +28,4 @@ Prevents a working session from going on after a compaction without the texts `/
 - 2026-09-22 status: draft → built · cascade
 - 2026-09-29 status: built → draft · cascade
 - 2026-10-02 updated: the purpose names the texts /hi loads, no longer the Case schema (case 595.4) · [[decision-case-595.4]]
+- 2026-10-03 status: draft → built · cascade

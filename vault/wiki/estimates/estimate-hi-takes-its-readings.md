@@ -1,11 +1,11 @@
 ---
 type: estimate
 kind: QA
-status: pending
+status: passed
 target: "[[rule-skill-hi]]"
 purpose: Whether /hi takes, in its first reply, each open W reading whose every moment is that /hi or came in an earlier session, reads each moment of an earlier session from the transcript of the latest session that held it, puts each open Ask line to the person as a question and writes the answer as its reading line, closes each line it ends, opens no page but the Estimates it reads, and leaves a reading with a moment not come, a transcript gone or a /hi run of its own
 method: "by hand at a /hi of a later session whose open W lines hold a reading whose moment came in an earlier session: the first reply, its tool calls, its LEDGER block and frontier.md read against the Criterion, recorded in the estimate line"
-checked: 2026-09-30
+checked: 2026-10-03
 origin: raw/2026-09-29/1134/ledger.md#case-508.1
 sprint: migration
 created: 2026-09-29
@@ -32,7 +32,7 @@ In its first reply, before the question on the order, the agent takes each readi
 
 ## Result
 
-2026-09-30, by hand, the first reply of session 1736 after the librarian's render of 070d8e6: the Frontier assembled from the loaded files with no page opened; before the question on the order it took the two readings whose method names the librarian's run and could be done whole (brief-written, generate-writes-the-decision-page), opening only those two Estimate pages; it closed W2 and W21 [x] · work in frontier.md, then wrote the LEDGER block of a reply that ends in text; it put A1 (estimate-permissions) as a question before the question on the order, and on the answer closed A1 first, opened only that Estimate, then wrote its line; it left carry-over-writes, generate-rewords, event-log-records (a /hi outside plan mode) and python-utf8-output-intact; no page or repository file changed but frontier.md
+2026-10-03, at the /hi of session 1416, the first reply of the /hi of session 1341 (transcript 26e79919, 13:41:40 to 13:49:40): before the question on the order it took the four readings whose moments came in session 0317, read from transcript 5b311f89, from raw/2026-10-03/0317/handoff.md and work.md and from the commands of each method, `git status` included; to choose them it read the method and Criterion of every pending Estimate and the History of 15; it wrote frontier.md at 13:48:54 with W6, W18, W20 and W29 closed `[x] … · work`, then a LEDGER block of four lines in a reply that ends in text, the ledger holding the four at 13:49:40; no repository file changed but frontier.md, the tree clean at 13:47:53; not exercised: an open A line, the Ask list held none
 
 ## History
 
@@ -42,3 +42,4 @@ In its first reply, before the question on the order, the agent takes each readi
 - 2026-09-30 status: pending → failed · raw/2026-09-30/1306/ledger.md#L45
 - 2026-09-30 status: failed → passed · raw/2026-09-30/1736/ledger.md#L18
 - 2026-10-03 updated: the Criterion replaced whole — /hi reads a moment of an earlier session from its transcript (case 613.2) · [[decision-case-613.2]]
+- 2026-10-03 status: pending → passed · raw/2026-10-03/1416/ledger.md#L2

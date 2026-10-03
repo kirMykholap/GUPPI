@@ -1,11 +1,11 @@
 ---
 type: estimate
 kind: QA
-status: pending
+status: passed
 target: "[[rule-orchestration]]"
 purpose: A decision the person asks to put off in Plan Mode, from a source other than the sprint or the backlog, is shown as a short-form Case and written in the same reply, with no round of ratification
 method: by hand, a decision the person asks to put off, its line of frontier.md closed [-] … · defer case N, in a reply that leaves no line under the Cases heading of frontier.md open; a sprint item put off or a backlog item kept is not this reading
-checked: 2026-10-01
+checked: 2026-10-03
 origin: raw/2026-09-24/1916/ledger.md#case-405
 sprint: migration
 created: 2026-09-24
@@ -31,7 +31,7 @@ In the same reply the agent shows the Case in the short form — `context`, `pro
 
 ## Result
 
-2026-10-01, by hand, session 1237, the reply of 14:08:36 deferring C2, C3, C5-C9: each short-form Case shows context, problem and a then fence with one defer item and no other section; one LEDGER block of seven defer lines and no tool call after it; the agent wrote nothing into the plan file and the Spec hook wrote the seven under Deferred; no question asked about the defers; the Frontier shows C1 closed · sprint · defer and the others · defer case 570 to 576; with no open line under Cases the reply ended with the Frontier, and guppi onward --plan sent the agent on to /pre-spec; not exercised: a corrected wording with supersedes
+2026-10-03, at the /hi of session 1416, by hand, session 1341 (transcript 26e79919), the reply of 14:08:30 to the person's word putting the rest off: Cases 615–618 each in the short form, context, problem and a then fence with one defer item, no other section; one LEDGER block of four defer lines, no tool call after it, the ledger holding them at 14:08:32; the two tool calls before it read an earlier Spec and closed lines of frontier.md, neither wrote the plan file, and spec.md holds the four under `## Deferred`; no question asked for the defers; the Frontier shows C3–C6 closed `· defer case 615` to `618` and C1, C2 `· sprint · defer`; with no line under Cases open the reply ended with the Frontier and `uv run guppi onward --plan` sent the agent on to /pre-spec at 14:08:32; not exercised: a corrected wording with supersedes
 
 ## History
 
@@ -50,3 +50,4 @@ In the same reply the agent shows the Case in the short form — `context`, `pro
 - 2026-10-02 updated: moved to rule-orchestration; the Criterion replaced whole - the short form as orchestration.md sets it (case 595.10) · [[decision-case-595.10]]
 - 2026-10-03 updated: the Criterion replaced whole — the trigger is a decision put off, not an item of the sprint or the backlog; their closers are not this moment (case 609) · [[decision-case-609]]
 - 2026-10-03 updated: method names the kind of its moment (case 613.3) · [[decision-case-613.3]]
+- 2026-10-03 status: pending → passed · raw/2026-10-03/1416/ledger.md#L5

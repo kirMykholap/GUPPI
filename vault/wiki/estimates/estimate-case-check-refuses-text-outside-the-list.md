@@ -1,10 +1,11 @@
 ---
 type: estimate
 kind: QA
-status: pending
+status: passed
 target: "[[rule-case-check]]"
 purpose: Whether the Stop run of the Case check refuses a reply that shows a Case with a text of the main agent's own before its first Case heading, under a heading outside the list and the ratification, or before the last tool call of the turn
 method: uv run pytest tests/test_casecheck.py; by hand in a later session, the showings of Cases and the hook's refusals of them read in the transcript
+checked: 2026-10-03
 origin: raw/2026-10-03/0317/ledger.md#case-611
 sprint: migration
 created: 2026-10-03
@@ -27,6 +28,11 @@ Then:
 **－** On the re-fire (`stop_hook_active`) it exits 0, so the Case shown again after a refusal is not judged again.
 **－** It stores nothing and writes no file.
 
+## Result
+
+2026-10-03, at the /hi of session 1416: `uv run pytest tests/test_casecheck.py` 117 passed; by hand, session 1341 (transcript 26e79919): Case 614 shown twice, at 14:05:27 and 14:12:13, each reply opening with its `## Case 614 —` heading, then list items, a line indented under a list item and the `ratification` blockquote, the agent's own text after `---`, and no text of the main agent before the last tool call of either turn; no refusal of `uv run guppi casecheck` in the session, the only two Stop refusals being `uv run guppi onward --plan` at 14:08:32 and 14:12:51; not exercised: a live refusal, since no showing held text outside the list
+
 ## History
 
 - 2026-10-03 created · [[decision-case-611]]
+- 2026-10-03 status: pending → passed · raw/2026-10-03/1416/ledger.md#L1

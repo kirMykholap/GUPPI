@@ -1,10 +1,10 @@
 ---
 type: estimate
 kind: QA
-status: pending
+status: passed
 target: "[[rule-ledger-write]]"
 method: "pytest in tests/test_ledger.py and tests/test_gate.py with piped payloads against a temp vault; by hand once, the ledger of a session whose reply that ends Retro follows a refusal of a Stop hook in the same stretch: its lines written at that Stop, with its time"
-checked: 2026-09-30
+checked: 2026-10-03
 origin: raw/2026-09-09/ledger.md#case-10
 sprint: migration
 created: 2026-09-09
@@ -31,7 +31,7 @@ In a session with a `hi` recorded, every line `- decision[`, `- estimate[`, `- l
 
 ## Result
 
-2026-09-30, uv run pytest tests/test_ledger.py tests/test_gate.py: 93 passed; live: vault/raw/2026-09-30/2042/ledger.md holds 28 lines with their times, each decision line once though Cases 554, 555, 557 and 558 were ratified again with their lines repeated
+2026-10-03, at the /hi of session 1341: `uv run pytest tests/test_ledger.py tests/test_gate.py` 105 passed; by hand, session 0317 (transcript 5b311f89): in the stretch after the person's message at 04:51:52 the hook `uv run guppi onward --plan` refused the reply at 04:52:16; the reply that ends Retro at 05:05:59 carried 4 lines in its LEDGER block, and ledger lines 52-55 hold each once with 05:06:02, the time of that Stop
 
 ## History
 
@@ -65,3 +65,4 @@ In a session with a `hi` recorded, every line `- decision[`, `- estimate[`, `- l
 - 2026-09-30 status: pending → passed · raw/2026-09-30/2042/ledger.md#L32
 - 2026-10-01 updated: the Criterion replaced whole — the hook writes whatever stop_hook_active says, tells each refused line once a stretch, and tells no hi and its own error once a stretch (case 577.3) · [[decision-case-577.3]]
 - 2026-10-03 updated: method names the kind of its moment (case 613.3) · [[decision-case-613.3]]
+- 2026-10-03 status: pending → passed · raw/2026-10-03/1341/ledger.md#L3

@@ -118,7 +118,7 @@ update:
 - [x] update `rule-case-check`
 - [x] create `estimate-case-check-refuses-text-outside-the-list`
 - [x] update `insight-case-form-chat-form-read-by-no-script`
-- [ ] read `estimate-case-check-refuses-text-outside-the-list`
+- [x] read `estimate-case-check-refuses-text-outside-the-list`
 - [ ] read `estimate-orchestration-shows-the-built-case`
 ```
 
@@ -493,7 +493,7 @@ update:
 - [x] update `rule-estimates-schema`
 - [x] `uv run guppi render`: `vault/wiki/estimates/schema.yaml`
 - [x] create `estimate-lint-reports-a-method-tied-to-a-one-off-moment`
-- [ ] read `estimate-lint-reports-a-method-tied-to-a-one-off-moment`
+- [x] read `estimate-lint-reports-a-method-tied-to-a-one-off-moment`
 ```
 
 ### Case 613.2 — `/hi` reads a moment of an earlier session from the transcript of the session that held it
@@ -544,7 +544,7 @@ update:
 - [x] update `rule-skill-hi`
 - [x] `uv run guppi render`: `.claude/skills/hi/SKILL.md`
 - [x] update `estimate-hi-takes-its-readings`
-- [ ] read `estimate-hi-takes-its-readings`
+- [x] read `estimate-hi-takes-its-readings`
 ```
 
 ### Case 613.3 — The methods that tie a reading to a one-off moment name its kind

@@ -6,8 +6,9 @@ The file is not a document: this script writes it from what the vault already st
 it one line per item of its `then` blocks, the kind, the slug and the Case, read by the
 Spec reader of `guppi/materialize.py` (`read_specs`, `then_blocks`); then `## Deferred` —
 one line per item: each live page whose `deferred_by` is not empty, each Insight whose
-`status` is `open`, each line of the `## Backlog` of the sprint page `entity-sprint-<id>`,
-read by the item reader of `guppi/sprint.py`. A line holds the slug in a code span, the
+`status` is `open`, each line of the `## Backlog` of each sprint page `entity-sprint-<id>`
+— the live one, then each under `vault/archive/`, so the Backlog of a closed sprint stays in
+the list (case 628.12) — read by the item reader of `guppi/sprint.py`. A line holds the slug in a code span, the
 page's `purpose` — for an Insight its `pattern` and `severity` — and the count; a line of
 the Backlog that names no page stands by its text, and a slug there without a live page
 by the text after its ` — `. The count of an item is the number of sessions whose
@@ -42,8 +43,8 @@ from guppi.materialize import (
     then_blocks,
     units_with,
 )
-from guppi.pages import Page, read_vault, wiki_root
-from guppi.sprint import DASH, item_slugs, sprint_page
+from guppi.pages import Page, read_page, read_vault, wiki_root
+from guppi.sprint import DASH, PREFIX, item_slugs, sprint_page
 
 TARGET = "backlog.md"
 CARRY = "carry.md"
@@ -121,10 +122,29 @@ def describe(page: Page | None, fallback: str) -> str:
     return one_line(page.props.get("purpose"))
 
 
-def deferred(pages: dict[str, list[Page]], shown: set[str], sessions: Sessions) -> list[str]:
+def archived_sprint_pages(project_dir: Path) -> list[Page]:
+    """Each sprint page `entity-sprint-<id>` under `vault/archive/`, at any depth, in path
+    order: a closed sprint keeps its `## Backlog` in the list (case 628.12)."""
+    root = project_dir / "vault" / "archive"
+    if not root.is_dir():
+        return []
+    found = [read_page(p, "entities") for p in sorted(root.rglob(f"entities/{PREFIX}*.md"))]
+    return [p for p in found if not p.error]
+
+
+def sprint_pages(pages: dict[str, list[Page]], archived: list[Page]) -> list[Page]:
+    """The live sprint page, by `guppi/sprint.py`, then each archived one."""
+    live = sprint_page(pages)
+    return ([live] if live is not None else []) + list(archived)
+
+
+def deferred(
+    pages: dict[str, list[Page]], shown: set[str], sessions: Sessions, archived: list[Page] = ()
+) -> list[str]:
     """The lines of `## Deferred`: each live page with `deferred_by`, each open Insight,
-    each line of the sprint page's `## Backlog`; a slug in `shown` — under a conserved Spec
-    or of an earlier source — is passed by."""
+    each line of the `## Backlog` of each sprint page, live or under `vault/archive/` (case
+    628.12); a slug in `shown` — under a conserved Spec or of an earlier source — is passed
+    by."""
     live = [p for category in pages.values() for p in category if not p.error]
     by_slug = {p.slug: p for p in live}
     items: list[tuple[str | None, str]] = []  # (slug, description); no slug for a note
@@ -132,8 +152,7 @@ def deferred(pages: dict[str, list[Page]], shown: set[str], sessions: Sessions) 
         is_open = page.category == "insights" and page.props.get("status") == "open"
         if as_list(page.props.get("deferred_by")) or is_open:
             items.append((page.slug, describe(page, "")))
-    sprint = sprint_page(pages)
-    backlog = (sprint.section("## Backlog") or "") if sprint is not None else ""
+    backlog = "\n".join((p.section("## Backlog") or "") for p in sprint_pages(pages, archived))
     for raw in backlog.splitlines():
         line = raw.strip()
         if not line.startswith("- "):
@@ -165,7 +184,7 @@ def render(project_dir: Path, pages: dict[str, list[Page]]) -> tuple[str | None,
     blocks, slugs, error = conserved(project_dir)
     if error:
         return None, error
-    lines = deferred(pages, slugs, sessions_of(project_dir))
+    lines = deferred(pages, slugs, sessions_of(project_dir), archived_sprint_pages(project_dir))
     parts = [
         "# Backlog",
         "",

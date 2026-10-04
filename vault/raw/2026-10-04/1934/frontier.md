@@ -18,7 +18,7 @@ Backlog: 17 items
 - [ ] W5 — `estimate-case-check-sends-back-a-faulty-round` · brief
 - [ ] W6 — `estimate-case-check-sends-back-a-ratified-case-in-another-shape` · brief
 - [ ] W7 — `estimate-handoff-holds-each-fact-once` · brief
-- [ ] W8 — `estimate-hi-takes-a-conserved-spec` · brief
+- [x] W8 — `estimate-hi-takes-a-conserved-spec` · brief · work
 - [ ] W9 — `estimate-lint-runs-every-step` · brief
 - [x] W10 — `estimate-orchestration-signs-a-batch-together` · brief · work
 - [x] W11 — `estimate-ratification-ledger-line-form` · brief · work

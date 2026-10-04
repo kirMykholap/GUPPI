@@ -19,6 +19,10 @@ decision record of its own: its `decision` and `origin` by its id, `case_text` w
 `context`, `problem`, `recommend` and its `given` when it has one, `children` the `decision` of
 each sub-case in ledger order, `tags` the union of theirs, and no `targets` (case 544.6). What
 is missing is named (`incomplete`), never invented.
+The yaml's `sprint` is the first `## <id>` heading of `vault/wiki/sprint.md`, but in a unit
+whose ledger holds a `create` decision line of `entity-sprint-<id>` it is that `<id>`, so the
+session that opens a sprint after the close of the last one belongs to the new sprint
+(`opened_sprint`, case 628.3).
 A line the grammar does not parse goes under `unparsed`. A line whose lift raises — a `then`
 item of an unexpected shape, any error while the entry is built — becomes an entry `{line,
 text, failed}` without `kind`, reported on stderr as `materialize: line N: <message>`; the
@@ -1290,6 +1294,24 @@ def parent_record(
 # --- assembly -----------------------------------------------------------------------
 
 
+SPRINT_PAGE = "entity-sprint-"
+
+
+def opened_sprint(ledger: list[str]) -> str | None:
+    """The `<id>` of the first `create` decision line of an `entity-sprint-<id>` slug in a
+    unit's ledger, else None: the yaml's `sprint` of the unit that opens a sprint (case 628.3)."""
+    for line in ledger:
+        record = parse_line(line)
+        if (
+            record
+            and record["record"] == "decision"
+            and record["kind"] == "create"
+            and record["slug"].startswith(SPRINT_PAGE)
+        ):
+            return record["slug"][len(SPRINT_PAGE) :]
+    return None
+
+
 def sprint_id(project_dir: Path) -> str:
     path = project_dir / "vault" / "wiki" / "sprint.md"
     if path.exists():
@@ -1400,6 +1422,9 @@ def assemble(
         "decisions": [],
         "unparsed": [],
     }
+    opening = opened_sprint(ledger)  # case 628.3: the unit that opens a sprint belongs to it
+    if opening:
+        data["sprint"] = opening
     if is_session(unit):
         data["session"] = unit.split("/")[1]
     data["spec"] = [p.relative_to(project_dir).as_posix() for p in spec_files(project_dir, unit)]

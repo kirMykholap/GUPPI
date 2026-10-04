@@ -254,8 +254,11 @@ def write_all(project_dir: Path, outputs: dict[str, str]) -> None:
 
 def command_line(command: str) -> re.Pattern[str]:
     """An unticked task line that opens with the code span holding `command`; a `read`
-    line that names the command in a later span is not one (case 235)."""
-    return re.compile(r"^- \[ \] `[^`]*" + re.escape(command) + r"[^`]*`")
+    line that names the command in a later span is not one (case 235). The command matches
+    only where no `-` or word character follows it, so `guppi sprint` does not match a
+    `guppi sprint-close` line, which that command ticks itself (case 628.5). The one matcher
+    of the tickers of `render`, `sprint`, `glossary` and `sprint-close`."""
+    return re.compile(r"^- \[ \] `[^`]*" + re.escape(command) + r"(?![-\w])[^`]*`")
 
 
 def applied_whole(data: dict | None) -> bool:

@@ -61,6 +61,15 @@ def write_event_log(project_dir, text, day=TODAY):
     path = project_dir / "vault" / "raw" / day.isoformat() / "event_log.md"
     path.parent.mkdir(parents=True, exist_ok=True)
     path.write_text(text, encoding="utf-8")
+    sprint_page(project_dir)
+
+
+def sprint_page(project_dir, slug="entity-sprint-migration"):
+    """A live sprint page, so a decision line is not refused for a missing sprint (case 628.3)."""
+    path = project_dir / "vault" / "wiki" / "entities" / f"{slug}.md"
+    path.parent.mkdir(parents=True, exist_ok=True)
+    path.write_text("---\ntype: entity\nstatus: draft\n---\n", encoding="utf-8")
+    return path
 
 
 def ledger_file(project_dir, day=TODAY, session="1501"):
@@ -704,7 +713,7 @@ def test_the_hook_and_materialize_judge_a_mark_alike(working):
     (unit / "ledger.md").write_text(
         "".join(f"{timed(line)}\n" for line in lines), encoding="utf-8", newline="\n"
     )
-    (working / "vault" / "wiki").mkdir(parents=True)
+    (working / "vault" / "wiki").mkdir(parents=True, exist_ok=True)
     (working / "vault" / "wiki" / "sprint.md").write_text("# Sprint\n\n## migration\n")
     materialize.run(
         ["--date", "2026-09-10"], stdout=io.StringIO(), stderr=io.StringIO(), project_dir=working
@@ -971,3 +980,46 @@ def test_refusals_of_two_hooks_after_two_replies_carry_the_reply_they_follow(tmp
     }
     assert ledger.own_refusals(payload, ledger.COMMAND) == ["a lesson", "a reading"]
     assert ledger.refusals({"transcript_path": str(tmp_path / "none.jsonl")}, onward) is None
+
+
+# --- case 628.3: no sprint open ---------------------------------------------------------
+
+DEFER = "- decision[case 11][defer][rule-x]{ref:rule-x}"
+OPENING = "- decision[case 12][create][entity-sprint-next]{ref:entity-sprint}{tags:sprint}"
+
+
+def without_sprint(tmp_path):
+    write_event_log(tmp_path, EVENT_LOG_WITH_HI)
+    (tmp_path / "vault" / "wiki" / "entities" / "entity-sprint-migration.md").unlink()
+    return tmp_path
+
+
+def test_sprint_missing_refuses_a_decision_line_and_passes_a_defer_a_reading_a_lesson(tmp_path):
+    without_sprint(tmp_path)
+    reply = ledger_block(DECISION, DEFER, ESTIMATE, LESSON)
+    code, err = run(payload(last_assistant_message=reply), tmp_path)
+    assert code == 2
+    assert err.count("no sprint is open") == 1 and "rule-ledger-write" in err
+    assert ledger_text(tmp_path) == f"{timed(DEFER)}\n{timed(ESTIMATE)}\n{timed(LESSON)}\n"
+
+
+def test_sprint_create_in_the_same_reply_lets_the_lines_through(tmp_path):
+    without_sprint(tmp_path)
+    code, err = run(payload(last_assistant_message=ledger_block(OPENING, DECISION)), tmp_path)
+    assert (code, err) == (0, "")
+    assert ledger_text(tmp_path) == f"{timed(OPENING)}\n{timed(DECISION)}\n"
+
+
+def test_sprint_create_in_the_ledger_lets_a_later_line_through(tmp_path):
+    without_sprint(tmp_path)
+    ledger_file(tmp_path).parent.mkdir(parents=True, exist_ok=True)
+    ledger_file(tmp_path).write_text(timed(OPENING) + "\n", encoding="utf-8")
+    code, err = run(payload(last_assistant_message=ledger_block(DECISION)), tmp_path)
+    assert (code, err) == (0, "")
+    assert ledger_text(tmp_path).endswith(f"{timed(DECISION)}\n")
+
+
+def test_sprint_live_page_accepts_a_decision_line(working):
+    code, err = run(payload(last_assistant_message=ledger_block(DECISION)), working)
+    assert (code, err) == (0, "")
+    assert ledger_text(working) == f"{timed(DECISION)}\n"

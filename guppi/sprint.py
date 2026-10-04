@@ -29,7 +29,8 @@ vault/wiki/sprint.md differs from entity-sprint-<id>` — and exit 1 when the fi
 silence and exit 0 when it is the same, nothing written either way; `make lint` runs it
 after `render --check` (case 227). Once the plain `guppi sprint` wrote the file and exits
 0, it ticks every unticked task line that opens with a code span holding `guppi sprint` —
-never a `read` line that names the command later — in the `spec.md` of every unit under
+never a `read` line that names the command later, nor a line whose code span holds `guppi
+sprint-close`, which that command ticks itself (case 628.5) — in the `spec.md` of every unit under
 `raw/` whose yaml is applied whole, a carried-over unit passed by; `--check` and an exit 1
 tick nothing (case 250.2; the helper is `render.tick_command_lines`). The file holds
 nothing beyond this: the librarian runs the script after `cleanup` and `render`, and the

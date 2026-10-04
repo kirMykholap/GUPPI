@@ -1411,3 +1411,148 @@ def test_error_an_empty_payload_exits_0_with_its_line(working):
 def test_error_an_error_of_the_subagent_run_exits_0_with_its_line(working, monkeypatch):
     monkeypatch.setattr(casecheck, "check_answer", boom)
     assert answer(working, ANSWER) == (0, "casecheck: not checked: boom\n")
+
+
+# --- the other Cases of the session (case 629.1) --------------------------------------------
+
+
+def setting(case, status):
+    """ANSWER as Case `case`, its `update` of `rule-x` setting `status`."""
+    return (
+        ANSWER.replace("## Case 7 — example", f"## Case {case} — example")
+        .replace("case 7", f"case {case}")
+        .replace("estimate-x-works", f"estimate-x-works-{case}")
+        .replace(
+            ">   - change: `the text changed",
+            f">   - set: `{{status: {status}}}`\n>   - change: `the text changed",
+        )
+    )
+
+
+def plan_with(project, text):
+    path = project / ".claude" / "plans" / "plan.md"
+    path.write_text("# Spec — 2026-09-09, session 1501\n\n" + text, encoding="utf-8")
+
+
+PLANNED_5 = (
+    "## Case 5 — planned\n\n```then\nupdate:\n- slug: rule-x\n  set:\n    status: built\n```\n"
+)
+
+
+def test_subagent_session_clash_with_a_case_of_the_plan_is_sent_back(working):
+    plan_with(working, PLANNED_5)
+    code, err = answer(working, setting(7, "draft"))
+    assert code == 2 and "case 7: rule-x: sets status to another value than case 5" in err
+    assert not case_path(working, "7").exists()
+
+
+def test_subagent_session_clash_with_a_stored_case_not_ratified_is_sent_back(working):
+    assert answer(working, setting(6, "built")) == (0, "")
+    code, err = answer(working, setting(7, "draft"))
+    assert code == 2 and "case 7: rule-x: sets status to another value than case 6" in err
+
+
+def test_subagent_session_clash_none_with_a_stored_case_with_findings(working):
+    faulty = setting(6, "built").replace("> - [ ] read `estimate-x-works-6`\n", "")
+    assert answer(working, faulty)[0] == 2
+    assert store(working)["6"]["findings"]
+    assert answer(working, setting(7, "draft")) == (0, "")
+
+
+def test_subagent_session_clash_none_with_an_entry_joined_with_an_agent_id(working):
+    assert answer(working, setting(6, "built")) == (0, "")
+    path = casecheck.store_of(working / ".claude" / "plans" / "plan.md")
+    held = store(working)
+    path.write_text(json.dumps({"6@b2": held["6"]}), encoding="utf-8")
+    assert answer(working, setting(7, "draft")) == (0, "")
+
+
+def test_subagent_session_clash_none_with_a_case_a_supersedes_mark_names(working):
+    assert answer(working, setting(6, "built")) == (0, "")
+    ledger(working, "decision[case 8][update][rule-y]{ref:rule-y}{supersedes:case 6}")
+    assert answer(working, setting(7, "draft")) == (0, "")
+
+
+def test_subagent_session_clash_none_with_the_answers_own_earlier_version(working):
+    assert answer(working, setting(7, "built")) == (0, "")
+    assert answer(working, setting(7, "draft")) == (0, "")
+
+
+def test_subagent_session_clash_none_between_two_other_cases(working):
+    plan_with(working, PLANNED_5)
+    assert answer(working, setting(6, "draft"))[0] == 2  # 6 clashes with the plan's 5
+    assert answer(working, ANSWER) == (0, "")  # 7 sets nothing; 5 and 6 are not its finding
+
+
+def test_subagent_session_clash_the_judgment_is_the_one_of_prespec():
+    blocks = {"5": {"update": [{"slug": "rule-x", "sections": {"Purpose": "a"}}]}}
+    answer_blocks = {"7": {"update": [{"slug": "rule-x", "sections": {"Purpose": "b"}}]}}
+    found = casecheck.session_clashes(answer_blocks, blocks)
+    assert found == [
+        f
+        for f in casecheck.check_same_target({**blocks, **answer_blocks})
+        if f.startswith("case 7")
+    ]
+    assert found == ["case 7: rule-x: writes the section Purpose that case 5 writes too"]
+
+
+# --- a lone sub-case judged with its stored parent (case 629.3) ------------------------------
+
+
+PARENT_GIVEN = PARENT.replace(
+    "> **recommend:**\n> A.\n\n",
+    "> **recommend:**\n> A.\n\n> **given:**\n> `rule-x` — the rule.\n"
+    "> **＋** `estimate-x-works-1` — its Estimate.\n\n",
+)
+
+
+def lone(then="The file is written."):
+    """Sub-case 9.1 with no `given` of its own."""
+    return sub_case("9.1", then).replace(
+        "> **given:**\n> `rule-x` — the rule.\n> **＋** `estimate-x-works-1` — its Estimate.\n\n",
+        "",
+    )
+
+
+def test_subagent_lone_sub_case_naming_what_the_parent_given_lacks_gets_a_finding(working):
+    assert answer(working, PARENT_GIVEN + sub_case("9.1")) == (0, "")
+    code, err = answer(working, lone("The page `rule-zed` is written."))
+    assert code == 2 and "case 9.1:" in err and "rule-zed" in err
+    assert "case 9:" not in err.replace("case 9.1:", "")
+
+
+def test_subagent_lone_sub_case_whose_names_the_parent_gives_passes(working):
+    assert answer(working, PARENT_GIVEN + sub_case("9.1")) == (0, "")
+    assert answer(working, lone("The page `rule-x` is written again.")) == (0, "")
+
+
+def test_subagent_lone_a_finding_of_the_stored_parent_is_not_given_to_the_answer(working):
+    assert answer(working, PARENT_GIVEN + sub_case("9.1")) == (0, "")
+    path = casecheck.store_of(working / ".claude" / "plans" / "plan.md")
+    held = store(working)
+    held["9"]["text"] = held["9"]["text"].replace("> C.", "> Контекст.")
+    path.write_text(json.dumps(held, ensure_ascii=False), encoding="utf-8")
+    assert answer(working, lone()) == (0, "")
+
+
+def test_subagent_lone_with_no_stored_parent_no_frame_finding(working):
+    assert answer(working, lone("The page `rule-zed` is written.")) == (0, "")
+
+
+# --- the titles of the rounds in the stored recommend (case 629.4) ---------------------------
+
+
+def test_subagent_rounds_a_sub_case_alone_finds_its_titles_in_the_stored_parent(working):
+    items = "> - **Which page changes?**\n>   - Recommended: (a).\n>   - Answer: agreed.\n"
+    parent = PARENT.replace("> **recommend:**\n> A.\n", "> **recommend:**\n" + items)
+    assert answer(working, parent + sub_case("9.1")) == (0, "")
+    path = transcript(
+        working, [text(round_of("Which page changes?"))], [text(sub_case("9.1", "Again."))]
+    )
+    assert answer(working, "", agent_transcript_path=path) == (0, "")
+    missing = transcript(
+        working, [text(round_of("Which test?"))], [text(sub_case("9.1", "Once more."))]
+    )
+    code, err = answer(working, "", agent_transcript_path=missing)
+    assert code == 2
+    assert "case 9: recommend holds no item for the question of the rounds: Which test?" in err

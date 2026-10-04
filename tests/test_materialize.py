@@ -2546,3 +2546,23 @@ def test_the_hook_and_materialize_judge_a_comment_alike(tmp_path, purpose):
     _, errors = ratified.deferred_section(spec, "5", records)
     refused = any("holds a YAML comment" in e for e in errors)
     assert marked == refused == (purpose in COMMENTED)
+
+
+def test_sprint_of_a_unit_that_creates_a_sprint_page_is_its_id(tmp_path):
+    """Case 628.3: the unit that opens a sprint belongs to it; any other unit takes the
+    heading of `sprint.md`."""
+    opening = (
+        "- 16:00:00 decision[case 9][create][entity-sprint-next]{ref:entity-sprint}{tags:sprint}\n"
+    )
+    seed(tmp_path, ledger=LEDGER + opening)
+    run(tmp_path)
+    assert load(tmp_path)["sprint"] == "next"
+    assert materialize.opened_sprint(LEDGER.splitlines()) is None
+    moc = "- 16:00:00 decision[case 9][create][entity-sprint]{ref:entity-sprint}\n"
+    assert materialize.opened_sprint([moc]) is None
+
+
+def test_sprint_of_a_unit_with_no_sprint_page_is_the_heading(tmp_path):
+    seed(tmp_path)
+    run(tmp_path)
+    assert load(tmp_path)["sprint"] == "migration"

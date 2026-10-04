@@ -29,6 +29,7 @@ from guppi import (
     render,
     spec,
     sprint,
+    sprint_close,
     tail,
 )
 
@@ -55,6 +56,7 @@ COMMANDS = {
     "recall": recall.run,
     "render": render.run,
     "sprint": sprint.run,
+    "sprint-close": sprint_close.run,
     "spec": spec.run,
     "tail": tail.run,
 }

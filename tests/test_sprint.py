@@ -309,6 +309,19 @@ def test_a_plain_sprint_ticks_the_sprint_lines_of_every_applied_unit(tmp_path):
         )
 
 
+def test_a_sprint_close_line_is_left_beside_a_ticked_sprint_line(tmp_path):
+    """Case 628.5: `guppi sprint` does not match a `guppi sprint-close` line; that command
+    ticks it itself."""
+    seed(tmp_path)
+    spec = raw_unit(tmp_path, "2026-10-05/1200")
+    close = "- [ ] `uv run guppi sprint-close --sprint migration --apply` in the librarian's run\n"
+    spec.write_text(SPRINT_SPEC + close, encoding="utf-8", newline="\n")
+    assert run(tmp_path) == (0, "", "")
+    text = spec.read_text(encoding="utf-8")
+    assert "- [x] `uv run guppi sprint` at the librarian's run" in text
+    assert close in text
+
+
 def test_check_and_an_exit_1_tick_nothing(tmp_path):
     seed(tmp_path)
     spec = raw_unit(tmp_path, "2026-09-18/1957")

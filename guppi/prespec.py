@@ -999,7 +999,9 @@ def check_same_target(blocks: dict) -> list[str]:
     plan's order, so the check after a write gives it to the Case just written. Two items of
     one Case are not compared here — a second item of one kind and slug keeps the finding of
     `check_lines` (case 426) — and different fields, sections or anchors of one page are no
-    finding: their `replace` pairs are judged by `check_pairs`."""
+    finding: their `replace` pairs are judged by `check_pairs`. Its second caller is the check
+    of the answer of `case-guppi` at `SubagentStop`, `casecheck.session_clashes`, which runs it
+    over the other Cases of the session and the answer's Cases last (case 629.1)."""
     seen: dict[str, list[tuple[str, dict]]] = {}  # slug → (case, item) in plan order
     findings: list[str] = []
     for case, block in blocks.items():

@@ -33,7 +33,22 @@ no Case heading — its rounds — and takes the title of each question from its
 `❓ **Q<n>** - **<title>**:`, a round that `round_form` finds out of form giving no title
 (case 601.5); a title that no item of a `recommend` of the answer opens with,
 in bold, is a finding of the top-level Case, a title asked in more than one round looked for
-once and the words of an item after its title not judged (case 544.3). It runs over the same
+once and the words of an item after its title not judged (case 544.3); a title in the
+`recommend` of an entry of the store under the number alone, of the family of the answer's
+Cases, that the answer does not hold, is held too, so an answer of sub-cases alone keeps its
+parent's `recommend` (`stored_family`, case 629.4). An answer of sub-cases alone of a Case N
+whose entry the store holds under the number alone is judged with the section of that N,
+built by `ratified.case_section`, before them in the Spec text, so the frame of a sub-case
+with no `given` of its own reads the `given` of N, as `/pre-spec` reads it in the plan; a
+finding or a note of N itself is not given to the answer, and N is neither stored nor
+written again (`stored_parents`, case 629.3). The Cases of the answer are judged with the
+other Cases of the session by `prespec.check_same_target`, imported: each Case of the plan
+file, then each entry of the store under the number alone that the plan does not hold, its
+section built by `ratified.case_section` — leaving out an entry with findings, a Case a
+`{supersedes}` mark of the session's ledger names, a Case the answer holds and the family of
+a top-level Case the answer holds — and the answer's Cases last; a clash is a finding of the
+Case of the answer it opens with, and a clash inside the answer, which `judge` gives, or
+between two other Cases is none (`other_blocks`, `session_clashes`, case 629.1). It runs over the same
 Spec text the language finding of `/pre-spec`,
 `prespec.check_untranslated`, imported: a name, `context` or `problem` that holds a letter
 outside the script of the documentation language is a finding of its Case — a Latin letter in
@@ -214,11 +229,13 @@ from guppi.materialize import (
     schema_changed,
     split_cases,
     tagged_blocks,
+    then_blocks,
 )
 from guppi.prespec import (
     BACKLOG_SOURCE,
     FINDING_CASE,
     NOTE_CASE,
+    check_same_target,
     check_untranslated,
     decided_on_its_page,
     deferred_pages,
@@ -529,14 +546,35 @@ def recommend_titles(cases: dict) -> set[str]:
     return titles
 
 
-def check_rounds(cases: dict, rounds: list[str]) -> list[tuple[str, str]]:
+def stored_family(cases: dict, store: dict | None) -> dict[str, list[str]]:
+    """Case id → its lines in the chat form, for each entry of the store under the number
+    alone, of the family of a Case of the answer, that the answer does not hold (cases
+    629.3, 629.4)."""
+    tops = {top_case(case) for case in cases}
+    found: dict[str, list[str]] = {}
+    for key, entry in (store or {}).items():
+        key = str(key)
+        if AGENT_KEY in key or key in cases or top_case(key) not in tops:
+            continue
+        if isinstance(entry, dict) and isinstance(entry.get("text"), str):
+            found.update(
+                {case: lines for case, lines in split_cases(entry["text"]).items() if case == key}
+            )
+    return found
+
+
+def check_rounds(
+    cases: dict, rounds: list[str], store: dict | None = None
+) -> list[tuple[str, str]]:
     """Case 544.3: `(top-level case, finding)` for each title of a question of the rounds
     that no item of a `recommend` of the answer opens with, in bold; a title asked in more
     than one round is looked for once, and the words of an item after its title are not
-    judged."""
+    judged. A title in the `recommend` of an entry of the store under the number alone, of
+    the family of the answer's Cases, that the answer does not hold, is held too: an answer of
+    sub-cases alone keeps its parent's `recommend` (case 629.4)."""
     if not rounds or not cases:
         return []
-    held = recommend_titles(cases)
+    held = recommend_titles(cases) | recommend_titles(stored_family(cases, store))
     top = top_case(next(iter(cases)))
     return [
         (top, f"case {top}: recommend holds no item for the question of the rounds: {title}")
@@ -603,6 +641,66 @@ def shape_findings(cases: dict, records: list[dict], store: dict) -> list[tuple[
     return findings
 
 
+def superseded_cases(window: list[str]) -> list[str]:
+    """Each Case a `{supersedes:case N}` mark of the session's ledger names."""
+    return [n for record in ledger_records(list(window)) for n in record.get("supersedes") or []]
+
+
+def other_blocks(cases: dict, plan: str, store: dict | None, window: list[str]) -> dict[str, dict]:
+    """Case 629.1: Case id → its `then` block, for the other Cases of the session in the
+    order they are judged: each Case of the plan, then each entry of the store under the
+    number alone that the plan does not hold — its section built by `ratified.case_section` —
+    leaving out an entry with findings, a Case a `{supersedes}` mark of the ledger names, a
+    Case the answer holds and the family of a top-level Case the answer holds."""
+    tops = [case for case in cases if "." not in case]
+    retired = superseded_cases(window)
+
+    def left_out(case: str) -> bool:
+        return (
+            case in cases
+            or any(in_family(case, top) for top in tops)
+            or any(in_family(case, n) for n in retired)
+        )
+
+    blocks: dict[str, dict] = {}
+    planned = split_cases(plan or "")
+    for case, lines in planned.items():
+        if not left_out(case):
+            blocks[case] = then_blocks(lines)[0]
+    for key, entry in (store or {}).items():
+        key = str(key)
+        if AGENT_KEY in key or key in planned or left_out(key) or not isinstance(entry, dict):
+            continue
+        if entry.get("findings") or not isinstance(entry.get("text"), str):
+            continue
+        chat = split_cases(entry["text"]).get(key)
+        if chat is None:
+            continue
+        section, errors = case_section(key, headings(entry["text"]).get(key, ""), chat, {})
+        if section and not errors:
+            blocks[key] = then_blocks(section)[0]
+    return blocks
+
+
+def session_clashes(answer: dict[str, dict], others: dict[str, dict]) -> list[str]:
+    """Case 629.1: the clashes of the answer's Cases with the other Cases of the session, by
+    `prespec.check_same_target`, imported — the one judgment `/pre-spec` and the check after
+    ratification run. The answer's Cases come last, so a finding opens with a Case of the
+    answer; a clash inside the answer, which `judge` already gives, and one between two other
+    Cases are left out."""
+    if not others:
+        return []
+    inside = set(check_same_target(answer))
+    combined = {**others, **answer}
+    return [
+        finding
+        for finding in check_same_target(combined)
+        if finding not in inside
+        and (match := FINDING_CASE.match(finding))
+        and match.group(1) in answer
+    ]
+
+
 def check_answer(
     text: str,
     project_dir: Path,
@@ -610,6 +708,7 @@ def check_answer(
     frontier: Path | None = None,
     rounds: list[str] = (),
     store: dict | None = None,
+    plan: str = "",
 ) -> tuple[dict[str, list[str]], dict[str, list[str]]]:
     """Case id → its findings, and case id → its notes, for every Case of an answer of
     `case-guppi`. The categories whose schema rule the lines of the `ratification` fences or
@@ -622,7 +721,11 @@ def check_answer(
     language finding of `/pre-spec`, `check_untranslated`, runs over the same Spec text as
     `judge`, each hit a finding of its Case (case 537). The notes are those of
     `prespec.promise_notes` on the answer — a Criterion line not carried, a `then` line shared
-    by siblings (cases 472.1, 472.2)."""
+    by siblings (cases 472.1, 472.2). `plan`, the text of the plan file, with `store`, adds the
+    check of the answer's Cases against the other Cases of the session, `session_clashes`
+    (case 629.1). An answer of sub-cases alone is judged with the section of its stored
+    parent before them, so the frame of a sub-case reads the parent's `given`; a finding or a
+    note of that parent is not given to the answer (case 629.3)."""
     cases = split_cases(text)
     heads = headings(text)
     records = ratification_records(cases)
@@ -635,6 +738,7 @@ def check_answer(
     }
     found: dict[str, list[str]] = {case: [] for case in cases}
     spec: list[str] = ["# the answer of case-guppi", ""]
+    spec += stored_parents(cases, store)  # case 629.3: before the sub-cases it frames
     for case, lines in cases.items():
         found[case] += form_findings(case, lines, cases)
         section, errors = case_section(case, heads[case], lines, refs, keys_for=keys_for)
@@ -646,12 +750,23 @@ def check_answer(
     ):
         match = FINDING_CASE.match(finding)
         case = match.group(1) if match else ""
-        found[case if case in found else next(iter(cases))].append(finding)
+        if case in found or not match:
+            found[case if case in found else next(iter(cases))].append(finding)
+    if store is not None:  # case 629.1: the other Cases of the session
+        answer = {
+            case: then_blocks(lines)[0]
+            for case, lines in split_cases(spec_text).items()
+            if case in cases
+        }
+        for finding in session_clashes(answer, other_blocks(cases, plan, store, window)):
+            found[FINDING_CASE.match(finding).group(1)].append(finding)
     shapes = []
     if store is not None:
         shapes = shape_findings(cases, ledger_records(window), store)
     for top, finding in (
-        check_backlog(records, frontier, project_dir) + check_rounds(cases, list(rounds)) + shapes
+        check_backlog(records, frontier, project_dir)
+        + check_rounds(cases, list(rounds), store)
+        + shapes
     ):
         family = [c for c in found if c == top or c.startswith(f"{top}.")]
         found[family[0] if family else next(iter(cases))].append(finding)
@@ -659,8 +774,29 @@ def check_answer(
     for note in promise_notes(spec_text, project_dir):
         match = NOTE_CASE.match(note)
         case = match.group(1) if match else ""
-        notes[case if case in notes else next(iter(cases))].append(note)
+        if case in notes or not match:
+            notes[case if case in notes else next(iter(cases))].append(note)
     return found, notes
+
+
+def stored_parents(cases: dict, store: dict | None) -> list[str]:
+    """Case 629.3: the Spec section of the stored top-level Case of each family the answer
+    holds by sub-cases alone, built by `ratified.case_section` from its entry under the number
+    alone; none when the store holds no such entry."""
+    lines: list[str] = []
+    for top in dict.fromkeys(top_case(case) for case in cases):
+        if top in cases:
+            continue
+        entry = (store or {}).get(top)
+        if not isinstance(entry, dict) or not isinstance(entry.get("text"), str):
+            continue
+        chat = split_cases(entry["text"]).get(top)
+        if chat is None:
+            continue
+        section, errors = case_section(top, headings(entry["text"]).get(top, ""), chat, {})
+        if section and not errors:
+            lines += section
+    return lines
 
 
 def outputs(record: dict) -> list[str]:
@@ -817,7 +953,10 @@ def subagent(payload: dict, project_dir: Path, now, stderr) -> int:
     store = read_store(plan)
     window = ledger_of(folder)
     frontier = folder / "frontier.md" if folder is not None else None
-    found, notes = check_answer(text, project_dir, window, frontier, round_titles(payload), store)
+    plan_text = plan.read_text(encoding="utf-8")  # the session's other Cases (case 629.1)
+    found, notes = check_answer(
+        text, project_dir, window, frontier, round_titles(payload), store, plan_text
+    )
     agent_id = str(payload.get("agent_id") or "")
     apart = clashes(cases, store, agent_id)  # a number another agent holds (case 610.2)
     if apart:

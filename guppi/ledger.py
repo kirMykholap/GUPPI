@@ -95,6 +95,14 @@ finished, naming the decision lines of the sub-cases of N that stand in the sess
 there are any. A refused line from an earlier text is judged again at every `Stop`, without
 a word, and is written at the first `Stop` where a decision line of its Case stands in the
 ledger before it.
+
+No sprint, no decision (case 628.3). While no live page `vault/wiki/entities/entity-sprint-<id>.md`
+stands — after the close of a sprint — a fresh decision line other than a `defer` is not
+written until the session's ledger or the lines of the same `Stop` hold a `create` decision
+line of an `entity-sprint-` slug, so the session after a close opens the next sprint first.
+Readings and lessons pass. The hook exits 2 with one stderr line per refused line only when
+it stands in the reply just finished, and the line is written at the first `Stop` after the
+`create` stands. Judged by `refused_without_sprint`, over lines read by `parse_line`.
 """
 
 import json
@@ -508,6 +516,27 @@ def refused_marks(
     return refused
 
 
+SPRINT_PREFIX = "entity-sprint-"
+
+
+def refused_without_sprint(project_dir: Path, fresh: list[str], written: list[str]) -> list[str]:
+    """Each fresh decision line but a `defer` while no live sprint page stands, until the
+    session's ledger or the lines of the same `Stop` hold a `create` decision line of an
+    `entity-sprint-` slug: the session after the close of a sprint opens the next sprint
+    first (case 628.3). Readings and lessons pass. The lines are read by `parse_line` of
+    `guppi/materialize.py`, the one parse of a ledger line."""
+    from guppi.materialize import parse_line
+
+    entities = project_dir / "vault" / "wiki" / "entities"
+    if entities.is_dir() and any(entities.glob(f"{SPRINT_PREFIX}*.md")):
+        return []
+    records = [(line, parse_line(f"- {body(line)}")) for line in written + fresh]
+    decisions = [(line, r) for line, r in records if r and r["record"] == "decision"]
+    if any(r["kind"] == "create" and r["slug"].startswith(SPRINT_PREFIX) for _, r in decisions):
+        return []
+    return [line for line, r in decisions if line in fresh and r["kind"] != "defer"]
+
+
 def append(path: Path, lines: list[str]) -> None:
     path.parent.mkdir(parents=True, exist_ok=True)
     with path.open("a", encoding="utf-8", newline="\n") as handle:
@@ -551,10 +580,12 @@ def run(argv, *, stdin=None, stderr=None, project_dir: Path | None = None, now=N
         refused = refused_readings(fresh, changed_by_session(written + fresh))
         lessons = refused_lessons(fresh)
         marks = refused_marks(fresh, written, {line for line, _ in lessons})  # case 497.1
+        unopened = refused_without_sprint(project_dir, fresh, written)  # case 628.3
         out = (
             {line for line, _ in refused}
             | {line for line, _ in lessons}
             | {line for line, _, _, _ in marks}
+            | set(unopened)
         )
         fresh = [line for line in fresh if line not in out]
         if fresh:
@@ -589,6 +620,13 @@ def run(argv, *, stdin=None, stderr=None, project_dir: Path | None = None, now=N
                     f"ledger: lesson[{slug}] not written — {{addressed_by:case {case}}} names "
                     f"no decision line before it in this session{named}: write the line again "
                     "after the decision line of the Case that closed the cause, naming that Case."
+                )
+        for line in unopened:
+            if body(line) in finished:
+                messages.append(
+                    f"ledger: line not written — no sprint is open: {body(line)}. Open the next "
+                    "sprint first: ratify the Case that creates entity-sprint-<id>, then repeat "
+                    "the line; a defer, a reading and a lesson pass."
                 )
         loud = untold(messages, told, payload)  # case 577.3: each refused line once a stretch
         for message in loud:

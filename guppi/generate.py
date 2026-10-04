@@ -5,8 +5,10 @@ writes nothing an entry does not carry: no section is derived from a ref field, 
 from a flag (cases 166.2, 194.1, 201). Rule page: `vault/wiki/rules/rule-page-generation.md`.
 
 One entry, one page (case 201.1). A `create` becomes a page: `type`, the entry's `fields`,
-`status` by category (`INITIAL_STATUS`), `origin`, `sprint` (the first `## <id>` heading of
-`sprint.md`), `created` (the yaml's date), `tags`; the body from `sections`, `## Purpose`
+`status` by category (`INITIAL_STATUS`), `origin`, `sprint` (the yaml's `sprint`, which
+`guppi materialize` takes from the first `## <id>` heading of `sprint.md` or, in a unit whose
+ledger creates `entity-sprint-<id>`, from that `<id>` (case 628.6); else the first `## <id>`
+heading of `sprint.md`), `created` (the yaml's date), `tags`; the body from `sections`, `## Purpose`
 from `purpose` on a rule or an entity; a `ref` lands in the parent's `children` or the
 target's `estimates`, History `child <slug> added` / `estimate <slug> added`, settled at
 the end of the run when the parent comes later in the yaml. An Estimate page carries

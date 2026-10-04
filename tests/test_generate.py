@@ -186,6 +186,19 @@ CHILD_ESTIMATE = create(
 )
 
 
+def test_a_created_page_takes_the_sprint_of_its_yaml_over_the_heading(tmp_path):
+    """Case 628.6: `sprint` is the yaml's, which `materialize` sets to the new sprint's id in
+    the unit that creates its page; the heading of `sprint.md` names the closed one."""
+    seed(tmp_path, entries=[ROOT])
+    path = tmp_path / "vault" / "raw" / DATE / "materialize.yaml"
+    data = yaml.safe_load(path.read_text(encoding="utf-8"))
+    data["sprint"] = "next"
+    path.write_text(yaml.safe_dump(data, allow_unicode=True, sort_keys=False), encoding="utf-8")
+    code, _, err = run(tmp_path)
+    assert code == 0, err
+    assert props(page(tmp_path, "rules", "rule-root"))["sprint"] == "next"
+
+
 def test_creates_yield_conformant_pages_with_backlinks_in_order(tmp_path):
     seed(tmp_path, entries=[CHILD, CHILD_ESTIMATE, ROOT])  # the parent comes last, on purpose
     (tmp_path / "guppi").mkdir()

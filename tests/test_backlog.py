@@ -206,6 +206,37 @@ def test_an_open_insight_with_deferred_by_stands_once_by_its_pattern(tmp_path):
     assert "- `insight-open` — a pattern seen twice · severity 2 · put off in 0 sessions\n" in text
 
 
+def test_the_backlog_of_an_archived_sprint_page_stays_beside_the_live_one(tmp_path):
+    """Case 628.12: the `## Backlog` of each sprint page, live or under `vault/archive/`; a
+    slug of both stands once."""
+    seed(tmp_path)
+    closed = (
+        "---\ntype: entity\nstatus: archived\n---\n\n## Backlog\n\n"
+        "- [[rule-in-backlog]] — named by both sprints\n"
+        "- the merge of the closed sprint into main\n"
+    )
+    write(
+        tmp_path
+        / "vault"
+        / "archive"
+        / "old"
+        / "2026-10-05"
+        / "1200"
+        / "entities"
+        / "entity-sprint-old.md",
+        closed,
+    )
+    assert run(tmp_path) == (0, "", "")
+    text = rendered(tmp_path)
+    assert text.count("`rule-in-backlog`") == 1
+    assert "- the merge of the closed sprint into main · put off in 0 sessions\n" in text
+    (tmp_path / "vault" / "wiki" / "entities" / "entity-sprint-migration.md").unlink()
+    assert run(tmp_path) == (0, "", "")
+    text = rendered(tmp_path)
+    assert "- `rule-in-backlog` — waits its turn · put off in 0 sessions\n" in text
+    assert "- the merge of the closed sprint into main · put off in 0 sessions\n" in text
+
+
 def test_no_sprint_page_leaves_the_other_sources(tmp_path):
     seed(tmp_path)
     (tmp_path / "vault" / "wiki" / "entities" / "entity-sprint-migration.md").unlink()

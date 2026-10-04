@@ -2,7 +2,7 @@
 type: rule
 kind: Leaf
 purpose: Prevents a ratified decision from ending the session without a page, or a page from carrying a field nobody ratified
-status: built
+status: draft
 enforcement: check
 implementation_ref: [guppi/generate.py, tests/test_generate.py]
 parent: "[[rule-documentation]]"
@@ -135,3 +135,4 @@ entry never stops the run: it is marked `failed`, reported, and the rest apply (
 - 2026-09-30 estimate estimate-generate-replace-takes-the-leading-indent added · [[decision-case-543.3]]
 - 2026-09-30 updated: the Decision page carries Recommend; a Case with sub-cases gets its own page, linked to theirs by children and parent (case 544.7) · [[decision-case-544.7]]
 - 2026-10-04 status: draft → built · cascade
+- 2026-10-04 status: built → draft · cascade

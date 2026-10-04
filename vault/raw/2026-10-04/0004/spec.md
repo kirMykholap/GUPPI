@@ -173,7 +173,7 @@ update:
 - [x] update `insight-session-frontier-no-closer-for-an-item-ended-outside-the-plan`
 - [x] `uv run guppi render`: `.claude/skills/hi/SKILL.md`
 - [x] `uv run guppi render`: `vault/wiki/orchestration.md`
-- [ ] read `estimate-hi-takes-a-conserved-spec`
+- [x] read `estimate-hi-takes-a-conserved-spec`
 ```
 
 ### Case 620.2 — `guppi prespec` finds Case N in the conserved Spec the plan names

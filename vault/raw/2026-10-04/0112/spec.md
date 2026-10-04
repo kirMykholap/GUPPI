@@ -271,7 +271,7 @@ update:
 - [x] update `rule-ask`
 - [x] update `estimate-ask-finds`
 - [x] `uv run guppi render`: `.claude/agents/ask-guppi.md`
-- [ ] read `estimate-ask-finds`
+- [x] read `estimate-ask-finds`
 ```
 
 ### Case 626.2 — The vault query that case-guppi runs is checked by an Estimate of its own

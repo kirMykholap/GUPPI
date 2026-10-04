@@ -26,3 +26,4 @@ Then:
 
 - 2026-10-02 created · [[decision-case-587]]
 - 2026-10-03 updated: method names the kind of its moment (case 613.3) · [[decision-case-613.3]]
+- 2026-10-04 deferred · [[decision-case-631]]

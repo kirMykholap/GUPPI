@@ -3,8 +3,8 @@ type: estimate
 kind: QA
 status: pending
 target: "[[entity-sprint-migration]]"
-purpose: vault/parked/, the 2026-08 documents and the old archive root are gone, git tracks no raw date folder without a session, and the repository has no remote, each by a decision named at the close of the sprint
-method: one reading of the tree by hand at the close of the sprint, each path and decision named in the estimate line
+purpose: vault/parked/, the 2026-08 documents and the old archive root are gone, git tracks no raw date folder without a session, and the repository has no remote, each by a decision named in the reading, read in the Work Mode of the session that closes the sprint
+method: one reading of the tree by hand in the Work Mode of the session that closes the sprint, before the librarian's run, each path and decision named in the estimate line
 origin: raw/2026-09-16/2238/ledger.md#case-209.3
 sprint: migration
 created: 2026-09-16
@@ -14,7 +14,7 @@ tags: [sprint, git]
 ## Criterion
 
 When:
-Someone reads the tree of the repository at the close of the sprint.
+In the Work Mode of the session that closes `entity-sprint-migration`, before the librarian's run, someone reads the tree of the repository.
 
 Then:
 `vault/parked/` is absent: its pages were deleted by a decision named in the reading, and git history keeps them.
@@ -31,3 +31,4 @@ Then:
 - 2026-09-29 updated: the Criterion replaced whole — When and Then only, Given out (case 494.2) · [[decision-case-494.2]]
 - 2026-09-29 updated: the Criterion replaced whole — the parked pages deleted, not archived; the migration plan left to the closing Case (case 510) · [[decision-case-510]]
 - 2026-09-30 updated: the Criterion replaced whole — the raw date folders read by what git tracks, the remote removed and git pull and gh out of /hi, the old archive root deleted by case 102.1 (case 528.5) · [[decision-case-528.5]]
+- 2026-10-04 updated: the Criterion replaced whole — read in the Work Mode of the closing session, before the close (case 628.11) · [[decision-case-628.11]]

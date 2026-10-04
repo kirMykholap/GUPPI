@@ -4,7 +4,7 @@ kind: QA
 status: pending
 target: "[[rule-sprint-close]]"
 purpose: At the close of a sprint its actioned Insights and its error lessons that joined no Insight go to the archive, and its knowledge lessons and open Insights stay
-method: by hand, vault/wiki/insights/, vault/wiki/lessons/ and vault/archive/ read after the first close of a sprint
+method: pytest tests/test_sprint_close.py -k insights; by hand, the output of the preview uv run guppi sprint-close --sprint migration over the live vault read against the Then
 origin: raw/2026-10-03/0317/ledger.md#case-612.2
 sprint: migration
 created: 2026-10-03
@@ -14,14 +14,17 @@ tags: [sprint, workflow]
 ## Criterion
 
 When:
-The close of the sprint `entity-sprint-<id>` runs: the Estimates that `entity-sprint-<id>` lists are read in it first, and its pages move once each of them stands `passed`; someone reads `vault/wiki/insights/`, `vault/wiki/lessons/` and `vault/archive/` after it.
+`uv run guppi sprint-close --sprint <id> --apply` closes the sprint `entity-sprint-<id>` of the made-up vault of `tests/test_sprint_close.py`, after each Estimate that `entity-sprint-<id>` lists and that does not stand `passed` is read or archived unread, as the person chooses; someone reads `vault/wiki/insights/`, `vault/wiki/lessons/` and `vault/archive/` after it.
+**＋** Or the preview `uv run guppi sprint-close --sprint <id>` runs over the live vault, and someone reads its output against `vault/wiki/insights/` and `vault/wiki/lessons/`.
 
 Then:
 Each Insight under `vault/wiki/insights/` whose `sprint` is `<id>` and that stands `actioned` stands under `vault/archive/`.
 **＋** Each lesson under `vault/wiki/lessons/` whose `sprint` is `<id>`, whose `kind` is `error` and that stands `new` stands under `vault/archive/`.
+**＋** The preview names each such Insight and lesson among the pages the close would move, and moves none.
 **－** A lesson whose `kind` is `knowledge` stays under `vault/wiki/lessons/`.
 **－** An Insight that stands `open`, and each lesson its `children` lists, stay live.
 
 ## History
 
 - 2026-10-03 created · [[decision-case-612.2]]
+- 2026-10-04 updated: the When replaced whole — the run with --apply over a made-up vault, after each Estimate of the sprint page not passed is read or archived unread, or the preview over the live vault; the Then kept, one line on the preview added; the method a pytest test and the preview of migration (case 627.2) · [[decision-case-627.2]]

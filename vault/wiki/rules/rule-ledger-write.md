@@ -21,7 +21,7 @@ Prevents a ratified line from existing only in a chat reply, or landing in a ses
 `- lesson[...]` lines lives in `ratification.md` and `orchestration.md`, the Renders of `rule-ratification` and `rule-orchestration` that `/hi` loads (cases 273, 595), so a session without `/hi` produces none — and would produce them in *any* session
 if the instruction stood in `CLAUDE.md` again, including one with no sprint, no branch context and no brief. Without this hook's check the
 ledger would silently gain a session that was never a working session, and the librarian
-would materialize pages from it the next day.
+would materialize pages from it the next day. It also refuses, while no live page `vault/wiki/entities/entity-sprint-<id>.md` stands, every decision line of the session but a `defer`, until the session's ledger or the same reply holds a `create` decision line of an `entity-sprint-` slug, with one stderr line that names the opening of the next sprint, so that the session after the close of a sprint opens the next sprint first (`rule-sprint-close`, case 628.3).
 
 ## History
 
@@ -77,3 +77,4 @@ would materialize pages from it the next day.
 - 2026-10-02 updated: ## How it works left the Leaf, its mechanism in the docstring of guppi/ledger.py; the person's message and a returned answer are named by one function of guppi/ledger.py, which the case check and the token counter import (case 592) · [[decision-case-592]]
 - 2026-10-02 updated: the instruction to write the ledger lines lives in ratification.md and orchestration.md (case 595.17) · [[decision-case-595.17]]
 - 2026-10-03 status: draft → built · cascade
+- 2026-10-04 updated: refuses the decision lines of a session with no live sprint page until it creates one (case 628.3) · [[decision-case-628.3]]

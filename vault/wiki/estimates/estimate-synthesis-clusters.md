@@ -1,7 +1,7 @@
 ---
 type: estimate
 kind: QA
-status: passed
+status: pending
 target: "[[rule-synthesis]]"
 method: one reading by hand of the yaml and the report after a live librarian run whose yaml holds at least two lesson entries
 checked: 2026-10-03
@@ -24,7 +24,7 @@ The brief names the Greps of the synthesis, `^(root_cause|deferred_by):` over `v
 **＋** Every entry the synthesis adds carries `librarian: synthesis`.
 **＋** Every lesson page read at synthesis is named in the report with the outcome: the Insight it joined, or none and why.
 **＋** A lesson without a pair stays `new`, and its line in the brief is no flag.
-**－** A read of another session's `materialize.yaml` or of a page under `vault/archive/` fails nothing here: an actioned Insight stays live with its pattern in its index line, and the flag of such a read is the promise of `estimate-documentation-completes`.
+**－** A read of another session's `materialize.yaml` or of a page under `vault/archive/` fails nothing here: an actioned Insight stays live with its pattern in its index line until the close of its sprint, and the flag of such a read is the promise of `estimate-documentation-completes`.
 
 ## Result
 
@@ -47,3 +47,4 @@ The brief names the Greps of the synthesis, `^(root_cause|deferred_by):` over `v
 - 2026-10-03 status: pending → failed · raw/2026-10-02/2300/ledger.md#L1
 - 2026-10-03 updated: the Criterion replaced whole — the brief gives one line per lesson entry with its outcome against both Greps, or none and why (case 602) · [[decision-case-602]]
 - 2026-10-03 status: pending → passed · raw/2026-10-03/0317/ledger.md#L1
+- 2026-10-04 updated: the Criterion replaced whole — an actioned Insight stays live until the close of its sprint (case 627.5) · [[decision-case-627.5]]

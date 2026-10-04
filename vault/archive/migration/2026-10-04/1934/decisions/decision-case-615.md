@@ -1,8 +1,9 @@
 ---
 type: decision
 case: "615"
-status: current
+status: archived
 defer: ["[[entity-sprint-migration]]"]
+superseded_by: ["[[decision-case-627.1]]", "[[decision-case-628.9]]"]
 origin: raw/2026-10-03/1341/ledger.md#case-615
 sprint: migration
 created: 2026-10-03
@@ -26,3 +27,7 @@ How much stays for the close of migration: which pending Estimates are read, car
 ## History
 
 - 2026-10-03 created · raw/2026-10-03/1341/ledger.md#case-615
+- 2026-10-04 superseded by decision-case-627.1 · [[decision-case-627.1]]
+- 2026-10-04 superseded by decision-case-628.9 · [[decision-case-628.9]]
+- 2026-10-04 archived · superseded
+- 2026-10-04 archived · cleanup

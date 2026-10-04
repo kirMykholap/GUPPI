@@ -44,7 +44,7 @@ fields:
   case: |
     required; case id, e.g. `18.1`. The Case this page records.
   status: |
-    required; `current` | `superseded` | `archived`. Lifecycle of this page, not of the work. `superseded` once a later Case names it in `supersedes`, and `archived` the moment the cascade of `generate` meets it so: a superseded Decision no longer describes the present (case 104.1).
+    required; `current` | `superseded` | `archived`. Lifecycle of this page, not of the work. `superseded` once a later Case names it in `supersedes`, and `archived` the moment the cascade of `generate` meets it so: a superseded Decision no longer describes the present (case 104.1); `guppi sprint-close` also sets `archived` on a Decision page of the sprint it closes, but for one that a live page names in `deferred_by` or `addressed_by` (`rule-sprint-close`, case 627.1).
   create: |
     one of the four, or `children` on the page of a Case with sub-cases; list of quoted wikilinks `"[[slug]]"`. The slugs of the Case's `create` lines, in ledger order: a page. One list per kind present, in the order create, update, delete, defer; a kind with no line is absent. Lists of quoted wikilinks for page slugs, so Obsidian shows them as links (case 148.2); the kind of every target is its key (case 59.4, replacing the aligned `kind` and `target_slug` of case 52.1). The category is derived from the slug prefix and never written; the parent of a `create` is on the child page as `parent` or `target`.
   update: |
@@ -128,3 +128,4 @@ examples:
 - 2026-09-30 status: built → draft · cascade
 - 2026-09-30 updated: ## Recommend holds each question with its recommendation and answer as they stood when the person answered it (case 557.2) · [[decision-case-557.2]]
 - 2026-09-30 status: draft → built · cascade
+- 2026-10-04 updated: a Decision page is archived also by the close of its sprint (case 627.1) · [[decision-case-627.1]]

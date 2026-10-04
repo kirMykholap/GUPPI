@@ -66,7 +66,7 @@ Do the steps in this order.
 
 <!-- rule-synthesis -->
 
-2. Run `uv run guppi generate`. Every line on its stderr is a flag.
+2. Run `uv run guppi generate`. Every line on its stderr is a flag. Then, when an unticked task line of the session's `spec.md` opens with a code span holding `guppi sprint-close` and `--apply`, run that command as the line holds it: the readings this run applied count, and the command runs `guppi cleanup` itself (`rule-sprint-close`, case 628.1). Every line on its stderr is a flag; a refusal moves nothing, and the run goes on. After a close, `guppi sprint` in step 5 finds no live sprint page; its error is a flag.
 
 3. Run `uv run guppi cleanup`. Every line on its stderr is a flag.
 
@@ -146,3 +146,4 @@ project's hooks; the hook is part of this Render and is ratified with it.
 - 2026-09-30 updated: the frame names the reads the job needs and forbids none; a read it does not name is made and flagged in the brief; only a repair asked by the handoff is refused (case 558.1) · [[decision-case-558.1]]
 - 2026-10-01 updated: the librarian flags only a read the frame says its job does not need, and names in the report only a page opened for one of the first three reasons and the one read of the ledger (case 567.1) · [[decision-case-567.1]]
 - 2026-10-01 status: draft → built · cascade
+- 2026-10-04 updated: the librarian runs the close line of the Spec after generate (case 628.1) · [[decision-case-628.1]]

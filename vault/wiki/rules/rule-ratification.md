@@ -2,7 +2,7 @@
 type: rule
 kind: MOC
 purpose: "Prevents an agent of a working session from acting without the one rule and the form of the ledger lines: the one rule, the form of the ledger lines, atomicity and the harness stand in ratification.md, which /hi loads and case-guppi reads"
-status: draft
+status: built
 enforcement: render
 governs: vault/wiki/ratification.md
 render_mode: full
@@ -66,3 +66,4 @@ The harness — hooks, skills, agents, `settings.json`, `CLAUDE.md`, this file, 
 - 2026-10-02 created · [[decision-case-595.3]]
 - 2026-10-02 estimate estimate-ratification-loaded added · [[decision-case-595.3]]
 - 2026-10-02 ref `estimate-case-protocol-ledger-line-form` → `estimate-ratification-ledger-line-form` · [[decision-case-595.16]]
+- 2026-10-04 status: draft → built · cascade

@@ -1,10 +1,10 @@
 ---
 type: estimate
 kind: QA
-status: passed
+status: pending
 target: "[[rule-case-build]]"
 purpose: case-guppi asks about the forks of an item in rounds by the skill grill-me, then builds the Case against the vault and its frame and answers with it alone
-method: "by hand: live dispatches in a session after the render — one item with a fork, answered by a round and then the Case, one Case with a create without a ref and one that changes a hook; the tokens and seconds of each dispatch in the estimate line"
+method: "by hand: live dispatches in a session after the render — one item with a fork, answered by a round and then the Case, one Case with a create without a ref, one that changes a hook, and a change the person asked for on one sub-case of a Case with sub-cases, answered by that sub-case alone; the tokens and seconds of each dispatch in the estimate line"
 checked: 2026-10-03
 origin: raw/2026-09-24/1303/ledger.md#case-391.1
 sprint: migration
@@ -16,6 +16,7 @@ tags: [session, workflow, harness]
 
 When:
 The main agent dispatches `case-guppi` with a Case id, a Frontier item and its source, and the person's words on it; or sends it by `SendMessage` the person's answers to a round, or the person's question or change on a Case it built.
+**＋** Or the hook of `rule-case-check` sends its answer back with findings.
 
 Then:
 `case-guppi` starts with `.claude/skills/grill-me/SKILL.md` in its context by `skills: [grill-me]` in `.claude/agents/case-guppi.md`, and reads `vault/wiki/case-schema.md` and `vault/wiki/ratification.md` whole before it answers.
@@ -26,6 +27,7 @@ Then:
 **＋** When no fork is open, its answer is the Case whole in English in the chat form of `vault/wiki/case-schema.md`, its ledger lines in the form of `vault/wiki/ratification.md`, from the heading to the fence of `ratification`, and nothing else.
 **＋** A round may come at the first answer on an item, after a message on a Case it built, and in Work Mode when a ratified Case is built again.
 **＋** It runs on `model: opus` with `effort: medium` and the tools Read, Grep and Glob.
+**－** Asked again after the hook of `rule-case-check` sent findings back, or by a message, it answers with the changed sub-cases alone, each from its heading to the fence of its `ratification`, when the parent's `context`, `problem` and `recommend` stand as they were; an item of `recommend` whose answer changed only that sub-case stands under its heading, and the hook writes the sub-cases into the file of the Case beside the parts that did not change.
 **－** A later round on the item, a round after a message on a Case it built and a round in Work Mode carry no context.
 **－** The context carries no Case heading, so the hook of `rule-case-check` neither checks nor stores the round as a Case; it judges only the form of the questions of the round, not its context.
 **－** It writes no file and no ledger line.
@@ -46,3 +48,4 @@ Then:
 - 2026-10-02 updated: the Criterion replaced whole - case-guppi reads case-schema.md and ratification.md (case 595.7) · [[decision-case-595.7]]
 - 2026-10-03 updated: the Criterion replaced whole — the hook of rule-case-check judges the form of the questions of a round, not its context, and stores nothing of it (case 601.3) · [[decision-case-601.3]]
 - 2026-10-03 status: pending → passed · raw/2026-10-03/0317/ledger.md#L52
+- 2026-10-04 updated: the Criterion replaced whole — asked again, case-guppi answers by its changed sub-cases alone while the parent's own parts stand (case 629.2) · [[decision-case-629.2]]

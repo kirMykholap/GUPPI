@@ -5,7 +5,6 @@ purpose: The repository works by the model of its rule pages — Phase 1 and Pha
 status: draft
 parent: "[[entity-sprint]]"
 estimates: ["[[estimate-sprint-migration-lint-clean]]", "[[estimate-sprint-migration-leftovers-gone]]", "[[estimate-sprint-migration-merges]]", "[[estimate-sprint-migration-rule-class-files-dissolved]]", "[[estimate-sprint-migration-index-dissolved]]", "[[estimate-sprint-migration-file-route-gone]]"]
-deferred_by: ["[[decision-case-615]]"]
 origin: raw/2026-09-16/2238/ledger.md#case-209.2
 sprint: migration
 created: 2026-09-16
@@ -17,15 +16,15 @@ tags: [sprint, workflow]
 Open since 2026-09-09. The repository works by the model of its rule pages: Phase 1
 (the harness built by its own rules) and Phase 2 (the surviving pages brought into
 conformance) of `docs/migration/migration-plan.md` are closed. Done when every
-Estimate of this page passes: lint clean, the leftovers gone, the branch merged, the
+Estimate of this page passes: lint clean, the leftovers gone, `make test` green on the last commit of `migration`, the
 Rule-class files dissolved, `index.md` gone, the `file` route out of the scripts.
 
 ## Milestones
 
 ### Slice 5 — closing
 
-- [[rule-sprint-close]] — what the close of a sprint moves to the archive and what it keeps (case 612.1)
-- where the close of a sprint runs — a session of its own, a command or another place: not decided (case 612.1)
+- [[rule-sprint-close]] — what the close of a sprint moves to the archive and what it keeps (cases 612.1, 627)
+- the close of migration — a session of its own: the pending readings taken in groups, `make test`, `make lint` and the tree read in its Work Mode, then `uv run guppi sprint-close --sprint migration --apply` in the librarian's run (case 628.9)
 
 ## Backlog
 
@@ -38,6 +37,7 @@ Rule-class files dissolved, `index.md` gone, the `file` route out of the scripts
 - [[rule-subagent-guppi]] — what a subagent may do in Work Mode, and the fork that comes back to the main agent as a Case; cases 183, 206
 - [[rule-spec-box]] — the Spec box, its second part: a conserved Spec checked against the pages changed after it was conserved, a Case on such a page built again, ratified again and written into the folder of the conserved Spec, and a conserved Spec taken after other Cases of its session (case 591)
 - [[rule-morph]] — the morph mechanism: the initiation at install sets the category set of the project, the development set by default, held as data so that a changed set rewrites no rule; case 239
+- the merge of `migration` into `main` — the first work of the session that opens the next sprint, after its opening Case (case 628.9)
 
 ## Closed
 
@@ -115,3 +115,6 @@ No file of `vault/wiki/` is written by hand.
 - 2026-10-02 updated: the Backlog line of rule-spec-box names its second part (case 593.2) · [[decision-case-593.2]]
 - 2026-10-03 updated: Slice 5: the close of a sprint is the item rule-sprint-close, and where the close runs is a note, not decided (case 612.1) · [[decision-case-612.1]]
 - 2026-10-03 deferred · [[decision-case-615]]
+- 2026-10-04 defer by decision-case-615 superseded · [[decision-case-627.1]]
+- 2026-10-04 updated: Slice 5: the item rule-sprint-close names case 627, which builds the command of the close; the question put off by case 615 closed (case 627.1) · [[decision-case-627.1]]
+- 2026-10-04 updated: the Slice 5 note on where the close runs cut into the close of migration; make test in the Purpose for the branch merged; the merge a Backlog line for the next sprint; the question put off by case 615 closed (case 628.9) · [[decision-case-628.9]]

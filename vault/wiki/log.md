@@ -6158,3 +6158,114 @@ instruction. The global feed; a page's own `## History` is the per-page view.
 - 2026-10-04 rules/rule-prespec status: draft → built · cascade · generate
 - 2026-10-04 decisions/decision-case-553 archived · superseded · generate
 - 2026-10-04 decisions/decision-case-553 archived · cleanup
+- 2026-10-04 decisions/decision-case-627 created · raw/2026-10-04/1439/ledger.md#case-627 · generate
+- 2026-10-04 decisions/decision-case-627.1 created · raw/2026-10-04/1439/ledger.md#case-627.1 · generate
+- 2026-10-04 decisions/decision-case-615 superseded by decision-case-627.1 · [[decision-case-627.1]] · generate
+- 2026-10-04 entities/entity-sprint-migration defer by decision-case-615 superseded · [[decision-case-627.1]] · generate
+- 2026-10-04 rules/rule-sprint-close updated: the close is the command guppi sprint-close, its preview and its run with --apply, the choices by slug; the close goes ahead once each Estimate of the sprint page is read or archived unread, a failed reading settling it; the guard named; where the close runs pointed to How it works (case 627.1) · [[decision-case-627.1]] · generate
+- 2026-10-04 rules/rule-decisions-schema updated: a Decision page is archived also by the close of its sprint (case 627.1) · [[decision-case-627.1]] · generate
+- 2026-10-04 rules/rule-cleanup updated: guppi sprint-close also sets archived (case 627.1) · [[decision-case-627.1]] · generate
+- 2026-10-04 estimates/estimate-sprint-close-archives-the-decisions updated: the When replaced whole — the run with --apply over a made-up vault, after each Estimate of the sprint page not passed is read or archived unread, or the preview over the live vault; the Then kept, one line on the preview added; the method a pytest test and the preview of migration (case 627.1) · [[decision-case-627.1]] · generate
+- 2026-10-04 decisions/decision-case-627.2 created · raw/2026-10-04/1439/ledger.md#case-627.2 · generate
+- 2026-10-04 rules/rule-insights-schema updated: an actioned Insight and an error Lesson that joined no Insight are archived at the close of their sprint (case 627.2) · [[decision-case-627.2]] · generate
+- 2026-10-04 rules/rule-lessons-schema updated: a new error Lesson is archived at the close of its sprint (case 627.2) · [[decision-case-627.2]] · generate
+- 2026-10-04 estimates/estimate-sprint-close-archives-done-insights-and-lone-lessons updated: the When replaced whole — the run with --apply over a made-up vault, after each Estimate of the sprint page not passed is read or archived unread, or the preview over the live vault; the Then kept, one line on the preview added; the method a pytest test and the preview of migration (case 627.2) · [[decision-case-627.2]] · generate
+- 2026-10-04 decisions/decision-case-627.3 created · raw/2026-10-04/1439/ledger.md#case-627.3 · generate
+- 2026-10-04 estimates/estimate-sprint-close-archives-the-sprint-page-and-keeps-the-rest updated: the When replaced whole — the run with --apply over a made-up vault, after each Estimate of the sprint page not passed is read or archived unread, or the preview over the live vault; the Then kept, one line on the preview added; the method a pytest test and the preview of migration (case 627.3) · [[decision-case-627.3]] · generate
+- 2026-10-04 decisions/decision-case-627.4 created · raw/2026-10-04/1439/ledger.md#case-627.4 · generate
+- 2026-10-04 estimates/estimate-sprint-close-settles-unread-estimates updated: the Criterion replaced whole — the run over a made-up vault or the preview over the live vault; an Estimate of the sprint page that has not passed is read or archived unread and never carried; a reading that comes out failed settles its Estimate, carried or archived with the sprint page; the method a pytest test and the preview of migration (case 627.4) · [[decision-case-627.4]] · generate
+- 2026-10-04 decisions/decision-case-627.5 created · raw/2026-10-04/1439/ledger.md#case-627.5 · generate
+- 2026-10-04 rules/rule-synthesis updated: an actioned Insight stays live until the close of its sprint (case 627.5) · [[decision-case-627.5]] · generate
+- 2026-10-04 estimates/estimate-synthesis-clusters updated: the Criterion replaced whole — an actioned Insight stays live until the close of its sprint (case 627.5) · [[decision-case-627.5]] · generate
+- 2026-10-04 decisions/decision-case-628 created · raw/2026-10-04/1439/ledger.md#case-628 · generate
+- 2026-10-04 decisions/decision-case-628.1 created · raw/2026-10-04/1439/ledger.md#case-628.1 · generate
+- 2026-10-04 rules/rule-sprint-close updated: where the close runs, in How it works: the librarian's run of a session of its own, from the closing Case's task line; the readings taken in groups first; the next sprint opened first by the next session; the Backlog of a closed sprint kept in backlog.md (case 628.1) · [[decision-case-628.1]] · generate
+- 2026-10-04 rules/rule-documentation updated: the librarian runs the close line of the Spec after generate (case 628.1) · [[decision-case-628.1]] · generate
+- 2026-10-04 rules/rule-retro updated: a guppi sprint-close line waits for the librarian and is not debt (case 628.1) · [[decision-case-628.1]] · generate
+- 2026-10-04 rules/rule-orchestration updated: guppi sprint-close ticks its own line (case 628.1) · [[decision-case-628.1]] · generate
+- 2026-10-04 rules/rule-case-protocol updated: the close line of a sprint is a task line form (case 628.1) · [[decision-case-628.1]] · generate
+- 2026-10-04 estimates/estimate-sprint-close-runs-in-the-librarian-run created · [[decision-case-628.1]] · generate
+- 2026-10-04 rules/rule-sprint-close estimate estimate-sprint-close-runs-in-the-librarian-run added · [[decision-case-628.1]] · generate
+- 2026-10-04 decisions/decision-case-628.2 created · raw/2026-10-04/1439/ledger.md#case-628.2 · generate
+- 2026-10-04 estimates/estimate-sprint-close-takes-the-readings-in-groups created · [[decision-case-628.2]] · generate
+- 2026-10-04 rules/rule-sprint-close estimate estimate-sprint-close-takes-the-readings-in-groups added · [[decision-case-628.2]] · generate
+- 2026-10-04 decisions/decision-case-628.3 created · raw/2026-10-04/1439/ledger.md#case-628.3 · generate
+- 2026-10-04 rules/rule-ledger-write updated: refuses the decision lines of a session with no live sprint page until it creates one (case 628.3) · [[decision-case-628.3]] · generate
+- 2026-10-04 rules/rule-materialize updated: the yaml's sprint is the id of a sprint page the unit creates (case 628.3) · [[decision-case-628.3]] · generate
+- 2026-10-04 estimates/estimate-sprint-close-next-session-opens-the-sprint created · [[decision-case-628.3]] · generate
+- 2026-10-04 rules/rule-sprint-close estimate estimate-sprint-close-next-session-opens-the-sprint added · [[decision-case-628.3]] · generate
+- 2026-10-04 decisions/decision-case-628.4 created · raw/2026-10-04/1439/ledger.md#case-628.4 · generate
+- 2026-10-04 rules/rule-work-mode updated: Work Mode leaves the close line of a sprint to the librarian (case 628.4) · [[decision-case-628.4]] · generate
+- 2026-10-04 estimates/estimate-work-mode-runs-the-spec-on-a-branch-from-a-baseline updated: the Criterion replaced whole — a guppi sprint-close line is neither run nor ticked by Work Mode; purpose and method name it (case 628.4) · [[decision-case-628.4]] · generate
+- 2026-10-04 decisions/decision-case-628.5 created · raw/2026-10-04/1439/ledger.md#case-628.5 · generate
+- 2026-10-04 rules/rule-sprint updated: the ticker of guppi sprint leaves a guppi sprint-close line (case 628.5) · [[decision-case-628.5]] · generate
+- 2026-10-04 estimates/estimate-sprint-ticks-the-spec updated: the Criterion replaced whole — a guppi sprint-close line is not ticked by guppi sprint (case 628.5) · [[decision-case-628.5]] · generate
+- 2026-10-04 decisions/decision-case-628.6 created · raw/2026-10-04/1439/ledger.md#case-628.6 · generate
+- 2026-10-04 estimates/estimate-generate-writes updated: the Criterion replaced whole — a page's sprint is the sprint of the yaml, the new sprint's id in the unit that creates its page (case 628.6) · [[decision-case-628.6]] · generate
+- 2026-10-04 decisions/decision-case-628.7 created · raw/2026-10-04/1439/ledger.md#case-628.7 · generate
+- 2026-10-04 rules/rule-skill-hi updated: the opening of the next sprint first, and no item of a closed sprint (case 628.7) · [[decision-case-628.7]] · generate
+- 2026-10-04 estimates/estimate-hi-writes-frontier updated: the Criterion replaced whole — the opening of the next sprint first, no milestone item while it stands (case 628.7) · [[decision-case-628.7]] · generate
+- 2026-10-04 decisions/decision-case-628.8 created · raw/2026-10-04/1439/ledger.md#case-628.8 · generate
+- 2026-10-04 rules/rule-brief updated: after a close, the opening of the next sprint is the first Cases line (case 628.8) · [[decision-case-628.8]] · generate
+- 2026-10-04 estimates/estimate-brief-written updated: the Criterion replaced whole — after a close, the first Cases line opens the next sprint (case 628.8) · [[decision-case-628.8]] · generate
+- 2026-10-04 decisions/decision-case-628.9 created · raw/2026-10-04/1439/ledger.md#case-628.9 · generate
+- 2026-10-04 decisions/decision-case-615 superseded by decision-case-628.9 · [[decision-case-628.9]] · generate
+- 2026-10-04 estimates/estimate-sprint-migration-merges updated: the Criterion replaced whole — read before the close; the merge into main and the line on sprint.md leave this promise (case 628.9) · [[decision-case-628.9]] · generate
+- 2026-10-04 decisions/decision-case-629 created · raw/2026-10-04/1439/ledger.md#case-629 · generate
+- 2026-10-04 decisions/decision-case-629.1 created · raw/2026-10-04/1439/ledger.md#case-629.1 · generate
+- 2026-10-04 rules/rule-case-check updated: the check of an answer compares its Cases with the other Cases of the session, from the plan file and the store (case 629.1) · [[decision-case-629.1]] · generate
+- 2026-10-04 estimates/estimate-case-check-sends-back-a-clash-with-another-case created · [[decision-case-629.1]] · generate
+- 2026-10-04 rules/rule-case-check estimate estimate-case-check-sends-back-a-clash-with-another-case added · [[decision-case-629.1]] · generate
+- 2026-10-04 decisions/decision-case-629.2 created · raw/2026-10-04/1439/ledger.md#case-629.2 · generate
+- 2026-10-04 decisions/decision-case-566 superseded by decision-case-629.2 · [[decision-case-629.2]] · generate
+- 2026-10-04 rules/rule-case-rebuild-cost defer by decision-case-566 superseded · [[decision-case-629.2]] · generate
+- 2026-10-04 decisions/decision-case-570 superseded by decision-case-629.2 · [[decision-case-629.2]] · generate
+- 2026-10-04 rules/rule-case-rebuild-cost defer by decision-case-570 superseded · [[decision-case-629.2]] · generate
+- 2026-10-04 rules/rule-case-build updated: case-guppi answers again by its changed sub-cases alone while the parent's own parts stand (case 629.2) · [[decision-case-629.2]] · generate
+- 2026-10-04 estimates/estimate-case-build-writes-the-case updated: the Criterion replaced whole — asked again, case-guppi answers by its changed sub-cases alone while the parent's own parts stand (case 629.2) · [[decision-case-629.2]] · generate
+- 2026-10-04 rules/rule-case-rebuild-cost deleted · [[decision-case-629.2]] · generate
+- 2026-10-04 decisions/decision-case-629.3 created · raw/2026-10-04/1439/ledger.md#case-629.3 · generate
+- 2026-10-04 estimates/estimate-case-check-judges-a-lone-sub-case-with-its-stored-parent created · [[decision-case-629.3]] · generate
+- 2026-10-04 rules/rule-case-check estimate estimate-case-check-judges-a-lone-sub-case-with-its-stored-parent added · [[decision-case-629.3]] · generate
+- 2026-10-04 decisions/decision-case-629.4 created · raw/2026-10-04/1439/ledger.md#case-629.4 · generate
+- 2026-10-04 estimates/estimate-case-check-requires-each-question-of-the-rounds updated: the Criterion replaced whole — a title held in the stored recommend of a Case of the family that the answer does not hold is no finding (case 629.4) · [[decision-case-629.4]] · generate
+- 2026-10-04 decisions/decision-case-629.5 created · raw/2026-10-04/1439/ledger.md#case-629.5 · generate
+- 2026-10-04 rules/rule-case-build updated: the context of a Case keeps only the searches the Case rests on (case 629.5) · [[decision-case-629.5]] · generate
+- 2026-10-04 estimates/estimate-case-build-checks-the-finished-case updated: the Criterion replaced whole — the context names only the searches the Case rests on (case 629.5) · [[decision-case-629.5]] · generate
+- 2026-10-04 decisions/decision-case-630 created · raw/2026-10-04/1439/ledger.md#case-630 · generate
+- 2026-10-04 estimates/estimate-spec-write-reaches-the-approved-spec deferred · [[decision-case-630]] · generate
+- 2026-10-04 decisions/decision-case-631 created · raw/2026-10-04/1439/ledger.md#case-631 · generate
+- 2026-10-04 estimates/estimate-lint-runs-every-step deferred · [[decision-case-631]] · generate
+- 2026-10-04 entities/entity-sprint-migration updated: Slice 5: the item rule-sprint-close names case 627, which builds the command of the close; the question put off by case 615 closed (case 627.1) · [[decision-case-627.1]] · generate
+- 2026-10-04 entities/entity-sprint-migration updated: the Slice 5 note on where the close runs cut into the close of migration; make test in the Purpose for the branch merged; the merge a Backlog line for the next sprint; the question put off by case 615 closed (case 628.9) · [[decision-case-628.9]] · generate
+- 2026-10-04 decisions/decision-case-628.10 created · raw/2026-10-04/1439/ledger.md#case-628.10 · generate
+- 2026-10-04 estimates/estimate-sprint-migration-lint-clean updated: the Criterion replaced whole — read in the Work Mode of the closing session, before the close (case 628.10) · [[decision-case-628.10]] · generate
+- 2026-10-04 decisions/decision-case-628.11 created · raw/2026-10-04/1439/ledger.md#case-628.11 · generate
+- 2026-10-04 estimates/estimate-sprint-migration-leftovers-gone updated: the Criterion replaced whole — read in the Work Mode of the closing session, before the close (case 628.11) · [[decision-case-628.11]] · generate
+- 2026-10-04 decisions/decision-case-628.12 created · raw/2026-10-04/1439/ledger.md#case-628.12 · generate
+- 2026-10-04 rules/rule-backlog updated: the Backlog of an archived sprint page stays in backlog.md (case 628.12) · [[decision-case-628.12]] · generate
+- 2026-10-04 estimates/estimate-backlog-renders updated: the Criterion replaced whole — the Backlog of each sprint page, live or archived (case 628.12) · [[decision-case-628.12]] · generate
+- 2026-10-04 rules/rule-orchestration updated: the main agent asks the person whether a Case that another Case was bounded around after a clash is built again (case 629.1) · [[decision-case-629.1]] · generate
+- 2026-10-04 rules/rule-backlog status: built → draft · cascade · generate
+- 2026-10-04 rules/rule-brief status: built → draft · cascade · generate
+- 2026-10-04 rules/rule-case-build status: built → draft · cascade · generate
+- 2026-10-04 rules/rule-page-generation status: built → draft · cascade · generate
+- 2026-10-04 rules/rule-sprint status: built → draft · cascade · generate
+- 2026-10-04 rules/rule-synthesis status: built → draft · cascade · generate
+- 2026-10-04 rules/rule-work-mode status: built → draft · cascade · generate
+- 2026-10-04 decisions/decision-case-566 archived · superseded · generate
+- 2026-10-04 decisions/decision-case-570 archived · superseded · generate
+- 2026-10-04 decisions/decision-case-615 archived · superseded · generate
+- 2026-10-04 estimates/estimate-ask-finds status: pending → failed · raw/2026-10-04/1934/ledger.md#L1 · generate
+- 2026-10-04 estimates/estimate-orchestration-signs-a-batch-together status: pending → passed · raw/2026-10-04/1934/ledger.md#L2 · generate
+- 2026-10-04 estimates/estimate-ratification-ledger-line-form status: pending → passed · raw/2026-10-04/1934/ledger.md#L3 · generate
+- 2026-10-04 lessons/lesson-prespec-one-ask-guppi-run-samples-the-spec created · raw/2026-10-04/1934/ledger.md#L4 · generate
+- 2026-10-04 estimates/estimate-hi-takes-a-conserved-spec status: pending → passed · raw/2026-10-04/1934/ledger.md#L5 · generate
+- 2026-10-04 insights/insight-prespec-after-findings-loop-unruled updated: child lesson-prespec-one-ask-guppi-run-samples-the-spec added, status open again (synthesis) · raw/2026-10-04/1934/ledger.md#L4 · generate
+- 2026-10-04 lessons/lesson-prespec-one-ask-guppi-run-samples-the-spec updated: clustered under insight-prespec-after-findings-loop-unruled (synthesis) · raw/2026-10-04/1934/ledger.md#L4 · generate
+- 2026-10-04 rules/rule-orchestration status: draft → built · cascade · generate
+- 2026-10-04 rules/rule-ratification status: draft → built · cascade · generate
+- 2026-10-04 rules/rule-case-rebuild-cost archived · cleanup
+- 2026-10-04 decisions/decision-case-566 archived · cleanup
+- 2026-10-04 decisions/decision-case-570 archived · cleanup
+- 2026-10-04 decisions/decision-case-615 archived · cleanup

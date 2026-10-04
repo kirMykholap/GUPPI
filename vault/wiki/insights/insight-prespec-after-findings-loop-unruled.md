@@ -1,9 +1,9 @@
 ---
 type: insight
 pattern: The rules of pre-spec stop at its report; no rule sets what follows its findings — how the Cases built again, the rounds and the main agent's own questions reach the person, and what a second run checks — so the main agent improvises the loop after the findings, and the person loses track of what to answer and of what a run costs.
-status: actioned
-children: ["[[lesson-prespec-findings-relayed-piecemeal-lose-the-person]]", "[[lesson-prespec-second-run-dispatches-ask-guppi-again]]"]
-severity: 0
+status: open
+children: ["[[lesson-prespec-findings-relayed-piecemeal-lose-the-person]]", "[[lesson-prespec-second-run-dispatches-ask-guppi-again]]", "[[lesson-prespec-one-ask-guppi-run-samples-the-spec]]"]
+severity: 1
 addressed_by: "[[decision-case-561.1]]"
 origin: raw/2026-09-30/2042/ledger.md#L36
 sprint: migration
@@ -23,3 +23,4 @@ A suggestion, not a decision: one rule for the loop after pre-spec findings — 
 
 - 2026-09-30 created · raw/2026-09-30/2042/ledger.md#L36
 - 2026-10-02 updated: actioned: the pre-spec skill gathers the rounds and the rebuilt Cases after the findings into one list and one showing, and sends ask-guppi at the first run only, with no second call (cases 561.1, 561.2); the cost of a second run falls away with it; no lesson of the cause since (case 600) · [[decision-case-600]]
+- 2026-10-04 updated: child lesson-prespec-one-ask-guppi-run-samples-the-spec added, status open again (synthesis) · raw/2026-10-04/1934/ledger.md#L4

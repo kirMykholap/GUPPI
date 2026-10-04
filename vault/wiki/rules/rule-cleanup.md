@@ -15,7 +15,7 @@ tags: [harness, workflow]
 
 ## Purpose
 
-Prevents an archived page from staying among the live ones. `archived` is a status the generator sets. The file move
+Prevents an archived page from staying among the live ones. `archived` is a status the generator sets, and `guppi sprint-close` at the close of a sprint (`rule-sprint-close`, case 627.1). The file move
 is this script's, so a page never disappears by an agent's hand. `raw/<date>/` is not
 this script's: `guppi archive` moves an applied session ([[rule-raw-archive]]).
 
@@ -54,3 +54,4 @@ stderr with exit 1; the other pages still move.
 - 2026-09-15 status: draft → built · cascade
 - 2026-09-29 status: built → draft · cascade
 - 2026-09-29 status: draft → built · cascade
+- 2026-10-04 updated: guppi sprint-close also sets archived (case 627.1) · [[decision-case-627.1]]

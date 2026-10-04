@@ -30,3 +30,4 @@ The hook writes the same stored answer of Case N into `spec.md`: the heading, `c
 - 2026-09-26 created · [[decision-case-441.6]]
 - 2026-09-30 updated: the Criterion replaced whole — spec.md holds recommend, the parent's from its stored answer (case 544.10) · [[decision-case-544.10]]
 - 2026-10-03 updated: method names the kind of its moment (case 613.3) · [[decision-case-613.3]]
+- 2026-10-04 deferred · [[decision-case-630]]

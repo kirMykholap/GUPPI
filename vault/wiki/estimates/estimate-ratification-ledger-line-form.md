@@ -1,11 +1,11 @@
 ---
 type: estimate
 kind: QA
-status: pending
+status: passed
 target: "[[rule-ratification]]"
 purpose: The written shape of a ledger line and of its marks, as the agent writes them
 method: "by hand: the ledger and the preview of a session where a lesson and the Case that closes its cause stand together, and of a Case that takes up a decision with more than one Case in its deferred_by"
-checked: 2026-09-25
+checked: 2026-10-04
 origin: raw/2026-09-16/1034/ledger.md#case-188
 sprint: migration
 created: 2026-09-16
@@ -28,7 +28,7 @@ A decision line is `- decision[case N][kind][slug]` with `{ref:...}` when the ta
 
 ## Result
 
-2026-09-25, by hand, raw/2026-09-25/1228/ledger.md: lesson-case-form-given-written-before-tasks, written after Case 419.3 that closes its cause, carries {addressed_by:case 419.3}, and the decision line of 419.3 carries no {addresses}; one mark for the pair
+2026-10-04, at the /hi of session 1934, by hand: archive/migration/2026-10-03/0317/raw/ledger.md: the decision lines of 613.2 (L13-L14) stand first and carry no {addresses}, and the lesson line L54, lesson-estimates-reading-tied-to-a-one-off-moment, written in the LEDGER block of Retro, carries {addressed_by:case 613.2}, the sub-case, one mark for the pair; raw/2026-10-04/1439/ledger.md L36: `decision[case 629.2][delete][rule-case-rebuild-cost]{ref:rule-case-rebuild-cost}{supersedes:case 566}{supersedes:case 570}`, one block per Case of the page's deferred_by ["decision-case-566", "decision-case-570"], side by side, and the same line in the ratification fence of the showing at 18:58:11 (transcript 8b8ce20f); create lines carry {tags} (L17, L18, L21, L33, L37); not exercised: {addresses} on a decision line after its lesson, a lesson whose fix is ratified in another session
 
 ## History
 
@@ -48,3 +48,4 @@ A decision line is `- decision[case N][kind][slug]` with `{ref:...}` when the ta
 - 2026-10-02 renamed from `estimate-case-protocol-ledger-line-form` · [[decision-case-595.16]]
 - 2026-10-02 updated: moved to rule-ratification; the Criterion replaced whole - the form as ratification.md holds it (case 595.16) · [[decision-case-595.16]]
 - 2026-10-03 updated: method names the kind of its moment (case 613.3) · [[decision-case-613.3]]
+- 2026-10-04 status: pending → passed · raw/2026-10-04/1934/ledger.md#L3

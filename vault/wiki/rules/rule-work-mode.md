@@ -2,7 +2,7 @@
 type: rule
 kind: Leaf
 purpose: Prevents implementation starting before the plan, branch and baseline exist
-status: built
+status: draft
 enforcement: render
 governs: .claude/skills/work/SKILL.md
 render_mode: full
@@ -41,7 +41,7 @@ Work Mode runs the approved Spec, `vault/raw/<date>/<hi HHMM>/spec.md`, the sess
 
 Otherwise, before the first change, write `vault/raw/<date>/<hi HHMM>/work.md` with two sections, or three with a folder from `/box`. `## Baseline`: the exit code of `make test` and of `make lint`, then each failing test and each lint finding line as printed. `## Expected red`: empty for now. With a folder from `/box`, the third, `## Conserved Spec`: the folder, on one line. When `work.md` already stands, because the person typed `/work` to resume, keep its Baseline as it is: the baseline is taken once, before the first change.
 
-Run the tasks of the Spec in the order the Spec holds them. Tick each box of code, a test, a migration or a `by hand` check in `spec.md` in the reply that finishes the task. The lines of a page, a render, the sprint, the glossary and a reading are ticked by the librarian's scripts, not here.
+Run the tasks of the Spec in the order the Spec holds them. Tick each box of code, a test, a migration or a `by hand` check in `spec.md` in the reply that finishes the task. The lines of a page, a render, the sprint, the glossary and a reading are ticked by the librarian's scripts, not here. A task line that opens with a code span holding `guppi sprint-close` is neither run nor ticked here: the librarian runs it, and the command ticks it (`rule-sprint-close`, case 628.4).
 
 When a task changes a check — `make lint` or one of its steps, or a hook of the working tree — that reads a page or a governed file this Spec updates, add one line under `## Expected red` in the same reply: the check, and the page or file it waits for. That check is red or refuses on that page or file until the librarian's run, and `/retro` ends that red as a note for the handoff.
 
@@ -127,3 +127,5 @@ When the last task is done, delete the `carry.md` of a folder from `/box`, then 
 - 2026-10-02 updated: /work runs the Spec of the folder /box gives it, names that folder under Conserved Spec of work.md and deletes its carry.md after the last task (case 591.7) · [[decision-case-591.7]]
 - 2026-10-02 updated: the Work readings of /box leave the Estimates that the conserved Spec creates or updates (case 591.12) · [[decision-case-591.12]]
 - 2026-10-04 status: draft → built · cascade
+- 2026-10-04 updated: Work Mode leaves the close line of a sprint to the librarian (case 628.4) · [[decision-case-628.4]]
+- 2026-10-04 status: built → draft · cascade

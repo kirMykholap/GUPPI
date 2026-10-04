@@ -122,16 +122,16 @@ update:
 ```
 
 ```tasks
-- [ ] update `rule-sprint-close`
-- [ ] update `entity-sprint-migration`
-- [ ] update `rule-decisions-schema`
-- [ ] update `rule-cleanup`
-- [ ] update `estimate-sprint-close-archives-the-decisions`
+- [x] update `rule-sprint-close`
+- [x] update `entity-sprint-migration`
+- [x] update `rule-decisions-schema`
+- [x] update `rule-cleanup`
+- [x] update `estimate-sprint-close-archives-the-decisions`
 - [x] `guppi/sprint_close.py`: the command — the preview, the choices by slug, the refusal while a listed Estimate is neither passed nor named, the marks through the writer of `guppi/generate.py`, then `guppi cleanup`
 - [x] `guppi/cli.py`: `sprint-close` registered
 - [x] `tests/test_sprint_close.py`: `-k decisions` — over a made-up vault of one sprint, the Decision pages of the sprint archived, one named in `deferred_by` and one in `addressed_by` of a live page kept, one of another sprint kept; the preview names the same pages and moves none; the clock pinned
-- [ ] `uv run guppi render`: `vault/wiki/decisions/schema.yaml`
-- [ ] `uv run guppi sprint`
+- [x] `uv run guppi render`: `vault/wiki/decisions/schema.yaml`
+- [x] `uv run guppi sprint`
 - [ ] read `estimate-sprint-close-archives-the-decisions`
 ```
 
@@ -183,12 +183,12 @@ update:
 ```
 
 ```tasks
-- [ ] update `rule-insights-schema`
-- [ ] update `rule-lessons-schema`
-- [ ] update `estimate-sprint-close-archives-done-insights-and-lone-lessons`
+- [x] update `rule-insights-schema`
+- [x] update `rule-lessons-schema`
+- [x] update `estimate-sprint-close-archives-done-insights-and-lone-lessons`
 - [x] `tests/test_sprint_close.py`: `-k insights` — an `actioned` Insight and a `new` `error` lesson of the sprint archived; a `knowledge` lesson, an `open` Insight and its children kept; the preview names the same pages and moves none; the clock pinned
-- [ ] `uv run guppi render`: `vault/wiki/insights/schema.yaml`
-- [ ] `uv run guppi render`: `vault/wiki/lessons/schema.yaml`
+- [x] `uv run guppi render`: `vault/wiki/insights/schema.yaml`
+- [x] `uv run guppi render`: `vault/wiki/lessons/schema.yaml`
 - [ ] read `estimate-sprint-close-archives-done-insights-and-lone-lessons`
 ```
 
@@ -221,7 +221,7 @@ update:
 ```
 
 ```tasks
-- [ ] update `estimate-sprint-close-archives-the-sprint-page-and-keeps-the-rest`
+- [x] update `estimate-sprint-close-archives-the-sprint-page-and-keeps-the-rest`
 - [x] `tests/test_sprint_close.py`: `-k sprint_page` — the sprint page and its Estimates archived, one of them archived unread; a `passed` Estimate of a rule kept and still listed; `entity-sprint` kept; the preview names the same pages and moves none; the clock pinned
 - [ ] read `estimate-sprint-close-archives-the-sprint-page-and-keeps-the-rest`
 ```
@@ -261,7 +261,7 @@ update:
 ```
 
 ```tasks
-- [ ] update `estimate-sprint-close-settles-unread-estimates`
+- [x] update `estimate-sprint-close-settles-unread-estimates`
 - [x] `tests/test_sprint_close.py`: `-k settle` — the preview lists each `pending` and `failed` Estimate and changes nothing; `--apply` refuses and moves nothing while one is neither passed nor named; `--carry` keeps an Estimate live with its status; `--archive-unread` archives it and takes it off `estimates`; `--carry` on an Estimate of the sprint page refused; an Estimate of the sprint page that stands `failed` goes with the sprint page with no choice by name, and the record keeps its status; the clock pinned
 - [ ] read `estimate-sprint-close-settles-unread-estimates`
 ```
@@ -307,9 +307,9 @@ update:
 ```
 
 ```tasks
-- [ ] update `rule-synthesis`
-- [ ] update `estimate-synthesis-clusters`
-- [ ] `uv run guppi render`: `.claude/agents/librarian-guppi.md`
+- [x] update `rule-synthesis`
+- [x] update `estimate-synthesis-clusters`
+- [x] `uv run guppi render`: `.claude/agents/librarian-guppi.md`
 - [ ] read `estimate-synthesis-clusters`
 ```
 
@@ -447,18 +447,18 @@ update:
 ```
 
 ```tasks
-- [ ] update `rule-sprint-close`
-- [ ] update `rule-documentation`
-- [ ] update `rule-retro`
-- [ ] update `rule-orchestration`
-- [ ] update `rule-case-protocol`
-- [ ] create `estimate-sprint-close-runs-in-the-librarian-run`
+- [x] update `rule-sprint-close`
+- [x] update `rule-documentation`
+- [x] update `rule-retro`
+- [x] update `rule-orchestration`
+- [x] update `rule-case-protocol`
+- [x] create `estimate-sprint-close-runs-in-the-librarian-run`
 - [x] `guppi/sprint_close.py`: after a run with `--apply` that moved the pages, tick each unticked task line of a `spec.md` under `vault/raw/` that `render.command_line("guppi sprint-close --sprint <id> --apply")` matches, imported from `guppi/render.py`, not copied (`rule-one-judgment-one-implementation`); a refused run ticks nothing; the docstring
 - [x] `tests/test_sprint_close.py`: `-k tick` — the line ticked after a run that moved, left unticked after a refusal, a line of another sprint id left; the clock pinned
-- [ ] `uv run guppi render`: `.claude/agents/librarian-guppi.md`
-- [ ] `uv run guppi render`: `.claude/skills/retro/SKILL.md`
-- [ ] `uv run guppi render`: `vault/wiki/orchestration.md`
-- [ ] `uv run guppi render`: `vault/wiki/case-schema.md`
+- [x] `uv run guppi render`: `.claude/agents/librarian-guppi.md`
+- [x] `uv run guppi render`: `.claude/skills/retro/SKILL.md`
+- [x] `uv run guppi render`: `vault/wiki/orchestration.md`
+- [x] `uv run guppi render`: `vault/wiki/case-schema.md`
 - [ ] read `estimate-sprint-close-runs-in-the-librarian-run`
 ```
 
@@ -493,7 +493,7 @@ create:
 ```
 
 ```tasks
-- [ ] create `estimate-sprint-close-takes-the-readings-in-groups`
+- [x] create `estimate-sprint-close-takes-the-readings-in-groups`
 - [ ] read `estimate-sprint-close-takes-the-readings-in-groups`
 ```
 
@@ -545,9 +545,9 @@ update:
 ```
 
 ```tasks
-- [ ] update `rule-ledger-write`
-- [ ] update `rule-materialize`
-- [ ] create `estimate-sprint-close-next-session-opens-the-sprint`
+- [x] update `rule-ledger-write`
+- [x] update `rule-materialize`
+- [x] create `estimate-sprint-close-next-session-opens-the-sprint`
 - [x] `guppi/ledger.py`: the refusal — no live `entity-sprint-` page, a decision line other than a `defer`, and no `create` decision line of an `entity-sprint-` slug in the session's ledger or the reply; one stderr line; readings and lessons pass; the docstring
 - [x] `tests/test_ledger.py`: `-k sprint` — refused with no sprint page, a `defer` and a reading passed, accepted once the `create` stands in the ledger or the same reply, accepted with a live sprint page
 - [x] `guppi/materialize.py`: the yaml's `sprint` from a `create` decision line of `entity-sprint-<id>` in the unit, else the heading of `sprint.md`
@@ -596,9 +596,9 @@ update:
 ```
 
 ```tasks
-- [ ] update `rule-work-mode`
-- [ ] update `estimate-work-mode-runs-the-spec-on-a-branch-from-a-baseline`
-- [ ] `uv run guppi render`: `.claude/skills/work/SKILL.md`
+- [x] update `rule-work-mode`
+- [x] update `estimate-work-mode-runs-the-spec-on-a-branch-from-a-baseline`
+- [x] `uv run guppi render`: `.claude/skills/work/SKILL.md`
 - [ ] read `estimate-work-mode-runs-the-spec-on-a-branch-from-a-baseline`
 ```
 
@@ -637,8 +637,8 @@ update:
 ```
 
 ```tasks
-- [ ] update `rule-sprint`
-- [ ] update `estimate-sprint-ticks-the-spec`
+- [x] update `rule-sprint`
+- [x] update `estimate-sprint-ticks-the-spec`
 - [x] `guppi/render.py`: `command_line` matches the command only where no `-` or word character follows it; its docstring
 - [x] `guppi/sprint.py`: the docstring names the close line as not ticked
 - [x] `tests/test_sprint.py`: a `guppi sprint-close` line left unticked beside a ticked `guppi sprint` line
@@ -685,7 +685,7 @@ update:
 ```
 
 ```tasks
-- [ ] update `estimate-generate-writes`
+- [x] update `estimate-generate-writes`
 - [x] `guppi/generate.py`: the docstring — `sprint` is the yaml's `sprint`, else the first `## <id>` heading of `sprint.md`
 - [x] `tests/test_generate.py`: a yaml whose `sprint` differs from the heading of `sprint.md` writes the yaml's `sprint` on a created page
 - [ ] read `estimate-generate-writes`
@@ -730,9 +730,9 @@ update:
 ```
 
 ```tasks
-- [ ] update `rule-skill-hi`
-- [ ] update `estimate-hi-writes-frontier`
-- [ ] `uv run guppi render`: `.claude/skills/hi/SKILL.md`
+- [x] update `rule-skill-hi`
+- [x] update `estimate-hi-writes-frontier`
+- [x] `uv run guppi render`: `.claude/skills/hi/SKILL.md`
 - [ ] read `estimate-hi-writes-frontier`
 ```
 
@@ -777,9 +777,9 @@ update:
 ```
 
 ```tasks
-- [ ] update `rule-brief`
-- [ ] update `estimate-brief-written`
-- [ ] `uv run guppi render`: `.claude/agents/librarian-guppi.md`
+- [x] update `rule-brief`
+- [x] update `estimate-brief-written`
+- [x] `uv run guppi render`: `.claude/agents/librarian-guppi.md`
 - [ ] read `estimate-brief-written`
 ```
 
@@ -823,8 +823,8 @@ update:
 ```
 
 ```tasks
-- [ ] update `entity-sprint-migration`
-- [ ] update `estimate-sprint-migration-merges`
+- [x] update `entity-sprint-migration`
+- [x] update `estimate-sprint-migration-merges`
 - [ ] read `estimate-sprint-migration-merges`
 ```
 
@@ -853,7 +853,7 @@ update:
 ```
 
 ```tasks
-- [ ] update `estimate-sprint-migration-lint-clean`
+- [x] update `estimate-sprint-migration-lint-clean`
 - [ ] read `estimate-sprint-migration-lint-clean`
 ```
 
@@ -889,7 +889,7 @@ update:
 ```
 
 ```tasks
-- [ ] update `estimate-sprint-migration-leftovers-gone`
+- [x] update `estimate-sprint-migration-leftovers-gone`
 - [ ] read `estimate-sprint-migration-leftovers-gone`
 ```
 
@@ -932,8 +932,8 @@ update:
 ```
 
 ```tasks
-- [ ] update `rule-backlog`
-- [ ] update `estimate-backlog-renders`
+- [x] update `rule-backlog`
+- [x] update `estimate-backlog-renders`
 - [x] `guppi/backlog.py`: read the `## Backlog` of each `entity-sprint-<id>` page under `vault/archive/` too, by the item reader of `guppi/sprint.py`; the docstring
 - [x] `tests/test_backlog.py`: the Backlog lines of an archived sprint page and of a live one both shown, a slug of both standing once
 - [ ] read `estimate-backlog-renders`
@@ -1049,13 +1049,13 @@ update:
 ```
 
 ```tasks
-- [ ] update `rule-case-check`
-- [ ] update `rule-orchestration`
-- [ ] create `estimate-case-check-sends-back-a-clash-with-another-case`
+- [x] update `rule-case-check`
+- [x] update `rule-orchestration`
+- [x] create `estimate-case-check-sends-back-a-clash-with-another-case`
 - [x] `guppi/casecheck.py`: `check_answer` judges the Cases of the answer with the other Cases of the session by `prespec.check_same_target` — the plan's Cases, then the store's entries under the number alone that the plan does not hold, built by `ratified.case_section`, without an entry with findings, one a `{supersedes}` mark of the ledger names, and the answer's own ids and the family of a top-level Case it holds, then the answer's Cases last — keeping each finding that opens with a Case of the answer; `subagent` passes the plan text; the docstring
 - [x] `guppi/prespec.py`: the docstring of `check_same_target` names its second caller, the check of the answer of `case-guppi`
 - [x] `tests/test_casecheck.py`: `-k session_clash` — a clash with a Case of the plan and with a stored Case not yet ratified, each sent back; none with a stored Case with findings, an entry joined with an agent id, one a supersedes mark names, the answer's own earlier version, or two other Cases that clash with each other
-- [ ] `uv run guppi render`: `vault/wiki/orchestration.md`
+- [x] `uv run guppi render`: `vault/wiki/orchestration.md`
 - [ ] read `estimate-case-check-sends-back-a-clash-with-another-case`
 ```
 
@@ -1105,10 +1105,10 @@ delete:
 ```
 
 ```tasks
-- [ ] update `rule-case-build`
-- [ ] update `estimate-case-build-writes-the-case`
-- [ ] delete `rule-case-rebuild-cost`
-- [ ] `uv run guppi render`: `.claude/agents/case-guppi.md`
+- [x] update `rule-case-build`
+- [x] update `estimate-case-build-writes-the-case`
+- [x] delete `rule-case-rebuild-cost`
+- [x] `uv run guppi render`: `.claude/agents/case-guppi.md`
 - [ ] read `estimate-case-build-writes-the-case`
 ```
 
@@ -1145,7 +1145,7 @@ create:
 ```
 
 ```tasks
-- [ ] create `estimate-case-check-judges-a-lone-sub-case-with-its-stored-parent`
+- [x] create `estimate-case-check-judges-a-lone-sub-case-with-its-stored-parent`
 - [x] `guppi/casecheck.py`: `check_answer` puts the section of the stored top-level Case of a lone sub-case, built by `ratified.case_section` from its entry under the number alone, before the sub-cases in the Spec text it judges, and keeps only the findings and notes of the answer's Cases; the docstring
 - [x] `tests/test_casecheck.py`: `-k lone` — a lone sub-case whose `then` names a slug the stored parent's `given` does not name gets a finding; one whose names stand there gets none; a finding of the stored parent is not given to the answer; with no stored parent, no frame finding
 - [ ] read `estimate-case-check-judges-a-lone-sub-case-with-its-stored-parent`
@@ -1182,7 +1182,7 @@ update:
 ```
 
 ```tasks
-- [ ] update `estimate-case-check-requires-each-question-of-the-rounds`
+- [x] update `estimate-case-check-requires-each-question-of-the-rounds`
 - [x] `guppi/casecheck.py`: `check_rounds` reads the titles of the `recommend` of each stored entry, under the number alone, of the family of the answer's Cases that the answer does not hold; the docstring
 - [x] `tests/test_casecheck.py`: `-k rounds` — an answer of sub-cases alone whose round titles stand in the stored parent's `recommend` gets no finding; a title in neither gets one
 - [ ] read `estimate-case-check-requires-each-question-of-the-rounds`
@@ -1228,9 +1228,9 @@ update:
 ```
 
 ```tasks
-- [ ] update `rule-case-build`
-- [ ] update `estimate-case-build-checks-the-finished-case`
-- [ ] `uv run guppi render`: `.claude/agents/case-guppi.md`
+- [x] update `rule-case-build`
+- [x] update `estimate-case-build-checks-the-finished-case`
+- [x] `uv run guppi render`: `.claude/agents/case-guppi.md`
 - [ ] read `estimate-case-build-checks-the-finished-case`
 ```
 

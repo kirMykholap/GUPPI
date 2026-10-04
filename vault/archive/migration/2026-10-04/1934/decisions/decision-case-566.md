@@ -1,8 +1,9 @@
 ---
 type: decision
 case: "566"
-status: current
+status: archived
 defer: ["[[rule-case-rebuild-cost]]"]
+superseded_by: ["[[decision-case-629.2]]"]
 origin: raw/2026-09-30/2356/ledger.md#case-566
 sprint: migration
 created: 2026-09-30
@@ -26,3 +27,6 @@ Prevents a Case from being rewritten whole and returned whole into the main agen
 ## History
 
 - 2026-10-01 created · raw/2026-09-30/2356/ledger.md#case-566
+- 2026-10-04 superseded by decision-case-629.2 · [[decision-case-629.2]]
+- 2026-10-04 archived · superseded
+- 2026-10-04 archived · cleanup

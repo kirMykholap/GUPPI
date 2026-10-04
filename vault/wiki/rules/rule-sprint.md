@@ -2,7 +2,7 @@
 type: rule
 kind: Leaf
 purpose: Prevents the sprint's backlog from drifting from the pages it names
-status: built
+status: draft
 enforcement: check
 implementation_ref: [guppi/sprint.py, tests/test_sprint.py, guppi/generate.py, tests/test_generate.py]
 governs: vault/wiki/sprint.md
@@ -23,7 +23,7 @@ is not a document: `guppi sprint` writes it from that page, one tick per item by
 `render`, before the brief, so the file shows the pages of that same run; `/hi`
 reads the file as before. `governs` names the file, so the governed-files hook
 refuses a hand edit; the milestones and the backlog change only by an `update` of the sprint page, a Case: `generate` moves no line of the page, however many sessions put an item off (case 539.1).
-The first `## <id>` heading of the file is the sprint id `sprint_id`, `cleanup` and `archive` read, unchanged. `guppi sprint --check` renders in memory and names the file when it differs, exit 1, writing nothing; `make lint` runs it after `render --check` (case 227). Once the plain `guppi sprint` wrote the file and exits 0, it ticks every unticked task line that opens with a code span holding `guppi sprint` — never a `read` line that names the command later — in the `spec.md` of every unit under `raw/` whose yaml is applied whole; `--check` and an exit 1 tick nothing (case 250.2).
+The first `## <id>` heading of the file is the sprint id `sprint_id`, `cleanup` and `archive` read, unchanged. `guppi sprint --check` renders in memory and names the file when it differs, exit 1, writing nothing; `make lint` runs it after `render --check` (case 227). Once the plain `guppi sprint` wrote the file and exits 0, it ticks every unticked task line that opens with a code span holding `guppi sprint` — never a `read` line that names the command later, nor a line whose code span holds `guppi sprint-close`, which that command ticks (case 628.5) — in the `spec.md` of every unit under `raw/` whose yaml is applied whole; `--check` and an exit 1 tick nothing (case 250.2).
 
 ## History
 
@@ -58,3 +58,5 @@ The first `## <id>` heading of the file is the sprint id `sprint_id`, `cleanup` 
 - 2026-09-30 status: built → draft · cascade
 - 2026-09-30 estimate estimate-sprint-drops-an-emptied-milestone archived · cleanup
 - 2026-09-30 status: draft → built · cascade
+- 2026-10-04 updated: the ticker of guppi sprint leaves a guppi sprint-close line (case 628.5) · [[decision-case-628.5]]
+- 2026-10-04 status: built → draft · cascade

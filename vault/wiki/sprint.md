@@ -5,14 +5,14 @@
 Open since 2026-09-09. The repository works by the model of its rule pages: Phase 1
 (the harness built by its own rules) and Phase 2 (the surviving pages brought into
 conformance) of `docs/migration/migration-plan.md` are closed. Done when every
-Estimate of this page passes: lint clean, the leftovers gone, the branch merged, the
+Estimate of this page passes: lint clean, the leftovers gone, `make test` green on the last commit of `migration`, the
 Rule-class files dissolved, `index.md` gone, the `file` route out of the scripts.
 
 **Done when**
 
-- [ ] make lint exits 0 at the close of the sprint, unmigrated included, but for the unread of the sprint page's own Estimates · pending
-- [ ] vault/parked/, the 2026-08 documents and the old archive root are gone, git tracks no raw date folder without a session, and the repository has no remote, each by a decision named at the close of the sprint · pending
-- [ ] make test green on the last commit of migration and the branch merged into main · pending
+- [ ] make lint exits 0 in the Work Mode of the session that closes the sprint, before the librarian's run, unmigrated included, but for the unread of the sprint page's own Estimates · pending
+- [ ] vault/parked/, the 2026-08 documents and the old archive root are gone, git tracks no raw date folder without a session, and the repository has no remote, each by a decision named in the reading, read in the Work Mode of the session that closes the sprint · pending
+- [ ] make test green on the last commit of migration, read in the Work Mode of the session that closes it · pending
 - [x] No Rule-class file at the close of Slice 3f — the schemas rendered from rule pages, the glossary from entity-glossary, index.md gone, the file route out of the scripts · passed
 - [x] index.md is gone and no live page, harness file or script docstring points at a §N of it or at the file as a source · passed
 - [x] The file route is out of the scripts — no RULE_CLASS, rule_class, applied by hand or prose_names in guppi/; an update item with file is a pre-spec finding; a slug without a prefix lands category unknown; tests green and no lint finding on the schema.yaml of a category folder · passed
@@ -21,8 +21,8 @@ Rule-class files dissolved, `index.md` gone, the `file` route out of the scripts
 
 ### [ ] Slice 5 — closing
 
-- [ ] [[rule-sprint-close]] — what the close of a sprint moves to the archive and what it keeps (case 612.1) · draft
-- [ ] where the close of a sprint runs — a session of its own, a command or another place: not decided (case 612.1)
+- [ ] [[rule-sprint-close]] — what the close of a sprint moves to the archive and what it keeps (cases 612.1, 627) · draft
+- [ ] the close of migration — a session of its own: the pending readings taken in groups, `make test`, `make lint` and the tree read in its Work Mode, then `uv run guppi sprint-close --sprint migration --apply` in the librarian's run (case 628.9)
 
 ## Closed
 

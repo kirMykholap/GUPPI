@@ -5,8 +5,13 @@ schemas, one page per defect, and asserts the finding names the page and the cla
 """
 
 import io
+import os
+import shutil
+import subprocess
 import textwrap
+from pathlib import Path
 
+import pytest
 import yaml
 
 from guppi import lint
@@ -1175,3 +1180,80 @@ def test_a_root_file_a_rule_names_is_silent(tmp_path):
     )
     _, lines, _ = run(tmp_path)
     assert [line for line in lines if "layout" in line] == []
+
+
+# `make lint` runs every step, red or not (case 587); a test runs the real recipe of the
+# `Makefile` with a fake `uv` first on the search path, so the recipe is read at any time and
+# nothing of the vault is staged (case 637.3).
+
+MAKEFILE = Path(__file__).resolve().parent.parent / "Makefile"
+LINT_STEPS = [
+    "run guppi render --check",
+    "run guppi sprint --check",
+    "run guppi backlog --check",
+    "run guppi glossary --check",
+    "run guppi lint",
+]
+FAKE_UV = """\
+#!/bin/sh
+if read -r _; then input=read; else input=empty; fi
+echo "$* stdin:$input" >> "$FAKE_UV_LOG"
+echo "fake uv: $*"
+if [ "$*" = "$FAKE_UV_FAIL" ]; then exit 1; fi
+exit 0
+"""
+
+
+def make_lint(tmp_path, fail=""):
+    """`make lint` of the repository's Makefile in a work folder holding that file alone,
+    a fake `uv` first on the search path and a line on the caller's stdin; the calls the
+    fake recorded, and the work folder before and after."""
+    if shutil.which("make") is None:
+        pytest.skip("no make on the search path")
+    work, bin_dir = tmp_path / "work", tmp_path / "bin"
+    work.mkdir()
+    bin_dir.mkdir()
+    shutil.copyfile(MAKEFILE, work / "Makefile")
+    fake = bin_dir / "uv"
+    fake.write_text(FAKE_UV, encoding="utf-8", newline="\n")
+    fake.chmod(0o755)
+    log = tmp_path / "calls.log"
+    env = dict(os.environ)
+    env["PATH"] = str(bin_dir) + os.pathsep + env.get("PATH", "")
+    env["FAKE_UV_LOG"] = log.as_posix()
+    env["FAKE_UV_FAIL"] = fail
+    before = {p.name: p.read_bytes() for p in work.iterdir()}
+    done = subprocess.run(
+        ["make", "lint"],
+        check=False,
+        cwd=work,
+        env=env,
+        input="a line no step may read\n",
+        capture_output=True,
+        text=True,
+        timeout=120,
+    )
+    calls = log.read_text(encoding="utf-8").splitlines() if log.exists() else []
+    after = {p.name: p.read_bytes() for p in work.iterdir()}
+    return done, calls, before, after
+
+
+def assert_every_step_ran(done, calls):
+    assert [call.rsplit(" stdin:", 1)[0] for call in calls] == LINT_STEPS
+    assert all(call.endswith(" stdin:empty") for call in calls)
+    printed = [line for line in done.stdout.splitlines() if line.startswith("fake uv: ")]
+    assert printed == [f"fake uv: {step}" for step in LINT_STEPS]
+
+
+def test_every_step_runs_after_a_red_backlog_step_and_make_lint_exits_non_zero(tmp_path):
+    done, calls, before, after = make_lint(tmp_path, fail="run guppi backlog --check")
+    assert_every_step_ran(done, calls)
+    assert done.returncode != 0
+    assert after == before
+
+
+def test_every_step_green_makes_make_lint_exit_0(tmp_path):
+    done, calls, before, after = make_lint(tmp_path)
+    assert_every_step_ran(done, calls)
+    assert done.returncode == 0, done.stdout + done.stderr
+    assert after == before

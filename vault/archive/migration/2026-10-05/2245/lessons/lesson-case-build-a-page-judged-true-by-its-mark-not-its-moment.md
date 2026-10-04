@@ -2,7 +2,7 @@
 type: lesson
 kind: error
 root_cause: case-guppi searched the vault by the mark the Case changes, the Grep `defer case`, and judged each hit by that word, but did not search the moment the change acts at — a reply that closes a Frontier line — nor the cascade that the `set` of an Insight sets off, so the texts that speak of that moment and that cascade without the word were not read
-status: clustered
+status: archived
 insight: "[[insight-workflow-fact-signed-from-a-check-that-does-not-cover-it]]"
 origin: raw/2026-10-04/0004/ledger.md#L22
 sprint: migration
@@ -22,3 +22,5 @@ case-guppi searched the vault by the mark the Case changes, the Grep `defer case
 
 - 2026-10-04 created · raw/2026-10-04/0004/ledger.md#L22
 - 2026-10-04 updated: clustered under insight-workflow-fact-signed-from-a-check-that-does-not-cover-it (synthesis) · raw/2026-10-04/0004/ledger.md#L22
+- 2026-10-05 archived · insight actioned
+- 2026-10-05 archived · cleanup

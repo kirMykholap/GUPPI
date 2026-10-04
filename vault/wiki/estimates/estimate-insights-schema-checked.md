@@ -1,11 +1,11 @@
 ---
 type: estimate
 kind: QA
-status: pending
+status: passed
 target: "[[rule-insights-schema]]"
 purpose: An Insight page in the shape of the rendered schema has no schema finding and a page outside it has one per defect
 method: pytest tests/test_schemas.py -k insights on the live vault/wiki/insights/schema.yaml — a page in the shape, then one defect at a time; the live reading make lint, no schema finding on wiki/insights/
-checked: 2026-09-27
+checked: 2026-10-04
 origin: raw/2026-09-22/0014/ledger.md#case-304.6
 sprint: migration
 created: 2026-09-22
@@ -27,7 +27,7 @@ Then:
 
 ## Result
 
-2026-09-27, uv run pytest tests/test_schemas.py -k insights: 5 passed; make lint: no schema finding under wiki/insights/
+2026-10-04, at the /hi of session 2245: uv run pytest -q tests/test_schemas.py -k insights 5 passed, 1 skipped; make lint printed 35 finding lines, 4 deferred and 31 unread, none under wiki/insights/, and no line from its render, sprint, backlog or glossary check, so vault/wiki/insights/schema.yaml matches the Render of rule-insights-schema; vault/wiki/insights/schema.md does not exist; schema.yaml holds single: [addressed_by], computed: [severity], the Threshold, Reopening and Slug paragraphs in description, and one addressed_by in its example
 
 ## History
 
@@ -40,3 +40,4 @@ Then:
 - 2026-09-27 updated: the Criterion replaced whole — one sentence of the introduction changed by case 451.4, Given lifted into When and Then (case 451.15) · [[decision-case-451.15]]
 - 2026-09-27 status: pending → passed · raw/2026-09-27/1819/ledger.md#L25
 - 2026-10-04 updated: the Criterion replaced whole — the prose stands as data, with no claim that it is word for word the old schema.md (case 632.9) · [[decision-case-632.9]]
+- 2026-10-05 status: pending → passed · raw/2026-10-04/2245/ledger.md#L1

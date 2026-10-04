@@ -74,10 +74,10 @@ update:
 ```
 
 ```tasks
-- [ ] update `rule-case-build`
-- [ ] `uv run guppi render`: `.claude/agents/case-guppi.md`
-- [ ] update `estimate-case-build-checks-the-finished-case`
-- [ ] update `insight-workflow-fact-signed-from-a-check-that-does-not-cover-it`
+- [x] update `rule-case-build`
+- [x] `uv run guppi render`: `.claude/agents/case-guppi.md`
+- [x] update `estimate-case-build-checks-the-finished-case`
+- [x] update `insight-workflow-fact-signed-from-a-check-that-does-not-cover-it`
 - [ ] read `estimate-case-build-checks-the-finished-case`
 ```
 
@@ -161,10 +161,10 @@ update:
 ```
 
 ```tasks
-- [ ] update `estimate-case-check-judges-a-lone-sub-case-with-its-stored-parent`
-- [ ] update `estimate-case-check-requires-each-question-of-the-rounds`
-- [ ] update `estimate-case-check-sends-back-a-case-number-held-by-another-agent`
-- [ ] update `estimate-case-check-sends-back-a-ratified-case-in-another-shape`
+- [x] update `estimate-case-check-judges-a-lone-sub-case-with-its-stored-parent`
+- [x] update `estimate-case-check-requires-each-question-of-the-rounds`
+- [x] update `estimate-case-check-sends-back-a-case-number-held-by-another-agent`
+- [x] update `estimate-case-check-sends-back-a-ratified-case-in-another-shape`
 ```
 
 ### Case 637.2 — The clash check promises only what the hook does
@@ -223,9 +223,9 @@ update:
 ```
 
 ```tasks
-- [ ] update `rule-case-build`
-- [ ] `uv run guppi render`: `.claude/agents/case-guppi.md`
-- [ ] update `estimate-case-check-sends-back-a-clash-with-another-case`
+- [x] update `rule-case-build`
+- [x] `uv run guppi render`: `.claude/agents/case-guppi.md`
+- [x] update `estimate-case-check-sends-back-a-clash-with-another-case`
 - [ ] read `estimate-case-check-sends-back-a-clash-with-another-case`
 ```
 
@@ -263,7 +263,7 @@ update:
 
 ```tasks
 - [x] `tests/test_lint.py`: tests whose names hold `every_step` run `make lint` of the repository's `Makefile` in a temp folder with a fake `uv` first on the search path; the fake prints one line per call, records its arguments and whether its stdin was empty, and exits 1 for `guppi backlog --check` in one test and 0 for every step in another; they assert the five steps in order, each step's line in the output, a non-zero exit with the red step and 0 with none, an empty stdin for each step, and no new or changed file in the temp folder
-- [ ] update `estimate-lint-runs-every-step`
+- [x] update `estimate-lint-runs-every-step`
 - [ ] read `estimate-lint-runs-every-step`
 ```
 
@@ -294,5 +294,5 @@ update:
 ```
 
 ```tasks
-- [ ] update `estimate-session-start-context`
+- [x] update `estimate-session-start-context`
 ```

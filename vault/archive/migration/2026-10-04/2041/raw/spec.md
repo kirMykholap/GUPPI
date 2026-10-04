@@ -455,7 +455,7 @@ update:
 
 ```tasks
 - [x] update `estimate-insights-schema-checked`
-- [ ] read `estimate-insights-schema-checked`
+- [x] read `estimate-insights-schema-checked`
 ```
 
 ### Case 632.10 — The question after a clash and the question on a finding not closed take the grill-me shape
@@ -502,7 +502,7 @@ update:
 - [x] update `rule-orchestration`
 - [x] update `estimate-orchestration-asks-in-the-grill-me-shape`
 - [x] `uv run guppi render`: `vault/wiki/orchestration.md`
-- [ ] read `estimate-orchestration-asks-in-the-grill-me-shape`
+- [x] read `estimate-orchestration-asks-in-the-grill-me-shape`
 ```
 
 ## Case 633 — ask-guppi at /pre-spec: a fixed frame around the findings, and its searches checked apart
@@ -775,7 +775,7 @@ update:
 - [x] update `estimate-case-build-checks-the-finished-case`
 - [x] `uv run guppi render`: `.claude/skills/pre-spec/SKILL.md`
 - [x] `uv run guppi render`: `.claude/agents/ask-guppi.md`
-- [ ] read `estimate-prespec-reconciles`
+- [x] read `estimate-prespec-reconciles`
 ```
 
 ### Case 634.2 — The ask-guppi runs confirm their own findings once, before the Cases built again are shown
@@ -844,7 +844,7 @@ update:
 - [x] create `estimate-prespec-confirms-the-findings-once`
 - [x] `uv run guppi render`: `.claude/skills/pre-spec/SKILL.md`
 - [x] `uv run guppi render`: `.claude/agents/ask-guppi.md`
-- [ ] read `estimate-prespec-confirms-the-findings-once`
+- [x] read `estimate-prespec-confirms-the-findings-once`
 ```
 
 ### Case 634.3 — orchestration.md says when ask-guppi is sent: one run per Case at the first /pre-spec, asked again only to confirm
@@ -892,5 +892,5 @@ update:
 - [x] update `rule-orchestration`
 - [x] update `estimate-orchestration-shows-the-built-case`
 - [x] `uv run guppi render`: `vault/wiki/orchestration.md`
-- [ ] read `estimate-orchestration-shows-the-built-case`
+- [x] read `estimate-orchestration-shows-the-built-case`
 ```

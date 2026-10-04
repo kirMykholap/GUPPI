@@ -6334,3 +6334,43 @@ instruction. The global feed; a page's own `## History` is the per-page view.
 - 2026-10-04 rules/rule-page-generation status: draft → built · cascade · generate
 - 2026-10-04 rules/rule-prespec status: built → draft · cascade · generate
 - 2026-10-04 rules/rule-sprint status: draft → built · cascade · generate
+- 2026-10-05 estimates/estimate-insights-schema-checked status: pending → passed · raw/2026-10-04/2245/ledger.md#L1 · generate
+- 2026-10-05 estimates/estimate-handoff-holds-each-fact-once status: failed → passed · raw/2026-10-04/2245/ledger.md#L2 · generate
+- 2026-10-05 decisions/decision-case-636 created · raw/2026-10-04/2245/ledger.md#case-636 · generate
+- 2026-10-05 rules/rule-case-build updated: case-guppi runs each search its context names again just before it answers, and takes the files and counts from that run (case 636) · [[decision-case-636]] · generate
+- 2026-10-05 estimates/estimate-case-build-checks-the-finished-case updated: the Criterion replaced whole — each search the context names is run again just before the answer, and its files and counts come from that run (case 636) · [[decision-case-636]] · generate
+- 2026-10-05 insights/insight-workflow-fact-signed-from-a-check-that-does-not-cover-it updated: actioned: case-guppi runs each search its context names again just before it answers (case 636) · [[decision-case-636]] · generate
+- 2026-10-05 decisions/decision-case-637 created · raw/2026-10-04/2245/ledger.md#case-637 · generate
+- 2026-10-05 decisions/decision-case-637.1 created · raw/2026-10-04/2245/ledger.md#case-637.1 · generate
+- 2026-10-05 estimates/estimate-case-check-judges-a-lone-sub-case-with-its-stored-parent updated: the method is pytest alone; the live send-back is no longer waited for (case 637.1) · [[decision-case-637.1]] · generate
+- 2026-10-05 estimates/estimate-case-check-requires-each-question-of-the-rounds updated: the method is pytest alone; the live send-back is no longer waited for (case 637.1) · [[decision-case-637.1]] · generate
+- 2026-10-05 estimates/estimate-case-check-sends-back-a-case-number-held-by-another-agent updated: the method is pytest alone; the live send-back is no longer waited for (case 637.1) · [[decision-case-637.1]] · generate
+- 2026-10-05 estimates/estimate-case-check-sends-back-a-ratified-case-in-another-shape updated: the method is pytest alone; the live send-back is no longer waited for (case 637.1) · [[decision-case-637.1]] · generate
+- 2026-10-05 decisions/decision-case-637.2 created · raw/2026-10-04/2245/ledger.md#case-637.2 · generate
+- 2026-10-05 estimates/estimate-case-check-sends-back-a-clash-with-another-case updated: the Criterion replaced whole — the step of case-guppi and of the main agent after a clash is no longer part of the promise; the method is pytest alone (case 637.2) · [[decision-case-637.2]] · generate
+- 2026-10-05 decisions/decision-case-637.3 created · raw/2026-10-04/2245/ledger.md#case-637.3 · generate
+- 2026-10-05 decisions/decision-case-631 superseded by decision-case-637.3 · [[decision-case-637.3]] · generate
+- 2026-10-05 estimates/estimate-lint-runs-every-step updated: the Criterion replaced whole — tests run make lint with a fake uv, one whose backlog step is red and one whose steps are all green; the method is those tests, and the defer of case 631 is taken up (case 637.3) · [[decision-case-637.3]] · generate
+- 2026-10-05 decisions/decision-case-637.4 created · raw/2026-10-04/2245/ledger.md#case-637.4 · generate
+- 2026-10-05 estimates/estimate-session-start-context updated: the method is the make target alone; the live session without /hi is no longer waited for (case 637.4) · [[decision-case-637.4]] · generate
+- 2026-10-05 rules/rule-case-build updated: after a clash where the other Case should change, case-guppi still changes its own Case and names the other Case and its change in context (case 637.2) · [[decision-case-637.2]] · generate
+- 2026-10-05 estimates/estimate-orchestration-asks-in-the-grill-me-shape status: pending → passed · raw/2026-10-04/2245/ledger.md#L14 · generate
+- 2026-10-05 estimates/estimate-prespec-reconciles status: pending → passed · raw/2026-10-04/2245/ledger.md#L15 · generate
+- 2026-10-05 estimates/estimate-prespec-confirms-the-findings-once status: pending → failed · raw/2026-10-04/2245/ledger.md#L16 · generate
+- 2026-10-05 estimates/estimate-orchestration-shows-the-built-case status: pending → passed · raw/2026-10-04/2245/ledger.md#L17 · generate
+- 2026-10-05 lessons/lesson-prespec-confirmation-prompt-invites-a-new-finding created · raw/2026-10-04/2245/ledger.md#L18 · generate
+- 2026-10-05 insights/insight-prespec-after-findings-loop-unruled updated: child lesson-prespec-confirmation-prompt-invites-a-new-finding added (synthesis) · raw/2026-10-04/2245/ledger.md#L18 · generate
+- 2026-10-05 lessons/lesson-prespec-confirmation-prompt-invites-a-new-finding updated: clustered under insight-prespec-after-findings-loop-unruled (synthesis) · raw/2026-10-04/2245/ledger.md#L18 · generate
+- 2026-10-05 rules/rule-handoff status: draft → built · cascade · generate
+- 2026-10-05 rules/rule-insights-schema status: draft → built · cascade · generate
+- 2026-10-05 rules/rule-orchestration status: draft → built · cascade · generate
+- 2026-10-05 decisions/decision-case-631 archived · superseded · generate
+- 2026-10-05 lessons/lesson-case-build-a-count-in-context-not-from-a-run archived · insight actioned · generate
+- 2026-10-05 lessons/lesson-case-build-a-page-judged-true-by-its-mark-not-its-moment archived · insight actioned · generate
+- 2026-10-05 lessons/lesson-case-build-hits-counted-as-lines archived · insight actioned · generate
+- 2026-10-05 lessons/lesson-case-build-a-grep-cited-for-files-it-did-not-print archived · insight actioned · generate
+- 2026-10-05 lessons/lesson-case-build-a-count-in-context-not-from-a-run archived · cleanup
+- 2026-10-05 lessons/lesson-case-build-a-grep-cited-for-files-it-did-not-print archived · cleanup
+- 2026-10-05 lessons/lesson-case-build-a-page-judged-true-by-its-mark-not-its-moment archived · cleanup
+- 2026-10-05 lessons/lesson-case-build-hits-counted-as-lines archived · cleanup
+- 2026-10-05 decisions/decision-case-631 archived · cleanup

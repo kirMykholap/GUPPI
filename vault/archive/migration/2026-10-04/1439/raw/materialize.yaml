@@ -1482,6 +1482,7 @@ entries:
       Baseline whose backlog step is red, or for a method that stages one
   exists: true
   applied: '20:33:13'
+  superseded_by: '637.3'
 - line: 43
   text: decision[case 627.1][update][entity-sprint-migration]{ref:entity-sprint-migration}{supersedes:case
     615}
@@ -5033,6 +5034,8 @@ decisions:
       `backlog.md` is spoiled for the run is put off.
   spec: vault/raw/2026-10-04/1439/spec.md
   applied: '20:33:13'
+  superseded_by:
+  - decision-case-637.3
 - case: '628.10'
   decision: decision-case-628.10
   origin: raw/2026-10-04/1439/ledger.md#case-628.10

@@ -1,8 +1,9 @@
 ---
 type: decision
 case: "631"
-status: current
+status: archived
 defer: ["[[estimate-lint-runs-every-step]]"]
+superseded_by: ["[[decision-case-637.3]]"]
 origin: raw/2026-10-04/1439/ledger.md#case-631
 sprint: migration
 created: 2026-10-04
@@ -26,3 +27,6 @@ Whether make lint runs all five steps when an earlier one is red; its reading wa
 ## History
 
 - 2026-10-04 created · raw/2026-10-04/1439/ledger.md#case-631
+- 2026-10-05 superseded by decision-case-637.3 · [[decision-case-637.3]]
+- 2026-10-05 archived · superseded
+- 2026-10-05 archived · cleanup

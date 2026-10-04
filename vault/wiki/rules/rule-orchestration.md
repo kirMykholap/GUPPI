@@ -2,7 +2,7 @@
 type: rule
 kind: Leaf
 purpose: "Prevents the main agent from loading the form of a Case it does not build: what it alone does in a working session - the Frontier, the dispatch of case-guppi, the showing and signing of a Case, the moment of each ledger line, the defers and the acknowledging reply - stands in orchestration.md, which /hi loads"
-status: draft
+status: built
 enforcement: render
 governs: vault/wiki/orchestration.md
 render_mode: full
@@ -90,3 +90,4 @@ The reply that acknowledges a ratification has four parts, in this order: the `L
 - 2026-10-04 updated: the question after a clash and the question on a finding not closed are among the main agent's own questions in the grill-me shape (case 632.10) · [[decision-case-632.10]]
 - 2026-10-04 updated: ask-guppi is dispatched only at pre-spec, one run per top-level Case, and asked again only to confirm its findings (case 634.3) · [[decision-case-634.3]]
 - 2026-10-04 status: built → draft · cascade
+- 2026-10-05 status: draft → built · cascade

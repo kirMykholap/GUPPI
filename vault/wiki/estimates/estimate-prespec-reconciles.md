@@ -1,10 +1,10 @@
 ---
 type: estimate
 kind: QA
-status: pending
+status: passed
 target: "[[rule-prespec]]"
 method: One reading by hand of a /pre-spec, written into the estimate line — the exception the Method rule allows
-checked: 2026-10-01
+checked: 2026-10-04
 origin: raw/2026-09-09/ledger.md#case-24.2
 sprint: migration
 created: 2026-09-09
@@ -30,7 +30,7 @@ The agent runs `uv run guppi prespec --check` on the plan file with `--session <
 
 ## Result
 
-2026-10-01, by hand, the first /pre-spec after the render, session 1237: guppi prespec --check ran on the plan with --session dd5dac5e and printed 9 note lines and no finding; ask-guppi was dispatched once with the absolute path of the plan and the reading instructions, the Deferred Cases by slug only; one numbered report answered its seven findings before any Case was sent back, each with its fix or why it is known, none needing the person; the findings in Cases 567 and 569 went to their case-guppi by SendMessage, the Cases were shown and ratified again, and the Spec hook wrote them into the plan; after that the check ran once more, printed no finding, and ExitPlanMode followed with no second /pre-spec; guppi gate wrote the prespec mark at 14:08:41
+2026-10-04, at the /pre-spec of session 2245, by hand: uv run guppi prespec --check on the plan file with --session 7086b96c, its first line a note line, exit 0, no finding, 4 notes answered one line each; one ask-guppi per top-level Case, 636 and 637, in one message, each with the absolute plan path, its Case id and the instruction to read the other Cases only for a clash; the report gave for each run the Case it judged and its list of what it did not check, said that the whole Spec is not checked, numbered the 4 findings that need no word apart from the 2 decisions; the findings in Cases went to their case-guppi by SendMessage, the Cases were shown and ratified again and the plan file holds the rebuilt text, edited by no hand; after that ratification /pre-spec was not called again, the check ran (exit 0, the same 4 notes) and ExitPlanMode followed; the event log holds 23:54:59 7086b96c prespec
 
 ## History
 
@@ -74,3 +74,4 @@ The agent runs `uv run guppi prespec --check` on the plan file with `--session <
 - 2026-10-01 status: pending → passed · raw/2026-10-01/1237/ledger.md#L40
 - 2026-10-03 updated: method names the kind of its moment (case 613.3) · [[decision-case-613.3]]
 - 2026-10-04 updated: the Criterion replaced whole — one ask-guppi per top-level Case at the first run, of the plan or of the conserved Spec its title line names, the report naming what each run judged and did not check (case 634.1) · [[decision-case-634.1]]
+- 2026-10-05 status: pending → passed · raw/2026-10-04/2245/ledger.md#L15

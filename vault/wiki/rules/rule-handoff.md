@@ -2,7 +2,7 @@
 type: rule
 kind: Leaf
 purpose: Prevents the session's memory from being lost between the commit and the librarian
-status: draft
+status: built
 enforcement: render
 governs: .claude/skills/handoff/SKILL.md
 render_mode: full
@@ -61,3 +61,4 @@ Then, in a session whose `work.md` holds `## Conserved Spec` — one that `/box`
 - 2026-09-30 updated: handoff.md is the report of Retro: Debt, Observations, For the next session and Ask the person added; no number, no end and no commit; the three old section names kept; the Purpose no longer counts three things (case 531.5) · [[decision-case-531.5]]
 - 2026-10-02 updated: in a session that /box runs, /handoff dispatches nothing and hands back to /box (case 591.9) · [[decision-case-591.9]]
 - 2026-10-04 updated: a thing is said once: a second section names it only with what its kind adds; the readings that wait stand in Debt alone, each with its moment, and are not debt (case 624) · [[decision-case-624]]
+- 2026-10-05 status: draft → built · cascade

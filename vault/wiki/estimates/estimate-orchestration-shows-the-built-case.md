@@ -1,7 +1,7 @@
 ---
 type: estimate
 kind: QA
-status: pending
+status: passed
 target: "[[rule-orchestration]]"
 purpose: A Case is built by case-guppi and shown by the main agent unchanged
 method: by hand, the Cases of a session at its close, their context against the Agent calls and their showings against the SendUserFile calls of the transcript, and each request for a plain explanation against the Skill and SendMessage calls
@@ -32,7 +32,7 @@ The main agent dispatches `case-guppi` with the Case id, the Frontier item and i
 
 ## Result
 
-2026-10-04, in the Plan Mode of session 0112, by hand: session 0004 at its close (transcript a17e0a5f, Plan Mode 00:04–00:59): the plan file elegant-purring-yao.md written at 00:13:32, before the first dispatch; Cases 619 and 620 dispatched to case-guppi with id, Frontier item, source and the person's words, nothing of a Case in the chat before the answer; each answer to a round ("Согласен", "A") sent to the same case-guppi by SendMessage verbatim; the four rounds shown (619 Q1–Q2; 620 Q1, Q2–Q3, Q4) open with the Context paragraph or the first question and hold the same questions, options, ➡️ lines and quotations as the rounds of the agent, the own text after one rule; the three showings (619, 620, 620 built again after /pre-spec) each by SendUserFile with display render on cases/case-<N>.md, then the Russian heading, the list of the Case and its sub-cases right under it, the ratification fence as the answer held it and the own text after one rule; 620 changed only through its case-guppi and ratified again; the short-form Cases 621, 622 and 623 written in English in one reply with no dispatch; ask-guppi dispatched once, at /pre-spec; W1 and W27 closed with no dispatch; the heading of the third showing adds "(собран заново по находкам `/pre-spec`)" after the name; not exercised: a request for a plain explanation, a showing refused by the Stop check of rule-case-check, a change the person asks on a shown Case
+2026-10-04, at the close of session 2245, by hand from its transcript: the plan file stood with its title line before the first dispatch; case-guppi was dispatched with the Case id, the Frontier item, its source and the person's words for C3 (635), C4 (636) and C5 (637), nothing of a Case in the chat before its answer; each answer to a round went verbatim by SendMessage to its case-guppi, and the question "Почему так ?" too, answered under **Fact:** and shown translated; four rounds were shown translated in order with their numbers, the Context paragraph in place, the quotations as blockquotes, the agent's text after one rule and no file sent; each Case was shown by SendUserFile with display render on its case file, under a Russian heading with one list of id, Russian name and how done is checked, one ratification fence and the agent's text after one rule, the two rebuilt Cases in one reply; an answer of case-guppi holding 637.3 alone was sent back for the whole Case before any showing; no given, when, then or tasks stood in the chat; C3 closed with no Case after the round; ask-guppi ran only at /pre-spec, one per top-level Case, and again only to confirm; no request for a plain explanation came in the session
 
 ## History
 
@@ -62,3 +62,4 @@ The main agent dispatches `case-guppi` with the Case id, the Frontier item and i
 - 2026-10-04 deferred · [[decision-case-622]]
 - 2026-10-04 status: failed → passed · raw/2026-10-04/0112/ledger.md#L9
 - 2026-10-04 updated: the Criterion replaced whole — ask-guppi only at pre-spec, one run per top-level Case, asked again only to confirm its findings (case 634.3) · [[decision-case-634.3]]
+- 2026-10-05 status: pending → passed · raw/2026-10-04/2245/ledger.md#L17

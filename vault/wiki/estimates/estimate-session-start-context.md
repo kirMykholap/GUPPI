@@ -4,7 +4,7 @@ kind: QA
 status: pending
 target: "[[rule-session-start]]"
 purpose: A ledger line reaches the session's ledger only in a session opened with /hi, and a refusal tells the person why
-method: "make test-session-start; by hand: one session opened without /hi whose reply carries a LEDGER block, and the ledger of the next working session after its first ratification, written into the estimate line"
+method: make test-session-start
 origin: raw/2026-09-09/ledger.md#case-12
 sprint: migration
 created: 2026-09-09
@@ -37,3 +37,4 @@ path is unchanged since, and `tests/test_ledger.py` holds it in the LEDGER-block
 - 2026-09-09 updated: criterion follows the LEDGER block · raw/2026-09-09/ledger.md#case-16.1
 - 2026-09-09 updated: Method names the make pipeline over the children · raw/2026-09-09/ledger.md#case-26.2
 - 2026-09-28 updated: the Criterion replaced whole — one When and Then, the session folder of the ledger; purpose and method set, Context and Method out (case 485.1) · [[decision-case-485.1]]
+- 2026-10-05 updated: the method is the make target alone; the live session without /hi is no longer waited for (case 637.4) · [[decision-case-637.4]]

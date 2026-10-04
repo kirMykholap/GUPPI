@@ -25,7 +25,7 @@ It puts each option the person chose in its rounds, or the person's own words wh
 **＋** When the Case replaces the Criterion of an Estimate, it reads the `purpose` and `method` of that Estimate, and the same `update` sets anew each one that states the old promise.
 **＋** Each hit that the change makes false enters the Case, or its `context` says why it stands.
 **＋** The `context` names a search only when the Case rests on it: a search with a hit that enters the Case, a search with a hit that stands and needs the reason why, or a search that a claim that no text says something rests on; a search that found nothing to change and that no claim rests on is left out.
-**＋** A claim of `context` about a text names the search it rests on: its pattern, the paths it ran over, and each file the search printed, a file it does not read included, or the count it printed; it claims nothing the search did not print.
+**＋** A claim of `context` about a text names the search it rests on: its pattern, the paths it ran over, and each file the search printed, a file it does not read included, or the count it printed; just before it answers, it runs each search that `context` names again, with the pattern and the paths that `context` writes, and the files and counts in `context` are the ones that run printed, not the files it read during the build; it claims nothing the search did not print.
 **＋** It reads side by side the finished new texts of all its sub-cases that change one page, and the Case holds no contradiction between them.
 **－** A hit in a History line, in `log.md` or in `brief.md` is not read.
 
@@ -44,3 +44,4 @@ It puts each option the person chose in its rounds, or the person's own words wh
 - 2026-10-01 status: pending → passed · raw/2026-10-01/1725/ledger.md#L16
 - 2026-10-04 updated: the Criterion replaced whole — the context names only the searches the Case rests on (case 629.5) · [[decision-case-629.5]]
 - 2026-10-04 updated: the method reads the answers of the ask-guppi runs, one per top-level Case (case 634.1) · [[decision-case-634.1]]
+- 2026-10-05 updated: the Criterion replaced whole — each search the context names is run again just before the answer, and its files and counts come from that run (case 636) · [[decision-case-636]]

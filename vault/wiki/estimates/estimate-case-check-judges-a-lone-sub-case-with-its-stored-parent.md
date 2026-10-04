@@ -4,7 +4,7 @@ kind: QA
 status: pending
 target: "[[rule-case-check]]"
 purpose: Whether the check of an answer of case-guppi that holds sub-cases alone judges their frame against the given of their stored parent, and gives the answer no finding of the parent itself
-method: uv run pytest tests/test_casecheck.py -k lone; then by hand a live answer of case-guppi with sub-cases alone, its stored entries and the findings sent back read against the Criterion
+method: uv run pytest tests/test_casecheck.py -k lone
 origin: raw/2026-10-04/1439/ledger.md#case-629.3
 sprint: migration
 created: 2026-10-04
@@ -26,3 +26,4 @@ The hook builds the Spec text it judges with the stored section of Case N before
 ## History
 
 - 2026-10-04 created · [[decision-case-629.3]]
+- 2026-10-05 updated: the method is pytest alone; the live send-back is no longer waited for (case 637.1) · [[decision-case-637.1]]

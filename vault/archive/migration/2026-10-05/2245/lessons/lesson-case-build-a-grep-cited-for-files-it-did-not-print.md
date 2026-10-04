@@ -2,7 +2,7 @@
 type: lesson
 kind: error
 root_cause: case-guppi names the files of a search in its context from the files it read during the build, not from the output of the command it names, so a claim stands on a search that does not print it
-status: clustered
+status: archived
 insight: "[[insight-workflow-fact-signed-from-a-check-that-does-not-cover-it]]"
 origin: raw/2026-10-04/2041/ledger.md#L38
 sprint: migration
@@ -22,3 +22,5 @@ case-guppi names the files of a search in its context from the files it read dur
 
 - 2026-10-04 created · raw/2026-10-04/2041/ledger.md#L38
 - 2026-10-04 updated: clustered under insight-workflow-fact-signed-from-a-check-that-does-not-cover-it (synthesis) · raw/2026-10-04/2041/ledger.md#L38
+- 2026-10-05 archived · insight actioned
+- 2026-10-05 archived · cleanup

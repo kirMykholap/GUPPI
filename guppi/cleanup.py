@@ -11,6 +11,14 @@ under `vault/archive/`, at any depth, whose status is no longer `archived` moves
 `parent` or `target` is in the archive is reported, not moved. No index is rewritten: the
 index files are gone, the reader computes the line (case 147.6).
 `raw/` is `guppi archive`'s, not this script's. Rule page: `vault/wiki/rules/rule-cleanup.md`.
+
+`sprint` is the first `## <id>` heading of `sprint.md`. A moved page gets the History line
+`archived · cleanup`, a page moved back `restored · cleanup`, and a live page whose list lost
+a slug `child <slug> archived · cleanup` or `estimate <slug> archived · cleanup`; `log.md` gets
+each line with the page's path. `[[slug]]` links in page bodies stay because Obsidian resolves
+a name in any folder and lint counts archived slugs as known. A rerun moves nothing and exits
+0. A file that cannot be moved, or a name already taken in the archive, is reported on stderr
+with exit 1, and the other pages still move (case 632.1).
 """
 
 import argparse

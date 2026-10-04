@@ -19,23 +19,6 @@ Prevents an archived page from staying among the live ones. `archived` is a stat
 is this script's, so a page never disappears by an agent's hand. `raw/<date>/` is not
 this script's: `guppi archive` moves an applied session ([[rule-raw-archive]]).
 
-## How it works
-
-`uv run guppi cleanup` moves every live page with `status: archived` to
-`vault/archive/<sprint>/<date>/<HHMM>/<category>/<slug>.md`. `sprint` is the first
-`## <id>` heading of `sprint.md`, `date` the day of the run, `HHMM` the session of the
-run: the latest `<HHMM>/` folder under `raw/<date>/`, and without one the latest of the
-nearest date back (case 102.2). The moved page gets the History
-line `archived · cleanup`; `log.md` gets the same. The slug is removed from the `children` lists of live pages and from the `estimates` lists of entities and rules, they get a History line; an Insight's `children` keep archived lessons, since `severity`
-counts the live ones. `[[slug]]` links in page bodies are not changed: Obsidian
-resolves a name in any folder, and lint counts archived slugs as known. A live page
-whose `parent` or `target` went to the archive is reported on stderr and left.
-
-A page under `vault/archive/`, at any depth, whose status is no longer `archived` moves back to
-`wiki/<category>/` with the History line `restored · cleanup`.  A rerun moves nothing and exits 0. A
-file that cannot be moved, or a name already taken in the archive, is reported on
-stderr with exit 1; the other pages still move.
-
 ## History
 
 - 2026-09-10 created · raw/2026-09-10/ledger.md#case-33

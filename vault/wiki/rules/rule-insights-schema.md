@@ -2,7 +2,7 @@
 type: rule
 kind: Leaf
 purpose: Prevents an Insight page from carrying a field or section outside the shape lint checks, or lacking one it needs
-status: built
+status: draft
 enforcement: render
 governs: vault/wiki/insights/schema.yaml
 render_mode: full
@@ -123,3 +123,4 @@ examples:
 - 2026-09-27 status: draft → built · cascade
 - 2026-09-30 updated: deferred_by is cleared on a supersedes under the condition that rule-case-protocol sets (case 549) · [[decision-case-549]]
 - 2026-10-04 updated: an actioned Insight and an error Lesson that joined no Insight are archived at the close of their sprint (case 627.2) · [[decision-case-627.2]]
+- 2026-10-04 status: built → draft · cascade

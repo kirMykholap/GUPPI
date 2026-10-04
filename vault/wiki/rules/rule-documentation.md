@@ -74,7 +74,7 @@ Do the steps in this order.
    files are written from them here. Every line on its stderr is a flag; a file it
    could not write is left to the next session start.
 
-5. Run `uv run guppi sprint`. It writes `vault/wiki/sprint.md` from the sprint page by the statuses of this run. Then run `uv run guppi backlog`. It writes `vault/wiki/backlog.md` from the conserved Specs, the pages with `deferred_by`, the open Insights and the `## Backlog` of the sprint page. Every line on the stderr of either is a flag.
+5. Run `uv run guppi sprint`. It writes `vault/wiki/sprint.md` from the sprint page by the statuses of this run. Then run `uv run guppi backlog`. It writes `vault/wiki/backlog.md` from the conserved Specs, the pages with `deferred_by`, the open Insights and the `## Backlog` of each sprint page, live or under `vault/archive/` (`rule-backlog`, case 632.2). Every line on the stderr of either is a flag.
 
 6. Run `uv run guppi glossary`. It writes `vault/wiki/glossary.md` from the `## Terms` of `entity-glossary`. Every line on its stderr is a flag.
 
@@ -147,3 +147,4 @@ project's hooks; the hook is part of this Render and is ratified with it.
 - 2026-10-01 updated: the librarian flags only a read the frame says its job does not need, and names in the report only a page opened for one of the first three reasons and the one read of the ledger (case 567.1) · [[decision-case-567.1]]
 - 2026-10-01 status: draft → built · cascade
 - 2026-10-04 updated: the librarian runs the close line of the Spec after generate (case 628.1) · [[decision-case-628.1]]
+- 2026-10-04 updated: step 5 reads the Backlog of each sprint page, live or archived (case 632.2) · [[decision-case-632.2]]

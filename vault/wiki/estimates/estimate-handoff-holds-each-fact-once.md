@@ -1,11 +1,11 @@
 ---
 type: estimate
 kind: QA
-status: pending
+status: failed
 target: "[[rule-handoff]]"
 purpose: Whether handoff.md, the report of Retro, says each thing once in the section of its kind — a Case, box, reading, lesson or observation named again only with what the second section adds, the readings that wait listed in Debt alone and not counted as debt — with no commit, no number and no end, and keeps the three old section names
 method: one reading by hand, at the /hi of a later session, of a handoff.md written by .claude/skills/handoff/SKILL.md as rendered from rule-handoff after case 624, against the close of its Retro, recorded in the estimate line
-checked: 2026-10-03
+checked: 2026-10-04
 origin: raw/2026-09-27/2050/ledger.md#case-468.2
 sprint: migration
 created: 2026-09-27
@@ -29,7 +29,7 @@ Then:
 
 ## Result
 
-2026-10-03, at the /hi of session 1341, vault/raw/2026-10-03/0317/handoff.md read against the close of its Retro (transcript 5b311f89, the reply at 05:05:59, ledger lines 52-55): the heading and the seven sections stand in order and each holds its kind, but Case 613.3 is named in Notes from memory, Direct instructions to the librarian, What actually got done and Debt, its 37 method rewrites in three of them; Cases 611 and 612.1 in Direct instructions and What actually got done; the two lessons in Direct instructions by slug and in What actually got done by line; `estimate-hi-takes-its-readings` in Direct instructions and Debt
+2026-10-04, at the /hi of session 2041, by hand: vault/raw/2026-10-04/1934/handoff.md against the close of its Retro, raw/2026-10-04/1934/ledger.md, 5 lines, the last at 20:30:44: the heading and the seven sections stand in order and each holds its kind; What actually got done names the 4 readings and the lesson by L1-L5 as the ledger holds them; Debt says no box is debt and counts 84 boxes that wait; the readings that wait stand in Debt alone; but Debt gives them as 30 Estimates in two lines grouped by moment, not one line per Estimate
 
 ## History
 
@@ -40,3 +40,4 @@ Then:
 - 2026-10-03 deferred · [[decision-case-618]]
 - 2026-10-04 deferred · [[decision-case-621]]
 - 2026-10-04 updated: the Criterion replaced whole — one statement once, a second section naming a thing only with what its kind adds; the readings that wait in Debt alone, each with its moment, not debt; read on a handoff the rendered skill wrote (case 624) · [[decision-case-624]]
+- 2026-10-04 status: pending → failed · raw/2026-10-04/2041/ledger.md#L7

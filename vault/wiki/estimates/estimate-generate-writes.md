@@ -1,11 +1,11 @@
 ---
 type: estimate
 kind: QA
-status: pending
+status: passed
 target: "[[rule-page-generation]]"
 purpose: What generate writes to a page for each kind of entry of a materialize.yaml, and nothing an entry does not carry
 method: pytest in tests/test_generate.py against a temp vault; the live reading once by hand
-checked: 2026-09-30
+checked: 2026-10-04
 origin: raw/2026-09-10/ledger.md#case-32
 sprint: migration
 created: 2026-09-10
@@ -36,7 +36,7 @@ A `create` becomes a page: `type`, the fields of the entry, `status` by category
 
 ## Result
 
-2026-09-30, uv run pytest tests/test_generate.py: 103 passed; by hand on the run of 070d8e6: estimate-case-build-checks-the-finished-case created with type, kind, status pending, target, purpose, method in order and no Context or Method section; rule-case-build History carries updated and estimate added lines ending in decision-case-544.1; rule-orchestration deferred_by 424 and 546 with the History line deferred
+2026-10-04, at the /hi of session 2041: uv run pytest tests/test_generate.py 104 passed; by hand on the librarian's run of c04578e2, the yamls of 1439 and 1934 both sprint migration: the 33 pages it created all carry sprint migration; estimate-sprint-close-runs-in-the-librarian-run carries type, kind, status pending, target, purpose, method in order and the sections Criterion and History only; estimate-ask-finds stands failed with its Result overwritten, checked 2026-10-04 and the History line status pending to failed with the pointer raw/2026-10-04/1934/ledger.md#L1; estimate-spec-write-reaches-the-approved-spec has the History line deferred by decision-case-630; the 5 log.md lines read end in the decision or the ledger pointer; not exercised live: the sprint of a unit that creates entity-sprint-<id>
 
 ## History
 
@@ -82,3 +82,4 @@ A `create` becomes a page: `type`, the fields of the entry, `status` by category
 - 2026-09-29 updated: the Criterion replaced whole — set.method drops no section (case 506.6) · [[decision-case-506.6]]
 - 2026-09-30 status: pending → passed · raw/2026-09-30/1736/ledger.md#L25
 - 2026-10-04 updated: the Criterion replaced whole — a page's sprint is the sprint of the yaml, the new sprint's id in the unit that creates its page (case 628.6) · [[decision-case-628.6]]
+- 2026-10-04 status: pending → passed · raw/2026-10-04/2041/ledger.md#L6

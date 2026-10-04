@@ -1,7 +1,7 @@
 ---
 type: estimate
 kind: QA
-status: passed
+status: pending
 target: "[[rule-prespec]]"
 method: One reading by hand of a /pre-spec, written into the estimate line — the exception the Method rule allows
 checked: 2026-10-01
@@ -14,16 +14,17 @@ tags: [session, workflow, harness]
 ## Criterion
 
 When:
-The person invokes `/pre-spec`, or the agent calls the skill, before the Spec is approved.
+The person invokes `/pre-spec`, or the agent calls the skill, before the Spec is approved, with `.claude/skills/pre-spec/SKILL.md` rendered from `rule-prespec` and `.claude/agents/ask-guppi.md` rendered from `rule-ask`.
 
 Then:
-The agent runs `guppi prespec --check` on the plan file with `--session <id>`, the eight-character id of the `hi:` line, and reads the first line of the output before the exit code — "no hi recorded for session …; nothing checked" means the wrong value; nothing is translated before the run.
+The agent runs `uv run guppi prespec --check` on the plan file with `--session <id>`, the eight-character id of the `hi:` line, and reads the first line of the output before the exit code — "no hi recorded for session …; nothing checked" means the wrong value; nothing is translated before the run.
 **＋** A finding in a Case — in its prose or in its body, a wrong fact of its `context` included — goes to the `case-guppi` of that Case by `SendMessage`; its new answer is shown and ratified again, and the hook of `rule-spec-write` writes it into the plan; the agent does not edit the text of a Case in the plan file.
-**＋** A finding in the Frontier or in a ledger line is fixed there, and the command runs again until it prints no finding.
-**＋** At the first run of `/pre-spec` in the session, `ask-guppi` is dispatched once with the absolute path of the plan file and the instruction to read every Case outside `## Deferred` — `context`, `when`, `then`, the `then` block — and, for an `update` of a rule or an entity, the page's `estimates`; of a Case under `## Deferred` it reads only the slugs of its `defer` items; a later run of `/pre-spec` in the session dispatches no `ask-guppi`.
+**＋** A finding in `vault/raw/<date>/<hi HHMM>/frontier.md` or in a line of the session's ledger is fixed there, and the command runs again until it prints no finding.
+**＋** At the first run of `/pre-spec` in the session, one `ask-guppi` is dispatched for each top-level Case outside `## Deferred` — of the plan, or of the conserved Spec that the plan's title line names, as `rule-skill-hi` sets that line — all in one message, each with the absolute path of the plan file, the id of the Case it judges and the instruction to read every Case outside `## Deferred` — `context`, `when`, `then`, the `then` block — and, for an `update` of a rule or an entity, the page's `estimates`; each run judges its own Case and its sub-cases and reads the other Cases only to find a clash with them; of a Case under `## Deferred` it reads only the slugs of its `defer` items; a later run of `/pre-spec` in the session dispatches no `ask-guppi`.
 **＋** Three questions: which decisions contradict a page of the vault, a rule of the vault, or each other; whether an Estimate the Case does not name speaks of the thing the Case changes; which fact of a `context` — a page's status, a count, a case number, a claim that no page holds a thing — the vault does not bear out.
-**＋** The agent answers the findings with one report before any Case is sent back: each finding numbered, with the fix it proposes or why it is already known, the findings that need the person apart from those that do not, and the decisions it needs from the person; after the Cases built again on the findings are ratified, it does not call `/pre-spec` again, but runs the check, fixes what it prints, and exits Plan Mode when the check prints no finding.
+**＋** The agent answers the findings with one report before any Case is sent back: for each `ask-guppi` run, the Case it judged and its list of what it did not check; each finding numbered, with the fix it proposes or why it is already known, the findings that need the person apart from those that do not, and the decisions it needs from the person; after the Cases built again on the findings are ratified, it does not call `/pre-spec` again, but runs the check, fixes what it prints, and exits Plan Mode when the check prints no finding.
 **＋** `guppi gate` writes the stamped `prespec` line on the Skill call.
+**－** The report never says that the whole Spec is checked.
 **－** The agent writes no list of the decisions: the plan is the list.
 **－** The body of a deferred decision is not read; a Case that changes a page another Case of the plan defers is still a finding.
 
@@ -72,3 +73,4 @@ The agent runs `guppi prespec --check` on the plan file with `--session <id>`, t
 - 2026-10-01 updated: the Criterion replaced whole - ask-guppi at the first run of the session only, one report that sorts the findings, no second call after the Cases built again are ratified (case 561.1) · [[decision-case-561.1]]
 - 2026-10-01 status: pending → passed · raw/2026-10-01/1237/ledger.md#L40
 - 2026-10-03 updated: method names the kind of its moment (case 613.3) · [[decision-case-613.3]]
+- 2026-10-04 updated: the Criterion replaced whole — one ask-guppi per top-level Case at the first run, of the plan or of the conserved Spec its title line names, the report naming what each run judged and did not check (case 634.1) · [[decision-case-634.1]]

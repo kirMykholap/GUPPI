@@ -84,7 +84,7 @@ update:
 - [x] update `rule-handoff`
 - [x] update `estimate-handoff-holds-each-fact-once`
 - [x] `uv run guppi render`: `.claude/skills/handoff/SKILL.md`
-- [ ] read `estimate-handoff-holds-each-fact-once`
+- [x] read `estimate-handoff-holds-each-fact-once`
 ```
 
 ## Case 625 — The method of four Estimates no longer names a moment no one brings on

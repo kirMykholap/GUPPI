@@ -1,10 +1,11 @@
 ---
 type: estimate
 kind: QA
-status: pending
+status: passed
 target: "[[rule-case-check]]"
 purpose: Whether the SubagentStop check sends back to case-guppi a round whose question has a title line out of the grill-me form or misses a fixed label, once per text, and leaves a round in form, a Case and a Fact answer alone
 method: "uv run pytest tests/test_casecheck.py -k round_form over a temp agent transcript: a round in form, a title line without the colon, a question with no Now line, no lone Options label, no option with an After item and no arrow line, the same faulty round given twice, a Fact answer, an answer with a Case, an unreadable transcript; then by hand a round the hook sends back live, its stderr and the round case-guppi gave again"
+checked: 2026-10-04
 origin: raw/2026-10-02/2300/ledger.md#case-601.1
 sprint: migration
 created: 2026-10-02
@@ -30,8 +31,13 @@ Then:
 **－** The check of the form stores nothing and writes no file, whether or not the session has a plan file.
 **－** A round as the main agent shows it in the chat is not judged here.
 
+## Result
+
+2026-10-04, the Work readings of session 2041: uv run pytest tests/test_casecheck.py -k round_form 12 passed; by hand, the live send-back in the transcript of the case-guppi of Case 634 (agent a4454db93d9df9006 of session 9fb75985), L111 at 18:44:55 UTC: the round at L110 opened its second question with the line ❓ **Q2b** - **How many checks a rebuilt Case gets**:, and uv run guppi casecheck --subagent on SubagentStop exited 2 with one stderr line naming that question by its first line, the part it misses, the title line ❓ **Q<n>** - **<title>**:, and telling case-guppi to answer with the round whole again; case-guppi answered at L113 with the round whole, its three questions Q1, Q2, Q3 in form, and the hook sent that round back no more; no check of a Case was printed with the round
+
 ## History
 
 - 2026-10-03 created · [[decision-case-601.1]]
 - 2026-10-03 updated: the Criterion replaced whole — a round is known by is_round as the code holds it, and gets no check of a Case in the same run, so its exit 2 carries the findings of its form alone (case 607.2) · [[decision-case-607.2]]
 - 2026-10-03 updated: method names the kind of its moment (case 613.3) · [[decision-case-613.3]]
+- 2026-10-04 status: pending → passed · raw/2026-10-04/2041/ledger.md#L37

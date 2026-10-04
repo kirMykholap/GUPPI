@@ -1,10 +1,10 @@
 ---
 type: estimate
 kind: QA
-status: failed
+status: pending
 target: "[[rule-ask]]"
-purpose: Whether ask-guppi answers the questions of /pre-spec with one numbered list of findings under each question, each finding naming its Case and the page or Cases it bears on, a list of the paths of the files it read allowed after them
-method: "by hand at the /hi of a later session: the answer of ask-guppi at a /pre-spec after the render of .claude/agents/ask-guppi.md by case 626.1, read in its agent transcript against the event log, recorded in the estimate line"
+purpose: Whether ask-guppi answers the questions of /pre-spec with one line on what it read, one numbered list of findings under each question, each finding naming its Case and the page or Cases it bears on, then a list of what it did not check and a list of the paths of the files it read, and nothing else
+method: "by hand at the /hi of a later session: the answer of ask-guppi at a /pre-spec after the render of .claude/agents/ask-guppi.md by case 633.1, read in its agent transcript against the event log, recorded in the estimate line"
 checked: 2026-10-04
 origin: raw/2026-09-09/ledger.md#case-23.1
 sprint: migration
@@ -18,15 +18,15 @@ When:
 At the first run of `/pre-spec` in a session, the main agent dispatches `ask-guppi` through the `Agent` tool with the plan file and the questions of `.claude/skills/pre-spec/SKILL.md`, and the agent follows `.claude/agents/ask-guppi.md` as rendered from `rule-ask`.
 
 Then:
-The answer opens with one numbered list of findings under each question of `.claude/skills/pre-spec/SKILL.md`, in its order: what contradicts a page, a rule or another Case; an Estimate a Case does not name that speaks of the thing the Case changes; a fact of a `context` the vault does not bear out.
+The answer opens with one line that names what the agent read: the plan file, or the Spec that the plan's title line names, and the Cases it checked.
+**＋** Then stands one numbered list of findings under each question of `.claude/skills/pre-spec/SKILL.md`, in its order: what contradicts a page, a rule or another Case; an Estimate a Case does not name that speaks of the thing the Case changes; a fact of a `context` the vault does not bear out.
 **＋** Each finding names its Case and the page or the Cases it bears on; a question with no finding says "none".
 **＋** A finding that names a page carrying `deferred_by` gives the `## Problem` of the Decision that field names.
-**＋** After the findings a list of the paths of files the agent read may stand, as the general note of Claude Code asks of a sub-agent.
-**＋** The agent starts with the Grep `^(purpose|deferred_by):` over `vault/wiki/rules/`, then runs one Grep per other category the question touches.
+**＋** After the findings stands one list of what the questions ask that the agent did not check, "none" when it checked all of it, and then a list of the paths of the files it read.
 **＋** The dispatch stands in `vault/raw/<date>/event_log.md`.
 **－** The findings are not put under the lines `exists`, `near`, `missing`, `rules` and tags/slug: those lines answer a question whether a thing exists.
-**－** No index line, page text or other note reaches the caller beyond the findings and that list of paths.
-**－** An answer with no list after the findings holds the promise as well.
+**－** No summary of the findings, no list of what holds, no index line and no page text reaches the caller.
+**－** An answer with no list of paths holds the promise as well.
 
 ## Result
 
@@ -47,3 +47,4 @@ The answer opens with one numbered list of findings under each question of `.cla
 - 2026-10-04 deferred · [[decision-case-623]]
 - 2026-10-04 updated: the Criterion replaced whole — the dispatch at /pre-spec answered by one numbered list of findings under each question, not by the five lines, the Problem of a deferred page in its finding; the lines on a page asked in either language, a crossed rule and an archived slug moved to estimate-ask-query-before-a-create (case 626.1) · [[decision-case-626.1]]
 - 2026-10-04 status: pending → failed · raw/2026-10-04/1934/ledger.md#L1
+- 2026-10-04 updated: the Criterion replaced whole — one line on what was read before the findings, a list of what was not checked after them and before the paths, no summary and no list of what holds; the line on the searches moved to estimate-ask-searches-at-prespec (case 633.1) · [[decision-case-633.1]]

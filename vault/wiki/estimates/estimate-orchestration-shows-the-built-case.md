@@ -1,7 +1,7 @@
 ---
 type: estimate
 kind: QA
-status: passed
+status: pending
 target: "[[rule-orchestration]]"
 purpose: A Case is built by case-guppi and shown by the main agent unchanged
 method: by hand, the Cases of a session at its close, their context against the Agent calls and their showings against the SendUserFile calls of the transcript, and each request for a plain explanation against the Skill and SendMessage calls
@@ -25,7 +25,7 @@ The main agent dispatches `case-guppi` with the Case id, the Frontier item and i
 **＋** The main agent shows the Case of an answer at every showing by `SendUserFile` with `display: render` on `raw/<date>/<hi HHMM>/cases/case-<N>.md`, the file the hook of `rule-case-check` wrote from the answer. In the same reply it writes the heading of the top-level Case with its name in Russian and, under it, one list with an item per Case and sub-case of the answer: its id, its name in Russian, and a short text in Russian on what done means and how it is checked, taken from the Estimate the Case creates or whose Criterion it replaces, or from the Estimate its `context` names as already checking the change. Then it writes one `ratification` with the ledger lines of every Case of the list as the answer holds them, and its own text after one horizontal rule. An answer in which a Case gives no such Estimate goes back to its `case-guppi` by `SendMessage` before the Case is shown.
 **＋** A reply that shows a Case and that the `Stop` check of `rule-case-check` refuses is followed, before the person answers, by a reply that sends the file and shows the `ratification` as the answer holds it; a reply that shows a round and that the `Stop` check of `rule-case-check` refuses is followed, before the person answers, by a reply that shows the round again with nothing before its `**Context:**` paragraph or its first question.
 **＋** A ratified Case that changes — in its prose or in its body — changes through its `case-guppi`, and its new answer is sent and ratified again; the main agent edits no Case in the plan file.
-**＋** An item that needs no decision the main agent closes alone, with no dispatch; it dispatches `ask-guppi` once, at pre-spec, and not before a showing.
+**＋** An item that needs no decision the main agent closes alone, with no dispatch; it dispatches `ask-guppi` only at pre-spec, one run per top-level Case at its first run, never to build a Case, and asks a run again only to confirm its own findings.
 **－** The main agent writes no context of its own before the first question of a round.
 **－** The main agent writes no `given`, `when`, `then` or `tasks` of a built Case into the chat.
 **－** A deferred decision in the short form is written by the main agent in English in the chat, with no dispatch and no file.
@@ -61,3 +61,4 @@ The main agent dispatches `case-guppi` with the Case id, the Frontier item and i
 - 2026-10-03 deferred · [[decision-case-617]]
 - 2026-10-04 deferred · [[decision-case-622]]
 - 2026-10-04 status: failed → passed · raw/2026-10-04/0112/ledger.md#L9
+- 2026-10-04 updated: the Criterion replaced whole — ask-guppi only at pre-spec, one run per top-level Case, asked again only to confirm its findings (case 634.3) · [[decision-case-634.3]]

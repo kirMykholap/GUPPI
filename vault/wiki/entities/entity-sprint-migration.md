@@ -17,7 +17,7 @@ Open since 2026-09-09. The repository works by the model of its rule pages: Phas
 (the harness built by its own rules) and Phase 2 (the surviving pages brought into
 conformance) of `docs/migration/migration-plan.md` are closed. Done when every
 Estimate of this page passes: lint clean, the leftovers gone, `make test` green on the last commit of `migration`, the
-Rule-class files dissolved, `index.md` gone, the `file` route out of the scripts.
+Rule-class files dissolved, `index.md` gone, the `file` route out of the scripts. Each Estimate of this page is read before the close of the sprint; one that has not passed by then goes to the archive with this page, its status kept in the record of the close (`rule-sprint-close`, case 632.3).
 
 ## Milestones
 
@@ -118,3 +118,4 @@ No file of `vault/wiki/` is written by hand.
 - 2026-10-04 defer by decision-case-615 superseded · [[decision-case-627.1]]
 - 2026-10-04 updated: Slice 5: the item rule-sprint-close names case 627, which builds the command of the close; the question put off by case 615 closed (case 627.1) · [[decision-case-627.1]]
 - 2026-10-04 updated: the Slice 5 note on where the close runs cut into the close of migration; make test in the Purpose for the branch merged; the merge a Backlog line for the next sprint; the question put off by case 615 closed (case 628.9) · [[decision-case-628.9]]
+- 2026-10-04 updated: each Estimate of the page is read before the close; one not passed is archived with the page (case 632.3) · [[decision-case-632.3]]

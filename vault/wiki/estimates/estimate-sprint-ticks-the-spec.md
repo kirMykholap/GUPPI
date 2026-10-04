@@ -1,11 +1,11 @@
 ---
 type: estimate
 kind: QA
-status: pending
+status: passed
 target: "[[rule-sprint]]"
 purpose: sprint, once it wrote sprint.md and exits 0, ticks the guppi sprint lines of every Spec under raw/ whose yaml is applied whole
 method: pytest tests/test_sprint.py; by hand, after a librarian's run, the spec.md of each unit under vault/raw/ whose guppi sprint line it ticked, and any guppi sprint-close line there left as it stood
-checked: 2026-09-29
+checked: 2026-10-04
 origin: raw/2026-09-18/2054/ledger.md#case-250.2
 sprint: migration
 created: 2026-09-18
@@ -26,7 +26,7 @@ In the `spec.md` of every unit whose yaml is applied whole, every unticked task 
 
 ## Result
 
-2026-09-29, tests/test_sprint.py 20 passed; ff62585 ticked line 754, the uv run guppi sprint line of the 0137 Spec; the 1957 Spec is archived and took no part
+2026-10-04, at the /hi of session 2041: uv run pytest tests/test_sprint.py 21 passed; by hand on the librarian's run of commit c04578e2: the one task line under vault/raw/ whose first code span holds guppi sprint, raw/2026-10-04/1439/spec.md L134, went from - [ ] to - [x] in that commit; no spec.md under vault/raw/ holds a guppi sprint-close task line, so that clause was not exercised live
 
 ## History
 
@@ -35,3 +35,4 @@ In the `spec.md` of every unit whose yaml is applied whole, every unticked task 
 - 2026-09-29 updated: the Criterion replaced whole — When and Then only, Given out, the yaml applied whole stated (case 491.1) · [[decision-case-491.1]]
 - 2026-09-29 status: pending → passed · raw/2026-09-29/1134/ledger.md#L66
 - 2026-10-04 updated: the Criterion replaced whole — a guppi sprint-close line is not ticked by guppi sprint (case 628.5) · [[decision-case-628.5]]
+- 2026-10-04 status: pending → passed · raw/2026-10-04/2041/ledger.md#L5

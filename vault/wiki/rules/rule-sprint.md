@@ -2,7 +2,7 @@
 type: rule
 kind: Leaf
 purpose: Prevents the sprint's backlog from drifting from the pages it names
-status: draft
+status: built
 enforcement: check
 implementation_ref: [guppi/sprint.py, tests/test_sprint.py, guppi/generate.py, tests/test_generate.py]
 governs: vault/wiki/sprint.md
@@ -18,7 +18,7 @@ tags: [session, workflow, harness, librarian, sprint]
 ## Purpose
 
 Prevents the sprint's backlog from drifting from the pages it names. The sprint is
-a page — an Entity Leaf `entity-sprint-<id>` under the MOC `entity-sprint` (case 241), whose `estimates` are its Definition of done — rendered under Done when and never written as an item line of a milestone or of the Backlog, so that each milestone holds exactly the items whose closing closes it (case 539.3) — and whose `## Milestones` lists the Slices in order and whose `## Backlog` the items without a turn, each a wikilink to a page or a plain line (case 229). `vault/wiki/sprint.md`
+a page — an Entity Leaf `entity-sprint-<id>` under the MOC `entity-sprint` (case 241), whose `estimates` are its Definition of done, read before its close, one that has not passed by then going to the archive with the sprint page, its status kept in the record of the close (`rule-sprint-close`, case 632.3) — rendered under Done when and never written as an item line of a milestone or of the Backlog, so that each milestone holds exactly the items whose closing closes it (case 539.3) — and whose `## Milestones` lists the Slices in order and whose `## Backlog` the items without a turn, each a wikilink to a page or a plain line (case 229). `vault/wiki/sprint.md`
 is not a document: `guppi sprint` writes it from that page, one tick per item by the status of the page it names; the `## Milestones` of the page render in order — a closed one as one line, the current one whole, a later one as one line with its count and its items by slug (case 236); the `## Backlog` of the page, the items without a turn, is not rendered here — `guppi backlog` shows it in `backlog.md` (case 451.6); an item names its pages by every `[[slug]]` before the first ` — `, and is ticked when each of them is `built`, `passed` or `archived`, the statuses after ` · ` in the order of the slugs; a wikilink after the ` — ` is text. A line with no wikilink before the ` — ` is a note — a task not yet cut into pages: `- [ ] <text>`, no status, never ticked, keeping its milestone open until the `update` of the Case that cuts it into items or removes it (cases 229.2, 313). The librarian runs the script after `cleanup` and
 `render`, before the brief, so the file shows the pages of that same run; `/hi`
 reads the file as before. `governs` names the file, so the governed-files hook
@@ -60,3 +60,5 @@ The first `## <id>` heading of the file is the sprint id `sprint_id`, `cleanup` 
 - 2026-09-30 status: draft → built · cascade
 - 2026-10-04 updated: the ticker of guppi sprint leaves a guppi sprint-close line (case 628.5) · [[decision-case-628.5]]
 - 2026-10-04 status: built → draft · cascade
+- 2026-10-04 updated: the Estimates of a sprint page are its Definition of done read before the close (case 632.3) · [[decision-case-632.3]]
+- 2026-10-04 status: draft → built · cascade

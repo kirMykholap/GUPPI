@@ -6,11 +6,11 @@ Open since 2026-09-09. The repository works by the model of its rule pages: Phas
 (the harness built by its own rules) and Phase 2 (the surviving pages brought into
 conformance) of `docs/migration/migration-plan.md` are closed. Done when every
 Estimate of this page passes: lint clean, the leftovers gone, `make test` green on the last commit of `migration`, the
-Rule-class files dissolved, `index.md` gone, the `file` route out of the scripts.
+Rule-class files dissolved, `index.md` gone, the `file` route out of the scripts. Each Estimate of this page is read before the close of the sprint; one that has not passed by then goes to the archive with this page, its status kept in the record of the close (`rule-sprint-close`, case 632.3).
 
 **Done when**
 
-- [ ] make lint exits 0 in the Work Mode of the session that closes the sprint, before the librarian's run, unmigrated included, but for the unread of the sprint page's own Estimates · pending
+- [ ] make lint in the Work Mode of the session that closes the sprint, before the librarian's run, shows no finding, unmigrated included, but the unread of the sprint page's own Estimates and of the Estimates read only at or after the closing librarian's run, which the close line carries · pending
 - [ ] vault/parked/, the 2026-08 documents and the old archive root are gone, git tracks no raw date folder without a session, and the repository has no remote, each by a decision named in the reading, read in the Work Mode of the session that closes the sprint · pending
 - [ ] make test green on the last commit of migration, read in the Work Mode of the session that closes it · pending
 - [x] No Rule-class file at the close of Slice 3f — the schemas rendered from rule pages, the glossary from entity-glossary, index.md gone, the file route out of the scripts · passed

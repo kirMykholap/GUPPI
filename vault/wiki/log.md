@@ -6269,3 +6269,68 @@ instruction. The global feed; a page's own `## History` is the per-page view.
 - 2026-10-04 decisions/decision-case-566 archived · cleanup
 - 2026-10-04 decisions/decision-case-570 archived · cleanup
 - 2026-10-04 decisions/decision-case-615 archived · cleanup
+- 2026-10-04 estimates/estimate-sprint-close-archives-the-decisions status: pending → passed · raw/2026-10-04/2041/ledger.md#L1 · generate
+- 2026-10-04 estimates/estimate-sprint-close-archives-done-insights-and-lone-lessons status: pending → passed · raw/2026-10-04/2041/ledger.md#L2 · generate
+- 2026-10-04 estimates/estimate-sprint-close-archives-the-sprint-page-and-keeps-the-rest status: pending → passed · raw/2026-10-04/2041/ledger.md#L3 · generate
+- 2026-10-04 estimates/estimate-sprint-close-settles-unread-estimates status: pending → passed · raw/2026-10-04/2041/ledger.md#L4 · generate
+- 2026-10-04 estimates/estimate-sprint-ticks-the-spec status: pending → passed · raw/2026-10-04/2041/ledger.md#L5 · generate
+- 2026-10-04 estimates/estimate-generate-writes status: pending → passed · raw/2026-10-04/2041/ledger.md#L6 · generate
+- 2026-10-04 estimates/estimate-handoff-holds-each-fact-once status: pending → failed · raw/2026-10-04/2041/ledger.md#L7 · generate
+- 2026-10-04 decisions/decision-case-632 created · raw/2026-10-04/2041/ledger.md#case-632 · generate
+- 2026-10-04 decisions/decision-case-632.1 created · raw/2026-10-04/2041/ledger.md#case-632.1 · generate
+- 2026-10-04 rules/rule-sprint-close updated: ## How it works left the Leaf: the mechanism in the docstring of guppi/sprint_close.py, the closing session in orchestration.md; the Purpose states the failure it prevents (case 632.1) · [[decision-case-632.1]] · generate
+- 2026-10-04 rules/rule-cleanup updated: ## How it works left the Leaf, its mechanism in the docstring of guppi/cleanup.py (case 632.1) · [[decision-case-632.1]] · generate
+- 2026-10-04 rules/rule-orchestration updated: the session that closes a sprint — a session of its own, its readings in groups, the missing sprint page expected — moved here from the How it works of rule-sprint-close (case 632.1) · [[decision-case-632.1]] · generate
+- 2026-10-04 decisions/decision-case-632.2 created · raw/2026-10-04/2041/ledger.md#case-632.2 · generate
+- 2026-10-04 rules/rule-documentation updated: step 5 reads the Backlog of each sprint page, live or archived (case 632.2) · [[decision-case-632.2]] · generate
+- 2026-10-04 decisions/decision-case-632.3 created · raw/2026-10-04/2041/ledger.md#case-632.3 · generate
+- 2026-10-04 entities/entity-sprint updated: the Estimates are the Definition of done read before the close; one not passed is archived with the sprint page (case 632.3) · [[decision-case-632.3]] · generate
+- 2026-10-04 rules/rule-sprint updated: the Estimates of a sprint page are its Definition of done read before the close (case 632.3) · [[decision-case-632.3]] · generate
+- 2026-10-04 entities/entity-sprint-migration updated: each Estimate of the page is read before the close; one not passed is archived with the page (case 632.3) · [[decision-case-632.3]] · generate
+- 2026-10-04 decisions/decision-case-632.4 created · raw/2026-10-04/2041/ledger.md#case-632.4 · generate
+- 2026-10-04 estimates/estimate-sprint-migration-lint-clean updated: the Criterion replaced whole — an unread Estimate that the close line carries because its moment comes at or after the closing librarian's run fails nothing (case 632.4) · [[decision-case-632.4]] · generate
+- 2026-10-04 decisions/decision-case-632.5 created · raw/2026-10-04/2041/ledger.md#case-632.5 · generate
+- 2026-10-04 estimates/estimate-sprint-close-next-session-opens-the-sprint updated: the Criterion replaced whole — the new sprint id goes to the pages written from the ledger that creates the sprint page, as materialize sets it (case 632.5) · [[decision-case-632.5]] · generate
+- 2026-10-04 decisions/decision-case-632.6 created · raw/2026-10-04/2041/ledger.md#case-632.6 · generate
+- 2026-10-04 rules/rule-skill-hi updated: the opening of the next sprint alone comes first; no conserved Spec on the Frontier while it stands (case 632.6) · [[decision-case-632.6]] · generate
+- 2026-10-04 estimates/estimate-hi-writes-frontier updated: the Criterion replaced whole — no conserved Spec is a Cases line while the opening of the next sprint stands (case 632.6) · [[decision-case-632.6]] · generate
+- 2026-10-04 decisions/decision-case-632.7 created · raw/2026-10-04/2041/ledger.md#case-632.7 · generate
+- 2026-10-04 estimates/estimate-hi-takes-a-conserved-spec updated: the Criterion replaced whole — a session that does not open a sprint takes a conserved Spec as before; the session that opens the next sprint takes none (case 632.7) · [[decision-case-632.7]] · generate
+- 2026-10-04 decisions/decision-case-632.8 created · raw/2026-10-04/2041/ledger.md#case-632.8 · generate
+- 2026-10-04 estimates/estimate-case-check-sends-back-a-case-number-held-by-another-agent updated: the method selects -k subagent_clash, so that the tests of session_clash are not run (case 632.8) · [[decision-case-632.8]] · generate
+- 2026-10-04 decisions/decision-case-632.9 created · raw/2026-10-04/2041/ledger.md#case-632.9 · generate
+- 2026-10-04 estimates/estimate-insights-schema-checked updated: the Criterion replaced whole — the prose stands as data, with no claim that it is word for word the old schema.md (case 632.9) · [[decision-case-632.9]] · generate
+- 2026-10-04 decisions/decision-case-632.10 created · raw/2026-10-04/2041/ledger.md#case-632.10 · generate
+- 2026-10-04 rules/rule-orchestration updated: the question after a clash and the question on a finding not closed are among the main agent's own questions in the grill-me shape (case 632.10) · [[decision-case-632.10]] · generate
+- 2026-10-04 estimates/estimate-orchestration-asks-in-the-grill-me-shape updated: the Criterion replaced whole — the When names the question after a clash and the question on a finding not closed (case 632.10) · [[decision-case-632.10]] · generate
+- 2026-10-04 decisions/decision-case-633 created · raw/2026-10-04/2041/ledger.md#case-633 · generate
+- 2026-10-04 decisions/decision-case-633.1 created · raw/2026-10-04/2041/ledger.md#case-633.1 · generate
+- 2026-10-04 rules/rule-ask updated: ask-guppi frames its findings at /pre-spec with one line on what it read and, after them, a list of what it did not check before the paths; no summary, no list of what holds (case 633.1) · [[decision-case-633.1]] · generate
+- 2026-10-04 estimates/estimate-ask-finds updated: the Criterion replaced whole — one line on what was read before the findings, a list of what was not checked after them and before the paths, no summary and no list of what holds; the line on the searches moved to estimate-ask-searches-at-prespec (case 633.1) · [[decision-case-633.1]] · generate
+- 2026-10-04 decisions/decision-case-633.2 created · raw/2026-10-04/2041/ledger.md#case-633.2 · generate
+- 2026-10-04 rules/rule-ask updated: at /pre-spec ask-guppi greps and reads as each finding needs after the index Greps; a count over vault/wiki/decisions/ is not run again (case 633.2) · [[decision-case-633.2]] · generate
+- 2026-10-04 estimates/estimate-ask-searches-at-prespec created · [[decision-case-633.2]] · generate
+- 2026-10-04 rules/rule-ask estimate estimate-ask-searches-at-prespec added · [[decision-case-633.2]] · generate
+- 2026-10-04 decisions/decision-case-634 created · raw/2026-10-04/2041/ledger.md#case-634 · generate
+- 2026-10-04 decisions/decision-case-634.1 created · raw/2026-10-04/2041/ledger.md#case-634.1 · generate
+- 2026-10-04 rules/rule-prespec updated: the first run of /pre-spec sends one ask-guppi per top-level Case of the plan or of the conserved Spec its title line names, all at once; the report names the Case each run judged and what it did not check, never the whole Spec as checked (case 634.1) · [[decision-case-634.1]] · generate
+- 2026-10-04 rules/rule-ask updated: at pre-spec each ask-guppi run judges the top-level Case the caller names and reads the other Cases only for a clash (case 634.1) · [[decision-case-634.1]] · generate
+- 2026-10-04 estimates/estimate-prespec-reconciles updated: the Criterion replaced whole — one ask-guppi per top-level Case at the first run, of the plan or of the conserved Spec its title line names, the report naming what each run judged and did not check (case 634.1) · [[decision-case-634.1]] · generate
+- 2026-10-04 decisions/decision-case-634.2 created · raw/2026-10-04/2041/ledger.md#case-634.2 · generate
+- 2026-10-04 rules/rule-prespec updated: the loop after the findings: the same ask-guppi runs confirm their own findings once before the Cases built again are shown; a finding not closed is fixed or left by the person's answer to a question after the confirmation; the result stands after the horizontal rule; no second confirmation (case 634.2) · [[decision-case-634.2]] · generate
+- 2026-10-04 rules/rule-ask updated: ask-guppi answers the confirmation of its own findings at pre-spec with no Grep, one line per finding, closed or not closed, no new finding (case 634.2) · [[decision-case-634.2]] · generate
+- 2026-10-04 estimates/estimate-prespec-confirms-the-findings-once created · [[decision-case-634.2]] · generate
+- 2026-10-04 rules/rule-prespec estimate estimate-prespec-confirms-the-findings-once added · [[decision-case-634.2]] · generate
+- 2026-10-04 decisions/decision-case-634.3 created · raw/2026-10-04/2041/ledger.md#case-634.3 · generate
+- 2026-10-04 rules/rule-orchestration updated: ask-guppi is dispatched only at pre-spec, one run per top-level Case, and asked again only to confirm its findings (case 634.3) · [[decision-case-634.3]] · generate
+- 2026-10-04 estimates/estimate-orchestration-shows-the-built-case updated: the Criterion replaced whole — ask-guppi only at pre-spec, one run per top-level Case, asked again only to confirm its findings (case 634.3) · [[decision-case-634.3]] · generate
+- 2026-10-04 estimates/estimate-case-build-checks-the-finished-case updated: the method reads the answers of the ask-guppi runs, one per top-level Case (case 634.1) · [[decision-case-634.1]] · generate
+- 2026-10-04 estimates/estimate-case-check-sends-back-a-faulty-round status: pending → passed · raw/2026-10-04/2041/ledger.md#L37 · generate
+- 2026-10-04 lessons/lesson-case-build-a-grep-cited-for-files-it-did-not-print created · raw/2026-10-04/2041/ledger.md#L38 · generate
+- 2026-10-04 insights/insight-workflow-fact-signed-from-a-check-that-does-not-cover-it updated: child lesson-case-build-a-grep-cited-for-files-it-did-not-print added (synthesis) · raw/2026-10-04/2041/ledger.md#L38 · generate
+- 2026-10-04 lessons/lesson-case-build-a-grep-cited-for-files-it-did-not-print updated: clustered under insight-workflow-fact-signed-from-a-check-that-does-not-cover-it (synthesis) · raw/2026-10-04/2041/ledger.md#L38 · generate
+- 2026-10-04 rules/rule-insights-schema status: built → draft · cascade · generate
+- 2026-10-04 rules/rule-orchestration status: built → draft · cascade · generate
+- 2026-10-04 rules/rule-page-generation status: draft → built · cascade · generate
+- 2026-10-04 rules/rule-prespec status: built → draft · cascade · generate
+- 2026-10-04 rules/rule-sprint status: draft → built · cascade · generate

@@ -132,7 +132,7 @@ update:
 - [x] `tests/test_sprint_close.py`: `-k decisions` — over a made-up vault of one sprint, the Decision pages of the sprint archived, one named in `deferred_by` and one in `addressed_by` of a live page kept, one of another sprint kept; the preview names the same pages and moves none; the clock pinned
 - [x] `uv run guppi render`: `vault/wiki/decisions/schema.yaml`
 - [x] `uv run guppi sprint`
-- [ ] read `estimate-sprint-close-archives-the-decisions`
+- [x] read `estimate-sprint-close-archives-the-decisions`
 ```
 
 ### Case 627.2 — The close archives the actioned Insights and the lone error lessons of the sprint
@@ -189,7 +189,7 @@ update:
 - [x] `tests/test_sprint_close.py`: `-k insights` — an `actioned` Insight and a `new` `error` lesson of the sprint archived; a `knowledge` lesson, an `open` Insight and its children kept; the preview names the same pages and moves none; the clock pinned
 - [x] `uv run guppi render`: `vault/wiki/insights/schema.yaml`
 - [x] `uv run guppi render`: `vault/wiki/lessons/schema.yaml`
-- [ ] read `estimate-sprint-close-archives-done-insights-and-lone-lessons`
+- [x] read `estimate-sprint-close-archives-done-insights-and-lone-lessons`
 ```
 
 ### Case 627.3 — The close archives the sprint page and its Estimates and keeps every other passed Estimate
@@ -223,7 +223,7 @@ update:
 ```tasks
 - [x] update `estimate-sprint-close-archives-the-sprint-page-and-keeps-the-rest`
 - [x] `tests/test_sprint_close.py`: `-k sprint_page` — the sprint page and its Estimates archived, one of them archived unread; a `passed` Estimate of a rule kept and still listed; `entity-sprint` kept; the preview names the same pages and moves none; the clock pinned
-- [ ] read `estimate-sprint-close-archives-the-sprint-page-and-keeps-the-rest`
+- [x] read `estimate-sprint-close-archives-the-sprint-page-and-keeps-the-rest`
 ```
 
 ### Case 627.4 — The close settles each unread Estimate, the sprint page's own read or archived unread
@@ -263,7 +263,7 @@ update:
 ```tasks
 - [x] update `estimate-sprint-close-settles-unread-estimates`
 - [x] `tests/test_sprint_close.py`: `-k settle` — the preview lists each `pending` and `failed` Estimate and changes nothing; `--apply` refuses and moves nothing while one is neither passed nor named; `--carry` keeps an Estimate live with its status; `--archive-unread` archives it and takes it off `estimates`; `--carry` on an Estimate of the sprint page refused; an Estimate of the sprint page that stands `failed` goes with the sprint page with no choice by name, and the record keeps its status; the clock pinned
-- [ ] read `estimate-sprint-close-settles-unread-estimates`
+- [x] read `estimate-sprint-close-settles-unread-estimates`
 ```
 
 ### Case 627.5 — The synthesis keeps an actioned Insight live until the close of its sprint
@@ -642,7 +642,7 @@ update:
 - [x] `guppi/render.py`: `command_line` matches the command only where no `-` or word character follows it; its docstring
 - [x] `guppi/sprint.py`: the docstring names the close line as not ticked
 - [x] `tests/test_sprint.py`: a `guppi sprint-close` line left unticked beside a ticked `guppi sprint` line
-- [ ] read `estimate-sprint-ticks-the-spec`
+- [x] read `estimate-sprint-ticks-the-spec`
 ```
 
 ### Case 628.6 — A new page takes the sprint of its yaml
@@ -688,7 +688,7 @@ update:
 - [x] update `estimate-generate-writes`
 - [x] `guppi/generate.py`: the docstring — `sprint` is the yaml's `sprint`, else the first `## <id>` heading of `sprint.md`
 - [x] `tests/test_generate.py`: a yaml whose `sprint` differs from the heading of `sprint.md` writes the yaml's `sprint` on a created page
-- [ ] read `estimate-generate-writes`
+- [x] read `estimate-generate-writes`
 ```
 
 ### Case 628.7 — `/hi` puts the opening of the next sprint first and takes no item of a closed sprint

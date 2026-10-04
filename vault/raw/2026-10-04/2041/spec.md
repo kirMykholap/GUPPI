@@ -160,13 +160,13 @@ update:
 ```
 
 ```tasks
-- [ ] update `rule-sprint-close`
-- [ ] update `rule-cleanup`
-- [ ] update `rule-orchestration`
+- [x] update `rule-sprint-close`
+- [x] update `rule-cleanup`
+- [x] update `rule-orchestration`
 - [x] `guppi/cleanup.py`: the docstring gains the facts of the section that it lacks — `sprint` is the first `## <id>` heading of `sprint.md`; the History lines `archived · cleanup` and `restored · cleanup`; a rerun moves nothing and exits 0; a file that cannot be moved, or a name already taken in the archive, is reported on stderr with exit 1, and the other pages still move
 - [x] one-off, by hand: the `## How it works` section of `vault/wiki/rules/rule-cleanup.md` is removed, its heading and text, after the docstring of `guppi/cleanup.py` holds each of its facts
 - [x] one-off, by hand: the `## How it works` section of `vault/wiki/rules/rule-sprint-close.md` is removed, its heading and text; each of its facts stands in the docstring of `guppi/sprint_close.py`, in the new paragraph of `rule-orchestration`, or in `rule-documentation`, `rule-work-mode`, `rule-retro`, `rule-skill-hi`, `rule-brief`, `rule-ledger-write`, `rule-materialize` or `rule-backlog`
-- [ ] `uv run guppi render`: `vault/wiki/orchestration.md`
+- [x] `uv run guppi render`: `vault/wiki/orchestration.md`
 ```
 
 ### Case 632.2 — Step 5 of the librarian reads the Backlog of each sprint page
@@ -194,8 +194,8 @@ update:
 ```
 
 ```tasks
-- [ ] update `rule-documentation`
-- [ ] `uv run guppi render`: `.claude/agents/librarian-guppi.md`
+- [x] update `rule-documentation`
+- [x] `uv run guppi render`: `.claude/agents/librarian-guppi.md`
 ```
 
 ### Case 632.3 — The sprint page's Estimates are its Definition of done, read before its close
@@ -236,10 +236,10 @@ update:
 ```
 
 ```tasks
-- [ ] update `entity-sprint`
-- [ ] update `rule-sprint`
-- [ ] update `entity-sprint-migration`
-- [ ] `uv run guppi sprint`
+- [x] update `entity-sprint`
+- [x] update `rule-sprint`
+- [x] update `entity-sprint-migration`
+- [x] `uv run guppi sprint`
 ```
 
 ### Case 632.4 — The lint check of migration passes the readings that wait for the close
@@ -270,7 +270,7 @@ update:
 ```
 
 ```tasks
-- [ ] update `estimate-sprint-migration-lint-clean`
+- [x] update `estimate-sprint-migration-lint-clean`
 - [ ] read `estimate-sprint-migration-lint-clean`
 ```
 
@@ -309,7 +309,7 @@ update:
 ```
 
 ```tasks
-- [ ] update `estimate-sprint-close-next-session-opens-the-sprint`
+- [x] update `estimate-sprint-close-next-session-opens-the-sprint`
 - [ ] read `estimate-sprint-close-next-session-opens-the-sprint`
 ```
 
@@ -351,9 +351,9 @@ update:
 ```
 
 ```tasks
-- [ ] update `rule-skill-hi`
-- [ ] update `estimate-hi-writes-frontier`
-- [ ] `uv run guppi render`: `.claude/skills/hi/SKILL.md`
+- [x] update `rule-skill-hi`
+- [x] update `estimate-hi-writes-frontier`
+- [x] `uv run guppi render`: `.claude/skills/hi/SKILL.md`
 - [ ] read `estimate-hi-writes-frontier`
 ```
 
@@ -393,7 +393,7 @@ update:
 ```
 
 ```tasks
-- [ ] update `estimate-hi-takes-a-conserved-spec`
+- [x] update `estimate-hi-takes-a-conserved-spec`
 - [ ] read `estimate-hi-takes-a-conserved-spec`
 ```
 
@@ -422,7 +422,7 @@ update:
 ```
 
 ```tasks
-- [ ] update `estimate-case-check-sends-back-a-case-number-held-by-another-agent`
+- [x] update `estimate-case-check-sends-back-a-case-number-held-by-another-agent`
 ```
 
 ### Case 632.9 — The schema check of Insights drops its word-for-word claim
@@ -454,7 +454,7 @@ update:
 ```
 
 ```tasks
-- [ ] update `estimate-insights-schema-checked`
+- [x] update `estimate-insights-schema-checked`
 - [ ] read `estimate-insights-schema-checked`
 ```
 
@@ -499,9 +499,9 @@ update:
 ```
 
 ```tasks
-- [ ] update `rule-orchestration`
-- [ ] update `estimate-orchestration-asks-in-the-grill-me-shape`
-- [ ] `uv run guppi render`: `vault/wiki/orchestration.md`
+- [x] update `rule-orchestration`
+- [x] update `estimate-orchestration-asks-in-the-grill-me-shape`
+- [x] `uv run guppi render`: `vault/wiki/orchestration.md`
 - [ ] read `estimate-orchestration-asks-in-the-grill-me-shape`
 ```
 
@@ -587,9 +587,9 @@ update:
 ```
 
 ```tasks
-- [ ] update `rule-ask`
-- [ ] update `estimate-ask-finds`
-- [ ] `uv run guppi render`: `.claude/agents/ask-guppi.md`
+- [x] update `rule-ask`
+- [x] update `estimate-ask-finds`
+- [x] `uv run guppi render`: `.claude/agents/ask-guppi.md`
 - [ ] read `estimate-ask-finds`
 ```
 
@@ -634,9 +634,9 @@ update:
 ```
 
 ```tasks
-- [ ] update `rule-ask`
-- [ ] create `estimate-ask-searches-at-prespec`
-- [ ] `uv run guppi render`: `.claude/agents/ask-guppi.md`
+- [x] update `rule-ask`
+- [x] create `estimate-ask-searches-at-prespec`
+- [x] `uv run guppi render`: `.claude/agents/ask-guppi.md`
 - [ ] read `estimate-ask-searches-at-prespec`
 ```
 
@@ -769,12 +769,12 @@ update:
 ```
 
 ```tasks
-- [ ] update `rule-prespec`
-- [ ] update `rule-ask`
-- [ ] update `estimate-prespec-reconciles`
-- [ ] update `estimate-case-build-checks-the-finished-case`
-- [ ] `uv run guppi render`: `.claude/skills/pre-spec/SKILL.md`
-- [ ] `uv run guppi render`: `.claude/agents/ask-guppi.md`
+- [x] update `rule-prespec`
+- [x] update `rule-ask`
+- [x] update `estimate-prespec-reconciles`
+- [x] update `estimate-case-build-checks-the-finished-case`
+- [x] `uv run guppi render`: `.claude/skills/pre-spec/SKILL.md`
+- [x] `uv run guppi render`: `.claude/agents/ask-guppi.md`
 - [ ] read `estimate-prespec-reconciles`
 ```
 
@@ -839,11 +839,11 @@ update:
 ```
 
 ```tasks
-- [ ] update `rule-prespec`
-- [ ] update `rule-ask`
-- [ ] create `estimate-prespec-confirms-the-findings-once`
-- [ ] `uv run guppi render`: `.claude/skills/pre-spec/SKILL.md`
-- [ ] `uv run guppi render`: `.claude/agents/ask-guppi.md`
+- [x] update `rule-prespec`
+- [x] update `rule-ask`
+- [x] create `estimate-prespec-confirms-the-findings-once`
+- [x] `uv run guppi render`: `.claude/skills/pre-spec/SKILL.md`
+- [x] `uv run guppi render`: `.claude/agents/ask-guppi.md`
 - [ ] read `estimate-prespec-confirms-the-findings-once`
 ```
 
@@ -889,8 +889,8 @@ update:
 ```
 
 ```tasks
-- [ ] update `rule-orchestration`
-- [ ] update `estimate-orchestration-shows-the-built-case`
-- [ ] `uv run guppi render`: `vault/wiki/orchestration.md`
+- [x] update `rule-orchestration`
+- [x] update `estimate-orchestration-shows-the-built-case`
+- [x] `uv run guppi render`: `vault/wiki/orchestration.md`
 - [ ] read `estimate-orchestration-shows-the-built-case`
 ```

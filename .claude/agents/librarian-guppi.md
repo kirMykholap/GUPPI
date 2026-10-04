@@ -102,7 +102,7 @@ outcome, clustered or not. The archive is not needed: an actioned Insight stays 
    files are written from them here. Every line on its stderr is a flag; a file it
    could not write is left to the next session start.
 
-5. Run `uv run guppi sprint`. It writes `vault/wiki/sprint.md` from the sprint page by the statuses of this run. Then run `uv run guppi backlog`. It writes `vault/wiki/backlog.md` from the conserved Specs, the pages with `deferred_by`, the open Insights and the `## Backlog` of the sprint page. Every line on the stderr of either is a flag.
+5. Run `uv run guppi sprint`. It writes `vault/wiki/sprint.md` from the sprint page by the statuses of this run. Then run `uv run guppi backlog`. It writes `vault/wiki/backlog.md` from the conserved Specs, the pages with `deferred_by`, the open Insights and the `## Backlog` of each sprint page, live or under `vault/archive/` (`rule-backlog`, case 632.2). Every line on the stderr of either is a flag.
 
 6. Run `uv run guppi glossary`. It writes `vault/wiki/glossary.md` from the `## Terms` of `entity-glossary`. Every line on its stderr is a flag.
 

@@ -15,7 +15,7 @@ tags: [sprint, workflow]
 
 ## Purpose
 
-The sprint as a kind. A sprint is a unit of work over the project: its Estimates are its Definition of done, its `## Milestones` the Slices in order, its `## Backlog` the items without a turn. Each sprint is a Leaf under this page, `entity-sprint-<id>`, one live at a time; `guppi sprint` renders `vault/wiki/sprint.md` from the live one, and `rule-sprint` is its guard. This page carries no Estimate yet — the person named none; a measure over all sprints, which no single sprint owns, goes here when one is named (case 241).
+The sprint as a kind. A sprint is a unit of work over the project: its Estimates are its Definition of done, read before its close, and one that has not passed by then goes to the archive with the sprint page, its status kept in the record of the close (`rule-sprint-close`, case 632.3); its `## Milestones` the Slices in order, its `## Backlog` the items without a turn. Each sprint is a Leaf under this page, `entity-sprint-<id>`, one live at a time; `guppi sprint` renders `vault/wiki/sprint.md` from the live one, and `rule-sprint` is its guard. This page carries no Estimate yet — the person named none; a measure over all sprints, which no single sprint owns, goes here when one is named (case 241).
 
 ## History
 
@@ -23,3 +23,4 @@ The sprint as a kind. A sprint is a unit of work over the project: its Estimates
 - 2026-09-22 updated: the sprint as a kind is a part of entity-guppi (case 306.2) · [[decision-case-306.2]]
 - 2026-09-22 rules: [rule-sprint] · cascade
 - 2026-10-03 rules: [rule-sprint, rule-sprint-close] · cascade
+- 2026-10-04 updated: the Estimates are the Definition of done read before the close; one not passed is archived with the sprint page (case 632.3) · [[decision-case-632.3]]

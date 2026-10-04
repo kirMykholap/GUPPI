@@ -1,10 +1,11 @@
 ---
 type: estimate
 kind: QA
-status: pending
+status: passed
 target: "[[rule-sprint-close]]"
 purpose: At the close of a sprint its actioned Insights and its error lessons that joined no Insight go to the archive, and its knowledge lessons and open Insights stay
 method: pytest tests/test_sprint_close.py -k insights; by hand, the output of the preview uv run guppi sprint-close --sprint migration over the live vault read against the Then
+checked: 2026-10-04
 origin: raw/2026-10-03/0317/ledger.md#case-612.2
 sprint: migration
 created: 2026-10-03
@@ -24,7 +25,12 @@ Each Insight under `vault/wiki/insights/` whose `sprint` is `<id>` and that stan
 **－** A lesson whose `kind` is `knowledge` stays under `vault/wiki/lessons/`.
 **－** An Insight that stands `open`, and each lesson its `children` lists, stay live.
 
+## Result
+
+2026-10-04, at the /hi of session 2041: uv run pytest tests/test_sprint_close.py -k insights 1 passed; the preview uv run guppi sprint-close --sprint migration over the live vault names to move the 25 actioned Insights of the sprint and the 42 error lessons of the sprint standing new that no open Insight lists, both sets equal to the frontmatter; none of the 26 knowledge lessons, the 5 open Insights or the 34 lessons their children list is among the moves; nothing moved
+
 ## History
 
 - 2026-10-03 created · [[decision-case-612.2]]
 - 2026-10-04 updated: the When replaced whole — the run with --apply over a made-up vault, after each Estimate of the sprint page not passed is read or archived unread, or the preview over the live vault; the Then kept, one line on the preview added; the method a pytest test and the preview of migration (case 627.2) · [[decision-case-627.2]]
+- 2026-10-04 status: pending → passed · raw/2026-10-04/2041/ledger.md#L2

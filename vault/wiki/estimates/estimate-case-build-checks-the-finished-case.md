@@ -48,3 +48,4 @@ It puts each option the person chose in its rounds, or the person's own words wh
 - 2026-10-05 status: pending → failed · raw/2026-10-05/0109/ledger.md#L22
 - 2026-10-05 deferred · [[decision-case-647]]
 - 2026-10-05 deferred · [[decision-case-657]]
+- 2026-10-05 deferred · [[decision-case-667]]

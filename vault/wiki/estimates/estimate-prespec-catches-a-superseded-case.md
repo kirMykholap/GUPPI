@@ -1,7 +1,7 @@
 ---
 type: estimate
 kind: QA
-status: passed
+status: pending
 target: "[[rule-prespec]]"
 purpose: A supersedes of the session's window whose Case still stands in the plan is a finding of prespec --check; a line of the superseded Case needs no item
 method: pytest tests/test_prespec.py on a temp plan; the live reading the first /pre-spec of a later session whose window holds a supersedes of a Case of that session — this session's /pre-spec runs on the old check
@@ -19,8 +19,10 @@ When:
 
 Then:
 A `{supersedes:case N}` in the session's window while `## Case N` or `### Case N` still stands in the plan is a finding `case N: superseded by case M, still in the plan`.
-**＋** A decision line of Case N, N superseded by a line of the window, is no finding "no Case N heading" and needs no item in the plan.
-**＋** A superseded sub-case: the one heading `### Case N.M` leaves; the parent with its other sub-cases stays.
+**＋** A heading of a sub-case of Case N, at any depth, that still stands in the plan is the same finding under the number of that sub-case.
+**＋** A decision line of Case N or of a sub-case of Case N, N superseded by a line of the window, is no finding "no Case N heading", needs no item in the plan and asks for no `tasks` block.
+**＋** A `{supersedes:case N.M}` covers Case N.M and its own sub-cases; the parent with its other sub-cases stays.
+**＋** Whether a tag covers a Case is judged by `in_family` of `guppi/materialize.py`, the function that the Spec hook and `guppi materialize` read the tag by.
 **－** A `{supersedes:case N}` on a Case of an earlier session — a defer taken up — finds no heading N in the plan and is no finding.
 
 ## Result
@@ -33,3 +35,4 @@ A `{supersedes:case N}` in the session's window while `## Case N` or `### Case N
 - 2026-09-22 status: pending → passed · raw/2026-09-21/1853/ledger.md#L25
 - 2026-09-28 updated: the Criterion replaced whole — When and Then only, Given and the bounds lines out (case 484.2) · [[decision-case-484.2]]
 - 2026-09-29 status: pending → passed · raw/2026-09-29/1432/ledger.md#L29
+- 2026-10-05 updated: the Criterion replaced whole — a tag on a parent covers its sub-cases, by materialize.in_family (case 660.1) · [[decision-case-660.1]]

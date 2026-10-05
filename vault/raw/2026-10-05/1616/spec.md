@@ -71,7 +71,7 @@ update:
 ```tasks
 - [x] `guppi/prespec.py`: `superseded_in_window` and its callers read each tag by `materialize.in_family`, in `check_lines` and `check_tasks`; the module docstring says that the lines and headings of the sub-cases of a superseded Case are covered.
 - [x] `tests/test_prespec.py`: a tag on a parent whose sub-cases hold the decision lines gives no "no heading" finding and asks for no item; a sub-case heading left in the plan is a finding; a tag on N.M leaves the parent and its other sub-cases.
-- [ ] update `estimate-prespec-catches-a-superseded-case`
+- [x] update `estimate-prespec-catches-a-superseded-case`
 - [ ] read `estimate-prespec-catches-a-superseded-case`
 ```
 
@@ -117,9 +117,9 @@ update:
 - [x] `guppi/ratified.py`: `remove_case` judges each section by `materialize.in_family`.
 - [x] `guppi/casecheck.py`: `in_family` imported from `guppi/materialize.py`, its own definition removed.
 - [x] `tests/test_materialize.py`: a tag on a parent with no lines of its own marks the entries and the records of its sub-cases, in this unit and in another; a tag on N.M leaves the parent and its other sub-cases.
-- [ ] update `estimate-materialize-marks-superseded`
-- [ ] update `entity-glossary`
-- [ ] `uv run guppi glossary`
+- [x] update `estimate-materialize-marks-superseded`
+- [x] update `entity-glossary`
+- [x] `uv run guppi glossary`
 - [ ] read `estimate-materialize-marks-superseded`
 ```
 
@@ -178,12 +178,12 @@ update:
 ```tasks
 - [x] `guppi/generate.py`: `decision` sets each page of the `children` of a superseded page, at any depth, that stands `current` `superseded`, leaves an archived or superseded one as it is, appends the new page to its `superseded_by` and writes its History line once; `clear_deferred_by` runs only on the pages the record's `supersedes` names; the docstring says so.
 - [x] `tests/test_generate.py`: a `supersedes` of a parent page sets its sub-case pages `superseded`, in the same run and on pages of an earlier run; a child page already marked gets no second History line; an archived child page stays archived and gains no `superseded_by`; a child's `defer` targets keep their `deferred_by`.
-- [ ] update `estimate-generate-writes-the-decision-page`
-- [ ] update `rule-page-generation`
-- [ ] update `rule-decisions-schema`
-- [ ] update `entity-glossary`
-- [ ] `uv run guppi render`: `vault/wiki/decisions/schema.yaml`
-- [ ] `uv run guppi glossary`
+- [x] update `estimate-generate-writes-the-decision-page`
+- [x] update `rule-page-generation`
+- [x] update `rule-decisions-schema`
+- [x] update `entity-glossary`
+- [x] `uv run guppi render`: `vault/wiki/decisions/schema.yaml`
+- [x] `uv run guppi glossary`
 - [ ] read `estimate-generate-writes-the-decision-page`
 ```
 
@@ -227,11 +227,11 @@ update:
 ```
 
 ```tasks
-- [ ] create `estimate-retro-leaves-out-the-sub-cases-of-a-superseded-case`
-- [ ] update `rule-retro`
-- [ ] update `rule-handoff`
-- [ ] `uv run guppi render`: `.claude/skills/retro/SKILL.md`
-- [ ] `uv run guppi render`: `.claude/skills/handoff/SKILL.md`
+- [x] create `estimate-retro-leaves-out-the-sub-cases-of-a-superseded-case`
+- [x] update `rule-retro`
+- [x] update `rule-handoff`
+- [x] `uv run guppi render`: `.claude/skills/retro/SKILL.md`
+- [x] `uv run guppi render`: `.claude/skills/handoff/SKILL.md`
 - [ ] read `estimate-retro-leaves-out-the-sub-cases-of-a-superseded-case`
 ```
 
@@ -283,7 +283,7 @@ update:
 ```
 
 ```tasks
-- [ ] update `estimate-orchestration-showing-example-passes-the-check`
+- [x] update `estimate-orchestration-showing-example-passes-the-check`
 - [x] `tests/test_orchestration.py`: `example` calls `pytest.fail` with a message that names the file and the tag, in place of `pytest.skip`, when the page holds no block tagged that tag; the module docstring says the tests fail then and drops the sentences on the skip.
 - [ ] read `estimate-orchestration-showing-example-passes-the-check`, at the `/hi` of a later session
 ```
@@ -320,7 +320,7 @@ update:
 ```
 
 ```tasks
-- [ ] update `estimate-orchestration-defer-example-passes-the-hook`
+- [x] update `estimate-orchestration-defer-example-passes-the-hook`
 - [ ] read `estimate-orchestration-defer-example-passes-the-hook`, at the `/hi` of a later session
 ```
 
@@ -401,9 +401,9 @@ update:
 ```
 
 ```tasks
-- [ ] update `rule-case-build`
-- [ ] update `estimate-case-build-writes-the-case`
-- [ ] `uv run guppi render`: `.claude/agents/case-guppi.md`
+- [x] update `rule-case-build`
+- [x] update `estimate-case-build-writes-the-case`
+- [x] `uv run guppi render`: `.claude/agents/case-guppi.md`
 - [ ] read `estimate-case-build-writes-the-case`, by hand in a later session after the render
 ```
 
@@ -456,9 +456,9 @@ update:
 ```
 
 ```tasks
-- [ ] update `rule-orchestration`
-- [ ] update `estimate-orchestration-shows-the-built-case`
-- [ ] `uv run guppi render`: `vault/wiki/orchestration.md`
+- [x] update `rule-orchestration`
+- [x] update `estimate-orchestration-shows-the-built-case`
+- [x] `uv run guppi render`: `vault/wiki/orchestration.md`
 - [ ] read `estimate-orchestration-shows-the-built-case`, by hand at the close of a later session after the render
 ```
 
@@ -506,8 +506,8 @@ update:
 ```
 
 ```tasks
-- [ ] create `estimate-case-check-sends-back-a-summary-without-the-case-name`
-- [ ] update `rule-case-check`
+- [x] create `estimate-case-check-sends-back-a-summary-without-the-case-name`
+- [x] update `rule-case-check`
 - [x] `guppi/casecheck.py`: in `subagent`, when the subagent wrote a file of `cases/` and its newest output opens with `**Built:**`, one function compares the `**Case:**` lines of that output with the top-level heading of each written file, read by `CASE_HEADING` of `guppi/materialize.py`, compares the id and the name of the line with those of the heading, not the whole line, and gives a finding for each one missing or different; the guard against a loop keys on the text of the summary, trailing spaces aside, and the heading of the file together, so an earlier summary with the same text gives no finding again only while the heading stands as it was; the findings join those of the files in one `send_back`; the module docstring describes the check.
 - [x] `tests/test_casecheck.py`: tests named `summary_names_the_case` for each line of the `then`; the helpers that write a summary — the one beside `case_path` and `built` — give it its `**Case:**` line, so the tests of a passing file still pass.
 - [ ] read `estimate-case-check-sends-back-a-summary-without-the-case-name`, at the `/hi` of a later session
@@ -614,14 +614,14 @@ update:
 ```
 
 ```tasks
-- [ ] create `estimate-search-leaves-out-decisions-by-the-grep-hook`
-- [ ] update `rule-search-leaves-out-decisions`
-- [ ] update `rule-hook-registry`
+- [x] create `estimate-search-leaves-out-decisions-by-the-grep-hook`
+- [x] update `rule-search-leaves-out-decisions`
+- [x] update `rule-hook-registry`
 - [x] `guppi/grepguard.py`: the hook reads the payload as UTF-8, judges whether the searched folder holds `vault/wiki/decisions/` and does not lie in it by `inside` of `guppi/pageread.py`, and prints `hookSpecificOutput.updatedInput` with the glob ended by `!**/decisions/**`; it never raises; the module docstring describes the hook and names the rule page.
 - [x] `guppi/cli.py`: the command `grepguard` maps to `grepguard.run`, and the docstring lists it among the hook commands.
 - [x] `tests/test_grepguard.py`: one test per line of the `then`, among them a Grep with no path, a Grep with the exclusion first, a Grep whose path is `vault/wiki/decisions/`, and a Grep whose path is one file.
-- [ ] `uv run guppi render`: `.claude/settings.json`
-- [ ] `uv run guppi render`: `.claude/rules/search-leaves-out-decisions.md`
+- [x] `uv run guppi render`: `.claude/settings.json`
+- [x] `uv run guppi render`: `.claude/rules/search-leaves-out-decisions.md`
 - [ ] read `estimate-search-leaves-out-decisions-by-the-grep-hook`
 ```
 
@@ -658,7 +658,7 @@ update:
 ```
 
 ```tasks
-- [ ] update `estimate-search-leaves-out-decisions-in-every-agent`
+- [x] update `estimate-search-leaves-out-decisions-in-every-agent`
 - [ ] read `estimate-search-leaves-out-decisions-in-every-agent`
 ```
 
@@ -693,7 +693,7 @@ update:
 ```
 
 ```tasks
-- [ ] update `estimate-ask-searches-at-prespec`
+- [x] update `estimate-ask-searches-at-prespec`
 - [ ] read `estimate-ask-searches-at-prespec`
 ```
 
@@ -766,11 +766,11 @@ update:
 ```
 
 ```tasks
-- [ ] create `estimate-synthesis-reads-the-status-its-yaml-sets`
-- [ ] update `rule-synthesis`
-- [ ] `uv run guppi render`: `.claude/agents/librarian-guppi.md`
-- [ ] update `entity-glossary`
-- [ ] `uv run guppi glossary`
+- [x] create `estimate-synthesis-reads-the-status-its-yaml-sets`
+- [x] update `rule-synthesis`
+- [x] `uv run guppi render`: `.claude/agents/librarian-guppi.md`
+- [x] update `entity-glossary`
+- [x] `uv run guppi glossary`
 - [ ] read `estimate-synthesis-reads-the-status-its-yaml-sets`
 ```
 

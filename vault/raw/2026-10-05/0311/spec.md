@@ -120,7 +120,7 @@ update:
 - [x] update `rule-spec-write`
 - [x] `guppi/ratified.py`: `stop` no longer returns at `stop_hook_active`; the comment at the call in `main` and the module docstring say the same.
 - [x] `tests/test_ratified.py`: tests `-k answers_a_refusal` — a flagged reply that repeats the lines of a refused Case writes it into the plan file and into `spec.md`; a flagged reply with a superseding line removes the old Case.
-- [ ] read `estimate-spec-write-answers-a-refusal`
+- [x] read `estimate-spec-write-answers-a-refusal`
 ```
 
 ### Case 644.2 — The copy of a ratified Case holds with the flag set
@@ -667,7 +667,7 @@ update:
 - [x] update `estimate-spec-reconcile-refuses-an-edit-of-the-plan`
 - [x] `guppi/ratified.py`: `guard_refusal` reads the agent type of the hook input; a file under `cases/` passes for `case-guppi` alone; an edit of `case-guppi` outside `cases/` is refused; the reason and the module docstring say the same.
 - [x] `tests/test_ratified.py`: tests `-k guard` — a Write and an Edit of `case-guppi` under `cases/` pass; the same calls with no agent type or another one are refused; a Write of `case-guppi` outside `cases/` is refused.
-- [ ] read `estimate-spec-reconcile-refuses-an-edit-of-the-plan`
+- [x] read `estimate-spec-reconcile-refuses-an-edit-of-the-plan`
 ```
 
 ### Case 645.4 — The Stop check refuses a showing whose file changed after its check

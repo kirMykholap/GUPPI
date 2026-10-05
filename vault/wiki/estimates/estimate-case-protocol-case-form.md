@@ -66,3 +66,4 @@ The file opens with the heading `## Case N — name`, a sub-case with `### Case 
 - 2026-10-03 status: pending → passed · raw/2026-10-03/0115/ledger.md#L17
 - 2026-10-05 updated: the Criterion replaced whole — case-guppi writes the file of the Case and the hook checks it (case 645.10) · [[decision-case-645.10]]
 - 2026-10-05 status: pending → failed · raw/2026-10-05/1343/ledger.md#L38
+- 2026-10-05 deferred · [[decision-case-665]]

@@ -1,11 +1,11 @@
 ---
 type: estimate
 kind: QA
-status: pending
+status: passed
 target: "[[rule-spec-reconcile]]"
 purpose: An edit of the plan file or its store is refused, the one Write that creates the plan with its title line excepted, and so is an edit of a file of a built Case under cases/ by any agent but case-guppi, and any edit of case-guppi outside cases/
 method: uv run pytest tests/test_ratified.py -k guard; by hand in a later session, one probe Write of the main agent under cases/, refused and in the event log, and one file under cases/ written by case-guppi
-checked: 2026-09-27
+checked: 2026-10-05
 origin: raw/2026-09-23/1859/ledger.md#case-387.3
 sprint: migration
 created: 2026-09-23
@@ -32,7 +32,7 @@ The hook refuses every `Edit` and `MultiEdit` of a plan file, and every `Write` 
 
 ## Result
 
-2026-09-27, uv run pytest tests/test_ratified.py -k guard: 33 passed; by hand, session 1819: a probe Write of vault/raw/2026-09-27/1819/cases/probe.md was refused by uv run guppi ratified --guard with the reason naming the file and rule-case-check, the file not written, and the event log holds "20:26:14 938809b2 ratified refused Write ...probe.md" and no tool line for it
+2026-10-05, the Work readings of session 1616: uv run pytest -q tests/test_ratified.py -k guard 39 passed, 78 deselected; by hand: a probe Write of the main agent of vault/raw/2026-10-05/1616/cases/probe.md was refused by uv run guppi ratified --guard with the reason naming the file, case-guppi and rule-spec-reconcile, the file not written, and the event log holds "18:13:48 6360af9f ratified refused Write ...\1616\cases\probe.md" and no tool line for it; case-guppi wrote case-660.md, case-661.md, case-662.md, case-663.md, case-664.md and case-668.md under cases/ by Write and Edit with no refusal
 
 ## History
 
@@ -44,3 +44,4 @@ The hook refuses every `Edit` and `MultiEdit` of a plan file, and every `Write` 
 - 2026-09-27 status: pending → passed · raw/2026-09-27/1819/ledger.md#L28
 - 2026-10-05 updated: the Criterion replaced whole — case-guppi alone writes under cases/ and is refused anywhere else; the purpose and the method follow (case 645.3) · [[decision-case-645.3]]
 - 2026-10-05 updated: the Criterion replaced whole — a call of case-guppi under cases/ passes unless another agent holds the number of the file, the promise of estimate-spec-reconcile-refuses-a-case-file-another-agent-holds (case 650.2) · [[decision-case-650.2]]
+- 2026-10-05 status: pending → passed · raw/2026-10-05/1616/ledger.md#L40

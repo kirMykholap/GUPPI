@@ -2,8 +2,8 @@
 type: insight
 pattern: The main agent writes the Case that case-guppi built out again by hand instead of copying the answer, so a showing can differ from the answer in any line — a ratification block, a ref — and only the comparison on Stop, which refuses a reply the person already sees and lets the re-fire through, stands between the retyped Case and the person.
 status: open
-children: ["[[lesson-case-show-sub-case-ratification-retyped]]", "[[lesson-case-show-ref-of-a-ratification-line-retyped]]", "[[lesson-case-show-grill-round-reformatted-in-translation]]", "[[lesson-orchestration-case-heading-named-from-the-frontier-item]]"]
-severity: 1
+children: ["[[lesson-case-show-sub-case-ratification-retyped]]", "[[lesson-case-show-ref-of-a-ratification-line-retyped]]", "[[lesson-case-show-grill-round-reformatted-in-translation]]", "[[lesson-orchestration-case-heading-named-from-the-frontier-item]]", "[[lesson-orchestration-heading-of-a-showing-composed-by-the-main-agent]]"]
+severity: 2
 addressed_by: "[[decision-case-458]]"
 origin: raw/2026-09-26/1337/ledger.md#L20
 sprint: migration
@@ -25,3 +25,4 @@ Let the showing of a built Case not pass through the agent's retyping — for ex
 - 2026-09-27 updated: actioned: the hook writes the stored answer into a file the main agent sends, and the chat holds only a short text and the ratification, which the Stop comparison guards (case 452.4) · [[decision-case-452.4]]
 - 2026-09-27 updated: child lesson-case-show-grill-round-reformatted-in-translation added, its cause closed by case 458, later than 452.4 (synthesis) · raw/2026-09-27/1819/ledger.md#L1
 - 2026-10-05 updated: child lesson-orchestration-case-heading-named-from-the-frontier-item added, reopened (synthesis) · raw/2026-10-05/1343/ledger.md#L44
+- 2026-10-05 updated: child lesson-orchestration-heading-of-a-showing-composed-by-the-main-agent added (synthesis) · raw/2026-10-05/1616/ledger.md#L42

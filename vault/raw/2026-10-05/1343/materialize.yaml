@@ -2112,6 +2112,7 @@ decisions:
   parent: decision-case-653
   superseded_by:
   - decision-case-659
+  - decision-case-658
   applied: '16:08:37'
 - case: '653.2'
   decision: decision-case-653.2
@@ -2125,6 +2126,7 @@ decisions:
   parent: decision-case-653
   superseded_by:
   - decision-case-659
+  - decision-case-658
   applied: '16:08:37'
 - case: '654'
   decision: decision-case-654

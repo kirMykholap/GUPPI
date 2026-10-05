@@ -2,12 +2,12 @@
 type: rule
 kind: Leaf
 purpose: Prevents a session from reaching the librarian on work nobody reviewed
-status: built
+status: draft
 enforcement: render
 governs: .claude/skills/retro/SKILL.md
 render_mode: full
 parent: "[[rule-end-of-work]]"
-estimates: ["[[estimate-retro-loads]]", "[[estimate-retro-runs-on-to-the-handoff]]", "[[estimate-retro-red-check-of-an-updated-page-is-a-handoff-note]]", "[[estimate-retro-red-in-the-baseline-is-not-charged]]"]
+estimates: ["[[estimate-retro-loads]]", "[[estimate-retro-runs-on-to-the-handoff]]", "[[estimate-retro-red-check-of-an-updated-page-is-a-handoff-note]]", "[[estimate-retro-red-in-the-baseline-is-not-charged]]", "[[estimate-retro-leaves-out-the-sub-cases-of-a-superseded-case]]"]
 origin: raw/2026-09-10/ledger.md#case-38.1
 sprint: migration
 created: 2026-09-10
@@ -33,7 +33,7 @@ Style: !`make style`
 
 Ledger: !`uv run guppi tail`
 
-Retro is an analysis of this session for the librarian and the next session, not planning, and it runs without the person: `/work` calls it in the same turn, and you stop only on a condition of `vault/wiki/where-to-stop.md`, which `/work` loaded (case 531.1). Show no report and ask for no approval. Read `vault/raw/<date>/<hi HHMM>/work.md` when it stands, which `/work` wrote (case 479.3): when you wrote or changed it yourself in this turn, the text you hold counts as read; otherwise open it with the Read tool (case 569.2). When `work.md` holds `## Conserved Spec`, this session runs that conserved Spec by `/box`, and builds it: below, the Spec of this session is the `spec.md` of the folder that section names, and the decision lines of that folder's `ledger.md` count as lines of this session's ledger — for the boxes, for the scope of an edit and for the readings this session does not take; the ledger hook sees only this session's own lines, so this text is the guard (case 591). Sort the unticked boxes of the `tasks` of the Spec — `raw/<date>/<hi HHMM>/spec.md` (the session's folder, case 73), or the `spec.md` of the folder of `## Conserved Spec`. A `create`, `update` or `defer` line of a page, a `guppi render` line, a `guppi sprint` line, a `guppi sprint-close` line (`rule-sprint-close`, case 628.1), a `read` line whose `estimate[...]` stands in the Tail above and a `read` line whose reading you take in this turn wait for the librarian, whose scripts tick them (cases 226, 250, 270); they are not debt. A `read` line whose slug this session creates or updates, by a decision line of that slug or by an `update` that renames a page to it, waits for a later session; it is neither debt nor the librarian's (case 428.4). Another `read` line without its line in the Tail is debt, and so is a box of code, a test, a command or a migration left unticked. The lines of a Case that a `{supersedes:case N}` line of the Tail names are not counted at all; its work stands under the superseding Case (case 282).
+Retro is an analysis of this session for the librarian and the next session, not planning, and it runs without the person: `/work` calls it in the same turn, and you stop only on a condition of `vault/wiki/where-to-stop.md`, which `/work` loaded (case 531.1). Show no report and ask for no approval. Read `vault/raw/<date>/<hi HHMM>/work.md` when it stands, which `/work` wrote (case 479.3): when you wrote or changed it yourself in this turn, the text you hold counts as read; otherwise open it with the Read tool (case 569.2). When `work.md` holds `## Conserved Spec`, this session runs that conserved Spec by `/box`, and builds it: below, the Spec of this session is the `spec.md` of the folder that section names, and the decision lines of that folder's `ledger.md` count as lines of this session's ledger — for the boxes, for the scope of an edit and for the readings this session does not take; the ledger hook sees only this session's own lines, so this text is the guard (case 591). Sort the unticked boxes of the `tasks` of the Spec — `raw/<date>/<hi HHMM>/spec.md` (the session's folder, case 73), or the `spec.md` of the folder of `## Conserved Spec`. A `create`, `update` or `defer` line of a page, a `guppi render` line, a `guppi sprint` line, a `guppi sprint-close` line (`rule-sprint-close`, case 628.1), a `read` line whose `estimate[...]` stands in the Tail above and a `read` line whose reading you take in this turn wait for the librarian, whose scripts tick them (cases 226, 250, 270); they are not debt. A `read` line whose slug this session creates or updates, by a decision line of that slug or by an `update` that renames a page to it, waits for a later session; it is neither debt nor the librarian's (case 428.4). Another `read` line without its line in the Tail is debt, and so is a box of code, a test, a command or a migration left unticked. The lines of a Case that a `{supersedes:case N}` line of the Tail names, and of its sub-cases, are not counted at all; its work stands under the superseding Case (case 282).
 
 Each finding ends in one of three ways: a `- lesson[...]` line, which you decide on; a `- estimate[...]` line, a reading of an Estimate whose work is finished; or a line of `handoff.md` in the section of its kind, which `/handoff` writes. Retro writes no short defer and ratifies no decision: what needs a decision is a line of `## For the next session` of `handoff.md`, and a `create`, `update` or `delete` waits for the next Plan Mode (case 531.1).
 
@@ -115,3 +115,6 @@ When the review is done, commit the work: `make style` clean, `make test` green 
 - 2026-10-02 updated: the reply that answers a refusal of the ledger hook after the reply that ends Retro holds only the refused lines written again (case 596.2) · [[decision-case-596.2]]
 - 2026-10-04 status: draft → built · cascade
 - 2026-10-04 updated: a guppi sprint-close line waits for the librarian and is not debt (case 628.1) · [[decision-case-628.1]]
+- 2026-10-05 estimate estimate-retro-leaves-out-the-sub-cases-of-a-superseded-case added · [[decision-case-660.4]]
+- 2026-10-05 updated: a supersedes tag leaves the sub-cases of its Case out of the debt (case 660.4) · [[decision-case-660.4]]
+- 2026-10-05 status: built → draft · cascade

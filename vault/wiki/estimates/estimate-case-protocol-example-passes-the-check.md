@@ -1,7 +1,7 @@
 ---
 type: estimate
 kind: QA
-status: pending
+status: passed
 target: "[[rule-case-protocol]]"
 purpose: Whether the example Case of case-schema.md, in the chat form case-guppi writes, passes the check the SubagentStop hook runs over the file of a Case, so the form it shows stays a form the scripts accept
 method: uv run pytest tests/test_case_schema.py, passed and not skipped
@@ -30,10 +30,11 @@ Then:
 
 ## Result
 
-2026-10-05, at the /hi of session 1343: uv run pytest -q -rs tests/test_case_schema.py 2 passed, none skipped
+2026-10-05, at the /hi of session 1616: uv run pytest -q -rs tests/test_case_schema.py 2 passed, none skipped
 
 ## History
 
 - 2026-10-05 created · [[decision-case-646]]
 - 2026-10-05 status: pending → passed · raw/2026-10-05/1343/ledger.md#L8
 - 2026-10-05 updated: the Criterion replaced whole — the test fails, not skips, when case-schema.md holds no block tagged case (case 652) · [[decision-case-652]]
+- 2026-10-05 status: pending → passed · raw/2026-10-05/1616/ledger.md#L3

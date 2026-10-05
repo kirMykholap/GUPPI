@@ -127,7 +127,7 @@ update:
 
 ```tasks
 - [x] update `estimate-spec-reconcile-refuses-an-edit-of-the-plan`
-- [ ] read `estimate-spec-reconcile-refuses-an-edit-of-the-plan`
+- [x] read `estimate-spec-reconcile-refuses-an-edit-of-the-plan`
 ```
 
 ## Case 651 — orchestration.md names the summary of case-guppi and shows by tested examples the forms the main agent writes
@@ -305,7 +305,7 @@ update:
 - [x] create `estimate-orchestration-showing-example-passes-the-check`
 - [x] update `rule-orchestration`
 - [x] `tests/test_orchestration.py`: reads the first block tagged `showing` from `vault/wiki/orchestration.md` by `fence_opening` and `closes_fence` of `guppi/materialize.py`, its lines as they stand, and skips with a reason that names the file while it holds none. It builds a store whose entry for each sub-case id that a ledger line of the example names holds that sub-case's heading and a `ratification` of its own lines, read by `fence_ledger_lines`. Tests `-k showing_example`: `outside_the_list` finds nothing; `showings` reads a showing for each sub-case id and `against_store` finds no difference for each; the example with the `> ` taken off the lines of its fence makes `outside_the_list` return a line.
-- [ ] read `estimate-orchestration-showing-example-passes-the-check`
+- [x] read `estimate-orchestration-showing-example-passes-the-check`
 ```
 
 ### Case 651.3 — orchestration.md shows a short-form defer by an example the Spec hook writes
@@ -382,7 +382,7 @@ update:
 - [x] update `rule-orchestration`
 - [x] update `insight-workflow-case-schema-silent-on-what-the-scripts-accept`
 - [x] `tests/test_orchestration.py`: reads the first block tagged `defer` from `vault/wiki/orchestration.md` the same way, and skips with a reason that names the file while it holds none. It seeds a temporary project with the `schema.yaml` files of `vault/wiki/` and an empty plan file, and builds one `defer` record of the Case of the example for each slug of its `then` items. Tests `-k defer_example`: `write_defers` with `key_judge` returns no error and the plan file holds the Case under `## Deferred`; the example with its items rewritten as one mapping under `defer:` returns the error `no fence tagged then with its defer items`.
-- [ ] read `estimate-orchestration-defer-example-passes-the-hook`
+- [x] read `estimate-orchestration-defer-example-passes-the-hook`
 ```
 
 ## Case 652 — The test of the schema example fails when the page holds no example
@@ -438,7 +438,7 @@ update:
 ```tasks
 - [x] update `estimate-case-protocol-example-passes-the-check`
 - [x] `tests/test_case_schema.py`: `example` calls `pytest.fail` with a message that names the file, in place of `pytest.skip`, when the page holds no block tagged `case`; the module docstring says the test fails then and drops the sentence on the skip.
-- [ ] read `estimate-case-protocol-example-passes-the-check`, at the `/hi` of a later session
+- [x] read `estimate-case-protocol-example-passes-the-check`, at the `/hi` of a later session
 ```
 
 ## Case 654 — The synthesis names a page whose text it reads to judge a cause
@@ -486,7 +486,7 @@ update:
 
 ```tasks
 - [x] update `estimate-synthesis-clusters`
-- [ ] read `estimate-synthesis-clusters`
+- [x] read `estimate-synthesis-clusters`
 ```
 
 ## Case 655 — The check of the searches of ask-guppi at pre-spec leaves Decision pages to the check of every agent
@@ -539,7 +539,7 @@ update:
 
 ```tasks
 - [x] update `estimate-ask-searches-at-prespec`
-- [ ] read `estimate-ask-searches-at-prespec`
+- [x] read `estimate-ask-searches-at-prespec`
 ```
 
 ## Case 656 — The builder of a Case reads this project's saved transcripts with no prompt

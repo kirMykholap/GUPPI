@@ -6593,3 +6593,78 @@ instruction. The global feed; a page's own `## History` is the per-page view.
 - 2026-10-05 decisions/decision-case-653.2 archived · cleanup
 - 2026-10-05 decisions/decision-case-653 archived · cleanup
 - 2026-10-05 decisions/decision-case-658 archived · cleanup
+- 2026-10-05 estimates/estimate-orchestration-showing-example-passes-the-check status: pending → passed · raw/2026-10-05/1616/ledger.md#L1 · generate
+- 2026-10-05 estimates/estimate-orchestration-defer-example-passes-the-hook status: pending → passed · raw/2026-10-05/1616/ledger.md#L2 · generate
+- 2026-10-05 estimates/estimate-case-protocol-example-passes-the-check status: pending → passed · raw/2026-10-05/1616/ledger.md#L3 · generate
+- 2026-10-05 estimates/estimate-ask-searches-at-prespec status: pending → failed · raw/2026-10-05/1616/ledger.md#L4 · generate
+- 2026-10-05 estimates/estimate-synthesis-clusters status: pending → passed · raw/2026-10-05/1616/ledger.md#L5 · generate
+- 2026-10-05 estimates/estimate-spec-write-answers-a-refusal status: pending → passed · raw/2026-10-05/1616/ledger.md#L6 · generate
+- 2026-10-05 decisions/decision-case-660 created · raw/2026-10-05/1616/ledger.md#case-660 · generate
+- 2026-10-05 decisions/decision-case-660.1 created · raw/2026-10-05/1616/ledger.md#case-660.1 · generate
+- 2026-10-05 estimates/estimate-prespec-catches-a-superseded-case updated: the Criterion replaced whole — a tag on a parent covers its sub-cases, by materialize.in_family (case 660.1) · [[decision-case-660.1]] · generate
+- 2026-10-05 decisions/decision-case-660.2 created · raw/2026-10-05/1616/ledger.md#case-660.2 · generate
+- 2026-10-05 estimates/estimate-materialize-marks-superseded updated: the Criterion replaced whole — a tag marks the Case and its sub-cases, by in_family (case 660.2) · [[decision-case-660.2]] · generate
+- 2026-10-05 entities/entity-glossary updated: the row of supersedes: a tag marks the sub-cases too (case 660.2) · [[decision-case-660.2]] · generate
+- 2026-10-05 decisions/decision-case-660.3 created · raw/2026-10-05/1616/ledger.md#case-660.3 · generate
+- 2026-10-05 estimates/estimate-generate-writes-the-decision-page updated: the Criterion replaced whole — a superseded page takes the pages of its children with it (case 660.3) · [[decision-case-660.3]] · generate
+- 2026-10-05 rules/rule-page-generation updated: a superseded Decision page takes the pages of its sub-cases with it (case 660.3) · [[decision-case-660.3]] · generate
+- 2026-10-05 rules/rule-decisions-schema updated: the page of a sub-case is superseded with its parent (case 660.3) · [[decision-case-660.3]] · generate
+- 2026-10-05 entities/entity-glossary updated: the row of the status of a Decision: the page of a sub-case is superseded with its parent (case 660.3) · [[decision-case-660.3]] · generate
+- 2026-10-05 decisions/decision-case-660.4 created · raw/2026-10-05/1616/ledger.md#case-660.4 · generate
+- 2026-10-05 estimates/estimate-retro-leaves-out-the-sub-cases-of-a-superseded-case created · [[decision-case-660.4]] · generate
+- 2026-10-05 rules/rule-retro estimate estimate-retro-leaves-out-the-sub-cases-of-a-superseded-case added · [[decision-case-660.4]] · generate
+- 2026-10-05 rules/rule-retro updated: a supersedes tag leaves the sub-cases of its Case out of the debt (case 660.4) · [[decision-case-660.4]] · generate
+- 2026-10-05 rules/rule-handoff updated: a supersedes tag leaves the sub-cases of its Case out of what got done (case 660.4) · [[decision-case-660.4]] · generate
+- 2026-10-05 decisions/decision-case-661 created · raw/2026-10-05/1616/ledger.md#case-661 · generate
+- 2026-10-05 decisions/decision-case-661.1 created · raw/2026-10-05/1616/ledger.md#case-661.1 · generate
+- 2026-10-05 estimates/estimate-orchestration-showing-example-passes-the-check updated: the Criterion replaced whole — the tests fail, not skip, when orchestration.md holds no block tagged showing (case 661.1) · [[decision-case-661.1]] · generate
+- 2026-10-05 decisions/decision-case-661.2 created · raw/2026-10-05/1616/ledger.md#case-661.2 · generate
+- 2026-10-05 estimates/estimate-orchestration-defer-example-passes-the-hook updated: the Criterion replaced whole — the tests fail, not skip, when orchestration.md holds no block tagged defer (case 661.2) · [[decision-case-661.2]] · generate
+- 2026-10-05 decisions/decision-case-662 created · raw/2026-10-05/1616/ledger.md#case-662 · generate
+- 2026-10-05 decisions/decision-case-662.1 created · raw/2026-10-05/1616/ledger.md#case-662.1 · generate
+- 2026-10-05 rules/rule-case-build updated: the summary names the top-level Case in a line **Case:** after its Built line (case 662.1) · [[decision-case-662.1]] · generate
+- 2026-10-05 estimates/estimate-case-build-writes-the-case updated: the Criterion replaced whole — the summary carries a line **Case:** with the id and the name of the top-level Case as the file heads it (case 662.1) · [[decision-case-662.1]] · generate
+- 2026-10-05 decisions/decision-case-662.2 created · raw/2026-10-05/1616/ledger.md#case-662.2 · generate
+- 2026-10-05 rules/rule-orchestration updated: the heading of a showing takes the name of the top-level Case from the Case line of the summary (case 662.2) · [[decision-case-662.2]] · generate
+- 2026-10-05 estimates/estimate-orchestration-shows-the-built-case updated: the Criterion replaced whole — the heading of a showing is the id and the name of the Case line of the summary, translated (case 662.2) · [[decision-case-662.2]] · generate
+- 2026-10-05 decisions/decision-case-662.3 created · raw/2026-10-05/1616/ledger.md#case-662.3 · generate
+- 2026-10-05 estimates/estimate-case-check-sends-back-a-summary-without-the-case-name created · [[decision-case-662.3]] · generate
+- 2026-10-05 rules/rule-case-check estimate estimate-case-check-sends-back-a-summary-without-the-case-name added · [[decision-case-662.3]] · generate
+- 2026-10-05 rules/rule-case-check updated: the SubagentStop check sends back a summary whose Case line is missing or differs from the heading of the file (case 662.3) · [[decision-case-662.3]] · generate
+- 2026-10-05 decisions/decision-case-663 created · raw/2026-10-05/1616/ledger.md#case-663 · generate
+- 2026-10-05 decisions/decision-case-664 created · raw/2026-10-05/1616/ledger.md#case-664 · generate
+- 2026-10-05 decisions/decision-case-664.1 created · raw/2026-10-05/1616/ledger.md#case-664.1 · generate
+- 2026-10-05 estimates/estimate-search-leaves-out-decisions-by-the-grep-hook created · [[decision-case-664.1]] · generate
+- 2026-10-05 rules/rule-search-leaves-out-decisions estimate estimate-search-leaves-out-decisions-by-the-grep-hook added · [[decision-case-664.1]] · generate
+- 2026-10-05 rules/rule-search-leaves-out-decisions updated: a PreToolUse hook on Grep adds !**/decisions/** at the end of the glob in every agent, a Grep inside decisions/ left unchanged; the Render keeps the rule on reads; purpose set anew (case 664.1) · [[decision-case-664.1]] · generate
+- 2026-10-05 rules/rule-hook-registry updated: the hook grepguard registered on PreToolUse of Grep (case 664.1) · [[decision-case-664.1]] · generate
+- 2026-10-05 decisions/decision-case-664.2 created · raw/2026-10-05/1616/ledger.md#case-664.2 · generate
+- 2026-10-05 estimates/estimate-search-leaves-out-decisions-in-every-agent updated: the Criterion replaced whole — the load of the file and the reads of Decision pages only; the Greps move to estimate-search-leaves-out-decisions-by-the-grep-hook; purpose and method set anew (case 664.2) · [[decision-case-664.2]] · generate
+- 2026-10-05 decisions/decision-case-664.3 created · raw/2026-10-05/1616/ledger.md#case-664.3 · generate
+- 2026-10-05 estimates/estimate-ask-searches-at-prespec updated: the Criterion replaced whole — the Greps over a folder that holds the Decision pages are left to estimate-search-leaves-out-decisions-by-the-grep-hook, the Reads and the Greps inside it to estimate-search-leaves-out-decisions-in-every-agent (case 664.3) · [[decision-case-664.3]] · generate
+- 2026-10-05 decisions/decision-case-665 created · raw/2026-10-05/1616/ledger.md#case-665 · generate
+- 2026-10-05 estimates/estimate-case-protocol-case-form deferred · [[decision-case-665]] · generate
+- 2026-10-05 decisions/decision-case-666 created · raw/2026-10-05/1616/ledger.md#case-666 · generate
+- 2026-10-05 estimates/estimate-prespec-confirms-the-findings-once deferred · [[decision-case-666]] · generate
+- 2026-10-05 decisions/decision-case-667 created · raw/2026-10-05/1616/ledger.md#case-667 · generate
+- 2026-10-05 estimates/estimate-case-build-checks-the-finished-case deferred · [[decision-case-667]] · generate
+- 2026-10-05 decisions/decision-case-668 created · raw/2026-10-05/1616/ledger.md#case-668 · generate
+- 2026-10-05 decisions/decision-case-663 superseded by decision-case-668 · [[decision-case-668]] · generate
+- 2026-10-05 estimates/estimate-synthesis-reads-the-status-its-yaml-sets created · [[decision-case-668]] · generate
+- 2026-10-05 rules/rule-synthesis estimate estimate-synthesis-reads-the-status-its-yaml-sets added · [[decision-case-668]] · generate
+- 2026-10-05 rules/rule-synthesis updated: an Insight that a decision entry of the same yaml sets actioned counts as actioned at synthesis (case 668) · [[decision-case-668]] · generate
+- 2026-10-05 entities/entity-glossary updated: the row of the status of an Insight names the mark and the status a decision of the lesson's own session sets (case 668) · [[decision-case-668]] · generate
+- 2026-10-05 estimates/estimate-spec-reconcile-refuses-an-edit-of-the-plan status: pending → passed · raw/2026-10-05/1616/ledger.md#L40 · generate
+- 2026-10-05 lessons/lesson-case-build-renamed-a-slug-of-a-ratified-case-under-its-old-number created · raw/2026-10-05/1616/ledger.md#L41 · generate
+- 2026-10-05 lessons/lesson-orchestration-heading-of-a-showing-composed-by-the-main-agent created · raw/2026-10-05/1616/ledger.md#L42 · generate
+- 2026-10-05 lessons/lesson-ask-search-exclusion-of-decisions-left-to-each-agent created · raw/2026-10-05/1616/ledger.md#L43 · generate
+- 2026-10-05 insights/insight-ledger-ratified-line-never-withdrawn created · raw/2026-10-05/1616/ledger.md#L41 · generate
+- 2026-10-05 lessons/lesson-ledger-a-dropped-item-needs-a-superseding-sub-case updated: clustered under insight-ledger-ratified-line-never-withdrawn (synthesis) · raw/2026-10-05/1616/ledger.md#L41 · generate
+- 2026-10-05 lessons/lesson-case-build-renamed-a-slug-of-a-ratified-case-under-its-old-number updated: clustered under insight-ledger-ratified-line-never-withdrawn (synthesis) · raw/2026-10-05/1616/ledger.md#L41 · generate
+- 2026-10-05 insights/insight-case-show-built-case-retyped-by-hand updated: child lesson-orchestration-heading-of-a-showing-composed-by-the-main-agent added (synthesis) · raw/2026-10-05/1616/ledger.md#L42 · generate
+- 2026-10-05 lessons/lesson-orchestration-heading-of-a-showing-composed-by-the-main-agent updated: clustered under insight-case-show-built-case-retyped-by-hand (synthesis) · raw/2026-10-05/1616/ledger.md#L42 · generate
+- 2026-10-05 rules/rule-materialize status: built → draft · cascade · generate
+- 2026-10-05 rules/rule-page-generation status: built → draft · cascade · generate
+- 2026-10-05 rules/rule-retro status: built → draft · cascade · generate
+- 2026-10-05 decisions/decision-case-663 archived · superseded · generate
+- 2026-10-05 decisions/decision-case-663 archived · cleanup

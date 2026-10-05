@@ -50,7 +50,9 @@ agent's Render and is ratified with it; this page holds the registrations only.
 { "matcher": "Bash",
   "hooks": [ { "type": "command", "command": "uv run guppi bashguard", "timeout": 30 } ] },
 { "matcher": "Read",
-  "hooks": [ { "type": "command", "command": "uv run guppi pageread", "timeout": 30 } ] }
+  "hooks": [ { "type": "command", "command": "uv run guppi pageread", "timeout": 30 } ] },
+{ "matcher": "Grep",
+  "hooks": [ { "type": "command", "command": "uv run guppi grepguard", "timeout": 30 } ] }
 
     ],
     "PostToolUse": [
@@ -99,3 +101,4 @@ agent's Render and is ratified with it; this page holds the registrations only.
 - 2026-09-30 updated: the Stop hook guppi onward of rule-retro-onward registered after guppi context (case 531.9) · [[decision-case-531.9]]
 - 2026-09-30 updated: the Purpose no longer counts the rules that share .claude/settings.json; rule-python-utf8 joined them · [[decision-case-534.1]]
 - 2026-10-01 updated: guppi onward --plan registered on Stop after guppi onward (case 561.5) · [[decision-case-561.5]]
+- 2026-10-05 updated: the hook grepguard registered on PreToolUse of Grep (case 664.1) · [[decision-case-664.1]]

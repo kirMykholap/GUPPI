@@ -35,7 +35,7 @@ Tree: !`git status --porcelain`
 If Tree above is not empty, stop and say "commit first". Otherwise write `vault/raw/<date>/<hi HHMM>/handoff.md` — the session's folder, one document, no `---` (case 73) — headed `# Handoff — <date>, <slice or topic>`. It is the report of Retro, written by the agent for the librarian and the next session (case 531.5), in these sections, in this order:
 - `## Notes from memory`: where the person hesitated, what stayed unclear, which decisions carried caveats.
 - `## Direct instructions to the librarian`: what to check first, what may duplicate what; no reading that waits, which `## Debt` lists (case 624).
-- `## What actually got done`: the ids of the Cases ratified, by the Tail, a Case that a `{supersedes:case N}` line names not counted; the code files and tests changed; the result of `make test` and `make style`; the readings and lessons written, by their ledger line numbers.
+- `## What actually got done`: the ids of the Cases ratified, by the Tail, a Case that a `{supersedes:case N}` line names, and each of its sub-cases, not counted; the code files and tests changed; the result of `make test` and `make style`; the readings and lessons written, by their ledger line numbers.
 - `## Debt`: each box of the Spec that is debt, and each red test reverted into a patch, with the path of the patch; under them a line with the count of the boxes that wait for the librarian, then one line per Estimate whose reading cannot be taken yet, each one this session creates or updates among them, except one that `## Ask the person` holds: its slug and the moment its reading waits for; these lines stand in the section and are not debt (case 624).
 - `## Observations`: what was noticed in Work Mode and Retro — a bug, a contract that turned out imprecise, a red before the work, an expected red with its check and the page or file it waits for.
 - `## For the next session`: what needs a decision, which Retro does not take.
@@ -62,3 +62,4 @@ Then, in a session whose `work.md` holds `## Conserved Spec` — one that `/box`
 - 2026-10-02 updated: in a session that /box runs, /handoff dispatches nothing and hands back to /box (case 591.9) · [[decision-case-591.9]]
 - 2026-10-04 updated: a thing is said once: a second section names it only with what its kind adds; the readings that wait stand in Debt alone, each with its moment, and are not debt (case 624) · [[decision-case-624]]
 - 2026-10-05 status: draft → built · cascade
+- 2026-10-05 updated: a supersedes tag leaves the sub-cases of its Case out of what got done (case 660.4) · [[decision-case-660.4]]

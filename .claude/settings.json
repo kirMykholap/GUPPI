@@ -38,7 +38,9 @@
 { "matcher": "Bash",
   "hooks": [ { "type": "command", "command": "uv run guppi bashguard", "timeout": 30 } ] },
 { "matcher": "Read",
-  "hooks": [ { "type": "command", "command": "uv run guppi pageread", "timeout": 30 } ] }
+  "hooks": [ { "type": "command", "command": "uv run guppi pageread", "timeout": 30 } ] },
+{ "matcher": "Grep",
+  "hooks": [ { "type": "command", "command": "uv run guppi grepguard", "timeout": 30 } ] }
 
     ],
     "PostToolUse": [

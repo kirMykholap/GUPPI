@@ -38,3 +38,4 @@ The main agent sends each `ask-guppi` run whose findings sent a Case back the Ca
 - 2026-10-05 status: pending → failed · raw/2026-10-04/2245/ledger.md#L16
 - 2026-10-05 updated: the Criterion replaced whole — a verdict line and at most three sentences per finding, then what was not checked and the files read; the confirmation message invites no new finding (case 638) · [[decision-case-638]]
 - 2026-10-05 status: pending → failed · raw/2026-10-05/1343/ledger.md#L41
+- 2026-10-05 deferred · [[decision-case-666]]

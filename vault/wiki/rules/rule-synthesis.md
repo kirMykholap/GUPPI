@@ -7,7 +7,7 @@ enforcement: render
 governs: .claude/agents/librarian-guppi.md
 render_mode: partial
 parent: "[[rule-documentation]]"
-estimates: ["[[estimate-synthesis-clusters]]", "[[estimate-synthesis-keeps-actioned-by-the-mark]]"]
+estimates: ["[[estimate-synthesis-clusters]]", "[[estimate-synthesis-keeps-actioned-by-the-mark]]", "[[estimate-synthesis-reads-the-status-its-yaml-sets]]"]
 origin: raw/2026-09-10/ledger.md#case-35.2
 sprint: migration
 created: 2026-09-10
@@ -26,7 +26,7 @@ a later Case can fix. The archive is not needed: a lesson is archived when its I
 Synthesis. For each `lesson` entry, compare its `root_cause` with every index line of `vault/wiki/lessons/` and of `vault/wiki/insights/` — the Greps `^(root_cause|deferred_by):` and `^(pattern|deferred_by):`, run by you — by meaning (case 147.4).
 - A live lesson has the same cause and no Insight exists: append to the yaml a `create` in `insights` with `slug` (`insight-<area>-<pattern>`), `pattern`, `children` (both lessons), `tags` (the union), and `sections` `Pattern` and `Proposal`; and an `update` for each lesson with `set: {status: clustered, insight: <slug>}`. When the lesson entry carries `addressed_by: decision-case-N` — the Case of this unit that closed its cause — append right after the `create` an `update` of the new Insight with `set: {status: actioned, addressed_by: decision-case-N}`: the Insight is born closed, its lessons go to the archive by the cascade, and the pair is reported in the brief beside the synthesis (case 302.2).
 - An Insight has the same pattern: append an `update` of it with `children` plus
-  the new lesson, and — when it was `actioned` — `set: {status: open}`, or `set: {addressed_by: decision-case-N}` with `status` kept when the lesson entry carries `addressed_by: decision-case-N`, the Case of this unit that closed its cause, and case N is later than the case the Insight's `addressed_by` names — compared number by number, `378.5` after `378.4`; when it is not later, the `update` carries no `addressed_by` and the field stands (case 385); the pair reported in the brief beside the synthesis (case 284.4); and an `update`
+  the new lesson, and — when it was `actioned`, on disk or by an `update` entry of a decision in this yaml that sets it `actioned`, whose `addressed_by` is then the one the Insight names (case 668) — `set: {status: open}`, or `set: {addressed_by: decision-case-N}` with `status` kept when the lesson entry carries `addressed_by: decision-case-N`, the Case of this unit that closed its cause, and case N is later than the case the Insight's `addressed_by` names — compared number by number, `378.5` after `378.4`; when it is not later, the `update` carries no `addressed_by` and the field stands (case 385); the pair reported in the brief beside the synthesis (case 284.4); and an `update`
   for the lesson.
 Mark each entry you add with `librarian: synthesis`. The entries of the synthesis have these forms, so no earlier entry and no `materialize.yaml` other than the ones `guppi materialize` names is needed (case 474.1); when you still need one, read it and flag the read as the frame says (case 558.2).
 
@@ -104,3 +104,5 @@ outcome, clustered or not. The archive is not needed: an actioned Insight stays 
 - 2026-10-03 status: draft → built · cascade
 - 2026-10-04 updated: an actioned Insight stays live until the close of its sprint (case 627.5) · [[decision-case-627.5]]
 - 2026-10-04 status: built → draft · cascade
+- 2026-10-05 estimate estimate-synthesis-reads-the-status-its-yaml-sets added · [[decision-case-668]]
+- 2026-10-05 updated: an Insight that a decision entry of the same yaml sets actioned counts as actioned at synthesis (case 668) · [[decision-case-668]]

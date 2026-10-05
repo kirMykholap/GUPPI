@@ -1,0 +1,41 @@
+- 03:16:53 estimate[estimate-synthesis-clusters][failed] 2026-10-05, by hand at the /hi of session 0311, raw/2026-10-05/0109/materialize.yaml lines 569-712, brief.md and the report of the librarian run of 0109 (agent ad9e8d20f682297e0); the yaml holds three lesson entries; the brief names `^(root_cause|deferred_by):` over lessons/ (75 lines) and `^(pattern|deferred_by):` over insights/ (31 lines) and gives one line per lesson; `lesson-orchestration-short-defer-then-block-written-as-a-mapping` joined `insight-workflow-case-schema-silent-on-what-the-scripts-accept` and `lesson-orchestration-dispatch-prompt-carried-counts-not-from-a-run` joined `insight-workflow-fact-signed-from-a-check-that-does-not-cover-it`, each by one `update` of the Insight with the lesson added to `children` and one `update` of the lesson (status clustered, insight set), all four `librarian: synthesis`; `lesson-spec-write-skips-the-reply-that-answers-a-refusal` joined none with a reason, stays `new`, no flag; failed on one clause: call 13 of the librarian printed the frontmatter of six lesson pages at synthesis (lesson-case-showing-ratification-fence-outside-the-blockquote, lesson-case-protocol-chat-case-without-heading, lesson-case-check-command-signed-without-a-run, lesson-pretask-dispatch-summarized-the-plan-and-ask-guppi-judged-the-summary, lesson-hooks-stop-payload, lesson-prespec-onward-re-ratification-out-after-its-stretch), and neither the report nor the brief names them with an outcome
+- 03:45:52 decision[case 644.1][create][estimate-spec-write-answers-a-refusal]{ref:rule-spec-write}{tags:hooks,harness,workflow}
+- 03:45:52 decision[case 644.1][update][rule-spec-write]{ref:rule-spec-write}
+- 03:45:52 decision[case 644.2][update][estimate-spec-write-copies-the-ratified-case]{ref:rule-spec-write}
+- 03:45:52 decision[case 644.3][update][estimate-spec-write-checks-the-written-case]{ref:rule-spec-write}
+- 03:45:52 decision[case 644.4][update][estimate-spec-write-writes-a-defer]{ref:rule-spec-write}
+- 03:45:52 decision[case 644.5][update][estimate-spec-write-reaches-the-approved-spec]{ref:rule-spec-write}
+- 03:45:52 decision[case 644.6][update][estimate-spec-write-removes-a-superseded-case]{ref:rule-spec-write}
+- 03:45:52 decision[case 644.7][update][estimate-spec-write-exits-2-on-an-error]{ref:rule-spec-write}
+- 04:25:17 decision[case 645.1][update][rule-case-build]{ref:rule-case-build}
+- 04:25:17 decision[case 645.1][update][estimate-case-build-writes-the-case]{ref:rule-case-build}
+- 04:25:17 decision[case 645.2][update][rule-case-check]{ref:rule-case-check}
+- 04:25:17 decision[case 645.2][update][estimate-case-check-sends-back-a-faulty-case]{ref:rule-case-check}
+- 04:25:17 decision[case 645.2][delete][estimate-case-check-judges-a-lone-sub-case-with-its-stored-parent]{ref:rule-case-check}
+- 04:25:17 decision[case 645.3][update][rule-spec-reconcile]{ref:rule-spec-reconcile}
+- 04:25:17 decision[case 645.3][update][estimate-spec-reconcile-refuses-an-edit-of-the-plan]{ref:rule-spec-reconcile}
+- 04:25:17 decision[case 645.4][create][estimate-case-check-refuses-a-changed-case-file]{ref:rule-case-check}{tags:hooks,harness,workflow}
+- 04:25:17 decision[case 645.5][create][estimate-spec-write-refuses-a-changed-case-file]{ref:rule-spec-write}{tags:hooks,harness,workflow}
+- 04:25:17 decision[case 645.5][update][rule-spec-write]{ref:rule-spec-write}
+- 04:25:17 decision[case 645.6][update][rule-orchestration]{ref:rule-orchestration}
+- 04:25:17 decision[case 645.6][update][estimate-orchestration-shows-the-built-case]{ref:rule-orchestration}
+- 04:25:17 decision[case 645.7][update][estimate-case-check-refuses-a-letter-outside-the-script]{ref:rule-case-check}
+- 04:25:17 decision[case 645.8][update][estimate-case-check-notes-a-criterion-line-not-carried]{ref:rule-case-check}
+- 04:25:17 decision[case 645.9][update][estimate-case-check-sends-back-a-case-number-held-by-another-agent]{ref:rule-case-check}
+- 04:25:17 decision[case 645.10][update][estimate-case-protocol-case-form]{ref:rule-case-protocol}
+- 04:42:09 decision[case 646][update][rule-case-protocol]{ref:rule-case-protocol}
+- 04:42:09 decision[case 646][create][estimate-case-protocol-example-passes-the-check]{ref:rule-case-protocol}{tags:session,workflow,harness}
+- 04:43:32 decision[case 647][defer][estimate-case-build-checks-the-finished-case]{ref:estimate-case-build-checks-the-finished-case}
+- 04:43:32 decision[case 648][defer][rule-prespec-onward]{ref:rule-prespec-onward}
+- 04:43:32 decision[case 649][defer][estimate-ask-searches-at-prespec]{ref:estimate-ask-searches-at-prespec}
+- 04:45:30 lesson[error][lesson-session-frontier-closer-appended-box-left-open]{tags:session,workflow} trigger: at the close of Plan Mode of session 0311 the main agent closed C2 and C5 of frontier.md by an Edit that appended `· defer` and `· defer case 648` to the end of the line and left the box `[ ]`; the hook `guppi onward --plan` read two open lines under `## Cases` by `prespec.open_case_items` and did not send the agent to /pre-spec, and the person had to ask why the session stopped. root_cause: the agent edited only the tail of a Frontier line, the old_string anchored after the box, and did not check the box after the edit; the closer and the box are two edits of one line
+- 05:20:19 decision[case 644.8][create][estimate-spec-write-tells-each-reason-once]{ref:rule-spec-write}{tags:hooks,harness,workflow}
+- 05:20:19 decision[case 645.11][update][estimate-case-check-shows-only-the-checked-case]{ref:rule-case-check}
+- 05:20:19 decision[case 645.12][update][estimate-case-build-answers-what-done-means]{ref:rule-case-build}
+- 05:20:19 decision[case 645.13][update][estimate-case-build-records-the-rounds-in-recommend]{ref:rule-case-build}
+- 05:20:19 decision[case 645.14][update][estimate-case-check-requires-a-backlog-item-decided-on-its-page]{ref:rule-case-check}
+- 05:20:19 decision[case 645.15][update][estimate-case-check-sends-back-a-ratified-case-in-another-shape]{ref:rule-case-check}
+- 05:20:19 decision[case 645.16][update][rule-permissions]{ref:rule-permissions}
+- 05:20:19 decision[case 645.16][update][estimate-permissions]{ref:rule-permissions}
+- 05:41:10 lesson[error][lesson-case-build-replace-pair-value-unpadded-and-paths-off-given]{tags:workflow,session}{addressed_by:case 646} trigger: the first build of Case 644 in session 0311 was sent back by `guppi casecheck --subagent` for an `old` value holding a backtick in an unpadded span, a `new` with no `old` before it, and paths in `then` of 644.2, 644.5 and 644.6 that `given` did not name; case-guppi wrote the whole Case of about 30,000 characters again, and 644.3, 644.4 and 644.7 came back the same. root_cause: case-schema.md stated both rules in prose but showed no example of the form case-guppi writes, and a fix after a finding meant a whole new answer
+- 05:41:10 lesson[knowledge][lesson-agents-sendmessage-to-a-running-subagent-waits-for-its-next-tool-round]{tags:workflow,session}{source:transcript of session 6d53e05d, agent a7b182c9a1f27f641} trigger: in the /pre-spec loop of session 0311 the main agent sent the case-guppi of Case 645 the split of 644 while it was building; the tool answered "queued for delivery at its next tool round", the agent made no further tool call and handed back 645 without the fix, and only a second message brought 645.5 in line. root_cause: a SendMessage to a running subagent reaches it only at its next tool call, so a fact sent while it writes its final answer lands after that answer

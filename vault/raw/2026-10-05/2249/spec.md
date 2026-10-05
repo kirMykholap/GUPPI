@@ -44,7 +44,7 @@ delete:
 ```
 
 ```tasks
-- [ ] delete `rule-prespec-judges-the-spec-whole`
+- [x] delete `rule-prespec-judges-the-spec-whole`
 ```
 
 ## Case 676 — The draft of the subagent rule leaves the backlog
@@ -86,7 +86,7 @@ delete:
 ```
 
 ```tasks
-- [ ] delete `rule-subagent-guppi`
+- [x] delete `rule-subagent-guppi`
 ```
 
 ## Case 677 — The idea that a complaint becomes a lesson leaves the backlog
@@ -123,7 +123,7 @@ delete:
 ```
 
 ```tasks
-- [ ] delete `rule-complaint-becomes-a-lesson`
+- [x] delete `rule-complaint-becomes-a-lesson`
 ```
 
 ## Case 678 — The Insight on one judgment in two copies is answered again
@@ -170,7 +170,7 @@ update:
 ```
 
 ```tasks
-- [ ] update `insight-harness-one-rule-implemented-twice-drifts`
+- [x] update `insight-harness-one-rule-implemented-twice-drifts`
 ```
 
 ## Case 679 — The Insight on the refused `!` commands names its real cause and closes
@@ -224,7 +224,7 @@ update:
 ```
 
 ```tasks
-- [ ] update `insight-hi-skill-substitution-checked-by-a-model-call`
+- [x] update `insight-hi-skill-substitution-checked-by-a-model-call`
 ```
 
 ## Case 680 — Old notes leave the Backlog of the migration sprint
@@ -283,7 +283,7 @@ update:
 ```
 
 ```tasks
-- [ ] update `entity-sprint-migration`
+- [x] update `entity-sprint-migration`
 ```
 
 ## Case 682 — The ledger hook asks for the mark of a lesson written after a Case
@@ -358,11 +358,11 @@ update:
 ```
 
 ```tasks
-- [ ] update `rule-ledger-write`
-- [ ] create `estimate-ledger-write-asks-for-the-mark-of-a-lesson`
+- [x] update `rule-ledger-write`
+- [x] create `estimate-ledger-write-asks-for-the-mark-of-a-lesson`
 - [x] `guppi/ledger.py`: a function judges each fresh unmarked lesson line after a decision line of the session over the session's ledger followed by the fresh lines; `run` holds it once by the told-once rule, skips it beside a marked line of the same slug, and the docstring says so.
 - [x] `tests/test_ledger.py`: tests of the hold, of the line written again unchanged, of the line written again with its mark, of a line from an earlier text, of a lesson with no decision line before it and of the flag with an unreadable transcript; the existing tests whose unmarked lesson follows a decision line answer the hold.
-- [ ] read `estimate-ledger-write-asks-for-the-mark-of-a-lesson`
+- [x] read `estimate-ledger-write-asks-for-the-mark-of-a-lesson`
 ```
 
 ### Case 682.2 — The check of the mark leaves an unmarked lesson to the new check
@@ -397,8 +397,8 @@ update:
 ```
 
 ```tasks
-- [ ] update `estimate-ledger-write-refuses-a-mark-with-no-decision-line`
-- [ ] read `estimate-ledger-write-refuses-a-mark-with-no-decision-line`
+- [x] update `estimate-ledger-write-refuses-a-mark-with-no-decision-line`
+- [x] read `estimate-ledger-write-refuses-a-mark-with-no-decision-line`
 ```
 
 ## Case 683 — A supersede leaves an archived Decision in the archive
@@ -481,15 +481,15 @@ update:
 ```
 
 ```tasks
-- [ ] update `rule-page-generation`
-- [ ] update `estimate-generate-writes-the-decision-page`
-- [ ] update `rule-decisions-schema`
-- [ ] update `entity-glossary`
+- [x] update `rule-page-generation`
+- [x] update `estimate-generate-writes-the-decision-page`
+- [x] update `rule-decisions-schema`
+- [x] update `entity-glossary`
 - [x] `guppi/generate.py`: `generate.decision` sets the earlier page `superseded` only when it does not stand `archived`; it still appends to `superseded_by`, writes the History line, clears the defers and supersedes the children; the module docstring on a `supersedes` says so.
 - [x] `tests/test_generate.py`: `test_a_later_case_superseding_the_archived_decision_clears_the_page_it_names` asserts the archived page keeps `status: archived`, stays under `vault/archive/`, names `decision-case-4` in `superseded_by` with one History line, and that no page `vault/wiki/decisions/decision-case-2.md` is written; a test that a page standing `current` still becomes `superseded` stands.
-- [ ] `uv run guppi render`: `vault/wiki/decisions/schema.yaml`
-- [ ] `uv run guppi glossary`
-- [ ] read `estimate-generate-writes-the-decision-page`
+- [x] `uv run guppi render`: `vault/wiki/decisions/schema.yaml`
+- [x] `uv run guppi glossary`
+- [x] read `estimate-generate-writes-the-decision-page`
 ```
 
 ## Case 684 — Items taken up together are shown as one batch
@@ -575,10 +575,10 @@ update:
 ```
 
 ```tasks
-- [ ] update `rule-orchestration`
-- [ ] `uv run guppi render`: `vault/wiki/orchestration.md`
-- [ ] create `estimate-orchestration-signs-items-taken-together`
-- [ ] read `estimate-orchestration-signs-items-taken-together`
+- [x] update `rule-orchestration`
+- [x] `uv run guppi render`: `vault/wiki/orchestration.md`
+- [x] create `estimate-orchestration-signs-items-taken-together`
+- [x] read `estimate-orchestration-signs-items-taken-together`
 ```
 
 ### Case 684.2 — The prompt of a builder in a batch names the other Cases of the batch
@@ -619,7 +619,7 @@ update:
 ```
 
 ```tasks
-- [ ] update `rule-orchestration`
-- [ ] update `estimate-orchestration-names-related-cases-in-the-dispatch`
-- [ ] read `estimate-orchestration-names-related-cases-in-the-dispatch`
+- [x] update `rule-orchestration`
+- [x] update `estimate-orchestration-names-related-cases-in-the-dispatch`
+- [x] read `estimate-orchestration-names-related-cases-in-the-dispatch`
 ```

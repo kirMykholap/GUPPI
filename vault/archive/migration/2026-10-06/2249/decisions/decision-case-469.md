@@ -1,8 +1,9 @@
 ---
 type: decision
 case: "469"
-status: current
+status: archived
 defer: ["[[rule-page-generation]]"]
+superseded_by: ["[[decision-case-683]]"]
 origin: raw/2026-09-27/2050/ledger.md#case-469
 sprint: migration
 created: 2026-09-27
@@ -26,3 +27,6 @@ A supersede of a Decision already archived keeps it archived and only appends th
 ## History
 
 - 2026-09-27 created · raw/2026-09-27/2050/ledger.md#case-469
+- 2026-10-06 superseded by decision-case-683 · [[decision-case-683]]
+- 2026-10-06 archived · superseded
+- 2026-10-06 archived · cleanup

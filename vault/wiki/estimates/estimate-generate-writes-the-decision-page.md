@@ -5,7 +5,7 @@ status: passed
 target: "[[rule-page-generation]]"
 purpose: One Decision page per Case, written before its entries, with its lists, its body and its defers
 method: pytest tests/test_generate.py, the tests of the decision page; the live reading in the librarian's run
-checked: 2026-10-05
+checked: 2026-10-06
 origin: raw/2026-09-16/1955/ledger.md#case-201.2
 sprint: migration
 created: 2026-09-16
@@ -22,7 +22,8 @@ One page `vault/wiki/decisions/decision-case-<N>.md` is written: `case`, `status
 **＋** A record with `children`, a Case with sub-cases, gets its page before the pages of its sub-cases, with `children` their pages as quoted wikilinks, `tags` the union of theirs and no kind list; each page of a sub-case carries `parent`, its parent's page.
 **＋** A record with no `children` whose `case_text` carries no `given` — the short form of a deferred decision — also gets `## Context` from `case_text`, before `## Problem`.
 **＋** The page is written before the first entry of its lines, so their History lines name it.
-**＋** A `supersedes` sets the earlier page `superseded` and appends to its `superseded_by`, and does the same to each page in the `children` of the earlier page, at any depth, that stands `current`, a page of an earlier session too. It removes the earlier slug from the `deferred_by` of each target of its `defer` list that a decision line of the superseding Case names; an empty `deferred_by` is dropped.
+**＋** A `supersedes` sets the earlier page `superseded`, unless it stands `archived`, and appends to its `superseded_by`, and does the same to each page in the `children` of the earlier page, at any depth, that stands `current`, a page of an earlier session too. It removes the earlier slug from the `deferred_by` of each target of its `defer` list that a decision line of the superseding Case names; an empty `deferred_by` is dropped.
+**＋** An earlier page that stands `archived`, under `vault/archive/` or under `vault/wiki/decisions/`, keeps `status: archived` and its place; it takes the new page into its `superseded_by` with one History line `superseded by decision-case-<N>`, and it removes the earlier slug from the `deferred_by` of each target of its `defer` list that a decision line of the superseding Case names, as for a page that stands `current`.
 **＋** A target of the earlier page's `defer` list that no decision line of the superseding Case names keeps the earlier slug in its `deferred_by`; neither does a page reached only through `children` clear a `deferred_by`.
 **＋** An existing page is skipped; a `create` marked `exists` writes no page, but the Decision page of its Case is written.
 **＋** A record with `superseded_by` and no `case_text` gets a two-line body: `## Context` `Superseded by [[decision-case-M]] in its own session, before the Spec was approved; the Case left the Spec (case 299).`, `## Problem` `Decided under [[decision-case-M]].`
@@ -34,7 +35,7 @@ One page `vault/wiki/decisions/decision-case-<N>.md` is written: `case`, `status
 
 ## Result
 
-2026-10-05, /hi of 1831, uv run pytest tests/test_generate.py 106 passed; live: the 1616 librarian transcript shows guppi generate exit=0, 59 pages for 1616; decision-case-660 carries children of four sub-case pages, no kind list, Problem and Recommend; decision-case-660.1 carries parent and no Problem; decision-case-665 carries Context, Problem and Deferred with the purpose; decision-case-668 carries supersedes; decision-case-663 superseded_by decision-case-668 with the two-line body, archived under vault/archive/migration/2026-10-05/1616/decisions/; no superseded parent with children was met
+2026-10-06, uv run pytest tests/test_generate.py; 114 passed: an archived earlier page keeps status archived and its place under vault/archive/, takes decision-case-4 into superseded_by with one History line, no page under vault/wiki/decisions/ is written; the test fails without the change of generate.decision
 
 ## History
 
@@ -54,3 +55,5 @@ One page `vault/wiki/decisions/decision-case-<N>.md` is written: `case`, `status
 - 2026-09-30 status: pending → passed · raw/2026-09-30/1736/ledger.md#L2
 - 2026-10-05 updated: the Criterion replaced whole — a superseded page takes the pages of its children with it (case 660.3) · [[decision-case-660.3]]
 - 2026-10-05 status: pending → passed · raw/2026-10-05/1831/ledger.md#L6
+- 2026-10-06 updated: the Criterion replaced whole — a supersedes leaves an earlier page that stands archived archived, and only appends to its superseded_by (case 683) · [[decision-case-683]]
+- 2026-10-06 status: pending → passed · raw/2026-10-05/2249/ledger.md#L22

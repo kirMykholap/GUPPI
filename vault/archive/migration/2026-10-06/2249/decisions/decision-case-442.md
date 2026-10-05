@@ -1,8 +1,9 @@
 ---
 type: decision
 case: "442"
-status: current
+status: archived
 defer: ["[[rule-ledger-write]]"]
+superseded_by: ["[[decision-case-682.1]]"]
 origin: raw/2026-09-26/1745/ledger.md#case-442
 sprint: migration
 created: 2026-09-26
@@ -26,3 +27,6 @@ A lesson line whose cause a Case of the same session closed carries addressed_by
 ## History
 
 - 2026-09-26 created · raw/2026-09-26/1745/ledger.md#case-442
+- 2026-10-06 superseded by decision-case-682.1 · [[decision-case-682.1]]
+- 2026-10-06 archived · superseded
+- 2026-10-06 archived · cleanup

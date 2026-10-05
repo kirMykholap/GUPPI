@@ -2,7 +2,8 @@
 type: lesson
 kind: error
 root_cause: the main agent started a second Case before the first was ratified, outside the two side-by-side forms rule-orchestration allows (the loop after the findings of /pre-spec and a batch), and numbered a question of one Case with no Case id.
-status: new
+status: archived
+insight: "[[insight-orchestration-items-taken-together-unruled]]"
 origin: raw/2026-10-05/1831/ledger.md#L10
 sprint: migration
 created: 2026-10-05
@@ -20,3 +21,6 @@ the main agent started a second Case before the first was ratified, outside the 
 ## History
 
 - 2026-10-05 created · raw/2026-10-05/1831/ledger.md#L10
+- 2026-10-06 updated: clustered under insight-orchestration-items-taken-together-unruled (synthesis) · raw/2026-10-05/2249/ledger.md#L25
+- 2026-10-06 archived · insight actioned
+- 2026-10-06 archived · cleanup

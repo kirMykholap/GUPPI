@@ -4,7 +4,7 @@ case: "183"
 status: archived
 defer: ["[[rule-work-mode]]", "[[rule-subagent-guppi]]"]
 supersedes: ["[[decision-case-176]]"]
-superseded_by: ["[[decision-case-479.2]]"]
+superseded_by: ["[[decision-case-479.2]]", "[[decision-case-676]]"]
 origin: raw/2026-09-15/2225/ledger.md#case-183
 sprint: migration
 created: 2026-09-15
@@ -35,3 +35,4 @@ Slice 3b — what a subagent may do in Work Mode, and the fork that comes back t
 - 2026-09-28 superseded by decision-case-479.2 · [[decision-case-479.2]]
 - 2026-09-28 archived · superseded
 - 2026-09-28 archived · cleanup
+- 2026-10-06 superseded by decision-case-676 · [[decision-case-676]]

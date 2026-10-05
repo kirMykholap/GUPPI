@@ -3,7 +3,7 @@ type: decision
 case: "252"
 status: archived
 defer: ["[[rule-work-mode]]", "[[rule-subagent-guppi]]"]
-superseded_by: ["[[decision-case-479.2]]"]
+superseded_by: ["[[decision-case-479.2]]", "[[decision-case-676]]"]
 origin: raw/2026-09-18/2054/ledger.md#case-252
 sprint: migration
 created: 2026-09-18
@@ -34,3 +34,4 @@ Slice 3b, with rule-work-mode — what a subagent may do in Work Mode, and the f
 - 2026-09-28 superseded by decision-case-479.2 · [[decision-case-479.2]]
 - 2026-09-28 archived · superseded
 - 2026-09-28 archived · cleanup
+- 2026-10-06 superseded by decision-case-676 · [[decision-case-676]]

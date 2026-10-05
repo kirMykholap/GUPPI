@@ -2,7 +2,7 @@
 type: lesson
 kind: error
 root_cause: the agent wrote the mark of the parent from the words of the short form and did not check how the scripts read it; the Spec hook removes a parent with its sub-cases, while `prespec.superseded_in_window` and `materialize.mark_superseded` mark only the number named, two readings of one mark
-status: clustered
+status: archived
 insight: "[[insight-harness-one-rule-implemented-twice-drifts]]"
 origin: raw/2026-10-05/1343/ledger.md#L42
 sprint: migration
@@ -22,3 +22,5 @@ the agent wrote the mark of the parent from the words of the short form and did 
 
 - 2026-10-05 created · raw/2026-10-05/1343/ledger.md#L42
 - 2026-10-05 updated: clustered under insight-harness-one-rule-implemented-twice-drifts (synthesis) · raw/2026-10-05/1343/ledger.md#L42
+- 2026-10-06 archived · insight actioned
+- 2026-10-06 archived · cleanup

@@ -515,6 +515,7 @@ entries:
       Plan Mode holds Cases 638-641 that do not belong to the close
   exists: true
   applied: 03:05:55
+  superseded_by: '680'
 - line: 21
   text: decision[case 643][defer][rule-prespec-judges-the-spec-whole]
   case: '643'
@@ -1338,6 +1339,8 @@ decisions:
   - context
   - problem
   applied: 03:05:55
+  superseded_by:
+  - decision-case-680
 - case: '643'
   decision: decision-case-643
   origin: raw/2026-10-05/0109/ledger.md#case-643

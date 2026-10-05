@@ -1,8 +1,9 @@
 ---
 type: decision
 case: "504"
-status: current
+status: archived
 defer: ["[[rule-complaint-becomes-a-lesson]]"]
+superseded_by: ["[[decision-case-677]]"]
 origin: raw/2026-09-29/0137/ledger.md#case-504
 sprint: migration
 created: 2026-09-29
@@ -26,3 +27,6 @@ After each reply of the person a hook raises the question whether it holds a com
 ## History
 
 - 2026-09-29 created · raw/2026-09-29/0137/ledger.md#case-504
+- 2026-10-06 superseded by decision-case-677 · [[decision-case-677]]
+- 2026-10-06 archived · superseded
+- 2026-10-06 archived · cleanup

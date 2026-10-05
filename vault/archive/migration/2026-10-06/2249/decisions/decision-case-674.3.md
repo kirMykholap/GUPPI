@@ -1,11 +1,12 @@
 ---
 type: decision
 case: "674.3"
-status: current
+status: archived
 parent: "[[decision-case-674]]"
 update: ["[[rule-prespec-judges-the-spec-whole]]"]
 defer: ["[[rule-prespec-judges-the-spec-whole]]"]
 supersedes: ["[[decision-case-643]]"]
+superseded_by: ["[[decision-case-675]]"]
 origin: raw/2026-10-05/2103/ledger.md#case-674.3
 sprint: migration
 created: 2026-10-05
@@ -21,3 +22,6 @@ Prevents a large Spec from being approved with problems that the one ask-guppi r
 ## History
 
 - 2026-10-05 created · raw/2026-10-05/2103/ledger.md#case-674.3
+- 2026-10-06 superseded by decision-case-675 · [[decision-case-675]]
+- 2026-10-06 archived · superseded
+- 2026-10-06 archived · cleanup

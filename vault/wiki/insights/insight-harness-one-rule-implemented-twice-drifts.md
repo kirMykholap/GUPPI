@@ -1,10 +1,10 @@
 ---
 type: insight
 pattern: A judgment the pipeline makes in two places is implemented twice — a check re-states what a writer, a ticker or another check does — and the two copies drift apart, with no test about the difference between them.
-status: open
+status: actioned
 children: ["[[lesson-prespec-a-second-copy-of-a-matching-rule-drifts]]", "[[lesson-lint-decision-target-archived-counts-as-missing]]", "[[lesson-orchestration-defer-supersedes-a-parent-without-its-sub-cases]]"]
-severity: 1
-addressed_by: "[[decision-case-360]]"
+severity: 0
+addressed_by: "[[decision-case-678]]"
 origin: raw/2026-09-22/2046/ledger.md#L37
 sprint: migration
 created: 2026-09-22
@@ -47,3 +47,4 @@ Neither half is decided here.
 - 2026-09-23 created · raw/2026-09-22/2046/ledger.md#L37
 - 2026-09-23 updated: actioned by rule-one-judgment-one-implementation (case 360) · [[decision-case-360]]
 - 2026-10-05 updated: child lesson-orchestration-defer-supersedes-a-parent-without-its-sub-cases added, reopened (synthesis) · raw/2026-10-05/1343/ledger.md#L42
+- 2026-10-06 updated: actioned: rule-one-judgment-one-implementation in CLAUDE.md answers the pattern (case 360), and materialize.in_family, the one reading of a supersedes mark that prespec imports, closed the drift of the reopening lesson (case 660) (case 678) · [[decision-case-678]]

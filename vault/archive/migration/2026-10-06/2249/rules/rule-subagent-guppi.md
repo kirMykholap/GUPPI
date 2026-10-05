@@ -1,8 +1,7 @@
 ---
 type: rule
 purpose: Prevents implementation drifting from the ratified plan while it is being executed
-status: draft
-deferred_by: ["[[decision-case-183]]", "[[decision-case-206]]", "[[decision-case-218]]", "[[decision-case-231]]", "[[decision-case-242]]", "[[decision-case-248]]", "[[decision-case-252]]", "[[decision-case-254]]", "[[decision-case-260]]", "[[decision-case-263]]", "[[decision-case-269]]", "[[decision-case-276]]", "[[decision-case-281]]", "[[decision-case-285]]", "[[decision-case-289]]", "[[decision-case-293]]", "[[decision-case-303]]", "[[decision-case-307]]", "[[decision-case-322]]"]
+status: archived
 origin: raw/2026-09-10/ledger.md#case-29
 sprint: migration
 created: 2026-09-10
@@ -58,3 +57,24 @@ Prevents implementation drifting from the ratified plan while it is being execut
 - 2026-09-22 deferred · [[decision-case-303]]
 - 2026-09-22 deferred · [[decision-case-307]]
 - 2026-09-22 deferred · [[decision-case-322]]
+- 2026-10-06 defer by decision-case-183 superseded · [[decision-case-676]]
+- 2026-10-06 defer by decision-case-206 superseded · [[decision-case-676]]
+- 2026-10-06 defer by decision-case-218 superseded · [[decision-case-676]]
+- 2026-10-06 defer by decision-case-231 superseded · [[decision-case-676]]
+- 2026-10-06 defer by decision-case-242 superseded · [[decision-case-676]]
+- 2026-10-06 defer by decision-case-248 superseded · [[decision-case-676]]
+- 2026-10-06 defer by decision-case-252 superseded · [[decision-case-676]]
+- 2026-10-06 defer by decision-case-254 superseded · [[decision-case-676]]
+- 2026-10-06 defer by decision-case-260 superseded · [[decision-case-676]]
+- 2026-10-06 defer by decision-case-263 superseded · [[decision-case-676]]
+- 2026-10-06 defer by decision-case-269 superseded · [[decision-case-676]]
+- 2026-10-06 defer by decision-case-276 superseded · [[decision-case-676]]
+- 2026-10-06 defer by decision-case-281 superseded · [[decision-case-676]]
+- 2026-10-06 defer by decision-case-285 superseded · [[decision-case-676]]
+- 2026-10-06 defer by decision-case-289 superseded · [[decision-case-676]]
+- 2026-10-06 defer by decision-case-293 superseded · [[decision-case-676]]
+- 2026-10-06 defer by decision-case-303 superseded · [[decision-case-676]]
+- 2026-10-06 defer by decision-case-307 superseded · [[decision-case-676]]
+- 2026-10-06 defer by decision-case-322 superseded · [[decision-case-676]]
+- 2026-10-06 deleted · [[decision-case-676]]
+- 2026-10-06 archived · cleanup

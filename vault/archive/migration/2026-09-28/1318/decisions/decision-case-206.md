@@ -3,7 +3,7 @@ type: decision
 case: "206"
 status: archived
 defer: ["[[rule-work-mode]]", "[[rule-subagent-guppi]]"]
-superseded_by: ["[[decision-case-479.2]]"]
+superseded_by: ["[[decision-case-479.2]]", "[[decision-case-676]]"]
 origin: raw/2026-09-16/1955/ledger.md#case-206
 sprint: migration
 created: 2026-09-16
@@ -38,3 +38,4 @@ again by 206.
 - 2026-09-28 superseded by decision-case-479.2 · [[decision-case-479.2]]
 - 2026-09-28 archived · superseded
 - 2026-09-28 archived · cleanup
+- 2026-10-06 superseded by decision-case-676 · [[decision-case-676]]

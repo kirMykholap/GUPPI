@@ -1,8 +1,9 @@
 ---
 type: decision
 case: "448"
-status: current
+status: archived
 defer: ["[[insight-hi-skill-substitution-checked-by-a-model-call]]"]
+superseded_by: ["[[decision-case-679]]"]
 origin: raw/2026-09-26/2300/ledger.md#case-448
 sprint: migration
 created: 2026-09-26
@@ -26,3 +27,6 @@ The Pattern and Proposal name a lapsed login and /login, while the newest lesson
 ## History
 
 - 2026-09-27 created · raw/2026-09-26/2300/ledger.md#case-448
+- 2026-10-06 superseded by decision-case-679 · [[decision-case-679]]
+- 2026-10-06 archived · superseded
+- 2026-10-06 archived · cleanup

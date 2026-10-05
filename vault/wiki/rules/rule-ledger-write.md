@@ -6,8 +6,7 @@ status: built
 enforcement: hook
 implementation_ref: [guppi/ledger.py, guppi/materialize.py, guppi/gate.py, tests/test_ledger.py, tests/test_gate.py, .claude/settings.json]
 parent: "[[rule-session-start]]"
-estimates: ["[[estimate-ledger-write-lifts]]", "[[estimate-ledger-write-refuses-a-reading-of-a-change-of-the-session]]", "[[estimate-ledger-write-refuses-a-lesson-without-its-prefix]]", "[[estimate-ledger-write-refuses-a-mark-with-no-decision-line]]", "[[estimate-ledger-write-refuses-a-line-it-cannot-read]]", "[[estimate-ledger-write-exits-2-on-an-error]]", "[[estimate-ledger-write-names-the-kind-of-a-user-record]]"]
-deferred_by: ["[[decision-case-442]]"]
+estimates: ["[[estimate-ledger-write-lifts]]", "[[estimate-ledger-write-refuses-a-reading-of-a-change-of-the-session]]", "[[estimate-ledger-write-refuses-a-lesson-without-its-prefix]]", "[[estimate-ledger-write-refuses-a-mark-with-no-decision-line]]", "[[estimate-ledger-write-refuses-a-line-it-cannot-read]]", "[[estimate-ledger-write-exits-2-on-an-error]]", "[[estimate-ledger-write-names-the-kind-of-a-user-record]]", "[[estimate-ledger-write-asks-for-the-mark-of-a-lesson]]"]
 origin: raw/2026-09-09/ledger.md#case-10
 sprint: migration
 created: 2026-09-09
@@ -21,7 +20,7 @@ Prevents a ratified line from existing only in a chat reply, or landing in a ses
 `- lesson[...]` lines lives in `ratification.md` and `orchestration.md`, the Renders of `rule-ratification` and `rule-orchestration` that `/hi` loads (cases 273, 595), so a session without `/hi` produces none — and would produce them in *any* session
 if the instruction stood in `CLAUDE.md` again, including one with no sprint, no branch context and no brief. Without this hook's check the
 ledger would silently gain a session that was never a working session, and the librarian
-would materialize pages from it the next day. It also refuses, while no live page `vault/wiki/entities/entity-sprint-<id>.md` stands, every decision line of the session but a `defer`, until the session's ledger or the same reply holds a `create` decision line of an `entity-sprint-` slug, with one stderr line that names the opening of the next sprint, so that the session after the close of a sprint opens the next sprint first (`rule-sprint-close`, case 628.3).
+would materialize pages from it the next day. It also refuses, while no live page `vault/wiki/entities/entity-sprint-<id>.md` stands, every decision line of the session but a `defer`, until the session's ledger or the same reply holds a `create` decision line of an `entity-sprint-` slug, with one stderr line that names the opening of the next sprint, so that the session after the close of a sprint opens the next sprint first (`rule-sprint-close`, case 628.3). It holds once a lesson line with no `{addressed_by:case N}` written after a decision line of the session, and asks the agent whether a Case of the session closed its cause: the line written again with the mark, or unchanged, is written (case 682.1).
 
 ## History
 
@@ -81,3 +80,6 @@ would materialize pages from it the next day. It also refuses, while no live pag
 - 2026-10-05 updated: the hook refuses a reading of an Estimate that a decision line of the session creates or updates only before the mark retro of the session (case 670.1) · [[decision-case-670.1]]
 - 2026-10-05 status: built → draft · cascade
 - 2026-10-05 status: draft → built · cascade
+- 2026-10-06 defer by decision-case-442 superseded · [[decision-case-682.1]]
+- 2026-10-06 updated: the hook holds once a lesson line with no addressed_by mark written after a decision line of the session, and asks for the mark (case 682.1) · [[decision-case-682.1]]
+- 2026-10-06 estimate estimate-ledger-write-asks-for-the-mark-of-a-lesson added · [[decision-case-682.1]]

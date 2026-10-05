@@ -525,6 +525,7 @@ entries:
   change: the purpose rewritten for what is left to think over after pre-spec went back to one ask-guppi
     run; the defer of case 643 retired and the page put off again (case 674.3)
   applied: '22:17:20'
+  superseded_by: '675'
 - line: 19
   text: decision[case 674.3][defer][rule-prespec-judges-the-spec-whole]
   case: '674.3'
@@ -540,6 +541,7 @@ entries:
       left by the person to think over (case 674.3)
   exists: true
   applied: '22:17:20'
+  superseded_by: '675'
 - line: 20
   text: 'estimate[estimate-generate-ticks-the-spec][passed] 2026-10-05, at the Retro of session 2103,
     uv run pytest tests/test_generate.py: 114 passed, among them the tests of case 672 — an update that
@@ -1302,6 +1304,8 @@ decisions:
   supersedes:
   - decision-case-643
   applied: '22:17:20'
+  superseded_by:
+  - decision-case-675
 - case: '674'
   decision: decision-case-674
   origin: raw/2026-10-05/2103/ledger.md#case-674

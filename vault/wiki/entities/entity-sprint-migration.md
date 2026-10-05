@@ -5,7 +5,6 @@ purpose: The repository works by the model of its rule pages — Phase 1 and Pha
 status: draft
 parent: "[[entity-sprint]]"
 estimates: ["[[estimate-sprint-migration-lint-clean]]", "[[estimate-sprint-migration-leftovers-gone]]", "[[estimate-sprint-migration-merges]]", "[[estimate-sprint-migration-rule-class-files-dissolved]]", "[[estimate-sprint-migration-index-dissolved]]", "[[estimate-sprint-migration-file-route-gone]]"]
-deferred_by: ["[[decision-case-642]]"]
 origin: raw/2026-09-16/2238/ledger.md#case-209.2
 sprint: migration
 created: 2026-09-16
@@ -29,13 +28,7 @@ Rule-class files dissolved, `index.md` gone, the `file` route out of the scripts
 
 ## Backlog
 
-- the product model: `kind: test | measurement | reading`, `ask-guppi` through Entities, the vault-query questions before a product's records (session 1119); `applies_to` and `rules` taken into Slice 3f (case 301)
-- reuse, the edge: `uses` / `used_by` between Entities — `uses` written in the Case on the side that uses, `used_by` computed by the cascade of `generate`, the pair checked by lint, the pattern of `applies_to` / `rules`; no edge Rule → Rule (cases 305, 319)
-- reuse, the question: the vault query before a `create` asks a second question — what of the existing this thing could use, by the index lines of the Entities — and the answer stands in `context`; the Case names what it found in `uses` or says why it is not used (case 319)
-- reuse, the hook: a lint finding on two live Entities naming one path in `code_ref` with no edge between them; a new module written beside an existing one in another file is caught by the question alone, not by a script (case 319)
-- a template engine for the rendered files — one script with the shape of each file declared, once a third render beside `sprint.md` and `glossary.md` appears (case 301)
 - [[rule-work-mode]] — the rest of Work Mode past the skill `/work` of case 479.2: the test of each Estimate written first and turned green, and the full model the person plans; cases 183, 206
-- [[rule-subagent-guppi]] — what a subagent may do in Work Mode, and the fork that comes back to the main agent as a Case; cases 183, 206
 - [[rule-spec-box]] — the Spec box, its second part: a conserved Spec checked against the pages changed after it was conserved, a Case on such a page built again, ratified again and written into the folder of the conserved Spec, and a conserved Spec taken after other Cases of its session (case 591)
 - [[rule-morph]] — the morph mechanism: the initiation at install sets the category set of the project, the development set by default, held as data so that a changed set rewrites no rule; case 239
 - the merge of `migration` into `main` — the first work of the session that opens the next sprint, after its opening Case (case 628.9)
@@ -121,3 +114,5 @@ No file of `vault/wiki/` is written by hand.
 - 2026-10-04 updated: the Slice 5 note on where the close runs cut into the close of migration; make test in the Purpose for the branch merged; the merge a Backlog line for the next sprint; the question put off by case 615 closed (case 628.9) · [[decision-case-628.9]]
 - 2026-10-04 updated: each Estimate of the page is read before the close; one not passed is archived with the page (case 632.3) · [[decision-case-632.3]]
 - 2026-10-05 deferred · [[decision-case-642]]
+- 2026-10-06 defer by decision-case-642 superseded · [[decision-case-680]]
+- 2026-10-06 updated: the five plain notes of the Backlog — the product model, reuse three times, the template engine — and the line of rule-subagent-guppi leave; the defer of the close of migration is retired, and the close stays the milestone of Slice 5 · [[decision-case-680]]

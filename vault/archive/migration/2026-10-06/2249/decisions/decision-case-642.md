@@ -1,8 +1,9 @@
 ---
 type: decision
 case: "642"
-status: current
+status: archived
 defer: ["[[entity-sprint-migration]]"]
+superseded_by: ["[[decision-case-680]]"]
 origin: raw/2026-10-05/0109/ledger.md#case-642
 sprint: migration
 created: 2026-10-05
@@ -18,3 +19,6 @@ The close of migration, a session of its own (case 628.9); put off by session 01
 ## History
 
 - 2026-10-05 created · raw/2026-10-05/0109/ledger.md#case-642
+- 2026-10-06 superseded by decision-case-680 · [[decision-case-680]]
+- 2026-10-06 archived · superseded
+- 2026-10-06 archived · cleanup

@@ -6834,3 +6834,125 @@ instruction. The global feed; a page's own `## History` is the per-page view.
 - 2026-10-05 rules/rule-retro status: draft → built · cascade · generate
 - 2026-10-05 decisions/decision-case-643 archived · superseded · generate
 - 2026-10-05 decisions/decision-case-643 archived · cleanup
+- 2026-10-06 decisions/decision-case-675 created · raw/2026-10-05/2249/ledger.md#case-675 · generate
+- 2026-10-06 decisions/decision-case-674.3 superseded by decision-case-675 · [[decision-case-675]] · generate
+- 2026-10-06 rules/rule-prespec-judges-the-spec-whole defer by decision-case-674.3 superseded · [[decision-case-675]] · generate
+- 2026-10-06 rules/rule-prespec-judges-the-spec-whole deleted · [[decision-case-675]] · generate
+- 2026-10-06 decisions/decision-case-676 created · raw/2026-10-05/2249/ledger.md#case-676 · generate
+- 2026-10-06 decisions/decision-case-183 superseded by decision-case-676 · [[decision-case-676]] · generate
+- 2026-10-06 rules/rule-subagent-guppi defer by decision-case-183 superseded · [[decision-case-676]] · generate
+- 2026-10-06 decisions/decision-case-206 superseded by decision-case-676 · [[decision-case-676]] · generate
+- 2026-10-06 rules/rule-subagent-guppi defer by decision-case-206 superseded · [[decision-case-676]] · generate
+- 2026-10-06 decisions/decision-case-218 superseded by decision-case-676 · [[decision-case-676]] · generate
+- 2026-10-06 rules/rule-subagent-guppi defer by decision-case-218 superseded · [[decision-case-676]] · generate
+- 2026-10-06 decisions/decision-case-231 superseded by decision-case-676 · [[decision-case-676]] · generate
+- 2026-10-06 rules/rule-subagent-guppi defer by decision-case-231 superseded · [[decision-case-676]] · generate
+- 2026-10-06 decisions/decision-case-242 superseded by decision-case-676 · [[decision-case-676]] · generate
+- 2026-10-06 rules/rule-subagent-guppi defer by decision-case-242 superseded · [[decision-case-676]] · generate
+- 2026-10-06 decisions/decision-case-248 superseded by decision-case-676 · [[decision-case-676]] · generate
+- 2026-10-06 rules/rule-subagent-guppi defer by decision-case-248 superseded · [[decision-case-676]] · generate
+- 2026-10-06 decisions/decision-case-252 superseded by decision-case-676 · [[decision-case-676]] · generate
+- 2026-10-06 rules/rule-subagent-guppi defer by decision-case-252 superseded · [[decision-case-676]] · generate
+- 2026-10-06 decisions/decision-case-254 superseded by decision-case-676 · [[decision-case-676]] · generate
+- 2026-10-06 rules/rule-subagent-guppi defer by decision-case-254 superseded · [[decision-case-676]] · generate
+- 2026-10-06 decisions/decision-case-260 superseded by decision-case-676 · [[decision-case-676]] · generate
+- 2026-10-06 rules/rule-subagent-guppi defer by decision-case-260 superseded · [[decision-case-676]] · generate
+- 2026-10-06 decisions/decision-case-263 superseded by decision-case-676 · [[decision-case-676]] · generate
+- 2026-10-06 rules/rule-subagent-guppi defer by decision-case-263 superseded · [[decision-case-676]] · generate
+- 2026-10-06 decisions/decision-case-269 superseded by decision-case-676 · [[decision-case-676]] · generate
+- 2026-10-06 rules/rule-subagent-guppi defer by decision-case-269 superseded · [[decision-case-676]] · generate
+- 2026-10-06 decisions/decision-case-276 superseded by decision-case-676 · [[decision-case-676]] · generate
+- 2026-10-06 rules/rule-subagent-guppi defer by decision-case-276 superseded · [[decision-case-676]] · generate
+- 2026-10-06 decisions/decision-case-281 superseded by decision-case-676 · [[decision-case-676]] · generate
+- 2026-10-06 rules/rule-subagent-guppi defer by decision-case-281 superseded · [[decision-case-676]] · generate
+- 2026-10-06 decisions/decision-case-285 superseded by decision-case-676 · [[decision-case-676]] · generate
+- 2026-10-06 rules/rule-subagent-guppi defer by decision-case-285 superseded · [[decision-case-676]] · generate
+- 2026-10-06 decisions/decision-case-289 superseded by decision-case-676 · [[decision-case-676]] · generate
+- 2026-10-06 rules/rule-subagent-guppi defer by decision-case-289 superseded · [[decision-case-676]] · generate
+- 2026-10-06 decisions/decision-case-293 superseded by decision-case-676 · [[decision-case-676]] · generate
+- 2026-10-06 rules/rule-subagent-guppi defer by decision-case-293 superseded · [[decision-case-676]] · generate
+- 2026-10-06 decisions/decision-case-303 superseded by decision-case-676 · [[decision-case-676]] · generate
+- 2026-10-06 rules/rule-subagent-guppi defer by decision-case-303 superseded · [[decision-case-676]] · generate
+- 2026-10-06 decisions/decision-case-307 superseded by decision-case-676 · [[decision-case-676]] · generate
+- 2026-10-06 rules/rule-subagent-guppi defer by decision-case-307 superseded · [[decision-case-676]] · generate
+- 2026-10-06 decisions/decision-case-322 superseded by decision-case-676 · [[decision-case-676]] · generate
+- 2026-10-06 rules/rule-subagent-guppi defer by decision-case-322 superseded · [[decision-case-676]] · generate
+- 2026-10-06 rules/rule-subagent-guppi deleted · [[decision-case-676]] · generate
+- 2026-10-06 decisions/decision-case-677 created · raw/2026-10-05/2249/ledger.md#case-677 · generate
+- 2026-10-06 decisions/decision-case-504 superseded by decision-case-677 · [[decision-case-677]] · generate
+- 2026-10-06 rules/rule-complaint-becomes-a-lesson defer by decision-case-504 superseded · [[decision-case-677]] · generate
+- 2026-10-06 rules/rule-complaint-becomes-a-lesson deleted · [[decision-case-677]] · generate
+- 2026-10-06 decisions/decision-case-678 created · raw/2026-10-05/2249/ledger.md#case-678 · generate
+- 2026-10-06 insights/insight-harness-one-rule-implemented-twice-drifts updated: actioned: rule-one-judgment-one-implementation in CLAUDE.md answers the pattern (case 360), and materialize.in_family, the one reading of a supersedes mark that prespec imports, closed the drift of the reopening lesson (case 660) (case 678) · [[decision-case-678]] · generate
+- 2026-10-06 decisions/decision-case-679 created · raw/2026-10-05/2249/ledger.md#case-679 · generate
+- 2026-10-06 decisions/decision-case-448 superseded by decision-case-679 · [[decision-case-679]] · generate
+- 2026-10-06 insights/insight-hi-skill-substitution-checked-by-a-model-call defer by decision-case-448 superseded · [[decision-case-679]] · generate
+- 2026-10-06 insights/insight-hi-skill-substitution-checked-by-a-model-call updated: rejected — the cause rewritten: the server-side classifier of Claude Code gives no verdict, not a lapsed login; the /login cure removed; the harness has nothing to fix (case 679) · [[decision-case-679]] · generate
+- 2026-10-06 decisions/decision-case-680 created · raw/2026-10-05/2249/ledger.md#case-680 · generate
+- 2026-10-06 decisions/decision-case-642 superseded by decision-case-680 · [[decision-case-680]] · generate
+- 2026-10-06 entities/entity-sprint-migration defer by decision-case-642 superseded · [[decision-case-680]] · generate
+- 2026-10-06 entities/entity-sprint-migration updated: the five plain notes of the Backlog — the product model, reuse three times, the template engine — and the line of rule-subagent-guppi leave; the defer of the close of migration is retired, and the close stays the milestone of Slice 5 · [[decision-case-680]] · generate
+- 2026-10-06 decisions/decision-case-681 created · raw/2026-10-05/2249/ledger.md#case-681 · generate
+- 2026-10-06 decisions/decision-case-682 created · raw/2026-10-05/2249/ledger.md#case-682 · generate
+- 2026-10-06 decisions/decision-case-682.1 created · raw/2026-10-05/2249/ledger.md#case-682.1 · generate
+- 2026-10-06 decisions/decision-case-442 superseded by decision-case-682.1 · [[decision-case-682.1]] · generate
+- 2026-10-06 rules/rule-ledger-write defer by decision-case-442 superseded · [[decision-case-682.1]] · generate
+- 2026-10-06 rules/rule-ledger-write updated: the hook holds once a lesson line with no addressed_by mark written after a decision line of the session, and asks for the mark (case 682.1) · [[decision-case-682.1]] · generate
+- 2026-10-06 estimates/estimate-ledger-write-asks-for-the-mark-of-a-lesson created · [[decision-case-682.1]] · generate
+- 2026-10-06 estimates/estimate-ledger-write-asks-for-the-mark-of-a-lesson status: pending → passed · raw/2026-10-05/2249/ledger.md#L20 · generate
+- 2026-10-06 rules/rule-ledger-write estimate estimate-ledger-write-asks-for-the-mark-of-a-lesson added · [[decision-case-682.1]] · generate
+- 2026-10-06 decisions/decision-case-682.2 created · raw/2026-10-05/2249/ledger.md#case-682.2 · generate
+- 2026-10-06 estimates/estimate-ledger-write-refuses-a-mark-with-no-decision-line updated: the Criterion replaced whole — a lesson line with no mark is judged by estimate-ledger-write-asks-for-the-mark-of-a-lesson (case 682.2) · [[decision-case-682.2]] · generate
+- 2026-10-06 decisions/decision-case-683 created · raw/2026-10-05/2249/ledger.md#case-683 · generate
+- 2026-10-06 decisions/decision-case-469 superseded by decision-case-683 · [[decision-case-683]] · generate
+- 2026-10-06 rules/rule-page-generation defer by decision-case-469 superseded · [[decision-case-683]] · generate
+- 2026-10-06 rules/rule-page-generation updated: a supersede of a Decision already archived keeps it archived and only appends the superseding Case to its superseded_by, so cleanup does not bring it back (case 683) · [[decision-case-683]] · generate
+- 2026-10-06 estimates/estimate-generate-writes-the-decision-page updated: the Criterion replaced whole — a supersedes leaves an earlier page that stands archived archived, and only appends to its superseded_by (case 683) · [[decision-case-683]] · generate
+- 2026-10-06 rules/rule-decisions-schema updated: a Decision page already archived stays archived when a later Case supersedes it (case 683) · [[decision-case-683]] · generate
+- 2026-10-06 entities/entity-glossary updated: the row Decision (status): a page already archived stays archived when a later Case supersedes it (case 683) · [[decision-case-683]] · generate
+- 2026-10-06 decisions/decision-case-684 created · raw/2026-10-05/2249/ledger.md#case-684 · generate
+- 2026-10-06 decisions/decision-case-684.1 created · raw/2026-10-05/2249/ledger.md#case-684.1 · generate
+- 2026-10-06 decisions/decision-case-681 superseded by decision-case-684.1 · [[decision-case-684.1]] · generate
+- 2026-10-06 rules/rule-orchestration updated: Frontier items taken up together in one answer are a batch: the questions in one list, every Case shown for one ratification (case 684.1) · [[decision-case-684.1]] · generate
+- 2026-10-06 estimates/estimate-orchestration-signs-items-taken-together created · [[decision-case-684.1]] · generate
+- 2026-10-06 estimates/estimate-orchestration-signs-items-taken-together status: pending → passed · raw/2026-10-05/2249/ledger.md#L23 · generate
+- 2026-10-06 rules/rule-orchestration estimate estimate-orchestration-signs-items-taken-together added · [[decision-case-684.1]] · generate
+- 2026-10-06 decisions/decision-case-684.2 created · raw/2026-10-05/2249/ledger.md#case-684.2 · generate
+- 2026-10-06 decisions/decision-case-681 superseded by decision-case-684.2 · [[decision-case-684.2]] · generate
+- 2026-10-06 rules/rule-orchestration updated: the prompt of a builder in a batch of items taken up together names each other Case of the batch (case 684.2) · [[decision-case-684.2]] · generate
+- 2026-10-06 estimates/estimate-orchestration-names-related-cases-in-the-dispatch updated: the Criterion replaced whole — the prompt of a builder in a batch names each other Case of the batch; the purpose and the method set anew (case 684.2) · [[decision-case-684.2]] · generate
+- 2026-10-06 estimates/estimate-ledger-write-refuses-a-mark-with-no-decision-line status: pending → passed · raw/2026-10-05/2249/ledger.md#L21 · generate
+- 2026-10-06 estimates/estimate-generate-writes-the-decision-page status: pending → passed · raw/2026-10-05/2249/ledger.md#L22 · generate
+- 2026-10-06 estimates/estimate-orchestration-names-related-cases-in-the-dispatch status: pending → passed · raw/2026-10-05/2249/ledger.md#L24 · generate
+- 2026-10-06 lessons/lesson-orchestration-parallel-cases-shown-one-by-one created · raw/2026-10-05/2249/ledger.md#L25 · generate
+- 2026-10-06 lessons/lesson-orchestration-own-text-before-a-round created · raw/2026-10-05/2249/ledger.md#L26 · generate
+- 2026-10-06 insights/insight-orchestration-items-taken-together-unruled created · raw/2026-10-05/2249/ledger.md#L25 · generate
+- 2026-10-06 insights/insight-orchestration-items-taken-together-unruled updated: born actioned, its cause closed by case 684.1 (synthesis) · raw/2026-10-05/2249/ledger.md#L25 · generate
+- 2026-10-06 lessons/lesson-orchestration-two-cases-built-side-by-side updated: clustered under insight-orchestration-items-taken-together-unruled (synthesis) · raw/2026-10-05/2249/ledger.md#L25 · generate
+- 2026-10-06 lessons/lesson-orchestration-parallel-cases-shown-one-by-one updated: clustered under insight-orchestration-items-taken-together-unruled (synthesis) · raw/2026-10-05/2249/ledger.md#L25 · generate
+- 2026-10-06 decisions/decision-case-442 archived · superseded · generate
+- 2026-10-06 decisions/decision-case-448 archived · superseded · generate
+- 2026-10-06 decisions/decision-case-469 archived · superseded · generate
+- 2026-10-06 decisions/decision-case-504 archived · superseded · generate
+- 2026-10-06 decisions/decision-case-642 archived · superseded · generate
+- 2026-10-06 decisions/decision-case-674.3 archived · superseded · generate
+- 2026-10-06 decisions/decision-case-681 archived · superseded · generate
+- 2026-10-06 lessons/lesson-orchestration-defer-supersedes-a-parent-without-its-sub-cases archived · insight actioned · generate
+- 2026-10-06 lessons/lesson-plan-mode-agent-and-sendmessage-pass-the-auto-mode-classifier archived · insight actioned · generate
+- 2026-10-06 lessons/lesson-orchestration-two-cases-built-side-by-side archived · insight actioned · generate
+- 2026-10-06 lessons/lesson-orchestration-parallel-cases-shown-one-by-one archived · insight actioned · generate
+- 2026-10-06 rules/rule-complaint-becomes-a-lesson archived · cleanup
+- 2026-10-06 rules/rule-prespec-judges-the-spec-whole archived · cleanup
+- 2026-10-06 rules/rule-subagent-guppi archived · cleanup
+- 2026-10-06 lessons/lesson-orchestration-defer-supersedes-a-parent-without-its-sub-cases archived · cleanup
+- 2026-10-06 lessons/lesson-orchestration-parallel-cases-shown-one-by-one archived · cleanup
+- 2026-10-06 lessons/lesson-orchestration-two-cases-built-side-by-side archived · cleanup
+- 2026-10-06 lessons/lesson-plan-mode-agent-and-sendmessage-pass-the-auto-mode-classifier archived · cleanup
+- 2026-10-06 decisions/decision-case-442 archived · cleanup
+- 2026-10-06 decisions/decision-case-448 archived · cleanup
+- 2026-10-06 decisions/decision-case-469 archived · cleanup
+- 2026-10-06 decisions/decision-case-504 archived · cleanup
+- 2026-10-06 decisions/decision-case-642 archived · cleanup
+- 2026-10-06 decisions/decision-case-674.3 archived · cleanup
+- 2026-10-06 decisions/decision-case-681 archived · cleanup
+- 2026-10-06 decisions/decision-case-674 child decision-case-674.3 archived · cleanup

@@ -647,6 +647,30 @@ def test_moment_the_one_predicate(tmp_path):
     assert not lint.tied_to_a_one_off_moment("by hand once; the first session after the change")
 
 
+def test_waits_the_one_predicate_names_another_session(tmp_path):
+    # case 670.4: the predicate pre-spec imports; a `;` splits the parts of a method
+    for method in (
+        "pytest tests/test_x.py; by hand in a later session",
+        "by hand at the /hi of the next session",
+        "by hand in a session after the render",
+        "by hand after the librarian's run",
+        "by hand at /hi",
+    ):
+        assert lint.waits_for_another_session(method), method
+    for method in (
+        "pytest tests/test_x.py; the person's answer at the /hi of the next session",
+        "pytest tests/test_x.py; by hand at the Retro of this session",
+        "uv run guppi render --check; .claude/skills/hi/SKILL.md read",
+    ):
+        assert not lint.waits_for_another_session(method), method
+
+
+def test_waits_the_lint_run_gives_no_finding_on_a_live_page(tmp_path):
+    method = "pytest tests/test_x.py; by hand in a later session"
+    seed(tmp_path, rule=rule_page(status="built"), estimate=estimate_page(method=method))
+    assert run(tmp_path) == (0, [], "")
+
+
 def test_a_moc_method_needs_a_make_target_that_exists(tmp_path):
     wiki = seed(tmp_path, rule=rule_page(status="built"))
     write(

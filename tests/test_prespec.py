@@ -1047,7 +1047,7 @@ def test_each_of_the_four_forms_is_clean_in_the_plan(tmp_path):
         "make test-x, the pipeline",
         "pytest over the suite",
         "tests/test_x.py, one case per defect",
-        "read by hand at the first /hi",
+        "read by hand at the Retro of this session",
     ):
         item = NO_FORM_CREATE.replace("Run it and look", method)
         assert check(tmp_path, plan=create_plan(item), ledger=CREATE_LINE) == (0, "", ""), method
@@ -1088,10 +1088,45 @@ def test_moment_a_kind_of_moment_and_two_clauses_are_clean(tmp_path):
         "by hand at a /handoff",
         "by hand after the first close of a sprint",
         "pytest tests/test_x.py, the first run after the render",
-        "by hand once; the first session after the change",
     ):
         item = NO_FORM_CREATE.replace("Run it and look", method)
         assert check(tmp_path, plan=create_plan(item), ledger=CREATE_LINE) == (0, "", ""), method
+
+
+WAITS = "method waits for another session — a method holds only what runs in its own session"
+
+
+def test_waits_a_create_and_an_update_that_wait_for_another_session_are_findings(tmp_path):
+    # case 670.4: lint's own predicate over the plan
+    with_page(tmp_path, "rules", "rule-x")
+    with_estimate(tmp_path)
+    for method in (
+        "pytest tests/test_x.py; by hand in a later session",
+        "by hand once; the first session after the change",
+        "by hand after the librarian's run",
+        "by hand at the /hi of the next session",
+    ):
+        item = NO_FORM_CREATE.replace("Run it and look", method)
+        code, out, _ = check(tmp_path, plan=create_plan(item), ledger=CREATE_LINE)
+        assert (code, out.splitlines()) == (1, [f"case 1: create estimate-x-again: {WAITS}"])
+        item = f"update:\n  - slug: estimate-x\n    set: {{method: {method}}}\n    change: recut\n"
+        code, out, _ = check(tmp_path, plan=create_plan(item), ledger=UPDATE_LINE)
+        assert (code, out.splitlines()) == (1, [f"case 1: update estimate-x: {WAITS}"])
+
+
+def test_waits_a_method_that_names_the_person_is_clean_and_other_findings_stand(tmp_path):
+    with_page(tmp_path, "rules", "rule-x")
+    with_estimate(tmp_path)
+    method = "pytest tests/test_x.py; the person's answer at the /hi of the next session"
+    item = NO_FORM_CREATE.replace("Run it and look", method)
+    assert check(tmp_path, plan=create_plan(item), ledger=CREATE_LINE) == (0, "", "")
+    method = "by hand at the first /handoff after the render; by hand in a later session"
+    item = NO_FORM_CREATE.replace("Run it and look", method)
+    code, out, _ = check(tmp_path, plan=create_plan(item), ledger=CREATE_LINE)
+    assert (code, out.splitlines()) == (
+        1,
+        [f"case 1: create estimate-x-again: {MOMENT}", f"case 1: create estimate-x-again: {WAITS}"],
+    )
 
 
 def test_the_keys_of_the_old_shape_are_a_finding_on_every_kind(tmp_path):

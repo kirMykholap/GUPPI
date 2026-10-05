@@ -582,6 +582,25 @@ def tied_to_a_one_off_moment(method: str) -> bool:
     return any(is_reading(clause) and FIRST_AFTER.search(clause) for clause in method.split(CLAUSE))
 
 
+ANOTHER_SESSION = re.compile(
+    r"\b(?:later|next)\s+session\b|\bsession\s+after\b|\blibrarian\b|(?<![\w/])/hi\b",
+    re.IGNORECASE,
+)
+PERSON = re.compile(r"\bperson\b", re.IGNORECASE)
+
+
+def waits_for_another_session(method: str) -> bool:
+    """Whether a `method` waits for another session: a part between two `;` that names a
+    later session, the next session, a session after another, the librarian or `/hi`, and
+    does not name the person — whose answer at a `/hi` is the one reading a method may leave
+    to another session. A method holds only what runs in its own session (case 670.4). The
+    one predicate of this judgment, which `pre-spec` calls over the plan; the lint run does
+    not call it, so the live pages give no finding by it."""
+    return any(
+        ANOTHER_SESSION.search(part) and not PERSON.search(part) for part in method.split(CLAUSE)
+    )
+
+
 def check_moment(page: Page) -> list[Finding]:
     """An Estimate whose `method` ties its reading by hand to the first moment after the
     render or the change, by `tied_to_a_one_off_moment`, is one finding of the class `moment`;

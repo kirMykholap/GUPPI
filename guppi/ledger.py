@@ -65,15 +65,19 @@ session (case 55.2). A subagent's message (`isSidechain`) is skipped: only the m
 writes ledger lines. A line whose text is already in any `ledger.md` under `raw/`, at the
 date level or in a session folder, whatever its time, is not appended twice.
 
-What a session changes, it does not measure (case 428.1). An `estimate[<slug>]` line is not
-written when a decision line `create` or `update` of `<slug>` stands in the session's ledger
-or among the lines of the same `Stop`, each line read by `parse_line` of
-`guppi/materialize.py`; a reading of the old slug of a page an `update` renames falls under
-the same rule, since the decision line names the old slug. The judgment reads the ledger
-alone and holds the whole session, so a refused line of the transcript is refused again at
-every `Stop`: the hook exits 2 with one stderr line per refused line only when the line
-stands in the reply just finished, and skips an older one without a word. The other lines
-are written as before.
+A session reads what it changes at its own Retro (cases 428.1, 670.1). An `estimate[<slug>]`
+line is not written when a decision line `create` or `update` of `<slug>` stands in the
+session's ledger or among the lines of the same `Stop`, each line read by `parse_line` of
+`guppi/materialize.py`, while the event log of the session's window holds no mark `retro` of
+this session after its `hi`, judged by `retro_marked` of `guppi/onward.py`: the reading is
+taken at the Retro of this session. Once the mark stands, the line is written, unless a
+main-agent message of the transcript written before the mark holds it — that line stays
+refused and is skipped at every later `Stop` without a word. A reading of the old slug of a
+page an `update` renames falls under the same rule, since the decision line names the old
+slug. A refused line of the transcript is refused again at every `Stop`: the hook exits 2
+with one stderr line per refused line only when the line stands in the reply just finished
+and the mark does not stand, and skips an older one without a word. The other lines are
+written as before.
 
 A lesson names its category (case 460.5). A fresh `lesson[<slug>]` line whose slug
 `category_of` of `guppi/materialize.py` does not put under `lessons` — a slug that does not
@@ -462,16 +466,43 @@ def unreadable(lines: list[str]) -> list[str]:
     return [line for line in lines if parse_line(f"- {body(line)}") is None]
 
 
-def refused_readings(lines: list[str], changed: dict[str, str]) -> list[tuple[str, str]]:
-    """`(line, case)` of each `estimate[<slug>]` line whose slug a decision line of the
-    session creates or updates: what a session changes, it does not measure (case 428.1)."""
+def refused_readings(
+    lines: list[str],
+    changed: dict[str, str],
+    payload: dict | None = None,
+    logs: list[tuple[str, str]] | None = None,
+    stamp: str = "",
+) -> list[tuple[str, str, bool]]:
+    """`(line, case, waits)` of each `estimate[<slug>]` line whose slug a decision line of
+    the session creates or updates, until the Retro of this session opens (cases 428.1,
+    670.1). While the event log holds no mark `retro` of the session after its `hi` —
+    judged by `retro_marked` of `guppi/onward.py`, the one judgment of the mark — each such
+    line is refused and `waits` for that Retro. Once the mark stands, such a line is written,
+    unless a main-agent message of the transcript written before the mark, or at a time
+    that cannot be read, holds it: that line stays refused, `waits` false, and is skipped
+    without a word."""
+    from guppi.casecheck import moment
     from guppi.materialize import parse_line
+    from guppi.onward import retro_marked, retro_moment
 
-    refused: list[tuple[str, str]] = []
+    marked = retro_marked(logs or [], stamp)
+    before: set[str] = set()
+    if marked:
+        mark = retro_moment(logs or [], stamp)
+        for record in transcript_records(payload or {}):
+            if record.get("type") != "assistant":
+                continue
+            when = moment(record.get("timestamp"))
+            if mark is None or when is None or when < mark:
+                before |= {body(line) for line in ledger_lines(record_text(record))}
+    refused: list[tuple[str, str, bool]] = []
     for line in lines:
         record = parse_line(f"- {body(line)}")
         if record and record["record"] == "estimate" and record["slug"] in changed:
-            refused.append((line, changed[record["slug"]]))
+            if not marked:
+                refused.append((line, changed[record["slug"]], True))
+            elif body(line) in before:
+                refused.append((line, changed[record["slug"]], False))
     return refused
 
 
@@ -578,12 +609,18 @@ def run(argv, *, stdin=None, stderr=None, project_dir: Path | None = None, now=N
         written = path.read_text(encoding="utf-8").splitlines() if path.exists() else []
         broken = unreadable(fresh)  # case 552.2: judged first, no other refusal
         fresh = [line for line in fresh if line not in broken]
-        refused = refused_readings(fresh, changed_by_session(written + fresh))
+        refused = refused_readings(  # cases 428.1, 670.1
+            fresh,
+            changed_by_session(written + fresh),
+            payload,
+            session_event_logs(project_dir, now, stamp),
+            stamp,
+        )
         lessons = refused_lessons(fresh)
         marks = refused_marks(fresh, written, {line for line, _ in lessons})  # case 497.1
         unopened = refused_without_sprint(project_dir, fresh, written)  # case 628.3
         out = (
-            {line for line, _ in refused}
+            {line for line, _, _ in refused}
             | {line for line, _ in lessons}
             | {line for line, _, _, _ in marks}
             | set(unopened)
@@ -598,13 +635,13 @@ def run(argv, *, stdin=None, stderr=None, project_dir: Path | None = None, now=N
             for line in broken
             if body(line) in finished
         ]
-        for line, case in refused:
-            if body(line) in finished:
+        for line, case, waits in refused:
+            if waits and body(line) in finished:
                 slug = BRACKET.search(line).group(1)
                 messages.append(
                     f"ledger: estimate[{slug}] not written — case {case} creates or updates "
-                    f"{slug} in this session; what a session changes it does not measure: take "
-                    "the reading in a later session and name it in the handoff."
+                    f"{slug} in this session; the reading is taken at the Retro of this "
+                    "session: write it in the reply that ends Retro."
                 )
         for line, slug in lessons:
             if body(line) in finished:

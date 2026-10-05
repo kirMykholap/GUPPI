@@ -105,12 +105,12 @@ TO_EXIT = (
 CASE_FILE = "case-"
 
 
-def retro_marked(logs: list[tuple[str, str]], stamp: str) -> bool:
-    """True when the mark `retro` of this stamp follows the first `hi` of this stamp that
-    follows its first `session-start`, over the `(date, text)` logs in date order — the
-    window `ledger.hi_moment` opens."""
+def retro_mark(logs: list[tuple[str, str]], stamp: str) -> tuple[str, str] | None:
+    """`(date, time)` of the first mark `retro` of this stamp that follows the first `hi` of
+    this stamp that follows its first `session-start`, over the `(date, text)` logs in date
+    order — the window `ledger.hi_moment` opens; None when no such mark stands."""
     started = opened = False
-    for _, text in logs:
+    for day, text in logs:
         for line in text.splitlines():
             parts = line.split(" ", 3)
             if len(parts) < 4 or parts[0] != "-" or parts[2] != stamp:
@@ -121,8 +121,26 @@ def retro_marked(logs: list[tuple[str, str]], stamp: str) -> bool:
             elif event == "hi" and started:
                 opened = True
             elif event == MARK and opened:
-                return True
-    return False
+                return day, parts[1]
+    return None
+
+
+def retro_marked(logs: list[tuple[str, str]], stamp: str) -> bool:
+    """True when the mark `retro` of this stamp stands in the window, by `retro_mark`."""
+    return retro_mark(logs, stamp) is not None
+
+
+def retro_moment(logs: list[tuple[str, str]], stamp: str) -> datetime | None:
+    """The moment of the mark of `retro_mark`, its time read on the date of its log in the
+    local zone; None when no mark stands or its time cannot be read."""
+    mark = retro_mark(logs, stamp)
+    if mark is None:
+        return None
+    try:
+        day, clock = date.fromisoformat(mark[0]), time.fromisoformat(mark[1])
+        return datetime.combine(day, clock).astimezone()
+    except ValueError:
+        return None
 
 
 def case_root(case: str) -> str:

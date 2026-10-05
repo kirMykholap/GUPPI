@@ -697,6 +697,60 @@ def test_subagent_shape_an_answer_in_its_shape_passes(working, lines, text):
     assert answer_file(working, text) == (0, "")
 
 
+# --- a ratified Case built again without a target of its lines (case 671.1) ----------------
+
+KEPT_7 = "decision[case 7][update][rule-x]{ref:rule-x}"
+NO_ITEM = "the Case built again has no item for it"
+
+
+def test_subagent_dropped_target_a_renamed_slug_is_sent_back_with_the_new_number(working):
+    ledger(working, KEPT_7, "decision[case 7][create][estimate-x-old]{ref:rule-x}{tags:harness}")
+    code, err = answer_file(working, ANSWER)
+    assert code == 2
+    assert (
+        "case 7: its decision line [create][estimate-x-old] stands in the session's ledger and "
+        f"{NO_ITEM} — put the item back, or change the number in the headings and the ledger "
+        "lines to case 8 by Edit and add {supersedes:case 7}; never write the whole Case again"
+    ) in err
+
+
+def test_subagent_dropped_target_a_dropped_item_is_sent_back(working):
+    ledger(
+        working,
+        KEPT_7,
+        "decision[case 7][create][estimate-x-works]{ref:rule-x}{tags:harness}",
+        "decision[case 7][update][rule-y]{ref:rule-y}",
+    )
+    code, err = answer_file(working, ANSWER)
+    assert code == 2 and "[update][rule-y]" in err and NO_ITEM in err
+    assert "[update][rule-x]" not in err and "[create][estimate-x-works]" not in err
+
+
+@pytest.mark.parametrize(
+    "lines",
+    [
+        (KEPT_7,),  # each item kept, one added
+        (KEPT_7, "decision[case 7][defer][rule-y]"),  # a dropped defer item
+    ],
+)
+def test_subagent_dropped_target_an_answer_that_keeps_its_items_passes(working, lines):
+    ledger(working, *lines)
+    assert answer_file(working, ANSWER) == (0, "")
+
+
+@pytest.mark.parametrize(
+    ("lines", "text"),
+    [
+        (("decision[case 9][update][rule-y]{ref:rule-y}",), FAMILY_9),  # 9 has sub-cases
+        (("decision[case 9.1][update][rule-y]{ref:rule-y}",), CASE_9),  # 9.1 has no section
+    ],
+)
+def test_subagent_dropped_target_a_changed_shape_gets_only_the_shape_finding(working, lines, text):
+    ledger(working, *lines)
+    code, err = answer_file(working, text)
+    assert code == 2 and "comes back in another shape" in err and NO_ITEM not in err
+
+
 # --- a number another agent holds (case 610.2) ---------------------------------------------
 
 

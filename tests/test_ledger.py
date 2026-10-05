@@ -518,8 +518,8 @@ UPDATE_X = "- decision[case 4][update][estimate-x-holds]{ref:estimate-x-holds}"
 DEFER_X = "- decision[case 5][defer][estimate-x-holds]"
 REFUSAL = (
     "ledger: estimate[estimate-x-holds] not written — case {} creates or updates "
-    "estimate-x-holds in this session; what a session changes it does not measure: take the "
-    "reading in a later session and name it in the handoff.\n"
+    "estimate-x-holds in this session; the reading is taken at the Retro of this session: "
+    "write it in the reply that ends Retro.\n"
 )
 
 
@@ -549,6 +549,53 @@ def test_a_refused_line_of_an_earlier_text_is_skipped_without_a_word(working):
     stdin = payload(last_assistant_message="Nothing.", transcript_path=transcript)
     assert run(stdin, working) == (0, "")
     assert ledger_text(working) == f"- 15:01:50 {UPDATE_X[2:]}\n"
+
+
+# --- the reading waits for the Retro of the session (case 670.1) -------------------------
+
+EVENT_LOG_WITH_RETRO = EVENT_LOG_WITH_HI + "- 15:01:55 44c1aae1 retro\n"
+
+
+def stamped(text, at):
+    """An assistant record of the transcript with its timestamp."""
+    record = json.loads(transcript_line(text))
+    record["timestamp"] = at
+    return json.dumps(record, ensure_ascii=False)
+
+
+def test_a_reading_of_a_changed_slug_is_written_once_retro_has_opened(working):
+    write_event_log(working, EVENT_LOG_WITH_RETRO)
+    seed_ledger(working, UPDATE_X)
+    assert run(payload(last_assistant_message=ledger_block(READ_X)), working) == (0, "")
+    assert ledger_text(working).splitlines()[-1] == timed(READ_X)
+
+
+def test_the_mark_of_another_session_or_before_the_hi_does_not_open_it(working):
+    log = "- 15:00:30 44c1aae1 retro\n" + EVENT_LOG_WITH_HI + "- 15:01:55 deadbeef retro\n"
+    write_event_log(working, log)
+    seed_ledger(working, UPDATE_X)
+    code, err = run(payload(last_assistant_message=ledger_block(READ_X)), working)
+    assert (code, err) == (2, REFUSAL.format("4"))
+
+
+def test_a_line_of_a_reply_before_the_mark_stays_refused_without_a_word(working):
+    write_event_log(working, EVENT_LOG_WITH_RETRO)
+    seed_ledger(working, UPDATE_X)
+    early = (datetime(2026, 9, 9, 15, 1, 40).astimezone()).isoformat()
+    transcript = write_transcript(working, stamped(ledger_block(READ_X), early))
+    stdin = payload(last_assistant_message=ledger_block(READ_X), transcript_path=transcript)
+    assert run(stdin, working) == (0, "")
+    assert ledger_text(working) == f"- 15:01:50 {UPDATE_X[2:]}\n"
+
+
+def test_a_line_of_a_reply_after_the_mark_is_written(working):
+    write_event_log(working, EVENT_LOG_WITH_RETRO)
+    seed_ledger(working, UPDATE_X)
+    late = (datetime(2026, 9, 9, 15, 2, 5).astimezone()).isoformat()
+    transcript = write_transcript(working, stamped(ledger_block(READ_X), late))
+    stdin = payload(last_assistant_message="Done.", transcript_path=transcript)
+    assert run(stdin, working) == (0, "")
+    assert ledger_text(working).splitlines()[-1] == timed(READ_X)
 
 
 def test_a_reading_with_a_defer_line_only_or_another_sessions_line_is_written(working):

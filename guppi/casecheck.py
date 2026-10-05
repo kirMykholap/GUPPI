@@ -61,6 +61,12 @@ finding of N, by `shape_findings`, names those numbers, a new number — one abo
 top-level number among the decision lines of the ledger and the keys of the store, by
 `new_number`, the one count — and the marks its decision lines carry, one
 `{supersedes:case N}` and one for each number of the family with such a line (case 610.1).
+A number of the answer with a section and no sub-case whose decision line other than a
+`defer` in the session's ledger has no item in its `then` block, by `line_has_item` of
+`guppi/prespec.py` — a target renamed or dropped in a Case built again in its shape — is a
+finding of its Case, by `target_findings`, with the same new number and marks; `case-guppi`
+puts the item back or changes the number by `Edit`, never writing the whole Case again
+(case 671.1).
 Each Case of the answer is stored with its findings, the time of the store and the `agent_id`
 of the payload in `<plan>.checked.json` beside the plan file of the session, a later answer
 for the same id replacing it but for the notes sent for that id, which it keeps (case 472.1).
@@ -269,6 +275,7 @@ from guppi.prespec import (
     decided_on_its_page,
     deferred_pages,
     judge,
+    line_has_item,
     promise_notes,
 )
 from guppi.prespec import window as prespec_window
@@ -662,6 +669,63 @@ def new_number(records: list[dict], store: dict) -> str:
     return str(max((int(n) for n in numbers if n.isdigit()), default=0) + 1)
 
 
+def lined_numbers(top: str, records: list[dict]) -> list[str]:
+    """The numbers of the family of `top` — `top` and its sub-cases at any depth — that hold
+    a decision line other than a `defer` among the session's ledger `records`, in the order
+    first seen."""
+    return list(
+        dict.fromkeys(
+            str(r["case"])
+            for r in records
+            if r.get("record") == "decision"
+            and r.get("kind") != "defer"
+            and in_family(str(r["case"]), top)
+        )
+    )
+
+
+def supersede_marks(top: str, lined: list[str]) -> str:
+    """The marks the decision lines of a Case built again under a new number carry: one
+    `{supersedes:case N}` for `top` and one for each number of `lined` (case 610.1)."""
+    return "".join(f"{{supersedes:case {n}}}" for n in dict.fromkeys([top, *lined]))
+
+
+def target_findings(
+    cases: dict, blocks: dict, records: list[dict], store: dict
+) -> list[tuple[str, str]]:
+    """Case 671.1: `(top-level case, finding)` for each decision line other than a `defer`
+    in the session's ledger `records` on a number of the answer that has a section in it and
+    no sub-case, whose kind and slug `line_has_item` of `guppi/prespec.py` does not find in
+    that number's `then` block in `blocks`: a Case ratified in the session and built again
+    in its shape under its old number with a target renamed or dropped. The finding names the
+    number, the line, the new number by `new_number` and the marks as `shape_findings` writes
+    them, and tells `case-guppi` to put the item back, or to change the number in the
+    headings and the ledger lines by `Edit` and add the marks, never writing the whole Case
+    again. A number with no section, or with sub-cases, is left to `shape_findings`."""
+    findings: list[tuple[str, str]] = []
+    for record in records:
+        number = str(record.get("case", ""))
+        if (
+            record.get("record") != "decision"
+            or record.get("kind") == "defer"
+            or number not in cases
+            or has_sub_cases(number, cases)
+            or line_has_item(blocks.get(number) or {}, record)
+        ):
+            continue
+        top = top_case(number)
+        marks = supersede_marks(top, lined_numbers(top, records))
+        finding = (
+            f"case {number}: its decision line [{record['kind']}][{record['slug']}] stands in "
+            "the session's ledger and the Case built again has no item for it — put the item "
+            f"back, or change the number in the headings and the ledger lines to case "
+            f"{new_number(records, store)} by Edit and add {marks}; never write the whole Case "
+            "again"
+        )
+        findings.append((top, finding))
+    return findings
+
+
 def shape_findings(cases: dict, records: list[dict], store: dict) -> list[tuple[str, str]]:
     """Case 610.1: `(top-level case, finding)` for each top-level Case N of the answer whose
     family — N and its sub-cases at any depth — has a decision line other than a `defer` in
@@ -673,19 +737,11 @@ def shape_findings(cases: dict, records: list[dict], store: dict) -> list[tuple[
     family with only `defer` lines, and a Case built again in the same shape give none."""
     findings: list[tuple[str, str]] = []
     for top in (case for case in cases if "." not in case):
-        lined = list(
-            dict.fromkeys(
-                str(r["case"])
-                for r in records
-                if r.get("record") == "decision"
-                and r.get("kind") != "defer"
-                and in_family(str(r["case"]), top)
-            )
-        )
+        lined = lined_numbers(top, records)
         changed = [n for n in lined if n not in cases or has_sub_cases(n, cases)]
         if not changed:
             continue
-        marks = "".join(f"{{supersedes:case {n}}}" for n in dict.fromkeys([top, *lined]))
+        marks = supersede_marks(top, lined)
         finding = (
             f"case {top}: case {', '.join(changed)} has decision lines in the session's "
             "ledger and comes back in another shape under its old number — build it "
@@ -771,7 +827,8 @@ def check_answer(
     `rounds`, the titles of the questions of the rounds of `case-guppi` on the Case, adds
     the check that `recommend` holds an item for each (case 544.3). `store`, the store of
     checked answers, adds the check of a Case built again in another shape against the
-    decision lines of `window`, `shape_findings` (case 610.1). The
+    decision lines of `window`, `shape_findings` (case 610.1), and of one built again in its
+    shape without the item of one of its lines, `target_findings` (case 671.1). The
     language finding of `/pre-spec`, `check_untranslated`, runs over the same Spec text as
     `judge`, each hit a finding of its Case (case 537). The notes are those of
     `prespec.promise_notes` on the answer — a Criterion line not carried, a `then` line shared
@@ -803,17 +860,20 @@ def check_answer(
         case = match.group(1) if match else ""
         if case in found or not match:
             found[case if case in found else next(iter(cases))].append(finding)
+    answer = {
+        case: then_blocks(lines)[0]
+        for case, lines in split_cases(spec_text).items()
+        if case in cases
+    }
     if store is not None:  # case 629.1: the other Cases of the session
-        answer = {
-            case: then_blocks(lines)[0]
-            for case, lines in split_cases(spec_text).items()
-            if case in cases
-        }
         for finding in session_clashes(answer, other_blocks(cases, plan, store, window)):
             found[FINDING_CASE.match(finding).group(1)].append(finding)
     shapes = []
-    if store is not None:
-        shapes = shape_findings(cases, ledger_records(window), store)
+    if store is not None:  # cases 610.1, 671.1
+        ledger = ledger_records(window)
+        shapes = shape_findings(cases, ledger, store) + target_findings(
+            cases, answer, ledger, store
+        )
     for top, finding in (
         check_backlog(records, frontier, project_dir)
         + check_rounds(cases, list(rounds), store)

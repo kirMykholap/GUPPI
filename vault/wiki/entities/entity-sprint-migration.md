@@ -5,6 +5,7 @@ purpose: The repository works by the model of its rule pages — Phase 1 and Pha
 status: draft
 parent: "[[entity-sprint]]"
 estimates: ["[[estimate-sprint-migration-lint-clean]]", "[[estimate-sprint-migration-leftovers-gone]]", "[[estimate-sprint-migration-merges]]", "[[estimate-sprint-migration-rule-class-files-dissolved]]", "[[estimate-sprint-migration-index-dissolved]]", "[[estimate-sprint-migration-file-route-gone]]"]
+deferred_by: ["[[decision-case-642]]"]
 origin: raw/2026-09-16/2238/ledger.md#case-209.2
 sprint: migration
 created: 2026-09-16
@@ -119,3 +120,4 @@ No file of `vault/wiki/` is written by hand.
 - 2026-10-04 updated: Slice 5: the item rule-sprint-close names case 627, which builds the command of the close; the question put off by case 615 closed (case 627.1) · [[decision-case-627.1]]
 - 2026-10-04 updated: the Slice 5 note on where the close runs cut into the close of migration; make test in the Purpose for the branch merged; the merge a Backlog line for the next sprint; the question put off by case 615 closed (case 628.9) · [[decision-case-628.9]]
 - 2026-10-04 updated: each Estimate of the page is read before the close; one not passed is archived with the page (case 632.3) · [[decision-case-632.3]]
+- 2026-10-05 deferred · [[decision-case-642]]

@@ -2,7 +2,7 @@
 type: rule
 kind: Leaf
 purpose: Prevents a page that breaks the schema, points nowhere, or claims a status its Estimates do not support from sitting in the vault unnoticed
-status: draft
+status: built
 enforcement: check
 implementation_ref: [guppi/lint.py, tests/test_lint.py, Makefile]
 parent: "[[rule-harness]]"
@@ -85,3 +85,4 @@ classes and their order live in the docstring of `guppi/lint.py`.
 - 2026-10-02 estimate estimate-lint-runs-every-step added · [[decision-case-587]]
 - 2026-10-02 status: built → draft · cascade
 - 2026-10-03 estimate estimate-lint-reports-a-method-tied-to-a-one-off-moment added · [[decision-case-613.1]]
+- 2026-10-05 status: draft → built · cascade

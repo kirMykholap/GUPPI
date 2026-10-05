@@ -1,10 +1,11 @@
 ---
 type: estimate
 kind: QA
-status: pending
+status: passed
 target: "[[rule-lint]]"
 purpose: Whether make lint runs all five steps when an earlier one is red, prints the lines of each, and exits non-zero when any step is red
 method: uv run pytest tests/test_lint.py -k every_step
+checked: 2026-10-05
 origin: raw/2026-10-02/1202/ledger.md#case-587
 sprint: migration
 created: 2026-10-02
@@ -24,9 +25,14 @@ Then:
 **＋** `make lint` exits non-zero when any step exits non-zero, and 0 only when every step exits 0.
 **－** No step reads the stdin of its caller, and `make lint` writes nothing to the tree.
 
+## Result
+
+2026-10-05, at the /hi of session 0109: uv run pytest -q tests/test_lint.py -k every_step 2 passed, 85 deselected
+
 ## History
 
 - 2026-10-02 created · [[decision-case-587]]
 - 2026-10-03 updated: method names the kind of its moment (case 613.3) · [[decision-case-613.3]]
 - 2026-10-04 deferred · [[decision-case-631]]
 - 2026-10-05 updated: the Criterion replaced whole — tests run make lint with a fake uv, one whose backlog step is red and one whose steps are all green; the method is those tests, and the defer of case 631 is taken up (case 637.3) · [[decision-case-637.3]]
+- 2026-10-05 status: pending → passed · raw/2026-10-05/0109/ledger.md#L2

@@ -1,10 +1,11 @@
 ---
 type: estimate
 kind: QA
-status: pending
+status: passed
 target: "[[rule-case-check]]"
 purpose: Whether the check of an answer of case-guppi that holds sub-cases alone judges their frame against the given of their stored parent, and gives the answer no finding of the parent itself
 method: uv run pytest tests/test_casecheck.py -k lone
+checked: 2026-10-05
 origin: raw/2026-10-04/1439/ledger.md#case-629.3
 sprint: migration
 created: 2026-10-04
@@ -23,7 +24,12 @@ The hook builds the Spec text it judges with the stored section of Case N before
 **－** A finding or a note on Case N itself is not given to the answer, and Case N is neither stored nor written again from this answer.
 **－** With no stored Case N, the sub-cases are judged alone, and a sub-case with no `given` of its own gets no finding on its frame.
 
+## Result
+
+2026-10-05, at the /hi of session 0109: uv run pytest -q tests/test_casecheck.py -k lone 11 passed, 119 deselected
+
 ## History
 
 - 2026-10-04 created · [[decision-case-629.3]]
 - 2026-10-05 updated: the method is pytest alone; the live send-back is no longer waited for (case 637.1) · [[decision-case-637.1]]
+- 2026-10-05 status: pending → passed · raw/2026-10-05/0109/ledger.md#L3

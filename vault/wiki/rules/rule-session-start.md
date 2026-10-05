@@ -2,7 +2,7 @@
 type: rule
 kind: MOC
 purpose: Prevents a working session from starting against unknown state
-status: draft
+status: built
 parent: "[[rule-session]]"
 children: ["[[rule-skill-hi]]", "[[rule-event-log]]", "[[rule-ledger-write]]", "[[rule-compact-recall]]"]
 estimates: ["[[estimate-session-start-context]]"]
@@ -70,3 +70,4 @@ items outright.
 - 2026-09-22 updated: the parent is rule-session, the MOC of the five phases (case 316) · [[decision-case-316]]
 - 2026-09-28 status: built → draft · cascade
 - 2026-09-30 updated: no pull and no issues at /hi: the git Leaf and the sources of the Frontier (case 528.3) · [[decision-case-528.3]]
+- 2026-10-05 status: draft → built · cascade

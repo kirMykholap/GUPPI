@@ -2,7 +2,7 @@
 type: rule
 kind: Leaf
 purpose: Prevents a Case from being shown to the person in a form the checks of pre-spec refuse, or with other given, when, then, tasks or ratification than the ones that passed them, a round of case-guppi from reaching the main agent with a question out of the form of the grill-me template, a round of case-guppi from being shown after a text of the main agent's own, and a Case from being shown with a text of the main agent's own outside the list under its heading and its ratification
-status: draft
+status: built
 enforcement: hook
 implementation_ref: [guppi/casecheck.py, tests/test_casecheck.py, .claude/settings.json]
 parent: "[[rule-plan-mode]]"
@@ -59,3 +59,4 @@ Prevents a Case from being shown to the person in a form the checks of pre-spec 
 - 2026-10-04 updated: the check of an answer compares its Cases with the other Cases of the session, from the plan file and the store (case 629.1) · [[decision-case-629.1]]
 - 2026-10-04 estimate estimate-case-check-sends-back-a-clash-with-another-case added · [[decision-case-629.1]]
 - 2026-10-04 estimate estimate-case-check-judges-a-lone-sub-case-with-its-stored-parent added · [[decision-case-629.3]]
+- 2026-10-05 status: draft → built · cascade

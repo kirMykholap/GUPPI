@@ -1,10 +1,11 @@
 ---
 type: estimate
 kind: QA
-status: pending
+status: passed
 target: "[[rule-case-check]]"
 purpose: A Case of case-guppi under a number that the store holds from the answer of another agent goes back to it with a new number, and the other agent's entry is kept
 method: uv run pytest tests/test_casecheck.py -k subagent_clash
+checked: 2026-10-05
 origin: raw/2026-10-03/0115/ledger.md#case-610.2
 sprint: migration
 created: 2026-10-03
@@ -25,9 +26,14 @@ The hook stores each Case of an answer in `<plan>.checked.json` with the `agent_
 **－** An unchanged answer whose text its entry apart already holds with this finding is stored again and exits 0, so it is not sent back twice.
 **－** An entry with no `agent_id`, stored before the change, gives no finding of this check, and neither does an answer whose `agent_id` is the one of the entry under the number.
 
+## Result
+
+2026-10-05, at the /hi of session 0109: uv run pytest -q tests/test_casecheck.py -k subagent_clash 3 passed, 127 deselected
+
 ## History
 
 - 2026-10-03 created · [[decision-case-610.2]]
 - 2026-10-03 updated: method names the kind of its moment (case 613.3) · [[decision-case-613.3]]
 - 2026-10-04 updated: the method selects -k subagent_clash, so that the tests of session_clash are not run (case 632.8) · [[decision-case-632.8]]
 - 2026-10-05 updated: the method is pytest alone; the live send-back is no longer waited for (case 637.1) · [[decision-case-637.1]]
+- 2026-10-05 status: pending → passed · raw/2026-10-05/0109/ledger.md#L5

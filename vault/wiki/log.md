@@ -6374,3 +6374,43 @@ instruction. The global feed; a page's own `## History` is the per-page view.
 - 2026-10-05 lessons/lesson-case-build-a-page-judged-true-by-its-mark-not-its-moment archived · cleanup
 - 2026-10-05 lessons/lesson-case-build-hits-counted-as-lines archived · cleanup
 - 2026-10-05 decisions/decision-case-631 archived · cleanup
+- 2026-10-05 estimates/estimate-case-check-sends-back-a-clash-with-another-case status: pending → passed · raw/2026-10-05/0109/ledger.md#L1 · generate
+- 2026-10-05 estimates/estimate-lint-runs-every-step status: pending → passed · raw/2026-10-05/0109/ledger.md#L2 · generate
+- 2026-10-05 estimates/estimate-case-check-judges-a-lone-sub-case-with-its-stored-parent status: pending → passed · raw/2026-10-05/0109/ledger.md#L3 · generate
+- 2026-10-05 estimates/estimate-case-check-requires-each-question-of-the-rounds status: pending → passed · raw/2026-10-05/0109/ledger.md#L4 · generate
+- 2026-10-05 estimates/estimate-case-check-sends-back-a-case-number-held-by-another-agent status: pending → passed · raw/2026-10-05/0109/ledger.md#L5 · generate
+- 2026-10-05 estimates/estimate-case-check-sends-back-a-ratified-case-in-another-shape status: pending → passed · raw/2026-10-05/0109/ledger.md#L6 · generate
+- 2026-10-05 estimates/estimate-session-start-context status: pending → passed · raw/2026-10-05/0109/ledger.md#L7 · generate
+- 2026-10-05 estimates/estimate-ask-finds status: pending → failed · raw/2026-10-05/0109/ledger.md#L8 · generate
+- 2026-10-05 estimates/estimate-ask-searches-at-prespec status: pending → failed · raw/2026-10-05/0109/ledger.md#L9 · generate
+- 2026-10-05 decisions/decision-case-638 created · raw/2026-10-05/0109/ledger.md#case-638 · generate
+- 2026-10-05 rules/rule-prespec updated: the confirmation message of step 6 asks only whether each finding is closed and invites no new finding (case 638) · [[decision-case-638]] · generate
+- 2026-10-05 rules/rule-ask updated: the confirmation answer gives each finding a verdict line and at most three sentences on why, then the list of what was not checked in the form of the first answer, then the list of the files read, and nothing else (case 638) · [[decision-case-638]] · generate
+- 2026-10-05 estimates/estimate-prespec-confirms-the-findings-once updated: the Criterion replaced whole — a verdict line and at most three sentences per finding, then what was not checked and the files read; the confirmation message invites no new finding (case 638) · [[decision-case-638]] · generate
+- 2026-10-05 decisions/decision-case-639 created · raw/2026-10-05/0109/ledger.md#case-639 · generate
+- 2026-10-05 rules/rule-ask updated: under a question of the first answer at /pre-spec stand only its findings or "none", no sentence on what holds; the list of what was not checked ends with a line per search rule broken, of the frame or of .claude/rules/search-leaves-out-decisions.md (case 639) · [[decision-case-639]] · generate
+- 2026-10-05 estimates/estimate-ask-finds updated: the Criterion replaced whole — only findings or "none" under a question, no sentence on a clash not found; the list of what was not checked ends with a line per search rule broken, of the frame or of .claude/rules/search-leaves-out-decisions.md (case 639) · [[decision-case-639]] · generate
+- 2026-10-05 decisions/decision-case-640 created · raw/2026-10-05/0109/ledger.md#case-640 · generate
+- 2026-10-05 rules/rule-search-leaves-out-decisions created · [[decision-case-640]] · generate
+- 2026-10-05 rules/rule-harness child rule-search-leaves-out-decisions added · [[decision-case-640]] · generate
+- 2026-10-05 estimates/estimate-search-leaves-out-decisions-in-every-agent created · [[decision-case-640]] · generate
+- 2026-10-05 rules/rule-search-leaves-out-decisions estimate estimate-search-leaves-out-decisions-in-every-agent added · [[decision-case-640]] · generate
+- 2026-10-05 rules/rule-harness updated: a tenth rule outside the pipeline: the file under .claude/rules/ that keeps Decision pages out of a search (case 640) · [[decision-case-640]] · generate
+- 2026-10-05 estimates/estimate-ask-searches-at-prespec updated: the method names the render of .claude/rules/search-leaves-out-decisions.md by case 640; the Criterion stands · [[decision-case-640]] · generate
+- 2026-10-05 decisions/decision-case-641 created · raw/2026-10-05/0109/ledger.md#case-641 · generate
+- 2026-10-05 estimates/estimate-session-phases-in-order updated: the method names make test-session before the reading by hand; the lint finding on a MOC's reading clears (case 641) · [[decision-case-641]] · generate
+- 2026-10-05 decisions/decision-case-642 created · raw/2026-10-05/0109/ledger.md#case-642 · generate
+- 2026-10-05 entities/entity-sprint-migration deferred · [[decision-case-642]] · generate
+- 2026-10-05 decisions/decision-case-643 created · raw/2026-10-05/0109/ledger.md#case-643 · generate
+- 2026-10-05 rules/rule-prespec-judges-the-spec-whole deferred, placeholder · [[decision-case-643]] · generate
+- 2026-10-05 estimates/estimate-case-build-checks-the-finished-case status: pending → failed · raw/2026-10-05/0109/ledger.md#L22 · generate
+- 2026-10-05 lessons/lesson-orchestration-short-defer-then-block-written-as-a-mapping created · raw/2026-10-05/0109/ledger.md#L23 · generate
+- 2026-10-05 lessons/lesson-spec-write-skips-the-reply-that-answers-a-refusal created · raw/2026-10-05/0109/ledger.md#L24 · generate
+- 2026-10-05 lessons/lesson-orchestration-dispatch-prompt-carried-counts-not-from-a-run created · raw/2026-10-05/0109/ledger.md#L25 · generate
+- 2026-10-05 insights/insight-workflow-case-schema-silent-on-what-the-scripts-accept updated: child lesson-orchestration-short-defer-then-block-written-as-a-mapping added (synthesis) · raw/2026-10-05/0109/ledger.md#L23 · generate
+- 2026-10-05 lessons/lesson-orchestration-short-defer-then-block-written-as-a-mapping updated: clustered under insight-workflow-case-schema-silent-on-what-the-scripts-accept (synthesis) · raw/2026-10-05/0109/ledger.md#L23 · generate
+- 2026-10-05 insights/insight-workflow-fact-signed-from-a-check-that-does-not-cover-it updated: child lesson-orchestration-dispatch-prompt-carried-counts-not-from-a-run added, reopened from actioned (synthesis) · raw/2026-10-05/0109/ledger.md#L25 · generate
+- 2026-10-05 lessons/lesson-orchestration-dispatch-prompt-carried-counts-not-from-a-run updated: clustered under insight-workflow-fact-signed-from-a-check-that-does-not-cover-it (synthesis) · raw/2026-10-05/0109/ledger.md#L25 · generate
+- 2026-10-05 rules/rule-case-check status: draft → built · cascade · generate
+- 2026-10-05 rules/rule-lint status: draft → built · cascade · generate
+- 2026-10-05 rules/rule-session-start status: draft → built · cascade · generate

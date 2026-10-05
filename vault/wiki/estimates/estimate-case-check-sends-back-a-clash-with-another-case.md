@@ -1,10 +1,11 @@
 ---
 type: estimate
 kind: QA
-status: pending
+status: passed
 target: "[[rule-case-check]]"
 purpose: Whether the check of an answer of case-guppi sends back a Case that sets one field, writes one section or replaces one Criterion that another Case of the session, ratified or only stored, sets, writes or replaces too
 method: uv run pytest tests/test_casecheck.py -k session_clash
+checked: 2026-10-05
 origin: raw/2026-10-04/1439/ledger.md#case-629.1
 sprint: migration
 created: 2026-10-04
@@ -26,7 +27,12 @@ The hook judges the Cases of the answer together with the other Cases of the ses
 **－** Two other Cases that clash with each other give this answer no finding.
 **－** The `Stop` hook `uv run guppi ratified` keeps its check of the Cases it writes, by the same function.
 
+## Result
+
+2026-10-05, at the /hi of session 0109: uv run pytest -q tests/test_casecheck.py -k session_clash 8 passed, 122 deselected
+
 ## History
 
 - 2026-10-04 created · [[decision-case-629.1]]
 - 2026-10-05 updated: the Criterion replaced whole — the step of case-guppi and of the main agent after a clash is no longer part of the promise; the method is pytest alone (case 637.2) · [[decision-case-637.2]]
+- 2026-10-05 status: pending → passed · raw/2026-10-05/0109/ledger.md#L1

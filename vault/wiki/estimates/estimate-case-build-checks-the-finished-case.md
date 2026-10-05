@@ -1,11 +1,11 @@
 ---
 type: estimate
 kind: QA
-status: pending
+status: failed
 target: "[[rule-case-build]]"
 purpose: Whether case-guppi checks its finished Case before it answers — the chosen options, the pages that name a slug the change makes false, the rules that act at the moment the change sets, the Cases of the session its prompt names, the purpose and method of an Estimate whose Criterion it replaces, what each search printed and that the context keeps only the searches the Case rests on, the sub-cases that change one page — counted by what ask-guppi still finds at pre-spec
 method: "by hand: at /pre-spec of a later session after the render, the answers of the ask-guppi runs, one per top-level Case, read for each Case case-guppi built — a Case that departs from a chosen option, a page naming a changed slug that the Case misses, a rule acting at the same moment that the Case misses, a Case of the session named in the prompt whose page or moment the Case clashes with, an Estimate whose purpose or method still states the promise its replaced Criterion dropped, a claim of context that its search did not print, a search in context that the Case does not rest on, two sub-cases whose texts on one page contradict; the count of each in the reading line"
-checked: 2026-10-01
+checked: 2026-10-05
 origin: raw/2026-09-30/1306/ledger.md#case-544.1
 sprint: migration
 created: 2026-09-30
@@ -31,7 +31,7 @@ It puts each option the person chose in its rounds, or the person's own words wh
 
 ## Result
 
-2026-10-01, by hand at the /pre-spec of session 1725, the report of ask-guppi over Cases 582, 583 and 584: 0 Cases departing from a chosen option, 0 pages naming a changed slug missed, 0 rules acting at the same moment missed, 0 clashes with a Case named in the prompt, 0 Estimates whose purpose or method kept a dropped promise (582 set the purpose anew), 0 claims of context its search did not print, 0 contradicting sub-cases; one wording of the context of 583, "carries the defer of case 576", read as a field the Estimate cannot hold, was made exact on the finding; the duplicate predicate of turn_of_reply and the stretch of guppi/ledger.py under rule-one-judgment-one-implementation was raised for 584 and deferred by case 586
+2026-10-05, in the Work Mode of session 0109, by hand: the first answers of the four ask-guppi runs at the /pre-spec of session 0109, one per top-level Case 638, 639, 640 and 641, each built by case-guppi after the render of .claude/agents/case-guppi.md by case 636: 0 Cases departing from a chosen option; 1 page whose text the change makes false missed (640: estimate-harness-pipeline lists the rules in no pipeline that the Purpose of rule-harness names); 4 rules bearing on the same moment missed (638: rule-agent-writing; 640: rule-page-read, rule-documentation with the librarian's frame, rule-claude-md) and 1 lesson (640: lesson-harness-a-paths-rule-misses-a-new-file-and-a-compaction); 1 clash with a Case named in the prompt (640: its context on the broken-rule line of Case 639); 0 Estimates whose purpose or method kept a dropped promise; 4 claims of context the vault or the transcripts do not bear out (638: the sentence counts and the lists of the 636 confirmation, both taken from the main agent's prompt; 639: two lists where the Result names one; 640: the librarian's `git` allowance); 0 searches in context the Case does not rest on; 0 contradicting sub-cases, no Case had sub-cases; besides, 2 Estimates not named that cover the new target of 641 (estimate-harness-make-runs-in-both-shells, estimate-tests-clock-pinned)
 
 ## History
 
@@ -45,3 +45,4 @@ It puts each option the person chose in its rounds, or the person's own words wh
 - 2026-10-04 updated: the Criterion replaced whole — the context names only the searches the Case rests on (case 629.5) · [[decision-case-629.5]]
 - 2026-10-04 updated: the method reads the answers of the ask-guppi runs, one per top-level Case (case 634.1) · [[decision-case-634.1]]
 - 2026-10-05 updated: the Criterion replaced whole — each search the context names is run again just before the answer, and its files and counts come from that run (case 636) · [[decision-case-636]]
+- 2026-10-05 status: pending → failed · raw/2026-10-05/0109/ledger.md#L22

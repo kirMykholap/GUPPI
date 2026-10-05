@@ -102,11 +102,11 @@ update:
 ```
 
 ```tasks
-- [ ] update `rule-prespec`
-- [ ] update `rule-ask`
-- [ ] update `estimate-prespec-confirms-the-findings-once`
-- [ ] `uv run guppi render`: `.claude/skills/pre-spec/SKILL.md`
-- [ ] `uv run guppi render`: `.claude/agents/ask-guppi.md`
+- [x] update `rule-prespec`
+- [x] update `rule-ask`
+- [x] update `estimate-prespec-confirms-the-findings-once`
+- [x] `uv run guppi render`: `.claude/skills/pre-spec/SKILL.md`
+- [x] `uv run guppi render`: `.claude/agents/ask-guppi.md`
 - [ ] read `estimate-prespec-confirms-the-findings-once`
 ```
 
@@ -190,9 +190,9 @@ update:
 ```
 
 ```tasks
-- [ ] update `rule-ask`
-- [ ] update `estimate-ask-finds`
-- [ ] `uv run guppi render`: `.claude/agents/ask-guppi.md`
+- [x] update `rule-ask`
+- [x] update `estimate-ask-finds`
+- [x] `uv run guppi render`: `.claude/agents/ask-guppi.md`
 - [ ] read `estimate-ask-finds`
 ```
 
@@ -347,11 +347,11 @@ update:
 ```
 
 ```tasks
-- [ ] create `rule-search-leaves-out-decisions`
-- [ ] create `estimate-search-leaves-out-decisions-in-every-agent`
-- [ ] update `rule-harness`
-- [ ] update `estimate-ask-searches-at-prespec`
-- [ ] `uv run guppi render`: `.claude/rules/search-leaves-out-decisions.md`
+- [x] create `rule-search-leaves-out-decisions`
+- [x] create `estimate-search-leaves-out-decisions-in-every-agent`
+- [x] update `rule-harness`
+- [x] update `estimate-ask-searches-at-prespec`
+- [x] `uv run guppi render`: `.claude/rules/search-leaves-out-decisions.md`
 - [ ] read `estimate-search-leaves-out-decisions-in-every-agent`
 ```
 
@@ -404,7 +404,7 @@ update:
 
 ```tasks
 - [x] `Makefile` — add `test-session` to `.PHONY` and a target `test-session: test-session-start test-plan-mode test-end-of-work test-documentation` with the help text `## the pipeline over rule-session's children`
-- [ ] update `estimate-session-phases-in-order`
+- [x] update `estimate-session-phases-in-order`
 - [x] by hand in Work Mode: `make test-session` runs the four phase pipelines and passes
 ```
 

@@ -1,10 +1,11 @@
 ---
 type: estimate
 kind: QA
-status: pending
+status: passed
 target: "[[rule-session-start]]"
 purpose: A ledger line reaches the session's ledger only in a session opened with /hi, and a refusal tells the person why
 method: make test-session-start
+checked: 2026-10-05
 origin: raw/2026-09-09/ledger.md#case-12
 sprint: migration
 created: 2026-09-09
@@ -22,13 +23,7 @@ In a session opened without `/hi`, the line reaches no ledger of the session, an
 
 ## Result
 
-Passing, both readings on 2026-09-09. Reading 1, session `51e9ced9` started 16:26:17 with no
-`/hi`: the reply carried the bare line `- decision[case 0][defer][probe]`, the hook refused
-with `ledger: 1 line(s) not written — no /hi recorded for session …`, the owner saw the
-cause and `raw/2026-09-09/ledger.md` was untouched. Reading 2, session `e2ea2380` started
-16:28:24, `hi` at 16:29:18: the eight estimate lines of the first reply reached the ledger,
-once each. Reading 1 was taken with a bare line under the pre-15.1 contract; the refusal
-path is unchanged since, and `tests/test_ledger.py` holds it in the LEDGER-block shape.
+2026-10-05, at the /hi of session 0109: make test-session-start 123 passed
 
 ## History
 
@@ -38,3 +33,4 @@ path is unchanged since, and `tests/test_ledger.py` holds it in the LEDGER-block
 - 2026-09-09 updated: Method names the make pipeline over the children · raw/2026-09-09/ledger.md#case-26.2
 - 2026-09-28 updated: the Criterion replaced whole — one When and Then, the session folder of the ledger; purpose and method set, Context and Method out (case 485.1) · [[decision-case-485.1]]
 - 2026-10-05 updated: the method is the make target alone; the live session without /hi is no longer waited for (case 637.4) · [[decision-case-637.4]]
+- 2026-10-05 status: pending → passed · raw/2026-10-05/0109/ledger.md#L7

@@ -31,7 +31,7 @@ SHELL := $(POSIX_BIN)/sh.exe
 export PATH := $(POSIX_BIN);$(PATH)
 endif
 .DEFAULT_GOAL := help
-.PHONY: help style test lint test-session-start test-plan-mode test-documentation test-harness test-end-of-work
+.PHONY: help style test lint test-session-start test-plan-mode test-documentation test-harness test-end-of-work test-session
 
 help: ## list these targets
 	@awk 'BEGIN{FS=":.*## "} /^[a-z-]+:.*## /{printf "  %-7s %s\n", $$1, $$2}' $(MAKEFILE_LIST) < /dev/null
@@ -66,3 +66,5 @@ test-harness: ## the pipeline over rule-harness's children
 
 test-end-of-work: ## the pipeline over rule-end-of-work's children
 	@uv run pytest -q tests/test_gate.py < /dev/null
+
+test-session: test-session-start test-plan-mode test-end-of-work test-documentation ## the pipeline over rule-session's children

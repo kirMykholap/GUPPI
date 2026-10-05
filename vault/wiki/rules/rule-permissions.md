@@ -2,7 +2,7 @@
 type: rule
 kind: Leaf
 purpose: Lets the session write its own working files and read this project's saved transcripts without asking, and nothing else
-status: draft
+status: built
 enforcement: render
 governs: .claude/settings.json
 render_mode: partial
@@ -60,3 +60,4 @@ a refusal that matters has a hook behind it (case 85.5).
 - 2026-10-05 updated: the prompt in Plan Mode binds the main agent; case-guppi writes its Case file in permissionMode acceptEdits, with no allow rule (case 645.16) · [[decision-case-645.16]]
 - 2026-10-05 status: built → draft · cascade
 - 2026-10-05 updated: this project's saved transcripts under ~/.claude/projects join the allow list for reading, so a search of case-guppi there does not ask (case 656) · [[decision-case-656]]
+- 2026-10-05 status: draft → built · cascade

@@ -66,7 +66,7 @@ update:
 ```
 
 ```tasks
-- [ ] update `estimate-prespec-catches-a-superseded-case`
+- [x] update `estimate-prespec-catches-a-superseded-case`
 ```
 
 ### Case 669.2 — The check that Retro leaves out the sub-cases of a superseded Case is closed as passed
@@ -100,7 +100,7 @@ update:
 ```
 
 ```tasks
-- [ ] update `estimate-retro-leaves-out-the-sub-cases-of-a-superseded-case`
+- [x] update `estimate-retro-leaves-out-the-sub-cases-of-a-superseded-case`
 ```
 
 ### Case 669.3 — The check that synthesis reads the status its yaml sets is closed as passed
@@ -136,7 +136,7 @@ update:
 ```
 
 ```tasks
-- [ ] update `estimate-synthesis-reads-the-status-its-yaml-sets`
+- [x] update `estimate-synthesis-reads-the-status-its-yaml-sets`
 ```
 
 ### Case 669.4 — The check that the case check requires a backlog item decided on its page is closed as passed
@@ -171,7 +171,7 @@ update:
 ```
 
 ```tasks
-- [ ] update `estimate-case-check-requires-a-backlog-item-decided-on-its-page`
+- [x] update `estimate-case-check-requires-a-backlog-item-decided-on-its-page`
 ```
 
 ### Case 669.5 — The check that the case check shows only the checked Case is closed as passed
@@ -211,7 +211,7 @@ update:
 ```
 
 ```tasks
-- [ ] update `estimate-case-check-shows-only-the-checked-case`
+- [x] update `estimate-case-check-shows-only-the-checked-case`
 ```
 
 ### Case 669.6 — The check that the case check sends back a faulty Case is closed as passed
@@ -253,7 +253,7 @@ update:
 ```
 
 ```tasks
-- [ ] update `estimate-case-check-sends-back-a-faulty-case`
+- [x] update `estimate-case-check-sends-back-a-faulty-case`
 ```
 
 ### Case 669.7 — The check that the Spec write reaches the approved Spec is closed as passed
@@ -292,7 +292,7 @@ update:
 ```
 
 ```tasks
-- [ ] update `estimate-spec-write-reaches-the-approved-spec`
+- [x] update `estimate-spec-write-reaches-the-approved-spec`
 ```
 
 ### Case 669.8 — The check of the vault query before a create is closed as passed
@@ -329,7 +329,7 @@ update:
 ```
 
 ```tasks
-- [ ] update `estimate-ask-query-before-a-create`
+- [x] update `estimate-ask-query-before-a-create`
 ```
 
 ### Case 669.9 — The check that case-guppi writes the Case is closed as passed
@@ -377,7 +377,7 @@ update:
 ```
 
 ```tasks
-- [ ] update `estimate-case-build-writes-the-case`
+- [x] update `estimate-case-build-writes-the-case`
 ```
 
 ### Case 669.10 — The check that the main agent shows the built Case is closed as passed
@@ -423,7 +423,7 @@ update:
 ```
 
 ```tasks
-- [ ] update `estimate-orchestration-shows-the-built-case`
+- [x] update `estimate-orchestration-shows-the-built-case`
 ```
 
 ### Case 669.11 — The check that every agent leaves out the Decision pages is closed as passed
@@ -460,7 +460,7 @@ update:
 ```
 
 ```tasks
-- [ ] update `estimate-search-leaves-out-decisions-in-every-agent`
+- [x] update `estimate-search-leaves-out-decisions-in-every-agent`
 ```
 
 ### Case 669.12 — The check that case-guppi checks the finished Case is closed as passed
@@ -502,7 +502,7 @@ update:
 ```
 
 ```tasks
-- [ ] update `estimate-case-build-checks-the-finished-case`
+- [x] update `estimate-case-build-checks-the-finished-case`
 ```
 
 ### Case 669.13 — The check of the form of a Case is closed as passed
@@ -544,7 +544,7 @@ update:
 ```
 
 ```tasks
-- [ ] update `estimate-case-protocol-case-form`
+- [x] update `estimate-case-protocol-case-form`
 ```
 
 ### Case 669.14 — The check that pre-spec confirms the findings once is closed as passed
@@ -585,7 +585,7 @@ update:
 ```
 
 ```tasks
-- [ ] update `estimate-prespec-confirms-the-findings-once`
+- [x] update `estimate-prespec-confirms-the-findings-once`
 ```
 
 ### Case 669.15 — The check of the searches of ask-guppi at pre-spec is closed as passed
@@ -621,7 +621,7 @@ update:
 ```
 
 ```tasks
-- [ ] update `estimate-ask-searches-at-prespec`
+- [x] update `estimate-ask-searches-at-prespec`
 ```
 
 ### Case 669.16 — The schemas let a Case set an Estimate passed or failed by the person's decision
@@ -670,11 +670,11 @@ update:
 ```
 
 ```tasks
-- [ ] update `rule-case-protocol`
-- [ ] `uv run guppi render`: `vault/wiki/case-schema.md`
-- [ ] update `rule-estimates-schema`
-- [ ] `uv run guppi render`: `vault/wiki/estimates/schema.yaml`
-- [ ] `raw/2026-10-05/1831/handoff.md`: names none of the Estimates that 669.1 to 669.15 close as a reading that waits.
+- [x] update `rule-case-protocol`
+- [x] `uv run guppi render`: `vault/wiki/case-schema.md`
+- [x] update `rule-estimates-schema`
+- [x] `uv run guppi render`: `vault/wiki/estimates/schema.yaml`
+- [x] `raw/2026-10-05/1831/handoff.md`: names none of the Estimates that 669.1 to 669.15 close as a reading that waits.
 ```
 
 ## Case 670 — An Estimate is read in the session that changes it
@@ -759,10 +759,10 @@ update:
 ```tasks
 - [x] `guppi/ledger.py`: `refused_readings` refuses a reading of a slug the session changes only before the mark `retro` of the session, judged by `retro_marked` of `guppi/onward.py`, imported inside the function; a line of a reply written before the mark stays refused; the stderr line and the docstring say that the reading is taken at the Retro of this session.
 - [x] `tests/test_ledger.py`: a reading of a changed slug is refused before the mark and written after it; a line of a reply before the mark stays refused after it; the stderr line names Retro.
-- [ ] update `rule-ledger-write`
-- [ ] update `rule-orchestration`
-- [ ] `uv run guppi render`: `vault/wiki/orchestration.md`
-- [ ] update `estimate-ledger-write-refuses-a-reading-of-a-change-of-the-session`
+- [x] update `rule-ledger-write`
+- [x] update `rule-orchestration`
+- [x] `uv run guppi render`: `vault/wiki/orchestration.md`
+- [x] update `estimate-ledger-write-refuses-a-reading-of-a-change-of-the-session`
 - [ ] read `estimate-ledger-write-refuses-a-reading-of-a-change-of-the-session`
 ```
 
@@ -810,9 +810,9 @@ update:
 ```
 
 ```tasks
-- [ ] update `rule-retro`
-- [ ] `uv run guppi render`: `.claude/skills/retro/SKILL.md`
-- [ ] update `estimate-retro-loads`
+- [x] update `rule-retro`
+- [x] `uv run guppi render`: `.claude/skills/retro/SKILL.md`
+- [x] update `estimate-retro-loads`
 - [ ] read `estimate-retro-loads`
 ```
 
@@ -855,9 +855,9 @@ update:
 ```
 
 ```tasks
-- [ ] update `rule-handoff`
-- [ ] `uv run guppi render`: `.claude/skills/handoff/SKILL.md`
-- [ ] update `estimate-handoff-holds-each-fact-once`
+- [x] update `rule-handoff`
+- [x] `uv run guppi render`: `.claude/skills/handoff/SKILL.md`
+- [x] update `estimate-handoff-holds-each-fact-once`
 - [ ] read `estimate-handoff-holds-each-fact-once`
 ```
 
@@ -905,13 +905,13 @@ update:
 ```
 
 ```tasks
-- [ ] update `rule-case-protocol`
-- [ ] `uv run guppi render`: `vault/wiki/case-schema.md`
+- [x] update `rule-case-protocol`
+- [x] `uv run guppi render`: `vault/wiki/case-schema.md`
 - [x] `guppi/lint.py`: a predicate `waits_for_another_session` over the parts of a `method` between `;`, with its docstring; `check_moment` and the lint run do not call it.
 - [x] `guppi/prespec.py`: the check of the form of an Estimate item calls `waits_for_another_session` on the `method` of a `create` and of an `update` that sets one, and the module docstring names the finding.
 - [x] `tests/test_lint.py`: the predicate is true for a later session, the next session, a session after another, the librarian and `/hi`, and false for a part that names the person and for a method of the session itself.
 - [x] `tests/test_prespec.py`: the finding on a `create` and on an `update` with `set: {method: …}`, none on a method that names the person, and the other method findings unchanged.
-- [ ] create `estimate-prespec-hook-reports-a-method-that-waits-for-another-session`
+- [x] create `estimate-prespec-hook-reports-a-method-that-waits-for-another-session`
 - [ ] read `estimate-prespec-hook-reports-a-method-that-waits-for-another-session`
 ```
 
@@ -960,9 +960,9 @@ update:
 ```
 
 ```tasks
-- [ ] update `rule-skill-hi`
-- [ ] `uv run guppi render`: `.claude/skills/hi/SKILL.md`
-- [ ] update `estimate-hi-takes-its-readings`
+- [x] update `rule-skill-hi`
+- [x] `uv run guppi render`: `.claude/skills/hi/SKILL.md`
+- [x] update `estimate-hi-takes-its-readings`
 - [ ] read `estimate-hi-takes-its-readings`
 ```
 
@@ -1000,7 +1000,7 @@ update:
 ```
 
 ```tasks
-- [ ] update `estimate-hi-writes-frontier`
+- [x] update `estimate-hi-writes-frontier`
 - [ ] read `estimate-hi-writes-frontier`
 ```
 
@@ -1046,9 +1046,9 @@ update:
 ```
 
 ```tasks
-- [ ] update `rule-work-mode`
-- [ ] `uv run guppi render`: `.claude/skills/work/SKILL.md`
-- [ ] update `estimate-work-mode-takes-the-work-readings`
+- [x] update `rule-work-mode`
+- [x] `uv run guppi render`: `.claude/skills/work/SKILL.md`
+- [x] update `estimate-work-mode-takes-the-work-readings`
 - [ ] read `estimate-work-mode-takes-the-work-readings`
 ```
 
@@ -1121,8 +1121,8 @@ update:
 ```tasks
 - [x] `guppi/casecheck.py`: a function `target_findings` gives `(top-level case, finding)` for each decision line other than `defer` of the session's ledger on a number of the family that has a section in the answer and no sub-case in it, whose kind and slug `line_has_item` of `guppi/prespec.py`, imported, does not find in that number's `then` block; the finding names the number, the line, the new number by `new_number` and the marks as `shape_findings` writes them, and tells `case-guppi` to put the item back or to change the number in the headings and the ledger lines by `Edit` and add the marks, never writing the whole Case again; `check_answer` adds its findings where `store` is given, beside `shape_findings`; the module docstring and the docstring of `check_answer` name it (case 671.1).
 - [x] `tests/test_casecheck.py`: tests `-k dropped_target`: a file whose Case renames the slug of a ratified `create` under its number is sent back with the new number and the marks; a file that drops an item of a ratified line is sent back; a file that keeps each item and adds one passes; a dropped `defer` item gives no finding of this check; a number with no section, or with sub-cases, gets only the finding of `shape_findings`.
-- [ ] create `estimate-case-check-sends-back-a-ratified-case-without-a-target`
-- [ ] update `insight-ledger-ratified-line-never-withdrawn`
+- [x] create `estimate-case-check-sends-back-a-ratified-case-without-a-target`
+- [x] update `insight-ledger-ratified-line-never-withdrawn`
 - [ ] read `estimate-case-check-sends-back-a-ratified-case-without-a-target`
 ```
 
@@ -1154,7 +1154,7 @@ delete:
 ```
 
 ```tasks
-- [ ] update `rule-case-protocol`
-- [ ] `uv run guppi render`: `vault/wiki/case-schema.md`
-- [ ] delete `rule-ledger-line-withdrawn-on-re-ratification`
+- [x] update `rule-case-protocol`
+- [x] `uv run guppi render`: `vault/wiki/case-schema.md`
+- [x] delete `rule-ledger-line-withdrawn-on-re-ratification`
 ```

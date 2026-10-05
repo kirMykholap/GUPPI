@@ -2,7 +2,7 @@
 type: rule
 kind: Leaf
 purpose: Prevents a pattern of failures from staying a list of unrelated incidents
-status: draft
+status: built
 enforcement: render
 governs: .claude/agents/librarian-guppi.md
 render_mode: partial
@@ -106,3 +106,4 @@ outcome, clustered or not. The archive is not needed: an actioned Insight stays 
 - 2026-10-04 status: built → draft · cascade
 - 2026-10-05 estimate estimate-synthesis-reads-the-status-its-yaml-sets added · [[decision-case-668]]
 - 2026-10-05 updated: an Insight that a decision entry of the same yaml sets actioned counts as actioned at synthesis (case 668) · [[decision-case-668]]
+- 2026-10-05 status: draft → built · cascade

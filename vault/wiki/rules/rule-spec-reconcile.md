@@ -2,7 +2,7 @@
 type: rule
 kind: Leaf
 purpose: Prevents a ratified Case from changing in what the scripts apply without the person seeing it whole and ratifying it again
-status: draft
+status: built
 enforcement: hook
 implementation_ref: [guppi/ratified.py, guppi/ledger.py, guppi/casecheck.py, tests/test_ratified.py, .claude/settings.json]
 parent: "[[rule-plan-mode]]"
@@ -43,3 +43,4 @@ Prevents a ratified Case from changing in what the scripts apply without the per
 - 2026-10-05 status: built → draft · cascade
 - 2026-10-05 estimate estimate-spec-reconcile-refuses-a-case-file-another-agent-holds added · [[decision-case-650.1]]
 - 2026-10-05 updated: the first write of case-guppi on the file of a Case holds its number in the store, and a write of another case-guppi on that file is refused with a free number (case 650.1) · [[decision-case-650.1]]
+- 2026-10-05 status: draft → built · cascade

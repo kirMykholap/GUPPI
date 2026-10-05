@@ -1,10 +1,11 @@
 ---
 type: estimate
 kind: QA
-status: pending
+status: passed
 target: "[[rule-case-check]]"
 purpose: Whether the check of case-guppi sends back a summary that does not name the top-level Case as its file heads it
 method: uv run pytest tests/test_casecheck.py -k summary_names_the_case
+checked: 2026-10-05
 origin: raw/2026-10-05/1616/ledger.md#case-662.3
 sprint: migration
 created: 2026-10-05
@@ -24,6 +25,11 @@ A summary with no line `**Case:**` for the top-level Case of a file it wrote, or
 **－** A summary whose text an earlier output of the subagent already holds, trailing spaces aside, is not sent back again for its line while the heading of its file is the same as when it was sent back.
 **－** A round, a `**Fact:**` answer, and an answer with no file written are not judged for the line.
 
+## Result
+
+2026-10-05, /hi of 1831, uv run pytest tests/test_casecheck.py -k summary_names_the_case; 10 passed
+
 ## History
 
 - 2026-10-05 created · [[decision-case-662.3]]
+- 2026-10-05 status: pending → passed · raw/2026-10-05/1831/ledger.md#L3

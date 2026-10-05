@@ -1,7 +1,7 @@
 ---
 type: estimate
 kind: QA
-status: pending
+status: passed
 target: "[[rule-orchestration]]"
 purpose: Whether the example of a showing in orchestration.md passes the Stop check of a reply that shows a Case, so the form the main agent copies stays a form the check accepts
 method: uv run pytest tests/test_orchestration.py -k showing_example, passed and not skipped
@@ -28,10 +28,11 @@ Then:
 
 ## Result
 
-2026-10-05, at the /hi of session 1616: uv run pytest -q -rs tests/test_orchestration.py -k showing_example 2 passed, 2 deselected, none skipped
+2026-10-05, /hi of 1831, uv run pytest tests/test_orchestration.py -rs; 6 passed, none skipped
 
 ## History
 
 - 2026-10-05 created · [[decision-case-651.2]]
 - 2026-10-05 status: pending → passed · raw/2026-10-05/1616/ledger.md#L1
 - 2026-10-05 updated: the Criterion replaced whole — the tests fail, not skip, when orchestration.md holds no block tagged showing (case 661.1) · [[decision-case-661.1]]
+- 2026-10-05 status: pending → passed · raw/2026-10-05/1831/ledger.md#L1

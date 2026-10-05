@@ -2,7 +2,7 @@
 type: lesson
 kind: error
 root_cause: a ledger line of a first ratification cannot be withdrawn, and neither the frame of case-guppi nor the check of a rebuilt Case treats a renamed or dropped target as another shape that needs a new number, so the rename passed every check until the Spec hook
-status: clustered
+status: archived
 insight: "[[insight-ledger-ratified-line-never-withdrawn]]"
 origin: raw/2026-10-05/1616/ledger.md#L41
 sprint: migration
@@ -22,3 +22,5 @@ a ledger line of a first ratification cannot be withdrawn, and neither the frame
 
 - 2026-10-05 created · raw/2026-10-05/1616/ledger.md#L41
 - 2026-10-05 updated: clustered under insight-ledger-ratified-line-never-withdrawn (synthesis) · raw/2026-10-05/1616/ledger.md#L41
+- 2026-10-05 archived · insight actioned
+- 2026-10-05 archived · cleanup

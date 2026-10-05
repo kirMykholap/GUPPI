@@ -2,7 +2,7 @@
 type: rule
 kind: Leaf
 purpose: Prevents the session's memory from being lost between the commit and the librarian
-status: built
+status: draft
 enforcement: render
 governs: .claude/skills/handoff/SKILL.md
 render_mode: full
@@ -36,7 +36,7 @@ If Tree above is not empty, stop and say "commit first". Otherwise write `vault/
 - `## Notes from memory`: where the person hesitated, what stayed unclear, which decisions carried caveats.
 - `## Direct instructions to the librarian`: what to check first, what may duplicate what; no reading that waits, which `## Debt` lists (case 624).
 - `## What actually got done`: the ids of the Cases ratified, by the Tail, a Case that a `{supersedes:case N}` line names, and each of its sub-cases, not counted; the code files and tests changed; the result of `make test` and `make style`; the readings and lessons written, by their ledger line numbers.
-- `## Debt`: each box of the Spec that is debt, and each red test reverted into a patch, with the path of the patch; under them a line with the count of the boxes that wait for the librarian, then one line per Estimate whose reading cannot be taken yet, each one this session creates or updates among them, except one that `## Ask the person` holds: its slug and the moment its reading waits for; these lines stand in the section and are not debt (case 624).
+- `## Debt`: each box of the Spec that is debt, and each red test reverted into a patch, with the path of the patch; under them a line with the count of the boxes that wait for the librarian, then one line per Estimate whose reading cannot be taken yet, except one that `## Ask the person` holds: its slug and the moment its reading waits for; an Estimate this session creates or updates has no such line, since Retro read it or set it `failed`; these lines stand in the section and are not debt (cases 624, 670.3).
 - `## Observations`: what was noticed in Work Mode and Retro — a bug, a contract that turned out imprecise, a red before the work, an expected red with its check and the page or file it waits for.
 - `## For the next session`: what needs a decision, which Retro does not take.
 - `## Ask the person`: one line per reading that only the person can take — the Estimate by slug, the mark `needs the person`, and the question the person answers.
@@ -63,3 +63,5 @@ Then, in a session whose `work.md` holds `## Conserved Spec` — one that `/box`
 - 2026-10-04 updated: a thing is said once: a second section names it only with what its kind adds; the readings that wait stand in Debt alone, each with its moment, and are not debt (case 624) · [[decision-case-624]]
 - 2026-10-05 status: draft → built · cascade
 - 2026-10-05 updated: a supersedes tag leaves the sub-cases of its Case out of what got done (case 660.4) · [[decision-case-660.4]]
+- 2026-10-05 updated: the Debt section lists no Estimate the session creates or updates as a reading that waits: Retro reads it or sets it failed (case 670.3) · [[decision-case-670.3]]
+- 2026-10-05 status: built → draft · cascade

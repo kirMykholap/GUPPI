@@ -1,8 +1,9 @@
 ---
 type: decision
 case: "665"
-status: current
+status: archived
 defer: ["[[estimate-case-protocol-case-form]]"]
+superseded_by: ["[[decision-case-669.13]]"]
 origin: raw/2026-10-05/1616/ledger.md#case-665
 sprint: migration
 created: 2026-10-05
@@ -26,3 +27,6 @@ A built Case carries the whole contract in given, when and then, in the file the
 ## History
 
 - 2026-10-05 created · raw/2026-10-05/1616/ledger.md#case-665
+- 2026-10-05 superseded by decision-case-669.13 · [[decision-case-669.13]]
+- 2026-10-05 archived · superseded
+- 2026-10-05 archived · cleanup

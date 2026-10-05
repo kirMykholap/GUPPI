@@ -2,7 +2,7 @@
 type: rule
 kind: Leaf
 purpose: Prevents a ratified decision from ending the session without a page, or a page from carrying a field nobody ratified
-status: draft
+status: built
 enforcement: check
 implementation_ref: [guppi/generate.py, tests/test_generate.py]
 parent: "[[rule-documentation]]"
@@ -139,3 +139,4 @@ entry never stops the run: it is marked `failed`, reported, and the rest apply (
 - 2026-10-04 status: draft → built · cascade
 - 2026-10-05 updated: a superseded Decision page takes the pages of its sub-cases with it (case 660.3) · [[decision-case-660.3]]
 - 2026-10-05 status: built → draft · cascade
+- 2026-10-05 status: draft → built · cascade

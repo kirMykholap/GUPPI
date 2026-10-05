@@ -2,7 +2,7 @@
 type: rule
 kind: Leaf
 purpose: Prevents the librarian from needing the ledger beyond its one read or the Spec beyond its unticked lines, or from routing a decision by guesswork
-status: draft
+status: built
 enforcement: check
 implementation_ref: [guppi/materialize.py, tests/test_materialize.py]
 parent: "[[rule-documentation]]"
@@ -133,3 +133,4 @@ ratified and its work not done (case 190.3). A reading — an `estimate` line �
 - 2026-10-02 status: draft → built · cascade
 - 2026-10-04 updated: the yaml's sprint is the id of a sprint page the unit creates (case 628.3) · [[decision-case-628.3]]
 - 2026-10-05 status: built → draft · cascade
+- 2026-10-05 status: draft → built · cascade

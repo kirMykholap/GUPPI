@@ -1,9 +1,10 @@
 ---
 type: insight
 pattern: The ledger only grows, so a decision line of a first ratification is never withdrawn; a Case built again with a target dropped or renamed needs a new number whose line supersedes the old one, and no rule of case-guppi and no check of a rebuilt Case says so before the Spec hook finds the line with no item.
-status: open
+status: actioned
 children: ["[[lesson-ledger-a-dropped-item-needs-a-superseding-sub-case]]", "[[lesson-case-build-renamed-a-slug-of-a-ratified-case-under-its-old-number]]"]
-severity: 2
+severity: 0
+addressed_by: "[[decision-case-671.1]]"
 origin: raw/2026-10-05/1616/ledger.md#L41
 sprint: migration
 created: 2026-10-05
@@ -16,8 +17,9 @@ The ledger only grows: the hook appends no line it holds, and only a supersedes 
 
 ## Proposal
 
-A suggestion, not a decision. Let the check of a rebuilt Case compare its targets with the decision lines the ledger already holds for its number, and send back a target renamed or dropped with the line that a new number with a supersedes tag must carry; or say so in the frame of case-guppi (rule-ledger-line-withdrawn-on-re-ratification stands in the backlog).
+A suggestion, not a decision. Let the check of a rebuilt Case compare its targets with the decision lines the ledger already holds for its number, and send back a target renamed or dropped with the line that a new number with a supersedes tag must carry; or say so in the frame of case-guppi (rule-ledger-line-withdrawn-on-re-ratification was deleted by case 671.2).
 
 ## History
 
 - 2026-10-05 created · raw/2026-10-05/1616/ledger.md#L41
+- 2026-10-05 updated: actioned: the check of the file case-guppi writes sends back a ratified Case built again without the item of one of its lines, with the new number and the marks (case 671.1) · [[decision-case-671.1]]

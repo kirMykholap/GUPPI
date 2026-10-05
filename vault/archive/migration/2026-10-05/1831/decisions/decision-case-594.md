@@ -1,8 +1,9 @@
 ---
 type: decision
 case: "594"
-status: current
+status: archived
 defer: ["[[rule-ledger-line-withdrawn-on-re-ratification]]"]
+superseded_by: ["[[decision-case-671.2]]"]
 origin: raw/2026-10-02/1202/ledger.md#case-594
 sprint: migration
 created: 2026-10-02
@@ -26,3 +27,6 @@ Prevents a decision line of the first ratification of a Case from standing in th
 ## History
 
 - 2026-10-02 created · raw/2026-10-02/1202/ledger.md#case-594
+- 2026-10-05 superseded by decision-case-671.2 · [[decision-case-671.2]]
+- 2026-10-05 archived · superseded
+- 2026-10-05 archived · cleanup

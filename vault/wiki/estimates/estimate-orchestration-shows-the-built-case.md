@@ -1,7 +1,7 @@
 ---
 type: estimate
 kind: QA
-status: pending
+status: passed
 target: "[[rule-orchestration]]"
 purpose: A Case is built by case-guppi and shown by the main agent unchanged
 method: by hand, the Cases of a session at its close, their context against the Agent calls and their showings against the SendUserFile calls of the transcript, and each request for a plain explanation against the Skill and SendMessage calls
@@ -35,7 +35,7 @@ The main agent dispatches `case-guppi` with the Case id, the Frontier item and i
 
 ## Result
 
-2026-10-05, by hand at the Work readings of session 1343, Cases 650–656 against transcript f5706873: the plan file was written with its title line before the first dispatch; seven case-guppi dispatched with the Case id, the Frontier item, its source and the person's words; twelve rounds sent back by SendMessage verbatim and shown in Russian in order, first rounds with their Context; eight showings, each by SendUserFile display render of its case file, a Russian heading, one list per Case and sub-case of the summary with what done means and its Estimate, the ledger lines as the summary held them, the agent's text after one rule; no Stop refusal of a showing; failed on one clause: the heading of Case 653 rendered Frontier item C3, not the Case's name, its summary holding items for 653.1 and 653.2 only; the first showing of 650 put the ratification under a bare `**ratification:**` line with a plain fence, later ones as a quote block; not exercised: a plain explanation, a Fact reply, an `**Other Case:**` line, a Stop refusal of a showing
+2026-10-05, Plan Mode of session 1831, case 669: set passed by the person's decision, without a reading; a problem seen later in what this Estimate promises comes back as a lesson. The last reading before it, which left the page pending: 2026-10-05, by hand at the Work readings of session 1343, Cases 650–656 against transcript f5706873: the plan file was written with its title line before the first dispatch; seven case-guppi dispatched with the Case id, the Frontier item, its source and the person's words; twelve rounds sent back by SendMessage verbatim and shown in Russian in order, first rounds with their Context; eight showings, each by SendUserFile display render of its case file, a Russian heading, one list per Case and sub-case of the summary with what done means and its Estimate, the ledger lines as the summary held them, the agent's text after one rule; no Stop refusal of a showing; failed on one clause: the heading of Case 653 rendered Frontier item C3, not the Case's name, its summary holding items for 653.1 and 653.2 only; the first showing of 650 put the ratification under a bare `**ratification:**` line with a plain fence, later ones as a quote block; not exercised: a plain explanation, a Fact reply, an `**Other Case:**` line, a Stop refusal of a showing
 
 ## History
 
@@ -69,3 +69,4 @@ The main agent dispatches `case-guppi` with the Case id, the Frontier item and i
 - 2026-10-05 updated: the Criterion replaced whole — the Case is shown from the summary of case-guppi, the file written by case-guppi, another Case asked about from the Other Case line, and a round known by no Built and no Fact first line (case 645.6) · [[decision-case-645.6]]
 - 2026-10-05 status: pending → failed · raw/2026-10-05/1343/ledger.md#L36
 - 2026-10-05 updated: the Criterion replaced whole — the heading of a showing is the id and the name of the Case line of the summary, translated (case 662.2) · [[decision-case-662.2]]
+- 2026-10-05 updated: set passed by the person's decision, without a reading; the Criterion kept; a problem seen later comes back as a lesson (case 669) · [[decision-case-669.10]]

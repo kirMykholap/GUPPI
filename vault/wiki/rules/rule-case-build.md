@@ -2,7 +2,7 @@
 type: rule
 kind: Leaf
 purpose: Prevents a Case from being shown before one agent has built it against the vault, its frame and its form, outside the main agent's context
-status: draft
+status: built
 enforcement: render
 governs: .claude/agents/case-guppi.md
 render_mode: full
@@ -99,3 +99,4 @@ When no fork is open, write the Case in the chat form of the schema, from its he
 - 2026-10-05 updated: after a clash where the other Case should change, case-guppi still changes its own Case and names the other Case and its change in context (case 637.2) · [[decision-case-637.2]]
 - 2026-10-05 updated: case-guppi writes its Case into its file by Write in permissionMode acceptEdits, fixes it by Edit and answers with a summary that names another Case to change; its tools gain Write and Edit (case 645.1) · [[decision-case-645.1]]
 - 2026-10-05 updated: the summary names the top-level Case in a line **Case:** after its Built line (case 662.1) · [[decision-case-662.1]]
+- 2026-10-05 status: draft → built · cascade

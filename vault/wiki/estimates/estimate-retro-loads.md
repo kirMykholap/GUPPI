@@ -1,9 +1,9 @@
 ---
 type: estimate
 kind: QA
-status: passed
+status: pending
 target: "[[rule-retro]]"
-method: by hand at a /retro, and at a /retro of a session that /box runs, recorded in the estimate line
+method: by hand, the text of .claude/skills/retro/SKILL.md as rendered, or, at the Retro of the session that changes it, the new Render of rule-retro in the Spec, read against the Criterion, recorded in the estimate line
 checked: 2026-10-04
 origin: raw/2026-09-10/ledger.md#case-38.1
 sprint: migration
@@ -14,13 +14,17 @@ tags: [session, workflow, harness]
 ## Criterion
 
 When:
-The agent calls `/retro` on `PreToolUse Skill` at the end of `/work`, or the person types `/retro` on `UserPromptSubmit`, and the agent takes the readings of the session's Estimates.
+The agent calls `/retro` of `.claude/skills/retro/SKILL.md` on `PreToolUse Skill` at the end of `/work`, or the person types `/retro` on `UserPromptSubmit`, and the agent takes the readings of the session's Estimates.
 
 Then:
-A reading measures the Criterion the page carries at the moment of the reading — the one ratified last; its line is written only when the work that Criterion names is built — rendered, written, run.
-**＋** An Estimate that this session creates or updates — by a decision line of its slug, or by an `update` that renames a page to it — gets no reading in this session, built or not; the handoff names it as a reading of a later session.
-**＋** The `read` line of its old Criterion in an earlier Spec is not read; the reading of the new Criterion closes it in a later session, at the moment its `method` names.
-**＋** When `raw/<date>/<hi HHMM>/work.md` holds `## Conserved Spec`, the Spec of this session is the `spec.md` of the folder that section names: Retro sorts its boxes, and the decision lines of that folder's `ledger.md` count as this session's for those boxes, for the scope of an edit and for the readings above.
+A reading measures the Criterion the page carries at the moment of the reading — the one ratified last; its line is written only when the work that Criterion names is built.
+**＋** Each Estimate this session creates or updates — by a decision line of its slug, or by an `update` that renames a page to it — is read in the reply that ends Retro, on the Criterion of `raw/<date>/<hi HHMM>/spec.md`: the `when` and `then` of its Case, or the Criterion its item writes.
+**＋** For an Estimate of a rule whose Render a Case of the Spec changes, the reading reads the new text of the Render in `raw/<date>/<hi HHMM>/spec.md` against that Criterion.
+**＋** Each such Estimate that Retro cannot read gets a `failed` line in the same `LEDGER` block, whose result opens with the date and says that Retro did not read it and why.
+**＋** When `raw/<date>/<hi HHMM>/work.md` holds `## Conserved Spec`, the Spec is the `spec.md` of the folder that section names, and the decision lines of that folder's `ledger.md` count as this session's for its boxes, for the scope of an edit and for the readings above.
+**＋** Retro closes the open `W` line of each Estimate it reads or sets `failed` `[x] … · work` in `raw/<date>/<hi HHMM>/frontier.md`.
+**－** An Estimate whose `update` sets `passed` or `failed` by the person's decision and writes its Criterion back unchanged, and one whose `update` names one part of the page alone, is neither read nor set `failed`.
+**－** A reading whose `method` names the person's word is not taken: it is a line of `## Ask the person` of `raw/<date>/<hi HHMM>/handoff.md`, with its question, and its `read` line is neither debt nor the librarian's.
 **－** A reading of an Estimate this session neither creates nor updates is taken as before, once its work is built.
 
 ## Result
@@ -61,3 +65,4 @@ A reading measures the Criterion the page carries at the moment of the reading �
 - 2026-10-02 updated: the Criterion replaced whole — in a session that /box runs, the conserved Spec counts as this session's work (case 591.8) · [[decision-case-591.8]]
 - 2026-10-03 updated: method names the kind of its moment (case 613.3) · [[decision-case-613.3]]
 - 2026-10-04 status: pending → passed · raw/2026-10-04/0004/ledger.md#L2
+- 2026-10-05 updated: the Criterion replaced whole — Retro reads each Estimate the session creates or updates on the Criterion of the Spec, or sets it failed (case 670.2) · [[decision-case-670.2]]

@@ -1,7 +1,7 @@
 ---
 type: estimate
 kind: QA
-status: pending
+status: passed
 target: "[[rule-ask]]"
 purpose: Whether ask-guppi at /pre-spec starts with the Grep of the rules and one Grep per other category, then greps and reads as each finding needs, a count over Decision pages not run again
 method: "by hand at the /hi of a later session: the Grep, Glob and Read calls of ask-guppi at a /pre-spec after the render of .claude/agents/ask-guppi.md, read in its agent transcript against the Criterion, recorded in the estimate line"
@@ -26,7 +26,7 @@ The agent starts with the Grep `^(purpose|deferred_by):` over `vault/wiki/rules/
 
 ## Result
 
-2026-10-05, by hand at the /hi of session 1616: the Grep, Glob and Read calls of the three ask-guppi runs at the /pre-spec of session 0311 (transcript 6d53e05d; a055d35695650c13f 46 calls, af56f988c579ddc06 46, af7cde916f5b24293 47): each starts with the Grep `^(purpose|deferred_by):` over vault/wiki/rules/ (call 1); af56f988c579ddc06 then read the plan and grepped lessons/, insights/ and entities/ (calls 4–6) before any other search; a055d35695650c13f read rule-spec-write.md (call 4) before its Greps of lessons/ and insights/ (calls 5–6), and af7cde916f5b24293 read rule-case-protocol.md and case-schema.md (calls 4–5) before its Grep of insights/ (call 6), so in two runs a Read came between the rules Grep and the Greps of the other categories; no context of Cases 644–646 states a count whose search covers decisions/ (each count there carries `!**/decisions/**`), so none was run again; the later Greps and Reads followed findings
+2026-10-05, Plan Mode of session 1831, case 669: set passed by the person's decision, without a reading; a problem seen later in what this Estimate promises comes back as a lesson. The last reading before it, which left the page failed: 2026-10-05, /hi of 1831, the ask-guppi transcripts of the /pre-spec of 1616 (6360af9f, 17:39) and 1343 (f5706873, 15:25), after the render of ask-guppi.md at 03:09; every run opened with the Grep ^(purpose|deferred_by): over vault/wiki/rules/; in 1616 the run on 664 Read rule pages and Estimates and ran no Grep of lessons, insights or entities, the run on 661 grepped insights alone; in 1343 the runs on 650, 651, 652, 653 and 656 ran Reads of rule and estimate pages before their last category Grep
 
 ## History
 
@@ -37,3 +37,5 @@ The agent starts with the Grep `^(purpose|deferred_by):` over `vault/wiki/rules/
 - 2026-10-05 updated: the Criterion replaced whole — the clause on Decision pages left to estimate-search-leaves-out-decisions-in-every-agent; purpose and method set anew (case 655) · [[decision-case-655]]
 - 2026-10-05 status: pending → failed · raw/2026-10-05/1616/ledger.md#L4
 - 2026-10-05 updated: the Criterion replaced whole — the Greps over a folder that holds the Decision pages are left to estimate-search-leaves-out-decisions-by-the-grep-hook, the Reads and the Greps inside it to estimate-search-leaves-out-decisions-in-every-agent (case 664.3) · [[decision-case-664.3]]
+- 2026-10-05 status: pending → failed · raw/2026-10-05/1831/ledger.md#L8
+- 2026-10-05 updated: set passed by the person's decision, without a reading; the Criterion kept; a problem seen later comes back as a lesson (case 669) · [[decision-case-669.15]]

@@ -2,7 +2,7 @@
 type: rule
 kind: Leaf
 purpose: Prevents a ratified line from existing only in a chat reply, or landing in a session no /hi opened
-status: built
+status: draft
 enforcement: hook
 implementation_ref: [guppi/ledger.py, guppi/materialize.py, guppi/gate.py, tests/test_ledger.py, tests/test_gate.py, .claude/settings.json]
 parent: "[[rule-session-start]]"
@@ -78,3 +78,5 @@ would materialize pages from it the next day. It also refuses, while no live pag
 - 2026-10-02 updated: the instruction to write the ledger lines lives in ratification.md and orchestration.md (case 595.17) · [[decision-case-595.17]]
 - 2026-10-03 status: draft → built · cascade
 - 2026-10-04 updated: refuses the decision lines of a session with no live sprint page until it creates one (case 628.3) · [[decision-case-628.3]]
+- 2026-10-05 updated: the hook refuses a reading of an Estimate that a decision line of the session creates or updates only before the mark retro of the session (case 670.1) · [[decision-case-670.1]]
+- 2026-10-05 status: built → draft · cascade

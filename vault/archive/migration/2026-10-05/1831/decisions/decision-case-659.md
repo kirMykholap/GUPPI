@@ -1,9 +1,10 @@
 ---
 type: decision
 case: "659"
-status: current
+status: archived
 defer: ["[[estimate-case-check-sends-back-a-faulty-case]]"]
 supersedes: ["[[decision-case-658]]", "[[decision-case-653]]", "[[decision-case-653.1]]", "[[decision-case-653.2]]"]
+superseded_by: ["[[decision-case-669.6]]"]
 origin: raw/2026-10-05/1343/ledger.md#case-659
 sprint: migration
 created: 2026-10-05
@@ -27,3 +28,6 @@ A Case of case-guppi that the checks refuse goes back to it before the main agen
 ## History
 
 - 2026-10-05 created · raw/2026-10-05/1343/ledger.md#case-659
+- 2026-10-05 superseded by decision-case-669.6 · [[decision-case-669.6]]
+- 2026-10-05 archived · superseded
+- 2026-10-05 archived · cleanup

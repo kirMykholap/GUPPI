@@ -1,10 +1,11 @@
 ---
 type: estimate
 kind: QA
-status: pending
+status: passed
 target: "[[rule-spec-reconcile]]"
 purpose: Whether the first call of case-guppi on the file of a Case holds its number in the store, and a call of another case-guppi on that file is refused with a free number
 method: uv run pytest tests/test_ratified.py -k number_held; by hand in a session after the work, the entry of the store that the first Write of a live case-guppi wrote, holding its agent_id
+checked: 2026-10-05
 origin: raw/2026-10-05/1343/ledger.md#case-650.1
 sprint: migration
 created: 2026-10-05
@@ -26,6 +27,11 @@ The call is refused when `<plan>.checked.json` holds Case N, or a sub-case of it
 **－** A call with no `agent_id`, a file whose name gives no number, and a session with no plan file are not judged by this check, and nothing is written into `<plan>.checked.json`.
 **－** An error of the guard while it finds the plan file or reads or writes `<plan>.checked.json` lets the call run: exit 0 with one line on stderr, as `estimate-spec-write-exits-2-on-an-error` sets it for the guard.
 
+## Result
+
+2026-10-05, /hi of 1831, uv run pytest tests/test_ratified.py -k number_held 11 passed; live, session 1616 after the work of 1343: each of the 18 entries of misty-forging-robin.checked.json carries an agent_id, entry 668 that of case-guppi a382aa98b80f9e598, the builder of 663 that built 668 by SendMessage
+
 ## History
 
 - 2026-10-05 created · [[decision-case-650.1]]
+- 2026-10-05 status: pending → passed · raw/2026-10-05/1831/ledger.md#L7

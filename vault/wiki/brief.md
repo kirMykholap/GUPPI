@@ -1,107 +1,80 @@
-# Brief — 2026-10-05, after the librarian run of session 1616
+# Brief — 2026-10-05, after the librarian run of session 1831
 
 ## Where things stand
 
-- Session 1616 ratified Cases 660 (660.1–660.4), 661 (661.1, 661.2), 662 (662.1–662.3), 664 (664.1–664.3) and 668, and the defers 665, 666 and 667; Case 663 was superseded by 668 (`{supersedes:case 663}`).
-- Code: `guppi/materialize.py` (`in_family`, `mark_superseded`, `refold`), `guppi/prespec.py` (`retired_by`), `guppi/ratified.py` and `guppi/casecheck.py` import `in_family`; `guppi/generate.py` (`supersede_children`); `guppi/casecheck.py` (`summary_findings`, `top_heading`, `summary_names`); `guppi/grepguard.py` new, `guppi/cli.py`. Tests: `tests/test_grepguard.py` new (15), `tests/test_casecheck.py` (`-k summary_names_the_case`, 10), `tests/test_orchestration.py` (one new test), `tests/test_prespec.py`, `tests/test_materialize.py`, `tests/test_generate.py`. Handoff: `make test` 1244 passed, 6 skipped; `make style` clean.
-- Readings: L1–L6 at `/hi`, the Work reading L40; lessons L41–L43.
-- The yaml: 48 entries (43 from the ledger, 5 of the synthesis); 44 applied; 4 not applied, superseded by case 668 (L25, L26, L27, L36); 0 failed; `incomplete: [criterion]` on L25 and L36, both superseded; `exists` on the three defers (L33–L35); `unparsed: []`.
-- Pages created: decisions 21 (20 live; `decision-case-663` superseded by 668 and archived); estimates 4 (`estimate-retro-leaves-out-the-sub-cases-of-a-superseded-case`, `estimate-case-check-sends-back-a-summary-without-the-case-name`, `estimate-search-leaves-out-decisions-by-the-grep-hook`, `estimate-synthesis-reads-the-status-its-yaml-sets`); lessons 3; insights 1 (`insight-ledger-ratified-line-never-withdrawn`, synthesis, `severity: 2`).
-- Pages updated: estimates 16 (7 readings, 9 Criteria replaced by 660.1–660.3, 661.1, 661.2, 662.1, 662.2, 664.2, 664.3, and the defers 665–667); rules 11 (10 by decisions: `rule-page-generation`, `rule-decisions-schema`, `rule-retro`, `rule-handoff`, `rule-case-build`, `rule-orchestration`, `rule-case-check`, `rule-search-leaves-out-decisions`, `rule-hook-registry`, `rule-synthesis`; `rule-materialize` by the cascade alone; `rule-materialize`, `rule-page-generation` and `rule-retro` set `built → draft` by the cascade); entities 1 (`entity-glossary`, three updates 660.2, 660.3, 668, on three rows); insights 1 (synthesis; `severity` 1 → 2 by `generate`); lessons 1 existing (synthesis), and two of the new lessons clustered in the same run.
-- Pages archived by `generate` and `cleanup`: 1 — `decision-case-663` (superseded), under `vault/archive/migration/2026-10-05/1616/decisions/`.
-- `guppi materialize` wrote `superseded_by: decision-case-658` beside `decision-case-659` into the `decisions` records 653.1 and 653.2 of `raw/2026-10-05/1343/materialize.yaml` (the family reading of 660.2); it added 0 entries to the yamls of 0109, 0311 and 1343.
-- The handoff checks: L25–L27 and L36 carry `superseded_by: '668'` and were not applied; `estimate-synthesis-reads-the-status-the-run-sets` has no page; the three updates of `entity-glossary` replace text on three different rows (the rows `supersedes`, Decision (status), Insight (status)); after the render `.claude/settings.json` registers `uv run guppi grepguard` on `PreToolUse` of `Grep`, `.claude/agents/case-guppi.md` asks for the `**Case:**` line, and `uv run pytest tests/test_orchestration.py` gave 6 passed, none skipped.
-- The render wrote `.claude/agents/case-guppi.md`, `.claude/agents/librarian-guppi.md`, `.claude/rules/search-leaves-out-decisions.md`, `.claude/settings.json`, `.claude/skills/handoff/SKILL.md`, `.claude/skills/retro/SKILL.md`, `vault/wiki/orchestration.md` and `vault/wiki/decisions/schema.yaml`. The scripts ticked 37 boxes of the 1616 Spec, 2 `read` lines of the 0311 Spec and 6 of the 1343 Spec; 13 `read` lines of the 1616 Spec stay open. `guppi sprint` left `sprint.md` unchanged; `guppi backlog` and `guppi glossary` rewrote their files; no stderr from any script.
-- `guppi archive` printed nothing on stdout or stderr and moved no unit: the four units with a ledger (0109, 0311, 1343, 1616) are dated 2026-10-05, the day of the run, which it does not look at; the earlier dates of `vault/raw/` hold only `event_log.md`.
+- Session 1831 ratified Cases 669 (669.1–669.16), 670 (670.1–670.7) and 671 (671.1, 671.2); all three were built again on the findings of pre-spec and ratified again. 669 closed 15 Estimates as `passed` by the person's decision.
+- Code: `guppi/ledger.py` (`refused_readings` waits for the `retro` mark of the session, 670.1), `guppi/onward.py` (`retro_mark`, `retro_moment`), `guppi/lint.py` (`waits_for_another_session`), `guppi/prespec.py` (the finding `method waits for another session`), `guppi/casecheck.py` (`target_findings`, `lined_numbers`, `supersede_marks`). Tests: `tests/test_ledger.py` (4 new), `tests/test_lint.py` (2 new), `tests/test_prespec.py` (2 new), `tests/test_casecheck.py` (6 new, `-k dropped_target`). Handoff: `make test` 1258 passed, 6 skipped; `make style` clean.
+- Readings: L1–L9 at `/hi` (8 passed, L8 `estimate-ask-searches-at-prespec` failed). Lesson: L10.
+- The yaml: 48 entries, one per ledger line (L1–L48); 48 carry `applied`; 0 `failed`, 0 `exists`, 0 `incomplete`, 0 `near`; `unparsed: []`; no entry added by the index check or the synthesis. `generate` printed for L41, L42 and L43 "repeats line 16 / 17 / 20 of case 669.6 / 669.7 / 669.10; nothing applied".
+- Pages created: decisions 28 (669 and 669.1–669.16, 670 and 670.1–670.7, 671, 671.1, 671.2); estimates 2 (`estimate-prespec-hook-reports-a-method-that-waits-for-another-session`, `estimate-case-check-sends-back-a-ratified-case-without-a-target`); lessons 1 (`lesson-orchestration-two-cases-built-side-by-side`).
+- Pages updated: estimates 29 (9 readings L1–L9; 15 set `passed` by 669.1–669.15, `estimate-ask-searches-at-prespec` among both; 6 Criteria replaced by 670.1, 670.2, 670.3, 670.5, 670.6, 670.7); rules 20 (8 by decisions: `rule-ledger-write`, `rule-orchestration`, `rule-retro`, `rule-handoff`, `rule-case-protocol` (670.4, 671.2, 669.16), `rule-skill-hi`, `rule-estimates-schema`, `rule-work-mode`; 2 by a new Estimate: `rule-prespec-hook`, `rule-case-check`; 10 by the cascade alone); insights 1 (`insight-ledger-ratified-line-never-withdrawn` set `actioned`, `addressed_by: decision-case-671.1`, its Proposal line rewritten). Decisions 10 set superseded: 594, 617, 622, 630, 647, 657, 659, 665, 666, 667.
+- Pages deleted: rules 1 (`rule-ledger-line-withdrawn-on-re-ratification`, 671.2).
+- The cascade: `draft → built` on 12 rules — `rule-ask`, `rule-case-build`, `rule-case-protocol`, `rule-materialize`, `rule-orchestration`, `rule-page-generation`, `rule-permissions`, `rule-prespec`, `rule-search-leaves-out-decisions`, `rule-spec-reconcile`, `rule-spec-write`, `rule-synthesis`; `built → draft` on 3 — `rule-handoff`, `rule-ledger-write`, `rule-prespec-hook`. `rule-case-check` stays `draft` (new pending Estimate of 671.1).
+- Pages archived by `generate` and `cleanup` (`cleanup: 13 page(s) moved`), under `vault/archive/migration/2026-10-05/1831/`: decisions 10 (the superseded ones above), lessons 2 (`lesson-ledger-a-dropped-item-needs-a-superseding-sub-case`, `lesson-case-build-renamed-a-slug-of-a-ratified-case-under-its-old-number`, by the actioned Insight), rules 1 (`rule-ledger-line-withdrawn-on-re-ratification`).
+- The handoff checks: L1–L9 applied before the 669 updates (log: L8 set `estimate-ask-searches-at-prespec` `failed`, then 669.15 set it `passed`; the 669.15 Result keeps the L8 reading). The pages of 669.6, 669.7 and 669.10 were updated once; 659, 630, 617 and 622 were set superseded and archived. The three `rule-case-protocol` updates applied in ledger order L33 (670.4), L39 (671.2), L44 (669.16) with no error; `vault/wiki/case-schema.md` is one file, changed once in the tree. `backlog.md` went from 25 to 23 items: both `rule-ledger-line-withdrawn-on-re-ratification` and `insight-ledger-ratified-line-never-withdrawn` left it.
+- `guppi materialize` extended the yamls of 0109, 0311, 1343 and 1616 with 0 entries; `generate` wrote `superseded_by` marks into the yamls of 0311, 1343 and 1616 (669.6, 669.12, 669.13, 669.14). The scripts ticked 45 boxes of the 1831 Spec, 1 `read` line of the 0311 Spec, 2 of the 1343 Spec and 7 of the 1616 Spec.
+- The render wrote `.claude/skills/handoff/SKILL.md`, `.claude/skills/hi/SKILL.md`, `.claude/skills/retro/SKILL.md`, `.claude/skills/work/SKILL.md`, `vault/wiki/case-schema.md`, `vault/wiki/orchestration.md` and `vault/wiki/estimates/schema.yaml`. `guppi sprint` and `guppi glossary` left `sprint.md` and `glossary.md` unchanged; `guppi backlog` rewrote `backlog.md`. No script printed a line on stderr.
+- `guppi archive` printed nothing on stdout or stderr and moved no unit: the five units with a ledger (0109, 0311, 1343, 1616, 1831) are dated 2026-10-05, the day of the run, which it does not look at; the earlier dates of `vault/raw/` hold only `event_log.md`.
 
-Synthesis. `^(root_cause|deferred_by):` over `vault/wiki/lessons/` printed 78 lines; `^(pattern|deferred_by):` over `vault/wiki/insights/` printed 31 lines.
-- `lesson-case-build-renamed-a-slug-of-a-ratified-case-under-its-old-number` joined `lesson-ledger-a-dropped-item-needs-a-superseding-sub-case` under the new `insight-ledger-ratified-line-never-withdrawn` (`open`; no `addressed_by` on the lesson entry).
-- `lesson-orchestration-heading-of-a-showing-composed-by-the-main-agent` joined `insight-case-show-built-case-retyped-by-hand` (`open` on disk, no decision entry of this yaml sets it `actioned`; the update carries `children` only; the lesson entry's `addressed_by: decision-case-662.2` is not written to the Insight).
-- `lesson-ask-search-exclusion-of-decisions-left-to-each-agent` — none: no index line holds a rule of the Grep exclusion applied by hand per call or the order of a glob; the Insights on rules no script reads speak of the chat form of a Case and of the reply language. It stays `new`.
+Synthesis. `^(root_cause|deferred_by):` over `vault/wiki/lessons/` printed 81 lines; `^(pattern|deferred_by):` over `vault/wiki/insights/` printed 32 lines.
+- `lesson-orchestration-two-cases-built-side-by-side` — none: no index line holds a second Case started before the first was ratified outside the side-by-side forms `rule-orchestration` allows; `insight-prespec-after-findings-loop-unruled` names the absence of a rule for the loop after the findings, a loop the lesson says the rule now allows. It stays `new`.
 
 ## Readings due
 
-Failed:
-- `estimate-case-build-checks-the-finished-case` — failed — `rule-case-build` stands `draft` — result: the four ask-guppi runs at the `/pre-spec` of 0109 found pages, rules and a lesson the Cases 638–641 missed; put off by case 667 — read: by hand at `/pre-spec` of a later session after the render (method).
-- `estimate-case-protocol-case-form` — failed — `rule-case-protocol` stands `draft` — result: L38 of 1343, `given` with two things on a line (650.1, 650.2, 653.1, 654) and with state (656, 653.1); put off by case 665 — read: by hand, the Cases of a session at its close (method).
-- `estimate-prespec-confirms-the-findings-once` — failed — `rule-prespec` stands `draft` — result: L41 of 1343, four sentences under one finding in the confirmation runs; put off by case 666 — read: by hand at the `/pre-spec` of a later session whose findings send a Case back (method).
-
 Pending:
-- `estimate-prespec-catches-a-superseded-case` — pending — `rule-prespec` stands `draft` — read: `- [ ] read` line of the 1616 Spec; pytest `tests/test_prespec.py`, live at the first `/pre-spec` of a later session whose window holds a supersedes (method).
-- `estimate-materialize-marks-superseded` — pending — `rule-materialize` stands `draft` — read: `- [ ] read` line of the 1616 Spec; pytest `tests/test_materialize.py` plus one live reading of a librarian's run (method). This run: `guppi materialize` exit 0; L25, L26, L27 and L36 (case 663) carry `superseded_by: '668'`, L37–L39 carry `supersedes: ['663']`; the `decisions` record 663 carries `superseded_by: [decision-case-668]`; the records 653.1 and 653.2 of the 1343 yaml got `decision-case-658` beside `decision-case-659`; the lesson and estimate entries carry no mark.
-- `estimate-generate-writes-the-decision-page` — pending — `rule-page-generation` stands `draft` — read: `- [ ] read` line of the 1616 Spec; pytest `tests/test_generate.py`, the live reading in the librarian's run (method). This run: `guppi generate` exit 0, 59 pages written or changed in 1616; 21 Decision pages created (parents 660, 661, 662, 664 and their sub-cases, 663, 665–668); `decision-case-663` set superseded by `decision-case-668`, archived by the cascade and moved by `cleanup`; 663 has no `children`; no other Decision page changed.
-- `estimate-retro-leaves-out-the-sub-cases-of-a-superseded-case` — pending — `rule-retro` stands `draft` — read: `- [ ] read` line of the 1616 Spec; by hand at a `/retro` whose ledger holds a supersedes on a Case with sub-cases (method).
-- `estimate-orchestration-showing-example-passes-the-check` — pending — `rule-orchestration` stands `draft` — read: `- [ ] read` line of the 1616 Spec, at the `/hi` of a later session.
-- `estimate-orchestration-defer-example-passes-the-hook` — pending — `rule-orchestration` stands `draft` — read: `- [ ] read` line of the 1616 Spec, at the `/hi` of a later session.
-- `estimate-case-build-writes-the-case` — pending — `rule-case-build` stands `draft` — read: `- [ ] read` line of the 1616 Spec, by hand in a later session after the render; also open in the 0311 Spec.
-- `estimate-orchestration-shows-the-built-case` — pending — `rule-orchestration` stands `draft` — read: `- [ ] read` line of the 1616 Spec, by hand at the close of a later session after the render.
-- `estimate-case-check-sends-back-a-summary-without-the-case-name` — pending — `rule-case-check` stands `draft` — read: `- [ ] read` line of the 1616 Spec, at the `/hi` of a later session.
-- `estimate-search-leaves-out-decisions-by-the-grep-hook` — pending — `rule-search-leaves-out-decisions` stands `draft` — read: `- [ ] read` line of the 1616 Spec; `uv run pytest tests/test_grepguard.py`, then a Grep over `vault/wiki/` in the main agent and in a subagent at the `/hi` of a later session (method).
-- `estimate-search-leaves-out-decisions-in-every-agent` — pending — `rule-search-leaves-out-decisions` stands `draft` — read: `- [ ] read` line of the 1616 Spec; by hand at the `/hi` of a later session (method).
-- `estimate-ask-searches-at-prespec` — pending — `rule-ask` stands `draft` — read: `- [ ] read` line of the 1616 Spec; by hand at the `/hi` of a later session (method). Its L4 reading failed before 664.3 replaced its Criterion.
-- `estimate-synthesis-reads-the-status-its-yaml-sets` — pending — `rule-synthesis` stands `draft` — read: `- [ ] read` line of the 1616 Spec; by hand after a librarian run in which a lesson joins an Insight that a decision entry of the same yaml sets `actioned` (method). This run: no decision entry of the 1616 yaml sets an Insight `actioned`; L42 joined `insight-case-show-built-case-retyped-by-hand`, `open` on disk, by an update with `children` only; the Insight stands `open` and the lesson `clustered` after `generate`.
-- `estimate-spec-reconcile-refuses-a-case-file-another-agent-holds` — pending — `rule-spec-reconcile` stands `draft` — read: `- [ ] read` line of the 1343 Spec; `uv run pytest tests/test_ratified.py -k number_held`, and by hand the store entry the first Write of a live `case-guppi` leaves (method).
-- `estimate-spec-write-reaches-the-approved-spec` — pending — `rule-spec-write` stands `draft` — read: `- [ ] read` line of the 0311 Spec; pytest `-k approved_spec`, by hand a Case ratified in Work Mode (method).
-- `estimate-case-check-sends-back-a-faulty-case` — pending — `rule-case-check` stands `draft` — read: `- [ ] read` line of the 0311 Spec; pytest `-k subagent`, by hand a file sent back, fixed by Edit and passed, and a live round after a built Case (method).
-- `estimate-case-check-shows-only-the-checked-case` — pending — `rule-case-check` stands `draft` — read: `- [ ] read` line of the 0311 Spec; pytest `-k stop`, by hand the first reply the hook refuses (method).
-- `estimate-case-check-requires-a-backlog-item-decided-on-its-page` — pending — `rule-case-check` stands `draft` — read: `- [ ] read` line of the 0311 Spec; pytest `-k backlog`, by hand the first answer on an item taken from the backlog (method).
-- `estimate-permissions` — pending — `rule-permissions` stands `draft` — read: `- [ ] read` lines of the 0311 and 1343 Specs; the person's word on the client's prompt (method).
-- `estimate-ask-query-before-a-create` — pending — `rule-ask` stands `draft` — read: by hand at the `/hi` of a later session, a `case-guppi` that built a `create` without a `ref` (method).
-- `estimate-hi-writes-frontier` — pending — `rule-skill-hi` stands `draft` — read: by hand at the `/hi` of the session after the close of a sprint (method).
+- `estimate-ledger-write-refuses-a-reading-of-a-change-of-the-session` — pending — `rule-ledger-write` stands `draft` — read: `- [ ] read` line of the 1831 Spec; `uv run pytest tests/test_ledger.py` (method).
+- `estimate-retro-loads` — pending — `rule-retro` stands `draft` — read: `- [ ] read` line of the 1831 Spec; by hand, `.claude/skills/retro/SKILL.md` as rendered, against the Criterion (method).
+- `estimate-handoff-holds-each-fact-once` — pending — `rule-handoff` stands `draft` — read: `- [ ] read` line of the 1831 Spec; by hand, `.claude/skills/handoff/SKILL.md` as rendered, against the Criterion (method).
+- `estimate-prespec-hook-reports-a-method-that-waits-for-another-session` — pending — `rule-prespec-hook` stands `draft` — read: `- [ ] read` line of the 1831 Spec; `uv run pytest tests/test_prespec.py tests/test_lint.py -k waits` (method).
+- `estimate-hi-takes-its-readings` — pending — `rule-skill-hi` stands `draft` — read: `- [ ] read` line of the 1831 Spec; by hand, the skill file rendered from `rule-skill-hi`, against the Criterion (method).
+- `estimate-hi-writes-frontier` — pending — `rule-skill-hi` stands `draft` — read: `- [ ] read` line of the 1831 Spec; by hand at the `/hi` of the session after the close of a sprint; unit: the frontier findings of `guppi prespec --check` in `tests/test_prespec.py` (method).
+- `estimate-work-mode-takes-the-work-readings` — pending — `rule-work-mode` stands `draft` — read: `- [ ] read` line of the 1831 Spec; by hand, the skill file rendered from `rule-work-mode`, against the Criterion (method).
+- `estimate-case-check-sends-back-a-ratified-case-without-a-target` — pending — `rule-case-check` stands `draft` — read: `- [ ] read` line of the 1831 Spec; `uv run pytest tests/test_casecheck.py -k dropped_target` (method).
 - `estimate-hi-takes-a-conserved-spec` — pending — `rule-skill-hi` stands `draft` — read: `uv run guppi render --check`; by hand, a session that takes a conserved Spec, and the `/hi` after the close of a sprint (method).
 - `estimate-work-mode-runs-the-spec-on-a-branch-from-a-baseline` — pending — `rule-work-mode` stands `draft` — read: `uv run guppi render --check`; by hand, a `/work` at the fork, one that `/box` calls and the `/work` of a session that closes a sprint (method).
-- `estimate-brief-written` — pending — `rule-brief` stands `draft` — read: by hand at the `/hi` after the librarian's run of the session that closes a sprint (method). This run closed no sprint: no line of the 1616 Spec holds `guppi sprint-close`.
-- `estimate-backlog-renders` — pending — `rule-backlog` stands `draft` — read: `uv run pytest tests/test_backlog.py`, plus `vault/wiki/backlog.md` after the librarian's run of the session that closes a sprint (method). This run: `guppi backlog` exit 0, no stderr, `backlog.md` rewritten; no sprint closed.
-- `estimate-sprint-close-runs-in-the-librarian-run` — pending — `rule-sprint-close` stands `draft` — read: pytest `tests/test_sprint_close.py -k tick`; by hand after the librarian's run of the session that closes a sprint (method). This run: no `guppi sprint-close` line in the 1616 Spec, none run.
-- `estimate-sprint-close-next-session-opens-the-sprint` — pending — `rule-sprint-close` stands `draft` — read: pytest `tests/test_ledger.py -k sprint` and `tests/test_materialize.py -k sprint`; by hand at the librarian's run of the session after the close of a sprint (method). This run: the yaml's `sprint` is `migration`; `guppi sprint` exit 0, no stderr.
+- `estimate-brief-written` — pending — `rule-brief` stands `draft` — read: by hand at the `/hi` after the librarian's run of the session that closes a sprint (method). This run: no line of the 1831 Spec holds `guppi sprint-close`; none ran.
+- `estimate-backlog-renders` — pending — `rule-backlog` stands `draft` — read: `uv run pytest tests/test_backlog.py`, plus `vault/wiki/backlog.md` after the librarian's run of the session that closes a sprint (method). This run: `guppi backlog` exit 0, no stderr, `backlog.md` rewritten, 25 → 23 items; no sprint closed.
+- `estimate-sprint-close-runs-in-the-librarian-run` — pending — `rule-sprint-close` stands `draft` — read: pytest `tests/test_sprint_close.py -k tick`; by hand after the librarian's run of the session that closes a sprint (method). This run: no `guppi sprint-close` line in the 1831 Spec, none run; `vault/archive/` received 13 pages from `cleanup` under `migration/2026-10-05/1831/`.
+- `estimate-sprint-close-next-session-opens-the-sprint` — pending — `rule-sprint-close` stands `draft` — read: pytest `tests/test_ledger.py -k sprint` and `tests/test_materialize.py -k sprint`; by hand at the librarian's run of the session after the close of a sprint (method). This run: the yaml's `sprint` is `migration`; `guppi sprint` exit 0, no stderr, `sprint.md` unchanged.
 - `estimate-sprint-close-takes-the-readings-in-groups` — pending — `rule-sprint-close` stands `draft` — read: by hand after the Work Mode of the session that closes a sprint (method).
 - `estimate-sprint-migration-leftovers-gone` — pending — `entity-sprint-migration` stands `draft` — read: by hand in the Work Mode of the session that closes the sprint, before the librarian's run (method).
-- `estimate-sprint-migration-lint-clean` — pending — `entity-sprint-migration` stands `draft` — read: `make lint` in the Work Mode of the session that closes the sprint, before the librarian's run (method).
-- `estimate-sprint-migration-merges` — pending — `entity-sprint-migration` stands `draft` — read: `make test` on the last commit of migration, in the Work Mode of the session that closes it (method).
+- `estimate-sprint-migration-lint-clean` — pending — `entity-sprint-migration` stands `draft` — read: `make lint` in the Work Mode of the session that closes the sprint, before the librarian's run (method). This run: `make lint` 22 lines — 4 `deferred`, 18 `unread`.
+- `estimate-sprint-migration-merges` — pending — `entity-sprint-migration` stands `draft` — read: `make test` on the last commit of migration, in the Work Mode of the session that closes it (method). This run: `make test` 1258 passed, 6 skipped, on the working tree of this run.
+
+No Estimate stands `failed`.
 
 ## Flags
 
-- `incomplete: [criterion]` on L25 (`estimate-synthesis-reads-the-status-the-run-sets`) and L36 (`estimate-synthesis-reads-the-status-its-yaml-sets`, case 663); both carry `superseded_by: '668'` and were not applied; L37 of case 668 created the page whole.
-- No entry marked `failed` or `near`; `unparsed: []`.
-- Failed Estimates: `estimate-case-build-checks-the-finished-case`, `estimate-case-protocol-case-form`, `estimate-prespec-confirms-the-findings-once` (put off by 667, 665, 666).
-- Stale defers, from the lint: `rule-subagent-guppi` deferred 31 times since case 29; `rule-complaint-becomes-a-lesson` (since case 504), `rule-ledger-line-withdrawn-on-re-ratification` (since case 594), `rule-morph` (since case 239), `rule-prespec-judges-the-spec-whole` (since case 643), 1 time each.
+- No entry marked `incomplete`, `failed` or `near`; `unparsed: []`.
+- `generate` stdout: L41, L42 and L43 (669.6, 669.7, 669.10 with `{supersedes}` marks) repeat L16, L17 and L20; nothing applied for them; the yaml marks all three `applied`.
+- Failed Estimates: none.
+- 11 `- [ ] read` boxes stay open for Estimates that 669 set `passed`: 5 in the 0311 Spec (`estimate-spec-write-reaches-the-approved-spec`, `estimate-case-build-writes-the-case`, `estimate-case-check-sends-back-a-faulty-case`, `estimate-case-check-shows-only-the-checked-case`, `estimate-case-check-requires-a-backlog-item-decided-on-its-page`) and 6 in the 1616 Spec (`estimate-prespec-catches-a-superseded-case`, `estimate-retro-leaves-out-the-sub-cases-of-a-superseded-case`, `estimate-case-build-writes-the-case`, `estimate-orchestration-shows-the-built-case`, `estimate-search-leaves-out-decisions-in-every-agent`, `estimate-synthesis-reads-the-status-its-yaml-sets`); no script of this run ticked them.
+- Handoff, Direct instructions: "`backlog.md` should then count one item fewer" — it counts two fewer (25 → 23); the actioned `insight-ledger-ratified-line-never-withdrawn` left it too.
+- Handoff, Observations: a re-ratification that only adds `{supersedes}` marks leaves the first ledger line beside the marked one (669.6, 669.7, 669.10); the check of 671.1 does not catch it.
+- Handoff, Observations: the Estimates 670 updates keep their old methods, and several name a later `/hi`; the finding of 670.4 judges only a method a plan writes.
+- Stale defers, from the lint: `rule-subagent-guppi` deferred 31 times since case 29; `rule-complaint-becomes-a-lesson` (since case 504), `rule-morph` (since case 239), `rule-prespec-judges-the-spec-whole` (since case 643), 1 time each.
 - MOC candidates: none found. Contradictions: none found.
-- The lint: 39 lines — 5 `deferred`, 34 `unread` (31 pending, 3 failed); no other finding; `make lint` exits red.
-- Handoff, Notes from memory: the person did not see the defers 665, 666 and 667 before they were written; the person's "Идём работать" was taken as the close of Plan Mode.
-- Handoff, Observations: `supersede_children` of `generate` finds a child page only when it stands; an order where the superseding record comes before the parent's page is not covered by a test.
-- Handoff, Observations: `estimate-ask-searches-at-prespec` failed at L4, and 664.3 then replaced its Criterion and set it `pending`; the failure stands in the ledger before the update.
+- The lint: 22 lines — 4 `deferred`, 18 `unread` (18 pending); no other finding; `make lint` exits red.
+- Read beyond the frame: a Grep of `sprint-close` over the whole 1831 `spec.md` printed part of line 375, a `then` block line, beside its unticked lines; step 2 needed it to find a `guppi sprint-close` task line (none found).
+- Read beyond the frame: line 11 of the 1831 `spec.md`, a quoted frame line the Grep of `- [ ]` matched and cut; Readings due and Next session needed to see whether it was a task line (it is not).
 
 ## Next session
 
 Cases:
-- `estimate-ask-searches-at-prespec` failed (L4): in two of three ask-guppi runs a Read came between the rules Grep and the Greps of the other categories — whether the frame of `ask-guppi` or the Criterion changes (handoff, For the next session).
-- A renamed or dropped target of a ratified Case needs a new number, and no check says so before the Spec hook; `rule-ledger-line-withdrawn-on-re-ratification` stands in the backlog, and `insight-ledger-ratified-line-never-withdrawn` is open on the same cause (handoff, For the next session).
-- C1 and C2 of the sprint were left for a later session (handoff, For the next session).
-- `estimate-case-build-checks-the-finished-case` failed, put off by 667 (and earlier by 647, 657).
-- `estimate-case-protocol-case-form` failed, put off by 665.
-- `estimate-prespec-confirms-the-findings-once` failed, put off by 666.
+- Under 670.5 the next `/hi` reads no transcript, and an open W line it cannot take from files and commands becomes a Cases line; `estimate-hi-takes-its-readings` and `estimate-handoff-holds-each-fact-once` name a later session in their methods — whether their methods are rewritten to run in their own session (handoff, For the next session).
+- The two ledger lines each for 669.6, 669.7 and 669.10: whether a re-ratification that changes only marks needs a check or a rule (handoff, For the next session; `generate` applied the second line of each as nothing).
+- C3 `rule-sprint-close` and C4 the close of migration stay for the session that closes the sprint (handoff, For the next session).
+- 11 `- [ ] read` boxes of the 0311 and 1616 Specs stand open for Estimates set `passed` by 669, and no script ticks them (this run's `git diff` of the Specs).
 
 Work:
-- `estimate-prespec-catches-a-superseded-case`
-- `estimate-materialize-marks-superseded`
-- `estimate-generate-writes-the-decision-page`
-- `estimate-retro-leaves-out-the-sub-cases-of-a-superseded-case`
-- `estimate-orchestration-showing-example-passes-the-check`
-- `estimate-orchestration-defer-example-passes-the-hook`
-- `estimate-case-build-writes-the-case`
-- `estimate-orchestration-shows-the-built-case`
-- `estimate-case-check-sends-back-a-summary-without-the-case-name`
-- `estimate-search-leaves-out-decisions-by-the-grep-hook`
-- `estimate-search-leaves-out-decisions-in-every-agent`
-- `estimate-ask-searches-at-prespec`
-- `estimate-synthesis-reads-the-status-its-yaml-sets`
-- `estimate-spec-reconcile-refuses-a-case-file-another-agent-holds`
-- `estimate-spec-write-reaches-the-approved-spec`
-- `estimate-case-check-sends-back-a-faulty-case`
-- `estimate-case-check-shows-only-the-checked-case`
-- `estimate-case-check-requires-a-backlog-item-decided-on-its-page`
-- `estimate-ask-query-before-a-create`
+- `estimate-ledger-write-refuses-a-reading-of-a-change-of-the-session`
+- `estimate-retro-loads`
+- `estimate-handoff-holds-each-fact-once`
+- `estimate-prespec-hook-reports-a-method-that-waits-for-another-session`
+- `estimate-hi-takes-its-readings`
 - `estimate-hi-writes-frontier`
+- `estimate-work-mode-takes-the-work-readings`
+- `estimate-case-check-sends-back-a-ratified-case-without-a-target`
 - `estimate-hi-takes-a-conserved-spec`
 - `estimate-work-mode-runs-the-spec-on-a-branch-from-a-baseline`
 - `estimate-brief-written`
@@ -112,13 +85,13 @@ Work:
 - `estimate-sprint-migration-leftovers-gone`
 - `estimate-sprint-migration-lint-clean`
 - `estimate-sprint-migration-merges`
-- Ledger lines this run did not apply: L25, L26, L27 and L36 of the 1616 ledger (case 663), superseded by case 668; the ledger holds 43 lines and the yaml an entry for each.
+- Ledger lines this run did not apply: none skipped; the ledger holds 48 lines and the yaml an entry for each; L41–L43 were marked `applied` with nothing applied, as repeats of L16, L17 and L20.
 
 Ask the person:
-- `estimate-permissions` — needs the person — in a session after the render of `.claude/settings.json`, did a Read, Grep or Glob of `case-guppi` under `~/.claude/projects/c--PROJECTS-GUPPI/` ask for permission? (No `case-guppi` of session 1616 made such a call.)
+- none
 
 ## Readings at the close
 
-- `make test`: 1244 passed, 6 skipped.
-- `make lint`: 39 lines — 5 `deferred`, 34 `unread`; red.
-- Pages: decisions 1146, estimates 221, rules 79, lessons 81, insights 31, entities 4; `vault/archive/` 850 pages.
+- `make test`: 1258 passed, 6 skipped.
+- `make lint`: 22 lines — 4 `deferred`, 18 `unread`; red.
+- Pages: decisions 1164, estimates 223, rules 78, lessons 80, insights 31, entities 4; `vault/archive/` 863 pages.

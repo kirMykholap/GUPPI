@@ -2,7 +2,7 @@
 type: rule
 kind: Leaf
 purpose: Prevents a create from being proposed without the vault having been asked whether it already holds the thing, or forbids it
-status: draft
+status: built
 enforcement: render
 governs: .claude/agents/ask-guppi.md
 render_mode: full
@@ -91,3 +91,4 @@ At `/pre-spec`, where the caller names the Case you judge — that Case and its 
 - 2026-10-04 updated: ask-guppi answers the confirmation of its own findings at pre-spec with no Grep, one line per finding, closed or not closed, no new finding (case 634.2) · [[decision-case-634.2]]
 - 2026-10-05 updated: the confirmation answer gives each finding a verdict line and at most three sentences on why, then the list of what was not checked in the form of the first answer, then the list of the files read, and nothing else (case 638) · [[decision-case-638]]
 - 2026-10-05 updated: under a question of the first answer at /pre-spec stand only its findings or "none", no sentence on what holds; the list of what was not checked ends with a line per search rule broken, of the frame or of .claude/rules/search-leaves-out-decisions.md (case 639) · [[decision-case-639]]
+- 2026-10-05 status: draft → built · cascade

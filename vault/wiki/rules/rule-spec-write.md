@@ -2,7 +2,7 @@
 type: rule
 kind: Leaf
 purpose: Prevents a ratified Case from entering the Spec in other words than the Case case-guppi wrote into its file, whose given, when, then, tasks and ratification the person signed and the check of rule-case-check stored
-status: draft
+status: built
 enforcement: hook
 implementation_ref: [guppi/ratified.py, tests/test_ratified.py, .claude/settings.json]
 parent: "[[rule-plan-mode]]"
@@ -65,3 +65,4 @@ Prevents a ratified Case from entering the Spec in other words than the Case `ca
 - 2026-10-05 estimate estimate-spec-write-refuses-a-changed-case-file added · [[decision-case-645.5]]
 - 2026-10-05 updated: the hook copies the text of the file case-guppi wrote, as the check stored it, and writes nothing of a Case whose file differs from it; the purpose follows (case 645.5) · [[decision-case-645.5]]
 - 2026-10-05 estimate estimate-spec-write-tells-each-reason-once added · [[decision-case-644.8]]
+- 2026-10-05 status: draft → built · cascade

@@ -2,7 +2,7 @@
 type: rule
 kind: Leaf
 purpose: Prevents a set of ratified decisions from reaching the Spec with a contradiction between them or with the vault
-status: draft
+status: built
 enforcement: render
 governs: .claude/skills/pre-spec/SKILL.md
 render_mode: full
@@ -187,3 +187,4 @@ Inside this loop the rule of `vault/wiki/orchestration.md` that no Case is taken
 - 2026-10-04 estimate estimate-prespec-confirms-the-findings-once added · [[decision-case-634.2]]
 - 2026-10-04 status: built → draft · cascade
 - 2026-10-05 updated: the confirmation message of step 6 asks only whether each finding is closed and invites no new finding (case 638) · [[decision-case-638]]
+- 2026-10-05 status: draft → built · cascade

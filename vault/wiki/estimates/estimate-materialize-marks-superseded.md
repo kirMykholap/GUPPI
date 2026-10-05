@@ -1,11 +1,11 @@
 ---
 type: estimate
 kind: QA
-status: pending
+status: passed
 target: "[[rule-materialize]]"
 purpose: A supersedes marks every entry of the earlier Case, in any unit
 method: pytest in tests/test_materialize.py, the tests of the supersedes mark, plus one live reading of a librarian's run
-checked: 2026-09-26
+checked: 2026-10-05
 origin: raw/2026-09-16/1034/ledger.md#case-189
 sprint: migration
 created: 2026-09-16
@@ -29,7 +29,7 @@ For each Case N that a block of the line names, every entry with `case: N` gets 
 
 ## Result
 
-2026-09-26, `uv run pytest -q tests/test_materialize.py` and the librarian's run af86af6; 80 passed, and live case 430's four blocks landed as a list in block order with only the superseded_by mark written into the yamls of units 0051 and 1228
+2026-10-05, /hi of 1831, uv run pytest tests/test_materialize.py 129 passed; live: the 1616 librarian transcript shows guppi materialize exit=0; raw/2026-10-05/1616/materialize.yaml L25, L26, L27, L36 (case 663) carry superseded_by 668, L37-L39 carry supersedes ['663'] as a list, the decisions record 663 carries superseded_by [decision-case-668] with no case_text and no incomplete, the 1343 records 653, 653.1, 653.2 carry decision-case-658 beside decision-case-659, no entry without case carries a mark; L25 and L36 carry incomplete: [criterion], not [then]
 
 ## History
 
@@ -45,3 +45,4 @@ For each Case N that a block of the line names, every entry with `case: N` gets 
 - 2026-09-25 updated: the Criterion replaced whole — a decision line may carry several {supersedes:case N} blocks, and each named Case is marked (case 429) · [[decision-case-429]]
 - 2026-09-26 status: pending → passed · raw/2026-09-26/1745/ledger.md#L32
 - 2026-10-05 updated: the Criterion replaced whole — a tag marks the Case and its sub-cases, by in_family (case 660.2) · [[decision-case-660.2]]
+- 2026-10-05 status: pending → passed · raw/2026-10-05/1831/ledger.md#L5

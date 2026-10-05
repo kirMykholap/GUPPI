@@ -87,7 +87,7 @@ update:
 - [x] `guppi/casecheck.py`: one function reads N from the name `case-<N>.md`, beside `case_file`; the module docstring says that the guard writes the entry of a held number, with an `agent_id` and no text, which the check replaces.
 - [x] `guppi/ratified.py`: the guard finds the plan file of the session and its store; it refuses a call of `case-guppi` on `case-<N>.md` when `clashes` finds another holder, the reason naming the file and the number of `new_number`; a call that passes with no entry under N writes the entry of the held number; the module docstring and the docstring of `guard_refusal` say the same.
 - [x] `tests/test_ratified.py`: tests `-k number_held` — a first `Write` of `case-guppi` passes and writes the entry with its `agent_id`; a `Write` and an `Edit` of another `agent_id` on that file are refused, the reason naming a free number, and the event log holds the refusal; the same `agent_id` passes; an entry with no `agent_id`, a call with no `agent_id` and a session with no plan file are let through and write nothing; a store that cannot be read or written lets the call through with exit 0 and one line on stderr.
-- [ ] read `estimate-spec-reconcile-refuses-a-case-file-another-agent-holds`
+- [x] read `estimate-spec-reconcile-refuses-a-case-file-another-agent-holds`
 ```
 
 ### Case 650.2 — The check of the guard leaves a held number to its own check
@@ -629,7 +629,7 @@ update:
 - [x] update `estimate-permissions`
 - [x] update `rule-settings`
 - [x] `uv run guppi render`: `.claude/settings.json`
-- [ ] read `estimate-permissions`
+- [x] read `estimate-permissions`
 ```
 
 ## Deferred

@@ -120,7 +120,7 @@ update:
 - [x] update `estimate-materialize-marks-superseded`
 - [x] update `entity-glossary`
 - [x] `uv run guppi glossary`
-- [ ] read `estimate-materialize-marks-superseded`
+- [x] read `estimate-materialize-marks-superseded`
 ```
 
 ### Case 660.3 — A superseded Decision page takes the pages of its sub-cases with it
@@ -184,7 +184,7 @@ update:
 - [x] update `entity-glossary`
 - [x] `uv run guppi render`: `vault/wiki/decisions/schema.yaml`
 - [x] `uv run guppi glossary`
-- [ ] read `estimate-generate-writes-the-decision-page`
+- [x] read `estimate-generate-writes-the-decision-page`
 ```
 
 ### Case 660.4 — Retro and the handoff leave out the sub-cases of a superseded Case
@@ -285,7 +285,7 @@ update:
 ```tasks
 - [x] update `estimate-orchestration-showing-example-passes-the-check`
 - [x] `tests/test_orchestration.py`: `example` calls `pytest.fail` with a message that names the file and the tag, in place of `pytest.skip`, when the page holds no block tagged that tag; the module docstring says the tests fail then and drops the sentences on the skip.
-- [ ] read `estimate-orchestration-showing-example-passes-the-check`, at the `/hi` of a later session
+- [x] read `estimate-orchestration-showing-example-passes-the-check`, at the `/hi` of a later session
 ```
 
 ### Case 661.2 — The defer tests fail when the page holds no defer example
@@ -321,7 +321,7 @@ update:
 
 ```tasks
 - [x] update `estimate-orchestration-defer-example-passes-the-hook`
-- [ ] read `estimate-orchestration-defer-example-passes-the-hook`, at the `/hi` of a later session
+- [x] read `estimate-orchestration-defer-example-passes-the-hook`, at the `/hi` of a later session
 ```
 
 ## Case 662 — The summary of case-guppi names the Case it built, and the heading of a showing takes that name
@@ -510,7 +510,7 @@ update:
 - [x] update `rule-case-check`
 - [x] `guppi/casecheck.py`: in `subagent`, when the subagent wrote a file of `cases/` and its newest output opens with `**Built:**`, one function compares the `**Case:**` lines of that output with the top-level heading of each written file, read by `CASE_HEADING` of `guppi/materialize.py`, compares the id and the name of the line with those of the heading, not the whole line, and gives a finding for each one missing or different; the guard against a loop keys on the text of the summary, trailing spaces aside, and the heading of the file together, so an earlier summary with the same text gives no finding again only while the heading stands as it was; the findings join those of the files in one `send_back`; the module docstring describes the check.
 - [x] `tests/test_casecheck.py`: tests named `summary_names_the_case` for each line of the `then`; the helpers that write a summary — the one beside `case_path` and `built` — give it its `**Case:**` line, so the tests of a passing file still pass.
-- [ ] read `estimate-case-check-sends-back-a-summary-without-the-case-name`, at the `/hi` of a later session
+- [x] read `estimate-case-check-sends-back-a-summary-without-the-case-name`, at the `/hi` of a later session
 ```
 
 ## Case 664 — A hook leaves the Decision pages out of every search
@@ -622,7 +622,7 @@ update:
 - [x] `tests/test_grepguard.py`: one test per line of the `then`, among them a Grep with no path, a Grep with the exclusion first, a Grep whose path is `vault/wiki/decisions/`, and a Grep whose path is one file.
 - [x] `uv run guppi render`: `.claude/settings.json`
 - [x] `uv run guppi render`: `.claude/rules/search-leaves-out-decisions.md`
-- [ ] read `estimate-search-leaves-out-decisions-by-the-grep-hook`
+- [x] read `estimate-search-leaves-out-decisions-by-the-grep-hook`
 ```
 
 ### Case 664.2 — The rule file loads and a Decision page is read only for a reason of the frame
@@ -694,7 +694,7 @@ update:
 
 ```tasks
 - [x] update `estimate-ask-searches-at-prespec`
-- [ ] read `estimate-ask-searches-at-prespec`
+- [x] read `estimate-ask-searches-at-prespec`
 ```
 
 ## Case 668 — A lesson reopens an Insight that a decision of its own session sets actioned

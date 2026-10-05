@@ -1,8 +1,9 @@
 ---
 type: decision
 case: "630"
-status: current
+status: archived
 defer: ["[[estimate-spec-write-reaches-the-approved-spec]]"]
+superseded_by: ["[[decision-case-669.7]]"]
 origin: raw/2026-10-04/1439/ledger.md#case-630
 sprint: migration
 created: 2026-10-04
@@ -26,3 +27,6 @@ A Case ratified after the approval reaches spec.md from its stored answer; its r
 ## History
 
 - 2026-10-04 created · raw/2026-10-04/1439/ledger.md#case-630
+- 2026-10-05 superseded by decision-case-669.7 · [[decision-case-669.7]]
+- 2026-10-05 archived · superseded
+- 2026-10-05 archived · cleanup

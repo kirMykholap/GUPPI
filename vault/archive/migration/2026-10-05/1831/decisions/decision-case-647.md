@@ -1,8 +1,9 @@
 ---
 type: decision
 case: "647"
-status: current
+status: archived
 defer: ["[[estimate-case-build-checks-the-finished-case]]"]
+superseded_by: ["[[decision-case-669.12]]"]
 origin: raw/2026-10-05/0311/ledger.md#case-647
 sprint: migration
 created: 2026-10-05
@@ -26,3 +27,6 @@ Whether case-guppi checks its finished Case before it answers, counted by what a
 ## History
 
 - 2026-10-05 created · raw/2026-10-05/0311/ledger.md#case-647
+- 2026-10-05 superseded by decision-case-669.12 · [[decision-case-669.12]]
+- 2026-10-05 archived · superseded
+- 2026-10-05 archived · cleanup

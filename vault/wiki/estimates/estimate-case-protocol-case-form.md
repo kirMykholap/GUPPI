@@ -1,7 +1,7 @@
 ---
 type: estimate
 kind: QA
-status: failed
+status: passed
 target: "[[rule-case-protocol]]"
 purpose: A built Case carries the whole contract in given, when and then, in the file the person is sent
 method: one reading by hand of the Cases of a session, at its close
@@ -31,7 +31,7 @@ The file opens with the heading `## Case N — name`, a sub-case with `### Case 
 
 ## Result
 
-2026-10-05, by hand at the Work readings of session 1343, cases/case-650.md to case-656.md against vault/wiki/case-schema.md: headings, sub-cases in one file, sections in the order of the table each one blockquote, context opening with the mechanism, recommend as the table sets, ＋/－ lines, tasks naming each Estimate with sub-points and no by-hand box after Work Mode, one untagged fence of ledger lines, a plain question at each showing, no complaint of the person; failed: `given` holds two things on a line in 650.1, 650.2 (`guppi/ratified.py` and `tests/test_ratified.py`), 653.1 and 654, and states state in 656 ("on the allow list", "with `permissionMode: acceptEdits`") and 653.1; `then` of 652 holds a count ("both tests of `tests/test_case_schema.py` fail"); the passed reading of 2026-10-03 accepted paired `given` lines of the same form in cases 607–610
+2026-10-05, Plan Mode of session 1831, case 669: set passed by the person's decision, without a reading; a problem seen later in what this Estimate promises comes back as a lesson; the defer of case 665 retired. The last reading before it, which left the page failed: 2026-10-05, by hand at the Work readings of session 1343, cases/case-650.md to case-656.md against vault/wiki/case-schema.md: headings, sub-cases in one file, sections in the order of the table each one blockquote, context opening with the mechanism, recommend as the table sets, ＋/－ lines, tasks naming each Estimate with sub-points and no by-hand box after Work Mode, one untagged fence of ledger lines, a plain question at each showing, no complaint of the person; failed: `given` holds two things on a line in 650.1, 650.2 (`guppi/ratified.py` and `tests/test_ratified.py`), 653.1 and 654, and states state in 656 ("on the allow list", "with `permissionMode: acceptEdits`") and 653.1; `then` of 652 holds a count ("both tests of `tests/test_case_schema.py` fail"); the passed reading of 2026-10-03 accepted paired `given` lines of the same form in cases 607–610
 
 ## History
 
@@ -67,3 +67,4 @@ The file opens with the heading `## Case N — name`, a sub-case with `### Case 
 - 2026-10-05 updated: the Criterion replaced whole — case-guppi writes the file of the Case and the hook checks it (case 645.10) · [[decision-case-645.10]]
 - 2026-10-05 status: pending → failed · raw/2026-10-05/1343/ledger.md#L38
 - 2026-10-05 deferred · [[decision-case-665]]
+- 2026-10-05 updated: set passed by the person's decision, without a reading; the Criterion kept; a problem seen later comes back as a lesson; the defer of case 665 retired (case 669) · [[decision-case-669.13]]

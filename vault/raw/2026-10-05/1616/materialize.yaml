@@ -1047,6 +1047,7 @@ entries:
       sent; its failed reading of session 1343 put off by session 1616
   exists: true
   applied: '18:20:54'
+  superseded_by: '669.13'
 - line: 34
   text: decision[case 666][defer][estimate-prespec-confirms-the-findings-once]{ref:estimate-prespec-confirms-the-findings-once}
   case: '666'
@@ -1062,6 +1063,7 @@ entries:
       sentences per finding; its failed reading of session 1343 put off by session 1616
   exists: true
   applied: '18:20:54'
+  superseded_by: '669.14'
 - line: 35
   text: decision[case 667][defer][estimate-case-build-checks-the-finished-case]{ref:estimate-case-build-checks-the-finished-case}
   case: '667'
@@ -1077,6 +1079,7 @@ entries:
       still finds at pre-spec; its failed reading of session 0109 put off by session 1616
   exists: true
   applied: '18:20:54'
+  superseded_by: '669.12'
 - line: 36
   text: decision[case 663][create][estimate-synthesis-reads-the-status-its-yaml-sets]{ref:rule-synthesis}{tags:harness,workflow,librarian}
   case: '663'
@@ -2913,6 +2916,8 @@ decisions:
       such as a module and its test on one line.
   spec: vault/raw/2026-10-05/1616/spec.md
   applied: '18:20:54'
+  superseded_by:
+  - decision-case-669.13
 - case: '666'
   decision: decision-case-666
   origin: raw/2026-10-05/1616/ledger.md#case-666
@@ -2930,6 +2935,8 @@ decisions:
       changes.
   spec: vault/raw/2026-10-05/1616/spec.md
   applied: '18:20:54'
+  superseded_by:
+  - decision-case-669.14
 - case: '667'
   decision: decision-case-667
   origin: raw/2026-10-05/1616/ledger.md#case-667
@@ -2947,6 +2954,8 @@ decisions:
       Estimate changes.
   spec: vault/raw/2026-10-05/1616/spec.md
   applied: '18:20:54'
+  superseded_by:
+  - decision-case-669.12
 - case: '668'
   decision: decision-case-668
   origin: raw/2026-10-05/1616/ledger.md#case-668

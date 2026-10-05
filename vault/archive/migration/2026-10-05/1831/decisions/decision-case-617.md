@@ -1,8 +1,9 @@
 ---
 type: decision
 case: "617"
-status: current
+status: archived
 defer: ["[[estimate-orchestration-shows-the-built-case]]"]
+superseded_by: ["[[decision-case-669.10]]"]
 origin: raw/2026-10-03/1341/ledger.md#case-617
 sprint: migration
 created: 2026-10-03
@@ -26,3 +27,6 @@ Whether the main agent shows each built Case by its file, its list and its ratif
 ## History
 
 - 2026-10-03 created · raw/2026-10-03/1341/ledger.md#case-617
+- 2026-10-05 superseded by decision-case-669.10 · [[decision-case-669.10]]
+- 2026-10-05 archived · superseded
+- 2026-10-05 archived · cleanup

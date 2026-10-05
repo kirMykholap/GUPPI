@@ -1,11 +1,11 @@
 ---
 type: estimate
 kind: QA
-status: pending
+status: passed
 target: "[[rule-case-check]]"
 purpose: The main agent shows a Case only as case-guppi answered it and the checks passed it
 method: uv run pytest tests/test_casecheck.py -k stop, then by hand the first reply the hook refuses
-checked: 2026-10-02
+checked: 2026-10-05
 origin: raw/2026-09-25/1228/ledger.md#case-419.4
 sprint: migration
 created: 2026-09-25
@@ -30,7 +30,7 @@ Then:
 
 ## Result
 
-2026-10-02, uv run pytest tests/test_casecheck.py -k stop: 25 passed; by hand, session 1834: the Stop check refused the first showing of case 595, whose ratification fence stood outside the quoted section, with "case 595: its ratification differ from the answer of case-guppi"; the showing again with the fence inside the blockquote passed
+2026-10-05, Plan Mode of session 1831, case 669: set passed by the person's decision, without a reading; a problem seen later in what this Estimate promises comes back as a lesson. The last reading before it, which left the page pending: 2026-10-02, uv run pytest tests/test_casecheck.py -k stop: 25 passed; by hand, session 1834: the Stop check refused the first showing of case 595, whose ratification fence stood outside the quoted section, with "case 595: its ratification differ from the answer of case-guppi"; the showing again with the fence inside the blockquote passed
 
 ## History
 
@@ -41,3 +41,4 @@ Then:
 - 2026-10-01 updated: the Criterion replaced whole - one ratification under the heading of a top-level Case is the showing of each sub-case its lines name (case 561.10) · [[decision-case-561.10]]
 - 2026-10-02 status: pending → passed · raw/2026-10-02/1834/ledger.md#L39
 - 2026-10-05 updated: the Criterion replaced whole — a showing passes only when the file of the Case equals the store too (case 645.11) · [[decision-case-645.11]]
+- 2026-10-05 updated: set passed by the person's decision, without a reading; the Criterion kept; a problem seen later comes back as a lesson (case 669) · [[decision-case-669.5]]

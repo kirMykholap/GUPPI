@@ -1,11 +1,11 @@
 ---
 type: estimate
 kind: QA
-status: pending
+status: passed
 target: "[[rule-page-generation]]"
 purpose: One Decision page per Case, written before its entries, with its lists, its body and its defers
 method: pytest tests/test_generate.py, the tests of the decision page; the live reading in the librarian's run
-checked: 2026-09-30
+checked: 2026-10-05
 origin: raw/2026-09-16/1955/ledger.md#case-201.2
 sprint: migration
 created: 2026-09-16
@@ -34,7 +34,7 @@ One page `vault/wiki/decisions/decision-case-<N>.md` is written: `case`, `status
 
 ## Result
 
-2026-09-30, uv run pytest tests/test_generate.py -k decision: 11 passed (the whole file 103 passed); by hand, git show --name-status 070d8e6: 24 Decision pages added (23 under wiki/decisions, decision-case-545 under the archive), decision-case-480 moved to the archive with status archived and superseded_by 544.1, no other existing Decision page modified; 544 and 534 carry children, no kind list and ## Problem alone; 544.1 carries parent, its lists, supersedes 480 and no ## Problem; 546 carries ## Context, ## Problem and ## Deferred with the purpose of rule-orchestration verbatim; 545 carries the two-line body of case 299; rule-orchestration deferred_by 424 and 546; the archived rule-case-build-checks-its-sub-cases carries no deferred_by; the History of rule-case-build names decision-case-544.1; no page carries ## Recommend; the sub-case pages of 534 written in session 0248 carry no parent, not rewritten; the tags union and source were not checked
+2026-10-05, /hi of 1831, uv run pytest tests/test_generate.py 106 passed; live: the 1616 librarian transcript shows guppi generate exit=0, 59 pages for 1616; decision-case-660 carries children of four sub-case pages, no kind list, Problem and Recommend; decision-case-660.1 carries parent and no Problem; decision-case-665 carries Context, Problem and Deferred with the purpose; decision-case-668 carries supersedes; decision-case-663 superseded_by decision-case-668 with the two-line body, archived under vault/archive/migration/2026-10-05/1616/decisions/; no superseded parent with children was met
 
 ## History
 
@@ -53,3 +53,4 @@ One page `vault/wiki/decisions/decision-case-<N>.md` is written: `case`, `status
 - 2026-09-30 updated: the Criterion replaced whole — Recommend on the page, a page for a parent Case with children and no Context, parent on a sub-case page and no Problem there (case 544.7) · [[decision-case-544.7]]
 - 2026-09-30 status: pending → passed · raw/2026-09-30/1736/ledger.md#L2
 - 2026-10-05 updated: the Criterion replaced whole — a superseded page takes the pages of its children with it (case 660.3) · [[decision-case-660.3]]
+- 2026-10-05 status: pending → passed · raw/2026-10-05/1831/ledger.md#L6

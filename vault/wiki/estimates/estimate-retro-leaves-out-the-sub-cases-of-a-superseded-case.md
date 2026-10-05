@@ -1,10 +1,11 @@
 ---
 type: estimate
 kind: QA
-status: pending
+status: passed
 target: "[[rule-retro]]"
 purpose: Whether Retro and the handoff leave out the sub-cases of a Case that a supersedes tag names
 method: "by hand at a /retro whose session ledger holds a {supersedes:case N} on a Case N whose sub-cases have decision lines: the debt Retro sorts and the Cases that handoff.md lists"
+checked: 2026-10-05
 origin: raw/2026-10-05/1616/ledger.md#case-660.4
 sprint: migration
 created: 2026-10-05
@@ -21,6 +22,11 @@ Retro counts no line of Case N or of any of its sub-cases as debt.
 **＋** The `## What actually got done` section of `handoff.md` lists neither Case N nor any of its sub-cases among the Cases ratified.
 **－** A tag that names Case N.M leaves out N.M and its own sub-cases only; the parent and its other sub-cases are counted.
 
+## Result
+
+2026-10-05, Plan Mode of session 1831, case 669: set passed by the person's decision, without a reading; a problem seen later in what this Estimate promises comes back as a lesson. No reading was taken before it.
+
 ## History
 
 - 2026-10-05 created · [[decision-case-660.4]]
+- 2026-10-05 updated: set passed by the person's decision, without a reading; the Criterion kept; a problem seen later comes back as a lesson (case 669) · [[decision-case-669.2]]

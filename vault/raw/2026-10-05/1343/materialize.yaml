@@ -841,6 +841,7 @@ entries:
       still finds at pre-spec; failed at L22 of session 0109, put off by sessions 0311 and 1343
   exists: true
   applied: '16:08:37'
+  superseded_by: '669.12'
 - line: 29
   text: decision[case 658][defer][estimate-case-check-sends-back-a-faulty-case]{ref:estimate-case-check-sends-back-a-faulty-case}{supersedes:case
     653}
@@ -891,6 +892,7 @@ entries:
       1343 until estimate-case-build-writes-the-case passes live
   exists: true
   applied: '16:08:37'
+  superseded_by: '669.6'
 - line: 32
   text: 'estimate[estimate-spec-write-copies-the-ratified-case][passed] 2026-10-05, by hand at the Work
     readings of session 1343: uv run pytest -q tests/test_ratified.py -k write 61 passed; the plan file
@@ -2493,6 +2495,8 @@ decisions:
       Estimate changes.
   spec: vault/raw/2026-10-05/1343/spec.md
   applied: '16:08:37'
+  superseded_by:
+  - decision-case-669.12
 - case: '658'
   decision: decision-case-658
   origin: raw/2026-10-05/1343/ledger.md#case-658
@@ -2531,6 +2535,8 @@ decisions:
   - decision-case-653.1
   - decision-case-653.2
   applied: '16:08:37'
+  superseded_by:
+  - decision-case-669.6
 - case: '650'
   decision: decision-case-650
   origin: raw/2026-10-05/1343/ledger.md#case-650

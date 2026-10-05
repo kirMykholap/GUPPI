@@ -2,11 +2,11 @@
 type: rule
 kind: Leaf
 purpose: Prevents a Spec from being approved before its decisions were checked against each other and the vault
-status: built
+status: draft
 enforcement: hook
 implementation_ref: [guppi/prespec.py, .claude/settings.json]
 parent: "[[rule-plan-mode]]"
-estimates: ["[[estimate-prespec-hook-gates]]"]
+estimates: ["[[estimate-prespec-hook-gates]]", "[[estimate-prespec-hook-reports-a-method-that-waits-for-another-session]]"]
 origin: raw/2026-09-09/ledger.md#case-24.1
 sprint: migration
 created: 2026-09-09
@@ -40,3 +40,5 @@ with the session's ledger lines and frontier (cases 59.1–59.3, 59.6); `/pre-sp
 - 2026-10-01 updated: the hook on ExitPlanMode refuses while the check of the plan prints a finding (case 561.3) · [[decision-case-561.3]]
 - 2026-10-01 status: built → draft · cascade
 - 2026-10-01 status: draft → built · cascade
+- 2026-10-05 estimate estimate-prespec-hook-reports-a-method-that-waits-for-another-session added · [[decision-case-670.4]]
+- 2026-10-05 status: built → draft · cascade

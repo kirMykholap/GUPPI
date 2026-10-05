@@ -1,8 +1,9 @@
 ---
 type: decision
 case: "666"
-status: current
+status: archived
 defer: ["[[estimate-prespec-confirms-the-findings-once]]"]
+superseded_by: ["[[decision-case-669.14]]"]
 origin: raw/2026-10-05/1616/ledger.md#case-666
 sprint: migration
 created: 2026-10-05
@@ -26,3 +27,6 @@ The ask-guppi runs confirm their own findings once on the Cases built again, at 
 ## History
 
 - 2026-10-05 created · raw/2026-10-05/1616/ledger.md#case-666
+- 2026-10-05 superseded by decision-case-669.14 · [[decision-case-669.14]]
+- 2026-10-05 archived · superseded
+- 2026-10-05 archived · cleanup

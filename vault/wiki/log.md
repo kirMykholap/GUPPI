@@ -6668,3 +6668,129 @@ instruction. The global feed; a page's own `## History` is the per-page view.
 - 2026-10-05 rules/rule-retro status: built → draft · cascade · generate
 - 2026-10-05 decisions/decision-case-663 archived · superseded · generate
 - 2026-10-05 decisions/decision-case-663 archived · cleanup
+- 2026-10-05 estimates/estimate-orchestration-showing-example-passes-the-check status: pending → passed · raw/2026-10-05/1831/ledger.md#L1 · generate
+- 2026-10-05 estimates/estimate-orchestration-defer-example-passes-the-hook status: pending → passed · raw/2026-10-05/1831/ledger.md#L2 · generate
+- 2026-10-05 estimates/estimate-case-check-sends-back-a-summary-without-the-case-name status: pending → passed · raw/2026-10-05/1831/ledger.md#L3 · generate
+- 2026-10-05 estimates/estimate-search-leaves-out-decisions-by-the-grep-hook status: pending → passed · raw/2026-10-05/1831/ledger.md#L4 · generate
+- 2026-10-05 estimates/estimate-materialize-marks-superseded status: pending → passed · raw/2026-10-05/1831/ledger.md#L5 · generate
+- 2026-10-05 estimates/estimate-generate-writes-the-decision-page status: pending → passed · raw/2026-10-05/1831/ledger.md#L6 · generate
+- 2026-10-05 estimates/estimate-spec-reconcile-refuses-a-case-file-another-agent-holds status: pending → passed · raw/2026-10-05/1831/ledger.md#L7 · generate
+- 2026-10-05 estimates/estimate-ask-searches-at-prespec status: pending → failed · raw/2026-10-05/1831/ledger.md#L8 · generate
+- 2026-10-05 estimates/estimate-permissions status: pending → passed · raw/2026-10-05/1831/ledger.md#L9 · generate
+- 2026-10-05 lessons/lesson-orchestration-two-cases-built-side-by-side created · raw/2026-10-05/1831/ledger.md#L10 · generate
+- 2026-10-05 decisions/decision-case-669 created · raw/2026-10-05/1831/ledger.md#case-669 · generate
+- 2026-10-05 decisions/decision-case-669.1 created · raw/2026-10-05/1831/ledger.md#case-669.1 · generate
+- 2026-10-05 estimates/estimate-prespec-catches-a-superseded-case updated: set passed by the person's decision, without a reading; the Criterion kept; a problem seen later comes back as a lesson (case 669) · [[decision-case-669.1]] · generate
+- 2026-10-05 decisions/decision-case-669.2 created · raw/2026-10-05/1831/ledger.md#case-669.2 · generate
+- 2026-10-05 estimates/estimate-retro-leaves-out-the-sub-cases-of-a-superseded-case updated: set passed by the person's decision, without a reading; the Criterion kept; a problem seen later comes back as a lesson (case 669) · [[decision-case-669.2]] · generate
+- 2026-10-05 decisions/decision-case-669.3 created · raw/2026-10-05/1831/ledger.md#case-669.3 · generate
+- 2026-10-05 estimates/estimate-synthesis-reads-the-status-its-yaml-sets updated: set passed by the person's decision, without a reading; the Criterion kept; a problem seen later comes back as a lesson (case 669) · [[decision-case-669.3]] · generate
+- 2026-10-05 decisions/decision-case-669.4 created · raw/2026-10-05/1831/ledger.md#case-669.4 · generate
+- 2026-10-05 estimates/estimate-case-check-requires-a-backlog-item-decided-on-its-page updated: set passed by the person's decision, without a reading; the Criterion kept; a problem seen later comes back as a lesson (case 669) · [[decision-case-669.4]] · generate
+- 2026-10-05 decisions/decision-case-669.5 created · raw/2026-10-05/1831/ledger.md#case-669.5 · generate
+- 2026-10-05 estimates/estimate-case-check-shows-only-the-checked-case updated: set passed by the person's decision, without a reading; the Criterion kept; a problem seen later comes back as a lesson (case 669) · [[decision-case-669.5]] · generate
+- 2026-10-05 decisions/decision-case-669.6 created · raw/2026-10-05/1831/ledger.md#case-669.6 · generate
+- 2026-10-05 decisions/decision-case-659 superseded by decision-case-669.6 · [[decision-case-669.6]] · generate
+- 2026-10-05 estimates/estimate-case-check-sends-back-a-faulty-case updated: set passed by the person's decision, without a reading; the Criterion kept; a problem seen later comes back as a lesson (case 669) · [[decision-case-669.6]] · generate
+- 2026-10-05 decisions/decision-case-669.7 created · raw/2026-10-05/1831/ledger.md#case-669.7 · generate
+- 2026-10-05 decisions/decision-case-630 superseded by decision-case-669.7 · [[decision-case-669.7]] · generate
+- 2026-10-05 estimates/estimate-spec-write-reaches-the-approved-spec updated: set passed by the person's decision, without a reading; the Criterion kept; a problem seen later comes back as a lesson (case 669) · [[decision-case-669.7]] · generate
+- 2026-10-05 decisions/decision-case-669.8 created · raw/2026-10-05/1831/ledger.md#case-669.8 · generate
+- 2026-10-05 estimates/estimate-ask-query-before-a-create updated: set passed by the person's decision, without a reading; the Criterion kept; a problem seen later comes back as a lesson (case 669) · [[decision-case-669.8]] · generate
+- 2026-10-05 decisions/decision-case-669.9 created · raw/2026-10-05/1831/ledger.md#case-669.9 · generate
+- 2026-10-05 estimates/estimate-case-build-writes-the-case updated: set passed by the person's decision, without a reading; the Criterion kept; a problem seen later comes back as a lesson (case 669) · [[decision-case-669.9]] · generate
+- 2026-10-05 decisions/decision-case-669.10 created · raw/2026-10-05/1831/ledger.md#case-669.10 · generate
+- 2026-10-05 decisions/decision-case-617 superseded by decision-case-669.10 · [[decision-case-669.10]] · generate
+- 2026-10-05 decisions/decision-case-622 superseded by decision-case-669.10 · [[decision-case-669.10]] · generate
+- 2026-10-05 estimates/estimate-orchestration-shows-the-built-case updated: set passed by the person's decision, without a reading; the Criterion kept; a problem seen later comes back as a lesson (case 669) · [[decision-case-669.10]] · generate
+- 2026-10-05 decisions/decision-case-669.11 created · raw/2026-10-05/1831/ledger.md#case-669.11 · generate
+- 2026-10-05 estimates/estimate-search-leaves-out-decisions-in-every-agent updated: set passed by the person's decision, without a reading; the Criterion kept; a problem seen later comes back as a lesson (case 669) · [[decision-case-669.11]] · generate
+- 2026-10-05 decisions/decision-case-669.12 created · raw/2026-10-05/1831/ledger.md#case-669.12 · generate
+- 2026-10-05 decisions/decision-case-647 superseded by decision-case-669.12 · [[decision-case-669.12]] · generate
+- 2026-10-05 decisions/decision-case-657 superseded by decision-case-669.12 · [[decision-case-669.12]] · generate
+- 2026-10-05 decisions/decision-case-667 superseded by decision-case-669.12 · [[decision-case-669.12]] · generate
+- 2026-10-05 estimates/estimate-case-build-checks-the-finished-case updated: set passed by the person's decision, without a reading; the Criterion kept; a problem seen later comes back as a lesson; the defers of cases 647, 657 and 667 retired (case 669) · [[decision-case-669.12]] · generate
+- 2026-10-05 decisions/decision-case-669.13 created · raw/2026-10-05/1831/ledger.md#case-669.13 · generate
+- 2026-10-05 decisions/decision-case-665 superseded by decision-case-669.13 · [[decision-case-669.13]] · generate
+- 2026-10-05 estimates/estimate-case-protocol-case-form updated: set passed by the person's decision, without a reading; the Criterion kept; a problem seen later comes back as a lesson; the defer of case 665 retired (case 669) · [[decision-case-669.13]] · generate
+- 2026-10-05 decisions/decision-case-669.14 created · raw/2026-10-05/1831/ledger.md#case-669.14 · generate
+- 2026-10-05 decisions/decision-case-666 superseded by decision-case-669.14 · [[decision-case-669.14]] · generate
+- 2026-10-05 estimates/estimate-prespec-confirms-the-findings-once updated: set passed by the person's decision, without a reading; the Criterion kept; a problem seen later comes back as a lesson; the defer of case 666 retired (case 669) · [[decision-case-669.14]] · generate
+- 2026-10-05 decisions/decision-case-669.15 created · raw/2026-10-05/1831/ledger.md#case-669.15 · generate
+- 2026-10-05 estimates/estimate-ask-searches-at-prespec updated: set passed by the person's decision, without a reading; the Criterion kept; a problem seen later comes back as a lesson (case 669) · [[decision-case-669.15]] · generate
+- 2026-10-05 decisions/decision-case-670 created · raw/2026-10-05/1831/ledger.md#case-670 · generate
+- 2026-10-05 decisions/decision-case-670.1 created · raw/2026-10-05/1831/ledger.md#case-670.1 · generate
+- 2026-10-05 rules/rule-ledger-write updated: the hook refuses a reading of an Estimate that a decision line of the session creates or updates only before the mark retro of the session (case 670.1) · [[decision-case-670.1]] · generate
+- 2026-10-05 rules/rule-orchestration updated: a reading of an Estimate the session changes is written in the reply that ends Retro; the ledger hook refuses it only before Retro opens (case 670.1) · [[decision-case-670.1]] · generate
+- 2026-10-05 estimates/estimate-ledger-write-refuses-a-reading-of-a-change-of-the-session updated: the Criterion replaced whole — the reading is refused only before the mark retro of the session (case 670.1) · [[decision-case-670.1]] · generate
+- 2026-10-05 decisions/decision-case-670.2 created · raw/2026-10-05/1831/ledger.md#case-670.2 · generate
+- 2026-10-05 rules/rule-retro updated: Retro reads each Estimate the session creates or updates on the Criterion of the Spec, or sets it failed; a reading that needs the person waits for the person (case 670.2) · [[decision-case-670.2]] · generate
+- 2026-10-05 estimates/estimate-retro-loads updated: the Criterion replaced whole — Retro reads each Estimate the session creates or updates on the Criterion of the Spec, or sets it failed (case 670.2) · [[decision-case-670.2]] · generate
+- 2026-10-05 decisions/decision-case-670.3 created · raw/2026-10-05/1831/ledger.md#case-670.3 · generate
+- 2026-10-05 rules/rule-handoff updated: the Debt section lists no Estimate the session creates or updates as a reading that waits: Retro reads it or sets it failed (case 670.3) · [[decision-case-670.3]] · generate
+- 2026-10-05 estimates/estimate-handoff-holds-each-fact-once updated: the Criterion replaced whole — Debt lists no Estimate the session creates or updates as a reading that waits (case 670.3) · [[decision-case-670.3]] · generate
+- 2026-10-05 decisions/decision-case-670.4 created · raw/2026-10-05/1831/ledger.md#case-670.4 · generate
+- 2026-10-05 rules/rule-case-protocol updated: a method holds only what runs in the Case's own session, or the person's answer; Retro takes the read line of the Case's own Estimate (case 670.4) · [[decision-case-670.4]] · generate
+- 2026-10-05 estimates/estimate-prespec-hook-reports-a-method-that-waits-for-another-session created · [[decision-case-670.4]] · generate
+- 2026-10-05 rules/rule-prespec-hook estimate estimate-prespec-hook-reports-a-method-that-waits-for-another-session added · [[decision-case-670.4]] · generate
+- 2026-10-05 decisions/decision-case-670.5 created · raw/2026-10-05/1831/ledger.md#case-670.5 · generate
+- 2026-10-05 rules/rule-skill-hi updated: /hi reads no transcript: it takes the readings it can run now, and an open Work line it cannot read becomes a Cases line, but those of the close of a sprint (cases 670.5, 670.6) · [[decision-case-670.5]] · generate
+- 2026-10-05 estimates/estimate-hi-takes-its-readings updated: the Criterion replaced whole — /hi reads no transcript, and an open Work line it cannot read becomes a Cases line (case 670.5) · [[decision-case-670.5]] · generate
+- 2026-10-05 decisions/decision-case-671 created · raw/2026-10-05/1831/ledger.md#case-671 · generate
+- 2026-10-05 decisions/decision-case-671.1 created · raw/2026-10-05/1831/ledger.md#case-671.1 · generate
+- 2026-10-05 estimates/estimate-case-check-sends-back-a-ratified-case-without-a-target created · [[decision-case-671.1]] · generate
+- 2026-10-05 rules/rule-case-check estimate estimate-case-check-sends-back-a-ratified-case-without-a-target added · [[decision-case-671.1]] · generate
+- 2026-10-05 insights/insight-ledger-ratified-line-never-withdrawn updated: actioned: the check of the file case-guppi writes sends back a ratified Case built again without the item of one of its lines, with the new number and the marks (case 671.1) · [[decision-case-671.1]] · generate
+- 2026-10-05 decisions/decision-case-671.2 created · raw/2026-10-05/1831/ledger.md#case-671.2 · generate
+- 2026-10-05 decisions/decision-case-594 superseded by decision-case-671.2 · [[decision-case-671.2]] · generate
+- 2026-10-05 rules/rule-ledger-line-withdrawn-on-re-ratification defer by decision-case-594 superseded · [[decision-case-671.2]] · generate
+- 2026-10-05 rules/rule-case-protocol updated: Splitting: a Case built again under its number without the item of one of its decision lines takes a new number too (case 671.2) · [[decision-case-671.2]] · generate
+- 2026-10-05 rules/rule-ledger-line-withdrawn-on-re-ratification deleted · [[decision-case-671.2]] · generate
+- 2026-10-05 decisions/decision-case-669.16 created · raw/2026-10-05/1831/ledger.md#case-669.16 · generate
+- 2026-10-05 rules/rule-case-protocol updated: a Case may set an Estimate passed or failed by the person's decision, its Criterion written back unchanged, its Result opening with the date and the place of the decision (case 669.16) · [[decision-case-669.16]] · generate
+- 2026-10-05 rules/rule-estimates-schema updated: the person may close an Estimate by decision: its Result opens with the date and the place of the decision, and checked is that date (case 669.16) · [[decision-case-669.16]] · generate
+- 2026-10-05 decisions/decision-case-670.6 created · raw/2026-10-05/1831/ledger.md#case-670.6 · generate
+- 2026-10-05 estimates/estimate-hi-writes-frontier updated: the Criterion replaced whole — an open W line whose reading cannot run now is a source of a Cases line (case 670.6) · [[decision-case-670.6]] · generate
+- 2026-10-05 decisions/decision-case-670.7 created · raw/2026-10-05/1831/ledger.md#case-670.7 · generate
+- 2026-10-05 rules/rule-work-mode updated: the Work line of an Estimate the session changes stays open until Retro reads it and closes it (case 670.7) · [[decision-case-670.7]] · generate
+- 2026-10-05 estimates/estimate-work-mode-takes-the-work-readings updated: the Criterion replaced whole — the Work line of an Estimate the session changes closes at Retro (case 670.7) · [[decision-case-670.7]] · generate
+- 2026-10-05 rules/rule-ask status: draft → built · cascade · generate
+- 2026-10-05 rules/rule-case-build status: draft → built · cascade · generate
+- 2026-10-05 rules/rule-case-protocol status: draft → built · cascade · generate
+- 2026-10-05 rules/rule-handoff status: built → draft · cascade · generate
+- 2026-10-05 rules/rule-ledger-write status: built → draft · cascade · generate
+- 2026-10-05 rules/rule-materialize status: draft → built · cascade · generate
+- 2026-10-05 rules/rule-orchestration status: draft → built · cascade · generate
+- 2026-10-05 rules/rule-page-generation status: draft → built · cascade · generate
+- 2026-10-05 rules/rule-permissions status: draft → built · cascade · generate
+- 2026-10-05 rules/rule-prespec-hook status: built → draft · cascade · generate
+- 2026-10-05 rules/rule-prespec status: draft → built · cascade · generate
+- 2026-10-05 rules/rule-search-leaves-out-decisions status: draft → built · cascade · generate
+- 2026-10-05 rules/rule-spec-reconcile status: draft → built · cascade · generate
+- 2026-10-05 rules/rule-spec-write status: draft → built · cascade · generate
+- 2026-10-05 rules/rule-synthesis status: draft → built · cascade · generate
+- 2026-10-05 decisions/decision-case-594 archived · superseded · generate
+- 2026-10-05 decisions/decision-case-617 archived · superseded · generate
+- 2026-10-05 decisions/decision-case-622 archived · superseded · generate
+- 2026-10-05 decisions/decision-case-630 archived · superseded · generate
+- 2026-10-05 decisions/decision-case-647 archived · superseded · generate
+- 2026-10-05 decisions/decision-case-657 archived · superseded · generate
+- 2026-10-05 decisions/decision-case-659 archived · superseded · generate
+- 2026-10-05 decisions/decision-case-665 archived · superseded · generate
+- 2026-10-05 decisions/decision-case-666 archived · superseded · generate
+- 2026-10-05 decisions/decision-case-667 archived · superseded · generate
+- 2026-10-05 lessons/lesson-ledger-a-dropped-item-needs-a-superseding-sub-case archived · insight actioned · generate
+- 2026-10-05 lessons/lesson-case-build-renamed-a-slug-of-a-ratified-case-under-its-old-number archived · insight actioned · generate
+- 2026-10-05 rules/rule-ledger-line-withdrawn-on-re-ratification archived · cleanup
+- 2026-10-05 lessons/lesson-case-build-renamed-a-slug-of-a-ratified-case-under-its-old-number archived · cleanup
+- 2026-10-05 lessons/lesson-ledger-a-dropped-item-needs-a-superseding-sub-case archived · cleanup
+- 2026-10-05 decisions/decision-case-594 archived · cleanup
+- 2026-10-05 decisions/decision-case-617 archived · cleanup
+- 2026-10-05 decisions/decision-case-622 archived · cleanup
+- 2026-10-05 decisions/decision-case-630 archived · cleanup
+- 2026-10-05 decisions/decision-case-647 archived · cleanup
+- 2026-10-05 decisions/decision-case-657 archived · cleanup
+- 2026-10-05 decisions/decision-case-659 archived · cleanup
+- 2026-10-05 decisions/decision-case-665 archived · cleanup
+- 2026-10-05 decisions/decision-case-666 archived · cleanup
+- 2026-10-05 decisions/decision-case-667 archived · cleanup

@@ -1,10 +1,10 @@
 ---
 type: estimate
 kind: QA
-status: pending
+status: passed
 target: "[[rule-permissions]]"
 method: the allow list of the rendered .claude/settings.json against the Criterion, and the JSON case of tests/test_render.py; the live probes are the person's word on the client's prompt at a Write of work.md in Work Mode, and at a Read, Grep or Glob of case-guppi under ~/.claude/projects/c--PROJECTS-GUPPI/ in a session after the render, each recorded in the estimate line — never the agent's, which cannot see the prompt
-checked: 2026-09-30
+checked: 2026-10-05
 origin: raw/2026-09-12/ledger.md#case-85.5
 sprint: migration
 created: 2026-09-12
@@ -30,7 +30,7 @@ The allow list of `.claude/settings.json` holds Edit and Write for `frontier.md`
 
 ## Result
 
-2026-09-30, the person's word at /hi of session 1736: Claude Code did not ask for permission when the agent changed vault/raw/2026-09-30/1306/work.md with the Edit tool in Work Mode; the rendered .claude/settings.json: the allow list holds Edit and Write for frontier.md, spec.md, handoff.md and work.md under vault/raw/**, Write for carry.md under vault/raw/**, Edit and Write for vault/wiki/brief.md, no deny and no ask; uv run pytest tests/test_render.py -k "json or permission": 4 passed
+2026-10-05, the person's word at /hi of session 1831: the client did not ask for permission at a Read, Grep or Glob of case-guppi under ~/.claude/projects/c--PROJECTS-GUPPI/ in a session after the render; the rendered .claude/settings.json: the allow list holds Edit and Write for frontier.md, spec.md, handoff.md and work.md under vault/raw/**, Write for carry.md under vault/raw/**, Edit and Write for vault/wiki/brief.md and Read(~/.claude/projects/c--PROJECTS-GUPPI/**), no deny and no ask; .claude/agents/case-guppi.md carries permissionMode: acceptEdits; uv run pytest tests/test_render.py -k "json or permission": 4 passed
 
 ## History
 
@@ -46,3 +46,4 @@ The allow list of `.claude/settings.json` holds Edit and Write for `frontier.md`
 - 2026-09-30 status: pending → passed · raw/2026-09-30/1736/ledger.md#L3
 - 2026-10-05 updated: the Criterion replaced whole — the prompt in Plan Mode binds the main agent, and case-guppi writes its Case file with no prompt and no allow rule (case 645.16) · [[decision-case-645.16]]
 - 2026-10-05 updated: the Criterion replaced whole — the allow list holds a Read rule for this project's saved transcripts, and a search of case-guppi there runs with no prompt (case 656) · [[decision-case-656]]
+- 2026-10-05 status: pending → passed · raw/2026-10-05/1831/ledger.md#L9

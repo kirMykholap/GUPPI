@@ -2,7 +2,7 @@
 type: rule
 kind: Leaf
 purpose: "Prevents the main agent from loading the form of a Case it does not build: what it alone does in a working session - the Frontier, the dispatch of case-guppi, the showing and signing of a Case, the moment of each ledger line, the defers and the acknowledging reply - stands in orchestration.md, which /hi loads"
-status: draft
+status: built
 enforcement: render
 governs: vault/wiki/orchestration.md
 render_mode: full
@@ -96,7 +96,7 @@ defer:
 
 ## Writing the ledger lines
 
-The form of each line is `ratification.md`. Write the `- decision[...]` lines only in the reply that acknowledges ratification; `- estimate[...]` and `- lesson[...]` lines the moment the measurement or the lesson exists, but from `/work` to the end of Retro in the one reply that ends Retro, which carries them all (case 531.8) — a reading of an Estimate that a decision line of this session creates or updates waits for a later session, and the ledger hook refuses it (case 428.1) — an `estimate[...]` line opening with the date of the reading and the command or the place it was read (case 199). Without `/hi` the hook refuses and says so: tell the person, do not retry. A reply that carries a `LEDGER` block ends in that text. No tool call follows it in the same reply: the text before a tool call waits for the next `Stop` of the session, and the last reply of a session has none. When a `Stop` hook other than the ledger hook refuses a reply that carries a `LEDGER` block — exit 2 — the ledger hook has written the block at that same `Stop`: the agent's answer to the refusal is a reply of its own and may call tools (case 414.2). A block a tool call did follow is not lost until that `Stop` has passed: check the ledger then, and only a line missing there is a lesson.
+The form of each line is `ratification.md`. Write the `- decision[...]` lines only in the reply that acknowledges ratification; `- estimate[...]` and `- lesson[...]` lines the moment the measurement or the lesson exists, but from `/work` to the end of Retro in the one reply that ends Retro, which carries them all (case 531.8) — a reading of an Estimate that a decision line of this session creates or updates stands in that reply too, and the ledger hook refuses it before Retro opens (case 670.1) — an `estimate[...]` line opening with the date of the reading and the command or the place it was read (case 199). Without `/hi` the hook refuses and says so: tell the person, do not retry. A reply that carries a `LEDGER` block ends in that text. No tool call follows it in the same reply: the text before a tool call waits for the next `Stop` of the session, and the last reply of a session has none. When a `Stop` hook other than the ledger hook refuses a reply that carries a `LEDGER` block — exit 2 — the ledger hook has written the block at that same `Stop`: the agent's answer to the refusal is a reply of its own and may call tools (case 414.2). A block a tool call did follow is not lost until that `Stop` has passed: check the ledger then, and only a line missing there is a lesson.
 
 ## The acknowledging reply
 
@@ -142,3 +142,5 @@ The reply that acknowledges a ratification has four parts, in this order: the `L
 - 2026-10-05 estimate estimate-orchestration-defer-example-passes-the-hook added · [[decision-case-651.3]]
 - 2026-10-05 updated: the short form of a defer has an example that a test runs the Stop hook of rule-spec-write over (case 651.3) · [[decision-case-651.3]]
 - 2026-10-05 updated: the heading of a showing takes the name of the top-level Case from the Case line of the summary (case 662.2) · [[decision-case-662.2]]
+- 2026-10-05 updated: a reading of an Estimate the session changes is written in the reply that ends Retro; the ledger hook refuses it only before Retro opens (case 670.1) · [[decision-case-670.1]]
+- 2026-10-05 status: draft → built · cascade

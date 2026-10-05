@@ -1491,6 +1491,7 @@ entries:
       644-646
   exists: true
   applied: 05:45:18
+  superseded_by: '669.12'
 - line: 29
   text: decision[case 648][defer][rule-prespec-onward]{ref:rule-prespec-onward}
   case: '648'
@@ -4769,6 +4770,8 @@ decisions:
       Estimate changes.
   spec: vault/raw/2026-10-05/0311/spec.md
   applied: 05:45:18
+  superseded_by:
+  - decision-case-669.12
 - case: '648'
   decision: decision-case-648
   origin: raw/2026-10-05/0311/ledger.md#case-648

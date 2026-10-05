@@ -1,10 +1,11 @@
 ---
 type: estimate
 kind: QA
-status: pending
+status: passed
 target: "[[rule-search-leaves-out-decisions]]"
 purpose: Whether every Grep over vault/wiki/ or a folder that holds it runs with !**/decisions/** at the end of its glob, added by the PreToolUse hook, and prints nothing under vault/wiki/decisions/
 method: uv run pytest tests/test_grepguard.py, then by hand at the /hi of a later session after the render a Grep over vault/wiki/ with no glob in the main agent and in a subagent, whether it prints a file under vault/wiki/decisions/
+checked: 2026-10-05
 origin: raw/2026-10-05/1616/ledger.md#case-664.1
 sprint: migration
 created: 2026-10-05
@@ -25,6 +26,11 @@ When the searched folder — the `path` of the call, or the working directory wh
 **－** A Grep whose `path` is one file, or a folder that does not hold `vault/wiki/decisions/`, passes unchanged.
 **－** The hook never refuses a call; a payload it cannot read or an error lets the call pass unchanged.
 
+## Result
+
+2026-10-05, /hi of 1831, uv run pytest tests/test_grepguard.py 15 passed; a Grep ^status: current over vault/wiki with no glob printed 0 files in the main agent and 0 in a general-purpose subagent, while the same Grep with path vault/wiki/decisions counted 1146 files, unchanged by the hook; uv run guppi grepguard registered on PreToolUse of Grep in .claude/settings.json
+
 ## History
 
 - 2026-10-05 created · [[decision-case-664.1]]
+- 2026-10-05 status: pending → passed · raw/2026-10-05/1831/ledger.md#L4

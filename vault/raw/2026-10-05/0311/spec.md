@@ -1190,7 +1190,7 @@ update:
 ```tasks
 - [x] update `rule-permissions`
 - [x] update `estimate-permissions`
-- [ ] read `estimate-permissions`
+- [x] read `estimate-permissions`
 ```
 
 ## Case 646 — The Case schema shows the form case-guppi writes, by an example a test checks

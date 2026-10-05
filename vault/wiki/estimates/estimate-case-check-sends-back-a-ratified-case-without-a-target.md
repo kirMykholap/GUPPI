@@ -1,10 +1,11 @@
 ---
 type: estimate
 kind: QA
-status: pending
+status: passed
 target: "[[rule-case-check]]"
 purpose: Whether a Case that has decision lines in the session and comes back from case-guppi under its number without the item of one of those lines goes back to case-guppi with a new number to build it under
 method: uv run pytest tests/test_casecheck.py -k dropped_target
+checked: 2026-10-05
 origin: raw/2026-10-05/1831/ledger.md#case-671.1
 sprint: migration
 created: 2026-10-05
@@ -25,6 +26,11 @@ For each number of the family of a top-level Case N in the file that has a secti
 **－** A number with no section in the file, or with a sub-case in the file, gets no finding of this check.
 **－** A Case whose items hold each decision line of its numbers gets no finding of this check, whatever items it adds.
 
+## Result
+
+2026-10-05, at the /hi of session 2103, uv run pytest tests/test_casecheck.py -k dropped_target: 6 passed, 145 deselected
+
 ## History
 
 - 2026-10-05 created · [[decision-case-671.1]]
+- 2026-10-05 status: pending → passed · raw/2026-10-05/2103/ledger.md#L7

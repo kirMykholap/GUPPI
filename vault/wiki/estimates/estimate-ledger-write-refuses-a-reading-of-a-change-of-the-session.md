@@ -1,11 +1,11 @@
 ---
 type: estimate
 kind: QA
-status: pending
+status: passed
 target: "[[rule-ledger-write]]"
 purpose: Whether the ledger hook refuses a reading of an Estimate that a decision line of the same session creates or updates until the Retro of that session opens, writes it after, and says why only for the reply just finished
 method: uv run pytest tests/test_ledger.py — piped payloads and a session ledger in a temp vault
-checked: 2026-10-01
+checked: 2026-10-05
 origin: raw/2026-09-25/1654/ledger.md#case-428.1
 sprint: migration
 created: 2026-09-25
@@ -30,7 +30,7 @@ While the event log of the session's window holds no mark `retro` of this sessio
 
 ## Result
 
-2026-10-01, uv run pytest tests/test_onward.py tests/test_ledger.py: 104 passed; tests/test_ledger.py test_a_reading_of_a_slug_the_session_changes_is_refused (create and update), test_a_decision_line_of_the_same_reply_refuses_it_too, test_a_refused_line_of_an_earlier_text_is_skipped_without_a_word, test_a_reading_with_a_defer_line_only_or_another_sessions_line_is_written and test_flag_a_reading_of_a_change_of_the_session_is_refused_aloud; no test names a rename, which the update line covers, since the decision line names the old slug
+2026-10-05, at the /hi of session 2103, uv run pytest tests/test_ledger.py: 83 passed; guppi/ledger.py imports retro_marked of guppi/onward.py (line 72)
 
 ## History
 
@@ -39,3 +39,4 @@ While the event log of the session's window holds no mark `retro` of this sessio
 - 2026-10-01 updated: the Criterion replaced whole — with stop_hook_active the line is judged the same, and its stderr line is told once a stretch (case 577.6) · [[decision-case-577.6]]
 - 2026-10-01 status: pending → passed · raw/2026-10-01/1725/ledger.md#L11
 - 2026-10-05 updated: the Criterion replaced whole — the reading is refused only before the mark retro of the session (case 670.1) · [[decision-case-670.1]]
+- 2026-10-05 status: pending → passed · raw/2026-10-05/2103/ledger.md#L1

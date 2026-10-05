@@ -1,11 +1,11 @@
 ---
 type: estimate
 kind: QA
-status: pending
+status: passed
 target: "[[rule-skill-hi]]"
 purpose: Whether /hi takes, in its first reply, each open W reading whose whole method runs now from files and commands, reads no transcript, writes a Cases line for each other open W line but those of the close of a sprint, puts each open Ask line to the person and writes the answer as its reading line, and opens no page but the Estimates it reads
 method: by hand, the text of the skill file rendered from rule-skill-hi, or, at the Retro of the session that changes it, the new Render of rule-skill-hi in the Spec, read against the Criterion, recorded in the estimate line
-checked: 2026-10-03
+checked: 2026-10-05
 origin: raw/2026-09-29/1134/ledger.md#case-508.1
 sprint: migration
 created: 2026-09-29
@@ -32,7 +32,7 @@ In its first reply, before the question on the order, the agent takes each readi
 
 ## Result
 
-2026-10-03, at the /hi of session 1416, the first reply of the /hi of session 1341 (transcript 26e79919, 13:41:40 to 13:49:40): before the question on the order it took the four readings whose moments came in session 0317, read from transcript 5b311f89, from raw/2026-10-03/0317/handoff.md and work.md and from the commands of each method, `git status` included; to choose them it read the method and Criterion of every pending Estimate and the History of 15; it wrote frontier.md at 13:48:54 with W6, W18, W20 and W29 closed `[x] … · work`, then a LEDGER block of four lines in a reply that ends in text, the ledger holding the four at 13:49:40; no repository file changed but frontier.md, the tree clean at 13:47:53; not exercised: an open A line, the Ask list held none
+2026-10-05, at the /hi of session 2103, by hand, .claude/skills/hi/SKILL.md as rendered against the Criterion: before the question on the order, the readings of each open W line whose whole method runs now, from the brief, git log, git status and the files and commands the method names; no transcript of an earlier session; the page of each Estimate read opened and judged against its Criterion; the W lines closed `[x] … · work` first, then a LEDGER block in a reply that ends in text; a Cases line with the source brief for each other open W line, its W line closing `· case N`; the W lines of the close of a sprint or the session after stay under Work; each open A line put as a question before the order, its line closed and then its answer written as the reading; the Frontier assembled with no page opened; the text names no file to write at /hi but frontier.md, and the plan file of a taken conserved Spec, outside the repository
 
 ## History
 
@@ -44,3 +44,4 @@ In its first reply, before the question on the order, the agent takes each readi
 - 2026-10-03 updated: the Criterion replaced whole — /hi reads a moment of an earlier session from its transcript (case 613.2) · [[decision-case-613.2]]
 - 2026-10-03 status: pending → passed · raw/2026-10-03/1416/ledger.md#L2
 - 2026-10-05 updated: the Criterion replaced whole — /hi reads no transcript, and an open Work line it cannot read becomes a Cases line (case 670.5) · [[decision-case-670.5]]
+- 2026-10-05 status: pending → passed · raw/2026-10-05/2103/ledger.md#L5

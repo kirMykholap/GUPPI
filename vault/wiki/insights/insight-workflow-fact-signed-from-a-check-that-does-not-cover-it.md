@@ -2,8 +2,8 @@
 type: insight
 pattern: "A fact is signed — in a Case, in a reading, in a ledger line — on a check narrower than the claim: the command that ran answered one question and the sentence it supports makes a wider one, while the wider check was one more command away."
 status: open
-children: ["[[lesson-fact-asserted-from-a-partial-check]]", "[[lesson-ledger-estimate-line-carried-a-count-not-read]]", "[[lesson-case-context-claim-wider-than-its-search]]", "[[lesson-case-context-bookkeeping-written-from-memory]]", "[[lesson-case-build-writes-a-count-no-command-printed]]", "[[lesson-case-build-frame-count-claimed-over-a-partial-search]]", "[[lesson-case-build-context-claims-an-effect-no-check-covers]]", "[[lesson-case-build-a-count-in-context-not-from-a-run]]", "[[lesson-case-build-a-page-judged-true-by-its-mark-not-its-moment]]", "[[lesson-case-build-hits-counted-as-lines]]", "[[lesson-case-build-a-grep-cited-for-files-it-did-not-print]]", "[[lesson-orchestration-dispatch-prompt-carried-counts-not-from-a-run]]"]
-severity: 1
+children: ["[[lesson-fact-asserted-from-a-partial-check]]", "[[lesson-ledger-estimate-line-carried-a-count-not-read]]", "[[lesson-case-context-claim-wider-than-its-search]]", "[[lesson-case-context-bookkeeping-written-from-memory]]", "[[lesson-case-build-writes-a-count-no-command-printed]]", "[[lesson-case-build-frame-count-claimed-over-a-partial-search]]", "[[lesson-case-build-context-claims-an-effect-no-check-covers]]", "[[lesson-case-build-a-count-in-context-not-from-a-run]]", "[[lesson-case-build-a-page-judged-true-by-its-mark-not-its-moment]]", "[[lesson-case-build-hits-counted-as-lines]]", "[[lesson-case-build-a-grep-cited-for-files-it-did-not-print]]", "[[lesson-orchestration-dispatch-prompt-carried-counts-not-from-a-run]]", "[[lesson-orchestration-a-ratified-render-change-claimed-live-before-the-render]]"]
+severity: 2
 addressed_by: "[[decision-case-636]]"
 origin: raw/2026-09-22/2046/ledger.md#L21
 sprint: migration
@@ -62,3 +62,4 @@ Neither half is decided here.
 - 2026-10-04 updated: child lesson-case-build-a-grep-cited-for-files-it-did-not-print added (synthesis) · raw/2026-10-04/2041/ledger.md#L38
 - 2026-10-05 updated: actioned: case-guppi runs each search its context names again just before it answers (case 636) · [[decision-case-636]]
 - 2026-10-05 updated: child lesson-orchestration-dispatch-prompt-carried-counts-not-from-a-run added, reopened from actioned (synthesis) · raw/2026-10-05/0109/ledger.md#L25
+- 2026-10-05 updated: child lesson-orchestration-a-ratified-render-change-claimed-live-before-the-render added (synthesis) · raw/2026-10-05/2103/ledger.md#L23

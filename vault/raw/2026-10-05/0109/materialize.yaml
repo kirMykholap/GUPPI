@@ -530,6 +530,7 @@ entries:
       raised at the /pre-spec of session 0109
   exists: false
   applied: 03:05:55
+  superseded_by: '674.3'
 - line: 22
   text: 'estimate[estimate-case-build-checks-the-finished-case][failed] 2026-10-05, in the Work Mode of
     session 0109, by hand: the first answers of the four ask-guppi runs at the /pre-spec of session 0109,
@@ -1355,5 +1356,7 @@ decisions:
   - context
   - problem
   applied: 03:05:55
+  superseded_by:
+  - decision-case-674.3
 unparsed: []
 session: 0109

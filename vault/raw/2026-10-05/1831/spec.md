@@ -763,7 +763,7 @@ update:
 - [x] update `rule-orchestration`
 - [x] `uv run guppi render`: `vault/wiki/orchestration.md`
 - [x] update `estimate-ledger-write-refuses-a-reading-of-a-change-of-the-session`
-- [ ] read `estimate-ledger-write-refuses-a-reading-of-a-change-of-the-session`
+- [x] read `estimate-ledger-write-refuses-a-reading-of-a-change-of-the-session`
 ```
 
 ### Case 670.2 — Retro reads each Estimate the session changes, or sets it failed
@@ -813,7 +813,7 @@ update:
 - [x] update `rule-retro`
 - [x] `uv run guppi render`: `.claude/skills/retro/SKILL.md`
 - [x] update `estimate-retro-loads`
-- [ ] read `estimate-retro-loads`
+- [x] read `estimate-retro-loads`
 ```
 
 ### Case 670.3 — The handoff lists no Estimate the session changed as a reading that waits
@@ -858,7 +858,7 @@ update:
 - [x] update `rule-handoff`
 - [x] `uv run guppi render`: `.claude/skills/handoff/SKILL.md`
 - [x] update `estimate-handoff-holds-each-fact-once`
-- [ ] read `estimate-handoff-holds-each-fact-once`
+- [x] read `estimate-handoff-holds-each-fact-once`
 ```
 
 ### Case 670.4 — Pre-spec reports a method that waits for another session
@@ -912,7 +912,7 @@ update:
 - [x] `tests/test_lint.py`: the predicate is true for a later session, the next session, a session after another, the librarian and `/hi`, and false for a part that names the person and for a method of the session itself.
 - [x] `tests/test_prespec.py`: the finding on a `create` and on an `update` with `set: {method: …}`, none on a method that names the person, and the other method findings unchanged.
 - [x] create `estimate-prespec-hook-reports-a-method-that-waits-for-another-session`
-- [ ] read `estimate-prespec-hook-reports-a-method-that-waits-for-another-session`
+- [x] read `estimate-prespec-hook-reports-a-method-that-waits-for-another-session`
 ```
 
 ### Case 670.5 — /hi reads no transcript and turns an unreadable Work line into a Case
@@ -963,7 +963,7 @@ update:
 - [x] update `rule-skill-hi`
 - [x] `uv run guppi render`: `.claude/skills/hi/SKILL.md`
 - [x] update `estimate-hi-takes-its-readings`
-- [ ] read `estimate-hi-takes-its-readings`
+- [x] read `estimate-hi-takes-its-readings`
 ```
 
 ### Case 670.6 — The Frontier names an unreadable Work line among the sources of a Cases line
@@ -1049,7 +1049,7 @@ update:
 - [x] update `rule-work-mode`
 - [x] `uv run guppi render`: `.claude/skills/work/SKILL.md`
 - [x] update `estimate-work-mode-takes-the-work-readings`
-- [ ] read `estimate-work-mode-takes-the-work-readings`
+- [x] read `estimate-work-mode-takes-the-work-readings`
 ```
 
 ## Case 671 — A ratified Case built again without a target of its lines goes back for a new number
@@ -1123,7 +1123,7 @@ update:
 - [x] `tests/test_casecheck.py`: tests `-k dropped_target`: a file whose Case renames the slug of a ratified `create` under its number is sent back with the new number and the marks; a file that drops an item of a ratified line is sent back; a file that keeps each item and adds one passes; a dropped `defer` item gives no finding of this check; a number with no section, or with sub-cases, gets only the finding of `shape_findings`.
 - [x] create `estimate-case-check-sends-back-a-ratified-case-without-a-target`
 - [x] update `insight-ledger-ratified-line-never-withdrawn`
-- [ ] read `estimate-case-check-sends-back-a-ratified-case-without-a-target`
+- [x] read `estimate-case-check-sends-back-a-ratified-case-without-a-target`
 ```
 
 ### Case 671.2 — The schema names a renamed or dropped target among the Cases built under a new number

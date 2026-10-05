@@ -2,7 +2,7 @@
 type: rule
 kind: Leaf
 purpose: Prevents a session from reaching the librarian on work nobody reviewed
-status: draft
+status: built
 enforcement: render
 governs: .claude/skills/retro/SKILL.md
 render_mode: full
@@ -119,3 +119,4 @@ When the review is done, commit the work: `make style` clean, `make test` green 
 - 2026-10-05 updated: a supersedes tag leaves the sub-cases of its Case out of the debt (case 660.4) · [[decision-case-660.4]]
 - 2026-10-05 status: built → draft · cascade
 - 2026-10-05 updated: Retro reads each Estimate the session creates or updates on the Criterion of the Spec, or sets it failed; a reading that needs the person waits for the person (case 670.2) · [[decision-case-670.2]]
+- 2026-10-05 status: draft → built · cascade

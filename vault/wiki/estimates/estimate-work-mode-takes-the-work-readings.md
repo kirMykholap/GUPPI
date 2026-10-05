@@ -1,11 +1,11 @@
 ---
 type: estimate
 kind: QA
-status: pending
+status: passed
 target: "[[rule-work-mode]]"
 purpose: Whether /work, after the last task and in the same turn, takes in Frontier order each open W reading whose work is built and whose moment has come, closes its W line, leaves its line to the reply that ends Retro, and leaves open the readings this session changes, or the conserved Spec that /box gives it changes, or whose moment has not come
 method: by hand, the text of the skill file rendered from rule-work-mode, or, at the Retro of the session that changes it, the new Render of rule-work-mode in the Spec, read against the Criterion, recorded in the estimate line
-checked: 2026-10-04
+checked: 2026-10-05
 origin: raw/2026-09-29/1134/ledger.md#case-508.3
 sprint: migration
 created: 2026-09-29
@@ -30,7 +30,7 @@ Before `/retro`, the agent takes, in the order of `raw/<date>/<hi HHMM>/frontier
 
 ## Result
 
-2026-10-04, at the /hi of session 0004, by hand: the /work of session 0317 that the agent called at the fork (transcript 5b311f89): after the last task, make test and make style at 05:03:08, it took in the order of frontier.md W6 `estimate-case-build-writes-the-case` and W19 `estimate-end-of-work-order`, closed both `[x] … · work` at 05:04:20 and called /retro at 05:04:23; their lines stand only in the LEDGER block of the reply that ends Retro at 05:05:59, ledger lines 52–53; of the open W lines it left, 27 name an Estimate a decision line of 0317 updates, and the other 7 were read later from moments of sessions 1341 and 1416 or still wait; the /work that /box called in session 1416 (transcript 682b0e2f): after work.md and the deletion of carry.md at 14:38:26, it took W17 `estimate-hi-takes-a-conserved-spec` and W29 `estimate-spec-capture-offers-the-fork` in that order, closed both at 14:39:36, called /retro at 14:39:41, and their lines stand in the reply that ends Retro at 14:40:43; no decision line of raw/2026-10-03/1341/ledger.md names a W Estimate; in neither run did a reply end before the reply that ends Retro, the first Stop coming at 05:06:02 and 14:40:45; the step ticked no `read` box: the read boxes of 0317/spec.md stood open at 05:04:50, and bda8f3f4 does not touch 1341/spec.md
+2026-10-05, at the /hi of session 2103, by hand, .claude/skills/work/SKILL.md as rendered against the Criterion: after the last task and before /retro, in the order of frontier.md, each open W reading whose work is built and whose moment has come, a moment of an earlier session counted as come; its line closed `[x] … · work` first, no LEDGER block, its line in the one reply that ends Retro; tasks, readings and /retro in one turn with no reply that ends but at a stop of where-to-stop.md; a reading of an Estimate the session, or the ledger of the /box folder, creates or updates, and one whose moment has not come, left open; no read box ticked
 
 ## History
 
@@ -42,3 +42,4 @@ Before `/retro`, the agent takes, in the order of `raw/<date>/<hi HHMM>/frontier
 - 2026-10-03 updated: method names the kind of its moment (case 613.3) · [[decision-case-613.3]]
 - 2026-10-04 status: pending → passed · raw/2026-10-04/0004/ledger.md#L5
 - 2026-10-05 updated: the Criterion replaced whole — the Work line of an Estimate the session changes closes at Retro (case 670.7) · [[decision-case-670.7]]
+- 2026-10-05 status: pending → passed · raw/2026-10-05/2103/ledger.md#L6

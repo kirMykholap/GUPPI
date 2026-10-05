@@ -1,10 +1,10 @@
 ---
 type: estimate
 kind: QA
-status: pending
+status: passed
 target: "[[rule-retro]]"
 method: by hand, the text of .claude/skills/retro/SKILL.md as rendered, or, at the Retro of the session that changes it, the new Render of rule-retro in the Spec, read against the Criterion, recorded in the estimate line
-checked: 2026-10-04
+checked: 2026-10-05
 origin: raw/2026-09-10/ledger.md#case-38.1
 sprint: migration
 created: 2026-09-10
@@ -29,7 +29,7 @@ A reading measures the Criterion the page carries at the moment of the reading �
 
 ## Result
 
-2026-10-04, at the /hi of session 0004, by hand: the /retro of session 0317 (transcript 5b311f89, 05:04:23 to 05:05:59): its two readings, `estimate-case-build-writes-the-case` and `estimate-end-of-work-order`, are Estimates no decision line of raw/2026-10-03/0317/ledger.md names, while 27 of the 35 open W lines of its frontier.md name an Estimate a decision line of that ledger updates and none of them got a reading; handoff.md names the `read` lines of the session's own slugs under Debt and the 37 method rewrites of 613.3 as readings of later sessions; the /retro of session 1416 (transcript 682b0e2f, 14:39:41 to 14:40:43), work.md naming vault/raw/2026-10-03/1341/ under `## Conserved Spec`: handoff.md sorts the boxes of that folder's spec.md — one box waiting for the librarian, the `create` of `entity-reading-probe`, and no `read` line of a slug the session creates or updates —, and its two readings, `estimate-hi-takes-a-conserved-spec` and `estimate-spec-capture-offers-the-fork`, are Estimates no decision line of the 1341 or 1416 ledger names
+2026-10-05, at the /hi of session 2103, by hand, .claude/skills/retro/SKILL.md as rendered against the Criterion: a reading measures the Criterion ratified last and is written only once its work is built; each Estimate the session creates or updates is read in this turn on the Criterion of the Spec, the new Render in the Spec for a rule whose Render a Case changes; one it cannot read gets a failed line with the date, `Retro, not read` and the reason; the folder of `## Conserved Spec` and its ledger count as the session's for boxes, edits and readings; the W line of each Estimate read or set failed closes `[x] … · work`; no reading of an update that sets passed or failed by the person's decision with the Criterion unchanged, or that names one part alone; a method naming the person's word is a line of `## Ask the person`, its read line neither debt nor the librarian's; other Estimates read as before once built
 
 ## History
 
@@ -66,3 +66,4 @@ A reading measures the Criterion the page carries at the moment of the reading �
 - 2026-10-03 updated: method names the kind of its moment (case 613.3) · [[decision-case-613.3]]
 - 2026-10-04 status: pending → passed · raw/2026-10-04/0004/ledger.md#L2
 - 2026-10-05 updated: the Criterion replaced whole — Retro reads each Estimate the session creates or updates on the Criterion of the Spec, or sets it failed (case 670.2) · [[decision-case-670.2]]
+- 2026-10-05 status: pending → passed · raw/2026-10-05/2103/ledger.md#L2

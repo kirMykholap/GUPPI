@@ -82,13 +82,13 @@ update:
 ```tasks
 - [x] `guppi/generate.py`: `Vault.tick` ticks the `read` lines of an applied `update` entry whose `set` gives `status` the value `passed` or `failed`, by `tick_read` with the skips of an `estimate` entry; the docstring of the module and of `Vault.tick` say so.
 - [x] `tests/test_generate.py`: an `update` that sets `passed`, and one that sets `failed`, tick the `read` lines of their slug beside the yaml and in an older Spec; one that sets `pending` or no status ticks none; one skips the `read` line of a Case ratified after it and of a superseded Case; a repeated one and a failed one tick none.
-- [ ] update `rule-page-generation`
-- [ ] update `rule-orchestration`
-- [ ] `uv run guppi render`: `vault/wiki/orchestration.md`
-- [ ] update `estimate-generate-ticks-the-spec`
+- [x] update `rule-page-generation`
+- [x] update `rule-orchestration`
+- [x] `uv run guppi render`: `vault/wiki/orchestration.md`
+- [x] update `estimate-generate-ticks-the-spec`
 - [x] `vault/raw/2026-10-05/0311/spec.md` and `vault/raw/2026-10-05/1616/spec.md`: each open `read` line of an Estimate that Cases 669.1 to 669.15 set `passed` becomes `- [x]`; no other line changes.
 - [x] by hand: a Grep of the pattern that opens with `^- \[ \] read`, a space and a backtick, followed by the fifteen slugs of Cases 669.1 to 669.15 as alternatives in one group and a backtick, over `vault/raw/2026-10-05/0311/spec.md` and `vault/raw/2026-10-05/1616/spec.md` prints nothing.
-- [ ] read `estimate-generate-ticks-the-spec`
+- [x] read `estimate-generate-ticks-the-spec`
 ```
 
 ## Case 673 — A decision line that gains a mark stands beside the first
@@ -131,8 +131,8 @@ update:
 ```
 
 ```tasks
-- [ ] update `rule-orchestration`
-- [ ] `uv run guppi render`: `vault/wiki/orchestration.md`
+- [x] update `rule-orchestration`
+- [x] `uv run guppi render`: `vault/wiki/orchestration.md`
 ```
 
 ## Case 674 — Pre-spec goes back to one ask-guppi run over the whole Spec
@@ -220,13 +220,13 @@ update:
 ```
 
 ```tasks
-- [ ] update `rule-prespec`
-- [ ] `uv run guppi render`: `.claude/skills/pre-spec/SKILL.md`
-- [ ] update `rule-ask`
-- [ ] `uv run guppi render`: `.claude/agents/ask-guppi.md`
-- [ ] update `estimate-prespec-reconciles`
-- [ ] update `estimate-case-build-checks-the-finished-case`
-- [ ] read `estimate-prespec-reconciles`
+- [x] update `rule-prespec`
+- [x] `uv run guppi render`: `.claude/skills/pre-spec/SKILL.md`
+- [x] update `rule-ask`
+- [x] `uv run guppi render`: `.claude/agents/ask-guppi.md`
+- [x] update `estimate-prespec-reconciles`
+- [x] update `estimate-case-build-checks-the-finished-case`
+- [x] read `estimate-prespec-reconciles`
 ```
 
 ### Case 674.2 — The orchestration file names one ask-guppi run at pre-spec
@@ -274,10 +274,10 @@ update:
 ```
 
 ```tasks
-- [ ] update `rule-orchestration`
-- [ ] `uv run guppi render`: `vault/wiki/orchestration.md`
-- [ ] update `estimate-orchestration-shows-the-built-case`
-- [ ] read `estimate-orchestration-shows-the-built-case`
+- [x] update `rule-orchestration`
+- [x] `uv run guppi render`: `vault/wiki/orchestration.md`
+- [x] update `estimate-orchestration-shows-the-built-case`
+- [x] read `estimate-orchestration-shows-the-built-case`
 ```
 
 ### Case 674.3 — The placeholder of the whole-Spec check stays in the backlog for later
@@ -311,6 +311,6 @@ defer:
 ```
 
 ```tasks
-- [ ] update `rule-prespec-judges-the-spec-whole`
-- [ ] defer `rule-prespec-judges-the-spec-whole`
+- [x] update `rule-prespec-judges-the-spec-whole`
+- [x] defer `rule-prespec-judges-the-spec-whole`
 ```

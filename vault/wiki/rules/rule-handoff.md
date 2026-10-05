@@ -2,7 +2,7 @@
 type: rule
 kind: Leaf
 purpose: Prevents the session's memory from being lost between the commit and the librarian
-status: draft
+status: built
 enforcement: render
 governs: .claude/skills/handoff/SKILL.md
 render_mode: full
@@ -65,3 +65,4 @@ Then, in a session whose `work.md` holds `## Conserved Spec` — one that `/box`
 - 2026-10-05 updated: a supersedes tag leaves the sub-cases of its Case out of what got done (case 660.4) · [[decision-case-660.4]]
 - 2026-10-05 updated: the Debt section lists no Estimate the session creates or updates as a reading that waits: Retro reads it or sets it failed (case 670.3) · [[decision-case-670.3]]
 - 2026-10-05 status: built → draft · cascade
+- 2026-10-05 status: draft → built · cascade

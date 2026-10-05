@@ -6794,3 +6794,43 @@ instruction. The global feed; a page's own `## History` is the per-page view.
 - 2026-10-05 decisions/decision-case-665 archived · cleanup
 - 2026-10-05 decisions/decision-case-666 archived · cleanup
 - 2026-10-05 decisions/decision-case-667 archived · cleanup
+- 2026-10-05 estimates/estimate-ledger-write-refuses-a-reading-of-a-change-of-the-session status: pending → passed · raw/2026-10-05/2103/ledger.md#L1 · generate
+- 2026-10-05 estimates/estimate-retro-loads status: pending → passed · raw/2026-10-05/2103/ledger.md#L2 · generate
+- 2026-10-05 estimates/estimate-handoff-holds-each-fact-once status: pending → passed · raw/2026-10-05/2103/ledger.md#L3 · generate
+- 2026-10-05 estimates/estimate-prespec-hook-reports-a-method-that-waits-for-another-session status: pending → passed · raw/2026-10-05/2103/ledger.md#L4 · generate
+- 2026-10-05 estimates/estimate-hi-takes-its-readings status: pending → passed · raw/2026-10-05/2103/ledger.md#L5 · generate
+- 2026-10-05 estimates/estimate-work-mode-takes-the-work-readings status: pending → passed · raw/2026-10-05/2103/ledger.md#L6 · generate
+- 2026-10-05 estimates/estimate-case-check-sends-back-a-ratified-case-without-a-target status: pending → passed · raw/2026-10-05/2103/ledger.md#L7 · generate
+- 2026-10-05 decisions/decision-case-672 created · raw/2026-10-05/2103/ledger.md#case-672 · generate
+- 2026-10-05 estimates/estimate-generate-ticks-the-spec updated: the Criterion replaced whole — an update that sets passed or failed ticks the read lines of its slug, with the skips of a reading; the method the tests alone (case 672) · [[decision-case-672]] · generate
+- 2026-10-05 rules/rule-page-generation updated: an update that sets an Estimate passed or failed by the person's decision ticks its read lines across the live Specs, with the skips of a reading (case 672) · [[decision-case-672]] · generate
+- 2026-10-05 rules/rule-orchestration updated: generate ticks the read lines of an Estimate a delete or a decision closes too (case 672) · [[decision-case-672]] · generate
+- 2026-10-05 decisions/decision-case-673 created · raw/2026-10-05/2103/ledger.md#case-673 · generate
+- 2026-10-05 rules/rule-orchestration updated: a decision line that gains a mark at a re-ratification stands beside the first; the page changes once and the mark still applies (case 673) · [[decision-case-673]] · generate
+- 2026-10-05 decisions/decision-case-674 created · raw/2026-10-05/2103/ledger.md#case-674 · generate
+- 2026-10-05 decisions/decision-case-674.1 created · raw/2026-10-05/2103/ledger.md#case-674.1 · generate
+- 2026-10-05 rules/rule-prespec updated: the first run of /pre-spec sends one ask-guppi over the whole plan or the conserved Spec its title line names; the report gives what that run did not check and never says the whole Spec is checked (case 674.1) · [[decision-case-674.1]] · generate
+- 2026-10-05 rules/rule-ask updated: at pre-spec one ask-guppi run judges every Case of the plan with its sub-cases (case 674.1) · [[decision-case-674.1]] · generate
+- 2026-10-05 estimates/estimate-prespec-reconciles updated: the Criterion replaced whole — one ask-guppi over the whole plan at the first run, the report giving what that run did not check; the method a reading of the new Render in the Spec at Retro (case 674.1) · [[decision-case-674.1]] · generate
+- 2026-10-05 estimates/estimate-case-build-checks-the-finished-case updated: the method reads the findings of ask-guppi at pre-spec, no longer one run per top-level Case (case 674.1) · [[decision-case-674.1]] · generate
+- 2026-10-05 decisions/decision-case-674.2 created · raw/2026-10-05/2103/ledger.md#case-674.2 · generate
+- 2026-10-05 rules/rule-orchestration updated: ask-guppi is dispatched only at pre-spec, one run over the whole plan, and asked again only to confirm its findings (case 674.2) · [[decision-case-674.2]] · generate
+- 2026-10-05 estimates/estimate-orchestration-shows-the-built-case updated: the Criterion replaced whole — ask-guppi only at pre-spec, one run over the whole plan, asked again only to confirm its findings; the method a reading of the new Render in the Spec at Retro (case 674.2) · [[decision-case-674.2]] · generate
+- 2026-10-05 decisions/decision-case-674.3 created · raw/2026-10-05/2103/ledger.md#case-674.3 · generate
+- 2026-10-05 decisions/decision-case-643 superseded by decision-case-674.3 · [[decision-case-674.3]] · generate
+- 2026-10-05 rules/rule-prespec-judges-the-spec-whole defer by decision-case-643 superseded · [[decision-case-674.3]] · generate
+- 2026-10-05 rules/rule-prespec-judges-the-spec-whole updated: the purpose rewritten for what is left to think over after pre-spec went back to one ask-guppi run; the defer of case 643 retired and the page put off again (case 674.3) · [[decision-case-674.3]] · generate
+- 2026-10-05 rules/rule-prespec-judges-the-spec-whole deferred · [[decision-case-674.3]] · generate
+- 2026-10-05 estimates/estimate-generate-ticks-the-spec status: pending → passed · raw/2026-10-05/2103/ledger.md#L20 · generate
+- 2026-10-05 estimates/estimate-prespec-reconciles status: pending → passed · raw/2026-10-05/2103/ledger.md#L21 · generate
+- 2026-10-05 estimates/estimate-orchestration-shows-the-built-case status: pending → passed · raw/2026-10-05/2103/ledger.md#L22 · generate
+- 2026-10-05 lessons/lesson-orchestration-a-ratified-render-change-claimed-live-before-the-render created · raw/2026-10-05/2103/ledger.md#L23 · generate
+- 2026-10-05 insights/insight-workflow-fact-signed-from-a-check-that-does-not-cover-it updated: child lesson-orchestration-a-ratified-render-change-claimed-live-before-the-render added (synthesis) · raw/2026-10-05/2103/ledger.md#L23 · generate
+- 2026-10-05 lessons/lesson-orchestration-a-ratified-render-change-claimed-live-before-the-render updated: clustered under insight-workflow-fact-signed-from-a-check-that-does-not-cover-it (synthesis) · raw/2026-10-05/2103/ledger.md#L23 · generate
+- 2026-10-05 rules/rule-case-check status: draft → built · cascade · generate
+- 2026-10-05 rules/rule-handoff status: draft → built · cascade · generate
+- 2026-10-05 rules/rule-ledger-write status: draft → built · cascade · generate
+- 2026-10-05 rules/rule-prespec-hook status: draft → built · cascade · generate
+- 2026-10-05 rules/rule-retro status: draft → built · cascade · generate
+- 2026-10-05 decisions/decision-case-643 archived · superseded · generate
+- 2026-10-05 decisions/decision-case-643 archived · cleanup

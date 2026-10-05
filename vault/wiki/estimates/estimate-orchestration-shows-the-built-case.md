@@ -4,7 +4,7 @@ kind: QA
 status: passed
 target: "[[rule-orchestration]]"
 purpose: A Case is built by case-guppi and shown by the main agent unchanged
-method: by hand, the Cases of a session at its close, their context against the Agent calls and their showings against the SendUserFile calls of the transcript, and each request for a plain explanation against the Skill and SendMessage calls
+method: "by hand at Retro of the session that changes it: the new Render of rule-orchestration in the Spec, read against the Criterion, recorded in the estimate line"
 checked: 2026-10-05
 origin: raw/2026-09-24/1303/ledger.md#case-391.2
 sprint: migration
@@ -26,7 +26,7 @@ The main agent dispatches `case-guppi` with the Case id, the Frontier item and i
 **＋** A Case whose item in the summary carries a line `**Other Case:**` is shown as it stands, and the main agent asks the person whether that other Case is built again.
 **＋** A reply that shows a Case and that the `Stop` check of `rule-case-check` refuses is followed, before the person answers, by a reply that sends the file and shows the `ratification` as the summary holds it; a reply that shows a round and that the `Stop` check refuses is followed, before the person answers, by a reply that shows the round again with nothing before its `**Context:**` paragraph or its first question.
 **＋** A ratified Case that changes — in its prose or in its body — changes through its `case-guppi`, and its new file is sent and ratified again; the main agent edits no Case in the plan file or under `cases/`.
-**＋** An item that needs no decision the main agent closes alone, with no dispatch; it dispatches `ask-guppi` only at pre-spec, one run per top-level Case at its first run, never to build a Case, and asks a run again only to confirm its own findings.
+**＋** An item that needs no decision the main agent closes alone, with no dispatch; it dispatches `ask-guppi` only at pre-spec, one run over the whole plan at its first run, never to build a Case, and asks that run again only to confirm its own findings.
 **－** The main agent writes the heading, the list, the `ratification` and the question on another Case from the summary, and does not read the file of the Case.
 **－** The heading carries no name of the main agent's own and not the words of the Frontier item.
 **－** The main agent writes no context of its own before the first question of a round.
@@ -35,7 +35,7 @@ The main agent dispatches `case-guppi` with the Case id, the Frontier item and i
 
 ## Result
 
-2026-10-05, Plan Mode of session 1831, case 669: set passed by the person's decision, without a reading; a problem seen later in what this Estimate promises comes back as a lesson. The last reading before it, which left the page pending: 2026-10-05, by hand at the Work readings of session 1343, Cases 650–656 against transcript f5706873: the plan file was written with its title line before the first dispatch; seven case-guppi dispatched with the Case id, the Frontier item, its source and the person's words; twelve rounds sent back by SendMessage verbatim and shown in Russian in order, first rounds with their Context; eight showings, each by SendUserFile display render of its case file, a Russian heading, one list per Case and sub-case of the summary with what done means and its Estimate, the ledger lines as the summary held them, the agent's text after one rule; no Stop refusal of a showing; failed on one clause: the heading of Case 653 rendered Frontier item C3, not the Case's name, its summary holding items for 653.1 and 653.2 only; the first showing of 650 put the ratification under a bare `**ratification:**` line with a plain fence, later ones as a quote block; not exercised: a plain explanation, a Fact reply, an `**Other Case:**` line, a Stop refusal of a showing
+2026-10-05, at the Retro of session 2103, by hand, the new Render of rule-orchestration in raw/2026-10-05/2103/spec.md against the Criterion of case 674.2: the sentence reads that the agent dispatches ask-guppi only at pre-spec, one run over the whole plan at its first run, and asks that run again only to confirm its own findings; the dispatch of case-guppi, the SendMessage of answers, wait-what, the showing of a round and of a built Case, the Other Case line, the refusals and the change of a ratified Case stand in the paragraph as before; the replace old string occurs once in the page
 
 ## History
 
@@ -70,3 +70,5 @@ The main agent dispatches `case-guppi` with the Case id, the Frontier item and i
 - 2026-10-05 status: pending → failed · raw/2026-10-05/1343/ledger.md#L36
 - 2026-10-05 updated: the Criterion replaced whole — the heading of a showing is the id and the name of the Case line of the summary, translated (case 662.2) · [[decision-case-662.2]]
 - 2026-10-05 updated: set passed by the person's decision, without a reading; the Criterion kept; a problem seen later comes back as a lesson (case 669) · [[decision-case-669.10]]
+- 2026-10-05 updated: the Criterion replaced whole — ask-guppi only at pre-spec, one run over the whole plan, asked again only to confirm its findings; the method a reading of the new Render in the Spec at Retro (case 674.2) · [[decision-case-674.2]]
+- 2026-10-05 status: pending → passed · raw/2026-10-05/2103/ledger.md#L22

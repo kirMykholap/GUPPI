@@ -2,7 +2,7 @@
 type: rule
 kind: Leaf
 purpose: Prevents a Case from being shown to the person in a form the checks of pre-spec refuse, or with other given, when, then, tasks or ratification than the ones that passed them, a round of case-guppi from reaching the main agent with a question out of the form of the grill-me template, a round of case-guppi from being shown after a text of the main agent's own, a Case from being shown with a text of the main agent's own outside the list under its heading and its ratification, and a summary of case-guppi from reaching the main agent without the id and the name of the Case it built
-status: draft
+status: built
 enforcement: hook
 implementation_ref: [guppi/casecheck.py, tests/test_casecheck.py, .claude/settings.json]
 parent: "[[rule-plan-mode]]"
@@ -67,3 +67,4 @@ Prevents a Case from being shown to the person in a form the checks of pre-spec 
 - 2026-10-05 estimate estimate-case-check-sends-back-a-summary-without-the-case-name added · [[decision-case-662.3]]
 - 2026-10-05 updated: the SubagentStop check sends back a summary whose Case line is missing or differs from the heading of the file (case 662.3) · [[decision-case-662.3]]
 - 2026-10-05 estimate estimate-case-check-sends-back-a-ratified-case-without-a-target added · [[decision-case-671.1]]
+- 2026-10-05 status: draft → built · cascade

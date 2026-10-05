@@ -1,10 +1,11 @@
 ---
 type: estimate
 kind: QA
-status: pending
+status: passed
 target: "[[rule-prespec-hook]]"
 purpose: Whether pre-spec reports a method in the plan that waits for a later session, the librarian or a /hi, by one predicate of guppi/lint.py, and leaves a method that names the person and the live pages alone
 method: uv run pytest tests/test_prespec.py tests/test_lint.py -k waits
+checked: 2026-10-05
 origin: raw/2026-10-05/1831/ledger.md#case-670.4
 sprint: migration
 created: 2026-10-05
@@ -23,6 +24,11 @@ A `method` with a part between two `;` that names a later session, the next sess
 **－** `uv run guppi lint` of `guppi/lint.py` over the live Estimate pages gives no finding by this predicate.
 **－** The line does not replace the finding of a `method` that names no form or that ties its reading to a one-off moment.
 
+## Result
+
+2026-10-05, at the /hi of session 2103, uv run pytest tests/test_prespec.py tests/test_lint.py -k waits: 4 passed, 278 deselected
+
 ## History
 
 - 2026-10-05 created · [[decision-case-670.4]]
+- 2026-10-05 status: pending → passed · raw/2026-10-05/2103/ledger.md#L4

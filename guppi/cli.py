@@ -1,6 +1,6 @@
 """`uv run guppi <command> ...` — the one entry point for the harness's scripts.
 
-Each command is a module with a `run(argv, ...) -> int`. Hook commands (`event`, `ledger`, `spec`, `prespec`, `gate`, `guard`, `bashguard`, `ratified`, `ratified --guard`, `casecheck`, `casecheck --subagent`, `pageread`, `pageread --after`, `context`, `onward`, `onward --plan`, `recall`, `render --sync`) read their payload from stdin and are registered in `.claude/settings.json`.
+Each command is a module with a `run(argv, ...) -> int`. Hook commands (`event`, `ledger`, `spec`, `prespec`, `gate`, `guard`, `bashguard`, `ratified`, `ratified --guard`, `casecheck`, `casecheck --subagent`, `pageread`, `pageread --after`, `grepguard`, `context`, `onward`, `onward --plan`, `recall`, `render --sync`) read their payload from stdin and are registered in `.claude/settings.json`.
 """
 
 import sys
@@ -17,6 +17,7 @@ from guppi import (
     gate,
     generate,
     glossary,
+    grepguard,
     guard,
     ledger,
     lint,
@@ -51,6 +52,7 @@ COMMANDS = {
     "materialize": materialize.run,
     "onward": onward.run,
     "pageread": pageread.run,
+    "grepguard": grepguard.run,
     "prespec": prespec.run,
     "ratified": ratified.run,
     "recall": recall.run,

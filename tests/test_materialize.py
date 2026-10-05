@@ -1735,6 +1735,70 @@ def test_a_supersedes_of_a_case_no_yaml_holds_changes_nothing(tmp_path):
     assert mine["supersedes"] == ["5"]
 
 
+# --- a tag on a parent marks its sub-cases (case 660.2) -----------------------------------
+# `estimate-materialize-marks-superseded`
+
+FAMILY_LEDGER = """- decision[case 30.1][update][rule-old]{ref:rule-old}
+- decision[case 30.2][update][rule-other]{ref:rule-other}
+- decision[case 30.2.1][update][rule-third]{ref:rule-third}
+- decision[case 31][update][rule-old]{ref:rule-old}{supersedes:case 30}
+"""
+
+
+def test_a_tag_on_a_parent_marks_the_entries_and_records_of_its_sub_cases(tmp_path):
+    seed(tmp_path, ledger=FAMILY_LEDGER, spec=GONE_SPEC)
+    run(tmp_path)
+    data = load(tmp_path)
+    for case in ("30.1", "30.2", "30.2.1"):
+        (entry,) = of_case(data, case)
+        assert entry["superseded_by"] == "31"
+        assert "incomplete" not in entry  # gone from the Spec: complete by the mark (299.3)
+    records = {d["case"]: d for d in data["decisions"]}
+    for case in ("30", "30.1", "30.2", "30.2.1"):
+        assert records[case]["superseded_by"] == ["decision-case-31"]
+    assert "superseded_by" not in records["31"]
+
+
+def test_a_tag_on_a_sub_case_leaves_the_parent_and_its_other_sub_cases(tmp_path):
+    ledger = FAMILY_LEDGER.replace("{supersedes:case 30}", "{supersedes:case 30.2}")
+    seed(tmp_path, ledger=ledger, spec=GONE_SPEC)
+    run(tmp_path)
+    data = load(tmp_path)
+    (first,) = of_case(data, "30.1")
+    assert "superseded_by" not in first
+    for case in ("30.2", "30.2.1"):
+        (entry,) = of_case(data, case)
+        assert entry["superseded_by"] == "31"
+    records = {d["case"]: d for d in data["decisions"]}
+    assert "superseded_by" not in records["30"] and "superseded_by" not in records["30.1"]
+
+
+def test_a_tag_on_a_parent_marks_its_sub_cases_in_another_units_yaml(tmp_path):
+    a, _ = seed_two_units(tmp_path)
+    (a / "ledger.md").write_text(
+        "- 09:10:00 decision[case 5.1][update][rule-old]{ref:rule-old}\n"
+        "- 09:10:01 decision[case 5.2][update][rule-old]{ref:rule-old}\n",
+        encoding="utf-8",
+        newline="\n",
+    )
+    code, _, err = run_walk(tmp_path, ["--date", DATE])
+    assert code == 0 and err == ""
+    earlier = unit_yaml(a)
+    marked = {e["case"]: e.get("superseded_by") for e in earlier["entries"] if e.get("case")}
+    assert marked == {"5.1": "9", "5.2": "9"}
+    for decision in earlier["decisions"]:
+        assert decision["superseded_by"] == ["decision-case-9"]
+
+
+def test_in_family_reads_a_case_and_its_sub_cases_at_any_depth():
+    assert materialize.in_family("5", "5") and materialize.in_family("5.2.1", "5")
+    assert not materialize.in_family("50", "5") and not materialize.in_family("5", "5.1")
+    from guppi import casecheck, ratified
+
+    assert casecheck.in_family is materialize.in_family
+    assert ratified.in_family is materialize.in_family
+
+
 # --- several {supersedes:case N} blocks on one line (case 429) ----------------------------
 # `estimate-materialize-marks-superseded`
 

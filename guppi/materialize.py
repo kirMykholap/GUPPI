@@ -78,7 +78,10 @@ old shape is dropped; a `criterion` key of the old shape goes to `sections.Crite
 keys of the shape before case 189 — `method`, `contract`, `estimate_slug`, `estimate_kind`
 on a rule's or entity's item — are no keys of their own: like any key the schema does not
 name, they go under `unknown` (case 440). A line with `{supersedes:case
-N}` marks every entry carrying `case: N` `superseded_by`, whatever its kind (case 175); a
+N}` marks every entry carrying `case: N` `superseded_by`, whatever its kind (case 175), and
+every entry of a sub-case of N at any depth, judged by `in_family` — the one reading of the
+tag that the Spec hook, `prespec` and the clash check of `casecheck` import (case 660.2); a
+tag on N.M marks N.M and its own sub-cases only; a
 line may carry several such blocks side by side, one per Case, and each Case is marked
 (case 429). The marks go to
 whichever unit's yaml holds them — this one or any other under `raw/`, written with that
@@ -1100,9 +1103,13 @@ def fold_estimate(entries: list[dict], record: dict, number: int) -> bool:
 def refold(entries: list[dict], case: str, ledger: list[str], date: str) -> None:
     """Case 309: the readings folded into a `create` this mark just superseded move to the
     live `create` of the same slug in the unit; with none, each becomes an `estimate` entry
-    of its own from its ledger line. The marked entry keeps no reading."""
+    of its own from its ledger line. The marked entry keeps no reading; the mark covers the
+    sub-cases of `case` too (case 660.2)."""
     for entry in entries:
-        if entry.get("case") != case or entry.get("kind") != "create" or not entry.get("folded"):
+        own = entry.get("case")
+        if own is None or not in_family(str(own), case):
+            continue
+        if entry.get("kind") != "create" or not entry.get("folded"):
             continue
         numbers = entry.pop("folded")
         entry.pop("status", None)
@@ -1131,28 +1138,36 @@ def refold(entries: list[dict], case: str, ledger: list[str], date: str) -> None
                 entries.append(estimate_entry(parsed, number, line_body(line), date))
 
 
+def in_family(case: str, top: str) -> bool:
+    """Whether `case` is `top` or one of its sub-cases at any depth: the one reading of a
+    `{supersedes:case N}` tag, which retires N with its sub-cases (case 660)."""
+    return case == top or case.startswith(top + ".")
+
+
 def mark_superseded(
-    entries: list[dict], decisions: list[dict], case: str, by: str, in_spec: bool = True
+    entries: list[dict], decisions: list[dict], case: str, by: str, spec=None
 ) -> bool:
-    """Mark every entry carrying `case` `superseded_by` — the lines' own and the derived
-    ones, the block removal included, whatever its kind (case 175) — and its decision
-    record likewise; True when an entry or a record of that case was here to mark. An
-    `estimate` or `lesson` entry carries no `case` and is never marked. A Case gone from
-    the Spec (`in_spec` False) is complete by the mark: `then` leaves its `incomplete`
-    (case 299.3)."""
+    """Mark every entry of `case` or of one of its sub-cases (`in_family`, case 660.2)
+    `superseded_by` — the lines' own and the derived ones, the block removal included,
+    whatever its kind (case 175) — and their decision records likewise; True when an entry
+    or a record of that family was here to mark. An `estimate` or `lesson` entry carries no
+    `case` and is never marked. `spec`, when given, holds the Cases whose heading stands in
+    the Spec: a marked Case gone from it is complete by the mark, and `then` leaves its
+    `incomplete` (case 299.3)."""
     marked = False
     for entry in entries:
-        if entry.get("case") == case:
+        own = entry.get("case")
+        if own is not None and in_family(str(own), case):
             entry["superseded_by"] = by
             marked = True
-            if not in_spec and "then" in (entry.get("incomplete") or []):
+            if spec is not None and own not in spec and "then" in (entry.get("incomplete") or []):
                 rest = [i for i in entry["incomplete"] if i != "then"]
                 if rest:
                     entry["incomplete"] = rest
                 else:
                     del entry["incomplete"]
     for decision in decisions:
-        if decision.get("case") == case:
+        if decision.get("case") is not None and in_family(str(decision["case"]), case):
             done = decision.setdefault("superseded_by", [])
             if f"decision-case-{by}" not in done:
                 done.append(f"decision-case-{by}")
@@ -1368,7 +1383,7 @@ def lift_line(
     entries.append(entry)
     added = 1
     for earlier in record.get("supersedes") or []:  # one block per Case (case 429)
-        if mark_superseded(entries, decisions, earlier, case, earlier in cases):
+        if mark_superseded(entries, decisions, earlier, case, cases):
             refold(entries, earlier, ledger or [], date)  # case 309
         else:
             elsewhere.append((earlier, case))  # another unit's yaml (130.2)
@@ -1542,8 +1557,10 @@ def assemble(
         present[parent] = record
     for decision in decisions:
         for earlier in decision.get("supersedes") or []:
-            target = present.get(earlier[len("decision-case-") :])
-            if target is not None:
+            top = earlier[len("decision-case-") :]
+            for key, target in present.items():
+                if not in_family(str(key), top):
+                    continue  # the tag retires the Case with its sub-cases (case 660.2)
                 done = target.setdefault("superseded_by", [])
                 if decision["decision"] not in done:
                     done.append(decision["decision"])

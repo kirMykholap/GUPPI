@@ -4,9 +4,9 @@ check`), and a short-form defer passes the `Stop` hook of `rule-spec-write` that
 under `## Deferred` (case 651.3, `estimate-orchestration-defer-example-passes-the-hook`). The
 tests hold no copy of the examples or of the checks: they read the blocks tagged `showing`
 and `defer` from the rendered page and run the functions of `guppi/casecheck.py` and
-`guppi/ratified.py` over them. Until the librarian's render puts a block there, its test is
-skipped with a reason that names the file; a Case of a later session removes the skip after
-the reading passes.
+`guppi/ratified.py` over them. A page that holds no block tagged `showing` or `defer` fails
+the tests that read it, with a message that names the file and the tag; no test of the file
+is skipped (case 661).
 """
 
 import shutil
@@ -34,7 +34,16 @@ def example(tag: str, path: Path = PAGE) -> str:
         if closes_fence(line, opening):
             return "\n".join(kept) + "\n"
         kept.append(line)
-    pytest.skip(f"{path} holds no block tagged {tag} until the librarian's render (case 651)")
+    pytest.fail(f"{path} holds no block tagged {tag} — the example of case 651 is gone (case 661)")
+
+
+@pytest.mark.parametrize("tag", ["showing", "defer"])
+def test_a_page_without_the_example_fails_and_names_the_file(tmp_path, tag):
+    bare = tmp_path / "orchestration.md"
+    bare.write_text("# Orchestration\n\nNo example.\n", encoding="utf-8")
+    with pytest.raises(pytest.fail.Exception) as failed:
+        example(tag, bare)
+    assert str(bare) in str(failed.value) and tag in str(failed.value)
 
 
 # --- a showing (case 651.2) --------------------------------------------------------------

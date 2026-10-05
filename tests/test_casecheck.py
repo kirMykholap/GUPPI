@@ -147,7 +147,9 @@ def answer_file(project, content, **fields):
     path.parent.mkdir(parents=True, exist_ok=True)
     path.write_text(content, encoding="utf-8")
     call = {"type": "tool_use", "name": "Write", "input": {"file_path": str(path), "content": "."}}
-    summary = {"type": "text", "text": f"**Built:** {path}"}
+    heading = casecheck.top_heading(content)
+    named = f"\n**Case:** {heading[0]} — {heading[1]}" if heading else ""  # case 662.1
+    summary = {"type": "text", "text": f"**Built:** {path}{named}"}
     agent = project / "agent-file.jsonl"
     lines = [
         json.dumps({"type": "assistant", "isSidechain": True, "message": {"content": [block]}})
@@ -1574,7 +1576,7 @@ def edit_call(path, old, new):
 
 
 def built(path):
-    return text(f"**Built:** {path}\n\n- 7 — example: `estimate-x-works`")
+    return text(f"**Built:** {path}\n**Case:** 7 — example\n\n- 7 — example: `estimate-x-works`")
 
 
 def agent_writes(project, content):
@@ -1657,3 +1659,91 @@ def test_subagent_rounds_a_sub_case_alone_finds_its_titles_in_the_stored_parent(
     code, err = answer(working, "", agent_transcript_path=missing)
     assert code == 2
     assert "case 9: recommend holds no item for the question of the rounds: Which test?" in err
+
+
+# --- the summary names the Case it built (case 662.3) ------------------------------------
+# `estimate-case-check-sends-back-a-summary-without-the-case-name`
+
+
+def summary_of(path, line=""):
+    """A summary of `case-guppi` for the file at `path`, with `line` after `**Built:**`."""
+    named = f"\n{line}" if line else ""
+    return text(f"**Built:** {path}{named}\n\n- 7 — example: `estimate-x-works`")
+
+
+def written(project, content, *later):
+    path = case_path(project, "7")
+    path.parent.mkdir(parents=True, exist_ok=True)
+    path.write_text(content, encoding="utf-8")
+    return path, [write_call(path, content)], *later
+
+
+def test_subagent_summary_names_the_case_missing_line_is_sent_back(working):
+    path, call = written(working, ANSWER)
+    agent = transcript(working, call, [summary_of(path)])
+    code, err = answer(working, "**Built:**", agent_transcript_path=agent)
+    assert code == 2
+    assert str(path) in err and "write `**Case:** 7 — example`" in err
+
+
+def test_subagent_summary_names_the_case_same_id_and_name_passes(working):
+    path, call = written(working, ANSWER)
+    agent = transcript(working, call, [summary_of(path, "**Case:** 7 — example   ")])
+    assert answer(working, "**Built:**", agent_transcript_path=agent) == (0, "")
+
+
+def test_subagent_summary_names_the_case_another_name_is_sent_back(working):
+    path, call = written(working, ANSWER)
+    agent = transcript(working, call, [summary_of(path, "**Case:** 7 — the Frontier words")])
+    code, err = answer(working, "**Built:**", agent_transcript_path=agent)
+    assert code == 2
+    assert "`**Case:** 7 — the Frontier words`" in err and "write `**Case:** 7 — example`" in err
+
+
+def test_subagent_summary_names_the_case_joins_the_findings_of_the_file(working):
+    path, call = written(working, NO_READ)
+    agent = transcript(working, call, [summary_of(path)])
+    code, err = answer(working, "**Built:**", agent_transcript_path=agent)
+    assert code == 2
+    assert err.count("casecheck: ") == 1  # one exit 2 carries both
+    assert "estimate-x-works has no task line" in err and "write `**Case:** 7 — example`" in err
+
+
+def test_subagent_summary_names_the_case_repeated_text_is_not_sent_back_twice(working):
+    path, call = written(working, ANSWER)
+    once = transcript(working, call, [summary_of(path)])
+    assert answer(working, "**Built:**", agent_transcript_path=once)[0] == 2
+    again = transcript(working, call, [summary_of(path)], [summary_of(path)])
+    assert answer(working, "**Built:**", agent_transcript_path=again) == (0, "")
+
+
+def test_subagent_summary_names_the_case_sent_again_once_the_heading_changed(working):
+    path, call = written(working, ANSWER)
+    once = transcript(working, call, [summary_of(path, "**Case:** 7 — example")])
+    assert answer(working, "**Built:**", agent_transcript_path=once) == (0, "")
+    renamed = ANSWER.replace("## Case 7 — example", "## Case 7 — renamed")
+    path.write_text(renamed, encoding="utf-8")  # the Edit of the heading as it landed
+    edit = [edit_call(path, "## Case 7 — example", "## Case 7 — renamed")]
+    stale = summary_of(path, "**Case:** 7 — example")
+    agent = transcript(working, call, [stale], edit, [stale])
+    code, err = answer(working, "**Built:**", agent_transcript_path=agent)
+    assert code == 2 and "write `**Case:** 7 — renamed`" in err
+    assert answer(working, "**Built:**", agent_transcript_path=agent) == (0, "")  # held once
+    path.write_text(ANSWER, encoding="utf-8")  # named back: the old summary fits again
+    assert answer(working, "**Built:**", agent_transcript_path=agent) == (0, "")
+
+
+@pytest.mark.parametrize(
+    "newest",
+    [round_of("Which test?"), "**Fact:**\nThe page says so.", "I built nothing."],
+)
+def test_subagent_summary_names_the_case_a_round_or_fact_is_not_judged(working, newest):
+    _, call = written(working, ANSWER)
+    agent = transcript(working, call, [text(newest)])
+    _, err = answer(working, "", agent_transcript_path=agent)
+    assert "**Case:**" not in err
+
+
+def test_subagent_summary_names_the_case_no_file_written_is_not_judged(working):
+    agent = transcript(working, [summary_of("nowhere")])
+    assert answer(working, "**Built:**", agent_transcript_path=agent) == (0, "")

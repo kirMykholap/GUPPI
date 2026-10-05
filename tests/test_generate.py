@@ -3105,3 +3105,100 @@ def test_a_later_case_superseding_the_archived_decision_clears_the_page_it_names
     b = page(tmp_path, "rules", "rule-b")
     assert "deferred_by" not in props(b)
     assert f"- {DATE} defer by decision-case-2 superseded · [[decision-case-4]]" in b
+
+
+# --- Case 660.3: a superseded Decision page takes the pages of its sub-cases with it -------
+# `estimate-generate-writes-the-decision-page`
+
+SUPERSEDED_BY_SIX = "superseded by decision-case-6"
+
+
+def family_record(case, **extra):
+    record = {
+        "case": case,
+        "decision": f"decision-case-{case}",
+        "origin": f"raw/{DATE}/ledger.md#case-{case}",
+        "tags": [],
+        "targets": [],
+        "case_text": {"given": "g", "when": "w", "then": "t"},
+    }
+    record.update(extra)
+    return record
+
+
+def superseding_six():
+    return family_record(
+        "6",
+        targets=[{"kind": "update", "category": "rules", "slug": "rule-root"}],
+        supersedes=["decision-case-5"],
+    )
+
+
+def test_a_supersedes_of_a_parent_sets_its_sub_case_pages_superseded_in_the_same_run(tmp_path):
+    later = page_text("rules", "rule-later", deferred_by="[decision-case-5.2.1]")
+    decisions = [
+        family_record("5.1", parent="decision-case-5"),
+        family_record("5.2", parent="decision-case-5", children=["decision-case-5.2.1"]),
+        family_record(
+            "5.2.1",
+            parent="decision-case-5.2",
+            targets=[{"kind": "defer", "category": "rules", "slug": "rule-later"}],
+        ),
+        superseding_six(),
+        family_record(
+            "5",
+            children=["decision-case-5.1", "decision-case-5.2"],
+            case_text={"context": "c", "problem": "p"},
+        ),
+    ]
+    seed(tmp_path, entries=[ROOT], decisions=decisions, pages=[("rules", "rule-later", later)])
+    code, _, err = run(tmp_path)
+    assert code == 0 and err == "", err
+    for case in ("5", "5.1", "5.2", "5.2.1"):
+        text = page(tmp_path, "decisions", f"decision-case-{case}")
+        assert props(text)["superseded_by"] == ["decision-case-6"]
+        assert props(text)["status"] == "archived"  # the cascade of 104.1 follows
+        assert text.split("## History")[1].count(SUPERSEDED_BY_SIX) == 1
+    # a child's `defer` target keeps its mark: only the page the tag names clears its own
+    assert props(page(tmp_path, "rules", "rule-later"))["deferred_by"] == ["decision-case-5.2.1"]
+
+
+def decision_page(case, status, extra=""):
+    return (
+        f'---\ntype: decision\ncase: "{case}"\nstatus: {status}\n{extra}'
+        f"origin: raw/2026-09-01/ledger.md#case-{case}\nsprint: migration\n"
+        "created: 2026-09-01\ntags: []\n---\n\n## Problem\n\np\n\n## History\n\n"
+        "- 2026-09-01 created · x\n"
+    )
+
+
+def test_a_supersedes_of_a_parent_of_an_earlier_run_leaves_an_archived_child_alone(tmp_path):
+    pages = [
+        (
+            "decisions",
+            "decision-case-5",
+            decision_page(
+                "5",
+                "current",
+                "children: [decision-case-5.1, decision-case-5.2, decision-case-5.3]\n",
+            ),
+        ),
+        ("decisions", "decision-case-5.1", decision_page("5.1", "current")),
+        ("decisions", "decision-case-5.2", decision_page("5.2", "archived")),
+        (
+            "decisions",
+            "decision-case-5.3",
+            decision_page("5.3", "current", "superseded_by: [decision-case-6]\n"),
+        ),
+    ]
+    seed(tmp_path, entries=[ROOT], decisions=[superseding_six()], pages=pages)
+    code, _, err = run(tmp_path)
+    assert code == 0 and err == "", err
+    first = page(tmp_path, "decisions", "decision-case-5.1")
+    assert props(first)["superseded_by"] == ["decision-case-6"]
+    assert first.split("## History")[1].count(SUPERSEDED_BY_SIX) == 1
+    archived = page(tmp_path, "decisions", "decision-case-5.2")
+    assert props(archived)["status"] == "archived" and "superseded_by" not in props(archived)
+    assert SUPERSEDED_BY_SIX not in archived
+    marked = page(tmp_path, "decisions", "decision-case-5.3")  # already names the Case
+    assert SUPERSEDED_BY_SIX not in marked.split("## History")[1]

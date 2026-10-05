@@ -103,6 +103,20 @@ round or a Fact answer is not checked or stored as a Case, and an earlier Case i
 again (case 607.1); a round is still judged by the check of the form, which stores nothing.
 With no plan file of the session no Case is stored or sent back.
 
+The name in the summary (case 662.3). When the subagent wrote a file of `cases/` and its
+newest output, by `subagent_outputs`, opens with `**Built:**` — a summary, not a round, a
+`**Fact:**` answer or an answer with no file — `summary_findings` reads its `**Case:**`
+lines, `**Case:** N — name`, and the top-level heading `## Case N — name` of each written
+file, the heading found by `CASE_HEADING` of `guppi/materialize.py`; it compares the id and
+the name of the line with those of the heading, trailing spaces aside, not the whole line.
+A file whose heading no line names, or names with another name, is a finding that names the
+file and the line to write; it joins the findings of the files in one exit 2. The guard
+against a loop keys on the text of the summary and the heading of the file together: a
+summary sent back is held under `summary_sent` of the entry of its top-level Case, the text
+and the heading, which a later store of that Case keeps; a summary whose text an earlier
+output already holds gets no finding again while the heading stands as it was when it was
+sent back, and gets one again once the heading changed.
+
 The form of a round (case 601.1). Before the check of a Case, the same `--subagent` run
 judges the newest output of `case-guppi` in `agent_transcript_path` by `round_form`: a text
 that `is_round` — the one test of a round, which the `Stop` run imports too — finds a round
@@ -238,6 +252,7 @@ from guppi.materialize import (
     CASE_HEADING,
     closes_fence,
     fence_opening,
+    in_family,
     parse_line,
     quoted_sections,
     schema_changed,
@@ -638,11 +653,6 @@ def key_case(key) -> str:
     return str(key).split(AGENT_KEY, 1)[0]
 
 
-def in_family(case: str, top: str) -> bool:
-    """Whether `case` is `top` or one of its sub-cases at any depth."""
-    return case == top or case.startswith(top + ".")
-
-
 def new_number(records: list[dict], store: dict) -> str:
     """Case 610.1: a free number for a Case built again — one above the highest top-level
     Case number that the decision lines of the session's ledger and the keys of the store
@@ -958,6 +968,81 @@ def spaces_aside(text: str) -> list[str]:
     return [line.rstrip() for line in text.strip().splitlines()]
 
 
+BUILT_LABEL = "**Built:**"  # the first line of a summary of `case-guppi` (case 645.1)
+CASE_LABEL = "**Case:**"  # the line that names the top-level Case it built (case 662.1)
+NAME_DASH = " — "  # between the id and the name, in a heading and in the line alike
+
+
+def top_heading(text: str) -> tuple[str, str] | None:
+    """The id and the name of the first Case heading of a file of a Case, found by
+    `CASE_HEADING` of `guppi/materialize.py` — the top-level Case of the file (case 662.3);
+    None when the file holds none."""
+    for line in text.splitlines():
+        match = CASE_HEADING.match(line)
+        if match:
+            rest = line.rstrip().split(NAME_DASH, 1)
+            return match.group(1), rest[1].strip() if len(rest) == 2 else ""
+    return None
+
+
+def summary_names(text: str) -> dict[str, str]:
+    """The id and the name of each `**Case:** N — name` line of a summary, trailing spaces
+    aside (case 662.3)."""
+    names: dict[str, str] = {}
+    for line in text.splitlines():
+        line = line.strip()
+        if not line.startswith(CASE_LABEL):
+            continue
+        rest = line[len(CASE_LABEL) :].strip().split(NAME_DASH, 1)
+        if rest and rest[0]:
+            names.setdefault(rest[0].strip(), rest[1].strip() if len(rest) == 2 else "")
+    return names
+
+
+def summary_findings(payload: dict, files: list[Path], store: dict) -> list[str]:
+    """Case 662.3: the findings on the `**Case:**` lines of the newest output of the
+    subagent when it is a summary — its first line that is not blank opens with `**Built:**`
+    — for the files of `cases/` it wrote: a file whose top-level heading no line names with
+    the same id and name is a finding that names the file and the line to write. A summary
+    whose text an earlier output already holds gets no finding again while the heading of the
+    file stands as it was when it was sent back, held under `summary_sent` of the entry of
+    that Case in `store`, which this function writes; a round, a Fact answer and an answer
+    with no file are not judged."""
+    texts = subagent_outputs(payload)
+    if not texts or not files:
+        return []
+    newest = texts[-1]
+    first = next((line.strip() for line in newest.splitlines() if line.strip()), "")
+    if not first.startswith(BUILT_LABEL):
+        return []
+    names = summary_names(newest)
+    repeated = any(spaces_aside(text) == spaces_aside(newest) for text in texts[:-1])
+    sent_text = "\n".join(spaces_aside(newest))
+    findings: list[str] = []
+    for path in files:
+        heading = top_heading(path.read_text(encoding="utf-8"))
+        if heading is None:
+            continue
+        case, name = heading
+        if names.get(case) == name:
+            continue
+        held = store.get(case)
+        sent = {"text": sent_text, "heading": f"{case}{NAME_DASH}{name}"}
+        if repeated and isinstance(held, dict) and held.get("summary_sent") == sent:
+            continue  # sent back once for this text and this heading (the loop guard)
+        if isinstance(held, dict):
+            held["summary_sent"] = sent
+        line = f"{CASE_LABEL} {case}{NAME_DASH}{name}"
+        given = f"{CASE_LABEL} {case}{NAME_DASH}{names[case]}" if case in names else None
+        findings.append(
+            f"case {case}: the summary names {path} as `{given}`, not as its heading — write `{line}`"
+            if given
+            else f"case {case}: the summary has no line for {path} — write `{line}` "
+            f"right after the line `{BUILT_LABEL}`"
+        )
+    return findings
+
+
 EDIT_CALLS = ("Write", "Edit", "MultiEdit")  # the calls that write a file of a Case (645.2)
 
 
@@ -1056,12 +1141,13 @@ def subagent(payload: dict, project_dir: Path, now, stderr) -> int:
         findings += found
         fresh += new
         repeated = repeated and same
+    named = summary_findings(payload, files, store)  # the `**Case:**` line (case 662.3)
     write_store(plan, store)
     if not files and not findings and folder is not None:  # the old path (cases 452.1, 645.2)
         write_case_files(folder, list(split_cases(text)), store)
     if (findings and not repeated) or fresh:  # the store guards the loop (434, 472.1)
-        return send_back(findings + fresh + form, stderr)
-    return send_back(form, stderr)
+        return send_back(findings + fresh + named + form, stderr)
+    return send_back(named + form, stderr)
 
 
 def stored_with_findings(text: str, store: dict) -> bool:
@@ -1121,6 +1207,8 @@ def judge_and_store(
         fresh += new
         if kept or new:  # the notes sent for the id outlive a later answer (case 472.1)
             entry["notes"] = kept + new
+        if isinstance(held, dict) and held.get("summary_sent"):  # the loop guard (662.3)
+            entry["summary_sent"] = held["summary_sent"]
         store[key] = entry
     return [f for case in cases for f in found[case]], fresh, repeated
 

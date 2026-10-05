@@ -37,8 +37,11 @@ the ledgers of its dates, on the `hi` date from the `hi` time on, and its folder
   Case heading of the plan, and an item of a `then` block with no decision line of its Case;
   a `defer` line matches a `defer` item; an Estimate has its own line and its own item (case 189); a nested `estimate` of an
   older Spec is covered by its parent's create line; the lines of a Case a `{supersedes:case
-  N}` of the window names need no item — the Case left the plan — and its heading still in
-  the plan is a finding of its own (case 299.2); a second item of one kind and slug under one
+  N}` of the window names need no item and no `tasks` block — the Case left the plan — and
+  its heading still in the plan is a finding of its own (case 299.2); the tag covers N and
+  every sub-case of N at any depth, its lines and its headings alike, judged by
+  `materialize.in_family`, the reading the Spec hook and `materialize` share; a tag on N.M
+  covers N.M and its own sub-cases only (case 660.1); a second item of one kind and slug under one
   Case heading, in one fence tagged `then` or in another, is a finding: one decision line
   covers one item, and `materialize` lifts only the first (case 426);
 - the frontier `raw/<hi date>/<hi HHMM>/frontier.md` (case 73.4): missing, an open `[ ]`
@@ -190,6 +193,7 @@ from guppi.materialize import (
     fence_breaks,
     fenced_lines,
     find_item,
+    in_family,
     item_keys,
     names_a_part,
     parse_line,
@@ -380,6 +384,16 @@ def superseded_in_window(records: list[dict]) -> dict[str, str]:
     return by
 
 
+def retired_by(case: str, superseded: dict[str, str]) -> str | None:
+    """The Case whose `{supersedes:case N}` covers `case` — N itself or a sub-case of N at
+    any depth, judged by `materialize.in_family`, the reading the Spec hook and `materialize`
+    share (case 660.1); None when no tag of the window covers it."""
+    for top, by in superseded.items():
+        if in_family(str(case), top):
+            return by
+    return None
+
+
 def check_lines(cases: dict, blocks: dict, records: list[dict]) -> list[str]:
     """59.1: every line has its item under its own Case; every item has its line, a nested
     estimate through its parent's create line. 299.2: a Case superseded by a line of the
@@ -388,12 +402,13 @@ def check_lines(cases: dict, blocks: dict, records: list[dict]) -> list[str]:
     a finding — one decision line covers one item, and `materialize` lifts only the first."""
     findings: list[str] = []
     superseded = superseded_in_window(records)
-    for case, by in superseded.items():
-        if case in cases:
+    for case in cases:  # a sub-case of a superseded Case too (case 660.1)
+        by = retired_by(case, superseded)
+        if by is not None:
             findings.append(f"case {case}: superseded by case {by}, still in the plan")
     for record in records:
         case, tag = record["case"], f"[{record['kind']}][{record['slug']}]"
-        if case in superseded:  # its work stands under the superseding Case
+        if retired_by(case, superseded) is not None:  # its work stands under the superseding Case
             continue
         if case not in cases:
             findings.append(f"case {case}: line {tag}: no Case {case} heading in the plan")
@@ -651,7 +666,9 @@ def check_tasks(cases: dict, blocks: dict, records: list[dict]) -> list[str]:
     findings: list[str] = []
     superseded = superseded_in_window(records)  # a superseded Case has no work here (299.2)
     with_work = {
-        r["case"] for r in records if r.get("kind") != "defer" and r["case"] not in superseded
+        r["case"]
+        for r in records
+        if r.get("kind") != "defer" and retired_by(r["case"], superseded) is None
     }
     for case, lines in cases.items():
         tasks = "\n".join(tagged_blocks(lines, "tasks"))

@@ -334,6 +334,47 @@ def test_a_supersedes_of_an_earlier_sessions_case_is_no_finding(tmp_path):
     assert code == 0 and out == ""
 
 
+# --- a tag on a parent covers its sub-cases (case 660.1) -----------------------------------
+# `estimate-prespec-catches-a-superseded-case`
+
+SUB_LINES = (
+    "- 16:00:00 decision[case 1.1][update][rule-x]{ref:rule-x}\n"
+    "- 16:00:01 decision[case 1.2][update][rule-y]{ref:rule-y}\n"
+)
+PARENT_TAG = "- 16:00:02 decision[case 3][update][rule-x]{ref:rule-x}{supersedes:case 1}\n"
+
+
+def test_a_tag_on_a_parent_covers_the_lines_of_its_sub_cases(tmp_path):
+    # Case 1 has no line of its own; its sub-cases hold them, and one tag on 1 retires all
+    frontier = CLEAN_FRONTIER.replace("case 1", "case 3")
+    code, out, _ = check(tmp_path, ledger=SUB_LINES + PARENT_TAG, plan=PLAN_3, frontier=frontier)
+    assert code == 0 and out == ""  # no "no Case 1.x heading", no item, no tasks asked
+
+
+def test_a_sub_case_heading_of_a_superseded_parent_left_in_the_plan_is_a_finding(tmp_path):
+    frontier = CLEAN_FRONTIER.replace("case 1", "case 3")
+    plan = PLAN_3 + "\n### Case 1.2 — two\n\n> **context:**\n> Old.\n"
+    code, out, _ = check(tmp_path, ledger=SUB_LINES + PARENT_TAG, plan=plan, frontier=frontier)
+    assert code == 1
+    assert out.splitlines() == ["case 1.2: superseded by case 3, still in the plan"]
+
+
+def test_a_tag_on_a_sub_case_leaves_the_parent_and_its_other_sub_cases(tmp_path):
+    tag = "- 16:00:02 decision[case 1.3][update][rule-x]{ref:rule-x}{supersedes:case 1.1}\n"
+    plan = PLAN.replace("## Case 1 — one", "## Case 1 — one\n\n### Case 1.3 — three")
+    _, out, _ = check(tmp_path, ledger=SUB_LINES + tag, plan=plan)
+    assert out.splitlines() == ["case 1.2: line [update][rule-y]: no Case 1.2 heading in the plan"]
+
+
+def test_the_retired_cases_are_judged_by_materialize_in_family():
+    from guppi import materialize
+
+    assert prespec.in_family is materialize.in_family
+    assert prespec.retired_by("1.2.1", {"1": "3"}) == "3"
+    assert prespec.retired_by("10", {"1": "3"}) is None
+    assert prespec.retired_by("1", {"1.1": "3"}) is None
+
+
 TWO_LINES = LINE + "- 16:00:01 decision[case 2][update][rule-x]{ref:rule-x}\n"
 TWO_BLOCKS = "- 16:00:02 decision[case 3][update][rule-x]{ref:rule-x}{supersedes:case 1}{supersedes:case 2}\n"
 

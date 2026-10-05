@@ -80,7 +80,11 @@ follows the mechanism as for any superseded page (case 299.4). A `supersedes` se
 the earlier page `superseded`, appends to its `superseded_by` and removes its slug from
 the `deferred_by` of each target of its `defer` list that a decision line of the
 superseding Case names; a target the Case does not name keeps it, and a later Case that
-supersedes the same page clears the targets it names (case 467.3). An existing page is skipped; a
+supersedes the same page clears the targets it names (case 467.3). The same `supersedes`
+sets each page in the `children` of the earlier page, at any depth, that stands `current`
+`superseded`, a page of an earlier run too, with one History line; a child page `archived`
+or already `superseded` is left as it stands, and no `deferred_by` is cleared through a
+child (case 660.3). An existing page is skipped; a
 `create` marked `exists` writes no page, its Decision page is still written.
 
 One bad entry never stops the run (case 201.3): an entry that fails — a collision, a `ref`
@@ -1147,6 +1151,27 @@ class Vault:
             self.history(other, f"superseded by {slug}", f"[[{slug}]]")
             self.save(other)
             self.clear_deferred_by(other, slug, {str(t.get("slug")) for t in targets})
+            self.supersede_children(other, slug)
+
+    def supersede_children(self, parent: Page, slug: str) -> None:
+        """Case 660.3: the tag that supersedes a Case supersedes its sub-cases too — each page
+        in the `children` of `parent`, at any depth, that stands `current` becomes
+        `superseded`, takes `slug` into its `superseded_by` and one History line, whatever
+        the run that wrote it; a child page `archived` or already `superseded` is left as it
+        stands, the round trip of `decision-case-469` kept off it. No `deferred_by` is
+        cleared through a child: only the pages the record's `supersedes` names clear theirs
+        (case 467.3)."""
+        for name in as_list(parent.props.get("children")):
+            child = self.find(str(name).strip('[]"'))
+            if child is None or child.props.get("status") != "current":
+                continue
+            child.props["status"] = "superseded"
+            done = as_list(child.props.get("superseded_by"))
+            if slug not in done:
+                child.props["superseded_by"] = done + [slug]
+                self.history(child, f"superseded by {slug}", f"[[{slug}]]")
+            self.save(child)
+            self.supersede_children(child, slug)
 
     # after all entries
 

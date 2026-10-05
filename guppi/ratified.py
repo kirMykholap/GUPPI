@@ -145,6 +145,7 @@ from guppi.materialize import (
     closes_fence,
     fence_for,
     fence_opening,
+    in_family,
     item_keys,
     parse_line,
     quoted_sections,
@@ -460,9 +461,9 @@ def keep_boxes(document: str, case: str, section: list[str]) -> list[str]:
 
 def remove_case(document: str, case: str) -> str:
     """The document without the sections of `case` and of its sub-cases, under `## Deferred`
-    too (case 441.7)."""
+    too (case 441.7), judged by `materialize.in_family` (case 660.2)."""
     lines = document.splitlines()
-    doomed = [i for i, found in case_starts(lines) if found == case or found.startswith(case + ".")]
+    doomed = [i for i, found in case_starts(lines) if in_family(found, case)]
     if not doomed:
         return document
     for i in reversed(doomed):

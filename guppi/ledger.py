@@ -100,6 +100,19 @@ there are any. A refused line from an earlier text is judged again at every `Sto
 a word, and is written at the first `Stop` where a decision line of its Case stands in the
 ledger before it.
 
+A lesson after a Case is asked for its mark (case 682.1). A fresh `lesson[...]` line with no
+`{addressed_by:...}` that a decision line of the session stands before — in the session's
+ledger, or earlier among the lines of the same `Stop` — is held once: when it stands in the
+reply just finished and the hook's question about it does not yet stand in a refusal of the
+hook since the person's last message, it is not written, and the hook exits 2 with one stderr
+line naming the Cases of the decision lines before it and asking for `{addressed_by:case N}`.
+The line written again unchanged, or a line that stands only in an earlier text, is written as
+it stands; with `stop_hook_active` set and a transcript the hook cannot read, too. An
+unmarked line is never written beside a `lesson[<slug>]` line with the mark in the session's
+ledger or in the same `Stop`: it is dropped without a word. A line refused for its prefix is
+not asked; a lesson before every decision line is not asked; `{addresses:...}` on a decision
+line is not judged. Judged by `unmarked_lessons`, over lines read by `parse_line`.
+
 No sprint, no decision (case 628.3). While no live page `vault/wiki/entities/entity-sprint-<id>.md`
 stands — after the close of a sprint — a fresh decision line other than a `defer` is not
 written until the session's ledger or the lines of the same `Stop` hold a `create` decision
@@ -548,6 +561,55 @@ def refused_marks(
     return refused
 
 
+def unmarked_lessons(
+    fresh: list[str], written: list[str], skip: set[str]
+) -> list[tuple[str, str, list[str], bool]]:
+    """`(line, slug, cases, dropped)` of each fresh `lesson[...]` line with no
+    `{addressed_by:...}` that a decision line of the session stands before, over the
+    session's ledger `written` followed by `fresh` (case 682.1); a line in `skip`, refused
+    for its prefix, is not judged. `cases` are the Cases of the decision lines before it, in
+    the order first seen. `dropped` is true when a `lesson[<slug>]` line with the mark stands
+    in `written` or `fresh`: the unmarked line is never written beside it. The lines are read
+    by `parse_line` of `guppi/materialize.py`, the one parse of a ledger line."""
+    from guppi.materialize import parse_line
+
+    ordered = written + fresh
+    records = [parse_line(f"- {body(line)}") for line in ordered]
+    marked = {r["slug"] for r in records if r and r["record"] == "lesson" and r.get("addressed_by")}
+    cases: list[str] = []
+    found: list[tuple[str, str, list[str], bool]] = []
+    for index, record in enumerate(records):
+        if record is None:
+            continue
+        if record["record"] == "decision":
+            if record["case"] not in cases:
+                cases.append(record["case"])
+            continue
+        line = ordered[index]
+        if (
+            record["record"] != "lesson"
+            or record.get("addressed_by")
+            or index < len(written)
+            or line in skip
+            or not cases
+        ):
+            continue
+        found.append((line, record["slug"], list(cases), record["slug"] in marked))
+    return found
+
+
+def held_message(slug: str, cases: list[str]) -> str:
+    """The stderr line of a held lesson line (case 682.1): the Cases it names, then the two
+    ways to write it again."""
+    named = [f"case {case}" for case in cases]
+    asked = named[0] if len(named) == 1 else ", ".join(named[:-1]) + f" or {named[-1]}"
+    return (
+        f"ledger: lesson[{slug}] held — did {asked} fix its cause? Then add "
+        f"{{addressed_by:case <N>}}, the Case or sub-case that fixed it, and repeat the line; "
+        "otherwise repeat it unchanged."
+    )
+
+
 SPRINT_PREFIX = "entity-sprint-"
 
 
@@ -619,16 +681,28 @@ def run(argv, *, stdin=None, stderr=None, project_dir: Path | None = None, now=N
         lessons = refused_lessons(fresh)
         marks = refused_marks(fresh, written, {line for line, _ in lessons})  # case 497.1
         unopened = refused_without_sprint(project_dir, fresh, written)  # case 628.3
+        finished = {body(line) for line in ledger_lines(reply_text(payload))}
+        held: list[tuple[str, str]] = []  # case 682.1: asked once, then written as it stands
+        dropped: set[str] = set()
+        for line, slug, cases, beside in unmarked_lessons(
+            fresh, written, {line for line, _ in lessons}
+        ):
+            message = held_message(slug, cases)
+            if beside:
+                dropped.add(line)
+            elif body(line) in finished and untold([message], told, payload):
+                held.append((line, message))
         out = (
             {line for line, _, _ in refused}
             | {line for line, _ in lessons}
             | {line for line, _, _, _ in marks}
             | set(unopened)
+            | {line for line, _ in held}
+            | dropped
         )
         fresh = [line for line in fresh if line not in out]
         if fresh:
             append(path, fresh)
-        finished = {body(line) for line in ledger_lines(reply_text(payload))}
         messages = [
             "ledger: line not written — the grammar of a ledger line does not read it: "
             f"{body(line)}. Write it again in the form of the table in ratification.md."
@@ -666,6 +740,7 @@ def run(argv, *, stdin=None, stderr=None, project_dir: Path | None = None, now=N
                     "sprint first: ratify the Case that creates entity-sprint-<id>, then repeat "
                     "the line; a defer, a reading and a lesson pass."
                 )
+        messages += [message for _, message in held]
         loud = untold(messages, told, payload)  # case 577.3: each refused line once a stretch
         for message in loud:
             print(message, file=stderr)

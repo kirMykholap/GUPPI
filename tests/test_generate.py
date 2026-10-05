@@ -3216,6 +3216,12 @@ def test_a_later_case_superseding_the_archived_decision_clears_the_page_it_names
     b = page(tmp_path, "rules", "rule-b")
     assert "deferred_by" not in props(b)
     assert f"- {DATE} defer by decision-case-2 superseded · [[decision-case-4]]" in b
+    # case 683: the archived page stays archived where it lies, so cleanup leaves it there
+    earlier = (archived / "decision-case-2.md").read_text(encoding="utf-8")
+    assert props(earlier)["status"] == "archived"
+    assert props(earlier)["superseded_by"] == ["decision-case-3", "decision-case-4"]
+    assert earlier.count("superseded by decision-case-4") == 1
+    assert not (tmp_path / "vault" / "wiki" / "decisions" / "decision-case-2.md").exists()
 
 
 # --- Case 660.3: a superseded Decision page takes the pages of its sub-cases with it -------

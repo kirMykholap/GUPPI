@@ -120,7 +120,8 @@ def test_running_twice_on_the_same_reply_adds_nothing(working):
 
 def test_a_line_repeated_in_a_later_reply_adds_nothing(working):
     run(payload(last_assistant_message=REPLY), working)
-    run(payload(last_assistant_message=ledger_block(DECISION, LESSON)), working)
+    reply = ledger_block(DECISION, LESSON)
+    run(payload(last_assistant_message=reply, transcript_path=asked(working)), working)
     assert ledger_text(working).splitlines() == [timed(DECISION), timed(ESTIMATE), timed(LESSON)]
 
 
@@ -377,6 +378,13 @@ def write_transcript(tmp_path, *lines):
     return str(path)
 
 
+def asked(project_dir, cases=("10",), slug="lesson-x"):
+    """A stretch in which the hook already asked for the mark of `lesson[<slug>]` (case
+    682.1): the unmarked line written again lands as it stands."""
+    held = ledger.held_message(slug, list(cases))
+    return write_transcript(project_dir, person(), own_refusal(held))
+
+
 def test_a_block_of_an_earlier_reply_lands_at_the_next_stop(working):
     earlier = f"Ratified.\n\n{ledger_block(DECISION)}\nRunning /pre-spec now."
     transcript = write_transcript(
@@ -532,7 +540,9 @@ def seed_ledger(project_dir, *lines):
 @pytest.mark.parametrize("decision, case", [(CREATE_X, "3"), (UPDATE_X, "4")])
 def test_a_reading_of_a_slug_the_session_changes_is_refused(working, decision, case):
     seed_ledger(working, decision)
-    code, err = run(payload(last_assistant_message=ledger_block(READ_X, LESSON)), working)
+    reply = ledger_block(READ_X, LESSON)
+    path = asked(working, (case,))
+    code, err = run(payload(last_assistant_message=reply, transcript_path=path), working)
     assert (code, err) == (2, REFUSAL.format(case))
     assert ledger_text(working).splitlines() == [f"- 15:01:50 {decision[2:]}", timed(LESSON)]
 
@@ -619,7 +629,7 @@ LESSON_REFUSAL = (
 
 def test_a_lesson_without_its_prefix_in_the_finished_reply_is_refused_aloud(working):
     reply = ledger_block(DECISION, BARE_LESSON, LESSON, ESTIMATE)
-    code, err = run(payload(last_assistant_message=reply), working)
+    code, err = run(payload(last_assistant_message=reply, transcript_path=asked(working)), working)
     assert (code, err) == (2, LESSON_REFUSAL)
     assert ledger_text(working).splitlines() == [timed(DECISION), timed(LESSON), timed(ESTIMATE)]
 
@@ -749,7 +759,7 @@ def test_the_hook_and_materialize_judge_a_mark_alike(working):
 
     from guppi import materialize
 
-    lines = [SUB_1, MARK_PARENT, MARK_SUB, MARK_9, CASE_9, LESSON]
+    lines = [LESSON, SUB_1, MARK_PARENT, MARK_SUB, MARK_9, CASE_9]
     code, _ = run(payload(last_assistant_message=ledger_block(*lines)), working)
     assert code == 2
     written = {ledger.BRACKET.findall(line)[1] for line in ledger_text(working).splitlines()}
@@ -787,7 +797,7 @@ BROKEN_REFUSAL = (
 
 def test_a_broken_line_in_the_finished_reply_is_refused_aloud(working):
     reply = ledger_block(DECISION, BROKEN, LESSON)
-    code, err = run(payload(last_assistant_message=reply), working)
+    code, err = run(payload(last_assistant_message=reply, transcript_path=asked(working)), working)
     assert (code, err) == (2, BROKEN_REFUSAL.format(BROKEN[2:]))
     assert ledger_text(working).splitlines() == [timed(DECISION), timed(LESSON)]
 
@@ -1044,7 +1054,8 @@ def without_sprint(tmp_path):
 def test_sprint_missing_refuses_a_decision_line_and_passes_a_defer_a_reading_a_lesson(tmp_path):
     without_sprint(tmp_path)
     reply = ledger_block(DECISION, DEFER, ESTIMATE, LESSON)
-    code, err = run(payload(last_assistant_message=reply), tmp_path)
+    path = asked(tmp_path, ("10", "11"))
+    code, err = run(payload(last_assistant_message=reply, transcript_path=path), tmp_path)
     assert code == 2
     assert err.count("no sprint is open") == 1 and "rule-ledger-write" in err
     assert ledger_text(tmp_path) == f"{timed(DEFER)}\n{timed(ESTIMATE)}\n{timed(LESSON)}\n"
@@ -1069,4 +1080,114 @@ def test_sprint_create_in_the_ledger_lets_a_later_line_through(tmp_path):
 def test_sprint_live_page_accepts_a_decision_line(working):
     code, err = run(payload(last_assistant_message=ledger_block(DECISION)), working)
     assert (code, err) == (0, "")
+    assert ledger_text(working) == f"{timed(DECISION)}\n"
+
+
+# --- case 682.1: a lesson after a Case is asked for its mark -------------------------------
+# `estimate-ledger-write-asks-for-the-mark-of-a-lesson`
+
+SUB_2 = "- decision[case 8.2][update][rule-y]{ref:rule-y}"
+LESSON_MARKED = "- lesson[error][lesson-x]{addressed_by:case 10} trigger: a root_cause: b"
+
+
+def held_refusal(cases, slug="lesson-x"):
+    return ledger.held_message(slug, list(cases)) + "\n"
+
+
+def asking(project_dir, reply):
+    """A Stop in a stretch with no refusal of the hook yet."""
+    return payload(last_assistant_message=reply, transcript_path=stretch(project_dir))
+
+
+def test_an_unmarked_lesson_after_a_decision_line_is_held_once_and_asked(working):
+    code, err = run(asking(working, ledger_block(DECISION, LESSON, ESTIMATE)), working)
+    assert (code, err) == (2, held_refusal(["10"]))
+    assert err == (
+        "ledger: lesson[lesson-x] held — did case 10 fix its cause? Then add "
+        "{addressed_by:case <N>}, the Case or sub-case that fixed it, and repeat the line; "
+        "otherwise repeat it unchanged.\n"
+    )
+    assert ledger_text(working).splitlines() == [timed(DECISION), timed(ESTIMATE)]
+
+
+def test_the_question_names_the_cases_before_the_lesson_in_the_order_first_seen(working):
+    seed_ledger(working, SUB_2)
+    other = SUB_1.replace("rule-x", "rule-w")
+    code, err = run(asking(working, ledger_block(SUB_1, CASE_9, other, LESSON, DECISION)), working)
+    assert (code, err) == (2, held_refusal(["8.2", "8.1", "9"]))
+    assert "did case 8.2, case 8.1 or case 9 fix its cause?" in err
+
+
+def test_the_lesson_written_again_unchanged_lands_as_it_stands(working):
+    seed_ledger(working, DECISION)
+    stdin = payload(last_assistant_message=ledger_block(LESSON), transcript_path=asked(working))
+    assert run(stdin, working) == (0, "")
+    assert ledger_text(working).splitlines()[-1] == timed(LESSON)
+
+
+def test_the_lesson_written_again_with_its_mark_drops_the_unmarked_line(working):
+    seed_ledger(working, DECISION)
+    path = write_transcript(
+        working,
+        person(),
+        transcript_line(ledger_block(LESSON)),
+        own_refusal(held_refusal(["10"]).rstrip("\n")),
+    )
+    reply = ledger_block(LESSON_MARKED)
+    assert run(payload(last_assistant_message=reply, transcript_path=path), working) == (0, "")
+    assert ledger_text(working).splitlines()[1:] == [timed(LESSON_MARKED)]
+    stdin = payload(last_assistant_message="Nothing.", transcript_path=path)
+    assert run(stdin, working) == (0, "")
+    assert timed(LESSON) not in ledger_text(working).splitlines()
+
+
+def test_an_unmarked_line_beside_a_marked_one_in_the_same_stop_is_dropped(working):
+    code, err = run(asking(working, ledger_block(DECISION, LESSON, LESSON_MARKED)), working)
+    assert (code, err) == (0, "")
+    assert ledger_text(working).splitlines() == [timed(DECISION), timed(LESSON_MARKED)]
+
+
+def test_a_lesson_from_an_earlier_text_lands_without_a_word(working):
+    path = write_transcript(working, person(), transcript_line(ledger_block(DECISION, LESSON)))
+    stdin = payload(last_assistant_message="Done.", transcript_path=path)
+    assert run(stdin, working) == (0, "")
+    assert ledger_text(working).splitlines() == [timed(DECISION), timed(LESSON)]
+
+
+def test_a_lesson_before_every_decision_line_is_not_asked(working):
+    assert run(asking(working, ledger_block(LESSON, DECISION)), working) == (0, "")
+    assert ledger_text(working).splitlines() == [timed(LESSON), timed(DECISION)]
+
+
+def test_a_held_line_keeps_back_no_other_line(working):
+    code, _ = run(asking(working, ledger_block(DECISION, LESSON, ESTIMATE)), working)
+    assert code == 2
+    assert timed(ESTIMATE) in ledger_text(working).splitlines()
+
+
+def test_a_lesson_refused_for_its_prefix_is_not_asked(working):
+    code, err = run(asking(working, ledger_block(DECISION, BARE_LESSON)), working)
+    assert (code, err) == (2, LESSON_REFUSAL)
+
+
+def test_a_lesson_the_grammar_cannot_read_is_not_asked(working):
+    unread = "- lesson[oops][lesson-y] trigger: a root_cause: b"
+    code, err = run(asking(working, ledger_block(DECISION, unread)), working)
+    assert (code, err) == (2, BROKEN_REFUSAL.format(unread[2:]))
+
+
+def test_a_session_with_no_hi_gets_no_question(tmp_path):
+    code, err = run(asking(tmp_path, ledger_block(DECISION, LESSON)), tmp_path)
+    assert code == 2 and "no /hi recorded" in err and "held" not in err
+
+
+def test_with_the_flag_and_no_readable_transcript_the_lesson_lands(working):
+    stdin = payload(last_assistant_message=ledger_block(DECISION, LESSON), stop_hook_active=True)
+    assert run(stdin, working) == (0, "")
+    assert ledger_text(working).splitlines() == [timed(DECISION), timed(LESSON)]
+
+
+def test_with_the_flag_and_a_readable_transcript_the_lesson_is_still_asked(working):
+    code, err = run(flagged(working, ledger_block(DECISION, LESSON)), working)
+    assert (code, err) == (2, held_refusal(["10"]))
     assert ledger_text(working) == f"{timed(DECISION)}\n"

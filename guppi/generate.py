@@ -80,7 +80,10 @@ follows the mechanism as for any superseded page (case 299.4). A `supersedes` se
 the earlier page `superseded`, appends to its `superseded_by` and removes its slug from
 the `deferred_by` of each target of its `defer` list that a decision line of the
 superseding Case names; a target the Case does not name keeps it, and a later Case that
-supersedes the same page clears the targets it names (case 467.3). The same `supersedes`
+supersedes the same page clears the targets it names (case 467.3). An earlier page that
+stands `archived` keeps `archived` and its place, so `cleanup` does not bring it back: it
+takes the new page into its `superseded_by` with one History line, and the targets the
+superseding Case names drop it from their `deferred_by` as above (case 683). The same `supersedes`
 sets each page in the `children` of the earlier page, at any depth, that stands `current`
 `superseded`, a page of an earlier run too, with one History line; a child page `archived`
 or already `superseded` is left as it stands, and no `deferred_by` is cleared through a
@@ -1164,7 +1167,8 @@ class Vault:
             other = self.find(earlier)
             if other is None:
                 continue
-            other.props["status"] = "superseded"
+            if str(other.props.get("status")) != "archived":  # no round trip (case 683)
+                other.props["status"] = "superseded"
             done = as_list(other.props.get("superseded_by"))
             if slug not in done:
                 other.props["superseded_by"] = done + [slug]

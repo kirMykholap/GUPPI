@@ -72,7 +72,7 @@ update:
 - [x] `guppi/prespec.py`: `superseded_in_window` and its callers read each tag by `materialize.in_family`, in `check_lines` and `check_tasks`; the module docstring says that the lines and headings of the sub-cases of a superseded Case are covered.
 - [x] `tests/test_prespec.py`: a tag on a parent whose sub-cases hold the decision lines gives no "no heading" finding and asks for no item; a sub-case heading left in the plan is a finding; a tag on N.M leaves the parent and its other sub-cases.
 - [x] update `estimate-prespec-catches-a-superseded-case`
-- [ ] read `estimate-prespec-catches-a-superseded-case`
+- [x] read `estimate-prespec-catches-a-superseded-case`
 ```
 
 ### Case 660.2 — materialize marks the sub-cases of a superseded Case, by one function
@@ -232,7 +232,7 @@ update:
 - [x] update `rule-handoff`
 - [x] `uv run guppi render`: `.claude/skills/retro/SKILL.md`
 - [x] `uv run guppi render`: `.claude/skills/handoff/SKILL.md`
-- [ ] read `estimate-retro-leaves-out-the-sub-cases-of-a-superseded-case`
+- [x] read `estimate-retro-leaves-out-the-sub-cases-of-a-superseded-case`
 ```
 
 ## Case 661 — The tests of the orchestration examples fail when the page holds no example
@@ -404,7 +404,7 @@ update:
 - [x] update `rule-case-build`
 - [x] update `estimate-case-build-writes-the-case`
 - [x] `uv run guppi render`: `.claude/agents/case-guppi.md`
-- [ ] read `estimate-case-build-writes-the-case`, by hand in a later session after the render
+- [x] read `estimate-case-build-writes-the-case`, by hand in a later session after the render
 ```
 
 ### Case 662.2 — The heading of a showing takes the name from the summary
@@ -459,7 +459,7 @@ update:
 - [x] update `rule-orchestration`
 - [x] update `estimate-orchestration-shows-the-built-case`
 - [x] `uv run guppi render`: `vault/wiki/orchestration.md`
-- [ ] read `estimate-orchestration-shows-the-built-case`, by hand at the close of a later session after the render
+- [x] read `estimate-orchestration-shows-the-built-case`, by hand at the close of a later session after the render
 ```
 
 ### Case 662.3 — The check of case-guppi sends back a summary that does not name its Case
@@ -659,7 +659,7 @@ update:
 
 ```tasks
 - [x] update `estimate-search-leaves-out-decisions-in-every-agent`
-- [ ] read `estimate-search-leaves-out-decisions-in-every-agent`
+- [x] read `estimate-search-leaves-out-decisions-in-every-agent`
 ```
 
 ### Case 664.3 — The check of the searches of ask-guppi points to both checks of Decision pages
@@ -771,7 +771,7 @@ update:
 - [x] `uv run guppi render`: `.claude/agents/librarian-guppi.md`
 - [x] update `entity-glossary`
 - [x] `uv run guppi glossary`
-- [ ] read `estimate-synthesis-reads-the-status-its-yaml-sets`
+- [x] read `estimate-synthesis-reads-the-status-its-yaml-sets`
 ```
 
 ## Deferred

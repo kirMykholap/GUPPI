@@ -266,7 +266,7 @@ update:
 ```tasks
 - [x] update `estimate-spec-write-reaches-the-approved-spec`
 - [x] `tests/test_ratified.py`: a test `-k approved_spec` — a flagged reply writes the Case into `spec.md`.
-- [ ] read `estimate-spec-write-reaches-the-approved-spec`
+- [x] read `estimate-spec-write-reaches-the-approved-spec`
 ```
 
 ### Case 644.6 — A superseded Case leaves the Spec with the flag set
@@ -548,7 +548,7 @@ update:
 - [x] update `rule-case-build`
 - [x] update `estimate-case-build-writes-the-case`
 - [x] `uv run guppi render`: `.claude/agents/case-guppi.md`
-- [ ] read `estimate-case-build-writes-the-case`
+- [x] read `estimate-case-build-writes-the-case`
 ```
 
 ### Case 645.2 — The check reads the file case-guppi wrote
@@ -607,7 +607,7 @@ delete:
 - [x] delete `estimate-case-check-judges-a-lone-sub-case-with-its-stored-parent`
 - [x] `guppi/casecheck.py`: `subagent` takes the files of `cases/` that the Write and Edit calls of the subagent name, skips one the store holds unchanged with no findings, and checks and stores each other one whole; with no such file and a newest output that holds a Case heading, the old path as today; `stored_parents` removed; the module docstring says the same and names the old path as kept until the writer is live.
 - [x] `tests/test_casecheck.py`: tests `-k subagent` over a temp transcript with Write and Edit calls and temp case files — a file with a fault sent back and stored; the file fixed by Edit passes and is stored and not written; an unchanged passed file is not stored again; a round after a built Case leaves its entry as it stood; an answer text with no case file still stored and written; the tests `-k lone` removed.
-- [ ] read `estimate-case-check-sends-back-a-faulty-case`
+- [x] read `estimate-case-check-sends-back-a-faulty-case`
 ```
 
 ### Case 645.3 — The guard lets case-guppi alone write under cases/
@@ -1009,7 +1009,7 @@ update:
 ```tasks
 - [x] update `estimate-case-check-shows-only-the-checked-case`
 - [x] `tests/test_casecheck.py`: tests `-k stop` — a showing of `ratification` alone with a file changed after the store is refused.
-- [ ] read `estimate-case-check-shows-only-the-checked-case`
+- [x] read `estimate-case-check-shows-only-the-checked-case`
 ```
 
 ### Case 645.12 — Each Case written into its file names what done means
@@ -1110,7 +1110,7 @@ update:
 ```tasks
 - [x] update `estimate-case-check-requires-a-backlog-item-decided-on-its-page`
 - [x] `tests/test_casecheck.py`: tests `-k backlog` read a temp case file in place of an answer text.
-- [ ] read `estimate-case-check-requires-a-backlog-item-decided-on-its-page`
+- [x] read `estimate-case-check-requires-a-backlog-item-decided-on-its-page`
 ```
 
 ### Case 645.15 — A ratified Case in another shape is judged on the file

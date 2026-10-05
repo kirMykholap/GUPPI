@@ -2850,6 +2850,117 @@ def test_a_delete_leaves_a_spec_under_the_archive_unchanged(tmp_path):
     assert (archived / "spec.md").read_text(encoding="utf-8") == archived_text
 
 
+# --- the read lines of an Estimate closed by the person's decision (case 672) -----------
+
+
+def close_entry(case, status="passed", slug="estimate-child-works", line=6):
+    return spec_update(case, slug=slug, line=line, category="estimates", set={"status": status})
+
+
+CLOSE_SPEC = DELETE_SPEC.replace("## Case 2 — the delete", "## Case 2 — the close").replace(
+    "- [ ] delete `estimate-child-works`", "- [ ] update `estimate-child-works`"
+)
+
+
+@pytest.mark.parametrize("status", ["passed", "failed"])
+def test_an_update_that_closes_an_estimate_ticks_its_read_lines_beside_the_yaml_and_older(
+    tmp_path, status
+):
+    seed(tmp_path, entries=[CHILD, CHILD_ESTIMATE, ROOT, close_entry("2", status)])
+    spec = with_spec(tmp_path, CLOSE_SPEC)
+    older = with_older_spec(tmp_path)
+    code, _, err = run(tmp_path)
+    assert code == 0 and err == ""
+    text = spec.read_text(encoding="utf-8")
+    assert "- [x] update `estimate-child-works`" in text  # its page line, as before
+    assert "- [x] read `estimate-child-works`: pytest, then live" in text
+    assert "- [x] read `estimate-child-works`: by hand" in older.read_text(encoding="utf-8")
+
+
+@pytest.mark.parametrize("sets", [{"status": "pending"}, {"method": "pytest tests/test_y.py"}])
+def test_an_update_that_sets_pending_or_no_status_ticks_no_read_line(tmp_path, sets):
+    entry = spec_update("2", slug="estimate-child-works", line=6, category="estimates", set=sets)
+    seed(tmp_path, entries=[CHILD, CHILD_ESTIMATE, ROOT, entry])
+    spec = with_spec(tmp_path, CLOSE_SPEC)
+    older = with_older_spec(tmp_path)
+    code, _, err = run(tmp_path)
+    assert code == 0 and err == ""
+    text = spec.read_text(encoding="utf-8")
+    assert "- [x] update `estimate-child-works`" in text
+    assert "- [ ] read `estimate-child-works`: pytest, then live" in text
+    assert "- [ ] read `estimate-child-works`: by hand" in older.read_text(encoding="utf-8")
+
+
+def test_an_update_that_closes_leaves_the_read_line_of_a_case_ratified_after_it(tmp_path):
+    later = spec_update("3", line=8)
+    seed(tmp_path, entries=[CHILD, CHILD_ESTIMATE, ROOT, close_entry("2", line=6), later])
+    spec = with_spec(
+        tmp_path,
+        CLOSE_SPEC + "\n## Case 3 — ratified after the close\n\n"
+        "```tasks\n- [ ] update `rule-root`\n"
+        "- [ ] read `estimate-child-works`: on the new Criterion\n```\n",
+    )
+    code, _, err = run(tmp_path)
+    assert code == 0 and err == ""
+    text = spec.read_text(encoding="utf-8")
+    assert "- [x] read `estimate-child-works`: pytest, then live" in text  # Case 1, before
+    assert "- [ ] read `estimate-child-works`: on the new Criterion" in text  # Case 3
+
+
+def test_an_update_that_closes_leaves_the_read_line_of_a_superseded_case(tmp_path):
+    superseded = dict(spec_update("2", line=4), superseded_by="3")
+    recut = spec_update("3", line=6, supersedes="2")
+    entries = [CHILD, CHILD_ESTIMATE, ROOT, superseded, recut, close_entry("4", line=8)]
+    seed(tmp_path, entries=entries)
+    spec = with_spec(
+        tmp_path,
+        SUPERSEDED_SPEC + "\n## Case 4 — the close\n\n"
+        "```tasks\n- [ ] update `estimate-child-works`\n```\n",
+    )
+    other = other_session(tmp_path)
+    code, _, err = run(tmp_path)
+    assert code == 0 and err == ""
+    text = spec.read_text(encoding="utf-8")
+    assert "- [ ] read `estimate-child-works`: the next session, by hand\n" in text  # Case 2
+    assert "- [x] read `estimate-child-works`: the next session, by hand, on the recut" in text
+    text = other.read_text(encoding="utf-8")
+    assert "- [ ] read `estimate-child-works`: by hand\n" in text  # Case 7, superseded by 8
+    assert "- [x] read `estimate-child-works`: by hand, on the recut" in text
+
+
+def test_a_repeated_update_that_closes_leaves_the_read_line_of_a_case_ratified_between(
+    tmp_path,
+):
+    later = spec_update("3", line=8)
+    repeat = close_entry("2", line=10)
+    seed(tmp_path, entries=[CHILD, CHILD_ESTIMATE, ROOT, close_entry("2", line=6), later, repeat])
+    spec = with_spec(
+        tmp_path,
+        CLOSE_SPEC + "\n## Case 3 — ratified between the two lines\n\n"
+        "```tasks\n- [ ] update `rule-root`\n"
+        "- [ ] read `estimate-child-works`: on the new Criterion\n```\n",
+    )
+    code, out, err = run(tmp_path)
+    assert code == 0 and err == ""
+    assert "line 10 repeats line 6 of case 2; nothing applied" in out
+    text = spec.read_text(encoding="utf-8")
+    assert "- [x] read `estimate-child-works`: pytest, then live" in text  # the first update
+    assert "- [ ] read `estimate-child-works`: on the new Criterion" in text
+
+
+def test_a_failed_update_that_closes_ticks_nothing(tmp_path):
+    seed(tmp_path, entries=[ROOT, close_entry("2", slug="estimate-gone")])
+    text = (
+        "## Case 1 — x\n\n- [ ] read `estimate-gone`: pytest\n\n"
+        "## Case 2 — the close\n\n- [ ] update `estimate-gone`\n"
+    )
+    spec = with_spec(tmp_path, text)
+    code, _, err = run(tmp_path)
+    assert code == 1 and "estimate-gone" in err
+    assert spec.read_text(encoding="utf-8") == text
+    assert load_yaml(tmp_path)["entries"][1]["failed"]
+
+
 # --- case 305.3: the cascade writes rules on an Entity from the applies_to of the rules ----
 
 

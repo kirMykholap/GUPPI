@@ -116,18 +116,22 @@ line of the slug in the first Spec that holds one ticks — a reading is of the 
 Criterion is one, however many Cases of the session touched it (case 312); the
 archive is not read. A `delete` entry, besides its page line, ticks the `read` lines of its
 slug by the same walk and the same skips as an `estimate` entry: no reading of a deleted
-Estimate will ever stand in the ledger, so nothing else would close its box (case 463). In
-the Spec beside the yaml an `estimate` or a `delete` entry skips the section of a Case whose
-first decision entry carries a `line` greater than its own — a Case ratified after the
-reading or the delete, whose line waits for a reading of its own (cases 280, 463); a folded
-reading skips nothing of that, its Case is the reading's. In every Spec all three skip the
+Estimate will ever stand in the ledger, so nothing else would close its box (case 463). An
+`update` entry whose `set` gives `status` the value `passed` or `failed` — an Estimate closed
+by the person's decision, which no reading follows — ticks the `read` lines of its slug by
+the same walk and the same skips; one that sets `pending`, or no `status`, ticks none (case
+672). In the Spec beside the yaml an `estimate` or a `delete` entry, or such an `update`,
+skips the section of a Case whose first decision entry carries a `line` greater than its own
+— a Case ratified after the reading, the delete or the update, whose line waits for a
+reading of its own (cases 280, 463, 672); a folded reading skips nothing of that, its Case
+is the reading's. In every Spec all of them skip the
 section of a Case whose entries the yaml beside that Spec mark `superseded_by` — the run's
 entries for the Spec beside the yaml, the `materialize.yaml` of the other unit's folder
 otherwise, read for the marks alone; no yaml, nothing skipped there — its work stands under
 the superseding Case (case 286). An applied entry ticks its line whatever its category, an
 entry with no category (`unknown`, case 320) included; only a `lesson` entry and a failed
-entry tick nothing — a failed `delete` leaves the `read` lines of its slug as they stand
-(cases 460.1, 463); the lines on code, tests, migrations and `by hand` checks stay the
+entry tick nothing — a failed `delete` or `update` leaves the `read` lines of its slug as
+they stand (cases 460.1, 463, 672); the lines on code, tests, migrations and `by hand` checks stay the
 agent's.
 
 The cascade after all entries (case 201.4): an entity or rule whose live Estimates are all
@@ -405,7 +409,8 @@ def tick_read(
     performed.
     Case 463: a `delete` of the slug ticks by this same walk, with the same two skips — `skip`
     then holds the Cases ratified after the delete — since no reading of a deleted Estimate
-    will ever stand in the ledger."""
+    will ever stand in the ledger. Case 672: so does an `update` that sets the Estimate
+    `passed` or `failed` by the person's decision."""
     any_ticked = False
     for position, spec in enumerate(specs):
         if not spec.is_file():
@@ -427,6 +432,19 @@ def tick_read(
             spec.write_text("\n".join(lines), encoding="utf-8", newline="\n")
             any_ticked = True
     return any_ticked
+
+
+def closes_by_decision(entry: dict) -> bool:
+    """Case 672: an `update` whose `set` gives `status` the value `passed` or `failed` closes
+    its Estimate by the person's decision; no reading of it follows, so it ticks the `read`
+    lines of its slug as a `delete` does. An `update` that sets `pending`, or no `status`,
+    leaves them for the reading."""
+    sets = entry.get("set")
+    return (
+        entry.get("kind") == "update"
+        and isinstance(sets, dict)
+        and str(sets.get("status")) in ("passed", "failed")
+    )
 
 
 def later_cases(entries: list, line) -> set[str]:
@@ -588,8 +606,10 @@ class Vault:
         ticks the first unticked `- [ ] read `<slug>`` line across the Specs of `raw/`
         (270.1); a `delete` entry ticks its page line and, as a reading does, the `read`
         lines of its slug — no reading of a deleted Estimate will stand in the ledger (463);
-        an `estimate` or a `delete` entry skips, in the Spec beside the yaml, the Cases whose
-        first decision entry stands after it in the ledger (280, 463); all skip, in every
+        so does an `update` that sets an Estimate `passed` or `failed` by the person's
+        decision, which no reading follows (672); an `estimate` or a `delete` entry, or such
+        an `update`, skips, in the Spec beside the yaml, the Cases whose first decision entry
+        stands after it in the ledger (280, 463, 672); all skip, in every
         Spec, the Cases the yaml beside it marks `superseded_by` (286); nothing found — no
         Spec, no section, no line — is no error. Called for an applied entry alone, so a
         failed `delete` ticks nothing."""
@@ -597,7 +617,7 @@ class Vault:
         if self.spec is not None and kind in TICKED_KINDS and "case" in entry:
             tick_spec(self.spec, str(entry["case"]), str(kind), str(entry.get("slug")))
         superseded = superseded_cases(self.entries) if self.spec else set()
-        if kind in ("estimate", "delete"):
+        if kind in ("estimate", "delete") or closes_by_decision(entry):
             skip = later_cases(self.entries, entry.get("line")) if self.spec else set()
             tick_read(
                 raw_specs(self.project_dir, self.spec), str(entry.get("slug")), skip, superseded

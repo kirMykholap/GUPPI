@@ -198,10 +198,21 @@ def sending_line(files, timestamp=SENT):
     )
 
 
-def stop(project, reply, *messages, built=True, sent=None, sent_at=SENT, **fields):
+def refusal_record(text, command=ratified.COMMAND):
+    """A refusal of the `Stop` hook `command`, as Claude Code records it (session 1441)."""
+    content = f"Stop hook feedback:\n[{command}]: {text}"
+    return json.dumps({"type": "user", "isMeta": True, "message": {"content": content}})
+
+
+def person_record(text="go on"):
+    """A message of the person: a `user` record whose `origin.kind` is `human`."""
+    return json.dumps({"type": "user", "origin": {"kind": "human"}, "message": {"content": text}})
+
+
+def stop(project, reply, *messages, built=True, sent=None, sent_at=SENT, extra=(), **fields):
     """The `Stop` hook on `reply` after `messages`; the transcript sends the file of each
     top-level Case the messages and the reply hold at `sent_at`, or the files of the Cases
-    `sent` names — a path in `sent` sent as it is."""
+    `sent` names — a path in `sent` sent as it is; the records of `extra` close it."""
     if built:
         build(project, *messages)
     if sent is None:
@@ -210,6 +221,7 @@ def stop(project, reply, *messages, built=True, sent=None, sent_at=SENT, **field
     lines = [transcript_line(m) for m in messages]
     if files:
         lines.insert(1 if lines else 0, sending_line(files, sent_at))
+    lines += list(extra)
     transcript = project / "transcript.jsonl"
     transcript.write_text("\n".join(lines) + "\n", encoding="utf-8")
     fields.setdefault("session_id", SESSION)
@@ -768,10 +780,11 @@ def test_write_an_unpadded_value_refuses_the_case_whole(working):
     assert "Case 7" not in plan_of(working).read_text(encoding="utf-8")
 
 
-def test_write_nothing_outside_a_working_session_and_nothing_on_the_re_fire(working, tmp_path):
+def test_write_nothing_outside_a_working_session_and_a_flagged_reply_writes(working, tmp_path):
     assert stop(working, ACK, SHOWING, ACK, session_id="ffffffff-0000") == (0, "")
-    assert stop(working, ACK, SHOWING, ACK, stop_hook_active=True) == (0, "")
     assert "Case 7" not in plan_of(working).read_text(encoding="utf-8")
+    assert stop(working, ACK, SHOWING, ACK, stop_hook_active=True) == (0, "")  # case 644.2
+    assert "## Case 7 — пример" in plan_of(working).read_text(encoding="utf-8")
 
 
 def test_write_a_sub_case_brings_its_parents_prose(working):
@@ -874,8 +887,118 @@ def test_checks_the_written_case_a_finding_of_another_case_is_not_reported(worki
     assert stop(working, ACK, SHOWING, ACK) == (0, "")
 
 
-def test_checks_the_written_case_the_re_fire_checks_nothing(working):
-    assert stop(working, ACK, OUT_OF_FRAME, ACK, stop_hook_active=True) == (0, "")
+def test_checks_the_written_case_a_flagged_reply_checks_it(working):
+    code, err = stop(working, ACK, OUT_OF_FRAME, ACK, stop_hook_active=True)  # case 644.3
+    assert code == 2 and "case 7: guppi/y.py is not named in its given" in err
+
+
+# --- a file changed after its check (case 645.5) -----------------------------------------
+
+
+def file_of_7(project, text):
+    path = case_path(project, "7")
+    path.parent.mkdir(parents=True, exist_ok=True)
+    path.write_text(text, encoding="utf-8")
+    return path
+
+
+def test_changed_file_equal_to_the_store_is_written(working):
+    build(working, SHOWING)
+    file_of_7(working, casecheck.shown_text("## Case 7 — пример", split_cases(SHOWING)["7"]))
+    assert stop(working, ACK, SHOWING, ACK, built=False) == (0, "")
+    assert "## Case 7 — пример" in plan_of(working).read_text(encoding="utf-8")
+
+
+def test_changed_file_changed_after_the_store_writes_nothing(working):
+    build(working, SHOWING)
+    path = file_of_7(working, SHOWING.replace("The file is written.", "Changed."))
+    code, err = stop(working, ACK, SHOWING, ACK, built=False)
+    assert code == 2 and f"{path} differs from the text the check stored" in err
+    assert "Case 7" not in plan_of(working).read_text(encoding="utf-8")
+
+
+# --- the reply that answers a refusal (cases 644.1, 644.8) ------------------------------
+
+
+def test_answers_a_refusal_a_repeat_on_a_flagged_reply_writes_the_case(working):
+    spec = approved_spec(working, f"{STAMP}\n\n# Spec\n\n## Case 5 — first\n")
+    code, err = stop(working, ACK, SHOWING, ACK, sent=set())
+    assert code == 2 and "Case 7" not in plan_of(working).read_text(encoding="utf-8")
+    told = [refusal_record(err.strip())]
+    assert stop(working, ACK, SHOWING, ACK, extra=told, stop_hook_active=True) == (0, "")
+    for path in (plan_of(working), spec):
+        assert "## Case 7 — пример" in path.read_text(encoding="utf-8"), path
+
+
+def test_answers_a_refusal_a_flagged_reply_removes_a_superseded_case(working):
+    spec = seed_old(working)
+    assert stop(working, ACK_SUPERSEDES, SHOWING, ACK_SUPERSEDES, stop_hook_active=True) == (0, "")
+    for path in (plan_of(working), spec):
+        assert "Case 5" not in path.read_text(encoding="utf-8"), path
+
+
+def test_write_approved_spec_a_flagged_reply_writes_into_it(working):
+    spec = approved_spec(working, f"{STAMP}\n\n# Spec\n\n{SPEC_CASE_7}")
+    assert stop(working, ACK, SHOWING, ACK, stop_hook_active=True) == (0, "")  # case 644.5
+    assert "The file is written." in spec.read_text(encoding="utf-8")
+
+
+def test_superseded_a_flagged_reply_removes_the_case(working):
+    seed_old(working)  # case 644.6
+    assert stop(working, ACK_SUPERSEDES, SHOWING, ACK_SUPERSEDES, stop_hook_active=True) == (0, "")
+    assert "Case 5" not in plan_of(working).read_text(encoding="utf-8")
+
+
+def test_write_a_defer_refused_then_fixed_on_a_flagged_reply_is_written(working):
+    bare = "```LEDGER\n" + defer_line(8, "rule-y") + "```\n"  # case 644.4
+    code, err = stop(working, bare, bare)
+    assert code == 2
+    fixed = short_case(8, "rule-y") + bare
+    told = [refusal_record(err.strip())]
+    assert stop(working, fixed, fixed, extra=told, stop_hook_active=True) == (0, "")
+    assert "## Case 8" in plan_of(working).read_text(encoding="utf-8").split("## Deferred", 1)[1]
+
+
+OTHER_8 = (
+    SHOWING.replace("## Case 7 — пример", "## Case 8 — другой")
+    .replace("case 7", "case 8")
+    .replace("old: `` the `old` text ``", "old: `Prevents x:`")
+)
+ACK_BOTH = "```LEDGER\n" + LINES + LINES.replace("case 7", "case 8") + "```\n"
+
+
+def test_tells_each_reason_once_a_reason_told_in_the_stretch_is_silent(working):
+    code, err = stop(working, ACK, SHOWING, ACK, sent=set())
+    assert code == 2 and "case 7: no SendUserFile" in err
+    told = [refusal_record(err.strip())]
+    assert stop(working, ACK, SHOWING, ACK, sent=set(), extra=told) == (0, "")
+    assert stop(working, ACK, SHOWING, ACK, sent=set(), extra=told, stop_hook_active=True) == (
+        0,
+        "",
+    )
+
+
+def test_tells_each_reason_once_a_new_reason_beside_a_told_one_is_told_alone(working):
+    _, err = stop(working, ACK, SHOWING, ACK, sent=set())
+    told = [refusal_record(err.strip())]
+    code, err = stop(working, ACK_BOTH, SHOWING, OTHER_8, ACK_BOTH, sent=set(), extra=told)
+    assert code == 2 and "case 8: no SendUserFile" in err and "case 7" not in err
+
+
+def test_tells_each_reason_once_no_readable_transcript_with_the_flag_is_silent(
+    working, monkeypatch
+):
+    monkeypatch.setattr(ratified, "own_refusals", lambda payload, command: None)
+    assert stop(working, ACK, SHOWING, ACK, sent=set(), stop_hook_active=True) == (0, "")
+    code, _ = stop(working, ACK, SHOWING, ACK, sent=set())  # no flag: told
+    assert code == 2
+
+
+def test_tells_each_reason_once_a_reason_told_before_the_persons_message_is_told_again(working):
+    _, err = stop(working, ACK, SHOWING, ACK, sent=set())
+    earlier = [refusal_record(err.strip()), person_record()]
+    code, again = stop(working, ACK, SHOWING, ACK, sent=set(), extra=earlier)
+    assert code == 2 and again == err
 
 
 # --- the guard on the plan (case 445.1): `estimate-spec-reconcile-refuses-an-edit-of-the-plan`
@@ -945,7 +1068,7 @@ def test_guard_every_edit_of_a_case_file_is_refused_and_logged(working, tool, ex
         path.write_text("## Case 7 — x\n", encoding="utf-8")
     code, err = guard(working, tool, path, "## Case 7 — mine\n")
     assert code == 2 and err.count("\n") == 1
-    assert str(path) in err and "the hook of rule-case-check alone writes it" in err
+    assert str(path) in err and "case-guppi alone writes it" in err
     assert f"ratified refused {tool} " in logged(working)
     assert path.exists() == exists
 
@@ -953,7 +1076,27 @@ def test_guard_every_edit_of_a_case_file_is_refused_and_logged(working, tool, ex
 def test_guard_a_file_of_another_name_under_cases_is_refused(working):
     other = case_path(working, "7").with_name("notes.txt")
     code, err = guard(working, "Write", other, "x\n")
-    assert code == 2 and "rule-case-check" in err
+    assert code == 2 and "case-guppi alone writes it" in err
+
+
+@pytest.mark.parametrize("tool", ["Edit", "Write"])
+def test_guard_case_guppi_writes_under_cases(working, tool):
+    # case 645.3: the hook input names the agent type inside a subagent (measured, session 0311)
+    path = case_path(working, "7")
+    assert guard(working, tool, path, "## Case 7 — x\n", agent_type="case-guppi") == (0, "")
+
+
+@pytest.mark.parametrize("agent", [None, "claude"])
+def test_guard_another_agent_under_cases_is_refused(working, agent):
+    fields = {"agent_type": agent} if agent else {}
+    code, err = guard(working, "Write", case_path(working, "7"), "x\n", **fields)
+    assert code == 2 and "case-guppi alone writes it" in err
+
+
+def test_guard_case_guppi_outside_cases_is_refused(working):
+    for path in (working / "notes.md", plan_of(working)):
+        code, err = guard(working, "Write", path, "# x\n", agent_type="case-guppi")
+        assert code == 2 and "outside cases/" in err
 
 
 @pytest.mark.parametrize(
@@ -1021,11 +1164,19 @@ def test_error_an_error_of_the_stop_run_exits_2_with_the_advice(working, monkeyp
     assert "repeat the ledger lines" in err
 
 
-def test_error_the_re_fire_exits_0_and_writes_nothing(working, monkeypatch):
+def test_error_once_a_stretch_with_the_flag_set_or_not(working, monkeypatch):
+    # case 644.7: a new error on a flagged reply is told; the same error again is silent
     monkeypatch.setattr(ratified, "write_case", boom)
-    before = plan_of(working).read_text(encoding="utf-8")
+    code, err = stop(working, ACK, SHOWING, ACK, stop_hook_active=True)
+    assert code == 2 and err.startswith("ratified: not done: boom")
+    told = refusal_record(err.strip())
+    assert stop(working, ACK, SHOWING, ACK, extra=[told], stop_hook_active=True) == (0, "")
+
+
+def test_error_with_the_flag_set_and_no_readable_transcript_is_silent(working, monkeypatch):
+    monkeypatch.setattr(ratified, "own_refusals", lambda payload, command: None)
+    monkeypatch.setattr(ratified, "write_case", boom)
     assert stop(working, ACK, SHOWING, ACK, stop_hook_active=True) == (0, "")
-    assert plan_of(working).read_text(encoding="utf-8") == before
 
 
 def test_error_a_payload_it_cannot_read_exits_0_with_one_line(working, monkeypatch):

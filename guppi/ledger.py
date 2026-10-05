@@ -222,7 +222,8 @@ def refusals(payload: dict, *commands: str) -> dict[str, list[tuple[int, str]]] 
     whose text opens with `Stop hook feedback:` and holds a line that opens with
     `[<command>]: `; its text is what follows that prefix (measured on session 1237 and 1441,
     Claude Code 2.1.282). None when the transcript cannot be read. The one judgment of the
-    refusals, which `guppi onward` uses for its own and for those of the ledger hook."""
+    refusals, which `guppi onward` uses for its own and for those of the ledger hook, and
+    `guppi ratified`, through `own_refusals`, for its own (case 644.8)."""
     records = stretch(payload)
     if records is None:
         return None

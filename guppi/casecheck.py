@@ -1,5 +1,6 @@
 """`guppi casecheck --subagent` — the `SubagentStop` hook that checks the Case `case-guppi`
-answers with before the main agent sees it (case 419.3); `guppi casecheck` — the `Stop` hook
+wrote into its file, or answered with on the old path, before the main agent sees it (cases
+419.3, 645.2); `guppi casecheck` — the `Stop` hook
 that compares each Case the main agent shows with the one the check stored (case 419.4).
 
 The check. For an answer of `case-guppi` (`agent_type`), the hook takes as the answer the
@@ -36,12 +37,9 @@ in bold, is a finding of the top-level Case, a title asked in more than one roun
 once and the words of an item after its title not judged (case 544.3); a title in the
 `recommend` of an entry of the store under the number alone, of the family of the answer's
 Cases, that the answer does not hold, is held too, so an answer of sub-cases alone keeps its
-parent's `recommend` (`stored_family`, case 629.4). An answer of sub-cases alone of a Case N
-whose entry the store holds under the number alone is judged with the section of that N,
-built by `ratified.case_section`, before them in the Spec text, so the frame of a sub-case
-with no `given` of its own reads the `given` of N, as `/pre-spec` reads it in the plan; a
-finding or a note of N itself is not given to the answer, and N is neither stored nor
-written again (`stored_parents`, case 629.3). The Cases of the answer are judged with the
+parent's `recommend` (`stored_family`, case 629.4). The handling of an answer of sub-cases
+alone judged with its stored parent (`stored_parents`, case 629.3) is gone: the check reads
+the whole file of a Case (case 645.2). The Cases of the answer are judged with the
 other Cases of the session by `prespec.check_same_target`, imported: each Case of the plan
 file, then each entry of the store under the number alone that the plan does not hold, its
 section built by `ratified.case_section` — leaving out an entry with findings, a Case a
@@ -74,16 +72,23 @@ under the number alone, and an entry with no `agent_id` is not compared (case 61
 are those of `prespec.promise_notes` on the answer — a line of a Criterion replaced whole that
 the new one does not carry, a `then` line shared by two siblings, named on the later (cases
 472.1, 472.2): a note not yet held for its Case id is stored under `notes`, apart from the
-findings, and sent back once by exit 2 beside any findings; a note is no finding — the file
-of the Case is written as for an answer with none, and `stop` refuses no showing for it. When
-no Case of the answer has findings, the Cases of the answer are
-written, as the store holds their text, into `raw/<date>/<hi HHMM>/cases/case-<N>.md`, N the
-id of the top-level Case, named by `case_file`: the file replaced whole when the answer holds
-the top-level Case, and only the section of each sub-case replaced — or placed after its
-family — when the answer holds sub-cases alone (case 452.1); an answer with a finding writes
-no file. `case-guppi` itself writes no file, and the agent's edit of one is refused by
-`guppi ratified --guard`, which judges the path by `is_case_file`, the predicate `case_file`
-stays inside (case 453). A finding exits 2 with the findings on stderr, and Claude Code sends the agent
+findings, and sent back once by exit 2 beside any findings; a note is no finding, and `stop`
+refuses no showing for it.
+
+The file (case 645.2). `case-guppi` writes its Case into
+`raw/<date>/<hi HHMM>/cases/case-<N>.md`, N the id of the top-level Case, named by
+`case_file`, and fixes it by `Edit`. The hook takes each file under the `cases/` folder of a
+session folder, judged by `is_case_file`, that a `Write`, `Edit` or `MultiEdit` call of the
+subagent in `agent_transcript_path` names (`written_case_files`), and reads its Cases as the
+file stands: a file whose Cases the store holds under their ids with the same text — line
+ends and trailing spaces aside, by `file_differences`, the one comparison of a file with the
+store — and no findings is not checked or stored again, so the time of its store stands;
+any other is checked whole as an answer is and stored; the hook writes no such file. Until a
+reading of `estimate-case-build-writes-the-case` passes live, a transcript that names no such
+file and whose newest output holds a Case heading is read the old way: that output is
+checked and stored, and with no finding written by `write_case_files` — the file replaced
+whole when it holds the top-level Case, the section of each sub-case replaced or placed
+after its family otherwise (case 452.1); a Case of a later session removes this path. A finding exits 2 with the findings on stderr, and Claude Code sends the agent
 back (measured 2026-09-25, session 0051), whatever `stop_hook_active` says: Claude Code sets it
 on the second fire after a handback with no exit 2 of this hook (measured 2026-09-26, session
 1337). The store guards the loop: when every Case with findings stands in the store with the
@@ -128,7 +133,10 @@ the parent is compared on its other parts alone (`list_showing`, `showings`, cas
 Spec hook reads a showing by the same `showings`.
 A Case the store does not hold, one that differs, one stored with findings, or one with no
 `SendUserFile` call on `raw/<date>/<hi HHMM>/cases/case-<N>.md` in the turn of the reply, N the
-id of its top-level Case, exits 2 with the reason on stderr (case 452.2). A heading with no
+id of its top-level Case, exits 2 with the reason on stderr (case 452.2); so does a shown Case
+whose file holds a Case that differs from its entry of the store under its id alone, or that
+the store does not hold, by `changed_file`, the one judgment the Spec hook imports (cases
+645.4, 645.11). A heading with no
 section — the acknowledging reply — a fence tagged `DIFF`, and a deferred decision in the
 short form — `context`, `problem` and a fence tagged `then` with `defer` items, no `given` and
 no `when` — are not compared and need no sending. On the re-fire exit 0; outside a working
@@ -723,9 +731,7 @@ def check_answer(
     `prespec.promise_notes` on the answer — a Criterion line not carried, a `then` line shared
     by siblings (cases 472.1, 472.2). `plan`, the text of the plan file, with `store`, adds the
     check of the answer's Cases against the other Cases of the session, `session_clashes`
-    (case 629.1). An answer of sub-cases alone is judged with the section of its stored
-    parent before them, so the frame of a sub-case reads the parent's `given`; a finding or a
-    note of that parent is not given to the answer (case 629.3)."""
+    (case 629.1)."""
     cases = split_cases(text)
     heads = headings(text)
     records = ratification_records(cases)
@@ -738,7 +744,6 @@ def check_answer(
     }
     found: dict[str, list[str]] = {case: [] for case in cases}
     spec: list[str] = ["# the answer of case-guppi", ""]
-    spec += stored_parents(cases, store)  # case 629.3: before the sub-cases it frames
     for case, lines in cases.items():
         found[case] += form_findings(case, lines, cases)
         section, errors = case_section(case, heads[case], lines, refs, keys_for=keys_for)
@@ -777,26 +782,6 @@ def check_answer(
         if case in notes or not match:
             notes[case if case in notes else next(iter(cases))].append(note)
     return found, notes
-
-
-def stored_parents(cases: dict, store: dict | None) -> list[str]:
-    """Case 629.3: the Spec section of the stored top-level Case of each family the answer
-    holds by sub-cases alone, built by `ratified.case_section` from its entry under the number
-    alone; none when the store holds no such entry."""
-    lines: list[str] = []
-    for top in dict.fromkeys(top_case(case) for case in cases):
-        if top in cases:
-            continue
-        entry = (store or {}).get(top)
-        if not isinstance(entry, dict) or not isinstance(entry.get("text"), str):
-            continue
-        chat = split_cases(entry["text"]).get(top)
-        if chat is None:
-            continue
-        section, errors = case_section(top, headings(entry["text"]).get(top, ""), chat, {})
-        if section and not errors:
-            lines += section
-    return lines
 
 
 def outputs(record: dict) -> list[str]:
@@ -937,13 +922,81 @@ def spaces_aside(text: str) -> list[str]:
     return [line.rstrip() for line in text.strip().splitlines()]
 
 
+EDIT_CALLS = ("Write", "Edit", "MultiEdit")  # the calls that write a file of a Case (645.2)
+
+
+def written_case_files(payload: dict, project_dir: Path) -> list[Path]:
+    """Case 645.2: each file under the `cases/` folder of a session folder, by `is_case_file`,
+    that a `Write`, `Edit` or `MultiEdit` call of the subagent in `agent_transcript_path`
+    names, in the order of its first call, a relative path read from `project_dir`; none when
+    the transcript is not readable."""
+    found: dict[str, Path] = {}
+    for record in read_records(payload.get("agent_transcript_path")) or []:
+        if not isinstance(record, dict) or record.get("type") != "assistant":
+            continue
+        message = record.get("message")
+        content = message.get("content") if isinstance(message, dict) else None
+        for block in content if isinstance(content, list) else []:
+            if not isinstance(block, dict) or block.get("type") != "tool_use":
+                continue
+            data = block.get("input")
+            if block.get("name") not in EDIT_CALLS or not isinstance(data, dict):
+                continue
+            if not data.get("file_path"):
+                continue
+            path = Path(str(data["file_path"]))
+            path = path if path.is_absolute() else project_dir / path
+            if is_case_file(path):
+                found.setdefault(str(path), path)
+    return list(found.values())
+
+
+def file_differences(text: str, store: dict) -> list[str]:
+    """Case 645.4: each Case of the text of a file of a Case whose text, as `shown_text`
+    keeps it, differs from the entry of the store under its id alone — line ends and trailing
+    spaces aside — or that the store does not hold. The one comparison of a file with the
+    store, which the `Stop` check of a showing and the Spec hook import."""
+    heads = headings(text)
+    differ: list[str] = []
+    for case, lines in split_cases(text).items():
+        entry = store.get(case)
+        held = entry.get("text") if isinstance(entry, dict) else None
+        shown = shown_text(heads[case], lines)
+        if not isinstance(held, str) or spaces_aside(held) != spaces_aside(shown):
+            differ.append(case)
+    return differ
+
+
+def changed_file(folder: Path, case: str, store: dict) -> str | None:
+    """Case 645.4: the reason the file of the top-level Case of `case` fails against the
+    store, by `file_differences` — the Cases that differ or that the store does not hold,
+    and the file — or None; a file that does not stand gives none, its sending is judged
+    apart. The one judgment of a changed file, which the `Stop` check of a showing and the
+    Spec hook run."""
+    path = case_file(folder, case)
+    if not path.is_file():
+        return None
+    differ = file_differences(path.read_text(encoding="utf-8"), store)
+    if not differ:
+        return None
+    return (
+        f"case {', '.join(differ)}: {path} differs from the text the check stored — let "
+        "case-guppi fix the file so that the check stores it again"
+    )
+
+
 def subagent(payload: dict, project_dir: Path, now, stderr) -> int:
+    """Case 645.2: the files of `cases/` the subagent wrote or edited, each checked whole and
+    stored, one the store holds unchanged with no findings skipped; the hook writes none of
+    them. With no such file and a newest output that holds a Case heading, the old path —
+    that output checked, stored and, with no finding, written by `write_case_files` — until a
+    reading of `estimate-case-build-writes-the-case` passes live."""
     if payload.get("agent_type") != AGENT:
         return 0
     form = faulty_round(payload)  # a round out of form, sent back with no store (case 601.1)
-    text = answer_of(payload)
-    cases = split_cases(text)
-    if not cases:
+    files = [path for path in written_case_files(payload, project_dir) if path.is_file()]
+    text = "" if files else answer_of(payload)
+    if not files and not split_cases(text):
         return send_back(form, stderr)
     stamp = session_stamp(None, payload)
     folder = session_dir(project_dir, now, stamp)
@@ -954,6 +1007,51 @@ def subagent(payload: dict, project_dir: Path, now, stderr) -> int:
     window = ledger_of(folder)
     frontier = folder / "frontier.md" if folder is not None else None
     plan_text = plan.read_text(encoding="utf-8")  # the session's other Cases (case 629.1)
+    findings: list[str] = []
+    fresh: list[str] = []
+    repeated = True
+    texts = [path.read_text(encoding="utf-8") for path in files] or [text]
+    for each in texts:
+        if files and not stored_with_findings(each, store) and not file_differences(each, store):
+            continue  # unchanged and passed: its time of store stands (case 645.2)
+        found, new, same = judge_and_store(
+            each, payload, project_dir, now, store, window, frontier, plan_text
+        )
+        findings += found
+        fresh += new
+        repeated = repeated and same
+    store_of(plan).write_text(
+        json.dumps(store, ensure_ascii=False, indent=1), encoding="utf-8", newline=""
+    )
+    if not files and not findings and folder is not None:  # the old path (cases 452.1, 645.2)
+        write_case_files(folder, list(split_cases(text)), store)
+    if (findings and not repeated) or fresh:  # the store guards the loop (434, 472.1)
+        return send_back(findings + fresh + form, stderr)
+    return send_back(form, stderr)
+
+
+def stored_with_findings(text: str, store: dict) -> bool:
+    """Whether a Case of the text stands in the store under its id alone with findings."""
+    return any(
+        isinstance(store.get(case), dict) and store[case].get("findings")
+        for case in split_cases(text)
+    )
+
+
+def judge_and_store(
+    text: str,
+    payload: dict,
+    project_dir: Path,
+    now,
+    store: dict,
+    window: list[str],
+    frontier: Path | None,
+    plan_text: str,
+) -> tuple[list[str], list[str], bool]:
+    """The findings of the Cases of `text` by `check_answer`, each Case stored in `store`;
+    the notes not yet sent for their Case id; and whether every Case with findings stands in
+    the store as it is, findings and all (cases 434, 472.1, 610.2)."""
+    cases = split_cases(text)
     found, notes = check_answer(
         text, project_dir, window, frontier, round_titles(payload), store, plan_text
     )
@@ -990,15 +1088,7 @@ def subagent(payload: dict, project_dir: Path, now, stderr) -> int:
         if kept or new:  # the notes sent for the id outlive a later answer (case 472.1)
             entry["notes"] = kept + new
         store[key] = entry
-    store_of(plan).write_text(
-        json.dumps(store, ensure_ascii=False, indent=1), encoding="utf-8", newline=""
-    )
-    findings = [f for case in cases for f in found[case]]
-    if not findings and folder is not None:  # the file of a Case that passed (case 452.1)
-        write_case_files(folder, list(cases), store)
-    if (findings and not repeated) or fresh:  # the store guards the loop (434, 472.1)
-        return send_back(findings + fresh + form, stderr)
-    return send_back(form, stderr)
+    return [f for case in cases for f in found[case]], fresh, repeated
 
 
 def clashes(cases: dict, store: dict, agent_id: str) -> list[str]:
@@ -1378,6 +1468,9 @@ def stop(payload: dict, project_dir: Path, now, stderr) -> int:
         for case, lines in shown.items()
         if (problem := against_store(case, heads.get(case, ""), lines, store))
     ]
+    for top in dict.fromkeys(top_case(case) for case in shown):  # case 645.4
+        if folder is not None and (changed := changed_file(folder, top, store)):
+            problems.append(changed)
     if opening:
         problems.append(opening)
     if layout := showing_layout(turn_records, reply):

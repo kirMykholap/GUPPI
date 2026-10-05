@@ -138,6 +138,26 @@ def case_path(project, case):
     return casecheck.case_file(project.joinpath(*FOLDER), case)
 
 
+def answer_file(project, content, **fields):
+    """`case-guppi` writes `content` into the file of its top-level Case by `Write` and
+    answers with a summary: the check reads the file in place of an answer text (case
+    645.2)."""
+    first = next(iter(casecheck.split_cases(content)), "0")
+    path = case_path(project, first)
+    path.parent.mkdir(parents=True, exist_ok=True)
+    path.write_text(content, encoding="utf-8")
+    call = {"type": "tool_use", "name": "Write", "input": {"file_path": str(path), "content": "."}}
+    summary = {"type": "text", "text": f"**Built:** {path}"}
+    agent = project / "agent-file.jsonl"
+    lines = [
+        json.dumps({"type": "assistant", "isSidechain": True, "message": {"content": [block]}})
+        for block in (call, summary)
+    ]
+    agent.write_text("\n".join(lines) + "\n", encoding="utf-8")
+    fields.setdefault("agent_transcript_path", str(agent))
+    return answer(project, "**Built:**", **fields)
+
+
 def prompt(value="Go on."):
     """A prompt of the person: the record that opens a turn, `origin.kind` `human` (case 592)."""
     return {
@@ -629,19 +649,19 @@ LINES_9 = (
 
 def test_subagent_shape_a_case_ratified_whole_back_with_sub_cases_is_sent_back(working):
     ledger(working, "decision[case 9][update][rule-x]{ref:rule-x}")
-    code, err = answer(working, FAMILY_9)
+    code, err = answer_file(working, FAMILY_9)
     assert code == 2
     assert (
         "case 9: case 9 has decision lines in the session's ledger and comes back in another "
         "shape under its old number — build it again as case 10, its decision lines carrying "
         "{supersedes:case 9}"
     ) in err
-    assert not case_path(working, "9").exists()
+    assert case_path(working, "9").read_text(encoding="utf-8") == FAMILY_9  # the hook writes none
 
 
 def test_subagent_shape_a_case_ratified_with_sub_cases_back_whole_marks_its_parent(working):
     ledger(working, *LINES_9)
-    code, err = answer(working, CASE_9)
+    code, err = answer_file(working, CASE_9)
     assert code == 2
     assert "case 9: case 9.1, 9.2 has decision lines" in err
     assert "{supersedes:case 9}{supersedes:case 9.1}{supersedes:case 9.2}" in err
@@ -649,15 +669,15 @@ def test_subagent_shape_a_case_ratified_with_sub_cases_back_whole_marks_its_pare
 
 def test_subagent_shape_a_whole_answer_without_a_ratified_sub_case_is_sent_back(working):
     ledger(working, *LINES_9)
-    code, err = answer(working, PARENT + sub_case("9.1"))
+    code, err = answer_file(working, PARENT + sub_case("9.1"))
     assert code == 2 and "case 9: case 9.2 has decision lines" in err
 
 
 def test_subagent_shape_the_new_number_counts_the_keys_of_the_store(working):
     case_12 = ANSWER.replace("## Case 7", "## Case 12").replace("case 7", "case 12")
-    assert answer(working, case_12) == (0, "")
+    assert answer_file(working, case_12) == (0, "")
     ledger(working, "decision[case 9][update][rule-x]{ref:rule-x}")
-    code, err = answer(working, FAMILY_9)
+    code, err = answer_file(working, FAMILY_9)
     assert code == 2 and "build it again as case 13" in err
 
 
@@ -672,17 +692,16 @@ def test_subagent_shape_the_new_number_counts_the_keys_of_the_store(working):
 )
 def test_subagent_shape_an_answer_in_its_shape_passes(working, lines, text):
     ledger(working, *lines)
-    assert answer(working, text) == (0, "")
+    assert answer_file(working, text) == (0, "")
 
 
 # --- a number another agent holds (case 610.2) ---------------------------------------------
 
 
 def test_subagent_clash_a_number_another_agent_holds_is_sent_back_and_stored_apart(working):
-    assert answer(working, ANSWER, agent_id="a1") == (0, "")
-    file = case_path(working, "7").read_text(encoding="utf-8")
+    assert answer_file(working, ANSWER, agent_id="a1") == (0, "")
     other = ANSWER.replace("The file is written.", "Another file is written.")
-    code, err = answer(working, other, now=LATER, agent_id="b2")
+    code, err = answer_file(working, other, now=LATER, agent_id="b2")
     assert code == 2
     assert (
         "case 7: the store holds case 7 from the answer of another agent — build this Case "
@@ -691,23 +710,28 @@ def test_subagent_clash_a_number_another_agent_holds_is_sent_back_and_stored_apa
     held = store(working)
     assert held["7"]["agent_id"] == "a1" and held["7"]["stored"] == NOW.isoformat()
     assert held["7@b2"]["agent_id"] == "b2" and "Another file" in held["7@b2"]["text"]
-    assert case_path(working, "7").read_text(encoding="utf-8") == file
+    # the other agent overwrote the file, a gap the context of case 645 names; the hook
+    # writes none, and the comparison of a file refuses its showing until it is fixed
+    assert case_path(working, "7").read_text(encoding="utf-8") == other
+    assert casecheck.file_differences(other, held) == ["7"]
     assert casecheck.against_store("7", "", [], held) is None  # the reading by the number
-    assert answer(working, other, now=LATER, agent_id="b2") == (0, "")
+    assert answer_file(working, other, now=LATER, agent_id="b2") == (0, "")
 
 
 def test_subagent_clash_a_sub_case_another_agent_holds_is_sent_back(working):
-    assert answer(working, FAMILY_9, agent_id="a1") == (0, "")
-    code, err = answer(working, sub_case("9.1", "Changed."), agent_id="b2")
+    assert answer_file(working, FAMILY_9, agent_id="a1") == (0, "")
+    code, err = answer_file(working, sub_case("9.1", "Changed."), agent_id="b2")
     assert code == 2 and "the store holds case 9 from the answer of another agent" in err
     assert "Changed." in store(working)["9.1@b2"]["text"]
 
 
 def test_subagent_clash_no_agent_id_and_the_same_agent_give_no_finding(working):
-    assert answer(working, ANSWER) == (0, "")
-    assert answer(working, ANSWER, agent_id="b2") == (0, "")
+    again = ANSWER.replace("The file is written.", "The file is written again.")
+    assert answer_file(working, ANSWER) == (0, "")
+    assert answer_file(working, again, agent_id="b2") == (0, "")
     assert store(working)["7"]["agent_id"] == "b2"
-    assert answer(working, ANSWER, agent_id="b2") == (0, "")
+    once_more = again.replace("written again.", "written once more.")
+    assert answer_file(working, once_more, agent_id="b2") == (0, "")
     assert list(store(working)) == ["7"]
 
 
@@ -745,29 +769,29 @@ def test_subagent_a_case_with_no_sub_cases_keeps_its_problem(working):
         ("> Problem.", "> Проблема.", "problem"),
     ],
 )
-def test_subagent_script_a_letter_outside_the_script_is_a_finding_with_no_file(
+def test_subagent_script_a_letter_outside_the_script_is_a_finding_held_in_the_store(
     working, old, new, part
 ):
+    # case 645.7: the finding stands in the store, so the showing and the Spec refuse it
     russian = ANSWER.replace(old, new)
-    code, err = answer(working, russian)
+    code, err = answer_file(working, russian)
     assert code == 2
     assert f"case 7: its {part} holds a letter outside the Latin script of English" in err
     assert store(working)["7"]["findings"]
-    assert not case_path(working, "7").exists()
-    assert answer(working, russian) == (0, "")  # the same answer again: stored, not sent back
+    assert answer_file(working, russian) == (0, "")  # the same file again: stored, not sent back
     assert store(working)["7"]["findings"]
-    assert not case_path(working, "7").exists()
+    assert casecheck.against_store("7", "", [], store(working))
 
 
 def test_subagent_script_an_english_answer_passes(working):
-    assert answer(working, ANSWER) == (0, "")
+    assert answer_file(working, ANSWER) == (0, "")
     assert store(working)["7"]["findings"] == []
     assert case_path(working, "7").exists()
 
 
 def test_subagent_script_a_russian_quotation_in_then_passes(working):
     quoted = ANSWER.replace("> The file is written.", "> The file is written: «файл записан».")
-    assert answer(working, quoted) == (0, "")
+    assert answer_file(working, quoted) == (0, "")
     assert store(working)["7"]["findings"] == []
 
 
@@ -781,7 +805,7 @@ def test_subagent_script_a_latin_code_span_passes_under_russian(working):
         .replace("> Context.", "> Правило `rule-x` и файл `guppi/x.py`.")
         .replace("> Problem.", "> Проблема `rule-x`.")
     )
-    assert answer(working, russian) == (0, "")
+    assert answer_file(working, russian) == (0, "")
     assert store(working)["7"]["findings"] == []
     assert case_path(working, "7").exists()
 
@@ -789,15 +813,15 @@ def test_subagent_script_a_latin_code_span_passes_under_russian(working):
 def test_subagent_script_a_cyrillic_code_span_is_a_finding(working):
     # case 589.2: inside a code span a letter of another script is judged as in prose
     quoted = ANSWER.replace("> Context.", "> Context of `файл`.")
-    code, err = answer(working, quoted)
+    code, err = answer_file(working, quoted)
     assert code == 2
     assert "case 7: its context holds a letter outside the Latin script of English" in err
-    assert not case_path(working, "7").exists()
+    assert store(working)["7"]["findings"]
 
 
 def test_subagent_script_a_missing_guppi_toml_is_one_finding(working):
     (working / "guppi.toml").unlink()
-    code, err = answer(working, ANSWER)
+    code, err = answer_file(working, ANSWER)
     assert code == 2
     assert "guppi.toml: missing" in err
     assert store(working)["7"]["findings"] == [
@@ -887,6 +911,40 @@ def test_stop_a_showing_of_the_ratification_alone_that_differs_is_refused(workin
     answer(working, ANSWER)
     code, err = show(working, SHORT_SHOWING.replace("{ref:rule-x}", "{ref:rule-y}", 1))
     assert code == 2 and "case 7: its ratification differ" in err
+
+
+def test_stop_a_showing_of_the_ratification_alone_with_a_changed_file_is_refused(working):
+    # case 645.11: the showing passes only when the file equals the store too
+    answer(working, ANSWER)
+    path = case_path(working, "7")
+    path.write_text(ANSWER.replace("The file is written.", "Changed."), encoding="utf-8")
+    code, err = show(working, SHORT_SHOWING)
+    assert code == 2 and f"case 7: {path} differs from the text the check stored" in err
+
+
+# --- a file changed after its check (case 645.4) ---------------------------------------------
+
+
+def test_stop_changed_file_equal_to_the_store_passes(working):
+    answer(working, ANSWER)
+    assert case_path(working, "7").is_file()
+    assert show(working, SHORT_SHOWING) == (0, "")
+
+
+def test_stop_changed_file_a_line_changed_after_the_store_is_refused(working):
+    answer(working, ANSWER)
+    path = case_path(working, "7")
+    path.write_text(path.read_text(encoding="utf-8") + "\nA line.\n", encoding="utf-8")
+    code, err = show(working, SHORT_SHOWING)
+    assert code == 2 and "case 7:" in err and str(path) in err
+
+
+def test_stop_changed_file_a_case_the_store_lacks_is_refused(working):
+    answer(working, ANSWER)
+    path = case_path(working, "7")
+    path.write_text(path.read_text(encoding="utf-8") + "\n" + sub_case("7.1"), encoding="utf-8")
+    code, err = show(working, SHORT_SHOWING)
+    assert code == 2 and "case 7.1:" in err and "differs from the text the check stored" in err
 
 
 def test_stop_a_shown_case_with_no_sending_is_refused(working):
@@ -1247,7 +1305,7 @@ def taken_from_the_backlog(project, line="- [ ] C1 — `rule-x`, taken up · bac
 
 def test_subagent_backlog_a_case_naming_the_page_without_its_supersedes_is_sent_back(working):
     taken_from_the_backlog(working)
-    code, err = answer(working, ANSWER)
+    code, err = answer_file(working, ANSWER)
     assert code == 2
     assert (
         "case 7: names rule-x, the page of the open backlog line C1, and no Case among case 7 "
@@ -1258,7 +1316,7 @@ def test_subagent_backlog_a_case_naming_the_page_without_its_supersedes_is_sent_
 def test_subagent_backlog_a_case_with_every_supersedes_passes(working):
     taken_from_the_backlog(working)
     marked = ANSWER.replace(UPDATE_LINE, UPDATE_LINE + "{supersedes:case 5}")
-    assert answer(working, marked) == (0, "")
+    assert answer_file(working, marked) == (0, "")
 
 
 def test_subagent_backlog_a_sub_case_that_supersedes_covers_its_sibling(working):
@@ -1267,7 +1325,10 @@ def test_subagent_backlog_a_sub_case_that_supersedes_covers_its_sibling(working)
         "decision[case 9.1][update][rule-x]{ref:rule-x}",
         "decision[case 9.1][update][rule-x]{ref:rule-x}{supersedes:case 5}",
     )
-    assert answer(working, PARENT + first + "\n" + sub_case("9.2", "The page is read.")) == (0, "")
+    assert answer_file(working, PARENT + first + "\n" + sub_case("9.2", "The page is read.")) == (
+        0,
+        "",
+    )
 
 
 @pytest.mark.parametrize(
@@ -1276,7 +1337,7 @@ def test_subagent_backlog_a_sub_case_that_supersedes_covers_its_sibling(working)
 )
 def test_subagent_backlog_no_open_backlog_line_is_no_finding(working, line):
     taken_from_the_backlog(working, line)
-    assert answer(working, ANSWER) == (0, "")
+    assert answer_file(working, ANSWER) == (0, "")
 
 
 def test_backlog_a_case_naming_the_page_only_in_a_defer_line_is_not_judged(working):
@@ -1371,13 +1432,13 @@ SAME_PROMISE = (
 
 def test_subagent_note_siblings_that_share_a_promise_are_sent_back_once(working):
     text = PARENT + sub_case("9.1", SAME_PROMISE[0]) + "\n" + sub_case("9.2", SAME_PROMISE[1])
-    code, err = answer(working, text)
+    code, err = answer_file(working, text)
     assert code == 2 and "note: case 9.2: a then line shares most of its words with case 9.1" in err
-    assert answer(working, text) == (0, "")
+    assert answer_file(working, text) == (0, "")
 
 
 def test_subagent_note_a_sub_case_answered_alone_has_no_sibling(working):
-    assert answer(working, sub_case("9.2", SAME_PROMISE[1])) == (0, "")
+    assert answer_file(working, sub_case("9.2", SAME_PROMISE[1])) == (0, "")
 
 
 # --- the hook's own error (case 555.1) -------------------------------------------------
@@ -1496,47 +1557,87 @@ def test_subagent_session_clash_the_judgment_is_the_one_of_prespec():
     assert found == ["case 7: rule-x: writes the section Purpose that case 5 writes too"]
 
 
-# --- a lone sub-case judged with its stored parent (case 629.3) ------------------------------
+# --- the file case-guppi writes (case 645.2) -------------------------------------------------
 
 
-PARENT_GIVEN = PARENT.replace(
-    "> **recommend:**\n> A.\n\n",
-    "> **recommend:**\n> A.\n\n> **given:**\n> `rule-x` — the rule.\n"
-    "> **＋** `estimate-x-works-1` — its Estimate.\n\n",
-)
+def write_call(path, content):
+    return {
+        "type": "tool_use",
+        "name": "Write",
+        "input": {"file_path": str(path), "content": content},
+    }
 
 
-def lone(then="The file is written."):
-    """Sub-case 9.1 with no `given` of its own."""
-    return sub_case("9.1", then).replace(
-        "> **given:**\n> `rule-x` — the rule.\n> **＋** `estimate-x-works-1` — its Estimate.\n\n",
-        "",
+def edit_call(path, old, new):
+    data = {"file_path": str(path), "old_string": old, "new_string": new}
+    return {"type": "tool_use", "name": "Edit", "input": data}
+
+
+def built(path):
+    return text(f"**Built:** {path}\n\n- 7 — example: `estimate-x-works`")
+
+
+def agent_writes(project, content):
+    """`case-guppi` writes the file of Case 7 by `Write` and answers with a summary."""
+    path = case_path(project, "7")
+    path.parent.mkdir(parents=True, exist_ok=True)
+    path.write_text(content, encoding="utf-8")
+    return path, transcript(project, [write_call(path, content)], [built(path)])
+
+
+NO_READ = ANSWER.replace("> - [ ] read `estimate-x-works`\n", "")
+
+
+def test_subagent_file_with_a_fault_is_sent_back_and_stored(working):
+    path, agent = agent_writes(working, NO_READ)
+    code, err = answer(working, "**Built:**", agent_transcript_path=agent)
+    assert code == 2 and "estimate-x-works has no task line" in err
+    assert store(working)["7"]["findings"] == ["case 7: estimate-x-works has no task line"]
+    assert path.read_text(encoding="utf-8") == NO_READ  # the hook writes no file
+
+
+def test_subagent_file_fixed_by_edit_passes_stored_and_not_written(working):
+    path, _ = agent_writes(working, NO_READ)
+    path.write_text(ANSWER, encoding="utf-8")  # the Edit as it landed
+    old, new = "> - [ ] create", "> - [ ] create"
+    agent = transcript(
+        working, [write_call(path, NO_READ)], [edit_call(path, old, new)], [built(path)]
     )
+    assert answer(working, "**Built:**", agent_transcript_path=agent) == (0, "")
+    assert store(working)["7"]["findings"] == []
+    assert store(working)["7"]["text"] == casecheck.shown_text(
+        "## Case 7 — example", casecheck.split_cases(ANSWER)["7"]
+    )
+    assert path.read_text(encoding="utf-8") == ANSWER
 
 
-def test_subagent_lone_sub_case_naming_what_the_parent_given_lacks_gets_a_finding(working):
-    assert answer(working, PARENT_GIVEN + sub_case("9.1")) == (0, "")
-    code, err = answer(working, lone("The page `rule-zed` is written."))
-    assert code == 2 and "case 9.1:" in err and "rule-zed" in err
-    assert "case 9:" not in err.replace("case 9.1:", "")
+def test_subagent_file_unchanged_and_passed_is_not_stored_again(working):
+    _, agent = agent_writes(working, ANSWER)
+    assert answer(working, "**Built:**", agent_transcript_path=agent) == (0, "")
+    first = store(working)["7"]["stored"]
+    later = datetime(2026, 9, 9, 15, 45, 0, tzinfo=UTC)
+    assert answer(working, "**Built:**", agent_transcript_path=agent, now=later) == (0, "")
+    assert store(working)["7"]["stored"] == first
 
 
-def test_subagent_lone_sub_case_whose_names_the_parent_gives_passes(working):
-    assert answer(working, PARENT_GIVEN + sub_case("9.1")) == (0, "")
-    assert answer(working, lone("The page `rule-x` is written again.")) == (0, "")
+def test_subagent_file_a_round_after_a_built_case_leaves_its_entry(working):
+    path, _ = agent_writes(working, ANSWER)
+    first = transcript(working, [write_call(path, ANSWER)], [built(path)])
+    assert answer(working, "**Built:**", agent_transcript_path=first) == (0, "")
+    entry = store(working)["7"]
+    later = datetime(2026, 9, 9, 15, 45, 0, tzinfo=UTC)
+    rounds = transcript(
+        working, [write_call(path, ANSWER)], [built(path)], [text(round_of("Which test?"))]
+    )
+    assert answer(working, "", agent_transcript_path=rounds, now=later) == (0, "")
+    assert store(working)["7"] == entry
 
 
-def test_subagent_lone_a_finding_of_the_stored_parent_is_not_given_to_the_answer(working):
-    assert answer(working, PARENT_GIVEN + sub_case("9.1")) == (0, "")
-    path = casecheck.store_of(working / ".claude" / "plans" / "plan.md")
-    held = store(working)
-    held["9"]["text"] = held["9"]["text"].replace("> C.", "> Контекст.")
-    path.write_text(json.dumps(held, ensure_ascii=False), encoding="utf-8")
-    assert answer(working, lone()) == (0, "")
-
-
-def test_subagent_lone_with_no_stored_parent_no_frame_finding(working):
-    assert answer(working, lone("The page `rule-zed` is written.")) == (0, "")
+def test_subagent_file_an_answer_text_with_no_case_file_is_stored_and_written(working):
+    # the old path, kept until the writer is live (case 645.2)
+    agent = transcript(working, [text(ANSWER)])
+    assert answer(working, "", agent_transcript_path=agent) == (0, "")
+    assert "7" in store(working) and case_path(working, "7").is_file()
 
 
 # --- the titles of the rounds in the stored recommend (case 629.4) ---------------------------

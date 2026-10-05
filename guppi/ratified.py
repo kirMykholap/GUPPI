@@ -12,8 +12,10 @@ earlier reply that shows `## Case N —` (or `### Case N.M —`) with at least o
 sections, by `casecheck.shows_sections`. It refuses a store with no Case N or one stored with
 findings, a showing that differs from the answer in a section it shows — by the one comparison
 of `casecheck.against_store` — and a Case whose file no `SendUserFile` call sent after the
-time the store holds for Case N, a store that holds no time included (case 452.3); a reply
-with no showing is no refusal. Otherwise it writes the stored answer (case 437) into the plan file
+time the store holds for Case N, a store that holds no time included (case 452.3), and a Case
+whose file holds a Case that differs from the text the store holds under its id or that the
+store does not hold, by `casecheck.changed_file`, the one judgment the `Stop` check of a
+showing runs (case 645.5); a reply with no showing is no refusal. Otherwise it writes the stored answer (case 437) into the plan file
 `ledger.plan_path` names, outside the repository, and into no copy (case 445.2): the heading,
 `context`, `problem`, `recommend`, `given`, `when` and `then` as the stored answer holds them —
 a sub-case's own `recommend` under its heading (case 544.5); a `context`, `problem` or
@@ -74,7 +76,10 @@ agent writes before the first dispatch of `case-guppi` — and is refused otherw
 `Edit`, `Write` and `MultiEdit` of a file under the `cases/` folder of a session folder
 `vault/raw/<date>/<HHMM>/` — by `casecheck.is_case_file`, the judgment the writer of the file
 uses too — is refused the same way, whatever its name and whether it stands, the reason naming
-the file and the hook of `rule-case-check` that alone writes it (case 453). A refusal
+the file and that `case-guppi` alone writes it (case 453), unless the hook input names
+`case-guppi` as `agent_type`, which Claude Code gives a hook fired inside a subagent (measured
+2026-10-05, session 0311): that call passes, and any `Edit`, `Write` or `MultiEdit` of
+`case-guppi` outside such a folder is refused (case 645.3). A refusal
 writes one line to the day's event log; a refused call has no `PostToolUse`, so it leaves no
 `tool` line and `plan_path` still names the plan. A file outside `.claude/plans/` and outside
 such a `cases/` folder is not judged, nor is a write through a shell; a payload the hook cannot
@@ -82,12 +87,19 @@ read exits 0 with one line on stderr. The comparison of an
 edited plan with a ratified copy `<plan>.ratified.md` and its marks `<plan>.waiting.json`
 (case 387.3) are gone.
 
-A refusal exits 2 with the reason on stderr, which Claude Code hands back to the agent; on the
-re-fire (`stop_hook_active`) the hook exits 0 and does nothing, so it cannot loop. Outside a
-working session — no `hi` — it does nothing. It never raises. An error of its own after it has
-read the payload exits 2 on `Stop`, with the error and the advice to repeat the ledger lines on
-stderr, so the agent sees it; an error while it reads the payload, and any error of the guard,
-exits 0 with the error on stderr (case 554). `untranslated` is the language
+A refusal exits 2 with the reason on stderr, which Claude Code hands back to the agent. The
+hook writes, removes and checks whether `stop_hook_active` is set or not: Claude Code keeps the
+flag set from the first refusal of any `Stop` hook until the person's next message, so a Case
+whose lines a reply repeats after a refusal is written at that reply (case 644.1). It guards
+its own loop by its refusals in the stretch, read by `ledger.own_refusals` under `COMMAND`: a
+reason that already stands in one of them is not printed again, by `ledger.untold`, and the
+hook exits 2 only while a reason not yet given is left; with the flag set and a transcript it
+cannot read it prints nothing and exits 0 (case 644.8). Outside a working session — no `hi` —
+it does nothing. It never raises. An error of its own after it has read the payload exits 2 on
+`Stop`, with the error and the advice to repeat the ledger lines on stderr, so the agent sees
+it — once a stretch, and silent with the flag set and a transcript it cannot read (case
+644.7); an error while it reads the payload, and any error of the guard, exits 0 with the error
+on stderr (case 554). `untranslated` is the language
 finding `guppi prespec --check` imports, a letter outside the script of the documentation
 language judged by `config.outside` (cases 387.4, 445.4, 476.3); a Latin letter in a code
 span gives no finding (case 589.1). Rule pages:
@@ -107,12 +119,14 @@ from guppi.event import append, format_line, log_path, project_root, read_payloa
 from guppi.ledger import (
     is_plan_file,
     ledger_lines,
+    own_refusals,
     plan_path,
     reply_text,
     session_dir,
     session_event_logs,
     transcript_records,
     transcript_texts,
+    untold,
 )
 from guppi.materialize import (
     CASE_HEADING,
@@ -147,6 +161,7 @@ PROSE = ("context", "problem")  # the parts the language finding reads (cases 38
 # its parent's stored answer (cases 441.6, 544.5).
 STORY = ("context", "problem", "recommend")
 EDIT_TOOLS = ("Edit", "Write", "MultiEdit")
+COMMAND = "uv run guppi ratified"  # the command whose refusals the hook reads (case 644.8)
 DEFERRED = "## Deferred"
 APPROVED = "<!-- approved"  # the stamp `guppi spec` opens each approved document of spec.md with
 SPEC_FILE = "spec.md"
@@ -760,9 +775,10 @@ def guard_refusal(payload: dict) -> tuple[str, str] | None:
     every `Write` of a plan file that exists, and a `Write` that creates a plan file with any
     content but one title line; every `Edit`, `Write` and `MultiEdit` of a file under the
     `cases/` folder of a session folder, by `casecheck.is_case_file`, whatever its name and
-    whether it stands (case 453). A file outside `.claude/plans/` and outside such a folder
-    is not judged."""
-    from guppi.casecheck import is_case_file  # it imports this module
+    whether it stands, unless the hook input names `case-guppi` as `agent_type` (cases 453,
+    645.3); and every such call of `case-guppi` on a file outside such a folder. A file outside
+    `.claude/plans/` and outside such a folder is not judged for any other agent."""
+    from guppi.casecheck import AGENT, is_case_file  # it imports this module
 
     tool = payload.get("tool_name")
     if tool not in EDIT_TOOLS:
@@ -772,16 +788,23 @@ def guard_refusal(payload: dict) -> tuple[str, str] | None:
     if not raw:
         return None
     path = Path(str(raw))
+    builder = payload.get("agent_type") == AGENT  # the field Claude Code gives (case 645.3)
+    if builder and not is_case_file(path):
+        return str(path), (
+            f"{path} is outside cases/ of the session folder; case-guppi writes the file of "
+            f"its Case alone (rule-spec-reconcile)"
+        )
     if is_store(path):
         return str(path), (
             f"{path} is the store of the answers of case-guppi; the hooks alone write it, and "
             f"{CHANGE_THROUGH} (rule-spec-reconcile)"
         )
     if is_case_file(path):
+        if builder:
+            return None
         return str(path), (
-            f"{path} is the file of a built Case under cases/ of the session folder; the hook "
-            f"of rule-case-check alone writes it, from the answer of case-guppi, and "
-            f"{CHANGE_THROUGH} (rule-spec-reconcile)"
+            f"{path} is the file of a built Case under cases/ of the session folder; "
+            f"case-guppi alone writes it, and {CHANGE_THROUGH} (rule-spec-reconcile)"
         )
     if not is_plan_file(path):
         return None
@@ -817,9 +840,12 @@ def guard(payload: dict, project_dir: Path, now, stderr) -> int:
     return 2
 
 
-def stop(payload: dict, project_dir: Path, now, stderr) -> int:
-    if payload.get("stop_hook_active"):
-        return 0
+def stop(payload: dict, project_dir: Path, now, stderr, told: list[str] | None = None) -> int:
+    """The write, the removal and the check, whether `stop_hook_active` is set or not: Claude
+    Code keeps the flag set from a refusal of any `Stop` hook until the person's next message,
+    so a Case repeated after a refusal would wait for the person otherwise (case 644.1). Each
+    reason is printed once a stretch: one that stands in `told`, the hook's own refusals in
+    the stretch, stays silent, by `ledger.untold` (case 644.8)."""
     stamp = session_stamp(None, payload)
     folder = session_dir(project_dir, now, stamp)
     if folder is None:
@@ -844,7 +870,14 @@ def stop(payload: dict, project_dir: Path, now, stderr) -> int:
             )
         else:
             # it imports this module
-            from guppi.casecheck import SEND, against_store, case_file, read_store, sent
+            from guppi.casecheck import (
+                SEND,
+                against_store,
+                case_file,
+                changed_file,
+                read_store,
+                sent,
+            )
 
             store = read_store(plan)
             records_of_session = transcript_records(payload)
@@ -867,7 +900,11 @@ def stop(payload: dict, project_dir: Path, now, stderr) -> int:
                         "lines"
                     )
                     continue
-                answer = store[case]["text"]  # the Case as case-guppi answered it
+                changed = changed_file(folder, case, store)  # a file changed after (645.5)
+                if changed:
+                    problems.append(changed)
+                    continue
+                answer = store[case]["text"]  # the Case as case-guppi wrote it
                 errors = write_case(
                     plan,
                     case,
@@ -903,8 +940,9 @@ def stop(payload: dict, project_dir: Path, now, stderr) -> int:
 
         text = plan.read_text(encoding="utf-8")
         problems += prespec.written_findings(text, checked, project_dir, stamp, now, records)
-    if problems:
-        print("ratified: " + "; ".join(problems), file=stderr)
+    loud = untold(problems, told, payload)  # each reason once a stretch (case 644.8)
+    if loud:
+        print("ratified: " + "; ".join(loud), file=stderr)
         return 2
     return 0
 
@@ -925,7 +963,7 @@ def run(argv, *, stdin=None, stderr=None, project_dir: Path | None = None, now=N
     try:
         args = parser().parse_args(argv)
         payload = read_payload(stdin)
-    except Exception as exc:  # noqa: BLE001 — no payload, no way to tell a re-fire (case 554)
+    except Exception as exc:  # noqa: BLE001 — no payload, no way to read its refusals (cases 554, 644.7)
         print(f"ratified: not done: {exc}", file=stderr)
         return 0
     if not payload:
@@ -937,12 +975,17 @@ def run(argv, *, stdin=None, stderr=None, project_dir: Path | None = None, now=N
         except Exception as exc:  # noqa: BLE001 — a guard that raises would block every edit
             print(f"ratified: not done: {exc}", file=stderr)
             return 0
+    told: list[str] | None = None
     try:
-        return stop(payload, project_dir, now, stderr)  # a re-fire returns 0 before any read
+        told = own_refusals(payload, COMMAND)  # its refusals in the stretch (case 644.8)
+        return stop(payload, project_dir, now, stderr, told)
     except Exception as exc:  # noqa: BLE001 — shown to the agent, not swallowed (case 554)
-        print(
+        message = (
             f"ratified: not done: {exc}. Fix the cause, then repeat the ledger lines of the "
-            "Case so that the Spec takes it.",
-            file=stderr,
+            "Case so that the Spec takes it."
         )
+        # once a stretch; silent with the flag set and no transcript to tell by (case 644.7)
+        if not untold([message], told, payload):
+            return 0
+        print(message, file=stderr)
         return 2

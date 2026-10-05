@@ -68,7 +68,13 @@ An answer whose family the store holds under the number alone from another `agen
 finding of its first Case that names a new number by `new_number`, and each Case of that
 answer is stored apart, under its number joined with its `agent_id` by `@`, the other entry
 left as it was; the Spec hook, the `Stop` comparison and the file of a Case read the entry
-under the number alone, and an entry with no `agent_id` is not compared (case 610.2). The notes
+under the number alone, and an entry with no `agent_id` is not compared (case 610.2). The
+guard `guppi ratified --guard` holds a number before the agent stops: the first call of a
+`case-guppi` on `case-<N>.md`, N read by `case_number`, writes under N an entry with its
+`agent_id` and the time and no text, which this check replaces with the Case of the same
+agent, and a call of another agent on that file is refused with a free number by `clashes`
+and `new_number` (case 650.1); `held_store` reads the store for that writer and `write_store`
+writes it for both. The notes
 are those of `prespec.promise_notes` on the answer — a line of a Criterion replaced whole that
 the new one does not carry, a `then` line shared by two siblings, named on the later (cases
 472.1, 472.2): a note not yet held for its Case id is stored under `notes`, apart from the
@@ -318,6 +324,16 @@ def case_file(folder: Path, case: str) -> Path:
     return folder / CASES / f"case-{top_case(case)}.md"
 
 
+CASE_NAME = re.compile(r"^case-(\d+)\.md$")  # the name `case_file` gives
+
+
+def case_number(path) -> str | None:
+    """N of a file named `case-<N>.md` as `case_file` names it; None for any other name, a
+    file the guard does not hold a number for (case 650.1)."""
+    match = CASE_NAME.match(Path(str(path)).name)
+    return match.group(1) if match else None
+
+
 def write_case_files(folder: Path, cases: list[str], store: dict) -> None:
     """Each top-level Case of an answer into its `case_file`, from the text `store` holds
     (case 452.1): replaced whole when the answer holds the top-level Case — its sections in
@@ -421,6 +437,26 @@ def read_store(plan: Path | None) -> dict:
     except (OSError, ValueError):
         return {}
     return data if isinstance(data, dict) else {}
+
+
+def held_store(plan: Path) -> dict:
+    """The store of `plan` for the guard that adds an entry to it (case 650.1): empty when it
+    does not stand, an error when it stands and does not read as a JSON object, so a store
+    that cannot be read is never written over."""
+    path = store_of(plan)
+    if not path.exists():
+        return {}
+    data = json.loads(path.read_text(encoding="utf-8"))
+    if not isinstance(data, dict):
+        raise TypeError(f"{path} holds no JSON object")
+    return data
+
+
+def write_store(plan: Path, store: dict) -> None:
+    """The store `<plan>.checked.json`, the one writing of the check and the guard."""
+    store_of(plan).write_text(
+        json.dumps(store, ensure_ascii=False, indent=1), encoding="utf-8", newline=""
+    )
 
 
 def shown_text(heading: str, lines: list[str]) -> str:
@@ -1020,9 +1056,7 @@ def subagent(payload: dict, project_dir: Path, now, stderr) -> int:
         findings += found
         fresh += new
         repeated = repeated and same
-    store_of(plan).write_text(
-        json.dumps(store, ensure_ascii=False, indent=1), encoding="utf-8", newline=""
-    )
+    write_store(plan, store)
     if not files and not findings and folder is not None:  # the old path (cases 452.1, 645.2)
         write_case_files(folder, list(split_cases(text)), store)
     if (findings and not repeated) or fresh:  # the store guards the loop (434, 472.1)

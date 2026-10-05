@@ -2,9 +2,9 @@
 its file, passes the check the `SubagentStop` hook runs over that file (case 646,
 `estimate-case-protocol-example-passes-the-check`). The test holds no copy of the example
 or of the checks: it reads the block tagged `case` from the rendered page and runs
-`casecheck.check_answer` over it. Until the librarian's render puts the block there, the
-test is skipped with a reason that names the file; a Case of a later session removes the
-skip after the reading passes.
+`casecheck.check_answer` over it. A page that holds no block tagged `case` fails both tests
+with a message that names the file, so an example a render lost does not pass unseen (case
+652).
 """
 
 import shutil
@@ -34,7 +34,7 @@ def example(path: Path = SCHEMA) -> str:
         if closes_fence(line, opening):
             return "\n".join(kept) + "\n"
         kept.append(line)
-    pytest.skip(f"{path} holds no block tagged case until the librarian's render (case 646)")
+    pytest.fail(f"{path} holds no block tagged case — the example of case 646 is gone (case 652)")
 
 
 def seed(project: Path, text: str) -> None:

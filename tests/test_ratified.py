@@ -1,7 +1,8 @@
 """`guppi ratified`: the `Stop` hook that writes a ratified Case into the plan once its file
 was sent after its store, and no ratified copy (cases 387.2, 445.2, 452.3), and `--guard`, the
 `PreToolUse` hook that refuses the agent's edit of the plan, of its store (case 445.1) and of
-the file of a built Case under `cases/` (case 453).
+the file of a built Case under `cases/` (case 453), and of the file of a Case whose number another
+`case-guppi` holds (case 650.1).
 
 Every test feeds the payload through a stream, the shape a hook is really handed.
 """
@@ -1147,6 +1148,93 @@ def test_guard_cli_dispatches_the_flag(working, monkeypatch, capsys):
     monkeypatch.setattr("sys.stdin", io.StringIO(json.dumps(payload)))
     assert cli.main(["ratified", "--guard"]) == 2
     assert "rule-spec-reconcile" in capsys.readouterr().err
+
+
+# --- a number held by another agent (case 650.1) ---------------------------------------
+
+
+def store_data(project):
+    path = casecheck.store_of(plan_of(project))
+    return json.loads(path.read_text(encoding="utf-8")) if path.exists() else None
+
+
+def hold(project, data):
+    casecheck.store_of(plan_of(project)).write_text(json.dumps(data), encoding="utf-8")
+
+
+def builder(project, tool, agent_id="agent-a", case="7"):
+    fields = {"agent_type": "case-guppi"}
+    if agent_id:
+        fields["agent_id"] = agent_id
+    return guard(project, tool, case_path(project, case), "## Case 7 — x\n", **fields)
+
+
+def test_number_held_a_first_write_passes_and_holds_the_number(working):
+    assert builder(working, "Write") == (0, "")
+    assert store_data(working) == {"7": {"agent_id": "agent-a", "stored": NOW.isoformat()}}
+
+
+@pytest.mark.parametrize("tool", ["Write", "Edit"])
+def test_number_held_another_agent_is_refused_with_a_free_number(working, tool):
+    hold(working, {"7": {"agent_id": "agent-a", "stored": STORED}})
+    log = working / "vault" / "raw" / TODAY.isoformat() / "event_log.md"
+    code, err = builder(working, tool, agent_id="agent-b")
+    assert code == 2 and "build this Case as case 8" in err and "case-8.md" in err
+    last = log.read_text(encoding="utf-8").splitlines()[-1]
+    assert last.startswith(f"- 15:30:00 44c1aae1 ratified refused {tool} ")
+    assert store_data(working) == {"7": {"agent_id": "agent-a", "stored": STORED}}
+
+
+def test_number_held_a_sub_case_held_by_another_agent_refuses_its_parent(working):
+    hold(working, {"7.1": {"agent_id": "agent-a", "text": "x", "findings": []}})
+    code, err = builder(working, "Write", agent_id="agent-b")
+    assert code == 2 and "case 8" in err
+
+
+def test_number_held_the_same_agent_passes(working):
+    held = {"7": {"agent_id": "agent-a", "text": "x", "findings": [], "stored": STORED}}
+    hold(working, held)
+    assert builder(working, "Edit") == (0, "")
+    assert store_data(working) == held
+
+
+def test_number_held_an_entry_with_no_agent_id_is_not_refused_or_written(working):
+    held = {"7": {"text": "x", "findings": [], "stored": STORED}}
+    hold(working, held)
+    assert builder(working, "Write", agent_id="agent-b") == (0, "")
+    assert store_data(working) == held
+
+
+def test_number_held_a_call_with_no_agent_id_writes_nothing(working):
+    assert builder(working, "Write", agent_id=None) == (0, "")
+    assert store_data(working) is None
+
+
+def test_number_held_no_plan_file_writes_nothing(working):
+    log = working / "vault" / "raw" / TODAY.isoformat() / "event_log.md"
+    log.write_text("- 15:01:00 44c1aae1 session-start startup\n- 15:01:30 44c1aae1 hi\n")
+    assert builder(working, "Write") == (0, "")
+    assert store_data(working) is None
+
+
+def test_number_held_a_store_that_cannot_be_read_lets_the_call_run(working):
+    path = casecheck.store_of(plan_of(working))
+    path.write_text("not json", encoding="utf-8")
+    code, err = builder(working, "Write")
+    assert code == 0 and err.count("\n") == 1 and "number not held" in err
+    assert path.read_text(encoding="utf-8") == "not json"
+
+
+def test_number_held_a_store_that_cannot_be_written_lets_the_call_run(working, monkeypatch):
+    monkeypatch.setattr(casecheck, "write_store", boom)
+    code, err = builder(working, "Write")
+    assert code == 0 and err.count("\n") == 1 and "number not held" in err
+
+
+def test_number_held_a_file_with_no_number_is_not_judged():
+    assert casecheck.case_number("vault/raw/2026-09-09/1501/cases/case-7.md") == "7"
+    assert casecheck.case_number("vault/raw/2026-09-09/1501/cases/notes.md") is None
+    assert casecheck.case_number("vault/raw/2026-09-09/1501/cases/case-7.1.md") is None
 
 
 # --- the hook's own error (case 554) ---------------------------------------------------

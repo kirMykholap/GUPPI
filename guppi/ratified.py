@@ -79,7 +79,16 @@ uses too — is refused the same way, whatever its name and whether it stands, t
 the file and that `case-guppi` alone writes it (case 453), unless the hook input names
 `case-guppi` as `agent_type`, which Claude Code gives a hook fired inside a subagent (measured
 2026-10-05, session 0311): that call passes, and any `Edit`, `Write` or `MultiEdit` of
-`case-guppi` outside such a folder is refused (case 645.3). A refusal
+`case-guppi` outside such a folder is refused (case 645.3). Unless another agent holds the
+number of the file (case 650.1): on a call of `case-guppi` on `case-<N>.md`, N by
+`casecheck.case_number`, the guard reads the store of the session's plan file, and when
+`casecheck.clashes` finds Case N or a sub-case of it under its number alone from another
+`agent_id`, it refuses the call with a free number by `casecheck.new_number` — the judgments
+the check of `rule-case-check` runs; a call that passes while the store holds no entry under N
+writes there an entry with its `agent_id` and the time and no text, so the number is held
+before the agent stops. A call with no `agent_id`, a file with no number and a session with no
+plan file are not judged and write nothing; an error while the guard finds the plan or reads
+or writes the store lets the call run, with one line on stderr. A refusal
 writes one line to the day's event log; a refused call has no `PostToolUse`, so it leaves no
 `tool` line and `plan_path` still names the plan. A file outside `.claude/plans/` and outside
 such a `cases/` folder is not judged, nor is a write through a shell; a payload the hook cannot
@@ -777,7 +786,9 @@ def guard_refusal(payload: dict) -> tuple[str, str] | None:
     `cases/` folder of a session folder, by `casecheck.is_case_file`, whatever its name and
     whether it stands, unless the hook input names `case-guppi` as `agent_type` (cases 453,
     645.3); and every such call of `case-guppi` on a file outside such a folder. A file outside
-    `.claude/plans/` and outside such a folder is not judged for any other agent."""
+    `.claude/plans/` and outside such a folder is not judged for any other agent. A call of
+    `case-guppi` this lets through on `case-<N>.md` is judged next by `held_number`, which
+    reads the store: refused when another agent holds the number (case 650.1)."""
     from guppi.casecheck import AGENT, is_case_file  # it imports this module
 
     tool = payload.get("tool_name")
@@ -821,12 +832,67 @@ def guard_refusal(payload: dict) -> tuple[str, str] | None:
     )
 
 
+def held_number(payload: dict, project_dir: Path, now, stderr) -> tuple[str, str] | None:
+    """Case 650.1: `(path, reason)` when a call of `case-guppi` on `case-<N>.md` under
+    `cases/` meets Case N, or a sub-case of it, held in the store under its number alone by
+    another `agent_id` — by `casecheck.clashes`, the reason naming a free number by
+    `casecheck.new_number`. A call that passes while the store holds no entry under N writes
+    there an entry with its `agent_id` and the time and no text. A call with no `agent_id`, a
+    file with no number and a session with no plan file are not judged and write nothing; an
+    error while finding the plan or reading or writing the store lets the call run, with one
+    line on stderr, as the guard does on its own error."""
+    from guppi.casecheck import (  # it imports this module
+        AGENT,
+        case_number,
+        clashes,
+        held_store,
+        is_case_file,
+        ledger_of,
+        ledger_records,
+        new_number,
+        write_store,
+    )
+
+    if payload.get("tool_name") not in EDIT_TOOLS or payload.get("agent_type") != AGENT:
+        return None
+    tool_input = payload.get("tool_input")
+    raw = tool_input.get("file_path") if isinstance(tool_input, dict) else None
+    agent_id = str(payload.get("agent_id") or "")
+    if not raw or not agent_id or not is_case_file(Path(str(raw))):
+        return None
+    number = case_number(raw)
+    if number is None:
+        return None
+    try:
+        stamp = session_stamp(None, payload)
+        plan = plan_path(session_event_logs(project_dir, now, stamp), stamp)
+        if plan is None or not plan.is_file():
+            return None
+        store = held_store(plan)
+        if clashes({number: []}, store, agent_id):
+            folder = session_dir(project_dir, now, stamp)
+            free = new_number(ledger_records(ledger_of(folder)), store)
+            return str(raw), (
+                f"{raw}: another case-guppi holds case {number} in the store — build this "
+                f"Case as case {free}, in cases/case-{free}.md (rule-spec-reconcile)"
+            )
+        if number not in store:
+            store[number] = {"agent_id": agent_id, "stored": now.isoformat()}
+            write_store(plan, store)
+    except Exception as exc:  # noqa: BLE001 — the call runs, as on any error of the guard
+        print(f"ratified: number not held: {exc}", file=stderr)
+    return None
+
+
 def guard(payload: dict, project_dir: Path, now, stderr) -> int:
     """`PreToolUse`: refuse the agent's edit of the plan file, of its store (case 445.1) and
-    of a file of a built Case under `cases/` (case 453), by `guard_refusal`.
+    of a file of a built Case under `cases/` (case 453), by `guard_refusal`, and a call of
+    `case-guppi` on the file of a Case another agent holds, by `held_number` (case 650.1).
     A refusal writes one line to the day's event log first: a refused call has no
     `PostToolUse`, so it leaves no `tool` line, and a refusal not written is nowhere."""
     refused = guard_refusal(payload)
+    if refused is None:
+        refused = held_number(payload, project_dir, now, stderr)
     if refused is None:
         return 0
     path, reason = refused

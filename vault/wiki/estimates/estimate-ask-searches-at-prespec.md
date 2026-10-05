@@ -32,3 +32,4 @@ The agent starts with the Grep `^(purpose|deferred_by):` over `vault/wiki/rules/
 - 2026-10-04 created · [[decision-case-633.2]]
 - 2026-10-05 status: pending → failed · raw/2026-10-05/0109/ledger.md#L9
 - 2026-10-05 updated: the method names the render of .claude/rules/search-leaves-out-decisions.md by case 640; the Criterion stands · [[decision-case-640]]
+- 2026-10-05 deferred · [[decision-case-649]]

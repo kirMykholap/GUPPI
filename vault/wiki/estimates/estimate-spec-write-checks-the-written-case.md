@@ -1,7 +1,7 @@
 ---
 type: estimate
 kind: QA
-status: passed
+status: pending
 target: "[[rule-spec-write]]"
 purpose: Each Case the Stop hook writes into the plan is checked at once, and a finding comes back to the agent
 method: uv run pytest tests/test_ratified.py -k checks_the_written; by hand, a ratification of a session
@@ -22,7 +22,7 @@ The hook runs the checks of `prespec --check` on each Case it wrote in this run 
 **＋** The `replace` and `reword` pairs of every Case of the plan are applied in entry order, and only an anchor of a Case written in this run that misses or hits more than once is a finding.
 **＋** On a finding: exit 2, the findings on stderr after `ratified:`, each naming its Case; the written Case stays in the plan file.
 **＋** A finding of a Case not written in this run is not reported.
-**－** On the re-fire (`stop_hook_active`) nothing is checked: exit 0.
+**＋** With `stop_hook_active` set, the hook checks as without it, as `estimate-spec-write-answers-a-refusal` sets it, and a finding it already gave in the stretch is not given again, as `estimate-spec-write-tells-each-reason-once` sets it.
 **－** A Case not written in this run, and a defer-only Case, which the hook writes under `## Deferred`, are not checked.
 **－** The Frontier is not read, and a name, `context` or `problem` that holds a Cyrillic letter is no finding.
 **－** A ledger line of the window that does not parse is no finding of this check.
@@ -41,3 +41,4 @@ The hook runs the checks of `prespec --check` on each Case it wrote in this run 
 - 2026-09-27 updated: the Criterion replaced whole — the Case is written into the plan file alone, no ratified copy (case 445.2) · [[decision-case-445.2]]
 - 2026-09-27 status: pending → passed · raw/2026-09-27/1819/ledger.md#L31
 - 2026-10-03 updated: method names the kind of its moment (case 613.3) · [[decision-case-613.3]]
+- 2026-10-05 updated: the Criterion replaced whole — with stop_hook_active set the hook checks as without it, each finding once a stretch (case 644.3) · [[decision-case-644.3]]

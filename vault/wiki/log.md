@@ -6414,3 +6414,88 @@ instruction. The global feed; a page's own `## History` is the per-page view.
 - 2026-10-05 rules/rule-case-check status: draft → built · cascade · generate
 - 2026-10-05 rules/rule-lint status: draft → built · cascade · generate
 - 2026-10-05 rules/rule-session-start status: draft → built · cascade · generate
+- 2026-10-05 estimates/estimate-synthesis-clusters status: pending → failed · raw/2026-10-05/0311/ledger.md#L1 · generate
+- 2026-10-05 decisions/decision-case-644 created · raw/2026-10-05/0311/ledger.md#case-644 · generate
+- 2026-10-05 decisions/decision-case-644.1 created · raw/2026-10-05/0311/ledger.md#case-644.1 · generate
+- 2026-10-05 estimates/estimate-spec-write-answers-a-refusal created · [[decision-case-644.1]] · generate
+- 2026-10-05 rules/rule-spec-write estimate estimate-spec-write-answers-a-refusal added · [[decision-case-644.1]] · generate
+- 2026-10-05 rules/rule-spec-write updated: the hook writes, removes and checks whether stop_hook_active is set or not, and gives each reason once a stretch, judged by its own refusals in the transcript (cases 644.1, 644.8) · [[decision-case-644.1]] · generate
+- 2026-10-05 decisions/decision-case-644.2 created · raw/2026-10-05/0311/ledger.md#case-644.2 · generate
+- 2026-10-05 estimates/estimate-spec-write-copies-the-ratified-case updated: the Criterion replaced whole — the text stored under Case N in place of the answer of case-guppi; with stop_hook_active set the hook writes and refuses as without it, each reason once a stretch (case 644.2) · [[decision-case-644.2]] · generate
+- 2026-10-05 decisions/decision-case-644.3 created · raw/2026-10-05/0311/ledger.md#case-644.3 · generate
+- 2026-10-05 estimates/estimate-spec-write-checks-the-written-case updated: the Criterion replaced whole — with stop_hook_active set the hook checks as without it, each finding once a stretch (case 644.3) · [[decision-case-644.3]] · generate
+- 2026-10-05 decisions/decision-case-644.4 created · raw/2026-10-05/0311/ledger.md#case-644.4 · generate
+- 2026-10-05 estimates/estimate-spec-write-writes-a-defer updated: the Criterion replaced whole — with stop_hook_active set the hook writes and refuses a defer as without it, each reason once a stretch (case 644.4) · [[decision-case-644.4]] · generate
+- 2026-10-05 decisions/decision-case-644.5 created · raw/2026-10-05/0311/ledger.md#case-644.5 · generate
+- 2026-10-05 estimates/estimate-spec-write-reaches-the-approved-spec updated: the Criterion replaced whole — the text stored under Case N in place of its stored answer; with stop_hook_active set the hook writes into spec.md as without it (case 644.5) · [[decision-case-644.5]] · generate
+- 2026-10-05 decisions/decision-case-644.6 created · raw/2026-10-05/0311/ledger.md#case-644.6 · generate
+- 2026-10-05 estimates/estimate-spec-write-removes-a-superseded-case updated: the Criterion replaced whole — with stop_hook_active set the hook removes a superseded Case as without it (case 644.6) · [[decision-case-644.6]] · generate
+- 2026-10-05 decisions/decision-case-644.7 created · raw/2026-10-05/0311/ledger.md#case-644.7 · generate
+- 2026-10-05 estimates/estimate-spec-write-exits-2-on-an-error updated: the Criterion replaced whole — an error is told once a stretch, judged by the hook's own refusals in the transcript, and with stop_hook_active set and a transcript it cannot read the hook exits 0 silent; the purpose follows (case 644.7) · [[decision-case-644.7]] · generate
+- 2026-10-05 decisions/decision-case-645 created · raw/2026-10-05/0311/ledger.md#case-645 · generate
+- 2026-10-05 decisions/decision-case-645.1 created · raw/2026-10-05/0311/ledger.md#case-645.1 · generate
+- 2026-10-05 rules/rule-case-build updated: case-guppi writes its Case into its file by Write in permissionMode acceptEdits, fixes it by Edit and answers with a summary that names another Case to change; its tools gain Write and Edit (case 645.1) · [[decision-case-645.1]] · generate
+- 2026-10-05 estimates/estimate-case-build-writes-the-case updated: the Criterion replaced whole — case-guppi writes its Case into its file in permissionMode acceptEdits, fixes it by Edit and answers with a summary; the purpose and the method follow (case 645.1) · [[decision-case-645.1]] · generate
+- 2026-10-05 decisions/decision-case-645.2 created · raw/2026-10-05/0311/ledger.md#case-645.2 · generate
+- 2026-10-05 rules/rule-case-check updated: the check reads the file case-guppi wrote, whole, when the agent stops, and keeps the old path of the answer text until the writer is live (case 645.2) · [[decision-case-645.2]] · generate
+- 2026-10-05 estimates/estimate-case-check-sends-back-a-faulty-case updated: the Criterion replaced whole — the check reads the file case-guppi wrote, whole, and keeps the old path until the writer is live; the method follows (case 645.2) · [[decision-case-645.2]] · generate
+- 2026-10-05 estimates/estimate-case-check-judges-a-lone-sub-case-with-its-stored-parent deleted · [[decision-case-645.2]] · generate
+- 2026-10-05 decisions/decision-case-645.3 created · raw/2026-10-05/0311/ledger.md#case-645.3 · generate
+- 2026-10-05 rules/rule-spec-reconcile updated: the guard lets case-guppi alone write under cases/, and refuses case-guppi anywhere else (case 645.3) · [[decision-case-645.3]] · generate
+- 2026-10-05 estimates/estimate-spec-reconcile-refuses-an-edit-of-the-plan updated: the Criterion replaced whole — case-guppi alone writes under cases/ and is refused anywhere else; the purpose and the method follow (case 645.3) · [[decision-case-645.3]] · generate
+- 2026-10-05 decisions/decision-case-645.4 created · raw/2026-10-05/0311/ledger.md#case-645.4 · generate
+- 2026-10-05 estimates/estimate-case-check-refuses-a-changed-case-file created · [[decision-case-645.4]] · generate
+- 2026-10-05 rules/rule-case-check estimate estimate-case-check-refuses-a-changed-case-file added · [[decision-case-645.4]] · generate
+- 2026-10-05 decisions/decision-case-645.5 created · raw/2026-10-05/0311/ledger.md#case-645.5 · generate
+- 2026-10-05 estimates/estimate-spec-write-refuses-a-changed-case-file created · [[decision-case-645.5]] · generate
+- 2026-10-05 rules/rule-spec-write estimate estimate-spec-write-refuses-a-changed-case-file added · [[decision-case-645.5]] · generate
+- 2026-10-05 rules/rule-spec-write updated: the hook copies the text of the file case-guppi wrote, as the check stored it, and writes nothing of a Case whose file differs from it; the purpose follows (case 645.5) · [[decision-case-645.5]] · generate
+- 2026-10-05 decisions/decision-case-645.6 created · raw/2026-10-05/0311/ledger.md#case-645.6 · generate
+- 2026-10-05 rules/rule-orchestration updated: the main agent shows a built Case from the summary of case-guppi, its Other Case line included, and a round is an answer with neither a Built nor a Fact first line (case 645.6) · [[decision-case-645.6]] · generate
+- 2026-10-05 estimates/estimate-orchestration-shows-the-built-case updated: the Criterion replaced whole — the Case is shown from the summary of case-guppi, the file written by case-guppi, another Case asked about from the Other Case line, and a round known by no Built and no Fact first line (case 645.6) · [[decision-case-645.6]] · generate
+- 2026-10-05 decisions/decision-case-645.7 created · raw/2026-10-05/0311/ledger.md#case-645.7 · generate
+- 2026-10-05 estimates/estimate-case-check-refuses-a-letter-outside-the-script updated: the Criterion replaced whole — the check reads the file case-guppi wrote, and a finding holds the Case back from the showing and the Spec instead of keeping a file unwritten; the purpose follows (case 645.7) · [[decision-case-645.7]] · generate
+- 2026-10-05 decisions/decision-case-645.8 created · raw/2026-10-05/0311/ledger.md#case-645.8 · generate
+- 2026-10-05 estimates/estimate-case-check-notes-a-criterion-line-not-carried updated: the Criterion replaced whole — the note goes back on the file case-guppi wrote, and a note writes no file since the hook writes none (case 645.8) · [[decision-case-645.8]] · generate
+- 2026-10-05 decisions/decision-case-645.9 created · raw/2026-10-05/0311/ledger.md#case-645.9 · generate
+- 2026-10-05 estimates/estimate-case-check-sends-back-a-case-number-held-by-another-agent updated: the Criterion replaced whole — the Cases are read from the file case-guppi wrote, and no hook writes the file from the entry (case 645.9) · [[decision-case-645.9]] · generate
+- 2026-10-05 decisions/decision-case-645.10 created · raw/2026-10-05/0311/ledger.md#case-645.10 · generate
+- 2026-10-05 estimates/estimate-case-protocol-case-form updated: the Criterion replaced whole — case-guppi writes the file of the Case and the hook checks it (case 645.10) · [[decision-case-645.10]] · generate
+- 2026-10-05 decisions/decision-case-646 created · raw/2026-10-05/0311/ledger.md#case-646 · generate
+- 2026-10-05 rules/rule-case-protocol updated: the schema shows the chat form by an example that a test runs the check over, and names the file case-guppi writes, not its answer, as what the check reads and the Spec copies (case 646) · [[decision-case-646]] · generate
+- 2026-10-05 estimates/estimate-case-protocol-example-passes-the-check created · [[decision-case-646]] · generate
+- 2026-10-05 rules/rule-case-protocol estimate estimate-case-protocol-example-passes-the-check added · [[decision-case-646]] · generate
+- 2026-10-05 decisions/decision-case-647 created · raw/2026-10-05/0311/ledger.md#case-647 · generate
+- 2026-10-05 estimates/estimate-case-build-checks-the-finished-case deferred · [[decision-case-647]] · generate
+- 2026-10-05 decisions/decision-case-648 created · raw/2026-10-05/0311/ledger.md#case-648 · generate
+- 2026-10-05 rules/rule-prespec-onward deferred · [[decision-case-648]] · generate
+- 2026-10-05 decisions/decision-case-649 created · raw/2026-10-05/0311/ledger.md#case-649 · generate
+- 2026-10-05 estimates/estimate-ask-searches-at-prespec deferred · [[decision-case-649]] · generate
+- 2026-10-05 lessons/lesson-session-frontier-closer-appended-box-left-open created · raw/2026-10-05/0311/ledger.md#L31 · generate
+- 2026-10-05 decisions/decision-case-644.8 created · raw/2026-10-05/0311/ledger.md#case-644.8 · generate
+- 2026-10-05 estimates/estimate-spec-write-tells-each-reason-once created · [[decision-case-644.8]] · generate
+- 2026-10-05 rules/rule-spec-write estimate estimate-spec-write-tells-each-reason-once added · [[decision-case-644.8]] · generate
+- 2026-10-05 decisions/decision-case-645.11 created · raw/2026-10-05/0311/ledger.md#case-645.11 · generate
+- 2026-10-05 estimates/estimate-case-check-shows-only-the-checked-case updated: the Criterion replaced whole — a showing passes only when the file of the Case equals the store too (case 645.11) · [[decision-case-645.11]] · generate
+- 2026-10-05 decisions/decision-case-645.12 created · raw/2026-10-05/0311/ledger.md#case-645.12 · generate
+- 2026-10-05 estimates/estimate-case-build-answers-what-done-means updated: the Criterion replaced whole — the Case is written into its file, and the summary names the Estimate of each Case (case 645.12) · [[decision-case-645.12]] · generate
+- 2026-10-05 decisions/decision-case-645.13 created · raw/2026-10-05/0311/ledger.md#case-645.13 · generate
+- 2026-10-05 estimates/estimate-case-build-records-the-rounds-in-recommend updated: the Criterion replaced whole — its moment is the Case written into its file (case 645.13) · [[decision-case-645.13]] · generate
+- 2026-10-05 decisions/decision-case-645.14 created · raw/2026-10-05/0311/ledger.md#case-645.14 · generate
+- 2026-10-05 estimates/estimate-case-check-requires-a-backlog-item-decided-on-its-page updated: the Criterion replaced whole — the Cases are read from the file case-guppi wrote (case 645.14) · [[decision-case-645.14]] · generate
+- 2026-10-05 decisions/decision-case-645.15 created · raw/2026-10-05/0311/ledger.md#case-645.15 · generate
+- 2026-10-05 estimates/estimate-case-check-sends-back-a-ratified-case-in-another-shape updated: the Criterion replaced whole — the Cases are read from the file case-guppi wrote (case 645.15) · [[decision-case-645.15]] · generate
+- 2026-10-05 decisions/decision-case-645.16 created · raw/2026-10-05/0311/ledger.md#case-645.16 · generate
+- 2026-10-05 rules/rule-permissions updated: the prompt in Plan Mode binds the main agent; case-guppi writes its Case file in permissionMode acceptEdits, with no allow rule (case 645.16) · [[decision-case-645.16]] · generate
+- 2026-10-05 estimates/estimate-permissions updated: the Criterion replaced whole — the prompt in Plan Mode binds the main agent, and case-guppi writes its Case file with no prompt and no allow rule (case 645.16) · [[decision-case-645.16]] · generate
+- 2026-10-05 lessons/lesson-case-build-replace-pair-value-unpadded-and-paths-off-given created · raw/2026-10-05/0311/ledger.md#L40 · generate
+- 2026-10-05 lessons/lesson-agents-sendmessage-to-a-running-subagent-waits-for-its-next-tool-round created · raw/2026-10-05/0311/ledger.md#L41 · generate
+- 2026-10-05 insights/insight-workflow-case-schema-silent-on-what-the-scripts-accept updated: child lesson-case-build-replace-pair-value-unpadded-and-paths-off-given added (synthesis) · raw/2026-10-05/0311/ledger.md#L40 · generate
+- 2026-10-05 lessons/lesson-case-build-replace-pair-value-unpadded-and-paths-off-given updated: clustered under insight-workflow-case-schema-silent-on-what-the-scripts-accept (synthesis) · raw/2026-10-05/0311/ledger.md#L40 · generate
+- 2026-10-05 rules/rule-case-check status: built → draft · cascade · generate
+- 2026-10-05 rules/rule-case-protocol status: built → draft · cascade · generate
+- 2026-10-05 rules/rule-orchestration status: built → draft · cascade · generate
+- 2026-10-05 rules/rule-permissions status: built → draft · cascade · generate
+- 2026-10-05 rules/rule-spec-reconcile status: built → draft · cascade · generate
+- 2026-10-05 estimates/estimate-case-check-judges-a-lone-sub-case-with-its-stored-parent archived · cleanup
+- 2026-10-05 rules/rule-case-check estimate estimate-case-check-judges-a-lone-sub-case-with-its-stored-parent archived · cleanup

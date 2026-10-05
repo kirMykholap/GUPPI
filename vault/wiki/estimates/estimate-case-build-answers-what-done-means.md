@@ -1,7 +1,7 @@
 ---
 type: estimate
 kind: QA
-status: passed
+status: pending
 target: "[[rule-case-build]]"
 purpose: Whether each Case case-guppi builds creates or replaces an Estimate or names the one that already checks the change, and asks in a round when it can do neither
 method: by hand at the close of a later session, each Case of the plan and the rounds before it read in the transcript
@@ -15,12 +15,13 @@ tags: [session, workflow]
 ## Criterion
 
 When:
-`case-guppi` answers with a Case, following `.claude/agents/case-guppi.md` as rendered from `rule-case-build`.
+`case-guppi` writes a Case into `raw/<date>/<hi HHMM>/cases/case-<N>.md`, following `.claude/agents/case-guppi.md` as rendered from `rule-case-build`.
 
 Then:
-Each Case and sub-case of the answer creates an Estimate or replaces the Criterion of one, or its `context`, or its parent's, names by slug the Estimate that already checks the change and says why its Criterion stands.
-**＋** When the person's words and the frame give neither, `case-guppi` asks in a round, before it answers with the Case, what the Estimate will check, and the `recommend` of the Case holds that question.
-**－** A deferred decision in the short form is no answer of `case-guppi` and carries no such Estimate.
+Each Case and sub-case of the file creates an Estimate or replaces the Criterion of one, or its `context`, or its parent's, names by slug the Estimate that already checks the change and says why its Criterion stands.
+**＋** The summary that `case-guppi` answers with names that Estimate under the item of each Case and sub-case.
+**＋** When the person's words and the frame give neither, `case-guppi` asks in a round, before it writes the Case, what the Estimate will check, and the `recommend` of the Case holds that question.
+**－** A deferred decision in the short form is not written by `case-guppi` and carries no such Estimate.
 
 ## Result
 
@@ -30,3 +31,4 @@ Each Case and sub-case of the answer creates an Estimate or replaces the Criteri
 
 - 2026-10-01 created · [[decision-case-561.11]]
 - 2026-10-01 status: pending → passed · raw/2026-10-01/1237/ledger.md#L28
+- 2026-10-05 updated: the Criterion replaced whole — the Case is written into its file, and the summary names the Estimate of each Case (case 645.12) · [[decision-case-645.12]]

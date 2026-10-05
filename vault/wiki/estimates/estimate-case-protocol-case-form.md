@@ -1,7 +1,7 @@
 ---
 type: estimate
 kind: QA
-status: passed
+status: pending
 target: "[[rule-case-protocol]]"
 purpose: A built Case carries the whole contract in given, when and then, in the file the person is sent
 method: one reading by hand of the Cases of a session, at its close
@@ -15,7 +15,7 @@ tags: [session, workflow]
 ## Criterion
 
 When:
-The hook of `rule-case-check` writes a Case that `case-guppi` built into `raw/<date>/<hi HHMM>/cases/case-<N>.md`, and the main agent sends that file to the person, at its first showing or again.
+`case-guppi` writes a Case it built into `raw/<date>/<hi HHMM>/cases/case-<N>.md`, the hook of `rule-case-check` checks it, and the main agent sends that file to the person, at its first showing or again.
 
 Then:
 The file opens with the heading `## Case N — name`, a sub-case with `### Case N.M — name` under its parent, and holds the sections of each Case in the order of the Sections table of `vault/wiki/case-schema.md`, each one blockquote whose first line is `**name:**`.
@@ -64,3 +64,4 @@ The file opens with the heading `## Case N — name`, a sub-case with `### Case 
 - 2026-10-02 ref `estimate-case-protocol-shows-the-built-case` → `estimate-orchestration-shows-the-built-case` · [[decision-case-595.11]]
 - 2026-10-03 updated: the Criterion replaced whole — tasks hold no by hand box whose moment comes after Work Mode of the Case's session; the other lines as case 544.11 left them (case 606.1) · [[decision-case-606.1]]
 - 2026-10-03 status: pending → passed · raw/2026-10-03/0115/ledger.md#L17
+- 2026-10-05 updated: the Criterion replaced whole — case-guppi writes the file of the Case and the hook checks it (case 645.10) · [[decision-case-645.10]]

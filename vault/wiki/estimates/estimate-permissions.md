@@ -1,7 +1,7 @@
 ---
 type: estimate
 kind: QA
-status: passed
+status: pending
 target: "[[rule-permissions]]"
 method: the allow list of the rendered .claude/settings.json against the Criterion, and the JSON case of tests/test_render.py; the live probe is the person's word on the client's prompt at a Write of work.md in Work Mode, recorded in the estimate line — never the agent's, which cannot see the prompt
 checked: 2026-09-30
@@ -14,16 +14,17 @@ tags: [harness, session]
 ## Criterion
 
 When:
-The agent writes or edits a working file of the session — `frontier.md`, `spec.md`, `handoff.md`, `work.md` or `carry.md` under `vault/raw/**` — or `vault/wiki/brief.md`.
+The agent writes or edits a working file of the session — `frontier.md`, `spec.md`, `handoff.md`, `work.md` or `carry.md` under `vault/raw/**` — or `vault/wiki/brief.md`; or `case-guppi` writes the file of its Case.
 
 Then:
 The allow list of `.claude/settings.json` holds Edit and Write for `frontier.md`, `spec.md`, `handoff.md` and `work.md` under `vault/raw/**`, Write for `carry.md` under `vault/raw/**`, and Edit and Write for `vault/wiki/brief.md`.
 **＋** `.claude/settings.json` is rendered from `rule-permissions`; the JSON case of `tests/test_render.py` fixes the shape of the block.
 **＋** Whether the client asked is seen by the person only; the agent's reply does not tell an approved call from one not asked.
 **＋** The client's prompt is the person's word: the reading line records whether the client asked, from the person, never from the agent.
-**＋** In Plan Mode the client asks before every edit outside the plan file, allow list or not.
+**＋** In Plan Mode the client asks before every edit of the main agent outside the plan file, allow list or not.
+**＋** `case-guppi` writes the file of its Case in the mode `permissionMode: acceptEdits` of `.claude/agents/case-guppi.md`, with no prompt in Plan Mode, and the guard of `rule-spec-reconcile` keeps it inside `cases/`.
 **＋** A prompt in Plan Mode, approved by the person, is not a finding and not a `failed`.
-**－** `deny` and `ask` are empty; nothing else under `wiki/` is allowed.
+**－** `deny` and `ask` are empty; nothing else under `wiki/` is allowed, and no path under `cases/` is on the allow list.
 
 ## Result
 
@@ -41,3 +42,4 @@ The allow list of `.claude/settings.json` holds Edit and Write for `frontier.md`
 - 2026-09-18 status: pending → passed · raw/2026-09-18/1252/ledger.md#L12
 - 2026-09-28 updated: the Criterion replaced whole — Edit and Write for work.md join the allow list (case 479.5) · [[decision-case-479.5]]
 - 2026-09-30 status: pending → passed · raw/2026-09-30/1736/ledger.md#L3
+- 2026-10-05 updated: the Criterion replaced whole — the prompt in Plan Mode binds the main agent, and case-guppi writes its Case file with no prompt and no allow rule (case 645.16) · [[decision-case-645.16]]

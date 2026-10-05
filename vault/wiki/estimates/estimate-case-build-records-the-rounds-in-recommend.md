@@ -1,7 +1,7 @@
 ---
 type: estimate
 kind: QA
-status: passed
+status: pending
 target: "[[rule-case-build]]"
 purpose: Whether the recommend of each Case case-guppi builds holds one item per question of its rounds — the title, the recommendation and the answer in English as they stood when the person answered it, or a note that it was not answered — each item on the parent or under the one sub-case its answer changed, and a sub-case with no problem
 method: "by hand: the Case files of a later session after the render, each recommend read against the rounds of its Case in the chat"
@@ -15,7 +15,7 @@ tags: [session, workflow, harness]
 ## Criterion
 
 When:
-`case-guppi` answers with a Case, with `.claude/agents/case-guppi.md` rendered from `rule-case-build` and `vault/wiki/case-schema.md` rendered from `rule-case-protocol`.
+`case-guppi` writes a Case into `raw/<date>/<hi HHMM>/cases/case-<N>.md`, with `.claude/agents/case-guppi.md` rendered from `rule-case-build` and `vault/wiki/case-schema.md` rendered from `rule-case-protocol`.
 
 Then:
 The `recommend` of the Case is a list with one item per question of the rounds of `case-guppi` on the Case: the item's first line is the title of the question in bold as the round wrote it, with a sub-item `Recommended:` with what the agent recommended and a sub-item `Answer:` with the person's answer in English, both as they stood when the person answered that question.
@@ -41,3 +41,4 @@ The `recommend` of the Case is a list with one item per question of the rounds o
 - 2026-10-01 status: pending → failed · raw/2026-09-30/2356/ledger.md#L45
 - 2026-10-01 updated: the Criterion replaced whole — an item whose answer changed only one sub-case may stand on the parent or under that sub-case (case 568) · [[decision-case-568]]
 - 2026-10-01 status: pending → passed · raw/2026-10-01/1441/ledger.md#L34
+- 2026-10-05 updated: the Criterion replaced whole — its moment is the Case written into its file (case 645.13) · [[decision-case-645.13]]

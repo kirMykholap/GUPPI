@@ -1,7 +1,7 @@
 ---
 type: estimate
 kind: QA
-status: passed
+status: pending
 target: "[[rule-case-check]]"
 purpose: A Case of case-guppi under a number that the store holds from the answer of another agent goes back to it with a new number, and the other agent's entry is kept
 method: uv run pytest tests/test_casecheck.py -k subagent_clash
@@ -15,16 +15,16 @@ tags: [hooks, harness, workflow]
 ## Criterion
 
 When:
-`SubagentStop` fires when `case-guppi` answers with a Case, and `uv run guppi casecheck --subagent` reads the Cases of the answer, `agent_id` of the payload, and `<plan>.checked.json` beside the plan file.
+`SubagentStop` fires when `case-guppi` stops after it wrote or edited `raw/<date>/<hi HHMM>/cases/case-<N>.md`, and `uv run guppi casecheck --subagent` reads the Cases of that file, `agent_id` of the payload, and `<plan>.checked.json`.
 
 Then:
-The hook stores each Case of an answer in `<plan>.checked.json` with the `agent_id` of the payload beside its text, its findings and the time of the store.
-**＋** A top-level Case N of the answer is sent back when the store holds Case N, or a sub-case of it, under its number from an answer with another `agent_id`.
+The hook stores each Case of the file in `<plan>.checked.json` with the `agent_id` of the payload beside its text, its findings and the time of the store.
+**＋** A top-level Case N of the file is sent back when the store holds Case N, or a sub-case of it, under its number from an answer with another `agent_id`.
 **＋** Its message gives `case-guppi` a free number, counted as `estimate-case-check-sends-back-a-ratified-case-in-another-shape` counts it, to build the Case under, and the exit code is 2.
-**＋** Each Case of that answer is stored apart, under its number joined with its `agent_id`, and the entry of the other agent under the number alone stays as it was.
-**＋** The Spec hook, the `Stop` comparison and the writing of the file of a Case read the entry under the number alone.
-**－** An unchanged answer whose text its entry apart already holds with this finding is stored again and exits 0, so it is not sent back twice.
-**－** An entry with no `agent_id`, stored before the change, gives no finding of this check, and neither does an answer whose `agent_id` is the one of the entry under the number.
+**＋** Each Case of that file is stored apart, under its number joined with its `agent_id`, and the entry of the other agent under the number alone stays as it was.
+**＋** The Spec hook, the `Stop` comparison and the comparison of a case file with the store read the entry under the number alone.
+**－** An unchanged file whose text its entry apart already holds with this finding is stored again and exits 0, so it is not sent back twice.
+**－** An entry with no `agent_id`, stored before the change, gives no finding of this check, and neither does a file whose `agent_id` is the one of the entry under the number.
 
 ## Result
 
@@ -37,3 +37,4 @@ The hook stores each Case of an answer in `<plan>.checked.json` with the `agent_
 - 2026-10-04 updated: the method selects -k subagent_clash, so that the tests of session_clash are not run (case 632.8) · [[decision-case-632.8]]
 - 2026-10-05 updated: the method is pytest alone; the live send-back is no longer waited for (case 637.1) · [[decision-case-637.1]]
 - 2026-10-05 status: pending → passed · raw/2026-10-05/0109/ledger.md#L5
+- 2026-10-05 updated: the Criterion replaced whole — the Cases are read from the file case-guppi wrote, and no hook writes the file from the entry (case 645.9) · [[decision-case-645.9]]

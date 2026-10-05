@@ -116,8 +116,8 @@ update:
 ```
 
 ```tasks
-- [ ] create `estimate-spec-write-answers-a-refusal`
-- [ ] update `rule-spec-write`
+- [x] create `estimate-spec-write-answers-a-refusal`
+- [x] update `rule-spec-write`
 - [x] `guppi/ratified.py`: `stop` no longer returns at `stop_hook_active`; the comment at the call in `main` and the module docstring say the same.
 - [x] `tests/test_ratified.py`: tests `-k answers_a_refusal` — a flagged reply that repeats the lines of a refused Case writes it into the plan file and into `spec.md`; a flagged reply with a superseding line removes the old Case.
 - [ ] read `estimate-spec-write-answers-a-refusal`
@@ -158,7 +158,7 @@ update:
 ```
 
 ```tasks
-- [ ] update `estimate-spec-write-copies-the-ratified-case`
+- [x] update `estimate-spec-write-copies-the-ratified-case`
 - [x] `tests/test_ratified.py`: `test_write_nothing_outside_a_working_session_and_nothing_on_the_re_fire` rewritten — nothing outside a working session; a flagged reply writes the Case.
 - [ ] read `estimate-spec-write-copies-the-ratified-case`
 ```
@@ -194,7 +194,7 @@ update:
 ```
 
 ```tasks
-- [ ] update `estimate-spec-write-checks-the-written-case`
+- [x] update `estimate-spec-write-checks-the-written-case`
 - [x] `tests/test_ratified.py`: `test_checks_the_written_case_the_re_fire_checks_nothing` rewritten — a flagged reply checks the written Case.
 - [ ] read `estimate-spec-write-checks-the-written-case`
 ```
@@ -230,7 +230,7 @@ update:
 ```
 
 ```tasks
-- [ ] update `estimate-spec-write-writes-a-defer`
+- [x] update `estimate-spec-write-writes-a-defer`
 - [x] `tests/test_ratified.py`: a test `-k defer` — a short-form defer refused, then shown again fixed on a flagged reply, is written under `## Deferred`.
 - [ ] read `estimate-spec-write-writes-a-defer`
 ```
@@ -264,7 +264,7 @@ update:
 ```
 
 ```tasks
-- [ ] update `estimate-spec-write-reaches-the-approved-spec`
+- [x] update `estimate-spec-write-reaches-the-approved-spec`
 - [x] `tests/test_ratified.py`: a test `-k approved_spec` — a flagged reply writes the Case into `spec.md`.
 - [ ] read `estimate-spec-write-reaches-the-approved-spec`
 ```
@@ -298,7 +298,7 @@ update:
 ```
 
 ```tasks
-- [ ] update `estimate-spec-write-removes-a-superseded-case`
+- [x] update `estimate-spec-write-removes-a-superseded-case`
 - [x] `tests/test_ratified.py`: a test `-k superseded` — a flagged reply removes the superseded Case.
 - [ ] read `estimate-spec-write-removes-a-superseded-case`
 ```
@@ -334,7 +334,7 @@ update:
 ```
 
 ```tasks
-- [ ] update `estimate-spec-write-exits-2-on-an-error`
+- [x] update `estimate-spec-write-exits-2-on-an-error`
 - [x] `tests/test_ratified.py`: `test_error_the_re_fire_exits_0_and_writes_nothing` rewritten — a new error on a flagged reply exits 2; the same error already in a refusal of the stretch exits 0 silent; an error with the flag set and an unreadable transcript exits 0 silent.
 - [ ] read `estimate-spec-write-exits-2-on-an-error`
 ```
@@ -372,7 +372,7 @@ create:
 ```
 
 ```tasks
-- [ ] create `estimate-spec-write-tells-each-reason-once`
+- [x] create `estimate-spec-write-tells-each-reason-once`
 - [x] `guppi/ratified.py`: the reasons of `stop` and the error of `main` pass through `own_refusals` and `untold` of `guppi/ledger.py` with the command `uv run guppi ratified`; the module docstring says the same.
 - [x] `guppi/ledger.py`: the docstring of `refusals` names `guppi ratified` among the hooks that read their own refusals through it.
 - [x] `tests/test_ratified.py`: tests `-k tells_each_reason_once` — a reason already in a refusal of the stretch exits 0 silent; a new reason beside it exits 2 with only the new one; the flag set with no readable transcript exits 0 silent; a reason given before the person's last message is given again.
@@ -545,9 +545,9 @@ update:
 ```
 
 ```tasks
-- [ ] update `rule-case-build`
-- [ ] update `estimate-case-build-writes-the-case`
-- [ ] `uv run guppi render`: `.claude/agents/case-guppi.md`
+- [x] update `rule-case-build`
+- [x] update `estimate-case-build-writes-the-case`
+- [x] `uv run guppi render`: `.claude/agents/case-guppi.md`
 - [ ] read `estimate-case-build-writes-the-case`
 ```
 
@@ -602,9 +602,9 @@ delete:
 ```
 
 ```tasks
-- [ ] update `rule-case-check`
-- [ ] update `estimate-case-check-sends-back-a-faulty-case`
-- [ ] delete `estimate-case-check-judges-a-lone-sub-case-with-its-stored-parent`
+- [x] update `rule-case-check`
+- [x] update `estimate-case-check-sends-back-a-faulty-case`
+- [x] delete `estimate-case-check-judges-a-lone-sub-case-with-its-stored-parent`
 - [x] `guppi/casecheck.py`: `subagent` takes the files of `cases/` that the Write and Edit calls of the subagent name, skips one the store holds unchanged with no findings, and checks and stores each other one whole; with no such file and a newest output that holds a Case heading, the old path as today; `stored_parents` removed; the module docstring says the same and names the old path as kept until the writer is live.
 - [x] `tests/test_casecheck.py`: tests `-k subagent` over a temp transcript with Write and Edit calls and temp case files — a file with a fault sent back and stored; the file fixed by Edit passes and is stored and not written; an unchanged passed file is not stored again; a round after a built Case leaves its entry as it stood; an answer text with no case file still stored and written; the tests `-k lone` removed.
 - [ ] read `estimate-case-check-sends-back-a-faulty-case`
@@ -663,8 +663,8 @@ update:
 
 ```tasks
 - [x] stop: before the guard code, a probe: a temporary dump of the keys of the `PreToolUse` input in `guppi ratified --guard` to the scratchpad, and a subagent this session can dispatch, its type named in the result, that calls Write on a probe file in the scratchpad; the dumped keys shown to the person; with no agent type in the input, the work stops and the person decides; the dump and the probe file removed after.
-- [ ] update `rule-spec-reconcile`
-- [ ] update `estimate-spec-reconcile-refuses-an-edit-of-the-plan`
+- [x] update `rule-spec-reconcile`
+- [x] update `estimate-spec-reconcile-refuses-an-edit-of-the-plan`
 - [x] `guppi/ratified.py`: `guard_refusal` reads the agent type of the hook input; a file under `cases/` passes for `case-guppi` alone; an edit of `case-guppi` outside `cases/` is refused; the reason and the module docstring say the same.
 - [x] `tests/test_ratified.py`: tests `-k guard` — a Write and an Edit of `case-guppi` under `cases/` pass; the same calls with no agent type or another one are refused; a Write of `case-guppi` outside `cases/` is refused.
 - [ ] read `estimate-spec-reconcile-refuses-an-edit-of-the-plan`
@@ -705,7 +705,7 @@ create:
 ```
 
 ```tasks
-- [ ] create `estimate-case-check-refuses-a-changed-case-file`
+- [x] create `estimate-case-check-refuses-a-changed-case-file`
 - [x] `guppi/casecheck.py`: one function compares the Cases of a case file with the store; `stop` refuses a showing whose file differs; the module docstring says the same.
 - [x] `tests/test_casecheck.py`: tests `-k changed_file` — a file equal to the store passes; a line changed after the store is refused with the Case and the file named; a Case of the file the store lacks is refused.
 - [ ] read `estimate-case-check-refuses-a-changed-case-file`
@@ -762,8 +762,8 @@ update:
 ```
 
 ```tasks
-- [ ] create `estimate-spec-write-refuses-a-changed-case-file`
-- [ ] update `rule-spec-write`
+- [x] create `estimate-spec-write-refuses-a-changed-case-file`
+- [x] update `rule-spec-write`
 - [x] `guppi/ratified.py`: before it writes Case N, the hook compares its case file with the store by the function of `guppi/casecheck.py`; the module docstring says the same.
 - [x] `tests/test_ratified.py`: tests `-k changed_file` — a ratified Case whose file equals the store is written; a file changed after the store writes nothing and exits 2.
 - [ ] read `estimate-spec-write-refuses-a-changed-case-file`
@@ -816,9 +816,9 @@ update:
 ```
 
 ```tasks
-- [ ] update `rule-orchestration`
-- [ ] update `estimate-orchestration-shows-the-built-case`
-- [ ] `uv run guppi render`: `vault/wiki/orchestration.md`
+- [x] update `rule-orchestration`
+- [x] update `estimate-orchestration-shows-the-built-case`
+- [x] `uv run guppi render`: `vault/wiki/orchestration.md`
 - [ ] read `estimate-orchestration-shows-the-built-case`
 ```
 
@@ -857,7 +857,7 @@ update:
 ```
 
 ```tasks
-- [ ] update `estimate-case-check-refuses-a-letter-outside-the-script`
+- [x] update `estimate-case-check-refuses-a-letter-outside-the-script`
 - [x] `tests/test_casecheck.py`: tests `-k script` read a temp case file in place of an answer text.
 - [ ] read `estimate-case-check-refuses-a-letter-outside-the-script`
 ```
@@ -895,7 +895,7 @@ update:
 ```
 
 ```tasks
-- [ ] update `estimate-case-check-notes-a-criterion-line-not-carried`
+- [x] update `estimate-case-check-notes-a-criterion-line-not-carried`
 - [x] `tests/test_casecheck.py`: tests `-k note` read a temp case file in place of an answer text.
 - [ ] read `estimate-case-check-notes-a-criterion-line-not-carried`
 ```
@@ -930,7 +930,7 @@ update:
 ```
 
 ```tasks
-- [ ] update `estimate-case-check-sends-back-a-case-number-held-by-another-agent`
+- [x] update `estimate-case-check-sends-back-a-case-number-held-by-another-agent`
 - [x] `tests/test_casecheck.py`: tests `-k subagent_clash` read a temp case file in place of an answer text.
 - [ ] read `estimate-case-check-sends-back-a-case-number-held-by-another-agent`
 ```
@@ -970,7 +970,7 @@ update:
 ```
 
 ```tasks
-- [ ] update `estimate-case-protocol-case-form`
+- [x] update `estimate-case-protocol-case-form`
 - [ ] read `estimate-case-protocol-case-form`
 ```
 
@@ -1007,7 +1007,7 @@ update:
 ```
 
 ```tasks
-- [ ] update `estimate-case-check-shows-only-the-checked-case`
+- [x] update `estimate-case-check-shows-only-the-checked-case`
 - [x] `tests/test_casecheck.py`: tests `-k stop` — a showing of `ratification` alone with a file changed after the store is refused.
 - [ ] read `estimate-case-check-shows-only-the-checked-case`
 ```
@@ -1038,7 +1038,7 @@ update:
 ```
 
 ```tasks
-- [ ] update `estimate-case-build-answers-what-done-means`
+- [x] update `estimate-case-build-answers-what-done-means`
 - [ ] read `estimate-case-build-answers-what-done-means`
 ```
 
@@ -1077,7 +1077,7 @@ update:
 ```
 
 ```tasks
-- [ ] update `estimate-case-build-records-the-rounds-in-recommend`
+- [x] update `estimate-case-build-records-the-rounds-in-recommend`
 - [ ] read `estimate-case-build-records-the-rounds-in-recommend`
 ```
 
@@ -1108,7 +1108,7 @@ update:
 ```
 
 ```tasks
-- [ ] update `estimate-case-check-requires-a-backlog-item-decided-on-its-page`
+- [x] update `estimate-case-check-requires-a-backlog-item-decided-on-its-page`
 - [x] `tests/test_casecheck.py`: tests `-k backlog` read a temp case file in place of an answer text.
 - [ ] read `estimate-case-check-requires-a-backlog-item-decided-on-its-page`
 ```
@@ -1144,7 +1144,7 @@ update:
 ```
 
 ```tasks
-- [ ] update `estimate-case-check-sends-back-a-ratified-case-in-another-shape`
+- [x] update `estimate-case-check-sends-back-a-ratified-case-in-another-shape`
 - [x] `tests/test_casecheck.py`: tests `-k shape` read a temp case file in place of an answer text.
 - [ ] read `estimate-case-check-sends-back-a-ratified-case-in-another-shape`
 ```
@@ -1188,8 +1188,8 @@ update:
 ```
 
 ```tasks
-- [ ] update `rule-permissions`
-- [ ] update `estimate-permissions`
+- [x] update `rule-permissions`
+- [x] update `estimate-permissions`
 - [ ] read `estimate-permissions`
 ```
 
@@ -1385,10 +1385,10 @@ update:
 `````
 
 ```tasks
-- [ ] update `rule-case-protocol`
-- [ ] create `estimate-case-protocol-example-passes-the-check`
+- [x] update `rule-case-protocol`
+- [x] create `estimate-case-protocol-example-passes-the-check`
 - [x] `tests/test_case_schema.py`: reads the block tagged `case` from `vault/wiki/case-schema.md`, and skips with a reason that names the file while it holds none. It seeds a temporary project with the `schema.yaml` files of `vault/wiki/`, an `entity-checkout` page that holds the anchor of the example's pair, and an `estimate-checkout-orders-the-steps` page whose Criterion holds only lines that the example's `when` and `then` carry. It runs the function of `guppi/casecheck.py` that the `SubagentStop` check runs over the Cases of a file (today `check_answer`) and asserts no finding and no note, printing them when any stands. A second test makes one padded span of the example unpadded and asserts the finding.
-- [ ] `uv run guppi render`: `vault/wiki/case-schema.md`
+- [x] `uv run guppi render`: `vault/wiki/case-schema.md`
 - [ ] read `estimate-case-protocol-example-passes-the-check`
 ```
 

@@ -1,7 +1,7 @@
 ---
 type: estimate
 kind: QA
-status: passed
+status: pending
 target: "[[rule-case-check]]"
 purpose: The main agent shows a Case only as case-guppi answered it and the checks passed it
 method: uv run pytest tests/test_casecheck.py -k stop, then by hand the first reply the hook refuses
@@ -20,9 +20,9 @@ When:
 Then:
 `uv run guppi casecheck` compares each such Case with the Case of the same id in `<plan>.checked.json` in each of its `given`, `when`, `then`, `tasks` and `ratification` that the reply shows, line by line once line ends and trailing spaces are the same.
 **＋** Under the heading of a top-level Case, one `ratification` whose fence holds the ledger lines of its sub-cases, as the list of a showing holds them, is read as the showing of each sub-case whose id a line names: the lines that name that id are compared with the `ratification` of that sub-case in the store, and a stored line that is missing or a line the store lacks is a difference.
-**＋** A section the reply does not show is not compared: a showing of the heading, a short text and `ratification` alone passes when its `ratification` equals the answer.
+**＋** A section the reply does not show is not compared: a showing of the heading, a short text and `ratification` alone passes when its `ratification` equals the stored text and `raw/<date>/<hi HHMM>/cases/case-<N>.md` equals the store, as `estimate-case-check-refuses-a-changed-case-file` sets it.
 **＋** The name of its heading, its `context`, `problem` and `recommend`, and text under the heading outside its sections are not compared.
-**＋** A Case the store does not hold, a Case that differs in a compared section, a Case stored with findings, or a Case with no `SendUserFile` call on `raw/<date>/<hi HHMM>/cases/case-<N>.md` in the turn of the reply, N the id of its top-level Case, exits 2, the reason and the findings on stderr.
+**＋** A Case the store does not hold, a Case that differs in a compared section, a Case stored with findings, a Case whose file differs from the store, or a Case with no `SendUserFile` call on `raw/<date>/<hi HHMM>/cases/case-<N>.md` in the turn of the reply, N the id of its top-level Case, exits 2, the reason and the findings on stderr.
 **＋** A parent shown with its sub-cases is compared part by part, as the store holds each.
 **＋** The Spec hook `guppi/ratified.py` judges a showing by the same comparison, and a sending by the same reading of the transcript, both imported from `guppi/casecheck.py`.
 **－** A heading with no section, as in the acknowledging reply, a fence tagged `DIFF`, and a deferred decision in the short form — `context`, `problem` and a fence tagged `then` with `defer` items, no `given` and no `when` — are not compared and need no sending.
@@ -40,3 +40,4 @@ Then:
 - 2026-09-27 updated: the Criterion replaced whole — only the shown sections compared, and a sending of the file required in the turn (case 452.2) · [[decision-case-452.2]]
 - 2026-10-01 updated: the Criterion replaced whole - one ratification under the heading of a top-level Case is the showing of each sub-case its lines name (case 561.10) · [[decision-case-561.10]]
 - 2026-10-02 status: pending → passed · raw/2026-10-02/1834/ledger.md#L39
+- 2026-10-05 updated: the Criterion replaced whole — a showing passes only when the file of the Case equals the store too (case 645.11) · [[decision-case-645.11]]

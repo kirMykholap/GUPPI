@@ -7,6 +7,7 @@ enforcement: hook
 implementation_ref: [guppi/onward.py, guppi/ledger.py, guppi/casecheck.py, tests/test_onward.py, tests/test_ledger.py, .claude/settings.json]
 parent: "[[rule-plan-mode]]"
 estimates: ["[[estimate-prespec-onward-sends-the-agent-on]]", "[[estimate-prespec-onward-reads-the-decisions-of-the-session]]"]
+deferred_by: ["[[decision-case-648]]"]
 origin: raw/2026-09-30/2356/ledger.md#case-561.5
 sprint: migration
 created: 2026-09-30
@@ -31,3 +32,4 @@ Prevents Plan Mode from stopping where no person is needed: between the reply th
 - 2026-10-03 updated: a Case is judged out by the decision lines of every reply of the transcript, not only of the stretch, so a re-ratification with unchanged lines counts for the rest of the session (case 604) · [[decision-case-604]]
 - 2026-10-03 ref `estimate-prespec-onward-reads-the-decisions-of-the-stretch` → `estimate-prespec-onward-reads-the-decisions-of-the-session` · [[decision-case-604]]
 - 2026-10-04 status: draft → built · cascade
+- 2026-10-05 deferred · [[decision-case-648]]

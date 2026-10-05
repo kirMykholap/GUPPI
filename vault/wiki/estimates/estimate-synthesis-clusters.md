@@ -1,10 +1,10 @@
 ---
 type: estimate
 kind: QA
-status: pending
+status: failed
 target: "[[rule-synthesis]]"
 method: one reading by hand of the yaml and the report after a live librarian run whose yaml holds at least two lesson entries
-checked: 2026-10-03
+checked: 2026-10-05
 origin: raw/2026-09-10/ledger.md#case-35.2
 sprint: migration
 created: 2026-09-10
@@ -28,7 +28,7 @@ The brief names the Greps of the synthesis, `^(root_cause|deferred_by):` over `v
 
 ## Result
 
-2026-10-03, by hand at the /hi of session 0317, raw/2026-10-03/0115/materialize.yaml lines 621-662 and brief.md of the librarian run of 0115; the yaml holds three lesson entries (ledger lines 9, 19, 20); the brief names `^(root_cause|deferred_by):` over lessons/ (74 lines) and `^(pattern|deferred_by):` over insights/ (31 lines) and gives one line per lesson; `lesson-orchestration-own-text-before-a-prespec-round` and `lesson-orchestration-own-sentence-between-heading-and-list` joined the live `insight-case-form-chat-form-read-by-no-script` by one `update` of the Insight (children, status open) and one `update` per lesson (status clustered, insight set), all three `librarian: synthesis`; `lesson-session-frontier-rewritten-through-powershell` joined none with a reason, stays `new`, and its synthesis line is no flag; no lesson page read at synthesis
+2026-10-05, by hand at the /hi of session 0311, raw/2026-10-05/0109/materialize.yaml lines 569-712, brief.md and the report of the librarian run of 0109 (agent ad9e8d20f682297e0); the yaml holds three lesson entries; the brief names `^(root_cause|deferred_by):` over lessons/ (75 lines) and `^(pattern|deferred_by):` over insights/ (31 lines) and gives one line per lesson; `lesson-orchestration-short-defer-then-block-written-as-a-mapping` joined `insight-workflow-case-schema-silent-on-what-the-scripts-accept` and `lesson-orchestration-dispatch-prompt-carried-counts-not-from-a-run` joined `insight-workflow-fact-signed-from-a-check-that-does-not-cover-it`, each by one `update` of the Insight with the lesson added to `children` and one `update` of the lesson (status clustered, insight set), all four `librarian: synthesis`; `lesson-spec-write-skips-the-reply-that-answers-a-refusal` joined none with a reason, stays `new`, no flag; failed on one clause: call 13 of the librarian printed the frontmatter of six lesson pages at synthesis (lesson-case-showing-ratification-fence-outside-the-blockquote, lesson-case-protocol-chat-case-without-heading, lesson-case-check-command-signed-without-a-run, lesson-pretask-dispatch-summarized-the-plan-and-ask-guppi-judged-the-summary, lesson-hooks-stop-payload, lesson-prespec-onward-re-ratification-out-after-its-stretch), and neither the report nor the brief names them with an outcome
 
 ## History
 
@@ -48,3 +48,4 @@ The brief names the Greps of the synthesis, `^(root_cause|deferred_by):` over `v
 - 2026-10-03 updated: the Criterion replaced whole — the brief gives one line per lesson entry with its outcome against both Greps, or none and why (case 602) · [[decision-case-602]]
 - 2026-10-03 status: pending → passed · raw/2026-10-03/0317/ledger.md#L1
 - 2026-10-04 updated: the Criterion replaced whole — an actioned Insight stays live until the close of its sprint (case 627.5) · [[decision-case-627.5]]
+- 2026-10-05 status: pending → failed · raw/2026-10-05/0311/ledger.md#L1

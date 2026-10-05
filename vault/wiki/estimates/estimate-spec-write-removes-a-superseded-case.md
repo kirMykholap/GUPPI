@@ -1,7 +1,7 @@
 ---
 type: estimate
 kind: QA
-status: passed
+status: pending
 target: "[[rule-spec-write]]"
 purpose: A Case superseded by a decision line of the reply leaves the plan file and spec.md, with its sub-cases
 method: uv run pytest tests/test_ratified.py -k superseded; by hand, a supersedes of a Case of the same session
@@ -22,9 +22,9 @@ The hook removes the section of Case N — its heading, its sections, its `then`
 **＋** Once `raw/<hi date>/<hi HHMM>/spec.md` stands, it removes every section of Case N and of its sub-cases from it too.
 **＋** A `{supersedes:case N.M}` removes the section of that sub-case alone; its parent and its other sub-cases stay.
 **＋** A section of Case N under `## Deferred` is removed the same way.
+**＋** With `stop_hook_active` set, the hook removes as without it, as `estimate-spec-write-answers-a-refusal` sets it.
 **－** A Case N that neither file holds — a Case of an earlier session, a defer taken up — is no refusal, and nothing is removed.
 **－** A line whose own Case the hook refused or did not write removes nothing.
-**－** On the re-fire (`stop_hook_active`) nothing is removed: exit 0.
 
 ## Result
 
@@ -36,3 +36,4 @@ The hook removes the section of Case N — its heading, its sections, its `then`
 - 2026-09-27 updated: the Criterion replaced whole — no ratified copy to remove it from (case 445.3) · [[decision-case-445.3]]
 - 2026-09-27 status: pending → passed · raw/2026-09-27/1819/ledger.md#L32
 - 2026-10-03 updated: method names the kind of its moment (case 613.3) · [[decision-case-613.3]]
+- 2026-10-05 updated: the Criterion replaced whole — with stop_hook_active set the hook removes a superseded Case as without it (case 644.6) · [[decision-case-644.6]]

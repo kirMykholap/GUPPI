@@ -1,10 +1,10 @@
 ---
 type: estimate
 kind: QA
-status: passed
+status: pending
 target: "[[rule-spec-reconcile]]"
-purpose: An edit by the agent of the plan file, its store or a file of a built Case under cases/ is refused, the one Write that creates the plan with its title line excepted
-method: uv run pytest tests/test_ratified.py -k guard; by hand, one probe Write of a file under cases/ in a later session, refused and in the event log
+purpose: An edit of the plan file or its store is refused, the one Write that creates the plan with its title line excepted, and so is an edit of a file of a built Case under cases/ by any agent but case-guppi, and any edit of case-guppi outside cases/
+method: uv run pytest tests/test_ratified.py -k guard; by hand in a later session, one probe Write of the main agent under cases/, refused and in the event log, and one file under cases/ written by case-guppi
 checked: 2026-09-27
 origin: raw/2026-09-23/1859/ledger.md#case-387.3
 sprint: migration
@@ -15,18 +15,19 @@ tags: [hooks, harness, workflow]
 ## Criterion
 
 When:
-The agent calls `Edit`, `Write` or `MultiEdit` on a file, and `uv run guppi ratified --guard` on `PreToolUse` reads the path and the content of the call.
+An agent calls `Edit`, `Write` or `MultiEdit` on a file, and `uv run guppi ratified --guard` on `PreToolUse` reads the path, the content and the agent type of the call from the hook input.
 
 Then:
 The hook refuses every `Edit` and `MultiEdit` of a plan file, and every `Write` of a plan file that exists: exit 2 with the reason on stderr, which Claude Code shows the agent, and the call does not run.
 **＋** A `Write` of a plan file that does not exist is let through when its content, trimmed, is one line that opens with `# `; a `Write` with any other content is refused the same way.
 **＋** Every `Edit`, `Write` or `MultiEdit` of a store `<plan>.checked.json` is refused the same way.
-**＋** Every `Edit`, `Write` or `MultiEdit` of a file under the `cases/` folder of a session folder `vault/raw/<date>/<HHMM>/`, whatever its name and whether it exists or not, is refused the same way; the reason names the file and says that the hook of `rule-case-check` alone writes it.
-**＋** A file under that folder is judged by one function of `guppi/casecheck.py`, which the writer of the file uses too; a plan file is a `.md` file under `.claude/plans/`, judged by one function of `guppi/ledger.py` that `plan_path` uses too.
+**＋** An `Edit`, `Write` or `MultiEdit` of a file under the `cases/` folder of a session folder `vault/raw/<date>/<HHMM>/`, whatever its name and whether it exists or not, is let through when the hook input names `case-guppi` as the agent type, and refused the same way otherwise; the reason names the file and says that `case-guppi` alone writes it.
+**＋** An `Edit`, `Write` or `MultiEdit` whose hook input names `case-guppi` on a file outside such a `cases/` folder is refused the same way.
+**＋** A file under that folder is judged by `is_case_file` of `guppi/casecheck.py`, which the check of the file uses too; a plan file is a `.md` file under `.claude/plans/`, judged by `is_plan_file` of `guppi/ledger.py`, which `plan_path` uses too.
 **＋** A refusal writes one line of the refusal to the day's event log and no `tool` line, so `plan_path` of `guppi/ledger.py` still names the plan file.
-**－** An edit of a file outside `.claude/plans/` and outside the `cases/` folder of a session folder is not judged by this hook, and the `SubagentStop` hook of `rule-case-check` writes the file with no tool call, which this hook does not judge.
+**－** An edit of a file outside `.claude/plans/` and outside such a `cases/` folder by any agent but `case-guppi` is not judged by this hook.
 **－** A payload the hook cannot read: exit 0 with one line on stderr.
-**－** No `PostToolUse` hook compares an edit of the plan: `uv run guppi ratified --edit` and the marks `<plan>.waiting.json` are gone.
+**－** No `PostToolUse` hook compares an edit of the plan.
 
 ## Result
 
@@ -40,3 +41,4 @@ The hook refuses every `Edit` and `MultiEdit` of a plan file, and every `Write` 
 - 2026-09-27 updated: the Criterion replaced whole — the guard refuses the edit instead of comparing it with the ratified copy (case 445.1) · [[decision-case-445.1]]
 - 2026-09-27 updated: the Criterion replaced whole — a file under the cases/ folder of a session folder refused like the store (case 453) · [[decision-case-453]]
 - 2026-09-27 status: pending → passed · raw/2026-09-27/1819/ledger.md#L28
+- 2026-10-05 updated: the Criterion replaced whole — case-guppi alone writes under cases/ and is refused anywhere else; the purpose and the method follow (case 645.3) · [[decision-case-645.3]]

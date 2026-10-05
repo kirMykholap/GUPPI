@@ -25,9 +25,99 @@ In `given`, `when` and `then`, the first line stands alone. Every further line s
 
 ## Language
 
-Short sentences. One idea per sentence. Active voice. A common word over a term. `case-guppi` writes the whole Case in English (case 441). A Case it built reaches the person whole in English, in the file `raw/<date>/<hi HHMM>/cases/case-<N>.md` that the agent sends (case 452.4); what the chat shows of it, and in which language, is `orchestration.md`. English in everything that lands in the vault, in the manner of ASD-STE100 Simplified Technical English when that language is English: the Spec is written from the English answer and the English short form, slugs, field names and ledger lines unchanged (cases 123, 387.1, 441, 476.2). The language of the repository and of the chat as a standing rule is `rule-language`, in `CLAUDE.md`; the two are set in `rule-guppi-config`, rendered into `guppi.toml`.
+Short sentences. One idea per sentence. Active voice. A common word over a term. `case-guppi` writes the whole Case in English (case 441). A Case it built reaches the person whole in English, in the file `raw/<date>/<hi HHMM>/cases/case-<N>.md` that the agent sends (case 452.4); what the chat shows of it, and in which language, is `orchestration.md`. English in everything that lands in the vault, in the manner of ASD-STE100 Simplified Technical English when that language is English: the Spec is written from the English text of the Case file that the check stored and the English short form, slugs, field names and ledger lines unchanged (cases 123, 387.1, 441, 476.2). The language of the repository and of the chat as a standing rule is `rule-language`, in `CLAUDE.md`; the two are set in `rule-guppi-config`, rendered into `guppi.toml`.
 
 The story sections — `context`, `problem`, `recommend` — name the slug of the thing described only; no count of sentences, the shape of each bounds it: `context` is prose: it opens with the mechanism in plain words — what the thing does today and where it goes wrong — for a reader who has not opened the pages, and closes with the state of the pages the Case changes, the vault's answer, what `case-guppi` found in the frame, and why an Estimate of the rule is not touched; the list of what the Case touches is `given` (case 378.1); `context`, `problem` and `recommend` explain briefly — a sentence per part where one is enough, a part with nothing to say left out — and may name a case number as the source of a claim; no script judges their text but for the titles of the items of `recommend`, which the hook of `rule-case-check` compares with the questions of the rounds (case 544.3): the person does, and a complaint of their length or clarity is what changes them (case 449); `problem` says what is wrong, or the question answered, in one paragraph; `recommend` is a list, one item per question of the rounds: its first line the title of the question in bold as the round wrote it, then a sub-item `Recommended:` and a sub-item `Answer:`, the person's answer in English, both as they stood when the person answered that question; a later question that replaced an earlier one is an item of its own, a question asked in more than one round is one item, of the last round in which the person answered it, and a question never answered says so in its `Answer:` sub-item (case 557.2); a change the person asked for on the shown Case is an item `**Change**` with the lines `Asked:` and `Taken:`; a Case with no round has one item, a line `Recommended:` and the line `Answer: ratified as built` (case 544.2). `given` holds the frame, one thing per line: the pages, modules, files and tests the Case touches and the rule that constrains; no state, no history, no quotation (case 378.1). `then` holds behaviour only; the bookkeeping is `tasks`. `given`, `when` and `then` hold no count of items — pages, lines, Estimates, Cases, tests — since `when` and `then` become the Criterion of an Estimate and a count goes stale there first; a number that states a condition or a limit, such as more than 400 000 tokens, stands (case 449). Slugs, file names and field values sit in code spans; bold is for section labels and operands only, and for the title of a question of a round and the title of an item of `recommend`, as the grill-me template sets it (case 544.2). The Spec keeps its form — the blockquotes in English, the `then` and `tasks` blocks — and the hook of `rule-spec-write` reads the chat form: a task line opening with `create`, `update`, `delete` or `defer` and the slug in its first code span is an item of the `then` block, its sub-points its keys — `old` and `new` in pairs, `reword old` and `reword new`, `set`, `change`, `rename`, `sections.<Name>`, the fields of a `create` — each value one code span, with as many backticks as the value needs — a value that holds a backtick takes its outer span padded by one space on each side, and the hook refuses one unpadded (case 402) — or a fenced block under the sub-point, its opening fence longer than any fence of the same character inside it (case 444.3); a Case off this form is not written, and the hook says why (cases 159, 387.2).
+
+## The chat form, by example
+
+The Case below is written in the chat form that `case-guppi` writes into its file. A test runs over it the check that the `SubagentStop` hook of `rule-case-check` runs over that file, and fails on any finding or note, so the example passes that check as the check stands (case 646). The limits a form must keep are those of the check, not of this paragraph: copy the form of the example, and read a finding of the check as the limit it names.
+
+````case
+## Case 1 — The cart stands before payment
+
+> **context:**
+> Until now items went straight from the catalogue to payment, and a buyer could not review an order. The person chose a cart between the two. The pair on `entity-checkout` changes the one sentence of its Purpose that names where the buyer pays; there it names the payment step, which now follows the cart. The Criterion of `estimate-checkout-orders-the-steps` speaks of the order of the steps, so Case 1.1 replaces it. A Glob `vault/**/*cart*` printed nothing, so both new slugs are free.
+
+> **problem:**
+> A buyer pays for an order without seeing it whole.
+
+> **recommend:**
+> - **Where the cart stands**
+>   - Recommended: (a) between the catalogue and payment.
+>   - Answer: agreed, (a).
+
+### Case 1.1 — The cart stands before payment
+
+> **given:**
+> `entity-cart`: the new page of the cart.
+> **＋** `entity-checkout`: the page of payment, which names the cart.
+> **＋** `estimate-checkout-orders-the-steps`: its Criterion is replaced whole.
+
+> **when:**
+> A buyer with items in `entity-cart` opens `entity-checkout`.
+
+> **then:**
+> The buyer sees each item of the order and its price.
+> **＋** The buyer pays only after the cart is shown.
+> **－** An empty cart does not open `entity-checkout`.
+
+> **tasks:**
+> - [ ] create `entity-cart`
+>   - type: `entity`
+>   - kind: `MOC`
+>   - purpose: `Lets a buyer review an order before paying`
+>   - tags: `[cart, checkout]`
+>   - sections.Purpose: `Until now items went straight from the catalogue to payment.`
+> - [ ] update `entity-checkout`
+>   - old: `` the buyer pays at `/checkout/pay` ``
+>   - new: `` the buyer reviews the cart, then pays at `/checkout/pay` ``
+>   - set:
+>     ```
+>     tags: [cart, checkout, payment]
+>     ```
+>   - change: `the cart precedes payment`
+> - [ ] update `estimate-checkout-orders-the-steps`
+>   - set: `{status: pending}`
+>   - change: `the Criterion replaced whole — the cart precedes payment`
+> - [ ] read `estimate-checkout-orders-the-steps`
+
+> **ratification:**
+> ```
+> - decision[case 1.1][create][entity-cart]{tags:cart,checkout}
+> - decision[case 1.1][update][entity-checkout]{ref:entity-checkout}
+> - decision[case 1.1][update][estimate-checkout-orders-the-steps]{ref:entity-checkout}
+> ```
+
+### Case 1.2 — The cart renders in time
+
+> **given:**
+> `estimate-cart-renders-in-time`: the new check of the time the cart takes to show.
+> **＋** `entity-cart`: the page of the cart.
+> **＋** `src/cart/view.py`: the view of the cart.
+
+> **when:**
+> A buyer opens the cart of `src/cart/view.py` with 10, 50 or 200 items.
+
+> **then:**
+> The cart shows all its items within 200 ms.
+> **－** A cart of more than 200 items is not bound by this time.
+
+> **tasks:**
+> - [ ] create `estimate-cart-renders-in-time`
+>   - ref: `entity-cart`
+>   - kind: `QA`
+>   - purpose: `Whether the cart shows its items within 200 ms`
+>   - method: `uv run pytest tests/test_cart_view.py -k render_time`
+>   - tags: `[cart, performance]`
+> - [ ] `src/cart/view.py`: the cart reads its items in one query.
+> - [ ] read `estimate-cart-renders-in-time`
+
+> **ratification:**
+> ```
+> - decision[case 1.2][create][estimate-cart-renders-in-time]{ref:entity-cart}{tags:cart,performance}
+> ```
+````
 
 ## `when` and `then` are the Criterion
 
@@ -65,7 +155,7 @@ update:
 
 A `create` holds the fields the target schema needs a judgment for; prose for a body section goes under `sections`, keyed by the section name. A new promise is an explicit `create` of an Estimate: its own item, `ref` naming the target, its slug written in the Case — `estimate-<target minus its prefix>-<promise>` — with `kind`, `purpose`, `method` and `tags`; its Criterion is the Case's `when` and `then`, lifted by the scripts, or the text the item writes under `sections: Criterion` (cases 188, 194.1). A rule with several promises is a parent Case that creates the rule and one sub-case per Estimate. An `update` holds `set` (fields), `sections` (the whole new text of a section), `replace` (a list of `{old, new}` pairs, each `old` replaced by its `new` inside the body; one pair is a list of one, and a mapping under `replace` is a shape `generate` rejects; an `old` matches inside one `##` section of the page — a render block is one section with its headings — never in History, a line break matching any whitespace, and hits the page once: an anchor that crosses a section heading never matches, and one that misses or hits twice fails the entry; an `old` that opens with spaces or tabs takes the spaces and tabs before its first word on the page too, so the indent of `new` replaces them, and a `new` that opens with spaces or tabs takes an `old` that opens with them, or pre-spec reports the pair — case 543), `reword` (a list of `{old, new}` pairs replaced as whole words over every live page of `wiki/`, the page of the item being the owner, for a word that changes everywhere — a slug goes through `rename`, case 274.1), `change` (one line for History) and, when the page changes its slug, `rename` (the new slug, the same category prefix; the page moves and every link to it in the live pages follows, `origin`, History and Result kept — case 258.1). An `update` of an Estimate carries `slug`, `set: {status: pending}` and `change`; the scripts replace its Criterion with the Case's `when` and `then`, or keep the text the item wrote under `sections: Criterion` (case 204). An `update` that names a part alone — a field under `set` other than `status`, a `replace` pair, a section other than `Criterion` — carries no `set.status`: the scripts change that part, and the Criterion and the status stand; a part inside the Criterion is refused — a promise changes only whole, by a Criterion replaced whole (case 378.4). A pair under `replace` or `reword` is signed only after the sentence around every match is read whole and what it names there is said, never from the line a grep printed (case 353). A Case that changes the behaviour of an existing page reads the page's `estimates` and gives an `update` to each one whose Criterion speaks of the change — read as the `then` block is written, not at pre-spec; an Estimate whose Criterion speaks of something else is left alone, since naming a spare one replaces a sound Criterion (cases 53.2, 353). One promise per Case or sub-case: two touched promises are two sub-cases, and pre-spec asks for the split. A `delete` holds `impact`, a `defer` a `type` and a `purpose`. `CLAUDE.md`, this file, `orchestration.md` and `ratification.md` are rendered from `rule-claude-md`, `rule-case-protocol`, `rule-orchestration` and `rule-ratification` and change by an `update` of one of them (cases 59.8, 273.1, 595). New tags are declared under `new_tags` with a meaning and a Russian alias, under any Case of the Spec (case 61).
 
-**The Spec is written as each Case is ratified**, by the `Stop` hook of `rule-spec-write`, after the reply that carries the Case's ledger lines: it copies the Case as `case-guppi` answered it — the answer the check of `rule-case-check` stored, never a showing that differs from it, which is refused (case 437) — into the plan file, outside the repository, and, once `raw/<date>/<hi HHMM>/spec.md` stands, into it too, the ticks of its unchanged task lines kept (case 441). The Case holds `context`, `problem`, `recommend`, `given`, `when`, `then`, the `then` block and a block tagged `tasks` — one `- [ ] <what>` per file to change, test to write, command to run, one-off migration, and one per reading of an Estimate the Case creates or sets `pending`, by its slug. A `by hand` box is a check that Work Mode of the Case's own session takes; a check whose moment comes after that Work Mode — the librarian's run of the session or a later session — is no box: it is the reading of an Estimate, through the `read` line of one the Case creates or sets `pending` or through one its `context` names, or it is left to the `make lint` of the librarian's run, which the brief reports (case 606.1). `ratification` stays in the chat (case 544.5); code is Work Mode. Who ticks which line is `orchestration.md`. A render line is `- [ ] `uv run guppi render`: `<file>``, a sprint line `- [ ] `uv run guppi sprint``, a glossary line `- [ ] `uv run guppi glossary``, a close line `- [ ] `uv run guppi sprint-close --sprint <id> --apply …``, which the librarian runs and the command ticks (`rule-sprint-close`, case 628.1) — the command in the first code span is what the ticker matches (case 235); a line of another form stays debt at Retro (case 279.1).
+**The Spec is written as each Case is ratified**, by the `Stop` hook of `rule-spec-write`, after the reply that carries the Case's ledger lines: it copies the Case as `case-guppi` wrote it into its file — the text the check of `rule-case-check` stored, never a showing or a file that differs from it, which is refused (cases 437, 645.5) — into the plan file, outside the repository, and, once `raw/<date>/<hi HHMM>/spec.md` stands, into it too, the ticks of its unchanged task lines kept (case 441). The Case holds `context`, `problem`, `recommend`, `given`, `when`, `then`, the `then` block and a block tagged `tasks` — one `- [ ] <what>` per file to change, test to write, command to run, one-off migration, and one per reading of an Estimate the Case creates or sets `pending`, by its slug. A `by hand` box is a check that Work Mode of the Case's own session takes; a check whose moment comes after that Work Mode — the librarian's run of the session or a later session — is no box: it is the reading of an Estimate, through the `read` line of one the Case creates or sets `pending` or through one its `context` names, or it is left to the `make lint` of the librarian's run, which the brief reports (case 606.1). `ratification` stays in the chat (case 544.5); code is Work Mode. Who ticks which line is `orchestration.md`. A render line is `- [ ] `uv run guppi render`: `<file>``, a sprint line `- [ ] `uv run guppi sprint``, a glossary line `- [ ] `uv run guppi glossary``, a close line `- [ ] `uv run guppi sprint-close --sprint <id> --apply …``, which the librarian runs and the command ticks (`rule-sprint-close`, case 628.1) — the command in the first code span is what the ticker matches (case 235); a line of another form stays debt at Retro (case 279.1).
 
 Derivable fields — `origin`, `status`, `parent` from `ref`, `children`, `code_ref`, `deferred_by` — are filled mechanically and are not written here. `guppi materialize` reads the blocks, and what is not in a block was signed by nobody.
 
@@ -73,15 +163,15 @@ Derivable fields — `origin`, `status`, `parent` from `ref`, `children`, `code_
 
 ## Who builds a Case
 
-Every Case, in Plan Mode and in Work Mode, at its first showing and at every showing again, is built by the agent `case-guppi` (`rule-case-build`); how the main agent dispatches it, passes on the person's words and shows its answer is `orchestration.md`.
+Every Case, in Plan Mode and in Work Mode, at its first showing and at every showing again, is built by the agent `case-guppi` (`rule-case-build`); how the main agent dispatches it, passes on the person's words and shows the Case it built is `orchestration.md`.
 
 ## Taking up a deferred decision
 
-A deferred decision is written by the main agent in the short form that `orchestration.md` sets. Taking a deferred decision up means building its full Case from its page — `context` and `problem` as they stand, then `recommend`, `given` — the frame — `when`, `then`, the vault's answer in `context` (case 378.1) — and writing on one of its decision lines one `{supersedes:case N}` block for each Case in the page's `deferred_by`, so that every defer of the page is retired (case 429); the Case, or the sub-case, that carries the blocks also names the page on a decision line other than a `defer` — an `update` with only `change` when nothing on the page changes — since `generate` clears a defer only from the pages the superseding Case names. `/pre-spec` reports a Case that closes a Frontier line of the source `backlog` when no Case among it and its sub-cases both names the page and carries each block; the check of the answer of `case-guppi` sends back a Case that names the page of an open `backlog` line when no Case among it and its sub-cases in the answer both names the page and carries each block (case 467).
+A deferred decision is written by the main agent in the short form that `orchestration.md` sets. Taking a deferred decision up means building its full Case from its page — `context` and `problem` as they stand, then `recommend`, `given` — the frame — `when`, `then`, the vault's answer in `context` (case 378.1) — and writing on one of its decision lines one `{supersedes:case N}` block for each Case in the page's `deferred_by`, so that every defer of the page is retired (case 429); the Case, or the sub-case, that carries the blocks also names the page on a decision line other than a `defer` — an `update` with only `change` when nothing on the page changes — since `generate` clears a defer only from the pages the superseding Case names. `/pre-spec` reports a Case that closes a Frontier line of the source `backlog` when no Case among it and its sub-cases both names the page and carries each block; the check of the file `case-guppi` writes sends back a Case that names the page of an open `backlog` line when no Case among it and its sub-cases in the file both names the page and carries each block (case 467).
 
 ## Splitting
 
-If the human's reply to a Case is a follow-up question, the Case was not atomic. Detect this and propose splitting into sub-cases — recursive dotted ids, `1.1`, `1.1.1`; whether a unit splits is the rule of atomicity in `ratification.md`. A sub-case is `### Case N.M — name` under its parent, with its own `when`, `then`, `tasks` and `ratification` (case 159), and its own `given` unless it is the parent's word for word — `materialize` takes a sub-case's `given` as it stands, so a sub-case with the parent's lines and more writes them all out, never a pointer to the parent's; `context`, `problem`, `recommend` and a shared `given` live on the parent, and `materialize` reads a missing `context` or `given` there (case 60); `problem` stands on the parent only, and the parent's `recommend` may carry every item, and a sub-case may carry its own `recommend` with items whose answer changed that sub-case alone (cases 544.2, 568). A Case with sub-cases stands in one file: the parent's `context`, `problem`, `recommend`, then every sub-case whole (case 355.2). A Case that has a decision line in the session's ledger and is built again in another shape — whole after sub-cases, with sub-cases after whole, or without a sub-case that has a decision line — is built under a new number, never its old one, and its decision lines carry one {supersedes:case N} for its old top-level number and one for each of its old numbers that has a decision line: the Spec hook keeps the old parts beside the new ones, a mark on a sub-case removes that sub-case alone, and the old lines stay in the ledger until a mark retires them. The check of the answer of case-guppi sends back a build that keeps the old number, and names the new number (case 610.1).
+If the human's reply to a Case is a follow-up question, the Case was not atomic. Detect this and propose splitting into sub-cases — recursive dotted ids, `1.1`, `1.1.1`; whether a unit splits is the rule of atomicity in `ratification.md`. A sub-case is `### Case N.M — name` under its parent, with its own `when`, `then`, `tasks` and `ratification` (case 159), and its own `given` unless it is the parent's word for word — `materialize` takes a sub-case's `given` as it stands, so a sub-case with the parent's lines and more writes them all out, never a pointer to the parent's; `context`, `problem`, `recommend` and a shared `given` live on the parent, and `materialize` reads a missing `context` or `given` there (case 60); `problem` stands on the parent only, and the parent's `recommend` may carry every item, and a sub-case may carry its own `recommend` with items whose answer changed that sub-case alone (cases 544.2, 568). A Case with sub-cases stands in one file: the parent's `context`, `problem`, `recommend`, then every sub-case whole (case 355.2). A Case that has a decision line in the session's ledger and is built again in another shape — whole after sub-cases, with sub-cases after whole, or without a sub-case that has a decision line — is built under a new number, never its old one, and its decision lines carry one {supersedes:case N} for its old top-level number and one for each of its old numbers that has a decision line: the Spec hook keeps the old parts beside the new ones, a mark on a sub-case removes that sub-case alone, and the old lines stay in the ledger until a mark retires them. The check of the file case-guppi writes sends back a build that keeps the old number, and names the new number (case 610.1).
 
 A question that only asks you to justify a choice already on the table ("why this approach?") does **not** split the Case. A question whose answer requires a new choice with its own consequences ("how will we handle X?") **does**.
 

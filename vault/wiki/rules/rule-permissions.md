@@ -2,7 +2,7 @@
 type: rule
 kind: Leaf
 purpose: Lets the session write its own working files without asking, and nothing else
-status: built
+status: draft
 enforcement: render
 governs: .claude/settings.json
 render_mode: partial
@@ -18,7 +18,7 @@ tags: [harness, session]
 
 Lets the session write its own working files without asking, and nothing else. The Frontier, the Spec, the work file, the handoff, the carry mark and the brief of `/carry` are the session's own record of itself: `/hi` writes the Frontier, every closed item edits it, Work Mode ticks the boxes of the Spec and writes `work.md` (case 479.5), `/handoff` writes the note, `/carry` writes `carry.md` and rewrites `brief.md` (case 200.5). A question before each of those writes buys
 nothing — the content is the agent's own, and the person reads it in the reply
-anyway. The list states that intent; in Plan Mode the client asks before every edit outside the plan file all the same, the person approves, and whether it asked is the person's word, never the agent's, which cannot see the prompt (case 237).
+anyway. The list states that intent; in Plan Mode the client asks before every edit of the main agent outside the plan file all the same, the person approves, and whether it asked is the person's word, never the agent's, which cannot see the prompt (case 237). The file of a built Case under `cases/` is not on the list: `case-guppi` writes it in the mode `permissionMode: acceptEdits` of its agent file, which Claude Code keeps for a subagent while the session is in Plan Mode, and the guard of `rule-spec-reconcile` keeps it inside `cases/` (case 645.16).
 
 What stays outside the list is the point of the list. `ledger.md` and
 `event_log.md` are written by hooks, `materialize.yaml` by a script, and a harness
@@ -56,3 +56,5 @@ a refusal that matters has a hook behind it (case 85.5).
 - 2026-09-28 updated: work.md, the baseline and the marks of an expected red, joins the allow list (case 479.5) · [[decision-case-479.5]]
 - 2026-09-28 status: built → draft · cascade
 - 2026-09-30 status: draft → built · cascade
+- 2026-10-05 updated: the prompt in Plan Mode binds the main agent; case-guppi writes its Case file in permissionMode acceptEdits, with no allow rule (case 645.16) · [[decision-case-645.16]]
+- 2026-10-05 status: built → draft · cascade

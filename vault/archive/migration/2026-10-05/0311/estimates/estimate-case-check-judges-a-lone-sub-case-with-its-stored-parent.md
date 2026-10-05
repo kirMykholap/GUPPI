@@ -1,7 +1,7 @@
 ---
 type: estimate
 kind: QA
-status: passed
+status: archived
 target: "[[rule-case-check]]"
 purpose: Whether the check of an answer of case-guppi that holds sub-cases alone judges their frame against the given of their stored parent, and gives the answer no finding of the parent itself
 method: uv run pytest tests/test_casecheck.py -k lone
@@ -33,3 +33,5 @@ The hook builds the Spec text it judges with the stored section of Case N before
 - 2026-10-04 created · [[decision-case-629.3]]
 - 2026-10-05 updated: the method is pytest alone; the live send-back is no longer waited for (case 637.1) · [[decision-case-637.1]]
 - 2026-10-05 status: pending → passed · raw/2026-10-05/0109/ledger.md#L3
+- 2026-10-05 deleted · [[decision-case-645.2]]
+- 2026-10-05 archived · cleanup
